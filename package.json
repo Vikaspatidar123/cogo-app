@@ -1,0 +1,12 @@
+{
+  "name": "cogo-app",
+  "version": "0.0.1",
+  "description": "monorepo for cogo app",
+  "repository": "git@github.com:Cogoport/cogo-app.git",
+  "author": "Prashant Paddune <padadunep@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ]
+}

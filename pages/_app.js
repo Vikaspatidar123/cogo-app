@@ -1,7 +1,4 @@
-import '../styles/globals.css'
+import '@cogoport/components/dist/themes/midnight.css';
+import '@/page-components/_app/globals.css';
 
-function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />
-}
-
-export default MyApp
+export { default } from '@/page-components/_app';

@@ -995,10 +995,10 @@
     "@babel/helper-validator-identifier" "^7.19.1"
     to-fast-properties "^2.0.0"
 
-"@cogoport/components@^1.0.32":
-  version "1.0.32"
-  resolved "https://registry.yarnpkg.com/@cogoport/components/-/components-1.0.32.tgz#8ff05be88dc9b826ca3fa699c5048ca3767c7640"
-  integrity sha512-GeUG+oXTUjKRmqoMO3JfzGsId394zfQCyoqxnHrNUNvfEhsOWWt5gb4Rl3kf0eiUeJPvPFRXYxAre3cLWjpDMw==
+"@cogoport/components@^1.0.34":
+  version "1.0.34"
+  resolved "https://registry.yarnpkg.com/@cogoport/components/-/components-1.0.34.tgz#a1ee3054feb6acc0ba393095c249a732f92a38e9"
+  integrity sha512-FZM+AsgvRUDzj/cfKGQJWrVdBiCbrHK4dHp0MDwmzdKA/R/yvmbmabfHHs/87DdF8ppcp5bQqZF8xC+0zWuqRA==
   dependencies:
     downshift "^6.1.12"
     react "^18.2.0"

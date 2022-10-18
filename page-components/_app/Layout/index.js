@@ -1,4 +1,4 @@
-import { AdminLayout } from '@cogoport/components';
+import { AppLayout } from '@cogoport/components';
 import React from 'react';
 
 import LogoSvg from './logo.svg';
@@ -7,16 +7,16 @@ import { NAVBAR_CONFIGURATION } from '@/constants/nav';
 
 function Layout({ children }) {
 	return (
-		<AdminLayout
+		<AppLayout
 			showTopbar
-			showNavbar
+			showStartbar
 			topbar={{
 				logo: <LogoSvg height={20} />,
 			}}
-			navbar={NAVBAR_CONFIGURATION}
+			startbar={NAVBAR_CONFIGURATION}
 		>
 			{children}
-		</AdminLayout>
+		</AppLayout>
 	);
 }
 

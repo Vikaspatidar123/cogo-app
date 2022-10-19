@@ -1046,6 +1046,11 @@
     stylelint-config-recess-order "^3.0.0"
     stylelint-config-standard "^28.0.0"
 
+"@cogoport/utils@^1.1.3":
+  version "1.1.3"
+  resolved "https://registry.yarnpkg.com/@cogoport/utils/-/utils-1.1.3.tgz#ad4141c2cda236f5bd5c7258dd190ee31381272e"
+  integrity sha512-zid4QEh1sapq37pqQMjv5wYzDCrq0YJSjj60rT96tRm7May+elxfQNAAocVXQgKLgWfjXzUEgvFYyFLhPaDyMg==
+
 "@csstools/selector-specificity@^2.0.2":
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/@csstools/selector-specificity/-/selector-specificity-2.0.2.tgz#1bfafe4b7ed0f3e4105837e056e0a89b108ebe36"

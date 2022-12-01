@@ -1,4 +1,4 @@
 import '@cogoport/components/dist/themes/midnight.css';
-import '@/page-components/_app/globals.css';
+import '@/ui/page-components/_app/globals.css';
 
-export { default } from '@/page-components/_app';
+export { default } from '@/ui/page-components/_app';

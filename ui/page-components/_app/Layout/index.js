@@ -3,7 +3,7 @@ import React from 'react';
 
 import LogoSvg from './logo.svg';
 
-import { NAVBAR_CONFIGURATION } from '@/constants/nav';
+import { NAVBAR_CONFIGURATION } from '@/ui/helpers/nav';
 
 function Layout({ children }) {
 	return (

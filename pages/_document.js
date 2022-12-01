@@ -1,1 +1,1 @@
-export { default } from '@/page-components/_document';
+export { default } from '@/ui/page-components/_document';

@@ -1,1 +1,1 @@
-export { default }  from "@/page-components/cpq-tools";
+export { default } from '@/ui/page-components/cpq-tools';

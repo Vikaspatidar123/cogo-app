@@ -2,4 +2,13 @@ import { makeUseAxios } from 'axios-hooks';
 
 import { request } from './request';
 
-export const useRequest = makeUseAxios({ axios: request, cache: false, defaultOptions: { ssr: true } });
+const commonConfig = {
+	cache          : false,
+	defaultOptions : {
+		ssr: false,
+	},
+};
+
+const useRequest = makeUseAxios({ axios: request, ...commonConfig });
+
+export { useRequest };

@@ -1,0 +1,168 @@
+{
+	"about_cogoport": [
+		{
+		  "caption":"What does Cogoport do?",
+		  "data":"Cogoport simplifies global logistics. We have a Global Trade Platform that provides end-to-end shipment services to help our partners serve their customers better."
+		},
+		{
+		  "caption":"How can Cogoport help me? ",
+		  "data":"Cogoport helps partners find solutions to grow their businesses. This includes finding fast, competitive rates, and end to end service across planning, booking, and executing shipments. We have features such as rate discovery, booking shipments, container tracking, and deferred payment solutions to help with cash flow and optimal working capital. Cogoport is a one-stop solution for all your global trade and shipment requirements. We provide fast and competitive export and import services, all in one place. Using the Cogoport platform, our partners can find, compare, and book excellent freight rates from any carrier. You can also track shipments at every step up to the destination."
+		},
+		{
+		  "caption": "What specific services does Cogoport offer?",
+		  "data": "Cogoport offers services for Ocean Freight, Air Freight, Trucking and Haulage, CFS and Customs Clearance."
+		},
+		{
+		  "caption": "How does Cogoport find rates and space for shipment?",
+		  "data": "Our in-house supply team has a network with numerous shipping lines, NVOCCs, and airlines through which we regularly find rates and space for inventory."
+		},
+		{
+		  "caption": "Why should I choose to partner with Cogoport over others?",
+		  "data": "Cogoport offers fast, competitive rates, and you can earn CogoPoints from your first transaction on the platform. We ensure our partners get the space they need for their customers and have a seamless experience with their shipments."
+		}
+	  ],
+	"general": [
+		{
+		  "caption":"Who is a Channel Partner?",
+		  "data":"A Channel Partner is a company that partners with Cogoport to market and sell its services to importers and exporters."
+		},
+		{
+		  "caption":"Who can become a Cogoport partner?",
+		  "data":"Cogoport partners with companies that are looking for fast, efficient sourcing of competitive shipping rates and quotes, as well as meaningful financial incentives."
+		},
+		{
+		  "caption": "I want to know more about the Channel Partner program, who should I contact?",
+		  "data": "You can contact our onboarding team by writing to us at marketing@cogoport.com. Visit the Channel Partner landing page by clicking here."
+		},
+		{
+		  "caption": "What benefits do I get from being a Cogoport Channel Partner?",
+		  "data": "Our Global Trade Platform lets you cater to your customer’s requirements for fast, reliable shipping. You start earning CogoPoints from the first shipment you make on our platform and you can redeem CogoPoints for future shipments or vouchers. With CogoAssured, you will find assured bookings at competitive rates."
+		},
+		{
+		  "caption": "I am interested in the Cogoport Channel Partner program. How can I sign up?",
+		  "data": "You can visit our Channel Partner website and sign up."
+		},
+		{
+		  "caption": "Is an agreement required to become a Cogoport Channel Partner?",
+		  "data": "Yes, an agreement will be signed between the Channel Partner and Cogoport."
+		},
+		{
+		  "caption": "Does Cogoport charge a subscription fee to access the Channel Partner platform?",
+		  "data": "There are three types of subscription plans: Standard Plan is free. Premium Plan at INR 1,500/- per month. Enterprise Plan customized per your requirements."
+		},
+		{
+		  "caption": "How do I use the Channel Partner dashboard?",
+		  "data": "The dashboard is easy to use. You can contact our Onboarding Expert for a demo. Or you can view our video gallery to glance at the unique platform features."
+		},
+		{
+		  "caption": "How can I deactivate my Channel Partner account?",
+		  "data": "To deactivate your Channel Partner account, contact your Relationship Manager."
+		},
+		{
+		  "caption": "How do I get confirmation on the booking I have placed?",
+		  "data": "Once you have placed an order with us, you shall receive an email and our Key Account Manager (KAM) will contact you related to your booking."
+		},
+		{
+		  "caption": "Do you provide BL amendment?",
+		  "data": "Yes, we do provide BL amendments against payment. In case of CogoAssured shipments, we provide you with one free BL amendment."
+		}
+	  ],
+	"program_structure": [
+		{
+		  "caption":"My business has a presence in multiple countries. Do I need to sign up for the Partner Program in each country?",
+		  "data":"No, you can handle multiple shipments through one platform."
+		},
+		{
+		  "caption":"Will I get deferred days for payment?",
+		  "data":"It will depend on the shipment"
+		},
+		{
+		  "caption": "How many deferred days can I have?",
+		  "data": "It will depend on the shipment"
+		}
+	  ],
+	"customers_leads_and_data": [
+		{
+		  "caption": "Is my database secure with Cogoport?",
+		  "data": "Yes. Data Security is given topmost priority at Cogoport. All the data servers are owned by Cogoport and it is never disclosed on any public platform."
+		},
+		{
+		  "caption": "How can I be sure that Cogoport does not poach my customers?",
+		  "data": "Cogoport aims to become a platform for you to serve your customers and database. We neither access nor cater to your customer base directly."
+		},
+		{
+		  "caption": "Who has access to my customer database?",
+		  "data": "You, along with your Key Account Manager, will have the access to the database."
+		},
+		{
+		  "caption": "Is my shipment information secure?",
+		  "data": "Yes, it remains private and is used only for the purpose of shipments."
+		},
+		{
+		  "caption": "Do I have to exclusively work with Cogoport after becoming a Channel Partner?",
+		  "data": "No, this is not a requisite."
+		},
+		{
+			"caption": "Will Cogoport be in contact with my customers?",
+			"data": "No, Cogoport will be in contact with Channel Partners only."
+		  }
+	  ],
+	"cogopoints": [
+		{
+		  "caption": "What are CogoPoints?",
+		  "data": "CogoPoints are a form of incentive that are awarded to Channel Partners for transactions to be redeemed at a later date for discounts on future shipments or for vouchers."
+		},
+		{
+		  "caption": "When are CogoPoints granted?",
+		  "data": "CogoPoints are granted instantly after the transaction is completed."
+		},
+		{
+			"caption": "Where can I find my CogoPoints vault?",
+			"data": "You can access it on your dashboard."
+		  },
+		{
+		  "caption": "How can I use my CogoPoints?",
+		  "data": "You can redeem your CogoPoints to get discounts on future shipment payments, to renew/upgrade your subscription plan or for vouchers."
+		}
+	  ],
+	"cogoassured": [
+		{
+		  "caption": "What is CogoAssured?",
+		  "data": "These are special rates at which you would get assured space and booking. The various services that can be availed are 10 detention days, BL release within 24 hours, 1 free BL amendment, and confirmed space and inventory, wherever applicable."
+		},
+		{
+		  "caption": "What are the trade lanes where I can view CogoAssured rates?",
+		  "data": "We procure rates in advance a week in advance, for CogoAssured rates, for specific trade lanes. These trade lanes are China to India, India to USA, India to Middle East, and many more."
+		},
+		{
+		  "caption": "Is space always available for CogoAssured rates? ",
+		  "data": "Yes, the space is always available for CogoAssured rates. With CogoAssured, we will provide one vessel every week and they can be availed till the inventory is finished."
+		}
+	  ],
+	"about_the_platform":[
+		{
+		  "caption": "How do I search for rates on Cogoport?",
+		  "data": "On our platform, Go to the ‘Discover Rates’ tab, then Enter details (Origin, Destination, Container Details), then click on ‘Search Freight’ These steps will show you the rates on our platform"
+		},
+		{
+		  "caption": "How do I book containers on the Cogoport platform?",
+		  "data": "On our platform, Go to the ‘Discover Rates' tab, then Enter details (Origin, Destination, Container Details), then Click on ‘Search Freight’, after that Click on ‘Book’ then, Enter the PIN Code, GST, and Address, after this Go to ‘Order Confirmation’"
+		},
+		{
+		  "caption": "How do I track containers on the Cogoport platform?",
+		  "data": "Go to ‘Track and Trace’, then Select Air Cargo/Ocean Tracking, after which Enter the AWB/Container Number, and Track the status of containers"
+		},
+		{
+		  "caption": "How do I check ocean schedules on the Cogoport platform?",
+		  "data": "Go to Schedules, then Select Air/Ocean Schedules, after that Enter Origin and Destination Port, then You can ‘Search Schedule’"
+		},
+		{
+			"caption": "How do I receive a confirmation on a booking I placed?",
+			"data": "Once you click on “Go to Order Confirmation”, you will receive an email of confirmation with reference to your booking. You can also check the status of the booking under the ‘Shipments’ tab on the dashboard. In case your booking is through CogoAssured, you will receive the booking note within 24 hours."
+		}
+	  ]
+}
+
+
+
+

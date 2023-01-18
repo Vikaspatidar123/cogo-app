@@ -1,0 +1,21 @@
+.container{
+    padding: 8px 12px;
+	margin-bottom: auto;
+	border-radius: 4px;
+	background: transparent;
+
+	font-size: 10px;
+	line-height: 12px;
+	color: #6a8198;
+	text-align: center;
+
+	display: inline-flex;
+	flex: 1;
+	flex-direction: column;
+	align-items: center;
+
+	&.active {
+		background: rgba(124, 141, 158, 0.2);
+		color: white;
+	}
+}

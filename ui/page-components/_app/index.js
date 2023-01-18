@@ -1,15 +1,16 @@
 import { Provider } from 'react-redux';
 
-import Layout from './Layout';
+// import Layout from './Layout';
 
 import store from '@/packages/store';
+import GlobalLayout from '@/ui/components/Layout';
 
 function MyApp({ Component, pageProps }) {
 	return (
 		<Provider store={store}>
-			<Layout>
+			<GlobalLayout layout={pageProps.layout || 'authenticated'}>
 				<Component {...pageProps} />
-			</Layout>
+			</GlobalLayout>
 		</Provider>
 	);
 }

@@ -5,9 +5,10 @@ import { useDispatch } from 'react-redux';
 import styles from './index.module.css';
 
 import { useRequest } from '@/packages/request/index';
-import { addUserLoginData, addUserProfileData } from '@/packages/store/user';
+import { addUserLoginData, addUserProfileData } from '@/packages/store/reducers/user';
 
 function Login() {
+	console.log('vikash');
 	const dispatch = useDispatch();
 	const [values, setValues] = useState({
 		email    : '',
@@ -53,7 +54,6 @@ function Login() {
 						},
 					},
 				);
-				console.log(loginRes, 'loginRes', login);
 				if (login?.response?.status === 200) {
 					dispatch(addUserLoginData(loginRes.data));
 					const profileRes = await profileTrigger();
@@ -116,4 +116,6 @@ function Login() {
 		</FluidContainer>
 	);
 }
+Login.getInitialProps = () => ({ layout: 'hidden' });
+
 export default Login;

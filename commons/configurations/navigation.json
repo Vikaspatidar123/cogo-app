@@ -1,0 +1,135 @@
+[
+	{
+		"label": "Dashboard",
+		"href": "/dashboard",
+		"as": "/dashboard",
+		"type": "link",
+		"isQuickLink": true,
+		"icon": "dashboard",
+		"show": {
+			"notKycVerified": false
+		}
+	},
+	{
+		"label": "Discover Rates",
+		"href": "/discover-rates",
+		"as": "/discover-rates",
+		"type": "link",
+		"icon": "discover",
+		"account_type": "importer_exporter",
+		"isQuickLink": true,
+		"show": {
+			"notKycVerified": false
+		}
+	},
+	{
+		"label": "Shipments",
+		"href": "/shipments",
+		"as": "/shipments",
+		"type": "link",
+		"icon": "shipments",
+		"isQuickLink": true,
+		"show": {
+			"notKycVerified": false
+		}
+	},
+	
+	{
+		"label": "Finance",
+		"href": "/finance-dashboard",
+		"as": "/finance-dashboard",
+		"type": "link",
+		"icon": "finance",
+		"show": {
+			"notKycVerified": false
+		}
+	},
+	{
+		"label": "Live Booking",
+		"href": "/discover",
+		"as": "/discover",
+		"type": "link",
+		"account_type": "service_provider",
+		"show": {
+			"notKycVerified": false
+		}
+	},
+	{
+		"label": "Feedback",
+		"href": "/feedback",
+		"as": "/feedback",
+		"type": "link",
+		"account_type": "service_provider",
+		"show": {
+			"notKycVerified": false
+		}
+	},
+	{
+		"label": "Tools",
+		"type": "menu",
+		"options": [
+			{
+				"label": "Ocean Tracking",
+				"href": "/saas/shipments-tracking",
+				"as": "/saas/shipments-tracking",
+				"type": "link",
+				"description": "Seamlessly keep track of your shipments and deviations"
+			},
+			{
+				"label": "Air Tracking",
+				"href": "/saas/air-tracking",
+				"as": "/saas/air-tracking",
+				"type": "link",
+				"description": "Track your shipment on the map in real time"
+			},
+			{
+				"label": "Ocean Schedules",
+				"href": "/saas/ocean-schedules",
+				"as": "/saas/ocean-schedules",
+				"type": "link",
+				"description": "Find sailing schedule with real time port congestion data"
+			},
+			{
+				"label": "Air Schedules",
+				"href": "/saas/air-schedules",
+				"as": "/saas/air-schedules",
+				"type": "link",
+				"description": "Find sailing schedule for multiple air lines by route or vessel"
+			},
+			{
+				"label": "Product Classification",
+				"href": "/saas/hs-codes",
+				"as": "/saas/hs-codes",
+				"type": "link",
+				"description": "Find HS Codes with detailed description"
+			}
+		],
+		"show": {
+			"notKycVerified": false
+		}
+	},
+	{
+		"label": "Rates",
+		"type": "menu",
+		"account_type": "service_provider",
+		"options":[
+			{
+				"label": "Rates Sheet",
+				"href": "/rate-list",
+				"as": "/rate-list",
+				"type": "link",
+				"account_type": "service_provider"
+			},
+			{
+				"label": "Rates Management",
+				"href": "/rate-management",
+				"as": "/rate-management",
+				"type": "link",
+				"account_type": "service_provider"
+			}
+		],
+		"show": {
+			"notKycVerified": false
+		}
+	}
+]

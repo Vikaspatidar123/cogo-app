@@ -1,13 +1,16 @@
 import { configureStore } from '@reduxjs/toolkit';
 
-import partnerIdReducer from './partnerId';
-import userReducer from './user';
+import reducers from './reducers';
 
-const store = configureStore({
-	reducer: {
-		partnerIdStore : partnerIdReducer,
-		userStore      : userReducer,
-	},
+export {
+	Provider,
+	connect,
+	shallowEqual,
+	useSelector,
+	useDispatch,
+	useStore,
+} from 'react-redux';
+
+export default configureStore({
+	reducer: reducers,
 });
-
-export default store;

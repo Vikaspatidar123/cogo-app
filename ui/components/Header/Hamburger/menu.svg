@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<!-- Generator: Sketch 54.1 (76490) - https://sketchapp.com -->
+	<title>Icons/standard/navigation/menu compact</title>
+	<desc>Created with Sketch.</desc>
+	<defs>
+		<path d="M4,15 L20,15 C20.5522847,15 21,15.4477153 21,16 L21,16 C21,16.5522847 20.5522847,17 20,17 L4,17 C3.44771525,17 3,16.5522847 3,16 L3,16 C3,15.4477153 3.44771525,15 4,15 Z M4,7 L20,7 C20.5522847,7 21,7.44771525 21,8 L21,8 C21,8.55228475 20.5522847,9 20,9 L4,9 C3.44771525,9 3,8.55228475 3,8 L3,8 C3,7.44771525 3.44771525,7 4,7 Z M4,11 L20,11 C20.5522847,11 21,11.4477153 21,12 L21,12 C21,12.5522847 20.5522847,13 20,13 L4,13 C3.44771525,13 3,12.5522847 3,12 L3,12 C3,11.4477153 3.44771525,11 4,11 Z" id="path-1"></path>
+	</defs>
+	<g id="Icons/standard/navigation/menu-compact" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+		<mask id="mask-2" fill="white">
+			<use xlink:href="#path-1"></use>
+		</mask>
+		<use id="icon" fill="#42526E" xlink:href="#path-1"></use>
+		<g id="↳-🎨Color" mask="url(#mask-2)" fill="#525252" fill-rule="nonzero">
+			<polygon id="N500" points="0 24 24 24 24 0 0 0"></polygon>
+		</g>
+	</g>
+</svg>

@@ -1,0 +1,32 @@
+{
+	"tabs":[
+		{
+			"key":"about_cogoport",
+			"title":"About Cogoport"
+		},
+		{
+			"key":"general",
+			"title":"General"
+		},
+		{
+			"key":"program_structure",
+			"title":"Program Structure"
+		},
+		{
+			"key":"customers_leads_and_data",
+			"title":"Customers, Leads and Data"
+		},
+		{
+			"key":"cogopoints",
+			"title":"CogoPoints"
+		},
+		{
+			"key":"cogoassured",
+			"title":"CogoAssured"
+		},
+		{
+			"key":"about_the_platform",
+			"title":"About the Platform"
+		}
+	]
+}

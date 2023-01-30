@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 
 import useRequest from '@/packages/request';
 import { useDispatch, useSelector } from '@/packages/store';
-import { setProfileState as setProfileStoreState } from '@/packages/store/reducers/profile';
+import { setProfileState as setProfileStoreState } from '@/packages/store/store/profile';
 
 const useGetCogopointsStats = ({ manual = false } = {}) => {
 	const dispatch = useDispatch();

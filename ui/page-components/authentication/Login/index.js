@@ -1,5 +1,4 @@
 import { FluidContainer, Button } from '@cogoport/components';
-import { useForm, InputController } from '@cogoport/forms';
 import { IcCMicrosoft, IcMEyeopen, IcMEyeclose } from '@cogoport/icons-react';
 // import { useTranslation } from 'next-i18next';
 import React, { useState } from 'react';
@@ -8,6 +7,8 @@ import useFormLoginwithMS from '../hooks/useFormLoginwithMS';
 import useLoginAuthenticate from '../hooks/useLoginAuthenticate';
 
 import styles from './styles.module.css';
+
+import { useForm, InputController } from '@/packages/forms';
 
 function Login() {
 	// const { t } = useTranslation(['login']);
@@ -68,7 +69,7 @@ function Login() {
 						)}
 
 						<div className={styles.forgot}>
-							<a href="/v1/forgot-password">Forgot your password?</a>
+							<a href="/forgot-password">Forgot your password?</a>
 						</div>
 
 						<Button
@@ -85,7 +86,7 @@ function Login() {
 							<hr className={styles.line} />
 						</div>
 
-						<Button
+						{/* <Button
 							loading={socialLoginLoading}
 							themeType="secondary"
 							className={styles.submit_button}
@@ -94,7 +95,7 @@ function Login() {
 						>
 							<IcCMicrosoft />
 							<p className={styles.micro}>CONTINUE WITH MICROSOFT</p>
-						</Button>
+						</Button> */}
 					</div>
 				</form>
 			</div>

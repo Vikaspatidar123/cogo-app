@@ -1,9 +1,9 @@
 lockfileVersion: 5.4
 
 specifiers:
-  '@cogoport/components': ^1.0.267
+  '@cogoport/components': ^1.0.270
   '@cogoport/eslint-config': ^1.0.18
-  '@cogoport/icons-react': ^1.0.28
+  '@cogoport/icons-react': ^1.0.51
   '@cogoport/stylelint-config': ^1.0.3
   '@cogoport/utils': ^1.2.2
   '@reduxjs/toolkit': ^1.9.1
@@ -13,6 +13,8 @@ specifiers:
   eslint: 8.25.0
   eslint-config-next: 12.3.1
   next: 12.3.1
+  next-i18next: ^13.0.3
+  nprogress: ^0.2.0
   qs: ^6.11.0
   react: 18.2.0
   react-dom: 18.2.0
@@ -22,13 +24,15 @@ specifiers:
   toolkit: ^1.5.4
 
 dependencies:
-  '@cogoport/components': 1.0.267_3fpp4er2psrzzxijrrt7bvgq7y
-  '@cogoport/icons-react': 1.0.28_biqbaboplfbrettd7655fr4n2y
+  '@cogoport/components': 1.0.272_jthxcj6wkatiu54kxs3nfsn2by
+  '@cogoport/icons-react': 1.0.51_biqbaboplfbrettd7655fr4n2y
   '@cogoport/utils': 1.2.2
   '@reduxjs/toolkit': 1.9.1_k4ae6lp43ej6mezo3ztvx6pykq
-  axios: 1.2.0
-  axios-hooks: 4.0.0_axios@1.2.0+react@18.2.0
+  axios: 1.2.3
+  axios-hooks: 4.0.0_axios@1.2.3+react@18.2.0
   next: 12.3.1_biqbaboplfbrettd7655fr4n2y
+  next-i18next: 13.0.3_next@12.3.1+react@18.2.0
+  nprogress: 0.2.0
   qs: 6.11.0
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
@@ -1274,7 +1278,7 @@ packages:
     engines: {node: '>=6.9.0'}
     dependencies:
       core-js-pure: 3.25.5
-      regenerator-runtime: 0.13.10
+      regenerator-runtime: 0.13.11
     dev: true
 
   /@babel/runtime/7.19.0:
@@ -1289,6 +1293,12 @@ packages:
     engines: {node: '>=6.9.0'}
     dependencies:
       regenerator-runtime: 0.13.10
+
+  /@babel/runtime/7.20.7:
+    resolution: {integrity: sha512-UF0tvkUtxwAgZ5W/KrkHf0Rn0fdnLDU9ScxBrEVNUprE/MzirjK4MJUX1/BVDv00Sv8cljtukVK1aky++X1SjQ==}
+    engines: {node: '>=6.9.0'}
+    dependencies:
+      regenerator-runtime: 0.13.11
 
   /@babel/template/7.18.10:
     resolution: {integrity: sha512-TI+rCtooWHr3QJ27kJxfjutghu44DLnasDMwpDqCXVTal9RLp3RSYNh4NdBrRP2cQAoG9A8juOQl6P6oZG4JxA==}
@@ -1326,14 +1336,14 @@ packages:
       to-fast-properties: 2.0.0
     dev: true
 
-  /@cogoport/components/1.0.267_3fpp4er2psrzzxijrrt7bvgq7y:
-    resolution: {integrity: sha512-pZFF2LL9qZ6iM8Oy0CoQ5kDK56hhAx/tT+wN4XCK0SrQwxsn38DoxdvmpKOs/s5Pk4P4VZADZiSeCNBZC0lKzA==}
+  /@cogoport/components/1.0.272_jthxcj6wkatiu54kxs3nfsn2by:
+    resolution: {integrity: sha512-avVgN7byu8eq+sHuEJ1eWbJUk564dgFfh30vt2yKjlYrpGsAm7V6RkzGWWlWeUmTTUuJRHQlh3/6Zw61kHySdg==}
     peerDependencies:
       '@cogoport/icons-react': ^1.0.23
       react: ^18.2.0
       react-dom: ^18.2.0
     dependencies:
-      '@cogoport/icons-react': 1.0.28_biqbaboplfbrettd7655fr4n2y
+      '@cogoport/icons-react': 1.0.51_biqbaboplfbrettd7655fr4n2y
       '@tippyjs/react': 4.2.6_biqbaboplfbrettd7655fr4n2y
       axios: 1.2.3
       axios-hooks: 4.0.0_axios@1.2.3+react@18.2.0
@@ -1383,19 +1393,19 @@ packages:
       - supports-color
     dev: true
 
-  /@cogoport/icons-react/1.0.28_biqbaboplfbrettd7655fr4n2y:
-    resolution: {integrity: sha512-Nx6R/cO4dkgxmTc7BaODuuuNWNHiNN6n0elZuPH/h/nXSdTU/GUP883etPN5N6iUbwioNvYDj22si2HvIydnXQ==}
+  /@cogoport/icons-react/1.0.51_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-RomXBnTB2oSy5bxbaDvygf0lVrvuhi3MDP8muTvqRhTARcP2w7N6jHiDD21GcBAV36kcaAje/1xmj1JSD+eGrQ==}
     peerDependencies:
       react: 18.2.0
       react-dom: 18.2.0
     dependencies:
-      '@cogoport/icons': 1.0.28
+      '@cogoport/icons': 1.0.51
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
     dev: false
 
-  /@cogoport/icons/1.0.28:
-    resolution: {integrity: sha512-vHjxmhQOup100ZMos8oOFmz9YnnPOt5IZBUGay2AgOmet+1ygpD5YKxzcHlb3k8B0BL8J9RkhACM6HNCSYCTIA==}
+  /@cogoport/icons/1.0.51:
+    resolution: {integrity: sha512-7KtockTmXP2zHGWdw4tGNkg75hPDIfwR4Uqdlfaqk5C53kertMd+oehvfRdTVsTHlx3vclCvyepi1+1jqY4gSg==}
     dev: false
 
   /@cogoport/stylelint-config/1.0.3_stylelint@14.14.0:
@@ -2130,7 +2140,7 @@ packages:
     resolution: {integrity: sha512-o/HelwhuKpTj/frsOsbNLNgnNGVIFsVP/SW2BSF14gVl7kAfMOJ6/8wUAUvG1R1NHKrfG+2sHZTu0yauT1qBrA==}
     engines: {node: '>=6.0'}
     dependencies:
-      '@babel/runtime': 7.19.4
+      '@babel/runtime': 7.20.7
       '@babel/runtime-corejs3': 7.19.4
     dev: true
 
@@ -2193,19 +2203,6 @@ packages:
     engines: {node: '>=4'}
     dev: true
 
-  /axios-hooks/4.0.0_axios@1.2.0+react@18.2.0:
-    resolution: {integrity: sha512-IYpVCh/3I99KA826+Qtms581EegvlUVzDkhljglo21Ugc6P9lQQVG6q22seZy0ieYuepjS3kvCtzUG7jAX7BTA==}
-    peerDependencies:
-      axios: '>=0.24.0'
-      react: ^16.8.0-0 || ^17.0.0 || ^18.0.0
-    dependencies:
-      '@babel/runtime': 7.19.0
-      axios: 1.2.0
-      dequal: 2.0.3
-      lru-cache: 7.14.1
-      react: 18.2.0
-    dev: false
-
   /axios-hooks/4.0.0_axios@1.2.3+react@18.2.0:
     resolution: {integrity: sha512-IYpVCh/3I99KA826+Qtms581EegvlUVzDkhljglo21Ugc6P9lQQVG6q22seZy0ieYuepjS3kvCtzUG7jAX7BTA==}
     peerDependencies:
@@ -2217,16 +2214,6 @@ packages:
       dequal: 2.0.3
       lru-cache: 7.14.1
       react: 18.2.0
-    dev: false
-
-  /axios/1.2.0:
-    resolution: {integrity: sha512-zT7wZyNYu3N5Bu0wuZ6QccIf93Qk1eV8LOewxgjOZFd2DenOs98cJ7+Y6703d0wkaXGY6/nZd4EweJaHz9uzQw==}
-    dependencies:
-      follow-redirects: 1.15.2
-      form-data: 4.0.0
-      proxy-from-env: 1.1.0
-    transitivePeerDependencies:
-      - debug
     dev: false
 
   /axios/1.2.3:
@@ -2440,6 +2427,11 @@ packages:
     resolution: {integrity: sha512-oml3M22pHM+igfWHDfdLVq2ShWmjM2V4L+dQEBs0DWVIqEm9WHCwGAlZ6BmyBQGy5sFrJmcx+856D9lVKyGWYg==}
     requiresBuild: true
     dev: true
+
+  /core-js/3.27.2:
+    resolution: {integrity: sha512-9ashVQskuh5AZEZ1JdQWp1GqSoC1e1G87MzRqg2gIfVAQ7Qn9K+uFj8EcniUFA4P2NLZfV+TOlX1SzoKfo+s7w==}
+    requiresBuild: true
+    dev: false
 
   /cosmiconfig/7.0.1:
     resolution: {integrity: sha512-a1YWNUV2HwGimB7dU2s1wUMurNKjpx60HxBB6xUM8Re+2s1g1IIfJvFR0/iCF+XHdE0GMTKTuLR32UQff4TEyQ==}
@@ -2975,7 +2967,7 @@ packages:
     peerDependencies:
       eslint: ^3 || ^4 || ^5 || ^6 || ^7 || ^8
     dependencies:
-      '@babel/runtime': 7.19.4
+      '@babel/runtime': 7.20.7
       aria-query: 4.2.2
       array-includes: 3.1.5
       ast-types-flow: 0.0.7
@@ -3438,6 +3430,10 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
+  /i18next-fs-backend/2.1.1:
+    resolution: {integrity: sha512-FTnj+UmNgT3YRml5ruRv0jMZDG7odOL/OP5PF5mOqvXud2vHrPOOs68Zdk6iqzL47cnnM0ZVkK2BAvpFeDJToA==}
+    dev: false
+
   /ignore/5.2.0:
     resolution: {integrity: sha512-CmxgYGiEPCLhfLnpPp1MoRmifwEIOgjcHXxOBjv7mY96c+eWScsOP9c112ZyLdWHi0FxHjI+4uVhKYp/gcdRmQ==}
     engines: {node: '>= 4'}
@@ -3863,6 +3859,24 @@ packages:
     resolution: {integrity: sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==}
     dev: true
 
+  /next-i18next/13.0.3_next@12.3.1+react@18.2.0:
+    resolution: {integrity: sha512-7AA8J6WbkxRBtSf1+97LSAE7btxWZHsBIJEJ3FuTSBgYtpRiO5NGjcb8XbNAlz6yGU0TtS+yZE+/Wu83KhIT1Q==}
+    engines: {node: '>=14'}
+    peerDependencies:
+      i18next: ^22.0.6
+      next: '>= 12.0.0'
+      react: '>= 17.0.2'
+      react-i18next: ^12.1.1
+    dependencies:
+      '@babel/runtime': 7.20.7
+      '@types/hoist-non-react-statics': 3.3.1
+      core-js: 3.27.2
+      hoist-non-react-statics: 3.3.2
+      i18next-fs-backend: 2.1.1
+      next: 12.3.1_biqbaboplfbrettd7655fr4n2y
+      react: 18.2.0
+    dev: false
+
   /next/12.3.1_biqbaboplfbrettd7655fr4n2y:
     resolution: {integrity: sha512-l7bvmSeIwX5lp07WtIiP9u2ytZMv7jIeB8iacR28PuUEFG5j0HGAPnMqyG5kbZNBG2H7tRsrQ4HCjuMOPnANZw==}
     engines: {node: '>=12.22.0'}
@@ -3935,6 +3949,10 @@ packages:
     resolution: {integrity: sha512-6eZs5Ls3WtCisHWp9S2GUy8dqkpGi4BVSz3GaqiE6ezub0512ESztXUwUB6C6IKbQkY2Pnb/mD4WYojCRwcwLA==}
     engines: {node: '>=0.10.0'}
     dev: true
+
+  /nprogress/0.2.0:
+    resolution: {integrity: sha512-I19aIingLgR1fmhftnbWWO3dXc0hSxqHQHQb3H8m+K3TnEn/iSeTZZOyvKXWqQESMwuUVnatlCnZdLBZZt2VSA==}
+    dev: false
 
   /nth-check/2.1.1:
     resolution: {integrity: sha512-lqjrjmaOoAnWfMmBPL+XNnynZh2+swxiX3WUE0s4yEHI6m+AwrK2UZOimIRl3X/4QctVqS8AiZjFqyOGrMXb/w==}
@@ -4385,6 +4403,9 @@ packages:
 
   /regenerator-runtime/0.13.10:
     resolution: {integrity: sha512-KepLsg4dU12hryUO7bp/axHAKvwGOCV0sGloQtpagJ12ai+ojVDqkeGSiRX1zlq+kjIMZ1t7gpze+26QqtdGqw==}
+
+  /regenerator-runtime/0.13.11:
+    resolution: {integrity: sha512-kY1AZVr2Ra+t+piVaJ4gxaFaReZVH40AKNo7UCX6W+dEwBo/2oZJzqfuN1qLq1oL45o56cPaTXELwrTh8Fpggg==}
 
   /regenerator-transform/0.15.0:
     resolution: {integrity: sha512-LsrGtPmbYg19bcPHwdtmXwbW+TqNvtY4riE3P83foeHRroMbH6/2ddFBfab3t7kbzc7v7p4wbkIecHImqt0QNg==}

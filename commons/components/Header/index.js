@@ -1,20 +1,21 @@
-import { useSelector } from '@cogoport/front/store';
 import dynamic from 'next/dynamic';
 
-import Help from './Help';
-import CompanyDetails from './Company';
-import Cogopoints from './Cogopoints';
-import RedirectLink from '../RedirectLink';
+// import RedirectLink from '../RedirectLink';
 
-import { Container, Right } from './styles';
+// import Cogopoints from './Cogopoints';
+import CompanyDetails from './Company';
+import Help from './Help';
+import styles from './styles.module.css';
+
+// import { useSelector } from '@/packages/store';
 
 const UserDetails = dynamic(() => import('../UserDetails'), {
 	ssr: false,
 });
 
-const Logout = dynamic(() => import('../UserDetails/Menu/Logout'), {
-	ssr: false,
-});
+// const Logout = dynamic(() => import('../UserDetails/Menu/Logout'), {
+// 	ssr: false,
+// });
 
 function Header({
 	children,
@@ -25,33 +26,34 @@ function Header({
 	hideLogo,
 	showLogooutMobile,
 }) {
-	const isMobile = useSelector(({ general }) => general.isMobile);
-	const { partner = {} } = useSelector(({ profile }) => profile);
-	let showCogoPoints = true;
-	if (partner.twin_service_provider_id) showCogoPoints = false;
+	// const isMobile = useSelector(({ general }) => general.isMobile);
+	// const { partner = {} } = useSelector(({ profile }) => profile);
+	// const showCogoPoints = true;
+	// if (partner.twin_service_provider_id) showCogoPoints = false;
 
-	const renderMobileLogout = () => (showLogooutMobile ? <Logout /> : null);
+	// const renderMobileLogout = () => (showLogooutMobile ? <Logout /> : null);
 
 	return (
-		<Container>
+		<div className={styles.container}>
+
+			{/* <div className={styles.logo}> */}
 			{!hideLogo && <CompanyDetails />}
-
 			{children}
-
-			<Right>
-				{isMobile ? (
+			{/* </div> */}
+			<div className={styles.right}>
+				{/* {isMobile ? (
 					renderMobileLogout()
-				) : (
-					<Right>
-						{/* {showDemo && <DemoVideos />} */}
-						{showSupportHelp && <Help />}
-						{showCogoPoints && <Cogopoints />}
-						{showRedirectLink && <RedirectLink {...redirectLink} />}
-						{showUserDetails && <UserDetails />}
-					</Right>
-				)}
-			</Right>
-		</Container>
+				) : ( */}
+				<div className={styles.right}>
+					{/* {showDemo && <DemoVideos />} */}
+					{showSupportHelp && <Help />}
+					{/* {showCogoPoints && <Cogopoints />}
+					{showRedirectLink && <RedirectLink {...redirectLink} />} */}
+					{showUserDetails && <UserDetails />}
+				</div>
+				{/* )} */}
+			</div>
+		</div>
 	);
 }
 

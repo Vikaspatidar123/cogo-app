@@ -1,6 +1,11 @@
-import { format, getCookie } from '@cogoport/utils';
+import { format } from '@cogoport/utils';
 import Axios from 'axios';
 import qs from 'qs';
+
+import getAuthrozationParams from './get-final-authpipe';
+import { getCookie } from './getCookieFromCtx';
+
+import getMicroServiceName from '@/packages/request/get-microservice-name';
 
 const customSerializer = (params) => {
 	const paramsStringify = qs.stringify(params, {
@@ -19,29 +24,39 @@ const getOrganizationId = (storeKey, ctx) => {
 	}
 	return ctx?.query?.org_id || null;
 };
+
+const microServices = getMicroServiceName();
+
 const request = Axios.create({
 	baseURL: process.env.NEXT_PUBLIC_APP_BASE_URL,
 });
-
 request.interceptors.request.use((oldConfig) => {
 	const storeKey = '__COGO_APP_STORE__';
-	// const authorizationparameters = getAuthrozationParams(storeKey, oldConfig.url);
-	const token = getCookie('token');
-	// const auth_scope = getCookie('auth_scope');
+	const name = 'cogo-app-token';
 	const newConfig = oldConfig;
-	newConfig.paramsSerializer = customSerializer;
-	newConfig.headers = {
-		authorizationscope   : 'organization',
-		authorizationscopeid : getOrganizationId(storeKey, oldConfig.ctx),
-	};
-	// if (authorizationparameters) {
-	// 	newConfig.headers.authorizationparameters = authorizationparameters;
-	// }
-	if (token) {
-		newConfig.headers.authorization = `Bearer: ${token}`;
+	const token = getCookie(name, oldConfig.ctx);
+	const authorizationparameters = getAuthrozationParams(storeKey, newConfig.url);
+	const apiPath = newConfig.url ? newConfig.url.split('/')[1] || newConfig.url.split('/')[0] : null;
+	const serviceName = microServices[apiPath];
+	if (serviceName) {
+		newConfig.url = `/${serviceName}/${apiPath}`;
 	}
+	// newConfig.headers = {
+	// 	authorizationscope   : 'organization',
+	// 	authorizationscopeid : getOrganizationId(storeKey, oldConfig.ctx),
+	// };
+	return {
+		...newConfig,
+		paramsSerializer : { serialize: customSerializer },
+		headers          : {
+			authorizationscope   : 'organization',
+			authorization        : `Bearer: ${token}`,
+			authorizationparameters,
+			'Content-Type'       : 'application/json',
+			authorizationscopeid : getOrganizationId(storeKey, oldConfig.ctx),
+		},
 
-	return newConfig;
+	};
 });
 
 export { request };

@@ -1,3 +1,3 @@
-import Login from '@/ui/page-components/login';
+import { Login } from '@/ui/page-components/authentication/index';
 
 export default Login;

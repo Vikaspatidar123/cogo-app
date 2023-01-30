@@ -1,59 +1,64 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+import { Tooltip } from '@cogoport/components';
+import { startCase } from '@cogoport/utils';
 import { useEffect, useState } from 'react';
 
-import { useSelector } from '@cogoport/front/store';
-import { Popover } from '@cogoport/front/components';
-import { startCase } from '@cogoport/front/utils';
+import Menu from '../Menu';
 
-import Menu from './Menu';
 import DownArrow from './ic-dropdown-toggle.svg';
+import styles from './styles.module.css';
 
-import { Container, ContainerFlex, BussinessName } from './styles';
+import { useSelector } from '@/packages/store';
 
 function UserName() {
-	const { name, partner = {} } = useSelector(({ profile }) => profile);
+	// const { name, partner = {} } = useSelector(({ profile }) => profile);
 
-	const { business_name } = partner;
-
+	// const { business_name } = partner;
+	const {
+		picture, business_name, branch_name, total_branches,
+	} = useSelector(
+		({ profile }) => ({
+			business_name: (profile.organization || {}).business_name || '',
+			branch_name: (profile.branch || {}).branch_name || '',
+			total_branches: (profile?.organization?.branches || []).length,
+		}),
+	);
 	const [showPopover, setShowPopover] = useState(false);
-	console.log(showPopover, 'isIt?');
-	const [showChannelPartners, setShowChannelPartners] = useState(false);
+	// console.log(showPopover, 'isIt?');
+	const [show, setShow] = useState(false);
 
 	useEffect(() => {
 		if (showPopover) {
-			setShowChannelPartners(false);
+			setShow(false);
 		}
 	}, [showPopover]);
 
-	const renderBody = () => (
-		<Menu
-			setShowPopover={setShowPopover}
-			showChannelPartners={showChannelPartners}
-			setShowChannelPartners={setShowChannelPartners}
-		/>
-	);
+	const renderBody = () => <Menu setShow={setShow} show={show} />;
 
 	return (
-		<Container>
-			<Popover
-				placement="bottom-end"
-				animation="shift-away"
+		<div className={styles.container}>
+			<Tooltip
+				placement="bottom"
+				// animation="shift-away"
 				content={renderBody()}
-				theme="light"
+				// theme="light"
 				visible={showPopover}
 				onClickOutside={() => setShowPopover(!showPopover)}
 				interactive
 			>
-				<ContainerFlex
+				<div
+					className={styles.container_flex}
 					style={{ cursor: 'pointer' }}
 					onClick={() => setShowPopover(!showPopover)}
 				>
-					<BussinessName bold marginLeft={6} size={14} color="#333">
-						{startCase(business_name) || startCase(name)}
-					</BussinessName>
-					<DownArrow width={16} height={8} style={{ marginLeft: 16 }} />
-				</ContainerFlex>
-			</Popover>
-		</Container>
+					<div className={styles.bussiness_name} size={14} color="#333">
+						{startCase(business_name)}
+						{branch_name && total_branches > 1 ? `- ${startCase(branch_name)}` : ''}
+					</div>
+					<DownArrow width={15} height={8} style={{ marginLeft: 16 }} />
+				</div>
+			</Tooltip>
+		</div>
 	);
 }
 

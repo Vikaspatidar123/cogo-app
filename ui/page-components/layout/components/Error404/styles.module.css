@@ -1,0 +1,40 @@
+.component{
+    width: 100%;
+	margin: auto;
+	position: relative;
+	text-align: center;
+}
+
+.container{
+    @media (min-width: 768px) {
+		width: 100%;
+		position: absolute;
+		top: 200px;
+		text-align: center;
+		align-items: center;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+	}
+
+	.core-ui-button-root {
+		background: #2c3e50;
+	}
+}
+.title{
+    font-weight: 700;
+	font-size: 160px;
+	color: #336f89;
+	margin: 24px 0 0;
+}
+
+.description{
+    font-weight: 500;
+	font-size: 24px;
+	color: #033349;
+	margin-bottom: 16px;
+}
+.button_container{
+    display: flex;
+	justify-content: center;
+}

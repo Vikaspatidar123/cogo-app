@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 export const getCookieFromCtx = (name, ctx) => {
 	try {
 		const cookieString = ctx?.req?.headers?.cookie || '';

@@ -1,7 +1,5 @@
 import Text from '@cogoport/front/components/Text';
 
-import YoutubeEmbed from './YoutubeEmbed';
-
 import {
 	Container,
 	Close,
@@ -11,8 +9,9 @@ import {
 	Content,
 	Line,
 } from './styles';
+import YoutubeEmbed from './YoutubeEmbed';
 
-function Announcements({ show, onClose = () => {} }) {
+function Announcements({ show, onClose = () => { } }) {
 	return (
 		<Container show={show}>
 			<Header>

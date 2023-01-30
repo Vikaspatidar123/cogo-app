@@ -1,33 +1,32 @@
-import { useRouter } from 'next/router';
+import { useRouter as useRouterNext } from 'next/router';
+import { useMemo } from 'react';
+
+import getModifiedRoutes from '../utils/getModifiedRoutes';
 
 import { useSelector } from '@/packages/store';
 
-export const useCustomRouter = () => {
-	const router = useRouter();
-
-	const { pathPrefix, asPrefix, locale } = useSelector((s) => s.general) || {};
-
-	const getNewRouteFunction = (
-		routeFunction,
-		href,
-		as = null,
-		withPrefix = true,
-	) => {
-		const newHref = withPrefix ? `${pathPrefix || ''}${href}` : href;
-		const newAs = withPrefix ? `${asPrefix || ''}${as || href}` : as || href;
-
-		router[routeFunction](newHref, newAs, { locale });
-	};
-
-	return {
-		...router,
-		push: (...pushVars) => {
-			getNewRouteFunction('push', ...pushVars);
+export const useRouter = () => {
+	const organizationId = useSelector((s) => s?.profile?.organization?.id);
+	const routerNext = useRouterNext();
+	const router = useMemo(() => ({
+		...routerNext,
+		push: (href, as = null, routerOptions = {}) => {
+			const { withPrefix = true, ...options } = routerOptions;
+			const { newHref, newAs } = getModifiedRoutes({
+				href, as, organizationId, withPrefix,
+			});
+			return routerNext.push(newHref, newAs, options);
 		},
-		replace: (...pushVars) => {
-			getNewRouteFunction('replace', ...pushVars);
+		replace: (href, as = null, routerOptions = {}) => {
+			const { withPrefix, ...options } = routerOptions;
+			const { newHref, newAs } = getModifiedRoutes({
+				href, as, organizationId, withPrefix,
+			});
+			return routerNext.push(newHref, newAs, options);
 		},
-	};
+	}), [organizationId, routerNext]);
+
+	return router;
 };
 
-export default useCustomRouter;
+export default useRouter;

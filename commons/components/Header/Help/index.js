@@ -1,10 +1,10 @@
-import { useSelector } from '@cogoport/front/store';
-import { ToolTip } from '@cogoport/front/components';
+import { Tooltip } from '@cogoport/components';
 
-import Support from './Support';
 import HelpIcon from './ic-help.svg';
+import styles from './styles.module.css';
+import Support from './Support';
 
-import { Container, StyledTooltipContainer } from './styles';
+import { useSelector } from '@/packages/store';
 
 function Help() {
 	const { agent } = useSelector(({ profile }) => ({
@@ -12,25 +12,25 @@ function Help() {
 	}));
 
 	return (
-		<StyledTooltipContainer>
-			<ToolTip
+		<div className={styles.tooltip_container}>
+			<Tooltip
 				animation="shift-away"
 				placement="bottom"
 				content={<Support agent={agent} />}
 				theme="light"
 				interactive
 			>
-				<Container>
-					<Container>
+				<div className={styles.container}>
+					<div className={styles.container}>
 						<HelpIcon
 							style={{ cursor: 'pointer' }}
 							width="22px"
 							height="22px"
 						/>
-					</Container>
-				</Container>
-			</ToolTip>
-		</StyledTooltipContainer>
+					</div>
+				</div>
+			</Tooltip>
+		</div>
 	);
 }
 

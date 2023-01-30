@@ -1,21 +1,25 @@
-// import { useContext } from 'react';
 import Link from 'next/link';
+
+import getModifiedRoutes from '../utils/getModifiedRoutes';
 
 import { useSelector } from '@/packages/store';
 
-// import { RoutesContext } from './RoutesProvider';
-
 function LinkComponent({
-	href, as, children, withPrefix, ...rest
+	href,
+	as,
+	children,
+	withPrefix,
+	...rest
 }) {
-	// const routesContext = useContext(RoutesContext);
-	const { pathPrefix, asPrefix, locale } = useSelector((s) => s.general);
+	const organizationId = useSelector((s) => s?.profile?.organization
+		?.id);
 
-	const newHref = withPrefix ? `${pathPrefix || ''}${href}` : href;
-	const newAs = withPrefix ? `${asPrefix || ''}${as || href}` : as || href;
+	const { newHref, newAs } = getModifiedRoutes({
+		href, as, organizationId, withPrefix,
+	});
 
 	return (
-		<Link {...rest} href={newHref} as={newAs} locale={locale}>
+		<Link {...rest} href={newHref} as={newAs}>
 			{children}
 		</Link>
 	);

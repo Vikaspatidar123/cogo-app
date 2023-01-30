@@ -1,9 +1,0 @@
-[
-	{
-		"type": "checkbox",
-		"name": "isAddressRegisteredUnderGst",
-		"options": [{ "value": true, "label": "Not Registered Under GST Law" }],
-		"multiple": true,
-		"span": 12
-	}
-]

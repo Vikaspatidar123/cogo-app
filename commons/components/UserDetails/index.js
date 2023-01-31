@@ -33,18 +33,19 @@ function UserName() {
 		}
 	}, [showPopover]);
 
-	const renderBody = () => <Menu setShow={setShow} show={show} />;
+	const renderBody = () => <Menu setShow={setShow} show={show} setShowPopover={setShowPopover} />;
 
 	return (
 		<div className={styles.container}>
 			<Tooltip
 				placement="bottom"
-				// animation="shift-away"
+				animation="shift-away"
 				content={renderBody()}
-				// theme="light"
+				theme="light"
 				visible={showPopover}
-				onClickOutside={() => setShowPopover(!showPopover)}
+				onClickOutside={() => setShowPopover(false)}
 				interactive
+				className={styles.tippy_box}
 			>
 				<div
 					className={styles.container_flex}

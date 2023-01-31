@@ -1,12 +1,12 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import '@cogoport/components/dist/themes/base.css';
 import '@cogoport/components/dist/themes/dawn.css';
+import { Router } from '@/packages/next';
 
 // import { appWithTranslation } from 'next-i18next';
 import pageProgessBar from 'nprogress';
 // import './globals.css';
 import 'nprogress/nprogress.css';
-
 import { useEffect } from 'react';
 
 import getUserData from '../authentication/hooks/getUserData';
@@ -14,11 +14,10 @@ import getUserData from '../authentication/hooks/getUserData';
 import SessionCheck from './SessionCheck';
 import withStore from './store';
 
-import GlobalLayout from '@/ui/page-components/layout/components/GlobalLayout';
-import { Router } from '@/packages/next';
 import { Provider } from '@/packages/store';
 import { setGeneralStoreState } from '@/packages/store/store/general';
 import isMobileAgent from '@/packages/utils/isMobileAgent';
+import GlobalLayout from '@/ui/page-components/layout/components/GlobalLayout';
 
 function MyApp({
 	Component, pageProps, store, generalData,
@@ -36,10 +35,11 @@ function MyApp({
 	useEffect(() => {
 		store.dispatch(setGeneralStoreState(generalData));
 	}, [generalData]);
+
 	return (
 		<Provider store={store}>
 			<SessionCheck>
-				<GlobalLayout layout={pageProps.layout || 'authenticated'}>
+				<GlobalLayout layout={pageProps.layout || 'authenticated'} head={pageProps.head || ''}>
 					<Component {...pageProps} />
 				</GlobalLayout>
 			</SessionCheck>

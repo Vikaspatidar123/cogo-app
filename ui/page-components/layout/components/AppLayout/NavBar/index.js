@@ -19,10 +19,10 @@ function NavBar() {
 	const unPrefixedPath = `/${pathname.replace('/[org_id]/', '')}`;
 	const configs = getSideBarConfigs(user_data);
 	const { nav_items = {} } = configs || {};
-	const { partner = [] } = nav_items || {};
+	const { organization = [] } = nav_items || {};
 	return (
 		<div className={styles.menu}>
-			{partner.map((item) => {
+			{organization.map((item) => {
 				const { type } = item;
 				if (type === 'link') {
 					return <NavBarItem key={item.title} item={item} unPrefixedPath={unPrefixedPath} />;

@@ -1,7 +1,7 @@
 import { FluidContainer, Button } from '@cogoport/components';
 import { IcCMicrosoft, IcMEyeopen, IcMEyeclose } from '@cogoport/icons-react';
 // import { useTranslation } from 'next-i18next';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import useFormLoginwithMS from '../hooks/useFormLoginwithMS';
 import useLoginAuthenticate from '../hooks/useLoginAuthenticate';
@@ -9,15 +9,26 @@ import useLoginAuthenticate from '../hooks/useLoginAuthenticate';
 import styles from './styles.module.css';
 
 import { useForm, InputController } from '@/packages/forms';
+import { useRouter } from '@/packages/next';
+import { useSelector } from '@/packages/store';
 
 function Login() {
 	// const { t } = useTranslation(['login']);
+	const {
+		route, push,
+	} = useRouter();
 
-	const { onSubmit = () => {}, loading = false } = useLoginAuthenticate();
-	const { onLogin = () => {}, socialLoginLoading = false } = useFormLoginwithMS();
+	const { ...profile } = useSelector((s) => s.profile);
+
+	const { onSubmit = () => { }, loading = false } = useLoginAuthenticate();
+	const { onLogin = () => { }, socialLoginLoading = false } = useFormLoginwithMS();
 	const { handleSubmit, formState: { errors }, control } = useForm();
 	const [showPassword, setShowPassword] = useState(false);
-
+	useEffect(() => {
+		if (Object.keys(profile).length > 0) {
+			push('/dashboard');
+		}
+	}, [profile]);
 	const renderSuffix = () => {
 		if (!showPassword) {
 			return <IcMEyeopen className={styles.show_password} onClick={() => setShowPassword(!showPassword)} />;

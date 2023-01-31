@@ -4,9 +4,9 @@ function ToolsComponent() {
 	return <Tools />;
 }
 ToolsComponent.getInitialProps = () => ({
-	layout : 'app',
-	head   : {
-		title: 'Saas Tools',
+	layout: 'app',
+	head: {
+		title: 'Tracking Tools',
 	},
 });
 

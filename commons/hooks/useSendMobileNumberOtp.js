@@ -1,18 +1,18 @@
 import { toast } from '@cogoport/components';
 
-import useRequest from '@/packages/request';
+import { useRequest } from '@/packages/request';
 // import showErrorsInToast from '@/utils/showErrorsInToast';
 
 const useSendMobileNumberOtp = () => {
-	const sendOtpApi = useRequest('post', false, 'partner')('/send_login_otp');
-
-	const resendOtpApi = useRequest(
-		'post',
-		false,
-		'partner',
-	)('/resend_lead_verification_otp');
-
-	const onSuccess = ({ action = '', callback = () => {}, response = {} }) => {
+	const sendOtpApi = useRequest({
+		url: '/send_login_otp',
+		method: 'post',
+	}, { manual: true });
+	const resendOtpApi = useRequest({
+		url: '/resend_lead_verification_otp',
+		method: 'post',
+	}, { manual: true });
+	const onSuccess = ({ action = '', callback = () => { }, response = {} }) => {
 		if (action === 'send') {
 			toast.success('OTP sent successfully.');
 		} else {
@@ -22,7 +22,7 @@ const useSendMobileNumberOtp = () => {
 		callback(response);
 	};
 
-	const onFailure = ({ error = {}, callback = () => {} }) => {
+	const onFailure = ({ error = {}, callback = () => { } }) => {
 		callback({
 			error,
 			showError: () => {
@@ -33,8 +33,8 @@ const useSendMobileNumberOtp = () => {
 	const sendOtp = async ({
 		action = 'send',
 		payload = {},
-		onSuccessCallback = () => {},
-		onFailureCallback = () => {},
+		onSuccessCallback = () => { },
+		onFailureCallback = () => { },
 	}) => {
 		try {
 			const api = action === 'send' ? sendOtpApi : resendOtpApi;
@@ -45,8 +45,8 @@ const useSendMobileNumberOtp = () => {
 
 			onSuccess({
 				action,
-				callback : onSuccessCallback,
-				response : response.data,
+				callback: onSuccessCallback,
+				response: response.data,
 			});
 		} catch (error) {
 			onFailure({ error, callback: onFailureCallback });

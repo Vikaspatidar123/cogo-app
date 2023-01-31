@@ -5,7 +5,7 @@ import styles from './styles.module.css';
 
 import { useSelector } from '@/packages/store';
 
-function MenuProfileHeader({ setShowChannelPartners }) {
+function MenuProfileHeader({ setShow }) {
 	const {
 		name, organization, organizations,
 	} = useSelector(({ profile }) => profile);
@@ -27,12 +27,12 @@ function MenuProfileHeader({ setShowChannelPartners }) {
 				<div className={styles.header}>
 					<div className={styles.name}>{name}</div>
 
-					{organizations.length ? (
+					{organizations?.length ? (
 						// eslint-disable-next-line jsx-a11y/no-static-element-interactions
 						<div
 							className={styles.switch_account}
 							onClick={() => {
-								setShowChannelPartners(true);
+								setShow(true);
 							}}
 						>
 							Switch Account

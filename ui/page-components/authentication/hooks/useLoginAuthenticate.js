@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 
 import redirections from '../utils/redirections';
 
+import setCookieAndRedirect from '@/commons/utils/setCookieAndRedirect';
 import getApiErrorString from '@/packages/forms/utils/getApiError';
 import { useRouter } from '@/packages/next';
 import { useRequest } from '@/packages/request/index';
@@ -30,6 +31,8 @@ const useLoginAuthenticate = () => {
 				});
 			const { token } = response.data || {};
 			setCookie(process.env.NEXT_PUBLIC_AUTH_TOKEN_NAME, token);
+			const redirectUrl = '/';
+			setCookieAndRedirect(token, {}, redirectUrl);
 			// const res = await triggerSession();
 			// dispatch(setProfileState(res.data));
 		} catch (err) {

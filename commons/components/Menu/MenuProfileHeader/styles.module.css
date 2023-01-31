@@ -3,7 +3,7 @@
 	border-radius: 4px;
 
 	padding: 4px 8px;
-	margin: 0 -8px;
+	margin: 0 -21px;
 
 	/* cursor: ${({ tnc_accepted }) => (tnc_accepted ? '' : 'not-allowed')}; */
 

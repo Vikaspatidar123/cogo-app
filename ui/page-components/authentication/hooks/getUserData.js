@@ -20,20 +20,19 @@ const getUserData = async ({
 					organization,
 					permissions_navigations,
 				} = data.data;
-
-				// const sortPreference = ['verified', 'pending_from_user', 'rejected'];
+				const sortPreference = ['verified', 'pending_from_user', 'rejected'];
 				// const sortedOrganizations = sortByPreference(organizations, sortPreference, 'kyc_status');
 				// const projectNavigationMappings = organization?.account_type === 'importer_exporter'
 				// 	? importerNavs
 				// 	: sellerNavs;
 				user_data = {
 					...user,
-					organization: organization
-						? { ...organization, preferred_languages: user.preferred_languages }
+					organization: organization || organizations?.[0]
+						? { ...(organization || organizations?.[0]), preferred_languages: user.preferred_languages }
 						: undefined,
 					organizations: organization ? [organization] : organizations,
 					permissions_navigations,
-					branch: organization?.branches?.[0],
+					branch: (organization || organizations?.[0])?.branches?.[0],
 				};
 				// const authorizationparameters = getAuthParam(
 				// 	permissions_navigations,

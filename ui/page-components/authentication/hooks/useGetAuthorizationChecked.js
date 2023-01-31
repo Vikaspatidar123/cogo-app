@@ -20,12 +20,9 @@ const useGetAuthorizationChecked = () => {
 	const {
 		route, push,
 	} = useRouter();
-
 	const { ...profile } = useSelector((s) => s.profile);
-
 	const isUnauthenticatedPath = UNAUTHENTICATED_PATHS.includes(route);
 	const isProfilePresent = Object.keys(profile).length !== 0;
-
 	useEffect(() => {
 		(async () => {
 			if (!sessionInitialized) {
@@ -35,8 +32,9 @@ const useGetAuthorizationChecked = () => {
 						// if (configs?.href?.includes('v1')) {
 						// 	window.location.href = `/v1/${profile?.partner?.id}${configs.href.replace('/v1', '')}`;
 						// } else {
-						await push(configs?.href);
+						// await push(configs?.href);
 						// }
+						await push('/');
 					}
 				} else if (!isProfilePresent && (!isUnauthenticatedPath || route === '/')) {
 					window.location.href = '/login';

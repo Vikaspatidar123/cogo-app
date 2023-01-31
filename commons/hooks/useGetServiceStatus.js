@@ -1,6 +1,7 @@
-import { useEffect } from 'react';
-import useRequest from '@/temp/request/useRequest';
 import { useDispatch, useSelector } from '@cogoport/front/store';
+import { useEffect } from 'react';
+
+import useRequest from '@/temp/request/useRequest';
 import { setProfileStoreState } from '@/utils/stores';
 
 const useGetServiceStatus = () => {

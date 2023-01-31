@@ -8,8 +8,7 @@ function CompanyDetails() {
 	return (
 		<div className={styles.container_flex}>
 			<Link className={styles.a} href="/dashboard" as="/dashboard">
-				{/* <Logo /> */}
-				<img src="https://cdn.cogoport.io/cms-prod/cogo_public/vault/original/g-logo.svg" />
+				<Logo />
 			</Link>
 			{/* <WebBot /> */}
 		</div>

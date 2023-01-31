@@ -6,14 +6,14 @@ import styles from './styles.module.css';
 
 import { useSelector } from '@/packages/store';
 
-function SwitchPartner({ setShowChannelPartners }) {
+function SwitchUser({ setShow }) {
 	const {
-		profile: { partners },
+		profile: { organizations },
 		general: { pathname },
 	} = useSelector(({ profile, general }) => ({ profile, general }));
 
 	const onBack = () => {
-		setShowChannelPartners(false);
+		setShow(false);
 	};
 
 	return (
@@ -37,7 +37,7 @@ function SwitchPartner({ setShowChannelPartners }) {
 				<div className={styles.separator} />
 
 				<div className={styles.list}>
-					{partners.map((item) => (
+					{organizations.map((item) => (
 						<Item key={item.id} item={item} />
 					))}
 				</div>
@@ -46,4 +46,4 @@ function SwitchPartner({ setShowChannelPartners }) {
 	);
 }
 
-export default SwitchPartner;
+export default SwitchUser;

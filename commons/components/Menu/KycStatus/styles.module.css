@@ -5,7 +5,6 @@
 }
 .label{
     margin-right: 2px;
-
 	font-weight: 400;
 	font-size: 10px;
 	color: #cb6464;
@@ -14,10 +13,8 @@
 .kyc_verified {
     color: #67c676;
     margin-right: 2px;
-
 	font-weight: 400;
 	font-size: 10px;
-	color: #cb6464;
 }
 
 .kyc_pending {

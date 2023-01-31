@@ -7,7 +7,9 @@
     padding: 5px 9px;
     z-index: 99999;
 }
-
+.tippy_box{
+	max-width:none !important;
+}
 
 .pop-arrow {
     filter: none !important;

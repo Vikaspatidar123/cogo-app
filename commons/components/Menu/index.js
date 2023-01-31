@@ -3,28 +3,27 @@ import MenuProfileHeader from './MenuProfileHeader';
 import Profile from './Profile';
 import styles from './styles.module.css';
 import Subscription from './Subscription';
-import SwitchPartner from './SwitchPartner';
+import SwitchUser from './SwitchUser';
 
 import { useSelector } from '@/packages/store';
 
 const INDIA = '541d1232-58ce-4d64-83d6-556a42209eb7';
 
-function Menu({ setShowPopover, showChannelPartners, setShowChannelPartners }) {
-	const { tnc_accepted, country_id } = useSelector(
+function Menu({ setShowPopover, show, setShow }) {
+	const { country_id, id } = useSelector(
 		({ profile }) => profile.organization || {},
 	);
-	console.log(tnc_accepted, 'profile', country_id);
 	const is_country_outside = country_id !== INDIA;
 
-	if (showChannelPartners) {
-		return <SwitchPartner setShowChannelPartners={setShowChannelPartners} />;
+	if (show) {
+		return <div className={styles.container}><SwitchUser setShow={setShow} /></div>;
 	}
 
 	return (
 		<div className={styles.container}>
-			<MenuProfileHeader setShowChannelPartners={setShowChannelPartners} />
+			<MenuProfileHeader setShow={setShow} />
 
-			{tnc_accepted && <Profile setShowPopover={setShowPopover} />}
+			{id && <Profile setShowPopover={setShowPopover} />}
 			<Logout />
 		</div>
 	);

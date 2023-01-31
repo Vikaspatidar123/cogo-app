@@ -1,5 +1,4 @@
 // import { Grid } from '@cogoport/components';
-import { Head } from 'next/document';
 import { useRef, useEffect } from 'react';
 
 import { useSelector, useDispatch } from '../../../../../packages/store';
@@ -8,7 +7,7 @@ import AppLayout from '../AppLayout';
 
 import styles from './styles.module.css';
 
-import { useRouter } from '@/packages/next';
+import { Head, useRouter } from '@/packages/next';
 
 // const { useScreenClass } = Grid;
 
@@ -37,13 +36,36 @@ function GlobalLayout({
 	return (
 		<div
 			ref={elementRef}
-		// className={hideBG ? '' : 'page-bg'}
+			// className={hideBG ? '' : 'page-bg'}
 			className={hideBG ? styles.component : styles.page_bg}
 		>
 			{title && (
 				<Head>
-					<title>{title}</title>
+					<title>
+						Cogoport App |
+						{title}
+					</title>
+					<link rel="icon" href="/favicon.ico" />
+					<link
+						rel="icon"
+						type="image/png"
+						sizes="32x32"
+						href="/favicon-32x32.png"
+					/>
+					<link
+						rel="icon"
+						type="image/png"
+						sizes="16x16"
+						href="/favicon-16x16.png"
+					/>
+					<meta
+						name="viewport"
+						content="width=device-width, initial-scale=1.0"
+					/>
+					<meta name="theme-color" content="#ffffff" />
+					<link rel="manifest" href="/manifest.json" />
 				</Head>
+
 			)}
 
 			{getBody()}

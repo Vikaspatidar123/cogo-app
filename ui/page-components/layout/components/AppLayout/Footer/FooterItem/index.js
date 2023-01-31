@@ -8,11 +8,11 @@ import styles from './styles.module.css';
 import { Link } from '@/packages/next';
 
 const ICON_MAPPING = {
-	more      : More,
-	dashboard : Dashboard,
-	shipments : Shimpents,
-	finance   : Finance,
-	discover  : Discover,
+	more: More,
+	dashboard: Dashboard,
+	shipments: Shimpents,
+	finance: Finance,
+	discover: Discover,
 };
 
 function AppLayoutFooterItem({ item, isActive }) {
@@ -22,16 +22,19 @@ function AppLayoutFooterItem({ item, isActive }) {
 	if (item.label === 'Discover Rates') {
 		itemLabel = 'Discover';
 	}
-
+	console.log(item, 'item');
 	return (
-		<Link
-			href={item.href}
-		// className={isActive ? 'active' : ''}
-			className={styles.container}
-		>
+		<div>
+			{/* <Link
+				href={item.href}
+				as={item.as}
+				// className={isActive ? 'active' : ''}
+				className={styles.container}
+			> */}
 			<Icon width="16px" height="16px" style={{ marginBottom: 4 }} />
 			{itemLabel}
-		</Link>
+			{/* </Link> */}
+		</div>
 	);
 }
 

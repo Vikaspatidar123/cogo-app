@@ -8,15 +8,15 @@ import rightPanelConfig from './configurations/right-panel-config.json';
 
 function Login() {
 	const layoutProps = {
-		activeComponentKey: 'login',
-		cogoportIcon: <CogoportIcon />,
-		leftPanel: {
-			config: leftPanelConfig,
-			component: <LoginLeftPanel />,
+		activeComponentKey : 'login',
+		cogoportIcon       : <CogoportIcon />,
+		leftPanel          : {
+			config    : leftPanelConfig,
+			component : <LoginLeftPanel />,
 		},
 		rightPanel: {
-			config: rightPanelConfig,
-			component: <LoginRightPanel />,
+			config    : rightPanelConfig,
+			component : <LoginRightPanel />,
 		},
 	};
 

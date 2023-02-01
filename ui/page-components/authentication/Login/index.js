@@ -3,6 +3,7 @@ import { IcCMicrosoft, IcMEyeopen, IcMEyeclose } from '@cogoport/icons-react';
 // import { useTranslation } from 'next-i18next';
 import React, { useEffect, useState } from 'react';
 
+import LeftPanel from '../../common/LeftPanel';
 import useFormLoginwithMS from '../hooks/useFormLoginwithMS';
 import useLoginAuthenticate from '../hooks/useLoginAuthenticate';
 
@@ -38,66 +39,63 @@ function Login() {
 
 	return (
 		<FluidContainer className={styles.container}>
-			<div className={styles.box_container}>
-				<img
-					src="https://cdn.cogoport.io/cms-prod/cogo_public/vault/original/cogoport-admin.svg"
-					alt="Logo Cogoport"
-					className={styles.logo}
-				/>
-				<div className={styles.input_label}>
-					{/* {t('login:title')} */}
-					login
+			<div className={styles.left_container}>
+				<LeftPanel />
+			</div>
+			<div className={styles.right_container}>
+				<div className={styles.right_signup_text}>
+					Not registered yet?
+					<a href="/signup" className={styles.right_signup_text_link}>SignUp</a>
 				</div>
-				<form className={styles.form_container} onSubmit={handleSubmit((data, e) => onSubmit(data, e))}>
-					<div className={styles.input_container}>
-						<InputController
-							control={control}
-							name="email"
-							type="email"
-							placeholder="Email"
-							rules={{ required: 'Email is required.' }}
-						/>
-						{errors.email && (
-							<span className={styles.errors}>
-								{errors.email.message}
-							</span>
-						)}
-						<br />
-						<div className={styles.password_container}>
+				<div className={styles.main_container}>
+					<p className={styles.right_login_text}>
+						Please enter your credentials to login
+					</p>
+					<form className={styles.form_container} onSubmit={handleSubmit((data, e) => onSubmit(data, e))}>
+						<div className={styles.input_container}>
 							<InputController
 								control={control}
-								name="password"
-								type={showPassword ? 'text' : 'password'}
-								suffix={renderSuffix()}
-								placeholder="Password"
-								rules={{ required: 'Password is required.' }}
+								name="email"
+								type="email"
+								placeholder="Email"
+								rules={{ required: 'Email is required.' }}
 							/>
-						</div>
-						{errors.password && (
-							<span className={styles.errors}>
-								{errors.password.message}
-							</span>
-						)}
+							{errors.email && (
+								<span className={styles.errors}>
+									{errors.email.message}
+								</span>
+							)}
+							<br />
+							<div className={styles.password_container}>
+								<InputController
+									control={control}
+									name="password"
+									type={showPassword ? 'text' : 'password'}
+									suffix={renderSuffix()}
+									placeholder="Password"
+									rules={{ required: 'Password is required.' }}
+								/>
+							</div>
+							{errors.password && (
+								<span className={styles.errors}>
+									{errors.password.message}
+								</span>
+							)}
 
-						<div className={styles.forgot}>
-							<a href="/forgot-password">Forgot your password?</a>
-						</div>
+							<div className={styles.forgot}>
+								<a href="/forgot-password">Forgot password</a>
+							</div>
 
-						<Button
-							loading={loading}
-							className={styles.submit_button}
-							type="submit"
-						>
-							LOGIN
-						</Button>
+							<Button
+								loading={loading}
+								className={styles.submit_button}
+								type="submit"
+								size="lg"
+							>
+								Login
+							</Button>
 
-						<div className={styles.or}>
-							<hr className={styles.line} />
-							OR
-							<hr className={styles.line} />
-						</div>
-
-						{/* <Button
+							{/* <Button
 							loading={socialLoginLoading}
 							themeType="secondary"
 							className={styles.submit_button}
@@ -107,8 +105,13 @@ function Login() {
 							<IcCMicrosoft />
 							<p className={styles.micro}>CONTINUE WITH MICROSOFT</p>
 						</Button> */}
-					</div>
-				</form>
+						</div>
+						<a href="mailto:cp.onboarding@cogoport.com" className={styles.right_footer_text}>
+							If you have any trouble logging in, email here -
+							<span className={styles.right_footer_text_span}> cp.onboarding@cogoport.com</span>
+						</a>
+					</form>
+				</div>
 			</div>
 		</FluidContainer>
 	);

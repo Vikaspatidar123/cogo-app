@@ -21,100 +21,7 @@
 	height: 100vh;
 	background-color: #fafafa;
 	background-size: cover;
-
-	@media (max-width: 768px) {
-		align-items: flex-start;
-		height: 100%;
-		width: 100vw;
-	}
 	
-}
-
-.form_container {
-	width: 100%;
-	display: flex;
-	flex-direction: column;
-	padding: 40px 80px;
-}
-
-.main_container{
-	width: 100%;
-	height: calc(100% - 70px);
-	overflow: auto;
-}
-
-.right_login_text{
-	color: #000000;
-    text-align: left;
-    font-size: 24px;
-    line-height: 1.4;
-    font-weight: 300;
-    margin-top: 64px;
-	padding: 40px 80px 20px 80px;
-}
-
-.logo {
-	width: 200px;
-	margin-bottom: 20px;
-}
-
-.box_container {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	width: 404px;
-	height: 546px;
-	background: #fff;
-	border-radius: 12px;
-	box-shadow: 0 0 44px rgb(98 127 172 / 20%);
-
-	@media (max-width: 768px) {
-		margin: 20px 0;
-	}
-}
-
-.input_container {
-	display: flex;
-	flex-direction: column;
-	width: 66%;
-	margin-top: 20px;
-}
-
-.input_label {
-	width: 70%;
-	font-size: 14px;
-	color: #828282;
-	text-align: center;
-}
-
-.password {
-	padding: 0 8px;
-	border-radius: 5px;
-}
-
-.password_container {
-	border-radius: 5px;
-}
-
-.submit_button {
-	font-size: 12px !important;
-	font-weight: 600;
-	border: none !important;
-    height: 40px;
-    border-radius: 4px;
-}
-
-.right_footer_text{
-	font-size: 14px;
-	font-weight:400;
-	color: #000000;
-	text-decoration: none !important;
-	margin-top: 20px;
-}
-
-.right_footer_text_span{
-	text-decoration: underline !important;
 }
 
 .right_signup_text{
@@ -132,47 +39,21 @@
 	margin-left: 8px;
 }
 
-.ui_button_container.ui_ps_size_lg {
-	font-size: 14px;
+
+.main_container{
+	width: 100%;
+	height: calc(100% - 70px);
+	overflow: auto;
 }
 
-.errors {
-	font-size: 12px;
-	color: var(--color-primary-error-red-1);
-}
-
-.show_password {
-	width: 30px;
-	height: 20px;
-	cursor: pointer;
-}
-
-.forgot {
-	margin: 20px;
-	text-align: end;
-	color: rgb(130, 130, 130);
-    font-size: 12px;
+.right_login_text{
+	color: #000000;
+    text-align: left;
+    font-size: 24px;
     line-height: 1.4;
-
-}
-
-.or {
-	display: flex;
-	flex-direction: row;
-	margin: 16px 0;
-	text-align: center;
-}
-
-.line {
-	box-sizing: content-box;
-	width: 40%;
-	height: 0;
-	overflow: visible;
-}
-
-.micro {
-	padding-left: 5px;
-	margin-top: 7px;
+    font-weight: 300;
+    margin-top: 64px;
+	padding: 40px 80px 20px 80px;
 }
 
 

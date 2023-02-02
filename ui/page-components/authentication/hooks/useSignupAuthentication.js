@@ -29,8 +29,6 @@ const useSignupAuthentication = ({
 				setHasSignedup(true);
 				setUserId(res?.data);
 			}
-
-			console.log(res, 'res');
 		} catch (e) {
 			console.log(e, 'error');
 			if (e?.response?.data?.email?.length > 0) {

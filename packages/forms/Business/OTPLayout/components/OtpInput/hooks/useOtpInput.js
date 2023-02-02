@@ -1,4 +1,4 @@
-import { useKey } from '@cogoport/utils';
+import { useKey } from '@cogoport/front/hooks';
 import {
 	useState, useEffect, useImperativeHandle, useRef,
 } from 'react';
@@ -56,7 +56,7 @@ const useOtpInput = ({ otpLength = 4, onChange = () => { }, ref = null }) => {
 	const handleChange = (index) => (event) => {
 		setValues((previousState) => ({
 			...previousState,
-			[`otp-${index + 1}`]: event.target.value,
+			[`otp-${index + 1}`]: event,
 		}));
 
 		if (isBackSpacePressed) {

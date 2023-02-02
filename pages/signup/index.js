@@ -1,1 +1,3 @@
-export { default } from '@/ui/page-components/authentication/Signup';
+import SignUp from '@/ui/page-components/authentication/Signup';
+
+export default SignUp;

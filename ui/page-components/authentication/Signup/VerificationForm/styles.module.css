@@ -1,0 +1,78 @@
+.container{
+    width: 100%;
+    padding-bottom: 20px;
+}
+
+.header_container{
+    width: 100%;
+    height: 100%;
+    color: rgb(0, 0, 0);
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 20px 0px 40px 0px;
+}
+
+.header_container_span{
+    color: rgb(130, 130, 130);
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: 0.02em
+}
+
+.verification_text_container{
+    text-align: center;
+    font-size: 16px;
+    color: #000000;
+    margin: 10px 0px 40px 0px;
+}
+
+.verification_text_container_bold{
+    font-weight: 700;
+}
+
+.mail_icon_container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px 0px 40px 0px;
+}
+
+.otp_container{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 40px;
+}
+
+.footer_container{
+    text-align: center;
+    font-size: 16px;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.footer_container_span{
+    font-weight: 700;
+    text-align: center;
+    font-size: 16px;
+}
+
+.button_container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.resend_mail_button{
+    border: none;
+    text-decoration: underline;
+    font-size: 16px;
+    cursor: pointer;
+}

@@ -21,7 +21,7 @@ function OTPLayout({
 		<div className={styles.container}>
 			<OtpInput
 				otpLength={otpLength}
-				inputSize="lg"
+				inputSize="md"
 				onChange={(value) => {
 					setOtpValue(value.length === otpLength ? `${value}` : '');
 				}}

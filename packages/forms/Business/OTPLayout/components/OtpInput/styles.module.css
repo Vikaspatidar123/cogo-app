@@ -3,6 +3,10 @@
 	justify-content: center;
 	align-items: center;
 }
-.input_item.input {
+.input_item {
     text-align: center;
+    margin-right: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

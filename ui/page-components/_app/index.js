@@ -69,6 +69,7 @@ MyApp.getInitialProps = async ({ Component, ctx }) => {
 		asPrefix,
 		scope: 'app',
 		query: { ...query },
+		// asPrefix,
 		isServer,
 		isMobile,
 		locale,

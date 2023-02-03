@@ -25,6 +25,7 @@ function Header({
 	showUserDetails,
 	hideLogo,
 	showLogooutMobile,
+	isMobile,
 }) {
 	// const isMobile = useSelector(({ general }) => general.isMobile);
 	// const { partner = {} } = useSelector(({ profile }) => profile);
@@ -44,13 +45,15 @@ function Header({
 				{/* {isMobile ? (
 					renderMobileLogout()
 				) : ( */}
-				<div className={styles.right}>
-					{/* {showDemo && <DemoVideos />} */}
-					{showSupportHelp && <Help />}
-					{/* {showCogoPoints && <Cogopoints />}
+				{!isMobile && (
+					<div className={styles.right}>
+						{/* {showDemo && <DemoVideos />} */}
+						{showSupportHelp && <Help />}
+						{/* {showCogoPoints && <Cogopoints />}
 					{showRedirectLink && <RedirectLink {...redirectLink} />} */}
-					{showUserDetails && <UserDetails />}
-				</div>
+						{showUserDetails && <UserDetails />}
+					</div>
+				)}
 				{/* )} */}
 			</div>
 		</div>

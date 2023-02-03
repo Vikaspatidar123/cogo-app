@@ -19,14 +19,14 @@ function AppLayout({ children, mobile }) {
 	return (
 		<>
 			{!hideHeader && (
-				<Header showSupportHelp showUserDetails showAnnouncements showDemo>
+				<Header showSupportHelp showUserDetails showAnnouncements showDemo isMobile={isMobile}>
 					{!isMobile && <NavBar />}
 				</Header>
 			)}
 
 			<div className={styles.main}>{children}</div>
 
-			{!isMobile && <Footer />}
+			{isMobile && <Footer />}
 		</>
 	);
 }

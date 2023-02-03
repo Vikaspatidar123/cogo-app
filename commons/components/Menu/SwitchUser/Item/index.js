@@ -13,24 +13,16 @@ const MAPPING = {
 function SwitchPartnerItem({ item }) {
 	const { organization } = useSelector(({ profile }) => profile);
 	const { account_type = '', id } = organization || {};
-	// let accountType = '';
-	// const accountTypes = item.verifications?.map(
-	// 	({ account_type }) => account_type,
-	// );
 
-	// if (accountTypes.length === 2) {
-	// 	accountType = 'Channel Partner, Service Provider';
-	// } else if (accountTypes[0] === 'importer_exporter') {
-	// 	accountType = 'Channel Partner';
-	// } else if (accountTypes[0] === 'service_provider') {
-	// 	accountType = 'Service Provider';
-	// }
-
+	const onSwitch = () => {
+		window.location.href = `/${item.id}/dashboard`;
+	};
 	return (
 		<div
 			className={styles.container}
-			href={`/${item.id}/dashboard`}
 			disabled={item.id === id}
+			onClick={() => onSwitch(item.id)}
+
 		>
 			<div className={styles.main}>
 				<Avatar name={item.business_name} />

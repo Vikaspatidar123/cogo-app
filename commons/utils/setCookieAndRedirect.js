@@ -5,9 +5,9 @@ const setCookieAndRedirect = (token, ctx, redirectPath = undefined) => {
 	setCookie(process.env.NEXT_PUBLIC_AUTH_TOKEN_NAME, token, 2000, ctx);
 
 	if (isServer) {
-		res.redirect(redirectPath || '/app');
+		res.redirect(redirectPath || '/');
 	} else {
-		window.location.href = redirectPath || '/app';
+		window.location.href = redirectPath || '/';
 	}
 };
 

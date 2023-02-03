@@ -1,26 +1,21 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import '@cogoport/components/dist/themes/base.css';
 import '@cogoport/components/dist/themes/dawn.css';
-import { Router } from '@/packages/next';
-
-// import { appWithTranslation } from 'next-i18next';
+import { RoutesProvider, Router } from '@/packages/next';
 import pageProgessBar from 'nprogress';
-// import './globals.css';
+// import './global.css';
 import 'nprogress/nprogress.css';
 import { useEffect } from 'react';
-
-import getUserData from '../authentication/hooks/getUserData';
-
 import SessionCheck from './SessionCheck';
 import withStore from './store';
-
 import { Provider } from '@/packages/store';
 import { setGeneralStoreState } from '@/packages/store/store/general';
 import isMobileAgent from '@/packages/utils/isMobileAgent';
+import handleAuthentication from '@/ui/page-components/authentication/utils/handleAuthentication';
 import GlobalLayout from '@/ui/page-components/layout/components/GlobalLayout';
 
 function MyApp({
-	Component, pageProps, store, generalData,
+	Component, pageProps, store, generalData
 }) {
 	useEffect(() => {
 		Router.events.on('routeChangeStart', () => {
@@ -38,7 +33,7 @@ function MyApp({
 
 	return (
 		<Provider store={store}>
-			<SessionCheck>
+			<SessionCheck >
 				<GlobalLayout layout={pageProps.layout || 'authenticated'} head={pageProps.head || ''}>
 					<Component {...pageProps} />
 				</GlobalLayout>
@@ -51,26 +46,18 @@ MyApp.getInitialProps = async ({ Component, ctx }) => {
 	const {
 		store, req, pathname, asPath, query = {}, locale,
 	} = ctx;
-	const { profile } = (store.getState((s) => s));
-
+	console.log(query, 'queryquery', ctx)
+	const { profile, general } = (store.getState((s) => s));
 	const isServer = typeof req !== 'undefined';
 	const isToken = isServer ? req.headers.cookie : false;
 	const pathPrefix = '/[org_id]';
 	const ctxParams = {
-		ctx,
-		isServer,
-		pathPrefix,
-		store,
-		pathname,
-		req,
-		isToken,
-		// asPath: modifiedAsPath,
+		...ctx,
+		isServer
 	};
 	const unPrefixedPath = `/${pathname.replace('/[org_id]/', '')}`;
+	const { asPrefix } = await handleAuthentication(ctxParams);
 
-	if (Object.keys(profile).length === 0 && isToken) {
-		await getUserData({ store, isServer, req });
-	}
 	const isMobile = !isServer
 		? window.innerWidth < 768
 		: isMobileAgent(ctx.req.headers['user-agent'] || '');
@@ -79,13 +66,14 @@ MyApp.getInitialProps = async ({ Component, ctx }) => {
 		asPath,
 		unPrefixedPath,
 		pathPrefix,
-		// asPrefix,
+		asPrefix,
 		scope: 'app',
 		query: { ...query },
 		isServer,
 		isMobile,
 		locale,
 	};
+
 	await store.dispatch(setGeneralStoreState(generalData));
 
 	const initialProps = Component.getInitialProps
@@ -94,10 +82,6 @@ MyApp.getInitialProps = async ({ Component, ctx }) => {
 
 	return {
 		pageProps: initialProps,
-		pathname,
-		asPath,
-		query,
-		isServer,
 		generalData,
 		store,
 	};

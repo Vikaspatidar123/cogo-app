@@ -13,6 +13,7 @@ const UNAUTHENTICATED_PATHS = [
 	'/verify-email/[id]',
 	'/accept-invite/[id]',
 	'/verify-auto-sign-up-email/[id]',
+	'/get-started',
 ];
 
 const useGetAuthorizationChecked = () => {

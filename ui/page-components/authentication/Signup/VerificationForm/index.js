@@ -2,6 +2,7 @@ import { Button } from '@cogoport/components';
 import { IcCSendEmail } from '@cogoport/icons-react';
 import React, { useState } from 'react';
 
+import useEmailVerification from '../../hooks/useEmailVerification';
 import useOtpVerification from '../../hooks/useOtpVerification';
 
 import styles from './styles.module.css';
@@ -14,6 +15,8 @@ function VerifictaionForm({ formData, userId }) {
 	const [otpValue, setOtpValue] = useState('');
 
 	const { id } = userId || {};
+
+	const { onClickResendEmail } = useEmailVerification();
 
 	const {
 		loading = false,
@@ -72,7 +75,13 @@ function VerifictaionForm({ formData, userId }) {
 				If you have not received the email within a few minutes,
 				<br />
 				please check your spam folder or click on
-				<button className={styles.resend_mail_button}>resend email</button>
+				<button
+					className={styles.resend_mail_button}
+					onClick={() => onClickResendEmail(id)}
+				>
+					resend email
+
+				</button>
 			</div>
 		</div>
 	);

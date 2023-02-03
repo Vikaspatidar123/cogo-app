@@ -1,11 +1,9 @@
 import { Input } from '@cogoport/components';
 // import { Input as InputAdmin } from '@cogoport/front/components/admin';
-import Grid from '@cogoport/front/components/Grid';
 import { string, shape, func } from 'prop-types';
 
 import SelectCountryCode from './SelectCountryCode';
-
-const { Row, Col } = Grid;
+import styles from './styles.module.css';
 
 function SelectMobileNumber({
 	value,
@@ -85,8 +83,8 @@ function SelectMobileNumber({
 	const inputStyle = select2.includes('big') ? { height: '48px' } : null;
 
 	return (
-		<Row style={width ? { width: '100%' } : {}}>
-			<Col xs={4} sm={4} md={4} lg={4} xl={4} style={{ paddingRight: 0 }}>
+		<div className={styles.row_container} style={width ? { width: '100%' } : {}}>
+			<div className={styles.col_container_1} style={{ paddingRight: 0 }}>
 				<SelectCountryCode
 					{...rest}
 					{...props}
@@ -98,8 +96,8 @@ function SelectMobileNumber({
 					inputId={`${id || ''}_${codeKey || 'country_code'}`}
 					style={inputStyle}
 				/>
-			</Col>
-			<Col xs={8} sm={8} md={8} lg={8} xl={8}>
+			</div>
+			<div className={styles.col_container_2}>
 				<Input
 					{...rest}
 					ref={mobileSelectRef}
@@ -110,8 +108,8 @@ function SelectMobileNumber({
 					value={number || (value || {})[numberKey] || ''}
 					onChange={handleNumberChange}
 				/>
-			</Col>
-		</Row>
+			</div>
+		</div>
 	);
 }
 

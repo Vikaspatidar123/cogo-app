@@ -99,18 +99,36 @@
 
 	.input_container{
 		width: 88%;
-		margin-bottom: 20px;
+		margin: 0px;
+	}
+
+	.mobile_number_select_container{
+		width: 88%;
 	}
 
     .right_footer_text{
 		padding: 8px;
+		margin: 0px;
+	}
+
+	.terms_and_conditions_text{
+		width: 88%;
+	}
+
+	.checkbox_container{
+		width: 88%;
+	}
+
+	.right_footer_text{
+		padding: 16px;
+	}
+
+	.recaptcha_container{
+		padding: 20px 0px 0px 0px;
+		width: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
 	}
 
 }
-
-/* 
-
-.micro {
-	padding-left: 5px;
-	margin-top: 7px;
-} */

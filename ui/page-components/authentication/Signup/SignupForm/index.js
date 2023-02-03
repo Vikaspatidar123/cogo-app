@@ -63,13 +63,13 @@ function SignupForm({ setHasSignedup, setFormData, setUserId }) {
 					placeholder="Email"
 					rules={{ required: 'Email is required.' }}
 				/>
-			</div>
 
-			{errors.email && (
-				<span className={styles.errors}>
-					{errors.email.message}
-				</span>
-			)}
+				{errors.email && (
+					<span className={styles.errors}>
+						{errors.email.message}
+					</span>
+				)}
+			</div>
 
 			<div className={styles.mobile_number_select_container}>
 				<MobileNumberSelectController

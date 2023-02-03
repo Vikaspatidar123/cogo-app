@@ -1,30 +1,25 @@
-import { FluidContainer, Button } from '@cogoport/components';
-import { IcCMicrosoft, IcMEyeopen, IcMEyeclose } from '@cogoport/icons-react';
-import React, { useEffect, useState } from 'react';
+import { FluidContainer } from '@cogoport/components';
+// import { useTranslation } from 'next-i18next';
+import React, { useEffect } from 'react';
 
 import LeftPanel from '../../common/LeftPanel';
-import useFormLoginwithMS from '../hooks/useFormLoginwithMS';
-import useLoginAuthenticate from '../hooks/useLoginAuthenticate';
 
+import LoginForm from './LoginForm';
 import styles from './styles.module.css';
 
-import { useForm, InputController } from '@/packages/forms';
 import { useRouter } from '@/packages/next';
 
 function Login() {
-	const {
-		route, push,
-	} = useRouter();
-	const { onSubmit = () => { }, loading = false } = useLoginAuthenticate();
-	const { onLogin = () => { }, socialLoginLoading = false } = useFormLoginwithMS();
-	const { handleSubmit, formState: { errors }, control } = useForm();
-	const [showPassword, setShowPassword] = useState(false);
-	const renderSuffix = () => {
-		if (!showPassword) {
-			return <IcMEyeopen className={styles.show_password} onClick={() => setShowPassword(!showPassword)} />;
-		}
-		return <IcMEyeclose className={styles.show_password} onClick={() => setShowPassword(!showPassword)} />;
-	};
+	// const { t } = useTranslation(['login']);
+	const { push } = useRouter();
+
+	// const { ...profile } = useSelector((s) => s.profile);
+
+	// useEffect(() => {
+	// 	if (Object.keys(profile).length > 0) {
+	// 		push('/dashboard');
+	// 	}
+	// }, [profile]);
 
 	return (
 		<FluidContainer className={styles.container}>
@@ -40,66 +35,7 @@ function Login() {
 					<p className={styles.right_login_text}>
 						Please enter your credentials to login
 					</p>
-					<form className={styles.form_container} onSubmit={handleSubmit((data, e) => onSubmit(data, e))}>
-						<div className={styles.input_container}>
-							<InputController
-								control={control}
-								name="email"
-								type="email"
-								placeholder="Email"
-								rules={{ required: 'Email is required.' }}
-							/>
-							{errors.email && (
-								<span className={styles.errors}>
-									{errors.email.message}
-								</span>
-							)}
-							<br />
-							<div className={styles.password_container}>
-								<InputController
-									control={control}
-									name="password"
-									type={showPassword ? 'text' : 'password'}
-									suffix={renderSuffix()}
-									placeholder="Password"
-									rules={{ required: 'Password is required.' }}
-								/>
-							</div>
-							{errors.password && (
-								<span className={styles.errors}>
-									{errors.password.message}
-								</span>
-							)}
-
-							<div className={styles.forgot}>
-								<a href="/forgot-password">Forgot password</a>
-							</div>
-
-							<Button
-								loading={loading}
-								className={styles.submit_button}
-								type="submit"
-								size="lg"
-							>
-								Login
-							</Button>
-
-							{/* <Button
-							loading={socialLoginLoading}
-							themeType="secondary"
-							className={styles.submit_button}
-							style={{ fontWeight: '500' }}
-							onClick={onLogin}
-						>
-							<IcCMicrosoft />
-							<p className={styles.micro}>CONTINUE WITH MICROSOFT</p>
-						</Button> */}
-						</div>
-						<a href="mailto:cp.onboarding@cogoport.com" className={styles.right_footer_text}>
-							If you have any trouble logging in, email here -
-							<span className={styles.right_footer_text_span}> cp.onboarding@cogoport.com</span>
-						</a>
-					</form>
+					<LoginForm />
 				</div>
 			</div>
 		</FluidContainer>

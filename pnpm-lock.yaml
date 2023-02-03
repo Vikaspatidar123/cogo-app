@@ -21,6 +21,7 @@ specifiers:
   qs: ^6.11.0
   react: 18.2.0
   react-dom: 18.2.0
+  react-google-recaptcha: ^2.1.0
   react-i18next: ^12.1.4
   react-redux: ^8.0.5
   redux: ^4.2.0
@@ -43,6 +44,7 @@ dependencies:
   qs: 6.11.0
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
+  react-google-recaptcha: 2.1.0_react@18.2.0
   react-i18next: 12.1.4_iakk3dtjhjpukdoa4oua5khgci
   react-redux: 8.0.5_e42enmjmqb4imi3q3iaq2rrebm
   redux: 4.2.0
@@ -4235,6 +4237,16 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
+  /react-async-script/1.2.0_react@18.2.0:
+    resolution: {integrity: sha512-bCpkbm9JiAuMGhkqoAiC0lLkb40DJ0HOEJIku+9JDjxX3Rcs+ztEOG13wbrOskt3n2DTrjshhaQ/iay+SnGg5Q==}
+    peerDependencies:
+      react: '>=16.4.1'
+    dependencies:
+      hoist-non-react-statics: 3.3.2
+      prop-types: 15.8.1
+      react: 18.2.0
+    dev: false
+
   /react-calendar/4.0.0_biqbaboplfbrettd7655fr4n2y:
     resolution: {integrity: sha512-y9Q5Oo3Mq869KExbOCP3aJ3hEnRZKZ0TqUa9QU1wJGgDZFrW1qTaWp5v52oZpmxTTrpAMTUcUGaC0QJcO1f8Nw==}
     peerDependencies:
@@ -4303,6 +4315,16 @@ packages:
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
       tiny-warning: 1.0.3
+    dev: false
+
+  /react-google-recaptcha/2.1.0_react@18.2.0:
+    resolution: {integrity: sha512-K9jr7e0CWFigi8KxC3WPvNqZZ47df2RrMAta6KmRoE4RUi7Ys6NmNjytpXpg4HI/svmQJLKR+PncEPaNJ98DqQ==}
+    peerDependencies:
+      react: '>=16.4.1'
+    dependencies:
+      prop-types: 15.8.1
+      react: 18.2.0
+      react-async-script: 1.2.0_react@18.2.0
     dev: false
 
   /react-hook-form/7.42.1_react@18.2.0:

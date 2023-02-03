@@ -135,7 +135,6 @@ const handleAuthentication = async ({
             };
         }
     }
-    console.log(current_organization, 'current_organization')
     const current_branch = (current_organization?.branches || []).find(
         (branch) => branch.id === branch_id,
     ) || current_organization?.branches?.[0];

@@ -7,8 +7,8 @@ import styles from './styles.module.css';
 import { useSelector } from '@/packages/store';
 
 const MAPPING = {
-	importer_exporter: 'Importer/Exporter',
-	service_provider: 'Service',
+	importer_exporter : 'Importer/Exporter',
+	service_provider  : 'Service',
 };
 function SwitchPartnerItem({ item }) {
 	const { organization } = useSelector(({ profile }) => profile);
@@ -22,7 +22,7 @@ function SwitchPartnerItem({ item }) {
 			className={styles.container}
 			disabled={item.id === id}
 			onClick={() => onSwitch(item.id)}
-
+			role="presentation"
 		>
 			<div className={styles.main}>
 				<Avatar name={item.business_name} />

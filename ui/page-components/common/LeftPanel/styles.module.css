@@ -6,15 +6,11 @@
 }
 
 .cogo_icon_container{
-	height: 100px;
+	height: 120px;
+	width: 200px;
+	padding-left: 20px;
 }
 
-.cogo_icon{
-	width: 180px;
-	height: 50px;
-	margin-top: 32px;
-	padding-left: 32px;
-}
 
 .left_text_container{
 	text-align: left;
@@ -22,7 +18,7 @@
 	font-weight: 700;
 	color: #000000;
 	font-size: 26px;
-	height: calc(100% - 180px);
+	height: calc(100% - 220px);
 	display: flex;
 	flex-direction: column;
 	justify-content: center;

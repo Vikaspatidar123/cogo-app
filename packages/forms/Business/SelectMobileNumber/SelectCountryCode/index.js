@@ -1,5 +1,5 @@
 // eslint-disable-next-line import/no-unresolved
-import Select from '@cogoport/business/form/components/Business/Select';
+import { Select } from '@cogoport/components';
 
 import countryCode from './countries.json';
 

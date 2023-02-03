@@ -9,7 +9,6 @@
     color: rgb(0, 0, 0);
     font-size: 24px;
     font-weight: 700;
-    letter-spacing: 0.02em;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -21,7 +20,6 @@
     color: rgb(130, 130, 130);
     font-size: 16px;
     font-weight: 400;
-    letter-spacing: 0.02em
 }
 
 .verification_text_container{
@@ -75,4 +73,16 @@
     text-decoration: underline;
     font-size: 16px;
     cursor: pointer;
+}
+
+
+@media(max-width: 786px){
+
+    .header_container{
+        width: 90%;
+        display: flex;
+        align-items: center;
+        text-align: center;
+        padding: 10px 8px;
+    }
 }

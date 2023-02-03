@@ -1,5 +1,5 @@
 import { Button, Checkbox } from '@cogoport/components';
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 import ReCAPTCHA from 'react-google-recaptcha';
 
 import useSignupAuthentication from '../../hooks/useSignupAuthentication';

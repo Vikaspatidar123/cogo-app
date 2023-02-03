@@ -22,6 +22,7 @@ specifiers:
   react: 18.2.0
   react-dom: 18.2.0
   react-google-recaptcha: ^2.1.0
+  react-hook-form: ^7.43.0
   react-i18next: ^12.1.4
   react-redux: ^8.0.5
   redux: ^4.2.0
@@ -45,6 +46,7 @@ dependencies:
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
   react-google-recaptcha: 2.1.0_react@18.2.0
+  react-hook-form: 7.43.0_react@18.2.0
   react-i18next: 12.1.4_iakk3dtjhjpukdoa4oua5khgci
   react-redux: 8.0.5_e42enmjmqb4imi3q3iaq2rrebm
   redux: 4.2.0
@@ -1364,7 +1366,7 @@ packages:
       react-date-picker: 9.2.0_biqbaboplfbrettd7655fr4n2y
       react-date-range: 1.4.0_r6j3756ioqf5pjc2u22wj25rla
       react-dom: 18.2.0_react@18.2.0
-      react-hook-form: 7.42.1_react@18.2.0
+      react-hook-form: 7.43.0_react@18.2.0
       react-table: 7.8.0_react@18.2.0
       tippy.js: 6.3.7
     optionalDependencies:
@@ -4327,8 +4329,8 @@ packages:
       react-async-script: 1.2.0_react@18.2.0
     dev: false
 
-  /react-hook-form/7.42.1_react@18.2.0:
-    resolution: {integrity: sha512-2UIGqwMZksd5HS55crTT1ATLTr0rAI4jS7yVuqTaoRVDhY2Qc4IyjskCmpnmdYqUNOYFy04vW253tb2JRVh+IQ==}
+  /react-hook-form/7.43.0_react@18.2.0:
+    resolution: {integrity: sha512-/rVEz7T0gLdSFwPqutJ1kn2e0sQNyb9ci/hmwEYr2YG0KF/LSuRLvNrf9QWJM+gj88CjDpDW5Bh/1AD7B2+z9Q==}
     engines: {node: '>=12.22.0'}
     peerDependencies:
       react: ^16.8.0 || ^17 || ^18

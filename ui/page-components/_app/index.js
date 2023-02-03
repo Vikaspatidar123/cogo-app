@@ -2,18 +2,12 @@
 import '@cogoport/components/dist/themes/base.css';
 import '@cogoport/components/dist/themes/dawn.css';
 import { RoutesProvider, Router } from '@/packages/next';
-
-// import { appWithTranslation } from 'next-i18next';
 import pageProgessBar from 'nprogress';
-// import './globals.css';
+// import './global.css';
 import 'nprogress/nprogress.css';
 import { useEffect } from 'react';
-
-import getUserData from '../authentication/hooks/getUserData';
-
 import SessionCheck from './SessionCheck';
 import withStore from './store';
-
 import { Provider } from '@/packages/store';
 import { setGeneralStoreState } from '@/packages/store/store/general';
 import isMobileAgent from '@/packages/utils/isMobileAgent';
@@ -23,9 +17,6 @@ import GlobalLayout from '@/ui/page-components/layout/components/GlobalLayout';
 function MyApp({
 	Component, pageProps, store, generalData
 }) {
-	const { general, profile } = store.getState() || {};
-
-	console.log(generalData, 'generalData')
 	useEffect(() => {
 		Router.events.on('routeChangeStart', () => {
 			pageProgessBar.start();
@@ -65,10 +56,7 @@ MyApp.getInitialProps = async ({ Component, ctx }) => {
 		isServer
 	};
 	const unPrefixedPath = `/${pathname.replace('/[org_id]/', '')}`;
-	const { asPrefix } = await handleAuthentication({
-		...ctx,
-		isServer
-	});
+	const { asPrefix } = await handleAuthentication(ctxParams);
 
 	const isMobile = !isServer
 		? window.innerWidth < 768

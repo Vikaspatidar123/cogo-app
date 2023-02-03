@@ -1,36 +1,20 @@
 import { FluidContainer, Button } from '@cogoport/components';
 import { IcCMicrosoft, IcMEyeopen, IcMEyeclose } from '@cogoport/icons-react';
-// import { useTranslation } from 'next-i18next';
 import React, { useEffect, useState } from 'react';
-
 import useFormLoginwithMS from '../hooks/useFormLoginwithMS';
 import useLoginAuthenticate from '../hooks/useLoginAuthenticate';
-
 import styles from './styles.module.css';
-
 import { useForm, InputController } from '@/packages/forms';
 import { useRouter } from '@/packages/next';
-import { useSelector } from '@/packages/store';
 
 function Login() {
-	// const { t } = useTranslation(['login']);
 	const {
 		route, push,
 	} = useRouter();
-
-	const { ...profile } = useSelector((s) => s.profile);
-	// const { organization = {}, organizations = [], organization_set } = profile || {};
-	// const org_id = organization?.id;
 	const { onSubmit = () => { }, loading = false } = useLoginAuthenticate();
 	const { onLogin = () => { }, socialLoginLoading = false } = useFormLoginwithMS();
 	const { handleSubmit, formState: { errors }, control } = useForm();
 	const [showPassword, setShowPassword] = useState(false);
-	// useEffect(() => {
-	// 	if (organization_set) {
-	// 		console.log(org_id, 'org_id');
-	// 		window.location.href = `/${org_id}/dashboard`;
-	// 	}
-	// }, [organization_set]);
 	const renderSuffix = () => {
 		if (!showPassword) {
 			return <IcMEyeopen className={styles.show_password} onClick={() => setShowPassword(!showPassword)} />;

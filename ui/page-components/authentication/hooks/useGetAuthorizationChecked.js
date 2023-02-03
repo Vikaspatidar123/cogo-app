@@ -21,29 +21,27 @@ const useGetAuthorizationChecked = () => {
 	const {
 		route, push,
 	} = useRouter();
-	const { ...profile } = useSelector((s) => s.profile);
+
+	const { profile, general } = useSelector((s) => s);
+	console.log('asPrefix', general);
+	const { asPrefix } = general || {}
 	const isUnauthenticatedPath = UNAUTHENTICATED_PATHS.includes(route);
 	const isProfilePresent = Object.keys(profile).length !== 0;
+	console.log(isProfilePresent, 'isProfilePresent', profile);
+	const { organization = {}, organizations = [], organization_set } = profile || {};
+	const org_id = organization?.id || organizations[0]?.id;
 	useEffect(() => {
 		(async () => {
 			if (!sessionInitialized) {
-				if (isProfilePresent && (isUnauthenticatedPath || route === '/')) {
-					const configs = redirections(profile);
-					if (configs?.href) {
-						// if (configs?.href?.includes('v1')) {
-						// 	window.location.href = `/v1/${profile?.partner?.id}${configs.href.replace('/v1', '')}`;
-						// } else {
-						// await push(configs?.href);
-						// }
-						await push('/');
-					}
-				} else if (!isProfilePresent && (!isUnauthenticatedPath || route === '/')) {
+				if (organization_set && (isUnauthenticatedPath || route === '/')) {
+					window.location.href = asPrefix;
+				} else if (!organization_set && (!isUnauthenticatedPath || route === '/')) {
 					window.location.href = '/login';
 				}
 				setSessionInitialized(true);
 			}
 		})();
-	}, [isProfilePresent, isUnauthenticatedPath, sessionInitialized]);
+	}, [isProfilePresent, isUnauthenticatedPath, sessionInitialized, asPrefix]);
 
 	return { sessionInitialized, setSessionInitialized };
 };

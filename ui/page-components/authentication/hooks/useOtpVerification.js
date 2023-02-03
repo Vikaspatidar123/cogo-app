@@ -1,5 +1,5 @@
 // import showErrorsInToast from '@cogo/utils/showErrorsInToastV2';
-import { toast } from '@cogoport/front/components';
+import { Toast } from '@cogoport/components';
 
 import { APP_EVENT } from '../utils/constant';
 import setCookieAndRedirect from '../utils/setCookieAndRedirect';
@@ -14,41 +14,41 @@ const useOtpVerification = ({ formData = {}, otpValue = '', id }) => {
 	} = useSelector((state) => state);
 
 	const [{ loading: verifyLeadUserMobileApiLoading }, verifyLeadUserMobileApitrigger] = useRequest({
-		url    : '/lead/verify_lead_user_mobile',
-		method : 'post',
+		url: '/lead/verify_lead_user_mobile',
+		method: 'post',
 	}, { manual: true });
 
 	const [{ loading: resendLeadVerificationOtpApiLoading }, resendLeadVerificationOtpApitrigger] = useRequest({
-		url    : '/lead/resend_lead_verification_otp',
-		method : 'post',
+		url: '/lead/resend_lead_verification_otp',
+		method: 'post',
 	}, { manual: true });
 
 	const onClickVerifyLeadUserMobileNo = async () => {
 		try {
 			const payload = {
 				id,
-				mobile_number       : formData?.mobile_number.number,
-				mobile_country_code : formData?.mobile_number.country_code,
-				mobile_otp          : otpValue,
+				mobile_number: formData?.mobile_number.number,
+				mobile_country_code: formData?.mobile_number.country_code,
+				mobile_otp: otpValue,
 			};
 
 			trackEvent(APP_EVENT.auth_confirmed_otp_for_mobile_verification, {
-				mobile_country_code : payload?.mobile_country_code,
-				mobile_number       : payload?.mobile_number,
+				mobile_country_code: payload?.mobile_country_code,
+				mobile_number: payload?.mobile_number,
 			});
 
 			const response = await verifyLeadUserMobileApitrigger({
 				data: payload,
 			});
 
-			toast?.success('Verification Successful!');
+			Toast?.success('Verification Successful!');
 
 			const redirectUrl = '/get-started';
 
 			const { token } = response?.data || {};
 			setCookieAndRedirect(token, {}, redirectUrl);
 		} catch (error) {
-			toast.error(error?.data);
+			Toast.error(error?.data);
 		}
 	};
 
@@ -62,18 +62,18 @@ const useOtpVerification = ({ formData = {}, otpValue = '', id }) => {
 				data: payload,
 			});
 
-			toast.success('OTP resent successfully');
+			Toast.success('OTP resent successfully');
 
 			timer?.restart?.();
 		} catch (error) {
-			toast.error([error?.error?.message]);
+			Toast.error([error?.error?.message]);
 		}
 	};
 
 	return {
-		loading          : verifyLeadUserMobileApiLoading,
+		loading: verifyLeadUserMobileApiLoading,
 		onClickVerifyLeadUserMobileNo,
-		resendOtpLoading : resendLeadVerificationOtpApiLoading,
+		resendOtpLoading: resendLeadVerificationOtpApiLoading,
 		resendOtp,
 	};
 };

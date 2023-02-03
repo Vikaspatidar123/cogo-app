@@ -8,19 +8,18 @@ import LoginForm from './LoginForm';
 import styles from './styles.module.css';
 
 import { useRouter } from '@/packages/next';
-import { useSelector } from '@/packages/store';
 
 function Login() {
 	// const { t } = useTranslation(['login']);
 	const { push } = useRouter();
 
-	const { ...profile } = useSelector((s) => s.profile);
+	// const { ...profile } = useSelector((s) => s.profile);
 
-	useEffect(() => {
-		if (Object.keys(profile).length > 0) {
-			push('/dashboard');
-		}
-	}, [profile]);
+	// useEffect(() => {
+	// 	if (Object.keys(profile).length > 0) {
+	// 		push('/dashboard');
+	// 	}
+	// }, [profile]);
 
 	return (
 		<FluidContainer className={styles.container}>

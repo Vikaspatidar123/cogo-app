@@ -6,7 +6,15 @@ import getModifiedRoutes from '../utils/getModifiedRoutes';
 import { useSelector } from '@/packages/store';
 
 export const useRouter = () => {
-	const organizationId = useSelector((s) => s?.profile?.organization?.id);
+	const { profile, general } = useSelector((s) => s);
+	const { organization } = profile || {}
+	const { asPrefix } = general || {}
+	const allStrings = asPrefix?.split('/');
+	const organizationId = organization?.id || allStrings[1]
+	// const organizationId = useSelector((s) => s?.profile?.organization?.id);
+
+
+	console.log(organizationId, 'organizationId');
 	const routerNext = useRouterNext();
 	const router = useMemo(() => ({
 		...routerNext,

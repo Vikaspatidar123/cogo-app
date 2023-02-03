@@ -15,11 +15,10 @@
     "preinstall": "npx only-allow pnpm"
   },
   "dependencies": {
-    "@cogoport/business": "^4.8.2",
     "@cogoport/components": "^1.0.270",
-    "@cogoport/front": "^4.8.2",
     "@cogoport/icons-react": "^1.0.51",
     "@cogoport/utils": "^1.2.2",
+    "@next/polyfill-nomodule": "^13.1.6",
     "@reduxjs/toolkit": "^1.9.1",
     "axios": "^1.2.0",
     "axios-hooks": "^4.0.0",
@@ -32,6 +31,7 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-google-recaptcha": "^2.1.0",
+    "react-hook-form": "^7.43.0",
     "react-i18next": "^12.1.4",
     "react-redux": "^8.0.5",
     "redux": "^4.2.0",

@@ -5,7 +5,7 @@ import More from './more.svg';
 import Shimpents from './shipment.svg';
 import styles from './styles.module.css';
 
-import { Link } from '@/packages/next';
+import { useRouter, Link } from '@/packages/next';
 
 const ICON_MAPPING = {
 	more: More,
@@ -15,26 +15,25 @@ const ICON_MAPPING = {
 	discover: Discover,
 };
 
-function AppLayoutFooterItem({ item, isActive }) {
-	const Icon = ICON_MAPPING[item.icon] || Dashboard;
-
-	let itemLabel = item.label;
-	if (item.label === 'Discover Rates') {
-		itemLabel = 'Discover';
-	}
-	console.log(item, 'item');
+function AppLayoutFooterItem({ item }) {
+	// const Icon = ICON_MAPPING[item.icon] || Dashboard;
+	const { pathname } = useRouter();
+	const Icon = item.icon || More;
+	const isActive = `/${pathname.replace('/[org_id]/', '')}` === item.href;
 	return (
-		<div>
-			{/* <Link
-				href={item.href}
-				as={item.as}
-				// className={isActive ? 'active' : ''}
-				className={styles.container}
-			> */}
-			<Icon width="16px" height="16px" style={{ marginBottom: 4 }} />
-			{itemLabel}
-			{/* </Link> */}
-		</div>
+
+		<Link
+			href={item.href}
+			as={item.as}
+			key={item.href}
+			className={styles.container}
+		>
+			<div className={isActive && styles.active}>
+				<Icon width="16px" height="16px" style={{ marginBottom: 4 }} key={item.href} />
+				{item.title}
+			</div>
+		</Link>
+
 	);
 }
 

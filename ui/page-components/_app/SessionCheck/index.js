@@ -3,8 +3,8 @@ import styles from './styles.module.css';
 import useGetAuthorizationChecked from '@/ui/page-components/authentication/hooks/useGetAuthorizationChecked';
 
 function SessionCheck({ children }) {
-	const { sessionInitialized } = useGetAuthorizationChecked();
-	if (!sessionInitialized) {
+	const { sessionInitialized, asPrefix } = useGetAuthorizationChecked();
+	if (!sessionInitialized && asPrefix === null) {
 		return (
 			<div className={styles.container}>
 				<img

@@ -1,4 +1,4 @@
-import { toast } from '@cogoport/front/components';
+import { Toast } from '@cogoport/components';
 import { t } from 'i18next';
 import React from 'react';
 
@@ -8,20 +8,20 @@ const useSignupAuthentication = ({
 	setHasSignedup, setUserId, captchaResponse, hasWhatsApp,
 }) => {
 	const [{ loading: signupLoading }, trigger] = useRequest({
-		url    : '/lead/create_sign_up_lead_user',
-		method : 'post',
+		url: '/lead/create_sign_up_lead_user',
+		method: 'post',
 	}, { manual: true });
 
 	const signupAuthentication = async (val) => {
 		try {
 			const res = await trigger({
 				data: {
-					email                     : val.email,
-					name                      : val.name,
-					mobile_number             : val.mobile_number.number,
-					mobile_country_code       : val.mobile_number.country_code,
-					google_recaptcha_response : captchaResponse,
-					is_whatsapp_number        : hasWhatsApp,
+					email: val.email,
+					name: val.name,
+					mobile_number: val.mobile_number.number,
+					mobile_country_code: val.mobile_number.country_code,
+					google_recaptcha_response: captchaResponse,
+					is_whatsapp_number: hasWhatsApp,
 				},
 			});
 
@@ -32,9 +32,9 @@ const useSignupAuthentication = ({
 		} catch (e) {
 			console.log(e, 'error');
 			if (e?.response?.data?.email?.length > 0) {
-				toast.error('Email id is already registered. Please Login');
+				Toast.error('Email id is already registered. Please Login');
 			} else {
-				toast.error('Something went wrong');
+				Toast.error('Something went wrong');
 			}
 		}
 	};

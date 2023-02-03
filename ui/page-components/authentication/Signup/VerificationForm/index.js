@@ -80,7 +80,6 @@ function VerifictaionForm({ formData, userId }) {
 					onClick={() => onClickResendEmail(id)}
 				>
 					resend email
-
 				</button>
 			</div>
 		</div>

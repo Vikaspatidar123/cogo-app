@@ -1,5 +1,7 @@
 import React from 'react';
 
+import styles from './styles.module.css';
+
 import {
 	useForm, SelectController,
 } from '@/packages/forms';
@@ -10,15 +12,11 @@ function OrganizationForm() {
 	} = useForm();
 	return (
 		<div>
-			<form>
-				<div>
+			<form className={styles.form_container}>
+				<div className={styles.select_container}>
 					<SelectController
 						control={control}
 						name="name"
-						optionsListKey="countries"
-						valueKey="id"
-						labelKey="name"
-						isClearable
 						placeholder="Name"
 						rules={{ required: 'Name is required.' }}
 					/>

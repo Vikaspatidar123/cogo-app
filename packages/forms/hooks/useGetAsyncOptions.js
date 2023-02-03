@@ -14,15 +14,15 @@ function useGetAsyncOptions({
 	const { query, debounceQuery } = useDebounceQuery();
 
 	const [{ data, loading }] = useRequest({
-		url    : endpoint,
-		method : 'GET',
-		params : merge(params, { filters: { q: query } }),
+		url: endpoint,
+		method: 'GET',
+		params: merge(params, { filters: { q: query } }),
 	}, { manual: !(initialCall || query) });
 	const options = data?.list || [];
 
 	const [{ loading: loadingSingle }, triggerSingle] = useRequest({
-		url    : endpoint,
-		method : 'GET',
+		url: endpoint,
+		method: 'GET',
 	}, { manual: true });
 
 	const onSearch = (inputValue) => {

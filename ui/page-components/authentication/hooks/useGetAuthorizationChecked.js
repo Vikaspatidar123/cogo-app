@@ -1,10 +1,10 @@
+/* eslint-disable no-undef */
 import { useEffect, useState } from 'react';
 
 import redirections from '../utils/redirections';
 
 import { useRouter } from '@/packages/next';
 import { useSelector } from '@/packages/store';
-import { isEmpty } from '@cogoport/utils';
 
 const UNAUTHENTICATED_PATHS = [
 	'/login',
@@ -19,11 +19,10 @@ const UNAUTHENTICATED_PATHS = [
 const useGetAuthorizationChecked = () => {
 	const [sessionInitialized, setSessionInitialized] = useState(false);
 	const {
-		route, push,
-		query
+		route,
 	} = useRouter();
 
-	const { profile, general } = useSelector((s) => s);
+	const { profile } = useSelector((s) => s);
 	const isUnauthenticatedPath = UNAUTHENTICATED_PATHS.includes(route);
 	const isProfilePresent = Object.keys(profile).length !== 0;
 	const { organization = {}, organizations = [], branch } = profile || {};
@@ -35,14 +34,14 @@ const useGetAuthorizationChecked = () => {
 			if (!sessionInitialized) {
 				if (isProfilePresent && (isUnauthenticatedPath || route === '/')) {
 					const configs = redirections(profile);
-					window.location.href = `/${org_id}/${branch_id}${configs.as || configs.href}`
+					window.location.href = `/${org_id}/${branch_id}${configs.as || configs.href}`;
 				} else if (!isProfilePresent && (!isUnauthenticatedPath || route === '/')) {
 					window.location.href = '/login';
 				}
 				setSessionInitialized(true);
 			}
 		})();
-	}, [isProfilePresent, isUnauthenticatedPath, sessionInitialized, profile, branch_id]);
+	}, [isProfilePresent, isUnauthenticatedPath, sessionInitialized, profile, branch_id, route, org_id]);
 
 	return { sessionInitialized, setSessionInitialized };
 };

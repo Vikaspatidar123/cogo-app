@@ -4,8 +4,8 @@ function ToolsComponent() {
 	return <Tools />;
 }
 ToolsComponent.getInitialProps = () => ({
-	layout: 'app',
-	head: {
+	layout : 'app',
+	head   : {
 		title: 'Schedules Tools',
 	},
 });

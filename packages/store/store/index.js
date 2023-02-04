@@ -1,3 +1,5 @@
+/* eslint-disable import/no-unresolved */
+/* eslint-disable no-undef */
 // import general from './general';
 // import profile from './profile';
 // import user from './user';
@@ -16,7 +18,7 @@ import general from './general';
 const enhancers = [];
 const middleware = [thunk];
 
-const composeWithDevTools =	typeof window === 'object'
+const composeWithDevTools = typeof window === 'object'
 	&& window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
 	&& (process.env.NODE_ENV === 'development' || localStorage.getItem('jdgfajf7231648'))
 	? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({})

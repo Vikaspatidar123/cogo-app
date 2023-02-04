@@ -1,9 +1,8 @@
 import { useRouter as useRouterNext } from 'next/router';
 import { useMemo } from 'react';
 
+import { useSelector } from '../../store';
 import getModifiedRoutes from '../utils/getModifiedRoutes';
-
-import { useSelector } from '@/packages/store';
 
 export const useRouter = () => {
 	const { profile, general } = useSelector((s) => s);
@@ -12,7 +11,6 @@ export const useRouter = () => {
 	const organizationId = organization?.id || query?.org_id;
 	const branchId = branch?.id || query?.branch_id;
 	// const organizationId = useSelector((s) => s?.profile?.organization?.id);
-	console.log(organizationId, 'organizationId', branchId)
 	const routerNext = useRouterNext();
 	const router = useMemo(() => ({
 		...routerNext,
@@ -30,7 +28,7 @@ export const useRouter = () => {
 			});
 			return routerNext.push(newHref, newAs, options);
 		},
-	}), [organizationId, routerNext]);
+	}), [branchId, organizationId, routerNext]);
 
 	return router;
 };

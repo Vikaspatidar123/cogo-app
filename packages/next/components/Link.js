@@ -1,8 +1,7 @@
 import Link from 'next/link';
 
+import { useSelector } from '../../store';
 import getModifiedRoutes from '../utils/getModifiedRoutes';
-
-import { useSelector } from '@/packages/store';
 
 function LinkComponent({
 	href,
@@ -31,8 +30,8 @@ function LinkComponent({
 }
 
 LinkComponent.defaultProps = {
-	withPrefix: true,
-	as: '',
+	withPrefix : true,
+	as         : '',
 };
 
 export default LinkComponent;

@@ -1,19 +1,18 @@
 import { Button } from '@cogoport/components';
 
-import { useSelector } from '@/packages/store';
-// import IcError from './error.svg';
 import styles from './styles.module.css';
 
-
+import { useSelector } from '@/packages/store';
+// import IcError from './error.svg';
 
 function Error404() {
 	const {
-		general
+		general,
 	} = useSelector((state) => state);
-	const { asPrefix = {} } = general || {}
+	const { asPrefix = {} } = general || {};
 	const redirect = () => {
 		window.location.href = asPrefix;
-	}
+	};
 	return (
 		<div className={styles.component}>
 			{/* {!isMobile && <IcError height="100%" width="100%" />} */}

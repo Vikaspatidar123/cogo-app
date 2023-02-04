@@ -7,7 +7,7 @@ import AppLayout from '../AppLayout';
 
 import styles from './styles.module.css';
 
-import { Head, useRouter } from '@/packages/next';
+import { Head } from '@/packages/next';
 
 // const { useScreenClass } = Grid;
 

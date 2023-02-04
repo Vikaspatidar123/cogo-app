@@ -1,7 +1,8 @@
+/* eslint-disable import/order */
 /* eslint-disable react-hooks/rules-of-hooks */
 import '@cogoport/components/dist/themes/base.css';
 import '@cogoport/components/dist/themes/dawn.css';
-import { RoutesProvider, Router } from '@/packages/next';
+import { Router } from '@/packages/next';
 
 import pageProgessBar from 'nprogress';
 // import './global.css';
@@ -49,17 +50,14 @@ MyApp.getInitialProps = async ({ Component, ctx }) => {
 	const {
 		store, req, pathname, asPath, query = {}, locale,
 	} = ctx;
-	console.log(ctx, 'ctxxxx', req)
 	const isServer = typeof req !== 'undefined';
-	const isToken = isServer ? req.headers.cookie : false;
-
+	// const isToken = isServer ? req.headers.cookie : false;
 	const pathPrefix = '/[org_id]';
 	const ctxParams = {
 		...ctx,
 		isServer,
 	};
 	const unPrefixedPath = `/${pathname.replace('/[org_id]/[branch_id]/', '')}`;
-	console.log(unPrefixedPath, 'unPrefixedPath', pathname);
 	const { asPrefix, query: qError } = await handleAuthentication(ctxParams);
 	const isMobile = !isServer
 		? window.innerWidth < 768

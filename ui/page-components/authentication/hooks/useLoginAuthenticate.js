@@ -1,9 +1,9 @@
 import { Toast } from '@cogoport/components';
 import { setCookie } from '@cogoport/utils';
+
 import setCookieAndRedirect from '@/commons/utils/setCookieAndRedirect';
 import getApiErrorString from '@/packages/forms/utils/getApiError';
 import { useRequest } from '@/packages/request/index';
-
 
 const useLoginAuthenticate = () => {
 	const [{ loading: loginLoading }, trigger] = useRequest({
@@ -23,8 +23,9 @@ const useLoginAuthenticate = () => {
 					},
 				});
 			const { token } = response.data || {};
-			setCookie(process.env.NEXT_PUBLIC_AUTH_TOKEN_NAME, token);
-			setCookieAndRedirect(token, {});
+			if (token) setCookie(process.env.NEXT_PUBLIC_AUTH_TOKEN_NAME, token);
+			// setCookieAndRedirect(token, {});
+			window.location.href = '/';
 		} catch (err) {
 			Toast.error(getApiErrorString(err?.response?.data) || 'Failed to login, please try again...');
 		}

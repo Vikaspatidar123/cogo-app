@@ -15,8 +15,6 @@ function GlobalLayout({
 	children, layout, head, hideBG, ...rest
 }) {
 	const elementRef = useRef(null);
-	const dispatch = useDispatch();
-	const generalData = useSelector(({ general }) => general);
 	// const screenClass = useScreenClass(elementRef);
 	// const isMobile = ['xs', 'sm'].includes(screenClass);
 

@@ -11,11 +11,16 @@ function LinkComponent({
 	withPrefix,
 	...rest
 }) {
-	const organizationId = useSelector((s) => s?.profile?.organization
-		?.id);
-
+	// const organizationId = useSelector((s) => s?.profile?.organization
+	// 	?.id);
+	const { profile, general } = useSelector((s) => s);
+	const { organization, branch } = profile || {};
+	const { asPrefix } = general || {};
+	const allStrings = asPrefix?.split('/');
+	const organizationId = organization?.id || allStrings?.[1];
+	const branchId = branch?.id;
 	const { newHref, newAs } = getModifiedRoutes({
-		href, as, organizationId, withPrefix,
+		href, as, organizationId, branchId, withPrefix,
 	});
 
 	return (
@@ -26,8 +31,8 @@ function LinkComponent({
 }
 
 LinkComponent.defaultProps = {
-	withPrefix : true,
-	as         : '',
+	withPrefix: true,
+	as: '',
 };
 
 export default LinkComponent;

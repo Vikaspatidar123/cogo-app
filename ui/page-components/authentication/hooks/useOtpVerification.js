@@ -46,7 +46,7 @@ const useOtpVerification = ({ formData = {}, otpValue = '', id }) => {
 			const redirectUrl = '/get-started';
 
 			const { token } = response?.data || {};
-			setCookieAndRedirect(token, {}, redirectUrl);
+			if (token) setCookieAndRedirect(token, {}, redirectUrl);
 		} catch (error) {
 			Toast.error(error?.data);
 		}

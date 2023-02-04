@@ -2,12 +2,15 @@
 import '@cogoport/components/dist/themes/base.css';
 import '@cogoport/components/dist/themes/dawn.css';
 import { RoutesProvider, Router } from '@/packages/next';
+
 import pageProgessBar from 'nprogress';
 // import './global.css';
 import 'nprogress/nprogress.css';
 import { useEffect } from 'react';
+
 import SessionCheck from './SessionCheck';
 import withStore from './store';
+
 import { Provider } from '@/packages/store';
 import { setGeneralStoreState } from '@/packages/store/store/general';
 import isMobileAgent from '@/packages/utils/isMobileAgent';
@@ -15,7 +18,7 @@ import handleAuthentication from '@/ui/page-components/authentication/utils/hand
 import GlobalLayout from '@/ui/page-components/layout/components/GlobalLayout';
 
 function MyApp({
-	Component, pageProps, store, generalData
+	Component, pageProps, store, generalData,
 }) {
 	useEffect(() => {
 		Router.events.on('routeChangeStart', () => {
@@ -33,7 +36,7 @@ function MyApp({
 
 	return (
 		<Provider store={store}>
-			<SessionCheck >
+			<SessionCheck>
 				<GlobalLayout layout={pageProps.layout || 'authenticated'} head={pageProps.head || ''}>
 					<Component {...pageProps} />
 				</GlobalLayout>
@@ -46,18 +49,18 @@ MyApp.getInitialProps = async ({ Component, ctx }) => {
 	const {
 		store, req, pathname, asPath, query = {}, locale,
 	} = ctx;
-	console.log(query, 'queryquery', ctx)
-	const { profile, general } = (store.getState((s) => s));
+	console.log(ctx, 'ctxxxx', req)
 	const isServer = typeof req !== 'undefined';
 	const isToken = isServer ? req.headers.cookie : false;
+
 	const pathPrefix = '/[org_id]';
 	const ctxParams = {
 		...ctx,
-		isServer
+		isServer,
 	};
-	const unPrefixedPath = `/${pathname.replace('/[org_id]/', '')}`;
-	const { asPrefix } = await handleAuthentication(ctxParams);
-
+	const unPrefixedPath = `/${pathname.replace('/[org_id]/[branch_id]/', '')}`;
+	console.log(unPrefixedPath, 'unPrefixedPath', pathname);
+	const { asPrefix, query: qError } = await handleAuthentication(ctxParams);
 	const isMobile = !isServer
 		? window.innerWidth < 768
 		: isMobileAgent(ctx.req.headers['user-agent'] || '');
@@ -67,9 +70,7 @@ MyApp.getInitialProps = async ({ Component, ctx }) => {
 		unPrefixedPath,
 		pathPrefix,
 		asPrefix,
-		scope: 'app',
-		query: { ...query },
-		// asPrefix,
+		query: { ...query, ...(qError || {}) },
 		isServer,
 		isMobile,
 		locale,

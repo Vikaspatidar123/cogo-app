@@ -4,7 +4,7 @@ import useGetAuthorizationChecked from '@/ui/page-components/authentication/hook
 
 function SessionCheck({ children }) {
 	const { sessionInitialized, asPrefix } = useGetAuthorizationChecked();
-	if (!sessionInitialized && asPrefix === null) {
+	if (!sessionInitialized && asPrefix === undefined) {
 		return (
 			<div className={styles.container}>
 				<img

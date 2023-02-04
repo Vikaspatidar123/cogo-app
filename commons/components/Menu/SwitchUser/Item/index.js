@@ -11,11 +11,11 @@ const MAPPING = {
 	service_provider: 'Service',
 };
 function SwitchPartnerItem({ item }) {
-	const { organization } = useSelector(({ profile }) => profile);
+	const { organization, branch = '' } = useSelector(({ profile }) => profile);
 	const { account_type = '', id } = organization || {};
 
 	const onSwitch = () => {
-		window.location.href = `/${item.id}/dashboard`;
+		window.location.href = `/${item.id}/${branch?.id}/dashboard`;
 	};
 	return (
 		<div

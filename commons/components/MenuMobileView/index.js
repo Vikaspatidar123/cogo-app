@@ -33,7 +33,7 @@ function MobileMenu() {
 		return <SwitchUser setShow={setShow} />;
 	}
 
-	const unPrefixedPath = `/${pathname.replace('/[org_id]/', '')}`;
+	const unPrefixedPath = `/${pathname.replace('/[org_id]/[branch_id]/', '')}`;
 	const configs = getSideBarConfigs(user_data);
 	const { nav_items = {} } = configs || {};
 	const { organization = [] } = nav_items || {};

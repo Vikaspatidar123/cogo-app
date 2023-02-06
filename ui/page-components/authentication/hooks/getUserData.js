@@ -1,11 +1,8 @@
 import { isEmpty } from '@cogoport/utils';
-import axios from 'axios';
 
 import getUserSession from './getUserSession';
 
-import { Router } from '@/packages/next';
 import { setProfileStoreState as storeProfile } from '@/packages/store/store/profile';
-
 // import sortByPreference from './sortByPreference';
 const getUserData = async ({
 	store, isServer, req,
@@ -21,19 +18,15 @@ const getUserData = async ({
 					organization,
 					permissions_navigations,
 				} = data.data;
-				const sortPreference = ['verified', 'pending_from_user', 'rejected'];
-				// const sortedOrganizations = sortByPreference(organizations, sortPreference, 'kyc_status');
-				// const projectNavigationMappings = organization?.account_type === 'importer_exporter'
-				// 	? importerNavs
-				// 	: sellerNavs;
+
 				user_data = {
 					...user,
 					organization: organization
 						? { ...organization, preferred_languages: user.preferred_languages }
 						: undefined,
-					organizations: organization ? [organization] : organizations,
+					organizations : organization ? [organization] : organizations,
 					permissions_navigations,
-					branch: organization?.branches?.[0],
+					branch        : organization?.branches?.[0],
 				};
 				// const authorizationparameters = getAuthParam(
 				// 	permissions_navigations,

@@ -16,7 +16,7 @@ function NavBar() {
 		user_data: profile || {},
 	}));
 	const { pathname } = useRouter();
-	const unPrefixedPath = `/${pathname.replace('/[org_id]/', '')}`;
+	const unPrefixedPath = `/${pathname.replace('/[org_id]/[branch_id]/', '')}`;
 	const configs = getSideBarConfigs(user_data);
 	const { nav_items = {} } = configs || {};
 	const { organization = [] } = nav_items || {};

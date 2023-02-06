@@ -1,27 +1,34 @@
 // import { Grid } from '@cogoport/components';
-import { useRef, useEffect } from 'react';
+import {
+	useRef, useState, useMemo,
+} from 'react';
 
 import { useSelector, useDispatch } from '../../../../../packages/store';
-import { setGeneralState as setGeneralStoreState } from '../../../../../packages/store/store/general';
+import { setGeneralStoreState as setGeneralState } from '../../../../../packages/store/store/general';
 import AppLayout from '../AppLayout';
 
 import styles from './styles.module.css';
 
-import { Head, useRouter } from '@/packages/next';
-
-// const { useScreenClass } = Grid;
+// import { useWindowDimensions } from '@/commons/utils/getMobailView';
+import { Head } from '@/packages/next';
 
 function GlobalLayout({
 	children, layout, head, hideBG, ...rest
 }) {
 	const elementRef = useRef(null);
-	const dispatch = useDispatch();
-	const generalData = useSelector(({ general }) => general);
-	// const screenClass = useScreenClass(elementRef);
-	// const isMobile = ['xs', 'sm'].includes(screenClass);
-
+	// const { general } = useSelector((s) => s);
+	// const [isMobile, setIsMobile] = useState(false);
+	// const { width } = useWindowDimensions();
+	// const dispatch = useDispatch();
 	// useEffect(() => {
-	// 	dispatch(setGeneralStoreState({ ...generalData }));
+	// 	if (width < 1154) {
+	// 		setIsMobile(true);
+	// 	} else {
+	// 		setIsMobile(false);
+	// 	}
+	// }, [width]);
+	// useMemo(() => {
+	// 	dispatch(setGeneralState({ isMobile, ...general }));
 	// }, []);
 
 	const getBody = () => {

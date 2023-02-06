@@ -5,12 +5,12 @@ import { useRequest } from '@/packages/request';
 
 const useSendMobileNumberOtp = () => {
 	const sendOtpApi = useRequest({
-		url: '/send_login_otp',
-		method: 'post',
+		url    : '/send_login_otp',
+		method : 'post',
 	}, { manual: true });
 	const resendOtpApi = useRequest({
-		url: '/resend_lead_verification_otp',
-		method: 'post',
+		url    : '/resend_lead_verification_otp',
+		method : 'post',
 	}, { manual: true });
 	const onSuccess = ({ action = '', callback = () => { }, response = {} }) => {
 		if (action === 'send') {
@@ -45,8 +45,8 @@ const useSendMobileNumberOtp = () => {
 
 			onSuccess({
 				action,
-				callback: onSuccessCallback,
-				response: response.data,
+				callback : onSuccessCallback,
+				response : response.data,
 			});
 		} catch (error) {
 			onFailure({ error, callback: onFailureCallback });

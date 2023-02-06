@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 // import { get } from '@cogoport/front/utils';
 import { IcMArrowNext } from '@cogoport/icons-react';
 import { useState } from 'react';
@@ -60,25 +61,25 @@ function MobileMenu() {
 			<div className={styles.border_line} />
 
 			{navigationMapping.map((menuItem) => (
-				{
-					menuItem?.showInNav && < div className={styles.tools_container} key={menuItem.href} >
-					{!menuItem.isSubNavs ? (
-						<div className={styles.styled_button} onClick={() => push(menuItem.as)}>
-							<div className={styles.button_text}>{menuItem.title}</div>
+				menuItem?.showInNav && (
+					<div className={styles.tools_container} key={menuItem.href}>
+						{!menuItem.isSubNavs ? (
+							<div className={styles.styled_button} onClick={() => push(menuItem.as)}>
+								<div className={styles.button_text}>{menuItem.title}</div>
 
-							<div className={styles.arrow_icon_container}>
-								<IcMArrowNext />
+								<div className={styles.arrow_icon_container}>
+									<IcMArrowNext />
+								</div>
 							</div>
-						</div>
-					) : <Subnavigation menuItem={menuItem} push={push} />}
+						) : <Subnavigation menuItem={menuItem} push={push} />}
 
-					<div />}
-				</div>
-			))
-			}
+						<div />
+					</div>
+				)
+			))}
 
 			<Logout />
-		</div >
+		</div>
 	);
 }
 

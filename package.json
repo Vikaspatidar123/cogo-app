@@ -12,7 +12,7 @@
     "prod:build": "pnpm run pre-build && pnpm run build",
     "pre-build": "NODE_ENV=production node scripts/build-pages",
     "build": "next build",
-    "start": "next start",
+    "start": "NODE_ENV=production pm2 start pm2.config.js",
     "lint": "eslint .",
     "lint:css": "stylelint \"**/*.css\"",
     "preinstall": "npx only-allow pnpm"
@@ -29,6 +29,7 @@
     "next": "12.3.1",
     "next-i18next": "^13.0.3",
     "nprogress": "^0.2.0",
+    "p2": "^0.7.1",
     "prop-types": "^15.8.1",
     "qs": "^6.11.0",
     "react": "18.2.0",

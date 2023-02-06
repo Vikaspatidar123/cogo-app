@@ -10,7 +10,7 @@ const ifProd = (valueIfProd, valueIfDev) => {
 module.exports = {
 	apps: [
 		{
-			name      : 'project-admin',
+			name      : 'cogo-app',
 			script    : 'yarn',
 			args      : ['start', '-p', '4161'],
 			instances : ifProd(2, 1),

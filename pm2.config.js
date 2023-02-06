@@ -12,7 +12,7 @@ module.exports = {
 		{
 			name      : 'cogo-app',
 			script    : 'yarn',
-			args      : ['start', '-p', '4161'],
+			args      : ['start', '-p', '4165'],
 			instances : ifProd(2, 1),
 			exec_mode : ifProd('cluster', 'fork'),
 		},

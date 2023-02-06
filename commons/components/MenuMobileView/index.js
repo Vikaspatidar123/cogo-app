@@ -60,7 +60,8 @@ function MobileMenu() {
 			<div className={styles.border_line} />
 
 			{navigationMapping.map((menuItem) => (
-				<div className={styles.tools_container} key={menuItem.href}>
+				{
+					menuItem?.showInNav && < div className={styles.tools_container} key={menuItem.href} >
 					{!menuItem.isSubNavs ? (
 						<div className={styles.styled_button} onClick={() => push(menuItem.as)}>
 							<div className={styles.button_text}>{menuItem.title}</div>
@@ -71,12 +72,13 @@ function MobileMenu() {
 						</div>
 					) : <Subnavigation menuItem={menuItem} push={push} />}
 
-					<div />
+					<div />}
 				</div>
-			))}
+			))
+			}
 
 			<Logout />
-		</div>
+		</div >
 	);
 }
 

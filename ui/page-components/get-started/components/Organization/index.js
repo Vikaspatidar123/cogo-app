@@ -5,7 +5,7 @@ import LeftPanel from '../../../common/LeftPanel';
 import OrganizationForm from './OrganizationForm';
 import styles from './styles.module.css';
 
-function Organization({ setBillingAddressDetails }) {
+function Organization({ setBillingAddressDetails, setOrgId }) {
 	return (
 		<div className={styles.right_container}>
 			<div className={styles.header_container}>
@@ -26,7 +26,7 @@ function Organization({ setBillingAddressDetails }) {
 				to sign up.
 			</div>
 			<div className={styles.organization_form_container}>
-				<OrganizationForm setBillingAddressDetails={setBillingAddressDetails} />
+				<OrganizationForm setBillingAddressDetails={setBillingAddressDetails} setOrgId={setOrgId} />
 			</div>
 		</div>
 

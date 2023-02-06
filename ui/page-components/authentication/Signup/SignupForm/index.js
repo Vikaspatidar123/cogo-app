@@ -54,7 +54,6 @@ function SignupForm({ setHasSignedup, setFormData, setUserId }) {
 					</span>
 				)}
 			</div>
-			<br />
 			<div className={styles.input_container}>
 				<InputController
 					control={control}

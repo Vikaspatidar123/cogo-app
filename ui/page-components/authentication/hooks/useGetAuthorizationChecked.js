@@ -23,11 +23,10 @@ const useGetAuthorizationChecked = () => {
 	} = useRouter();
 
 	const { profile, general } = useSelector((s) => s);
-	console.log('asPrefix', general);
-	const { asPrefix } = general || {}
+
+	const { asPrefix } = general || {};
 	const isUnauthenticatedPath = UNAUTHENTICATED_PATHS.includes(route);
 	const isProfilePresent = Object.keys(profile).length !== 0;
-	console.log(isProfilePresent, 'isProfilePresent', profile);
 	const { organization = {}, organizations = [], organization_set } = profile || {};
 	const org_id = organization?.id || organizations[0]?.id;
 	useEffect(() => {

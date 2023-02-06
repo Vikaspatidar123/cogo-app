@@ -41,5 +41,3 @@ export const LanguageOptions = [
 	{ value: 'dutch', label: 'Nederlands, Vlaams' },
 	{ value: 'assamese', label: 'অসমীয়া' },
 ];
-
-console.log(LanguageOptions, 'LanguageOptions');

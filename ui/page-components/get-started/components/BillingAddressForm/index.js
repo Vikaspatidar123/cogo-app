@@ -1,18 +1,23 @@
-import { Button, Checkbox, FileSelect } from '@cogoport/components';
+import { Button, Checkbox } from '@cogoport/components';
 import React, { useState } from 'react';
+
+import useCreateBillingAddress from '../../hooks/useCreateBillingAddress';
 
 import styles from './styles.module.css';
 
-import { InputController, useForm } from '@/packages/forms';
+import { InputController, useForm, UploadController } from '@/packages/forms';
 
-function BillingAddress() {
+function BillingAddress({ orgId, setInviteTeam }) {
 	const {
 		handleSubmit, control, formState: { errors }, watch,
 	} = useForm();
 
 	const [isSez, setIsSez] = useState(false);
-	const [sezfileValue, setSezFileValue] = useState();
-	const [taxDocumnet, setTaxDocument] = useState();
+
+	const {
+		onClickCreateBillingAddress,
+		createBillingAddressLoading,
+	} = useCreateBillingAddress({ isSez, orgId, setInviteTeam });
 
 	const handleChange = () => {
 		setIsSez(!isSez);
@@ -20,11 +25,15 @@ function BillingAddress() {
 
 	const formValues = watch();
 
-	const { billing_Address, GST_number, Pincode } = formValues || {};
+	const { billing_address, gst_number, pincode } = formValues || {};
 
-	const is_disabled = !(!isSez ? ((billing_Address || '').length > 0 && (GST_number || '').length > 0
-	&& (Pincode || '').length > 0) : ((billing_Address || '').length > 0 && (GST_number || '').length > 0
-	&& (Pincode || '').length > 0 && sezfileValue && taxDocumnet));
+	const handleSkip = () => {
+		setInviteTeam(true);
+	};
+
+	const is_disabled = !(!isSez ? ((billing_address || '').length > 0 && (gst_number || '').length > 0
+	&& (pincode || '').length > 0) : ((billing_address || '').length > 0 && (gst_number || '').length > 0
+	&& (pincode || '').length > 0 && formValues?.sez_proof?.finalUrl));
 
 	return (
 		<div className={styles.container}>
@@ -33,49 +42,49 @@ function BillingAddress() {
 				Add your billing address now to fast track bookings
 			</div>
 			<div className={styles.total_container}>
-				<form className={styles.form_container} onSubmit={handleSubmit()}>
+				<form className={styles.form_container} onSubmit={handleSubmit(onClickCreateBillingAddress)}>
 					<div className={styles.input_container}>
 						<InputController
 							control={control}
-							name="GST_number"
+							name="gst_number"
 							type="text"
 							placeholder="GST/Tax number"
 							rules={{ required: 'GST is required.' }}
 						/>
 
-						{errors.country_id && (
+						{errors.gst_number && (
 							<span className={styles.errors}>
-								{errors.country_id.message}
+								{errors.gst_number.message}
 							</span>
 						)}
 					</div>
 					<div className={styles.input_container}>
 						<InputController
 							control={control}
-							name="billing_Address"
+							name="billing_address"
 							type="text"
 							placeholder="Billing Address"
 							rules={{ required: 'Billing Address is required.' }}
 						/>
 
-						{errors.country_id && (
+						{errors.billing_address && (
 							<span className={styles.errors}>
-								{errors.country_id.message}
+								{errors.billing_address.message}
 							</span>
 						)}
 					</div>
 					<div className={styles.input_container}>
 						<InputController
 							control={control}
-							name="Pincode"
+							name="pincode"
 							type="text"
 							placeholder="Pincode"
 							rules={{ required: 'Pincode is required.' }}
 						/>
 
-						{errors.country_id && (
+						{errors.pincode && (
 							<span className={styles.errors}>
-								{errors.country_id.message}
+								{errors.pincode.message}
 							</span>
 						)}
 					</div>
@@ -88,23 +97,32 @@ function BillingAddress() {
 							<>
 								<div className={styles.file_uploader}>
 									Sez Proof:
-									<FileSelect value={sezfileValue} onChange={setSezFileValue} />
+									<UploadController
+										control={control}
+										name="sez_proof"
+										rules={{ required: 'sez_proof is required.' }}
+									/>
 								</div>
 								<div className={styles.file_uploader}>
 									Tax Number Document:
-									<FileSelect value={taxDocumnet} onChange={setTaxDocument} />
+									<UploadController
+										control={control}
+										name="tax_document_proof"
+									/>
 								</div>
 							</>
 						)
 				}
-					<div>
-						<Button>ADD</Button>
+					<div
+						className={styles.add_button_container}
+					>
+						<Button type="submit" loading={createBillingAddressLoading}>ADD</Button>
 					</div>
 					<div className={styles.button_container}>
-						<Button className={styles.button} themeType="accent">
+						<Button className={styles.button} themeType="accent" onClick={handleSkip}>
 							SKIP
 						</Button>
-						<Button className={styles.button} themeType="accent" disabled={is_disabled} type="submit">
+						<Button className={styles.button} themeType="accent" disabled={is_disabled}>
 							NEXT
 						</Button>
 					</div>

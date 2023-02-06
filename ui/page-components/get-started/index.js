@@ -2,12 +2,17 @@ import React, { useState } from 'react';
 
 import LeftPanel from '../common/LeftPanel';
 
-import BillingAddress from './components/BillingAddress';
+import BillingAddress from './components/BillingAddressForm';
+import InviteTeam from './components/InviteTeam';
 import Organization from './components/Organization';
+import SetTimeForCall from './components/SetTimeForCall';
 import styles from './styles.module.css';
 
 function GetStarted() {
-	const [billingAddressDetails, setBillingAddressDetails] = useState(false);
+	const [billingAddressDetails, setBillingAddressDetails] = useState(true);
+	const [inviteTeam, setInviteTeam] = useState(true);
+	const [timeForCall, setTimeForCall] = useState(true);
+	const [orgId, setOrgId] = useState('');
 
 	return (
 		<div className={styles.container}>
@@ -15,12 +20,16 @@ function GetStarted() {
 				<LeftPanel />
 			</div>
 			<div className={styles.right_container}>
-				{billingAddressDetails && (
+				{!billingAddressDetails && !inviteTeam && !timeForCall && (
 					<Organization
 						setBillingAddressDetails={setBillingAddressDetails}
+						setOrgId={setOrgId}
 					/>
 				)}
-				{!billingAddressDetails && <BillingAddress />}
+				{billingAddressDetails && !inviteTeam
+				&& !timeForCall && <BillingAddress orgId={orgId} setInviteTeam={setInviteTeam} />}
+				{inviteTeam && !timeForCall && <InviteTeam orgId={orgId} setTimeForCall={setTimeForCall} />}
+				{timeForCall && <SetTimeForCall />}
 			</div>
 		</div>
 	);

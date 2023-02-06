@@ -18,13 +18,12 @@ function UserName() {
 		picture, business_name, branch_name, total_branches,
 	} = useSelector(
 		({ profile }) => ({
-			business_name: (profile.organization || {}).business_name || '',
-			branch_name: (profile.branch || {}).branch_name || '',
-			total_branches: (profile?.organization?.branches || []).length,
+			business_name  : (profile.organization || {}).business_name || '',
+			branch_name    : (profile.branch || {}).branch_name || '',
+			total_branches : (profile?.organization?.branches || []).length,
 		}),
 	);
 	const [showPopover, setShowPopover] = useState(false);
-	// console.log(showPopover, 'isIt?');
 	const [show, setShow] = useState(false);
 
 	useEffect(() => {

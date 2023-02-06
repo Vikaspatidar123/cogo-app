@@ -1,6 +1,6 @@
 import { Button } from '@cogoport/components';
 import { merge } from '@cogoport/utils';
-import React, { useState } from 'react';
+import React from 'react';
 
 import useCheckDuplicateOrganization from '../../../hooks/useCheckDuplicateOrganization';
 import useCreateOrganization from '../../../hooks/useCreateOrganization';
@@ -12,7 +12,7 @@ import {
 	useForm, SelectController, useGetAsyncOptions, asyncFieldsLocations, InputController, MultiselectController,
 } from '@/packages/forms';
 
-function OrganizationForm({ setBillingAddressDetails }) {
+function OrganizationForm({ setBillingAddressDetails, setOrgId }) {
 	const cityOptions = useGetAsyncOptions(merge(asyncFieldsLocations(), {
 		params: { filters: { type: ['country'] } },
 	}));
@@ -20,9 +20,9 @@ function OrganizationForm({ setBillingAddressDetails }) {
 		handleSubmit, control, formState: { errors }, watch,
 	} = useForm();
 
-	const fields = getControls({ cityOptions });
-
 	const formValues = watch();
+
+	const fields = getControls({ cityOptions, formValues });
 
 	const { onClickCheckDuplicateOrganization } = useCheckDuplicateOrganization();
 
@@ -30,7 +30,10 @@ function OrganizationForm({ setBillingAddressDetails }) {
 		onClickCheckDuplicateOrganization(formValues);
 	};
 
-	const { onClickCreateOrganization, createOrganizationLoading } = useCreateOrganization(setBillingAddressDetails);
+	const {
+		onClickCreateOrganization,
+		createOrganizationLoading,
+	} = 		useCreateOrganization({ setBillingAddressDetails, setOrgId });
 
 	return (
 		<div className={styles.container}>

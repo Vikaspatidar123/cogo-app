@@ -22,7 +22,7 @@ const fields = [{
 	},
 	rules: { required: 'Country is required' },
 },
-{ ...getRegistrationNumberControl({}) },
+{ ...getRegistrationNumberControl({ }) },
 {
 	label       : 'Company Name',
 	name        : 'business_name',
@@ -89,6 +89,7 @@ const fields = [{
 
 const getControls = ({
 	cityOptions = {},
+	formValues = {},
 }) => fields.map((control) => {
 	const { name } = control;
 	let newControl = { ...control };

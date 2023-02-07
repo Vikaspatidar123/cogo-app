@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import { Button } from '@cogoport/components';
 
 import BackIcon from './icons/backIcon.svg';
@@ -15,7 +16,9 @@ function SwitchUser({ setShow }) {
 	const onBack = () => {
 		setShow(false);
 	};
-
+	const getStarted = () => {
+		window.location = '/get-started';
+	};
 	return (
 		<div type="enter">
 			<div className={styles.container}>
@@ -28,7 +31,7 @@ function SwitchUser({ setShow }) {
 					/>
 
 					{pathname === '/get-started' ? null : (
-						<Button className={styles.styled_button} as="a" href="/get-started">
+						<Button className={styles.styled_button} onClick={() => getStarted()}>
 							+ Add New Account
 						</Button>
 					)}

@@ -27,7 +27,7 @@ const handleAuthentication = async ({
 
 	let user_data = null;
 
-	const token = getCookie('cogo-app-token', { req });
+	const token = getCookie('cogo-auth-token', { req });
 	const allStrings = asPath?.split('/');
 	const actual_org_id = allStrings?.[1];
 	console.log(ctxParams, 'ctxParams');

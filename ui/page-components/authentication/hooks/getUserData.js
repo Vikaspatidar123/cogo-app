@@ -2,6 +2,7 @@ import { isEmpty } from '@cogoport/utils';
 
 import getUserSession from './getUserSession';
 
+import { routeConfig } from '@/packages/navigation-configs';
 import { setProfileStoreState as storeProfile } from '@/packages/store/store/profile';
 // import sortByPreference from './sortByPreference';
 const getUserData = async ({
@@ -24,9 +25,9 @@ const getUserData = async ({
 					organization: organization
 						? { ...organization, preferred_languages: user.preferred_languages }
 						: undefined,
-					organizations : organization ? [organization] : organizations,
+					organizations: organization ? [organization] : organizations,
 					permissions_navigations,
-					branch        : organization?.branches?.[0],
+					branch: organization?.branches?.[0],
 				};
 				// const authorizationparameters = getAuthParam(
 				// 	permissions_navigations,

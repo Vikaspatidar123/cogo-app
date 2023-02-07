@@ -4,11 +4,13 @@ import NavBarItem from './NavBarItem';
 import styles from './styles.module.css';
 import SubMenu from './SubMenu';
 
+import { navigationMappings } from '@/commons/configurations/navigation-mapping';
 import getValue from '@/commons/utils/getValue';
 import getSideBarConfigs from '@/packages/navigation-configs/side-bar';
 import { useRouter } from '@/packages/next';
 import { useSelector } from '@/packages/store';
 
+const SubNevKey = ['Tools', 'Planning'];
 function NavBar() {
 	const {
 		user_data,
@@ -20,6 +22,7 @@ function NavBar() {
 	const configs = getSideBarConfigs(user_data);
 	const { nav_items = {} } = configs || {};
 	const { organization = [] } = nav_items || {};
+
 	return (
 		<div className={styles.menu}>
 			{organization.map((item) => {

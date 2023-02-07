@@ -1,16 +1,16 @@
+/* eslint-disable no-undef */
 import { format } from '@cogoport/utils';
 import Axios from 'axios';
 import qs from 'qs';
 
 import getAuthrozationParams from './get-final-authpipe';
+import getMicroServiceName from './get-microservice-name';
 import { getCookie } from './getCookieFromCtx';
-
-import getMicroServiceName from '@/packages/request/get-microservice-name';
 
 const customSerializer = (params) => {
 	const paramsStringify = qs.stringify(params, {
-		arrayFormat: 'brackets',
-		serializeDate: (date) => format(date),
+		arrayFormat   : 'brackets',
+		serializeDate : (date) => format(date),
 	});
 	return paramsStringify;
 };
@@ -35,7 +35,6 @@ request.interceptors.request.use((oldConfig) => {
 	const name = 'cogo-app-token';
 	const newConfig = oldConfig;
 	const token = getCookie(name, oldConfig.ctx);
-	console.log(token, 'tokentoken')
 	const authorizationparameters = getAuthrozationParams(storeKey, newConfig.url);
 	const apiPath = newConfig.url ? newConfig.url.split('/')[1] || newConfig.url.split('/')[0] : null;
 	const serviceName = microServices[apiPath];
@@ -48,13 +47,13 @@ request.interceptors.request.use((oldConfig) => {
 	// };
 	return {
 		...newConfig,
-		paramsSerializer: { serialize: customSerializer },
-		headers: {
-			authorizationscope: 'organization',
-			authorization: `Bearer: ${token}`,
+		paramsSerializer : { serialize: customSerializer },
+		headers          : {
+			authorizationscope   : 'organization',
+			authorization        : `Bearer: ${token}`,
 			authorizationparameters,
-			'Content-Type': 'application/json',
-			authorizationscopeid: getOrganizationId(storeKey, oldConfig.ctx),
+			'Content-Type'       : 'application/json',
+			authorizationscopeid : getOrganizationId(storeKey, oldConfig.ctx),
 		},
 
 	};

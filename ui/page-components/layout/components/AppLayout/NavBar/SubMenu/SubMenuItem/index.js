@@ -15,15 +15,15 @@ import { useRouter, Link } from '@/packages/next';
 import { useSelector } from '@/packages/store';
 
 const ICON_MAPPING = {
-	'Ocean Tracking': OceanTracking,
-	'Air Tracking': AirTracking,
-	'Air Schedules': AirSchedule,
-	'Ocean Schedules': OceanSchedule,
-	'Manage Subscriptions': ManageSubscription,
-	'Rates Sheet': IcMRateSheets,
-	'Rates Management': IcMRateManagement,
-	'Product Classification': ProductClassification,
-	Documents: IcMDocument,
+	'Ocean Tracking'         : OceanTracking,
+	'Air Tracking'           : AirTracking,
+	'Air Schedules'          : AirSchedule,
+	'Ocean Schedules'        : OceanSchedule,
+	'Manage Subscriptions'   : ManageSubscription,
+	'Rates Sheet'            : IcMRateSheets,
+	'Rates Management'       : IcMRateManagement,
+	'Product Classification' : ProductClassification,
+	Documents                : IcMDocument,
 };
 
 function SubMenuItem({ item }) {
@@ -34,7 +34,6 @@ function SubMenuItem({ item }) {
 	const onSubmit = () => {
 		push(href);
 	};
-	console.log(icon, 'icon', AirSchedule);
 	const Element = ICON_MAPPING[title] || AirSchedule;
 
 	return (

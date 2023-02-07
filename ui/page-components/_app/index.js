@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /* eslint-disable import/order */
 /* eslint-disable react-hooks/rules-of-hooks */
 import '@cogoport/components/dist/themes/base.css';
@@ -17,6 +18,7 @@ import { setGeneralStoreState } from '@/packages/store/store/general';
 import isMobileAgent from '@/packages/utils/isMobileAgent';
 import handleAuthentication from '@/ui/page-components/authentication/utils/handleAuthentication';
 import GlobalLayout from '@/ui/page-components/layout/components/GlobalLayout';
+import routeConfig from './routes';
 
 function MyApp({
 	Component, pageProps, store, generalData,
@@ -52,10 +54,12 @@ MyApp.getInitialProps = async ({ Component, ctx }) => {
 	} = ctx;
 	const isServer = typeof req !== 'undefined';
 	// const isToken = isServer ? req.headers.cookie : false;
-	const pathPrefix = '/[org_id]';
+	const pathPrefix = '/[org_id]/[branch_id]';
 	const ctxParams = {
 		...ctx,
+		routeConfig,
 		isServer,
+
 	};
 	const unPrefixedPath = `/${pathname.replace('/[org_id]/[branch_id]/', '')}`;
 	const { asPrefix, query: qError } = await handleAuthentication(ctxParams);
@@ -72,6 +76,7 @@ MyApp.getInitialProps = async ({ Component, ctx }) => {
 		isServer,
 		isMobile,
 		locale,
+		routeConfig,
 	};
 
 	await store.dispatch(setGeneralStoreState(generalData));

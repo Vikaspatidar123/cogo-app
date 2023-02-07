@@ -1,4 +1,4 @@
-import rolesAndPermissions from './config/roles-n-permission';
+import rolesAndPermissions from './roles-n-permission';
 
 const routeConfig = {
 	...rolesAndPermissions,

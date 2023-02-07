@@ -1,12 +1,11 @@
 /* eslint-disable no-undef */
 /* eslint-disable import/order */
 /* eslint-disable react-hooks/rules-of-hooks */
-import '@cogoport/components/dist/themes/base.css';
-import '@cogoport/components/dist/themes/dawn.css';
+
 import { Router } from '@/packages/next';
 
 import pageProgessBar from 'nprogress';
-// import './global.css';
+
 import 'nprogress/nprogress.css';
 import { useEffect } from 'react';
 

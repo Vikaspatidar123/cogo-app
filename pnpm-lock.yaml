@@ -17,7 +17,6 @@ specifiers:
   next: 12.3.1
   next-i18next: ^13.0.3
   nprogress: ^0.2.0
-  p2: ^0.7.1
   prop-types: ^15.8.1
   qs: ^6.11.0
   react: 18.2.0
@@ -42,7 +41,6 @@ dependencies:
   next: 12.3.1_biqbaboplfbrettd7655fr4n2y
   next-i18next: 13.0.3_t5xbndagwp6yawmo2k3uvve7yq
   nprogress: 0.2.0
-  p2: 0.7.1
   prop-types: 15.8.1
   qs: 6.11.0
   react: 18.2.0
@@ -4100,12 +4098,6 @@ packages:
     engines: {node: '>=6'}
     dev: true
 
-  /p2/0.7.1:
-    resolution: {integrity: sha512-wJxG87tHPlAO1iwGettkiU4ptoytQDoJSeP+PV8aZVT//ZHlD2H2uMtIPnQG8MXAaGR9OI1o1pqBV1g/fpNgNw==}
-    dependencies:
-      poly-decomp: 0.1.1
-    dev: false
-
   /parent-module/1.0.1:
     resolution: {integrity: sha512-GQ2EWRpQV8/o+Aw8YqtfZZPfNRWZYkbidE9k5rpl/hC3vtHHBfGm2Ifi6qWV+coDGkrUKZAxE3Lot5kcsRlh+g==}
     engines: {node: '>=6'}
@@ -4154,10 +4146,6 @@ packages:
     resolution: {integrity: sha512-JU3teHTNjmE2VCGFzuY8EXzCDVwEqB2a8fsIvwaStHhAWJEeVd1o1QD80CU6+ZdEXXSLbSsuLwJjkCBWqRQUVA==}
     engines: {node: '>=8.6'}
     dev: true
-
-  /poly-decomp/0.1.1:
-    resolution: {integrity: sha512-clSDtuC48FR2PL2z/+VIRhfnxC7776GlJgDNAh1ZIqYOiaGqrINB+xGIWQypLgpz6Z/Ht/w7rTFEGFRNuSPOuA==}
-    dev: false
 
   /postcss-media-query-parser/0.2.3:
     resolution: {integrity: sha512-3sOlxmbKcSHMjlUXQZKQ06jOswE7oVkXPxmZdoB1r5l0q6gTFTQSHxNxOrCccElbW7dxNytifNEo8qidX2Vsig==}

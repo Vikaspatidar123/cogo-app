@@ -30,7 +30,6 @@ const handleAuthentication = async ({
 	const token = getCookie('cogo-auth-token', { req });
 	const allStrings = asPath?.split('/');
 	const actual_org_id = allStrings?.[1];
-	console.log(ctxParams, 'ctxParams');
 	// for short urls
 	const { org_id, branch_id } = query || {};
 	if (token) {
@@ -40,12 +39,12 @@ const handleAuthentication = async ({
 			isServer,
 		});
 	} else {
-		asPrefix = '/login';
+		asPrefix = '/v2/login';
 		return { asPrefix };
 	}
 
 	if (isEmpty(user_data || {})) {
-		asPrefix = '/login';
+		asPrefix = '/v2/login';
 	}
 
 	if (
@@ -61,9 +60,8 @@ const handleAuthentication = async ({
 	);
 
 	if (current_org) {
-		const branch_id = current_org?.branches?.[0]?.id;
-		console.log(branch_id, 'branch_id');
-		asPrefix = `/${actual_org_id}/${branch_id}/dashboard`;
+		const branch = current_org?.branches?.[0]?.id;
+		asPrefix = `/v2/${actual_org_id}/${branch}/dashboard`;
 	}
 
 	let current_organization = user_data?.organizations.find(
@@ -76,12 +74,12 @@ const handleAuthentication = async ({
 	if (isEmpty(current_organization) || asPath.includes('/select-account')) {
 		const org = user_data.organizations[0];
 		const orgBranchId = user_data.organizations[0]?.branches?.[0]?.id;
-		asPrefix = `/${org?.id}/${orgBranchId}/dashboard`;
+		asPrefix = `/v2/${org?.id}/${orgBranchId}/dashboard`;
 		return {
 			asPrefix,
 			query: {
-				org_id: org?.id,
-				branch_id: orgBranchId,
+				org_id    : org?.id,
+				branch_id : orgBranchId,
 			},
 		};
 	}
@@ -94,8 +92,8 @@ const handleAuthentication = async ({
 			)?.branches;
 			current_organization = {
 				...getOrgResponse,
-				branches: actualBranches || getOrgResponse.branches,
-				allBranches: getOrgResponse.branches,
+				branches    : actualBranches || getOrgResponse.branches,
+				allBranches : getOrgResponse.branches,
 			};
 		}
 	}
@@ -111,9 +109,9 @@ const handleAuthentication = async ({
 		setProfileStoreState({
 			...user_data,
 			asPrefix,
-			organization_set: !isEmpty(current_organization),
-			organization: current_organization,
-			branch: current_branch,
+			organization_set : !isEmpty(current_organization),
+			organization     : current_organization,
+			branch           : current_branch,
 
 		}),
 	);

@@ -2,8 +2,8 @@ const navigationMappings = {
 	app_dashboard: {
 		key   : 'app_dashboard',
 		title : 'Dashboard',
-		href  : '/dashboard',
-		as    : '/dashboard',
+		href  : '/v2/dashboard',
+		as    : '/v2/dashboard',
 		type  : 'link',
 		icon  : 'nav-tasks',
 	},

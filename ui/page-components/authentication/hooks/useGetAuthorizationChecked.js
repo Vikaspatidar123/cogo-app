@@ -19,29 +19,39 @@ const UNAUTHENTICATED_PATHS = [
 const useGetAuthorizationChecked = () => {
 	const [sessionInitialized, setSessionInitialized] = useState(false);
 	const {
-		route,
+		route, push,
 	} = useRouter();
 
 	const { profile } = useSelector((s) => s);
 	const isUnauthenticatedPath = UNAUTHENTICATED_PATHS.includes(route);
 	const isProfilePresent = Object.keys(profile).length !== 0;
-	const { organization = {}, organizations = [], branch } = profile || {};
+	const {
+		organization = {}, organizations = [], branch, organization_set,
+	} = profile || {};
 	const org_id = organization?.id || organizations[0]?.id;
 	const branch_id = branch?.id || organizations[0]?.branches?.[0]?.id;
-
 	useEffect(() => {
 		(async () => {
 			if (!sessionInitialized) {
 				if (isProfilePresent && (isUnauthenticatedPath || route === '/')) {
 					const configs = redirections(profile);
-					window.location.href = `/${org_id}/${branch_id}${configs.as || configs.href}`;
+					if (configs?.href?.includes('/v2')) {
+						const replaceHref = configs?.href?.replace('/v2', '');
+						const replaceAs = configs?.as?.replace('/v2', '');
+						await push(replaceHref?.href, replaceAs?.as);
+					}
+					if (!configs?.href?.includes('/v2')) {
+						window.location.href = `/${org_id}/${branch_id}${configs.as || configs.href}`;
+					} else {
+						await push('/', '/');
+					}
 				} else if (!isProfilePresent && (!isUnauthenticatedPath || route === '/')) {
-					window.location.href = '/login';
+					await push('/login');
 				}
 				setSessionInitialized(true);
 			}
 		})();
-	}, [isProfilePresent, isUnauthenticatedPath, sessionInitialized, profile, branch_id, route, org_id]);
+	}, [isProfilePresent, isUnauthenticatedPath, sessionInitialized, profile, branch_id, route]);
 
 	return { sessionInitialized, setSessionInitialized };
 };

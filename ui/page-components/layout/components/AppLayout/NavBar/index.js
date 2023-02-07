@@ -4,13 +4,10 @@ import NavBarItem from './NavBarItem';
 import styles from './styles.module.css';
 import SubMenu from './SubMenu';
 
-import { navigationMappings } from '@/commons/configurations/navigation-mapping';
-import getValue from '@/commons/utils/getValue';
 import getSideBarConfigs from '@/packages/navigation-configs/side-bar';
 import { useRouter } from '@/packages/next';
 import { useSelector } from '@/packages/store';
 
-const SubNevKey = ['Tools', 'Planning'];
 function NavBar() {
 	const {
 		user_data,

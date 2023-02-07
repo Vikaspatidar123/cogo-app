@@ -21,6 +21,7 @@ const handleAuthentication = async ({
 	req,
 	query,
 	isServer,
+	ctxParams,
 }) => {
 	let asPrefix;
 
@@ -29,6 +30,7 @@ const handleAuthentication = async ({
 	const token = getCookie('cogo-app-token', { req });
 	const allStrings = asPath?.split('/');
 	const actual_org_id = allStrings?.[1];
+	console.log(ctxParams, 'ctxParams');
 	// for short urls
 	const { org_id, branch_id } = query || {};
 	if (token) {
@@ -48,7 +50,7 @@ const handleAuthentication = async ({
 
 	if (
 		(user_data?.organizations || [])?.length === 0
-        || user_data?.name === null
+		|| user_data?.name === null
 	) {
 		asPrefix = '/get-started';
 		return { asPrefix };
@@ -78,8 +80,8 @@ const handleAuthentication = async ({
 		return {
 			asPrefix,
 			query: {
-				org_id    : org?.id,
-				branch_id : orgBranchId,
+				org_id: org?.id,
+				branch_id: orgBranchId,
 			},
 		};
 	}
@@ -92,8 +94,8 @@ const handleAuthentication = async ({
 			)?.branches;
 			current_organization = {
 				...getOrgResponse,
-				branches    : actualBranches || getOrgResponse.branches,
-				allBranches : getOrgResponse.branches,
+				branches: actualBranches || getOrgResponse.branches,
+				allBranches: getOrgResponse.branches,
 			};
 		}
 	}
@@ -109,9 +111,9 @@ const handleAuthentication = async ({
 		setProfileStoreState({
 			...user_data,
 			asPrefix,
-			organization_set : !isEmpty(current_organization),
-			organization     : current_organization,
-			branch           : current_branch,
+			organization_set: !isEmpty(current_organization),
+			organization: current_organization,
+			branch: current_branch,
 
 		}),
 	);

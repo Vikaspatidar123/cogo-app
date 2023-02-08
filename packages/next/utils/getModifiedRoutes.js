@@ -1,8 +1,8 @@
 const getModifiedRoutes = ({
-	href, as, organizationId = null, withPrefix,
+	href, as, organizationId = null, branchId = null, withPrefix,
 }) => {
-	const hrefPrefix = '/[org_id]';
-	const asPrefix = `/${organizationId || ''}`;
+	const hrefPrefix = '/[org_id]/[branch_id]';
+	const asPrefix = `/${organizationId || ''}/${branchId || ''}`;
 
 	let newHref = href;
 	let newAs = as;

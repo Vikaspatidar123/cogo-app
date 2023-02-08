@@ -11,12 +11,14 @@ const getOtherApiPipe = (url, authorizationparameters, getStoreState) => {
 		const main_apis = [];
 		const actualApi = url?.split('/')?.[1] || url?.split('/')?.[0];
 		const userNavigationPermissions = profile?.permissions_navigations?.[navigation];
+
 		if (!(main_apis || []).includes(actualApi)) {
 			const apiData = userNavigationPermissions?.[actualApi];
 			let defaultScope = null;
 			let defaultView = null;
 			const scopeMatchingGlobalApi = (apiData || []).find((scope) => scope?.type === globalDefaultScope
-			&& scope?.through_criteria?.includes(globalDefaultView));
+				&& scope?.through_criteria?.includes(globalDefaultView));
+
 			if (scopeMatchingGlobalApi) {
 				defaultScope = globalDefaultScope;
 				defaultView = globalDefaultView;

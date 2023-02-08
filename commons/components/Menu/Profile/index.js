@@ -16,7 +16,7 @@ function Profile({ setShowPopover = () => { } }) {
 		<div className={styles.account_settings}>
 			<ProfileIcon style={{ marginRight: '12px' }} />
 
-			<div className={styles.A} as="button" onClick={(e) => handleClick(e)}>
+			<div className={styles.A} onClick={(e) => handleClick(e)} role="presentation">
 				Account Settings
 			</div>
 		</div>

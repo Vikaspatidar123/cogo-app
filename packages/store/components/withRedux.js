@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import { shape } from 'prop-types';
 import React from 'react';
 

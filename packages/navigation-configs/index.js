@@ -1,2 +1,2 @@
-export { default as navigationMappings } from './navigation-mappings';
-export { default as routeConfig } from './route-config';
+export { default as navigationMappings } from './config/navigation-mapping';
+export { default as routeConfig } from './config/route-config';

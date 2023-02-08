@@ -2,7 +2,7 @@ import getOtherApiPipe from './get-other-pipe';
 
 const getAuthrozationParams = (storeKey, url) => {
 	if (typeof window !== 'undefined') {
-		const getStoreState = storeKey.getState;
+		const getStoreState = window?.[storeKey]?.getState;
 		const profile = typeof getStoreState === 'function' ? getStoreState()?.profile : {};
 		const authorizationparameters = profile?.authorizationparameters;
 		const general = typeof getStoreState === 'function' ? getStoreState()?.general : {};

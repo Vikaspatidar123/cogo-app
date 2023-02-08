@@ -1,5 +1,7 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
-import { IcMRateManagement, IcMRateSheets, IcMDefault } from '@cogoport/icons-react';
+import {
+	IcMRateManagement, IcMRateSheets, IcMDefault, IcMDocument,
+} from '@cogoport/icons-react';
 
 import AirSchedule from './air-schedule.svg';
 import AirTracking from './air-tracking.svg';
@@ -21,6 +23,7 @@ const ICON_MAPPING = {
 	'Rates Sheet'            : IcMRateSheets,
 	'Rates Management'       : IcMRateManagement,
 	'Product Classification' : ProductClassification,
+	Documents                : IcMDocument,
 };
 
 function SubMenuItem({ item }) {
@@ -31,18 +34,18 @@ function SubMenuItem({ item }) {
 	const onSubmit = () => {
 		push(href);
 	};
-	const Element = AirSchedule;
+	const Element = ICON_MAPPING[title] || AirSchedule;
 
 	return (
 		<div
 			className={styles.container}
 			onClick={() => onSubmit()}
-			// className={ unPrefixedPath === item.href ? 'active' : className}
+		// className={ unPrefixedPath === item.href ? 'active' : className}
 
 		>
-			{icon && (
-				<Element />
-			)}
+			{/* {icon && ( */}
+			<Element />
+			{/* )} */}
 
 			{!icon && <div style={{ width: 45, height: 45 }} />}
 			<div className={styles.main}>

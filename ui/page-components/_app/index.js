@@ -17,7 +17,7 @@ import { setGeneralStoreState } from '@/packages/store/store/general';
 import isMobileAgent from '@/packages/utils/isMobileAgent';
 import handleAuthentication from '@/ui/page-components/authentication/utils/handleAuthentication';
 import GlobalLayout from '@/ui/page-components/layout/components/GlobalLayout';
-// import routeConfig from './routes';
+import routeConfig from './routes';
 
 function MyApp({
 	Component, pageProps, store, generalData,
@@ -57,8 +57,7 @@ MyApp.getInitialProps = async ({ Component, ctx }) => {
 	const ctxParams = {
 		...ctx,
 		isServer,
-		// routeConfig,
-
+		routeConfig,
 	};
 	const unPrefixedPath = `/${pathname.replace('/[org_id]/[branch_id]/', '')}`;
 	const { asPrefix, query: qError } = await handleAuthentication(ctxParams);
@@ -75,7 +74,7 @@ MyApp.getInitialProps = async ({ Component, ctx }) => {
 		isServer,
 		isMobile,
 		locale,
-		// routeConfig,
+		routeConfig,
 	};
 
 	await store.dispatch(setGeneralStoreState(generalData));

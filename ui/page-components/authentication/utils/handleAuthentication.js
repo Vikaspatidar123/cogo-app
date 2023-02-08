@@ -31,6 +31,7 @@ const handleAuthentication = async ({
 	const allStrings = asPath?.split('/');
 	const actual_org_id = allStrings?.[1];
 	// for short urls
+	console.log(ctxParams, 'ctxParams');
 	const { org_id, branch_id } = query || {};
 	if (token) {
 		user_data = await getUserData({
@@ -78,8 +79,8 @@ const handleAuthentication = async ({
 		return {
 			asPrefix,
 			query: {
-				org_id    : org?.id,
-				branch_id : orgBranchId,
+				org_id: org?.id,
+				branch_id: orgBranchId,
 			},
 		};
 	}
@@ -92,8 +93,8 @@ const handleAuthentication = async ({
 			)?.branches;
 			current_organization = {
 				...getOrgResponse,
-				branches    : actualBranches || getOrgResponse.branches,
-				allBranches : getOrgResponse.branches,
+				branches: actualBranches || getOrgResponse.branches,
+				allBranches: getOrgResponse.branches,
 			};
 		}
 	}
@@ -109,9 +110,9 @@ const handleAuthentication = async ({
 		setProfileStoreState({
 			...user_data,
 			asPrefix,
-			organization_set : !isEmpty(current_organization),
-			organization     : current_organization,
-			branch           : current_branch,
+			organization_set: !isEmpty(current_organization),
+			organization: current_organization,
+			branch: current_branch,
 
 		}),
 	);

@@ -21,7 +21,6 @@ const useGetAuthorizationChecked = () => {
 	const {
 		route, push,
 	} = useRouter();
-
 	const { profile } = useSelector((s) => s);
 	const isUnauthenticatedPath = UNAUTHENTICATED_PATHS.includes(route);
 	const isProfilePresent = Object.keys(profile).length !== 0;
@@ -30,6 +29,7 @@ const useGetAuthorizationChecked = () => {
 	} = profile || {};
 	const org_id = organization?.id || organizations[0]?.id;
 	const branch_id = branch?.id || organizations[0]?.branches?.[0]?.id;
+
 	useEffect(() => {
 		(async () => {
 			if (!sessionInitialized) {
@@ -38,10 +38,10 @@ const useGetAuthorizationChecked = () => {
 					if (configs?.href?.includes('/v2')) {
 						const replaceHref = configs?.href?.replace('/v2', '');
 						const replaceAs = configs?.as?.replace('/v2', '');
-						await push(replaceHref?.href, replaceAs?.as);
+						await push(replaceHref, replaceAs);
 					}
 					if (!configs?.href?.includes('/v2')) {
-						window.location.href = `/${org_id}/${branch_id}${configs.as || configs.href}`;
+						window.location.href = `/${org_id}/${branch_id}${configs.as || configs.href} `;
 					} else {
 						await push('/', '/');
 					}

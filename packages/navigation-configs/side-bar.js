@@ -1,4 +1,4 @@
-import navigationMappings from '@/commons/configurations/navigation-mapping';
+import { navigationMappings } from '@/packages/navigation-configs/index';
 
 const getCondition = (urlItem) => {
 	const condition = {};
@@ -52,7 +52,10 @@ const getSideBarConfigs = (
 					});
 				} else if (navigationMappings[key]?.options) {
 					const allOpts = navigationMappings[key]?.options || [];
-					const selectedSubNavs = Object.keys(pNavs);
+					// const selectedSubNavs = Object.keys(pNavs);
+					const selectedSubNavs = Object.keys(pNavs).filter(
+						(nav) => nav.split('-')[0] === key,
+					);
 					const filteredOpts = allOpts.filter(
 						(opt) => selectedSubNavs.includes(opt.key)
 							&& (opt.key !== 'coe-booking_tasks'

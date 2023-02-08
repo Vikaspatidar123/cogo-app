@@ -34,7 +34,7 @@ const useGetAuthorizationChecked = () => {
 		(async () => {
 			if (!sessionInitialized) {
 				if (isProfilePresent && (isUnauthenticatedPath || route === '/')) {
-					const configs = redirections(profile);
+					const configsTit = redirections(profile);
 					if (configs?.href?.includes('/v2')) {
 						const replaceHref = configs?.href?.replace('/v2', '');
 						const replaceAs = configs?.as?.replace('/v2', '');

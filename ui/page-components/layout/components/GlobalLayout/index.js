@@ -16,20 +16,6 @@ function GlobalLayout({
 	children, layout, head, hideBG, ...rest
 }) {
 	const elementRef = useRef(null);
-	// const { general } = useSelector((s) => s);
-	// const [isMobile, setIsMobile] = useState(false);
-	// const { width } = useWindowDimensions();
-	// const dispatch = useDispatch();
-	// useEffect(() => {
-	// 	if (width < 1154) {
-	// 		setIsMobile(true);
-	// 	} else {
-	// 		setIsMobile(false);
-	// 	}
-	// }, [width]);
-	// useMemo(() => {
-	// 	dispatch(setGeneralState({ isMobile, ...general }));
-	// }, []);
 
 	const getBody = () => {
 		if (layout === 'app') {

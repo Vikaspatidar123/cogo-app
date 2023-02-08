@@ -1,16 +1,18 @@
 import { Button } from '@cogoport/components';
 
-// import { useSelector } from '@cogoport/front/store';
-// import IcError from './error.svg';
 import styles from './styles.module.css';
 
-import { useRouter } from '@/packages/next';
+import { useSelector } from '@/packages/store';
+// import IcError from './error.svg';
 
 function Error404() {
-	// const {
-	// 	general: { isMobile },
-	// } = useSelector((state) => state);
-	const { push } = useRouter();
+	const {
+		general,
+	} = useSelector((state) => state);
+	const { asPrefix = {} } = general || {};
+	const redirect = () => {
+		window.location.href = asPrefix;
+	};
 	return (
 		<div className={styles.component}>
 			{/* {!isMobile && <IcError height="100%" width="100%" />} */}
@@ -18,7 +20,7 @@ function Error404() {
 				<div className={styles.title}>404</div>
 				<div className={styles.description}>Looks like you are off course</div>
 				<div className={styles.button_container}>
-					<Button onClick={() => push('/dashboard')}>Get back to base</Button>
+					<Button onClick={() => redirect()}>Get back to base</Button>
 				</div>
 			</div>
 		</div>

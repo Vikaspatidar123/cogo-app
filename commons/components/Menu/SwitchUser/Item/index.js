@@ -11,18 +11,18 @@ const MAPPING = {
 	service_provider: 'Service',
 };
 function SwitchPartnerItem({ item }) {
-	const { organization } = useSelector(({ profile }) => profile);
+	const { organization, branch = '' } = useSelector(({ profile }) => profile);
 	const { account_type = '', id } = organization || {};
 
 	const onSwitch = () => {
-		window.location.href = `/${item.id}/dashboard`;
+		window.location.href = `/v2/${item.id}/${branch?.id}/dashboard`;
 	};
 	return (
 		<div
 			className={styles.container}
 			disabled={item.id === id}
 			onClick={() => onSwitch(item.id)}
-
+			role="presentation"
 		>
 			<div className={styles.main}>
 				<Avatar name={item.business_name} />

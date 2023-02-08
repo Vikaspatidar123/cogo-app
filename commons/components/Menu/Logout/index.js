@@ -19,7 +19,6 @@ function Logout() {
 
 			<div
 				className={styles.A}
-				as="button"
 				onClick={(e) => handleClick(e)}
 				style={{ color: '#ef9b9b' }}
 			>

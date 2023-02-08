@@ -18,8 +18,8 @@ function MenuProfileHeader({ setShow }) {
 	return (
 		<div className={styles.container}>
 			<Avatar
-				width="25px"
-				height="24px"
+				width="30px"
+				height="30px"
 				style={{ marginRight: 4, flexShrink: 0 }}
 			/>
 

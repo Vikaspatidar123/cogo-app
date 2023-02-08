@@ -16,7 +16,7 @@ const getOtherApiPipe = (url, authorizationparameters, getStoreState) => {
 			let defaultScope = null;
 			let defaultView = null;
 			const scopeMatchingGlobalApi = (apiData || []).find((scope) => scope?.type === globalDefaultScope
-			&& scope?.through_criteria?.includes(globalDefaultView));
+				&& scope?.through_criteria?.includes(globalDefaultView));
 			if (scopeMatchingGlobalApi) {
 				defaultScope = globalDefaultScope;
 				defaultView = globalDefaultView;

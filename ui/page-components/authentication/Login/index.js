@@ -1,26 +1,13 @@
 import { FluidContainer } from '@cogoport/components';
 // import { useTranslation } from 'next-i18next';
-import React, { useEffect } from 'react';
+import React from 'react';
 
 import LeftPanel from '../../common/LeftPanel';
 
 import LoginForm from './LoginForm';
 import styles from './styles.module.css';
 
-import { useRouter } from '@/packages/next';
-
 function Login() {
-	// const { t } = useTranslation(['login']);
-	const { push } = useRouter();
-
-	// const { ...profile } = useSelector((s) => s.profile);
-
-	// useEffect(() => {
-	// 	if (Object.keys(profile).length > 0) {
-	// 		push('/dashboard');
-	// 	}
-	// }, [profile]);
-
 	return (
 		<FluidContainer className={styles.container}>
 			<div className={styles.left_container}>

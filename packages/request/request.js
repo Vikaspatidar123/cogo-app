@@ -1,16 +1,16 @@
+/* eslint-disable no-undef */
 import { format } from '@cogoport/utils';
 import Axios from 'axios';
 import qs from 'qs';
 
 import getAuthrozationParams from './get-final-authpipe';
+import getMicroServiceName from './get-microservice-name';
 import { getCookie } from './getCookieFromCtx';
-
-import getMicroServiceName from '@/packages/request/get-microservice-name';
 
 const customSerializer = (params) => {
 	const paramsStringify = qs.stringify(params, {
-		arrayFormat   : 'brackets',
-		serializeDate : (date) => format(date),
+		arrayFormat: 'brackets',
+		serializeDate: (date) => format(date),
 	});
 	return paramsStringify;
 };
@@ -32,7 +32,7 @@ const request = Axios.create({
 });
 request.interceptors.request.use((oldConfig) => {
 	const storeKey = '__COGO_APP_STORE__';
-	const name = 'cogo-app-token';
+	const name = 'cogo-auth-token';
 	const newConfig = oldConfig;
 	const token = getCookie(name, oldConfig.ctx);
 	const authorizationparameters = getAuthrozationParams(storeKey, newConfig.url);
@@ -47,13 +47,13 @@ request.interceptors.request.use((oldConfig) => {
 	// };
 	return {
 		...newConfig,
-		paramsSerializer : { serialize: customSerializer },
-		headers          : {
-			authorizationscope   : 'organization',
-			authorization        : `Bearer: ${token}`,
+		paramsSerializer: { serialize: customSerializer },
+		headers: {
+			authorizationscope: 'organization',
+			authorization: `Bearer: ${token}`,
 			authorizationparameters,
-			'Content-Type'       : 'application/json',
-			authorizationscopeid : getOrganizationId(storeKey, oldConfig.ctx),
+			'Content-Type': 'application/json',
+			authorizationscopeid: getOrganizationId(storeKey, oldConfig.ctx),
 		},
 
 	};

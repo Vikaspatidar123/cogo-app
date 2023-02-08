@@ -9,21 +9,21 @@ function KycStatus({ kyc_status, account_type }) {
 			{kyc_status === 'verified' && (
 				<>
 					<div className={styles.kyc_verified}>Verified</div>
-					<KycVerified width="10px" height="10px" />
+					<KycVerified width="11px" height="11px" />
 				</>
 			)}
 
 			{kyc_status === 'rejected' && (
 				<>
 					<div className={styles.label}>KYC Rejected</div>
-					<CrossIcon width="10px" height="10px" />
+					<CrossIcon width="11px" height="11px" />
 				</>
 			)}
 
 			{['pending_from_user', 'pending_verification'].includes(kyc_status) && (
 				<>
 					<div className={styles.kyc_pending}>KYC Pending</div>
-					<PendingIcon width="10px" height="10px" />
+					<PendingIcon width="14px" height="14px" />
 				</>
 			)}
 		</div>

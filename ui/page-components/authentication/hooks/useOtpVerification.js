@@ -6,13 +6,8 @@ import trackEvent from '../utils/trackEvent';
 
 import setCookieAndRedirect from '@/commons/utils/setCookieAndRedirect';
 import { useRequest } from '@/packages/request/index';
-import { useSelector } from '@/packages/store';
 
 const useOtpVerification = ({ formData = {}, otpValue = '', id }) => {
-	const {
-		general: { scope = '', query = {} },
-	} = useSelector((state) => state);
-
 	const [{ loading: verifyLeadUserMobileApiLoading }, verifyLeadUserMobileApitrigger] = useRequest({
 		url    : '/lead/verify_lead_user_mobile',
 		method : 'post',
@@ -46,8 +41,7 @@ const useOtpVerification = ({ formData = {}, otpValue = '', id }) => {
 			const redirectUrl = '/get-started';
 
 			const { token } = response?.data || {};
-
-			setCookieAndRedirect(token, {}, redirectUrl);
+			if (token) setCookieAndRedirect(token, {}, redirectUrl);
 		} catch (error) {
 			Toast.error(error?.data);
 		}

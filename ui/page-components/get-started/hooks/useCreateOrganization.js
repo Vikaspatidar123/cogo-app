@@ -3,7 +3,7 @@ import { Toast } from '@cogoport/components';
 import { useRequest } from '@/packages/request';
 import { useSelector } from '@/packages/store';
 
-const useCreateOrganization = ({ setBillingAddressDetails, setOrgId }) => {
+const useCreateOrganization = ({ setBillingAddressDetails, setOrgId, setOrgBranchId }) => {
 	const {
 		profile,
 	} = useSelector((state) => state);
@@ -33,6 +33,7 @@ const useCreateOrganization = ({ setBillingAddressDetails, setOrgId }) => {
 			if (response?.status === 200) {
 				setBillingAddressDetails(true);
 				setOrgId(response?.data?.id);
+				setOrgBranchId(response?.data?.organization_branch_id);
 			}
 
 			Toast.success('Organization created successfully');

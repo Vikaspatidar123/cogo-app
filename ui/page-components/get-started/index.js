@@ -9,10 +9,11 @@ import SetTimeForCall from './components/SetTimeForCall';
 import styles from './styles.module.css';
 
 function GetStarted() {
-	const [billingAddressDetails, setBillingAddressDetails] = useState(true);
-	const [inviteTeam, setInviteTeam] = useState(true);
-	const [timeForCall, setTimeForCall] = useState(true);
+	const [billingAddressDetails, setBillingAddressDetails] = useState(false);
+	const [inviteTeam, setInviteTeam] = useState(false);
+	const [timeForCall, setTimeForCall] = useState(false);
 	const [orgId, setOrgId] = useState('');
+	const [orgBranchId, setOrgBranchId] = useState('');
 
 	return (
 		<div className={styles.container}>
@@ -24,12 +25,13 @@ function GetStarted() {
 					<Organization
 						setBillingAddressDetails={setBillingAddressDetails}
 						setOrgId={setOrgId}
+						setOrgBranchId={setOrgBranchId}
 					/>
 				)}
 				{billingAddressDetails && !inviteTeam
 				&& !timeForCall && <BillingAddress orgId={orgId} setInviteTeam={setInviteTeam} />}
 				{inviteTeam && !timeForCall && <InviteTeam orgId={orgId} setTimeForCall={setTimeForCall} />}
-				{timeForCall && <SetTimeForCall />}
+				{timeForCall && <SetTimeForCall orgBranchId={orgBranchId} orgId={orgId} />}
 			</div>
 		</div>
 	);

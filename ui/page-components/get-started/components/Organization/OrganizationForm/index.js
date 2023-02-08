@@ -12,7 +12,7 @@ import {
 	useForm, SelectController, useGetAsyncOptions, asyncFieldsLocations, InputController, MultiselectController,
 } from '@/packages/forms';
 
-function OrganizationForm({ setBillingAddressDetails, setOrgId }) {
+function OrganizationForm({ setBillingAddressDetails, setOrgId, setOrgBranchId }) {
 	const cityOptions = useGetAsyncOptions(merge(asyncFieldsLocations(), {
 		params: { filters: { type: ['country'] } },
 	}));
@@ -33,7 +33,7 @@ function OrganizationForm({ setBillingAddressDetails, setOrgId }) {
 	const {
 		onClickCreateOrganization,
 		createOrganizationLoading,
-	} = 		useCreateOrganization({ setBillingAddressDetails, setOrgId });
+	} = 		useCreateOrganization({ setBillingAddressDetails, setOrgId, setOrgBranchId });
 
 	return (
 		<div className={styles.container}>

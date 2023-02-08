@@ -179,8 +179,7 @@ const handleAuthentication = async ({
 	let current_organization = user_data.organizations.find(
 		(org) => org.id === org_id,
 	);
-	const org = user_data.organizations[0];
-	const orgBranchId = user_data.organizations[0]?.branches?.[0]?.id;
+
 	// const navigation = Object.keys(user_data.permissions_navigations || {});
 	// if (user_data.organizations[0].id && navigation.length > 0 && asPath === `/v2/${org}/${orgBranchId}`) {
 	// 	const configs = getSideBarConfigs(user_data);
@@ -219,6 +218,8 @@ const handleAuthentication = async ({
 	// 	};
 	// }
 	if (isEmpty(current_organization) || asPath.includes('/v2/select-account')) {
+		const org = user_data.organizations[0];
+		const orgBranchId = user_data.organizations[0]?.branches?.[0]?.id;
 		const newPath = `/v2/${org?.id}/${orgBranchId}/dashboard`;
 
 		redirect({

@@ -10,7 +10,7 @@ function Logout() {
 
 		deleteCookie(process.env.NEXT_PUBLIC_AUTH_TOKEN_NAME);
 
-		window.location.href = '/login';
+		window.location.href = '/v2/login';
 	};
 
 	return (

@@ -22,6 +22,7 @@ const handleAuthentication = async ({
 	query,
 	isServer,
 	ctxParams,
+	pathname,
 }) => {
 	let asPrefix;
 
@@ -38,6 +39,7 @@ const handleAuthentication = async ({
 			store,
 			req,
 			isServer,
+			pathname,
 		});
 	} else {
 		asPrefix = '/v2/login';

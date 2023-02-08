@@ -7,8 +7,8 @@ import { useRouter } from '@/packages/next';
 import { useSelector } from '@/packages/store';
 
 const UNAUTHENTICATED_PATHS = [
-	'/login',
-	'/signup',
+	'/v2/login',
+	'/v2/signup',
 	'/forgot-password',
 	'/reset-password/[id]',
 	'/verify-email/[id]',

@@ -9,7 +9,7 @@ const navigationMappings = {
 		type: 'link',
 		icon: 'nav-tasks',
 		line: true,
-		main_apis: [],
+		main_apis: ['list_store_quota'],
 		possible_apis: [...app_apis.app_dashboard, ...app_apis.app_pay_later],
 		module_type: 'dashboards',
 	},

@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 
 module.exports = {
-	reactStrictMode : true,
+	reactStrictMode : false,
 	swcMinify       : true,
 	basePath        : '/v2',
 	webpack(config) {

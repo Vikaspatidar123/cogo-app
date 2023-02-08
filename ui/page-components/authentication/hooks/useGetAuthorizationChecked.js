@@ -7,14 +7,14 @@ import { useRouter } from '@/packages/next';
 import { useSelector } from '@/packages/store';
 
 const UNAUTHENTICATED_PATHS = [
-	'/login',
-	'/signup',
-	'/forgot-password',
-	'/reset-password/[id]',
-	'/verify-email/[id]',
-	'/accept-invite/[id]',
-	'/verify-auto-sign-up-email/[id]',
-	'/get-started',
+	'/v2/login',
+	'/v2/signup',
+	'/v2/forgot-password',
+	'/v2/reset-password/[id]',
+	'/v2/verify-email/[id]',
+	'/v2/accept-invite/[id]',
+	'/v2/verify-auto-sign-up-email/[id]',
+	'/v2/get-started',
 ];
 
 const useGetAuthorizationChecked = () => {
@@ -36,12 +36,14 @@ const useGetAuthorizationChecked = () => {
 			if (!sessionInitialized) {
 				if (isProfilePresent && (isUnauthenticatedPath || route === '/')) {
 					const configs = redirections(profile);
+
 					if (configs?.href?.includes('/v2')) {
 						const replaceHref = configs?.href?.replace('/v2', '');
 						const replaceAs = configs?.as?.replace('/v2', '');
 						await push(replaceHref?.href, replaceAs?.as);
 					}
-					if (!configs?.href?.includes('/v2')) {
+
+					if (configs && !configs?.href?.includes('/v2')) {
 						window.location.href = `/${org_id}/${branch_id}${configs.as || configs.href}`;
 					} else {
 						await push('/', '/');

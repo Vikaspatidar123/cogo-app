@@ -118,7 +118,7 @@ const handleAuthentication = async ({
 	);
 	if (allStrings?.[3] && current_org) {
 		const branch_id = current_org?.branches?.[0]?.id;
-		asPrefix = `/v2/${actual_org_id}/${branch_id}`;
+		asPrefix = `/v2/${actual_org_id}/${branch_id}/dashboard`;
 
 		// const restPath = allStrings.filter((item, i) => i > 2).join('/');
 		// redirect({ isServer, res, path: `${asPrefix}/${restPath}` });
@@ -147,7 +147,7 @@ const handleAuthentication = async ({
 			const orgId = org.id;
 			const orgBranchId = org?.branches?.[0]?.id;
 
-			const newPath = `/v2/${orgId}/${orgBranchId}`;
+			const newPath = `/v2/${orgId}/${orgBranchId}/dashboard`;
 
 			redirect({
 				isServer,
@@ -179,56 +179,55 @@ const handleAuthentication = async ({
 	let current_organization = user_data.organizations.find(
 		(org) => org.id === org_id,
 	);
+	const org = user_data.organizations[0];
+	const orgBranchId = user_data.organizations[0]?.branches?.[0]?.id;
+	const navigation = Object.keys(user_data.permissions_navigations || {});
+	if (user_data.organizations[0].id && navigation.length > 0 && asPath === `/v2/${org}/${orgBranchId}`) {
+		const configs = getSideBarConfigs(user_data);
+		const { nav_items } = configs;
+		const navs = nav_items?.organization || [];
+		let navItemShow = navs[0]?.key !== 'dashboards' ? navs[0] : navs?.[1];
+		if (navItemShow?.options?.length > 0) {
+			navItemShow = navItemShow?.options?.[0];
+		}
+		let newHref = navItemShow?.href;
+		let newAs = navItemShow?.as;
+		if (navItemShow?.href) {
+			if (newHref.includes('/v2')) {
+				newHref = navItemShow?.href?.replace('/v2', '');
+				newAs = navItemShow?.as?.replace('/v2', '');
+				redirect({
+					isServer,
+					res,
+					path: `${asPrefix}${newAs || newHref}`,
+				});
+			} else {
+				redirect({
+					isServer,
+					res,
+					path: `${asPrefix}${newAs || newHref}`,
+				});
+			}
+		}
 
-	// const navigation = Object.keys(user_data.permissions_navigations || {});
-	// if (user_data.organizations[0].id && navigation.length > 0 && asPath === `/v2/${org}/${orgBranchId}`) {
-	// 	const configs = getSideBarConfigs(user_data);
-	// 	const { nav_items } = configs;
-	// 	const navs = nav_items?.organization || [];
-	// 	let navItemShow = navs[0]?.key !== 'dashboards' ? navs[0] : navs?.[1];
-	// 	if (navItemShow?.options?.length > 0) {
-	// 		navItemShow = navItemShow?.options?.[0];
-	// 	}
-	// 	let newHref = navItemShow?.href;
-	// 	let newAs = navItemShow?.as;
-	// 	if (navItemShow?.href) {
-	// 		if (newHref.includes('/v2')) {
-	// 			newHref = navItemShow?.href?.replace('/v2', '');
-	// 			newAs = navItemShow?.as?.replace('/v2', '');
-	// 			redirect({
-	// 				isServer,
-	// 				res,
-	// 				path: `${asPrefix}${newAs || newHref}`,
-	// 			});
-	// 		} else {
-	// 			redirect({
-	// 				isServer,
-	// 				res,
-	// 				path: `${asPrefix}${newAs || newHref}`,
-	// 			});
-	// 		}
-	// 	}
-
-	// 	return {
-	// 		asPrefix,
-	// 		query: {
-	// 			org_id: org?.id,
-	// 			branch_id: orgBranchId,
-	// 		},
-	// 	};
-	// }
-	if (isEmpty(current_organization) || asPath.includes('/v2/select-account')) {
-		const org = user_data.organizations[0];
-		const orgBranchId = user_data.organizations[0]?.branches?.[0]?.id;
-		const newPath = `/v2/${org?.id}/${orgBranchId}/dashboard`;
-
-		redirect({
-			isServer,
-			res,
-			path: newPath,
-		});
 		return {
 			asPrefix,
+			query: {
+				org_id: org?.id,
+				branch_id: orgBranchId,
+			},
+		};
+	}
+	if (isEmpty(current_organization) || asPath.includes('/v2/select-account')) {
+		const newPath = `/v2/${org?.id}/${orgBranchId}/dashboard`;
+
+		// redirect({
+		// 	isServer,
+		// 	res,
+		// 	path: newPath,
+		// });
+		return {
+			asPrefix: newPath,
 			query: {
 				org_id: org?.id,
 				account_type: org?.account_type,
@@ -240,7 +239,7 @@ const handleAuthentication = async ({
 		current_organization = user_data.organization;
 	}
 
-	asPrefix = `/v2/${org_id}/${branch_id}`;
+	asPrefix = `/v2/${org_id}/${branch_id}/dashboard`;
 
 	const defaultRoute = `${asPrefix}${'/404'}`;
 

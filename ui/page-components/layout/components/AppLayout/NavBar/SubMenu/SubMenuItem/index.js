@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import {
-	IcMRateManagement, IcMRateSheets, IcMDefault, IcMDocument,
+	IcMRateManagement, IcMRateSheets, IcMDocument,
 } from '@cogoport/icons-react';
 
 import AirSchedule from './air-schedule.svg';
@@ -38,7 +38,8 @@ function SubMenuItem({ item }) {
 		if (href?.includes('/v2')) {
 			const newHref = href?.replace('/v2', '');
 			const newAs = as?.replace('/v2', '');
-			push(newHref, newAs);
+			// push(newHref, newAs);
+			window.location.href = `/v2/${organization?.id}/${branch?.id}/${newHref || newAs}`;
 		} else {
 			window.location.href = `/app/${organization?.id}/${branch?.id}/importer-exporter/${href || as}`;
 		}

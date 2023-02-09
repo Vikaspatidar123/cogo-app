@@ -147,8 +147,8 @@ const navigationMappings = {
 			{
 				key: 'saas_tools-hs_code_classification',
 				title: 'Product Classification',
-				href: '/saas/hs-classification',
-				as: '/saas/hs-classification',
+				href: '/v2/saas/hs-classification',
+				as: '/v2/saas/hs-classification',
 				type: 'link',
 				icon: 'nav-hscode',
 				main_apis: [],

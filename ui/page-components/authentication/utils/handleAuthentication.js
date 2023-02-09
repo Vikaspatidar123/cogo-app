@@ -121,9 +121,8 @@ const handleAuthentication = async ({
 	);
 	if (allStrings?.[3] && current_org) {
 		const branch_id = current_org?.branches?.[0]?.id;
-		asPrefix = `/v2/${actual_org_id}/${branch_id}`;
-
-		// const restPath = allStrings.filter((item, i) => i > 2).join('/');
+		const restPath = allStrings.filter((item, i) => i > 2).join('/');
+		asPrefix = `/v2/${actual_org_id}/${branch_id}/${restPath}`;
 		// redirect({ isServer, res, path: `${asPrefix}/${restPath}` });
 		// return {
 		// 	asPrefix,

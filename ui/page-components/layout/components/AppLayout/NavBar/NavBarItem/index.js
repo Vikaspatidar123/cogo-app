@@ -12,11 +12,11 @@ function NavBarItem({ item, unPrefixedPath }) {
 	const { organization, branch } = profile || {};
 	const getRedirectUrl = () => {
 		if (url?.includes('/v2')) {
-			const newHref = url?.href?.replace('/v2', '');
-			const newAs = url?.as?.replace('/v2', '');
+			const newHref = url?.replace('/v2', '');
+			const newAs = url?.replace('/v2', '');
 			push(newHref, newAs);
 		} else {
-			window.location.href = `/app/${organization?.id}/${branch?.id}/importer-exporter/${url?.href || url?.as}`;
+			window.location.href = `/app/${organization?.id}/${branch?.id}/importer-exporter/${url}`;
 		}
 	};
 	return (

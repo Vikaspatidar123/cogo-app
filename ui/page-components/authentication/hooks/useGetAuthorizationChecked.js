@@ -7,13 +7,14 @@ import { useRouter } from '@/packages/next';
 import { useSelector } from '@/packages/store';
 
 const UNAUTHENTICATED_PATHS = [
-	'/v2/login',
-	'/v2/signup',
+	'/login',
+	'/signup',
 	'/forgot-password',
 	'/reset-password/[id]',
 	'/verify-email/[id]',
 	'/accept-invite/[id]',
 	'/verify-auto-sign-up-email/[id]',
+	'/get-started',
 ];
 
 const useGetAuthorizationChecked = () => {

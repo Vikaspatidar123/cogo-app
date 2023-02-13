@@ -16,5 +16,6 @@ const regular = {
 	'/api/get-blogs': {},
 	'/unsubscribe': {},
 	'/verify-sign-up-saas/[token]': {},
+	'/get-started': {},
 };
 module.exports = regular;

@@ -13,5 +13,6 @@ const PUBLIC_PATHS = [
 	'/unsubscribe',
 	'/verify-sign-up-saas/[token]',
 	'/generate-outlook-token',
+	'get-started',
 ];
 export default PUBLIC_PATHS;

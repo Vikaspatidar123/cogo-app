@@ -4,12 +4,10 @@ import getorganizationApi from '../hooks/getOrganisation';
 import getUserData from '../hooks/getUserData';
 
 import findurl from './findurl';
-import redirections from './redirections';
 
 import redirect from '@/commons/utils/redirect';
 import projectNavigationMappings from '@/packages/navigation-configs/config/navigation-mapping';
 import PUBLIC_PATHS from '@/packages/navigation-configs/config/public-paths';
-import getSideBarConfigs from '@/packages/navigation-configs/side-bar';
 import getAuthParam from '@/packages/request/helpers/get-auth-params';
 import { getCookie } from '@/packages/request/helpers/getCookieFromCtx';
 import { setProfileStoreState } from '@/packages/store/store/profile';
@@ -109,7 +107,7 @@ const handleAuthentication = async ({
 	}
 
 	//  || asPath.includes('/kyc')
-	if (asPath.includes('/v2/get-started')) {
+	if (asPath.includes('/get-started')) {
 		return { asPrefix };
 	}
 
@@ -119,46 +117,47 @@ const handleAuthentication = async ({
 	const current_org = user_data?.organizations.find(
 		(org) => org?.id === actual_org_id,
 	);
-	if (allStrings?.[3] && current_org) {
-		const branch_id = current_org?.branches?.[0]?.id;
-		const restPath = allStrings.filter((item, i) => i > 2).join('/');
-		asPrefix = `/v2/${actual_org_id}/${branch_id}/${restPath}`;
-		// redirect({ isServer, res, path: `${asPrefix}/${restPath}` });
-		// return {
-		// 	asPrefix,
-		// 	query: {
-		// 		org_id: actual_org_id,
-		// 		branch_id,
-		// 	},
-		// };
+	if (!allStrings?.[3] && !isEmpty(user_data)) {
+		const branch_id = current_org?.branches?.[0]?.id || user_data?.organizations?.[0]?.branches?.[0]?.id;
+		const org_id = user_data?.organizations?.[0]?.id;
+		asPrefix = `/v2/${org_id}/${branch_id}/dashboard`;
+		findurl({
+			item: user_data, asPrefix, isServer, res, org_id, branch_id,
+		});
+		return {
+			asPrefix,
+			query: {
+				org_id,
+				branch_id,
+			},
+		};
 	}
 
 	// For 404 and error pages - pathname is _error
 	if (pathname.includes('/404')) {
 		const asPathArr = asPath.split('/') || [];
 		const reqPath = asPathArr.filter((item, i) => i < 5).join('/');
-
 		const errOrgId = asPathArr.length > 2 ? asPathArr[2] : null;
 		const current_organization = user_data.organizations.find(
 			(org) => org.id === errOrgId,
 		);
+		const org = user_data.organizations[0] || {};
+		const orgId = org.id;
+		const orgBranchId = org?.branches?.[0]?.id;
 		if (isEmpty(current_organization)) {
-			const org = user_data.organizations[0] || {};
-			const orgId = org.id;
-			const orgBranchId = org?.branches?.[0]?.id;
-
-			asPrefix = `/v2/${orgId}/${orgBranchId}`;
-			findurl({
-				item: user_data, asPrefix, isServer, res, org_id: orgId, branch_id: orgBranchId,
-			});
-			// return {
-			// 	asPrefix,
-			// 	query: {
-			// 		org_id: orgId,
-			// 		branch_id: orgBranchId,
-			// 	},
-			// };
+			asPrefix = `/v2/${orgId}/${orgBranchId}/dashboard`;
+			// findurl({
+			// 	item: user_data, asPrefix, isServer, res, org_id: orgId, branch_id: orgBranchId,
+			// });
+			return {
+				asPrefix,
+				query: {
+					org_id: orgId,
+					branch_id: orgBranchId,
+				},
+			};
 		}
+
 		return {
 			asPrefix: reqPath,
 			query:
@@ -176,43 +175,6 @@ const handleAuthentication = async ({
 	);
 	const org = user_data.organizations[0];
 	const orgBranchId = user_data.organizations[0]?.branches?.[0]?.id;
-	// const navigation = Object.keys(user_data.permissions_navigations || {});
-	// if (user_data.organizations[0].id && navigation.length > 0 && asPath === `/v2/${org}/${orgBranchId}`) {
-	// 	const configs = getSideBarConfigs(user_data);
-	// 	const { nav_items } = configs;
-	// 	const navs = nav_items?.organization || [];
-	// 	let navItemShow = navs[0]?.key !== 'dashboards' ? navs[0] : navs?.[1];
-	// 	if (navItemShow?.options?.length > 0) {
-	// 		navItemShow = navItemShow?.options?.[0];
-	// 	}
-	// 	let newHref = navItemShow?.href;
-	// 	let newAs = navItemShow?.as;
-	// 	if (navItemShow?.href) {
-	// 		if (newHref.includes('/v2')) {
-	// 			newHref = navItemShow?.href?.replace('/v2', '');
-	// 			newAs = navItemShow?.as?.replace('/v2', '');
-	// 			redirect({
-	// 				isServer,
-	// 				res,
-	// 				path: `${asPrefix}${newAs || newHref}`,
-	// 			});
-	// 		} else {
-	// 			redirect({
-	// 				isServer,
-	// 				res,
-	// 				path: `${asPrefix}${newAs || newHref}`,
-	// 			});
-	// 		}
-	// 	}
-
-	// 	return {
-	// 		asPrefix,
-	// 		query: {
-	// 			org_id: org?.id,
-	// 			branch_id: orgBranchId,
-	// 		},
-	// 	};
-	// }
 	if (isEmpty(current_organization) || asPath.includes('/v2/select-account')) {
 		const newPath = `/v2/${org?.id}/${orgBranchId}`;
 		findurl({

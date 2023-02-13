@@ -12,7 +12,7 @@ function useGetAsyncOptionsBf({
 	params = {},
 	authKey = '',
 }) {
-	const { query, debounceQuery } = useDebounceQuery();
+	const { query, debounceQuery } = useDebounceQuery();``
 
 	const [{ data, loading }] = useRequestBf({
 		url: endpoint,
@@ -25,6 +25,7 @@ function useGetAsyncOptionsBf({
 	const [{ loading: loadingSingle }, triggerSingle] = useRequestBf({
 		url: endpoint,
 		method: 'GET',
+		authKey,
 	}, { manual: true });
 
 	const onSearch = (inputValue) => {

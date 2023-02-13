@@ -5,11 +5,10 @@
 import { Router } from '@/packages/next';
 
 import pageProgessBar from 'nprogress';
-// import './globals.css';
 import 'nprogress/nprogress.css';
 import { useEffect } from 'react';
 
-// import SessionCheck from './SessionCheck';
+import SessionCheck from './SessionCheck';
 import withStore from './store';
 
 import { Provider } from '@/packages/store';
@@ -38,11 +37,11 @@ function MyApp({
 
 	return (
 		<Provider store={store}>
-			{/* <SessionCheck> */}
-			<GlobalLayout layout={pageProps.layout || 'authenticated'} head={pageProps.head || ''}>
-				<Component {...pageProps} />
-			</GlobalLayout>
-			{/* </SessionCheck> */}
+			<SessionCheck>
+				<GlobalLayout layout={pageProps.layout || 'authenticated'} head={pageProps.head || ''}>
+					<Component {...pageProps} />
+				</GlobalLayout>
+			</SessionCheck>
 		</Provider>
 	);
 }

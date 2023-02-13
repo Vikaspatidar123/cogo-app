@@ -1,7 +1,7 @@
 import { Toast } from '@cogoport/components';
 import { setCookie, getCookie } from '@cogoport/utils';
 
-import { request } from '@/packages/request/request';
+import { request } from '@/packages/request/helpers/request';
 
 const logout = () => {
 	const token = getCookie(process.env.NEXT_PUBLIC_AUTH_TOKEN_NAME);

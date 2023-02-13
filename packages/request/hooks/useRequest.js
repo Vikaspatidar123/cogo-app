@@ -1,6 +1,6 @@
 import { makeUseAxios } from 'axios-hooks';
 
-import { request } from './request';
+import { request } from '../helpers/request';
 
 const commonConfig = {
 	cache          : false,

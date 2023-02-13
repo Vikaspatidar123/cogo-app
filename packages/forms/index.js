@@ -11,6 +11,7 @@ export { default as UploadController } from './Controlled/UploadController';
 export { default as useInterval } from './hooks/useInterval';
 export { default as useGetAsyncOptions } from './hooks/useGetAsyncOptions';
 export { default as useDebounceQuery } from './hooks/useDebounceQuery';
+export { default as useGetAsyncOptionsBf } from './hooks/useGetAsyncOptionsBf';
 
 export { default as getApiError } from './utils/getApiError';
 export { default as handleError } from './utils/handleError';

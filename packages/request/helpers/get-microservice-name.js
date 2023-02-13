@@ -1,4 +1,4 @@
-import apis from '../navigation-configs/apis';
+import apis from '../../navigation-configs/apis';
 
 const getMicroServiceName = () => {
 	let allApis = {};

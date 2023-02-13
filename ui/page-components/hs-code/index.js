@@ -1,12 +1,3 @@
-import { FluidContainer } from '@cogoport/components';
-import React from 'react';
+import HsClassification from './components';
 
-function HsCode() {
-	return (
-		<FluidContainer>
-			<p>HsCode Page</p>
-		</FluidContainer>
-	);
-}
-
-export default HsCode;
+export default HsClassification;

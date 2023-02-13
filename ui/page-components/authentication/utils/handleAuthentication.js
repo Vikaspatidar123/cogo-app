@@ -10,8 +10,8 @@ import redirect from '@/commons/utils/redirect';
 import projectNavigationMappings from '@/packages/navigation-configs/config/navigation-mapping';
 import PUBLIC_PATHS from '@/packages/navigation-configs/config/public-paths';
 import getSideBarConfigs from '@/packages/navigation-configs/side-bar';
-import getAuthParam from '@/packages/request/get-auth-params';
-import { getCookie } from '@/packages/request/getCookieFromCtx';
+import getAuthParam from '@/packages/request/helpers/get-auth-params';
+import { getCookie } from '@/packages/request/helpers/getCookieFromCtx';
 import { setProfileStoreState } from '@/packages/store/store/profile';
 
 const getOrganization = async (req, query) => {

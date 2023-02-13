@@ -1,4 +1,4 @@
-import navigationMappings from '@/commons/configurations/navigation-mapping';
+import { navigationMappings } from '@/packages/navigation-configs/index';
 
 const getCondition = (urlItem) => {
 	const condition = {};
@@ -19,16 +19,16 @@ const AJEET_EMAIL_ID = 'ajeet@cogoport.com';
 const getSideBarConfigs = (
 	userData,
 	dashboardUrls = [],
-	// pinnedNavKeys = [],
+	pinnedNavKeys = [],
 ) => {
 	const pNavs = userData?.permissions_navigations || {};
 
-	// const modifiedPinnedNavKeys = pinnedNavKeys.filter((key) => Object.keys(navigationMappings).includes(key));
+	const modifiedPinnedNavKeys = pinnedNavKeys.filter((key) => Object.keys(navigationMappings).includes(key));
 
-	// const filteredKeys = Object.keys(navigationMappings).filter(
-	// 	(key) => !modifiedPinnedNavKeys.includes(key),
-	// );
-	const filterKeys = Object.keys(navigationMappings);
+	const filteredKeys = Object.keys(navigationMappings).filter(
+		(key) => !modifiedPinnedNavKeys.includes(key),
+	);
+	// const filterKeys = Object.keys(navigationMappings);
 	const getNavMappings = (navMappingKeys) => {
 		const nav_items = [];
 
@@ -52,7 +52,10 @@ const getSideBarConfigs = (
 					});
 				} else if (navigationMappings[key]?.options) {
 					const allOpts = navigationMappings[key]?.options || [];
-					const selectedSubNavs = Object.keys(pNavs);
+					// const selectedSubNavs = Object.keys(pNavs);
+					const selectedSubNavs = Object.keys(pNavs).filter(
+						(nav) => nav.split('-')[0] === key,
+					);
 					const filteredOpts = allOpts.filter(
 						(opt) => selectedSubNavs.includes(opt.key)
 							&& (opt.key !== 'coe-booking_tasks'
@@ -73,7 +76,7 @@ const getSideBarConfigs = (
 	};
 	return {
 		nav_items: {
-			organization: getNavMappings(filterKeys),
+			organization: getNavMappings(filteredKeys),
 		},
 	};
 };

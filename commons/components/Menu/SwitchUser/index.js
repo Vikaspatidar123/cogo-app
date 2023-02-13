@@ -17,7 +17,7 @@ function SwitchUser({ setShow }) {
 		setShow(false);
 	};
 	const getStarted = () => {
-		window.location = '/get-started';
+		window.location.href = '/v2/get-started';
 	};
 	return (
 		<div type="enter">

@@ -19,7 +19,6 @@ function NavBar() {
 	const configs = getSideBarConfigs(user_data);
 	const { nav_items = {} } = configs || {};
 	const { organization = [] } = nav_items || {};
-
 	return (
 		<div className={styles.menu}>
 			{organization.map((item) => {

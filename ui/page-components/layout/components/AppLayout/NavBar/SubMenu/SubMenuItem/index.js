@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import {
-	IcMRateManagement, IcMRateSheets, IcMDefault, IcMDocument,
+	IcMRateManagement, IcMRateSheets, IcMDocument,
 } from '@cogoport/icons-react';
 
 import AirSchedule from './air-schedule.svg';
@@ -15,24 +15,34 @@ import { useRouter, Link } from '@/packages/next';
 import { useSelector } from '@/packages/store';
 
 const ICON_MAPPING = {
-	'Ocean Tracking'         : OceanTracking,
-	'Air Tracking'           : AirTracking,
-	'Air Schedules'          : AirSchedule,
-	'Ocean Schedules'        : OceanSchedule,
-	'Manage Subscriptions'   : ManageSubscription,
-	'Rates Sheet'            : IcMRateSheets,
-	'Rates Management'       : IcMRateManagement,
-	'Product Classification' : ProductClassification,
-	Documents                : IcMDocument,
+	'Ocean Tracking': OceanTracking,
+	'Air Tracking': AirTracking,
+	'Air Schedules': AirSchedule,
+	'Ocean Schedules': OceanSchedule,
+	'Manage Subscriptions': ManageSubscription,
+	'Rates Sheet': IcMRateSheets,
+	'Rates Management': IcMRateManagement,
+	'Product Classification': ProductClassification,
+	Documents: IcMDocument,
 };
 
 function SubMenuItem({ item }) {
 	const { push } = useRouter();
 	const {
-		href = '', title = '', description = '', icon = '',
+		href = '', title = '', description = '', icon = '', as = '',
 	} = item || {};
+	const { profile } = useSelector((s) => s);
+	const { organization, branch } = profile || {};
 	const onSubmit = () => {
-		push(href);
+		// push(href);
+		if (href?.includes('/v2')) {
+			const newHref = href?.replace('/v2', '');
+			const newAs = as?.replace('/v2', '');
+			// push(newHref, newAs);
+			window.location.href = `/v2/${organization?.id}/${branch?.id}/${newHref || newAs}`;
+		} else {
+			window.location.href = `/app/${organization?.id}/${branch?.id}/importer-exporter/${href || as}`;
+		}
 	};
 	const Element = ICON_MAPPING[title] || AirSchedule;
 

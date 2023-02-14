@@ -1,11 +1,13 @@
 import InputController from './InputController';
 import SelectController from './SelectController';
+import TextAreaController from './TextAreaController';
 
 const mapping = {
 
-	select : SelectController,
-	text   : InputController,
-	number : InputController,
+	select   : SelectController,
+	text     : InputController,
+	number   : InputController,
+	textarea : TextAreaController,
 
 };
 

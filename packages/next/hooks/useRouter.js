@@ -10,7 +10,6 @@ export const useRouter = () => {
 	const { query } = general || {};
 	const organizationId = organization?.id || query?.org_id;
 	const branchId = branch?.id || query?.branch_id;
-	// const organizationId = useSelector((s) => s?.profile?.organization?.id);
 	const routerNext = useRouterNext();
 	const router = useMemo(() => ({
 		...routerNext,

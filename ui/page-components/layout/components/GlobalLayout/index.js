@@ -1,6 +1,5 @@
-// import { Grid } from '@cogoport/components';
 import {
-	useRef, useState, useMemo,
+	useRef, useState, useMemo, useEffect,
 } from 'react';
 
 import { useSelector, useDispatch } from '../../../../../packages/store';
@@ -9,13 +8,32 @@ import AppLayout from '../AppLayout';
 
 import styles from './styles.module.css';
 
-// import { useWindowDimensions } from '@/commons/utils/getMobailView';
+import { useWindowDimensions } from '@/commons/utils/getMobailView';
 import { Head } from '@/packages/next';
 
 function GlobalLayout({
 	children, layout, head, hideBG, ...rest
 }) {
 	const elementRef = useRef(null);
+	const {
+		info,
+	} = useSelector(({ general }) => ({
+		info: general || {},
+	}));
+	const dispatch = useDispatch();
+	const [isMobile, setIsMobile] = useState(false);
+	const { width } = useWindowDimensions();
+	useEffect(() => {
+		if (width < 1192) {
+			setIsMobile(true);
+		} else {
+			setIsMobile(false);
+		}
+	}, [width]);
+
+	useEffect(() => {
+		dispatch(setGeneralState({ ...info, isMobile }));
+	}, [isMobile]);
 
 	const getBody = () => {
 		if (layout === 'app') {
@@ -29,7 +47,6 @@ function GlobalLayout({
 	return (
 		<div
 			ref={elementRef}
-			// className={hideBG ? '' : 'page-bg'}
 			className={hideBG ? styles.component : styles.page_bg}
 		>
 			{title && (

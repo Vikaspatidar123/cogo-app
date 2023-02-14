@@ -12,9 +12,8 @@ function AppLayoutFooter() {
 	}));
 	const configs = getSideBarConfigs(user_data);
 	const { nav_items = {} } = configs || {};
-	const { organization: menuList = [] } = nav_items;
-	const newMenuList = menuList.slice(0, 4);
-
+	const { organization = [] } = nav_items || {};
+	const newMenuList = organization.slice(0, 4);
 	return (
 		<div className={styles.container}>
 			{newMenuList.map((item) => (
@@ -27,7 +26,7 @@ function AppLayoutFooter() {
 				)
 			))}
 
-			<FooterItem item={{ title: 'More', href: '/menu' }} />
+			<FooterItem item={{ title: 'More', href: '/v2/menu', as: '/v2/menu' }} />
 		</div>
 	);
 }

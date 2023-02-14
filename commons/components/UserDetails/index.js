@@ -11,16 +11,13 @@ import styles from './styles.module.css';
 import { useSelector } from '@/packages/store';
 
 function UserName() {
-	// const { name, partner = {} } = useSelector(({ profile }) => profile);
-
-	// const { business_name } = partner;
 	const {
-		picture, business_name, branch_name, total_branches,
+		business_name, branch_name, total_branches,
 	} = useSelector(
 		({ profile }) => ({
-			business_name  : (profile.organization || {}).business_name || '',
-			branch_name    : (profile.branch || {}).branch_name || '',
-			total_branches : (profile?.organization?.branches || []).length,
+			business_name: (profile.organization || {}).business_name || '',
+			branch_name: (profile.branch || {}).branch_name || '',
+			total_branches: (profile?.organization?.branches || []).length,
 		}),
 	);
 	const [showPopover, setShowPopover] = useState(false);

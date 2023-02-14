@@ -1,6 +1,8 @@
 
 .pagination_wrapper{
     padding-block: 6px;
+    display: flex;
+    justify-content: flex-end;
     @media screen and (max-width: 767px) {
 		nav .md div {
 			font-size: 10px;

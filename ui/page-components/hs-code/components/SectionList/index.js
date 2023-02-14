@@ -37,7 +37,7 @@ function SectionList({
 		if (isMobile) {
 			return <Placeholder width={mobileWidth} height="15px" />;
 		}
-		return <Placeholder height="15px" width={desktopWidth} />;
+		return <Placeholder className={styles.loader} height="15px" width={desktopWidth} />;
 	};
 
 	const description = () => {

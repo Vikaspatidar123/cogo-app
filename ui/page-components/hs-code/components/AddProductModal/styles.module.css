@@ -7,10 +7,10 @@
 
 .fav_icon{
     cursor: pointer;
-	margin-right: 4px;
+	margin-right: 6px;
 	background: #e0e0e0;
 	border-radius: 5px;
-	padding: 6px;
+	padding: 6px 6px 0 6px;
 }
 
 .text{

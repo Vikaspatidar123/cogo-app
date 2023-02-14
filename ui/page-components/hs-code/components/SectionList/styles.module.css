@@ -120,3 +120,8 @@
     background: #fefdf9;
     box-shadow: inset 0px 4px 10px rgba(176, 185, 187, 0.15);
 }
+
+.loader{
+    margin-left:10px ;
+    margin-right:10px ;
+}

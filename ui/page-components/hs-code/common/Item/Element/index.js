@@ -7,8 +7,6 @@ const getElement = ({ type, value }) => {
 	}
 };
 
-const Element = ({ type, value }) => {
-	return getElement({ type, value });
-};
+const Element = ({ type, value }) => getElement({ type, value });
 
 export default Element;

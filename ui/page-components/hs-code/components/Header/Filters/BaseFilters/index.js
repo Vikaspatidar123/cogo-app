@@ -20,7 +20,6 @@ function BaseFilters({
 	countryOptions,
 }) {
 	const {
-		fields,
 		handleSubmit,
 		watch,
 		reset,
@@ -53,26 +52,26 @@ function BaseFilters({
 	const field = getControls({ countryOptions });
 	return (
 		<form onSubmit={handleSubmit(onSubmit)}>
-			<div className={styles.filter_container}>
-				<div className={styles.fields_container}>
+			<div className={`${styles.filter_container}`}>
+				<div className={`${styles.fields_container}`}>
 					<SelectController key={watchCountry} {...field[0]} control={control} size="lg" />
 					<SelectController {...field[1]} control={control} size="lg" />
 					<div>
 						<Input
 							{...field[2]}
 							control={control}
-							size="lg"
+							size="md"
 							prefix={<IcAIdea width={20} height={20} />}
 						/>
 						{errors.searchTerm && (
-							<div className={styles.errorMessage}>
+							<div className={`${styles.errorMessage}`}>
 								{errors.searchTerm.type}
 							</div>
 						)}
 					</div>
 				</div>
 
-				<div className={styles.button_container}>
+				<div className={`${styles.button_container}`}>
 					<Button
 						className="secondary sm"
 						type="button"

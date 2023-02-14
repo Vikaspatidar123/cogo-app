@@ -34,7 +34,7 @@ function AddProductModal({ data = {}, src = '' }) {
 			{src === 'fav' && (
 				<Tooltip theme="light" content="Add to Product Catalogue">
 					<div
-						className={styles.fav_icon}
+						className={`${styles.fav_icon}`}
 						onClick={() => {
 							setShow(true);
 						}}

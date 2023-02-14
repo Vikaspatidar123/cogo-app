@@ -30,26 +30,20 @@ const useGetAuthorizationChecked = () => {
 	} = profile || {};
 	const org_id = organization?.id || organizations[0]?.id;
 	const branch_id = branch?.id || organizations[0]?.branches?.[0]?.id;
-
+	const configs = redirections(profile);
 	useEffect(() => {
 		(async () => {
 			if (!sessionInitialized) {
 				if (isProfilePresent && (isUnauthenticatedPath || route === '/')) {
-					const configs = redirections(profile);
+					// const configs = redirections(profile);
 
 					if (configs?.href?.includes('/v2')) {
 						const replaceHref = configs?.href?.replace('/v2', '');
 						const replaceAs = configs?.as?.replace('/v2', '');
 						await push(replaceHref, replaceAs);
 					}
-<<<<<<< HEAD
-
-					if (configs && !configs?.href?.includes('/v2')) {
-						window.location.href = `/${org_id}/${branch_id}${configs.as || configs.href}`;
-=======
 					if (!configs?.href?.includes('/v2')) {
 						window.location.href = `/${org_id}/${branch_id}${configs.as || configs.href} `;
->>>>>>> 49473c5dd03f68924fe262a35322375a8fbeba65
 					} else {
 						await push('/', '/');
 					}

@@ -36,47 +36,46 @@ const handleAuthentication = async ({
 	if (!routeConfig || (asPath || '').includes('_next')) {
 		return { asPrefix };
 	}
+	const token = getCookie('cogo-auth-token', { req });
 	// const { routes } = routeConfig || {};
-	// const valid_url_types = (routes[asPath] || {})
-	// 	|| (routes[pathname] || {});
-
+	// const valid_url_types = (routes[asPath])
+	// 	|| (routes[pathname]);
 	// if (
 	// 	valid_url_types
 	// ) {
 	// 	return { asPrefix };
 	// }
-
 	// for short urls
+	if (asPath.includes('/url/')) {
+		return { asPrefix };
+	}
 	if (PUBLIC_PATHS.includes(asPath) || PUBLIC_PATHS.includes(pathname)) {
 		return { asPrefix };
 	}
 	const isUnauthenticated = PUBLIC_PATHS.includes(asPath) || PUBLIC_PATHS.includes(pathname);
-	const token = getCookie('cogo-auth-token', { req });
-	// for short urls
-	if (token) {
-		user_data = await getUserData({
-			store,
-			isServer,
-			req,
-			routeConfig,
-			pathname,
-		});
-	} else {
+	if (token === null) {
 		if (isUnauthenticated) {
 			return { asPrefix };
 		}
 		redirect({ isServer, res, path: `/v2/login?redirectPath=${asPath}` });
 		return { asPrefix };
 	}
+	user_data = await getUserData({
+		store,
+		isServer,
+		req,
+		routeConfig,
+		pathname,
+	});
 
 	if (isEmpty(user_data)) {
 		if (!isServer) {
 			deleteCookie('cogo-auth-token', null, { req });
 		}
-
 		if (isUnauthenticated) {
 			return { asPrefix };
 		}
+
 		redirect({ isServer, res, path: `/v2/login?redirectPath=${asPath}` });
 		return { asPrefix };
 	}
@@ -93,7 +92,6 @@ const handleAuthentication = async ({
 		const branch = org?.branches?.[0];
 
 		const newPath = `/v2/${org?.id}/${branch?.id}`;
-
 		redirect({
 			isServer,
 			res,
@@ -113,25 +111,29 @@ const handleAuthentication = async ({
 	const current_org = user_data?.organizations.find(
 		(org) => org?.id === actual_org_id,
 	);
-	if (!allStrings[1] && current_org) {
-		const branch_id = current_org?.branches?.[0]?.id;
+	if (!allStrings[1] && !isEmpty(user_data)) {
+		const org = user_data.organizations[0] || {};
+		const orgId = org.id;
+		const orgBranchId = org?.branches?.[0]?.id;
+		// const branch_id = current_org?.branches?.[0]?.id;
 		// const org_id = user_data?.organizations?.[0]?.id;
-		asPrefix = `/v2/${actual_org_id}/${branch_id}/dashboard`;
+		asPrefix = `/v2/${orgId}/${orgBranchId}/dashboard`;
 		findurl({
-			item: user_data, asPrefix, isServer, res, org_id: actual_org_id, branch_id,
+			item: user_data, asPrefix, isServer, res, org_id: orgId, branch_id: orgBranchId,
 		});
+
 		return {
 			asPrefix,
 			query: {
-				actual_org_id,
-				branch_id,
+				org_id: orgId,
+				branch_id: orgBranchId,
 			},
 		};
 	}
 	// For 404 and error pages - pathname is _error
 	if (pathname.includes('/404')) {
 		const asPathArr = asPath.split('/') || [];
-		const reqPath = asPathArr.filter((item, i) => i < 5).join('/');
+		// const reqPath = asPathArr.filter((item, i) => i < 5).join('/');
 		const errOrgId = asPathArr.length > 2 ? asPathArr[2] : null;
 		const current_organization = user_data.organizations.find(
 			(org) => org.id === errOrgId,
@@ -168,7 +170,6 @@ const handleAuthentication = async ({
 	let current_organization = user_data.organizations.find(
 		(org) => org.id === org_id,
 	);
-	console.log(current_organization, 'current_organization');
 	const org = user_data.organizations[0];
 	const orgBranchId = user_data.organizations[0]?.branches?.[0]?.id;
 	if (isEmpty(current_organization) || asPath.includes('/v2/select-account')) {
@@ -189,8 +190,7 @@ const handleAuthentication = async ({
 		current_organization = user_data.organization;
 	}
 
-	// asPrefix = `/v2/${org_id}/${branch_id}/dashboard`;
-
+	asPrefix = `/v2/${org_id}/${branch_id}/dashboard`;
 	const defaultRoute = `${asPrefix}`;
 	if (isEmpty(current_organization.country || {})) {
 		const getOrgResponse = await getOrganization(req, query);

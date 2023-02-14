@@ -28,6 +28,4 @@ const routes = {
 	...prefixedRoutes,
 };
 
-// module.exports = { routes };
-
 export default { routes };

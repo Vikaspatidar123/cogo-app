@@ -11,7 +11,7 @@ import OceanTracking from './ocean-tracking.svg';
 import ProductClassification from './product-classification.svg';
 import styles from './styles.module.css';
 
-import { useRouter, Link } from '@/packages/next';
+import { useRouter } from '@/packages/next';
 import { useSelector } from '@/packages/store';
 
 const ICON_MAPPING = {
@@ -34,12 +34,11 @@ function SubMenuItem({ item }) {
 	const { profile } = useSelector((s) => s);
 	const { organization, branch } = profile || {};
 	const onSubmit = () => {
-		// push(href);
 		if (href?.includes('/v2')) {
 			const newHref = href?.replace('/v2', '');
 			const newAs = as?.replace('/v2', '');
-			// push(newHref, newAs);
-			window.location.href = `/v2/${organization?.id}/${branch?.id}/${newHref || newAs}`;
+			push(newHref, newAs);
+			// window.location.href = `/v2/${organization?.id}/${branch?.id}/${newHref || newAs}`;
 		} else {
 			window.location.href = `/app/${organization?.id}/${branch?.id}/importer-exporter/${href || as}`;
 		}

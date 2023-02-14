@@ -25,10 +25,9 @@ const useLoginAuthenticate = () => {
 					},
 				});
 			const { token } = response.data || {};
-			if (token) setCookie(process.env.NEXT_PUBLIC_AUTH_TOKEN_NAME, token);
-			// const redirectPath = '/dashboard';
-			// setCookieAndRedirect(token, {}, redirectPath);
-			window.location.href = '/';
+			// if (token) setCookie(process.env.NEXT_PUBLIC_AUTH_TOKEN_NAME, token);
+			setCookieAndRedirect(token, {});
+			// window.location.href = '/';
 			// location.reload();
 		} catch (err) {
 			Toast.error(getApiErrorString(err?.response?.data) || 'Failed to login, please try again...');

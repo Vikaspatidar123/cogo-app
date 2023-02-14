@@ -3,7 +3,7 @@ lockfileVersion: 5.4
 specifiers:
   '@cogoport/components': ^1.0.270
   '@cogoport/eslint-config': ^1.0.18
-  '@cogoport/icons-react': ^1.0.51
+  '@cogoport/icons-react': ^1.0.57
   '@cogoport/stylelint-config': ^1.0.3
   '@cogoport/utils': ^1.2.2
   '@next/polyfill-nomodule': ^13.1.6
@@ -36,8 +36,8 @@ specifiers:
   toolkit: ^1.5.4
 
 dependencies:
-  '@cogoport/components': 1.0.272_jthxcj6wkatiu54kxs3nfsn2by
-  '@cogoport/icons-react': 1.0.51_biqbaboplfbrettd7655fr4n2y
+  '@cogoport/components': 1.0.272_3lsay7tntxf2ei2og2ktju5z3e
+  '@cogoport/icons-react': 1.0.57_biqbaboplfbrettd7655fr4n2y
   '@cogoport/utils': 1.2.2
   '@next/polyfill-nomodule': 13.1.6
   '@reduxjs/toolkit': 1.9.1_k4ae6lp43ej6mezo3ztvx6pykq
@@ -1361,14 +1361,14 @@ packages:
       to-fast-properties: 2.0.0
     dev: true
 
-  /@cogoport/components/1.0.272_jthxcj6wkatiu54kxs3nfsn2by:
+  /@cogoport/components/1.0.272_3lsay7tntxf2ei2og2ktju5z3e:
     resolution: {integrity: sha512-avVgN7byu8eq+sHuEJ1eWbJUk564dgFfh30vt2yKjlYrpGsAm7V6RkzGWWlWeUmTTUuJRHQlh3/6Zw61kHySdg==}
     peerDependencies:
       '@cogoport/icons-react': ^1.0.23
       react: ^18.2.0
       react-dom: ^18.2.0
     dependencies:
-      '@cogoport/icons-react': 1.0.51_biqbaboplfbrettd7655fr4n2y
+      '@cogoport/icons-react': 1.0.57_biqbaboplfbrettd7655fr4n2y
       '@tippyjs/react': 4.2.6_biqbaboplfbrettd7655fr4n2y
       axios: 1.2.3
       axios-hooks: 4.0.0_axios@1.2.3+react@18.2.0
@@ -1418,19 +1418,19 @@ packages:
       - supports-color
     dev: true
 
-  /@cogoport/icons-react/1.0.51_biqbaboplfbrettd7655fr4n2y:
-    resolution: {integrity: sha512-RomXBnTB2oSy5bxbaDvygf0lVrvuhi3MDP8muTvqRhTARcP2w7N6jHiDD21GcBAV36kcaAje/1xmj1JSD+eGrQ==}
+  /@cogoport/icons-react/1.0.57_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-mfG559bB4XSePqoZHwG80eoubQb0VrRB9M2RQPH4CKGn8O/vh4fFgXeY9t24IRE5FeQEJJqYOCPHyTpkpgRJwg==}
     peerDependencies:
       react: 18.2.0
       react-dom: 18.2.0
     dependencies:
-      '@cogoport/icons': 1.0.51
+      '@cogoport/icons': 1.0.57
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
     dev: false
 
-  /@cogoport/icons/1.0.51:
-    resolution: {integrity: sha512-7KtockTmXP2zHGWdw4tGNkg75hPDIfwR4Uqdlfaqk5C53kertMd+oehvfRdTVsTHlx3vclCvyepi1+1jqY4gSg==}
+  /@cogoport/icons/1.0.57:
+    resolution: {integrity: sha512-/VxgmOPJcKYBAygq4q0a4yxe1TLB77fNal0uX8l9aD7S7xk/nK9r0DlalvI4lZbu1n3MWJApSN0zlpD+yVrfIw==}
     dev: false
 
   /@cogoport/stylelint-config/1.0.3_stylelint@14.14.0:

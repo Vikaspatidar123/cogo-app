@@ -3,7 +3,6 @@ import { Button } from '@cogoport/components';
 import styles from './styles.module.css';
 
 import { useSelector } from '@/packages/store';
-// import IcError from './error.svg';
 
 function Error404() {
 	const {

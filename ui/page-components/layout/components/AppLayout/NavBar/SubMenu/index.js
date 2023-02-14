@@ -1,11 +1,11 @@
 import styles from './styles.module.css';
 import SubMenuItem from './SubMenuItem';
 
-function NavBarSubMenu({ options }) {
+function NavBarSubMenu({ options, unPrefixedPath, getFindUrl }) {
 	return (
 		<div className={styles.menu}>
 			{options.map((option) => (
-				<SubMenuItem key={option.title} item={option} />
+				<SubMenuItem key={option.title} item={option} unPrefixedPath={unPrefixedPath} getFindUrl={getFindUrl} />
 			))}
 		</div>
 	);

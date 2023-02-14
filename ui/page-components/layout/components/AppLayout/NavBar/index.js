@@ -15,23 +15,30 @@ function NavBar() {
 		user_data: profile || {},
 	}));
 	const { pathname } = useRouter();
+
 	const unPrefixedPath = `/${pathname.replace('/[org_id]/[branch_id]/', '')}`;
+
 	const configs = getSideBarConfigs(user_data);
 	const { nav_items = {} } = configs || {};
 	const { organization = [] } = nav_items || {};
+	const getFindUrl = (item) => {
+		const urlArray = item?.split('v2');
+		const url = urlArray?.length > 1 ? urlArray[1] : urlArray?.[0];
+		return url;
+	};
 	return (
 		<div className={styles.menu}>
 			{organization.map((item) => {
 				const { type } = item;
 				if (type === 'link') {
-					return <NavBarItem key={item.title} item={item} unPrefixedPath={unPrefixedPath} />;
+					return <NavBarItem key={item.title} item={item} unPrefixedPath={unPrefixedPath} getFindUrl={getFindUrl} />;
 				}
 
-				const isActive = !!item.options.find((option) => option.href === unPrefixedPath);
+				const isActive = !!item.options.find((option) => getFindUrl(option.href) === unPrefixedPath);
 				return (
 					<div key={item.title}>
 						<Tooltip
-							content={<SubMenu options={item.options} />}
+							content={<SubMenu options={item.options} unPrefixedPath={unPrefixedPath} getFindUrl={getFindUrl} />}
 							// theme="light-border"
 							// animation="shift-away"
 							placement="bottom"

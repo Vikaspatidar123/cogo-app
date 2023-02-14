@@ -1,4 +1,16 @@
+import {
+	IcMAverage, IcMQuotations, IcMTradeparties, IcMProductCodeMapping,
+	IcACrossBorder,
+	IcMFfreferigeratedCargoType,
+} from '@cogoport/icons-react';
+
 import app_apis from '../apis/get-app-apis';
+import AirSchedule from '../icons/air-schedule.svg';
+import AirTracking from '../icons/air-tracking.svg';
+import ManageSubscription from '../icons/manage-subscription.svg';
+import OceanSchedule from '../icons/ocean-schedule.svg';
+import OceanTracking from '../icons/ocean-tracking.svg';
+import ProductClassification from '../icons/product-classification.svg';
 
 const navigationMappings = {
 	app_dashboard: {
@@ -37,7 +49,7 @@ const navigationMappings = {
 			{
 				key: 'saas_planning-quotation',
 				title: 'Quick Quotations',
-				icon: 'nav-quotation',
+				icon: <IcMQuotations width={40} height={40} />,
 				type: 'link',
 				href: '/saas/quickquotation/viewlist',
 				as: '/saas/quickquotation/viewlist',
@@ -49,7 +61,7 @@ const navigationMappings = {
 				key: 'saas_planning-product_inventory',
 				title: 'Product Catalog',
 				type: 'link',
-				icon: 'nav-catalog',
+				icon: <IcMProductCodeMapping width={40} height={40} />,
 				href: '/saas/product-inventory',
 				as: '/saas/product-inventory',
 				main_apis: [],
@@ -60,7 +72,7 @@ const navigationMappings = {
 				key: 'saas_planning-trade_partner',
 				title: 'Trade Partner',
 				type: 'link',
-				icon: 'nav-trade-partner',
+				icon: <IcMTradeparties width={40} height={40} />,
 				href: '/saas/trade-partner',
 				as: '/saas/trade-partner',
 				main_apis: [],
@@ -85,7 +97,7 @@ const navigationMappings = {
 				title: 'Duties & Taxes Calculator',
 				href: '/v2/saas/premium-services/duties-taxes-calculator',
 				as: '/v2/saas/premium-services/duties-taxes-calculator',
-				icon: 'nav-payments',
+				icon: <IcMAverage width={40} height={40} fill="red" />,
 				type: 'link',
 				main_apis: [],
 				possible_apis: app_apis.saas_premium_services,
@@ -95,7 +107,7 @@ const navigationMappings = {
 				title: 'Order History',
 				href: '/saas/premium-services/order-history',
 				as: '/saas/premium-services/order-history',
-				icon: 'nav-transaction-history',
+				icon: <IcACrossBorder width={40} height={40} />,
 				main_apis: [],
 				possible_apis: app_apis.saas_order_history,
 			},
@@ -104,7 +116,7 @@ const navigationMappings = {
 				title: 'Trader Eligibility Check',
 				href: '/saas/premium-services/trader-eligibility-check',
 				as: '/saas/premium-services/trader-eligibility-check',
-				icon: 'nav-trade-partner',
+				icon: <IcMTradeparties width={40} height={40} fill="red" />,
 				main_apis: [],
 				possible_apis: app_apis.saas_trader_eligibility_check,
 			},
@@ -150,7 +162,7 @@ const navigationMappings = {
 				href: '/v2/saas/hs-classification',
 				as: '/v2/saas/hs-classification',
 				type: 'link',
-				icon: 'nav-hscode',
+				icon: <ProductClassification />,
 				main_apis: [],
 				possible_apis: app_apis.saas_hs_code_list,
 			},
@@ -160,7 +172,7 @@ const navigationMappings = {
 				href: '/saas/air-tracking',
 				as: '/saas/air-tracking',
 				type: 'link',
-				icon: 'nav-air-tracking',
+				icon: <AirTracking />,
 				main_apis: [],
 				possible_apis: app_apis.saas_air_tracking,
 			},
@@ -170,7 +182,7 @@ const navigationMappings = {
 				href: '/saas/air-schedules',
 				as: '/saas/air-schedules',
 				type: 'link',
-				icon: 'nav-air-schedules',
+				icon: <AirSchedule />,
 				main_apis: [],
 				possible_apis: app_apis.saas_air_schedules,
 			},
@@ -180,7 +192,7 @@ const navigationMappings = {
 				href: '/saas/tracking',
 				as: '/saas/tracking',
 				type: 'link',
-				icon: 'nav-track-and-trace',
+				icon: <OceanTracking />,
 				main_apis: [],
 				possible_apis: app_apis.saas_tracking,
 			},
@@ -190,7 +202,7 @@ const navigationMappings = {
 				href: '/saas/schedules',
 				as: '/saas/schedules',
 				type: 'link',
-				icon: 'nav-ocean-schedules',
+				icon: <OceanSchedule />,
 				main_apis: [],
 				possible_apis: app_apis.saas_schedules,
 			},
@@ -200,7 +212,7 @@ const navigationMappings = {
 				href: '/saas/freight-rate-trend',
 				as: '/saas/freight-rate-trend',
 				type: 'link',
-				icon: 'nav-freight-trend',
+				icon: <IcMFfreferigeratedCargoType width={40} height={40} fill="red" />,
 				line: true,
 				main_apis: [
 					'list_freight_trend_subscriptions',
@@ -223,7 +235,7 @@ const navigationMappings = {
 			{
 				key: 'saas_finance-transaction_history',
 				title: 'Transaction History',
-				icon: 'nav-transaction-history',
+				icon: <IcMFfreferigeratedCargoType width={40} height={40} fill="red" />,
 				type: 'link',
 				href: '/saas/transaction-history',
 				as: '/saas/transaction-history',
@@ -237,7 +249,7 @@ const navigationMappings = {
 				href: '/payment-dashboard',
 				as: '/payment-dashboard',
 				type: 'link',
-				icon: 'nav-payments',
+				icon: <IcMFfreferigeratedCargoType width={40} height={40} fill="red" />,
 				main_apis: [],
 				possible_apis: app_apis.app_payments,
 				module_type: 'dashboards',
@@ -409,7 +421,7 @@ const navigationMappings = {
 		href: '/saas/subscriptions',
 		as: '/saas/subscriptions',
 		type: 'link',
-		icon: 'nav-subscriptions',
+		icon: <ManageSubscription />,
 		main_apis: [],
 		possible_apis: app_apis.saas_subscription,
 		module_type: 'dashboards',

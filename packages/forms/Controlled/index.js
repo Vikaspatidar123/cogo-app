@@ -1,6 +1,7 @@
 import InputController from './InputController';
 import SelectController from './SelectController';
 import TextAreaController from './TextAreaController';
+import FileUploader from './UploadController';
 
 const mapping = {
 
@@ -8,6 +9,7 @@ const mapping = {
 	text     : InputController,
 	number   : InputController,
 	textarea : TextAreaController,
+	file     : FileUploader,
 
 };
 

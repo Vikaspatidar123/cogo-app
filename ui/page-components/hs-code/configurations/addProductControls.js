@@ -1,4 +1,4 @@
-export const addProductControls = [
+const addProductControls = [
 	{
 		name        : 'hsCode',
 		type        : 'number',
@@ -66,6 +66,10 @@ export const addProductControls = [
 				message : 'maximum 150 characters are allowed',
 			},
 		},
+		style: {
+			height       : '100px',
+			borderRadius : '4px',
+		},
 	},
 	{
 		name            : 'productImg',
@@ -77,5 +81,15 @@ export const addProductControls = [
 		format          : '(png, jpg, jpeg, svg)',
 		drag            : true,
 		uploadType      : 'aws',
+		style           : {
+			borderRadius: '4px',
+		},
 	},
 ];
+
+const getControls = () => addProductControls.map((control) => {
+	const newControl = { ...control };
+	return { ...newControl };
+});
+
+export default getControls;

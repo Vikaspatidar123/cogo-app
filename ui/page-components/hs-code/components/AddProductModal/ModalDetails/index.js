@@ -4,11 +4,11 @@ import { Button } from '@cogoport/components';
 import { IcAFormsAndCertificates, IcMArrowRight } from '@cogoport/icons-react';
 import { useState, useEffect } from 'react';
 
-// import getField from '../../../../../../packages/forms/Controlled/index';
+import getField from '../../../../../../packages/forms/Controlled/index';
 
 // import LoadingScreen from '../../../../../common/components/Loader';
 // import getField from '../../../../../common/form/components';
-import { addProductControls } from '../../../configurations/addProductControls';
+import getControls from '../../../configurations/addProductControls';
 import useCategory from '../../../hooks/useCategory';
 
 import styles from './styles.module.css';
@@ -19,11 +19,11 @@ function ModalDetails({ data = {}, setShow }) {
 	const [profitPercentage, setProfitPercentage] = useState(0);
 	const { hsCode, id } = data || {};
 	const {
-		fields,
 		handleSubmit,
 		setValue,
 		watch,
 		formState: { errors },
+		control,
 	} = useForm();
 	const [costPrice, sellingPrice] = watch(['costPrice', 'sellingPrice']);
 	const {
@@ -65,6 +65,7 @@ function ModalDetails({ data = {}, setShow }) {
 		return `Loss: ${Math.round(Math.abs(profitPercentage))}%`;
 	};
 
+	const fields = getControls();
 	return (
 		<>
 			<div className={styles.container}>
@@ -95,14 +96,14 @@ function ModalDetails({ data = {}, setShow }) {
 					</div>
 				</div>
 				<form>
-					{/* <div className={styles.row}>
-						{addProductControls.map((field) => {
+					<div className={styles.row}>
+						{fields.map((field) => {
 							const Element = getField(field.type);
 
 							return (
-								<div className={styles.field.name && styles.col}>
+								<div className={`${styles} ${styles.col}`}>
 									<div className={styles.label}>{field.label}</div>
-									<Element {...fields[field.name]} />
+									<Element {...field} control={control} />
 									{errors[field.name]?.type === 'required'
 										|| errors[field.name]?.type === 'minLength'
 										|| errors[field.name]?.type === 'maxLength' ? (
@@ -114,7 +115,7 @@ function ModalDetails({ data = {}, setShow }) {
 								</div>
 							);
 						})}
-					</div> */}
+					</div>
 				</form>
 			</div>
 			<div className={styles.footer}>

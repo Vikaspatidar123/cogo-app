@@ -1,13 +1,18 @@
+/* eslint-disable max-len */
 import React from 'react';
 
-import Logo from './cogoport-logo.svg';
 import styles from './styles.module.css';
 
 function LeftPanel() {
 	return (
 		<div className={styles.left_container}>
 			<div className={styles.cogo_icon_container}>
-				<Logo width="150px" height="100px" />
+				<img
+					width="150px"
+					height="100px"
+					src="https://cogoport-production.sgp1.digitaloceanspaces.com/e845419ea5eacebda858bad8b20d2797/cogoport-logo.svg"
+					alt="Cogo"
+				/>
 			</div>
 			<div className={styles.left_text_container}>
 				<span className={styles.span}>Login to the</span>

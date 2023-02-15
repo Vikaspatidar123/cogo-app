@@ -19,11 +19,11 @@ const navigationMappings = {
 		href: '/v2/dashboard',
 		as: '/v2/dashboard',
 		type: 'link',
-		icon: 'nav-tasks',
-		line: true,
 		main_apis: ['list_store_quota'],
 		possible_apis: [...app_apis.app_dashboard, ...app_apis.app_pay_later],
 		module_type: 'dashboards',
+		showInNav: true,
+
 	},
 	app_discover_rates: {
 		key: 'app_discover_rates',
@@ -32,16 +32,14 @@ const navigationMappings = {
 		as: '/book',
 		type: 'link',
 		tag: 'New Search',
-		icon: 'nav-g-dollar',
 		main_apis: ['create_spot_search'],
 		possible_apis: app_apis.app_discover_rates,
 		module_type: 'crm',
+		showInNav: true,
 	},
 	saas_planning: {
 		key: 'saas_planning',
 		title: 'Planning',
-		icon: 'nav-planning',
-		line: true,
 		isSubNavs: true,
 		showInNav: true,
 		module_type: 'dashboards',
@@ -128,25 +126,25 @@ const navigationMappings = {
 		href: '/shipments',
 		as: '/shipments',
 		type: 'link',
-		line: true,
 		icon: 'nav-booking',
 		main_apis: ['list_shipments'],
 		possible_apis: app_apis.app_bookings,
 		module_type: 'crm',
-	},
-	saas_insurance: {
-		key: 'saas_insurance',
-		title: 'Insurance',
-		href: '/saas/insurance/list',
-		as: '/saas/insurance/list',
-		type: 'link',
-		icon: 'nav-insurance',
-		main_apis: [],
-		possible_apis: app_apis.saas_insurance,
-		module_type: 'dashboards',
-		isNew: true,
 		showInNav: true,
 	},
+	// saas_insurance: {
+	// 	key: 'saas_insurance',
+	// 	title: 'Insurance',
+	// 	href: '/saas/insurance/list',
+	// 	as: '/saas/insurance/list',
+	// 	type: 'link',
+	// 	icon: 'nav-insurance',
+	// 	main_apis: [],
+	// 	possible_apis: app_apis.saas_insurance,
+	// 	module_type: 'dashboards',
+	// 	isNew: true,
+	// 	showInNav: true,
+	// },
 	saas_tools: {
 		key: 'saas_tools',
 		title: 'Tools',
@@ -165,6 +163,7 @@ const navigationMappings = {
 				icon: <ProductClassification />,
 				main_apis: [],
 				possible_apis: app_apis.saas_hs_code_list,
+				description: "Find HS Codes with detailed description"
 			},
 			{
 				key: 'saas_tools-air_tracking',
@@ -175,6 +174,7 @@ const navigationMappings = {
 				icon: <AirTracking />,
 				main_apis: [],
 				possible_apis: app_apis.saas_air_tracking,
+				description: "Track your shipment on the map in real time"
 			},
 			{
 				key: 'saas_tools-air_schedules',
@@ -185,6 +185,7 @@ const navigationMappings = {
 				icon: <AirSchedule />,
 				main_apis: [],
 				possible_apis: app_apis.saas_air_schedules,
+				description: "Find sailing schedule for multiple air lines by route or vessel"
 			},
 			{
 				key: 'saas_tools-ocean_tracking',
@@ -195,6 +196,7 @@ const navigationMappings = {
 				icon: <OceanTracking />,
 				main_apis: [],
 				possible_apis: app_apis.saas_tracking,
+				description: "Seamlessly keep track of your shipments and deviations"
 			},
 			{
 				key: 'saas_tools-ocean_schedules',
@@ -205,6 +207,7 @@ const navigationMappings = {
 				icon: <OceanSchedule />,
 				main_apis: [],
 				possible_apis: app_apis.saas_schedules,
+				description: "Find sailing schedule with real time port congestion data"
 			},
 			{
 				key: 'saas_tools-freight_rate_trend',
@@ -220,6 +223,17 @@ const navigationMappings = {
 				],
 				possible_apis: app_apis.saas_freight_rate_trend,
 			},
+			{
+				key: 'saas_tools-saas_insurance',
+				title: 'Insurance',
+				href: '/saas/insurance/list',
+				as: '/saas/insurance/list',
+				type: 'link',
+				icon: 'nav-insurance',
+				main_apis: [],
+				possible_apis: app_apis.saas_insurance,
+				module_type: 'dashboards',
+			},
 		],
 	},
 	saas_finance: {
@@ -227,9 +241,7 @@ const navigationMappings = {
 		title: 'Finance',
 		icon: 'nav-finance',
 		isSubNavs: true,
-		showInNav: true,
 		isNew: true,
-		line: true,
 		module_type: 'dashboards',
 		options: [
 			{
@@ -256,28 +268,7 @@ const navigationMappings = {
 			},
 		],
 	},
-	app_contract_rates: {
-		key: 'app_contract_rates',
-		title: 'Contract Rates',
-		href: '/contract-rates',
-		as: '/contract-rates',
-		type: 'link',
-		icon: 'nav-g-dollar',
-		main_apis: ['list_contracts'],
-		possible_apis: app_apis.app_contract_rates,
-		module_type: 'crm',
-	},
-	app_auto_quotation: {
-		key: 'app_auto_quotation',
-		title: 'Active Quotations',
-		href: '/active-quotations',
-		type: 'link',
-		icon: 'nav-payments',
-		line: true,
-		main_apis: [],
-		possible_apis: app_apis.app_auto_quotation,
-		module_type: 'dashboards',
-	},
+
 	app_accept_terms_and_conditions: {
 		key: 'app_accept_terms_and_conditions',
 		title: 'Terms and Conditions',
@@ -337,29 +328,6 @@ const navigationMappings = {
 			},
 		],
 	},
-	saas_cpq_contacts: {
-		key: 'saas_cpq_contacts',
-		title: 'Trade Partners',
-		href: '/saas/cpq/contacts',
-		as: '/saas/cpq/contacts',
-		type: 'link',
-		icon: 'nav-partner',
-		main_apis: [],
-		possible_apis: app_apis.saas_cpq_contacts,
-		module_type: 'dashboards',
-	},
-	saas_cpq_products: {
-		key: 'saas_cpq_products',
-		title: 'Product Catalog',
-		href: '/saas/cpq/products',
-		as: '/saas/cpq/products',
-		type: 'link',
-		line: true,
-		icon: 'nav-catalog',
-		main_apis: [],
-		possible_apis: app_apis.saas_cpq_products,
-		module_type: 'dashboards',
-	},
 
 	saas_tracking: {
 		key: 'saas_tracking',
@@ -386,11 +354,9 @@ const navigationMappings = {
 	saas_cogo_subscription: {
 		key: 'saas_cogo_subscription',
 		title: 'Subscriptions',
-		type: 'link',
 		icon: 'nav-subscriptions',
 		isSubNavs: true,
 		isNew: true,
-		showInNav: true,
 		module_type: 'dashboards',
 		options: [
 			{
@@ -426,6 +392,7 @@ const navigationMappings = {
 		possible_apis: app_apis.saas_subscription,
 		module_type: 'dashboards',
 		showInNav: false,
+
 	},
 	app_get_started: {
 		key: 'app_get_started',
@@ -475,19 +442,6 @@ const navigationMappings = {
 		possible_apis: app_apis.app_pricing,
 		module_type: 'dashboards',
 	},
-	// saas_cogopoint: {
-	// 	key: 'saas_cogopoint',
-	// 	title: 'Cogopoints',
-	// 	href: '/saas/cogopoint',
-	// 	as: '/saas/cogopoint',
-	// 	type: 'link',
-	// 	line: true,
-	// 	icon: 'nav-payments',
-	// 	main_apis: [],
-	// 	possible_apis: app_apis.saas_cogopoint,
-	// 	module_type: 'dashboards',
-	// 	onlyMobile: 'true',
-	// },
 
 };
 export default navigationMappings;

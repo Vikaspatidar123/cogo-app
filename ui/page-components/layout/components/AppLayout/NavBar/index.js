@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import { Tooltip } from '@cogoport/components';
 
 import NavBarItem from './NavBarItem';
@@ -26,32 +27,35 @@ function NavBar() {
 		const url = urlArray?.length > 1 ? urlArray[1] : urlArray?.[0];
 		return url;
 	};
+
 	return (
 		<div className={styles.menu}>
 			{organization.map((item) => {
-				const { type } = item;
-				if (type === 'link') {
-					return <NavBarItem key={item.title} item={item} unPrefixedPath={unPrefixedPath} getFindUrl={getFindUrl} />;
-				}
+				const { type, showInNav = false } = item;
+				const isActive = !!item.options?.find((option) => getFindUrl(option.href) === unPrefixedPath);
 
-				const isActive = !!item.options.find((option) => getFindUrl(option.href) === unPrefixedPath);
-				return (
-					<div key={item.title}>
-						<Tooltip
-							content={<SubMenu options={item.options} unPrefixedPath={unPrefixedPath} getFindUrl={getFindUrl} />}
-							// theme="light-border"
-							// animation="shift-away"
-							placement="bottom"
-							interactive
-							maxWidth={646}
-							className={styles.tippy_box}
-						>
-							<div className={`${isActive ? styles.active : styles.text}`}>
-								{item.title}
-							</div>
-						</Tooltip>
-					</div>
-				);
+				if (showInNav) {
+					return (
+						type === 'link' ? <NavBarItem key={item.title} item={item} unPrefixedPath={unPrefixedPath} getFindUrl={getFindUrl} />
+							: (
+								<div key={item.title}>
+									<Tooltip
+										content={<SubMenu options={item.options} unPrefixedPath={unPrefixedPath} getFindUrl={getFindUrl} />}
+										placement="bottom"
+										interactive
+										maxWidth={646}
+										className={styles.tippy_box}
+										caret={false}
+									>
+										<div className={`${isActive ? styles.active : styles.text}`}>
+											{item.title}
+										</div>
+									</Tooltip>
+								</div>
+							)
+					);
+				}
+				return null;
 			})}
 		</div>
 	);

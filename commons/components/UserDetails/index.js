@@ -1,11 +1,11 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import { Tooltip } from '@cogoport/components';
+import { IcMArrowDown } from '@cogoport/icons-react';
 import { startCase } from '@cogoport/utils';
 import { useEffect, useState } from 'react';
 
 import Menu from '../Menu';
 
-import DownArrow from './ic-dropdown-toggle.svg';
 import styles from './styles.module.css';
 
 import { useSelector } from '@/packages/store';
@@ -38,10 +38,11 @@ function UserName() {
 				animation="shift-away"
 				content={renderBody()}
 				theme="light"
-				visible={showPopover}
+				// visible={showPopover}
 				onClickOutside={() => setShowPopover(false)}
 				interactive
 				className={styles.tippy_box}
+				caret={false}
 			>
 				<div
 					className={styles.container_flex}
@@ -52,7 +53,7 @@ function UserName() {
 						{startCase(business_name)}
 						{branch_name && total_branches > 1 ? `- ${startCase(branch_name)}` : ''}
 					</div>
-					<DownArrow width={15} height={8} style={{ marginLeft: 16 }} />
+					<IcMArrowDown width={15} height={18} />
 				</div>
 			</Tooltip>
 		</div>

@@ -4,32 +4,31 @@ import styles from '../../styles.module.css';
 
 import { useRouter } from '@/packages/next';
 
-const options = [
-	{ label: 'Manage Subscriptions', suffix: 'manage-subscriptions' },
-	{ label: 'Balance History', suffix: 'balance-history' },
-];
+// const options = [
+// 	{ label: 'Manage Subscriptions', suffix: 'manage-subscriptions' },
+// 	{ label: 'Balance History', suffix: 'balance-history' },
+// ];
 
-function SubNavigation({ setIsOpen, setShowPopover }) {
+function SubNavigation({ setIsOpen, setShowPopover, subscriptionNav }) {
+	const { options } = subscriptionNav || {};
 	const { push } = useRouter();
-	const handleClick = async (suffix) => {
+	const handleClick = async (href, as) => {
 		push(
-			`/saas/cogo-subscriptions/${suffix}`,
-			`/saas/cogo-subscriptions/${suffix}`,
+			href,
+			as,
 			true,
 		);
 		setShowPopover(false);
 		setIsOpen(false);
 	};
 	return (
-		<div className={styles.flex}>
-			{options.map(({ label, suffix }) => (
+		<div>
+			{options.map(({ title, href, as }) => (
 				<div
-					className={styles.A}
-					as="button"
-					className="sub-navlink"
-					onClick={() => handleClick(suffix)}
+					className={`${styles.A}`}
+					onClick={() => handleClick(href, as)}
 				>
-					{label}
+					{title}
 				</div>
 			))}
 		</div>

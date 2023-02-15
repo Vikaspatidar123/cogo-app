@@ -7,7 +7,7 @@ function Profile({ setShowPopover = () => { } }) {
 	const router = useRouter();
 
 	const handleClick = async () => {
-		router.push('/profile', '/profile', true);
+		router.push('/settings', '/settings', true);
 
 		setShowPopover(false);
 	};

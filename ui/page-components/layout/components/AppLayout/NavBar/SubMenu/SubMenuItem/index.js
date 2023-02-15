@@ -20,12 +20,10 @@ function SubMenuItem({ item, unPrefixedPath, getFindUrl }) {
 			const newHref = href?.replace('/v2', '');
 			const newAs = as?.replace('/v2', '');
 			push(newHref, newAs);
-			// window.location.href = `/v2/${organization?.id}/${branch?.id}/${newHref || newAs}`;
 		} else {
 			window.location.href = `/app/${organization?.id}/${branch?.id}/importer-exporter/${href || as}`;
 		}
 	};
-	// const Element = icon || ICON_MAPPING[title] || IcMAirSchedules;
 
 	return (
 		<div

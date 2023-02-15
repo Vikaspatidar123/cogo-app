@@ -16,9 +16,11 @@ const Item = ({ configs, data, loading }) => {
 				<div
 					key={config.key}
 					style={config?.style}
-					className={`${styles.ele}${config.key === 'description' ? styles.hsdesc : ''} ${config.key === 'displayHsCode' && styles.hscode
-						} ${config.key === 'addProduct' ? styles.add : ''}`}
+					className={`${styles.ele} ${config.key === 'description' ? styles.hsdesc : ''} 
+					${config.key === 'displayHsCode' && styles.hscode
+					} ${config.key === 'addProduct' ? styles.add : ''}`}
 				>
+					{console.log(config, 'config')}
 					{loading && <Placeholder height="15px" width="30px" />}
 					{!loading && (
 						<Element

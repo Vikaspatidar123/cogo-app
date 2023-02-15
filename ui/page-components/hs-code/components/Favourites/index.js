@@ -42,19 +42,23 @@ function Favourites({
 				onClose={() => setOpenSelectedModal(false)}
 				width={1000}
 			>
-				<div className={styles.no_data}>No Data Found</div>
+				<div className={`${styles.no_data}`}>No Data Found</div>
 			</Modal>
 		);
 	}
 	if (openSelectedModal) {
 		return (
-			<Modal show={openSelectedModal} onClose={() => setOpenSelectedModal(false)}>
-				<div className={styles.title && styles.bookmark}>Favourites</div>
-				<div className={styles.line} />
+			<Modal
+				className={`${styles.ui_modal}`}
+				show={openSelectedModal}
+				onClose={() => setOpenSelectedModal(false)}
+			>
+				<div className={`${styles.title} ${styles.bookmark}`}>Favourites</div>
+				<div className={`${styles.line}`} />
 				{(list || []).map((book) => (
-					<div className={styles.card && styles.bookmark}>
-						<div className="bm">
-							<div className={styles.div_hs}>
+					<div className={`${styles.card} ${styles.bookmark}`}>
+						<div className={`${styles.bm}`}>
+							<div className={`${styles.div_hs}`}>
 								<div>
 									{loading ? (
 										addLoader('40px', '250px')
@@ -67,13 +71,13 @@ function Favourites({
 										</div>
 									)}
 								</div>
-								<div className="iconContainer">
+								<div className={`${styles.icon_container} ${styles.svg}`}>
 									<AddProductModal
 										data={{ hsCode: book.hsCode, id: book.hsCodeId }}
 										src="fav"
 									/>
 									<div
-										className="deleteIcon"
+										className={`${styles.deleteIcon} ${styles.svg}`}
 										role="presentation"
 										onClick={() => {
 											refetchRemoveBookmark(
@@ -89,7 +93,7 @@ function Favourites({
 								</div>
 							</div>
 
-							<div className={styles.div_hs}>
+							<div className={`${styles.div_hs}`}>
 								{loading ? (
 									addLoader('40px', '250px')
 								) : (
@@ -102,27 +106,27 @@ function Favourites({
 								)}
 							</div>
 
-							<div className={styles.div_section}>
+							<div className={`${styles.div_section}`}>
 								{loading ? (
 									addLoader('40px', '400px')
 								) : (
 									<>
-										<div className={styles.favourites_tag}>
+										<div className={`${styles.favourites_tag}`}>
 											Section -
 											{book.sectionCode}
 										</div>
 										&gt;
-										<div className={styles.favourites_tag}>
+										<div className={`${styles.favourites_tag}`}>
 											Chapter -
 											{book.chapterCode}
 										</div>
 										&gt;
-										<div className={styles.favourites_tag}>
+										<div className={`${styles.favourites_tag}`}>
 											Heading -
 											{book.headingCode}
 										</div>
 										|
-										<div className={styles.favourites_tag} style={{ color: '#9B86F6' }}>
+										<div className={`${styles.favourites_tag}`} style={{ color: '#9B86F6' }}>
 											Country -
 											<span>
 												{' '}

@@ -17,14 +17,17 @@ function Paginations({
 
 	return (
 		<div className={styles.pagination_wrapper}>
-			<Pagination
-				className="md"
-				pageRange={7}
-				pageLimit={7}
-				total={totalRecords}
-				pagination={page}
-				setPagination={setPage}
-			/>
+			{totalRecords > 7
+			&& (
+				<Pagination
+					className="md"
+					type="number"
+					currentPage={page}
+					totalItems={totalRecords}
+					pageSize={7}
+					onPageChange={setPage}
+				/>
+			)}
 		</div>
 	);
 }

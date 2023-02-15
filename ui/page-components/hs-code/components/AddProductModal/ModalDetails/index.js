@@ -4,6 +4,8 @@ import { Button } from '@cogoport/components';
 import { IcAFormsAndCertificates, IcMArrowRight } from '@cogoport/icons-react';
 import { useState, useEffect } from 'react';
 
+// import getField from '../../../../../../packages/forms/Controlled/index';
+
 // import LoadingScreen from '../../../../../common/components/Loader';
 // import getField from '../../../../../common/form/components';
 import { addProductControls } from '../../../configurations/addProductControls';
@@ -104,11 +106,11 @@ function ModalDetails({ data = {}, setShow }) {
 									{errors[field.name]?.type === 'required'
 										|| errors[field.name]?.type === 'minLength'
 										|| errors[field.name]?.type === 'maxLength' ? (
-										<div className={styles.text}>
-											{errors[field.name]?.message || errors[field.name]?.type}
-											*
-										</div>
-									) : null}
+											<div className={styles.text}>
+												{errors[field.name]?.message || errors[field.name]?.type}
+												*
+											</div>
+										) : null}
 								</div>
 							);
 						})}

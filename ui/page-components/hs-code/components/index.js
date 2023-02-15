@@ -54,7 +54,7 @@ function HsClassification() {
 				</div>
 				{!isMobile && (
 					<div className={styles.button_div}>
-						<div className={styles.styled_button} onClick={resetDrillDownHandler}>
+						<div className={`${styles.styled_button} ${styles.secondary}`} onClick={resetDrillDownHandler}>
 							<IcMMinusInCircle />
 							Collaspse all
 						</div>
@@ -63,7 +63,7 @@ function HsClassification() {
 								setOpenSelectedModal(true);
 								refetchGetBookmark();
 							}}
-							className={styles.styled_button}
+							className={`${styles.styled_button} ${styles.primary}`}
 						>
 							<IcMStar />
 							Favourites

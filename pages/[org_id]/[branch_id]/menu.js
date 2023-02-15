@@ -4,8 +4,8 @@ function MobileMenuComponent() {
 	return <MobileMenu />;
 }
 MobileMenuComponent.getInitialProps = () => ({
-	layout: 'app',
-	head: {
+	layout : 'app',
+	head   : {
 		title: 'Navigation',
 	},
 	hideBG: true,

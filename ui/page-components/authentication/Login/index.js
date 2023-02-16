@@ -2,10 +2,10 @@ import { FluidContainer } from '@cogoport/components';
 // import { useTranslation } from 'next-i18next';
 import React from 'react';
 
-import LeftPanel from '../../common/LeftPanel';
-
 import LoginForm from './LoginForm';
 import styles from './styles.module.css';
+
+import LeftPanel from '@/ui/commons/components/LeftPanel';
 
 function Login() {
 	return (

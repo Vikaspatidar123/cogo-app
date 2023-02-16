@@ -1,5 +1,3 @@
-// prettier-ignore
-
 const saas = {
 	'/saas/tracking': {
 		navigation: 'saas_tools-ocean_tracking',

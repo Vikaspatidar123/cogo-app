@@ -2,14 +2,14 @@ import {
 	useRef, useState, useMemo, useEffect,
 } from 'react';
 
-import { useSelector, useDispatch } from '../../../../../packages/store';
-import { setGeneralStoreState as setGeneralState } from '../../../../../packages/store/store/general';
+import { useSelector, useDispatch } from '../../../../../../packages/store';
+import { setGeneralStoreState as setGeneralState } from '../../../../../../packages/store/store/general';
 import AppLayout from '../AppLayout';
 
 import styles from './styles.module.css';
 
-import { useWindowDimensions } from '@/commons/utils/getMobailView';
 import { Head } from '@/packages/next';
+import { useWindowDimensions } from '@/ui/commons/utils/getMobailView';
 
 function GlobalLayout({
 	children, layout, head, hideBG, ...rest

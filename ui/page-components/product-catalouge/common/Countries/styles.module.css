@@ -1,0 +1,14 @@
+.Div{
+	width: 30% !important;
+}
+
+.Form {
+	display: flex;
+	justify-content: flex-end;
+	.core-ui-select__menu {
+		max-width: 150px !important;
+		min-width: 0px !important;
+	}
+}
+
+

@@ -1,0 +1,60 @@
+.row_container{
+	display: flex;
+	flex-direction: row;
+	/* align-items: center */
+}
+
+.container{
+	width: 94%;
+	height: 78px;
+	border-radius: 4px;
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	padding-left: 40px;
+}
+
+@media screen and (max-width: 767px) {
+	.container{
+		width: fit-content;
+	}
+}
+
+.card_title{
+	font-weight: 500;
+	font-size: 14px;
+}
+
+.card_title_icon {
+	width: 100%;
+	justify-content: center;
+}
+
+.caret {
+	margin-left: 5px;
+	width: 12px;
+	transition: transform 0.3s ease-in-out;
+	cursor: pointer;
+}
+
+.caret_rotate{
+	margin-left: 5px;
+	width: 12px;
+	transition: transform 0.3s ease-in-out;
+	cursor: pointer;
+	transform: rotate(180deg);
+}
+
+.row{
+	width: 96%;
+	height: 78px;
+	border-radius: 4px;
+	display: flex;
+	align-items: center;
+}
+
+.col_container{
+	display: flex;
+	flex-direction: column;
+	/* align-items: center */
+}

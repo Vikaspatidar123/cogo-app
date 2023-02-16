@@ -1,5 +1,3 @@
-// prettier-ignore
-
 const settings = {
 	'/settings': {
 		navigation: 'app_settings',

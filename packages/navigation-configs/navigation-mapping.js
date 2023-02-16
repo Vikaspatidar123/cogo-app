@@ -4,13 +4,12 @@ import {
 	IcMFfreferigeratedCargoType,
 } from '@cogoport/icons-react';
 
-import app_apis from '../apis/get-app-apis';
-import AirSchedule from '../icons/air-schedule.svg';
-import AirTracking from '../icons/air-tracking.svg';
-import ManageSubscription from '../icons/manage-subscription.svg';
-import OceanSchedule from '../icons/ocean-schedule.svg';
-import OceanTracking from '../icons/ocean-tracking.svg';
-import ProductClassification from '../icons/product-classification.svg';
+import AirSchedule from './icons/air-schedule.svg';
+import AirTracking from './icons/air-tracking.svg';
+import ManageSubscription from './icons/manage-subscription.svg';
+import OceanSchedule from './icons/ocean-schedule.svg';
+import OceanTracking from './icons/ocean-tracking.svg';
+import ProductClassification from './icons/product-classification.svg';
 
 const navigationMappings = {
 	app_dashboard: {
@@ -19,8 +18,6 @@ const navigationMappings = {
 		href: '/v2/dashboard',
 		as: '/v2/dashboard',
 		type: 'link',
-		main_apis: ['list_store_quota'],
-		possible_apis: [...app_apis.app_dashboard, ...app_apis.app_pay_later],
 		module_type: 'dashboards',
 		showInNav: true,
 
@@ -32,8 +29,6 @@ const navigationMappings = {
 		as: '/book',
 		type: 'link',
 		tag: 'New Search',
-		main_apis: ['create_spot_search'],
-		possible_apis: app_apis.app_discover_rates,
 		module_type: 'crm',
 		showInNav: true,
 	},
@@ -51,8 +46,6 @@ const navigationMappings = {
 				type: 'link',
 				href: '/saas/quickquotation/viewlist',
 				as: '/saas/quickquotation/viewlist',
-				main_apis: ['list_organizations'],
-				possible_apis: app_apis.saas_app_quotation,
 				module_type: 'dashboards',
 			},
 			{
@@ -62,8 +55,6 @@ const navigationMappings = {
 				icon: <IcMProductCodeMapping width={40} height={40} />,
 				href: '/saas/product-inventory',
 				as: '/saas/product-inventory',
-				main_apis: [],
-				possible_apis: app_apis.saas_product_inventory,
 				module_type: 'dashboards',
 			},
 			{
@@ -73,8 +64,6 @@ const navigationMappings = {
 				icon: <IcMTradeparties width={40} height={40} />,
 				href: '/saas/trade-partner',
 				as: '/saas/trade-partner',
-				main_apis: [],
-				possible_apis: app_apis.saas_trade_partner,
 				module_type: 'dashboards',
 			},
 		],
@@ -97,8 +86,6 @@ const navigationMappings = {
 				as: '/v2/saas/premium-services/duties-taxes-calculator',
 				icon: <IcMAverage width={40} height={40} fill="red" />,
 				type: 'link',
-				main_apis: [],
-				possible_apis: app_apis.saas_premium_services,
 			},
 			{
 				key: 'saas_premium_services-order_history',
@@ -106,8 +93,6 @@ const navigationMappings = {
 				href: '/saas/premium-services/order-history',
 				as: '/saas/premium-services/order-history',
 				icon: <IcACrossBorder width={40} height={40} />,
-				main_apis: [],
-				possible_apis: app_apis.saas_order_history,
 			},
 			{
 				key: 'saas_premium_services-trader_eligibility_check',
@@ -115,8 +100,6 @@ const navigationMappings = {
 				href: '/saas/premium-services/trader-eligibility-check',
 				as: '/saas/premium-services/trader-eligibility-check',
 				icon: <IcMTradeparties width={40} height={40} fill="red" />,
-				main_apis: [],
-				possible_apis: app_apis.saas_trader_eligibility_check,
 			},
 		],
 	},
@@ -127,9 +110,6 @@ const navigationMappings = {
 		as: '/shipments',
 		type: 'link',
 		icon: 'nav-booking',
-		main_apis: ['list_shipments'],
-		possible_apis: app_apis.app_bookings,
-		module_type: 'crm',
 		showInNav: true,
 	},
 	// saas_insurance: {
@@ -161,9 +141,7 @@ const navigationMappings = {
 				as: '/v2/saas/hs-classification',
 				type: 'link',
 				icon: <ProductClassification />,
-				main_apis: [],
-				possible_apis: app_apis.saas_hs_code_list,
-				description: "Find HS Codes with detailed description"
+				description: 'Find HS Codes with detailed description',
 			},
 			{
 				key: 'saas_tools-air_tracking',
@@ -172,9 +150,7 @@ const navigationMappings = {
 				as: '/saas/air-tracking',
 				type: 'link',
 				icon: <AirTracking />,
-				main_apis: [],
-				possible_apis: app_apis.saas_air_tracking,
-				description: "Track your shipment on the map in real time"
+				description: 'Track your shipment on the map in real time',
 			},
 			{
 				key: 'saas_tools-air_schedules',
@@ -183,9 +159,7 @@ const navigationMappings = {
 				as: '/saas/air-schedules',
 				type: 'link',
 				icon: <AirSchedule />,
-				main_apis: [],
-				possible_apis: app_apis.saas_air_schedules,
-				description: "Find sailing schedule for multiple air lines by route or vessel"
+				description: 'Find sailing schedule for multiple air lines by route or vessel',
 			},
 			{
 				key: 'saas_tools-ocean_tracking',
@@ -194,9 +168,7 @@ const navigationMappings = {
 				as: '/saas/tracking',
 				type: 'link',
 				icon: <OceanTracking />,
-				main_apis: [],
-				possible_apis: app_apis.saas_tracking,
-				description: "Seamlessly keep track of your shipments and deviations"
+				description: 'Seamlessly keep track of your shipments and deviations',
 			},
 			{
 				key: 'saas_tools-ocean_schedules',
@@ -205,9 +177,7 @@ const navigationMappings = {
 				as: '/saas/schedules',
 				type: 'link',
 				icon: <OceanSchedule />,
-				main_apis: [],
-				possible_apis: app_apis.saas_schedules,
-				description: "Find sailing schedule with real time port congestion data"
+				description: 'Find sailing schedule with real time port congestion data',
 			},
 			{
 				key: 'saas_tools-freight_rate_trend',
@@ -216,12 +186,6 @@ const navigationMappings = {
 				as: '/saas/freight-rate-trend',
 				type: 'link',
 				icon: <IcMFfreferigeratedCargoType width={40} height={40} fill="red" />,
-				line: true,
-				main_apis: [
-					'list_freight_trend_subscriptions',
-					'list_freight_trend_rates',
-				],
-				possible_apis: app_apis.saas_freight_rate_trend,
 			},
 			{
 				key: 'saas_tools-saas_insurance',
@@ -230,9 +194,6 @@ const navigationMappings = {
 				as: '/saas/insurance/list',
 				type: 'link',
 				icon: 'nav-insurance',
-				main_apis: [],
-				possible_apis: app_apis.saas_insurance,
-				module_type: 'dashboards',
 			},
 		],
 	},
@@ -242,7 +203,6 @@ const navigationMappings = {
 		icon: 'nav-finance',
 		isSubNavs: true,
 		isNew: true,
-		module_type: 'dashboards',
 		options: [
 			{
 				key: 'saas_finance-transaction_history',
@@ -251,9 +211,6 @@ const navigationMappings = {
 				type: 'link',
 				href: '/saas/transaction-history',
 				as: '/saas/transaction-history',
-				main_apis: [],
-				possible_apis: app_apis.saas_transaction_history,
-				module_type: 'dashboards',
 			},
 			{
 				key: 'saas_finance-payment_dashboard',
@@ -262,9 +219,6 @@ const navigationMappings = {
 				as: '/payment-dashboard',
 				type: 'link',
 				icon: <IcMFfreferigeratedCargoType width={40} height={40} fill="red" />,
-				main_apis: [],
-				possible_apis: app_apis.app_payments,
-				module_type: 'dashboards',
 			},
 		],
 	},
@@ -274,10 +228,6 @@ const navigationMappings = {
 		title: 'Terms and Conditions',
 		href: '/accept-terms-and-conditions',
 		type: 'link',
-		icon: 'nav-documents',
-		main_apis: [],
-		possible_apis: app_apis.app_accept_terms_and_conditions,
-		module_type: 'dashboards',
 		showInNav: false,
 	},
 	app_documents: {
@@ -303,9 +253,6 @@ const navigationMappings = {
 				href: '/documents/[doc_type]',
 			},
 		],
-		main_apis: ['list_organization_documents', 'list_trade_documents'],
-		possible_apis: app_apis.app_documents,
-		module_type: 'dashboards',
 	},
 	saas_schedules: {
 		key: 'saas_schedules',
@@ -323,8 +270,6 @@ const navigationMappings = {
 				href: '/saas/schedule-map-dashboard',
 				as: '/saas/schedule-map-dashboard',
 				type: 'link',
-				main_apis: [],
-				possible_apis: app_apis.saas_map_tracking,
 			},
 		],
 	},
@@ -332,7 +277,6 @@ const navigationMappings = {
 	saas_tracking: {
 		key: 'saas_tracking',
 		title: 'Track & Trace',
-		icon: 'nav-container-tracking',
 		type: 'link',
 		isSubNavs: true,
 		showInNav: false,
@@ -340,12 +284,9 @@ const navigationMappings = {
 			{
 				key: 'saas_tracking-map_dashboard',
 				title: 'My Shipments',
-				icon: 'nav-my-schedules',
 				href: '/saas/map-dashboard',
 				as: '/saas/map-dashboard',
 				type: 'link',
-				main_apis: [],
-				possible_apis: app_apis.saas_map_tracking,
 			},
 		],
 		module_type: 'dashboards',
@@ -366,8 +307,6 @@ const navigationMappings = {
 				icon: 'nav-documents',
 				href: '/saas/cogo-subscriptions/manage-subscription',
 				as: '/saas/cogo-subscriptions/manage-subscription',
-				main_apis: [],
-				possible_apis: app_apis.saas_cogo_subscription,
 			},
 			{
 				key: 'saas_cogo_subscription-balance_history',
@@ -376,8 +315,6 @@ const navigationMappings = {
 				icon: 'nav-payments',
 				href: '/saas/cogo-subscriptions/balance-history',
 				as: '/saas/cogo-subscriptions/balance-history',
-				main_apis: [],
-				possible_apis: app_apis.saas_cogo_subscription,
 			},
 		],
 	},
@@ -388,21 +325,14 @@ const navigationMappings = {
 		as: '/saas/subscriptions',
 		type: 'link',
 		icon: <ManageSubscription />,
-		main_apis: [],
-		possible_apis: app_apis.saas_subscription,
-		module_type: 'dashboards',
 		showInNav: false,
 
 	},
 	app_get_started: {
 		key: 'app_get_started',
 		title: 'Get Started',
-		type: 'modal',
 		theme: 'green',
-		icon: 'nav-checklist',
-		main_apis: [],
-		possible_apis: app_apis.app_get_started,
-		module_type: 'dashboards',
+
 	},
 
 	app_kyc: {
@@ -411,12 +341,8 @@ const navigationMappings = {
 		href: '/kyc',
 		as: '/kyc',
 		type: 'link',
-		icon: 'nav-payments',
-		line: true,
-		main_apis: [],
 		showInNav: false,
-		possible_apis: app_apis.app_kyc,
-		module_type: 'dashboards',
+
 	},
 	app_settings: {
 		key: 'app_settings',
@@ -424,23 +350,15 @@ const navigationMappings = {
 		href: '/settings',
 		as: '/settings',
 		type: 'link',
-		icon: 'nav-payments',
-		line: true,
-		main_apis: [],
 		showInNav: false,
-		possible_apis: app_apis.app_settings,
-		module_type: 'dashboards',
+
 	},
 	app_pricing: {
 		key: 'app_pricing',
 		title: 'Pricing',
 		type: 'link',
-		icon: 'nav-payments',
-		line: true,
-		main_apis: [],
 		showInNav: false,
-		possible_apis: app_apis.app_pricing,
-		module_type: 'dashboards',
+
 	},
 
 };

@@ -32,7 +32,7 @@ const getValue = (
 			return val ? (
 				format(val, itemField.formatType || 'dd MMM yy | hh:mm a')
 			) : (
-				<div className="core-date-dash">-</div>
+				<div>-</div>
 			);
 		}
 		default:

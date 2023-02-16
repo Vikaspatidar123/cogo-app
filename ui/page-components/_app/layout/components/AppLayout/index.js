@@ -1,9 +1,10 @@
 import dynamic from 'next/dynamic';
 
-import Header from '../../../../../commons/components/Header';
-import { useSelector } from '../../../../../packages/store';
+import { useSelector } from '../../../../../../packages/store';
 
 import styles from './styles.module.css';
+
+import Header from '@/ui/commons/components/Header';
 
 const Footer = dynamic(() => import('./Footer'), {
 	ssr: false,

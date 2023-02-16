@@ -1,6 +1,6 @@
 import redirections from './redirections';
 
-import redirect from '@/commons/utils/redirect';
+import redirect from '@/ui/commons/utils/redirect';
 
 const findurl = async ({
 	item, isServer, res, org_id, branch_id,

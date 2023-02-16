@@ -1,4 +1,4 @@
-import { TextArea } from '@cogoport/components';
+import { Textarea } from '@cogoport/components';
 import React from 'react';
 import { Controller } from 'react-hook-form';
 
@@ -13,7 +13,7 @@ function TextAreaController({
 			defaultValue={value}
 			rules={rest.rules}
 			render={({ field: { onChange, onBlur, value: newValue } }) => (
-				<TextArea
+				<Textarea
 					style={{
 						padding : '8px',
 						resize  : 'none',

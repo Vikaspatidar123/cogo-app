@@ -1,0 +1,10 @@
+.container{
+    display: flex;
+	flex-direction: column;
+	width: 100%;
+	padding-top: 36px;
+
+	@media (max-width: 768px) {
+		padding-top: 0;
+	}
+}

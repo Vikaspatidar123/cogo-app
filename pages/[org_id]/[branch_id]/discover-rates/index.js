@@ -1,4 +1,4 @@
-import Rate from '@/ui/page-components/rate';
+import Rate from '@/ui/page-components/cpq-tools';
 
 function RateComponent() {
 	return <Rate />;

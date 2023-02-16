@@ -1,4 +1,3 @@
-// TODO add navigation
 import MobileMenu from '@/commons/components/MenuMobileView';
 
 function MobileMenuComponent() {

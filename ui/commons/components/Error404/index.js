@@ -2,16 +2,11 @@ import { Button } from '@cogoport/components';
 
 import styles from './styles.module.css';
 
-import { useSelector } from '@/packages/store';
+import { useRouter } from '@/packages/next';
 
 function Error404() {
-	const {
-		general,
-	} = useSelector((state) => state);
-	const { asPrefix = {} } = general || {};
-	const redirect = () => {
-		window.location.href = asPrefix;
-	};
+	const { push } = useRouter();
+
 	return (
 		<div className={styles.component}>
 			{/* {!isMobile && <IcError height="100%" width="100%" />} */}
@@ -19,7 +14,7 @@ function Error404() {
 				<div className={styles.title}>404</div>
 				<div className={styles.description}>Looks like you are off course</div>
 				<div className={styles.button_container}>
-					<Button onClick={() => redirect()}>Get back to base</Button>
+					<Button onClick={() => push('/dashboard')}>Get back to base</Button>
 				</div>
 			</div>
 		</div>

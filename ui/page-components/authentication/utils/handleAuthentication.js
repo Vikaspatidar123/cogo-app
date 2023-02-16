@@ -5,12 +5,12 @@ import getUserData from '../hooks/getUserData';
 
 import findurl from './findurl';
 
-import redirect from '@/commons/utils/redirect';
-import projectNavigationMappings from '@/packages/navigation-configs/config/navigation-mapping';
 import PUBLIC_PATHS from '@/packages/navigation-configs/config/public-paths';
+import projectNavigationMappings from '@/packages/navigation-configs/navigation-mapping';
 import getAuthParam from '@/packages/request/helpers/get-auth-params';
 import { getCookie } from '@/packages/request/helpers/getCookieFromCtx';
 import { setProfileStoreState } from '@/packages/store/store/profile';
+import redirect from '@/ui/commons/utils/redirect';
 
 const getOrganization = async (req, query) => {
 	let data = {};
@@ -125,8 +125,8 @@ const handleAuthentication = async ({
 		return {
 			asPrefix,
 			query: {
-				org_id: orgId,
-				branch_id: orgBranchId,
+				org_id    : orgId,
+				branch_id : orgBranchId,
 			},
 		};
 	}
@@ -149,8 +149,8 @@ const handleAuthentication = async ({
 			return {
 				asPrefix,
 				query: {
-					org_id: orgId,
-					branch_id: orgBranchId,
+					org_id    : orgId,
+					branch_id : orgBranchId,
 				},
 			};
 		}
@@ -160,8 +160,8 @@ const handleAuthentication = async ({
 			query:
 				asPathArr.length >= 5
 					? {
-						org_id: asPathArr[2],
-						branch_id: asPathArr[3],
+						org_id    : asPathArr[2],
+						branch_id : asPathArr[3],
 					}
 					: {},
 		};
@@ -178,11 +178,11 @@ const handleAuthentication = async ({
 			item: user_data, asPrefix, isServer, res, org_id: org?.id, orgBranchId,
 		});
 		return {
-			asPrefix: newPath,
-			query: {
-				org_id: org?.id,
-				account_type: org?.account_type,
-				branch_id: orgBranchId,
+			asPrefix : newPath,
+			query    : {
+				org_id       : org?.id,
+				account_type : org?.account_type,
+				branch_id    : orgBranchId,
 			},
 		};
 	}
@@ -200,8 +200,8 @@ const handleAuthentication = async ({
 			)?.branches;
 			current_organization = {
 				...getOrgResponse,
-				branches: actualBranches || getOrgResponse.branches,
-				allBranches: getOrgResponse.branches,
+				branches    : actualBranches || getOrgResponse.branches,
+				allBranches : getOrgResponse.branches,
 			};
 		}
 	}
@@ -215,10 +215,10 @@ const handleAuthentication = async ({
 			// pathPrefix,
 			asPrefix,
 			defaultRoute,
-			organization_set: !isEmpty(current_organization),
-			organization: current_organization,
-			branch: current_branch,
-			authorizationparameters: getAuthParam(
+			organization_set        : !isEmpty(current_organization),
+			organization            : current_organization,
+			branch                  : current_branch,
+			authorizationparameters : getAuthParam(
 				user_data?.permissions_navigations,
 				routeConfig,
 				pathname,
@@ -226,11 +226,6 @@ const handleAuthentication = async ({
 			),
 		}),
 	);
-
-	/* Authorization Logic End */
-	// if (!asPath.startsWith(asPrefix)) {
-	// 	redirect({ isServer, res, path: defaultRoute });
-	// }
 
 	return { asPrefix };
 };

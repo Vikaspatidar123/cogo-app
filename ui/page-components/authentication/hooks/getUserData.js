@@ -1,10 +1,9 @@
 import { isEmpty } from '@cogoport/utils';
 
-import routeConfig from '../../_app/routes/index';
-
 import getUserSession from './getUserSession';
 
-import projectNavigationMappings from '@/packages/navigation-configs/config/navigation-mapping';
+import { routeConfig } from '@/packages/navigation-configs';
+import projectNavigationMappings from '@/packages/navigation-configs/navigation-mapping';
 import getAuthParam from '@/packages/request/helpers/get-auth-params';
 import { setProfileStoreState as storeProfile } from '@/packages/store/store/profile';
 

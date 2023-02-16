@@ -1,0 +1,253 @@
+/* import Modal from '@cogoport/front/components/admin/Modal';
+import styled from '@cogoport/front/styled';
+
+export const ValidateModal = styled(Modal)`
+	.ui-modal-dialog {
+		padding: 0;
+		display: flex;
+		flex-direction: column;
+		height: 330px;
+		justify-content: space-between;
+
+		@media screen and (max-width: 767px) {
+			border-radius: 20px;
+			height: 450px;
+		}
+	}
+`;
+export const Container = styled.div`
+	padding: 16px;
+`;
+export const Title = styled.div`
+	display: flex;
+	align-items: center;
+	margin-bottom: 12px;
+	.title {
+		font-weight: 500;
+		font-size: 17px;
+		color: #2c3e50;
+		padding-left: 4px;
+	}
+`;
+
+export const SubHeading = styled.div``;
+
+export const Hr = styled.div`
+	width: 78px;
+	height: 2px;
+	background: #f9ae64;
+	border-radius: 30px;
+	margin-top: 2%;
+`;
+
+export const Txt = styled.div`
+	font-size: 12px;
+
+	.text {
+		line-height: 14px;
+		color: #000;
+		padding-right: 5px;
+	}
+	&.successMsg {
+		margin: 30px;
+		margin-bottom: 10px;
+		padding: 6px 12px;
+		font-size: 15px;
+		color: #589c52;
+		background: #e8ffe6;
+		display: block;
+		text-align: center;
+	}
+`;
+
+export const Row = styled.div`
+	display: flex;
+	align-items: center;
+	padding: 12px 32px;
+
+	&.subheading {
+		padding-bottom: 4px;
+	}
+	.hsInput {
+		border-radius: 5px;
+		width: 100%;
+		background: #f7f7f7;
+		cursor: not-allowed;
+
+		input {
+			cursor: not-allowed;
+		}
+	}
+
+	.inputContainer {
+		width: 65%;
+	}
+`;
+
+export const Footer = styled.div`
+	display: flex;
+	justify-content: flex-end;
+	padding: 14px 16px;
+	box-shadow: 0px 0px 8px 0px #2c3e5033;
+`;
+
+export const Suggestion = styled.div`
+	margin-top: 6px;
+	overflow-y: scroll;
+	padding-bottom: 0;
+	max-height: 250px;
+	width: 250px;
+	::-webkit-scrollbar {
+		display: none;
+	}
+	.row {
+		border-radius: 8px;
+		padding: 8px 12px;
+		margin-bottom: 12px;
+		border: 0.5px solid #476fd3;
+		display: flex;
+		align-items: center;
+		gap: 4px;
+		cursor: pointer;
+	}
+`;
+
+export const BtnContainer = styled.div`
+	margin-left: 20px;
+	.valid {
+		display: flex;
+		align-items: center;
+	}
+	.validate {
+		margin-left: 5px;
+		font-weight: 500;
+	}
+`; */
+
+
+.ui_modal_dialog {
+	padding: 0 !important;
+	display: flex !important;
+	flex-direction: column !important;
+	height: 330px !important;
+	justify-content: space-between !important;
+
+	@media screen and (max-width: 767px) {
+		border-radius: 20px;
+		height: 450px;
+	}
+}
+
+.container{
+	padding: 16px;
+}
+
+.row_div{
+	display: flex;
+	align-items: center;
+	padding: 12px 32px;
+}
+
+.subheading {
+	padding-bottom: 4px;
+}
+.hs_input {
+	border-radius: 5px;
+	width: 100%;
+	background: #f7f7f7;
+	cursor: not-allowed;
+
+	input {
+		cursor: not-allowed;
+	}
+}
+
+.input_container {
+	width: 65%;
+}
+
+
+.btn_container{
+	margin-left: 20px;
+}
+
+.valid {
+	display: flex;
+	align-items: center;
+}
+.validate {
+	margin-left: 5px;
+	font-weight: 500;
+}
+
+
+.footer{
+	display: flex;
+	justify-content: flex-end;
+	padding: 14px 16px;
+	box-shadow: 0px 0px 8px 0px #2c3e5033;
+}
+
+
+.suggestion{
+	margin-top: 6px;
+	overflow-y: scroll;
+	padding-bottom: 0;
+	max-height: 250px;
+	width: 250px;
+	::-webkit-scrollbar {
+		display: none;
+	}
+}
+
+.row {
+	border-radius: 8px;
+	padding: 8px 12px;
+	margin-bottom: 12px;
+	border: 0.5px solid #476fd3;
+	display: flex;
+	align-items: center;
+	gap: 4px;
+	cursor: pointer;
+}
+
+.title_div{
+	display: flex;
+	align-items: center;
+	margin-bottom: 12px;
+}
+
+.title {
+	font-weight: 500;
+	font-size: 17px;
+	color: #2c3e50;
+	padding-left: 4px;
+}
+
+.txt{
+	font-size: 12px;
+}
+
+.text {
+	line-height: 14px;
+	color: #000;
+	padding-right: 5px;
+}
+.success_msg {
+	margin: 30px;
+	margin-bottom: 10px;
+	padding: 6px 12px;
+	font-size: 15px;
+	color: #589c52;
+	background: #e8ffe6;
+	display: block;
+	text-align: center;
+}
+
+.hr{
+	width: 78px;
+	height: 2px;
+	background: #f9ae64;
+	border-radius: 30px;
+	margin-top: 2%;
+}

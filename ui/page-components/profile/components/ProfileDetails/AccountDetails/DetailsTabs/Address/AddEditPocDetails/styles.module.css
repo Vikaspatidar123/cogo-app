@@ -1,0 +1,22 @@
+
+.container{
+	padding: 24px;
+
+	
+}
+.form-item-label {
+	margin: 24px 0 8px 0;
+	color: #828282;
+	font-weight: 700;
+	font-size: 12px;
+}
+.heading{
+	font-size: 18px;
+	font-weight: 500;
+}
+
+.button_container {
+	display: flex;
+	justify-content: flex-end;
+	margin-top: 16px;
+}

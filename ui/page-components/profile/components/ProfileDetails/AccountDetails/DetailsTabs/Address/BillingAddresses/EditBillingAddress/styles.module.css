@@ -1,0 +1,36 @@
+
+
+.layout_container {
+	padding: 48px;
+}
+.form-item-label {
+		margin: 32px 0 8px 0;
+		color: #828282;
+		font-weight: 700;
+		font-size: 12px;
+		line-height: 16px;
+	}
+
+.business-checkbox-group-container {
+		flex-direction: row;
+
+		
+	}
+
+
+.business-checkbox-label {
+		font-size: 12px;
+		margin-right: 36px;
+	}
+.heading{
+	font-weight: 500;
+	font-size: 16px;
+	line-height: 19px;
+	color: #000000;
+}
+
+.button_container{
+	display: flex;
+	justify-content: flex-end;
+	margin-top: 48px;
+}

@@ -7,6 +7,7 @@ import CardHeader from './CardHeader';
 import EmptyState from './EmptyState';
 import Item from './Item';
 import { Container, PageContainer } from './styles';
+import styles from './styles.module.css';
 
 function List({
 	data,
@@ -37,7 +38,7 @@ function List({
 	const listNew = loading ? [1, 2, 3, 4, 5] : list;
 
 	return (
-		<Container>
+		<div className={styles.container}>
 			<div className="list">
 				{listNew?.length > 0 && !isMobile && (
 					<CardHeader
@@ -65,7 +66,7 @@ function List({
 				))}
 			</div>
 			{showPagination && listNew?.length > 0 && (
-				<PageContainer>
+				<div className={styles.page_container}>
 					<div className="pagination">
 						<Pagination
 							className="xl"
@@ -79,10 +80,10 @@ function List({
 							}}
 						/>
 					</div>
-				</PageContainer>
+				</div>
 			)}
 			{!loading && !listNew?.length && <EmptyState heading={heading} />}
-		</Container>
+		</div>
 	);
 }
 

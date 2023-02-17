@@ -1,4 +1,6 @@
-import { Tabs, TabPanel, Tooltip } from '@cogoport/components';
+import {
+	Tabs, TabPanel, Tooltip, Button,
+} from '@cogoport/components';
 // import TabPanel from '@cogoport/front/components/admin/Tabs/TabPanel';
 // import Tooltip from '@cogoport/front/components/admin/ToolTip';
 import {
@@ -6,12 +8,14 @@ import {
 	IcMPaste,
 	IcMArrowRight,
 	IcMArrowBack,
+	IcMPlus,
 	// IcMDownload,
 } from '@cogoport/icons-react';
 import { useEffect, useState, useRef } from 'react';
 
 // import { useSaasState } from '../../../common/context';
 
+import Loading from '../assets/loading.svg';
 import HsCodeIconMaping from '../common/hsCodeIcons';
 import EmptyState from '../common/List/EmptyState';
 import { useWindowDimensions } from '../common/MobileView';
@@ -23,36 +27,37 @@ import AllProducts from './AllProducts';
 import Dashboard from './Dashboard';
 import UploadDocument from './Dashboard/UploadDocument';
 import HsCodeModal from './HsCodeModal';
-import {
-	Container,
-	WidthDiv,
-	Heading,
-	TitleSection,
-	StyledButton,
-	SubTitle,
-	ScrollContent,
-	StyledLoading,
-	StyledDiv,
-	StyledTabHeading,
-	ColoredIcon,
-	Label,
-	TabDiv,
-	Section,
-	TotalRecords,
-	TabHeader,
-	BorderBottom,
-	TitleStyled,
-	ProductAnalyticsTabCtn,
-	IcnContainer,
-	ScrollContainer,
-	LineWrapper,
-	Line,
-	Back,
-	TitleDiv,
-	// IconButton,
-	StyledFilterSection,
-	PlusIcon,
-} from './style';
+// import {
+// 	Container,
+// 	WidthDiv,
+// 	Heading,
+// 	TitleSection,
+// 	StyledButton,
+// 	SubTitle,
+// 	ScrollContent,
+// 	StyledLoading,
+// 	StyledDiv,
+// 	StyledTabHeading,
+// 	ColoredIcon,
+// 	Label,
+// 	TabDiv,
+// 	Section,
+// 	TotalRecords,
+// 	TabHeader,
+// 	BorderBottom,
+// 	TitleStyled,
+// 	ProductAnalyticsTabCtn,
+// 	IcnContainer,
+// 	ScrollContainer,
+// 	LineWrapper,
+// 	Line,
+// 	Back,
+// 	TitleDiv,
+// 	// IconButton,
+// 	StyledFilterSection,
+// 	PlusIcon,
+// } from './style';
+import styles from './styles.module.css';
 import SubCategory from './SubCategories';
 
 import { useRouter } from '@/packages/next';
@@ -121,9 +126,9 @@ function ProductInventory() {
 
 	return (
 		<>
-			<Container direction={isMobile ? 'column' : 'row'}>
+			<div className={styles.container}>
 				{isMobile && (
-					<ProductAnalyticsTabCtn>
+					<div className={styles.product_analytics_tab_ctn}>
 						<Tabs
 							activeTab={sectionTab}
 							onChange={setSectionTab}
@@ -131,22 +136,22 @@ function ProductInventory() {
 						>
 							<TabPanel name="products" title="Products" className="horizontal one" />
 							<TabPanel name="analytics" title="Analytics" className="horizontal one">
-								<Section width={isMobile ? '100%' : '30%'}>
+								<div style={isMobile ? { width: '100%' } : { width: '30%' }}>
 									<Dashboard apiData={apiData} activeTab={activeTab} />
-								</Section>
+								</div>
 							</TabPanel>
 						</Tabs>
-					</ProductAnalyticsTabCtn>
+					</div>
 				)}
 				{(sectionTab === 'products' || !isMobile) && (
-					<WidthDiv width={isMobile ? '100%' : '70%'}>
-						<Heading>
-							<TitleSection>
+					<div style={isMobile ? { width: '100%' } : { width: '70%' }}>
+						<div className={styles.heading}>
+							<div className={styles.title_section}>
 								<h1 className="title">Products Catalogue</h1>
-								<LineWrapper>
-									<Line />
-								</LineWrapper>
-							</TitleSection>
+								<div className={styles.line_wrapper}>
+									<div className={styles.line} />
+								</div>
+							</div>
 							<div className="flex">
 								<Tooltip
 									theme="light-border"
@@ -172,29 +177,29 @@ function ProductInventory() {
 										</IconButton>
 									</Tooltip> */}
 
-								<StyledButton onClick={() => setUploadModal(true)}>
+								<Button className={styles.styled_button} onClick={() => setUploadModal(true)}>
 									Import product
-								</StyledButton>
+								</Button>
 
 								{!isMobile && (
-									<StyledButton disabled={hsLoading} onClick={() => setHSCode(true)}>
+									<Button className={styles.styled_button} disabled={hsLoading} onClick={() => setHSCode(true)}>
 										+ Add New
-									</StyledButton>
+									</Button>
 								)}
 							</div>
-						</Heading>
-						<ScrollContent>
+						</div>
+						<div className={styles.scroll_content}>
 							{(!showProductView || !isMobile) && (
 								<>
-									<SubTitle>Select Category</SubTitle>
+									<div className={styles.sub_title}>Select Category</div>
 									{hsLoading ? (
-										<StyledLoading />
+										<Loading className={styles.styled_loading} />
 									) : (
 										<div>
 											{hsList.length > 0 && (
 												<div className="scroll">
-													<ScrollContainer ref={scrollRef}>
-														<StyledDiv className="tabs-css">
+													<div className={styles.scroll_container} ref={scrollRef}>
+														<div className={styles.styled_div}>
 															<Tabs
 																activeTab={activeTab}
 																onChange={setActiveTab}
@@ -203,15 +208,15 @@ function ProductInventory() {
 																<TabPanel
 																	name="allProducts"
 																	title={(
-																		<TitleDiv
+																		<div
 																			onClick={() => {
 																				setShowProductView(true);
 																				refetchProduct({});
 																			}}
 																		>
 																			<IcMGrid fill="#d94646" />
-																			<Label>All Products</Label>
-																		</TitleDiv>
+																			<div className={styles.label}>All Products</div>
+																		</div>
 																	)}
 																/>
 																{(hsList || []).map((item) => {
@@ -225,46 +230,54 @@ function ProductInventory() {
 																			name={categoryDisplayName}
 																			key={`${item.categoryDisplayName}_${item.categoryDisplayName}`}
 																			title={(
-																				<StyledTabHeading
+																				<div
+																					className={styles.styled_tab_heading}
 																					role="presentation"
 																					onClick={() => {
-																						setSubCategory(item.subCategory);
+																						setSubCategory(
+																							item.subCategory,
+																						);
 																						setShowProductView(true);
 																						setActiveHeaderTab();
 																					}}
 																				>
-																					<ColoredIcon>
+																					<div className={styles.colored_icon}>
 																						{Mapping[categoryCode]}
-																					</ColoredIcon>
+																					</div>
 																					{categoryDisplayName}
-																				</StyledTabHeading>
+																				</div>
 																			)}
 																		/>
 																	);
 																})}
 															</Tabs>
 															{isMobile && (
-																<StyledFilterSection className="pulse">
+																<div className={styles.styled_filter_section}>
 																	<div
 																		className="btn"
 																		role="presentation"
 																		onClick={() => setHSCode(true)}
 																	>
-																		<PlusIcon fill="#ffffff" height={50} width={50} />
+																		<IcMPlus
+																			className={styles.plus_icon}
+																			fill="#ffffff"
+																			height={50}
+																			width={50}
+																		/>
 																	</div>
-																</StyledFilterSection>
+																</div>
 															)}
-														</StyledDiv>
-													</ScrollContainer>
+														</div>
+													</div>
 													{!isMobile && hsList.length > 4 && (
-														<IcnContainer onClick={scrollHandler}>
+														<div className={styles.icn_container} onClick={scrollHandler}>
 															<IcMArrowRight
 																className="animatedArrow"
 																width={35}
 																height={35}
 															/>
 															<IcMArrowRight width={35} height={35} />
-														</IcnContainer>
+														</div>
 													)}
 												</div>
 											)}
@@ -274,7 +287,7 @@ function ProductInventory() {
 							)}
 
 							{isMobile && showProductView && (
-								<Back>
+								<div className={styles.back}>
 									<div className="archived" role="presentation">
 										<IcMArrowBack
 											className="icon"
@@ -286,18 +299,18 @@ function ProductInventory() {
 										/>
 										<div className="back">Go Back</div>
 									</div>
-								</Back>
+								</div>
 							)}
 
-							<TabDiv>
+							<div className={styles.tab_div}>
 								{activeTab === 'allProducts' && showProductView && (
 									<>
-										<TabHeader>
+										<div className={styles.tab_header}>
 											<IcMGrid fill="#d94646" />
-											<TitleStyled>All Products</TitleStyled>
-											<TotalRecords>{!loading ? checkLength : '...'}</TotalRecords>
-										</TabHeader>
-										<BorderBottom />
+											<div className={styles.title_styled}>All Products</div>
+											<div className={styles.total_records}>{!loading ? checkLength : '...'}</div>
+										</div>
+										<div className={styles.border_bottom} />
 										<div>
 											{checkLength !== 0 ? (
 												<AllProducts
@@ -346,16 +359,16 @@ function ProductInventory() {
 										showProductView={showProductView}
 									/>
 								)}
-							</TabDiv>
-						</ScrollContent>
-					</WidthDiv>
+							</div>
+						</div>
+					</div>
 				)}
 				{!isMobile && (
-					<Section>
+					<div style={{ width: '30%' }}>
 						<Dashboard apiData={apiData} activeTab={activeTab} isMobile={isMobile} />
-					</Section>
+					</div>
 				)}
-			</Container>
+			</div>
 
 			{hsCode && (
 				<HsCodeModal

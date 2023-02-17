@@ -2,9 +2,11 @@ import { Modal } from '@cogoport/components';
 import { IcAFormsAndCertificates } from '@cogoport/icons-react';
 import { useState } from 'react';
 
-import { StyledDiv, ProductIcn } from '../../components/HsCodeModal/style';
+// import { StyledDiv, ProductIcn } from '../../components/HsCodeModal/style';
 import useGetProductClassificationId from '../../hooks/useGetProductClassificationId';
 import Pricing from '../Price';
+
+import styles from './styles.module.css';
 
 function AddProductModal({
 	showProduct,
@@ -38,10 +40,10 @@ function AddProductModal({
 			onClose={() => setShowProduct(false)}
 			width={!isMobile ? 600 : 400}
 		>
-			<StyledDiv>
-				<ProductIcn>
+			<div className={styles.styled_div}>
+				<div className={styles.product_icon}>
 					<IcAFormsAndCertificates width={25} height={25} />
-				</ProductIcn>
+				</div>
 				<div>
 					{isEdit ? (
 						<div className="title">Edit Product</div>
@@ -52,7 +54,7 @@ function AddProductModal({
 						You are just a step away from adding your product!
 					</div>
 				</div>
-			</StyledDiv>
+			</div>
 
 			<Pricing
 				addProductLoading={addProductLoading}

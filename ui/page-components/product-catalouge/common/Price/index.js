@@ -1,5 +1,4 @@
 import { Button, toast } from '@cogoport/components';
-
 // import toast from '@cogoport/front/components/admin/Toast';
 import { IcMArrowRight } from '@cogoport/icons-react';
 import { useEffect, useState } from 'react';
@@ -7,16 +6,7 @@ import { useEffect, useState } from 'react';
 import getControls from '../../configurations/pricingcontrols';
 import useEdit from '../../hooks/useEdit';
 
-import {
-	FormContainer,
-	FormRow,
-	FormCol,
-	FormLabel,
-	BtnContainer,
-	SummaryTab,
-	ErrTxt,
-	Header,
-} from './style';
+import styles from './styles.module.css';
 
 import useForm from '@/packages/forms';
 import getField from '@/packages/forms/Controlled/index';
@@ -116,8 +106,8 @@ function Pricing({
 	return (
 		<div>
 			<form>
-				<Header>
-					<SummaryTab>
+				<div className={styles.header}>
+					<div className={styles.summary_tab}>
 						<div className="category">
 							<div className="heading">Category</div>
 							{!isEdit ? (
@@ -137,41 +127,41 @@ function Pricing({
 								<div className="subheading">{subCategoryName}</div>
 							)}
 						</div>
-					</SummaryTab>
+					</div>
 					<div className={`${profitpercentage > 0 ? 'green' : 'red'} profit`}>
 						{renderProfit()}
 					</div>
-				</Header>
+				</div>
 
-				<FormContainer>
-					<FormRow>
-						<FormCol className="hscode">
-							<FormLabel>{fields.hsCode.label}</FormLabel>
+				<div className={styles.form_container}>
+					<div className={styles.form_row}>
+						<div className={`${styles.form_col} ${styles.hscode}`}>
+							<div className={styles.form_label}>{fields.hsCode.label}</div>
 							<NumberController {...fields.hsCode} />
-						</FormCol>
-						<FormCol>
-							<div className="labelRow">
-								<FormLabel>{fields.name.label}</FormLabel>
+						</div>
+						<div className={styles.form_col}>
+							<div className={`${styles.form_col}${styles.labelRow}`}>
+								<div className={styles.form_label}>{fields.name.label}</div>
 								{errors.name && (
-									<ErrTxt>
+									<div className={styles.error_text}>
 										{errors.name.message}
 										*
-									</ErrTxt>
+									</div>
 								)}
 							</div>
 
 							<TextController {...fields.name} className={`${errors?.name && 'error'}`} />
-						</FormCol>
-					</FormRow>
-					<FormRow className="mid">
-						<FormCol>
+						</div>
+					</div>
+					<div className={`${styles.form_row}${styles.mid}`}>
+						<div className={styles.form_col}>
 							<div className="labelRow">
-								<FormLabel>{fields.costPrice.label}</FormLabel>
+								<div className={styles.form_label}>{fields.costPrice.label}</div>
 								{errors.costPrice && (
-									<ErrTxt>
+									<div className={styles.error_text}>
 										{errors.costPrice.message}
 										*
-									</ErrTxt>
+									</div>
 								)}
 							</div>
 
@@ -179,15 +169,15 @@ function Pricing({
 								{...fields.costPrice}
 								className={`${errors.costPrice && 'error'}`}
 							/>
-						</FormCol>
-						<FormCol>
+						</div>
+						<div className={styles.form_col}>
 							<div className="labelRow">
-								<FormLabel>{fields.sellingPrice.label}</FormLabel>
+								<div className={styles.form_label}>{fields.sellingPrice.label}</div>
 								{errors.sellingPrice && (
-									<ErrTxt>
+									<div className={styles.error_text}>
 										{errors.sellingPrice.message}
 										*
-									</ErrTxt>
+									</div>
 								)}
 							</div>
 
@@ -195,20 +185,20 @@ function Pricing({
 								{...fields.sellingPrice}
 								className={`${errors.sellingPrice && 'error'}`}
 							/>
-						</FormCol>
-					</FormRow>
-					<FormRow>
-						<FormCol className="desc">
-							<FormLabel>{fields?.description.label}</FormLabel>
+						</div>
+					</div>
+					<div className={styles.form_row}>
+						<div className="desc">
+							<div className={styles.form_label}>{fields?.description.label}</div>
 							<TextAreaController {...fields.description} />
-						</FormCol>
-						<FormCol>
-							<FormLabel>Product Image</FormLabel>
+						</div>
+						<div className={styles.form_col}>
+							<div className={styles.form_label}>Product Image</div>
 							<FileUploaderController {...fields.productImg} />
-						</FormCol>
-					</FormRow>
-				</FormContainer>
-				<BtnContainer>
+						</div>
+					</div>
+				</div>
+				<div className={styles.btn_cotainer}>
 					<Button
 						className={`submitBtn ${(addProductLoading || editLoading) && 'disableBtn'}`}
 						disabled={addProductLoading || editLoading}
@@ -216,7 +206,7 @@ function Pricing({
 					>
 						{!isEdit ? 'Submit' : 'Save'}
 					</Button>
-				</BtnContainer>
+				</div>
 			</form>
 		</div>
 	);

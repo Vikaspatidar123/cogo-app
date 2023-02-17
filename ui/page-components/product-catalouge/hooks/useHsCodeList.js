@@ -1,4 +1,4 @@
-import { toast } from '@cogoport/components';
+import { Toast } from '@cogoport/components';
 import { useState, useEffect } from 'react';
 
 // import { useSaasState } from '../../../common/context';
@@ -25,7 +25,7 @@ const useHSCodelist = () => {
 			});
 			setHsList(resp.data);
 		} catch (error) {
-			toast.error(error?.message);
+			Toast.error(error?.message);
 		}
 	};
 	useEffect(() => {

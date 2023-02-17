@@ -1,37 +1,42 @@
-import Archive from '../../../assets/archive.svg';
-import {
-	IconDiv,
-	Heading,
-	Text,
-	ButtonDiv,
-	SecondaryButton,
-	PrimaryButton,
-	ModalDiv,
-	Container,
-} from './style';
+import { Button, Modal } from '@cogoport/components';
 
-const ArchiveModal = ({ archive, setArchive, refetchArchive }) => {
+import Archive from '../../../assets/archive.svg';
+
+// import {
+// 	IconDiv,
+// 	Heading,
+// 	Text,
+// 	ButtonDiv,
+// 	SecondaryButton,
+// 	PrimaryButton,
+// 	ModalDiv,
+// 	Container,
+// } from './style';
+import styles from './styles.module.css';
+
+function ArchiveModal({ archive, setArchive, refetchArchive }) {
 	return (
-		<ModalDiv show={archive} onClose={() => setArchive(false)}>
-			<Container>
-				<IconDiv>
+		<Modal className={styles.modal_div} show={archive} onClose={() => setArchive(false)}>
+			<div className={styles.container}>
+				<div className={styles.icon_div}>
 					<Archive height={50} width={40} marginBottom={8} />
-				</IconDiv>
-				<Heading>Are you sure you want to archive this product?</Heading>
-				<Text>You can retrive your archived product anytime from the archived tab</Text>
-			</Container>
-			<ButtonDiv>
-				<SecondaryButton onClick={() => setArchive(false)}>No</SecondaryButton>
-				<PrimaryButton
+				</div>
+				<div className={styles.heading}>Are you sure you want to archive this product?</div>
+				<div className={styles.text}>You can retrive your archived product anytime from the archived tab</div>
+			</div>
+			<div className={styles.button_div}>
+				<Button className={styles.secondary_button} onClick={() => setArchive(false)}>No</Button>
+				<Button
+					className={styles.primary_button}
 					onClick={() => {
 						refetchArchive();
 					}}
 				>
 					Yes
-				</PrimaryButton>
-			</ButtonDiv>
-		</ModalDiv>
+				</Button>
+			</div>
+		</Modal>
 	);
-};
+}
 
 export default ArchiveModal;

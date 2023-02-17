@@ -53,8 +53,8 @@ const navigationMappings = {
 				title       : 'Product Catalog',
 				type        : 'link',
 				icon        : <IcMProductCodeMapping width={40} height={40} />,
-				href        : '/saas/product-inventory',
-				as          : '/saas/product-inventory',
+				href        : '/v2/saas/product-inventory',
+				as          : '/v2/saas/product-inventory',
 				module_type : 'dashboards',
 			},
 			{

@@ -1,10 +1,10 @@
-import { useRouter } from '@cogo/next';
-import Popover from '@cogoport/front/components/admin/Popover';
-import Tooltip from '@cogoport/front/components/admin/ToolTip';
+import { Popover, Tooltip } from '@cogoport/components';
+// import Tooltip from '@cogoport/front/components/admin/ToolTip';
 import {
 	IcMPaste,
 	IcMArrowBack,
 	//  IcMDownload
+	IcMOverflowDot,
 } from '@cogoport/icons-react';
 import { useState } from 'react';
 
@@ -13,14 +13,17 @@ import listConfig from '../../configurations/list';
 import useProductCatalogue from '../../hooks/useProductCatalogue';
 import useUnArchive from '../../hooks/useUnArchive';
 
-import {
-	Back,
-	Title,
-	Info,
-	Icon,
-	// IconButton
-} from './style';
+// import {
+// 	Back,
+// 	Title,
+// 	Info,
+// 	Icon,
+// 	// IconButton
+// } from './style';
+import styles from './styles.module.css';
 import UnArchiveModal from './UnArchivedModal';
+
+import { useRouter } from '@/packages/next';
 // import useDownloadExcel from '../../hooks/useDownloadExcel';
 
 function ArchiveList() {
@@ -45,7 +48,8 @@ function ArchiveList() {
 	};
 
 	const content = (id) => (
-		<Info
+		<div
+			className={styles.info}
 			role="presentation"
 			onClick={() => {
 				setProId(id);
@@ -63,7 +67,7 @@ function ArchiveList() {
 				<IcMPaste width={10} height={10} />
 				<p>UnArchive</p>
 			</div>
-		</Info>
+		</div>
 	);
 	const getStatus = (id) => (
 		<Popover
@@ -75,7 +79,7 @@ function ArchiveList() {
 			visible={visible?.[id]}
 		>
 			<div>
-				<Icon />
+				<IcMOverflowDot />
 			</div>
 		</Popover>
 	);
@@ -86,7 +90,7 @@ function ArchiveList() {
 
 	return (
 		<>
-			<Back>
+			<div className={styles.back}>
 				<Tooltip theme="light-border" content="Go Back" placement="top">
 					<div className="archived" role="presentation">
 						<IcMArrowBack
@@ -98,7 +102,7 @@ function ArchiveList() {
 					</div>
 				</Tooltip>
 
-				<Title>Archive</Title>
+				<div className={styles.title}>Archive</div>
 
 				{/* <Tooltip theme="light-border" content="Download Archive List" placement="bottom">
 					<IconButton>
@@ -109,7 +113,7 @@ function ArchiveList() {
 						/>
 					</IconButton>
 				</Tooltip> */}
-			</Back>
+			</div>
 
 			<List
 				config={listConfig}

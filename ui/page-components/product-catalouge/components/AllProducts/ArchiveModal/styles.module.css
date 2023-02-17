@@ -1,0 +1,58 @@
+.icon_div{
+    display: flex;
+	justify-content: center;
+}
+
+.heading{
+    font-weight: 700;
+	font-size: 18px;
+	color: #221f20;
+	margin-bottom: 8px;
+	display: flex;
+	text-align: center;
+}
+
+.text{
+    font-size: 13px;
+	color: #828282;
+	display: flex;
+	justify-content: center;
+	margin-bottom: 33px;
+}
+
+.button_div{
+    display: flex;
+	border-radius: 8px 8px 0px 0px;
+	margin: 0px 10px 10px;
+	justify-content: center;
+}
+
+.secondary_button{
+    background: #ffffff;
+	border: 1px solid #e0e6e9;
+	color: #221f20;
+	height: 30px;
+	width: 120px;
+	margin-right: 20px;
+}
+
+.primary_button{
+    height: 30px;
+	width: 120px;
+}
+
+.modal_div{
+    :global {
+        .ui-modal-dialog {
+            padding: 16px 0px;
+        }
+    }
+}
+
+.container{
+    padding: 16px;
+
+	@media (max-width: 760px) {
+		text-align: center;
+	}
+}

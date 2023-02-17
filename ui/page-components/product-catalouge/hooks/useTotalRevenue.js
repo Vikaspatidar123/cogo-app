@@ -1,4 +1,4 @@
-import { toast } from '@cogoport/components';
+import { Toast } from '@cogoport/components';
 import { useState, useEffect } from 'react';
 
 // import { useSaasState } from '../../../common/context';
@@ -8,12 +8,13 @@ import { useSelector } from '@/packages/store';
 
 const useTotalRevenue = () => {
 	const [totalRevenue, setTotalRevenue] = useState();
-	const { general, profile } = useSelector((state) => state);
+	const { profile } = useSelector((state) => state);
 	const { organization } = profile || {};
-	const { scope } = general;
-	const { trigger, loading } = useRequest('get', false, scope, {
-		authkey: 'get_saas_product_total_revenue',
-	})('saas/product/total-revenue');
+	const { trigger, loading } = useRequest({
+		method  : 'get',
+		url     : 'saas/product/total-revenue',
+		authKey : 'get_saas_product_total_revenue',
+	}, { manual: true });
 
 	const fetchTotalRevenue = async () => {
 		try {
@@ -24,7 +25,7 @@ const useTotalRevenue = () => {
 			});
 			setTotalRevenue(resp.data);
 		} catch (error) {
-			toast.error(error.message);
+			Toast.error(error.message);
 		}
 	};
 	useEffect(() => {

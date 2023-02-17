@@ -1,0 +1,12 @@
+.styled_div{
+    display: flex;
+	align-items: flex-start;
+	margin-bottom: 15px;
+}
+
+.product_icon{
+    margin-right: 8px;
+	svg {
+		vertical-align: middle;
+	}
+}

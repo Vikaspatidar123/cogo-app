@@ -1,9 +1,4 @@
-import styled from '@cogoport/front/styled';
-import Grid from '@cogoport/front/components/Grid';
-
-const { Row: GridRow } = Grid;
-
-export const TitleBlack = styled.div`
+.title_back {
 	font-size: 12px;
 	line-height: 20px;
 	text-align: center;
@@ -13,9 +8,23 @@ export const TitleBlack = styled.div`
 	overflow: hidden;
 	max-width: 100%;
 	color: #000000;
-`;
+}
 
-export const Row = styled(GridRow)`
+.label{
+	font-size: 8px;
+	line-height: 12px;
+	letter-spacing: 0.02em;
+	text-transform: capitalize;
+	color: #4f4f4f;
+	width: max-content;
+	@media (min-width: 768px) {
+		display: none;
+	}
+}
+
+.row_container{
+	display: flex;
+	flex-direction: row;
 	position: relative;
 	width: 100%;
 	height: 78px;
@@ -26,21 +35,14 @@ export const Row = styled(GridRow)`
 	align-items: center !important;
 	padding-left: 11px;
 	margin-left: 0px !important;
-`;
+}
+.col_container{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
 
-export const Label = styled.caption`
-	font-size: 8px;
-	line-height: 12px;
-	letter-spacing: 0.02em;
-	text-transform: capitalize;
-	color: #4f4f4f;
-	width: max-content;
-	@media (min-width: 768px) {
-		display: none;
-	}
-`;
-
-export const Info = styled.div`
+.info{
 	text-overflow: ellipsis;
 	white-space: nowrap;
 	overflow: hidden;
@@ -51,9 +53,9 @@ export const Info = styled.div`
 	color: #828282;
 	line-height: 16px;
 	color: #2c3e50;
-`;
+}
 
-export const Container = styled.div`
+.container{
 	border-radius: 9px;
 	border: 1px solid #cddbff;
 	margin-bottom: 25px;
@@ -63,8 +65,10 @@ export const Container = styled.div`
 	&.displayDrill {
 		border: 1px solid #a4b6e5;
 	}
-	&.mobile {
-		max-width: 100vw;
-		padding-bottom: 5px;
-	}
-`;
+}
+
+.container .mobile {
+	max-width: 100vw;
+	padding-bottom: 5px;
+}
+

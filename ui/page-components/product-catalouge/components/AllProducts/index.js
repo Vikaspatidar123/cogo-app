@@ -4,26 +4,29 @@ import {
 // import Popover from '@cogoport/front/components/admin/Popover';
 // import Skeleton from '@cogoport/front/components/admin/Skeleton';
 // import ToolTip from '@cogoport/front/components/admin/ToolTip';
-import { IcMEdit, IcMPaste, IcMDelete } from '@cogoport/icons-react';
+import {
+	IcMEdit, IcMPaste, IcMDelete, IcMOverflowDot, IcMPlus,
+} from '@cogoport/icons-react';
 import React, { useState, useEffect } from 'react';
 
 import AddProductModal from '../../common/AddProductModal';
 import DeleteProductModal from '../../common/DeleteProductModal';
 import HsCodeIconMaping from '../../common/hsCodeIcons';
 import useArchive from '../../hooks/useArchive';
-import { PlusIcon, StyledFilterSection } from '../style';
+// import { PlusIcon, StyledFilterSection } from '../style';
 
 import ArchiveModal from './ArchiveModal';
-import {
-	CardDiv,
-	PageContainer,
-	Card,
-	Row,
-	Text,
-	Icon,
-	DisplayName,
-	Info,
-} from './style';
+// import {
+// 	CardDiv,
+// 	PageContainer,
+// 	Card,
+// 	Row,
+// 	Text,
+// 	Icon,
+// 	DisplayName,
+// 	Info,
+// } from './style';
+import styles from './styles.module.css';
 
 function AllProducts({
 	showProduct,
@@ -65,7 +68,7 @@ function AllProducts({
 	}, [pagination]);
 
 	const content = (id, productClassificationId) => (
-		<Info role="presentation" onClick={() => setProId(id)}>
+		<div className={styles.info} role="presentation" onClick={() => setProId(id)}>
 			<div
 				className="text edit"
 				role="presentation"
@@ -106,11 +109,11 @@ function AllProducts({
 				<IcMDelete width={10} height={10} />
 				<p>Delete</p>
 			</div>
-		</Info>
+		</div>
 	);
 	return (
 		<>
-			<CardDiv justify={isMobile ? 'center' : ''}>
+			<div className={styles.card_div}>
 				{(list || [1, 2, 3, 4, 5]).map(
 					({
 						name,
@@ -120,13 +123,13 @@ function AllProducts({
 						categoryCode,
 						productClassificationId,
 					}) => (
-						<Card>
+						<div className={styles.card}>
 							<div>
-								<Row>
+								<div className={styles.row}>
 									{!loading && (
 										<>
 											<div>{Mapping[categoryCode]}</div>
-											<DisplayName>
+											<div className={styles.display_name}>
 												{categoryDisplayName?.length > 16 ? (
 													<ToolTip
 														theme="light"
@@ -138,7 +141,7 @@ function AllProducts({
 												) : (
 													<div>{categoryDisplayName}</div>
 												)}
-											</DisplayName>
+											</div>
 
 											<Popover
 												placement="bottom"
@@ -152,16 +155,19 @@ function AllProducts({
 												}}
 											>
 												<div>
-													<Icon onClick={() => setVisible({ [id]: true })} />
+													<IcMOverflowDot
+														className={styles.icon}
+														onClick={() => setVisible({ [id]: true })}
+													/>
 												</div>
 											</Popover>
 										</>
 									)}
 									{loading && <Skeleton width="169px" />}
-								</Row>
-								<Row className="second">
+								</div>
+								<div className={`${styles.row}${styles.second}`}>
 									{!loading && (
-										<Text className="subCategory">
+										<div className={`${styles.text}${styles.sub_category}`}>
 											{subCategoryDisplayName?.length > 40 ? (
 												<ToolTip
 													theme="light"
@@ -173,29 +179,29 @@ function AllProducts({
 											) : (
 												<div>{subCategoryDisplayName}</div>
 											)}
-										</Text>
+										</div>
 									)}
 									{loading && <Skeleton margin="10px 0px" width="169px" />}
-								</Row>
+								</div>
 							</div>
 
-							<Row>
-								{!loading && <Text className="product">{name}</Text>}
+							<div className={styles.row}>
+								{!loading && <div className={`${styles.text}${styles.product}`}>{name}</div>}
 								{loading && <Skeleton width="169px" />}
-							</Row>
-						</Card>
+							</div>
+						</div>
 					),
 				)}
-			</CardDiv>
+			</div>
 			{isMobile && (
-				<StyledFilterSection className="pulse">
+				<div className={`${styles.styled_filter_section}`}>
 					<div className="btn" role="presentation" onClick={() => setHSCode(true)}>
-						<PlusIcon fill="#ffffff" height={50} width={50} />
+						<IcMPlus className={styles.plus_icon} fill="#ffffff" height={50} width={50} />
 					</div>
-				</StyledFilterSection>
+				</div>
 			)}
 
-			<PageContainer>
+			<div className={styles.page_container}>
 				<div className="pagination">
 					<Pagination
 						className="xl"
@@ -209,7 +215,7 @@ function AllProducts({
 						}}
 					/>
 				</div>
-			</PageContainer>
+			</div>
 			{archive && (
 				<ArchiveModal
 					archive={archive}

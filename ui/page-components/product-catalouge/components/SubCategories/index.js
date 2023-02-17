@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
-import ListView from '../ProductTab/ListView';
-import { StyledTabDiv, CatalogueLabel, TabContainer } from './style';
 
-const SubCategory = ({
+import ListView from '../ProductTab/ListView';
+
+// import { StyledTabDiv, CatalogueLabel, TabContainer } from './style';
+import styles from './styles.module.css';
+
+function SubCategory({
 	activeHeaderTab,
 	setActiveHeaderTab,
 	isMobile,
@@ -18,41 +21,41 @@ const SubCategory = ({
 	loading,
 	setIsEdit,
 	isEdit,
-}) => {
+}) {
 	const [activeData, setActiveData] = useState({});
 	const onSubmit = (item) => {
 		setActiveHeaderTab(item?.subCategoryCode);
 		setActiveData(item);
 	};
 	return (
-		<StyledTabDiv>
-			<CatalogueLabel className="subCategory">Sub - Categories</CatalogueLabel>
+		<div className={styles.styled_tab_div}>
+			<div className={`${styles.catalouge_label}${styles.sub_category}`}>Sub - Categories</div>
 			<div className="category">
 				<div>
-					{(Object.keys(activeData).length === 0 || !isMobile) &&
-						(subCategory || []).map((category) => {
-							return (
-								<TabContainer
-									key={category?.subCategoryCode}
-									onClick={() => {
-										onSubmit(category);
-									}}
+					{(Object.keys(activeData).length === 0 || !isMobile)
+						&& (subCategory || []).map((category) => (
+							<div
+								className={styles.tab_container}
+								key={category?.subCategoryCode}
+								role="presentation"
+								onClick={() => {
+									onSubmit(category);
+								}}
+							>
+								<div
+									className={`card ${
+										activeHeaderTab === category.subCategoryCode && 'active'
+									}`}
 								>
-									<div
-										className={`card ${
-											activeHeaderTab === category.subCategoryCode && 'active'
-										}`}
-									>
-										{category.subCategoryDisplayName}
-									</div>
-								</TabContainer>
-							);
-						})}
+									{category.subCategoryDisplayName}
+								</div>
+							</div>
+						))}
 				</div>
 				<div className={`${!isMobile && 'section'}`}>
-					{activeTab &&
-						activeHeaderTab &&
-						(Object.keys(activeData).length > 0 || !isMobile) && (
+					{activeTab
+						&& activeHeaderTab
+						&& (Object.keys(activeData).length > 0 || !isMobile) && (
 							<ListView
 								item={activeData || {}}
 								activeSubTab={activeHeaderTab}
@@ -70,11 +73,11 @@ const SubCategory = ({
 								productClassificationId={activeData?.productClassificationId}
 								isMobile={isMobile}
 							/>
-						)}
+					)}
 				</div>
 			</div>
-		</StyledTabDiv>
+		</div>
 	);
-};
+}
 
 export default SubCategory;

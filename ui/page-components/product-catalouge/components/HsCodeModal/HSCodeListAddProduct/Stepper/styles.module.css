@@ -1,0 +1,25 @@
+.div_flex{
+    display: flex;
+}
+
+.div_row{
+    display: flex;
+	padding: 18px;
+}
+
+.dot{
+    width: 15px;
+	height: 15px;
+	border-radius: 50px;
+}
+
+.label{
+	font-size: 12px;
+	font-weight: 500;
+}
+
+.line{
+    width: 75px;
+	height: 0px;
+	margin-top: 5px;
+}

@@ -1,4 +1,4 @@
-import { toast } from '@cogoport/components';
+import { Toast } from '@cogoport/components';
 import { useEffect } from 'react';
 
 import { useRequest } from '@/packages/request';
@@ -11,9 +11,17 @@ const useGetProductClassificationId = ({
 }) => {
 	const { general } = useSelector((state) => state);
 	const { scope } = general;
-	const { trigger, loading } = useRequest('get', false, scope, {
-		authkey: 'get_saas_product_category',
-	})('saas/product/category');
+	const { trigger, loading } = useRequest({
+		url     : 'saas/product/category',
+		method  : 'get',
+		authKey : 'get_saas_product_category',
+	}, { manual: true });
+
+	// const [{ loading: deleteProductApiLoading }, deleteProductTrigger] = useRequest({
+	// 	url     : '/saas/product',
+	// 	method  : 'delete',
+	// 	authKey : 'delete_saas_product',
+	// }, { manual: true });
 
 	const getProductClassification = async () => {
 		try {
@@ -25,7 +33,7 @@ const useGetProductClassificationId = ({
 			setProductClassificationId(response?.data?.productClassificationId);
 			setProductDetailsfromApi(response?.data);
 		} catch (error) {
-			toast.error(error?.error?.message);
+			Toast.error(error?.error?.message);
 		}
 	};
 

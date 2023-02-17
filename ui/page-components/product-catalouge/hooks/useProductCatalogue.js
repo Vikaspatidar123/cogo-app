@@ -1,4 +1,4 @@
-import { toast } from '@cogoport/components';
+import { Toast } from '@cogoport/components';
 import { useState, useEffect } from 'react';
 
 // import { useSaasState } from '../../../common/context';
@@ -50,7 +50,7 @@ const useProductCatalogue = ({ archive = false, fetch = () => {}, setActiveTab }
 			if (sub) fetch();
 			return response.data?.list;
 		} catch (error) {
-			toast.error(error.message);
+			Toast.error(error.message);
 			return null;
 		}
 	};
@@ -81,10 +81,10 @@ const useProductCatalogue = ({ archive = false, fetch = () => {}, setActiveTab }
 					fetch();
 				}
 
-				toast.success('Product Delete Successfully !!');
+				Toast.success('Product Delete Successfully !!');
 			}
 		} catch (error) {
-			toast.error(error?.message);
+			Toast.error(error?.message);
 		}
 	};
 

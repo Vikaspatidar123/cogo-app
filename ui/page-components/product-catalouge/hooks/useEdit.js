@@ -1,4 +1,4 @@
-import { toast } from '@cogoport/components';
+import { Toast } from '@cogoport/components';
 import { useEffect } from 'react';
 
 // import { useSaasState } from '../../../common/context';
@@ -42,7 +42,7 @@ const useEdit = ({
 				setValue('sellingPrice', sellingPrice);
 			}
 		} catch (error) {
-			toast.error(error?.message);
+			Toast.error(error?.message);
 		}
 	};
 
@@ -73,7 +73,7 @@ const useEdit = ({
 			});
 			if (resp?.data?.message === 'Success') {
 				setShowProduct(false);
-				toast.success('Product Edit Successfully !!');
+				Toast.success('Product Edit Successfully !!');
 				if (subCategoryCount > 1) {
 					refetchProduct({ productClassificationId });
 				} else {
@@ -84,7 +84,7 @@ const useEdit = ({
 			}
 			return resp;
 		} catch (error) {
-			toast.error(error.message);
+			Toast.error(error.message);
 			return null;
 		}
 	};
@@ -107,11 +107,11 @@ const useEdit = ({
 				refetchProduct({ productClassificationId });
 				setShowProduct(false);
 				setHSCode(false);
-				toast.success('Product Created Successfully !!');
+				Toast.success('Product Created Successfully !!');
 				setActiveTab('allProducts');
 			}
 		} catch (error) {
-			toast.error(error.message);
+			Toast.error(error.message);
 		}
 	};
 	useEffect(() => {

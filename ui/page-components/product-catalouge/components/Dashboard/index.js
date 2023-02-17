@@ -9,18 +9,19 @@ import useTotalRevenue from '../../hooks/useTotalRevenue';
 
 import BuyerGraph from './BuyerGraph';
 import ProductGraph from './ProductGraph';
-import {
-	Container,
-	Revenue,
-	Title,
-	Card,
-	Bar,
-	Row,
-	SelectDiv,
-	BorderLine,
-	EmptyIcon,
-	SubContainer,
-} from './style';
+// import {
+// 	Container,
+// 	Revenue,
+// 	Title,
+// 	Card,
+// 	Bar,
+// 	Row,
+// 	SelectDiv,
+// 	BorderLine,
+// 	EmptyIcon,
+// 	SubContainer,
+// } from './style';
+import styles from './styles.module.css';
 
 function Dashboard({ apiData, activeTab }) {
 	const { list = [] } = apiData || {};
@@ -48,71 +49,71 @@ function Dashboard({ apiData, activeTab }) {
 	}, [activeTab]);
 
 	return (
-		<Container>
-			<Revenue>
-				<Title className="mainHeading">Total Revenue</Title>
+		<div className={styles.container}>
+			<div className={styles.revenue}>
+				<div title className={`${styles.title}${styles.main_heading}`}>Total Revenue</div>
 				<div>
 					<div className="amount">{shortFormatNumber(totalRevenue?.data, 'INR')}</div>
 				</div>
-			</Revenue>
-			<Card>
-				<Bar />
-				<Row>
-					<Title>Top Products</Title>
-					<SelectDiv>
+			</div>
+			<div className={styles.card}>
+				<div className={styles.bar} />
+				<div className={styles.row}>
+					<div className={styles.title}>Top Products</div>
+					<div className={styles.select_div}>
 						<Select
 							options={OPTIONS}
 							placeholder="Select"
 							value={period}
 							onChange={(e) => setPeriod(e)}
 						/>
-					</SelectDiv>
-					<BorderLine />
-				</Row>
+					</div>
+					<div className={styles.border_line} />
+				</div>
 				<div className="head">
-					<Row>
+					<div className={styles.row}>
 						<div>Name </div>
 						<div>Profit %</div>
 						<div>Sold </div>
-					</Row>
+					</div>
 				</div>
 				{loading && <span className="loader" />}
 				{!loading && productList?.length === 0 ? (
-					<EmptyIcon>
+					<div className={styles.empty_icon}>
 						<EmptyState height="10" message="No Data Available" />
-					</EmptyIcon>
+					</div>
 				) : (
 					<ProductGraph productList={productList} loading={loading} />
 				)}
-			</Card>
-			<Card>
-				<Bar />
-				<Row>
-					<Title>Product Buyer Database</Title>
-					<SelectDiv>
+			</div>
+			<div className={styles.card}>
+				<div className={styles.bar} />
+				<div className={styles.row}>
+					<div className={styles.title}>Product Buyer Database</div>
+					<div className={styles.select_div}>
 						<Select
 							options={data}
 							placeholder="Select"
 							value={productId}
 							onChange={(e) => onChange(e)}
 						/>
-					</SelectDiv>
-					<BorderLine />
-				</Row>
+					</div>
+					<div className={styles.border_line} />
+				</div>
 				{productLoading && <span className="loader" />}
 
 				{!productLoading && topProduct?.length === 0 ? (
-					<EmptyIcon>
-						<SubContainer>
-							<>Select Product Name From Filter</>
-						</SubContainer>
+					<div className={styles.empty_icon}>
+						<div className={styles.sub_container}>
+							<div>Select Product Name From Filter</div>
+						</div>
 						<EmptyState height="10" message="No Data Available" />
-					</EmptyIcon>
+					</div>
 				) : (
 					<BuyerGraph topProduct={topProduct} productLoading={productLoading} />
 				)}
-			</Card>
-		</Container>
+			</div>
+		</div>
 	);
 }
 

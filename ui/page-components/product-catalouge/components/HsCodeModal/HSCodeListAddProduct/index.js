@@ -1,5 +1,7 @@
-import { Pagination, ToolTip, Table } from '@cogoport/components';
-// import ToolTip from '@cogoport/front/components/admin/ToolTip';
+import {
+	Pagination, ToolTip, Table, Button,
+} from '@cogoport/components';
+// import {ToolTip, } from '@cogoport/components';
 // import Grid from '@cogoport/front/components/Grid';
 // import Table from '@cogoport/front/components/Table';
 import {
@@ -10,35 +12,37 @@ import {
 import { startCase } from '@cogoport/utils';
 import { useState } from 'react';
 
+import Loading from '../../../assets/loading.svg';
 import AddProductModal from '../../../common/AddProductModal';
-// import GetCountriesFilter from '../../../common/Countries';
+import GetCountriesFilter from '../../../common/Countries';
 import { ChapterColumns, HeadersColumns } from '../../../common/HsCodeProduct';
-import {
-	FlexDiv,
-	StyledHSCODElabel,
-	SelectLabel,
-	Select,
-	StyledColumnHeading,
-	FlexDiv2,
-	SelectLabel2,
-	STyledROW,
-	TableWrapper,
-	DIVHSCode,
-	SubHeading,
-	HSCodeTableWrapper,
-	AddButtonWrapper,
-	TableWrapper2,
-	TabHeader,
-	StyledLoading,
-	StyledBackButton,
-	SelectRow,
-	EndAlignDiv2,
-	StyledTag2,
-	Div,
-} from '../style';
+// import {
+// 	FlexDiv,
+// 	StyledHSCODElabel,
+// 	SelectLabel,
+// 	Select,
+// 	StyledColumnHeading,
+// 	FlexDiv2,
+// 	SelectLabel2,
+// 	STyledROW,
+// 	TableWrapper,
+// 	DIVHSCode,
+// 	SubHeading,
+// 	HSCodeTableWrapper,
+// 	AddButtonWrapper,
+// 	TableWrapper2,
+// 	TabHeader,
+// 	StyledLoading,
+// 	StyledBackButton,
+// 	SelectRow,
+// 	EndAlignDiv2,
+// 	StyledTag2,
+// 	Div,
+// } from '../style';
 
 import EmptyState from './EmptyState';
 import Stepper from './Stepper';
+import styles from './styles.module.css';
 
 import LegendInput from '@/packages/forms/Business/LegendInput';
 
@@ -96,38 +100,37 @@ function HSCodelistAddproduct({
 		{
 			id     : 'sectionDescription',
 			Header : (
-				<SelectRow>
-					{/* {!isMobile ? (
-						// <Col xs={8}>
-						// 	<GetCountriesFilter
-						// 		setCountryforHsCode={setCountryforHsCode}
-						// 		setSelectedCountry={setSelectedCountry}
-						// 	/>
-						// </Col>
+				<div className={styles.select_row}>
+					{!isMobile ? (
+						<div className={styles.col_container}>
+							<GetCountriesFilter
+								setCountryforHsCode={setCountryforHsCode}
+								setSelectedCountry={setSelectedCountry}
+							/>
+						</div>
 					) : (
-						// <Col>
-						// 	<GetCountriesFilter
-						// 		setCountryforHsCode={setCountryforHsCode}
-						// 		setSelectedCountry={setSelectedCountry}
-						// 	/>
-						// </Col>
-					)} */}
-				</SelectRow>
+						<div className={styles.col_container}>
+							<GetCountriesFilter
+								setCountryforHsCode={setCountryforHsCode}
+								setSelectedCountry={setSelectedCountry}
+							/>
+						</div>
+					)}
+				</div>
 			),
 			key      : 'sectionDescription',
 			accessor : (record) => (
-				// <Row align="center">
-				// 	<Col>
-				// 		<DIVHSCode className="rowcss">
-				// 			{record?.sectionCode}
-				// 			{' '}
-				// 			{'   '}
-				// 			{' '}
-				// 			{record?.sectionDescription}
-				// 		</DIVHSCode>
-				// 	</Col>
-				// </Row>
-				<div>hiii</div>
+				<div className={styles.row_container}>
+					<div className={styles.col_container}>
+						<div className={styles.divhs_code}>
+							{record?.sectionCode}
+							{' '}
+							{'   '}
+							{' '}
+							{record?.sectionDescription}
+						</div>
+					</div>
+				</div>
 			),
 		},
 	];
@@ -135,21 +138,21 @@ function HSCodelistAddproduct({
 		{
 			id     : 'hscodeDescription',
 			Header : (
-				<SelectRow>
-					<EndAlignDiv2>
-						<StyledTag2>{selectedCountry || 'INDIA'}</StyledTag2>
-					</EndAlignDiv2>
-				</SelectRow>
+				<div className={styles.select_row}>
+					<div className={styles.end_align_div2}>
+						<div className={styles.styled_tag2}>{selectedCountry || 'INDIA'}</div>
+					</div>
+				</div>
 			),
 			key      : 'description',
 			accessor : (record) => (
-				<DIVHSCode className="rowcss">
+				<div className={styles.divhs_code}>
 					{record?.displayHsCode}
 					{' '}
 					{'      '}
 					{' '}
 					{record?.description}
-				</DIVHSCode>
+				</div>
 			),
 		},
 	];
@@ -176,11 +179,11 @@ function HSCodelistAddproduct({
 
 	return (
 		<>
-			<TableWrapper2>
-				<FlexDiv>
+			<div className={styles.table_wrapper_2}>
+				<div className={styles.flex_div}>
 					<div className="title">
 						<IcAFormsAndCertificates width={25} height={25} />
-						<StyledHSCODElabel>HS Code</StyledHSCODElabel>
+						<div className={styles.styled_hscode_label}>HS Code</div>
 					</div>
 					{showCategoryTable && (
 						<div className="search">
@@ -196,22 +199,23 @@ function HSCodelistAddproduct({
 							/>
 						</div>
 					)}
-				</FlexDiv>
+				</div>
 				{!isMobile ? (
-					<STyledROW>
-						<Col xs={0.8}>
-							<Select>Select:</Select>
-						</Col>
-						<StyledColumnHeading xs={!isMobile ? 1.75 : 3.5}>
+					<div className={styles.styled_row}>
+						<div className={styles.col_container}>
+							<div className={styles.select}>Select:</div>
+						</div>
+						<div className={styles.row_container}>
 							{showCategoryTable ? (
-								<FlexDiv2>
-									<SelectLabel2>Description </SelectLabel2>
+								<div className={styles.flex_div_2}>
+									<div className={styles.select_label_2}>Description </div>
 									<IcMArrowRight />
-								</FlexDiv2>
+								</div>
 							) : (
 								activeSection && (
-									<FlexDiv2>
-										<SelectLabel
+									<div className={styles.flex_div_2}>
+										<div
+											className={styles.select_label}
 											onClick={() => {
 												setPreviousStepper({
 													...previousStepper,
@@ -226,22 +230,23 @@ function HSCodelistAddproduct({
 											role="presentation"
 										>
 											Description
-										</SelectLabel>
+										</div>
 										<IcMArrowRight />
-									</FlexDiv2>
+									</div>
 								)
 							)}
-						</StyledColumnHeading>
-						<StyledColumnHeading xs={1.5}>
+						</div>
+						<div className={styles.row_container}>
 							{showChapterTable ? (
-								<FlexDiv2>
-									<SelectLabel2>Section </SelectLabel2>
+								<div className={styles.flex_div_2}>
+									<div className={styles.select_label_2}>Section </div>
 									<IcMArrowRight />
-								</FlexDiv2>
+								</div>
 							) : (
 								activeChapter && (
-									<FlexDiv2>
-										<SelectLabel
+									<div className={styles.flex_div_2}>
+										<div
+											className={styles.select_label}
 											onClick={() => {
 												setPreviousStepper({
 													...previousStepper,
@@ -255,22 +260,23 @@ function HSCodelistAddproduct({
 											role="presentation"
 										>
 											Section
-										</SelectLabel>
+										</div>
 										<IcMArrowRight />
-									</FlexDiv2>
+									</div>
 								)
 							)}
-						</StyledColumnHeading>
-						<StyledColumnHeading xs={1.6}>
+						</div>
+						<div className={styles.row_container}>
 							{showHeadingTable ? (
-								<FlexDiv2>
-									<SelectLabel2>Chapter </SelectLabel2>
+								<div className={styles.flex_div_2}>
+									<div className={styles.select_label_2}>Chapter </div>
 									<IcMArrowRight />
-								</FlexDiv2>
+								</div>
 							) : (
 								activeheading && (
-									<FlexDiv2>
-										<SelectLabel
+									<div className={styles.flex_div_2}>
+										<div
+											className={styles.select_label}
 											onClick={() => {
 												setPreviousStepper({
 													...previousStepper,
@@ -283,81 +289,81 @@ function HSCodelistAddproduct({
 											role="presentation"
 										>
 											Chapter
-										</SelectLabel>
+										</div>
 										<IcMArrowRight />
-									</FlexDiv2>
+									</div>
 								)
 							)}
-						</StyledColumnHeading>
-						<StyledColumnHeading xs={1.3}>
+						</div>
+						<div className={styles.row_container}>
 							{showhscode && (
-								<FlexDiv2>
-									<SelectLabel2>HS Code </SelectLabel2>
+								<div className={styles.flex_div_2}>
+									<div className={styles.select_label_2}>HS Code </div>
 									<IcMArrowRight />
-								</FlexDiv2>
+								</div>
 							)}
-						</StyledColumnHeading>
-					</STyledROW>
+						</div>
+					</div>
 				) : (
 					<Stepper activeStepper={activeStepper} />
 				)}
 				{!isMobile && (
-					<TabHeader>
+					<div className={styles.tab_header}>
 						{activeSection
 							&& (activeSection.length > 25 ? (
 								<ToolTip content={startCase(activeSection).toLowerCase()} theme="light">
-									<SubHeading>
+									<div className={styles.sub_heading}>
 										{startCase(activeSection?.toLowerCase()).substring(0, 25)}
 										... |
-									</SubHeading>
+									</div>
 								</ToolTip>
 							) : (
-								<SubHeading>
+								<div className={styles.sub_heading}>
 									{startCase(activeSection?.toLowerCase())}
 									{' '}
 									|
 									{' '}
-								</SubHeading>
+								</div>
 							))}
 						{activeChapter
 							&& (activeChapter.length > 25 ? (
 								<ToolTip content={startCase(activeChapter)} theme="light">
-									<SubHeading>
+									<div className={styles.sub_heading}>
 										{startCase(activeChapter).substring(0, 25)}
 										... |
-									</SubHeading>
+									</div>
 								</ToolTip>
 							) : (
-								<SubHeading>
+								<div className={styles.sub_heading}>
 									{' '}
 									{startCase(activeChapter)}
 									{' '}
 									|
 									{' '}
-								</SubHeading>
+								</div>
 							))}
 						{activeheading
 							&& (activeChapter.length > 25 ? (
 								<ToolTip content={startCase(activeheading)} theme="light">
-									<SubHeading>
+									<div className={styles.sub_heading}>
 										{startCase(activeheading).substring(0, 25)}
 										...
 										{' '}
-									</SubHeading>
+									</div>
 								</ToolTip>
 							) : (
-								<SubHeading>
+								<div className={styles.sub_heading}>
 									{' '}
 									{startCase(activeheading)}
 									{' '}
-								</SubHeading>
+								</div>
 							))}
-					</TabHeader>
+					</div>
 				)}
 				{ApiData.length === 0 && <EmptyState />}
 				{showCategoryTable && ApiData.length > 0 && (
-					<TableWrapper>
-						{loading && <StyledLoading />}
+					<div className={styles.table_wrapper}>
+						{loading && <Loading className={styles.styled_loading} />}
 						{!loading && (
 							<Table
 								className="tables"
@@ -386,10 +392,10 @@ function HSCodelistAddproduct({
 								}}
 							/>
 						)}
-					</TableWrapper>
+					</div>
 				)}
 				{showChapterTable && (
-					<TableWrapper>
+					<div className={styles.table_wrapper}>
 						<Table
 							className="tables"
 							columns={ChapterColumns || []}
@@ -413,12 +419,12 @@ function HSCodelistAddproduct({
 								});
 							}}
 						/>
-					</TableWrapper>
+					</div>
 				)}
 
 				{showHeadingTable && (
-					<TableWrapper>
-						{headingLoading && <StyledLoading />}
+					<div className={styles.table_wrapper}>
+						{headingLoading && <Loading className={styles.styled_loading} />}
 						{!headingLoading && (
 							<Table
 								className="tables"
@@ -447,14 +453,14 @@ function HSCodelistAddproduct({
 								loading={headingLoading}
 							/>
 						)}
-					</TableWrapper>
+					</div>
 				)}
 
 				{showhscode && !hsloading && (
 					<div>
-						<HSCodeTableWrapper>
-							<TableWrapper>
-								{hsloading && <StyledLoading />}
+						<div className={styles.hscode_table_wrapper}>
+							<div className={styles.table_wrapper}>
+								{hsloading && <Loading className={styles.styled_loading} />}
 								{!hsloading && (
 									<Table
 										className="tables"
@@ -477,24 +483,26 @@ function HSCodelistAddproduct({
 										loading={hsloading}
 									/>
 								)}
-							</TableWrapper>
-						</HSCodeTableWrapper>
+							</div>
+						</div>
 					</div>
 				)}
 
-				<AddButtonWrapper>
+				<div className={styles.add_button_wrapper}>
 					{isMobile && showCategoryTable === false && (
-						<StyledBackButton
-							className="primary md text prevBtn"
+						<Button
+							className={styles.styled_back_button}
+							// className="primary md text prevBtn"
+							role="presentation"
 							onClick={() => {
 								previousFunction();
 							}}
 						>
 							Previous
-						</StyledBackButton>
+						</Button>
 					)}
 					{showhscode && !hsloading && (
-						<Div>
+						<div className={styles.div_container}>
 							<Pagination
 								className="sm"
 								pageLimit={pageSize}
@@ -509,8 +517,9 @@ function HSCodelistAddproduct({
 									});
 								}}
 							/>
-							<StyledBackButton
-								className={`${hsRowLength && 'disableBtn'} secondary md`}
+							<Button
+								className={styles.styled_back_button}
+								// className={`${hsRowLength && 'disableBtn'} secondary md`}
 								onClick={() => {
 									setPrefiiledValues((prev) => ({
 										...prev,
@@ -522,11 +531,11 @@ function HSCodelistAddproduct({
 								disabled={hsRowLength}
 							>
 								Add
-							</StyledBackButton>
-						</Div>
+							</Button>
+						</div>
 					)}
-				</AddButtonWrapper>
-			</TableWrapper2>
+				</div>
+			</div>
 
 			{showProduct && (
 				<AddProductModal

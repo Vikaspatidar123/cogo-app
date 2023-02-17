@@ -1,7 +1,9 @@
 import { Popover, Table, ToolTip } from '@cogoport/components';
 // import Table from '@cogoport/front/components/admin/Table';
 // import ToolTip from '@cogoport/front/components/admin/ToolTip';
-import { IcMEdit, IcMPaste, IcMDelete } from '@cogoport/icons-react';
+import {
+	IcMEdit, IcMPaste, IcMDelete, IcMOverflowDot,
+} from '@cogoport/icons-react';
 import { useEffect, useState } from 'react';
 
 import AddProductModal from '../../../common/AddProductModal';
@@ -10,9 +12,10 @@ import { shortFormatNumber } from '../../../common/getShortFromatNumber';
 import useArchive from '../../../hooks/useArchive';
 import ArchiveModal from '../../AllProducts/ArchiveModal';
 
-import {
-	TableWrapper, Icon, Info, TableHead,
-} from './style';
+// import {
+// 	TableWrapper, Icon, Info, TableHead,
+// } from './style';
+import styles from './styles.module.css';
 
 function ListView({
 	item,
@@ -65,7 +68,7 @@ function ListView({
 	}, [check]);
 
 	const content = (id) => (
-		<Info role="presentation" onClick={() => setProId(id)}>
+		<div className={styles.info} role="presentation" onClick={() => setProId(id)}>
 			<div
 				className="text edit"
 				role="presentation"
@@ -106,7 +109,7 @@ function ListView({
 				<IcMDelete width={10} height={10} />
 				<p>Delete</p>
 			</div>
-		</Info>
+		</div>
 	);
 
 	const columns = [
@@ -157,7 +160,8 @@ function ListView({
 					}}
 				>
 					<div>
-						<Icon
+						<IcMOverflowDot
+							className={styles.icon}
 							onClick={() => {
 								setVisible({ [record.id]: true });
 							}}
@@ -170,8 +174,8 @@ function ListView({
 
 	return (
 		<>
-			<TableHead>
-				<TableWrapper className="table-is-it">
+			<div className={styles.table_head}>
+				<div className={styles.table_wrapper}>
 					<Table
 						className="tables"
 						columns={columns}
@@ -180,8 +184,8 @@ function ListView({
 						theme="admin"
 						loading={loading}
 					/>
-				</TableWrapper>
-			</TableHead>
+				</div>
+			</div>
 
 			<AddProductModal
 				isEdit={isEdit}

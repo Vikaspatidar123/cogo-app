@@ -1,13 +1,17 @@
+import { ToolTip, Skeleton } from '@cogoport/components';
+// import { Skeleton } from '@cogoport/front/components/admin';
+// import Grid from '@cogoport/front/components/Grid';
 import { shape, arrayOf } from 'prop-types';
-import Grid from '@cogoport/front/components/Grid';
-import { Skeleton } from '@cogoport/front/components/admin';
-import { ToolTip } from '@cogoport/front/components';
-import getValue from '../../../../../common/utils/getValue';
-import { Row, Info, Container } from './styles';
-import itemFunctions from './renderFunctions';
+
 import MobileView from '../MobileViewIndex';
 
-const { Col } = Grid;
+import itemFunctions from './renderFunctions';
+// import { Row, Info, Container } from './styles';
+import styles from './styles.module.css';
+
+import getValue from '@/ui/commons/utils/getValue';
+
+// const { Col } = Grid;
 const Item = ({
 	item,
 	fields,
@@ -22,34 +26,31 @@ const Item = ({
 		if (singleItem?.toolTip) {
 			return (
 				<ToolTip
-					content={
+					content={(
 						<div style={{ color: 'grey' }}>
 							{getValue(itm, singleItem, isMobel, newFunctions)}
 						</div>
-					}
+					)}
 					theme="light"
 				>
-					<Info>{getValue(itm, singleItem, isMobel, newFunctions)}</Info>
+					<div className={styles.info}>{getValue(itm, singleItem, isMobel, newFunctions)}</div>
 				</ToolTip>
 			);
 		}
 		return getValue(itm, singleItem, isMobel, newFunctions);
 	};
 	const renderItem = (itm) => (
-		<Container className={`${isMobile && 'mobile'}`}>
+		<div className={`${styles.container}${isMobile && 'mobile'}`}>
 			{isMobile ? (
 				<MobileView fields={fields} infoData={infoData} itm={itm} loading={loading} />
 			) : (
-				<Row onClick={handleClick} tabIndex="0">
+				<div className={styles.row_container} onClick={handleClick} role="presentation" tabIndex="0">
 					{(fields || []).map((singleItem) => (
-						<Col
-							xs={6}
-							sm={6}
-							md={singleItem.span}
-							lg={singleItem.span}
+						<div
+							className={styles.col_container}
 							style={singleItem.styles}
 							key={singleItem?.key}
-							className={singleItem?.key}
+							// className={singleItem?.key}
 						>
 							{loading && (
 								<Skeleton style={{ height: '20px', width: '100%' }}>
@@ -58,19 +59,19 @@ const Item = ({
 							)}
 							{singleItem.render && !loading ? singleItem.render(itm) : null}
 							{infoData(singleItem, itm)}
-						</Col>
+						</div>
 					))}
-				</Row>
+				</div>
 			)}
-		</Container>
+		</div>
 	);
 
 	return renderItem(item);
 };
 
 Item.propTypes = {
-	item: shape({}).isRequired,
-	fields: arrayOf(shape({})).isRequired,
+	item   : shape({}).isRequired,
+	fields : arrayOf(shape({})).isRequired,
 };
 
 Item.defaultProps = {};

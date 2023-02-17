@@ -1,0 +1,145 @@
+.form_container{
+    margin: 0 32px;
+}
+
+.form_row{
+    display: flex;
+	align-items: center;
+	gap: 40px;
+	margin: 22px 0;
+}
+
+.form_row .mid{
+	align-items: flex-end;
+}
+
+.form_col {
+    width: 45%;
+	font-size: 13px;
+
+	.error {
+		border: 1px solid red;
+		outline: none;
+		border-radius: 4px;
+	}
+}
+
+.form_col .labelRow {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+
+.form_col .hscode {
+	cursor: not-allowed;
+
+		input {
+			cursor: not-allowed;
+		}
+}
+
+.form_label{
+    margin-bottom: 3px;
+}
+
+.error_text{
+    margin: 0;
+	margin-bottom: 3px;
+	color: #e63946;
+}
+
+.header{
+    display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin: 12px 28px;
+	.profit {
+		margin-bottom: 8px;
+		border-radius: 9px;
+		padding: 8px;
+		text-align: center;
+		font-size: 12px;
+		width: 20%;
+	}
+	.green {
+		color: green;
+		border: 2px solid green;
+	}
+	.red {
+		color: #db4634;
+		border: 2px solid #db4634;
+	}
+}
+
+.summary_tab {
+    display: flex;
+	align-items: center;
+	padding: 10px 18px;
+	border: 1px solid #cedcea;
+	background: #fffef9;
+	border-radius: 9px;
+	width: 75%;
+
+	svg {
+		vertical-align: middle;
+	}
+
+	.category,
+	.subCategory {
+		width: auto;
+		max-width: 37%;
+	}
+	.icn {
+		width: 20%;
+		text-align: center;
+	}
+
+	.section2 {
+		width: 18%;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		padding-left: 10px;
+		border-left: 1px solid #cedcea;
+		cursor: pointer;
+		.txt {
+			color: #db4634;
+		}
+	}
+
+	.heading {
+		font-size: 14px;
+		font-weight: 500;
+	}
+
+	.subheading {
+		font-weight: 300;
+		font-size: 12px;
+		color: #6b6d81;
+		margin-top: 2px;
+	}
+}
+
+.btn_container{
+    display: flex;
+	justify-content: flex-end;
+	padding: 0px 28px;
+	padding-top: 10px;
+	border-top: 1px solid #cedcea;
+
+	.submitBtn {
+		background: #ee3425;
+		padding: 8px 16px;
+		border: none;
+	}
+
+	.disableBtn {
+		background: #e8afa8;
+		cursor: not-allowed;
+	}
+}
+
+.loading_btn{
+    width: 50px;
+	height: 20px;
+}

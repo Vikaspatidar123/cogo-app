@@ -1,9 +1,6 @@
-import { toast } from '@cogoport/components';
-
-// import { useSaasState } from '../../../common/context';
+import { Toast } from '@cogoport/components';
 
 import { useRequest } from '@/packages/request';
-import { useSelector } from '@/packages/store';
 
 const useArchive = ({
 	proId,
@@ -14,11 +11,11 @@ const useArchive = ({
 	setActiveTab,
 	card = false,
 }) => {
-	const { general } = useSelector((state) => state);
-	const { scope } = general;
-	const putArchive = useRequest('put', false, scope, {
-		authkey: 'put_saas_product_archive',
-	})('saas/product/archive');
+	const putArchive = useRequest({
+		method  : 'put',
+		url     : 'saas/product/archive',
+		authKey : 'put_saas_product_archive',
+	}, { manual: true });
 
 	const refetchArchive = async () => {
 		try {
@@ -27,7 +24,7 @@ const useArchive = ({
 			});
 			if (response?.data?.message === 'Success') {
 				setArchive(false);
-				toast.success('Product Archive Successfully !!');
+				Toast.success('Product Archive Successfully !!');
 
 				if (subCategoryCount > 1) {
 					refetchProduct({ productClassificationId });
@@ -38,7 +35,7 @@ const useArchive = ({
 				}
 			}
 		} catch (error) {
-			toast.error(error?.message);
+			Toast.error(error?.message);
 		}
 	};
 	return {

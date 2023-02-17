@@ -1,15 +1,17 @@
 import { ToolTip } from '@cogoport/components';
 
-import {
-	SideContainer, BarGraphContainer, BarGraph, GraphData,
-} from '../style';
+// import {
+// 	SideContainer, BarGraphContainer, BarGraph, GraphData,
+// } from '../style';
+
+import styles from './styles.module.css';
 
 function Product({ productList = [], loading }) {
 	const colorMapping = ['#F9C87F', '#B5A4FE', '#B2E2E8', '#889AB8'];
 	return (
-		<>
+		<div>
 			{!loading && (
-				<BarGraphContainer>
+				<div className={styles.bar_graph_container}>
 					<div className="top">
 						{productList
 							.slice(0)
@@ -31,15 +33,20 @@ function Product({ productList = [], loading }) {
 										placement="top"
 										content={`${x.profitPercent}%`}
 									>
-										<BarGraph>
-											<GraphData
-												percent={x.profitRatioPercent || 0}
-												active={colorMapping[i]}
+										<div className={styles.bar_graph}>
+											<div
+												className={styles.graph_data}
+												style={{
+													background : colorMapping[i],
+													width      : x.profitRatioPercent.width || 0,
+												}}
+												// percent={x.profitRatioPercent || 0}
+												// active={colorMapping[i]}
 											/>
-										</BarGraph>
+										</div>
 									</ToolTip>
 
-									<SideContainer>
+									<div className={styles.side_container}>
 										{x.productsSold?.toString().length > 3 ? (
 											<ToolTip theme="light" placement="top" content={x.productsSold}>
 												<div>{`${x?.productsSold?.toString().substring(0, 4)}`}</div>
@@ -47,13 +54,13 @@ function Product({ productList = [], loading }) {
 										) : (
 											<div>{x.productsSold}</div>
 										)}
-									</SideContainer>
+									</div>
 								</div>
 							))}
 					</div>
-				</BarGraphContainer>
+				</div>
 			)}
-		</>
+		</div>
 	);
 }
 

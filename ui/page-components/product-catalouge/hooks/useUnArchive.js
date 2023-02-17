@@ -1,14 +1,13 @@
-import { useRequest } from '@cogo/commons/hooks';
-import toast from '@cogoport/front/components/admin/Toast';
-import { useSaasState } from '../../../common/context';
+import { Toast } from '@cogoport/components';
+
+import { useRequest } from '@/packages/request';
 
 const useUnArchive = ({ proId, setArchive, refetchProduct }) => {
-	const { general } = useSaasState();
-	const { scope } = general;
-
-	const putArchive = useRequest('put', false, scope, {
-		authkey: 'put_saas_product_unarchive',
-	})('saas/product/unarchive');
+	const putArchive = useRequest({
+		method  : 'put',
+		url     : 'saas/product/unarchive',
+		authKey : 'put_saas_product_unarchive',
+	}, { manual: true });
 
 	const refetchUnArchive = async () => {
 		try {
@@ -18,10 +17,10 @@ const useUnArchive = ({ proId, setArchive, refetchProduct }) => {
 			if (response.data.message === 'Success') {
 				refetchProduct({});
 				setArchive(false);
-				toast.success('Product UnArchive Successfully !!');
+				Toast.success('Product UnArchive Successfully !!');
 			}
 		} catch (error) {
-			toast.error(error.message);
+			Toast.error(error.message);
 		}
 	};
 	return {

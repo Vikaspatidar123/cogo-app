@@ -1,41 +1,44 @@
 import React from 'react';
-import { DivFlex, DivRow, Dot, Label, Line } from '../../style';
+
+// import {
+// 	DivFlex, DivRow, Dot, Label, Line,
+// } from '../../style';
+
+import styles from './styles.module.css';
 
 const STEPPER = [
 	{
-		key: 'description',
-		title: 'Description',
+		key   : 'description',
+		title : 'Description',
 	},
 	{
-		key: 'section',
-		title: 'Section',
+		key   : 'section',
+		title : 'Section',
 	},
 	{
-		key: 'chapter',
-		title: 'Chapter',
+		key   : 'chapter',
+		title : 'Chapter',
 	},
 	{
-		key: 'hsCode',
-		title: 'HS Code',
+		key   : 'hsCode',
+		title : 'HS Code',
 	},
 ];
 
-const Stepper = ({ activeStepper }) => {
+function Stepper({ activeStepper }) {
 	return (
-		<>
-			<DivRow>
-				{STEPPER?.map(({ key = '', title = '' }) => (
-					<div key={key}>
-						<DivFlex>
-							<Dot color={activeStepper[key]} />
-							{key !== 'hsCode' && <Line color={activeStepper[key]} />}
-						</DivFlex>
-						<Label color={activeStepper[key]}>{title}</Label>
+		<div className={styles.div_row}>
+			{STEPPER?.map(({ key = '', title = '' }) => (
+				<div key={key}>
+					<div className={styles.div_flex}>
+						<div className={styles.dot} style={{ background: activeStepper[key] }} />
+						{key !== 'hsCode' && <div className={styles.line} style={{ background: activeStepper[key] }} />}
 					</div>
-				))}
-			</DivRow>
-		</>
+					<div className={styles.label} style={{ background: activeStepper[key] }}>{title}</div>
+				</div>
+			))}
+		</div>
 	);
-};
+}
 
 export default Stepper;

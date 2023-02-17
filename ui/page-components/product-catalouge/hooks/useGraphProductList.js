@@ -1,4 +1,4 @@
-import { toast } from '@cogoport/components';
+import { Toast } from '@cogoport/components';
 import { useState, useEffect } from 'react';
 
 // import { useSaasState } from '../../../common/context';
@@ -8,12 +8,13 @@ import { useSelector } from '@/packages/store';
 
 const useTopProducts = () => {
 	const [topProduct, setTopProduct] = useState([]);
-	const { general, profile } = useSelector((state) => state);
+	const { profile } = useSelector((state) => state);
 	const { organization } = profile || {};
-	const { scope } = general;
-	const { trigger, loading } = useRequest('get', false, scope, {
-		authkey: 'get_saas_product_top_products',
-	})('/saas/product/top-products');
+	const [{ loading }, trigger] = useRequest({
+		url     : '/saas/product/top-products',
+		method  : 'get',
+		authKey : 'get_saas_product_top_products',
+	}, { manual: true });
 
 	const fetchTopProducts = async ({ productId }) => {
 		try {
@@ -26,7 +27,7 @@ const useTopProducts = () => {
 			});
 			setTopProduct(resp.data);
 		} catch (error) {
-			toast.error(error?.message);
+			Toast.error(error?.message);
 		}
 	};
 

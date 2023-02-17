@@ -1511,5 +1511,8 @@ const saas = {
 			feature     : 'trade-partner',
 		},
 	],
+
+	app_saas_load_container: [],
+
 };
 export default saas;

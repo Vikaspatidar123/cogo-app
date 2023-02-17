@@ -1,0 +1,89 @@
+.container {
+
+}
+
+.button_wrap{
+	display: flex;
+	margin-top: 20px;
+
+	.core-ui-button-root {
+		background: #ffffff;
+		border: 1px solid #000000;
+		color: #000000;
+		border-radius: 4px;
+		font-size: 12px;
+		padding: 14px 32px 14px 14px;
+		height: 44px;
+		display: flex;
+		align-items: center;
+	}
+}
+
+.add_icon{
+	width: 30px;
+	height: 30px;
+	background: #000000;
+	color: #ffffff;
+	border-radius: 100%;
+	font-size: 28px;
+	padding-left: 1px;
+	margin-right: 10px;
+	font-weight: 300;
+}
+
+
+.text {
+	color: #f68b21;
+	align-items: center;
+	cursor: pointer;
+	display: flex;
+	width: 9%;
+	margin-left: 12px;
+}
+
+.addIcon{
+	color: #f68b21;
+	font-size: 24px;
+	padding-left: 1px;
+	margin-right: 0px;
+	font-weight: 300;
+	cursor: pointer;
+}
+
+.header{
+	width: inherit;
+	display: flex;
+	justify-content: space-between;
+	margin: 10px 70px 0px 27px;
+}
+
+
+.card_div{
+	padding: 15px;
+	background: #ffffff;
+	box-sizing: border-box;
+	border-radius: 10px;
+	margin-bottom: 10px;
+	display: flex;
+}
+
+.remove_icon{
+	cursor: pointer;
+	margin: 0px 4px 0px;
+}
+
+.color {
+	border-radius: 50%;
+	display: inline-block;
+	margin-left: 35px;
+	border: none;
+
+	input[type='color'] {
+		border-radius: 50px;
+		background: #ffffff 0% 0% no-repeat padding-box;
+		box-shadow: 0px 3px 6px #0000001a;
+		opacity: 1;
+		transform: scale(1);
+		border: none;
+	}
+}

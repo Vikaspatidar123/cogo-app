@@ -1,0 +1,88 @@
+/* import Checkbox from '@cogoport/front/components/admin/CheckBox'; */
+
+.container{
+	background: #ffffff;
+	box-shadow: 0px 17.8337px 60.0918px rgba(71, 111, 211, 0.11),
+		0px 2.23306px 18.612px rgba(71, 111, 211, 0.055);
+	border-radius: 16px;
+	height: auto;
+	position: absolute;
+	right: 100px;
+	width: 85%;
+}
+
+.header{
+	font-family: 'Poppins';
+	font-style: normal;
+	font-weight: 600;
+	font-size: 22px;
+	line-height: 150%;
+	color: #000000;
+}
+
+.button_wrap{
+	float: right;
+	position: absolute;
+	right: 1%;
+	margin-top: 25px;
+
+	.core-ui-button-root {
+		background: #ee3425;
+		border-radius: 6px;
+		border: none;
+		padding: 6px;
+		margin-right: 5px;
+	}
+}
+
+.container_background{
+	display: flex;
+}
+
+.sub_title{
+	font-family: 'Poppins';
+	font-style: normal;
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 150%;
+	color: #4f4f4f;
+}
+
+.title {
+	font-family: 'Poppins';
+	font-style: normal;
+	font-weight: 600;
+	font-size: 20px;
+	line-height: 27px;
+	color: #221f20;
+	margin-left: 20px;
+}
+
+.checked_box{
+	display: flex;
+	justify-content: space-between;
+	margin-top: 10px;
+}
+
+.text{
+	margin: 0px 10px 0px 5px;
+	font-family: 'Poppins';
+	font-style: normal;
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 150%;
+	color: #221f20;
+}
+
+/* export const StyledCheckbox = styled(Checkbox)`
+	&.checked {
+		background-color: #f68b21 !important;
+	}
+	&.ui-core-checkbox-root {
+		margin-top: 3px !important;
+	}
+`; */
+
+.italic{
+	font-size: 10px;
+}

@@ -4,8 +4,8 @@ import { Toast } from '@cogoport/components';
 import { APP_EVENT } from '../utils/constant';
 import trackEvent from '../utils/trackEvent';
 
-import setCookieAndRedirect from '@/commons/utils/setCookieAndRedirect';
 import { useRequest } from '@/packages/request/index';
+import setCookieAndRedirect from '@/ui/commons/utils/setCookieAndRedirect';
 
 const useOtpVerification = ({ formData = {}, otpValue = '', id }) => {
 	const [{ loading: verifyLeadUserMobileApiLoading }, verifyLeadUserMobileApitrigger] = useRequest({

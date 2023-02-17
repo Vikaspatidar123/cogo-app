@@ -35,10 +35,10 @@ function AdvFilters({
 	const { country = '' } = watch();
 	const clearFilterHandler = () => {
 		const resetValue = {
-			country: COUNTRY_IDS.IN,
-			searchBy: '',
-			searchTerm: '',
-			filterBy: '',
+			country    : COUNTRY_IDS.IN,
+			searchBy   : '',
+			searchTerm : '',
+			filterBy   : '',
 		};
 
 		setValues(resetValue);

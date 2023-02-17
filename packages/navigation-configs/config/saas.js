@@ -1,7 +1,7 @@
 const saas = {
 	'/saas/tracking': {
-		navigation: 'saas_tools-ocean_tracking',
-		isMainNav: true,
+		navigation : 'saas_tools-ocean_tracking',
+		isMainNav  : true,
 	},
 	'/saas/tracking/archive': {
 
@@ -17,8 +17,8 @@ const saas = {
 	},
 	'/saas/air-tracking': {
 
-		navigation: 'saas_tools-air_schedules',
-		isMainNav: true,
+		navigation : 'saas_tools-air_schedules',
+		isMainNav  : true,
 	},
 	'/saas/air-tracking/archive': {
 
@@ -30,8 +30,8 @@ const saas = {
 	},
 	'/saas/schedules': {
 
-		navigation: 'saas_tools-ocean_schedules',
-		isMainNav: true,
+		navigation : 'saas_tools-ocean_schedules',
+		isMainNav  : true,
 	},
 	'/saas/schedules/[schedule_id]': {
 
@@ -39,8 +39,8 @@ const saas = {
 	},
 	'/saas/air-schedules': {
 
-		navigation: 'saas_tools-air_schedules',
-		isMainNav: true,
+		navigation : 'saas_tools-air_schedules',
+		isMainNav  : true,
 	},
 	'/saas/air-schedules/[schedule_id]': {
 
@@ -48,8 +48,8 @@ const saas = {
 	},
 	'/saas/subscriptions': {
 
-		navigation: 'saas_subscription',
-		isMainNav: true,
+		navigation : 'saas_subscription',
+		isMainNav  : true,
 	},
 	'/saas/subscriptions/plans': {
 
@@ -65,36 +65,40 @@ const saas = {
 	},
 	'/saas/cpq': {
 
-		navigation: 'saas_cpq',
-		isMainNav: true,
+		navigation : 'saas_cpq',
+		isMainNav  : true,
 	},
 	'/saas/cpq/products': {
 
-		navigation: 'saas_cpq_products',
-		isMainNav: true,
+		navigation : 'saas_cpq_products',
+		isMainNav  : true,
 	},
 	'/saas/cpq/contacts': {
-		navigation: 'saas_cpq_contacts',
-		isMainNav: true,
+		navigation : 'saas_cpq_contacts',
+		isMainNav  : true,
 	},
 	'/saas/quotation/create': {
 
-		navigation: 'saas_create_quotation',
-		isMainNav: true,
+		navigation : 'saas_create_quotation',
+		isMainNav  : true,
 	},
 	'/saas/quotation/edit/[quotation_id]': {
-		navigation: 'saas_edit_quotation',
-		isMainNav: true,
+		navigation : 'saas_edit_quotation',
+		isMainNav  : true,
 	},
 	'/saas/purchase/create': {
 
-		navigation: 'saas_create_purchase',
-		isMainNav: true,
+		navigation : 'saas_create_purchase',
+		isMainNav  : true,
 	},
 	'/saas/purchase/edit/[purchase_id]': {
 
-		navigation: 'saas_edit_purchase',
-		isMainNav: true,
+		navigation : 'saas_edit_purchase',
+		isMainNav  : true,
+	},
+	'/saas/load-calculator': {
+		navigation : 'saas_tools-load_calculator',
+		isMainNav  : true,
 	},
 
 };

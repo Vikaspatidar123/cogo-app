@@ -5,3 +5,5 @@ export const ValidateIcon = 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/ori
 export const ProductCartIcon = 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/productcart.svg';
 export const LoadingBanner = 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/loading-banner.svg';
 export const SuccessGif = 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/success.gif';
+export const DestinationIcon = 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/destinationIcon.svg';
+export const SourceIcon = 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/sourceIcon.svg';

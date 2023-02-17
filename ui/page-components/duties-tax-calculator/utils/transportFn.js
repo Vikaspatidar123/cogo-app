@@ -1,4 +1,4 @@
-import toast from '@cogoport/components';
+import { Toast } from '@cogoport/components';
 
 const transportFn = ({
 	setRotate,
@@ -6,7 +6,7 @@ const transportFn = ({
 	setFormData,
 	setStepper,
 	setFormStepper,
-	setValues,
+	setValue,
 	error,
 	transportMode,
 	portDetails = {},
@@ -20,7 +20,8 @@ const transportFn = ({
 			originPort      : destination,
 			destinationPort : origin,
 		};
-		setValues({ ...obj });
+		setValue('originPort', destination);
+		setValue('destinationPort', origin);
 		setPortDetails((prev) => ({
 			origin      : prev?.destination,
 			destination : prev?.origin,
@@ -42,10 +43,10 @@ const transportFn = ({
 			},
 		}));
 	};
-
+	console.log(portDetails, 'portDetails');
 	const checkPort = () => {
 		if (origin === destination) {
-			toast.error('Same Port selected !', {
+			Toast.error('Same Port selected !', {
 				autoClose : 3000,
 				style     : { color: '#333', background: '#FFD9D4' },
 			});
@@ -55,7 +56,7 @@ const transportFn = ({
 			portDetails?.origin?.countryId === portDetails?.destination?.countryId
 			&& transportMode === 'OCEAN'
 		) {
-			toast.error('Ports of same Country selected!', {
+			Toast.error('Ports of same Country selected!', {
 				autoClose : 3000,
 				style     : { color: '#333', background: '#FFD9D4' },
 			});
@@ -85,17 +86,17 @@ const transportFn = ({
 
 	const errorHandler = () => {
 		if (error?.originPort && error?.destinationPort) {
-			toast.error('Please enter Origin and Destination Country', {
+			Toast.error('Please enter Origin and Destination Country', {
 				autoClose : 3000,
 				style     : { color: '#333', background: '#FFD9D4' },
 			});
 		} else if (error?.originPort) {
-			toast.error('Please enter Origin Country', {
+			Toast.error('Please enter Origin Country', {
 				autoClose : 3000,
 				style     : { color: '#333', background: '#FFD9D4' },
 			});
 		} else if (error?.destinationPort) {
-			toast.error('Please enter Destination Country', {
+			Toast.error('Please enter Destination Country', {
 				autoClose : 3000,
 				style     : { color: '#333', background: '#FFD9D4' },
 			});

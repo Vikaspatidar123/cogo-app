@@ -1,34 +1,28 @@
 import { IcMAirport, IcMPort } from '@cogoport/icons-react';
 
-export const transportationControls = ({ transportMode }) => {
-	const filter = { filters: { type: [transportMode === 'AIR' ? 'airport' : 'seaport'] } };
-
-	return [
-		{
-			name             : 'originPort',
-			label            : 'Origin Country',
-			placeholder      : transportMode === 'AIR' ? 'Select Origin' : 'Select Origin Port',
-			type             : 'port',
-			optionsListKey   : 'locations',
-			prefix           : transportMode === 'AIR' ? <IcMAirport /> : <IcMPort />,
-			params           : { ...filter },
-			rules            : { required: true },
-			noOptionsMessage : 'Type to search...',
-		},
-		{
-			name        : 'destinationPort',
-			label       : 'Destination Country',
-			placeholder :
+export const transportationControls = ({ transportMode }) => [
+	{
+		name             : 'originPort',
+		label            : 'Origin Country',
+		placeholder      : transportMode === 'AIR' ? 'Select Origin' : 'Select Origin Port',
+		type             : 'select',
+		prefix           : transportMode === 'AIR' ? <IcMAirport /> : <IcMPort />,
+		// options          : cityOptions,
+		rules            : { required: true },
+		noOptionsMessage : 'Type to search...',
+	},
+	{
+		name        : 'destinationPort',
+		label       : 'Destination Country',
+		placeholder :
 				transportMode === 'AIR' ? 'Select Destination' : 'Select Destination Port',
-			type             : 'port',
-			optionsListKey   : 'locations',
-			prefix           : transportMode === 'AIR' ? <IcMAirport /> : <IcMPort />,
-			params           : { ...filter },
-			rules            : { required: true },
-			noOptionsMessage : 'Type to search...',
-		},
-	];
-};
+		type             : 'select',
+		prefix           : transportMode === 'AIR' ? <IcMAirport /> : <IcMPort />,
+		// options          : cityOptions,
+		rules            : { required: true },
+		noOptionsMessage : 'Type to search...',
+	},
+];
 
 export const productControls = ({ organization }) => [
 	{
@@ -83,11 +77,15 @@ export const productControls = ({ organization }) => [
 		},
 	},
 	{
-		name  : 'currency',
-		type  : 'currency-select',
-		label : 'Currency',
-		value : organization?.country?.currency_code,
-		rules : { required: true },
+		name    : 'currency',
+		type    : 'select',
+		label   : 'Currency',
+		value   : organization?.country?.currency_code,
+		options : [
+			{ label: 'INR', value: 'INR' },
+			{ label: 'USD', value: 'USD' },
+		],
+		rules: { required: true },
 	},
 ];
 

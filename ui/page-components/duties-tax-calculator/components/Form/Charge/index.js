@@ -1,5 +1,4 @@
-import Button from '@cogoport/components';
-import toast from '@cogoport/components';
+import { Button, Toast } from '@cogoport/components';
 import { IcMArrowNext, IcMArrowBack } from '@cogoport/icons-react';
 import { useState, useEffect } from 'react';
 
@@ -40,6 +39,7 @@ function Charge({
 	portDetails,
 	prevCurr,
 	isMobile = false,
+	chargeControls,
 }) {
 	const [showFreightModal, setShowFreightModal] = useState(false);
 	const [spotCharge, setSpotCharge] = useState('');
@@ -77,7 +77,7 @@ function Charge({
 	};
 
 	const errorHandler = () => {
-		toast.error('Fill all mandatory details', {
+		Toast.error('Fill all mandatory details', {
 			autoClose : 3000,
 			style     : { color: '#333', background: '#FFD9D4' },
 		});
@@ -93,8 +93,9 @@ function Charge({
 				<div className={`${styles.incoterm} ${style.col}`}>
 					<div className={style.label}>{fields?.incoterm?.label}</div>
 					<SelectController
-						{...fields?.incoterm}
+						{...fields[1]}
 						handleChange={(data) => setIncoterm(data?.value)}
+						control={chargeControls}
 					/>
 					{error?.incoterm && (
 						<div className={style.error_txt}>
@@ -108,7 +109,11 @@ function Charge({
 				<div className={style.col}>
 					<div className={style.label}>{fields?.freightCharge?.label}</div>
 					<div className={style.flex_col}>
-						<NumberSelector {...fields?.freightCharge} className={style.freight_charge} />
+						<NumberSelector
+							{...fields[0]}
+							className={style.freight_charge}
+							control={chargeControls}
+						/>
 						<Button
 							className="primary  sm text"
 							onClick={() => setShowFreightModal(true)}
@@ -126,13 +131,15 @@ function Charge({
 				</div>
 				<div className={`${styles.incoterm_charges} ${style.col}`}>
 					<IncotermCharges
-						{...fields?.incotermCharges}
+						{...fields[2]}
 						incoterm={incoterm}
 						error={error}
 						watchIncotermCharges={watchIncotermCharges}
 						setValue={setValue}
 						formIncoterm={formIncoterm}
 						prevCurr={prevCurr}
+						control={chargeControls}
+						controls={fields[2].controls}
 					/>
 				</div>
 				<div className={style.btn_container}>

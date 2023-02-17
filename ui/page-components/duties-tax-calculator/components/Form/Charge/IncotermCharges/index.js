@@ -19,7 +19,7 @@ function IncotermCharges({
 	name,
 	control,
 	incoterm,
-	register,
+	// register,
 	controls,
 	error,
 	watchIncotermCharges = [],
@@ -27,11 +27,13 @@ function IncotermCharges({
 	formIncoterm,
 	prevCurr,
 }) {
+	console.log('cccccc', control);
 	const { MAPPING, CHARGES } = MappingConstant();
 	const { fields, append, remove } = useFieldArray({
 		name: 'incotermCharges',
 		control,
 	});
+	const { register } = control || {};
 	const NumberSelector = getField('number');
 	const addIncotermCharges = () => {
 		MAPPING[incoterm]?.forEach((ele) => {

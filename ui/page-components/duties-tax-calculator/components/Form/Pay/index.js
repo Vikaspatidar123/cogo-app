@@ -117,7 +117,7 @@ function Pay({
 			</div>
 			<div className={styles.line} />
 
-			<ServicesCharge formData={formData} />
+			{/* <ServicesCharge formData={formData} />
 			<Charges
 				formData={formData}
 				dtCurrency={currency}
@@ -126,7 +126,7 @@ function Pay({
 				gstAmount={gstAmount}
 				amount={amount}
 				totalAmount={totalAmount}
-			/>
+			/> */}
 
 			<div className={cl`${style.btn_container} ${style.checkout_btn}`}>
 				<Button size="md" isPrev onClick={prevHandler}>

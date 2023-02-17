@@ -1,4 +1,4 @@
-import toast from '@cogoport/components';
+import { Toast } from '@cogoport/components';
 
 import { useRequest } from '@/packages/request';
 
@@ -22,7 +22,7 @@ const useCurrencyConversion = () => {
 			});
 			return exData;
 		} catch (error) {
-			toast.error(error?.error, {
+			Toast.error(error?.error, {
 				autoClose : 3000,
 				style     : { color: '#333', background: '#FFD9D4' },
 			});

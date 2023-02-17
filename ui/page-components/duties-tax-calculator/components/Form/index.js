@@ -1,3 +1,4 @@
+import { merge } from '@cogoport/utils';
 import { useState } from 'react';
 
 import {
@@ -14,7 +15,10 @@ import Product from './Product';
 import styles from './styles.module.css';
 import Transportation from './Transportation';
 
-import { useForm } from '@/packages/forms';
+import {
+	asyncFieldsLocations, useGetAsyncOptions,
+	useForm,
+} from '@/packages/forms';
 import { useSelector } from '@/packages/store';
 
 function Form({
@@ -48,30 +52,53 @@ function Form({
 	});
 
 	const {
-		fields: transportFields,
-		setValues: transportSetValues,
+		setValue: transportSetValues,
 		watch: transportWatch,
 		reset: transportReset,
 		handleSubmit: transportHandleSubmit,
 		formState: { errors: transportError },
-	} = useForm(transportationControls({ transportMode }));
+		control:transportControl,
+	} = useForm();
+
 	const {
-		fields: productFields,
 		handleSubmit: productHandleSubmit,
 		setValue: productSetValue,
 		setValues: productSetValues,
 		watch: productWatch,
 		formState: { errors: productError },
-	} = useForm(productControls({ organization }));
+		control:productNewControls,
+	// } = useForm();
+	} = useForm({ defaultValues: { currency: 'INR' } });
 
 	const {
-		fields: chargeFields,
 		handleSubmit: chargeHandleSubmit,
 		formState: { errors: ChargeError },
 		watch: chargeWatch,
 		setValue: chargeSetValue,
 		setValues: chargeSetValues,
-	} = useForm(ChargeControls);
+		control:chargeControls,
+	} = useForm();
+
+	const filter = { filters: { type: [transportMode === 'AIR' ? 'airport' : 'seaport'] } };
+
+	const cityOptions = useGetAsyncOptions(merge(asyncFieldsLocations(), {
+		params: { ...filter },
+	}));
+	const transport = transportationControls({ transportMode, cityOptions });
+
+	const transportFields = (transport || [])?.map((control) => {
+		const { name } = control;
+		let newControl = { ...control };
+
+		if (name) {
+			newControl = { ...newControl, ...cityOptions };
+		}
+		return { ...newControl };
+	});
+	const productFields = productControls({ organization });
+	const chargeFields = ChargeControls;
+
+	console.log(transportFields, 'transportFields');
 
 	prefillFn({
 		transportSetValues,
@@ -109,6 +136,8 @@ function Form({
 		});
 	};
 
+	console.log(formProductDetails, 'formProductDetails');
+
 	return (
 		<div className={`${formPayDetails && 'payDetails'} ${styles.container}`}>
 			{formTransportDetails && (
@@ -117,7 +146,7 @@ function Form({
 					setTransportMode={setTransportMode}
 					fields={transportFields}
 					error={transportError}
-					setValues={transportSetValues}
+					setValue={transportSetValues}
 					watch={transportWatch}
 					reset={transportReset}
 					handleSubmit={transportHandleSubmit}
@@ -128,6 +157,7 @@ function Form({
 					setPortDetails={setPortDetails}
 					setPrevHs={setPrevHs}
 					isMobile={isMobile}
+					transportControl={transportControl}
 				/>
 			)}
 			{formProductDetails && (
@@ -149,6 +179,7 @@ function Form({
 					isQuotaLeft={isQuotaLeft}
 					prevHs={prevHs}
 					setPrevHs={setPrevHs}
+					productNewControls={productNewControls}
 				/>
 			)}
 			{formChargeDetails && (
@@ -173,6 +204,7 @@ function Form({
 					portDetails={portDetails}
 					prevCurr={prevCurr}
 					isMobile={isMobile}
+					chargeControls={chargeControls}
 				/>
 			)}
 			{formPayDetails && (

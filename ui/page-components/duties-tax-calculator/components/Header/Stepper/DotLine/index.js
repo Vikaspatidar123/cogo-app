@@ -16,25 +16,24 @@ function DotLine({
 				{!isFirst && (
 					<div
 						className={` ${isMobile ? styles.is_mobile : styles.not_mobile} ${
-							isCompleted && 'completed'
+							isCompleted && styles.completed
 						} ${styles.line}`}
 					/>
 				)}
-				<div className={`${isOngoing && 'ongoing'} ${isCompleted && 'completed'} ${styles.dot}`}>
+				<div className={`${isOngoing && styles.ongoing} ${isCompleted && styles.completed} ${styles.dot}`}>
 					{isCompleted && <IcMTick fill="#fff" width={14} height={14} />}
 				</div>
 				{!isLast && (
 					<div
-						className={` ${isMobile ? 'is-mobile' : 'not-mobile'} ${
-							isOngoing && 'ongoing'
-						} ${isCompleted && 'completed'}`}
+						className={` ${isMobile ? styles.is_mobile : styles.not_mobile}
+						${isOngoing && styles.ongoing} ${isCompleted && styles.completed}`}
 					/>
 				)}
 			</div>
 			<div
-				className={` ${isMobile ? 'is-mobile' : 'not-mobile'} ${
-					isFirst && 'firstElement'
-				} ${isLast && 'lastElement'} ${isCompleted && 'completed'} ${styles.text}`}
+				className={` ${isMobile ? styles.is_mobile : styles.not_mobile} ${
+					isFirst && styles.firstElement
+				} ${isLast && styles.lastElement} ${isCompleted && styles.completed} ${styles.text}`}
 			>
 				{subHeading}
 			</div>

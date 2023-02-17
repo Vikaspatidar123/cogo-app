@@ -1,4 +1,4 @@
-import toast from '@cogoport/components';
+import { Toast } from '@cogoport/components';
 import { useState } from 'react';
 
 import { useRequestBf } from '@/packages/request';
@@ -28,14 +28,14 @@ const useVerifyHscode = () => {
 				},
 			});
 			if (!resp?.data) {
-				toast.error('Please enter valid Hs Code ', {
+				Toast.error('Please enter valid Hs Code ', {
 					autoClose : 3000,
 					style     : { color: '#333', background: '#FFD9D4' },
 				});
 			}
 			return resp?.data;
 		} catch (err) {
-			toast.error('Something went wrong! Please try again ', {
+			Toast.error('Something went wrong! Please try again ', {
 				autoClose : 3000,
 				style     : { color: '#333', background: '#FFD9D4' },
 			});
@@ -58,7 +58,7 @@ const useVerifyHscode = () => {
 			});
 
 			if (!resp?.data?.status && resp?.data?.recommendations.length === 0) {
-				toast.info(
+				Toast.info(
 					// 'Hs Code for the specified destination country cannot be validated. Please enter another Hs Code',
 					'This hs code is not supported by us. Please provide another hs code',
 					{
@@ -69,7 +69,7 @@ const useVerifyHscode = () => {
 				setValidateInProgress(true);
 			}
 			if (!resp?.data?.status && resp?.data?.recommendations.length > 0) {
-				toast.info('Invalid HS Code. Please select from dropdown', {
+				Toast.info('Invalid HS Code. Please select from dropdown', {
 					autoClose : 5000,
 					style     : { color: '#333', backgroundColor: '#e9faff' },
 				});
@@ -79,7 +79,7 @@ const useVerifyHscode = () => {
 			setStatus(resp?.data?.status);
 			setInputValue(resp?.data?.recommendations);
 		} catch (error) {
-			toast.error('Something went wrong! Please try again ', {
+			Toast.error('Something went wrong! Please try again ', {
 				autoClose : 3000,
 				style     : { color: '#333', background: '#FFD9D4' },
 			});

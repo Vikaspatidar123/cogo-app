@@ -1,4 +1,4 @@
-import ToolTip from '@cogoport/components';
+import { ToolTip } from '@cogoport/components';
 import { IcMShip, IcMAirport, IcMPortArrow } from '@cogoport/icons-react';
 
 // import { Row, Col } from './styles';

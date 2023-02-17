@@ -1,6 +1,8 @@
 import { CogoMaps } from '@cogoport/maps';
 import { useState } from 'react';
 
+import { DestinationIcon, SourceIcon } from '../../configuration/icon-configuration';
+
 import Pointer from './Pointer';
 import Route from './Route';
 
@@ -36,10 +38,10 @@ function MapComp({
 			center={center}
 			setMap={setMap}
 		>
-			<Pointer lat={origin.latitude} lng={origin?.longitude} />
+			<Pointer lat={origin?.latitude} lng={origin?.longitude} iconSvg={SourceIcon} map={map} />
 			<Route positions={plotPoints} map={map} />
 			{pointLength > 0 && (
-				<Pointer lat={destination.latitude} lng={destination?.longitude} />
+				<Pointer lat={destination.latitude} lng={destination?.longitude} iconSvg={DestinationIcon} map={map} />
 			)}
 		</CogoMaps>
 	);

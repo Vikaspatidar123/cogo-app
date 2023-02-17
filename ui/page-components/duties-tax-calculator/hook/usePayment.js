@@ -1,4 +1,4 @@
-import toast from '@cogoport/components';
+import { Toast } from '@cogoport/components';
 
 import { useRouter } from '@/packages/next';
 import { useRequestBf } from '@/packages/request';
@@ -66,7 +66,7 @@ const usePayment = () => {
 			}
 		} catch (err) {
 			console.log(err?.error?.message);
-			toast.error('Something went wrong! Please try after sometime', {
+			Toast.error('Something went wrong! Please try after sometime', {
 				autoClose : 3000,
 				style     : { color: '#333', background: '#FFD9D4' },
 			});

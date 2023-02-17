@@ -27,7 +27,7 @@ function Transportation({
 	setTransportMode,
 	fields,
 	error,
-	setValues,
+	setValue,
 	watch,
 	reset,
 	handleSubmit,
@@ -38,13 +38,15 @@ function Transportation({
 	setPortDetails,
 	setPrevHs,
 	isMobile = false,
+	transportControl,
 }) {
+	console.log(fields[0], portDetails, error, 'fields');
 	const [rotate, setRotate] = useState(false);
-	const OriginPort = getField(fields?.originPort?.type);
-	const DestinationPort = getField(fields?.destinationPort?.type);
+	const OriginPort = getField(fields[0]?.type);
+	const DestinationPort = getField(fields[1]?.type);
 	const [origin, destination] = watch(['originPort', 'destinationPort']);
 	// const { setMapPoints } = useSaasState();
-	const { mapPoints, setMapPoints } = useState();
+	const [mapPoints, setMapPoints] = useState();
 
 	const initialRef = useRef(true);
 
@@ -60,7 +62,7 @@ function Transportation({
 		setFormData,
 		setStepper,
 		setFormStepper,
-		setValues,
+		setValue,
 		error,
 		transportMode,
 		portDetails,
@@ -127,11 +129,12 @@ function Transportation({
 				</div>
 				<div className={styles.formDiv}>
 					<div className={style.col}>
-						<div className={style.label}>{fields?.originPort?.label}</div>
+						<div className={style.label}>{fields[0]?.label}</div>
 						<OriginPort
 							key={origin || portDetails?.origin?.id}
-							{...fields?.originPort}
+							{...fields[0]}
 							handleChange={(data) => portDetailsHandler(data, 'origin')}
+							control={transportControl}
 						/>
 						{error?.originPort && (
 							<div className={style.error_txt}>
@@ -150,11 +153,12 @@ function Transportation({
 						</div>
 					</div>
 					<div className={style.col}>
-						<div className={style.label}>{fields?.destinationPort?.label}</div>
+						<div className={style.label}>{fields[1].label}</div>
 						<DestinationPort
 							key={destination || portDetails?.destination?.id}
-							{...fields?.destinationPort}
+							{...fields[1]}
 							handleChange={(data) => portDetailsHandler(data, 'destination')}
+							control={transportControl}
 						/>
 						{error?.destinationPort && (
 							<div className={style.error_txt}>

@@ -1,4 +1,4 @@
-import toast from '@cogoport/components';
+import { Toast } from '@cogoport/components';
 import { useState } from 'react';
 
 import { useRequestBf } from '@/packages/request';
@@ -31,7 +31,7 @@ const useTradeEngine = () => {
 			});
 			setTradeEngineResp(resp?.data);
 		} catch (err) {
-			toast.error('Something went wrong! Please try after sometime', {
+			Toast.error('Something went wrong! Please try after sometime', {
 				autoClose : 3000,
 				style     : { color: '#333', background: '#FFD9D4' },
 			});
@@ -53,7 +53,7 @@ const useTradeEngine = () => {
 				getTradeEngine(resp?.data?.id);
 			}
 		} catch (err) {
-			toast.error('Something went wrong! Please try after sometime', {
+			Toast.error('Something went wrong! Please try after sometime', {
 				autoClose : 3000,
 				style     : { color: '#333', background: '#FFD9D4' },
 			});

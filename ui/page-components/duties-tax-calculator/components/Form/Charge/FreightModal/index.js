@@ -1,4 +1,4 @@
-import Modal from '@cogoport/components';
+import { Modal } from '@cogoport/components';
 import { IcAFinancial } from '@cogoport/icons-react';
 import { useState } from 'react';
 

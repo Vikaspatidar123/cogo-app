@@ -132,6 +132,8 @@ function Map({
 				plotPoints={curvePoints}
 				isMobile={isMobile}
 				tradeEngineRespLength={tradeEngineRespLength}
+				origin={origin}
+				destination={destination}
 			/>
 			{routeDataLength && curvePoints.length === 0 && (
 				<div className={styles.loader}>

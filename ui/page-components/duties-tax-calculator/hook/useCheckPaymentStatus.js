@@ -1,4 +1,4 @@
-import toast from '@cogoport/components';
+import { Toast } from '@cogoport/components';
 import { useState, useEffect } from 'react';
 
 import { useRouter } from '@/packages/next';
@@ -55,7 +55,7 @@ const useCheckPaymentStatus = ({
 					}, 2000);
 				} else {
 					setStop(true);
-					toast.warn('Payment is Pending', {
+					Toast.warn('Payment is Pending', {
 						autoClose : 3000,
 						style     : { background: '#ffffe5' },
 					});

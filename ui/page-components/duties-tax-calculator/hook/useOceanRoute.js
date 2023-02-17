@@ -15,7 +15,7 @@ const useOceanRoute = () => {
 	const [{ loading }, oceanRouteTrigger] = useRequest({
 		url    : 'https://maps.dev.cogoport.io/locations/routing/get_sea_route',
 		method : 'get',
-	}, { manual: true });
+	}, { manual: false });
 
 	const getOceanRoute = async (origin_port_id, destination_port_id) => {
 		try {

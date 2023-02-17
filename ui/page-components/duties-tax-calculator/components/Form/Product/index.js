@@ -38,6 +38,7 @@ function Product({
 	isQuotaLeft = false,
 	prevHs,
 	setPrevHs,
+	productNewControls,
 }) {
 	const [showCatalogue, setShowCatalogue] = useState(false);
 	const [showHsCodeModal, setShowHsCodeModal] = useState(false);
@@ -45,7 +46,7 @@ function Product({
 	const [selectedData, setSelectedData] = useState();
 
 	const NumberSelector = getField('number');
-	const CurrencySelector = getField('currency-select');
+	const CurrencySelector = getField('select');
 
 	const { exchangeApi } = useCurrencyConversion();
 
@@ -87,11 +88,11 @@ function Product({
 		}
 	}, [JSON.stringify(selectedData)]);
 
-	useEffect(() => {
-		if (watchCurrency !== prevCurr && watchConsignmentValue !== '') {
-			convertCurrency(prevCurr, watchCurrency);
-		}
-	}, [watchCurrency]);
+	// useEffect(() => {
+	// 	if (watchCurrency !== prevCurr && watchConsignmentValue !== '') {
+	// 		convertCurrency(prevCurr, watchCurrency);
+	// 	}
+	// }, [watchCurrency]);
 
 	return (
 		<div className={styles.container}>
@@ -102,7 +103,7 @@ function Product({
 				</div>
 				<div className={`${style.col} ${styles.currency}`}>
 					<div className={style.label}>{fields?.currency?.label}</div>
-					<CurrencySelector {...fields?.currency} />
+					<CurrencySelector {...fields[4]} control={productNewControls} />
 					{error?.currency && (
 						<div className={style.error_txt}>
 							*
@@ -114,7 +115,7 @@ function Product({
 			<form>
 				<div className={style.col}>
 					<div className={style.label}>{fields?.hsCode?.label}</div>
-					<NumberSelector {...fields?.hsCode} />
+					<NumberSelector {...fields[1]} control={productNewControls} />
 					{error?.hsCode && (
 						<div className={style.error_txt}>
 							*
@@ -128,7 +129,7 @@ function Product({
 				/>
 				<div className={style.col}>
 					<div className={style.label}>{fields?.consignmentValue?.label}</div>
-					<NumberSelector {...fields?.consignmentValue} />
+					<NumberSelector {...fields[2]} control={productNewControls} />
 					{error?.consignmentValue && (
 						<div className={style.error_txt}>
 							*
@@ -138,7 +139,7 @@ function Product({
 				</div>
 				<div className={style.col}>
 					<div className={style.label}>{fields?.quantity?.label}</div>
-					<NumberSelector {...fields?.quantity} />
+					<NumberSelector {...fields[3]} control={productNewControls} />
 					{error?.quantity && (
 						<div className={style.error_txt}>
 							*

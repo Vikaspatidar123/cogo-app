@@ -128,3 +128,15 @@ export const Text = styled.div`
 	transition: background 0.3s ease-in;
 }
 
+.completed {
+	background: #c4dc91;
+}
+.firstElement {
+	position: absolute;
+	left: -60px;
+}
+
+.lastElement {
+	position: absolute;
+	right: -60px;
+}

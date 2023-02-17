@@ -27,7 +27,8 @@ function TitleContainer({ getDraftData = {} }) {
 						<div className={styles.text}>Validate HS Code details</div>
 						<div className={styles.hr} />
 					</div>
-					<ToolTip
+
+					{/* <ToolTip
 						content={(
 							<div className={styles.text}>
 								To fetch accurate information, we need to re-validate your cargo and HS
@@ -36,13 +37,13 @@ function TitleContainer({ getDraftData = {} }) {
 						)}
 						interactive
 						placement="top"
-						theme="light-border"
 					>
 						<div>
 							<IcMInfo height={13} width={13} fill="#F68B21" />
 						</div>
-					</ToolTip>
+					</ToolTip> */}
 				</div>
+
 			</div>
 		</>
 	);

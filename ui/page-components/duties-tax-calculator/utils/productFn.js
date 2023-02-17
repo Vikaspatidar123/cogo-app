@@ -1,4 +1,4 @@
-import toast from '@cogoport/components';
+import { Toast } from '@cogoport/components';
 
 const productFn = ({
 	setFormData,
@@ -46,7 +46,7 @@ const productFn = ({
 	};
 
 	const errorHandler = () => {
-		toast.error('Fill all mandatory details', {
+		Toast.error('Fill all mandatory details', {
 			autoClose : 3000,
 			style     : { color: '#333', background: '#FFD9D4' },
 		});

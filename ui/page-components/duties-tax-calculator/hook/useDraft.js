@@ -1,4 +1,4 @@
-import toast from '@cogoport/components';
+import { Toast } from '@cogoport/components';
 import { useState } from 'react';
 
 import { useRouter } from '@/packages/next';
@@ -47,7 +47,7 @@ const useDraft = () => {
 			return resp?.data?.id;
 		} catch (err) {
 			console.log(err?.error?.message);
-			toast.error('Something went wrong! Please try after sometime', {
+			Toast.error('Something went wrong! Please try after sometime', {
 				autoClose : 3000,
 				style     : { color: '#333', background: '#FFD9D4' },
 			});

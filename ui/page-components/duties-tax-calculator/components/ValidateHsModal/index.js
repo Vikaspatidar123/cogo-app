@@ -1,9 +1,8 @@
-import { Popover, Modal } from '@cogoport/components';
+import { Popover, Modal, Input } from '@cogoport/components';
 import { useState, useEffect } from 'react';
 
 // import LegendInput from '../../../../common/form/business/LegendInput';
 
-import InputController from '../../../../../packages/forms/Controlled/InputController';
 import Button from '../../common/Button';
 import { ValidateIcon } from '../../configuration/icon-configuration';
 import useVerifyHscode from '../../hook/useVerifyHscode';
@@ -130,7 +129,7 @@ function ValidateHsModal({
 						visible={validateInProgress && inputValue.length > 0}
 					>
 						<div className={styles.input_container}>
-							<InputController
+							<Input
 								label="HS Code"
 								value={hsCode || hs}
 								className={styles.hs_input}

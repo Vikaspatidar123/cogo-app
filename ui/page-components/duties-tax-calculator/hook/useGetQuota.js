@@ -1,4 +1,4 @@
-import toast from '@cogoport/components';
+import { Toast } from '@cogoport/components';
 import { useState, useEffect, useMemo } from 'react';
 
 import { useRequest } from '@/packages/request';
@@ -29,7 +29,7 @@ const useGetQuota = () => {
 				params: { organization_id: organization?.id },
 			});
 		} catch (err) {
-			toast.error(err?.message);
+			Toast.error(err?.message);
 		}
 	};
 	useEffect(() => {

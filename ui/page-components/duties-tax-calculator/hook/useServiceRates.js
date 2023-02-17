@@ -1,4 +1,4 @@
-import toast from '@cogoport/components';
+import { Toast } from '@cogoport/components';
 
 import { useRequestBf } from '@/packages/request';
 
@@ -18,7 +18,7 @@ const useServiceRates = ({ prioritySequence = 0 }) => {
 			});
 			return resp;
 		} catch (error) {
-			toast.error(error?.message || 'Something went wrong. Please try after sometime', {
+			Toast.error(error?.message || 'Something went wrong. Please try after sometime', {
 				autoClose : 2000,
 				style     : { color: '#333', background: '#FFD9D4' },
 			});

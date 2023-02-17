@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 
-import LeftPanel from '../../common/LeftPanel';
-
 import SignupForm from './SignupForm';
 import styles from './styles.module.css';
 import VerifictaionForm from './VerificationForm';
+
+import LeftPanel from '@/ui/commons/components/LeftPanel';
 
 function Signup() {
 	const [hasSignedup, setHasSignedup] = useState(false);

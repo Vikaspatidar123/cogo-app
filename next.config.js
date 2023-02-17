@@ -14,15 +14,15 @@ const loadCogoModules = () => {
 const modulesToTranspile = loadCogoModules();
 
 module.exports = {
-	reactStrictMode: false,
-	swcMinify: true,
-	basePath: '/v2',
-	transpilePackages: modulesToTranspile,
+	reactStrictMode   : false,
+	swcMinify         : true,
+	basePath          : '/v2',
+	transpilePackages : modulesToTranspile,
 	webpack(config) {
 		const newConfig = { ...config };
 		newConfig.module.rules.push({
-			test: /\.svg$/i,
-			use: [{ loader: '@svgr/webpack' }],
+			test : /\.svg$/i,
+			use  : [{ loader: '@svgr/webpack' }],
 		});
 		return config;
 	},

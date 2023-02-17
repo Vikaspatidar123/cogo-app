@@ -154,7 +154,7 @@ function AddressCard({
 								setPocToUpdate(firstPoc);
 							}}
 						>
-							<IcMEdit style={{ width: 12, height: 12 }} />
+							{/* <IcMEdit style={{ width: 12, height: 12 }} /> */}
 						</div>
 
 						<div className={styles.poc_sub_container}>

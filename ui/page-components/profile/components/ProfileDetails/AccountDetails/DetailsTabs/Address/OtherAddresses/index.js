@@ -12,7 +12,7 @@ import getOtherAddressOptions from './utils/get-other-address-options';
 import useRequest from '@/packages/request';
 import { useSelector } from '@/packages/store';
 
-function OtherAddresses({ organizationType = '' }) {
+function OtherAddresses({ addressesData }) {
 	const {
 		general: { isMobile },
 	} = useSelector((state) => state);
@@ -27,82 +27,61 @@ function OtherAddresses({ organizationType = '' }) {
 
 	const [showData, setShowData] = useState({});
 
-	// const getOrganizationOtherAddressAPI = useRequest(
-	// 	'get',
-	// 	false,
-	// 	'partner',
-	// )('/partner/get_channel_partner_addresses');
-
-	// const { loading = false } = getOrganizationOtherAddressAPI;
-
-	// const getOrganizationOtherAddresses = () => {
-	// 	try {
-	// 		getOrganizationOtherAddressAPI.trigger({
-	// 			params: {
-	// 				account_types: [organizationType],
-	// 				filters: { trade_party_type: 'self' },
-	// 			},
-	// 		});
-	// 	} catch (err) {
-	// 		toast.error(getApiErrorString(err.data));
-	// 	}
-	// };
-
-	// const organizationOtherAddressesList = getOrganizationOtherAddressAPI.data || {};
+	const organizationOtherAddressesList = addressesData?.data || {};
 
 	// useEffect(() => {
 	// 	getOrganizationOtherAddresses();
 	// }, [organizationType]);
 
-	const renderAddressCards = () => {
-		// if (
-		// 	(organizationOtherAddressesList?.[address_key.api_property_key] || [])
-		// 		.length === 0
-		// ) {
-		// 	return (
-		// 		<EmptyState
-		// 			height={125}
-		// 			width={125}
-		// 			bottomText={t(
-		// 				'profile:accountDetails.tabOptions.address.otherAddresses.card.emptyState.bottomText',
-		// 			)}
-		// 		/>
-		// 	);
-		// }
+	const renderAddressCards = ({ address_key }) => (organizationOtherAddressesList[address_key.api_property_key])?.map(
+		(other_address_data, index) => (
+			<OtherAddressCard
+				// getOrganizationOtherAddresses={getOrganizationOtherAddresses}
+				setOtherAddressObjToUpdate={setOtherAddressObjToUpdate}
+				index={index}
+				other_address_data={other_address_data}
+			/>
 
-		// organizationOtherAddressesList?.[address_key.api_property_key]?.map(
-		// 	(other_address_data, index) => (
-		// 		<OtherAddressCard
-		// 			getOrganizationOtherAddresses={getOrganizationOtherAddresses}
-		// 			setOtherAddressObjToUpdate={setOtherAddressObjToUpdate}
-		// 			index={index}
-		// 			other_address_data={other_address_data}
-		// 		/>
-		// 	),
-		// );
-		const handleCloseModal = () => {
-			setEditOtherAddressKey(null);
-			setOtherAddressObjToUpdate({});
-		};
+		),
+	);
+	// if (
+	// 	(organizationOtherAddressesList?.[address_key.api_property_key] || [])
+	// 		.length === 0
+	// ) {
+	// 	return (
+	// 		<EmptyState
+	// 			height={125}
+	// 			width={125}
+	// 			bottomText={t(
+	// 				'profile:accountDetails.tabOptions.address.otherAddresses.card.emptyState.bottomText',
+	// 			)}
+	// 		/>
+	// 	);
+	// }
 
-		// if (loading) {
-		// 	return <LoadingState />;
-		// }
+	const handleCloseModal = () => {
+		setEditOtherAddressKey(null);
+		setOtherAddressObjToUpdate({});
+	};
 
-		return (
-			<>
-				{Object.values(OTHER_ADDRESSES_MAPPING).map((address_key) => (
-					<div className={styles.main_container}>
-						<div className={styles.flex}>
-							<div className={styles.body}>
-								<div className={styles.flex}>
-									<div className={styles.text}>
-										{`${address_key.label} ${t(
-											'profile:accountDetails.tabOptions.address.otherAddresses.texts.heading',
-										)}`}
+	// if (loading) {
+	// 	return <LoadingState />;
+	// }
 
-									</div>
-									{/* {!isMobile ? (
+	return (
+		<>
+			{Object.values(OTHER_ADDRESSES_MAPPING).map((address_key) => (
+				<div className={styles.main_container}>
+					<div className={styles.flex}>
+						<div className={styles.body}>
+							<div className={styles.flex}>
+								<div className={styles.text}>
+									{`${address_key.label} ${t(
+										'profile:accountDetails.tabOptions.address.otherAddresses.texts.heading',
+									)}`}
+
+								</div>
+								{/* {!isMobile ? (
 										<Tag>
 											{`${organizationOtherAddressesList?.[
 												address_key.api_property_key
@@ -115,48 +94,48 @@ function OtherAddresses({ organizationType = '' }) {
 												)}`}
 										</Tag>
 									) :  */}
-									{/* ( */}
-									<div className={styles.text} style={{ marginLeft: 4 }}>
-										{/* (
+								{/* ( */}
+								<div className={styles.text} style={{ marginLeft: 4 }}>
+									{/* (
 										{organizationOtherAddressesList.length || 0}
 										) */}
-										ok
-									</div>
-									{/* )} */}
+									ok
 								</div>
-								<div className={styles.flex}>
-									<div className={styles.link_text} onClick={() => setEditOtherAddressKey(address_key)}>
-										otherAddresses.texts.addAddress
-									</div>
-								</div>
+								{/* )} */}
 							</div>
-
-							<div
-								className={styles.icon_container}
-								onClick={() => setShowData((ps) => ({
-									...ps,
-									[address_key.api_property_key]:
-										!ps[address_key.api_property_key],
-								}))}
-							>
-								{showData[address_key.api_property_key] ? (
-									<IcACreateAnAccount style={{ width: 12, height: 8 }} />
-								) : (
-									<IcACreateAnAccount
-										style={{ width: 12, height: 8, transform: 'rotate(180deg)' }}
-									/>
-								)}
+							<div className={styles.flex}>
+								<div className={styles.link_text} onClick={() => setEditOtherAddressKey(address_key)}>
+									otherAddresses.texts.addAddress
+								</div>
 							</div>
 						</div>
 
-						<div className={styles.flex} direction="column">
-							{showData[address_key.api_property_key]
-								&& renderAddressCards({ address_key })}
+						<div
+							className={styles.icon_container}
+							onClick={() => setShowData((ps) => ({
+								...ps,
+								[address_key.api_property_key]:
+										!ps[address_key.api_property_key],
+							}))}
+						>
+							{showData[address_key.api_property_key] ? (
+								<IcACreateAnAccount style={{ width: 12, height: 8 }} />
+							) : (
+								<IcACreateAnAccount
+									style={{ width: 12, height: 8, transform: 'rotate(180deg)' }}
+								/>
+							)}
 						</div>
 					</div>
-				))}
 
-				{(!!editOtherAddresKey
+					<div className={styles.flex} direction="column">
+						{showData[address_key.api_property_key]
+								&& renderAddressCards({ address_key })}
+					</div>
+				</div>
+			))}
+
+			{(!!editOtherAddresKey
 					|| Object.keys(otherAddressObjToUpdate).length !== 0) && (
 						<Modal
 							className="primary lg"
@@ -178,9 +157,9 @@ function OtherAddresses({ organizationType = '' }) {
 							// getOrganizationOtherAddresses={getOrganizationOtherAddresses}
 							/>
 						</Modal>
-					)}
-			</>
-		);
-	};
+			)}
+		</>
+	);
 }
+
 export default OtherAddresses;

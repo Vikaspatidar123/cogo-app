@@ -10,6 +10,7 @@ function ProfileDetails() {
 		general: { isMobile, query },
 	} = useSelector((state) => state);
 	const { kyc_status } = organization || {};
+
 	return (
 		<>
 			<ProfileProgress />

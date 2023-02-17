@@ -1,4 +1,5 @@
 /* eslint-disable max-len */
+import { Toast } from '@cogoport/components';
 import { merge } from '@cogoport/utils';
 import { useEffect } from 'react';
 
@@ -8,6 +9,7 @@ import {
 	useForm,
 	asyncFieldsLocations, useGetAsyncOptions,
 } from '@/packages/forms';
+import { useRequest } from '@/packages/request';
 import { useDispatch, useSelector } from '@/packages/store';
 
 const useEditBillingAddress = ({
@@ -16,6 +18,10 @@ const useEditBillingAddress = ({
 	organizationBillingAddressesList,
 	handleCloseModal,
 }) => {
+	const [{ loading, data }, trigger] = useRequest({
+		url    : '/create_organization_billing_address',
+		method : 'post',
+	}, { manual: true });
 	const valuesToPrefill = organizationBillingAddressesList?.[addressIdxToUpdate];
 	const labelKey = 'postal_code';
 	const valueKey = 'postal_code';
@@ -50,7 +56,21 @@ const useEditBillingAddress = ({
 			// });
 		}
 	}, []);
-
+	const onCreate = async (value) => {
+		const { tax_number_document_url = {}, ...prop } = value;
+		try {
+			await trigger({
+				data: {
+					...prop,
+					tax_number_document_url: tax_number_document_url?.finalUrl || undefined
+					,
+				},
+			});
+			Toast.success('Successfull Update');
+		} catch (err) {
+			if (err?.response?.data)Toast.error(err?.response?.data?.gst_number[0]);
+		}
+	};
 	const isSez = watch('is_sez');
 
 	const showElements = fields.reduce((previousControls, currentControls) => {
@@ -68,6 +88,7 @@ const useEditBillingAddress = ({
 	}, {});
 
 	return {
+		onCreate,
 		formState,
 		control,
 		fields,

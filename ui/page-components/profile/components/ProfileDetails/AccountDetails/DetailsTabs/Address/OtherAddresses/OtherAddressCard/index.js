@@ -11,7 +11,7 @@ import { useSelector } from '@/packages/store';
 function OtherAddressCard({
 	other_address_data = {},
 	setOtherAddressObjToUpdate = () => { },
-	getOrganizationOtherAddresses,
+	// getOrganizationOtherAddresses,
 	index = '',
 }) {
 	const {
@@ -243,7 +243,7 @@ function OtherAddressCard({
 
 							: 'card.pocFooter.linkTexts.2'
 
-							} `}
+						} `}
 					</div>
 				) : null}
 
@@ -269,7 +269,7 @@ function OtherAddressCard({
 						<AddEditPocDetails
 							showPocModal={showPocModal}
 							setShowPocModal={setShowPocModal}
-							getOrganizationOtherAddresses={getOrganizationOtherAddresses}
+							// getOrganizationOtherAddresses={getOrganizationOtherAddresses}
 							pocToUpdate={pocToUpdate}
 							address_data={other_address_data}
 							type="other_address"

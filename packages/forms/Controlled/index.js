@@ -1,17 +1,19 @@
 import CheckboxController from './CheckboxController';
 import InputController from './InputController';
+import MobileNumberSelectController from './MobileNumberSelectController';
 import SelectController from './SelectController';
 import TextAreaController from './TextAreaController';
 import FileUploader from './UploadController';
 
 const MAPPING = {
 
-	select   : SelectController,
-	text     : InputController,
-	number   : InputController,
-	textarea : TextAreaController,
-	file     : FileUploader,
-	checkbox : CheckboxController,
+	select        : SelectController,
+	text          : InputController,
+	number        : InputController,
+	textarea      : TextAreaController,
+	file          : FileUploader,
+	checkbox      : CheckboxController,
+	mobile_number : MobileNumberSelectController,
 
 };
 

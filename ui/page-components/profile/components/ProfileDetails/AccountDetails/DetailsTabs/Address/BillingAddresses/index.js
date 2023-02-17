@@ -12,13 +12,13 @@ import styles from './styles.module.css';
 
 import { useSelector } from '@/packages/store';
 
-function BillingAddresses({ title = '', organizationType = '' }) {
+function BillingAddresses({
+	title = '', organizationType = '', organizationBillingAddressesList = [], loading,
+}) {
 	const {
 		general: { isMobile = false },
 	} = useSelector((state) => state);
 
-	const { data, loading } = getAddress();
-	const organizationBillingAddressesList = data?.list || [];
 	const [showEditBillingAddress, setShowEditBillingAddress] = useState(false);
 
 	const [addressIdxToUpdate, setAddressIdxToUpdate] = useState(null);
@@ -73,10 +73,9 @@ function BillingAddresses({ title = '', organizationType = '' }) {
 								</Tag>
 							) : ( */}
 							<div className={styles.text} style={{ marginLeft: 4 }}>
-								{/* (
+								(
 								{organizationBillingAddressesList.length || 0}
-								) */}
-								hjsdc
+								)
 							</div>
 							{/* )} */}
 						</div>

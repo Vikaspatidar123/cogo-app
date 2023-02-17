@@ -7,8 +7,12 @@ import { useSelector } from '@/packages/store';
 const getOrganizationBillingAddress = () => {
 	const { profile } = useSelector((item) => item);
 	const [{ loading, data }, trigger] = useRequest({
-		url: '/list_organization_billing_addresses',
-		method: 'get',
+		url    : '/list_organization_billing_addresses',
+		method : 'get',
+	}, { manual: true });
+	const [{ loading:addressLoading, data:addressesData }, triggerAddress] = useRequest({
+		url    : '/list_organization_addresses',
+		method : 'get',
 	}, { manual: true });
 
 	const getAddress = async () => {
@@ -23,7 +27,21 @@ const getOrganizationBillingAddress = () => {
 			console.log(err);
 		}
 	};
-	useEffect(() => { getAddress(); }, []);
-	return { getAddress, loading, data };
+	const getAdd = async () => {
+		try {
+			await triggerAddress({
+				params: {
+					filters: { organization_branch_id: profile.branch.id },
+
+				},
+			});
+		} catch (err) {
+			console.log(err);
+		}
+	};
+	useEffect(() => { getAddress(); getAdd(); }, []);
+	return {
+		getAddress, loading, addressesData, data,
+	};
 };
 export default getOrganizationBillingAddress;

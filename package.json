@@ -50,6 +50,7 @@
     "eslint": "8.25.0",
     "eslint-config-next": "12.3.1",
     "fs-extra": "^11.1.0",
+    "json-loader": "^0.5.7",
     "postcss": "^8.4.21",
     "postcss-flexbugs-fixes": "^5.0.2",
     "postcss-nested": "^6.0.0",

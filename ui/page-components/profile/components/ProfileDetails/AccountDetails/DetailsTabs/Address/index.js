@@ -2,6 +2,7 @@ import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
 
 import BillingAddresses from './BillingAddresses';
+import getAddress from './hooks/getOrganizationBillingAddress';
 import OtherAddresses from './OtherAddresses';
 import styles from './styles.module.css';
 
@@ -21,7 +22,8 @@ function Address() {
 	const onClickBackButton = () => {
 		router.push('/profile');
 	};
-
+	const { data, loading, addressesData } = getAddress();
+	const organizationBillingAddressesList = data?.list || [];
 	return (
 		<>
 			{/* {isMobile && (
@@ -56,11 +58,12 @@ function Address() {
 			)} */}
 
 			<BillingAddresses
-
 				title="Billing Address"
+				organizationBillingAddressesList={organizationBillingAddressesList}
+				loading={loading}
 			/>
 
-			<OtherAddresses />
+			<OtherAddresses addressesData={addressesData} />
 		</>
 	);
 }

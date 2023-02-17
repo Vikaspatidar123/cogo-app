@@ -12,11 +12,9 @@ function OrganizationDetails() {
 	const {
 		isMobile,
 		loading = false,
-		organizationType = '',
 		organizationData = {},
 		setShowEditOrganizationDetails = () => { },
 		showEditOrganizationDetails = false,
-		getOrganization = () => { },
 		// onClickBackButton,
 	} = useOrganizationDetails({});
 
@@ -30,10 +28,10 @@ function OrganizationDetails() {
 					<div className={styles.flex}>
 						<IcMEdit
 							style={{
-								width: 16,
-								height: 16,
-								cursor: 'pointer',
-								marginRight: isMobile && 12,
+								width       : 16,
+								height      : 16,
+								cursor      : 'pointer',
+								marginRight : isMobile && 12,
 							}}
 							onClick={() => setShowEditOrganizationDetails(true)}
 						/>
@@ -56,9 +54,7 @@ function OrganizationDetails() {
 				{showEditOrganizationDetails ? (
 					<EditOrganizationDetails
 						organizationData={organizationData}
-						getOrganization={getOrganization}
 						setShowEditOrganizationDetails={setShowEditOrganizationDetails}
-						organizationType={organizationType}
 					/>
 				) : (
 					<div className={styles.content}>

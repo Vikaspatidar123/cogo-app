@@ -1,6 +1,7 @@
 import { useState } from 'react';
 
 import { useRouter } from '@/packages/next';
+import { useRequest } from '@/packages/request';
 import { useSelector } from '@/packages/store';
 
 const useOrganizationDetails = () => {
@@ -10,7 +11,6 @@ const useOrganizationDetails = () => {
 	} = useSelector((state) => state);
 
 	const router = useRouter();
-
 	const [showEditOrganizationDetails, setShowEditOrganizationDetails] = useState(false);
 
 	const organizationData = organization;

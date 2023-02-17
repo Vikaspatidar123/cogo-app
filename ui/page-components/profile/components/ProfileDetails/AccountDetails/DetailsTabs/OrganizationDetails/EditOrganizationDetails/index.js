@@ -4,15 +4,16 @@ import useEditOrganizationDetails from '../hooks/useEditOrganizationDetails';
 
 import styles from './styles.module.css';
 
+import getField from '@/packages/forms/Controlled';
+
 function EditOrganizationDetails({
 	setShowEditOrganizationDetails = () => { },
 	organizationType = '',
-	getOrganization,
 	organizationData = {},
 }) {
 	const {
 		showElements,
-		controls,
+		control,
 		fields,
 		errors,
 		loading,
@@ -21,20 +22,28 @@ function EditOrganizationDetails({
 		onError,
 	} = useEditOrganizationDetails({
 		organizationType,
-		getOrganization,
 		organizationData,
 		setShowEditOrganizationDetails,
 	});
-
 	return (
 		<div className={styles.layout_container}>
-			{/* <Layout
-				showElements={showElements}
-				controls={controls}
-				fields={fields}
-				errors={errors}
-			/> */}
-
+			<div className={styles.layout}>
+				{fields.map((item) => {
+					const ELEMENT = getField(item.type);
+					const show = showElements[item.name];
+					return (
+						show && (
+							<div className={styles.field}>
+								<div className={styles.lable}>{item.label}</div>
+								<ELEMENT {...item} control={control} />
+								<div className={styles.errors}>
+									{errors[item?.name]?.message}
+								</div>
+							</div>
+						)
+					);
+				})}
+			</div>
 			<div className={styles.button_container}>
 				<Button
 					themeType="tertiary"

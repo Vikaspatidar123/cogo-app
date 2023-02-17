@@ -1,8 +1,10 @@
-import { Button } from '@cogoport/components';
+import { Button, Modal } from '@cogoport/components';
 
 import styles from './styles.module.css';
 import useEditBillingAddress from './useEditBillingAddress';
+
 // import Layout from '@/temp/form/FormLayout';
+import getField from '@/packages/forms/Controlled';
 
 function EditBillingAddress({
 	organizationType = '',
@@ -13,7 +15,7 @@ function EditBillingAddress({
 }) {
 	const {
 		formState,
-		controls,
+		control,
 		fields,
 		showElements,
 		handleSubmit,
@@ -28,36 +30,47 @@ function EditBillingAddress({
 	});
 
 	return (
-		<div className={styles.layout_container}>
-			<div className={styles.heading}>
-				billingAddress
+		<div>
+			<Modal.Header title="Edit Billing Address" />
+			<div className={styles.layout_container}>
+
+				<div className={styles.layout}>
+					{fields.map((item) => {
+						const ELEMENT = getField(item.type);
+						const show = showElements[item.name];
+						return (
+							show && (
+								<div className={styles.field}>
+									<div className={styles.lable}>{item.label}</div>
+									<ELEMENT {...item} control={control} />
+								</div>
+							)
+						);
+					})}
+				</div>
+				<div className={styles.button_container} />
+
 			</div>
-			{/* <Layout
-				showElements={showElements}
-				controls={controls}
-				fields={fields}
-				errors={formState.errors}
-			/> */}
-			<div className={styles.button_container}>
+			<Modal.Footer>
 				<Button
 					onClick={handleCloseModal}
-					className="secondary md"
 					disabled={loading}
+					themeType="secondary"
 					style={{
 						marginRight: 16,
 					}}
 				>
-					buttons.cancel
+					Cancel
 				</Button>
 
 				<Button
 					disabled={loading}
 					onClick={handleSubmit(onCreate)}
-					className="primary md"
+					themeType="accent"
 				>
-					buttons.update
+					Update
 				</Button>
-			</div>
+			</Modal.Footer>
 		</div>
 	);
 }

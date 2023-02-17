@@ -11,10 +11,12 @@ specifiers:
   '@svgr/webpack': ^6.5.0
   axios: ^1.2.0
   axios-hooks: ^4.0.0
+  dotenv: ^16.0.3
   eslint: 8.25.0
   eslint-config-next: 12.3.1
   fs-extra: ^11.1.0
   i18next: ^22.4.9
+  lodash: ^4.17.21
   next: 12.3.1
   next-i18next: ^13.0.3
   nprogress: ^0.2.0
@@ -43,7 +45,9 @@ dependencies:
   '@reduxjs/toolkit': 1.9.1_k4ae6lp43ej6mezo3ztvx6pykq
   axios: 1.2.3
   axios-hooks: 4.0.0_axios@1.2.3+react@18.2.0
+  dotenv: 16.0.3
   i18next: 22.4.9
+  lodash: 4.17.21
   next: 12.3.1_biqbaboplfbrettd7655fr4n2y
   next-i18next: 13.0.3_t5xbndagwp6yawmo2k3uvve7yq
   nprogress: 0.2.0
@@ -2937,6 +2941,11 @@ packages:
       domhandler: 4.3.1
     dev: true
 
+  /dotenv/16.0.3:
+    resolution: {integrity: sha512-7GO6HghkA5fYG9TYnNxi14/7K9f5occMlp3zXAuSxn7CKCxt9xbNWG7yF8hTCSUchlfWSe3uLmlPfigevRItzQ==}
+    engines: {node: '>=12'}
+    dev: false
+
   /electron-to-chromium/1.4.283:
     resolution: {integrity: sha512-g6RQ9zCOV+U5QVHW9OpFR7rdk/V7xfopNXnyAamdpFgCHgZ1sjI8VuR1+zG2YG/TZk+tQ8mpNkug4P8FU0fuOA==}
     dev: true
@@ -4065,6 +4074,10 @@ packages:
   /lodash.truncate/4.4.2:
     resolution: {integrity: sha512-jttmRe7bRse52OsWIMDLaXxWqRAmtIUccAQ3garviCqJjafXOfNMO0yMfNpdD6zbGaTU0P5Nz7e7gAT6cKmJRw==}
     dev: true
+
+  /lodash/4.17.21:
+    resolution: {integrity: sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==}
+    dev: false
 
   /loose-envify/1.4.0:
     resolution: {integrity: sha512-lyuxPGr/Wfhrlem2CL/UcnUc1zcqKAImBDzukY7Y5F/yQiNdko6+fRLevlw1HgMySw7f611UIY408EtxRSoK3Q==}

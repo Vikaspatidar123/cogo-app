@@ -8,10 +8,9 @@ const getUser = () => {
 	const dispatch = useDispatch();
 	const profileData = useSelector(({ profile }) => profile);
 	const [{ loading }, trigger] = useRequest({
-		url    : '/get_user',
-		method : 'get',
+		url: '/get_user',
+		method: 'get',
 	}, { manual: true });
-	console.log(profileData, 'profileData');
 	const refetch = async () => {
 		try {
 			const resp = await trigger({});

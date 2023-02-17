@@ -9,43 +9,43 @@ import Services from '../DetailsTabs/ServicesTab';
 
 const getOptions = () => ({
 	organization_details: {
-		key: 'organization_details',
-		title: 'Your Company Details',
-		containerComponent: OrganizationDetails,
+		key                : 'organization_details',
+		title              : 'Your Company Details',
+		containerComponent : OrganizationDetails,
 	},
 	profile: {
-		key: 'profile',
-		title: 'Your Profile',
+		key   : 'profile',
+		title : 'Your Profile',
 		// containerComponent: MyProfile,
 	},
 	address: {
-		key: 'address',
-		title: 'Your Address',
-		containerComponent: Address,
+		key                : 'address',
+		title              : 'Your Address',
+		containerComponent : Address,
 	},
 	documents: {
-		key: 'documents',
-		title: 'Your Documents',
+		key   : 'documents',
+		title : 'Your Documents',
 		// containerComponent: DocumentsWallet,
 	},
 	services: {
-		key: 'services',
-		title: 'Your Services',
-		containerComponent: Services,
+		key                : 'services',
+		title              : 'Your Services',
+		containerComponent : Services,
 	},
 	team_details: {
-		key: 'team_details',
-		title: 'Your Team Details',
+		key   : 'team_details',
+		title : 'Your Team Details',
 		// containerComponent: TeamDetails,
 	},
 	trade_party: {
-		key: 'trade_party',
-		title: 'Trade Party',
+		key   : 'trade_party',
+		title : 'Trade Party',
 		// containerComponent: TradeParty,
 	},
 	alerts_preferences: {
-		key: 'alerts_preferences',
-		title: 'Alerts and Preferences',
+		key   : 'alerts_preferences',
+		title : 'Alerts and Preferences',
 		// containerComponent: AlertsPreferences,
 	},
 });

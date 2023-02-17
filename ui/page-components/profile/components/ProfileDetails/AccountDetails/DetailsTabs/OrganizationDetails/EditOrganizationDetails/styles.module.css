@@ -42,3 +42,29 @@
 		margin-top: 24px;
 	}
 }
+
+
+.layout{
+	display:flex;
+	flex-wrap: wrap;
+}
+
+.field{
+	padding:10px 10px 0px 20px;
+	:global{
+		.ui_upload_droparea_container{
+			min-height:20px;
+		}
+	}
+}
+
+.lable{
+	margin: 10px 0px 8px;
+    font-weight: 400;
+    font-size: 14px;
+    color: rgb(44, 62, 80)
+}
+
+.errors{
+	color: red;
+}

@@ -1,37 +1,40 @@
+import { Toast } from '@cogoport/components';
+import { merge } from '@cogoport/utils';
 import { useEffect, useState } from 'react';
 
 import getOrganizationControls from '../EditOrganizationDetails/get-organization-controls';
 
-import { useForm } from '@/packages/forms';
+import {
+	useForm,
+	asyncFieldsLocations, useGetAsyncOptions,
+} from '@/packages/forms';
 import { useRequest } from '@/packages/request';
-import { useDispatch } from '@/packages/store';
+import getUser from '@/ui/page-components/profile/hooks/getUser';
 
 const useEditOrganizationDetails = ({
-	organizationType = '',
 	organizationData = {},
 	getOrganization = () => { },
 	setShowEditOrganizationDetails = () => { },
 }) => {
-	const dispatch = useDispatch();
-
 	const [errors, setErrors] = useState({});
-
-	const controls = getOrganizationControls();
-
-	// const formProps = useFormCogo(controls);
+	const { refetch } = getUser();
+	const cityOptions = useGetAsyncOptions(merge(asyncFieldsLocations(), {
+		params: { filters: { type: ['city'] } },
+	}));
+	const controls = getOrganizationControls({ cityOptions });
 
 	const [{ loading }, trigger] = useRequest({
-		url: '/update_organization',
-		method: 'post',
+		url    : '/update_organization',
+		method : 'post',
 	}, { manual: true });
 
 	const {
-		fields = {}, handleSubmit = () => { }, setValues, control,
+		handleSubmit = () => { }, setValue, control,
 	} = useForm();
 
-	// useEffect(() => {
-	// 	setValues({ ...organizationData });
-	// }, [organizationData]);
+	useEffect(() => {
+		(controls || []).map((item) => setValue(item.name, organizationData[item.name]));
+	}, [organizationData]);
 
 	const onError = (err) => {
 		setErrors({ ...err });
@@ -50,6 +53,29 @@ const useEditOrganizationDetails = ({
 			[name]: showElement,
 		};
 	}, {});
+
+	const onCreate = async (values = {}) => {
+		try {
+			const body = {
+				business_name       : values.business_name || undefined,
+				country_id          : values.country_id || undefined,
+				city_id             : values.city_id || undefined,
+				registration_number : values.registration_number || undefined,
+				website             : values.website || undefined,
+				logo                : values.logo?.finalUrl || undefined,
+				about               : values.about || undefined,
+			};
+			const rep = await trigger({ data: body });
+			if (rep) { await refetch(); setShowEditOrganizationDetails(false); }
+			Toast.success('Successfull Update');
+			if (values.city_id) {
+				getOrganization();
+			}
+		} catch (err) {
+			Toast.error(err.data);
+		}
+	};
+
 	return {
 		showElements,
 		control,
@@ -58,6 +84,7 @@ const useEditOrganizationDetails = ({
 		loading,
 		handleSubmit,
 		onError,
+		onCreate,
 	};
 };
 

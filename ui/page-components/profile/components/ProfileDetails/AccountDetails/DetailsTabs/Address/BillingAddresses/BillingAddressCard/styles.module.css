@@ -161,7 +161,6 @@
 	margin-top: 12px;
 	border-radius: 8px;
 	position: relative;
-
 	@media (max-width: 768px) {
 		padding: 12px;
 		flex-direction: column;
@@ -188,7 +187,7 @@
 	}
 }
 
-.editIcon_container {
+.edit_icon_container {
 	position: absolute;
 	top: 16px;
 	right: 16px;
@@ -215,4 +214,9 @@
 		flex-direction: column;
 		margin-bottom: 8px;
 	}
+}
+
+
+.button{
+	margin-left: auto;
 }

@@ -3,21 +3,22 @@ import { IcMArrowRotateDown } from '@cogoport/icons-react';
 import { useTranslation } from 'next-i18next';
 import { useEffect, useState } from 'react';
 
+import getAddress from '../hooks/getOrganizationBillingAddress';
+
 import BillingAddressCard from './BillingAddressCard';
 import EditBillingAddress from './EditBillingAddress';
 import LoadingState from './LoadingState';
 import styles from './styles.module.css';
 
-import { useRequest } from '@/packages/request';
-import { useDispatch, useSelector } from '@/packages/store';
+import { useSelector } from '@/packages/store';
 
 function BillingAddresses({ title = '', organizationType = '' }) {
 	const {
 		general: { isMobile = false },
 	} = useSelector((state) => state);
 
-	const dispatch = useDispatch();
-
+	const { data, loading } = getAddress();
+	const organizationBillingAddressesList = data?.list || [];
 	const [showEditBillingAddress, setShowEditBillingAddress] = useState(false);
 
 	const [addressIdxToUpdate, setAddressIdxToUpdate] = useState(null);
@@ -28,31 +29,31 @@ function BillingAddresses({ title = '', organizationType = '' }) {
 		setShowEditBillingAddress(false);
 		setAddressIdxToUpdate(null);
 	};
-
-	const renderBillingAddress = () => <>hello</>;
-	// if (!organizationBillingAddressesList.length) {
-	// 	return (
-	// 		<EmptyState
-	// 			height={125}
-	// 			width={125}
-	// 			bottomText={t(
-	// 				'profile:accountDetails.tabOptions.address.billingAddress.card.emptyState.bottomText',
-	// 			)}
-	// 		/>
-	// 	);
-	// }
-	// (organizationBillingAddressesList || []).map((address, index) => (
-	// 	<BillingAddressCard
-	// 		index={index}
-	// 		getOrganizationBillingAddress={getOrganizationBillingAddress}
-	// 		setAddressIdxToUpdate={setAddressIdxToUpdate}
-	// 		address={address}
-	// 	/>
-	// ));
-	// if (loading) {
-	// 	return <LoadingState />;
-	// }
-
+	const renderBillingAddress = () => {
+		if (!organizationBillingAddressesList.length) {
+			return (
+				<>hello</>
+				// <EmptyState
+				// 	height={125}
+				// 	width={125}
+				// 	bottomText={t(
+				// 		'profile:accountDetails.tabOptions.address.billingAddress.card.emptyState.bottomText',
+				// 	)}
+				// />
+			);
+		}
+		return (organizationBillingAddressesList || []).map((address, index) => (
+			<BillingAddressCard
+				index={index}
+				// getOrganizationBillingAddress={getOrganizationBillingAddress}
+				setAddressIdxToUpdate={setAddressIdxToUpdate}
+				address={address}
+			/>
+		));
+	};
+	if (loading) {
+		return <LoadingState />;
+	}
 	return (
 		<>
 			<div className={styles.main_container}>
@@ -103,23 +104,23 @@ function BillingAddresses({ title = '', organizationType = '' }) {
 					</div>
 				</div>
 
-				<div className={styles.flex} direction="column">
+				<div>
 					{showData ? renderBillingAddress() : null}
 				</div>
 			</div>
 
 			{(showEditBillingAddress || addressIdxToUpdate !== null) && (
 				<Modal
-					className="primary lg"
 					show={showEditBillingAddress || addressIdxToUpdate !== null}
 					onClose={handleCloseModal}
-					onOuterClick={handleCloseModal}
-					width={750}
-					styles={{ dialog: { width: isMobile && 'unset' } }}
+					closeOnOuterClick={handleCloseModal}
+					size="lg"
+					scroll
 				>
+
 					<EditBillingAddress
 						handleCloseModal={handleCloseModal}
-						// organizationBillingAddressesList={organizationBillingAddressesList}
+						organizationBillingAddressesList={organizationBillingAddressesList}
 						// getOrganizationBillingAddress={getOrganizationBillingAddress}
 						addressIdxToUpdate={addressIdxToUpdate}
 						organizationType={organizationType}

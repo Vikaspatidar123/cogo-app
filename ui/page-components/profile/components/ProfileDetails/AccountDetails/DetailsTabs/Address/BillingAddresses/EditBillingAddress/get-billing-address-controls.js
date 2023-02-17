@@ -1,59 +1,44 @@
 import { IcMUpload } from '@cogoport/icons-react';
 
-const getBillingAddressControls = ({ valuesToPrefill }) => [
+const fields = [
 	{
 		name: 'name',
-		label: 'name',
-		placeholder: 'name',
+		label: 'Billing Party Name',
+		placeholder: 'Enter Name',
 		type: 'text',
-		span: 6,
+		style: { width: '340px' },
 	},
 	{
 		name: 'pincode',
-		label: 'pincode',
-		placeholder: 'pincode',
-		type: 'location-select',
+		label: 'Pincode',
+		placeholder: 'Select Pincode',
+		type: 'select',
 		optionsListKey: 'locations',
 		params: { filters: { type: ['pincode'] } },
 		multiple: false,
 		labelKey: 'postal_code',
 		valueKey: 'postal_code',
-		span: 6,
+		style: { width: '340px' },
 		rules: { required: 'Required' },
-		value: valuesToPrefill?.pincode,
 	},
 	{
 		name: 'tax_number',
-		label: 'tax_number',
-		placeholder: 'tax_number',
+		label: 'GST Number',
+		placeholder: 'Enter GST Number',
 		type: 'text',
-		span: 6,
+		style: { width: '340px' },
 		rules: {
 			required: true,
 			pattern: {
-				value: geo.regex.GST,
+				// value: geo.regex.GST,
 				message: 'translationKey',
 			},
 		},
 	},
-	{
-		name: 'tax_number_document_url',
-		label: 'tax_number_document_url',
-		type: 'file',
-		drag: true,
-		span: 6,
-		accept:
-			'image/*,.pdf,.doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document',
-		uploadType: 'aws',
-		format: ' ',
-		uploadIcon: () => <IcMUpload size={2} />,
-		rules: {
-			required: 'tax_number_document_url',
-		},
-	},
+
 	{
 		name: 'is_sez',
-		label: 'is_sez',
+		label: 'Is your address SEZ?',
 		type: 'checkbox',
 		options: [
 			{
@@ -61,49 +46,35 @@ const getBillingAddressControls = ({ valuesToPrefill }) => [
 				value: true,
 			},
 		],
-		span: 6,
+		style: { width: '340px' },
 	},
-	{
-		name: 'sez_proof',
-		label: 'sez_proof',
-		type: 'file',
-		drag: true,
-		span: 6,
-		accept:
-			'image/*,.pdf,.doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document',
-		uploadType: 'aws',
-		uploadIcon: () => <IcMUpload size={2} />,
-		format: ' ',
-		rules: {
-			required: 'sez_proof',
-		},
-	},
+
 	{
 		name: 'address',
-		label: 'address',
-		placeholder: 'address',
+		label: 'Address',
+		placeholder: 'Enter Address',
 		type: 'text',
-		span: 6,
+		style: { width: '340px' },
 		rules: {
 			required: 'address',
 		},
 	},
 	{
 		name: 'poc_name',
-		label: 'poc_name',
-		placeholder: 'poc_name',
+		label: 'POC Name',
+		placeholder: 'Enter POC Name',
 		type: 'text',
-		span: 6,
+		style: { width: '340px' },
 		rules: { required: true },
 	},
 	{
 		name: 'phone_number',
-		label: 'phone_number',
-		placeholder: 'phone_number',
-		type: 'mobile-number-select',
+		label: 'POC Mobile Number',
+		placeholder: 'Enter Mobile Number',
+		type: 'select',
 		inputType: 'number',
 		select2: 'new',
-		span: 6,
+		style: { width: '340px' },
 		rules: {
 			required: true,
 			validate: (value) => (value?.country_code && value?.number
@@ -113,12 +84,47 @@ const getBillingAddressControls = ({ valuesToPrefill }) => [
 	},
 	{
 		name: 'poc_email',
-		label: 'poc_email',
-		placeholder: 'poc_email',
+		label: 'POC Email		',
+		placeholder: 'Enter POC Email',
 		type: 'text',
-		span: 6,
+		style: { width: '340px' },
 		rules: { required: true },
 	},
+	{
+		name: 'sez_proof',
+		label: 'Sez Proof',
+		type: 'file',
+		drag: true,
+		style: { width: '340px' },
+		accept:
+			'image/*,.pdf,.doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+		rules: {
+			required: 'sez_proof',
+		},
+	},
+	{
+		name: 'tax_number_document_url',
+		label: 'GST Proof',
+		type: 'file',
+		style: { width: '340px' },
+		accept:
+			'image/*,.pdf,.doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+		rules: {
+			required: 'tax_number_document_url',
+		},
+	},
 ];
+
+const getBillingAddressControls = ({
+	cityPincode = {},
+}) => fields.map((control) => {
+	const { name } = control;
+	let newControl = { ...control };
+
+	if (name === 'pincode') {
+		newControl = { ...newControl, ...cityPincode };
+	}
+	return { ...newControl };
+});
 
 export default getBillingAddressControls;

@@ -1,24 +1,29 @@
-const getOrganizationControls = () => [
+const fields = [
 	{
 		name: 'city_id',
 		labelKey: 'display_name',
 		valueKey: 'id',
 		label: 'City',
 		placeholder: 'Enter city',
-		span: 4,
 		type: 'select',
-		params: { filters: { type: ['city'] } },
-		optionsListKey: 'locations',
-		showOptional: false,
-		// value: organizationData.city_id,
+		style: { width: '300px' },
 	},
 	{
 		name: 'website',
 		label: 'website',
-		placeholder: 'website',
+		placeholder: 'Eneter Website',
 		type: 'text',
-		span: 4,
 		showOptional: false,
+		style: { width: '300px' },
+	},
+
+	{
+		name: 'about',
+		label: 'Enter About',
+		placeholder: 'about',
+		type: 'textarea',
+		showOptional: false,
+		style: { width: '300px' },
 	},
 	{
 		name: 'logo',
@@ -26,22 +31,25 @@ const getOrganizationControls = () => [
 		placeholder: 'logo',
 		type: 'file',
 		drag: true,
-		span: 4,
 		accept:
 			'image/*,.pdf,.doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document',
 		uploadType: 'aws',
 		format: ' ',
 		rules: { required: 'Required' },
 		showOptional: false,
-	},
-	{
-		name: 'about',
-		label: 'about',
-		placeholder: 'about',
-		type: 'textarea',
-		span: 4,
-		showOptional: false,
+		style: { width: '300px' },
 	},
 ];
 
+const getOrganizationControls = ({
+	cityOptions = {},
+}) => fields.map((control) => {
+	const { name } = control;
+	let newControl = { ...control };
+
+	if (name === 'city_id') {
+		newControl = { ...newControl, ...cityOptions };
+	}
+	return { ...newControl };
+});
 export default getOrganizationControls;

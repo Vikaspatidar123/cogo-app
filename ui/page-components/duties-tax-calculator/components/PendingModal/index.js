@@ -1,12 +1,13 @@
-import { Button, Modal } from '@cogoport/components';
+/* eslint-disable max-len */
+import { Button, Modal, cl } from '@cogoport/components';
 import { IcMInformation } from '@cogoport/icons-react';
 
-// import IconTridot from '../../../../common/icons/loading.svg';
-// import LoadingBanner from '../../../../common/icons/pending-modal.svg';
+// import { Container, Title, Txt } from './styles';
+import { Loading, LoadingBanner } from '../../configuration/icon-configuration';
 
-import { Container, Title, Txt } from './styles';
+import styles from './styles.module.css';
 
-import { useRouter } from '@/packages/store';
+import { useRouter } from '@/packages/next';
 
 function PendingModal({ showPendingModal, setShowPendingModal, stop }) {
 	const { query } = useRouter();
@@ -20,24 +21,32 @@ function PendingModal({ showPendingModal, setShowPendingModal, stop }) {
 	return (
 		<Modal className="primary md" show={showPendingModal} closable={false}>
 			{!stop && (
-				<Container>
-					<LoadingBanner style={{ width: 300, height: 'auto' }} />
-					<Title>Hang on! Checking payment status...</Title>
-					<IconTridot style={{ width: 40, height: 'auto', marginBottom: 32 }} />
-				</Container>
+				<div className={styles.container}>
+					<img
+						src={LoadingBanner}
+						alt=""
+						className={styles.loading_banner}
+					/>
+					<div className={styles.title}>Hang on! Checking payment status...</div>
+					<img
+						src={Loading}
+						alt=""
+						className={styles.loading}
+					/>
+				</div>
 			)}
 
 			{stop && (
-				<Container>
+				<div className={styles.container}>
 					<IcMInformation fill="#FBDC00" width={52} height={52} />
-					<Txt className="error">
+					<div className={cl`${styles.txt} ${styles.error}`}>
 						Sorry, It took longer than usual. We will notify you once payment is
 						successful
-					</Txt>
+					</div>
 					<Button className="secondary sm text" onClick={closeModalHandler}>
 						Close
 					</Button>
-				</Container>
+				</div>
 			)}
 		</Modal>
 	);

@@ -4,7 +4,7 @@ import { useRequestBf } from '@/packages/request';
 
 const useServiceRates = ({ prioritySequence = 0 }) => {
 	const [{ loading, data }, trigger] = useRequestBf({
-		url     : 'saas/trade-engine/service-rates',
+		url     : '/saas/trade-engine/service-rates',
 		authKey : 'get_saas_trade_engine_service_rates',
 		method  : 'get',
 	}, { manual: true });

@@ -1,3 +1,4 @@
+import { cl } from '@cogoport/components';
 import {
 	IcMArrowBack, IcMShip, IcMAirport, IcMLocation,
 } from '@cogoport/icons-react';
@@ -7,25 +8,28 @@ import Button from '../../../common/Button';
 import useDraft from '../../../hook/useDraft';
 import usePayment from '../../../hook/usePayment';
 import checkoutFn from '../../../utils/checkoutFn';
-import { BtnContainer } from '../styles.module.css';
+import style from '../styles.module.css';
 
 import Charges from './Charges';
 import PayMethodModal from './PayMethodModal';
 import ServicesCharge from './ServicesCharge';
-import {
-	Container,
-	RouteDiv,
-	TextDiv,
-	TextHead,
-	Route,
-	Icon,
-	Txt,
-	Footer,
-	Dot,
-	RouteText,
-	Line,
-	PortText,
-} from './style';
+
+// import {
+// 	Container,
+// 	RouteDiv,
+// 	TextDiv,
+// 	TextHead,
+// 	Route,
+// 	Icon,
+// 	Txt,
+// 	Footer,
+// 	Dot,
+// 	RouteText,
+// 	Line,
+// 	PortText,
+// } from './style';
+
+import styles from './styles.module.css';
 
 function Pay({
 	formData = {},
@@ -69,49 +73,49 @@ function Pay({
 		dutiesAndTaxes: duties_and_taxes,
 	});
 	return (
-		<Container>
-			<RouteDiv>
-				<TextHead>Transportation Details</TextHead>
+		<div>
+			<div className={styles.route_div}>
+				<div className={styles.text_head}>Transportation Details</div>
 
-				<TextDiv>
-					<Route>
-						<Icon className="left">
+				<div className={styles.text_div}>
+					<div className={styles.route}>
+						<div className={styles.left}>
 							<IcMLocation width={20} height={20} />
-						</Icon>
+						</div>
 
-						<Txt>
+						<div className={styles.txt}>
 							{transportMode === 'OCEAN' ? (
 								<IcMShip width={20} height={20} />
 							) : (
 								<IcMAirport width={20} height={20} />
 							)}
-						</Txt>
+						</div>
 
-						<Icon className="left">
+						<div className={styles.left}>
 							<IcMLocation width={20} height={20} />
-						</Icon>
-					</Route>
-					<Footer>
-						<Dot />
-						<div className="dot" />
-						<Dot />
-					</Footer>
-					<RouteText>
-						<Txt className="port origin">
-							<PortText>{renderPortName(origin?.name)}</PortText>
-						</Txt>
+						</div>
+					</div>
+					<div className={styles.footer}>
+						<div className={styles.dot_div} />
+						<div className={styles.dot} />
+						<div className={styles.dot_div} />
+					</div>
+					<div className={styles.route_text}>
+						<div className={cl`${styles.txt} ${styles.port} ${styles.origin}`}>
+							<div className={styles.port_text}>{renderPortName(origin?.name)}</div>
+						</div>
 
-						<Txt>
-							<div className="incoterm">{incoterm}</div>
-						</Txt>
+						<div className={styles.txt}>
+							<div className={styles.incoterm}>{incoterm}</div>
+						</div>
 
-						<Txt className="port destination">
-							<PortText>{renderPortName(destination?.name)}</PortText>
-						</Txt>
-					</RouteText>
-				</TextDiv>
-			</RouteDiv>
-			<Line />
+						<div className={cl`${styles.txt} ${styles.port} ${styles.destination}`}>
+							<div className={styles.port_text}>{renderPortName(destination?.name)}</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div className={styles.line} />
 
 			<ServicesCharge formData={formData} />
 			<Charges
@@ -124,7 +128,7 @@ function Pay({
 				totalAmount={totalAmount}
 			/>
 
-			<BtnContainer className="checkoutBtn">
+			<div className={cl`${style.btn_container} ${style.checkout_btn}`}>
 				<Button size="md" isPrev onClick={prevHandler}>
 					<IcMArrowBack width={16} height={16} />
 				</Button>
@@ -135,7 +139,7 @@ function Pay({
 				>
 					Procced
 				</Button>
-			</BtnContainer>
+			</div>
 			{showPayMethodModal && (
 				<PayMethodModal
 					showPayMethodModal={showPayMethodModal}
@@ -147,7 +151,7 @@ function Pay({
 					isMobile={isMobile}
 				/>
 			)}
-		</Container>
+		</div>
 	);
 }
 

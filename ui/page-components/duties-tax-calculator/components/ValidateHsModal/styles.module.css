@@ -124,17 +124,20 @@ export const BtnContainer = styled.div`
 	}
 `; */
 
+.modal_container{
+	:global{
+		.ui_modal_dialog {
+			padding: 0 !important;
+			display: flex !important;
+			flex-direction: column !important;
+			height: 330px !important;
+			justify-content: space-between !important;
 
-.ui_modal_dialog {
-	padding: 0 !important;
-	display: flex !important;
-	flex-direction: column !important;
-	height: 330px !important;
-	justify-content: space-between !important;
-
-	@media screen and (max-width: 767px) {
-		border-radius: 20px;
-		height: 450px;
+			@media screen and (max-width: 767px) {
+				border-radius: 20px;
+				height: 450px;
+			}
+		}
 	}
 }
 

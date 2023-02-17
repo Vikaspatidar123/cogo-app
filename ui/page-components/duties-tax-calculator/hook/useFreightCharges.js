@@ -3,7 +3,7 @@ import toast from '@cogoport/components';
 import { useRequest } from '@/packages/request';
 
 const useFreightCharges = () => {
-	const createSpotSearchApi = useRequestBf('post', false)('/create_spot_search');
+	const createSpotSearchApi = useRequest('post', false)('/create_spot_search');
 
 	const {
 		trigger: getSpotSearch,

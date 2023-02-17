@@ -1,24 +1,27 @@
-// import getStaticPath from '@cogo/static';
-import { ToolTip } from '@cogoport/components';
+/* eslint-disable max-len */
+import { ToolTip, cl } from '@cogoport/components';
 import { IcMInfo } from '@cogoport/icons-react';
 
 import Button from '../../common/Button';
+import { SuccessGif } from '../../configuration/icon-configuration';
 import { shortFormatNumber } from '../../utils/getShortFormatNumber';
 
-import {
-	Container,
-	IconContainer,
-	HeaderContainer,
-	Section,
-	Title,
-	Line,
-	Row,
-	Heading,
-	DashedLine,
-	BtnContainer,
-	IconImage,
-	TooltipContainer,
-} from './styles';
+// import {
+// 	Container,
+// 	IconContainer,
+// 	HeaderContainer,
+// 	Section,
+// 	Title,
+// 	Line,
+// 	Row,
+// 	Heading,
+// 	DashedLine,
+// 	BtnContainer,
+// 	IconImage,
+// 	TooltipContainer,
+// } from './styles';
+
+import styles from './styles.module.css';
 
 import { useRouter } from '@/packages/next';
 
@@ -49,60 +52,60 @@ function SuccessModal({ tradeEngineResp, isMobile = false }) {
 	};
 
 	const tooltipContent = () => (
-		<TooltipContainer>
-			<div className="heading">Breakdown of Total Landed Cost</div>
-			<Row>
+		<div className={styles.tooltip_container}>
+			<div className={styles.tooltip_heading}>Breakdown of Total Landed Cost</div>
+			<div className={styles.row}>
 				<div>Freight Charges</div>
 				<div>{shortFormatNumber(freightCharges, resultCurrency, true)}</div>
-			</Row>
-			<Row>
+			</div>
+			<div className={styles.row}>
 				<div>Consignment Value</div>
 				<div>{shortFormatNumber(consignmentValue, resultCurrency, true)}</div>
-			</Row>
-			<Row>
+			</div>
+			<div className={styles.row}>
 				<div>Applicable Charges</div>
 				<div>
 					{shortFormatNumber(calculateTotalCharge(incotermArr), resultCurrency, true)}
 				</div>
-			</Row>
-			<Row>
+			</div>
+			<div className={styles.row}>
 				<div>Total Duties and Taxes</div>
 				<div>{shortFormatNumber(totalDutiesAndTaxes, resultCurrency, true)}</div>
-			</Row>
-		</TooltipContainer>
+			</div>
+		</div>
 	);
 	return (
-		<Container>
-			<IconContainer>
-				<IconImage src={getStaticPath('/images/commons/success.gif')} alt="cogo" />
-			</IconContainer>
-			<HeaderContainer>
-				<div className="title">Congratulations!</div>
-				<div className="subTitle">
+		<div className={styles.container}>
+			<div className={styles.icon_container_div}>
+				<img src={SuccessGif} alt="cogo" className={styles.icon_img} />
+			</div>
+			<div className={styles.header_container}>
+				<div className={styles.title}>Congratulations!</div>
+				<div className={styles.subTitle}>
 					Successfully calculated Duties and Taxes.
 					<br />
 					{' '}
 					Below given are the results
 				</div>
-			</HeaderContainer>
+			</div>
 			{(lineItem || []).map(({ landedCost = {}, hsNumber = '' }) => (
-				<Section key={hsNumber}>
-					<div className="sectionHeading">
-						<Title>Duties & Taxes</Title>
-						<Line />
+				<div key={hsNumber}>
+					<div className={styles.section_heading}>
+						<div className={styles.title_div}>Duties & Taxes</div>
+						<div className={styles.line} />
 					</div>
 					{(landedCost?.[0]?.taxSet || []).map(
 						({ groupName = '', taxSetResponse = [] }) => (
-							<div key={groupName} className="charges">
-								<Heading>{groupName}</Heading>
+							<div key={groupName} className={styles.charges}>
+								<div className={styles.heading_div}>{groupName}</div>
 								{(taxSetResponse || []).map(({ name = '', value = 0 }) => (
-									<Row key={name}>
+									<div className={styles.row} key={name}>
 										<div>{name}</div>
 										<div>{shortFormatNumber(value, resultCurrency, true)}</div>
-									</Row>
+									</div>
 								))}
-								<DashedLine />
-								<Row className="total">
+								<div className={styles.dashed_line} />
+								<div className={cl`${styles.row} ${styles.total}`}>
 									<div>Total</div>
 									<div>
 										{shortFormatNumber(
@@ -111,19 +114,19 @@ function SuccessModal({ tradeEngineResp, isMobile = false }) {
 											true,
 										)}
 									</div>
-								</Row>
+								</div>
 							</div>
 						),
 					)}
-				</Section>
+				</div>
 			))}
-			<Row className="finalTotal dutiesTotal">
+			<div className={cl`${styles.row} ${styles.finalTotal} ${styles.dutiesTotal}`}>
 				<div>Total Duties and Tax</div>
 				<div>{shortFormatNumber(totalDutiesAndTaxes, resultCurrency, !isMobile)}</div>
-			</Row>
-			<DashedLine className="total" />
-			<Row className="finalTotal">
-				<div className="flex">
+			</div>
+			<div className={cl`{styles.dashed_line}${styles.dashed_total}`} />
+			<div className={cl`${styles.row} ${styles.finalTotal}`}>
+				<div className={styles.flex}>
 					<div>Total Landed Cost</div>
 					<ToolTip
 						theme="light-border"
@@ -131,20 +134,20 @@ function SuccessModal({ tradeEngineResp, isMobile = false }) {
 						content={tooltipContent()}
 						interactive
 					>
-						<div className="iconContainer">
+						<div className={styles.iconContainer}>
 							<IcMInfo width={14} height={14} />
 						</div>
 					</ToolTip>
 				</div>
 				<div>{shortFormatNumber(totalLandedCost, resultCurrency, !isMobile)}</div>
-			</Row>
+			</div>
 
-			<BtnContainer>
+			<div className={styles.btn_container}>
 				<Button size="md" onClick={redirectToTax}>
 					Calculate More
 				</Button>
-			</BtnContainer>
-		</Container>
+			</div>
+		</div>
 	);
 }
 

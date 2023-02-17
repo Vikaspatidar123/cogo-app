@@ -1,14 +1,17 @@
+import { Modal, cl } from '@cogoport/components';
 import {
 	IcAOfferFlexiblePaymentsTerms,
 	IcACreditAndPayments,
 	IcAAccountRelated,
 } from '@cogoport/icons-react';
 
-import {
-	StyledModal, Container, CardContainer, Card, Dot, Txt, Heading,
-} from './styles';
+// import {
+// 	StyledModal, Container, CardContainer, Card, Dot, Txt, Heading,
+// } from './styles';
 
-import { useRouter } from '@/packages/store';
+import styles from './styles.module.css';
+
+import { useRouter } from '@/packages/next';
 
 function PayMethodModal({
 	showPayMethodModal,
@@ -38,46 +41,49 @@ function PayMethodModal({
 		}
 	};
 	return (
-		<StyledModal
+		<Modal
 			className="primary"
 			show={showPayMethodModal}
 			onClose={() => setShowPayMethodModal(false)}
 			width={!isMobile ? '534' : '383'}
 		>
-			<Container>
-				<Heading>Select mode of Payment</Heading>
-				<CardContainer>
+			<div>
+				<div className={styles.heading}>Select mode of Payment</div>
+				<div className={styles.card_container}>
 					{!isUserSubscribed && (
-						<Card
-							className={`${paymentMode === 'buy' && 'selectedCard'}`}
+						<div
+							role="presentation"
+							className={cl`${styles.card} ${paymentMode === 'buy' && styles.selected_card}`}
 							onClick={() => submitHandler('buySubscription')}
 						>
-							{paymentMode === 'buy' && <Dot />}
+							{paymentMode === 'buy' && <div className={styles.dot} />}
 							<IcAOfferFlexiblePaymentsTerms width={60} height={60} />
-							<Txt className="text">Buy Subscription</Txt>
-						</Card>
+							<div className={cl`${styles.txt} ${styles.text}`}>Buy Subscription</div>
+						</div>
 					)}
 					{isUserSubscribed && (
-						<Card
-							className={`${paymentMode === 'buy' && 'selectedCard'}`}
+						<div
+							role="presentation"
+							className={cl`${styles.card} ${paymentMode === 'buy' && styles.selected_card}`}
 							onClick={() => submitHandler('buyAddon')}
 						>
-							{paymentMode === 'buy' && <Dot />}
+							{paymentMode === 'buy' && <div className={styles.dot} />}
 							<IcAAccountRelated width={60} height={60} />
-							<Txt className="text">Buy Add-Ons</Txt>
-						</Card>
+							<div className={cl`${styles.txt} ${styles.text}`}>Buy Add-Ons</div>
+						</div>
 					)}
-					<Card
-						className={`${paymentMode === 'directPay' && 'selectedCard'}`}
+					<div
+						role="presentation"
+						className={cl`${styles.card} ${paymentMode === 'directPay' && styles.selected_card}`}
 						onClick={() => submitHandler('directPay')}
 					>
-						{paymentMode === 'directPay' && <Dot />}
+						{paymentMode === 'directPay' && <div className={styles.dot} />}
 						<IcACreditAndPayments width={60} height={60} />
-						<Txt className="text">Direct Payment</Txt>
-					</Card>
-				</CardContainer>
-			</Container>
-		</StyledModal>
+						<div className={cl`${styles.txt} ${styles.text}`}>Direct Payment</div>
+					</div>
+				</div>
+			</div>
+		</Modal>
 	);
 }
 

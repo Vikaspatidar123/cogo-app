@@ -1,9 +1,10 @@
-// import ToolTip from '@cogoport/front/components/admin/ToolTip';
+import ToolTip from '@cogoport/components';
 import { IcMInfo } from '@cogoport/icons-react';
 
 import { shortFormatNumber } from '../../../../utils/getShortFormatNumber';
 
-import { Container, Title, Row } from './styles';
+// import { Container, Title, Row } from './styles';
+import styles from './styles.module.css';
 
 function ServicesCharge({ formData }) {
 	const {
@@ -17,10 +18,10 @@ function ServicesCharge({ formData }) {
 		</div>
 	);
 	return (
-		<Container>
-			<Title>Product Details</Title>
-			<Row>
-				<div className="hscode">
+		<div className={styles.container}>
+			<div className={styles.title}>Product Details</div>
+			<div className={styles.row}>
+				<div className={styles.hscode}>
 					<div>{hsCode}</div>
 					{productName !== '' && (
 						<ToolTip theme="light-border" placement="right" content={getProductData()}>
@@ -30,13 +31,13 @@ function ServicesCharge({ formData }) {
 						</ToolTip>
 					)}
 				</div>
-				<div className="quantity">
+				<div className={styles.quantity}>
 					Qty:
 					{quantity}
 				</div>
 				<div>{shortFormatNumber(consignmentValue, currency, true)}</div>
-			</Row>
-		</Container>
+			</div>
+		</div>
 	);
 }
 

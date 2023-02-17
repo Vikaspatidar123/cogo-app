@@ -3,18 +3,24 @@ import toast from '@cogoport/components';
 import { useRequest } from '@/packages/request';
 
 const useCurrencyConversion = () => {
-	const exRate = useRequest('get', false, { autoCancel: false })(
-		'get_exchange_rate',
-	);
+	// const exRate = useRequest('get', false, { autoCancel: false })(
+	// 	'get_exchange_rate',
+	// );
+
+	const [{ loading, data }, trigger] = useRequest({
+		url    : 'get_exchange_rate',
+		method : 'get',
+	}, { manual: true });
+
 	const exchangeApi = async (from_cur, to_cur) => {
 		try {
-			const exData = await exRate.trigger({
+			const exData = await trigger({
 				params: {
 					from_currency : from_cur,
 					to_currency   : to_cur,
 				},
 			});
-			return exData.data;
+			return exData;
 		} catch (error) {
 			toast.error(error?.error, {
 				autoClose : 3000,
@@ -26,7 +32,8 @@ const useCurrencyConversion = () => {
 
 	return {
 		exchangeApi,
-		exchangeLoading: exRate.loading,
+		data,
+		exchangeLoading: loading,
 	};
 };
 

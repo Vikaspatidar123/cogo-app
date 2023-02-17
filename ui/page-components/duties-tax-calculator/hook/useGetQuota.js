@@ -9,10 +9,14 @@ const useGetQuota = () => {
 	const [isQuotaLeft, setIsQuotaLeft] = useState();
 	const [quotaValue, setQuotaValue] = useState();
 
-	const { profile = {}, general } = useSelector((s) => s);
+	const { profile = {} } = useSelector((s) => s);
 	const { organization } = profile || {};
-	const { scope } = general;
-	const { data, trigger } = useRequest('get', true, scope)('saas_get_user_quota_usage');
+	// const { data, trigger } = useRequest('get', false)('/saas_get_user_quota_usage');
+
+	const [{ data }, trigger] = useRequest({
+		url    : '/saas_get_user_quota_usage',
+		method : 'get',
+	}, { manual: true });
 	const {
 		is_free_plan = false,
 		plan_details = [],

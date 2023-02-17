@@ -13,7 +13,7 @@ function Header({
 	return (
 		<div className={styles.container}>
 			<div className={styles.title}>
-				<div className="icon">
+				<div className={styles.icon}>
 					<imag src={DutiesTax} width="32px" height="32px" />
 				</div>
 				<div>Duties & Taxes Calculator</div>

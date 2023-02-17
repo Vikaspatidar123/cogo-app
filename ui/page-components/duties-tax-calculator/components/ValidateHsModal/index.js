@@ -107,7 +107,7 @@ function ValidateHsModal({
 	return (
 		<Modal
 			show={show}
-			className={`${styles.primary} ${styles.ui_modal_dialog}`}
+			className={styles.modal_container}
 			onClose={() => setShow(false)}
 			closable={!getDraftData?.headerResponse}
 			width={!isMobile ? '534' : '363'}

@@ -43,7 +43,8 @@ function Transportation({
 	const OriginPort = getField(fields?.originPort?.type);
 	const DestinationPort = getField(fields?.destinationPort?.type);
 	const [origin, destination] = watch(['originPort', 'destinationPort']);
-	const { setMapPoints } = useSaasState();
+	// const { setMapPoints } = useSaasState();
+	const { mapPoints, setMapPoints } = useState();
 
 	const initialRef = useRef(true);
 
@@ -170,7 +171,6 @@ function Transportation({
 						onClick={handleSubmit(submitHandler, errorHandler)}
 					>
 						Continue
-						{' '}
 						<IcMArrowNext />
 					</Button>
 				</div>

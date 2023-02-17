@@ -17,8 +17,10 @@ function Map({
 }) {
 	const [curvePoints, setCurvePoints] = useState([]);
 
-	const { getOceanRoute, routeDataLength = false } = useOceanRoute();
-	const { mapPoints, setMapPoints } = useState();
+	const {
+		getOceanRoute, routeDataLength = false, setMapPoints, mapPoints,
+	} = useOceanRoute();
+	// const { mapPoints, setMapPoints } = useState();
 
 	const { origin = {}, destination = {} } = portDetails || {};
 
@@ -80,7 +82,7 @@ function Map({
 	}, [JSON.stringify(origin), JSON.stringify(destination)]);
 
 	useEffect(() => {
-		if (mapPoints.length > 0) {
+		if (mapPoints?.length > 0) {
 			if (transportMode === 'OCEAN') {
 				const arr = (mapPoints || []).map((point) => ({
 					lat : point[0],
@@ -119,7 +121,7 @@ function Map({
 					return false;
 				});
 			}
-		} else if (mapPoints.length === 0) {
+		} else if (mapPoints?.length === 0) {
 			setCurvePoints([]);
 		}
 	}, [JSON.stringify(mapPoints)]);

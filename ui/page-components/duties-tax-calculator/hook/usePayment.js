@@ -13,7 +13,7 @@ const usePayment = () => {
 	const { org_id = '', branch_id = '', account_type = '' } = query || {};
 
 	const [{ loading, data }, trigger] = useRequestBf({
-		url     : '/saas/paymen',
+		url     : '/saas/payment',
 		authKey : 'post_saas_payment',
 		method  : 'post',
 	}, { manual: true });

@@ -5,12 +5,17 @@ import { useRequest } from '@/packages/request';
 const useOceanRoute = () => {
 	const [routeDataLength, setRouteDataLength] = useState();
 	const [mapPoints, setMapPoints] = useState();
-	const { trigger: oceanRouteTrigger, loading } = useRequest(
-		'get',
-		false,
-		'app',
-		// )('/get_sailing_schedules');
-	)('https://maps.dev.cogoport.io/locations/routing/get_sea_route');
+	// const { trigger: oceanRouteTrigger, loading } = useRequest(
+	// 	'get',
+	// 	false,
+	// 	'app',
+	// 	// )('/get_sailing_schedules');
+	// )('https://maps.dev.cogoport.io/locations/routing/get_sea_route');
+
+	const [{ loading }, oceanRouteTrigger] = useRequest({
+		url    : 'https://maps.dev.cogoport.io/locations/routing/get_sea_route',
+		method : 'get',
+	}, { manual: true });
 
 	const getOceanRoute = async (origin_port_id, destination_port_id) => {
 		try {
@@ -31,6 +36,8 @@ const useOceanRoute = () => {
 		getOceanRoute,
 		routesLoading: loading,
 		routeDataLength,
+		setMapPoints,
+		mapPoints,
 	};
 };
 

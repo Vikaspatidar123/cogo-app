@@ -217,17 +217,21 @@ export const StyledLoading = styled(Loading)`
 	margin-bottom: 6px;
 }
 
-.rateSection {
+.rate_section {
 	display: flex;
 	align-items: center;
 }
-.selectedRow {
+.selected_row {
 	border: 1px solid #d6483a;
 	background: #fffef9;
 }
 
 .col{
-	
+	:global{
+		@media screen and (max-width: 767px) {
+			
+		}
+	}
 }
 
 .icon {
@@ -251,13 +255,13 @@ export const StyledLoading = styled(Loading)`
 		margin-right: 10px;
 	}
 }
-.imgIcon {
+.img_icon {
 	width: 52px;
 	height: 29px;
 	vertical-align: text-top;
 }
 
-.imgAlt {
+.img_alt {
 	font-size: 12px;
 }
 

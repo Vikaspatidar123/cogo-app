@@ -168,6 +168,11 @@ export const Text = styled.div`
 	gap: 10px;
 	margin-top: 25px;
 }
+.checkout_btn {
+	box-shadow: 0px -4px 17px 0px #7c7c7c3b;
+	margin-top: 0;
+	padding: 20px 22px;
+}
 
 .text{
 	color: #bbbbbb;

@@ -17,54 +17,54 @@ const List = ({
 				onChange={() => checkboxHandler(item)}
 			/>
 		</div>
-		<Col className={styles.icon}>
+		<div className={`${styles.col} ${styles.icon}`}>
 			{item?.shipping_line?.logo_url || item?.airline?.logo_url ? (
 				<img
-					className="imgIcon"
+					className={styles.img_icon}
 					src={item?.shipping_line?.logo_url || item?.airline?.logo_url}
 					alt="logo"
 				/>
 			) : (
-				<div className="imgAlt">
+				<div className={styles.img_alt}>
 					<i>(logo)</i>
 				</div>
 			)}
-		</Col>
-		<Col className="name">
+		</div>
+		<div className={`${styles.col} ${styles.name}`}>
 			{item?.shipping_line?.business_name || item?.airline?.business_name}
-		</Col>
-		<Col className="price">
+		</div>
+		<div className={`${styles.col} ${styles.price}`}>
 			{shortFormatNumber(item?.total_price, item?.total_price_currency, true)}
-		</Col>
+		</div>
 	</div>
 ) : (
-	<Row key={item?.card} className={`${checked === item?.card && 'selectedRow'}`}>
+	<div key={item?.card} className={`${checked === item?.card && styles.selected_row} ${styles.col}`}>
 		<div>
-			<Col className="icon">
+			<div className={`${styles.col} ${styles.icon}`}>
 				<img
-					className="imgIcon"
+					className={styles.img_icon}
 					src={item?.shipping_line?.logo_url || item?.airline?.logo_url}
 					alt="logo"
 				/>
-			</Col>
-			<Col className="name">
+			</div>
+			<div className={`${styles.col} ${styles.name}`}>
 				{item?.shipping_line?.business_name || item?.airline?.business_name}
-			</Col>
+			</div>
 		</div>
-		<div className="rateSection">
-			<Col className="price">
+		<div className={styles.rate_section}>
+			<div className={`${styles.col} ${styles.price}`}>
 				{shortFormatNumber(item?.total_price, item?.total_price_currency, true)}
-			</Col>
-			<Col>
+			</div>
+			<div className={styles.price}>
 				<Radio
 					label=""
 					className="primary lg"
 					checked={checked === item?.card}
 					onChange={() => checkboxHandler(item)}
 				/>
-			</Col>
+			</div>
 		</div>
-	</Row>
+	</div>
 )));
 
 export default List;

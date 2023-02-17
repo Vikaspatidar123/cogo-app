@@ -1,8 +1,12 @@
+import { cl } from '@cogoport/components';
+
 import { shortFormatNumber } from '../../../../utils/getShortFormatNumber';
 
-import {
-	Container, Heading, Head, ScrollContent,
-} from './styles';
+// import {
+// 	Container, Heading, Head, ScrollContent,
+// } from './styles';
+
+import styles from './styles.module.css';
 
 function Charges({
 	formData = {},
@@ -16,46 +20,46 @@ function Charges({
 	const { freightCharge = '', incotermCharges = [], currency = '' } = formData || {};
 
 	return (
-		<ScrollContent>
-			<Container>
-				<Head>
-					<Heading>Charges</Heading>
+		<div className={styles.scroll_content}>
+			<div className={styles.container}>
+				<div>
+					<div className={styles.heading}>Charges</div>
 					{freightCharge > 0 && (
-						<div className="service">
-							<div className="text">Freight Charge</div>
-							<div className="price">
+						<div className={styles.service}>
+							<div className={styles.text}>Freight Charge</div>
+							<div className={styles.price}>
 								{shortFormatNumber(freightCharge, currency, true)}
 							</div>
 						</div>
 					)}
 					{(incotermCharges || []).map(
 						({ name, value }) => value > 0 && (
-							<div className="service">
-								<div className="text">{name}</div>
-								<div className="price">{shortFormatNumber(value, currency, true)}</div>
+							<div className={styles.service}>
+								<div className={styles.text}>{name}</div>
+								<div className={styles.price}>{shortFormatNumber(value, currency, true)}</div>
 							</div>
 						),
 					)}
-				</Head>
-			</Container>
-			<Container>
-				<Head>
-					<Heading>Summary</Heading>
+				</div>
+			</div>
+			<div className={styles.container}>
+				<div>
+					<div className={styles.heading}>Summary</div>
 					{!isQuotaLeft && (
 						<>
-							<div className="service">
-								<div className="text">Services</div>
-								<div className="price">{shortFormatNumber(amount, dtCurrency, true)}</div>
+							<div className={styles.service}>
+								<div className={styles.text}>Services</div>
+								<div className={styles.price}>{shortFormatNumber(amount, dtCurrency, true)}</div>
 							</div>
-							<div className="service">
-								<div className="text">Conviences Fee</div>
-								<div className="price">
+							<div className={styles.service}>
+								<div className={styles.text}>Conviences Fee</div>
+								<div className={styles.price}>
 									{shortFormatNumber(gstAmount, dtCurrency, true)}
 								</div>
 							</div>
-							<div className="service total">
-								<div className="text">Total Amount</div>
-								<div className="price">
+							<div className={cl`${styles.service} ${styles.total}`}>
+								<div className={styles.text}>Total Amount</div>
+								<div className={styles.price}>
 									{shortFormatNumber(totalAmount, dtCurrency, true)}
 								</div>
 							</div>
@@ -63,26 +67,26 @@ function Charges({
 					)}
 					{isQuotaLeft && (
 						<>
-							<div className="service">
-								<div className="text">Available Premium Services Quota</div>
-								<div className="price">{quotaValue}</div>
+							<div className={styles.service}>
+								<div className={styles.text}>Available Premium Services Quota</div>
+								<div className={styles.price}>{quotaValue}</div>
 							</div>
-							<div className="border" />
-							<div className="service">
-								<div className="text">Quota deducted</div>
-								<div className="price">- 1</div>
+							<div className={styles.border} />
+							<div className={styles.service}>
+								<div className={styles.text}>Quota deducted</div>
+								<div className={styles.price}>- 1</div>
 							</div>
-							<div className="border" />
+							<div className={styles.border} />
 
-							<div className="service">
-								<div className="total">Remaining Quota</div>
-								<div className="price">{quotaValue - 1}</div>
+							<div className={styles.service}>
+								<div className={styles.total}>Remaining Quota</div>
+								<div className={styles.price}>{quotaValue - 1}</div>
 							</div>
 						</>
 					)}
-				</Head>
-			</Container>
-		</ScrollContent>
+				</div>
+			</div>
+		</div>
 	);
 }
 export default Charges;

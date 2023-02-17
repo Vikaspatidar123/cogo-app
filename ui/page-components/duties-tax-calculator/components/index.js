@@ -1,3 +1,4 @@
+import { cl } from '@cogoport/components';
 import { useEffect, useState } from 'react';
 
 import useCheckPaymentStatus from '../hook/useCheckPaymentStatus';
@@ -73,7 +74,7 @@ function DutiesTaxCalulator() {
 	}, []);
 
 	return (
-		<div className={`${formPayDetails && 'formContainer'} ${styles.container}`}>
+		<div className={cl`${formPayDetails && styles.formContainer} ${styles.container}`}>
 			<Header
 				stepper={stepper}
 				setStepper={setStepper}
@@ -84,9 +85,9 @@ function DutiesTaxCalulator() {
 
 			<div className={`${isMobile ? styles.with_mobile_view : styles.without_mobile_view}`}>
 				<div
-					className={`${formPayDetails && 'formPayDetails'} ${
-						(tradeEngineRespLength > 0 || billId) && 'calculateDoneForm'
-					} child1`}
+					className={cl`${formPayDetails && styles.formPayDetails} ${
+						(tradeEngineRespLength > 0 || billId) && styles.calculateDoneForm
+					} ${styles.child1}`}
 				>
 					<Form
 						stepper={stepper}
@@ -106,9 +107,9 @@ function DutiesTaxCalulator() {
 					/>
 				</div>
 				<div
-					className={`${formPayDetails && 'mapForm'} ${
-						(tradeEngineRespLength > 0 || billId) && 'calculateDoneMap'
-					} child2`}
+					className={cl`${formPayDetails && styles.mapForm} ${
+						(tradeEngineRespLength > 0 || billId) && styles.calculateDoneMap
+					} ${styles.child2}`}
 				>
 					<Map
 						portDetails={portDetails}

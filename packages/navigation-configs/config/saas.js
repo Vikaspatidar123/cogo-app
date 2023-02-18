@@ -100,6 +100,10 @@ const saas = {
 		navigation : 'saas_tools-load_calculator',
 		isMainNav  : true,
 	},
+	'/saas/freight-rate-trend': {
+		navigation : 'saas_tools-freight_rate_trend',
+		isMainNav  : true,
+	},
 
 };
 

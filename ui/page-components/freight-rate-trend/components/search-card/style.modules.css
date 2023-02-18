@@ -1,0 +1,42 @@
+.card {
+  background-color: ${({ isEmpty }) => (isEmpty ? '#FAFAFA' : 'white')};
+  height: 100%;
+  border-radius: 20px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+  margin-top: 16px;
+  margin-bottom: 8px;
+  padding: 26px;
+  position: relative;
+}
+
+.heading {
+  span {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 36px;
+    letter-spacing: -0.3px;
+    color: #34485c;
+  }
+
+  p {
+    margin: 0;
+  }
+}
+
+.styled_form_item {
+  flex: 1;
+  margin: 0 10px;
+}
+
+.text{
+  margin-top:4px;
+  size:10;
+  color:#CB6464;
+}
+
+.flex{
+  display: flex;
+  justify-content: space-between;
+  align-items:center;
+}

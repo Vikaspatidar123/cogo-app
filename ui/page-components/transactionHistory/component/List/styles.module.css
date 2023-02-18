@@ -1,0 +1,21 @@
+.pagination_div = {
+	display: flex;
+	justify-content: end;
+	align-items: center;
+	/* & > nav > ul > li > a {
+		background: ${(props) => (props.drillDown ? '#fff' : '#eceff8;')};
+	} */
+	.css-1v2tvjv {
+		color: #2c3e50 !important;
+	}
+	.css-soivbe {
+		margin-right: 25px;
+	}
+}
+
+.flex {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 80vh;
+}

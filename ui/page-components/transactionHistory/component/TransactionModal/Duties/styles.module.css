@@ -1,0 +1,26 @@
+.container{
+	.title {
+		display: flex;
+		align-items: center;
+		padding: 0 12px;
+		gap: 8px;
+	}
+}
+
+.styledRow{
+	display: flex;
+	padding: 12px;
+	justify-content: space-between;
+	align-items: center;
+	.core-ui-select-root {
+		width: 130px;
+	}
+	.css-1a4vcjf {
+		height: 41px;
+	}
+}
+
+
+.hr{
+	border-bottom: 1px solid #c3d1df;
+}

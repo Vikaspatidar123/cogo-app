@@ -1,0 +1,76 @@
+import { IcMRateManagement } from '@cogoport/icons-react';
+
+import styles from './styles.module.css';
+
+export const OPTIONS = [
+	{
+		label : 'SENT',
+		value : 'SENT',
+	},
+	{
+		label : 'DRAFTED',
+		value : 'DRAFTED',
+	},
+];
+
+export const billTypeOptions = [
+	{
+		label : 'INSURANCE',
+		value : 'INSURANCE',
+	},
+	{
+		label : 'PREMIUM SERVICES',
+		value : 'PREMIUM_SERVICES',
+	},
+	{
+		label : 'SUBSCRIPTION',
+		value : 'SUBSCRIPTION',
+	},
+];
+
+export const paymentTypeOptions = [
+	{
+		label: (
+			<div className={styles.import_export}>
+				<div className={styles.type_label}>PAID</div>
+			</div>
+		),
+		value: 'PAID',
+	},
+	{
+		label: (
+			<div className={styles.import_export}>
+				<div className={styles.type_label}>PENDING</div>
+			</div>
+		),
+		value: 'PENDING',
+	},
+	{
+		label: (
+			<div className={styles.import_export}>
+				<div className={styles.type_label}>FAILED</div>
+			</div>
+		),
+		value: 'PAYMENT_FAILED',
+	},
+];
+export const optionsRisk = [
+	{
+		label: (
+			<div className={styles.import_export}>
+				<IcMRateManagement fill="#6B6D81" width={18} height={18} />
+				<div className={styles.type_label}>All Risk</div>
+			</div>
+		),
+		value: 'ALL_RISK',
+	},
+	{
+		label: (
+			<div className={styles.import_export}>
+				<IcMRateManagement fill="#6B6D81" width={18} height={18} />
+				<div className={styles.type_label}>Basic Risk</div>
+			</div>
+		),
+		value: 'BASIC_RISK',
+	},
+];

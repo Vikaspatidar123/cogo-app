@@ -1,0 +1,141 @@
+/* import { IcMArrowRotateDown } from '@cogoport/icons-react'; */
+
+.title_black{
+	font-style: normal;
+	font-weight: normal;
+	font-size: 12px;
+	line-height: 20px;
+	font-family: 'Roboto';
+	text-align: center;
+	/* Black */
+	display: inline-block;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+	max-width: 100%;
+
+	color: #000000;
+}
+
+.row {
+	position: relative;
+	width: 100%;
+	height: 78px;
+	background: #ffffff;
+	box-shadow: 0px 17.8337px 60.0918px rgba(71, 111, 211, 0.11),
+		0px 2.23306px 18.612px rgba(71, 111, 211, 0.055);
+	border-radius: 9px;
+	/* display: flex; */
+	align-items: center !important;
+	padding-left: 11px;
+	margin-left: 0px !important;
+}
+
+.label{
+	font-size: 8px;
+	line-height: 12px;
+	letter-spacing: 0.02em;
+	text-transform: capitalize;
+	color: #4f4f4f;
+	width: max-content;
+	@media (min-width: 768px) {
+		display: none;
+	}
+}
+
+.info{
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+	max-width: 164px;
+	display: inline-block;
+	font-weight: 500;
+	font-size: 14px;
+	color: #828282;
+	line-height: 16px;
+	color: #2c3e50;
+}
+
+.container{
+	border-radius: 9px;
+	border: 1px solid #cddbff;
+	margin-bottom: 25px;
+	display: flex;
+	flex-direction: column;
+	&.displayDrill {
+		border: 1px solid #a4b6e5;
+	}
+	&.mobile {
+		padding-top: 12px;
+		max-width: 100vw;
+	}
+}
+
+.drill_down{
+	width: 100%;
+	background: #fafbfb;
+	border-bottom-left-radius: 9px;
+	border-bottom-right-radius: 9px;
+	padding: 0px 20px;
+	max-height: 0;
+	overflow: hidden;
+	transition: 0.6s ease-in-out;
+
+	&.displayDrill {
+		max-height: 500px;
+		padding: 20px;
+		border-top: 1px solid #cddbff;
+		transition: 0.6s ease-in-out;
+	}
+
+	.parent {
+		display: flex;
+		justify-content: space-between;
+	}
+	.mobile {
+		display: flex;
+		flex-direction: column;
+		gap: 16px;
+	}
+	.payment {
+		width: 48%;
+	}
+
+	.bill {
+		width: 100%;
+	}
+}
+
+.arrow {
+	cursor: pointer;
+	border-bottom-right-radius: 9px;
+	border-bottom-left-radius: 9px;
+	background: aliceblue;
+	.hyperlinkIcon {
+		margin-left: 5px;
+		transition: transform 0.3s ease-in-out;
+	}
+
+	.rotateIcon {
+		transform: rotate(180deg);
+	}
+}
+
+.flex{
+	display: flex;
+	@media screen and (max-width: 768px) {
+		flex-direction: column;
+		width: 100%;
+		align-items: stretch;
+		gap: 16px;
+	}
+}
+/* = styled(IcMArrowRotateDown) */
+.arrow_icon_div{
+	margin-left: 47% !important;
+}
+
+.circle_icon{
+	display: flex;
+	align-items: center;
+}

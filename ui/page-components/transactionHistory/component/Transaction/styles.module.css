@@ -1,0 +1,41 @@
+
+
+.container {
+	width: 100%;
+	margin: 25px 0;
+}
+
+.title_section{
+	display: flex;
+
+	&.mobile {
+		flex-direction: column;
+	}
+
+	.title {
+		margin: 0;
+	}
+
+	.header {
+		display: flex;
+		flex-direction: column;
+	}
+}
+
+.card_container{
+	margin: 15px 0;
+}
+
+.line {
+	height: 3px;
+	border-width: 0;
+	background-color: #f68b21;
+	flex-grow: 1;
+}
+
+.line_wrapper {
+	display: flex;
+	justify-content: flex-start;
+	width: 215px;
+	align-items: center;
+}

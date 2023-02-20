@@ -11,12 +11,12 @@ const useCategory = ({ hsCode, hsCodeId, setShow }) => {
 	const { scope = 'app' } = general || {};
 
 	const [{ loading: getproductLoading, data: productDetails }, getproductTrigger] = useRequestBf({
-		url: '/saas/product/category',
-		method: 'get',
+		url    : '/saas/product/category',
+		method : 'get',
 	}, { manual: true });
 	const [{ loading: addProductLoading }, addProductTrigger] = useRequestBf({
-		url: '/saas/product',
-		method: 'post',
+		url    : '/saas/product',
+		method : 'post',
 	}, { manual: true });
 	const getProduct = async () => {
 		try {
@@ -35,11 +35,11 @@ const useCategory = ({ hsCode, hsCodeId, setShow }) => {
 		try {
 			const resp = await addProductTrigger({
 				data: {
-					organizationId: organization?.id,
-					currency: country?.currency_code,
-					originCountry: country?.name,
-					originCountryId: country?.id,
-					userId: id,
+					organizationId  : organization?.id,
+					currency        : country?.currency_code,
+					originCountry   : country?.name,
+					originCountryId : country?.id,
+					userId          : id,
 					...payload,
 				},
 			});
@@ -65,8 +65,8 @@ const useCategory = ({ hsCode, hsCodeId, setShow }) => {
 			sellingPrice,
 			name,
 			description,
-			logoUrl: productImg,
-			productClassificationId: productDetails?.productClassificationId,
+			logoUrl                 : productImg,
+			productClassificationId : productDetails?.productClassificationId,
 		};
 		const resp = await addProduct(payload);
 		if (resp) {

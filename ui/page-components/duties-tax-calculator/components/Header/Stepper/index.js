@@ -1,0 +1,86 @@
+import { useState, useEffect } from 'react';
+
+import DotLine from './DotLine';
+import styles from './styles.module.css';
+
+function Stepper({
+	stepper,
+	setStepper,
+	tradeEngineRespLength = 0,
+	billId = '',
+	isMobile = false,
+}) {
+	const [ongoing, setOngoing] = useState();
+	const {
+		transportDetails, productDetails, chargeDetails, payDetails,
+	} = stepper || {};
+
+	const stepperKey = Object.keys(stepper);
+	const stepperValue = Object.values(stepper);
+
+	useEffect(() => {
+		const index = stepperValue.findIndex((ele) => !ele);
+		if (index > 0) {
+			setOngoing(stepperKey[index - 1]);
+		} else if (tradeEngineRespLength === 0) {
+			setOngoing('payDetails');
+		}
+	}, [JSON.stringify(stepper)]);
+
+	useEffect(() => {
+		if (tradeEngineRespLength > 0) {
+			setOngoing('');
+			setStepper({
+				transportDetails : true,
+				productDetails   : true,
+				chargeDetails    : true,
+				payDetails       : true,
+			});
+		}
+	}, [tradeEngineRespLength]);
+
+	useEffect(() => {
+		if (billId !== '') {
+			setOngoing('payDetails');
+			setStepper({
+				transportDetails : true,
+				productDetails   : true,
+				chargeDetails    : true,
+				payDetails       : true,
+			});
+		}
+	}, []);
+
+	return (
+		<div className={styles.container}>
+			<DotLine
+				subHeading="Transportation Details"
+				isFirst
+				isCompleted={transportDetails}
+				isOngoing={ongoing === 'transportDetails'}
+				isMobile={isMobile}
+			/>
+			<DotLine
+				subHeading="Product Details"
+				isCompleted={productDetails}
+				isOngoing={ongoing === 'productDetails'}
+				isMobile={isMobile}
+			/>
+			<DotLine
+				subHeading="Charge Details"
+				isCompleted={chargeDetails}
+				isOngoing={ongoing === 'chargeDetails'}
+				isMobile={isMobile}
+			/>
+			<DotLine
+				subHeading="Pay and Get Results"
+				isLast
+				isCompleted={payDetails}
+				isOngoing={ongoing === 'payDetails'}
+				isMobile={isMobile}
+			/>
+		</div>
+	);
+}
+
+export default Stepper;

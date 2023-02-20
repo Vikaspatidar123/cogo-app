@@ -1,0 +1,97 @@
+/* import styled from '@cogoport/front/styled';
+
+export const Container = styled.div`
+	position: relative;
+	.orTag {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		gap: 3px;
+	}
+	.line {
+		height: 0;
+		width: 14px;
+		border-top: 1.7px solid #bdbdbd;
+	}
+	.text {
+		font-weight: 500;
+		font-size: 13px;
+		color: #bdbdbd;
+	}
+
+	.other {
+		display: flex;
+		align-items: center;
+		justify-content: space-around;
+	}
+	.hyperLink {
+		color: #ee3425;
+		:hover {
+			text-decoration: underline;
+			cursor: pointer;
+		}
+	}
+	.divider {
+		width: 0;
+		border-left: 1px solid #333;
+	}
+`;
+
+export const TitleContainer = styled.div`
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+
+	.currency {
+		width: 30%;
+	}
+`; */
+
+
+.container{
+	position: relative;
+}
+
+.orTag {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 3px;
+}
+.line {
+	height: 0;
+	width: 14px;
+	border-top: 1.7px solid #bdbdbd;
+}
+.text {
+	font-weight: 500;
+	font-size: 13px;
+	color: #bdbdbd;
+}
+
+.other {
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+}
+.hyperLink {
+	color: #ee3425;
+	:hover {
+		text-decoration: underline;
+		cursor: pointer;
+	}
+}
+.divider {
+	width: 0;
+	border-left: 1px solid #333;
+}
+
+.title_container{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.currency {
+	width: 30%;
+}

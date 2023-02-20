@@ -22,7 +22,9 @@ function Address() {
 	const onClickBackButton = () => {
 		router.push('/profile');
 	};
-	const { data, loading, addressesData } = getAddress();
+	const {
+		data, loading, addressesData, addressLoading,
+	} = getAddress();
 	const organizationBillingAddressesList = data?.list || [];
 	return (
 		<>
@@ -63,7 +65,7 @@ function Address() {
 				loading={loading}
 			/>
 
-			<OtherAddresses addressesData={addressesData} />
+			<OtherAddresses addressesData={addressesData} addressLoading={addressLoading} />
 		</>
 	);
 }

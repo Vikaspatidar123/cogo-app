@@ -39,7 +39,6 @@ function OtherAddressCard({
 		}
 		window.open(modifiedUrl, '_blank');
 	};
-
 	return (
 		<div className={styles.container}>
 			<div className={styles.edit_icon_container}>
@@ -57,7 +56,7 @@ function OtherAddressCard({
 			<div className={styles.basic_billing_details}>
 				<div className={styles.sub_container}>
 					<div className={styles.label_text}>
-						name
+						Billing Party Name
 					</div>
 					<div className={styles.value_text}>{other_address_data.name || '-'}</div>
 				</div>
@@ -65,7 +64,7 @@ function OtherAddressCard({
 				<div className={styles.sub_container}>
 					<div className={styles.label_text}>
 
-						.card.pincode
+						Pincode
 
 					</div>
 					<div className={styles.value_text}>{other_address_data.pincode || '-'}</div>
@@ -73,15 +72,15 @@ function OtherAddressCard({
 
 				<div className={styles.sub_container}>
 					<div className={styles.label_text}>
-						card.address
-
+						Address
 					</div>
 					<div className={styles.value_text}>{other_address_data.address || '-'}</div>
 				</div>
 
 				<div className={styles.sub_container}>
 					<div className={styles.label_text}>
-						otherAddresses.card.country
+						Country
+
 					</div>
 					<div className={styles.value_text}>{other_address_data.country.name || '-'}</div>
 				</div>
@@ -92,7 +91,7 @@ function OtherAddressCard({
 					<div className={styles.tax_details_container}>
 						<div className={styles.sub_container}>
 							<div className={styles.label_text}>
-								card.tax.taxProof
+								Tax Exemption Proof
 							</div>
 
 							<div className={styles.doc_container}>
@@ -106,7 +105,7 @@ function OtherAddressCard({
 										className={styles.link_text}
 										onClick={() => handleOpenDocument(other_address_data.tax_exemption_proof)}
 									>
-										otherAddresses.card.tax.view
+										view
 									</div>
 								</div>
 							</div>
@@ -130,7 +129,7 @@ function OtherAddressCard({
 
 						<div className={styles.poc_sub_container}>
 							<div className={`${styles.label_text}${styles.poc_details} `}>
-								card.firstPoc.name
+								Poc Name
 							</div>
 							<div className={`${styles.label_text}${styles.poc_details} `}>
 								{firstPoc?.name || '-'}
@@ -139,7 +138,7 @@ function OtherAddressCard({
 
 						<div className={styles.poc_sub_container}>
 							<div className={`${styles.label_text}${styles.poc_details} `}>
-								=card.firstPoc.mobile
+								Poc Mobile
 
 							</div>
 							<div className={`${styles.label_text}${styles.poc_details} `}>
@@ -152,7 +151,7 @@ function OtherAddressCard({
 
 						<div className={styles.poc_sub_container}>
 							<div className={`${styles.label_text}${styles.poc_details} `}>
-								otherAddresses.card.firstPoc.email
+								Email
 
 							</div>
 							<div className={`${styles.value_text}${styles.poc_details}`}>
@@ -161,7 +160,7 @@ function OtherAddressCard({
 						</div>
 						<div className={styles.poc_sub_container}>
 							<div className={`${styles.label_text}${styles.poc_details} `}>
-								card.firstPoc.allternateMobile
+								Allternate Mobile
 
 							</div>
 							<div className={`${styles.value_text}${styles.poc_details}`}>
@@ -191,7 +190,7 @@ function OtherAddressCard({
 
 							<div className={styles.poc_sub_container}>
 								<div className={`${styles.label_text}${styles.poc_details} `}>
-									dress.otherAddresses.card.otherPocs.name
+									Pocs Name
 								</div>
 								<div className={`${styles.value_text}${styles.poc_details}`}>
 									{poc_details?.name || '-'}
@@ -200,7 +199,7 @@ function OtherAddressCard({
 
 							<div className={styles.poc_sub_container}>
 								<div className={`${styles.label_text}${styles.poc_details} `}>
-									otherAddresses.card.otherPocs.mobie
+									Pocs Mobile
 								</div>
 								<div className={`${styles.value_text}${styles.poc_details}`}>
 									{poc_details?.mobile_number
@@ -212,7 +211,7 @@ function OtherAddressCard({
 
 							<div className={styles.poc_sub_container}>
 								<div className={`${styles.label_text}${styles.poc_details} `}>
-									otherPocs.email
+									Email
 								</div>
 								<div className={`${styles.value_text}${styles.poc_details}`}>
 									{poc_details?.email || '-'}
@@ -221,7 +220,7 @@ function OtherAddressCard({
 
 							<div className={styles.poc_sub_container}>
 								<div className={`${styles.label_text}${styles.poc_details} `}>
-									otherPocs.allternateMobile
+									Allternate Mobile
 								</div>
 								<div className={`${styles.value_text}${styles.poc_details}`}>
 									{poc_details?.alternate_mobile_number
@@ -248,23 +247,26 @@ function OtherAddressCard({
 				) : null}
 
 				<Button
-					className="primary sm"
 					style={{
 						marginLeft: 'auto',
 					}}
 					onClick={() => setShowPocModal('add')}
+					size="sm"
+					themeType="accent"
 				>
-					otherAddresses.card.pocFooter.addPocs
+					Add Poc
+
 				</Button>
 			</div>
 
 			{
 				!!showPocModal && (
 					<Modal
-						onOuterClick={() => setShowPocModal(false)}
+						closeOnOuterClick={() => setShowPocModal(false)}
 						show={showPocModal}
 						onClose={() => setShowPocModal(false)}
-						styles={{ dialog: { width: isMobile && 'unset' } }}
+						size="sm"
+						// scroll
 					>
 						<AddEditPocDetails
 							showPocModal={showPocModal}

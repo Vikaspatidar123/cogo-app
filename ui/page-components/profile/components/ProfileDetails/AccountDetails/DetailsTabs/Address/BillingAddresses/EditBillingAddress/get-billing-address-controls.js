@@ -9,7 +9,7 @@ const fields = [
 		label       : 'Billing Party Name',
 		placeholder : 'Enter Name',
 		type        : 'text',
-		style       : { width: '340px' },
+		style       : { width: '370px' },
 	},
 	{
 		name           : 'pincode',
@@ -21,7 +21,7 @@ const fields = [
 		multiple       : false,
 		labelKey       : 'postal_code',
 		valueKey       : 'postal_code',
-		style          : { width: '340px' },
+		style          : { width: '370px' },
 		rules          : { required: 'Required' },
 	},
 	{
@@ -29,7 +29,7 @@ const fields = [
 		label       : 'GST Number',
 		placeholder : 'Enter GST Number',
 		type        : 'text',
-		style       : { width: '340px' },
+		style       : { width: '370px' },
 		rules       : {
 			required : true,
 			pattern  : {
@@ -49,7 +49,7 @@ const fields = [
 				value : true,
 			},
 		],
-		style: { width: '340px' },
+		style: { width: '370px' },
 	},
 
 	{
@@ -57,7 +57,7 @@ const fields = [
 		label       : 'Address',
 		placeholder : 'Enter Address',
 		type        : 'text',
-		style       : { width: '340px' },
+		style       : { width: '370px' },
 		rules       : {
 			required: 'address',
 		},
@@ -67,7 +67,7 @@ const fields = [
 		label       : 'POC Name',
 		placeholder : 'Enter POC Name',
 		type        : 'text',
-		style       : { width: '340px' },
+		style       : { width: '370px' },
 		rules       : { required: true },
 	},
 	{
@@ -77,7 +77,7 @@ const fields = [
 		type        : 'mobile_number',
 		inputType   : 'number',
 		select2     : 'new',
-		style       : { width: '200px' },
+		style       : { width: '245px' },
 		options     : country_code,
 		rules       : {
 			required : true,
@@ -91,7 +91,7 @@ const fields = [
 		label       : 'POC Email		',
 		placeholder : 'Enter POC Email',
 		type        : 'text',
-		style       : { width: '340px' },
+		style       : { width: '370px' },
 		rules       : { required: true },
 	},
 	{
@@ -99,7 +99,7 @@ const fields = [
 		label  : 'Sez Proof',
 		type   : 'file',
 		drag   : true,
-		style  : { width: '340px' },
+		style  : { width: '370px' },
 		accept :
 			'image/*,.pdf,.doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document',
 		rules: {
@@ -110,7 +110,7 @@ const fields = [
 		name   : 'tax_number_document_url',
 		label  : 'GST Proof',
 		type   : 'file',
-		style  : { width: '340px' },
+		style  : { width: '370px' },
 		accept :
 			'image/*,.pdf,.doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document',
 		rules: {

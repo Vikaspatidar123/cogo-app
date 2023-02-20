@@ -1,7 +1,7 @@
 lockfileVersion: 5.4
 
 specifiers:
-  '@cogoport/components': ^1.0.311
+  '@cogoport/components': ^1.0.316
   '@cogoport/eslint-config': ^1.0.18
   '@cogoport/icons-react': ^1.0.57
   '@cogoport/stylelint-config': ^1.0.3
@@ -39,7 +39,7 @@ specifiers:
   toolkit: ^1.5.4
 
 dependencies:
-  '@cogoport/components': 1.0.311_3lsay7tntxf2ei2og2ktju5z3e
+  '@cogoport/components': 1.0.316_3lsay7tntxf2ei2og2ktju5z3e
   '@cogoport/icons-react': 1.0.57_biqbaboplfbrettd7655fr4n2y
   '@cogoport/utils': 1.2.2
   '@next/polyfill-nomodule': 13.1.6
@@ -1367,8 +1367,8 @@ packages:
       to-fast-properties: 2.0.0
     dev: true
 
-  /@cogoport/components/1.0.311_3lsay7tntxf2ei2og2ktju5z3e:
-    resolution: {integrity: sha512-8+jXEDzoraGvYz/oiXRCWNvqmBrqx/pTnKCTtJ5ZeRFYVhEp09xL136p98cBPu4JbOEL+zAElvL8eWH9ISfEMA==}
+  /@cogoport/components/1.0.316_3lsay7tntxf2ei2og2ktju5z3e:
+    resolution: {integrity: sha512-mtuFsrbyA3M0X56rzrQtCLGOVuaNc00GqP5v82d2/ZbhrrjYyffY9yAnbRnS0bk3XYEbkPvlvCUk852ojGSr3Q==}
     peerDependencies:
       '@cogoport/icons-react': ^1.0.23
       react: ^18.2.0

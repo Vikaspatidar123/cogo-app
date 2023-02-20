@@ -1,22 +1,21 @@
-
-.container{
-	padding: 24px;
-
-	
-}
-.form-item-label {
-	margin: 24px 0 8px 0;
-	color: #828282;
-	font-weight: 700;
-	font-size: 12px;
-}
-.heading{
-	font-size: 18px;
-	font-weight: 500;
+.heading {
+  font-size: 18px;
+  font-weight: 500;
 }
 
-.button_container {
-	display: flex;
-	justify-content: flex-end;
-	margin-top: 16px;
+.field {
+  :global {
+    .ui_upload_droparea_container {
+      min-height: 20px;
+    }
+  }
+}
+
+.lable {
+  /* margin: 5px 0px 8px; */
+  padding: 8px 0px 5px;
+  color: rgb(130, 130, 130);
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 16px;
 }

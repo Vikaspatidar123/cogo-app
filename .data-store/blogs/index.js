@@ -1,5 +1,8 @@
+import msds from './msds';
+import shipping_surcharges from './shipping-surcharges';
+import tech_supply_chain from './tech-supply-chain';
+import best_practices_ltl from './best-practices-ltl';
 import friendshoring from './friendshoring';
-import general_rate_increase from './general-rate-increase';
 import ev_at_india_auto_expo_2_0_2_3 from './ev-at-india-auto-expo-_2_0_2_3';
 import ways_to_save_in_global_supply_chain from './ways-to-save-in-global-supply-chain';
 import top_5_business_trends_2_0_2_3 from './top-_5-business-trends-_2_0_2_3';
@@ -15,9 +18,6 @@ import bullwhip_effect from './bullwhip-effect';
 import _3_pl from './_3pl';
 import milk_run from './milk-run';
 import multi_modal_logistics_india from './multi-modal-logistics-india';
-import export_factoring from './export-factoring';
-import smart_shipping_fleet from './smart-shipping-fleet';
-import indias_logistics_after_7_5_years_of_independence from './indias-logistics-after-_7_5-years-of-independence';
-const blogs = [friendshoring,general_rate_increase,ev_at_india_auto_expo_2_0_2_3,ways_to_save_in_global_supply_chain,top_5_business_trends_2_0_2_3,consolidation_and_deconsolidation,cargo_ready_date,import_general_manifest,currency_adjustment_factor,global_shipping_alliances,_2_0_2_2_year_in_review,indian_economy_november_2_0_2_2,switch_bl,bullwhip_effect,_3_pl,milk_run,multi_modal_logistics_india,export_factoring,smart_shipping_fleet,indias_logistics_after_7_5_years_of_independence];
+const blogs = [msds,shipping_surcharges,tech_supply_chain,best_practices_ltl,friendshoring,ev_at_india_auto_expo_2_0_2_3,ways_to_save_in_global_supply_chain,top_5_business_trends_2_0_2_3,consolidation_and_deconsolidation,cargo_ready_date,import_general_manifest,currency_adjustment_factor,global_shipping_alliances,_2_0_2_2_year_in_review,indian_economy_november_2_0_2_2,switch_bl,bullwhip_effect,_3_pl,milk_run,multi_modal_logistics_india];
 
 export default blogs;

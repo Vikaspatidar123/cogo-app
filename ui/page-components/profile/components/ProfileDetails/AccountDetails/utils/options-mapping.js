@@ -1,11 +1,11 @@
 import Address from '../DetailsTabs/Address';
-// import AlertsPreferences from '../DetailsTabs/AlertsPreferences';
-// import DocumentsWallet from '../DetailsTabs/DocumentsWallet';
-// import MyProfile from '../DetailsTabs/MyProfile';
+import AlertsPreferences from '../DetailsTabs/AlertsPreferences';
+import DocumentsWallet from '../DetailsTabs/DocumentsWallet';
+import MyProfile from '../DetailsTabs/MyProfile';
 import OrganizationDetails from '../DetailsTabs/OrganizationDetails';
 import Services from '../DetailsTabs/ServicesTab';
-// import TeamDetails from '../DetailsTabs/TeamDetails';
-// import TradeParty from '../DetailsTabs/TradeParty';
+import TeamDetails from '../DetailsTabs/TeamDetails';
+import TradeParty from '../DetailsTabs/TradeParty';
 
 const getOptions = () => ({
 	organization_details: {
@@ -14,9 +14,9 @@ const getOptions = () => ({
 		containerComponent : OrganizationDetails,
 	},
 	profile: {
-		key   : 'profile',
-		title : 'Your Profile',
-		// containerComponent: MyProfile,
+		key                : 'profile',
+		title              : 'Your Profile',
+		containerComponent : MyProfile,
 	},
 	address: {
 		key                : 'address',
@@ -24,9 +24,9 @@ const getOptions = () => ({
 		containerComponent : Address,
 	},
 	documents: {
-		key   : 'documents',
-		title : 'Your Documents',
-		// containerComponent: DocumentsWallet,
+		key                : 'documents',
+		title              : 'Your Documents',
+		containerComponent : DocumentsWallet,
 	},
 	services: {
 		key                : 'services',
@@ -34,19 +34,19 @@ const getOptions = () => ({
 		containerComponent : Services,
 	},
 	team_details: {
-		key   : 'team_details',
-		title : 'Your Team Details',
-		// containerComponent: TeamDetails,
+		key                : 'team_details',
+		title              : 'Your Team Details',
+		containerComponent : TeamDetails,
 	},
 	trade_party: {
-		key   : 'trade_party',
-		title : 'Trade Party',
-		// containerComponent: TradeParty,
+		key                : 'trade_party',
+		title              : 'Trade Party',
+		containerComponent : TradeParty,
 	},
 	alerts_preferences: {
-		key   : 'alerts_preferences',
-		title : 'Alerts and Preferences',
-		// containerComponent: AlertsPreferences,
+		key                : 'alerts_preferences',
+		title              : 'Alerts and Preferences',
+		containerComponent : AlertsPreferences,
 	},
 });
 

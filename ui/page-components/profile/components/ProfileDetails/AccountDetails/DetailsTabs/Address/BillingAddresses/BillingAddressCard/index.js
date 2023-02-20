@@ -289,7 +289,6 @@ function AddressCard({
 						closeOnOuterClick={() => setShowPocModal(false)}
 						show={showPocModal}
 						onClose={() => setShowPocModal(false)}
-						styles={{ dialog: { width: isMobile && 'unset' } }}
 						scroll
 					>
 						<AddEditPocDetails

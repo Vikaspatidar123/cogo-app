@@ -1,5 +1,5 @@
 import { Modal, Tag } from '@cogoport/components';
-import { IcMArrowRotateDown } from '@cogoport/icons-react';
+import { IcMArrowRotateDown, IcMFtaskNotCompleted } from '@cogoport/icons-react';
 import { useTranslation } from 'next-i18next';
 import { useEffect, useState } from 'react';
 
@@ -32,14 +32,10 @@ function BillingAddresses({
 	const renderBillingAddress = () => {
 		if (!organizationBillingAddressesList.length) {
 			return (
-				<>hello</>
-				// <EmptyState
-				// 	height={125}
-				// 	width={125}
-				// 	bottomText={t(
-				// 		'profile:accountDetails.tabOptions.address.billingAddress.card.emptyState.bottomText',
-				// 	)}
-				// />
+				<div className={styles.empty}>
+					<IcMFtaskNotCompleted width={40} height={40} />
+					<div className={styles.no_data}>No data Found</div>
+				</div>
 			);
 		}
 		return (organizationBillingAddressesList || []).map((address, index) => (

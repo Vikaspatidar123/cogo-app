@@ -32,8 +32,7 @@ function EditBillingAddress({
 	return (
 		<div>
 			<Modal.Header title="Edit Billing Address" />
-			<div className={styles.layout_container}>
-
+			<Modal.Body>
 				<div className={styles.layout}>
 					{fields.map((item) => {
 						const ELEMENT = getField(item.type);
@@ -48,9 +47,7 @@ function EditBillingAddress({
 						);
 					})}
 				</div>
-				<div className={styles.button_container} />
-
-			</div>
+			</Modal.Body>
 			<Modal.Footer>
 				<Button
 					onClick={handleCloseModal}
@@ -66,7 +63,6 @@ function EditBillingAddress({
 				<Button
 					disabled={loading}
 					onClick={handleSubmit(onCreate)}
-					themeType="accent"
 				>
 					Update
 				</Button>

@@ -41,7 +41,7 @@ const getOrganizationBillingAddress = () => {
 	};
 	useEffect(() => { getAddress(); getAdd(); }, []);
 	return {
-		getAddress, loading, addressesData, data,
+		getAddress, loading, addressesData, data, addressLoading,
 	};
 };
 export default getOrganizationBillingAddress;

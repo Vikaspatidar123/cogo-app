@@ -1,9 +1,10 @@
-import { Button } from '@cogoport/components';
+import { Button, Modal } from '@cogoport/components';
 import { startCase } from '@cogoport/utils';
-import { useTranslation } from 'next-i18next';
 
 import styles from './styles.module.css';
 import useEditOtherAddress from './useEditOtherAddress';
+
+import getField from '@/packages/forms/Controlled';
 // import Layout from '@/temp/form/FormLayout';
 
 function EditOtherAddress({
@@ -16,7 +17,7 @@ function EditOtherAddress({
 }) {
 	const {
 		loading,
-		controls,
+		control,
 		showElements,
 		fields,
 		formState,
@@ -32,20 +33,25 @@ function EditOtherAddress({
 	});
 
 	return (
-		<div className={styles.layout_container}>
-			<div className={styles.heading}>
-				{`${'ok'} ${address_key?.label || startCase(otherAddressObjToUpdate.address_type)
-				} ${'edit'}`}
-			</div>
-
-			{/* <Layout
-				showElements={showElements}
-				controls={controls}
-				fields={fields}
-				errors={formState.errors}
-			/> */}
-
-			<div className={styles.button_container}>
+		<div>
+			<Modal.Header title={address_key?.label} />
+			<Modal.Body>
+				<div className={styles.layout}>
+					{fields.map((item) => {
+						const ELEMENT = getField(item.type);
+						const show = showElements[item.name];
+						return (
+							show && (
+								<div className={styles.field}>
+									<div className={styles.lable}>{item.label}</div>
+									<ELEMENT {...item} control={control} />
+								</div>
+							)
+						);
+					})}
+				</div>
+			</Modal.Body>
+			<Modal.Footer>
 				<Button
 					onClick={handleCloseModal}
 					className="secondary md"
@@ -54,7 +60,7 @@ function EditOtherAddress({
 					}}
 					disabled={loading}
 				>
-					buttons.cancel
+					Cancel
 				</Button>
 
 				<Button
@@ -62,9 +68,9 @@ function EditOtherAddress({
 					onClick={handleSubmit(onCreate)}
 					className="primary md"
 				>
-					buttons.update
+					Update
 				</Button>
-			</div>
+			</Modal.Footer>
 		</div>
 	);
 }

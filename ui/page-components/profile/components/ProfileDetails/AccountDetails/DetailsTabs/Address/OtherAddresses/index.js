@@ -1,6 +1,6 @@
-import { Modal, Tag, Toast } from '@cogoport/components';
-import { IcACreateAnAccount } from '@cogoport/icons-react';
-import { useTranslation } from 'next-i18next';
+/* eslint-disable max-len */
+import { Modal, Tags, Toast } from '@cogoport/components';
+import { IcMArrowRotateDown, IcMFtaskNotCompleted } from '@cogoport/icons-react';
 import { useEffect, useState } from 'react';
 
 import EditOtherAddress from './EditOtherAddress';
@@ -12,14 +12,12 @@ import getOtherAddressOptions from './utils/get-other-address-options';
 import useRequest from '@/packages/request';
 import { useSelector } from '@/packages/store';
 
-function OtherAddresses({ addressesData }) {
+function OtherAddresses({ addressesData, addressLoading }) {
 	const {
 		general: { isMobile },
 	} = useSelector((state) => state);
 
-	const { t } = useTranslation(['profile']);
-
-	const OTHER_ADDRESSES_MAPPING = getOtherAddressOptions({ t });
+	const OTHER_ADDRESSES_MAPPING = getOtherAddressOptions();
 
 	const [editOtherAddresKey, setEditOtherAddressKey] = useState(null);
 
@@ -27,46 +25,56 @@ function OtherAddresses({ addressesData }) {
 
 	const [showData, setShowData] = useState({});
 
-	const organizationOtherAddressesList = addressesData?.data || {};
+	const organizationOtherAddressesList = addressesData?.list	|| {};
 
 	// useEffect(() => {
 	// 	getOrganizationOtherAddresses();
 	// }, [organizationType]);
-
-	const renderAddressCards = ({ address_key }) => (organizationOtherAddressesList[address_key.api_property_key])?.map(
-		(other_address_data, index) => (
-			<OtherAddressCard
+	const filterAddress = (address_key) => {
+		const listData = (organizationOtherAddressesList || []).filter((item) => item.address_type === address_key.api_property_key);
+		return listData || [];
+	};
+	const renderAddressCards = ({ address_key }) => {
+		const data = filterAddress(address_key);
+		if (
+			(data || [])
+				.length === 0
+		) {
+			return (
+				<div className={styles.empty}>
+					<IcMFtaskNotCompleted width={40} height={40} />
+					<div className={styles.no_data}>No data Found</div>
+				</div>
+				// <EmptyState
+				// 	height={125}
+				// 	width={125}
+				// 	bottomText={t(
+				// 		'profile:accountDetails.tabOptions.address.otherAddresses.card.emptyState.bottomText',
+				// 	)}
+				// />
+			);
+		}
+		return (data || []).map(
+			(other_address_data, index) => (
+				<OtherAddressCard
 				// getOrganizationOtherAddresses={getOrganizationOtherAddresses}
-				setOtherAddressObjToUpdate={setOtherAddressObjToUpdate}
-				index={index}
-				other_address_data={other_address_data}
-			/>
+					setOtherAddressObjToUpdate={setOtherAddressObjToUpdate}
+					index={index}
+					other_address_data={other_address_data}
+				/>
 
-		),
-	);
-	// if (
-	// 	(organizationOtherAddressesList?.[address_key.api_property_key] || [])
-	// 		.length === 0
-	// ) {
-	// 	return (
-	// 		<EmptyState
-	// 			height={125}
-	// 			width={125}
-	// 			bottomText={t(
-	// 				'profile:accountDetails.tabOptions.address.otherAddresses.card.emptyState.bottomText',
-	// 			)}
-	// 		/>
-	// 	);
-	// }
+			),
+		);
+	};
 
 	const handleCloseModal = () => {
 		setEditOtherAddressKey(null);
 		setOtherAddressObjToUpdate({});
 	};
 
-	// if (loading) {
-	// 	return <LoadingState />;
-	// }
+	if (addressLoading) {
+		return <LoadingState />;
+	}
 
 	return (
 		<>
@@ -76,36 +84,27 @@ function OtherAddresses({ addressesData }) {
 						<div className={styles.body}>
 							<div className={styles.flex}>
 								<div className={styles.text}>
-									{`${address_key.label} ${t(
-										'profile:accountDetails.tabOptions.address.otherAddresses.texts.heading',
-									)}`}
-
+									{address_key.label}
 								</div>
 								{/* {!isMobile ? (
-										<Tag>
-											{`${organizationOtherAddressesList?.[
-												address_key.api_property_key
-											]?.length
-												|| t(
-													'profile:accountDetails.tabOptions.address.otherAddresses.texts.noAddress.1',
-												)
-												} ${t(
-													'profile:accountDetails.tabOptions.address.otherAddresses.texts.noAddress.2',
-												)}`}
-										</Tag>
-									) :  */}
-								{/* ( */}
-								<div className={styles.text} style={{ marginLeft: 4 }}>
-									{/* (
-										{organizationOtherAddressesList.length || 0}
-										) */}
-									ok
-								</div>
-								{/* )} */}
+									<div> */}
+								{/* {`${filterAddress(address_key)}
+										${filterAddress(address_key) ? 'ADDRESS(S) ADDED' : 'NO ADDRESS(S) ADDED'}`} */}
+								{/* </div>
+								)
+									: (
+										<div className={styles.text} style={{ marginLeft: 4 }}>
+											(
+											{filterAddress(address_key.api_property_key).length || 0}
+											)
+
+										</div>
+									)} */}
 							</div>
 							<div className={styles.flex}>
 								<div className={styles.link_text} onClick={() => setEditOtherAddressKey(address_key)}>
-									otherAddresses.texts.addAddress
+									+ Add Address
+
 								</div>
 							</div>
 						</div>
@@ -119,16 +118,22 @@ function OtherAddresses({ addressesData }) {
 							}))}
 						>
 							{showData[address_key.api_property_key] ? (
-								<IcACreateAnAccount style={{ width: 12, height: 8 }} />
-							) : (
-								<IcACreateAnAccount
-									style={{ width: 12, height: 8, transform: 'rotate(180deg)' }}
+								<IcMArrowRotateDown
+									width={20}
+									height={15}
 								/>
+							) : (
+								<IcMArrowRotateDown
+									width={20}
+									height={15}
+									style={{ transform: 'rotate(180deg)' }}
+								/>
+
 							)}
 						</div>
 					</div>
 
-					<div className={styles.flex} direction="column">
+					<div>
 						{showData[address_key.api_property_key]
 								&& renderAddressCards({ address_key })}
 					</div>
@@ -138,22 +143,20 @@ function OtherAddresses({ addressesData }) {
 			{(!!editOtherAddresKey
 					|| Object.keys(otherAddressObjToUpdate).length !== 0) && (
 						<Modal
-							className="primary lg"
 							show={
 								!!editOtherAddresKey
 								|| Object.keys(otherAddressObjToUpdate).length !== 0
 							}
 							onClose={handleCloseModal}
-							onOuterClick={handleCloseModal}
-							width={750}
-							styles={{ dialog: { width: isMobile && 'unset' } }}
+							closeOnOuterClick={handleCloseModal}
+							size="lg"
+
 						>
 							<EditOtherAddress
 								// organizationOtherAddressesList={organizationOtherAddressesList}
 								otherAddressObjToUpdate={otherAddressObjToUpdate}
 								address_key={editOtherAddresKey}
 								handleCloseModal={handleCloseModal}
-								organizationType={organizationType}
 							// getOrganizationOtherAddresses={getOrganizationOtherAddresses}
 							/>
 						</Modal>

@@ -1,8 +1,10 @@
-import { Button } from '@cogoport/components';
+import { Button, Modal } from '@cogoport/components';
 
 import styles from './styles.module.css';
 import useEditPocDetails from './useEditPocDetails';
+
 // import FormLayout from '@/temp/form/FormLayout';
+import getField from '@/packages/forms/Controlled';
 
 function AddEditPocDetails({
 	getOrganizationBillingAddress = () => { },
@@ -15,11 +17,10 @@ function AddEditPocDetails({
 }) {
 	const {
 		fields = {},
-		formState = {},
 		handleSubmit = () => { },
 		onCreate = () => { },
 		loading = false,
-		controls = [],
+		control = [],
 	} = useEditPocDetails({
 		getOrganizationBillingAddress,
 		getOrganizationOtherAddresses,
@@ -31,35 +32,48 @@ function AddEditPocDetails({
 	});
 
 	return (
-		<div className={styles.container}>
-			<div className={styles.heading}>
-				{showPocModal === 'edit'
-					? 'editPoc'
-					: 'heading'}
-			</div>
+		<div>
+			<Modal.Header title={showPocModal === 'edit'
+				? 'Edit Poc'
+				: 'Add POC'}
+			/>
 
-			{/* <FormLayout
-				controls={controls}
-				errors={formState.errors}
-				fields={fields}
-			/> */}
+			<Modal.Body>
 
-			<div className={styles.button_container}>
+				<div>
+					{fields.map((item) => {
+						const ELEMENT = getField(item.type);
+						return (
+
+							<div className={styles.field}>
+								<div className={styles.lable}>{item.label}</div>
+								<ELEMENT {...item} control={control} />
+							</div>
+
+						);
+					})}
+				</div>
+				<div className={styles.button_container} />
+
+			</Modal.Body>
+
+			<Modal.Footer>
 				<Button
 					disabled={loading}
-					className="secondary sm"
 					style={{ marginRight: 8 }}
 					onClick={() => setShowPocModal(false)}
+					size="sd"
+					themeType="secondary"
 				>
-					buttons
+					Cancel
 				</Button>
 
-				<Button disabled={loading} onClick={handleSubmit(onCreate)}>
+				<Button disabled={loading} onClick={handleSubmit(onCreate)} size="sm" themeType="primary">
 					{showPocModal === 'edit'
-						? 'edit'
-						: 'address'}
+						? 'Edit'
+						: 'Add'}
 				</Button>
-			</div>
+			</Modal.Footer>
 		</div>
 	);
 }

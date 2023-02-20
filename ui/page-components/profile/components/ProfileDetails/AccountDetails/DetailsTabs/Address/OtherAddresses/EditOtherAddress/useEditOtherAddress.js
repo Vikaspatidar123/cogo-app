@@ -1,9 +1,14 @@
 // import { Toast } from '@cogoport/components';
 // import { useEffect } from 'react';
 
+import { merge } from '@cogoport/utils';
+
 import getOtherAddressControls from './get-other-address-controls';
 
-import { useForm } from '@/packages/forms';
+import {
+	useForm,
+	asyncFieldsLocations, useGetAsyncOptions,
+} from '@/packages/forms';
 import useRequest from '@/packages/request';
 
 const useEditOtherAddress = ({
@@ -17,16 +22,20 @@ const useEditOtherAddress = ({
 	const valuesToPrefill = organizationOtherAddressesList?.[
 		`${otherAddressObjToUpdate.address_type}_address`
 	]?.[otherAddressObjToUpdate.index];
-
-	const controls = getOtherAddressControls({ valuesToPrefill });
+	const labelKey = 'postal_code';
+	const valueKey = 'postal_code';
+	const cityPincode = useGetAsyncOptions(merge(asyncFieldsLocations(labelKey, valueKey), {
+		params: { filters: { type: ['pincode'] } },
+	}));
+	const fields = getOtherAddressControls({ cityPincode });
 
 	const formProps = useForm();
 
 	const {
-		fields = {},
 		handleSubmit = () => { },
 		setValues,
 		formState,
+		control,
 	} = formProps;
 
 	// const createOrgOtherAddressAPI = useRequest(
@@ -115,7 +124,7 @@ const useEditOtherAddress = ({
 	// 	}
 	// };
 
-	const showElements = controls.reduce((previousControls, currentControls) => {
+	const showElements = fields.reduce((previousControls, currentControls) => {
 		const { name = '' } = currentControls;
 
 		let showElement = true;
@@ -137,7 +146,7 @@ const useEditOtherAddress = ({
 	}, {});
 
 	return {
-		controls,
+		control,
 		showElements,
 		fields,
 		// loading:

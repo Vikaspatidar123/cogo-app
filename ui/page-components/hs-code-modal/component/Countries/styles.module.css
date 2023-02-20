@@ -1,0 +1,37 @@
+/* import styled from '@cogoport/front/styled';
+
+export const Container = styled.div`
+	width: 30%;
+
+	@media screen and (max-width: 767px) {
+		width: 40%;
+	}
+`;
+
+export const Form = styled.form`
+	display: flex;
+	justify-content: flex-end;
+	.core-ui-select__menu {
+		max-width: 150px !important;
+		min-width: 0px !important;
+	}
+`; */
+
+/* .container{
+	width: 30%;
+
+	@media screen and (max-width: 767px) {
+		width: 40%;
+	}
+} */
+
+.form{
+	display: flex;
+	justify-content: flex-end;
+	:global{
+		.core_ui_select__menu {
+			max-width: 150px !important;
+			min-width: 0px !important;
+		}
+	}
+}

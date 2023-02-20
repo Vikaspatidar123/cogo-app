@@ -1,0 +1,105 @@
+/* import styled from '@cogoport/front/styled';
+import { Tag } from '@cogoport/front/components/admin';
+import Grid from '@cogoport/front/components/Grid';
+
+const { Row, Col } = Grid;
+
+export const StyledCol = styled(Col)`
+	display: flex !important;
+	justify-content: flex-start !important;
+`;
+
+export const SelectRow = styled(Row)`
+	display: flex;
+	align-items: center !important;
+	justify-content: flex-end !important;
+`;
+export const DivHscode = styled.div`
+	display: flex;
+	align-items: flex-start;
+	border: 1px solid #cedcea;
+	padding: 10px;
+	border-radius: 7px;
+	background: #fffef9;
+	color: black;
+	font-size: 12px;
+	:hover {
+		border: 0.5px solid #db4634;
+	}
+
+	.code {
+		font-weight: 500;
+	}
+	.desc {
+		margin-left: 10px;
+	}
+	.hs-code {
+		width: 8%;
+	}
+	.hs-desc {
+		width: 92%;
+	}
+`;
+
+export const EndAlignDiv = styled.div`
+	display: flex;
+	justify-content: flex-end;
+	margin-right: 10px;
+`;
+
+export const StyledTag = styled(Tag)`
+	background-color: #356efd;
+	color: white !important;
+	font-size: 12px !important;
+`; */
+
+.select_row{
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	
+}
+.row{
+	display: flex;
+	align-items: center;
+}
+
+.div_hs_code{
+	width: 100%;
+	display: flex;
+	align-items: flex-start;
+	border: 1px solid #cedcea;
+	padding: 10px;
+	border-radius: 7px;
+	background: #fffef9;
+	color: black;
+	font-size: 12px;
+	:hover {
+		border: 0.5px solid #db4634;
+	}
+}
+
+.code {
+	font-weight: 500;
+}
+.desc {
+	margin-left: 10px;
+}
+.hs_code {
+	width: 8%;
+}
+.hs_desc {
+	width: 92%;
+}
+
+.end_align_div{
+	display: flex;
+	justify-content: flex-end;
+	margin-right: 10px;
+}
+
+.style_tag{
+	background-color: #356efd;
+	color: white ;
+	font-size: 12px;
+}

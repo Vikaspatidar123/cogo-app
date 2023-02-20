@@ -1,0 +1,74 @@
+/* import styled from '@cogoport/front/styled';
+import Grid from '@cogoport/front/components/Grid';
+
+const { Row, Col } = Grid;
+
+export const StyledRow = styled(Row)`
+	padding: 18px;
+`;
+
+export const StyledColumnHeading = styled(Col)`
+	display: flex !important;
+	flex-direction: row !important;
+`;
+
+export const SelectTxt = styled.div`
+	font-weight: 500;
+	font-size: 14px;
+`;
+
+export const FlexDiv = styled.div`
+	display: flex;
+	align-items: center;
+	align-content: center;
+`;
+
+export const LabelTxt = styled.div`
+	font-weight: 500;
+	font-size: 14px;
+	padding-right: 15px;
+	color: #356efd;
+`;
+
+export const SelectLabel = styled.div`
+	font-weight: 500;
+	font-size: 14px;
+	text-decoration-line: underline;
+	color: #356efd;
+	padding-right: 15px;
+	cursor: pointer;
+`; */
+
+.row{
+	padding: 18px;
+	display: flex
+}
+.select_txt{
+	font-weight: 500;
+	font-size: 14px;
+}
+
+.column_heading{
+	display: flex ;
+	flex-direction: row ;
+}
+.flex_div{
+	display: flex;
+	align-items: center;
+	align-content: center;
+}
+.label_txt{
+	font-weight: 500;
+	font-size: 14px;
+	padding-right: 15px;
+	color: #356efd;
+}
+
+.select_label{
+	font-weight: 500;
+	font-size: 14px;
+	text-decoration-line: underline;
+	color: #356efd;
+	padding-right: 15px;
+	cursor: pointer;
+}

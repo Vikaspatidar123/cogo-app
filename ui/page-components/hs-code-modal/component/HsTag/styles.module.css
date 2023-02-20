@@ -1,0 +1,42 @@
+/* import styled from '@cogoport/front/styled';
+
+export const TabHeader = styled.div`
+	display: flex;
+	flex-direction: row;
+	font-weight: 400;
+	font-size: 13px;
+	padding-left: 18px;
+	align-items: center;
+	justify-content: flex-start;
+`;
+
+export const SubHeading = styled.div`
+	padding-left: 5px;
+	color: #6b6d81;
+	font-weight: 500;
+	font-size: 12px;
+`;
+
+ */
+
+.tab_header{
+	display: flex;
+	flex-direction: row;
+	font-weight: 400;
+	font-size: 13px;
+	padding-left: 18px;
+	align-items: center;
+	justify-content: flex-start;
+}
+
+.sub_heading{
+	padding-left: 5px;
+	color: #6b6d81;
+	font-weight: 500;
+	font-size: 12px;
+}
+
+
+.table_div{
+	display: flex;
+}

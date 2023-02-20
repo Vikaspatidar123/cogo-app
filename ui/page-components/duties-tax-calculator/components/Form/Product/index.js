@@ -2,7 +2,7 @@ import { IcMArrowNext, IcMArrowBack } from '@cogoport/icons-react';
 import { useState, useEffect } from 'react';
 
 import getField from '../../../../../../packages/forms/Controlled';
-// import HsCode from '../../../../hs-code-modal/component';
+import HsCode from '../../../../hs-code-modal/component';
 // import ProductCatalogue from '../../../../product-catalogue-modal';
 import Button from '../../../common/Button';
 import { ProductCartIcon } from '../../../configuration/icon-configuration';
@@ -171,7 +171,7 @@ function Product({
 					setSelectedData={setSelectedData}
 					isMobile={isMobile}
 				/>
-			)}
+			)} */}
 			{showHsCodeModal && (
 				<HsCode
 					showHsCodeModal={showHsCodeModal}
@@ -179,7 +179,7 @@ function Product({
 					setSelectedData={setSelectedData}
 					isMobile={isMobile}
 				/>
-			)} */}
+			)}
 			{showValidate && (
 				<ValidateHsModal
 					show={showValidate}

@@ -2,10 +2,10 @@ import { IcMArrowNext, IcMArrowBack } from '@cogoport/icons-react';
 import { useState, useEffect } from 'react';
 
 import getField from '../../../../../../packages/forms/Controlled';
-// import ProductCart from '../../../../../common/icons/productcart.svg';
 // import HsCode from '../../../../hs-code-modal/component';
 // import ProductCatalogue from '../../../../product-catalogue-modal';
 import Button from '../../../common/Button';
+import { ProductCartIcon } from '../../../configuration/icon-configuration';
 import useCurrencyConversion from '../../../hook/useCurrencyConversion';
 import useVerifyHscode from '../../../hook/useVerifyHscode';
 import productFn from '../../../utils/productFn';
@@ -88,17 +88,17 @@ function Product({
 		}
 	}, [JSON.stringify(selectedData)]);
 
-	// useEffect(() => {
-	// 	if (watchCurrency !== prevCurr && watchConsignmentValue !== '') {
-	// 		convertCurrency(prevCurr, watchCurrency);
-	// 	}
-	// }, [watchCurrency]);
+	useEffect(() => {
+		if (watchCurrency !== prevCurr && watchConsignmentValue !== '') {
+			convertCurrency(prevCurr, watchCurrency);
+		}
+	}, [watchCurrency]);
 
 	return (
 		<div className={styles.container}>
 			<div className={styles.title_container}>
 				<div className={style.title}>
-					{/* <ProductCart /> */}
+					<img src={ProductCartIcon} alt="" />
 					<div>Product Details</div>
 				</div>
 				<div className={`${style.col} ${styles.currency}`}>
@@ -114,7 +114,7 @@ function Product({
 			</div>
 			<form>
 				<div className={style.col}>
-					<div className={style.label}>{fields?.hsCode?.label}</div>
+					<div className={style.label}>{fields[1]?.label}</div>
 					<NumberSelector {...fields[1]} control={productNewControls} />
 					{error?.hsCode && (
 						<div className={style.error_txt}>

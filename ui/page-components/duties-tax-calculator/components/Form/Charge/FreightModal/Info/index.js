@@ -1,4 +1,4 @@
-import { ToolTip } from '@cogoport/components';
+import { Tooltip } from '@cogoport/components';
 import { IcMShip, IcMAirport, IcMPortArrow } from '@cogoport/icons-react';
 
 // import { Row, Col } from './styles';
@@ -10,13 +10,13 @@ function Info({ transportMode, portDetails }) {
 	const renderName = (name) => {
 		if (name.length > 16) {
 			return (
-				<ToolTip theme="light-border" content={name}>
+				<Tooltip theme="light-border" content={name}>
 					<div className="tooltipName">
 						{' '}
 						{name.slice(0, 16)}
 						...
 					</div>
-				</ToolTip>
+				</Tooltip>
 			);
 		}
 

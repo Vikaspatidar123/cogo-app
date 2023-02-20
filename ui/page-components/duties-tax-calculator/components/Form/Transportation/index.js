@@ -1,9 +1,9 @@
+import { cl } from '@cogoport/components';
 import { IcALocation, IcMArrowNext } from '@cogoport/icons-react';
 import { useState, useEffect, useRef } from 'react';
 
 // import { useSaasState } from '../../../../../common/context';
 import getField from '../../../../../../packages/forms/Controlled';
-// import Interchange from '../../../../../common/icons/interchange.svg';
 import Ocean from '../../../assets/ocean.svg';
 import Plane from '../../../assets/plane.svg';
 import Button from '../../../common/Button';
@@ -145,7 +145,7 @@ function Transportation({
 					</div>
 					<div className={styles.interChangeContainer}>
 						<div
-							className={`${rotate && 'rotateIcn'} icn`}
+							className={cl`${rotate && styles.rotateIcn} ${styles.icn}`}
 							role="presentation"
 							onClick={interchangeValuesHandler}
 						>

@@ -1,5 +1,5 @@
 /* eslint-disable max-len */
-import { ToolTip, cl } from '@cogoport/components';
+import { Tooltip, cl } from '@cogoport/components';
 import { IcMInfo } from '@cogoport/icons-react';
 
 import Button from '../../common/Button';
@@ -41,7 +41,7 @@ function SuccessModal({ tradeEngineResp, isMobile = false }) {
 	const { org_id = '', branch_id = '', account_type = '' } = query || {};
 
 	const redirectToTax = () => {
-		const redirectUrl = `${process.env.APP_URL}app/${org_id}/${branch_id}/${account_type}/saas/premium-services/duties-taxes-calculator`;
+		const redirectUrl = `${process.env.APP_URL}v2/${org_id}/${branch_id}/${account_type}/saas/premium-services/duties-taxes-calculator`;
 
 		window.open(redirectUrl, '_self');
 	};
@@ -128,7 +128,7 @@ function SuccessModal({ tradeEngineResp, isMobile = false }) {
 			<div className={cl`${styles.row} ${styles.finalTotal}`}>
 				<div className={styles.flex}>
 					<div>Total Landed Cost</div>
-					<ToolTip
+					<Tooltip
 						theme="light-border"
 						placement="top"
 						content={tooltipContent()}
@@ -137,7 +137,7 @@ function SuccessModal({ tradeEngineResp, isMobile = false }) {
 						<div className={styles.iconContainer}>
 							<IcMInfo width={14} height={14} />
 						</div>
-					</ToolTip>
+					</Tooltip>
 				</div>
 				<div>{shortFormatNumber(totalLandedCost, resultCurrency, !isMobile)}</div>
 			</div>

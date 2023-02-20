@@ -4,8 +4,8 @@ import { useRouter } from '@/packages/next';
 
 const prefillFn = ({
 	transportSetValues,
-	productSetValues,
-	chargeSetValues,
+	productSetValue,
+	chargeSetValue,
 	setFormData,
 	setPrevCurr,
 	setPortDetails,
@@ -57,8 +57,21 @@ const prefillFn = ({
 			incotermCharges,
 		};
 		transportSetValues(transportObj);
-		productSetValues(productObj);
-		chargeSetValues(chargeObj);
+
+		// productSetValue(productObj);
+		// chargeSetValue(chargeObj);
+		productSetValue(
+			productName,
+			hsCode,
+			consignmentValue,
+			quantity,
+			currency,
+		);
+		chargeSetValue(
+			freightCharge,
+			incoterm,
+			incotermCharges,
+		);
 		setPrevCurr(currency);
 		setFormStepper({
 			formTransportDetails : false,

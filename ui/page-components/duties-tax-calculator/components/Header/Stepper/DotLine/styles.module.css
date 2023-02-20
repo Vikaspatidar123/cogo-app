@@ -111,6 +111,7 @@ export const Text = styled.div`
 	width: 40px;
 	background: #e0e0e0;
 	transition: background 0.3s ease-in;
+
 }
 
 .text{
@@ -118,6 +119,8 @@ export const Text = styled.div`
 	text-align: center;
 	color: #b7b7b8;
 	transition: color 0.3s ease-in;
+
+	
 }
 
 .dot{
@@ -131,12 +134,29 @@ export const Text = styled.div`
 .completed {
 	background: #c4dc91;
 }
+.ongoing {
+	background: #f68b21;
+}
+
+.not_mobile {
+	width: 100px;
+}
+
+.is_mobile {
+	width: 30px;
+}
+.completed_txt{
+	color: #333;
+}
+
 .firstElement {
 	position: absolute;
-	left: -60px;
+	left: -30px;
 }
 
 .lastElement {
 	position: absolute;
-	right: -60px;
+	right: -30px;
 }
+
+

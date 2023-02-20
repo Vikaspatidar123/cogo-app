@@ -1,4 +1,4 @@
-import ToolTip from '@cogoport/components';
+import { Tooltip } from '@cogoport/components';
 import { IcMInfo } from '@cogoport/icons-react';
 
 import { shortFormatNumber } from '../../../../utils/getShortFormatNumber';
@@ -24,11 +24,11 @@ function ServicesCharge({ formData }) {
 				<div className={styles.hscode}>
 					<div>{hsCode}</div>
 					{productName !== '' && (
-						<ToolTip theme="light-border" placement="right" content={getProductData()}>
+						<Tooltip theme="light-border" placement="right" content={getProductData()}>
 							<div>
 								<IcMInfo />
 							</div>
-						</ToolTip>
+						</Tooltip>
 					)}
 				</div>
 				<div className={styles.quantity}>

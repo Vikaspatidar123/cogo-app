@@ -116,7 +116,7 @@ function ValidateHsModal({
 				<div className={styles.row_div}>
 					<Popover
 						animation="shift-away"
-						content={sugestionContent({
+						render={sugestionContent({
 							inputValue,
 							setVerifiedData,
 							setStatus,

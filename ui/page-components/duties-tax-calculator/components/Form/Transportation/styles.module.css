@@ -139,3 +139,17 @@ export const InterChangeContainer = styled.div`
 	justify-content: center;
 	align-items: center;
 }
+.icn {
+	border: 1px solid #fbd1a6;
+	background: #fef3e9;
+	border-radius: 100px;
+	padding: 4px;
+	cursor: pointer;
+	width: 30px;
+	height: 30px;
+	transition: 0.2s ease-in;
+}
+
+.rotateIcn {
+	transform: rotate(180deg);
+}

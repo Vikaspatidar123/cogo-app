@@ -1,4 +1,4 @@
-import formatDateToString from '@cogoport/components';
+import { format } from '@cogoport/utils';
 
 import {
 	containerSizeMaping,
@@ -93,7 +93,7 @@ const spotSearchPayload = (props) => {
 				{
 					origin_airport_id      : originId,
 					destination_airport_id : destinationId,
-					cargo_clearance_date   : formatDateToString(expiryDate),
+					cargo_clearance_date   : format(expiryDate),
 					commodity              : 'general',
 					commodity_details      : [
 						{

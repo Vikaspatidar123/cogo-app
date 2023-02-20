@@ -35,7 +35,8 @@
     font-size: 22px;
     font-weight: 500;
     gap: 5px;
-    .icon {
-        vertical-align: middle;
-    }
+}
+
+.icon  {
+    vertical-align: middle;
 }

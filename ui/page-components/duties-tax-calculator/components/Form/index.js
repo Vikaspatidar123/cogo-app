@@ -63,7 +63,7 @@ function Form({
 	const {
 		handleSubmit: productHandleSubmit,
 		setValue: productSetValue,
-		setValues: productSetValues,
+		// setValues: productSetValues,
 		watch: productWatch,
 		formState: { errors: productError },
 		control:productNewControls,
@@ -75,7 +75,7 @@ function Form({
 		formState: { errors: ChargeError },
 		watch: chargeWatch,
 		setValue: chargeSetValue,
-		setValues: chargeSetValues,
+		// setValues: chargeSetValues,
 		control:chargeControls,
 	} = useForm();
 
@@ -102,8 +102,8 @@ function Form({
 
 	prefillFn({
 		transportSetValues,
-		productSetValues,
-		chargeSetValues,
+		productSetValue,
+		chargeSetValue,
 		setFormData,
 		setIncoterm,
 		setPrevCurr,

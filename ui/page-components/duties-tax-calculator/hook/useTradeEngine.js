@@ -40,7 +40,7 @@ const useTradeEngine = () => {
 
 	const postTradeEngine = async (id, mode, saasBillId = '') => {
 		try {
-			const resp = await triggerPostTransaction.trigger({
+			const resp = await triggerPostTransaction({
 				data: {
 					performedBy        : profile?.id,
 					organizationId     : organization?.id,
@@ -53,6 +53,7 @@ const useTradeEngine = () => {
 				getTradeEngine(resp?.data?.id);
 			}
 		} catch (err) {
+			console.log(err, 'erer');
 			Toast.error('Something went wrong! Please try after sometime', {
 				autoClose : 3000,
 				style     : { color: '#333', background: '#FFD9D4' },

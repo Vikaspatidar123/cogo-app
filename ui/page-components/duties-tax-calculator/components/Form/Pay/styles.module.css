@@ -186,10 +186,10 @@ export const DotRight = styled.div`
 	text-align: center;
 }
 
-.origin {
+.origin_style {
 	right: 50px;
 }
-.destination {
+.destination_style {
 	left: 50px;
 }
 .incoterm {

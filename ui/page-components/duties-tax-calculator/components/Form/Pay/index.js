@@ -101,7 +101,7 @@ function Pay({
 						<div className={styles.dot_div} />
 					</div>
 					<div className={styles.route_text}>
-						<div className={cl`${styles.txt} ${styles.port} ${styles.origin}`}>
+						<div className={cl`${styles.txt} ${styles.port} ${styles.origin_style}`}>
 							<div className={styles.port_text}>{renderPortName(origin?.name)}</div>
 						</div>
 
@@ -109,7 +109,7 @@ function Pay({
 							<div className={styles.incoterm}>{incoterm}</div>
 						</div>
 
-						<div className={cl`${styles.txt} ${styles.port} ${styles.destination}`}>
+						<div className={cl`${styles.txt} ${styles.port} ${styles.destination_style}`}>
 							<div className={styles.port_text}>{renderPortName(destination?.name)}</div>
 						</div>
 					</div>
@@ -117,7 +117,7 @@ function Pay({
 			</div>
 			<div className={styles.line} />
 
-			{/* <ServicesCharge formData={formData} />
+			<ServicesCharge formData={formData} />
 			<Charges
 				formData={formData}
 				dtCurrency={currency}
@@ -126,7 +126,7 @@ function Pay({
 				gstAmount={gstAmount}
 				amount={amount}
 				totalAmount={totalAmount}
-			/> */}
+			/>
 
 			<div className={cl`${style.btn_container} ${style.checkout_btn}`}>
 				<Button size="md" isPrev onClick={prevHandler}>

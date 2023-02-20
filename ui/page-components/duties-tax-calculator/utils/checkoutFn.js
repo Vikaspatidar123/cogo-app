@@ -1,4 +1,4 @@
-import ToolTip from '@cogoport/components';
+import { Tooltip } from '@cogoport/components';
 
 const transport = {
 	OCEAN : 'SEA',
@@ -66,17 +66,7 @@ const checkoutFn = ({
 			quantity,
 		},
 	];
-	const submitHandler = () => {
-		if (isQuotaLeft) {
-			checkoutHandler();
-		} else {
-			setShowPayMethodModal(true);
-			localStorage.setItem(
-				'formData',
-				JSON.stringify({ ...formData, ...portDetails, transportMode }),
-			);
-		}
-	};
+
 	const checkoutHandler = async () => {
 		const resp = await refetchDraft({ header, lineItem, isQuotaLeft });
 
@@ -94,15 +84,27 @@ const checkoutFn = ({
 		return null;
 	};
 
+	const submitHandler = () => {
+		if (isQuotaLeft) {
+			checkoutHandler();
+		} else {
+			setShowPayMethodModal(true);
+			localStorage.setItem(
+				'formData',
+				JSON.stringify({ ...formData, ...portDetails, transportMode }),
+			);
+		}
+	};
+
 	const renderPortName = (portName) => {
 		if (portName.length > 16) {
 			return (
-				<ToolTip theme="light" content={portName}>
+				<Tooltip theme="light" content={portName}>
 					<div className="tooltipPort">
 						{portName.slice(0, 16)}
 						...
 					</div>
-				</ToolTip>
+				</Tooltip>
 			);
 		}
 		return portName;

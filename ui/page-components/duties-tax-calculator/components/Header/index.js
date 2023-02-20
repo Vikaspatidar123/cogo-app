@@ -13,9 +13,9 @@ function Header({
 	return (
 		<div className={styles.container}>
 			<div className={styles.title}>
-				<div className={styles.icon}>
-					<imag src={DutiesTax} width="32px" height="32px" />
-				</div>
+				{/* <div className={styles.icon}> */}
+				<img src={DutiesTax} alt="" width="32px" height="32px" />
+				{/* </div> */}
 				<div>Duties & Taxes Calculator</div>
 			</div>
 			<Stepper

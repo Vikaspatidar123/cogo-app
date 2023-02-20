@@ -1,3 +1,5 @@
+import getUser from '../../hooks/getUser';
+
 import AccountDetails from './AccountDetails';
 import ProfileProgress from './ProfileProgress';
 import styles from './styles.module.css';
@@ -10,7 +12,7 @@ function ProfileDetails() {
 		general: { isMobile, query },
 	} = useSelector((state) => state);
 	const { kyc_status } = organization || {};
-
+	const { refetch } = getUser();
 	return (
 		<>
 			<ProfileProgress />

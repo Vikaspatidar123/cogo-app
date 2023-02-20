@@ -1,0 +1,27 @@
+.container {
+  padding: 12px 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.icon_text {
+  display: flex;
+  align-items: center;
+}
+
+.icon_container {
+  cursor: pointer;
+  display: flex;
+}
+
+.heading_container {
+  display: flex;
+  align-items: center;
+}
+
+.heading {
+  font-weight: 500;
+  font-size: 14px;
+  color: #2c3e50;
+  margin-left: 8px;
+}

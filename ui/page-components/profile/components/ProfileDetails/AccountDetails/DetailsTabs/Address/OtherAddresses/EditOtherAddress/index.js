@@ -38,13 +38,13 @@ function EditOtherAddress({
 			<Modal.Body>
 				<div className={styles.layout}>
 					{fields.map((item) => {
-						const ELEMENT = getField(item.type);
+						const Controller = getField(item.type);
 						const show = showElements[item.name];
 						return (
 							show && (
 								<div className={styles.field}>
 									<div className={styles.lable}>{item.label}</div>
-									<ELEMENT {...item} control={control} />
+									<Controller {...item} control={control} />
 								</div>
 							)
 						);

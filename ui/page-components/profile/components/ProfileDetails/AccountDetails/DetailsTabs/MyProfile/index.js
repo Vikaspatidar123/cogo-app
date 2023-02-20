@@ -36,6 +36,7 @@ function MyProfile() {
 	if (loading) {
 		return <LoadingState />;
 	}
+	console.log(userDetails, 'userDetails');
 
 	const renderWorkScopes = () => {
 		if (!userDetails.work_scopes?.length) {

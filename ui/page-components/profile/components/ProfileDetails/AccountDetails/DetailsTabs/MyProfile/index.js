@@ -229,6 +229,7 @@ function MyProfile() {
 					show={showPasswordModal}
 					onClose={setShowPasswordModal}
 					onOuterClick={() => setShowPasswordModal(false)}
+					size="sm"
 				>
 					<ResetPassword setShowPasswordModal={setShowPasswordModal} />
 				</Modal>

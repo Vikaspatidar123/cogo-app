@@ -21,7 +21,7 @@ const useEditOrganizationDetails = ({
 	const cityOptions = useGetAsyncOptions(merge(asyncFieldsLocations(), {
 		params: { filters: { type: ['city'] } },
 	}));
-	const controls = getOrganizationControls({ cityOptions });
+	const fields = getOrganizationControls({ cityOptions });
 
 	const [{ loading }, trigger] = useRequest({
 		url    : '/update_organization',
@@ -40,7 +40,7 @@ const useEditOrganizationDetails = ({
 		setErrors({ ...err });
 	};
 
-	const showElements = controls.reduce((previousControls, currentControls) => {
+	const showElements = fields.reduce((previousControls, currentControls) => {
 		const { name = '' } = currentControls;
 
 		let showElement = true;

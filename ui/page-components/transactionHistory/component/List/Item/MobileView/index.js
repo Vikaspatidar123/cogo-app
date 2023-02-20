@@ -9,46 +9,29 @@ function MobileView({
 	});
 	return (
 		<div className={styles.container}>
-			{loading ? (
-				<>
-					Skeleton
-					{/* {[...Array(5).keys()].map(() => (
-						<div className={styles.div}>
-							<div className={styles.label}>
-								<Skeleton height="16px" width="80px" />
-							</div>
-							<div className={styles.value}>
-								<Skeleton height="16px" width="200px" />
-							</div>
-						</div>
-					))} */}
-				</>
-			) : (
-				<>
-					{['Transaction No', 'Bill Type', 'Date'].map((key) => (
-						<div className={styles.div}>
-							<div className={styles.label}>
-								{key}
-								:
-							</div>
-							<div className={styles.value}>{infoData(data[key], itm)}</div>
-						</div>
-					))}
-					{/* <Flex> */}
-					<div className={styles.div}>
-						<div className={styles.value}>{infoData(data.Status, itm)}</div>
+
+			{['Transaction No', 'Bill Type', 'Date'].map((key) => (
+				<div className={styles.div}>
+					<div className={styles.label}>
+						{key}
+						:
 					</div>
-					<div className={styles.div}>
-						<div className={styles.label}>Amount:</div>
-						<div className={styles.value}>{infoData(data.Amount, itm)}</div>
-					</div>
-					{/* </Flex> */}
-					{data?.action && (
-						<div className={styles.div}>
-							<div className={styles.value}>{infoData(data.action, itm)}</div>
-						</div>
-					)}
-				</>
+					{/* <div className={styles.value}>{infoData(data[key], itm)}</div> */}
+				</div>
+			))}
+			<div className={styles.flex}>
+				<div className={styles.div}>
+					<div className={styles.value}>{infoData(data.Status, itm)}</div>
+				</div>
+				<div className={styles.div}>
+					<div className={styles.label}>Amount:</div>
+					<div className={styles.value}>{infoData(data.Amount, itm)}</div>
+				</div>
+			</div>
+			{data?.action && (
+				<div className={styles.div}>
+					<div className={styles.value}>{infoData(data.action, itm)}</div>
+				</div>
 			)}
 		</div>
 	);

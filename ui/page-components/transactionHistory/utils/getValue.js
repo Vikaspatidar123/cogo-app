@@ -23,17 +23,15 @@ const getValue = (
 		if (functions[itemField.func]) {
 			val = functions[itemField.func](itemData, itemField);
 		} else if (startCase(itemField.func)) {
-			// val = startCase(itemField.func)(val);
+			val = startCase(itemField.func)(val);
 		}
 	}
 
 	switch (itemField.type) {
 		case 'datetime':
-			return val ? (
-				format(val, itemField.formatType || 'dd MMM yy | hh:mm a')
-			) : (
-				<div>-</div>
-			);
+			return val
+				? format(val, itemField.formatType || 'dd MMM yy | hh:mm a')
+				: null;
 
 		case 'price':
 			return `${itemData.currency} ${(

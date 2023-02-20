@@ -1,4 +1,3 @@
-// import { formatDateToString } from '@cogoport/front/date';
 import { IcCGreenCircle, IcCYelloCircle } from '@cogoport/icons-react';
 
 import { shortFormatNumber } from '../../../utils/getShortFormatNumber';
@@ -18,10 +17,8 @@ const itemFunctions = ({ functions, isMobile }) => {
 		</div>
 	);
 	const newFunctions = {
-		renderAmount: (data, config) => shortFormatNumber(data[config.key], data.billCurrency),
-
+		renderAmount  : (data, config) => shortFormatNumber(data[config.key], data.billCurrency),
 		// renderDate: (data, config) => formatDateToString(data[config.key], 'dd MMM yyyy'),
-
 		renderStatus  : (data, config) => getStatus(data[config.key]),
 		renderService : (data) => <Download data={data} isMobile={isMobile} />,
 		renderFormat  : (data, config) => data[config.key].replaceAll('_', ' '),

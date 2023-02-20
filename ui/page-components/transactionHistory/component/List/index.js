@@ -56,15 +56,14 @@ function List({
 			))}
 
 			{showPagination && listNew?.length > 0 && (
-				<div className={styles.pagination_div} drillDown={drillDown}>
+				<div className={`${styles.pagination_div} ${drillDown && 'drillDown'}`}>
 					<Pagination
-						className="md"
-						pageRange={10}
-						pageLimit={10}
-						total={totalRecords}
-						pagination={pageNo}
+						type="table"
+						currentPage={pageNo}
+						totalItems={totalRecords}
+						pageSize={5}
 						isMobile={isMobile}
-						setPagination={(val) => {
+						onPageChange={(val) => {
 							setGlobalFilters((prev) => ({ ...prev, pageNo: val }));
 						}}
 					/>

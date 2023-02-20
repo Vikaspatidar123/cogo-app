@@ -1,19 +1,20 @@
 import { Toast } from '@cogoport/components';
 import { useState } from 'react';
 
-import { useRequest } from '@/packages/request';
+import { useRequestBf } from '@/packages/request';
 
 const useGetDrillDownData = () => {
 	const [drillDownData, setDrillDownData] = useState({});
 
-	const [{ drillDownLoading }, getDrillDownData] = useRequest({
-		url    : 'payment/details',
-		method : 'get',
+	const [{ drillDownLoading }, getDrillDownDataTrigger] = useRequestBf({
+		url     : 'saas/payment/details',
+		authKey : 'get_saas_payment_details',
+		method  : 'get',
 	}, { manual: true });
 
 	const refetchDrillDownData = async (billId) => {
 		try {
-			const resp = await getDrillDownData.trigger({
+			const resp = await getDrillDownDataTrigger({
 				params: {
 					billId,
 				},

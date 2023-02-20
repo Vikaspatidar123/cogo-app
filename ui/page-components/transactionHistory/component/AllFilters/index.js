@@ -14,11 +14,11 @@ function AllFilters({ filters, setFilters, isMobile }) {
 						className="search"
 						onChange={(e) => setFilters((prev) => ({
 							...prev,
-							searchTerm : e?.target?.value,
+							searchTerm : e,
 							page       : 1,
 						}))}
 						placeholder="Search by Transaction No."
-						suffix={<IcMSearchlight height={30} />}
+						suffix={<IcMSearchlight height={30} width={15} />}
 					/>
 				</div>
 			</div>

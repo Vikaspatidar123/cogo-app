@@ -12,36 +12,32 @@ function LandedCost({ landedCost, resultCurrency = 'INR' }) {
 
 	return (
 		<div className={styles.container}>
-			{/* // length=
-			{taxSet?.length} */}
 			<div className="scrollable">
 				{(taxSet || []).map(({ groupName, taxSetResponse }) => (
-					<>1234</>
-					// <div className={styles.card} key={groupName}>
-					// 	<Row>
-					// 		<div className={styles.text}>{groupName.toUpperCase()}</div>
-					// 	</Row>
-					// 	<div>
-					// 		{(taxSetResponse || []).map((x) => (
-					// 			<Row className="padding">
-					// 				<Col xs={9} className="dotFlex">
-					// 					<div className={styles.text}>{x.name}</div>
-					// 					<div className="dot" />
-					// 				</Col>
-					// 				<Col xs={3} className="paddngFlex">
-					// 					<div className={styles.text}>
-					// 						{shortFormatNumber(x.value, resultCurrency)}
-					// 					</div>
-					// 				</Col>
-					// 			</Row>
-					// 		))}
-					// 	</div>
-					// </div>
+					<div className={styles.card} key={groupName}>
+						<div className={styles.row}>
+							<div className={styles.text}>{groupName.toUpperCase()}</div>
+						</div>
+						<div>
+							{(taxSetResponse || []).map((x) => (
+								<div className={`${styles.row}  ${styles.padding}`}>
+									<div className={`${styles.col} ${styles.dotFlex}`}>
+										<div className={styles.text}>{x.name}</div>
+										<div className="dot" />
+									</div>
+									<div className={`${styles.col} ${styles.paddngFlex}`}>
+										<div className={styles.text}>
+											{shortFormatNumber(x.value, resultCurrency)}
+										</div>
+									</div>
+								</div>
+							))}
+						</div>
+					</div>
 				))}
 			</div>
 			<div className={styles.card_total}>
-				234
-				{/* <Col xs={9.5}>
+				<div className={styles.col}>
 					{taxSet?.length > 0 ? (
 						<div className={styles.text_total}>Total Landed Cost</div>
 					) : (
@@ -50,12 +46,12 @@ function LandedCost({ landedCost, resultCurrency = 'INR' }) {
 							some time.
 						</div>
 					)}
-				</Col>
-				<Col>
+				</div>
+				<div className={styles.row}>
 					<div className={styles.text_total}>
 						{taxSet?.length > 0 ? shortFormatNumber(totalone, resultCurrency) : ''}
 					</div>
-				</Col> */}
+				</div>
 			</div>
 		</div>
 	);

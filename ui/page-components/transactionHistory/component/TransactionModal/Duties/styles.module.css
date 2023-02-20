@@ -24,3 +24,8 @@
 .hr{
 	border-bottom: 1px solid #c3d1df;
 }
+
+.row{
+	display: flex;
+	flex-direction: row;
+}

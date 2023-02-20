@@ -8,12 +8,12 @@ function Bill({ drillDownData }) {
 	const currency = billLineItems?.[0]?.currency || 'INR';
 	return (
 		<div className={styles.container}>
-			<div className={styles.title}>Bill Summary</div>
+			<div className={styles.title}><h2>Bill Summary</h2></div>
 			<div className={styles.section}>
 				<div className={styles.styles_row}>
 					{(billListConfig || []).map((item) => (
-						<div className={`${styles.styled_col}`}>
-							<div className={styles.title}>{item.label}</div>
+						<div className={styles.styled_col}>
+							<div className={styles.label}>{item.label}</div>
 						</div>
 					))}
 				</div>
@@ -32,9 +32,7 @@ function Bill({ drillDownData }) {
 							<div className={styles.styled_col}>
 								<div>
 									{shortFormatNumber(item.pricePerUnit, item.currency)}
-									{' '}
 									x
-									{' '}
 									{item?.quantity}
 								</div>
 							</div>
@@ -50,11 +48,9 @@ function Bill({ drillDownData }) {
 						</div>
 					))}
 				</div>
-				<div className={styles.styled_row}>
-					<div className={styles.styled_col}>Total Amount</div>
-					<div className={styles.styled_col}>
-						<div>{shortFormatNumber(drillDownData.netAmount, currency)}</div>
-					</div>
+				<div className={styles.total_amount}>
+					<div>Total Amount : </div>
+					<div className={styles.total_value}>{shortFormatNumber(drillDownData.netAmount, currency)}</div>
 				</div>
 			</div>
 		</div>

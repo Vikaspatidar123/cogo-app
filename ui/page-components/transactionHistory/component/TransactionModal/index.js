@@ -7,8 +7,6 @@ import {
 } from '@cogoport/icons-react';
 import { useState } from 'react';
 
-import Loading from '../../assets/loading.svg';
-
 import Controls from './Controls';
 import Document from './Documents';
 import Duties from './Duties';
@@ -102,7 +100,7 @@ function ServiceDetailModal({
 		>
 			{(getTransactionLoading || postTransactionLoading) && (
 				<div className={styles.flex}>
-					<Loading style={{ height: '100px', width: '100px' }} />
+					Loading...
 				</div>
 			)}
 			{!getTransactionLoading && !postTransactionLoading && transactionDataLength === 0 && (

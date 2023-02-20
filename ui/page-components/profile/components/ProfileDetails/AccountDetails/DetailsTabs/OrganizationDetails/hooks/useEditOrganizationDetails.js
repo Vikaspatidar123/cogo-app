@@ -40,7 +40,7 @@ const useEditOrganizationDetails = ({
 		setErrors({ ...err });
 	};
 
-	const showElements = controls.reduce((previousControls, currentControls) => {
+	const showElements = fields.reduce((previousControls, currentControls) => {
 		const { name = '' } = currentControls;
 
 		let showElement = true;

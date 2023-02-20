@@ -43,7 +43,6 @@ const fields = [
 
 const getOrganizationControls = ({
 	cityOptions = {},
-	organizationData,
 }) => fields.map((control) => {
 	const { name } = control;
 	let newControl = { ...control };

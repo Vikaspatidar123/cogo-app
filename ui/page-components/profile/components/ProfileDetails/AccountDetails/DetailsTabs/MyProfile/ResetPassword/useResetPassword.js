@@ -27,23 +27,21 @@ const useResetPassword = ({
 
 	const [errors, setErrors] = useState({});
 
-	const { t } = useTranslation(['profile']);
-
 	// const updateUserPasswordAPI = useRequest(
 	// 	'post',
 	// 	false,
 	// 	'partner',
 	// )('/update_channel_partner_user_password');
 
-	const controls = getControls({ t });
+	const controls = getControls();
 
 	const newControls = useMemo(() => controls?.map((control) => {
 		const { name = '' } = control;
 
 		if (!['password', 'confirmPassword'].includes(name)) return { ...control };
 
-		const passwordTypeRef =				name === 'password' ? passwordInputType : confirmPasswordInputType;
-		const setPasswordTypeRef =				name === 'password'
+		const passwordTypeRef = name === 'password' ? passwordInputType : confirmPasswordInputType;
+		const setPasswordTypeRef =	name === 'password'
 			? setPasswordInputType
 			: setConfirmPasswordInputType;
 
@@ -80,7 +78,7 @@ const useResetPassword = ({
 				type    : 'custom',
 				message :
 					watchConfirmPassword && watchConfirmPassword !== watchPassword
-						? 'Details.tabOptions.profile.resetPassword.errorMessage'
+						? ''
 
 						: '',
 			},
@@ -96,7 +94,7 @@ const useResetPassword = ({
 			...previousErrors,
 			confirmPassword: {
 				type    : 'custom',
-				message : 'ls.tabOptions.profile.resetPassword.er',
+				message : 'password does not match',
 			},
 		}));
 
@@ -139,6 +137,7 @@ const useResetPassword = ({
 	};
 
 	return {
+		fields,
 		controls,
 		formProps,
 		errors,

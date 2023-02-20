@@ -8,7 +8,7 @@ import useOtpVerification from '../../hooks/useOtpVerification';
 import styles from './styles.module.css';
 
 import OTPLayout from '@/packages/forms/Business/OTPLayout';
-import OrSeparator from '@/ui/page-components/common/OrSeparator';
+import OrSeparator from '@/ui/commons/components/OrSeparator';
 
 function VerifictaionForm({ formData, userId }) {
 	const OTP_LENGTH = 4;

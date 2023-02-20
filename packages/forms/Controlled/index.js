@@ -1,20 +1,24 @@
+import CheckboxController from './CheckboxController';
 import InputController from './InputController';
+import MobileNumberSelectController from './MobileNumberSelectController';
 import SelectController from './SelectController';
 import TextAreaController from './TextAreaController';
 import FileUploader from './UploadController';
 
-const mapping = {
+const MAPPING = {
 
-	select   : SelectController,
-	text     : InputController,
-	number   : InputController,
-	textarea : TextAreaController,
-	file     : FileUploader,
+	select        : SelectController,
+	text          : InputController,
+	number        : InputController,
+	textarea      : TextAreaController,
+	file          : FileUploader,
+	checkbox      : CheckboxController,
+	mobile_number : MobileNumberSelectController,
 
 };
 
 const getField = (type = 'text') => {
-	const element = mapping[type];
+	const element = MAPPING[type];
 
 	if (!element) {
 		// TODO remove this, and throw an error

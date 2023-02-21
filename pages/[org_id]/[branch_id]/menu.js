@@ -1,4 +1,4 @@
-import MobileMenu from '@/ui/commons/components/MenuMobileView';
+import MobileMenu from '../../../ui/commons/components/MenuMobileView';
 
 function MobileMenuComponent() {
 	return <MobileMenu />;
@@ -8,6 +8,5 @@ MobileMenuComponent.getInitialProps = () => ({
 	head   : {
 		title: 'Navigation',
 	},
-	hideBG: true,
 });
 export default MobileMenuComponent;

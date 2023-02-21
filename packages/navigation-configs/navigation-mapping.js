@@ -71,7 +71,6 @@ const navigationMappings = {
 	saas_premium_services: {
 		key         : 'saas_premium_services',
 		title       : 'Premium Services',
-		// type: 'link',
 		icon        : 'nav-premium-services',
 		module_type : 'dashboards',
 		isNew       : true,
@@ -186,15 +185,6 @@ const navigationMappings = {
 				as    : '/saas/freight-rate-trend',
 				type  : 'link',
 				icon  : <IcMFfreferigeratedCargoType width={40} height={40} fill="red" />,
-			},
-			{
-				key         : 'saas_tools-load_calculator',
-				title       : 'Load Calculator',
-				href        : '/v2//saas/load-calculator',
-				as          : '/v2//saas/load-calculator',
-				type        : 'link',
-				icon        : <IcMFfreferigeratedCargoType width={40} height={40} fill="red" />,
-				description : 'the smart engine for transport stuffing',
 			},
 			{
 				key   : 'saas_tools-saas_insurance',

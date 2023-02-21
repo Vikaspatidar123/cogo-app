@@ -5,10 +5,6 @@ import {
 	IcAAccountRelated,
 } from '@cogoport/icons-react';
 
-// import {
-// 	StyledModal, Container, CardContainer, Card, Dot, Txt, Heading,
-// } from './styles';
-
 import styles from './styles.module.css';
 
 import { useRouter } from '@/packages/next';
@@ -45,7 +41,7 @@ function PayMethodModal({
 			className="primary"
 			show={showPayMethodModal}
 			onClose={() => setShowPayMethodModal(false)}
-			width={!isMobile ? '534' : '383'}
+			size={!isMobile ? 'lg' : 'md'}
 		>
 			<div>
 				<div className={styles.heading}>Select mode of Payment</div>

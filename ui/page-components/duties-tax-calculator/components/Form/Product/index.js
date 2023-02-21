@@ -10,15 +10,10 @@ import useCurrencyConversion from '../../../hook/useCurrencyConversion';
 import useVerifyHscode from '../../../hook/useVerifyHscode';
 import productFn from '../../../utils/productFn';
 import ValidateHsModal from '../../ValidateHsModal';
-// import {
-// 	Title, Col, Label, BtnContainer, ErrorTxt,
-// } from '../styles.module.css';
-
 import style from '../styles.module.css';
 
 import HyperLink from './HyperLine';
 import ProductBox from './ProductBox';
-// import { Container, TitleContainer } from './style';
 import styles from './styles.module.css';
 
 function Product({

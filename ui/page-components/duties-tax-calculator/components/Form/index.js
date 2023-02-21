@@ -63,11 +63,9 @@ function Form({
 	const {
 		handleSubmit: productHandleSubmit,
 		setValue: productSetValue,
-		// setValues: productSetValues,
 		watch: productWatch,
 		formState: { errors: productError },
 		control:productNewControls,
-	// } = useForm();
 	} = useForm({ defaultValues: { currency: 'INR' } });
 
 	const {
@@ -75,7 +73,6 @@ function Form({
 		formState: { errors: ChargeError },
 		watch: chargeWatch,
 		setValue: chargeSetValue,
-		// setValues: chargeSetValues,
 		control:chargeControls,
 	} = useForm();
 
@@ -97,8 +94,6 @@ function Form({
 	});
 	const productFields = productControls({ organization });
 	const chargeFields = ChargeControls;
-
-	console.log(transportFields, 'transportFields');
 
 	prefillFn({
 		transportSetValues,
@@ -135,8 +130,6 @@ function Form({
 			}
 		});
 	};
-
-	console.log(formProductDetails, 'formProductDetails');
 
 	return (
 		<div className={`${formPayDetails && 'payDetails'} ${styles.container}`}>

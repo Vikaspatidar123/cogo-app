@@ -1,7 +1,6 @@
 import { Tooltip } from '@cogoport/components';
 import { IcMShip, IcMAirport, IcMPortArrow } from '@cogoport/icons-react';
 
-// import { Row, Col } from './styles';
 import styles from './styles.module.css';
 
 function Info({ transportMode, portDetails }) {

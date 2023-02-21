@@ -66,14 +66,16 @@
 	align-items: center;
 	justify-content: space-around;
 }
-.hyperLink {
+.hyperlink {
 	color: #f68b21;
 	font-size: 13px;
-	:hover {
-		text-decoration: underline;
-		cursor: pointer;
-	}
 }
+
+.hyperlink:hover {
+	text-decoration: underline;
+	cursor: pointer;
+}
+
 .divider {
 	width: 0;
 	border-left: 1px solid #333;

@@ -20,5 +20,9 @@
 	font-weight: 600;
 	width: 85px;
 	color: rgb(89 54 240);
+	
+}
+.get_rates:hover{
+	text-decoration: underline;
 	cursor: pointer;
 }

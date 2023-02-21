@@ -1,46 +1,4 @@
 
-
-/* import LoadingSvg from '../../../../common/icons/loading.svg';
-
-export const StyledButton = styled(Button)`
-	background: #ee3425;
-	border: none;
-	text-transform: capitalize;
-	gap: 5px;
-	font-size: 14px;
-
-	&.prev {
-		border: 1px solid #393f70;
-	}
-
-	&.disableBtn {
-		cursor: not-allowed;
-		opacity: 0.6;
-	}
-
-	.spinner {
-		width: 20px;
-		height: 20px;
-		border-radius: 50%;
-		background: radial-gradient(farthest-side, #a7a7a7 94%, #0000) top/3.4px 3.4px
-				no-repeat,
-			conic-gradient(#0000 30%, #a7a7a7);
-		-webkit-mask: radial-gradient(farthest-side, #0000 calc(100% - 3.4px), #000 0);
-		animation: spinner-c7wet2 0.8s infinite linear;
-	}
-
-	@keyframes spinner-c7wet2 {
-		100% {
-			transform: rotate(1turn);
-		}
-	}
-`;
-
-export const StyledLoading = styled(LoadingSvg)`
-	width: 50px;
-	height: 20px;
-`; */
-
 .styled_button{
 	background: #ee3425;
 	border: none;

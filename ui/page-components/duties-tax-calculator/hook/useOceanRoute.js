@@ -5,12 +5,6 @@ import { useRequest } from '@/packages/request';
 const useOceanRoute = () => {
 	const [routeDataLength, setRouteDataLength] = useState();
 	const [mapPoints, setMapPoints] = useState();
-	// const { trigger: oceanRouteTrigger, loading } = useRequest(
-	// 	'get',
-	// 	false,
-	// 	'app',
-	// 	// )('/get_sailing_schedules');
-	// )('https://maps.dev.cogoport.io/locations/routing/get_sea_route');
 
 	const [{ loading }, oceanRouteTrigger] = useRequest({
 		url    : 'https://maps.dev.cogoport.io/locations/routing/get_sea_route',

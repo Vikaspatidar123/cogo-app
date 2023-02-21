@@ -56,7 +56,8 @@ const prefillFn = ({
 			incoterm,
 			incotermCharges,
 		};
-		transportSetValues(transportObj);
+		// transportSetValues(transportObj);
+		transportSetValues(originPort, destinationPort);
 
 		// productSetValue(productObj);
 		// chargeSetValue(chargeObj);
@@ -93,6 +94,7 @@ const prefillFn = ({
 
 			if (localStorageFormData) {
 				fillDataHandler({ localStorageFormData });
+				localStorage.removeItem('formData');
 			}
 		}
 	}, []);

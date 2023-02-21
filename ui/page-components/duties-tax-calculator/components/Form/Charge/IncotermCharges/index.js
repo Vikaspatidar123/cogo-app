@@ -1,16 +1,10 @@
-// import { useFieldArray } from '@cogo/commons/hooks';
 import { IcMDelete } from '@cogoport/icons-react';
 import { useEffect } from 'react';
 
 import getField from '../../../../../../../packages/forms/Controlled';
 import MappingConstant from '../../../../configuration/mappingConstant';
-// import {
-// 	Label, Col, ErrorTxt, Text,
-// } from '../../styles.module.css';
-
 import style from '../../styles.module.css';
 
-// import { Container, Row } from './style';
 import styles from './styles.module.css';
 
 import { useFieldArray } from '@/packages/forms';
@@ -19,7 +13,6 @@ function IncotermCharges({
 	name,
 	control,
 	incoterm,
-	// register,
 	controls,
 	error,
 	watchIncotermCharges = [],
@@ -27,7 +20,6 @@ function IncotermCharges({
 	formIncoterm,
 	prevCurr,
 }) {
-	console.log('cccccc', control);
 	const { MAPPING, CHARGES } = MappingConstant();
 	const { fields, append, remove } = useFieldArray({
 		name: 'incotermCharges',

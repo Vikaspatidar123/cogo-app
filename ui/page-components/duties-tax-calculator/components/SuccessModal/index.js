@@ -6,21 +6,6 @@ import Button from '../../common/Button';
 import { SuccessGif } from '../../configuration/icon-configuration';
 import { shortFormatNumber } from '../../utils/getShortFormatNumber';
 
-// import {
-// 	Container,
-// 	IconContainer,
-// 	HeaderContainer,
-// 	Section,
-// 	Title,
-// 	Line,
-// 	Row,
-// 	Heading,
-// 	DashedLine,
-// 	BtnContainer,
-// 	IconImage,
-// 	TooltipContainer,
-// } from './styles';
-
 import styles from './styles.module.css';
 
 import { useRouter } from '@/packages/next';
@@ -129,10 +114,9 @@ function SuccessModal({ tradeEngineResp, isMobile = false }) {
 				<div className={styles.flex}>
 					<div>Total Landed Cost</div>
 					<Tooltip
-						theme="light-border"
 						placement="top"
 						content={tooltipContent()}
-						interactive
+						className={styles.tooltip_style}
 					>
 						<div className={styles.iconContainer}>
 							<IcMInfo width={14} height={14} />

@@ -1,8 +1,6 @@
 import { Tooltip } from '@cogoport/components';
 
-import Box from '../../../../assets/productBox.svg';
-// import ProductCube from '../../../../assets/productCube.svg';
-import { ProductCube } from '../../../../configuration/icon-configuration';
+import { ProductCube, ProductBoxIcon } from '../../../../configuration/icon-configuration';
 import { shortFormatNumber } from '../../../../utils/getShortFormatNumber';
 
 import styles from './styles.module.css';
@@ -43,7 +41,7 @@ function ProductBox({ watch, isMobile }) {
 				</div>
 			</div>
 			<div className={`${styles.box} ${styles.row}`}>
-				<Box width="130px" height="130px" />
+				<img src={ProductBoxIcon} alt="" width="130px" height="130px" />
 			</div>
 			<div className={`${styles.last_row} ${styles.row}`}>
 				<div>

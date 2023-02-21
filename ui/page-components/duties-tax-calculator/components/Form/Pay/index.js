@@ -13,22 +13,6 @@ import style from '../styles.module.css';
 import Charges from './Charges';
 import PayMethodModal from './PayMethodModal';
 import ServicesCharge from './ServicesCharge';
-
-// import {
-// 	Container,
-// 	RouteDiv,
-// 	TextDiv,
-// 	TextHead,
-// 	Route,
-// 	Icon,
-// 	Txt,
-// 	Footer,
-// 	Dot,
-// 	RouteText,
-// 	Line,
-// 	PortText,
-// } from './style';
-
 import styles from './styles.module.css';
 
 function Pay({

@@ -1,4 +1,3 @@
-// import { StyledButton, StyledLoading } from './style';
 import { Button as StyledButton } from '@cogoport/components';
 
 import { Loading } from '../../configuration/icon-configuration';

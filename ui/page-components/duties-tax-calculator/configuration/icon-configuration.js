@@ -8,3 +8,6 @@ export const SuccessGif = 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/origi
 export const DestinationIcon = 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/destinationIcon.svg';
 export const SourceIcon = 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/sourceIcon.svg';
 export const ProductCube = 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/productCube.svg';
+export const PlaneIcon = 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/plane.svg';
+export const OceanIcon = 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/ocean.svg';
+export const ProductBoxIcon = 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/productBox.svg';

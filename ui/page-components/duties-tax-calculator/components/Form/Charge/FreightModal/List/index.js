@@ -1,8 +1,6 @@
-import Radio from '@cogoport/components';
+import { Radio } from '@cogoport/components';
 
 import { shortFormatNumber } from '../../../../../utils/getShortFormatNumber';
-
-// import { Row, Col } from '../styles';
 import styles from '../styles.module.css';
 
 const List = ({

@@ -1,7 +1,6 @@
 import dynamic from 'next/dynamic';
 import { useState, useEffect } from 'react';
 
-// import 'leaflet/dist/leaflet.css';
 import useOceanRoute from '../../hook/useOceanRoute';
 
 import styles from './styles.module.css';
@@ -20,7 +19,7 @@ function Map({
 	const {
 		getOceanRoute, routeDataLength = false, setMapPoints, mapPoints,
 	} = useOceanRoute();
-	// const { mapPoints, setMapPoints } = useState();
+	// const [ mapPoints, setMapPoints ] = useState();
 
 	const { origin = {}, destination = {} } = portDetails || {};
 

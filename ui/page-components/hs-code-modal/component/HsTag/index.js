@@ -1,8 +1,6 @@
 import { Tooltip } from '@cogoport/components';
 import { startCase } from '@cogoport/utils';
 
-// import { TabHeader, SubHeading } from './style';
-
 import styles from './styles.module.css';
 
 function HsTag({ activeSection = '', activeChapter = '', activeHeading = '' }) {
@@ -10,7 +8,16 @@ function HsTag({ activeSection = '', activeChapter = '', activeHeading = '' }) {
 		<div className={styles.tab_header}>
 			{activeSection
 				&& (activeSection.length > 25 ? (
-					<Tooltip content={startCase(activeSection).toLowerCase()} theme="light">
+					<Tooltip
+						content={(
+							<div className={styles.tooltip_style}>
+								{
+									startCase(activeSection).toLowerCase()
+								}
+							</div>
+						)}
+						theme="light"
+					>
 						<div className={styles.sub_heading}>
 							{startCase(activeSection?.toLowerCase()).substring(0, 25)}
 							... |
@@ -26,7 +33,16 @@ function HsTag({ activeSection = '', activeChapter = '', activeHeading = '' }) {
 				))}
 			{activeChapter
 				&& (activeChapter.length > 25 ? (
-					<Tooltip content={startCase(activeChapter)} theme="light">
+					<Tooltip
+						content={(
+							<div className={styles.tooltip_style}>
+								{
+									startCase(activeChapter)
+								}
+							</div>
+						)}
+						theme="light"
+					>
 						<div className={styles.sub_heading}>
 							{startCase(activeChapter).substring(0, 25)}
 							... |
@@ -43,7 +59,16 @@ function HsTag({ activeSection = '', activeChapter = '', activeHeading = '' }) {
 				))}
 			{activeHeading
 				&& (activeChapter.length > 25 ? (
-					<Tooltip content={startCase(activeHeading)} theme="light">
+					<Tooltip
+						content={(
+							<div className={styles.tooltip_style}>
+								{
+									startCase(activeHeading)
+								}
+							</div>
+						)}
+						theme="light"
+					>
 						<div className={styles.sub_heading}>
 							{' '}
 							{startCase(activeHeading).substring(0, 25)}

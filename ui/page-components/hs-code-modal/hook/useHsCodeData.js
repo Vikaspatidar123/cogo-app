@@ -6,8 +6,6 @@ import useSearchQuery from './useSearchQuery';
 import { useRequestBf } from '@/packages/request';
 import { useSelector } from '@/packages/store';
 
-// import { useSaasState } from '../../../common/context';
-
 const useHsCodeData = ({ countryforHscode = '' }) => {
 	const [secChapObj, setSecChapObj] = useState([]);
 	const [headingObj, setheadingObj] = useState([]);
@@ -19,22 +17,6 @@ const useHsCodeData = ({ countryforHscode = '' }) => {
 	const countryId = organization?.country_id;
 
 	const { debounceQuery, query } = useSearchQuery();
-
-	// const getListData = useRequest('get', false, scope, {
-	// 	authkey: 'get_saas_hs_code_section',
-	// })('saas/hs-code/section');
-
-	// const getHeadingData = useRequest('get', false, scope, {
-	// 	authkey: 'get_saas_hs_code_heading',
-	// })('saas/hs-code/heading');
-
-	// const getHscode = useRequest('get', false, scope, {
-	// 	authkey: 'get_saas_hs_code',
-	// })('/saas/hs-code');
-
-	// const getBySearch = useRequest('get', false, scope, {
-	// 	authkey: 'get_saas_hs_code_search',
-	// })('/saas/hs-code/search');
 
 	const [{ loading:getListDataLoading }, getListDataTrigger] = useRequestBf({
 		url     : 'saas/hs-code/section',
@@ -54,7 +36,7 @@ const useHsCodeData = ({ countryforHscode = '' }) => {
 		method  : 'get',
 	}, { manual: true });
 
-	const [{ loading:getBySearchLoading }, getBySearchTrigger] = useRequestBf({
+	const [{ loading: getBySearchLoading }, getBySearchTrigger] = useRequestBf({
 		url     : '/saas/hs-code/search',
 		authKey : 'get_saas_hs_code_search',
 		method  : 'get',

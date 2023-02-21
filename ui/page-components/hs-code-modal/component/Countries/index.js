@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { cl } from '@cogoport/components';
 import { merge } from '@cogoport/utils';
 import { useEffect } from 'react';
@@ -5,8 +6,6 @@ import { useEffect } from 'react';
 import SelectController from '../../../../../packages/forms/Controlled/SelectController';
 
 import getControls from './controls';
-// import { Container, Form } from './style';
-
 import styles from './styles.module.css';
 
 import { useForm, asyncFieldsHsCodeCountries, useGetAsyncOptionsBf } from '@/packages/forms';

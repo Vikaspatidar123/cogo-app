@@ -1,12 +1,6 @@
-// import Grid from '@cogoport/front/components/Grid';
-
 import { cl } from '@cogoport/components';
 
 import GetCountriesFilter from '../Countries';
-
-// import {
-// 	SelectRow, DivHscode, EndAlignDiv, StyledTag,
-// } from './style';
 
 import styles from './styles.module.css';
 
@@ -16,8 +10,6 @@ const hsColumn = ({
 	setSelectedCountry,
 	setCountryforHsCode,
 }) => {
-	// const { Row, Col } = Grid;
-
 	const sectionColumn = [
 		{
 			id     : 'sectionDescription',
@@ -42,13 +34,9 @@ const hsColumn = ({
 			),
 			key      : 'sectionDescription',
 			accessor : (record) => (
-				<div className={styles.row}>
-					<div>
-						<div className={cl`${styles.div_hs_code} ${styles.rowcss}`}>
-							<div className={styles.code}>{record?.sectionCode}</div>
-							<div className={styles.desc}>{record?.sectionDescription}</div>
-						</div>
-					</div>
+				<div className={cl`${styles.div_hs_code} ${styles.rowcss}`}>
+					<div className={styles.code}>{record?.sectionCode}</div>
+					<div className={styles.desc}>{record?.sectionDescription}</div>
 				</div>
 			),
 		},
@@ -94,8 +82,16 @@ const hsColumn = ({
 			key      : 'description',
 			accessor : (record) => (
 				<div className={cl`${styles.div_hs_code} ${styles.rowcss}`}>
-					<div className={cl`${styles.hs_code} ${styles.code}`}>{record?.displayHsCode}</div>
-					<div className={styles.hs_desc}>{record?.description}</div>
+					<div className={cl`${styles.code} 
+					${isMobile ? styles.hs_code_mobile : styles.hs_code}`}
+					>
+						{record?.displayHsCode}
+
+					</div>
+					<div className={`${isMobile ? styles.hs_desc_mobile : styles.hs_desc}`}>
+						{record?.description}
+
+					</div>
 				</div>
 			),
 		},

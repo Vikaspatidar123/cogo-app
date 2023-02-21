@@ -9,8 +9,6 @@ import {
 import { useState } from 'react';
 
 import { Loading } from '../configuration/icon-configuration';
-
-// import LegendInput from '../../../common/form/business/LegendInput';
 import useHsCodeData from '../hook/useHsCodeData';
 
 import clickFunction from './clickFunction';
@@ -18,17 +16,6 @@ import hsColumn from './Column';
 import HsTable from './HsTable';
 import HsTag from './HsTag';
 import Stepper from './Stepper';
-// import {
-// 	StyledModal,
-// 	Container,
-// 	HeaderContainer,
-// 	TableWrapper,
-// 	HSCodeTableWrapper,
-// 	StyledLoading,
-// 	AddButtonWrapper,
-// 	StyledBackButton,
-// } from './style';
-
 import styles from './styles.module.css';
 
 function HsCode({
@@ -89,6 +76,7 @@ function HsCode({
 		selectedCountry,
 		setSelectedCountry,
 		setCountryforHsCode,
+		isMobile,
 	});
 
 	const {
@@ -153,32 +141,10 @@ function HsCode({
 		<Modal
 			className="primary"
 			show={showHsCodeModal}
-			size="xl"
-			width={!isMobile ? '1026' : '383'}
+			size={!isMobile ? 'xl' : 'sm'}
 			onClose={() => setShowHsCodeModal(false)}
 		>
-			<Modal.Header title={headerFn()}>
-				{/* <div className={styles.header_container}>
-					<div className={styles.title_container}>
-						<IcAFormsAndCertificates width={25} height={25} />
-						<div className={styles.title}>HS Code</div>
-					</div>
-					{showCategoryTable && (
-						<div className={styles.search}>
-							<Input
-								placeholder="Search By Hs Code"
-								className={cl`${styles.input_box} ${styles.label_box}`}
-								suffix={<IcMSearchlight width="20px" height="20px" className={styles.icon} />}
-								value={searchTerm}
-								onChange={(e) => setSearchTerm(e)}
-								type="number"
-								width={20}
-								height={20}
-							/>
-						</div>
-					)}
-				</div> */}
-			</Modal.Header>
+			<Modal.Header title={headerFn()} />
 			<Modal.Body>
 
 				<div className={styles.container}>
@@ -197,13 +163,13 @@ function HsCode({
 						activeStepper={activeStepper}
 						isMobile={isMobile}
 					/>
-					{/* {!isMobile && (
+					{!isMobile && (
 						<HsTag
 							activeSection={activeSection}
 							activeChapter={activeChapter}
 							activeHeading={activeHeading}
 						/>
-					)} */}
+					)}
 					{showCategoryTable && (
 						<div className={styles.table_wrapper}>
 							{loading && <img src={Loading} alt="" className={styles.loading_style} />}
@@ -249,11 +215,11 @@ function HsCode({
 							</div>
 							<div className="pagination">
 								<Pagination
-									className="sm"
-									pageLimit={pageSize}
-									total={totalRecords}
-									pagination={pagination}
-									setPagination={async (e) => {
+									type="compact"
+									currentPage={pagination}
+									totalItems={totalRecords}
+									pageSize={pageSize}
+									onPageChange={async (e) => {
 										setPagination(e);
 										await refetchHsCode({
 											headingCode,
@@ -265,39 +231,6 @@ function HsCode({
 						</div>
 					)}
 				</div>
-
-				{/* {showCategoryTable === false && (
-					<div className={styles.add_button_wrapper}>
-						{isMobile && (
-							<Button
-								className={styles.prevBtn}
-								size="md"
-								themeType="primary"
-								onClick={() => {
-									previousFunction();
-								}}
-							>
-								<IcMArrowBack />
-								{' '}
-								Previous
-							</Button>
-						)}
-						{showhscode && (
-							<Button
-								className={`${hsRowLength && styles.disableBtn} md`}
-								size="md"
-								themeType="primary"
-								onClick={() => {
-									setSelectedData(hsCodeRow);
-									setShowHsCodeModal(false);
-								}}
-								disabled={hsRowLength}
-							>
-								Add
-							</Button>
-						)}
-					</div>
-				)} */}
 			</Modal.Body>
 
 			{showCategoryTable === false && (

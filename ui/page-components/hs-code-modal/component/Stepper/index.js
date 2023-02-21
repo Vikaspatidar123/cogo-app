@@ -1,16 +1,6 @@
-// import Grid from '@cogoport/front/components/Grid';
 import { IcMArrowRight } from '@cogoport/icons-react';
 
 import MobileViewStepper from './MobileViewStepper';
-// import {
-// 	StyledRow,
-// 	StyledColumnHeading,
-// 	SelectTxt,
-// 	FlexDiv,
-// 	LabelTxt,
-// 	SelectLabel,
-// } from './style';
-
 import styles from './styles.module.css';
 
 function Stepper({
@@ -27,8 +17,6 @@ function Stepper({
 	setActiveHeading,
 	activeStepper,
 }) {
-	// const { Col } = Grid;
-
 	return (
 		<>
 			{!isMobile && (

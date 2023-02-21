@@ -1,6 +1,4 @@
-const COUNTRY_IDS = {
-	IN: '5f1f94fa-25da-40de-968d-0254abd24ba6',
-};
+import { COUNTRY_IDS } from '../../configuration/countryId';
 
 const CARDFILTER = [
 	{
@@ -22,11 +20,12 @@ const getControls = ({ setSelectedCountry, countryOptions = {} }) => CARDFILTER.
 	let newControl = { ...control };
 	if (control.name === 'country') {
 		newControl = { ...newControl, ...countryOptions };
+
 		return {
 			...newControl,
 			handleChange: (e) => setSelectedCountry(e?.countryName),
 		};
 	}
-	return control;
+	return newControl;
 });
 export default getControls;

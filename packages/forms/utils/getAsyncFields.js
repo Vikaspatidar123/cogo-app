@@ -59,6 +59,7 @@ function asyncFieldsHsCodeCountries() {
 		labelKey      : 'countryName',
 		valueKey      : 'id',
 		endpoint      : 'saas/hs-code/countries',
+		authKey       : 'get_saas_hs_code_countries',
 		initialCall   : true,
 		defaultParams : { page_limit: 20 },
 	};

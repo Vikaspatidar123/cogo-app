@@ -29,6 +29,10 @@ const useMobileNoVerification = ({ type = '' }) => {
 	// 	false,
 	// 	'partner',
 	// )('/verify_channel_partner_user_mobile');
+	const [{ loading }, trigger] = useRequest({
+		url    : '/update_user',
+		method : 'post',
+	}, { manual: false });
 
 	const controls = getControls();
 
@@ -68,14 +72,14 @@ const useMobileNoVerification = ({ type = '' }) => {
 				payload = { ...payload, mobile_otp: otpNumber };
 			}
 
-			// await verifyMobileNumberAPI?.trigger({ data: payload });
+			await trigger({ data: payload });
 
 			if (actionType === 'SEND_OTP') {
 				setShowEnterOtpComponent(true);
 
-				Toast.success(
-					'verifyMobile',
-				);
+				// Toast.success(
+				// 	'verifyMobile',
+				// );
 
 				restProps?.timer?.restart?.();
 			}

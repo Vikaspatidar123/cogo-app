@@ -1,3 +1,5 @@
+/* eslint-disable max-len */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 import { Modal } from '@cogoport/components';
 import { IcCFtick, IcMEdit } from '@cogoport/icons-react';
 import { startCase, format } from '@cogoport/utils';
@@ -205,7 +207,11 @@ function MyProfile() {
 									{userDetails.alternate_mobile_numbers?.length > 0
 										? userDetails.alternate_mobile_numbers?.map(
 											(mobile_number) => (
-												<div className={styles.value_text}>{`${mobile_number.mobile_country_code} ${mobile_number.mobile_number}`}</div>
+												<div
+													className={styles.value_text}
+												>
+													{`${mobile_number.mobile_country_code} ${mobile_number.mobile_number}`}
+												</div>
 											),
 										  )
 										: '-'}
@@ -216,7 +222,6 @@ function MyProfile() {
 								<div className={styles.label_text} />
 								<div className={styles.link_text} onClick={() => setShowPasswordModal(true)}>
 									Change Password
-
 								</div>
 							</div>
 						</div>

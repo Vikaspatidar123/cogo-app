@@ -1,6 +1,4 @@
-// import { getGeoConstants } from '@/constants/geo';
 import patterns from '@/ui/commons/configurations/patterns';
-// const geo = getGeoConstants();
 
 const getControls = () => [
 	{

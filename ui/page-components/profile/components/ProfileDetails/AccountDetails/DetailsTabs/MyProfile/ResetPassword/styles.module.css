@@ -29,3 +29,11 @@
   font-weight: 700;
   letter-spacing: 0.02em;
 }
+.message{
+  color: red;
+}
+.footer{
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 15px;
+}

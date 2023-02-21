@@ -1,9 +1,13 @@
+/* eslint-disable import/no-unresolved */
+import languages from '@/ui/commons/configurations/languages';
+import work_scopes from '@/ui/commons/constants/work-scope.json';
+
 const getProfileControls = ({ userDetails = {} }) => [
 	{
 		name         : 'name',
 		label        : 'Name',
 		type         : 'text',
-		span         : 4,
+		style        : { width: '300px' },
 		placeholder  : 'Enter Name',
 		showOptional : false,
 		value        : userDetails.name,
@@ -12,10 +16,9 @@ const getProfileControls = ({ userDetails = {} }) => [
 		name         : 'phone_number',
 		label        : 'Phone Number',
 		placeholder  : 'Eneter Phone Number',
-		type         : 'mobile-number-select',
+		type         : 'mobile_number',
 		inputType    : 'number',
-		select2      : 'new',
-		span         : 4,
+		style        : { width: '180px' },
 		showOptional : false,
 		value        : {
 			country_code : userDetails.mobile_country_code,
@@ -23,21 +26,20 @@ const getProfileControls = ({ userDetails = {} }) => [
 		},
 	},
 	{
-		name         : 'date_of_birth',
-		label        : 'Date',
-		placeholder  : 'Enter Date',
-		type         : 'datepicker',
-		span         : 4,
-		showOptional : false,
-		value        : new Date(userDetails.birth_date),
-		maxDate      : new Date(),
+		name                  : 'date_of_birth',
+		label                 : 'Date',
+		placeholder           : 'Enter Date',
+		type                  : 'datepicker',
+		style                 : { width: '300px' },
+		value                 : new Date(userDetails.birth_date),
+		mxnDate               : new Date(),
+		isPreviousDaysAllowed : true,
 	},
 	{
 		name  : 'email',
 		label : 'Email',
-		type  : 'email',
-		size  : 'lg',
-		span  : 4,
+		type  : 'text',
+		style : { width: '300px' },
 		rules : {
 			pattern: {
 				// value   : geo.regex.EMAIL,
@@ -49,27 +51,22 @@ const getProfileControls = ({ userDetails = {} }) => [
 	},
 	{
 		name           : 'work_scopes',
-		label          : 'Work Scopes',
-		type           : 'select',
+		label          : 'Role in Company',
+		type           : 'multi_select',
 		optionsListKey : 'work-scopes',
-		multiple       : true,
-		autoCloseMenu  : false,
-		span           : 4,
-		showOptional   : false,
+		style          : { width: '300px' },
 		value          : userDetails.work_scopes,
+		options        : work_scopes,
 	},
 	{
 		name           : 'preferred_languages',
 		label          : 'Preferred Languages',
 		placeholder    : 'Enter Preferred Languages',
-		span           : 4,
-		type           : 'select',
-		caret          : true,
+		style          : { width: '300px' },
+		type           : 'multi_select',
 		optionsListKey : 'languages',
-		multiple       : true,
-		autoCloseMenu  : false,
-		showOptional   : false,
 		value          : userDetails.preferred_languages,
+		options        : languages,
 	},
 	{
 		name         : 'picture',
@@ -78,7 +75,7 @@ const getProfileControls = ({ userDetails = {} }) => [
 		type         : 'file',
 		format       : ' ',
 		uploadType   : 'aws',
-		span         : 4,
+		style        : { width: '300px' },
 		accept       : '.png,.pdf,.jpg,.jpeg',
 		showOptional : false,
 		value        : userDetails.picture,
@@ -86,7 +83,7 @@ const getProfileControls = ({ userDetails = {} }) => [
 	{
 		name  : 'alternate_mobile_numbers',
 		type  : 'fieldArray',
-		span  : 8,
+		// span  : 8,
 		value : [
 			{
 				mobile_number: {
@@ -99,7 +96,7 @@ const getProfileControls = ({ userDetails = {} }) => [
 		controls           : [
 			{
 				name        : 'mobile_number',
-				label       : 'Mobail Number',
+				label       : 'Alternate Mobail Number',
 				type        : 'mobile_number',
 				inputType   : 'number',
 				select2     : 'new',

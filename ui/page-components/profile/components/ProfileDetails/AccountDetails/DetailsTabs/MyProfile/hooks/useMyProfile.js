@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { Toast } from '@cogoport/components';
 import { useEffect, useState } from 'react';
 
@@ -23,19 +24,40 @@ const useMyProfile = () => {
 	const [showPasswordModal, setShowPasswordModal] = useState(false);
 
 	const [showEditProfileDetails, setShowEditProfileDetails] = useState(false);
-
+	const [{ loading:organizationLoading }, orgTrigger] = useRequest({
+		url    : '/list_organization_users',
+		method : 'get',
+	}, { manual: true });
 	// const getChannelPartnerUserAPI = useRequest(
 	// 	'get',
 	// 	false,
 	// 	'partner',
 	// )('/partner/get_channel_partner_users');
-
 	// const resendEmailVerificationMailAPI = useRequest(
 	// 	'post',
 	// 	false,
 	// 	'partner',
 	// )('/resend_channel_partner_user_verification_email');
 
+	const getOrganization = async () => {
+		try {
+			const resp = await orgTrigger(
+				{ params: { filters: { user_id: profile.id, organization_id: profile?.organization?.id } } },
+			);
+			const { data } = resp || {};
+
+			if (data) {
+				dispatch(
+					setProfileStoreState({
+						...profile,
+						work_scopes: (data || {}).list[0].work_scopes || [],
+					}),
+				);
+			}
+		} catch (err) {
+			Toast.error(err?.message);
+		}
+	};
 	const verifyEmailId = async () => {
 		// try {
 		// 	await resendEmailVerificationMailAPI?.trigger();
@@ -79,14 +101,14 @@ const useMyProfile = () => {
 		if (!Object.keys(profile).length) {
 			getChannelPartnerUser();
 		}
+		getOrganization();
 	}, []);
 
 	// const userDetails = profile || getChannelPartnerUserAPI.data?.list?.[0];
-
 	return {
 		isMobile,
 		// loading     : getChannelPartnerUserAPI.loading,
-		userDetails: profile,
+		userDetails: profile || {},
 		showEditProfileDetails,
 		setShowEditProfileDetails,
 		verifyEmailId,

@@ -1,0 +1,73 @@
+.end_box {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.container {
+  padding-inline: 16px;
+}
+
+.header {
+  padding-top: 24px;
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 26px;
+  color: #333333;
+}
+
+.sub_head {
+  padding-top: 24px;
+  padding-bottom: 16px;
+  font-weight: 500;
+  font-size: 14px;
+  color: #4f4f4f;
+}
+
+.card {
+  width: 100%;
+  max-height: 180px;
+  overflow: auto;
+  border-block: 1px solid #cddbff;
+}
+.count {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f2f6ff;
+  border-radius: 100%;
+  font-weight: 400;
+  font-size: 14px;
+  color: #333;
+  height: 30px;
+  width: 30px;
+  margin-right: 8px;
+}
+.inline {
+  display: flex;
+  flex-direction: column;
+}
+.label {
+  font-size: 14px;
+  color: #333333;
+}
+.box {
+  display: flex;
+  align-items: flex-start;
+  margin-block: 16px;
+}
+.sub_label {
+  font-size: 12px;
+  margin-top: 4px;
+  color: #828282;
+}
+.title {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
+  padding-top: 16px;
+  padding-bottom: 16px;
+  color: #333333;
+}
+.styled_button {
+  margin-right: 8px;
+}

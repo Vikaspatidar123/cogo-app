@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable react-hooks/rules-of-hooks */
 import { Toast } from '@cogoport/components';
 
 import { useRequest } from '@/packages/request';
@@ -8,9 +10,10 @@ const getUser = () => {
 	const dispatch = useDispatch();
 	const profileData = useSelector(({ profile }) => profile);
 	const [{ loading }, trigger] = useRequest({
-		url: '/get_user',
-		method: 'get',
+		url    : '/get_user',
+		method : 'get',
 	}, { manual: true });
+
 	const refetch = async () => {
 		try {
 			const resp = await trigger({});

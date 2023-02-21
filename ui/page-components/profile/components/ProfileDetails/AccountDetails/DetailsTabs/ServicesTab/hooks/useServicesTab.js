@@ -100,8 +100,8 @@ const useServicesTab = () => {
 		}
 
 		const serviceKeysMapping = {
-			buy_services: 'buyServices',
-			sell_services: 'sellServices',
+			buy_services  : 'buyServices',
+			sell_services : 'sellServices',
 		};
 
 		const serviceFreightCompleted = Object.keys(logisticsServices).reduce(

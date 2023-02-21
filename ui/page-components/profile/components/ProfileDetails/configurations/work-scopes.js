@@ -1,34 +1,34 @@
 const getWorkScopes = () => [
 	{
-		label : 'configurations.workScopes',
+		label : 'Partner/Owner/Director',
 		value : 'i_am_owner',
 	},
 	{
-		label : 'configurations.workScopes.2',
+		label : 'Finance Head',
 		value : 'i_am_finance_head',
 	},
 	{
-		label : 'configurations.workScopes.3',
+		label : 'Finance Team Member',
 		value : 'i_work_in_finance',
 	},
 	{
-		label : 'figurations.workScopes.4',
+		label : 'Marketing/Sales',
 		value : 'i_work_in_marketing_and_sales',
 	},
 	{
-		label : 'figurations.workScopes.5',
+		label : 'Procurement',
 		value : 'i_work_in_procurement',
 	},
 	{
-		label : 'urations.workScopes.6',
+		label : 'Operations',
 		value : 'i_work_in_operations',
 	},
 	{
-		label : 'nfigurations.workScopes.7',
+		label : 'Logistics Manager',
 		value : 'i_am_logistics_manager',
 	},
 	{
-		label : 'onfigurations.workScopes.8',
+		label : 'Other',
 		value : 'other',
 	},
 ];

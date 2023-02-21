@@ -21,7 +21,7 @@ const useEditOrganizationDetails = ({
 	const cityOptions = useGetAsyncOptions(merge(asyncFieldsLocations(), {
 		params: { filters: { type: ['city'] } },
 	}));
-	const fields = getOrganizationControls({ cityOptions });
+	const controls = getOrganizationControls({ cityOptions, organizationData });
 
 	const [{ loading }, trigger] = useRequest({
 		url    : '/update_organization',

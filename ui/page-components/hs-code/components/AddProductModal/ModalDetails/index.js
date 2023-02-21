@@ -98,12 +98,12 @@ function ModalDetails({ data = {}, setShow }) {
 				<form>
 					<div className={styles.row}>
 						{fields.map((field) => {
-							const Element = getField(field.type);
+							const Controller = getField(field.type);
 
 							return (
 								<div className={`${styles} ${styles.col}`}>
 									<div className={styles.label}>{field.label}</div>
-									<Element {...field} control={control} />
+									<Controller {...field} control={control} />
 									{errors[field.name]?.type === 'required'
 										|| errors[field.name]?.type === 'minLength'
 										|| errors[field.name]?.type === 'maxLength' ? (

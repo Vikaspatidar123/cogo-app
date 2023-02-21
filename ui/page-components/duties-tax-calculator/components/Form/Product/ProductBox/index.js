@@ -1,9 +1,8 @@
-// import ToolTip from '@cogoport/front/components/admin/ToolTip';
-
-import ToolTip from '@cogoport/components';
+import { Tooltip } from '@cogoport/components';
 
 import Box from '../../../../assets/productBox.svg';
-import ProductCube from '../../../../assets/productCube.svg';
+// import ProductCube from '../../../../assets/productCube.svg';
+import { ProductCube } from '../../../../configuration/icon-configuration';
 import { shortFormatNumber } from '../../../../utils/getShortFormatNumber';
 
 import styles from './styles.module.css';
@@ -20,13 +19,13 @@ function ProductBox({ watch, isMobile }) {
 	const renderName = (name) => {
 		if (name.length > 10) {
 			return (
-				<ToolTip content={name} theme="light-border" interactive>
+				<Tooltip content={name} theme="light-border" interactive>
 					<div>
 						{name.substring(0, 10)}
 						...
 						{name.substring(name.length - 2, name.length)}
 					</div>
-				</ToolTip>
+				</Tooltip>
 			);
 		}
 		return name;
@@ -40,7 +39,7 @@ function ProductBox({ watch, isMobile }) {
 					<div className={styles.title}>{productName}</div>
 				</div>
 				<div className={styles.icon}>
-					<ProductCube width="50px" height="50px" />
+					<img src={ProductCube} alt="" width="50px" height="50px" />
 				</div>
 			</div>
 			<div className={`${styles.box} ${styles.row}`}>

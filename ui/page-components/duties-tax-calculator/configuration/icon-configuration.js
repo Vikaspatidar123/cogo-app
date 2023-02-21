@@ -7,3 +7,4 @@ export const LoadingBanner = 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/or
 export const SuccessGif = 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/success.gif';
 export const DestinationIcon = 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/destinationIcon.svg';
 export const SourceIcon = 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/sourceIcon.svg';
+export const ProductCube = 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/productCube.svg';

@@ -92,6 +92,7 @@ export const InterChangeContainer = styled.div`
 .tabs{
 	display: flex;
 	justify-content: space-between;
+	gap: 10px;
 }
 
 .with_mobile{

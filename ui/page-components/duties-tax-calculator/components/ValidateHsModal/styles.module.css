@@ -126,17 +126,8 @@ export const BtnContainer = styled.div`
 
 .modal_container{
 	:global{
-		.ui_modal_dialog {
-			padding: 0 !important;
-			display: flex !important;
-			flex-direction: column !important;
-			height: 330px !important;
-			justify-content: space-between !important;
-
-			@media screen and (max-width: 767px) {
-				border-radius: 20px;
-				height: 450px;
-			}
+		.ui_modal_header_container {
+			padding: 20px 10px 10px 30px  ;
 		}
 	}
 }
@@ -235,6 +226,7 @@ export const BtnContainer = styled.div`
 	line-height: 14px;
 	color: #000;
 	padding-right: 5px;
+	font-size: 12px;
 }
 .success_msg {
 	margin: 30px;

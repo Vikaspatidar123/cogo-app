@@ -96,6 +96,15 @@ export const Row = styled.div`
 	-webkit-backdrop-filter: blur(3px);
 	backdrop-filter: blur(3px);
 	border: 1px solid rgba(34, 31, 32, 0.425);
+
+	@keyframes animateProductBox {
+		0% {
+			right: 0;
+		}
+		100% {
+			right: -88%;
+		}
+	}
 }
 
 .mobile_view {
@@ -106,6 +115,15 @@ export const Row = styled.div`
 	width: 275px;
 	animation: animateProductBoxMobile 0.5s linear 0.1s 1;
 	animation-fill-mode: forwards;
+
+	@keyframes animateProductBoxMobile {
+		0% {
+			right: 345px;
+		}
+		100% {
+			right: 52px;
+		}
+	}
 }
 
 .web_view {

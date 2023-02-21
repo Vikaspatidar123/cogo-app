@@ -1,21 +1,12 @@
 import { Popover, Modal, Input } from '@cogoport/components';
+import { IcAReports } from '@cogoport/icons-react';
 import { useState, useEffect } from 'react';
-
-// import LegendInput from '../../../../common/form/business/LegendInput';
 
 import Button from '../../common/Button';
 import { ValidateIcon } from '../../configuration/icon-configuration';
 import useVerifyHscode from '../../hook/useVerifyHscode';
 import validateFn from '../../utils/validateFn';
 
-// import {
-// 	ValidateModal,
-// 	Container,
-// 	Row,
-// 	Footer,
-// 	Suggestion,
-// 	BtnContainer,
-// } from './styles';
 import styles from './styles.module.css';
 import TitleContainer from './TitleContainer';
 
@@ -103,16 +94,25 @@ function ValidateHsModal({
 			}
 		}
 	}, []);
+
+	const renderTitle = () => (
+		<div className={styles.title_div}>
+			<IcAReports width={25} height={25} />
+			<div className={styles.title}>Get Accurate Data</div>
+		</div>
+	);
 	return (
 		<Modal
 			show={show}
 			className={styles.modal_container}
 			onClose={() => setShow(false)}
 			closable={!getDraftData?.headerResponse}
-			width={!isMobile ? '534' : '363'}
+			size={!isMobile ? 'md' : 'sm'}
 		>
-			<div className={styles.container}>
+			<Modal.Header title={renderTitle()} />
+			<Modal.Body>
 				<TitleContainer getDraftData={getDraftData} />
+
 				<div className={styles.row_div}>
 					<Popover
 						animation="shift-away"
@@ -156,8 +156,9 @@ function ValidateHsModal({
 						)}
 					</div>
 				</div>
-			</div>
-			<div className={styles.footer}>
+			</Modal.Body>
+			<Modal.Footer>
+
 				{isQuotaLeft ? (
 					<Button
 						size="md"
@@ -177,7 +178,7 @@ function ValidateHsModal({
 						Continue
 					</Button>
 				)}
-			</div>
+			</Modal.Footer>
 		</Modal>
 	);
 }

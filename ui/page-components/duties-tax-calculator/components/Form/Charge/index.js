@@ -1,4 +1,4 @@
-import { Button, Toast } from '@cogoport/components';
+import { Toast } from '@cogoport/components';
 import { IcMArrowNext, IcMArrowBack } from '@cogoport/icons-react';
 import { useState, useEffect } from 'react';
 
@@ -6,16 +6,10 @@ import getField from '../../../../../../packages/forms/Controlled';
 import CommonButton from '../../../common/Button';
 import { ProductCartIcon } from '../../../configuration/icon-configuration';
 import useFreightCharges from '../../../hook/useFreightCharges';
-
-// import {
-// 	Title, Col, Label, BtnContainer, ErrorTxt, Text,
-// } from '../styles.module.css';
-
 import style from '../styles.module.css';
 
 import FreightModal from './FreightModal';
 import IncotermCharges from './IncotermCharges';
-// import { Container, TitleContainer } from './style';
 import styles from './styles.module.css';
 
 function Charge({
@@ -114,12 +108,13 @@ function Charge({
 							className={style.freight_charge}
 							control={chargeControls}
 						/>
-						<Button
-							className="primary  sm text"
+						<div
+							role="presentation"
+							className={styles.get_rates}
 							onClick={() => setShowFreightModal(true)}
 						>
 							Get Rates
-						</Button>
+						</div>
 						<div className={style.text}>{prevCurr}</div>
 					</div>
 					{error?.freightCharge && (

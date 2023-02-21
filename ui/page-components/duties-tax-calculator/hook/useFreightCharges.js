@@ -17,7 +17,7 @@ const useFreightCharges = () => {
 	// } = useRequest('get', false)('/get_spot_search');
 
 	const [{ loading, data }, triggerGetSpotSearch] = useRequest({
-		url    : 'get_spot_search',
+		url    : '/get_spot_search',
 		method : 'get',
 	}, { manual: true });
 

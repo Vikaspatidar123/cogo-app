@@ -1,3 +1,5 @@
+import { IcMCloudUpload } from '@cogoport/icons-react';
+
 const fields = [
 	{
 		name        : 'city_id',
@@ -10,24 +12,15 @@ const fields = [
 	},
 	{
 		name         : 'website',
-		label        : 'website',
-		placeholder  : 'Eneter Website',
+		label        : 'Website',
+		placeholder  : 'Enter Website',
 		type         : 'text',
-		showOptional : false,
-		style        : { width: '300px' },
-	},
-
-	{
-		name         : 'about',
-		label        : 'Enter About',
-		placeholder  : 'about',
-		type         : 'textarea',
 		showOptional : false,
 		style        : { width: '300px' },
 	},
 	{
 		name        : 'logo',
-		label       : 'logo',
+		label       : 'Company Logo',
 		placeholder : 'logo',
 		type        : 'file',
 		drag        : true,
@@ -36,6 +29,15 @@ const fields = [
 		uploadType   : 'aws',
 		format       : ' ',
 		rules        : { required: 'Required' },
+		showOptional : false,
+		style        : { width: '300px' },
+		uploadIcon   : <IcMCloudUpload width={40} height={40} />,
+	},
+	{
+		name         : 'about',
+		label        : 'Enter About',
+		placeholder  : 'about',
+		type         : 'textarea',
 		showOptional : false,
 		style        : { width: '300px' },
 	},

@@ -9,9 +9,9 @@ import { useForm } from '@/packages/forms';
 import { useRequest } from '@/packages/request';
 
 const getPasswordInputSuffix = ({ type = 'password', setType = () => {} }) => {
-	let suffix = <IcMEyeopen onClick={() => setType('text')} />;
+	let suffix = <IcMEyeopen onClick={() => setType('text')} style={{ marginRight: '10px' }} />;
 	if (type === 'text') {
-		suffix = <IcMEyeclose onClick={() => setType('password')} />;
+		suffix = <IcMEyeclose onClick={() => setType('password')} style={{ marginRight: '10px' }} />;
 	}
 
 	return suffix;
@@ -27,11 +27,10 @@ const useResetPassword = ({
 
 	const [errors, setErrors] = useState({});
 
-	// const updateUserPasswordAPI = useRequest(
-	// 	'post',
-	// 	false,
-	// 	'partner',
-	// )('/update_channel_partner_user_password');
+	const [{ loading }, trigger] = useRequest({
+		url    : '/update_user',
+		method : 'post',
+	}, { manual: false });
 
 	const controls = getControls();
 
@@ -65,7 +64,7 @@ const useResetPassword = ({
 		setErrors((previousErrors) => ({
 			...previousErrors,
 			password: {
-				type    : 'custom',
+				type    : '',
 				message : '',
 			},
 		}));
@@ -75,7 +74,7 @@ const useResetPassword = ({
 		setErrors((previousErrors) => ({
 			...previousErrors,
 			confirmPassword: {
-				type    : 'custom',
+				type    : '',
 				message :
 					watchConfirmPassword && watchConfirmPassword !== watchPassword
 						? ''
@@ -111,15 +110,15 @@ const useResetPassword = ({
 				...values,
 			};
 
-			// await updateUserPasswordAPI.trigger({
-			// 	data: payload,
-			// });
+			await trigger({
+				data: payload,
+			});
 
 			setShowPasswordModal(false);
 			refetch();
 
 			Toast.success(
-				'ntDetails.tabOptions.profile.r',
+				'Successfully Updated',
 			);
 		} catch (error) {
 			handleResetPasswordError(error);

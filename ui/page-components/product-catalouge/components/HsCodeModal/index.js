@@ -40,8 +40,9 @@ function HsCodeModal({
 			className={styles.styled_modal}
 			show={hsCode}
 			onOuterClick={() => setHSCode(false)}
-			width={isMobile ? 600 : 1000}
+			width={isMobile ? 600 : 700}
 			onClose={() => setHSCode(false)}
+			style={{ height: '600px' }}
 		>
 			<HSCodelistAddproduct
 				showProduct={showProduct}

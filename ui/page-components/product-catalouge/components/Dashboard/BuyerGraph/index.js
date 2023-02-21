@@ -28,9 +28,9 @@ function Buyer({ topProduct = [], productLoading }) {
 					<ResponsivePie
 						margin={{
 							top    : 15,
-							right  : 50,
+							right  : 20,
 							bottom : 20,
-							left   : 0,
+							left   : 10,
 						}}
 						data={data}
 						padAngle={0.5}
@@ -53,8 +53,12 @@ function Buyer({ topProduct = [], productLoading }) {
 					/>
 					<div className={styles.side_container}>
 						{data.map((y, i) => (
-							<div className={styles.value} style={{ background: colorMapping[i] }} key={y.value}>
-								<div className="data">
+							<div className={styles.value} key={y.value}>
+								<div className={styles.data}>
+									<div style={{
+										background: colorMapping[i], width: '15px', height: '15px', borderRadius: '15px',
+									}}
+									/>
 									<div>{shortFormatNumber(y.value, 'INR')}</div>
 								</div>
 							</div>

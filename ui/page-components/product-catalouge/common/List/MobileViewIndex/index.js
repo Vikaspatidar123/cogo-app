@@ -1,4 +1,4 @@
-import { Skeleton } from '@cogoport/components';
+import { Loader } from '@cogoport/components';
 
 import styles from './styles.module.css';
 
@@ -16,10 +16,10 @@ function MobileView({
 					{[...Array(5).keys()].map(() => (
 						<div className={styles.div_container}>
 							<div className={styles.label}>
-								<Skeleton height="16px" width="80px" />
+								<Loader height="16px" width="80px" />
 							</div>
 							<div className={styles.value}>
-								<Skeleton height="16px" width="200px" />
+								<Loader height="16px" width="200px" />
 							</div>
 						</div>
 					))}

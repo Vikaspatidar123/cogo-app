@@ -1,5 +1,5 @@
 import {
-	Pagination, ToolTip, Table, Button,
+	Pagination, Tooltip, Table, Button,
 } from '@cogoport/components';
 // import {ToolTip, } from '@cogoport/components';
 // import Grid from '@cogoport/front/components/Grid';
@@ -96,20 +96,21 @@ function HSCodelistAddproduct({
 	const {
 		showCategoryTable, showChapterTable, showHeadingTable, showhscode,
 	} =		previousStepper || {};
+
 	const columns = [
 		{
 			id     : 'sectionDescription',
 			Header : (
 				<div className={styles.select_row}>
 					{!isMobile ? (
-						<div className={styles.col_container}>
+						<div className={styles.col_container_select}>
 							<GetCountriesFilter
 								setCountryforHsCode={setCountryforHsCode}
 								setSelectedCountry={setSelectedCountry}
 							/>
 						</div>
 					) : (
-						<div className={styles.col_container}>
+						<div className={styles.col_container_select}>
 							<GetCountriesFilter
 								setCountryforHsCode={setCountryforHsCode}
 								setSelectedCountry={setSelectedCountry}
@@ -181,7 +182,7 @@ function HSCodelistAddproduct({
 		<>
 			<div className={styles.table_wrapper_2}>
 				<div className={styles.flex_div}>
-					<div className="title">
+					<div className={styles.title}>
 						<IcAFormsAndCertificates width={25} height={25} />
 						<div className={styles.styled_hscode_label}>HS Code</div>
 					</div>
@@ -192,7 +193,7 @@ function HSCodelistAddproduct({
 								suffix={IcMSearchlight}
 								className="inputbox"
 								labelClassName="labelText"
-								onChange={(e) => setSearchTerm(e.target.value)}
+								onChange={(e) => setSearchTerm(e)}
 								type="number"
 								width={20}
 								height={20}
@@ -311,12 +312,12 @@ function HSCodelistAddproduct({
 					<div className={styles.tab_header}>
 						{activeSection
 							&& (activeSection.length > 25 ? (
-								<ToolTip content={startCase(activeSection).toLowerCase()} theme="light">
+								<Tooltip content={startCase(activeSection).toLowerCase()} theme="light">
 									<div className={styles.sub_heading}>
 										{startCase(activeSection?.toLowerCase()).substring(0, 25)}
 										... |
 									</div>
-								</ToolTip>
+								</Tooltip>
 							) : (
 								<div className={styles.sub_heading}>
 									{startCase(activeSection?.toLowerCase())}
@@ -327,12 +328,12 @@ function HSCodelistAddproduct({
 							))}
 						{activeChapter
 							&& (activeChapter.length > 25 ? (
-								<ToolTip content={startCase(activeChapter)} theme="light">
+								<Tooltip content={startCase(activeChapter)} theme="light">
 									<div className={styles.sub_heading}>
 										{startCase(activeChapter).substring(0, 25)}
 										... |
 									</div>
-								</ToolTip>
+								</Tooltip>
 							) : (
 								<div className={styles.sub_heading}>
 									{' '}
@@ -344,13 +345,13 @@ function HSCodelistAddproduct({
 							))}
 						{activeheading
 							&& (activeChapter.length > 25 ? (
-								<ToolTip content={startCase(activeheading)} theme="light">
+								<Tooltip content={startCase(activeheading)} theme="light">
 									<div className={styles.sub_heading}>
 										{startCase(activeheading).substring(0, 25)}
 										...
 										{' '}
 									</div>
-								</ToolTip>
+								</Tooltip>
 							) : (
 								<div className={styles.sub_heading}>
 									{' '}
@@ -504,11 +505,12 @@ function HSCodelistAddproduct({
 					{showhscode && !hsloading && (
 						<div className={styles.div_container}>
 							<Pagination
-								className="sm"
-								pageLimit={pageSize}
-								total={totalRecords}
-								pagination={page}
-								setPagination={async (e) => {
+								className="md"
+								type="number"
+								currentPage={page}
+								totalItems={totalRecords}
+								pageSize={pageSize}
+								onPageChange={async (e) => {
 									setPage(e);
 									await refetchHsCode({
 										countryforHscode,

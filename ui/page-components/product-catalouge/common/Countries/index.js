@@ -1,15 +1,30 @@
+import { merge } from '@cogoport/utils';
 import { useEffect } from 'react';
 
 import getControls from './controls';
 // import { Div, Form } from './style';
 import styles from './styles.module.css';
 
-import useForm from '@/packages/forms';
+import { useForm, asyncFieldsHsCodeCountries, useGetAsyncOptionsBf } from '@/packages/forms';
 import ControlledSelect from '@/packages/forms/Controlled/SelectController';
 
+const optionsFunc = () => {
+	const Options = useGetAsyncOptionsBf(merge(
+		asyncFieldsHsCodeCountries(),
+		{ params: { filters: { type: ['country'] } } },
+	));
+
+	return Options;
+};
+
 function GetCountriesFilter({ setCountryforHsCode, setSelectedCountry }) {
-	const controls = getControls({ setSelectedCountry });
-	const { fields, watch } = useForm(controls);
+	const countryOptions = optionsFunc();
+	const controls = getControls({ setSelectedCountry, countryOptions });
+	const { watch, control } = useForm();
+
+	const formValues = watch('country');
+
+	console.log(formValues, 'formVAlues');
 
 	const watchCountry = watch('country');
 	useEffect(() => {
@@ -20,7 +35,7 @@ function GetCountriesFilter({ setCountryforHsCode, setSelectedCountry }) {
 		<div className="cardFilter">
 			<form className={styles.Form}>
 				<div className={styles.Div}>
-					<ControlledSelect key={watchCountry} {...fields.country} size="md" />
+					<ControlledSelect key={watchCountry} {...controls[0]} control={control} />
 				</div>
 			</form>
 		</div>

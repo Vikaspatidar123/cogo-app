@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import LeftPanel from '../common/LeftPanel';
+import LeftPanel from '../../commons/components/LeftPanel';
 
 import BillingAddress from './components/BillingAddressForm';
 import InviteTeam from './components/InviteTeam';

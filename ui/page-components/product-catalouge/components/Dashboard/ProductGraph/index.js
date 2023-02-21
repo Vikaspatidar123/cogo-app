@@ -1,4 +1,4 @@
-import { ToolTip } from '@cogoport/components';
+import { Tooltip } from '@cogoport/components';
 
 // import {
 // 	SideContainer, BarGraphContainer, BarGraph, GraphData,
@@ -20,15 +20,15 @@ function Product({ productList = [], loading }) {
 								<div className="head">
 									<div className="name">
 										{x.name?.length > 5 ? (
-											<ToolTip theme="light" placement="top" content={x.name}>
+											<Tooltip theme="light" placement="top" content={x.name}>
 												<div>{`${x.name.substring(0, 10)}..`}</div>
-											</ToolTip>
+											</Tooltip>
 										) : (
 											<div>{x.name}</div>
 										)}
 									</div>
 
-									<ToolTip
+									<Tooltip
 										theme="light"
 										placement="top"
 										content={`${x.profitPercent}%`}
@@ -44,13 +44,13 @@ function Product({ productList = [], loading }) {
 												// active={colorMapping[i]}
 											/>
 										</div>
-									</ToolTip>
+									</Tooltip>
 
 									<div className={styles.side_container}>
 										{x.productsSold?.toString().length > 3 ? (
-											<ToolTip theme="light" placement="top" content={x.productsSold}>
+											<Tooltip theme="light" placement="top" content={x.productsSold}>
 												<div>{`${x?.productsSold?.toString().substring(0, 4)}`}</div>
-											</ToolTip>
+											</Tooltip>
 										) : (
 											<div>{x.productsSold}</div>
 										)}

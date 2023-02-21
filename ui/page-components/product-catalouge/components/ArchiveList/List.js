@@ -74,7 +74,7 @@ function ArchiveList() {
 			placement="bottom"
 			animation="shift-away"
 			theme="light-border"
-			content={content(id)}
+			render={content(id)}
 			interactive
 			visible={visible?.[id]}
 		>

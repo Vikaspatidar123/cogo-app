@@ -3,14 +3,14 @@ import { useState, useEffect } from 'react';
 
 // import { useSaasState } from '../../../common/context';
 
-import { useRequest } from '@/packages/request';
+import { useRequestBf } from '@/packages/request';
 import { useSelector } from '@/packages/store';
 
 const useHSCodelist = () => {
 	const [hsList, setHsList] = useState([]);
 	const { profile } = useSelector((state) => state);
 	const { organization } = profile || {};
-	const [{ loading }, trigger] = useRequest({
+	const [{ loading }, trigger] = useRequestBf({
 		url     : '/saas/product/category/list',
 		method  : 'get',
 		authKey : 'get_saas_product_category_list',

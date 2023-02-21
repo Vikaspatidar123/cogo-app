@@ -1,6 +1,8 @@
+import { Input } from '@cogoport/components';
 import { useState, useEffect } from 'react';
 
-import { Label, Container, Input } from './style';
+// import { Label, Container, Input } from './style';
+import styles from './styles.module.css';
 
 function LegendInput({
 	key,
@@ -24,25 +26,25 @@ function LegendInput({
 		setVal(value);
 	}, [value]);
 	return (
-		<Container>
-			<Label className={`${val && 'move'} ${labelClassName}`}>
+		<div className={styles.container}>
+			{/* <div className={`${styles.input}${val && 'move'} ${labelClassName}`}>
 				{label || placeholder}
-			</Label>
-			<div className={`inputBoxContainer ${className}`}>
-				<Input
-					{...rest}
-					type={type}
-					value={val}
-					onChange={(e) => {
-						setVal(e.target.value);
-						onChange(e);
-					}}
-					className={`${SuffixIcon && 'icon'}`}
-				/>
-
-				{SuffixIcon && <SuffixIcon width={width} height={height} />}
-			</div>
-		</Container>
+			</div> */}
+			{/* <div className={`inputBoxContainer ${className}`}> */}
+			<Input
+				{...rest}
+				placeholder={placeholder}
+				type={type}
+				value={val}
+				onChange={(e) => {
+					setVal(e);
+					onChange(e);
+				}}
+				className={`${styles.input}${SuffixIcon && 'icon'}`}
+				suffix={<SuffixIcon width={width} height={height} />}
+			/>
+			{/* </div> */}
+		</div>
 	);
 }
 

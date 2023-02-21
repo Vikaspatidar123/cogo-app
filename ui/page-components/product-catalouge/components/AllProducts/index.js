@@ -1,5 +1,5 @@
 import {
-	Pagination, Popover, Skeleton, ToolTip,
+	Pagination, Popover, Loader, Tooltip,
 } from '@cogoport/components';
 // import Popover from '@cogoport/front/components/admin/Popover';
 // import Skeleton from '@cogoport/front/components/admin/Skeleton';
@@ -46,7 +46,7 @@ function AllProducts({
 }) {
 	const { Mapping } = HsCodeIconMaping(isMobile);
 	const [archive, setArchive] = useState(false);
-	const [visible, setVisible] = useState({});
+	const [visible, setVisible] = useState();
 	const [proId, setProId] = useState('');
 	const [showDeleteModal, setShowDeleteModal] = useState(false);
 	const [productClassification, setProductClassification] = useState('');
@@ -76,7 +76,7 @@ function AllProducts({
 					setProductClassification(productClassificationId);
 					setIsEdit(true);
 					setShowProduct(true);
-					setVisible({ [id]: false });
+					setVisible(false);
 				}}
 			>
 				<IcMEdit width={10} height={10} />
@@ -89,7 +89,7 @@ function AllProducts({
 				onClick={() => {
 					setProId(id);
 					setArchive(true);
-					setVisible({ [id]: false });
+					setVisible(false);
 				}}
 			>
 				<IcMPaste width={10} height={10} />
@@ -103,7 +103,7 @@ function AllProducts({
 					setShowDeleteModal(true);
 					setProId(id);
 					setProductClassification(productClassificationId);
-					setVisible({ [id]: false });
+					setVisible(false);
 				}}
 			>
 				<IcMDelete width={10} height={10} />
@@ -131,13 +131,13 @@ function AllProducts({
 											<div>{Mapping[categoryCode]}</div>
 											<div className={styles.display_name}>
 												{categoryDisplayName?.length > 16 ? (
-													<ToolTip
+													<Tooltip
 														theme="light"
 														placement="top"
 														content={categoryDisplayName}
 													>
 														<div>{`${categoryDisplayName.substring(0, 16)}..`}</div>
-													</ToolTip>
+													</Tooltip>
 												) : (
 													<div>{categoryDisplayName}</div>
 												)}
@@ -147,47 +147,47 @@ function AllProducts({
 												placement="bottom"
 												animation="shift-away"
 												theme="light-border"
-												content={content(id, productClassificationId)}
+												render={content(id, productClassificationId)}
 												interactive
 												visible={visible?.[id]}
 												onClickOutside={() => {
-													setVisible({ [id]: false });
+													setVisible(false);
 												}}
 											>
 												<div>
 													<IcMOverflowDot
 														className={styles.icon}
-														onClick={() => setVisible({ [id]: true })}
+														onClick={() => setVisible(true)}
 													/>
 												</div>
 											</Popover>
 										</>
 									)}
-									{loading && <Skeleton width="169px" />}
+									{loading && <Loader width="169px" />}
 								</div>
 								<div className={`${styles.row}${styles.second}`}>
 									{!loading && (
-										<div className={`${styles.text}${styles.sub_category}`}>
+										<div className={`${styles.sub_category}`}>
 											{subCategoryDisplayName?.length > 40 ? (
-												<ToolTip
+												<Tooltip
 													theme="light"
 													placement="top"
 													content={subCategoryDisplayName}
 												>
 													<div>{`${subCategoryDisplayName.substring(0, 40)}..`}</div>
-												</ToolTip>
+												</Tooltip>
 											) : (
 												<div>{subCategoryDisplayName}</div>
 											)}
 										</div>
 									)}
-									{loading && <Skeleton margin="10px 0px" width="169px" />}
+									{loading && <Loader margin="10px 0px" width="169px" />}
 								</div>
 							</div>
 
 							<div className={styles.row}>
-								{!loading && <div className={`${styles.text}${styles.product}`}>{name}</div>}
-								{loading && <Skeleton width="169px" />}
+								{!loading && <div className={`${styles.product}`}>{name}</div>}
+								{loading && <Loader width="169px" />}
 							</div>
 						</div>
 					),
@@ -203,14 +203,14 @@ function AllProducts({
 
 			<div className={styles.page_container}>
 				<div className="pagination">
+
 					<Pagination
-						className="xl"
-						pageRange={5}
-						pageLimit={pageSize}
-						total={totalRecords}
-						pagination={pageNo}
-						isMobile={isMobile}
-						setPagination={(val) => {
+						className="md"
+						type="number"
+						currentPage={pageNo}
+						totalItems={totalRecords}
+						pageSize={pageSize}
+						onPageChange={(val) => {
 							setPagination((prev) => ({ ...prev, page: val }));
 						}}
 					/>

@@ -1,11 +1,11 @@
 .Div{
-	width: 30% !important;
+	width: 150px !important;
 }
 
 .Form {
 	display: flex;
 	justify-content: flex-end;
-	.core-ui-select__menu {
+	.core_ui_select__menu {
 		max-width: 150px !important;
 		min-width: 0px !important;
 	}

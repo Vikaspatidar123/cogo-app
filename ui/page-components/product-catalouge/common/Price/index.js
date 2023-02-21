@@ -8,7 +8,7 @@ import useEdit from '../../hooks/useEdit';
 
 import styles from './styles.module.css';
 
-import useForm from '@/packages/forms';
+import { useForm } from '@/packages/forms';
 import getField from '@/packages/forms/Controlled/index';
 
 function Pricing({
@@ -27,14 +27,16 @@ function Pricing({
 	card = false,
 	setActiveTab,
 }) {
-	const control = getControls();
+	const controls = getControls();
 	const {
-		fields,
 		handleSubmit,
 		watch,
 		setValue,
 		formState: { errors },
-	} = useForm(control);
+		control,
+	} = useForm();
+
+	console.log(control, controls, 'control');
 
 	const {
 		data, editLoading, refetchPutEdit, addProduct,
@@ -136,12 +138,12 @@ function Pricing({
 				<div className={styles.form_container}>
 					<div className={styles.form_row}>
 						<div className={`${styles.form_col} ${styles.hscode}`}>
-							<div className={styles.form_label}>{fields.hsCode.label}</div>
-							<NumberController {...fields.hsCode} />
+							<div className={styles.form_label}>{controls[0].label}</div>
+							<NumberController {...controls[0]} control={control} />
 						</div>
 						<div className={styles.form_col}>
 							<div className={`${styles.form_col}${styles.labelRow}`}>
-								<div className={styles.form_label}>{fields.name.label}</div>
+								<div className={styles.form_label}>{controls[3].label}</div>
 								{errors.name && (
 									<div className={styles.error_text}>
 										{errors.name.message}
@@ -150,13 +152,17 @@ function Pricing({
 								)}
 							</div>
 
-							<TextController {...fields.name} className={`${errors?.name && 'error'}`} />
+							<TextController
+								{...controls[3]}
+								className={`${errors?.name && 'error'}`}
+								control={control}
+							/>
 						</div>
 					</div>
-					<div className={`${styles.form_row}${styles.mid}`}>
+					<div className={`${styles.form_row}`}>
 						<div className={styles.form_col}>
 							<div className="labelRow">
-								<div className={styles.form_label}>{fields.costPrice.label}</div>
+								<div className={styles.form_label}>{controls[2].label}</div>
 								{errors.costPrice && (
 									<div className={styles.error_text}>
 										{errors.costPrice.message}
@@ -166,13 +172,14 @@ function Pricing({
 							</div>
 
 							<NumberController
-								{...fields.costPrice}
+								{...controls[2]}
 								className={`${errors.costPrice && 'error'}`}
+								control={control}
 							/>
 						</div>
 						<div className={styles.form_col}>
 							<div className="labelRow">
-								<div className={styles.form_label}>{fields.sellingPrice.label}</div>
+								<div className={styles.form_label}>{controls[1].label}</div>
 								{errors.sellingPrice && (
 									<div className={styles.error_text}>
 										{errors.sellingPrice.message}
@@ -182,23 +189,24 @@ function Pricing({
 							</div>
 
 							<NumberController
-								{...fields.sellingPrice}
+								{...controls[1]}
+								control={control}
 								className={`${errors.sellingPrice && 'error'}`}
 							/>
 						</div>
 					</div>
 					<div className={styles.form_row}>
 						<div className="desc">
-							<div className={styles.form_label}>{fields?.description.label}</div>
-							<TextAreaController {...fields.description} />
+							<div className={styles.form_label}>{controls[4]?.label}</div>
+							<TextAreaController {...controls[4]} control={control} />
 						</div>
 						<div className={styles.form_col}>
 							<div className={styles.form_label}>Product Image</div>
-							<FileUploaderController {...fields.productImg} />
+							<FileUploaderController {...controls[5]} control={control} />
 						</div>
 					</div>
 				</div>
-				<div className={styles.btn_cotainer}>
+				<div className={styles.btn_container}>
 					<Button
 						className={`submitBtn ${(addProductLoading || editLoading) && 'disableBtn'}`}
 						disabled={addProductLoading || editLoading}

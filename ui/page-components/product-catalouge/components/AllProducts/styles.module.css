@@ -16,18 +16,19 @@
 	border-radius: 6px;
 	padding: 10px 16px;
 	width: 31%;
+	gap: 16px;
 
 	@media (max-width: 760px) {
 		width: 300px;
 	}
-    :global{
-        :hover {
-            cursor: pointer;
-            border: 0.5px solid #ee3425;
-            box-shadow: 0px 0px 20px #e0e6e9;
-            border-radius: 9px;
-        }
-    }
+
+}
+
+.card:hover{
+	cursor: pointer;
+	border: 0.5px solid #ee3425;
+	box-shadow: 0px 0px 20px #e0e6e9;
+	border-radius: 9px;
 }
 
 .row{
@@ -45,15 +46,16 @@
 .text{
     font-size: 13px;
 	color: #65677a;
-	
 }
 
-.text .sub_category {
+.sub_category {
+	font-size: 13px;
+	color: #65677a;
 	border-bottom: 1px dashed #f68b21;
 }
 
-.text .product {
-	font-weight: 500;
+.product {
+	font-weight: 600;
 	font-size: 14px;
 	color: #221f20;
 }
@@ -65,85 +67,85 @@
 
 .info{
     background: #fff;
-	width: 90px;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
 	cursor: pointer;
-	.text {
-		margin: 0px;
-		display: flex;
-		align-items: center;
-		padding: 7px 5px;
-		text-align: left;
-		font-size: 14px;
+	:global{
+		.text {
+			margin: 0px;
+			display: flex;
+			align-items: center;
+			padding: 2px 5px;
+			text-align: left;
+			font-size: 14px;
+		}
+		.edit {
+			border-bottom: 1px solid #d3d3d3;
+		}
 	}
-	.text p {
-		margin: 0;
-		font-size: 10px;
-		margin-left: 10px;
-	}
-	.edit {
-		border-bottom: 1px solid #d3d3d3;
-	}
-	.info {
-		display: flex;
-	}
+	
 }
 
 .page_container{
-    .pagination {
-		float: right;
-		display: flex;
-		justify-content: center;
-		color: black;
-		.paginationContainer {
-			margin: 10px !important;
-		}
-
-		.page,
-		.break {
-			border: none !important;
-			background: transparent !important;
-			font-weight: 500 !important;
-		}
-
-		.selected {
-			background: #fef3e9 !important;
-			color: black;
-		}
-
-		.next,
-		.previous {
-			background: transparent !important;
-			border: none !important;
-
-			svg {
-				stroke-width: 0.5px;
-				stroke: #333;
-			}
-
-			svg path {
-				fill: #333;
-			}
-		}
-
-		.disabled {
-			cursor: not-allowed;
-			svg {
-				stroke-width: 0.5px;
-				stroke: #9a9ea5;
-			}
-
-			svg path {
-				fill: #9a9ea5;
-			}
-		}
-	}
-
-	@media (max-width: 767px) {
+	:global{
 		.pagination {
-			margin-top: 45px;
-			width: -webkit-fill-available;
+			float: right;
+			display: flex;
+			justify-content: center;
+			color: black;
+			.paginationContainer {
+				margin: 10px !important;
+			}
+	
+			.page,
+			.break {
+				border: none !important;
+				background: transparent !important;
+				font-weight: 500 !important;
+			}
+	
+			.selected {
+				background: #fef3e9 !important;
+				color: black;
+			}
+	
+			.next,
+			.previous {
+				background: transparent !important;
+				border: none !important;
+	
+				svg {
+					stroke-width: 0.5px;
+					stroke: #333;
+				}
+	
+				svg path {
+					fill: #333;
+				}
+			}
+	
+			.disabled {
+				cursor: not-allowed;
+				svg {
+					stroke-width: 0.5px;
+					stroke: #9a9ea5;
+				}
+	
+				svg path {
+					fill: #9a9ea5;
+				}
+			}
+		}
+	
+		@media (max-width: 767px) {
+			.pagination {
+				margin-top: 45px;
+				width: -webkit-fill-available;
+			}
 		}
 	}
+   
 }
 
 .loader{

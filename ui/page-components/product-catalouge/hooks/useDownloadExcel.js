@@ -1,7 +1,7 @@
-import { useSaasState } from '../../../common/context';
+import { useSelector } from '@/packages/store';
 
 const useDownloadExcel = ({ refetchProduct = () => {} }) => {
-	const { profile } = useSaasState();
+	const { profile } = useSelector((state) => state);
 	const { organization } = profile || {};
 
 	const useDownloadProduct = async (isArchive) => {

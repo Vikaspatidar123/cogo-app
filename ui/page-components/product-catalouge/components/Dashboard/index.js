@@ -68,7 +68,6 @@ function Dashboard({ apiData, activeTab }) {
 							onChange={(e) => setPeriod(e)}
 						/>
 					</div>
-					<div className={styles.border_line} />
 				</div>
 				<div className="head">
 					<div className={styles.row}>

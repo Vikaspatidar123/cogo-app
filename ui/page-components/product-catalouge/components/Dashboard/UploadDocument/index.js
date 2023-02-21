@@ -24,6 +24,8 @@ import {
 // } from './style';
 import styles from './styles.module.css';
 
+import { UploadController, useForm } from '@/packages/forms';
+
 function UploadDocument({ uploadModal, setUploadModal, refetchProduct }) {
 	const [show, setShow] = useState(undefined);
 	const {
@@ -33,6 +35,17 @@ function UploadDocument({ uploadModal, setUploadModal, refetchProduct }) {
 		refetchProduct,
 		setShow,
 	});
+
+	const {
+		handleSubmit, control, formState: { errors }, watch,
+	} = useForm();
+
+	const formValues = watch();
+
+	const { file_uploader } = formValues || {};
+	const { finalUrl } = file_uploader || {};
+
+	console.log(formValues, 'fileValue');
 
 	const { success = false } = fileValue || {};
 
@@ -71,22 +84,21 @@ function UploadDocument({ uploadModal, setUploadModal, refetchProduct }) {
 						</div>
 						<div className={styles.upload_container}>
 							<div className={styles.aws_container}>
-								<FileSelect
-									docName=".xlsx"
-									onChange={(e) => handleFileChange(e)}
-									drag
-									uploadType="aws"
-									themeType="primary"
-									uploadIcon="ic-upload"
+								<UploadController
+									control={control}
 									format=".xlsx"
 									accept=".xlsx"
+									value={fileValue}
+									onChange={(e) => handleFileChange(e)}
+									name="file_uploader"
+									rules={{ required: 'file_uploader is required.' }}
 								/>
 							</div>
 							<div className={styles.button_container}>
 								<Button
 									className={styles.styled_button}
 									loading={loading}
-									disabled={!success}
+									disabled={finalUrl === undefined}
 									onClick={uploadDocuments}
 								>
 									SUBMIT

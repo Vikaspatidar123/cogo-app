@@ -3,14 +3,14 @@ import { useState, useEffect } from 'react';
 
 // import { useSaasState } from '../../../common/context';
 
-import { useRequest } from '@/packages/request';
+import { useRequestBf } from '@/packages/request';
 import { useSelector } from '@/packages/store';
 
 const useTopProducts = () => {
 	const [topProduct, setTopProduct] = useState([]);
 	const { profile } = useSelector((state) => state);
 	const { organization } = profile || {};
-	const [{ loading }, trigger] = useRequest({
+	const [{ loading }, trigger] = useRequestBf({
 		url     : '/saas/product/top-products',
 		method  : 'get',
 		authKey : 'get_saas_product_top_products',

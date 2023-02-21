@@ -3,13 +3,13 @@ import { useState } from 'react';
 
 // import { useSaasState } from '../../../common/context';
 
-import { useRequest } from '@/packages/request';
+import { useRequestBf } from '@/packages/request';
 import { useSelector } from '@/packages/store';
 
 const useUploadDocuments = ({ refetchProduct, setShow }) => {
 	const [fileValue, setFileValue] = useState('');
 	const [value, setValue] = useState('');
-	const { general, profile } = useSelector((state) => state);
+	const { profile } = useSelector((state) => state);
 	const { organization } = profile || {};
 	const { country } = organization || {};
 	const {
@@ -18,10 +18,11 @@ const useUploadDocuments = ({ refetchProduct, setShow }) => {
 		currency_code = '',
 		name = '',
 	} = country || {};
-	const { scope } = general;
-	const [{ loading }, trigger] = useRequest('post', false, scope, {
-		authkey: 'post_saas_product_bulk_products_upload',
-	})('saas/product/bulk-products-upload');
+	const [{ loading }, trigger] = useRequestBf({
+		url     : 'saas/product/bulk-products-upload',
+		method  : 'post',
+		authKey : 'post_saas_product_bulk_products_upload',
+	}, { manual: true });
 
 	const uploadDocuments = async () => {
 		try {

@@ -29,7 +29,7 @@ function CardHeader({
 	};
 
 	return (
-		<div className={styles.row_container} style={{ display: 'flex', alignItems: 'center' }}>
+		<div className={styles.row_container}>
 			{fields.map((field) => (
 				<div
 					className={styles.col_container}

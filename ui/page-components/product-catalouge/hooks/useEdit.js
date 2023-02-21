@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 
 // import { useSaasState } from '../../../common/context';
 
-import { useRequest } from '@/packages/request';
+import { useRequestBf } from '@/packages/request';
 import { useSelector } from '@/packages/store';
 
 const useEdit = ({
@@ -18,10 +18,9 @@ const useEdit = ({
 	isEdit,
 	setActiveTab,
 }) => {
-	const { general, profile } = useSelector((state) => state);
-	const { scope } = general;
+	const { profile } = useSelector((state) => state);
 	const { id: profileId = '', organization = {} } = profile || {};
-	const [{ data, loading }, trigger] = useRequest({
+	const [{ data, loading }, trigger] = useRequestBf({
 		url     : 'saas/product',
 		method  : 'get',
 		authKey : 'get_saas_product',
@@ -46,12 +45,12 @@ const useEdit = ({
 		}
 	};
 
-	const [{ loading: putEditLoading }, putEditTrigger] = useRequest({
+	const [{ loading: putEditLoading }, putEditTrigger] = useRequestBf({
 		url     : 'saas/product',
 		method  : 'put',
 		authKey : 'put_saas_product',
 	}, { manual: true });
-	const [{ loading: addApiLoading }, AddApiTrigger] = useRequest({
+	const [{ loading: addApiLoading }, AddApiTrigger] = useRequestBf({
 		url     : '/saas/product',
 		method  : 'post',
 		authKey : 'post_saas_product',

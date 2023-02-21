@@ -1,6 +1,6 @@
 import { Toast } from '@cogoport/components';
 
-import { useRequest } from '@/packages/request';
+import { useRequestBf } from '@/packages/request';
 
 const useArchive = ({
 	proId,
@@ -11,7 +11,7 @@ const useArchive = ({
 	setActiveTab,
 	card = false,
 }) => {
-	const putArchive = useRequest({
+	const [{ loading: putArchiveLoading }, PutArchiveTrigger] = useRequestBf({
 		method  : 'put',
 		url     : 'saas/product/archive',
 		authKey : 'put_saas_product_archive',
@@ -19,7 +19,7 @@ const useArchive = ({
 
 	const refetchArchive = async () => {
 		try {
-			const response = await putArchive.trigger({
+			const response = await PutArchiveTrigger({
 				params: { productId: proId },
 			});
 			if (response?.data?.message === 'Success') {

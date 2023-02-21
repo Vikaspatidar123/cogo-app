@@ -3,14 +3,14 @@ import { useState, useEffect } from 'react';
 
 // import { useSaasState } from '../../../common/context';
 
-import { useRequest } from '@/packages/request';
+import { useRequestBf } from '@/packages/request';
 import { useSelector } from '@/packages/store';
 
 const useTotalRevenue = () => {
 	const [totalRevenue, setTotalRevenue] = useState();
 	const { profile } = useSelector((state) => state);
 	const { organization } = profile || {};
-	const { trigger, loading } = useRequest({
+	const [{ loading }, trigger] = useRequestBf({
 		method  : 'get',
 		url     : 'saas/product/total-revenue',
 		authKey : 'get_saas_product_total_revenue',

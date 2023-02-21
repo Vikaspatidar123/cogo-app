@@ -2,16 +2,6 @@ import { Button, Modal } from '@cogoport/components';
 
 import Archive from '../../../assets/archive.svg';
 
-// import {
-// 	IconDiv,
-// 	Heading,
-// 	Text,
-// 	ButtonDiv,
-// 	SecondaryButton,
-// 	PrimaryButton,
-// 	ModalDiv,
-// 	Container,
-// } from './style';
 import styles from './styles.module.css';
 
 function ArchiveModal({ archive, setArchive, refetchArchive }) {

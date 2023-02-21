@@ -136,19 +136,22 @@
 
 .select_div{
     :global{
-        .core-ui-select__control {
+        .core_ui_select__control {
             min-height: 25px;
             font-size: 12px;
         }
+        .ui_select_display_container{
+            width: 136px;
+        }
     
-        .core-ui-select__control {
+        .core_ui_select__control {
             width: 125px;
             border: none !important;
             float: right;
             box-shadow: none;
             color: #f68b21;
     
-            .core-ui-select__single-value {
+            .core_ui_select__single-value {
                 border: none;
                 color: #f68b21 !important;
             }
@@ -195,8 +198,7 @@
 }
 
 .border_line{
-    border: 1px solid #f68b21;
-	width: 95px;
+	width: 125px;
 	position: absolute;
 	right: 10%;
 	margin-top: 35px;

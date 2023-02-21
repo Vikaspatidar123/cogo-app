@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 // import { useSaasState } from '../../../common/context';
 import useSearchQuery from '../utils/useSearchQuery';
 
-import { useRequest } from '@/packages/request';
+import { useRequestBf } from '@/packages/request';
 import { useSelector } from '@/packages/store';
 
 const useHSCODE = ({ countryforHscode = '' }) => {
@@ -20,21 +20,29 @@ const useHSCODE = ({ countryforHscode = '' }) => {
 
 	const { debounceQuery, query } = useSearchQuery();
 
-	const getListData = useRequest('get', false, scope, {
-		authkey: 'get_saas_hs_code_section',
-	})('saas/hs-code/section');
-	const getHeadingData = useRequest('get', false, scope, {
-		authkey: 'get_saas_hs_code_heading',
-	})('saas/hs-code/heading');
-	const getHscode = useRequest('get', false, scope, {
-		authkey: 'get_saas_hs_code',
-	})('/saas/hs-code');
-	const getBySearch = useRequest('get', false, scope, {
-		authkey: 'get_saas_hs_code_search',
-	})('/saas/hs-code/search');
+	const [{ loading: getListDataLoading }, GetListDataTrigger] = useRequestBf({
+		url     : 'saas/hs-code/section',
+		method  : 'get',
+		authKey : 'get_saas_hs_code_section',
+	}, { manual: true });
+	const [{ loading: getHeadingDataLoading }, GetHeadingDataTrigger] = useRequestBf({
+		url     : 'saas/hs-code/heading',
+		method  : 'get',
+		authKey : 'get_saas_hs_code_heading',
+	}, { manual: true });
+	const [{ loading: getHscodeLoading }, GetHscodeTrigger] = useRequestBf({
+		url     : '/saas/hs-code',
+		method  : 'get',
+		authKey : 'get_saas_hs_code',
+	}, { manual: true });
+	const [{ loading: getBySearchLoading }, GetBySearchTrigger] = useRequestBf({
+		url     : '/saas/hs-code/search',
+		method  : 'get',
+		authKey : 'get_saas_hs_code_search',
+	}, { manual: true });
 	const [hsCodeResponse, setHSCodeResponse] = useState();
 
-	const api = searchTerm === '' ? getListData : getBySearch;
+	const api = searchTerm === '' ? GetListDataTrigger : GetBySearchTrigger;
 
 	const createPayload = () => {
 		if (searchTerm !== '') {
@@ -53,7 +61,7 @@ const useHSCODE = ({ countryforHscode = '' }) => {
 	const refetch = async () => {
 		const payload = createPayload();
 		try {
-			const response = await api.trigger({ params: { ...payload } });
+			const response = await api({ params: { ...payload } });
 			if (searchTerm === '') {
 				setApiData(response.data);
 			} else {
@@ -67,7 +75,7 @@ const useHSCODE = ({ countryforHscode = '' }) => {
 	const refetchHeading = async (chapterCodedata) => {
 		if (chapterCodedata > 0) {
 			try {
-				const response = await getHeadingData.trigger({
+				const response = await GetHeadingDataTrigger({
 					params: {
 						chapterCode: chapterCodedata || '',
 					},
@@ -86,7 +94,7 @@ const useHSCODE = ({ countryforHscode = '' }) => {
 		pagination,
 	}) => {
 		try {
-			const response = await getHscode.trigger({
+			const response = await GetHscodeTrigger({
 				params: {
 					headingCode : row?.headingCode || activeHeadingRow || '',
 					userId      : id,
@@ -125,9 +133,9 @@ const useHSCODE = ({ countryforHscode = '' }) => {
 		refetchHsCode,
 		pageObj,
 		setPageObj,
-		loading        : getListData.loading,
-		headingLoading : getHeadingData.loading,
-		hsloading      : getHscode.loading,
+		loading        : getListDataLoading,
+		headingLoading : getHeadingDataLoading,
+		hsloading      : getHscodeLoading,
 		hsCodeResponse,
 		setSearchTerm,
 	};

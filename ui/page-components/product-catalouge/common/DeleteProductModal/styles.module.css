@@ -22,34 +22,37 @@
 	justify-content: space-evenly;
 	margin-top: 20px;
 	margin-bottom: 15px;
-
-	.iconContainer {
-		border: 1px solid;
-		padding: 5px;
-		width: 43px;
-		height: 43px;
-		text-align: center;
-		border-radius: 50%;
-		cursor: pointer;
-	}
-	.no {
-		border-color: red;
-		margin-left: 50px;
-
-		:hover {
-			background-color: #ffdde3;
+	:global{
+		.iconContainer {
+			border: 1px solid;
+			padding: 5px;
+			width: 43px;
+			height: 43px;
+			text-align: center;
+			border-radius: 50%;
+			cursor: pointer;
+		}
+		.no {
+			border-color: red;
+			margin-left: 50px;
+	
+			:hover {
+				background-color: #ffdde3;
+			}
+		}
+	
+		.yes {
+			padding: 3px;
+			border-color: #4bb543;
+			margin-right: 50px;
+	
+			:hover {
+				background-color: #c6f8c6;
+			}
 		}
 	}
 
-	.yes {
-		padding: 3px;
-		border-color: #4bb543;
-		margin-right: 50px;
-
-		:hover {
-			background-color: #c6f8c6;
-		}
-	}
+	
 
 }
 

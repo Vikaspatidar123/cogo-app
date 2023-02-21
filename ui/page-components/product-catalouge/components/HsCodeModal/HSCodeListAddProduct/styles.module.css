@@ -12,10 +12,27 @@
 	align-items: center;
 }
 
+.col_container_select{
+    display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+}
+
+.styled_row{
+    display: flex;
+    flex-direction: row;
+}
+
 .row_container{
 	display: flex;
 	flex-direction: row;
 	align-items: center;
+}
+
+.title {
+    display: flex;
+    align-items: center;
+    padding: 20px 0px 0px 20px;
 }
 
 .flex_div{
@@ -23,10 +40,7 @@
 	justify-content: space-between;
 	align-items: center;
 
-	.title {
-		display: flex;
-		align-items: center;
-	}
+	
 	.search {
 		.inputbox {
 			border-radius: 13px;
@@ -55,6 +69,7 @@
 .select{
     font-weight: 500;
 	font-size: 14px;
+    margin: 20px;
 }
 
 .flex_div_2{
@@ -72,22 +87,30 @@
 
 .table_wrapper{
     /* :global { */
+        width: 100%;
+        padding: 0px 12px;
+        height: 464px;
+        overflow: auto;
         *.selected {
             .rowcss {
                 border: 1px solid #db4634 !important;
                 box-shadow: 0px 0px 7px 1px #dde0e0 !important;
             }
         }
-        .ui-table-body-cell {
-            border: none !important;
-            border-collapse: separate !important;
-            background: #ffffff !important;
-            padding-bottom: 5px !important;
+        :global {
+            .ui_table_body_cell {
+                border: none !important;
+                border-collapse: separate !important;
+                background: #ffffff !important;
+                padding-bottom: 5px !important;
+                white-space: pre-wrap !important;
+            }
+            .ui_table_head_cell {
+                border: none !important;
+                padding: 0px !important;
+            }
         }
-        .ui-table-head-cell {
-            border: none !important;
-            padding: 0px !important;
-        }
+        
     /* } */
 }
 
@@ -133,21 +156,21 @@
         &:hover {
             box-shadow: none !important;
         }
-        .ui-table-body-row {
+        .ui_table_body_row {
             will-change: background-color;
             transition: background-color 0.1s linear;
             background-color: #f9f9f9;
             color: #333333;
         }
-        .ui-table-body.ui-table-body-row:hover {
+        .ui_table_body.ui_table_body_row:hover {
             background-color: red !important;
         }
-        .ui-table-body-row {
+        .ui_table_body_row {
             &.can-select {
                 cursor: pointer !important;
             }
             &.selected {
-                .ui-table-body-row {
+                .ui_table_body_row {
                     background-color: red !important;
                 }
             }
@@ -213,6 +236,9 @@
 
 .styled_tag2{
     background-color: #356efd;
+    padding: 4px 12px;
+    border-radius: 10px;
+    margin-top: 4px;
 	color: white !important;
 	font-size: 12px !important;
 }

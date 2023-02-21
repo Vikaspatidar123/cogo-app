@@ -152,13 +152,13 @@ function ProductInventory() {
 									<div className={styles.line} />
 								</div>
 							</div>
-							<div className="flex">
+							<div className={styles.button_container}>
 								<Tooltip
 									theme="light-border"
 									content="Click to view archived List"
 									placement="bottom"
 								>
-									<div className="archived" role="presentation">
+									<div className={styles.archived_button} role="presentation">
 										<IcMPaste onClick={handelRouting} width={30} height={30} />
 									</div>
 								</Tooltip>
@@ -182,7 +182,11 @@ function ProductInventory() {
 								</Button>
 
 								{!isMobile && (
-									<Button className={styles.styled_button} disabled={hsLoading} onClick={() => setHSCode(true)}>
+									<Button
+										className={styles.styled_button}
+										disabled={hsLoading}
+										onClick={() => setHSCode(true)}
+									>
 										+ Add New
 									</Button>
 								)}
@@ -195,7 +199,7 @@ function ProductInventory() {
 									{hsLoading ? (
 										<Loading className={styles.styled_loading} />
 									) : (
-										<div>
+										<div style={{ display: 'flex', flexDirection: 'row', overflowX: 'auto' }}>
 											{hsList.length > 0 && (
 												<div className="scroll">
 													<div className={styles.scroll_container} ref={scrollRef}>
@@ -209,13 +213,18 @@ function ProductInventory() {
 																	name="allProducts"
 																	title={(
 																		<div
+																			role="presentation"
 																			onClick={() => {
 																				setShowProductView(true);
 																				refetchProduct({});
 																			}}
 																		>
 																			<IcMGrid fill="#d94646" />
-																			<div className={styles.label}>All Products</div>
+																			<div
+																				className={styles.label}
+																			>
+																				All Products
+																			</div>
 																		</div>
 																	)}
 																/>
@@ -241,7 +250,9 @@ function ProductInventory() {
 																						setActiveHeaderTab();
 																					}}
 																				>
-																					<div className={styles.colored_icon}>
+																					<div
+																						className={styles.colored_icon}
+																					>
 																						{Mapping[categoryCode]}
 																					</div>
 																					{categoryDisplayName}
@@ -269,8 +280,12 @@ function ProductInventory() {
 															)}
 														</div>
 													</div>
-													{!isMobile && hsList.length > 4 && (
-														<div className={styles.icn_container} onClick={scrollHandler}>
+													{/* {!isMobile && hsList.length > 4 && (
+														<div
+															role="presentation"
+															className={styles.icn_container}
+															onClick={scrollHandler}
+														>
 															<IcMArrowRight
 																className="animatedArrow"
 																width={35}
@@ -278,7 +293,7 @@ function ProductInventory() {
 															/>
 															<IcMArrowRight width={35} height={35} />
 														</div>
-													)}
+													)} */}
 												</div>
 											)}
 										</div>

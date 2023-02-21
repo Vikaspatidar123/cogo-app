@@ -1,4 +1,4 @@
-import Pagination from '@cogoport/front/components/admin/Pagination';
+import { Pagination } from '@cogoport/components';
 import React, { useEffect, useState } from 'react';
 
 import { useWindowDimensions } from '../MobileView';
@@ -6,7 +6,7 @@ import { useWindowDimensions } from '../MobileView';
 import CardHeader from './CardHeader';
 import EmptyState from './EmptyState';
 import Item from './Item';
-import { Container, PageContainer } from './styles';
+// import { Container, PageContainer } from './styles';
 import styles from './styles.module.css';
 
 function List({
@@ -69,13 +69,12 @@ function List({
 				<div className={styles.page_container}>
 					<div className="pagination">
 						<Pagination
-							className="xl"
-							pageRange={5}
-							pageLimit={pageSize}
-							total={totalRecords}
-							pagination={pageNo}
-							isMobile={isMobile}
-							setPagination={(val) => {
+							className="md"
+							type="number"
+							currentPage={pageNo}
+							totalItems={totalRecords}
+							pageSize={5}
+							onPageChange={(val) => {
 								setPagination((prev) => ({ ...prev, page: val }));
 							}}
 						/>

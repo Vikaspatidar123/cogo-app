@@ -2,16 +2,15 @@ import { Toast } from '@cogoport/components';
 import { useState, useEffect } from 'react';
 
 // import { useSaasState } from '../../../common/context';
-import { useRequest } from '@/packages/request';
+import { useRequestBf } from '@/packages/request';
 import { useSelector } from '@/packages/store';
 
 const useTopProductList = () => {
 	const [productList, setProductList] = useState();
 	const [period, setPeriod] = useState('MONTH');
-	const { general, profile } = useSelector((state) => state);
+	const { profile } = useSelector((state) => state);
 	const { organization } = profile || {};
-	const { scope } = general;
-	const [{ loading }, trigger] = useRequest({
+	const [{ loading }, trigger] = useRequestBf({
 		url     : 'saas/product/top/list',
 		method  : 'get',
 		authKey : 'get_saas_product_top_list',

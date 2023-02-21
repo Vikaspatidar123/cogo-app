@@ -16,10 +16,12 @@ const CARDFILTER = [
 	},
 ];
 
-const getControls = ({ setSelectedCountry }) => CARDFILTER.map((control) => {
+const getControls = ({ setSelectedCountry, countryOptions }) => CARDFILTER.map((control) => {
 	if (control.name === 'country') {
+		const newControl = { ...control, ...countryOptions };
+
 		return {
-			...control,
+			...newControl,
 			handleChange: (e) => setSelectedCountry(e?.countryName),
 		};
 	}

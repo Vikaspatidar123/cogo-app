@@ -2,7 +2,7 @@ import { Toast } from '@cogoport/components';
 import { useState, useEffect } from 'react';
 
 // import { useSaasState } from '../../../common/context';
-import { useRequest } from '@/packages/request';
+import { useRequestBf } from '@/packages/request';
 import { useSelector } from '@/packages/store';
 
 const useProductCatalogue = ({ archive = false, fetch = () => {}, setActiveTab }) => {
@@ -10,20 +10,20 @@ const useProductCatalogue = ({ archive = false, fetch = () => {}, setActiveTab }
 	const { id } = profile || {};
 	const [apiData, setApiData] = useState({});
 	const [pagination, setPagination] = useState({ page: 1 });
-	const [{ loading: useProductLoading }, UseProducttrigger] = useRequest({
+	const [{ loading: useProductLoading }, UseProducttrigger] = useRequestBf({
 		url        : '/saas/product/list',
 		method     : 'get',
 		authKey    : 'post_saas_product',
 		autoCancel : false,
 	}, { manual: true });
 
-	const [{ loading: addApiLoading }] = useRequest({
+	const [{ loading: addApiLoading }] = useRequestBf({
 		url     : '/saas/product',
 		method  : 'delete',
 		authKey : 'delete_saas_product',
 	}, { manual: true });
 
-	const [{ loading: deleteProductApiLoading }, deleteProductTrigger] = useRequest({
+	const [{ loading: deleteProductApiLoading }, deleteProductTrigger] = useRequestBf({
 		url     : '/saas/product',
 		method  : 'delete',
 		authKey : 'delete_saas_product',

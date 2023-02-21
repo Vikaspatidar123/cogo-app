@@ -1,4 +1,4 @@
-import { ToolTip, Skeleton } from '@cogoport/components';
+import { Tooltip, Loader } from '@cogoport/components';
 // import { Skeleton } from '@cogoport/front/components/admin';
 // import Grid from '@cogoport/front/components/Grid';
 import { shape, arrayOf } from 'prop-types';
@@ -25,7 +25,7 @@ const Item = ({
 	const infoData = (singleItem, itm) => {
 		if (singleItem?.toolTip) {
 			return (
-				<ToolTip
+				<Tooltip
 					content={(
 						<div style={{ color: 'grey' }}>
 							{getValue(itm, singleItem, isMobel, newFunctions)}
@@ -34,29 +34,27 @@ const Item = ({
 					theme="light"
 				>
 					<div className={styles.info}>{getValue(itm, singleItem, isMobel, newFunctions)}</div>
-				</ToolTip>
+				</Tooltip>
 			);
 		}
 		return getValue(itm, singleItem, isMobel, newFunctions);
 	};
 	const renderItem = (itm) => (
-		<div className={`${styles.container}${isMobile && 'mobile'}`}>
+		<div className={isMobile ? `${styles.container}${styles.mobile}` : `${styles.container}`}>
 			{isMobile ? (
 				<MobileView fields={fields} infoData={infoData} itm={itm} loading={loading} />
 			) : (
 				<div className={styles.row_container} onClick={handleClick} role="presentation" tabIndex="0">
-					{(fields || []).map((singleItem) => (
+					{loading && (
+						<Loader style={{ height: '20px', width: '20px' }} />
+					)}
+					{!loading && (fields || []).map((singleItem) => (
 						<div
 							className={styles.col_container}
 							style={singleItem.styles}
 							key={singleItem?.key}
 							// className={singleItem?.key}
 						>
-							{loading && (
-								<Skeleton style={{ height: '20px', width: '100%' }}>
-									<rect width="100%" height="20px" />
-								</Skeleton>
-							)}
 							{singleItem.render && !loading ? singleItem.render(itm) : null}
 							{infoData(singleItem, itm)}
 						</div>

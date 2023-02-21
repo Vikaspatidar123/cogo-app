@@ -1,4 +1,4 @@
-import { Popover, Table, ToolTip } from '@cogoport/components';
+import { Popover, Table, Tooltip } from '@cogoport/components';
 // import Table from '@cogoport/front/components/admin/Table';
 // import ToolTip from '@cogoport/front/components/admin/ToolTip';
 import {
@@ -47,16 +47,16 @@ function ListView({
 		setActiveTab,
 		card: false,
 	});
-	const [visible, setVisible] = useState({});
+	const [visible, setVisible] = useState();
 	useEffect(() => {
 		if (activeSubTab) refetchProduct({ productClassificationId, sub: false });
 	}, [activeSubTab]);
 	const renderDescription = (record) => {
 		if (record?.length > 10) {
 			return (
-				<ToolTip placement="top" content={record}>
+				<Tooltip placement="top" content={record}>
 					<div>{`${record?.substring(0, 10)}...`}</div>
-				</ToolTip>
+				</Tooltip>
 			);
 		}
 		return record;
@@ -77,7 +77,7 @@ function ListView({
 					setProId(id);
 					setIsEdit(true);
 					setShowProduct(true);
-					setVisible({ [id]: false });
+					setVisible(false);
 				}}
 			>
 				<IcMEdit width={10} height={10} />
@@ -90,7 +90,7 @@ function ListView({
 				onClick={() => {
 					setArchive(true);
 					setProId(id);
-					setVisible({ [id]: false });
+					setVisible(false);
 				}}
 			>
 				<IcMPaste width={10} height={10} />
@@ -103,7 +103,7 @@ function ListView({
 					setShowDeleteModal(true);
 					setProId(id);
 					setProductClassification(productClassificationId);
-					setVisible({ [id]: false });
+					setVisible(false);
 				}}
 			>
 				<IcMDelete width={10} height={10} />
@@ -152,18 +152,18 @@ function ListView({
 					placement="bottom"
 					animation="shift-away"
 					theme="light-border"
-					content={content(record.id)}
+					render={content(record.id)}
 					interactive
 					visible={visible?.[record.id]}
 					onClickOutside={() => {
-						setVisible({ [record.id]: false });
+						setVisible(false);
 					}}
 				>
 					<div>
 						<IcMOverflowDot
 							className={styles.icon}
 							onClick={() => {
-								setVisible({ [record.id]: true });
+								setVisible(true);
 							}}
 						/>
 					</div>

@@ -54,6 +54,7 @@ export const paymentTypeOptions = [
 		key: 'PAYMENT_FAILED',
 	},
 ];
+
 export const optionsRisk = [
 	{
 		label: (

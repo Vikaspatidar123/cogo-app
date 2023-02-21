@@ -1,0 +1,114 @@
+.head {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	
+	.input {
+		width: 220px;
+	}
+	@media screen and (max-width: 768px) {
+		flex-direction: column;
+		align-items: flex-start;
+		width: 280px;
+	}
+}
+
+.container {
+	padding: 30px 10px 10px;
+	width: 100%;
+	.segmented-control__contents-container {
+		border-radius: 10px !important;
+
+		.segmented-control__content {
+			.segmented-control__content-label {
+				font-weight: 400 !important;
+				font-size: 14px !important;
+			}
+		}
+
+		.segmented-control__content {
+			&:hover {
+				.segmented-control__content-label {
+					color: #545563 !important;
+					font-weight: 400 !important;
+					font-size: 14px !important;
+				}
+			}
+		}
+		.segmented-control__content--active {
+			&:hover {
+				.segmented-control__content-label {
+					color: white !important;
+					font-weight: 400 !important;
+					font-size: 14px !important;
+				}
+			}
+		}
+
+		.segmented-control__slider {
+			border-radius: 10px !important;
+		}
+	}
+	@media screen and (max-width: 768px) {
+		padding: 24px 8px 8px;
+	}
+}
+
+.button_wrapper {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 4px;
+	.archived {
+		display: flex;
+		align-items: center;
+		margin-right: 10px;
+		margin-left: 10px;
+		cursor: pointer;
+	}
+}
+
+.flex_div {
+	display: flex;
+	align-items: center;
+	gap: 4px;
+	@media screen and (max-width: 768px) {
+		width: 100%;
+		align-self: flex-end;
+		padding: 16px 0px;
+	}
+	@media screen and (max-width: 480px) {
+		.core-ui-input-root {
+			width: 150px !important;
+		}
+	}
+}
+
+.title_section {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: flex-start;
+	padding-top: 10px;
+	.title {
+		margin: 0;
+	}
+	.flex {
+		display: flex;
+		flex-direction: row;
+	}
+}
+
+.line_wrapper {
+	display: flex;
+	justify-content: flex-start;
+	width: 81%;
+	align-items: center;
+}
+
+.line {
+	height: 3px;
+	border-width: 0;
+	background-color: #f68b21;
+	flex-grow: 1;
+}

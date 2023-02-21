@@ -18,7 +18,7 @@
     "preinstall": "npx only-allow pnpm"
   },
   "dependencies": {
-    "@cogoport/components": "^1.0.316",
+    "@cogoport/components": "^1.0.326",
     "@cogoport/icons-react": "^1.0.57",
     "@cogoport/utils": "^1.2.2",
     "@next/polyfill-nomodule": "^13.1.6",

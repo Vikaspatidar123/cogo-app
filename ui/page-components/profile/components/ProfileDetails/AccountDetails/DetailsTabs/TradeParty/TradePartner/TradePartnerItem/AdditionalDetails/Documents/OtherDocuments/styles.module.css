@@ -1,0 +1,31 @@
+.container {
+	display: flex;
+	flex-direction: column;
+}
+
+.pagination_container {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-end;
+	margin-top: 16px;
+}
+
+.row_container {
+	display: flex;
+	flex-wrap: wrap;
+
+	@media (max-width: 768px) {
+		flex-direction: column;
+	}
+}
+
+.column_container {
+	padding: 0 8px;
+
+	@media (max-width: 768px) {
+		width: 100%;
+	}
+	@media (min-width: 992px) {
+		width: 50%;
+	}
+}

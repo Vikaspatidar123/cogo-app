@@ -11,17 +11,17 @@ function AlertsPreferences() {
 		general: { isMobile },
 	} = useSelector((state) => state);
 
-	const router = useRouter();
+	const { push } = useRouter();
 
 	const onClickBackButton = () => {
-		router.push('/profile');
+		push('/settings');
 	};
 
 	return (
 		<>
 			{isMobile && (
 				<MobileHeader
-					heading="tails.tabOptions.alerts.mobileHead"
+					heading="Alerts & Preferences"
 					onClickBackButton={onClickBackButton}
 				/>
 			)}

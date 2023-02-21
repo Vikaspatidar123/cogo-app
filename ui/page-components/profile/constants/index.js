@@ -1,5 +1,3 @@
-import { useTranslation } from 'next-i18next';
-
 export const CATEGORIES = [
 	'offers_discounts',
 	'subscriber_special',
@@ -9,66 +7,59 @@ export const CATEGORIES = [
 	'general_news',
 ];
 
-export const getReasonMapping = ({ t = () => {} }) => [
+export const getReasonMapping = () => [
 	{
-		label : t('profile:constants.reasonMapping.1'),
+		label : 'Your emails are too frequent',
 		value : 'Your emails are not relevant to me',
 	},
 	{
-		label : t('profile:constants.reasonMapping.2'),
+		label : 'Your emails are not relevant to me',
 		value : 'Your emails are too frequent',
 	},
 	{
-		label : t('profile:constants.reasonMapping.3'),
+		label : 'I don’t remember signing up for this',
 		value : 'I don’t remember signing up for this',
 	},
 	{
-		label : t('profile:constants.reasonMapping.4'),
+		label : 'I no longer want to receive these emails',
 		value : 'I no longer want to receive these emails',
 	},
 	{
-		label : t('profile:constants.reasonMapping.5'),
+		label : 'The emails are spam and should be reported',
 		value : 'The emails are spam and should be reported',
 	},
-	{ label: t('profile:constants.reasonMapping.6'), value: 'others' },
+	{ label: 'Others', value: 'others' },
 ];
-export const getMapping = ({ t = () => {} }) => ({
+export const getMapping = () => ({
 	general_news: {
-		label    : t('profile:constants.mapping.general_news.label'),
-		sublabel : t('profile:constants.mapping.general_news.sublabel'),
+		label    : 'Offers/Discounts',
+		sublabel : 'Receive offers and discounts.',
 	},
 	new_product_service_launches_and_updates: {
-		label: t(
-			'profile:constants.mapping.new_product_service_launches_and_updates.label',
-		),
-		sublabel: t(
-			'profile:constants.mapping.new_product_service_launches_and_updates.sublabel',
-		),
+		label    : 'Subscriber Special',
+		sublabel : 'Receive exclusive subscriber communications.',
 	},
 	newsletter: {
-		label    : t('profile:constants.mapping.newsletter.label'),
-		sublabel : t('profile:constants.mapping.newsletter.sublabel'),
+		label    : 'New product/Service launches and updates',
+		sublabel : 'Get information on latest product launches and updates.',
 	},
 	offers_discounts: {
-		label    : t('profile:constants.mapping.offers_discounts.label'),
-		sublabel : t('profile:constants.mapping.offers_discounts.sublabel'),
+		label    : 'Product/service Explainers',
+		sublabel : 'Receive detailed product explanations.',
 	},
 	product_service_explainers: {
-		label    : t('profile:constants.mapping.product_service_explainers.label'),
-		sublabel : t(
-			'profile:constants.mapping.product_service_explainers.sublabel',
-		),
+		label    : 'Newsletter',
+		sublabel : 'Get latest newsletters and services.',
 	},
 	subscriber_special: {
-		label    : t('profile:constants.mapping.subscriber_special.label'),
-		sublabel : t('profile:constants.mapping.subscriber_special.sublabel'),
+		label    : 'General News',
+		sublabel : 'Receive relevant news and information.',
 	},
 });
 
 export const getMappings = () => {
-	const { t } = useTranslation(['profile']);
-	const REASON_MAPPING = getReasonMapping({ t });
-	const MAPPING = getMapping({ t });
+	const REASON_MAPPING = getReasonMapping();
+	const MAPPING = getMapping();
 
 	return {
 		REASON_MAPPING,

@@ -1,0 +1,38 @@
+.container {
+	padding: 16px;
+	background: #fdfbf6;
+	border-radius: 4px;
+}
+
+.edit_icon_container {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: flex-start;
+	padding: 8px;
+	cursor: pointer;
+
+	@media (min-width: 768px) {
+		justify-content: center;
+	}
+}
+
+.text_container {
+	font-size: 10px;
+}
+
+.row_container {
+	display: flex;
+
+	@media (max-width: 768px) {
+		flex-wrap: wrap;
+	}
+}
+
+.col_container {
+	width: 100%;
+
+	@media (max-width: 768px) {
+		width: 50%;
+	}
+}

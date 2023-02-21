@@ -1,0 +1,26 @@
+.container {
+	display: flex;
+	flex-direction: column;
+}
+
+.header {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	margin-bottom: 12px;
+}
+
+.toggle_container {
+	display: flex;
+	margin-right: 8px;
+}
+
+.empty_state_container {
+	display: flex;
+	flex-direction: column;
+	padding: 16px;
+	margin-bottom: 16px;
+	background: #fff;
+	border-radius: 4px;
+	box-shadow: 0 0 6px rgb(169 188 218 / 65%);
+}

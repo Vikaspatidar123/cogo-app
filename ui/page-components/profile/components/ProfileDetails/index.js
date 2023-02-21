@@ -13,9 +13,10 @@ function ProfileDetails() {
 	} = useSelector((state) => state);
 	const { kyc_status } = organization || {};
 	const { refetch } = getUser();
+	const { activeTab } = query || {};
 	return (
 		<>
-			<ProfileProgress />
+			{(!activeTab || !isMobile) && <ProfileProgress />}
 
 			{/* {kyc_status.includes('pending') && <KycWidget kyc_status={kyc_status} />} */}
 

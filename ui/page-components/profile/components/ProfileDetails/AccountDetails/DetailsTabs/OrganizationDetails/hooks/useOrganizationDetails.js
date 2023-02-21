@@ -16,7 +16,7 @@ const useOrganizationDetails = () => {
 	const organizationData = organization;
 
 	const onClickBackButton = () => {
-		router.push('/profile');
+		router.push('/settings');
 	};
 
 	return {

@@ -94,7 +94,7 @@ const useMyProfile = () => {
 	};
 
 	const onClickBackButton = () => {
-		router.push('/profile');
+		router.push('/settings');
 	};
 
 	useEffect(() => {

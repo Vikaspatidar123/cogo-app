@@ -1,6 +1,7 @@
 .end_box {
   display: flex;
   justify-content: flex-end;
+  padding: 10px;
 }
 
 .container {
@@ -8,7 +9,6 @@
 }
 
 .header {
-  padding-top: 24px;
   font-weight: 600;
   font-size: 22px;
   line-height: 26px;
@@ -16,8 +16,7 @@
 }
 
 .sub_head {
-  padding-top: 24px;
-  padding-bottom: 16px;
+  padding-top: 10px;
   font-weight: 500;
   font-size: 14px;
   color: #4f4f4f;
@@ -25,9 +24,6 @@
 
 .card {
   width: 100%;
-  max-height: 180px;
-  overflow: auto;
-  border-block: 1px solid #cddbff;
 }
 .count {
   display: flex;
@@ -63,11 +59,27 @@
 .title {
   font-weight: 500;
   font-size: 14px;
-  line-height: 16px;
   padding-top: 16px;
-  padding-bottom: 16px;
   color: #333333;
 }
 .styled_button {
   margin-right: 8px;
+}
+
+.radio {
+  display: inline;
+  padding: 0px;
+  :global {
+    .ui_radio_container {
+      padding: 4px;
+    }
+  }
+}
+
+.modal {
+  :global {
+    .ui_modal_body_container {
+      max-height: 250px;
+    }
+  }
 }

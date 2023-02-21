@@ -1,0 +1,87 @@
+[
+	{
+		"type": "text",
+		"name": "name",
+		"label": "Billing Party Name",
+		"rules": { "required": true },
+		"span": 6
+	},
+	{
+		"type": "select",
+		"name": "address_type",
+		"label": "Address Type",
+		"options": [
+			{ "label": "Office", "value": "office" },
+			{ "label": "Factory", "value": "factory" },
+			{ "label": "Warehouse Address", "value": "warehouse" }
+		],
+		"rules": { "required": true },
+		"span": 6
+	},
+	{
+		"type": "location-select",
+		"name": "country_id",
+		"label": "Country of Registration",
+		"optionsListKey": "locations",
+		"params": { "filters": { "type": ["country"] } },
+		"defaultOptions": true,
+		"rules": { "required": true },
+		"span": 6
+	},
+	{
+		"type": "location-select",
+		"name": "pincode",
+		"label": "Pincode",
+		"optionsListKey": "locations",
+		"labelKey": "postal_code",
+		"valueKey": "postal_code",
+		"params": { "filters": { "type": ["pincode"] } },
+		"caret": true,
+		"rules": { "required": true },
+		"span": 6
+	},
+	{
+		"type": "text",
+		"name": "tax_number",
+		"label": "GST Number",
+		"maxLength": 15,
+		"rules": {
+			"required": true
+		},
+		"span": 6
+	},
+	{
+		"type": "file",
+		"name": "tax_number_document_url",
+		"label": "GST Proof",
+		"uploadType": "aws",
+		"drag": true,
+		"height": 45,
+		"rules": { "required": true },
+		"span": 6
+	},
+	{
+		"type": "textarea",
+		"name": "address",
+		"label": "Billing Address",
+		"rules": { "required": true },
+		"span": 6
+	},
+	{
+		"type": "checkbox",
+		"name": "is_sez",
+		"options": [{ "value": true, "label": "Is Sez" }],
+		"multiple": true,
+		"span": 12
+	},
+	{
+		"type": "file",
+		"name": "sez_proof",
+		"label": "SEZ Proof",
+		"uploadType": "aws",
+		"drag": true,
+		"height": 45,
+		"rules": { "required": true },
+		"span": 6
+	}
+]

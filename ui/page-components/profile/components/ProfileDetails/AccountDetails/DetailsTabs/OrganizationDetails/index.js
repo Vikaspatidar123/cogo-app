@@ -1,12 +1,13 @@
 import { IcMEdit } from '@cogoport/icons-react';
 
+import MobileHeader from '../../../../MobileHeader';
+
 import EditOrganizationDetails from './EditOrganizationDetails';
 import useOrganizationDetails from './hooks/useOrganizationDetails';
 import LoadingState from './LoadingState';
 import styles from './styles.module.css';
 
 // import SlidingTabs from '@/commons/components/UI/SlidingTabs';
-// import MobileHeader from '@/components/Profile/components/MobileHeader';
 
 function OrganizationDetails() {
 	const {
@@ -15,7 +16,7 @@ function OrganizationDetails() {
 		organizationData = {},
 		setShowEditOrganizationDetails = () => { },
 		showEditOrganizationDetails = false,
-		// onClickBackButton,
+		onClickBackButton,
 	} = useOrganizationDetails({});
 
 	const renderOrganizationDetails = () => {
@@ -162,14 +163,12 @@ function OrganizationDetails() {
 
 	return (
 		<>
-			{/* {isMobile && (
+			{isMobile && (
 				<MobileHeader
-					heading={t(
-						'profile:accountDetails.tabOptions.organization.mobileHeading',
-					)}
+					heading="Company Details"
 					onClickBackButton={onClickBackButton}
 				/>
-			)} */}
+			)}
 
 			{/* {is_importer_exporter && is_service_provider && (
 				<div className={styles.toggle_container}>

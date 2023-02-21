@@ -2,6 +2,7 @@ import { Modal } from '@cogoport/components';
 import { IcCFtick, IcMEdit } from '@cogoport/icons-react';
 import { startCase, format } from '@cogoport/utils';
 
+import MobileHeader from '../../../../MobileHeader';
 import getWorkScopes from '../../../configurations/work-scopes';
 
 import EditProfileDetails from './EditProfileDetails';
@@ -11,8 +12,7 @@ import MobileVerificationModal from './MobileVerificationModal';
 import ResetPassword from './ResetPassword';
 import styles from './styles.module.css';
 
-// import MobileHeader from '@/components/Profile/components/MobileHeader';
-// import GLOBAL_CONSTANTS from '@/constants/globals.json';
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals.json';
 // import formatDate from '@/temp/utils/formatDate';
 
 function MyProfile() {
@@ -36,7 +36,6 @@ function MyProfile() {
 	if (loading) {
 		return <LoadingState />;
 	}
-	console.log(userDetails, 'userDetails');
 
 	const renderWorkScopes = () => {
 		if (!userDetails.work_scopes?.length) {
@@ -53,12 +52,12 @@ function MyProfile() {
 
 	return (
 		<>
-			{/* {isMobile && (
+			{isMobile && (
 				<MobileHeader
-					heading={t('profile:accountDetails.tabOptions.profile.mobileHeading')}
+					heading="My Profile"
 					onClickBackButton={onClickBackButton}
 				/>
-			)} */}
+			)}
 
 			<div className={styles.main_container}>
 				{isMobile && !showEditProfileDetails ? (
@@ -109,7 +108,7 @@ function MyProfile() {
 									Email
 								</div>
 								<div className={styles.text_icon_container}>
-									<div className={styles.label_text}>{userDetails.email || '-'}</div>
+									<div className={styles.value_text}>{userDetails.email || '-'}</div>
 									{userDetails.email_verified && (
 										<IcCFtick className={styles.icon} />
 									)}
@@ -129,7 +128,7 @@ function MyProfile() {
 									Mobile
 								</div>
 								<div className={styles.text_icon_container}>
-									<div className={styles.label_text}>
+									<div className={styles.value_text}>
 										{userDetails.mobile_number
 											? `${userDetails.mobile_country_code} ${userDetails.mobile_number}`
 											: '-'}

@@ -1,0 +1,17 @@
+.btn {
+	padding: 8px 12px;
+	margin: 4px;
+	text-transform: capitalize;
+}
+
+.empty_content {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.trade_party_header {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-end;
+}

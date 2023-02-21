@@ -1,0 +1,23 @@
+.container {
+	display: flex;
+	flex-direction: column;
+	padding: 16px;
+}
+
+.heading {
+	margin-bottom: 12px;
+	font-size: 16px;
+	font-weight: 500;
+	color: #393f70;
+}
+
+.sub_text {
+	font-size: 12px;
+	color: #333;
+}
+
+.button_container {
+	display: flex;
+	justify-content: flex-end;
+	margin-top: 24px;
+}

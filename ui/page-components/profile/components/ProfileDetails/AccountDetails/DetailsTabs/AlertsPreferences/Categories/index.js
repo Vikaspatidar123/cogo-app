@@ -3,6 +3,8 @@ import { useState } from 'react';
 import getAlertPreferencesControls from '../../../../configurations/alerts-preferences-controls';
 // import useGetPreferences from '../../../../../../hooks/useGetPreferences';
 
+import getUserAlert from '../hooks/getUserAlert';
+
 import CategoryForm from './CategoryForm';
 import styles from './styles.module.css';
 
@@ -22,23 +24,18 @@ function Categories() {
 	const {
 		profile: { id = '' },
 	} = useSelector((state) => state);
-
+	const { getPreferences, preferences } = getUserAlert({ setFormData });
 	const controls = getAlertPreferencesControls();
-
-	// const { getPreferences, preferences } = useGetPreferences({
-	// 	userId: id,
-	// 	setFormData,
-	// });
 
 	return (
 		<div className={styles.container}>
 			<CategoryForm
 				controls={controls}
-				// getPreferences={getPreferences}
+				getPreferences={getPreferences}
 				formData={formData}
 				userId={id}
 				setFormData={setFormData}
-				// preferences={preferences}
+				preferences={preferences}
 			/>
 		</div>
 	);

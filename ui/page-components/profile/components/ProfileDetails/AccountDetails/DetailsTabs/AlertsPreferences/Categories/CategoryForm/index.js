@@ -1,8 +1,9 @@
-import { CheckboxGroup, Button, Checkbox } from '@cogoport/components';
+/* eslint-disable react-hooks/exhaustive-deps */
+import { Button, Checkbox } from '@cogoport/components';
 import { useEffect, useState } from 'react';
 
 import { CATEGORIES } from '../../../../../../../constants/index';
-// import useUpdatePreference from '../../../../../../../hooks/useUpdatePreference';
+import useUpdatePreference from '../../hooks/useUpdatePreference';
 
 import ReasonModal from './ReasonModal';
 import styles from './styles.module.css';
@@ -19,12 +20,12 @@ function CategoryForm({
 	const [addedCategory, setAddedCategory] = useState([]);
 	const [showModal, setShowModal] = useState(false);
 
-	// const { loading, updatePreference } = useUpdatePreference({
-	// 	userId,
-	// 	getPreferences,
-	// 	setShowModal,
-	// 	isAllSelected: formData.select_all,
-	// });
+	const { loading, updatePreference } = useUpdatePreference({
+		userId,
+		getPreferences,
+		setShowModal,
+		isAllSelected: formData.select_all,
+	});
 
 	useEffect(() => {
 		if (addedCategory.length === CATEGORIES.length) {
@@ -46,13 +47,14 @@ function CategoryForm({
 	const handleChange = (val, name) => {
 		setFormData((prev) => ({
 			...prev,
-			[name]: !(val === '' || val === undefined),
+			[name]: val,
 		}));
 		handlePush(name);
 	};
 
 	const handleSelectAll = (e) => {
-		if (e.target.value) {
+		const { checked } = e.target;
+		if (checked) {
 			setAddedCategory(CATEGORIES);
 			setFormData((prev) => ({
 				...prev,
@@ -87,7 +89,7 @@ function CategoryForm({
 		} else {
 			setAddedCategory(restData);
 		}
-	}, [JSON.stringify(rest)]);
+	}, [JSON?.stringify(rest)]);
 
 	const handleModal = () => {
 		setShowModal(true);
@@ -105,16 +107,15 @@ function CategoryForm({
 		const check = Object.keys(filteredData).length === 0;
 
 		if (formData.select_all || check) {
-			// await updatePreference({
-			// 	...formData,
-			// 	check,
-			// });
+			await updatePreference({
+				...formData,
+				check,
+			});
 		} else {
 			setFilteredDataState(filteredData);
 			handleModal();
 		}
 	};
-	console.log(formData.offers_discounts, 'formData.offers_discounts');
 	return (
 		<div className={styles.container}>
 			<div className={styles.header}>
@@ -124,7 +125,7 @@ function CategoryForm({
 
 				<Checkbox
 					label={controls.select_all.label}
-					value={formData?.select_all}
+					checked={formData?.select_all}
 					onChange={(val) => handleSelectAll(val)}
 				/>
 			</div>
@@ -138,8 +139,8 @@ function CategoryForm({
 						<div className={styles.sub_category}>
 							<Checkbox
 								label={controls.offers_discounts.label}
-								value={formData.offers_discounts}
-								onChange={(val) => handleChange(val, 'offers_discounts')}
+								checked={formData.offers_discounts}
+								onChange={(val) => handleChange(val.target.checked, 'offers_discounts')}
 							/>
 							<div className={styles.sub_label}>
 								Receive offers and discounts.
@@ -149,8 +150,8 @@ function CategoryForm({
 						<div className={styles.sub_category}>
 							<Checkbox
 								label={controls.subscriber_special.label}
-								value={formData.subscriber_special}
-								onChange={(val) => handleChange(val, 'subscriber_special')}
+								checked={formData.subscriber_special}
+								onChange={(val) => handleChange(val.target.checked, 'subscriber_special')}
 							/>
 							<div className={styles.sub_label}>
 								Receive exclusive subscriber communications.
@@ -167,8 +168,8 @@ function CategoryForm({
 						<div className={styles.sub_category}>
 							<Checkbox
 								label={controls.new_product_service_launches_and_updates.label}
-								value={formData.new_product_service_launches_and_updates}
-								onChange={(val) => handleChange(val, 'new_product_service_launches_and_updates')}
+								checked={formData.new_product_service_launches_and_updates}
+								onChange={(val) => handleChange(val.target.checked, 'new_product_service_launches_and_updates')}
 							/>
 							<div className={styles.sub_label}>
 								Get information on latest product launches and updates.
@@ -178,8 +179,8 @@ function CategoryForm({
 						<div className={styles.sub_category}>
 							<Checkbox
 								label={controls.product_service_explainers.label}
-								value={formData.product_service_explainers}
-								onChange={(val) => handleChange(val, 'product_service_explainers')}
+								checked={formData.product_service_explainers}
+								onChange={(val) => handleChange(val.target.checked, 'product_service_explainers')}
 							/>
 							<div className={styles.sub_label}>
 								Receive detailed product explanations.
@@ -195,8 +196,8 @@ function CategoryForm({
 						<div className={styles.sub_category}>
 							<Checkbox
 								label={controls.newsletter.label}
-								value={formData.newsletter}
-								onChange={(val) => handleChange(val, 'newsletter')}
+								checked={formData.newsletter}
+								onChange={(val) => handleChange(val.target.checked, 'newsletter')}
 							/>
 							<div className={styles.sub_label}>
 								Get latest newsletters and services.
@@ -206,12 +207,11 @@ function CategoryForm({
 						<div className={styles.sub_category}>
 							<Checkbox
 								label={controls.general_news.label}
-								value={formData.general_news}
-								onChange={(val) => handleChange(val, 'general_news')}
+								checked={formData.general_news}
+								onChange={(val) => handleChange(val.target.checked, 'general_news')}
 							/>
 							<div className={styles.sub_label}>
 								Receive relevant news and information.
-
 							</div>
 						</div>
 					</div>
@@ -219,8 +219,8 @@ function CategoryForm({
 			</div>
 
 			<Button
-				// disabled={loading}
-				// loading={loading}
+				disabled={loading}
+				loading={loading}
 				themeType="accent"
 				className={styles.save_button}
 				onClick={handleSaveForm}
@@ -228,11 +228,11 @@ function CategoryForm({
 				UPDATE EMAIL PREFERENCES
 			</Button>
 			<ReasonModal
-				// loading={loading}
+				loading={loading}
 				formData={formData}
 				showModal={showModal}
 				setShowModal={setShowModal}
-				// updatePreference={updatePreference}
+				updatePreference={updatePreference}
 				filteredDataState={filteredDataState}
 			/>
 		</div>

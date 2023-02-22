@@ -2,6 +2,7 @@
     display: flex;
 	flex-wrap: wrap;
 	gap: 18px;
+	
 }
 
 .card_div_center{
@@ -26,8 +27,8 @@
 	width: 31%;
 	gap: 16px;
 
-	@media (max-width: 760px) {
-		width: 300px;
+	@media (max-width: 768px) {
+		width: 100%;
 	}
 
 }
@@ -47,7 +48,7 @@
 	}
 }
 
-.row .second {
+.row.second {
 	margin-bottom: 15px;
 }
 

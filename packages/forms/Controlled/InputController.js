@@ -4,7 +4,7 @@ import { Controller } from 'react-hook-form';
 
 function InputController(props) {
 	const {
-		name, control, rules, ...rest
+		name, control, value, rules, ...rest
 	} = props;
 
 	return (
@@ -13,12 +13,13 @@ function InputController(props) {
 			control={control}
 			name={name}
 			rules={rules}
-			render={({ field: { onChange, onBlur, value } }) => (
+			defaultValue={value}
+			render={({ field: { onChange, onBlur, value:newValue } }) => (
 				<Input
 					{...rest}
 					key={rest.id}
 					onChange={onChange}
-					value={value}
+					value={newValue || value}
 					onBlur={onBlur}
 				/>
 			)}

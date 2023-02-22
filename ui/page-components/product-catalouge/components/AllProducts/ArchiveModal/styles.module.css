@@ -25,6 +25,10 @@
 	border-radius: 8px 8px 0px 0px;
 	margin-bottom: 20px ;
 	justify-content: center;
+
+	@media(max-width: 768px){
+		width: 100%;
+	}
 }
 
 .secondary_button{
@@ -55,7 +59,8 @@
 	flex-direction: column;
 	align-items: center;
 
-	@media (max-width: 760px) {
+	@media (max-width: 768px) {
 		text-align: center;
+		width: 100%;
 	}
 }

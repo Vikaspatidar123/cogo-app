@@ -42,7 +42,7 @@ function ListView({
 		setActiveTab,
 		card: false,
 	});
-	const [visible, setVisible] = useState();
+	const [visible, setVisible] = useState({});
 	useEffect(() => {
 		if (activeSubTab) refetchProduct({ productClassificationId, sub: false });
 	}, [activeSubTab]);
@@ -72,7 +72,7 @@ function ListView({
 					setProId(id);
 					setIsEdit(true);
 					setShowProduct(true);
-					setVisible(false);
+					setVisible({ [id]: false });
 				}}
 			>
 				<IcMEdit width={10} height={10} />
@@ -85,7 +85,7 @@ function ListView({
 				onClick={() => {
 					setArchive(true);
 					setProId(id);
-					setVisible(false);
+					setVisible({ [id]: false });
 				}}
 			>
 				<IcMPaste width={10} height={10} />
@@ -98,7 +98,7 @@ function ListView({
 					setShowDeleteModal(true);
 					setProId(id);
 					setProductClassification(productClassificationId);
-					setVisible(false);
+					setVisible({ [id]: false });
 				}}
 			>
 				<IcMDelete width={10} height={10} />
@@ -151,14 +151,14 @@ function ListView({
 					interactive
 					visible={visible?.[record.id]}
 					onClickOutside={() => {
-						setVisible(false);
+						setVisible({ [record.id]: false });
 					}}
 				>
 					<div>
 						<IcMOverflowDot
 							className={styles.icon}
 							onClick={() => {
-								setVisible(true);
+								setVisible({ [record.id]: true });
 							}}
 						/>
 					</div>

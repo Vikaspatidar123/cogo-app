@@ -27,7 +27,7 @@ function HSCodelistAddproduct({
 	setHSCode = () => {},
 	countryInfo = {},
 	prefiledValues = {},
-	setPrefiiledValues = () => {},
+	setPrefiledValues = () => {},
 	hsCodeObj = [],
 	refetchHsCode = () => {},
 	headingObj = [],
@@ -351,7 +351,7 @@ function HSCodelistAddproduct({
 								loading={loading}
 								onRowClick={(row) => {
 									setChaptersData(row?.chapters);
-									setPrefiiledValues((prev) => ({
+									setPrefiledValues((prev) => ({
 										...prev,
 										category: row?.sectionDescription,
 									}));
@@ -381,7 +381,7 @@ function HSCodelistAddproduct({
 							onRowSelect={() => {}}
 							onRowClick={async (row) => {
 								setActiveChapter(row?.chapterDescription);
-								setPrefiiledValues((prev) => ({
+								setPrefiledValues((prev) => ({
 									...prev,
 									subCategory: row?.chapterDescription,
 								}));
@@ -497,7 +497,7 @@ function HSCodelistAddproduct({
 								className={styles.styled_back_button}
 								// className={`${hsRowLength && 'disableBtn'} secondary md`}
 								onClick={() => {
-									setPrefiiledValues((prev) => ({
+									setPrefiledValues((prev) => ({
 										...prev,
 										hscode   : hscoderow?.hsCode,
 										hsCodeId : hscoderow?.id,

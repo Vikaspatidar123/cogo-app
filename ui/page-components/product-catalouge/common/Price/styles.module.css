@@ -1,5 +1,15 @@
 .form_container{
     margin: 0 32px;
+
+	@media (max-width: 768px){
+		overflow: auto;
+	}
+}
+
+.container{
+	@media (max-width: 768px){
+		width: 100%;
+	}
 }
 
 .form_row{
@@ -7,6 +17,13 @@
 	align-items: center;
 	gap: 40px;
 	margin: 22px 0;
+
+	@media (max-width: 768px){
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
 }
 
 .form_row.mid{
@@ -19,6 +36,10 @@
 .form_col {
     width: 45%;
 	font-size: 13px;
+
+	@media (max-width: 768px){
+		width: 100%
+	}
 
 	.error {
 		border: 1px solid red;
@@ -73,6 +94,12 @@
 			color: #db4634;
 			border: 2px solid #db4634;
 		}
+	}
+
+	@media (max-width: 768px){
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
 	}
 }
 

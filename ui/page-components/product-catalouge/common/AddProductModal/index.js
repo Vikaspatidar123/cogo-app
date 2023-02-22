@@ -7,6 +7,8 @@ import Pricing from '../Price';
 
 import styles from './styles.module.css';
 
+import { useSelector } from '@/packages/store';
+
 function AddProductModal({
 	showProduct,
 	setShowProduct,
@@ -22,10 +24,19 @@ function AddProductModal({
 	subCategoryCount,
 	card,
 	setActiveTab,
-	isMobile,
+	setIsEdit,
 }) {
 	const [pdId, setProductClassificationId] = useState();
 	const [productDetailsfromAPi, setProductDetailsfromApi] = useState({});
+	const { general } = useSelector((state) => state);
+	const { isMobile } = general;
+
+	const handleClick = () => {
+		if (setIsEdit) {
+			setIsEdit(false);
+		}
+		setShowProduct(false);
+	};
 
 	const { loading } = useGetProductClassificationId({
 		setProductClassificationId,
@@ -36,8 +47,8 @@ function AddProductModal({
 	return (
 		<Modal
 			show={showProduct}
-			onClose={() => setShowProduct(false)}
-			width={!isMobile ? 600 : 400}
+			onClose={handleClick}
+			onOuterClick={handleClick}
 		>
 			<div className={styles.styled_div}>
 				<div className={styles.product_icon}>
@@ -72,6 +83,7 @@ function AddProductModal({
 				subCategoryCount={subCategoryCount}
 				card={card}
 				setActiveTab={setActiveTab}
+				setIsEdit={setIsEdit}
 			/>
 		</Modal>
 	);

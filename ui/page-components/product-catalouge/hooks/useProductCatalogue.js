@@ -11,10 +11,9 @@ const useProductCatalogue = ({ archive = false, fetch = () => {}, setActiveTab }
 	const [apiData, setApiData] = useState({});
 	const [pagination, setPagination] = useState({ page: 1 });
 	const [{ loading: useProductLoading }, UseProducttrigger] = useRequestBf({
-		url        : '/saas/product/list',
-		method     : 'get',
-		authKey    : 'post_saas_product',
-		autoCancel : false,
+		url     : '/saas/product/list',
+		method  : 'get',
+		authKey : 'post_saas_product',
 	}, { manual: true });
 
 	const [{ loading: addApiLoading }] = useRequestBf({
@@ -89,7 +88,7 @@ const useProductCatalogue = ({ archive = false, fetch = () => {}, setActiveTab }
 	};
 
 	useEffect(() => {
-		if (archive) refetchProduct({ page: pagination?.page });
+		refetchProduct({ page: pagination?.page });
 	}, [pagination]);
 
 	return {

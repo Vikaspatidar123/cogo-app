@@ -4,19 +4,20 @@ import { Controller } from 'react-hook-form';
 
 function MultiSelectController(props) {
 	const {
-		name, control, rules, ...rest
+		name, control, value, rules, ...rest
 	} = props;
 	return (
 		<Controller
 			control={control}
 			name={name}
 			rules={rules}
-			render={({ field: { onChange, onBlur, value } }) => (
+			defaultValue={value}
+			render={({ field: { onChange, onBlur, value:newValue } }) => (
 				<MultiSelect
 					{...rest}
 					name={name}
 					onChange={onChange}
-					value={value}
+					value={newValue}
 					onBlur={onBlur}
 				/>
 			)}

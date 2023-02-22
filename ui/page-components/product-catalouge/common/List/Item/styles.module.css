@@ -17,7 +17,7 @@
 	text-transform: capitalize;
 	color: #4f4f4f;
 	width: max-content;
-	@media (min-width: 768px) {
+	@media (max-width: 768px) {
 		display: none;
 	}
 }

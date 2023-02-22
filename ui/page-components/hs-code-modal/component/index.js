@@ -22,6 +22,8 @@ function HsCode({
 	showHsCodeModal,
 	setShowHsCodeModal,
 	setSelectedData,
+	setShowProduct,
+	setPrefiledValues,
 	isMobile = false,
 }) {
 	const [chaptersData, setChaptersData] = useState([]);
@@ -79,6 +81,21 @@ function HsCode({
 		isMobile,
 	});
 
+	const handleClick = () => {
+		if (setShowProduct) {
+			setShowProduct(true);
+		}
+		if (setPrefiledValues) {
+			setPrefiledValues((prev) => ({
+				...prev,
+				hscode   : hsCodeRow?.hsCode,
+				hsCodeId : hsCodeRow?.id,
+			}));
+		}
+		setSelectedData(hsCodeRow);
+		setShowHsCodeModal(false);
+	};
+
 	const {
 		categoryFunction, chapterFunction, headingFunction, hsFunction,
 	} =		clickFunction({
@@ -95,6 +112,7 @@ function HsCode({
 		previousStepper,
 		setHeadingCode,
 		searchTerm,
+		setPrefiledValues,
 	});
 
 	const previousFunction = () => {
@@ -255,10 +273,7 @@ function HsCode({
 								className={`${hsRowLength && styles.disableBtn} md`}
 								size="md"
 								themeType="primary"
-								onClick={() => {
-									setSelectedData(hsCodeRow);
-									setShowHsCodeModal(false);
-								}}
+								onClick={handleClick}
 								disabled={hsRowLength}
 							>
 								Add

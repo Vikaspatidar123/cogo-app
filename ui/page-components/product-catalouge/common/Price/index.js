@@ -103,7 +103,7 @@ function Pricing({
 	};
 
 	return (
-		<div>
+		<div className={styles.container}>
 			<form>
 				<div className={styles.header}>
 					<div className={styles.summary_tab}>

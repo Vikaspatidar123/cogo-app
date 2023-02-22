@@ -32,7 +32,7 @@ function AllProducts({
 }) {
 	const { Mapping } = HsCodeIconMaping(isMobile);
 	const [archive, setArchive] = useState(false);
-	const [visible, setVisible] = useState();
+	const [visible, setVisible] = useState({});
 	const [proId, setProId] = useState('');
 	const [showDeleteModal, setShowDeleteModal] = useState(false);
 	const [productClassification, setProductClassification] = useState('');
@@ -62,7 +62,7 @@ function AllProducts({
 					setProductClassification(productClassificationId);
 					setIsEdit(true);
 					setShowProduct(true);
-					setVisible(false);
+					setVisible({ [id]: false });
 				}}
 			>
 				<IcMEdit width={10} height={10} />
@@ -75,7 +75,7 @@ function AllProducts({
 				onClick={() => {
 					setProId(id);
 					setArchive(true);
-					setVisible(false);
+					setVisible({ [id]: false });
 				}}
 			>
 				<IcMPaste width={10} height={10} />
@@ -89,7 +89,7 @@ function AllProducts({
 					setShowDeleteModal(true);
 					setProId(id);
 					setProductClassification(productClassificationId);
-					setVisible(false);
+					setVisible({ [id]: false });
 				}}
 			>
 				<IcMDelete width={10} height={10} />
@@ -132,18 +132,19 @@ function AllProducts({
 											<Popover
 												placement="bottom"
 												animation="shift-away"
-												theme="light-border"
+												// theme="light-border"
 												render={content(id, productClassificationId)}
 												interactive
 												visible={visible?.[id]}
 												onClickOutside={() => {
-													setVisible(false);
+													setVisible({ [id]: false });
 												}}
 											>
+												{/* <Popover placement="left" render="helo"> */}
 												<div>
 													<IcMOverflowDot
 														className={styles.icon}
-														onClick={() => setVisible(true)}
+														onClick={() => setVisible({ [id]: true })}
 													/>
 												</div>
 											</Popover>
@@ -227,6 +228,7 @@ function AllProducts({
 				prefiledValues={prefiledValues}
 				setPrefiledValues={setPrefiledValues}
 				isEdit={isEdit}
+				setIsEdit={setIsEdit}
 				addProductLoading={addProductLoading}
 				refetchProduct={refetchProduct}
 				setHSCode={setHSCode}

@@ -55,7 +55,7 @@ function HsCodeModal({
 				refetchHsCode={refetchHsCode}
 				countryInfo={countryInfo}
 				prefiledValues={prefiledValues}
-				setPrefiiledValues={setPrefiledValues}
+				setPrefiledValues={setPrefiledValues}
 				loading={loading}
 				headingLoading={headingLoading}
 				hsloading={hsloading}

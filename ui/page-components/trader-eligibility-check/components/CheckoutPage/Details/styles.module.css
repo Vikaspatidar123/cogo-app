@@ -1,0 +1,66 @@
+/* import Grid from '@cogoport/front/components/Grid';
+import styled from '@cogoport/front/styled';
+
+const { Row, Col } = Grid;
+
+export const Column = styled(Col)`
+	padding: 8px;
+`;
+
+export const RowWrapper = styled(Row)`
+	padding: 15px;
+	max-height: 50%;
+`;
+
+export const Label = styled.div`
+	font-weight: 500;
+	font-size: 14px;
+	color: #828282;
+`;
+
+export const Value = styled.div`
+	font-weight: 600;
+	font-size: 16px;
+	color: #221f20;
+`;
+
+export const Container = styled.div`
+	display: flex;
+	justify-content: space-around;
+	flex-direction: column;
+	height: 100%;
+`;
+
+export const Wrapper = styled.div`
+	max-height: 100%;
+`; */
+
+
+.container{
+	display: flex;
+	justify-content: space-around;
+	flex-direction: column;
+	height: 100%;
+}
+
+.row_wrapper{
+	display: flex;
+	padding: 15px;
+	max-height: 50%;
+}
+
+.coolumn{
+	padding: 8px;
+}
+
+.label{
+	font-weight: 500;
+	font-size: 14px;
+	color: #828282;
+}
+
+.value{
+	font-weight: 600;
+	font-size: 16px;
+	color: #221f20;
+}

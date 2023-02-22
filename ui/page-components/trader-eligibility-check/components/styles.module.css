@@ -1,0 +1,80 @@
+/* import styled from '@cogoport/front/styled';
+import Grid from '@cogoport/front/components/Grid';
+import HeadingSvg from '../assets/heading.svg';
+
+const { Col } = Grid;
+export const Container = styled.div`
+	padding: 20px;
+	box-shadow: 0px 8px 20px rgba(71, 111, 211, 0.11);
+	width: 100%;
+	display: flex;
+	height: 10%;
+`;
+
+export const Heading = styled(Col)`
+	display: flex;
+	justify-content: center;
+	font-weight: 500;
+	font-size: 22px;
+	align-items: center;
+`;
+
+export const SVG = styled(HeadingSvg)`
+	margin: 0px 10px 0px 10px;
+	height: 40px;
+	width: 40px;
+`;
+
+export const ToggleWrapper = styled(Col)`
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	font-weight: 500;
+	font-size: 16px;
+	margin-top: -5px;
+`;
+
+export const Wrapper = styled.div`
+	height: 96%;
+`;
+
+export const ContentWrapper = styled.div`
+	height: 90%;
+	overflow: scroll;
+	margin-top: ${(props) => (props.isMobile ? '5px !important' : '')};
+`; */
+
+
+.container{
+	padding: 20px;
+	box-shadow: 0px 8px 20px rgba(71, 111, 211, 0.11);
+	width: 100%;
+	display: flex;
+	height: 10%;
+	justify-content: center
+}
+
+.heading{
+	display: flex;
+	justify-content: center;
+	font-weight: 500;
+	font-size: 22px;
+	align-items: center;
+}
+
+.wrapper{
+	height: 96%;
+}
+
+.svg_style{
+	margin: 0px 10px 0px 10px;
+	height: 40px;
+	width: 40px;
+}
+
+.content_wrapper{
+	height: 90%;
+	overflow: scroll;
+	margin-top: 5px;
+}
+

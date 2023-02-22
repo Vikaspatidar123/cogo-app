@@ -96,8 +96,8 @@ const navigationMappings = {
 			{
 				key   : 'saas_premium_services-trader_eligibility_check',
 				title : 'Trader Eligibility Check',
-				href  : '/saas/premium-services/trader-eligibility-check',
-				as    : '/saas/premium-services/trader-eligibility-check',
+				href  : '/v2/saas/premium-services/trader-eligibility-check',
+				as    : '/v2/saas/premium-services/trader-eligibility-check',
 				icon  : <IcMTradeparties width={40} height={40} fill="red" />,
 			},
 		],

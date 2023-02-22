@@ -1,7 +1,6 @@
 /* eslint-disable no-restricted-globals */
 /* eslint-disable no-undef */
 import { Toast } from '@cogoport/components';
-import { setCookie } from '@cogoport/utils';
 
 import getApiErrorString from '@/packages/forms/utils/getApiError';
 import { useRequest } from '@/packages/request/index';

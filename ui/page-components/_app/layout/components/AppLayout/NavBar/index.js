@@ -1,5 +1,5 @@
 /* eslint-disable max-len */
-import { Tooltip } from '@cogoport/components';
+import { Popover } from '@cogoport/components';
 
 import NavBarItem from './NavBarItem';
 import styles from './styles.module.css';
@@ -31,26 +31,24 @@ function NavBar() {
 	return (
 		<div className={styles.menu}>
 			{organization.map((item) => {
-				const { type, showInNav = false } = item;
+				const { type, showInNav = false, isSubNavs = false } = item;
 				const isActive = !!item.options?.find((option) => getFindUrl(option.href) === unPrefixedPath);
 
 				if (showInNav) {
 					return (
-						type === 'link' ? <NavBarItem key={item.title} item={item} unPrefixedPath={unPrefixedPath} getFindUrl={getFindUrl} />
+						!isSubNavs ? <NavBarItem key={item.title} item={item} unPrefixedPath={unPrefixedPath} getFindUrl={getFindUrl} />
 							: (
 								<div key={item.title}>
-									<Tooltip
-										content={<SubMenu options={item.options} unPrefixedPath={unPrefixedPath} getFindUrl={getFindUrl} />}
+									<Popover
+										render={<SubMenu options={item.options} unPrefixedPath={unPrefixedPath} getFindUrl={getFindUrl} />}
 										placement="bottom"
-										interactive
-										maxWidth={646}
 										className={styles.tippy_box}
-										caret={false}
+										trigger="mouseenter"
 									>
 										<div className={`${isActive ? styles.active : styles.text}`}>
 											{item.title}
 										</div>
-									</Tooltip>
+									</Popover>
 								</div>
 							)
 					);

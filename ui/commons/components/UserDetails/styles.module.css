@@ -1,44 +1,35 @@
-.container{
-    border:1px solid;
-    border-radius: 8px;
-	padding: 8px 8px;
-	margin-left: 16px;
-	position: relative;
-    padding: 5px 9px;
-    z-index: 99999;
+.container {
+  border: 1px solid;
+  border-radius: 8px;
+  padding: 8px 8px;
+  margin-left: 16px;
+  position: relative;
+  padding: 5px 9px;
+  z-index: 99999;
 }
-.tippy_box{
-	margin-top: 9px !important;
-	max-width:none !important;
-    
-
+.tippy_box {
+  margin-top: 5px !important;
 }
-
 .pop-arrow {
-    filter: none !important;
-    z-index: 1 !important;
+  filter: none !important;
+  z-index: 1 !important;
 }
-
 .container:hover {
-    background: #e4e9ff;
+  background: #e4e9ff;
 }
 
-.tippy-arrow {
-    display: none;
+.container_flex {
+  display: flex;
+  height: 100%;
+  align-items: center;
 }
 
-.container_flex{
-    display: flex;
-	height: 100%;
-	align-items: center;
-}
-
-.bussiness_name{
-    text-overflow: ellipsis;
-	overflow: hidden;
-	font-size: 14px;
-	font-weight: 500;
-	width: 120px;
-	white-space: nowrap;
-	padding-left: 10px;
+.bussiness_name {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  font-size: 14px;
+  font-weight: 500;
+  width: 120px;
+  white-space: nowrap;
+  padding-left: 10px;
 }

@@ -1,6 +1,6 @@
-import { useRouter } from '@/temp/next';
-
 import { A } from '../styles';
+
+import { useRouter } from '@/temp/next';
 
 function ManageSubscriptions() {
 	const router = useRouter();

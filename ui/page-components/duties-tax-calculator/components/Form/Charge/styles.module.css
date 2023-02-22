@@ -1,0 +1,37 @@
+/* import styled from '@cogoport/front/styled';
+
+export const Container = styled.div`
+	.incoterm {
+		width: 30%;
+	}
+	.core-ui-select__control {
+		min-height: 35px !important;
+		font-size: 12px !important;
+	}
+	.incotermCharges {
+		padding-top: 0;
+	}
+`;
+
+export const TitleContainer = styled.div`
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+`; */
+
+.incoterm {
+	width: 30%;
+}
+.core-ui-select__control {
+	min-height: 35px !important;
+	font-size: 12px !important;
+}
+.incoterm_charges {
+	padding-top: 0;
+}
+
+.title_container{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}

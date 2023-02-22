@@ -8,24 +8,24 @@ const useBookmark = ({ setAddBookmark, setRemoveBookmark, refetchHsCode }) => {
 	const { profile, general } = useSelector((s) => s);
 	const [bookmarkData, setBookmarkData] = useState([]);
 	const { id, organization } = profile || {};
-	const { scope, isMobile } = general;
+	const { isMobile } = general;
 
 	const [{ loading: getBookmarkLoading }, trigger] = useRequestBf({
-		url: '/saas/hs-code/favourites',
-		authKey: 'get_saas_hs_code_favourites',
-		method: 'get',
+		url     : '/saas/hs-code/favourites',
+		authKey : 'get_saas_hs_code_favourites',
+		method  : 'get',
 	}, { manual: true });
 
 	const [{ loading }, triggerAdd] = useRequestBf({
-		url: '/saas/hs-code/favourites',
-		authKey: 'post_saas_hs_code_favourites',
-		method: 'post',
+		url     : '/saas/hs-code/favourites',
+		authKey : 'post_saas_hs_code_favourites',
+		method  : 'post',
 	}, { manual: true });
 
 	const [{ loading: removeBookmarkLoadding }, triggerDelete] = useRequestBf({
-		url: '/saas/hs-code/favourites',
-		authKey: 'delete_saas_hs_code_favourites',
-		method: 'delete',
+		url     : '/saas/hs-code/favourites',
+		authKey : 'delete_saas_hs_code_favourites',
+		method  : 'delete',
 	}, { manual: true });
 
 	const refetchGetBookmark = async () => {
@@ -45,9 +45,9 @@ const useBookmark = ({ setAddBookmark, setRemoveBookmark, refetchHsCode }) => {
 		try {
 			const response = await triggerAdd({
 				data: {
-					userId: id,
-					hsCodeId: hsCode_ID,
-					organizationId: organization?.id,
+					userId         : id,
+					hsCodeId       : hsCode_ID,
+					organizationId : organization?.id,
 				},
 			});
 
@@ -70,8 +70,8 @@ const useBookmark = ({ setAddBookmark, setRemoveBookmark, refetchHsCode }) => {
 		try {
 			const response = await triggerDelete({
 				data: {
-					userId: id,
-					hsCodeId: hsCode_ID,
+					userId   : id,
+					hsCodeId : hsCode_ID,
 				},
 			});
 			if (response.data === 'Success' && flag) {

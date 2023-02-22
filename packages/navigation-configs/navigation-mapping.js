@@ -71,7 +71,6 @@ const navigationMappings = {
 	saas_premium_services: {
 		key         : 'saas_premium_services',
 		title       : 'Premium Services',
-		// type: 'link',
 		icon        : 'nav-premium-services',
 		module_type : 'dashboards',
 		isNew       : true,

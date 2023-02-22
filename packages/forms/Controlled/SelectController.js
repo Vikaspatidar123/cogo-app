@@ -4,7 +4,7 @@ import { Controller } from 'react-hook-form';
 
 function SelectController(props) {
 	const {
-		name, control, rules, ...rest
+		name, control, rules, value, ...rest
 	} = props;
 
 	return (
@@ -13,17 +13,17 @@ function SelectController(props) {
 			control={control}
 			name={name}
 			rules={rules}
-			render={({ field: { onChange, onBlur, value } }) => (
+			render={({ field: { onChange, onBlur, value: newValue } }) => (
 				<Select
 					{...rest}
 					key={rest.id}
-					onChange={(val, obj) => {
-						onChange(val, obj);
-						if (rest.handleChange) {
-							rest.handleChange(obj, name);
+					onChange={(e, obj) => {
+						onChange(e, obj);
+						if (rest?.handleChange) {
+							rest?.handleChange(obj);
 						}
 					}}
-					value={value}
+					value={newValue || value}
 					onBlur={onBlur}
 					data-test-value={value}
 				/>

@@ -1,0 +1,36 @@
+
+.row{
+	padding: 18px;
+	display: flex
+}
+.select_txt{
+	font-weight: 600;
+	font-size: 14px;
+}
+
+.column_heading{
+	display: flex ;
+	flex-direction: row ;
+}
+.flex_div{
+	display: flex;
+	align-items: center;
+	align-content: center;
+}
+.label_txt{
+	font-weight: 600;
+	font-size: 14px;
+	padding-right: 15px;
+	color: #356efd;
+	padding-left: 40px;
+}
+
+.select_label{
+	font-weight: 600;
+	font-size: 14px;
+	text-decoration-line: underline;
+	color: #356efd;
+	padding-right: 15px;
+	cursor: pointer;
+	padding-left: 40px;
+}

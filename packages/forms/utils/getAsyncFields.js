@@ -12,10 +12,10 @@ function asyncFieldsLocations2() {
 	};
 }
 
-function asyncFieldsLocations() {
+function asyncFieldsLocations(labelKey = 'name', valueKey = 'id') {
 	return {
-		valueKey    : 'id',
-		labelKey    : 'name',
+		valueKey,
+		labelKey,
 		endpoint    : 'list_locations',
 		initialCall : true,
 		params      : {
@@ -59,10 +59,12 @@ function asyncFieldsHsCodeCountries() {
 		labelKey      : 'countryName',
 		valueKey      : 'id',
 		endpoint      : 'saas/hs-code/countries',
+		authKey       : 'get_saas_hs_code_countries',
 		initialCall   : true,
 		defaultParams : { page_limit: 20 },
 	};
 }
 export {
-	asyncFieldsLocations, asyncFieldsLocations2, asyncFieldsPartner, asyncFieldsPartnerRoles, asyncFieldsHsCodeCountries,
+	asyncFieldsLocations, asyncFieldsLocations2,
+	asyncFieldsPartner, asyncFieldsPartnerRoles, asyncFieldsHsCodeCountries,
 };

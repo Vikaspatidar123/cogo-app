@@ -39,10 +39,9 @@ function OTPLayout({
 
 				<Button
 					type="button"
-					className="primary md text"
+					themeType="linkUi"
 					onClick={() => {
 						sendOtp({ timer });
-
 						useImperativeHandleRef.current?.resetOtp();
 					}}
 					disabled={timer.isTimeRemaining || loading}

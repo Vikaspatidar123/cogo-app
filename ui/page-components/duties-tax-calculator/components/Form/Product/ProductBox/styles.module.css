@@ -1,0 +1,149 @@
+/* import styled from '@cogoport/front/styled';
+
+export const Container = styled.div`
+	position: absolute;
+	padding: 12px;
+	right: 0px;
+	top: 7%;
+	z-index: -1;
+	width: 300px;
+	z-index: -1;
+	border-radius: 0 10px 10px 0;
+
+	background: rgba(34, 31, 32, 0.85);
+	-webkit-backdrop-filter: blur(3px);
+	backdrop-filter: blur(3px);
+	border: 1px solid rgba(34, 31, 32, 0.425);
+
+	&.mobile-view {
+		top: -66%;
+		right: 345px;
+		z-index: 10;
+		border-radius: 0 20px 20px 0;
+		width: 275px;
+		animation: animateProductBoxMobile 0.5s linear 0.1s 1;
+		animation-fill-mode: forwards;
+	}
+
+	&.web-view {
+		animation: animateProductBox 0.5s linear 0.1s 1;
+		animation-fill-mode: forwards;
+	}
+
+	@keyframes animateProductBoxMobile {
+		0% {
+			right: 345px;
+		}
+		100% {
+			right: 52px;
+		}
+	}
+	@keyframes animateProductBox {
+		0% {
+			right: 0;
+		}
+		100% {
+			right: -95%;
+		}
+	}
+`;
+
+export const Row = styled.div`
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-start;
+
+	color: #fff;
+	margin-bottom: 14px;
+	&.box {
+		justify-content: center;
+		margin-top: -30px;
+	}
+	.title {
+		font-weight: 300;
+		font-size: 12px;
+	}
+	.value {
+		font-weight: 500;
+	}
+
+	.flex {
+		display: flex;
+		align-items: flex-start;
+		gap: 3px;
+	}
+	.total {
+		text-align: right;
+	}
+
+	&.lastRow {
+		margin-bottom: 6px;
+	}
+`; */
+
+
+.container{
+	position: absolute;
+	padding: 12px;
+	right: 0px;
+	top: 7%;
+	z-index: -1;
+	width: 300px;
+	z-index: -1;
+	border-radius: 0 10px 10px 0;
+
+	background: rgba(34, 31, 32, 0.85);
+	-webkit-backdrop-filter: blur(3px);
+	backdrop-filter: blur(3px);
+	border: 1px solid rgba(34, 31, 32, 0.425);
+}
+
+.mobile_view {
+	top: -66%;
+	right: 345px;
+	z-index: 10;
+	border-radius: 0 20px 20px 0;
+	width: 275px;
+	animation: animateProductBoxMobile 0.5s linear 0.1s 1;
+	animation-fill-mode: forwards;
+}
+
+.web_view {
+	animation: animateProductBox 0.5s linear 0.1s 1;
+	animation-fill-mode: forwards;
+}
+
+.row{
+
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-start;
+
+	color: #fff;
+	margin-bottom: 14px;
+}
+
+.box {
+	justify-content: center;
+	margin-top: -30px;
+}
+.title {
+	font-weight: 300;
+	font-size: 12px;
+}
+.value {
+	font-weight: 500;
+}
+
+.flex {
+	display: flex;
+	align-items: flex-start;
+	gap: 3px;
+}
+.total {
+	text-align: right;
+}
+
+.last_row {
+	margin-bottom: 6px;
+}

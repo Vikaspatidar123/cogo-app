@@ -1,6 +1,6 @@
 import styles from './styles.module.css';
 
-function TraderEligibilityModal({ tradeEngineResponse = {}, isMobile = false }) {
+function TraderEligibilityModal({ tradeEngineResponse = {} }) {
 	const { screeningRequestResponse = {}, screeningPartyName = '' } =		tradeEngineResponse || {};
 	return (
 		<>

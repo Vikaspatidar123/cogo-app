@@ -2,6 +2,11 @@
 	padding: 16px;
 	max-height: 500px;
     overflow: scroll;
+   :global{
+	.ui_modal_header_container {
+		padding: 0px;
+	}
+}
 }
 
 .label {

@@ -18,6 +18,13 @@ function DetailsModal({
 		TradeEngineResponseFunc();
 	}, []);
 
+	const heading = () => (
+		<>
+			{ itm?.requestType === 'DUTIES' && 'Duties & Taxes'}
+			{ itm?.requestType === 'SCREENING' && 'Trader Eligibility Check' }
+		</>
+	);
+
 	return (
 		<Modal
 			show={modal}
@@ -28,10 +35,7 @@ function DetailsModal({
 			{!tradeEngineResponseLoading && (
 				<div className={styles.container}>
 					<div>
-						<div className={styles.label}>
-							{itm?.requestType === 'DUTIES' && 'Duties & Taxes'}
-							{itm?.requestType === 'SCREENING' && 'Trader Eligibility Check'}
-						</div>
+						<Modal.Header title={heading()} />
 						<div className={styles.line_wrapper}>
 							<div className={styles.line} />
 						</div>

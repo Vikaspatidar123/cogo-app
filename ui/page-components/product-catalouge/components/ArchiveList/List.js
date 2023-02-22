@@ -61,7 +61,6 @@ function ArchiveList() {
 		<Popover
 			placement="bottom"
 			animation="shift-away"
-			theme="light-border"
 			render={content(id)}
 			interactive
 			visible={visible?.[id]}

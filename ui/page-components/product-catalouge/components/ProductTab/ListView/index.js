@@ -146,7 +146,6 @@ function ListView({
 				<Popover
 					placement="bottom"
 					animation="shift-away"
-					theme="light-border"
 					render={content(record.id)}
 					interactive
 					visible={visible?.[record.id]}

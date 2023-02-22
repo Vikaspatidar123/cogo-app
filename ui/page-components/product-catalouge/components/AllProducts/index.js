@@ -132,7 +132,6 @@ function AllProducts({
 											<Popover
 												placement="bottom"
 												animation="shift-away"
-												// theme="light-border"
 												render={content(id, productClassificationId)}
 												interactive
 												visible={visible?.[id]}
@@ -140,7 +139,6 @@ function AllProducts({
 													setVisible({ [id]: false });
 												}}
 											>
-												{/* <Popover placement="left" render="helo"> */}
 												<div>
 													<IcMOverflowDot
 														className={styles.icon}

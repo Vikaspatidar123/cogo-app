@@ -125,7 +125,6 @@ function ValidateHsModal({
 						})}
 						interactive
 						placement="bottom"
-						theme="light-border"
 						visible={validateInProgress && inputValue.length > 0}
 					>
 						<div className={styles.input_container}>

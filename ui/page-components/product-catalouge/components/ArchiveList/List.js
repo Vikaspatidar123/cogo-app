@@ -1,9 +1,7 @@
 import { Popover, Tooltip } from '@cogoport/components';
-// import Tooltip from '@cogoport/front/components/admin/ToolTip';
 import {
 	IcMPaste,
 	IcMArrowBack,
-	//  IcMDownload
 	IcMOverflowDot,
 } from '@cogoport/icons-react';
 import { useState } from 'react';
@@ -13,18 +11,10 @@ import listConfig from '../../configurations/list';
 import useProductCatalogue from '../../hooks/useProductCatalogue';
 import useUnArchive from '../../hooks/useUnArchive';
 
-// import {
-// 	Back,
-// 	Title,
-// 	Info,
-// 	Icon,
-// 	// IconButton
-// } from './style';
 import styles from './styles.module.css';
 import UnArchiveModal from './UnArchivedModal';
 
 import { useRouter } from '@/packages/next';
-// import useDownloadExcel from '../../hooks/useDownloadExcel';
 
 function ArchiveList() {
 	const {
@@ -35,8 +25,6 @@ function ArchiveList() {
 	} = useProductCatalogue({
 		archive: true,
 	});
-
-	// const { useDownloadProduct = () => {} } = useDownloadExcel({ refetchProduct });
 
 	const [visible, setVisible] = useState({});
 	const [archive, setArchive] = useState(false);
@@ -103,16 +91,6 @@ function ArchiveList() {
 				</Tooltip>
 
 				<div className={styles.title}>Archive</div>
-
-				{/* <Tooltip theme="light-border" content="Download Archive List" placement="bottom">
-					<IconButton>
-						<IcMDownload
-							height={27}
-							width={27}
-							onClick={() => useDownloadProduct(true)}
-						/>
-					</IconButton>
-				</Tooltip> */}
 			</div>
 
 			<List

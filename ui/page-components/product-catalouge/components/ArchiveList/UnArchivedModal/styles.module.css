@@ -1,5 +1,6 @@
 .container{
 	@media (max-width: 760px) {
+		width: 90vw !important;
 		:global{
 			.ui-modal-dialog.sm {
 				width: 0px;
@@ -21,6 +22,12 @@
 	margin-bottom: 8px;
 	display: flex;
 	justify-content: center;
+
+	@media (max-width: 760px){
+		display: flex;
+		align-items: center;
+		padding: 0px 10px;
+	}
 }
 
 .text{
@@ -29,6 +36,10 @@
 	display: flex;
 	justify-content: center;
 	margin-bottom: 33px;
+
+	@media (max-width: 760px){
+		padding: 0px 8px;
+	}
 }
 
 .button_div{

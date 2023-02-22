@@ -37,7 +37,7 @@ const useProductCatalogue = ({ archive = false, fetch = () => {}, setActiveTab }
 		try {
 			const response = await UseProducttrigger({
 				params: {
-					page,
+					page            : page.page,
 					pageLimit       : 9,
 					productClassificationId,
 					organizationId  : profile.organization.id,

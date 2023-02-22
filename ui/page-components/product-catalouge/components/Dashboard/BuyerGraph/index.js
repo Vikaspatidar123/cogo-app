@@ -2,15 +2,6 @@ import { ResponsivePie } from '@cogoport/charts/pie';
 
 import { shortFormatNumber } from '../../../common/getShortFromatNumber';
 
-// import {
-// 	Container,
-// 	BarContainer,
-// 	ToolTip,
-// 	Box,
-// 	Label,
-// 	SideContainer,
-// 	Value,
-// } from './style';
 import styles from './styles.module.css';
 
 function Buyer({ topProduct = [], productLoading }) {

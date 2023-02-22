@@ -3,15 +3,6 @@ import React from 'react';
 
 import Archive from '../../../assets/archive.svg';
 
-// import {
-// 	IconDiv,
-// 	Heading,
-// 	Text,
-// 	ButtonDiv,
-// 	SecondaryButton,
-// 	PrimaryButton,
-// 	Container,
-// } from './styles';
 import styles from './styles.module.css';
 
 function UnArchiveModal({ archive, setArchive, refetchArchive }) {

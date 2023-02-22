@@ -1,9 +1,6 @@
 import {
 	Pagination, Tooltip, Table, Button,
 } from '@cogoport/components';
-// import {ToolTip, } from '@cogoport/components';
-// import Grid from '@cogoport/front/components/Grid';
-// import Table from '@cogoport/front/components/Table';
 import {
 	IcMArrowRight,
 	IcAFormsAndCertificates,
@@ -16,29 +13,6 @@ import Loading from '../../../assets/loading.svg';
 import AddProductModal from '../../../common/AddProductModal';
 import GetCountriesFilter from '../../../common/Countries';
 import { ChapterColumns, HeadersColumns } from '../../../common/HsCodeProduct';
-// import {
-// 	FlexDiv,
-// 	StyledHSCODElabel,
-// 	SelectLabel,
-// 	Select,
-// 	StyledColumnHeading,
-// 	FlexDiv2,
-// 	SelectLabel2,
-// 	STyledROW,
-// 	TableWrapper,
-// 	DIVHSCode,
-// 	SubHeading,
-// 	HSCodeTableWrapper,
-// 	AddButtonWrapper,
-// 	TableWrapper2,
-// 	TabHeader,
-// 	StyledLoading,
-// 	StyledBackButton,
-// 	SelectRow,
-// 	EndAlignDiv2,
-// 	StyledTag2,
-// 	Div,
-// } from '../style';
 
 import EmptyState from './EmptyState';
 import Stepper from './Stepper';

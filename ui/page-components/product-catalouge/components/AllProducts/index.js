@@ -1,9 +1,6 @@
 import {
 	Pagination, Popover, Loader, Tooltip,
 } from '@cogoport/components';
-// import Popover from '@cogoport/front/components/admin/Popover';
-// import Skeleton from '@cogoport/front/components/admin/Skeleton';
-// import ToolTip from '@cogoport/front/components/admin/ToolTip';
 import {
 	IcMEdit, IcMPaste, IcMDelete, IcMOverflowDot, IcMPlus,
 } from '@cogoport/icons-react';
@@ -13,19 +10,8 @@ import AddProductModal from '../../common/AddProductModal';
 import DeleteProductModal from '../../common/DeleteProductModal';
 import HsCodeIconMaping from '../../common/hsCodeIcons';
 import useArchive from '../../hooks/useArchive';
-// import { PlusIcon, StyledFilterSection } from '../style';
 
 import ArchiveModal from './ArchiveModal';
-// import {
-// 	CardDiv,
-// 	PageContainer,
-// 	Card,
-// 	Row,
-// 	Text,
-// 	Icon,
-// 	DisplayName,
-// 	Info,
-// } from './style';
 import styles from './styles.module.css';
 
 function AllProducts({
@@ -112,7 +98,7 @@ function AllProducts({
 		</div>
 	);
 	return (
-		<>
+		<div className={styles.container}>
 			<div className={styles.card_div}>
 				{(list || [1, 2, 3, 4, 5]).map(
 					({
@@ -249,7 +235,7 @@ function AllProducts({
 				card
 				isMobile={isMobile}
 			/>
-		</>
+		</div>
 	);
 }
 export default AllProducts;

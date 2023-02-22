@@ -6,7 +6,6 @@ import { useWindowDimensions } from '../MobileView';
 import CardHeader from './CardHeader';
 import EmptyState from './EmptyState';
 import Item from './Item';
-// import { Container, PageContainer } from './styles';
 import styles from './styles.module.css';
 
 function List({

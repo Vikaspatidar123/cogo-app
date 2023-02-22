@@ -4,7 +4,6 @@ import { useState } from 'react';
 import useHSCODE from '../../hooks/useHsCode';
 
 import HSCodelistAddproduct from './HSCodeListAddProduct';
-// import { StyledModal } from './style';
 import styles from './styles.module.css';
 
 function HsCodeModal({

@@ -1,9 +1,5 @@
 import { Tooltip } from '@cogoport/components';
 
-// import {
-// 	SideContainer, BarGraphContainer, BarGraph, GraphData,
-// } from '../style';
-
 import styles from './styles.module.css';
 
 function Product({ productList = [], loading }) {

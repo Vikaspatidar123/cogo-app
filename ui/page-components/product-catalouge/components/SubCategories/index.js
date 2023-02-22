@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 
 import ListView from '../ProductTab/ListView';
 
-// import { StyledTabDiv, CatalogueLabel, TabContainer } from './style';
 import styles from './styles.module.css';
 
 function SubCategory({

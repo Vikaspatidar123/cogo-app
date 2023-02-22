@@ -9,18 +9,6 @@ import useTotalRevenue from '../../hooks/useTotalRevenue';
 
 import BuyerGraph from './BuyerGraph';
 import ProductGraph from './ProductGraph';
-// import {
-// 	Container,
-// 	Revenue,
-// 	Title,
-// 	Card,
-// 	Bar,
-// 	Row,
-// 	SelectDiv,
-// 	BorderLine,
-// 	EmptyIcon,
-// 	SubContainer,
-// } from './style';
 import styles from './styles.module.css';
 
 function Dashboard({ apiData, activeTab }) {

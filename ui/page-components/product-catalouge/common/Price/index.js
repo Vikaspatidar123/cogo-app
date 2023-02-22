@@ -1,5 +1,4 @@
 import { Button, toast } from '@cogoport/components';
-// import toast from '@cogoport/front/components/admin/Toast';
 import { IcMArrowRight } from '@cogoport/icons-react';
 import { useEffect, useState } from 'react';
 
@@ -35,8 +34,6 @@ function Pricing({
 		formState: { errors },
 		control,
 	} = useForm();
-
-	console.log(control, controls, 'control');
 
 	const {
 		data, editLoading, refetchPutEdit, addProduct,

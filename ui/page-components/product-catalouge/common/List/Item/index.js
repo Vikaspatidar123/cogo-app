@@ -1,17 +1,13 @@
 import { Tooltip, Loader } from '@cogoport/components';
-// import { Skeleton } from '@cogoport/front/components/admin';
-// import Grid from '@cogoport/front/components/Grid';
 import { shape, arrayOf } from 'prop-types';
 
 import MobileView from '../MobileViewIndex';
 
 import itemFunctions from './renderFunctions';
-// import { Row, Info, Container } from './styles';
 import styles from './styles.module.css';
 
 import getValue from '@/ui/commons/utils/getValue';
 
-// const { Col } = Grid;
 const Item = ({
 	item,
 	fields,
@@ -40,7 +36,7 @@ const Item = ({
 		return getValue(itm, singleItem, isMobel, newFunctions);
 	};
 	const renderItem = (itm) => (
-		<div className={isMobile ? `${styles.container}${styles.mobile}` : `${styles.container}`}>
+		<div className={isMobile ? `${styles.mobile_container}` : `${styles.container}`}>
 			{isMobile ? (
 				<MobileView fields={fields} infoData={infoData} itm={itm} loading={loading} />
 			) : (
@@ -53,7 +49,6 @@ const Item = ({
 							className={styles.col_container}
 							style={singleItem.styles}
 							key={singleItem?.key}
-							// className={singleItem?.key}
 						>
 							{singleItem.render && !loading ? singleItem.render(itm) : null}
 							{infoData(singleItem, itm)}

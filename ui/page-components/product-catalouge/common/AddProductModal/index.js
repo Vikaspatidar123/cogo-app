@@ -2,7 +2,6 @@ import { Modal } from '@cogoport/components';
 import { IcAFormsAndCertificates } from '@cogoport/icons-react';
 import { useState } from 'react';
 
-// import { StyledDiv, ProductIcn } from '../../components/HsCodeModal/style';
 import useGetProductClassificationId from '../../hooks/useGetProductClassificationId';
 import Pricing from '../Price';
 

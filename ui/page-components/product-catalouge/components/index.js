@@ -1,24 +1,17 @@
 import {
 	Tabs, TabPanel, Tooltip, Button,
 } from '@cogoport/components';
-// import TabPanel from '@cogoport/front/components/admin/Tabs/TabPanel';
-// import Tooltip from '@cogoport/front/components/admin/ToolTip';
 import {
 	IcMGrid,
 	IcMPaste,
-	IcMArrowRight,
 	IcMArrowBack,
 	IcMPlus,
-	// IcMDownload,
 } from '@cogoport/icons-react';
-import { useEffect, useState, useRef } from 'react';
-
-// import { useSaasState } from '../../../common/context';
+import { useState } from 'react';
 
 import Loading from '../assets/loading.svg';
 import HsCodeIconMaping from '../common/hsCodeIcons';
 import EmptyState from '../common/List/EmptyState';
-import { useWindowDimensions } from '../common/MobileView';
 import useEdit from '../hooks/useEdit';
 import useHSCodelist from '../hooks/useHsCodeList';
 import useProductCatalogue from '../hooks/useProductCatalogue';
@@ -27,57 +20,15 @@ import AllProducts from './AllProducts';
 import Dashboard from './Dashboard';
 import UploadDocument from './Dashboard/UploadDocument';
 import HsCodeModal from './HsCodeModal';
-// import {
-// 	Container,
-// 	WidthDiv,
-// 	Heading,
-// 	TitleSection,
-// 	StyledButton,
-// 	SubTitle,
-// 	ScrollContent,
-// 	StyledLoading,
-// 	StyledDiv,
-// 	StyledTabHeading,
-// 	ColoredIcon,
-// 	Label,
-// 	TabDiv,
-// 	Section,
-// 	TotalRecords,
-// 	TabHeader,
-// 	BorderBottom,
-// 	TitleStyled,
-// 	ProductAnalyticsTabCtn,
-// 	IcnContainer,
-// 	ScrollContainer,
-// 	LineWrapper,
-// 	Line,
-// 	Back,
-// 	TitleDiv,
-// 	// IconButton,
-// 	StyledFilterSection,
-// 	PlusIcon,
-// } from './style';
 import styles from './styles.module.css';
 import SubCategory from './SubCategories';
 
 import { useRouter } from '@/packages/next';
 import { useSelector } from '@/packages/store';
-// import useDownloadExcel from '../hooks/useDownloadExcel';
 
 function ProductInventory() {
-	const [isMobile, setIsMobile] = useState(false);
 	const [activeTab, setActiveTab] = useState('allProducts');
-	const { width } = useWindowDimensions();
 	const [showProductView, setShowProductView] = useState(false);
-	useEffect(() => {
-		if (width < 1154) {
-			setIsMobile(true);
-			setShowProductView(false);
-		} else {
-			setShowProductView(true);
-			setIsMobile(false);
-		}
-	}, [width]);
 
 	const [archiveList, setArciveList] = useState(false);
 	const { hsList, loading: hsLoading, fetch } = useHSCodelist();
@@ -89,7 +40,8 @@ function ProductInventory() {
 	const [prefiledValues, setPrefiledValues] = useState({});
 	const [sectionTab, setSectionTab] = useState('products');
 	const [uploadModal, setUploadModal] = useState(false);
-	const { profile } = useSelector((state) => state);
+	const { profile, general } = useSelector((state) => state);
+	const { isMobile } = general;
 	const {
 		addProductLoading,
 		apiData = {},
@@ -102,7 +54,6 @@ function ProductInventory() {
 		setShowProductView,
 	});
 
-	// const { useDownloadProduct = () => {} } = useDownloadExcel({ refetchProduct });
 	const [isEdit, setIsEdit] = useState(false);
 
 	const { addProduct } = useEdit({
@@ -117,11 +68,6 @@ function ProductInventory() {
 		setArciveList(!archiveList);
 	};
 
-	const scrollRef = useRef();
-
-	const scrollHandler = () => {
-		scrollRef.current.scrollLeft += 820;
-	};
 	const checkLength = apiData?.totalRecords;
 
 	return (
@@ -136,7 +82,7 @@ function ProductInventory() {
 						>
 							<TabPanel name="products" title="Products" className="horizontal one" />
 							<TabPanel name="analytics" title="Analytics" className="horizontal one">
-								<div style={isMobile ? { width: '100%' } : { width: '30%' }}>
+								<div className={styles.dashboard_data}>
 									<Dashboard apiData={apiData} activeTab={activeTab} />
 								</div>
 							</TabPanel>
@@ -144,7 +90,7 @@ function ProductInventory() {
 					</div>
 				)}
 				{(sectionTab === 'products' || !isMobile) && (
-					<div style={isMobile ? { width: '100%' } : { width: '70%' }}>
+					<div className={styles.main_container}>
 						<div className={styles.heading}>
 							<div className={styles.title_section}>
 								<h1 className="title">Products Catalogue</h1>
@@ -162,20 +108,6 @@ function ProductInventory() {
 										<IcMPaste onClick={handelRouting} width={30} height={30} />
 									</div>
 								</Tooltip>
-
-								{/* <Tooltip
-										theme="light-border"
-										content="Download Product Catalogue Details"
-										placement="bottom"
-									>
-										<IconButton>
-											<IcMDownload
-												height={isMobile ? 30 : 27}
-												width={isMobile ? 30 : 27}
-												onClick={() => useDownloadProduct(false)}
-											/>
-										</IconButton>
-									</Tooltip> */}
 
 								<Button className={styles.styled_button} onClick={() => setUploadModal(true)}>
 									Import product
@@ -202,7 +134,7 @@ function ProductInventory() {
 										<div style={{ display: 'flex', flexDirection: 'row', overflowX: 'auto' }}>
 											{hsList.length > 0 && (
 												<div className="scroll">
-													<div className={styles.scroll_container} ref={scrollRef}>
+													<div className={styles.scroll_container}>
 														<div className={styles.styled_div}>
 															<Tabs
 																activeTab={activeTab}
@@ -280,20 +212,6 @@ function ProductInventory() {
 															)}
 														</div>
 													</div>
-													{/* {!isMobile && hsList.length > 4 && (
-														<div
-															role="presentation"
-															className={styles.icn_container}
-															onClick={scrollHandler}
-														>
-															<IcMArrowRight
-																className="animatedArrow"
-																width={35}
-																height={35}
-															/>
-															<IcMArrowRight width={35} height={35} />
-														</div>
-													)} */}
 												</div>
 											)}
 										</div>

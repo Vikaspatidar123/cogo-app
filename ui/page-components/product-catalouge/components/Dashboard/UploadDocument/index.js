@@ -1,27 +1,11 @@
-import { Modal, Button, FileSelect } from '@cogoport/components';
+import { Modal, Button } from '@cogoport/components';
 import { useState } from 'react';
 
-// import AwsUploader from '../../../../../common/components/AwsUploader';
 import useUploadDocuments from '../../../hooks/useUploadDocuments';
 
 import {
 	csvImg, downloadUrl, successBackgroundImg, tickIcon,
 } from './link';
-// import {
-// 	Container,
-// 	UploadContainer,
-// 	StyledButton,
-// 	Heading,
-// 	Link,
-// 	HeaderCtn,
-// 	ButtonContainer,
-// 	DownloadErrorLink,
-// 	TickIcon,
-// 	SuccessMsg,
-// 	SuccessBackG,
-// 	SuccessModal,
-// 	AwsContainer,
-// } from './style';
 import styles from './styles.module.css';
 
 import { UploadController, useForm } from '@/packages/forms';

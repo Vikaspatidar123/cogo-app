@@ -2,7 +2,6 @@ import { merge } from '@cogoport/utils';
 import { useEffect } from 'react';
 
 import getControls from './controls';
-// import { Div, Form } from './style';
 import styles from './styles.module.css';
 
 import { useForm, asyncFieldsHsCodeCountries, useGetAsyncOptionsBf } from '@/packages/forms';
@@ -21,10 +20,6 @@ function GetCountriesFilter({ setCountryforHsCode, setSelectedCountry }) {
 	const countryOptions = optionsFunc();
 	const controls = getControls({ setSelectedCountry, countryOptions });
 	const { watch, control } = useForm();
-
-	const formValues = watch('country');
-
-	console.log(formValues, 'formVAlues');
 
 	const watchCountry = watch('country');
 	useEffect(() => {

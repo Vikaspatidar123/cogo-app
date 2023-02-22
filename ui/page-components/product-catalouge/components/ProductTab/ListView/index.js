@@ -1,6 +1,4 @@
 import { Popover, Table, Tooltip } from '@cogoport/components';
-// import Table from '@cogoport/front/components/admin/Table';
-// import ToolTip from '@cogoport/front/components/admin/ToolTip';
 import {
 	IcMEdit, IcMPaste, IcMDelete, IcMOverflowDot,
 } from '@cogoport/icons-react';
@@ -12,9 +10,6 @@ import { shortFormatNumber } from '../../../common/getShortFromatNumber';
 import useArchive from '../../../hooks/useArchive';
 import ArchiveModal from '../../AllProducts/ArchiveModal';
 
-// import {
-// 	TableWrapper, Icon, Info, TableHead,
-// } from './style';
 import styles from './styles.module.css';
 
 function ListView({

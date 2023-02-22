@@ -8,6 +8,14 @@
 	}
 }
 
+.main_container{
+	width: 70%;
+
+	@media(max-width: 768px){
+		width: 100%;
+	}
+}
+
 .heading{
     @media (min-width: 768px) {
 		display: flex;
@@ -127,7 +135,7 @@
 	}
 
 	@media (max-width: 760px) {
-		margin-top: 60px;
+		margin-top: 10px;
 		display: flex;
 		flex-direction: column;
 	}
@@ -301,19 +309,23 @@
 
 .back{
     display: flex;
+	flex-direction: row;
 	cursor: pointer;
-	position: absolute;
-	top: 162px;
 
-	.archived {
-		display: flex;
-		margin-bottom: 10px;
+	:global{
+		.archived {
+			display: flex;
+			flex-direction: row;
+			margin-bottom: 10px;
+		}
+	
+		.back {
+			margin: 0px 5px;
+			color: #221f20;
+		}
 	}
 
-	.back {
-		margin: 0px 5px;
-		color: #221f20;
-	}
+	
 }
 
 .icon_button{
@@ -322,6 +334,14 @@
 
 .plus_icon{
     transform: rotate(90deg);
+}
+
+.dashboard_data{
+	width: 30%;
+
+	@media(max-width: 768px){
+		width: 100%;
+	}
 }
 
 .styled_filter_section{
@@ -387,6 +407,10 @@
 .button_container{
 	display: flex;
 	flex-direction: row;
+
+	@media (max-width: 768px) {
+		margin-top:10px;
+	}
 }
 
 .archived_button{

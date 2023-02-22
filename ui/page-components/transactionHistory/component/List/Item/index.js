@@ -1,8 +1,8 @@
 import { Tooltip } from '@cogoport/components';
+import { IcMArrowRotateDown } from '@cogoport/icons-react';
 import { shape, arrayOf } from 'prop-types';
 import { useState, useEffect } from 'react';
 
-// import getValue from '../../../../../common/utils/getValue';
 import useGetDrillDownData from '../../../hooks/useGetDrillDownData';
 import Bill from '../Bill';
 import MobileBill from '../MobileBill';
@@ -10,6 +10,8 @@ import MobileBill from '../MobileBill';
 import MobileView from './MobileView';
 import itemFunctions from './renderFunctions';
 import styles from './styles.module.css';
+
+import getValue from '@/ui/commons/utils/getValue';
 
 const Item = ({
 	item,
@@ -31,19 +33,19 @@ const Item = ({
 		setShowDrill(false);
 	}, [sort]);
 	const { newFunctions } = itemFunctions({ functions, isMobile });
+
 	const infoData = (singleItem, itm) => {
 		if (singleItem?.toolTip) {
 			return (
 				<Tooltip
 					content={(
 						<div style={{ color: 'grey' }}>
-							getvalue
-							{/* {getValue(itm, singleItem, isMobel, newFunctions)} */}
+							{getValue(itm, singleItem, isMobel, newFunctions)}
 						</div>
 					)}
 					theme="light"
 				>
-					{/* <Info>{getValue(itm, singleItem, isMobel, newFunctions)}</Info> */}
+					<div className={styles.info}>{getValue(itm, singleItem, isMobel, newFunctions)}</div>
 				</Tooltip>
 			);
 		}
@@ -54,39 +56,37 @@ const Item = ({
 			{isMobile ? (
 				<MobileView fields={fields} infoData={infoData} itm={itm} loading={loading} />
 			) : (
-				<Row onClick={handleClick} tabIndex="0">
+				<div className={styles.row} role="presentation" onClick={handleClick}>
 					{(fields || []).map((singleItem) => (
-						<>Grid</>
-						// <Col
-						// 	xs={6}
-						// 	sm={6}
-						// 	md={singleItem.span}
-						// 	lg={singleItem.span}
-						// 	style={singleItem.styles}
-						// 	key={singleItem?.key}
-						// 	className={singleItem?.key}
-						// >
-						// 	{/* {loading && (
-						// 		<Skeleton style={{ height: '20px', width: '100%' }}>
-						// 			<rect width="100%" height="20px" />
-						// 		</Skeleton>
-						// 	)} */}
-						// 	{singleItem.render && !loading ? singleItem.render(itm) : null}
-						// 	{infoData(singleItem, itm)}
-						// </Col>
+						<div
+							className={styles.col}
+							style={singleItem.styles}
+							key={singleItem?.key}
+						>
+							{/* {loading && (
+								<Skeleton style={{ height: '20px', width: '100%' }}>
+									<rect width="100%" height="20px" />
+								</Skeleton>
+							)} */}
+
+							{singleItem.render && !loading ? singleItem.render(itm) : null}
+							{infoData(singleItem, itm)}
+						</div>
 					))}
-				</Row>
+				</div>
 			)}
 
-			<Arrow onClick={() => onOpen(itm)}>
-				<ArrowIconDiv
-					width={15}
-					height={15}
-					className={`${showDrill && 'rotateIcon'} hyperlinkIcon`}
-				/>
-			</Arrow>
+			<div className={styles.arrow} role="presentation" onClick={() => onOpen(itm)}>
+				<div className={styles.arrow_icon_div}>
+					<IcMArrowRotateDown
+						width={15}
+						height={15}
+						className={`${showDrill && 'rotateIcon'} hyperlinkIcon`}
+					/>
+				</div>
+			</div>
 
-			<div className={`${styles.drill_down} ${showDrill && 'displayDrill'}`}>
+			<div className={showDrill ? `${styles.drill_down}${styles.displayDrill}` : `${styles.drill_down}`}>
 				{!drillDownLoading && !isMobile && (
 					<div className={`${isMobile ? 'mobile' : 'parent'} `}>
 						<div className={`${!isMobile && 'bill'} `}>
@@ -101,6 +101,7 @@ const Item = ({
 						</div>
 					</div>
 				)}
+
 				{/* <Flex>
 					{drillDownLoading
 						&& [1, 2].map(() => (

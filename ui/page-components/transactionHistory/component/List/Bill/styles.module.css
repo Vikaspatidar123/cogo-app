@@ -1,12 +1,17 @@
-.container{
+.container {
 	width: 100%;
+	padding: 20px;
 }
 
-.title{
+.title {
 	margin: 0;
 }
 
-.section{
+	.label{
+		font-weight: 600;
+	}
+
+.section {
 	margin-top: 12px;
 	padding: 20px 24px;
 	background: #fff;
@@ -20,22 +25,29 @@
 		justify-content: space-between;
 		min-height: 236px;
 	}
+
 	@media screen and (max-width: 768px) {
 		box-shadow: 0px 2px 5px rgb(0 0 0 / 10%);
 	}
 }
 
-.styled_row{
+.styles_row{
+	display: flex;
+	flex-direction: row;
+}
+
+
+.styled_row {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-
 	margin-bottom: 15px;
 
 	&.billRow {
 		align-items: baseline;
 		justify-content: flex-start;
 	}
+
 	&.totalBillRow {
 		padding-top: 14px;
 		margin-bottom: 0px;
@@ -46,12 +58,12 @@
 	}
 }
 
-.styled_col{
-	width: 50%;
-	.title {
-		font-weight: 500;
-	}
 
+.styled_col  {
+	 display: flex;
+	 flex-direction: column;
+	 width: 50%;
+	
 	.value {
 		margin-top: 8px;
 		font-weight: 300;
@@ -66,28 +78,40 @@
 			border: none;
 		}
 	}
+
 	&.chargename,
 	&.amount {
 		width: auto;
 	}
+
 	&.chargename {
 		padding-right: 7px;
 	}
+
 	&.amount {
 		padding-left: 7px;
 	}
+
 	&.dot {
 		flex: 1;
 		border-bottom: 2px dotted #333;
 	}
-
+	
 	.downloadIcn {
 		margin-right: 5px;
 	}
 }
 
-.card_bill{
+.card_bill {
 	overflow-y: auto;
 	max-height: 160px;
 	overflow-x: hidden;
+}
+
+.total_amount {
+	display: flex;
+}
+
+.total_value {
+    margin-left: 10px;
 }

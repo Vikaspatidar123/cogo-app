@@ -30,30 +30,31 @@ export const billTypeOptions = [
 
 export const paymentTypeOptions = [
 	{
-		label: (
+		children: (
 			<div className={styles.import_export}>
 				<div className={styles.type_label}>PAID</div>
 			</div>
 		),
-		value: 'PAID',
+		key: 'PAID',
 	},
 	{
-		label: (
+		children: (
 			<div className={styles.import_export}>
 				<div className={styles.type_label}>PENDING</div>
 			</div>
 		),
-		value: 'PENDING',
+		key: 'PENDING',
 	},
 	{
-		label: (
+		children: (
 			<div className={styles.import_export}>
 				<div className={styles.type_label}>FAILED</div>
 			</div>
 		),
-		value: 'PAYMENT_FAILED',
+		key: 'PAYMENT_FAILED',
 	},
 ];
+
 export const optionsRisk = [
 	{
 		label: (

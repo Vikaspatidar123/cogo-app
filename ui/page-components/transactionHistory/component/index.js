@@ -17,6 +17,7 @@ function TransactionHistory() {
 			setIsMobile(false);
 		}
 	}, [width]);
+
 	const [filters, setFilters] = useState({
 		pageNo    : 1,
 		pageLimit : 10,

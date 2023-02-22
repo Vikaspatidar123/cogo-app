@@ -1,14 +1,12 @@
+import { IcMArrowRotateDown } from '@cogoport/icons-react';
 import React from 'react';
 
 import styles from './styles.module.css';
 
 function CardHeader({
 	fields,
-	// getTableHeaderCheckbox = () => {},
-	singleList,
 	sort = {},
 	setSort,
-	stylesRow,
 }) {
 	const handleOnchange = (item) => {
 		setSort(() => {
@@ -26,27 +24,24 @@ function CardHeader({
 	};
 
 	return (
-		<>234</>
-		// <Row className={styles.styles_row}>
-		// 	{(fields || []).map((field) => (
-		// 		<Col
-		// 			xs={field.span}
-		// 			sm={field.span}
-		// 			md={field.span}
-		// 			lg={field.span}
-		// 			style={stylesCol}
-		// 			key={field?.key || field?.label}
-		// 		>
-		// 			<div className={styles.card - title} active={singleList}>{field.label}</div>
-		// 			{field.sorting && (
-		// 				<Caret
-		// 					className={sort.sortType === 'ASC' ? 'rotate' : 'no-rotate'}
-		// 					onClick={() => handleOnchange(field)}
-		// 				/>
-		// 			)}
-		// 		</Col>
-		// 	))}
-		// </Row>
+		<div className={styles.row}>
+			{(fields || []).map((field) => (
+				<div
+					className={styles.display}
+					key={field?.key || field?.label}
+				>
+					<div className={styles.card_title}>{field.label}</div>
+					<div className={styles.rotate_icon}>
+						{field.sorting && (
+							<IcMArrowRotateDown
+								className={sort.sortType === 'ASC' ? 'rotate' : 'no-rotate'}
+								onClick={() => handleOnchange(field)}
+							/>
+						)}
+					</div>
+				</div>
+			))}
+		</div>
 	);
 }
 

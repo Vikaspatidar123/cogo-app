@@ -6,7 +6,6 @@
 	margin-bottom: 15px;
 	.scrollable {
 		overflow: scroll;
-		/* height: ${(props) => (props.length > 0 ? '180px' : '')}; */
 	}
 }
 
@@ -73,4 +72,14 @@
 	font-weight: 500;
 	font-size: 18px;
 	color: #2c3e50;
+}
+
+.row {
+	display: flex;
+	flex-direction: row;
+}
+
+.col {
+	display: flex;
+	flex-direction: column;
 }

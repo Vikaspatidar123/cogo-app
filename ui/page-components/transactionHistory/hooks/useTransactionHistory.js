@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-import { useRequest } from '@/packages/request';
+import { useRequestBf } from '@/packages/request';
 import { useSelector } from '@/packages/store';
 
 const useTransactionHistory = ({ filters, sort }) => {
@@ -9,14 +9,15 @@ const useTransactionHistory = ({ filters, sort }) => {
 		profile,
 	} = useSelector((state) => state);
 
-	const [{ loading }, getTransactionHistory] = useRequest({
-		url    : 'payment/history',
-		method : 'get',
+	const [{ loading }, getTransactionHistoryTrigger] = useRequestBf({
+		url     : 'saas/payment/history',
+		authKey : 'get_saas_payment_history',
+		method  : 'get',
 	}, { manual: true });
 
 	const refetchTransactionHistory = async () => {
 		try {
-			const response = await getTransactionHistory.trigger({
+			const response = await getTransactionHistoryTrigger({
 				params: {
 					source     : 'SAAS',
 					orgId      : profile?.organization?.id,
@@ -38,10 +39,9 @@ const useTransactionHistory = ({ filters, sort }) => {
 	};
 
 	useEffect(() => {
-		if (filters || sort) {
-			refetchTransactionHistory();
-		}
+		refetchTransactionHistory();
 	}, [filters, sort]);
+
 	return {
 		apiResponse,
 		refetchTransactionHistory,

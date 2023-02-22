@@ -1,6 +1,6 @@
-import { Pill, Button, Popover } from '@cogoport/components';
-// import CreatableSelect from '@cogoport/front/components/admin/Select';
-// import { DateRangePicker } from '@cogoport/front/components/DateTimePicker';
+import {
+	DateRangepicker, CreatableSelect, Button, Popover, Chips,
+} from '@cogoport/components';
 import { IcMFilter, IcMCrossInCircle } from '@cogoport/icons-react';
 import { useState } from 'react';
 
@@ -10,13 +10,14 @@ import styles from './styles.module.css';
 function FilterContent({ filters, setFilters }) {
 	const [dateRangePickerValue, setDateRangePickerValue] = useState({});
 	const filtersKeyLength = Object.keys(filters).length;
+
 	return (
 		<div className={styles.container}>
 			<div className={styles.heading}>
 				<div className={styles.title}>Apply Filters</div>
 				{filtersKeyLength > 0 && (
-					<Button
-						className="secondary md"
+					<div
+						className={styles.clear_Btn}
 						role="presentation"
 						onClick={() => {
 							setFilters({
@@ -28,14 +29,14 @@ function FilterContent({ filters, setFilters }) {
 					>
 						<p>Clear Filters </p>
 						<IcMCrossInCircle />
-					</Button>
+					</div>
 				)}
 			</div>
 
-			<div className="section2">
+			<div className={styles.section2}>
 				<div className={styles.section}>
 					<div className={styles.title}>Bill type</div>
-					{/* <CreatableSelect
+					<CreatableSelect
 						type="select"
 						placeholder="Enter Bill Type"
 						value={filters.bill_type}
@@ -44,22 +45,24 @@ function FilterContent({ filters, setFilters }) {
 							...prev,
 							bill_type: e,
 						}))}
-					/> */}
-				</div>
-				<div className={styles.section}>
-					<div className={styles.title}>Status</div>
-					<Pill
-						value={filters.payment_status}
-						options={paymentTypeOptions}
-						onChange={(e) => setFilters((prev) => ({
-							...prev,
-							payment_status: e,
-						}))}
 					/>
 				</div>
 				<div className={styles.section}>
+					<div className={styles.title}>Status</div>
+					<div className={styles.chips_container}>
+						<Chips
+							selectedItems={filters.payment_status}
+							items={paymentTypeOptions}
+							onItemChange={(e) => setFilters((prev) => ({
+								...prev,
+								payment_status: e,
+							}))}
+						/>
+					</div>
+				</div>
+				<div className={styles.section}>
 					<div className={styles.title}>Bill date ranging from</div>
-					{/* <DateRangePicker
+					<DateRangepicker
 						value={dateRangePickerValue}
 						pickerType="range"
 						name="date"
@@ -70,7 +73,7 @@ function FilterContent({ filters, setFilters }) {
 								...e,
 							}));
 						}}
-					/> */}
+					/>
 				</div>
 			</div>
 		</div>
@@ -94,8 +97,7 @@ function FilterSection({ isMobile, filters, setFilters }) {
 				{!isMobile && (
 					<div>
 						Filter By
-						{' '}
-						<IcMFilter />
+						<IcMFilter height={13} width={25} />
 					</div>
 				)}
 				{isMobile && <IcMFilter height={15} width={14} />}

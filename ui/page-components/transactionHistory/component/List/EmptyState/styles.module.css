@@ -9,7 +9,7 @@
 	align-items: center;
 }
 
-.heading{
+.heading {
 	font-style: normal;
 	font-weight: bold;
 	font-size: 22px;
@@ -22,7 +22,7 @@
 	color: #000000;
 }
 
-.content{
+.content {
 	font-style: normal;
 	font-weight: normal;
 	font-size: 16px;
@@ -35,7 +35,7 @@
 	color: #000000;
 }
 
-.ic_container{
+.ic_container {
 	max-width: 17%;
 	min-width: 10%;
 	@media (max-width: _md) {
@@ -43,7 +43,7 @@
 	}
 }
 
-.wrapper{
+.wrapper {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;

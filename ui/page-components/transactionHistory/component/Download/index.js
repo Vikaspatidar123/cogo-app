@@ -17,6 +17,7 @@ function Download({ data, isMobile }) {
 	const {
 		billId = '', billRefId = '', billStatus = '', billType = '',
 	} = data || {};
+
 	const download = () => {
 		window.open(`${process.env.BUSINESS_FINANCE_BASE_URL}/pdf/bill/${billId}`);
 	};
@@ -27,13 +28,13 @@ function Download({ data, isMobile }) {
 	return (
 		<div className={styles.container}>
 			<div className={styles.icon}>
-				{/* {isAllowed && billStatus === 'PAID' && (
+				{billStatus === 'PAID' && (
 					<Tooltip content="Download Invoice" theme="light" animation="shift-away">
 						<div>
 							<IcMDownload onClick={() => download()} width={25} height={25} />
 						</div>
 					</Tooltip>
-				)} */}
+				)}
 				{billStatus === 'PAID' && billType === 'PREMIUM_SERVICES' && (
 					<Tooltip content="Service" animation="shift-away" theme="light">
 						<div className={styles.service}>

@@ -1,17 +1,15 @@
 import { Toggle } from '@cogoport/components';
-import { IcMAccountSettings } from '@cogoport/icons-react';
+import {
+	IcCGreenCircle, IcCRedCircle, IcCYelloCircle, IcMAccountSettings,
+} from '@cogoport/icons-react';
 import { useState, useEffect } from 'react';
-
-import GreenFlag from '../../../assets/greenflag.svg';
-import RedFlag from '../../../assets/redFlag.svg';
-import YellowFlag from '../../../assets/yellwflag.svg';
 
 import styles from './styles.module.css';
 
 const MAPPING = {
-	N : <GreenFlag height={20} width={20} />,
-	Y : <RedFlag height={20} width={20} />,
-	M : <YellowFlag height={20} width={20} />,
+	N : <IcCGreenCircle height={20} width={20} />,
+	Y : <IcCRedCircle height={20} width={20} />,
+	M : <IcCYelloCircle height={20} width={20} />,
 };
 function Control({ controls }) {
 	const [labeledValue, setLabeledValue] = useState('IMPORT');

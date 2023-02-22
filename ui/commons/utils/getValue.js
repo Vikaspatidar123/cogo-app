@@ -23,18 +23,29 @@ const getValue = (
 		if (functions[itemField.func]) {
 			val = functions[itemField.func](itemData, itemField);
 		} else if (startCase(itemField.func)) {
-			val = startCase(itemField.func)(val);
+			// val = startCase(itemField.func)(val);
 		}
 	}
 
 	switch (itemField.type) {
-		case 'datetime': {
+		case 'datetime':
 			return val ? (
 				format(val, itemField.formatType || 'dd MMM yy | hh:mm a')
 			) : (
 				<div>-</div>
 			);
-		}
+
+		case 'price':
+			return `${itemData.currency} ${(
+				itemData[itemField.key || 'price'] || 0
+			).toLocaleString()}`;
+
+		case 'bool':
+			return val ? 'Yes' : 'No';
+
+		case 'percent':
+			return val ? `${val} %` : '-';
+
 		default:
 			break;
 	}

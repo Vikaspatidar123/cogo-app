@@ -1,7 +1,7 @@
 // eslint-disable-next-line import/no-unresolved
 import { Select } from '@cogoport/components';
 
-import countryCode from './countries.json';
+import countryCode from '../../../../../.data-store/constants/countries.json';
 
 function SelectCountryCode(props) {
 	const { value } = props;

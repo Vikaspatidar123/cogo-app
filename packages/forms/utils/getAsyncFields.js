@@ -12,10 +12,10 @@ function asyncFieldsLocations2() {
 	};
 }
 
-function asyncFieldsLocations() {
+function asyncFieldsLocations(labelKey = 'name', valueKey = 'id') {
 	return {
-		valueKey    : 'id',
-		labelKey    : 'name',
+		valueKey,
+		labelKey,
 		endpoint    : 'list_locations',
 		initialCall : true,
 		params      : {

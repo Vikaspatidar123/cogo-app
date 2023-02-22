@@ -1,7 +1,5 @@
 import React from 'react';
 
-import LeftPanel from '../../../common/LeftPanel';
-
 import OrganizationForm from './OrganizationForm';
 import styles from './styles.module.css';
 

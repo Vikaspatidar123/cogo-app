@@ -1,8 +1,6 @@
 import { Toast } from '@cogoport/components';
 import { useState } from 'react';
 
-// import { useSaasState } from '../../../common/context';
-
 import useGetServiceRates from './useGetServiceRates';
 
 import { useRequest } from '@/packages/request';
@@ -14,15 +12,10 @@ const useFetchQuotaDetails = () => {
 		serviceRates,
 		serviceRatesLoading,
 	} = useGetServiceRates();
-	// const { scope } = useScope();
+
 	const { profile = {} } = useSelector((s) => s);
 	const [modal, setModal] = useState(false);
 	const [quotaDetails, setQuotaDetails] = useState();
-	// const { trigger, loading } = useRequest(
-	// 	'get',
-	// 	false,
-	// 	scope,
-	// )('saas_get_user_quota_usage');
 
 	const [{ loading }, trigger] = useRequest({
 		url    : '/saas_get_user_quota_usage',

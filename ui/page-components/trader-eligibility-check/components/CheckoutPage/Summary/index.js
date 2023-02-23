@@ -1,25 +1,7 @@
 import { Button } from '@cogoport/components';
 import { useState, useEffect } from 'react';
 
-// import {
-// 	Card,
-// 	Heading,
-// 	StyledRow,
-// 	Column,
-// 	Text,
-// 	TextColumn,
-// 	TotalText,
-// 	Line,
-// 	Line2,
-// 	ButtonWrapper,
-// 	SubmitButton,
-// 	RedirectButton,
-// 	Wrapper,
-// 	FlexDiv,
-// 	Icon,
-// } from './styles';
-import { LoadingIcon } from '../../../configuration/icon-configuration';
-import { NoDataIcon } from '../../../configuration/icon-configuration';
+import { LoadingIcon, NoDataIcon } from '../../../configuration/icon-configuration';
 import redirectUrl from '../../../constants/redirectUrl';
 import { quotaAvailabilityfunction } from '../../../utils';
 import style from '../styles.module.css';
@@ -121,7 +103,7 @@ function Summary({
 					{paymentThroughQuota && (
 						<>
 							<div className={styles.styled_row}>
-								<div xs={8}>
+								<div>
 									<div className={styles.text}>Left Quota</div>
 								</div>
 								<div className={styles.text_column}>
@@ -129,7 +111,7 @@ function Summary({
 								</div>
 							</div>
 							<div className={styles.styled_row}>
-								<div xs={8}>
+								<div>
 									<div className={styles.text}>Quota that will be deducted</div>
 								</div>
 								<div className={styles.text_column}>
@@ -138,7 +120,7 @@ function Summary({
 							</div>
 							<div className={styles.line2} />
 							<div className={styles.styled_row}>
-								<div xs={8}>
+								<div>
 									<div className={styles.total_text}>Remaining Quota</div>
 								</div>
 								<div className={styles.text_column}>
@@ -150,7 +132,7 @@ function Summary({
 					{!paymentThroughQuota && (
 						<>
 							<div className={styles.styled_row}>
-								<div xs={8}>
+								<div>
 									<div className={styles.text}>Eligibility check charges</div>
 								</div>
 								<div className={styles.text_column}>
@@ -161,7 +143,7 @@ function Summary({
 								</div>
 							</div>
 							<div className={styles.styled_row}>
-								<div xs={8}>
+								<div>
 									<div className={styles.text}>Convenience fee</div>
 								</div>
 								<div className={styles.text_column}>
@@ -173,7 +155,7 @@ function Summary({
 							</div>
 							<div className={styles.line2} />
 							<div className={styles.styled_row}>
-								<div xs={8}>
+								<div>
 									<div className={styles.total_text}>Total Amount</div>
 								</div>
 								<div className={styles.text_column}>

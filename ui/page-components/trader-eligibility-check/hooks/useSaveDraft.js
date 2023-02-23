@@ -1,8 +1,6 @@
 import { Toast } from '@cogoport/components';
 import { useState } from 'react';
 
-// import { useSaasState } from '../../../common/context';
-
 import useGetProductCode from './useGetProductCodes';
 
 import { useRouter } from '@/packages/next';
@@ -16,9 +14,6 @@ const useSaveDraft = () => {
 	const { id, organization } = profile;
 	const [draftId, setDraftId] = useState('');
 	const { push } = useRouter();
-	// const { trigger, loading } = useRequest('post', false, 'saas', {
-	// 	authkey: 'post_saas_trade_engine_screening_draft',
-	// })('/saas/trade-engine/screening/draft');
 
 	const [{ loading }, trigger] = useRequestBf({
 		url     : '/saas/trade-engine/screening/draft',

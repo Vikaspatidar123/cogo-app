@@ -1,68 +1,64 @@
-/* import Grid from '@cogoport/front/components/Grid';
-import styled from '@cogoport/front/styled';
-
-const { Row, Col } = Grid;
-
-export const Wrapper = styled(Row)`
-	height: 96% !important;
-	display: flex !important;
-	flex-direction: ${(props) => (props.isMobile ? 'column !important' : 'row !important')};
-`;
-
-export const Column = styled(Col)`
-	padding: 50px !important;
-	box-shadow: 20px 0px 20px -10px rgba(41, 47, 63, 0.15) !important;
-`;
-
-export const CheckoutColumn = styled(Col)`
-	padding: 20px;
-	box-shadow: 20px 0px 20px -10px rgba(41, 47, 63, 0.15) !important;
-`;
-
-export const MapColumn = styled(Col)`
-	padding: 0px !important;
-	box-shadow: 20px 0px 20px -10px rgba(41, 47, 63, 0.15) !important;
-`;
-
-export const ListColumn = styled(Col)`
-	padding: 10px 20px 0px 20px !important;
-	box-shadow: 20px 0px 20px -10px rgba(41, 47, 63, 0.15) !important;
-	height: 700px !important;
-	overflow: scroll !important;
-`;
-
-export const MapColumn2 = styled.div`
-	padding: 0px !important;
-	box-shadow: 20px 0px 20px -10px rgba(41, 47, 63, 0.15) !important;
-`; */
 
 .map_column2{
-	padding: 0px !important;
-	box-shadow: 20px 0px 20px -10px rgba(41, 47, 63, 0.15) !important;
+	padding: 0px ;
+	box-shadow: 20px 0px 20px -10px rgba(41, 47, 63, 0.15) ;
 }
 
 .wrapper{
-	height: 96% !important;
-	/* display: flex !important; */
-	flex-direction: row !important;
+	height: 96% ;
+	display: flex ;
+	flex-direction: row ;
+	justify-content: space-between;
+	width: 100%;
 }
 .wrapper_with_mobile{
-	height: 96% !important;
-	display: flex !important;
-	flex-direction: column !important;
+	height: 96% ;
+	display: flex ;
+	flex-direction: column ;
 }
 
 .column{
-	/* padding: 50px !important; */
-	box-shadow: 20px 0px 20px -10px rgba(41, 47, 63, 0.15) !important;
+	width: 32%;
+	padding: 50px ;
+	box-shadow: 20px 0px 20px -10px rgba(41, 47, 63, 0.15) ;
+}
+
+.column_with_mobile{
+	width: 100%;
+	padding: 35px ;
+	box-shadow: 20px 0px 20px -10px rgba(41, 47, 63, 0.15) ;
 }
 
 .checkout_column{
-	padding: 20px;
-	box-shadow: 20px 0px 20px -10px rgba(41, 47, 63, 0.15) !important;
+	width: 32%;
+	padding: 20px 0px 0px 0px;
+	box-shadow: 20px 0px 20px -10px rgba(41, 47, 63, 0.15) ;
 }
 
 .map_column{
-	padding: 0px !important;
-	box-shadow: 20px 0px 20px -10px rgba(41, 47, 63, 0.15) !important;
+	width: 68%;
+	padding: 0px ;
+	box-shadow: 20px 0px 20px -10px rgba(41, 47, 63, 0.15) ;
+}
+
+.list_column{
+	padding: 10px 20px 0px 20px ;
+	box-shadow: 20px 0px 20px -10px rgba(41, 47, 63, 0.15) ;
+	height: 700px ;
+	overflow: scroll ;
+	width: 32%;
+}
+
+.list_column_mobile{
+	padding-top: 20px;
+	box-shadow: 20px 0px 20px -10px rgba(41, 47, 63, 0.15) ;
+	height: 700px ;
+	overflow: scroll ;
+	width: 100%;
+}
+
+.checkout_column_mobile{
+	width: 100%;
+	padding: 20px 0px 0px 0px;
+	box-shadow: 20px 0px 20px -10px rgba(41, 47, 63, 0.15) ;
 }

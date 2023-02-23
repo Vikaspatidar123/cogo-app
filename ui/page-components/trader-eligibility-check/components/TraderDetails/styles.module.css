@@ -1,143 +1,8 @@
-/* import Button from '@cogoport/front/components/admin/Button';
-import styled from '@cogoport/front/styled';
-
-import Loading from '../../assets/loadingwithoutcolor.svg';
-
-export const StyledLoading = styled(Loading)`
-	height: 30px !important;
-	margin: 0px !important;
-`;
-
-export const ButtonWrapper = styled.div`
-	width: 100%;
-	align-items: flex-end;
-	display: flex;
-	justify-content: flex-end;
-`;
-
-export const SubmitButton = styled(Button)`
-	background: #db4634 !important;
-	font-weight: 400;
-	font-size: 16px;
-	margin-top: 18px;
-	border: none !important;
-	color: white !important;
-	text-transform: capitalize !important;
-	height: 35px !important;
-	padding: 15px !important;
-	display: flex !important;
-	align-items: center !important;
-	align-content: center !important;
-	margin-left: 15px !important;
-	.loader {
-		margin: none !important;
-	}
-	&.disabled {
-		opacity: 0.4;
-	}
-`;
-
-export const DIV = styled.div`
-	display: flex;
-	flex-direction: column;
-	justify-content: space-around;
-	.element {
-		::placeholder {
-			font-size: 14px !important;
-			color: #d6d6d6 !important;
-		}
-
-		.core-ui-select__control--is-focused {
-			border: 1px solid blue !important;
-			border-radius: 5px !important;
-		}
-	}
-`;
-
-export const Label = styled.div`
-	font-weight: 300;
-	display: flex;
-	.mandatory {
-		color: red;
-	}
-`;
-
-export const Title = styled.div`
-	display: flex;
-	align-items: center;
-	gap: 6px;
-	font-size: 19px;
-	margin-bottom: 20px;
-	font-weight: 500;
-
-	.title {
-		display: flex !important;
-		align-items: center !important;
-		flex-direction: column;
-	}
-	svg {
-		height: 30px;
-		width: 30px;
-		margin-right: 6px;
-	}
-`;
-
-export const LineWrapper = styled.div`
-	display: flex;
-	width: ${({ isMobile }) => (isMobile ? '40% !important' : '90% !important ')};
-`;
-
-export const Line = styled.hr`
-	height: 2px;
-	border-width: 0;
-	width: 100%;
-	background-color: #f68b21;
-	flex-grow: 1;
-	margin: -2px !important;
-`;
-
-export const Title2 = styled.div`
-	margin-top: 10px;
-	display: flex;
-	flex-direction: column;
-	font-size: 17px;
-	margin-bottom: 20px;
-	margin-left: 10px;
-	padding: 4px;
-	.titlee {
-		display: flex;
-		align-items: center;
-		.optional {
-			font-size: 12px;
-			margin-left: 5px;
-		}
-	}
-	.line {
-		width: 30%;
-		height: 2px;
-		margin: 0px;
-	}
-`; */
 
 .main_div{
 	display: flex;
 	flex-direction: column;
 	justify-content: space-around;
-	.element {
-		::placeholder {
-			font-size: 14px !important;
-			color: #d6d6d6 !important;
-		}
-
-		.core-ui-select__control--is-focused {
-			border: 1px solid blue !important;
-			border-radius: 5px !important;
-		}
-	}
-}
-
-.row_style{
-	display: flex;
 }
 
 .title_div{
@@ -153,6 +18,7 @@ export const Title2 = styled.div`
 	display: flex !important;
 	align-items: center !important;
 	flex-direction: column;
+	font-weight: 600;
 }
 
 .sub_heading_icon{
@@ -168,21 +34,22 @@ export const Title2 = styled.div`
 
 .line_wrapper_mobile{
 	display: flex;
-	width: 40%;
+	width: 100%;
 }
 
 .line{
 	height: 2px;
 	border-width: 0;
-	width: 100%;
+	width: 70%;
 	background-color: #f68b21;
 	flex-grow: 1;
 	margin: -2px !important;
 }
 
 .label{
-	font-weight: 300;
+	font-weight: 200;
 	display: flex;
+	padding-bottom: 3px
 }
 .mandatory {
 	color: red;
@@ -215,7 +82,7 @@ export const Title2 = styled.div`
 }
 
 .text{
-	margin-top: -8px;
+	margin-top: 5px;
 	color: red;
 }
 
@@ -227,25 +94,29 @@ export const Title2 = styled.div`
 }
 
 .submit_button{
-	background: #db4634 !important;
-	font-weight: 400;
-	font-size: 16px;
-	margin-top: 18px;
-	border: none !important;
-	color: white !important;
-	text-transform: capitalize !important;
-	height: 35px !important;
-	padding: 15px !important;
-	display: flex !important;
-	align-items: center !important;
-	align-content: center !important;
-	margin-left: 15px !important;
+	width: 100px;
 }
 
 
 .loader {
-	margin: none !important;
+	margin: none ;
 }
 &.disabled {
 	opacity: 0.4;
+}
+
+.element_style{
+	padding-bottom: 20px;
+}
+
+.style_loading{
+	height: 30px !important;
+	margin: 0px !important;
+}
+
+.additional_style{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	flex-wrap: wrap;
 }

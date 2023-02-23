@@ -1,149 +1,7 @@
-/* import Button from '@cogoport/front/components/admin/Button';
-import Grid from '@cogoport/front/components/Grid';
-import styled from '@cogoport/front/styled';
-
-import NoData from '../../../assets/nodata.svg';
-
-const { Row, Col } = Grid;
-export const Card = styled.div`
-	background: #fafbfb;
-	padding: 20px;
-`;
-
-export const Heading = styled.div`
-	font-weight: 600;
-	font-size: 18px;
-	color: #e84855;
-`;
-
-export const StyledRow = styled(Row)`
-	padding: 15px 0px;
-	.deduction {
-		display: flex !important;
-		text-align: center !important;
-		width: 100% !important;
-	}
-`;
-
-export const Column = styled(Col)``;
-export const TextColumn = styled(Col)`
-	justify-content: flex-end !important;
-`;
-export const Text = styled.div`
-	font-weight: 400;
-	font-size: 14px;
-	color: #2d3047;
-`;
-export const TotalText = styled.div`
-	font-weight: 600;
-	font-size: 16px;
-	color: #2d3047;
-`;
-
-export const Line = styled.hr`
-	border: 1px dashed #e5e5e5;
-`;
-
-export const Line2 = styled.hr`
-	border: 1px solid #e5e5e5;
-`;
-
-export const ButtonWrapper = styled.div`
-	width: 100%;
-	align-items: flex-end;
-	display: flex;
-	justify-content: flex-end;
-`;
-export const ButtonWrapper2 = styled.div`
-	width: 100%;
-	align-items: center;
-	display: flex;
-	justify-content: space-between;
-`;
-
-export const SubmitButton = styled(Button)`
-	background: #db4634 !important;
-	font-weight: 400;
-	font-size: 16px;
-	margin-top: 10px;
-	border: none !important;
-	color: white !important;
-	text-transform: capitalize !important;
-	height: 35px !important;
-	padding: 15px !important;
-	display: flex !important;
-	align-items: center !important;
-	align-content: center !important;
-	margin-left: 15px !important;
-	.loader {
-		margin: none !important;
-	}
-	&.disabled {
-		opacity: 0.4;
-	}
-`;
-export const RedirectButton = styled(Button)`
-	background: #fff !important;
-	font-weight: 400;
-	font-size: 16px;
-	margin-top: 18px;
-	border: 1px solid !important;
-	color: black !important;
-	text-transform: capitalize !important;
-	height: 35px !important;
-	padding: 15px !important;
-	display: flex !important;
-	align-items: center !important;
-	align-content: center !important;
-	.loader {
-		margin: none !important;
-	}
-	&.disabled {
-		opacity: 0.4;
-	}
-`;
-
-export const Div = styled.div`
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	margin: 18px 0px 0px 4px;
-	.text1 {
-		font-weight: 500;
-		font-size: 12px;
-		color: #cfbc93;
-	}
-	.text2 {
-		font-weight: 300;
-		font-size: 10px;
-		color: #bdbdbd;
-	}
-`;
-
-export const Wrapper = styled.div`
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-`;
-
-export const FlexDiv = styled.div`
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	font-weight: 500;
-	font-size: 16px;
-	color: #828282;
-	text-align: center;
-`;
-
-export const Icon = styled(NoData)`
-	width: 100px;
-	height: 200px;
-`; */
 
 
 .wrapper{
+	width: 100%;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
@@ -181,18 +39,19 @@ export const Icon = styled(NoData)`
 }
 
 .styled_row{
-	display: grid;
+	display: flex;
+    justify-content: space-between;
 	padding: 15px 0px;
 }
 
 .deduction {
-	display: flex !important;
-	text-align: center !important;
-	width: 100% !important;
+	display: flex ;
+	text-align: center ;
+	width: 100% ;
 }
 
 .text_column{
-	justify-content: flex-end !important;
+	justify-content: flex-end ;
 }
 
 .line2{
@@ -219,39 +78,39 @@ export const Icon = styled(NoData)`
 }
 
 .redirect_button{
-	background: #fff !important;
+	background: #fff ;
 	font-weight: 400;
 	font-size: 16px;
 	margin-top: 18px;
-	border: 1px solid !important;
-	color: black !important;
-	text-transform: capitalize !important;
-	height: 35px !important;
-	padding: 15px !important;
-	display: flex !important;
-	align-items: center !important;
-	align-content: center !important;
+	border: 1px solid ;
+	color: black ;
+	text-transform: capitalize ;
+	height: 35px ;
+	padding: 15px ;
+	display: flex ;
+	align-items: center ;
+	align-content: center ;
 }
 
 .loader {
-	margin: none !important;
+	margin: none ;
 }
 .disabled {
 	opacity: 0.4;
 }
 
 .submit_button{
-	background: #db4634 !important;
+	background: #db4634 ;
 	font-weight: 400;
 	font-size: 16px;
 	margin-top: 10px;
-	border: none !important;
-	color: white !important;
-	text-transform: capitalize !important;
-	height: 35px !important;
-	padding: 15px !important;
-	display: flex !important;
-	align-items: center !important;
-	align-content: center !important;
-	margin-left: 15px !important;
+	border: none ;
+	color: white ;
+	text-transform: capitalize ;
+	height: 35px ;
+	padding: 15px ;
+	display: flex ;
+	align-items: center ;
+	align-content: center ;
+	margin-left: 15px ;
 }

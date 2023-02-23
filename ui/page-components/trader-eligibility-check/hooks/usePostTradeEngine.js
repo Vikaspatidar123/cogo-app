@@ -1,7 +1,5 @@
 import { Toast } from '@cogoport/components';
 
-// import { useSaasState } from '../../../common/context';
-
 import useGetTradeEngine from './useGetTradeEngine';
 
 import { useRequestBf } from '@/packages/request';
@@ -10,10 +8,6 @@ import { useSelector } from '@/packages/store';
 const usePostTradeEngine = () => {
 	const { profile } = useSelector((s) => s);
 	const { id, organization } = profile || {};
-
-	// const { trigger, loading } = useRequest('post', false, 'saas', {
-	// 	authkey: 'post_saas_trade_engine',
-	// })('/saas/trade-engine');
 
 	const [{ loading }, trigger] = useRequestBf({
 		url     : '/saas/trade-engine',

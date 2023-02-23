@@ -1,21 +1,13 @@
-// import Grid from '@cogoport/front/components/Grid';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 import { HeadingIcon } from '../configuration/icon-configuration';
-// import { useWindowDimensions } from '../../../common/utils/getMobileView';
 import useFetchQuotaDetails from '../hooks/useFetchQuotaDetails';
 import useSaveDraft from '../hooks/useSaveDraft';
 
 import Content from './Content';
-// import {
-// 	Container, ContentWrapper, Heading, SVG, Wrapper,
-// } from './styles';
-
 import styles from './styles.module.css';
 
 import { useSelector } from '@/packages/store';
-
-// const { Col } = Grid;
 
 function TraderEligibilty() {
 	const [formDetails, setFormDetails] = useState({});
@@ -29,16 +21,6 @@ function TraderEligibilty() {
 		setModal,
 		quotaDetails,
 	} = useFetchQuotaDetails();
-	// const [isMobile, setIsMobile] = useState(false);
-
-	// const { width } = useWindowDimensions();
-	// useEffect(() => {
-	// 	if (width < 1154) {
-	// 		setIsMobile(true);
-	// 	} else {
-	// 		setIsMobile(false);
-	// 	}
-	// }, [width]);
 	const { isMobile } = useSelector(({ general }) => general);
 
 	const { createDraft, loading, draftId } = useSaveDraft();

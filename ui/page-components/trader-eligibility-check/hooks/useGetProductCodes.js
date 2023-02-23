@@ -7,10 +7,6 @@ import { useRequestBf } from '@/packages/request';
 const useGetProductCode = () => {
 	const { initiatePayment } = usePayment();
 
-	// const { trigger, loading } = useRequest('get', false, 'saas', {
-	// 	authkey: 'get_saas_bill_product_codes',
-	// })('/saas/bill/product-codes');
-
 	const [{ loading }, trigger] = useRequestBf({
 		url     : '/saas/bill/product-codes',
 		authKey : 'get_saas_bill_product_codes',

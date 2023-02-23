@@ -1,5 +1,8 @@
 // import { StyledLoading } from '../components/TraderDetails/styles';
 
+import styles from '../components/TraderDetails/styles.module.css';
+import { LoadingIcon } from '../configuration/icon-configuration';
+
 export const quotaAvailabilityfunction = ({
 	setQuotaAvailableStats,
 	quotaDetails,
@@ -36,7 +39,7 @@ export const quotaAvailabilityfunction = ({
 
 export const renderBtn = ({ quotaLoading, serviceRatesLoading }) => {
 	if (quotaLoading || serviceRatesLoading) {
-		return <div />;
+		return <img className={styles.style_loading} src={LoadingIcon} alt="" />;
 	}
 	return 'Continue';
 };

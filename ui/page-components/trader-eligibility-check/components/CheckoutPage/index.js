@@ -1,4 +1,3 @@
-// import { Heading, BackButton, StyledLoading, Wrapper } from './styles';
 import { IcMArrowBack } from '@cogoport/icons-react';
 
 import { LoadingIcon } from '../../configuration/icon-configuration';
@@ -34,7 +33,7 @@ function CheckoutPage({
 				/>
 			)}
 			{serviceRatesLoading && (
-				<img src={LoadingIcon} alt="" className={styles.loading_style} />
+				<img src={LoadingIcon} alt="" className={styles.checkout_loading} />
 			)}
 		</div>
 	);

@@ -6,9 +6,6 @@ import { useRequestBf } from '@/packages/request';
 const useCheckStatus = ({ query, setPaymentStatusModal, createTradeEngine }) => {
 	const [stop, setStop] = useState(false);
 	const [paymentStatus, setPaymentStatus] = useState('');
-	// const { data, trigger, loading } = useRequest('get', false, 'saas', {
-	// 	authkey: 'get_saas_bill_status',
-	// })('/saas/bill/status');
 
 	const [{ data, loading }, trigger] = useRequestBf({
 		url     : '/saas/bill/status',

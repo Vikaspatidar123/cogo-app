@@ -1,9 +1,6 @@
 import { Toast } from '@cogoport/components';
 
 import { useRouter } from '@/packages/next';
-
-// import { useSaasState } from '../../../common/context';
-
 import { useRequestBf } from '@/packages/request';
 import { useSelector } from '@/packages/store';
 
@@ -20,9 +17,6 @@ const usePayment = () => {
 	} = profile;
 	const { query } = useRouter();
 	const { org_id = '', branch_id = '', account_type = '' } = query || {};
-	// const { trigger, data, loading } = useRequest('post', false, 'saas', {
-	// 	authkey: 'post_saas_payment',
-	// })('/saas/payment');
 
 	const [{ data, loading }, trigger] = useRequestBf({
 		url     : '/saas/payment',

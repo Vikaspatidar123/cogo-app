@@ -1,0 +1,146 @@
+
+.wrapper2{
+	height: 96%;
+}
+
+.column2{
+	display: flex;
+	align-items: center;
+	cursor: pointer;
+}
+
+.column3{
+	display: flex;
+	align-items: center;
+	cursor: pointer;
+}
+
+.text {
+	text-decoration: underline;
+	font-weight: 500;
+	font-size: 14px;
+	margin-left: 5px;
+	color: #034afd;
+}
+
+.placeholder_styles{
+	height: 180px;
+	width: 350px;
+	border-radius: 10px;
+	border: 1px solid grey;
+    margin-bottom: 10px;
+	display: flex;
+	flex-direction: column;
+}
+
+.title{
+	font-weight: 600;
+	font-size: 16px;
+	color: #221f20;
+	padding-bottom: 5px ;
+}
+
+.list_wrapper{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	align-content: center;
+	overflow: scroll;
+	margin-top: 30px;
+	svg {
+		margin-top: 30%;
+		margin-bottom: 20px;
+	}
+}
+
+.card{
+	background: #ffffff;
+	border: 1px solid #e0e6e9;
+	border-radius: 6px ;
+	height: 250px ;
+	align-items: center ;
+	padding: 10px ;
+	margin-bottom: 10px;
+	width: 100% ;
+}
+
+.styled_row{
+	display: flex;
+	width: 100% ;
+	padding: 10px ;
+	justify-content: space-between
+}
+
+.new_column{
+	font-weight: 600;
+	font-size: 14px;
+	color: #221f20;
+}
+
+.percentage{
+	font-weight: 600;
+	font-size: 24px;
+	color: #849e4c;
+}
+
+.score_text{
+	font-size: 10px;
+	color: #65677a;
+}
+
+.heading2{
+	font-weight: 600 ;
+	font-size: 12px ;
+	color: #65677a ;
+	padding: 2px !imortant;
+}
+
+.text2{
+	font-size: 12px;
+	color: #65677a;
+	width: 100% ;
+	padding: 2px;
+}
+
+.label{
+	text-align: center;
+	display: flex;
+	font-weight: 500;
+	font-size: 18px;
+	color: #849e4c;
+}
+
+.bold {
+	margin-right: 5px;
+	font-weight: 600;
+	font-size: 18px;
+	color: black;
+}
+
+.title_style{
+	width: 65%;
+	display: flex;
+}
+
+.container_style{
+	padding: 27px;
+	box-shadow: 0px 8px 20px rgba(71, 111, 211, 0.11);
+	width: 100%;
+	display: flex;
+	height: 10%;
+	justify-content: space-between;
+	margin-bottom: 5px;
+}
+
+
+.line{
+	background: #ffffff;
+	border: 1px solid #e0e6e9;
+	border-radius: 6px ;
+	height: 10px ;
+	align-items: center ;
+	padding: 10px ;
+	margin-bottom: 10px;
+	width: 100% ;
+}

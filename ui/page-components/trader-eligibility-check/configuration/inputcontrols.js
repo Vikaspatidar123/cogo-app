@@ -7,51 +7,47 @@ const controls = [
 		type        : 'text',
 		placeholder : 'Name',
 		rules       : { required: 'required' },
-		span        : 12,
 	},
 	{
-		label          : 'Country',
-		name           : 'countryId',
-		type           : 'select',
-		placeholder    : 'Country',
-		optionsListKey : 'country-list-with-flag',
-		rules          : { required: 'required' },
-		span           : 12,
+		label       : 'Country',
+		name        : 'countryId',
+		type        : 'select',
+		placeholder : 'Country',
+		rules       : { required: 'required' },
 	},
 	{
 		label       : 'Postal Code',
 		name        : 'postal_code',
 		type        : 'text',
 		placeholder : 'Enter Postal Code',
-		span        : 12,
 	},
 	{
 		label       : 'State',
 		name        : 'state',
 		type        : 'text',
 		placeholder : 'State',
-		span        : 6,
+		width       : '45%',
 	},
 	{
 		label       : 'City',
 		name        : 'city',
 		type        : 'text',
 		placeholder : 'City',
-		span        : 6,
+		width       : '45%',
 	},
 	{
 		label       : 'Address',
 		name        : 'address',
 		type        : 'text',
 		placeholder : 'Enter Address',
-		span        : 12,
 	},
 ];
 
-const getControls = ({ setCountryDetails, formDetails }) => controls.map((control) => {
+const getControls = ({ setCountryDetails, formDetails, countryOptions }) => controls.map((control) => {
 	if (control.name === 'countryId') {
 		return {
 			...control,
+			...countryOptions,
 			handleChange: (e) => {
 				setCountryDetails(() => ({
 					countryName : e?.display_name,
@@ -63,6 +59,7 @@ const getControls = ({ setCountryDetails, formDetails }) => controls.map((contro
 	}
 	return {
 		...control,
+		...countryOptions,
 		value: getByKey(formDetails?.formValues, control.name) || '',
 	};
 });

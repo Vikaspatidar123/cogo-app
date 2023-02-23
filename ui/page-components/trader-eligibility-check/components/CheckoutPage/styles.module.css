@@ -1,38 +1,13 @@
-/* import styled from '@cogoport/front/styled';
-import { IcMArrowBack } from '@cogoport/icons-react';
-
-import Loading from '../../assets/loadingwithoutcolor.svg';
-
-export const Heading = styled.div`
-	display: flex;
-	font-weight: 500;
-	font-size: 20px;
-	align-items: center;
-	cursor: pointer;
-`;
-
-export const BackButton = styled(IcMArrowBack)`
-	margin-right: 5px;
-	cursor: pointer;
-`;
-
-export const StyledLoading = styled(Loading)`
-	height: 30px !important;
-	margin: 0px !important;
-`;
-
-export const Wrapper = styled.div`
-	height: 100%;
-`; */
 
 .wrapper{
 	height: 100%;
+	width: 100%;
 }
 
 .heading{
 	display: flex;
-	font-weight: 500;
-	font-size: 20px;
+	font-weight: 600;
+	font-size: 22px;
 	align-items: center;
 	cursor: pointer;
 }
@@ -47,3 +22,8 @@ export const Wrapper = styled.div`
 	margin: 0px !important;
 }
 
+.checkout_loading{
+	height: 200px ;
+	display: block;
+	margin: auto !important;
+}

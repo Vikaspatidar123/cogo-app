@@ -1,6 +1,5 @@
 import { startCase } from '@cogoport/utils';
 
-// import { Column, RowWrapper, Label, Value, Container, Wrapper } from './styles';
 import Summary from '../Summary';
 
 import styles from './styles.module.css';
@@ -15,10 +14,13 @@ function Details({
 	const { formValues = {}, countryDetails = {} } = formDetails || {};
 	return (
 		<div className={styles.container}>
-			<div className={styles.row_wrapper}>
+			<div className={styles.row_wrapper_formdata}>
 				{(Object.keys(formValues)?.filter((item) => item !== 'countryId') || []).map(
 					(item) => (
-						<div className={styles.column} xs={item === 'name' ? 12 : 6} key={item}>
+						<div
+							className={`${styles.column} ${item !== 'name' && styles.element_style}`}
+							key={item}
+						>
 							{formValues[item] && <div className={styles.label}>{startCase(item)}</div>}
 							{formValues[item] && <div className={styles.value}>{startCase(formValues[item])}</div>}
 						</div>
@@ -27,7 +29,7 @@ function Details({
 				{(
 					Object.keys(countryDetails)?.filter((item) => item !== 'countryCode') || []
 				).map((item) => (
-					<div className={styles.column} xs={12} key={item}>
+					<div className={styles.column} key={item}>
 						{countryDetails[item] && <div className={styles.label}>{startCase(item)}</div>}
 						{countryDetails[item] && <div className={styles.value}>{countryDetails[item]}</div>}
 					</div>

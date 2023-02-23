@@ -1,18 +1,24 @@
-import Modal from '@cogoport/front/components/admin/Modal';
-import Button from '@cogoport/front/components/admin/Button';
+import { Button, Modal, cl } from '@cogoport/components';
 import { IcMInformation } from '@cogoport/icons-react';
 import { useState, useEffect } from 'react';
-import { Container, Title, Txt, Image } from './style';
-import redirectUrl from '../../constants/redirectUrl';
-import PaymentDoneSvg from '../../assets/payment.svg';
 
-const PaymentStatusModal = ({
+// import PaymentDoneSvg from '../../assets/payment.svg';
+import { PaymentIcon } from '../../configuration/icon-configuration';
+import redirectUrl from '../../constants/redirectUrl';
+
+// import {
+// 	Container, Title, Txt, Image,
+// } from './style';
+
+import styles from './styles.module.css';
+
+function PaymentStatusModal({
 	paymentStatusModal = false,
 	setPaymentStatusModal = () => {},
 	stop = '',
 	paymentStatus = '',
 	checkLoading = false,
-}) => {
+}) {
 	setTimeout(() => {
 		if (paymentStatus === 'PAID') {
 			setPaymentStatusModal(false);
@@ -49,28 +55,28 @@ const PaymentStatusModal = ({
 			closable
 		>
 			{!stop && (
-				<Container>
+				<div className={styles.container}>
 					{paymentStatus === 'ERROR' ? (
-						<PaymentDoneSvg height="150px" width="150px" />
+						<img src={PaymentIcon} alt="" height="150px" width="150px" />
 					) : (
-						<Image src={url} />
+						<img src={url} alt="" className={styles.image} />
 					)}
-					<Title className={paymentStatus === 'ERROR' && 'noresult'}>{text}</Title>
-				</Container>
+					<div className={cl`${styles.title} ${paymentStatus === 'ERROR' && styles.noresult}`}>{text}</div>
+				</div>
 			)}
 			{stop && (
-				<Container>
+				<div className={styles.container}>
 					<IcMInformation fill="#FBDC00" width={52} height={52} />
-					<Txt className="error">
+					<div className={cl`${styles.txt}${styles.error}`}>
 						Sorry, It took longer than usual. We will notify you once payment is
 						successful
-					</Txt>
+					</div>
 					<Button className="secondary sm text" onClick={closeModalHandler}>
 						Close
 					</Button>
-				</Container>
+				</div>
 			)}
 		</Modal>
 	);
-};
+}
 export default PaymentStatusModal;

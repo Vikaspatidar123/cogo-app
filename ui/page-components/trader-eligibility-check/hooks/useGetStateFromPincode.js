@@ -1,17 +1,13 @@
-// import { useRequest, useScope } from '@cogo/commons/hooks';
-
 import { Toast } from '@cogoport/components';
 import { useMemo } from 'react';
 
 import { useRequest } from '@/packages/request';
 
 const useGetStateFromPincode = ({ watchPincode, setCityState, watchCountry }) => {
-	// const { trigger, loading } = useRequest('get', false, scope)('list_locations');
-
 	const [{ loading }, trigger] = useRequest({
 		url    : 'list_locations',
 		method : 'get',
-	}, { manual: true });
+	}, { manual: false });
 
 	const responseCity = async () => {
 		try {

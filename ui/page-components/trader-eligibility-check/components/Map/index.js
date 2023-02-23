@@ -1,8 +1,5 @@
 import { CogoMaps } from '@cogoport/maps';
 
-// import { Div } from './styles';
-import styles from './styles.module.css';
-
 const version = 1;
 const styleName = [
 	{ title: 'Normal Day', style: 'normal.day' },
@@ -24,7 +21,7 @@ const LAYER = styleName.map(({ title, style }) => ({
 function Map({ isMobile = false }) {
 	const heightVariable = isMobile ? '350px' : '680px';
 	return (
-		<div className={styles.div_style}>
+		<div>
 			<CogoMaps
 				baseLayer={LAYER}
 				style={{ height: `${heightVariable}`, width: '100%' }}

@@ -1,10 +1,6 @@
 import CheckoutPage from '../CheckoutPage';
 import TraderDetails from '../TraderDetails';
 
-// import {
-// 	Wrapper, Column, MapColumn, CheckoutColumn, MapColumn2,
-// } from './styles';
-
 import styles from './styles.module.css';
 
 import { dynamic } from '@/packages/next';
@@ -36,7 +32,7 @@ function Content({
 			)}
 			<div className={`${isMobile ? styles.wrapper_with_mobile : styles.wrapper}`}>
 				{!modal && (
-					<div className={styles.column}>
+					<div className={`${isMobile ? styles.column_with_mobile : styles.column}`}>
 						<TraderDetails
 							quotaLoading={quotaLoading}
 							setFormDetails={setFormDetails}
@@ -51,7 +47,7 @@ function Content({
 					</div>
 				)}
 				{modal && (
-					<div className={styles.checkout_column}>
+					<div className={`${isMobile ? styles.checkout_column_mobile : styles.checkout_column}`}>
 						<CheckoutPage
 							quotaDetails={quotaDetails}
 							createDraft={createDraft}

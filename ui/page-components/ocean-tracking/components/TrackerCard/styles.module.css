@@ -1,0 +1,18 @@
+.container {
+  margin-top: 20px;
+}
+
+.head {
+  display: flex;
+  justify-content: space-between;
+  @media (max-width: 760px) {
+    flex-direction: column;
+  }
+}
+
+.status {
+  padding-right: 15px;
+  text-decoration: underline;
+  cursor: pointer;
+  color: #ee3425;
+}

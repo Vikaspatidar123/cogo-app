@@ -1,0 +1,44 @@
+import { Toast } from '@cogoport/components';
+import { useState, useEffect } from 'react';
+
+import { useRequest } from '@/packages/request';
+import { useSelector } from '@/packages/store';
+
+const useFetchStoreQuota = () => {
+	const [storeQuota, setStoreQuota] = useState(null);
+	const quota = storeQuota?.find((item) => item.product_name === 'Ocean Tracking');
+	const quotaCount = quota?.left_quota + quota?.addon_quota || 0;
+
+	const { profile } = useSelector((s) => s);
+	const [{ loading }, trigger] = useRequest({
+		url    : '/saas_get_user_quota_usage',
+		method : 'get',
+	}, { manual: true });
+
+	const fetchStoreQuota = async () => {
+		try {
+			const res = await trigger({
+				params: { organization_id: profile.organization.id },
+			});
+
+			const { data } = res || {};
+
+			setStoreQuota(data?.plan_details);
+		} catch (err) {
+			Toast.error('Cannot fetch store quota. Please try again later.');
+		}
+	};
+
+	useEffect(() => {
+		fetchStoreQuota();
+	}, []);
+
+	return {
+		loading,
+		storeQuota,
+		fetchStoreQuota,
+		quotaCount,
+	};
+};
+
+export default useFetchStoreQuota;

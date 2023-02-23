@@ -37,15 +37,7 @@ const handleAuthentication = async ({
 		return { asPrefix };
 	}
 	const token = getCookie('cogo-auth-token', { req });
-	// const { routes } = routeConfig || {};
-	// const valid_url_types = (routes[asPath])
-	// 	|| (routes[pathname]);
-	// if (
-	// 	valid_url_types
-	// ) {
-	// 	return { asPrefix };
-	// }
-	// for short urls
+
 	if (asPath.includes('/url/')) {
 		return { asPrefix };
 	}

@@ -1,5 +1,5 @@
 import { IcMCrossInCircle, IcMArrowNext } from '@cogoport/icons-react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import DeleteModal from '../../common/DeleteModal';
 import useDeleteTrendSubscription from '../../hooks/useDeleteTrends';
@@ -8,7 +8,7 @@ import styles from './styles.module.css';
 
 import { useRouter } from '@/packages/next';
 
-function TrendCard({ trend, isMobile }) {
+function TrendCard({ trend = {}, isMobile }) {
 	const { push } = useRouter();
 
 	const { loading, deleteTrend } = useDeleteTrendSubscription();
@@ -23,7 +23,7 @@ function TrendCard({ trend, isMobile }) {
 		origin      : trend?.origin_port?.name || 'Origin',
 		destination : trend?.destination_port?.name || 'Destination',
 	};
-
+	// console.log('asd');
 	return (
 		<>
 			<div className={styles.card}>
@@ -47,9 +47,9 @@ function TrendCard({ trend, isMobile }) {
 						</div>
 					</div>
 					<div className={styles.dot_circle}>
-						<div className={styles.circle} />
+						<div className={styles.circle1} />
 						<div className={styles.line} />
-						<div className={styles.circle} />
+						<div className={styles.circle2} />
 					</div>
 					<div className={styles.port_code}>
 						{trend?.origin_port?.port_code || 'Origin'}
@@ -80,6 +80,7 @@ function TrendCard({ trend, isMobile }) {
 					deleteTrend={deleteTrend}
 					deleteLoading={loading}
 					isMobile={isMobile}
+
 				/>
 			)}
 		</>

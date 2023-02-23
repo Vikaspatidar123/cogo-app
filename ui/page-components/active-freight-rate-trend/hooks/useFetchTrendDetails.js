@@ -45,6 +45,7 @@ const useFetchTrendDetails = ({ id }) => {
 			Toast.error(err?.message || 'Something went wrong');
 		}
 	};
+
 	useEffect(() => {
 		fetchScheduleDetails();
 	}, [filters]);

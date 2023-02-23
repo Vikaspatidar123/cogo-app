@@ -12,7 +12,7 @@ const useFetchTrends = ({ pageLimit = 10 }) => {
 	const [pagination, setPagination] = useState({ page: 1 });
 	const { freightTrends, setFreightTrends } = useSelector((state) => state);
 
-	const [{ loading:load, data: tredList }, trendTrigger] = useRequest({
+	const [{ loading:load, data: tredList = [] }, trendTrigger] = useRequest({
 		url    : '/list_freight_trend_subscriptions',
 		method : 'get',
 	}, { manual: true });
@@ -49,7 +49,7 @@ const useFetchTrends = ({ pageLimit = 10 }) => {
 			if (showLoading) setLoading(false);
 		}
 	};
-	const fetchLocations = async (inputValue, callback) => {
+	const fetchLocations = async (inputValue, callback = () => {}) => {
 		try {
 			const res = await trendTrigger({
 				params: {
@@ -79,8 +79,7 @@ const useFetchTrends = ({ pageLimit = 10 }) => {
 		}
 	};
 
-	const refectTrends = () => fetchTrends(false);
-	useEffect(() => { fetchLocations(); }, []);
+	 const refectTrends = () => fetchTrends(false);
 
 	return {
 		loading,

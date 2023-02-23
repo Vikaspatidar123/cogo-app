@@ -8,8 +8,8 @@ import { useSelector } from '@/packages/store';
 
 const useDeleteTrendSubscription = () => {
 	const { profile } = useSelector((state) => state);
-	const { refectTrends } = useFetchTrends(10);
 	const [trendData, setTrendData] = useState();
+	const { refectTrends } = useFetchTrends(10);
 
 	const [{ loading }, deleteTrendTrigger] = useRequest({
 		url    : '/delete_freight_trend_subscription',

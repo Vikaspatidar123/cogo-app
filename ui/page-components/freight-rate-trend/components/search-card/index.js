@@ -86,12 +86,7 @@ function SearchCard({ refechTrends }) {
 				</div>
 			</div>
 			<form
-				style={{
-					width          : '100%',
-					display        : 'flex',
-					justifyContent : 'space-between',
-					marginTop      : 24,
-				}}
+				className={styles.form}
 			>
 				{filed.map((controlItem) => {
 					const { type, name } = controlItem;
@@ -109,6 +104,7 @@ function SearchCard({ refechTrends }) {
 						</div>
 					);
 				})}
+
 				<div className={styles.styled_form_item}>
 					<Button
 						size="lg"

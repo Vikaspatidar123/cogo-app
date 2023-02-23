@@ -1,5 +1,5 @@
 import { Pagination, Button } from '@cogoport/components';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 
 import TrackingLimitModal from './common/tracking-limit';
@@ -11,8 +11,10 @@ import styles from './styles.module.css';
 
 const trendLayout = ({
 	isMobile,
-	list,
-	page, total, total_count,
+	list = [],
+	page,
+	total,
+	total_count,
 }) => (list?.length > 0 ? (
 	<>
 		<div className={styles.flex_container}>
@@ -47,6 +49,7 @@ function FreightRateTrend() {
 		setPagination,
 		refectTrends,
 		tredList = {},
+		fetchLocations,
 	} = useFetchTrends({});
 	const [isTrendModalOpen, setTrendModal] = useState(false);
 
@@ -64,6 +67,10 @@ function FreightRateTrend() {
 
 	const trendList = freightTrends?.list || [];
 
+	useEffect(() => {
+		fetchLocations();
+	}, []);
+
 	if (isTrendModalOpen) {
 		return <AddTrendModal refectTrends={refectTrends} handleModal={handleTrendModal} />;
 	}
@@ -73,6 +80,7 @@ function FreightRateTrend() {
 			<TrackingLimitModal overflow="visible" closeModal={handleTrackingLimitModal} />
 		);
 	}
+
 	return (
 		<>
 			{!isMobile && (

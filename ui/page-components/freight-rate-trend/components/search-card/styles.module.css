@@ -40,3 +40,12 @@
   justify-content: space-between;
   align-items:center;
 }
+.form{
+    width          : 100%;
+		display        : flex;
+		justify-content : space-between;
+		margin-top      : 24px;
+    @media screen and (max-width: 700px) {
+      flex-direction: column;
+      }
+}

@@ -15,7 +15,9 @@
 		grid-column: span 12;
 	}
 }
-
+/* .card:hover{
+	background-color: #fdfbf6;;
+} */
 .enroute{
 	display: flex;
 	justify-content: space-between;
@@ -40,7 +42,7 @@
 }
 
 .footer{
-	background-color: #c2defc;
+	background-color:#FDFBF6;
 	width: 100%;
 	padding: 10px;
 	display: flex;
@@ -124,13 +126,21 @@
 	margin: 0px 35px 10px 35px;
 }
 
-.circle {
+.circle1 {
   height: 15px;
   width: 18px;
-  background-color: rgb(120, 148, 176);
+  background-color: #6FA5AB;
   border-radius: 50%;
   display: inline-block;
-  margin: 0px 35px 10px 35px;
+  margin: 0px 0px 10px 35px;
+}
+.circle2{
+	height: 15px;
+	width: 18px;
+	background-color: #6FA5AB;
+	border-radius: 50%;
+	display: inline-block;
+	margin: 0px 35px 10px 0px;
 }
 
 .dot_circle {
@@ -140,7 +150,7 @@
 
 .line {
 	height: 2px;
-    background-color: rgb(120, 148, 176);
-    width: 92%;
+    background-color: #88CAD1;
+    width: 100%;
     margin-top: 6px;
 }

@@ -1,4 +1,4 @@
-import CogoSubscriptions from '@/ui/page-components/cogo-subscriptions/manage-subscription';
+import CogoSubscriptions from '@/ui/page-components/cogo-subscriptions/components/manage-subscription';
 
 function CogoSubscription() {
 	return <CogoSubscriptions />;

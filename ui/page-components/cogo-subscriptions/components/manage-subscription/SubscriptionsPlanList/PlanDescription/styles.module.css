@@ -1,0 +1,272 @@
+/* .label {
+	font-weight: 500;
+	font-size: 20px;
+	display: flex;
+	align-items: center;
+	color: #bdbdbd;
+}
+	
+
+.styled_row {
+	display: flex;
+	margin-top: 5px;
+	justify-content: space-between;
+	margin-left: 0px;
+	align-items: center;
+	padding: 5px;
+}
+	
+
+.styled_row.price_row {
+		margin-top: 0;
+		padding-top: 0;
+		padding-bottom: 0;
+}
+
+.styled_row.heading {
+		align-items: flex-start;
+}
+
+.annually_txt {
+		color: #a4a2a2;
+}
+
+
+
+
+.heading {
+	font-weight: 500;
+	font-size: 20px;
+}
+	
+
+.row2 {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.row2.subheading {
+	font-size: 11px;
+}
+
+
+.styled_col {
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	margin-left: 0px ;
+	margin-right: 0px ;
+}
+
+.styled_col_2 {
+	display: flex;
+	align-items: flex-start;
+	flex-direction: column;
+	margin-left: 0px ;
+	margin-right: 0px ;
+}
+	
+
+
+.price {
+	display: flex;
+	font-weight: 700;
+	font-size: 32px;
+	align-items: center;
+}
+	
+.price .perPeriod {
+		font-size: 12px;
+}
+
+
+
+	
+@media screen and (max-width: 768px) {
+	.list{	
+		padding: 12px;
+	}		
+}
+
+
+@media screen and (max-width: 480px) {
+	.list {
+		padding: 8px 0;
+	}
+}
+
+.number {
+	font-weight: 500;
+	font-size: 14px;
+	margin-left: 7px;
+}
+
+.text {
+	font-weight: 400;
+	font-size: 14px;
+	margin-left: 3px;
+}
+
+.flex {
+	display: flex;
+	padding: 3px;
+	align-items: center;
+} */
+	
+
+
+	
+
+
+
+
+
+
+/* NEW CSS */
+
+.plan_type_heading {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.plan_title {
+	display: flex;
+	align-items: flex-start;
+	flex-direction: column;
+}
+
+.plan_type_icon {
+	margin-right: 12px;
+	margin-top: 16px;
+}
+
+.container {
+	width: 100%;
+	padding: 12px 20px;
+	position: relative;
+}
+
+.heading {
+	font-weight: 700;
+	font-size: 20px;
+}
+
+.price {
+	display: flex;
+	font-weight: 700;
+	font-size: 32px;
+	align-items: center;
+}
+
+.subheading {
+	font-size: 12px;
+}
+
+.plan_price {
+	display: flex;
+	justify-content: center;
+}
+
+.plan_prev_price{
+	display: flex;
+	justify-content: center;
+	margin-top: 12px;
+}
+
+.plan_new_price {
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 12px;
+}
+
+.per_period {
+	font-size: 12px;
+} 
+
+.plan_features {
+	display: flex;
+	justify-content: center;
+}
+
+.list {
+	display: flex;
+	flex-direction: column;
+	margin-top: 12px;
+}
+
+
+.number {
+	font-weight: 700;
+	font-size: 14px;
+	margin-right: 4px;
+}
+
+.text {
+	font-weight: 400;
+	font-size: 14px;
+	white-space: nowrap;
+}
+
+.flex {
+	display: flex;
+	padding: 3px;
+	align-items: center;
+	margin: 2px 0;
+}
+
+.annually_txt {
+	color: #a4a2a2;
+}
+
+.center_div {
+	display: flex;
+	width: 100%;
+	justify-content: center;
+	margin: 24px 0 16px 0;
+}	
+	
+
+
+.ribbon_wrapper {
+	display: flex;
+	justify-content: flex-end;
+	right: -4px;
+	top : 0;
+	position: absolute;
+}
+	
+
+.crossed_price {
+	text-decoration: line-through;
+	color: #db4634;
+}
+
+.active_div {
+	font-weight: 400;
+	font-size: 26px;
+	color: #67c676;
+	display: flex;
+}
+
+.tick_icon{
+	margin-right: 8px;
+}
+
+
+.active {
+	font-weight: 400;
+	font-size: 26px;
+	color: #67c676;
+	display: flex;
+    align-items: center;
+}
+
+.active_plan {
+	display: flex ;
+	width: 100%;
+	justify-content: center;
+	align-items: center;
+	margin-top: 24px;
+}

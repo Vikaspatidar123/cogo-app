@@ -1,0 +1,18 @@
+.dot {
+	width: 6px;
+	height: 6px;
+	border-radius: 100%;
+	background: #db4634;
+}
+
+.style_line {
+	height: 0;
+	border-top: 1px solid #abb0de;
+	width: 100%;
+}
+
+.container {
+	display: flex;
+	align-items: center;
+	width: 100%;
+}

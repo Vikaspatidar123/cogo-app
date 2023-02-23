@@ -1,0 +1,146 @@
+.wrapper {
+	background-color: #fff8f4;
+	display: flex;
+	align-items: center;
+	padding: 25px;
+}
+
+.label {
+	font-weight: 700;
+	font-size: 16px;
+	padding: 0px;
+}
+	
+
+.subscription_details{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding : 0 8px;
+	margin-top: 6px;
+}
+
+.offer_tag{
+	display: flex;
+	display: inline-flex;
+    border: 1px solid #f2f2f2;
+	border-radius: 4px;
+	height: fit-content;
+    background-color: #fce4bf;
+	font-weight: 600;
+	font-size: 12px;
+	padding: 3px 6px;
+    color: #000000;
+}
+
+
+.styled_row {
+	display: flex;
+	justify-content: space-between;
+	margin-left: 0px;
+	align-items: center;
+	padding: 5px;
+}
+
+.styled_row.addons {
+	margin-top: 15px;
+}
+
+.styled_col {
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	margin-left: 0px;
+	margin-right: 0px;
+}
+	
+.styled_col2 {
+	display: flex;
+	align-items: flex-start;
+	flex-direction: column;
+	margin-left: 2px;
+	margin-right: 0px;
+}
+	
+
+.row2{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+
+.heading {
+	font-weight: 600;
+	font-size: 16px;
+	color: #1f1945;
+}
+
+/* export const Tagged = styled(Tag)`
+	background-color: #fce4bf;
+	font-weight: 500;
+	font-size: 12px !important;
+	padding: 3px;
+	color: #000000;
+`; */
+
+.styled_col3 {
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	margin-left: 0px;
+	margin-right: 0px;
+	font-weight: 600;
+	font-size: 18px;
+}
+
+.line_wrapper {
+	width: 16%;
+}
+
+/* hr tag */
+.line {
+	border: 1.5px solid #fbd69f;
+}
+
+.feature_row{
+	padding-left: 20px;
+	padding-top: 20px;
+	display: flex;
+	flex-direction: column;
+	font-weight: 600;
+	font-size: 14px;
+	color: #575f6e;
+}
+
+.list {
+	display: flex;
+	flex-direction: column;
+	padding: 0px 0px 0px 18px;
+}
+
+.flex {
+	display: flex;
+	padding: 3px;
+	align-items: center;
+}
+
+.number {
+	font-weight: 500;
+	font-size: 14px;
+	margin-left: 3px;
+}
+	
+.number svg {
+	vertical-align: middle;
+} 
+
+.text {
+	font-weight: 400;
+	font-size: 14px;
+	margin-left: 3px;
+}
+
+.mt_8{
+	margin-top: 8px;
+}

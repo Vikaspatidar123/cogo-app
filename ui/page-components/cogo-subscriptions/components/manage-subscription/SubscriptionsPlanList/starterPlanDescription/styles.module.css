@@ -1,0 +1,88 @@
+.container {
+	width: 100%;
+	padding: 20px 20px;
+}
+
+.plan_title {
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+}
+
+
+.plan_type_heading {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.plan_type_icon {
+	margin-right: 12px;
+	margin-top: 16px;
+}
+
+.heading {
+	font-weight: bold;
+	font-size: 20px;
+}
+
+.subheading{
+	font-size: 12px;
+}
+
+.plan_features {
+	display: flex;
+	justify-content: center;
+}
+
+.tick_icon{
+	margin-right: 4px;
+}
+
+
+.price {
+	font-weight: 700;
+	font-size: 32px;
+	margin-top: 12px;
+	display: flex;
+	justify-content: center;
+}
+
+.list {
+	display: flex;
+	flex-direction: column;
+	margin-top: 12px;
+}
+
+.flex {
+	display: flex;
+	padding: 3px;
+	align-items: center;
+}
+
+.text {
+	font-weight: 400;
+	font-size: 14px;
+	margin-left: 3px;
+	white-space: nowrap;
+}
+
+.number{
+	font-weight: 600;
+	font-size: 14px;
+	margin-left: 3px;
+}
+
+.active {
+	font-weight: 400;
+	font-size: 26px;
+	color: #67c676;
+}
+
+.active_plan {
+	display: flex ;
+	width: 100%;
+	justify-content: center;
+	align-items: center;
+	margin-top: 24px;
+}

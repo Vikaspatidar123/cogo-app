@@ -1,0 +1,31 @@
+.header {
+	display: flex;
+	justify-content: space-evenly;
+	align-items: flex-start;
+}
+	
+.header.info {
+	align-items: center;
+	gap: 2rem;
+}
+
+.header.info .icon_container {
+	display: flex;
+	align-items: center;
+	font-size: 15px;
+	gap: 5px;
+}
+
+
+.container {
+	padding: 1.5rem 0;
+	margin-top: 1rem;
+}
+	
+
+.body {
+	padding: 1rem 0;
+	gap: 0.5rem;
+	display: flex;
+	flex-direction: column;
+}

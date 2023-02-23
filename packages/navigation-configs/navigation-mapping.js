@@ -1,4 +1,4 @@
-// key is used to identify the navigation
+// key is used to identify the navigation is same as declear in admin side
 // title is used to show navigation title
 // href and as is also used for redirect to navigation page
 // type => if type is link then after click it will redirect to coresponding navigation
@@ -47,6 +47,30 @@ const navigationMappings = {
 		type          : 'link',
 		showMobileNav : true,
 
+	},
+	saas_tools: {
+		key         : 'saas_tools',
+		title       : 'Tools',
+		icon        : 'nav-tools',
+		isSubNavs   : true,
+		showInNav   : true,
+		isNew       : true,
+		module_type : 'dashboards',
+		options     : [
+
+			{
+				key   : 'saas_tools-ocean_tracking',
+				title : 'Ocean Tracking',
+				href  : '/v2/saas/ocean-tracking',
+				as    : '/v2/saas/ocean-tracking',
+				icon  : <img
+					src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/ocean-tracking.svg"
+					alt="cogo"
+				/>,
+				description: 'Seamlessly keep track of your shipments and deviations',
+			},
+
+		],
 	},
 
 };

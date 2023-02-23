@@ -55,6 +55,7 @@ function GlobalLayout({
 						Cogoport App |
 						{title}
 					</title>
+
 				</Head>
 
 			)}

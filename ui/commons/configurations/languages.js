@@ -1,4 +1,4 @@
-const lunguage = [
+const language = [
 	{
 		value : 'uk_english',
 		label : 'English UK',
@@ -165,4 +165,4 @@ const lunguage = [
 	},
 ];
 
-export default lunguage;
+export default language;

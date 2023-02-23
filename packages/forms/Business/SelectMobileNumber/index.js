@@ -2,7 +2,8 @@ import { Input } from '@cogoport/components';
 // import { Input as InputAdmin } from '@cogoport/front/components/admin';
 import { string, shape, func } from 'prop-types';
 
-import SelectCountryCode from './SelectCountryCode';
+import SelectCountryCode from '../SelectCountryCode';
+
 import styles from './styles.module.css';
 
 function SelectMobileNumber({

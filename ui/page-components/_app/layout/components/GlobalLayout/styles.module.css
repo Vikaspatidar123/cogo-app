@@ -15,7 +15,7 @@
 	min-height: 100vh;
 	display: flex;
 	flex-direction: column;
-	background-image: url(/v2/Globe.png);
+	background-image: url("https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/Globe.png");
 	background-position: right top;
 	background-repeat: no-repeat;
 	background-size: auto;

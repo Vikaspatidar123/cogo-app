@@ -36,9 +36,7 @@ function Info({ transportMode, portDetails }) {
 			<div className={`${styles.row} ${styles.section}`}>
 				<div className={`${styles.col} ${styles.port_detail}`}>
 					<div className={styles.port_name}>{renderName(origin?.name)}</div>
-					<div>
-						<IcMPortArrow width={15} height={15} />
-					</div>
+					<IcMPortArrow width={15} height={15} />
 					<div className={styles.port_name}>{renderName(destination?.name)}</div>
 				</div>
 				{transportMode === 'OCEAN' ? (

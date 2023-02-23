@@ -15,14 +15,14 @@
 	transition: background 0.3s ease-in;
 
 }
-
-.text{
-	margin-top: 5px;
-	text-align: center;
-	color: #b7b7b8;
-	transition: color 0.3s ease-in;
-
-	
+.line.is_mobile{
+	width: 30px;
+}
+.line.not_mobile {
+	width: 100px;
+}
+.line.ongoing{
+	background: #f68b21;
 }
 
 .dot{
@@ -32,39 +32,41 @@
 	background: #e0e0e0;
 	transition: background 0.3s ease-in;
 }
-
-.completed {
+.completed{
 	background: #c4dc91;
 }
-.ongoing {
-	background: #f68b21;
-}
-
 .ongoing_dot {
 	background: transparent;
 	border: 2px solid #f68b21;
 }
 
-
-.not_mobile {
-	width: 100px;
+.text{
+	margin-top: 5px;
+	text-align: center;
+	color: #b7b7b8;
+	transition: color 0.3s ease-in;
 }
 
-.is_mobile {
-	width: 30px;
-}
-.completed_txt{
-	color: #333;
-}
-
-.firstElement {
+.text.not_mobile.firstElement{
 	position: absolute;
+	left: -60px;
+}
+.text.not_mobile.lastElement{
+	position: absolute;
+	right: -60px;
+}
+.text.is_mobile{
+	font-size: 9px;
+	position: absolute;
+
+}
+.text.is_mobile.firstElement{
 	left: -30px;
 }
-
-.lastElement {
-	position: absolute;
+.text.is_mobile.lastElement{
 	right: -30px;
 }
 
-
+.text.completed_txt{
+	color: #333;
+}

@@ -71,6 +71,9 @@ function IncotermCharges({
 									placeholder="0"
 									min={0}
 									type="number"
+									suffix={
+										<div className={style.text}>{prevCurr}</div>
+									}
 									value={field.value}
 									rules={{
 										required : true,
@@ -79,13 +82,11 @@ function IncotermCharges({
 											message : 'Should be greater than 0',
 										},
 									}}
-									className="hideInput"
 									{...register(`${name}.${index}.value`, {
 										...(controls.find((controlItem) => controlItem.name === 'value' || {})
 											.rules || {}),
 									})}
 								/>
-								<div className={styles.text}>{prevCurr}</div>
 							</div>
 
 							<div

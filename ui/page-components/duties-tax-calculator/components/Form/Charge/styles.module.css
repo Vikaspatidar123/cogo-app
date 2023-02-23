@@ -16,13 +16,17 @@
 	align-items: center;
 }
 .get_rates{
-	font-size: 10px;
-	font-weight: 600;
-	width: 85px;
 	color: rgb(89 54 240);
+	padding: 0 10px;
 	
 }
 .get_rates:hover{
 	text-decoration: underline;
 	cursor: pointer;
+}
+
+.suffix_container{
+	display: flex;
+	align-items: center;
+	width: 110px
 }

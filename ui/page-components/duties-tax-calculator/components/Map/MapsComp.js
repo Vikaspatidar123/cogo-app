@@ -1,47 +1,71 @@
-import { CogoMaps } from '@cogoport/maps';
-import { useState } from 'react';
+import { CogoMaps, L } from '@cogoport/maps';
+import { useState, useEffect } from 'react';
 
 import { DestinationIcon, SourceIcon } from '../../configuration/icon-configuration';
 
 import Pointer from './Pointer';
 import Route from './Route';
 
-const version = 1;
-const styleName = [
-	{ title: 'Normal Day', style: 'normal.day' },
-	{ title: 'Normal Day Transit', style: 'normal.day.transit' },
-	{ title: 'Pedestrian Day', style: 'pedestrian.day' },
+const LAYER = [
+	{
+		name        : 'COGO MAPS',
+		url         : 'https://maps.dev.cogoport.io/tiles/{z}/{x}/{y}.png',
+		attribution : '',
+	},
 ];
-
-const LAYER = styleName.map(({ title, style }) => ({
-	name        : title,
-	// eslint-disable-next-line max-len
-	url         : `https://${version}.base.maps.ls.hereapi.com/maptile/2.1/maptile/newest/${style}/{z}/{x}/{y}/512/png8?apiKey=Yi1Uv0y9PgZ24UVbBYY7-fRwaz-DPdmGWdIddQW0A9g&mv=in337jp128&ppi=320`,
-	attribution : '',
-}));
 
 const center = { lat: '28.679079', lng: '77.069710' };
 function MapComp({
-	plotPoints, origin = {}, destination = {}, isMobile = false,
+	plotPoints, isMobile = false, tradeEngineRespLength, ...rest
 }) {
+	const { origin = {} } = rest || {};
 	const [map, setMap] = useState();
-
+	const corner1 = L.latLng(-90, -200);
+	const corner2 = L.latLng(90, 200);
+	const bounds = L.latLngBounds(corner1, corner2);
 	const pointLength = plotPoints.length;
-
 	const heightVariable = isMobile ? '350px' : '600px';
+
+	useEffect(() => {
+		const timeout = setTimeout(() => {
+			if (map) map.invalidateSize(true);
+		}, 200);
+		return () => {
+			clearTimeout(timeout);
+		};
+	}, [map, tradeEngineRespLength]);
+
+	useEffect(() => {
+		if (map) {
+			map.setMaxBounds(bounds);
+			map?.attributionControl?.setPrefix(
+				// eslint-disable-next-line max-len
+				'<a href="https://www.cogoport.com/en/terms-and-conditions/" target="_blank">&copy; Cogoport T&C</a> | <a href="https://www.cogoport.com/en/privacy-policy/" target="_blank">Privacy & data protection</a> | <a href="https://leafletjs.com/" target="_blank" >Leaflet</a>',
+			);
+		}
+	}, [map]);
+
 	return (
 		<CogoMaps
-			key={JSON.stringify(plotPoints)}
 			style={{ height: `${heightVariable}`, width: '100%' }}
 			baseLayer={LAYER}
 			zoom={3.6}
 			center={center}
 			setMap={setMap}
+			maxBoundsViscosity={1}
 		>
-			<Pointer lat={origin?.latitude} lng={origin?.longitude} iconSvg={SourceIcon} map={map} />
-			<Route positions={plotPoints} map={map} />
+			{origin?.latitude && (
+				<Pointer lat={origin?.latitude} lng={origin?.longitude} map={map} iconSvg={SourceIcon} />
+			)}
+
+			{pointLength > 0 && <Route positions={plotPoints} map={map} />}
 			{pointLength > 0 && (
-				<Pointer lat={destination.latitude} lng={destination?.longitude} iconSvg={DestinationIcon} map={map} />
+				<Pointer
+					lat={plotPoints[pointLength - 1]?.lat}
+					lng={plotPoints[pointLength - 1]?.lng}
+					map={map}
+					iconSvg={DestinationIcon}
+				/>
 			)}
 		</CogoMaps>
 	);

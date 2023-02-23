@@ -1,8 +1,7 @@
-import { Modal } from '@cogoport/components';
+import { Modal, Button } from '@cogoport/components';
 import { IcAFinancial } from '@cogoport/icons-react';
 import { useEffect, useState } from 'react';
 
-import Button from '../../../../common/Button';
 import { Loading } from '../../../../configuration/icon-configuration';
 import useCurrencyConversion from '../../../../hook/useCurrencyConversion';
 import spotSearchPayload from '../../../../utils/spotSearchPayload';

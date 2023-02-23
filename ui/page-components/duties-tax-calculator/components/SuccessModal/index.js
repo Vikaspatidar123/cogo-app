@@ -1,8 +1,7 @@
 /* eslint-disable max-len */
-import { Tooltip, cl } from '@cogoport/components';
+import { Tooltip, cl, Button } from '@cogoport/components';
 import { IcMInfo } from '@cogoport/icons-react';
 
-import Button from '../../common/Button';
 import { SuccessGif } from '../../configuration/icon-configuration';
 import { shortFormatNumber } from '../../utils/getShortFormatNumber';
 

@@ -17,19 +17,6 @@
 	padding: 15px 10px; 
 }
 
-.flex_col {
-	display: flex;
-	align-items: center;
-	border: 1px solid #d6d6d6;
-	padding-right: 10px;
-	border-radius: 5px;
-}
-
-.freight_charge {
-	border: none;
-	outline: none;
-}
-
 .label {
 	font-weight: 300;
 	margin-bottom: 5px;
@@ -59,7 +46,5 @@
 
 .text{
 	color: #bbbbbb;
-	padding-left: 6px;
-	margin-left: 6px;
-	border-left: 1px solid #d3d3d3;
+	padding: 0 8px;
 }

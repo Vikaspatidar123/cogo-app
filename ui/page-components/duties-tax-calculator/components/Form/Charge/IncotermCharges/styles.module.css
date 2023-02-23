@@ -11,18 +11,9 @@
 	gap: 10px;
 }
 .incoterm_col {
-	display: flex;
-	align-items: center;
-	border: 1px solid #d6d6d6;
-	padding-right: 10px;
-	border-radius: 5px;
 	width: 86%;
-	
 }
-.hideInput {
-	border: none;
-	outline: none;
-}
+
 .delete_icon {
 	background: #fff4f2;
 	border-radius: 5px;

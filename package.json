@@ -18,10 +18,10 @@
     "preinstall": "npx only-allow pnpm"
   },
   "dependencies": {
-    "@cogoport/components": "^1.0.270",
-    "@cogoport/icons-react": "^1.0.57",
-    "@cogoport/maps": "^1.0.1",
-    "@cogoport/utils": "^1.2.2",
+    "@cogoport/components": "^1.0.330",
+    "@cogoport/icons-react": "^1.0.58",
+    "@cogoport/maps": "^1.0.2",
+    "@cogoport/utils": "^1.2.3",
     "@next/polyfill-nomodule": "^13.1.6",
     "@reduxjs/toolkit": "^1.9.1",
     "axios": "^1.2.0",

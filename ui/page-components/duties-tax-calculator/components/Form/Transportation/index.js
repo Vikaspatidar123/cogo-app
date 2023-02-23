@@ -1,9 +1,8 @@
-import { cl } from '@cogoport/components';
+import { cl, Button } from '@cogoport/components';
 import { IcALocation, IcMArrowNext } from '@cogoport/icons-react';
 import { useState, useEffect, useRef } from 'react';
 
 import getField from '../../../../../../packages/forms/Controlled';
-import Button from '../../../common/Button';
 import { ShipGif, PlaneGif } from '../../../common/gif';
 import { InterChange, PlaneIcon, OceanIcon } from '../../../configuration/icon-configuration';
 import transportFn from '../../../utils/transportFn';

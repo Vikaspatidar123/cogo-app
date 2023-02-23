@@ -1,10 +1,9 @@
-import { cl } from '@cogoport/components';
+import { cl, Button } from '@cogoport/components';
 import {
 	IcMArrowBack, IcMShip, IcMAirport, IcMLocation,
 } from '@cogoport/icons-react';
 import { useState } from 'react';
 
-import Button from '../../../common/Button';
 import useDraft from '../../../hook/useDraft';
 import usePayment from '../../../hook/usePayment';
 import checkoutFn from '../../../utils/checkoutFn';
@@ -113,7 +112,7 @@ function Pay({
 			/>
 
 			<div className={cl`${style.btn_container} ${style.checkout_btn}`}>
-				<Button size="md" isPrev onClick={prevHandler}>
+				<Button size="md" themeType="secondary" onClick={prevHandler}>
 					<IcMArrowBack width={16} height={16} />
 				</Button>
 				<Button

@@ -22,7 +22,7 @@ function DotLine({
 					/>
 				)}
 				<div className={cl`${styles.dot} 
-				${isOngoing && styles.ongoing_dot} ${isCompleted && styles.completed} `}
+					${isOngoing && styles.ongoing_dot} ${isCompleted && styles.completed} `}
 				>
 					{isCompleted && <IcMTick fill="#fff" width={14} height={14} />}
 				</div>

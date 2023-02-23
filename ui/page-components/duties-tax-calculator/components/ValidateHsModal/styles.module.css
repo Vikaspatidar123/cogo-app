@@ -13,7 +13,7 @@
 
 .row_div{
 	display: flex;
-	align-items: center;
+	align-items: flex-end;
 	padding: 12px 32px;
 }
 
@@ -31,13 +31,9 @@
 	}
 }
 
-.input_container {
-	width: 65%;
-}
-
-
 .btn_container{
 	margin-left: 20px;
+	margin-bottom: 5px;
 }
 
 .valid {
@@ -83,7 +79,6 @@
 .title_div{
 	display: flex;
 	align-items: center;
-	margin-bottom: 12px;
 }
 
 .title {

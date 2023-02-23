@@ -1,33 +1,40 @@
-import { Tooltip } from '@cogoport/components';
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+import { Popover } from '@cogoport/components';
 import { IcMServices } from '@cogoport/icons-react';
-import { useState } from 'react';
 
 import styles from '../styles.module.css';
 
 import SubNavigation from './SubNavigation';
 
-function Subscription({
+function Navigation({
 	setShowPopover = () => { }, subscriptionNav, setIsOpen, isOpen,
 }) {
-	const renderBody = () => <SubNavigation setShowPopover={setShowPopover} setIsOpen={setIsOpen} subscriptionNav={subscriptionNav} />;
+	const renderBody = () => (
+		<SubNavigation
+			setShowPopover={setShowPopover}
+			setIsOpen={setIsOpen}
+			subscriptionNav={subscriptionNav}
+		/>
+	);
 	return (
-		<Tooltip
-			placement="bottom-start"
-			animation="shift-away"
+		<Popover
+			placement="left"
 			content={renderBody()}
-			theme="light"
-			// visible={isOpen}
 			onClickOutside={() => setIsOpen(!isOpen)}
 			interactive
+			trigger="mouseenter"
 		>
 			<div className={styles.subscription_container}>
 				<IcMServices style={{ marginRight: '12px' }} />
-				<div className={styles.A} as="button" onClick={() => setIsOpen(!isOpen)}>
+				<div
+					className={styles.A}
+					onClick={() => setIsOpen(!isOpen)}
+				>
 					{subscriptionNav?.title}
 				</div>
 			</div>
-		</Tooltip>
+		</Popover>
 	);
 }
 
-export default Subscription;
+export default Navigation;

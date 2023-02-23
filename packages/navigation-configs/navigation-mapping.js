@@ -1,70 +1,64 @@
+// key is used to identify the navigation
+// title is used to show navigation title
+// href and as is also used for redirect to navigation page
+// type => if type is link then after click it will redirect to coresponding navigation
+// showInNav = true => means to show the navigation in both mobile view as well as web view
+// showMobileNav = true => means to show navigation in only mobile view
+// icon is used to show icon webside only
+// mobileIcon is used to show icon in mobile navigation only
+// isSubNavs is used to show sub navigations
+// description show the description of sub navigation
 import {
 	IcMAverage, IcMQuotations, IcMTradeparties, IcMProductCodeMapping,
 	IcACrossBorder,
 	IcMFfreferigeratedCargoType,
 } from '@cogoport/icons-react';
 
-import AirSchedule from './icons/air-schedule.svg';
-import AirTracking from './icons/air-tracking.svg';
-import ManageSubscription from './icons/manage-subscription.svg';
-import OceanSchedule from './icons/ocean-schedule.svg';
-import OceanTracking from './icons/ocean-tracking.svg';
-import ProductClassification from './icons/product-classification.svg';
-
 const navigationMappings = {
 	app_dashboard: {
-		key         : 'app_dashboard',
-		title       : 'Dashboard',
-		href        : '/v2/dashboard',
-		as          : '/v2/dashboard',
-		type        : 'link',
-		module_type : 'dashboards',
-		showInNav   : true,
+		key        : 'app_dashboard',
+		title      : 'Dashboard',
+		href       : '/v2/dashboard',
+		as         : '/v2/dashboard',
+		showInNav  : true,
+		mobileIcon : <IcMQuotations width={20} height={20} />,
 
 	},
 	app_discover_rates: {
-		key         : 'app_discover_rates',
-		title       : 'Discover Rates',
-		href        : '/book',
-		as          : '/book',
-		type        : 'link',
-		tag         : 'New Search',
-		module_type : 'crm',
-		showInNav   : true,
+		key        : 'app_discover_rates',
+		title      : 'Discover Rates',
+		href       : '/book',
+		as         : '/book',
+		showInNav  : true,
+		mobileIcon : <IcMQuotations width={20} height={20} />,
+
 	},
 	saas_planning: {
-		key         : 'saas_planning',
-		title       : 'Planning',
-		isSubNavs   : true,
-		showInNav   : true,
-		module_type : 'dashboards',
-		options     : [
+		key       : 'saas_planning',
+		title     : 'Planning',
+		isSubNavs : true,
+		showInNav : true,
+		options   : [
 			{
-				key         : 'saas_planning-quotation',
-				title       : 'Quick Quotations',
-				icon        : <IcMQuotations width={40} height={40} />,
-				type        : 'link',
-				href        : '/saas/quickquotation/viewlist',
-				as          : '/saas/quickquotation/viewlist',
-				module_type : 'dashboards',
+				key   : 'saas_planning-quotation',
+				title : 'Quick Quotations',
+				icon  : <IcMQuotations width={40} height={40} />,
+				href  : '/saas/quickquotation/viewlist',
+				as    : '/saas/quickquotation/viewlist',
 			},
 			{
-				key         : 'saas_planning-product_inventory',
-				title       : 'Product Catalog',
-				type        : 'link',
-				icon        : <IcMProductCodeMapping width={40} height={40} />,
-				href        : '/saas/product-inventory',
-				as          : '/saas/product-inventory',
-				module_type : 'dashboards',
+				key   : 'saas_planning-product_inventory',
+				title : 'Product Catalog',
+				icon  : <IcMProductCodeMapping width={40} height={40} />,
+				href  : '/saas/product-inventory',
+				as    : '/saas/product-inventory',
 			},
 			{
-				key         : 'saas_planning-trade_partner',
-				title       : 'Trade Partner',
-				type        : 'link',
-				icon        : <IcMTradeparties width={40} height={40} />,
-				href        : '/saas/trade-partner',
-				as          : '/saas/trade-partner',
-				module_type : 'dashboards',
+				key   : 'saas_planning-trade_partner',
+				title : 'Trade Partner',
+				icon  : <IcMTradeparties width={40} height={40} />,
+				href  : '/saas/trade-partner',
+				as    : '/saas/trade-partner',
 			},
 		],
 	},
@@ -74,7 +68,6 @@ const navigationMappings = {
 		icon        : 'nav-premium-services',
 		module_type : 'dashboards',
 		isNew       : true,
-		line        : true,
 		showInNav   : true,
 		isSubNavs   : true,
 		options     : [
@@ -84,7 +77,6 @@ const navigationMappings = {
 				href  : '/v2/saas/premium-services/duties-taxes-calculator',
 				as    : '/v2/saas/premium-services/duties-taxes-calculator',
 				icon  : <IcMAverage width={40} height={40} fill="red" />,
-				type  : 'link',
 			},
 			{
 				key   : 'saas_premium_services-order_history',
@@ -108,7 +100,6 @@ const navigationMappings = {
 		title     : 'Shipments',
 		href      : '/shipments',
 		as        : '/shipments',
-		type      : 'link',
 		icon      : 'nav-booking',
 		showInNav : true,
 	},
@@ -126,58 +117,68 @@ const navigationMappings = {
 	// 	showInNav: true,
 	// },
 	saas_tools: {
-		key         : 'saas_tools',
-		title       : 'Tools',
-		icon        : 'nav-tools',
-		isSubNavs   : true,
-		showInNav   : true,
-		isNew       : true,
-		module_type : 'dashboards',
-		options     : [
+		key       : 'saas_tools',
+		title     : 'Tools',
+		icon      : 'nav-tools',
+		isSubNavs : true,
+		showInNav : true,
+		isNew     : true,
+		options   : [
 			{
-				key         : 'saas_tools-hs_code_classification',
-				title       : 'Product Classification',
-				href        : '/v2/saas/hs-classification',
-				as          : '/v2/saas/hs-classification',
-				type        : 'link',
-				icon        : <ProductClassification />,
-				description : 'Find HS Codes with detailed description',
+				key   : 'saas_tools-hs_code_classification',
+				title : 'Product Classification',
+				href  : '/v2/saas/hs-classification',
+				as    : '/v2/saas/hs-classification',
+				icon  : <img
+					src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/product-classification.svg"
+					alt="cogo"
+				/>,
+				description: 'Find HS Codes with detailed description',
 			},
 			{
-				key         : 'saas_tools-air_tracking',
-				title       : 'Air Tracking',
-				href        : '/saas/air-tracking',
-				as          : '/saas/air-tracking',
-				type        : 'link',
-				icon        : <AirTracking />,
-				description : 'Track your shipment on the map in real time',
+				key   : 'saas_tools-air_tracking',
+				title : 'Air Tracking',
+				href  : '/saas/air-tracking',
+				as    : '/saas/air-tracking',
+				icon  : <img
+					src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/air-tracking.svg"
+					alt="cogo"
+				/>,
+				description: 'Track your shipment on the map in real time',
 			},
 			{
-				key         : 'saas_tools-air_schedules',
-				title       : 'Air Schedules',
-				href        : '/saas/air-schedules',
-				as          : '/saas/air-schedules',
-				type        : 'link',
-				icon        : <AirSchedule />,
-				description : 'Find sailing schedule for multiple air lines by route or vessel',
+				key   : 'saas_tools-air_schedules',
+				title : 'Air Schedules',
+				href  : '/saas/air-schedules',
+				as    : '/saas/air-schedules',
+				icon  : <img
+					src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/air-schedule.svg"
+					alt="cogo"
+
+				/>,
+				description: 'Find sailing schedule for multiple air lines by route or vessel',
 			},
 			{
-				key         : 'saas_tools-ocean_tracking',
-				title       : 'Ocean Tracking',
-				href        : '/saas/tracking',
-				as          : '/saas/tracking',
-				type        : 'link',
-				icon        : <OceanTracking />,
-				description : 'Seamlessly keep track of your shipments and deviations',
+				key   : 'saas_tools-ocean_tracking',
+				title : 'Ocean Tracking',
+				href  : '/saas/tracking',
+				as    : '/saas/tracking',
+				icon  : <img
+					src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/ocean-tracking.svg"
+					alt="cogo"
+				/>,
+				description: 'Seamlessly keep track of your shipments and deviations',
 			},
 			{
-				key         : 'saas_tools-ocean_schedules',
-				title       : 'Ocean Schedules',
-				href        : '/saas/schedules',
-				as          : '/saas/schedules',
-				type        : 'link',
-				icon        : <OceanSchedule />,
-				description : 'Find sailing schedule with real time port congestion data',
+				key   : 'saas_tools-ocean_schedules',
+				title : 'Ocean Schedules',
+				href  : '/saas/schedules',
+				as    : '/saas/schedules',
+				icon  : <img
+					src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/ocean-schedule.svg"
+					alt="cogo"
+				/>,
+				description: 'Find sailing schedule with real time port congestion data',
 			},
 			{
 				key   : 'saas_tools-freight_rate_trend',
@@ -201,7 +202,6 @@ const navigationMappings = {
 				title : 'Insurance',
 				href  : '/saas/insurance/list',
 				as    : '/saas/insurance/list',
-				type  : 'link',
 				icon  : 'nav-insurance',
 			},
 		],
@@ -217,7 +217,6 @@ const navigationMappings = {
 				key   : 'saas_finance-transaction_history',
 				title : 'Transaction History',
 				icon  : <IcMFfreferigeratedCargoType width={40} height={40} fill="red" />,
-				type  : 'link',
 				href  : '/saas/transaction-history',
 				as    : '/saas/transaction-history',
 			},
@@ -226,7 +225,6 @@ const navigationMappings = {
 				title : 'Payment Dashboard',
 				href  : '/payment-dashboard',
 				as    : '/payment-dashboard',
-				type  : 'link',
 				icon  : <IcMFfreferigeratedCargoType width={40} height={40} fill="red" />,
 			},
 		],
@@ -236,7 +234,6 @@ const navigationMappings = {
 		key       : 'app_accept_terms_and_conditions',
 		title     : 'Terms and Conditions',
 		href      : '/accept-terms-and-conditions',
-		type      : 'link',
 		showInNav : false,
 	},
 	app_documents: {
@@ -245,18 +242,15 @@ const navigationMappings = {
 		icon    : 'nav-documents',
 		as      : '/documents/org_documents',
 		href    : '/documents/[doc_type]',
-		type    : 'link',
 		options : [
 			{
 				title : 'Documents',
-				type  : 'link',
 				icon  : 'nav-MySchedules',
 				as    : '/documents/org_documents',
 				href  : '/documents/[doc_type]',
 			},
 			{
 				title : 'Draft Templates',
-				type  : 'link',
 				icon  : 'nav-quotes',
 				as    : '/documents/trade_documents',
 				href  : '/documents/[doc_type]',
@@ -267,7 +261,6 @@ const navigationMappings = {
 		key         : 'saas_schedules',
 		title       : 'Schedules',
 		icon        : 'nav-main-schedules',
-		type        : 'link',
 		module_type : 'dashboards',
 		isSubNavs   : true,
 		showInNav   : false,
@@ -278,7 +271,6 @@ const navigationMappings = {
 				icon  : 'nav-my-schedules',
 				href  : '/saas/schedule-map-dashboard',
 				as    : '/saas/schedule-map-dashboard',
-				type  : 'link',
 			},
 		],
 	},
@@ -298,17 +290,15 @@ const navigationMappings = {
 				type  : 'link',
 			},
 		],
-		module_type: 'dashboards',
 	},
 
 	saas_cogo_subscription: {
-		key         : 'saas_cogo_subscription',
-		title       : 'Subscriptions',
-		icon        : 'nav-subscriptions',
-		isSubNavs   : true,
-		isNew       : true,
-		module_type : 'dashboards',
-		options     : [
+		key       : 'saas_cogo_subscription',
+		title     : 'Subscriptions',
+		icon      : 'nav-subscriptions',
+		isSubNavs : true,
+		isNew     : true,
+		options   : [
 			{
 				key   : 'saas_cogo_subscription-manage',
 				title : 'Manage Subscription',
@@ -328,13 +318,16 @@ const navigationMappings = {
 		],
 	},
 	saas_subscription: {
-		key       : 'saas_subscription',
-		title     : 'Manage Subscriptions',
-		href      : '/saas/subscriptions',
-		as        : '/saas/subscriptions',
-		type      : 'link',
-		icon      : <ManageSubscription />,
-		showInNav : false,
+		key   : 'saas_subscription',
+		title : 'Manage Subscriptions',
+		href  : '/saas/subscriptions',
+		as    : '/saas/subscriptions',
+		type  : 'link',
+		icon  : <img
+			src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/manage-subscription.svg"
+			alt="cogo"
+		/>,
+		showInNav: false,
 
 	},
 	app_get_started: {
@@ -354,12 +347,12 @@ const navigationMappings = {
 
 	},
 	app_settings: {
-		key       : 'app_settings',
-		title     : 'Settings',
-		href      : '/settings',
-		as        : '/settings',
-		type      : 'link',
-		showInNav : false,
+		key           : 'app_settings',
+		title         : 'Settings',
+		href          : '/v2/settings',
+		as            : '/v2/settings',
+		type          : 'link',
+		showMobileNav : true,
 
 	},
 	app_pricing: {

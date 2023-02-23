@@ -1,33 +1,39 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 import { IcMArrowDown, IcMArrowNext } from '@cogoport/icons-react';
 import { useState } from 'react';
 
 import styles from '../styles.module.css';
 
-function Subnavigation({ menuItem, push }) {
-    const [showSubNav, setShowSubNav] = useState(false);
-    return (
-        <div>
-            <div className={styles.styled_button} onClick={() => setShowSubNav(!showSubNav)}>
-                <div className={styles.button_text}>{menuItem.title}</div>
+function Subnavigation({ menuItem, getRedirectUrl }) {
+	const [showSubNav, setShowSubNav] = useState(false);
 
-                <div className={styles.arrow_icon_container}>
-                    <IcMArrowDown />
-                </div>
+	return (
+		<div className={styles.main}>
+			<div
+				className={styles.styled_button}
+				onClick={() => setShowSubNav(!showSubNav)}
+			>
+				<div className={showSubNav ? styles.active : styles.button_text}>{menuItem.title}</div>
 
-            </div>
-            {showSubNav && menuItem.options?.map((item) => (
-                <div className={styles.styled_button} onClick={() => push(item.as)}>
-                    <div className={styles.button_text}>{item.title}</div>
+				<div className={styles.arrow_icon_container}>
+					<IcMArrowDown />
+				</div>
+			</div>
+			{showSubNav && menuItem.options?.map((item) => (
+				<div
+					className={styles.styled_button}
+					onClick={() => getRedirectUrl(item.href, item.as)}
+				>
+					<div className={styles.button_text}>{item.title}</div>
+					<div className={styles.arrow_icon_container}>
+						<IcMArrowNext />
+					</div>
 
-                    <div className={styles.arrow_icon_container}>
-                        <IcMArrowNext />
-                    </div>
+				</div>
+			))}
 
-                </div>
-            ))}
-
-        </div>
-    );
+		</div>
+	);
 }
 
 export default Subnavigation;

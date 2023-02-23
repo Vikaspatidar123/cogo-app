@@ -192,7 +192,7 @@ const handleAuthentication = async ({
 
 	asPrefix = `/v2/${org_id}/${branch_id}/dashboard`;
 	const defaultRoute = `${asPrefix}`;
-	if (isEmpty(current_organization.country || {})) {
+	if (token && isEmpty(current_organization.country || {})) {
 		const getOrgResponse = await getOrganization(req, query);
 		if (!isEmpty(getOrgResponse)) {
 			const actualBranches = (user_data.organizations || []).find(

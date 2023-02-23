@@ -51,7 +51,7 @@ function SubCategory({
 							</div>
 						))}
 				</div>
-				<div className={`${!isMobile && 'section'}`}>
+				<div className="section">
 					{activeTab
 						&& activeHeaderTab
 						&& (Object.keys(activeData).length > 0 || !isMobile) && (

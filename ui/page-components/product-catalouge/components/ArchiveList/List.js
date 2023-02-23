@@ -78,7 +78,7 @@ function ArchiveList() {
 	return (
 		<>
 			<div className={styles.back}>
-				<Tooltip theme="light-border" content="Go Back" placement="top">
+				<Tooltip content="Go Back" placement="top">
 					<div className="archived" role="presentation">
 						<IcMArrowBack
 							className="icon"

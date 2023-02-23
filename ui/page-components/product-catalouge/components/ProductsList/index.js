@@ -42,7 +42,6 @@ function ProductsList({
 				</div>
 				<div className={styles.button_container}>
 					<Tooltip
-						theme="light-border"
 						content="Click to view archived List"
 						placement="bottom"
 					>

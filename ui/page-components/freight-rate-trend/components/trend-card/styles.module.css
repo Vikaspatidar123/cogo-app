@@ -5,7 +5,7 @@
 .card {
 	position: relative;
 	grid-column: span 6;
-	background-color: ${({ isEmpty }) => (isEmpty ? '#FAFAFA' : '#F2F7FB')};
+	/* background-color: ${({ isEmpty }) => (isEmpty ? '#FAFAFA' : '#F2F7FB')}; */
 	border-radius: 20px;
 	box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
 	overflow: hidden;
@@ -75,7 +75,7 @@
 }
 
 .section{
-	background-color: ${({ isEmpty }) => (isEmpty ? '#FAFAFA' : 'white')};
+	/* background-color: ${({ isEmpty }) => (isEmpty ? '#FAFAFA' : 'white')}; */
 	padding: 2em;
 	border-radius: 20px;
 	box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
@@ -103,17 +103,44 @@
 	height:100%;
 }
 
-.flex_content{
+.flex_content {
+	display: flex;
 	justify-content:space-between; 
-	padding:26px;
+	padding: 26px;
 	min-height: 62;
 }
 
 .text{
 	size:14px;
 	color:#282B2E;
-	bold
-	width: 50%;
+	font-weight: bold;
 	text-align: left;
 	padding-right:1rem
+}
+
+.port_code {
+	display: flex;
+	justify-content: space-between;
+	margin: 0px 35px 10px 35px;
+}
+
+.circle {
+  height: 15px;
+  width: 18px;
+  background-color: rgb(120, 148, 176);
+  border-radius: 50%;
+  display: inline-block;
+  margin: 0px 35px 10px 35px;
+}
+
+.dot_circle {
+	display: flex;
+	justify-content: space-between;
+}
+
+.line {
+	height: 2px;
+    background-color: rgb(120, 148, 176);
+    width: 92%;
+    margin-top: 6px;
 }

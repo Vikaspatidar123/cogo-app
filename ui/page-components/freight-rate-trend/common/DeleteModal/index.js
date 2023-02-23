@@ -1,30 +1,29 @@
 import { Modal } from '@cogoport/components';
 import { IcMTick, IcMCross, IcMDelete } from '@cogoport/icons-react';
 
-import styles from './style.modules.css';
+import styles from './styles.module.css';
 
 function DeleteModal({
 	showDeleteModal,
 	setShowDeleteModal,
 	trendId,
 	deleteTrend,
-	isMobile,
 }) {
 	return (
 		<Modal
+			size="sm"
 			show={showDeleteModal}
 			onClose={() => setShowDeleteModal(false)}
 			onOuterClick={() => setShowDeleteModal(false)}
-			width={isMobile ? 300 : 400}
 			closable={false}
 		>
 			<div className={styles.icon_container}>
 				<IcMDelete width={50} height={50} />
 			</div>
-			<div className={styles.Txt}>Are you sure to delete this Freight Rate Trend ?</div>
+			<div className={styles.txt}>Are you sure to delete this Freight Rate Trend ?</div>
 			<div className={styles.footer}>
 				<div
-					className="icon_container no"
+					className={`${styles.icon_container} ${styles.no}`}
 					role="presentation"
 					onClick={() => {
 						setShowDeleteModal(false);
@@ -33,7 +32,7 @@ function DeleteModal({
 					<IcMCross width={30} height={30} />
 				</div>
 				<div
-					className="icon_container yes"
+					className={`${styles.icon_container} ${styles.yes}`}
 					role="presentation"
 					onClick={() => {
 						deleteTrend(trendId);

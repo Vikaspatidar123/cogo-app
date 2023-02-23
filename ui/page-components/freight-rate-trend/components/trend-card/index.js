@@ -1,30 +1,19 @@
-import { useRouter } from '@cogo/next';
-import React, { Fragment, useState } from 'react';
-import Skeleton from 'react-loading-skeleton';
+import { IcMCrossInCircle, IcMArrowNext } from '@cogoport/icons-react';
+import { useState } from 'react';
 
-// import { IcMCrossInCircle } from '@cogoport/icons-react';
-import RightArrow from '../../../../common/icons/right-arrow.svg';
-import { StepsComponent } from '../../../../common/ui';
 import DeleteModal from '../../common/DeleteModal';
 import useDeleteTrendSubscription from '../../hooks/useDeleteTrends';
 
-import styles from './style.modules.css';
-// import { useSaasState } from '../../../../common/context';
-// import useFetchTrendsStoreQuota from '../../../../common/hooks/useFetchTrendsStoreQuota';
+import styles from './styles.module.css';
+
+import { useRouter } from '@/packages/next';
 
 function TrendCard({ trend, isMobile }) {
 	const { push } = useRouter();
-	// const { setTrackerLimitModal, isTrackerLimitModalOpen } = useSaasState();
-	// const { storeQuota } = useFetchTrendsStoreQuota(true);
 
 	const { loading, deleteTrend } = useDeleteTrendSubscription();
 	const [showDeleteModal, setShowDeleteModal] = useState(false);
-	// const [trendId, setTrendId] = useState();
-
-	const stepsList = [
-		{ title: trend?.origin_port?.port_code || 'Origin' },
-		{ title: trend?.destination_port?.port_code || 'Destination' },
-	];
+	const [trendId, setTrendId] = useState();
 
 	// const handleTrackingLimitModal = () => {
 	// 	setTrackerLimitModal(!isTrackerLimitModalOpen);
@@ -46,9 +35,30 @@ function TrendCard({ trend, isMobile }) {
 						<div className={styles.text}>
 							{routeList.destination.split(' - ')[0]}
 						</div>
+						<div
+							className={styles.cross_div}
+							role="presentation"
+							onClick={() => {
+								setShowDeleteModal(true);
+								setTrendId(trend.id);
+							}}
+						>
+							<IcMCrossInCircle />
+						</div>
 					</div>
-					<StepsComponent stepsList={stepsList} />
+					<div className={styles.dot_circle}>
+						<div className={styles.circle} />
+						<div className={styles.line} />
+						<div className={styles.circle} />
+					</div>
+					<div className={styles.port_code}>
+						{trend?.origin_port?.port_code || 'Origin'}
+						<div>
+							{trend?.destination_port?.port_code || 'Destination' }
+						</div>
+					</div>
 					<div
+						role="presentation"
 						className={styles.footer}
 						onClick={() => push(
 							'/saas/freight-rate-trend/[trend_id]',
@@ -58,13 +68,13 @@ function TrendCard({ trend, isMobile }) {
 						<div className={styles.text} size="12px" color="#4f4f4f">
 							View details
 						</div>
-						<RightArrow style={{ height: 14, width: 14, marginLeft: 8 }} />
+						<IcMArrowNext style={{ height: 14, width: 14, marginLeft: 8 }} />
 					</div>
 				</div>
 			</div>
 			{showDeleteModal && (
 				<DeleteModal
-					// trendId={trendId}
+					trendId={trendId}
 					showDeleteModal={showDeleteModal}
 					setShowDeleteModal={setShowDeleteModal}
 					deleteTrend={deleteTrend}
@@ -80,10 +90,10 @@ function TrendCardSkeleton() {
 	return (
 		<div className={styles.card}>
 			<div style={{ padding: 16 }}>
-				<Skeleton count={5} />
+				{/* <Skeleton count={5} /> */}
 			</div>
 			<div className={styles.footer}>
-				<Skeleton count={1} style={{ width: '300px' }} />
+				{/* <Skeleton count={1} style={{ width: '300px' }} /> */}
 			</div>
 		</div>
 	);

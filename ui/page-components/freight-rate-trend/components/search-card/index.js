@@ -1,70 +1,81 @@
-import { useRouter } from '@cogo/next';
+import { Button } from '@cogoport/components';
+import { merge } from '@cogoport/utils';
 import React, { useState } from 'react';
-import { useForm } from 'react-hook-form';
+import { useSelector } from 'react-redux';
 
-import TrackingLimitModal from '../../../../common/components/tracking-limit';
-import { useSaasState } from '../../../../common/context';
-import getField from '../../../../common/form/components';
-import { FormItem, Button } from '../../../../common/ui';
+import FormItem from '../../common/FormItem';
+import TrackingLimitModal from '../../common/tracking-limit';
 import useCreateTrends from '../../hooks/useCreateTrends';
 
-// import useFetchTrendsStoreQuota from '../../../../common/hooks/useFetchTrendsStoreQuota';
+import styles from './styles.module.css';
 
-import styles from './style.modules.css';
+import { useForm, useGetAsyncOptions, asyncFieldsLocations } from '@/packages/forms';
+import getField from '@/packages/forms/Controlled';
+import { useRouter } from '@/packages/next';
 
 function SearchCard({ refechTrends }) {
 	const { push } = useRouter();
-	const { general } = useSaasState();
+	const { general } = useSelector((state) => state);
 	const { submitLoading, createTrend } = useCreateTrends();
-	// const { storeQuota, refetchQuota } = useFetchTrendsStoreQuota(true);
 	const [isTrackerLimitModalOpen, setTrackerLimitModal] = useState(
 		general?.query?.openModal,
 	);
+
+	const cityOptions = useGetAsyncOptions(merge(asyncFieldsLocations(), {
+		params: { filters: { type: ['seaport'], is_icd: false } },
+	}));
 
 	const handleTrackingLimitModal = () => {
 		setTrackerLimitModal(!isTrackerLimitModalOpen);
 	};
 
+	const controls = [
+		{
+			name        : 'origin',
+			label       : 'origin',
+			type        : 'select',
+			placeholder : 'Search origin port',
+			value       : '',
+			rules       : { required: 'Please enter value' },
+		},
+		{
+			name        : 'destination',
+			label       : 'destination',
+			type        : 'select',
+			placeholder : 'Search destination port',
+			value       : '',
+			rules       : { required: 'Please enter value' },
+		},
+	];
+	const filed = controls.map((control) => {
+		const { name } = control;
+		let newControl = { ...control };
+
+		if (name === 'origin') {
+			newControl = { ...newControl, ...cityOptions };
+		}
+		if (name === 'destination') {
+			newControl = { ...newControl, ...cityOptions };
+		}
+		return { ...newControl };
+	});
+
+	const {
+		handleSubmit,
+		formState: { errors },
+		control,
+	} = useForm();
+
 	const submitForm = async (values) => {
 		const { origin, destination } = values;
 		const data = await createTrend(origin, destination);
 		if (data == null) return;
-		// refetchQuota();
 		await refechTrends();
 		push(
 			'/saas/freight-rate-trend/[trend_id]?isFirstVisit=true',
 			`/saas/freight-rate-trend/${data.id}?isFirstVisit=true`,
 		);
 	};
-
-	const controls = [
-		{
-			name           : 'origin',
-			label          : 'origin',
-			type           : 'select',
-			placeholder    : 'Search origin port',
-			value          : '',
-			optionsListKey : 'locations',
-			params         : { filters: { type: ['seaport'], is_icd: false } },
-			rules          : { required: 'Please enter value' },
-		},
-		{
-			name           : 'destination',
-			label          : 'destination',
-			type           : 'select',
-			placeholder    : 'Search destination port',
-			params         : { filters: { type: ['seaport'], is_icd: false } },
-			value          : '',
-			optionsListKey : 'locations',
-			rules          : { required: 'Please enter value' },
-		},
-	];
-
-	const {
-		fields,
-		handleSubmit,
-		formState: { errors },
-	} = useForm(controls);
 
 	return (
 		<div className={styles.card}>
@@ -82,13 +93,13 @@ function SearchCard({ refechTrends }) {
 					marginTop      : 24,
 				}}
 			>
-				{controls.map((controlItem) => {
+				{filed.map((controlItem) => {
 					const { type, name } = controlItem;
 					const Element = getField(type);
 					return (
 						<div className={styles.styled_form_item}>
 							<FormItem>
-								<Element {...fields[name]} />
+								<Element {...controlItem} control={control} />
 								{errors[name]?.type === 'required' || 'pattern' ? (
 									<div className={styles.text}>
 										{errors[name]?.message}

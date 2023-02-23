@@ -3,7 +3,7 @@
 }
 
 .heading {
-  color: ${({ theme }) => theme.palette.text.dark};
+  /* color: ${({ theme }) => theme.palette.text.dark}; */
   font-size: 16px;
   font-weight: 700;
   margin: 0;
@@ -25,7 +25,7 @@
   max-width: 400px;
   margin: auto;
 
-  padding: ${({ theme }) => theme.spacing.s10};
+  /* padding: ${({ theme }) => theme.spacing.s10}; */
   border: 1px solid #c4cbda;
   border-radius: 20px;
   background: white;

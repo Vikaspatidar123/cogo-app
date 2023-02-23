@@ -1,4 +1,4 @@
-.heading{
+.heading {
   color: #282b2e;
   font-weight: 700;
   font-size: 20px;
@@ -13,7 +13,7 @@
   }
 }
  
-.tag {`
+.tag {
   background: #3B526B;
   color: #ffffff;
   font-weight: bold;
@@ -21,25 +21,35 @@
   padding: 7px 14px;
   font-size: 12px;
   margin: 4px 4px;
-  margin-top: ${({ webView }) => (webView ? ' -50px' : '')};
+  /* margin-top: ${({ webView }) => (webView ? ' -50px' : '')}; */
   border-radius: 15px;
 }
 
-.flex_container{
+.flex_container {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   grid-gap: 12px;
   margin-top: 24px;
 }
 
-.flex{
+.flex {
   display: flex;
   align-items:center; 
   margin-bottom:16px;
   margin-top:16px;
 }
 
-.text{
+.text {
   color:white;
   size:18px;
+}
+
+.pagination_div {
+	display: flex;
+	justify-content: end;
+	align-items: center;
+
+	@media screen and (max-width: 700px) {
+	float:right;
+	}
 }

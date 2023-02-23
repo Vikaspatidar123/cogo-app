@@ -1,57 +1,54 @@
 import { Pagination, Button } from '@cogoport/components';
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 
-import TrackingLimitModal from '../../common/components/tracking-limit';
-import { useSaasState } from '../../common/context';
-import withConfig from '../../common/utils/withConfig';
-
+import TrackingLimitModal from './common/tracking-limit';
 import AddTrendModal from './components/add-trend-modal';
 import SearchCard from './components/search-card';
 import TrendCard, { EmptyTrendCard, TrendCardSkeleton } from './components/trend-card';
 import useFetchTrends from './hooks/useFetchTrends';
-import styles from './style.modules.css';
-
-// import useFetchTrendsStoreQuota from '../../common/hooks/useFetchTrendsStoreQuota';
+import styles from './styles.module.css';
 
 const trendLayout = ({
-	trendList = [],
-	pagination,
-	setPagination,
-	freightTrends,
 	isMobile,
-}) => (trendList.length > 0 ? (
+	list,
+	page, total, total_count,
+}) => (list?.length > 0 ? (
 	<>
 		<div className={styles.flex_container}>
-			{trendList.map((trend) => (
+			{list.map((trend) => (
 				<TrendCard trend={trend} key={trend.id} isMobile={isMobile} />
 			))}
 		</div>
-		<Pagination
-			pagination={pagination}
-			setPagination={setPagination}
-			total={freightTrends?.total_count}
-			pageLimit={10}
-		/>
+
+		{list?.length > 0 && (
+			<div className={styles.pagination_div}>
+				<Pagination
+					type="table"
+					currentPage={page}
+					totalItems={total}
+					pageSize={total_count}
+					isMobile={isMobile}
+				/>
+			</div>
+		)}
+
 	</>
 ) : (
 	<EmptyTrendCard />
 ));
-
 function FreightRateTrend() {
 	const {
 		freightTrends, isMobile, isTrackerLimitModalOpen, setTrackerLimitModal,
-	} =		useSaasState();
+	} =		useSelector((state) => state);
 	const {
 		loading,
-		// filters,
 		pagination,
-		// setLoading,
-		// setFilters,
 		setPagination,
 		refectTrends,
+		tredList = {},
 	} = useFetchTrends({});
 	const [isTrendModalOpen, setTrendModal] = useState(false);
-	// const { storeQuota } = useFetchTrendsStoreQuota(true);
 
 	const handleTrendModal = () => {
 		setTrendModal(!isTrendModalOpen);
@@ -60,6 +57,10 @@ function FreightRateTrend() {
 	const handleTrackingLimitModal = () => {
 		setTrackerLimitModal(!isTrackerLimitModalOpen);
 	};
+
+	const {
+		list, page, page_limit, total, total_count,
+	} = tredList;
 
 	const trendList = freightTrends?.list || [];
 
@@ -79,7 +80,6 @@ function FreightRateTrend() {
 			)}
 			{isMobile && (
 				<div className={styles.flex}>
-					{/* <IconBack fill="white" style={{ height: 20, width: 20 }} onClick={back} /> */}
 					<div className={styles.text}>
 						Freight Rate Trends
 					</div>
@@ -97,6 +97,11 @@ function FreightRateTrend() {
 					setPagination,
 					freightTrends,
 					isMobile,
+					list,
+					page,
+					page_limit,
+					total,
+					total_count,
 				})
 			)}
 			{isMobile && (
@@ -112,4 +117,4 @@ function FreightRateTrend() {
 	);
 }
 
-export default withConfig(FreightRateTrend);
+export default FreightRateTrend;

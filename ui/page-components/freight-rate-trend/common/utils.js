@@ -1,6 +1,6 @@
 import { Toast } from '@cogoport/components';
 
-import request from '../../../common/utils/request';
+import { request } from '@/packages/request';
 
 const prepareFilters = () => {
 	const finalFilters = {};

@@ -1,28 +1,30 @@
-import { useRouter } from '@cogo/next';
 import { Button } from '@cogoport/components';
-import {
-	Formik, Field, Form, ErrorMessage,
-} from 'formik';
+// import {
+// 	Formik, Field, Form, ErrorMessage,
+// } from 'formik';
 import React, { useState, useRef, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import Select from 'react-select/async';
-import * as Yup from 'yup';
+import { useSelector } from 'react-redux';
+// import * as Yup from 'yup';
 
-import TrackingLimitModal from '../../../../common/components/tracking-limit';
-import { useSaasState } from '../../../../common/context';
-import getField from '../../../../common/form/components';
-import IconCross from '../../../../common/icons/cross.svg';
-import IconSchedules from '../../../../common/icons/schedules-banner.svg';
-import { FormItem } from '../../../../common/ui';
+// import IconCross from '../../../../common/icons/cross.svg';
+// import IconSchedules from '../../../../common/icons/schedules-banner.svg';
+import TrackingLimitModal from '../../common/tracking-limit';
 import useCreateTrends from '../../hooks/useCreateTrends';
 
-import styles from './style.modules.css';
+import styles from './styles.module.css';
+
+import getField from '@/packages/forms/Controlled';
+import { useRouter } from '@/packages/next';
+import FormItem from '@/ui/commons/components/FormItem';
 
 // import useFetchTrendsStoreQuota from '../../../../common/hooks/useFetchTrendsStoreQuota';
 
 function AddTrendModal({ isOpen, handleModal, refectTrends }) {
 	const { push } = useRouter();
-	const { general } = useSaasState();
+	const {
+		general,
+	} = useSelector((state) => state);
 	const { submitLoading, createTrend } = useCreateTrends();
 	// const { storeQuota, refetchQuota } = useFetchTrendsStoreQuota(true);
 
@@ -65,19 +67,23 @@ function AddTrendModal({ isOpen, handleModal, refectTrends }) {
 		},
 	];
 
-	const { fields, handleSubmit, formState: { errors } } = useForm(controls);
+	const {
+		handleSubmit,
+		formState: { errors },
+		control,
+	} = useForm();
 
 	return (
 		<div>
-			<div className={styles.mobile_icon_container} onClick={handleModal}>
-				<IconCross size={1.5} style={{ fill: 'white' }} />
+			<div className={styles.mobile_icon_container} role="presentation" onClick={handleModal}>
+				{/* <IconCross size={1.5} style={{ fill: 'white' }} /> */}
 			</div>
 			<div className={styles.flex}>
 				<div className={styles.heading}>Freight Rate Trends</div>
 			</div>
 
 			<div className={styles.mobile_content}>
-				<IconSchedules style={{ width: '300px', height: '100px' }} />
+				{/* <IconSchedules style={{ width: '300px', height: '100px' }} /> */}
 				<div className={styles.details}>
 					<p>Mobile Get Access to Past Freight Rate Trends</p>
 				</div>
@@ -94,7 +100,7 @@ function AddTrendModal({ isOpen, handleModal, refectTrends }) {
 							return (
 								<div className={styles.styled_form_item}>
 									<FormItem>
-										<Element {...fields[name]} />
+										<Element {...controlItem} control={control} />
 										{errors[name]?.type === 'required' || 'pattern'
 											? (
 												<div className={styles.text}>

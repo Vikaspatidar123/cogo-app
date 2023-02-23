@@ -1,0 +1,22 @@
+.row{
+    display: flex;
+    flex-direction: row;
+}
+
+.col{
+    display: flex;
+    flex-direction: column;
+}
+
+.flex {
+    display: flex;
+    align-items:center;
+    justify-content: flex-end;
+    margin-top:24px;
+}
+
+.text {
+    margin-top:4px;
+    size:10;
+    color:#CB6464;
+}

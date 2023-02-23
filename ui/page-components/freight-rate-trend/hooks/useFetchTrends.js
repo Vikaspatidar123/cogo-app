@@ -1,29 +1,40 @@
+import { Toast } from '@cogoport/components';
 import { useState, useEffect } from 'react';
-import toast from '@cogoport/front/components/admin/Toast';
-import { useRequest } from '@cogo/commons/hooks';
 
-import { useSaasState } from '../../../common/context';
-import { prepareFilters } from '../common/utils';
+// import { prepareFilters } from '../common/utils';
+
+import { useRequest } from '@/packages/request';
+import { useSelector } from '@/packages/store';
 
 const useFetchTrends = ({ pageLimit = 10 }) => {
-	const [loading, setLoading] = useState(false);
 	const [filters, setFilters] = useState({});
+	const [loading, setLoading] = useState(false);
 	const [pagination, setPagination] = useState({ page: 1 });
-	const { general, freightTrends, setFreightTrends } = useSaasState();
-	const { scope } = general;
+	const { freightTrends, setFreightTrends } = useSelector((state) => state);
 
-	const trend = useRequest('get', false, scope, { autoCancel: false })(
-		'/list_freight_trend_subscriptions',
-	);
+	const [{ loading:load, data: tredList }, trendTrigger] = useRequest({
+		url    : '/list_freight_trend_subscriptions',
+		method : 'get',
+	}, { manual: true });
 
+	const [{ loading:listloading }, trigger] = useRequest({
+		url    : '/list_locations',
+		method : 'get',
+	}, { manual: true });
+
+	const prepareFilters = () => {
+		const finalFilters = {};
+
+		return finalFilters;
+	};
 	const fetchTrends = async (showLoading = true) => {
 		try {
 			if (showLoading) setLoading(true);
-			const res = await trend.trigger({
+			const res = await trigger({
 				params: {
-					filters: { ...prepareFilters(filters, freightTrends?.filter_data ?? {}) },
-					page: pagination.page,
-					page_limit: pageLimit,
+					filters    : { ...prepareFilters(filters, freightTrends?.filter_data ?? {}) },
+					page       : pagination.page,
+					page_limit : pageLimit,
 				},
 			});
 			if (showLoading) setLoading(false);
@@ -34,26 +45,52 @@ const useFetchTrends = ({ pageLimit = 10 }) => {
 			setFreightTrends(data);
 		} catch (err) {
 			console.log(err, 'error');
-			if (Object.keys(err).length > 1)
-				toast.error('Unable to fetch trend. Please try again.');
+			if (Object.keys(err).length > 1) { Toast.error('Unable to fetch trend. Please try again.'); }
 			if (showLoading) setLoading(false);
 		}
 	};
+	const fetchLocations = async (inputValue, callback) => {
+		try {
+			const res = await trendTrigger({
+				params: {
+					filters: {
+						status : 'active',
+						q      : inputValue || undefined,
+						type   : 'airport',
+					},
+					page_limit : 20,
+					sort_by    : 'name',
+					sort_type  : 'asc',
+					includes   : { country: null, main_ports: null },
+				},
+			});
+			const { hasError } = res || {};
+			if (hasError) throw new Error();
 
-	useEffect(() => {
-		fetchTrends();
-	}, [filters, pagination]);
+			let { data } = res;
+			data = (data?.list || []).map((item) => ({
+				label : item.display_name,
+				value : item.id,
+			}));
+
+			callback(data);
+		} catch (err) {
+			Toast.error("Couldn't fetch locations. Please try again later.");
+		}
+	};
 
 	const refectTrends = () => fetchTrends(false);
+	useEffect(() => { fetchLocations(); }, []);
 
 	return {
 		loading,
 		filters,
-		pagination,
 		setLoading,
 		setFilters,
-		setPagination,
 		refectTrends,
+		setPagination,
+		fetchLocations,
+		tredList,
 	};
 };
 

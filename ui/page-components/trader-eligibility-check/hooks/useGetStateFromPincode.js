@@ -1,20 +1,28 @@
 import { Toast } from '@cogoport/components';
-import { useMemo } from 'react';
+import { useEffect } from 'react';
+
+import useSearchQuery from './useSearchQuery';
 
 import { useRequest } from '@/packages/request';
 
-const useGetStateFromPincode = ({ watchPincode, setCityState, watchCountry }) => {
+const useGetStateFromPincode = ({ watchPincode = undefined, setCityState, watchCountry }) => {
+	const { debounceQuery, query } = useSearchQuery();
+
+	useEffect(() => {
+		debounceQuery(watchPincode);
+	}, [watchPincode]);
+
 	const [{ loading }, trigger] = useRequest({
 		url    : 'list_locations',
 		method : 'get',
-	}, { manual: false });
+	}, { manual: true });
 
 	const responseCity = async () => {
 		try {
 			const res = await trigger({
 				params: {
 					filters: {
-						postal_code : watchPincode,
+						postal_code : query,
 						type        : 'pincode',
 						country_id  : watchCountry,
 					},
@@ -32,9 +40,11 @@ const useGetStateFromPincode = ({ watchPincode, setCityState, watchCountry }) =>
 			});
 		}
 	};
-	useMemo(() => {
-		if (watchPincode !== '') responseCity();
-	}, [watchPincode]);
+
+	useEffect(() => {
+		if (query)responseCity();
+	}, [query]);
+
 	return {
 		cityLoading: loading,
 	};

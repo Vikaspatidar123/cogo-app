@@ -46,12 +46,14 @@ function TraderDetails({
 	const { list } = cityState || {};
 	const { region, city } = list?.[0] || {};
 
-	console.log('ttttttttt', list);
 	useMemo(() => {
 		if (list?.length === 0) {
 			Toast.error('Invalid Pincode');
 		}
-		if (city && region?.name) {
+		if (watchPincode === '') {
+			setValue('city', '');
+			setValue('state', '');
+		} else if (city && region?.name) {
 			setValue('city', city?.name);
 			setValue('state', region?.name);
 		}

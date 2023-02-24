@@ -18,12 +18,13 @@
 }
 
 .loading_style{
-	height: 30px !important;
-	margin: 0px !important;
+	height: 30px ;
+	margin: 0px ;
+	width: 120px;
 }
 
 .checkout_loading{
 	height: 200px ;
 	display: block;
-	margin: auto !important;
+	margin: auto ;
 }

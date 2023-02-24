@@ -24,7 +24,7 @@ const usePayment = () => {
 		method  : 'post',
 	}, { manual: true });
 
-	const callBackUrl = `${process.env.APP_URL}app/${org_id}/${branch_id}/${account_type}/saas/premium-services/trader-eligibility-check/result`;
+	const callBackUrl = `${process.env.NEXT_PUBLIC_APP_URL}/v2/${org_id}/${branch_id}/${account_type}/saas/premium-services/trader-eligibility-check/result`;
 
 	const initiatePayment = async ({ res = {}, services = {}, productCodes = {} }) => {
 		const info = res?.data || {};

@@ -1,3 +1,4 @@
+import Card from './Card';
 import styles from './styles.module.css';
 
 function TrackerCard({ activeTab }) {
@@ -11,9 +12,9 @@ function TrackerCard({ activeTab }) {
 					<div className={styles.status}>Archived Shipments</div>
 				</div>
 			</div>
-			{/* <div>
-
-			</div> */}
+			<div>
+				<Card />
+			</div>
 		</div>
 	);
 }

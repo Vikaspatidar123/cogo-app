@@ -6,7 +6,6 @@ specifiers:
   '@cogoport/icons-react': ^1.0.57
   '@cogoport/stylelint-config': ^1.0.3
   '@cogoport/utils': ^1.2.4
-  '@next/polyfill-nomodule': ^13.1.6
   '@reduxjs/toolkit': ^1.9.1
   '@svgr/webpack': ^6.5.0
   axios: ^1.2.0
@@ -20,12 +19,10 @@ specifiers:
   next: 12.3.1
   next-i18next: ^13.0.3
   nprogress: ^0.2.0
-  path: ^0.12.7
   postcss: ^8.4.21
   postcss-flexbugs-fixes: ^5.0.2
   postcss-nested: ^6.0.0
   postcss-preset-env: ^8.0.1
-  prop-types: ^15.8.1
   qs: ^6.11.0
   react: 18.2.0
   react-dom: 18.2.0
@@ -35,23 +32,18 @@ specifiers:
   react-redux: ^8.0.5
   redux: ^4.2.0
   stylelint: ^14.14.0
-  toolkit: ^1.5.4
 
 dependencies:
   '@cogoport/components': 1.0.321_3lsay7tntxf2ei2og2ktju5z3e
   '@cogoport/icons-react': 1.0.57_biqbaboplfbrettd7655fr4n2y
   '@cogoport/utils': 1.2.4
-  '@next/polyfill-nomodule': 13.1.6
   '@reduxjs/toolkit': 1.9.1_k4ae6lp43ej6mezo3ztvx6pykq
   axios: 1.2.3
   axios-hooks: 4.0.0_axios@1.2.3+react@18.2.0
-  dotenv: 16.0.3
   i18next: 22.4.9
   next: 12.3.1_biqbaboplfbrettd7655fr4n2y
   next-i18next: 13.0.3_t5xbndagwp6yawmo2k3uvve7yq
   nprogress: 0.2.0
-  path: 0.12.7
-  prop-types: 15.8.1
   qs: 6.11.0
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
@@ -60,12 +52,12 @@ dependencies:
   react-i18next: 12.1.4_iakk3dtjhjpukdoa4oua5khgci
   react-redux: 8.0.5_e42enmjmqb4imi3q3iaq2rrebm
   redux: 4.2.0
-  toolkit: 1.5.4
 
 devDependencies:
   '@cogoport/eslint-config': 1.0.18_eslint@8.25.0
   '@cogoport/stylelint-config': 1.0.3_stylelint@14.14.0
   '@svgr/webpack': 6.5.0
+  dotenv: 16.0.3
   eslint: 8.25.0
   eslint-config-next: 12.3.1_eslint@8.25.0
   fs-extra: 11.1.0
@@ -1789,10 +1781,6 @@ packages:
       glob: 7.1.7
     dev: true
 
-  /@next/polyfill-nomodule/13.1.6:
-    resolution: {integrity: sha512-7gKHBpR54Nq8rfyTPXgeOMNpq8tOb6QewocSN/3W6CO6mGMI3fHv+S3jarOs7VG8ZFj93prwktk0Cwbjg/eVtg==}
-    dev: false
-
   /@next/swc-android-arm-eabi/12.3.1:
     resolution: {integrity: sha512-i+BvKA8tB//srVPPQxIQN5lvfROcfv4OB23/L1nXznP+N/TyKL8lql3l7oo2LNhnH66zWhfoemg3Q4VJZSruzQ==}
     engines: {node: '>= 10'}
@@ -2990,7 +2978,7 @@ packages:
   /dotenv/16.0.3:
     resolution: {integrity: sha512-7GO6HghkA5fYG9TYnNxi14/7K9f5occMlp3zXAuSxn7CKCxt9xbNWG7yF8hTCSUchlfWSe3uLmlPfigevRItzQ==}
     engines: {node: '>=12'}
-    dev: false
+    dev: true
 
   /draft-js-export-html/1.4.1_qnm4pu3vwlglikbjqrpcmxoiem:
     resolution: {integrity: sha512-G4VGBSalPowktIE4wp3rFbhjs+Ln9IZ2FhXeHjsZDSw0a2+h+BjKu5Enq+mcsyVb51RW740GBK8Xbf7Iic51tw==}
@@ -3966,10 +3954,6 @@ packages:
       wrappy: 1.0.2
     dev: true
 
-  /inherits/2.0.3:
-    resolution: {integrity: sha512-x00IRNXNy63jwGkJmzPigoySHbaqpNuzKbBOmzK+g2OdZpQ9w+sxCN+VSB3ja7IAge2OP2qpfxTjeNcyjmW1uw==}
-    dev: false
-
   /inherits/2.0.4:
     resolution: {integrity: sha512-k/vGaX4/Yla3WzyMCvTQOXYeIHvqOKtnqBduzTHpzpQZzAskKMhZ2K+EnBiSM9zGSoIFeMpXKxa4dYeZIQqewQ==}
     dev: true
@@ -4628,13 +4612,6 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
-  /path/0.12.7:
-    resolution: {integrity: sha512-aXXC6s+1w7otVF9UletFkFcDsJeO7lSZBPUQhtb5O0xJe8LtYhj/GxldoL09bBj9+ZmE2hNoHqQSFMN5fikh4Q==}
-    dependencies:
-      process: 0.11.10
-      util: 0.10.4
-    dev: false
-
   /picocolors/1.0.0:
     resolution: {integrity: sha512-1fygroTLlHu66zi26VoTDv8yRgm0Fccecssto+MhsZ0D/DGW2sm8E8AjW7NU5VVTRt5GxbeZ5qBuJr+HyLYkjQ==}
 
@@ -5054,11 +5031,6 @@ packages:
     resolution: {integrity: sha512-vkcDPrRZo1QZLbn5RLGPpg/WmIQ65qoWWhcGKf/b5eplkkarX0m9z8ppCat4mlOqUsWpyNuYgO3VRyrYHSzX5g==}
     engines: {node: '>= 0.8.0'}
     dev: true
-
-  /process/0.11.10:
-    resolution: {integrity: sha512-cdGef/drWFoydD1JsMzuFf8100nZl+GT+yacc2bEced5f9Rjk4z+WtFUTBu9PhOi9j/jfmBPu0mMEY4wIdAF8A==}
-    engines: {node: '>= 0.6.0'}
-    dev: false
 
   /promise/7.3.1:
     resolution: {integrity: sha512-nolQXZ/4L+bP/UGlkfaIujX9BKxGwmQ9OT4mOt5yvy8iK1h3wqTEJCijzGANTCCl9nWjY41juyAn2K3Q1hLLTg==}
@@ -5780,10 +5752,6 @@ packages:
       is-number: 7.0.0
     dev: true
 
-  /toolkit/1.5.4:
-    resolution: {integrity: sha512-Pl5sFQlDCeQjJxpd/f0btO6khPKR9RioF4aLzbYtJGePI+CVKpVbOhcJd2F5cR4a2saD0qTzCTIWDvLOqeQ/jg==}
-    dev: false
-
   /tr46/0.0.3:
     resolution: {integrity: sha512-N3WMsuqV66lT30CrXNbEjx4GEwlow3v6rr4mCcv6prnfwhS01rkgyFdjPNBYd9br7LpXV1+Emh01fHnq2Gdgrw==}
     dev: false
@@ -5932,12 +5900,6 @@ packages:
   /util-deprecate/1.0.2:
     resolution: {integrity: sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==}
     dev: true
-
-  /util/0.10.4:
-    resolution: {integrity: sha512-0Pm9hTQ3se5ll1XihRic3FDIku70C+iHUdT/W926rSgHV5QgXsYbKZN8MSC3tJtSkhuROzvsQjAaFENRXr+19A==}
-    dependencies:
-      inherits: 2.0.3
-    dev: false
 
   /v8-compile-cache/2.3.0:
     resolution: {integrity: sha512-l8lCEmLcLYZh4nbunNZvQCJc5pv7+RCwa8q/LdUx8u7lsWvPDKmpodJAJNwkAhJC//dFY48KuIEmjtd4RViDrA==}

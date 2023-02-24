@@ -1,5 +1,4 @@
 import app_apis from '../apis/get-app-apis';
-import ProductClassification from '../icons/product-classification.svg';
 
 const navigationMappings = {
 	app_dashboard: {
@@ -29,7 +28,7 @@ const navigationMappings = {
 				href          : '/v2/saas/hs-classification',
 				as            : '/v2/saas/hs-classification',
 				type          : 'link',
-				icon          : <ProductClassification />,
+				// icon          : <ProductClassification />,
 				main_apis     : [],
 				possible_apis : app_apis.saas_hs_code_list,
 			},

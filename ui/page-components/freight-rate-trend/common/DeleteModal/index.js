@@ -36,6 +36,7 @@ function DeleteModal({
 					role="presentation"
 					onClick={() => {
 						deleteTrend(trendId);
+						setShowDeleteModal(false);
 					}}
 				>
 					<IcMTick width={35} height={35} />

@@ -11,7 +11,7 @@ import { useRouter } from '@/packages/next';
 function TrendCard({ trend = {}, isMobile }) {
 	const { push } = useRouter();
 
-	const { loading, deleteTrend } = useDeleteTrendSubscription();
+	const { loading, deleteTrend, trendData } = useDeleteTrendSubscription();
 	const [showDeleteModal, setShowDeleteModal] = useState(false);
 	const [trendId, setTrendId] = useState();
 
@@ -80,6 +80,7 @@ function TrendCard({ trend = {}, isMobile }) {
 					deleteTrend={deleteTrend}
 					deleteLoading={loading}
 					isMobile={isMobile}
+					trendData={trendData}
 
 				/>
 			)}

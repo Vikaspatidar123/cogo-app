@@ -8,9 +8,9 @@ import { getCookie } from './getCookieFromCtx';
 
 const customSerializer = (params) => {
 	const paramsStringify = qs.stringify(params, {
-		encode: false,
-		arrayFormat: 'repeat',
-		serializeDate: (date) => format(date),
+		encode        : false,
+		arrayFormat   : 'repeat',
+		serializeDate : (date) => format(date),
 	});
 	return paramsStringify;
 };
@@ -26,10 +26,10 @@ bfRequest.interceptors.request.use((oldConfig) => {
 
 	return {
 		...axiosConfig,
-		paramsSerializer: { serialize: customSerializer },
-		headers: {
-			authorizationscope: 'organization',
-			authorization: `Bearer: ${token}`,
+		paramsSerializer : { serialize: customSerializer },
+		headers          : {
+			authorizationscope : 'organization',
+			authorization      : `Bearer: ${token}`,
 			authorizationparameters,
 		},
 

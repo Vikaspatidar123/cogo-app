@@ -1,5 +1,6 @@
 .form_item_styled {
 	margin-bottom: 16px;
+}
 
 	.label {
 		font-size: 12px;
@@ -13,4 +14,4 @@
 		font-size: 12px;
 		color: red;
 	}
-}
+

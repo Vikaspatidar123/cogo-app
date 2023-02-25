@@ -1,10 +1,8 @@
 import { Button } from '@cogoport/components';
+import { IcMPortArrow } from '@cogoport/icons-react';
 import { merge } from '@cogoport/utils';
-import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
 
 import FormItem from '../../common/FormItem';
-import TrackingLimitModal from '../../common/tracking-limit';
 import useCreateTrends from '../../hooks/useCreateTrends';
 
 import styles from './styles.module.css';
@@ -15,19 +13,10 @@ import { useRouter } from '@/packages/next';
 
 function SearchCard({ refechTrends }) {
 	const { push } = useRouter();
-	const { general } = useSelector((state) => state);
 	const { submitLoading, createTrend } = useCreateTrends();
-	const [isTrackerLimitModalOpen, setTrackerLimitModal] = useState(
-		general?.query?.openModal,
-	);
-
 	const cityOptions = useGetAsyncOptions(merge(asyncFieldsLocations(), {
 		params: { filters: { type: ['seaport'], is_icd: false } },
 	}));
-
-	const handleTrackingLimitModal = () => {
-		setTrackerLimitModal(!isTrackerLimitModalOpen);
-	};
 
 	const controls = [
 		{
@@ -38,6 +27,7 @@ function SearchCard({ refechTrends }) {
 			value       : '',
 			rules       : { required: 'Please enter value' },
 		},
+		{ type: 'anchor' },
 		{
 			name        : 'destination',
 			label       : 'destination',
@@ -81,8 +71,7 @@ function SearchCard({ refechTrends }) {
 		<div className={styles.card}>
 			<div className={styles.flex}>
 				<div className={styles.heading}>
-					<span>Freight Rate Trends</span>
-					<p>Get Access to Past Freight Rate Trends.</p>
+					Get Access to Past Freight Rate Trends.
 				</div>
 			</div>
 			<form
@@ -90,6 +79,9 @@ function SearchCard({ refechTrends }) {
 			>
 				{filed.map((controlItem) => {
 					const { type, name } = controlItem;
+					if (type === 'anchor') {
+						return <div className={styles.anchor}><IcMPortArrow height={30} width={30} /></div>;
+					}
 					const Element = getField(type);
 					return (
 						<div className={styles.styled_form_item}>
@@ -110,16 +102,11 @@ function SearchCard({ refechTrends }) {
 						size="lg"
 						onClick={handleSubmit(submitForm)}
 						disabled={submitLoading}
-						style={{ marginTop: -4 }}
 					>
 						Search Rate Trends
 					</Button>
 				</div>
 			</form>
-
-			{isTrackerLimitModalOpen && (
-				<TrackingLimitModal overflow="visible" closeModal={handleTrackingLimitModal} />
-			)}
 		</div>
 	);
 }

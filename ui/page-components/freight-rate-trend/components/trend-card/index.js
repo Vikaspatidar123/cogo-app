@@ -1,5 +1,5 @@
 import { IcMCrossInCircle, IcMArrowNext } from '@cogoport/icons-react';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 import DeleteModal from '../../common/DeleteModal';
 import useDeleteTrendSubscription from '../../hooks/useDeleteTrends';
@@ -8,22 +8,17 @@ import styles from './styles.module.css';
 
 import { useRouter } from '@/packages/next';
 
-function TrendCard({ trend = {}, isMobile }) {
+function TrendCard({ trend = {}, isMobile, fetchLocations = () => {} }) {
 	const { push } = useRouter();
 
-	const { loading, deleteTrend } = useDeleteTrendSubscription();
+	const { loading, deleteTrend } = useDeleteTrendSubscription({ fetchLocations });
 	const [showDeleteModal, setShowDeleteModal] = useState(false);
 	const [trendId, setTrendId] = useState();
-
-	// const handleTrackingLimitModal = () => {
-	// 	setTrackerLimitModal(!isTrackerLimitModalOpen);
-	// };
 
 	const routeList = {
 		origin      : trend?.origin_port?.name || 'Origin',
 		destination : trend?.destination_port?.name || 'Destination',
 	};
-	// console.log('asd');
 	return (
 		<>
 			<div className={styles.card}>

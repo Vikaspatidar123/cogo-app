@@ -2,8 +2,6 @@ import { Pagination, Button } from '@cogoport/components';
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 
-import TrackingLimitModal from './common/tracking-limit';
-import AddTrendModal from './components/add-trend-modal';
 import SearchCard from './components/search-card';
 import TrendCard, { EmptyTrendCard, TrendCardSkeleton } from './components/trend-card';
 import useFetchTrends from './hooks/useFetchTrends';
@@ -15,11 +13,12 @@ const trendLayout = ({
 	page,
 	total,
 	total_count,
+	fetchLocations = () => {},
 }) => (list?.length > 0 ? (
 	<>
 		<div className={styles.flex_container}>
 			{list.map((trend) => (
-				<TrendCard trend={trend} key={trend.id} isMobile={isMobile} />
+				<TrendCard trend={trend} key={trend.id} isMobile={isMobile} fetchLocations={fetchLocations} />
 			))}
 		</div>
 
@@ -41,7 +40,7 @@ const trendLayout = ({
 ));
 function FreightRateTrend() {
 	const {
-		freightTrends, isMobile, isTrackerLimitModalOpen, setTrackerLimitModal,
+		freightTrends, isMobile,
 	} =		useSelector((state) => state);
 	const {
 		loading,
@@ -57,10 +56,6 @@ function FreightRateTrend() {
 		setTrendModal(!isTrendModalOpen);
 	};
 
-	const handleTrackingLimitModal = () => {
-		setTrackerLimitModal(!isTrackerLimitModalOpen);
-	};
-
 	const {
 		list, page, page_limit, total, total_count,
 	} = tredList;
@@ -71,27 +66,11 @@ function FreightRateTrend() {
 		fetchLocations();
 	}, []);
 
-	if (isTrendModalOpen) {
-		return <AddTrendModal refectTrends={refectTrends} handleModal={handleTrendModal} />;
-	}
-
-	if (isTrackerLimitModalOpen) {
-		return (
-			<TrackingLimitModal overflow="visible" closeModal={handleTrackingLimitModal} />
-		);
-	}
-
 	return (
 		<>
+			<div className={styles.heading}>Ocean Schedule Tracker</div>
 			{!isMobile && (
 				<SearchCard refechTrends={refectTrends} />
-			)}
-			{isMobile && (
-				<div className={styles.flex}>
-					<div className={styles.text}>
-						Freight Rate Trends
-					</div>
-				</div>
 			)}
 			{loading ? (
 				<div className={styles.flex_container}>
@@ -110,6 +89,7 @@ function FreightRateTrend() {
 					page_limit,
 					total,
 					total_count,
+					fetchLocations,
 				})
 			)}
 			{isMobile && (

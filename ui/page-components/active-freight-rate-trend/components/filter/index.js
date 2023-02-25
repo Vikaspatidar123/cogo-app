@@ -20,7 +20,6 @@ function FilterForm({
 	setContainerSize,
 	containerType,
 	setContainerType,
-	shippingLine,
 	setShippingLine,
 	refetch,
 }) {
@@ -38,14 +37,7 @@ function FilterForm({
 		setShippingLine('');
 		refetch();
 	};
-	const newFiled = {
-		name           : 'id',
-		label          : 'short_name',
-		type           : 'select',
-		optionsListKey : 'shipping-lines',
-		placeholder    : 'shipping line',
-		validations    : [{ type: 'required', message: 'Required' }],
-	};
+
 	const content = (
 		<div className={styles.filter_item}>
 			<div className={styles.container1}>
@@ -80,30 +72,22 @@ function FilterForm({
 					/>
 				</div>
 				<div className={styles.select_div}>
-					<div className={styles.input_title_text}>Shipping line</div>
-					<Select
-						{...newFiled}
-						value={shippingLine}
-						onChange={setShippingLine}
-					/>
-				</div>
-			</div>
-			<div className={styles.container1}>
-				<div className={styles.select_div}>
-					<div className={styles.input_title_text}>Date Range</div>
-					<DateRangepicker
-						style={{ marginRight: '10px' }}
-						value={dateRangePickerValue || new Date(now.setMonth(now.getMonth() - 6))}
-						onChange={setDateRangePickerValue}
-					/>
-				</div>
-				<div className={styles.select_div}>
 					<div className={styles.input_title_text}>Currency</div>
 					<Select
 						placeholder="USD"
 						value={filteredCurrency}
 						onChange={setFilteredCurrency}
 						options={filterControls[4].options}
+					/>
+				</div>
+			</div>
+			<div className={styles.container1}>
+				<div className={styles.select_date}>
+					<div className={styles.input_title_text}>Date Range</div>
+					<DateRangepicker
+						style={{ marginRight: '10px' }}
+						value={dateRangePickerValue || new Date(now.setMonth(now.getMonth() - 6))}
+						onChange={setDateRangePickerValue}
 					/>
 				</div>
 			</div>

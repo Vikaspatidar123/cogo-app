@@ -1,7 +1,4 @@
-// import Skeleton from 'react-loading-skeleton';
-
-// import EmptyStateIcon from '../../common/assets/ic-empty-not-found.svg';
-import { Button } from '@cogoport/components';
+import { Button, Popover } from '@cogoport/components';
 import { IcMArrowBack, IcMPortArrow } from '@cogoport/icons-react';
 import { format } from '@cogoport/utils';
 import { useEffect, useState } from 'react';
@@ -88,55 +85,46 @@ function ActiveFreightRateTrend() {
 
 	function Graph() {
 		return Object?.keys(datasets || {}).length > 2 ? (
-			<TrendChart
-				labels={labels || []}
-				datasets={datasets || []}
-				currency={currency}
-				filteredCurrency={filteredCurrency}
-			/>
+			<>
+				<div className={styles.heading}>Trend Chart</div>
+				<TrendChart
+					labels={labels || []}
+					datasets={datasets || []}
+					currency={currency}
+					filteredCurrency={filteredCurrency}
+				/>
+			</>
 		) : (
 			<div className={styles.empty_ctn}>
-				{/* <EmptyStateIcon /> */}
-				<div className={styles.empty_text}> Data not found</div>
+				<div className={styles.empty_text}>
+					<img
+						alt=""
+						src="https://cogoport-production.sgp1.digitaloceanspaces.com/8ee5b5489eb1a8ab2d9e2c62bc1f0fae/UI%20standardization.zip"
+					/>
+				</div>
 			</div>
 		);
 	}
 
 	return (
 		<>
-			{isMobile ? (
-				<div className={styles.flex}>
-					<IcMArrowBack
-						// style={{ height: 20, width: 20, marginRight: 8 }}
-						onClick={back}
-						fill="white"
-					/>
-					<div className={styles.text}>
-						Freight Rate Trend
-					</div>
-				</div>
-			) : (
-				<div className={styles.flex}>
+			<div className={styles.flex1}>
+				<Popover placement="top" trigger="mouseenter" render="Go Back">
 					<IcMArrowBack
 						style={{
-							height      : 20,
-							width       : 20,
-							marginRight : 8,
-							fill        : '#000',
-							cursor      : 'pointer',
+							height : 20,
+							width  : 20,
+							fill   : '#000',
+							cursor : 'pointer',
 						}}
 						onClick={back}
 						fill="white"
 					/>
-					<div className={styles.flex}>
-						<div className={styles.heading}>Freight Rate Trend</div>
-					</div>
-				</div>
-			)}
-			<div className={styles.flex1}>
+				</Popover>
+
 				<div className={styles.routes}>
 					<p className="origin">{origin_port?.name || 'Origin'}</p>
-					<IcMPortArrow style={{ margin: '0px 16px' }} />
+					<IcMPortArrow height={30} width={40} style={{ margin: '0px 16px' }} />
 					<p className="origin">{destination_port?.name || 'Destination'}</p>
 				</div>
 			</div>

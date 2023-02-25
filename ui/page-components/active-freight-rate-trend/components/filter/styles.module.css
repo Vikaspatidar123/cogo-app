@@ -1,5 +1,6 @@
 .container {
-	width: 100%;
+	float: right;
+	margin-top:10px;
 	:global {
 		.tippy-box {
 			display: block;
@@ -21,40 +22,38 @@
 
 .filter_button_Ctn {
 	display: flex;
-	background: #000;
+	border: 1px solid #E0E0E0;
 	justify-content: space-around;
 	align-items: center;
-	margin: 20px 0 0 0;
-	width: 10%;
 	height: 40px;
-	border-radius: 4px;
+	border-radius: 6px;
 	cursor: pointer;
-	
+	padding: 15px;
 }
 
 .filter_text {
 	font-size: 16px;
 	font-weight: 400;
 	padding: 5px;
-	color: #f9f9f9;
+	color: black;
 }
 
 .filter_icon {
 	padding: 8px 0 0 0;
-	color: #f9f9f9;
+	color: black;
 }
 
 .direction_icon {
 	padding: 5px 0 0 0;
-	color: #f9f9f9;
+	color: black;
 }
 
 .container1 {
 	display: flex;
-	width: 100%;
 	display: flex;
 	justify-content: space-between;
-    margin: 10px 0px 0px 20px;
+	margin: 10px;
+	width: 100%;
 }
 
 .clear_button_text {
@@ -66,21 +65,24 @@
 }
 
 .clear_button {
-	margin-right: _s7;
 	border-radius: 4px;
 	color: #f75620;
 	justify-content: flex-end;
 	display: inline-flex;
 	width: 100%;
-	max-height: 40px;
 	text-align: center;
 	align-items: center;
 	padding-right: 17px;
 	margin-top: 10px 10px;
+	cursor: pointer;
+}
+
+.select_date{
+	width: fit-content;
 }
 
 .select_div {
-	width: 45%;
+    width: 100%;
 	margin: 0 0 0 7px;
 }
 

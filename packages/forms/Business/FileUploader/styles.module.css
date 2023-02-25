@@ -31,7 +31,6 @@
 	transition: width 0.2s ease-in;
 }
 .upload{
-
 	:global {
 		.ui_upload_droparea_container {
 			border-radius: 10px;

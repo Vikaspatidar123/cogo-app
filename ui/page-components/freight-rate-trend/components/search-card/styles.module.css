@@ -1,8 +1,7 @@
 .card {
-  /* background-color: ${({ isEmpty }) => (isEmpty ? '#FAFAFA' : 'white')}; */
   height: 100%;
   border-radius: 20px;
-  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+  border: 1px solid #ACDADF;
   margin-top: 16px;
   margin-bottom: 8px;
   padding: 26px;
@@ -10,23 +9,22 @@
 }
 
 .heading {
-  span {
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 36px;
+    color: #221F20;
+    font-family: 'Poppins';
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 21px;
     letter-spacing: -0.3px;
-    color: #34485c;
-  }
-
-  p {
-    margin: 0;
-  }
 }
 
 .styled_form_item {
-  flex: 1;
-  margin: 0 10px;
+  width: 300px;
+   
+   :global{
+   .ui_button_container{
+      float: right;
+  }
+}
 }
 
 .text{
@@ -40,6 +38,7 @@
   justify-content: space-between;
   align-items:center;
 }
+
 .form{
     width          : 100%;
 		display        : flex;
@@ -48,4 +47,19 @@
     @media screen and (max-width: 700px) {
       flex-direction: column;
       }
+}
+
+.anchor{
+  margin: 0px 10px;
+
+
+  svg {
+    color: #88CAD1;
+    cursor: pointer;
+  }
+
+  
+  @media screen and (max-width: 700px) {
+   text-align: center;
+    }
 }

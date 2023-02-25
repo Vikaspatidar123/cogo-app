@@ -2,14 +2,13 @@
   color: #282b2e;
   font-weight: 700;
   font-size: 20px;
-  margin: 0px;
-  margin-right: 24px;
-  
-  @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
+  margin: 20px 10px 0px;
+
+  @media screen and (max-width: 700px) {
     color: white;
-    margin-right: 0;
     font-size: 18px;
-    margin-left: 8px;
+    color: #282b2e;
+    margin: 20px 10px 0px;
   }
 }
  
@@ -17,11 +16,9 @@
   background: #3B526B;
   color: #ffffff;
   font-weight: bold;
-
   padding: 7px 14px;
   font-size: 12px;
   margin: 4px 4px;
-  /* margin-top: ${({ webView }) => (webView ? ' -50px' : '')}; */
   border-radius: 15px;
 }
 

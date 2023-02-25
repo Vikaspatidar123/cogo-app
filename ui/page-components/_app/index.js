@@ -15,8 +15,8 @@ import { Provider } from '@/packages/store';
 import { setGeneralStoreState } from '@/packages/store/store/general';
 import isMobileAgent from '@/packages/utils/isMobileAgent';
 import handleAuthentication from '@/ui/page-components/authentication/utils/handleAuthentication';
-import GlobalLayout from '@/ui/page-components/layout/components/GlobalLayout';
-import routeConfig from './routes';
+import GlobalLayout from '@/ui/page-components/_app/layout/components/GlobalLayout';
+import { routeConfig } from '@/packages/navigation-configs';
 
 function MyApp({
 	Component, pageProps, store, generalData,
@@ -37,11 +37,9 @@ function MyApp({
 
 	return (
 		<Provider store={store}>
-			{/* <SessionCheck> */}
 			<GlobalLayout layout={pageProps.layout || 'authenticated'} head={pageProps.head || ''}>
 				<Component {...pageProps} />
 			</GlobalLayout>
-			{/* </SessionCheck> */}
 		</Provider>
 	);
 }

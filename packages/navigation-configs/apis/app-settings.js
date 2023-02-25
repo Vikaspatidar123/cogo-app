@@ -217,10 +217,15 @@ const app_settings = [
 	{
 		api          : 'get_user_alert_preference',
 		access_type  : 'private',
-		service_name : 'organization',
+		service_name : 'communication_control',
 	},
 	{
 		api          : 'update_user_alert_preference',
+		access_type  : 'private',
+		service_name : 'communication_control',
+	},
+	{
+		api          : 'list_organization_trade_parties',
 		access_type  : 'private',
 		service_name : 'organization',
 	},

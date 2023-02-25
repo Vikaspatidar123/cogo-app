@@ -1,7 +1,8 @@
-import { IcMCross, IcMMinusInCircle, IcMStar } from '@cogoport/icons-react';
+import {
+	IcMCross, IcMMinusInCircle, IcMStar, IcCBookmark,
+} from '@cogoport/icons-react';
 import React, { useState } from 'react';
 
-import Bookmark from '../assets/bookmark.svg';
 import EmptyState from '../common/EmptyState';
 import useBookmark from '../hooks/useBookmark';
 import useHSCode from '../hooks/useHSCode';
@@ -36,7 +37,7 @@ function HsClassification() {
 		setResetDrillDown(false);
 	};
 	const {
-		bookmarkData, refetchGetBookmark, refetchRemoveBookmark, getBookmarkLoading, isMobile,
+		bookmarkData, refetchGetBookmark, refetchRemoveBookmark, getBookmarkLoading,
 	} = useBookmark({ refetchHsCode });
 	return (
 		<div>
@@ -52,44 +53,41 @@ function HsClassification() {
 					<div className={styles.title}>List of HS Codes</div>
 					{searchTag && <div>{searchTag}</div>}
 				</div>
-				{!isMobile && (
-					<div className={styles.button_div}>
-						<div className={`${styles.styled_button} ${styles.secondary}`} onClick={resetDrillDownHandler}>
-							<IcMMinusInCircle />
-							Collaspse all
-						</div>
-						<div
+
+				<div className={styles.button_div}>
+					<div className={`${styles.styled_button} ${styles.secondary}`} onClick={resetDrillDownHandler}>
+						<IcMMinusInCircle />
+						Collaspse all
+					</div>
+					<div
+						onClick={() => {
+							setOpenSelectedModal(true);
+							refetchGetBookmark();
+						}}
+						className={`${styles.styled_button} ${styles.primary}`}
+					>
+						<IcMStar />
+						Favourites
+					</div>
+				</div>
+
+				<div className={styles.button_mobile}>
+					<div className={styles.icon_container}>
+						<IcCBookmark
+							size={2}
 							onClick={() => {
 								setOpenSelectedModal(true);
 								refetchGetBookmark();
 							}}
-							className={`${styles.styled_button} ${styles.primary}`}
-						>
-							<IcMStar />
-							Favourites
-						</div>
+						/>
+						<div className={styles.icon_text}>Favourites</div>
 					</div>
-				)}
 
-				{isMobile && (
-					<div className={styles.button_div}>
-						<div className={styles.icon_container}>
-							<Bookmark
-								size={2}
-								onClick={() => {
-									setOpenSelectedModal(true);
-									refetchGetBookmark();
-								}}
-							/>
-							<div className={styles.icon_text}>Favourites</div>
-						</div>
-
-						<div className={styles.icon_container}>
-							<IcMCross width={30} height={30} onClick={resetDrillDownHandler} />
-							<div className={styles.icon_text}>Collaspse all</div>
-						</div>
+					<div className={styles.icon_container}>
+						<IcMCross width={30} height={30} onClick={resetDrillDownHandler} />
+						<div className={styles.icon_text}>Collaspse all</div>
 					</div>
-				)}
+				</div>
 			</div>
 
 			{list?.length === 0 && <EmptyState />}

@@ -10,8 +10,8 @@ const newRenderFunction = {
 			{data[config.key]}
 		</div>
 	),
-	renderIcon: (data, config) => <Bookmark data={data} config={config} />,
-	renderAddProduct: (data, config) => <AddProductModal data={data} config={config} />,
+	renderIcon       : (data, config) => <Bookmark data={data} config={config} />,
+	renderAddProduct : (data, config) => <AddProductModal data={data} config={config} />,
 };
 const renderFunction = () => ({ newRenderFunction });
 

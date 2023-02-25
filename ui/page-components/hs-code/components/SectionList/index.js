@@ -33,12 +33,12 @@ function SectionList({
 	const { Mapping } = IconMaping(isMobile);
 	const { sectionCode, sectionDescription, chapters } = data || {};
 
-	const addLoader = (mobileWidth, desktopWidth) => {
-		if (isMobile) {
-			return <Placeholder width={mobileWidth} height="15px" />;
-		}
-		return <Placeholder className={styles.loader} height="15px" width={desktopWidth} />;
-	};
+	const addLoader = (mobileWidth, desktopWidth) => (
+		<div>
+			<Placeholder width={mobileWidth} height="15px" className={styles.mobile} />
+			<Placeholder className={styles.loader} height="15px" width={desktopWidth} />
+		</div>
+	);
 
 	const description = () => {
 		if (loading) return addLoader('150px', '800px');

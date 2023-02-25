@@ -1,13 +1,8 @@
-import { Button } from '@cogoport/components';
-
-// import useForm from '@cogoport/front/hooks/useFormCogo';
+import { Button, Modal } from '@cogoport/components';
 import { IcAFormsAndCertificates, IcMArrowRight } from '@cogoport/icons-react';
 import { useState, useEffect } from 'react';
 
 import getField from '../../../../../../packages/forms/Controlled/index';
-
-// import LoadingScreen from '../../../../../common/components/Loader';
-// import getField from '../../../../../common/form/components';
 import getControls from '../../../configurations/addProductControls';
 import useCategory from '../../../hooks/useCategory';
 
@@ -64,7 +59,14 @@ function ModalDetails({ data = {}, setShow }) {
 		}
 		return `Loss: ${Math.round(Math.abs(profitPercentage))}%`;
 	};
-
+	function Head() {
+		return (
+			<div className={styles.title_container}>
+				<IcAFormsAndCertificates width={25} height={25} />
+				<div className="title">Add Product</div>
+			</div>
+		);
+	}
 	const fields = getControls();
 	return (
 		<>
@@ -72,53 +74,51 @@ function ModalDetails({ data = {}, setShow }) {
 				{getproductLoading && 'Loading...'}
 
 				{/* < LoadingScreen loaderClass={styles.loadingIcn} /> */}
-
-				<div className={styles.title_container}>
-					<IcAFormsAndCertificates width={25} height={25} />
-					<div className="title">Add Product</div>
-				</div>
-				<div className={styles.header}>
-					<div className={styles.summary_tab}>
-						<div className={styles.section}>
-							<div className={styles.heading}>Category</div>
-							<div className={styles.subheading}>{categoryDisplayName}</div>
+				<Modal.Header title={Head()} />
+				<Modal.Body>
+					<div className={styles.header}>
+						<div className={styles.summary_tab}>
+							<div className={styles.section}>
+								<div className={styles.heading}>Category</div>
+								<div className={styles.subheading}>{categoryDisplayName}</div>
+							</div>
+							<div className={styles.icn}>
+								<IcMArrowRight />
+							</div>
+							<div className={styles.section}>
+								<div className={styles.heading}>Sub-Category</div>
+								<div className={styles.subheading}>{subCategoryDisplayName}</div>
+							</div>
 						</div>
-						<div className={styles.icn}>
-							<IcMArrowRight />
-						</div>
-						<div className={styles.section}>
-							<div className={styles.heading}>Sub-Category</div>
-							<div className={styles.subheading}>{subCategoryDisplayName}</div>
+						<div className={`${profitPercentage > 0 ? styles.green : styles.red} profit`}>
+							{renderProfit()}
 						</div>
 					</div>
-					<div className={`${profitPercentage > 0 ? styles.green : styles.red} profit`}>
-						{renderProfit()}
-					</div>
-				</div>
-				<form>
-					<div className={styles.row}>
-						{fields.map((field) => {
-							const Element = getField(field.type);
+					<form>
+						<div className={styles.row}>
+							{fields.map((field) => {
+								const Controller = getField(field.type);
 
-							return (
-								<div className={`${styles} ${styles.col}`}>
-									<div className={styles.label}>{field.label}</div>
-									<Element {...field} control={control} />
-									{errors[field.name]?.type === 'required'
+								return (
+									<div className={`${styles} ${styles.col}`}>
+										<div className={styles.label}>{field.label}</div>
+										<Controller {...field} control={control} />
+										{errors[field.name]?.type === 'required'
 										|| errors[field.name]?.type === 'minLength'
 										|| errors[field.name]?.type === 'maxLength' ? (
 											<div className={styles.text}>
 												{errors[field.name]?.message || errors[field.name]?.type}
 												*
 											</div>
-										) : null}
-								</div>
-							);
-						})}
-					</div>
-				</form>
+											) : null}
+									</div>
+								);
+							})}
+						</div>
+					</form>
+				</Modal.Body>
 			</div>
-			<div className={styles.footer}>
+			<Modal.Footer>
 				<Button
 					className="md"
 					onClick={handleSubmit(onSubmit)}
@@ -126,7 +126,7 @@ function ModalDetails({ data = {}, setShow }) {
 				>
 					Add To Catalogue
 				</Button>
-			</div>
+			</Modal.Footer>
 		</>
 	);
 }

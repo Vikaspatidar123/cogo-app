@@ -18,7 +18,6 @@ function HeadingList({
 	headingLoading,
 	hsloading,
 }) {
-	// const { isMobile } = useSaasState();
 	const isMobile = false;
 	const [headingToggle, setHeadingToggle] = useState(false);
 	const { headingCode, headingDescription } = headingData || {};
@@ -37,10 +36,10 @@ function HeadingList({
 	}, [headingToggle]);
 
 	const addLoader = (mobileWidth, desktopWidth) => {
-		if (isMobile) {
-			return <Placeholder width={mobileWidth} height="15px" />;
-		}
-		return <Placeholder height="15px" width={desktopWidth} />;
+		<div>
+			<Placeholder width={mobileWidth} height="15px" className={styles.mobile} />
+			<Placeholder className={styles.loader} height="15px" width={desktopWidth} />
+		</div>;
 	};
 
 	const description = () => {

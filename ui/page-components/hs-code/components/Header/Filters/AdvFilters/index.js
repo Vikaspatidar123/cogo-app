@@ -35,10 +35,10 @@ function AdvFilters({
 	const { country = '' } = watch();
 	const clearFilterHandler = () => {
 		const resetValue = {
-			country: COUNTRY_IDS.IN,
-			searchBy: '',
-			searchTerm: '',
-			filterBy: '',
+			country    : COUNTRY_IDS.IN,
+			searchBy   : '',
+			searchTerm : '',
+			filterBy   : '',
 		};
 
 		setValues(resetValue);
@@ -59,7 +59,7 @@ function AdvFilters({
 					<div>
 						<Input
 							{...field[2]}
-							size="lg"
+							size="md"
 							control={control}
 							prefix={<IcAIdea width={20} height={20} />}
 						/>

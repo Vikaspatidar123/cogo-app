@@ -1,13 +1,10 @@
-import HsCode from '@/ui/page-components/hs-code';
+import HsClassification from '@/ui/page-components/hs-code';
 
-function HsCodeComponent() {
-	return <HsCode />;
-}
-HsCodeComponent.getInitialProps = () => ({
+HsClassification.getInitialProps = () => ({
 	layout : 'app',
 	head   : {
-		title: 'HsCode Classification',
+		title: 'Hs Classification',
 	},
 });
 
-export default HsCodeComponent;
+export default HsClassification;

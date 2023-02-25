@@ -75,6 +75,7 @@ function TrendCard({ trend = {}, isMobile, fetchLocations = () => {} }) {
 					deleteTrend={deleteTrend}
 					deleteLoading={loading}
 					isMobile={isMobile}
+					trendData={trendData}
 
 				/>
 			)}

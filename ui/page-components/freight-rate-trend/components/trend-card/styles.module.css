@@ -6,8 +6,8 @@
 	position: relative;
 	grid-column: span 6;
 	/* background-color: ${({ isEmpty }) => (isEmpty ? '#FAFAFA' : '#F2F7FB')}; */
-	border-radius: 20px;
-	box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+	border-radius: 8px;
+	box-shadow: 0px 0px 16px rgba(98, 127, 172, 0.2);
 	overflow: hidden;
 	max-width: 100%;
 

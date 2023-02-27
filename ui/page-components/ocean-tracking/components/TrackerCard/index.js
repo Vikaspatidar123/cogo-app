@@ -1,7 +1,15 @@
+import useFetchTrackers from '../../hooks/useFetchTrackers';
+
 import Card from './Card';
 import styles from './styles.module.css';
 
 function TrackerCard({ activeTab }) {
+	const { fetchTrackers, trackers } = useFetchTrackers();
+
+	console.log(trackers, 'dataaaaaaaaaa');
+
+	const trackerList = trackers?.list;
+	console.log('ertyuiovb', trackerList);
 	return (
 		<div className={styles.container}>
 			<div className={styles.head}>
@@ -13,7 +21,9 @@ function TrackerCard({ activeTab }) {
 				</div>
 			</div>
 			<div>
-				<Card />
+				{trackerList?.map((tracker, index) => (
+					<Card trackerDetails={tracker} />
+				))}
 			</div>
 		</div>
 	);

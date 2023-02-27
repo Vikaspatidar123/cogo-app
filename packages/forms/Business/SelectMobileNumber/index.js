@@ -1,14 +1,14 @@
 import { Input } from '@cogoport/components';
 // import { Input as InputAdmin } from '@cogoport/front/components/admin';
-import { string, shape, func } from 'prop-types';
 
-import SelectCountryCode from './SelectCountryCode';
+import SelectCountryCode from '../SelectCountryCode';
+
 import styles from './styles.module.css';
 
 function SelectMobileNumber({
 	value,
 	onChange,
-	codeKey,
+	codeKey = '',
 	numberKey,
 	mobileSelectRef,
 	select2,
@@ -112,16 +112,6 @@ function SelectMobileNumber({
 		</div>
 	);
 }
-
-SelectMobileNumber.propTypes = {
-	themeType        : string,
-	codeKey          : string,
-	numberKey        : string,
-	value            : shape({}),
-	onChange         : func.isRequired,
-	countryCodeWidth : string,
-	select2          : string,
-};
 
 SelectMobileNumber.defaultProps = {
 	themeType        : 'black',

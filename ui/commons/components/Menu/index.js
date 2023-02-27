@@ -2,9 +2,9 @@ import { useState } from 'react';
 
 import Logout from './Logout';
 import MenuProfileHeader from './MenuProfileHeader';
+import Navigation from './Navigation';
 import Profile from './Profile';
 import styles from './styles.module.css';
-import Subscription from './Subscription';
 import SwitchUser from './SwitchUser';
 
 import getSideBarConfigs from '@/packages/navigation-configs/side-bar';
@@ -31,8 +31,22 @@ function Menu({ setShowPopover, show, setShow }) {
 		<div className={styles.container}>
 			<MenuProfileHeader setShow={setShow} />
 			{organization?.id && <Profile setShowPopover={setShowPopover} />}
-			{subscriptionNav && <Subscription setShowPopover={setShowPopover} subscriptionNav={subscriptionNav} setIsOpen={setIsOpen} isOpen={isOpen} />}
-			{financeNav && <Subscription setShowPopover={setShowPopover} subscriptionNav={financeNav} setIsOpen={setIsOpen} isOpen={isOpen} />}
+			{subscriptionNav && (
+				<Navigation
+					setShowPopover={setShowPopover}
+					subscriptionNav={subscriptionNav}
+					setIsOpen={setIsOpen}
+					isOpen={isOpen}
+				/>
+			)}
+			{financeNav && (
+				<Navigation
+					setShowPopover={setShowPopover}
+					subscriptionNav={financeNav}
+					setIsOpen={setIsOpen}
+					isOpen={isOpen}
+				/>
+			)}
 			<Logout />
 		</div>
 	);

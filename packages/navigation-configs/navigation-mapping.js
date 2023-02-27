@@ -1,15 +1,16 @@
-import {
-	IcMAverage, IcMQuotations, IcMTradeparties, IcMProductCodeMapping,
-	IcACrossBorder,
-	IcMFfreferigeratedCargoType,
-} from '@cogoport/icons-react';
+// key is used to identify the navigation
+// title is used to show navigation title
+// href and as is also used for redirect to navigation page
+// type => if type is link then after click it will redirect to coresponding navigation
+// showInNav = true => means to show the navigation in both mobile view as well as web view
+// showMobileNav = true => means to show navigation in only mobile view
+// icon is used to show icon webside only
+// mobileIcon is used to show icon in mobile navigation only
+// isSubNavs is used to show sub navigations
 
-import AirSchedule from './icons/air-schedule.svg';
-import AirTracking from './icons/air-tracking.svg';
-import ManageSubscription from './icons/manage-subscription.svg';
-import OceanSchedule from './icons/ocean-schedule.svg';
-import OceanTracking from './icons/ocean-tracking.svg';
-import ProductClassification from './icons/product-classification.svg';
+import {
+	IcMTradeparties,
+} from '@cogoport/icons-react';
 
 const navigationMappings = {
 	app_dashboard: {
@@ -22,52 +23,6 @@ const navigationMappings = {
 		showInNav   : true,
 
 	},
-	app_discover_rates: {
-		key         : 'app_discover_rates',
-		title       : 'Discover Rates',
-		href        : '/book',
-		as          : '/book',
-		type        : 'link',
-		tag         : 'New Search',
-		module_type : 'crm',
-		showInNav   : true,
-	},
-	saas_planning: {
-		key         : 'saas_planning',
-		title       : 'Planning',
-		isSubNavs   : true,
-		showInNav   : true,
-		module_type : 'dashboards',
-		options     : [
-			{
-				key         : 'saas_planning-quotation',
-				title       : 'Quick Quotations',
-				icon        : <IcMQuotations width={40} height={40} />,
-				type        : 'link',
-				href        : '/saas/quickquotation/viewlist',
-				as          : '/saas/quickquotation/viewlist',
-				module_type : 'dashboards',
-			},
-			{
-				key         : 'saas_planning-product_inventory',
-				title       : 'Product Catalog',
-				type        : 'link',
-				icon        : <IcMProductCodeMapping width={40} height={40} />,
-				href        : '/saas/product-inventory',
-				as          : '/saas/product-inventory',
-				module_type : 'dashboards',
-			},
-			{
-				key         : 'saas_planning-trade_partner',
-				title       : 'Trade Partner',
-				type        : 'link',
-				icon        : <IcMTradeparties width={40} height={40} />,
-				href        : '/saas/trade-partner',
-				as          : '/saas/trade-partner',
-				module_type : 'dashboards',
-			},
-		],
-	},
 	saas_premium_services: {
 		key         : 'saas_premium_services',
 		title       : 'Premium Services',
@@ -79,21 +34,6 @@ const navigationMappings = {
 		isSubNavs   : true,
 		options     : [
 			{
-				key   : 'saas_premium_services-duties_and_taxes',
-				title : 'Duties & Taxes Calculator',
-				href  : '/v2/saas/premium-services/duties-taxes-calculator',
-				as    : '/v2/saas/premium-services/duties-taxes-calculator',
-				icon  : <IcMAverage width={40} height={40} fill="red" />,
-				type  : 'link',
-			},
-			{
-				key   : 'saas_premium_services-order_history',
-				title : 'Order History',
-				href  : '/saas/premium-services/order-history',
-				as    : '/saas/premium-services/order-history',
-				icon  : <IcACrossBorder width={40} height={40} />,
-			},
-			{
 				key   : 'saas_premium_services-trader_eligibility_check',
 				title : 'Trader Eligibility Check',
 				href  : '/v2/saas/premium-services/trader-eligibility-check',
@@ -102,6 +42,7 @@ const navigationMappings = {
 			},
 		],
 	},
+
 	app_bookings: {
 		key       : 'app_bookings',
 		title     : 'Shipments',
@@ -124,103 +65,6 @@ const navigationMappings = {
 	// 	isNew: true,
 	// 	showInNav: true,
 	// },
-	saas_tools: {
-		key         : 'saas_tools',
-		title       : 'Tools',
-		icon        : 'nav-tools',
-		isSubNavs   : true,
-		showInNav   : true,
-		isNew       : true,
-		module_type : 'dashboards',
-		options     : [
-			{
-				key         : 'saas_tools-hs_code_classification',
-				title       : 'Product Classification',
-				href        : '/v2/saas/hs-classification',
-				as          : '/v2/saas/hs-classification',
-				type        : 'link',
-				icon        : <ProductClassification />,
-				description : 'Find HS Codes with detailed description',
-			},
-			{
-				key         : 'saas_tools-air_tracking',
-				title       : 'Air Tracking',
-				href        : '/saas/air-tracking',
-				as          : '/saas/air-tracking',
-				type        : 'link',
-				icon        : <AirTracking />,
-				description : 'Track your shipment on the map in real time',
-			},
-			{
-				key         : 'saas_tools-air_schedules',
-				title       : 'Air Schedules',
-				href        : '/saas/air-schedules',
-				as          : '/saas/air-schedules',
-				type        : 'link',
-				icon        : <AirSchedule />,
-				description : 'Find sailing schedule for multiple air lines by route or vessel',
-			},
-			{
-				key         : 'saas_tools-ocean_tracking',
-				title       : 'Ocean Tracking',
-				href        : '/saas/tracking',
-				as          : '/saas/tracking',
-				type        : 'link',
-				icon        : <OceanTracking />,
-				description : 'Seamlessly keep track of your shipments and deviations',
-			},
-			{
-				key         : 'saas_tools-ocean_schedules',
-				title       : 'Ocean Schedules',
-				href        : '/saas/schedules',
-				as          : '/saas/schedules',
-				type        : 'link',
-				icon        : <OceanSchedule />,
-				description : 'Find sailing schedule with real time port congestion data',
-			},
-			{
-				key   : 'saas_tools-freight_rate_trend',
-				title : 'Freight Rate Trend',
-				href  : '/saas/freight-rate-trend',
-				as    : '/saas/freight-rate-trend',
-				type  : 'link',
-				icon  : <IcMFfreferigeratedCargoType width={40} height={40} fill="red" />,
-			},
-			{
-				key   : 'saas_tools-saas_insurance',
-				title : 'Insurance',
-				href  : '/saas/insurance/list',
-				as    : '/saas/insurance/list',
-				type  : 'link',
-				icon  : 'nav-insurance',
-			},
-		],
-	},
-	saas_finance: {
-		key       : 'saas_finance',
-		title     : 'Finance',
-		icon      : 'nav-finance',
-		isSubNavs : true,
-		isNew     : true,
-		options   : [
-			{
-				key   : 'saas_finance-transaction_history',
-				title : 'Transaction History',
-				icon  : <IcMFfreferigeratedCargoType width={40} height={40} fill="red" />,
-				type  : 'link',
-				href  : '/saas/transaction-history',
-				as    : '/saas/transaction-history',
-			},
-			{
-				key   : 'saas_finance-payment_dashboard',
-				title : 'Payment Dashboard',
-				href  : '/payment-dashboard',
-				as    : '/payment-dashboard',
-				type  : 'link',
-				icon  : <IcMFfreferigeratedCargoType width={40} height={40} fill="red" />,
-			},
-		],
-	},
 
 	app_accept_terms_and_conditions: {
 		key       : 'app_accept_terms_and_conditions',
@@ -229,104 +73,7 @@ const navigationMappings = {
 		type      : 'link',
 		showInNav : false,
 	},
-	app_documents: {
-		key     : 'app_documents',
-		title   : 'Documents',
-		icon    : 'nav-documents',
-		as      : '/documents/org_documents',
-		href    : '/documents/[doc_type]',
-		type    : 'link',
-		options : [
-			{
-				title : 'Documents',
-				type  : 'link',
-				icon  : 'nav-MySchedules',
-				as    : '/documents/org_documents',
-				href  : '/documents/[doc_type]',
-			},
-			{
-				title : 'Draft Templates',
-				type  : 'link',
-				icon  : 'nav-quotes',
-				as    : '/documents/trade_documents',
-				href  : '/documents/[doc_type]',
-			},
-		],
-	},
-	saas_schedules: {
-		key         : 'saas_schedules',
-		title       : 'Schedules',
-		icon        : 'nav-main-schedules',
-		type        : 'link',
-		module_type : 'dashboards',
-		isSubNavs   : true,
-		showInNav   : false,
-		options     : [
-			{
-				key   : 'saas_schedules-map_dashboard',
-				title : 'My Schedules',
-				icon  : 'nav-my-schedules',
-				href  : '/saas/schedule-map-dashboard',
-				as    : '/saas/schedule-map-dashboard',
-				type  : 'link',
-			},
-		],
-	},
 
-	saas_tracking: {
-		key       : 'saas_tracking',
-		title     : 'Track & Trace',
-		type      : 'link',
-		isSubNavs : true,
-		showInNav : false,
-		options   : [
-			{
-				key   : 'saas_tracking-map_dashboard',
-				title : 'My Shipments',
-				href  : '/saas/map-dashboard',
-				as    : '/saas/map-dashboard',
-				type  : 'link',
-			},
-		],
-		module_type: 'dashboards',
-	},
-
-	saas_cogo_subscription: {
-		key         : 'saas_cogo_subscription',
-		title       : 'Subscriptions',
-		icon        : 'nav-subscriptions',
-		isSubNavs   : true,
-		isNew       : true,
-		module_type : 'dashboards',
-		options     : [
-			{
-				key   : 'saas_cogo_subscription-manage',
-				title : 'Manage Subscription',
-				type  : 'link',
-				icon  : 'nav-documents',
-				href  : '/saas/cogo-subscriptions/manage-subscription',
-				as    : '/saas/cogo-subscriptions/manage-subscription',
-			},
-			{
-				key   : 'saas_cogo_subscription-balance_history',
-				title : 'Balance And History',
-				type  : 'link',
-				icon  : 'nav-payments',
-				href  : '/saas/cogo-subscriptions/balance-history',
-				as    : '/saas/cogo-subscriptions/balance-history',
-			},
-		],
-	},
-	saas_subscription: {
-		key       : 'saas_subscription',
-		title     : 'Manage Subscriptions',
-		href      : '/saas/subscriptions',
-		as        : '/saas/subscriptions',
-		type      : 'link',
-		icon      : <ManageSubscription />,
-		showInNav : false,
-
-	},
 	app_get_started: {
 		key   : 'app_get_started',
 		title : 'Get Started',
@@ -344,19 +91,12 @@ const navigationMappings = {
 
 	},
 	app_settings: {
-		key       : 'app_settings',
-		title     : 'Settings',
-		href      : '/settings',
-		as        : '/settings',
-		type      : 'link',
-		showInNav : false,
-
-	},
-	app_pricing: {
-		key       : 'app_pricing',
-		title     : 'Pricing',
-		type      : 'link',
-		showInNav : false,
+		key           : 'app_settings',
+		title         : 'Settings',
+		href          : '/v2/settings',
+		as            : '/v2/settings',
+		type          : 'link',
+		showMobileNav : true,
 
 	},
 

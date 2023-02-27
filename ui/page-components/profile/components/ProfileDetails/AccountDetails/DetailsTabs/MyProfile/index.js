@@ -14,7 +14,7 @@ import MobileVerificationModal from './MobileVerificationModal';
 import ResetPassword from './ResetPassword';
 import styles from './styles.module.css';
 
-import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals.json';
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 // import formatDate from '@/temp/utils/formatDate';
 
 function MyProfile() {

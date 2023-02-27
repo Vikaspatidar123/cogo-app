@@ -1,5 +1,4 @@
 import { MultiselectController } from '..';
-import FileUploader from '../Business/FileUploader';
 
 import CheckboxController from './CheckboxController';
 import DatepickerController from './DatepickerController';
@@ -7,6 +6,7 @@ import InputController from './InputController';
 import MobileNumberSelectController from './MobileNumberSelectController';
 import SelectController from './SelectController';
 import TextAreaController from './TextAreaController';
+import UploadController from './UploadController';
 
 const MAPPING = {
 
@@ -14,7 +14,7 @@ const MAPPING = {
 	text          : InputController,
 	number        : InputController,
 	textarea      : TextAreaController,
-	file          : FileUploader,
+	file          : UploadController,
 	checkbox      : CheckboxController,
 	mobile_number : MobileNumberSelectController,
 	datepicker    : DatepickerController,

@@ -37,11 +37,9 @@ function MyApp({
 
 	return (
 		<Provider store={store}>
-			{/* <SessionCheck> */}
 			<GlobalLayout layout={pageProps.layout || 'authenticated'} head={pageProps.head || ''}>
 				<Component {...pageProps} />
 			</GlobalLayout>
-			{/* </SessionCheck> */}
 		</Provider>
 	);
 }

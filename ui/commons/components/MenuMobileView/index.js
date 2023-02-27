@@ -1,5 +1,4 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
-// import { get } from '@cogoport/front/utils';
 import { IcMArrowNext } from '@cogoport/icons-react';
 import { useState } from 'react';
 
@@ -16,18 +15,12 @@ import { useSelector } from '@/packages/store';
 
 function MobileMenu() {
 	const { push, pathname } = useRouter();
-
-	// const {
-	// 	profile: { organization },
-	// } = useSelector((reduxState) => reduxState);
 	const {
 		user_data,
 	} = useSelector(({ profile }) => ({
 		user_data: profile || {},
 	}));
-
-	// const { account_type, kyc_status } = organization;
-
+	const { organization:org, branch } = user_data || {};
 	const [show, setShow] = useState(false);
 
 	if (show) {
@@ -40,19 +33,19 @@ function MobileMenu() {
 	const { organization = [] } = nav_items || {};
 	const navigationMapping = [];
 	organization.forEach((navigationItem) => {
-		// if (kyc_status) {
-		// const navigationAccountTypes = get(navigationItem, 'account_type') || [];
-
-		// const isAccountTypePresent = account_type.some((accType) => {
-		// 	return navigationAccountTypes.includes(accType);
-		// });
-
-		// if (isAccountTypePresent) {
 		navigationMapping.push(navigationItem);
-		// }
-		// }
 	});
+	console.log(organization, 'organization', navigationMapping);
 
+	const getRedirectUrl = (href, as) => {
+		if (href?.includes('/v2')) {
+			const newHref = href?.replace('/v2', '');
+			const newAs = as?.replace('/v2', '');
+			push(newHref, newAs);
+		} else {
+			window.location.href = `/app/${org?.id}/${branch?.id}/importer-exporter/${href}`;
+		}
+	};
 	return (
 		<div className={styles.container}>
 			<div className={styles.profile_container}>
@@ -61,18 +54,22 @@ function MobileMenu() {
 			<div className={styles.border_line} />
 
 			{navigationMapping.map((menuItem) => (
-				menuItem?.showInNav && (
+				(menuItem?.showInNav || menuItem.showMobileNav) && (
 					<div className={styles.tools_container} key={menuItem.href}>
 						{!menuItem.isSubNavs ? (
-							<div className={styles.styled_button} onClick={() => push(menuItem.as)}>
+							<div
+								className={styles.styled_button}
+								onClick={() => getRedirectUrl(menuItem.href, menuItem.as)}
+							>
 								<div className={styles.button_text}>{menuItem.title}</div>
 
 								<div className={styles.arrow_icon_container}>
 									<IcMArrowNext />
 								</div>
-							</div>
-						) : <Subnavigation menuItem={menuItem} push={push} />}
 
+							</div>
+						) : <Subnavigation menuItem={menuItem} getRedirectUrl={getRedirectUrl} />}
+						<div className={styles.line} />
 						<div />
 					</div>
 				)

@@ -20,123 +20,6 @@ import {
 import getField from '@/packages/forms/Controlled';
 import { useSelector } from '@/packages/store';
 
-// CONST CONTROLS = [
-// 	{
-// 		label       : 'POC Name',
-// 		name        : 'name',
-// 		type        : 'text',
-// 		placeholder : 'Enter POC Name',
-// 		valueKey    : 'business_name',
-// 		rulues      : { required: true },
-// 	},
-// 	{
-// 		label       : 'Billing Party Name',
-// 		name        : 'billingPartyName',
-// 		type        : 'text',
-// 		placeholder : 'Enter Billing Party Name',
-// 		rulues      : { required: true },
-// 		// valueKey: 'business_name',
-// 	},
-// 	{
-// 		label       : 'Email Id *',
-// 		name        : 'email',
-// 		type        : 'text',
-// 		placeholder : 'Enter Email Id',
-// 		style       : { height: '42px' },
-// 		rules       : {
-// 			required : true,
-// 			pattern  : {
-// 				value   : emailValidator,
-// 				message : 'Invalid email address',
-// 			},
-// 		},
-// 	},
-// 	{
-// 		label       : 'Phone Number *',
-// 		name        : 'phoneNumber',
-// 		type        : 'mobile-select',
-// 		placeholder : 'Enter Phone Number',
-// 		rules       : {
-// 			required : true,
-// 			pattern  : {
-// 				value   : mobileValidator,
-// 				message : 'Invalid phone number',
-// 			},
-// 		},
-// 	},
-
-// 	{
-// 		label       : 'Tax Number *',
-// 		name        : 'taxNumber',
-// 		type        : 'text',
-// 		placeholder : 'Enter Tax Number',
-// 		rules       : {
-// 			required : true,
-// 			pattern  : {
-// 				value   : GstValidator,
-// 				message : 'Invalid phone number',
-// 			},
-// 		},
-// 	},
-// 	{
-// 		label       : 'Address line *',
-// 		name        : 'address',
-// 		type        : 'text',
-// 		placeholder : 'Enter Address',
-// 		rules       : { required: true },
-// 	},
-
-// 	{
-// 		label          : 'Country *',
-// 		name           : 'country',
-// 		// type: 'select',
-// 		type           : 'select',
-// 		placeholder    : 'Enter Country',
-// 		className      : 'primary md',
-// 		rules          : { required: true },
-// 		optionsListKey : 'countries',
-// 		valueKey       : 'id',
-// 		// defaultOptions: true,
-// 		disabled       : !mobileCode?.country_code,
-// 		params         : {
-// 			filters: {
-// 				type                : 'country',
-// 				mobile_country_code : mobileCode?.country_code,
-// 			},
-// 		},
-// 	},
-// 	{
-// 		label          : 'State (optional)',
-// 		name           : 'state',
-// 		type           : 'select',
-// 		placeholder    : 'Enter State',
-// 		optionsListKey : 'locations',
-// 		disabled       : !countryInfo.id,
-// 		params         : {
-// 			filters: { type: 'region', country_id: countryInfo.id },
-// 		},
-// 	},
-// 	{
-// 		label       : 'Pincode *',
-// 		name        : 'pincode',
-// 		type        : 'text',
-// 		placeholder : 'Enter Pincode',
-// 		style       : { height: '40px' },
-// 		rules       : { required: true },
-// 	},
-// 	{
-// 		label          : 'City (optional)',
-// 		name           : 'city',
-// 		type           : 'text',
-// 		placeholder    : 'Enter City',
-// 		optionsListKey : 'locations',
-// 		disabled       : !stateInfo.id,
-// 		params         : {
-// 			filters: { type: 'city', region_id: stateInfo.id },
-// 		},
-// 	},
-// ]
-
 function AddModal({
 	addAddressModal,
 	setAddAddressModal,
@@ -149,7 +32,6 @@ function AddModal({
 	const [stateInfo, setStateInfo] = useState({});
 	const [cityInfo, setCityInfo] = useState({});
 	const [mobileCode, setMobileCode] = useState({});
-	// const [isMobile, setIsMobile] = useState(false);
 
 	const {
 		handleSubmit,
@@ -165,14 +47,6 @@ function AddModal({
 
 	const code = watch('phoneNumber');
 	const { country_code = '' } = code || {};
-
-	// useEffect(() => {
-	// 	if (width < 1154) {
-	// 		setIsMobile(true);
-	// 	} else {
-	// 		setIsMobile(false);
-	// 	}
-	// }, [width]);
 
 	useEffect(() => {
 		if (country_code) {
@@ -318,7 +192,6 @@ function AddModal({
 							</div>
 						</div>
 						<div className={styles.row}>
-
 							<div className={styles.col}>
 								<div className={styles.label}>
 									Phone Number *
@@ -357,16 +230,10 @@ function AddModal({
 									disabled={!mobileCode?.country_code}
 									rules={{ required: true }}
 								/>
-								{/* <CountryController
-									{...fields.country}
-									handleChange={(e) => {
-										setCountryInfo(e);
-									}}
-								/> */}
 							</div>
 						</div>
 					</div>
-					{/* <div className={styles.section}>
+					<div className={styles.section}>
 						<div className={styles.section_title}>
 							<div className={styles.title}>Address Details</div>
 							<div className={styles.design}>
@@ -376,25 +243,35 @@ function AddModal({
 						<div className={styles.row}>
 							<div className={styles.col}>
 								<div className={styles.label}>
-									{fields.address.label}
+									Address line *
 									{errors?.address
 									&& <div className={styles.error_txt}>{`${errors?.address?.type}*`}</div>}
 								</div>
-								<InputController {...fields.address} />
+								<InputController
+									control={control}
+									name="address"
+									placeholder="Enter Address"
+									rules={{ required: true }}
+								/>
 							</div>
 							<div className={styles.col}>
 								<div className={styles.label}>
-									{fields.pincode.label}
+									Pincode *
 									{errors?.pincode
 									&& <div className={styles.error_txt}>{`${errors?.pincode?.type}*`}</div>}
 								</div>
-								<InputController {...fields.pincode} />
+								<InputController
+									control={control}
+									name="pincode"
+									placeholder="Enter Pincode"
+									rules={{ required: true }}
+								/>
 							</div>
 						</div>
 						<div className={styles.row}>
-							<div className={styles.col}>
+							{/* <div className={styles.col}>
 								<div className={styles.label}>
-									{fields.state.label}
+									State (optional)
 									{errors?.state
 									&& <div className={styles.error_txt}>{`${errors?.state?.type}*`}</div>}
 								</div>
@@ -412,9 +289,39 @@ function AddModal({
 									{...fields.city}
 									handleChange={(data) => setCityInfo(data)}
 								/>
+							</div> */}
+							<div className={styles.col}>
+								<div className={styles.label}>
+									Country *
+									{errors?.country
+									&& <div className={styles.error_txt}>{`${errors?.country?.type}*`}</div>}
+								</div>
+								<SelectController
+									{...item}
+									name="country"
+									control={control}
+									placeholder="Enter Country"
+									disabled={!mobileCode?.country_code}
+									rules={{ required: true }}
+								/>
+							</div>
+							<div className={styles.col}>
+								<div className={styles.label}>
+									Country *
+									{errors?.country
+									&& <div className={styles.error_txt}>{`${errors?.country?.type}*`}</div>}
+								</div>
+								<SelectController
+									{...item}
+									name="country"
+									control={control}
+									placeholder="Enter Country"
+									disabled={!mobileCode?.country_code}
+									rules={{ required: true }}
+								/>
 							</div>
 						</div>
-					</div> */}
+					</div>
 				</div>
 				<div className={styles.btn_container}>
 					<Button

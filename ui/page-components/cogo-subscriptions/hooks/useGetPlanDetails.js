@@ -26,7 +26,7 @@ const useGetPlanDetails = ({ profile }) => {
 			});
 			setPlan(resp?.data);
 
-			if (resp?.hasError === false && !addons) {
+			if (resp.status === 200 && !addons) {
 				createCheckout({
 					setCheckoutResponse,
 					query,

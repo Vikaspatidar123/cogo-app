@@ -17,7 +17,7 @@ import Charges from './Charges';
 // 	Label, Wrapper, PaddedRow, Container,
 // } from './styles';
 import styles from './styles.module.css';
-import SubscriptionDetails from './subscriptionDetails';
+import SubscriptionDetails from './SubscriptionDetails';
 
 import { useRouter } from '@/packages/next';
 import { useSelector } from '@/packages/store';

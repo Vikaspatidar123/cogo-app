@@ -31,8 +31,6 @@ function DetailContainer({ planFeatureData = {} }) {
 		});
 	}, [planFeatureData]);
 
-	console.log('selectedData', selectedData);
-
 	return (
 		<div className={styles.container}>
 			<div className={styles.header}>

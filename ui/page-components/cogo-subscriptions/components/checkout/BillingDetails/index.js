@@ -74,7 +74,11 @@ function BillingDetails({
 											onChange={() => setChecked([id])}
 										/>
 									</div>
-									<div className={styles.border}>
+									<div
+										className={styles.border}
+										onClick={() => setChecked([id])}
+										role="presentation"
+									>
 										<div className={`${styles.row} ${styles.name}`}>
 											{name}
 											{' '}
@@ -86,7 +90,8 @@ function BillingDetails({
 											{pincode}
 										</div>
 										<div className={`${styles.row} ${styles.tax_number}`}>
-											GST Number:
+											GST Number :
+											{' '}
 											{tax_number}
 										</div>
 									</div>

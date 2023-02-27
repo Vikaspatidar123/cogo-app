@@ -1,0 +1,115 @@
+.container {
+	margin: 24px 0;
+}
+
+.title {
+	font-size: 20px;
+	font-weight: 500;
+	margin: 14px 0;
+}
+
+.table_container {
+	border-radius: 8px;
+	border: 1px solid #d4d4d4;
+}
+
+
+.table_container .pagination {
+	display: flex;
+	justify-content: center;
+	background: #f7f7f8;
+	padding: 12px 0;
+
+	:global {
+		.ui_paginnation_number_container {
+			gap: 20px;
+		}
+
+		.ui_paginnation_number_prev {
+			background: transparent;
+		}
+	}
+}
+
+.pagination_container {
+	margin: 10px !important;
+}
+
+.pagination_container .page,
+.pagination_container .break {
+	border: none !important;
+	background: transparent !important;
+	font-weight: 500 !important;
+}
+
+.pagination_container .selected {
+	color: #007aff;
+}
+
+.pagination_container .next,
+.pagination_container .previous {
+	background: transparent !important;
+	border: none !important;
+}
+
+.pagination_container .next svg,
+.pagination_container .previous svg {
+	stroke-width: 0.5px;
+	stroke: #333;
+}
+
+.pagination_container .previous svg path,
+.pagination_container .previous svg path {
+	fill: #333;
+}
+
+.pagination_container .disabled {
+	cursor: not-allowed;
+}
+
+.pagination_container .disabled svg {
+	stroke-width: 0.5px;
+	stroke: #9a9ea5;
+}
+
+.pagination_container .disabled svg path {
+	fill: #9a9ea5;
+}
+
+
+
+@media screen and (max-width: 767px) {
+	.container {
+		padding-bottom: 55px;
+		padding: 8px;
+		background-color: #ffff;
+	}
+
+	.scroll_table {
+		max-width: 100%;
+		overflow-x: auto;
+		border: none;
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+	}
+
+	.table_container {
+		border: none !important;
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+	}
+
+	.table_container .pagination{
+		:global {
+			.ui_paginnation_number_container {
+				gap: 5px;
+			}
+	
+			.ui_paginnation_number_prev {
+				background: transparent;
+			}
+		}
+	}
+}

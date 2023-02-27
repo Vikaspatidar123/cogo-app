@@ -1,12 +1,3 @@
-import { FluidContainer } from '@cogoport/components';
-import React from 'react';
+import BalanceHistory from './component';
 
-function Subscriptions() {
-	return (
-		<FluidContainer>
-			<p>Subscriptions</p>
-		</FluidContainer>
-	);
-}
-
-export default Subscriptions;
+export default BalanceHistory;

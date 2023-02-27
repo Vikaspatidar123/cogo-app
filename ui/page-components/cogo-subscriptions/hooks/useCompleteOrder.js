@@ -52,7 +52,6 @@ const useCompleteOrder = ({
 					});
 				}
 			}
-			// };
 		} catch (error) {
 			Toast.error(error?.message);
 		}

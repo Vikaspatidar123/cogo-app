@@ -2,39 +2,35 @@ import {
 	Button,
 	Toast, Checkbox, Datepicker, Tooltip,
 } from '@cogoport/components';
-import { IcMArrowNext, IcMHelpInCircle } from '@cogoport/icons-react';
+import { IcMArrowNext, IcMHelpInCircle, IcCFtick } from '@cogoport/icons-react';
 import { useState } from 'react';
 
 import LoadingBtn from '../../../asset/loading.svg';
+import Coupons from '../../../common/Coupons';
+import useUpdateSaasCheckout from '../../../hooks/useUpdateSaasCheckout';
 import { getCurrencyDetail } from '../../../utils/getCurrencyDetail';
 import { shortFormatNumber } from '../../../utils/getShortFormatNumber';
 
 import styles from './styles.module.css';
-// import {
-// 	Label,
-// 	Wrapper,
-// 	Div,
-// 	StyledRow,
-// 	StyledCol,
-// 	StyledButton,
-// 	CrossedPrice,
-// 	StyledCol2,
-// 	LineWrapper,
-// 	ButtonWrapper,
-// 	FlexDiv,
-// 	Line,
-// 	GSt,
-// 	ActivateLaterCtn,
-// 	ActivateLaterTextCheckBox,
-// 	ActivateLaterTxt,
-// 	TooltipCtn,
-// } from './styles';
 
 const description = () => (
 	<div className={styles.tooltip_ctn}>
 		You can schedule this plan to activate on a specific day. Once you schedule
 		your plan, you can manually activate it before specified day or it will be
 		automatically activated on a specified day.
+	</div>
+);
+
+const discountTooltip = ({ discountedAmount, currency }) => (
+	<div className={styles.discount_content}>
+		<div className={styles.heading}>Total discount breakup:</div>
+		<div className={styles.content}>
+			<div>Coupons Discount</div>
+			<div>
+				-
+				{shortFormatNumber(discountedAmount || 0, currency, true)}
+			</div>
+		</div>
 	</div>
 );
 
@@ -49,12 +45,26 @@ function Charges({
 	setDatePickerValue,
 }) {
 	const [check, setCheck] = useState(false);
+	const [showCoupons, setShowCoupons] = useState(false);
 	const { plan = {}, pricing = {}, allow_activate_later = false } = plans || {};
 	const loading = checkoutResponse?.errors || completeOrderLoading;
 
+	const {
+		applyPromoCode, promoCodeData, couponCode, setCouponCode,
+	} =		useUpdateSaasCheckout({
+		checkoutResponse,
+	});
+
+	const { discount_amount: discountedAmount, total_amount: totalAmount } =		promoCodeData || {};
+
+	const couponCodeLength = Object.keys(couponCode)?.length;
+	const handleClick = ({ value, item }) => {
+		applyPromoCode({ value, item });
+	};
+
 	const submit = () => {
 		if (checked.length !== 0) {
-			completeOrder({});
+			completeOrder({ couponCode });
 		} else {
 			Toast.error('Error! Please Select an Address', {
 				autoClose : 5000,
@@ -82,7 +92,9 @@ function Charges({
 	return (
 		<div>
 			<div className={styles.wrapper}>
-				<div className={styles.label}>Charges</div>
+				<div className={styles.label}>
+					Summary
+				</div>
 			</div>
 			<div className={styles.div}>
 				<div className={styles.styled_row}>
@@ -106,25 +118,136 @@ function Charges({
 					<div className={styles.line} />
 				</div>
 
-				<div className={styles.styled_row}>
+				{/* <div className={styles.styled_row}>
 					<div className={styles.styled_col}>
 						<div>Total</div>
 					</div>
 					<div className={styles.styled_col}>{shortFormatNumber(amount, currency)}</div>
+				</div> */}
+
+				{couponCodeLength > 0 && (
+					<div className={styles.styled_row}>
+						<div className={`${styles.styled_col} ${styles.discount_name}`}>
+							<Tooltip
+								placement="top-start"
+								theme="light-border"
+								// content={couponCode?.description}
+								content={discountTooltip({ discountedAmount, currency })}
+								animation="scale"
+								interactive
+								visibility
+							>
+								<div>
+									{/* {startCase(couponCode?.name)} */}
+									Discount
+									<div className={`${styles.line_wrapper} ${styles.discount_line}`}>
+										<div className={`${styles.line} ${styles.discount_dashed_line}`} />
+									</div>
+								</div>
+							</Tooltip>
+						</div>
+						<div className={`${styles.discount_name} ${styles.price}`}>
+							-
+							{' '}
+							{shortFormatNumber(discountedAmount || 0, currency, true)}
+						</div>
+					</div>
+				)}
+
+				<div className={styles.input_wrapper}>
+					{!Object.keys(couponCode)?.length > 0 ? (
+						<div>Have a coupon code?</div>
+					) : (
+						<div className={styles.code_wrapper}>
+							<div>
+								<IcCFtick />
+							</div>
+							<div className={styles.applied_coupon}>
+								<div>
+									Code
+									{' '}
+									{couponCode?.promocodes?.[0]?.promocode?.toUpperCase()}
+									{' '}
+									applied
+								</div>
+								<div className={styles.discount}>
+									{couponCode?.promotion_discounts?.[0]?.unit === 'flat'
+										&& couponCode?.promotion_discounts?.[0]?.amount_currency}
+									{' '}
+									{couponCode?.promotion_discounts?.[0]?.value}
+									{couponCode?.promotion_discounts?.[0]?.unit === 'percentage' && '%'}
+									OFF
+								</div>
+							</div>
+						</div>
+					)}
+					<div>
+						{!Object.keys(couponCode)?.length > 0 ? (
+							<div
+								className={styles.applycoupon}
+								onClick={() => setShowCoupons(true)}
+								role="presentation"
+							>
+								Apply
+							</div>
+						) : (
+							<div
+								className={styles.removecoupon}
+								onClick={() => {
+									setCouponCode({});
+									handleClick({ value: 'remove' });
+								}}
+								role="presentation"
+							>
+								Remove
+							</div>
+						)}
+					</div>
+				</div>
+				<div className={styles.line_wrapper}>
+					<div className={styles.line} />
+				</div>
+
+				<div className={styles.styled_row}>
+					<div className={`${styles.styled_col} ${styles.total}`}>
+						<div>Total</div>
+					</div>
+					<div className={`${styles.styled_col} ${styles.price}`}>
+						{shortFormatNumber(
+							couponCodeLength > 0 ? totalAmount : amount,
+							currency,
+							true,
+						)}
+					</div>
 				</div>
 
 				<div className={styles.activate_later_ctn}>
 					<div className={styles.activate_later_text_check_box}>
 						<Checkbox
-							className="primary lg"
+							label={(
+								<div className={styles.checkbox_label_content}>
+									<div className={styles.activate_later_txt}>Activate later</div>
+									<Tooltip
+										placement="top"
+										content={description()}
+										animation="scale"
+										maxWidth={350}
+										interactive
+									>
+										<div className={styles.icon_container}>
+											<IcMHelpInCircle />
+										</div>
+									</Tooltip>
+								</div>
+							)}
 							checked={check}
-							onChange={setCheck}
+							onChange={(e) => setCheck(e.target.checked)}
 							disabled={!allow_activate_later}
+							value={check}
 						/>
-						<div className={styles.activate_later_txt}>Activate later</div>
+						{/* <div className={styles.activate_later_txt}>Activate later</div>
 						<Tooltip
 							placement="top"
-							theme="light-border"
 							content={description()}
 							animation="scale"
 							maxWidth={350}
@@ -133,7 +256,7 @@ function Charges({
 							<div className="icon-container">
 								<IcMHelpInCircle />
 							</div>
-						</Tooltip>
+						</Tooltip> */}
 					</div>
 					{check && (
 						<Datepicker
@@ -163,6 +286,24 @@ function Charges({
 					</Button>
 				</div>
 			</div>
+			{/* {showCoupons && ( */}
+
+			<div
+				className={`${styles.coupon_container} ${showCoupons ? styles.show : styles.hide}`}
+			>
+				{showCoupons && (
+					<Coupons
+						showCoupons={showCoupons}
+						couponCode={couponCode}
+						setCouponCode={setCouponCode}
+						amount={amount}
+						currency={currency}
+						setShowCoupons={setShowCoupons}
+						handleClick={handleClick}
+					/>
+				)}
+			</div>
+			{/* )} */}
 		</div>
 	);
 }

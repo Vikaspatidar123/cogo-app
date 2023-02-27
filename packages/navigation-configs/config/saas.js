@@ -104,6 +104,10 @@ const saas = {
 		navigation : 'saas_cogo_subscription-manage',
 		isMainNav  : true,
 	},
+	'/saas/cogo-subscriptions/balance-history': {
+		navigation : 'saas_cogo_subscription-manage',
+		isMainNav  : true,
+	},
 };
 
 module.exports = saas;

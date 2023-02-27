@@ -1,0 +1,22 @@
+.container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	text-align: center;
+}
+
+.title {
+	font-size: 22px;
+	color: #170f49;
+	font-weight: 500;
+}
+
+.txt {
+	color: #535075;
+	margin: 10px 0;
+}
+
+.txt.error {
+	font-size: 16px;
+}

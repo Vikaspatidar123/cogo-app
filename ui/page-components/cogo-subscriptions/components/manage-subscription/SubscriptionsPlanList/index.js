@@ -44,8 +44,6 @@ function SubscriptionsPlanList({
 	const featureRef = useRef('');
 	const { refetchPlanFeatures, planFeatureData } = useGetPlanFeatures({});
 
-	console.log('planFeatureDatazzz', planFeatureData);
-
 	const {
 		general: { isMobile = false },
 	} = useSelector((state) => state);

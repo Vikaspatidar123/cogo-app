@@ -5,32 +5,27 @@
 	padding: 25px;
 	justify-content: space-between;
 }
-	
 
 .label {
-	font-weight: 500;
+	font-weight: 600;
 	font-size: 16px;
 	padding: 0px;
 }
 
 .div {
-	padding: 40px 10px 30px 10px;
+	padding: 40px 16px 30px 16px;
 }
-	
-
 
 .styled_row {
-	font-weight: 500;
+	font-weight: 600;
 	font-size: 18px;
+	display: flex;
 	color: #575f6e;
 	align-items: center;
 	padding-bottom: 10px;
 	margin: 0px;
 	justify-content: space-between;
 }
-	
-	
-
 
 .crossedprice {
 	text-decoration: line-through;
@@ -40,24 +35,34 @@
 }
 
 .styled_col {
-	font-weight: 500;
+	font-weight: 600;
 	font-size: 16px;
 	color: #575f6e;
 	display: flex;
-	align-items: center;
-	justify-content: center;
+	align-items: flex-start;
+	justify-content: flex-start;
 }
-	
 
+.styled_col.discount_name {
+	margin-top: 10px;
+}
 
+.styled_col.total {
+	font-weight: 600;
+}
+
+.styled_col.price {
+	justify-content: flex-end;
+}
 
 .styled_button {}
 
 .icon {
-	margin-left: 4px ;
+	margin-left: 4px;
 }
+
 .styled_button.disabled {
-	opacity: 0.7 ;
+	opacity: 0.7;
 }
 
 .crossed_price {
@@ -65,10 +70,10 @@
 	color: #db4634;
 	font-weight: 400;
 	font-size: 14px;
-}	
-	
+}
+
 .styled_col2 {
-	font-weight: 500;
+	font-weight: 600;
 	font-size: 16px;
 	color: #575f6e;
 	display: flex;
@@ -77,127 +82,176 @@
 	justify-content: center;
 }
 
+
+.line {
+	border: 1px solid #e0e0e0;
+}
+
+.dashed_line {
+	border: none;
+	padding: 4px;
+}
+
+.button_wrapper {
+	padding-top: 20px;
+	display: flex;
+	justify-content: center;
+}
+
+.flex_div {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.gst {
+	color: #db4634;
+	font-size: 10px;
+}
+
+.activate_later_ctn {
+	padding: 40px 0px 0 0px;
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+}
+
+.activate_later_text_check_box {
+	display: flex;
+	align-items: center;
+	height: 36px;
+}
+
+.icon_container {
+	padding-top: 6px;
+}
+
+.activate_later_txt {
+	font-size: 15px;
+	font-weight: 400;
+	padding: 0 5px 0 2px;
+}
+
+.tooltip_ctn {
+	padding: 10px;
+	font-size: 11px;
+}
+
 .line_wrapper {
 	width: 100%;
-	padding: 8px;
-	}
-	
-	.line {
-	border: 1px solid #e0e0e0;
-	}
-	
-	.dashed_line {
-	border: none;
-	padding: 4px;
-	}
-	
-	.button_wrapper {
-	padding-top: 20px;
-	display: flex;
-	justify-content: center;
-	}
-	
-	.flex_div {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	}
-	
-	.gst {
-	color: #db4634;
-	font-size: 10px;
-	}
-	
-	.activate_later_ctn {
-	padding: 60px 10px 0 10px;
+	padding: 8px 0;
+}
+
+.line_wrapper.discount_line {
+	padding: 1px !important;
+}
+
+.line.discount_dashed_line {
+	padding: 0px;
+	margin: 0px;
+	border: 1px dashed #f68b21;
+}
+
+.discount_content {
+	width: 200px;
+}
+
+.discount_content .heading {
+	font-weight: 600;
+	margin-bottom: 7px;
+}
+
+.discount_content .content {
 	display: flex;
 	justify-content: space-between;
-	width: 100%;
-	}
-	
-	.activate_later_text_check_box {
-	display: flex;
-	align-items: center;
-	height: 36px;
-	}
+	font-weight: 300;
+	font-size: 13px;
+}
 
-	.icon_container {
-		padding-top: 6px;
-	}
-	
-	.activate_later_txt {
-	font-size: 15px;
-	font-weight: 400;
-	padding: 0 5px 0 10px;
-	}
-	
-	.tooltip_ctn {
-	padding: 10px;
-	font-size: 11px;
-	}
-
-/* export const LineWrapper = styled.div`
-	width: 100%;
-	padding: 8px;
-`;
-
-export const Line = styled.hr`
-	border: 1px solid #e0e0e0;
-`;
-
-export const DashedLine = styled.hr`
-	border: none;
-	padding: 4px;
-`;
-
-export const ButtonWrapper = styled.div`
-	padding-top: 20px;
-	display: flex;
-	justify-content: center;
-`;
-
-export const FlexDiv = styled.div`
-	display: flex;
-	align-items: center;
-	justify-content: center;
-`;
-
-export const GSt = styled.div`
-	color: #db4634;
-	font-size: 10px;
-`;
-
-export const ActivateLaterCtn = styled.div`
-	padding: 60px 10px 0 10px;
+.input_wrapper {
 	display: flex;
 	justify-content: space-between;
-	width: 100%;
+	align-items: center;
+	font-weight: 380;
+	color: #000000;
+	background: #fbfbfc;
+	padding: 15px 8px;
+	margin: 20px 0px;
+}
 
-	.core-ui-date-time-picker-container {
-		width: 50%;
+.input_wrapper .applycoupon {
+	color: #034afd;
+	font-weight: 400;
+	font-size: 14px;
+	cursor: pointer;
+}
 
-		.ui-single-date-picker-input-container {
-			border-radius: 6px;
-		}
-	}
-`;
+.input_wrapper .removecoupon {
+	color: #bf291e;
+	font-weight: 400;
+	font-size: 14px;
+	cursor: pointer;
+}
 
-export const ActivateLaterTextCheckBox = styled.div`
+.code_wrapper {
 	display: flex;
 	align-items: center;
-	height: 36px;
+}
 
-	.icon-container {
-		padding-top: 6px;
-	}
-`;
-export const ActivateLaterTxt = styled.div`
-	font-size: 15px;
-	font-weight: 400;
-	padding: 0 5px 0 10px;
-`;
+.code_wrapper svg {
+	width: 20px;
+	height: 20px;
+}
 
-export const TooltipCtn = styled.div`
-	padding: 10px;
+.applied_coupon {
+	margin-left: 5px;
+	display: flex;
+	flex-direction: column;
+	font-weight: 600;
+	font-size: 13px;
+	color: #4f4f4f;
+}
+
+.applied_coupon .discount {
+	font-weight: 600;
 	font-size: 11px;
-`; */
+	color: #849e4c;
+}
+
+.checkbox_label_content {
+	display: flex;
+	align-items: center;
+}
+
+.coupon_container {
+	position: fixed;
+	right: 0;
+	top: -10px;
+	width: 445px;
+	height: 100vh;
+	min-height: 50vh;
+	max-height: 100vh;
+	overflow: auto;
+	background: #fbfbfc;
+	z-index: 1000;
+	margin-top: 12px;
+	padding: 0 20px 20px 20px;
+	box-shadow: -2px 2px 25px rgba(0, 0, 0, 0.15);
+	border-radius: 8px;
+	transition: all 0.3s;
+}
+
+@media (max-width: 768px) {
+	.coupon_container {
+		width: 95%;
+	}
+}
+
+
+.coupon_container.show {
+	transform: translateX(0%);
+}
+
+.coupon_container.hide {
+	transform: translateX(150%);
+}

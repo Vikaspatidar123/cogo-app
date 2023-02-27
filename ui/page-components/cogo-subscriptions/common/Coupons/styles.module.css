@@ -1,0 +1,258 @@
+.cross_icon {
+	cursor: pointer;
+}
+
+
+
+.header_container {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	border-bottom: 1px solid #e0e0e0;
+	padding: 10px 0px;
+}
+
+.header_text {
+	font-weight: 700;
+	font-size: 16px;
+	text-transform: uppercase;
+	color: #2c3e50;
+}
+
+.search_div {
+	min-width: 300px;
+	display: flex;
+	padding: 20px 12px;
+	justify-content: space-between;
+}
+
+.apply_btn{
+	margin-left: 12px;
+}
+
+.search_coupon {
+	width: 250px;
+}
+
+.banner {
+	width: 500px;
+	height: 200px;
+	box-shadow: linear-gradient(180deg, rgba(17, 57, 95, 0) 26.59%, #021220 88.04%);
+}
+
+.coupons_wrapper {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	padding: 20px 12px;
+}
+
+.name_tag {
+	text-align: center;
+	background: #f7755f;
+	min-width: 100px;
+	max-width: 150px;
+	border-radius: 0px 6.5px 6.5px 0px;
+	padding: 4px;
+	font-weight: 500;
+	font-size: 12px;
+	color: #ffffff;
+}
+
+.description {
+	font-weight: 600;
+	font-size: 12px;
+	text-transform: uppercase;
+	color: #6fa5ab;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	margin: 2px 0 8px 0;
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+}
+
+.background_image {
+	width: 100%;
+	margin-bottom: 15px;
+	/* filter: drop-shadow(0px 1px 6px rgba(0, 0, 0, 0.15)); */
+	background: #ffffff;
+	border-radius: 8px;
+	box-shadow:  0 1px 3px rgb(0 0 0 / 20%);
+}
+
+
+.wrapper {
+	/* height: 160px; */
+	/* display: flex;
+	justify-content: space-between;
+	align-items: flex-end;
+	z-index: 1; */
+}
+
+.wrapper .name {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.wrapper .coupons {
+	padding: 12px 16px;
+}
+
+.wrapper .button {
+	padding: 16px 10px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.wrapper .name_tag {
+	width: 100%;
+	display: flex;
+	justify-content: flex-start;
+}
+
+.wrapper .terms {
+	font-size: 10px;
+	color: #034afd;
+	cursor: pointer;
+}
+
+.wrapper .coupon_offer {
+	display: flex;
+}
+
+.wrapper .coupon {
+	display: flex;
+	align-items: baseline;
+}
+
+.wrapper .flat {
+	font-weight: 600;
+	font-size: 16px;
+	text-transform: uppercase;
+	color: #221f20;
+}
+
+.wrapper .text {
+	font-weight: 600;
+	font-size: 14px;
+	line-height: 21px;
+	text-transform: uppercase;
+	color: #6fa5ab;
+}
+
+.wrapper .conditions {
+	font-weight: 500;
+	font-size: 10px;
+	line-height: 12px;
+	text-decoration-line: underline;
+	color: #034afd;
+}
+
+.wrapper .code {
+	font-weight: 600;
+	font-size: 14px;
+	line-height: 18px;
+	color: #221f20;
+}
+
+.wrapper .lable {
+	font-weight: 500;
+	font-size: 12px;
+	color: #828282;
+}
+
+.wrapper .coupon_text {
+	padding-left: 20px;
+	width: 100%;
+}
+
+.line .line_div {
+	width: 350px;
+	border: 1px dashed #fbd1a6;
+}
+
+.empty_state {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	font-size: 20px;
+	font-weight: 500;
+	text-align: center;
+}
+
+.list {
+	font-size: 10px;
+	padding: 2px;
+}
+
+.list_wrapper {
+	padding-left: 18px;
+}
+
+.offer {
+	justify-content: center;
+	font-weight: 600;
+	font-size: 24px;
+	display: flex;
+	align-items: baseline;
+	text-align: center;
+	text-transform: uppercase;
+	color: #bf291e;
+	padding-left: 4px;
+}
+
+.offer .off {
+	font-weight: 600;
+	font-size: 13px;
+	margin-left: 2px;
+	color: #828282;
+	padding-left: 4px;
+}
+
+.coupon_image {
+	height: auto;
+	width: 75px;
+	border: 1px solid #f68b21;
+	border-radius: 5px;
+}
+
+.coupon_image_container{
+	display: flex;
+	align-items: center;
+}
+
+.holes_lower {
+	position: relative;
+	/* margin: 12px 28px; */
+	margin: 2px 28px 12px 28px;
+	border: 1px dashed #FBD1A6;
+}
+.holes_lower:before, .holes_lower:after {
+	content: '';
+	height: 25px;
+	width: 25px;
+	background-color: #fbfbfc;
+	position: absolute;
+	border-radius: 50%;
+	z-index: 1;
+}
+
+.holes_lower:before {
+	top: -12px;
+    left: -41px;
+	box-shadow:  0 1px 3px rgb(0 0 0 / 20%);
+	clip-path: inset(-5px -5px -5px 10px);
+}
+.holes_lower:after {
+	top: -12px;
+    left: 339px;
+	box-shadow:  0 1px 3px rgb(0 0 0 / 20%);
+	clip-path: inset(-5px 10px -5px -5px);
+}
+

@@ -43,6 +43,7 @@ const useCreateCheckout = () => {
 					...payload,
 				},
 			});
+
 			setCheckoutResponse(response?.data);
 			const { checkout_id, saas_subscription_customer_id } = response.data || {};
 			if (!response?.data?.errors && addons) {

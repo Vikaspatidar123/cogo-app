@@ -1,20 +1,22 @@
-import { useRequest } from '@cogo/commons/hooks';
-import toast from '@cogoport/front/components/admin/Toast';
+import { Toast } from '@cogoport/components';
 import { useState } from 'react';
 
-import { useSaasState } from '../../../common/context';
+import { useRequest } from '@/packages/request';
+import { useSelector } from '@/packages/store';
 
 const useGetOrderDetails = ({ pagination }) => {
 	const [orderDetails, setOrderDetails] = useState(null);
-	const { general, profile } = useSaasState();
-	const { scope } = general;
+	const { profile } = useSelector((s) => s);
 	const [orderBy, setOrderBy] = useState({});
 
-	const fetch = useRequest('get', false, scope)('/saas_get_usage_history');
+	const [{ loading }, trigger] = useRequest({
+		url    : '/saas_get_usage_history',
+		method : 'get',
+	}, { manual: true });
 
 	const fetchOrderDetails = async () => {
 		try {
-			const res = await fetch.trigger({
+			const res = await trigger({
 				params: {
 					organization_id : profile.organization.id,
 					page            : pagination,
@@ -30,12 +32,12 @@ const useGetOrderDetails = ({ pagination }) => {
 				setOrderDetails(data);
 			}
 		} catch (err) {
-			toast.error('Unable to fetch order details. Please try again.');
+			Toast.error('Unable to fetch order details. Please try again.');
 		}
 	};
 
 	return {
-		fetchOrderLoading: fetch.loading,
+		fetchOrderLoading: loading,
 		orderDetails,
 		setOrderBy,
 		orderBy,

@@ -20,9 +20,10 @@
   "dependencies": {
     "@cogoport/components": "^1.0.338",
     "@cogoport/icons-react": "^1.0.58",
+    "@cogoport/maps": "^1.0.2",
     "@cogoport/utils": "^1.2.4",
-    "@reduxjs/toolkit": "^1.9.3",
     "@next/polyfill-nomodule": "^13.1.6",
+    "@reduxjs/toolkit": "^1.9.3",
     "axios": "^1.3.4",
     "axios-hooks": "^4.0.0",
     "i18next": "^22.4.10",

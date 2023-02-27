@@ -48,6 +48,30 @@ const navigationMappings = {
 		showMobileNav : true,
 
 	},
+	saas_cogo_subscription: {
+		key       : 'saas_cogo_subscription',
+		title     : 'Subscriptions',
+		icon      : 'nav-subscriptions',
+		isSubNavs : true,
+		options   : [
+			{
+				key   : 'saas_cogo_subscription-manage',
+				title : 'Manage Subscription',
+				type  : 'link',
+				icon  : 'nav-documents',
+				href  : '/saas/cogo-subscriptions/manage-subscription',
+				as    : '/saas/cogo-subscriptions/manage-subscription',
+			},
+			{
+				key   : 'saas_cogo_subscription-balance_history',
+				title : 'Balance And History',
+				type  : 'link',
+				icon  : 'nav-payments',
+				href  : '/saas/cogo-subscriptions/balance-history',
+				as    : '/saas/cogo-subscriptions/balance-history',
+			},
+		],
+	},
 
 };
 export default navigationMappings;

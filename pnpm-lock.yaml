@@ -7,6 +7,8 @@ specifiers:
   '@cogoport/stylelint-config': ^1.0.3
   '@cogoport/utils': ^1.2.4
   '@reduxjs/toolkit': ^1.9.3
+  '@stripe/react-stripe-js': ^1.6.0
+  '@stripe/stripe-js': ^1.21.2
   '@svgr/webpack': ^6.5.1
   axios: ^1.3.4
   axios-hooks: ^4.0.0
@@ -34,10 +36,12 @@ specifiers:
   stylelint: ^14.16.1
 
 dependencies:
-  '@cogoport/components': 1.0.338_cyxdlkncyjzqtklzwrmvnywxma
+  '@cogoport/components': 1.0.338_na3lqxecnrwrcmlndgmfs3aawi
   '@cogoport/icons-react': 1.0.58_biqbaboplfbrettd7655fr4n2y
   '@cogoport/utils': 1.2.4
   '@reduxjs/toolkit': 1.9.3_k4ae6lp43ej6mezo3ztvx6pykq
+  '@stripe/react-stripe-js': 1.16.5_zw7zferaqqsd3ootrrf2mrlpoi
+  '@stripe/stripe-js': 1.47.0
   axios: 1.3.4
   axios-hooks: 4.0.0_axios@1.3.4+react@18.2.0
   i18next: 22.4.10
@@ -1348,7 +1352,7 @@ packages:
       to-fast-properties: 2.0.0
     dev: true
 
-  /@cogoport/components/1.0.338_cyxdlkncyjzqtklzwrmvnywxma:
+  /@cogoport/components/1.0.338_na3lqxecnrwrcmlndgmfs3aawi:
     resolution: {integrity: sha512-p+xDU1LCzlB0ZWqfsMh9s8gAM0BIBde4sZCBH6/AzFItW4A5kwdL56zD335pZ1Q3D9Iw9CBdZQWlX/CkmMCv6g==}
     peerDependencies:
       '@cogoport/icons-react': ^1.0.23
@@ -1948,6 +1952,23 @@ packages:
   /@rushstack/eslint-patch/1.2.0:
     resolution: {integrity: sha512-sXo/qW2/pAcmT43VoRKOJbDOfV3cYpq3szSVfIThQXNt+E4DfKj361vaAt3c88U5tPUxzEswam7GW48PJqtKAg==}
     dev: true
+
+  /@stripe/react-stripe-js/1.16.5_zw7zferaqqsd3ootrrf2mrlpoi:
+    resolution: {integrity: sha512-lVPW3IfwdacyS22pP+nBB6/GNFRRhT/4jfgAK6T2guQmtzPwJV1DogiGGaBNhiKtSY18+yS8KlHSu+PvZNclvQ==}
+    peerDependencies:
+      '@stripe/stripe-js': ^1.44.1
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0
+      react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
+    dependencies:
+      '@stripe/stripe-js': 1.47.0
+      prop-types: 15.8.1
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+    dev: false
+
+  /@stripe/stripe-js/1.47.0:
+    resolution: {integrity: sha512-jKSClqEIKS2MbPCXlSsseDSZyJ3dVrfUrYMz5LBY1o9iS2tfKbpTZACt8r2g+xyQozI+uHr76pVTyFsmBKA4Mg==}
+    dev: false
 
   /@svgr/babel-plugin-add-jsx-attribute/6.5.1_@babel+core@7.21.0:
     resolution: {integrity: sha512-9PYGcXrAxitycIjRmZB+Q0JaN07GZIWaTBIGQzfaZv+qr1n8X1XUEJ5rZ/vx6OVD9RRYlrNnXWExQXcmZeD/BQ==}

@@ -59,11 +59,21 @@ const handleAuthentication = async ({
 		routeConfig,
 		pathname,
 	});
-
+	const { organizations } = user_data || {};
+	if (isEmpty(organizations)) {
+		if (
+			(user_data.organizations || []).length === 0
+			|| user_data.name === null
+		) {
+			redirect({ isServer, res, path: '/v2/get-started' });
+			return { asPrefix };
+		}
+	}
 	if (isEmpty(user_data)) {
 		if (!isServer) {
 			deleteCookie('cogo-auth-token', null, { req });
 		}
+
 		if (isUnauthenticated) {
 			return { asPrefix };
 		}
@@ -91,7 +101,6 @@ const handleAuthentication = async ({
 		});
 		return { asPrefix };
 	}
-
 	//  || asPath.includes('/kyc')
 	if (asPath.includes('/get-started')) {
 		return { asPrefix };
@@ -100,6 +109,7 @@ const handleAuthentication = async ({
 	// Redirect old paths to branch id
 	const allStrings = asPath?.split('/');
 	const actual_org_id = allStrings?.[1];
+	// eslint-disable-next-line no-unused-vars
 	const current_org = user_data?.organizations.find(
 		(org) => org?.id === actual_org_id,
 	);

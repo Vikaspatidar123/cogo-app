@@ -1,3 +1,1 @@
-import Dashboard from '@/ui/page-components/dashboard';
-
-export default Dashboard;
+export { default } from '@/ui/page-components/dashboard';

@@ -1,3 +1,1 @@
-import { ProfileDetails } from '@/ui/page-components/profile';
-
-export default ProfileDetails;
+export { ProfileDetails as default } from '@/ui/page-components/profile';

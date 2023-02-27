@@ -27,7 +27,9 @@ function AppLayout({ children, mobile }) {
 
 			<div className={styles.main}>{children}</div>
 
-			{isMobile && <Footer />}
+			<div className={styles.footer}>
+				<Footer />
+			</div>
 		</>
 	);
 }

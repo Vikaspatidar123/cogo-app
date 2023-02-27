@@ -1,13 +1,16 @@
+import { Avatar } from '@cogoport/components';
+
+import styles from './styles.module.css';
+
 import { useSelector } from '@/packages/store';
-import styles from './styles.module.css'
-import { Avatar } from '@cogoport/components'
+
 function UserDetails() {
 	const { profile } = useSelector((state) => state);
 	const { organization = {} } = profile || {};
-	const { kyc_status } = organization || {}
+	const { kyc_status } = organization || {};
 
 	return (
-		<div className={styles.container} >
+		<div className={styles.container}>
 			<Avatar
 				src="https://www.w3schools.com/howto/img_avatar.png"
 				alt="img"
@@ -33,7 +36,7 @@ function UserDetails() {
 							</div>
 						)}
 
-						{kyc_status.includes('pending') && (
+						{kyc_status?.includes('pending') && (
 							<div className={styles.pending}>
 								KYC Pending
 								{/* <PendingIcon style={{ marginLeft: 4 }} /> */}

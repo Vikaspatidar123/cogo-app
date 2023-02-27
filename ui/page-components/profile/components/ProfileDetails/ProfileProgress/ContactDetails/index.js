@@ -1,5 +1,6 @@
+import styles from './styles.module.css';
+
 import { useSelector } from '@/packages/store';
-import styles from './styles.module.css'
 // const geo = getGeoConstants();
 
 function ContactDetails() {

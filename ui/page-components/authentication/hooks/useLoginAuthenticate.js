@@ -1,7 +1,6 @@
 /* eslint-disable no-restricted-globals */
 /* eslint-disable no-undef */
 import { Toast } from '@cogoport/components';
-import { setCookie } from '@cogoport/utils';
 
 import getApiErrorString from '@/packages/forms/utils/getApiError';
 import { useRequest } from '@/packages/request/index';
@@ -25,10 +24,7 @@ const useLoginAuthenticate = () => {
 				},
 			});
 			const { token } = response.data || {};
-			// if (token) setCookie(process.env.NEXT_PUBLIC_AUTH_TOKEN_NAME, token);
 			setCookieAndRedirect(token, {});
-			// window.location.href = '/';
-			// location.reload();
 		} catch (err) {
 			Toast.error(getApiErrorString(err?.response?.data) || 'Failed to login, please try again...');
 		}

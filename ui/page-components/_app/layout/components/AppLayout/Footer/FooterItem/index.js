@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
-import More from './more.svg';
+import { IcMListView } from '@cogoport/icons-react';
+
 import styles from './styles.module.css';
 
 import { useRouter } from '@/packages/next';
@@ -9,7 +10,6 @@ function AppLayoutFooterItem({ item }) {
 	const { pathname, push } = useRouter();
 	const { profile } = useSelector((s) => s);
 	const { organization, branch } = profile || {};
-	const Icon = item.icon || More;
 	const { href = '', as = '' } = item || {};
 
 	const getRedirectUrl = () => {
@@ -32,7 +32,7 @@ function AppLayoutFooterItem({ item }) {
 			className={styles.container}
 		>
 			<div className={isActive && styles.active}>
-				<Icon width="16px" height="16px" style={{ marginBottom: 4 }} key={href} />
+				{item.mobileIcon || <IcMListView width={20} height={20} />}
 				<div>{item.title}</div>
 			</div>
 		</div>

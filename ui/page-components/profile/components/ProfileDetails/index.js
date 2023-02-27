@@ -1,23 +1,29 @@
-import { useSelector } from '@/packages/store'
-import styles from './styles.module.css'
-import ProfileProgress from './ProfileProgress'
-import AccountDetails from './AccountDetails'
-const ProfileDetails = () => {
-    const {
-        profile: { organization = {} },
-        general: { isMobile, query },
-    } = useSelector((state) => state);
-    const { kyc_status } = organization || {}
-    return (
-        <>
-            <ProfileProgress />
+import getUser from '../../hooks/getUser';
 
-            {/* {kyc_status.includes('pending') && <KycWidget kyc_status={kyc_status} />} */}
+import AccountDetails from './AccountDetails';
+import ProfileProgress from './ProfileProgress';
+import styles from './styles.module.css';
 
-            <div className={styles.container}>
-                <AccountDetails />
-            </div>
-        </>
-    );
+import { useSelector } from '@/packages/store';
+
+function ProfileDetails() {
+	const {
+		profile: { organization = {} },
+		general: { isMobile, query },
+	} = useSelector((state) => state);
+	const { kyc_status } = organization || {};
+	const { refetch } = getUser();
+	const { activeTab } = query || {};
+	return (
+		<>
+			{(!activeTab || !isMobile) && <ProfileProgress />}
+
+			{/* {kyc_status.includes('pending') && <KycWidget kyc_status={kyc_status} />} */}
+
+			<div className={styles.container}>
+				<AccountDetails />
+			</div>
+		</>
+	);
 }
 export default ProfileDetails;

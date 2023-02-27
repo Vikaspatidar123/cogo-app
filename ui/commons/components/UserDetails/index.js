@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
-import { Tooltip } from '@cogoport/components';
+import { Popover } from '@cogoport/components';
 import { IcMArrowDown } from '@cogoport/icons-react';
 import { startCase } from '@cogoport/utils';
 import { useEffect, useState } from 'react';
@@ -15,9 +15,9 @@ function UserName() {
 		business_name, branch_name, total_branches,
 	} = useSelector(
 		({ profile }) => ({
-			business_name: (profile.organization || {}).business_name || '',
-			branch_name: (profile.branch || {}).branch_name || '',
-			total_branches: (profile?.organization?.branches || []).length,
+			business_name  : (profile.organization || {}).business_name || '',
+			branch_name    : (profile.branch || {}).branch_name || '',
+			total_branches : (profile?.organization?.branches || []).length,
 		}),
 	);
 	const [showPopover, setShowPopover] = useState(false);
@@ -33,12 +33,11 @@ function UserName() {
 
 	return (
 		<div className={styles.container}>
-			<Tooltip
+			<Popover
 				placement="bottom"
 				animation="shift-away"
-				content={renderBody()}
-				theme="light"
-				// visible={showPopover}
+				render={renderBody()}
+				visible={showPopover}
 				onClickOutside={() => setShowPopover(false)}
 				interactive
 				className={styles.tippy_box}
@@ -55,7 +54,7 @@ function UserName() {
 					</div>
 					<IcMArrowDown width={15} height={18} />
 				</div>
-			</Tooltip>
+			</Popover>
 		</div>
 	);
 }

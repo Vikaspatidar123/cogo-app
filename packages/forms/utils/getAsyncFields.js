@@ -12,18 +12,18 @@ function asyncFieldsLocations2() {
 	};
 }
 
-function asyncFieldsLocations(valueKey = 'id', labelKey = 'name') {
+function asyncFieldsLocations(labelKey = 'name', valueKey = 'id') {
 	return {
 		valueKey,
 		labelKey,
-		endpoint    : 'list_locations',
-		initialCall : true,
-		params      : {
-			filters    : { status: 'active' },
-			page_limit : 10,
-			sort_by    : 'name',
-			sort_type  : 'asc',
-			includes   : { country: null, main_ports: null },
+		endpoint: 'list_locations',
+		initialCall: true,
+		params: {
+			filters: { status: 'active' },
+			page_limit: 10,
+			sort_by: 'name',
+			sort_type: 'asc',
+			includes: { country: null, main_ports: null },
 		},
 	};
 }

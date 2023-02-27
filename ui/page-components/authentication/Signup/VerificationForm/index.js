@@ -22,7 +22,7 @@ function VerifictaionForm({ formData, userId }) {
 		loading = false,
 		onClickVerifyLeadUserMobileNo,
 		resendOtpLoading = false,
-		resendOtp = () => {},
+		resendOtp = () => { },
 	} = useOtpVerification({
 		formData,
 		otpValue,

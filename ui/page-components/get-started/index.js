@@ -29,7 +29,7 @@ function GetStarted() {
 					/>
 				)}
 				{billingAddressDetails && !inviteTeam
-				&& !timeForCall && <BillingAddress orgId={orgId} setInviteTeam={setInviteTeam} />}
+					&& !timeForCall && <BillingAddress orgId={orgId} setInviteTeam={setInviteTeam} />}
 				{inviteTeam && !timeForCall && <InviteTeam orgId={orgId} setTimeForCall={setTimeForCall} />}
 				{timeForCall && <SetTimeForCall orgBranchId={orgBranchId} orgId={orgId} />}
 			</div>

@@ -37,15 +37,7 @@ const handleAuthentication = async ({
 		return { asPrefix };
 	}
 	const token = getCookie('cogo-auth-token', { req });
-	// const { routes } = routeConfig || {};
-	// const valid_url_types = (routes[asPath])
-	// 	|| (routes[pathname]);
-	// if (
-	// 	valid_url_types
-	// ) {
-	// 	return { asPrefix };
-	// }
-	// for short urls
+
 	if (asPath.includes('/url/')) {
 		return { asPrefix };
 	}
@@ -192,7 +184,7 @@ const handleAuthentication = async ({
 
 	asPrefix = `/v2/${org_id}/${branch_id}/dashboard`;
 	const defaultRoute = `${asPrefix}`;
-	if (isEmpty(current_organization.country || {})) {
+	if (token && isEmpty(current_organization.country || {})) {
 		const getOrgResponse = await getOrganization(req, query);
 		if (!isEmpty(getOrgResponse)) {
 			const actualBranches = (user_data.organizations || []).find(

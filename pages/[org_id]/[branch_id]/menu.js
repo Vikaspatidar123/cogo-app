@@ -8,6 +8,5 @@ MobileMenuComponent.getInitialProps = () => ({
 	head   : {
 		title: 'Navigation',
 	},
-	hideBG: true,
 });
 export default MobileMenuComponent;

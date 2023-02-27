@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import dynamic from 'next/dynamic';
 
 // import RedirectLink from '../RedirectLink';
@@ -26,14 +27,10 @@ function Header({
 
 			{!hideLogo && <CompanyDetails />}
 			{children}
-			<div className={styles.right}>
 
-				{!isMobile && (
-					<div className={styles.right}>
-						{/* {showSupportHelp && <Help />} */}
-						{showUserDetails && <UserDetails />}
-					</div>
-				)}
+			<div className={styles.right}>
+				{/* {showSupportHelp && <Help />} */}
+				{showUserDetails && <UserDetails />}
 			</div>
 		</div>
 	);

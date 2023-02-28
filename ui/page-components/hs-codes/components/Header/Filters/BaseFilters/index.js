@@ -73,6 +73,8 @@ function BaseFilters({
 
 				<div className={`${styles.button_container}`}>
 					<Button
+						size='md'
+						themeType='secondary'
 						className="secondary sm"
 						type="button"
 						disabled={loading}
@@ -83,7 +85,7 @@ function BaseFilters({
 						Clear Filter
 					</Button>
 					<div>
-						<Button className="primary md" type="submit" disabled={loading}>
+						<Button size='md' themeType='accent' className="primary md" type="submit" disabled={loading}>
 							Search
 						</Button>
 					</div>

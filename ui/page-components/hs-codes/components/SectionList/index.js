@@ -61,8 +61,13 @@ function SectionList({
 				}}
 			>
 				<div className={`${styles.name}${sectionToggle && styles.selected}`}>
-					{!loading && <span>{Mapping[sectionCode]}</span>}
-					{loading ? addLoader('40px', '140px') : `SECTION ${sectionCode}`}
+					<div className={`${styles.section_styles}`}>
+						{!loading && <span>{Mapping[sectionCode]}</span>}
+						{loading ? addLoader('40px', '140px') : `SECTION ${sectionCode}`}
+					</div>
+					
+					
+					
 				</div>
 				<div className={`${styles.desc}  ${sectionToggle && styles.selected}`}>
 					{description()}

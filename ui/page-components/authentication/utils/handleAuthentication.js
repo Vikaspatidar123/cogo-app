@@ -62,7 +62,7 @@ const handleAuthentication = async ({
 	const { organizations } = user_data || {};
 	if (isEmpty(organizations)) {
 		if (
-			(user_data.organizations || []).length === 0
+			(user_data?.organizations || []).length === 0
 			|| user_data.name === null
 		) {
 			redirect({ isServer, res, path: '/v2/get-started' });

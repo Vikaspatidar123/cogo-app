@@ -20,16 +20,18 @@ function Header({
 		<div className={styles.container}>
 			<div className={styles.head}>
 				<div className={styles.heading}>Search HS Code</div>
-				<Toggle
-					name="a4"
-					size="md"
-					disabled={false}
-					onLabel="Advance Search"
-					offLabel="Normal Search"
-					onChange={(value) => {
-						handleToggle(value.target.checked);
-					}}
-				/>
+				<div>
+					<Toggle 
+						name="a4"
+						size="md"
+						disabled={false}
+						onLabel="Advance Search"
+						offLabel="Normal Search"
+						onChange={(value) => {
+							handleToggle(value.target.checked);
+						}}
+					/>
+				</div>
 			</div>
 			<Filters
 				labeledValue={labeledValue}

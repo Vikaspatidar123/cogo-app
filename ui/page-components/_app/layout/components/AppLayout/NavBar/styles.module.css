@@ -5,6 +5,10 @@
 	.core-ui-tooltip-root {
 		height: 100%;
 	}
+
+	@media (max-width: 767px) {
+		display: none;
+	}
 }
 
 
@@ -46,9 +50,9 @@
 	border-bottom: 2.5px solid #EE3425;
 	line-height: 37px;
 }
-.text:.no-hover {
+/* .text:.no-hover {
 	border-color: transparent;
-}
+} */
 .a{
     text-decoration: none;
 

@@ -1,0 +1,70 @@
+.header_container{
+    color: #000000;
+    font-size: 20px;
+    font-weight: 400;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.container{
+    max-height: 98%;
+    overflow: auto;
+}
+
+.header_container_bold{
+    color: #000000;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.text{
+    color: #000000;
+    font-size: 16px;
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: center;
+}
+
+.icon_container{
+    width: 100%;
+    height: 140px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.time_picker_container{
+    width: 100%;
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.time_picker {
+    margin-top: 10px;
+}
+
+.text{
+    font-size: 16px;
+    color: #000000;
+    font-weight: 500;
+    margin-top: 20px;
+}
+
+.button_container{
+    width: 60%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 15px 0px;
+}
+
+.button {
+    min-width: 240px !important;
+}

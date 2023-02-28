@@ -1,0 +1,18 @@
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://app.cogoport.com</loc>
+    <changefreq>hourly</changefreq>
+  </url>
+  <url>
+    <loc>https://app.cogoport.com/signup</loc>
+    <changefreq>hourly</changefreq>
+  </url>
+    <url>
+    <loc>https://app.cogoport.com/login</loc>
+    <changefreq>hourly</changefreq>
+  </url>
+  <url>
+    <loc>https://app.cogoport.com/forgot-password</loc>
+    <changefreq>hourly</changefreq>
+  </url>
+</urlset>

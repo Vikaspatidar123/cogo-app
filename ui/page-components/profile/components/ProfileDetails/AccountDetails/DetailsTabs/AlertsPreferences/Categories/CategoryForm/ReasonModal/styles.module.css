@@ -1,0 +1,85 @@
+.end_box {
+  display: flex;
+  justify-content: flex-end;
+  padding: 10px;
+}
+
+.container {
+  padding-inline: 16px;
+}
+
+.header {
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 26px;
+  color: #333333;
+}
+
+.sub_head {
+  padding-top: 10px;
+  font-weight: 500;
+  font-size: 14px;
+  color: #4f4f4f;
+}
+
+.card {
+  width: 100%;
+}
+.count {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f2f6ff;
+  border-radius: 100%;
+  font-weight: 400;
+  font-size: 14px;
+  color: #333;
+  height: 30px;
+  width: 30px;
+  margin-right: 8px;
+}
+.inline {
+  display: flex;
+  flex-direction: column;
+}
+.label {
+  font-size: 14px;
+  color: #333333;
+}
+.box {
+  display: flex;
+  align-items: flex-start;
+  margin-block: 16px;
+}
+.sub_label {
+  font-size: 12px;
+  margin-top: 4px;
+  color: #828282;
+}
+.title {
+  font-weight: 500;
+  font-size: 14px;
+  padding-top: 16px;
+  color: #333333;
+}
+.styled_button {
+  margin-right: 8px;
+}
+
+.radio {
+  display: inline;
+  padding: 0px;
+  :global {
+    .ui_radio_container {
+      padding: 4px;
+    }
+  }
+}
+
+.modal {
+  :global {
+    .ui_modal_body_container {
+      max-height: 250px;
+    }
+  }
+}

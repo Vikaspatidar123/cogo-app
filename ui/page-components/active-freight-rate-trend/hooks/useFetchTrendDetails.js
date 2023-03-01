@@ -11,7 +11,6 @@ const useFetchTrendDetails = ({ id }) => {
 		url    : '/get_freight_trend_subscription',
 		method : 'get',
 	}, { manual: true });
-
 	const { profile } = useSelector((state) => state);
 	const now = new Date();
 	const fetchScheduleDetails = async () => {
@@ -32,7 +31,7 @@ const useFetchTrendDetails = ({ id }) => {
 					commodity,
 					shipping_line_id,
 					validity_start : validity_start || new Date(now.setMonth(now.getMonth() - 6)),
-					validity_end   :
+					validity_end:
 						validity_end || new Date(new Date().setMonth(new Date().getMonth() + 1)),
 					currency,
 					performed_by_user_id: profile.id,
@@ -45,9 +44,10 @@ const useFetchTrendDetails = ({ id }) => {
 			Toast.error(err?.message || 'Something went wrong');
 		}
 	};
-
 	useEffect(() => {
-		fetchScheduleDetails();
+		if (Object.keys(filters).length > 0) {
+			fetchScheduleDetails();
+		}
 	}, [filters]);
 
 	const refetch = () => fetchScheduleDetails(false);

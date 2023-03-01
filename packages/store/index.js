@@ -1,7 +1,3 @@
-// import { configureStore } from '@reduxjs/toolkit';
-
-// import reducers from './reducers';
-
 export { default as profileStore } from './store/profile';
 
 export {

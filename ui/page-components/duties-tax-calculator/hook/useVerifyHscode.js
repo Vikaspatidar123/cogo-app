@@ -59,7 +59,6 @@ const useVerifyHscode = () => {
 
 			if (!resp?.data?.status && resp?.data?.recommendations.length === 0) {
 				Toast.info(
-					// 'Hs Code for the specified destination country cannot be validated. Please enter another Hs Code',
 					'This hs code is not supported by us. Please provide another hs code',
 					{
 						autoClose : 5000,

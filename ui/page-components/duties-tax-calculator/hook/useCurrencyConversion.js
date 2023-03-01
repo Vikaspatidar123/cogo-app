@@ -3,10 +3,6 @@ import { Toast } from '@cogoport/components';
 import { useRequest } from '@/packages/request';
 
 const useCurrencyConversion = () => {
-	// const exRate = useRequest('get', false, { autoCancel: false })(
-	// 	'get_exchange_rate',
-	// );
-
 	const [{ loading, data }, trigger] = useRequest({
 		url    : 'get_exchange_rate',
 		method : 'get',

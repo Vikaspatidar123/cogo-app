@@ -1,5 +1,4 @@
 /* eslint-disable no-undef */
-import { shape } from 'prop-types';
 import React from 'react';
 
 const isServer = typeof window === 'undefined';
@@ -42,10 +41,6 @@ const withRedux = (initializeStore, config) => {
 				return <App {...this.props} store={this.store} />;
 			}
 		}
-
-		AppWithRedux.propTypes = {
-			initialStore: shape({}).isRequired,
-		};
 
 		return AppWithRedux;
 	};

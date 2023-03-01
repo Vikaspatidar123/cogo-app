@@ -3,7 +3,6 @@ import { IcMInfo } from '@cogoport/icons-react';
 
 import { shortFormatNumber } from '../../../../utils/getShortFormatNumber';
 
-// import { Container, Title, Row } from './styles';
 import styles from './styles.module.css';
 
 function ServicesCharge({ formData }) {

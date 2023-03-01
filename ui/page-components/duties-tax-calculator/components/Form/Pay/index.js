@@ -1,10 +1,9 @@
-import { cl } from '@cogoport/components';
+import { cl, Button } from '@cogoport/components';
 import {
 	IcMArrowBack, IcMShip, IcMAirport, IcMLocation,
 } from '@cogoport/icons-react';
 import { useState } from 'react';
 
-import Button from '../../../common/Button';
 import useDraft from '../../../hook/useDraft';
 import usePayment from '../../../hook/usePayment';
 import checkoutFn from '../../../utils/checkoutFn';
@@ -13,22 +12,6 @@ import style from '../styles.module.css';
 import Charges from './Charges';
 import PayMethodModal from './PayMethodModal';
 import ServicesCharge from './ServicesCharge';
-
-// import {
-// 	Container,
-// 	RouteDiv,
-// 	TextDiv,
-// 	TextHead,
-// 	Route,
-// 	Icon,
-// 	Txt,
-// 	Footer,
-// 	Dot,
-// 	RouteText,
-// 	Line,
-// 	PortText,
-// } from './style';
-
 import styles from './styles.module.css';
 
 function Pay({
@@ -42,7 +25,6 @@ function Pay({
 	postTradeEngine,
 	serviceRateData = {},
 	quotaValue,
-	isMobile = false,
 }) {
 	const [showPayMethodModal, setShowPayMethodModal] = useState(false);
 	const [paymentMode, setPaymentMode] = useState('');
@@ -129,7 +111,7 @@ function Pay({
 			/>
 
 			<div className={cl`${style.btn_container} ${style.checkout_btn}`}>
-				<Button size="md" isPrev onClick={prevHandler}>
+				<Button size="md" themeType="secondary" onClick={prevHandler}>
 					<IcMArrowBack width={16} height={16} />
 				</Button>
 				<Button
@@ -148,7 +130,6 @@ function Pay({
 					setPaymentMode={setPaymentMode}
 					isUserSubscribed={isUserSubscribed}
 					checkoutHandler={checkoutHandler}
-					isMobile={isMobile}
 				/>
 			)}
 		</div>

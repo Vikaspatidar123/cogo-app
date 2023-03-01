@@ -1,13 +1,11 @@
-import { useTranslation } from 'next-i18next';
-import { useState } from 'react';
+/* eslint-disable no-unused-vars */
+import MobileHeader from '../../../../MobileHeader';
 
 import BillingAddresses from './BillingAddresses';
 import getAddress from './hooks/getOrganizationBillingAddress';
 import OtherAddresses from './OtherAddresses';
 import styles from './styles.module.css';
 
-// import SlidingTabs from '@/commons/components/UI/SlidingTabs';
-// import MobileHeader from '@/components/Profile/components/MobileHeader';
 import { useRouter } from '@/packages/next';
 import { useSelector } from '@/packages/store';
 
@@ -20,7 +18,7 @@ function Address() {
 	const router = useRouter();
 
 	const onClickBackButton = () => {
-		router.push('/profile');
+		router.push('/settings');
 	};
 	const {
 		data, loading, addressesData, addressLoading,
@@ -28,36 +26,12 @@ function Address() {
 	const organizationBillingAddressesList = data?.list || [];
 	return (
 		<>
-			{/* {isMobile && (
-				<MobileHeader
-					heading={t('profile:accountDetails.tabOptions.address.mobileHeading')}
-					onClickBackButton={onClickBackButton}
-				/>
-			)} */}
-
-			{/* {is_importer_exporter && is_service_provider && (
-				<div className={styles.toggle_container}> */}
-			{/* <SlidingTabs
-						options={[
-							{
-								label: t(
-									'profile:accountDetails.tabOptions.address.toggle.buy',
-								),
-								value: 'importer_exporter',
-							},
-							{
-								label: t(
-									'profile:accountDetails.tabOptions.address.toggle.sell',
-								),
-								value: 'service_provider',
-							},
-						]}
-						activeTab={organizationType}
-						setActiveTab={setOrganizationType}
-					/> */}
-			{/* hello
-				</div>
-			)} */}
+			{/* {isMobile && ( */}
+			<MobileHeader
+				heading="Addresses"
+				onClickBackButton={onClickBackButton}
+			/>
+			{/* )} */}
 
 			<BillingAddresses
 				title="Billing Address"

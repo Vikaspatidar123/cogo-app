@@ -18,7 +18,7 @@ const usePayment = () => {
 		method  : 'post',
 	}, { manual: true });
 
-	const callBackUrl = `${process.env.APP_URL}app/${org_id}/${branch_id}/${account_type}/saas/premium-services/duties-taxes-calculator`;
+	const callBackUrl = `${process.env.NEXT_PUBLIC_APP_URL}v2/${org_id}/${branch_id}/${account_type}/saas/premium-services/duties-taxes-calculator`;
 
 	const refectPayment = async ({
 		currency = 'INR',
@@ -59,6 +59,7 @@ const usePayment = () => {
 					subTotalAmount : amount.toFixed(2),
 					taxAmount      : gstAmount.toFixed(2),
 					netAmount      : totalAmount.toFixed(2),
+					source         : 'SAAS',
 				},
 			});
 			if (resp?.data) {

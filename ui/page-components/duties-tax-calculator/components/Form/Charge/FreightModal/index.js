@@ -1,26 +1,13 @@
-import { Modal } from '@cogoport/components';
+import { Modal, Button } from '@cogoport/components';
 import { IcAFinancial } from '@cogoport/icons-react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
-import Button from '../../../../common/Button';
 import { Loading } from '../../../../configuration/icon-configuration';
 import useCurrencyConversion from '../../../../hook/useCurrencyConversion';
 import spotSearchPayload from '../../../../utils/spotSearchPayload';
 
 import Info from './Info';
 import ListRow from './List';
-// import {
-// 	StyledModal,
-// 	TitleContainer,
-// 	Container,
-// 	Title,
-// 	List,
-// 	Footer,
-// 	Row,
-// 	Col,
-// 	StyledLoading,
-// } from './styles';
-
 import styles from './styles.module.css';
 
 import { useRouter } from '@/packages/next';
@@ -37,7 +24,6 @@ function FreightModal({
 	portDetails = {},
 	setSpotCharge,
 	prevCurr,
-	isMobile = false,
 }) {
 	const [checked, setChecked] = useState('');
 	const [selectedData, setSelectedData] = useState({});
@@ -81,26 +67,41 @@ function FreightModal({
 		const callBackUrl = `${process.env.APP_URL}app/${org_id}/${branch_id}/${account_type}/book`;
 		window.open(callBackUrl, '_blank');
 	};
+
+	useEffect(() => {
+		spotSearchHandler();
+	}, []);
+
+	const titleRender = () => (
+		<div className={styles.title_container}>
+			<div className={styles.title}>
+				<IcAFinancial height={30} width={30} />
+				<div className={styles.title_div}>Freight Rates</div>
+			</div>
+			<div className={styles.hyperLink} role="presentation" onClick={redirectDiscover}>
+				Discover Rates
+			</div>
+		</div>
+	);
 	return (
 		<Modal
 			show={showFreightModal}
 			className={styles.modal_container}
 			onClose={() => setShowFreightModal(false)}
-			afterOpen={spotSearchHandler}
-			width={!isMobile ? '576' : '363'}
+			size="md"
 		>
-			<div className={styles.container}>
-				<div className={styles.title_container}>
-					<div className={styles.title}>
-						<IcAFinancial height={30} width={30} />
-						<div className={styles.title_div}>Freight Rates</div>
-					</div>
-					<div className={styles.hyperLink} role="presentation" onClick={redirectDiscover}>
-						Discover Rates
-					</div>
-				</div>
+			<Modal.Header title={titleRender()} />
+			<Modal.Body>
 				<Info transportMode={transportMode} portDetails={portDetails} />
-				{spotSearchLoading && <img src={Loading} alt="" width="60px" height="60px" />}
+				{spotSearchLoading && (
+					<img
+						src={Loading}
+						alt=""
+						width="60px"
+						height="60px"
+						className={styles.loading_styles}
+					/>
+				)}
 				{!spotSearchLoading && rates.length === 0 && (
 					<div className={styles.emptyState}>No data Available</div>
 				)}
@@ -113,15 +114,14 @@ function FreightModal({
 						<div className={styles.cardList}>
 							<ListRow
 								rates={rates}
-								isMobile={isMobile}
 								checked={checked}
 								checkboxHandler={checkboxHandler}
 							/>
 						</div>
 					</div>
 				)}
-			</div>
-			<div className={styles.footer}>
+			</Modal.Body>
+			<Modal.Footer>
 				<Button
 					size="md"
 					disabled={checked.length === 0 || spotSearchLoading}
@@ -129,7 +129,7 @@ function FreightModal({
 				>
 					ADD
 				</Button>
-			</div>
+			</Modal.Footer>
 		</Modal>
 	);
 }

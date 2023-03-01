@@ -9,9 +9,9 @@ import { useForm } from '@/packages/forms';
 import { useRequest } from '@/packages/request';
 
 const getPasswordInputSuffix = ({ type = 'password', setType = () => {} }) => {
-	let suffix = <IcMEyeopen onClick={() => setType('text')} />;
+	let suffix = <IcMEyeopen onClick={() => setType('text')} style={{ marginRight: '10px' }} />;
 	if (type === 'text') {
-		suffix = <IcMEyeclose onClick={() => setType('password')} />;
+		suffix = <IcMEyeclose onClick={() => setType('password')} style={{ marginRight: '10px' }} />;
 	}
 
 	return suffix;
@@ -27,23 +27,20 @@ const useResetPassword = ({
 
 	const [errors, setErrors] = useState({});
 
-	const { t } = useTranslation(['profile']);
+	const [{ loading }, trigger] = useRequest({
+		url    : '/update_user',
+		method : 'post',
+	}, { manual: false });
 
-	// const updateUserPasswordAPI = useRequest(
-	// 	'post',
-	// 	false,
-	// 	'partner',
-	// )('/update_channel_partner_user_password');
-
-	const controls = getControls({ t });
+	const controls = getControls();
 
 	const newControls = useMemo(() => controls?.map((control) => {
 		const { name = '' } = control;
 
 		if (!['password', 'confirmPassword'].includes(name)) return { ...control };
 
-		const passwordTypeRef =				name === 'password' ? passwordInputType : confirmPasswordInputType;
-		const setPasswordTypeRef =				name === 'password'
+		const passwordTypeRef = name === 'password' ? passwordInputType : confirmPasswordInputType;
+		const setPasswordTypeRef =	name === 'password'
 			? setPasswordInputType
 			: setConfirmPasswordInputType;
 
@@ -67,7 +64,7 @@ const useResetPassword = ({
 		setErrors((previousErrors) => ({
 			...previousErrors,
 			password: {
-				type    : 'custom',
+				type    : '',
 				message : '',
 			},
 		}));
@@ -77,10 +74,10 @@ const useResetPassword = ({
 		setErrors((previousErrors) => ({
 			...previousErrors,
 			confirmPassword: {
-				type    : 'custom',
+				type    : '',
 				message :
 					watchConfirmPassword && watchConfirmPassword !== watchPassword
-						? 'Details.tabOptions.profile.resetPassword.errorMessage'
+						? ''
 
 						: '',
 			},
@@ -96,7 +93,7 @@ const useResetPassword = ({
 			...previousErrors,
 			confirmPassword: {
 				type    : 'custom',
-				message : 'ls.tabOptions.profile.resetPassword.er',
+				message : 'password does not match',
 			},
 		}));
 
@@ -113,15 +110,15 @@ const useResetPassword = ({
 				...values,
 			};
 
-			// await updateUserPasswordAPI.trigger({
-			// 	data: payload,
-			// });
+			await trigger({
+				data: payload,
+			});
 
 			setShowPasswordModal(false);
 			refetch();
 
 			Toast.success(
-				'ntDetails.tabOptions.profile.r',
+				'Successfully Updated',
 			);
 		} catch (error) {
 			handleResetPasswordError(error);
@@ -139,6 +136,7 @@ const useResetPassword = ({
 	};
 
 	return {
+		fields,
 		controls,
 		formProps,
 		errors,

@@ -1,33 +1,30 @@
-import DotIconSvg from './dot.svg';
+import { IcCTick, IcCRedCircle } from '@cogoport/icons-react';
+
 import styles from './styles.module.css';
-import TickIconSvg from './tick.svg';
-// import { getGeoConstants } from '@/constants/geo';
 
-// const geo = getGeoConstants();
-
-// const PASSWORD_PATTERN =	/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/gm;
+import patterns from '@/ui/commons/configurations/patterns';
 
 function PasswordValidator({ password = '' }) {
 	const VALID_PASSWORD_MAPPINGS = {
 		lowercase: {
-			// pattern : geo.regex.PASSWORD.lowercase,
-			message: 'at least one lowercase character.',
+			pattern : patterns.PASSWORD.lowercase,
+			message : 'at least one lowercase character.',
 		},
 		uppercase: {
-			// pattern : geo.regex.PASSWORD.uppercase,
-			message: 'at least one uppercase character.',
+			pattern : patterns.PASSWORD.uppercase,
+			message : 'at least one uppercase character.',
 		},
 		digit: {
-			// pattern : geo.regex.PASSWORD.digit,
-			message: 'at least one digit.',
+			pattern : patterns.PASSWORD.digit,
+			message : 'at least one digit.',
 		},
 		special: {
-			// pattern : geo.regex.PASSWORD.special,
-			message: 'at least one special character (!@#$%^&*).',
+			pattern : patterns.PASSWORD.special,
+			message : 'at least one special character (!@#$%^&*).',
 		},
 		minLength: {
-			// pattern : geo.regex.PASSWORD.minLength,
-			message: 'minimum 8 characters.',
+			pattern : patterns.PASSWORD.minLength,
+			message : 'minimum 8 characters.',
 		},
 	};
 
@@ -48,7 +45,7 @@ function PasswordValidator({ password = '' }) {
 					return (
 						<div className={styles.item}>
 							<div className={`${styles.icon} `}>
-								{isValid ? <TickIconSvg /> : <DotIconSvg />}
+								{isValid ? <IcCTick /> : <div className={styles.dot} />}
 							</div>
 
 							<div className={styles.message}>{message}</div>

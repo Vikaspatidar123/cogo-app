@@ -1,21 +1,14 @@
-import { Button, Toast } from '@cogoport/components';
+import { Toast, Button } from '@cogoport/components';
 import { IcMArrowNext, IcMArrowBack } from '@cogoport/icons-react';
 import { useState, useEffect } from 'react';
 
 import getField from '../../../../../../packages/forms/Controlled';
-import CommonButton from '../../../common/Button';
 import { ProductCartIcon } from '../../../configuration/icon-configuration';
 import useFreightCharges from '../../../hook/useFreightCharges';
-
-// import {
-// 	Title, Col, Label, BtnContainer, ErrorTxt, Text,
-// } from '../styles.module.css';
-
 import style from '../styles.module.css';
 
 import FreightModal from './FreightModal';
 import IncotermCharges from './IncotermCharges';
-// import { Container, TitleContainer } from './style';
 import styles from './styles.module.css';
 
 function Charge({
@@ -38,7 +31,6 @@ function Charge({
 	transportMode,
 	portDetails,
 	prevCurr,
-	isMobile = false,
 	chargeControls,
 }) {
 	const [showFreightModal, setShowFreightModal] = useState(false);
@@ -91,7 +83,7 @@ function Charge({
 					<div>Charges Details</div>
 				</div>
 				<div className={`${styles.incoterm} ${style.col}`}>
-					<div className={style.label}>{fields?.incoterm?.label}</div>
+					<div className={style.label}>{fields[1]?.label}</div>
 					<SelectController
 						{...fields[1]}
 						handleChange={(data) => setIncoterm(data?.value)}
@@ -108,27 +100,35 @@ function Charge({
 			<form>
 				<div className={style.col}>
 					<div className={style.label}>{fields?.freightCharge?.label}</div>
-					<div className={style.flex_col}>
-						<NumberSelector
-							{...fields[0]}
-							className={style.freight_charge}
-							control={chargeControls}
-						/>
-						<Button
-							className="primary  sm text"
-							onClick={() => setShowFreightModal(true)}
-						>
-							Get Rates
-						</Button>
-						<div className={style.text}>{prevCurr}</div>
-					</div>
-					{error?.freightCharge && (
-						<div className={style.error_txt}>
-							*
-							{error?.freightCharge?.message || error?.freightCharge?.type}
-						</div>
-					)}
+					{/* <div className={style.flex_col}> */}
+					<NumberSelector
+						{...fields[0]}
+						className={style.freight_charge}
+						control={chargeControls}
+						suffix={(
+							<div className={styles.suffix_container}>
+								<Button
+									size="sm"
+									themeType="linkUi"
+									onClick={() => setShowFreightModal(true)}
+									className={`${styles.get_rates}`}
+								>
+									Get Rates
+
+								</Button>
+								<div className={style.text}>{prevCurr}</div>
+							</div>
+						)}
+					/>
+
 				</div>
+				{error?.freightCharge && (
+					<div className={style.error_txt}>
+						*
+						{error?.freightCharge?.message || error?.freightCharge?.type}
+					</div>
+				)}
+				{/* </div> */}
 				<div className={`${styles.incoterm_charges} ${style.col}`}>
 					<IncotermCharges
 						{...fields[2]}
@@ -143,19 +143,18 @@ function Charge({
 					/>
 				</div>
 				<div className={style.btn_container}>
-					<CommonButton size="md" isPrev onClick={prevHandler}>
+					<Button size="md" themeType="secondary" onClick={prevHandler}>
 						<IcMArrowBack width={16} height={16} />
-					</CommonButton>
-					<CommonButton
+					</Button>
+					<Button
 						size="md"
 						type="button"
 						onClick={handleSubmit(submitHandler, errorHandler)}
 						loading={serviceRatesLoading}
 					>
 						Continue
-						{' '}
 						<IcMArrowNext />
-					</CommonButton>
+					</Button>
 				</div>
 			</form>
 			{showFreightModal && (
@@ -171,7 +170,6 @@ function Charge({
 					portDetails={portDetails}
 					setSpotCharge={setSpotCharge}
 					prevCurr={prevCurr}
-					isMobile={isMobile}
 				/>
 			)}
 		</div>

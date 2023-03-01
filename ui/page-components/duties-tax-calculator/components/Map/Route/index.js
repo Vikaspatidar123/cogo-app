@@ -1,17 +1,19 @@
-import { useEffect } from 'react';
-import { L } from '@cogoport/maps';
+import { Polyline } from '@cogoport/maps';
 
 const pathOptions = { color: '#00008B' };
 
-const Route = ({ positions, map }) => {
-	useEffect(() => {
-		if (!map || !positions) return;
-		const line = L.polyline(positions, { ...pathOptions });
-		line.addTo(map);
-		if (line.getBounds()?._northEast) {
-			map.fitBounds(line.getBounds());
-		}
-	}, [map]);
-	return null;
-};
+function Route({ positions, map }) {
+	return (
+		<Polyline
+			key={JSON.stringify(positions)}
+			positions={positions}
+			pathOptions={pathOptions}
+			eventHandlers={{
+				add: (e) => {
+					if (map) map?.fitBounds(e.target?.getBounds());
+				},
+			}}
+		/>
+	);
+}
 export default Route;

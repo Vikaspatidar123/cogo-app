@@ -1,31 +1,15 @@
 /* eslint-disable max-len */
-import { Tooltip, cl } from '@cogoport/components';
+import { Tooltip, cl, Button } from '@cogoport/components';
 import { IcMInfo } from '@cogoport/icons-react';
 
-import Button from '../../common/Button';
 import { SuccessGif } from '../../configuration/icon-configuration';
 import { shortFormatNumber } from '../../utils/getShortFormatNumber';
-
-// import {
-// 	Container,
-// 	IconContainer,
-// 	HeaderContainer,
-// 	Section,
-// 	Title,
-// 	Line,
-// 	Row,
-// 	Heading,
-// 	DashedLine,
-// 	BtnContainer,
-// 	IconImage,
-// 	TooltipContainer,
-// } from './styles';
 
 import styles from './styles.module.css';
 
 import { useRouter } from '@/packages/next';
 
-function SuccessModal({ tradeEngineResp, isMobile = false }) {
+function SuccessModal({ tradeEngineResp }) {
 	const {
 		lineItem = [],
 		resultCurrency = 'INR',
@@ -122,24 +106,23 @@ function SuccessModal({ tradeEngineResp, isMobile = false }) {
 			))}
 			<div className={cl`${styles.row} ${styles.finalTotal} ${styles.dutiesTotal}`}>
 				<div>Total Duties and Tax</div>
-				<div>{shortFormatNumber(totalDutiesAndTaxes, resultCurrency, !isMobile)}</div>
+				<div>{shortFormatNumber(totalDutiesAndTaxes, resultCurrency, true)}</div>
 			</div>
 			<div className={cl`{styles.dashed_line}${styles.dashed_total}`} />
 			<div className={cl`${styles.row} ${styles.finalTotal}`}>
 				<div className={styles.flex}>
 					<div>Total Landed Cost</div>
 					<Tooltip
-						theme="light-border"
 						placement="top"
 						content={tooltipContent()}
-						interactive
+						className={styles.tooltip_style}
 					>
 						<div className={styles.iconContainer}>
 							<IcMInfo width={14} height={14} />
 						</div>
 					</Tooltip>
 				</div>
-				<div>{shortFormatNumber(totalLandedCost, resultCurrency, !isMobile)}</div>
+				<div>{shortFormatNumber(totalLandedCost, resultCurrency, true)}</div>
 			</div>
 
 			<div className={styles.btn_container}>

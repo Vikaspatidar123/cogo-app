@@ -11,7 +11,6 @@ const useGetQuota = () => {
 
 	const { profile = {} } = useSelector((s) => s);
 	const { organization } = profile || {};
-	// const { data, trigger } = useRequest('get', false)('/saas_get_user_quota_usage');
 
 	const [{ data }, trigger] = useRequest({
 		url    : '/saas_get_user_quota_usage',

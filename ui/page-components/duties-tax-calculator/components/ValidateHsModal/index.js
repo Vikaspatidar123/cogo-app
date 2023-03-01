@@ -1,21 +1,13 @@
-import { Popover, Modal, Input } from '@cogoport/components';
+import {
+	Popover, Modal, Input, Button,
+} from '@cogoport/components';
+import { IcAReports } from '@cogoport/icons-react';
 import { useState, useEffect } from 'react';
 
-// import LegendInput from '../../../../common/form/business/LegendInput';
-
-import Button from '../../common/Button';
 import { ValidateIcon } from '../../configuration/icon-configuration';
 import useVerifyHscode from '../../hook/useVerifyHscode';
 import validateFn from '../../utils/validateFn';
 
-// import {
-// 	ValidateModal,
-// 	Container,
-// 	Row,
-// 	Footer,
-// 	Suggestion,
-// 	BtnContainer,
-// } from './styles';
 import styles from './styles.module.css';
 import TitleContainer from './TitleContainer';
 
@@ -39,7 +31,6 @@ const sugestionContent = ({
 				}}
 			>
 				{ele?.hsCode}
-				{' '}
 				-
 				{ele?.description}
 			</div>
@@ -63,13 +54,11 @@ function ValidateHsModal({
 	postTradeEngine,
 	prevHs = '',
 	setPrevHs = () => {},
-	isMobile = false,
 }) {
 	const [status, setStatus] = useState(false);
 	const [isValidated, setIsValidated] = useState(false);
 	const [validateInProgress, setValidateInProgress] = useState(false);
 	const { verifyHsCode, checkLoading, inputValue } = useVerifyHscode();
-
 	const hs = getDraftData?.lineItem?.[0]?.destinationHs;
 	const { validateHSCode, submitHandler } = validateFn({
 		verifyHsCode,
@@ -103,20 +92,28 @@ function ValidateHsModal({
 			}
 		}
 	}, []);
+
+	const renderTitle = () => (
+		<div className={styles.title_div}>
+			<IcAReports width={25} height={25} />
+			<div className={styles.title}>Get Accurate Data</div>
+		</div>
+	);
 	return (
 		<Modal
 			show={show}
 			className={styles.modal_container}
 			onClose={() => setShow(false)}
 			closable={!getDraftData?.headerResponse}
-			width={!isMobile ? '534' : '363'}
+			size="md"
 		>
-			<div className={styles.container}>
+			<Modal.Header title={renderTitle()} />
+			<Modal.Body>
 				<TitleContainer getDraftData={getDraftData} />
+
 				<div className={styles.row_div}>
 					<Popover
-						animation="shift-away"
-						render={sugestionContent({
+						content={sugestionContent({
 							inputValue,
 							setVerifiedData,
 							setStatus,
@@ -125,10 +122,10 @@ function ValidateHsModal({
 						})}
 						interactive
 						placement="bottom"
-						theme="light-border"
 						visible={validateInProgress && inputValue.length > 0}
 					>
 						<div className={styles.input_container}>
+							<div className={styles.label}>HS Code</div>
 							<Input
 								label="HS Code"
 								value={hsCode || hs}
@@ -144,7 +141,6 @@ function ValidateHsModal({
 								onClick={validateHSCode}
 								loading={checkLoading}
 								disabled={validateInProgress}
-								productLoading
 							>
 								Validate
 							</Button>
@@ -156,8 +152,9 @@ function ValidateHsModal({
 						)}
 					</div>
 				</div>
-			</div>
-			<div className={styles.footer}>
+			</Modal.Body>
+			<Modal.Footer>
+
 				{isQuotaLeft ? (
 					<Button
 						size="md"
@@ -177,7 +174,7 @@ function ValidateHsModal({
 						Continue
 					</Button>
 				)}
-			</div>
+			</Modal.Footer>
 		</Modal>
 	);
 }

@@ -5,10 +5,6 @@ import {
 	IcAAccountRelated,
 } from '@cogoport/icons-react';
 
-// import {
-// 	StyledModal, Container, CardContainer, Card, Dot, Txt, Heading,
-// } from './styles';
-
 import styles from './styles.module.css';
 
 import { useRouter } from '@/packages/next';
@@ -20,7 +16,6 @@ function PayMethodModal({
 	paymentMode = '',
 	setPaymentMode,
 	checkoutHandler = () => {},
-	isMobile = false,
 }) {
 	const { query = {} } = useRouter();
 	const { org_id, branch_id, account_type } = query || {};
@@ -45,7 +40,7 @@ function PayMethodModal({
 			className="primary"
 			show={showPayMethodModal}
 			onClose={() => setShowPayMethodModal(false)}
-			width={!isMobile ? '534' : '383'}
+			size="lg"
 		>
 			<div>
 				<div className={styles.heading}>Select mode of Payment</div>

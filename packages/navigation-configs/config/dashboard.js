@@ -1,8 +1,8 @@
 const dashboard = {
 	'/dashboard': {
 
-		navigation: 'app_dashboard',
-		isMainNav: true,
+		navigation : 'app_dashboard',
+		isMainNav  : true,
 	},
 };
 

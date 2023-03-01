@@ -8,7 +8,6 @@ import pageProgessBar from 'nprogress';
 import 'nprogress/nprogress.css';
 import { useEffect } from 'react';
 
-// import SessionCheck from './SessionCheck';
 import withStore from './store';
 
 import { Provider } from '@/packages/store';

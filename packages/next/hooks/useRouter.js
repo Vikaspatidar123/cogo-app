@@ -25,6 +25,7 @@ export const useRouter = () => {
 			const { newHref, newAs } = getModifiedRoutes({
 				href, as, organizationId, branchId, withPrefix,
 			});
+
 			return routerNext.push(newHref, newAs, options);
 		},
 	}), [branchId, organizationId, routerNext]);

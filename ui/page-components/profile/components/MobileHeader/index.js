@@ -10,7 +10,7 @@ function MobileHeader({
 	return (
 		<div className={styles.container}>
 			<div className={styles.icon_text}>
-				<div className={styles.icon_container} onClick={onClickBackButton}>
+				<div className={styles.icon_container} onClick={onClickBackButton} role="presentation">
 					<IcMArrowBack />
 				</div>
 

@@ -7,11 +7,9 @@
 // icon is used to show icon webside only
 // mobileIcon is used to show icon in mobile navigation only
 // isSubNavs is used to show sub navigations
-// description show the description of sub navigation
+
 import {
-	IcMAverage, IcMQuotations, IcMTradeparties, IcMProductCodeMapping,
-	IcACrossBorder,
-	IcMFfreferigeratedCargoType,
+	IcMQuotations,
 } from '@cogoport/icons-react';
 
 const navigationMappings = {
@@ -24,15 +22,7 @@ const navigationMappings = {
 		mobileIcon : <IcMQuotations width={20} height={20} />,
 
 	},
-	app_discover_rates: {
-		key        : 'app_discover_rates',
-		title      : 'Discover Rates',
-		href       : '/book',
-		as         : '/book',
-		showInNav  : true,
-		mobileIcon : <IcMQuotations width={20} height={20} />,
 
-	},
 	saas_planning: {
 		key       : 'saas_planning',
 		title     : 'Planning',
@@ -353,13 +343,6 @@ const navigationMappings = {
 		as            : '/v2/settings',
 		type          : 'link',
 		showMobileNav : true,
-
-	},
-	app_pricing: {
-		key       : 'app_pricing',
-		title     : 'Pricing',
-		type      : 'link',
-		showInNav : false,
 
 	},
 

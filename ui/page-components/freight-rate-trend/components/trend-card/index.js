@@ -8,7 +8,7 @@ import styles from './styles.module.css';
 
 import { useRouter } from '@/packages/next';
 
-function TrendCard({ trend = {}, isMobile, fetchLocations = () => {} }) {
+function TrendCard({ trend = {}, fetchLocations = () => {} }) {
 	const { push } = useRouter();
 
 	const { loading, deleteTrend } = useDeleteTrendSubscription({ fetchLocations });
@@ -67,6 +67,7 @@ function TrendCard({ trend = {}, isMobile, fetchLocations = () => {} }) {
 					</div>
 				</div>
 			</div>
+
 			{showDeleteModal && (
 				<DeleteModal
 					trendId={trendId}
@@ -74,11 +75,9 @@ function TrendCard({ trend = {}, isMobile, fetchLocations = () => {} }) {
 					setShowDeleteModal={setShowDeleteModal}
 					deleteTrend={deleteTrend}
 					deleteLoading={loading}
-					isMobile={isMobile}
-					trendData={trendData}
-
 				/>
 			)}
+
 		</>
 	);
 }

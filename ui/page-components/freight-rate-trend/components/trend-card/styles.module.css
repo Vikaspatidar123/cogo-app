@@ -154,3 +154,13 @@
     width: 100%;
     margin-top: 6px;
 }
+
+.mobile_view{
+		@media (max-width: 767px) {
+			:global{
+			.ui_modal_dialog .ui_ps_placement_center{
+	 		top: 50%;
+	    }
+	     }
+	}
+}

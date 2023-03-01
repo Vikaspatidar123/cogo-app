@@ -6,7 +6,7 @@ import styles from '../../List/styles.module.css';
 function Paginations({
 	pageObj, refetchHsCode, headCode, headingToggle,
 }) {
-	const { totalRecords = 0, pageNo = 0 } = pageObj || {};
+	const { totalRecords = 0, pageNo = 0, pageSize=0 } = pageObj || {};
 	const [page, setPage] = useState(pageNo);
 
 	useEffect(() => {
@@ -25,6 +25,7 @@ function Paginations({
 					currentPage={page}
 					totalItems={totalRecords}
 					pageSize={7}
+					// pageSize={4}
 					onPageChange={setPage}
 				/>
 			)}

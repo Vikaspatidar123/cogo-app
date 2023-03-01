@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
 import styles from '../../styles.module.css';
 
 import HScode from './HScode';
-
+import {cl} from '@cogoport/components';
 function HeadingList({
 	headingData,
 	chapterToggle,
@@ -67,7 +67,7 @@ function HeadingList({
 				<div className={`${styles.desc} ${headingToggle && styles.selected}`}>
 					{description()}
 				</div>
-				<div>
+				<div className={`${styles.dropdown_new3}`}>
 					{headingLoading ? (
 						addLoader('30px', '100px')
 					) : (
@@ -78,7 +78,7 @@ function HeadingList({
 			{/* {headingToggle && ( */}
 			<div className={styles.main_container}>
 				<div
-					className={`${styles.accordion} ${styles.hs_container} ${headingToggle && styles.hsTable}`}
+					className={cl`${styles.accordion} ${styles.hs_container} ${headingToggle && styles.hsTable}`}
 					aria-expanded={headingToggle}
 				>
 					<HScode

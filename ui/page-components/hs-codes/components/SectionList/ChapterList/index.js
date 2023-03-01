@@ -5,6 +5,7 @@ import EmptyState from '../../../common/EmptyState';
 import styles from '../styles.module.css';
 
 import HeadingList from './HeadingList';
+import {cl} from "@cogoport/components"
 
 function ChapterList({
 	chapterData,
@@ -44,6 +45,7 @@ function ChapterList({
 		}
 		return chapterDescription;
 	};
+
 	return (
 		<div>
 			<div
@@ -52,18 +54,18 @@ function ChapterList({
 					setChapterToggle(!chapterToggle);
 				}}
 			>
-				<div className={`${styles.name} ${chapterToggle && styles.selected}`}>
+				<div className={cl`${styles.name} ${chapterToggle && styles.selected}`}>
 					Chapter
 					{chapterCode}
 				</div>
 				<div className={`${styles.desc} ${chapterToggle && styles.selected}`}>
 					{description()}
 				</div>
-				<div>
+				<div className={`${styles.dropdown_symbol2}`}>
 					<IcMArrowDown className={styles.chapterarrow} toggleDropdown={chapterToggle} />
 				</div>
 			</div>
-			<div className={styles.main_container}>
+			<div className={cl`${styles.main_container} ${chapterToggle && styles.heading_container}`}>
 				<div
 					className={`${styles.accordion} ${styles.heading} ${head && styles.accordionHead}`}
 					aria-expanded={chapterToggle}

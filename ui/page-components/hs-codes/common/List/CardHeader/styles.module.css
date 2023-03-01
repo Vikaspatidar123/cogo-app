@@ -6,7 +6,11 @@
 	background-color: #ffffff;
 	color: #7278ad;
 	font-weight: bold;
+	
 	box-shadow: inset 0px 4px 10px rgba(176, 185, 187, 0.15);
+	/* word-spacing: 30px; */
+	
+	
 
 	@media screen and (max-width: 767px) {
 		padding: 14px;
@@ -16,18 +20,24 @@
 .col{
     font-weight: bold;
 	width: 18%;
-	color: #7278ad;
+	color: #ad7289;
+	
+	
     @media screen and (max-width: 767px) {
 		font-size: 11px;
-		width: 25%;
+		width: 18%;
 	}
 }
 
 .desc {
     width: 80%;
+	
     @media screen and (max-width: 767px) {
-		    width: 80%;
+		    width: 890%;
 			margin-left: 12px;
 		
 	}
+}
+.new_edit{
+	width:18%;
 }

@@ -5,7 +5,7 @@ export const HSCode = [
 		type: 'text',
 	},
 	{
-		label: 'Product Description',
+		label: ' Product Description',
 		key: 'description',
 		type: 'text',
 	},

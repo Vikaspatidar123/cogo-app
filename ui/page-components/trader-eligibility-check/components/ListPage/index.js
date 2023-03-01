@@ -12,12 +12,10 @@ import style2 from '../styles.module.css';
 import styles from './styles.module.css';
 
 import { useRouter, dynamic } from '@/packages/next';
-import { useSelector } from '@/packages/store';
 
 const Map = dynamic(() => import('../Map'), { ssr: false });
 
 function ListPage() {
-	const { isMobile } = useSelector(({ general }) => general);
 	const { query, push } = useRouter();
 	const { billId = '', draftIdFromAddon = '' } = query || {};
 	const [paymentStatusModal, setPaymentStatusModal] = useState(false);
@@ -40,49 +38,42 @@ function ListPage() {
 
 	return (
 		<div className={styles.wrapper2}>
-			{isMobile && (
-				<div className={style1.map_column2}>
-					<Map isMobile={isMobile} />
-				</div>
-			)}
+			<div className={style1.map_column2}>
+				<Map />
+			</div>
 			<div className={styles.container_style}>
-				{!isMobile && (
-					<>
-						<div
-							role="presentation"
-							className={styles.column2}
-							onClick={() => push('/saas/premium-services/trader-eligibility-check')}
-						>
-							<IcMCfs fill="#034afd" />
-							<div className={styles.text}>Go to home page</div>
-						</div>
-						<div className={styles.title_style}>
-							<div className={style2.heading}>
-								<img className={style2.svg_style} src={HeadingIcon} alt="" />
-								Trader Eligibilty Check
-							</div>
-						</div>
-					</>
-				)}
-				{isMobile && (
-					<>
-						<div
-							role="presentation"
-							className={styles.column3}
-							onClick={() => push('/saas/premium-services/trader-eligibility-check')}
-						>
-							<IcMCfs fill="#034afd" />
-						</div>
-						<div className={style2.heading}>
-							<img className={style2.svg_style} src={HeadingIcon} alt="" />
-							Trader Eligibilty Check
-						</div>
-					</>
-				)}
+
+				<div
+					role="presentation"
+					className={styles.column2}
+					onClick={() => push('/saas/premium-services/trader-eligibility-check')}
+				>
+					<IcMCfs fill="#034afd" />
+					<div className={styles.text}>Go to home page</div>
+				</div>
+				<div className={styles.title_style}>
+					<div className={style2.heading}>
+						<img className={style2.svg_style} src={HeadingIcon} alt="" />
+						Trader Eligibilty Check
+					</div>
+				</div>
+
+				<div
+					role="presentation"
+					className={styles.column3}
+					onClick={() => push('/saas/premium-services/trader-eligibility-check')}
+				>
+					<IcMCfs fill="#034afd" />
+				</div>
+				<div className={style2.heading}>
+					<img className={style2.svg_style} src={HeadingIcon} alt="" />
+					Trader Eligibilty Check
+				</div>
+
 			</div>
 			<div className={style2.content_wrapper}>
 				<div className={style1.wrapper}>
-					<div className={`${isMobile ? style1.list_column_mobile : style1.list_column}`}>
+					<div className={`${style1.list_column_mobile} ${style1.list_column}`}>
 						{!getTradeEngineListLoading
 								&& !screeningRequestResponse
 								&& paymentStatus === 'PAID'
@@ -160,11 +151,9 @@ function ListPage() {
 							</div>
 						)}
 					</div>
-					{!isMobile && (
-						<div className={style1.map_column}>
-							<Map />
-						</div>
-					)}
+					<div className={style1.map_column}>
+						<Map />
+					</div>
 				</div>
 			</div>
 			{paymentStatusModal && (

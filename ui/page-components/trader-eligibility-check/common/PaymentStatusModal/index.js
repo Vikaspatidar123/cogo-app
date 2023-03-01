@@ -2,13 +2,8 @@ import { Button, Modal, cl } from '@cogoport/components';
 import { IcMInformation } from '@cogoport/icons-react';
 import { useState, useEffect } from 'react';
 
-// import PaymentDoneSvg from '../../assets/payment.svg';
 import { PaymentIcon } from '../../configuration/icon-configuration';
 import redirectUrl from '../../constants/redirectUrl';
-
-// import {
-// 	Container, Title, Txt, Image,
-// } from './style';
 
 import styles from './styles.module.css';
 

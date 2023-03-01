@@ -18,13 +18,11 @@ const LAYER = styleName.map(({ title, style }) => ({
 	attribution : '',
 }));
 
-function Map({ isMobile = false }) {
-	const heightVariable = isMobile ? '350px' : '680px';
+function Map() {
 	return (
 		<div>
 			<CogoMaps
 				baseLayer={LAYER}
-				style={{ height: `${heightVariable}`, width: '100%' }}
 				zoom={3.6}
 			/>
 		</div>

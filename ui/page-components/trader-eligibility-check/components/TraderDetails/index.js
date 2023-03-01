@@ -1,4 +1,4 @@
-import { Toast, Button } from '@cogoport/components';
+import { Toast, Button, cl } from '@cogoport/components';
 import { merge } from '@cogoport/utils';
 import { useState, useMemo } from 'react';
 
@@ -20,7 +20,6 @@ function TraderDetails({
 	formDetails = {},
 	setCountryDetails = () => {},
 	countryDetails = {},
-	isMobile = false,
 }) {
 	const countryOptions = useGetAsyncOptions(merge(asyncFieldsLocations(), {
 		params: { filters: { type: ['country'] } },
@@ -41,8 +40,6 @@ function TraderDetails({
 		watchCountry,
 		setCityState,
 	});
-	console.log('cityLoading', cityLoading);
-	console.log(formDetails, 'formDetails');
 	const { list } = cityState || {};
 	const { region, city } = list?.[0] || {};
 
@@ -75,7 +72,7 @@ function TraderDetails({
 						<img src={SubHeadingIcon} alt="" className={styles.sub_heading_icon} />
 						<div className={styles.title}>
 							<div>Trader Details</div>
-							<div className={`${isMobile ? styles.line_wrapper_mobile : styles.line_wrapper_web}`}>
+							<div className={cl`${styles.line_wrapper_mobile} ${styles.line_wrapper_web}`}>
 								<div className={styles.line} />
 							</div>
 						</div>
@@ -120,9 +117,7 @@ function TraderDetails({
 							{' '}
 							<div className={styles.optional}> (optional)</div>
 						</div>
-						<div className={`${isMobile ? styles.line_wrapper_mobile
-							: styles.line_wrapper_web}${styles.line2}`}
-						>
+						<div className={cl`${styles.line_wrapper_mobile} ${styles.line_wrapper_web}${styles.line2}`}>
 							<div className={styles.line} />
 						</div>
 					</div>

@@ -27,14 +27,18 @@
 	margin-right: 6px;
 }
 
-.line_wrapper_web{
-	display: flex;
-	width: 90%;
+@media screen and (max-width:767px){
+	.line_wrapper_mobile{
+		display: flex;
+		width: 100%;
+	}
 }
 
-.line_wrapper_mobile{
-	display: flex;
-	width: 100%;
+@media screen and (min-width:767px){
+	.line_wrapper_web{
+		display: flex;
+		width: 90%;
+	}
 }
 
 .line{

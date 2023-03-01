@@ -22,12 +22,16 @@
 }
 
 .icon_style{
-  padding: 12px;
+  float: right;
 }
 
 .child_container{
   display: flex;
-  margin-bottom: 30px;
+  /* margin-bottom: 30px; */
+
+  @media (max-width: 760px) {
+    flex-direction: column;
+  }
 }
 
 .stepper{
@@ -36,12 +40,11 @@
 
 .dashed_line{
   border: .5px dashed #E0E0E0;
-  margin-left: 30px;
-  margin-right: 30px;
+  margin: 30px;
 }
 
 .details_list{
-  width: 35%;
+  width: 30%;
   padding: 20px;
   background-image: url("https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/Mask group.svg");
   background-size: auto;

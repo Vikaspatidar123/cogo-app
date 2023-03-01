@@ -2,12 +2,7 @@ import { StarIcon } from '../../../../configuration/icon-configuration';
 
 import styles from './styles.module.css';
 
-function Stepper({ trackerDetails }) {
-	const logo_url = trackerDetails?.shipping_line?.logo_url;
-	const shipping_line_name = trackerDetails?.shipping_line?.short_name;
-
-	const stepper = trackerDetails?.milestones[0]?.container_status?.bool_status || [false, false, false, false];
-
+function Stepper({ logo_url, containerStatus, shipping_line_name }) {
 	return (
 		<div className={styles.container}>
 			<div className={styles.template}>
@@ -16,20 +11,6 @@ function Stepper({ trackerDetails }) {
 					<div>
 						{shipping_line_name}
 					</div>
-				</div>
-			</div>
-			<div className={styles.legend_ctn}>
-				<div className={styles.legend_name}>
-					1 parts
-				</div>
-				<div className={styles.legend_name}>
-					1 part
-				</div>
-				<div className={styles.legend_name}>
-					1 part
-				</div>
-				<div className={styles.legend_name}>
-					1 part
 				</div>
 			</div>
 			<div className={styles.combined_div}>
@@ -48,28 +29,28 @@ function Stepper({ trackerDetails }) {
 				<div className={`${styles.dot_line_style} ${styles.last_element}`}>
 					<div className={`${stepper[2] ? styles.active_dot : styles.dot}`} />
 				</div> */}
-				{stepper.map((item, index) => (
+				{containerStatus.map((item, index) => (
 					<>
 						{console.log(index, 'index')}
 						<div className={`${(index !== 3 || index === null) && styles.dot_line_style}`}>
-							<div className={`${stepper[index] ? styles.active_dot : styles.dot}`} />
-							{index !== 3 && <div className={`${stepper[index] ? styles.active_line : styles.line}`} />}
+							<div className={`${item ? styles.active_dot : styles.dot}`} />
+							{index !== 3 && <div className={`${item ? styles.active_line : styles.line}`} />}
 						</div>
 					</>
 				))}
 			</div>
 			<div className={styles.legend_ctn}>
 				<div className={styles.legend_name}>
-					3 locations
+					Origin
 				</div>
 				<div className={styles.legend_name}>
-					SHA
+					Port of loading
 				</div>
 				<div className={styles.legend_name}>
-					NSA
+					Port of discharge
 				</div>
 				<div className={styles.legend_name}>
-					2 locations
+					Destination
 				</div>
 			</div>
 		</div>

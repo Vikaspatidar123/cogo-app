@@ -17,6 +17,8 @@ const useFetchTrackers = () => {
 		method : 'get',
 	}, { manual: true });
 
+	console.log('pagination', pagination);
+
 	const fetchTrackers = async () => {
 		try {
 			const res = await trigger({
@@ -27,7 +29,7 @@ const useFetchTrackers = () => {
 						status                 : 'active',
 					},
 					page       : pagination.page,
-					page_limit : 100,
+					page_limit : 10,
 				},
 			});
 
@@ -41,7 +43,7 @@ const useFetchTrackers = () => {
 
 	useEffect(() => {
 		fetchTrackers();
-	}, []);
+	}, [filters, pagination]);
 
 	const refetch = () => fetchTrackers(false);
 

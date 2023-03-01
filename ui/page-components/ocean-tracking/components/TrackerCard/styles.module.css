@@ -5,8 +5,17 @@
 .head {
   display: flex;
   justify-content: space-between;
+  margin-bottom: 20px ;
   @media (max-width: 760px) {
     flex-direction: column;
+  }
+}
+
+.head2{
+  display: flex;
+  align-items: center;
+  @media (max-width: 760px) {
+    justify-content: space-between;
   }
 }
 
@@ -15,4 +24,43 @@
   text-decoration: underline;
   cursor: pointer;
   color: #ee3425;
+}
+
+.on_click{
+  padding: 7px;
+  background: #FEF199;
+  border: 1px solid ;
+  border-color: #E0E0E0;
+  border-radius: 6px 6px 6px 6px;
+
+}
+.list_view{
+  border-radius: 6px 0px 0px 6px !important;
+  border-right: none;
+}
+
+.map_view{
+  border-radius: 0px 6px 6px 0px !important;
+  border-left: none;
+}
+
+.without_click{
+  background: #FFFFFF;
+  border: 1px solid #E0E0E0 ;
+  border-radius: 6px 6px 6px 6px;
+  padding: 7px;
+}
+
+.fillter_div{
+  padding: 7px;
+  background: #FFFFFF;
+  border: 1px solid #221F20;
+  border-radius: 6px;
+  margin-left: 10px;
+}
+
+.pagination{
+  display: flex;
+  justify-content: flex-end;
+  padding: 15px;
 }

@@ -1,17 +1,54 @@
 import { IcMArrowBack, IcMArrowNext, IcMOverflowDot } from '@cogoport/icons-react';
 
+import { WarnIcon } from '../../../../configuration/icon-configuration';
+
 import styles from './styles.module.css';
 
-function DetailsList() {
+function DetailsList({ containersList, shipmentInfo, activeCarouselIndex, setActiveCarouselIndex }) {
+	const handlePrevious = () => {
+		if (activeCarouselIndex > 0) {
+			setActiveCarouselIndex(
+				(previousActiveCarouselIndex) => previousActiveCarouselIndex - 1,
+			);
+		}
+	};
+	const handleNext = () => {
+		if (activeCarouselIndex < containersList?.length - 1) {
+			setActiveCarouselIndex(
+				(previousActiveCarouselIndex) => previousActiveCarouselIndex + 1,
+			);
+		}
+	};
+
+	const commodity = shipmentInfo?.commodity;
+	const itemData = containersList?.[activeCarouselIndex] || {};
+	console.log(itemData, 'itemData');
 	return (
 		<div className={styles.container}>
-			<div className={styles.title_div}>
-				<div className={styles.title}>20 FT | </div>
-				<div className={styles.title}> Standard Dry</div>
-				<div className={styles.arrow_div}>
-					<IcMArrowBack />
-					<IcMArrowNext />
+			<div className={styles.header_title}>
+				<div>
+					Container Details
+					{containersList.length > 1 && `(${containersList.length})` }
+
+					<div className={styles.line} />
 				</div>
+				{containersList.length > 1 && (
+					<div className={styles.arrow_div}>
+						<IcMArrowBack className={styles.icon} onClick={handlePrevious} />
+						<IcMArrowNext className={styles.icon} onClick={handleNext} />
+					</div>
+				)}
+			</div>
+			<div className={styles.title_div}>
+				{/* <div className={styles.title}>20 FT | </div>
+				<div className={styles.title}> Standard Dry</div> */}
+				<div className={styles.title}>
+					{itemData?.container_length ? `${itemData?.container_length}ft` : ''}
+				</div>
+				<div className={styles.title}>
+					{itemData?.container_description ?? ''}
+				</div>
+
 			</div>
 			<div className={styles.list_container}>
 				<div className={styles.element1}>
@@ -19,22 +56,32 @@ function DetailsList() {
 					<div>
 						<IcMOverflowDot />
 					</div>
-					<div className={styles.sub_element}>MRKU9470415</div>
+					<div className={styles.sub_element}>{itemData?.container_no}</div>
 				</div>
 				<div className={styles.element1}>
-					<div className={styles.sub_element}>Commodity</div>
+					<div className={styles.sub_element}>{commodity ? 'Commodity' : 'Commodity Unknown'}</div>
 					<div>
 						<IcMOverflowDot />
 					</div>
-					<div className={styles.sub_element}>General</div>
+					<div className={styles.sub_element}>
+						{commodity || (
+							<img
+								src={WarnIcon}
+								alt=""
+								width="15px"
+								height="15px"
+							/>
+						)}
+
+					</div>
 				</div>
-				<div className={styles.element1}>
+				{/* <div className={styles.element1}>
 					<div className={styles.sub_element}>Quantity</div>
 					<div>
 						<IcMOverflowDot />
 					</div>
 					<div className={styles.sub_element}>10</div>
-				</div>
+				</div> */}
 			</div>
 		</div>
 	);

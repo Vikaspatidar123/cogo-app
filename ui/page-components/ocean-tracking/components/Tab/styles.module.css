@@ -1,0 +1,17 @@
+.parent_tab{
+    display: flex;
+}
+
+.tab_container{
+    width: 23%;
+    background: #FFFFFF;
+    box-shadow: 0px 1px 6px rgba(169, 188, 218, 0.45);
+    border-radius: 8px;
+    border: 1px solid #F5B02E;
+    cursor: pointer;
+    margin: 10px;
+}
+
+.text{
+    padding: 10px;
+}

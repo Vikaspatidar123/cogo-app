@@ -17,7 +17,7 @@ const LAYER = styleName.map(({ title, style }) => ({
 
 const center = { lat: '28.679079', lng: '77.069710' };
 function MapComp({
-	plotPoints, isMobile = false, tradeEngineRespLength, ...rest
+	plotPoints, tradeEngineRespLength, ...rest
 }) {
 	const { origin = {} } = rest || {};
 	const [map, setMap] = useState();
@@ -25,7 +25,6 @@ function MapComp({
 	const corner2 = L.latLng(90, 200);
 	const bounds = L.latLngBounds(corner1, corner2);
 	const pointLength = plotPoints.length;
-	const heightVariable = isMobile ? '350px' : '600px';
 
 	useEffect(() => {
 		const timeout = setTimeout(() => {
@@ -48,7 +47,6 @@ function MapComp({
 
 	return (
 		<CogoMaps
-			style={{ height: `${heightVariable}`, width: '100%' }}
 			baseLayer={LAYER}
 			zoom={3.6}
 			center={center}

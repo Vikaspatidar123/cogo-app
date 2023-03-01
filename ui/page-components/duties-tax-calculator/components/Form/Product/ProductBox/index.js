@@ -1,11 +1,11 @@
-import { Tooltip } from '@cogoport/components';
+import { Tooltip, cl } from '@cogoport/components';
 
 import { ProductCube, ProductBoxIcon } from '../../../../configuration/icon-configuration';
 import { shortFormatNumber } from '../../../../utils/getShortFormatNumber';
 
 import styles from './styles.module.css';
 
-function ProductBox({ watch, isMobile }) {
+function ProductBox({ watch }) {
 	const {
 		hsCode = '',
 		consignmentValue = '',
@@ -30,7 +30,7 @@ function ProductBox({ watch, isMobile }) {
 	};
 
 	return (
-		<div className={`${isMobile ? styles.mobile_view : styles.web_view} ${styles.container}`}>
+		<div className={cl`${styles.mobile_view} ${styles.web_view} ${styles.container}`}>
 			<div className={styles.row}>
 				<div className={styles.flex}>
 					<div className={styles.value}>{hsCode}</div>
@@ -40,10 +40,10 @@ function ProductBox({ watch, isMobile }) {
 					<img src={ProductCube} alt="" width="50px" height="50px" />
 				</div>
 			</div>
-			<div className={`${styles.box} ${styles.row}`}>
+			<div className={cl`${styles.box} ${styles.row}`}>
 				<img src={ProductBoxIcon} alt="" width="130px" height="130px" />
 			</div>
-			<div className={`${styles.last_row} ${styles.row}`}>
+			<div className={cl`${styles.last_row} ${styles.row}`}>
 				<div>
 					<div className={styles.title}>Quantity</div>
 					<div className={styles.value}>{renderName(quantity)}</div>

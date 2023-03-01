@@ -24,7 +24,6 @@ function FreightModal({
 	portDetails = {},
 	setSpotCharge,
 	prevCurr,
-	isMobile = false,
 }) {
 	const [checked, setChecked] = useState('');
 	const [selectedData, setSelectedData] = useState({});
@@ -89,7 +88,7 @@ function FreightModal({
 			show={showFreightModal}
 			className={styles.modal_container}
 			onClose={() => setShowFreightModal(false)}
-			size={!isMobile ? 'md' : 'sm'}
+			size="md"
 		>
 			<Modal.Header title={titleRender()} />
 			<Modal.Body>
@@ -115,7 +114,6 @@ function FreightModal({
 						<div className={styles.cardList}>
 							<ListRow
 								rates={rates}
-								isMobile={isMobile}
 								checked={checked}
 								checkboxHandler={checkboxHandler}
 							/>

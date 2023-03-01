@@ -9,7 +9,7 @@ import styles from './styles.module.css';
 
 import { useRouter } from '@/packages/next';
 
-function SuccessModal({ tradeEngineResp, isMobile = false }) {
+function SuccessModal({ tradeEngineResp }) {
 	const {
 		lineItem = [],
 		resultCurrency = 'INR',
@@ -106,7 +106,7 @@ function SuccessModal({ tradeEngineResp, isMobile = false }) {
 			))}
 			<div className={cl`${styles.row} ${styles.finalTotal} ${styles.dutiesTotal}`}>
 				<div>Total Duties and Tax</div>
-				<div>{shortFormatNumber(totalDutiesAndTaxes, resultCurrency, !isMobile)}</div>
+				<div>{shortFormatNumber(totalDutiesAndTaxes, resultCurrency, true)}</div>
 			</div>
 			<div className={cl`{styles.dashed_line}${styles.dashed_total}`} />
 			<div className={cl`${styles.row} ${styles.finalTotal}`}>
@@ -122,7 +122,7 @@ function SuccessModal({ tradeEngineResp, isMobile = false }) {
 						</div>
 					</Tooltip>
 				</div>
-				<div>{shortFormatNumber(totalLandedCost, resultCurrency, !isMobile)}</div>
+				<div>{shortFormatNumber(totalLandedCost, resultCurrency, true)}</div>
 			</div>
 
 			<div className={styles.btn_container}>

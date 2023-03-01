@@ -25,7 +25,6 @@ function Pay({
 	postTradeEngine,
 	serviceRateData = {},
 	quotaValue,
-	isMobile = false,
 }) {
 	const [showPayMethodModal, setShowPayMethodModal] = useState(false);
 	const [paymentMode, setPaymentMode] = useState('');
@@ -131,7 +130,6 @@ function Pay({
 					setPaymentMode={setPaymentMode}
 					isUserSubscribed={isUserSubscribed}
 					checkoutHandler={checkoutHandler}
-					isMobile={isMobile}
 				/>
 			)}
 		</div>

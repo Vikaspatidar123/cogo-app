@@ -11,7 +11,6 @@ function Map({
 	portDetails = {},
 	transportMode,
 	billId = '',
-	isMobile,
 	tradeEngineRespLength,
 }) {
 	const [curvePoints, setCurvePoints] = useState([]);
@@ -126,10 +125,9 @@ function Map({
 	}, [JSON.stringify(mapPoints)]);
 
 	return (
-		<div>
+		<div className={`${styles.without_mobile} ${styles.with_mobile}`}>
 			<CogoMaps
 				plotPoints={curvePoints}
-				isMobile={isMobile}
 				tradeEngineRespLength={tradeEngineRespLength}
 				origin={origin}
 				destination={destination}

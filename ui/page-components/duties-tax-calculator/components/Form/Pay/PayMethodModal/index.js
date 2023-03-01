@@ -16,7 +16,6 @@ function PayMethodModal({
 	paymentMode = '',
 	setPaymentMode,
 	checkoutHandler = () => {},
-	isMobile = false,
 }) {
 	const { query = {} } = useRouter();
 	const { org_id, branch_id, account_type } = query || {};
@@ -41,7 +40,7 @@ function PayMethodModal({
 			className="primary"
 			show={showPayMethodModal}
 			onClose={() => setShowPayMethodModal(false)}
-			size={!isMobile ? 'lg' : 'md'}
+			size="lg"
 		>
 			<div>
 				<div className={styles.heading}>Select mode of Payment</div>

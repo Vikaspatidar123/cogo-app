@@ -29,7 +29,6 @@ function Product({
 	portDetails = {},
 	prevCurr,
 	setPrevCurr,
-	isMobile = false,
 	isQuotaLeft = false,
 	prevHs,
 	setPrevHs,
@@ -146,13 +145,12 @@ function Product({
 					</Button>
 				</div>
 			</form>
-			<ProductBox watch={watch} isMobile={isMobile} />
+			<ProductBox watch={watch} />
 			{/* {showCatalogue && (
 				<ProductCatalogue
 					showCatalogue={showCatalogue}
 					setShowCatalogue={setShowCatalogue}
 					setSelectedData={setSelectedData}
-					isMobile={isMobile}
 				/>
 			)}
 			{showHsCodeModal && (
@@ -160,7 +158,6 @@ function Product({
 					showHsCodeModal={showHsCodeModal}
 					setShowHsCodeModal={setShowHsCodeModal}
 					setSelectedData={setSelectedData}
-					isMobile={isMobile}
 				/>
 			)} */}
 			{showValidate && (
@@ -175,7 +172,6 @@ function Product({
 					isQuotaLeft={isQuotaLeft}
 					prevHs={prevHs}
 					setPrevHs={setPrevHs}
-					isMobile={isMobile}
 				/>
 			)}
 		</div>

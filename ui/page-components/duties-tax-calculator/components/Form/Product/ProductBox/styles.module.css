@@ -24,28 +24,33 @@
 	}
 }
 
-.mobile_view {
-	top: -66%;
-	right: 345px;
-	z-index: 10;
-	border-radius: 0 20px 20px 0;
-	width: 275px;
-	animation: animateProductBoxMobile 0.5s linear 0.1s 1;
-	animation-fill-mode: forwards;
 
-	@keyframes animateProductBoxMobile {
-		0% {
-			right: 345px;
-		}
-		100% {
-			right: 52px;
-		}
+@media screen and (min-width:767px){
+	.web_view {
+		animation: animateProductBox 0.5s linear 0.1s 1;
+		animation-fill-mode: forwards;
 	}
 }
-
-.web_view {
-	animation: animateProductBox 0.5s linear 0.1s 1;
-	animation-fill-mode: forwards;
+@media screen and (max-width:767px){
+	.mobile_view {
+		top: -66%;
+		right: 345px;
+		left: -30px;
+		z-index: 10;
+		border-radius: 0 20px 20px 0;
+		width: 275px;
+		animation: animateProductBoxMobile 0.5s linear 0.1s 1;
+		animation-fill-mode: forwards;
+	
+		@keyframes animateProductBoxMobile {
+			0% {
+				right: 325px;
+			}
+			100% {
+				right: 92px;
+			}
+		}
+	}
 }
 
 .row{

@@ -54,13 +54,11 @@ function ValidateHsModal({
 	postTradeEngine,
 	prevHs = '',
 	setPrevHs = () => {},
-	isMobile = false,
 }) {
 	const [status, setStatus] = useState(false);
 	const [isValidated, setIsValidated] = useState(false);
 	const [validateInProgress, setValidateInProgress] = useState(false);
 	const { verifyHsCode, checkLoading, inputValue } = useVerifyHscode();
-	console.log(inputValue, 'inputValue');
 	const hs = getDraftData?.lineItem?.[0]?.destinationHs;
 	const { validateHSCode, submitHandler } = validateFn({
 		verifyHsCode,
@@ -107,7 +105,7 @@ function ValidateHsModal({
 			className={styles.modal_container}
 			onClose={() => setShow(false)}
 			closable={!getDraftData?.headerResponse}
-			size={!isMobile ? 'md' : 'sm'}
+			size="md"
 		>
 			<Modal.Header title={renderTitle()} />
 			<Modal.Body>

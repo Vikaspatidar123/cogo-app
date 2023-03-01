@@ -9,14 +9,13 @@ function DotLine({
 	isLast = false,
 	isCompleted = false,
 	isOngoing = false,
-	isMobile = false,
 }) {
 	return (
 		<div className={styles.container}>
 			<div className={styles.row}>
 				{!isFirst && (
 					<div
-						className={cl`${styles.line} ${isMobile ? styles.is_mobile : styles.not_mobile} ${
+						className={cl`${styles.line} ${styles.is_mobile} ${styles.not_mobile} ${
 							isCompleted && styles.completed
 						} `}
 					/>
@@ -28,13 +27,13 @@ function DotLine({
 				</div>
 				{!isLast && (
 					<div
-						className={cl`${styles.line} ${isMobile ? styles.is_mobile : styles.not_mobile}
+						className={cl`${styles.line} ${styles.is_mobile} ${styles.not_mobile}
 						${isOngoing && styles.ongoing} ${isCompleted && styles.completed}`}
 					/>
 				)}
 			</div>
 			<div
-				className={cl`${styles.text} ${isMobile ? styles.is_mobile : styles.not_mobile} ${
+				className={cl`${styles.text} ${styles.is_mobile} ${styles.not_mobile} ${
 					isFirst && styles.firstElement
 				} ${isLast && styles.lastElement} ${isCompleted && styles.completed_txt} `}
 			>

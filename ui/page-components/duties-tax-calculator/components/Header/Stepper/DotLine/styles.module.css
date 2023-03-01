@@ -15,9 +15,7 @@
 	transition: background 0.3s ease-in;
 
 }
-.line.is_mobile{
-	width: 30px;
-}
+
 .line.not_mobile {
 	width: 100px;
 }
@@ -47,26 +45,40 @@
 	transition: color 0.3s ease-in;
 }
 
-.text.not_mobile.firstElement{
-	position: absolute;
-	left: -60px;
-}
-.text.not_mobile.lastElement{
-	position: absolute;
-	right: -60px;
-}
-.text.is_mobile{
-	font-size: 9px;
-	position: absolute;
-
-}
-.text.is_mobile.firstElement{
-	left: -30px;
-}
-.text.is_mobile.lastElement{
-	right: -30px;
-}
 
 .text.completed_txt{
 	color: #333;
+}
+
+
+@media screen and (min-width: 767px){
+	.text.not_mobile.firstElement{
+			position: absolute;
+			left: -60px;
+	}
+
+	.text.not_mobile.lastElement{
+		position: absolute;
+		right: -60px;
+	} 
+}
+
+@media screen and (max-width:767px){
+	.text.is_mobile{
+			font-size: 9px;
+			position: absolute;
+		
+		}
+
+	.text.is_mobile.firstElement{
+			left: -30px;
+	}
+
+	.text.is_mobile.lastElement{
+			right: -30px;
+	}
+
+	.line.is_mobile{
+		width: 30px;
+	}
 }

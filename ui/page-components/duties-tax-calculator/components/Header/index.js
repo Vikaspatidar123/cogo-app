@@ -8,7 +8,6 @@ function Header({
 	tradeEngineRespLength,
 	setStepper,
 	billId = '',
-	isMobile,
 }) {
 	return (
 		<div className={styles.container}>
@@ -21,7 +20,6 @@ function Header({
 				setStepper={setStepper}
 				tradeEngineRespLength={tradeEngineRespLength}
 				billId={billId}
-				isMobile={isMobile}
 			/>
 		</div>
 	);

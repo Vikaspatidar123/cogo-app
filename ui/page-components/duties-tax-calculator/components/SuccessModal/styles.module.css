@@ -34,7 +34,7 @@
 
 .header_container{
 	text-align: center;
-	padding: 20px;
+	padding: 10px;
 }
 
 .title {
@@ -60,7 +60,7 @@
 .charges {
 	background: #f9f9f9;
 	padding: 16px 40px;
-	margin-bottom: 28px;
+	margin-bottom: 25px;
 }
 
 .title_div{
@@ -136,7 +136,7 @@
 .btn_container{
 	display: flex;
 	justify-content: flex-end;
-	padding: 20px 33px 20px;
+	padding: 15px 33px 20px;
 }
 
 .tooltip_style{

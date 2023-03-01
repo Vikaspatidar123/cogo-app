@@ -25,14 +25,12 @@ function Transportation({
 	portDetails = {},
 	setPortDetails,
 	setPrevHs,
-	isMobile = false,
 	transportControl,
 }) {
 	const [rotate, setRotate] = useState(false);
 	const OriginPort = getField(fields[0]?.type);
 	const DestinationPort = getField(fields[1]?.type);
 	const [origin, destination] = watch(['originPort', 'destinationPort']);
-	// const { setMapPoints } = useSaasState();
 	const [mapPoints, setMapPoints] = useState();
 
 	const initialRef = useRef(true);
@@ -85,7 +83,7 @@ function Transportation({
 				<div>Transportation Details</div>
 			</div>
 			<form>
-				<div className={`${isMobile ? 'with-mobile' : 'without-mobile'} ${styles.tabs}`}>
+				<div className={`${styles.tabs}`}>
 					<div
 						className={`${transportMode === 'OCEAN' && 'selected'} ${styles.card}`}
 						role="presentation"

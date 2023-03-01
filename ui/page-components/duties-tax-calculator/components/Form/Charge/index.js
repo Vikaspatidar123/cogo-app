@@ -31,7 +31,6 @@ function Charge({
 	transportMode,
 	portDetails,
 	prevCurr,
-	isMobile = false,
 	chargeControls,
 }) {
 	const [showFreightModal, setShowFreightModal] = useState(false);
@@ -171,7 +170,6 @@ function Charge({
 					portDetails={portDetails}
 					setSpotCharge={setSpotCharge}
 					prevCurr={prevCurr}
-					isMobile={isMobile}
 				/>
 			)}
 		</div>

@@ -68,7 +68,7 @@ function IncotermCharges({
 									key={`${name}.${field.id}.value`}
 									name={`${name}.${index}.value`}
 									control={control}
-									placeholder="0"
+									placeholder="Enter value"
 									min={0}
 									type="number"
 									suffix={

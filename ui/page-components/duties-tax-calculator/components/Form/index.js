@@ -35,7 +35,6 @@ function Form({
 	quotaValue = 0,
 	postTradeEngine,
 	prioritySequence = 0,
-	isMobile = false,
 }) {
 	const { profile } = useSelector((s) => s);
 	const { organization = {} } = profile || {};
@@ -74,7 +73,7 @@ function Form({
 		watch: chargeWatch,
 		setValue: chargeSetValue,
 		control:chargeControls,
-	} = useForm();
+	} = useForm({ defaultValues: { incoterm: 'CIF' } });
 
 	const filter = { filters: { type: [transportMode === 'AIR' ? 'airport' : 'seaport'] } };
 
@@ -149,7 +148,6 @@ function Form({
 					portDetails={portDetails}
 					setPortDetails={setPortDetails}
 					setPrevHs={setPrevHs}
-					isMobile={isMobile}
 					transportControl={transportControl}
 				/>
 			)}
@@ -168,7 +166,6 @@ function Form({
 					portDetails={portDetails}
 					prevCurr={prevCurr}
 					setPrevCurr={setPrevCurr}
-					isMobile={isMobile}
 					isQuotaLeft={isQuotaLeft}
 					prevHs={prevHs}
 					setPrevHs={setPrevHs}
@@ -196,7 +193,6 @@ function Form({
 					transportMode={transportMode}
 					portDetails={portDetails}
 					prevCurr={prevCurr}
-					isMobile={isMobile}
 					chargeControls={chargeControls}
 				/>
 			)}
@@ -212,7 +208,6 @@ function Form({
 					postTradeEngine={postTradeEngine}
 					serviceRateData={serviceRateData}
 					quotaValue={quotaValue}
-					isMobile={isMobile}
 				/>
 			)}
 		</div>

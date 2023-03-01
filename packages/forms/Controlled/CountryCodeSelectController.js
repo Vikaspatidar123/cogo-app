@@ -17,12 +17,13 @@ function CountryCodeSelectController({
 			defaultValue={value}
 			rules={rest.rules}
 			shouldUnregister={rest.shouldUnregister}
-			render={({ fields: { onChange, value: newValue } }) => (
+			render={({ fields: { onChange, onBlur, value: newValue } }) => (
 				<SelectCountryCode
 					{...rest}
 					key={itemKey}
 					onChange={onChange}
 					value={newValue}
+					onBlur={onBlur}
 				/>
 			)}
 		/>

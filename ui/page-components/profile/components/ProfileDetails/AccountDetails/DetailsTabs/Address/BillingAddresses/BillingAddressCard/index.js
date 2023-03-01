@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable max-len */
 import { Modal, Button } from '@cogoport/components';
 import { IcMDocument, IcMEdit } from '@cogoport/icons-react';
 import { useState } from 'react';
@@ -33,6 +35,7 @@ function AddressCard({
 		if (url?.includes('http://') || url?.includes('https://')) {
 			modifiedUrl = url;
 		}
+		// eslint-disable-next-line no-undef
 		window.open(modifiedUrl, '_blank');
 	};
 
@@ -44,7 +47,7 @@ function AddressCard({
 		<div className={styles.container}>
 			<div
 				className={styles.edit_icon_container}
-				role="prensentation"
+				role="presentation"
 				onClick={() => setAddressIdxToUpdate(index)}
 			>
 				<IcMEdit height={16} width={16} />
@@ -97,6 +100,7 @@ function AddressCard({
 							<div className={styles.flex}>
 								<div
 									className={styles.link_text}
+									role="presentation"
 									onClick={() => handleOpenDocument(address.tax_number_document_url)}
 								>
 									View
@@ -110,18 +114,18 @@ function AddressCard({
 			</div>
 
 			<div className={styles.flex}>
-				{!isMobile ? (
-					<div className={styles.sub_container}>
-						<div className={styles.label_text}>
-							Is your address SEZ?
-						</div>
-						<div className={styles.value_text}>
-							{address.is_sez
-								? 'Yes'
-								: 'No'}
-						</div>
+				{/* {!isMobile ? ( */}
+				<div className={styles.mobile_sub_container}>
+					<div className={styles.label_text}>
+						Is your address SEZ?
 					</div>
-				) : null}
+					<div className={styles.value_text}>
+						{address.is_sez
+							? 'Yes'
+							: 'No'}
+					</div>
+				</div>
+				{/* ) : null} */}
 
 				{address.sez_proof ? (
 					<div className={styles.address_container}>
@@ -135,7 +139,11 @@ function AddressCard({
 							</div>
 
 							<div className={styles.flex}>
-								<div className={styles.link_text} onClick={() => handleOpenDocument(address.sez_proof)}>
+								<div
+									className={styles.link_text}
+									onClick={() => handleOpenDocument(address.sez_proof)}
+									role="presentation"
+								>
 									view
 								</div>
 							</div>
@@ -153,6 +161,7 @@ function AddressCard({
 								setShowPocModal('edit');
 								setPocToUpdate(firstPoc);
 							}}
+							role="presentation"
 						>
 							{/* <IcMEdit style={{ width: 12, height: 12 }} /> */}
 						</div>
@@ -213,6 +222,7 @@ function AddressCard({
 									setShowPocModal('edit');
 									setPocToUpdate(poc_details);
 								}}
+								role="presentation"
 							>
 								<IcMEdit style={{ width: 12, height: 12 }} />
 							</div>
@@ -265,7 +275,11 @@ function AddressCard({
 
 			<div className={styles.poc_footer}>
 				{organization_pocs.length > 1 ? (
-					<div className={styles.link_text} onClick={() => setShowPocDetails(!showPocDetails)}>
+					<div
+						className={styles.link_text}
+						role="presentation"
+						onClick={() => setShowPocDetails(!showPocDetails)}
+					>
 						{showPocDetails
 							? 'linkTexts'
 

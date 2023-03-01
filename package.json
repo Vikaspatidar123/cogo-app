@@ -7,8 +7,8 @@
   "author": "Prashant Paddune <padadunep@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "dev_app": "node scripts/pre-build && next dev",
-    "deploy_app": "pnpm run prod:build && (pm2 start pm2.config.js)",
+    "dev": "node scripts/pre-build && next dev",
+    "deploy": "pnpm run prod:build && (pm2 start pm2.config.js)",
     "prod:build": "pnpm run pre-build && pnpm run build",
     "pre-build": "NODE_ENV=production",
     "build": "NODE_ENV=production node scripts/pre-build && NODE_ENV=production next build",
@@ -18,16 +18,15 @@
     "preinstall": "npx only-allow pnpm"
   },
   "dependencies": {
-    "@cogoport/components": "^1.0.338",
+    "@cogoport/components": "^1.0.347",
     "@cogoport/icons-react": "^1.0.58",
     "@cogoport/maps": "^1.0.2",
     "@cogoport/utils": "^1.2.4",
-    "@reduxjs/toolkit": "^1.9.3",
     "axios": "^1.3.4",
     "axios-hooks": "^4.0.0",
     "i18next": "^22.4.10",
-    "next": "12.3.1",
-    "next-i18next": "^13.1.5",
+    "next": "13.2.1",
+    "next-i18next": "^13.1.6",
     "nprogress": "^0.2.0",
     "qs": "^6.11.0",
     "react": "18.2.0",
@@ -36,21 +35,19 @@
     "react-hook-form": "^7.43.2",
     "react-i18next": "^12.2.0",
     "react-redux": "^8.0.5",
-    "redux": "^4.2.1"
+    "redux": "^4.2.1",
+    "redux-thunk": "^2.4.2"
   },
   "devDependencies": {
     "@cogoport/eslint-config": "^1.1.0",
     "@cogoport/stylelint-config": "^1.0.3",
     "@svgr/webpack": "^6.5.1",
-    "dotenv": "^16.0.3",
-    "eslint": "8.25.0",
-    "eslint-config-next": "12.3.1",
+    "eslint": "8.35.0",
     "fs-extra": "^11.1.0",
-    "json-loader": "^0.5.7",
     "postcss": "^8.4.21",
     "postcss-flexbugs-fixes": "^5.0.2",
     "postcss-nested": "^6.0.1",
     "postcss-preset-env": "^8.0.1",
-    "stylelint": "^14.16.1"
+    "stylelint": "^15.2.0"
   }
 }

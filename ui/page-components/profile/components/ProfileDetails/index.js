@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import getUser from '../../hooks/getUser';
 
 import AccountDetails from './AccountDetails';
@@ -16,7 +17,8 @@ function ProfileDetails() {
 	const { activeTab } = query || {};
 	return (
 		<>
-			{(!activeTab || !isMobile) && <ProfileProgress />}
+			{/* {(!activeTab || !isMobile) && <ProfileProgress />} */}
+			<ProfileProgress />
 
 			{/* {kyc_status.includes('pending') && <KycWidget kyc_status={kyc_status} />} */}
 

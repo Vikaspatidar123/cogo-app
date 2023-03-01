@@ -31,7 +31,7 @@ function IncotermCharges({
 		MAPPING[incoterm]?.forEach((ele) => {
 			append({
 				name  : CHARGES[ele],
-				value : 0,
+				value : '',
 			});
 		});
 	};

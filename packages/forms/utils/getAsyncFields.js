@@ -64,5 +64,9 @@ function asyncFieldsHsCodeCountries() {
 	};
 }
 export {
-	asyncFieldsLocations, asyncFieldsLocations2, asyncFieldsPartner, asyncFieldsPartnerRoles, asyncFieldsHsCodeCountries,
+	asyncFieldsLocations,
+	asyncFieldsLocations2,
+	asyncFieldsPartner,
+	asyncFieldsPartnerRoles,
+	asyncFieldsHsCodeCountries,
 };

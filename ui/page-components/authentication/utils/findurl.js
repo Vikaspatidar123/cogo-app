@@ -6,9 +6,7 @@ const findurl = async ({
 	item, isServer, res, org_id, branch_id, redirectPath,
 }) => {
 	const configs = redirections(item);
-	console.log(redirectPath, 'redirectPath');
 	if (redirectPath) {
-		console.log(redirectPath, 'redirectPathredirectPath');
 		window.location.href = redirectPath;
 	}
 	if (configs?.href?.includes('/v2')) {

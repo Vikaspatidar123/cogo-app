@@ -6,7 +6,7 @@ import styles from './styles.module.css';
 
 import { useForm } from '@/packages/forms';
 import FormItem from '@/ui/commons/components/FormItem';
-import Element from '@/ui/page-components/hs-code/common/Item/Element';
+// import Element from '@/ui/page-components/hs-code/common/Item/Element';
 
 function Duties({
 	incoterm,
@@ -35,12 +35,12 @@ function Duties({
 				{(controls || []).map((item) => console.log(item, 'item')(
 					<div className={styles.row} style={{ margin: 0 }}>
 						<FormItem label={item?.label} className={item?.name}>
-							<Element
+							{/* <Element
 								className="element"
 								{...fields[item.name]}
 								placeholder={item.placeholder}
 								style={{ width: '100%' }}
-							/>
+							/> */}
 						</FormItem>
 					</div>,
 				))}

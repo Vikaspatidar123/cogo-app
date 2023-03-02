@@ -47,8 +47,6 @@ function ActiveFreightRateTrend() {
 
 	const renderSkeleton = () => (
 		<div className={styles.card}>
-			{/* <Skeleton count={3} />
-				<Skeleton count={3} /> */}
 			<Placeholder height="370px" width="1250px" margin="0px 0px 20px 0px">
 				<svg width="76" height="76" viewBox="0 0 76 76" fill="none" xmlns="http://www.w3.org/2000/svg">
 					<path

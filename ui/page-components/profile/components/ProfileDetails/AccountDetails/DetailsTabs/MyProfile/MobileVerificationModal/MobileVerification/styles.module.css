@@ -1,25 +1,25 @@
 .button = {
-  width: 100%;
-  margin-top: 16px;
-  padding: 8px;
+	width: 100%;
+	padding: 8px;
+	margin-top: 16px;
 }
 
 .otp_container {
-  margin: 20px 0;
+	margin: 20px 0;
 }
 
 .lable {
-  margin: 0px 0px 8px;
-  font-weight: 400;
-  font-size: 14px;
-  color: rgb(44, 62, 80);
+	margin: 0 0 8px;
+	font-size: 14px;
+	font-weight: 400;
+	color: rgb(44 62 80);
 }
 
 .errors {
-  color: red;
+	color: red;
 }
 
 .button {
-  width: 573px !important;
-  height: 40px !important;
+	width: 573px !important;
+	height: 40px !important;
 }

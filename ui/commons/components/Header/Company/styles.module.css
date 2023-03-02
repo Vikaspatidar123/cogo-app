@@ -1,11 +1,10 @@
-.a{
-    cursor: pointer;
+.a {
 	height: 24px;
+	cursor: pointer;
 }
 
-.container_flex{
-    display: flex;
+.container_flex {
+	display: flex;
 	align-items: center;
-    cursor: pointer;
-    
+	cursor: pointer;
 }

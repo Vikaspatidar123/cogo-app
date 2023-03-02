@@ -1,9 +1,6 @@
-
-.toggle_container{
+.toggle_container {
 	display: flex;
 	margin-bottom: 12px;
-
-	
 }
 
 .core-ui-toggle-control-container {

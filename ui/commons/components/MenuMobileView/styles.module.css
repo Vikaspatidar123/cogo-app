@@ -1,69 +1,72 @@
 .container {
-  display: flex;
-  flex-direction: column;
-  padding: 8px;
-  background: #fff;
-  margin-top: 8px;
+	display: flex;
+	flex-direction: column;
+	padding: 8px;
+	margin-top: 8px;
+	background: #fff;
 
-  @media (min-width: 768px) {
-    display: none;
-  }
+	@media (min-width: 768px) {
+		display: none;
+	}
 }
+
 .header_text {
-  color: #828282;
-  font-weight: 400;
-  font-size: 16px;
-  padding: 16px 0px 10px 5px;
+	padding: 16px 0 10px 5px;
+	font-size: 16px;
+	font-weight: 400;
+	color: #828282;
 }
 
 .profile_container {
-  padding: 0px 10px 10px 10px;
-  background: #f5fafe;
-  border-radius: 4px;
+	padding: 0 10px 10px;
+	background: #f5fafe;
+	border-radius: 4px;
 }
+
 .tools_container {
-  color: #828282;
-  font-weight: 400;
-  font-size: 16px;
-  margin-top: 8px;
+	margin-top: 8px;
+	font-size: 16px;
+	font-weight: 400;
+	color: #828282;
 }
 
 .border_line {
-  border: 1px solid #e0e0e0;
-  margin: 16px 0px 6px 0px;
+	margin: 16px 0 6px;
+	border: 1px solid #e0e0e0;
 }
 
 .styled_button {
-  display: flex;
-  background: #fff;
-  color: #828282;
-  font-weight: 400;
-  font-size: 16px;
-  margin-top: 8px;
-  font-size: 10px;
-  justify-content: space-between;
+	display: flex;
+	justify-content: space-between;
+	margin-top: 8px;
+	font-size: 16px;
+	font-size: 10px;
+	font-weight: 400;
+	color: #828282;
+	background: #fff;
 }
 
 .button_text {
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 20px;
-  color: #828282;
-  padding-left: 12px;
+	padding-left: 12px;
+	font-size: 16px;
+	font-weight: 400;
+	line-height: 20px;
+	color: #828282;
 }
 
 .arrow_icon_container {
-  font-size: 15px;
+	font-size: 15px;
 }
+
 .line {
-  border-bottom: 1px solid #e0e0e0;
-  margin: 16px 0px 6px 0px;
+	margin: 16px 0 6px;
+	border-bottom: 1px solid #e0e0e0;
 }
 
 .active {
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 20px;
-  color: red;
-  padding-left: 12px;
+	padding-left: 12px;
+	font-size: 16px;
+	font-weight: 400;
+	line-height: 20px;
+	color: red;
 }

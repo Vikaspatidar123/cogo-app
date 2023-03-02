@@ -1,7 +1,7 @@
 .menu {
-    display: flex;
+	display: flex;
 	align-items: center;
-   
+
 	.core-ui-tooltip-root {
 		height: 100%;
 	}
@@ -11,85 +11,75 @@
 	}
 }
 
-
-.tooltip_container{
-    display: flex;
+.tooltip_container {
+	display: flex;
 	align-items: center;
-    
-
 }
 
 .tippy_box {
+	z-index: 999;
 	max-width: 700px !important;
+	background: white;
 	border: unset !important;
 	border-radius: 8px !important;
-	z-index: 999;
-    box-shadow: 0px 1px 6px rgb(169 188 218 / 65%)!important;;
-	background: white;
+	box-shadow: 0 1px 6px rgb(169 188 218 / 65%) !important;
 }
 
-.text{
-    height: 100%;
+.text {
+	position: relative;
 	display: flex;
 	align-items: center;
-
-	cursor: pointer;
-	border-bottom: 2px solid transparent;
-
+	height: 100%;
+	padding: 8px 0;
+	margin: 0 12px;
 	font-size: 14px;
 	line-height: 20px;
 	color: #828282;
-
-	padding: 8px 0;
-	margin: 0 12px;
-	position: relative;
-	
-
+	cursor: pointer;
+	border-bottom: 2px solid transparent;
 }
+
 .text:hover {
-	border-bottom: 2.5px solid #EE3425;
 	line-height: 37px;
+	border-bottom: 2.5px solid #ee3425;
 }
+
 /* .text:.no-hover {
 	border-color: transparent;
 } */
-.a{
-    text-decoration: none;
-
-	height: 100%;
+.a {
+	position: relative;
 	display: flex;
 	align-items: center;
-
-	cursor: pointer;
-	border-bottom: 2px solid transparent;
-
+	height: 100%;
+	padding: 8px 0;
+	margin: 0 12px;
 	font-size: 14px;
 	line-height: 20px;
 	color: #828282;
-
-	padding: 8px 0;
-	margin: 0 12px;
-	position: relative;
-
+	text-decoration: none;
+	cursor: pointer;
+	border-bottom: 2px solid transparent;
 }
+
 .a:hover {
-	border-bottom: 2.5px solid #EE3425;
 	line-height: 37px;
-
-	
+	border-bottom: 2.5px solid #ee3425;
 }
+
 .a:no-hover {
 	border-color: transparent;
 }
+
 .active {
-	font-weight: 600;
-	color: #EE3425;
-	height: 100%;
+	position: relative;
 	display: flex;
 	align-items: center;
-	border-bottom: 2.5px solid  #EE3425;
-	line-height: 37px;
+	height: 100%;
 	padding: 8px 0;
 	margin: 0 12px;
-	position: relative;
+	font-weight: 600;
+	line-height: 37px;
+	color: #ee3425;
+	border-bottom: 2.5px solid  #ee3425;
 }

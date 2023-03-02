@@ -6,18 +6,12 @@ import AddEditPocDetails from '../../AddEditPocDetails';
 
 import styles from './styles.module.css';
 
-import { useSelector } from '@/packages/store';
-
 function OtherAddressCard({
 	other_address_data = {},
 	setOtherAddressObjToUpdate = () => { },
 	// getOrganizationOtherAddresses,
 	index = '',
 }) {
-	const {
-		general: { isMobile = false },
-	} = useSelector((state) => state);
-
 	const [showPocDetails, setShowPocDetails] = useState(false);
 
 	const [showPocModal, setShowPocModal] = useState(null);

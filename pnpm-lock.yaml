@@ -1,11 +1,11 @@
 lockfileVersion: 5.4
 
 specifiers:
-  '@cogoport/components': ^1.0.347
+  '@cogoport/components': ^1.0.353
   '@cogoport/eslint-config': ^1.1.0
   '@cogoport/icons-react': ^1.0.58
   '@cogoport/stylelint-config': ^1.0.3
-  '@cogoport/utils': ^1.2.4
+  '@cogoport/utils': ^1.2.6
   '@svgr/webpack': ^6.5.1
   axios: ^1.3.4
   axios-hooks: ^4.0.0
@@ -31,9 +31,9 @@ specifiers:
   stylelint: ^15.2.0
 
 dependencies:
-  '@cogoport/components': 1.0.347_cyxdlkncyjzqtklzwrmvnywxma
+  '@cogoport/components': 1.0.354_cyxdlkncyjzqtklzwrmvnywxma
   '@cogoport/icons-react': 1.0.58_biqbaboplfbrettd7655fr4n2y
-  '@cogoport/utils': 1.2.4
+  '@cogoport/utils': 1.2.6
   axios: 1.3.4
   axios-hooks: 4.0.0_axios@1.3.4+react@18.2.0
   i18next: 22.4.10
@@ -1342,8 +1342,8 @@ packages:
       to-fast-properties: 2.0.0
     dev: true
 
-  /@cogoport/components/1.0.347_cyxdlkncyjzqtklzwrmvnywxma:
-    resolution: {integrity: sha512-B1VsI+VE90ruTXn2aIKMK2XSuF17bl3BBpr6ifziDDuagU750PHVnDa+pA5eWMofRxOOD9VaB9K6k85Jqk+Xvg==}
+  /@cogoport/components/1.0.354_cyxdlkncyjzqtklzwrmvnywxma:
+    resolution: {integrity: sha512-p2gWqKFht3shotu+T1j3XkIOyaUNe4AISd1C8UF9yK3lL43OhsMKNgK1pmPFp87pi8tRtw1MV6vEF9eoyIK1JQ==}
     peerDependencies:
       '@cogoport/icons-react': ^1.0.23
       react: ^18.2.0
@@ -1426,8 +1426,8 @@ packages:
       stylelint-config-standard: 28.0.0_stylelint@15.2.0
     dev: true
 
-  /@cogoport/utils/1.2.4:
-    resolution: {integrity: sha512-3QPALpowJRTWjBgCt0BB1cwF9kBs8Qfd14oMZUYYQrFby1T1iiljCksq98X+Fk9SeI86uk/eCQnUu5Js6a7XrQ==}
+  /@cogoport/utils/1.2.6:
+    resolution: {integrity: sha512-H5zCe0bdcKGYZKThZw2sYZwdcWeqgJmry82AKq4LVMllysKZxtCyJjIhrvofNqwu1cmZFPPMyNXjp4laqC6qCw==}
     dev: false
 
   /@csstools/cascade-layer-name-parser/1.0.1_ppok7cytzjc65mcyxmtit3wdyi:
@@ -4475,6 +4475,7 @@ packages:
     resolution: {integrity: sha512-l7bvmSeIwX5lp07WtIiP9u2ytZMv7jIeB8iacR28PuUEFG5j0HGAPnMqyG5kbZNBG2H7tRsrQ4HCjuMOPnANZw==}
     engines: {node: '>=12.22.0'}
     hasBin: true
+    requiresBuild: true
     peerDependencies:
       fibers: '>= 3.1.0'
       node-sass: ^6.0.0 || ^7.0.0

@@ -17,8 +17,6 @@ const useFetchTrackers = () => {
 		method : 'get',
 	}, { manual: true });
 
-	console.log('pagination', pagination);
-
 	const fetchTrackers = async () => {
 		try {
 			const res = await trigger({

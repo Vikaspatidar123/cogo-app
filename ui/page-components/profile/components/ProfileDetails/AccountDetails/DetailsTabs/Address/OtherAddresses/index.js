@@ -9,14 +9,7 @@ import OtherAddressCard from './OtherAddressCard';
 import styles from './styles.module.css';
 import getOtherAddressOptions from './utils/get-other-address-options';
 
-import useRequest from '@/packages/request';
-import { useSelector } from '@/packages/store';
-
 function OtherAddresses({ addressesData, addressLoading }) {
-	const {
-		general: { isMobile },
-	} = useSelector((state) => state);
-
 	const OTHER_ADDRESSES_MAPPING = getOtherAddressOptions();
 
 	const [editOtherAddresKey, setEditOtherAddressKey] = useState(null);
@@ -86,20 +79,6 @@ function OtherAddresses({ addressesData, addressLoading }) {
 								<div className={styles.text}>
 									{address_key.label}
 								</div>
-								{/* {!isMobile ? (
-									<div> */}
-								{/* {`${filterAddress(address_key)}
-										${filterAddress(address_key) ? 'ADDRESS(S) ADDED' : 'NO ADDRESS(S) ADDED'}`} */}
-								{/* </div>
-								)
-									: (
-										<div className={styles.text} style={{ marginLeft: 4 }}>
-											(
-											{filterAddress(address_key.api_property_key).length || 0}
-											)
-
-										</div>
-									)} */}
 							</div>
 							<div className={styles.flex}>
 								<div className={styles.link_text} onClick={() => setEditOtherAddressKey(address_key)}>

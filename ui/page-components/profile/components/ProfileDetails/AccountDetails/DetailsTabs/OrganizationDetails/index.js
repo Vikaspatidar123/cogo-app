@@ -7,11 +7,8 @@ import useOrganizationDetails from './hooks/useOrganizationDetails';
 import LoadingState from './LoadingState';
 import styles from './styles.module.css';
 
-// import SlidingTabs from '@/commons/components/UI/SlidingTabs';
-
 function OrganizationDetails() {
 	const {
-		// isMobile,
 		loading = false,
 		organizationData = {},
 		setShowEditOrganizationDetails = () => { },
@@ -156,42 +153,11 @@ function OrganizationDetails() {
 
 	return (
 		<>
-			{/* {isMobile && ( */}
+
 			<MobileHeader
 				heading="Company Details"
 				onClickBackButton={onClickBackButton}
 			/>
-			{/* )} */}
-
-			{/* {is_importer_exporter && is_service_provider && (
-				<div className={styles.toggle_container}>
-					<SlidingTabs
-						options={[
-							{
-								label: t(
-									'profile:accountDetails.tabOptions.organization.toggle.1',
-								),
-								value: 'importer_exporter',
-							},
-							{
-								label: t(
-									'profile:accountDetails.tabOptions.organization.toggle.2',
-								),
-								value: 'service_provider',
-							},
-						]}
-						activeTab={organizationType}
-						setActiveTab={setOrganizationType}
-					/>
-
-					{isMobile && !showEditOrganizationDetails ? (
-						<IcMEdit
-							onClick={() => setShowEditOrganizationDetails(true)}
-							style={{ width: 16, height: 16, cursor: 'pointer' }}
-						/>
-					) : null}
-				</div>
-			)} */}
 
 			{renderOrganizationDetails()}
 		</>

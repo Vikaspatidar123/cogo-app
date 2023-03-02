@@ -5,34 +5,23 @@ import { IcMAirSchedules } from '@cogoport/icons-react';
 import styles from './styles.module.css';
 
 import { useRouter } from '@/packages/next';
-import { useSelector } from '@/packages/store';
 
-function SubMenuItem({ item, unPrefixedPath, getFindUrl }) {
+function SubMenuItem({ item, unPrefixedPath }) {
 	const { push } = useRouter();
 	const {
-		href = '', title = '', description = '', icon = '', as = '',
+		href = '',
+		title = '',
+		description = '',
+		icon = '',
+		as = '',
 	} = item || {};
-	const url = getFindUrl(href);
-	const { profile } = useSelector((s) => s);
-	const { organization, branch } = profile || {};
-	const onSubmit = () => {
-		if (href?.includes('/v2')) {
-			const newHref = href?.replace('/v2', '');
-			const newAs = as?.replace('/v2', '');
-			push(newHref, newAs);
-		} else {
-			window.location.href = `/app/${organization?.id}/${branch?.id}/importer-exporter/${href || as}`;
-		}
-	};
 
 	return (
 		<div
-			onClick={() => onSubmit()}
-			className={unPrefixedPath === url ? styles.active : styles.container}
+			onClick={() => push(href, as)}
+			className={unPrefixedPath === href ? styles.active : styles.container}
 		>
-			{icon && (
-				icon || <IcMAirSchedules width={50} height={50} fill="red" />
-			)}
+			{icon && (icon || <IcMAirSchedules width={50} height={50} fill="red" />)}
 
 			{!icon && <div style={{ width: 45, height: 45 }} />}
 			<div className={styles.main}>

@@ -3,28 +3,16 @@
 import styles from '../styles.module.css';
 
 import { useRouter } from '@/packages/next';
-import { useSelector } from '@/packages/store';
 
-function NavBarItem({ item, unPrefixedPath, getFindUrl }) {
-	const url = getFindUrl(item.href);
+function NavBarItem({ item, unPrefixedPath }) {
+	const { href, as } = item || {};
 	const { push } = useRouter();
-	const { profile } = useSelector((s) => s);
-	const { organization, branch } = profile || {};
-	const getRedirectUrl = () => {
-		if (url?.includes('/v2')) {
-			const newHref = url?.replace('/v2', '');
-			const newAs = url?.replace('/v2', '');
-			push(newHref, newAs);
-		} else {
-			window.location.href = `/app/${organization?.id}/${branch?.id}/importer-exporter/${url}`;
-		}
-	};
+
 	return (
-		<div
-			role="prensentation"
-			onClick={() => getRedirectUrl()}
-		>
-			<div className={unPrefixedPath === url ? styles.active : styles.text}>{item.title}</div>
+		<div role="prensentation" onClick={() => push(href, as)}>
+			<div className={unPrefixedPath === href ? styles.active : styles.text}>
+				{item.title}
+			</div>
 		</div>
 	);
 }

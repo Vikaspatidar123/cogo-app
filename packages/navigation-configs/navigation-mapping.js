@@ -8,26 +8,22 @@
 // mobileIcon is used to show icon in mobile navigation only
 // isSubNavs is used to show sub navigations
 
-import {
-	IcMQuotations,
-} from '@cogoport/icons-react';
+import { IcMQuotations } from '@cogoport/icons-react';
 
 const navigationMappings = {
 	app_dashboard: {
 		key        : 'app_dashboard',
 		title      : 'Dashboard',
-		href       : '/v2/dashboard',
-		as         : '/v2/dashboard',
+		href       : '/dashboard',
+		as         : '/dashboard',
 		showInNav  : true,
 		mobileIcon : <IcMQuotations width={20} height={20} />,
-
 	},
 
 	app_get_started: {
 		key   : 'app_get_started',
 		title : 'Get Started',
 		theme : 'green',
-
 	},
 
 	app_kyc: {
@@ -37,17 +33,14 @@ const navigationMappings = {
 		as        : '/kyc',
 		type      : 'link',
 		showInNav : false,
-
 	},
 	app_settings: {
 		key           : 'app_settings',
 		title         : 'Settings',
-		href          : '/v2/settings',
-		as            : '/v2/settings',
+		href          : '/settings',
+		as            : '/settings',
 		type          : 'link',
 		showMobileNav : true,
-
 	},
-
 };
 export default navigationMappings;

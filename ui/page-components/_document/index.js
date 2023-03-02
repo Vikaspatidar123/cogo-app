@@ -12,25 +12,25 @@ export default function Document() {
 					href="https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap"
 					rel="stylesheet"
 				/>
-				<link rel="shortcut icon" href="/v2/favicon-32x32.png" />
+				<link rel="shortcut icon" href="/favicon-32x32.png" />
 				<link
 					rel="icon"
 					type="image/png"
 					sizes="32x32"
-					href="/v2/favicon-32x32.png"
+					href="/favicon-32x32.png"
 				/>
 				<link
 					rel="icon"
 					type="image/png"
 					sizes="16x16"
-					href="/v2/favicon-16x16.png"
+					href="/favicon-16x16.png"
 				/>
 				{/* <meta
 					name="viewport"
 					content="width=device-width, initial-scale=1.0"
 				/>
 				<meta name="theme-color" content="#ffffff" /> */}
-				<link rel="manifest" href="/v2/manifest.json" />
+				<link rel="manifest" href="/manifest.json" />
 			</Head>
 			<body>
 				<Main />

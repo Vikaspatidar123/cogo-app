@@ -3,7 +3,7 @@
 module.exports = {
 	reactStrictMode : false,
 	swcMinify       : true,
-	basePath        : '/v2',
+	// basePath        : '/v2',
 	webpack(config) {
 		const newConfig = { ...config };
 		newConfig.module.rules.push({

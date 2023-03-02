@@ -1,7 +1,7 @@
 lockfileVersion: 5.4
 
 specifiers:
-  '@cogoport/components': ^1.0.338
+  '@cogoport/components': ^1.0.347
   '@cogoport/eslint-config': ^1.1.0
   '@cogoport/icons-react': ^1.0.58
   '@cogoport/stylelint-config': ^1.0.3
@@ -34,7 +34,7 @@ specifiers:
   stylelint: ^14.16.1
 
 dependencies:
-  '@cogoport/components': 1.0.338_cyxdlkncyjzqtklzwrmvnywxma
+  '@cogoport/components': 1.0.347_cyxdlkncyjzqtklzwrmvnywxma
   '@cogoport/icons-react': 1.0.58_biqbaboplfbrettd7655fr4n2y
   '@cogoport/utils': 1.2.4
   '@reduxjs/toolkit': 1.9.3_k4ae6lp43ej6mezo3ztvx6pykq
@@ -1348,8 +1348,8 @@ packages:
       to-fast-properties: 2.0.0
     dev: true
 
-  /@cogoport/components/1.0.338_cyxdlkncyjzqtklzwrmvnywxma:
-    resolution: {integrity: sha512-p+xDU1LCzlB0ZWqfsMh9s8gAM0BIBde4sZCBH6/AzFItW4A5kwdL56zD335pZ1Q3D9Iw9CBdZQWlX/CkmMCv6g==}
+  /@cogoport/components/1.0.347_cyxdlkncyjzqtklzwrmvnywxma:
+    resolution: {integrity: sha512-B1VsI+VE90ruTXn2aIKMK2XSuF17bl3BBpr6ifziDDuagU750PHVnDa+pA5eWMofRxOOD9VaB9K6k85Jqk+Xvg==}
     peerDependencies:
       '@cogoport/icons-react': ^1.0.23
       react: ^18.2.0

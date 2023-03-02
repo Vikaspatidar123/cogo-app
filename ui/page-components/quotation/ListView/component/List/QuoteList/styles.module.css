@@ -1,0 +1,28 @@
+.table_container{
+    margin: 13px 0;    
+}
+
+.card_row{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    
+}
+
+.col{
+    text-align: center;
+    padding: 10px 16px;
+
+    &.card_header_col{
+        font-size: 15px;
+        font-weight: 600;
+    }
+}
+
+.sorting_icon{
+    margin-left: 5px;
+    svg{
+        vertical-align: middle;
+    }
+}

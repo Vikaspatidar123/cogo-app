@@ -10,6 +10,8 @@
 
 import {
 	IcMQuotations,
+	IcMCustoms,
+	IcMBusinessDashboard,
 } from '@cogoport/icons-react';
 
 const navigationMappings = {
@@ -47,6 +49,42 @@ const navigationMappings = {
 		type          : 'link',
 		showMobileNav : true,
 
+	},
+	saas_planning: {
+		key       : 'saas_planning',
+		title     : 'Planning',
+		showInNav : true,
+		isSubNavs : true,
+		options   : [
+			{
+				key         : 'saas_planning-quotation',
+				title       : 'Quick Quotations',
+				// eslint-disable-next-line max-len
+				description : 'The meaning of QUOTATION is something that is quoted; especially : a passage ',
+				icon        : <IcMQuotations width={30} height={30} />,
+				type        : 'link',
+				href        : '/v2/saas/planning/quickquotation/viewlist',
+				as          : '/v2/saas/planning/quickquotation/viewlist',
+			},
+			{
+				key   : 'saas_planning-product_inventory',
+				title : 'Product Catalog',
+				icon  : <IcMBusinessDashboard width={30} height={30} />,
+				type  : 'link',
+				href  : '/saas/product-inventory',
+				as    : '/saas/product-inventory',
+
+			},
+			{
+				key   : 'saas_planning-trade_partner',
+				title : 'Trade Partner',
+				icon  : <IcMCustoms width={30} height={30} />,
+				type  : 'link',
+				href  : '/saas/trade-partner',
+				as    : '/saas/trade-partner',
+
+			},
+		],
 	},
 
 };

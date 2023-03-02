@@ -1,0 +1,33 @@
+.container{
+    display: flex;
+	align-items: flex-start;
+	padding: 12px;
+    border-radius: 8px;
+	width: 200px;
+    margin-right: 20px;
+    background-color: #E5EEF8;
+}
+
+.iconContainer{
+    border-radius: 7px;
+	padding: 3px;
+    background-color: #AFC8E4;
+
+    svg{
+        vertical-align: top;
+    }
+}
+
+.info{
+    margin-left: 20px;
+    font-weight: 600;
+}
+
+.text{
+    margin: 0;
+}
+
+.value{
+    font-size: 20px;
+
+}

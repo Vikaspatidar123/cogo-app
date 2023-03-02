@@ -1,0 +1,31 @@
+.container{
+    display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 100%;
+
+	@media screen and (max-width: 767px) {
+		width: 80%;
+	}
+}
+
+.text{
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+
+	&.info{
+		max-width: 130px;
+		font-size: 11px;
+		color: #828282;
+		margin-bottom: 1px;
+	}
+
+	&.name{
+		max-width: 200px;
+		font-size: 14px;
+		line-height: 16px;
+		font-weight: 600;
+		color: black;
+	}
+}

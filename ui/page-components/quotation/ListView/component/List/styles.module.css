@@ -1,0 +1,27 @@
+.container{
+
+}
+
+.row{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.tab_panel{
+    .text{
+        margin-left: 3px
+    }
+
+    svg{
+        vertical-align: top;
+    }
+}
+
+.input_box{
+    width: 15%;
+
+    svg{
+        margin-right: 8px;
+    }
+}

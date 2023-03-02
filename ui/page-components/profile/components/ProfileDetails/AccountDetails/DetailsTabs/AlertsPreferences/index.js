@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import MobileHeader from '../../../../MobileHeader';
 
 import Categories from './Categories';
@@ -19,12 +20,12 @@ function AlertsPreferences() {
 
 	return (
 		<>
-			{isMobile && (
-				<MobileHeader
-					heading="Alerts & Preferences"
-					onClickBackButton={onClickBackButton}
-				/>
-			)}
+			{/* {isMobile && ( */}
+			<MobileHeader
+				heading="Alerts & Preferences"
+				onClickBackButton={onClickBackButton}
+			/>
+			{/* )} */}
 
 			<div className={styles.main_container}>
 				<div className={styles.header_container}>

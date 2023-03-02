@@ -141,6 +141,17 @@
 .flex {
   display: flex;
   justify-content: flex-end;
+
+  svg {
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+    margin-right: 12px;
+  }
+
+  @media (min-width: 768px) {
+    display: none;
+  }
 }
 
 .icon {

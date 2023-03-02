@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable max-len */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import { Modal } from '@cogoport/components';
@@ -14,7 +15,7 @@ import MobileVerificationModal from './MobileVerificationModal';
 import ResetPassword from './ResetPassword';
 import styles from './styles.module.css';
 
-import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals.json';
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 // import formatDate from '@/temp/utils/formatDate';
 
 function MyProfile() {
@@ -54,25 +55,17 @@ function MyProfile() {
 
 	return (
 		<>
-			{isMobile && (
-				<MobileHeader
-					heading="My Profile"
-					onClickBackButton={onClickBackButton}
-				/>
-			)}
+			{/* {isMobile && ( */}
+			<MobileHeader
+				heading="My Profile"
+				onClickBackButton={onClickBackButton}
+			/>
+			{/* )} */}
 
 			<div className={styles.main_container}>
-				{isMobile && !showEditProfileDetails ? (
+				{!showEditProfileDetails ? (
 					<div className={styles.flex}>
-						<IcMEdit
-							style={{
-								width       : 16,
-								height      : 16,
-								cursor      : 'pointer',
-								marginRight : isMobile && 12,
-							}}
-							onClick={() => setShowEditProfileDetails(true)}
-						/>
+						<IcMEdit onClick={() => setShowEditProfileDetails(true)} />
 					</div>
 				) : null}
 
@@ -213,7 +206,7 @@ function MyProfile() {
 													{`${mobile_number.mobile_country_code} ${mobile_number.mobile_number}`}
 												</div>
 											),
-										  )
+										)
 										: '-'}
 								</div>
 							</div>

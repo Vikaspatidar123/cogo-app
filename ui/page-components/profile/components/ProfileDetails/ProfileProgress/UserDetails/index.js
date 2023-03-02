@@ -36,7 +36,7 @@ function UserDetails() {
 							</div>
 						)}
 
-						{kyc_status.includes('pending') && (
+						{kyc_status?.includes('pending') && (
 							<div className={styles.pending}>
 								KYC Pending
 								{/* <PendingIcon style={{ marginLeft: 4 }} /> */}

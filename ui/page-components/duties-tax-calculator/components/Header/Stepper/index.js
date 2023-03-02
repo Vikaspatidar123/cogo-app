@@ -8,7 +8,6 @@ function Stepper({
 	setStepper,
 	tradeEngineRespLength = 0,
 	billId = '',
-	isMobile = false,
 }) {
 	const [ongoing, setOngoing] = useState();
 	const {
@@ -58,26 +57,22 @@ function Stepper({
 				isFirst
 				isCompleted={transportDetails}
 				isOngoing={ongoing === 'transportDetails'}
-				isMobile={isMobile}
 			/>
 			<DotLine
 				subHeading="Product Details"
 				isCompleted={productDetails}
 				isOngoing={ongoing === 'productDetails'}
-				isMobile={isMobile}
 			/>
 			<DotLine
 				subHeading="Charge Details"
 				isCompleted={chargeDetails}
 				isOngoing={ongoing === 'chargeDetails'}
-				isMobile={isMobile}
 			/>
 			<DotLine
 				subHeading="Pay and Get Results"
 				isLast
 				isCompleted={payDetails}
 				isOngoing={ongoing === 'payDetails'}
-				isMobile={isMobile}
 			/>
 		</div>
 	);

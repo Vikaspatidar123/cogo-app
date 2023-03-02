@@ -1,161 +1,11 @@
-/* import styled from '@cogoport/front/styled';
-import Modal from '@cogoport/front/components/admin/Modal';
-
-import Loading from '../../../../../../common/icons/loading.svg';
-
-export const StyledModal = styled(Modal)`
-	.ui-modal-dialog {
-		padding: 0;
-		@media screen and (max-width: 767px) {
-			border-radius: 20px;
-		}
-	}
-`;
-export const Container = styled.div`
-	padding: 16px;
-
-	.emptyState {
-		text-align: center;
-		font-size: 16px;
-		margin: 20px;
-	}
-`;
-export const TitleContainer = styled.div`
-	display: flex;
-	align-items: center;
-	margin-bottom: 12px;
-	justify-content: space-between;
-
-	.title {
-		display: flex;
-		align-items: center;
-	}
-
-	.hyperLink {
-		cursor: pointer;
-		margin-right: 35px;
-		text-transform: uppercase;
-		font-size: 12px;
-		color: #f68b21;
-		:hover {
-			text-decoration: underline;
-		}
-	}
-`;
-
-export const Title = styled.div`
-	font-size: 20px;
-	margin-left: 5px;
-`;
-
-export const List = styled.div`
-	margin: 10px 0;
-
-	.cardList {
-		max-height: 300px;
-		overflow-y: scroll;
-	}
-`;
-
-export const Row = styled.div`
-	display: flex;
-	align-items: center;
-	padding: 6px 12px;
-	border: 1px solid #cddbff;
-	margin-bottom: 12px;
-	border-radius: 6px;
-	justify-content: space-between;
-
-	&.cardheader {
-		border: none;
-		margin-bottom: 6px;
-	}
-
-	.rateSection {
-		display: flex;
-		align-items: center;
-	}
-	&.selectedRow {
-		border: 1px solid #d6483a;
-		background: #fffef9;
-	}
-	@media screen and (max-width: 767px) {
-		padding: 12px;
-		border-radius: 12px;
-
-		&.cardheader {
-			padding: 6px 12px;
-		}
-	}
-`;
-
-export const Col = styled.div`
-	&.icon {
-		flex: 1;
-		text-align: center;
-
-		@media screen and (max-width: 767px) {
-			text-align: left;
-		}
-	}
-
-	&.name {
-		flex: 3;
-	}
-
-	&.price {
-		flex: 1;
-		text-align: right;
-
-		@media screen and (max-width: 767px) {
-			margin-right: 10px;
-		}
-	}
-	.imgIcon {
-		width: 52px;
-		height: 29px;
-		vertical-align: text-top;
-	}
-
-	@media screen and (max-width: 767px) {
-		.core-ui-radio-icon.primary {
-			background: #d6483a;
-		}
-		.core-ui-radio-radio-container.primary {
-			border-color: #d6483a;
-		}
-	}
-	.imgAlt {
-		font-size: 12px;
-	}
-`;
-
-export const Footer = styled.div`
-	display: flex;
-	justify-content: flex-end;
-	padding: 8px 16px;
-	box-shadow: 0px 0px 8px 0px #2c3e5033;
-`;
-
-export const StyledLoading = styled(Loading)`
-	width: 60px;
-	height: 60px;
-`; */
-
-.modal_container{
-	:global {
-		.ui_modal_dialog {
-			padding: 0;
-			@media screen and (max-width: 767px) {
-				border-radius: 20px;
-			}
-		}
-	}
-}
-
 
 .container{
 	padding: 16px;
+}
+
+.loading_styles{
+	display: block;
+	margin: auto;
 }
 
 .emptyState {
@@ -167,7 +17,6 @@ export const StyledLoading = styled(Loading)`
 .title_container{
 	display: flex;
 	align-items: center;
-	margin-bottom: 12px;
 	justify-content: space-between;
 }
 .title {
@@ -201,7 +50,7 @@ export const StyledLoading = styled(Loading)`
 
 .row{
 	display: flex;
-	align-items: center;
+	align-items: space-between;
 	padding: 6px 12px;
 	border: 1px solid #cddbff;
 	margin-bottom: 12px;
@@ -270,4 +119,18 @@ export const StyledLoading = styled(Loading)`
 	justify-content: flex-end;
 	padding: 8px 16px;
 	box-shadow: 0px 0px 8px 0px #2c3e5033;
+}
+
+@media screen and (max-width:767px){
+	.without_mobile{
+		display: block;
+		display: none;
+	}
+}
+
+@media screen and (min-width:767px){
+	.with_mobile{
+		display: block;
+		display: none;
+	}
 }

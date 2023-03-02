@@ -1,20 +1,17 @@
-const getAlertPreferencesControls = ({ t = () => {} }) => ({
+const getAlertPreferencesControls = () => ({
 	user: {
 		name        : 'user',
 		type        : 'select',
-		placeholder : t(
-			'profile:configurations.alertPreferences.user.placeholder',
-		),
+		placeholder : 'alertPreferences.user.pl',
 	},
 	select_all: {
 		name    : 'select_all',
 		type    : 'checkbox',
+		label   : 'Select All',
 		options : [
 			{
-				label: t(
-					'profile:configurations.alertPreferences.selectAll.options.1',
-				),
-				value: true,
+				label : 'Select All				',
+				value : true,
 			},
 		],
 		span  : 6,
@@ -23,12 +20,11 @@ const getAlertPreferencesControls = ({ t = () => {} }) => ({
 	offers_discounts: {
 		name    : 'offers_discounts',
 		type    : 'checkbox',
+		label   : 'Offers/Discounts',
 		options : [
 			{
-				label: t(
-					'profile:configurations.alertPreferences.offerDiscounts.options.1',
-				),
-				value: true,
+				label : 'Offers/Discounts',
+				value : true,
 			},
 		],
 		span  : 6,
@@ -37,12 +33,11 @@ const getAlertPreferencesControls = ({ t = () => {} }) => ({
 	subscriber_special: {
 		name    : 'subscriber_special',
 		type    : 'checkbox',
+		label   : 'Subscriber Special',
 		options : [
 			{
-				label: t(
-					'profile:configurations.alertPreferences.subscriberSpecial.options.1',
-				),
-				value: true,
+				label : 'Subscriber Special',
+				value : true,
 			},
 		],
 		span  : 6,
@@ -51,12 +46,11 @@ const getAlertPreferencesControls = ({ t = () => {} }) => ({
 	new_product_service_launches_and_updates: {
 		name    : 'new_product_service_launches_and_updates',
 		type    : 'checkbox',
+		label   : 'New product/Service launches and updates',
 		options : [
 			{
-				label: t(
-					'profile:configurations.alertPreferences.newProductService.options.1',
-				),
-				value: true,
+				label : 'New product/Service launches and updates',
+				value : true,
 			},
 		],
 		span  : 6,
@@ -65,12 +59,11 @@ const getAlertPreferencesControls = ({ t = () => {} }) => ({
 	product_service_explainers: {
 		name    : 'product_service_explainers',
 		type    : 'checkbox',
+		label   : 'Product/service Explainers',
 		options : [
 			{
-				label: t(
-					'profile:configurations.alertPreferences.productServiceExplainers.options.1',
-				),
-				value: true,
+				label : 'Product/service Explainers',
+				value : true,
 			},
 		],
 		span  : 6,
@@ -79,12 +72,11 @@ const getAlertPreferencesControls = ({ t = () => {} }) => ({
 	newsletter: {
 		name    : 'newsletter',
 		type    : 'checkbox',
+		label   : 'Newsletter',
 		options : [
 			{
-				label: t(
-					'profile:configurations.alertPreferences.newsletter.options.1',
-				),
-				value: true,
+				label : 'Newsletter',
+				value : true,
 			},
 		],
 		span  : 2,
@@ -93,12 +85,11 @@ const getAlertPreferencesControls = ({ t = () => {} }) => ({
 	general_news: {
 		name    : 'general_news',
 		type    : 'checkbox',
+		label   : 'General News',
 		options : [
 			{
-				label: t(
-					'profile:configurations.alertPreferences.generalNews.options.1',
-				),
-				value: true,
+				label : 'General News',
+				value : true,
 			},
 		],
 		span  : 2,

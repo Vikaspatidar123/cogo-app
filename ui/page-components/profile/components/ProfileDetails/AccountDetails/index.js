@@ -1,6 +1,7 @@
 import { Tabs, TabPanel } from '@cogoport/components';
 
-// import MobileMenu from './MobileMenu';
+import MobileMenu from '../../MobileMenu';
+
 import styles from './styles.module.css';
 import useAccountDetails from './useAccountDetails';
 
@@ -21,16 +22,16 @@ function AccountDetails() {
 		containerComponent: ActiveContainerComponent = null,
 	} = OPTIONS_MAPPING[activeTab];
 
-	// if (isMobile) {
-	// 	return (
-	// 		<MobileMenu
-	// 			activeTab={activeTab}
-	// 			handleChangeTab={handleChangeTab}
-	// 			OPTIONS_MAPPING={OPTIONS_MAPPING}
-	// 			tabOptions={tabOptions}
-	// 		/>
-	// 	);
-	// }
+	if (isMobile) {
+		return (
+			<MobileMenu
+				activeTab={activeTab}
+				handleChangeTab={handleChangeTab}
+				OPTIONS_MAPPING={OPTIONS_MAPPING}
+				tabOptions={tabOptions}
+			/>
+		);
+	}
 
 	return (
 		<div className={styles.container}>

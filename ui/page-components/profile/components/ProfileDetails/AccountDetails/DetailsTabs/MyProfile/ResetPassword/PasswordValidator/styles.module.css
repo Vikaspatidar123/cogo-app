@@ -1,5 +1,5 @@
-.password-validator {
-  margin-top: -16px;
+.password_validator {
+  /* margin-top: -10px; */
   padding: 16px;
 
   display: flex;
@@ -44,4 +44,10 @@
   justify-content: flex-start;
   align-items: center;
   gap: 8px;
+}
+.dot{
+  width: 10px;
+  height: 10px;
+  border-radius: 20px;
+  background-color: #C4C4C4;
 }

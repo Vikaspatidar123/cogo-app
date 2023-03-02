@@ -68,6 +68,7 @@ function MobileVerification({ type = '' }) {
 							disabled={verifyMobileNumberAPI.loading}
 							themeType="accent"
 							className={styles.button}
+							themeType="primary"
 							onClick={handleSubmit(onSubmit, onErrors)}
 						>
 							GET OTP

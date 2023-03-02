@@ -35,7 +35,6 @@ function Form({
 	quotaValue = 0,
 	postTradeEngine,
 	prioritySequence = 0,
-	isMobile = false,
 }) {
 	const { profile } = useSelector((s) => s);
 	const { organization = {} } = profile || {};
@@ -63,11 +62,9 @@ function Form({
 	const {
 		handleSubmit: productHandleSubmit,
 		setValue: productSetValue,
-		// setValues: productSetValues,
 		watch: productWatch,
 		formState: { errors: productError },
 		control:productNewControls,
-	// } = useForm();
 	} = useForm({ defaultValues: { currency: 'INR' } });
 
 	const {
@@ -75,9 +72,8 @@ function Form({
 		formState: { errors: ChargeError },
 		watch: chargeWatch,
 		setValue: chargeSetValue,
-		// setValues: chargeSetValues,
 		control:chargeControls,
-	} = useForm();
+	} = useForm({ defaultValues: { incoterm: 'CIF' } });
 
 	const filter = { filters: { type: [transportMode === 'AIR' ? 'airport' : 'seaport'] } };
 
@@ -97,8 +93,6 @@ function Form({
 	});
 	const productFields = productControls({ organization });
 	const chargeFields = ChargeControls;
-
-	console.log(transportFields, 'transportFields');
 
 	prefillFn({
 		transportSetValues,
@@ -136,8 +130,6 @@ function Form({
 		});
 	};
 
-	console.log(formProductDetails, 'formProductDetails');
-
 	return (
 		<div className={`${formPayDetails && 'payDetails'} ${styles.container}`}>
 			{formTransportDetails && (
@@ -156,7 +148,6 @@ function Form({
 					portDetails={portDetails}
 					setPortDetails={setPortDetails}
 					setPrevHs={setPrevHs}
-					isMobile={isMobile}
 					transportControl={transportControl}
 				/>
 			)}
@@ -175,7 +166,6 @@ function Form({
 					portDetails={portDetails}
 					prevCurr={prevCurr}
 					setPrevCurr={setPrevCurr}
-					isMobile={isMobile}
 					isQuotaLeft={isQuotaLeft}
 					prevHs={prevHs}
 					setPrevHs={setPrevHs}
@@ -203,7 +193,6 @@ function Form({
 					transportMode={transportMode}
 					portDetails={portDetails}
 					prevCurr={prevCurr}
-					isMobile={isMobile}
 					chargeControls={chargeControls}
 				/>
 			)}
@@ -219,7 +208,6 @@ function Form({
 					postTradeEngine={postTradeEngine}
 					serviceRateData={serviceRateData}
 					quotaValue={quotaValue}
-					isMobile={isMobile}
 				/>
 			)}
 		</div>

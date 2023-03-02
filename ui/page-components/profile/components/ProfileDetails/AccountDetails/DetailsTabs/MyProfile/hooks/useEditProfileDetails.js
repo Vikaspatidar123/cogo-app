@@ -1,9 +1,10 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { Toast } from '@cogoport/components';
 import { useEffect, useState } from 'react';
 
 import getProfileControls from '../EditProfileDetails/get-profile-controls';
 
-import useForm from '@/packages/next';
+import { useForm } from '@/packages/forms';
 import { useRequest } from '@/packages/request';
 import { useDispatch, useSelector } from '@/packages/store';
 import { setProfileStoreState } from '@/packages/store/store/profile';
@@ -13,13 +14,12 @@ const useEditProfileDetails = ({
 	setShowEditProfileDetails = () => {},
 }) => {
 	const {
-		profile: { partner = {} },
+		profile: { organization = {} },
 	} = useSelector((state) => state);
 
 	const dispatch = useDispatch();
 
 	const [errors, setErrors] = useState({});
-
 	const controls = getProfileControls({ userDetails });
 
 	const formProps = useForm();
@@ -30,15 +30,12 @@ const useEditProfileDetails = ({
 		setValue = () => {},
 	} = formProps;
 
-	const updateUserAPI = useRequest(
-		'post',
-		false,
-		'partner',
-	)('/update_channel_partner_user');
-
+	const [{ loading }, trigger] = useRequest({
+		url    : '/update_organization_user',
+		method : 'post',
+	}, { manual: true });
 	const onCreate = async (values = {}) => {
 		const alternate_mobile_numbers = [];
-
 		values.alternate_mobile_numbers?.forEach((alternate_mobile_number) => {
 			const { mobile_number = {} } = alternate_mobile_number;
 
@@ -54,26 +51,24 @@ const useEditProfileDetails = ({
 
 		try {
 			const body = {
-				partner_id               : partner.id,
+				id                       : organization.id,
 				user_id                  : userDetails.id,
 				name                     : values.name || undefined,
 				mobile_country_code      : values.phone_number.country_code || undefined,
 				mobile_number            : values.phone_number.number || undefined,
 				work_scopes              : values.work_scopes || undefined,
 				preferred_languages      : values.preferred_languages || undefined,
-				picture                  : values.picture?.url || undefined,
+				picture                  : values.picture?.finalUrl || undefined,
 				birth_date               : values.date_of_birth || undefined,
 				alternate_mobile_numbers : alternate_mobile_numbers.length
 					? alternate_mobile_numbers
 					: undefined,
 			};
 
-			await updateUserAPI.trigger({ data: body });
-
+			await trigger({ data: body });
 			Toast.success(
 				'tabOptions.profile.edit.toastMessages',
 			);
-
 			dispatch(
 				setProfileStoreState({
 					...body,
@@ -126,20 +121,19 @@ const useEditProfileDetails = ({
 					}
 				},
 			);
-
 			setValue('alternate_mobile_numbers', alternate_mobile_numbers);
 		}
-	}, []);
+	}, [userDetails]);
 
 	return {
 		showElements,
-		controls,
+		control: formProps.control,
 		fields,
 		errors,
 		handleSubmit,
 		onCreate,
 		onError,
-		loading: updateUserAPI.loading,
+		// loading: updateUserAPI.loading,
 	};
 };
 

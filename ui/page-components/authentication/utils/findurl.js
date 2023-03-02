@@ -3,9 +3,12 @@ import redirections from './redirections';
 import redirect from '@/ui/commons/utils/redirect';
 
 const findurl = async ({
-	item, isServer, res, org_id, branch_id,
+	item, isServer, res, org_id, branch_id, redirectPath,
 }) => {
 	const configs = redirections(item);
+	if (redirectPath) {
+		window.location.href = redirectPath;
+	}
 	if (configs?.href?.includes('/v2')) {
 		const replaceHref = configs?.href?.replace('/v2', '');
 		const replaceAs = configs?.as?.replace('/v2', '');

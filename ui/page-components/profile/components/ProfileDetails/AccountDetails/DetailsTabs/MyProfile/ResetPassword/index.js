@@ -1,16 +1,21 @@
-import { Button } from '@cogoport/components';
+import { Button, cl } from '@cogoport/components';
 import { useTranslation } from 'next-i18next';
 
 import PasswordValidator from './PasswordValidator';
 import styles from './styles.module.css';
 import useResetPassword from './useResetPassword';
 
+import { InputController } from '@/packages/forms';
+import getField from '@/packages/forms/Controlled';
+
+const InputElement = getField('text');
+
 function ResetPassword({
 	setShowPasswordModal = () => {},
 	refetch = () => {},
 }) {
 	const {
-		controls = [],
+		fields = [],
 		formProps = {},
 		errors = {},
 		onSubmit = () => {},
@@ -22,13 +27,11 @@ function ResetPassword({
 	});
 
 	const {
-		fields = {},
 		handleSubmit = () => {},
 		getValues = () => {},
+		control,
 	} = formProps;
-
-	const { password = '' } = getValues();
-
+	const { password = '', password1 = '' } = getValues();
 	return (
 		<div className={styles.container}>
 			<div className={styles.heading}>
@@ -41,19 +44,29 @@ function ResetPassword({
 
 				</div>
 			</div>
-
-			{/* <Layout controls={controls} fields={fields} errors={errors} /> */}
+			{fields.map((field) => (
+				<div>
+					<div>{field.label}</div>
+					<InputController {...field} control={control} />
+					<div className={styles.message}>
+						{ errors[field?.name]?.message || errors[field?.name]?.type }
+						{' '}
+					</div>
+				</div>
+			))}
 
 			<PasswordValidator password={password} />
-
-			<Button
-				onClick={handleSubmit(onSubmit, onErrors)}
-				disabled={loading}
-			>
-				{loading
-					? 'profile.resetPassword.butt'
-					: 'Save'}
-			</Button>
+			<div className={styles.footer}>
+				<Button
+					onClick={handleSubmit(onSubmit, onErrors)}
+					disabled={loading}
+				>
+					{loading
+						? 'profile.resetPassword.butt'
+						: 'Save'}
+				</Button>
+				<Button onClick={() => setShowPasswordModal(false)} themeType="tertiary">Cancel</Button>
+			</div>
 		</div>
 	);
 }

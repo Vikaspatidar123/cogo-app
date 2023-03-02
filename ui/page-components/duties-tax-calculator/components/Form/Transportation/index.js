@@ -1,25 +1,13 @@
-import { cl } from '@cogoport/components';
+import { cl, Button } from '@cogoport/components';
 import { IcALocation, IcMArrowNext } from '@cogoport/icons-react';
 import { useState, useEffect, useRef } from 'react';
 
-// import { useSaasState } from '../../../../../common/context';
 import getField from '../../../../../../packages/forms/Controlled';
-import Ocean from '../../../assets/ocean.svg';
-import Plane from '../../../assets/plane.svg';
-import Button from '../../../common/Button';
 import { ShipGif, PlaneGif } from '../../../common/gif';
-import { InterChange } from '../../../configuration/icon-configuration';
+import { InterChange, PlaneIcon, OceanIcon } from '../../../configuration/icon-configuration';
 import transportFn from '../../../utils/transportFn';
-
-// import {
-// 	Label, Col, Title, ErrorTxt, BtnContainer,
-// } from '../styles.module.css';
-
 import style from '../styles.module.css';
 
-// import {
-// 	Container, Tabs, Image, Txt, Dot, FormDiv, InterChangeContainer,
-// } from './style';
 import styles from './styles.module.css';
 
 function Transportation({
@@ -37,15 +25,12 @@ function Transportation({
 	portDetails = {},
 	setPortDetails,
 	setPrevHs,
-	isMobile = false,
 	transportControl,
 }) {
-	console.log(fields[0], portDetails, error, 'fields');
 	const [rotate, setRotate] = useState(false);
 	const OriginPort = getField(fields[0]?.type);
 	const DestinationPort = getField(fields[1]?.type);
 	const [origin, destination] = watch(['originPort', 'destinationPort']);
-	// const { setMapPoints } = useSaasState();
 	const [mapPoints, setMapPoints] = useState();
 
 	const initialRef = useRef(true);
@@ -98,7 +83,7 @@ function Transportation({
 				<div>Transportation Details</div>
 			</div>
 			<form>
-				<div className={`${isMobile ? 'with-mobile' : 'without-mobile'} ${styles.tabs}`}>
+				<div className={`${styles.tabs}`}>
 					<div
 						className={`${transportMode === 'OCEAN' && 'selected'} ${styles.card}`}
 						role="presentation"
@@ -109,7 +94,7 @@ function Transportation({
 						{transportMode === 'OCEAN' ? (
 							<img className={styles.image} src={ShipGif} alt="" />
 						) : (
-							<Ocean width={70} height={70} />
+							<img src={OceanIcon} alt="" width={70} height={70} />
 						)}
 						<div className={styles.txt}>Ocean</div>
 					</div>
@@ -122,7 +107,7 @@ function Transportation({
 						{transportMode === 'AIR' ? (
 							<img className={styles.image} src={PlaneGif} alt="" />
 						) : (
-							<Plane width={70} height={70} />
+							<img src={PlaneIcon} alt="" width={70} height={70} />
 						)}
 						<div className={styles.txt}>Air</div>
 					</div>

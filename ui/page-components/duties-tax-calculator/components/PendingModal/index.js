@@ -2,7 +2,6 @@
 import { Button, Modal, cl } from '@cogoport/components';
 import { IcMInformation } from '@cogoport/icons-react';
 
-// import { Container, Title, Txt } from './styles';
 import { Loading, LoadingBanner } from '../../configuration/icon-configuration';
 
 import styles from './styles.module.css';
@@ -14,12 +13,12 @@ function PendingModal({ showPendingModal, setShowPendingModal, stop }) {
 	const { org_id = '', branch_id = '', account_type = '' } = query || {};
 
 	const closeModalHandler = () => {
-		const redirectUrl = `${process.env.APP_URL}app/${org_id}/${branch_id}/${account_type}/saas/premium-services/duties-taxes-calculator`;
+		const redirectUrl = `${process.env.APP_URL}v2/${org_id}/${branch_id}/${account_type}/saas/premium-services/duties-taxes-calculator`;
 		window.open(redirectUrl, '_self');
 		setShowPendingModal(false);
 	};
 	return (
-		<Modal className="primary md" show={showPendingModal} closable={false}>
+		<Modal className="primary md" show={showPendingModal} showCloseIcon={false} size="md">
 			{!stop && (
 				<div className={styles.container}>
 					<img

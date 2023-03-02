@@ -1,7 +1,11 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable max-len */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 import { Modal } from '@cogoport/components';
 import { IcCFtick, IcMEdit } from '@cogoport/icons-react';
 import { startCase, format } from '@cogoport/utils';
 
+import MobileHeader from '../../../../MobileHeader';
 import getWorkScopes from '../../../configurations/work-scopes';
 
 import EditProfileDetails from './EditProfileDetails';
@@ -11,8 +15,7 @@ import MobileVerificationModal from './MobileVerificationModal';
 import ResetPassword from './ResetPassword';
 import styles from './styles.module.css';
 
-// import MobileHeader from '@/components/Profile/components/MobileHeader';
-// import GLOBAL_CONSTANTS from '@/constants/globals.json';
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 // import formatDate from '@/temp/utils/formatDate';
 
 function MyProfile() {
@@ -52,25 +55,17 @@ function MyProfile() {
 
 	return (
 		<>
-			{/* {isMobile && (
-				<MobileHeader
-					heading={t('profile:accountDetails.tabOptions.profile.mobileHeading')}
-					onClickBackButton={onClickBackButton}
-				/>
-			)} */}
+			{/* {isMobile && ( */}
+			<MobileHeader
+				heading="My Profile"
+				onClickBackButton={onClickBackButton}
+			/>
+			{/* )} */}
 
 			<div className={styles.main_container}>
-				{isMobile && !showEditProfileDetails ? (
+				{!showEditProfileDetails ? (
 					<div className={styles.flex}>
-						<IcMEdit
-							style={{
-								width       : 16,
-								height      : 16,
-								cursor      : 'pointer',
-								marginRight : isMobile && 12,
-							}}
-							onClick={() => setShowEditProfileDetails(true)}
-						/>
+						<IcMEdit onClick={() => setShowEditProfileDetails(true)} />
 					</div>
 				) : null}
 
@@ -108,7 +103,7 @@ function MyProfile() {
 									Email
 								</div>
 								<div className={styles.text_icon_container}>
-									<div className={styles.label_text}>{userDetails.email || '-'}</div>
+									<div className={styles.value_text}>{userDetails.email || '-'}</div>
 									{userDetails.email_verified && (
 										<IcCFtick className={styles.icon} />
 									)}
@@ -128,7 +123,7 @@ function MyProfile() {
 									Mobile
 								</div>
 								<div className={styles.text_icon_container}>
-									<div className={styles.label_text}>
+									<div className={styles.value_text}>
 										{userDetails.mobile_number
 											? `${userDetails.mobile_country_code} ${userDetails.mobile_number}`
 											: '-'}
@@ -205,9 +200,13 @@ function MyProfile() {
 									{userDetails.alternate_mobile_numbers?.length > 0
 										? userDetails.alternate_mobile_numbers?.map(
 											(mobile_number) => (
-												<div className={styles.value_text}>{`${mobile_number.mobile_country_code} ${mobile_number.mobile_number}`}</div>
+												<div
+													className={styles.value_text}
+												>
+													{`${mobile_number.mobile_country_code} ${mobile_number.mobile_number}`}
+												</div>
 											),
-										  )
+										)
 										: '-'}
 								</div>
 							</div>
@@ -216,7 +215,6 @@ function MyProfile() {
 								<div className={styles.label_text} />
 								<div className={styles.link_text} onClick={() => setShowPasswordModal(true)}>
 									Change Password
-
 								</div>
 							</div>
 						</div>
@@ -229,6 +227,7 @@ function MyProfile() {
 					show={showPasswordModal}
 					onClose={setShowPasswordModal}
 					onOuterClick={() => setShowPasswordModal(false)}
+					size="sm"
 				>
 					<ResetPassword setShowPasswordModal={setShowPasswordModal} />
 				</Modal>

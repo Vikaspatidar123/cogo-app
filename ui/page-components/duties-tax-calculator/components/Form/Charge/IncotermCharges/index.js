@@ -1,16 +1,10 @@
-// import { useFieldArray } from '@cogo/commons/hooks';
 import { IcMDelete } from '@cogoport/icons-react';
 import { useEffect } from 'react';
 
 import getField from '../../../../../../../packages/forms/Controlled';
 import MappingConstant from '../../../../configuration/mappingConstant';
-// import {
-// 	Label, Col, ErrorTxt, Text,
-// } from '../../styles.module.css';
-
 import style from '../../styles.module.css';
 
-// import { Container, Row } from './style';
 import styles from './styles.module.css';
 
 import { useFieldArray } from '@/packages/forms';
@@ -19,7 +13,6 @@ function IncotermCharges({
 	name,
 	control,
 	incoterm,
-	// register,
 	controls,
 	error,
 	watchIncotermCharges = [],
@@ -27,7 +20,6 @@ function IncotermCharges({
 	formIncoterm,
 	prevCurr,
 }) {
-	console.log('cccccc', control);
 	const { MAPPING, CHARGES } = MappingConstant();
 	const { fields, append, remove } = useFieldArray({
 		name: 'incotermCharges',
@@ -39,7 +31,7 @@ function IncotermCharges({
 		MAPPING[incoterm]?.forEach((ele) => {
 			append({
 				name  : CHARGES[ele],
-				value : 0,
+				value : '',
 			});
 		});
 	};
@@ -76,9 +68,12 @@ function IncotermCharges({
 									key={`${name}.${field.id}.value`}
 									name={`${name}.${index}.value`}
 									control={control}
-									placeholder="0"
+									placeholder="Enter value"
 									min={0}
 									type="number"
+									suffix={
+										<div className={style.text}>{prevCurr}</div>
+									}
 									value={field.value}
 									rules={{
 										required : true,
@@ -87,13 +82,11 @@ function IncotermCharges({
 											message : 'Should be greater than 0',
 										},
 									}}
-									className="hideInput"
 									{...register(`${name}.${index}.value`, {
 										...(controls.find((controlItem) => controlItem.name === 'value' || {})
 											.rules || {}),
 									})}
 								/>
-								<div className={styles.text}>{prevCurr}</div>
 							</div>
 
 							<div

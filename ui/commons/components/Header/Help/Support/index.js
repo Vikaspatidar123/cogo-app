@@ -7,12 +7,14 @@ import { useSelector } from '@/packages/store';
 
 function Support({ agent = {} }) {
 	const {
-		profile: { partner = {} },
+		profile: {
+			organization = {},
+		},
 		general: { query = {} },
 	} = useSelector((state) => state);
 
-	const { tnc_accepted } = partner;
-	const { partner_id } = query;
+	const { tnc_accepted } = organization;
+	const { org_id } = query;
 
 	const default_agent = {
 		name                  : 'Ayushi Mishra',
@@ -48,7 +50,7 @@ function Support({ agent = {} }) {
 				</div>
 			</div>
 			{tnc_accepted ? (
-				<Link className={styles.link} href={`/${partner_id}/faqs`}>FAQs</Link>
+				<Link className={styles.link} href={`/${org_id}/faqs`}>FAQs</Link>
 			) : null}
 		</div>
 	);

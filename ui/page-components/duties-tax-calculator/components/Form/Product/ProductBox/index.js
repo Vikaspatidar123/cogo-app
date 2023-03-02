@@ -1,14 +1,11 @@
-// import ToolTip from '@cogoport/front/components/admin/ToolTip';
+import { Tooltip, cl } from '@cogoport/components';
 
-import ToolTip from '@cogoport/components';
-
-import Box from '../../../../assets/productBox.svg';
-import ProductCube from '../../../../assets/productCube.svg';
+import { ProductCube, ProductBoxIcon } from '../../../../configuration/icon-configuration';
 import { shortFormatNumber } from '../../../../utils/getShortFormatNumber';
 
 import styles from './styles.module.css';
 
-function ProductBox({ watch, isMobile }) {
+function ProductBox({ watch }) {
 	const {
 		hsCode = '',
 		consignmentValue = '',
@@ -20,33 +17,33 @@ function ProductBox({ watch, isMobile }) {
 	const renderName = (name) => {
 		if (name.length > 10) {
 			return (
-				<ToolTip content={name} theme="light-border" interactive>
+				<Tooltip content={name} theme="light-border" interactive>
 					<div>
 						{name.substring(0, 10)}
 						...
 						{name.substring(name.length - 2, name.length)}
 					</div>
-				</ToolTip>
+				</Tooltip>
 			);
 		}
 		return name;
 	};
 
 	return (
-		<div className={`${isMobile ? styles.mobile_view : styles.web_view} ${styles.container}`}>
+		<div className={cl`${styles.mobile_view} ${styles.web_view} ${styles.container}`}>
 			<div className={styles.row}>
 				<div className={styles.flex}>
 					<div className={styles.value}>{hsCode}</div>
 					<div className={styles.title}>{productName}</div>
 				</div>
 				<div className={styles.icon}>
-					<ProductCube width="50px" height="50px" />
+					<img src={ProductCube} alt="" width="50px" height="50px" />
 				</div>
 			</div>
-			<div className={`${styles.box} ${styles.row}`}>
-				<Box width="130px" height="130px" />
+			<div className={cl`${styles.box} ${styles.row}`}>
+				<img src={ProductBoxIcon} alt="" width="130px" height="130px" />
 			</div>
-			<div className={`${styles.last_row} ${styles.row}`}>
+			<div className={cl`${styles.last_row} ${styles.row}`}>
 				<div>
 					<div className={styles.title}>Quantity</div>
 					<div className={styles.value}>{renderName(quantity)}</div>

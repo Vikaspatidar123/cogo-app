@@ -1,7 +1,6 @@
 import { Tooltip } from '@cogoport/components';
 import { IcMShip, IcMAirport, IcMPortArrow } from '@cogoport/icons-react';
 
-// import { Row, Col } from './styles';
 import styles from './styles.module.css';
 
 function Info({ transportMode, portDetails }) {
@@ -37,9 +36,7 @@ function Info({ transportMode, portDetails }) {
 			<div className={`${styles.row} ${styles.section}`}>
 				<div className={`${styles.col} ${styles.port_detail}`}>
 					<div className={styles.port_name}>{renderName(origin?.name)}</div>
-					<div>
-						<IcMPortArrow width={15} height={15} />
-					</div>
+					<IcMPortArrow width={15} height={15} />
 					<div className={styles.port_name}>{renderName(destination?.name)}</div>
 				</div>
 				{transportMode === 'OCEAN' ? (

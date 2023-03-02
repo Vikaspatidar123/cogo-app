@@ -16,7 +16,6 @@ import SuccessModal from './SuccessModal';
 import ValidateHsModal from './ValidateHsModal';
 
 import { useRouter } from '@/packages/next';
-import { useSelector } from '@/packages/store';
 
 function DutiesTaxCalulator() {
 	const { query } = useRouter();
@@ -33,8 +32,6 @@ function DutiesTaxCalulator() {
 		formChargeDetails    : false,
 		formPayDetails       : false,
 	});
-
-	const isMobile = useSelector(({ general }) => general.isMobile);
 
 	const [stepper, setStepper] = useState({
 		transportDetails : true,
@@ -80,10 +77,9 @@ function DutiesTaxCalulator() {
 				setStepper={setStepper}
 				tradeEngineRespLength={tradeEngineRespLength}
 				billId={billId}
-				isMobile={isMobile}
 			/>
 
-			<div className={`${isMobile ? styles.with_mobile_view : styles.without_mobile_view}`}>
+			<div className={`${styles.with_mobile_view} ${styles.without_mobile_view}`}>
 				<div
 					className={cl`${formPayDetails && styles.formPayDetails} ${
 						(tradeEngineRespLength > 0 || billId) && styles.calculateDoneForm
@@ -103,7 +99,6 @@ function DutiesTaxCalulator() {
 						isUserSubscribed={isUserSubscribed}
 						postTradeEngine={postTradeEngine}
 						prioritySequence={prioritySequence}
-						isMobile={isMobile}
 					/>
 				</div>
 				<div
@@ -115,7 +110,6 @@ function DutiesTaxCalulator() {
 						portDetails={portDetails}
 						transportMode={transportMode}
 						billId={billId}
-						isMobile={isMobile}
 					/>
 				</div>
 			</div>
@@ -128,7 +122,7 @@ function DutiesTaxCalulator() {
 			)}
 			{(tradeEngineLoading || getDraftloading) && <Loader />}
 			{tradeEngineRespLength > 0 && (
-				<SuccessModal tradeEngineResp={tradeEngineResp} isMobile={isMobile} />
+				<SuccessModal tradeEngineResp={tradeEngineResp} />
 			)}
 			{validateModal && (
 				<ValidateHsModal
@@ -141,7 +135,6 @@ function DutiesTaxCalulator() {
 					draftLoading={draftLoading}
 					getDraftData={getDraftData}
 					postTradeEngine={postTradeEngine}
-					isMobile={isMobile}
 				/>
 			)}
 		</div>

@@ -110,3 +110,10 @@
 .disableBtn {
 	background-color: #e8afa8 !important;
 }
+
+@media screen and (max-width:767px){
+	.hs_tag_web{
+		display: block;
+		display: none;
+	}
+}

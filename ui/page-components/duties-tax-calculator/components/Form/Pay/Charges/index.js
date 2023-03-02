@@ -2,10 +2,6 @@ import { cl } from '@cogoport/components';
 
 import { shortFormatNumber } from '../../../../utils/getShortFormatNumber';
 
-// import {
-// 	Container, Heading, Head, ScrollContent,
-// } from './styles';
-
 import styles from './styles.module.css';
 
 function Charges({

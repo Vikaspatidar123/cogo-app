@@ -1,24 +1,19 @@
+import { Button } from '@cogoport/components';
 import { IcMArrowNext, IcMArrowBack } from '@cogoport/icons-react';
 import { useState, useEffect } from 'react';
 
 import getField from '../../../../../../packages/forms/Controlled';
 import HsCode from '../../../../hs-code-modal/component';
 // import ProductCatalogue from '../../../../product-catalogue-modal';
-import Button from '../../../common/Button';
 import { ProductCartIcon } from '../../../configuration/icon-configuration';
 import useCurrencyConversion from '../../../hook/useCurrencyConversion';
 import useVerifyHscode from '../../../hook/useVerifyHscode';
 import productFn from '../../../utils/productFn';
 import ValidateHsModal from '../../ValidateHsModal';
-// import {
-// 	Title, Col, Label, BtnContainer, ErrorTxt,
-// } from '../styles.module.css';
-
 import style from '../styles.module.css';
 
 import HyperLink from './HyperLine';
 import ProductBox from './ProductBox';
-// import { Container, TitleContainer } from './style';
 import styles from './styles.module.css';
 
 function Product({
@@ -34,7 +29,6 @@ function Product({
 	portDetails = {},
 	prevCurr,
 	setPrevCurr,
-	isMobile = false,
 	isQuotaLeft = false,
 	prevHs,
 	setPrevHs,
@@ -93,7 +87,7 @@ function Product({
 			convertCurrency(prevCurr, watchCurrency);
 		}
 	}, [watchCurrency]);
-
+	console.log(error, 'error', fields);
 	return (
 		<div className={styles.container}>
 			<div className={styles.title_container}>
@@ -102,7 +96,7 @@ function Product({
 					<div>Product Details</div>
 				</div>
 				<div className={`${style.col} ${styles.currency}`}>
-					<div className={style.label}>{fields?.currency?.label}</div>
+					<div className={style.label}>{fields[4]?.label}</div>
 					<CurrencySelector {...fields[4]} control={productNewControls} />
 					{error?.currency && (
 						<div className={style.error_txt}>
@@ -113,42 +107,31 @@ function Product({
 				</div>
 			</div>
 			<form>
-				<div className={style.col}>
-					<div className={style.label}>{fields[1]?.label}</div>
-					<NumberSelector {...fields[1]} control={productNewControls} />
-					{error?.hsCode && (
-						<div className={style.error_txt}>
-							*
-							{error?.hsCode?.message || error?.hsCode?.type}
-						</div>
-					)}
-				</div>
-				<HyperLink
-					setShowCatalogue={setShowCatalogue}
-					setShowHsCodeModal={setShowHsCodeModal}
-				/>
-				<div className={style.col}>
-					<div className={style.label}>{fields?.consignmentValue?.label}</div>
-					<NumberSelector {...fields[2]} control={productNewControls} />
-					{error?.consignmentValue && (
-						<div className={style.error_txt}>
-							*
-							{error?.consignmentValue?.message || error?.consignmentValue?.type}
-						</div>
-					)}
-				</div>
-				<div className={style.col}>
-					<div className={style.label}>{fields?.quantity?.label}</div>
-					<NumberSelector {...fields[3]} control={productNewControls} />
-					{error?.quantity && (
-						<div className={style.error_txt}>
-							*
-							{error?.quantity?.message || error?.quantity?.type}
-						</div>
-					)}
-				</div>
+				{(fields || []).map((field, index) => (
+					index !== 4 && field?.type !== 'hidden' && (
+						<>
+							<div className={style.col}>
+								<div className={style.label}>{field?.label}</div>
+								<NumberSelector {...field} control={productNewControls} />
+								{error?.[field?.name] && (
+									<div className={style.error_txt}>
+										*
+										{error?.[field?.name]?.message || error?.[field?.name]?.type}
+									</div>
+								)}
+							</div>
+							{index === 1 && (
+								<HyperLink
+									setShowCatalogue={setShowCatalogue}
+									setShowHsCodeModal={setShowHsCodeModal}
+								/>
+							)}
+						</>
+					)
+				))}
+
 				<div className={style.btn_container}>
-					<Button size="md" isPrev onClick={prevHandler}>
+					<Button size="md" themeType="secondary" onClick={prevHandler}>
 						<IcMArrowBack width={16} height={16} />
 					</Button>
 					<Button
@@ -158,18 +141,16 @@ function Product({
 						loading={verifySixDigitLoading}
 					>
 						Continue
-						{' '}
 						<IcMArrowNext />
 					</Button>
 				</div>
 			</form>
-			<ProductBox watch={watch} isMobile={isMobile} />
+			<ProductBox watch={watch} />
 			{/* {showCatalogue && (
 				<ProductCatalogue
 					showCatalogue={showCatalogue}
 					setShowCatalogue={setShowCatalogue}
 					setSelectedData={setSelectedData}
-					isMobile={isMobile}
 				/>
 			)} */}
 			{showHsCodeModal && (
@@ -177,7 +158,6 @@ function Product({
 					showHsCodeModal={showHsCodeModal}
 					setShowHsCodeModal={setShowHsCodeModal}
 					setSelectedData={setSelectedData}
-					isMobile={isMobile}
 				/>
 			)}
 			{showValidate && (
@@ -192,7 +172,6 @@ function Product({
 					isQuotaLeft={isQuotaLeft}
 					prevHs={prevHs}
 					setPrevHs={setPrevHs}
-					isMobile={isMobile}
 				/>
 			)}
 		</div>

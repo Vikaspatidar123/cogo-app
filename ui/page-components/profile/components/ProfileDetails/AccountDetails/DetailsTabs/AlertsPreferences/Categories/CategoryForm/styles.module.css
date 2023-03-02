@@ -1,0 +1,66 @@
+.container {
+}
+
+.business-checkbox-group-container {
+  margin-block: 24px;
+}
+
+.select_wrapper {
+  width: 20%;
+}
+
+.label {
+  font-weight: 500;
+  font-size: 14px;
+  color: #393f70;
+  margin-bottom: 4px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.heading {
+  font-weight: 500;
+  font-size: 14px;
+  color: #393f70;
+}
+
+.categories {
+}
+
+.section {
+  background: #fff;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.12);
+  border-radius: 4px;
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+
+.title {
+  background-color: #fdebe9;
+  font-weight: 500;
+  font-size: 16px;
+  color: #2c3e50;
+  padding: 16px 12px;
+}
+
+.content {
+  padding: 12px 28px;
+}
+
+.sub_category {
+  &:not(:last-child) {
+    margin-bottom: 20px;
+  }
+}
+
+.sub_label {
+  font-weight: 400;
+  margin-left: 24px;
+  margin-top: 8px;
+  font-size: 12px;
+  color: #828282;
+}

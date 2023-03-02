@@ -9,7 +9,7 @@ import { publicRequest, request } from '@/packages/request';
 
 function FileUploader(props) {
 	const {
-		onChange,
+		onChange = () => {},
 		showProgress,
 		multiple,
 		docName,
@@ -101,8 +101,8 @@ function FileUploader(props) {
 				onChange={handleChange}
 				loading={loading}
 				multipleUploadDesc="Upload files"
-				uploadIcon={<IcMUpload height={40} width={40} />}
 				fileData={urlStore}
+				className={styles.upload}
 			/>
 
 			{loading && !isEmpty(progress) && Object.keys(progress).map((key) => (

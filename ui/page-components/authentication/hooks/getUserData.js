@@ -50,7 +50,7 @@ const getUserData = async ({
 				);
 			}
 		} catch (e) {
-			console.log(e, 'eeee');
+			// console.log(e);
 		}
 	};
 

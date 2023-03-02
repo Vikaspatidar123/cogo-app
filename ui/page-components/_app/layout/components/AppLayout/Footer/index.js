@@ -13,7 +13,7 @@ function AppLayoutFooter() {
 	const configs = getSideBarConfigs(user_data);
 	const { nav_items = {} } = configs || {};
 	const { organization = [] } = nav_items || {};
-	const newMenuList = organization.slice(0, 4);
+	const newMenuList = organization.slice(0, 5);
 	return (
 		<div className={styles.container}>
 			{newMenuList.map((item) => (

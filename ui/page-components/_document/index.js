@@ -2,9 +2,13 @@ import {
 	Html, Head, Main, NextScript,
 } from 'next/document';
 
-export default function Document() {
+import i18nextConfig from '../../../next-i18next.config';
+
+export default function Document(props) {
+	const { __NEXT_DATA__ } = props;
+	const currentLocale =	__NEXT_DATA__.locale ?? i18nextConfig.i18n.defaultLocale;
 	return (
-		<Html>
+		<Html lang={currentLocale}>
 			<Head>
 				<link rel="preconnect" href="https://fonts.googleapis.com" />
 				<link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true" />

@@ -3,7 +3,7 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 
 import { Router } from '@/packages/next';
-
+import { appWithTranslation } from 'next-i18next';
 import pageProgessBar from 'nprogress';
 import 'nprogress/nprogress.css';
 import { useEffect } from 'react';
@@ -29,7 +29,7 @@ function MyApp({ Component, pageProps, store, generalData }) {
 	}, []);
 	useEffect(() => {
 		store.dispatch(setGeneralStoreState(generalData));
-	}, [generalData]);
+	}, [generalData, store]);
 
 	return (
 		<Provider store={store}>
@@ -83,4 +83,4 @@ MyApp.getInitialProps = async ({ Component, ctx }) => {
 
 const AppWithStore = withStore(MyApp);
 
-export default AppWithStore;
+export default appWithTranslation(AppWithStore);

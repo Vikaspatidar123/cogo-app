@@ -63,6 +63,7 @@ function BillingAddresses({
 
 						<div className={styles.flex}>
 							<div
+								role="presentation"
 								className={styles.link_text}
 								onClick={() => setShowEditBillingAddress(true)}
 							>
@@ -72,8 +73,10 @@ function BillingAddresses({
 					</div>
 
 					<div
+						role="presentation"
 						className={styles.icon_container}
 						onClick={() => setShowData(!showData)}
+
 					>
 						{showData ? (
 							<IcMArrowRotateDown width={20} height={15} />

@@ -20,7 +20,6 @@ import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
 function MyProfile() {
 	const {
-		isMobile,
 		loading = false,
 		userDetails = {},
 		showEditProfileDetails = false,
@@ -55,13 +54,10 @@ function MyProfile() {
 
 	return (
 		<>
-			{/* {isMobile && ( */}
 			<MobileHeader
 				heading="My Profile"
 				onClickBackButton={onClickBackButton}
 			/>
-			{/* )} */}
-
 			<div className={styles.main_container}>
 				{!showEditProfileDetails ? (
 					<div className={styles.flex}>

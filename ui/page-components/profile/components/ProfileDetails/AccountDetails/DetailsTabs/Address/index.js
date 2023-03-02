@@ -7,7 +7,6 @@ import OtherAddresses from './OtherAddresses';
 import styles from './styles.module.css';
 
 import { useRouter } from '@/packages/next';
-import { useSelector } from '@/packages/store';
 
 function Address() {
 	const router = useRouter();

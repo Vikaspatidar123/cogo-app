@@ -1,10 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable import/order */
 import { useEffect, useState } from 'react';
-
-import Limited from '../../../../asset/Limited.svg';
-import Unlimited from '../../../../asset/unlimted.svg';
-
 import CardHeader from './CardHeader';
 
 import styles from './styles.module.css';
@@ -30,7 +26,6 @@ function DetailContainer({ planFeatureData = {} }) {
 			data : planFeatureData[selectedData.key],
 		});
 	}, [planFeatureData]);
-
 	return (
 		<div className={styles.container}>
 			<div className={styles.header}>
@@ -40,11 +35,11 @@ function DetailContainer({ planFeatureData = {} }) {
 				</div>
 				<div className={`${styles.header} ${styles.info}`}>
 					<div className={styles.icon_container}>
-						<Limited width="20px" height="25px" />
+						<img src='https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/Limited.svg' alt='cogo'/>
 						Limited
 					</div>
 					<div className={styles.icon_container}>
-						<Unlimited width="30px" height="14px" />
+						<img src='https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/unlimted.svg' alt='cogo' />
 						Unlimited
 					</div>
 				</div>

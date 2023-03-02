@@ -24,7 +24,6 @@ function HsCode({
 	setSelectedData,
 	setShowProduct,
 	setPrefiledValues,
-	isMobile = false,
 }) {
 	const [chaptersData, setChaptersData] = useState([]);
 	const [headingData, setHeadingData] = useState();

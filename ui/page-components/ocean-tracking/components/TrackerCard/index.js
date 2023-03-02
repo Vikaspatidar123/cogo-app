@@ -1,16 +1,19 @@
-import { Placeholder, Pagination } from '@cogoport/components';
+import { Placeholder, Pagination, Popover } from '@cogoport/components';
 import { IcMListView, IcMMap, IcMFilter } from '@cogoport/icons-react';
 import { useState } from 'react';
 
 import useFetchTrackers from '../../hooks/useFetchTrackers';
+import Map from '../Map/index';
 
 import Card from './Card';
+import FilterComponent from './FIlterComponent';
 import styles from './styles.module.css';
 
 function TrackerCard({ activeTab, archived, setArchived }) {
-	const { loading, fetchTrackers, trackers, pagination, setPagination } = useFetchTrackers();
+	const { loading, fetchTrackers, trackers, pagination, setPagination, filters, setFilters } = useFetchTrackers();
 
 	const [isMapView, setIsMapView] = useState(false);
+	const [showFilters, setShowFilters] = useState(false);
 
 	const trackerList = trackers?.list;
 
@@ -34,17 +37,32 @@ function TrackerCard({ activeTab, archived, setArchived }) {
 						className={`${isMapView ? styles.without_click : styles.on_click} ${styles.list_view}`}
 						onClick={() => { setIsMapView(false); }}
 					>
-						<IcMListView width="20px" height="20px" />
+						<IcMListView className={styles.icon} />
 					</div>
 					<div
 						role="presentation"
 						className={`${isMapView ? styles.on_click : styles.without_click} ${styles.map_view}`}
 						onClick={() => { setIsMapView(true); }}
 					>
-						<IcMMap width="20px" height="20px" />
+						<IcMMap className={styles.icon} />
 					</div>
 					<div className={styles.fillter_div}>
-						<IcMFilter width="20px" height="20px" />
+						<Popover
+							placement="bottom"
+							content={(
+								<FilterComponent
+									filters={filters}
+									setFilters={setFilters}
+									showFilters={showFilters}
+									setShowFilters={setShowFilters}
+								/>
+							)}
+							visible={showFilters}
+							caret={false}
+							onClickOutside={() => { setShowFilters(false); }}
+						>
+							<IcMFilter className={styles.icon} onClick={() => { setShowFilters(!showFilters); }} />
+						</Popover>
 					</div>
 
 				</div>
@@ -64,7 +82,11 @@ function TrackerCard({ activeTab, archived, setArchived }) {
 			{isMapView && (
 				<div>
 					{!loading
-						? (<div className={styles.map_container} />) : (<Placeholder height="182px" width="324px" />)}
+						? (
+							<div className={styles.map_container}>
+								<Map />
+							</div>
+						) : (<Placeholder height="182px" width="324px" />)}
 				</div>
 			)}
 			<div className={styles.pagination}>

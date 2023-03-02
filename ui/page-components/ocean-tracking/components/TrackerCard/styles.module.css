@@ -57,10 +57,39 @@
   border: 1px solid #221F20;
   border-radius: 6px;
   margin-left: 10px;
+
+  :global{
+    .ui_3aPlV.ui_popover_container{
+        margin-right: 27px;
+    }
+  }
 }
 
 .pagination{
   display: flex;
   justify-content: flex-end;
   padding: 15px;
+}
+
+
+.map_container{
+  width: 100%;
+  padding: 20px ;
+
+  background-color: white;
+  border-radius: 20px;
+  box-shadow: rgb(0 0 0 / 5%) 0px 0px 10px;
+
+  :global {
+    .leaflet-container.leaflet-touch-drag.leaflet-touch-zoom{
+      width: 100%;
+      height: 680px !important;
+    }
+  }
+}
+
+.icon{
+  width: 20px;
+  height: 20px;
+  vertical-align:bottom;
 }

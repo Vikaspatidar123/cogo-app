@@ -1830,6 +1830,10 @@ packages:
     resolution: {integrity: sha512-FN50r/E+b8wuqyRjmGaqvqNDuWBWYWQiigfZ50KnSFH0f+AMQQyaZl+Zm2+CIpKk0fL9QxhLxOpTVA3xFHgFow==}
     dev: false
 
+  /@next/polyfill-nomodule/13.2.3:
+    resolution: {integrity: sha512-ZUZ74mkrhqpc8EMIBM4clDe/25r4VQ+veCYFoCm1izkYC361oqQm7NTcC/3ILX2qNQxYWlx98J5ph6vB+AT9ng==}
+    dev: false
+
   /@next/swc-android-arm-eabi/12.3.1:
     resolution: {integrity: sha512-i+BvKA8tB//srVPPQxIQN5lvfROcfv4OB23/L1nXznP+N/TyKL8lql3l7oo2LNhnH66zWhfoemg3Q4VJZSruzQ==}
     engines: {node: '>= 10'}
@@ -5077,7 +5081,7 @@ packages:
       i18next: ^22.0.6
       next: '>= 12.0.0'
       react: '>= 17.0.2'
-      react-i18next: ^12.2.0
+      react-i18next: ^12.1.5
     dependencies:
       '@babel/runtime': 7.21.0
       '@types/hoist-non-react-statics': 3.3.1

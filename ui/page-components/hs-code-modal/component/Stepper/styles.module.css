@@ -1,8 +1,24 @@
 
+
 .row{
 	padding: 18px;
 	display: flex
 }
+
+@media screen and (min-width:767px){
+	.mobile_view{
+		display: block;
+		display: none;
+	}
+}
+
+@media screen and (max-width:767px){
+	.row{
+		display: block;
+		display: none;
+	}
+}
+
 .select_txt{
 	font-weight: 600;
 	font-size: 14px;

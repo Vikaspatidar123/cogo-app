@@ -22,7 +22,6 @@ function HsCode({
 	showHsCodeModal,
 	setShowHsCodeModal,
 	setSelectedData,
-	isMobile = false,
 }) {
 	const [chaptersData, setChaptersData] = useState([]);
 	const [headingData, setHeadingData] = useState();
@@ -76,7 +75,6 @@ function HsCode({
 		selectedCountry,
 		setSelectedCountry,
 		setCountryforHsCode,
-		isMobile,
 	});
 
 	const {
@@ -141,8 +139,9 @@ function HsCode({
 		<Modal
 			className="primary"
 			show={showHsCodeModal}
-			size={!isMobile ? 'xl' : 'sm'}
+			size="xl"
 			onClose={() => setShowHsCodeModal(false)}
+			scroll
 		>
 			<Modal.Header title={headerFn()} />
 			<Modal.Body>
@@ -161,15 +160,15 @@ function HsCode({
 						setActiveChapter={setActiveChapter}
 						setActiveHeading={setActiveHeading}
 						activeStepper={activeStepper}
-						isMobile={isMobile}
 					/>
-					{!isMobile && (
+					<div className={styles.hs_tag_web}>
 						<HsTag
 							activeSection={activeSection}
 							activeChapter={activeChapter}
 							activeHeading={activeHeading}
 						/>
-					)}
+					</div>
+
 					{showCategoryTable && (
 						<div className={styles.table_wrapper}>
 							{loading && <img src={Loading} alt="" className={styles.loading_style} />}
@@ -236,20 +235,19 @@ function HsCode({
 			{showCategoryTable === false && (
 				<Modal.Footer>
 					<div className={styles.add_button_wrapper}>
-						{isMobile && (
-							<Button
-								className={styles.prevBtn}
-								size="md"
-								themeType="primary"
-								onClick={() => {
-									previousFunction();
-								}}
-							>
-								<IcMArrowBack />
-								{' '}
-								Previous
-							</Button>
-						)}
+
+						<Button
+							className={styles.prevBtn}
+							size="md"
+							themeType="secondary"
+							onClick={() => {
+								previousFunction();
+							}}
+						>
+							<IcMArrowBack />
+							{' '}
+							Previous
+						</Button>
 						{showhscode && (
 							<Button
 								className={`${hsRowLength && styles.disableBtn} md`}

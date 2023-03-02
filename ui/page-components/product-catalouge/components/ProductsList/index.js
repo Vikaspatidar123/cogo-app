@@ -64,7 +64,7 @@ function ProductsList({
 			</div>
 			{console.log(showProductView,"showProductView")}
 			<div className={styles.scroll_content}>
-				{(!showProductView) && (
+				{(showProductView) && (
 					<div>
 						<div className={styles.sub_title}>Select Category</div>
 						{hsLoading ? (
@@ -156,7 +156,7 @@ function ProductsList({
 					</div>
 				)}
 
-				{showProductView && (
+				{!showProductView && (
 					<div className={styles.back}>
 						<div className="archived" role="presentation">
 							<IcMArrowBack

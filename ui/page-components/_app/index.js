@@ -2,88 +2,83 @@
 /* eslint-disable import/order */
 /* eslint-disable react-hooks/rules-of-hooks */
 
-import { Router } from '@/packages/next';
+import { Router } from "@/packages/next";
 
-import pageProgessBar from 'nprogress';
-import 'nprogress/nprogress.css';
-import { useEffect } from 'react';
+import pageProgessBar from "nprogress";
+import "nprogress/nprogress.css";
+import { useEffect } from "react";
 
-import withStore from './store';
+import withStore from "./store";
 
-import { Provider } from '@/packages/store';
-import { setGeneralStoreState } from '@/packages/store/store/general';
-import isMobileAgent from '@/packages/utils/isMobileAgent';
-import handleAuthentication from '@/ui/page-components/authentication/utils/handleAuthentication';
-import GlobalLayout from '@/ui/page-components/_app/layout/components/GlobalLayout';
-import { routeConfig } from '@/packages/navigation-configs';
+import { Provider } from "@/packages/store";
+import { setGeneralStoreState } from "@/packages/store/store/general";
+import handleAuthentication from "@/ui/page-components/authentication/utils/handleAuthentication";
+import GlobalLayout from "@/ui/page-components/_app/layout/components/GlobalLayout";
+import { routeConfig } from "@/packages/navigation-configs";
 
-function MyApp({
-	Component, pageProps, store, generalData,
-}) {
-	useEffect(() => {
-		Router.events.on('routeChangeStart', () => {
-			pageProgessBar.start();
-			pageProgessBar.set(0.4);
-		});
+function MyApp({ Component, pageProps, store, generalData }) {
+  useEffect(() => {
+    Router.events.on("routeChangeStart", () => {
+      pageProgessBar.start();
+      pageProgessBar.set(0.4);
+    });
 
-		Router.events.on('routeChangeComplete', () => {
-			pageProgessBar.done();
-		});
-	}, []);
-	useEffect(() => {
-		store.dispatch(setGeneralStoreState(generalData));
-	}, [generalData]);
+    Router.events.on("routeChangeComplete", () => {
+      pageProgessBar.done();
+    });
+  }, []);
+  useEffect(() => {
+    store.dispatch(setGeneralStoreState(generalData));
+  }, [generalData]);
 
-	return (
-		<Provider store={store}>
-			<GlobalLayout layout={pageProps.layout || 'authenticated'} head={pageProps.head || ''}>
-				<Component {...pageProps} />
-			</GlobalLayout>
-		</Provider>
-	);
+  return (
+    <Provider store={store}>
+      <GlobalLayout
+        layout={pageProps.layout || "authenticated"}
+        head={pageProps.head || ""}
+      >
+        <Component {...pageProps} />
+      </GlobalLayout>
+    </Provider>
+  );
 }
 
 MyApp.getInitialProps = async ({ Component, ctx }) => {
-	const {
-		store, req, pathname, asPath, query = {}, locale,
-	} = ctx;
-	const isServer = typeof req !== 'undefined';
-	// const isToken = isServer ? req.headers.cookie : false;
-	const pathPrefix = '/[org_id]/[branch_id]';
-	const ctxParams = {
-		...ctx,
-		isServer,
-		routeConfig,
-	};
-	const unPrefixedPath = `/${pathname.replace('/[org_id]/[branch_id]/', '')}`;
-	const { asPrefix, query: qError } = await handleAuthentication(ctxParams);
-	const isMobile = !isServer
-		? window.innerWidth < 768
-		: isMobileAgent(ctx.req.headers['user-agent'] || '');
-	const generalData = {
-		pathname,
-		asPath,
-		unPrefixedPath,
-		pathPrefix,
-		asPrefix,
-		query: { ...query, ...(qError || {}) },
-		isServer,
-		isMobile,
-		locale,
-		routeConfig,
-	};
+  const { store, req, pathname, asPath, query = {}, locale } = ctx;
+  const isServer = typeof req !== "undefined";
+  // const isToken = isServer ? req.headers.cookie : false;
+  const pathPrefix = "/[org_id]/[branch_id]";
+  const ctxParams = {
+    ...ctx,
+    isServer,
+    routeConfig,
+  };
+  const unPrefixedPath = `/${pathname.replace("/[org_id]/[branch_id]/", "")}`;
+  const { asPrefix, query: qError } = await handleAuthentication(ctxParams);
 
-	await store.dispatch(setGeneralStoreState(generalData));
+  const generalData = {
+    pathname,
+    asPath,
+    unPrefixedPath,
+    pathPrefix,
+    asPrefix,
+    query: { ...query, ...(qError || {}) },
+    isServer,
+    locale,
+    routeConfig,
+  };
 
-	const initialProps = Component.getInitialProps
-		? await Component.getInitialProps(ctxParams)
-		: {};
+  await store.dispatch(setGeneralStoreState(generalData));
 
-	return {
-		pageProps: initialProps,
-		generalData,
-		store,
-	};
+  const initialProps = Component.getInitialProps
+    ? await Component.getInitialProps(ctxParams)
+    : {};
+
+  return {
+    pageProps: initialProps,
+    generalData,
+    store,
+  };
 };
 
 const AppWithStore = withStore(MyApp);

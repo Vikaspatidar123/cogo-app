@@ -1,6 +1,5 @@
 import { Toast } from '@cogoport/components';
 import { useRouter } from 'next/router';
-import { useState } from 'react';
 
 import { useRequest } from '@/packages/request';
 import { useSelector } from '@/packages/store';

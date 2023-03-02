@@ -31,7 +31,7 @@ function NavBar() {
 	return (
 		<div className={styles.menu}>
 			{organization.map((item) => {
-				const { type, showInNav = false, isSubNavs = false } = item;
+				const { showInNav = false, isSubNavs = false } = item;
 				const isActive = !!item.options?.find((option) => getFindUrl(option.href) === unPrefixedPath);
 
 				if (showInNav) {

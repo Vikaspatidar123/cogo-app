@@ -1,11 +1,12 @@
+/* eslint-disable no-undef */
+/* eslint-disable react-hooks/exhaustive-deps */
 import { Toast } from '@cogoport/components';
-import { useTranslation } from 'next-i18next';
+// import { useTranslation } from 'next-i18next';
 import { useEffect, useMemo, useState } from 'react';
 
 import getControls from './controls';
 
 import { useForm } from '@/packages/forms';
-
 // import { getGeoConstants } from '@/constants/geo';
 import { useRequest } from '@/packages/request';
 import { useSelector } from '@/packages/store';
@@ -29,7 +30,7 @@ const useMobileNoVerification = ({ type = '' }) => {
 	// 	false,
 	// 	'partner',
 	// )('/verify_channel_partner_user_mobile');
-	const [{ loading }, trigger] = useRequest({
+	const [trigger] = useRequest({
 		url    : '/update_user',
 		method : 'post',
 	}, { manual: false });

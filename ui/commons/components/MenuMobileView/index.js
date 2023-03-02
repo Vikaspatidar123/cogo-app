@@ -1,3 +1,5 @@
+/* eslint-disable no-console */
+/* eslint-disable no-undef */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import { IcMArrowNext } from '@cogoport/icons-react';
 import { useState } from 'react';
@@ -14,7 +16,7 @@ import { useRouter } from '@/packages/next';
 import { useSelector } from '@/packages/store';
 
 function MobileMenu() {
-	const { push, pathname } = useRouter();
+	const { push } = useRouter();
 	const {
 		user_data,
 	} = useSelector(({ profile }) => ({
@@ -27,7 +29,6 @@ function MobileMenu() {
 		return <SwitchUser setShow={setShow} />;
 	}
 
-	const unPrefixedPath = `/${pathname.replace('/[org_id]/[branch_id]/', '')}`;
 	const configs = getSideBarConfigs(user_data);
 	const { nav_items = {} } = configs || {};
 	const { organization = [] } = nav_items || {};

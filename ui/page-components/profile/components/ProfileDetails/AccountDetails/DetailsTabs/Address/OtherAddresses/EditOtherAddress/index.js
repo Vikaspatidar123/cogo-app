@@ -1,5 +1,5 @@
 import { Button, Modal } from '@cogoport/components';
-import { startCase } from '@cogoport/utils';
+// import { startCase } from '@cogoport/utils';
 
 import styles from './styles.module.css';
 import useEditOtherAddress from './useEditOtherAddress';
@@ -20,7 +20,7 @@ function EditOtherAddress({
 		control,
 		showElements,
 		fields,
-		formState,
+		// formState,
 		handleSubmit,
 		onCreate,
 	} = useEditOtherAddress({

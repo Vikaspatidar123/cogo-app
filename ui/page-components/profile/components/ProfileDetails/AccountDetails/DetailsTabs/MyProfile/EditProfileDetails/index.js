@@ -1,12 +1,14 @@
+/* eslint-disable no-mixed-spaces-and-tabs */
+/* eslint-disable no-lone-blocks */
 import { Button } from '@cogoport/components';
-import { IcMDelete } from '@cogoport/icons-react';
+// import { IcMDelete } from '@cogoport/icons-react';
 
 import FieldArray from '../FieldArray';
 import useEditProfileDetails from '../hooks/useEditProfileDetails';
 
 import styles from './styles.module.css';
 
-import { useFieldArray } from '@/packages/forms';
+// import { useFieldArray } from '@/packages/forms';
 import getField from '@/packages/forms/Controlled';
 
 function EditProfileDetails({
@@ -23,18 +25,18 @@ function EditProfileDetails({
 		onError = () => {},
 		loading = false,
 		control,
-		register,
+		// register,
 	} = useEditProfileDetails({
 		userDetails,
 		getChannelPartnerUser,
 		setShowEditProfileDetails,
 	});
-	const {
-		fields:field, append, remove,
-	} = useFieldArray({
-		control, // control props comes from useForm (optional: if you are using FormContext)
-		name: 'alternate_mobile_numbers', // unique name for your Field Array
-	  });
+	// const {
+	// 	fields:field, append, remove,
+	// } = useFieldArray({
+	// 	control, // control props comes from useForm (optional: if you are using FormContext)
+	// 	name: 'alternate_mobile_numbers', // unique name for your Field Array
+	//   });
 
 	return (
 		<div className={styles.Layout_container}>
@@ -46,7 +48,7 @@ function EditProfileDetails({
 							<FieldArray {...item} control={control} />
 						);
 					}
-				 { /* const Element = getField('mobile_number');
+	               { /* const Element = getField('mobile_number');
 					if (item.type === 'fieldArray') {
 						return (
 							<div className="child">

@@ -3,9 +3,9 @@ import { IcMDocument } from '@cogoport/icons-react';
 import { isEmpty } from '@cogoport/utils';
 import React, { useState, useEffect } from 'react';
 
-import styles from './styles.module.css';
+import { publicRequest, request } from '../../../request';
 
-import { publicRequest, request } from '@/packages/request';
+import styles from './styles.module.css';
 
 function FileUploader(props) {
 	const {

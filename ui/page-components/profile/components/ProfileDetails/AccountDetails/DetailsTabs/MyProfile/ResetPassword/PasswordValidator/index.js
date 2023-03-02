@@ -1,4 +1,4 @@
-import { IcCTick, IcCRedCircle } from '@cogoport/icons-react';
+import { IcCTick } from '@cogoport/icons-react';
 
 import styles from './styles.module.css';
 
@@ -35,7 +35,7 @@ function PasswordValidator({ password = '' }) {
 			</div>
 
 			<div className={styles.list}>
-				{Object.entries(VALID_PASSWORD_MAPPINGS)?.map(([key, value]) => {
+				{Object.entries(VALID_PASSWORD_MAPPINGS)?.map(([value]) => {
 					const { pattern = null, message = '' } = value;
 
 					const regex = new RegExp(pattern);

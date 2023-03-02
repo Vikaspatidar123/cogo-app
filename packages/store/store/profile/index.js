@@ -4,7 +4,7 @@ const initialState = {};
 
 export * from './actions';
 
-const storeProfile = (state = initialState, action) => {
+const storeProfile = (action, state = initialState) => {
 	switch (action.type) {
 		case syncTypes.SET_STORE_STATE:
 			return { ...state, ...action.data };

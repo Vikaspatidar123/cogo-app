@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 // import { useKey } from '@cogoport/front/hooks';
 import {
 	useState, useEffect, useImperativeHandle, useRef,

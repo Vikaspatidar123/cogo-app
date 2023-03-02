@@ -9,7 +9,7 @@ import {
 	useForm,
 	asyncFieldsLocations, useGetAsyncOptions,
 } from '@/packages/forms';
-import useRequest from '@/packages/request';
+// import useRequest from '@/packages/request';
 
 const useEditOtherAddress = ({
 	// organizationType = '',
@@ -17,11 +17,11 @@ const useEditOtherAddress = ({
 	// handleCloseModal,
 	otherAddressObjToUpdate = {},
 	// getOrganizationOtherAddresses = () => { },
-	organizationOtherAddressesList,
+	// organizationOtherAddressesList,
 }) => {
-	const valuesToPrefill = organizationOtherAddressesList?.[
-		`${otherAddressObjToUpdate.address_type}_address`
-	]?.[otherAddressObjToUpdate.index];
+	// const valuesToPrefill = organizationOtherAddressesList?.[
+	// 	`${otherAddressObjToUpdate.address_type}_address`
+	// ]?.[otherAddressObjToUpdate.index];
 	const labelKey = 'postal_code';
 	const valueKey = 'postal_code';
 	const cityPincode = useGetAsyncOptions(merge(asyncFieldsLocations(labelKey, valueKey), {
@@ -33,7 +33,7 @@ const useEditOtherAddress = ({
 
 	const {
 		handleSubmit = () => { },
-		setValues,
+		// setValues,
 		formState,
 		control,
 	} = formProps;

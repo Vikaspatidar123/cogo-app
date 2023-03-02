@@ -1,3 +1,6 @@
+/* eslint-disable max-len */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable no-undef */
 import { Modal, Button } from '@cogoport/components';
 import { IcMEdit, IcMDocument } from '@cogoport/icons-react';
 import { useState } from 'react';

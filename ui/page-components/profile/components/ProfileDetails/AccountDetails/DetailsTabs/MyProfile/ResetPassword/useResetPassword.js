@@ -1,6 +1,6 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { Toast } from '@cogoport/components';
 import { IcMEyeopen, IcMEyeclose } from '@cogoport/icons-react';
-import { useTranslation } from 'next-i18next';
 import { useEffect, useMemo, useState } from 'react';
 
 import getControls from './controls';

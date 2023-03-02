@@ -1,7 +1,8 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable max-len */
-import { Modal, Tags, Toast } from '@cogoport/components';
+import { Modal } from '@cogoport/components';
 import { IcMArrowRotateDown, IcMFtaskNotCompleted } from '@cogoport/icons-react';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 import EditOtherAddress from './EditOtherAddress';
 import LoadingState from './LoadingState';

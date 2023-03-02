@@ -1,12 +1,10 @@
-import { Toast } from '@cogoport/components';
+/* eslint-disable no-unused-vars */
 // import { useFormCogo } from '@cogoport/front/hooks';
-import { useEffect } from 'react';
 
 import getControls from './controls';
 
 import { useForm } from '@/packages/forms';
-import { useRequest } from '@/packages/request';
-import { useSelector } from '@/packages/store';
+// import { useSelector } from '@/packages/store';
 
 const useEditPocDetails = ({
 	getOrganizationBillingAddress = () => { },
@@ -17,9 +15,9 @@ const useEditPocDetails = ({
 	showPocModal,
 	setShowPocModal = () => { },
 }) => {
-	const {
-		profile: { organization },
-	} = useSelector((state) => state);
+	// const {
+	// 	profile: { organization },
+	// } = useSelector((state) => state);
 
 	const fields = getControls();
 
@@ -34,7 +32,7 @@ const useEditPocDetails = ({
 	// const { loading } = addUpdatePocAPI;
 
 	const {
-		formState, setValues, handleSubmit,
+		formState, handleSubmit,
 		control,
 	} = useForm();
 

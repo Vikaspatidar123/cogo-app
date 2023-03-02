@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable max-len */
 import { Toast } from '@cogoport/components';
 import { merge } from '@cogoport/utils';
@@ -10,15 +11,15 @@ import {
 	asyncFieldsLocations, useGetAsyncOptions,
 } from '@/packages/forms';
 import { useRequest } from '@/packages/request';
-import { useDispatch, useSelector } from '@/packages/store';
+// import { useDispatch, useSelector } from '@/packages/store';
 
 const useEditBillingAddress = ({
 	addressIdxToUpdate,
-	getOrganizationBillingAddress,
+	// getOrganizationBillingAddress,
 	organizationBillingAddressesList,
-	handleCloseModal,
+	// handleCloseModal,
 }) => {
-	const [{ loading, data }, trigger] = useRequest({
+	const [trigger] = useRequest({
 		url    : '/create_organization_billing_address',
 		method : 'post',
 	}, { manual: true });

@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-undef */
 /* eslint-disable import/order */
 /* eslint-disable react-hooks/rules-of-hooks */

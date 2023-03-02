@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 // eslint-disable-next-line import/no-unresolved
 import countryCodes from '@/data-store/constants/countries.json';
 

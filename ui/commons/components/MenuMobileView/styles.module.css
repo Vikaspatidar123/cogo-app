@@ -3,8 +3,11 @@
   flex-direction: column;
   padding: 8px;
   background: #fff;
-
   margin-top: 8px;
+
+  @media (min-width: 768px) {
+    display: none;
+  }
 }
 .header_text {
   color: #828282;

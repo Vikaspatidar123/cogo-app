@@ -13,8 +13,8 @@
     "pre-build": "NODE_ENV=production",
     "build": "NODE_ENV=production node scripts/pre-build && NODE_ENV=production next build",
     "start": "next start",
-    "lint": "eslint .",
-    "lint:css": "stylelint \"**/*.css\"",
+    "eslint": "eslint .",
+    "stylelint": "stylelint \"**/*.css\"",
     "preinstall": "npx only-allow pnpm"
   },
   "dependencies": {

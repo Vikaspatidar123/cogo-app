@@ -12,19 +12,19 @@ function useGetAsyncOptionsBf({
 	params = {},
 	authKey = '',
 }) {
-	const { query, debounceQuery } = useDebounceQuery();``
+	const { query, debounceQuery } = useDebounceQuery(); '';
 
 	const [{ data, loading }] = useRequestBf({
-		url: endpoint,
-		method: 'GET',
+		url    : endpoint,
+		method : 'GET',
 		authKey,
-		params: merge(params, { query }),
+		params : merge(params, { query }),
 	}, { manual: !(initialCall || query) });
 	const options = data?.list || [];
 
 	const [{ loading: loadingSingle }, triggerSingle] = useRequestBf({
-		url: endpoint,
-		method: 'GET',
+		url    : endpoint,
+		method : 'GET',
 		authKey,
 	}, { manual: true });
 

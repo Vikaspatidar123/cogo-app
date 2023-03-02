@@ -3,8 +3,8 @@ import { makeUseAxios } from 'axios-hooks';
 import { bfRequest } from '../helpers/bf-request';
 
 const commonConfig = {
-	cache: false,
-	defaultOptions: {
+	cache          : false,
+	defaultOptions : {
 		ssr: false,
 	},
 };

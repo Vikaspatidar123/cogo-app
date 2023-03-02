@@ -1,6 +1,6 @@
-import styled from '@cogoport/front/styled';
 import animate, { fadeInRight } from '@cogoport/front/animate';
 import { Button } from '@cogoport/front/components/admin';
+import styled from '@cogoport/front/styled';
 
 export const Container = styled.div`
 	width: 100%;
@@ -38,8 +38,8 @@ export const List = styled.div`
 export const FadeOutScale = animate({
 	enter: {
 		...fadeInRight,
-		easing: 'easeInOutQuad',
-		translateX: [15, 0],
-		opacity: [0.25, 1],
+		easing     : 'easeInOutQuad',
+		translateX : [15, 0],
+		opacity    : [0.25, 1],
 	},
 });

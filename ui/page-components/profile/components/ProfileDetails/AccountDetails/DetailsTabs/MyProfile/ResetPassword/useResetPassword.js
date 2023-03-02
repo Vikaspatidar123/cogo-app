@@ -74,8 +74,8 @@ const useResetPassword = ({
 		setErrors((previousErrors) => ({
 			...previousErrors,
 			confirmPassword: {
-				type    : '',
-				message :
+				type: '',
+				message:
 					watchConfirmPassword && watchConfirmPassword !== watchPassword
 						? ''
 
@@ -142,6 +142,7 @@ const useResetPassword = ({
 		errors,
 		onSubmit,
 		onErrors,
+		loading,
 		// loading: updateUserPasswordAPI?.loading,
 	};
 };

@@ -1,5 +1,5 @@
 import { Upload, Toast } from '@cogoport/components';
-import { IcMDocument, IcMUpload } from '@cogoport/icons-react';
+import { IcMDocument } from '@cogoport/icons-react';
 import { isEmpty } from '@cogoport/utils';
 import React, { useState, useEffect } from 'react';
 

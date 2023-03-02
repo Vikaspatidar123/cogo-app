@@ -7,8 +7,8 @@ import styles from './styles.module.css';
 import { useSelector } from '@/packages/store';
 
 const MAPPING = {
-	importer_exporter: 'Importer/Exporter',
-	service_provider: 'Service',
+	importer_exporter : 'Importer/Exporter',
+	service_provider  : 'Service',
 };
 function SwitchPartnerItem({ item }) {
 	const { organization, branch = '' } = useSelector(({ profile }) => profile);

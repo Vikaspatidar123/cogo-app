@@ -26,11 +26,10 @@ function AllProducts({
 	addProductLoading,
 	setHSCode = () => {},
 	deleteProduct = () => {},
-	isMobile,
 	setIsEdit,
 	isEdit,
 }) {
-	const { Mapping } = HsCodeIconMaping(isMobile);
+	const { Mapping } = HsCodeIconMaping();
 	const [archive, setArchive] = useState(false);
 	const [visible, setVisible] = useState({});
 	const [proId, setProId] = useState('');
@@ -178,13 +177,11 @@ function AllProducts({
 					),
 				)}
 			</div>
-			{isMobile && (
-				<div className={`${styles.styled_filter_section}`}>
-					<div className="btn" role="presentation" onClick={() => setHSCode(true)}>
-						<IcMPlus className={styles.plus_icon} fill="#ffffff" height={50} width={50} />
-					</div>
+			<div className={`${styles.styled_filter_section}`}>
+				<div className="btn" role="presentation" onClick={() => setHSCode(true)}>
+					<IcMPlus className={styles.plus_icon} fill="#ffffff" height={50} width={50} />
 				</div>
-			)}
+			</div>
 
 			<div className={styles.page_container}>
 				<div className="pagination">
@@ -233,7 +230,6 @@ function AllProducts({
 				productClassificationId={productClassification}
 				productId={proId}
 				card
-				isMobile={isMobile}
 			/>
 		</div>
 	);

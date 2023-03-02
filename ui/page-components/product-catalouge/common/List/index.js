@@ -21,15 +21,6 @@ function List({
 	sort,
 	setSort,
 }) {
-	const [isMobile, setIsMobile] = useState(false);
-	const { width } = useWindowDimensions();
-	useEffect(() => {
-		if (width < 1154) {
-			setIsMobile(true);
-		} else {
-			setIsMobile(false);
-		}
-	}, [width]);
 	const {
 		list = [], pageNo = 0, totalRecords = 0, pageSize = 1,
 	} = data || {};
@@ -39,15 +30,17 @@ function List({
 	return (
 		<div className={styles.container}>
 			<div className="list">
-				{listNew?.length > 0 && !isMobile && (
-					<CardHeader
-						getTableHeaderCheckbox={getTableHeaderCheckbox}
-						singleList={singleList}
-						fields={fields}
-						sort={sort}
-						setSort={setSort}
-					/>
-				)}
+				<div className={styles.card_header}>
+					{listNew?.length > 0 && (
+						<CardHeader
+							getTableHeaderCheckbox={getTableHeaderCheckbox}
+							singleList={singleList}
+							fields={fields}
+							sort={sort}
+							setSort={setSort}
+						/>
+					)}
+				</div>
 				{(listNew || []).map((item, index) => (
 					<Item
 						tableView={tableView}
@@ -60,7 +53,6 @@ function List({
 						length={listNew.length}
 						index={index}
 						key={item.key}
-						isMobile={isMobile}
 					/>
 				))}
 			</div>

@@ -83,8 +83,17 @@
 	border-radius: 4px;
 	margin: 0 12px;
 	text-transform: capitalize !important;
-	height: 32px;
-	width: 106px;
+}
+
+.styled_add_button{
+    background: #221f20;
+	border-radius: 4px;
+	margin: 0 12px;
+	text-transform: capitalize !important;
+
+	@media(max-width: 768px){
+		display: none;
+	}
 }
 
 .archived_button{
@@ -211,11 +220,14 @@
 }
 
 .styled_filter_section{
+	display: none;
     @media screen and (max-width: 767px) {
+		display: inline;
 		bottom: 10px;
-		right: 20px;
+		right: 12px;
 		position: fixed;
 		z-index: 2;
+		margin-bottom: 60px;
 
 		.btn {
 			cursor: pointer;
@@ -271,7 +283,9 @@
 }
 
 .back{
-    display: flex;
+	display: none;
+	@media(max-width: 768px){
+	display: flex;
 	flex-direction: row;
 	cursor: pointer;
 
@@ -287,6 +301,8 @@
 			color: #221f20;
 		}
 	}
+	}
+   
 }
 
 .tab_div{

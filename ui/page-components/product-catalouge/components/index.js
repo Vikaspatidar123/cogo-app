@@ -4,7 +4,7 @@ import {
 import { useState } from 'react';
 
 import HsCode from '../../hs-code-modal';
-import useEdit from '../hooks/useEdit';
+// import useEdit from '../hooks/useEdit';
 import useHSCodelist from '../hooks/useHsCodeList';
 import useProductCatalogue from '../hooks/useProductCatalogue';
 
@@ -14,7 +14,7 @@ import ProductsList from './ProductsList';
 import styles from './styles.module.css';
 
 import { useRouter } from '@/packages/next';
-import { useSelector } from '@/packages/store';
+// import { useSelector } from '@/packages/store';
 
 function ProductInventory() {
 	const [activeTab, setActiveTab] = useState('allProducts');
@@ -32,8 +32,7 @@ function ProductInventory() {
 	const [sectionTab, setSectionTab] = useState('products');
 	const [uploadModal, setUploadModal] = useState(false);
 	const [isEdit, setIsEdit] = useState(false);
-	const { general } = useSelector((state) => state);
-	const { isMobile } = general;
+
 	const {
 		addProductLoading,
 		apiData = {},
@@ -46,11 +45,6 @@ function ProductInventory() {
 		setShowProductView,
 	});
 
-	// const { addProduct } = useEdit({
-	// 	setShowProduct,
-	// 	refetchProduct,
-	// 	setHSCode,
-	// });
 	const { push } = useRouter();
 	const handelRouting = () => {
 		push('/saas/product-inventory/archived');
@@ -60,27 +54,24 @@ function ProductInventory() {
 	return (
 		<>
 			<div className={styles.container}>
-				{isMobile && (
-					<div className={styles.product_analytics_tab_ctn}>
-						<Tabs
-							activeTab={sectionTab}
-							onChange={setSectionTab}
-							className="horizontal two"
-						>
-							<TabPanel name="products" title="Products" className="horizontal one" />
-							<TabPanel name="analytics" title="Analytics" className="horizontal one">
-								<div className={styles.dashboard_data}>
-									<Dashboard apiData={apiData} activeTab={activeTab} />
-								</div>
-							</TabPanel>
-						</Tabs>
-					</div>
-				)}
-				{(sectionTab === 'products' || !isMobile) && (
+				<div className={styles.product_analytics_tab_ctn}>
+					<Tabs
+						activeTab={sectionTab}
+						onChange={setSectionTab}
+						className="horizontal two"
+					>
+						<TabPanel name="products" title="Products" className="horizontal one" />
+						<TabPanel name="analytics" title="Analytics" className="horizontal one">
+							<div className={styles.dashboard_data}>
+								<Dashboard apiData={apiData} activeTab={activeTab} />
+							</div>
+						</TabPanel>
+					</Tabs>
+				</div>
+				{(sectionTab === 'products') && (
 					<ProductsList
 						handelRouting={handelRouting}
 						setUploadModal={setUploadModal}
-						isMobile={isMobile}
 						hsLoading={hsLoading}
 						setHSCode={setHSCode}
 						showProductView={showProductView}
@@ -106,11 +97,10 @@ function ProductInventory() {
 						setIsEdit={setIsEdit}
 					/>
 				)}
-				{!isMobile && (
-					<div style={{ width: '30%' }}>
-						<Dashboard apiData={apiData} activeTab={activeTab} isMobile={isMobile} />
-					</div>
-				)}
+
+				<div className={styles.dashboard_container}>
+					<Dashboard apiData={apiData} activeTab={activeTab} />
+				</div>
 			</div>
 
 			{hsCode && (
@@ -120,7 +110,6 @@ function ProductInventory() {
 					setSelectedData={setSelectedData}
 					setShowProduct={setShowProduct}
 					setPrefiledValues={setPrefiledValues}
-					isMobile={isMobile}
 				/>
 			)}
 

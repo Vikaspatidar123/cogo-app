@@ -7,7 +7,7 @@ import Pricing from '../Price';
 
 import styles from './styles.module.css';
 
-import { useSelector } from '@/packages/store';
+// import { useSelector } from '@/packages/store';
 
 function AddProductModal({
 	showProduct,
@@ -28,8 +28,6 @@ function AddProductModal({
 }) {
 	const [pdId, setProductClassificationId] = useState();
 	const [productDetailsfromAPi, setProductDetailsfromApi] = useState({});
-	const { general } = useSelector((state) => state);
-	const { isMobile } = general;
 
 	const handleClick = () => {
 		if (setIsEdit) {

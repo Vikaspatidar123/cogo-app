@@ -1,6 +1,9 @@
 .container{
 	@media (max-width: 760px) {
-		width: 90vw !important;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
 		:global{
 			.ui-modal-dialog.sm {
 				width: 0px;
@@ -26,6 +29,7 @@
 	@media (max-width: 760px){
 		display: flex;
 		align-items: center;
+		justify-content: center;
 		padding: 0px 10px;
 	}
 }

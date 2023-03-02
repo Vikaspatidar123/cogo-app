@@ -1,4 +1,4 @@
-import { toast } from '@cogoport/components';
+import { Toast } from '@cogoport/components';
 import { useState } from 'react';
 
 // import { useSaasState } from '../../../common/context';
@@ -49,7 +49,7 @@ const useUploadDocuments = ({ refetchProduct, setShow }) => {
 				}
 			}
 		} catch (error) {
-			toast.error(error.error?.message);
+			Toast.error(error.error?.message || 'Something Went Wrong');
 		}
 	};
 

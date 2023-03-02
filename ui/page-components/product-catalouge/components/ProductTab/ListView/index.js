@@ -26,7 +26,6 @@ function ListView({
 	loading,
 	setIsEdit,
 	isEdit,
-	isMobile,
 }) {
 	const [archive, setArchive] = useState(false);
 	const { productClassificationId = '', subCategoryCount = 0 } = item || {};
@@ -192,7 +191,6 @@ function ListView({
 				subCategoryCount={subCategoryCount}
 				card={false}
 				setActiveTab={setActiveTab}
-				isMobile={isMobile}
 			/>
 
 			{archive && (

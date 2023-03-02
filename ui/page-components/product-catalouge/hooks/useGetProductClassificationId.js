@@ -24,7 +24,7 @@ const useGetProductClassificationId = ({
 			setProductClassificationId(response?.data?.productClassificationId);
 			setProductDetailsfromApi(response?.data);
 		} catch (error) {
-			Toast.error(error?.error?.message);
+			Toast.error(error?.error?.message || 'Something Went Wrong');
 		}
 	};
 

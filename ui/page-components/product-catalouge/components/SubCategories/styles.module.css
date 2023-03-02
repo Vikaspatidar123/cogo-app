@@ -32,6 +32,7 @@
 			height: auto;
 			@media (max-width: 768px){
 				border-left: none;
+				/* display: none; */
 			}
 		}
 	}	
@@ -39,9 +40,19 @@
 	
 }
 
+.container{
+	@media(max-width: 768px){
+		display: flex;
+		flex-direction: column;
+		overflow: scroll;
+	}
+}
+
+
+
 .tab_container{
     cursor: pointer;
-
+	
 	:global{
 		.ui-tabs {
 			background: #ffffff !important;
@@ -128,6 +139,8 @@
 		}
 	
 	}
-
-	
 }
+
+/* .desktop{
+	display: block;
+} */

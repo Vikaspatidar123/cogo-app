@@ -20,7 +20,7 @@ const useUnArchive = ({ proId, setArchive, refetchProduct }) => {
 				Toast.success('Product UnArchive Successfully !!');
 			}
 		} catch (error) {
-			Toast.error(error.message);
+			Toast.error(error.message || 'Something Went Wrong');
 		}
 	};
 	return {

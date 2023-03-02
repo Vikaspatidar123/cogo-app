@@ -48,7 +48,6 @@ function HSCodelistAddproduct({
 }) {
 	const [page, setPage] = useState(1);
 	const { pageSize, totalRecords } = hsCodeResponse || {};
-	// const { Row, Col } = Grid;
 	const [chaptersData, setChaptersData] = useState([]);
 	const [activeSection, setActiveSection] = useState('');
 	const [activeChapter, setActiveChapter] = useState('');

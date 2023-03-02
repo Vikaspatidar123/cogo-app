@@ -68,7 +68,7 @@ const useHSCODE = ({ countryforHscode = '' }) => {
 				setApiData(response.data?.sections);
 			}
 		} catch (err) {
-			Toast.error(err?.message, { style: { color: 'white' } });
+			Toast.error(err?.message || 'Something Went Wrong', { style: { color: 'white' } });
 		}
 	};
 
@@ -82,7 +82,7 @@ const useHSCODE = ({ countryforHscode = '' }) => {
 				});
 				setheadingObj(response?.data);
 			} catch (err) {
-				Toast.error(err.error?.message, { style: { color: 'white' } });
+				Toast.error(err.error?.message || 'Something Went Wrong', { style: { color: 'white' } });
 			}
 		}
 	};
@@ -106,7 +106,7 @@ const useHSCODE = ({ countryforHscode = '' }) => {
 			setHSCodeResponse(response?.data);
 			setHsCodeObj(response.data?.list);
 		} catch (err) {
-			Toast.error(err.error?.message, { style: { color: 'white' } });
+			Toast.error(err.error?.message || 'Something Went Wrong', { style: { color: 'white' } });
 		}
 	};
 

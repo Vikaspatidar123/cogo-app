@@ -13,49 +13,46 @@ const Item = ({
 	fields,
 	handleClick,
 	loading,
-	isMobel = false,
 	functions,
-	isMobile,
 }) => {
-	const { newFunctions } = itemFunctions({ functions, isMobile });
+	const { newFunctions } = itemFunctions({ functions });
 	const infoData = (singleItem, itm) => {
 		if (singleItem?.toolTip) {
 			return (
 				<Tooltip
 					content={(
 						<div style={{ color: 'grey' }}>
-							{getValue(itm, singleItem, isMobel, newFunctions)}
+							{getValue(itm, singleItem, false, newFunctions)}
 						</div>
 					)}
 					theme="light"
 				>
-					<div className={styles.info}>{getValue(itm, singleItem, isMobel, newFunctions)}</div>
+					<div className={styles.info}>{getValue(itm, singleItem, false, newFunctions)}</div>
 				</Tooltip>
 			);
 		}
-		return getValue(itm, singleItem, isMobel, newFunctions);
+		return getValue(itm, singleItem, false, newFunctions);
 	};
 	const renderItem = (itm) => (
-		<div className={isMobile ? `${styles.mobile_container}` : `${styles.container}`}>
-			{isMobile ? (
+		<div className={styles.container}>
+			<div className={styles.mobile_view}>
 				<MobileView fields={fields} infoData={infoData} itm={itm} loading={loading} />
-			) : (
-				<div className={styles.row_container} onClick={handleClick} role="presentation" tabIndex="0">
-					{loading && (
-						<Loader style={{ height: '20px', width: '20px' }} />
-					)}
-					{!loading && (fields || []).map((singleItem) => (
-						<div
-							className={styles.col_container}
-							style={singleItem.styles}
-							key={singleItem?.key}
-						>
-							{singleItem.render && !loading ? singleItem.render(itm) : null}
-							{infoData(singleItem, itm)}
-						</div>
-					))}
-				</div>
-			)}
+			</div>
+			<div className={styles.row_container} onClick={handleClick} role="presentation">
+				{loading && (
+					<Loader style={{ height: '20px', width: '20px' }} />
+				)}
+				{!loading && (fields || []).map((singleItem) => (
+					<div
+						className={styles.col_container}
+						style={singleItem.styles}
+						key={singleItem?.key}
+					>
+						{singleItem.render && !loading ? singleItem.render(itm) : null}
+						{infoData(singleItem, itm)}
+					</div>
+				))}
+			</div>
 		</div>
 	);
 

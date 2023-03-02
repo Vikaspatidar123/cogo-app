@@ -23,8 +23,8 @@ import {
 	IcMGrid,
 } from '@cogoport/icons-react';
 
-const HsCodeIconMaping = (isMobile) => {
-	const props = { width: isMobile ? 50 : 100, height: 25 };
+const HsCodeIconMaping = () => {
+	const props = { width: 50, height: 25 };
 
 	const Mapping = {
 		'00' : <IcMGrid {...props} />,

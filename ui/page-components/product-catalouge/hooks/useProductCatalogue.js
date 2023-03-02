@@ -49,7 +49,7 @@ const useProductCatalogue = ({ archive = false, fetch = () => {}, setActiveTab }
 			if (sub) fetch();
 			return response.data?.list;
 		} catch (error) {
-			Toast.error(error.message);
+			Toast.error(error.message || 'Something Went Wrong');
 			return null;
 		}
 	};
@@ -83,7 +83,7 @@ const useProductCatalogue = ({ archive = false, fetch = () => {}, setActiveTab }
 				Toast.success('Product Delete Successfully !!');
 			}
 		} catch (error) {
-			Toast.error(error?.message);
+			Toast.error(error?.message || 'Something Went Wrong');
 		}
 	};
 

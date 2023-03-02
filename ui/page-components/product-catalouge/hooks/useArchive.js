@@ -35,7 +35,7 @@ const useArchive = ({
 				}
 			}
 		} catch (error) {
-			Toast.error(error?.message);
+			Toast.error(error?.message || 'Something Went Wrong');
 		}
 	};
 	return {

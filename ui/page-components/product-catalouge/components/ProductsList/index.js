@@ -25,8 +25,7 @@ function ProductsList({
 	setSubCategory, setActiveHeaderTab, showProduct, setShowProduct, prefiledValues, addProductLoading,
 	activeHeaderTab, setIsEdit,
 }) {
-	const { profile, general } = useSelector((state) => state);
-	const { isMobile } = general;
+	const { profile } = useSelector((state) => state);
 	const { Mapping } = HsCodeIconMaping(false);
 	const checkLength = apiData?.totalRecords;
 	const countryInfo = profile?.organization?.country;
@@ -54,20 +53,18 @@ function ProductsList({
 						Import product
 					</Button>
 
-					{!isMobile && (
-						<Button
-							className={styles.styled_button}
-							disabled={hsLoading}
-							onClick={() => setHSCode(true)}
-						>
-							+ Add New
-						</Button>
-					)}
+					<Button
+						className={styles.styled_add_button}
+						disabled={hsLoading}
+						onClick={() => setHSCode(true)}
+					>
+						+ Add New
+					</Button>
 				</div>
 			</div>
 			<div className={styles.scroll_content}>
-				{(!showProductView || !isMobile) && (
-					<>
+				{(!showProductView) && (
+					<div>
 						<div className={styles.sub_title}>Select Category</div>
 						{hsLoading ? (
 							<Loading className={styles.styled_loading} />
@@ -135,32 +132,31 @@ function ProductsList({
 														);
 													})}
 												</Tabs>
-												{isMobile && (
-													<div className={styles.styled_filter_section}>
-														<div
-															className="btn"
-															role="presentation"
-															onClick={() => setHSCode(true)}
-														>
-															<IcMPlus
-																className={styles.plus_icon}
-																fill="#ffffff"
-																height={50}
-																width={50}
-															/>
-														</div>
+												<div className={styles.styled_filter_section}>
+													<div
+														className="btn"
+														role="presentation"
+														onClick={() => setHSCode(true)}
+													>
+														<IcMPlus
+															// className={styles.plus_icon}
+															fill="#ffffff"
+															// height="1.2rem"
+															// width="1.2rem"
+														/>
 													</div>
-												)}
+												</div>
+
 											</div>
 										</div>
 									</div>
 								)}
 							</div>
 						)}
-					</>
+					</div>
 				)}
 
-				{isMobile && showProductView && (
+				{showProductView && (
 					<div className={styles.back}>
 						<div className="archived" role="presentation">
 							<IcMArrowBack
@@ -201,7 +197,6 @@ function ProductsList({
 										deleteProduct={deleteProduct}
 										setIsEdit={setIsEdit}
 										isEdit={isEdit}
-										isMobile={isMobile}
 										showProductView={showProductView}
 										activeTab={activeTab}
 										setHSCode={setHSCode}
@@ -217,7 +212,6 @@ function ProductsList({
 						<SubCategory
 							activeHeaderTab={activeHeaderTab}
 							setActiveHeaderTab={setActiveHeaderTab}
-							isMobile={isMobile}
 							subCategory={subCategory}
 							activeTab={activeTab}
 							apiData={apiData}

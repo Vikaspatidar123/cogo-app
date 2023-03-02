@@ -7,7 +7,6 @@ import styles from './styles.module.css';
 function SubCategory({
 	activeHeaderTab,
 	setActiveHeaderTab,
-	isMobile,
 	subCategory,
 	activeTab,
 	apiData,
@@ -30,31 +29,30 @@ function SubCategory({
 		<div className={styles.styled_tab_div}>
 			<div className={`${styles.catalouge_label}${styles.sub_category}`}>Sub - Categories</div>
 			<div className="category">
-				<div>
-					{(Object.keys(activeData).length === 0 || !isMobile)
-						&& (subCategory || []).map((category) => (
+				<div className={styles.container}>
+					{(subCategory || []).map((category) => (
+						<div
+							className={styles.tab_container}
+							key={category?.subCategoryCode}
+							role="presentation"
+							onClick={() => {
+								onSubmit(category);
+							}}
+						>
 							<div
-								className={styles.tab_container}
-								key={category?.subCategoryCode}
-								role="presentation"
-								onClick={() => {
-									onSubmit(category);
-								}}
+								className={`card ${
+									activeHeaderTab === category.subCategoryCode && 'active'
+								}`}
 							>
-								<div
-									className={`card ${
-										activeHeaderTab === category.subCategoryCode && 'active'
-									}`}
-								>
-									{category.subCategoryDisplayName}
-								</div>
+								{category.subCategoryDisplayName}
 							</div>
-						))}
+						</div>
+					))}
 				</div>
 				<div className="section">
 					{activeTab
 						&& activeHeaderTab
-						&& (Object.keys(activeData).length > 0 || !isMobile) && (
+						&& (Object.keys(activeData).length > 0) && (
 							<ListView
 								item={activeData || {}}
 								activeSubTab={activeHeaderTab}
@@ -70,7 +68,6 @@ function SubCategory({
 								setIsEdit={setIsEdit}
 								isEdit={isEdit}
 								productClassificationId={activeData?.productClassificationId}
-								isMobile={isMobile}
 							/>
 					)}
 				</div>

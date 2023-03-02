@@ -97,6 +97,7 @@
 }
 
 .page_container{
+	margin-top: 12px;
 	:global{
 		.pagination {
 			float: right;
@@ -200,6 +201,7 @@
 }
 
 .styled_filter_section{
+	display: none;
 	@media screen and (max-width: 767px) {
 		bottom: 10px;
 		right: 20px;

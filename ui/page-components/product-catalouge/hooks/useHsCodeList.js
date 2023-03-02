@@ -25,7 +25,7 @@ const useHSCodelist = () => {
 			});
 			setHsList(resp.data);
 		} catch (error) {
-			Toast.error(error?.message);
+			Toast.error(error?.message || 'Something Went Wrong');
 		}
 	};
 	useEffect(() => {

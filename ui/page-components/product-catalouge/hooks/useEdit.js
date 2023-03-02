@@ -38,7 +38,7 @@ const useEdit = ({
 				setValue('sellingPrice', sellingPrice);
 			}
 		} catch (error) {
-			Toast.error(error?.message);
+			Toast.error(error?.message || 'Something Went Wrong');
 		}
 	};
 
@@ -80,7 +80,7 @@ const useEdit = ({
 			}
 			return resp;
 		} catch (error) {
-			Toast.error(error.message);
+			Toast.error(error.message || 'Something Went Wrong');
 			return null;
 		}
 	};
@@ -107,7 +107,7 @@ const useEdit = ({
 				setActiveTab('allProducts');
 			}
 		} catch (error) {
-			Toast.error(error.message);
+			Toast.error(error.message || 'Something Went Wrong');
 		}
 	};
 	useEffect(() => {

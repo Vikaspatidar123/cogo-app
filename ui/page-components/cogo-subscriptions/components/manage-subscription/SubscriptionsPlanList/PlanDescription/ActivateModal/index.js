@@ -1,7 +1,4 @@
 import { Modal, Button } from '@cogoport/components';
-
-import ActivateIcon from '../../../../../asset/activate-icon.svg';
-
 // import {
 // 	StyledModal,
 // 	Container,
@@ -38,7 +35,7 @@ function ActivateModal({
 			<div className={styles.container}>
 				<div className={styles.image_container}>
 					<div className={styles.image}>
-						<ActivateIcon />
+						<img src='https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/activate-icon.svg' alt='cogo' />
 					</div>
 				</div>
 				<div className={styles.div_title}>Activating your plan !</div>

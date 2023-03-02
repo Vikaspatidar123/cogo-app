@@ -1,7 +1,4 @@
 import { Button } from '@cogoport/components';
-
-import LoadingBtn from '../../../../asset/loading.svg';
-
 import styles from './styles.module.css';
 
 function EnterpriseDescription({ requestCallback = () => {}, callbackLoading }) {
@@ -18,7 +15,7 @@ function EnterpriseDescription({ requestCallback = () => {}, callbackLoading }) 
 					themeType="secondary"
 				>
 					{callbackLoading ? (
-						<LoadingBtn width="100px" height="15px" />
+						<img src='https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/loading.svg' alt='cogo' />
 					) : (
 						'Request Callback'
 					)}

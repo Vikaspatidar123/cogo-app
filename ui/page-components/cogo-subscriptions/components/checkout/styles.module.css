@@ -24,6 +24,9 @@
 .container .loading {
 	height: 400px;
 	width: 400px;
+	display:block;
+	margin-left: auto;
+	margin-right:auto;
 }
 
 .wd_28{

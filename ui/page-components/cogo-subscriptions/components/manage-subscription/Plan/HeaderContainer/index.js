@@ -1,10 +1,5 @@
 import { IcAEndToEndVisibility, IcAManage, IcAProfessionalQuotations } from '@cogoport/icons-react';
-
-import CargoInsurance from '../../../../asset/cargoInsurance.svg';
-import Support from '../../../../asset/support.svg';
-
 import styles from './styles.module.css';
-
 const iconList = [
 	{
 		icon     : <IcAManage width="40px" height="40px" />,
@@ -22,12 +17,12 @@ const iconList = [
 		isComing : false,
 	},
 	{
-		icon     : <Support width="40px" height="40px" />,
+		icon     :< img src='https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/support.svg' alt='Cogo'/>,
 		text     : '24/7 customer support',
 		isComing : false,
 	},
 	{
-		icon     : <CargoInsurance width="40px" height="40px" />,
+		icon     : <img src='https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/cargoInsurance.svg' alt='cogo'/>,
 		text     : 'Instant Cargo Insurance',
 		isComing : true,
 	},

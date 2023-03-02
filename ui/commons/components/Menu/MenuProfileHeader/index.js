@@ -1,6 +1,5 @@
 import KycStatus from '../KycStatus';
 
-import Avatar from './avatar.svg';
 import styles from './styles.module.css';
 
 import { useSelector } from '@/packages/store';
@@ -17,7 +16,7 @@ function MenuProfileHeader({ setShow }) {
 
 	return (
 		<div className={styles.container}>
-			<Avatar
+			<img src='https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/avata.svg' alt='cogo'
 				width="30px"
 				height="30px"
 				style={{ marginRight: 4, flexShrink: 0 }}

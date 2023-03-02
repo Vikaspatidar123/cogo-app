@@ -1,6 +1,5 @@
 import { Tooltip } from '@cogoport/components';
 
-import HelpIcon from './ic-help.svg';
 import styles from './styles.module.css';
 import Support from './Support';
 
@@ -22,7 +21,7 @@ function Help() {
 			>
 				<div className={styles.container}>
 					<div className={styles.container}>
-						<HelpIcon
+						<img src='https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/ic-help.svg' alt='cogo'
 							style={{ cursor: 'pointer' }}
 							width="22px"
 							height="22px"

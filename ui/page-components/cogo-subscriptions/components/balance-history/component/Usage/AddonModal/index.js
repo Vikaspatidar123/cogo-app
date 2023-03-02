@@ -5,7 +5,6 @@ import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 import { useState, useEffect } from 'react';
 
-import LoadingBtn from '../../../../../asset/loading.svg';
 import LegendInput from '../../../../../common/LegendInput';
 import Slider from '../../../../../common/Slider';
 import { AddonsTitleMapping } from '../../../../../common/UsageIcon';
@@ -203,7 +202,7 @@ function AddonModal({
 								onClick={addonPayHandler}
 								disabled={loading || durationValue < 0}
 							>
-								{loading ? <LoadingBtn width="60px" height="15px" /> : 'Proceed to Pay'}
+								{loading ? <img src='https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/loading.svg' alt='cogo' /> : 'Proceed to Pay'}
 							</Button>
 						</div>
 					</div>

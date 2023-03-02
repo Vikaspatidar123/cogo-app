@@ -1,8 +1,6 @@
 import { Button } from '@cogoport/components';
 import { IcMFtick } from '@cogoport/icons-react';
 import { useState } from 'react';
-
-import Ribbon from '../../../../asset/popular.svg';
 import useSubscriptionActivateNow from '../../../../hooks/useSubscriptionActivateNow';
 import { shortFormatNumber } from '../../../../utils/getShortFormatNumber';
 import logoMapping from '../../../../utils/logoMapping';
@@ -93,7 +91,7 @@ function PlanDescription({
 			<div>
 				{prioritySequence === 2 && (
 					<div className={styles.ribbon_wrapper}>
-						<Ribbon />
+						<img src='https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/popular.svg' alt='cogo' />
 					</div>
 				)}
 

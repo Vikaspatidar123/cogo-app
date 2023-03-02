@@ -2,10 +2,6 @@
 import { Modal, Button } from '@cogoport/components';
 import { IcMInformation } from '@cogoport/icons-react';
 import { useEffect } from 'react';
-
-import LoadingBanner from '../../../../asset/loading-banner.svg';
-import IconTridot from '../../../../asset/loading.svg';
-
 import styles from './styles.module.css';
 
 function PendingModal({
@@ -43,9 +39,9 @@ function PendingModal({
 		>
 			{apiTries < 10 && status !== 'active' && (
 				<div className={styles.container}>
-					<LoadingBanner style={{ width: 300, height: 'auto' }} />
+					<img src='https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/loading-banner.svg' alt='cogo'/>
 					<div className={styles.title}> Hang on! Checking payment status...</div>
-					<IconTridot style={{ width: 40, height: 'auto', marginBottom: 32 }} />
+					<img src='https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/loading.svg' alt='cogo' />
 				</div>
 			)}
 

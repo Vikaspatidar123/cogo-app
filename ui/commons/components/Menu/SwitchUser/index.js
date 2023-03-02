@@ -1,7 +1,5 @@
 /* eslint-disable no-undef */
 import { Button } from '@cogoport/components';
-
-import BackIcon from './icons/backIcon.svg';
 import Item from './Item';
 import styles from './styles.module.css';
 
@@ -23,7 +21,7 @@ function SwitchUser({ setShow }) {
 		<div type="enter">
 			<div className={styles.container}>
 				<div className={styles.header}>
-					<BackIcon
+					<img src='https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/backIcon.svg' alt='cogo'
 						width="24px"
 						height="24px"
 						style={{ cursor: 'pointer' }}

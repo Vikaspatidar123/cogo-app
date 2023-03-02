@@ -5,7 +5,6 @@ import {
 import { IcMArrowNext, IcMHelpInCircle, IcCFtick } from '@cogoport/icons-react';
 import { useState } from 'react';
 
-import LoadingBtn from '../../../asset/loading.svg';
 import Coupons from '../../../common/Coupons';
 import useUpdateSaasCheckout from '../../../hooks/useUpdateSaasCheckout';
 import { getCurrencyDetail } from '../../../utils/getCurrencyDetail';
@@ -276,7 +275,7 @@ function Charges({
 						className={loading ? 'disabled' : ''}
 					>
 						{completeOrderLoading ? (
-							<LoadingBtn width="60px" height="23px" />
+							<img src='https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/loading.svg' alt='cogo'/>
 						) : (
 							<>
 								Proceed to Pay

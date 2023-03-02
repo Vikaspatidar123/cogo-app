@@ -3,9 +3,6 @@ import { Modal, Button } from '@cogoport/components';
 import { IcMInformation } from '@cogoport/icons-react';
 import { useEffect } from 'react';
 
-import LoadingBanner from '../../../../../asset/loading-banner.svg';
-import IconTridot from '../../../../../asset/loading.svg';
-import SuccessSvg from '../../../../../asset/success.svg';
 import redirectUrl from '../../../../../utils/redirectUrl';
 
 import styles from './styles.module.css';
@@ -54,14 +51,14 @@ function PendingModal({
 		>
 			{apiTries < 10 && status !== 'active' && (
 				<div className={styles.container}>
-					<LoadingBanner style={{ width: 300, height: 'auto' }} />
+					<img src='https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/loading-banner.svg' alt='cogo' />
 					<div className={styles.title}>Hang on! Checking payment status...</div>
-					<IconTridot style={{ width: 40, height: 'auto', marginBottom: 32 }} />
+					<img src='https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/loading.svg' alt='cogo' />
 				</div>
 			)}
 			{apiTries < 10 && status === 'active' && (
 				<div className={styles.container}>
-					<SuccessSvg width="250px" height="250px" />
+					<img src='https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/success.svg' alt='cogo'/>
 					<div className={styles.title}>Congratulations !</div>
 					<Txt>
 						{`Successfully added ${quantity} ${name}`}

@@ -1,8 +1,5 @@
 /* eslint-disable no-undef */
 import { Modal } from '@cogoport/components';
-
-import SuccessGif from '../../../../../asset/success.svg';
-
 import styles from './styles.module.css';
 
 function ActivateSuccessModal({ modal, setShowModal, name }) {
@@ -18,7 +15,7 @@ function ActivateSuccessModal({ modal, setShowModal, name }) {
 			onOuterClick={closeModal}
 		>
 			<div className={styles.flex_div}>
-				<SuccessGif width={200} height={200} />
+				<img src='https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/success.svg' alt='cogo' />
 				<div className={styles.label}>Congratulations!</div>
 				<div className={styles.side_label}>
 					You are now subscribed to

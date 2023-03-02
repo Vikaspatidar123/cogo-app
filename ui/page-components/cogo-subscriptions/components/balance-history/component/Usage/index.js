@@ -2,8 +2,6 @@ import { Button } from '@cogoport/components';
 import { IcMError, IcMPlus, IcMArrowRight } from '@cogoport/icons-react';
 import { startCase } from '@cogoport/utils';
 import { useState, useEffect, useRef } from 'react';
-
-import LoadingBtn from '../../../../asset/loading.svg';
 import { UsageIconMapping } from '../../../../common/UsageIcon';
 import useGetUSerActivePlan from '../../../../hooks/useGetUserActivePlan';
 import redirectUrl from '../../../../utils/redirectUrl';
@@ -96,7 +94,7 @@ function Usage({ pendingModal, setPendingModal }) {
 			<div className={styles.card_row}>
 				{loading && (
 					<div className={styles.load_container}>
-						<LoadingBtn width="100px" height="80px" />
+						<img src='https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/loading.svg' alt='cogo' />
 					</div>
 				)}
 				{!loading && current_usages?.length === 0 && (

@@ -1,7 +1,4 @@
 /* eslint-disable import/order */
-import Limited from '../../../../../asset/Limited.svg';
-import Unlimited from '../../../../../asset/unlimted.svg';
-
 import Feature from './Feature';
 // import { Container, Header, Body } from './styles';
 
@@ -13,11 +10,11 @@ function MobileView({ planFeatureData = {} }) {
 		<div className={styles.container}>
 			<div className={`${styles.header} ${styles.info}`}>
 				<div className={styles.icon_container}>
-					<Limited width="22px" height="16px" />
+					<img src='https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/Limited.svg' alt='cogo'/>
 					Limited
 				</div>
 				<div className={styles.icon_container}>
-					<Unlimited width="22px" height="16px" />
+					<img src='https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/unlimted.svg' alt='cogo'/>
 					Unlimited
 				</div>
 			</div>

@@ -2,9 +2,6 @@
 import { Tooltip } from '@cogoport/components';
 import { IcMTick, IcMInfo, IcMCross } from '@cogoport/icons-react';
 import { useState, useEffect } from 'react';
-
-import Limited from '../../../../../asset/Limited.svg';
-import Unlimited from '../../../../../asset/unlimted.svg';
 import styles from '../CardHeader/styles.module.css';
 
 function TableList({ features = {} }) {
@@ -25,12 +22,12 @@ function TableList({ features = {} }) {
 
 		if (type === 'text') {
 			if (value === 'unlimited') {
-				return <Unlimited width="25px" height="25px" />;
+				return <img src='https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/unlimted.svg' alt='cogo' />;
 			}
 			if (value > 0) {
 				return (
 					<>
-						<Limited width="25px" height="25px" />
+						<img src='https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/Limited.svg' alt='cogo'/>
 						{' '}
 						<div className={styles.value_txt}>{value}</div>
 					</>

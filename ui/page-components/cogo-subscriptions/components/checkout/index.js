@@ -3,7 +3,6 @@ import { Toast } from '@cogoport/components';
 import { IcMArrowBack } from '@cogoport/icons-react';
 import { useEffect, useState } from 'react';
 
-import Loading from '../../asset/loading.svg';
 import useCompleteOrder from '../../hooks/useCompleteOrder';
 import useCreateBillingAddres from '../../hooks/useCreateBillingAddress';
 import useCreateCheckout from '../../hooks/useCreateCheckout';
@@ -13,9 +12,7 @@ import redirectUrl from '../../utils/redirectUrl';
 
 import BillingDetails from './BillingDetails';
 import Charges from './Charges';
-// import {
-// 	Label, Wrapper, PaddedRow, Container,
-// } from './styles';
+
 import styles from './styles.module.css';
 import SubscriptionDetails from './SubscriptionDetails';
 
@@ -70,7 +67,7 @@ function Checkout() {
 				<IcMArrowBack onClick={() => redirectManageSubscription()} />
 				Checkout
 			</div>
-			{(planDataLoading || checkoutLoading) && <Loading className="loading" />}
+			{(planDataLoading || checkoutLoading) && <img src='https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/loading.svg' className={styles.loading} />}
 			{!planDataLoading && !checkoutLoading && (
 				<div className={styles.padded_row}>
 					<div className={`${styles.wrapper} ${styles.wd_28}`}>

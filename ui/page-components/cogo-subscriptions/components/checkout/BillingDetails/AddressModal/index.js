@@ -2,9 +2,6 @@
 import { Modal, Button } from '@cogoport/components';
 import { merge } from '@cogoport/utils';
 import React, { useState, useEffect } from 'react';
-
-import LoadingBtn from '../../../../asset/loading.svg';
-import SellerAddressSvg from '../../../../asset/sellerAddress.svg';
 import TitleStyle from '../../../../common/Line';
 import {
 	emailValidator, mobileValidator, GstValidator,
@@ -77,14 +74,6 @@ function AddModal({
 		}
 	};
 
-	// <InputController
-	// 	control={control}
-	// 	name="email"
-	// 	type="email"
-	// 	placeholder="Email"
-	// 	rules={{ required: 'Email is required.' }}
-	// />;
-
 	const cityOptions = useGetAsyncOptions(merge(asyncFieldsLocations(), {
 		params: { filters: { type: ['country'] } },
 	}));
@@ -104,7 +93,7 @@ function AddModal({
 				<div className={styles.container}>
 					<div className={styles.header}>
 						<div className={styles.icon_container}>
-							<SellerAddressSvg width="24px" height="24px" />
+							<img src='https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/sellerAddress.svg' alt='cogo' />
 						</div>
 						<div className={styles.title}>Add New Address</div>
 					</div>
@@ -338,7 +327,7 @@ function AddModal({
 						size="md"
 						themeType="primary"
 					>
-						{createAddressLoading ? <LoadingBtn width="40px" height="15px" /> : 'Add'}
+						{createAddressLoading ? <img src='https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/loading.svg' alt='cogo' /> : 'Add'}
 					</Button>
 				</div>
 			</form>

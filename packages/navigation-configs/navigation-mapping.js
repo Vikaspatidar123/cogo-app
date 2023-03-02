@@ -9,7 +9,7 @@
 // isSubNavs is used to show sub navigations
 
 import {
-	IcMAverage,
+	IcMAverage, IcMQuotations, IcMProductCodeMapping, IcMTradeparties,
 } from '@cogoport/icons-react';
 
 const navigationMappings = {

@@ -62,6 +62,7 @@ function ProductsList({
 					</Button>
 				</div>
 			</div>
+			{console.log(showProductView,"showProductView")}
 			<div className={styles.scroll_content}>
 				{(!showProductView) && (
 					<div>
@@ -141,12 +142,11 @@ function ProductsList({
 														<IcMPlus
 															// className={styles.plus_icon}
 															fill="#ffffff"
-															// height="1.2rem"
-															// width="1.2rem"
+															height="1.2rem"
+															width="1.2rem"
 														/>
 													</div>
 												</div>
-
 											</div>
 										</div>
 									</div>

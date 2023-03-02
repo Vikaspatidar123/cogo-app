@@ -59,7 +59,7 @@ function ArchiveList() {
 	);
 	const getStatus = (id) => (
 		<Popover
-			placement="bottom"
+			placement="left"
 			animation="shift-away"
 			render={content(id)}
 			interactive

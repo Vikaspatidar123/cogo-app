@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import {
 	useState, useEffect, useCallback, useRef,
 } from 'react';
@@ -63,10 +64,10 @@ const useTimer = ({ durationInSeconds = 0 }) => {
 		);
 
 		return {
-			days: days < 10 ? `0${days}` : `${days}`,
-			hours: hours < 10 ? `0${hours}` : `${hours}`,
-			minutes: minutes < 10 ? `0${minutes}` : `${minutes}`,
-			seconds: secs < 10 ? `0${secs}` : `${secs}`,
+			days    : days < 10 ? `0${days}` : `${days}`,
+			hours   : hours < 10 ? `0${hours}` : `${hours}`,
+			minutes : minutes < 10 ? `0${minutes}` : `${minutes}`,
+			seconds : secs < 10 ? `0${secs}` : `${secs}`,
 
 			isTimeRemaining,
 		};

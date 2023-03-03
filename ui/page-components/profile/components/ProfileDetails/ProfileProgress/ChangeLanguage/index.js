@@ -1,5 +1,4 @@
 import { MultiSelect } from '@cogoport/components';
-import { IcMCalendar } from '@cogoport/icons-react';
 import { useState } from 'react';
 
 import useUpdateUser from '../../../../hooks/useUpdateUser';
@@ -8,12 +7,12 @@ import styles from './styles.module.css';
 
 import { useSelector } from '@/packages/store';
 import languages from '@/ui/commons/configurations/languages';
-import getUser from '@/ui/page-components/profile/hooks/getUser';
+import useGetUser from '@/ui/page-components/profile/hooks/useGetUser';
 
 function ChangeLanguage() {
 	const { profile = {} } = useSelector((state) => state);
-	const { birth_date, preferred_languages } = profile || {};
-	const { refetch } = getUser();
+	const { preferred_languages } = profile || {};
+	const { refetch } = useGetUser();
 	const { getUpdate } = useUpdateUser(refetch);
 
 	const [value, setValue] = useState(preferred_languages);

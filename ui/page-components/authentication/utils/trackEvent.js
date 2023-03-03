@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /**
  * Analytics function for tracking event along with relevant data
  * @param {string}      	eventName - Name of the event. Eg `Click on Search`, `Made Transaction`

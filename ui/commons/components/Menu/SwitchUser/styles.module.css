@@ -1,36 +1,33 @@
-
-.container{
-    width: 100%;
-	background: #fff;
+.container {
+	width: 100%;
 	margin-top: 4px;
+	background: #fff;
 }
 
-.styled_button{
-    background: #2c3e50 !important;
+.styled_button {
 	text-transform: capitalize;
+	background: #2c3e50 !important;
 }
 
-.header{
-    padding: 4px 4px 12px;
-
+.header {
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
+	padding: 4px 4px 12px;
 }
 
-.separator{
-    width: 100%;
-	border: 1px solid #f2f2f2;
-
+.separator {
+	width: 100%;
 	margin: 0;
+	border: 1px solid #f2f2f2;
 }
 
-.list{
-    padding: 8px 20px 8px 8px;
-
+.list {
 	max-height: 500px;
+	padding: 8px 20px 8px 8px;
 	overflow-y: auto;
 }
+
 /* .fade_out_scale:animate({
 	enter: {
 		...fadeInRight,

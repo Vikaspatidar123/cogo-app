@@ -89,7 +89,6 @@ const fields = [{
 
 const getControls = ({
 	cityOptions = {},
-	formValues = {},
 }) => fields.map((control) => {
 	const { name } = control;
 	let newControl = { ...control };

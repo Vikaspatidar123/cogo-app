@@ -1,12 +1,10 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable react-hooks/rules-of-hooks */
 import { Toast } from '@cogoport/components';
 
 import { useRequest } from '@/packages/request';
 import { useSelector, useDispatch } from '@/packages/store';
 import { setProfileStoreState } from '@/packages/store/store/profile';
 
-const getUser = () => {
+const useGetUser = () => {
 	const dispatch = useDispatch();
 	const profileData = useSelector(({ profile }) => profile);
 	const [{ loading }, trigger] = useRequest({
@@ -34,7 +32,7 @@ const getUser = () => {
 		}
 	};
 
-	return { refetch };
+	return { refetch, loading };
 };
 
-export default getUser;
+export default useGetUser;

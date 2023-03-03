@@ -1,13 +1,8 @@
 import { Toast } from '@cogoport/components';
 
 import { useRequest } from '@/packages/request';
-import { useSelector } from '@/packages/store';
 
 const useCreateOrganizationUserInvitation = ({ orgId, setTimeForCall }) => {
-	const {
-		profile,
-	} = useSelector((state) => state);
-
 	const [{ loading: createOrganizationUserInvitationLoading }, createOrganizationUserInvitationtrigger] = useRequest({
 		url    : 'organization/create_organization_user_invitation',
 		method : 'post',

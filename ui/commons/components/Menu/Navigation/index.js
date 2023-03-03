@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/no-static-element-interactions */
 import { Popover } from '@cogoport/components';
 import { IcMServices } from '@cogoport/icons-react';
 
@@ -7,7 +6,10 @@ import styles from '../styles.module.css';
 import SubNavigation from './SubNavigation';
 
 function Navigation({
-	setShowPopover = () => { }, subscriptionNav, setIsOpen, isOpen,
+	setShowPopover = () => {},
+	subscriptionNav,
+	setIsOpen,
+	isOpen,
 }) {
 	const renderBody = () => (
 		<SubNavigation
@@ -26,10 +28,7 @@ function Navigation({
 		>
 			<div className={styles.subscription_container}>
 				<IcMServices style={{ marginRight: '12px' }} />
-				<div
-					className={styles.A}
-					onClick={() => setIsOpen(!isOpen)}
-				>
+				<div className={styles.a_container} onClick={() => setIsOpen(!isOpen)} role="presentation">
 					{subscriptionNav?.title}
 				</div>
 			</div>

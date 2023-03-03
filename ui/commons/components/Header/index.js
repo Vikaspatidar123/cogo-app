@@ -14,18 +14,12 @@ const UserDetails = dynamic(() => import('../UserDetails'), {
 
 function Header({
 	children,
-	showRedirectLink,
-	redirectLink,
-	showSupportHelp,
 	showUserDetails,
-	hideLogo,
-	showLogooutMobile,
-	isMobile,
 }) {
 	return (
 		<div className={styles.container}>
 
-			{!hideLogo && <CompanyDetails />}
+			<CompanyDetails />
 			{children}
 
 			<div className={styles.right}>

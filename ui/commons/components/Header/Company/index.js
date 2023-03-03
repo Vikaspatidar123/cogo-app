@@ -6,7 +6,7 @@ import { Link } from '@/packages/next';
 
 function CompanyDetails() {
 	return (
-		<div className={styles.container_flex}>
+		<div>
 			<Link className={styles.a} href="/dashboard" as="/dashboard">
 				<img
 					src="https://cogoport-production.sgp1.digitaloceanspaces.com/e845419ea5eacebda858bad8b20d2797/cogoport-logo.svg"

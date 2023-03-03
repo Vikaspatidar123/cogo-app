@@ -1,21 +1,21 @@
 .heading {
-  font-size: 18px;
-  font-weight: 500;
+	font-size: 18px;
+	font-weight: 500;
 }
 
 .field {
-  :global {
-    .ui_upload_droparea_container {
-      min-height: 20px;
-    }
-  }
+	:global {
+		.ui_upload_droparea_container {
+			min-height: 20px;
+		}
+	}
 }
 
 .lable {
-  /* margin: 5px 0px 8px; */
-  padding: 8px 0px 5px;
-  color: rgb(130, 130, 130);
-  font-weight: 700;
-  font-size: 12px;
-  line-height: 16px;
+	/* margin: 5px 0px 8px; */
+	padding: 8px 0 5px;
+	font-size: 12px;
+	font-weight: 700;
+	line-height: 16px;
+	color: rgb(130 130 130);
 }

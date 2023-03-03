@@ -8,7 +8,6 @@ import AddEditPocDetails from '../../AddEditPocDetails';
 
 import styles from './styles.module.css';
 
-import { useSelector } from '@/packages/store';
 import getValue from '@/ui/commons/utils/getValue';
 
 function AddressCard({
@@ -17,10 +16,6 @@ function AddressCard({
 	setAddressIdxToUpdate = () => { },
 	index,
 }) {
-	const {
-		general: { isMobile = false },
-	} = useSelector((state) => state);
-
 	const [showPocDetails, setShowPocDetails] = useState(false);
 
 	const [showPocModal, setShowPocModal] = useState(null);
@@ -114,7 +109,7 @@ function AddressCard({
 			</div>
 
 			<div className={styles.flex}>
-				{/* {!isMobile ? ( */}
+
 				<div className={styles.mobile_sub_container}>
 					<div className={styles.label_text}>
 						Is your address SEZ?
@@ -125,7 +120,6 @@ function AddressCard({
 							: 'No'}
 					</div>
 				</div>
-				{/* ) : null} */}
 
 				{address.sez_proof ? (
 					<div className={styles.address_container}>

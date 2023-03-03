@@ -24,8 +24,9 @@ const fields = [
 		placeholder : 'logo',
 		type        : 'file',
 		drag        : true,
-		accept      :
-			'image/*,.pdf,.doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+		accept:
+			'image/*,.pdf,.doc,.docx,application/msword,application/'
+			+ 'vnd.openxmlformats-officedocument.wordprocessingml.document',
 		uploadType   : 'aws',
 		format       : ' ',
 		rules        : { required: 'Required' },

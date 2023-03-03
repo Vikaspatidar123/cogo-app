@@ -39,13 +39,6 @@ function SearchResultsServiceItemFormElement({
 
 				const options = [];
 
-				{ /* if (
-					['select', 'multi-select'].includes(type)
-					&& controlItem.optionsListKey
-				) {
-					options = getStaticOptions({ ...controlItem });
-				} */ }
-
 				const finalProps = {
 					...controlItem,
 					...(!isEmpty(options) && { options }),

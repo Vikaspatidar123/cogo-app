@@ -1,21 +1,21 @@
 .layout {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
 }
 
 .field {
-  :global {
-    .ui_upload_droparea_container {
-      min-height: 20px;
-    }
-  }
+	:global {
+		.ui_upload_droparea_container {
+			min-height: 20px;
+		}
+	}
 }
 
 .lable {
-  margin: 15px 0px 8px;
-  color: rgb(130, 130, 130);
-  font-weight: 700;
-  font-size: 12px;
-  line-height: 16px;
+	margin: 15px 0 8px;
+	font-size: 12px;
+	font-weight: 700;
+	line-height: 16px;
+	color: rgb(130 130 130);
 }

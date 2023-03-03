@@ -14,6 +14,8 @@ const useInterval = (callback, delay) => {
 			const id = setInterval(handler, delay);
 			return () => clearInterval(id);
 		}
+
+		return null;
 	}, [delay]);
 };
 

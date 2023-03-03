@@ -14,7 +14,7 @@ function List({
 	headingToggle,
 }) {
 	const list = loading ? [1, 2, 3, 4, 5] : apiData;
-console.log(pageObj,'pageObj');
+
 	return (
 		<div>
 			<CardHeader configs={configs} />

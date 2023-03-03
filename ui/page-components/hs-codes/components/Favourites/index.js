@@ -55,7 +55,7 @@ function Favourites({
 											src="fav"
 										/>
 										<div
-											className={`${styles.deleteIcon} ${styles.svg}`}
+											className={`${styles.delete_icon} ${styles.svg}`}
 											role="presentation"
 											onClick={() => {
 												refetchRemoveBookmark(

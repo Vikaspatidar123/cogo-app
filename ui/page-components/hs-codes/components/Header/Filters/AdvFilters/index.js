@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { Button } from '@cogoport/components';
 import { IcAIdea } from '@cogoport/icons-react';
 import React, { useEffect } from 'react';
@@ -49,6 +50,7 @@ function AdvFilters({
 	useEffect(() => {
 		refetch(country);
 		resetDrillDownHandler();
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [country]);
 	return (
 		<form onSubmit={handleSubmit(onSubmit)}>
@@ -73,8 +75,8 @@ function AdvFilters({
 				</div>
 				<div className={styles.button_container}>
 					<Button
-						size='md'
-						themeType='secondary'
+						size="md"
+						themeType="secondary"
 						className="secondary sm"
 						type="button"
 						disabled={loading}
@@ -85,7 +87,7 @@ function AdvFilters({
 						Clear Filter
 					</Button>
 					<div>
-						<Button size='md' themeType='accent' className="primary md" type="submit" disabled={loading}>
+						<Button size="md" themeType="accent" className="primary md" type="submit" disabled={loading}>
 							Search
 						</Button>
 					</div>

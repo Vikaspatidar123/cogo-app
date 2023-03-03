@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { Button, Modal } from '@cogoport/components';
 import { IcAFormsAndCertificates, IcMArrowRight } from '@cogoport/icons-react';
 import { useState, useEffect } from 'react';
@@ -73,7 +74,7 @@ function ModalDetails({ data = {}, setShow }) {
 			<div className={styles.container}>
 				{getproductLoading && 'Loading...'}
 
-				{/* < LoadingScreen loaderClass={styles.loadingIcn} /> */}
+				{/* < LoadingScreen loaderClass={styles.loading_icn} /> */}
 				<Modal.Header title={Head()} />
 				<Modal.Body>
 					<div className={styles.header}>

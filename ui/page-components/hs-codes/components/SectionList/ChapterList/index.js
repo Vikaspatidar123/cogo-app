@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+import { cl } from '@cogoport/components';
 import { IcMArrowDown } from '@cogoport/icons-react';
 import { useEffect, useState } from 'react';
 
@@ -5,7 +7,6 @@ import EmptyState from '../../../common/EmptyState';
 import styles from '../styles.module.css';
 
 import HeadingList from './HeadingList';
-import {cl} from "@cogoport/components"
 
 function ChapterList({
 	chapterData,
@@ -50,13 +51,14 @@ function ChapterList({
 		<div>
 			<div
 				className={`${styles.card} ${styles.chapter}`}
+				role="presentation"
 				onClick={() => {
 					setChapterToggle(!chapterToggle);
 				}}
 			>
 				<div className={cl`${styles.name} ${chapterToggle && styles.selected}`}>
-					Chapter
-					{chapterCode}
+					<span>Chapter</span>
+					<span>{chapterCode}</span>
 				</div>
 				<div className={`${styles.desc} ${chapterToggle && styles.selected}`}>
 					{description()}
@@ -67,7 +69,7 @@ function ChapterList({
 			</div>
 			<div className={cl`${styles.main_container} ${chapterToggle && styles.heading_container}`}>
 				<div
-					className={`${styles.accordion} ${styles.heading} ${head && styles.accordionHead}`}
+					className={`${styles.accordion} ${styles.heading} ${head && styles.accordion_head}`}
 					aria-expanded={chapterToggle}
 				>
 					{headingObj[chapterData.chapterCode]?.length === 0 && <EmptyState drillDwn />}

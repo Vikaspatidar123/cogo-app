@@ -1,12 +1,13 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 // import Skeleton from '@cogoport/front/components/admin/Skeleton';
-import { Placeholder } from '@cogoport/components';
+import { cl, Placeholder } from '@cogoport/components';
 import { IcMArrowDown } from '@cogoport/icons-react';
 import { useEffect, useState } from 'react';
 
 import styles from '../../styles.module.css';
 
 import HScode from './HScode';
-import {cl} from '@cogoport/components';
+
 function HeadingList({
 	headingData,
 	chapterToggle,
@@ -57,6 +58,7 @@ function HeadingList({
 		<div>
 			<div
 				className={`${styles.card} ${styles.heading}`}
+				role="presentation"
 				onClick={() => {
 					setHeadingToggle(!headingToggle);
 				}}
@@ -78,7 +80,7 @@ function HeadingList({
 			{/* {headingToggle && ( */}
 			<div className={styles.main_container}>
 				<div
-					className={cl`${styles.accordion} ${styles.hs_container} ${headingToggle && styles.hsTable}`}
+					className={cl`${styles.accordion} ${styles.hs_container} ${headingToggle && styles.hs_table}`}
 					aria-expanded={headingToggle}
 				>
 					<HScode

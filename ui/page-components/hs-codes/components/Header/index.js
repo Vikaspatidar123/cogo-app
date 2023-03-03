@@ -21,7 +21,7 @@ function Header({
 			<div className={styles.head}>
 				<div className={styles.heading}>Search HS Code</div>
 				<div>
-					<Toggle 
+					<Toggle
 						name="a4"
 						size="md"
 						disabled={false}

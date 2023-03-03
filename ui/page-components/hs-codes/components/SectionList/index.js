@@ -1,4 +1,5 @@
-import { Placeholder } from '@cogoport/components';
+/* eslint-disable react-hooks/exhaustive-deps */
+import { cl, Placeholder } from '@cogoport/components';
 import { IcMArrowDown } from '@cogoport/icons-react';
 import React, { useEffect, useState } from 'react';
 
@@ -30,7 +31,7 @@ function SectionList({
 			setResetDrillDown(true);
 		}
 	}, [resetDrillDown]);
-	const { Mapping } = IconMaping(isMobile);
+	const { Mapping } = IconMaping();
 	const { sectionCode, sectionDescription, chapters } = data || {};
 
 	const addLoader = (mobileWidth, desktopWidth) => (
@@ -44,7 +45,12 @@ function SectionList({
 		if (loading) return addLoader('150px', '800px');
 		if (sectionToggle) return sectionDescription;
 		if (sectionDescription?.length > 40 && isMobile) {
-			return `${data?.sectionDescription?.substring(0, 40)}....`;
+			return (
+				<div>
+					{ `${data?.sectionDescription?.substring(0, 40)}....`}
+					{' '}
+				</div>
+			);
 		}
 		if (sectionDescription?.length > 96) {
 			return `${data?.sectionDescription?.substring(0, 95)}....`;
@@ -55,19 +61,17 @@ function SectionList({
 	return (
 		<div className={styles.main_card}>
 			<div
-				className={`${styles.card} ${styles.section}`}
+				className={cl`${styles.card} ${styles.section}`}
+				role="presentation"
 				onClick={() => {
 					setSectionToggle(!sectionToggle);
 				}}
 			>
-				<div className={`${styles.name}${sectionToggle && styles.selected}`}>
-					<div className={`${styles.section_styles}`}>
-						{!loading && <span>{Mapping[sectionCode]}</span>}
+				<div className={cl`${styles.name} ${sectionToggle && styles.selected}`}>
+					<div className={cl`${styles.section_styles}`}>
+						{!loading && <span className={cl`${styles.icon_svg}`}>{Mapping[sectionCode]}</span>}
 						{loading ? addLoader('40px', '140px') : `SECTION ${sectionCode}`}
 					</div>
-					
-					
-					
 				</div>
 				<div className={`${styles.desc}  ${sectionToggle && styles.selected}`}>
 					{description()}

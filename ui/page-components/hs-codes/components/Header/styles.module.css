@@ -1,31 +1,33 @@
-.container{
-    background: #fada29;
-	width: 100%;
+.container {
 	display: flex;
 	flex-direction: column;
-	min-height: 160px;
-	padding: 24px 36px 24px 36px;
 	gap: 36px;
+	width: 100%;
+	min-height: 160px;
+	padding: 24px 36px;
+	background: #fada29;
 
 	@media screen and (max-width: 767px) {
-		gap: 0px;
-		padding: 22px 22px 74px 22px;
+		gap: 0;
 		min-height: 450px;
+		padding: 22px 22px 74px;
 	}
 }
-.head{
-    display: flex;
-	justify-content: space-between;
+
+.head {
+	display: flex;
 	align-items: center;
+	justify-content: space-between;
+
 	@media screen and (max-width: 767px) {
 		flex-direction: column;
 		gap: 6px;
 	}
 }
 
-.heading{
-    font-weight: 600;
+.heading {
 	font-size: 20px;
+	font-weight: 600;
 	line-height: 150%;
-	color: #000000;
+	color: #000;
 }

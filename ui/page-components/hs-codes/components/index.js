@@ -55,7 +55,11 @@ function HsClassification() {
 				</div>
 
 				<div className={styles.button_div}>
-					<div className={`${styles.styled_button} ${styles.secondary}`} onClick={resetDrillDownHandler}>
+					<div
+						className={`${styles.styled_button} ${styles.secondary}`}
+						onClick={resetDrillDownHandler}
+						role="presentation"
+					>
 						<IcMMinusInCircle />
 						Collaspse all
 					</div>
@@ -65,6 +69,7 @@ function HsClassification() {
 							refetchGetBookmark();
 						}}
 						className={`${styles.styled_button} ${styles.primary}`}
+						role="presentation"
 					>
 						<IcMStar />
 						Favourites

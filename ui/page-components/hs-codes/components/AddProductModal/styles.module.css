@@ -1,25 +1,28 @@
 .icon_container {
-  border: 0.5px solid #333;
-  border-radius: 50%;
-  text-align: center;
-  height: 13px;
-  display: none;
-  @media screen and (max-width: 767px) {
-    display: block;
-  }
+	display: none;
+	height: 13px;
+	text-align: center;
+	border: 0.5px solid #333;
+	border-radius: 50%;
+
+	@media screen and (max-width: 767px) {
+		display: block;
+	}
 }
 
 .fav_icon {
-  cursor: pointer;
-  margin-right: 6px;
-  background: #e0e0e0;
-  border-radius: 5px;
-  padding: 6px 6px 0 6px;
+	padding: 6px 6px 0;
+	margin-right: 6px;
+	cursor: pointer;
+	background: #e0e0e0;
+	border-radius: 5px;
 }
 
 .text {
-  color: rgb(246, 139, 33) !important;
-  @media screen and (max-width: 767px) {
-    display: none;
-  }
+	color: rgb(246 139 33) !important;
+	cursor: pointer;
+
+	@media screen and (max-width: 767px) {
+		display: none;
+	}
 }

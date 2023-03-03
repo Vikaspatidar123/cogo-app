@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { Toast } from '@cogoport/components';
 import { useState } from 'react';
 

@@ -1,6 +1,5 @@
 import { Button } from '@cogoport/components';
 import { IcAIdea } from '@cogoport/icons-react';
-import { merge } from '@cogoport/utils';
 import { useEffect } from 'react';
 
 import Input from '../../../../common/controller/inputController';
@@ -48,6 +47,7 @@ function BaseFilters({
 	useEffect(() => {
 		refetch(watchCountry);
 		resetDrillDownHandler();
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [watchCountry]);
 	const field = getControls({ countryOptions });
 	return (
@@ -73,8 +73,8 @@ function BaseFilters({
 
 				<div className={`${styles.button_container}`}>
 					<Button
-						size='md'
-						themeType='secondary'
+						size="md"
+						themeType="secondary"
 						className="secondary sm"
 						type="button"
 						disabled={loading}
@@ -85,7 +85,7 @@ function BaseFilters({
 						Clear Filter
 					</Button>
 					<div>
-						<Button size='md' themeType='accent' className="primary md" type="submit" disabled={loading}>
+						<Button size="md" themeType="accent" className="primary md" type="submit" disabled={loading}>
 							Search
 						</Button>
 					</div>

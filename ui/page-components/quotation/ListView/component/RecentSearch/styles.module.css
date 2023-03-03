@@ -35,15 +35,15 @@
 .icon_container {
 	cursor: pointer;
 
-	.animatedArrow {
+	.animated_arrow {
 		position: absolute;
 	}
 
-	.animatedArrow:hover {
-		animation: bounceAlpha 0.8s linear infinite;
+	.animated_arrow:hover {
+		animation: bounce-alpha 0.8s linear infinite;
 		animation-direction: normal;
 
-		@keyframes bounceAlpha {
+		@keyframes bounce-alpha {
 			0% {
 				opacity: 1;
 				transform: translateX(0) scale(1);

@@ -43,7 +43,7 @@ function RecentSearch() {
 						</div>
 					</div>
 					<div className={styles.icon_container} role="presentation" onClick={scrollHandler}>
-						<IcMArrowRight className={styles.animatedArrow} width={35} height={35} />
+						<IcMArrowRight className={styles.animated_arrow} width={35} height={35} />
 						<IcMArrowRight width={35} height={35} />
 					</div>
 				</div>

@@ -23,7 +23,7 @@
 	display: flex;
 	align-items: center;
 
-	.portDetail {
+	.port_detail {
 		margin-left: 10px;
 	}
 
@@ -44,30 +44,30 @@
 	border-radius: 2px;
 	border-top-left-radius: 6px;
 
-	&.FCL {
+	&.fcl {
 		background: #dfeaff;
 	}
 
-	&.LCL {
+	&.lcl {
 		background: #d7eaff;
 	}
 
-	&.Air {
+	&.air {
 		background: #fee;
 	}
 
 	@media screen and (max-width: 767px) {
 		position: static;
 
-		&.FCL {
+		&.fcl {
 			background: transparent;
 		}
 
-		&.LCL {
+		&.lcl {
 			background: transparent;
 		}
 
-		&.Air {
+		&.air {
 			background: transparent;
 		}
 	}

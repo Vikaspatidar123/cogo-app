@@ -15,11 +15,11 @@ function Card({ data }) {
 		<div className={cl`${styles.container} ${expired ? styles.disabled : styles.enabled}`}>
 
 			<div className={styles.row}>
-				<div className={cl`${styles.icon_container} ${styles[mapped.tag]}`}>
+				<div className={cl`${styles.icon_container} ${styles[mapped.cssLabel]}`}>
 					{mapped.icon}
 					<div>{mapped.tag}</div>
 				</div>
-				<div className={`${styles.portDetail}`}>
+				<div className={`${styles.port_detail}`}>
 					<PortDetails data={data} />
 				</div>
 			</div>

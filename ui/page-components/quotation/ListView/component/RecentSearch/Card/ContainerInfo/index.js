@@ -112,7 +112,7 @@ function ContainerInfo({ data = {} }) {
 	};
 	let numberBox = 0;
 	return (
-		<Tooltip content={renderBox()} placement="bottom" className={styles.toolContent}>
+		<Tooltip content={renderBox()} placement="bottom" className={styles.tool_content}>
 			<div>
 				{labels.map((label) => {
 					const chipValue = data[label] ? renderValue(label) : null;

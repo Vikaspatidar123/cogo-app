@@ -42,7 +42,7 @@ function Header({
 						<IcMFilter />
 					</Button>
 				</Popover>
-				<Button size="lg" className={styles.createBtn}>
+				<Button size="lg" className={styles.create_btn}>
 					<IcMPlus />
 					<div
 						className={styles.btn_text}

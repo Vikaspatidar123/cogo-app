@@ -12,7 +12,7 @@ function Card({ summary = {}, loading = false }) {
 	} = summary || {};
 	return (
 		<div className={styles.container} style={{ background }}>
-			<div className={styles.iconContainer} style={{ background: iconColor }}>
+			<div className={styles.icon_container} style={{ background: iconColor }}>
 				{icon}
 			</div>
 			<div className={styles.info}>

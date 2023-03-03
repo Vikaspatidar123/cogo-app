@@ -16,18 +16,23 @@ const SEARCH_MAPPING = {
 		icon     : <AIR />,
 		type     : 'air',
 		iconType : 'air',
+		cssLabel : 'air',
 	},
 	fcl_freight: {
 		tag      : 'FCL',
 		icon     : <FCL />,
 		type     : 'sea',
 		iconType : 'ship',
+		cssLabel : 'fcl',
+
 	},
 	lcl_freight: {
 		tag      : 'LCL',
 		icon     : <LCL />,
 		type     : 'sea',
 		iconType : 'ship',
+		cssLabel : 'lcl',
+
 	},
 };
 

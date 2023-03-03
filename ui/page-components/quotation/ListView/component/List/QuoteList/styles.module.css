@@ -40,14 +40,14 @@
 		font-weight: 600;
 	}
 
-	&.hyperLink {
+	&.hyper_link {
 		font-size: 14px;
 		color: #0694e6;
 		text-decoration: underline;
 		cursor: pointer;
 	}
 
-	&.hyperLink:hover {
+	&.hyper_link:hover {
 		color: #014a76;
 	}
 }

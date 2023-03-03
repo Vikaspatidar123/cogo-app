@@ -4,7 +4,7 @@ function sendListConfig({ created, setCreated, expiry, setExpiry, amount, setAmo
 			name      : 'Quotation No.',
 			key       : 'quotationNo',
 			width     : '150px',
-			className : 'hyperLink',
+			className : 'hyper_link',
 		},
 		{
 			name  : 'Buyer',

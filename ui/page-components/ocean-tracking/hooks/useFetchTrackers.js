@@ -23,7 +23,8 @@ const useFetchTrackers = () => {
 				params: {
 					filters: {
 						organization_branch_id : general?.query?.branch_id,
-						...prepareFilters(filters, trackers?.filter_data ?? {}),
+						// ...prepareFilters(filters, trackers?.filter_data ?? {}),
+						...filters,
 						status                 : 'active',
 					},
 					page       : pagination.page,

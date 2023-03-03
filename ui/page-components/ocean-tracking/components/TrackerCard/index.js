@@ -9,8 +9,8 @@ import Card from './Card';
 import FilterComponent from './FIlterComponent';
 import styles from './styles.module.css';
 
-function TrackerCard({ activeTab, archived, setArchived }) {
-	const { loading, fetchTrackers, trackers, pagination, setPagination, filters, setFilters } = useFetchTrackers();
+function TrackerCard({ archived, setArchived }) {
+	const { loading, trackers, pagination, setPagination, filters, setFilters } = useFetchTrackers();
 
 	const [isMapView, setIsMapView] = useState(false);
 	const [showFilters, setShowFilters] = useState(false);
@@ -51,6 +51,7 @@ function TrackerCard({ activeTab, archived, setArchived }) {
 							placement="bottom"
 							content={(
 								<FilterComponent
+									trackers={trackers}
 									filters={filters}
 									setFilters={setFilters}
 									showFilters={showFilters}
@@ -72,7 +73,7 @@ function TrackerCard({ activeTab, archived, setArchived }) {
 					{!loading
 						? (
 							<div>
-								{trackerList?.map((tracker, index) => (
+								{trackerList?.map((tracker) => (
 									<Card tracker={tracker} />
 								))}
 							</div>

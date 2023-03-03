@@ -59,8 +59,14 @@
   margin-left: 10px;
 
   :global{
-    .ui_3aPlV.ui_popover_container{
+   .ui_popover_container{
         margin-right: 27px;
+        padding: 0;
+
+        .tippy-content{
+        padding: 0;
+          
+        }
     }
   }
 }

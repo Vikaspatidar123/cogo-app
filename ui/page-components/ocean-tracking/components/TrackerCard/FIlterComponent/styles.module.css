@@ -1,24 +1,81 @@
 
 .container{
-    width: 300px;
+    width: 340px;
+    height:400px;
 
     :global{
-        .ui_3aPlV.ui_popover_container{
-            margin-right: 27px;
+       
+.ui_popover_container{
+    padding: 0;
+    margin-right: 27px;
+}
+        .ui_multiselectt_options_container{
+            max-height: 187px !important;
+        }
+
+        .ui_cpylh{
+            position: sticky;
+            top: 0;
+            background: #fff;
+            padding-top: 8px;
+        }
+
+        .ui_multiselect_input_control{
+            font-size: 14px !important;
         }
     }
+}
+
+.no_data{
+    height: 50px;
 }
 
 .header{
     display: flex;
     justify-content: space-between;
+    padding: 20px 20px 0px 20px;
 }
 
 .text{
-    font-size: 14x;
+    font-size: 18px;
     font-weight: 600;
 }
 
 .cross{
     cursor: pointer;
+}
+
+.label_selector_ctn{
+    padding: 20px 30px 0px 30px;
+}
+
+.label{
+    padding-bottom: 7px;
+}
+
+.footer{
+    position: absolute;
+    bottom: 0px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    background: #FFFFFF;
+    width: 340px;
+    height: 45px;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 8px rgba(44, 62, 80, 0.2);
+    border-radius: 8px 8px 0px 0px;
+    padding-right: 15px;
+}
+
+.botton{
+    font-size: 14px !important;
+    font-weight: 600;
+}
+
+.not_found{
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   height: 50px;
 }

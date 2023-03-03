@@ -1,23 +1,17 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable no-undef */
-/* eslint-disable import/order */
-/* eslint-disable react-hooks/rules-of-hooks */
-
-import { Router } from '@/packages/next';
-
 import pageProgessBar from 'nprogress';
-import 'nprogress/nprogress.css';
 import { useEffect } from 'react';
 
 import withStore from './store';
 
+import { routeConfig } from '@/packages/navigation-configs';
+import { Router } from '@/packages/next';
+import 'nprogress/nprogress.css';
 import { Provider } from '@/packages/store';
 import { setGeneralStoreState } from '@/packages/store/store/general';
-import handleAuthentication from '@/ui/page-components/authentication/utils/handleAuthentication';
 import GlobalLayout from '@/ui/page-components/_app/layout/components/GlobalLayout';
-import { routeConfig } from '@/packages/navigation-configs';
+import handleAuthentication from '@/ui/page-components/authentication/utils/handleAuthentication';
 
-function MyApp({ Component, pageProps, store, generalData }) {
+function MyApp({ Component, pageProps, store }) {
 	useEffect(() => {
 		Router.events.on('routeChangeStart', () => {
 			pageProgessBar.start();
@@ -28,9 +22,6 @@ function MyApp({ Component, pageProps, store, generalData }) {
 			pageProgessBar.done();
 		});
 	}, []);
-	useEffect(() => {
-		store.dispatch(setGeneralStoreState(generalData));
-	}, [generalData]);
 
 	return (
 		<Provider store={store}>

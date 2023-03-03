@@ -1,14 +1,10 @@
 import { Button } from '@cogoport/components';
-// import { useTranslation } from 'next-i18next';
 
 import PasswordValidator from './PasswordValidator';
 import styles from './styles.module.css';
 import useResetPassword from './useResetPassword';
 
 import { InputController } from '@/packages/forms';
-// import getField from '@/packages/forms/Controlled';
-
-// const InputElement = getField('text');
 
 function ResetPassword({
 	setShowPasswordModal = () => {},

@@ -1,5 +1,4 @@
 /* eslint-disable import/no-unresolved */
-// eslint-disable-next-line import/no-unresolved
 import { Select } from '@cogoport/components';
 
 import countryCode from '@/.data-store/constants/countries.json';
@@ -22,7 +21,6 @@ function SelectCountryCode(props) {
 				<span style={{ marginTop: -4 }}>
 					{code.mobile_country_code}
 					:
-					{' '}
 					{code.name}
 				</span>
 			</div>

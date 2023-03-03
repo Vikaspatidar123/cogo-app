@@ -39,18 +39,10 @@ function OtherAddresses({ addressesData, addressLoading }) {
 					<IcMFtaskNotCompleted width={40} height={40} />
 					<div className={styles.no_data}>No data Found</div>
 				</div>
-			// <EmptyState
-			// 	height={125}
-			// 	width={125}
-			// 	bottomText={t(
-			// 		'profile:accountDetails.tabOptions.address.otherAddresses.card.emptyState.bottomText',
-			// 	)}
-			// />
 			);
 		}
 		return (data || []).map((other_address_data, index) => (
 			<OtherAddressCard
-        // getOrganizationOtherAddresses={getOrganizationOtherAddresses}
 				setOtherAddressObjToUpdate={setOtherAddressObjToUpdate}
 				index={index}
 				other_address_data={other_address_data}

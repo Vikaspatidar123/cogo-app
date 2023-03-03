@@ -37,10 +37,9 @@ function AccountDetails() {
 						onChange={(obj) => handleChangeTab(obj)}
 						className={styles.main_container}
 					>
-						{tabOptions?.map((option) => {
-            	const { key = '', title = '' } = option;
-
-            	return <TabPanel key={key} name={key} title={title} />;
+						{(tabOptions || []).map((option) => {
+							const { key = '', title = '' } = option;
+							return <TabPanel key={key} name={key} title={title} />;
 						})}
 					</Tabs>
 				</div>

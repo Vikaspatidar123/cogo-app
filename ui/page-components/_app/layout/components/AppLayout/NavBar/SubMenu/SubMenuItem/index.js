@@ -1,4 +1,4 @@
-/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable no-undef */
 
 import { IcMAirSchedules } from '@cogoport/icons-react';
 
@@ -20,6 +20,7 @@ function SubMenuItem({ item, unPrefixedPath }) {
 		<div
 			onClick={() => push(href, as)}
 			className={unPrefixedPath === href ? styles.active : styles.container}
+			role="presentation"
 		>
 			{icon && (icon || <IcMAirSchedules width={50} height={50} fill="red" />)}
 

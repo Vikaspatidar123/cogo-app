@@ -1,21 +1,21 @@
+.component {
+	display: flex;
+	flex-direction: column;
 
-.component{
-    /* &.page-bg {
+	/* &.page-bg {
 		background-image: url(/Globe.png);
 		background-position: right top;
 		background-repeat: no-repeat;
 		background-size: auto;
 	} */
-    min-height: 100vh;
-	display: flex;
-	flex-direction: column;
+	min-height: 100vh;
 }
 
-.page_bg{
-	min-height: 100vh;
+.page_bg {
 	display: flex;
 	flex-direction: column;
-	background-position: right top;
+	min-height: 100vh;
 	background-repeat: no-repeat;
+	background-position: right top;
 	background-size: auto;
 }

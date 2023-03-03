@@ -1,18 +1,17 @@
-.container{
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    flex-direction: row;
+.container {
+	display: flex;
+	flex-direction: row;
+	width: 100vw;
+	height: 100vh;
 }
 
-.left_container{
-    width: 45vw;
-    height: 100vh;
+.left_container {
+	width: 45vw;
+	height: 100vh;
 }
 
-.right_container{
-    width: 55vw;
-    height: 100vh;
-    background-color: #fafafa;
+.right_container {
+	width: 55vw;
+	height: 100vh;
+	background-color: #fafafa;
 }
-

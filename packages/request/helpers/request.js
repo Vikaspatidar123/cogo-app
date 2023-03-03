@@ -9,8 +9,8 @@ import { getCookie } from './getCookieFromCtx';
 
 const customSerializer = (params) => {
 	const paramsStringify = qs.stringify(params, {
-		arrayFormat: 'brackets',
-		serializeDate: (date) => format(date),
+		arrayFormat   : 'brackets',
+		serializeDate : (date) => format(date),
 	});
 	return paramsStringify;
 };
@@ -47,13 +47,13 @@ request.interceptors.request.use((oldConfig) => {
 	// };
 	return {
 		...newConfig,
-		paramsSerializer: { serialize: customSerializer },
-		headers: {
-			authorizationscope: 'organization',
-			authorization: `Bearer: ${token}`,
+		paramsSerializer : { serialize: customSerializer },
+		headers          : {
+			authorizationscope   : 'organization',
+			authorization        : `Bearer: ${token}`,
 			authorizationparameters,
-			'Content-Type': 'application/json',
-			authorizationscopeid: getOrganizationId(storeKey, oldConfig.ctx),
+			'Content-Type'       : 'application/json',
+			authorizationscopeid : getOrganizationId(storeKey, oldConfig.ctx),
 		},
 
 	};

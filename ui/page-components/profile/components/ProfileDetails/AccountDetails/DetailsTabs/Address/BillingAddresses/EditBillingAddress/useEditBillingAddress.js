@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 import { Toast } from '@cogoport/components';
 import { merge } from '@cogoport/utils';
 import { useEffect } from 'react';
@@ -10,15 +9,12 @@ import {
 	asyncFieldsLocations, useGetAsyncOptions,
 } from '@/packages/forms';
 import { useRequest } from '@/packages/request';
-import { useDispatch, useSelector } from '@/packages/store';
 
 const useEditBillingAddress = ({
 	addressIdxToUpdate,
-	getOrganizationBillingAddress,
 	organizationBillingAddressesList,
-	handleCloseModal,
 }) => {
-	const [{ loading, data }, trigger] = useRequest({
+	const [trigger] = useRequest({
 		url    : '/create_organization_billing_address',
 		method : 'post',
 	}, { manual: true });
@@ -40,21 +36,8 @@ const useEditBillingAddress = ({
 	useEffect(() => {
 		if (addressIdxToUpdate !== null) {
 			fields.map((item) => setValue(item.name, valuesToPrefill[item.name]));
-			// setValues({
-			// 	name: valuesToPrefill.name,
-			// 	tax_number: valuesToPrefill.tax_number,
-			// 	tax_number_document_url: valuesToPrefill.tax_number_document_url,
-			// 	is_sez: !!valuesToPrefill.is_sez,
-			// 	sez_proof: valuesToPrefill.sez_proof,
-			// 	address: valuesToPrefill.address,
-			// 	poc_name: valuesToPrefill.poc_details?.name,
-			// 	poc_email: valuesToPrefill.poc_details?.email,
-			// 	phone_number: {
-			// 		country_code: valuesToPrefill.poc_details?.mobile_country_code,
-			// 		number: valuesToPrefill.poc_details?.mobile_number,
-			// 	},
-			// });
 		}
+		/* eslint-disable react-hooks/exhaustive-deps */
 	}, []);
 	const onCreate = async (value) => {
 		const { tax_number_document_url = {}, ...prop } = value;

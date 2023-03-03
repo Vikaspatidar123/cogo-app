@@ -66,6 +66,7 @@ function BillingAddresses({
 								role="presentation"
 								className={styles.link_text}
 								onClick={() => setShowEditBillingAddress(true)}
+
 							>
 								+ Add Address
 							</div>

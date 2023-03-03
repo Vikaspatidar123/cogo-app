@@ -5,18 +5,19 @@
 import { Router } from '@/packages/next';
 import { appWithTranslation } from 'next-i18next';
 import pageProgessBar from 'nprogress';
-import 'nprogress/nprogress.css';
 import { useEffect } from 'react';
 
 import withStore from './store';
 
-import { Provider } from '@/packages/store';
-import { setGeneralStoreState } from '@/packages/store/store/general';
-import handleAuthentication from '@/ui/page-components/authentication/utils/handleAuthentication';
-import GlobalLayout from '@/ui/page-components/_app/layout/components/GlobalLayout';
 import { routeConfig } from '@/packages/navigation-configs';
 
-function MyApp({ Component, pageProps, store, generalData }) {
+import 'nprogress/nprogress.css';
+import { Provider } from '@/packages/store';
+import { setGeneralStoreState } from '@/packages/store/store/general';
+import GlobalLayout from '@/ui/page-components/_app/layout/components/GlobalLayout';
+import handleAuthentication from '@/ui/page-components/authentication/utils/handleAuthentication';
+
+function MyApp({ Component, pageProps, store }) {
 	useEffect(() => {
 		Router.events.on('routeChangeStart', () => {
 			pageProgessBar.start();
@@ -27,9 +28,6 @@ function MyApp({ Component, pageProps, store, generalData }) {
 			pageProgessBar.done();
 		});
 	}, []);
-	useEffect(() => {
-		store.dispatch(setGeneralStoreState(generalData));
-	}, [generalData, store]);
 
 	return (
 		<Provider store={store}>

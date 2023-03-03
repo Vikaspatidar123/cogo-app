@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/no-static-element-interactions */
 import { Popover } from '@cogoport/components';
 import { IcMArrowDown } from '@cogoport/icons-react';
 import { startCase } from '@cogoport/utils';
@@ -47,6 +46,7 @@ function UserName() {
 					className={styles.container_flex}
 					style={{ cursor: 'pointer' }}
 					onClick={() => setShowPopover(!showPopover)}
+					role="presentation"
 				>
 					<div className={styles.bussiness_name} size={14} color="#333">
 						{startCase(business_name)}

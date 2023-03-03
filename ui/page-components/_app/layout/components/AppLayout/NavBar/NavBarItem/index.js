@@ -1,5 +1,4 @@
-/* eslint-disable jsx-a11y/no-static-element-interactions */
-/* eslint-disable jsx-a11y/aria-role */
+/* eslint-disable no-undef */
 import styles from '../styles.module.css';
 
 import { useRouter } from '@/packages/next';
@@ -9,7 +8,7 @@ function NavBarItem({ item, unPrefixedPath }) {
 	const { push } = useRouter();
 
 	return (
-		<div role="prensentation" onClick={() => push(href, as)}>
+		<div onClick={() => push(href, as)} role="presentation">
 			<div className={unPrefixedPath === href ? styles.active : styles.text}>
 				{item.title}
 			</div>

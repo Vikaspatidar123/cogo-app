@@ -1,4 +1,4 @@
-/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable no-undef */
 import { IcMArrowNext } from '@cogoport/icons-react';
 import { useState } from 'react';
 
@@ -14,18 +14,17 @@ import { useRouter } from '@/packages/next';
 import { useSelector } from '@/packages/store';
 
 function MobileMenu() {
-	const { push, pathname } = useRouter();
+	const { push } = useRouter();
 	const { user_data } = useSelector(({ profile }) => ({
 		user_data: profile || {},
 	}));
-	const { organization: org, branch } = user_data || {};
+
 	const [show, setShow] = useState(false);
 
 	if (show) {
 		return <SwitchUser setShow={setShow} />;
 	}
 
-	const unPrefixedPath = `/${pathname.replace('/[org_id]/[branch_id]/', '')}`;
 	const configs = getSideBarConfigs(user_data);
 	const { nav_items = {} } = configs || {};
 	const { organization = [] } = nav_items || {};
@@ -44,31 +43,31 @@ function MobileMenu() {
 			</div>
 			<div className={styles.border_line} />
 
-			{navigationMapping.map(
-      	(menuItem) => (menuItem?.showInNav || menuItem.showMobileNav) && (
-	<div className={styles.tools_container} key={menuItem.href}>
-		{!menuItem.isSubNavs ? (
-			<div
-				className={styles.styled_button}
-				onClick={() => getRedirectUrl(menuItem.href, menuItem.as)}
-			>
-				<div className={styles.button_text}>{menuItem.title}</div>
+			{navigationMapping.map((menuItem) => (
+				(menuItem?.showInNav || menuItem.showMobileNav) && (
+					<div className={styles.tools_container} key={menuItem.href}>
+						{!menuItem.isSubNavs ? (
+							<div
+								className={styles.styled_button}
+								onClick={() => getRedirectUrl(menuItem.href, menuItem.as)}
+								role="presentation"
+							>
+								<div className={styles.button_text}>{menuItem.title}</div>
 
-				<div className={styles.arrow_icon_container}>
-					<IcMArrowNext />
-				</div>
-			</div>
-		) : (
-			<Subnavigation
-				menuItem={menuItem}
-				getRedirectUrl={getRedirectUrl}
-			/>
-		)}
-		<div className={styles.line} />
-		<div />
-	</div>
-      		),
-			)}
+								<div className={styles.arrow_icon_container}>
+									<IcMArrowNext />
+								</div>
+							</div>
+						) : (
+							<Subnavigation
+								menuItem={menuItem}
+								getRedirectUrl={getRedirectUrl}
+							/>
+						)}
+						<div className={styles.line} />
+					</div>
+				)
+			))}
 
 			<Logout />
 		</div>

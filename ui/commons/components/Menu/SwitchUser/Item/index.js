@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import { Avatar } from '@cogoport/components';
 
 import KycStatus from '../../KycStatus';

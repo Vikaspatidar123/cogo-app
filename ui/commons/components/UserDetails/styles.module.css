@@ -1,35 +1,38 @@
 .container {
-  border: 1px solid;
-  border-radius: 8px;
-  padding: 8px 8px;
-  margin-left: 16px;
-  position: relative;
-  padding: 5px 9px;
-  z-index: 99999;
+	position: relative;
+	z-index: 99999;
+	padding: 8px;
+	padding: 5px 9px;
+	margin-left: 16px;
+	border: 1px solid;
+	border-radius: 8px;
 }
+
 .tippy_box {
-  margin-top: 5px !important;
+	margin-top: 5px !important;
 }
-.pop-arrow {
-  filter: none !important;
-  z-index: 1 !important;
+
+.pop_arrow {
+	z-index: 1 !important;
+	filter: none !important;
 }
+
 .container:hover {
-  background: #e4e9ff;
+	background: #e4e9ff;
 }
 
 .container_flex {
-  display: flex;
-  height: 100%;
-  align-items: center;
+	display: flex;
+	align-items: center;
+	height: 100%;
 }
 
 .bussiness_name {
-  text-overflow: ellipsis;
-  overflow: hidden;
-  font-size: 14px;
-  font-weight: 500;
-  width: 120px;
-  white-space: nowrap;
-  padding-left: 10px;
+	width: 120px;
+	padding-left: 10px;
+	overflow: hidden;
+	font-size: 14px;
+	font-weight: 500;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }

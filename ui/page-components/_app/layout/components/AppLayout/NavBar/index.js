@@ -24,39 +24,39 @@ function NavBar() {
 	return (
 		<div className={styles.menu}>
 			{organization.map((item) => {
-      	const { type, showInNav = false, isSubNavs = false } = item;
-      	const isActive = !!item.options?.find(
-      		(option) => option.href === unPrefixedPath,
+				const { showInNav = false, isSubNavs = false } = item;
+				const isActive = !!item.options?.find(
+					(option) => option.href === unPrefixedPath,
 				);
 
-      	if (showInNav) {
-      		return !isSubNavs ? (
-	<NavBarItem
-		key={item.title}
-		item={item}
-		unPrefixedPath={unPrefixedPath}
-	/>
-      		) : (
-	<div key={item.title}>
-		<Popover
-			render={(
-				<SubMenu
-					options={item.options}
-					unPrefixedPath={unPrefixedPath}
-				/>
-			)}
-			placement="bottom"
-			className={styles.tippy_box}
-			trigger="mouseenter"
-		>
-			<div className={`${isActive ? styles.active : styles.text}`}>
-				{item.title}
-			</div>
-		</Popover>
-	</div>
-      		);
-      	}
-      	return null;
+				if (showInNav) {
+					return !isSubNavs ? (
+						<NavBarItem
+							key={item.title}
+							item={item}
+							unPrefixedPath={unPrefixedPath}
+						/>
+					) : (
+						<div key={item.title}>
+							<Popover
+								render={(
+									<SubMenu
+										options={item.options}
+										unPrefixedPath={unPrefixedPath}
+									/>
+								)}
+								placement="bottom"
+								className={styles.tippy_box}
+								trigger="mouseenter"
+							>
+								<div className={`${isActive ? styles.active : styles.text}`}>
+									{item.title}
+								</div>
+							</Popover>
+						</div>
+					);
+				}
+				return null;
 			})}
 		</div>
 	);

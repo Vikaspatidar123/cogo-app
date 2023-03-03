@@ -99,10 +99,6 @@ const handleAuthentication = async ({
 
 	// Redirect old paths to branch id
 	const allStrings = asPath?.split('/');
-	const actual_org_id = allStrings?.[1];
-	const current_org = user_data?.organizations.find(
-		(org) => org?.id === actual_org_id,
-	);
 	if (!allStrings[1] && !isEmpty(user_data)) {
 		const org = user_data.organizations[0] || {};
 		const orgId = org.id;

@@ -1,7 +1,5 @@
-// import LoadingBtn from '../../../../common/icons/loading.svg';
 import { Loading } from '../../configuration/icon-configuration';
 
-// import { LoaderContainer } from './styles';
 import styles from './styles.module.css';
 
 function Loader() {

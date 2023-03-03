@@ -25,10 +25,12 @@ function PayMethodModal({
 		if (method === 'buySubscription') {
 			const url = `${subscriptionsUrl}/manage-subscription`;
 			setPaymentMode('buy');
+			// eslint-disable-next-line no-undef
 			window.open(url, '_blank');
 		} else if (method === 'buyAddon') {
 			const url = `${subscriptionsUrl}/balance-history`;
 			setPaymentMode('buy');
+			// eslint-disable-next-line no-undef
 			window.open(url, '_blank');
 		} else if (method === 'directPay') {
 			checkoutHandler();

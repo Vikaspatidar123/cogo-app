@@ -1,5 +1,7 @@
 import { Toast } from '@cogoport/components';
 
+import useServiceCode from './useServiceCode';
+
 import { useRouter } from '@/packages/next';
 import { useRequestBf } from '@/packages/request';
 import { useSelector } from '@/packages/store';
@@ -12,13 +14,20 @@ const usePayment = () => {
 	} = profile || {};
 	const { org_id = '', branch_id = '', account_type = '' } = query || {};
 
-	const [{ loading, data }, trigger] = useRequestBf({
+	const { getServiceCode, serviceCodeLoading } = useServiceCode();
+
+	const [{ loading }, trigger] = useRequestBf({
 		url     : '/saas/payment',
 		authKey : 'post_saas_payment',
 		method  : 'post',
 	}, { manual: true });
 
-	const callBackUrl = `${process.env.NEXT_PUBLIC_APP_URL}v2/${org_id}/${branch_id}/${account_type}/saas/premium-services/duties-taxes-calculator`;
+	const callBackUrl = `${process.env.NEXT_PUBLIC_APP_URL}/v2/${org_id}/${branch_id}/${account_type}saas/premium-services/duties-taxes-calculator`;
+
+	const getServiceDataHandler = async () => {
+		const resp = await getServiceCode();
+		return resp?.duties_and_taxes_calculation?.id;
+	};
 
 	const refectPayment = async ({
 		currency = 'INR',
@@ -29,6 +38,7 @@ const usePayment = () => {
 		billRefId = '',
 	}) => {
 		try {
+			const dutiesTaxesProductId = await getServiceDataHandler();
 			const resp = await trigger({
 				data: {
 					userId                : id,
@@ -44,7 +54,9 @@ const usePayment = () => {
 					billLineItems         : [
 						{
 							description    : 'duties_and_taxes',
+							displayName    : 'Duties and Taxes',
 							pricePerUnit   : price,
+							productCodeId  : dutiesTaxesProductId,
 							quantity       : 1,
 							totalAmount    : price,
 							discountAmount : (+price - +amount).toFixed(2),
@@ -63,6 +75,7 @@ const usePayment = () => {
 				},
 			});
 			if (resp?.data) {
+				/* eslint-disable no-undef */
 				window.open(resp?.data?.url, '_self', '');
 			}
 		} catch (err) {
@@ -73,7 +86,7 @@ const usePayment = () => {
 			});
 		}
 	};
-	return { refectPayment, paymentLoading: loading };
+	return { refectPayment, paymentLoading: loading || serviceCodeLoading };
 };
 
 export default usePayment;

@@ -58,18 +58,21 @@ function FreightModal({
 			setSpotCharge(selectedData?.total_price);
 		} else {
 			const resp = await exchangeApi(selectedData?.total_price_currency, prevCurr);
-			const value = selectedData?.total_price * resp.toFixed(2);
+			const val = selectedData?.total_price;
+			const value = val * resp.toFixed(2);
 			setSpotCharge(value);
 		}
 		setShowFreightModal(false);
 	};
 	const redirectDiscover = () => {
 		const callBackUrl = `${process.env.APP_URL}app/${org_id}/${branch_id}/${account_type}/book`;
+		// eslint-disable-next-line no-undef
 		window.open(callBackUrl, '_blank');
 	};
 
 	useEffect(() => {
 		spotSearchHandler();
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	const titleRender = () => (

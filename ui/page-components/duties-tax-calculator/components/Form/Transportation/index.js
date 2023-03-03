@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { cl, Button } from '@cogoport/components';
 import { IcALocation, IcMArrowNext } from '@cogoport/icons-react';
 import { useState, useEffect, useRef } from 'react';
@@ -26,12 +27,12 @@ function Transportation({
 	setPortDetails,
 	setPrevHs,
 	transportControl,
+	setMapPoints,
 }) {
 	const [rotate, setRotate] = useState(false);
 	const OriginPort = getField(fields[0]?.type);
 	const DestinationPort = getField(fields[1]?.type);
 	const [origin, destination] = watch(['originPort', 'destinationPort']);
-	const [mapPoints, setMapPoints] = useState();
 
 	const initialRef = useRef(true);
 

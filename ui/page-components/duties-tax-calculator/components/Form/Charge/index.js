@@ -46,6 +46,7 @@ function Charge({
 		if (spotCharge !== '') {
 			setValue('freightCharge', spotCharge);
 		}
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [spotCharge]);
 
 	const submitHandler = async (data) => {
@@ -100,7 +101,6 @@ function Charge({
 			<form>
 				<div className={style.col}>
 					<div className={style.label}>{fields?.freightCharge?.label}</div>
-					{/* <div className={style.flex_col}> */}
 					<NumberSelector
 						{...fields[0]}
 						className={style.freight_charge}
@@ -128,7 +128,6 @@ function Charge({
 						{error?.freightCharge?.message || error?.freightCharge?.type}
 					</div>
 				)}
-				{/* </div> */}
 				<div className={`${styles.incoterm_charges} ${style.col}`}>
 					<IncotermCharges
 						{...fields[2]}

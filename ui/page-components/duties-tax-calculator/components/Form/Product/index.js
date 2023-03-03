@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { Button } from '@cogoport/components';
 import { IcMArrowNext, IcMArrowBack } from '@cogoport/icons-react';
 import { useState, useEffect } from 'react';
@@ -38,6 +39,9 @@ function Product({
 	const [showHsCodeModal, setShowHsCodeModal] = useState(false);
 	const [showValidate, setShowValidate] = useState(false);
 	const [selectedData, setSelectedData] = useState();
+
+	console.log(showCatalogue, 'showCatalogue');
+	console.log(showHsCodeModal, 'showHsCodeModal');
 
 	const NumberSelector = getField('number');
 	const CurrencySelector = getField('select');

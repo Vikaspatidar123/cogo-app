@@ -1,9 +1,11 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { cl } from '@cogoport/components';
 import { useEffect, useState } from 'react';
 
 import useCheckPaymentStatus from '../hook/useCheckPaymentStatus';
 import useDraft from '../hook/useDraft';
 import useGetQuota from '../hook/useGetQuota';
+import useOceanRoute from '../hook/useOceanRoute';
 import useTradeEngine from '../hook/useTradeEngine';
 
 import Form from './Form';
@@ -54,6 +56,10 @@ function DutiesTaxCalulator() {
 		postTradeEngine, tradeEngineLoading, tradeEngineResp, tradeEngineRespLength,
 	} =		useTradeEngine();
 
+	const {
+		getOceanRoute, routeDataLength = false, setMapPoints, mapPoints,
+	} = useOceanRoute();
+
 	const { stop } = useCheckPaymentStatus({
 		postTradeEngine,
 		setShowPendingModal,
@@ -64,6 +70,7 @@ function DutiesTaxCalulator() {
 	});
 
 	useEffect(() => {
+		/* eslint-disable no-undef */
 		if (billId) {
 			localStorage.removeItem('formData');
 			localStorage.removeItem('draftId');
@@ -99,6 +106,7 @@ function DutiesTaxCalulator() {
 						isUserSubscribed={isUserSubscribed}
 						postTradeEngine={postTradeEngine}
 						prioritySequence={prioritySequence}
+						setMapPoints={setMapPoints}
 					/>
 				</div>
 				<div
@@ -110,6 +118,10 @@ function DutiesTaxCalulator() {
 						portDetails={portDetails}
 						transportMode={transportMode}
 						billId={billId}
+						getOceanRoute={getOceanRoute}
+						routeDataLength={routeDataLength}
+						setMapPoints={setMapPoints}
+						mapPoints={mapPoints}
 					/>
 				</div>
 			</div>

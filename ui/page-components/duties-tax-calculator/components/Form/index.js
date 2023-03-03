@@ -35,6 +35,7 @@ function Form({
 	quotaValue = 0,
 	postTradeEngine,
 	prioritySequence = 0,
+	setMapPoints,
 }) {
 	const { profile } = useSelector((s) => s);
 	const { organization = {} } = profile || {};
@@ -149,6 +150,7 @@ function Form({
 					setPortDetails={setPortDetails}
 					setPrevHs={setPrevHs}
 					transportControl={transportControl}
+					setMapPoints={setMapPoints}
 				/>
 			)}
 			{formProductDetails && (

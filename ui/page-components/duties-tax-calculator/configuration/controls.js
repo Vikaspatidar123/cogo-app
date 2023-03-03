@@ -11,9 +11,9 @@ export const transportationControls = ({ transportMode }) => [
 		noOptionsMessage : 'Type to search...',
 	},
 	{
-		name        : 'destinationPort',
-		label       : 'Destination Country',
-		placeholder :
+		name  : 'destinationPort',
+		label : 'Destination Country',
+		placeholder:
 				transportMode === 'AIR' ? 'Select Destination' : 'Select Destination Port',
 		type             : 'select',
 		prefix           : transportMode === 'AIR' ? <IcMAirport /> : <IcMPort />,

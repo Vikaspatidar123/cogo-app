@@ -1,4 +1,5 @@
 /* eslint-disable max-len */
+
 import { Button, Modal, cl } from '@cogoport/components';
 import { IcMInformation } from '@cogoport/icons-react';
 

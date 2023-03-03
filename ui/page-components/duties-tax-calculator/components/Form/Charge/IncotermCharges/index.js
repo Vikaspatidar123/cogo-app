@@ -46,6 +46,7 @@ function IncotermCharges({
 		if (incoterm !== formIncoterm) {
 			removeIncoterm();
 		}
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [incoterm]);
 
 	useEffect(() => {
@@ -54,6 +55,7 @@ function IncotermCharges({
 				setValue(`incotermCharges.${index}.value`, ele?.value);
 			});
 		}
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	return (

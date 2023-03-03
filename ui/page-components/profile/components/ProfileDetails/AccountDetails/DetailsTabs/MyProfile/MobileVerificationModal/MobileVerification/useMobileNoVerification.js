@@ -1,17 +1,12 @@
-/* eslint-disable no-undef */
 /* eslint-disable react-hooks/exhaustive-deps */
 import { Toast } from '@cogoport/components';
-// import { useTranslation } from 'next-i18next';
 import { useEffect, useMemo, useState } from 'react';
 
 import getControls from './controls';
 
 import { useForm } from '@/packages/forms';
-// import { getGeoConstants } from '@/constants/geo';
 import { useRequest } from '@/packages/request';
 import { useSelector } from '@/packages/store';
-
-// const geo = getGeoConstants();
 
 const useMobileNoVerification = ({ type = '' }) => {
 	const {
@@ -78,10 +73,6 @@ const useMobileNoVerification = ({ type = '' }) => {
 			if (actionType === 'SEND_OTP') {
 				setShowEnterOtpComponent(true);
 
-				// Toast.success(
-				// 	'verifyMobile',
-				// );
-
 				restProps?.timer?.restart?.();
 			}
 
@@ -90,6 +81,7 @@ const useMobileNoVerification = ({ type = '' }) => {
 					'verifyMobile',
 				);
 
+				// eslint-disable-next-line no-undef
 				window.location.reload();
 			}
 		} catch (error) {

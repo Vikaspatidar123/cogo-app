@@ -1,11 +1,11 @@
-/* eslint-disable no-undef */
 /* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable no-undef */
 import { Toast } from '@cogoport/components';
 import { useRef, useEffect, useCallback } from 'react';
 
 const useOtpInputEvents = ({
 	otpLength = 0,
-	setOtp = () => { },
+	setOtp = () => {},
 	otpContainerRef = null,
 	otpInputElementsRef = [],
 }) => {

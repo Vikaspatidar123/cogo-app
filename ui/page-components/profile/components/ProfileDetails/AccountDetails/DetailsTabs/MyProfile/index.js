@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import { Modal } from '@cogoport/components';
 import { IcCFtick, IcMEdit } from '@cogoport/icons-react';
 import { startCase, format } from '@cogoport/utils';
@@ -12,9 +11,6 @@ import LoadingState from './LoadingState';
 import MobileVerificationModal from './MobileVerificationModal';
 import ResetPassword from './ResetPassword';
 import styles from './styles.module.css';
-
-import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
-// import formatDate from '@/temp/utils/formatDate';
 
 function MyProfile() {
 	const {

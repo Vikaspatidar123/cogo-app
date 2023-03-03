@@ -1,5 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-// import { useKey } from '@cogoport/front/hooks';
 import {
 	useState, useEffect, useImperativeHandle, useRef,
 } from 'react';
@@ -18,9 +16,6 @@ const getInitialOtpValues = (otpLength) => {
 
 const useOtpInput = ({ otpLength = 4, onChange = () => { }, ref = null }) => {
 	const [values, setValues] = useState(getInitialOtpValues(otpLength));
-
-	// const isBackSpacePressed = useKey('Backspace');
-
 	const otpContainerRef = useRef(null);
 	const otpInputElementsRef = useRef([]);
 
@@ -30,6 +25,7 @@ const useOtpInput = ({ otpLength = 4, onChange = () => { }, ref = null }) => {
 		otpContainerRef,
 		otpInputElementsRef,
 	});
+	/* eslint-disable react-hooks/exhaustive-deps */
 
 	useEffect(() => {
 		let isAllOtpInputValuePresent = true;
@@ -59,11 +55,6 @@ const useOtpInput = ({ otpLength = 4, onChange = () => { }, ref = null }) => {
 			...previousState,
 			[`otp-${index + 1}`]: event,
 		}));
-
-		// if (isBackSpacePressed) {
-		// 	return;
-		// }
-
 		const nextOtpInputElement = otpInputElementsRef.current[index + 1];
 		nextOtpInputElement?.focus();
 	};

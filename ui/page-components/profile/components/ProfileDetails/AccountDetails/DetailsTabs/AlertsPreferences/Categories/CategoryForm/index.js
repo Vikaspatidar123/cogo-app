@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 /* eslint-disable react-hooks/exhaustive-deps */
 import { Button, Checkbox } from '@cogoport/components';
 import { useEffect, useState } from 'react';
@@ -171,7 +170,10 @@ function CategoryForm({
 								label={controls.new_product_service_launches_and_updates.label}
 								checked={formData.new_product_service_launches_and_updates}
 								onChange={
-									(val) => handleChange(val.target.checked, 'new_product_service_launches_and_updates')
+									(val) => handleChange(
+										val.target.checked,
+										'new_product_service_launches_and_updates',
+									)
 								}
 							/>
 							<div className={styles.sub_label}>

@@ -1,4 +1,3 @@
-/* eslint-disable no-param-reassign */
 /* eslint-disable no-undef */
 import React from 'react';
 
@@ -22,7 +21,9 @@ const withRedux = (initializeStore, config) => {
 			static async getInitialProps(appContext) {
 				const store = getOrCreateStore();
 
-				appContext.ctx.store = store;
+				const newContext = { ...appContext };
+
+				newContext.ctx.store = store;
 
 				let appProps = {};
 				if (typeof App.getInitialProps === 'function') {

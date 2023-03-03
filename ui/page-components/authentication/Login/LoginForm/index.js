@@ -2,7 +2,6 @@ import { Button } from '@cogoport/components';
 import { IcMEyeopen, IcMEyeclose } from '@cogoport/icons-react';
 import React, { useState } from 'react';
 
-// import useFormLoginwithMS from '../../hooks/useFormLoginwithMS';
 import useLoginAuthenticate from '../../hooks/useLoginAuthenticate';
 
 import styles from './styles.module.css';

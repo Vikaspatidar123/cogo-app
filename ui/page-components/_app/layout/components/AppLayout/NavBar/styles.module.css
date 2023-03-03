@@ -2,10 +2,6 @@
 	display: flex;
 	align-items: center;
 
-	/* .core-ui-tooltip-root {
-		height: 100%;
-	} */
-
 	@media (max-width: 767px) {
 		display: none;
 	}

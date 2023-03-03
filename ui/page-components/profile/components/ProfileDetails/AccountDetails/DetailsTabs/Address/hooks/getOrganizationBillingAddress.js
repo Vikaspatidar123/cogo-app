@@ -1,11 +1,9 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable react-hooks/rules-of-hooks */
 import { useEffect } from 'react';
 
 import { useRequest } from '@/packages/request';
 import { useSelector } from '@/packages/store';
 
-const getOrganizationBillingAddress = () => {
+const useGetBillingAddress = () => {
 	const { profile } = useSelector((item) => item);
 	const [{ loading, data }, trigger] = useRequest({
 		url    : '/list_organization_billing_addresses',
@@ -45,4 +43,4 @@ const getOrganizationBillingAddress = () => {
 		getAddress, loading, addressesData, data, addressLoading,
 	};
 };
-export default getOrganizationBillingAddress;
+export default useGetBillingAddress;

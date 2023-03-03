@@ -19,7 +19,7 @@ function Logout() {
 			<LogoutIcon style={{ marginRight: 12 }} />
 
 			<div
-				className={styles.A}
+				className={styles.a_container}
 				onClick={(e) => handleClick(e)}
 				style={{ color: '#ef9b9b' }}
 			>

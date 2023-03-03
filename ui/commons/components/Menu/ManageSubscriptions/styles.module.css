@@ -1,4 +1,4 @@
-.A {
+.a_container {
 	display: block;
 	width: 100%;
 	padding: 0;
@@ -15,6 +15,6 @@
 	box-shadow: none;
 }
 
-.A:hover {
+.a_container:hover {
 	text-decoration: underline;
 }

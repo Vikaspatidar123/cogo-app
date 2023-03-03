@@ -26,7 +26,7 @@ function SubNavigation({ setIsOpen, setShowPopover, subscriptionNav }) {
 		<div>
 			{options.map(({ title, href, as }) => (
 				<div
-					className={`${styles.A}`}
+					className={`${styles.a_container}`}
 					onClick={() => handleClick(href, as)}
 				>
 					{title}

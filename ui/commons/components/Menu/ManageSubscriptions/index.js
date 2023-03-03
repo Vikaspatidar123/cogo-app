@@ -10,7 +10,7 @@ function ManageSubscriptions() {
 	};
 
 	return (
-		<div className={styles.A} role="presentation" onClick={() => subscriptions()}>
+		<div className={styles.a_container} role="presentation" onClick={() => subscriptions()}>
 			Manage Subscriptions
 		</div>
 	);

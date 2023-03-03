@@ -67,9 +67,9 @@
 	border-bottom: 2.5px solid #ee3425;
 }
 
-.a:no-hover {
+/* .a:no-hover {
 	border-color: transparent;
-}
+} */
 
 .active {
 	position: relative;

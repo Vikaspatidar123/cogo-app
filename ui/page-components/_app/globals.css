@@ -1,4 +1,3 @@
-// eslint-disable-next-line @typescript-eslint/naming-convention
 #nprogress .bar {
 	background: #fb0 !important;
 }
@@ -7,7 +6,7 @@
 	box-shadow: 0 0 10px #fb0, 0 0 5px #fb0 !important;
 }
 
-#nprogress .spinner-icon {
+#nprogress .spinner_icon {
 	border-top-color: #fb0 !important;
 	border-left-color: #fb0 !important;
 }

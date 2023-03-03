@@ -1,4 +1,3 @@
-// eslint-disable-next-line @typescript-eslint/naming-convention
 .container {
 	display: flex;
 	flex-direction: column;
@@ -6,7 +5,7 @@
 	padding: 16px;
 }
 
-.heading__sub_title {
+.heading_sub_title {
 	font-size: 14px;
 	font-weight: 400;
 	color: #828282;
@@ -17,7 +16,7 @@
 	padding-left: 0;
 }
 
-.heading__title {
+.heading_title {
 	font-size: 20px;
 	font-weight: 700;
 	color: #000;

@@ -1,4 +1,4 @@
-import { Button, Popover } from '@cogoport/components';
+import { cl, Button, Popover } from '@cogoport/components';
 import { IcMFilter, IcMPlus } from '@cogoport/icons-react';
 import { useState, memo } from 'react';
 
@@ -17,12 +17,12 @@ function Header({
 	const summaryControl = getSummary({ summaryResp: summaryData });
 	return (
 		<div className={styles.container}>
-			<div className={`${styles.summary} ${styles.flex_container}`}>
+			<div className={cl`${styles.summary} ${styles.flex_container}`}>
 				{(summaryControl || []).map((summary) => (
 					<Card key={summary?.name} summary={summary} loading={summaryLoading} />
 				))}
 			</div>
-			<div className={`${styles.filter_section} ${styles.flex_container}`}>
+			<div className={cl`${styles.filter_section} ${styles.flex_container}`}>
 				<Popover
 					placement="bottom"
 					interactive={showFilters}
@@ -34,7 +34,6 @@ function Header({
 							setFilters={setFilters}
 						/>
 					)}
-					className="popa"
 					maxWidth={350}
 				>
 					<Button size="lg" themeType="accent" onClick={() => setshowFilters(!showFilters)}>

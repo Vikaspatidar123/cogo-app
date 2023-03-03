@@ -1,3 +1,5 @@
+import { cl } from '@cogoport/components';
+
 import iconUrl from '../../../../utils/iconUrl.json';
 
 import styles from './styles.module.css';
@@ -17,7 +19,7 @@ function Card({ summary = {}, loading = false }) {
 			</div>
 			<div className={styles.info}>
 				<p className={styles.text}>{name}</p>
-				{!loading && <p className={`${styles.text} ${styles.value}`}>{value}</p>}
+				{!loading && <p className={cl`${styles.text} ${styles.value}`}>{value}</p>}
 				{loading && <img src={iconUrl.loading} alt="loading..." className={styles.loading} />}
 			</div>
 		</div>

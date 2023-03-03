@@ -14,9 +14,7 @@ function SelectCountryCode(props) {
 				<span style={{ marginRight: '10px' }}>
 					<img
 						src={
-              code.flag_icon_url
-              	? code.flag_icon_url
-              	: 'https://via.placeholder.com/24x20'
+              code.flag_icon_url ? code.flag_icon_url : 'https://via.placeholder.com/24x20'
             }
 						alt={code.name}
 					/>

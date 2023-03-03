@@ -6,29 +6,6 @@
 	}
 }
 
-.form-item-label {
-	margin: 32px 0 8px;
-	font-size: 14px;
-	font-weight: 400;
-	color: #2c3e50;
-
-	@media (max-width: 767.99px) {
-		margin: 16px 0 8px;
-	}
-}
-
-.ui-textarea {
-	font-family: Roboto;
-}
-
-.core-ui-input-root {
-	border: 1px solid #cddbff !important;
-}
-
-.ui-textarea-root {
-	border: 1px solid #cddbff;
-}
-
 .main_upload_container {
 	border: 1px dashed #cddbff;
 }

@@ -1,4 +1,4 @@
-.button = {
+.button {
 	width: 100%;
 	padding: 8px;
 	margin-top: 16px;
@@ -17,9 +17,4 @@
 
 .errors {
 	color: red;
-}
-
-.button {
-	width: 573px !important;
-	height: 40px !important;
 }

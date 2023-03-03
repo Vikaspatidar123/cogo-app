@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import getOtherApiPipe from './get-other-pipe';
 
 const getAuthrozationParams = (storeKey, url) => {

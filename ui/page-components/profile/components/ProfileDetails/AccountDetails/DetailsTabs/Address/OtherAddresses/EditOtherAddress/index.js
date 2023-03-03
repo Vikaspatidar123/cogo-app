@@ -1,11 +1,9 @@
 import { Button, Modal } from '@cogoport/components';
-import { startCase } from '@cogoport/utils';
 
 import styles from './styles.module.css';
 import useEditOtherAddress from './useEditOtherAddress';
 
 import getField from '@/packages/forms/Controlled';
-// import Layout from '@/temp/form/FormLayout';
 
 function EditOtherAddress({
 	organizationType = '',
@@ -20,7 +18,6 @@ function EditOtherAddress({
 		control,
 		showElements,
 		fields,
-		formState,
 		handleSubmit,
 		onCreate,
 	} = useEditOtherAddress({

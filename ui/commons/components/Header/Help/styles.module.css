@@ -7,11 +7,3 @@
 .tooltip_container {
 	margin: 12px;
 }
-
-.tippy-box {
-	max-width: 700px !important;
-	margin-top: 16px !important;
-	border: unset !important;
-	border-radius: 8px !important;
-	box-shadow: 0 1px 6px rgb(169 188 218 / 65%) !important;
-}

@@ -16,10 +16,10 @@
 		width: 100%;
 		text-align: center;
 	}
+}
 
-	.core-ui-button-root {
-		background: #2c3e50;
-	}
+.core_ui_button_root {
+	background: #2c3e50;
 }
 
 .title {

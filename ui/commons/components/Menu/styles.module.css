@@ -2,11 +2,11 @@
 	width: 250px;
 }
 
-.a:hover {
-	opacity: 0.8;
-}
+/* .a:hover {
+  opacity: 0.8;
+} */
 
-.A {
+.a_container {
 	display: block;
 	width: 100%;
 	padding: 0;
@@ -23,8 +23,9 @@
 	box-shadow: none;
 }
 
-.A:hover {
+.a:hover {
 	text-decoration: underline;
+	opacity: 0.8;
 }
 
 .sub_navlink {

@@ -2,9 +2,3 @@
 	height: 24px;
 	cursor: pointer;
 }
-
-.container_flex {
-	display: flex;
-	align-items: center;
-	cursor: pointer;
-}

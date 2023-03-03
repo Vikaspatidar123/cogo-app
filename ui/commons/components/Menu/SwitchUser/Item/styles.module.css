@@ -14,12 +14,12 @@
 	text-decoration: underline;
 }
 
-.core-ui-avatar-root {
+.core_ui_avatar_root {
 	width: 32px;
 	height: 32px;
 }
 
-.core-ui-avatar-text {
+.core_ui_avatar_text {
 	font-size: 16px;
 }
 

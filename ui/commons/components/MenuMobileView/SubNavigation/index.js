@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/no-static-element-interactions */
 import { IcMArrowDown, IcMArrowNext } from '@cogoport/icons-react';
 import { useState } from 'react';
 
@@ -12,6 +11,7 @@ function Subnavigation({ menuItem, getRedirectUrl }) {
 			<div
 				className={styles.styled_button}
 				onClick={() => setShowSubNav(!showSubNav)}
+				role="presentation"
 			>
 				<div className={showSubNav ? styles.active : styles.button_text}>{menuItem.title}</div>
 
@@ -23,6 +23,7 @@ function Subnavigation({ menuItem, getRedirectUrl }) {
 				<div
 					className={styles.styled_button}
 					onClick={() => getRedirectUrl(item.href, item.as)}
+					role="presentation"
 				>
 					<div className={styles.button_text}>{item.title}</div>
 					<div className={styles.arrow_icon_container}>

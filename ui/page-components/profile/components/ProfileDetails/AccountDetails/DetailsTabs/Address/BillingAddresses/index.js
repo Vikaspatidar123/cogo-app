@@ -66,6 +66,7 @@ function BillingAddresses({
 							<div
 								className={styles.link_text}
 								onClick={() => setShowEditBillingAddress(true)}
+								role="presentation"
 							>
 								+ Add Address
 							</div>
@@ -75,6 +76,7 @@ function BillingAddresses({
 					<div
 						className={styles.icon_container}
 						onClick={() => setShowData(!showData)}
+						role="presentation"
 					>
 						{showData ? (
 							<IcMArrowRotateDown width={20} height={15} />

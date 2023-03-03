@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/no-static-element-interactions */
 import React from 'react';
 
 import styles from '../../styles.module.css';
@@ -14,11 +13,7 @@ function SubNavigation({ setIsOpen, setShowPopover, subscriptionNav }) {
 	const { options } = subscriptionNav || {};
 	const { push } = useRouter();
 	const handleClick = async (href, as) => {
-		push(
-			href,
-			as,
-			true,
-		);
+		push(href, as, true);
 		setShowPopover(false);
 		setIsOpen(false);
 	};
@@ -28,6 +23,7 @@ function SubNavigation({ setIsOpen, setShowPopover, subscriptionNav }) {
 				<div
 					className={`${styles.a_container}`}
 					onClick={() => handleClick(href, as)}
+					role="presentation"
 				>
 					{title}
 				</div>

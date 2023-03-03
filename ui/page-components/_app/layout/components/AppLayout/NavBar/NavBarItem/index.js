@@ -1,6 +1,4 @@
 /* eslint-disable no-undef */
-/* eslint-disable jsx-a11y/no-static-element-interactions */
-/* eslint-disable jsx-a11y/aria-role */
 import styles from '../styles.module.css';
 
 import { useRouter } from '@/packages/next';
@@ -21,7 +19,7 @@ function NavBarItem({ item, unPrefixedPath, getFindUrl }) {
 		}
 	};
 	return (
-		<div role="prensentation" onClick={() => getRedirectUrl()}>
+		<div onClick={() => getRedirectUrl()} role="presentation">
 			<div className={unPrefixedPath === url ? styles.active : styles.text}>
 				{item.title}
 			</div>

@@ -1,5 +1,4 @@
 /* eslint-disable no-undef */
-/* eslint-disable jsx-a11y/no-static-element-interactions */
 import { IcMListView } from '@cogoport/icons-react';
 
 import styles from './styles.module.css';
@@ -26,18 +25,17 @@ function AppLayoutFooterItem({ item }) {
 	const url = urlArray?.length > 1 ? urlArray[1] : urlArray?.[0];
 	const isActive = `/${pathname.replace('/[org_id]/[branch_id]/', '')}` === url;
 	return (
-
 		<div
 			onClick={() => getRedirectUrl()}
 			key={item.href}
 			className={styles.container}
+			role="presentation"
 		>
 			<div className={isActive && styles.active}>
 				{item.mobileIcon || <IcMListView width={20} height={20} />}
 				<div>{item.title}</div>
 			</div>
 		</div>
-
 	);
 }
 

@@ -1,5 +1,4 @@
 /* eslint-disable no-undef */
-/* eslint-disable jsx-a11y/no-static-element-interactions */
 import { deleteCookie } from '@cogoport/utils';
 
 import LogoutIcon from '../icons/logoutIcon.svg';
@@ -22,6 +21,7 @@ function Logout() {
 				className={styles.a_container}
 				onClick={(e) => handleClick(e)}
 				style={{ color: '#ef9b9b' }}
+				role="presentation"
 			>
 				Logout
 			</div>

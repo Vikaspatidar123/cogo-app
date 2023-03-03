@@ -1,5 +1,4 @@
 /* eslint-disable no-undef */
-/* eslint-disable jsx-a11y/no-static-element-interactions */
 
 import { IcMAirSchedules } from '@cogoport/icons-react';
 
@@ -30,6 +29,7 @@ function SubMenuItem({ item, unPrefixedPath, getFindUrl }) {
 		<div
 			onClick={() => onSubmit()}
 			className={unPrefixedPath === url ? styles.active : styles.container}
+			role="presentation"
 		>
 			{icon && (
 				icon || <IcMAirSchedules width={50} height={50} fill="red" />

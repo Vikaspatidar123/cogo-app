@@ -1,6 +1,4 @@
-/* eslint-disable no-console */
 /* eslint-disable no-undef */
-/* eslint-disable jsx-a11y/no-static-element-interactions */
 import { IcMArrowNext } from '@cogoport/icons-react';
 import { useState } from 'react';
 
@@ -36,7 +34,6 @@ function MobileMenu() {
 	organization.forEach((navigationItem) => {
 		navigationMapping.push(navigationItem);
 	});
-	console.log(organization, 'organization', navigationMapping);
 
 	const getRedirectUrl = (href, as) => {
 		if (href?.includes('/v2')) {
@@ -61,6 +58,7 @@ function MobileMenu() {
 							<div
 								className={styles.styled_button}
 								onClick={() => getRedirectUrl(menuItem.href, menuItem.as)}
+								role="presentation"
 							>
 								<div className={styles.button_text}>{menuItem.title}</div>
 

@@ -1,3 +1,18 @@
+@keyframes fadeInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+
+  80% {
+    transform: translateX(-10px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(0);
+  }
+}
 .container {
   display: flex;
   flex-direction: row;
@@ -8,6 +23,7 @@
   cursor: pointer;
   border-radius: 4px;
   border: 1px solid #fcdc0061;
+  animation: fadeInRight 0.9s ease-in-out;
 }
 .container:hover {
   background: #fcdc0061;

@@ -1,3 +1,18 @@
+@keyframes fadeInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+
+  80% {
+    transform: translateX(-10px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(0);
+  }
+}
 .container {
   display: flex;
   flex-direction: row;
@@ -6,6 +21,7 @@
   margin: -10px -21px 0px;
   background: #fcdc0061;
   border-radius: 4px;
+  animation: fadeInRight 0.9s ease-in-out;
 }
 
 .user_details {

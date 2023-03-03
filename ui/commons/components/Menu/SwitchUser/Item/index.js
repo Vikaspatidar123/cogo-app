@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-import { Avatar } from '@cogoport/components';
+import { Avatar, Badge } from '@cogoport/components';
 
 import KycStatus from '../../KycStatus';
 
@@ -26,7 +26,18 @@ function SwitchPartnerItem({ item }) {
 			role="presentation"
 		>
 			<div className={styles.main}>
-				<Avatar name={item.business_name} />
+				{activeUser ? (
+					<Badge
+						placement="right"
+						color="rgb(87 195 79 / 94%)"
+						size="md"
+						text=""
+					>
+						<Avatar name={item.business_name} />
+					</Badge>
+				) : (
+					<Avatar name={item.business_name} />
+				)}
 
 				<div className={styles.partner_details}>
 					<div className={styles.partner_name}>{item.business_name}</div>

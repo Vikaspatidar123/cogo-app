@@ -1,4 +1,4 @@
-@keyframes fadeInRight {
+@keyframes fade_right {
   0% {
     opacity: 0;
     transform: translateX(100px);
@@ -21,9 +21,9 @@
   padding: 10px 16px;
   margin: 6px -6px;
   cursor: pointer;
-  border-radius: 4px;
   border: 1px solid #fcdc0061;
-  animation: fadeInRight 0.9s ease-in-out;
+  border-radius: 4px;
+  animation: fade_right 0.9s ease-in-out;
 }
 .container:hover {
   background: #fcdc0061;

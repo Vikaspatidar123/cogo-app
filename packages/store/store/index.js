@@ -13,9 +13,7 @@ const middleware = [thunk];
 const composeWithDevTools = typeof window === 'object'
   && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
   && (process.env.NODE_ENV === 'development'
-    || localStorage.getItem('jdgfajf7231648'))
-  	? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({})
-  	: compose;
+    || localStorage.getItem('jdgfajf7231648')) ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({}) : compose;
 
 const composedEnhancers = composeWithDevTools(
 	applyMiddleware(...middleware),

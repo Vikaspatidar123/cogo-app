@@ -173,7 +173,7 @@ function CategoryForm({
 									(val) => handleChange(
 										val.target.checked,
 										'new_product_service_launches_and_updates',
-									)
+								)
 								}
 							/>
 							<div className={styles.sub_label}>

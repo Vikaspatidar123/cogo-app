@@ -1,98 +1,44 @@
 .layout_container {
-  padding: 0 32px 16px 32px;
+	padding: 0 32px 16px;
 
-  @media (max-width: 767.99px) {
-    padding: 16px;
-  }
-
-  .form-item-label {
-    margin: 32px 0 8px 0;
-    font-weight: 400;
-    font-size: 14px;
-    color: #2c3e50;
-
-    @media (max-width: 767.99px) {
-      margin: 16px 0 8px 0;
-    }
-  }
-
-  .form-item-container {
-    .core-ui-input-root {
-      border: 1px solid #cddbff !important;
-    }
-
-    .ui-textarea-root {
-      border: 1px solid #cddbff;
-    }
-
-    .main_upload_container {
-      border: 1px dashed #cddbff;
-    }
-
-    .custom-select-input-container {
-      .custom-select-input-subcontainer {
-        border: 1px solid #cddbff;
-
-        .core-ui-input-root {
-          border: unset !important;
-        }
-      }
-    }
-
-    .core-ui-select__control {
-      min-height: 44px;
-      border: 1px solid #cddbff;
-    }
-
-    .ui-single-date-picker-input-container {
-      border: 1px solid #cddbff;
-
-      .core-ui-input-root {
-        border: unset !important;
-      }
-    }
-  }
-
-  .form-fieldArray-alternate_mobile_numbers {
-    padding-left: 0px;
-  }
+	@media (max-width: 767.99px) {
+		padding: 16px;
+	}
 }
 
 .button_container {
-  display: flex;
-  justify-content: flex-end;
-  margin-top: 48px;
+	display: flex;
+	justify-content: flex-end;
+	margin-top: 48px;
 }
 
 .layout {
-  display: flex;
-  flex-wrap: wrap;
+	display: flex;
+	flex-wrap: wrap;
 }
 
 .field {
-  padding: 10px 10px 0px 20px;
-  :global {
-    .ui_upload_droparea_container {
-      min-height: 20px;
-    }
-  }
+	padding: 10px 10px 0 20px;
+
+	:global {
+		.ui_upload_droparea_container {
+			min-height: 20px;
+		}
+	}
 }
 
 .lable {
-  margin: 10px 0px 8px;
-  font-weight: 400;
-  font-size: 14px;
-  color: rgb(44, 62, 80);
+	margin: 10px 0 8px;
+	font-size: 14px;
+	font-weight: 400;
+	color: rgb(44 62 80);
 }
 
 .errors {
-  color: red;
+	color: red;
 }
 
 .fields {
-  padding: 10px 10px 0px 20px;
-  display: flex;
-}
-
-.child {
+	display: flex;
+	padding: 10px 10px 0 20px;
 }

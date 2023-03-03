@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import { Router } from '@/packages/next';
 
 const redirect = ({

@@ -4,7 +4,6 @@ import {
 	RadioGroup,
 	Textarea,
 } from '@cogoport/components';
-import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
 
 import { getMappings } from '../../../../../../../../constants';

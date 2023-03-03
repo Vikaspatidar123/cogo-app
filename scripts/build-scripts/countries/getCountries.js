@@ -5,8 +5,9 @@ const { sortBy } = require('@cogoport/utils');
 const MAIN_COUNTRY_CODES = ['IN'];
 
 const getCountries = async (callBack, path, baseUrl) => {
-	// eslint-disable-next-line max-len
-	const actualUrl = `${baseUrl}location/list_locations?filters%5Btype%5D%5B%5D=country&filters%5Bstatus%5D=active&page_limit=500`;
+	const actualUrl = `${baseUrl}location/
+	list_locations?filters%5Btype%5D%5B%5D=country
+	&filters%5Bstatus%5D=active&page_limit=500`;
 
 	https
 		.get(actualUrl, (resp) => {

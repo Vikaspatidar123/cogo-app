@@ -1,8 +1,8 @@
 .menu {
-    width: 100vw;
-	max-width: 628px;
 	display: flex;
+	flex-wrap: wrap;
 	align-items: center;
 	justify-content: space-between;
-	flex-wrap: wrap;
+	width: 100vw;
+	max-width: 628px;
 }

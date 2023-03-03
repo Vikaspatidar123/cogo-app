@@ -8,8 +8,8 @@ const useGetAccountTypes = () => {
 	const isBoth = org.account_types;
 
 	return {
-		isServiceProvider: isBoth,
-		isImporterExporter: isBoth,
+		isServiceProvider  : isBoth,
+		isImporterExporter : isBoth,
 		isBoth,
 	};
 };

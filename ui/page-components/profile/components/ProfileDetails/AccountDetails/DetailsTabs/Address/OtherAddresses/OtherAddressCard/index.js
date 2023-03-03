@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import { Modal, Button } from '@cogoport/components';
 import { IcMEdit, IcMDocument } from '@cogoport/icons-react';
 import { useState } from 'react';
@@ -6,18 +7,12 @@ import AddEditPocDetails from '../../AddEditPocDetails';
 
 import styles from './styles.module.css';
 
-import { useSelector } from '@/packages/store';
-
 function OtherAddressCard({
 	other_address_data = {},
 	setOtherAddressObjToUpdate = () => { },
 	// getOrganizationOtherAddresses,
 	index = '',
 }) {
-	const {
-		general: { isMobile = false },
-	} = useSelector((state) => state);
-
 	const [showPocDetails, setShowPocDetails] = useState(false);
 
 	const [showPocModal, setShowPocModal] = useState(null);
@@ -104,6 +99,7 @@ function OtherAddressCard({
 									<div
 										className={styles.link_text}
 										onClick={() => handleOpenDocument(other_address_data.tax_exemption_proof)}
+										role="presentation"
 									>
 										view
 									</div>
@@ -123,6 +119,7 @@ function OtherAddressCard({
 								setShowPocModal('edit');
 								setPocToUpdate(firstPoc);
 							}}
+							role="presentation"
 						>
 							<IcMEdit style={{ width: 12, height: 12 }} />
 						</div>
@@ -165,7 +162,8 @@ function OtherAddressCard({
 							</div>
 							<div className={`${styles.value_text}${styles.poc_details}`}>
 								{firstPoc?.alternate_mobile_number
-									? `${firstPoc?.alternate_mobile_country_code || ''} ${firstPoc?.alternate_mobile_number
+									? `${firstPoc?.alternate_mobile_country_code || ''}
+									${firstPoc?.alternate_mobile_number
 									}`
 									: '-'}
 							</div>
@@ -184,6 +182,7 @@ function OtherAddressCard({
 									setShowPocModal('edit');
 									setPocToUpdate(poc_details);
 								}}
+								role="presentation"
 							>
 								<IcMEdit style={{ width: 10, height: 10 }} />
 							</div>
@@ -224,7 +223,8 @@ function OtherAddressCard({
 								</div>
 								<div className={`${styles.value_text}${styles.poc_details}`}>
 									{poc_details?.alternate_mobile_number
-										? `${poc_details?.alternate_mobile_country_code || ''} ${poc_details?.alternate_mobile_number
+										? `${poc_details?.alternate_mobile_country_code || ''} 
+										${poc_details?.alternate_mobile_number
 										}`
 										: '-'}
 								</div>
@@ -236,7 +236,11 @@ function OtherAddressCard({
 
 			<div className={styles.poc_footer}>
 				{organization_pocs.length > 1 ? (
-					<div className={styles.link_text} onClick={() => setShowPocDetails(!showPocDetails)}>
+					<div
+						className={styles.link_text}
+						onClick={() => setShowPocDetails(!showPocDetails)}
+						role="presentation"
+					>
 						{`${showPocDetails
 							? 'linkTexts.1'
 

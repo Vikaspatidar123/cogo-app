@@ -1,4 +1,4 @@
-function getFormattedPrice(locale = 'en-IN', price, currency, options = {}) {
+function getFormattedPrice(price, currency, options = {}, locale = 'en-IN') {
 	return (currency
 		? Number(price || 0).toLocaleString(locale, {
 			style           : 'currency',

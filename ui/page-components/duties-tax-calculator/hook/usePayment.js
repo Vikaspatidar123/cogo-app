@@ -22,6 +22,7 @@ const usePayment = () => {
 		method  : 'post',
 	}, { manual: true });
 
+	// eslint-disable-next-line max-len
 	const callBackUrl = `${process.env.NEXT_PUBLIC_APP_URL}/v2/${org_id}/${branch_id}/${account_type}saas/premium-services/duties-taxes-calculator`;
 
 	const getServiceDataHandler = async () => {

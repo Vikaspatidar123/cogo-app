@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect } from 'react';
 
 import DotLine from './DotLine';
@@ -25,6 +24,7 @@ function Stepper({
 		} else if (tradeEngineRespLength === 0) {
 			setOngoing('payDetails');
 		}
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [JSON.stringify(stepper)]);
 
 	useEffect(() => {
@@ -37,6 +37,7 @@ function Stepper({
 				payDetails       : true,
 			});
 		}
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [tradeEngineRespLength]);
 
 	useEffect(() => {
@@ -49,6 +50,7 @@ function Stepper({
 				payDetails       : true,
 			});
 		}
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	return (

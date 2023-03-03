@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import dynamic from 'next/dynamic';
 import { useState, useEffect } from 'react';
 
@@ -17,7 +16,6 @@ function Map({
 	mapPoints,
 }) {
 	const [curvePoints, setCurvePoints] = useState([]);
-	// const [ mapPoints, setMapPoints ] = useState();
 
 	const { origin = {}, destination = {} } = portDetails || {};
 
@@ -59,6 +57,7 @@ function Map({
 		if (billId === '') {
 			setMapPoints([]);
 		}
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	useEffect(() => {
@@ -76,6 +75,7 @@ function Map({
 				]);
 			}
 		}
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [JSON.stringify(origin), JSON.stringify(destination)]);
 
 	useEffect(() => {
@@ -121,6 +121,7 @@ function Map({
 		} else if (mapPoints?.length === 0) {
 			setCurvePoints([]);
 		}
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [JSON.stringify(mapPoints)]);
 
 	return (

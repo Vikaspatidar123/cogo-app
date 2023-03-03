@@ -2,26 +2,26 @@
 
 }
 
-.row{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+.row {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
 }
 
-.tab_panel{
-    .text{
-        margin-left: 3px
-    }
+.tab_panel {
+	.text {
+		margin-left: 3px;
+	}
 
-    svg{
-        vertical-align: top;
-    }
+	svg {
+		vertical-align: top;
+	}
 }
 
-.input_box{
-    width: 15%;
+.input_box {
+	width: 15%;
 
-    svg{
-        margin-right: 8px;
-    }
+	svg {
+		margin-right: 8px;
+	}
 }

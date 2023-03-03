@@ -1,7 +1,7 @@
-.container{
-    display: flex;
-	justify-content: space-between;
+.container {
+	display: flex;
 	align-items: center;
+	justify-content: space-between;
 	width: 100%;
 
 	@media screen and (max-width: 767px) {
@@ -9,23 +9,23 @@
 	}
 }
 
-.text{
+.text {
+	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
-	overflow: hidden;
 
-	&.info{
+	&.info {
 		max-width: 130px;
+		margin-bottom: 1px;
 		font-size: 11px;
 		color: #828282;
-		margin-bottom: 1px;
 	}
 
-	&.name{
+	&.name {
 		max-width: 200px;
 		font-size: 14px;
-		line-height: 16px;
 		font-weight: 600;
+		line-height: 16px;
 		color: black;
 	}
 }

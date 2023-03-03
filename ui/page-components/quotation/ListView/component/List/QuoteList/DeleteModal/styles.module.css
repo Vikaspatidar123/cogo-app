@@ -1,19 +1,19 @@
-.icon_container{
-    text-align: center;
+.icon_container {
 	margin-bottom: 10px;
-}
-
-.text{
-    margin: 0;
 	text-align: center;
 }
 
-.footer{
-    width: 100%;
-    display: flex;
-    justify-content: center;
+.text {
+	margin: 0;
+	text-align: center;
+}
 
-    .btn{
-        margin-left:12px;
-    }
+.footer {
+	display: flex;
+	justify-content: center;
+	width: 100%;
+
+	.btn {
+		margin-left: 12px;
+	}
 }

@@ -10,6 +10,7 @@ import styles from './styles.module.css';
 function Card({ data }) {
 	const { expired = false, search_type = 'air_freight' } = data || {};
 	const mapped = searchTypeMapping[search_type];
+
 	return (
 		<div className={cl`${styles.container} ${expired ? styles.disabled : styles.enabled}`}>
 

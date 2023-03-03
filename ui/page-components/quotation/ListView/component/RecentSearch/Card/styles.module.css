@@ -1,12 +1,11 @@
-.container{
-    padding: 7px 12px 10px;
-	margin-right: 20px ;
-	border-radius: 6px;
-	border: 1px solid #fada29;
+.container {
 	width: 380px;
+	padding: 7px 12px 10px;
+	margin-right: 20px;
+	border: 1px solid #fada29;
+	border-radius: 6px;
 
-
-    &.disabled {
+	&.disabled {
 		background: #f9f9f9;
 		border: 1px solid #bdbdbd;
 	}
@@ -15,36 +14,35 @@
 		background: #fffef9;
 
 		&:hover {
-			filter: drop-shadow(0px 4px 80px rgba(0, 0, 0, 0.15));
+			filter: drop-shadow(0 4px 80px rgb(0 0 0 / 15%));
 		}
 	}
 }
 
-.row{
-    display: flex;
+.row {
+	display: flex;
 	align-items: center;
 
 	.portDetail {
 		margin-left: 10px;
 	}
 
-	&.info{
-		margin-top: 15px;
+	&.info {
 		justify-content: space-between;
-
+		margin-top: 15px;
 	}
 }
 
-.icon_container{
+.icon_container {
 	position: relative;
 	top: -7px;
 	left: -12px;
 	display: flex;
 	align-items: center;
-	border-radius: 2px;
-	border-top-left-radius: 6px;
 	padding: 6px 10px;
 	text-align: center;
+	border-radius: 2px;
+	border-top-left-radius: 6px;
 
 	&.FCL {
 		background: #dfeaff;
@@ -55,17 +53,20 @@
 	}
 
 	&.Air {
-		background: #ffeeee;
+		background: #fee;
 	}
+
 	@media screen and (max-width: 767px) {
 		position: static;
 
 		&.FCL {
 			background: transparent;
 		}
+
 		&.LCL {
 			background: transparent;
 		}
+
 		&.Air {
 			background: transparent;
 		}

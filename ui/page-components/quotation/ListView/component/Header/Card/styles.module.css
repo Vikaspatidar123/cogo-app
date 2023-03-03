@@ -1,37 +1,37 @@
-.container{
-    display: flex;
+.container {
+	display: flex;
 	align-items: flex-start;
-	padding: 12px;
-    border-radius: 8px;
 	width: 200px;
-    margin-right: 20px;
-    background-color: #E5EEF8;
+	padding: 12px;
+	margin-right: 20px;
+	background-color: #e5eef8;
+	border-radius: 8px;
 }
 
-.iconContainer{
-    border-radius: 7px;
+.iconContainer {
 	padding: 3px;
-    background-color: #AFC8E4;
+	background-color: #afc8e4;
+	border-radius: 7px;
 
-    svg{
-        vertical-align: top;
-    }
+	svg {
+		vertical-align: top;
+	}
 }
 
-.info{
-    margin-left: 20px;
-    font-weight: 600;
+.info {
+	margin-left: 20px;
+	font-weight: 600;
 }
 
-.text{
-    margin: 0;
+.text {
+	margin: 0;
 }
 
-.value{
-    font-size: 20px;
+.value {
+	font-size: 20px;
 }
 
-.loading{
-    width: 50px;
-    height: 30px;
+.loading {
+	width: 50px;
+	height: 30px;
 }

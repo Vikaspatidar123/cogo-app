@@ -1,6 +1,6 @@
 import { IcMEdit, IcMPreview, IcMDownload, IcMDelete } from '@cogoport/icons-react';
 
-const tooltipConfig = ({ documentStatus = '' }) => {
+const tooltipConfig = ({ documentStatus = '', quotationId = '', setShowDeleteModal, setQuoteId }) => {
 	const tooltipContentConfig = [
 		{
 			name      : 'Preview',
@@ -25,6 +25,10 @@ const tooltipConfig = ({ documentStatus = '' }) => {
 			icon      : <IcMDelete width={12} height={12} />,
 			className : '',
 			condition : documentStatus !== 'SENT',
+			onClick   : () => {
+				setShowDeleteModal(true);
+				setQuoteId(quotationId);
+			},
 		},
 	];
 

@@ -7,8 +7,15 @@ import EmptyState from './QuoteList/EmptyState';
 import styles from './styles.module.css';
 
 function List({
-	data, loading, pagination, setPagination, setSortObj, searchTerm,
+	data = {},
+	loading = false,
+	pagination,
+	setPagination,
+	setSortObj,
+	searchTerm,
 	setSearchTerm,
+	deleteQuote,
+	deleteLoading = false,
 }) {
 	const [activeTab, setActiveTab] = useState('SENT');
 	return (
@@ -53,6 +60,8 @@ function List({
 					pagination={pagination}
 					setPagination={setPagination}
 					setSortObj={setSortObj}
+					deleteQuote={deleteQuote}
+					deleteLoading={deleteLoading}
 				/>
 			)}
 			{activeTab === 'RECEIVED' && (

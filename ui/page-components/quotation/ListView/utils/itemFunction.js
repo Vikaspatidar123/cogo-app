@@ -14,8 +14,11 @@ const itemFunction = () => {
 				<span style={{ marginLeft: '5px' }}>{status}</span>
 			</span>
 		),
-		renderToolTip: ({ documentStatus = '', quotationId = '' }, content, item) => (
-			<Popover placement="bottom" content={content({ documentStatus, quotationId })} interative>
+		renderToolTip: ({ documentStatus = '', quotationId = '' }, content, item, setShowDeleteModal, setQuoteId) => (
+			<Popover
+				placement="bottom"
+				content={content({ documentStatus, quotationId, setShowDeleteModal, setQuoteId })}
+			>
 				<div style={item?.style}>
 					<IcMOverflowDot width={15} height={15} style={{ verticalAlign: 'middle' }} />
 

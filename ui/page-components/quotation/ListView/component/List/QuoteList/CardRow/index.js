@@ -4,8 +4,8 @@ import tooltipConfig from '../../../../configurations/tooltipConfig';
 import itemFunction from '../../../../utils/itemFunction';
 import styles from '../styles.module.css';
 
-const tooltipContent = ({ documentStatus, quotationId }) => {
-	const tooltipContentConfig = tooltipConfig({ documentStatus, quotationId });
+const tooltipContent = ({ documentStatus, quotationId, setShowDeleteModal, setQuoteId }) => {
+	const tooltipContentConfig = tooltipConfig({ documentStatus, quotationId, setShowDeleteModal, setQuoteId });
 	return (
 		<div>
 			{(tooltipContentConfig || []).map((item, index) => (
@@ -15,19 +15,25 @@ const tooltipContent = ({ documentStatus, quotationId }) => {
 						className={cl`${styles.info} ${styles[item?.className]}`}
 					>
 						{item?.icon}
-						<span className={styles.text}>{item?.name}</span>
+						<span
+							className={styles.text}
+							onClick={item?.onClick}
+							role="presentation"
+						>
+							{item?.name}
+						</span>
 					</div>
 				)
 			))}
 		</div>
 	);
 };
-const getData = ({ item, data, renderFunction, loading = true }) => {
+const getData = ({ item, data, renderFunction, loading = true, setShowDeleteModal, setQuoteId }) => {
 	if (loading) {
 		return <Placeholder />;
 	}
 	if (item?.renderFunc === 'renderToolTip') {
-		return renderFunction[item?.renderFunc](data, tooltipContent, item);
+		return renderFunction[item?.renderFunc](data, tooltipContent, item, setShowDeleteModal, setQuoteId);
 	}
 	if (item?.renderFunc) {
 		return renderFunction[item?.renderFunc](data[item?.key], data);
@@ -35,15 +41,16 @@ const getData = ({ item, data, renderFunction, loading = true }) => {
 	return data[item?.key];
 };
 
-function CardRow({ data, config, loading }) {
+function CardRow({ data, config, loading, setShowDeleteModal, setQuoteId }) {
 	const renderFunction = itemFunction();
 	return (
 		<div className={cl`${styles.card_row} ${styles.row_item}`}>
 			{config.map((item) => (
 				<div className={`${styles.col} ${styles[item?.className]}`} style={{ width: `${item?.width}` }}>
-					{getData({ item, data, renderFunction, loading })}
+					{getData({ item, data, renderFunction, loading, setShowDeleteModal, setQuoteId })}
 				</div>
 			))}
+
 		</div>
 	);
 }

@@ -17,6 +17,8 @@ function ListView() {
 		setSearchTerm,
 		summaryLoading,
 		summaryData,
+		deleteQuote,
+		deleteLoading,
 	} = useListQuote();
 
 	return (
@@ -37,6 +39,8 @@ function ListView() {
 				setSortObj={setSortObj}
 				searchTerm={searchTerm}
 				setSearchTerm={setSearchTerm}
+				deleteQuote={deleteQuote}
+				deleteLoading={deleteLoading}
 			/>
 		</div>
 	);

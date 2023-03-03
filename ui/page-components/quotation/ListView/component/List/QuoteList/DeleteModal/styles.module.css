@@ -1,0 +1,19 @@
+.icon_container{
+    text-align: center;
+	margin-bottom: 10px;
+}
+
+.text{
+    margin: 0;
+	text-align: center;
+}
+
+.footer{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
+    .btn{
+        margin-left:12px;
+    }
+}

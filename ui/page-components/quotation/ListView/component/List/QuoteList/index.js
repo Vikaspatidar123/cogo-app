@@ -5,13 +5,16 @@ import sendListConfig from '../../../configurations/sendList';
 
 import CardHeader from './CardHeader';
 import CardRow from './CardRow';
+import DeleteModal from './DeleteModal';
 import EmptyState from './EmptyState';
 import styles from './styles.module.css';
 
-function QuoteList({ data, loading, pagination, setPagination, setSortObj }) {
+function QuoteList({ data, loading, pagination, setPagination, setSortObj, deleteQuote, deleteLoading }) {
 	const [created, setCreated] = useState(false);
 	const [expiry, setExpiry] = useState(false);
 	const [amount, setAmount] = useState(false);
+	const [showDeleteModal, setShowDeleteModal] = useState(false);
+	const [quoteId, setQuoteId] = useState();
 
 	const sendConfig = sendListConfig({ created, setCreated, expiry, setExpiry, amount, setAmount });
 
@@ -24,7 +27,15 @@ function QuoteList({ data, loading, pagination, setPagination, setSortObj }) {
 				<>
 					<CardHeader config={sendConfig} setSortObj={setSortObj} />
 					{(dataList || []).map((listItem) => (
-						<CardRow key={listItem?.quotationId} data={listItem} config={sendConfig} loading={loading} />
+						<CardRow
+							key={listItem?.quotationId}
+							data={listItem}
+							config={sendConfig}
+							loading={loading}
+							deleteQuote={deleteQuote}
+							setShowDeleteModal={setShowDeleteModal}
+							setQuoteId={setQuoteId}
+						/>
 					))}
 					{dataList.length >= 10 && (
 						<div className={styles.pagination_container}>
@@ -40,6 +51,13 @@ function QuoteList({ data, loading, pagination, setPagination, setSortObj }) {
 				</>
 			)}
 			{dataList.length === 0 && <EmptyState text="No data Found" />}
+			<DeleteModal
+				show={showDeleteModal}
+				setShow={setShowDeleteModal}
+				quoteId={quoteId}
+				deleteQuote={deleteQuote}
+				deleteLoading={deleteLoading}
+			/>
 		</div>
 	);
 }

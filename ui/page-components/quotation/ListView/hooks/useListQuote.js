@@ -5,7 +5,7 @@ import { useSelector } from '@/packages/store';
 import useSearchQuery from '@/ui/commons/utils/useSearchQuery';
 
 const useListQuote = () => {
-	const { organization = {} } = useSelector(((state) => state.profile));
+	const { organization = {}, id = '' } = useSelector(((state) => state.profile));
 
 	const [pagination, setPagination] = useState(1);
 	const [sortObj, setSortObj] = useState();
@@ -30,6 +30,12 @@ const useListQuote = () => {
 		method  : 'get',
 		url     : 'saas/quote/summary',
 		authKey : 'get_saas_quote_summary',
+	});
+
+	const [{ loading: deleteLoading }, deleteTrigger] = useRequestBf({
+		method  : 'delete',
+		url     : 'saas/quote',
+		authKey : 'delete_saas_quote',
 	});
 
 	const refetchList = async () => {
@@ -67,6 +73,24 @@ const useListQuote = () => {
 					expiresIn      : filters?.expiresIn || undefined,
 				},
 			});
+		} catch (err) {
+			console.log(err);
+		}
+	};
+
+	const deleteQuote = async (quoteId) => {
+		try {
+			const resp = await deleteTrigger({
+				params: {
+					userId      : id,
+					quotationId : quoteId,
+				},
+			});
+
+			if (resp?.data?.message === 'Success') {
+				await refetchList();
+				await refetchSummary();
+			}
 		} catch (err) {
 			console.log(err);
 		}
@@ -111,6 +135,8 @@ const useListQuote = () => {
 		setSearchTerm,
 		summaryLoading,
 		summaryData,
+		deleteQuote,
+		deleteLoading,
 	};
 };
 

@@ -1,4 +1,4 @@
-import HsClassification from '@/ui/page-components/hs-codes';
+import HsClassification from '@/ui/page-components/hs-code';
 
 HsClassification.getInitialProps = () => ({
 	layout : 'app',

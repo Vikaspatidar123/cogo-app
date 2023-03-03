@@ -7,5 +7,7 @@ module.exports = {
 				ignorePseudoClasses: ['global'],
 			},
 		],
+		'selector-class-pattern' : [false],
+		'keyframes-name-pattern' : [false],
 	},
 };

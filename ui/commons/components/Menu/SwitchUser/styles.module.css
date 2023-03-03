@@ -1,38 +1,35 @@
 .container {
-	width: 100%;
-	margin-top: 4px;
-	background: #fff;
+  width: 100%;
+  margin-top: 4px;
+  background: #fff;
+  padding: 0px;
 }
 
 .styled_button {
-	text-transform: capitalize;
-	background: #2c3e50 !important;
+  text-transform: capitalize;
+  background: #2c3e50 !important;
 }
 
 .header {
-	display: flex;
-	flex-direction: row;
-	justify-content: space-between;
-	padding: 4px 4px 12px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 4px 0px 12px;
+  align-items: center;
 }
 
 .separator {
-	width: 100%;
-	margin: 0;
-	border: 1px solid #f2f2f2;
+  width: 100%;
+  margin: 0;
+  border: 1px solid #f2f2f2;
 }
 
 .list {
-	max-height: 500px;
-	padding: 8px 20px 8px 8px;
-	overflow-y: auto;
+  max-height: 500px;
+  padding: 8px 20px 8px 8px;
+  overflow-y: auto;
+  margin: 0px -19px;
+  @media (max-width: 768px) {
+    margin: 0px -8px;
+  }
 }
-
-/* .fade_out_scale:animate({
-	enter: {
-		...fadeInRight,
-		easing: 'easeInOutQuad',
-		translateX: [15, 0],
-		opacity: [0.25, 1],
-	},
-}); */

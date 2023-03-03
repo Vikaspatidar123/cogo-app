@@ -10,9 +10,7 @@ import styles from './styles.module.css';
 import { useSelector } from '@/packages/store';
 
 function UserName() {
-	const {
-		business_name, branch_name, total_branches,
-	} = useSelector(
+	const { business_name, branch_name, total_branches } = useSelector(
 		({ profile }) => ({
 			business_name  : (profile.organization || {}).business_name || '',
 			branch_name    : (profile.branch || {}).branch_name || '',
@@ -28,7 +26,9 @@ function UserName() {
 		}
 	}, [showPopover]);
 
-	const renderBody = () => <Menu setShow={setShow} show={show} setShowPopover={setShowPopover} />;
+	const renderBody = () => (
+		<Menu setShow={setShow} show={show} setShowPopover={setShowPopover} />
+	);
 
 	return (
 		<div className={styles.container}>

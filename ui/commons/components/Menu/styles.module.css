@@ -1,5 +1,5 @@
 .container {
-  width: 250px;
+	width: 250px;
 }
 
 /* .a:hover {
@@ -7,144 +7,144 @@
 } */
 
 .a_container {
-  display: block;
-  width: 100%;
-  padding: 0;
-  margin: 16px 0;
-  font-size: 14px;
-  line-height: 16px;
-  color: black;
-  text-align: left;
-  text-decoration: none;
-  cursor: pointer;
-  background: transparent;
-  border: none;
-  outline: none;
-  box-shadow: none;
+	display: block;
+	width: 100%;
+	padding: 0;
+	margin: 16px 0;
+	font-size: 14px;
+	line-height: 16px;
+	color: black;
+	text-align: left;
+	text-decoration: none;
+	cursor: pointer;
+	background: transparent;
+	border: none;
+	outline: none;
+	box-shadow: none;
 }
 
 .a:hover {
-  text-decoration: underline;
-  opacity: 0.8;
+	text-decoration: underline;
+	opacity: 0.8;
 }
 
 .sub_navlink {
-  margin: 0.5rem 0;
+	margin: 0.5rem 0;
 }
 
 .profile_header {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  padding: 6px 8px;
-  margin: 0 -9px;
-  background: #f5fafe;
-  border-radius: 4px;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	padding: 6px 8px;
+	margin: 0 -9px;
+	background: #f5fafe;
+	border-radius: 4px;
 }
 
 .styled_avatar {
-  width: 42px;
-  height: 42px;
-  margin-right: 6px;
-  cursor: pointer;
+	width: 42px;
+	height: 42px;
+	margin-right: 6px;
+	cursor: pointer;
 }
 
 .user_details {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
+	display: flex;
+	flex-direction: column;
+	width: 100%;
 }
 
 .business_name_container {
-  display: flex;
-  align-items: center;
-  font-size: 11px;
-  font-weight: 300;
-  line-height: 12px;
-  color: #000;
-  letter-spacing: 0.02em;
+	display: flex;
+	align-items: center;
+	font-size: 11px;
+	font-weight: 300;
+	line-height: 12px;
+	color: #000;
+	letter-spacing: 0.02em;
 }
 
 .business_name {
-  max-width: 72%;
+	max-width: 72%;
 }
 
 .kyc_submited {
-  display: flex;
-  align-items: center;
-  margin: 0 0 0 8px;
-  font-size: 10px;
-  font-weight: 400;
-  color: #67c676;
+	display: flex;
+	align-items: center;
+	margin: 0 0 0 8px;
+	font-size: 10px;
+	font-weight: 400;
+	color: #67c676;
 }
 
 .kyc_rejected {
-  display: flex;
-  align-items: center;
-  margin: 0 0 0 8px;
-  font-size: 10px;
-  font-weight: 400;
-  color: #cb6464;
+	display: flex;
+	align-items: center;
+	margin: 0 0 0 8px;
+	font-size: 10px;
+	font-weight: 400;
+	color: #cb6464;
 }
 
 .name {
-  display: flex;
-  align-items: center;
-  font-size: 14px;
-  font-weight: 500;
-  line-height: 16px;
-  color: #333;
-  letter-spacing: 0.02em;
-  cursor: pointer;
+	display: flex;
+	align-items: center;
+	font-size: 14px;
+	font-weight: 500;
+	line-height: 16px;
+	color: #333;
+	letter-spacing: 0.02em;
+	cursor: pointer;
 }
 
 .separator {
-  width: 100%;
-  margin: 8px 0;
-  border: 0.5px solid #bdbdbd;
+	width: 100%;
+	margin: 8px 0;
+	border: 0.5px solid #bdbdbd;
 }
 
 .logout_container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 .account_settings {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 .name_and_switch_account_text {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  width: 100%;
-  margin-bottom: 6px;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	width: 100%;
+	margin-bottom: 6px;
 }
 
 .switch_account_text {
-  display: flex;
-  align-items: center;
-  font-size: 12px;
-  font-weight: 300;
-  color: #034afd;
-  text-decoration-line: underline;
-  cursor: pointer;
+	display: flex;
+	align-items: center;
+	font-size: 12px;
+	font-weight: 300;
+	color: #034afd;
+	text-decoration-line: underline;
+	cursor: pointer;
 }
 
 .subscription_container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-top: 1px dashed silver;
-  border-bottom: 1px solid #e0e0e0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-top: 1px dashed silver;
+	border-bottom: 1px solid #e0e0e0;
 }
 
 .flex {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  margin-left: 0.5rem;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+	margin-left: 0.5rem;
 }

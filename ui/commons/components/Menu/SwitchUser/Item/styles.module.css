@@ -1,71 +1,74 @@
 @keyframes fade_right {
-  0% {
-    opacity: 0;
-    transform: translateX(100px);
-  }
+	0% {
+		opacity: 0;
+		transform: translateX(100px);
+	}
 
-  80% {
-    transform: translateX(-10px);
-  }
+	80% {
+		transform: translateX(-10px);
+	}
 
-  100% {
-    opacity: 1;
-    transform: translate(0);
-  }
+	100% {
+		opacity: 1;
+		transform: translate(0);
+	}
 }
+
 .container {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  padding: 10px 16px;
-  margin: 6px -6px;
-  cursor: pointer;
-  border: 1px solid #fcdc0061;
-  border-radius: 4px;
-  animation: fade_right 0.9s ease-in-out;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+	padding: 10px 16px;
+	margin: 6px -6px;
+	cursor: pointer;
+	border: 1px solid #fcdc0061;
+	border-radius: 4px;
+	animation: fade_right 0.9s ease-in-out;
 }
+
 .container:hover {
-  background: #fcdc0061;
+	background: #fcdc0061;
 }
 
 .active {
-  background: #fcdc0061;
+	background: #fcdc0061;
 }
+
 .partner_name:hover {
-  text-decoration: underline;
+	text-decoration: underline;
 }
 
 .core_ui_avatar_root {
-  width: 32px;
-  height: 32px;
+	width: 32px;
+	height: 32px;
 }
 
 .core_ui_avatar_text {
-  font-size: 16px;
+	font-size: 16px;
 }
 
 .name {
-  width: 140px;
-  overflow: hidden;
-  font-size: 12px;
-  font-weight: 500;
-  color: #4f4f4f;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+	width: 140px;
+	overflow: hidden;
+	font-size: 12px;
+	font-weight: 500;
+	color: #4f4f4f;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }
 
 .main {
-  display: flex;
-  flex-direction: row;
+	display: flex;
+	flex-direction: row;
 }
 
 .type {
-  font-size: 9px;
-  font-weight: 400;
-  color: #4f4f4f;
+	font-size: 9px;
+	font-weight: 400;
+	color: #4f4f4f;
 }
 
 .partner_details {
-  margin-left: 8px;
+	margin-left: 8px;
 }

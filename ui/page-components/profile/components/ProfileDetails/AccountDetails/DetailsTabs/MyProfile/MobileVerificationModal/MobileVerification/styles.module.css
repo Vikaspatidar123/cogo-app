@@ -1,20 +1,24 @@
-.button{
+.button {
 	width: 100%;
 	padding: 8px;
 	margin-top: 16px;
 }
+
 .otp_container {
 	margin: 20px 0;
 }
+
 .lable {
 	margin: 0 0 8px;
 	font-size: 14px;
 	font-weight: 400;
 	color: rgb(44 62 80);
 }
+
 .errors {
 	color: red;
 }
+
 .button {
 	width: 573px !important;
 	height: 40px !important;

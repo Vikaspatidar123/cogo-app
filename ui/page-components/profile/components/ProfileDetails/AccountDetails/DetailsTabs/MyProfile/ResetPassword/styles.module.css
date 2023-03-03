@@ -3,38 +3,31 @@
 	flex-direction: column;
 	gap: 16px;
 	padding: 16px;
-
 	.heading {
 	}
 }
-
 .heading__sub_title {
 	font-size: 14px;
 	font-weight: 400;
 	color: #828282;
 	letter-spacing: 0.02em;
 }
-
 .err_msz {
 	padding-left: 0;
 }
-
 .form-lower-label {
 	margin-bottom: unset;
 	line-height: unset;
 }
-
 .heading__title {
 	font-size: 20px;
 	font-weight: 700;
 	color: #000;
 	letter-spacing: 0.02em;
 }
-
 .message {
 	color: red;
 }
-
 .footer {
 	display: flex;
 	flex-direction: row-reverse;

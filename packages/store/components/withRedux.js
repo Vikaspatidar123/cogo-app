@@ -10,8 +10,7 @@ const withRedux = (initializeStore, config) => {
 	const getOrCreateStore = (initialState) => {
 		if (isServer) {
 			return initializeStore(initialState);
-		} 
-
+		}
 		if (!window[storeKey]) {
 			window[storeKey] = initializeStore(initialState);
 		}

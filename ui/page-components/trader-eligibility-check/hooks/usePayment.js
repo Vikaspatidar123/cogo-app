@@ -24,6 +24,7 @@ const usePayment = () => {
 		method  : 'post',
 	}, { manual: true });
 
+	// eslint-disable-next-line max-len
 	const callBackUrl = `${process.env.NEXT_PUBLIC_APP_URL}/v2/${org_id}/${branch_id}/${account_type}/saas/premium-services/trader-eligibility-check/result`;
 
 	const initiatePayment = async ({ res = {}, services = {}, productCodes = {} }) => {
@@ -46,7 +47,7 @@ const usePayment = () => {
 					userMobileCountryCode : mobile_country_code,
 					redirectUrl           : callBackUrl,
 					totalAmount           : +price % 1 !== 0 ? +price.toFixed(2) : +price,
-					taxAmount             :
+					taxAmount:
 						((+price % 1 !== 0 ? price.toFixed(2) : +price)
 							- (+discountAmount % 1 !== 0
 								? +discountAmount.toFixed(2)
@@ -70,7 +71,7 @@ const usePayment = () => {
 							pricePerUnit  : +price % 1 !== 0 ? +price.toFixed(2) : +price,
 							quantity      : 1,
 							totalAmount   : +price % 1 !== 0 ? +price.toFixed(2) : +price,
-							taxAmount     :
+							taxAmount:
 								((+price % 1 !== 0 ? price.toFixed(2) : +price)
 									- (+discountAmount % 1 !== 0
 										? +discountAmount.toFixed(2)
@@ -94,6 +95,7 @@ const usePayment = () => {
 				},
 			});
 			if (resp?.data) {
+				// eslint-disable-next-line no-undef
 				window.open(resp.data.url, '_self', '');
 			}
 		} catch (err) {

@@ -10,6 +10,7 @@ const useGetStateFromPincode = ({ watchPincode = undefined, setCityState, watchC
 
 	useEffect(() => {
 		debounceQuery(watchPincode);
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [watchPincode]);
 
 	const [{ loading }, trigger] = useRequest({
@@ -43,6 +44,7 @@ const useGetStateFromPincode = ({ watchPincode = undefined, setCityState, watchC
 
 	useEffect(() => {
 		if (query)responseCity();
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [query]);
 
 	return {

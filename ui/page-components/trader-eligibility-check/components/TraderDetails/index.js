@@ -42,6 +42,7 @@ function TraderDetails({
 	});
 	const { list } = cityState || {};
 	const { region, city } = list?.[0] || {};
+	console.log('cityLoading', cityLoading);
 
 	useMemo(() => {
 		if (list?.length === 0) {
@@ -54,6 +55,7 @@ function TraderDetails({
 			setValue('city', city?.name);
 			setValue('state', region?.name);
 		}
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [city, region]);
 
 	const submit = (values) => {

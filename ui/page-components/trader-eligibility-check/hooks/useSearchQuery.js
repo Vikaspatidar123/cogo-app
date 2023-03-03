@@ -8,6 +8,7 @@ const useSearchQuery = () => {
 		setQuery(value);
 	}, 600);
 
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	const debounceQuery = useCallback((value) => request(value), []);
 	return { debounceQuery, query };
 };

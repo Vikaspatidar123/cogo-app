@@ -1,5 +1,3 @@
-// import { StyledLoading } from '../components/TraderDetails/styles';
-
 import styles from '../components/TraderDetails/styles.module.css';
 import { LoadingIcon } from '../configuration/icon-configuration';
 
@@ -13,15 +11,17 @@ export const quotaAvailabilityfunction = ({
 	) || {};
 	setQuotaAvailableStats(quotaAvailable);
 	if (Object.keys(quotaAvailable)?.length > 0) {
+		const val1 = quotaAvailable?.left_quota;
+		const val2 = quotaAvailable?.addon_quota;
 		if (
 			quotaAvailable?.total_quota === -1
-			|| +quotaAvailable?.left_quota + +quotaAvailable?.addon_quota > 0
+			|| +val1 + +val2 > 0
 		) {
 			setPayment((prev) => ({
 				...prev,
 				paymentThroughQuota: true,
 			}));
-		} else if (+quotaAvailable?.left_quota + +quotaAvailable?.addon_quota === 0) {
+		} else if (+val1 + +val2 === 0) {
 			setPayment((prev) => ({
 				...prev,
 				paymentThroughAddon : true,

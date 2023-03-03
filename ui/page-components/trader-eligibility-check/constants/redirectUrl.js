@@ -1,6 +1,8 @@
+/* eslint-disable max-len */
 import { useRouter } from '@/packages/next';
 
 const redirectUrl = () => {
+	// eslint-disable-next-line react-hooks/rules-of-hooks
 	const { query = {} } = useRouter();
 	const { org_id, branch_id, account_type } = query || {};
 	const subscriptionsUrl = `${process.env.NEXT_PUBLIC_APP_URL}/v2/${org_id}/${branch_id}/${account_type}/saas/cogo-subscriptions`;

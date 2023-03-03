@@ -3,9 +3,6 @@
 	flex-direction: column;
 	gap: 16px;
 	padding: 16px;
-
-	.heading {
-	}
 }
 
 .heading__sub_title {
@@ -19,10 +16,6 @@
 	padding-left: 0;
 }
 
-.form-lower-label {
-	margin-bottom: unset;
-	line-height: unset;
-}
 
 .heading__title {
 	font-size: 20px;

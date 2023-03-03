@@ -25,17 +25,6 @@
 	padding: 12px 22px;
 }
 
-.core-ui-tag-root {
-	margin-left: 16px;
-	background: #f5fafe;
-	border: 1px solid #b3d5fb;
-	border-radius: 10px !important;
-}
-
-.core-ui-tag-text {
-	color: #2c3e50;
-}
-
 .link_text {
 	font-size: 14px;
 	color: #034afd;

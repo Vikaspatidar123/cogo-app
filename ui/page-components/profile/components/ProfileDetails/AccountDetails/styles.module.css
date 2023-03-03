@@ -20,10 +20,10 @@
 	border-left: 8px solid #6892fe;
 }
 
-.active {
+/* .active {
 	font-weight: 500;
 	color: #000;
-}
+} */
 
 .tab_panel_container {
 	position: relative;

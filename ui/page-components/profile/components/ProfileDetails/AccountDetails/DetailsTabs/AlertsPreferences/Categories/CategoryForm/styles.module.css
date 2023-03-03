@@ -1,59 +1,56 @@
-.container {
-}
-
 .select_wrapper {
-	width: 20%;
+  width: 20%;
 }
 
 .label {
-	margin-bottom: 4px;
-	font-size: 14px;
-	font-weight: 500;
-	color: #393f70;
+  margin-bottom: 4px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #393f70;
 }
 
 .header {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .heading {
-	font-size: 14px;
-	font-weight: 500;
-	color: #393f70;
+  font-size: 14px;
+  font-weight: 500;
+  color: #393f70;
 }
 
 .section {
-	margin-bottom: 20px;
-	overflow: hidden;
-	background: #fff;
-	border-radius: 4px;
-	box-shadow: 0 0 6px rgb(0 0 0 / 12%);
+  margin-bottom: 20px;
+  overflow: hidden;
+  background: #fff;
+  border-radius: 4px;
+  box-shadow: 0 0 6px rgb(0 0 0 / 12%);
 }
 
 .title {
-	padding: 16px 12px;
-	font-size: 16px;
-	font-weight: 500;
-	color: #2c3e50;
-	background-color: #fdebe9;
+  padding: 16px 12px;
+  font-size: 16px;
+  font-weight: 500;
+  color: #2c3e50;
+  background-color: #fdebe9;
 }
 
 .content {
-	padding: 12px 28px;
+  padding: 12px 28px;
 }
 
 .sub_category {
-	&:not(:last-child) {
-		margin-bottom: 20px;
-	}
+  &:not(:last-child) {
+    margin-bottom: 20px;
+  }
 }
 
 .sub_label {
-	margin-top: 8px;
-	margin-left: 24px;
-	font-size: 12px;
-	font-weight: 400;
-	color: #828282;
+  margin-top: 8px;
+  margin-left: 24px;
+  font-size: 12px;
+  font-weight: 400;
+  color: #828282;
 }

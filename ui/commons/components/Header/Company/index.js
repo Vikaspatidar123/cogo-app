@@ -9,7 +9,7 @@ function CompanyDetails() {
 		<div>
 			<Link className={styles.a} href="/dashboard" as="/dashboard">
 				<img
-					src="https://cogoport-production.sgp1.digitaloceanspaces.com/e845419ea5eacebda858bad8b20d2797/cogoport-logo.svg"
+					src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/cogoport.svg"
 					alt="Cogoport Logo"
 				/>
 			</Link>

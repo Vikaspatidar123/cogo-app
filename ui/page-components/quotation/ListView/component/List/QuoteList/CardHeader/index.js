@@ -3,9 +3,9 @@ import { IcMArrowDown } from '@cogoport/icons-react';
 
 import styles from '../styles.module.css';
 
-function CardHeader({ config }) {
+function CardHeader({ config, setSortObj }) {
 	return (
-		<div className={styles.card_row}>
+		<div className={cl`${styles.card_row} ${styles.header_item}`}>
 			{config.map((cardHeader) => (
 				<div
 					key={cardHeader?.key}
@@ -14,9 +14,20 @@ function CardHeader({ config }) {
 				>
 					{cardHeader.name}
 					{cardHeader?.sorting && (
-						<span className={styles.sorting_icon}>
+						<div
+							className={styles.sorting_icon}
+							role="presentation"
+							style={{ transform: `${cardHeader?.sortVariable ? 'rotate(-180deg)' : 'rotate(0)'}` }}
+							onClick={() => {
+								cardHeader?.sortFn(!cardHeader?.sortVariable);
+								setSortObj(() => ({
+									sortType : cardHeader?.sortVariable,
+									sortBy   : cardHeader?.sortValue,
+								}));
+							}}
+						>
 							<IcMArrowDown />
-						</span>
+						</div>
 					)}
 				</div>
 			))}

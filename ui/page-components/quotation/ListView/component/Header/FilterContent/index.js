@@ -18,7 +18,17 @@ const filterTab = [
 ];
 
 function FilterContent({ filters = {}, setFilters }) {
-	const filterLength = Object.keys(filters).length;
+	const calculateLength = () => {
+		let n = 0;
+		Object.keys(filters).forEach((ele) => {
+			if (filters[ele] && ele !== 'empty') {
+				n += 1;
+			}
+		});
+		return n;
+	};
+	const filterLength = calculateLength();
+
 	const updateStatusHandler = (value) => {
 		setFilters((prev) => ({
 			...prev,
@@ -26,24 +36,35 @@ function FilterContent({ filters = {}, setFilters }) {
 		}));
 	};
 
-	const removeStatusHandler = () => {
-		setFilters((prev) => {
-			const { status, ...other } = prev;
-
-			return {
-				...other,
-			};
-		});
+	const checkboxHandler = async (e) => {
+		if (!e.target.checked) {
+			setFilters((prev) => {
+				const { showExpired, ...rest } = prev;
+				return { ...rest, empty: true };
+			});
+		} else {
+			setFilters((prev) => ({
+				...prev,
+				showExpired: true,
+			}));
+		}
 	};
 
-	const calculateLength = () => {
-		let n = 0;
-		Object.keys(filters).forEach((ele) => {
-			if (filters[ele]) {
-				n += 1;
-			}
-		});
-		return n;
+	const clearFilterHandler = (key) => {
+		if (key === 'all') {
+			setFilters({
+				empty: true,
+			});
+		} else if (key === 'status') {
+			setFilters((prev) => {
+				const { status, ...other } = prev;
+
+				return {
+					...other,
+					empty: true,
+				};
+			});
+		}
 	};
 
 	return (
@@ -51,21 +72,15 @@ function FilterContent({ filters = {}, setFilters }) {
 			<div className={styles.heading}>
 				<div>
 					<h3>Apply Filters</h3>
-					{(filterLength > 1 || filters?.showExpired) && (
-						<div className={styles.sub_header}>{`Selected Filters (${calculateLength()})`}</div>
+					{(filterLength > 0) && (
+						<div className={styles.sub_header}>{`Selected Filters (${filterLength})`}</div>
 					)}
 				</div>
-				{(filterLength > 1 || filters?.showExpired) && (
+				{(filterLength > 0) && (
 					<div
 						className={styles.clear_btn}
 						role="presentation"
-						onClick={() => {
-						// setChecked(false);
-						// setExpireDay('');
-							setFilters({
-								showExpired: false,
-							});
-						}}
+						onClick={() => clearFilterHandler('all')}
 					>
 						<div>Clear All</div>
 						<IcMCrossInCircle width={17} height={17} />
@@ -97,7 +112,7 @@ function FilterContent({ filters = {}, setFilters }) {
 										fill="#fff"
 										width={15}
 										height={15}
-										onClick={() => removeStatusHandler()}
+										onClick={() => clearFilterHandler('status')}
 									/>
 								)}
 							</div>
@@ -120,10 +135,7 @@ function FilterContent({ filters = {}, setFilters }) {
 					<Checkbox
 						label="Include expired quotations"
 						checked={filters?.showExpired}
-						onChange={(e) => setFilters((prev) => ({
-							...prev,
-							showExpired: e.target.checked,
-						}))}
+						onChange={checkboxHandler}
 					/>
 				</div>
 				<div className={cl`${styles.section} ${styles.expiring}`}>

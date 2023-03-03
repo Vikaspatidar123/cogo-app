@@ -1,6 +1,6 @@
 import { Button, Popover } from '@cogoport/components';
 import { IcMFilter, IcMPlus } from '@cogoport/icons-react';
-import { useState } from 'react';
+import { useState, memo } from 'react';
 
 import getSummary from '../../configurations/summary';
 
@@ -8,21 +8,18 @@ import Card from './Card';
 import FilterContent from './FilterContent';
 import styles from './styles.module.css';
 
-function Header() {
+function Header({
+	filters, setFilters, summaryLoading = false,
+	summaryData = {},
+}) {
 	const [showFilters, setshowFilters] = useState(false);
-	const [filters, setFilters] = useState();
-	const summaryResp = {
-		buyersCount     : 2,
-		defaultCurrency : 'INR',
-		quotationsCount : 5,
-		totalAmount     : 164435.28,
-	};
-	const summaryControl = getSummary({ summaryResp });
+
+	const summaryControl = getSummary({ summaryResp: summaryData });
 	return (
 		<div className={styles.container}>
 			<div className={`${styles.summary} ${styles.flex_container}`}>
 				{(summaryControl || []).map((summary) => (
-					<Card key={summary?.name} summary={summary} />
+					<Card key={summary?.name} summary={summary} loading={summaryLoading} />
 				))}
 			</div>
 			<div className={`${styles.filter_section} ${styles.flex_container}`}>
@@ -31,7 +28,12 @@ function Header() {
 					interactive={showFilters}
 					visible={showFilters}
 					onClickOutside={() => setshowFilters(false)}
-					content={<FilterContent filters={filters} setFilters={setFilters} />}
+					content={(
+						<FilterContent
+							filters={filters}
+							setFilters={setFilters}
+						/>
+					)}
 					className="popa"
 					maxWidth={350}
 				>
@@ -56,4 +58,4 @@ function Header() {
 	);
 }
 
-export default Header;
+export default memo(Header);

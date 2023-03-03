@@ -10,6 +10,12 @@
         height: 100px
     }
 }
+.row_container{
+    display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
 .scroll_content{
     overflow: scroll;
 	scroll-behavior: smooth;
@@ -21,4 +27,26 @@
 .card_container{
     display: flex;
     width: fit-content;
+}
+
+.icon_container{
+    cursor: pointer;
+	.animatedArrow {
+		position: absolute;
+	}
+	.animatedArrow:hover {
+		animation: bounceAlpha 0.8s linear infinite;
+		animation-direction: normal;
+
+		@keyframes bounceAlpha {
+			0% {
+				opacity: 1;
+				transform: translateX(0px) scale(1);
+			}
+			100% {
+				opacity: 0;
+				transform: translateX(10px) scale(0.9);
+			}
+		}
+	}
 }

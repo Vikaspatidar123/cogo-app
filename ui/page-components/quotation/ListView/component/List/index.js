@@ -3,9 +3,13 @@ import { IcMDocument, IcMEnquiriesReceived, IcMSearchlight } from '@cogoport/ico
 import { useState } from 'react';
 
 import QuoteList from './QuoteList';
+import EmptyState from './QuoteList/EmptyState';
 import styles from './styles.module.css';
 
-function List() {
+function List({
+	data, loading, pagination, setPagination, setSortObj, searchTerm,
+	setSearchTerm,
+}) {
 	const [activeTab, setActiveTab] = useState('SENT');
 	return (
 		<div>
@@ -32,11 +36,27 @@ function List() {
 					/>
 				</Tabs>
 				<div className={styles.input_box}>
-					<Input size="sm" placeholder="Quotation Id" suffix={<IcMSearchlight />} />
+					<Input
+						size="sm"
+						placeholder="Quotation Id"
+						value={searchTerm}
+						onChange={setSearchTerm}
+						suffix={<IcMSearchlight />}
+						disabled={activeTab === 'RECEIVED'}
+					/>
 				</div>
 			</div>
 			{activeTab === 'SENT' && (
-				<QuoteList />
+				<QuoteList
+					data={data}
+					loading={loading}
+					pagination={pagination}
+					setPagination={setPagination}
+					setSortObj={setSortObj}
+				/>
+			)}
+			{activeTab === 'RECEIVED' && (
+				<EmptyState text="No Data Avaliable" />
 			)}
 		</div>
 	);

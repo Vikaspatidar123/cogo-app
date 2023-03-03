@@ -1,12 +1,14 @@
+import iconUrl from '../../../../utils/iconUrl.json';
+
 import styles from './styles.module.css';
 
-function Card({ summary }) {
+function Card({ summary = {}, loading = false }) {
 	const {
 		name = '',
 		icon = '',
 		iconColor = '',
 		background = '',
-		value = '',
+		value = 0,
 	} = summary || {};
 	return (
 		<div className={styles.container} style={{ background }}>
@@ -15,7 +17,8 @@ function Card({ summary }) {
 			</div>
 			<div className={styles.info}>
 				<p className={styles.text}>{name}</p>
-				<p className={`${styles.text} ${styles.value}`}>{value}</p>
+				{!loading && <p className={`${styles.text} ${styles.value}`}>{value}</p>}
+				{loading && <img src={iconUrl.loading} alt="loading..." className={styles.loading} />}
 			</div>
 		</div>
 	);

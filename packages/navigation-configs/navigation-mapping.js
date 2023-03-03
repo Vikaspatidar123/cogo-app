@@ -10,8 +10,6 @@
 
 import {
 	IcMQuotations,
-	IcMCustoms,
-	IcMBusinessDashboard,
 } from '@cogoport/icons-react';
 
 const navigationMappings = {
@@ -66,24 +64,7 @@ const navigationMappings = {
 				href        : '/v2/saas/planning/quickquotation/viewlist',
 				as          : '/v2/saas/planning/quickquotation/viewlist',
 			},
-			{
-				key   : 'saas_planning-product_inventory',
-				title : 'Product Catalog',
-				icon  : <IcMBusinessDashboard width={30} height={30} />,
-				type  : 'link',
-				href  : '/saas/product-inventory',
-				as    : '/saas/product-inventory',
 
-			},
-			{
-				key   : 'saas_planning-trade_partner',
-				title : 'Trade Partner',
-				icon  : <IcMCustoms width={30} height={30} />,
-				type  : 'link',
-				href  : '/saas/trade-partner',
-				as    : '/saas/trade-partner',
-
-			},
 		],
 	},
 

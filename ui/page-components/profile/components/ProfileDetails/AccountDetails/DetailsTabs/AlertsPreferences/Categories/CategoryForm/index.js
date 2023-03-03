@@ -169,12 +169,10 @@ function CategoryForm({
 							<Checkbox
 								label={controls.new_product_service_launches_and_updates.label}
 								checked={formData.new_product_service_launches_and_updates}
-								onChange={
-									(val) => handleChange(
-										val.target.checked,
-										'new_product_service_launches_and_updates',
-								)
-								}
+								onChange={(val) => handleChange(
+									val.target.checked,
+									'new_product_service_launches_and_updates',
+								)}
 							/>
 							<div className={styles.sub_label}>
 								Get information on latest product launches and updates.

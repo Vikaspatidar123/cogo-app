@@ -1,7 +1,11 @@
+/* eslint-disable no-undef */
 import { Button } from '@cogoport/components';
 import { useState, useEffect } from 'react';
 
-import { LoadingIcon, NoDataIcon } from '../../../configuration/icon-configuration';
+import {
+	LoadingIcon,
+	NoDataIcon,
+} from '../../../configuration/icon-configuration';
 import redirectUrl from '../../../constants/redirectUrl';
 import { quotaAvailabilityfunction } from '../../../utils';
 import style from '../styles.module.css';
@@ -33,11 +37,16 @@ function Summary({
 
 	useEffect(() => {
 		if (Object.keys(quotaDetails)?.length > 0) {
-			quotaAvailabilityfunction({ setQuotaAvailableStats, quotaDetails, setPayment });
+			quotaAvailabilityfunction({
+				setQuotaAvailableStats,
+				quotaDetails,
+				setPayment,
+			});
 		}
 	}, [quotaDetails]);
 	const { services } = serviceRates || {};
 	const { buyer_eligibility_check } = services || {};
+	const pricePerUnit = Number(buyer_eligibility_check?.price);
 	const renderButton = () => {
 		if (buySubscription) {
 			return 'Buy Subscription';
@@ -85,7 +94,6 @@ function Summary({
 
 		return null;
 	};
-	const pricePerUnit = +buyer_eligibility_check?.price;
 	return (
 		<div className={styles.wrapper}>
 			{Object.keys(serviceRates).length === 0 && (
@@ -107,7 +115,9 @@ function Summary({
 									<div className={styles.text}>Left Quota</div>
 								</div>
 								<div className={styles.text_column}>
-									<div className={styles.text}>{+left_quota + +addon_quota}</div>
+									<div className={styles.text}>
+										{+left_quota + +addon_quota}
+									</div>
 								</div>
 							</div>
 							<div className={styles.styled_row}>
@@ -124,7 +134,9 @@ function Summary({
 									<div className={styles.total_text}>Remaining Quota</div>
 								</div>
 								<div className={styles.text_column}>
-									<div className={styles.total_text}>{+left_quota + +addon_quota - 1}</div>
+									<div className={styles.total_text}>
+										{+left_quota + +addon_quota - 1}
+									</div>
 								</div>
 							</div>
 						</>
@@ -172,11 +184,16 @@ function Summary({
 			{Object.keys(serviceRates).length > 0 && (
 				<div className={styles.button_wrapper}>
 					{!paymentThroughQuota && (
-						<Button className={styles.redirect_button} onClick={() => redirectingButtonsFunc()}>
+						<Button
+							className={styles.redirect_button}
+							onClick={() => redirectingButtonsFunc()}
+						>
 							{renderButton()}
 						</Button>
 					)}
-					<Button className={styles.submit_button} onClick={submit}>{renderBtn()}</Button>
+					<Button className={styles.submit_button} onClick={submit}>
+						{renderBtn()}
+					</Button>
 				</div>
 			)}
 		</div>

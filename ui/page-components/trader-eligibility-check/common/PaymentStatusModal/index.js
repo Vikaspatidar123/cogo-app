@@ -37,9 +37,12 @@ function PaymentStatusModal({
 			);
 		} else if (!checkLoading && paymentStatus === 'ERROR') {
 			setText(
-				'Ooopss!!! Something went wrong.We could not process your request right now. We will review this issue and get back to you in 24-48 hrs.',
+				`Ooopss!!! Something went wrong.We could not process
+				your request right now. We will review this issue
+				and get back to you in 24-48 hrs.`,
 			);
 		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [paymentStatus]);
 
 	return (
@@ -56,7 +59,13 @@ function PaymentStatusModal({
 					) : (
 						<img src={url} alt="" className={styles.image} />
 					)}
-					<div className={cl`${styles.title} ${paymentStatus === 'ERROR' && styles.noresult}`}>{text}</div>
+					<div
+						className={cl`${styles.title} ${
+							paymentStatus === 'ERROR' && styles.noresult
+						}`}
+					>
+						{text}
+					</div>
 				</div>
 			)}
 			{stop && (

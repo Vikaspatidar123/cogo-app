@@ -7,8 +7,8 @@ module.exports = {
 				ignorePseudoClasses: ['global'],
 			},
 		],
-		'selector-class-pattern' : [false],
-		// 'keyframes-name-pattern' : [false],
-		'keyframes-name-pattern' : '^((key-frame)|([a-z][a-z0-9]*)(-[a-z0-9]+)*)$',
+		'selector-class-pattern' : null,
+		'keyframes-name-pattern' : null,
+		// "keyframes-name-pattern": "^((key-frame)|([a-z][a-z0-9]*)(-[a-z0-9]+)*)$",
 	},
 };

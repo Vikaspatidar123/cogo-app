@@ -1,0 +1,18 @@
+# Catchall
+* @prashantp01 @vikas-cogo
+
+# Github Actions
+.github/ @prashantp01
+
+# Packages
+packages/ @prashantp01
+scripts/ @prashantp01
+ui/commons/ @vikas-cogo
+ui/page-components/_app/ @vikas-cogo
+ui/page-components/_document/ @vikas-cogo
+ui/page-components/authentication/ @vikas-cogo
+ui/page-components/dashboard/ @vikas-cogo
+ui/page-components/get-started/ @vikas-cogo
+ui/page-components/profile/ @vikas-cogo
+
+

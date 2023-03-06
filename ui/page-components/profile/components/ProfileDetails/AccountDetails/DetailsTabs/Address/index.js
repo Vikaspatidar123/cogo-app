@@ -7,31 +7,18 @@ import OtherAddresses from './OtherAddresses';
 import styles from './styles.module.css';
 
 import { useRouter } from '@/packages/next';
-import { useSelector } from '@/packages/store';
 
 function Address() {
-	const {
-		general: { isMobile },
-		profile: { organization = {} },
-	} = useSelector((state) => state);
-
 	const router = useRouter();
 
 	const onClickBackButton = () => {
 		router.push('/settings');
 	};
-	const {
-		data, loading, addressesData, addressLoading,
-	} = getAddress();
+	const { data, loading, addressesData, addressLoading } = getAddress();
 	const organizationBillingAddressesList = data?.list || [];
 	return (
 		<>
-			{/* {isMobile && ( */}
-			<MobileHeader
-				heading="Addresses"
-				onClickBackButton={onClickBackButton}
-			/>
-			{/* )} */}
+			<MobileHeader heading="Addresses" onClickBackButton={onClickBackButton} />
 
 			<BillingAddresses
 				title="Billing Address"
@@ -39,7 +26,10 @@ function Address() {
 				loading={loading}
 			/>
 
-			<OtherAddresses addressesData={addressesData} addressLoading={addressLoading} />
+			<OtherAddresses
+				addressesData={addressesData}
+				addressLoading={addressLoading}
+			/>
 		</>
 	);
 }

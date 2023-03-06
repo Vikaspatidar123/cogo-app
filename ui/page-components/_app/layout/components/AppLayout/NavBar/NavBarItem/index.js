@@ -1,5 +1,4 @@
-/* eslint-disable jsx-a11y/no-static-element-interactions */
-/* eslint-disable jsx-a11y/aria-role */
+/* eslint-disable no-undef */
 import styles from '../styles.module.css';
 
 import { useRouter } from '@/packages/next';
@@ -11,20 +10,19 @@ function NavBarItem({ item, unPrefixedPath, getFindUrl }) {
 	const { profile } = useSelector((s) => s);
 	const { organization, branch } = profile || {};
 	const getRedirectUrl = () => {
-		if (url?.includes('/v2')) {
-			const newHref = url?.replace('/v2', '');
-			const newAs = url?.replace('/v2', '');
+		if (item.href?.includes('/v2')) {
+			const newHref = item.href?.replace('/v2', '');
+			const newAs = item.href?.replace('/v2', '');
 			push(newHref, newAs);
 		} else {
 			window.location.href = `/app/${organization?.id}/${branch?.id}/importer-exporter/${url}`;
 		}
 	};
 	return (
-		<div
-			role="prensentation"
-			onClick={() => getRedirectUrl()}
-		>
-			<div className={unPrefixedPath === url ? styles.active : styles.text}>{item.title}</div>
+		<div onClick={() => getRedirectUrl()} role="presentation">
+			<div className={unPrefixedPath === url ? styles.active : styles.text}>
+				{item.title}
+			</div>
 		</div>
 	);
 }

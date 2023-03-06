@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { Toast } from '@cogoport/components';
 import { merge } from '@cogoport/utils';
 import { useEffect, useState } from 'react';
@@ -9,7 +10,7 @@ import {
 	asyncFieldsLocations, useGetAsyncOptions,
 } from '@/packages/forms';
 import { useRequest } from '@/packages/request';
-import getUser from '@/ui/page-components/profile/hooks/getUser';
+import useGetUser from '@/ui/page-components/profile/hooks/useGetUser';
 
 const useEditOrganizationDetails = ({
 	organizationData = {},
@@ -17,7 +18,7 @@ const useEditOrganizationDetails = ({
 	setShowEditOrganizationDetails = () => { },
 }) => {
 	const [errors, setErrors] = useState({});
-	const { refetch } = getUser();
+	const { refetch } = useGetUser();
 	const cityOptions = useGetAsyncOptions(merge(asyncFieldsLocations(), {
 		params: { filters: { type: ['city'] } },
 	}));

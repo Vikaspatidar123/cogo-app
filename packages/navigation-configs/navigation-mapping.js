@@ -8,9 +8,7 @@
 // mobileIcon is used to show icon in mobile navigation only
 // isSubNavs is used to show sub navigations
 
-import {
-	IcMTradeparties,
-} from '@cogoport/icons-react';
+import { IcMTradeparties } from '@cogoport/icons-react';
 
 const navigationMappings = {
 	app_dashboard: {
@@ -21,7 +19,6 @@ const navigationMappings = {
 		type        : 'link',
 		module_type : 'dashboards',
 		showInNav   : true,
-
 	},
 	saas_premium_services: {
 		key         : 'saas_premium_services',
@@ -43,29 +40,6 @@ const navigationMappings = {
 		],
 	},
 
-	app_bookings: {
-		key       : 'app_bookings',
-		title     : 'Shipments',
-		href      : '/shipments',
-		as        : '/shipments',
-		type      : 'link',
-		icon      : 'nav-booking',
-		showInNav : true,
-	},
-	// saas_insurance: {
-	// 	key: 'saas_insurance',
-	// 	title: 'Insurance',
-	// 	href: '/saas/insurance/list',
-	// 	as: '/saas/insurance/list',
-	// 	type: 'link',
-	// 	icon: 'nav-insurance',
-	// 	main_apis: [],
-	// 	possible_apis: app_apis.saas_insurance,
-	// 	module_type: 'dashboards',
-	// 	isNew: true,
-	// 	showInNav: true,
-	// },
-
 	app_accept_terms_and_conditions: {
 		key       : 'app_accept_terms_and_conditions',
 		title     : 'Terms and Conditions',
@@ -78,7 +52,6 @@ const navigationMappings = {
 		key   : 'app_get_started',
 		title : 'Get Started',
 		theme : 'green',
-
 	},
 
 	app_kyc: {
@@ -88,7 +61,6 @@ const navigationMappings = {
 		as        : '/kyc',
 		type      : 'link',
 		showInNav : false,
-
 	},
 	app_settings: {
 		key           : 'app_settings',
@@ -97,8 +69,6 @@ const navigationMappings = {
 		as            : '/v2/settings',
 		type          : 'link',
 		showMobileNav : true,
-
 	},
-
 };
 export default navigationMappings;

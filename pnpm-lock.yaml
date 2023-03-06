@@ -32,10 +32,10 @@ specifiers:
   stylelint: ^15.2.0
 
 dependencies:
-  '@cogoport/components': 1.0.347_cyxdlkncyjzqtklzwrmvnywxma
+  '@cogoport/components': 1.0.354_cyxdlkncyjzqtklzwrmvnywxma
   '@cogoport/icons-react': 1.0.58_biqbaboplfbrettd7655fr4n2y
   '@cogoport/maps': 1.0.2_cyxdlkncyjzqtklzwrmvnywxma
-  '@cogoport/utils': 1.2.4
+  '@cogoport/utils': 1.2.6
   axios: 1.3.4
   axios-hooks: 4.0.0_axios@1.3.4+react@18.2.0
   i18next: 22.4.10
@@ -1344,8 +1344,8 @@ packages:
       to-fast-properties: 2.0.0
     dev: true
 
-  /@cogoport/components/1.0.347_cyxdlkncyjzqtklzwrmvnywxma:
-    resolution: {integrity: sha512-B1VsI+VE90ruTXn2aIKMK2XSuF17bl3BBpr6ifziDDuagU750PHVnDa+pA5eWMofRxOOD9VaB9K6k85Jqk+Xvg==}
+  /@cogoport/components/1.0.354_cyxdlkncyjzqtklzwrmvnywxma:
+    resolution: {integrity: sha512-p2gWqKFht3shotu+T1j3XkIOyaUNe4AISd1C8UF9yK3lL43OhsMKNgK1pmPFp87pi8tRtw1MV6vEF9eoyIK1JQ==}
     peerDependencies:
       '@cogoport/icons-react': ^1.0.23
       react: ^18.2.0
@@ -1418,6 +1418,20 @@ packages:
     resolution: {integrity: sha512-8ort8jOyO9P8mK3gy7i+wdqqUkKRjkeTVT61beqUzcUCxk/V+4LaVtg+GQg8pK8dTy9ePGThduB860WHzw7Vkw==}
     dev: false
 
+  /@cogoport/maps/1.0.2_cyxdlkncyjzqtklzwrmvnywxma:
+    resolution: {integrity: sha512-p4mMyDcF61LT+RW2CMjs/mU93nMifJY2CaO4N4/YQYXppAn+ACsUx1JG4pQyN9YMPJ5V8EnQ9OQCfp4BeptqLQ==}
+    peerDependencies:
+      '@cogoport/icons-react': ^1.0.23
+      react: ^18.2.0
+      react-dom: ^18.2.0
+    dependencies:
+      '@cogoport/icons-react': 1.0.58_biqbaboplfbrettd7655fr4n2y
+      leaflet: 1.9.3
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+      react-leaflet: 4.2.1_yydtlhsdonbqao6vgvkwhv2zki
+    dev: false
+
   /@cogoport/stylelint-config/1.0.3_stylelint@15.2.0:
     resolution: {integrity: sha512-zFuKR+TYxHV64eYtYGSW07H1iOOMBUiGF+0FijdJfPhtN9lj6WrrmGUgpfToPAV37cPoF6S4gqSmLgfQy0ZISg==}
     peerDependencies:
@@ -1428,8 +1442,8 @@ packages:
       stylelint-config-standard: 28.0.0_stylelint@15.2.0
     dev: true
 
-  /@cogoport/utils/1.2.4:
-    resolution: {integrity: sha512-3QPALpowJRTWjBgCt0BB1cwF9kBs8Qfd14oMZUYYQrFby1T1iiljCksq98X+Fk9SeI86uk/eCQnUu5Js6a7XrQ==}
+  /@cogoport/utils/1.2.6:
+    resolution: {integrity: sha512-H5zCe0bdcKGYZKThZw2sYZwdcWeqgJmry82AKq4LVMllysKZxtCyJjIhrvofNqwu1cmZFPPMyNXjp4laqC6qCw==}
     dev: false
 
   /@csstools/cascade-layer-name-parser/1.0.1_ppok7cytzjc65mcyxmtit3wdyi:
@@ -2044,7 +2058,6 @@ packages:
     resolution: {integrity: sha512-50/17A98tWUfQ176raKiOGXuYpLyyVMkxxG6oylzL3BPOlA6ADGdK7EYunSa4I064xerltq9TGXs8HmOk5E+vw==}
     dev: false
 
-<<<<<<< HEAD
   /@react-leaflet/core/2.1.0_yydtlhsdonbqao6vgvkwhv2zki:
     resolution: {integrity: sha512-Qk7Pfu8BSarKGqILj4x7bCSZ1pjuAPZ+qmRwH5S7mDS91VSbVVsJSrW4qA+GPrro8t69gFYVMWb1Zc4yFmPiVg==}
     peerDependencies:
@@ -2057,11 +2070,24 @@ packages:
       react-dom: 18.2.0_react@18.2.0
     dev: false
 
-  /@reduxjs/toolkit/1.9.3_k4ae6lp43ej6mezo3ztvx6pykq:
-    resolution: {integrity: sha512-GU2TNBQVofL09VGmuSioNPQIu6Ml0YLf4EJhgj0AvBadRlCGzUWet8372LjvO4fqKZF2vH1xU0htAa7BrK9pZg==}
+  /@svgr/babel-plugin-add-jsx-attribute/6.5.1_@babel+core@7.21.0:
+    resolution: {integrity: sha512-9PYGcXrAxitycIjRmZB+Q0JaN07GZIWaTBIGQzfaZv+qr1n8X1XUEJ5rZ/vx6OVD9RRYlrNnXWExQXcmZeD/BQ==}
+    engines: {node: '>=10'}
     peerDependencies:
-      react: ^16.9.0 || ^17.0.0 || ^18
-      react-redux: ^7.2.1 || ^8.0.2
+      '@babel/core': ^7.0.0-0
+    dependencies:
+      '@babel/core': 7.21.0
+    dev: true
+
+  /@svgr/babel-plugin-remove-jsx-attribute/6.5.0_@babel+core@7.21.0:
+    resolution: {integrity: sha512-8zYdkym7qNyfXpWvu4yq46k41pyNM9SOstoWhKlm+IfdCE1DdnRKeMUPsWIEO/DEkaWxJ8T9esNdG3QwQ93jBA==}
+    engines: {node: '>=10'}
+    peerDependencies:
+      '@babel/core': ^7.0.0-0
+    dependencies:
+      '@babel/core': 7.21.0
+    dev: true
+
   /@svgr/babel-plugin-remove-jsx-empty-expression/6.5.0_@babel+core@7.21.0:
     resolution: {integrity: sha512-NFdxMq3xA42Kb1UbzCVxplUc0iqSyM9X8kopImvFnB+uSDdzIHOdbs1op8ofAvVRtbg4oZiyRl3fTYeKcOe9Iw==}
     engines: {node: '>=10'}
@@ -4481,6 +4507,7 @@ packages:
     resolution: {integrity: sha512-l7bvmSeIwX5lp07WtIiP9u2ytZMv7jIeB8iacR28PuUEFG5j0HGAPnMqyG5kbZNBG2H7tRsrQ4HCjuMOPnANZw==}
     engines: {node: '>=12.22.0'}
     hasBin: true
+    requiresBuild: true
     peerDependencies:
       fibers: '>= 3.1.0'
       node-sass: ^6.0.0 || ^7.0.0
@@ -5319,8 +5346,8 @@ packages:
     resolution: {integrity: sha512-xWGDIW6x921xtzPkhiULtthJHoJvBbF3q26fzloPCK0hsvxtPVelvftw3zjbHWSkR2km9Z+4uxbDDK/6Zw9B8w==}
     dev: false
 
-  /react-leaflet/4.2.0_yydtlhsdonbqao6vgvkwhv2zki:
-    resolution: {integrity: sha512-9d8T7hzYrQA5GLe3vn0qtRLJzQKgjr080NKa45yArGwuSl1nH/6aK9gp7DeYdktpdO1vKGSUTGW5AsUS064X0A==}
+  /react-leaflet/4.2.1_yydtlhsdonbqao6vgvkwhv2zki:
+    resolution: {integrity: sha512-p9chkvhcKrWn/H/1FFeVSqLdReGwn2qmiobOQGO3BifX+/vV/39qhY8dGqbdcPh1e6jxh/QHriLXr7a4eLFK4Q==}
     peerDependencies:
       leaflet: ^1.9.0
       react: ^18.0.0

@@ -48,6 +48,7 @@ function FilterForm({
 						value={containerSize}
 						onChange={setContainerSize}
 						options={filterControls[0].options}
+						style={{width:'150px'}}
 					/>
 				</div>
 				<div className={styles.select_div}>
@@ -57,6 +58,7 @@ function FilterForm({
 						value={containerType}
 						onChange={setContainerType}
 						options={filterControls[1].options}
+						style={{width:'150px'}}
 					/>
 				</div>
 			</div>
@@ -69,6 +71,7 @@ function FilterForm({
 						value={commodity}
 						onChange={setCommodity}
 						options={COMMODITY_OPTIONS_MAPPING[containerType]}
+						style={{width:'150px'}}
 					/>
 				</div>
 				<div className={styles.select_div}>
@@ -78,6 +81,7 @@ function FilterForm({
 						value={filteredCurrency}
 						onChange={setFilteredCurrency}
 						options={filterControls[4].options}
+						style={{width:'150px'}}
 					/>
 				</div>
 			</div>

@@ -1,7 +1,7 @@
 /* eslint-disable import/no-unresolved */
 import { Select } from '@cogoport/components';
 
-import countryCode from '@/.data-store/con=stants/countries.json';
+import countryCode from '../../../../.data-store/constants/countries.json';
 
 function SelectCountryCode(props) {
 	const { value } = props;

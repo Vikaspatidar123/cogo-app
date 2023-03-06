@@ -1,33 +1,31 @@
-
-
-.container{
+.container {
 	display: flex;
-	justify-content: center;
-	align-items: center;
 	flex-direction: column;
-	text-align: center;
+	align-items: center;
+	justify-content: center;
 	padding: 10px;
+	text-align: center;
 }
 
-.image{
+.image {
 	width: 100px;
 	height: 100px;
 }
 
-.title{
+.title {
 	font-size: 22px;
-	color: #170f49;
 	font-weight: 500;
+	color: #170f49;
 }
 
 .noresult {
-	font-weight: 400;
 	font-size: 19px;
+	font-weight: 400;
 }
 
-.txt{
-	color: #535075;
+.txt {
 	margin: 10px 0;
+	color: #535075;
 }
 
 .error {

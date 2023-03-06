@@ -9,7 +9,7 @@ import {
 
 import { useSelector } from '@/packages/store';
 
-const spotSearchPayload = (props) => {
+const useSpotSearchPayload = (props) => {
 	const sec = Date.now();
 	const millisec = 86400000 * 15 + sec;
 	const defaultExpiryDate = new Date(millisec).toISOString();
@@ -127,4 +127,4 @@ const spotSearchPayload = (props) => {
 	return {};
 };
 
-export default spotSearchPayload;
+export default useSpotSearchPayload;

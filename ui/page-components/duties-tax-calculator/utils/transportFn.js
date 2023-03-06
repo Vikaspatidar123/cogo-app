@@ -20,6 +20,7 @@ const transportFn = ({
 			originPort      : destination,
 			destinationPort : origin,
 		};
+		console.log(obj);
 		setValue('originPort', destination);
 		setValue('destinationPort', origin);
 		setPortDetails((prev) => ({
@@ -54,7 +55,7 @@ const transportFn = ({
 		}
 		if (
 			portDetails?.origin?.countryId === portDetails?.destination?.countryId
-			&& transportMode === 'OCEAN'
+      && transportMode === 'OCEAN'
 		) {
 			Toast.error('Ports of same Country selected!', {
 				autoClose : 3000,

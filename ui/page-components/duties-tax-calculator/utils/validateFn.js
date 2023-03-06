@@ -1,6 +1,6 @@
 import { useRouter } from '@/packages/next';
 
-const validateFn = ({
+const useValidateFn = ({
 	verifyHsCode,
 	hsCode = '',
 	portDetails = {},
@@ -15,7 +15,7 @@ const validateFn = ({
 	const { query } = useRouter();
 	const { destination = {} } = portDetails || {};
 	const { headerResponse = {}, lineItem = [] } = getDraftData;
-	const destinationCountryCode =		destination?.countryCode || headerResponse?.destinationCountryCode;
+	const destinationCountryCode = destination?.countryCode || headerResponse?.destinationCountryCode;
 
 	const validateHSCode = async () => {
 		await verifyHsCode({
@@ -35,7 +35,10 @@ const validateFn = ({
 	];
 
 	const submitHandler = async () => {
-		const resp = await refetchDraft({ header: headerResponse, lineItem: newLineItem });
+		const resp = await refetchDraft({
+			header   : headerResponse,
+			lineItem : newLineItem,
+		});
 		if (resp) {
 			postTradeEngine(resp, 'PAYMENT', query?.billId);
 			setShow(false);
@@ -45,4 +48,4 @@ const validateFn = ({
 	return { validateHSCode, submitHandler };
 };
 
-export default validateFn;
+export default useValidateFn;

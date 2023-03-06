@@ -1,8 +1,9 @@
+/* eslint-disable no-undef */
 import { useEffect } from 'react';
 
 import { useRouter } from '@/packages/next';
 
-const prefillFn = ({
+const usePrefillFn = ({
 	transportSetValues,
 	productSetValue,
 	chargeSetValue,
@@ -56,23 +57,14 @@ const prefillFn = ({
 			incoterm,
 			incotermCharges,
 		};
+		console.log(transportObj, productObj, chargeObj);
 		// transportSetValues(transportObj);
 		transportSetValues(originPort, destinationPort);
 
 		// productSetValue(productObj);
 		// chargeSetValue(chargeObj);
-		productSetValue(
-			productName,
-			hsCode,
-			consignmentValue,
-			quantity,
-			currency,
-		);
-		chargeSetValue(
-			freightCharge,
-			incoterm,
-			incotermCharges,
-		);
+		productSetValue(productName, hsCode, consignmentValue, quantity, currency);
+		chargeSetValue(freightCharge, incoterm, incotermCharges);
 		setPrevCurr(currency);
 		setFormStepper({
 			formTransportDetails : false,
@@ -97,10 +89,11 @@ const prefillFn = ({
 				localStorage.removeItem('formData');
 			}
 		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 	return {
 		fillDataHandler,
 	};
 };
 
-export default prefillFn;
+export default usePrefillFn;

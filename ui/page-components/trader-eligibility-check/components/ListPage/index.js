@@ -86,7 +86,7 @@ function ListPage() {
 		</Placeholder>
 	</div>
               ))}
-						{!getTradeEngineListLoading
+						{getTradeEngineListLoading
               && new Array(3).fill(1).map(() => (
 	<div>
 		<Placeholder className={styles.placeholder_styles}>
@@ -95,7 +95,7 @@ function ListPage() {
 		</Placeholder>
 	</div>
               ))}
-						{getTradeEngineListLoading
+						{!getTradeEngineListLoading
               && screeningRequestResponse?.length > 0 && (
 	<>
 		<div className={styles.title}>

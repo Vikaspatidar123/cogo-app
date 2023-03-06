@@ -23,6 +23,7 @@
 		width: 68%;
 		padding: 0;
 		box-shadow: 20px 0 20px -10px rgb(41 47 63 / 15%);
+
 		:global {
 			.leaflet-container.leaflet-touch-drag.leaflet-touch-zoom {
 				width: 100%;

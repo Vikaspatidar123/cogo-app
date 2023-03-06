@@ -28,8 +28,6 @@ const useFormLoginwithMS = () => {
 		try {
 			const params = {
 				auth_scope: 'app',
-				// auth_platform : 'microsoft',
-				// platform      : 'admin',
 			};
 
 			const response = await trigger({

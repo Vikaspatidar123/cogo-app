@@ -20,7 +20,9 @@ const useCreateTrends = () => {
 			};
 
 			const res = await trendTrigger({ data: requestData });
+		
 			const { hasError } = res || {};
+			
 			const message = res?.data?.message;
 			if (hasError) throw new Error();
 			if (message) throw new Error(message);

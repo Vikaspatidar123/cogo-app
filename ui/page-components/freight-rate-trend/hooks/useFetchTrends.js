@@ -1,14 +1,10 @@
 import { Toast } from '@cogoport/components';
-import { useState, useEffect } from 'react';
-
-// import { prepareFilters } from '../common/utils';
-
+import { useState } from 'react';
 import { useRequest } from '@/packages/request';
 import { useSelector } from '@/packages/store';
 
 const useFetchTrends = ({ pageLimit = 10 }) => {
 	const [filters, setFilters] = useState({});
-	const [loading, setLoading] = useState(false);
 	const [pagination, setPagination] = useState({ page: 1 });
 	const { freightTrends, setFreightTrends } = useSelector((state) => state);
 
@@ -22,29 +18,21 @@ const useFetchTrends = ({ pageLimit = 10 }) => {
 		method : 'get',
 	}, { manual: true });
 
-	const prepareFilters = () => {
-		const finalFilters = {};
 
-		return finalFilters;
-	};
 	const fetchTrends = async (showLoading = true) => {
 		try {
-			if (showLoading) setLoading(true);
 			const res = await trigger({
 				params: {
-					filters    : { ...prepareFilters(filters, freightTrends?.filter_data ?? {}) },
 					page       : pagination.page,
 					page_limit : pageLimit,
 				},
 			});
-			if (showLoading) setLoading(false);
 			const { hasError } = res || {};
 			if (hasError) throw new Error();
 
 			const { data } = res;
 			setFreightTrends(data);
 		} catch (err) {
-			console.log(err, 'error');
 			if (Object.keys(err).length > 1) { Toast.error('Unable to fetch trend. Please try again.'); }
 			if (showLoading) setLoading(false);
 		}
@@ -82,14 +70,14 @@ const useFetchTrends = ({ pageLimit = 10 }) => {
 	 const refectTrends = () => fetchTrends(false);
 
 	return {
-		loading,
-		filters,
-		setLoading,
-		setFilters,
-		refectTrends,
-		setPagination,
-		fetchLocations,
-		tredList,
+	load,
+	filters,
+	setFilters,
+	refectTrends,
+	setPagination,
+	fetchLocations,
+	tredList,
+	listloading
 	};
 };
 

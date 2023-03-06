@@ -3,7 +3,9 @@ import { IcMArrowBack, IcMPortArrow } from '@cogoport/icons-react';
 import { format } from '@cogoport/utils';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
+
 import countriesHash from '../../commons/utils/getCountryDetails';
+
 import FilterForm from './components/filter';
 import TrendChart from './components/trend-chart';
 import useFetchActiveTrend from './hooks/useActivetrendsDetails';

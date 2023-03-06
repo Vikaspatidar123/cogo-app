@@ -2,12 +2,6 @@ import { Toast } from '@cogoport/components';
 
 import { request } from '@/packages/request';
 
-const prepareFilters = () => {
-	const finalFilters = {};
-
-	return finalFilters;
-};
-
 const fetchLocations = async (inputValue, callback, scope) => {
 	try {
 		const res = await request({
@@ -41,4 +35,4 @@ const fetchLocations = async (inputValue, callback, scope) => {
 	}
 };
 
-export { prepareFilters, fetchLocations };
+export {  fetchLocations };

@@ -9,7 +9,6 @@ const getAuthrozationParams = (storeKey, url) => {
 		const general = typeof getStoreState === 'function' ? getStoreState()?.general : {};
 		const pathname = general?.pathname;
 		const fallback_navigation = general?.routeConfig?.routes?.[pathname]?.navigation || '';
-		console.log(fallback_navigation, 'fallback_navigation', pathname);
 		if (authorizationparameters || fallback_navigation) {
 			const { pipe, isMain } = getOtherApiPipe(url, authorizationparameters, getStoreState);
 			if (pipe) {

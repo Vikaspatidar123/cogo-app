@@ -13,7 +13,7 @@ import styles from './styles.module.css';
 
 import getValue from '@/ui/commons/utils/getValue';
 
-const Item = ({
+function Item({
 	item,
 	fields,
 	handleClick,
@@ -22,7 +22,7 @@ const Item = ({
 	functions,
 	sort,
 	isMobile,
-}) => {
+}) {
 	const { refetchDrillDownData, drillDownData, drillDownLoading } = useGetDrillDownData();
 	const [showDrill, setShowDrill] = useState(false);
 	const onOpen = (itm) => {
@@ -121,7 +121,7 @@ const Item = ({
 	);
 
 	return renderItem(item);
-};
+}
 
 Item.propTypes = {
 	item   : shape({}).isRequired,

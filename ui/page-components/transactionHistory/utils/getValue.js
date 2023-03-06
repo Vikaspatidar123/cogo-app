@@ -1,4 +1,3 @@
-// import React from 'react';
 import {
 	isEmpty, getByKey, format, startCase,
 } from '@cogoport/utils';

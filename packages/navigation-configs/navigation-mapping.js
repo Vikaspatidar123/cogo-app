@@ -8,8 +8,8 @@
 // mobileIcon is used to show icon in mobile navigation only
 // isSubNavs is used to show sub navigations
 
-import { IcMUpwardGraph } from '@cogoport/icons-react';
 import {
+	IcMUpwardGraph,
 	IcACrossBorder,
 	IcMAverage,
 	IcMFfreferigeratedCargoType,
@@ -177,13 +177,13 @@ const navigationMappings = {
 				description: 'Find sailing schedule with real time port congestion data',
 			},
 			{
-				key   : 'saas_tools-freight_rate_trend',
-				title : 'Freight Rate Trend',
-				href  : '/v2/saas/freight-rate-trend',
-				as    : '/v2/saas/freight-rate-trend',
-				type  : 'link',
-				icon  : <IcMUpwardGraph width={40} height={40} fill="red" />,
-				description: 'keep track of freight rates',
+				key         : 'saas_tools-freight_rate_trend',
+				title       : 'Freight Rate Trend',
+				href        : '/v2/saas/freight-rate-trend',
+				as          : '/v2/saas/freight-rate-trend',
+				type        : 'link',
+				icon        : <IcMUpwardGraph width={40} height={40} fill="red" />,
+				description : 'keep track of freight rates',
 			},
 			{
 				key         : 'saas_tools-load_calculator',

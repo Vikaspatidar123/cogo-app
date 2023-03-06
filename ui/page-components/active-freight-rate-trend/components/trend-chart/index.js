@@ -3,7 +3,7 @@ import { ResponsiveLine } from '@nivo/line';
 
 import styles from './styles.module.css';
 
-function TrendChart({ labels, datasets = [], loading }) {
+function TrendChart({ labels, datasets = [] }) {
 	const data = [];
 	(datasets || []).forEach((item) => {
 		const id = item.name;

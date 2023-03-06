@@ -2,9 +2,9 @@ const useCalaculation = ({ formValue, checkedData }) => {
 	const { containerCalculator = [] } = formValue || {};
 
 	const MAPPING = {
-		'20 Feet': 20,
-		'40 Feet': 48,
-		'40 High Cube': 48,
+		'20 Feet'      : 20,
+		'40 Feet'      : 48,
+		'40 High Cube' : 48,
 	};
 
 	const CheckPoint = (x, value, name) => {
@@ -23,14 +23,14 @@ const useCalaculation = ({ formValue, checkedData }) => {
 				packageInOneContainer += 1;
 			} else {
 				result.push({
-					totalUsedVolume: packageInOneContainer * packageVolume,
-					packageCount: packageInOneContainer,
-					volumeUsedByContainer: `${((packageInOneContainer / value) * 60).toFixed(2)}%`,
-					containerFeet: name,
-					totalWeight: x.quantity * x.typeWeight,
-					type: x.type,
-					quantity: x.quantity,
-					typeWeight: x.typeWeight,
+					totalUsedVolume       : packageInOneContainer * packageVolume,
+					packageCount          : packageInOneContainer,
+					volumeUsedByContainer : `${((packageInOneContainer / value) * 60).toFixed(2)}%`,
+					containerFeet         : name,
+					totalWeight           : x.quantity * x.typeWeight,
+					type                  : x.type,
+					quantity              : x.quantity,
+					typeWeight            : x.typeWeight,
 					volume:
 						(((((x.length / 1000) * x.width) / 1000) * x.Height) / 1000) * x.quantity,
 				});
@@ -41,15 +41,15 @@ const useCalaculation = ({ formValue, checkedData }) => {
 
 		if (packageInOneContainer !== 0) {
 			result.push({
-				totalUsedVolume: packageInOneContainer * packageVolume,
-				packageCount: packageInOneContainer,
-				volumeUsedByContainer: `${((packageInOneContainer / value) * 60).toFixed(2)}%`,
-				containerFeet: name,
-				totalWeight: x.quantity * x.typeWeight,
-				type: x.type,
-				quantity: x.quantity,
-				typeWeight: x.typeWeight,
-				volume: (((((x.length / 1000) * x.width) / 1000) * x.Height) / 1000) * x.quantity,
+				totalUsedVolume       : packageInOneContainer * packageVolume,
+				packageCount          : packageInOneContainer,
+				volumeUsedByContainer : `${((packageInOneContainer / value) * 60).toFixed(2)}%`,
+				containerFeet         : name,
+				totalWeight           : x.quantity * x.typeWeight,
+				type                  : x.type,
+				quantity              : x.quantity,
+				typeWeight            : x.typeWeight,
+				volume                : (((((x.length / 1000) * x.width) / 1000) * x.Height) / 1000) * x.quantity,
 			});
 		}
 
@@ -66,11 +66,11 @@ const useCalaculation = ({ formValue, checkedData }) => {
 		const containerName = name;
 
 		return {
-			res: result,
+			res  : result,
 			totalVolume,
 			totalWeight,
 			containerName,
-			left: containerUsableVolume,
+			left : containerUsableVolume,
 		};
 	};
 

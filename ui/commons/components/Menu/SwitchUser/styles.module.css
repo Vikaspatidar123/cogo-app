@@ -1,5 +1,6 @@
 .container {
 	width: 100%;
+	padding: 0;
 	margin-top: 4px;
 	background: #fff;
 }
@@ -12,8 +13,9 @@
 .header {
 	display: flex;
 	flex-direction: row;
+	align-items: center;
 	justify-content: space-between;
-	padding: 4px 4px 12px;
+	padding: 4px 0 12px;
 }
 
 .separator {
@@ -25,14 +27,10 @@
 .list {
 	max-height: 500px;
 	padding: 8px 20px 8px 8px;
+	margin: 0 -19px;
 	overflow-y: auto;
-}
 
-/* .fade_out_scale:animate({
-	enter: {
-		...fadeInRight,
-		easing: 'easeInOutQuad',
-		translateX: [15, 0],
-		opacity: [0.25, 1],
-	},
-}); */
+	@media (max-width: 768px) {
+		margin: 0 -8px;
+	}
+}

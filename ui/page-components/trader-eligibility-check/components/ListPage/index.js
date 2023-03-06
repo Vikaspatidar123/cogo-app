@@ -66,10 +66,10 @@ function ListPage() {
 				>
 					<IcMCfs fill="#034afd" />
 				</div>
-				<div className={style2.heading}>
+				{/* <div className={style2.heading}>
 					<img className={style2.svg_style} src={HeadingIcon} alt="" />
 					Trader Eligibilty Check
-				</div>
+				</div> */}
 			</div>
 			<div className={style2.content_wrapper}>
 				<div className={style1.wrapper}>

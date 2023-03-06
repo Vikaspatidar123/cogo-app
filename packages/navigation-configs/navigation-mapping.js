@@ -8,17 +8,16 @@
 // mobileIcon is used to show icon in mobile navigation only
 // isSubNavs is used to show sub navigations
 
-import { IcMTradeparties } from '@cogoport/icons-react';
+import { IcMTradeparties, IcMQuotations } from '@cogoport/icons-react';
 
 const navigationMappings = {
 	app_dashboard: {
-		key         : 'app_dashboard',
-		title       : 'Dashboard',
-		href        : '/v2/dashboard',
-		as          : '/v2/dashboard',
-		type        : 'link',
-		module_type : 'dashboards',
-		showInNav   : true,
+		key        : 'app_dashboard',
+		title      : 'Dashboard',
+		href       : '/v2/dashboard',
+		as         : '/v2/dashboard',
+		showInNav  : true,
+		mobileIcon : <IcMQuotations width={20} height={20} />,
 	},
 	saas_premium_services: {
 		key         : 'saas_premium_services',
@@ -26,7 +25,6 @@ const navigationMappings = {
 		icon        : 'nav-premium-services',
 		module_type : 'dashboards',
 		isNew       : true,
-		line        : true,
 		showInNav   : true,
 		isSubNavs   : true,
 		options     : [
@@ -44,7 +42,6 @@ const navigationMappings = {
 		key       : 'app_accept_terms_and_conditions',
 		title     : 'Terms and Conditions',
 		href      : '/accept-terms-and-conditions',
-		type      : 'link',
 		showInNav : false,
 	},
 
@@ -59,7 +56,6 @@ const navigationMappings = {
 		title     : 'KYC',
 		href      : '/kyc',
 		as        : '/kyc',
-		type      : 'link',
 		showInNav : false,
 	},
 	app_settings: {
@@ -67,7 +63,6 @@ const navigationMappings = {
 		title         : 'Settings',
 		href          : '/v2/settings',
 		as            : '/v2/settings',
-		type          : 'link',
 		showMobileNav : true,
 	},
 };

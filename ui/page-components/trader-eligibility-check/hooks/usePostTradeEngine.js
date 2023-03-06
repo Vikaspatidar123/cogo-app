@@ -9,13 +9,16 @@ const usePostTradeEngine = () => {
 	const { profile } = useSelector((s) => s);
 	const { id, organization } = profile || {};
 
-	const [{ loading }, trigger] = useRequestBf({
-		url     : '/saas/trade-engine',
-		authKey : 'post_saas_trade_engine',
-		method  : 'post',
-	}, { manual: true });
+	const [{ loading }, trigger] = useRequestBf(
+		{
+			url     : '/saas/trade-engine',
+			authKey : 'post_saas_trade_engine',
+			method  : 'post',
+		},
+		{ manual: true },
+	);
 
-	const { getTradeEngineList, tradeEngineResponse, getTradeEngineListLoading } =		useGetTradeEngine();
+	const { getTradeEngineList, tradeEngineResponse, getTradeEngineListLoading } = useGetTradeEngine();
 
 	const createTradeEngine = async ({ draftIdFromAddon, billId, draftId }) => {
 		try {
@@ -33,10 +36,11 @@ const usePostTradeEngine = () => {
 			}
 		} catch (error) {
 			const code = error?.error?.errorCode || '';
-			// eslint-disable-next-line no-unused-expressions
-			code === 'ERR_1000'
-				? getTradeEngineList({ draftIdFromAddon, draftId })
-				: Toast.error(error?.error?.message);
+			if (code === 'ERR_1000') {
+				getTradeEngineList({ draftIdFromAddon, draftId });
+			} else {
+				Toast.error(error?.error?.message);
+			}
 		}
 	};
 	return {

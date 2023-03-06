@@ -18,16 +18,23 @@ const usePayment = () => {
 	const { query } = useRouter();
 	const { org_id = '', branch_id = '', account_type = '' } = query || {};
 
-	const [{ data, loading }, trigger] = useRequestBf({
-		url     : '/saas/payment',
-		authKey : 'post_saas_payment',
-		method  : 'post',
-	}, { manual: true });
+	const [{ data, loading }, trigger] = useRequestBf(
+		{
+			url     : '/saas/payment',
+			authKey : 'post_saas_payment',
+			method  : 'post',
+		},
+		{ manual: true },
+	);
 
-	// eslint-disable-next-line max-len
-	const callBackUrl = `${process.env.NEXT_PUBLIC_APP_URL}/v2/${org_id}/${branch_id}/${account_type}/saas/premium-services/trader-eligibility-check/result`;
+	const callBackUrl = `${process.env.NEXT_PUBLIC_APP_URL}/v2/${org_id}/${branch_id}/${account_type}/
+	                    saas/premium-services/trader-eligibility-check/result`;
 
-	const initiatePayment = async ({ res = {}, services = {}, productCodes = {} }) => {
+	const initiatePayment = async ({
+		res = {},
+		services = {},
+		productCodes = {},
+	}) => {
 		const info = res?.data || {};
 		const { buyer_eligibility_check } = services || {};
 		const { price = 0, discount = 0 } = buyer_eligibility_check || {};
@@ -48,20 +55,14 @@ const usePayment = () => {
 					redirectUrl           : callBackUrl,
 					totalAmount           : +price % 1 !== 0 ? +price.toFixed(2) : +price,
 					taxAmount:
-						((+price % 1 !== 0 ? price.toFixed(2) : +price)
-							- (+discountAmount % 1 !== 0
-								? +discountAmount.toFixed(2)
-								: +discountAmount))
-						* 0.18,
+            ((+price % 1 !== 0 ? price.toFixed(2) : +price)
+              - (+discountAmount % 1 !== 0 ? +discountAmount.toFixed(2) : +discountAmount)) * 0.18,
 					subTotalAmount:
-						(+price % 1 !== 0 ? price.toFixed(2) : +price)
-						- (+discountAmount % 1 !== 0 ? +discountAmount.toFixed(2) : +discountAmount),
+            (+price % 1 !== 0 ? price.toFixed(2) : +price)
+            - (+discountAmount % 1 !== 0 ? +discountAmount.toFixed(2) : +discountAmount),
 					netAmount:
-						((+price % 1 !== 0 ? price.toFixed(2) : +price)
-							- (+discountAmount % 1 !== 0
-								? +discountAmount.toFixed(2)
-								: +discountAmount))
-						* 1.18,
+            ((+price % 1 !== 0 ? price.toFixed(2) : +price)
+              - (+discountAmount % 1 !== 0 ? +discountAmount.toFixed(2) : +discountAmount)) * 1.18,
 					discountAmount,
 					billLineItems: [
 						{
@@ -72,22 +73,14 @@ const usePayment = () => {
 							quantity      : 1,
 							totalAmount   : +price % 1 !== 0 ? +price.toFixed(2) : +price,
 							taxAmount:
-								((+price % 1 !== 0 ? price.toFixed(2) : +price)
-									- (+discountAmount % 1 !== 0
-										? +discountAmount.toFixed(2)
-										: +discountAmount))
-								* 0.18,
+                ((+price % 1 !== 0 ? price.toFixed(2) : +price)
+                  - (+discountAmount % 1 !== 0 ? +discountAmount.toFixed(2) : +discountAmount)) * 0.18,
 							subTotalAmount:
-								(+price % 1 !== 0 ? price.toFixed(2) : +price)
-								- (+discountAmount % 1 !== 0
-									? +discountAmount.toFixed(2)
-									: +discountAmount),
+                (+price % 1 !== 0 ? price.toFixed(2) : +price)
+                - (+discountAmount % 1 !== 0 ? +discountAmount.toFixed(2) : +discountAmount),
 							netAmount:
-								((+price % 1 !== 0 ? price.toFixed(2) : +price)
-									- (+discountAmount % 1 !== 0
-										? +discountAmount.toFixed(2)
-										: +discountAmount))
-								* 1.18,
+                ((+price % 1 !== 0 ? price.toFixed(2) : +price)
+                  - (+discountAmount % 1 !== 0 ? +discountAmount.toFixed(2) : +discountAmount)) * 1.18,
 							discountAmount,
 							metadata: '',
 						},
@@ -99,13 +92,16 @@ const usePayment = () => {
 				window.open(resp.data.url, '_self', '');
 			}
 		} catch (err) {
-			Toast.error('We could not initiate payment right now!!! Please try again later', {
-				style: {
-					background : '#FFD9D4',
-					color      : '#333',
+			Toast.error(
+				'We could not initiate payment right now!!! Please try again later',
+				{
+					style: {
+						background : '#FFD9D4',
+						color      : '#333',
+					},
+					autoClose: 5000,
 				},
-				autoClose: 5000,
-			});
+			);
 		}
 	};
 	return { initiatePayment, data, loading };

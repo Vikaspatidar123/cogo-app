@@ -8,6 +8,7 @@
 // mobileIcon is used to show icon in mobile navigation only
 // isSubNavs is used to show sub navigations
 
+import { IcMUpwardGraph } from '@cogoport/icons-react';
 import {
 	IcACrossBorder,
 	IcMAverage,
@@ -181,7 +182,8 @@ const navigationMappings = {
 				href  : '/v2/saas/freight-rate-trend',
 				as    : '/v2/saas/freight-rate-trend',
 				type  : 'link',
-				icon  : <IcMFfreferigeratedCargoType width={40} height={40} fill="red" />,
+				icon  : <IcMUpwardGraph width={40} height={40} fill="red" />,
+				description: 'keep track of freight rates',
 			},
 			{
 				key         : 'saas_tools-load_calculator',

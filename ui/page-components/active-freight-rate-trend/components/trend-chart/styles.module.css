@@ -1,6 +1,5 @@
 .styled_tip{
 	padding: 6px 8px;
-	/* background: #fff; */
 	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
 	border-radius: 4px;
 	align-items: center;
@@ -43,12 +42,8 @@
 .chart{
 	height: 370px;
 	width: 100%;
-	/* box-shadow: #959da5; */
 	padding-top: 20px;
 	@media screen and (max-width: 767px) {
-		/* width: 500px !important;
-		height: 500px !important;
-		overflow-x: scroll; */
 		width: fit-content;
 	}
 }
@@ -57,7 +52,6 @@
 	padding: 10px;
 	display: flex;
 	flex-direction: row;
-	/* align-items: flex-end; */
 	gap: 50px;
 }
 .circle1{

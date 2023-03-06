@@ -35,7 +35,6 @@ function FilterForm({
 		setContainerSize('');
 		setContainerType('');
 		setShippingLine('');
-		// refetch();
 	};
 
 	const content = (

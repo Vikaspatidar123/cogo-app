@@ -1,5 +1,4 @@
 /* eslint-disable no-param-reassign */
-
 import { format } from '@cogoport/utils';
 
 const getFormattedValues = (values) => {

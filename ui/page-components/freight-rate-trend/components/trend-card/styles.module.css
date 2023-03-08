@@ -73,13 +73,6 @@
 	padding: 26px 30px 36px 30px;
 }
 
-.section
-	padding: 2em;
-	border-radius: 20px;
-	box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
-	overflow: hidden;
-}
-
 .cross_div {
 	position: absolute;
 	float: right;

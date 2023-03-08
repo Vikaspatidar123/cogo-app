@@ -7,6 +7,11 @@ import styles from './styles.module.css';
 
 function Header() {
 	const { loading, quotaCount } = useFetchStoreQuota();
+	// const [show, setShow] = useState(false);
+	// const handleAddTrackerModal = () => {
+	// 	setAddTrackerModal(!isAddTrackerModalOpen);
+	// 	setShow(false);
+	// };
 
 	return (
 		<div className={styles.container}>

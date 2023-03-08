@@ -32,7 +32,7 @@
   border: 1px solid ;
   border-color: #E0E0E0;
   border-radius: 6px 6px 6px 6px;
-
+  cursor: pointer;
 }
 .list_view{
   border-radius: 6px 0px 0px 6px !important;
@@ -49,6 +49,7 @@
   border: 1px solid #E0E0E0 ;
   border-radius: 6px 6px 6px 6px;
   padding: 7px;
+  cursor: pointer;
 }
 
 .fillter_div{
@@ -57,7 +58,7 @@
   border: 1px solid #221F20;
   border-radius: 6px;
   margin-left: 10px;
-
+  cursor: pointer;
   :global{
    .ui_popover_container{
         margin-right: 27px;
@@ -99,3 +100,6 @@
   height: 20px;
   vertical-align:bottom;
 }
+/* .btn{
+  display: flex;
+} */

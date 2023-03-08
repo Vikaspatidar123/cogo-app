@@ -1,27 +1,28 @@
-import { Placeholder, Pagination, Popover } from '@cogoport/components';
+import { Placeholder, Pagination, Popover, Button } from '@cogoport/components';
 import { IcMListView, IcMMap, IcMFilter } from '@cogoport/icons-react';
 import { useState } from 'react';
 
-import useFetchTrackers from '../../hooks/useFetchTrackers';
+// import useFetchTrackers from '../../hooks/useFetchTrackers';
 import Map from '../Map/index';
 
 import Card from './Card';
 import FilterComponent from './FIlterComponent';
 import styles from './styles.module.css';
 
-function TrackerCard({ archived, setArchived }) {
-	const { loading, trackers, pagination, setPagination, filters, setFilters } = useFetchTrackers();
+function TrackerCard({
+	archived, setArchived, loading, trackers, pagination, setPagination, filters, setFilters, selectedCardLabel,
+}) {
+	// const { loading, trackers, pagination, setPagination, filters, setFilters } = useFetchTrackers();
 
 	const [isMapView, setIsMapView] = useState(false);
 	const [showFilters, setShowFilters] = useState(false);
-
 	const trackerList = trackers?.list;
-
+	console.log(trackers, 'trackers');
 	return (
 		<div className={styles.container}>
 			<div className={styles.head}>
-				<div>
-					All Shipments
+				<div className={styles.btn}>
+					<h2>{selectedCardLabel}</h2>
 				</div>
 				<div className={styles.head2}>
 

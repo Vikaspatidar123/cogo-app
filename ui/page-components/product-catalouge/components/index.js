@@ -98,9 +98,9 @@ function ProductInventory() {
 					/>
 				)}
 
-				<div className={styles.dashboard_container}>
+				{/* <div className={styles.dashboard_container}>
 					<Dashboard apiData={apiData} activeTab={activeTab} />
-				</div>
+				</div> */}
 			</div>
 
 			{hsCode && (

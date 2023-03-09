@@ -35,7 +35,7 @@ function TrendChart({ labels, datasets = [] }) {
 					<ResponsiveLine
 						margin={{
 							top    : 10,
-							right  : 0,
+							right  : 20,
 							bottom : 70,
 							left   : 60,
 						}}

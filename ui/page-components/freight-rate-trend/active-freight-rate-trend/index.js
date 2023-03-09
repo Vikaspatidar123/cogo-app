@@ -4,8 +4,6 @@ import { format } from '@cogoport/utils';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 
-import countriesHash from '../../commons/utils/getCountryDetails';
-
 import FilterForm from './components/filter';
 import TrendChart from './components/trend-chart';
 import useFetchActiveTrend from './hooks/useActivetrendsDetails';
@@ -13,6 +11,7 @@ import useFetchTrendDetails from './hooks/useFetchTrendDetails';
 import styles from './styles.module.css';
 
 import { useRouter } from '@/packages/next';
+import countriesHash from '@/ui/commons/utils/getCountryDetails';
 
 function ActiveFreightRateTrend() {
 	const { isMobile, general } = useSelector((state) => state);

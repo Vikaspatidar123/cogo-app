@@ -1,4 +1,4 @@
-import ActiveFreightRateTrend from '@/ui/page-components/active-freight-rate-trend';
+import ActiveFreightRateTrend from '@/ui/page-components/freight-rate-trend/active-freight-rate-trend';
 
 function activeFreightRateTrendComponent() {
 	return <ActiveFreightRateTrend />;

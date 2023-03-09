@@ -5,7 +5,7 @@ import { useSelector } from '@/packages/store';
 
 const useCreateTrends = () => {
 	const { profile } = useSelector((state) => state);
-	
+
 	const [{ loading }, trendTrigger] = useRequest({
 		url    : '/create_freight_trend_subscription',
 		method : 'post',
@@ -21,9 +21,9 @@ const useCreateTrends = () => {
 			};
 
 			const res = await trendTrigger({ data: requestData });
-		
+
 			const { hasError } = res || {};
-			
+
 			const message = res?.data?.message;
 			if (hasError) throw new Error();
 			if (message) throw new Error(message);
@@ -35,6 +35,7 @@ const useCreateTrends = () => {
 			Toast.error(
 				err?.message || 'Unable to create trend. Please try again.',
 			);
+			return null;
 		}
 	};
 

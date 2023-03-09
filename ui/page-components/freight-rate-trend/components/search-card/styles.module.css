@@ -1,63 +1,63 @@
 .card {
-  height: 100%;
-  border-radius: 20px;
-  border: 1px solid #ACDADF;
-  margin-top: 16px;
-  margin-bottom: 8px;
-  padding: 26px;
-  position: relative;
+	position: relative;
+	height: 100%;
+	padding: 26px;
+	margin-top: 16px;
+	margin-bottom: 8px;
+	border: 1px solid #acdadf;
+	border-radius: 20px;
 }
 
 .heading {
-    color: #221F20;
-    font-weight: 600;
-    font-size: 14px;
-    line-height: 21px;
+	font-size: 14px;
+	font-weight: 600;
+	line-height: 21px;
+	color: #221f20;
 }
 
 .styled_form_item {
-  width: 300px;
-   
-   :global{
-   .ui_button_container{
-      float: right;
-  }
-}
-}
+	width: 300px;
 
-.text{
-  margin-top:4px;
-  size:10;
-  color:#CB6464;
+	:global {
+		.ui_button_container {
+			float: right;
+		}
+	}
 }
 
-.flex{
-  display: flex;
-  justify-content: space-between;
-  align-items:center;
+.text {
+	margin-top: 4px;
+	size: 10;
+	color: #cb6464;
 }
 
-.form{
-    width          : 100%;
-		display        : flex;
-		justify-content : space-between;
-		margin-top      : 24px;
-    @media screen and (max-width: 700px) {
-      flex-direction: column;
-      }
+.flex {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
 }
 
-.anchor{
-  margin: 0px 10px;
+.form {
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+	margin-top: 24px;
+
+	@media screen and (max-width: 700px) {
+		flex-direction: column;
+	}
+}
+
+.anchor {
+	margin: 0 10px;
+
+	svg {
+		color: #88cad1;
+		cursor: pointer;
+	}
 
 
-  svg {
-    color: #88CAD1;
-    cursor: pointer;
-  }
-
-  
-  @media screen and (max-width: 700px) {
-   text-align: center;
-    }
+	@media screen and (max-width: 700px) {
+		text-align: center;
+	}
 }

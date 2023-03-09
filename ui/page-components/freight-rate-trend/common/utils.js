@@ -35,4 +35,4 @@ const fetchLocations = async (inputValue, callback, scope) => {
 	}
 };
 
-export {  fetchLocations };
+export { fetchLocations };

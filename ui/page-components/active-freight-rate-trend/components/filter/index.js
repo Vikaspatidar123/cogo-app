@@ -1,7 +1,9 @@
 import { Select, DateRangepicker, Popover } from '@cogoport/components';
 import { IcCFcrossInCircle, IcMArrowDown, IcMArrowUp, IcMFilter } from '@cogoport/icons-react';
 import React, { useState } from 'react';
+
 import { COMMODITY_OPTIONS_MAPPING } from '../../common/commodity-mappings';
+
 import filterControls from './filter-controls';
 import styles from './styles.module.css';
 

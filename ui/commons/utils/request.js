@@ -1,9 +1,11 @@
-import { qs } from '@cogoport/front/request';
 import { getCookie, startCase } from '@cogoport/utils';
+import { qs } from 'qs';
 
 import getAuthrozationParams from '@/packages/request/helpers/get-final-authpipe';
 
 const getOrganizationId = (storeKey, ctx) => {
+	const window = {};
+
 	if (typeof window !== 'undefined') {
 		const getStoreState = window?.[storeKey]?.getState;
 		if (typeof getStoreState === 'function') {
@@ -30,6 +32,7 @@ const config = {
 	public: { options: {} },
 };
 
+const rawRequest = '';
 const request = rawRequest.create();
 
 request.interceptors.request.use((oldAxiosConfig) => {

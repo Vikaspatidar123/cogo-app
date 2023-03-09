@@ -1,5 +1,6 @@
 import { Toast } from '@cogoport/components';
 import { useState } from 'react';
+
 import { useRequest } from '@/packages/request';
 import { useSelector } from '@/packages/store';
 
@@ -18,8 +19,7 @@ const useFetchTrends = ({ pageLimit = 10 }) => {
 		method : 'get',
 	}, { manual: true });
 
-
-	const fetchTrends = async (showLoading = true) => {
+	const fetchTrends = async () => {
 		try {
 			const res = await trigger({
 				params: {
@@ -36,7 +36,6 @@ const useFetchTrends = ({ pageLimit = 10 }) => {
 			}
 		} catch (err) {
 			if (Object.keys(err).length > 1) { Toast.error('Unable to fetch trend. Please try again.'); }
-			if (showLoading) setLoading(false);
 		}
 	};
 	const fetchLocations = async (inputValue, callback = () => {}) => {
@@ -68,19 +67,17 @@ const useFetchTrends = ({ pageLimit = 10 }) => {
 			Toast.error("Couldn't fetch locations. Please try again later.");
 		}
 	};
-
-	 const refectTrends = () => fetchTrends(false);
-
+	const refectTrends = () => fetchTrends(false);
 	return {
-	load,
-	filters,
-	setFilters,
-	refectTrends,
-	setPagination,
-	fetchLocations,
-	tredList,
-	freightTrends,
-	listloading
+		load,
+		filters,
+		setFilters,
+		refectTrends,
+		setPagination,
+		fetchLocations,
+		tredList,
+		freightTrends,
+		listloading,
 	};
 };
 

@@ -46,6 +46,7 @@ function FreightRateTrend() {
 		refectTrends,
 		tredList = {},
 		fetchLocations,
+		filters,
 	} = useFetchTrends({});
 
 	const {
@@ -56,7 +57,8 @@ function FreightRateTrend() {
 
 	useEffect(() => {
 		fetchLocations();
-	}, []);
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [filters, pagination]);
 
 	return (
 		<>
@@ -67,7 +69,6 @@ function FreightRateTrend() {
 			{loading ? (
 				<div className={styles.flex_container}>
 					<TrendCardSkeleton key={1} />
-					<TrendCardSkeleton key={2} />
 				</div>
 			) : (
 				trendLayout({

@@ -1,41 +1,39 @@
-
-.icon_container{
-	text-align: center;
+.icon_container {
 	margin-bottom: 10px;
+	text-align: center;
 	cursor: pointer;
 }
 
 .txt {
 	margin: 0;
-    text-align: center;
+	text-align: center;
 }
 
 .footer {
-	cursor: pointer;
 	display: flex;
 	justify-content: space-between;
-	margin: 20px 30px 20px;
+	margin: 20px 30px;
+	cursor: pointer;
 
 	&.iconContainer {
-		border: 1px solid;
-		padding: 5px;
 		width: 43px;
 		height: 43px;
+		padding: 5px;
 		text-align: center;
-		border-radius: 50%;
 		cursor: pointer;
+		border: 1px solid;
+		border-radius: 50%;
 	}
-	
+
 	.no {
-		svg{
-				color:red;	
+		svg {
+			color: red;
 		}
 	}
 
-	.yes {	
-			svg{
-					color:#4bb543;
-			}
-		
+	.yes {
+		svg {
+			color: #4bb543;
+		}
 	}
 }

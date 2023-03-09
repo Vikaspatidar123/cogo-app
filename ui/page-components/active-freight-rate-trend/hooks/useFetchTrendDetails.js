@@ -15,11 +15,11 @@ const useFetchTrendDetails = ({ id }) => {
 	const now = new Date();
 	const fetchScheduleDetails = async () => {
 		const checkScheduleDetails = Object.keys(filters).length > 1;
-		
+
 		if (!checkScheduleDetails) {
 			return;
 		}
-		
+
 		try {
 			const {
 				container_size,
@@ -51,8 +51,9 @@ const useFetchTrendDetails = ({ id }) => {
 		}
 	};
 
-	useEffect(() => {	
-		fetchScheduleDetails();	
+	useEffect(() => {
+		fetchScheduleDetails();
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [filters]);
 
 	const refetch = () => fetchScheduleDetails(false);

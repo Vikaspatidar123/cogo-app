@@ -7,6 +7,7 @@ import useDeleteTrendSubscription from '../../hooks/useDeleteTrends';
 import styles from './styles.module.css';
 
 import { useRouter } from '@/packages/next';
+import { Placeholder } from '@cogoport/components';
 
 function TrendCard({ trend = {}, fetchLocations = () => {} }) {
 	const { push } = useRouter();
@@ -86,10 +87,10 @@ function TrendCardSkeleton() {
 	return (
 		<div className={styles.card}>
 			<div style={{ padding: 16 }}>
-				{/* <Skeleton count={5} /> */}
+				<Placeholder count={5} />
 			</div>
 			<div className={styles.footer}>
-				{/* <Skeleton count={1} style={{ width: '300px' }} /> */}
+				<Placeholder count={1} style={{ width: '300px' }} />
 			</div>
 		</div>
 	);

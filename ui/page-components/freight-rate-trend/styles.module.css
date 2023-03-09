@@ -1,58 +1,59 @@
 .heading {
-  color: #282b2e;
-  font-weight: 700;
-  font-size: 20px;
-  margin: 20px 10px 0px;
+	margin: 20px 10px 0;
+	font-size: 20px;
+	font-weight: 700;
+	color: #282b2e;
 
-  @media screen and (max-width: 700px) {
-    color: white;
-    font-size: 18px;
-    color: #282b2e;
-    margin: 20px 10px 0px;
-  }
+	@media screen and (max-width: 700px) {
+		margin: 20px 10px 0;
+		font-size: 18px;
+		color: white;
+		color: #282b2e;
+	}
 }
- 
+
 .tag {
-  background: #3B526B;
-  color: #ffffff;
-  font-weight: bold;
-  padding: 7px 14px;
-  font-size: 12px;
-  margin: 4px 4px;
-  border-radius: 15px;
+	padding: 7px 14px;
+	margin: 4px;
+	font-size: 12px;
+	font-weight: bold;
+	color: #fff;
+	background: #3b526b;
+	border-radius: 15px;
 }
 
 .flex_container {
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  grid-gap: 12px;
-  margin-top: 35px;
-  @media screen and (max-width: 700px) {
-    display : flex;
-    flex-direction: column;
-    margin-top: 25px;
-    }
+	display: grid;
+	grid-template-columns: repeat(12, 1fr);
+	grid-gap: 12px;
+	margin-top: 35px;
+
+	@media screen and (max-width: 700px) {
+		display: flex;
+		flex-direction: column;
+		margin-top: 25px;
+	}
 }
 
 .flex {
-  display: flex;
-  align-items:center; 
-  margin-bottom:16px;
-  margin-top:16px;
+	display: flex;
+	align-items: center;
+	margin-top: 16px;
+	margin-bottom: 16px;
 }
 
 .text {
-  color:white;
-  size:18px;
+	color: white;
+	size: 18px;
 }
 
 .pagination_div {
 	display: flex;
-	justify-content: end;
 	align-items: center;
-  margin-top: 15px;
+	justify-content: end;
+	margin-top: 15px;
 
 	@media screen and (max-width: 700px) {
-	float:right;
+		float: right;
 	}
 }

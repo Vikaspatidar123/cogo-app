@@ -82,7 +82,7 @@ function ActiveFreightRateTrend() {
 		setIsFilterModalOpen(!isFilterModalOpen);
 	};
 
-	const updateFilters = () => {
+	useEffect(() => {
 		setFilters({
 			container_size   : containerSize,
 			container_type   : containerType,
@@ -92,10 +92,7 @@ function ActiveFreightRateTrend() {
 			validity_start   : format(dateRangePickerValue.startDate),
 			currency         : filteredCurrency,
 		});
-	};
-
-	useEffect(() => {
-		updateFilters();
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [
 		dateRangePickerValue,
 		activePagination,
@@ -123,6 +120,7 @@ function ActiveFreightRateTrend() {
 				<div className={styles.empty_text}>
 					<img
 						alt=""
+						//  eslint-disable-next-line max-len
 						src="https://cogoport-production.sgp1.digitaloceanspaces.com/8ee5b5489eb1a8ab2d9e2c62bc1f0fae/UI%20standardization.zip"
 					/>
 				</div>

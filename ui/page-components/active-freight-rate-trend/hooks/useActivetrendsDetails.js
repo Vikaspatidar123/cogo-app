@@ -44,6 +44,7 @@ const useFetchActiveTrend = () => {
 
 	useEffect(() => {
 		fetchTrackers();
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [activePagination, activefilters]);
 
 	return {

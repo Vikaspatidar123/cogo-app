@@ -1,14 +1,15 @@
+import { ResponsiveLine } from '@cogoport/charts/line';
 import { format } from '@cogoport/utils';
-import { ResponsiveLine } from '@nivo/line';
-import ToolTipComponent from './tooltipComponent';
+
 import styles from './styles.module.css';
+import ToolTipComponent from './tooltipComponent';
 
 function TrendChart({ labels, datasets = [] }) {
 	const data = (datasets || []).map((item) => {
 		const id = item.name;
 		const temp_data = item.values.map((val, index) => ({
-			x: format(labels[index], 'yyyy-MM-dd'),
-			y: val,
+			x : format(labels[index], 'yyyy-MM-dd'),
+			y : val,
 		}));
 		return { id, data: temp_data };
 	});
@@ -33,40 +34,40 @@ function TrendChart({ labels, datasets = [] }) {
 				<div className={styles.chart}>
 					<ResponsiveLine
 						margin={{
-							top: 10,
-							right: 0,
-							bottom: 70,
-							left: 60,
+							top    : 10,
+							right  : 0,
+							bottom : 70,
+							left   : 60,
 						}}
 						data={data}
 						xScale={{
-							type: 'time',
-							format: '%Y-%m-%d',
-							useUTC: false,
-							precision: 'day',
+							type      : 'time',
+							format    : '%Y-%m-%d',
+							useUTC    : false,
+							precision : 'day',
 						}}
 						yScale={{
 							type: 'linear',
 						}}
 						xFormat="time:%Y-%m-%d"
 						axisLeft={{
-							orient: 'left',
-							tickSize: 5,
-							tickPadding: 5,
-							tickRotation: 0,
-							legend: 'Rates (USD)',
-							legendOffset: -40,
-							legendPosition: 'middle',
+							orient         : 'left',
+							tickSize       : 5,
+							tickPadding    : 5,
+							tickRotation   : 0,
+							legend         : 'Rates (USD)',
+							legendOffset   : -40,
+							legendPosition : 'middle',
 						}}
 						axisBottom={{
-							format: '%b %d',
-							orient: 'bottom',
-							tickSize: 5,
-							tickPadding: 5,
-							tickValues: 'every 15 days',
-							legend: 'Date',
-							legendOffset: 36,
-							legendPosition: 'middle',
+							format         : '%b %d',
+							orient         : 'bottom',
+							tickSize       : 5,
+							tickPadding    : 5,
+							tickValues     : 'every 15 days',
+							legend         : 'Date',
+							legendOffset   : 36,
+							legendPosition : 'middle',
 						}}
 						// eslint-disable-next-line react/no-unstable-nested-components
 						tooltip={({ point }) => (

@@ -1,4 +1,5 @@
 import { format } from '@cogoport/utils';
+
 import styles from './styles.module.css';
 
 function ToolTipComponent({ point, data }) {

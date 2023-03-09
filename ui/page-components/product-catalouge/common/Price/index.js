@@ -136,7 +136,7 @@ function Pricing({
 					<div className={styles.form_row}>
 						<div className={`${styles.form_col} ${styles.hscode}`}>
 							<div className={styles.form_label}>{controls[0].label}</div>
-							<NumberController {...controls[0]} control={control} />
+							<NumberController {...controls[0]} control={control} value={hscode} />
 						</div>
 						<div className={styles.form_col}>
 							<div className={`${styles.form_col}${styles.labelRow}`}>

@@ -13,9 +13,8 @@ const useHSCODE = ({ countryforHscode = '' }) => {
 	const [headingObj, setheadingObj] = useState([]);
 	const [hsCodeObj, setHsCodeObj] = useState([]);
 	const [pageObj, setPageObj] = useState({});
-	const { profile, general } = useSelector((state) => state);
+	const { profile } = useSelector((state) => state);
 	const { id } = profile || {};
-	const { scope } = general;
 	const countryId = profile?.organization?.country_id;
 
 	const { debounceQuery, query } = useSearchQuery();
@@ -137,6 +136,7 @@ const useHSCODE = ({ countryforHscode = '' }) => {
 		headingLoading : getHeadingDataLoading,
 		hsloading      : getHscodeLoading,
 		hsCodeResponse,
+		getBySearchLoading,
 		setSearchTerm,
 	};
 };

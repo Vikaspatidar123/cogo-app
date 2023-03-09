@@ -1,7 +1,5 @@
 import { Pagination } from '@cogoport/components';
-import React, { useEffect, useState } from 'react';
-
-import { useWindowDimensions } from '../MobileView';
+import React from 'react';
 
 import CardHeader from './CardHeader';
 import EmptyState from './EmptyState';
@@ -22,7 +20,7 @@ function List({
 	setSort,
 }) {
 	const {
-		list = [], pageNo = 0, totalRecords = 0, pageSize = 1,
+		list = [], pageNo = 0, totalRecords = 0,
 	} = data || {};
 	const { fields, tableView = false, singleList = false } = config ?? {};
 	const listNew = loading ? [1, 2, 3, 4, 5] : list;

@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import { useSelector } from '@/packages/store';
 
 const useDownloadExcel = ({ refetchProduct = () => {} }) => {

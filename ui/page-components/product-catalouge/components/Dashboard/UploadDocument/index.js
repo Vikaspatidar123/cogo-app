@@ -21,7 +21,7 @@ function UploadDocument({ uploadModal, setUploadModal, refetchProduct }) {
 	});
 
 	const {
-		handleSubmit, control, formState: { errors }, watch,
+		control, watch,
 	} = useForm();
 
 	const formValues = watch();
@@ -29,9 +29,7 @@ function UploadDocument({ uploadModal, setUploadModal, refetchProduct }) {
 	const { file_uploader } = formValues || {};
 	const { finalUrl } = file_uploader || {};
 
-	console.log(formValues, 'fileValue');
-
-	const { success = false } = fileValue || {};
+	// const { success = false } = fileValue || {};
 
 	const downloadSample = () => {
 		window.open(downloadUrl, '_self');

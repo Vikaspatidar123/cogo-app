@@ -116,6 +116,8 @@ const useEdit = ({
 	return {
 		data,
 		refetchEdit,
+		putEditLoading,
+		addApiLoading,
 		editLoading: loading,
 		refetchPutEdit,
 		addProduct,

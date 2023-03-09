@@ -40,6 +40,7 @@ const useArchive = ({
 	};
 	return {
 		refetchArchive,
+		putArchiveLoading,
 	};
 };
 

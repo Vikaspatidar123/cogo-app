@@ -25,6 +25,7 @@ const useUnArchive = ({ proId, setArchive, refetchProduct }) => {
 	};
 	return {
 		refetchUnArchive,
+		putArchiveLoading,
 	};
 };
 

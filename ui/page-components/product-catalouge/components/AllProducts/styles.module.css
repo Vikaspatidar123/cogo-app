@@ -23,8 +23,8 @@
 	justify-content: space-between;
 	border: 1px solid #e0e6e9;
 	border-radius: 6px;
-	padding: 10px 16px;
-	width: 31%;
+	padding: 10px 12px;
+	width: 24%;
 	gap: 16px;
 
 	@media (max-width: 768px) {
@@ -82,7 +82,8 @@
 	cursor: pointer;
 	:global{
 		.text {
-			margin: 0px;
+			margin-top: 4px;
+			margin-bottom: 4px;
 			display: flex;
 			align-items: center;
 			padding: 2px 5px;
@@ -90,6 +91,7 @@
 			font-size: 14px;
 		}
 		.edit {
+			
 			border-bottom: 1px solid #d3d3d3;
 		}
 	}
@@ -203,7 +205,8 @@
 .styled_filter_section{
 	display: none;
 	@media screen and (max-width: 767px) {
-		bottom: 10px;
+		display: flex;
+		bottom: 80px;
 		right: 20px;
 		position: fixed;
 		z-index: 2;

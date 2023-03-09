@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import {
 	Tabs, TabPanel, Tooltip, Button,
 } from '@cogoport/components';
@@ -9,7 +10,7 @@ import {
 } from '@cogoport/icons-react';
 import React from 'react';
 
-import Loading from '../../assets/loading.svg';
+// import Loading from '../../assets/loading.svg';
 import HsCodeIconMaping from '../../common/hsCodeIcons';
 import EmptyState from '../../common/List/EmptyState';
 import AllProducts from '../AllProducts';
@@ -62,97 +63,92 @@ function ProductsList({
 					</Button>
 				</div>
 			</div>
-			{console.log(showProductView,"showProductView")}
 			<div className={styles.scroll_content}>
 				{(showProductView) && (
 					<div>
 						<div className={styles.sub_title}>Select Category</div>
-						{hsLoading ? (
-							<Loading className={styles.styled_loading} />
-						) : (
-							<div>
-								{hsList.length > 0 && (
-									<div className="scroll">
-										<div className={styles.scroll_container}>
-											<div className={styles.styled_div}>
-												<Tabs
-													activeTab={activeTab}
-													onChange={setActiveTab}
-													className="horizontal one tabs catgeory"
-												>
-													<TabPanel
-														name="allProducts"
-														title={(
+						<div>
+							{hsList.length > 0 && (
+								<div className="scroll">
+									<div className={styles.scroll_container}>
+										<div className={styles.styled_div}>
+											<Tabs
+												activeTab={activeTab}
+												onChange={setActiveTab}
+												className="horizontal one tabs catgeory"
+											>
+												<TabPanel
+													name="allProducts"
+													title={(
+														<div
+															role="presentation"
+															onClick={() => {
+																setShowProductView(true);
+																refetchProduct({});
+															}}
+														>
+															<IcMGrid fill="#d94646" />
 															<div
-																role="presentation"
-																onClick={() => {
-																	setShowProductView(true);
-																	refetchProduct({});
-																}}
+																className={styles.label}
 															>
-																<IcMGrid fill="#d94646" />
-																<div
-																	className={styles.label}
-																>
-																	All Products
-																</div>
+																All Products
 															</div>
-														)}
-													/>
-													{(hsList || []).map((item) => {
-														const {
-															categoryDisplayName = '',
-															categoryCode = '',
-														} = item;
+														</div>
+													)}
+												/>
+												{(hsList || []).map((item) => {
+													const {
+														categoryDisplayName = '',
+														categoryCode = '',
+													} = item;
 
-														return (
-															<TabPanel
-																name={categoryDisplayName}
-																key={`${item.categoryDisplayName}_${item.categoryDisplayName}`}
-																title={(
+													return (
+														<TabPanel
+															name={categoryDisplayName}
+															key={`${item.categoryDisplayName}_${item.categoryDisplayName}`}
+															title={(
+																<div
+																	className={styles.styled_tab_heading}
+																	role="presentation"
+																	onClick={() => {
+																		setSubCategory(
+																			item.subCategory,
+																		);
+																		setShowProductView(true);
+																		setActiveHeaderTab();
+																	}}
+																>
 																	<div
-																		className={styles.styled_tab_heading}
-																		role="presentation"
-																		onClick={() => {
-																			setSubCategory(
-																				item.subCategory,
-																			);
-																			setShowProductView(true);
-																			setActiveHeaderTab();
-																		}}
+																		className={styles.colored_icon}
 																	>
-																		<div
-																			className={styles.colored_icon}
-																		>
-																			{Mapping[categoryCode]}
-																		</div>
-																		{categoryDisplayName}
+																		{Mapping[categoryCode]}
 																	</div>
-																)}
-															/>
-														);
-													})}
-												</Tabs>
-												<div className={styles.styled_filter_section}>
-													<div
-														className="btn"
-														role="presentation"
-														onClick={() => setHSCode(true)}
-													>
-														<IcMPlus
-															// className={styles.plus_icon}
-															fill="#ffffff"
-															height="1.2rem"
-															width="1.2rem"
+																	{categoryDisplayName}
+																</div>
+															)}
 														/>
-													</div>
+													);
+												})}
+											</Tabs>
+											<div className={styles.styled_filter_section}>
+												<div
+													className="btn"
+													role="presentation"
+													onClick={() => setHSCode(true)}
+												>
+													<IcMPlus
+														className={styles.plus_icon}
+														fill="#ffffff"
+														height="1.2rem"
+														width="1.2rem"
+													/>
 												</div>
 											</div>
 										</div>
 									</div>
-								)}
-							</div>
-						)}
+								</div>
+							)}
+						</div>
 					</div>
 				)}
 

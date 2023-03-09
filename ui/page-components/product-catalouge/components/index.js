@@ -4,7 +4,6 @@ import {
 import { useState } from 'react';
 
 import HsCode from '../../hs-code-modal';
-// import useEdit from '../hooks/useEdit';
 import useHSCodelist from '../hooks/useHsCodeList';
 import useProductCatalogue from '../hooks/useProductCatalogue';
 
@@ -14,7 +13,6 @@ import ProductsList from './ProductsList';
 import styles from './styles.module.css';
 
 import { useRouter } from '@/packages/next';
-// import { useSelector } from '@/packages/store';
 
 function ProductInventory() {
 	const [activeTab, setActiveTab] = useState('allProducts');

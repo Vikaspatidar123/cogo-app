@@ -1,13 +1,14 @@
+import { Placeholder } from '@cogoport/components';
 import { IcMCrossInCircle, IcMArrowNext } from '@cogoport/icons-react';
 import { useState } from 'react';
 
 import DeleteModal from '../../common/DeleteModal';
 import useDeleteTrendSubscription from '../../hooks/useDeleteTrends';
+import { useRouter } from '@/packages/next';
 
 import styles from './styles.module.css';
 
-import { useRouter } from '@/packages/next';
-import { Placeholder } from '@cogoport/components';
+
 
 function TrendCard({ trend = {}, fetchLocations = () => {} }) {
 	const { push } = useRouter();

@@ -8,12 +8,14 @@ import Card from './Card';
 import FilterContent from './FilterContent';
 import styles from './styles.module.css';
 
+import { useRouter } from '@/packages/next';
+
 function Header({
 	filters, setFilters, summaryLoading = false,
 	summaryData = {},
 }) {
 	const [showFilters, setshowFilters] = useState(false);
-
+	const { push } = useRouter();
 	const summaryControl = getSummary({ summaryResp: summaryData });
 	return (
 		<div className={styles.container}>
@@ -46,6 +48,10 @@ function Header({
 					<div
 						className={styles.btn_text}
 						role="presentation"
+						onClick={() => push(
+							'/saas/planning/quickquotation/createQuotation',
+							'/saas/planning/quickquotation/createQuotation',
+						)}
 					>
 						Create New
 

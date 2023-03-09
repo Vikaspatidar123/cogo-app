@@ -1,0 +1,22 @@
+.row{
+    margin-top: 8px;
+	padding: 0 8px;
+	display: flex;
+	justify-content: space-around;
+	align-items: flex-end;
+	font-size: 12px;
+}
+.disable_field{
+	input{
+		background: #f4f4f4 ;
+		border-color: #eeeeee ;
+	}
+}
+.add_btn{
+	display: flex;
+	margin-bottom: 5px;
+	cursor: pointer;
+	>span{
+		margin-left:3px;
+	}
+}

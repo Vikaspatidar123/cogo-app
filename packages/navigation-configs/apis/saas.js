@@ -17,6 +17,7 @@ const saas = {
 			api         : 'delete_saas_quote',
 			access_type : 'private',
 		},
+
 	],
 };
 export default saas;

@@ -1,0 +1,20 @@
+.container{
+    display: flex;
+
+    .details_section {
+		flex: 2;
+		margin-top: 20px;
+		margin-right: 20px;
+	}
+
+	.charge_section {
+		flex: 1;
+	}
+
+	@media screen and (max-width: 767px) {
+		flex-direction: column;
+		.details_section {
+			margin-right: 0px;
+		}
+	}
+}

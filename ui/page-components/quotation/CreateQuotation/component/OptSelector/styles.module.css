@@ -1,0 +1,18 @@
+.flex_box{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.container{
+    :global{
+        .ui_tab_container{
+            line-height: 21px;
+            border: none;
+            padding: 6px 16px;
+        }
+    }
+}
+.row{
+    width: 36%;
+}

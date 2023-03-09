@@ -1,68 +1,69 @@
-.container{
+.container {
 	@media (max-width: 760px) {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 		justify-content: center;
-		:global{
+
+		:global {
 			.ui-modal-dialog.sm {
-				width: 0px;
+				width: 0;
 			}
 		}
 	}
 }
 
-.icon_div{
+.icon_div {
 	display: flex;
 	justify-content: center;
 	padding-top: 20px;
 }
 
-.heading{
-	font-weight: 700;
-	font-size: 18px;
-	color: #221f20;
-	margin-bottom: 8px;
+.heading {
 	display: flex;
 	justify-content: center;
+	margin-bottom: 8px;
+	font-size: 18px;
+	font-weight: 700;
+	color: #221f20;
 
-	@media (max-width: 760px){
+	@media (max-width: 760px) {
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		padding: 0px 10px;
+		padding: 0 10px;
 	}
 }
 
-.text{
-	font-size: 13px;
-	color: #828282;
+.text {
 	display: flex;
 	justify-content: center;
 	margin-bottom: 33px;
+	font-size: 13px;
+	color: #828282;
 
-	@media (max-width: 760px){
-		padding: 0px 8px;
+	@media (max-width: 760px) {
+		padding: 0 8px;
 	}
 }
 
-.button_div{
+.button_div {
 	display: flex;
-	border-radius: 8px 8px 0px 0px;
-	margin: 0px 10px 28px 10px;
 	justify-content: center;
+	margin: 0 10px 28px;
+	border-radius: 8px 8px 0 0;
 }
 
-.secondary_button{
-	background: #ffffff;
-	border: 1px solid #e0e6e9;
-	color: #221f20;
-	height: 30px;
+.secondary_button {
 	width: 120px;
+	height: 30px;
 	margin-right: 20px;
+	color: #221f20;
+	background: #fff;
+	border: 1px solid #e0e6e9;
 }
 
-.primary_button{
+.primary_button {
+	width: 120px;
 	height: 30px;
-	width: 120px
 }

@@ -1,142 +1,147 @@
-.catalouge_label{
-    font-weight: 500;
+.catalouge_label {
 	font-size: 16px;
-	color: #2c3e50
-}
-
-.catalouge_label .sub_category{
 	font-weight: 500;
-	font-size: 16px;
-	color: #7b7b7b
+	color: #2c3e50;
 }
 
-.styled_tab_div{
-    margin: 15px 0px;
+.catalouge_label .sub_category {
+	font-size: 16px;
+	font-weight: 500;
+	color: #7b7b7b;
+}
 
-	:global{
+.styled_tab_div {
+	margin: 15px 0;
+
+	:global {
 		.category {
 			display: flex;
 		}
+
 		.ui_tabs_list.horizontal {
 			@media (max-width: 768px) {
-				flex-wrap: wrap;
 				display: flex;
-				flex-direction: row;
+				flex-flow: row wrap;
 				justify-content: space-between;
 			}
 		}
+
 		.section {
+			width: fill-available;
+			height: auto;
 			padding: 10px !important;
 			border-left: 1px dashed #c6d9ff;
-			width: -webkit-fill-available;
-			height: auto;
-			@media (max-width: 768px){
+
+			@media (max-width: 768px) {
 				border-left: none;
+
 				/* display: none; */
 			}
 		}
-	}	
-
-	
+	}
 }
 
-.container{
-	@media(max-width: 768px){
+.container {
+	@media (max-width: 768px) {
 		display: flex;
 		flex-direction: column;
 	}
 }
 
+.tab_container {
+	cursor: pointer;
 
-
-.tab_container{
-    cursor: pointer;
-	
-	:global{
+	:global {
 		.ui-tabs {
-			background: #ffffff !important;
 			justify-content: flex-start;
+			background: #fff !important;
 		}
-	
+
 		.ui-tabs-list {
 			gap: 10px;
 			padding: 10px 0 !important;
-	
+
 			.ui-tabs-list-container {
 				display: block !important;
-				margin: 0 10px !important;
-				background: #fff !important;
+				max-width: 165px;
 				padding: 10px !important;
-				box-shadow: 0px 0px 7px 1px #dde0e0 !important;
-				border: none !important;
-				border-radius: 10px !important;
-				transition: none;
+				margin: 0 10px !important;
 				text-overflow: ellipsis;
 				white-space: pre-wrap;
-				max-width: 165px;
+				background: #fff !important;
+				border: none !important;
+				border-radius: 10px !important;
+				box-shadow: 0 0 7px 1px #dde0e0 !important;
+				transition: none;
 			}
-	
+
 			.ui-tabs-list-container:hover {
 				border: 1px solid #d5483a !important;
+
 				svg::after {
 					visibility: hidden !important;
 				}
 			}
+
 			.active p {
+				border: 1px solid #d5483a !important;
 				transition: none !important;
-				border: 1px solid #d5483a !important;
 			}
+
 			.active {
-				border: 1px solid #d5483a !important;
 				background-color: #fffbfb !important;
+				border: 1px solid #d5483a !important;
 			}
 		}
+
 		.card {
 			display: block !important;
-			margin: 0 10px !important;
-			background: #fff !important;
+			max-width: 165px;
 			padding: 10px !important;
-			box-shadow: 0px 0px 7px 1px #dde0e0 !important;
-			border: none !important;
-			border-radius: 10px !important;
-			-webkit-transition: none;
-			transition: none;
+			margin: 0 10px !important;
+			margin: 10px !important;
+			text-align: center;
 			text-overflow: ellipsis;
 			white-space: pre-wrap;
-			max-width: 165px;
-			text-align: center;
-			margin: 10px !important;
-	
+			background: #fff !important;
+			border: none !important;
+			border-radius: 10px !important;
+			box-shadow: 0 0 7px 1px #dde0e0 !important;
+			transition: none;
+
 			&:hover {
 				border: 1px solid #d5483a !important;
 			}
 		}
+
 		.subcategory {
 			&.ui-tabs-list {
+				width: 25% !important;
 				padding: 10px !important;
-				width: 25% !important;
-				border-right: 1px dashed #c6d9ff;
-				margin-right: 20px !important;
 				padding-right: 20px !important;
-				width: 25% !important;
+				margin-right: 20px !important;
+				border-right: 1px dashed #c6d9ff;
 			}
+
 			.ui-tabs-list-container {
-				padding: 10px 20px !important;
 				height: auto !important;
+				padding: 10px 20px !important;
 				border-radius: 9px !important;
+
 				p {
 					font-size: 12px !important;
 				}
 			}
+
 			.ui-tabs-tabpanel {
 				background: transparent !important;
 			}
 		}
+
 		.active {
-			border: 1px solid #d5483a !important;
 			background-color: #fffbfb !important;
+			border: 1px solid #d5483a !important;
 		}
-	
 	}
 }
 

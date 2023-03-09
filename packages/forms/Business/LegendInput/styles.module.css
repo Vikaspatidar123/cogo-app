@@ -1,27 +1,25 @@
-.label{
-    position: absolute;
+.label {
+	position: absolute;
 	top: 0;
-	padding: 0px 5px 0;
-	margin: 0px 7px;
-
-	translate: 0 50%;
-
+	padding: 0 5px;
+	margin: 0 7px;
 	color: grey;
+	pointer-events: none;
 	background: #fff;
 	transition: top 0.2s ease-in-out, font-size 0.2s ease-in-out;
-	pointer-events: none;
+	translate: 0 50%;
+
 	&.move {
 		top: -15px;
 		font-size: 11px;
 	}
 }
 
-
-.container{
-    display: flex;
+.container {
+	position: relative;
+	display: flex;
 	flex-direction: row;
 	align-items: flex-start;
-	position: relative;
 	padding: 12px;
 
 	/* &:focus-within label {
@@ -39,18 +37,17 @@
 	} */
 }
 
-
-.input{
-    border: none;
+.input {
 	width: 100%;
+	border: none;
 
 	&.icon {
 		width: 85%;
 	}
+
 	&:focus,
 	&:active {
 		border: none;
 		outline: none;
 	}
 }
-

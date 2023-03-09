@@ -1,11 +1,12 @@
-.container{
+.container {
 	:global {
 		.list {
 			display: flex;
-			justify-content: center;
 			flex-direction: column;
 			align-items: center;
+			justify-content: center;
 		}
+
 		.pagination {
 			display: flex;
 			justify-content: flex-end;
@@ -13,66 +14,67 @@
 	}
 }
 
-.card_header{
-	width: 100%;
-	height: 78px;
-	border-radius: 4px;
+.card_header {
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	width: 100%;
+	height: 78px;
 	padding-left: 40px;
-	align-items: center;
-	
-	@media(max-width: 768px){
+	border-radius: 4px;
+
+	@media (max-width: 768px) {
 		display: none;
 	}
 }
 
-.page_container{
+.page_container {
 	:global {
 		.pagination {
-			float: right;
 			display: flex;
 			justify-content: center;
+			float: right;
 			color: black;
+
 			.paginationContainer {
 				margin: 10px !important;
 			}
-	
+
 			.page,
 			.break {
-				border: none !important;
-				background: transparent !important;
 				font-weight: 500 !important;
+				background: transparent !important;
+				border: none !important;
 			}
-	
+
 			.selected {
-				background: #fef3e9 !important;
 				color: black;
+				background: #fef3e9 !important;
 			}
-	
+
 			.next,
 			.previous {
 				background: transparent !important;
 				border: none !important;
-	
+
 				svg {
-					stroke-width: 0.5px;
 					stroke: #333;
+					stroke-width: 0.5px;
 				}
-	
+
 				svg path {
 					fill: #333;
 				}
 			}
-	
+
 			.disabled {
 				cursor: not-allowed;
+
 				svg {
-					stroke-width: 0.5px;
 					stroke: #9a9ea5;
+					stroke-width: 0.5px;
 				}
-	
+
 				svg path {
 					fill: #9a9ea5;
 				}
@@ -80,4 +82,3 @@
 		}
 	}
 }
-

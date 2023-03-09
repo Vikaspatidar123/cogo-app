@@ -9,10 +9,6 @@
 	overflow: hidden;
 	border-radius: 8px;
 	box-shadow: 0 0 16px rgb(98 127 172 / 20%);
-
-	@media (max-width: ${({ theme }) = > theme.breakpoints.md}) {
-		grid-column: span 12;
-	}
 }
 
 .enroute {

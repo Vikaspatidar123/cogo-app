@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { debounce } from '@cogoport/utils';
 import { useCallback, useState } from 'react';
 

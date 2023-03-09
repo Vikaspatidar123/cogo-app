@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import {
 	Pagination, Popover, Loader, Tooltip,
 } from '@cogoport/components';

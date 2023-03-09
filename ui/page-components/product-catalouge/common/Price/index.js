@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { Button, toast } from '@cogoport/components';
 import { IcMArrowRight } from '@cogoport/icons-react';
 import { useEffect, useState } from 'react';

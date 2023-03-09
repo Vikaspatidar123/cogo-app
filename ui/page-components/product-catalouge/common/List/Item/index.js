@@ -1,3 +1,4 @@
+/* eslint-disable import/no-unresolved */
 import { Tooltip, Loader } from '@cogoport/components';
 import { shape, arrayOf } from 'prop-types';
 

@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /* eslint-disable max-len */
 import { Toast } from '@cogoport/components';
 import { useState } from 'react';

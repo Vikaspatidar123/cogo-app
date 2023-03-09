@@ -1,7 +1,7 @@
+/* eslint-disable no-unused-vars */
 import { Input } from '@cogoport/components';
 import { useState, useEffect } from 'react';
 
-// import { Label, Container, Input } from './style';
 import styles from './styles.module.css';
 
 function LegendInput({

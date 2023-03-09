@@ -47,7 +47,10 @@ function Buyer({ topProduct = [], productLoading }) {
 							<div className={styles.value} key={y.value}>
 								<div className={styles.data}>
 									<div style={{
-										background: colorMapping[i], width: '15px', height: '15px', borderRadius: '15px',
+										background   : colorMapping[i],
+										width        : '15px',
+										height       : '15px',
+										borderRadius : '15px',
 									}}
 									/>
 									<div>{shortFormatNumber(y.value, 'INR')}</div>

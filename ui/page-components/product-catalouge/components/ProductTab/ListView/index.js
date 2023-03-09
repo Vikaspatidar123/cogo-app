@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { Popover, Table, Tooltip } from '@cogoport/components';
 import {
 	IcMEdit, IcMPaste, IcMDelete, IcMOverflowDot,

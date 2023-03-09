@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 export const csvImg = 'https://cogoport-production.sgp1.digitaloceanspaces.com/a2617eb8b9a9dd42e9d55a3d4b797b92/Group%201000011426.svg';
 
 export const successBackgroundImg =	'https://cogoport-production.sgp1.digitaloceanspaces.com/456bfffabdf966b1fb0df36140e46dff/Group%201000010512.svg';

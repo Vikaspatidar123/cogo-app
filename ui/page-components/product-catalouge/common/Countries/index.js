@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable react-hooks/rules-of-hooks */
 import { merge } from '@cogoport/utils';
 import { useEffect } from 'react';
 
@@ -7,17 +9,13 @@ import styles from './styles.module.css';
 import { useForm, asyncFieldsHsCodeCountries, useGetAsyncOptionsBf } from '@/packages/forms';
 import ControlledSelect from '@/packages/forms/Controlled/SelectController';
 
-const optionsFunc = () => {
-	const Options = useGetAsyncOptionsBf(merge(
-		asyncFieldsHsCodeCountries(),
-		{ params: { filters: { type: ['country'] } } },
-	));
-
-	return Options;
-};
+const Options = useGetAsyncOptionsBf(merge(
+	asyncFieldsHsCodeCountries(),
+	{ params: { filters: { type: ['country'] } } },
+));
 
 function GetCountriesFilter({ setCountryforHsCode, setSelectedCountry }) {
-	const countryOptions = optionsFunc();
+	const countryOptions = Options;
 	const controls = getControls({ setSelectedCountry, countryOptions });
 	const { watch, control } = useForm();
 

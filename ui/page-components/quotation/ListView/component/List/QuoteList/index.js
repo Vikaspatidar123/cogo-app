@@ -37,7 +37,7 @@ function QuoteList({ data, loading, pagination, setPagination, setSortObj, delet
 							setQuoteId={setQuoteId}
 						/>
 					))}
-					{dataList.length >= 10 && (
+					{dataList.length !== 0 && (
 						<div className={styles.pagination_container}>
 							<Pagination
 								type="table"

@@ -27,6 +27,7 @@ const chargesControls = [
 		label       : 'Basic Freight',
 		type        : 'number',
 		min         : 0,
+		size        : 'sm',
 		className   : 'inputForm',
 		isClearable : true,
 		rules       : {
@@ -43,6 +44,7 @@ const chargesControls = [
 		label       : 'Duties & Taxes',
 		type        : 'number',
 		min         : 0,
+		size        : 'sm',
 		className   : 'inputForm',
 		isClearable : true,
 		rules       : {
@@ -59,7 +61,8 @@ const chargesControls = [
 		label       : 'Insurance',
 		type        : 'number',
 		min         : 0,
-		className   : 'primary md inputForm',
+		size        : 'sm',
+		className   : 'inputForm',
 		isClearable : true,
 		rules       : {
 			required: true,
@@ -73,13 +76,15 @@ const chargesControls = [
 			{
 				name        : 'name',
 				placeholder : 'Charges',
-				type        : 'text',
+				type        : 'chargeName',
+				size        : 'sm',
 				rules       : { required: true },
 			},
 			{
 				name        : 'value',
 				placeholder : 'value',
 				min         : 1,
+				size        : 'sm',
 				type        : 'number',
 				rules       : {
 					required : true,

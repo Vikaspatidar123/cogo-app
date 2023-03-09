@@ -8,6 +8,7 @@ import getField from '@/packages/forms/Controlled';
 function Item(props) {
 	const { remove, control, controls, productInfo, index } = props || {};
 	console.log(props, 'props');
+	console.log(productInfo, 'productInfo');
 
 	return (
 		<>
@@ -18,8 +19,18 @@ function Item(props) {
 				const Element = getField(field?.type);
 
 				return (
-					<div style={{ width: field?.width }} className={cl`${styles.col} ${styles[field?.className]}`}>
-						<Element control={control} value={productInfo[field?.name]} {...field} />
+					<div
+						key={`${field?.name}_${productInfo?.productId}`}
+						style={{ width: field?.width }}
+						className={cl`${styles.col} ${styles[field?.className]}`}
+					>
+						<Element
+							{...field}
+							control={control}
+							value={productInfo[field?.name]}
+							name={`${field?.name}_${productInfo?.productId}`}
+							key={`${field?.name}_${productInfo?.productId}`}
+						/>
 					</div>
 				);
 			})}

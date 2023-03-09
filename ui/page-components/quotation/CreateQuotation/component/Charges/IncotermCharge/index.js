@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect } from 'react';
+import { Button } from '@cogoport/components';
+import { useCallback, useEffect } from 'react';
 
 import MappingConstant from '../../../utils/incotermConstant';
 import Item from '../Item';
@@ -7,16 +8,16 @@ import Item from '../Item';
 import { useFieldArray } from '@/packages/forms';
 
 function IncoTermCharge(props) {
-	const { control, chargeFields, watch } = props || {};
+	const { control, chargeFields, watch, name, index: i } = props || {};
 
 	const { fields, append, remove } = useFieldArray({
 		control,
-		name: 'incotermCharges',
+		name,
 	});
 
 	const { CHARGES, MAPPING } = MappingConstant();
 	const watchIncoterm = watch('incoterm');
-	console.log(watchIncoterm, 'watchIncoterm');
+
 	const addIncotermCharges = () => {
 		MAPPING[watchIncoterm]?.forEach((ele) => {
 			append({
@@ -25,32 +26,49 @@ function IncoTermCharge(props) {
 			});
 		});
 	};
-	const removeIncoterm = () => {
-		fields.forEach(() => {
-			remove({});
-		});
+
+	const removeIncoterm = useCallback(() => {
+		if (fields.length > 0) {
+			fields.forEach(() => {
+				remove({});
+			});
+		}
 		addIncotermCharges();
-	};
+	}, [watchIncoterm]);
 
 	useEffect(() => {
-		if (watchIncoterm) {
+		if (watchIncoterm && name === 'incotermCharges') {
 			removeIncoterm();
 		}
 	}, [watchIncoterm]);
-	console.log(chargeFields, 'chargeFields');
+
 	return (
-		<div>
-			{(fields || []).map((field, index) => (
-				<Item
-					key={field?.id}
-					info={field}
-					index={index}
-					remove={remove}
-					control={control}
-					controls={chargeFields[4].controls}
-				/>
-			))}
-		</div>
+		<>
+
+			<div>
+				{(fields || []).map((field, index) => (
+					<Item
+						key={field?.id}
+						info={field}
+						index={index}
+						remove={remove}
+						control={control}
+						controls={chargeFields[i].controls}
+					/>
+				))}
+			</div>
+			{fields.length !== 0 && name === 'incotermCharges' && <hr />}
+			{name === 'additionalCharges' && (
+				<Button
+					themeType="linkUi"
+					style={{ margin: '8px 0' }}
+					onClick={() => append({ name: '', value: '' })}
+				>
+					+ Add More Charges
+				</Button>
+			)}
+		</>
+
 	);
 }
 

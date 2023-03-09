@@ -70,11 +70,11 @@ const chargesControls = [
 	},
 	{
 		name     : 'incotermCharges',
-		id       : 'incotermCharges',
 		type     : 'fieldArray',
 		controls : [
 			{
 				name        : 'name',
+				id          : 'name',
 				placeholder : 'Charges',
 				type        : 'chargeName',
 				size        : 'sm',
@@ -82,10 +82,12 @@ const chargesControls = [
 			},
 			{
 				name        : 'value',
+				id          : 'value',
 				placeholder : 'value',
 				min         : 1,
 				size        : 'sm',
 				type        : 'number',
+				width       : '37%',
 				rules       : {
 					required : true,
 					min      : {
@@ -98,20 +100,25 @@ const chargesControls = [
 	},
 	{
 		name     : 'additionalCharges',
-		id       : 'additionalCharges',
 		type     : 'fieldArray',
 		controls : [
 			{
 				name        : 'name',
+				id          : 'name',
 				placeholder : 'Charges',
 				type        : 'text',
+				className   : 'extra_charge_name',
+				size        : 'sm',
 				rules       : { required: true },
 			},
 			{
 				name        : 'value',
 				placeholder : 'value',
+				id          : 'value',
 				type        : 'number',
 				min         : 1,
+				size        : 'sm',
+				width       : '37%',
 				rules       : {
 					required : true,
 					min      : {

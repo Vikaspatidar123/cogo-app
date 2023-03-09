@@ -1,8 +1,12 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { cl } from '@cogoport/components';
 import { IcMMoney } from '@cogoport/icons-react';
+import { useEffect } from 'react';
 
 import chargesControls from '../../configuration/chargesControls';
 
+// import AdditionalCharges from './AdditionalCharge';
+import BasicCharge from './BasicCharge';
 import IncoTermCharge from './IncotermCharge';
 import styles from './styles.module.css';
 
@@ -10,13 +14,12 @@ import { useForm } from '@/packages/forms';
 import getField from '@/packages/forms/Controlled';
 
 function Charges() {
-	const { control, watch } = useForm({
-		defaultValues: {
-			incoterm: 'CIF',
-		},
-	});
-
+	const { control, watch, setValue } = useForm();
 	const SelectController = getField('select');
+	const TextAreaController = getField('textarea');
+	useEffect(() => {
+		setValue('incoterm', 'CIF');
+	}, []);
 	return (
 		<div className={styles.container}>
 
@@ -33,25 +36,37 @@ function Charges() {
 				</div>
 			</div>
 
-			{(chargesControls || []).map((field, index) => {
-				// eslint-disable-next-line react/jsx-no-useless-fragment
-				if (index === 0 || index > 3) return <></>;
-				const Element = getField(field?.type);
-				return (
-					<div className={cl`${styles.flex_box} ${styles.row}`}>
-						<p className={styles.label}>{field?.label}</p>
-						<Element
-							{...field}
-							control={control}
-							className={cl`${styles.input_box} ${styles[field?.className]}`}
-						/>
-					</div>
-				);
-			})}
+			<BasicCharge fields={chargesControls} control={control} />
 
 			<div className={styles.hr} />
 
-			<IncoTermCharge watch={watch} chargeFields={chargesControls} control={control} />
+			<IncoTermCharge
+				watch={watch}
+				chargeFields={chargesControls}
+				control={control}
+				name="incotermCharges"
+				index="4"
+			/>
+			<IncoTermCharge
+				watch={watch}
+				chargeFields={chargesControls}
+				control={control}
+				name="additionalCharges"
+				index="5"
+			/>
+
+			<div className={styles.footer_section}>
+				<div className={cl`${styles.total_quotation} ${styles.flex_box}`}>
+					<span>Quotation Total:</span>
+					100
+					{/* {shortFormatNumber(quotationTotal, currency || 'INR')} */}
+				</div>
+
+				<div className={styles.comment}>
+					<p className={cl`${styles.label} ${styles.comment_label}`}>{chargesControls[6].label}</p>
+					<TextAreaController {...chargesControls[6]} control={control} rows={10} />
+				</div>
+			</div>
 		</div>
 	);
 }

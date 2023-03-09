@@ -66,6 +66,9 @@
 	&.incoterm_charge_label{
 		width: 47%;
 	}
+	&.comment_label{
+		margin-bottom: 5px;
+	}
 }
 
 .row{
@@ -88,4 +91,28 @@
 	svg {
 		vertical-align: bottom;
 	}
+}
+
+.extra_charge_name{
+	width: 47%;
+	:global{
+		.ui_input_container {
+			width: 75%;
+		}
+	}
+}
+
+.footer_section{
+	padding: 5px 12px;
+	border-top: 1px solid #e0e0e0;
+
+	.comment{
+		width: 100%;
+		margin-top: 20px;
+	}
+}
+.total_quotation{
+	font-weight: bold;
+	font-size: 18px;
+	margin: 14px 0;
 }

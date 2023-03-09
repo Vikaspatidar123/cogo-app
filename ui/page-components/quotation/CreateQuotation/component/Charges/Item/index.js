@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-useless-fragment */
 import { cl } from '@cogoport/components';
 import { IcMDelete } from '@cogoport/icons-react';
 
@@ -7,22 +8,35 @@ import getField from '@/packages/forms/Controlled';
 
 function Item(props) {
 	const { remove, control, controls, info, index } = props || {};
+	// console.log(info, 'info');
 	return (
 		<div className={cl`${styles.flex_box} ${styles.row}`}>
-
 			{controls.map((field) => {
-				// eslint-disable-next-line react/jsx-no-useless-fragment
 				if (field?.type === 'hidden') return <></>;
 				if (field?.type === 'chargeName') {
 					return (
-						<p className={cl`${styles.label} ${styles.incoterm_charge_label}`}>{info?.name}</p>
+						<p
+							key={`${info?.id}_${field.name}`}
+							className={cl`${styles.label} ${styles.incoterm_charge_label}`}
+						>
+							{info?.name}
+						</p>
 					);
 				}
 				const Element = getField(field?.type);
 
 				return (
-					<div style={{ width: field?.width }} className={cl`${styles[field?.className]}`}>
-						<Element control={control} value={info[field?.name]} {...field} />
+					<div
+						key={`${info?.id}_${field.name}`}
+						style={{ width: field?.width }}
+						className={cl`${styles[field?.className]}`}
+					>
+						<Element
+							{...field}
+							name={`${info?.id}_${field.name}`}
+							key={`${info?.id}_${field.name}`}
+							control={control}
+						/>
 					</div>
 				);
 			})}

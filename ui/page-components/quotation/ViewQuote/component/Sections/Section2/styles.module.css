@@ -1,0 +1,134 @@
+.incoterm {
+	position: absolute;
+	left: 4%;
+	display: flex;
+	font-size: 17px;
+
+	@media screen and (max-width: 767px) {
+		position: static;
+		margin-bottom: 20px;
+		font-size: 12px;
+	}
+}
+
+.text {
+	padding: 0 10px;
+	margin: 0;
+}
+
+.icons {
+	display: flex;
+	justify-content: space-between;
+	width: 45%;
+	margin: auto;
+	border-bottom: 1px solid black;
+	-webkit-box-pack: justify;
+
+	@media screen and (max-width: 767px) {
+		width: 75%;
+	}
+}
+
+.img {
+	width: 30px;
+	height: 25px;
+
+	@media screen and (max-width: 767px) {
+		width: 25px;
+		height: 25px;
+	}
+}
+
+.icon2 {
+	position: relative;
+	display: flex;
+	justify-content: center;
+	width: 45%;
+	margin: auto;
+	margin-bottom: 20px;
+	-webkit-box-pack: center;
+
+	@media screen and (max-width: 767px) {
+		align-items: flex-start;
+		justify-content: space-between;
+		width: 90%;
+		margin-top: 5px;
+		-webkit-box-pack: justify;
+	}
+}
+
+.Morro {
+	position: absolute;
+	top: 7px;
+	left: -21%;
+	width: 200px;
+	text-align: center;
+
+	@media screen and (max-width: 767px) {
+		position: relative;
+		top: 0;
+		left: -10px;
+		width: 150px;
+		font-size: 10px;
+	}
+}
+
+.ocean_text {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-top: 10px;
+	-webkit-box-pack: center;
+	-webkit-box-align: center;
+
+	@media screen and (max-width: 767px) {
+		font-size: 8px !important;
+	}
+}
+
+.ocean_box1 {
+	display: inline-flex;
+	padding: 4px 12px;
+	background-color: #d9eafd !important;
+	border: 1px solid #f2f2f2;
+	border-radius: 4px;
+}
+
+.ocean_text {
+	margin: 0;
+	font-size: 10px;
+	font-weight: normal;
+	line-height: 11.72px;
+	color: rgb(0 0 0);
+	text-align: center;
+	text-transform: uppercase;
+	letter-spacing: 0.02em;
+}
+
+.location {
+	position: absolute;
+	top: 7px;
+	right: -21%;
+	width: 200px;
+	text-align: center;
+
+	@media screen and (max-width: 767px) {
+		position: relative;
+		top: 0;
+		right: -10px;
+		width: 150px;
+		font-size: 10px;
+	}
+}
+
+.origin {
+	position: relative;
+	top: 3px;
+	right: 14px;
+}
+
+.destination {
+	position: relative;
+	top: 3px;
+	left: 14px;
+}

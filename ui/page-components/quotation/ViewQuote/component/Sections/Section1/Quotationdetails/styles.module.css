@@ -1,0 +1,17 @@
+.serial_no {
+	display: flex;
+	-webkit-box-align: center;
+	align-items: center;
+	font-size: 17px;
+
+	@media screen and (max-width: 767px) {
+		-webkit-box-pack: justify;
+		justify-content: space-between;
+		font-size: 14px;
+	}
+}
+
+.details_font {
+	margin: 2px 8px 2px 2px;
+	font-weight: bold;
+}

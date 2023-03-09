@@ -7,7 +7,7 @@ import { useSelector } from '@/packages/store';
 const useFetchStoreQuota = () => {
 	const [storeQuota, setStoreQuota] = useState(null);
 	const quota = storeQuota?.find((item) => item.product_name === 'Ocean Tracking');
-	const quotaCount = quota?.left_quota + quota?.addon_quota || 0;
+	const quotaCount = (quota?.left_quota + quota?.addon_quota) || 0;
 
 	const { profile } = useSelector((s) => s);
 	const [{ loading }, trigger] = useRequest({

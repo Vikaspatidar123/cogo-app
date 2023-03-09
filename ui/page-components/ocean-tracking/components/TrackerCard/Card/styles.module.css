@@ -50,6 +50,9 @@
   background-size: auto;
   background-position: top left;
   background-repeat: no-repeat;
+  @media (max-width: 760px) {
+    width: 100%;
+  }
 }
 
 .bottom_container{
@@ -57,6 +60,7 @@
   height: 47px;
   background: #FDFBF6;
   border-radius: 0px 0px 8px 8px;
+  display: flex;
 }
 
 /* .bottom_text{

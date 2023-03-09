@@ -21,7 +21,9 @@ function AddTrackerModal({ show, onclose }) {
 	const onchange = () => {
 		setLabeledValue(!labeledValue);
 	};
-	const renderForm=()
+	// const renderForm = () => {
+
+	// };
 
 	return (
 		<div>
@@ -60,7 +62,7 @@ function AddTrackerModal({ show, onclose }) {
 								</a>
 							)}
 						</div>
-						{!labeledValue ? renderForm() : renderCsvForm()}
+						{/* {!labeledValue ? renderForm() : renderCsvForm()} */}
 					</div>
 
 				</Modal.Body>

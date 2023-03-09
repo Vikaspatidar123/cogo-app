@@ -1,6 +1,10 @@
 .container{
     width: 100%;
     display: flex;
+    @media (max-width: 760px) {
+      flex-direction: column;
+    }
+   
 }
 
 .bottom_text{
@@ -9,6 +13,9 @@
     justify-content: center;
     padding: 12px;
     font-size: 12px;
+    @media (max-width: 760px) {
+      width: 100%
+    }
   }
 
   .text{
@@ -25,7 +32,10 @@
   .text2{
     background: #FFFFFF;
     border-radius: 40px;
-    padding: 3px 16px
+    padding: 3px 16px;
+    @media (max-width: 760px) {
+      width: 220px;
+    }
   }
 
   .text3{

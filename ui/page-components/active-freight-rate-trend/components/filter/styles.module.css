@@ -16,10 +16,6 @@
 	width: 100%;
 	padding: 13px 0;
 	border-radius: 10px;
-
-	@media (max-width: ${({ theme }) = > theme.breakpoints.lg}) {
-		width: 100%;
-	}
 }
 
 .filter_button_Ctn {

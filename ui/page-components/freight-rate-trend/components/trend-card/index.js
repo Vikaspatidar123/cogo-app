@@ -4,11 +4,10 @@ import { useState } from 'react';
 
 import DeleteModal from '../../common/DeleteModal';
 import useDeleteTrendSubscription from '../../hooks/useDeleteTrends';
-import { useRouter } from '@/packages/next';
 
 import styles from './styles.module.css';
 
-
+import { useRouter } from '@/packages/next';
 
 function TrendCard({ trend = {}, fetchLocations = () => {} }) {
 	const { push } = useRouter();

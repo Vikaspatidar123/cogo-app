@@ -15,12 +15,12 @@ import styles from './styles.module.css';
 import { useRouter } from '@/packages/next';
 
 function ActiveFreightRateTrend() {
-	const [isFilterModalOpen, setIsFilterModalOpen] = useState(false);
-	const { back } = useRouter();
 	const { isMobile, general } = useSelector((state) => state);
 	const { query } = general;
 	const id = query.trend_id;
+	const { back } = useRouter();
 
+	const [isFilterModalOpen, setIsFilterModalOpen] = useState(false);
 	const [commodities, setCommodities] = useState('general');
 	const now = new Date();
 	const [dateRangePickerValue, setDateRangePickerValue] = useState({

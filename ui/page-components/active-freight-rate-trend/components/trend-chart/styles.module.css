@@ -1,83 +1,97 @@
-.styled_tip{
-	padding: 6px 8px;
-	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
-	border-radius: 4px;
+.styled_tip {
 	align-items: center;
-	transition: all 0.3s ease 0s;
-	background-color: #070101;
-	opacity: .8;
+	padding: 6px 8px;
 	color: #fff;
-    -webkit-tap-highlight-color: transparent;
+	background-color: #070101;
+	border-radius: 4px;
+	box-shadow: 0 2px 4px rgb(0 0 0 / 40%);
+	opacity: 0.8;
+	transition: all 0.3s ease 0s;
+	-webkit-tap-highlight-color: transparent;
 }
-.line{
-    padding: 10px;
+
+.line {
+	padding: 10px;
 }
-.data{
+
+.data {
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
 }
-.text{
+
+.text {
 	color: #959da5;
 }
-.horizontal1{
-    border: 1px solid #f47560;
+
+.horizontal1 {
+	border: 1px solid #f47560;
 }
-.horizontal2{
+
+.horizontal2 {
 	border: 1px solid red;
 }
-.horizontal3{
-    border: 1px solid #f1e15b;
+
+.horizontal3 {
+	border: 1px solid #f1e15b;
 }
-.chart_container{
+
+.chart_container {
 	margin-top: 20px;
-	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+	box-shadow: 0 2px 4px rgb(0 0 0 / 40%);
+
 	@media screen and (max-width: 767px) {
 		max-width: 800px;
-   		overflow-x: scroll;
+		overflow-x: scroll;
 	}
-
 }
 
-.chart{
-	height: 370px;
+.chart {
 	width: 100%;
+	height: 450px;
 	padding-top: 20px;
+
 	@media screen and (max-width: 767px) {
 		width: fit-content;
 	}
 }
 
-.legend{
-	padding: 10px;
+.legend {
 	display: flex;
 	flex-direction: row;
 	gap: 50px;
+	padding: 10px;
+	float: right;
 }
-.circle1{
-	height: 10px;
+
+.circle1 {
 	width: 10px;
+	height: 10px;
 	background-color: #f1e15b;
 	border-radius: 50%;
 }
-.circle2{
-	height: 10px;
+
+.circle2 {
 	width: 10px;
+	height: 10px;
 	background-color: red;
 	border-radius: 50%;
 }
-.circle3{
-	height: 10px;
+
+.circle3 {
 	width: 10px;
+	height: 10px;
 	background-color: #f47560;
 	border-radius: 50%;
 }
-.legend_list{
+
+.legend_list {
 	display: flex;
 	flex-direction: row;
-	align-items: center;
 	gap: 4px;
+	align-items: center;
 }
-.legend_text{
+
+.legend_text {
 	margin-left: 4px;
 }

@@ -1,5 +1,4 @@
 import { Toast } from '@cogoport/components';
-
 import { useRequest } from '@/packages/request';
 
 const useCreateFreightRate = () => {

@@ -5,10 +5,10 @@ import { useRequest } from '@/packages/request';
 import { useSelector } from '@/packages/store';
 
 const useFetchActiveTrend = () => {
-	const [activefilters, setActiveFilters] = useState({});
-
-	const [activePagination, setActivePagination] = useState({ page: 1 });
 	const { trackers, setTrackers } = useSelector((state) => state);
+
+	const [activefilters, setActiveFilters] = useState({});
+	const [activePagination, setActivePagination] = useState({ page: 1 });
 
 	const [{ loading }, freckTrackerTrigger] = useRequest({
 		url    : '/list_freight_trend_rates',
@@ -16,9 +16,13 @@ const useFetchActiveTrend = () => {
 	}, { manual: true });
 
 	const fetchTrackers = async () => {
+		const checkTracker = Object.keys(activefilters).length > 0;
+
+		if (!checkTracker) {
+			return;
+		}
 		try {
 			const { currency, commodity, ...rest } = activefilters;
-
 			const res = await freckTrackerTrigger({
 				params: {
 					currency : currency || 'USD',
@@ -31,7 +35,6 @@ const useFetchActiveTrend = () => {
 					page_limit : 10,
 				},
 			});
-
 			const { data } = res;
 			setTrackers(data);
 		} catch (err) {
@@ -40,16 +43,8 @@ const useFetchActiveTrend = () => {
 	};
 
 	useEffect(() => {
-		if (Object.keys(activefilters).length > 0) {
-			fetchTrackers();
-		}
+		fetchTrackers();
 	}, [activePagination, activefilters]);
-
-	const refetch = () => {
-		if (Object.keys(activefilters).length > 0) {
-			fetchTrackers();
-		}
-	};
 
 	return {
 		trackers,
@@ -60,7 +55,6 @@ const useFetchActiveTrend = () => {
 		fetchTrackers,
 		setActiveFilters,
 		setActivePagination,
-		refetch,
 	};
 };
 

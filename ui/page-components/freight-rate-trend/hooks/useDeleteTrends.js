@@ -6,6 +6,7 @@ import { useSelector } from '@/packages/store';
 
 const useDeleteTrendSubscription = ({ fetchLocations }) => {
 	const { profile } = useSelector((state) => state);
+	
 	const [trendData, setTrendData] = useState();
 
 	const [{ loading }, deleteTrendTrigger] = useRequest({

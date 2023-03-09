@@ -10,11 +10,9 @@
 
 .heading {
     color: #221F20;
-    font-family: 'Poppins';
     font-weight: 600;
     font-size: 14px;
     line-height: 21px;
-    letter-spacing: -0.3px;
 }
 
 .styled_form_item {

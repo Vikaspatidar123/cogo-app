@@ -1,11 +1,7 @@
 import { Select, DateRangepicker, Popover } from '@cogoport/components';
-import {
-	IcCFcrossInCircle, IcMArrowDown, IcMArrowUp, IcMFilter,
-} from '@cogoport/icons-react';
+import { IcCFcrossInCircle, IcMArrowDown, IcMArrowUp, IcMFilter } from '@cogoport/icons-react';
 import React, { useState } from 'react';
-
 import { COMMODITY_OPTIONS_MAPPING } from '../../common/commodity-mappings';
-
 import filterControls from './filter-controls';
 import styles from './styles.module.css';
 
@@ -45,7 +41,7 @@ function FilterForm({
 						placeholder="Size"
 						value={containerSize}
 						onChange={setContainerSize}
-						options={filterControls[0].options}
+						options={filterControls.find((x) => x.name === 'container-size').options}
 						style={{ width: '150px' }}
 					/>
 				</div>
@@ -55,7 +51,7 @@ function FilterForm({
 						placeholder="type"
 						value={containerType}
 						onChange={setContainerType}
-						options={filterControls[1].options}
+						options={filterControls.find((x) => x.name === 'container_type').options}
 						style={{ width: '150px' }}
 					/>
 				</div>
@@ -78,7 +74,7 @@ function FilterForm({
 						placeholder="USD"
 						value={filteredCurrency}
 						onChange={setFilteredCurrency}
-						options={filterControls[4].options}
+						options={filterControls.find((x) => x.name === 'currency').options}
 						style={{ width: '150px' }}
 					/>
 				</div>
@@ -90,6 +86,7 @@ function FilterForm({
 						style={{ marginRight: '10px' }}
 						value={dateRangePickerValue || new Date(now.setMonth(now.getMonth() - 6))}
 						onChange={setDateRangePickerValue}
+						isPreviousDaysAllowed
 					/>
 				</div>
 			</div>

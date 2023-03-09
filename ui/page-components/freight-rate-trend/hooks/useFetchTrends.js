@@ -31,7 +31,9 @@ const useFetchTrends = ({ pageLimit = 10 }) => {
 			if (hasError) throw new Error();
 
 			const { data } = res;
-			setFreightTrends(data);
+			if (data) {
+				setFreightTrends(data);
+			}
 		} catch (err) {
 			if (Object.keys(err).length > 1) { Toast.error('Unable to fetch trend. Please try again.'); }
 			if (showLoading) setLoading(false);
@@ -77,6 +79,7 @@ const useFetchTrends = ({ pageLimit = 10 }) => {
 	setPagination,
 	fetchLocations,
 	tredList,
+	freightTrends,
 	listloading
 	};
 };

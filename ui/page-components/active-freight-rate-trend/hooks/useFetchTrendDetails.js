@@ -14,6 +14,12 @@ const useFetchTrendDetails = ({ id }) => {
 	const { profile } = useSelector((state) => state);
 	const now = new Date();
 	const fetchScheduleDetails = async () => {
+		const checkScheduleDetails = Object.keys(filters).length > 1;
+		
+		if (!checkScheduleDetails) {
+			return;
+		}
+		
 		try {
 			const {
 				container_size,
@@ -44,10 +50,9 @@ const useFetchTrendDetails = ({ id }) => {
 			Toast.error(err?.message || 'Something went wrong');
 		}
 	};
-	useEffect(() => {
-		if (Object.keys(filters).length > 0) {
-			fetchScheduleDetails();
-		}
+
+	useEffect(() => {	
+		fetchScheduleDetails();	
 	}, [filters]);
 
 	const refetch = () => fetchScheduleDetails(false);

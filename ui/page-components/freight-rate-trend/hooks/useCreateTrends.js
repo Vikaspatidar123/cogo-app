@@ -5,6 +5,7 @@ import { useSelector } from '@/packages/store';
 
 const useCreateTrends = () => {
 	const { profile } = useSelector((state) => state);
+	
 	const [{ loading }, trendTrigger] = useRequest({
 		url    : '/create_freight_trend_subscription',
 		method : 'post',

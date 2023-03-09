@@ -76,11 +76,11 @@
 .table_head {
 	width: auto;
 
-	.ui-table .ui-table-body-cell:last-of-type {
-		padding: 0 25px;
-	}
-
 	.ui-table-body-cell {
 		padding: 16px 23px;
+	}
+
+	.ui-table .ui-table-body-cell:last-of-type {
+		padding: 0 25px;
 	}
 }

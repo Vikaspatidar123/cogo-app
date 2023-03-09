@@ -4,6 +4,17 @@
 	margin-bottom: 15px;
 	padding: 20px 0px 0px 20px;
 
+  :global {
+	.ui_modal_header_container{
+	position: absolute;
+    right: 0%;
+    top: 5px;
+
+	@media(max-width: 768px){
+		top: 0px;
+	}
+	}
+}
 	@media(max-width: 768px){
 		width: 100%;
 	}

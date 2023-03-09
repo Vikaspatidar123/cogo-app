@@ -48,7 +48,9 @@ function AddProductModal({
 			onClose={handleClick}
 			onOuterClick={handleClick}
 		>
+			
 			<div className={styles.styled_div}>
+		
 				<div className={styles.product_icon}>
 					<IcAFormsAndCertificates width={25} height={25} />
 				</div>
@@ -62,7 +64,10 @@ function AddProductModal({
 						You are just a step away from adding your product!
 					</div>
 				</div>
+				<Modal.Header  />
 			</div>
+
+			
 
 			<Pricing
 				addProductLoading={addProductLoading}

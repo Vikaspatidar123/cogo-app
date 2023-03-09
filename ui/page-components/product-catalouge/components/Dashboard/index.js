@@ -39,10 +39,10 @@ function Dashboard({ apiData, activeTab }) {
 	return (
 		<div className={styles.container}>
 			<div className={styles.revenue}>
-				<div title className={`${styles.title}${styles.main_heading}`}>Total Revenue</div>
-				<div>
+				{/* <div title className={`${styles.title}${styles.main_heading}`}>Total Revenue</div> */}
+				{/* <div>
 					<div className="amount">{shortFormatNumber(totalRevenue?.data, 'INR')}</div>
-				</div>
+				</div> */}
 			</div>
 			<div className={styles.card}>
 				<div className={styles.bar} />

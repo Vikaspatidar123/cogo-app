@@ -91,7 +91,7 @@
 .flex {
 	direction: column;
 	justify-content: space-between;
-	wrap: wrap;
+	flex-wrap: wrap;
 	height: 100%;
 }
 

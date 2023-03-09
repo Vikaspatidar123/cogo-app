@@ -11,9 +11,22 @@ function Section2({ viewQuoteData = {} }) {
 				</p>
 			</div>
 			<div className={styles.icons}>
-				<img className={styles.origin} src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/svg.svg" alt="cogo" />
-				<img className={styles.img} src="https://cogoport-production.sgp1.digitaloceanspaces.com/df6934846ee83d2177bb7e53981fb2f2/MicrosoftTeams-image%20%285%29.png" />
-				<img className={styles.destination} src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/svg.svg" alt="cogo" />
+				<img
+					className={styles.origin}
+					src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/svg.svg"
+					alt="cogo"
+				/>
+				<img
+					className={styles.img}
+					// eslint-disable-next-line max-len
+					src="https://cogoport-production.sgp1.digitaloceanspaces.com/df6934846ee83d2177bb7e53981fb2f2/MicrosoftTeams-image%20%285%29.png"
+					alt="cogo"
+				/>
+				<img
+					className={styles.destination}
+					src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/svg.svg"
+					alt="cogo"
+				/>
 			</div>
 			<div className={styles.icon2}>
 				<div className={styles.Morro}>{viewQuoteData.originPortName}</div>

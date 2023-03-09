@@ -1,3 +1,4 @@
+import iconUrl from '../../utils/iconUrl.json';
 import useViewQuote from '../hooks/useViewQuote';
 
 import Bottompage from './Sections/Bottompage';
@@ -5,18 +6,22 @@ import Buttn from './Sections/Buttons';
 import Container from './Sections/Container';
 import ProductDetails from './Sections/ProductDetails';
 import Section1 from './Sections/Section1';
-import QuotationDetails from './Sections/Section1/QuotationDetails';
-import Section2 from './Sections/section2';
+import Section2 from './Sections/Section2';
 import styles from './styles.module.css';
 
 function ViewQuotation() {
 	const {
 		loading, viewQuoteData,
 	} = useViewQuote();
-	console.log(viewQuoteData, 'viewQuoteData');
 	const { products = [], buyerDetails = {} } = viewQuoteData || {};
 	return (
 		<>
+			{loading && (
+				<div className={styles.loader}>
+					<img src={iconUrl.loading} alt="loading" className={styles.cogoloader} />
+					<div className={styles.modal} />
+				</div>
+			)}
 			<div className={styles.mainclass}>
 				<div className={styles.top}>
 					<div className={styles.icon}>

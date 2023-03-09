@@ -1,10 +1,9 @@
-import Quotationdetails from './Quotationdetails';
+import Quotationdetails from './QuotationDetails';
 import styles from './styles.module.css';
 
 function Section1({ viewQuoteData = {} }) {
 	const k = viewQuoteData.buyerDetails;
-	console.log('k', k);
-	// console.log('hi', viewQuoteData.buyerDetails.address);
+
 	return (
 		<div className={styles.section1_data}>
 			<div className={styles.to_address}>

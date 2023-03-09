@@ -80,6 +80,7 @@ const useMyProfile = () => {
 		setShowPasswordModal,
 		getChannelPartnerUser,
 		onClickBackButton,
+		organizationLoading,
 	};
 };
 

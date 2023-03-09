@@ -1,6 +1,6 @@
-import { A } from '../styles';
+import { useRouter } from '../../../../../packages/next';
 
-import { useRouter } from '@/temp/next';
+import styles from './styles.module.css';
 
 function ManageSubscriptions() {
 	const router = useRouter();
@@ -10,9 +10,9 @@ function ManageSubscriptions() {
 	};
 
 	return (
-		<A as="button" onClick={() => subscriptions()}>
+		<div className={styles.a_container} role="presentation" onClick={() => subscriptions()}>
 			Manage Subscriptions
-		</A>
+		</div>
 	);
 }
 

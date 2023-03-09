@@ -1,159 +1,150 @@
 .container {
-  width: 250px;
+	width: 250px;
 }
-.a:hover {
+
+/* .a:hover {
   opacity: 0.8;
+} */
+
+.a_container {
+	display: block;
+	width: 100%;
+	padding: 0;
+	margin: 16px 0;
+	font-size: 14px;
+	line-height: 16px;
+	color: black;
+	text-align: left;
+	text-decoration: none;
+	cursor: pointer;
+	background: transparent;
+	border: none;
+	outline: none;
+	box-shadow: none;
 }
 
-.A {
-  text-decoration: none;
-  outline: none;
-  background: transparent;
-  padding: 0;
-  border: none;
-  box-shadow: none;
-  margin: 16px 0;
-
-  font-size: 14px;
-  line-height: 16px;
-
-  color: black;
-
-  display: block;
-
-  width: 100%;
-  text-align: left;
-  cursor: pointer;
+.a:hover {
+	text-decoration: underline;
+	opacity: 0.8;
 }
 
-.A:hover {
-  text-decoration: underline;
-}
 .sub_navlink {
-  margin: 0.5rem 0;
+	margin: 0.5rem 0;
 }
 
 .profile_header {
-  background: #f5fafe;
-  padding: 6px 8px;
-  border-radius: 4px;
-  margin: 0 -9px;
-
-  /* cursor: ${(props) =>
-		props.isTermsAndConditionAccepted ? '' : 'not-allowed'}; */
-
-  display: flex;
-  flex-direction: row;
-  align-items: center;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	padding: 6px 8px;
+	margin: 0 -9px;
+	background: #f5fafe;
+	border-radius: 4px;
 }
 
 .styled_avatar {
-  height: 42px;
-  width: 42px;
-
-  margin-right: 6px;
-  cursor: pointer;
+	width: 42px;
+	height: 42px;
+	margin-right: 6px;
+	cursor: pointer;
 }
 
 .user_details {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
+	display: flex;
+	flex-direction: column;
+	width: 100%;
 }
 
 .business_name_container {
-  font-weight: 300;
-  font-size: 11px;
-  line-height: 12px;
-  display: flex;
-  align-items: center;
-  letter-spacing: 0.02em;
-  color: #000000;
+	display: flex;
+	align-items: center;
+	font-size: 11px;
+	font-weight: 300;
+	line-height: 12px;
+	color: #000;
+	letter-spacing: 0.02em;
 }
 
 .business_name {
-  max-width: 72%;
+	max-width: 72%;
 }
 
 .kyc_submited {
-  margin: 0 0 0 8px;
-
-  font-weight: 400;
-  font-size: 10px;
-  display: flex;
-  align-items: center;
-  color: #67c676;
+	display: flex;
+	align-items: center;
+	margin: 0 0 0 8px;
+	font-size: 10px;
+	font-weight: 400;
+	color: #67c676;
 }
 
 .kyc_rejected {
-  margin: 0 0 0 8px;
-
-  font-weight: 400;
-  font-size: 10px;
-  display: flex;
-  align-items: center;
-  color: #cb6464;
+	display: flex;
+	align-items: center;
+	margin: 0 0 0 8px;
+	font-size: 10px;
+	font-weight: 400;
+	color: #cb6464;
 }
-.name {
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 16px;
-  display: flex;
-  align-items: center;
-  letter-spacing: 0.02em;
-  color: #333333;
 
-  cursor: pointer;
+.name {
+	display: flex;
+	align-items: center;
+	font-size: 14px;
+	font-weight: 500;
+	line-height: 16px;
+	color: #333;
+	letter-spacing: 0.02em;
+	cursor: pointer;
 }
 
 .separator {
-  width: 100%;
-  border: 0.5px solid #bdbdbd;
-
-  margin: 8px 0;
+	width: 100%;
+	margin: 8px 0;
+	border: 0.5px solid #bdbdbd;
 }
+
 .logout_container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 .account_settings {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 .name_and_switch_account_text {
-  width: 100%;
-
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-
-  margin-bottom: 6px;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	width: 100%;
+	margin-bottom: 6px;
 }
-.switch_account_text {
-  font-weight: 300;
-  font-size: 12px;
-  display: flex;
-  align-items: center;
-  text-decoration-line: underline;
-  color: #034afd;
 
-  cursor: pointer;
+.switch_account_text {
+	display: flex;
+	align-items: center;
+	font-size: 12px;
+	font-weight: 300;
+	color: #034afd;
+	text-decoration-line: underline;
+	cursor: pointer;
 }
 
 .subscription_container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-bottom: 1px solid #e0e0e0;
-  border-top: 1px dashed silver;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-top: 1px dashed silver;
+	border-bottom: 1px solid #e0e0e0;
 }
+
 .flex {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  margin-left: 0.5rem;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+	margin-left: 0.5rem;
 }

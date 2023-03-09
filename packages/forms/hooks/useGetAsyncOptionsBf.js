@@ -1,8 +1,8 @@
 import { merge } from '@cogoport/utils';
 
-import useDebounceQuery from './useDebounceQuery';
+import { useRequestBf } from '../../request';
 
-import { useRequestBf } from '@/packages/request';
+import useDebounceQuery from './useDebounceQuery';
 
 function useGetAsyncOptionsBf({
 	endpoint = '',

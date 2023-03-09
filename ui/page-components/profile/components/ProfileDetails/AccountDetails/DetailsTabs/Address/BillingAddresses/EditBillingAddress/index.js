@@ -14,7 +14,6 @@ function EditBillingAddress({
 	handleCloseModal = () => { },
 }) {
 	const {
-		formState,
 		control,
 		fields,
 		showElements,

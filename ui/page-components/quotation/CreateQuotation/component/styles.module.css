@@ -18,3 +18,13 @@
 		}
 	}
 }
+
+.btn_container{
+	margin: 20px 0;
+	display: flex;
+	justify-content: flex-end;
+
+	.back_btn{
+		margin-right: 12px;
+	}
+}

@@ -76,6 +76,12 @@
 }
 .input_box{
 	width: 50%;
+
+	:global{
+		.ui_input_suffix{
+			width:75px;
+		}
+	}
 }
 .hr{
 	height: 0;
@@ -87,7 +93,6 @@
 	border-radius: 5px;
 	padding: 4px;
 	cursor: pointer;
-	/* margin-left: 10px; */
 	svg {
 		vertical-align: bottom;
 	}
@@ -115,4 +120,9 @@
 	font-weight: bold;
 	font-size: 18px;
 	margin: 14px 0;
+}
+
+.charge_scroll{
+	max-height: 127px;
+	overflow-y: scroll;
 }

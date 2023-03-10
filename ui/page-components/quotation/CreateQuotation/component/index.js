@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { Button } from '@cogoport/components';
+import { useState, useRef, forwardRef } from 'react';
 
 import headerFields from '../configuration/headerControls';
 
@@ -14,6 +15,7 @@ import { useSelector } from '@/packages/store';
 
 function CreateQuotation() {
 	const { id, organization } = useSelector((state) => state?.profile);
+	const quoteRef = useRef();
 	const [transportMode, setTransportMode] = useState('OCEAN');
 
 	const {
@@ -22,6 +24,12 @@ function CreateQuotation() {
 	} = useForm();
 
 	const newHeaderFields = headerFields({ id, organization });
+
+	const submitForm = async () => {
+		const resp = await quoteRef.current.handleSubmit();
+		console.log(resp, 'data');
+	};
+
 	return (
 		<div>
 			<Header control={headerControls} fields={newHeaderFields} />
@@ -33,15 +41,22 @@ function CreateQuotation() {
 						transportMode={transportMode}
 						setTransportMode={setTransportMode}
 					/>
-					<AllDetails transportMode={transportMode} />
+					<AllDetails
+						transportMode={transportMode}
+						ref={quoteRef}
+					/>
 					<ProductDetails />
 				</div>
 				<div className={styles.charge_section}>
 					<Charges />
 				</div>
 			</div>
+			<div className={styles.btn_container}>
+				<Button themeType="secondary" size="lg" className={styles.back_btn}>Back</Button>
+				<Button size="lg" onClick={submitForm}>Create Quotation</Button>
+			</div>
 		</div>
 	);
 }
 
-export default CreateQuotation;
+export default forwardRef(CreateQuotation);

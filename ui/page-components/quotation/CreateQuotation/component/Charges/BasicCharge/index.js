@@ -1,8 +1,22 @@
-import { cl } from '@cogoport/components';
+import { cl, Button } from '@cogoport/components';
 
 import styles from '../styles.module.css';
 
 import getField from '@/packages/forms/Controlled';
+
+const style = {
+	padding  : ' 0px',
+	fontSize : '9px',
+};
+const getSuffix = (name) => {
+	if (name === 'basicFreightCharges') {
+		return <Button size="sm" style={style} themeType="linkUi">GET RATES</Button>;
+	}
+	if (name === 'dutiesAndTaxes') {
+		return <Button size="sm" style={style} themeType="linkUi">GET DUTIES</Button>;
+	}
+	return null;
+};
 
 const BasicCharge = ({ fields, control }) => (fields || []).map((field, index) => {
 	// eslint-disable-next-line react/jsx-no-useless-fragment
@@ -15,6 +29,7 @@ const BasicCharge = ({ fields, control }) => (fields || []).map((field, index) =
 				{...field}
 				control={control}
 				className={cl`${styles.input_box} ${styles[field?.className]}`}
+				suffix={getSuffix(field?.name)}
 			/>
 		</div>
 	);

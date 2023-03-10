@@ -4,6 +4,7 @@ import { useCallback, useEffect } from 'react';
 
 import MappingConstant from '../../../utils/incotermConstant';
 import Item from '../Item';
+import styles from '../styles.module.css';
 
 import { useFieldArray } from '@/packages/forms';
 
@@ -45,7 +46,7 @@ function IncoTermCharge(props) {
 	return (
 		<>
 
-			<div>
+			<div className={styles.charge_scroll}>
 				{(fields || []).map((field, index) => (
 					<Item
 						key={field?.id}

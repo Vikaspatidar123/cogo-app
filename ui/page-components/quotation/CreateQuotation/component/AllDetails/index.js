@@ -1,8 +1,10 @@
+import { forwardRef } from 'react';
+
 import Details from './Details';
 import styles from './styles.module.css';
 import Transportation from './Transportation';
 
-function AllDetails({ transportMode = 'OCEAN' }) {
+function AllDetails({ transportMode = 'OCEAN' }, ref) {
 	return (
 		<div className={styles.container}>
 			<div className={styles.map}>
@@ -12,10 +14,10 @@ function AllDetails({ transportMode = 'OCEAN' }) {
 				<Transportation />
 			</div>
 			<div className={styles.details}>
-				<Details transportMode={transportMode} />
+				<Details transportMode={transportMode} ref={ref} />
 			</div>
 		</div>
 	);
 }
 
-export default AllDetails;
+export default forwardRef(AllDetails);

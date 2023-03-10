@@ -1,14 +1,16 @@
+import { forwardRef } from 'react';
+
 import ContainerDetails from './ContainerDetails';
 import PackageDetails from './PackageDetails';
 
-function Details({ transportMode = 'AIR' }) {
+function Details({ transportMode = 'AIR' }, ref) {
 	return (
 		<>
-			{ transportMode === 'OCEAN' && <ContainerDetails />}
+			{ transportMode === 'OCEAN' && <ContainerDetails ref={ref} />}
 			{transportMode === 'AIR' && <PackageDetails />}
 		</>
 
 	);
 }
 
-export default Details;
+export default forwardRef(Details);

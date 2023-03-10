@@ -1,5 +1,6 @@
 import { cl, Button } from '@cogoport/components';
 import { IcMFcl } from '@cogoport/icons-react';
+import { useImperativeHandle, forwardRef } from 'react';
 
 import containerDetailsFields from '../../../../configuration/containerDetailsControls';
 import styles from '../styles.module.css';
@@ -7,11 +8,12 @@ import styles from '../styles.module.css';
 import { useForm } from '@/packages/forms';
 import getField from '@/packages/forms/Controlled';
 
-function ContainerDetails() {
+function ContainerDetails(props, ref) {
 	const {
 		control,
 		watch,
 		// formState: { errors },
+		handleSubmit,
 	} = useForm({
 		defaultValues: {
 			serviceType    : 'FCL_FREIGHT',
@@ -22,6 +24,34 @@ function ContainerDetails() {
 	});
 	const SelectController = getField('select');
 	const watchSericeType = watch('serviceType');
+
+	const val = watch();
+	console.log('val::', val);
+
+	const imperativeHandle = () => ({
+		handleSubmit: () => {
+			const onSubmit = (data) => data;
+
+			return handleSubmit((values) => (onSubmit(values)))();
+		},
+	});
+
+	useImperativeHandle(ref, () => ({
+		handleSubmit: () => {
+			const onSubmit = (values) => values;
+
+			const onError = (error) => error;
+
+			return new Promise((resolve) => {
+				handleSubmit(
+					(values) => resolve(onSubmit(values)),
+					(error) => resolve(onError(error)),
+				)();
+			});
+		},
+	}));
+	// useImperativeHandle(ref, imperativeHandle);
+
 	return (
 		<div className={styles.container}>
 			<div className={styles.header}>
@@ -68,4 +98,4 @@ function ContainerDetails() {
 	);
 }
 
-export default ContainerDetails;
+export default forwardRef(ContainerDetails);

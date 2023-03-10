@@ -1,0 +1,59 @@
+.main_card {
+    background: #ffffff;
+	border-bottom: 1px solid #cedcea;
+}
+
+.card {
+    background: #ffffff;
+	height: 60px;
+	display: flex;
+	padding: 0px 20px;
+	justify-content: space-between;
+	align-items: center;
+	cursor: pointer;
+}
+
+.text {
+    font-weight: 400;
+	font-size: 14px;
+}
+
+.cursor {
+    cursor: pointer;
+}
+
+.text_div_hidden {
+    background: #ffffff;
+	color: #828282;
+    max-height: 0;
+	overflow: hidden;
+	transition: 0.6s ease-in-out;
+	padding: 0px 20px;
+	overflow: scroll;
+}
+
+.text_div {
+    background: #ffffff;
+	color: #828282;
+    max-height: 300px;
+	overflow: hidden;
+	transition: 0.6s ease-in-out;
+	padding: 0px 20px;
+	overflow: scroll;
+}
+
+.line {
+    border: 1px solid #e9ebf0;
+}
+
+.card_text {
+    padding: 10px 10px 10px 0px;
+	font-weight: 400;
+	font-size: 14px;
+}
+
+.answer {
+    padding: 3px;
+	font-weight: 400;
+	font-size: 14px;
+}

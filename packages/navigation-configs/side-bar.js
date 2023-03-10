@@ -34,6 +34,7 @@ const getSideBarConfigs = (
 
 		(navMappingKeys || []).forEach((key) => {
 			const { showInNav = true } = navigationMappings?.[key] || {};
+
 			if (
 				key
 				&& showInNav

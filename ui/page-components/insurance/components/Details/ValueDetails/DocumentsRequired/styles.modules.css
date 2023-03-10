@@ -1,0 +1,29 @@
+.docs_container {
+    margin-right: 42px;
+    padding: 5px;
+    width: 100%;
+}
+
+@media screen and (max-width: 767px) {
+    margin-right: 0px;
+}
+.docs {
+    display: grid;
+    grid-template-columns: 18% 50%;
+    align-items: center;
+}
+.docs div:nth-child(2) {
+    padding: 1px !important;
+}
+.column {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+.error_message {
+    font-size: 14px;
+	color:#CB6464;
+}

@@ -1,0 +1,56 @@
+.heading {
+    font-weight: 700;
+	font-size: 20px;
+	color: #000000;
+	display: flex;
+	align-items: center;
+	padding: 10px 10px;
+}
+
+.center {
+    display: flex;
+    align-items: center;
+    padding: 4px 0px;
+}
+
+.text_type {
+	padding-left: 10px;
+}
+
+.segmented_container {
+    display: flex;
+	justify-content: space-between;
+}
+
+.segmented_container_mobile{
+    display: flex;
+	justify-content: space-between;
+    padding: 10px; 
+}
+
+.segmented {
+    display: flex;
+	padding-left: 38px;
+}
+
+.faq_hidden {
+	width: 60px;
+	height: 45px;
+	display: none;
+	cursor: pointer;
+}
+
+.faq {
+	width: 60px;
+	height: 45px;
+	display: block;
+	cursor: pointer;
+}
+
+.arrow_back {
+    cursor: pointer;
+}
+
+.chips {
+ 	gap : 0px !important;
+}

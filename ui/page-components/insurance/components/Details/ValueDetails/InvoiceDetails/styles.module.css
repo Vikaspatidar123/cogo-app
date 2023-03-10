@@ -1,0 +1,24 @@
+.error_message {
+    font-size: 14px;
+	color:#CB6464;
+}
+
+.col {
+	padding: 8px !important;
+}
+
+.hidden {
+    display: none;
+}
+
+.display {
+    display: block;
+    transform: translate(10px, -52px);
+    color: #697989 !important;
+    opacity: 1 !important;
+    position: absolute;
+    background-color: white;
+    transition: transform 1.4s;
+    padding-right: 4px !important;
+    padding-left: 4px !important;
+}

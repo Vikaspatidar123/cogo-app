@@ -1,0 +1,88 @@
+.container {
+    height: 100%;
+    background-color: white;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    box-shadow: 0px 17.8337px 60.0918px rgba(71, 111, 211, 0.11),
+        0px 2.23306px 18.612px rgba(71, 111, 211, 0.055);
+    border-radius: 16px;
+    padding: 5px 0px;
+}
+
+.yellow_line {
+    border-radius: 0px 40px 40px 0px;
+	border: 3.5px solid #fcdc00;
+	height: 35%;
+	top: 32%;
+	position: absolute;
+	background-color: #fcdc00;
+}
+
+.padded_div {
+    padding-left: 15px;
+}
+
+.heading_wrapper {
+    padding: 8px;
+	display: flex;
+	flex-direction: column;
+	width: 35%;
+}
+
+.invoice_details_mobile {
+    padding: 8px;
+	display: flex;
+	flex-direction: column;
+    width: 100%;
+}
+
+.heading_wrapper_mobile {
+    padding: 8px;
+	display: flex;
+	flex-direction: column;
+	width:100% ;
+}
+
+.invoice_details {
+    padding: 8px;
+	display: flex;
+	flex-direction: column;
+    width: 85% ;
+}
+
+.flex_2 {
+    display: flex;
+	width: 100%;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.heading {
+    font-weight: 500;
+	font-size: 18px;
+}
+
+.line_wrapper {
+    display: flex;
+	width: 30%;
+}
+
+.line {
+    height: 3px;
+	border-width: 0;
+	background-color: #f68b21;
+	flex-grow: 1;
+}
+
+.content_wrapper {
+    display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
+.row {
+    display: flex;
+    align-items: center !important;
+	padding: 10px;
+}

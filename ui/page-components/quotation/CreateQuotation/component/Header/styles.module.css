@@ -1,0 +1,64 @@
+.container{
+    background: #fada29;
+    padding: 30px;
+    padding-top: 20px;
+}
+
+.title_container{
+    display: flex;
+    align-items: center;
+
+    h1{
+        margin: 0;
+        font-weight: 700;
+    }
+}
+
+.icon_container{
+    display: flex;
+    border-radius: 50%;
+    margin-right: 10px;
+    padding: 3px;
+    border: 1.3px solid black;
+    cursor: pointer;
+}
+
+.field_row{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 22px;
+}
+
+.field_col{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 36%;
+
+    :global{
+        .ui_select_container{
+            width: 63%;
+        }
+    }
+}
+
+.or_tag {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 3px;
+}
+.line {
+    height: 0;
+    width: 14px;
+    border-top: 1.7px solid #000;
+}
+.text {
+    font-weight: 500;
+    font-size: 13px;
+}
+
+.seller_col{
+    width: 28%;
+}

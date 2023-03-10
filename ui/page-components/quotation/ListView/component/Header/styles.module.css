@@ -1,0 +1,20 @@
+.container {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-bottom: 20px;
+}
+
+.flex_container {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.create_btn {
+	margin-left: 12px;
+}
+
+.btn_text {
+	margin: 0 4px;
+}

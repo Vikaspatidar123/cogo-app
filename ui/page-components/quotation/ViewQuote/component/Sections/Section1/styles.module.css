@@ -1,0 +1,38 @@
+.section1_data {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-bottom: 80px;
+	-webkit-box-pack: justify;
+	-webkit-box-align: center;
+
+	@media screen and (max-width: 767px) {
+		flex-direction: column-reverse;
+		-webkit-box-align: stretch;
+		align-items: stretch;
+		margin-bottom: 25px;
+	}
+}
+
+.to_address {
+	width: 60%;
+
+	@media screen and (max-width: 767px) {
+		width: 100%;
+	}
+}
+
+.Quote_details {
+	@media screen and (max-width: 767px) {
+		margin-bottom: 25px;
+	}
+}
+
+.bill {
+	margin: 0;
+
+	@media screen and (max-width: 767px) {
+		font-size: 14px;
+		text-transform: uppercase;
+	}
+}

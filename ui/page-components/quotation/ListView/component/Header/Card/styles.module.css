@@ -1,0 +1,37 @@
+.container {
+	display: flex;
+	align-items: flex-start;
+	width: 200px;
+	padding: 12px;
+	margin-right: 20px;
+	background-color: #e5eef8;
+	border-radius: 8px;
+}
+
+.icon_container {
+	padding: 3px;
+	background-color: #afc8e4;
+	border-radius: 7px;
+
+	svg {
+		vertical-align: top;
+	}
+}
+
+.info {
+	margin-left: 20px;
+	font-weight: 600;
+}
+
+.text {
+	margin: 0;
+}
+
+.value {
+	font-size: 20px;
+}
+
+.loading {
+	width: 50px;
+	height: 30px;
+}

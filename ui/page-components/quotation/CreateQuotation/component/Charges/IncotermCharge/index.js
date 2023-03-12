@@ -9,7 +9,7 @@ import styles from '../styles.module.css';
 import { useFieldArray } from '@/packages/forms';
 
 function IncoTermCharge(props) {
-	const { control, chargeFields, watch, name, index: i } = props || {};
+	const { control, chargeFields, errors, watch, name, index: i } = props || {};
 
 	const { fields, append, remove } = useFieldArray({
 		control,
@@ -55,6 +55,8 @@ function IncoTermCharge(props) {
 						remove={remove}
 						control={control}
 						controls={chargeFields[i].controls}
+						name={name}
+						errors={errors[name]}
 					/>
 				))}
 			</div>

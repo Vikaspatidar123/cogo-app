@@ -18,7 +18,12 @@ function AsyncSelectController(props) {
 				<AsyncSelect
 					{...rest}
 					key={rest.id}
-					onChange={onChange}
+					onChange={(val, obj) => {
+						onChange(val, obj);
+						if (rest?.handleChange) {
+							rest.handleChange(obj);
+						}
+					}}
 					value={newValue}
 					onBlur={onBlur}
 					data-test-value={value}

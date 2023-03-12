@@ -1,10 +1,11 @@
 import { Button } from '@cogoport/components';
 import { IcMBreakBulkCargoType } from '@cogoport/icons-react';
+import { forwardRef } from 'react';
 
 import List from './List';
 import styles from './styles.module.css';
 
-function ProductDetails() {
+function ProductDetails(props, ref) {
 	return (
 		<div className={styles.container}>
 			<div className={styles.header_row}>
@@ -17,10 +18,10 @@ function ProductDetails() {
 				<Button themeType="secondary">Product Catalogue</Button>
 			</div>
 			<div>
-				<List />
+				<List ref={ref} />
 			</div>
 		</div>
 	);
 }
 
-export default ProductDetails;
+export default forwardRef(ProductDetails);

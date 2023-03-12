@@ -1,5 +1,5 @@
 import { cl } from '@cogoport/components';
-// import { isEmpty } from '@cogoport/utils';
+import { useCallback, forwardRef, useImperativeHandle } from 'react';
 
 import { productFieldArr } from '../../../configuration/productControls';
 
@@ -8,51 +8,70 @@ import Item from './Item';
 import styles from './styles.module.css';
 
 import { useForm, useFieldArray } from '@/packages/forms';
+import { shortFormatNumber } from '@/ui/commons/utils/getShortFormatNumber';
 
-function List() {
+function List(props, ref) {
 	const {
 		control,
+		watch,
+		setValue,
+		handleSubmit,
+		formState: { errors },
 	} = useForm();
 
-	const { fields, append, remove } = useFieldArray({
+	const { fields, remove, prepend } = useFieldArray({
 		name: 'products',
 		control,
 	});
+	const { products:watchFieldArr } = watch();
 
-	// if (isEmpty(fields)) {
-	// 	append({
-	// 		productId           : '7419c4ce-f14d-4c72-b783-c89985e091e6',
-	// 		name                : 'ak47',
-	// 		description         : 'horse power 740 watt',
-	// 		hsCode              : '93011090',
-	// 		quantity            : '',
-	// 		productCurrency     : 'INR',
-	// 		productExchangeRate : 1,
-	// 		price               : '66.0000',
-	// 		product_price       : '',
-	// 		discountAmount      : 0,
-	// 		taxAmount           : 0,
-	// 		actualPrice         : '66.0000',
-	// 		id                  : '6fd13417-708b-45ea-888c-f02a4dd9b346',
-	// 	});
-	// }
+	const calTotalPrice = useCallback(() => {
+		const value = watchFieldArr?.reduce(
+			(prevObj, currObj) => +prevObj + +currObj.product_price,
+			0,
+		);
+		return value;
+	}, [watchFieldArr]);
+
+	useImperativeHandle(ref, () => ({
+		handleSubmit: () => {
+			const onSubmit = (values) => values;
+
+			const onError = () => true;
+
+			return new Promise((resolve) => {
+				handleSubmit(
+					(values) => resolve(onSubmit(values)),
+					(error) => resolve(onError(error)),
+				)();
+			});
+		},
+	}));
+
 	return (
 		<>
 			<div className={styles.container}>
-				<FormItem append={append} />
+				<FormItem
+					prepend={prepend}
+					watchList={watch}
+					setValueList={setValue}
+					watchFieldArr={watchFieldArr}
+				/>
 
 				<div className={styles.product_list}>
 					{(fields || []).map((field, index) => (
-						<div className={styles.product_line_items}>
+						<div key={field?.id} className={styles.product_line_items}>
 							<div className={styles.row}>
 								<Item
 									key={field?.id}
-									{...productFieldArr}
 									productInfo={field}
-									control={control}
 									remove={remove}
 									index={index}
+									control={control}
 									controls={productFieldArr[0]?.controls}
+									watch={watch}
+									setValue={setValue}
+									errors={errors?.products}
 								/>
 							</div>
 						</div>
@@ -62,8 +81,8 @@ function List() {
 			</div>
 			<div className={cl`${styles.row} ${styles.total_value}`}>
 				<h3>
-					Consignment Total :0
-					{/* {shortFormatNumber(calTotalPrice(), currency || 'INR') || 0} */}
+					Consignment Total :
+					{shortFormatNumber(calTotalPrice(), 'INR') || 0}
 				</h3>
 			</div>
 		</>
@@ -71,4 +90,4 @@ function List() {
 	);
 }
 
-export default List;
+export default forwardRef(List);

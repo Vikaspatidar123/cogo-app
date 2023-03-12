@@ -1,5 +1,6 @@
 import { cl } from '@cogoport/components';
 import { IcMFfcl } from '@cogoport/icons-react';
+import { useImperativeHandle, forwardRef } from 'react';
 
 import packageDetailsControls from '../../../../configuration/packageDetailsControls';
 import styles from '../styles.module.css';
@@ -7,16 +8,33 @@ import styles from '../styles.module.css';
 import { useForm } from '@/packages/forms';
 import getField from '@/packages/forms/Controlled';
 
-function PackageDetails() {
+function PackageDetails(props, ref) {
 	const {
 		control,
-		// formState: { errors },
+		handleSubmit,
+		formState: { errors },
 	} = useForm({
 		defaultValues: {
 			packageHandling : 'STACKABLE',
 			packageType     : 'BOX',
 		},
 	});
+
+	useImperativeHandle(ref, () => ({
+		handleSubmit: () => {
+			const onSubmit = (values) => values;
+
+			const onError = () => true;
+
+			return new Promise((resolve) => {
+				handleSubmit(
+					(values) => resolve(onSubmit(values)),
+					(error) => resolve(onError(error)),
+				)();
+			});
+		},
+	}));
+
 	return (
 		<div className={styles.container}>
 			<div className={styles.header}>
@@ -34,7 +52,12 @@ function PackageDetails() {
 								${styles?.[field?.className]} }`}
 						>
 							<p className={styles.label}>{field.label}</p>
-							<Element {...field} control={control} />
+							<Element
+								{...field}
+								control={control}
+								className={cl`${errors?.[field?.name] && styles.error} `}
+
+							/>
 						</div>
 
 					);
@@ -45,4 +68,4 @@ function PackageDetails() {
 	);
 }
 
-export default PackageDetails;
+export default forwardRef(PackageDetails);

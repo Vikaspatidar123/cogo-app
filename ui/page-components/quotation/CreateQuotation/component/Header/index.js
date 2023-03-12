@@ -1,12 +1,13 @@
 import { cl, Button } from '@cogoport/components';
 import { IcMArrowBack, IcMPlus } from '@cogoport/icons-react';
+import { forwardRef } from 'react';
 
 import SellerAddress from './SellerAddress';
 import styles from './styles.module.css';
 
 import getField from '@/packages/forms/Controlled';
 
-function Header({ control, fields }) {
+function Header({ control, fields }, ref) {
 	const SelectController = getField(fields[0]?.type);
 	return (
 		<div className={styles.container}>
@@ -30,11 +31,11 @@ function Header({ control, fields }) {
 					</Button>
 				</div>
 				<div className={styles.seller_col}>
-					<SellerAddress />
+					<SellerAddress ref={ref} />
 				</div>
 			</div>
 		</div>
 	);
 }
 
-export default Header;
+export default forwardRef(Header);

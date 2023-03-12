@@ -18,17 +18,17 @@ const getSuffix = (name) => {
 	return null;
 };
 
-const BasicCharge = ({ fields, control }) => (fields || []).map((field, index) => {
+const BasicCharge = ({ fields, control, errors }) => (fields || []).map((field, index) => {
 	// eslint-disable-next-line react/jsx-no-useless-fragment
 	if (index === 0 || index > 3) return <></>;
 	const Element = getField(field?.type);
 	return (
-		<div className={cl`${styles.flex_box} ${styles.row}`}>
+		<div className={cl`${styles.flex_box} ${errors?.[field?.name] && styles.error}  ${styles.row}`}>
 			<p className={styles.label}>{field?.label}</p>
 			<Element
 				{...field}
 				control={control}
-				className={cl`${styles.input_box} ${styles[field?.className]}`}
+				className={cl`${styles.input_box} ${styles[field?.className]} `}
 				suffix={getSuffix(field?.name)}
 			/>
 		</div>

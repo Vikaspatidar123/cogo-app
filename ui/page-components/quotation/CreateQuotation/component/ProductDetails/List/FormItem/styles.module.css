@@ -20,3 +20,24 @@
 		margin-left:3px;
 	}
 }
+
+.error{
+	&:hover{
+		border: none;
+	}
+	input{
+		border:1px solid red;
+	}
+	:global {
+		.ui_select_display_container{
+			border:1px solid red;
+
+			input{
+				border: none
+			}
+		}
+		.ui_select_display_container:hover{
+			border-color: red;
+		}
+	}
+}

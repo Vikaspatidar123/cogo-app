@@ -2,6 +2,7 @@ import { Button } from '@cogoport/components';
 import { useState, useRef, forwardRef } from 'react';
 
 import headerFields from '../configuration/headerControls';
+import getHandleSubmitData from '../utils/getHandleSubmitdata';
 
 import AllDetails from './AllDetails';
 import Charges from './Charges';
@@ -15,24 +16,29 @@ import { useSelector } from '@/packages/store';
 
 function CreateQuotation() {
 	const { id, organization } = useSelector((state) => state?.profile);
-	const quoteRef = useRef();
+	const quoteRef = useRef({});
 	const [transportMode, setTransportMode] = useState('OCEAN');
 
 	const {
 		control:headerControls,
+		handleSubmit,
 		// formState: { errors: headerError },
 	} = useForm();
 
 	const newHeaderFields = headerFields({ id, organization });
 
 	const submitForm = async () => {
-		const resp = await quoteRef.current.handleSubmit();
-		console.log(resp, 'data');
+		const resp = await getHandleSubmitData({ quoteRef: quoteRef.current, headerHandleSubmit: handleSubmit });
+		console.log(typeof resp, 'resp', resp);
 	};
 
 	return (
 		<div>
-			<Header control={headerControls} fields={newHeaderFields} />
+			<Header
+				control={headerControls}
+				fields={newHeaderFields}
+				ref={(r) => { quoteRef.current.sellerAddress = r; }}
+			/>
 			<div className={styles.container}>
 				<div className={styles.details_section}>
 					<OptSelector
@@ -45,10 +51,10 @@ function CreateQuotation() {
 						transportMode={transportMode}
 						ref={quoteRef}
 					/>
-					<ProductDetails />
+					<ProductDetails ref={(r) => { quoteRef.current.product = r; }} />
 				</div>
 				<div className={styles.charge_section}>
-					<Charges />
+					<Charges ref={(r) => { quoteRef.current.charges = r; }} />
 				</div>
 			</div>
 			<div className={styles.btn_container}>

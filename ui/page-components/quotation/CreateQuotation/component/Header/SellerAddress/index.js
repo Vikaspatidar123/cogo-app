@@ -1,14 +1,14 @@
 import { cl, Popover, Tooltip, Placeholder } from '@cogoport/components';
 import { IcALocation, IcMArrowRotateDown, IcMPlusInCircle } from '@cogoport/icons-react';
-import { useState } from 'react';
+import { useState, useImperativeHandle, forwardRef } from 'react';
 
 import useSellerAddress from '../../../hooks/useSellerAddress';
 
 import styles from './styles.module.css';
 
 const sellerAddressContent = ({
-	setDisplaySellerAdd, setShowFilters, checked,
-	setChecked, addressdata = [], loading,
+	setSellerAddressInfo, setShowFilters, sellerAddressInfo,
+	addressdata = [], loading,
 }) => (
 	<div className={styles.container}>
 		<div className={styles.header}>
@@ -46,10 +46,10 @@ const sellerAddressContent = ({
 						<div
 							key={id}
 							role="presentation"
-							className={cl`${styles.card} ${checked.includes(id) ? styles.selected : styles.hover_card}`}
+							className={cl`${styles.card}
+							${sellerAddressInfo?.id === id ? styles.selected : styles.hover_card}`}
 							onClick={() => {
-								setChecked([data?.id]);
-								setDisplaySellerAdd(name);
+								setSellerAddressInfo(data);
 								setShowFilters(false);
 							}}
 						>
@@ -69,11 +69,14 @@ const sellerAddressContent = ({
 	</div>
 );
 
-function SellerAddress() {
-	const [displaySellerAdd, setDisplaySellerAdd] = useState();
+function SellerAddress(props, ref) {
+	const [sellerAddressInfo, setSellerAddressInfo] = useState();
 	const [showFilters, setShowFilters] = useState(false);
-	const [checked, setChecked] = useState([]);
 	const { data = {}, loading } = useSellerAddress();
+
+	useImperativeHandle(ref, () => ({
+		sellerAddress: sellerAddressInfo,
+	}));
 
 	return (
 		<Popover
@@ -81,10 +84,9 @@ function SellerAddress() {
 			visible={showFilters}
 			onClickOutside={() => setShowFilters(false)}
 			content={sellerAddressContent({
-				setDisplaySellerAdd,
+				setSellerAddressInfo,
+				sellerAddressInfo,
 				setShowFilters,
-				checked,
-				setChecked,
 				addressdata: data?.list,
 				loading,
 			})}
@@ -98,7 +100,7 @@ function SellerAddress() {
 			>
 				<div className={styles.flex_box}>
 					<IcALocation fill="#FADA29" width={18} height={18} />
-					<p className={styles.text}>{`${displaySellerAdd || 'Seller Address'} `}</p>
+					<p className={styles.text}>{`${sellerAddressInfo?.name || 'Seller Address'} `}</p>
 				</div>
 				<IcMArrowRotateDown fill="#333" width={13} height={13} />
 			</div>
@@ -106,4 +108,4 @@ function SellerAddress() {
 	);
 }
 
-export default SellerAddress;
+export default forwardRef(SellerAddress);

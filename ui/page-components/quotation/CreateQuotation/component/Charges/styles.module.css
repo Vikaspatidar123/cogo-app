@@ -126,3 +126,11 @@
 	max-height: 127px;
 	overflow-y: scroll;
 }
+
+.error{
+	:global{
+		.ui_input_container{
+			border: 1px solid red;
+		}
+	}
+}

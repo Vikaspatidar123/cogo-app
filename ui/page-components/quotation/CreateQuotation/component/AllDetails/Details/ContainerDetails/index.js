@@ -12,7 +12,7 @@ function ContainerDetails(props, ref) {
 	const {
 		control,
 		watch,
-		// formState: { errors },
+		formState: { errors },
 		handleSubmit,
 	} = useForm({
 		defaultValues: {
@@ -24,9 +24,6 @@ function ContainerDetails(props, ref) {
 	});
 	const SelectController = getField('select');
 	const watchSericeType = watch('serviceType');
-
-	const val = watch();
-	console.log('val::', val);
 
 	// const imperativeHandle = () => ({
 	// 	handleSubmit: () => {
@@ -40,7 +37,7 @@ function ContainerDetails(props, ref) {
 		handleSubmit: () => {
 			const onSubmit = (values) => values;
 
-			const onError = (error) => error;
+			const onError = () => true;
 
 			return new Promise((resolve) => {
 				handleSubmit(
@@ -80,13 +77,21 @@ function ContainerDetails(props, ref) {
 								${styles?.[field?.className]} }`}
 								>
 									<p className={styles.label}>{field.label}</p>
-									<Element {...field} control={control} />
+									<Element
+										{...field}
+										control={control}
+										className={cl`${errors?.[field?.name] && styles.error}`}
+									/>
 								</div>
 							)}
 							{watchSericeType === 'LCL_FREIGHT' && index >= 3 && (
 								<div key={field?.name} className={cl`${styles.col} ${styles?.[field.className]}`}>
 									<p className={styles.label}>{field.label}</p>
-									<Element {...field} control={control} />
+									<Element
+										{...field}
+										control={control}
+										className={cl`${errors?.[field?.name] && styles.error} `}
+									/>
 								</div>
 							)}
 						</>

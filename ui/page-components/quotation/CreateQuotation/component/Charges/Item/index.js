@@ -7,7 +7,7 @@ import styles from '../styles.module.css';
 import getField from '@/packages/forms/Controlled';
 
 function Item(props) {
-	const { remove, control, controls, info, index } = props || {};
+	const { remove, control, controls, info, index, name, errors } = props || {};
 	// console.log(info, 'info');
 	return (
 		<div className={cl`${styles.flex_box} ${styles.row}`}>
@@ -24,17 +24,16 @@ function Item(props) {
 					);
 				}
 				const Element = getField(field?.type);
-
 				return (
 					<div
 						key={`${info?.id}_${field.name}`}
 						style={{ width: field?.width }}
-						className={cl`${styles[field?.className]}`}
+						className={cl`${errors?.[index]?.[field?.name] && styles.error} ${styles[field?.className]}`}
 					>
 						<Element
 							{...field}
-							name={`${info?.id}_${field.name}`}
-							key={`${info?.id}_${field.name}`}
+							name={`${name}.${index}.${field.name}`}
+							key={`${name}.${index}.${field.name}`}
 							control={control}
 						/>
 					</div>

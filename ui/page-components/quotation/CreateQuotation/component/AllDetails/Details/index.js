@@ -5,11 +5,7 @@ import PackageDetails from './PackageDetails';
 
 function Details({ transportMode = 'AIR' }, ref) {
 	return (
-		<>
-			{ transportMode === 'OCEAN' && <ContainerDetails ref={ref} />}
-			{transportMode === 'AIR' && <PackageDetails />}
-		</>
-
+		transportMode === 'OCEAN' ? <ContainerDetails ref={ref} /> : <PackageDetails ref={ref} />
 	);
 }
 

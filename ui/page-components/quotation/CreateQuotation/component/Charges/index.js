@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { cl } from '@cogoport/components';
 import { IcMMoney } from '@cogoport/icons-react';
-import { useEffect } from 'react';
+import { useEffect, forwardRef, useImperativeHandle } from 'react';
 
 import chargesControls from '../../configuration/chargesControls';
 
@@ -13,13 +13,28 @@ import styles from './styles.module.css';
 import { useForm } from '@/packages/forms';
 import getField from '@/packages/forms/Controlled';
 
-function Charges() {
-	const { control, watch, setValue } = useForm();
+function Charges(props, ref) {
+	const { control, watch, setValue, handleSubmit, formState:{ errors } } = useForm();
 	const SelectController = getField('select');
 	const TextAreaController = getField('textarea');
+
 	useEffect(() => {
 		setValue('incoterm', 'CIF');
 	}, []);
+
+	useImperativeHandle(ref, () => ({
+		handleSubmit: () => {
+			const onSubmit = (value) => value;
+			const onError = () => true;
+			return new Promise((resolve) => {
+				handleSubmit(
+					(values) => resolve(onSubmit(values)),
+					(values) => resolve(onError(values)),
+				)();
+			});
+		},
+	}));
+
 	return (
 		<div className={styles.container}>
 
@@ -36,7 +51,7 @@ function Charges() {
 				</div>
 			</div>
 
-			<BasicCharge fields={chargesControls} control={control} />
+			<BasicCharge fields={chargesControls} control={control} errors={errors} />
 
 			<div className={styles.hr} />
 
@@ -44,6 +59,7 @@ function Charges() {
 				watch={watch}
 				chargeFields={chargesControls}
 				control={control}
+				errors={errors}
 				name="incotermCharges"
 				index="4"
 			/>
@@ -51,6 +67,7 @@ function Charges() {
 				watch={watch}
 				chargeFields={chargesControls}
 				control={control}
+				errors={errors}
 				name="additionalCharges"
 				index="5"
 			/>
@@ -64,11 +81,11 @@ function Charges() {
 
 				<div className={styles.comment}>
 					<p className={cl`${styles.label} ${styles.comment_label}`}>{chargesControls[6].label}</p>
-					<TextAreaController {...chargesControls[6]} control={control} rows={10} />
+					<TextAreaController {...chargesControls[6]} control={control} rows={4} />
 				</div>
 			</div>
 		</div>
 	);
 }
 
-export default Charges;
+export default forwardRef(Charges);

@@ -70,3 +70,11 @@
 		vertical-align: bottom;
 	}
 }
+
+.error{
+	:global{
+		.ui_input_container{
+			border: 1px solid red;
+		}
+	}
+}

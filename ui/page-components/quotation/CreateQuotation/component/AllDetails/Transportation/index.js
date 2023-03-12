@@ -1,4 +1,6 @@
+import { cl } from '@cogoport/components';
 import { IcMPort, IcMLocation } from '@cogoport/icons-react';
+import { useImperativeHandle, forwardRef } from 'react';
 
 import transportControls from '../../../configuration/transportControls';
 
@@ -7,12 +9,29 @@ import styles from './styles.module.css';
 import { useForm } from '@/packages/forms';
 import getField from '@/packages/forms/Controlled';
 
-function Transportation() {
+function Transportation(props, ref) {
 	const transportFields = transportControls({ transportMode: 'OCEAN' });
 	const {
 		control,
+		handleSubmit,
 		formState: { errors },
 	} = useForm();
+
+	useImperativeHandle(ref, () => ({
+		handleSubmit: () => {
+			const onSubmit = (values) => values;
+
+			const onError = () => true;
+
+			return new Promise((resolve) => {
+				handleSubmit(
+					(values) => resolve(onSubmit(values)),
+					(error) => resolve(onError(error)),
+				)();
+			});
+		},
+	}));
+
 	return (
 		<div className={styles.transport_container}>
 			<div className={styles.header}>
@@ -25,7 +44,11 @@ function Transportation() {
 					<div key={field?.key}>
 						<div className={styles.col}>
 							<p className={styles.label}>{field?.label}</p>
-							<Element {...field} control={control} className={field?.className} />
+							<Element
+								{...field}
+								control={control}
+								className={cl`${errors?.[field?.name] && styles.error} ${field?.className}`}
+							/>
 							{/* {errors?.[field?.name]?.type && <p className={styles.error_text}>required</p>} */}
 						</div>
 						{index === 0 && (
@@ -41,4 +64,4 @@ function Transportation() {
 	);
 }
 
-export default Transportation;
+export default forwardRef(Transportation);

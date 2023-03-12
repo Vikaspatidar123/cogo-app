@@ -74,6 +74,16 @@ function asyncFieldsPartnerQuotation() {
 
 	};
 }
+
+function asyncProductList() {
+	return {
+		labelKey    : 'name',
+		valueKey    : 'name',
+		authKey     : 'get_saas_product_list',
+		endpoint    : 'saas/product/list',
+		initialCall : false,
+	};
+}
 export {
 	asyncFieldsLocations,
 	asyncFieldsLocations2,
@@ -81,4 +91,5 @@ export {
 	asyncFieldsPartnerRoles,
 	asyncFieldsHsCodeCountries,
 	asyncFieldsPartnerQuotation,
+	asyncProductList,
 };

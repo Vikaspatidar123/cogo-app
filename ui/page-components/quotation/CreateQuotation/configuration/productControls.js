@@ -1,3 +1,15 @@
+const resetObj = {
+	productId           : '',
+	name                : null,
+	description         : '',
+	hsCode              : '',
+	quantity            : '',
+	price               : '',
+	product_price       : '',
+	productCurrency     : '',
+	productExchangeRate : '',
+};
+
 const productFormControls = ({ id, checkEdit }) => [
 	{
 		name : 'productId',
@@ -7,14 +19,15 @@ const productFormControls = ({ id, checkEdit }) => [
 		name             : 'name',
 		placeholder      : 'Name',
 		label            : 'Name',
-		type             : 'select',
+		type             : 'async_select',
 		className        : 'name',
 		noOptionsMessage : 'Type to search...',
-		optionsListKey   : 'productData',
+		asyncKey         : 'list_products',
 		params           : { userId: id, deletedRequired: checkEdit },
 		isClearable      : true,
 		size             : 'sm',
 		width            : '15%',
+		rules            : { required: true },
 	},
 	{
 		name        : 'description',
@@ -48,7 +61,13 @@ const productFormControls = ({ id, checkEdit }) => [
 		isClearable : true,
 		size        : 'sm',
 		width       : '15%',
-		rules       : { required: true },
+		rules       : {
+			required : true,
+			min      : {
+				value   : 1,
+				message : 'Quantity should be greater than 0',
+			},
+		},
 
 	},
 	{
@@ -60,6 +79,13 @@ const productFormControls = ({ id, checkEdit }) => [
 		isClearable : true,
 		size        : 'sm',
 		width       : '15%',
+		rules       : {
+			required : true,
+			min      : {
+				value   : 1,
+				message : 'Selling Price should be greater than 0',
+			},
+		},
 	},
 	{
 		name        : 'product_price',
@@ -147,7 +173,6 @@ const productFieldArr = [
 				type        : 'number',
 				className   : 'quantity',
 				min         : 0,
-				isClearable : true,
 				size        : 'sm',
 				width       : '15%',
 				rules       : {
@@ -215,4 +240,4 @@ const productFieldArr = [
 	},
 ];
 
-export { productFormControls, productFieldArr };
+export { productFormControls, productFieldArr, resetObj };

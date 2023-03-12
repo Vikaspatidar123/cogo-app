@@ -1,15 +1,24 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { cl } from '@cogoport/components';
 import { IcMDelete } from '@cogoport/icons-react';
+import { useEffect } from 'react';
 
 import styles from '../styles.module.css';
 
 import getField from '@/packages/forms/Controlled';
 
 function Item(props) {
-	const { remove, control, controls, productInfo, index } = props || {};
-	console.log(props, 'props');
-	console.log(productInfo, 'productInfo');
+	const {
+		remove, control, controls, productInfo, index, setValue, watch, errors,
+	} = props || {};
+	const watchFieldArrList = watch('products')[index];
+	const { quantity, price } = watchFieldArrList || {};
 
+	useEffect(() => {
+		if (quantity > 0 && price > 0) {
+			setValue(`products.${index}.product_price`, +quantity * +price);
+		}
+	}, [quantity, price]);
 	return (
 		<>
 
@@ -22,14 +31,15 @@ function Item(props) {
 					<div
 						key={`${field?.name}_${productInfo?.productId}`}
 						style={{ width: field?.width }}
-						className={cl`${styles.col} ${styles[field?.className]}`}
+						className={cl`${styles.col}
+						${errors?.[index]?.[field?.name] && styles.error} ${styles[field?.className]}`}
 					>
 						<Element
 							{...field}
 							control={control}
 							value={productInfo[field?.name]}
-							name={`${field?.name}_${productInfo?.productId}`}
-							key={`${field?.name}_${productInfo?.productId}`}
+							name={`products.${index}.${field?.name}`}
+							key={`products.${index}.${field?.name}`}
 						/>
 					</div>
 				);

@@ -53,7 +53,7 @@ function LoginForm() {
 				)}
 
 				<div className={styles.forgot}>
-					<a href="/forgot-password">Forgot password</a>
+					<a href="/v2/forgot-password">Forgot password</a>
 				</div>
 
 				<Button

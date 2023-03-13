@@ -1,4 +1,4 @@
-import { toast } from '@cogoport/components';
+import { Toast } from '@cogoport/components';
 
 import { useRequest } from '@/packages/request';
 // import showErrorsInToast from '@/utils/showErrorsInToast';
@@ -14,9 +14,9 @@ const useSendMobileNumberOtp = () => {
 	}, { manual: true });
 	const onSuccess = ({ action = '', callback = () => { }, response = {} }) => {
 		if (action === 'send') {
-			toast.success('OTP sent successfully.');
+			Toast.success('OTP sent successfully.');
 		} else {
-			toast.success('OTP resent successfully');
+			Toast.success('OTP resent successfully');
 		}
 
 		callback(response);
@@ -26,7 +26,7 @@ const useSendMobileNumberOtp = () => {
 		callback({
 			error,
 			showError: () => {
-				showErrorsInToast(error.data);
+				Toast(error.data);
 			},
 		});
 	};

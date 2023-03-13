@@ -1,4 +1,4 @@
-import Logo from './cogoport-logo.svg';
+/* eslint-disable max-len */
 import styles from './styles.module.css';
 
 import { Link } from '@/packages/next';
@@ -6,9 +6,12 @@ import { Link } from '@/packages/next';
 
 function CompanyDetails() {
 	return (
-		<div className={styles.container_flex}>
+		<div>
 			<Link className={styles.a} href="/dashboard" as="/dashboard">
-				<Logo />
+				<img
+					src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/cogoport.svg"
+					alt="Cogoport Logo"
+				/>
 			</Link>
 			{/* <WebBot /> */}
 		</div>

@@ -1,26 +1,17 @@
-/* eslint-disable no-undef */
-/* eslint-disable import/order */
-/* eslint-disable react-hooks/rules-of-hooks */
-
-import { Router } from '@/packages/next';
-
 import pageProgessBar from 'nprogress';
-import 'nprogress/nprogress.css';
 import { useEffect } from 'react';
 
-// import SessionCheck from './SessionCheck';
 import withStore from './store';
 
+import { routeConfig } from '@/packages/navigation-configs';
+import { Router } from '@/packages/next';
+import 'nprogress/nprogress.css';
 import { Provider } from '@/packages/store';
 import { setGeneralStoreState } from '@/packages/store/store/general';
-import isMobileAgent from '@/packages/utils/isMobileAgent';
-import handleAuthentication from '@/ui/page-components/authentication/utils/handleAuthentication';
 import GlobalLayout from '@/ui/page-components/_app/layout/components/GlobalLayout';
-import { routeConfig } from '@/packages/navigation-configs';
+import handleAuthentication from '@/ui/page-components/authentication/utils/handleAuthentication';
 
-function MyApp({
-	Component, pageProps, store, generalData,
-}) {
+function MyApp({ Component, pageProps, store }) {
 	useEffect(() => {
 		Router.events.on('routeChangeStart', () => {
 			pageProgessBar.start();
@@ -31,13 +22,13 @@ function MyApp({
 			pageProgessBar.done();
 		});
 	}, []);
-	useEffect(() => {
-		store.dispatch(setGeneralStoreState(generalData));
-	}, [generalData]);
 
 	return (
 		<Provider store={store}>
-			<GlobalLayout layout={pageProps.layout || 'authenticated'} head={pageProps.head || ''}>
+			<GlobalLayout
+				layout={pageProps.layout || 'authenticated'}
+				head={pageProps.head || ''}
+			>
 				<Component {...pageProps} />
 			</GlobalLayout>
 		</Provider>
@@ -45,9 +36,7 @@ function MyApp({
 }
 
 MyApp.getInitialProps = async ({ Component, ctx }) => {
-	const {
-		store, req, pathname, asPath, query = {}, locale,
-	} = ctx;
+	const { store, req, pathname, asPath, query = {}, locale } = ctx;
 	const isServer = typeof req !== 'undefined';
 	// const isToken = isServer ? req.headers.cookie : false;
 	const pathPrefix = '/[org_id]/[branch_id]';
@@ -58,9 +47,7 @@ MyApp.getInitialProps = async ({ Component, ctx }) => {
 	};
 	const unPrefixedPath = `/${pathname.replace('/[org_id]/[branch_id]/', '')}`;
 	const { asPrefix, query: qError } = await handleAuthentication(ctxParams);
-	const isMobile = !isServer
-		? window.innerWidth < 768
-		: isMobileAgent(ctx.req.headers['user-agent'] || '');
+
 	const generalData = {
 		pathname,
 		asPath,
@@ -69,7 +56,6 @@ MyApp.getInitialProps = async ({ Component, ctx }) => {
 		asPrefix,
 		query: { ...query, ...(qError || {}) },
 		isServer,
-		isMobile,
 		locale,
 		routeConfig,
 	};

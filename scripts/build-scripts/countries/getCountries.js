@@ -1,11 +1,13 @@
 const https = require('https');
 
-const sortBy = require('lodash/sortBy');
+const { sortBy } = require('@cogoport/utils');
 
 const MAIN_COUNTRY_CODES = ['IN'];
 
 const getCountries = async (callBack, path, baseUrl) => {
-	const actualUrl = `${baseUrl}location/list_locations?filters%5Btype%5D%5B%5D=country&filters%5Bstatus%5D=active&page_limit=500`;
+	const actualUrl = `${baseUrl}location/
+	list_locations?filters%5Btype%5D%5B%5D=country
+	&filters%5Bstatus%5D=active&page_limit=500`;
 
 	https
 		.get(actualUrl, (resp) => {
@@ -24,12 +26,12 @@ const getCountries = async (callBack, path, baseUrl) => {
 				]);
 
 				const finalList = sortedList.map((item) => ({
-					id: item.id,
-					name: item.name,
-					flag_icon_url: item.flag_icon_url,
-					currency_code: item.currency_code,
-					mobile_country_code: item.mobile_country_code,
-					country_code: item.country_code,
+					id                  : item.id,
+					name                : item.name,
+					flag_icon_url       : item.flag_icon_url,
+					currency_code       : item.currency_code,
+					mobile_country_code : item.mobile_country_code,
+					country_code        : item.country_code,
 				}));
 
 				callBack(path, JSON.stringify(finalList));

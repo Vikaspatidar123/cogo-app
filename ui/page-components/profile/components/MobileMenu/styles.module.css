@@ -26,4 +26,8 @@
 
 .main_container {
 	padding-top: 24px;
+
+	@media (min-width: 768px) {
+		display: none;
+	}
 }

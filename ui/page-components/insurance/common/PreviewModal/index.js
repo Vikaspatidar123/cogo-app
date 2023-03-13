@@ -1,10 +1,9 @@
 import { Tooltip, Modal, Avatar, Button } from '@cogoport/components';
-// import { formatDateToString } from '@cogoport/front/date';
 import { IcMFsea } from '@cogoport/icons-react';
-import { startCase } from '@cogoport/utils';
+import { format, startCase } from '@cogoport/utils';
 import { useState } from 'react';
 
-// import BuyModal from '../BuyModal';
+import BuyModal from '../BuyModal';
 
 import styles from './styles.module.css';
 
@@ -236,7 +235,7 @@ function PreviewModal({
 							<div className={styles.commodity}>
 								<div className={styles.label}>Transit start date</div>
 								<div className={styles.value}>
-									{/* {formatDateToString(transitDate || transitStartDate, 'dd MMM yy')} */}
+									{format(transitDate || transitStartDate, 'dd MMM yy')}
 								</div>
 							</div>
 						</div>
@@ -268,7 +267,7 @@ function PreviewModal({
 							<div className={styles.commodity}>
 								<div className={styles.label}>Invoice Date</div>
 								<div className={styles.value}>
-									{/* {formatDateToString(watcher[3] || invoiceDate, 'dd MMM yy')} */}
+									{format(watcher[3] || invoiceDate, 'dd MMM yy')}
 								</div>
 							</div>
 						</div>
@@ -302,15 +301,15 @@ function PreviewModal({
 							</Button>
 						</>
 					)}
-					{/* {noteModal && (
-					<BuyModal
-						noteModal={noteModal}
-						setNoteModal={setNoteModal}
-						handleSubmit={handleSubmit}
-						paymentLoading={paymentLoading}
-						insuranceLoading={insuranceLoading}
-					/>
-				)} */}
+					{noteModal && (
+						<BuyModal
+							noteModal={noteModal}
+							setNoteModal={setNoteModal}
+							handleSubmit={handleSubmit}
+							paymentLoading={paymentLoading}
+							insuranceLoading={insuranceLoading}
+						/>
+					)}
 				</div>
 			</Modal.Body>
 		</Modal>

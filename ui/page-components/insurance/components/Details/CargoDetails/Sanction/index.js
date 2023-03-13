@@ -3,18 +3,6 @@ import { useState, useEffect } from 'react';
 
 import { exclamationSvg } from '../../../../common/constants';
 
-// import {
-// 	Wrapper,
-// 	Label,
-// 	ButtonWrapper,
-// 	StyledButton2,
-// 	Image,
-// 	List,
-// 	StyledButton1,
-// 	StyledDiv,
-// 	ModalWrapper,
-// 	StyledModal,
-// } from './styles';
 import styles from './styles.module.css';
 
 function Sanction({ reset, isMobile, countryDetails, setCountryDetails }) {

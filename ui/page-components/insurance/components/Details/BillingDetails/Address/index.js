@@ -4,9 +4,7 @@ import { useEffect } from 'react';
 import AddModal from '../../../../common/AddAddressModal';
 import Addres from '../../../../common/AddressListPopover';
 import { CheckBoxOptions } from '../../../../common/constants';
-// import { AlignDiv } from '../style';
 
-// import { Div, SideWrapper } from './style';
 import styles from './styles.module.css';
 
 const OPTIONS = [

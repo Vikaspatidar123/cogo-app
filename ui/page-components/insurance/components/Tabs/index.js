@@ -2,23 +2,8 @@ import { Button } from '@cogoport/components';
 import { startCase } from '@cogoport/utils';
 import { useState } from 'react';
 
-// import Ocean from '../../assets/ocean.svg';
-// import Plane from '../../assets/plane.svg';
-// import Truck from '../../assets/truck.svg';
 import { PlaneGif, ShipGif, TruckGif } from '../../common/constants';
 
-// import {
-// 	Heading,
-// 	StyledDiv,
-// 	ButtonWrapper,
-// 	StyledButton,
-// 	Label,
-// 	RedButton,
-// 	Wrapper2,
-// 	DotDiv,
-// 	DotWrapper,
-// 	Image,
-// } from './style.js';
 import styles from './styles.module.css';
 
 import { useRouter } from '@/packages/next';

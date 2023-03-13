@@ -2,17 +2,6 @@ import { IcMStar } from '@cogoport/icons-react';
 
 import { Ship } from '../../common/constants';
 
-// import {
-// 	Container1,
-// 	StyledImage,
-// 	StyledRow,
-// 	SubHeading,
-// 	SubHeadingTitle,
-// 	List,
-// 	Line,
-// 	LineWrapper,
-// 	Star,
-// } from './styles';
 import styles from './styles.module.css';
 
 function Description() {

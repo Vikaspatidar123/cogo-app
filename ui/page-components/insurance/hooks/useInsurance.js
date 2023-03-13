@@ -2,7 +2,7 @@ import { Toast } from '@cogoport/components';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 
-import { useRequest } from '@/packages/request';
+import { useRequestBf } from '@/packages/request';
 
 const useInsurance = ({
 	payment = () => {},
@@ -22,7 +22,7 @@ const useInsurance = ({
 	const { profile } = useSelector((state) => state);
 	const { id, organization } = profile;
 
-	const [{ loading }, trigger] = useRequest({
+	const [{ loading }, trigger] = useRequestBf({
 		method  : 'post',
 		authkey : 'post_saas_insurance_checkout',
 		url     : '/saas/insurance/checkout',

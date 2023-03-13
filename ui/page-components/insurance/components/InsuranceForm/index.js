@@ -1,5 +1,4 @@
 import { Tooltip, Chips } from '@cogoport/components';
-// import SegmentedControl from '@cogoport/front/components/SegmentedControl';
 import { IcMArrowBack } from '@cogoport/icons-react';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';

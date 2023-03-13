@@ -3,7 +3,6 @@ import { useState } from 'react';
 import FillOptions from '../../common/FillOptions';
 import Details from '../Details/index';
 
-// import { Container } from './styles';
 import styles from './styles.module.css';
 
 function InsuredDetails({

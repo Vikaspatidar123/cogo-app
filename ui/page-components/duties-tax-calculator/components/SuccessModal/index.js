@@ -8,8 +8,6 @@ import { shortFormatNumber } from '../../utils/getShortFormatNumber';
 
 import styles from './styles.module.css';
 
-import { useRouter } from '@/packages/next';
-
 function SuccessModal({ tradeEngineResp }) {
 	const {
 		lineItem = [],

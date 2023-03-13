@@ -72,6 +72,7 @@ const useCheckPaymentStatus = ({
 		if (billId) {
 			checkPaymentStatus();
 		}
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [billId]);
 
 	return {

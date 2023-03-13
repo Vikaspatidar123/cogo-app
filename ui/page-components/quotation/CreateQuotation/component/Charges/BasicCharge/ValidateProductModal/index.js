@@ -30,8 +30,10 @@ const renderButton = (isUserSubscribed) => {
 function ValidateProductModal(props) {
 	const {
 		validateProduct, setValidateProduct,
-		isUserSubscribed = false, quotaValue, isQuotaLeft = false, prioritySequence = 0,
+		isUserSubscribed = false, quotaValue, isQuotaLeft = false, prioritySequence = 0, quoteRes = {},
 	} = props;
+	const { product = {}, destinationPortDetails = {} } = quoteRes;
+	const productInfoArr = product?.products;
 
 	const {	loading, serviceData } = useServiceRates({ prioritySequence, setValidateProduct });
 	const { services = {}, currency:serviceCurrency = 'INR' } = serviceData || {};
@@ -66,7 +68,12 @@ function ValidateProductModal(props) {
 					</Tooltip>
 				</div>
 
-				<ProductField services={services} serviceCurrency={serviceCurrency} isQuotaLeft={isQuotaLeft} />
+				<ProductField
+					services={services}
+					serviceCurrency={serviceCurrency}
+					isQuotaLeft={isQuotaLeft}
+					destinationPortDetails={destinationPortDetails}
+				/>
 
 			</Modal.Body>
 			<Modal.Footer>

@@ -22,7 +22,11 @@ const getHandleSubmitData = async ({ quoteRef = {}, headerHandleSubmit }) => {
 		return false;
 	}
 
-	const data = { sellerAddress: quoteRef?.sellerAddress, buyerDetails: quoteRef?.buyerDetails };
+	const data = {
+		sellerAddress          : quoteRef?.sellerAddress,
+		buyerDetails           : quoteRef?.buyerDetails,
+		destinationPortDetails : quoteRef?.transport?.destinationPortDetails,
+	};
 
 	refValues.forEach((key, index) => {
 		const value = promiseValues[index];

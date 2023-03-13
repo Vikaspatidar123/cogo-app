@@ -1,13 +1,45 @@
 import { Pill, Tooltip, Checkbox, ButtonIcon, Button, Popover, Input } from '@cogoport/components';
 import { IcMDelete } from '@cogoport/icons-react';
 
+import iconUrl from '../../../../../../utils/iconUrl.json';
 import servicesConfiguration from '../../../../../configuration/serviceConfiguration';
+import useVerifyHsCode from '../../../../../hooks/useVerifyHsCode';
 
 import styles from './styles.module.css';
 
 import { shortFormatNumber } from '@/ui/commons/utils/getShortFormatNumber';
 
-function ProductField({ services, isQuotaLeft, serviceCurrency }) {
+const content = ({ hsRecommendation = [], setStatus, setCheckButton }) => (
+	<div className={styles.recommend_container}>
+		{(hsRecommendation).map((recommend) => {
+			const { hsCodeValue = '', description = '' } = recommend;
+
+			return (
+				<div
+					key={hsCodeValue}
+					className={styles.content}
+					role="presentation"
+					onClick={() => {
+						setStatus((prev) => !prev);
+						setCheckButton(true);
+					}}
+				>
+					{`${hsCodeValue}: ${description}`}
+				</div>
+			);
+		})}
+	</div>
+);
+
+function ProductField({ services, isQuotaLeft, serviceCurrency, destinationPortDetails = {}, productInfo = {} }) {
+	const {
+		hsRecommendation, status, setStatus,
+		checkButton, setCheckButton, verifyLoading, verifyHsCode,
+	} = useVerifyHsCode();
+
+	const disableValidate =		(!isUserSubscribed && productLineItemDetails.length === 0 && !quotaLeft)
+		|| checkLoading
+		|| !status;
 	return (
 		<div className={styles.container}>
 			{/* <Button className="text primary lg cta" onClick={() => setShowHsCodeModal(true)}>
@@ -23,9 +55,15 @@ function ProductField({ services, isQuotaLeft, serviceCurrency }) {
 						disabled
 					/>
 				</div>
+
 				<div className={styles.col} style={{ width: '45%' }}>
 					<p className={styles.label}>HS Code</p>
-					<Popover>
+					<Popover
+						interactive
+						placement="bottom"
+						content={content({ hsRecommendation, setStatus, setCheckButton })}
+						visible={!status}
+					>
 						<div>
 							<Input
 								size="sm"
@@ -35,9 +73,25 @@ function ProductField({ services, isQuotaLeft, serviceCurrency }) {
 						</div>
 					</Popover>
 				</div>
+
 				<div style={{ width: '15%' }}>
-					<Button themeType="accent">Validate</Button>
+					{!checkButton ? (
+						<Button
+							themeType="accent"
+							loading={verifyLoading}
+							onClick={() => verifyHsCode({ productInfo, destinationPortDetails })}
+						>
+							Validate
+						</Button>
+					)
+						: (
+							<div className={styles.validate_icon}>
+								<img src={iconUrl.validate} alt="validated" />
+								<div className={styles.validate_text}>Validated</div>
+							</div>
+						)}
 				</div>
+
 				<div>
 					<ButtonIcon size="lg" icon={<IcMDelete />} themeType="primary" />
 				</div>

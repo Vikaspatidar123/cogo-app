@@ -49,3 +49,14 @@
 .service_name{
 	font-size: 12px;
 }
+
+.validate_icon{
+    display: flex;
+    padding: 10px;
+    align-items: center;
+
+    .validate_text{
+        margin-left: 5px;
+		font-size: 12px;
+    }
+}

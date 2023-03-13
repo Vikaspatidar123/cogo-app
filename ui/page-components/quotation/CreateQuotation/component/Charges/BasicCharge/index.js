@@ -27,7 +27,7 @@ function BasicCharge({ fields, control, errors, submitForm }) {
 	const [paymentModal, setPaymentModal] = useState(false);
 	const [paymentMode, setPaymentMode] = useState('addon');
 	const [validateProduct, setValidateProduct] = useState(false);
-
+	const [quoteRes, setQuoteRes] = useState({});
 	const {
 		isUserSubscribed = false,
 		isQuotaLeft = false,
@@ -39,6 +39,8 @@ function BasicCharge({ fields, control, errors, submitForm }) {
 
 	const getDutiesSubmitHandler = async () => {
 		const resp = await submitForm();
+		console.log(resp, 'resp');
+		setQuoteRes(resp);
 		// if (typeof resp === 'object') {
 		setPaymentModal(true);
 		// }
@@ -78,6 +80,7 @@ function BasicCharge({ fields, control, errors, submitForm }) {
 				prioritySequence={prioritySequence}
 				quotaValue={quotaValue}
 				isQuotaLeft={isQuotaLeft}
+				quoteRes={quoteRes}
 			/>
 		</>
 	);

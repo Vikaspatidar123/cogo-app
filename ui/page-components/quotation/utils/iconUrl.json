@@ -1,5 +1,6 @@
 {
     "loading":"https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/loading.svg",
     "createUser": "https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/createUser.svg",
-    "createSeller": "https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/sellerAddress.svg"
+    "createSeller": "https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/sellerAddress.svg",
+    "validate": "https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/validate.svg"
 }

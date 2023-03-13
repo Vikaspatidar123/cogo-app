@@ -1,6 +1,6 @@
 import { cl } from '@cogoport/components';
 import { IcMPort, IcMLocation } from '@cogoport/icons-react';
-import { useImperativeHandle, forwardRef } from 'react';
+import { useState, useImperativeHandle, forwardRef } from 'react';
 
 import transportControls from '../../../configuration/transportControls';
 
@@ -10,12 +10,19 @@ import { useForm } from '@/packages/forms';
 import getField from '@/packages/forms/Controlled';
 
 function Transportation(props, ref) {
+	const [destinationPortDetails, setDestinationPortDetails] = useState({});
 	const transportFields = transportControls({ transportMode: 'OCEAN' });
 	const {
 		control,
 		handleSubmit,
 		formState: { errors },
 	} = useForm();
+
+	const changeHandler = (name, data) => {
+		if (name === 'destinationId') {
+			setDestinationPortDetails(data);
+		}
+	};
 
 	useImperativeHandle(ref, () => ({
 		handleSubmit: () => {
@@ -30,6 +37,7 @@ function Transportation(props, ref) {
 				)();
 			});
 		},
+		destinationPortDetails,
 	}));
 
 	return (
@@ -48,6 +56,7 @@ function Transportation(props, ref) {
 								{...field}
 								control={control}
 								className={cl`${errors?.[field?.name] && styles.error} ${field?.className}`}
+								handleChange={(value) => changeHandler(field?.name, value)}
 							/>
 							{/* {errors?.[field?.name]?.type && <p className={styles.error_text}>required</p>} */}
 						</div>

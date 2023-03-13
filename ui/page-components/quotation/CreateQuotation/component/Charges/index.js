@@ -57,6 +57,7 @@ function Charges(props, ref) {
 				control={control}
 				errors={errors}
 				submitForm={submitForm}
+				ref={ref}
 			/>
 
 			<div className={styles.hr} />

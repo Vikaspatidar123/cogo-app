@@ -22,7 +22,7 @@ function List({
 		<div>
 			<div className={styles.desktop_view}>
 				<h2>Lists of Quotation</h2>
-				<div className={styles.row}>
+				<div className={styles.row_desktop}>
 					<Tabs themeType="tertiary" activeTab={activeTab} onChange={setActiveTab}>
 						<TabPanel
 							name="SENT"

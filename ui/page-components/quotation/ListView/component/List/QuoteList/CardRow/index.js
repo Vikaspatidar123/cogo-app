@@ -2,7 +2,6 @@ import { Placeholder, cl } from '@cogoport/components';
 
 import tooltipConfig from '../../../../configurations/tooltipConfig';
 import itemFunction from '../../../../utils/itemFunction';
-import MobileCard from '../MobileCard';
 import styles from '../styles.module.css';
 
 import { useRouter } from '@/packages/next';
@@ -57,7 +56,7 @@ function CardRow({ data, config, loading, setShowDeleteModal, setQuoteId }) {
 		);
 	};
 	return (
-		<div className={styles.desktop_view}>
+		<div>
 			<div className={cl`${styles.card_row} ${styles.row_item}`}>
 				{config.map((item) => (
 					<div

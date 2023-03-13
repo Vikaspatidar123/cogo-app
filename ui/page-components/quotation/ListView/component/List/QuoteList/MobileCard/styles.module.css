@@ -97,3 +97,14 @@
 	text-decoration: underline;
 	cursor: pointer;
 }
+
+.circle {
+	width: 9px;
+	height: 9px;
+	fill: none;
+}
+
+.dot {
+	width: 9px;
+	height: 9px;
+}

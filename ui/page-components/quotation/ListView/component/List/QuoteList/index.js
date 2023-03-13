@@ -21,7 +21,6 @@ function QuoteList({ data, loading, pagination, setPagination, setSortObj, delet
 
 	const { list = [], totalRecords, pageSize } = data || {};
 	const dataList = loading ? [1, 2, 3, 4, 5] : list;
-	// console.log(dataList, 'you');
 	return (
 		<div className={styles.table_container}>
 			{dataList.length > 0 && (
@@ -29,23 +28,25 @@ function QuoteList({ data, loading, pagination, setPagination, setSortObj, delet
 					<div className={styles.desktop_view}>
 						<CardHeader config={sendConfig} setSortObj={setSortObj} />
 					</div>
-
-					{(dataList || []).map((listItem) => (
-						<CardRow
-							key={listItem?.quotationId}
-							data={listItem}
-							config={sendConfig}
-							loading={loading}
-							deleteQuote={deleteQuote}
-							setShowDeleteModal={setShowDeleteModal}
-							setQuoteId={setQuoteId}
-						/>
-					))}
+					<div className={styles.desktop_view}>
+						{(dataList || []).map((listItem) => (
+							<CardRow
+								key={listItem?.quotationId}
+								data={listItem}
+								config={sendConfig}
+								loading={loading}
+								deleteQuote={deleteQuote}
+								setShowDeleteModal={setShowDeleteModal}
+								setQuoteId={setQuoteId}
+							/>
+						))}
+					</div>
 					<div className={styles.mobile_view}>
 						<MobileCard
 							data={dataList}
 							setShowDeleteModal={setShowDeleteModal}
 							setQuoteId={setQuoteId}
+							loading={loading}
 						/>
 					</div>
 					{dataList.length !== 0 && (

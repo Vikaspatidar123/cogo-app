@@ -9,11 +9,15 @@
 		align-items: center;
 		justify-content: center;
 		margin-bottom: 20px;
-		overflow: auto;
 		border: none !important;
-		-webkit-box-pack: center;
-		-webkit-box-align: center;
 	}
+}
+
+.row_desktop {
+	display: flex;
+	-webkit-box-pack: justify;
+	justify-content: space-between;
+	margin-top: 14px;
 }
 
 .tab_panel {

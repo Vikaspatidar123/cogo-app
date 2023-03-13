@@ -22,9 +22,9 @@ function Card({ data }) {
 						<ContainerInfo data={data} />
 					</div>
 					<div className={styles.tag}>
-						<div>
+						<div className={styles.tags}>
 							{mapped.icon}
-							{mapped.tag}
+							<p className={styles.tag_name}>{mapped.tag}</p>
 						</div>
 						<div>
 							<BtnContainer data={data} />

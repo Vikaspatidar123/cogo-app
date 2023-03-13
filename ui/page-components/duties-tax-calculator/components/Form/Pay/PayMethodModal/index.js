@@ -42,7 +42,7 @@ function PayMethodModal({
 			className="primary"
 			show={showPayMethodModal}
 			onClose={() => setShowPayMethodModal(false)}
-			size="lg"
+			size="md"
 		>
 			<div>
 				<div className={styles.heading}>Select mode of Payment</div>

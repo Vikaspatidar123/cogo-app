@@ -7,6 +7,7 @@ import CardHeader from './CardHeader';
 import CardRow from './CardRow';
 import DeleteModal from './DeleteModal';
 import EmptyState from './EmptyState';
+import MobileCard from './MobileCard';
 import styles from './styles.module.css';
 
 function QuoteList({ data, loading, pagination, setPagination, setSortObj, deleteQuote, deleteLoading }) {
@@ -20,12 +21,15 @@ function QuoteList({ data, loading, pagination, setPagination, setSortObj, delet
 
 	const { list = [], totalRecords, pageSize } = data || {};
 	const dataList = loading ? [1, 2, 3, 4, 5] : list;
-
+	// console.log(dataList, 'you');
 	return (
 		<div className={styles.table_container}>
 			{dataList.length > 0 && (
 				<>
-					<CardHeader config={sendConfig} setSortObj={setSortObj} />
+					<div className={styles.desktop_view}>
+						<CardHeader config={sendConfig} setSortObj={setSortObj} />
+					</div>
+
 					{(dataList || []).map((listItem) => (
 						<CardRow
 							key={listItem?.quotationId}
@@ -37,6 +41,13 @@ function QuoteList({ data, loading, pagination, setPagination, setSortObj, delet
 							setQuoteId={setQuoteId}
 						/>
 					))}
+					<div className={styles.mobile_view}>
+						<MobileCard
+							data={dataList}
+							setShowDeleteModal={setShowDeleteModal}
+							setQuoteId={setQuoteId}
+						/>
+					</div>
 					{dataList.length !== 0 && (
 						<div className={styles.pagination_container}>
 							<Pagination

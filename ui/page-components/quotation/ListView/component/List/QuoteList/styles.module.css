@@ -78,3 +78,116 @@
 	justify-content: flex-end;
 	margin: 22px 0;
 }
+
+.mobile_view {
+	display: none;
+
+	@media screen and (max-width: 767px) {
+		display: block;
+	}
+}
+
+.desktop_view {
+	display: block;
+
+	@media screen and (max-width: 767px) {
+		display: none;
+	}
+}
+
+.box {
+	position: relative;
+	box-sizing: border-box;
+	width: 328px;
+	height: 160px;
+	padding: 14px 10px;
+	margin: 16px 16px 16px 0;
+	background: rgb(255 255 255);
+	border: 1px solid rgb(209 209 225 / 80%);
+	border-radius: 8px;
+}
+
+.row_design {
+	display: flex;
+	gap: 5px;
+	padding: 5px;
+}
+
+.flex {
+	display: flex;
+	gap: 5px;
+	align-items: center;
+	-webkit-box-align: center;
+}
+
+.names {
+	font-size: 14px;
+	font-weight: 800;
+}
+
+.first_row {
+	display: flex;
+	gap: 5px;
+	padding: 5px;
+}
+
+.first_col {
+	-webkit-box-pack: justify;
+	justify-content: space-between;
+}
+
+.date_row {
+	-webkit-box-pack: justify;
+	justify-content: space-between;
+}
+
+.date_col {
+	display: flex;
+	gap: 5px;
+	padding: 5px;
+}
+
+.flexs {
+	display: flex;
+	gap: 5px;
+	align-items: center;
+	-webkit-box-align: center;
+}
+
+.date {
+	font-size: 14px;
+	font-weight: 1000;
+}
+
+.date_digits {
+	font-size: 14px;
+	font-weight: 300;
+}
+
+.border {
+	border-right: 2px solid rgb(28 28 28);
+}
+
+.amount {
+	-webkit-box-pack: justify;
+	justify-content: space-between;
+	margin-top: 8px;
+}
+
+.last {
+	display: flex;
+	gap: 5px;
+	align-items: center;
+	font-size: 13px;
+	font-weight: 300;
+	-webkit-box-align: center;
+}
+
+.mobile_view {
+	display: none;
+
+	@media screen and (max-width: 767px) {
+		display: block;
+	}
+}
+

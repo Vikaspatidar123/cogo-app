@@ -1,4 +1,4 @@
-import { Tooltip, Pill } from '@cogoport/components';
+import { Tooltip, Pill, cl } from '@cogoport/components';
 import { IcCFtick } from '@cogoport/icons-react';
 import { startCase, upperCase } from '@cogoport/utils';
 
@@ -104,28 +104,65 @@ function ContainerInfo({ data = {} }) {
 		const value = labels.map((label) => {
 			const chipValue = data[label] ? renderValue(label) : null;
 			if (chipValue) {
-				return <Pill key={label} size="sm">{chipValue}</Pill>;
+				return (
+					<>
+						<div className={styles.mobile_view}>
+							<p>{chipValue}</p>
+						</div>
+						<div className={styles.desktop_view}>
+							{/* <Pill key={label} size="sm">{chipValue}</Pill> */}
+						</div>
+					</>
+				);
 			}
 			return false;
 		});
 		return value;
 	};
 	let numberBox = 0;
+	let mobileBox = 0;
 	return (
-		<Tooltip content={renderBox()} placement="bottom" className={styles.tool_content}>
-			<div>
-				{labels.map((label) => {
-					const chipValue = data[label] ? renderValue(label) : null;
-					if (chipValue && numberBox < 3) {
-						numberBox += 1;
-						return <Pill key={label} size="sm">{chipValue}</Pill>;
-					}
+		<>
+			<div className={styles.desktop_view}>
+				<Tooltip content={renderBox()} placement="bottom" className={styles.tool_content}>
+					<div>
+						{labels.map((label) => {
+							const chipValue = data[label] ? renderValue(label) : null;
+							if (chipValue && numberBox < 3) {
+								numberBox += 1;
+								return <Pill key={label} size="sm">{chipValue}</Pill>;
+							}
 
-					return null;
-				})}
-				<Pill size="sm">...</Pill>
+							return null;
+						})}
+						<Pill size="sm">...</Pill>
+					</div>
+				</Tooltip>
 			</div>
-		</Tooltip>
+			<div className={styles.mobile_view}>
+				<Tooltip content={renderBox()} placement="bottom" className={styles.tool_content}>
+					<div className={styles.tool}>
+						{labels.map((label) => {
+							const chipValue = data[label] ? renderValue(label) : null;
+							console.log(chipValue, numberBox, 'sa');
+							if (chipValue && mobileBox < 3) {
+								mobileBox += 1;
+								return (
+									<>
+										<div className={cl`${styles.container_info}`}>
+											{ chipValue }
+										</div>
+										<div className={styles.some} />
+									</>
+								);
+							}
+							return null;
+						})}
+					</div>
+				</Tooltip>
+			</div>
+
+		</>
 	);
 }
 

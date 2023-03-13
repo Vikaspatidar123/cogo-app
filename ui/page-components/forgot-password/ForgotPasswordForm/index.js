@@ -29,7 +29,7 @@ function ForgotPasswordForm({ setSentMail, setEmailId }) {
 		<div className={styles.container}>
 			<div className={styles.header}>
 				<span className={styles.header_span}>Forgot Passowrd?</span>
-				{'Let \'s help you out'}
+				Let&apos;s help you out
 			</div>
 			<div className={styles.body}>
 				<form

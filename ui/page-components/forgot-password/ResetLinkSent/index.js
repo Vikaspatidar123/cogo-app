@@ -43,7 +43,7 @@ function ResetLinkSent({ emailId }) {
 				</div>
 			</div>
 			<div className={styles.footer}>
-				{'Didn \'t receive the password reset link?'}
+				Didn&apos;t receive the password reset link?
 				<Button
 					themeType="tertiary"
 					className={styles.button}

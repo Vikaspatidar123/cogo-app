@@ -40,13 +40,27 @@ function HsCodeList({
 								<div>
 									<div className={styles.label}>Cost Price</div>
 									<div className={styles.value}>
-										{formatAmount(costPrice, currency, { notation: 'standard' })}
+										{formatAmount({
+											amount  : costPrice,
+											currency,
+											options : {
+												notation : 'standard',
+												style    : 'currency',
+											},
+										})}
 									</div>
 								</div>
 								<div>
 									<div className={styles.label}>Selling Price</div>
 									<div className={styles.value}>
-										{formatAmount(sellingPrice, currency, { notation: 'standard' })}
+										{formatAmount({
+											amount  : sellingPrice,
+											currency,
+											options : {
+												notation : 'standard',
+												style    : 'currency',
+											},
+										})}
 									</div>
 								</div>
 							</div>

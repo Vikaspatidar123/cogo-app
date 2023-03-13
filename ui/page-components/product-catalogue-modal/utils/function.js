@@ -18,6 +18,13 @@ export const tableFunction = {
 	renderPrice: (key, list) => {
 		const { currency } = list;
 		const amount = list[key];
-		return formatAmount(amount, currency);
+		return formatAmount({
+			amount,
+			currency,
+			options: {
+				notation : 'standard',
+				style    : 'currency',
+			},
+		});
 	},
 };

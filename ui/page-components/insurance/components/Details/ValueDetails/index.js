@@ -1,9 +1,9 @@
 import { Toast } from '@cogoport/components';
 import { useEffect, useState } from 'react';
 
-// import PendingModal from '../../../common/PendingModal';
-// import PreviewModal from '../../../common/PreviewModal';
-// import SuccessModal from '../../../common/SuccessModal';
+import PendingModal from '../../../common/PendingModal';
+import PreviewModal from '../../../common/PreviewModal';
+import SuccessModal from '../../../common/SuccessModal';
 import getControls from '../../../configurations/valueControls';
 import useCurrencyConversion from '../../../hooks/useCurrencyConversion';
 import useGetRates from '../../../hooks/useGetRates';
@@ -219,7 +219,7 @@ function ValueDetails({
 						setActiveStepper={setActiveStepper}
 					/>
 
-					{/* {showSuccessModal && (
+					{showSuccessModal && (
 						<SuccessModal
 							showSuccessModal={showSuccessModal}
 							setModal={setModal}
@@ -241,7 +241,7 @@ function ValueDetails({
 							finalData={finalData}
 							ratesResponse={ratesResponse}
 						/>
-					)} */}
+					)}
 					{termsconditionshow && (
 						<TermsConditions
 							setTermsConditionsShow={setTermsConditionsShow}
@@ -254,7 +254,7 @@ function ValueDetails({
 							countryCode={countryCode}
 						/>
 					)}
-					{/* {pendingModal && (
+					{pendingModal && (
 						<PendingModal
 							pendingModal={pendingModal}
 							setModal={setModal}
@@ -262,7 +262,7 @@ function ValueDetails({
 							paymentStatus={paymentStatus}
 							checkLoading={checkLoading}
 						/>
-					)} */}
+					)}
 				</div>
 			</div>
 		</div>

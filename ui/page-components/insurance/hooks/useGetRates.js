@@ -25,7 +25,7 @@ const useGetRates = ({ activeTab = '', formDetails = {}, countryCode = '' }) => 
 			});
 			setRatesResponse(res?.data);
 		} catch (error) {
-			Toast.error(error?.error?.message);
+			Toast?.error(error?.message);
 			setRatesResponse({});
 		}
 	};

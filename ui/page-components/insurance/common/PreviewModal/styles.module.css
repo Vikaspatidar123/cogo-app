@@ -1,0 +1,169 @@
+.heading {
+    display: flex;
+    padding: 31px 0px 20px 56px;
+    align-items: center;
+}
+
+.text {
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 75%;
+    color: #2c3e50;
+    padding-left: 5px;
+}
+
+.name_div {
+	display: flex;
+}
+
+.left_line {
+    background-color: #fcdc00;
+    height: 15px;
+    width: 47px;
+}
+
+.content {
+    display: flex;
+    padding: 0 8px;
+    align-items: center;
+    margin-top: -6px;
+}
+
+.name {
+    color: #170f49;
+	font-weight: 700;
+	font-size: 20px;
+}
+
+.policy {
+    color: #6f6c90;
+	font-weight: 400;
+	font-size: 16px;
+	padding-left: 56px;
+}
+
+.right_line {
+    background-color: #fcdc00;
+    height: 15px;
+    flex: 2;
+}
+
+.address_div {
+    margin-bottom: 24px;
+	margin-left: 105px;
+	margin-top: 11px;
+}
+
+.label {
+    color: #170f49;
+	font-weight: 500;
+	font-size: 16px;
+}
+
+.email_value {
+    color: #6f6c90;
+	font-weight: 400;
+	font-size: 16px;
+}
+
+.details_header {
+    display: flex;
+	align-items: center;
+}
+
+.left_line_div {
+	border-bottom: 1px solid #abb0de;
+    width: 11%;
+}
+
+.right_line_div {
+	width: 65%;
+	border-bottom: 1px solid #abb0de;
+}
+
+.dot_div {
+    border-radius: 100%;
+	background: #db4634;
+	height: 5px;
+	width: 5px;
+}
+
+.text_div {
+    color: #170f49;
+	font-weight: 500;
+	font-size: 18px;
+	padding: 1%;
+}
+
+.details_content_div {
+	margin-top: 18px;
+}
+
+.row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 3%;
+    margin-left: 105px;
+}
+.name {
+    width: 25%;
+}
+.address {
+    width: 70%;
+}
+.panOrAadhar {
+    width: 40%;
+}
+.commodity {
+    width: 33%;
+}
+
+.value {
+    color: #6f6c90;
+	font-weight: 400;
+	font-size: 16px;
+	max-width: 200px;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+}
+
+.value_2 {
+    color: #6f6c90;
+	font-weight: 400;
+	font-size: 16px;
+	max-width: 200px;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+}
+
+.footer {
+    background: #dee0e6;
+	border-radius: 0px 0px 8px 8px;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+	padding: 25px 40px;
+}
+
+.textforpreview {
+    color: #2c3e50;
+    font-size: 20px;
+    font-weight: 700;
+    text-align: center;
+}
+
+.inclusive {
+    color: #6f6c90;
+    font-size: 11px;
+    font-weight: 400;
+    text-align: start;
+}
+
+.text {
+    color: #2c3e50;
+    font-size: 20px;
+    font-weight: 700;
+}

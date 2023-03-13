@@ -56,7 +56,7 @@ function Footer({
 				<Button onClick={prevButton}>
 					<IcMArrowBack width="22px" height="22px" className={styles.icon} />
 				</Button>
-				<Button onClick={handleSubmit(saveDraft)} loading={draftLoading}>
+				<Button onClick={handleSubmit(saveDraft)} loading={draftLoading} themeType="accent">
 					<div className={styles.align_div}>
 						Save as Draft
 						<IcMBldo className={styles.icon_left} />

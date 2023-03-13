@@ -2,7 +2,7 @@ import { cl, Radio } from '@cogoport/components';
 
 import styles from '../../styles.module.css';
 
-import { shortFormatNumber } from '@/ui/commons/utils/getShortFormatNumber';
+import formatAmount from '@/ui/commons/utils/formatAmount';
 
 function HsCodeList({
 	list = [], addProductId = [], checkId = [], addRemoveCheckBox,
@@ -39,12 +39,14 @@ function HsCodeList({
 								</div>
 								<div>
 									<div className={styles.label}>Cost Price</div>
-									<div className={styles.value}>{shortFormatNumber(costPrice, currency, true)}</div>
+									<div className={styles.value}>
+										{formatAmount(costPrice, currency, { notation: 'standard' })}
+									</div>
 								</div>
 								<div>
 									<div className={styles.label}>Selling Price</div>
 									<div className={styles.value}>
-										{shortFormatNumber(sellingPrice, currency, true)}
+										{formatAmount(sellingPrice, currency, { notation: 'standard' })}
 									</div>
 								</div>
 							</div>

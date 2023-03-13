@@ -1,6 +1,6 @@
 import { Tooltip } from '@cogoport/components';
 
-import { shortFormatNumber } from '../../../commons/utils/getShortFormatNumber';
+import formatAmount from '@/ui/commons/utils/formatAmount';
 
 export const tableFunction = {
 	renderName: (key, list) => {
@@ -18,6 +18,6 @@ export const tableFunction = {
 	renderPrice: (key, list) => {
 		const { currency } = list;
 		const amount = list[key];
-		return shortFormatNumber(amount, currency);
+		return formatAmount(amount, currency);
 	},
 };

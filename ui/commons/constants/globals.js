@@ -12,7 +12,11 @@ const GLOBAL_CONSTANTS = {
 		GBP : 'GBP',
 		AED : 'AED',
 	},
-
+	currency_locale: {
+		INR : 'en-IN',
+		USD : 'en-US',
+		VND : 'vi-VN',
+	},
 	formats: {
 		date: {
 			'dd/MM/yyyy'  : 'dd/MM/yyyy',

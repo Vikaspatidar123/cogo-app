@@ -9,7 +9,7 @@ import useCurrencyConversion from '../../../hooks/useCurrencyConversion';
 import useGetRates from '../../../hooks/useGetRates';
 
 import ChargeDetails from './ChargeDetails';
-import DocumentsRequired from './DocumentsRequired';
+// import DocumentsRequired from './DocumentsRequired';
 import Footer from './Footer';
 import InvoiceDetails from './InvoiceDetails';
 import PricingSummary from './PricingSummary';
@@ -151,8 +151,8 @@ function ValueDetails({
 						</div>
 					</div>
 					<form type="submit">
-						<div>
-							<div className={styles.content_wrapper}>
+						<div className={styles.content_wrapper}>
+							<div>
 								<div className={styles.row}>
 									<ChargeDetails
 										fields={fields}
@@ -199,9 +199,9 @@ function ValueDetails({
 								ratesLoading={ratesLoading}
 							/>
 						</div>
-						<div className={styles.row}>
+						{/* <div className={styles.row}>
 							<DocumentsRequired fields={fields} control={control} errors={errors} />
-						</div>
+						</div> */}
 					</form>
 					<Footer
 						saveDraft={saveDraft}

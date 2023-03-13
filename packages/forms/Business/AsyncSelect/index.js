@@ -2,12 +2,15 @@ import { MultiSelect, Select } from '@cogoport/components';
 import { isEmpty } from '@cogoport/utils';
 
 import useGetAsyncOptions from '../../hooks/useGetAsyncOptions';
+import useGetAsyncOptionsBf from '../../hooks/useGetAsyncOptionsBf';
 import {
 	asyncFieldsLocations,
 	asyncFieldsLocations2,
 	asyncFieldsPartner,
 	asyncFieldsPartnerRoles,
 	asyncFieldsHsCodeCountries,
+	asyncFieldsCommoditiesList,
+	asyncInsuranceCountryList,
 } from '../../utils/getAsyncFields';
 
 /**
@@ -29,11 +32,13 @@ import {
  * getModifiedOptions
  */
 const keyAsyncFieldsParamsMapping = {
-	locations         : asyncFieldsLocations,
-	locations2        : asyncFieldsLocations2,
-	partners          : asyncFieldsPartner,
-	partner_roles     : asyncFieldsPartnerRoles,
-	hs_code_countries : asyncFieldsHsCodeCountries,
+	locations                  : asyncFieldsLocations,
+	locations2                 : asyncFieldsLocations2,
+	partners                   : asyncFieldsPartner,
+	partner_roles              : asyncFieldsPartnerRoles,
+	hs_code_countries          : asyncFieldsHsCodeCountries,
+	commodities_list_insurance : asyncFieldsCommoditiesList,
+	insurance_country_list     : asyncInsuranceCountryList,
 };
 
 function AsyncSelect(props) {
@@ -49,17 +54,20 @@ function AsyncSelect(props) {
 
 	const defaultParams = keyAsyncFieldsParamsMapping[asyncKey]?.() || {};
 
-	const getAsyncOptionsProps = useGetAsyncOptions({
+	const callFunction = defaultParams.authKey ? useGetAsyncOptionsBf : useGetAsyncOptions;
+
+	const getAsyncOptionsProps = callFunction({
 		...defaultParams,
 		initialCall,
 		params   : params || defaultParams.params,
 		labelKey : rest.labelKey || defaultParams.labelKey,
 		valueKey : rest.valueKey || defaultParams.valueKey,
+		getModifiedOptions,
 	});
 
-	if (typeof getModifiedOptions === 'function' && !isEmpty(getAsyncOptionsProps.options)) {
-		getAsyncOptionsProps.options = getModifiedOptions({ options: getAsyncOptionsProps.options });
-	}
+	// if (typeof getModifiedOptions === 'function' && !isEmpty(getAsyncOptionsProps.options)) {
+	// 	getAsyncOptionsProps.options = getModifiedOptions({ options: getAsyncOptionsProps.options });
+	// }
 
 	if (typeof getSelectedOption === 'function' && !isEmpty(rest.value)) {
 		let selectedValue;

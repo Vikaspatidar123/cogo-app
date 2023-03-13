@@ -38,7 +38,8 @@ const useGetTermsConditions = ({
 		if (formDetails?.policyCommodityId) {
 			fetchTerms();
 		}
-	});
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [formDetails]);
 	return {
 		fetchTermsLoading: loading,
 		terms,

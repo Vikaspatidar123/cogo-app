@@ -1,11 +1,9 @@
 import { Tooltip } from '@cogoport/components';
 import { IcMInfo } from '@cogoport/icons-react';
 
-// import { StyledCol, IconDiv } from '../style';
-
 import styles from './styles.module.css';
 
-import { InputController, SelectController } from '@/packages/forms';
+import getField from '@/packages/forms/Controlled';
 
 function ChargeDetails({
 	control = {},
@@ -15,33 +13,34 @@ function ChargeDetails({
 }) {
 	return (
 		<>
-			{control
+			{fields
 				.filter((items, index) => index < 2)
-				.map((item, index) => {
-					const Element = item.type === 'text' ? InputController : SelectController;
+				.map((item) => {
+					const Element = getField(item.type);
+					const renderingField = fields.find((ele) => ele.name === item.name);
 					return (
 						<div
 							className={styles.col}
 							key={item.name}
-							// action={errors[item.name]?.message}
 						>
 							<Element
-								{...fields[index]}
+								{...renderingField}
 								control={control}
+								key={item.name}
 							/>
 							<div>
-								{fields[index].name !== 'policyCurrency' ? (
-									<span className={watch(fields[index]?.name) !== ''
+								{renderingField.name !== 'policyCurrency' ? (
+									<span className={watch(renderingField?.name) !== ''
 										? styles.display : styles.hidden}
 									>
-										{fields[index].placeholder}
+										{renderingField.placeholder}
 									</span>
 								) : (
-									<span className={watch(fields[index]?.name) !== ''
+									<span className={watch(renderingField?.name) !== ''
 										? styles.display : styles.hidden}
 									>
 										<div className={styles.icon_div}>
-											{fields[index].placeholder}
+											{renderingField.placeholder}
 											<Tooltip
 												theme="light"
 												placement="right"
@@ -55,12 +54,12 @@ function ChargeDetails({
 									</span>
 								)}
 							</div>
-							{errors[fields[index].name]?.type === 'required'
-							|| errors[fields[index].name]?.type === 'pattern'
-							|| errors[fields[index].name]?.type === 'minLength'
-							|| errors[fields[index].name]?.type === 'maxValue' ? (
+							{errors[renderingField.name]?.type === 'required'
+							|| errors[renderingField.name]?.type === 'pattern'
+							|| errors[renderingField.name]?.type === 'minLength'
+							|| errors[renderingField.name]?.type === 'maxValue' ? (
 								<div className={styles.error_message}>
-									{errors[fields[index].name]?.message}
+									{errors[renderingField.name]?.message}
 								</div>
 								) : null}
 						</div>

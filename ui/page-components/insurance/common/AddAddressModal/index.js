@@ -103,6 +103,7 @@ function AddModal({
 			Toast.error('Invalid Pincode');
 		}
 		if (city || region?.name) {
+			console.log('🚀 ~ file: index.js:106 ~ useMemo ~ city:', city);
 			setValues({
 				city  : city?.name,
 				state : region?.name,

@@ -10,6 +10,11 @@
 
 import {
 	IcMQuotations,
+	IcMProductCodeMapping,
+	IcMTradeparties,
+	IcMAverage,
+	IcACrossBorder,
+	IcMFfreferigeratedCargoType,
 } from '@cogoport/icons-react';
 
 const navigationMappings = {
@@ -23,8 +28,6 @@ const navigationMappings = {
 
 	},
 
-<<<<<<< Updated upstream
-=======
 	saas_planning: {
 		key       : 'saas_planning',
 		title     : 'Planning',
@@ -316,7 +319,6 @@ const navigationMappings = {
 		showInNav: false,
 
 	},
->>>>>>> Stashed changes
 	app_get_started: {
 		key   : 'app_get_started',
 		title : 'Get Started',

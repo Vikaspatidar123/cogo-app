@@ -1,6 +1,6 @@
 import { IcMCloudUpload } from '@cogoport/icons-react';
 
-const get = (formObject, key) => formObject[key];
+const get = (formObject = {}, key = '') => formObject[key] || null;
 
 // const invoiceNumberValidator = /^[A-Za-z]+-\d+$/g;
 
@@ -46,11 +46,12 @@ const controls = [
 		},
 	},
 	{
-		name        : 'invoiceDate',
-		placeholder : 'Invoice Date',
-		maxDate     : new Date(),
-		type        : 'datepicker',
-		span        : 6,
+		name                  : 'invoiceDate',
+		placeholder           : 'Invoice Date',
+		maxDate               : new Date(),
+		type                  : 'datepicker',
+		span                  : 6,
+		isPreviousDaysAllowed : true,
 	},
 	{
 		name        : 'invoiceDoc',

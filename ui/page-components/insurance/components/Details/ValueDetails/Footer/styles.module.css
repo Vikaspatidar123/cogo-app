@@ -44,6 +44,7 @@
 }
 
 .underline {
+	margin-left: 3px;
     color: #1976d2;
 	cursor: pointer;
 }

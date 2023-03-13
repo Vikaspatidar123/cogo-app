@@ -11,7 +11,7 @@ import useSaveDraft from '../../hooks/useSaveDraft';
 import BillingDetails from './BillingDetails';
 import CargoDetails from './CargoDetails';
 import styles from './styles.module.css';
-// import ValueDetails from './ValueDetails';
+import ValueDetails from './ValueDetails';
 
 import { useRouter } from '@/packages/next';
 
@@ -157,7 +157,7 @@ function Details({
 					countryDetails={countryDetails}
 				/>
 			)}
-			{/* {(activeStepper[3] === 'pro' || activeStepper[4] === 'pro') && (
+			{(activeStepper[3] === 'pro' || activeStepper[4] === 'pro') && (
 				<ValueDetails
 					setActiveStepper={setActiveStepper}
 					formDetails={formDetails}
@@ -185,7 +185,7 @@ function Details({
 					setModal={setModal}
 					showModal={modal}
 				/>
-			)} */}
+			)}
 			{draftModal && <DraftModal draftModal={draftModal} setDraftModal={setDraftModal} />}
 		</div>
 	);

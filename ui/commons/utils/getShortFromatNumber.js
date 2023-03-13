@@ -1,5 +1,5 @@
 /* eslint-disable no-mixed-spaces-and-tabs */
-const getShortFormatNumber = (locale, price, currency, options = {}) => (currency
+const getShortFormatNumber = (price, currency, options = {}, locale = 'en-IN') => (currency
 	? Intl.NumberFormat(locale, {
 		style                 : 'currency',
 		currency,

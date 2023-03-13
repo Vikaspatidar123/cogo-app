@@ -1,28 +1,13 @@
 import { Checkbox, Button } from '@cogoport/components';
 import { IcMArrowBack, IcMBldo, IcMPreview } from '@cogoport/icons-react';
 
-// import {
-// 	StyledBack,
-// 	BlackButton,
-// 	StyledIcon,
-// 	AlignDiv,
-// 	StyledU,
-// 	ConditionsDiv,
-// 	PreviousButton,
-// 	Flex,
-// 	RedButton,
-// 	Wrapper2,
-// 	StyledPreview,
-// 	DisplayFlex,
-// } from '../style.js';
-
 import styles from './styles.module.css';
 
 function Footer({
 	saveDraft = () => {},
 	submit = () => {},
 	handleSubmit = () => {},
-	agree = '',
+	// agree = '',
 	setTermsConditionsShow = () => {},
 	ratesLoading = false,
 	isMobile = false,

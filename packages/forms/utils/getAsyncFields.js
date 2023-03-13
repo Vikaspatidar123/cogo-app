@@ -63,10 +63,35 @@ function asyncFieldsHsCodeCountries() {
 		defaultParams : { page_limit: 20 },
 	};
 }
+
+function asyncFieldsCommoditiesList() {
+	return {
+		labelKey      : 'label',
+		valueKey      : 'id',
+		endpoint      : 'saas/insurance/list-commodities',
+		authKey       : 'get_saas_insurance_list_commodities',
+		initialCall   : true,
+		defaultParams : {},
+	};
+}
+
+function asyncInsuranceCountryList() {
+	return {
+		labelKey      : 'label',
+		valueKey      : 'id',
+		endpoint      : 'saas/insurance/list/countries',
+		authKey       : 'get_saas_insurance_list_commodities',
+		initialCall   : true,
+		defaultParams : {},
+	};
+}
+
 export {
 	asyncFieldsLocations,
 	asyncFieldsLocations2,
 	asyncFieldsPartner,
 	asyncFieldsPartnerRoles,
 	asyncFieldsHsCodeCountries,
+	asyncFieldsCommoditiesList,
+	asyncInsuranceCountryList,
 };

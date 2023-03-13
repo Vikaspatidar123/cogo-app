@@ -2,18 +2,6 @@
 import { Checkbox, Placeholder, Button } from '@cogoport/components';
 import { IcMPlansExpiring, IcMCrossInCircle, IcMPlus } from '@cogoport/icons-react';
 
-// import {
-// 	Container,
-// 	Heading,
-// 	Title,
-// 	Card,
-// 	CardTxt,
-// 	EmptyState,
-// 	Section,
-// 	AddressContainer,
-// 	StyledButton,
-// } from '../../components/Details/BillingDetails/Address/style';
-
 import styles from './styles.module.css';
 
 function Addres({

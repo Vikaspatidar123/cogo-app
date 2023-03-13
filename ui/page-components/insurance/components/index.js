@@ -5,17 +5,6 @@ import { useSelector } from 'react-redux';
 import redirectUrl from '../common/redirectUrl';
 
 import Description from './Description';
-// import {
-// 	Heading,
-// 	Container,
-// 	ContainerWrapper,
-// 	StyledCol,
-// 	TextType,
-// 	Back,
-// 	StyledDiv,
-// 	Div,
-// 	STyledRow,
-// } from './styles';
 import styles from './styles.module.css';
 import TabsSection from './Tabs';
 

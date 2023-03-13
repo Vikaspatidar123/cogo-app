@@ -1,21 +1,51 @@
-const get = (formObject, key) => formObject[key];
+import { Pill } from '@cogoport/components';
+import { IcCCompleteJourney } from '@cogoport/icons-react';
+
+import styles from '../components/Details/CargoDetails/styles.module.css';
+
+const get = (formObject = {}, key = '') => formObject[key] || null;
 
 const controls = [
 	{
-		name           : 'policyCommodityId',
-		placeholder    : 'Commodity',
-		type           : 'select',
-		optionsListKey : 'commodities',
-		span           : 4,
-		defaultOptions : true,
+		name               : 'policyCommodityId',
+		placeholder        : 'Commodity',
+		asyncKey           : 'commodities_list_insurance',
+		span               : 4,
+		defaultOptions     : true,
+		type               : 'async_select',
+		getModifiedOptions : (options) => (options || []).map((x) => ({
+			...x,
+			value: x.id,
+			label:
+	<>
+		<div>{x.commodity}</div>
+		<div>
+			(
+			{x.subCommodity}
+			)
+		</div>
+	</>,
+		})),
 	},
 	{
-		name           : 'policyCountryId',
-		placeholder    : 'Country',
-		type           : 'select',
-		optionsListKey : 'insurance-country-list',
-		span           : 4,
-		defaultOptions : true,
+		name               : 'policyCountryId',
+		placeholder        : 'Country',
+		type               : 'async_select',
+		asyncKey           : 'insurance_country_list',
+		span               : 4,
+		defaultOptions     : true,
+		getModifiedOptions : (options = []) => (options || []).map((x) => ({
+			...x,
+			value: x.id,
+			label:
+	<div className={styles.country_flag_options}>
+		{x.countryFlagIcon ? <img src={x.countryFlagIcon} alt="cogo" /> : <IcCCompleteJourney />}
+		<div>{x.countryName}</div>
+		{x?.countryType === 'BLOCKED' && (
+			<Pill color="red">{x?.countryType}</Pill>
+		)}
+	</div>,
+		})),
 	},
 	{
 		name        : 'incoterm',
@@ -91,8 +121,8 @@ const getControls = ({
 	if (control.name === 'policyCommodityId') {
 		return {
 			...control,
-			value        : get(formDetails, control.name),
-			handleChange : (e) => {
+			value    : get(formDetails, control.name),
+			onChange : (e) => {
 				setDescription(e);
 				setCommodityName(e?.commodity);
 			},
@@ -101,9 +131,9 @@ const getControls = ({
 	if (control.name === 'policyCountryId') {
 		return {
 			...control,
-			placeholder  : activeTab === 'IMPORT' ? 'Origin Country' : 'Destination Country',
-			value        : get(formDetails, control.name),
-			handleChange : (e) => {
+			placeholder : activeTab === 'IMPORT' ? 'Origin Country' : 'Destination Country',
+			value       : get(formDetails, control.name),
+			onChange    : (e) => {
 				setCountryDetails({
 					checkSantion      : e?.countryType,
 					sanctionedCountry : e?.countryName,

@@ -168,3 +168,8 @@
     align-items: center;
 }
 
+.country_flag_options {
+	display: flex;
+	gap: 5px;
+}
+

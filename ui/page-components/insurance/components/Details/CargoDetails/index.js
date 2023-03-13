@@ -6,33 +6,10 @@ import { useEffect, useState } from 'react';
 import getControls from '../../../configurations/cargoControls';
 
 import Sanction from './Sanction';
-// import {
-// 	Container,
-// 	StyledRow,
-// 	RedButton,
-// 	Wrapper2,
-// 	Heading,
-// 	Line,
-// 	HeadingWrapper,
-// 	Flex2,
-// 	StyledCol,
-// 	LineWrapper,
-// 	ContentWrapper,
-// 	StyledDiv,
-// 	DisplayDiv,
-// 	Label,
-// 	PreviousButton,
-// 	ColoredYellow,
-// 	PaddedDiv,
-// 	StyledNext,
-// 	StyledBack,
-// 	BlackButton,
-// 	StyledIcon,
-// 	AlignDiv,
-// } from './style';
 import styles from './styles.module.css';
 
-import { InputController, SelectController, useForm } from '@/packages/forms';
+import { useForm } from '@/packages/forms';
+import getField from '@/packages/forms/Controlled';
 
 const cargoDetails = ({
 	formDetails = {},
@@ -156,34 +133,33 @@ const cargoDetails = ({
 							<div className={styles.row}>
 								{fields
 									.filter((items, index) => index < 3)
-									.map((item, index) => {
-										const Element = item.type === 'text' ? InputController : SelectController;
+									.map((item) => {
+										const Element = getField(item?.type);
+										const renderingField = fields.find((ele) => ele.name === item.name);
 										return (
 											<div
 												className={styles.col}
 												key={item.name}
-												// action={errors[item.name]?.message}
 											>
-
 												<Element
 													key={item.name}
-													{...fields[index]}
+													{...renderingField}
 													control={control}
 												/>
 												<div>
 													<span
-														className={watch(fields[index]?.name) !== ''
+														className={watch(renderingField?.name) !== ''
 															? styles.display : styles.hidden}
 													>
-														{fields[index]?.placeholder}
+														{renderingField?.placeholder}
 													</span>
 												</div>
 
-												{errors[fields[index]?.name]?.type === 'required'
-												|| errors[fields[index]?.name]?.type === 'pattern'
-												|| errors[fields[index]?.name]?.type === 'minLength' ? (
+												{errors[renderingField?.name]?.type === 'required'
+												|| errors[renderingField?.name]?.type === 'pattern'
+												|| errors[renderingField?.name]?.type === 'minLength' ? (
 													<div className={styles.error_text}>
-														{errors[fields[index]?.name]?.message}
+														{errors[renderingField?.name]?.message}
 													</div>
 													) : null}
 											</div>
@@ -200,65 +176,61 @@ const cargoDetails = ({
 									</div>
 									<div className={styles.row}>
 										{fields
-											.filter((items, index) => index > 3)
-											.map((item, index) => {
-												const Element = item.type === 'text'
-													? InputController : SelectController;
-
+											.filter((items, index) => index > 2)
+											.map((item) => {
+												const Element = getField(item?.type);
+												const renderingField = fields.find((ele) => ele.name === item.name);
 												return (
 													<div
 														className={styles.col}
 														key={item.name}
-														action={errors[fields[index].name]?.message}
 													>
-														{fields[index].tooltip ? (
+														{renderingField.tooltip ? (
 															<Tooltip
-																content={fields[index].tooltip}
-																placement="top-start"
+																content={renderingField.tooltip}
+																placement="top"
 																theme="light-border"
 															>
 																<div>
-
 																	<Element
-																		{...fields[index]}
+																		{...renderingField}
 																		control={control}
 																	/>
 																	<div>
 																		<span
 																			className={
-																					watch(fields[index]?.name) !== ''
+																					watch(renderingField?.name) !== ''
 																						? styles.display : styles.hidden
 																				}
 																		>
-																			{fields[index].placeholder}
+																			{renderingField.placeholder}
 																		</span>
 																	</div>
-
 																</div>
 															</Tooltip>
 														) : (
 															<>
 																<Element
-																	{...fields[index]}
+																	{...renderingField}
 																	control={control}
 																/>
 																<div>
 																	<span
 																		className={
-																			watch(fields[index].name) !== ''
+																			watch(renderingField.name) !== ''
 																				? styles.display : styles.hidden
 																		}
 																	>
-																		{fields[index].placeholder}
+																		{renderingField.placeholder}
 																	</span>
 																</div>
 															</>
 														)}
-														{(errors[fields[index].name]?.type === 'required'
-															|| errors[fields[index].name]?.type === 'pattern'
-															|| errors[fields[index].name]?.type === 'maxLength') && (
+														{(errors[renderingField.name]?.type === 'required'
+															|| errors[renderingField.name]?.type === 'pattern'
+															|| errors[renderingField.name]?.type === 'maxLength') && (
 																<div className={styles.error_message}>
-																	{errors[fields[index].name]?.message}
+																	{errors[renderingField.name]?.message}
 																</div>
 														)}
 													</div>

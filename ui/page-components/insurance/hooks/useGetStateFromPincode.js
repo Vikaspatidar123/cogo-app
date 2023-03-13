@@ -5,7 +5,7 @@ import { useRequest } from '@/packages/request';
 
 const useGetStateFromPincode = ({ watchPincode, setCityState, insuranceType }) => {
 	const COUNTRY_INDIA_ID = '541d1232-58ce-4d64-83d6-556a42209eb7';
-	const { trigger, loading } = useRequest(
+	const [{ loading }, trigger] = useRequest(
 		{ method: 'get', url: 'list_locations' },
 		{ manual: true },
 	);
@@ -32,6 +32,7 @@ const useGetStateFromPincode = ({ watchPincode, setCityState, insuranceType }) =
 			});
 		}
 	};
+
 	useMemo(() => {
 		if (watchPincode !== '' && watchPincode?.length === 6) responseCity();
 	// eslint-disable-next-line react-hooks/exhaustive-deps

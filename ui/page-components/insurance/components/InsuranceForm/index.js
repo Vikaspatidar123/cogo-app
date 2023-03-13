@@ -55,17 +55,12 @@ function InsuranceFrom() {
 					</div>
 				</div>
 				<div className={isMobile ? styles.segmented_container_mobile : styles.segmented_container}>
-					{/* <div
-						// className={`'segmented' ${activeStepper?.[1] !== 'pro' && 'disableSegment'}`}
-						className={styles.segmented}
-					> */}
 					<Chips
 						items={options}
 						selectedItems={activeTab}
 						onItemChange={setActiveTab}
 						className={styles.chips}
 					/>
-					{/* </div> */}
 					<img
 						src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/faq.svg"
 						onClick={() => {

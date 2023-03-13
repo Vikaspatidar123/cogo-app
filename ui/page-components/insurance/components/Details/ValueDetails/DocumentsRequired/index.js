@@ -5,21 +5,24 @@ function DocumentsRequired({
 	// control = {},
 	fields = [], errors = {},
 }) {
-	return fields
-		.filter((items, index) => index > 3)
-		.map((item, index) => (
-			<div className={styles.doc_container}>
-				<div className={styles.docs}>
-					<div className={styles.column}>{fields[index].placeholder}</div>
-					{/* <FileUploaderController multiple={false} /> */}
-				</div>
-				{errors[fields[index].name]?.type === 'required' ? (
-					<div className={styles.error_message}>
-						{errors[fields[index].name]?.message}
+	return (fields || []
+	).filter((items, index) => index > 3)
+		.map((item) => {
+			const renderingField = fields.find((ele) => ele.name === item.name);
+			return (
+				<div className={styles.doc_container}>
+					<div className={styles.docs}>
+						<div className={styles.column}>{renderingField.placeholder}</div>
+						{/* <FileUploaderController multiple={false} /> */}
 					</div>
-				) : null}
-			</div>
-		));
+					{errors[renderingField.name]?.type === 'required' ? (
+						<div className={styles.error_message}>
+							{errors[renderingField.name]?.message}
+						</div>
+					) : null}
+				</div>
+			);
+		});
 }
 
 export default DocumentsRequired;

@@ -1,6 +1,6 @@
 import styles from './styles.module.css';
 
-import { InputController, SelectController } from '@/packages/forms';
+import getField from '@/packages/forms/Controlled';
 
 function InvoiceDetails({
 	control = {},
@@ -10,10 +10,11 @@ function InvoiceDetails({
 }) {
 	return (
 		<>
-			{(control || [])
+			{(fields || [])
 				.filter((items, index) => index > 1 && index < 4)
-				.map((item, index) => {
-					const Element = item.type === 'text' ? InputController : SelectController;
+				.map((item) => {
+					const Element = getField(item.type);
+					const renderingField = fields.find((ele) => ele.name === item.name);
 					return (
 						<div
 							className={styles.col}
@@ -21,20 +22,21 @@ function InvoiceDetails({
 							// action={errors[item.name]?.message}
 						>
 							<Element
-								{...fields[index]}
+								{...renderingField}
 								key={item.name}
+								control={control}
 							/>
 							<div>
-								<span className={watch(fields[index]?.name) !== '' ? styles.display : styles.hidden}>
-									{fields[index].placeholder}
+								<span className={watch(renderingField?.name) !== '' ? styles.display : styles.hidden}>
+									{renderingField.placeholder}
 								</span>
 							</div>
-							{errors[fields[index].name]?.type === 'required'
-							|| errors[fields[index].name]?.type === 'pattern'
-							|| errors[fields[index].name]?.type === 'minLength'
-							|| errors[fields[index].name]?.type === 'maxValue' ? (
+							{errors[renderingField.name]?.type === 'required'
+							|| errors[renderingField.name]?.type === 'pattern'
+							|| errors[renderingField.name]?.type === 'minLength'
+							|| errors[renderingField.name]?.type === 'maxValue' ? (
 								<div className={styles.error_message}>
-									{errors[fields[index].name]?.message}
+									{errors[renderingField.name]?.message}
 								</div>
 								) : null}
 						</div>

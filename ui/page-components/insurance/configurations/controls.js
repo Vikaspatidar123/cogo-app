@@ -1,4 +1,4 @@
-const get = (formObject, key) => formObject[key];
+const get = (formObject = {}, key = '') => formObject[key] || null;
 
 const patterns = {
 	PAN_NUMBER : /[A-Za-z]{5}\d{4}[A-Za-z]{1}/g,

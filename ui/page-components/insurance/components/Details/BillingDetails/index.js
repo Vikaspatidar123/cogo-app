@@ -11,7 +11,8 @@ import useGetStateFromPincode from '../../../hooks/useGetStateFromPincode';
 import SellerAddress from './Address';
 import styles from './styles.module.css';
 
-import { InputController, useForm } from '@/packages/forms';
+import { useForm } from '@/packages/forms';
+import getField from '@/packages/forms/Controlled';
 
 const billingDetails = ({
 	formDetails = {},
@@ -48,7 +49,6 @@ const billingDetails = ({
 		setValue,
 		resetField,
 		setError,
-		setValues,
 		formState: { errors }, watch,
 	} = useForm();
 
@@ -90,29 +90,33 @@ const billingDetails = ({
 		insuranceType,
 	});
 
-	const returnField = ({ item, index }) => (
-		<div
-			className={styles.field}
-			key={item.name}
-		>
-			<InputController
-				{...fields[index]}
-				control={control}
-			/>
-			<div>
-				<span className={watch(fields[index]?.name) !== '' ? styles.display : styles.hidden}>
-					{fields[index].placeholder}
-				</span>
-			</div>
-			{(errors[fields[index].name]?.type === 'required'
-					|| errors[fields[index].name]?.type === 'pattern'
-					|| errors[fields[index].name]?.type === 'maxLength') && (
+	const returnField = ({ item }) => {
+		const Element = getField(item.type);
+		const renderingField = fields.find((ele) => ele.name === item.name);
+		return (
+			<div
+				className={styles.field}
+				key={item.name}
+			>
+				<Element
+					{...renderingField}
+					control={control}
+				/>
+				<div>
+					<span className={watch(renderingField?.name) !== '' ? styles.display : styles.hidden}>
+						{renderingField.placeholder}
+					</span>
+				</div>
+				{(errors[renderingField.name]?.type === 'required'
+					|| errors[renderingField.name]?.type === 'pattern'
+					|| errors[renderingField.name]?.type === 'maxLength') && (
 						<div className={styles.error_message}>
-							{errors[fields[index].name]?.message}
+							{errors[renderingField.name]?.message}
 						</div>
-			)}
-		</div>
-	);
+				)}
+			</div>
+		);
+	};
 
 	const saveDraft = (values) => {
 		setFormDetails((prev) => ({
@@ -131,10 +135,8 @@ const billingDetails = ({
 			Toast.error('Invalid Pincode');
 		}
 		if (city && region?.name && watchPincode?.length === 6) {
-			setValues({
-				billingCity  : city?.name,
-				billingState : region?.name,
-			});
+			setValue('billingCity', city?.name);
+			setValue('billingState', region?.name);
 		}
 	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [city, region]);
@@ -208,15 +210,15 @@ const billingDetails = ({
 								<div className={styles.div_as_row}>
 									{fields
 										.filter((items, index) => index > 3)
-										.map((item, index) => {
+										.map((item) => {
 											if (!['aadharNumber', 'gstin'].includes(item.name)) {
-												return returnField({ item, index });
+												return returnField({ item });
 											}
 											if (item.name === 'aadharNumber' && uploadType === 'INDIVIDUAL') {
-												return returnField({ item, index });
+												return returnField({ item });
 											}
 											if (item.name === 'gstin' && uploadType === 'CORPORATE') {
-												return returnField({ item, index });
+												return returnField({ item });
 											}
 											return null;
 										})}
@@ -273,26 +275,14 @@ const billingDetails = ({
 							)}
 							<div className={styles.wrapper_2}>
 								<Button
-									className="primary md"
-									type="button"
+									themeType="accent"
 									disabled={draftLoading}
 									onClick={handleSubmit(saveDraft)}
+									loading={draftLoading}
 								>
 									<div className={styles.align_div}>
-										{draftLoading ? (
-											<img
-												// eslint-disable-next-line max-len
-												src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/loading.svg"
-												width={25}
-												height={25}
-												alt=""
-											/>
-										) : (
-											<div className={styles.align_div}>
-												Save as Draft
-												<IcMBldo width="22px" height="22px" />
-											</div>
-										)}
+										Save as Draft
+										<IcMBldo width="22px" height="22px" />
 									</div>
 								</Button>
 								<Button

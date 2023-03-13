@@ -1,7 +1,6 @@
 import { IcMMinus, IcMPlus } from '@cogoport/icons-react';
 import { useState } from 'react';
 
-// import { CardDiv, Text, MainCard, TextDiv, Hr, CardText } from './styles';
 import styles from './styles.module.css';
 
 function Card({ item = [] }) {

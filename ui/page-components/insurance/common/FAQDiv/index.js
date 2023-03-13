@@ -1,7 +1,6 @@
 import { IcMCross } from '@cogoport/icons-react';
 
 import Card from './Card';
-// import { ContentWrapper, Wrapper, Head, Click } from './style';
 import styles from './styles.module.css';
 
 function FAQDiv({

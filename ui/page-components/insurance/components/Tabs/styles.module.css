@@ -25,34 +25,6 @@
 	margin-bottom: 35px;
 }
 
-/* width: ${(props) => (props.isMobile ? '340px !important' : '160px !important')};
-height: 170px;
-background-color: ${(props) =>
-	props.className === 'active' ? '#eef5ff' : 'white !important'};
-display: flex !important;
-flex-direction: ${(props) => (props.isMobile ? 'row !important' : 'column !important')};
-justify-content: ${(props) => props.isMobile && 'space-around !important'};
-padding-bottom: 20px;
-margin: 10px;
-border: ${(props) =>
-	props.className === 'active'
-		? `1.5px solid #4d88be !important`
-		: `1.5px solid #c9d6e6 !important`};
-filter: ${(props) =>
-	props.className === 'active'
-		? 'drop-shadow(0px 5px 5px rgba(240, 245, 255, 0.6))'
-		: 'none'};
-box-shadow: ${(props) =>
-	props.className === 'active'
-		? '0px 11px 12px #a3c7d6 !important'
-		: '0px 12px 32px rgba(240, 245, 255, 0.6) !important'}; */
-
-/* &:hover {
-	border: 1.5px solid #4d88be !important;
-	box-shadow: 0px 8px 16px rgba(57, 63, 112, 0.25) !important;
-} */
-
-
 .button {
 	width:  160px ;
 	height: 170px;

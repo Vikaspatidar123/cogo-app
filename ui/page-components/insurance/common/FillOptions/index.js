@@ -3,21 +3,6 @@ import { useState, useEffect } from 'react';
 
 import { RightIcon, Right, Maping, Config } from '../constants';
 
-// import {
-// 	Container,
-// 	Dot,
-// 	Line,
-// 	Div,
-// 	Main,
-// 	Heading,
-// 	Text,
-// 	TextDiv,
-// 	Count,
-// 	Image,
-// 	Wrapper,
-// 	NumberWrapper,
-// } from './styles';
-
 import styles from './styles.module.css';
 
 function FillOptaions({ activeStepper, isMobile }) {

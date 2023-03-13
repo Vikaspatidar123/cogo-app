@@ -19,7 +19,6 @@ function InvoiceDetails({
 						<div
 							className={styles.col}
 							key={item.name}
-							// action={errors[item.name]?.message}
 						>
 							<Element
 								{...renderingField}

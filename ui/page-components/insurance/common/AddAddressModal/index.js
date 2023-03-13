@@ -1,12 +1,6 @@
-// import { Text } from '@cogoport/front/components';
 import { Checkbox, Chips, Toast, Modal, Button } from '@cogoport/components';
-// import Pills from '@cogoport/front/components/admin/Pills';
-// import Toast from '@cogoport/front/components/admin/Toast';
 import { IcMPlus } from '@cogoport/icons-react';
 import { useState, useMemo } from 'react';
-// import getField from '../../../../common/form/components';
-// import FormItem from '../../../../common/ui/FormItem';
-// import { useWindowDimensions } from '../../../../common/utils/getMobileView';
 
 import { getControls } from '../../configurations/addAddressControls';
 import useCreateBillingAddres from '../../hooks/useCreateBillingAddress';

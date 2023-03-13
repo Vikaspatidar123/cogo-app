@@ -26,7 +26,6 @@ const useResetUserPassword = (setSentMail, setEmailId) => {
 				setEmailId(val.email);
 			}
 		} catch (e) {
-			console.log(e, 'error');
 			Toast.error('Something went wrong');
 		}
 	};

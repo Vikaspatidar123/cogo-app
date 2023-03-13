@@ -26,7 +26,7 @@ function CreateInsurance() {
 				{!isMobile && (
 					<div className={styles.container}>
 						<div className={styles.row}>
-							<div>
+							<div className={styles.column_1}>
 								<Description />
 							</div>
 							<div className={styles.column}>

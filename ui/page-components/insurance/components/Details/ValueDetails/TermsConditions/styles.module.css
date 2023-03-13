@@ -1,9 +1,9 @@
 .flex_row {
-    display: grid;
-    grid-template-columns: ;
+    display: flex;
+	flex-wrap: wrap;
     align-items: center !important;
 	padding: 10px;
-    grid-template-columns: 10% auto;
+	width: 100%;
 }
 
 .styled_col {
@@ -11,6 +11,7 @@
 	align-items: center ;
 	padding-right: 0 ;
 	padding-left: 15px ;
+	width: 10%;
 }
 
 .styled_col_2 {
@@ -52,9 +53,11 @@
 }
 
 .coverage {
-    display: grid;
-	padding-left: 22px;
-    grid-template-columns: auto 66%;
+    display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	padding: 0px 10px;
+	width: 100%;
 }
 
 .heading {
@@ -65,7 +68,8 @@
 }
 
 .second_column {
-	padding-left: 0px !important;
+	min-width: 50%;
+	padding-left: 10px;
 }
 
 .line_wrapper {

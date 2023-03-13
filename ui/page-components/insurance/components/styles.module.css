@@ -55,14 +55,19 @@
 }
 
 .row {
-    display: grid;
-    grid-template-columns: 30% 70%;
+    display: flex;
+	width: 100%;
+}
+
+.column_1 {
+	width: 30%
 }
 
 .column {
     display: flex;
 	justify-content: center;
 	align-items: center;
+	width:70%;
 }
 
 

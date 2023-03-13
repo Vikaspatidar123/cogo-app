@@ -82,14 +82,17 @@
 
 .row {
 	width: 100%;
-    display: grid;
+    display: flex;
+	flex-wrap: wrap;
+	width: 100%;
     align-items: center !important;
-	padding: 10px;
-    grid-template-columns: 33% 33% 33%;
+	gap: 10px;
+    margin: 10px 0px;
 }
 
 .col {
-	padding: 8px !important;
+	width: 32%;
+	padding: 10px;
 }
 
 .hidden {

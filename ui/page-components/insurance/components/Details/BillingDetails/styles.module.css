@@ -96,16 +96,17 @@
 }
 
 .div_as_row {
-    display: grid;
+    display: flex;
     align-items: center;
     width: 100%;
-    grid-template-columns: 30% 30% 30%;
 	gap: 10px;
     margin: 10px 0px;
+	flex-wrap: wrap;
 }
 
 .field {
     padding: 10px;
+	width: 32%;
 }
 
 .hidden {

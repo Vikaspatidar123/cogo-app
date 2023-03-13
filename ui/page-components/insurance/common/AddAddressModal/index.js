@@ -12,20 +12,6 @@ import { getControls } from '../../configurations/addAddressControls';
 import useCreateBillingAddres from '../../hooks/useCreateBillingAddress';
 import useGetStateFromPincode from '../../hooks/useGetStateFromPincode';
 
-// import {
-// 	StyledModal,
-// 	BtnContainer,
-// 	Container,
-// 	StyledButton,
-// 	Title,
-// 	Header,
-// 	IconContainer,
-// 	Section,
-// 	SectionTitle,
-// 	Row,
-// 	Col,
-// 	CheckBoxWrapper,
-// } from './style';
 import styles from './styles.module.css';
 
 import { InputController, SelectController, useForm } from '@/packages/forms';
@@ -103,7 +89,6 @@ function AddModal({
 			Toast.error('Invalid Pincode');
 		}
 		if (city || region?.name) {
-			console.log('🚀 ~ file: index.js:106 ~ useMemo ~ city:', city);
 			setValues({
 				city  : city?.name,
 				state : region?.name,

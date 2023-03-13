@@ -1,5 +1,6 @@
 .container {
 	padding: 16px;
+    width: 100%;
 }
 
 .header {
@@ -24,6 +25,7 @@
     padding: 20px;
 	padding-bottom: 0px;
 	font-size: 13px;
+    width: 100%;
 }
 
 .section_title {
@@ -44,9 +46,11 @@
 .row {
     justify-content: space-between;
 	align-items: center;
-	display: grid;
-	grid-template-columns:50% 50%;
+	display: flex;
+    gap: 5px;
 	margin: 10px 0px;
+    width: 100%;
+    flex-wrap: wrap;
 }
 
 .checkbox_wrapper {
@@ -106,5 +110,6 @@
 
 
 .field {
-    padding: 10px;
+    padding: 10px 0px;
+    width: 48%;
 }

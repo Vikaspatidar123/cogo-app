@@ -1,0 +1,81 @@
+.container {
+	@media screen and (max-width: 767px) {
+		width: 89vw;
+		margin-top: -20px;
+	}
+}
+
+.scroll_content {
+	@media screen and (max-width: 767px) {
+		max-width: 100%;
+		padding: 0 20px;
+		overflow-x: auto;
+
+		&::-webkit-scrollbar {
+			display: none;
+		}
+	}
+}
+
+.row {
+	display: flex;
+	align-items: center;
+	margin: 17px 0;
+	box-shadow: 0 2.2px 18.6px 0 #476fd30e, 0 17.8px 60px 0 #476fd31c;
+}
+
+.card_header {
+	margin-top: 8px;
+	margin-bottom: -17px;
+	font-weight: 500;
+	box-shadow: none;
+}
+
+.category_view {
+	margin-top: -15px;
+}
+
+@media screen and (max-width: 767px) {
+	.mobile_row {
+		width: fit-content;
+	}
+}
+
+.col {
+	padding: 10px;
+	font-size: 13px;
+	text-align: center;
+
+	@media screen and (max-width: 767px) {
+		flex-shrink: 0 !important;
+	}
+
+	.loader {
+		width: 70%;
+		margin: auto;
+	}
+}
+
+.empty_state {
+	margin: 40px;
+	font-size: 20px;
+	text-align: center;
+}
+
+.pagination_container {
+	display: flex;
+	justify-content: center;
+	margin: 25px 0;
+}
+
+.footer_container {
+	display: flex;
+	gap: 12px;
+	justify-content: flex-end;
+	padding: 12px 20px 0;
+	border-top: 1px solid #d3d3d3;
+}
+
+.cancel_btn {
+	margin-right: 12px;
+}

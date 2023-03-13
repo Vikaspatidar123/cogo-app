@@ -75,6 +75,9 @@ function BasicCharge({ fields, control, errors, submitForm }) {
 				isUserSubscribed={isUserSubscribed}
 				validateProduct={validateProduct}
 				setValidateProduct={setValidateProduct}
+				prioritySequence={prioritySequence}
+				quotaValue={quotaValue}
+				isQuotaLeft={isQuotaLeft}
 			/>
 		</>
 	);

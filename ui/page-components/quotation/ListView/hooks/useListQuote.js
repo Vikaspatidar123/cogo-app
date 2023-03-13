@@ -31,13 +31,13 @@ const useListQuote = () => {
 		method  : 'get',
 		url     : 'saas/quote/summary',
 		authKey : 'get_saas_quote_summary',
-	});
+	}, { manual: true });
 
 	const [{ loading: deleteLoading }, deleteTrigger] = useRequestBf({
 		method  : 'delete',
 		url     : 'saas/quote',
 		authKey : 'delete_saas_quote',
-	});
+	}, { manual: true });
 
 	const refetchList = async () => {
 		try {

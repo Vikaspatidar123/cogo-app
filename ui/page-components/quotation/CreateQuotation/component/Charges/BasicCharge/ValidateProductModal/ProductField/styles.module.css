@@ -29,16 +29,6 @@
 	margin-left: 1%;
 	.hrborder {
 		border: 1px dashed #f68b21;
-		margin-left: 10px;
-	}
-	.numbers {
-		font-weight: 400;
-		font-size: 12px;
-		color: #65677a;
-		margin-left: 12px;
-		margin-top: 5px;
-		padding: 3px;
-		background-color: #fef1df;
 	}
 	.cursor {
 		cursor: pointer;
@@ -47,5 +37,15 @@
 
 .service_container{
     display: flex;
+	align-items: flex-start;
 	margin-bottom: 3%;
+
+    :global{
+        .ui_checkbox_container{
+            padding: 0px;
+        }
+    }
+}
+.service_name{
+	font-size: 12px;
 }

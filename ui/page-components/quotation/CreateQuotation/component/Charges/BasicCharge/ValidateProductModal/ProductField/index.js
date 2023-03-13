@@ -1,11 +1,13 @@
-import { Tooltip, Checkbox, ButtonIcon, Button, Popover, Input } from '@cogoport/components';
+import { Pill, Tooltip, Checkbox, ButtonIcon, Button, Popover, Input } from '@cogoport/components';
 import { IcMDelete } from '@cogoport/icons-react';
 
 import servicesConfiguration from '../../../../../configuration/serviceConfiguration';
 
 import styles from './styles.module.css';
 
-function ProductField({ quotaLeft }) {
+import { shortFormatNumber } from '@/ui/commons/utils/getShortFormatNumber';
+
+function ProductField({ services, isQuotaLeft, serviceCurrency }) {
 	return (
 		<div className={styles.container}>
 			{/* <Button className="text primary lg cta" onClick={() => setShowHsCodeModal(true)}>
@@ -46,17 +48,17 @@ function ProductField({ quotaLeft }) {
 						<Checkbox />
 						<div>
 							<Tooltip placement="right" content={service?.tooltip} theme="light-border">
-								<div className="cursor">
+								<div className={styles.cursor}>
 									<div className={styles.service_name} key={service?.name}>{service?.name}</div>
-									<div className="hrborder" />
+									<div className={styles.hrborder} />
 								</div>
 							</Tooltip>
-							{/* {!quotaLeft && ( */}
-							{/* <Tag className="numbers">
-								{shortFormatNumber(services[x?.services]?.price, currency, true)}
-								/-
-							</Tag> */}
-							{/* )} */}
+							{!isQuotaLeft && (
+								<Pill color="#FEF0DF">
+									{shortFormatNumber(services[service?.services]?.price, serviceCurrency, true)}
+									/-
+								</Pill>
+							)}
 						</div>
 					</div>
 

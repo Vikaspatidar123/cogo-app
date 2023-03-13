@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import { cl, Button } from '@cogoport/components';
 import { IcATransparency, IcMPlus } from '@cogoport/icons-react';
 import { useEffect, useState } from 'react';
@@ -51,6 +50,7 @@ function ProductCategory({
 		if (subCategoryLength > 0) {
 			setCategoryList({});
 		}
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [subCategory?.categoryCode]);
 
 	return (

@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import { Toast } from '@cogoport/components';
 import { useState, useEffect } from 'react';
 
@@ -32,6 +31,7 @@ const useProductCategory = ({ labeledValue }) => {
 		if (labeledValue === 'category') {
 			refetchProductCategory();
 		}
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [labeledValue]);
 	return {
 		categoryViewData,

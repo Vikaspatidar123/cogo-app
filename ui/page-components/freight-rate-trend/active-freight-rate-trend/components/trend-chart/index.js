@@ -34,7 +34,7 @@ function TrendChart({ labels, datasets = [] }) {
 				<div className={styles.chart}>
 					<ResponsiveLine
 						margin={{
-							top    : 10,
+							top    : 15,
 							right  : 20,
 							bottom : 70,
 							left   : 60,
@@ -56,7 +56,7 @@ function TrendChart({ labels, datasets = [] }) {
 							tickPadding    : 5,
 							tickRotation   : 0,
 							legend         : 'Rates (USD)',
-							legendOffset   : -40,
+							legendOffset   : -45,
 							legendPosition : 'middle',
 						}}
 						axisBottom={{
@@ -64,12 +64,11 @@ function TrendChart({ labels, datasets = [] }) {
 							orient         : 'bottom',
 							tickSize       : 5,
 							tickPadding    : 5,
-							tickValues     : 'every 15 days',
-							legend         : 'Date',
+							tickValues     : 'every 14 days',
 							legendOffset   : 36,
 							legendPosition : 'middle',
 						}}
-						// eslint-disable-next-line react/no-unstable-nested-components
+					// eslint-disable-next-line react/no-unstable-nested-components
 						tooltip={({ point }) => (
 							<ToolTipComponent point={point} data={data} />
 						)}
@@ -80,7 +79,6 @@ function TrendChart({ labels, datasets = [] }) {
 						pointColor={{ theme: 'background' }}
 						pointBorderWidth={5}
 						pointBorderColor={{ from: 'serieColor' }}
-						pointLabelYOffset={-24}
 						useMesh
 					/>
 				</div>

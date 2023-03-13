@@ -1,84 +1,81 @@
-
-.container{
+.container {
 	position: relative;
 }
 
-.row{
+.row {
 	display: flex;
 	align-items: center;
 }
 
-.line{
-	height: 2px;
+.line {
 	width: 40px;
+	height: 2px;
 	background: #e0e0e0;
 	transition: background 0.3s ease-in;
-
 }
 
 .line.not_mobile {
 	width: 100px;
 }
-.line.ongoing{
+
+.line.ongoing {
 	background: #f68b21;
 }
 
-.dot{
+.dot {
 	width: 15px;
 	height: 15px;
-	border-radius: 100%;
 	background: #e0e0e0;
+	border-radius: 100%;
 	transition: background 0.3s ease-in;
 }
-.completed{
+
+.completed {
 	background: #c4dc91;
 }
+
 .ongoing_dot {
 	background: transparent;
 	border: 2px solid #f68b21;
 }
 
-.text{
+.text {
 	margin-top: 5px;
-	text-align: center;
 	color: #b7b7b8;
+	text-align: center;
 	transition: color 0.3s ease-in;
 }
 
-
-.text.completed_txt{
+.text.completed_txt {
 	color: #333;
 }
 
-
-@media screen and (min-width: 767px){
-	.text.not_mobile.firstElement{
-			position: absolute;
-			left: -60px;
+@media screen and (min-width: 767px) {
+	.text.not_mobile.first_element {
+		position: absolute;
+		left: -60px;
 	}
 
-	.text.not_mobile.lastElement{
+	.text.not_mobile.last_element {
 		position: absolute;
 		right: -60px;
-	} 
+	}
 }
-
-@media screen and (max-width:767px){
-	.text.is_mobile{
-			font-size: 9px;
-			position: absolute;
-		
-		}
-
-	.text.is_mobile.firstElement{
-			left: -30px;
+@media screen and (max-width: 767px) {
+	.text.is_mobile {
+		position: absolute;
+		font-size: 9px;
 	}
 
-	.text.is_mobile.lastElement{
-			right: -30px;
+	.text.is_mobile.first_element {
+		left: -30px;
 	}
 
-	.line.is_mobile{
+	.text.is_mobile.last_element {
+		right: -30px;
+	}
+
+	.line.is_mobile {
 		width: 30px;
 	}
 }

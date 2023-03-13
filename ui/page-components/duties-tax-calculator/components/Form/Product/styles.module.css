@@ -1,23 +1,23 @@
-
-
-.container{
+.container {
 	position: relative;
 }
 
-.orTag {
+.or_tag {
 	display: flex;
-	justify-content: center;
-	align-items: center;
 	gap: 3px;
+	align-items: center;
+	justify-content: center;
 }
+
 .line {
-	height: 0;
 	width: 14px;
+	height: 0;
 	border-top: 1.7px solid #bdbdbd;
 }
+
 .text {
-	font-weight: 500;
 	font-size: 13px;
+	font-weight: 500;
 	color: #bdbdbd;
 }
 
@@ -26,22 +26,25 @@
 	align-items: center;
 	justify-content: space-around;
 }
-.hyperLink {
+
+.hyper_link {
 	color: #ee3425;
+
 	:hover {
 		text-decoration: underline;
 		cursor: pointer;
 	}
 }
+
 .divider {
 	width: 0;
 	border-left: 1px solid #333;
 }
 
-.title_container{
+.title_container {
 	display: flex;
-	justify-content: space-between;
 	align-items: center;
+	justify-content: space-between;
 }
 
 .currency {

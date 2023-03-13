@@ -113,7 +113,7 @@ function Transportation({
 						<div className={styles.txt}>Air</div>
 					</div>
 				</div>
-				<div className={styles.formDiv}>
+				<div className={styles.form_div}>
 					<div className={style.col}>
 						<div className={style.label}>{fields[0]?.label}</div>
 						<OriginPort
@@ -129,9 +129,9 @@ function Transportation({
 							</div>
 						)}
 					</div>
-					<div className={styles.interChangeContainer}>
+					<div className={styles.inter_change_container}>
 						<div
-							className={cl`${rotate && styles.rotateIcn} ${styles.icn}`}
+							className={cl`${rotate && styles.rotate_icn} ${styles.icn}`}
 							role="presentation"
 							onClick={interchangeValuesHandler}
 						>

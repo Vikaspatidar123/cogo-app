@@ -1,3 +1,5 @@
+/* eslint-disable no-restricted-globals */
+/* eslint-disable no-undef */
 import { Tooltip, cl, Button } from '@cogoport/components';
 import { IcMInfo } from '@cogoport/icons-react';
 
@@ -19,17 +21,7 @@ function SuccessModal({ tradeEngineResp }) {
 		additionalChargesList = {},
 	} = tradeEngineResp || {};
 
-	const { query } = useRouter();
 	const { incotermCharges: incotermArr = [] } = additionalChargesList || {};
-	const { org_id = '', branch_id = '', account_type = '' } = query || {};
-
-	const redirectToTax = () => {
-		// eslint-disable-next-line max-len
-		const redirectUrl = `${process.env.APP_URL}v2/${org_id}/${branch_id}/${account_type}/saas/premium-services/duties-taxes-calculator`;
-
-		// eslint-disable-next-line no-undef
-		window.open(redirectUrl, '_self');
-	};
 
 	const calculateTotalCharge = (arr) => {
 		const amount = arr.reduce((acc, curr) => +acc + +curr.value, 0);
@@ -66,7 +58,7 @@ function SuccessModal({ tradeEngineResp }) {
 			</div>
 			<div className={styles.header_container}>
 				<div className={styles.title}>Congratulations!</div>
-				<div className={styles.subTitle}>
+				<div className={styles.sub_title}>
 					Successfully calculated Duties and Taxes.
 					<br />
 					{' '}
@@ -105,12 +97,12 @@ function SuccessModal({ tradeEngineResp }) {
 					)}
 				</div>
 			))}
-			<div className={cl`${styles.row} ${styles.finalTotal} ${styles.dutiesTotal}`}>
+			<div className={cl`${styles.row} ${styles.final_total} ${styles.duties_total}`}>
 				<div>Total Duties and Tax</div>
 				<div>{shortFormatNumber(totalDutiesAndTaxes, resultCurrency, true)}</div>
 			</div>
 			<div className={cl`{styles.dashed_line}${styles.dashed_total}`} />
-			<div className={cl`${styles.row} ${styles.finalTotal}`}>
+			<div className={cl`${styles.row} ${styles.final_total}`}>
 				<div className={styles.flex}>
 					<div>Total Landed Cost</div>
 					<Tooltip
@@ -118,7 +110,7 @@ function SuccessModal({ tradeEngineResp }) {
 						content={tooltipContent()}
 						className={styles.tooltip_style}
 					>
-						<div className={styles.iconContainer}>
+						<div className={styles.icon_container}>
 							<IcMInfo width={14} height={14} />
 						</div>
 					</Tooltip>
@@ -127,7 +119,7 @@ function SuccessModal({ tradeEngineResp }) {
 			</div>
 
 			<div className={styles.btn_container}>
-				<Button size="md" onClick={redirectToTax}>
+				<Button size="md" onClick={() => location.reload()}>
 					Calculate More
 				</Button>
 			</div>

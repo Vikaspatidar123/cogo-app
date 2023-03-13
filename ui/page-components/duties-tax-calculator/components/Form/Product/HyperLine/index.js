@@ -3,7 +3,7 @@ import styles from './styles.module.css';
 function HyperLink({ setShowCatalogue, setShowHsCodeModal }) {
 	return (
 		<div className={styles.container}>
-			<div className={styles.orTag}>
+			<div className={styles.or_tag}>
 				<div className={styles.line} />
 				<div className={styles.text}>OR</div>
 				<div className={styles.line} />

@@ -1,10 +1,9 @@
-
-.row{
+.row {
 	display: flex;
-	justify-content: space-between;
 	align-items: center;
-	background: #fafbfb;
+	justify-content: space-between;
 	padding: 10px 20px;
+	background: #fafbfb;
 }
 
 .section {
@@ -13,33 +12,35 @@
 
 	@media screen and (max-width: 767px) {
 		display: block;
-		margin-left: 22px;
-		border-left: 1px solid #cddbff;
-		text-align: center;
 		padding-left: 13px;
+		margin-left: 22px;
+		text-align: center;
+		border-left: 1px solid #cddbff;
 	}
 }
 
-.col{
+.col {
 	text-align: center;
 }
 
 .transport {
 	font-size: 11px;
 }
+
 .port_detail {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	border-left: 1px solid #cddbff;
-	border-right: 1px solid #cddbff;
-	padding: 10px;
 	width: 55%;
+	padding: 10px;
+	border-right: 1px solid #cddbff;
+	border-left: 1px solid #cddbff;
+
 	@media screen and (max-width: 767px) {
-		border: none;
 		justify-content: space-between;
 		padding: 0;
 		margin-bottom: 12px;
+		border: none;
 	}
 }
 
@@ -50,11 +51,11 @@
 
 .tag {
 	display: inline;
-	font-size: 12px;
 	margin: 0 7px;
+	font-size: 12px;
 }
 
-.tooltipName {
+.tooltip_name {
 	cursor: pointer;
 }
 

@@ -10,6 +10,8 @@ function ServicesCharge({ formData }) {
 		hsCode, consignmentValue, quantity, currency, productName,
 	} = formData || {};
 
+	console.log(productName, 'productName');
+
 	const getProductData = () => (
 		<div>
 			Product Name:
@@ -23,7 +25,7 @@ function ServicesCharge({ formData }) {
 				<div className={styles.hscode}>
 					<div>{hsCode}</div>
 					{productName !== '' && (
-						<Tooltip theme="light-border" placement="right" content={getProductData()}>
+						<Tooltip placement="right" content={getProductData()}>
 							<div>
 								<IcMInfo />
 							</div>

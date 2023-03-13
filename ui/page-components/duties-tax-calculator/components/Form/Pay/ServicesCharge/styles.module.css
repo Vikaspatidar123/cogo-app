@@ -1,32 +1,31 @@
-
-.container{
-    padding: 0 22px;
+.container {
+	padding: 0 22px;
 	margin: 30px 0;
 }
 
-.title{
-	color: #e84855;
+.title {
 	margin-bottom: 10px;
+	color: #e84855;
 }
 
-.row{
+.row {
 	display: flex;
 	justify-content: space-between;
 	font-weight: 500;
 }
 
 .quantity {
-	color: #7278ad;
 	font-weight: 300;
+	color: #7278ad;
 }
 
 .hscode {
 	display: flex;
-	align-items: center;
 	gap: 5px;
+	align-items: center;
 
 	svg {
-		vertical-align: middle;
 		margin-bottom: 3px;
+		vertical-align: middle;
 	}
 }

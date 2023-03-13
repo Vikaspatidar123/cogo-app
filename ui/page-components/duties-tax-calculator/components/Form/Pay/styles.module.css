@@ -1,35 +1,35 @@
-
-.line{
-	border-top: 1px solid #e5e5e5;
+.line {
 	margin: 0 12px;
+	border-top: 1px solid #e5e5e5;
 }
 
-.route_div{
-	padding: 15px 16px 25px 16px;
+.route_div {
+	padding: 15px 16px 25px;
 }
 
-.text_head{
+.text_head {
 	font-size: 16px;
 	color: #e84855;
 }
 
-.text_div{
-	padding: 6px 39px 0px 39px;
+.text_div {
+	padding: 6px 39px 0;
 }
 
-.route{
+.route {
 	display: flex;
-	justify-content: space-between;
 	align-items: flex-end;
+	justify-content: space-between;
 }
+
 .left {
 	margin: -4px -6px;
 }
 
-.txt{
+.txt {
 	margin: 0;
-	font-weight: 400;
 	font-size: 12px;
+	font-weight: 400;
 	color: #221f20;
 }
 
@@ -42,46 +42,45 @@
 .origin_style {
 	right: 50px;
 }
+
 .destination_style {
 	left: 50px;
 }
+
 .incoterm {
+	padding: 3px 6px;
+	font-size: 10px;
+	font-weight: 400;
 	background: #ced1ed;
 	border-radius: 4px;
-	padding: 3px 6px;
-	font-weight: 400;
-	font-size: 10px;
-}
-.tooltipPort {
-	cursor: pointer;
 }
 
-.footer{
+.footer {
 	display: flex;
-	justify-content: space-between;
 	align-items: center;
+	justify-content: space-between;
 }
+
 .dot {
 	flex: 1;
 	border-bottom: 2px solid #cfeaed;
 }
 
-.dot_div{
+.dot_div {
+	bottom: 20.4px;
 	width: 8px;
 	height: 8px;
-	border-radius: 50%;
 	background: #88cad1;
-	bottom: 20.4px;
+	border-radius: 50%;
 }
 
-.route_text{
+.route_text {
 	display: flex;
 	justify-content: space-between;
 }
 
-.port_text{
-	font-weight: 500;
+.port_text {
 	font-size: 14px;
+	font-weight: 500;
 	color: #2c3e50;
 }
-

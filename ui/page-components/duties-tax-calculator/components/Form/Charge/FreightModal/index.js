@@ -81,7 +81,7 @@ function FreightModal({
 				<IcAFinancial height={30} width={30} />
 				<div className={styles.title_div}>Freight Rates</div>
 			</div>
-			<div className={styles.hyperLink} role="presentation" onClick={redirectDiscover}>
+			<div className={styles.hyperlink} role="presentation" onClick={redirectDiscover}>
 				Discover Rates
 			</div>
 		</div>
@@ -106,7 +106,7 @@ function FreightModal({
 					/>
 				)}
 				{!spotSearchLoading && rates.length === 0 && (
-					<div className={styles.emptyState}>No data Available</div>
+					<div className={styles.empty_state}>No data Available</div>
 				)}
 				{!spotSearchLoading && rates.length > 0 && (
 					<div className={styles.list}>
@@ -114,7 +114,7 @@ function FreightModal({
 							<div>Shipping Line</div>
 							<div>Rates</div>
 						</div>
-						<div className={styles.cardList}>
+						<div className={styles.card_list}>
 							<ListRow
 								rates={rates}
 								checked={checked}

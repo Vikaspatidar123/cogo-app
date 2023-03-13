@@ -10,7 +10,7 @@ function Info({ transportMode, portDetails }) {
 		if (name.length > 16) {
 			return (
 				<Tooltip theme="light-border" content={name}>
-					<div className="tooltipName">
+					<div className={styles.tooltip_name}>
 						{' '}
 						{name.slice(0, 16)}
 						...

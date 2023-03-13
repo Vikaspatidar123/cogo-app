@@ -1,23 +1,24 @@
-
-.container{
+.container {
 	margin-bottom: 10px;
 }
 
-.orTag {
+.or_tag {
 	display: flex;
-	justify-content: center;
-	align-items: center;
 	gap: 3px;
+	align-items: center;
+	justify-content: center;
 	margin-bottom: 8px;
 }
+
 .line {
-	height: 0;
 	width: 14px;
+	height: 0;
 	border-top: 1.7px solid #bdbdbd;
 }
+
 .text {
-	font-weight: 500;
 	font-size: 13px;
+	font-weight: 500;
 	color: #bdbdbd;
 }
 
@@ -26,9 +27,10 @@
 	align-items: center;
 	justify-content: space-around;
 }
+
 .hyperlink {
-	color: #f68b21;
 	font-size: 13px;
+	color: #f68b21;
 }
 
 .hyperlink:hover {

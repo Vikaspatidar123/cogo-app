@@ -34,8 +34,8 @@ function DotLine({
 			</div>
 			<div
 				className={cl`${styles.text} ${styles.is_mobile} ${styles.not_mobile} ${
-					isFirst && styles.firstElement
-				} ${isLast && styles.lastElement} ${isCompleted && styles.completed_txt} `}
+					isFirst && styles.first_element
+				} ${isLast && styles.last_element} ${isCompleted && styles.completed_txt} `}
 			>
 				{subHeading}
 			</div>

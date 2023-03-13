@@ -78,7 +78,7 @@ function DutiesTaxCalulator() {
 	}, []);
 
 	return (
-		<div className={cl`${formPayDetails && styles.formContainer} ${styles.container}`}>
+		<div className={styles.container}>
 			<Header
 				stepper={stepper}
 				setStepper={setStepper}
@@ -88,8 +88,8 @@ function DutiesTaxCalulator() {
 
 			<div className={`${styles.with_mobile_view} ${styles.without_mobile_view}`}>
 				<div
-					className={cl`${formPayDetails && styles.formPayDetails} ${
-						(tradeEngineRespLength > 0 || billId) && styles.calculateDoneForm
+					className={cl`${formPayDetails && styles.form_pay_details} ${
+						(tradeEngineRespLength > 0 || billId) && styles.calculate_done_form
 					} ${styles.child1}`}
 				>
 					<Form
@@ -110,8 +110,8 @@ function DutiesTaxCalulator() {
 					/>
 				</div>
 				<div
-					className={cl`${formPayDetails && styles.mapForm} ${
-						(tradeEngineRespLength > 0 || billId) && styles.calculateDoneMap
+					className={cl`${formPayDetails && styles.map_form} ${
+						(tradeEngineRespLength > 0 || billId) && styles.calculate_done_map
 					} ${styles.child2}`}
 				>
 					<Map

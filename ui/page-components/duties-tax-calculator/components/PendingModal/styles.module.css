@@ -1,32 +1,33 @@
-
-.container{
+.container {
 	display: flex;
-	justify-content: center;
-	align-items: center;
 	flex-direction: column;
+	align-items: center;
+	justify-content: center;
 	text-align: center;
 }
 
-.title{
+.title {
 	font-size: 22px;
-	color: #170f49;
 	font-weight: 500;
+	color: #170f49;
 }
 
-.txt{
-	color: #535075;
+.txt {
 	margin: 10px 0;
+	color: #535075;
 }
 
 .error {
 	font-size: 16px;
 }
-.loading{
+
+.loading {
 	width: 40px;
 	height: auto;
 	margin-bottom: 32px;
 }
-.loading_banner{
+
+.loading_banner {
 	width: 300px;
 	height: auto;
 }

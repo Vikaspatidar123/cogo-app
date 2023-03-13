@@ -1,30 +1,31 @@
-
-.container{
+.container {
 	width: 100%;
 }
 
-.tabs{
+.tabs {
 	display: flex;
-	justify-content: space-between;
 	gap: 10px;
+	justify-content: space-between;
 }
 
-.with_mobile{
+.with_mobile {
 	gap: 0 10px;
 	justify-content: space-around;
 }
+
 .card {
 	position: relative;
-	border-radius: 8px;
-	border: 1px solid #cdd9ed;
-	padding: 12px;
-	width: 150px;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	width: 150px;
+	padding: 12px;
 	cursor: pointer;
+	border: 1px solid #cdd9ed;
+	border-radius: 8px;
 }
-.dot{
+
+.dot {
 	position: absolute;
 	top: 10px;
 	left: 10px;
@@ -32,39 +33,40 @@
 	height: 8px;
 	background: #db4634;
 	border-radius: 100%;
-	box-shadow: 0 0 7px #fff, 0 0 0px #fff, 0 0 4px #f00, 0 0 12px #f00;
+	box-shadow: 0 0 7px #fff, 0 0 0 #fff, 0 0 4px #f00, 0 0 12px #f00;
 }
 
-.image{
+.image {
 	width: 88px;
 	height: 60px;
 	margin-bottom: 10px;
 }
 
-.txt{
+.txt {
 	color: #828282;
 }
 
-.formDiv{
+.form_div {
 	margin-top: 25px;
 }
 
-.interChangeContainer{
+.inter_change_container {
 	display: flex;
-	justify-content: center;
 	align-items: center;
+	justify-content: center;
 }
+
 .icn {
-	border: 1px solid #fbd1a6;
-	background: #fef3e9;
-	border-radius: 100px;
-	padding: 4px;
-	cursor: pointer;
 	width: 30px;
 	height: 30px;
+	padding: 4px;
+	cursor: pointer;
+	background: #fef3e9;
+	border: 1px solid #fbd1a6;
+	border-radius: 100px;
 	transition: 0.2s ease-in;
 }
 
-.rotateIcn {
+.rotate_icn {
 	transform: rotate(180deg);
 }

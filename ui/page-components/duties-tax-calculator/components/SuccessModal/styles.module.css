@@ -1,22 +1,24 @@
-
-.container{
-	width: 550px;
+.container {
 	position: absolute;
-	z-index: 10000;
-	background: #fff;
 	top: -900px;
 	left: 28%;
-	box-shadow: 0px 12px 44px 0px #14142b57, 0px -2px 4px 0px #14142b1f,
-		0px 3px 14px 0px #4a3aff08;
-
-	animation: fromTop 1s linear 0.1s 1;
-	animation-fill-mode: forwards;
+	z-index: 10000;
+	width: 550px;
 	max-height: 100%;
 	overflow: scroll;
+	background: #fff;
+	box-shadow:
+		0 12px 44px 0 #14142b57,
+		0 -2px 4px 0 #14142b1f,
+		0 3px 14px 0 #4a3aff08;
+	animation: fromtop 1s linear 0.1s 1;
+	animation-fill-mode: forwards;
+
 	::-webkit-scrollbar {
 		display: none;
 	}
-	@keyframes fromTop {
+
+	@keyframes fromtop {
 		0% {
 			top: -900px;
 		}
@@ -32,21 +34,21 @@
 	}
 }
 
-.header_container{
-	text-align: center;
+.header_container {
 	padding: 10px;
+	text-align: center;
 }
 
 .title {
+	margin-bottom: 12px;
 	font-size: 25px;
 	font-weight: 500;
-	margin-bottom: 12px;
 }
 
-.subTitle {
-	font-weight: 300;
+.sub_title {
 	margin: auto;
 	margin-bottom: 12px;
+	font-weight: 300;
 }
 
 .heading {
@@ -58,62 +60,57 @@
 }
 
 .charges {
-	background: #f9f9f9;
 	padding: 16px 40px;
 	margin-bottom: 25px;
+	background: #f9f9f9;
 }
 
-.title_div{
-	font-weight: 500;
+.title_div {
 	font-size: 15px;
+	font-weight: 500;
 }
 
-.line{
+.line {
 	width: 15%;
 	height: 2px;
-	background: #fbd1a6;
 	margin-top: 3px;
+	background: #fbd1a6;
 }
 
-.heading_div{
-	font-weight: 500;
+.heading_div {
 	font-size: 16px;
+	font-weight: 500;
 }
 
-
-.row{
+.row {
 	display: flex;
-	justify-content: space-between;
 	align-items: center;
+	justify-content: space-between;
 	margin: 12px 0;
 }
-.finalTotal {
+
+.final_total {
+	padding: 0 40px;
+	font-size: 20px;
+	font-weight: 500;
+
 	@media screen and (max-width: 767px) {
 		font-size: 19px;
 	}
 }
-.dutiesTotal {
-	@media screen and (max-width: 767px) {
-		font-size: 17px;
-	}
+
+.duties_total {
+	font-size: 17px;
 }
 
 .quantity {
-	color: #7278ad;
 	font-weight: 300;
+	color: #7278ad;
 }
 
 .total {
-	font-weight: 500;
 	font-size: 16px;
-}
-.finalTotal {
 	font-weight: 500;
-	font-size: 20px;
-	padding: 0px 40px;
-}
-.dutiesTotal {
-	font-size: 17px;
 }
 
 .flex {
@@ -121,49 +118,50 @@
 	gap: 5px;
 	align-items: flex-end;
 }
-.iconContainer {
+
+.icon_container {
 	margin-bottom: -2px;
 }
 
-
-.dashed_line{
+.dashed_line {
 	border-top: 2px dashed #a4a4a4;
 }
-.dashed_total{
+
+.dashed_total {
 	margin: 0 30px;
 }
 
-.btn_container{
+.btn_container {
 	display: flex;
 	justify-content: flex-end;
 	padding: 15px 33px 20px;
 }
 
-.tooltip_style{
+.tooltip_style {
 	max-width: 400px !important;
 }
 
-.tooltip_container{
-	padding: 12px 8px;
+.tooltip_container {
 	width: 250px;
-	font-weight: 300;
+	padding: 12px 8px;
 	font-size: 12px;
+	font-weight: 300;
 }
 
 .tooltip_heading {
-	font-weight: 500;
 	font-size: 14px;
+	font-weight: 500;
 	border-bottom: 0.5px dashed #333;
 }
 
-.icon_container_div{
+.icon_container_div {
 	display: flex;
-	justify-content: center;
 	align-items: center;
+	justify-content: center;
 	height: 100px;
 	margin-top: 25px;
 }
 
-.icon_img{
+.icon_img {
 	width: 130px;
 }

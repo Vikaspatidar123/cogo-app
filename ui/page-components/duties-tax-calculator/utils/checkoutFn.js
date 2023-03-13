@@ -89,6 +89,7 @@ const checkoutFn = ({
 			checkoutHandler();
 		} else {
 			setShowPayMethodModal(true);
+			// eslint-disable-next-line no-undef
 			localStorage.setItem(
 				'formData',
 				JSON.stringify({ ...formData, ...portDetails, transportMode }),
@@ -100,7 +101,7 @@ const checkoutFn = ({
 		if (portName.length > 16) {
 			return (
 				<Tooltip theme="light" content={portName}>
-					<div className="tooltipPort">
+					<div>
 						{portName.slice(0, 16)}
 						...
 					</div>

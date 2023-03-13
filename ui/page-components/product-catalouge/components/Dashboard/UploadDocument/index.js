@@ -4,9 +4,7 @@ import { useState } from 'react';
 
 import useUploadDocuments from '../../../hooks/useUploadDocuments';
 
-import {
-	csvImg, downloadUrl, successBackgroundImg, tickIcon,
-} from './link';
+import { csvImg, downloadUrl, successBackgroundImg, tickIcon } from './link';
 import styles from './styles.module.css';
 
 import { UploadController, useForm } from '@/packages/forms';
@@ -14,16 +12,19 @@ import { UploadController, useForm } from '@/packages/forms';
 function UploadDocument({ uploadModal, setUploadModal, refetchProduct }) {
 	const [show, setShow] = useState(undefined);
 	const {
-		uploadDocuments, fileValue, setFileValue, loading, value, getDownloadExcel,
-	} =		useUploadDocuments({
+		uploadDocuments,
+		fileValue,
+		setFileValue,
+		loading,
+		value,
+		getDownloadExcel,
+	} = useUploadDocuments({
 		setUploadModal,
 		refetchProduct,
 		setShow,
 	});
 
-	const {
-		control, watch,
-	} = useForm();
+	const { control, watch } = useForm();
 
 	const formValues = watch();
 
@@ -95,12 +96,19 @@ function UploadDocument({ uploadModal, setUploadModal, refetchProduct }) {
 			{!show && show !== undefined && (
 				<>
 					<div className={styles.succes_back_img}>
-						<img src={`${successBackgroundImg}`} width="550" height="120" alt="success" />
+						<img
+							src={`${successBackgroundImg}`}
+							width="550"
+							height="120"
+							alt="success"
+						/>
 					</div>
 					<div className={styles.tick_icon}>
 						<img src={`${tickIcon}`} width="100" height="45" alt="tick icon" />
 					</div>
-					<div className={styles.success_msg}>Your document has been partially uploaded !</div>
+					<div className={styles.success_msg}>
+						Your document has been partially uploaded !
+					</div>
 
 					<div className={styles.download_error_link}>
 						<div
@@ -109,9 +117,8 @@ function UploadDocument({ uploadModal, setUploadModal, refetchProduct }) {
 							onClick={() => getInvalidExcel()}
 						>
 							Download
-
 						</div>
-						&nbsp;error file and re-upload &nbsp;
+            &nbsp;error file and re-upload &nbsp;
 						<div
 							className={styles.link}
 							role="presentation"
@@ -129,12 +136,19 @@ function UploadDocument({ uploadModal, setUploadModal, refetchProduct }) {
 			{show && (
 				<div className={styles.success_modal}>
 					<div className={styles.success_back_img}>
-						<img src={`${successBackgroundImg}`} width="550" height="140" alt="success" />
+						<img
+							src={`${successBackgroundImg}`}
+							width="550"
+							height="140"
+							alt="success"
+						/>
 					</div>
 					<div className={styles.tick_icon}>
 						<img src={`${tickIcon}`} width="100" height="45" alt="tick icon" />
 					</div>
-					<div className={styles.success_msg}>You have successfully uploaded the document!</div>
+					<div className={styles.success_msg}>
+						You have successfully uploaded the document!
+					</div>
 				</div>
 			)}
 		</Modal>

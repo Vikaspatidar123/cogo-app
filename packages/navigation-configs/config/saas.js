@@ -1,9 +1,8 @@
 const saas = {
-	'/saas/premium-services/duties-taxes-calculator': {
-		navigation : 'saas_premium_services-duties_and_taxes',
+	'/saas/product-inventory': {
+		navigation : 'saas_planning-product_inventory',
 		isMainNav  : true,
 	},
-
 };
 
 module.exports = saas;

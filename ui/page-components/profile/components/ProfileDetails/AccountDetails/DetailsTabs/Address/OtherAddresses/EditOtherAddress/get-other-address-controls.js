@@ -83,7 +83,7 @@ const fields = [
 			required : true,
 			validate : (value) => (value?.country_code && value?.number
 				? undefined
-				: 'phone_number'),
+				: 'Phone Number'),
 		},
 	},
 	{

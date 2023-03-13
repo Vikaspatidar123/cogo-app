@@ -85,7 +85,7 @@ const fields = [
 		options     : country_code,
 		rules       : {
 			required : true,
-			validate : (value) => (value?.country_code && value?.number ? undefined : 'phone_number'),
+			validate : (value) => (value?.country_code && value?.number ? undefined : 'Phone Number'),
 		},
 		mode: 'poc',
 	},

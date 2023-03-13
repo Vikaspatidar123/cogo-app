@@ -2,8 +2,7 @@ import setExpiryDate from '../utils/setExpiryDate';
 
 const headerControls = ({ id = '', organization = {} }) => [
 	{
-		name        : 'buyerDetails',
-		key         : 'BuyerDetails',
+		name        : 'buyerId',
 		placeholder : 'Select Buyer',
 		type        : 'async_select',
 		isClearable : true,
@@ -20,7 +19,6 @@ const headerControls = ({ id = '', organization = {} }) => [
 	},
 	{
 		name        : 'currency',
-		key         : 'currency',
 		placeholder : 'Currency',
 		label       : 'Currency',
 		type        : 'select',
@@ -36,7 +34,6 @@ const headerControls = ({ id = '', organization = {} }) => [
 	},
 	{
 		name        : 'expiryDate',
-		key         : 'expiryDate',
 		placeholder : 'DD/MM/YY',
 		value       : setExpiryDate(),
 		type        : 'datepicker',

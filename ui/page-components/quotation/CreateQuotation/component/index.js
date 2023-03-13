@@ -21,15 +21,16 @@ function CreateQuotation() {
 
 	const {
 		control:headerControls,
-		handleSubmit,
-		// formState: { errors: headerError },
+		handleSubmit: headerHandleSubmit,
+		formState: { errors: headerError },
 	} = useForm();
 
 	const newHeaderFields = headerFields({ id, organization });
 
 	const submitForm = async () => {
-		const resp = await getHandleSubmitData({ quoteRef: quoteRef.current, headerHandleSubmit: handleSubmit });
+		const resp = await getHandleSubmitData({ quoteRef: quoteRef.current, headerHandleSubmit });
 		console.log(typeof resp, 'resp', resp);
+		return resp;
 	};
 
 	return (
@@ -37,7 +38,8 @@ function CreateQuotation() {
 			<Header
 				control={headerControls}
 				fields={newHeaderFields}
-				ref={(r) => { quoteRef.current.sellerAddress = r; }}
+				errors={headerError}
+				ref={quoteRef}
 			/>
 			<div className={styles.container}>
 				<div className={styles.details_section}>
@@ -46,6 +48,7 @@ function CreateQuotation() {
 						fields={newHeaderFields}
 						transportMode={transportMode}
 						setTransportMode={setTransportMode}
+						errors={headerError}
 					/>
 					<AllDetails
 						transportMode={transportMode}
@@ -54,7 +57,7 @@ function CreateQuotation() {
 					<ProductDetails ref={(r) => { quoteRef.current.product = r; }} />
 				</div>
 				<div className={styles.charge_section}>
-					<Charges ref={(r) => { quoteRef.current.charges = r; }} />
+					<Charges submitForm={submitForm} ref={(r) => { quoteRef.current.charges = r; }} />
 				</div>
 			</div>
 			<div className={styles.btn_container}>

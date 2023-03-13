@@ -61,8 +61,8 @@ const navigationMappings = {
 				description : 'The meaning of QUOTATION is something that is quoted; especially : a passage ',
 				icon        : <IcMQuotations width={30} height={30} />,
 				type        : 'link',
-				href        : '/v2/saas/planning/quickquotation/viewlist',
-				as          : '/v2/saas/planning/quickquotation/viewlist',
+				href        : '/v2/saas/quickquotation/viewlist',
+				as          : '/v2/saas/quickquotation/viewlist',
 			},
 
 		],

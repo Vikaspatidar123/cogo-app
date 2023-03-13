@@ -4,8 +4,8 @@ import { IcMMoney } from '@cogoport/icons-react';
 import { useEffect, forwardRef, useImperativeHandle } from 'react';
 
 import chargesControls from '../../configuration/chargesControls';
-
 // import AdditionalCharges from './AdditionalCharge';
+
 import BasicCharge from './BasicCharge';
 import IncoTermCharge from './IncotermCharge';
 import styles from './styles.module.css';
@@ -14,6 +14,7 @@ import { useForm } from '@/packages/forms';
 import getField from '@/packages/forms/Controlled';
 
 function Charges(props, ref) {
+	const { submitForm } = props;
 	const { control, watch, setValue, handleSubmit, formState:{ errors } } = useForm();
 	const SelectController = getField('select');
 	const TextAreaController = getField('textarea');
@@ -51,7 +52,12 @@ function Charges(props, ref) {
 				</div>
 			</div>
 
-			<BasicCharge fields={chargesControls} control={control} errors={errors} />
+			<BasicCharge
+				fields={chargesControls}
+				control={control}
+				errors={errors}
+				submitForm={submitForm}
+			/>
 
 			<div className={styles.hr} />
 

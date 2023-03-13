@@ -1,0 +1,35 @@
+.flex_box{
+	display: flex;
+	align-items: center;
+}
+
+.container{
+	margin:12px 0;
+}
+
+.title{
+	padding-right: 15px;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.pattern{
+    flex: 2;
+}
+
+.pattern_container{
+	width: 100%;
+}
+
+.dot{
+    width: 6px;
+	height: 6px;
+	border-radius: 100%;
+	background: #db4634;
+}
+
+.line{
+    height: 0;
+	border-top: 1px solid #abb0de;
+	width: 100%;
+}

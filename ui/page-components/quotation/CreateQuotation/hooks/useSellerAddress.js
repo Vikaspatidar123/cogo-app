@@ -30,7 +30,7 @@ const useSellerAddress = () => {
 	}, []);
 
 	return {
-		data, loading,
+		data, loading, getSellerAddress,
 	};
 };
 

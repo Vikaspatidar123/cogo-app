@@ -1,0 +1,27 @@
+.header_container{
+    display: flex;
+	align-items: center;
+
+	.header{
+		margin: 0;
+		margin-left: 8px;
+	}
+}
+
+.title_container{
+	display: flex;
+	margin-bottom: 7px;
+
+	.title{
+		line-height: 14px;
+		padding-right: 5px;
+	}
+
+	.line{
+		width: 78px;
+		height: 2px;
+		background: #f9ae64;
+		border-radius: 30px;
+		margin-top: 2%;
+	}
+}

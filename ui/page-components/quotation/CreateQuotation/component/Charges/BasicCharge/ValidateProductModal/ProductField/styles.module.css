@@ -1,0 +1,22 @@
+.input_box_container{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding:  12px;
+
+    :global{
+        .ui_buttonicon_container{
+            width: 30px;
+            height: 30px;
+        }
+    }
+}
+
+.col{
+    input{
+        background-color: #f3f3f3;
+    }
+}
+.label{
+    font-size: 12px;
+}

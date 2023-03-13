@@ -2,20 +2,22 @@ import { cl, Popover, Tooltip, Placeholder } from '@cogoport/components';
 import { IcALocation, IcMArrowRotateDown, IcMPlusInCircle } from '@cogoport/icons-react';
 import { useState, useImperativeHandle, forwardRef } from 'react';
 
+import useCreateSeller from '../../../hooks/useCreateSeller';
 import useSellerAddress from '../../../hooks/useSellerAddress';
+import CreateSellerModal from '../CreateSellerModal';
 
 import styles from './styles.module.css';
 
 const sellerAddressContent = ({
 	setSellerAddressInfo, setShowFilters, sellerAddressInfo,
-	addressdata = [], loading,
+	addressdata = [], loading, setOpenModal,
 }) => (
 	<div className={styles.container}>
 		<div className={styles.header}>
 			<div className={styles.title}>Select Seller Address</div>
 			<div
 				onClick={() => {
-					// setCreateShow(true);
+					setOpenModal(true);
 					setShowFilters(false);
 				}}
 				role="presentation"
@@ -72,39 +74,57 @@ const sellerAddressContent = ({
 function SellerAddress(props, ref) {
 	const [sellerAddressInfo, setSellerAddressInfo] = useState();
 	const [showFilters, setShowFilters] = useState(false);
-	const { data = {}, loading } = useSellerAddress();
+	const [openModal, setOpenModal] = useState(false);
 
-	useImperativeHandle(ref, () => ({
-		sellerAddress: sellerAddressInfo,
-	}));
+	const { data = {}, loading, getSellerAddress } = useSellerAddress();
+	const {
+		createSellerAddres,
+		loading : createLoading,
+	} = useCreateSeller();
+
+	useImperativeHandle(ref, () => (
+		sellerAddressInfo
+	));
 
 	return (
-		<Popover
-			placement="bottom"
-			visible={showFilters}
-			onClickOutside={() => setShowFilters(false)}
-			content={sellerAddressContent({
-				setSellerAddressInfo,
-				sellerAddressInfo,
-				setShowFilters,
-				addressdata: data?.list,
-				loading,
-			})}
-			caret={false}
-			interactive
-		>
-			<div
-				className={cl`${styles.popover_btn} ${styles.flex_box}`}
-				role="presentation"
-				onClick={() => setShowFilters((prev) => !prev)}
+		<>
+			<Popover
+				placement="bottom"
+				visible={showFilters}
+				onClickOutside={() => setShowFilters(false)}
+				content={sellerAddressContent({
+					setSellerAddressInfo,
+					sellerAddressInfo,
+					setShowFilters,
+					addressdata: data?.list,
+					loading,
+					setOpenModal,
+				})}
+				caret={false}
+				interactive
 			>
-				<div className={styles.flex_box}>
-					<IcALocation fill="#FADA29" width={18} height={18} />
-					<p className={styles.text}>{`${sellerAddressInfo?.name || 'Seller Address'} `}</p>
+				<div
+					className={cl`${styles.popover_btn} ${styles.flex_box}`}
+					role="presentation"
+					onClick={() => setShowFilters((prev) => !prev)}
+				>
+					<div className={styles.flex_box}>
+						<IcALocation fill="#FADA29" width={18} height={18} />
+						<p className={styles.text}>{`${sellerAddressInfo?.name || 'Seller Address'} `}</p>
+					</div>
+					<IcMArrowRotateDown fill="#333" width={13} height={13} />
 				</div>
-				<IcMArrowRotateDown fill="#333" width={13} height={13} />
-			</div>
-		</Popover>
+			</Popover>
+			<CreateSellerModal
+				openModal={openModal}
+				setOpenModal={setOpenModal}
+				createSellerAddres={createSellerAddres}
+				getSellerAddress={getSellerAddress}
+				loading={createLoading}
+			/>
+
+		</>
+
 	);
 }
 

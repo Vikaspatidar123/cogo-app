@@ -62,3 +62,14 @@
 .seller_col{
     width: 28%;
 }
+
+.error{
+    :global{
+        .ui_select_display_container{
+            border: 1.5px solid red
+        }
+        .ui_select_display_container:hover{
+            border-color:red
+        } 
+    }
+}

@@ -4,7 +4,7 @@ import styles from './styles.module.css';
 
 import getField from '@/packages/forms/Controlled';
 
-function OptSelector({ control, fields = [], transportMode, setTransportMode }) {
+function OptSelector({ control, fields = [], transportMode, setTransportMode, errors }) {
 	return (
 		<div className={cl`${styles.container} ${styles.flex_box}`}>
 			<Tabs themeType="tertiary" activeTab={transportMode} onChange={setTransportMode}>
@@ -19,7 +19,11 @@ function OptSelector({ control, fields = [], transportMode, setTransportMode }) 
 					return (
 						<div key={field?.key} className={styles.col}>
 							<p>{field?.label}</p>
-							<Element {...field} control={control} />
+							<Element
+								{...field}
+								control={control}
+								className={`${errors?.[field?.name] && styles.error}`}
+							/>
 						</div>
 					);
 				})}

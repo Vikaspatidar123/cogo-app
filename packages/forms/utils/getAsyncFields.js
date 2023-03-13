@@ -84,6 +84,7 @@ function asyncProductList() {
 		initialCall : false,
 	};
 }
+
 export {
 	asyncFieldsLocations,
 	asyncFieldsLocations2,

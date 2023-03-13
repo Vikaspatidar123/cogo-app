@@ -16,3 +16,18 @@
 .row{
     width: 36%;
 }
+
+.error{
+    :global{
+        .ui_select_display_container{
+            border: 1px solid red
+        }
+        .ui_select_display_container:hover{
+            border-color:red
+        } 
+    }
+    input[type='text'],  input[type='text']:hover{
+        border: 1px solid red
+
+    }
+}

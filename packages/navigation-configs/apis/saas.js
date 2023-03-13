@@ -17,6 +17,11 @@ const saas = {
 			api         : 'delete_saas_quote',
 			access_type : 'private',
 		},
+		{
+			api         : 'saas_get_user_quota_usage',
+			access_type : 'private',
+
+		},
 
 	],
 };

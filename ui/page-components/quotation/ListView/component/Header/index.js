@@ -49,8 +49,8 @@ function Header({
 						className={styles.btn_text}
 						role="presentation"
 						onClick={() => push(
-							'/saas/planning/quickquotation/createQuotation',
-							'/saas/planning/quickquotation/createQuotation',
+							'/saas/quickquotation/createquotation',
+							'/saas/quickquotation/createquotation',
 						)}
 					>
 						Create New

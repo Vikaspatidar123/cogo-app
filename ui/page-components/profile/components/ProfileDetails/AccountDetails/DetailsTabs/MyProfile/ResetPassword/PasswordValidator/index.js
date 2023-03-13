@@ -30,18 +30,13 @@ function PasswordValidator({ password = '' }) {
 
 	return (
 		<div className={styles.password_validator}>
-			<div className={styles.title}>
-				Password must contain:
-			</div>
+			<div className={styles.title}>Password must contain:</div>
 
 			<div className={styles.list}>
-				{Object.entries(VALID_PASSWORD_MAPPINGS)?.map(([value]) => {
+				{Object.entries(VALID_PASSWORD_MAPPINGS)?.map(([key, value]) => {
 					const { pattern = null, message = '' } = value;
-
 					const regex = new RegExp(pattern);
-
 					const isValid = regex.test(password);
-
 					return (
 						<div className={styles.item}>
 							<div className={`${styles.icon} `}>

@@ -18,21 +18,21 @@ function Child({
 	return (
 		<div className={styles.content}>
 			{controls.map((controlItem) => {
-				const Element = getField(controlItem.type);
-				if (!Element) return null;
-				return (
-					<div className={styles.list}>
-						<div className={styles.label}>{controlItem.label}</div>
-						<Element
-							width="100%"
-							control={control}
-							key={`${controlItem.name}${index}`}
-							id={`${controlItem.name}${index}`}
-							name={`${controlItem.name}${index}`}
-							{...controlItem}
-						/>
-					</div>
-				);
+      	const Element = getField(controlItem.type);
+      	if (!Element) return null;
+      	return (
+	<div className={styles.list}>
+		<div className={styles.label}>{controlItem.label}</div>
+		<Element
+			{...controlItem}
+			width="100%"
+			control={control}
+			key={`${name}.${index}.${controlItem.name}`}
+			id={`${name}.${index}.${controlItem.name}`}
+			name={`${name}.${index}.${controlItem.name}`}
+		/>
+	</div>
+      	);
 			})}
 
 			{showDeleteButton && index >= noDeleteButtonTill && !disabled ? (

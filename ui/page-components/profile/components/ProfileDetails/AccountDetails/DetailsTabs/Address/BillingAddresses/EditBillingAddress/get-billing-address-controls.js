@@ -2,7 +2,10 @@
 // eslint-disable-next-line import/no-unresolved
 import data from '@/.data-store/constants/countries.json';
 
-const country_code = data?.map((x) => ({ label: x.mobile_country_code, value: x.mobile_country_code }));
+const country_code = data?.map((x) => ({
+	label : x.mobile_country_code,
+	value : x.mobile_country_code,
+}));
 const fields = [
 	{
 		name        : 'name',
@@ -69,6 +72,7 @@ const fields = [
 		type        : 'text',
 		style       : { width: '370px' },
 		rules       : { required: true },
+		mode        : 'poc',
 	},
 	{
 		name        : 'phone_number',
@@ -81,10 +85,9 @@ const fields = [
 		options     : country_code,
 		rules       : {
 			required : true,
-			validate : (value) => (value?.country_code && value?.number
-				? undefined
-				: 'phone_number'),
+			validate : (value) => (value?.country_code && value?.number ? undefined : 'phone_number'),
 		},
+		mode: 'poc',
 	},
 	{
 		name        : 'poc_email',
@@ -93,6 +96,7 @@ const fields = [
 		type        : 'text',
 		style       : { width: '370px' },
 		rules       : { required: true },
+		mode        : 'poc',
 	},
 	{
 		name  : 'sez_proof',
@@ -101,7 +105,7 @@ const fields = [
 		drag  : true,
 		style : { width: '370px' },
 		accept:
-			'image/*,.pdf,.doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+      'image/*,.pdf,.doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document',
 		rules: {
 			required: 'sez_proof',
 		},
@@ -112,16 +116,14 @@ const fields = [
 		type  : 'file',
 		style : { width: '370px' },
 		accept:
-			'image/*,.pdf,.doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+      'image/*,.pdf,.doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document',
 		rules: {
 			required: 'tax_number_document_url',
 		},
 	},
 ];
 
-const getBillingAddressControls = ({
-	cityPincode = {},
-}) => fields.map((control) => {
+const getBillingAddressControls = ({ cityPincode = {} }) => (fields || []).map((control) => {
 	const { name } = control;
 	let newControl = { ...control };
 

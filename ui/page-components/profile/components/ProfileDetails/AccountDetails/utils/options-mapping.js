@@ -20,11 +20,11 @@ const getOptions = () => ({
 		title              : 'Address',
 		containerComponent : Address,
 	},
-	documents: {
-		key                : 'documents',
-		title              : 'Documents',
-		containerComponent : DocumentsWallet,
-	},
+	// documents: {
+	// 	key                : 'documents',
+	// 	title              : 'Documents',
+	// 	containerComponent : DocumentsWallet,
+	// },
 	alerts_preferences: {
 		key                : 'alerts_preferences',
 		title              : 'Alerts and Preferences',

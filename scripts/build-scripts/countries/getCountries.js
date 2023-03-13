@@ -6,8 +6,7 @@ const MAIN_COUNTRY_CODES = ['IN'];
 
 const getCountries = async (callBack, path, baseUrl) => {
 	const actualUrl = `${baseUrl}location/
-	list_locations?filters%5Btype%5D%5B%5D=country
-	&filters%5Bstatus%5D=active&page_limit=500`;
+	list_locations?filters%5Btype%5D%5B%5D=country&filters%5Bstatus%5D=active&page_limit=500`;
 
 	https
 		.get(actualUrl, (resp) => {
@@ -33,7 +32,6 @@ const getCountries = async (callBack, path, baseUrl) => {
 					mobile_country_code : item.mobile_country_code,
 					country_code        : item.country_code,
 				}));
-
 				callBack(path, JSON.stringify(finalList));
 			});
 		})

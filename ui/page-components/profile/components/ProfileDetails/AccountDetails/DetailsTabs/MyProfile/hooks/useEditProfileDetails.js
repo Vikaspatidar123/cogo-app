@@ -25,17 +25,18 @@ const useEditProfileDetails = ({
 	const formProps = useForm();
 	const fields = controls;
 
-	const {
-		handleSubmit = () => {},
-		setValue = () => {},
-	} = formProps;
+	const { handleSubmit = () => {}, setValue = () => {} } = formProps;
 
-	const [{ loading }, trigger] = useRequest({
-		url    : '/update_organization_user',
-		method : 'post',
-	}, { manual: true });
+	const [{ loading }, trigger] = useRequest(
+		{
+			url    : '/update_organization_user_details',
+			method : 'post',
+		},
+		{ manual: true },
+	);
 
 	const onCreate = async (values = {}) => {
+		console.log(values, 'values');
 		const alternate_mobile_numbers = [];
 		values.alternate_mobile_numbers?.forEach((alternate_mobile_number) => {
 			const { mobile_number = {} } = alternate_mobile_number;
@@ -55,8 +56,8 @@ const useEditProfileDetails = ({
 				id                       : organization.id,
 				user_id                  : userDetails.id,
 				name                     : values.name || undefined,
-				mobile_country_code      : values.phone_number.country_code || undefined,
-				mobile_number            : values.phone_number.number || undefined,
+				// mobile_country_code : values.phone_number.country_code || undefined,
+				// mobile_number            : values.phone_number.number || undefined,
 				work_scopes              : values.work_scopes || undefined,
 				preferred_languages      : values.preferred_languages || undefined,
 				picture                  : values.picture?.finalUrl || undefined,
@@ -67,9 +68,7 @@ const useEditProfileDetails = ({
 			};
 
 			await trigger({ data: body });
-			Toast.success(
-				'tabOptions.profile.edit.toastMessages',
-			);
+			Toast.success('Edit Successfully');
 			dispatch(
 				setProfileStoreState({
 					...body,
@@ -78,6 +77,7 @@ const useEditProfileDetails = ({
 
 			setShowEditProfileDetails(false);
 		} catch (err) {
+			console.log(err, 'err.data');
 			Toast.error(err.data);
 		}
 	};
@@ -136,6 +136,7 @@ const useEditProfileDetails = ({
 		onError,
 		// loading: updateUserAPI.loading,
 		loading,
+		setValue,
 	};
 };
 

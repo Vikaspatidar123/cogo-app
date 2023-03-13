@@ -83,7 +83,6 @@ const getProfileControls = ({ userDetails = {} }) => [
 	{
 		name  : 'alternate_mobile_numbers',
 		type  : 'fieldArray',
-		// span  : 8,
 		value : [
 			{
 				mobile_number: {

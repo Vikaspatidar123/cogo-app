@@ -1,5 +1,5 @@
 import { Button } from '@cogoport/components';
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import Child from './child';
 import styles from './styles.module.css';
@@ -16,17 +16,22 @@ function FieldArray({
 	showButtons = true,
 	disabled = false,
 	value,
+	setValue,
 	...rest
 }) {
 	const { fields, append, remove } = useFieldArray({
 		control,
-		name: 'alternate_mobile_numbers',
+		name,
 	});
 
 	const childEmptyValues = {};
 	controls.forEach((controlItem) => {
 		childEmptyValues[controlItem.name] = controlItem.value || '';
 	});
+	useEffect(() => {
+		setValue('alternate_mobile_numbers', value);
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
 	return (
 		<div className={styles.container}>
 			{fields.map((field, index) => (
@@ -47,7 +52,11 @@ function FieldArray({
 			))}
 
 			{showButtons && !disabled ? (
-				<Button size="md" themeType="linkUi" onClick={() => append(childEmptyValues)}>
+				<Button
+					size="md"
+					themeType="linkUi"
+					onClick={() => append(childEmptyValues)}
+				>
 					+ ADD MORE
 				</Button>
 			) : null}

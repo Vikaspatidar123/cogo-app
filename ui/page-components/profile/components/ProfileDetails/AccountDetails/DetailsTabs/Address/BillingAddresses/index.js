@@ -21,6 +21,7 @@ function BillingAddresses({
 	const [addressIdxToUpdate, setAddressIdxToUpdate] = useState(null);
 
 	const [showData, setShowData] = useState(false);
+	const [mobalType, setMobalType] = useState(false);
 
 	const handleCloseModal = () => {
 		setShowEditBillingAddress(false);
@@ -38,9 +39,9 @@ function BillingAddresses({
 		return (organizationBillingAddressesList || []).map((address, index) => (
 			<BillingAddressCard
 				index={index}
-        // getOrganizationBillingAddress={getOrganizationBillingAddress}
 				setAddressIdxToUpdate={setAddressIdxToUpdate}
 				address={address}
+				setMobalType={setMobalType}
 			/>
 		));
 	};
@@ -65,7 +66,10 @@ function BillingAddresses({
 						<div className={styles.flex}>
 							<div
 								className={styles.link_text}
-								onClick={() => setShowEditBillingAddress(true)}
+								onClick={() => {
+									setShowEditBillingAddress(true);
+									setMobalType(false);
+								}}
 								role="presentation"
 							>
 								+ Add Address
@@ -106,6 +110,7 @@ function BillingAddresses({
 						organizationBillingAddressesList={organizationBillingAddressesList}
 						addressIdxToUpdate={addressIdxToUpdate}
 						organizationType={organizationType}
+						mobalType={mobalType}
 					/>
 				</Modal>
 			)}

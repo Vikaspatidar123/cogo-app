@@ -31,15 +31,20 @@
 	:global {
 		.ui_upload_droparea_container {
 			min-height: 20px;
-		}
+			flex-direction: row;
+			padding: 0;
+			svg {
+			  width: 40px;
+			  height: 40px;
+			}
+		  }
 	}
 }
 
 .lable {
 	margin: 10px 0 8px;
 	font-size: 14px;
-	font-weight: 400;
-	color: rgb(44 62 80);
+	font-weight: 600;
 }
 
 .errors {

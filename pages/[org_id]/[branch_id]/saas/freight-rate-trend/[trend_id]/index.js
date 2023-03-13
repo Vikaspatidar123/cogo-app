@@ -3,11 +3,4 @@ import ActiveFreightRateTrend from '@/ui/page-components/freight-rate-trend/acti
 function activeFreightRateTrendComponent() {
 	return <ActiveFreightRateTrend />;
 }
-activeFreightRateTrendComponent.getInitialProps = () => ({
-	layout : 'app',
-	head   : {
-		title: 'Freight Rate Trend',
-	},
-});
-
 export default activeFreightRateTrendComponent;

@@ -33,18 +33,10 @@ const navigationMappings = {
 				title       : 'Freight Rate Trend',
 				href        : '/v2/saas/freight-rate-trend',
 				as          : '/v2/saas/freight-rate-trend',
-				type        : 'link',
 				icon        : <IcMUpwardGraph width={40} height={40} fill="red" />,
 				description : 'keep track of freight rates',
 			},
 		],
-	},
-
-	app_accept_terms_and_conditions: {
-		key       : 'app_accept_terms_and_conditions',
-		title     : 'Terms and Conditions',
-		href      : '/accept-terms-and-conditions',
-		showInNav : false,
 	},
 
 	app_get_started: {

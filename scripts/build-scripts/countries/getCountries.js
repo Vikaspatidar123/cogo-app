@@ -1,5 +1,6 @@
 const https = require('https');
 
+const { Toast } = require('@cogoport/components');
 const { sortBy } = require('@cogoport/utils');
 
 const MAIN_COUNTRY_CODES = ['IN'];
@@ -38,7 +39,7 @@ const getCountries = async (callBack, path, baseUrl) => {
 			});
 		})
 		.on('error', (err) => {
-			console.log(`Error in getCountries func: ${err.message}`);
+			Toast.error(`Error in getCountries func: ${err.message}`);
 		});
 };
 

@@ -4,8 +4,8 @@ import styles from './styles.module.css';
 
 function ToolTipComponent({ point, data }) {
 	const date = format(point?.data?.x, 'yyyy-MM-dd');
-	const newData = (data || []).map((x) => ({
-		[x.id]: x.data.filter((y) => y.x === date)?.[0]?.y.toFixed(2),
+	const newData = (data || []).map((item) => ({
+		[item.id]: item.data.filter((y) => y.item === date)?.[0]?.y.toFixed(2),
 	}));
 
 	return (

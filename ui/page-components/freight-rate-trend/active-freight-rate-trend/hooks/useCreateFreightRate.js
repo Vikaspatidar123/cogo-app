@@ -35,13 +35,7 @@ const useCreateFreightRate = () => {
 				volume,
 			};
 			const res = await freckTrackerTrigger({ data: requestData });
-			const { hasError } = res || {};
-			const message = res?.data?.message;
-			if (hasError) throw new Error();
-			if (message) throw new Error(message);
-
 			const { data } = res;
-
 			return data;
 		} catch (err) {
 			Toast.error(err?.message || 'Unable to create Trend Rate. Please try again.');

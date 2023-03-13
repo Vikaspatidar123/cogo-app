@@ -59,7 +59,7 @@ const filterControls = [
 	},
 	{
 		name        : 'commodity',
-		type        : 'select-2',
+		type        : 'select',
 		caret       : true,
 		placeholder : 'Commodity',
 		multiple    : false,

@@ -1,10 +1,10 @@
-.card  {
+.card {
 	display: flex;
-	justify-content: space-between;
 	align-items: center;
-	padding: 16px;
-	border: 1px solid #F8F2E7;
+	justify-content: space-between;
 	width: 350px;
+	padding: 16px;
+	border: 1px solid #f8f2e7;
 	border-radius: 8px;
 
 	@media screen and (max-width: 767px) {
@@ -21,14 +21,14 @@
 }
 
 .title {
-	font-size: 20px;
 	padding: 0 10px;
+	font-size: 20px;
 }
 
 .count {
-	font-size: 30px;
 	padding: 0 10px;
 	padding-left: 20px;
+	font-size: 30px;
 	color: #737587;
 	border-left: 1px solid #cddbff;
 }

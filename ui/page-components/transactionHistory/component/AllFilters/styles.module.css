@@ -4,24 +4,25 @@
 
 	@media screen and (max-width: 768px) {
 		width: 100%;
-		margin-top:10px;
+		margin-top: 10px;
 	}
 }
 
 .button_div {
-	width: 50%;
 	display: flex;
 	align-items: center;
 	justify-content: flex-end;
-	
+	width: 50%;
+
 	@media screen and (max-width: 768px) {
 		width: 100%;
-	}	
+	}
 }
+
 .search_wrapper {
 	width: 41%;
-	margin-right: 10px;
 	padding: 0 0 0 10px;
+	margin-right: 10px;
 
 	@media screen and (max-width: 768px) {
 		width: 250px;

@@ -25,15 +25,15 @@
 }
 
 .line {
-	height: 3px;
-	border-width: 0;
-	background-color: #f68b21;
 	flex-grow: 1;
+	height: 3px;
+	background-color: #f68b21;
+	border-width: 0;
 }
 
 .line_wrapper {
 	display: flex;
+	align-items: center;
 	justify-content: flex-start;
 	width: 215px;
-	align-items: center;
 }

@@ -7,17 +7,17 @@
 	margin: 0;
 }
 
-	.label{
-		font-weight: 600;
-	}
+.label {
+	font-weight: 600;
+}
 
 .section {
-	margin-top: 12px;
+	width: 100%;
 	padding: 20px 24px;
+	margin-top: 12px;
 	background: #fff;
 	border-radius: 8px;
-	box-shadow: rgb(0 0 0 / 15%) 0px 2px 19px 1px;
-	width: 100%;
+	box-shadow: rgb(0 0 0 / 15%) 0 2px 19px 1px;
 
 	&.billSection {
 		display: flex;
@@ -27,15 +27,14 @@
 	}
 
 	@media screen and (max-width: 768px) {
-		box-shadow: 0px 2px 5px rgb(0 0 0 / 10%);
+		box-shadow: 0 2px 5px rgb(0 0 0 / 10%);
 	}
 }
 
-.styles_row{
+.styles_row {
 	display: flex;
 	flex-direction: row;
 }
-
 
 .styled_row {
 	display: flex;
@@ -49,21 +48,20 @@
 	}
 
 	&.totalBillRow {
+		justify-content: space-between;
 		padding-top: 14px;
-		margin-bottom: 0px;
+		margin-bottom: 0;
 		font-size: 15px;
 		font-weight: 500;
-		justify-content: space-between;
 		border-top: 2px dashed #c3d1df;
 	}
 }
 
+.styled_col {
+	display: flex;
+	flex-direction: column;
+	width: 50%;
 
-.styled_col  {
-	 display: flex;
-	 flex-direction: column;
-	 width: 50%;
-	
 	.value {
 		margin-top: 8px;
 		font-weight: 300;
@@ -96,16 +94,16 @@
 		flex: 1;
 		border-bottom: 2px dotted #333;
 	}
-	
+
 	.downloadIcn {
 		margin-right: 5px;
 	}
 }
 
 .card_bill {
-	overflow-y: auto;
 	max-height: 160px;
 	overflow-x: hidden;
+	overflow-y: auto;
 }
 
 .total_amount {
@@ -113,5 +111,5 @@
 }
 
 .total_value {
-    margin-left: 10px;
+	margin-left: 10px;
 }

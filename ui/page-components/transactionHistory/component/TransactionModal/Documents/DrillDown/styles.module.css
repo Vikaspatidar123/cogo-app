@@ -7,11 +7,12 @@
 	cursor: pointer;
 	background: #fff;
 	border: 1px solid #d9d9d9;
-	box-shadow: 0px 0px 4px rgba(44, 62, 80, 20%);
+	box-shadow: 0 0 4px rgb(44 62 80 / 20%);
 
 	.arrowIcn {
 		transition: transform 0.3s ease-in-out;
 	}
+
 	.rotateIcn {
 		transform: rotate(180deg);
 	}
@@ -23,10 +24,12 @@
 
 .col {
 	font-size: 10px;
-		.title {
-		font-weight: 400;
+
+	.title {
 		font-size: 14px;
+		font-weight: 400;
 	}
+
 	.info {
 		font-weight: 300;
 	}
@@ -39,10 +42,10 @@
 	max-height: 0;
 	padding: 0 16px;
 	margin: 0;
-	color: #4b5c6d;
-	background: #fff;
-	cursor: pointer;
 	overflow: hidden;
+	color: #4b5c6d;
+	cursor: pointer;
+	background: #fff;
 	border: 1px solid #d9d9d9;
 	transition: 0.6s ease-in-out;
 

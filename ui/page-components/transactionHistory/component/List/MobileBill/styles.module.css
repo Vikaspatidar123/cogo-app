@@ -1,4 +1,4 @@
-.container{
+.container {
 	width: 100%;
 }
 
@@ -6,13 +6,13 @@
 	margin: 5px;
 }
 
-.section{
-	margin-top: 12px;
+.section {
+	width: 100%;
 	padding: 20px 24px;
+	margin-top: 12px;
 	background: #fff;
 	border-radius: 8px;
-	box-shadow: rgb(0 0 0 / 15%) 0px 2px 19px 1px;
-	width: 100%;
+	box-shadow: rgb(0 0 0 / 15%) 0 2px 19px 1px;
 
 	&.billSection {
 		display: flex;
@@ -20,8 +20,9 @@
 		justify-content: space-between;
 		min-height: 236px;
 	}
+
 	@media screen and (max-width: 768px) {
-		box-shadow: 0px 2px 5px rgb(0 0 0 / 10%);
+		box-shadow: 0 2px 5px rgb(0 0 0 / 10%);
 	}
 }
 
@@ -36,17 +37,18 @@
 		align-items: baseline;
 		justify-content: flex-start;
 	}
+
 	&.totalBillRow {
+		justify-content: space-between;
 		padding-top: 14px;
-		margin-bottom: 0px;
+		margin-bottom: 0;
 		font-size: 15px;
 		font-weight: 500;
-		justify-content: space-between;
 		border-top: 2px dashed #c3d1df;
 	}
 }
 
-.styled_col{
+.styled_col {
 	width: 100%;
 
 	.title {
@@ -72,12 +74,15 @@
 	&.amount {
 		width: auto;
 	}
+
 	&.chargename {
 		padding-right: 7px;
 	}
+
 	&.amount {
 		padding-left: 7px;
 	}
+
 	&.dot {
 		flex: 1;
 		border-bottom: 2px dotted #333;

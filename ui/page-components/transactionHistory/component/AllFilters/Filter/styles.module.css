@@ -80,16 +80,17 @@
 }
 
 .row {
+	display: flex;
+	justify-content: flex-start;
+	padding: 8px 16px 8px 12px;
 	margin-top: 8px;
 	font-size: 12px;
-	padding: 8px 16px 8px 12px;
-	display: flex;
 	cursor: pointer;
-	justify-content: flex-start;
-	box-shadow: rgba(50, 50, 93, 25%) 0 2px 5px -1px,
-		rgba(0, 0, 0, 30%) 0 1px 3px -1px;
 	background: #fff;
 	border-radius: 5px;
+	box-shadow:
+		rgb(50 50 93 / 25%) 0 2px 5px -1px,
+		rgb(0 0 0 / 30%) 0 1px 3px -1px;
 
 	p {
 		margin: 0;
@@ -114,6 +115,7 @@
 
 	&.drafted {
 		color: orange;
+
 		:hover {
 			background: #fff5eb;
 		}
@@ -143,33 +145,33 @@
 
 .import_export {
 	display: flex;
-	justify-content: center;
 	align-items: center;
+	justify-content: center;
 	padding: 2px;
 }
 
 .type_label {
-	font-size: 10px;
-	font-weight: 500;
 	display: flex;
 	align-items: center;
 	padding-left: 3px;
+	font-size: 10px;
+	font-weight: 500;
 	color: #6b6d81 !important;
 }
 
 .sub_header {
-	color: #6b6d81;
-	padding: 8px 0px 4px 8px;
+	padding: 8px 0 4px 8px;
 	margin: 5px 0;
 	font-size: 12px;
+	color: #6b6d81;
 }
 
 .clear_Btn {
 	display: flex;
 	align-items: center;
 	margin: 0;
-	color: #6f6f6f;
 	font-size: 12px;
+	color: #6f6f6f;
 	cursor: pointer;
 
 	:hover,

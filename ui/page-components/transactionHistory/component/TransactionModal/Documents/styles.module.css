@@ -1,24 +1,25 @@
 .container {
-	background: #f8f9fa;
 	padding: 20px;
+	background: #f8f9fa;
 	border-radius: 8px;
+
 	.sorry {
+		padding: 0;
 		color: #f68b21;
-		padding: 0px 0px;
 	}
 }
 
 .title_container {
 	display: flex;
-	justify-content: space-between;
 	align-items: center;
+	justify-content: space-between;
 	font-size: 15px;
 	font-weight: 500;
 
 	.name {
 		display: flex;
-		justify-content: space-between;
 		align-items: center;
+		justify-content: space-between;
 	}
 
 	.toggle {
@@ -26,14 +27,13 @@
 	}
 }
 
-
 .section {
 	height: 380px;
 	overflow-y: scroll;
 }
 
 .text_total {
-	font-weight: 500;
 	font-size: 18px;
+	font-weight: 500;
 	color: #2c3e50;
 }

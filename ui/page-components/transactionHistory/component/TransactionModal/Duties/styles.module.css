@@ -1,15 +1,16 @@
 .container {
-		display: flex;
-		align-items: center;
-		padding: 0 12px;
-		gap: 8px;
+	display: flex;
+	gap: 8px;
+	align-items: center;
+	padding: 0 12px;
 }
 
 .styledRow {
 	display: flex;
-	padding: 12px;
-	justify-content: space-between;
 	align-items: center;
+	justify-content: space-between;
+	padding: 12px;
+
 	.core-ui-select-root {
 		width: 130px;
 	}

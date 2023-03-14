@@ -1,30 +1,34 @@
 .container {
-	display: flex;
 	position: relative;
+	display: flex;
 	flex-direction: column;
 }
 
 .value {
-	font-weight: 300;
 	font-size: 14px;
+	font-weight: 300;
 	color: #60708f;
+
 	svg {
 		width: 20px;
 		height: 20px;
 	}
+
 	&.amount {
-		font-weight: 400;
 		font-size: 16px;
+		font-weight: 400;
 	}
+
 	&.status {
 		display: flex;
-		font-weight: 400;
-		font-size: 11px;
-		align-items: center;
-		background: #f3fff9;
-		padding: 4px 8px;
 		gap: 8px;
+		align-items: center;
+		padding: 4px 8px;
+		font-size: 11px;
+		font-weight: 400;
+		background: #f3fff9;
 		border-radius: 4px;
+
 		svg {
 			width: 10px;
 			height: 10px;
@@ -33,24 +37,25 @@
 	}
 }
 
-.label{
-	font-weight: 500;
+.label {
 	font-size: 14px;
+	font-weight: 500;
 	color: #60708f;
 }
 
-.div{
+.div {
 	display: flex;
-	align-items: center;
 	gap: 8px;
-	padding: 4px 16px;
+	align-items: center;
 	width: max-content;
+	padding: 4px 16px;
+
 	&.Amount {
 		align-self: flex-end;
 	}
 }
 
-.flex{
+.flex {
 	display: flex;
 	justify-content: space-between;
 }

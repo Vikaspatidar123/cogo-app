@@ -1,0 +1,39 @@
+.icon_container {
+	margin-bottom: 10px;
+	text-align: center;
+	cursor: pointer;
+}
+
+.txt {
+	margin: 0;
+	text-align: center;
+}
+
+.footer {
+	display: flex;
+	justify-content: space-between;
+	margin: 20px 30px;
+	cursor: pointer;
+
+	&.iconContainer {
+		width: 43px;
+		height: 43px;
+		padding: 5px;
+		text-align: center;
+		cursor: pointer;
+		border: 1px solid;
+		border-radius: 50%;
+	}
+
+	.no {
+		svg {
+			color: red;
+		}
+	}
+
+	.yes {
+		svg {
+			color: #4bb543;
+		}
+	}
+}

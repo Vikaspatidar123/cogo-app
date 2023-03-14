@@ -3,23 +3,22 @@
 }
 
 .card {
+	width: 48%;
+    margin: 1.0%;
+    float: left;
+	box-shadow: 0 0 5px rgb(0 0 0 / 50%); 
+	border-radius: 20px;
 	position: relative;
-	grid-column: span 6;
-	max-width: 100%;
 	overflow: hidden;
-	border-radius: 8px;
-	box-shadow: 0 0 16px rgb(98 127 172 / 20%);
+
+	@media screen and (max-width: 700px) {
+		width: auto;
+	}
 }
 
 .enroute {
 	display: flex;
 	justify-content: space-between;
-
-	h1 {
-		padding: 1.5em;
-		margin-bottom: -50px;
-		font-size: 14px;
-	}
 }
 
 .header {
@@ -46,19 +45,6 @@
 
 .heading {
 	text-align: left;
-
-	span {
-		font-size: 36px;
-		font-style: normal;
-		font-weight: bold;
-		line-height: 49px;
-		color: #35495d;
-		letter-spacing: -0.3px;
-	}
-
-	p {
-		margin: 0;
-	}
 }
 
 .container {

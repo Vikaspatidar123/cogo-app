@@ -14,10 +14,12 @@ const trendLayout = ({
 	fetchLocations = () => {},
 }) => (list?.length > 0 ? (
 	<>
-		<div className={styles.flex_container}>
-			{list.map((trend) => (
-				<TrendCard trend={trend} key={trend.id} fetchLocations={fetchLocations} />
-			))}
+		<div className={styles.card_view}>
+			<div className={styles.flex_container}>
+				{list.map((trend) => (
+					<TrendCard trend={trend} key={trend.id} fetchLocations={fetchLocations} />
+				))}
+			</div>
 		</div>
 
 		{list?.length > 0 && (

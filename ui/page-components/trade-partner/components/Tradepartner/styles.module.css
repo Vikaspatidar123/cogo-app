@@ -1,0 +1,134 @@
+.button_div {
+	width: 100%;
+	height: 37px;
+	background: #ed3726;
+	border-color: #ed3726;
+
+	@media screen and (max-width: 768px) {
+		width: auto;
+		height: 32px;
+	}
+}
+
+.head {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+
+	@media screen and (max-width: 768px) {
+		flex-direction: column;
+		align-items: flex-start;
+
+		.core-ui-input-root {
+			width: 170px;
+		}
+	}
+}
+
+.input {
+	width: 250px;
+
+	.core-ui-input-root {
+		width: 250px;
+	}
+}
+
+.container {
+	width: 100%;
+	padding: 30px 10px 10px;
+
+	.segmented-control__contents-container {
+		border-radius: 10px !important;
+
+		.segmented-control__content {
+			&:hover {
+				.segmented-control__content-label {
+					font-size: 14px !important;
+					font-weight: 400 !important;
+					color: #545563 !important;
+				}
+			}
+		}
+
+		.segmented-control__content--active {
+			&:hover {
+				.segmented-control__content-label {
+					font-size: 14px !important;
+					font-weight: 400 !important;
+					color: white !important;
+				}
+			}
+		}
+
+		.segmented-control__slider {
+			border-radius: 10px !important;
+		}
+	}
+
+	@media screen and (max-width: 768px) {
+		padding: 24px 8px 8px;
+	}
+}
+
+.button_wrapper {
+	display: flex;
+	gap: 4px;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.archived {
+	display: flex;
+	align-items: center;
+	margin-right: 10px;
+	margin-left: 10px;
+	cursor: pointer;
+}
+
+.flex_div {
+	display: flex;
+	gap: 4px;
+	align-items: center;
+
+	@media screen and (max-width: 768px) {
+		align-self: flex-end;
+		width: 100%;
+		padding: 16px 0;
+	}
+	@media screen and (max-width: 480px) {
+		.core-ui-input-root {
+			width: 150px !important;
+		}
+	}
+}
+
+.title_section {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	justify-content: space-between;
+	padding-top: 10px;
+
+	.flex {
+		display: flex;
+		flex-direction: row;
+	}
+}
+
+.title {
+	margin: 0;
+}
+
+.line_wrapper {
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	width: 81%;
+}
+
+.line {
+	flex-grow: 1;
+	height: 3px;
+	background-color: #f68b21;
+	border-width: 0;
+}

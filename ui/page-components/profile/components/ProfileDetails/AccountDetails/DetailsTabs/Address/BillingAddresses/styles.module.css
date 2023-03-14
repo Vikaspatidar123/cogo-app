@@ -67,7 +67,8 @@
 	display: flex;
 	align-items: center;
 	margin-left: 4px;
+
 	@media (max-width: 767.99px) {
-	  display: block;
+		display: block;
 	}
-  }
+}

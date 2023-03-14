@@ -1,33 +1,36 @@
 .layout {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
 }
 
 .field {
-  :global {
-    .ui_upload_droparea_container {
-      min-height: 20px;
-      flex-direction: row;
-      padding: 0;
-      svg {
-        width: 40px;
-        height: 40px;
-      }
-    }
-  }
+	:global {
+		.ui_upload_droparea_container {
+			flex-direction: row;
+			min-height: 20px;
+			padding: 0;
+
+			svg {
+				width: 40px;
+				height: 40px;
+			}
+		}
+	}
 }
 
 .lable {
-  margin: 15px 0 8px;
-  font-size: 12px;
-  font-weight: 700;
-  line-height: 16px;
-  color: rgb(130 130 130);
+	margin: 15px 0 8px;
+	font-size: 12px;
+	font-weight: 700;
+	line-height: 16px;
+	color: rgb(130 130 130);
 }
+
 .country {
-  display: flex;
+	display: flex;
 }
+
 .country_name {
-  padding-left: 10px;
+	padding-left: 10px;
 }

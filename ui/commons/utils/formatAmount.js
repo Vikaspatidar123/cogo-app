@@ -4,8 +4,7 @@ const isAmountValid = ({ amount }) => !(
 	amount === null
 		|| Array.isArray(amount)
 		|| typeof amount === 'boolean'
-		// eslint-disable-next-line no-restricted-globals
-		|| isNaN(amount)
+		|| Number.isNaN(amount)
 );
 
 const getCurrencyLocale = ({ currency }) => {

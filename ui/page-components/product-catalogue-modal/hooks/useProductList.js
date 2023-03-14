@@ -24,13 +24,6 @@ const useProductList = ({ labeledValue }) => {
 		method  : 'get',
 	}, { manual: true });
 
-	// const addApi = useRequest('post', false, scope, {
-	// 	authkey: 'post_saas_product',
-	// })('/saas/product/');
-	// const deleteProductApi = useRequest('delete', false, scope, {
-	// 	authkey: 'delete_saas_product',
-	// })('/saas/product');
-
 	const refetchProduct = async ({ page = 1, productClassificationId = null }) => {
 		try {
 			const response = await productTrigger({
@@ -49,47 +42,6 @@ const useProductList = ({ labeledValue }) => {
 			Toast.error(error?.message);
 		}
 	};
-
-	// const addProduct = async (data, countryName, setShowProduct, pdId) => {
-	// 	const { prefiledValues, pricingDetails } = data || {};
-	// 	try {
-	// 		const resp = await addApi.trigger({
-	// 			data: {
-	// 				userId: id,
-	// 				organizationId: organization.id,
-	// 				...prefiledValues,
-	// 				...pricingDetails,
-	// 				originCountry: countryName,
-	// 				currency: organization?.country?.currency_code,
-	// 				productClassificationId: pdId,
-	// 			},
-	// 		});
-	// 		if (resp.data.message === 'Success') {
-	// 			refetchProduct({ pdId });
-	// 			setShowProduct(false);
-	// 			setLabeledValue('list');
-	// 		}
-	// 	} catch (error) {
-	// 		toast.error(error?.message);
-	// 	}
-	// };
-
-	// const deleteProduct = async (productId, productClassificationId = '') => {
-	// 	try {
-	// 		const resp = await deleteProductApi.trigger({
-	// 			params: {
-	// 				productId,
-	// 				userId: id,
-	// 			},
-	// 		});
-	// 		if (resp.data.message === 'Success') {
-	// 			refetchProduct({ productClassificationId });
-	// 			fetch();
-	// 		}
-	// 	} catch (error) {
-	// 		toast.error(error?.message);
-	// 	}
-	// };
 
 	useEffect(() => {
 		if (pagination > 0 && labeledValue === 'list') {
@@ -117,10 +69,7 @@ const useProductList = ({ labeledValue }) => {
 		pagination,
 		setPagination,
 		loading,
-		// addProductLoading: addApi.loading,
 		refetchProduct,
-		// addProduct,
-		// deleteProduct,
 	};
 };
 

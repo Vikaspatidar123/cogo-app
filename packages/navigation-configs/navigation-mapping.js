@@ -8,26 +8,41 @@
 // mobileIcon is used to show icon in mobile navigation only
 // isSubNavs is used to show sub navigations
 
-import {
-	IcMQuotations,
-} from '@cogoport/icons-react';
+import { IcMUpwardGraph } from '@cogoport/icons-react';
 
 const navigationMappings = {
-	app_dashboard: {
-		key        : 'app_dashboard',
-		title      : 'Dashboard',
-		href       : '/v2/dashboard',
-		as         : '/v2/dashboard',
-		showInNav  : true,
-		mobileIcon : <IcMQuotations width={20} height={20} />,
+	app_bookings: {
+		key       : 'app_bookings',
+		title     : 'Shipments',
+		href      : '/shipments',
+		as        : '/shipments',
+		icon      : 'nav-booking',
+		showInNav : true,
+	},
 
+	saas_tools: {
+		key       : 'saas_tools',
+		title     : 'Tools',
+		icon      : 'nav-tools',
+		isSubNavs : true,
+		showInNav : true,
+		isNew     : true,
+		options   : [
+			{
+				key         : 'saas_tools-freight_rate_trend',
+				title       : 'Freight Rate Trend',
+				href        : '/v2/saas/freight-rate-trend',
+				as          : '/v2/saas/freight-rate-trend',
+				icon        : <IcMUpwardGraph width={40} height={40} fill="red" />,
+				description : 'keep track of freight rates',
+			},
+		],
 	},
 
 	app_get_started: {
 		key   : 'app_get_started',
 		title : 'Get Started',
 		theme : 'green',
-
 	},
 
 	app_kyc: {
@@ -46,7 +61,6 @@ const navigationMappings = {
 		as            : '/v2/settings',
 		type          : 'link',
 		showMobileNav : true,
-
 	},
 
 };

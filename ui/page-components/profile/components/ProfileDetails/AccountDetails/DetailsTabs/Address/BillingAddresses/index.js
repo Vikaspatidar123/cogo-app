@@ -88,12 +88,11 @@ function BillingAddresses({
 						role="presentation"
 					>
 						{showData ? (
-							<IcMArrowRotateDown width={20} height={15} />
+							<IcMArrowRotateDown width={20} height={15} style={{ transform: 'rotate(180deg)' }} />
 						) : (
 							<IcMArrowRotateDown
 								width={20}
 								height={15}
-								style={{ transform: 'rotate(180deg)' }}
 							/>
 						)}
 					</div>

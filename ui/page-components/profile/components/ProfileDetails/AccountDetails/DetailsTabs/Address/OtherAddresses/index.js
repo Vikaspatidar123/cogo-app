@@ -108,12 +108,12 @@ function OtherAddresses({ addressesData, addressLoading, getAdd }) {
 							role="presentation"
 						>
 							{showData[address_key.api_property_key] ? (
-								<IcMArrowRotateDown width={20} height={15} />
+								<IcMArrowRotateDown width={20} height={15} style={{ transform: 'rotate(180deg)' }} />
 							) : (
 								<IcMArrowRotateDown
 									width={20}
 									height={15}
-									style={{ transform: 'rotate(180deg)' }}
+
 								/>
 							)}
 						</div>

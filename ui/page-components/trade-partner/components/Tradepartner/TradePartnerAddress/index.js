@@ -2,7 +2,7 @@ import { Modal, Button, Loader } from '@cogoport/components';
 // import { IcMRolesIncluded } from '@cogoport/icons-react';
 import { useState } from 'react';
 
-import TitleStyle from '../../../common/Line';
+import Line from '../../../common/Line';
 import getControls from '../../../configuration/tradepartyaddresscontrols';
 import usePostTradePartner from '../../../hooks/usePostTradePartner';
 
@@ -10,7 +10,6 @@ import styles from './styles.module.css';
 
 import { useForm } from '@/packages/forms';
 import getField from '@/packages/forms/Controlled';
-import CountrySelectController from '@/packages/forms/Controlled/CountryCodeSelectController';
 import { useSelector } from '@/packages/store';
 
 function TradePartnerAddress({
@@ -69,7 +68,7 @@ function TradePartnerAddress({
 			city                    : cityInfo?.name,
 			cityId                  : cityInfo?.id,
 			country                 : countryInfo?.country,
-			countryId               : countryInfo?.id,
+			// countryId               : countryInfo?.id,
 			phoneCode               : data.phoneNumber.country_code,
 			phoneNumber             : data.phoneNumber.number,
 			address                 : data.addLine,
@@ -83,8 +82,8 @@ function TradePartnerAddress({
 		});
 	};
 
-	const InputController = getField('email');
-	const MobileNumberController = getField('mobile-select');
+	const InputController = getField('text');
+	const MobileNumberController = getField('mobile_number');
 	const CountryController = getField('select');
 	const TextController = getField('text');
 
@@ -98,7 +97,7 @@ function TradePartnerAddress({
 				<div className={styles.container}>
 					{/* <div className={styles.header}>
 						<div className={styles.icon_container}>
-						<IcMRolesIncluded width={20} height={20} />
+							<IcMRolesIncluded width={20} height={20} />
 						</div>
 					</div> */}
 					<Modal.Header title={`${isEdit ? 'Update' : 'Add New'} Trade Partner`} />
@@ -107,7 +106,7 @@ function TradePartnerAddress({
 							<div className={styles.section_title}>
 								<div className={styles.title}>User Details</div>
 								<div className={styles.design}>
-									<TitleStyle />
+									<Line />
 								</div>
 							</div>
 							<div className={styles.row}>
@@ -157,7 +156,10 @@ function TradePartnerAddress({
 									<div className={styles.label}>
 										{field[4].label}
 									</div>
-									<MobileNumberController {...field[4]} control={control} />
+									<MobileNumberController
+										{...field[4]}
+										control={control}
+									/>
 									{errors[4] && (
 										<p className={styles.error_text}>
 											{`${
@@ -170,7 +172,7 @@ function TradePartnerAddress({
 									<div className={styles.label}>
 										{field[5].label}
 									</div>
-									<CountrySelectController
+									<CountryController
 										{...field[5]}
 										control={control}
 									/>
@@ -183,7 +185,7 @@ function TradePartnerAddress({
 							<div className={styles.section_title}>
 								<div className={styles.title}>Address Details</div>
 								<div className={styles.design}>
-									<TitleStyle />
+									<Line />
 								</div>
 							</div>
 							<div className={styles.row}>
@@ -228,7 +230,6 @@ function TradePartnerAddress({
 									/>
 									{errors[9] && <p className={styles.error_text}>{`${errors[9].type}*`}</p>}
 								</div>
-
 							</div>
 						</div>
 					</Modal.Body>

@@ -132,3 +132,11 @@
 	background-color: #f68b21;
 	border-width: 0;
 }
+
+.country {
+	display: flex;
+}
+
+.country_name {
+	padding-left: 5px;
+}

@@ -1,9 +1,23 @@
 import { getByKey } from '@cogoport/utils';
 
+import styles from '../components/Tradepartner/styles.module.css';
+
+import data from '@/.data-store/constants/countries.json';
+
 // eslint-disable-next-line max-len
 const emailValidator =	/^[^<>()[\]\\,;:%#^\s@"$&!@]+@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z0-9]+\.)+[a-zA-Z]{2,}))$/;
 
 const mobileValidator = /^[0-9]{10}$/;
+
+const country = data?.map((item) => ({
+	label: (
+		<div className={styles.country}>
+			<img src={item.flag_icon_url ? item.flag_icon_url : 'https://via.placeholder.com/24x20'} alt={item.name} />
+			<div className={styles.country_name}>{item.name}</div>
+		</div>
+	),
+	value: item.id,
+}));
 
 const controls = [
 	{
@@ -56,12 +70,11 @@ const controls = [
 	},
 	{
 		label       : 'Country *',
-		name        : 'country',
-		type        : 'country_code',
+		name        : 'countryId',
+		type        : 'select',
 		placeholder : 'Enter Country',
-		valueKey    : 'id',
-		flag        : true,
 		rules       : { required: true },
+		options     : country,
 	},
 	{
 		label       : 'Address line *',

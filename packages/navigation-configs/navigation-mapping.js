@@ -8,7 +8,7 @@
 // mobileIcon is used to show icon in mobile navigation only
 // isSubNavs is used to show sub navigations
 
-import { IcMAverage } from '@cogoport/icons-react';
+import { IcMAverage, IcMUpwardGraph } from '@cogoport/icons-react';
 
 const navigationMappings = {
 	app_dashboard: {
@@ -24,7 +24,6 @@ const navigationMappings = {
 	saas_premium_services: {
 		key         : 'saas_premium_services',
 		title       : 'Premium Services',
-		// type: 'link',
 		icon        : 'nav-premium-services',
 		module_type : 'dashboards',
 		isNew       : true,
@@ -46,8 +45,34 @@ const navigationMappings = {
 		key       : 'app_accept_terms_and_conditions',
 		title     : 'Terms and Conditions',
 		href      : '/accept-terms-and-conditions',
-		type      : 'link',
 		showInNav : false,
+	},
+	app_bookings: {
+		key       : 'app_bookings',
+		title     : 'Shipments',
+		href      : '/shipments',
+		as        : '/shipments',
+		icon      : 'nav-booking',
+		showInNav : true,
+	},
+
+	saas_tools: {
+		key       : 'saas_tools',
+		title     : 'Tools',
+		icon      : 'nav-tools',
+		isSubNavs : true,
+		showInNav : true,
+		isNew     : true,
+		options   : [
+			{
+				key         : 'saas_tools-freight_rate_trend',
+				title       : 'Freight Rate Trend',
+				href        : '/v2/saas/freight-rate-trend',
+				as          : '/v2/saas/freight-rate-trend',
+				icon        : <IcMUpwardGraph width={40} height={40} fill="red" />,
+				description : 'keep track of freight rates',
+			},
+		],
 	},
 
 	app_get_started: {
@@ -61,16 +86,14 @@ const navigationMappings = {
 		title     : 'KYC',
 		href      : '/kyc',
 		as        : '/kyc',
-		type      : 'link',
 		showInNav : false,
 	},
 	app_settings: {
-		key       : 'app_settings',
-		title     : 'Settings',
-		href      : '/settings',
-		as        : '/settings',
-		type      : 'link',
-		showInNav : false,
+		key           : 'app_settings',
+		title         : 'Settings',
+		href          : '/v2/settings',
+		as            : '/v2/settings',
+		showMobileNav : true,
 	},
 };
 export default navigationMappings;

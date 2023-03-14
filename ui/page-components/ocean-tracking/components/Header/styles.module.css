@@ -15,6 +15,9 @@
   justify-content: space-between;
   color: #ee3425;
   align-items: center;
+  @media (max-width: 760px) {
+    margin-top: 10px;
+  }
 }
 
 .status {

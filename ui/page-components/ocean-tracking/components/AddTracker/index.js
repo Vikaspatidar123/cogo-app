@@ -1,29 +1,22 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
+import CsvForm from './CsvForm';
+import RenderForm from './RenderForm';
 import styles from './styles.module.css';
 
-import { Button, Toggle } from '@cogoport/components';
+import { useForm } from '@/packages/forms';
+import { useRequest } from '@/packages/request';
+
+import { Button, Toggle, Radio, Input, Toast, Select } from '@cogoport/components';
+// import { Input } from '@cogoport/components';
 
 const { Modal } = require('@cogoport/components');
 
 function AddTrackerModal({ show, onclose }) {
-	const SEARCH_TYPES = {
-		CONTAINER_NUMBER : 'CONTAINER_NO',
-		BOOKING_NUMBER   : 'BOOKING_NO/BL_NO',
-		BL_NUMBER        : 'BL_NO',
-	};
-
-	const SEARCH_TYPES_OPTIONS = [
-		{ label: 'Booking No / BL No', value: SEARCH_TYPES.BOOKING_NUMBER },
-		{ label: 'Container Number', value: SEARCH_TYPES.CONTAINER_NUMBER },
-	];
 	const [labeledValue, setLabeledValue] = useState(false);
 	const onchange = () => {
 		setLabeledValue(!labeledValue);
 	};
-	// const renderForm = () => {
-
-	// };
 
 	return (
 		<div>
@@ -62,7 +55,7 @@ function AddTrackerModal({ show, onclose }) {
 								</a>
 							)}
 						</div>
-						{/* {!labeledValue ? renderForm() : renderCsvForm()} */}
+						{!labeledValue ? <RenderForm /> : <CsvForm />}
 					</div>
 
 				</Modal.Body>

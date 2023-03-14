@@ -8,6 +8,7 @@ import {
 	FILTER_KEY_TO_ID,
 	FILTER_KEY_TO_LABEL,
 } from '../../common/constants';
+import useArchiveList from '../../hooks/useArchiveList';
 import useFetchTrackers from '../../hooks/useFetchTrackers';
 import FilterCards from '../FilterCards';
 import TrackerCard from '../TrackerCard';
@@ -16,7 +17,20 @@ import styles from './styles.module.css';
 
 function Tab({ archived, setArchived }) {
 	const [activeTab, setActiveTab] = useState('local_rates');
-	const { loading, trackers, pagination, setPagination, filters, setFilters } = useFetchTrackers();
+	const {
+		loading, trackers, setTrackers, pagination, setPagination, filters, setFilters, refetch,
+	} = useFetchTrackers();
+	const {
+		trackers: trackers1,
+		loading: loading1,
+		setTrackers: setTrackers1,
+		pagination: pagination1,
+		setPagination: setPagination1,
+		filters: filters1,
+		setFilters: setFilters1,
+		refetch: refetch1,
+	} = useArchiveList();
+	// console.log(trackers1, 'trc');
 	const { stats = {} } = trackers || {};
 	const [activeKey, setActiveKey] = useState(FILTER_KEYS.ALL_SHIPMENTS);
 	console.log(stats, 'stats');
@@ -44,25 +58,7 @@ function Tab({ archived, setArchived }) {
 	console.log(filters, 'filteres');
 	return (
 		<div>
-			{/* <Tabs
-				tabIcon={<IcMProfile />}
-				activeTab={activeTab}
-				themeType="secondary"
-				onChange={setActiveTab}
-				fullWidth
-			>
-				<TabPanel name="local_rates" title="Local Rates" badge={3}>
-					<TrackerCard activeTab={activeTab} />
-				</TabPanel>
 
-				<TabPanel name="suggested_rates" title="Suggested Rates" badge={5}>
-					<TrackerCard activeTab={activeTab} />
-				</TabPanel>
-
-				<TabPanel name="freight_bookings" title="Freight Bookings" badge={2}>
-					<TrackerCard activeTab={activeTab} />
-				</TabPanel>
-			</Tabs> */}
 			{!archived && (
 				<div className={styles.scroll}>
 					<div className={styles.parent_tab}>
@@ -87,18 +83,38 @@ function Tab({ archived, setArchived }) {
 					</div>
 				</div>
 			)}
-			<TrackerCard
-				activeTab={activeTab}
-				archived={archived}
-				setArchived={setArchived}
-				loading={loading}
-				trackers={trackers}
-				pagination={pagination}
-				setPagination={setPagination}
-				filters={filters}
-				setFilters={setFilters}
-				selectedCardLabel={selectedCardLabel}
-			/>
+			{!archived && (
+				<TrackerCard
+					activeTab={activeTab}
+					archived={archived}
+					setArchived={setArchived}
+					loading={loading}
+					trackers={trackers}
+					setTrackers={setTrackers}
+					pagination={pagination}
+					setPagination={setPagination}
+					filters={filters}
+					setFilters={setFilters}
+					selectedCardLabel={selectedCardLabel}
+					refetch={refetch}
+				/>
+			)}
+			{ archived && (
+				<TrackerCard
+					activeTab={activeTab}
+					archived={archived}
+					setArchived={setArchived}
+					loading={loading1}
+					trackers={trackers1}
+					setTrackers={setTrackers1}
+					pagination={pagination1}
+					setPagination={setPagination1}
+					filters={filters1}
+					setFilters={setFilters1}
+					selectedCardLabel={selectedCardLabel}
+					refetch={refetch1}
+				/>
+			)}
 		</div>
 	);
 }

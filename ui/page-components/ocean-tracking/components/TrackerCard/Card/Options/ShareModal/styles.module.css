@@ -1,0 +1,11 @@
+.footer{
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+.input{
+    display: flex;
+}
+.email{
+   width: 65%;
+}

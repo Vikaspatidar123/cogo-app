@@ -6,7 +6,7 @@ import { prepareFilters } from '../common/utils';
 import { useRequest } from '@/packages/request';
 import { useSelector } from '@/packages/store';
 
-const useFetchTrackers = () => {
+const useArchiveList = () => {
 	const [trackers, setTrackers] = useState(null);
 	const [filters, setFilters] = useState({});
 	const [pagination, setPagination] = useState({ page: 1 });
@@ -25,7 +25,7 @@ const useFetchTrackers = () => {
 						organization_branch_id : general?.query?.branch_id,
 						...prepareFilters(filters, trackers?.filter_data ?? {}),
 						...filters,
-						status                 : 'active',
+						status                 : 'completed',
 					},
 					page       : pagination.page,
 					page_limit : 10,
@@ -59,4 +59,4 @@ const useFetchTrackers = () => {
 	};
 };
 
-export default useFetchTrackers;
+export default useArchiveList;

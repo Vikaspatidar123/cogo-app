@@ -10,7 +10,7 @@ import FilterComponent from './FIlterComponent';
 import styles from './styles.module.css';
 
 function TrackerCard({
-	archived, setArchived, loading, trackers, pagination, setPagination, filters, setFilters, selectedCardLabel,
+	archived, setArchived, loading, trackers, setTrackers, pagination, setPagination, filters, setFilters, selectedCardLabel, refetch,
 }) {
 	// const { loading, trackers, pagination, setPagination, filters, setFilters } = useFetchTrackers();
 
@@ -22,7 +22,12 @@ function TrackerCard({
 		<div className={styles.container}>
 			<div className={styles.head}>
 				<div className={styles.btn}>
-					<h2>{selectedCardLabel}</h2>
+					{!archived && (
+						<h2>{selectedCardLabel}</h2>
+					)}
+					{archived && (
+						<h2>Archived Shipments</h2>
+					)}
 				</div>
 				<div className={styles.head2}>
 
@@ -75,7 +80,11 @@ function TrackerCard({
 						? (
 							<div>
 								{trackerList?.map((tracker) => (
-									<Card tracker={tracker} />
+									<Card
+										tracker={tracker}
+										setTrackers={setTrackers}
+										refetch={refetch}
+									/>
 								))}
 							</div>
 						) : (<Placeholder height="182px" />)}

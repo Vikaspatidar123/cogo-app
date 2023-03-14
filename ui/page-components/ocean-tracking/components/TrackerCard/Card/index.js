@@ -1,13 +1,14 @@
-import { FluidContainer } from '@cogoport/components';
+import { FluidContainer, Popover } from '@cogoport/components';
 import { IcMOverflowDot } from '@cogoport/icons-react';
 import { useState } from 'react';
 
 import BottomContainer from './BottomContainer';
 import DetailsList from './DetailsList';
+import Options from './Options';
 import Stepper from './Stepper';
 import styles from './styles.module.css';
 
-function Card({ tracker }) {
+function Card({ tracker, setTrackers, refetch }) {
 	console.log(tracker, 'tracker');
 
 	const SEVERITY_TO_ALERT_TYPE = {
@@ -40,7 +41,18 @@ function Card({ tracker }) {
 	const actionList = action ? action[activeCarouselIndex] : {};
 
 	console.log(containerStatus, 'containerStatus');
+	const [showPopover, setShowPopover] = useState(false);
+	const onRender = () => (
+		<Options
+			tracker={tracker}
+			setTrackers={setTrackers}
+			refetch={refetch}
+			showPopover={showPopover}
+			setShowPopover={setShowPopover}
+		/>
+	);
 
+	// const [show, setShow] = useState(false);
 	return (
 		<FluidContainer className={styles.container}>
 			{/* <div className={styles.head}>
@@ -71,7 +83,15 @@ function Card({ tracker }) {
 				<div className={styles.dashed_line} />
 				<FluidContainer className={styles.details_list}>
 					<div className={styles.icon_style}>
-						<IcMOverflowDot />
+						<Popover
+							placement="bottom"
+							visible={showPopover}
+							render={onRender()}
+							onClickOutside={() => setShowPopover(false)}
+
+						>
+							<IcMOverflowDot onClick={() => setShowPopover(true)} />
+						</Popover>
 					</div>
 					<DetailsList
 						containersList={containersList}

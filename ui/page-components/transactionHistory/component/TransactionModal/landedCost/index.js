@@ -57,7 +57,16 @@ function LandedCost({ landedCost, resultCurrency = 'INR' }) {
 				</div>
 				<div className={styles.row}>
 					<div className={styles.text_total}>
-						{taxSet?.length > 0 ? getShortFormatNumber(totalone, resultCurrency) : ''}
+						{taxSet?.length > 0
+							? formatAmount({
+								amount   : totalone,
+								currency : resultCurrency,
+								options  : {
+									notation : 'standard',
+									style    : 'currency',
+								},
+							})
+							: ''}
 					</div>
 				</div>
 			</div>

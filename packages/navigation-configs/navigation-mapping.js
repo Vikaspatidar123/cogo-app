@@ -8,7 +8,7 @@
 // mobileIcon is used to show icon in mobile navigation only
 // isSubNavs is used to show sub navigations
 
-import { IcMUpwardGraph } from '@cogoport/icons-react';
+import { IcMUpwardGraph, IcMFfreferigeratedCargoType } from '@cogoport/icons-react';
 
 const navigationMappings = {
 	app_bookings: {
@@ -43,6 +43,24 @@ const navigationMappings = {
 		key   : 'app_get_started',
 		title : 'Get Started',
 		theme : 'green',
+	},
+
+	saas_finance: {
+		key       : 'saas_finance',
+		title     : 'Finance',
+		icon      : 'nav-finance',
+		isSubNavs : true,
+		isNew     : true,
+		options   : [
+			{
+				key   : 'saas_finance-transaction_history',
+				title : 'Transaction History',
+				icon  : <IcMFfreferigeratedCargoType width={40} height={40} fill="red" />,
+				href  : '/saas/transaction-history',
+				as    : '/saas/transaction-history',
+			},
+
+		],
 	},
 
 	app_kyc: {

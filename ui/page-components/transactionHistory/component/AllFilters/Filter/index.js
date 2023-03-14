@@ -92,6 +92,7 @@ function FilterSection({ filters, setFilters }) {
 			}
 		>
 			<Button onClick={() => setshowFilters(!showFilters)}>
+				Filter
 				<IcMFilter height={15} width={14} />
 			</Button>
 		</Popover>

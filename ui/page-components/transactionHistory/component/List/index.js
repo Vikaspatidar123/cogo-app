@@ -59,7 +59,7 @@ function List({
 						type="table"
 						currentPage={pageNo}
 						totalItems={totalRecords}
-						pageSize={5}
+						pageSize={10}
 						onPageChange={(val) => {
 							setGlobalFilters((prev) => ({ ...prev, pageNo: val }));
 						}}

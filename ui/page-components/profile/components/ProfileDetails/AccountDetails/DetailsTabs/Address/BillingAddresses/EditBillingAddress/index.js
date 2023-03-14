@@ -3,7 +3,6 @@ import { Button, Modal } from '@cogoport/components';
 import styles from './styles.module.css';
 import useEditBillingAddress from './useEditBillingAddress';
 
-// import Layout from '@/temp/form/FormLayout';
 import getField from '@/packages/forms/Controlled';
 
 function EditBillingAddress({
@@ -13,6 +12,7 @@ function EditBillingAddress({
 	organizationBillingAddressesList = [],
 	handleCloseModal = () => {},
 	mobalType,
+	getAddress,
 }) {
 	const {
 		control,
@@ -29,6 +29,7 @@ function EditBillingAddress({
 		organizationBillingAddressesList,
 		handleCloseModal,
 		mobalType,
+		getAddress,
 	});
 	const { errors = {} } = formState || {};
 
@@ -62,7 +63,7 @@ function EditBillingAddress({
 					disabled={loading}
 					themeType="secondary"
 					style={{
-          	marginRight: 16,
+						marginRight: 16,
 					}}
 				>
 					Cancel

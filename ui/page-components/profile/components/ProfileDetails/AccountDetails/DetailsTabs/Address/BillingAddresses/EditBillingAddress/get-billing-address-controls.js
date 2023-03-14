@@ -1,5 +1,3 @@
-/* eslint-disable max-len */
-// eslint-disable-next-line import/no-unresolved
 import data from '@/.data-store/constants/countries.json';
 
 const country_code = data?.map((x) => ({
@@ -36,8 +34,7 @@ const fields = [
 		rules       : {
 			required : true,
 			pattern  : {
-				// value: geo.regex.GST,
-				message: 'translationKey',
+				message: 'GST Number Required ',
 			},
 		},
 	},
@@ -81,7 +78,7 @@ const fields = [
 		type        : 'mobile_number',
 		inputType   : 'number',
 		select2     : 'new',
-		style       : { width: '245px' },
+		style       : { width: '200px' },
 		options     : country_code,
 		rules       : {
 			required : true,
@@ -104,10 +101,8 @@ const fields = [
 		type  : 'file',
 		drag  : true,
 		style : { width: '370px' },
-		accept:
-      'image/*,.pdf,.doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document',
-		rules: {
-			required: 'sez_proof',
+		rules : {
+			required: 'Sez Proof',
 		},
 	},
 	{
@@ -115,10 +110,8 @@ const fields = [
 		label : 'GST Proof',
 		type  : 'file',
 		style : { width: '370px' },
-		accept:
-      'image/*,.pdf,.doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document',
-		rules: {
-			required: 'tax_number_document_url',
+		rules : {
+			required: 'Tax Number Document Url',
 		},
 	},
 ];

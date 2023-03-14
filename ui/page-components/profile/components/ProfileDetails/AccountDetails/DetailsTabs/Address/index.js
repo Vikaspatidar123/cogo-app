@@ -1,10 +1,8 @@
-/* eslint-disable no-unused-vars */
 import MobileHeader from '../../../../MobileHeader';
 
 import BillingAddresses from './BillingAddresses';
-import getAddress from './hooks/getOrganizationBillingAddress';
+import useGetBillingAddress from './hooks/getOrganizationBillingAddress';
 import OtherAddresses from './OtherAddresses';
-import styles from './styles.module.css';
 
 import { useRouter } from '@/packages/next';
 
@@ -14,7 +12,7 @@ function Address() {
 	const onClickBackButton = () => {
 		router.push('/settings');
 	};
-	const { data, loading, addressesData, addressLoading } = getAddress();
+	const { data, loading, addressesData, addressLoading, getAddress, getAdd } = useGetBillingAddress();
 	const organizationBillingAddressesList = data?.list || [];
 	return (
 		<>
@@ -24,11 +22,13 @@ function Address() {
 				title="Billing Address"
 				organizationBillingAddressesList={organizationBillingAddressesList}
 				loading={loading}
+				getAddress={getAddress}
 			/>
 
 			<OtherAddresses
 				addressesData={addressesData}
 				addressLoading={addressLoading}
+				getAdd={getAdd}
 			/>
 		</>
 	);

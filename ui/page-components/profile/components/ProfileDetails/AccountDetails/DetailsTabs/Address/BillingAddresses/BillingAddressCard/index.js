@@ -1,5 +1,4 @@
 /* eslint-disable no-unused-vars */
-/* eslint-disable max-len */
 import { Modal, Button } from '@cogoport/components';
 import { IcMDocument, IcMEdit } from '@cogoport/icons-react';
 import { useState } from 'react';
@@ -16,6 +15,7 @@ function AddressCard({
 	setAddressIdxToUpdate = () => {},
 	index,
 	setMobalType,
+	getAddress,
 }) {
 	const [showPocDetails, setShowPocDetails] = useState(false);
 
@@ -261,7 +261,7 @@ function AddressCard({
 						role="presentation"
 						onClick={() => setShowPocDetails(!showPocDetails)}
 					>
-						{showPocDetails ? 'linkTexts' : 'linkTexts'}
+						{showPocDetails ? 'Hide POCs' : 'Show More POCs'}
 					</div>
 				) : null}
 
@@ -280,7 +280,7 @@ function AddressCard({
 					closeOnOuterClick={() => setShowPocModal(false)}
 					show={showPocModal}
 					onClose={() => setShowPocModal(false)}
-					scroll
+					size="sm"
 				>
 					<AddEditPocDetails
 						getOrganizationBillingAddress={getOrganizationBillingAddress}
@@ -289,6 +289,7 @@ function AddressCard({
 						pocToUpdate={pocToUpdate}
 						address_data={address}
 						type="billing_address"
+						refetch={getAddress}
 					/>
 				</Modal>
 			)}

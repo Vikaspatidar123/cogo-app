@@ -42,7 +42,7 @@ function FieldArray({
 					index={index}
 					control={control}
 					controls={controls}
-					name={`alternate_mobile_numbers.${index}.value`}
+					name={name}
 					remove={remove}
 					error={error?.[index]}
 					showElements={showElements?.[index]}

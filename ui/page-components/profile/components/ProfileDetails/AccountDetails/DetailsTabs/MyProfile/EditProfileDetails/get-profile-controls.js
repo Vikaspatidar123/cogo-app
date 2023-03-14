@@ -1,4 +1,3 @@
-/* eslint-disable import/no-unresolved */
 import languages from '@/ui/commons/configurations/languages';
 import work_scopes from '@/ui/commons/constants/work-scope.json';
 

@@ -1,4 +1,4 @@
-import { Modal } from '@cogoport/components';
+import { Modal, Badge } from '@cogoport/components';
 import {
 	IcMArrowRotateDown,
 	IcMFtaskNotCompleted,
@@ -15,6 +15,7 @@ function BillingAddresses({
 	organizationType = '',
 	organizationBillingAddressesList = [],
 	loading,
+	getAddress,
 }) {
 	const [showEditBillingAddress, setShowEditBillingAddress] = useState(false);
 
@@ -42,8 +43,14 @@ function BillingAddresses({
 				setAddressIdxToUpdate={setAddressIdxToUpdate}
 				address={address}
 				setMobalType={setMobalType}
+				getAddress={getAddress}
 			/>
 		));
+	};
+	const addresCount = () => {
+		const count = organizationBillingAddressesList.length;
+		const value = count === 0 ? 'No Address(s) Added' : `${count} Address(s) Added`;
+		return value;
 	};
 	if (loading) {
 		return <LoadingState />;
@@ -56,10 +63,8 @@ function BillingAddresses({
 						<div className={styles.flex}>
 							<div className={styles.text}>{title}</div>
 
-							<div className={styles.text} style={{ marginLeft: 4 }}>
-								(
-								{organizationBillingAddressesList.length || 0}
-								)
+							<div className={styles.head}>
+								<Badge color="#f8f2e7" size="md" text={addresCount()} />
 							</div>
 						</div>
 
@@ -111,6 +116,7 @@ function BillingAddresses({
 						addressIdxToUpdate={addressIdxToUpdate}
 						organizationType={organizationType}
 						mobalType={mobalType}
+						getAddress={getAddress}
 					/>
 				</Modal>
 			)}

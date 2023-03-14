@@ -1,4 +1,4 @@
-import { Modal } from '@cogoport/components';
+import { Modal, Badge } from '@cogoport/components';
 import {
 	IcMArrowRotateDown,
 	IcMFtaskNotCompleted,
@@ -11,7 +11,7 @@ import OtherAddressCard from './OtherAddressCard';
 import styles from './styles.module.css';
 import getOtherAddressOptions from './utils/get-other-address-options';
 
-function OtherAddresses({ addressesData, addressLoading }) {
+function OtherAddresses({ addressesData, addressLoading, getAdd }) {
 	const OTHER_ADDRESSES_MAPPING = getOtherAddressOptions();
 
 	const [editOtherAddresKey, setEditOtherAddressKey] = useState(null);
@@ -19,12 +19,10 @@ function OtherAddresses({ addressesData, addressLoading }) {
 	const [otherAddressObjToUpdate, setOtherAddressObjToUpdate] = useState({});
 
 	const [showData, setShowData] = useState({});
+	const [mobalType, setMobalType] = useState(false);
 
-	const organizationOtherAddressesList = addressesData?.list || {};
+	const organizationOtherAddressesList = addressesData?.list || [];
 
-	// useEffect(() => {
-	// 	getOrganizationOtherAddresses();
-	// }, [organizationType]);
 	const filterAddress = (address_key) => {
 		const listData = (organizationOtherAddressesList || []).filter(
 			(item) => item.address_type === address_key.api_property_key,
@@ -46,6 +44,11 @@ function OtherAddresses({ addressesData, addressLoading }) {
 				setOtherAddressObjToUpdate={setOtherAddressObjToUpdate}
 				index={index}
 				other_address_data={other_address_data}
+				setMobalType={setMobalType}
+				setEditOtherAddressKey={setEditOtherAddressKey}
+				address_key={address_key}
+				organizationOtherAddressesList={organizationOtherAddressesList}
+				getAdd={getAdd}
 			/>
 		));
 	};
@@ -58,6 +61,11 @@ function OtherAddresses({ addressesData, addressLoading }) {
 	if (addressLoading) {
 		return <LoadingState />;
 	}
+	const addresCount = (address_key) => {
+		const count = filterAddress(address_key).length;
+		const value = count === 0 ? 'No Address(s) Added' : `${count} Address(s) Added`;
+		return value;
+	};
 
 	return (
 		<>
@@ -66,12 +74,23 @@ function OtherAddresses({ addressesData, addressLoading }) {
 					<div className={styles.flex}>
 						<div className={styles.body}>
 							<div className={styles.flex}>
-								<div className={styles.text}>{address_key.label}</div>
+								<div className={styles.head}>
+									<div className={styles.text}>{address_key.label}</div>
+									<Badge
+										className={styles.badge}
+										color="#f8f2e7"
+										size="md"
+										text={addresCount(address_key)}
+									/>
+								</div>
 							</div>
 							<div className={styles.flex}>
 								<div
 									className={styles.link_text}
-									onClick={() => setEditOtherAddressKey(address_key)}
+									onClick={() => {
+										setEditOtherAddressKey(address_key);
+										setMobalType(false);
+									}}
 									role="presentation"
 								>
 									+ Add Address
@@ -83,7 +102,8 @@ function OtherAddresses({ addressesData, addressLoading }) {
 							className={styles.icon_container}
 							onClick={() => setShowData((ps) => ({
 								...ps,
-								[address_key.api_property_key]: !ps[address_key.api_property_key],
+								[address_key.api_property_key]:
+									!ps[address_key.api_property_key],
 							}))}
 							role="presentation"
 						>
@@ -118,10 +138,12 @@ function OtherAddresses({ addressesData, addressLoading }) {
 		size="lg"
 	>
 		<EditOtherAddress
-            // organizationOtherAddressesList={organizationOtherAddressesList}
+			organizationOtherAddressesList={organizationOtherAddressesList}
 			otherAddressObjToUpdate={otherAddressObjToUpdate}
 			address_key={editOtherAddresKey}
 			handleCloseModal={handleCloseModal}
+			getAdd={getAdd}
+			mobalType={mobalType}
 		/>
 	</Modal>
 			)}

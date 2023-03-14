@@ -21,6 +21,7 @@ const useEditBillingAddress = ({
 	organizationBillingAddressesList,
 	handleCloseModal,
 	mobalType,
+	getAddress,
 }) => {
 	const endPoint = mobalType
 		? '/update_organization_billing_address'
@@ -34,7 +35,6 @@ const useEditBillingAddress = ({
 	);
 
 	const valuesToPrefill = organizationBillingAddressesList?.[addressIdxToUpdate];
-	console.log(valuesToPrefill, 'valuesToPrefill');
 	const labelKey = 'postal_code';
 	const valueKey = 'postal_code';
 	const cityPincode = useGetAsyncOptions(
@@ -57,6 +57,21 @@ const useEditBillingAddress = ({
 				? valuesToPrefill?.organization_pocs?.[0]?.[MAPPING[item.name]]
 				: valuesToPrefill[item.name],
 		));
+		const phone_number = {
+			number: valuesToPrefill?.organization_pocs?.[0]?.mobile_number || '',
+			country_code:
+        valuesToPrefill?.organization_pocs?.[0]?.mobile_country_code || '',
+		};
+		if (mobalType) setValue('phone_number', phone_number);
+		const tax_number_document_url = {
+			finalUrl: valuesToPrefill?.tax_number_document_url,
+		};
+		if (mobalType && tax_number_document_url) {
+			setValue(
+				'tax_number_document_url',
+				valuesToPrefill?.tax_number_document_url,
+			);
+		}
 	};
 	useEffect(() => {
 		if (addressIdxToUpdate !== null) {
@@ -66,23 +81,35 @@ const useEditBillingAddress = ({
 	}, []);
 	const onCreate = async (value) => {
 		const {
-			tax_number_document_url = {},
-			sez_proof = {},
+			tax_number_document_url,
+			sez_proof,
 			is_sez = false,
+			poc_email,
+			poc_name,
+			phone_number,
 			...prop
 		} = value;
+		const poc_details = [
+			{
+				email               : poc_email,
+				name                : poc_name,
+				mobile_number       : phone_number?.number || undefined,
+				mobile_country_code : phone_number?.country_code || undefined,
+			},
+		];
 		try {
 			await trigger({
 				data: {
 					...prop,
-					tax_number_document_url:
-            tax_number_document_url?.finalUrl || undefined,
-					sez_proof : sez_proof?.finalUrl || undefined,
+					poc_details,
+					tax_number_document_url : tax_number_document_url || undefined,
+					sez_proof               : sez_proof || undefined,
 					is_sez,
-					id        : mobalType ? valuesToPrefill?.id : undefined,
+					id                      : mobalType ? valuesToPrefill?.id : undefined,
 				},
 			});
 			Toast.success('Successfull Update');
+			getAddress();
 			handleCloseModal(false);
 		} catch (err) {
 			const error = Object.values(err?.response?.data).map((x) => x);
@@ -90,7 +117,6 @@ const useEditBillingAddress = ({
 		}
 	};
 	const isSez = watch('is_sez');
-
 	const showElements = fields.reduce((previousControls, currentControls) => {
 		const { name = '' } = currentControls;
 

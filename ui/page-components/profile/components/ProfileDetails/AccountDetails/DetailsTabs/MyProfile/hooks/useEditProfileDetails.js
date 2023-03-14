@@ -36,7 +36,6 @@ const useEditProfileDetails = ({
 	);
 
 	const onCreate = async (values = {}) => {
-		console.log(values, 'values');
 		const alternate_mobile_numbers = [];
 		values.alternate_mobile_numbers?.forEach((alternate_mobile_number) => {
 			const { mobile_number = {} } = alternate_mobile_number;
@@ -56,11 +55,11 @@ const useEditProfileDetails = ({
 				id                       : organization.id,
 				user_id                  : userDetails.id,
 				name                     : values.name || undefined,
-				// mobile_country_code : values.phone_number.country_code || undefined,
+				// mobile_country_code      : values.phone_number.country_code || undefined,
 				// mobile_number            : values.phone_number.number || undefined,
 				work_scopes              : values.work_scopes || undefined,
 				preferred_languages      : values.preferred_languages || undefined,
-				picture                  : values.picture?.finalUrl || undefined,
+				picture                  : values.picture || undefined,
 				birth_date               : values.date_of_birth || undefined,
 				alternate_mobile_numbers : alternate_mobile_numbers.length
 					? alternate_mobile_numbers
@@ -77,7 +76,6 @@ const useEditProfileDetails = ({
 
 			setShowEditProfileDetails(false);
 		} catch (err) {
-			console.log(err, 'err.data');
 			Toast.error(err.data);
 		}
 	};

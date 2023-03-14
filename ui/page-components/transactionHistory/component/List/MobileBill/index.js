@@ -2,7 +2,7 @@ import { billListConfig } from '../../../configurations/billListConfig';
 
 import styles from './styles.module.css';
 
-import getShortFormatNumber from '@/ui/commons/utils/getShortFromatNumber';
+import getShortFormatNumber from '@/ui/commons/utils/getShortFormatNumber';
 
 function MobileBill({ drillDownData }) {
 	const { billLineItems = [] } = drillDownData || {};

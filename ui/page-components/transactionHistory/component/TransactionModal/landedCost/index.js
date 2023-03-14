@@ -1,6 +1,6 @@
 import styles from './styles.module.css';
 
-import getShortFormatNumber from '@/ui/commons/utils/getShortFromatNumber';
+import getShortFormatNumber from '@/ui/commons/utils/getShortFormatNumber';
 
 function LandedCost({ landedCost, resultCurrency = 'INR' }) {
 	const { taxSet } = landedCost?.[0] || {};

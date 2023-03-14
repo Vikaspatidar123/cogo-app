@@ -4,7 +4,7 @@ import Download from '../../Download';
 
 import styles from './styles.module.css';
 
-import getShortFormatNumber from '@/ui/commons/utils/getShortFromatNumber';
+import getShortFormatNumber from '@/ui/commons/utils/getShortFormatNumber';
 
 const MAPPING = {
 	PAID    : <IcCGreenCircle style={{ paddingRight: '2px' }} width={15} heigjht={15} />,

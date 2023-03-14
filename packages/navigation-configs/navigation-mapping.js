@@ -8,7 +8,7 @@
 // mobileIcon is used to show icon in mobile navigation only
 // isSubNavs is used to show sub navigations
 
-import { IcMUpwardGraph } from '@cogoport/icons-react';
+import { IcMUpwardGraph, IcMTradeparties } from '@cogoport/icons-react';
 
 const navigationMappings = {
 	app_bookings: {
@@ -37,6 +37,23 @@ const navigationMappings = {
 				description : 'keep track of freight rates',
 			},
 		],
+	},
+
+	saas_planning: {
+		key       : 'saas_planning',
+		title     : 'Planning',
+		isSubNavs : true,
+		showInNav : true,
+		options   : [
+			{
+				key   : 'saas_planning-trade_partner',
+				title : 'Trade Partner',
+				icon  : <IcMTradeparties width={40} height={40} />,
+				href  : '/v2/saas/trade-partner',
+				as    : '/v2/saas/trade-partner',
+				type  : 'link',
+
+			}],
 	},
 
 	app_get_started: {

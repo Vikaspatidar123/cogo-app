@@ -3,7 +3,7 @@ import { getByKey } from '@cogoport/utils';
 
 import styles from '../components/Tradepartner/styles.module.css';
 
-import data from '@/data-store/constants/countries.json';
+import data from '@/.data-store/constants/countries.json';
 
 // eslint-disable-next-line max-len
 const emailValidator =	/^[^<>()[\]\\,;:%#^\s@"$&!@]+@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z0-9]+\.)+[a-zA-Z]{2,}))$/;

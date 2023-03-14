@@ -18,34 +18,6 @@
 	width: 100%;
 	padding: 30px 10px 10px;
 
-	.segmented-control__contents-container {
-		border-radius: 10px !important;
-
-		.segmented-control__content {
-			&:hover {
-				.segmented-control__content-label {
-					font-size: 14px !important;
-					font-weight: 400 !important;
-					color: #545563 !important;
-				}
-			}
-		}
-
-		.segmented-control__content--active {
-			&:hover {
-				.segmented-control__content-label {
-					font-size: 14px !important;
-					font-weight: 400 !important;
-					color: white !important;
-				}
-			}
-		}
-
-		.segmented-control__slider {
-			border-radius: 10px !important;
-		}
-	}
-
 	@media screen and (max-width: 768px) {
 		padding: 24px 8px 8px;
 	}
@@ -75,11 +47,6 @@
 		align-self: flex-end;
 		width: 100%;
 		padding: 16px 0;
-	}
-	@media screen and (max-width: 480px) {
-		.core-ui-input-root {
-			width: 150px !important;
-		}
 	}
 }
 

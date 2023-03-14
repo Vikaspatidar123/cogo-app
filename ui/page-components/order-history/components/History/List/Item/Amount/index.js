@@ -1,10 +1,17 @@
 import { Tooltip } from '@cogoport/components';
 import React from 'react';
 
-import getShortFormatNumber from '@/ui/commons/utils/getShortFormatNumber';
+import formatAmount from '@/ui/commons/utils/formatAmount';
 
 function Amount({ currency = 'INR', field = 0 }) {
-	const formatted = getShortFormatNumber('en', field, currency) || '';
+	const formatted = formatAmount({
+		amount  : field,
+		currency,
+		options : {
+			notation : 'standard',
+			style    : 'currency',
+		},
+	});
 	return (
 		<div>
 			{formatted?.length > 16 ? (

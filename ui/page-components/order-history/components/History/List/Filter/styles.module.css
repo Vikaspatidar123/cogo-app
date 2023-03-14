@@ -24,37 +24,11 @@
 
 .title {
 	margin: 0;
-
-	&.heading {
-		font-size: 18px;
-		color: #000;
-	}
-
-	&.daterangeTitle {
-		position: absolute;
-		top: 8px;
-		left: 7px;
-		display: inline;
-		padding: 0 7px;
-		margin-bottom: 5px;
-		font-size: 10.5px;
-		color: #697989;
-		background: #fff;
-	}
 }
 
 .section {
 	margin: 15px 5px;
 	color: #333;
-
-	&.datarange {
-		position: relative;
-		padding-top: 15px;
-
-		.ui-date-range-picker-input-container {
-			border-radius: 6px;
-		}
-	}
 
 	.num input {
 		input::-webkit-outer-spin-button,
@@ -86,11 +60,6 @@
 	border: 1px solid #d9d9d9;
 	border-radius: 6px;
 
-	&.selected {
-		color: #fff;
-		background: #888fd1;
-	}
-
 	p {
 		margin: 0 5px;
 	}
@@ -106,14 +75,6 @@
 	margin: 0;
 	font-size: 14px;
 	color: #000;
-
-	&.expiryCheck {
-		margin-left: 5px;
-	}
-
-	&.expiryDay1 {
-		margin-right: 5px;
-	}
 }
 
 .style_tag {

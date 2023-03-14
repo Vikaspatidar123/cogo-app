@@ -42,7 +42,6 @@
 }
 
 .heading {
-	font-size: 14px;
 	font-weight: 500;
 }
 
@@ -71,10 +70,6 @@
 
 .dashed_line {
 	border-top: 2px dashed #a4a4a4;
-
-	&.total {
-		margin: 0 30px;
-	}
 }
 
 .row {
@@ -86,21 +81,6 @@
 	.quantity {
 		font-weight: 300;
 		color: #7278ad;
-	}
-
-	&.total {
-		font-size: 16px;
-		font-weight: 500;
-	}
-
-	&.finalTotal {
-		padding: 0 40px;
-		font-size: 16px;
-		font-weight: 500;
-	}
-
-	&.dutiesTotal {
-		font-size: 16px;
 	}
 
 	.iconContainer {
@@ -143,18 +123,6 @@
 	margin: 4px !important;
 	font-size: 13px !important;
 	font-weight: 500 !important;
-
-	&.incoterm {
-		padding: 2px 6px;
-		background-color: #fef1df;
-		border-radius: 4px;
-	}
-
-	&.mode {
-		padding: 2px 6px;
-		background-color: #d9eafd;
-		border-radius: 4px;
-	}
 }
 
 .flex {

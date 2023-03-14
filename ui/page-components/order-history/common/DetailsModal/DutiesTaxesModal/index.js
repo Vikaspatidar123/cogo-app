@@ -3,7 +3,7 @@ import { IcMInfo } from '@cogoport/icons-react';
 
 import styles from './styles.module.css';
 
-import getShortFormatNumber from '@/ui/commons/utils/getShortFormatNumber';
+import formatAmount from '@/ui/commons/utils/formatAmount';
 
 function DutiesTaxesModal({ tradeEngineResp }) {
 	const {
@@ -28,21 +28,56 @@ function DutiesTaxesModal({ tradeEngineResp }) {
 			<div className={styles.heading}>Breakdown of Total Landed Cost</div>
 			<div className={styles.row}>
 				<div>Freight Charges</div>
-				<div>{getShortFormatNumber('en', freightCharges, resultCurrency)}</div>
+				<div>
+					{formatAmount({
+						amount   : freightCharges,
+						currency : resultCurrency,
+						options  : {
+							notation : 'standard',
+							style    : 'currency',
+						},
+					})}
+				</div>
 			</div>
 			<div className={styles.row}>
 				<div>Consignment Value</div>
-				<div>{getShortFormatNumber('en', consignmentValue, resultCurrency)}</div>
+				<div>
+					{formatAmount({
+						amount   : consignmentValue,
+						currency : resultCurrency,
+						options  : {
+							notation : 'standard',
+							style    : 'currency',
+						},
+					})}
+
+				</div>
 			</div>
 			<div className={styles.row}>
 				<div>Applicable Charges</div>
 				<div>
-					{getShortFormatNumber('en', calculateTotalCharge(incotermArr), resultCurrency)}
+					{formatAmount({
+						amount   : calculateTotalCharge(incotermArr),
+						currency : resultCurrency,
+						options  : {
+							notation : 'standard',
+							style    : 'currency',
+						},
+					})}
 				</div>
 			</div>
 			<div className={styles.row}>
 				<div>Total Duties and Taxes</div>
-				<div>{getShortFormatNumber('en', totalDutiesAndTaxes, resultCurrency)}</div>
+				<div>
+					{formatAmount({
+						amount   : totalDutiesAndTaxes,
+						currency : resultCurrency,
+						options  : {
+							notation : 'standard',
+							style    : 'currency',
+						},
+					})}
+				</div>
 			</div>
 		</div>
 	);
@@ -61,18 +96,30 @@ function DutiesTaxesModal({ tradeEngineResp }) {
 								{(taxSetResponse || []).map(({ name = '', value = 0 }) => (
 									<div className={styles.row} key={name}>
 										<div>{name}</div>
-										<div>{getShortFormatNumber('en', value, resultCurrency)}</div>
+										<div>
+											{formatAmount({
+												amount   : value,
+												currency : resultCurrency,
+												options  : {
+													notation : 'standard',
+													style    : 'currency',
+												},
+											})}
+										</div>
 									</div>
 								))}
 								<div className={styles.dashed_line} />
 								<div className={`${styles.Row} ${styles.totoal}`}>
 									<div>Total</div>
 									<div>
-										{getShortFormatNumber(
-											'en',
-											calculateTotalCharge(taxSetResponse),
-											resultCurrency,
-										)}
+										{formatAmount({
+											amount   : calculateTotalCharge(taxSetResponse),
+											currency : resultCurrency,
+											options  : {
+												notation : 'standard',
+												style    : 'currency',
+											},
+										})}
 									</div>
 								</div>
 							</div>
@@ -82,7 +129,17 @@ function DutiesTaxesModal({ tradeEngineResp }) {
 			))}
 			<div className={`${styles.row} ${styles.finalTotal} ${styles.dutiesTotal}`}>
 				<div>Total Duties and Tax</div>
-				<div>{getShortFormatNumber(totalDutiesAndTaxes, resultCurrency)}</div>
+				<div>
+					{formatAmount({
+						amount   : totalDutiesAndTaxes,
+						currency : resultCurrency,
+						options  : {
+							notation : 'standard',
+							style    : 'currency',
+						},
+					})}
+
+				</div>
 			</div>
 			<div className={`${styles.dashed_line} ${styles.total}`} />
 			<div className={`${styles.row} ${styles.finalTotal}`}>
@@ -99,7 +156,16 @@ function DutiesTaxesModal({ tradeEngineResp }) {
 						</Tooltip>
 					</div>
 				</div>
-				<div>{getShortFormatNumber(totalLandedCost, resultCurrency)}</div>
+				<div>
+					{formatAmount({
+						amount   : totalLandedCost,
+						currency : resultCurrency,
+						options  : {
+							notation : 'standard',
+							style    : 'currency',
+						},
+					})}
+				</div>
 			</div>
 		</>
 	);

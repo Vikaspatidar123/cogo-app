@@ -64,7 +64,6 @@ function TraderEligibilityModal({ tradeEngineResponse = {} }) {
 			)}
 			{screeningRequestResponse?.length === 0 && (
 				<div className={`_${styles.list_wrapper} ${styles.verifieduser}`}>
-					{/* <SecureIcon height={100} width={100} /> */}
 					<div className={styles.label}>
 						<b className="bold">{screeningPartyName.toUpperCase()}</b>
 						<div> is all clear. You are all set to go trade with this partner.</div>

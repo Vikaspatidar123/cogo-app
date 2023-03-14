@@ -33,8 +33,8 @@ function BasicCharge({ fields, control, errors, submitForm }) {
 		isQuotaLeft = false,
 		quotaValue,
 		prioritySequence,
-		getQuota,
-		loading = false,
+		// getQuota,
+		// loading = false,
 	} = useGetQuota();
 
 	const getDutiesSubmitHandler = async () => {
@@ -73,6 +73,7 @@ function BasicCharge({ fields, control, errors, submitForm }) {
 				setPaymentMode={setPaymentMode}
 				setValidateProduct={setValidateProduct}
 			/>
+
 			<ValidateProductModal
 				isUserSubscribed={isUserSubscribed}
 				validateProduct={validateProduct}
@@ -82,6 +83,7 @@ function BasicCharge({ fields, control, errors, submitForm }) {
 				isQuotaLeft={isQuotaLeft}
 				quoteRes={quoteRes}
 			/>
+
 		</>
 	);
 }

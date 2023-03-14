@@ -1,5 +1,6 @@
 import { Tooltip, Button, Modal } from '@cogoport/components';
 import { IcAReports, IcMInfo } from '@cogoport/icons-react';
+import { useState, useEffect } from 'react';
 
 import iconUrl from '../../../../../utils/iconUrl.json';
 import useServiceRates from '../../../../hooks/useServiceRates';
@@ -26,17 +27,44 @@ const renderButton = (isUserSubscribed) => {
 	if (isUserSubscribed) return 'Get Premium services';
 	return 'Proceed to Checkout';
 };
+const serviceInfo = {
+	duties_and_taxes        : true,
+	import_export_documents : false,
+	import_export_controls  : false,
+};
 
 function ValidateProductModal(props) {
 	const {
 		validateProduct, setValidateProduct,
-		isUserSubscribed = false, quotaValue, isQuotaLeft = false, prioritySequence = 0, quoteRes = {},
+		isUserSubscribed = false,
+		// quotaValue,
+		isQuotaLeft = false, prioritySequence = 0, quoteRes = {},
 	} = props;
-	const { product = {}, destinationPortDetails = {} } = quoteRes;
-	const productInfoArr = product?.products;
 
+	const [servicesSelected, setServiceSelected] = useState({});
+
+	const { product = {}, destinationPortDetails = {} } = quoteRes;
+	const productInfoArr = product?.products || [];
 	const {	loading, serviceData } = useServiceRates({ prioritySequence, setValidateProduct });
 	const { services = {}, currency:serviceCurrency = 'INR' } = serviceData || {};
+
+	const deleteProduct = (id, index) => {
+		const serviceArr = Object.keys(servicesSelected).filter((productId) => productId !== id);
+		const newService = {};
+		serviceArr.forEach((productId) => { newService[productId] = servicesSelected[productId]; });
+
+		setServiceSelected(newService);
+		productInfoArr.splice(index, 1);
+	};
+
+	useEffect(() => {
+		if (productInfoArr.length > 0) {
+			productInfoArr.forEach(({ productId }) => {
+				servicesSelected[productId] = serviceInfo;
+			});
+		}
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [product]);
 
 	return (
 		<Modal show={validateProduct} onClose={() => setValidateProduct(false)}>
@@ -68,12 +96,22 @@ function ValidateProductModal(props) {
 					</Tooltip>
 				</div>
 
-				<ProductField
-					services={services}
-					serviceCurrency={serviceCurrency}
-					isQuotaLeft={isQuotaLeft}
-					destinationPortDetails={destinationPortDetails}
-				/>
+				{(productInfoArr || []).map((productInfo, index) => (
+					<ProductField
+						key={productInfo?.productId}
+						index={index}
+						services={services}
+						serviceCurrency={serviceCurrency}
+						isUserSubscribed={isUserSubscribed}
+						isQuotaLeft={isQuotaLeft}
+						destinationPortDetails={destinationPortDetails}
+						productInfo={productInfo}
+						deleteProduct={deleteProduct}
+						servicesSelected={servicesSelected}
+						setServiceSelected={setServiceSelected}
+						productInfoArr={productInfoArr}
+					/>
+				))}
 
 			</Modal.Body>
 			<Modal.Footer>

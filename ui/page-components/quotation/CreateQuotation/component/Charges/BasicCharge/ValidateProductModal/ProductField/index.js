@@ -11,8 +11,8 @@ import { shortFormatNumber } from '@/ui/commons/utils/getShortFormatNumber';
 
 const content = ({ hsRecommendation = [], setStatus, setCheckButton }) => (
 	<div className={styles.recommend_container}>
-		{(hsRecommendation).map((recommend) => {
-			const { hsCodeValue = '', description = '' } = recommend;
+		{hsRecommendation.map((recommend) => {
+			const { hsCode:hsCodeValue = '', description = '' } = recommend;
 
 			return (
 				<div
@@ -31,15 +31,41 @@ const content = ({ hsRecommendation = [], setStatus, setCheckButton }) => (
 	</div>
 );
 
-function ProductField({ services, isQuotaLeft, serviceCurrency, destinationPortDetails = {}, productInfo = {} }) {
+function ProductField({
+	services, serviceCurrency,
+	isUserSubscribed = false, isQuotaLeft = false,
+	destinationPortDetails = {}, productInfo = {}, productLineItemDetails = [],
+	index, servicesSelected = {}, setServiceSelected, productInfoArr = [],
+}) {
 	const {
 		hsRecommendation, status, setStatus,
 		checkButton, setCheckButton, verifyLoading, verifyHsCode,
 	} = useVerifyHsCode();
+	const productLength = productInfoArr?.length;
 
-	const disableValidate =		(!isUserSubscribed && productLineItemDetails.length === 0 && !quotaLeft)
-		|| checkLoading
-		|| !status;
+	const { hsCode, description, productId } = productInfo;
+
+	const disableValidate =	(!isUserSubscribed && productLineItemDetails.length === 0 && !isQuotaLeft) || verifyLoading
+	|| !status;
+	const deleteProduct = (id) => {
+		const serviceArr = Object.keys(servicesSelected)
+			.filter((prodId) => prodId !== id);
+		const newService = {};
+		serviceArr.forEach((prodId) => { newService[prodId] = servicesSelected[productId]; });
+
+		setServiceSelected(newService);
+		productInfoArr.splice(index, 1);
+	};
+	const checkBoxChangeHandler = (id, name) => {
+		console.log('id::', id, servicesSelected[id], name);
+		const serviceValues = servicesSelected?.[id][name];
+		const serviceArr = servicesSelected[id];
+
+		setServiceSelected((prv) => ({
+			...prv,
+			[id]: { ...serviceArr, [name]: !serviceValues },
+		}));
+	};
 	return (
 		<div className={styles.container}>
 			{/* <Button className="text primary lg cta" onClick={() => setShowHsCodeModal(true)}>
@@ -52,6 +78,7 @@ function ProductField({ services, isQuotaLeft, serviceCurrency, destinationPortD
 					<Input
 						size="sm"
 						placeholder="HS Code"
+						value={hsCode}
 						disabled
 					/>
 				</div>
@@ -63,11 +90,13 @@ function ProductField({ services, isQuotaLeft, serviceCurrency, destinationPortD
 						placement="bottom"
 						content={content({ hsRecommendation, setStatus, setCheckButton })}
 						visible={!status}
+						caret={false}
 					>
 						<div>
 							<Input
 								size="sm"
 								placeholder="Product Name"
+								value={description}
 								disabled
 							/>
 						</div>
@@ -79,37 +108,49 @@ function ProductField({ services, isQuotaLeft, serviceCurrency, destinationPortD
 						<Button
 							themeType="accent"
 							loading={verifyLoading}
-							onClick={() => verifyHsCode({ productInfo, destinationPortDetails })}
+							onClick={() => verifyHsCode({ hsCode, productId, destinationPortDetails })}
+							disabled={disableValidate}
 						>
 							Validate
 						</Button>
-					)
-						: (
-							<div className={styles.validate_icon}>
-								<img src={iconUrl.validate} alt="validated" />
-								<div className={styles.validate_text}>Validated</div>
-							</div>
-						)}
+					) : (
+						<div className={styles.validate_icon}>
+							<img src={iconUrl.validate} alt="validated" />
+							<div className={styles.validate_text}>Validated</div>
+						</div>
+					)}
 				</div>
 
-				<div>
-					<ButtonIcon size="lg" icon={<IcMDelete />} themeType="primary" />
-				</div>
+				{productLength > 1 && (
+					<div>
+						<ButtonIcon
+							size="lg"
+							icon={<IcMDelete />}
+							themeType="primary"
+							onClick={() => deleteProduct(productId, index)}
+						/>
+					</div>
+				)}
 			</div>
 			<div className={styles.card}>
 				{(servicesConfiguration || []).map((service) => (
 					<div key={service?.id} className={styles.service_container}>
-						<Checkbox />
+						<Checkbox
+							key={`${productId}_${service?.name}`}
+							id={`${productId}_${service?.name}`}
+							checked={servicesSelected?.[productId]?.[service?.name]}
+							onChange={() => checkBoxChangeHandler(productId, service?.name)}
+						/>
 						<div>
 							<Tooltip placement="right" content={service?.tooltip} theme="light-border">
 								<div className={styles.cursor}>
-									<div className={styles.service_name} key={service?.name}>{service?.name}</div>
+									<div className={styles.service_name}>{service?.displayName}</div>
 									<div className={styles.hrborder} />
 								</div>
 							</Tooltip>
 							{!isQuotaLeft && (
 								<Pill color="#FEF0DF">
-									{shortFormatNumber(services[service?.services]?.price, serviceCurrency, true)}
+									{shortFormatNumber(services[service?.name]?.price, serviceCurrency, true)}
 									/-
 								</Pill>
 							)}

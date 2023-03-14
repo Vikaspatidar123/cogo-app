@@ -17,8 +17,7 @@ const useVerifyHsCode = () => {
 		authKey : 'post_saas_trade_engine_hs_engine',
 	}, { manual: true });
 
-	const verifyHsCode = async ({ productInfo, destinationPortDetails, selectedHscode }) => {
-		const { hsCode, productId } = productInfo || {};
+	const verifyHsCode = async ({ hsCode, productId, destinationPortDetails, selectedHscode }) => {
 		try {
 			const resp = await trigger({
 				data: {

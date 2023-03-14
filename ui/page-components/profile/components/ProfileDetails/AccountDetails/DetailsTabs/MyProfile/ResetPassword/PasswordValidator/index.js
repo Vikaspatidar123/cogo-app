@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { IcCTick } from '@cogoport/icons-react';
 
 import styles from './styles.module.css';

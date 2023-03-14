@@ -1,6 +1,6 @@
 import Address from '../DetailsTabs/Address';
 import AlertsPreferences from '../DetailsTabs/AlertsPreferences';
-import DocumentsWallet from '../DetailsTabs/DocumentsWallet';
+// import DocumentsWallet from '../DetailsTabs/DocumentsWallet';
 import MyProfile from '../DetailsTabs/MyProfile';
 import OrganizationDetails from '../DetailsTabs/OrganizationDetails';
 

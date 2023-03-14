@@ -60,10 +60,9 @@ function EditOrganizationDetails({
 					themeType="accent"
 					size="md"
 					disabled={loading}
-					themeType="primary"
 					onClick={handleSubmit(onCreate, onError)}
 				>
-					update
+					Update
 				</Button>
 			</div>
 		</div>

@@ -34,6 +34,7 @@ const useEditProfileDetails = ({
 		url    : '/update_organization_user',
 		method : 'post',
 	}, { manual: true });
+
 	const onCreate = async (values = {}) => {
 		const alternate_mobile_numbers = [];
 		values.alternate_mobile_numbers?.forEach((alternate_mobile_number) => {
@@ -134,6 +135,7 @@ const useEditProfileDetails = ({
 		onCreate,
 		onError,
 		// loading: updateUserAPI.loading,
+		loading,
 	};
 };
 

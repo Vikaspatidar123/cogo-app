@@ -1,6 +1,6 @@
 import styles from './styles.module.css';
 
-function KycStatus({ kyc_status, account_type }) {
+function KycStatus({ kyc_status }) {
 	return (
 		<div className={styles.container}>
 			{kyc_status === 'verified' && (

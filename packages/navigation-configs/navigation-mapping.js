@@ -7,7 +7,6 @@
 // icon is used to show icon webside only
 // mobileIcon is used to show icon in mobile navigation only
 // isSubNavs is used to show sub navigations
-
 import {
 	IcMQuotations,
 } from '@cogoport/icons-react';

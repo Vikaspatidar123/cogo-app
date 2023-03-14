@@ -95,23 +95,23 @@ const fields = [
 		rules       : { required: true },
 	},
 	{
-		name   : 'sez_proof',
-		label  : 'Sez Proof',
-		type   : 'file',
-		drag   : true,
-		style  : { width: '370px' },
-		accept :
+		name  : 'sez_proof',
+		label : 'Sez Proof',
+		type  : 'file',
+		drag  : true,
+		style : { width: '370px' },
+		accept:
 			'image/*,.pdf,.doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document',
 		rules: {
 			required: 'sez_proof',
 		},
 	},
 	{
-		name   : 'tax_number_document_url',
-		label  : 'GST Proof',
-		type   : 'file',
-		style  : { width: '370px' },
-		accept :
+		name  : 'tax_number_document_url',
+		label : 'GST Proof',
+		type  : 'file',
+		style : { width: '370px' },
+		accept:
 			'image/*,.pdf,.doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document',
 		rules: {
 			required: 'tax_number_document_url',

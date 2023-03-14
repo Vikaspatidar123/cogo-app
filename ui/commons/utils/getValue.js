@@ -8,8 +8,8 @@ import iterateSubKeys from './iterate-object';
 const getValue = (
 	itemData,
 	itemField,
-	functions = {},
 	emptyState,
+	functions = {},
 ) => {
 	if (isEmpty(itemData) || isEmpty(itemField)) {
 		return emptyState || '';
@@ -28,13 +28,24 @@ const getValue = (
 	}
 
 	switch (itemField.type) {
-		case 'datetime': {
+		case 'datetime':
 			return val ? (
 				format(val, itemField.formatType || 'dd MMM yy | hh:mm a')
 			) : (
 				<div>-</div>
 			);
-		}
+
+		case 'price':
+			return `${itemData.currency} ${(
+				itemData[itemField.key || 'price'] || 0
+			).toLocaleString()}`;
+
+		case 'bool':
+			return val ? 'Yes' : 'No';
+
+		case 'percent':
+			return val ? `${val} %` : '-';
+
 		default:
 			break;
 	}

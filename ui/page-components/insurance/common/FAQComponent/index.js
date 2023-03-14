@@ -3,7 +3,7 @@ import { IcMCross } from '@cogoport/icons-react';
 import Card from './Card';
 import styles from './styles.module.css';
 
-function FAQDiv({
+function FAQComponent({
 	faqDetails = [],
 	showFaq = false,
 	setFaq = () => {},
@@ -44,4 +44,4 @@ function FAQDiv({
 	);
 }
 
-export default FAQDiv;
+export default FAQComponent;

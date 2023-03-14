@@ -3,7 +3,7 @@ import { IcMArrowBack } from '@cogoport/icons-react';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 
-import FAQDiv from '../../common/FAQDiv/index';
+import FAQComponent from '../../common/FAQComponent';
 import redirectUrl from '../../common/redirectUrl';
 import { options } from '../../configurations/segmentOptions';
 import useGetDraftDetails from '../../hooks/useGetDraftDetails';
@@ -34,7 +34,7 @@ function InsuranceFrom() {
 	});
 	return (
 		<div>
-			<FAQDiv
+			<FAQComponent
 				faqDetails={faqDetails}
 				showFaq={showFaq}
 				setFaq={setFaq}

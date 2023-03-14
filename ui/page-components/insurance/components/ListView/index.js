@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { useSelector } from 'react-redux';
 
 import CancellationAndConfirmModal from '../../common/CancellationModal';
-import FAQDiv from '../../common/FAQDiv';
+import FAQComponent from '../../common/FAQComponent';
 import List from '../../common/List';
 import PreviewModal from '../../common/PreviewModal';
 import redirectUrl from '../../common/redirectUrl';
@@ -72,7 +72,7 @@ function ListView() {
 
 	return (
 		<>
-			<FAQDiv showFaq={showFaq} setFaq={setFaq} />
+			<FAQComponent showFaq={showFaq} setFaq={setFaq} />
 			<div className={isMobile ? styles.header_mobile : styles.header}>
 				<div className={styles.title}>My Policies</div>
 				<div className={isMobile ? styles.button_div_mobile : styles.button_div}>

@@ -25,7 +25,7 @@ function Card({ item = [] }) {
 				{(answerDetails || []).map(({ heading = '', answer = [] }) => (
 					<>
 						{heading != null && (
-							<div className={styles.card_text}>
+							<div className={styles.card_text} key={heading}>
 								<b>{heading || ''}</b>
 							</div>
 						)}

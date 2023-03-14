@@ -2,6 +2,7 @@ import { Button, Modal } from '@cogoport/components';
 import { IcMError } from '@cogoport/icons-react';
 
 import styles from './styles.module.css';
+import text from './text';
 
 function BuyModal({
 	noteModal = false,
@@ -10,6 +11,7 @@ function BuyModal({
 	paymentLoading = false,
 	insuranceLoading = false,
 }) {
+	const { first_paragraph, second_para } = text || {};
 	return (
 		<Modal show={noteModal} onClose={() => setNoteModal(false)} size="lg">
 			<div className={styles.wrapper}>
@@ -19,17 +21,10 @@ function BuyModal({
 				</div>
 				<div className={styles.textWrapper}>
 					<div className={styles.text}>
-						Please note that the Cogoport Group entities merely connect you with insurance
-						parties in relation to your insurance requirements. Cogoport Group entities do
-						not act as an insurance agent, insurance broker, insurance service provider or
-						any other insurance intermediary or an entity under a similar concept under
-						any applicable law.
+						{first_paragraph}
 					</div>
 					<div className={styles.text}>
-						Cogoport Group does not assume any responsibility in relation to your
-						insurance requirements and shall not be responsible any claims in relation to
-						the insurance products obtained by you. You are required to directly
-						coordinate with the relevant entity for the same.
+						{second_para}
 					</div>
 				</div>
 			</div>

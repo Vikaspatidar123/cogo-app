@@ -48,6 +48,7 @@ const useFetchTrendDetails = ({ id }) => {
 
 	useEffect(() => {
 		fetchScheduleDetails();
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [filters]);
 
 	const refetch = () => fetchScheduleDetails(false);

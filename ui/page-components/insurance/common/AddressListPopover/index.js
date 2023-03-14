@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 import { Checkbox, Placeholder, Button } from '@cogoport/components';
 import { IcMPlansExpiring, IcMCrossInCircle, IcMPlus } from '@cogoport/icons-react';
 
@@ -101,7 +100,8 @@ function Addres({
 											{organization_pocs[0]?.mobile_country_code
 												&& organization_pocs[0]?.mobile_number && (
 													<div className={styles.card_text}>
-														{`${organization_pocs[0]?.mobile_country_code} ${organization_pocs[0]?.mobile_number}`}
+														{`${organization_pocs[0]?.mobile_country_code}
+														 ${organization_pocs[0]?.mobile_number}`}
 													</div>
 											)}
 											<div className={styles.card_text}>{tax_number}</div>

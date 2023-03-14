@@ -1,7 +1,7 @@
 import { ToolTip } from '@cogoport/components';
 import React from 'react';
 
-import getShortFormatNumber from '@/ui/commons/utils/getShortFromatNumber';
+import getShortFormatNumber from '@/ui/commons/utils/getShortFormatNumber';
 
 function Amount({ currency = 'INR', field = 0 }) {
 	const formatted = getShortFormatNumber(field, currency) || '';

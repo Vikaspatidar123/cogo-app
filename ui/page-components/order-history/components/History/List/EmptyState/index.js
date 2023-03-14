@@ -4,8 +4,12 @@ import styles from './styles.module.css';
 
 function EmptyState() {
 	return (
-		<div className={styles.Container}>
+		<div className={styles.container}>
 			<div className={styles.wrapper}>
+				<img
+					alt=""
+					src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/empty_icon 1.svg"
+				/>
 				<div className={styles.heading}>Looks like you do not have any orders</div>
 			</div>
 		</div>

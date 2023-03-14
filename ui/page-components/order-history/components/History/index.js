@@ -12,7 +12,6 @@ import styles from './styles.module.css';
 function OrderHistory() {
 	const [sort, setSort] = useState();
 	const {
-		getList = () => {},
 		setGlobalFilters = () => {},
 		filters = {},
 		apiData = {},
@@ -57,7 +56,6 @@ function OrderHistory() {
 				loading={apiLoading}
 				setGlobalFilters={setGlobalFilters}
 				filters={filters}
-				getList={getList}
 				sort={sort}
 				setSort={setSort}
 			/>

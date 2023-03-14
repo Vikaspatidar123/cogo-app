@@ -19,6 +19,11 @@
 	width: 130px;
 }
 
+.title {
+	font-size: 15px;
+	font-weight: 500;
+}
+
 .header_container {
 	padding: 20px;
 	text-align: center;
@@ -36,6 +41,11 @@
 	}
 }
 
+.heading {
+	font-size: 14px;
+	font-weight: 500;
+}
+
 .section {
 	.heading {
 		margin-bottom: 15px;
@@ -50,11 +60,6 @@
 		margin-bottom: 28px;
 		background: #f9f9f9;
 	}
-}
-
-.title {
-	font-size: 15px;
-	font-weight: 500;
 }
 
 .line {
@@ -113,11 +118,6 @@
 	padding: 12px 8px;
 	font-size: 12px;
 	font-weight: 300;
-}
-
-.heading {
-	font-size: 14px;
-	font-weight: 500;
 }
 
 .incoterm {

@@ -1,5 +1,5 @@
 import { Toast } from '@cogoport/components';
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect } from 'react';
 
 import { useRequestBf } from '@/packages/request';
 import { useSelector } from '@/packages/store';
@@ -23,10 +23,8 @@ const useList = ({ sort }) => {
 		authKey : 'get_saas_trade_engine_order_history',
 		method  : 'get',
 	}, { manual: true });
-
+	const checkList = Object?.keys(filters)?.length > 1;
 	const getList = async () => {
-		const checkList = Object?.keys(filters)?.length > 1;
-
 		if (!checkList) {
 			return;
 		}
@@ -48,19 +46,11 @@ const useList = ({ sort }) => {
 	};
 
 	useEffect(() => {
-		getList();
+		if (checkList || sort)getList();
 	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [filters, sort]);
 
-	useMemo(() => {
-		setGlobalFilters({
-			page      : 1,
-			pageLimit : 10,
-		});
-	}, []);
-
 	return {
-		getList,
 		setGlobalFilters,
 		filters,
 		apiData,

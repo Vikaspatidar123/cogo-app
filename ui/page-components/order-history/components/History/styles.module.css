@@ -22,13 +22,6 @@
 		border-radius: 10px !important;
 
 		.segmented-control__content {
-			.segmented-control__content-label {
-				font-size: 14px !important;
-				font-weight: 400 !important;
-			}
-		}
-
-		.segmented-control__content {
 			&:hover {
 				.segmented-control__content-label {
 					font-size: 14px !important;

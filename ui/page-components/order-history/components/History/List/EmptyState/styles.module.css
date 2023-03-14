@@ -3,10 +3,6 @@
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	padding: 60px 30px 36px;
-	margin-top: 10vh;
-	background: #fff;
-	border-radius: 10px;
 }
 
 .heading {
@@ -18,7 +14,6 @@
 	line-height: 26px;
 	color: #000;
 	text-align: center;
-	letter-spacing: 0.02em;
 }
 
 .content {
@@ -33,21 +28,11 @@
 	letter-spacing: 0.02em;
 }
 
-.ic_container {
-	min-width: 10%;
-	max-width: 17%;
-
-	@media (max-width: _md) {
-		display: none;
-	}
-}
-
 .wrapper {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	max-width: 45%;
 
 	&.side {
 		max-width: 100%;

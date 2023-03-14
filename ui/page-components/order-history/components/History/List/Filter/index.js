@@ -1,19 +1,12 @@
 import { Button, Popover } from '@cogoport/components';
 import { IcMFilter } from '@cogoport/icons-react';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 import FilterContent from './FilterContent';
 import styles from './styles.module.css';
 
 function FilterSection({ filters = {}, setFilters = () => {} }) {
 	const [showFilters, setshowFilters] = useState(false);
-
-	useEffect(() => {
-		setFilters((prev) => ({
-			...prev,
-		}));
-	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
 
 	return (
 		<Popover

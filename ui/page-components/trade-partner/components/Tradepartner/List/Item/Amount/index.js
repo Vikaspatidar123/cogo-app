@@ -11,7 +11,7 @@ function Amount({ currency = 'INR', field = 0 }) {
 			notation : 'standard',
 			style    : 'currency',
 		},
-	}) || '';
+	});
 
 	return (
 		<div>

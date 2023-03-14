@@ -3,7 +3,7 @@ import { getByKey } from '@cogoport/utils';
 
 import styles from '../components/Tradepartner/styles.module.css';
 
-import data from '@/data-store/constants/countries.json';
+import data from '@/.data-store/constants/countries.json';
 import patterns from '@/ui/commons/configurations/patterns';
 
 const country = data?.map((item) => ({

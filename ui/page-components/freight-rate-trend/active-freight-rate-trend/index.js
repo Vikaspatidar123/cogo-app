@@ -93,7 +93,7 @@ function ActiveFreightRateTrend() {
 					<img
 						alt=""
 						//  eslint-disable-next-line max-len
-						src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/3973480 1.svg"
+						src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/empty_icon 1.svg"
 					/>
 				</div>
 			</div>

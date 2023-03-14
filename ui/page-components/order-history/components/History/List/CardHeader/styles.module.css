@@ -1,0 +1,39 @@
+.card_title{
+    font-weight: 600;
+	font-size: 14px;
+	&.icon {
+		width: 100%;
+		justify-content: center;
+	}
+}
+
+.row{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+	height: 78px;
+	border-radius: 4px;
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	padding-left: 20px;
+    justify-content: space-between;
+}
+
+.col{
+    display: flex;
+    align-items: center;
+    width: 130px;
+}
+
+.rotate_icon{
+	margin-left: 5px;
+	width: 12px;
+	transition: transform 0.3s ease-in-out;
+	cursor: pointer;
+	:global{
+		.rotate {
+			transform: rotate(180deg);
+		}
+	}
+}

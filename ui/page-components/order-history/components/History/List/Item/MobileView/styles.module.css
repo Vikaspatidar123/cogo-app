@@ -1,0 +1,68 @@
+.container {
+	display: flex;
+	flex-direction: row;
+	position: relative;
+	gap: 8px;
+	padding: 10px;
+	flex-wrap: wrap;
+}
+
+.value {
+	font-weight: 300;
+	font-size: 14px;
+	color: #60708f;
+
+	&.action {
+		position: absolute;
+		top: 8px;
+		right: 12px;
+	}
+	&.amount {
+		font-weight: 400;
+		font-size: 16px;
+	}
+	&.buyer {
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		overflow: hidden;
+		@media screen and (max-width: 768px) {
+			max-width: 300px;
+		}
+		@media screen and (max-width: 480px) {
+			max-width: 230px;
+		}
+	}
+}
+
+.label {
+	font-weight: 500;
+	font-size: 14px;
+	color: #60708f;
+}
+
+.div {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	padding: 4px 16px;
+	width: max-content;
+	&.column {
+		flex-direction: column;
+		gap: 6px;
+		align-items: flex-start;
+		width: auto;
+	}
+	&.expired {
+		margin-right: 13px;
+	}
+	&.buyer {
+		margin-bottom: 4px;
+	}
+}
+
+.flex {
+	display: flex;
+	align-items: center;
+    width: 150px;
+}
+

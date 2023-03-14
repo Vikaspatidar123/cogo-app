@@ -4,29 +4,12 @@ import { useState, useEffect } from 'react';
 
 import iconUrl from '../../../../../utils/iconUrl.json';
 import useServiceRates from '../../../../hooks/useServiceRates';
+import useValidateModal from '../../../../hooks/useValidateModal';
+import CheckoutModal from '../CheckoutModal';
 
 import ProductField from './ProductField';
 import styles from './styles.module.css';
 
-const renderTitle = ({ isUserSubscribed, lineItemLength = 0 }) => {
-	const getTitle = () => {
-		if (!isUserSubscribed && lineItemLength > 0) return 'Validate HS Code';
-		if (!isUserSubscribed && lineItemLength === 0) return 'Services Details';
-		return 'Get Accurate Data';
-	};
-
-	return (
-		<div className={styles.header_container}>
-			<IcAReports width={25} height={25} />
-			<h3 className={styles.header}>{getTitle()}</h3>
-		</div>
-	);
-};
-
-const renderButton = (isUserSubscribed) => {
-	if (isUserSubscribed) return 'Get Premium services';
-	return 'Proceed to Checkout';
-};
 const serviceInfo = {
 	duties_and_taxes        : true,
 	import_export_documents : false,
@@ -37,30 +20,37 @@ function ValidateProductModal(props) {
 	const {
 		validateProduct, setValidateProduct,
 		isUserSubscribed = false,
-		// quotaValue,
+		quotaValue,
 		isQuotaLeft = false, prioritySequence = 0, quoteRes = {},
+		paymentMode,
 	} = props;
 
 	const [servicesSelected, setServiceSelected] = useState({});
+	const [showCheckout, setShowCheckout] = useState(false);
 
 	const { product = {}, destinationPortDetails = {} } = quoteRes;
 	const productInfoArr = product?.products || [];
+
 	const {	loading, serviceData } = useServiceRates({ prioritySequence, setValidateProduct });
 	const { services = {}, currency:serviceCurrency = 'INR' } = serviceData || {};
 
-	const deleteProduct = (id, index) => {
-		const serviceArr = Object.keys(servicesSelected).filter((productId) => productId !== id);
-		const newService = {};
-		serviceArr.forEach((productId) => { newService[productId] = servicesSelected[productId]; });
-
-		setServiceSelected(newService);
-		productInfoArr.splice(index, 1);
-	};
+	const {
+		renderTitle, renderButton, deleteProduct, checkBoxChangeHandler, clickHandler, serviceProduct = {},
+	} = useValidateModal({
+		servicesSelected,
+		setServiceSelected,
+		productInfoArr,
+		isUserSubscribed,
+		setShowCheckout,
+	});
 
 	useEffect(() => {
 		if (productInfoArr.length > 0) {
 			productInfoArr.forEach(({ productId }) => {
-				servicesSelected[productId] = serviceInfo;
+				setServiceSelected((prev) => ({
+					...prev,
+					[productId]: serviceInfo,
+				}));
 			});
 		}
 	// eslint-disable-next-line react-hooks/exhaustive-deps
@@ -68,7 +58,14 @@ function ValidateProductModal(props) {
 
 	return (
 		<Modal show={validateProduct} onClose={() => setValidateProduct(false)}>
-			<Modal.Header title={renderTitle({ isUserSubscribed })} />
+			<Modal.Header title={(
+				<div className={styles.header_container}>
+					<IcAReports width={25} height={25} />
+					<h3 className={styles.header}>{renderTitle({})}</h3>
+				</div>
+			)}
+			/>
+
 			<Modal.Body>
 				{loading && (
 					<div className={styles.loading_container}>
@@ -82,6 +79,7 @@ function ValidateProductModal(props) {
 						<p className={styles.title}>Validate HS Code details</p>
 						<div className={styles.line} />
 					</div>
+
 					<Tooltip
 						placement="right-start"
 						content={(
@@ -106,16 +104,29 @@ function ValidateProductModal(props) {
 						isQuotaLeft={isQuotaLeft}
 						destinationPortDetails={destinationPortDetails}
 						productInfo={productInfo}
-						deleteProduct={deleteProduct}
 						servicesSelected={servicesSelected}
-						setServiceSelected={setServiceSelected}
 						productInfoArr={productInfoArr}
+						deleteProduct={deleteProduct}
+						checkBoxChangeHandler={checkBoxChangeHandler}
 					/>
 				))}
 
+				<CheckoutModal
+					showCheckout={showCheckout}
+					setShowCheckout={setShowCheckout}
+					quoteRes={quoteRes}
+					serviceProduct={serviceProduct}
+					paymentMode={paymentMode}
+					serviceData={serviceData}
+					isQuotaLeft={isQuotaLeft}
+					quotaValue={quotaValue}
+					productInfoArr={productInfoArr}
+				/>
+
 			</Modal.Body>
+
 			<Modal.Footer>
-				<Button>{renderButton()}</Button>
+				<Button onClick={clickHandler}>{renderButton()}</Button>
 			</Modal.Footer>
 		</Modal>
 	);

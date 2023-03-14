@@ -4,6 +4,7 @@ import { useState, forwardRef } from 'react';
 import useGetQuota from '../../../hooks/useGetQuota';
 import styles from '../styles.module.css';
 
+import CheckoutModal from './CheckoutModal';
 import PaymentModeModal from './PaymentModeModal';
 import ValidateProductModal from './ValidateProductModal';
 
@@ -25,8 +26,8 @@ const getSuffix = (name, getDutiesSubmitHandler) => {
 
 function BasicCharge({ fields, control, errors, submitForm }) {
 	const [paymentModal, setPaymentModal] = useState(false);
-	const [paymentMode, setPaymentMode] = useState('addon');
 	const [validateProduct, setValidateProduct] = useState(false);
+	const [paymentMode, setPaymentMode] = useState('addon');
 	const [quoteRes, setQuoteRes] = useState({});
 	const {
 		isUserSubscribed = false,
@@ -42,7 +43,7 @@ function BasicCharge({ fields, control, errors, submitForm }) {
 		console.log(resp, 'resp');
 		setQuoteRes(resp);
 		// if (typeof resp === 'object') {
-		setPaymentModal(true);
+		setValidateProduct(true);
 		// }
 	};
 
@@ -78,12 +79,12 @@ function BasicCharge({ fields, control, errors, submitForm }) {
 				isUserSubscribed={isUserSubscribed}
 				validateProduct={validateProduct}
 				setValidateProduct={setValidateProduct}
+				paymentMode={paymentMode}
 				prioritySequence={prioritySequence}
 				quotaValue={quotaValue}
 				isQuotaLeft={isQuotaLeft}
 				quoteRes={quoteRes}
 			/>
-
 		</>
 	);
 }

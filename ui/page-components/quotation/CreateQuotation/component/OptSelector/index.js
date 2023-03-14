@@ -1,4 +1,5 @@
 import { cl, TabPanel, Tabs } from '@cogoport/components';
+import { IcMShip, IcMAirport } from '@cogoport/icons-react';
 
 import styles from './styles.module.css';
 
@@ -8,8 +9,8 @@ function OptSelector({ control, fields = [], transportMode, setTransportMode, er
 	return (
 		<div className={cl`${styles.container} ${styles.flex_box}`}>
 			<Tabs themeType="tertiary" activeTab={transportMode} onChange={setTransportMode}>
-				<TabPanel title="Ocean" name="OCEAN" />
-				<TabPanel title="Air" name="AIR" />
+				<TabPanel title="Ocean" name="OCEAN" icon={<IcMShip width={17} height={17} />} />
+				<TabPanel title="Air" name="AIR" icon={<IcMAirport width={17} height={17} />} />
 			</Tabs>
 			<div className={cl`${styles.flex_box} ${styles.row}`}>
 				{fields.map((field, index) => {

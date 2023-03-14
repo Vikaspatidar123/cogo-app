@@ -1,3 +1,12 @@
+.container{
+    border-bottom: 1.5px dashed #cedcea;
+    padding: 5px 10px;
+
+    &.remove_line{
+        border:  none;
+    }
+}
+
 .input_box_container{
     display: flex;
     justify-content: space-between;

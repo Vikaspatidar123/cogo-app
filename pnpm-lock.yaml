@@ -1,7 +1,7 @@
 lockfileVersion: 5.4
 
 specifiers:
-  '@cogoport/components': ^1.0.366
+  '@cogoport/components': ^1.0.373
   '@cogoport/eslint-config': ^1.1.0
   '@cogoport/icons-react': ^1.0.58
   '@cogoport/stylelint-config': ^1.0.3
@@ -31,7 +31,7 @@ specifiers:
   stylelint: ^15.2.0
 
 dependencies:
-  '@cogoport/components': 1.0.366_cyxdlkncyjzqtklzwrmvnywxma
+  '@cogoport/components': 1.0.373_cyxdlkncyjzqtklzwrmvnywxma
   '@cogoport/icons-react': 1.0.58_biqbaboplfbrettd7655fr4n2y
   '@cogoport/utils': 1.2.4
   axios: 1.3.4
@@ -1342,8 +1342,8 @@ packages:
       to-fast-properties: 2.0.0
     dev: true
 
-  /@cogoport/components/1.0.366_cyxdlkncyjzqtklzwrmvnywxma:
-    resolution: {integrity: sha512-7x0BpOXdhTeb6P6por00NyQ+nmosa4xZRffa0ljRU8fzZ7nqdJaofiXFOoI9VjCrvsEJ+sivFCi7OWct/qo6bw==}
+  /@cogoport/components/1.0.373_cyxdlkncyjzqtklzwrmvnywxma:
+    resolution: {integrity: sha512-Yk+1xAofdk9xgdxL6986nl+9J+bCX2wGRvxPVFZSzcTG2KhcvBz6zUYqz04pWOy9CJO3s/gnigFuVWaJ58freA==}
     peerDependencies:
       '@cogoport/icons-react': ^1.0.23
       react: ^18.2.0

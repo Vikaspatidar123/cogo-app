@@ -1,4 +1,6 @@
-import { Pill, Tooltip, Checkbox, ButtonIcon, Button, Popover, Input } from '@cogoport/components';
+import {
+	cl, Pill, Tooltip, Checkbox, ButtonIcon, Button, Popover, Input,
+} from '@cogoport/components';
 import { IcMDelete } from '@cogoport/icons-react';
 
 import iconUrl from '../../../../../../utils/iconUrl.json';
@@ -32,42 +34,32 @@ const content = ({ hsRecommendation = [], setStatus, setCheckButton }) => (
 );
 
 function ProductField({
-	services, serviceCurrency,
-	isUserSubscribed = false, isQuotaLeft = false,
-	destinationPortDetails = {}, productInfo = {}, productLineItemDetails = [],
-	index, servicesSelected = {}, setServiceSelected, productInfoArr = [],
+	index,
+	services,
+	serviceCurrency,
+	isUserSubscribed = false,
+	isQuotaLeft = false,
+	destinationPortDetails = {},
+	productInfo = {},
+	servicesSelected = {},
+	productInfoArr = [],
+	productLineItemDetails = [],
+	deleteProduct,
+	checkBoxChangeHandler,
 }) {
 	const {
 		hsRecommendation, status, setStatus,
 		checkButton, setCheckButton, verifyLoading, verifyHsCode,
 	} = useVerifyHsCode();
+
 	const productLength = productInfoArr?.length;
+	const { hsCode, description, productId, name:productName } = productInfo;
 
-	const { hsCode, description, productId } = productInfo;
+	const disableValidateBtn = (!isUserSubscribed && productLineItemDetails.length === 0
+        && !isQuotaLeft) || verifyLoading || !status;
 
-	const disableValidate =	(!isUserSubscribed && productLineItemDetails.length === 0 && !isQuotaLeft) || verifyLoading
-	|| !status;
-	const deleteProduct = (id) => {
-		const serviceArr = Object.keys(servicesSelected)
-			.filter((prodId) => prodId !== id);
-		const newService = {};
-		serviceArr.forEach((prodId) => { newService[prodId] = servicesSelected[productId]; });
-
-		setServiceSelected(newService);
-		productInfoArr.splice(index, 1);
-	};
-	const checkBoxChangeHandler = (id, name) => {
-		console.log('id::', id, servicesSelected[id], name);
-		const serviceValues = servicesSelected?.[id][name];
-		const serviceArr = servicesSelected[id];
-
-		setServiceSelected((prv) => ({
-			...prv,
-			[id]: { ...serviceArr, [name]: !serviceValues },
-		}));
-	};
 	return (
-		<div className={styles.container}>
+		<div className={cl`${styles.container} ${index === productLength - 1 && styles.remove_line}`}>
 			{/* <Button className="text primary lg cta" onClick={() => setShowHsCodeModal(true)}>
 				<IcMPlusInCircle width={16} height={16} />
 				Add HS Code
@@ -96,7 +88,7 @@ function ProductField({
 							<Input
 								size="sm"
 								placeholder="Product Name"
-								value={description}
+								value={description || productName}
 								disabled
 							/>
 						</div>
@@ -109,7 +101,7 @@ function ProductField({
 							themeType="accent"
 							loading={verifyLoading}
 							onClick={() => verifyHsCode({ hsCode, productId, destinationPortDetails })}
-							disabled={disableValidate}
+							disabled={disableValidateBtn}
 						>
 							Validate
 						</Button>
@@ -132,6 +124,7 @@ function ProductField({
 					</div>
 				)}
 			</div>
+
 			<div className={styles.card}>
 				{(servicesConfiguration || []).map((service) => (
 					<div key={service?.id} className={styles.service_container}>
@@ -159,7 +152,6 @@ function ProductField({
 
 				))}
 			</div>
-
 		</div>
 	);
 }

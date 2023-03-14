@@ -1,16 +1,14 @@
-
-
 .heading {
 	display: flex;
-	justify-content: space-between;
 	align-items: flex-start;
+	justify-content: space-between;
 	border-bottom: 1px solid #cddbff;
 }
 
 .sub_header {
-	color: #6b6d81;
-	font-size: 12px;
 	margin: 5px 0;
+	font-size: 12px;
+	color: #6b6d81;
 }
 
 .container {
@@ -26,30 +24,32 @@
 
 .title {
 	margin: 0;
+
 	&.heading {
-		color: #000;
 		font-size: 18px;
+		color: #000;
 	}
 
 	&.daterangeTitle {
-		margin-bottom: 5px;
-		display: inline;
-		background: #fff;
 		position: absolute;
 		top: 8px;
-		padding: 0 7px;
 		left: 7px;
-		color: #697989;
+		display: inline;
+		padding: 0 7px;
+		margin-bottom: 5px;
 		font-size: 10.5px;
+		color: #697989;
+		background: #fff;
 	}
 }
 
 .section {
 	margin: 15px 5px;
 	color: #333;
+
 	&.datarange {
-		padding-top: 15px;
 		position: relative;
+		padding-top: 15px;
 
 		.ui-date-range-picker-input-container {
 			border-radius: 6px;
@@ -59,7 +59,7 @@
 	.num input {
 		input::-webkit-outer-spin-button,
 		input::-webkit-inner-spin-button {
-			-webkit-appearance: none;
+			appearance: none;
 			margin: 0;
 		}
 	}
@@ -71,24 +71,24 @@
 
 .row {
 	display: flex;
-	justify-content: space-between;
 	align-items: center;
+	justify-content: space-between;
 	width: 100%;
 	cursor: pointer;
 }
 
 .col {
 	display: flex;
-	justify-content: space-between;
 	align-items: center;
-	border: 1px solid #d9d9d9;
+	justify-content: space-between;
+	padding: 6px;
 	margin-right: 10px;
-	padding: 6px 6px;
+	border: 1px solid #d9d9d9;
 	border-radius: 6px;
 
 	&.selected {
-		background: #888fd1;
 		color: #fff;
+		background: #888fd1;
 	}
 
 	p {
@@ -97,15 +97,15 @@
 
 	div {
 		display: flex;
-		justify-content: space-between;
 		align-items: center;
+		justify-content: space-between;
 	}
 }
 
-.txt { 
+.txt {
 	margin: 0;
-	color: #000;
 	font-size: 14px;
+	color: #000;
 
 	&.expiryCheck {
 		margin-left: 5px;
@@ -131,27 +131,28 @@
 .clear_Btn {
 	display: flex;
 	align-items: center;
-	color: #6f6f6f;
 	margin: 0;
-	cursor: pointer;
 	font-size: 12px;
+	color: #6f6f6f;
+	cursor: pointer;
+
 	:hover,
 	:active {
-		color: #333;
 		font-weight: 500;
+		color: #333;
 	}
 
 	&.disable {
 		cursor: not-allowed;
 	}
+
 	p {
 		margin: 0;
 		margin-right: 2px;
 	}
-
 }
 
-.web_view{
+.web_view {
 	display: block;
 
 	@media screen and (max-width: 768px) {
@@ -159,8 +160,9 @@
 	}
 }
 
-.mobile_view{
+.mobile_view {
 	display: none;
+
 	@media screen and (max-width: 768px) {
 		display: block;
 	}

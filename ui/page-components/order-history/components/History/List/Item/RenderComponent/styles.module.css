@@ -1,9 +1,8 @@
-
-.modalContainer{
-	margin-top:10px;
+.modalContainer {
+	margin-top: 10px;
 }
 
-.web_view{
+.web_view {
 	display: block;
 
 	@media screen and (max-width: 767px) {
@@ -11,7 +10,7 @@
 	}
 }
 
-.mobile_view{
+.mobile_view {
 	display: none;
 
 	@media screen and (max-width: 767px) {

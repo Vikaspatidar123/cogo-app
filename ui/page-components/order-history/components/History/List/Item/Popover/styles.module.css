@@ -1,15 +1,17 @@
 .div {
 	display: flex;
-	align-items: center;
 	align-content: center;
+	align-items: center;
 	padding: 3px;
 	margin-bottom: 6px;
 	cursor: pointer !important;
+
 	.icon {
-		margin-right: 5px;
-		height: 14px;
 		width: 14px;
+		height: 14px;
+		margin-right: 5px;
 	}
+
 	.label {
 		font-size: 14px !important;
 		text-transform: capitalize;
@@ -19,17 +21,18 @@
 .wrapper {
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
 	align-items: center;
+	justify-content: center;
 	width: 100%;
 }
 
 .button_wrapper {
 	display: flex;
 	justify-content: space-between;
+
 	.no.core-ui-button-root {
-		background: white !important;
 		color: #db4634;
+		background: white !important;
 		border: 1px solid #db4634 !important;
 	}
 
@@ -38,14 +41,14 @@
 	}
 
 	.core-ui-button-root {
+		padding: 5px 10px !important;
 		margin: 10px !important;
-		border: none !important;
 		font-size: 14px !important;
-		padding: 5px 10px 5px 10px !important;
+		border: none !important;
 	}
 }
 
-.text_wrapper{
+.text_wrapper {
 	font-size: 14px;
 	font-weight: 500;
 }

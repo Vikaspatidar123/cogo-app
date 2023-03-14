@@ -47,6 +47,7 @@ function List({
 			</div>
 			{(listNew || []).map((item, index) => (
 				<Item
+					key={item.title}
 					tableView={tableView}
 					singleList={singleList}
 					item={item}

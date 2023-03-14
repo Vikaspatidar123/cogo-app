@@ -1,5 +1,4 @@
 import { Modal, Button, Loader } from '@cogoport/components';
-// import { IcMRolesIncluded } from '@cogoport/icons-react';
 import { useState } from 'react';
 
 import Line from '../../../common/Line';
@@ -95,11 +94,6 @@ function TradePartnerAddress({
 		>
 			<form>
 				<div className={styles.container}>
-					{/* <div className={styles.header}>
-						<div className={styles.icon_container}>
-							<IcMRolesIncluded width={20} height={20} />
-						</div>
-					</div> */}
 					<Modal.Header title={`${isEdit ? 'Update' : 'Add New'} Trade Partner`} />
 					<Modal.Body>
 						<div className={styles.section}>

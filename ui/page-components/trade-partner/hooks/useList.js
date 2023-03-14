@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { Toast } from '@cogoport/components';
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect } from 'react';
 
 import { useRequestBf } from '@/packages/request';
 import { useSelector } from '@/packages/store';
@@ -42,13 +42,6 @@ const useList = ({ activeTab, archived = false, sort }) => {
 	useEffect(() => {
 		getList();
 	}, [activeTab, filters, sort]);
-
-	useMemo(() => {
-		setGlobalFilters({
-			page      : 1,
-			pageLimit : 10,
-		});
-	}, [activeTab]);
 
 	return {
 		getList,

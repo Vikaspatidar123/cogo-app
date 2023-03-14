@@ -29,8 +29,7 @@ const usePutArchiveUnarchiveStatus = ({ archived, getList }) => {
 			});
 			if (res?.data?.message === 'Success') {
 				Toast.success(archived ? 'Unarchived Successfully' : 'Archived Successfully', {
-					autoClose : 2000,
-					style     : { color: 'black' },
+					autoClose: 2000,
 				});
 				getList({});
 			}

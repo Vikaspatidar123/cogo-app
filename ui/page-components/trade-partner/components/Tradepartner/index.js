@@ -1,9 +1,5 @@
 import { Input, Button, Tooltip } from '@cogoport/components';
-import {
-	IcMPaste,
-	IcMPlusInCircle,
-	// IcMDownload
-} from '@cogoport/icons-react';
+import { IcMPaste, IcMPlusInCircle } from '@cogoport/icons-react';
 import { useState } from 'react';
 
 import TRADEPARTNERLIST from '../../configuration/tradePartnerList';
@@ -12,11 +8,9 @@ import useList from '../../hooks/useList';
 
 import List from './List';
 import styles from './styles.module.css';
-// eslint-disable-next-line import/extensions
-import TradePartnerAddress from './TradePartnerAddress/index.js';
+import TradePartnerAddress from './TradePartnerAddress';
 
 import { useRouter } from '@/packages/next';
-// import useDownloadTradeParty from '../../hooks/useDownloadTradeParty';
 
 function TradePartner() {
 	const { push } = useRouter();
@@ -27,7 +21,6 @@ function TradePartner() {
 		sort,
 	});
 	const [deleteModal, setDeleteModal] = useState(false);
-	// const { downloadTradePartner = () => {} } = useDownloadTradeParty();
 	const { deleteTradeParty, deleteLoading } = useDeleteTradeParty({ getList });
 	const [isEdit, setIsEdit] = useState(false);
 	const [showmodal, setShowModal] = useState(false);

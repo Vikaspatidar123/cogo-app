@@ -10,8 +10,7 @@ function EmptyState({ placement = 'center' }) {
 					height={250}
 					width={250}
 					alt=""
-					// eslint-disable-next-line max-len
-					src="https://cogoport-production.sgp1.digitaloceanspaces.com/51bdc5a625c9c78b9d3ee7a53c399dc7/3973480%201.svg"
+					src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/empty_icon 1.svg"
 				/>
 			) : null}
 			<div className={styles.wrapper}>

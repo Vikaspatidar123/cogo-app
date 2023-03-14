@@ -40,11 +40,11 @@ function Archived() {
 				<div className={styles.Input}>
 					<Input
 						placeholder="Type to search"
-						onChange={(e) => {
+						onChange={(item) => {
 							setGlobalFilters((prev) => ({
 								...prev,
-								searchTerm : e,
-								query      : e,
+								searchTerm : item,
+								query      : item,
 								page       : 1,
 							}));
 						}}

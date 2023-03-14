@@ -1,6 +1,3 @@
-// eslint-disable-next-line import/no-unresolved
-import { shape, arrayOf } from 'prop-types';
-
 import MobileView from './MobileView';
 import itemFunctions from './renderFunctions';
 import styles from './styles.module.css';
@@ -65,12 +62,5 @@ function Item({
 
 	return renderItem(item);
 }
-
-Item.propTypes = {
-	item   : shape({}).isRequired,
-	fields : arrayOf(shape({})).isRequired,
-};
-
-Item.defaultProps = {};
 
 export default Item;

@@ -3,12 +3,8 @@ import { getByKey } from '@cogoport/utils';
 
 import styles from '../components/Tradepartner/styles.module.css';
 
-import data from '@/.data-store/constants/countries.json';
-
-// eslint-disable-next-line max-len
-const emailValidator =	/^[^<>()[\]\\,;:%#^\s@"$&!@]+@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z0-9]+\.)+[a-zA-Z]{2,}))$/;
-
-const mobileValidator = /^[0-9]{10}$/;
+import data from '@/data-store/constants/countries.json';
+import patterns from '@/ui/commons/configurations/patterns';
 
 const country = data?.map((item) => ({
 	label: (
@@ -45,7 +41,7 @@ const controls = [
 		rules       : {
 			required : true,
 			pattern  : {
-				value   : emailValidator,
+				value   : patterns.EMAIL,
 				message : 'Invalid email address',
 			},
 		},
@@ -64,7 +60,7 @@ const controls = [
 		rules       : {
 			required : true,
 			pattern  : {
-				value   : mobileValidator,
+				value   : patterns.MOBILE,
 				message : 'Invalid phone number',
 			},
 		},

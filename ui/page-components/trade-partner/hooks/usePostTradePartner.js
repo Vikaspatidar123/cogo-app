@@ -57,15 +57,14 @@ const usePostTradePartner = ({
 			});
 			if (response?.data) {
 				Toast.success(isEdit ? 'Updated Sucessfully' : 'Created Sucessfully', {
-					autoClose : 2000,
-					style     : { color: 'black' },
+					autoClose: 2000,
 				});
 				setIsEdit(false);
 				getList({});
 				handleCloseModal(false);
 			}
 		} catch (error) {
-			Toast.error(error?.message, { style: { color: 'white' } });
+			Toast.error(error?.message);
 		}
 	};
 

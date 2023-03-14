@@ -40,6 +40,7 @@ function List({
 			)}
 			{(listNew || []).map((item, index) => (
 				<Item
+					key={item.id}
 					tableView={tableView}
 					singleList={singleList}
 					item={item}

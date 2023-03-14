@@ -1,6 +1,6 @@
 import styles from './styles.module.css';
 
-import getShortFormatNumber from '@/ui/commons/utils/getShortFormatNumber';
+import formatAmount from '@/ui/commons/utils/formatAmount';
 
 function Payment({ paymentDetails }) {
 	return (
@@ -21,11 +21,21 @@ function Payment({ paymentDetails }) {
 				<div className={styles.card}>
 					{(paymentDetails || []).map(
 						({
-							id = '', amount = 0, mode = '', status = '',
+							id = '', amount = 0, mode = '', status = '', currency = 'INR',
 						}) => (
 							<div className={styles.styled_row} key={id}>
 								<div className={styles.styled_col}>
-									<div className="value">{getShortFormatNumber(amount, 'INR')}</div>
+									<div className="value">
+										{formatAmount({
+											amount,
+											currency,
+											options: {
+												notation : 'standard',
+												style    : 'currency',
+											},
+										})}
+
+									</div>
 								</div>
 								<div className={styles.styled_col}>
 									<div className="value">{mode}</div>

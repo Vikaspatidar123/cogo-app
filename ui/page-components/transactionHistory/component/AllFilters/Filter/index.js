@@ -2,7 +2,7 @@ import { DateRangepicker, CreatableSelect, Button, Popover, Chips } from '@cogop
 import { IcMFilter, IcMCrossInCircle } from '@cogoport/icons-react';
 import { useState } from 'react';
 
-import { billTypeOptions, paymentTypeOptions } from './filterOptions';
+import { BILLTYPEOPTIONS, PAYMENTTYPEOPTIONS } from './filterOptions';
 import styles from './styles.module.css';
 
 function FilterContent({ filters, setFilters }) {
@@ -38,7 +38,7 @@ function FilterContent({ filters, setFilters }) {
 						type="select"
 						placeholder="Enter Bill Type"
 						value={filters.bill_type}
-						options={billTypeOptions}
+						options={BILLTYPEOPTIONS}
 						onChange={(e) => setFilters((prev) => ({
 							...prev,
 							bill_type: e,
@@ -50,7 +50,7 @@ function FilterContent({ filters, setFilters }) {
 					<div className={styles.chips_container}>
 						<Chips
 							selectedItems={filters.payment_status}
-							items={paymentTypeOptions}
+							items={PAYMENTTYPEOPTIONS}
 							onItemChange={(e) => setFilters((prev) => ({
 								...prev,
 								payment_status: e,

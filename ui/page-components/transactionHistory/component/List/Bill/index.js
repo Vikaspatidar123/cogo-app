@@ -2,7 +2,7 @@ import { billListConfig } from '../../../configurations/billListConfig';
 
 import styles from './styles.module.css';
 
-import getShortFormatNumber from '@/ui/commons/utils/getShortFormatNumber';
+import formatAmount from '@/ui/commons/utils/formatAmount';
 
 function Bill({ drillDownData }) {
 	const { billLineItems = [] } = drillDownData || {};
@@ -32,26 +32,70 @@ function Bill({ drillDownData }) {
 							</div>
 							<div className={styles.styled_col}>
 								<div>
-									{getShortFormatNumber(item.pricePerUnit, item.currency)}
+									{formatAmount({
+										amount   : item.pricePerUnit,
+										currency : item.currency,
+										options  : {
+											notation : 'standard',
+											style    : 'currency',
+										},
+									})}
 									x
 									{item?.quantity}
 								</div>
 							</div>
 							<div className={styles.styled_col}>
-								<div>{getShortFormatNumber(item.discountAmount, item.currency)}</div>
+								<div>
+									{formatAmount({
+										amount   : item.discountAmount,
+										currency : item.currency,
+										options  : {
+											notation : 'standard',
+											style    : 'currency',
+										},
+									})}
+								</div>
 							</div>
 							<div className={styles.styled_col}>
-								<div>{getShortFormatNumber(item.taxAmount, item.currency)}</div>
+								<div>
+									{formatAmount({
+										amount   : item.taxAmount,
+										currency : item.currency,
+										options  : {
+											notation : 'standard',
+											style    : 'currency',
+										},
+									})}
+								</div>
 							</div>
 							<div className={styles.styled_col}>
-								<div>{getShortFormatNumber(item.netAmount, item.currency)}</div>
+								<div>
+									{formatAmount({
+										amount   : item.netAmount,
+										currency : item.currency,
+										options  : {
+											notation : 'standard',
+											style    : 'currency',
+										},
+									})}
+								</div>
 							</div>
 						</div>
 					))}
 				</div>
 				<div className={styles.total_amount}>
 					<div>Total Amount : </div>
-					<div className={styles.total_value}>{getShortFormatNumber(drillDownData.netAmount, currency)}</div>
+					<div className={styles.total_value}>
+						{formatAmount({
+							amount  : drillDownData.netAmount,
+							currency,
+							options : {
+								notation : 'standard',
+								style    : 'currency',
+							},
+						})}
+
+					</div>
 				</div>
 			</div>
 		</div>

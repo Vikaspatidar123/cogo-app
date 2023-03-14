@@ -34,7 +34,7 @@ function Duties({
 			<div className={styles.styled_row}>
 				{(controls || []).map((item) => (
 					<div className={styles.row} style={{ margin: 0 }}>
-						<FormItem label={item?.label} className={item?.name}>
+						<FormItem label={item?.label} className={item?.name} key={item.id}>
 							<Element
 								className="element"
 								{...fields[item.name]}

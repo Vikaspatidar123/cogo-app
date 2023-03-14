@@ -14,13 +14,6 @@
 	border-radius: 8px;
 	box-shadow: rgb(0 0 0 / 15%) 0 2px 19px 1px;
 
-	&.billSection {
-		display: flex;
-		flex-direction: column;
-		justify-content: space-between;
-		min-height: 236px;
-	}
-
 	@media screen and (max-width: 768px) {
 		box-shadow: 0 2px 5px rgb(0 0 0 / 10%);
 	}
@@ -37,20 +30,6 @@
 	justify-content: space-between;
 	width: 100%;
 	margin-bottom: 15px;
-
-	&.billRow {
-		align-items: baseline;
-		justify-content: flex-start;
-	}
-
-	&.totalBillRow {
-		justify-content: space-between;
-		padding-top: 14px;
-		margin-bottom: 0;
-		font-size: 15px;
-		font-weight: 500;
-		border-top: 2px dashed #c3d1df;
-	}
 }
 
 .styled_col {
@@ -73,24 +52,6 @@
 		:last-child {
 			border: none;
 		}
-	}
-
-	&.chargename,
-	&.amount {
-		width: auto;
-	}
-
-	&.chargename {
-		padding-right: 7px;
-	}
-
-	&.amount {
-		padding-left: 7px;
-	}
-
-	&.dot {
-		flex: 1;
-		border-bottom: 2px dotted #333;
 	}
 
 	.downloadIcn {

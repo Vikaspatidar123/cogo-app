@@ -35,7 +35,7 @@ const useTransactionHistory = ({ filters, sort }) => {
 			});
 			setApiResponse(response?.data);
 		} catch (err) {
-			Toast.error(err, 'err');
+			Toast.error(err.message);
 		}
 	};
 

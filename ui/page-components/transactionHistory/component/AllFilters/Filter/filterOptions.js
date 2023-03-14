@@ -13,7 +13,7 @@ export const OPTIONS = [
 	},
 ];
 
-export const billTypeOptions = [
+export const BILLTYPEOPTIONS = [
 	{
 		label : 'INSURANCE',
 		value : 'INSURANCE',
@@ -28,7 +28,7 @@ export const billTypeOptions = [
 	},
 ];
 
-export const paymentTypeOptions = [
+export const PAYMENTTYPEOPTIONS = [
 	{
 		children: (
 			<div className={styles.import_export}>
@@ -55,7 +55,7 @@ export const paymentTypeOptions = [
 	},
 ];
 
-export const optionsRisk = [
+export const OPTIONRISK = [
 	{
 		label: (
 			<div className={styles.import_export}>

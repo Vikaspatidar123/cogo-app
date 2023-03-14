@@ -1,7 +1,5 @@
 import { Tooltip } from '@cogoport/components';
 import { IcMArrowRotateDown } from '@cogoport/icons-react';
-// eslint-disable-next-line import/no-unresolved
-import { shape, arrayOf } from 'prop-types';
 import { useState, useEffect } from 'react';
 
 import useGetDrillDownData from '../../../hooks/useGetDrillDownData';
@@ -106,12 +104,5 @@ function Item({
 
 	return renderItem(item);
 }
-
-Item.propTypes = {
-	item   : shape({}).isRequired,
-	fields : arrayOf(shape({})).isRequired,
-};
-
-Item.defaultProps = {};
 
 export default Item;

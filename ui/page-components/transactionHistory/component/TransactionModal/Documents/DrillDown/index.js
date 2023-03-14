@@ -10,8 +10,8 @@ function DrillDown({ item, hsNumber = '' }) {
 	const [showDrill, setShowDrill] = useState(false);
 
 	const downloadTransactionDocument = () => {
-		// eslint-disable-next-line max-len
-		const url = `${process.env.BUSINESS_FINANCE_BASE_URL}/saas/trade-engine/pdf?docLink=${docLink}&docName=${docName}&hsNumber=${hsNumber}`;
+		const url = `${process.env.BUSINESS_FINANCE_BASE_URL}
+		/saas/trade-engine/pdf?docLink=${docLink}&docName=${docName}&hsNumber=${hsNumber}`;
 		// eslint-disable-next-line no-undef
 		window.open(url);
 	};

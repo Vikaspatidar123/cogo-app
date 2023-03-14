@@ -2,7 +2,7 @@ import { billListConfig } from '../../../configurations/billListConfig';
 
 import styles from './styles.module.css';
 
-import getShortFormatNumber from '@/ui/commons/utils/getShortFormatNumber';
+import formatAmount from '@/ui/commons/utils/formatAmount';
 
 function MobileBill({ drillDownData }) {
 	const { billLineItems = [] } = drillDownData || {};
@@ -16,7 +16,7 @@ function MobileBill({ drillDownData }) {
 						.filter((items) => ['netAmount', 'description'].includes(items?.key))
 						.map((item) => (
 							<div className={styles.styled_col}>
-								<div className={styles.title}>{item.label}</div>
+								<div className={styles.title} key={item.id}>{item.label}</div>
 							</div>
 						))}
 				</div>
@@ -33,7 +33,16 @@ function MobileBill({ drillDownData }) {
 								</div>
 							</div>
 							<div className={styles.styled_col}>
-								<div>{getShortFormatNumber(item.netAmount, item.currency)}</div>
+								<div>
+									{formatAmount({
+										amount   : item.netAmount,
+										currency : item.currency,
+										options  : {
+											notation : 'standard',
+											style    : 'currency',
+										},
+									})}
+								</div>
 							</div>
 						</div>
 					))}
@@ -41,7 +50,16 @@ function MobileBill({ drillDownData }) {
 				<div className={styles.styled_row}>
 					<div className={styles.styled_col}>Total Amount</div>
 					<div className={styles.styled_col}>
-						<div>{getShortFormatNumber(drillDownData.netAmount, currency)}</div>
+						<div>
+							{formatAmount({
+								amount  : drillDownData.netAmount,
+								currency,
+								options : {
+									notation : 'standard',
+									style    : 'currency',
+								},
+							})}
+						</div>
 					</div>
 				</div>
 			</div>

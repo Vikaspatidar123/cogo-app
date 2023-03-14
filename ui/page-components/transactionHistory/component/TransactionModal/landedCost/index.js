@@ -1,6 +1,6 @@
 import styles from './styles.module.css';
 
-import getShortFormatNumber from '@/ui/commons/utils/getShortFormatNumber';
+import formatAmount from '@/ui/commons/utils/formatAmount';
 
 function LandedCost({ landedCost, resultCurrency = 'INR' }) {
 	const { taxSet } = landedCost?.[0] || {};
@@ -23,12 +23,19 @@ function LandedCost({ landedCost, resultCurrency = 'INR' }) {
 							{(taxSetResponse || []).map((x) => (
 								<div className={`${styles.row}  ${styles.padding}`}>
 									<div className={`${styles.col} ${styles.dotFlex}`}>
-										<div className={styles.text}>{x.name}</div>
+										<div className={styles.text} key={x.id}>{x.name}</div>
 										<div className="dot" />
 									</div>
 									<div className={`${styles.col} ${styles.paddngFlex}`}>
 										<div className={styles.text}>
-											{getShortFormatNumber(x.value, resultCurrency)}
+											{formatAmount({
+												amount   : x.value,
+												currency : resultCurrency,
+												options  : {
+													notation : 'standard',
+													style    : 'currency',
+												},
+											})}
 										</div>
 									</div>
 								</div>

@@ -39,7 +39,7 @@ function Control({ controls }) {
 			{controls?.length > 0 ? (
 				<div className={styles.section2}>
 					{(mapDoc || []).map(({ description, status }) => (
-						<div className={styles.row}>
+						<div className={styles.row} key="">
 							<div className="controlName">{description}</div>
 							<div className="flag">{MAPPING[status]}</div>
 						</div>

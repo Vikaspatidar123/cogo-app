@@ -4,7 +4,7 @@ import Download from '../../Download';
 
 import styles from './styles.module.css';
 
-import getShortFormatNumber from '@/ui/commons/utils/getShortFormatNumber';
+import formatAmount from '@/ui/commons/utils/formatAmount';
 
 const MAPPING = {
 	PAID    : <IcCGreenCircle style={{ paddingRight: '2px' }} width={15} heigjht={15} />,
@@ -18,7 +18,16 @@ const itemFunctions = ({ functions }) => {
 		</div>
 	);
 	const newFunctions = {
-		renderAmount  : (data, config) => getShortFormatNumber(data[config.key], data.billCurrency),
+		renderAmount: (data, config) => {
+			formatAmount({
+				amount   : data[config.key],
+				currency : data.billCurrency,
+				options  : {
+					notation : 'standard',
+					style    : 'currency',
+				},
+			});
+		},
 		renderStatus  : (data, config) => getStatus(data[config.key]),
 		renderService : (data) => <Download data={data} />,
 		renderFormat  : (data, config) => data[config.key]?.replaceAll('_', ' '),

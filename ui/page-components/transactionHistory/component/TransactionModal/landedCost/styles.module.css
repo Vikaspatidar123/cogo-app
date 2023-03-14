@@ -1,0 +1,85 @@
+.container {
+	height: 270px;
+	background: #f8f9fa;
+	border-radius: 8px;
+	padding: 15px;
+	margin-bottom: 15px;
+	.scrollable {
+		overflow: scroll;
+	}
+}
+
+.title_container {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	font-size: 15px;
+	font-weight: 500;
+
+	.name {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+}
+
+.card {
+	align-items: baseline;
+	padding: 11px 3px;
+	.auto {
+		width: auto;
+	}
+	.dot {
+		flex: 1;
+		border-bottom: 2px dotted #697989;
+	}
+	.padding {
+		padding: 5px;
+	}
+	.sub {
+		font-weight: 400;
+		font-size: 14px;
+	}
+	.dotFlex {
+		display: flex !important;
+		align-items: center !important;
+		padding-right: 0px !important;
+	}
+}
+
+.card_total {
+	display: flex;
+	padding: 20px 3px;
+	justify-content: space-between;
+	align-items: center;
+	.sorry {
+		color: #f68b21;
+		padding: 0px 0px;
+	}
+	.landedTotal {
+	}
+}
+
+.text {
+	font-weight: 500;
+	font-size: 14px;
+	line-height: 16px;
+	padding: 1px 4px 3px 15px;
+	color: #697989;
+}
+
+.text_total {
+	font-weight: 500;
+	font-size: 18px;
+	color: #2c3e50;
+}
+
+.row {
+	display: flex;
+	flex-direction: row;
+}
+
+.col {
+	display: flex;
+	flex-direction: column;
+}

@@ -1,0 +1,99 @@
+.container {
+	width: 100%;
+}
+
+.title {
+	margin: 0;
+}
+
+.section {
+	margin-top: 12px;
+	padding: 20px 24px;
+	background: #fff;
+	border-radius: 8px;
+	box-shadow: rgb(0 0 0 / 15%) 0px 2px 19px 1px;
+	width: 100%;
+
+	&.billSection {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		min-height: 236px;
+	}
+	@media screen and (max-width: 768px) {
+		box-shadow: 0px 2px 5px rgb(0 0 0 / 10%);
+	}
+}
+
+.card_bill {
+	overflow-y: auto;
+	max-height: 160px;
+}
+
+.styled_row {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 100%;
+	margin-bottom: 15px;
+
+	&.billRow {
+		align-items: baseline;
+		justify-content: flex-start;
+	}
+	&.totalBillRow {
+		padding-top: 14px;
+		margin-bottom: 0px;
+		font-size: 15px;
+		font-weight: 500;
+		justify-content: space-between;
+		border-top: 2px dashed #c3d1df;
+	}
+}
+
+.styled_col {
+	width: 100%;
+
+	.title {
+		font-weight: 500;
+	}
+
+	.value {
+		margin-top: 8px;
+		font-weight: 400;
+	}
+
+	.paymentMode {
+		display: inline;
+		padding: 0 10px;
+		border-right: 1px solid black;
+
+		:last-child {
+			border: none;
+		}
+	}
+
+	&.chargename,
+	&.amount {
+		width: auto;
+	}
+	&.chargename {
+		padding-right: 7px;
+	}
+	&.amount {
+		padding-left: 7px;
+	}
+	&.dot {
+		flex: 1;
+		border-bottom: 2px dotted #333;
+	}
+
+	.downloadIcn {
+		margin-right: 5px;
+	}
+}
+
+.card {
+	overflow-y: auto;
+	max-height: 200px;
+}

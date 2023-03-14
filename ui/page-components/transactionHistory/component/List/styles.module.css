@@ -1,0 +1,12 @@
+.pagination_div {
+	display: flex;
+	justify-content: end;
+	align-items: center;
+}
+
+.flex {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 80vh;
+}

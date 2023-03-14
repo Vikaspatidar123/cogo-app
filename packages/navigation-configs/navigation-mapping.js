@@ -8,7 +8,7 @@
 // mobileIcon is used to show icon in mobile navigation only
 // isSubNavs is used to show sub navigations
 
-import { IcMUpwardGraph } from '@cogoport/icons-react';
+import { IcMUpwardGraph, IcACrossBorder } from '@cogoport/icons-react';
 
 const navigationMappings = {
 	app_bookings: {
@@ -35,6 +35,26 @@ const navigationMappings = {
 				as          : '/v2/saas/freight-rate-trend',
 				icon        : <IcMUpwardGraph width={40} height={40} fill="red" />,
 				description : 'keep track of freight rates',
+			},
+		],
+	},
+
+	saas_premium_services: {
+		key         : 'saas_premium_services',
+		title       : 'Premium Services',
+		icon        : 'nav-premium-services',
+		module_type : 'dashboards',
+		isNew       : true,
+		showInNav   : true,
+		isSubNavs   : true,
+		options     : [
+			{
+				key   : 'saas_premium_services-order_history',
+				title : 'Order History',
+				href  : '/v2/saas/order-history',
+				as    : '/v2/saas/order-history',
+				icon  : <IcACrossBorder width={40} height={40} />,
+				type  : 'link',
 			},
 		],
 	},

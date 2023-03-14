@@ -256,8 +256,8 @@ const navigationMappings = {
 	saas_cogo_insurance: {
 		key         : 'saas_tools_insurance',
 		title       : 'Insurance',
-		href        : '/v2/saas/insurance',
-		as          : '/v2/saas/insurance',
+		href        : '/v2/saas/insurance/list',
+		as          : '/v2/saas/insurance/list',
 		type        : 'link',
 		icon        : <IcMFfreferigeratedCargoType width={40} height={40} fill="red" />,
 		description : 'Buy insurance for your cargo here',

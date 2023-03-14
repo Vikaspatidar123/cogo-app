@@ -1,0 +1,72 @@
+.header_mobile {
+    display: flex;
+	width: 100%;
+	flex-direction:column;
+	justify-content: space-between;
+	align-content: center;
+	align-items: center;
+	margin-top: 20px;
+}
+
+.header {
+    display: flex;
+	width: 100%;
+	flex-direction: row;
+	justify-content: space-between;
+	align-content: center;
+	margin-top: 20px;
+}
+
+.title {
+    font-weight: 700;
+	font-size: 20px;
+}
+
+.button_div {
+	display: flex;
+    width:50%;
+	align-items: center;
+	justify-content: flex-end;
+	gap: 5px;
+}
+
+.button_div_mobile {
+	display: flex;
+    width: 100%;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.search_wrapper {
+    width: 60%;
+}
+
+.segment_faq {
+    display: flex;
+	justify-content: space-between;
+	margin-top: 20px;
+}
+
+.list_container {
+    padding: 10px;
+}
+
+.mobile_create {
+    bottom: 110px;
+	right: 20px;
+	position: fixed;
+}
+
+.rotate {
+    transform: rotate(45deg);
+}
+
+.status_div {
+    display: flex;
+	align-items: center;
+}
+
+.chips {
+	gap: 0  !important;
+}
+

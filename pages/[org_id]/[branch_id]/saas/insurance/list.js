@@ -1,3 +1,3 @@
-// import ListView from '@ui/page-components/insurance/components/ListView';
+import ListView from '@/ui/page-components/insurance/components/ListView';
 
-// export default ListView;
+export default ListView;

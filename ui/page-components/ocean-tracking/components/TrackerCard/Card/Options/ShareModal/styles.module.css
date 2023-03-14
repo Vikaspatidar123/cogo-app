@@ -4,8 +4,27 @@
     gap: 10px;
 }
 .input{
+    padding: 20px;
     display: flex;
 }
 .email{
    width: 65%;
+}
+.button{
+    margin-left: 10px;
+}
+.list{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.content{
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.shared_with{
+    max-height: 280px;
+    overflow-x: hidden;
+    overflow-y: auto;
 }

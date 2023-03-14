@@ -11,12 +11,11 @@ const styleName = [
 	{ title: 'Pedestrian Day', style: 'pedestrian.day' },
 ];
 
-const LAYER = styleName.map(({ title, style }) => ({
-	name        : title,
-	// eslint-disable-next-line max-len
-	url         : `https://${version}.base.maps.ls.hereapi.com/maptile/2.1/maptile/newest/${style}/{z}/{x}/{y}/512/png8?apiKey=Yi1Uv0y9PgZ24UVbBYY7-fRwaz-DPdmGWdIddQW0A9g&mv=in337jp128&ppi=320`,
+const LAYER = [{
+	name        : 'Cogo Maps',
+	url         : 'https://api.cogoport.com/cogo-tiles/{z}/{x}/{y}.png',
 	attribution : '',
-}));
+}];
 
 function Map() {
 	return (
@@ -24,6 +23,7 @@ function Map() {
 			<CogoMaps
 				baseLayer={LAYER}
 				zoom={3.6}
+				maxZoom={12}
 			/>
 		</div>
 	);

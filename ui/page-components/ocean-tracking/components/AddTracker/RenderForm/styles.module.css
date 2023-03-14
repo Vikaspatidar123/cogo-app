@@ -10,3 +10,8 @@
 .select{
     margin-top: 10px;
 }
+.button{
+    display: flex;
+    align-content: center;
+    margin-top: 15px;
+}

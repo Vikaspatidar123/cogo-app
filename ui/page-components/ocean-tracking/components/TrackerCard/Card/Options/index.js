@@ -1,7 +1,9 @@
+import { IcMDelete, IcMPaste, IcMShare } from '@cogoport/icons-react';
 import { useState } from 'react';
 
 import DeleteModal from './DeleteModal';
 import ShareModal from './ShareModal';
+import styles from './styles.module.css';
 import UnarchiveModal from './UnarchiveModal';
 
 function Options({ showPopover, setShowPopover, refetch, tracker, setTrackers }) {
@@ -9,28 +11,61 @@ function Options({ showPopover, setShowPopover, refetch, tracker, setTrackers })
 	const [showArchiveModal, setShowArchiveModal] = useState(false);
 	const [showShareModal, setShareModal] = useState(false);
 	const [unArchiveModal, setUnarchiveModal] = useState(false);
-	// const type = 'delete';
 	const isArchived = tracker?.status === 'completed';
-	// const handleShare = () => {
-	// 	setShareModal(!showShareModal);
-	// };
-	console.log(showArchiveModal, 'showArchiveModal');
+	const handleShare = () => {
+		setShareModal(!showShareModal);
+		setShowPopover(!showPopover);
+	};
+	const handleArchive = () => {
+		setShowArchiveModal(!showArchiveModal);
+		setShowPopover(!showPopover);
+	};
+	const handleUnArchive = () => {
+		setUnarchiveModal(!unArchiveModal);
+		setShowPopover(!showPopover);
+	};
+	const handleDelete = () => {
+		setDeleteModal(!showDeleteModal);
+		setShowPopover(!showPopover);
+	};
+
+	console.log(showShareModal, 'showArchiveModal');
 	return (
 		<div>
 			{
-            showPopover && (
-	           <div>
-		            <div role="presentation" onClick={() => setShareModal(!showShareModal)}>Share</div>
-		            {!isArchived && (
-			            <div role="presentation" onClick={() => setShowArchiveModal(!showArchiveModal)}>Archive</div>
-		            )}
-		            {isArchived && (
-			            <div role="presentation" onClick={() => setUnarchiveModal(!unArchiveModal)}>UnArchive</div>
-		            )}
-		            <div role="presentation" onClick={() => setDeleteModal(true)}>Delete</div>
-	           </div>
-            )
-          }
+				showPopover && (
+					<div>
+						<div role="presentation" onClick={() => handleShare()} className={styles.content}>
+							<IcMShare />
+							Share
+						</div>
+						<hr />
+
+						{!isArchived && (
+							<div>
+								<div role="presentation" onClick={() => handleArchive()} className={styles.content}>
+									<IcMPaste />
+									Archive
+								</div>
+								<hr />
+							</div>
+						)}
+						{isArchived && (
+							<div>
+								<div role="presentation" onClick={() => handleUnArchive()} className={styles.content}>
+									<IcMPaste />
+									UnArchive
+								</div>
+								<hr />
+							</div>
+						)}
+						<div role="presentation" onClick={() => handleDelete()} className={styles.content}>
+							<IcMDelete />
+							Delete
+						</div>
+					</div>
+				)
+			}
 			{showShareModal && (
 				<ShareModal
 					tracker={tracker}
@@ -39,7 +74,7 @@ function Options({ showPopover, setShowPopover, refetch, tracker, setTrackers })
 					show={showShareModal}
 					setShow={setShareModal}
 				/>
-		    )}
+			)}
 			{showDeleteModal && (
 				<DeleteModal
 					tracker={tracker}

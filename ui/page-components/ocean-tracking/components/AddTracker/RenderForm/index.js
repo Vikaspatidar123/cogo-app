@@ -1,5 +1,7 @@
-import { Radio, Input, Toast, Select } from '@cogoport/components';
+import { Radio, Input, Toast, Select, Button } from '@cogoport/components';
 import { useState, useEffect } from 'react';
+
+import useAddTracker from '../../../hooks/useAddTracker';
 
 import styles from './styles.module.css';
 
@@ -12,6 +14,7 @@ function RenderForm() {
 	// 	watch,
 	// 	formState: { errors },
 	// } = useForm(controls);
+	const { addTracker } = useAddTracker();
 	const SEARCH_TYPES = {
 		CONTAINER_NUMBER : 'CONTAINER_NO',
 		BOOKING_NUMBER   : 'BOOKING_NO/BL_NO',
@@ -25,12 +28,12 @@ function RenderForm() {
 	const [value, setValue] = useState(null);
 	const [showinput, setshowinput] = useState(false);
 	const [shippingLines, setShippingLines] = useState(null);
-	const [{ setLoading:loading }, trigger] = useRequest({
+	const [{ loading }, trigger] = useRequest({
 		url    : '/get_shipping_line_for_container_no',
 		method : 'get',
 	}, { manual: false });
 
-	const [{ apiloading }, shipping] = useRequest({
+	const [{ loading:apiloading }, shipping] = useRequest({
 		url    : '/get_saas_container_shipping_lines',
 		method : 'get',
 	}, { manual: false });
@@ -57,7 +60,8 @@ function RenderForm() {
 				const value = data.result.shipping_line_id;
 				const label = shippingLines?.filter?.((item) => item.id === value)[0]?.short_name;
 				console.log(label, 'label');
-			}
+				setValue('shipping_line_id', { label, value });
+			} else setValue('shipping_line_id', '');
 		} catch (err) {
 			Toast.error(
 				"Couldn't fetch shipping line for the entered container number. Please try again later.",
@@ -71,6 +75,7 @@ function RenderForm() {
 			const data = value.toUpperCase();
 			setshowinput(true);
 			fetchShippingLineForContainer(data);
+			setValue(value);
 		} else setshowinput(false);
 	};
 	return (
@@ -82,6 +87,7 @@ function RenderForm() {
 							name="search_type"
 							value={item.value}
 							label={item.label}
+							setValue={value}
 						/>
 					</div>
 				))}
@@ -108,8 +114,12 @@ function RenderForm() {
 						placeholder="Please select a shipping line"
 					/>
 				</div>
-
 			)}
+			<div className={styles.button}>
+				{console.log(value, '543')}
+				<Button onClick={() => addTracker(value)}> Track Shipment</Button>
+			</div>
+
 		</div>
 	);
 }

@@ -1,4 +1,5 @@
-import data from '@/.data-store/constants/countries.json';
+/* eslint-disable import/no-unresolved */
+import data from '@/data-store/constants/countries.json';
 
 const country_code = data?.map((x) => ({
 	label : x.mobile_country_code,

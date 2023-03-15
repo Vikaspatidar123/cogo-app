@@ -14,6 +14,7 @@ const getControls = () => [
 		style       : { width: '360px' },
 		placeholder : 'Enter email',
 		rules       : { required: true },
+
 	},
 	{
 		name        : 'phone_number',

@@ -1,21 +1,23 @@
-// import React from 'react';
 import {
 	isEmpty, getByKey, format, startCase,
 } from '@cogoport/utils';
 
-import iterateSubKeys from './iterate-object';
-
-const getValue = (
-	itemData,
-	itemField,
-	emptyState,
-	functions = {},
-) => {
+const getValue = (itemData, itemField, functions, emptyState) => {
 	if (isEmpty(itemData) || isEmpty(itemField)) {
 		return emptyState || '';
 	}
 
 	let val = getByKey(itemData, itemField.key);
+
+	const iterateSubKeys = (itemFields, value) => {
+		let vals = value;
+		if ((itemFields.subKeys || []).length) {
+			itemFields.subKeys.forEach((subKey) => {
+				vals = (vals || {})[subKey];
+			});
+		}
+		return vals;
+	};
 
 	val = iterateSubKeys(itemField, val);
 

@@ -35,6 +35,17 @@ const navigationMappings = {
 				icon        : <IcMUpwardGraph width={40} height={40} fill="red" />,
 				description : 'keep track of freight rates',
 			},
+			{
+				key   : 'saas_tools-air_schedules',
+				title : 'Air Schedules',
+				href  : '/v2/saas/air-schedules',
+				as    : '/v2/saas/air-schedules',
+				icon  : <img
+					src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/air-schedule.svg"
+					alt="cogo"
+				/>,
+				description: 'Seamlessly keep track of your shipment schedules and deviations',
+			},
 		],
 	},
 

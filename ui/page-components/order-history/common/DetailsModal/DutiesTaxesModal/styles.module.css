@@ -43,6 +43,7 @@
 
 .heading {
 	font-weight: 500;
+	border-bottom: 2px dashed #a4a4a4;
 }
 
 .section {
@@ -95,7 +96,7 @@
 }
 
 .tooltip_container {
-	padding: 12px 8px;
+	/* padding: 12px 8px; */
 	font-size: 12px;
 	font-weight: 300;
 }

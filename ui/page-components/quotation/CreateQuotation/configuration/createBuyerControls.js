@@ -55,16 +55,25 @@ const createBuyerControls = ({ countryInfo = {}, stateInfo = {} }) => {
 			label          : 'Country *',
 			type           : 'async_select',
 			placeholder    : 'Enter Country',
-			className      : 'primary md',
 			rules          : { required: true },
 			asyncKey       : 'locations',
-			valueKey       : 'id',
 			defaultOptions : true,
+			labelKey       : 'label',
 			params         : {
 				filters: {
 					type: 'country',
 				},
 			},
+			getModifiedOptions: (options = []) => (options || []).map((x) => ({
+				...x,
+				value : x.id,
+				label : (
+					<div style={{ display: 'flex' }}>
+						<img src={x.flag_icon_url} alt="" />
+						<div style={{ marginLeft: '5px' }}>{x.name}</div>
+					</div>
+				),
+			})),
 		},
 	];
 
@@ -86,7 +95,7 @@ const createBuyerControls = ({ countryInfo = {}, stateInfo = {} }) => {
 		{
 			name        : 'state',
 			label       : 'State (optional)',
-			type        : 'select',
+			type        : 'async_select',
 			placeholder : 'Enter State',
 			asyncKey    : 'locations',
 			disabled    : !countryInfo?.id,
@@ -97,7 +106,7 @@ const createBuyerControls = ({ countryInfo = {}, stateInfo = {} }) => {
 		{
 			name        : 'city',
 			label       : 'City (optional)',
-			type        : 'text',
+			type        : 'async_select',
 			placeholder : 'Enter City',
 			asyncKey    : 'locations',
 			disabled    : !stateInfo?.id,

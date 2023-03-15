@@ -26,7 +26,6 @@ function CreateBuyerModal({ openModal, setOpenModal, loading, createBuyerAddress
 		{ title: 'Address Details', fields: addressDetailsControl }];
 
 	const onSubmit = (data) => {
-		console.log(data);
 		const userData = {
 			...data,
 			performedBy             : id,
@@ -39,11 +38,10 @@ function CreateBuyerModal({ openModal, setOpenModal, loading, createBuyerAddress
 			phoneNumber             : data?.phoneNumber.number,
 			partnerOrganizationType : 'BUYER',
 		};
-		createBuyerAddress(userData);
+		createBuyerAddress(userData, setOpenModal);
 	};
 
 	const changeHandler = (data, name) => {
-		console.log(data, data);
 		if (name !== 'country' && name !== 'state' && name !== 'city') return null;
 		if (name === 'country') return setCountryInfo(data);
 		if (name === 'state') return setStateInfo(data);

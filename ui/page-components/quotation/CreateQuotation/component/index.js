@@ -26,6 +26,7 @@ function CreateQuotation() {
 		control:headerControls,
 		handleSubmit: headerHandleSubmit,
 		formState: { errors: headerError },
+		setValue,
 		watch,
 	} = useForm();
 	const watchCurrency = watch('currency');
@@ -40,7 +41,6 @@ function CreateQuotation() {
 
 	const submitForm = async () => {
 		const resp = await getHandleSubmitData({ quoteRef: quoteRef.current, headerHandleSubmit, transportMode });
-		console.log(typeof resp, 'resp', resp);
 		return resp;
 	};
 
@@ -58,6 +58,7 @@ function CreateQuotation() {
 				fields={newHeaderFields}
 				errors={headerError}
 				ref={quoteRef}
+				setValue={setValue}
 			/>
 			<div className={styles.container}>
 				<div className={styles.details_section}>

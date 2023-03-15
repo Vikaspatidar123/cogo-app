@@ -7,17 +7,16 @@
 // icon is used to show icon webside only
 // mobileIcon is used to show icon in mobile navigation only
 // isSubNavs is used to show sub navigations
-
-import { IcMUpwardGraph } from '@cogoport/icons-react';
+import { IcMQuotations, IcMUpwardGraph } from '@cogoport/icons-react';
 
 const navigationMappings = {
-	app_bookings: {
-		key       : 'app_bookings',
-		title     : 'Shipments',
-		href      : '/shipments',
-		as        : '/shipments',
-		icon      : 'nav-booking',
-		showInNav : true,
+	app_dashboard: {
+		key        : 'app_dashboard',
+		title      : 'Dashboard',
+		href       : '/v2/dashboard',
+		as         : '/v2/dashboard',
+		showInNav  : true,
+		mobileIcon : <IcMQuotations width={20} height={20} />,
 	},
 
 	saas_tools: {
@@ -62,6 +61,5 @@ const navigationMappings = {
 		type          : 'link',
 		showMobileNav : true,
 	},
-
 };
 export default navigationMappings;

@@ -187,8 +187,6 @@ function MyProfile() {
 										userDetails.birth_date,
 										'dd MMM yyyy',
 									) || '-'}
-									{/* formatType : 'date', */}
-									{/* dateFormat : GLOBAL_CONSTANTS.formats.date['dd MMM yyyy'], */}
 								</div>
 							</div>
 

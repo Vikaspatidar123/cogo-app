@@ -229,5 +229,10 @@ const app_settings = [
 		access_type  : 'private',
 		service_name : 'organization',
 	},
+	{
+		api          : 'update_organization_user_details',
+		access_type  : 'private',
+		service_name : 'organization',
+	},
 ];
 export default app_settings;

@@ -47,7 +47,7 @@ function ContainerDetails(props, ref) {
 		handleSubmit: () => {
 			const onSubmit = (values) => values;
 
-			const onError = () => true;
+			const onError = (err) => ({ check: true, err });
 
 			return new Promise((resolve) => {
 				handleSubmit(
@@ -81,42 +81,42 @@ function ContainerDetails(props, ref) {
 			</div>
 			<div className={styles.row}>
 				{containerDetailsFields.map((field, index) => {
-        	// eslint-disable-next-line react/jsx-no-useless-fragment
-        	if (index === 0) return <></>;
-        	const Element = getField(field.type);
-        	return (
-	<>
-		{watchSericeType === 'FCL_FREIGHT' && index <= 3 && (
-			<div
-				key={field?.name}
-				className={cl`${styles.col} ${
-                  	field?.name === 'containerType' && styles.type
-				}
+					// eslint-disable-next-line react/jsx-no-useless-fragment
+					if (index === 0) return <></>;
+					const Element = getField(field.type);
+					return (
+						<>
+							{watchSericeType === 'FCL_FREIGHT' && index <= 3 && (
+								<div
+									key={field?.name}
+									className={cl`${styles.col} ${
+										field?.name === 'containerType' && styles.type
+									}
 								${styles?.[field?.className]} }`}
-			>
-				<p className={styles.label}>{field.label}</p>
-				<Element
-					{...field}
-					control={control}
-					className={cl`${errors?.[field?.name] && styles.error}`}
-				/>
-			</div>
-		)}
-		{watchSericeType === 'LCL_FREIGHT' && index >= 3 && (
-			<div
-				key={field?.name}
-				className={cl`${styles.col} ${styles?.[field.className]}`}
-			>
-				<p className={styles.label}>{field.label}</p>
-				<Element
-					{...field}
-					control={control}
-					className={cl`${errors?.[field?.name] && styles.error} `}
-				/>
-			</div>
-		)}
-	</>
-        	);
+								>
+									<p className={styles.label}>{field.label}</p>
+									<Element
+										{...field}
+										control={control}
+										className={cl`${errors?.[field?.name] && styles.error}`}
+									/>
+								</div>
+							)}
+							{watchSericeType === 'LCL_FREIGHT' && index >= 3 && (
+								<div
+									key={field?.name}
+									className={cl`${styles.col} ${styles?.[field.className]}`}
+								>
+									<p className={styles.label}>{field.label}</p>
+									<Element
+										{...field}
+										control={control}
+										className={cl`${errors?.[field?.name] && styles.error} `}
+									/>
+								</div>
+							)}
+						</>
+					);
 				})}
 			</div>
 			{showCalculater && (

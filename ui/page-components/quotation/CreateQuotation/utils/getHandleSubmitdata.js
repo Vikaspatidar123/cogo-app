@@ -3,7 +3,6 @@ import { Toast } from '@cogoport/components';
 const getHandleSubmitData = async ({ quoteRef = {}, headerHandleSubmit, transportMode }) => {
 	let refValues = Object.keys(quoteRef).filter((ref) => quoteRef?.[ref]?.handleSubmit);
 	const promises = Object.values(quoteRef).filter((ref) => ref?.handleSubmit).map((refObj) => refObj?.handleSubmit());
-
 	refValues = [...refValues, 'header'];
 
 	const val = new Promise((resolve) => {

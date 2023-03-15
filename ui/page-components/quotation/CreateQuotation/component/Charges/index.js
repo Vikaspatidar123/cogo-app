@@ -14,7 +14,7 @@ import { useForm } from '@/packages/forms';
 import getField from '@/packages/forms/Controlled';
 
 function Charges(props, ref) {
-	const { submitForm } = props;
+	const { submitForm, quoteRef, transportMode } = props;
 	const { control, watch, setValue, handleSubmit, formState:{ errors } } = useForm();
 	const SelectController = getField('select');
 	const TextAreaController = getField('textarea');
@@ -57,7 +57,10 @@ function Charges(props, ref) {
 				control={control}
 				errors={errors}
 				submitForm={submitForm}
-				ref={ref}
+				ref={quoteRef}
+				setValue={setValue}
+				watch={watch}
+				transportMode={transportMode}
 			/>
 
 			<div className={styles.hr} />

@@ -17,7 +17,17 @@
 }
 
 .search_wrapper {
-	width: 250px;
+	width: 270px;
 	padding: 0 0 0 10px;
 	margin-right: 10px;
+
+	:global {
+		.ui_input_container {
+			height: 35px;
+		}
+
+		.ui_input_suffix {
+			margin-right: 10px;
+		}
+	}
 }

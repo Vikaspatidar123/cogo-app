@@ -7,7 +7,7 @@ import styles from './styles.module.css';
 
 function FilterContent({ filters, setFilters }) {
 	const [dateRangePickerValue, setDateRangePickerValue] = useState({});
-	const filtersKeyLength = Object.keys(filters).length;
+	const filtersKeyLength = Object?.keys(filters).length;
 
 	return (
 		<div className={styles.container}>

@@ -18,7 +18,7 @@ function AllFilters({ filters, setFilters }) {
 							page       : 1,
 						}))}
 						placeholder="Search by Transaction No."
-						suffix={<IcMSearchlight height={30} width={15} />}
+						suffix={<IcMSearchlight height={15} width={20} />}
 					/>
 				</div>
 			</div>

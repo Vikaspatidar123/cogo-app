@@ -35,8 +35,8 @@ const navigationMappings = {
 				),
 				href : '/v2/saas/product-inventory',
 				as   : '/v2/saas/product-inventory',
-			}
-		]
+			},
+		],
 	},
 
 	saas_tools: {
@@ -73,21 +73,12 @@ const navigationMappings = {
 		showInNav : false,
 	},
 	app_settings: {
-<<<<<<< HEAD
-		key       : 'app_settings',
-		title     : 'Settings',
-		href      : '/settings',
-		as        : '/settings',
-		type      : 'link',
-		showInNav : false,
-=======
 		key           : 'app_settings',
 		title         : 'Settings',
 		href          : '/v2/settings',
 		as            : '/v2/settings',
 		type          : 'link',
 		showMobileNav : true,
->>>>>>> 04c25b450440fecda3b275082513d243863d3a6f
 	},
 };
 export default navigationMappings;

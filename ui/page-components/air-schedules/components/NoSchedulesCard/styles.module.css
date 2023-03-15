@@ -1,0 +1,12 @@
+.card{
+    width: 100%;
+    background: #FFFFFF;
+    border: 1px solid #ACDADF;
+    box-shadow: 0 0 4px rgba(98, 127, 172, 0.2);
+    border-radius: 8px;
+    font-size: 32px;
+    font-weight: 700;
+    display: flex;
+    justify-content: center;
+    padding: 24px;
+}

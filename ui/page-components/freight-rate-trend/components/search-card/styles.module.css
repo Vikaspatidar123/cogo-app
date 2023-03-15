@@ -1,0 +1,62 @@
+.card {
+	position: relative;
+	height: 100%;
+	padding: 26px;
+	margin-top: 16px;
+	margin-bottom: 8px;
+	border: 1px solid #acdadf;
+	border-radius: 20px;
+}
+
+.heading {
+	font-size: 14px;
+	font-weight: 600;
+	line-height: 21px;
+	color: #221f20;
+}
+
+.styled_form_item {
+	width: 300px;
+
+	:global {
+		.ui_button_container {
+			float: right;
+		}
+	}
+}
+
+.text {
+	margin-top: 4px;
+	size: 10;
+	color: #cb6464;
+}
+
+.flex {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.form {
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+	margin-top: 24px;
+
+	@media screen and (max-width: 700px) {
+		flex-direction: column;
+	}
+}
+
+.anchor {
+	margin: 0 10px;
+
+	svg {
+		color: #88cad1;
+		cursor: pointer;
+	}
+
+	@media screen and (max-width: 700px) {
+		text-align: center;
+	}
+}

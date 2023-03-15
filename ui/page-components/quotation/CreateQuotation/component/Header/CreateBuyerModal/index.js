@@ -43,6 +43,7 @@ function CreateBuyerModal({ openModal, setOpenModal, loading, createBuyerAddress
 	};
 
 	const changeHandler = (data, name) => {
+		console.log(data, data);
 		if (name !== 'country' && name !== 'state' && name !== 'city') return null;
 		if (name === 'country') return setCountryInfo(data);
 		if (name === 'state') return setStateInfo(data);

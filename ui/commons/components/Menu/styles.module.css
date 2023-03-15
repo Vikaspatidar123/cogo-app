@@ -33,9 +33,6 @@
 }
 
 .profile_header {
-	/* cursor: ${(props) =>
-		props.isTermsAndConditionAccepted ? '' : 'not-allowed'}; */
-
 	display: flex;
 	flex-direction: row;
 	align-items: center;

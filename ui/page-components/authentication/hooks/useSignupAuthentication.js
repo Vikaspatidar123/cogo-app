@@ -28,7 +28,6 @@ const useSignupAuthentication = ({
 				setUserId(res?.data);
 			}
 		} catch (e) {
-			console.log(e, 'error');
 			if (e?.response?.data?.email?.length > 0) {
 				Toast.error('Email id is already registered. Please Login');
 			} else {

@@ -4,10 +4,35 @@
 	align-items: center;
 	justify-content: space-between;
 	padding: 10px 16px;
-	margin: 6px -17px;
+	margin: 6px -6px;
 	cursor: pointer;
-	background: #f5fafe;
+	border: 1px solid #fcdc0061;
 	border-radius: 4px;
+	animation: fade_right 0.9s ease-in-out;
+
+	@keyframes fade_right {
+		0% {
+			opacity: 0;
+			transform: translateX(100px);
+		}
+
+		80% {
+			transform: translateX(-2px);
+		}
+
+		100% {
+			opacity: 1;
+			transform: translate(0);
+		}
+	}
+}
+
+.container:hover {
+	background: #fcdc0061;
+}
+
+.active {
+	background: #fcdc0061;
 }
 
 .partner_name:hover {

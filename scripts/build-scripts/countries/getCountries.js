@@ -5,9 +5,9 @@ const { sortBy } = require('@cogoport/utils');
 const MAIN_COUNTRY_CODES = ['IN'];
 
 const getCountries = async (callBack, path, baseUrl) => {
-	const actualUrl = `${baseUrl}location/
-	list_locations?filters%5Btype%5D%5B%5D=country
-	&filters%5Bstatus%5D=active&page_limit=500`;
+	const actualUrl = `${baseUrl}location/list_locations?filters=%7B"type"%3A"
+	country"%7D&includes=%7B"default_params_required"%3A1%2C"mobile_country_code"%3A1%2C"
+	currency_code"%3A1%2C"flag_icon_url"%3A1%7D&page=1&page_limit=500`;
 
 	https
 		.get(actualUrl, (resp) => {

@@ -1,24 +1,5 @@
-/* eslint-disable import/no-unresolved */
-import data from '@/.data-store/constants/countries.json';
 import patterns from '@/ui/commons/configurations/patterns';
 
-// const GstValidator = /^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}Z[0-9A-Z]{1}$/;
-const country = data?.map((item) => ({
-	label: (
-		<div style={{ display: 'flex' }}>
-			<img
-				src={
-          item.flag_icon_url
-          	? item.flag_icon_url
-          	: 'https://via.placeholder.com/24x20'
-        }
-				alt={item.name}
-			/>
-			<div style={{ marginLeft: '5px' }}>{item.name}</div>
-		</div>
-	),
-	value: item.id,
-}));
 const createBuyerControls = ({ countryInfo = {}, stateInfo = {} }) => {
 	const userDetailControl = [
 		{
@@ -70,21 +51,20 @@ const createBuyerControls = ({ countryInfo = {}, stateInfo = {} }) => {
 			},
 		},
 		{
-			name        : 'country',
-			label       : 'Country *',
-			type        : 'select',
-			placeholder : 'Enter Country',
-			className   : 'primary md',
-			rules       : { required: true },
-			// asyncKey    : 'locations',
-			// valueKey    : 'id',
-			// // defaultOptions: true,
-			// params      : {
-			// 	filters: {
-			// 		type: 'country',
-			// 	},
-			// },
-			options     : country,
+			name           : 'country',
+			label          : 'Country *',
+			type           : 'async_select',
+			placeholder    : 'Enter Country',
+			className      : 'primary md',
+			rules          : { required: true },
+			asyncKey       : 'locations',
+			valueKey       : 'id',
+			defaultOptions : true,
+			params         : {
+				filters: {
+					type: 'country',
+				},
+			},
 		},
 	];
 

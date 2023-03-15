@@ -35,6 +35,17 @@ const navigationMappings = {
 				icon        : <IcMUpwardGraph width={40} height={40} fill="red" />,
 				description : 'keep track of freight rates',
 			},
+			{
+				key   : 'saas_tools-ocean_schedules',
+				title : 'Ocean Schedules',
+				href  : '/v2/saas/ocean-schedules',
+				as    : '/v2/saas/ocean-schedules',
+				icon  : <img
+					src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/ocean-schedule.svg"
+					alt="cogo"
+				/>,
+				description: 'Seamlessly keep track of your shipment schedules and deviations',
+			},
 		],
 	},
 

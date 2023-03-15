@@ -25,7 +25,6 @@ function CreateSellerModal({ openModal, setOpenModal, createSellerAddres, getSel
 		{ title: 'POC Details', fields: pocDetailControl }];
 
 	const onSubmit = async (data) => {
-		console.log(data);
 		const resp = await createSellerAddres(data);
 		if (resp?.data) {
 			await getSellerAddress();

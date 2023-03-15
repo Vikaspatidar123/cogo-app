@@ -5,15 +5,12 @@
 	padding: 0 12px;
 }
 
-.styledRow {
+.styled_row {
 	display: flex;
+	gap: 8px;
 	align-items: center;
 	justify-content: space-between;
 	padding: 12px;
-
-	.core-ui-select-root {
-		width: 130px;
-	}
 }
 
 .hr {

@@ -3,7 +3,7 @@ import { Toast } from '@cogoport/components';
 import { useRequestBf } from '@/packages/request';
 
 const useService = () => {
-	const [{ loading }, serviceTrigger, data] = useRequestBf({
+	const [{ loading, data }, serviceTrigger] = useRequestBf({
 		url     : 'saas/trade-engine',
 		authKey : 'get_saas_trade_engine',
 		method  : 'get',

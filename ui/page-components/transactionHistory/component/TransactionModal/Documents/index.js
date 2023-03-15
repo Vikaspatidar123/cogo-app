@@ -17,13 +17,15 @@ function Document({ documents = [], hsNumber = '' }) {
 	return (
 		<div className={styles.container}>
 			<div className={styles.title_container}>
-				<div className="name">Import/Export Documents</div>
-				<div className="toggle">
+				<div className={styles.name}>Import/Export Documents</div>
+				<div className={styles.toggle}>
 					<Toggle
-						offLabel={{ label: 'Import', value: 'IMPORT' }}
-						onLabel={{ label: 'Export', value: 'EXPORT' }}
-						value={labeledValue}
-						onChange={setLabeledValue}
+						name="a1"
+						size="sm"
+						onLabel="Export"
+						offLabel="Import"
+						checked={labeledValue === 'IMPORT'}
+						onChange={(e) => setLabeledValue(e.target.checked ? 'IMPORT' : 'EXPORT')}
 					/>
 				</div>
 			</div>

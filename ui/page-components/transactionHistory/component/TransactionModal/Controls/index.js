@@ -23,16 +23,18 @@ function Control({ controls }) {
 	return (
 		<div className={styles.container}>
 			<div className={styles.title_container}>
-				<div className="name">
+				<div className={styles.name}>
 					<IcMAccountSettings width={20} height={20} />
 					Import/Export Controls
 				</div>
-				<div className="toggle">
+				<div className={styles.toggle}>
 					<Toggle
-						offLabel={{ label: 'Import', value: 'IMPORT' }}
-						onLabel={{ label: 'Export', value: 'EXPORT' }}
-						value={labeledValue}
-						onChange={setLabeledValue}
+						name="a1"
+						size="sm"
+						onLabel="Export"
+						offLabel="Import"
+						checked={labeledValue === 'IMPORT'}
+						onChange={(e) => setLabeledValue(e.target.checked ? 'IMPORT' : 'EXPORT')}
 					/>
 				</div>
 			</div>

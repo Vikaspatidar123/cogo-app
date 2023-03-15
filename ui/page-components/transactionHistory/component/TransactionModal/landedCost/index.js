@@ -24,8 +24,8 @@ function LandedCost({ landedCost, resultCurrency = 'INR' }) {
 								<div className={`${styles.row}  ${styles.padding}`}>
 									<div className={`${styles.col} ${styles.dotFlex}`}>
 										<div className={styles.text} key={x.id}>{x.name}</div>
-										<div className="dot" />
 									</div>
+									<div className={styles.dot} />
 									<div className={`${styles.col} ${styles.paddngFlex}`}>
 										<div className={styles.text}>
 											{formatAmount({

@@ -30,7 +30,7 @@ function DrillDown({ item, hsNumber = '' }) {
 				/>
 			</div>
 
-			<div className={`${styles.content} ${showDrill && 'showContent'}`}>
+			<div className={`${styles.content} ${showDrill && styles.showContent}`}>
 				<div className={styles.col} width="100px">
 					<div className="title">Source</div>
 					<div className="info">{docType}</div>

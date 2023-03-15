@@ -32,7 +32,7 @@ function ServiceDetailModal({
 
 	const transactionDataLength = Object.keys(transactionData).length;
 
-	function Container(item) {
+	function Container({ item }) {
 		const [showDrill, setShowDrill] = useState(false);
 
 		const {
@@ -69,13 +69,13 @@ function ServiceDetailModal({
 						/>
 					</div>
 				</div>
-				<div className={styles.card_body}>
-					<div className="title">
+				<div className={`${styles.card_body} ${showDrill && styles.displayDrill}`}>
+					<div className={styles.title}>
 						<IcMPaste height={22} width={22} />
 						Duties & Taxes
 					</div>
 					<div className={styles.footer}>
-						<div className="landedcost">
+						<div className={styles.landedcost}>
 							<div>
 								<LandedCost landedCost={landedCost} resultCurrency={resultCurrency} />
 							</div>
@@ -83,7 +83,7 @@ function ServiceDetailModal({
 								<Controls controls={controls} />
 							</div>
 						</div>
-						<div className="documents">
+						<div className={styles.documents}>
 							<Document documents={documents} hsNumber={hsNumber} />
 						</div>
 					</div>
@@ -95,18 +95,20 @@ function ServiceDetailModal({
 		<Modal
 			show={paymentSuccess}
 			onClose={() => setPaymentSuccess(false)}
-			className="primary xl"
+			size="lg"
 		>
-			<Modal.Header />
 			{(getTransactionLoading || postTransactionLoading) && (
 				<div className={styles.flex}>
 					<Placeholder height="50px" />
 				</div>
 			)}
+
 			{!getTransactionLoading && !postTransactionLoading && transactionDataLength === 0 && (
 				<>
 					<div className={styles.empty_div}>
 						<img
+							height={100}
+							width={100}
 							alt=""
 							src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/empty_icon 1.svg"
 						/>
@@ -119,10 +121,7 @@ function ServiceDetailModal({
 
 			{!getTransactionLoading && !postTransactionLoading && consignmentValue && (
 				<div>
-					<div className={styles.heading}>Service details</div>
-					<div className={styles.line_wrapper}>
-						<div className={styles.line} />
-					</div>
+					<Modal.Header title="Service details" />
 					<div className={styles.main_card}>
 						<div className={styles.card}>
 							<div className={styles.trader}>Trader eligibility check:</div>
@@ -148,7 +147,7 @@ function ServiceDetailModal({
 						totalDutiesAndTaxes={totalDutiesAndTaxes}
 						transactionData={transactionData}
 					/>
-					{(lineItem || []).map((item) => Container(item))}
+					{(lineItem || []).map((item) => <Container item={item} />)}
 				</div>
 			)}
 		</Modal>

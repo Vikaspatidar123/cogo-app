@@ -13,8 +13,10 @@
 		transition: transform 0.3s ease-in-out;
 	}
 
-	.rotateIcn {
-		transform: rotate(180deg);
+	:global {
+	    .rotateIcn {
+		    transform: rotate(180deg);
+		}
 	}
 
 	.docName {
@@ -24,11 +26,6 @@
 
 .col {
 	font-size: 10px;
-
-	.title {
-		font-size: 14px;
-		font-weight: 400;
-	}
 
 	.info {
 		font-weight: 300;

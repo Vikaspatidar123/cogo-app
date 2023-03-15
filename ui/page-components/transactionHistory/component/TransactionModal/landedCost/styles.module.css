@@ -1,6 +1,4 @@
 .container {
-	height: 270px;
-	padding: 15px;
 	margin-bottom: 15px;
 	background: #f8f9fa;
 	border-radius: 8px;
@@ -32,24 +30,20 @@
 		width: auto;
 	}
 
-	.dot {
-		flex: 1;
-		border-bottom: 2px dotted #697989;
-	}
-
 	.padding {
 		padding: 5px;
 	}
 
-	.sub {
-		font-size: 14px;
-		font-weight: 400;
+	.dotFlex {
+		display: flex;
+		align-items: center;
+		padding-right: 0;
 	}
 
-	.dotFlex {
-		display: flex !important;
-		align-items: center !important;
-		padding-right: 0 !important;
+	.dot {
+		flex: 1;
+		margin: 10px;
+		border-bottom: 2px dotted #697989;
 	}
 }
 
@@ -66,10 +60,9 @@
 }
 
 .text {
+	display: flex;
 	padding: 1px 4px 3px 15px;
-	font-size: 14px;
 	font-weight: 500;
-	line-height: 16px;
 	color: #697989;
 }
 
@@ -81,7 +74,6 @@
 
 .row {
 	display: flex;
-	flex-direction: row;
 }
 
 .col {

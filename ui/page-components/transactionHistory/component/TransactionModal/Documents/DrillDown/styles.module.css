@@ -14,8 +14,8 @@
 	}
 
 	:global {
-	    .rotateIcn {
-		    transform: rotate(180deg);
+		.rotateIcn {
+			transform: rotate(180deg);
 		}
 	}
 

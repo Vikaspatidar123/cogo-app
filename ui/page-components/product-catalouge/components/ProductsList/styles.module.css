@@ -189,8 +189,8 @@
 		}
 
 		.active p {
-			border: none !important;
-			transition: none !important;
+			border: none;
+			transition: none;
 		}
 
 		.active {

@@ -178,8 +178,8 @@
 			}
 
 			.core-ui-select__menu {
-				min-width: 0 !important;
-				max-width: 100px !important;
+				min-width: 0;
+				max-width: 100px;
 			}
 		}
 

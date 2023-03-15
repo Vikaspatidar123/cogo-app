@@ -2,6 +2,9 @@ import {
 	isEmpty, getByKey, format, startCase,
 } from '@cogoport/utils';
 
+const ActionFunction = {
+	startCase,
+};
 const getValue = (itemData, itemField, functions, emptyState) => {
 	if (isEmpty(itemData) || isEmpty(itemField)) {
 		return emptyState || '';
@@ -24,8 +27,8 @@ const getValue = (itemData, itemField, functions, emptyState) => {
 	if (itemField.func) {
 		if (functions[itemField.func]) {
 			val = functions[itemField.func](itemData, itemField);
-		} else if (startCase(itemField.func)) {
-			val = startCase(itemField.func)(val);
+		} else if (ActionFunction[itemField.func]) {
+			val = ActionFunction[itemField.func](val);
 		}
 	}
 

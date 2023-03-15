@@ -32,49 +32,20 @@ const saas = {
 		},
 	],
 
-	app_saas_trade_partner: [
+	app_saas_order_history: [
 		{
-			api         : 'delete_saas_organization_partner',
-			access_type : 'private',
-			module      : 'trade-partner',
-			feature     : 'trade-partner',
+			api          : 'get_saas_trade_engine_order_history',
+			access_type  : 'private',
+			service_name : 'order_history',
 		},
 		{
-			api         : 'get_saas_organization_partner_list',
-			access_type : 'private',
-			module      : 'trade-partner',
-			feature     : 'trade-partner',
-		},
-		{
-			api         : 'post_saas_organization_buyer',
-			access_type : 'private',
-			module      : 'trade-partner',
-			feature     : 'trade-partner',
-		},
-		{
-			api         : 'put_saas_organization',
-			access_type : 'private',
-			module      : 'trade-partner',
-			feature     : 'trade-partner',
-		},
-		{
-			api         : 'put_saas_organization_archive',
-			access_type : 'private',
-			module      : 'trade-partner',
-			feature     : 'trade-partner',
-		},
-		{
-			api         : 'put_saas_organization_unarchive',
-			access_type : 'private',
-			module      : 'trade-partner',
-			feature     : 'trade-partner',
-		},
-		{
-			api         : 'put_saas_organization_archive',
-			access_type : 'private',
-			module      : 'trade-partner',
-			feature     : 'trade-partner',
+			api          : 'get_saas_trade_engine',
+			access_type  : 'private',
+			service_name : 'order_history',
 		},
 	],
+
+	app_saas_load_container: [],
+
 };
 export default saas;

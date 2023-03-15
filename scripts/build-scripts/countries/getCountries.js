@@ -33,7 +33,6 @@ const getCountries = async (callBack, path, baseUrl) => {
 					mobile_country_code : item.mobile_country_code,
 					country_code        : item.country_code,
 				}));
-
 				callBack(path, JSON.stringify(finalList));
 			});
 		})

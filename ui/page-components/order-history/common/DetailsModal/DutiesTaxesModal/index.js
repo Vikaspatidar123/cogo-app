@@ -84,8 +84,14 @@ function DutiesTaxesModal({ tradeEngineResp }) {
 	return (
 		<>
 			<div className={styles.div}>
-				<div className={`${styles.styled_tag} ${styles.incoterm}`}>{incoterm}</div>
-				<div className={`${styles.styled_tag} ${styles.mode}`}>{modeOfTransport}</div>
+				<div className={styles.styled_tag}>
+					<div className={styles.incoterm}>
+						{incoterm}
+					</div>
+					<div className={styles.mode}>
+						{modeOfTransport}
+					</div>
+				</div>
 			</div>
 			{(lineItem || []).map(({ landedCost = {}, hsNumber = '' }) => (
 				<div className={styles.section} key={hsNumber}>

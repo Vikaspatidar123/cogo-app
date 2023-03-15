@@ -1,3 +1,5 @@
+import { Placeholder } from '@cogoport/components';
+
 import styles from './styles.module.css';
 
 function MobileView({
@@ -21,10 +23,10 @@ function MobileView({
 					{[...Array(5).keys()].map(() => (
 						<div className={styles.div}>
 							<div className={styles.label}>
-								{/* <TrendCardSkeleton height="20px" width="80px" /> */}
+								<Placeholder height="20px" width="80px" />
 							</div>
 							<div className={styles.value}>
-								{/* <TrendCardSkeleton height="20px" width="200px" /> */}
+								<Placeholder height="20px" width="200px" />
 							</div>
 						</div>
 					))}

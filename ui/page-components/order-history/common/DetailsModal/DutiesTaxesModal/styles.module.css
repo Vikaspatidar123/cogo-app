@@ -96,23 +96,26 @@
 }
 
 .tooltip_container {
-	/* padding: 12px 8px; */
 	font-size: 12px;
 	font-weight: 300;
 }
 
 .incoterm {
-	margin: 4px !important;
-	font-size: 13px !important;
-	font-weight: 500 !important;
+	font-size: 13px;
+	font-weight: 500;
 
-	.incoterm {
+	&.incoterm {
+		padding: 4px;
+		margin-right: 10px;
 		background-color: #fef1df;
+		border-radius: 4px;
 	}
+}
 
-	.mode {
-		background-color: #d9eafd;
-	}
+.mode {
+	padding: 4px;
+	background-color: #d9eafd;
+	border-radius: 4px;
 }
 
 .div {
@@ -121,9 +124,10 @@
 }
 
 .styled_tag {
-	margin: 4px !important;
-	font-size: 13px !important;
-	font-weight: 500 !important;
+	display: flex;
+	margin: 4px;
+	font-size: 13px;
+	font-weight: 500;
 }
 
 .flex {

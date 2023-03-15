@@ -10,15 +10,15 @@ function FilterContent({ filters = {}, setFilters = () => {} }) {
 	)?.length;
 
 	const calculateLength = () => {
-		let n = 0;
+		let item = 0;
 		Object.keys(filters)
 			.filter((x) => !['page', 'pageLimit'].includes(x))
 			.forEach((ele) => {
 				if (filters[ele]) {
-					n += 1;
+					item += 1;
 				}
 			});
-		return n;
+		return item;
 	};
 
 	const OPTIONS = [

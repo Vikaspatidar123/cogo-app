@@ -54,7 +54,6 @@ const navigationMappings = {
 				href  : '/v2/saas/order-history',
 				as    : '/v2/saas/order-history',
 				icon  : <IcACrossBorder width={40} height={40} />,
-				type  : 'link',
 			},
 		],
 	},

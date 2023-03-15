@@ -17,8 +17,8 @@
 	}
 
 	.ui-core-checkbox-root.primary.checked {
-		background: #333 !important;
-		border: 1px solid #333 !important;
+		background: #333;
+		border: 1px solid #333;
 	}
 }
 
@@ -75,18 +75,6 @@
 	margin: 0;
 	font-size: 14px;
 	color: #000;
-}
-
-.style_tag {
-	&.core-ui-tag-root {
-		background-color: #f7cdcd;
-	}
-}
-
-.cancelContainer {
-	svg {
-		vertical-align: sub;
-	}
 }
 
 .clear_Btn {

@@ -1,5 +1,5 @@
 const saas = {
-	'/saas/planning/quickquotation/viewlist': {
+	'/saas/quickquotation/viewlist': {
 		navigation : 'saas_planning-quotation',
 		isMainBav  : true,
 	},

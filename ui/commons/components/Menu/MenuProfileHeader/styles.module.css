@@ -1,13 +1,28 @@
 .container {
-	/* cursor: ${({ tnc_accepted }) => (tnc_accepted ? '' : 'not-allowed')}; */
-
 	display: flex;
 	flex-direction: row;
 	align-items: center;
 	padding: 4px 8px;
-	margin: 0 -21px;
-	background: #f5fafe;
+	margin: -10px -21px 0;
+	background: #fcdc0061;
 	border-radius: 4px;
+	animation: fade_right 0.9s ease-in-out;
+
+	@keyframes fade_right {
+		0% {
+			opacity: 0;
+			transform: translateX(100px);
+		}
+
+		80% {
+			transform: translateX(-2px);
+		}
+
+		100% {
+			opacity: 1;
+			transform: translate(0);
+		}
+	}
 }
 
 .user_details {
@@ -18,7 +33,7 @@
 
 .name {
 	font-size: 14px;
-	font-weight: 500;
+	font-weight: 600;
 	line-height: 16px;
 	color: #2d3d4f;
 }
@@ -32,7 +47,7 @@
 .switch_account {
 	font-size: 12px;
 	font-weight: 300;
-	color: #034afd;
+	color: #ee3425;
 	text-decoration: underline;
 	cursor: pointer;
 }
@@ -40,9 +55,9 @@
 .footer {
 	display: flex;
 	align-items: center;
-	font-size: 10px;
-	font-weight: 300;
-	line-height: 12px;
+	font-size: 12px;
+	font-weight: 400;
+	line-height: 13px;
 	color: #2d3d4f;
 }
 

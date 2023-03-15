@@ -36,7 +36,7 @@ const useUploadDocuments = ({ refetchProduct, setShow }) => {
 					countryId      : country_id,
 					currencyCode   : currency_code,
 					countryName    : name,
-					url            : fileValue.url,
+					url            : fileValue,
 				},
 			});
 

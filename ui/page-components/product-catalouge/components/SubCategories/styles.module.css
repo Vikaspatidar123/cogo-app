@@ -27,7 +27,7 @@
 		}
 
 		.section {
-			width: fill-available;
+			width: stretch;
 			height: auto;
 			padding: 10px !important;
 			border-left: 1px dashed #c6d9ff;

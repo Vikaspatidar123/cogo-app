@@ -1,6 +1,7 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-undef */
 import { Modal, Button } from '@cogoport/components';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import useUploadDocuments from '../../../hooks/useUploadDocuments';
 
@@ -29,17 +30,14 @@ function UploadDocument({ uploadModal, setUploadModal, refetchProduct }) {
 	const formValues = watch();
 
 	const { file_uploader } = formValues || {};
-	const { finalUrl } = file_uploader || {};
-
-	// const { success = false } = fileValue || {};
 
 	const downloadSample = () => {
 		window.open(downloadUrl, '_self');
 	};
 
-	const handleFileChange = (url) => {
-		setFileValue(url);
-	};
+	useEffect(() => {
+		setFileValue(file_uploader);
+	}, [file_uploader]);
 
 	const generateInvalidRecordsId = value.generateInvalidEntriesId;
 
@@ -73,16 +71,17 @@ function UploadDocument({ uploadModal, setUploadModal, refetchProduct }) {
 									format=".xlsx"
 									accept=".xlsx"
 									value={fileValue}
-									onChange={(e) => handleFileChange(e)}
+									onChange={setFileValue}
 									name="file_uploader"
 									rules={{ required: 'file_uploader is required.' }}
 								/>
+
 							</div>
 							<div className={styles.button_container}>
 								<Button
 									className={styles.styled_button}
 									loading={loading}
-									disabled={finalUrl === undefined}
+									disabled={file_uploader === undefined}
 									onClick={uploadDocuments}
 								>
 									SUBMIT

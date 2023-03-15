@@ -1,140 +1,122 @@
-// import { Toast } from '@cogoport/components';
-// import { useEffect } from 'react';
-
+import { Toast } from '@cogoport/components';
 import { merge } from '@cogoport/utils';
+import { useEffect } from 'react';
 
 import getOtherAddressControls from './get-other-address-controls';
 
 import {
 	useForm,
-	asyncFieldsLocations, useGetAsyncOptions,
+	asyncFieldsLocations,
+	useGetAsyncOptions,
 } from '@/packages/forms';
-import useRequest from '@/packages/request';
+import { useRequest } from '@/packages/request';
 
+const MAPPING = {
+	poc_email    : 'email',
+	poc_name     : 'name',
+	phone_number : 'mobile_number',
+};
 const useEditOtherAddress = ({
-	// organizationType = '',
-	// address_key,
-	// handleCloseModal,
 	otherAddressObjToUpdate = {},
-	// getOrganizationOtherAddresses = () => { },
+	getAdd,
+	mobalType,
 	organizationOtherAddressesList,
+	handleCloseModal,
+	address_key,
 }) => {
-	const valuesToPrefill = organizationOtherAddressesList?.[
-		`${otherAddressObjToUpdate.address_type}_address`
-	]?.[otherAddressObjToUpdate.index];
 	const labelKey = 'postal_code';
 	const valueKey = 'postal_code';
-	const cityPincode = useGetAsyncOptions(merge(asyncFieldsLocations(labelKey, valueKey), {
-		params: { filters: { type: ['pincode'] } },
-	}));
+	const cityPincode = useGetAsyncOptions(
+		merge(asyncFieldsLocations(labelKey, valueKey), {
+			params: { filters: { type: ['pincode'] } },
+		}),
+	);
+	const valuesToPrefill = organizationOtherAddressesList?.[otherAddressObjToUpdate.index];
+	const endPoint = mobalType
+		? '/update_organization_address'
+		: '/create_organization_address';
+	const [{ loading }, trigger] = useRequest(
+		{
+			url    : endPoint,
+			method : 'post',
+		},
+		{ manual: true },
+	);
 	const fields = getOtherAddressControls({ cityPincode });
 
 	const formProps = useForm();
-
 	const {
-		handleSubmit = () => { },
-		setValues,
+		handleSubmit = () => {},
+		setValue,
 		formState,
 		control,
+		watch,
 	} = formProps;
-
-	// const createOrgOtherAddressAPI = useRequest(
-	// 	'post',
-	// 	false,
-	// 	'partner',
-	// )('/create_channel_partner_address');
-
-	// const updateOrgOtherAddressAPI = useRequest(
-	// 	'post',
-	// 	false,
-	// 	'partner',
-	// )('/update_channel_partner_address');
-
-	// useEffect(() => {
-	// 	if (
-	// 		Object.keys(otherAddressObjToUpdate).length
-	// 		&& otherAddressObjToUpdate.index !== null
-	// 	) {
-	// 		setValues({
-	// 			name: valuesToPrefill.name,
-	// 			address: valuesToPrefill.address,
-	// 			poc_name: valuesToPrefill.poc_details?.name,
-	// 			poc_email: valuesToPrefill.poc_details?.email,
-	// 			phone_number: {
-	// 				country_code: valuesToPrefill.poc_details?.mobile_country_code,
-	// 				number: valuesToPrefill.poc_details?.mobile_number,
-	// 			},
-	// 		});
-	// 	}
-	// }, [otherAddressObjToUpdate]);
-
-	// const onCreate = async (values = {}) => {
-	// 	try {
-	// 		const key_to_send = address_key?.api_property_key?.split('_')[0]
-	// 			|| otherAddressObjToUpdate.address_type;
-
-	// 		const body = {
-	// 			account_types: [organizationType],
-	// 			address_type: key_to_send,
-	// 			name: values.name || undefined,
-	// 			address: values.address || undefined,
-	// 			country_id: values.country_id || undefined,
-	// 			pincode: values.pincode || undefined,
-	// 		};
-
-	// 		const poc_details = [
-	// 			{
-	// 				name: values.poc_name || undefined,
-	// 				email: values.poc_email || undefined,
-	// 				mobile_country_code: values?.phone_number?.country_code || undefined,
-	// 				mobile_number: values?.phone_number?.number || undefined,
-	// 			},
-	// 		];
-
-	// 		if (
-	// 			Object.keys(otherAddressObjToUpdate).length
-	// 			&& otherAddressObjToUpdate.index !== null
-	// 		) {
-	// 			await updateOrgOtherAddressAPI.trigger({
-	// 				data: { ...body, address_id: valuesToPrefill.id },
-	// 			});
-
-	// 			toast.success(
-	// 				t(
-	// 					'profile:accountDetails.tabOptions.address.otherAddresses.edit.toastMessages.updated',
-	// 				),
-	// 			);
-	// 		} else {
-	// 			await createOrgOtherAddressAPI.trigger({
-	// 				data: { ...body, poc_details },
-	// 			});
-
-	// 			toast.success(
-	// 				t(
-	// 					'profile:accountDetails.tabOptions.address.otherAddresses.edit.toastMessages.added',
-	// 				),
-	// 			);
-	// 		}
-
-	// 		handleCloseModal();
-
-	// 		getOrganizationOtherAddresses();
-	// 	} catch (err) {
-	// 		toast.error(getApiErrorString(err.data));
-	// 	}
-	// };
-
+	const setValues = () => {
+		fields?.map((item) => setValue(
+			item?.name,
+			item?.mode === 'poc'
+				? valuesToPrefill?.organization_pocs?.[0]?.[MAPPING[item.name]]
+				: valuesToPrefill[item.name],
+		));
+	};
+	useEffect(() => {
+		if (otherAddressObjToUpdate !== null && mobalType) {
+			setValues();
+		}
+		/* eslint-disable react-hooks/exhaustive-deps */
+	}, []);
+	const onCreate = async (value) => {
+		const {
+			tax_number_document_url,
+			sez_proof,
+			poc_email,
+			poc_name,
+			phone_number,
+			...prop
+		} = value;
+		const poc_details = [
+			{
+				email               : poc_email,
+				name                : poc_name,
+				mobile_number       : phone_number?.number || undefined,
+				mobile_country_code : phone_number?.country_code || undefined,
+			},
+		];
+		try {
+			await trigger({
+				data: {
+					...prop,
+					poc_details: !mobalType ? poc_details : undefined,
+					tax_number_document_url:
+					tax_number_document_url || undefined,
+					sez_proof    : sez_proof || undefined,
+					id           : mobalType ? valuesToPrefill?.id : undefined,
+					address_type : address_key?.api_property_key,
+				},
+			});
+			Toast.success('Successfull Update');
+			getAdd();
+			handleCloseModal(false);
+		} catch (err) {
+			const error = Object.values(err?.response?.data).map((x) => x);
+			if (error) Toast.error(error);
+		}
+	};
+	const isSez = watch('is_sez');
 	const showElements = fields.reduce((previousControls, currentControls) => {
 		const { name = '' } = currentControls;
 
 		let showElement = true;
-
+		if (name === 'sez_proof' && !isSez) {
+			showElement = false;
+		}
 		if (
 			(name === 'poc_name'
-				|| name === 'phone_number'
-				|| name === 'poc_email')
-			&& Object.keys(otherAddressObjToUpdate).length
-			&& otherAddressObjToUpdate.index !== null
+        || name === 'phone_number'
+        || name === 'poc_email')
+      && Object.keys(otherAddressObjToUpdate).length
+      && otherAddressObjToUpdate.index !== null
 		) {
 			showElement = false;
 		}
@@ -144,16 +126,14 @@ const useEditOtherAddress = ({
 			[name]: showElement,
 		};
 	}, {});
-
 	return {
+		onCreate,
 		control,
 		showElements,
 		fields,
-		// loading:
-		// 	createOrgOtherAddressAPI.loading || updateOrgOtherAddressAPI.loading,
 		formState,
 		handleSubmit,
-		// onCreate,
+		loading,
 	};
 };
 

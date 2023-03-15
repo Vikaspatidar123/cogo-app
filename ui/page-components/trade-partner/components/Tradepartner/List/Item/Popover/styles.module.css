@@ -1,0 +1,19 @@
+.div {
+	display: flex;
+	align-content: center;
+	align-items: center;
+	padding: 3px;
+	margin-bottom: 6px;
+	cursor: pointer !important;
+}
+
+.icon {
+	width: 14px;
+	height: 14px;
+	margin-right: 5px;
+}
+
+.label {
+	font-size: 14px !important;
+	text-transform: capitalize;
+}

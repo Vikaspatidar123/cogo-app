@@ -20,32 +20,31 @@ function SwitchUser({ setShow }) {
 		window.location.href = '/v2/get-started';
 	};
 	return (
-		<div type="enter">
-			<div className={styles.container}>
-				<div className={styles.header}>
-					<BackIcon
-						width="24px"
-						height="24px"
-						style={{ cursor: 'pointer' }}
-						onClick={onBack}
-					/>
+		<div className={styles.container}>
+			<div className={styles.header}>
+				<BackIcon
+					width="24px"
+					height="24px"
+					style={{ cursor: 'pointer' }}
+					onClick={onBack}
+				/>
 
-					{pathname === '/get-started' ? null : (
-						<Button className={styles.styled_button} onClick={() => getStarted()}>
-							+ Add New Account
-						</Button>
-					)}
-				</div>
+				{pathname === '/get-started' ? null : (
+					<Button size="md" themeType="secondary" onClick={() => getStarted()}>
+						+ Add New Account
+					</Button>
+				)}
+			</div>
 
-				<div className={styles.separator} />
+			<div className={styles.separator} />
 
-				<div className={styles.list}>
-					{organizations.map((item) => (
-						<Item key={item.id} item={item} />
-					))}
-				</div>
+			<div className={styles.list}>
+				{organizations.map((item) => (
+					<Item key={item.id} item={item} />
+				))}
 			</div>
 		</div>
+
 	);
 }
 

@@ -1,6 +1,4 @@
-.container{
-    display: flex;
-	flex-direction: row;
+.container {
 
 	@media (max-width: 768px) {
 		background: #ffffff !important;

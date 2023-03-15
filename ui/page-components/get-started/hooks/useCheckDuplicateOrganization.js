@@ -1,13 +1,8 @@
 import { Toast } from '@cogoport/components';
 
 import { useRequest } from '@/packages/request';
-import { useSelector } from '@/packages/store';
 
 const useCheckDuplicateOrganization = () => {
-	const {
-		profile,
-	} = useSelector((state) => state);
-
 	const [{ loading: checkDuplicateOrganizationLoading }, checkDuplicateOrganizationtrigger] = useRequest({
 		url    : 'organization/check_duplicate_organization',
 		method : 'post',

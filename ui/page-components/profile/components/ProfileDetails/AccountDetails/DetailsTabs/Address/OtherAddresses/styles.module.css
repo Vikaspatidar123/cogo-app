@@ -1,74 +1,77 @@
 .main_container {
-  border: 1px solid #e1eaff;
-  border-radius: 4px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  margin-bottom: 22px;
-  background: #ffffff;
-  box-shadow: 0px 0px 6px rgba(169, 188, 218, 0.65);
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	margin-bottom: 22px;
+	background: #fff;
+	border: 1px solid #e1eaff;
+	border-radius: 4px;
+	box-shadow: 0 0 6px rgb(169 188 218 / 65%);
 }
 
 .icon_container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 0 14px;
-  background: #f5fafe;
-  cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 0 14px;
+	cursor: pointer;
+	background: #f5fafe;
 }
 
 .body {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  padding: 12px 22px;
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+	padding: 12px 22px;
 }
 
-.core-ui-tag-root {
-  background: #f5fafe;
-  border: 1px solid #b3d5fb;
-  border-radius: 10px !important;
-  margin-left: 16px;
-}
-
-.core-ui-tag-text {
-  color: #2c3e50;
-}
 .link_text {
-  font-size: 14px;
-  text-decoration-line: underline;
-  color: #034afd;
-  cursor: pointer;
+	font-size: 14px;
+	color: #034afd;
+	text-decoration-line: underline;
+	cursor: pointer;
 
-  @media (max-width: 767.99px) {
-    font-size: 12px;
-  }
+	@media (max-width: 767.99px) {
+		font-size: 12px;
+	}
 }
 
 .text {
-  font-weight: 600;
-  font-size: 16px;
-  color: #2c3e50;
+	font-size: 16px;
+	font-weight: 600;
+	color: #2c3e50;
 
-  @media (max-width: 767.99px) {
-    font-size: 12px;
-  }
+	@media (max-width: 767.99px) {
+		font-size: 12px;
+	}
 }
 
 .flex {
-  display: flex;
+	display: flex;
 }
 
 .no_data {
-  font-size: 16px;
-  color: rgb(189, 189, 189);
+	font-size: 16px;
+	color: rgb(189 189 189);
 }
 
 .empty {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding-bottom: 16px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	padding-bottom: 16px;
+}
+
+.head {
+	display: flex;
+	align-items: center;
+
+	@media (max-width: 767.99px) {
+		display: block;
+	}
+}
+
+.badge {
+	margin-left: 4px;
 }

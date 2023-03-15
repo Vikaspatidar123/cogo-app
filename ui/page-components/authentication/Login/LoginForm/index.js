@@ -1,8 +1,7 @@
 import { Button } from '@cogoport/components';
-import { IcCMicrosoft, IcMEyeopen, IcMEyeclose } from '@cogoport/icons-react';
+import { IcMEyeopen, IcMEyeclose } from '@cogoport/icons-react';
 import React, { useState } from 'react';
 
-import useFormLoginwithMS from '../../hooks/useFormLoginwithMS';
 import useLoginAuthenticate from '../../hooks/useLoginAuthenticate';
 
 import styles from './styles.module.css';
@@ -12,7 +11,6 @@ import { useForm, InputController } from '@/packages/forms';
 function LoginForm() {
 	const [showPassword, setShowPassword] = useState(false);
 	const { onSubmit = () => { }, loading = false } = useLoginAuthenticate();
-	const { onLogin = () => { }, socialLoginLoading = false } = useFormLoginwithMS();
 	const { handleSubmit, formState: { errors }, control } = useForm();
 
 	const renderSuffix = () => {
@@ -55,7 +53,7 @@ function LoginForm() {
 				)}
 
 				<div className={styles.forgot}>
-					<a href="/forgot-password">Forgot password</a>
+					<a href="/v2/forgot-password">Forgot password</a>
 				</div>
 
 				<Button

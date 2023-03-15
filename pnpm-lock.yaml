@@ -2,7 +2,7 @@ lockfileVersion: 5.4
 
 specifiers:
   '@cogoport/charts': ^1.0.1
-  '@cogoport/components': ^1.0.327
+  '@cogoport/components': ^1.0.347
   '@cogoport/eslint-config': ^1.1.0
   '@cogoport/icons-react': ^1.0.57
   '@cogoport/maps': ^1.0.2
@@ -36,7 +36,7 @@ specifiers:
 
 dependencies:
   '@cogoport/charts': 1.0.1_biqbaboplfbrettd7655fr4n2y
-  '@cogoport/components': 1.0.355_cyxdlkncyjzqtklzwrmvnywxma
+  '@cogoport/components': 1.0.347_cyxdlkncyjzqtklzwrmvnywxma
   '@cogoport/icons-react': 1.0.58_biqbaboplfbrettd7655fr4n2y
   '@cogoport/maps': 1.0.2_cyxdlkncyjzqtklzwrmvnywxma
   '@cogoport/utils': 1.2.6
@@ -1375,8 +1375,8 @@ packages:
       - react-dom
     dev: false
 
-  /@cogoport/components/1.0.355_cyxdlkncyjzqtklzwrmvnywxma:
-    resolution: {integrity: sha512-dSCcUAQWewOz4dm9KvS0Mn5YlBXeaYxxYg75DqaCAdvZCf3DwkUhyLxWspHpl9qUCmUCedSDT5UJ0/flAqRCwQ==}
+  /@cogoport/components/1.0.347_cyxdlkncyjzqtklzwrmvnywxma:
+    resolution: {integrity: sha512-B1VsI+VE90ruTXn2aIKMK2XSuF17bl3BBpr6ifziDDuagU750PHVnDa+pA5eWMofRxOOD9VaB9K6k85Jqk+Xvg==}
     peerDependencies:
       '@cogoport/icons-react': ^1.0.23
       react: ^18.2.0
@@ -2473,18 +2473,6 @@ packages:
     resolution: {integrity: sha512-50/17A98tWUfQ176raKiOGXuYpLyyVMkxxG6oylzL3BPOlA6ADGdK7EYunSa4I064xerltq9TGXs8HmOk5E+vw==}
     dev: false
 
-  /@react-leaflet/core/2.1.0_yydtlhsdonbqao6vgvkwhv2zki:
-    resolution: {integrity: sha512-Qk7Pfu8BSarKGqILj4x7bCSZ1pjuAPZ+qmRwH5S7mDS91VSbVVsJSrW4qA+GPrro8t69gFYVMWb1Zc4yFmPiVg==}
-    peerDependencies:
-      leaflet: ^1.9.0
-      react: ^18.0.0
-      react-dom: ^18.0.0
-    dependencies:
-      leaflet: 1.9.3
-      react: 18.2.0
-      react-dom: 18.2.0_react@18.2.0
-    dev: false
-
   /@react-spring/animated/9.4.5_react@18.2.0:
     resolution: {integrity: sha512-KWqrtvJSMx6Fj9nMJkhTwM9r6LIriExDRV6YHZV9HKQsaolUFppgkOXpC+rsL1JEtEvKv6EkLLmSqHTnuYjiIA==}
     peerDependencies:
@@ -2537,25 +2525,6 @@ packages:
       '@react-spring/types': 9.4.5
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
-    dev: false
-
-  /@reduxjs/toolkit/1.9.3_k4ae6lp43ej6mezo3ztvx6pykq:
-    resolution: {integrity: sha512-GU2TNBQVofL09VGmuSioNPQIu6Ml0YLf4EJhgj0AvBadRlCGzUWet8372LjvO4fqKZF2vH1xU0htAa7BrK9pZg==}
-    peerDependencies:
-      react: ^16.9.0 || ^17.0.0 || ^18
-      react-redux: ^7.2.1 || ^8.0.2
-    peerDependenciesMeta:
-      react:
-        optional: true
-      react-redux:
-        optional: true
-    dependencies:
-      immer: 9.0.19
-      react: 18.2.0
-      react-redux: 8.0.5_egguyi6kvemdtrnkbl3bdoeaey
-      redux: 4.2.1
-      redux-thunk: 2.4.2_redux@4.2.1
-      reselect: 4.1.7
     dev: false
 
   /@svgr/babel-plugin-add-jsx-attribute/6.5.1_@babel+core@7.21.0:
@@ -5937,6 +5906,7 @@ packages:
     resolution: {integrity: sha512-xWGDIW6x921xtzPkhiULtthJHoJvBbF3q26fzloPCK0hsvxtPVelvftw3zjbHWSkR2km9Z+4uxbDDK/6Zw9B8w==}
     dev: false
 
+<<<<<<< HEAD
   /react-leaflet/4.2.1_yydtlhsdonbqao6vgvkwhv2zki:
     resolution: {integrity: sha512-p9chkvhcKrWn/H/1FFeVSqLdReGwn2qmiobOQGO3BifX+/vV/39qhY8dGqbdcPh1e6jxh/QHriLXr7a4eLFK4Q==}
     peerDependencies:
@@ -5950,6 +5920,8 @@ packages:
       react-dom: 18.2.0_react@18.2.0
     dev: false
 
+=======
+>>>>>>> c472ef07eaaa46d97b1c2b90254c28e4f82f2184
   /react-lifecycles-compat/3.0.4:
     resolution: {integrity: sha512-fBASbA6LnOU9dOU2eW7aQ8xmYBSXUIWr+UmF9b1efZBazGNO+rcXT/icdKnYm2pTwcRylVUYwW7H1PHfLekVzA==}
     dev: false

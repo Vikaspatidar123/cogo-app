@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import { IcMArrowNext } from '@cogoport/icons-react';
 import { deleteCookie } from '@cogoport/utils';
 

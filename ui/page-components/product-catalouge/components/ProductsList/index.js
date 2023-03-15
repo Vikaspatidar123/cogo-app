@@ -62,7 +62,6 @@ function ProductsList({
 					</Button>
 				</div>
 			</div>
-			{console.log(showProductView,"showProductView")}
 			<div className={styles.scroll_content}>
 				{(showProductView) && (
 					<div>
@@ -108,7 +107,8 @@ function ProductsList({
 														return (
 															<TabPanel
 																name={categoryDisplayName}
-																key={`${item.categoryDisplayName}_${item.categoryDisplayName}`}
+																key={`${item.categoryDisplayName}
+																_${item.categoryDisplayName}`}
 																title={(
 																	<div
 																		className={styles.styled_tab_heading}

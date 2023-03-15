@@ -13,19 +13,23 @@ import { useSelector } from '@/packages/store';
 function Menu({ setShowPopover, show, setShow }) {
 	const [isOpen, setIsOpen] = useState(false);
 
-	const { user_data } = useSelector(
-		({ profile }) => ({
-			user_data: profile || {},
-		}),
-	);
+	const { user_data } = useSelector(({ profile }) => ({
+		user_data: profile || {},
+	}));
 	const { organization } = user_data || {};
 	if (show) {
-		return <div className={styles.container}><SwitchUser setShow={setShow} /></div>;
+		return (
+			<div className={styles.container}>
+				<SwitchUser setShow={setShow} />
+			</div>
+		);
 	}
 	const configs = getSideBarConfigs(user_data);
 	const { nav_items = {} } = configs || {};
 	const { organization: nav = [] } = nav_items || {};
-	const subscriptionNav = nav.find((item) => item.key === 'saas_cogo_subscription');
+	const subscriptionNav = nav.find(
+		(item) => item.key === 'saas_cogo_subscription',
+	);
 	const financeNav = nav.find((item) => item.key === 'saas_finance');
 	return (
 		<div className={styles.container}>

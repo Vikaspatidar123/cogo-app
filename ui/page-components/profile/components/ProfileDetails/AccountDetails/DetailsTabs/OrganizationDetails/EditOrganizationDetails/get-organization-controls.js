@@ -24,14 +24,14 @@ const fields = [
 		placeholder : 'logo',
 		type        : 'file',
 		drag        : true,
-		accept      :
-			'image/*,.pdf,.doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document',
-		uploadType   : 'aws',
-		format       : ' ',
-		rules        : { required: 'Required' },
-		showOptional : false,
-		style        : { width: '300px' },
-		uploadIcon   : <IcMCloudUpload width={40} height={40} />,
+		accept:
+      'image/*,.pdf,.doc,.docx,application/msword,application/'
+      + 'vnd.openxmlformats-officedocument.wordprocessingml.document',
+		uploadType : 'aws',
+		format     : ' ',
+		rules      : { required: 'Required' },
+		style      : { width: '300px' },
+		uploadIcon : <IcMCloudUpload width={40} height={40} />,
 	},
 	{
 		name         : 'about',
@@ -43,15 +43,14 @@ const fields = [
 	},
 ];
 
-const getOrganizationControls = ({
-	cityOptions = {},
-}) => fields.map((control) => {
+const getOrganizationControls = ({ cityOptions = {} }) => fields.map((control) => {
 	const { name } = control;
 	let newControl = { ...control };
 
 	if (name === 'city_id') {
 		newControl = { ...newControl, ...cityOptions };
 	}
+
 	return { ...newControl };
 });
 export default getOrganizationControls;

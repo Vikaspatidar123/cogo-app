@@ -7,47 +7,73 @@
 // icon is used to show icon webside only
 // mobileIcon is used to show icon in mobile navigation only
 // isSubNavs is used to show sub navigations
-
 import {
-	IcMAverage, IcMQuotations, IcMProductCodeMapping, IcMTradeparties,
+	IcMQuotations,
+	IcMUpwardGraph,
+	IcMTradeparties,
+	IcACrossBorder,
+	IcMProductCodeMapping,
 } from '@cogoport/icons-react';
 
 const navigationMappings = {
 	app_dashboard: {
-		key         : 'app_dashboard',
-		title       : 'Dashboard',
-		href        : '/v2/dashboard',
-		as          : '/v2/dashboard',
-		type        : 'link',
-		module_type : 'dashboards',
-		showInNav   : true,
+		key        : 'app_dashboard',
+		title      : 'Dashboard',
+		href       : '/v2/dashboard',
+		as         : '/v2/dashboard',
+		showInNav  : true,
+		mobileIcon : <IcMQuotations width={20} height={20} />,
+	},
 
+	saas_tools: {
+		key       : 'saas_tools',
+		title     : 'Tools',
+		icon      : 'nav-tools',
+		isSubNavs : true,
+		showInNav : true,
+		isNew     : true,
+		options   : [
+			{
+				key         : 'saas_tools-freight_rate_trend',
+				title       : 'Freight Rate Trend',
+				href        : '/v2/saas/freight-rate-trend',
+				as          : '/v2/saas/freight-rate-trend',
+				icon        : <IcMUpwardGraph width={40} height={40} fill="red" />,
+				description : 'keep track of freight rates',
+			},
+		],
 	},
-	app_discover_rates: {
-		key         : 'app_discover_rates',
-		title       : 'Discover Rates',
-		href        : '/book',
-		as          : '/book',
-		type        : 'link',
-		tag         : 'New Search',
-		module_type : 'crm',
-		showInNav   : true,
-	},
-	saas_planning: {
-		key         : 'saas_planning',
-		title       : 'Planning',
-		isSubNavs   : true,
-		showInNav   : true,
+
+	saas_premium_services: {
+		key         : 'saas_premium_services',
+		title       : 'Premium Services',
+		icon        : 'nav-premium-services',
 		module_type : 'dashboards',
+		isNew       : true,
+		showInNav   : true,
+		isSubNavs   : true,
 		options     : [
 			{
-				key         : 'saas_planning-quotation',
-				title       : 'Quick Quotations',
-				icon        : <IcMQuotations width={40} height={40} />,
-				type        : 'link',
-				href        : '/saas/quickquotation/viewlist',
-				as          : '/saas/quickquotation/viewlist',
-				module_type : 'dashboards',
+				key   : 'saas_premium_services-order_history',
+				title : 'Order History',
+				href  : '/v2/saas/order-history',
+				as    : '/v2/saas/order-history',
+				icon  : <IcACrossBorder width={40} height={40} />,
+			},
+		],
+	},
+	saas_planning: {
+		key       : 'saas_planning',
+		title     : 'Planning',
+		isSubNavs : true,
+		showInNav : true,
+		options   : [
+			{
+				key   : 'saas_planning-trade_partner',
+				title : 'Trade Partner',
+				icon  : <IcMTradeparties width={40} height={40} />,
+				href  : '/v2/saas/trade-partner',
+				as    : '/v2/saas/trade-partner',
 			},
 			{
 				key         : 'saas_planning-product_inventory',
@@ -58,37 +84,20 @@ const navigationMappings = {
 				as          : '/v2/saas/product-inventory',
 				module_type : 'dashboards',
 			},
-			{
-				key         : 'saas_planning-trade_partner',
-				title       : 'Trade Partner',
-				type        : 'link',
-				icon        : <IcMTradeparties width={40} height={40} />,
-				href        : '/saas/trade-partner',
-				as          : '/saas/trade-partner',
-				module_type : 'dashboards',
-			},
 		],
 	},
-	saas_premium_services: {
-		key         : 'saas_premium_services',
-		title       : 'Premium Services',
-		icon        : 'nav-premium-services',
-		module_type : 'dashboards',
-		isNew       : true,
-		line        : true,
+
+	app_discover_rates: {
+		key         : 'app_discover_rates',
+		title       : 'Discover Rates',
+		href        : '/book',
+		as          : '/book',
+		type        : 'link',
+		tag         : 'New Search',
+		module_type : 'crm',
 		showInNav   : true,
-		isSubNavs   : true,
-		options     : [
-			{
-				key   : 'saas_premium_services-duties_and_taxes',
-				title : 'Duties & Taxes Calculator',
-				href  : '/v2/saas/premium-services/duties-taxes-calculator',
-				as    : '/v2/saas/premium-services/duties-taxes-calculator',
-				icon  : <IcMAverage width={40} height={40} fill="red" />,
-				type  : 'link',
-			},
-		],
 	},
+
 	app_bookings: {
 		key       : 'app_bookings',
 		title     : 'Shipments',
@@ -98,19 +107,6 @@ const navigationMappings = {
 		icon      : 'nav-booking',
 		showInNav : true,
 	},
-	// saas_insurance: {
-	// 	key: 'saas_insurance',
-	// 	title: 'Insurance',
-	// 	href: '/saas/insurance/list',
-	// 	as: '/saas/insurance/list',
-	// 	type: 'link',
-	// 	icon: 'nav-insurance',
-	// 	main_apis: [],
-	// 	possible_apis: app_apis.saas_insurance,
-	// 	module_type: 'dashboards',
-	// 	isNew: true,
-	// 	showInNav: true,
-	// },
 
 	app_accept_terms_and_conditions: {
 		key       : 'app_accept_terms_and_conditions',
@@ -124,7 +120,6 @@ const navigationMappings = {
 		key   : 'app_get_started',
 		title : 'Get Started',
 		theme : 'green',
-
 	},
 
 	app_kyc: {
@@ -137,14 +132,12 @@ const navigationMappings = {
 
 	},
 	app_settings: {
-		key       : 'app_settings',
-		title     : 'Settings',
-		href      : '/settings',
-		as        : '/settings',
-		type      : 'link',
-		showInNav : false,
-
+		key           : 'app_settings',
+		title         : 'Settings',
+		href          : '/v2/settings',
+		as            : '/v2/settings',
+		type          : 'link',
+		showMobileNav : true,
 	},
-
 };
 export default navigationMappings;

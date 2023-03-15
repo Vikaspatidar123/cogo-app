@@ -1,11 +1,9 @@
 import { Button, Modal } from '@cogoport/components';
-import { startCase } from '@cogoport/utils';
 
 import styles from './styles.module.css';
 import useEditOtherAddress from './useEditOtherAddress';
 
 import getField from '@/packages/forms/Controlled';
-// import Layout from '@/temp/form/FormLayout';
 
 function EditOtherAddress({
 	organizationType = '',
@@ -13,28 +11,25 @@ function EditOtherAddress({
 	otherAddressObjToUpdate = {},
 	organizationOtherAddressesList,
 	getOrganizationOtherAddresses,
-	handleCloseModal = () => { },
+	handleCloseModal = () => {},
+	getAdd,
+	mobalType,
 }) {
-	const {
-		loading,
-		control,
-		showElements,
-		fields,
-		formState,
-		handleSubmit,
-		onCreate,
-	} = useEditOtherAddress({
+	const { loading, control, showElements, fields, handleSubmit, onCreate } = useEditOtherAddress({
 		organizationType,
 		address_key,
 		getOrganizationOtherAddresses,
 		organizationOtherAddressesList,
 		otherAddressObjToUpdate,
 		handleCloseModal,
+		getAdd,
+		mobalType,
 	});
-
 	return (
 		<div>
-			<Modal.Header title={address_key?.label} />
+			<Modal.Header
+				title={mobalType ? `Edit ${address_key?.label}` : address_key?.label}
+			/>
 			<Modal.Body>
 				<div className={styles.layout}>
 					{fields.map((item) => {
@@ -54,10 +49,10 @@ function EditOtherAddress({
 			<Modal.Footer>
 				<Button
 					onClick={handleCloseModal}
-					className="secondary md"
 					style={{
 						marginRight: 16,
 					}}
+					themeType="secondary"
 					disabled={loading}
 				>
 					Cancel
@@ -66,9 +61,9 @@ function EditOtherAddress({
 				<Button
 					disabled={loading}
 					onClick={handleSubmit(onCreate)}
-					className="primary md"
+					themeType="primary"
 				>
-					Update
+					{mobalType ? 'Update' : 'Add'}
 				</Button>
 			</Modal.Footer>
 		</div>

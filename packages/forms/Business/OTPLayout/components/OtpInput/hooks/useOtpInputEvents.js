@@ -1,26 +1,15 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable no-undef */
 import { Toast } from '@cogoport/components';
 import { useRef, useEffect, useCallback } from 'react';
 
 const useOtpInputEvents = ({
 	otpLength = 0,
-	setOtp = () => { },
+	setOtp = () => {},
 	otpContainerRef = null,
 	otpInputElementsRef = [],
 }) => {
 	const isCtrlDown = useRef(false);
-
-	useEffect(() => {
-		const events = ['keydown', 'paste'];
-		events.forEach((eventType) => {
-			otpContainerRef.current?.addEventListener(eventType, validateInputs);
-		});
-
-		return () => {
-			events.forEach((eventType) => {
-				otpContainerRef.current?.removeEventListener(eventType, validateInputs);
-			});
-		};
-	}, []);
 
 	const validateInputKeydownEvent = useCallback((event) => {
 		if (Number.isInteger(+event.key)) {
@@ -100,6 +89,19 @@ const useOtpInputEvents = ({
 		if (event.type === 'paste') {
 			validateInputPasteEvent(event);
 		}
+	}, []);
+
+	useEffect(() => {
+		const events = ['keydown', 'paste'];
+		events.forEach((eventType) => {
+			otpContainerRef.current?.addEventListener(eventType, validateInputs);
+		});
+
+		return () => {
+			events.forEach((eventType) => {
+				otpContainerRef.current?.removeEventListener(eventType, validateInputs);
+			});
+		};
 	}, []);
 };
 

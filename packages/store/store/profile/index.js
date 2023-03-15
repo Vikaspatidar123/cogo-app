@@ -4,6 +4,7 @@ const initialState = {};
 
 export * from './actions';
 
+// eslint-disable-next-line default-param-last
 const storeProfile = (state = initialState, action) => {
 	switch (action.type) {
 		case syncTypes.SET_STORE_STATE:

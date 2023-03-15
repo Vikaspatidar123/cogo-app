@@ -1,6 +1,3 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable max-len */
-/* eslint-disable jsx-a11y/no-static-element-interactions */
 import { Modal } from '@cogoport/components';
 import { IcCFtick, IcMEdit } from '@cogoport/icons-react';
 import { startCase, format } from '@cogoport/utils';
@@ -14,9 +11,6 @@ import LoadingState from './LoadingState';
 import MobileVerificationModal from './MobileVerificationModal';
 import ResetPassword from './ResetPassword';
 import styles from './styles.module.css';
-
-import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
-// import formatDate from '@/temp/utils/formatDate';
 
 function MyProfile() {
 	const {
@@ -107,7 +101,11 @@ function MyProfile() {
 
 								{userDetails.email && !userDetails.email_verified ? (
 									<div className={styles.text_icon_container}>
-										<div className={styles.verification_text} onClick={() => verifyEmailId()}>
+										<div
+											className={styles.verification_text}
+											onClick={() => verifyEmailId()}
+											role="presentation"
+										>
 											Email
 										</div>
 									</div>
@@ -134,6 +132,7 @@ function MyProfile() {
 										<div
 											className={styles.verification_text}
 											onClick={() => setShowMobileVerificationModal('verify')}
+											role="presentation"
 										>
 											Mobile
 										</div>
@@ -145,6 +144,7 @@ function MyProfile() {
 										<div
 											className={styles.verification_text}
 											onClick={() => setShowMobileVerificationModal('change')}
+											role="presentation"
 										>
 											Change
 										</div>
@@ -168,7 +168,11 @@ function MyProfile() {
 								<div className={styles.value_text}>
 									<div className={styles.text_icon_container}>
 										{userDetails.preferred_languages?.length > 0
-											? userDetails.preferred_languages?.map((lang) => <div className={styles.language_tag}>{startCase(lang)}</div>)
+											? userDetails.preferred_languages?.map((lang) => (
+												<div className={styles.language_tag}>
+													{startCase(lang)}
+												</div>
+											))
 											: '-'}
 									</div>
 								</div>
@@ -183,8 +187,6 @@ function MyProfile() {
 										userDetails.birth_date,
 										'dd MMM yyyy',
 									) || '-'}
-									{/* formatType : 'date', */}
-									{/* dateFormat : GLOBAL_CONSTANTS.formats.date['dd MMM yyyy'], */}
 								</div>
 							</div>
 
@@ -199,7 +201,8 @@ function MyProfile() {
 												<div
 													className={styles.value_text}
 												>
-													{`${mobile_number.mobile_country_code} ${mobile_number.mobile_number}`}
+													{`${mobile_number.mobile_country_code} 
+													${mobile_number.mobile_number}`}
 												</div>
 											),
 										)
@@ -209,7 +212,11 @@ function MyProfile() {
 
 							<div className={styles.sub_container}>
 								<div className={styles.label_text} />
-								<div className={styles.link_text} onClick={() => setShowPasswordModal(true)}>
+								<div
+									className={styles.link_text}
+									onClick={() => setShowPasswordModal(true)}
+									role="presentation"
+								>
 									Change Password
 								</div>
 							</div>

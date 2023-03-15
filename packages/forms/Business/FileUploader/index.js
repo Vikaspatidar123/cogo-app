@@ -1,11 +1,11 @@
 import { Upload, Toast } from '@cogoport/components';
-import { IcMDocument, IcMUpload } from '@cogoport/icons-react';
+import { IcMDocument } from '@cogoport/icons-react';
 import { isEmpty } from '@cogoport/utils';
 import React, { useState, useEffect } from 'react';
 
-import styles from './styles.module.css';
+import { publicRequest, request } from '../../../request';
 
-import { publicRequest, request } from '@/packages/request';
+import styles from './styles.module.css';
 
 function FileUploader(props) {
 	const {
@@ -65,10 +65,7 @@ function FileUploader(props) {
 
 		const finalUrl = url.split('?')[0];
 
-		return {
-			fileName: file.name,
-			finalUrl,
-		};
+		return finalUrl;
 	};
 
 	const handleChange = async (values) => {
@@ -105,24 +102,26 @@ function FileUploader(props) {
 				className={styles.upload}
 			/>
 
-			{loading && !isEmpty(progress) && Object.keys(progress).map((key) => (
-				<div className={styles.progress_container}>
-					<IcMDocument
-						style={{ height: '30', width: '30', color: '#2C3E50' }}
-					/>
-					<div>
-						<div className={styles.file_name}>
-							{`File uploading (${progress[key]}%)...`}
-						</div>
-						<div className={styles.progressBar}>
-							<div
-								className={styles.progress}
-								style={{ width: `${progress[key]}%` }}
-							/>
-						</div>
-					</div>
-				</div>
-			))}
+			{loading
+        && !isEmpty(progress)
+        && Object.keys(progress).map((key) => (
+	<div className={styles.progress_container}>
+		<IcMDocument
+			style={{ height: '30', width: '30', color: '#2C3E50' }}
+		/>
+		<div>
+			<div className={styles.file_name}>
+				{`File uploading (${progress[key]}%)...`}
+			</div>
+			<div className={styles.progress_bar}>
+				<div
+					className={styles.progress}
+					style={{ width: `${progress[key]}%` }}
+				/>
+			</div>
+		</div>
+	</div>
+        ))}
 		</>
 	);
 }

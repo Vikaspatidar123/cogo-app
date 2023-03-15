@@ -3,13 +3,7 @@ import { isEmpty, getByKey, startCase, format } from '@cogoport/utils';
 const ActionFunction = {
 	startCase,
 };
-
-const getValue = (
-	itemData,
-	itemField,
-	emptyState,
-	functions = {},
-) => {
+const getValue = (itemData, itemField, functions, emptyState) => {
 	if (isEmpty(itemData) || isEmpty(itemField)) {
 		return emptyState || '';
 	}

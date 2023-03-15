@@ -7,8 +7,13 @@
 // icon is used to show icon webside only
 // mobileIcon is used to show icon in mobile navigation only
 // isSubNavs is used to show sub navigations
-
-import { IcMUpwardGraph, IcMFfreferigeratedCargoType, IcMQuotations } from '@cogoport/icons-react';
+import {
+	IcMQuotations,
+	IcMUpwardGraph,
+	IcMTradeparties,
+	IcACrossBorder,
+	IcMFfreferigeratedCargoType,
+} from '@cogoport/icons-react';
 
 const navigationMappings = {
 	app_dashboard: {
@@ -45,6 +50,39 @@ const navigationMappings = {
 				description : 'keep track of freight rates',
 			},
 		],
+	},
+
+	saas_premium_services: {
+		key         : 'saas_premium_services',
+		title       : 'Premium Services',
+		icon        : 'nav-premium-services',
+		module_type : 'dashboards',
+		isNew       : true,
+		showInNav   : true,
+		isSubNavs   : true,
+		options     : [
+			{
+				key   : 'saas_premium_services-order_history',
+				title : 'Order History',
+				href  : '/v2/saas/order-history',
+				as    : '/v2/saas/order-history',
+				icon  : <IcACrossBorder width={40} height={40} />,
+			},
+		],
+	},
+	saas_planning: {
+		key       : 'saas_planning',
+		title     : 'Planning',
+		isSubNavs : true,
+		showInNav : true,
+		options   : [
+			{
+				key   : 'saas_planning-trade_partner',
+				title : 'Trade Partner',
+				icon  : <IcMTradeparties width={40} height={40} />,
+				href  : '/v2/saas/trade-partner',
+				as    : '/v2/saas/trade-partner',
+			}],
 	},
 
 	app_get_started: {

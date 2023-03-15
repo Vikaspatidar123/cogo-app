@@ -53,6 +53,19 @@ const saas = {
 		},
 	],
 
+	app_saas_order_history: [
+		{
+			api          : 'get_saas_trade_engine_order_history',
+			access_type  : 'private',
+			service_name : 'order_history',
+		},
+		{
+			api          : 'get_saas_trade_engine',
+			access_type  : 'private',
+			service_name : 'order_history',
+		},
+	],
+
 	app_saas_load_container: [],
 
 };

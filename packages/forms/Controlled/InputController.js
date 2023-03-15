@@ -19,7 +19,7 @@ function InputController(props) {
 					{...rest}
 					key={rest.id}
 					onChange={onChange}
-					value={newValue || value}
+					value={newValue}
 					onBlur={onBlur}
 				/>
 			)}

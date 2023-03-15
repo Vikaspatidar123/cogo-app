@@ -51,8 +51,6 @@ const navigationMappings = {
 				icon  : <IcMTradeparties width={40} height={40} />,
 				href  : '/v2/saas/trade-partner',
 				as    : '/v2/saas/trade-partner',
-				type  : 'link',
-
 			}],
 	},
 

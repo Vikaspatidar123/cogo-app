@@ -2,11 +2,13 @@ lockfileVersion: 5.4
 
 specifiers:
   '@cogoport/charts': ^1.0.1
-  '@cogoport/components': ^1.0.373
+  '@cogoport/components': ^1.0.376
   '@cogoport/eslint-config': ^1.1.0
   '@cogoport/icons-react': ^1.0.58
   '@cogoport/stylelint-config': ^1.0.3
   '@cogoport/utils': ^1.2.4
+  '@stripe/react-stripe-js': ^1.6.0
+  '@stripe/stripe-js': ^1.21.2
   '@svgr/webpack': ^6.5.1
   axios: ^1.3.4
   axios-hooks: ^4.0.0
@@ -33,9 +35,11 @@ specifiers:
 
 dependencies:
   '@cogoport/charts': 1.0.1_biqbaboplfbrettd7655fr4n2y
-  '@cogoport/components': 1.0.373_cyxdlkncyjzqtklzwrmvnywxma
+  '@cogoport/components': 1.0.376_cyxdlkncyjzqtklzwrmvnywxma
   '@cogoport/icons-react': 1.0.58_biqbaboplfbrettd7655fr4n2y
   '@cogoport/utils': 1.2.4
+  '@stripe/react-stripe-js': 1.16.5_tvavvciizu5ad2qrurnwrwmiiy
+  '@stripe/stripe-js': 1.49.0
   axios: 1.3.4
   axios-hooks: 4.0.0_axios@1.3.4+react@18.2.0
   i18next: 22.4.10
@@ -1369,8 +1373,8 @@ packages:
       - react-dom
     dev: false
 
-  /@cogoport/components/1.0.373_cyxdlkncyjzqtklzwrmvnywxma:
-    resolution: {integrity: sha512-Yk+1xAofdk9xgdxL6986nl+9J+bCX2wGRvxPVFZSzcTG2KhcvBz6zUYqz04pWOy9CJO3s/gnigFuVWaJ58freA==}
+  /@cogoport/components/1.0.376_cyxdlkncyjzqtklzwrmvnywxma:
+    resolution: {integrity: sha512-P6VQvIVEIICkH26Z5AYPXwZIcQCt6Kq+TEES7io63FXkQOrwCdG6cUw4ET0jPnU8BdPGdnSop4iYuGI7zYyVag==}
     peerDependencies:
       '@cogoport/icons-react': ^1.0.23
       react: ^18.2.0
@@ -2503,6 +2507,23 @@ packages:
       '@react-spring/types': 9.4.5
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
+    dev: false
+
+  /@stripe/react-stripe-js/1.16.5_tvavvciizu5ad2qrurnwrwmiiy:
+    resolution: {integrity: sha512-lVPW3IfwdacyS22pP+nBB6/GNFRRhT/4jfgAK6T2guQmtzPwJV1DogiGGaBNhiKtSY18+yS8KlHSu+PvZNclvQ==}
+    peerDependencies:
+      '@stripe/stripe-js': ^1.44.1
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0
+      react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
+    dependencies:
+      '@stripe/stripe-js': 1.49.0
+      prop-types: 15.8.1
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+    dev: false
+
+  /@stripe/stripe-js/1.49.0:
+    resolution: {integrity: sha512-wcXxHtfb3hkwQnOfLzu4fO3J+1laWjrxE9Jfyvpk+fCUAxs8Rif9WrsSZ8m6BRFazQqGoGKvqzXB7gsVB5phJw==}
     dev: false
 
   /@svgr/babel-plugin-add-jsx-attribute/6.5.1_@babel+core@7.21.0:

@@ -1,4 +1,4 @@
-import { Tooltip } from '@cogoport/components';
+import { Tooltip, Placeholder } from '@cogoport/components';
 import { IcMArrowRotateDown } from '@cogoport/icons-react';
 import { useState, useEffect } from 'react';
 
@@ -63,6 +63,11 @@ function Item({
 						style={singleItem.styles}
 						key={singleItem?.key}
 					>
+						{loading && (
+							<Placeholder style={{ height: '20px', width: '100%' }}>
+								<rect width="100%" height="20px" />
+							</Placeholder>
+						)}
 						{singleItem.render && !loading ? singleItem.render(itm) : null}
 						{infoData(singleItem, itm)}
 					</div>

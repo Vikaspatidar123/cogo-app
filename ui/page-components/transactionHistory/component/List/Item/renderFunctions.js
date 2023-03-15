@@ -18,16 +18,14 @@ const itemFunctions = ({ functions }) => {
 		</div>
 	);
 	const newFunctions = {
-		renderAmount: (data, config) => {
-			formatAmount({
-				amount   : data[config.key],
-				currency : data.billCurrency,
-				options  : {
-					notation : 'standard',
-					style    : 'currency',
-				},
-			});
-		},
+		renderAmount: (data, config) => formatAmount({
+			amount   : data[config.key],
+			currency : data.billCurrency,
+			options  : {
+				notation : 'standard',
+				style    : 'currency',
+			},
+		}),
 		renderStatus  : (data, config) => getStatus(data[config.key]),
 		renderService : (data) => <Download data={data} />,
 		renderFormat  : (data, config) => data[config.key]?.replaceAll('_', ' '),

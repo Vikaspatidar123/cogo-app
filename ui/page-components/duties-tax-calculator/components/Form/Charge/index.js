@@ -70,10 +70,7 @@ function Charge({
 	};
 
 	const errorHandler = () => {
-		Toast.error('Fill all mandatory details', {
-			autoClose : 3000,
-			style     : { color: '#333', background: '#FFD9D4' },
-		});
+		Toast.error('Fill all mandatory details');
 	};
 
 	return (

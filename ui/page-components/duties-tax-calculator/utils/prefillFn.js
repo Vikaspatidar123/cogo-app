@@ -39,32 +39,20 @@ const usePrefillFn = ({
 		} = localStorageFormData || {};
 		setPortDetails({ origin, destination });
 		setTransportMode(transportMode);
-		const transportObj = {
-			originPort,
-			destinationPort,
-		};
 
-		const productObj = {
-			productName,
-			hsCode,
-			consignmentValue,
-			quantity,
-			currency,
-		};
+		transportSetValues('originPort', originPort);
+		transportSetValues('destinationPort', destinationPort);
 
-		const chargeObj = {
-			freightCharge,
-			incoterm,
-			incotermCharges,
-		};
-		console.log(transportObj, productObj, chargeObj);
-		// transportSetValues(transportObj);
-		transportSetValues(originPort, destinationPort);
+		productSetValue('productName', productName);
+		productSetValue('hsCode', hsCode);
+		productSetValue('consignmentValue', consignmentValue);
+		productSetValue('quantity', quantity);
+		productSetValue('currency', currency);
 
-		// productSetValue(productObj);
-		// chargeSetValue(chargeObj);
-		productSetValue(productName, hsCode, consignmentValue, quantity, currency);
-		chargeSetValue(freightCharge, incoterm, incotermCharges);
+		chargeSetValue('freightCharge', freightCharge);
+		chargeSetValue('incoterm', incoterm);
+		chargeSetValue('incotermCharges', incotermCharges);
+
 		setPrevCurr(currency);
 		setFormStepper({
 			formTransportDetails : false,

@@ -48,10 +48,7 @@ const useDraft = () => {
 			return resp?.data?.id;
 		} catch (err) {
 			console.log(err?.error?.message);
-			Toast.error('Something went wrong! Please try after sometime', {
-				autoClose : 3000,
-				style     : { color: '#333', background: '#FFD9D4' },
-			});
+			Toast.error('Something went wrong! Please try after sometime');
 			return null;
 		}
 	};

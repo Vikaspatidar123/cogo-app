@@ -6,14 +6,13 @@ import { DestinationIcon, SourceIcon } from '../../configuration/icon-configurat
 import Pointer from './Pointer';
 import Route from './Route';
 
-const version = 1;
-const styleName = [{ title: 'Normal Day', style: 'normal.day' }];
-const LAYER = styleName.map(({ title, style }) => ({
-	name        : title,
-	// eslint-disable-next-line max-len
-	url         : `https://${version}.base.maps.ls.hereapi.com/maptile/2.1/maptile/newest/${style}/{z}/{x}/{y}/512/png8?apiKey=Yi1Uv0y9PgZ24UVbBYY7-fRwaz-DPdmGWdIddQW0A9g&mv=in337jp128&ppi=320`,
-	attribution : '',
-}));
+const LAYER = [
+	{
+		name        : 'Cogo Maps',
+		url         : 'https://api.cogoport.com/cogo-tiles/{z}/{x}/{y}.png',
+		attribution : '',
+	},
+];
 
 const center = { lat: '28.679079', lng: '77.069710' };
 function MapComp({
@@ -50,9 +49,11 @@ function MapComp({
 		<CogoMaps
 			baseLayer={LAYER}
 			zoom={3.6}
+			minZoom={2}
 			center={center}
 			setMap={setMap}
 			maxBoundsViscosity={1}
+			maxZoom={12}
 		>
 			{origin?.latitude && (
 				<Pointer lat={origin?.latitude} lng={origin?.longitude} map={map} iconSvg={SourceIcon} />

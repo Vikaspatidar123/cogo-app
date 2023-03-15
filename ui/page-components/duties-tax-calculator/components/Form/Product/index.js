@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react';
 
 import getField from '../../../../../../packages/forms/Controlled';
 // import HsCode from '../../../../hs-code-modal/component';
-// import ProductCatalogue from '../../../../product-catalogue-modal';
+import ProductCatalogue from '../../../../product-catalogue-modal';
 import { ProductCartIcon } from '../../../configuration/icon-configuration';
 import useCurrencyConversion from '../../../hook/useCurrencyConversion';
 import useVerifyHscode from '../../../hook/useVerifyHscode';
@@ -40,7 +40,6 @@ function Product({
 	const [showValidate, setShowValidate] = useState(false);
 	const [selectedData, setSelectedData] = useState();
 
-	console.log(showCatalogue, 'showCatalogue');
 	console.log(showHsCodeModal, 'showHsCodeModal');
 
 	const NumberSelector = getField('number');
@@ -91,7 +90,6 @@ function Product({
 			convertCurrency(prevCurr, watchCurrency);
 		}
 	}, [watchCurrency]);
-	console.log(error, 'error', fields);
 	return (
 		<div className={styles.container}>
 			<div className={styles.title_container}>
@@ -116,7 +114,7 @@ function Product({
 						<>
 							<div className={style.col}>
 								<div className={style.label}>{field?.label}</div>
-								<NumberSelector {...field} control={productNewControls} />
+								<NumberSelector {...field} control={productNewControls} key={field.name} />
 								{error?.[field?.name] && (
 									<div className={style.error_txt}>
 										*
@@ -150,14 +148,14 @@ function Product({
 				</div>
 			</form>
 			<ProductBox watch={watch} />
-			{/* {showCatalogue && (
+			{showCatalogue && (
 				<ProductCatalogue
 					showCatalogue={showCatalogue}
 					setShowCatalogue={setShowCatalogue}
 					setSelectedData={setSelectedData}
 				/>
 			)}
-			{showHsCodeModal && (
+			{/* {showHsCodeModal && (
 				<HsCode
 					showHsCodeModal={showHsCodeModal}
 					setShowHsCodeModal={setShowHsCodeModal}

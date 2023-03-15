@@ -22,8 +22,8 @@ const usePayment = () => {
 		method  : 'post',
 	}, { manual: true });
 
-	// eslint-disable-next-line max-len
-	const callBackUrl = `${process.env.NEXT_PUBLIC_APP_URL}/v2/${org_id}/${branch_id}/${account_type}saas/premium-services/duties-taxes-calculator`;
+	const callBackUrl = `${process.env.NEXT_PUBLIC_APP_URL}/v2/${org_id}/${branch_id}/${account_type}saas
+	/premium-services/duties-taxes-calculator`;
 
 	const getServiceDataHandler = async () => {
 		const resp = await getServiceCode();
@@ -81,10 +81,7 @@ const usePayment = () => {
 			}
 		} catch (err) {
 			console.log(err?.error?.message);
-			Toast.error('Something went wrong! Please try after sometime', {
-				autoClose : 3000,
-				style     : { color: '#333', background: '#FFD9D4' },
-			});
+			Toast.error('Something went wrong! Please try after sometime');
 		}
 	};
 	return { refectPayment, paymentLoading: loading || serviceCodeLoading };

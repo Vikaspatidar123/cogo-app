@@ -12,8 +12,8 @@ function PendingModal({ showPendingModal, setShowPendingModal, stop }) {
 	const { org_id = '', branch_id = '', account_type = '' } = query || {};
 
 	const closeModalHandler = () => {
-		// eslint-disable-next-line max-len
-		const redirectUrl = `${process.env.APP_URL}v2/${org_id}/${branch_id}/${account_type}/saas/premium-services/duties-taxes-calculator`;
+		const redirectUrl = `${process.env.APP_URL}v2/${org_id}/${branch_id}/${account_type}
+		/saas/premium-services/duties-taxes-calculator`;
 		// eslint-disable-next-line no-undef
 		window.open(redirectUrl, '_self');
 		setShowPendingModal(false);

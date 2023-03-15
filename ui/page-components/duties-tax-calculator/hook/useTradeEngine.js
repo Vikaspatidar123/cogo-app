@@ -31,10 +31,7 @@ const useTradeEngine = () => {
 			});
 			setTradeEngineResp(resp?.data);
 		} catch (err) {
-			Toast.error('Something went wrong! Please try after sometime', {
-				autoClose : 3000,
-				style     : { color: '#333', background: '#FFD9D4' },
-			});
+			Toast.error('Something went wrong! Please try after sometime');
 		}
 	};
 
@@ -54,10 +51,7 @@ const useTradeEngine = () => {
 			}
 		} catch (err) {
 			console.log(err, 'erer');
-			Toast.error('Something went wrong! Please try after sometime', {
-				autoClose : 3000,
-				style     : { color: '#333', background: '#FFD9D4' },
-			});
+			Toast.error('Something went wrong! Please try after sometime');
 		}
 	};
 	return {

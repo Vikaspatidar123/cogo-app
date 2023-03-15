@@ -22,10 +22,7 @@ const useFreightCharges = () => {
 				},
 			});
 		} catch (err) {
-			Toast.error(err?.message, {
-				autoClose : 3000,
-				style     : { color: '#333', background: '#FFD9D4' },
-			});
+			Toast.error(err?.message);
 		}
 	};
 	const createSpotSearch = async (payload) => {
@@ -37,10 +34,7 @@ const useFreightCharges = () => {
 			});
 			getSpotSearchfn(resp?.data?.id);
 		} catch (err) {
-			Toast.error(err?.error?.search_type?.[0], {
-				autoClose : 3000,
-				style     : { color: '#333', background: '#FFD9D4' },
-			});
+			Toast.error(err?.error?.search_type?.[0]);
 		}
 	};
 

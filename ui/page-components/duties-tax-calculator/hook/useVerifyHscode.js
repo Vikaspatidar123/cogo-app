@@ -28,17 +28,11 @@ const useVerifyHscode = () => {
 				},
 			});
 			if (!resp?.data) {
-				Toast.error('Please enter valid Hs Code ', {
-					autoClose : 3000,
-					style     : { color: '#333', background: '#FFD9D4' },
-				});
+				Toast.error('Please enter valid Hs Code ');
 			}
 			return resp?.data;
 		} catch (err) {
-			Toast.error('Something went wrong! Please try again ', {
-				autoClose : 3000,
-				style     : { color: '#333', background: '#FFD9D4' },
-			});
+			Toast.error('Something went wrong! Please try again ');
 			return false;
 		}
 	};
@@ -60,28 +54,18 @@ const useVerifyHscode = () => {
 			if (!resp?.data?.status && resp?.data?.recommendations.length === 0) {
 				Toast.info(
 					'This hs code is not supported by us. Please provide another hs code',
-					{
-						autoClose : 5000,
-						style     : { color: '#333', backgroundColor: '#e9faff' },
-					},
 				);
 				setValidateInProgress(true);
 			}
 			if (!resp?.data?.status && resp?.data?.recommendations.length > 0) {
-				Toast.info('Invalid HS Code. Please select from dropdown', {
-					autoClose : 5000,
-					style     : { color: '#333', backgroundColor: '#e9faff' },
-				});
+				Toast.info('Invalid HS Code. Please select from dropdown');
 				setValidateInProgress(true);
 			}
 
 			setStatus(resp?.data?.status);
 			setInputValue(resp?.data?.recommendations);
 		} catch (error) {
-			Toast.error('Something went wrong! Please try again ', {
-				autoClose : 3000,
-				style     : { color: '#333', background: '#FFD9D4' },
-			});
+			Toast.error('Something went wrong! Please try again ');
 		}
 	};
 

@@ -4,9 +4,10 @@ import { Tooltip, cl, Button } from '@cogoport/components';
 import { IcMInfo } from '@cogoport/icons-react';
 
 import { SuccessGif } from '../../configuration/icon-configuration';
-import { shortFormatNumber } from '../../utils/getShortFormatNumber';
 
 import styles from './styles.module.css';
+
+import formatAmount from '@/ui/commons/utils/formatAmount';
 
 function SuccessModal({ tradeEngineResp }) {
 	const {
@@ -26,26 +27,65 @@ function SuccessModal({ tradeEngineResp }) {
 		return amount;
 	};
 
+	const incotermAmmount = calculateTotalCharge(incotermArr);
+
 	const tooltipContent = () => (
 		<div className={styles.tooltip_container}>
 			<div className={styles.tooltip_heading}>Breakdown of Total Landed Cost</div>
 			<div className={styles.row}>
 				<div>Freight Charges</div>
-				<div>{shortFormatNumber(freightCharges, resultCurrency, true)}</div>
+				<div>
+					{formatAmount({
+						amount   : freightCharges,
+						currency : resultCurrency,
+						options  : {
+							notation : 'standard',
+							style    : 'currency',
+						},
+					})}
+
+				</div>
 			</div>
 			<div className={styles.row}>
 				<div>Consignment Value</div>
-				<div>{shortFormatNumber(consignmentValue, resultCurrency, true)}</div>
+				<div>
+					{formatAmount({
+						amount   : consignmentValue,
+						currency : resultCurrency,
+						options  : {
+							notation : 'standard',
+							style    : 'currency',
+						},
+					})}
+
+				</div>
 			</div>
 			<div className={styles.row}>
 				<div>Applicable Charges</div>
 				<div>
-					{shortFormatNumber(calculateTotalCharge(incotermArr), resultCurrency, true)}
+					{formatAmount({
+						amount   : incotermAmmount,
+						currency : resultCurrency,
+						options  : {
+							notation : 'standard',
+							style    : 'currency',
+						},
+					})}
 				</div>
 			</div>
 			<div className={styles.row}>
 				<div>Total Duties and Taxes</div>
-				<div>{shortFormatNumber(totalDutiesAndTaxes, resultCurrency, true)}</div>
+				<div>
+					{formatAmount({
+						amount   : totalDutiesAndTaxes,
+						currency : resultCurrency,
+						options  : {
+							notation : 'standard',
+							style    : 'currency',
+						},
+					})}
+
+				</div>
 			</div>
 		</div>
 	);
@@ -76,18 +116,31 @@ function SuccessModal({ tradeEngineResp }) {
 								{(taxSetResponse || []).map(({ name = '', value = 0 }) => (
 									<div className={styles.row} key={name}>
 										<div>{name}</div>
-										<div>{shortFormatNumber(value, resultCurrency, true)}</div>
+										<div>
+											{formatAmount({
+												amount   : value,
+												currency : resultCurrency,
+												options  : {
+													notation : 'standard',
+													style    : 'currency',
+												},
+											})}
+
+										</div>
 									</div>
 								))}
 								<div className={styles.dashed_line} />
 								<div className={cl`${styles.row} ${styles.total}`}>
 									<div>Total</div>
 									<div>
-										{shortFormatNumber(
-											calculateTotalCharge(taxSetResponse),
-											resultCurrency,
-											true,
-										)}
+										{formatAmount({
+											amount   : calculateTotalCharge(taxSetResponse),
+											currency : resultCurrency,
+											options  : {
+												notation : 'standard',
+												style    : 'currency',
+											},
+										})}
 									</div>
 								</div>
 							</div>
@@ -97,7 +150,17 @@ function SuccessModal({ tradeEngineResp }) {
 			))}
 			<div className={cl`${styles.row} ${styles.final_total} ${styles.duties_total}`}>
 				<div>Total Duties and Tax</div>
-				<div>{shortFormatNumber(totalDutiesAndTaxes, resultCurrency, true)}</div>
+				<div>
+					{formatAmount({
+						amount   : totalDutiesAndTaxes,
+						currency : resultCurrency,
+						options  : {
+							notation : 'standard',
+							style    : 'currency',
+						},
+					})}
+
+				</div>
 			</div>
 			<div className={cl`{styles.dashed_line}${styles.dashed_total}`} />
 			<div className={cl`${styles.row} ${styles.final_total}`}>
@@ -113,7 +176,17 @@ function SuccessModal({ tradeEngineResp }) {
 						</div>
 					</Tooltip>
 				</div>
-				<div>{shortFormatNumber(totalLandedCost, resultCurrency, true)}</div>
+				<div>
+					{formatAmount({
+						amount   : totalLandedCost,
+						currency : resultCurrency,
+						options  : {
+							notation : 'standard',
+							style    : 'currency',
+						},
+					})}
+
+				</div>
 			</div>
 
 			<div className={styles.btn_container}>

@@ -1,8 +1,8 @@
 import { cl } from '@cogoport/components';
 
-import { shortFormatNumber } from '../../../../utils/getShortFormatNumber';
-
 import styles from './styles.module.css';
+
+import formatAmount from '@/ui/commons/utils/formatAmount';
 
 function Charges({
 	formData = {},
@@ -24,7 +24,14 @@ function Charges({
 						<div className={styles.service}>
 							<div className={styles.text}>Freight Charge</div>
 							<div className={styles.price}>
-								{shortFormatNumber(freightCharge, currency, true)}
+								{formatAmount({
+									amount  : freightCharge,
+									currency,
+									options : {
+										notation : 'standard',
+										style    : 'currency',
+									},
+								})}
 							</div>
 						</div>
 					)}
@@ -32,7 +39,17 @@ function Charges({
 						({ name, value }) => value > 0 && (
 							<div className={styles.service}>
 								<div className={styles.text}>{name}</div>
-								<div className={styles.price}>{shortFormatNumber(value, currency, true)}</div>
+								<div className={styles.price}>
+									{formatAmount({
+										amount  : value,
+										currency,
+										options : {
+											notation : 'standard',
+											style    : 'currency',
+										},
+									})}
+
+								</div>
 							</div>
 						),
 					)}
@@ -45,18 +62,42 @@ function Charges({
 						<>
 							<div className={styles.service}>
 								<div className={styles.text}>Services</div>
-								<div className={styles.price}>{shortFormatNumber(amount, dtCurrency, true)}</div>
+								<div className={styles.price}>
+									{formatAmount({
+										amount,
+										currency : dtCurrency,
+										options  : {
+											notation : 'standard',
+											style    : 'currency',
+										},
+									})}
+
+								</div>
 							</div>
 							<div className={styles.service}>
 								<div className={styles.text}>Conviences Fee</div>
 								<div className={styles.price}>
-									{shortFormatNumber(gstAmount, dtCurrency, true)}
+									{formatAmount({
+										amount   : gstAmount,
+										currency : dtCurrency,
+										options  : {
+											notation : 'standard',
+											style    : 'currency',
+										},
+									})}
 								</div>
 							</div>
 							<div className={cl`${styles.service} ${styles.total}`}>
 								<div className={styles.text}>Total Amount</div>
 								<div className={styles.price}>
-									{shortFormatNumber(totalAmount, dtCurrency, true)}
+									{formatAmount({
+										amount   : totalAmount,
+										currency : dtCurrency,
+										options  : {
+											notation : 'standard',
+											style    : 'currency',
+										},
+									})}
 								</div>
 							</div>
 						</>

@@ -46,17 +46,13 @@ function IncotermCharges({
 		if (incoterm !== formIncoterm) {
 			removeIncoterm();
 		}
-	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [incoterm]);
-
-	useEffect(() => {
 		if (watchIncotermCharges.length > 0) {
 			watchIncotermCharges.forEach((ele, index) => {
 				setValue(`incotermCharges.${index}.value`, ele?.value);
 			});
 		}
 	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
+	}, [incoterm]);
 
 	return (
 		<div>

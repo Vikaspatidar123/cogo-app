@@ -1,16 +1,14 @@
 import { Tooltip } from '@cogoport/components';
 import { IcMInfo } from '@cogoport/icons-react';
 
-import { shortFormatNumber } from '../../../../utils/getShortFormatNumber';
-
 import styles from './styles.module.css';
+
+import formatAmount from '@/ui/commons/utils/formatAmount';
 
 function ServicesCharge({ formData }) {
 	const {
 		hsCode, consignmentValue, quantity, currency, productName,
 	} = formData || {};
-
-	console.log(productName, 'productName');
 
 	const getProductData = () => (
 		<div>
@@ -36,7 +34,17 @@ function ServicesCharge({ formData }) {
 					Qty:
 					{quantity}
 				</div>
-				<div>{shortFormatNumber(consignmentValue, currency, true)}</div>
+				<div>
+					{formatAmount({
+						amount  : consignmentValue,
+						currency,
+						options : {
+							notation : 'standard',
+							style    : 'currency',
+						},
+					})}
+
+				</div>
 			</div>
 		</div>
 	);

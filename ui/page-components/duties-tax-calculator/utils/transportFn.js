@@ -16,11 +16,7 @@ const transportFn = ({
 }) => {
 	const interchangeValuesHandler = () => {
 		setRotate((prev) => !prev);
-		const obj = {
-			originPort      : destination,
-			destinationPort : origin,
-		};
-		console.log(obj);
+
 		setValue('originPort', destination);
 		setValue('destinationPort', origin);
 		setPortDetails((prev) => ({
@@ -44,23 +40,17 @@ const transportFn = ({
 			},
 		}));
 	};
-	console.log(portDetails, 'portDetails');
+
 	const checkPort = () => {
 		if (origin === destination) {
-			Toast.error('Same Port selected !', {
-				autoClose : 3000,
-				style     : { color: '#333', background: '#FFD9D4' },
-			});
+			Toast.error('Same Port selected !');
 			return true;
 		}
 		if (
 			portDetails?.origin?.countryId === portDetails?.destination?.countryId
       && transportMode === 'OCEAN'
 		) {
-			Toast.error('Ports of same Country selected!', {
-				autoClose : 3000,
-				style     : { color: '#333', background: '#FFD9D4' },
-			});
+			Toast.error('Ports of same Country selected!');
 			return true;
 		}
 		return false;
@@ -87,20 +77,11 @@ const transportFn = ({
 
 	const errorHandler = () => {
 		if (error?.originPort && error?.destinationPort) {
-			Toast.error('Please enter Origin and Destination Country', {
-				autoClose : 3000,
-				style     : { color: '#333', background: '#FFD9D4' },
-			});
+			Toast.error('Please enter Origin and Destination Country');
 		} else if (error?.originPort) {
-			Toast.error('Please enter Origin Country', {
-				autoClose : 3000,
-				style     : { color: '#333', background: '#FFD9D4' },
-			});
+			Toast.error('Please enter Origin Country');
 		} else if (error?.destinationPort) {
-			Toast.error('Please enter Destination Country', {
-				autoClose : 3000,
-				style     : { color: '#333', background: '#FFD9D4' },
-			});
+			Toast.error('Please enter Destination Country');
 		}
 	};
 

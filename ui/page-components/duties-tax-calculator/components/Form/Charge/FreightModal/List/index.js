@@ -1,7 +1,8 @@
 import { Radio, cl } from '@cogoport/components';
 
-import { shortFormatNumber } from '../../../../../utils/getShortFormatNumber';
 import styles from '../styles.module.css';
+
+import formatAmount from '@/ui/commons/utils/formatAmount';
 
 const List = ({
 	rates = [], checked = '', checkboxHandler,
@@ -33,7 +34,14 @@ const List = ({
 				{item?.shipping_line?.business_name || item?.airline?.business_name}
 			</div>
 			<div className={`${styles.col} ${styles.price}`}>
-				{shortFormatNumber(item?.total_price, item?.total_price_currency, true)}
+				{formatAmount({
+					amount   : item?.total_price,
+					currency : item?.total_price_currency,
+					options  : {
+						notation : 'standard',
+						style    : 'currency',
+					},
+				})}
 			</div>
 		</div>
 		<div
@@ -55,7 +63,14 @@ const List = ({
 			</div>
 			<div className={styles.rate_section}>
 				<div className={`${styles.col} ${styles.price}`}>
-					{shortFormatNumber(item?.total_price, item?.total_price_currency, true)}
+					{formatAmount({
+						amount   : item?.total_price,
+						currency : item?.total_price_currency,
+						options  : {
+							notation : 'standard',
+							style    : 'currency',
+						},
+					})}
 				</div>
 				<div className={styles.price}>
 					<Radio

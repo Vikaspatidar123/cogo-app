@@ -1,9 +1,10 @@
 import { Tooltip, cl } from '@cogoport/components';
 
 import { ProductCube, ProductBoxIcon } from '../../../../configuration/icon-configuration';
-import { shortFormatNumber } from '../../../../utils/getShortFormatNumber';
 
 import styles from './styles.module.css';
+
+import formatAmount from '@/ui/commons/utils/formatAmount';
 
 function ProductBox({ watch }) {
 	const {
@@ -52,7 +53,14 @@ function ProductBox({ watch }) {
 					<div className={styles.title}>Consignment Value</div>
 					<div className={styles.value}>
 						{renderName(
-							shortFormatNumber(consignmentValue, currency, consignmentValue.length < 6),
+							formatAmount({
+								amount  : consignmentValue,
+								currency,
+								options : {
+									notation : 'standard',
+									style    : 'currency',
+								},
+							}),
 						)}
 					</div>
 				</div>

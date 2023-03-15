@@ -18,10 +18,7 @@ const useCurrencyConversion = () => {
 			});
 			return exData;
 		} catch (error) {
-			Toast.error(error?.error, {
-				autoClose : 3000,
-				style     : { color: '#333', background: '#FFD9D4' },
-			});
+			Toast.error(error?.error);
 			return null;
 		}
 	};

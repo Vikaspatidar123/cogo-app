@@ -1,6 +1,6 @@
 import { Tooltip } from '@cogoport/components';
 
-const transport = {
+const TRANSPORT = {
 	OCEAN : 'SEA',
 	AIR   : 'AIR',
 };
@@ -47,7 +47,7 @@ const checkoutFn = ({
 		destinationPortId      : destinationPort,
 		destinationCountryCode : destination?.countryCode,
 		resultCurrency         : currency,
-		modeOfTransport        : transport[transportMode],
+		modeOfTransport        : TRANSPORT[transportMode],
 		isScreening            : false,
 		freightCharges         : freightCharge,
 		additionalChargesList  : {

@@ -2,6 +2,8 @@ import { Button } from '@cogoport/components';
 import { useState, useRef, forwardRef } from 'react';
 
 import headerFields from '../configuration/headerControls';
+import useCreateQuotation from '../hooks/useCreateQuotation';
+import useCurrencyConversion from '../hooks/useCurrencyConversion';
 import getHandleSubmitData from '../utils/getHandleSubmitdata';
 
 import AllDetails from './AllDetails';
@@ -18,19 +20,35 @@ function CreateQuotation() {
 	const { id, organization } = useSelector((state) => state?.profile);
 	const quoteRef = useRef({});
 	const [transportMode, setTransportMode] = useState('OCEAN');
+	const orgCurrency = organization?.country?.currency_code;
 
 	const {
 		control:headerControls,
 		handleSubmit: headerHandleSubmit,
 		formState: { errors: headerError },
+		watch,
 	} = useForm();
+	const watchCurrency = watch('currency');
 
+	const { getExchangeRate, exchangeRate = 1 } = useCurrencyConversion({
+		watchCurrency,
+		orgCurrency,
+		landingPageCall: true,
+	});
+	const { postQuotation, loading } = useCreateQuotation({});
 	const newHeaderFields = headerFields({ id, organization });
 
 	const submitForm = async () => {
-		const resp = await getHandleSubmitData({ quoteRef: quoteRef.current, headerHandleSubmit });
+		const resp = await getHandleSubmitData({ quoteRef: quoteRef.current, headerHandleSubmit, transportMode });
 		console.log(typeof resp, 'resp', resp);
 		return resp;
+	};
+
+	const createQuoteHandler = () => {
+		const data = submitForm();
+		if (data) {
+			postQuotation(data);
+		}
 	};
 
 	return (
@@ -62,7 +80,7 @@ function CreateQuotation() {
 			</div>
 			<div className={styles.btn_container}>
 				<Button themeType="secondary" size="lg" className={styles.back_btn}>Back</Button>
-				<Button size="lg" onClick={submitForm}>Create Quotation</Button>
+				<Button size="lg" onClick={createQuoteHandler} loading={loading}>Create Quotation</Button>
 			</div>
 		</div>
 	);

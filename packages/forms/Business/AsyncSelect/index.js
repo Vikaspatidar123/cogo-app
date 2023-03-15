@@ -1,5 +1,5 @@
 import { MultiSelect, Select } from '@cogoport/components';
-import { isEmpty } from '@cogoport/utils';
+import { isEmpty, merge } from '@cogoport/utils';
 
 import useGetAsyncOptions from '../../hooks/useGetAsyncOptions';
 import useGetAsyncOptionsBf from '../../hooks/useGetAsyncOptionsBf';
@@ -59,7 +59,7 @@ function AsyncSelect(props) {
 	const getAsyncOptionsProps = getOptionFn({
 		...defaultParams,
 		initialCall,
-		params   : params || defaultParams.params,
+		params   : merge(params, defaultParams.params),
 		labelKey : rest.labelKey || defaultParams.labelKey,
 		valueKey : rest.valueKey || defaultParams.valueKey,
 	});

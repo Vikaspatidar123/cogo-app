@@ -4,7 +4,6 @@ import { useState, forwardRef } from 'react';
 import useGetQuota from '../../../hooks/useGetQuota';
 import styles from '../styles.module.css';
 
-import CheckoutModal from './CheckoutModal';
 import PaymentModeModal from './PaymentModeModal';
 import ValidateProductModal from './ValidateProductModal';
 

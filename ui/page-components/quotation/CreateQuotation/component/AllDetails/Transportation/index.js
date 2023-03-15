@@ -11,6 +11,7 @@ import getField from '@/packages/forms/Controlled';
 
 function Transportation(props, ref) {
 	const [destinationPortDetails, setDestinationPortDetails] = useState({});
+	const [originPortDetails, setOriginPortDetails] = useState({});
 	const transportFields = transportControls({ transportMode: 'OCEAN' });
 	const {
 		control,
@@ -21,6 +22,8 @@ function Transportation(props, ref) {
 	const changeHandler = (name, data) => {
 		if (name === 'destinationId') {
 			setDestinationPortDetails(data);
+		} else {
+			setOriginPortDetails(data);
 		}
 	};
 
@@ -38,6 +41,7 @@ function Transportation(props, ref) {
 			});
 		},
 		destinationPortDetails,
+		originPortDetails,
 	}));
 
 	return (

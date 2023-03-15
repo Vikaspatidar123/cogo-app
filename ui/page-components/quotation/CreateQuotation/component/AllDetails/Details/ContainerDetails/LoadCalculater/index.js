@@ -2,8 +2,9 @@ import {
 	Modal,
 	Button,
 	InputGroup,
-	Input,
+	InputNumber,
 	Popover,
+	Input,
 } from '@cogoport/components';
 import { IcMInfo, IcABudgetingTools } from '@cogoport/icons-react';
 import { useState } from 'react';
@@ -86,25 +87,34 @@ function LoadCalculater({
 							</Popover>
 						</div>
 						<InputGroup>
-							<Input
+							<InputNumber
 								placeholder="L"
 								className={styles.input_d}
+								type="number"
+								min={0}
+								arrow={false}
 								onChange={(length) => setGlobalValue((prev) => ({
 									...prev,
 									length,
 								}))}
 							/>
-							<Input
+							<InputNumber
 								placeholder="W"
 								className={styles.input_d}
+								min={0}
+								arrow={false}
+								type="number"
 								onChange={(width) => setGlobalValue((prev) => ({
 									...prev,
 									width,
 								}))}
 							/>
-							<Input
+							<InputNumber
 								placeholder="H"
 								className={styles.input_d}
+								min={0}
+								type="number"
+								arrow={false}
 								onChange={(height) => setGlobalValue((prev) => ({
 									...prev,
 									height,
@@ -136,11 +146,14 @@ function LoadCalculater({
 								</div>
 							</Popover>
 						</div>
-						<Input
+						<InputNumber
 							placeholder="Weight"
 							size="md"
 							suffix="Kg"
 							style={{ width: '100%' }}
+							min={0}
+							arrow={false}
+							type="number"
 							onChange={(weight) => setGlobalValue((prev) => ({
 								...prev,
 								weight,
@@ -154,10 +167,13 @@ function LoadCalculater({
 				<div>
 					<div className={styles.lable}>Quantitiy</div>
 
-					<Input
+					<InputNumber
 						placeholder="Quantitiy"
 						size="md"
 						className={styles.quantitiy}
+						min={0}
+						type="number"
+						arrow={false}
 						onChange={(quantitiy) => setGlobalValue((prev) => ({
 							...prev,
 							quantitiy,
@@ -166,7 +182,6 @@ function LoadCalculater({
 				</div>
 			</Modal.Body>
 			<Modal.Footer align="left">
-				{/* <div className={styles.footer}> */}
 				<div className={styles.container}>
 					*
 					{noOfContainers > 0

@@ -75,9 +75,4 @@
 .container {
   width: 60%;
   color: #6b6d81;
-  /* font-size: 12px; */
-}
-.footer {
-  display: flex;
-  justify-content: space-between;
 }

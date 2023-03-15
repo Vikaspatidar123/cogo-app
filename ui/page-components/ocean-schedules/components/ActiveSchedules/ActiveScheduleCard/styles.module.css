@@ -1,0 +1,105 @@
+.container {
+    width: 49%;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 16px rgba(98, 127, 172, 0.2);
+    border-radius: 8px;
+
+    @media (max-width: 768px){
+        width: 100%;
+    }
+}   
+
+.header_container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.img_container {
+    padding: 16px;
+}
+
+.header_text {
+    font-weight: 600;
+    font-size: 12px;
+    color: #828282;
+    display: flex;
+    flex-direction: column;
+    :global{
+        .span{
+            font-weight: 400;
+            font-size: 12px;
+            color: #828282;
+        }
+    }
+}
+
+
+.header_text_container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.pills_container {
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    align-items: flex-end;
+    margin-right: 12px;
+
+    :global{
+        .ui_pill_container.ui_ps_size_md{
+            width: fit-content;
+        }
+    }
+}
+
+.dates_container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 30px 0px 30px;
+}
+
+.date_container {
+    font-weight: 600;
+    font-size: 12px;
+    color: #221F20;
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+
+    :global{
+        .span{
+            font-size: 12px;
+            font-weight: 400;
+            color: #221F20;
+            text-align: center;
+        }
+    }
+}
+
+.main_pill_container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.steps_container {
+    width: 100%;
+    padding: 0px 20px;
+}
+
+.footer_container {
+    background: #FDFBF6;
+    border-radius: 0px 0px 8px 8px; 
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    cursor: pointer;
+}

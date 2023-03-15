@@ -108,25 +108,24 @@
 			color: black;
 
 			.pagination_container {
-				margin: 10px ;
+				margin: 10px;
 			}
 
-			.page,
 			.break {
-				font-weight: 500 ;
-				background: transparent ;
+				font-weight: 500;
+				background: transparent;
 				border: none;
 			}
 
 			.selected {
 				color: black;
-				background: #fef3e9 ;
+				background: #fef3e9;
 			}
 
 			.next,
 			.previous {
-				background: transparent ;
-				border: none ;
+				background: transparent;
+				border: none;
 
 				svg {
 					stroke: #333;

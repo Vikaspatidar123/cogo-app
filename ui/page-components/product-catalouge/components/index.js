@@ -91,6 +91,7 @@ function ProductInventory() {
 						activeHeaderTab={activeHeaderTab}
 						isEdit={isEdit}
 						setIsEdit={setIsEdit}
+						selectedData={selectedData}
 					/>
 				)}
 			</div>

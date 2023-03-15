@@ -1,12 +1,13 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { Popover, Table, Tooltip } from '@cogoport/components';
 import {
 	IcMEdit, IcMPaste, IcMDelete, IcMOverflowDot,
 } from '@cogoport/icons-react';
 import { useEffect, useState } from 'react';
 
+import formatAmount from '../../../../../commons/utils/formatAmount';
 import AddProductModal from '../../../common/AddProductModal';
 import DeleteProductModal from '../../../common/DeleteProductModal';
-import { shortFormatNumber } from '../../../common/getShortFromatNumber';
 import useArchive from '../../../hooks/useArchive';
 import ArchiveModal from '../../AllProducts/ArchiveModal';
 
@@ -129,13 +130,13 @@ function ListView({
 			Header   : () => 'Cost Price',
 			key      : 'price',
 			id       : 'price',
-			accessor : (record) => shortFormatNumber(record?.costPrice, record?.currency),
+			accessor : (record) => formatAmount(record?.costPrice, record?.currency),
 		},
 		{
 			Header   : () => 'Selling Price',
 			id       : 'netAmount',
 			key      : 'netAmount',
-			accessor : (record) => shortFormatNumber(record?.sellingPrice, record?.currency),
+			accessor : (record) => formatAmount(record?.sellingPrice, record?.currency),
 		},
 		{
 			Header   : () => 'Action',

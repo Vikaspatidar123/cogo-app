@@ -1,3 +1,5 @@
+/* eslint-disable no-undef */
+/* eslint-disable max-len */
 import { Toast } from '@cogoport/components';
 import { useState } from 'react';
 
@@ -34,7 +36,7 @@ const useUploadDocuments = ({ refetchProduct, setShow }) => {
 					countryId      : country_id,
 					currencyCode   : currency_code,
 					countryName    : name,
-					url            : fileValue.url,
+					url            : fileValue,
 				},
 			});
 

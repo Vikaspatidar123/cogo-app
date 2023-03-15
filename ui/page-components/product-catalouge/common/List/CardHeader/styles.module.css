@@ -1,72 +1,71 @@
-.row_container{
-	width: 100%;
-	height: 78px;
-	border-radius: 4px;
+.row_container {
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	width: 100%;
+	height: 78px;
 	padding-left: 40px;
-	align-items: center
+	border-radius: 4px;
 }
 
-.container{
-	width: 94%;
-	height: 78px;
-	border-radius: 4px;
+.container {
 	display: flex;
 	align-items: center;
 	justify-content: flex-start;
+	width: 94%;
+	height: 78px;
 	padding-left: 40px;
+	border-radius: 4px;
 }
 
 @media screen and (max-width: 767px) {
-	.container{
+	.container {
 		width: fit-content;
 	}
 }
 
-.card_title{
-	font-weight: 500;
+.card_title {
 	font-size: 14px;
+	font-weight: 500;
 }
 
 .card_title_icon {
-	width: 100%;
 	justify-content: center;
+	width: 100%;
 }
 
 .caret {
-	margin-left: 5px;
 	width: 12px;
-	transition: transform 0.3s ease-in-out;
+	margin-left: 5px;
 	cursor: pointer;
+	transition: transform 0.3s ease-in-out;
 }
 
-.caret_rotate{
-	margin-left: 5px;
+.caret_rotate {
 	width: 12px;
-	transition: transform 0.3s ease-in-out;
+	margin-left: 5px;
 	cursor: pointer;
+	transition: transform 0.3s ease-in-out;
 	transform: rotate(180deg);
 }
 
-.row{
+.row {
+	display: flex;
+	align-items: center;
 	width: 96%;
 	height: 78px;
 	border-radius: 4px;
-	display: flex;
-	align-items: center;
 }
 
-.col_container{
+.col_container {
+	position: relative;
 	box-sizing: border-box;
-    position: relative;
-    padding-left: 8px;
-    padding-right: 8px;
-    width: 14.1667%;
-    flex: 0 0 14.1667%;
-    max-width: 14.1667%;
-    display: flex;
-    align-items: center;
+	display: flex;
+	flex: 0 0 14.1667%;
+	align-items: center;
+	width: 14.1667%;
+	max-width: 14.1667%;
+	padding-right: 8px;
+	padding-left: 8px;
 	font-weight: 700;
 }

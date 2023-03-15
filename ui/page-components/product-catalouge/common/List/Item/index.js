@@ -1,5 +1,5 @@
+/* eslint-disable import/no-unresolved */
 import { Tooltip, Loader } from '@cogoport/components';
-import { shape, arrayOf } from 'prop-types';
 
 import MobileView from '../MobileViewIndex';
 
@@ -8,13 +8,13 @@ import styles from './styles.module.css';
 
 import getValue from '@/ui/commons/utils/getValue';
 
-const Item = ({
+function Item({
 	item,
 	fields,
 	handleClick,
 	loading,
 	functions,
-}) => {
+}) {
 	const { newFunctions } = itemFunctions({ functions });
 	const infoData = (singleItem, itm) => {
 		if (singleItem?.toolTip) {
@@ -57,13 +57,6 @@ const Item = ({
 	);
 
 	return renderItem(item);
-};
-
-Item.propTypes = {
-	item   : shape({}).isRequired,
-	fields : arrayOf(shape({})).isRequired,
-};
-
-Item.defaultProps = {};
+}
 
 export default Item;

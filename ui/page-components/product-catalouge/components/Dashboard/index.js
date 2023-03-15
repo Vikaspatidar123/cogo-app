@@ -1,11 +1,9 @@
 import { Select } from '@cogoport/components';
 import { useState, useEffect } from 'react';
 
-import { shortFormatNumber } from '../../common/getShortFromatNumber';
 import EmptyState from '../../common/List/EmptyState';
 import useTopProducts from '../../hooks/useGraphProductList';
 import useTopProductList from '../../hooks/useTopProductList';
-import useTotalRevenue from '../../hooks/useTotalRevenue';
 
 import BuyerGraph from './BuyerGraph';
 import ProductGraph from './ProductGraph';
@@ -19,7 +17,6 @@ function Dashboard({ apiData, activeTab }) {
 		productList, loading, period, setPeriod,
 	} = useTopProductList();
 	const { topProduct, fetchTopProducts, loading: productLoading } = useTopProducts();
-	const { totalRevenue = 0 } = useTotalRevenue();
 	const OPTIONS = [
 		{ label: 'This Month', value: 'MONTH' },
 		{ label: 'This Year', value: 'YEAR' },
@@ -38,12 +35,7 @@ function Dashboard({ apiData, activeTab }) {
 
 	return (
 		<div className={styles.container}>
-			<div className={styles.revenue}>
-				{/* <div title className={`${styles.title}${styles.main_heading}`}>Total Revenue</div> */}
-				{/* <div>
-					<div className="amount">{shortFormatNumber(totalRevenue?.data, 'INR')}</div>
-				</div> */}
-			</div>
+			<div className={styles.revenue} />
 			<div className={styles.card}>
 				<div className={styles.bar} />
 				<div className={styles.row}>

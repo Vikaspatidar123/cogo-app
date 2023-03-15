@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { Toast } from '@cogoport/components';
 import { useEffect } from 'react';
 
@@ -116,6 +117,8 @@ const useEdit = ({
 	return {
 		data,
 		refetchEdit,
+		putEditLoading,
+		addApiLoading,
 		editLoading: loading,
 		refetchPutEdit,
 		addProduct,

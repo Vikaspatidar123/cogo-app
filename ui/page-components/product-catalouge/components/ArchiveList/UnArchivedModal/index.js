@@ -1,15 +1,18 @@
 import { Button, Modal } from '@cogoport/components';
 import React from 'react';
 
-import Archive from '../../../assets/archive.svg';
-
 import styles from './styles.module.css';
 
 function UnArchiveModal({ archive, setArchive, refetchArchive }) {
 	return (
 		<Modal className={styles.container} show={archive} onClose={() => setArchive(false)}>
 			<div className={styles.icon_div}>
-				<Archive height={50} width={40} marginBottom={8} />
+				<img
+					src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/archive.svg"
+					alt=""
+					height={70}
+					width={70}
+				/>
 			</div>
 			<div className={styles.heading}>Are you sure you want to UnArchive this product?</div>
 			<div className={styles.text}>

@@ -1,4 +1,4 @@
-const clickFunction = ({
+function clickFunction({
 	setChaptersData,
 	setHeadingData,
 	setActiveSection,
@@ -12,7 +12,7 @@ const clickFunction = ({
 	setHeadingCode,
 	searchTerm,
 	setPrefiledValues,
-}) => {
+}) {
 	const categoryFunction = (row) => {
 		setChaptersData(row?.chapters);
 		setActiveSection(row?.sectionDescription);
@@ -74,6 +74,6 @@ const clickFunction = ({
 		headingFunction,
 		hsFunction,
 	};
-};
+}
 
 export default clickFunction;

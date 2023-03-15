@@ -4,7 +4,7 @@ import React from 'react';
 import styles from './styles.module.css';
 
 function CardHeader({
-	fields, singleList, sort = {}, setSort, stylesRow,
+	fields, singleList, sort = {}, setSort,
 }) {
 	const Mapping = (item) => {
 		const mapping = {

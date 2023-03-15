@@ -1,13 +1,13 @@
-.container{
-    background: #fff;
-	border-radius: 6px;
+.container {
 	position: relative;
-	margin: 10px;
 	padding: 10px;
+	margin: 10px;
+	background: #fff;
+	border-radius: 6px;
 }
 
-.row{
-    display: flex;
+.row {
+	display: flex;
 	justify-content: space-between;
 
 	&.filter {
@@ -15,65 +15,66 @@
 	}
 }
 
-.bar_container{
-    height: 200px;
-	width: 320px;
+.bar_container {
 	display: flex;
+	width: 320px;
+	height: 200px;
 	cursor: pointer;
 
-	@media(max-width: 768px){
+	@media (max-width: 768px) {
 		width: 100%;
 	}
 }
 
-.tool_tip{
-    padding: 4px 8px;
-	background: #fff;
-	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
-	border-radius: 4px;
+.tool_tip {
 	display: flex;
-	font-size: 12px;
 	align-items: center;
+	padding: 4px 8px;
+	font-size: 12px;
+	background: #fff;
+	border-radius: 4px;
+	box-shadow: 0 2px 4px rgb(0 0 0 / 40%);
 }
 
-.box{
+.box {
 	width: 15px;
 	height: 15px;
 	margin-right: 12px;
 }
 
-.label{
-    width: max-content;
+.label {
+	width: max-content;
 }
 
-.empty_icon{
-    :global{
-        svg {
-            height: 100px;
-        }
-        div {
-            max-width: none;
-        }
-    }
+.empty_icon {
+	:global {
+		svg {
+			height: 100px;
+		}
+
+		div {
+			max-width: none;
+		}
+	}
 }
 
-.side_container{
-    display: flex;
+.side_container {
+	display: flex;
 	flex-direction: column;
-	color: #65677a;
-	padding: 0px 3px 0px;
-	font-size: 10px;
-	margin-top: 50px;
 	gap: 15px;
+	padding: 0 3px;
+	margin-top: 50px;
+	font-size: 10px;
+	color: #65677a;
 }
 
-.value{
+.value {
 	display: inline-block;
 }
 
 .data {
-	cursor: pointer;
 	display: flex;
 	flex-direction: row;
 	gap: 12px;
+	cursor: pointer;
 }

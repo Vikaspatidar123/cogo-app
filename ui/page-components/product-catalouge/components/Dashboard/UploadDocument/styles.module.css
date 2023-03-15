@@ -1,118 +1,120 @@
-.container{
-    padding: 16px 0px 0px;
-    :global{
-        .ui-modal-close-btn {
-            padding: 0px;
-            svg {
-                height: 35px;
-                padding: 0px;
-            }
-        }
-    }
-	
+.container {
+	padding: 16px 0 0;
+
+	:global {
+		.ui-modal-close-btn {
+			padding: 0;
+
+			svg {
+				height: 35px;
+				padding: 0;
+			}
+		}
+	}
+
 	@media screen and (max-width: 767px) {
-        :global{
-            .ui-modal-dialog {
-                width: 380px !important;
-            }
-        }
+		:global {
+			.ui-modal-dialog {
+				width: 380px !important;
+			}
+		}
 	}
 }
 
-.heading{
-    font-weight: 500;
-	font-size: 16px;
+.heading {
 	display: flex;
+	font-size: 16px;
+	font-weight: 500;
 }
 
-.upload_container{
-    margin-top: 14px;
+.upload_container {
+	margin-top: 14px;
 
-    :global{
-        .upload-container {
-            padding: 0px 13px 0px;
-            svg {
-                color: #ee3425;
-            }
-        }
-    
-        .core-ui-button-root {
-            margin: 10px 25px;
-        }
-    }
+	:global {
+		.upload-container {
+			padding: 0 13px;
+
+			svg {
+				color: #ee3425;
+			}
+		}
+
+		.core-ui-button-root {
+			margin: 10px 25px;
+		}
+	}
 
 	@media screen and (max-width: 767px) {
-		padding: 0px 5px;
+		padding: 0 5px;
 	}
 }
 
-.button_container{
-    margin-top: 20px;
+.button_container {
 	height: 50px;
-	background: #ffffff;
-	box-shadow: 0px -2px 4px rgba(20, 20, 43, 0.12);
-	border-radius: 0px 0px 10px 10px;
-
-   
+	margin-top: 20px;
+	background: #fff;
+	border-radius: 0 0 10px 10px;
+	box-shadow: 0 -2px 4px rgb(20 20 43 / 12%);
 }
 
-.styled_button{
-    background: #ee3425;
+.styled_button {
+	float: right;
+	width: 106px;
+	height: 32px;
+	margin: 10px 12px 0;
+	text-transform: capitalize !important;
+	background: #ee3425;
 	border: none;
 	border-radius: 4px;
-	margin: 10px 12px 0px 12px;
-	text-transform: capitalize !important;
-	height: 32px;
-	width: 106px;
-	float: right;
 }
 
-.link{
-    display: flex;
-	cursor: pointer;
+.link {
+	display: flex;
 	color: #1890ff;
 	text-decoration: underline;
+	cursor: pointer;
 }
 
-.header_container{
-    display: flex;
+.header_container {
+	display: flex;
+	gap: 8px;
+	align-items: center;
 	justify-content: space-between;
-	margin: 0px 35px 25px 0px;
-	padding: 0px 10px 0px;
-    gap: 8px;
-    align-items: center;
-    :global{
-        .core-ui-button-root {
-            background: #221f20;
-            border: none;
-        }
-    }
+	padding: 0 10px;
+	margin: 0 35px 25px 0;
+
+	:global {
+		.core-ui-button-root {
+			background: #221f20;
+			border: none;
+		}
+	}
 }
 
-.download_error_link{
-    display: flex;
+.download_error_link {
+	display: flex;
 	justify-content: center;
-	margin: 5px 0px 15px;
+	margin: 5px 0 15px;
 }
 
-.tick_icon{
-    position: absolute;
+.tick_icon {
+	position: absolute;
 	top: 25px;
 	right: 40%;
 }
 
-.success_msg{
-    color: #221f20;
-	font-weight: 600;
-	font-size: 18px;
-	text-align: center;
+.success_msg {
 	margin-top: 105px;
+	font-size: 18px;
+	font-weight: 600;
+	color: #221f20;
+	text-align: center;
 }
 
-.succes_back_img{
-    padding: 0px;
+.succes_back_img {
 	position: absolute;
-	top: 0px;
+	top: 0;
+	padding: 0;
 
 	@media screen and (max-width: 767px) {
 		img {
@@ -121,10 +123,10 @@
 	}
 }
 
-.success_modal{
-    margin-bottom: 25px;
+.success_modal {
+	margin-bottom: 25px;
 }
 
-.aws_container{
-    padding: 0px 13px 0px;
+.aws_container {
+	padding: 0 13px;
 }

@@ -1,66 +1,66 @@
-.icon_div{
-    display: flex;
+.icon_div {
+	display: flex;
 	justify-content: center;
 }
 
-.heading{
-    font-weight: 700;
-	font-size: 18px;
-	color: #221f20;
-	margin-bottom: 8px;
+.heading {
 	display: flex;
+	margin-bottom: 8px;
+	font-size: 18px;
+	font-weight: 700;
+	color: #221f20;
 	text-align: center;
 }
 
-.text{
-    font-size: 13px;
-	color: #828282;
+.text {
 	display: flex;
 	justify-content: center;
 	margin-bottom: 33px;
+	font-size: 13px;
+	color: #828282;
 }
 
-.button_div{
-    display: flex;
-	border-radius: 8px 8px 0px 0px;
-	margin-bottom: 20px ;
+.button_div {
+	display: flex;
 	justify-content: center;
+	margin-bottom: 20px;
+	border-radius: 8px 8px 0 0;
 
-	@media(max-width: 768px){
+	@media (max-width: 768px) {
 		width: 100%;
 	}
 }
 
-.secondary_button{
-    background: #ffffff;
-	border: 1px solid #e0e6e9;
-	color: #221f20;
+.secondary_button {
+	width: 120px;
 	height: 30px;
-	width: 120px;
 	margin-right: 20px;
+	color: #221f20;
+	background: #fff;
+	border: 1px solid #e0e6e9;
 }
 
-.primary_button{
-    height: 30px;
+.primary_button {
 	width: 120px;
+	height: 30px;
 }
 
-.modal_div{
-    :global {
-        .ui-modal-dialog {
-            padding: 16px 0px;
-        }
-    }
+.modal_div {
+	:global {
+		.ui-modal-dialog {
+			padding: 16px 0;
+		}
+	}
 }
 
-.container{
-    padding: 16px 16px 8px 16px;
+.container {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	padding: 16px 16px 8px;
 
 	@media (max-width: 768px) {
-		text-align: center;
 		width: 100%;
+		text-align: center;
 	}
 }

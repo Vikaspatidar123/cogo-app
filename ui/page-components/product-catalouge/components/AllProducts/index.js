@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import {
 	Pagination, Popover, Loader, Tooltip,
 } from '@cogoport/components';
@@ -65,7 +66,7 @@ function AllProducts({
 				}}
 			>
 				<IcMEdit width={10} height={10} />
-				<p>Edit</p>
+				<div>Edit</div>
 			</div>
 
 			<div
@@ -78,7 +79,7 @@ function AllProducts({
 				}}
 			>
 				<IcMPaste width={10} height={10} />
-				<p>Archive</p>
+				<div>Archive</div>
 			</div>
 
 			<div
@@ -92,7 +93,7 @@ function AllProducts({
 				}}
 			>
 				<IcMDelete width={10} height={10} />
-				<p>Delete</p>
+				<div>Delete</div>
 			</div>
 		</div>
 	);

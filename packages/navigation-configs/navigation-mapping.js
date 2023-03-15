@@ -129,7 +129,6 @@ const navigationMappings = {
 		as        : '/kyc',
 		type      : 'link',
 		showInNav : false,
-
 	},
 	app_settings: {
 		key           : 'app_settings',

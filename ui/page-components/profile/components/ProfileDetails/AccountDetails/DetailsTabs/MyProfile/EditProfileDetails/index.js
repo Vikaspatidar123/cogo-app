@@ -21,6 +21,7 @@ function EditProfileDetails({
 		onError = () => {},
 		loading = false,
 		control,
+		setValue,
 	} = useEditProfileDetails({
 		userDetails,
 		getChannelPartnerUser,
@@ -32,20 +33,22 @@ function EditProfileDetails({
 			<div className={styles.layout}>
 				{fields.map((item) => {
 					if (item.type === 'fieldArray') {
-						return <FieldArray {...item} control={control} />;
+						return (
+							<FieldArray {...item} control={control} setValue={setValue} />
+						);
 					}
 					const ELEMENT = item.type !== 'fieldArray' && getField(item.type);
 					const show = showElements[item.name];
 					return (
 						show
-							&& item.type !== 'fieldArray' && (
-								<div className={styles.field}>
-									<div className={styles.lable}>{item.label}</div>
-									<ELEMENT {...item} control={control} />
-									<div className={styles.errors}>
-										{errors[item?.name]?.message}
-									</div>
-								</div>
+            && item.type !== 'fieldArray' && (
+	<div className={styles.field}>
+		<div className={styles.lable}>{item.label}</div>
+		<ELEMENT {...item} control={control} />
+		<div className={styles.errors}>
+			{errors[item?.name]?.message}
+		</div>
+	</div>
 						)
 					);
 				})}

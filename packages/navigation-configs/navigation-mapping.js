@@ -7,17 +7,16 @@
 // icon is used to show icon webside only
 // mobileIcon is used to show icon in mobile navigation only
 // isSubNavs is used to show sub navigations
-
-import { IcMUpwardGraph, IcACrossBorder } from '@cogoport/icons-react';
+import { IcMQuotations, IcMUpwardGraph, IcMTradeparties, IcACrossBorder } from '@cogoport/icons-react';
 
 const navigationMappings = {
-	app_bookings: {
-		key       : 'app_bookings',
-		title     : 'Shipments',
-		href      : '/shipments',
-		as        : '/shipments',
-		icon      : 'nav-booking',
-		showInNav : true,
+	app_dashboard: {
+		key        : 'app_dashboard',
+		title      : 'Dashboard',
+		href       : '/v2/dashboard',
+		as         : '/v2/dashboard',
+		showInNav  : true,
+		mobileIcon : <IcMQuotations width={20} height={20} />,
 	},
 
 	saas_tools: {
@@ -57,6 +56,20 @@ const navigationMappings = {
 			},
 		],
 	},
+	saas_planning: {
+		key       : 'saas_planning',
+		title     : 'Planning',
+		isSubNavs : true,
+		showInNav : true,
+		options   : [
+			{
+				key   : 'saas_planning-trade_partner',
+				title : 'Trade Partner',
+				icon  : <IcMTradeparties width={40} height={40} />,
+				href  : '/v2/saas/trade-partner',
+				as    : '/v2/saas/trade-partner',
+			}],
+	},
 
 	app_get_started: {
 		key   : 'app_get_started',
@@ -81,6 +94,5 @@ const navigationMappings = {
 		type          : 'link',
 		showMobileNav : true,
 	},
-
 };
 export default navigationMappings;

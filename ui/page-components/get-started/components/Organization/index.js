@@ -14,7 +14,7 @@ function Organization({ setBillingAddressDetails, setOrgId, setOrgBranchId }) {
 				If you are a Service Provider, kindly
 				<a
 					className={styles.text_container_span}
-					href="https://partners.cogoport.com/en-IN/login/?redirectPath=%2Fapply%2F"
+					href="https://app.cogoport.com/login/?redirectPath=%2Fapply%2F"
 					target="_blank"
 					rel="noreferrer"
 				>
@@ -31,7 +31,6 @@ function Organization({ setBillingAddressDetails, setOrgId, setOrgBranchId }) {
 				/>
 			</div>
 		</div>
-
 	);
 }
 

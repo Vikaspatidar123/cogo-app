@@ -6,7 +6,6 @@ function CheckboxController(props) {
 	const {
 		name, control, rules, value, ...rest
 	} = props;
-
 	return (
 		<Controller
 			key={rest.id}
@@ -19,7 +18,7 @@ function CheckboxController(props) {
 					{...rest}
 					key={rest.id}
 					onChange={onChange}
-					value={newValue}
+					checked={newValue}
 					onBlur={onBlur}
 				/>
 			)}

@@ -7,9 +7,7 @@
 // icon is used to show icon webside only
 // mobileIcon is used to show icon in mobile navigation only
 // isSubNavs is used to show sub navigations
-import {
-	IcMQuotations,
-} from '@cogoport/icons-react';
+import { IcMQuotations, IcMUpwardGraph } from '@cogoport/icons-react';
 
 const navigationMappings = {
 	app_dashboard: {
@@ -37,6 +35,25 @@ const navigationMappings = {
 				),
 				href : '/v2/saas/product-inventory',
 				as   : '/v2/saas/product-inventory',
+			}
+		]
+	},
+
+	saas_tools: {
+		key       : 'saas_tools',
+		title     : 'Tools',
+		icon      : 'nav-tools',
+		isSubNavs : true,
+		showInNav : true,
+		isNew     : true,
+		options   : [
+			{
+				key         : 'saas_tools-freight_rate_trend',
+				title       : 'Freight Rate Trend',
+				href        : '/v2/saas/freight-rate-trend',
+				as          : '/v2/saas/freight-rate-trend',
+				icon        : <IcMUpwardGraph width={40} height={40} fill="red" />,
+				description : 'keep track of freight rates',
 			},
 		],
 	},
@@ -56,12 +73,21 @@ const navigationMappings = {
 		showInNav : false,
 	},
 	app_settings: {
+<<<<<<< HEAD
 		key       : 'app_settings',
 		title     : 'Settings',
 		href      : '/settings',
 		as        : '/settings',
 		type      : 'link',
 		showInNav : false,
+=======
+		key           : 'app_settings',
+		title         : 'Settings',
+		href          : '/v2/settings',
+		as            : '/v2/settings',
+		type          : 'link',
+		showMobileNav : true,
+>>>>>>> 04c25b450440fecda3b275082513d243863d3a6f
 	},
 };
 export default navigationMappings;

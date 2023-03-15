@@ -15,7 +15,7 @@ const useGetUser = () => {
 	const refetch = async () => {
 		try {
 			const resp = await trigger({});
-			const { status = '', data } = resp || {};
+			const { status = '', data = undefined } = resp || {};
 			if (status === 200) {
 				Toast.success('Successfull Update Languages');
 			}
@@ -26,6 +26,8 @@ const useGetUser = () => {
 						...((data || {}).data || {}),
 					}),
 				);
+				// eslint-disable-next-line no-undef
+				window.location.reload();
 			}
 		} catch (err) {
 			Toast.error(err?.message);

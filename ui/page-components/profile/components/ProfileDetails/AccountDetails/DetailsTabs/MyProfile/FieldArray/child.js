@@ -24,12 +24,12 @@ function Child({
 					<div className={styles.list}>
 						<div className={styles.label}>{controlItem.label}</div>
 						<Element
+							{...controlItem}
 							width="100%"
 							control={control}
-							key={`${controlItem.name}${index}`}
-							id={`${controlItem.name}${index}`}
-							name={`${controlItem.name}${index}`}
-							{...controlItem}
+							key={`${name}.${index}.${controlItem.name}`}
+							id={`${name}.${index}.${controlItem.name}`}
+							name={`${name}.${index}.${controlItem.name}`}
 						/>
 					</div>
 				);

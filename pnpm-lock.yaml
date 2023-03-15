@@ -2,7 +2,7 @@ lockfileVersion: 5.4
 
 specifiers:
   '@cogoport/charts': ^1.0.1
-  '@cogoport/components': ^1.0.376
+  '@cogoport/components': ^1.0.347
   '@cogoport/eslint-config': ^1.1.0
   '@cogoport/icons-react': ^1.0.60
   '@cogoport/maps': ^1.0.2
@@ -34,10 +34,9 @@ specifiers:
 
 dependencies:
   '@cogoport/charts': 1.0.1_biqbaboplfbrettd7655fr4n2y
-  '@cogoport/components': 1.0.376_zfibtjfawzd4ng63kcngfwss7u
-  '@cogoport/icons-react': 1.0.60_biqbaboplfbrettd7655fr4n2y
-  '@cogoport/maps': 1.0.2_zfibtjfawzd4ng63kcngfwss7u
-  '@cogoport/utils': 1.2.6
+  '@cogoport/components': 1.0.347_cyxdlkncyjzqtklzwrmvnywxma
+  '@cogoport/icons-react': 1.0.58_biqbaboplfbrettd7655fr4n2y
+  '@cogoport/utils': 1.2.4
   axios: 1.3.4
   axios-hooks: 4.0.0_axios@1.3.4+react@18.2.0
   i18next: 22.4.10
@@ -1371,8 +1370,8 @@ packages:
       - react-dom
     dev: false
 
-  /@cogoport/components/1.0.376_zfibtjfawzd4ng63kcngfwss7u:
-    resolution: {integrity: sha512-P6VQvIVEIICkH26Z5AYPXwZIcQCt6Kq+TEES7io63FXkQOrwCdG6cUw4ET0jPnU8BdPGdnSop4iYuGI7zYyVag==}
+  /@cogoport/components/1.0.347_cyxdlkncyjzqtklzwrmvnywxma:
+    resolution: {integrity: sha512-B1VsI+VE90ruTXn2aIKMK2XSuF17bl3BBpr6ifziDDuagU750PHVnDa+pA5eWMofRxOOD9VaB9K6k85Jqk+Xvg==}
     peerDependencies:
       '@cogoport/icons-react': ^1.0.23
       react: ^18.2.0
@@ -2465,18 +2464,6 @@ packages:
 
   /@popperjs/core/2.11.6:
     resolution: {integrity: sha512-50/17A98tWUfQ176raKiOGXuYpLyyVMkxxG6oylzL3BPOlA6ADGdK7EYunSa4I064xerltq9TGXs8HmOk5E+vw==}
-    dev: false
-
-  /@react-leaflet/core/2.1.0_yydtlhsdonbqao6vgvkwhv2zki:
-    resolution: {integrity: sha512-Qk7Pfu8BSarKGqILj4x7bCSZ1pjuAPZ+qmRwH5S7mDS91VSbVVsJSrW4qA+GPrro8t69gFYVMWb1Zc4yFmPiVg==}
-    peerDependencies:
-      leaflet: ^1.9.0
-      react: ^18.0.0
-      react-dom: ^18.0.0
-    dependencies:
-      leaflet: 1.9.3
-      react: 18.2.0
-      react-dom: 18.2.0_react@18.2.0
     dev: false
 
   /@react-spring/animated/9.4.5_react@18.2.0:
@@ -3626,6 +3613,10 @@ packages:
     dependencies:
       has-property-descriptors: 1.0.0
       object-keys: 1.1.1
+
+  /delaunator/4.0.1:
+    resolution: {integrity: sha512-WNPWi1IRKZfCt/qIDMfERkDp93+iZEmOxN2yy4Jg+Xhv8SLk2UTqqbe1sfiipn0and9QrE914/ihdx82Y/Giag==}
+    dev: false
 
   /delaunator/4.0.1:
     resolution: {integrity: sha512-WNPWi1IRKZfCt/qIDMfERkDp93+iZEmOxN2yy4Jg+Xhv8SLk2UTqqbe1sfiipn0and9QrE914/ihdx82Y/Giag==}
@@ -5982,19 +5973,6 @@ packages:
 
   /react-is/18.2.0:
     resolution: {integrity: sha512-xWGDIW6x921xtzPkhiULtthJHoJvBbF3q26fzloPCK0hsvxtPVelvftw3zjbHWSkR2km9Z+4uxbDDK/6Zw9B8w==}
-    dev: false
-
-  /react-leaflet/4.2.1_yydtlhsdonbqao6vgvkwhv2zki:
-    resolution: {integrity: sha512-p9chkvhcKrWn/H/1FFeVSqLdReGwn2qmiobOQGO3BifX+/vV/39qhY8dGqbdcPh1e6jxh/QHriLXr7a4eLFK4Q==}
-    peerDependencies:
-      leaflet: ^1.9.0
-      react: ^18.0.0
-      react-dom: ^18.0.0
-    dependencies:
-      '@react-leaflet/core': 2.1.0_yydtlhsdonbqao6vgvkwhv2zki
-      leaflet: 1.9.3
-      react: 18.2.0
-      react-dom: 18.2.0_react@18.2.0
     dev: false
 
   /react-lifecycles-compat/3.0.4:

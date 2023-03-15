@@ -1,8 +1,29 @@
-/* eslint-disable max-len */
-// eslint-disable-next-line import/no-unresolved
+/* eslint-disable import/no-unresolved */
+import styles from './styles.module.css';
+
 import data from '@/.data-store/constants/countries.json';
 
-const country_code = data?.map((x) => ({ label: x.mobile_country_code, value: x.mobile_country_code }));
+const country_code = data?.map((x) => ({
+	label : x.mobile_country_code,
+	value : x.mobile_country_code,
+}));
+const country = data?.map((item) => ({
+	label: (
+		<div className={styles.country}>
+			<img
+				src={
+				item.flag_icon_url
+					? item.flag_icon_url
+					: 'https://via.placeholder.com/24x20'
+				}
+				alt={item.name}
+			/>
+			<div className={styles.country_name}>{item.name}</div>
+		</div>
+	),
+	value: item.id,
+}));
+
 const fields = [
 	{
 		name        : 'name',
@@ -25,31 +46,13 @@ const fields = [
 		rules          : { required: 'Required' },
 	},
 	{
-		name        : 'tax_number',
-		label       : 'GST Number',
-		placeholder : 'Enter GST Number',
-		type        : 'text',
+		name        : 'country_id',
+		label       : 'Country',
+		placeholder : 'Select Country',
+		type        : 'select',
 		style       : { width: '370px' },
-		rules       : {
-			required : true,
-			pattern  : {
-				// value: geo.regex.GST,
-				message: 'translationKey',
-			},
-		},
-	},
-
-	{
-		name    : 'is_sez',
-		label   : 'Is your address SEZ?',
-		type    : 'checkbox',
-		options : [
-			{
-				label : 'is_sez',
-				value : true,
-			},
-		],
-		style: { width: '370px' },
+		rules       : { required: 'Required' },
+		options     : country,
 	},
 
 	{
@@ -70,22 +73,7 @@ const fields = [
 		style       : { width: '370px' },
 		rules       : { required: true },
 	},
-	{
-		name        : 'phone_number',
-		label       : 'POC Mobile Number',
-		placeholder : 'Enter Mobile Number',
-		type        : 'mobile_number',
-		inputType   : 'number',
-		select2     : 'new',
-		style       : { width: '245px' },
-		options     : country_code,
-		rules       : {
-			required : true,
-			validate : (value) => (value?.country_code && value?.number
-				? undefined
-				: 'phone_number'),
-		},
-	},
+
 	{
 		name        : 'poc_email',
 		label       : 'POC Email		',
@@ -95,33 +83,22 @@ const fields = [
 		rules       : { required: true },
 	},
 	{
-		name  : 'sez_proof',
-		label : 'Sez Proof',
-		type  : 'file',
-		drag  : true,
-		style : { width: '370px' },
-		accept:
-			'image/*,.pdf,.doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document',
-		rules: {
-			required: 'sez_proof',
-		},
-	},
-	{
-		name  : 'tax_number_document_url',
-		label : 'GST Proof',
-		type  : 'file',
-		style : { width: '370px' },
-		accept:
-			'image/*,.pdf,.doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document',
-		rules: {
-			required: 'tax_number_document_url',
+		name        : 'phone_number',
+		label       : 'POC Mobile Number',
+		placeholder : 'Enter Mobile Number',
+		type        : 'mobile_number',
+		inputType   : 'number',
+		select2     : 'new',
+		style       : { width: '210px' },
+		options     : country_code,
+		rules       : {
+			required : true,
+			validate : (value) => (value?.country_code && value?.number ? undefined : 'Phone Number'),
 		},
 	},
 ];
 
-const getOtherAddressControls = ({
-	cityPincode = {},
-}) => fields.map((control) => {
+const getOtherAddressControls = ({ cityPincode = {} }) => fields.map((control) => {
 	const { name } = control;
 	let newControl = { ...control };
 

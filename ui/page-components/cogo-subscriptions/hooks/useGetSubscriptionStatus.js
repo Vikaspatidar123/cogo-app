@@ -1,13 +1,12 @@
-import { useRequest, useScope } from '@cogo/commons/hooks';
-import toast from '@cogoport/front/components/admin/Toast';
+import { Toast } from '@cogoport/components';
+
+import { useRequest } from '@/packages/request';
 
 const useGetSubscriptionStatus = () => {
-	const { scope } = useScope();
-	const { trigger, loading, data } = useRequest(
-		'get',
-		false,
-		scope,
-	)('/saas_get_subscription_status');
+	const [{ loading, data }, trigger] = useRequest({
+		url    : '/saas_get_subscription_status',
+		method : 'get',
+	}, { manual: true });
 	const getSubscriptionStatus = async ({ checkoutResponse }) => {
 		const { checkout_id } = checkoutResponse || {};
 		try {
@@ -17,13 +16,13 @@ const useGetSubscriptionStatus = () => {
 				},
 			});
 		} catch (error) {
-			toast.error(error?.message);
+			Toast.error(error?.message);
 		}
 	};
 	return {
 		getSubscriptionStatus,
-		subscriptionStatusLoading: loading,
-		subscriptionsStatusData: data,
+		subscriptionStatusLoading : loading,
+		subscriptionsStatusData   : data,
 	};
 };
 

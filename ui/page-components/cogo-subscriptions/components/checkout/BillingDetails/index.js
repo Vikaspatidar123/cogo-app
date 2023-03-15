@@ -4,17 +4,6 @@ import { IcMPlusInCircle } from '@cogoport/icons-react';
 import { useState, useEffect } from 'react';
 
 import AddressModal from './AddressModal';
-// import {
-// 	Label,
-// 	Wrapper,
-// 	StyledButton,
-// 	FilledPlus,
-// 	Div,
-// 	Heading,
-// 	AddressWrapper,
-// 	Border,
-// } from './styles';
-
 import styles from './styles.module.css';
 
 function BillingDetails({

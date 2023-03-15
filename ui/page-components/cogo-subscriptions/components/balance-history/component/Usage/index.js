@@ -2,6 +2,7 @@ import { Button } from '@cogoport/components';
 import { IcMError, IcMPlus, IcMArrowRight } from '@cogoport/icons-react';
 import { startCase } from '@cogoport/utils';
 import { useState, useEffect, useRef } from 'react';
+
 import { UsageIconMapping } from '../../../../common/UsageIcon';
 import useGetUSerActivePlan from '../../../../hooks/useGetUserActivePlan';
 import redirectUrl from '../../../../utils/redirectUrl';
@@ -28,6 +29,7 @@ function Usage({ pendingModal, setPendingModal }) {
 		if (!pendingModal) {
 			getPlan({ setUserPlan });
 		}
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [pendingModal]);
 
 	const { billing_cycle = {}, current_usages = [] } = userPlan || {};
@@ -94,7 +96,7 @@ function Usage({ pendingModal, setPendingModal }) {
 			<div className={styles.card_row}>
 				{loading && (
 					<div className={styles.load_container}>
-						<img src='https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/loading.svg' alt='cogo' />
+						<img src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/loading.svg" alt="cogo" />
 					</div>
 				)}
 				{!loading && current_usages?.length === 0 && (

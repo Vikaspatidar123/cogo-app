@@ -1,4 +1,3 @@
-
 import styles from '../styles.module.css';
 
 import { useRouter } from '@/packages/next';
@@ -14,7 +13,11 @@ function Profile({ setShowPopover = () => {} }) {
 
 	return (
 		<div className={styles.account_settings}>
-			<img src='https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/ProfileIcon.svg' alt='cogo' style={{ marginRight: '12px' }} />
+			<img
+				src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/ProfileIcon.svg"
+				alt="cogo"
+				style={{ marginRight: '12px' }}
+			/>
 
 			<div
 				className={styles.a_container}

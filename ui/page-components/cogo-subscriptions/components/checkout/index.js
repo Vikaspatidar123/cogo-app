@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable react-hooks/exhaustive-deps */
 import { Toast } from '@cogoport/components';
 import { IcMArrowBack } from '@cogoport/icons-react';
@@ -12,9 +13,8 @@ import redirectUrl from '../../utils/redirectUrl';
 
 import BillingDetails from './BillingDetails';
 import Charges from './Charges';
-
 import styles from './styles.module.css';
-import SubscriptionDetails from './SubscriptionDetails';
+import SubscriptionDetails from './subscriptionDetails';
 
 import { useRouter } from '@/packages/next';
 import { useSelector } from '@/packages/store';
@@ -67,7 +67,12 @@ function Checkout() {
 				<IcMArrowBack onClick={() => redirectManageSubscription()} />
 				Checkout
 			</div>
-			{(planDataLoading || checkoutLoading) && <img src='https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/loading.svg' className={styles.loading} />}
+			{(planDataLoading || checkoutLoading) && (
+				<img
+					src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/loading.svg"
+					className={styles.loading}
+				/>
+			)}
 			{!planDataLoading && !checkoutLoading && (
 				<div className={styles.padded_row}>
 					<div className={`${styles.wrapper} ${styles.wd_28}`}>

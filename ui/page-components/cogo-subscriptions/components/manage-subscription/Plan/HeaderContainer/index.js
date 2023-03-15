@@ -1,5 +1,7 @@
 import { IcAEndToEndVisibility, IcAManage, IcAProfessionalQuotations } from '@cogoport/icons-react';
+
 import styles from './styles.module.css';
+
 const iconList = [
 	{
 		icon     : <IcAManage width="40px" height="40px" />,
@@ -17,12 +19,12 @@ const iconList = [
 		isComing : false,
 	},
 	{
-		icon     :< img src='https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/support.svg' alt='Cogo'/>,
+		icon     : <img src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/support.svg" alt="Cogo" />,
 		text     : '24/7 customer support',
 		isComing : false,
 	},
 	{
-		icon     : <img src='https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/cargoInsurance.svg' alt='cogo'/>,
+		icon     : <img src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/cargoInsurance.svg" alt="cogo" />,
 		text     : 'Instant Cargo Insurance',
 		isComing : true,
 	},

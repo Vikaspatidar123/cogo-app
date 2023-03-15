@@ -35,11 +35,11 @@ function DetailContainer({ planFeatureData = {} }) {
 				</div>
 				<div className={`${styles.header} ${styles.info}`}>
 					<div className={styles.icon_container}>
-						<img src='https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/Limited.svg' alt='cogo'/>
+						<img src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/Limited.svg" alt="cogo" />
 						Limited
 					</div>
 					<div className={styles.icon_container}>
-						<img src='https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/unlimted.svg' alt='cogo' />
+						<img src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/unlimted.svg" alt="cogo" />
 						Unlimited
 					</div>
 				</div>

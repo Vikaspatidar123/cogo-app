@@ -2,9 +2,10 @@
 import { Modal, Button } from '@cogoport/components';
 import { merge } from '@cogoport/utils';
 import React, { useState, useEffect } from 'react';
+
 import TitleStyle from '../../../../common/Line';
 import {
-	emailValidator, mobileValidator, GstValidator,
+	mobileValidator,
 } from '../../../../configuration/addAddressControls';
 import getControls from '../../../../configuration/config';
 import useCreateBillingAddres from '../../../../hooks/useCreateBillingAddress';
@@ -12,10 +13,14 @@ import useCreateBillingAddres from '../../../../hooks/useCreateBillingAddress';
 import styles from './styles.module.css';
 
 import {
-	useForm, asyncFieldsLocations, useGetAsyncOptions, SelectController,
+	useForm,
+	asyncFieldsLocations,
+	useGetAsyncOptions,
+	SelectController,
 } from '@/packages/forms';
 import getField from '@/packages/forms/Controlled';
 import { useSelector } from '@/packages/store';
+import patterns from '@/ui/commons/configurations/patterns';
 
 function AddModal({
 	addAddressModal,
@@ -74,9 +79,11 @@ function AddModal({
 		}
 	};
 
-	const cityOptions = useGetAsyncOptions(merge(asyncFieldsLocations(), {
-		params: { filters: { type: ['country'] } },
-	}));
+	const cityOptions = useGetAsyncOptions(
+		merge(asyncFieldsLocations(), {
+			params: { filters: { type: ['country'] } },
+		}),
+	);
 
 	const fields = getControls({ cityOptions });
 	const item = fields[0];
@@ -85,15 +92,15 @@ function AddModal({
 	const CountryController = getField('select');
 	const InputController = getField('text');
 	return (
-		<Modal
-			show={addAddressModal}
-			onClose={() => handleCloseModal()}
-		>
+		<Modal show={addAddressModal} onClose={() => handleCloseModal()}>
 			<form>
 				<div className={styles.container}>
 					<div className={styles.header}>
 						<div className={styles.icon_container}>
-							<img src='https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/sellerAddress.svg' alt='cogo' />
+							<img
+								src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/sellerAddress.svg"
+								alt="cogo"
+							/>
 						</div>
 						<div className={styles.title}>Add New Address</div>
 					</div>
@@ -109,7 +116,12 @@ function AddModal({
 								<div className={styles.label}>
 									Billing Party Name
 									{errors?.billingPartyName && (
-										<div className={styles.error_txt}>{`${errors?.billingPartyName?.type}*`}</div>
+										<div
+											className={styles.error_txt}
+										>
+											{`${errors?.billingPartyName?.type}*`}
+
+										</div>
 									)}
 								</div>
 								<InputController
@@ -124,8 +136,14 @@ function AddModal({
 								<div>
 									<div className={styles.label}>
 										POC Name
-										{errors?.name
-										&& <div className={styles.error_txt}>{`${errors?.name?.type}*`}</div>}
+										{errors?.name && (
+											<div
+												className={styles.error_txt}
+											>
+												{`${errors?.name?.type}*`}
+
+											</div>
+										)}
 									</div>
 									<InputController
 										control={control}
@@ -141,8 +159,14 @@ function AddModal({
 							<div className={styles.col}>
 								<div className={styles.label}>
 									Email Id *
-									{errors?.email
-									&& <div className={styles.error_txt}>{`${errors?.email?.type}*`}</div>}
+									{errors?.email && (
+										<div
+											className={styles.error_txt}
+										>
+											{`${errors?.email?.type}*`}
+
+										</div>
+									)}
 								</div>
 								<InputController
 									control={control}
@@ -152,7 +176,7 @@ function AddModal({
 									rules={{
 										required : true,
 										pattern  : {
-											value   : emailValidator,
+											value   : patterns.EMAIL,
 											message : 'Invalid email address',
 										},
 									}}
@@ -162,7 +186,12 @@ function AddModal({
 								<div className={styles.label}>
 									Tax Number *
 									{errors?.taxNumber && (
-										<div className={styles.error_txt}>{`${errors?.taxNumber?.type}*`}</div>
+										<div
+											className={styles.error_txt}
+										>
+											{`${errors?.taxNumber?.type}*`}
+
+										</div>
 									)}
 								</div>
 								<InputController
@@ -173,7 +202,7 @@ function AddModal({
 									rules={{
 										required : true,
 										pattern  : {
-											value   : GstValidator,
+											value   : patterns.GST_NUMBER,
 											message : 'Invalid phone number',
 										},
 									}}
@@ -187,7 +216,8 @@ function AddModal({
 									{errors?.phoneNumber && (
 										<div className={styles.error_txt}>
 											{`${
-												errors?.phoneNumber?.message || errors?.phoneNumber?.type
+												errors?.phoneNumber?.message
+                        || errors?.phoneNumber?.type
 											}*`}
 										</div>
 									)}
@@ -208,8 +238,14 @@ function AddModal({
 							<div className={styles.col}>
 								<div className={styles.label}>
 									Country *
-									{errors?.country
-									&& <div className={styles.error_txt}>{`${errors?.country?.type}*`}</div>}
+									{errors?.country && (
+										<div
+											className={styles.error_txt}
+										>
+											{`${errors?.country?.type}*`}
+
+										</div>
+									)}
 								</div>
 								<SelectController
 									{...item}
@@ -233,8 +269,14 @@ function AddModal({
 							<div className={styles.col}>
 								<div className={styles.label}>
 									Address line *
-									{errors?.address
-									&& <div className={styles.error_txt}>{`${errors?.address?.type}*`}</div>}
+									{errors?.address && (
+										<div
+											className={styles.error_txt}
+										>
+											{`${errors?.address?.type}*`}
+
+										</div>
+									)}
 								</div>
 								<InputController
 									control={control}
@@ -246,8 +288,14 @@ function AddModal({
 							<div className={styles.col}>
 								<div className={styles.label}>
 									Pincode *
-									{errors?.pincode
-									&& <div className={styles.error_txt}>{`${errors?.pincode?.type}*`}</div>}
+									{errors?.pincode && (
+										<div
+											className={styles.error_txt}
+										>
+											{`${errors?.pincode?.type}*`}
+
+										</div>
+									)}
 								</div>
 								<InputController
 									control={control}
@@ -258,11 +306,17 @@ function AddModal({
 							</div>
 						</div>
 						<div className={styles.row}>
-							{/* <div className={styles.col}>
+							<div className={styles.col}>
 								<div className={styles.label}>
 									State (optional)
-									{errors?.state
-									&& <div className={styles.error_txt}>{`${errors?.state?.type}*`}</div>}
+									{errors?.state && (
+										<div
+											className={styles.error_txt}
+										>
+											{`${errors?.state?.type}*`}
+
+										</div>
+									)}
 								</div>
 								<CountryController
 									{...fields.state}
@@ -272,18 +326,31 @@ function AddModal({
 							<div className={styles.col}>
 								<div className={styles.label}>
 									{fields.city.label}
-									{errors?.city && <div className={styles.error_txt}>{`${errors?.city?.type}*`}</div>}
+									{errors?.city && (
+										<div
+											className={styles.error_txt}
+										>
+											{`${errors?.city?.type}*`}
+
+										</div>
+									)}
 								</div>
 								<CountryController
 									{...fields.city}
 									handleChange={(data) => setCityInfo(data)}
 								/>
-							</div> */}
+							</div>
 							<div className={styles.col}>
 								<div className={styles.label}>
 									Country *
-									{errors?.country
-									&& <div className={styles.error_txt}>{`${errors?.country?.type}*`}</div>}
+									{errors?.country && (
+										<div
+											className={styles.error_txt}
+										>
+											{`${errors?.country?.type}*`}
+
+										</div>
+									)}
 								</div>
 								<SelectController
 									{...item}
@@ -292,13 +359,20 @@ function AddModal({
 									placeholder="Enter Country"
 									disabled={!mobileCode?.country_code}
 									rules={{ required: true }}
+									handleChange={(data) => setCountryInfo(data)}
 								/>
 							</div>
 							<div className={styles.col}>
 								<div className={styles.label}>
 									Country *
-									{errors?.country
-									&& <div className={styles.error_txt}>{`${errors?.country?.type}*`}</div>}
+									{errors?.country && (
+										<div
+											className={styles.error_txt}
+										>
+											{`${errors?.country?.type}*`}
+
+										</div>
+									)}
 								</div>
 								<SelectController
 									{...item}
@@ -327,7 +401,14 @@ function AddModal({
 						size="md"
 						themeType="primary"
 					>
-						{createAddressLoading ? <img src='https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/loading.svg' alt='cogo' /> : 'Add'}
+						{createAddressLoading ? (
+							<img
+								src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/loading.svg"
+								alt="cogo"
+							/>
+						) : (
+							'Add'
+						)}
 					</Button>
 				</div>
 			</form>

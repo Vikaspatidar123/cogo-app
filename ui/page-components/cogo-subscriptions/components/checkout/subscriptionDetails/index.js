@@ -1,3 +1,4 @@
+/* eslint-disable no-unsafe-optional-chaining */
 import { IcMFtick } from '@cogoport/icons-react';
 
 import { getCurrencyDetail } from '../../../utils/getCurrencyDetail';

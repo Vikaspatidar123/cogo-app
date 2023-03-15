@@ -1,6 +1,6 @@
 import { useRouter } from '@/packages/next';
 
-const redirectUrl = () => {
+const useRedirectUrl = () => {
 	const { push } = useRouter();
 
 	const redirectManageSubscription = () => {
@@ -28,4 +28,4 @@ const redirectUrl = () => {
 	};
 };
 
-export default redirectUrl;
+export default useRedirectUrl;

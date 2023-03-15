@@ -51,19 +51,19 @@ function PendingModal({
 		>
 			{apiTries < 10 && status !== 'active' && (
 				<div className={styles.container}>
-					<img src='https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/loading-banner.svg' alt='cogo' />
+					<img src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/loading-banner.svg" alt="cogo" />
 					<div className={styles.title}>Hang on! Checking payment status...</div>
-					<img src='https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/loading.svg' alt='cogo' />
+					<img src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/loading.svg" alt="cogo" />
 				</div>
 			)}
 			{apiTries < 10 && status === 'active' && (
 				<div className={styles.container}>
-					<img src='https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/success.svg' alt='cogo'/>
+					<img src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/success.svg" alt="cogo" />
 					<div className={styles.title}>Congratulations !</div>
-					<Txt>
+					<div className={styles.txt}>
 						{`Successfully added ${quantity} ${name}`}
 						{' '}
-					</Txt>
+					</div>
 				</div>
 			)}
 

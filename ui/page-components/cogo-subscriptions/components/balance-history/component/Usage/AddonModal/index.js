@@ -202,7 +202,12 @@ function AddonModal({
 								onClick={addonPayHandler}
 								disabled={loading || durationValue < 0}
 							>
-								{loading ? <img src='https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/loading.svg' alt='cogo' /> : 'Proceed to Pay'}
+								{loading ? (
+									<img
+										src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/loading.svg"
+										alt="cogo"
+									/>
+								) : 'Proceed to Pay'}
 							</Button>
 						</div>
 					</div>

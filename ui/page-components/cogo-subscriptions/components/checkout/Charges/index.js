@@ -275,7 +275,10 @@ function Charges({
 						className={loading ? 'disabled' : ''}
 					>
 						{completeOrderLoading ? (
-							<img src='https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/loading.svg' alt='cogo'/>
+							<img
+								src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/loading.svg"
+								alt="cogo"
+							/>
 						) : (
 							<>
 								Proceed to Pay

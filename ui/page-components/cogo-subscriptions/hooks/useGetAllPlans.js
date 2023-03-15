@@ -1,9 +1,15 @@
-import { useRequest, useScope } from '@cogo/commons/hooks';
-import toast from '@cogoport/front/components/admin/Toast';
+import { Toast } from '@cogoport/components';
+
+import { useRequest } from '@/packages/request';
 
 const useGetAllPlans = ({ profile }) => {
-	const { scope } = useScope();
-	const { trigger, loading } = useRequest('get', false, scope)('/saas_get_dashboard');
+	const [{ loading }, trigger] = useRequest(
+		{
+			url    : '/saas_get_dashboard',
+			method : 'get',
+		},
+		{ manual: true },
+	);
 	const getPlansFunction = async ({ setAllPlans }) => {
 		try {
 			const response = await trigger({
@@ -13,7 +19,7 @@ const useGetAllPlans = ({ profile }) => {
 			});
 			setAllPlans(response?.data);
 		} catch (error) {
-			toast.error(error?.message);
+			Toast.error(error?.message);
 		}
 	};
 	return { getPlansFunction, plansLoading: loading };

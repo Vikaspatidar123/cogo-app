@@ -21,7 +21,9 @@ function Help() {
 			>
 				<div className={styles.container}>
 					<div className={styles.container}>
-						<img src='https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/ic-help.svg' alt='cogo'
+						<img
+							src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/ic-help.svg"
+							alt="cogo"
 							style={{ cursor: 'pointer' }}
 							width="22px"
 							height="22px"

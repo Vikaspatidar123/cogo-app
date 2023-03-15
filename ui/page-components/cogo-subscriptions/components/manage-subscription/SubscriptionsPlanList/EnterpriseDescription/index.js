@@ -1,4 +1,5 @@
 import { Button } from '@cogoport/components';
+
 import styles from './styles.module.css';
 
 function EnterpriseDescription({ requestCallback = () => {}, callbackLoading }) {
@@ -15,7 +16,7 @@ function EnterpriseDescription({ requestCallback = () => {}, callbackLoading }) 
 					themeType="secondary"
 				>
 					{callbackLoading ? (
-						<img src='https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/loading.svg' alt='cogo' />
+						<img src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/loading.svg" alt="cogo" />
 					) : (
 						'Request Callback'
 					)}

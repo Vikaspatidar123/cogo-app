@@ -1,7 +1,6 @@
-export const emailValidator =	/^[^<>()[\]\\,;:%#^\s@"$&!@]+@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z0-9]+\.)+[a-zA-Z]{2,}))$/;
+import patterns from '@/ui/commons/configurations/patterns';
 
 export const mobileValidator = /^[0-9]{10}$/;
-export const GstValidator = /^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}Z[0-9A-Z]{1}$/;
 
 export const addAddressControls = (countryInfo, stateInfo, mobileCode) => [
 	{
@@ -29,7 +28,7 @@ export const addAddressControls = (countryInfo, stateInfo, mobileCode) => [
 		rules       : {
 			required : true,
 			pattern  : {
-				value   : emailValidator,
+				value   : patterns.EMAIL,
 				message : 'Invalid email address',
 			},
 		},
@@ -56,7 +55,7 @@ export const addAddressControls = (countryInfo, stateInfo, mobileCode) => [
 		rules       : {
 			required : true,
 			pattern  : {
-				value   : GstValidator,
+				value   : patterns.GST_NUMBER,
 				message : 'Invalid phone number',
 			},
 		},

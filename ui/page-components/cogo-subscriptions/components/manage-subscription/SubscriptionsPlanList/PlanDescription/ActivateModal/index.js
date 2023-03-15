@@ -1,16 +1,4 @@
 import { Modal, Button } from '@cogoport/components';
-// import {
-// 	StyledModal,
-// 	Container,
-// 	DivTitle,
-// 	DivText,
-// 	ButtonDiv,
-// 	BlackButton,
-// 	RedButton,
-// 	Image,
-// 	ImageContainer,
-// 	PlanText,
-// } from './styles';
 
 import styles from './styles.module.css';
 
@@ -35,7 +23,10 @@ function ActivateModal({
 			<div className={styles.container}>
 				<div className={styles.image_container}>
 					<div className={styles.image}>
-						<img src='https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/activate-icon.svg' alt='cogo' />
+						<img
+							src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/activate-icon.svg"
+							alt="cogo"
+						/>
 					</div>
 				</div>
 				<div className={styles.div_title}>Activating your plan !</div>

@@ -28,7 +28,7 @@ function MenuProfileHeader({ setShow }) {
 						<div
 							className={styles.switch_account}
 							onClick={() => {
-              	setShow(true);
+								setShow(true);
 							}}
 							role="presentation"
 						>

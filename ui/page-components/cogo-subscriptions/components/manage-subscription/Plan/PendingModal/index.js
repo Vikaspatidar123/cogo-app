@@ -2,6 +2,7 @@
 import { Modal, Button } from '@cogoport/components';
 import { IcMInformation } from '@cogoport/icons-react';
 import { useEffect } from 'react';
+
 import styles from './styles.module.css';
 
 function PendingModal({
@@ -39,9 +40,9 @@ function PendingModal({
 		>
 			{apiTries < 10 && status !== 'active' && (
 				<div className={styles.container}>
-					<img src='https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/loading-banner.svg' alt='cogo'/>
+					<img src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/loading-banner.svg" alt="cogo" />
 					<div className={styles.title}> Hang on! Checking payment status...</div>
-					<img src='https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/loading.svg' alt='cogo' />
+					<img src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/loading.svg" alt="cogo" />
 				</div>
 			)}
 

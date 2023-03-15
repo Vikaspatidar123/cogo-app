@@ -1,4 +1,5 @@
 import { Modal } from '@cogoport/components';
+
 import redirectUrl from '../../utils/redirectUrl';
 
 import styles from './styles.module.css';
@@ -22,7 +23,7 @@ function SuccessModal({
 			size="md"
 		>
 			<div className={styles.flex_div}>
-				<img src='https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/success.svg' alt='cogo' />
+				<img src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/success.svg" alt="cogo" />
 				<div className={styles.label}>Congratulations!</div>
 				<div className={styles.side_label}>
 					You are now subscribed to

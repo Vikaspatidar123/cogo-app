@@ -103,14 +103,14 @@
 	width: 100%;
 }
 
-.prevBtn {
+.prev_btn {
 	gap: 5px;
 	margin-right: 10px;
 	color: #333 !important;
 	text-decoration: none !important;
 }
 
-.disableBtn {
+.disable_btn {
 	background-color: #e8afa8 !important;
 }
 

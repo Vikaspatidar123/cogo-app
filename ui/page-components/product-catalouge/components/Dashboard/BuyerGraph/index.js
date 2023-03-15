@@ -1,7 +1,5 @@
 import { ResponsivePie } from '@cogoport/charts/pie';
 
-import { shortFormatNumber } from '../../../common/getShortFromatNumber';
-
 import styles from './styles.module.css';
 
 function Buyer({ topProduct = [], productLoading }) {
@@ -38,7 +36,7 @@ function Buyer({ topProduct = [], productLoading }) {
 								<div className={styles.box} style={{ background: color }} />
 								<div className={styles.label}>{label}</div>
 								:
-								<span>{shortFormatNumber(value, 'INR')}</span>
+								<span>{value}</span>
 							</div>
 						)}
 					/>
@@ -53,7 +51,7 @@ function Buyer({ topProduct = [], productLoading }) {
 										borderRadius : '15px',
 									}}
 									/>
-									<div>{shortFormatNumber(y.value, 'INR')}</div>
+									<div>{y.value}</div>
 								</div>
 							</div>
 						))}

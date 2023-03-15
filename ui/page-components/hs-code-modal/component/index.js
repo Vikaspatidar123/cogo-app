@@ -255,7 +255,7 @@ function HsCode({
 					<div className={styles.add_button_wrapper}>
 
 						<Button
-							className={styles.prevBtn}
+							className={styles.prev_btn}
 							size="md"
 							themeType="secondary"
 							onClick={() => {
@@ -268,7 +268,7 @@ function HsCode({
 						</Button>
 						{showhscode && (
 							<Button
-								className={`${hsRowLength && styles.disableBtn} md`}
+								className={`${hsRowLength && styles.disable_btn} md`}
 								size="md"
 								themeType="primary"
 								onClick={handleClick}

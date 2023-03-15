@@ -21,6 +21,4 @@ function EmptyState({ placement = 'center', message = '' }) {
 	);
 }
 
-EmptyState.propTypes = {};
-
 export default EmptyState;

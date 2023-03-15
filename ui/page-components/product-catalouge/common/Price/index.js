@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { Button, toast } from '@cogoport/components';
+import { Button, Toast } from '@cogoport/components';
 import { IcMArrowRight } from '@cogoport/icons-react';
 import { useEffect, useState } from 'react';
 
@@ -81,7 +81,7 @@ function Pricing({
 
 	const onError = (error) => {
 		if (error?.description) {
-			toast.error(error?.description?.message, {
+			Toast.error(error?.description?.message, {
 				autoClose : 1000,
 				style     : { color: 'white' },
 			});

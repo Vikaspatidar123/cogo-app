@@ -1,6 +1,5 @@
 /* eslint-disable import/no-unresolved */
 import { Tooltip, Loader } from '@cogoport/components';
-import { shape, arrayOf } from 'prop-types';
 
 import MobileView from '../MobileViewIndex';
 
@@ -59,12 +58,5 @@ function Item({
 
 	return renderItem(item);
 }
-
-Item.propTypes = {
-	item   : shape({}).isRequired,
-	fields : arrayOf(shape({})).isRequired,
-};
-
-Item.defaultProps = {};
 
 export default Item;

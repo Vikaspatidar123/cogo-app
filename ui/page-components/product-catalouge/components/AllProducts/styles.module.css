@@ -107,26 +107,26 @@
 			float: right;
 			color: black;
 
-			.paginationContainer {
-				margin: 10px !important;
+			.pagination_container {
+				margin: 10px ;
 			}
 
 			.page,
 			.break {
-				font-weight: 500 !important;
-				background: transparent !important;
-				border: none !important;
+				font-weight: 500 ;
+				background: transparent ;
+				border: none;
 			}
 
 			.selected {
 				color: black;
-				background: #fef3e9 !important;
+				background: #fef3e9 ;
 			}
 
 			.next,
 			.previous {
-				background: transparent !important;
-				border: none !important;
+				background: transparent ;
+				border: none ;
 
 				svg {
 					stroke: #333;

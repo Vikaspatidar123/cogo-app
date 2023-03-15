@@ -16,6 +16,7 @@ function ContainerDetails(props, ref) {
 		watch,
 		formState: { errors },
 		handleSubmit,
+		setValue,
 		getValues,
 	} = useForm({
 		defaultValues: {
@@ -123,6 +124,8 @@ function ContainerDetails(props, ref) {
 					showCalculater={showCalculater}
 					setShowCalculater={setShowCalculater}
 					watchContainerSize={watchContainerSize}
+					setFormValues={setValue}
+					watchContainerType={watchContainerType}
 				/>
 			)}
 		</div>

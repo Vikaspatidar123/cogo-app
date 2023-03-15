@@ -103,8 +103,8 @@
 	cursor: pointer;
 
 	:global {
-        .rotateIcon {
-		    transform: rotate(180deg);
+		.rotateIcon {
+			transform: rotate(180deg);
 		}
 
 		.hyperlinkIcon {

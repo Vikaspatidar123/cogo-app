@@ -88,6 +88,5 @@ const navigationMappings = {
 		type          : 'link',
 		showMobileNav : true,
 	},
-
 };
 export default navigationMappings;

@@ -1,6 +1,4 @@
-import {
-	isEmpty, getByKey, format, startCase,
-} from '@cogoport/utils';
+import { isEmpty, getByKey, startCase, format } from '@cogoport/utils';
 
 const ActionFunction = {
 	startCase,
@@ -34,11 +32,9 @@ const getValue = (itemData, itemField, functions, emptyState) => {
 
 	switch (itemField.type) {
 		case 'datetime':
-			return val ? (
-				format(val, itemField.formatType || 'dd MMM yy | hh:mm a')
-			) : (
-				<div>-</div>
-			);
+			return val
+				? format(val, itemField.formatType || 'dd MMM yy | hh:mm a')
+				: null;
 
 		case 'price':
 			return `${itemData.currency} ${(

@@ -1,14 +1,11 @@
-import { format } from 'path';
-
 import { Pill } from '@cogoport/components';
-import { differenceInDays } from '@cogoport/utils';
+import { format, differenceInDays } from '@cogoport/utils';
 import React from 'react';
 
 import styles from './styles.module.css';
 
-function LegsItem({ legItem }) {
+function LegsItem({ legItem = {} }) {
 	const locationsList = legItem?.display_details || [];
-
 	const originSchedule =	 locationsList.filter((item) => item.id
 	=== legItem.origin_port_id)[0]?.display_name || 'Origin';
 
@@ -24,10 +21,10 @@ function LegsItem({ legItem }) {
 			<div>
 				<div className={styles.dates_container}>
 					<div className={styles.date_container}>
-						{format(legItem?.departure, 'dd MMM yyyy (eee)')}
+						{format(legItem?.departure, 'dd MMM yyyy')}
 					</div>
 					<div className={styles.date_container}>
-						{format(legItem?.arrival, 'dd MMM yyyy (eee)')}
+						{format(legItem?.arrival, 'dd MMM yyyy')}
 					</div>
 				</div>
 				<div className={styles.main_pill_container}>

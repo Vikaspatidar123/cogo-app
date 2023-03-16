@@ -9,6 +9,10 @@
 // isSubNavs is used to show sub navigations
 import {
 	IcMQuotations,
+	IcMTradeparties,
+	IcACrossBorder,
+	IcMProductCodeMapping,
+	IcMFfreferigeratedCargoType,
 } from '@cogoport/icons-react';
 
 const navigationMappings = {
@@ -19,7 +23,68 @@ const navigationMappings = {
 		as         : '/v2/dashboard',
 		showInNav  : true,
 		mobileIcon : <IcMQuotations width={20} height={20} />,
+	},
 
+	saas_premium_services: {
+		key         : 'saas_premium_services',
+		title       : 'Premium Services',
+		icon        : 'nav-premium-services',
+		module_type : 'dashboards',
+		isNew       : true,
+		showInNav   : true,
+		isSubNavs   : true,
+		options     : [
+			{
+				key   : 'saas_premium_services-order_history',
+				title : 'Order History',
+				href  : '/v2/saas/order-history',
+				as    : '/v2/saas/order-history',
+				icon  : <IcACrossBorder width={40} height={40} />,
+			},
+		],
+	},
+	saas_planning: {
+		key       : 'saas_planning',
+		title     : 'Planning',
+		isSubNavs : true,
+		showInNav : true,
+		options   : [
+			{
+				key   : 'saas_planning-trade_partner',
+				title : 'Trade Partner',
+				icon  : <IcMTradeparties width={40} height={40} />,
+				href  : '/v2/saas/trade-partner',
+				as    : '/v2/saas/trade-partner',
+			},
+			{
+				key         : 'saas_planning-product_inventory',
+				title       : 'Product Catalog',
+				type        : 'link',
+				icon        : <IcMProductCodeMapping width={40} height={40} />,
+				href        : '/v2/saas/product-inventory',
+				as          : '/v2/saas/product-inventory',
+				module_type : 'dashboards',
+			},
+		],
+	},
+
+	app_discover_rates: {
+		key         : 'app_discover_rates',
+		title       : 'Discover Rates',
+		href        : '/book',
+		as          : '/book',
+		type        : 'link',
+		tag         : 'New Search',
+		module_type : 'crm',
+		showInNav   : true,
+	},
+
+	app_accept_terms_and_conditions: {
+		key       : 'app_accept_terms_and_conditions',
+		title     : 'Terms and Conditions',
+		href      : '/accept-terms-and-conditions',
+		type      : 'link',
+		showInNav : false,
 	},
 
 	app_get_started: {
@@ -29,6 +94,24 @@ const navigationMappings = {
 
 	},
 
+	saas_finance: {
+		key       : 'saas_finance',
+		title     : 'Finance',
+		icon      : 'nav-finance',
+		isSubNavs : true,
+		isNew     : true,
+		options   : [
+			{
+				key   : 'saas_finance-transaction_history',
+				title : 'Transaction History',
+				icon  : <IcMFfreferigeratedCargoType width={40} height={40} fill="red" />,
+				href  : '/saas/transaction-history',
+				as    : '/saas/transaction-history',
+			},
+
+		],
+	},
+
 	app_kyc: {
 		key       : 'app_kyc',
 		title     : 'KYC',
@@ -36,7 +119,6 @@ const navigationMappings = {
 		as        : '/kyc',
 		type      : 'link',
 		showInNav : false,
-
 	},
 	app_settings: {
 		key           : 'app_settings',
@@ -71,6 +153,5 @@ const navigationMappings = {
 			},
 		],
 	},
-
 };
 export default navigationMappings;

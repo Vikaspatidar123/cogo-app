@@ -1,0 +1,11 @@
+.container {
+	cursor: pointer;
+}
+
+.icon {
+	display: flex;
+}
+
+.service {
+	margin-left: 20px;
+}

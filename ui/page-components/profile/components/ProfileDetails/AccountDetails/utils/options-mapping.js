@@ -1,6 +1,6 @@
 import Address from '../DetailsTabs/Address';
 import AlertsPreferences from '../DetailsTabs/AlertsPreferences';
-import DocumentsWallet from '../DetailsTabs/DocumentsWallet';
+// import DocumentsWallet from '../DetailsTabs/DocumentsWallet';
 import MyProfile from '../DetailsTabs/MyProfile';
 import OrganizationDetails from '../DetailsTabs/OrganizationDetails';
 
@@ -20,11 +20,11 @@ const getOptions = () => ({
 		title              : 'Address',
 		containerComponent : Address,
 	},
-	documents: {
-		key                : 'documents',
-		title              : 'Documents',
-		containerComponent : DocumentsWallet,
-	},
+	// documents: {
+	// 	key                : 'documents',
+	// 	title              : 'Documents',
+	// 	containerComponent : DocumentsWallet,
+	// },
 	alerts_preferences: {
 		key                : 'alerts_preferences',
 		title              : 'Alerts and Preferences',

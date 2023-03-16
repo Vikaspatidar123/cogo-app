@@ -10,7 +10,6 @@ import TextAreaController from './TextAreaController';
 import UploadController from './UploadController';
 
 const MAPPING = {
-
 	select        : SelectController,
 	text          : InputController,
 	number        : InputController,

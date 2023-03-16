@@ -13,7 +13,6 @@ function useGetAsyncOptionsBf({
 	authKey = '',
 }) {
 	const { query, debounceQuery } = useDebounceQuery();
-
 	const [{ data, loading }] = useRequestBf({
 		url    : endpoint,
 		method : 'GET',

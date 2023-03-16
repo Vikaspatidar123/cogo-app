@@ -28,7 +28,6 @@ const fields = [{
 	name        : 'business_name',
 	type        : 'Input',
 	placeholder : 'Company Name',
-	span        : 12,
 	rules       : { required: 'Company is required' },
 },
 {
@@ -38,7 +37,6 @@ const fields = [{
 	placeholder   : 'Role in Company',
 	multiple      : true,
 	autoCloseMenu : false,
-	span          : 12,
 	rules         : { required: 'Role is required' },
 	options       : [
 		{
@@ -83,7 +81,6 @@ const fields = [{
 	placeholder   : 'Preferred Language',
 	multiple      : true,
 	autoCloseMenu : false,
-	span          : 12,
 	rules         : { required: 'Language is required' },
 }];
 

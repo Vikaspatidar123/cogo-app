@@ -9,11 +9,12 @@ import React, { useState, useEffect } from 'react';
 
 import AddProductModal from '../../common/AddProductModal';
 import DeleteProductModal from '../../common/DeleteProductModal';
-import HsCodeIconMaping from '../../common/hsCodeIcons';
 import useArchive from '../../hooks/useArchive';
 
 import ArchiveModal from './ArchiveModal';
 import styles from './styles.module.css';
+
+import HsCodeIcon from '@/ui/commons/components/HsCodeIcon';
 
 function AllProducts({
 	showProduct,
@@ -30,7 +31,7 @@ function AllProducts({
 	setIsEdit,
 	isEdit,
 }) {
-	const { Mapping } = HsCodeIconMaping();
+	const { MAPPING } = HsCodeIcon();
 	const [archive, setArchive] = useState(false);
 	const [visible, setVisible] = useState({});
 	const [proId, setProId] = useState('');
@@ -114,7 +115,7 @@ function AllProducts({
 								<div className={styles.row}>
 									{!loading && (
 										<>
-											<div>{Mapping[categoryCode]}</div>
+											<div>{MAPPING[categoryCode]}</div>
 											<div className={styles.display_name}>
 												{categoryDisplayName?.length > 16 ? (
 													<Tooltip

@@ -10,8 +10,6 @@ import {
 } from '@cogoport/icons-react';
 import React from 'react';
 
-// import Loading from '../../assets/loading.svg';
-import HsCodeIconMaping from '../../common/hsCodeIcons';
 import EmptyState from '../../common/List/EmptyState';
 import AllProducts from '../AllProducts';
 import SubCategory from '../SubCategories';
@@ -19,6 +17,7 @@ import SubCategory from '../SubCategories';
 import styles from './styles.module.css';
 
 import { useSelector } from '@/packages/store';
+import HsCodeIcon from '@/ui/commons/components/HsCodeIcon';
 
 function ProductsList({
 	handelRouting, setUploadModal, hsLoading, setHSCode, showProductView, apiData, loading, hsCode, subCategory,
@@ -27,7 +26,7 @@ function ProductsList({
 	activeHeaderTab, setIsEdit,
 }) {
 	const { profile } = useSelector((state) => state);
-	const { Mapping } = HsCodeIconMaping(false);
+	const { MAPPING } = HsCodeIcon(false);
 	const checkLength = apiData?.totalRecords;
 	const countryInfo = profile?.organization?.country;
 
@@ -121,7 +120,7 @@ function ProductsList({
 																	<div
 																		className={styles.colored_icon}
 																	>
-																		{Mapping[categoryCode]}
+																		{MAPPING[categoryCode]}
 																	</div>
 																	{categoryDisplayName}
 																</div>

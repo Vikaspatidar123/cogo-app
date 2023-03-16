@@ -3,18 +3,14 @@ import { IcAReports, IcMInfo } from '@cogoport/icons-react';
 import { useState, useEffect } from 'react';
 
 import iconUrl from '../../../../../utils/iconUrl.json';
+import useCreateQuotation from '../../../../hooks/useCreateQuotation';
+import useCurrencyConversion from '../../../../hooks/useCurrencyConversion';
 import useServiceRates from '../../../../hooks/useServiceRates';
 import useValidateModal from '../../../../hooks/useValidateModal';
 import CheckoutModal from '../CheckoutModal';
 
 import ProductField from './ProductField';
 import styles from './styles.module.css';
-
-const serviceInfo = {
-	duties_and_taxes        : true,
-	import_export_documents : false,
-	import_export_controls  : false,
-};
 
 function ValidateProductModal(props) {
 	const {
@@ -28,20 +24,29 @@ function ValidateProductModal(props) {
 	const [servicesSelected, setServiceSelected] = useState({});
 	const [showCheckout, setShowCheckout] = useState(false);
 
-	const { product = {}, destinationPortDetails = {} } = quoteRes;
+	const { product = {}, destinationPortDetails = {}, header } = quoteRes;
 	const productInfoArr = product?.products || [];
+	const currency = header?.currency;
 
+	const { postQuotation, loading: quotationLoading, createQuoteData } = useCreateQuotation({});
+
+	const { getExchangeRate, loading: currLoading } = useCurrencyConversion({});
 	const {	loading, serviceData } = useServiceRates({ prioritySequence, setValidateProduct });
 	const { services = {}, currency:serviceCurrency = 'INR' } = serviceData || {};
 
 	const {
-		renderTitle, renderButton, deleteProduct, checkBoxChangeHandler, clickHandler, serviceProduct = {},
+		renderTitle, renderButton, deleteProduct, checkBoxChangeHandler, clickHandler, serviceProduct = {}, serviceInfo,
+		verifyHandler,
 	} = useValidateModal({
 		servicesSelected,
 		setServiceSelected,
 		productInfoArr,
 		isUserSubscribed,
 		setShowCheckout,
+		postQuotation,
+		quoteRes,
+		currency,
+		getExchangeRate,
 	});
 
 	useEffect(() => {
@@ -107,6 +112,7 @@ function ValidateProductModal(props) {
 						servicesSelected={servicesSelected}
 						productInfoArr={productInfoArr}
 						deleteProduct={deleteProduct}
+						verifyHandler={verifyHandler}
 						checkBoxChangeHandler={checkBoxChangeHandler}
 					/>
 				))}
@@ -121,12 +127,21 @@ function ValidateProductModal(props) {
 					isQuotaLeft={isQuotaLeft}
 					quotaValue={quotaValue}
 					productInfoArr={productInfoArr}
+					createQuoteData={createQuoteData}
+					servicesSelected={servicesSelected}
+					prioritySequence={prioritySequence}
 				/>
 
 			</Modal.Body>
 
 			<Modal.Footer>
-				<Button onClick={clickHandler}>{renderButton()}</Button>
+				<Button
+					onClick={clickHandler}
+					loading={loading || quotationLoading || currLoading}
+				>
+					{renderButton()}
+
+				</Button>
 			</Modal.Footer>
 		</Modal>
 	);

@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 
 import { useRequestBf } from '@/packages/request';
 
-const useServiceRates = ({ prioritySequence = 0, setOpenDataModal }) => {
+const useServiceRates = ({ prioritySequence = 0, setValidateProduct }) => {
 	const [{ loading, data }, trigger] = useRequestBf({
 		method  : 'get',
 		url     : 'saas/trade-engine/service-rates',
@@ -19,7 +19,7 @@ const useServiceRates = ({ prioritySequence = 0, setOpenDataModal }) => {
 			});
 		} catch (error) {
 			Toast.error(error?.message || 'Something went wrong. Please try after sometime');
-			setOpenDataModal(false);
+			setValidateProduct(false);
 		}
 	};
 

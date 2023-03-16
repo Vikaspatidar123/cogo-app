@@ -2,6 +2,11 @@ import { Button, Modal } from '@cogoport/components';
 import { IcMArrowLeft } from '@cogoport/icons-react';
 import { useState } from 'react';
 
+import useCheckoutModal from '../../../../hooks/useCheckoutModal';
+import useDraft from '../../../../hooks/useDraft';
+import useListLocation from '../../../../hooks/useListLocation';
+import usePayment from '../../../../hooks/usePayment';
+
 import ServiceCharge from './ServiceCharge';
 import styles from './styles.module.css';
 import Summary from './Summary';
@@ -10,16 +15,33 @@ import Transport from './Transport';
 function CheckoutModal({
 	showCheckout,
 	setShowCheckout, paymentMode, serviceProduct, quoteRes, headerResLength = 0, serviceData = {}, isQuotaLeft = false,
-	quotaValue, productInfoArr,
+	quotaValue, productInfoArr, servicesSelected, createQuoteData = {}, prioritySequence = 0,
 }) {
 	const [traderCheck, setTrackerCheck] = useState(false);
-	const renderBtn = () => {
-		if (paymentMode === 'addon' || headerResLength > 0) {
-			return 'Get Details';
-		}
-		return 'Proceed to Pay';
-	};
-	console.log(serviceProduct, 'serviceProduct');
+
+	const { getPortDetails, locationLoading } = useListLocation();
+	const { refetchDraft, draftLoading } = useDraft();
+	const { postPayemnt, paymentLoading } = usePayment;
+
+	const consignmentValue = productInfoArr?.reduce((prev, amount) => +prev + +amount.product_price, 0);
+	const { id: quoteId = '' } = createQuoteData;
+
+	const { submitHandler, renderBtn } = useCheckoutModal({
+		quoteRes,
+		quoteId,
+		traderCheck,
+		productInfoArr,
+		servicesSelected,
+		paymentMode,
+		headerResLength,
+		getPortDetails,
+		refetchDraft,
+		consignmentValue,
+		serviceProduct,
+		serviceData,
+		postPayemnt,
+		prioritySequence,
+	});
 
 	return (
 		<Modal show={showCheckout} onClose={() => setShowCheckout(false)} size="lg">
@@ -32,7 +54,7 @@ function CheckoutModal({
 			/>
 			<Modal.Body>
 				<div className={styles.container}>
-					<Transport />
+					<Transport consignmentValue={consignmentValue} />
 					<ServiceCharge
 						serviceProduct={serviceProduct}
 						serviceData={serviceData}
@@ -44,7 +66,13 @@ function CheckoutModal({
 				</div>
 			</Modal.Body>
 			<Modal.Footer>
-				<Button>{renderBtn()}</Button>
+				<Button
+					loading={locationLoading || draftLoading || paymentLoading}
+					onClick={submitHandler}
+				>
+					{renderBtn()}
+
+				</Button>
 			</Modal.Footer>
 		</Modal>
 	);

@@ -3,7 +3,9 @@ import { IcMLocation, IcMShip, IcMAirport } from '@cogoport/icons-react';
 
 import styles from './styles.module.css';
 
-function Transport({ transportMode = 'OCEAN' }) {
+import { shortFormatNumber } from '@/ui/commons/utils/getShortFormatNumber';
+
+function Transport({ transportMode = 'OCEAN', consignmentValue }) {
 	return (
 		<div className={styles.container}>
 			<h3 className={styles.title}>Transportation Details</h3>
@@ -34,7 +36,10 @@ function Transport({ transportMode = 'OCEAN' }) {
 				</div>
 			</div>
 			<div className={styles.total_amount}>
-				<div className={styles.value}>Consignment Value:  123</div>
+				<div className={styles.value}>
+					shortFormatNumberConsignment Value:
+					{shortFormatNumber(consignmentValue, 'INR', true)}
+				</div>
 				<div className={styles.border} />
 			</div>
 		</div>

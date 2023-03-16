@@ -1,5 +1,7 @@
 import { Toast } from '@cogoport/components';
 
+import createQuotePayload from '../utils/createQuotePayload';
+
 import { useRequestBf } from '@/packages/request';
 import { useSelector } from '@/packages/store';
 
@@ -32,85 +34,72 @@ const useCreateQuotation = ({ query }) => {
 	}, { manual: true });
 
 	const {
-		quotationId = '',
+		id: quotationId = '',
 		shipmentDetailId = '',
 		dealId = '',
 	} = createData || {};
 
 	const trigger = quoteId || quotationId !== '' ? editTrigger : createTrigger;
 
-	const createPayload = ({
-		data = {},
-		sellerAddressDetails = {},
-		activeTab,
-		otherDetails = {},
-		expiryDate,
-		shipmentDetails,
-		additionalChargesList,
-		buyerAddressDetails,
-	}) => {
-		const { additionalCharges, incotermCharges, ...rest } = data || {};
+	const createPayload = ({ data, exchangeRate, orgCurrency }) => {
 		const {
-			originPortName = '',
-			originCountry = '',
-			destinationPortName = '',
-			destinationCountry = '',
-		} = shipmentDetails || {};
+			expiryDate,
+			products,
+			sellerAddressDetails,
+			buyerAddressDetails,
+			shipmentDetails,
+			additionalChargesList,
+			otherDetails,
+		} = createQuotePayload({ data, exchangeRate, orgCurrency });
 
 		if (query?.id) {
 			return {
-				...rest,
-				additionalChargesList: {
-					additionalCharges,
-					incotermCharges,
-				},
-				sellerDetails : sellerAddressDetails,
-				transportMode : activeTab,
-				exchangeRate  : otherDetails?.exchangeRate,
-				userId,
+				...otherDetails,
 			};
 		}
 		if (quotationId !== '') {
 			return {
-				...rest,
+				// 		...rest,
+				products,
+				expiryDate,
 				quotationId,
 				shipmentDetailId,
 				dealId,
-				originPortName,
-				originCountry,
-				destinationPortName,
-				destinationCountry,
-				additionalChargesList: {
-					additionalCharges,
-					incotermCharges,
-				},
-				sellerDetails : sellerAddressDetails,
-				transportMode : activeTab,
-				exchangeRate  : otherDetails?.exchangeRate,
+				additionalChargesList,
+				sellerDetails: sellerAddressDetails,
 				userId,
+				...otherDetails,
+				...shipmentDetails,
 			};
 		}
 
+		// create quote, quoteID === indefind;
 		return {
 			expiryDate,
-			shipmentDetails,
-			createdBy      : userId,
-			additionalChargesList,
+			products,
 			sellerAddressDetails,
 			buyerAddressDetails,
-			organizationId : organization?.id,
+			additionalChargesList,
+			shipmentDetails,
 			...otherDetails,
+			createdBy      : userId,
+			organizationId : organization?.id,
+
 		};
 	};
 
-	const postQuotation = async () => {
-		const payloadData = createPayload();
+	const postQuotation = async ({ data, exchangeRate, orgCurrency }) => {
+		const payloadData = createPayload({ data, exchangeRate, orgCurrency });
+		console.log(payloadData, 'payload');
+
 		try {
-			await trigger({
+			const resp = await trigger({
 				data: payloadData,
 			});
+			return resp?.data;
 		} catch (err) {
 			Toast.error(err?.error?.message || 'Something went wrong');
+			return false;
 		}
 	};
 
@@ -150,7 +139,8 @@ const useCreateQuotation = ({ query }) => {
 
 	return {
 		postQuotation,
-		loading: createLoading || editLoading,
+		loading         : createLoading || editLoading,
+		createQuoteData : createData,
 		createDraftQuotation,
 		draftLoading,
 		sendQuotation,

@@ -2,6 +2,7 @@ import {
 	cl, Pill, Tooltip, Checkbox, ButtonIcon, Button, Popover, Input,
 } from '@cogoport/components';
 import { IcMDelete } from '@cogoport/icons-react';
+import { useState, useEffect } from 'react';
 
 import iconUrl from '../../../../../../utils/iconUrl.json';
 import servicesConfiguration from '../../../../../configuration/serviceConfiguration';
@@ -11,7 +12,7 @@ import styles from './styles.module.css';
 
 import { shortFormatNumber } from '@/ui/commons/utils/getShortFormatNumber';
 
-const content = ({ hsRecommendation = [], setStatus, setCheckButton }) => (
+const content = ({ hsRecommendation = [], setStatus, setCheckButton, setVerifiedData }) => (
 	<div className={styles.recommend_container}>
 		{hsRecommendation.map((recommend) => {
 			const { hsCode:hsCodeValue = '', description = '' } = recommend;
@@ -23,6 +24,10 @@ const content = ({ hsRecommendation = [], setStatus, setCheckButton }) => (
 					role="presentation"
 					onClick={() => {
 						setStatus((prev) => !prev);
+						setVerifiedData({
+							hsCode: hsCodeValue,
+							description,
+						});
 						setCheckButton(true);
 					}}
 				>
@@ -45,8 +50,11 @@ function ProductField({
 	productInfoArr = [],
 	productLineItemDetails = [],
 	deleteProduct,
+	verifyHandler,
 	checkBoxChangeHandler,
 }) {
+	const [verifiedData, setVerifiedData] = useState({});
+
 	const {
 		hsRecommendation, status, setStatus,
 		checkButton, setCheckButton, verifyLoading, verifyHsCode,
@@ -57,6 +65,13 @@ function ProductField({
 
 	const disableValidateBtn = (!isUserSubscribed && productLineItemDetails.length === 0
         && !isQuotaLeft) || verifyLoading || !status;
+
+	useEffect(() => {
+		if (checkButton) {
+			verifyHandler(productId, verifiedData?.hsCode || hsCode);
+		}
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [checkButton]);
 
 	return (
 		<div className={cl`${styles.container} ${index === productLength - 1 && styles.remove_line}`}>
@@ -70,7 +85,7 @@ function ProductField({
 					<Input
 						size="sm"
 						placeholder="HS Code"
-						value={hsCode}
+						value={verifiedData?.hsCode || hsCode}
 						disabled
 					/>
 				</div>
@@ -80,7 +95,7 @@ function ProductField({
 					<Popover
 						interactive
 						placement="bottom"
-						content={content({ hsRecommendation, setStatus, setCheckButton })}
+						content={content({ hsRecommendation, setStatus, setCheckButton, setVerifiedData })}
 						visible={!status}
 						caret={false}
 					>
@@ -88,7 +103,7 @@ function ProductField({
 							<Input
 								size="sm"
 								placeholder="Product Name"
-								value={description || productName}
+								value={verifiedData?.description || description || productName}
 								disabled
 							/>
 						</div>
@@ -135,7 +150,7 @@ function ProductField({
 							onChange={() => checkBoxChangeHandler(productId, service?.name)}
 						/>
 						<div>
-							<Tooltip placement="right" content={service?.tooltip} theme="light-border">
+							<Tooltip placement="right" content={service?.tooltip}>
 								<div className={styles.cursor}>
 									<div className={styles.service_name}>{service?.displayName}</div>
 									<div className={styles.hrborder} />

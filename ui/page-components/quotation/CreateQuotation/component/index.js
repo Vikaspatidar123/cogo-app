@@ -27,10 +27,17 @@ function CreateQuotation() {
 		handleSubmit: headerHandleSubmit,
 		formState: { errors: headerError },
 		watch,
-	} = useForm();
+	} = useForm({
+		defaultValues: {
+			currency: orgCurrency,
+		},
+	});
 	const watchCurrency = watch('currency');
 
-	const { getExchangeRate, exchangeRate = 1 } = useCurrencyConversion({
+	const {
+		// getExchangeRate,
+		exchangeRate = 1,
+	} = useCurrencyConversion({
 		watchCurrency,
 		orgCurrency,
 		landingPageCall: true,
@@ -44,13 +51,10 @@ function CreateQuotation() {
 		return resp;
 	};
 
-	const createQuoteHandler = () => {
-		const data = submitForm();
-		if (data) {
-			postQuotation(data);
-		}
+	const createQuoteHandler = async () => {
+		const data = await submitForm();
+		postQuotation({ data, exchangeRate, orgCurrency });
 	};
-
 	return (
 		<div>
 			<Header
@@ -75,7 +79,11 @@ function CreateQuotation() {
 					<ProductDetails ref={(r) => { quoteRef.current.product = r; }} />
 				</div>
 				<div className={styles.charge_section}>
-					<Charges submitForm={submitForm} ref={(r) => { quoteRef.current.charges = r; }} />
+					<Charges
+						submitForm={submitForm}
+						ref={(r) => { quoteRef.current.charges = r; }}
+						quoteRef={quoteRef}
+					/>
 				</div>
 			</div>
 			<div className={styles.btn_container}>

@@ -1,6 +1,6 @@
 import { format } from '@cogoport/utils';
 
-const createQuotePayload = ({ data, exchangeRate = 1 }) => {
+const createQuotePayload = ({ data, exchangeRate = 1, orgCurrency }) => {
 	const {
 		sellerAddress = {},
 		buyerDetails = {}, destinationPortDetails = {}, originPortDetails = {},
@@ -21,6 +21,7 @@ const createQuotePayload = ({ data, exchangeRate = 1 }) => {
 	} = sellerAddress;
 
 	const {
+		id:buyerId = '',
 		partyName = '',
 		address: buyerAddress = '',
 		pincode: buyerPinCode = '',
@@ -101,6 +102,8 @@ const createQuotePayload = ({ data, exchangeRate = 1 }) => {
 		...rest,
 		currency,
 		exchangeRate,
+		saasPartnerId: buyerId,
+		orgCurrency,
 	};
 
 	return {

@@ -8,7 +8,7 @@
 // mobileIcon is used to show icon in mobile navigation only
 // isSubNavs is used to show sub navigations
 
-import { IcMUpwardGraph } from '@cogoport/icons-react';
+import { IcMUpwardGraph, IcMQuotations } from '@cogoport/icons-react';
 
 const navigationMappings = {
 	app_bookings: {

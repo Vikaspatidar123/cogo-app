@@ -78,7 +78,7 @@ function ServiceCharge({ serviceProduct = {}, serviceData, isQuotaLeft, traderCh
 
 				<div className={cl`${styles.flex_box} ${styles.trader_row}`}>
 
-					<Checkbox checked={traderCheck} onChange={setTrackerCheck} />
+					<Checkbox checked={traderCheck} onChange={() => setTrackerCheck((prev) => !prev)} />
 
 					<div className={styles.screen}>
 						<IcMScreenShare className="icon" width={25} height={25} />

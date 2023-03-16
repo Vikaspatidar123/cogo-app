@@ -1,7 +1,10 @@
 import { cl, Button } from '@cogoport/components';
 import { useState, forwardRef } from 'react';
 
+import useCheckPaymentStatus from '../../../hooks/useCheckPaymentStatus';
+import useGetDraft from '../../../hooks/useGetDraft';
 import useGetQuota from '../../../hooks/useGetQuota';
+import useTradeEngine from '../../../hooks/useTradeEngine';
 import styles from '../styles.module.css';
 
 import PaymentModeModal from './PaymentModeModal';
@@ -25,6 +28,8 @@ const getSuffix = (name, getDutiesSubmitHandler) => {
 
 function BasicCharge({ fields, control, errors, submitForm }) {
 	const [paymentModal, setPaymentModal] = useState(false);
+	const [pendingModal, setPendingModal] = useState(false);
+	const [transactionModal, setTransactionModal] = useState(false);
 	const [validateProduct, setValidateProduct] = useState(false);
 	const [paymentMode, setPaymentMode] = useState('addon');
 	const [quoteRes, setQuoteRes] = useState({});
@@ -37,13 +42,37 @@ function BasicCharge({ fields, control, errors, submitForm }) {
 		// loading = false,
 	} = useGetQuota();
 
+	const {
+		postTradeEngine,
+		transactionResp,
+		tradeEngineLoading,
+		tradeEngineRespLength,
+	} = useTradeEngine();
+
+	const { loading, getDraftData, getDraft } = useGetDraft();
+	const { pendingStatus, checkPaymentStatus } = 	useCheckPaymentStatus(
+		{
+			setPendingModal,
+			isUserSubscribed,
+			isQuotaLeft,
+			setTransactionModal,
+			setValidateProduct,
+			getDraft,
+			postTradeEngine,
+		},
+	);
+
 	const getDutiesSubmitHandler = async () => {
 		const resp = await submitForm();
 		console.log(resp, 'resp');
-		setQuoteRes(resp);
-		// if (typeof resp === 'object') {
-		setValidateProduct(true);
-		// }
+		if (resp) {
+			setQuoteRes(resp);
+			if (isQuotaLeft) {
+				setValidateProduct(true);
+			} else {
+				setPaymentModal(true);
+			}
+		}
 	};
 
 	return (

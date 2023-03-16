@@ -46,6 +46,7 @@ function List(props, ref) {
 				)();
 			});
 		},
+		totalProductValue: calTotalPrice(),
 	}));
 
 	return (

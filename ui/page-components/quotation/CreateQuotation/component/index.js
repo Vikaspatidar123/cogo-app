@@ -4,10 +4,12 @@ import { useState, useRef, forwardRef, useEffect } from 'react';
 import headerFields from '../configuration/headerControls';
 import useCreateQuotation from '../hooks/useCreateQuotation';
 import useCurrencyConversion from '../hooks/useCurrencyConversion';
+import useSendQuotation from '../hooks/useSendQuotation';
 import getHandleSubmitData from '../utils/getHandleSubmitdata';
 
 import AllDetails from './AllDetails';
 import Charges from './Charges';
+import ConfirmationModal from './ConfirmationModal';
 import Header from './Header';
 import OptSelector from './OptSelector';
 import ProductDetails from './ProductDetails';
@@ -20,6 +22,9 @@ function CreateQuotation() {
 	const { id, organization } = useSelector((state) => state?.profile);
 
 	const [transportMode, setTransportMode] = useState('OCEAN');
+	const [confirmCreateQuotation, setConfirmCreateQuotation] = useState(false);
+
+	const { sendQuotation, sendQuoteLoading, sendQuotedata } = useSendQuotation();
 
 	const orgCurrency = organization?.country?.currency_code;
 
@@ -50,9 +55,9 @@ function CreateQuotation() {
 		orgCurrency,
 		landingPageCall: true,
 	});
-	const { postQuotation, loading } = useCreateQuotation({});
+	const { postQuotation, loading, createQuoteData } = useCreateQuotation({});
 	const newHeaderFields = headerFields({ id, organization });
-	console.log(watch('expiryDate'));
+
 	const submitForm = async () => {
 		const resp = await getHandleSubmitData({
 			quoteRef: quoteRef.current,
@@ -110,6 +115,15 @@ function CreateQuotation() {
 					Create Quotation
 				</Button>
 			</div>
+			<ConfirmationModal
+				confirmCreateQuotation={confirmCreateQuotation}
+				setConfirmCreateQuotation={setConfirmCreateQuotation}
+				sendQuotation={sendQuotation}
+				sendQuoteLoading={sendQuoteLoading}
+				createQuoteData={createQuoteData}
+				sendQuotedata={sendQuotedata}
+				ref={quoteRef}
+			/>
 		</div>
 	);
 }

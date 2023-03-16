@@ -1,4 +1,4 @@
-import { cl, Button, Toast } from '@cogoport/components';
+import { cl, Button } from '@cogoport/components';
 import { useState, forwardRef } from 'react';
 
 import useCheckPaymentStatus from '../../../hooks/useCheckPaymentStatus';
@@ -6,6 +6,9 @@ import useGetDraft from '../../../hooks/useGetDraft';
 import useGetQuota from '../../../hooks/useGetQuota';
 import useTradeEngine from '../../../hooks/useTradeEngine';
 import getRatesModal from '../../../utils/getRatesModal';
+import PendingModal from '../../PendingModal';
+import SuccessModal from '../../SuccessModal';
+import TransactionModal from '../../TransactionModal';
 import styles from '../styles.module.css';
 
 import FreightCharges from './FreightCharges';
@@ -57,6 +60,8 @@ function BasicCharge(
 	const [paymentMode, setPaymentMode] = useState('addon');
 	const [quoteRes, setQuoteRes] = useState({});
 	const [calculateCharge, setCalculateCharge] = useState(false);
+	const [showSuccessModal, setShowSuccessModal] = useState(false);
+
 	const { current } = ref || {};
 	const { getRatesModalHandler, data } = getRatesModal({
 		current,
@@ -69,18 +74,16 @@ function BasicCharge(
 		quotaValue,
 		prioritySequence,
 		// getQuota,
-		// loading = false,
 	} = useGetQuota();
 
 	const {
 		postTradeEngine,
 		transactionResp,
 		tradeEngineLoading,
-		tradeEngineRespLength,
 	} = useTradeEngine();
 
-	const { loading, getDraftData, getDraft } = useGetDraft();
-	const { pendingStatus, checkPaymentStatus } = 	useCheckPaymentStatus(
+	const { loading: getDraftLoading, getDraftData, getDraft } = useGetDraft();
+	const { pendingStatus } = 	useCheckPaymentStatus(
 		{
 			setPendingModal,
 			isUserSubscribed,
@@ -145,6 +148,10 @@ function BasicCharge(
 				quotaValue={quotaValue}
 				isQuotaLeft={isQuotaLeft}
 				quoteRes={quoteRes}
+				getDraftData={getDraftData}
+				getDraftLoading={getDraftLoading}
+				setTransactionModal={setTransactionModal}
+				postTradeEngine={postTradeEngine}
 			/>
 			{calculateCharge && (
 				<FreightCharges
@@ -156,6 +163,16 @@ function BasicCharge(
 					transportMode={transportMode}
 				/>
 			)}
+			<PendingModal pendingModal={pendingModal} setPendingModal={setPaymentModal} pendingStatus={pendingStatus} />
+			<TransactionModal
+				transactionModal={transactionModal}
+				setTransactionModal={setTransactionModal}
+				transactionData={transactionResp}
+				tradeEngineLoading={tradeEngineLoading}
+				setValue={setValue}
+				setShowSuccessModal={setShowSuccessModal}
+			/>
+			<SuccessModal showSuccessModal={showSuccessModal} setShowSuccessModal={setShowSuccessModal} />
 		</>
 	);
 }

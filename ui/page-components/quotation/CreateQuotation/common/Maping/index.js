@@ -31,8 +31,3 @@ export const containerTypeMaping = {
 	ISO          : 'iso_tank',
 	'OPEN SIDE'  : ' open_side',
 };
-
-export const urls = {
-	taxSvg   : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/tax.svg',
-	iedocSvg : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/IEdoc.svg',
-};

@@ -1,0 +1,37 @@
+.row{
+    width: 100%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 5px 20px;
+	margin-top: 10px;
+	overflow-x: hidden;
+}
+
+.col{
+	.col_title_info{
+		font-weight: 500;
+		color: #4f4f4f;
+		text-transform: none;
+	}
+
+	.col_info{
+		color: #828282;
+	}
+	.doc_desc{
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		overflow: hidden;
+	}
+	.description{
+		max-width: 100%;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		overflow: hidden;
+	}
+}
+
+.pdf{
+	cursor: pointer;
+	color: #034afd !important;
+}

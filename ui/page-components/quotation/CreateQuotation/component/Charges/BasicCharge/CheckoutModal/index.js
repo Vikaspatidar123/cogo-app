@@ -4,7 +4,6 @@ import { useState } from 'react';
 
 import useCheckoutModal from '../../../../hooks/useCheckoutModal';
 import useDraft from '../../../../hooks/useDraft';
-import useListLocation from '../../../../hooks/useListLocation';
 import usePayment from '../../../../hooks/usePayment';
 
 import ServiceCharge from './ServiceCharge';
@@ -14,40 +13,52 @@ import Transport from './Transport';
 
 function CheckoutModal({
 	showCheckout,
-	setShowCheckout, paymentMode, serviceProduct, quoteRes, headerResLength = 0, serviceData = {}, isQuotaLeft = false,
-	quotaValue, productInfoArr, servicesSelected, createQuoteData = {}, prioritySequence = 0,
+	setShowCheckout,
+	quotaValue,
+	paymentMode,
+	serviceProduct,
+	headerResponse,
+	serviceData = {},
+	isQuotaLeft = false,
+	productInfoArr,
+	createQuoteData = {},
+	prioritySequence = 0,
+	createHeader,
+	createlineItem,
+	consignmentValue,
+	postTradeEngine,
+	setTransactionModal,
+	locationLoading,
 }) {
 	const [traderCheck, setTrackerCheck] = useState(false);
-
-	const { getPortDetails, locationLoading } = useListLocation();
+	console.log(serviceProduct, 'serviceProduct');
 	const { refetchDraft, draftLoading } = useDraft();
 	const { postPayemnt, paymentLoading } = usePayment;
 
-	const consignmentValue = productInfoArr?.reduce((prev, amount) => +prev + +amount.product_price, 0);
 	const { id: quoteId = '' } = createQuoteData;
+	const headerResLength = Object.keys(headerResponse).length;
 
 	const { submitHandler, renderBtn } = useCheckoutModal({
-		quoteRes,
 		quoteId,
 		traderCheck,
-		productInfoArr,
-		servicesSelected,
 		paymentMode,
 		headerResLength,
-		getPortDetails,
 		refetchDraft,
-		consignmentValue,
 		serviceProduct,
-		serviceData,
 		postPayemnt,
 		prioritySequence,
+		createHeader,
+		createlineItem,
+		postTradeEngine,
+		setTransactionModal,
+		setShowCheckout,
 	});
 
 	return (
 		<Modal show={showCheckout} onClose={() => setShowCheckout(false)} size="lg">
 			<Modal.Header title={(
 				<div className={styles.flex_box}>
-					<IcMArrowLeft style={{ cursor: 'pointer' }} />
+					<IcMArrowLeft style={{ cursor: 'pointer' }} onClick={() => setShowCheckout(false)} />
 					<h3 className={styles.header}>Checkout</h3>
 				</div>
 			)}
@@ -67,7 +78,7 @@ function CheckoutModal({
 			</Modal.Body>
 			<Modal.Footer>
 				<Button
-					loading={locationLoading || draftLoading || paymentLoading}
+					loading={draftLoading || paymentLoading || locationLoading}
 					onClick={submitHandler}
 				>
 					{renderBtn()}

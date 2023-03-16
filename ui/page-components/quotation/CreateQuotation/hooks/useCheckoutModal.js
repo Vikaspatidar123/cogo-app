@@ -2,32 +2,23 @@ import { Toast } from '@cogoport/components';
 
 import { SERVICES_MAPPING, DISPLAY_NAME } from '../utils/serviceMapping';
 
-import { useSelector } from '@/packages/store';
-
 const useCheckoutModal = ({
-	quoteRes = {},
 	quoteId = '',
 	traderCheck,
-	productInfoArr = [],
-	servicesSelected = {},
 	paymentMode,
 	headerResLength = 0,
-	getPortDetails,
 	refetchDraft,
-	consignmentValue = 0,
 	serviceProduct = {},
 	serviceData,
 	postPayemnt,
 	prioritySequence,
+	createHeader,
+	createlineItem,
+	postTradeEngine,
+	setTransactionModal,
+	setShowCheckout,
 }) => {
-	const { country_code } = useSelector((state) => state.profile.organization.country);
 	const { services = {}, currency: serviceCurrency = 'INR' } = serviceData || {};
-
-	const {
-		transportMode,
-		charges = {},
-		destinationPortDetails = {}, originPortDetails = {}, header = {}, sellerAddress = {}, buyerDetails = {},
-	} = quoteRes;
 
 	const renderBtn = () => {
 		if (paymentMode === 'addon' || headerResLength > 0) {
@@ -36,93 +27,10 @@ const useCheckoutModal = ({
 		return 'Proceed to Pay';
 	};
 
-	const getCountryDetails = async (id, type) => {
-		const response = await getPortDetails({
-			status     : 'active',
-			type       : [type],
-			id         : type !== 'country' ? id : '',
-			country_id : type === 'country' ? id : '',
-		});
-		return response?.country_code || response;
-	};
-
-	const createHeader = async () => {
-		const {
-			partyName = '',
-			address: buyerAddress = '',
-			pincode: buyerPinCode = '',
-			country: buyerCountry = '',
-			state: buyerState = '',
-			city : buyerCity = '',
-			countryId: buyerCountryId = '',
-		} = buyerDetails;
-
-		const buyerCountryCode = await getCountryDetails(buyerCountryId, 'country');
-
-		const draftHeader = {
-			incoterm               : charges?.incoterm,
-			resultCurrency         : header?.currency,
-			quotationId            : quoteId,
-			modeOfTransport        : transportMode === 'OCEAN' ? 'SEA' : 'AIR',
-			originCountryCode      : originPortDetails?.country_code,
-			destinationCountryCode : destinationPortDetails?.country_code,
-			isScreening            : traderCheck,
-			consignmentValue,
-			sellerDetails          : {
-				name        : sellerAddress?.name,
-				countryCode : country_code,
-				address     : sellerAddress?.address,
-				pinCode     : sellerAddress?.pincode,
-				state       : null,
-				city        : null,
-				countryName : null,
-			},
-			buyerDetails: {
-				name        : partyName,
-				countryCode : buyerCountryCode,
-				address     : buyerAddress,
-				pinCode     : buyerPinCode,
-				state       : buyerState,
-				city        : buyerCity,
-				countryName : buyerCountry,
-			},
-		};
-		if (buyerCountryCode) {
-			return draftHeader;
-		}
-		Toast.error('Something went wrong');
-		return false;
-	};
-
-	const createlineItem = () => {
-		const lineItem = productInfoArr.map(({ product_price = '', productId = '', quantity = '', name = '' }) => {
-			const {
-				duties_and_taxes, import_export_documents,
-				import_export_controls, destinationHs,
-			} = servicesSelected?.[productId] || {};
-			return {
-				destinationHs,
-				value            : product_price,
-				productId,
-				servicesRequired : {
-					isLandedCost    : duties_and_taxes,
-					isDocumentation : import_export_documents,
-					isControls      : import_export_controls,
-				},
-				manufactureOrigin : country_code,
-				quantity,
-				originCN          : '',
-				productName       : name,
-			};
-		});
-
-		return lineItem;
-	};
-
 	const createBillLineItems = () => {
 		const countArr = Object.keys(serviceProduct);
 
-		if (traderCheck) countArr.push('4');
+		if (traderCheck) countArr.push(4);
 
 		const payloadData = countArr.map((ele) => {
 			const serviceName = SERVICES_MAPPING[ele];
@@ -180,7 +88,12 @@ const useCheckoutModal = ({
 	};
 
 	const submitHandler = async () => {
-		const draftHeader = await createHeader();
+		const draftHeader = await createHeader(traderCheck);
+		if (!draftHeader) {
+			Toast.error('Something went wrong');
+			return;
+		}
+
 		const lineItem = createlineItem();
 		const {
 			payloadData,
@@ -199,6 +112,13 @@ const useCheckoutModal = ({
 				prioritySequence,
 				...rest,
 			});
+		} else if (draftResp && paymentMode === 'addon') {
+			setTransactionModal(true);
+			postTradeEngine({
+				tradeEngineInputId : draftResp,
+				paymentMode        : 'QUOTA',
+			});
+			setShowCheckout(false);
 		}
 		console.log(draftResp, 'draftResp');
 	};

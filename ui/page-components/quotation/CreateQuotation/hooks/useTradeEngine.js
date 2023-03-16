@@ -21,8 +21,6 @@ const useTradeEngine = () => {
 		authKey : 'post_saas_trade_engine',
 	}, { manual: true });
 
-	const tradeEngineRespLength = Object.keys(transactionResp).length;
-
 	const getTradeEngine = async (tradeEngineInputId) => {
 		try {
 			await getTransactionTrigger({
@@ -57,7 +55,6 @@ const useTradeEngine = () => {
 		postTradeEngine,
 		transactionResp,
 		tradeEngineLoading: getLoading || postLoading,
-		tradeEngineRespLength,
 	};
 };
 

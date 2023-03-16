@@ -1,0 +1,70 @@
+.title{
+    font-weight: 700;
+	font-size: 18px;
+	padding: 18px;
+	display: flex;
+	align-items: center;
+	border: 1px solid #e0e0e0;
+}
+.container{
+	height: 270px;
+	background: #f9fafd;
+	padding: 15px;
+
+	.container_height{
+		max-height: 180px;
+	}
+
+	.scroll{
+		overflow: scroll;
+
+	}
+}
+
+.card{
+	align-items: baseline;
+	.auto {
+		width: auto;
+	}
+	.dot {
+		flex: 1;
+		border-bottom: 2px dotted #697989;
+	}
+
+	.sub {
+		font-weight: 400;
+		font-size: 14px;
+	}
+	.dotFlex {
+		display: flex;
+		justify-content: space-between;
+		align-items: center ;
+		padding: 10px ;
+	}
+}
+
+.text{
+	font-weight: 600;
+	line-height: 16px;
+	text-transform: capitalize !important;
+	&.sub {
+		color: #828282;
+	}
+}
+
+.card_total{
+	display: flex;
+	padding: 10px 3px;
+	justify-content: space-between;
+	align-items: center;
+	border-top: 1px dashed #e5e5e5;
+	.sorry {
+		color: #f68b21;
+		padding: 0px 0px;
+	}
+}
+
+.text_total{
+	color: #4f4f4f;
+	font-weight: 600;
+}

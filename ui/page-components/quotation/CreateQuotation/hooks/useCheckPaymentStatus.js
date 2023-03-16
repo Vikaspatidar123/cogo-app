@@ -64,7 +64,7 @@ const useCheckPaymentStatus = ({
 	}, [billId]);
 
 	return {
-		pendingStatus, checkPaymentStatus, loading,
+		pendingStatus, loading,
 	};
 };
 

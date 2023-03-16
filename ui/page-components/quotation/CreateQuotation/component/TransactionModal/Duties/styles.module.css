@@ -1,0 +1,12 @@
+.row{
+    display: flex;
+	padding: 12px;
+	justify-content: space-between;
+	align-items: flex-end;
+}
+.line{
+	border-bottom: 1px dashed #c3d1df;
+}
+.container{
+	margin-bottom: 20px ;
+}

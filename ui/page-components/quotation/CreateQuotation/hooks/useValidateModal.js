@@ -14,16 +14,30 @@ const useValidateModal = ({
 	setServiceSelected,
 	productInfoArr,
 	isUserSubscribed,
+	isQuotaLeft,
 	setShowCheckout,
 	postQuotation,
 	quoteRes,
 	currency,
 	getExchangeRate,
+	headerResponse,
+	productLineItemDetails,
+	refetchDraft,
+	createHeader,
+	createlineItem,
+	postTradeEngine,
+	setTransactionModal,
+	setValidateProduct,
 }) => {
 	const { currency_code: orgCurrency } = useSelector((state) => state.profile.organization.country);
 	const [serviceProduct, setServiceProduct] = useState({
 		1: [], 2: [], 3: [],
 	});
+	const [createQuoteRes, setCreateQuoteRes] = useState();
+	const productIdArr = Object.keys(servicesSelected);
+	const { isScreening = false, tradeEngineInputId = '' } = headerResponse;
+
+	const lineItemLength = productLineItemDetails.length;
 
 	const calculateService = () => {
 		let serviceObj = { 1: [], 2: [], 3: [] };
@@ -48,7 +62,7 @@ const useValidateModal = ({
 		});
 	};
 
-	const renderTitle = ({ lineItemLength = 0 }) => {
+	const renderTitle = () => {
 		if (!isUserSubscribed && lineItemLength > 0) return 'Validate HS Code';
 		if (!isUserSubscribed && lineItemLength === 0) return 'Services Details';
 		return 'Get Accurate Data';
@@ -88,39 +102,84 @@ const useValidateModal = ({
 		}));
 	};
 
-	const checkProductDetails = () => {
-		const isProductVerified = [];
-		const isDocSelected = [];
-		const productIdArr = Object.keys(servicesSelected);
+	const isDocSelected = () => {
+		const isDocSelectedArr = [];
 
 		productIdArr.forEach((id) => {
 			const serviceObj = servicesSelected[id];
-			if (!serviceObj.destinationHs) isProductVerified.push(id);
 			if (!serviceObj.duties_and_taxes
 				&& !serviceObj.import_export_documents && !serviceObj.import_export_controls) {
-				isDocSelected.push(id);
+				isDocSelectedArr.push(id);
 			}
 		});
-
-		if (isProductVerified.length > 0 && isUserSubscribed) {
-			Toast.error('Please Validate all Products ');
+		if (isDocSelectedArr.length > 0) {
+			// Toast.error('Please select atleast one services');
 			return false;
 		}
-		if (isDocSelected.length > 0) {
-			Toast.error('Please select atleast one services');
+		return true;
+	};
+	const isProductVerified = () => {
+		const isProductVerifiedArr = [];
+
+		productIdArr.forEach((id) => {
+			const serviceObj = servicesSelected[id];
+			if (!serviceObj.destinationHs) isProductVerifiedArr.push(id);
+		});
+
+		if (isProductVerifiedArr.length > 0 && isUserSubscribed) {
+			// Toast.error('Please Validate all Products ');
 			return false;
 		}
 
 		return true;
 	};
 
+	const createQuoteFunc = async () => {
+		if (!createQuoteRes) {
+			const exchangeRate = await getExchangeRate(orgCurrency, currency);
+			const quoteResp = await postQuotation({ data: quoteRes, orgCurrency, exchangeRate });
+			setCreateQuoteRes(quoteResp?.id);
+			return quoteResp?.id;
+		}
+		return createQuoteRes;
+	};
+
+	const freeUser = async () => {
+		const draftHeader = await createHeader(isScreening, tradeEngineInputId);
+		if (!draftHeader) {
+			Toast.error('Something went wrong');
+			return;
+		}
+		const lineItem = createlineItem();
+
+		const resp = await refetchDraft({ draftHeader, lineItem });
+
+		if (resp) {
+			setTransactionModal(true);
+			await postTradeEngine({ tradeEngineInputId: resp, paymentMode: 'PAYMENT' });
+			setValidateProduct(false);
+		}
+	};
+
 	const clickHandler = async () => {
-		const resp = checkProductDetails();
-		if (!resp) return;
+		// const resp = checkProductDetails();
+		// if (!resp) return;
+		const docSelected = isDocSelected();
+		const productVerify = isProductVerified();
+		// const quoteId = createQuoteFunc();
 		calculateService();
-		const exchangeRate = await getExchangeRate(orgCurrency, currency);
-		const quoteResp = await postQuotation({ data: quoteRes, orgCurrency, exchangeRate });
-		if (quoteResp) {
+
+		if (!docSelected) {
+			Toast.error('Please select atleast one services');
+		} else if (!isUserSubscribed && !isQuotaLeft && lineItemLength === 0) {
+			setShowCheckout(true);
+			await createQuoteFunc();
+		} else if (!productVerify) {
+			Toast.error('Please Validate all Products ');
+		} else if (productVerify && lineItemLength > 0) {
+			freeUser();
+		} else if (productVerify) {
+			await createQuoteFunc();
 			setShowCheckout(true);
 		}
 	};

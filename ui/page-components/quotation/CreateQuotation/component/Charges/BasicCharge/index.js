@@ -1,7 +1,10 @@
 import { cl, Button, Toast } from '@cogoport/components';
 import { useState, forwardRef } from 'react';
 
+import useCheckPaymentStatus from '../../../hooks/useCheckPaymentStatus';
+import useGetDraft from '../../../hooks/useGetDraft';
 import useGetQuota from '../../../hooks/useGetQuota';
+import useTradeEngine from '../../../hooks/useTradeEngine';
 import getRatesModal from '../../../utils/getRatesModal';
 import styles from '../styles.module.css';
 
@@ -48,6 +51,8 @@ function BasicCharge(
 	ref,
 ) {
 	const [paymentModal, setPaymentModal] = useState(false);
+	const [pendingModal, setPendingModal] = useState(false);
+	const [transactionModal, setTransactionModal] = useState(false);
 	const [validateProduct, setValidateProduct] = useState(false);
 	const [paymentMode, setPaymentMode] = useState('addon');
 	const [quoteRes, setQuoteRes] = useState({});
@@ -67,39 +72,59 @@ function BasicCharge(
 		// loading = false,
 	} = useGetQuota();
 
+	const {
+		postTradeEngine,
+		transactionResp,
+		tradeEngineLoading,
+		tradeEngineRespLength,
+	} = useTradeEngine();
+
+	const { loading, getDraftData, getDraft } = useGetDraft();
+	const { pendingStatus, checkPaymentStatus } = 	useCheckPaymentStatus(
+		{
+			setPendingModal,
+			isUserSubscribed,
+			isQuotaLeft,
+			setTransactionModal,
+			setValidateProduct,
+			getDraft,
+			postTradeEngine,
+		},
+	);
+
 	const getDutiesSubmitHandler = async () => {
 		const resp = await submitForm();
 		console.log(resp, 'resp');
-		setQuoteRes(resp);
-		// if (typeof resp === 'object') {
-		setValidateProduct(true);
-		// }
+		if (resp) {
+			setQuoteRes(resp);
+			if (isQuotaLeft) {
+				setValidateProduct(true);
+			} else {
+				setPaymentModal(true);
+			}
+		}
 	};
 
 	return (
 		<>
 			{(fields || []).map((field, index) => {
-      	if (index === 0 || index > 3) return <div />;
-      	const Element = getField(field?.type);
-      	return (
-	<div
-		className={cl`${styles.flex_box} ${
-            	errors?.[field?.name] && styles.error
-		}  ${styles.row}`}
-	>
-		<p className={styles.label}>{field?.label}</p>
-		<Element
-			{...field}
-			control={control}
-			className={cl`${styles.input_box} ${styles[field?.className]} `}
-			suffix={getSuffix(
-              	field?.name,
-              	getDutiesSubmitHandler,
-              	getRatesModalHandler,
-			)}
-		/>
-	</div>
-      	);
+				if (index === 0 || index > 3) return <div />;
+				const Element = getField(field?.type);
+				return (
+					<div
+						className={cl`${styles.flex_box} ${
+							errors?.[field?.name] && styles.error
+						}  ${styles.row}`}
+					>
+						<p className={styles.label}>{field?.label}</p>
+						<Element
+							{...field}
+							control={control}
+							className={cl`${styles.input_box} ${styles[field?.className]} `}
+							suffix={getSuffix(field?.name, getDutiesSubmitHandler, getRatesModalHandler)}
+						/>
+					</div>
+				);
 			})}
 
 			<PaymentModeModal

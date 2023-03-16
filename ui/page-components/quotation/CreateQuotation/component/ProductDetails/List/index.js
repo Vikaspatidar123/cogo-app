@@ -51,6 +51,7 @@ function List(props, ref) {
 				)();
 			});
 		},
+		totalProductValue: calTotalPrice(),
 	}));
 	// useMemo(() => { setSelectedId(watchFieldArr.map((x) => x.id)); }, [watchFieldArr]);
 	useMemo(() => {

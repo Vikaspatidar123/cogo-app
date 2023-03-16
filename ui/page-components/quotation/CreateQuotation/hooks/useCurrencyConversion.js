@@ -11,6 +11,7 @@ const useCurrencyConversion = ({ watchCurrency = '', orgCurrency = '', landingPa
 
 	const getExchangeRate = async (fromCur, toCur) => {
 		try {
+			if (fromCur === toCur) return 1;
 			const exData = await trigger({
 				params: {
 					from_currency : fromCur,

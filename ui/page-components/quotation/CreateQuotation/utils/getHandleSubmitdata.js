@@ -7,7 +7,7 @@ const getHandleSubmitData = async ({ quoteRef = {}, headerHandleSubmit, transpor
 
 	const val = new Promise((resolve) => {
 		const onSubmit = (data) => data;
-		const onError = (data) => data;
+		const onError = () => true;
 		headerHandleSubmit(
 			(value) => resolve(onSubmit(value)),
 			(value) => resolve(onError(value)),

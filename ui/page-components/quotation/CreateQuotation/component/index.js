@@ -29,15 +29,23 @@ function CreateQuotation() {
 		formState: { errors: headerError },
 		setValue,
 		watch,
-	} = useForm();
+	} = useForm({
+		defaultValues: {
+			currency: orgCurrency,
+		},
+	});
+	const watchCurrency = watch('currency');
 	const date = watch('expiryDate');
 
 	const quoteRef = useRef({ date });
 	useEffect(() => {
 		quoteRef.current.date = date;
 	}, [date]);
-	const watchCurrency = watch('currency');
-	const { getExchangeRate, exchangeRate = 1 } = useCurrencyConversion({
+
+	const {
+		// getExchangeRate,
+		exchangeRate = 1,
+	} = useCurrencyConversion({
 		watchCurrency,
 		orgCurrency,
 		landingPageCall: true,
@@ -54,13 +62,10 @@ function CreateQuotation() {
 		return resp;
 	};
 
-	const createQuoteHandler = () => {
-		const data = submitForm();
-		if (data) {
-			postQuotation(data);
-		}
+	const createQuoteHandler = async () => {
+		const data = await submitForm();
+		postQuotation({ data, exchangeRate, orgCurrency });
 	};
-
 	return (
 		<div>
 			<Header

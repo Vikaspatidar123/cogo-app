@@ -43,18 +43,19 @@ function Header({
 						<IcMFilter />
 					</Button>
 				</Popover>
-				<Button size="lg" className={styles.create_btn}>
+				<Button
+					size="lg"
+					className={styles.create_btn}
+					onClick={() => push(
+						'/saas/quickquotation/createquotation',
+						'/saas/quickquotation/createquotation',
+					)}
+				>
 					<IcMPlus />
 					<div
 						className={styles.btn_text}
-						role="presentation"
-						onClick={() => push(
-							'/saas/quickquotation/createquotation',
-							'/saas/quickquotation/createquotation',
-						)}
 					>
 						Create New
-
 					</div>
 				</Button>
 			</div>

@@ -1,12 +1,26 @@
+import { Toast } from '@cogoport/components';
 import { useState } from 'react';
 
+import { useSelector } from '@/packages/store';
+
+const serviceInfo = {
+	duties_and_taxes        : true,
+	import_export_documents : false,
+	import_export_controls  : false,
+	destinationHs           : false,
+};
 const useValidateModal = ({
 	servicesSelected,
 	setServiceSelected,
 	productInfoArr,
 	isUserSubscribed,
 	setShowCheckout,
+	postQuotation,
+	quoteRes,
+	currency,
+	getExchangeRate,
 }) => {
+	const { currency_code: orgCurrency } = useSelector((state) => state.profile.organization.country);
 	const [serviceProduct, setServiceProduct] = useState({
 		1: [], 2: [], 3: [],
 	});
@@ -34,10 +48,6 @@ const useValidateModal = ({
 		});
 	};
 
-	const clickHandler = () => {
-		calculateService();
-		setShowCheckout(true);
-	};
 	const renderTitle = ({ lineItemLength = 0 }) => {
 		if (!isUserSubscribed && lineItemLength > 0) return 'Validate HS Code';
 		if (!isUserSubscribed && lineItemLength === 0) return 'Services Details';
@@ -70,8 +80,60 @@ const useValidateModal = ({
 		}));
 	};
 
+	const verifyHandler = (id, hscode) => {
+		const serviceArr = servicesSelected[id];
+		setServiceSelected((prv) => ({
+			...prv,
+			[id]: { ...serviceArr, destinationHs: hscode },
+		}));
+	};
+
+	const checkProductDetails = () => {
+		const isProductVerified = [];
+		const isDocSelected = [];
+		const productIdArr = Object.keys(servicesSelected);
+
+		productIdArr.forEach((id) => {
+			const serviceObj = servicesSelected[id];
+			if (!serviceObj.destinationHs) isProductVerified.push(id);
+			if (!serviceObj.duties_and_taxes
+				&& !serviceObj.import_export_documents && !serviceObj.import_export_controls) {
+				isDocSelected.push(id);
+			}
+		});
+
+		if (isProductVerified.length > 0 && isUserSubscribed) {
+			Toast.error('Please Validate all Products ');
+			return false;
+		}
+		if (isDocSelected.length > 0) {
+			Toast.error('Please select atleast one services');
+			return false;
+		}
+
+		return true;
+	};
+
+	const clickHandler = async () => {
+		const resp = checkProductDetails();
+		if (!resp) return;
+		calculateService();
+		const exchangeRate = await getExchangeRate(orgCurrency, currency);
+		const quoteResp = await postQuotation({ data: quoteRes, orgCurrency, exchangeRate });
+		if (quoteResp) {
+			setShowCheckout(true);
+		}
+	};
+
 	return {
-		renderTitle, renderButton, deleteProduct, checkBoxChangeHandler, clickHandler, serviceProduct,
+		renderTitle,
+		renderButton,
+		deleteProduct,
+		checkBoxChangeHandler,
+		clickHandler,
+		serviceProduct,
+		serviceInfo,
+		verifyHandler,
 	};
 };
 

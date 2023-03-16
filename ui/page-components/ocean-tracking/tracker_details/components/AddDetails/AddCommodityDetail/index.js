@@ -71,11 +71,6 @@ function AddCommodityDetail({ isOpen, handleModal, trackerDetails, setTrackerDet
 			show={isOpen}
 			onClose={handleModal}
 			placement="center"
-			// heading="Add Available Commodity"
-			// showCrossIcon="false"
-			// isOpen={isOpen}
-			// overflow="visible"
-			// width="60%"
 		>
 			<Modal.Header title="Add Available Commodity" />
 			<Modal.Body>

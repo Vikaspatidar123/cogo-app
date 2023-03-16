@@ -127,7 +127,8 @@ function AddPocs({ isOpen, handleModal, addPocToState, heading }) {
 			onClose={handleModal}
 			placement="center"
 		>
-			<h3>{heading}</h3>
+			<Modal.Header title="New Contact" />
+
 			<div className={styles.Alert}>
 				<IcMAlert width={10} height={10} />
 				<p>
@@ -135,45 +136,49 @@ function AddPocs({ isOpen, handleModal, addPocToState, heading }) {
 				</p>
 			</div>
 			<form>
-				<div className={styles.row}>
-					{controls.map((controlItem) => {
-						const { type, name, label } = controlItem;
-						const Element = getField(type);
-						return (
-							<div className={styles.col}>
-								{/* <FormItem label={label}> */}
-								<Element {...controlItem} control={control} />
-								{errors[name]?.type === 'required'
+				<Modal.Body>
+					<div className={styles.row}>
+						{controls.map((controlItem) => {
+							const { type, name, label } = controlItem;
+							const Element = getField(type);
+							return (
+								<div className={styles.col}>
+									{label}
+									<Element {...controlItem} control={control} />
+									{errors[name]?.type === 'required'
 									|| errors[name]?.type === 'pattern'
 									|| errors[name]?.type === 'maxLength' ? (
 										<div className={styles.message}>
 											{errors[name]?.message}
 										</div>
-									) : null}
-								{/* </FormItem> */}
-							</div>
-						);
-					})}
-				</div>
-				<div className={styles.button}>
-					<Button
-						size="lg"
-						variant="ghost"
-						style={{ marginRight: 8 }}
-						onClick={handleModal}
-					>
-						CANCEL
-					</Button>
-					<Button
-						size="lg"
-						variant="secondary"
-						normalCase
-						disabled={loading}
-						onClick={handleSubmit(onSubmit)}
-					>
-						Save
-					</Button>
-				</div>
+										) : null}
+									{/* </FormItem> */}
+								</div>
+							);
+						})}
+					</div>
+				</Modal.Body>
+				<Modal.Footer>
+					<div className={styles.button}>
+						<Button
+							size="lg"
+							variant="ghost"
+							style={{ marginRight: 8 }}
+							onClick={handleModal}
+						>
+							CANCEL
+						</Button>
+						<Button
+							size="lg"
+							variant="secondary"
+							normalCase
+							disabled={loading}
+							onClick={handleSubmit(onSubmit)}
+						>
+							Save
+						</Button>
+					</div>
+				</Modal.Footer>
 			</form>
 		</Modal>
 	);

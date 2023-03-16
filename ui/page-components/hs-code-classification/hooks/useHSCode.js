@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { Toast } from '@cogoport/components';
 import { useState, useEffect, useRef } from 'react';
 
@@ -7,8 +8,8 @@ import { useRequestBf } from '@/packages/request';
 import { useSelector } from '@/packages/store';
 
 const constFilter = {
-	HS_CODE: 'STARTS_WITH',
-	PRODUCT: 'CONTAINS',
+	HS_CODE : 'STARTS_WITH',
+	PRODUCT : 'CONTAINS',
 };
 const useHSCode = () => {
 	const [apiData, setApiData] = useState([]);
@@ -20,32 +21,33 @@ const useHSCode = () => {
 	const searchRef = useRef({});
 
 	const { id } = profile || {};
+	// eslint-disable-next-line no-unused-vars
 	const { scope } = general;
 
 	const [{ loading: getLoading }, trigger] = useRequestBf({
-		url: 'saas/hs-code/section',
-		method: 'get',
-		authKey: 'get_saas_hs_code_section',
+		url     : 'saas/hs-code/section',
+		method  : 'get',
+		authKey : 'get_saas_hs_code_section',
 	}, { manual: true });
 
 	const [{ loading: getHeadingLoading }, triggerHeading] = useRequestBf({
-		url: 'saas/hs-code/heading',
-		method: 'get',
-		authKey: 'get_saas_hs_code_heading',
+		url     : 'saas/hs-code/heading',
+		method  : 'get',
+		authKey : 'get_saas_hs_code_heading',
 
 	}, { manual: true });
 
 	const [{ loading: getHsCodeLoading }, triggerHsCode] = useRequestBf({
-		url: 'saas/hs-code',
-		method: 'get',
-		authKey: 'get_saas_hs_code',
+		url     : 'saas/hs-code',
+		method  : 'get',
+		authKey : 'get_saas_hs_code',
 
 	}, { manual: true });
 
 	const [{ loading: searchLoading }, triggerSearch] = useRequestBf({
-		url: 'get_saas_hs_code_search',
-		method: 'get',
-		authKey: 'get_saas_hs_code_search',
+		url     : 'get_saas_hs_code_search',
+		method  : 'get',
+		authKey : 'get_saas_hs_code_search',
 	}, { manual: true });
 	const refetch = async (countryId = undefined) => {
 		try {
@@ -80,14 +82,14 @@ const useHSCode = () => {
 		try {
 			const response = await triggerHsCode({
 				params: {
-					headingCode: headCode,
-					userId: id,
-					page: pageNo,
-					pageLimit: 7,
-					countryId: searchRef?.current?.country,
-					searchType: searchRef?.current?.searchType,
-					searchTerm: searchRef?.current?.searchTerm,
-					customFilter: searchRef?.current?.customFilter,
+					headingCode  : headCode,
+					userId       : id,
+					page         : pageNo,
+					pageLimit    : 7,
+					countryId    : searchRef?.current?.country,
+					searchType   : searchRef?.current?.searchType,
+					searchTerm   : searchRef?.current?.searchTerm,
+					customFilter : searchRef?.current?.customFilter,
 				},
 			});
 			setHsCodeObj((prev) => ({
@@ -98,10 +100,10 @@ const useHSCode = () => {
 			setPageObj((prev) => ({
 				...prev,
 				[headCode]: {
-					totalPages: response.data.totalPages,
-					totalRecords: response.data.totalRecords,
-					pageNo: response.data.pageNo,
-					pageSize: response.data.pageSize,
+					totalPages   : response.data.totalPages,
+					totalRecords : response.data.totalRecords,
+					pageNo       : response.data.pageNo,
+					pageSize     : response.data.pageSize,
 				},
 			}));
 		} catch (err) {
@@ -113,10 +115,10 @@ const useHSCode = () => {
 		try {
 			const resp = await triggerSearch({
 				params: {
-					countryId: data.country,
-					searchType: data.searchBy,
-					searchTerm: data.searchTerm,
-					customFilter: data.filterBy || constFilter[data.searchBy],
+					countryId    : data.country,
+					searchType   : data.searchBy,
+					searchTerm   : data.searchTerm,
+					customFilter : data.filterBy || constFilter[data.searchBy],
 				},
 			});
 			setApiData(resp.data.sections);
@@ -127,8 +129,8 @@ const useHSCode = () => {
 		} catch (error) {
 			setApiData([]);
 			Toast.error(error.error.message, {
-				autoClose: 1000,
-				style: { color: 'white' },
+				autoClose : 1000,
+				style     : { color: 'white' },
 			});
 		}
 	};
@@ -147,9 +149,9 @@ const useHSCode = () => {
 		refetchHsCode,
 		pageObj,
 		setPageObj,
-		loading: getLoading,
-		headingLoading: getHeadingLoading,
-		hsloading: getHsCodeLoading,
+		loading        : getLoading,
+		headingLoading : getHeadingLoading,
+		hsloading      : getHsCodeLoading,
 		searchLoading,
 	};
 };

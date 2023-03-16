@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import { Toast } from '@cogoport/components';
 import { useState } from 'react';
 
@@ -16,13 +15,13 @@ const useBookmark = ({ setAddBookmark, setRemoveBookmark, refetchHsCode }) => {
 		method  : 'get',
 	}, { manual: true });
 
-	const [{ loading }, triggerAdd] = useRequestBf({
+	const [{ loading: postHsCodeFav }, triggerAdd] = useRequestBf({
 		url     : '/saas/hs-code/favourites',
 		authKey : 'post_saas_hs_code_favourites',
 		method  : 'post',
 	}, { manual: true });
 
-	const [{ loading: removeBookmarkLoadding }, triggerDelete] = useRequestBf({
+	const [{ loading: removeBookmarkLoading }, triggerDelete] = useRequestBf({
 		url     : '/saas/hs-code/favourites',
 		authKey : 'delete_saas_hs_code_favourites',
 		method  : 'delete',
@@ -95,6 +94,8 @@ const useBookmark = ({ setAddBookmark, setRemoveBookmark, refetchHsCode }) => {
 		refetchRemoveBookmark,
 		bookmarkData,
 		getBookmarkLoading,
+		postHsCodeFav,
+		removeBookmarkLoading,
 	};
 };
 export default useBookmark;

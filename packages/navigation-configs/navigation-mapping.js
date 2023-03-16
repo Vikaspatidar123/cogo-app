@@ -12,6 +12,7 @@ import {
 	IcMUpwardGraph,
 	IcMTradeparties,
 	IcACrossBorder,
+	IcMProductCodeMapping,
 	IcMFfreferigeratedCargoType,
 } from '@cogoport/icons-react';
 
@@ -82,7 +83,36 @@ const navigationMappings = {
 				icon  : <IcMTradeparties width={40} height={40} />,
 				href  : '/v2/saas/trade-partner',
 				as    : '/v2/saas/trade-partner',
-			}],
+			},
+			{
+				key         : 'saas_planning-product_inventory',
+				title       : 'Product Catalog',
+				type        : 'link',
+				icon        : <IcMProductCodeMapping width={40} height={40} />,
+				href        : '/v2/saas/product-inventory',
+				as          : '/v2/saas/product-inventory',
+				module_type : 'dashboards',
+			},
+		],
+	},
+
+	app_discover_rates: {
+		key         : 'app_discover_rates',
+		title       : 'Discover Rates',
+		href        : '/book',
+		as          : '/book',
+		type        : 'link',
+		tag         : 'New Search',
+		module_type : 'crm',
+		showInNav   : true,
+	},
+
+	app_accept_terms_and_conditions: {
+		key       : 'app_accept_terms_and_conditions',
+		title     : 'Terms and Conditions',
+		href      : '/accept-terms-and-conditions',
+		type      : 'link',
+		showInNav : false,
 	},
 
 	app_get_started: {
@@ -116,7 +146,6 @@ const navigationMappings = {
 		as        : '/kyc',
 		type      : 'link',
 		showInNav : false,
-
 	},
 	app_settings: {
 		key           : 'app_settings',

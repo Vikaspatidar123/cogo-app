@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 
+import LeftPanel from '../../commons/components/LeftPanel';
+
 import BillingAddress from './components/BillingAddressForm';
 import InviteTeam from './components/InviteTeam';
 import Organization from './components/Organization';
 import SetTimeForCall from './components/SetTimeForCall';
 import styles from './styles.module.css';
-
-import LeftPanel from '@/ui/commons/components/LeftPanel';
 
 function GetStarted() {
 	const [billingAddressDetails, setBillingAddressDetails] = useState(false);

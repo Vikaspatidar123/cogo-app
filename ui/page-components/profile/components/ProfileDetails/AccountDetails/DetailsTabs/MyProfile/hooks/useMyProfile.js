@@ -8,9 +8,7 @@ import { useSelector, useDispatch } from '@/packages/store';
 import { setProfileStoreState } from '@/packages/store/store/profile';
 
 const useMyProfile = () => {
-	const {
-		profile,
-	} = useSelector((state) => state);
+	const { profile } = useSelector((state) => state);
 
 	const dispatch = useDispatch();
 
@@ -55,16 +53,11 @@ const useMyProfile = () => {
 	};
 	const verifyEmailId = async () => {};
 
-	const getChannelPartnerUser = async () => {};
-
 	const onClickBackButton = () => {
 		router.push('/settings');
 	};
 
 	useEffect(() => {
-		if (!Object.keys(profile).length) {
-			getChannelPartnerUser();
-		}
 		getOrganization();
 	}, []);
 
@@ -78,7 +71,6 @@ const useMyProfile = () => {
 		setShowMobileVerificationModal,
 		showPasswordModal,
 		setShowPasswordModal,
-		getChannelPartnerUser,
 		onClickBackButton,
 		organizationLoading,
 	};

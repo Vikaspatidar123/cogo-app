@@ -44,7 +44,6 @@ const formatAmount = ({
 	if (!isAmountValid({ amount })) {
 		return null;
 	}
-
 	const UPPERCASE_CURRENCY = (currency || GLOBALS_CONSTANTS.currency_code.INR).toUpperCase();
 
 	return format({

@@ -5,20 +5,16 @@ import React from 'react';
 import LegsItem from './LegsItem';
 import styles from './styles.module.css';
 
-import StepsComponent from '@/ui/page-components/ocean-schedules/common/Steps';
-
 export function SchedulesModal({
 	openSchedulesModal, setOpenSchedulesModal, schedule, shippingLine, scheduleDetails,
 }) {
 	const handleClose = () => {
 		setOpenSchedulesModal(false);
 	};
-	const stepsList = [
-		{ title: scheduleDetails?.origin_port?.port_code || 'Origin' },
-		{ title: scheduleDetails?.destination_port?.port_code || 'Destination' },
-	];
+	const originSchedule = scheduleDetails?.origin_port?.port_code || 'Origin';
+	const destinationSchedule =	 scheduleDetails?.destination_port?.port_code || 'Destination';
 
-	const legs = schedule?.legs;
+	const legs = schedule?.legs || schedule?.legs !== undefined;
 
 	return (
 		<Modal show={openSchedulesModal} closeOnOuterClick showCloseIcon onClose={handleClose}>
@@ -59,6 +55,19 @@ export function SchedulesModal({
 					</div>
 				</div>
 				<div>
+					<div className={styles.main_pill_container}>
+						<Pill size="md" color="#FEF3E9">
+							{differenceInDays(new Date(schedule?.arrival), new Date(schedule?.departure))}
+							Days
+						</Pill>
+					</div>
+					<div className={styles.dot_circle}>
+						<div className={styles.circle1}><div className={styles.port_code}>{originSchedule}</div></div>
+						<div className={styles.line} />
+						<div className={styles.circle2}>
+							<div className={styles.port_code}>{destinationSchedule}</div>
+						</div>
+					</div>
 					<div className={styles.dates_container}>
 						<div className={styles.date_container}>
 							{format(schedule?.departure, 'dd MMM yyyy (eee)')}
@@ -66,15 +75,6 @@ export function SchedulesModal({
 						<div className={styles.date_container}>
 							{format(schedule?.arrival, 'dd MMM yyyy (eee)')}
 						</div>
-					</div>
-					<div className={styles.main_pill_container}>
-						<Pill size="md" color="#FEF3E9">
-							{differenceInDays(new Date(schedule?.arrival), new Date(schedule?.departure))}
-							Days
-						</Pill>
-					</div>
-					<div className={styles.steps_container}>
-						<StepsComponent stepsList={stepsList} />
 					</div>
 				</div>
 				{legs?.length > 0 && legs?.map((leg) => (

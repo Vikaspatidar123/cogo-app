@@ -6,17 +6,14 @@ import React from 'react';
 
 import styles from './styles.module.css';
 
-import StepsComponent from '@/ui/page-components/ocean-schedules/common/Steps';
-
 function LegsItem({ legItem }) {
 	const locationsList = legItem?.display_details || [];
-	const stepsList = [
-		{ title: locationsList.filter((item) => item.id === legItem.origin_port_id)[0]?.display_name || 'Origin' },
-		{
-			title: locationsList.filter((item) => item.id === legItem.destination_port_id)[0]
-				?.display_name || 'Destination',
-		},
-	];
+
+	const originSchedule =	 locationsList.filter((item) => item.id
+	=== legItem.origin_port_id)[0]?.display_name || 'Origin';
+
+	const destinationSchedule =	locationsList.filter((item) => item.id === legItem.destination_port_id)[0]
+		?.display_name || 'Destination';
 	return (
 		<div>
 			<div className={styles.header}>
@@ -39,8 +36,12 @@ function LegsItem({ legItem }) {
 						Days
 					</Pill>
 				</div>
-				<div className={styles.steps_container}>
-					<StepsComponent stepsList={stepsList} />
+				<div className={styles.dot_circle}>
+					<div className={styles.circle1}><div className={styles.port_code}>{originSchedule}</div></div>
+					<div className={styles.line} />
+					<div className={styles.circle2}>
+						<div className={styles.port_code}>{destinationSchedule}</div>
+					</div>
 				</div>
 			</div>
 		</div>

@@ -1,7 +1,6 @@
 import { IcMArrowNext, IcMCrossInCircle } from '@cogoport/icons-react';
 import React, { useState } from 'react';
 
-import StepsComponent from '../../common/Steps';
 import useDeleteSchedule from '../../hooks/useDeleteSchedule';
 
 import DeleteModal from './DeleteModal';
@@ -14,10 +13,9 @@ function ScheduleCard({ schedule, refectSchedules }) {
 
 	const [showDelete, setShowDelete] = useState(false);
 	const { push } = useRouter();
-	const stepsList = [
-		{ title: schedule?.origin_port?.port_code || 'Origin' },
-		{ title: schedule?.destination_port?.port_code || 'Destination' },
-	];
+
+	const originSchedule = schedule?.origin_port?.port_code || 'Origin';
+	const destinationSchedule =	 schedule?.destination_port?.port_code || 'Destination';
 
 	const origin_port_name = schedule?.origin_port?.name.split('(')[0];
 	const destination_port_name = schedule?.destination_port?.name.split('(')[0];
@@ -51,20 +49,19 @@ function ScheduleCard({ schedule, refectSchedules }) {
 					)
 				</div>
 			</div>
-			<div className={styles.steps_container}>
-				<StepsComponent stepsList={stepsList} />
+			<div className={styles.dot_circle}>
+				<div className={styles.circle1}><div className={styles.port_code}>{originSchedule}</div></div>
+				<div className={styles.line} />
+				<div className={styles.circle2}><div className={styles.port_code}>{destinationSchedule}</div></div>
 			</div>
 			<div className={styles.footer_container} role="presentation" onClick={handleViewDetails}>
 				<div className={styles.value_container}>
 					<div className={styles.number_container}>
-						{' '}
 						{schedule.schedules_count || 0}
 					</div>
 					Schedules available from
 					<div className={styles.number_container}>
-						{' '}
 						{schedule.shipping_lines_count || 0}
-						{' '}
 					</div>
 					Carriers
 				</div>

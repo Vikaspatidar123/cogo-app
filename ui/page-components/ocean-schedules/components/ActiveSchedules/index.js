@@ -1,10 +1,9 @@
-import { Pagination, Button, Popover } from '@cogoport/components';
+import { Pagination, Button, Popover, Placeholder } from '@cogoport/components';
 import { IcMArrowBack, IcMPortArrow, IcMFilter } from '@cogoport/icons-react';
 import React, { useState } from 'react';
 
 import Map from '../../common/Map';
 import useFetchScheduleDetails from '../../hooks/useFetchScheduleDetails';
-import LoadingPage from '../LoadingPage';
 import NoSchedulesCard from '../NoSchedulesCard';
 
 import ActiveScheduleCard from './ActiveScheduleCard';
@@ -20,9 +19,9 @@ function ActiveSchedules() {
 	const [currentPage, setCurrentPage] = useState(1);
 
 	const {
-		setFilters, scheduleDetails, MAX_TIME, timeRemaining,
-		setCarrierList, carrierList, filterFetchLoading,
-		loadingForFirstVisit,
+		setFilters, scheduleDetails,
+		setCarrierList, carrierList,
+		filterFetchLoading,
 	} = useFetchScheduleDetails({
 		pageLimit: 6, id, currentPage,
 	});
@@ -81,17 +80,20 @@ function ActiveSchedules() {
 					</div>
 				</Popover>
 			</div>
+			{filterFetchLoading && 		(
+				<div className={styles.card}>
+					<Placeholder height="370px" width="1250px" margin="0px 0px 20px 0px" />
+				</div>
+			)}
 			<div className={styles.active_schedules}>
-				{!loadingForFirstVisit && scheduleDetails?.schedules?.list.length > 0
+				{!filterFetchLoading && scheduleDetails?.schedules?.list.length > 0
 					&& scheduleDetails?.schedules?.list.map((item) => (
 						<ActiveScheduleCard
 							schedule={item}
 							scheduleDetails={scheduleDetails}
 						/>
 					))}
-				{!loadingForFirstVisit && scheduleDetails?.schedules?.list.length === 0 && <NoSchedulesCard />}
-				{filterFetchLoading && timeRemaining > 0
-					&& <LoadingPage MAX_TIME={MAX_TIME} timeRemaining={timeRemaining} /> }
+				{!filterFetchLoading && scheduleDetails?.schedules?.list.length === 0 && <NoSchedulesCard />}
 			</div>
 			<div className={styles.pagination_container}>
 				<Pagination

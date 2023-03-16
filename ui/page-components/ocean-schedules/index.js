@@ -1,4 +1,4 @@
-import { Button, Pagination } from '@cogoport/components';
+import { Button, Pagination, Placeholder } from '@cogoport/components';
 import { IcMPortArrow } from '@cogoport/icons-react';
 import { merge } from '@cogoport/utils';
 import React, { useState } from 'react';
@@ -21,7 +21,7 @@ function OceanSchedules() {
 	} = useForm();
 	const [currentPage, setCurrentPage] = useState(1);
 	const { createSchedule } = useCreateSchedule();
-	const { refectSchedules, schedules } = useFetchSchedules({ currentPage, setCurrentPage });
+	const { refectSchedules, schedules, loading } = useFetchSchedules({ currentPage, setCurrentPage });
 
 	const formValues = watch();
 
@@ -68,11 +68,17 @@ function OceanSchedules() {
 				My Schedules
 			</div>
 			<div className={styles.schedules_container}>
-				{schedules?.list.length > 0
+				{loading && 		(
+					<div className={styles.card}>
+						<Placeholder height="370px" width="1250px" margin="0px 0px 20px 0px" />
+					</div>
+				)}
+				{!loading && schedules?.list.length > 0
 					? schedules?.list?.map((item) => (
 						<ScheduleCard
 							schedule={item}
 							refectSchedules={refectSchedules}
+							loading={loading}
 						/>
 					))
 					: <NoSchedulesCard /> }

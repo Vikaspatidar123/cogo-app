@@ -3,16 +3,12 @@ import { IcMArrowNext } from '@cogoport/icons-react';
 import { differenceInDays, format } from '@cogoport/utils';
 import React, { useState } from 'react';
 
-import StepsComponent from '../../../common/Steps';
-
 import { SchedulesModal } from './SchedulesModal';
 import styles from './styles.module.css';
 
 function ActiveScheduleCard({ scheduleDetails, schedule }) {
-	const stepsList = [
-		{ title: scheduleDetails?.origin_port?.port_code || 'Origin' },
-		{ title: scheduleDetails?.destination_port?.port_code || 'Destination' },
-	];
+	const originSchedule = scheduleDetails?.origin_port?.port_code || 'Origin';
+	const destinationSchedule =	 scheduleDetails?.destination_port?.port_code || 'Destination';
 
 	const shippingLinesList = scheduleDetails?.schedules?.shipping_lines || [];
 
@@ -37,27 +33,21 @@ function ActiveScheduleCard({ scheduleDetails, schedule }) {
 						{shippingLine?.short_name}
 						<span className="span">
 							{schedule?.vessel_name || schedule?.transport_name}
-							{' '}
 							/
-							{' '}
 							{schedule?.voyage_number}
-							{' '}
 							(SERVICE-
 							{schedule?.service_name}
 							)
-
 						</span>
 					</div>
 				</div>
 				<div className={styles.pills_container}>
 					<Pill size="md" color="#F7FAEF">
 						VGM Cutoff:
-						{' '}
 						{format(schedule?.vgm_cutoff, 'dd MMM yyyy')}
 					</Pill>
 					<Pill size="md" color="#F7FAEF">
 						Terminal Cutoff:
-						{' '}
 						{format(schedule?.terminal_cutoff, 'dd MMM yyyy')}
 					</Pill>
 				</div>
@@ -66,22 +56,21 @@ function ActiveScheduleCard({ scheduleDetails, schedule }) {
 				<div className={styles.dates_container}>
 					<div className={styles.date_container}>
 						{format(schedule?.departure, 'dd MMM yyyy (eee)')}
-						{/* <span className="span">(Thu)</span> */}
 					</div>
 					<div className={styles.date_container}>
 						{format(schedule?.arrival, 'dd MMM yyyy (eee)')}
-						{/* <span className="span">(Sun)</span> */}
 					</div>
 				</div>
 				<div className={styles.main_pill_container}>
 					<Pill size="md" color="#FEF3E9">
 						{differenceInDays(new Date(schedule?.arrival), new Date(schedule?.departure))}
-						{' '}
 						Days
 					</Pill>
 				</div>
-				<div className={styles.steps_container}>
-					<StepsComponent stepsList={stepsList} />
+				<div className={styles.dot_circle}>
+					<div className={styles.circle1}><div className={styles.port_code}>{originSchedule}</div></div>
+					<div className={styles.line} />
+					<div className={styles.circle2}><div className={styles.port_code}>{destinationSchedule}</div></div>
 				</div>
 			</div>
 			<div

@@ -19,6 +19,8 @@ function ProductList({
 	setSelectedData,
 	setShowCatalogue,
 	setSelectedId,
+	multiSelect,
+	allprductData,
 }) {
 	const loaderArr = [1, 2, 3, 4, 5];
 	const [addProductId, setAddProductId] = useState([]);
@@ -32,14 +34,21 @@ function ProductList({
 	}, [JSON.stringify(item)]);
 
 	const addToForm = () => {
-		const arr = list.filter((product) => product?.id === addProductId[0]);
-		setSelectedData(...arr);
+		const arr = allprductData.filter((product) => addProductId.includes(product?.id));
+		if (multiSelect) {
+			setSelectedData(arr);
+		} else {
+			setSelectedData(...arr);
+		}
 		setShowCatalogue(false);
 	};
-
 	useEffect(() => {
 		if (isCategory) {
-			setSelectedId(addProductId);
+			if (multiSelect) {
+				setSelectedId((prv) => [...new Set([...prv, ...addProductId])]);
+			} else {
+				setSelectedId(addProductId);
+			}
 		}
 	}, [addProductId]);
 
@@ -51,9 +60,7 @@ function ProductList({
 						className={cl`${styles.card_header} ${styles.row}
                     ${isCategory && styles.category_view} ${styles.mobile_row}`}
 					>
-						{listView.map(({
-							key, title, width, categoryWidth,
-						}) => (
+						{listView.map(({ key, title, width, categoryWidth }) => (
 							<h3
 								key={key}
 								className={styles.col}
@@ -65,19 +72,19 @@ function ProductList({
 					</div>
 				)}
 				{loading
-				&& loaderArr.map((ele) => (
-					<div key={ele} className={`${styles.row}`}>
-						{listView.map(({ key, width, categoryWidth }) => (
-							<div
-								key={key}
-								className={styles.col}
-								style={{ width: `${!isCategory ? width : categoryWidth}` }}
-							>
-								<Placeholder className={styles.loader} />
-							</div>
-						))}
-					</div>
-				))}
+          && loaderArr.map((ele) => (
+	<div key={ele} className={`${styles.row}`}>
+		{listView.map(({ key, width, categoryWidth }) => (
+			<div
+				key={key}
+				className={styles.col}
+				style={{ width: `${!isCategory ? width : categoryWidth}` }}
+			>
+				<Placeholder className={styles.loader} />
+			</div>
+		))}
+	</div>
+          ))}
 				{!loading && list.length === 0 && (
 					<div className={styles.empty_state}>
 						<IcATransparency width={50} height={50} />
@@ -85,16 +92,21 @@ function ProductList({
 					</div>
 				)}
 				{!loading
-				&& (list || [])?.map((rowItem) => (
-					<div key={rowItem?.id} className={cl`${styles.row} ${styles.mobile_row}`}>
-						<ColItem
-							rowItem={rowItem}
-							isCategory={isCategory}
-							addProductId={addProductId}
-							setAddProductId={setAddProductId}
-						/>
-					</div>
-				))}
+          && (list || [])?.map((rowItem) => (
+	<div
+		key={rowItem?.id}
+		className={cl`${styles.row} ${styles.mobile_row}`}
+	>
+		<ColItem
+			rowItem={rowItem}
+			isCategory={isCategory}
+			addProductId={addProductId}
+			setAddProductId={setAddProductId}
+			multiSelect={multiSelect}
+
+		/>
+	</div>
+          ))}
 			</div>
 
 			{!isCategory && list.length > 0 && (
@@ -119,15 +131,17 @@ function ProductList({
 					>
 						Cancel
 					</Button>
-					<Button size="md" onClick={addToForm} disabled={addProductId.length === 0}>
+					<Button
+						size="md"
+						onClick={addToForm}
+						disabled={addProductId.length === 0}
+					>
 						<IcMPlus />
 						Add
 					</Button>
 				</div>
 			)}
-
 		</div>
-
 	);
 }
 

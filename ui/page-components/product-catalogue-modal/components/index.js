@@ -4,7 +4,7 @@ import { useState } from 'react';
 import useProductCategory from '../hooks/useProductCategory';
 import useProductList from '../hooks/useProductList';
 
-import header from './Header';
+import useHeader from './Header';
 import ProductCategory from './ProductCategory';
 import ProductList from './ProductList';
 
@@ -12,6 +12,9 @@ function ProductCatalogue({
 	showCatalogue,
 	setShowCatalogue,
 	setSelectedData,
+	multiSelect = false,
+	selectedId = [],
+	addCheck = false,
 }) {
 	const [labeledValue, setLabeledValue] = useState('category');
 
@@ -22,9 +25,13 @@ function ProductCatalogue({
 		setGlobalFilter,
 		pagination = 1,
 		setPagination,
+		allprductData,
+		refetchProduct,
 	} = useProductList({ labeledValue });
 
-	const { categoryViewData, categoryLoading } = useProductCategory({ labeledValue });
+	const { categoryViewData, categoryLoading } = useProductCategory({
+		labeledValue,
+	});
 
 	return (
 		<Modal
@@ -34,9 +41,15 @@ function ProductCatalogue({
 			size="xl"
 			scroll={false}
 		>
-			<Modal.Header title={header({
-				labeledValue, setLabeledValue, globalFilter, setGlobalFilter,
-			})}
+			<Modal.Header
+				title={useHeader({
+					labeledValue,
+					setLabeledValue,
+					globalFilter,
+					setGlobalFilter,
+					addCheck,
+					refetchProduct,
+				})}
 			/>
 			<Modal.Body>
 				{labeledValue === 'category' && (
@@ -45,6 +58,8 @@ function ProductCatalogue({
 						loading={categoryLoading}
 						setSelectedData={setSelectedData}
 						setShowCatalogue={setShowCatalogue}
+						multiSelect={multiSelect}
+						selecteId={selectedId}
 					/>
 				)}
 				{labeledValue === 'list' && (
@@ -55,10 +70,12 @@ function ProductCatalogue({
 						setPagination={setPagination}
 						setSelectedData={setSelectedData}
 						setShowCatalogue={setShowCatalogue}
+						multiSelect={multiSelect}
+						selectedId={selectedId}
+						allprductData={allprductData}
 					/>
 				)}
 			</Modal.Body>
-
 		</Modal>
 	);
 }

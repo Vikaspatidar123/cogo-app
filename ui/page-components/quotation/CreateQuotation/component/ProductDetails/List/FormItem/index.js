@@ -62,7 +62,6 @@ function FormItem(props) {
 			productCurrency = 'INR',
 			price = 0,
 		} = data || {};
-
 		const updateIndex = watchFieldArr.findIndex((ele) => ele?.productId === productId);
 		if (name && updateIndex < 0) {
 			prepend({

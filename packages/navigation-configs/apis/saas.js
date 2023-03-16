@@ -52,8 +52,43 @@ const saas = {
 			access_type : 'private',
 		},
 		{
-			api         : 'saas_get_user_quota_usage',
-			access_type : 'private',
+			api                          : 'saas_get_user_quota_usage',
+			access_type                  : 'private',
+			app_saas_transaction_history : [
+				{
+					api         : 'get_saas_payment_details',
+					access_type : 'private',
+					module      : 'transactionHistory',
+					feature     : 'transactionHistory',
+				},
+				{
+					api         : 'get_saas_payment_history',
+					access_type : 'private',
+					module      : 'transactionHistory',
+					feature     : 'transactionHistory',
+				},
+				{
+					api         : 'get_saas_trade_engine',
+					access_type : 'private',
+					module      : 'transactionHistory',
+					feature     : 'transactionHistory',
+				},
+			],
+
+			app_saas_order_history: [
+				{
+					api          : 'get_saas_trade_engine_order_history',
+					access_type  : 'private',
+					service_name : 'order_history',
+				},
+				{
+					api          : 'get_saas_trade_engine',
+					access_type  : 'private',
+					service_name : 'order_history',
+				},
+			],
+
+			app_saas_load_container: [],
 
 		}],
 };

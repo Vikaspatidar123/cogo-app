@@ -1,22 +1,50 @@
-import { Tabs, TabPanel, Input } from '@cogoport/components';
-import {
-	IcMSearchlight, IcMListView, IcMGrid,
-} from '@cogoport/icons-react';
+import { Tabs, TabPanel, Input, Button } from '@cogoport/components';
+import { IcMSearchlight, IcMListView, IcMGrid } from '@cogoport/icons-react';
+import { useState } from 'react';
 
 import iconUrl from '../../configuration/icon-config.json';
+import AddProductModal from '../AddProductModal';
 
 import styles from './styles.module.css';
 
-function header({
-	labeledValue, setLabeledValue, globalFilter, setGlobalFilter,
+import HsCode from '@/ui/page-components/hs-code-modal/component';
+
+function useHeader({
+	labeledValue,
+	setLabeledValue,
+	globalFilter,
+	setGlobalFilter,
+	addCheck,
+	refetchProduct,
 }) {
+	const [showHsCodeModal, setShowHsCodeModal] = useState(false);
+	const [showProduct, setShowProduct] = useState(false);
+	const [selectedData, setSelectedData] = useState();
 	return (
 		<div className={styles.header_container}>
 			<div className={styles.title_container}>
-				<img src={iconUrl.CatalogueIcon} alt="catalogue_icon" className={styles.logo} />
+				<img
+					src={iconUrl.CatalogueIcon}
+					alt="catalogue_icon"
+					className={styles.logo}
+				/>
 				<div className={styles.title}>Product Catalogue</div>
 			</div>
 			<div className={styles.cta}>
+				{addCheck && (
+					<div className={styles.button}>
+						<Button
+							role="presentation"
+							size="lg"
+							themeType="secondary"
+							onClick={() => {
+								setShowHsCodeModal(true);
+							}}
+						>
+							ADD NEW
+						</Button>
+					</div>
+				)}
 				{labeledValue === 'list' && (
 					<Input
 						size="md"
@@ -33,15 +61,32 @@ function header({
 						themeType="primary"
 						onChange={setLabeledValue}
 					>
-						<TabPanel name="list" title={<IcMListView width={20} height={20} fill="#333" />} />
-						<TabPanel name="category" title={<IcMGrid width={20} height={20} fill="#333" />} />
-
+						<TabPanel
+							name="list"
+							title={<IcMListView width={20} height={20} fill="#333" />}
+						/>
+						<TabPanel
+							name="category"
+							title={<IcMGrid width={20} height={20} fill="#333" />}
+						/>
 					</Tabs>
 				</div>
-
 			</div>
-
+			{showHsCodeModal && (
+				<HsCode
+					showHsCodeModal={showHsCodeModal}
+					setShowHsCodeModal={setShowHsCodeModal}
+					setSelectedData={setSelectedData}
+					setShowProduct={setShowProduct}
+				/>
+			)}
+			<AddProductModal
+				setShowProduct={setShowProduct}
+				showProduct={showProduct}
+				prefiledValues={selectedData}
+				refetchProduct={refetchProduct}
+			/>
 		</div>
 	);
 }
-export default header;
+export default useHeader;

@@ -15,6 +15,8 @@ function ProductCategory({
 	loading = false,
 	setSelectedData,
 	setShowCatalogue,
+	multiSelect,
+	selecteId = [],
 }) {
 	const [subCategory, setSubCategory] = useState({});
 	const [categoryList, setCategoryList] = useState({});
@@ -28,19 +30,32 @@ function ProductCategory({
 		productList,
 		loading: listLoading,
 		refetchProduct,
+		allprductData,
 	} = useProductList({ labeledValue: 'category' });
-
+	useEffect(() => {
+		setSelectedId(selecteId);
+	}, [JSON.stringify(selecteId)]);
 	const addToForm = () => {
-		const { list = [] } = productList || {};
-		const arr = list.filter((product) => product?.id === selectedId[0]);
-		setSelectedData(...arr);
+		const arr = allprductData.filter((product) => selectedId.includes(product?.id));
+		if (multiSelect) {
+			setSelectedData(arr);
+		} else {
+			setSelectedData(...arr);
+		}
 		setShowCatalogue(false);
 	};
 
 	const addRemoveCheckBox = (ids) => {
 		const ans = selectedId.includes(ids);
 		if (ans) {
-			setSelectedId([]);
+			if (multiSelect) {
+				const checkId = selectedId.filter((x) => x !== ids);
+				setSelectedId(checkId);
+			} else {
+				setSelectedId([]);
+			}
+		} else if (!multiSelect) {
+			setSelectedId((prv) => [...prv, ids]);
 		} else {
 			setSelectedId([ids]);
 		}
@@ -50,12 +65,18 @@ function ProductCategory({
 		if (subCategoryLength > 0) {
 			setCategoryList({});
 		}
-	// eslint-disable-next-line react-hooks/exhaustive-deps
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [subCategory?.categoryCode]);
 
 	return (
 		<div>
-			{loading && <img className={styles.loading} src={iconUrl?.LoadingIcon} alt="loading..." />}
+			{loading && (
+				<img
+					className={styles.loading}
+					src={iconUrl?.LoadingIcon}
+					alt="loading..."
+				/>
+			)}
 			{!loading && categoryViewData?.length === 0 && (
 				<div className={styles.empty_state}>
 					<IcATransparency width={50} height={50} />
@@ -70,14 +91,15 @@ function ProductCategory({
 							{(categoryViewData || []).map((item) => (
 								<div
 									className={cl`${styles.tab} ${styles.horizontal_tab}
-                            ${subCategory?.categoryCode === item?.categoryCode && styles.tabSelected}`}
+                            ${
+                              subCategory?.categoryCode
+                                === item?.categoryCode && styles.tabSelected
+									}`}
 									role="presentation"
 									onClick={() => setSubCategory(item)}
 								>
 									<div>{MAPPING[item?.categoryCode]}</div>
-									<div>
-										{item?.categoryDisplayName}
-									</div>
+									<div>{item?.categoryDisplayName}</div>
 								</div>
 							))}
 						</div>
@@ -92,8 +114,11 @@ function ProductCategory({
 										{(subCategory?.subCategory || []).map((category) => (
 											<div
 												role="presentation"
-										// eslint-disable-next-line max-len
-												className={cl`${styles.tab} ${styles.vertical_tab} ${category?.subCategoryCode === categoryList?.subCategoryCode && styles.tabSelected}`}
+                        // eslint-disable-next-line max-len
+												className={cl`${styles.tab} ${styles.vertical_tab} ${
+													category?.subCategoryCode
+											=== categoryList?.subCategoryCode && styles.tabSelected
+												}`}
 												onClick={() => setCategoryList(category)}
 											>
 												{category?.subCategoryDisplayName}
@@ -111,6 +136,7 @@ function ProductCategory({
 											item={categoryList}
 											setSelectedId={setSelectedId}
 											isCategory
+											multiSelect={multiSelect}
 										/>
 									</div>
 								)}
@@ -118,7 +144,6 @@ function ProductCategory({
 						</div>
 					)}
 				</div>
-
 			)}
 
 			<ProductCategoryMobileView

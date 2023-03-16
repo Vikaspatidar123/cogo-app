@@ -11,7 +11,7 @@ import { useState } from 'react';
 import { Loading } from '../configuration/icon-configuration';
 import useHsCodeData from '../hook/useHsCodeData';
 
-import clickFunction from './clickFunction';
+import useClickFunction from './clickFunction';
 import hsColumn from './Column';
 import HsTable from './HsTable';
 import HsTag from './HsTag';
@@ -96,7 +96,7 @@ function HsCode({
 
 	const {
 		categoryFunction, chapterFunction, headingFunction, hsFunction,
-	} =		clickFunction({
+	} =	useClickFunction({
 		setChaptersData,
 		setHeadingData,
 		setActiveSection,

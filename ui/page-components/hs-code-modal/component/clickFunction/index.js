@@ -1,4 +1,4 @@
-function clickFunction({
+function useClickFunction({
 	setChaptersData,
 	setHeadingData,
 	setActiveSection,
@@ -76,4 +76,4 @@ function clickFunction({
 	};
 }
 
-export default clickFunction;
+export default useClickFunction;

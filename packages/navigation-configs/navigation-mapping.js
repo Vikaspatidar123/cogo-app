@@ -13,6 +13,7 @@ import {
 	IcMTradeparties,
 	IcACrossBorder,
 	IcMProductCodeMapping,
+	IcMFfreferigeratedCargoType,
 } from '@cogoport/icons-react';
 
 const navigationMappings = {
@@ -23,6 +24,14 @@ const navigationMappings = {
 		as         : '/v2/dashboard',
 		showInNav  : true,
 		mobileIcon : <IcMQuotations width={20} height={20} />,
+	},
+	app_bookings: {
+		key       : 'app_bookings',
+		title     : 'Shipments',
+		href      : '/shipments',
+		as        : '/shipments',
+		icon      : 'nav-booking',
+		showInNav : true,
 	},
 
 	saas_tools: {
@@ -98,16 +107,6 @@ const navigationMappings = {
 		showInNav   : true,
 	},
 
-	app_bookings: {
-		key       : 'app_bookings',
-		title     : 'Shipments',
-		href      : '/shipments',
-		as        : '/shipments',
-		type      : 'link',
-		icon      : 'nav-booking',
-		showInNav : true,
-	},
-
 	app_accept_terms_and_conditions: {
 		key       : 'app_accept_terms_and_conditions',
 		title     : 'Terms and Conditions',
@@ -120,6 +119,24 @@ const navigationMappings = {
 		key   : 'app_get_started',
 		title : 'Get Started',
 		theme : 'green',
+	},
+
+	saas_finance: {
+		key       : 'saas_finance',
+		title     : 'Finance',
+		icon      : 'nav-finance',
+		isSubNavs : true,
+		isNew     : true,
+		options   : [
+			{
+				key   : 'saas_finance-transaction_history',
+				title : 'Transaction History',
+				icon  : <IcMFfreferigeratedCargoType width={40} height={40} fill="red" />,
+				href  : '/saas/transaction-history',
+				as    : '/saas/transaction-history',
+			},
+
+		],
 	},
 
 	app_kyc: {

@@ -13,10 +13,9 @@ function ScheduleCard({ schedule, fetchSchedules }) {
 
 	const [showDelete, setShowDelete] = useState(false);
 	const { push } = useRouter();
-	const stepsList = [
-		{ title: schedule?.origin_airport?.port_code || 'Origin' },
-		{ title: schedule?.destination_airport?.port_code || 'Destination' },
-	];
+
+	const originSchedule = schedule?.origin_airport?.port_code || 'Origin';
+	const DestinationSchedule =	 schedule?.destination_airport?.port_code || 'Destination';
 
 	const origin_airport_name = schedule?.origin_airport?.name.split('-')[0];
 	const origin_airport_code = schedule?.origin_airport?.name.split('-')[1];
@@ -39,39 +38,27 @@ function ScheduleCard({ schedule, fetchSchedules }) {
 			<div className={styles.countries_container}>
 				<div className={styles.country_name}>
 					<span className={styles.country_name_span}>{origin_airport_name}</span>
-					(
 					{origin_airport_code}
-					)
 				</div>
-				{/* <div>
-					<p>venky</p>
-				</div> */}
 				<div className={styles.country_name}>
 					<span className={styles.country_name_span}>{destination_airport_name}</span>
-					(
 					{destination_airport_code}
-					)
 				</div>
 			</div>
-			<div className={styles.solid_line}>
-				<div className={`${styles.start}${styles.end}`}>
-					<div>
-						
-					</div>
-				</div>
+			<div className={styles.dot_circle}>
+				<div className={styles.circle1}><div className={styles.port_code}>{originSchedule}</div></div>
+				<div className={styles.line} />
+				<div className={styles.circle2}><div className={styles.port_code}>{DestinationSchedule}</div></div>
 			</div>
 			<div className={styles.steps_container} />
 			<div className={styles.footer_container} role="presentation" onClick={handleViewDetails}>
 				<div className={styles.value_container}>
 					<div className={styles.number_container}>
-						{' '}
 						{schedule.schedules_count || 0}
 					</div>
 					Schedules available from
 					<div className={styles.number_container}>
-						{' '}
 						{schedule.shipping_lines_count || 0}
-						{' '}
 					</div>
 					Carriers
 				</div>

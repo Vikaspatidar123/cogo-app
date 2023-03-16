@@ -59,7 +59,7 @@ const navigationMappings = {
 					src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/air-schedule.svg"
 					alt="cogo"
 				/>,
-				description: 'Seamlessly keep track of your shipment schedules and deviations',
+				description: 'Seamlessly keep track of your shipment schedule and deviations',
 			},
 		],
 	},

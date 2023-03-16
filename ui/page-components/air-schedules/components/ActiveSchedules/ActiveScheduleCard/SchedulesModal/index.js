@@ -58,10 +58,10 @@ export function SchedulesModal({
 				<div>
 					<div className={styles.dates_container}>
 						<div className={styles.date_container}>
-							{format(schedule?.departure, 'dd MMM yyyy (eee)')}
+							{format(schedule?.departure, 'dd MMM yyyy')}
 						</div>
 						<div className={styles.date_container}>
-							{format(schedule?.arrival, 'dd MMM yyyy (eee)')}
+							{format(schedule?.arrival, 'dd MMM yyyy')}
 						</div>
 					</div>
 					<div className={styles.main_pill_container}>

@@ -17,7 +17,7 @@ function ProgressCircle({
 		setState({ normalizedRadius, circumference });
 	}, [radius, stroke]);
 
-	const { circumference = 0, normalizedRadius = 0 } = state;
+	const { circumference = 0, normalizedRadius = 0 } = state || {};
 
 	const strokeDashoffset = circumference - (progress / 100) * circumference;
 

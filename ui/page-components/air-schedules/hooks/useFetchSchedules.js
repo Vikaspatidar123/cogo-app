@@ -1,8 +1,6 @@
 import { Toast } from '@cogoport/components';
 import { useState, useEffect } from 'react';
 
-import { prepareFilters } from '../utils/utils';
-
 import { useRequest } from '@/packages/request';
 import { useSelector } from '@/packages/store';
 
@@ -10,6 +8,8 @@ const useFetchSchedules = ({ currentPage }) => {
 	const [filters, setFilters] = useState({});
 	const [schedules, setSchedules] = useState();
 	const { general } = useSelector((state) => state);
+
+	const prepareFilters = () => {};
 
 	const [{ loading }, trigger] = useRequest({
 		method : 'get',

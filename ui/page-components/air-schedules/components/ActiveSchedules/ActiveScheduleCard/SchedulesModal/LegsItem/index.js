@@ -20,10 +20,10 @@ function LegsItem({ legItem = {} }) {
 			<div>
 				<div className={styles.dates_container}>
 					<div className={styles.date_container}>
-						{format(legItem?.departure, 'dd MMM yyyy (eee)')}
+						{format(legItem?.departure, 'dd MMM yyyy')}
 					</div>
 					<div className={styles.date_container}>
-						{format(legItem?.arrival, 'dd MMM yyyy (eee)')}
+						{format(legItem?.arrival, 'dd MMM yyyy')}
 					</div>
 				</div>
 				<div className={styles.main_pill_container}>

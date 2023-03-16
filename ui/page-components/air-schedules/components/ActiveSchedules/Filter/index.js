@@ -16,9 +16,9 @@ function Filter({
 
 	useEffect(() => {
 		if (carrierList.length > 0) {
-			const carriers = carrierList.filter((x) => x.status);
+			const carriers = (carrierList || []).filter((x) => x.status);
 			if (carriers.length > 0) {
-				const carriersList = carriers.map((val) => val?.shippingLineId);
+				const carriersList = (carriers || []).map((val) => val?.shippingLineId);
 				setFilterCarrier(carriersList);
 			}
 		}

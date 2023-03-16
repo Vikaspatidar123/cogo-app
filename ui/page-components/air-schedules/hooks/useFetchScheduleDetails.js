@@ -2,8 +2,6 @@
 import { Toast } from '@cogoport/components';
 import { useState, useEffect } from 'react';
 
-import { prepareFilters } from '../utils/utils';
-
 import request, { useRequest } from '@/packages/request';
 import { useSelector } from '@/packages/store';
 
@@ -16,6 +14,8 @@ const useFetchScheduleDetails = ({
 	const { general, profile } = useSelector((state) => state);
 	const [carrierList, setCarrierList] = useState([]);
 	const [activeFilter, setActiveFilter] = useState(false);
+
+	const prepareFilters = () => {};
 
 	const [{ loading }, trigger] = useRequest({
 		url    : '/get_saas_air_schedule_subscription',

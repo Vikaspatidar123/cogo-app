@@ -1,4 +1,4 @@
-import { country_ids } from '../../configuration/countryId';
+import { COUNTRY_IDS } from '../../../../commons/utils/constants';
 
 const CARDFILTER = [
 	{
@@ -7,7 +7,7 @@ const CARDFILTER = [
 		type           : 'select',
 		placeholder    : 'Search Country',
 		optionsListKey : 'hs_codes_countries',
-		value          : country_ids.IN,
+		value          : COUNTRY_IDS.IN,
 		valueKey       : 'id',
 		labelKey       : 'countryName',
 		defaultOptions : true,

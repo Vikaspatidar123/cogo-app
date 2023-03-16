@@ -13,7 +13,6 @@ function FileUploader(props) {
 		showProgress,
 		multiple,
 		docName,
-		accept,
 		...rest
 	} = props;
 
@@ -66,10 +65,7 @@ function FileUploader(props) {
 
 		const finalUrl = url.split('?')[0];
 
-		return {
-			fileName: file.name,
-			finalUrl,
-		};
+		return finalUrl;
 	};
 
 	const handleChange = async (values) => {

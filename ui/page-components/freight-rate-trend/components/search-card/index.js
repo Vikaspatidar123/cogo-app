@@ -2,7 +2,6 @@ import { Button } from '@cogoport/components';
 import { IcMPortArrow } from '@cogoport/icons-react';
 import { merge } from '@cogoport/utils';
 
-import FormItem from '../../common/FormItem';
 import useCreateTrends from '../../hooks/useCreateTrends';
 
 import styles from './styles.module.css';
@@ -10,6 +9,7 @@ import styles from './styles.module.css';
 import { useForm, useGetAsyncOptions, asyncFieldsLocations } from '@/packages/forms';
 import getField from '@/packages/forms/Controlled';
 import { useRouter } from '@/packages/next';
+import FormItem from '@/ui/commons/components/FormItem';
 
 function SearchCard({ refechTrends }) {
 	const { push } = useRouter();

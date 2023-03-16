@@ -1,5 +1,11 @@
 import { cl } from '@cogoport/components';
-import { useCallback, forwardRef, useImperativeHandle } from 'react';
+import {
+	useCallback,
+	forwardRef,
+	useImperativeHandle,
+	useMemo,
+	useEffect,
+} from 'react';
 
 import { productFieldArr } from '../../../configuration/productControls';
 
@@ -11,10 +17,11 @@ import { useForm, useFieldArray } from '@/packages/forms';
 import { shortFormatNumber } from '@/ui/commons/utils/getShortFormatNumber';
 
 function List(props, ref) {
+	const { selectedData = [], setSelectedId } = props || {};
 	const {
 		control,
 		watch,
-		setValue,
+		setValue = () => {},
 		handleSubmit,
 		formState: { errors },
 	} = useForm();
@@ -23,8 +30,7 @@ function List(props, ref) {
 		name: 'products',
 		control,
 	});
-	const { products:watchFieldArr } = watch();
-
+	const { products: watchFieldArr } = watch();
 	const calTotalPrice = useCallback(() => {
 		const value = watchFieldArr?.reduce(
 			(prevObj, currObj) => +prevObj + +currObj.product_price,
@@ -32,7 +38,6 @@ function List(props, ref) {
 		);
 		return value;
 	}, [watchFieldArr]);
-
 	useImperativeHandle(ref, () => ({
 		handleSubmit: () => {
 			const onSubmit = (values) => values;
@@ -47,7 +52,18 @@ function List(props, ref) {
 			});
 		},
 	}));
-
+	// useMemo(() => { setSelectedId(watchFieldArr.map((x) => x.id)); }, [watchFieldArr]);
+	useMemo(() => {
+		setValue(
+			'products',
+			(selectedData || []).map((item) => ({
+				...item,
+				price     : item.sellingPrice,
+				productId : item.id,
+			})),
+		);
+	}, [selectedData]);
+	useEffect(() => { setSelectedId((watchFieldArr || []).map((x) => x.productId)); }, [watchFieldArr]);
 	return (
 		<>
 			<div className={styles.container}>
@@ -77,7 +93,6 @@ function List(props, ref) {
 						</div>
 					))}
 				</div>
-
 			</div>
 			<div className={cl`${styles.row} ${styles.total_value}`}>
 				<h3>
@@ -86,7 +101,6 @@ function List(props, ref) {
 				</h3>
 			</div>
 		</>
-
 	);
 }
 

@@ -12,6 +12,8 @@ function ProductCatalogue({
 	showCatalogue,
 	setShowCatalogue,
 	setSelectedData,
+	multiSelect = false,
+	selectedId = [],
 }) {
 	const [labeledValue, setLabeledValue] = useState('category');
 
@@ -22,6 +24,7 @@ function ProductCatalogue({
 		setGlobalFilter,
 		pagination = 1,
 		setPagination,
+		allprductData,
 	} = useProductList({ labeledValue });
 
 	const { categoryViewData, categoryLoading } = useProductCategory({ labeledValue });
@@ -45,6 +48,8 @@ function ProductCatalogue({
 						loading={categoryLoading}
 						setSelectedData={setSelectedData}
 						setShowCatalogue={setShowCatalogue}
+						multiSelect={multiSelect}
+						selecteId={selectedId}
 					/>
 				)}
 				{labeledValue === 'list' && (
@@ -55,6 +60,9 @@ function ProductCatalogue({
 						setPagination={setPagination}
 						setSelectedData={setSelectedData}
 						setShowCatalogue={setShowCatalogue}
+						multiSelect={multiSelect}
+						selectedId={selectedId}
+						allprductData={allprductData}
 					/>
 				)}
 			</Modal.Body>

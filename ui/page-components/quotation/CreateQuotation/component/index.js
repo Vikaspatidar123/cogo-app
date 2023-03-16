@@ -52,7 +52,6 @@ function CreateQuotation() {
 	});
 	const { postQuotation, loading } = useCreateQuotation({});
 	const newHeaderFields = headerFields({ id, organization });
-	console.log(watch('expiryDate'));
 	const submitForm = async () => {
 		const resp = await getHandleSubmitData({
 			quoteRef: quoteRef.current,

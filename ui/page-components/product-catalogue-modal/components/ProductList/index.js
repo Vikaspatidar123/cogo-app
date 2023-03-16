@@ -103,6 +103,7 @@ function ProductList({
 			addProductId={addProductId}
 			setAddProductId={setAddProductId}
 			multiSelect={multiSelect}
+
 		/>
 	</div>
           ))}

@@ -36,7 +36,6 @@ function ProductCategory({
 		setSelectedId(selecteId);
 	}, [JSON.stringify(selecteId)]);
 	const addToForm = () => {
-		// const { list = [] } = productList || {};
 		const arr = allprductData.filter((product) => selectedId.includes(product?.id));
 		if (multiSelect) {
 			setSelectedData(arr);

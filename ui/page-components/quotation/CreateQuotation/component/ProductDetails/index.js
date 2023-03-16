@@ -37,6 +37,7 @@ function ProductDetails(props, ref) {
 				setSelectedData={setSelectedData}
 				multiSelect
 				selectedId={selectedId}
+				addCheck
 			/>
 		</div>
 	);

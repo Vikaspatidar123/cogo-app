@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import { Toast } from '@cogoport/components';
 import { setCookie, getCookie } from '@cogoport/utils';
 

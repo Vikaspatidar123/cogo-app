@@ -1,12 +1,13 @@
-.container{
-    display: flex;
-	justify-content: center;
+.container {
+	display: flex;
 	align-items: center;
+	justify-content: center;
 }
+
 .input_item {
-    text-align: center;
-    margin-right: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-right: 10px;
+	text-align: center;
 }

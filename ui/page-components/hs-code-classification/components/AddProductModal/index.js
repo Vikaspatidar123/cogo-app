@@ -7,8 +7,6 @@ import { useState } from 'react';
 import ModalDetails from './ModalDetails';
 import styles from './styles.module.css';
 
-import isMobile from '@/packages/utils/isMobileAgent';
-
 function AddProductModal({ data = {}, src = '' }) {
 	const [show, setShow] = useState(false);
 	// console.log(data, 'show');

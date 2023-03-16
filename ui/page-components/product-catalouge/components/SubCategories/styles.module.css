@@ -1,0 +1,136 @@
+.catalouge_label {
+	font-size: 16px;
+	font-weight: 500;
+	color: #2c3e50;
+}
+
+.catalouge_label .sub_category {
+	font-size: 16px;
+	font-weight: 500;
+	color: #7b7b7b;
+}
+
+.styled_tab_div {
+	margin: 15px 0;
+
+	:global {
+		.category {
+			display: flex;
+		}
+
+		.ui_tabs_list.horizontal {
+			@media (max-width: 768px) {
+				display: flex;
+				flex-flow: row wrap;
+				justify-content: space-between;
+			}
+		}
+
+		.section {
+			width: stretch;
+			height: auto;
+			padding: 10px !important;
+			border-left: 1px dashed #c6d9ff;
+
+			@media (max-width: 768px) {
+				border-left: none;
+
+				/* display: none; */
+			}
+		}
+	}
+}
+
+.container {
+	@media (max-width: 768px) {
+		display: flex;
+		flex-direction: column;
+	}
+}
+
+.tab_container {
+	cursor: pointer;
+
+	:global {
+		.ui-tabs {
+			justify-content: flex-start;
+			background: #fff !important;
+		}
+
+		.active {
+			background-color: #fffbfb !important;
+			border: 1px solid #d5483a !important;
+		}
+
+		.ui-tabs-list {
+			gap: 10px;
+			padding: 10px 0 !important;
+
+			.ui-tabs-list-container {
+				display: block !important;
+				max-width: 165px;
+				padding: 10px !important;
+				margin: 0 10px !important;
+				text-overflow: ellipsis;
+				white-space: pre-wrap;
+				background: #fff !important;
+				border: none !important;
+				border-radius: 10px !important;
+				box-shadow: 0 0 7px 1px #dde0e0 !important;
+				transition: none;
+			}
+
+			.ui-tabs-list-container:hover {
+				border: 1px solid #d5483a !important;
+
+				svg::after {
+					visibility: hidden !important;
+				}
+			}
+
+			.active p {
+				border: 1px solid #d5483a !important;
+				transition: none !important;
+			}
+
+			.active {
+				background-color: #fffbfb !important;
+				border: 1px solid #d5483a !important;
+			}
+		}
+
+		.card {
+			display: block !important;
+			max-width: 165px;
+			padding: 10px !important;
+			margin: 0 10px !important;
+			margin: 10px !important;
+			text-align: center;
+			text-overflow: ellipsis;
+			white-space: pre-wrap;
+			background: #fff !important;
+			border: none !important;
+			border-radius: 10px !important;
+			box-shadow: 0 0 7px 1px #dde0e0 !important;
+			transition: none;
+
+			&:hover {
+				border: 1px solid #d5483a !important;
+			}
+		}
+
+		.subcategory {
+			&.ui-tabs-list {
+				width: 25% !important;
+				padding: 10px !important;
+				padding-right: 20px !important;
+				margin-right: 20px !important;
+				border-right: 1px dashed #c6d9ff;
+			}
+
+			.ui-tabs-tabpanel {
+				background: transparent !important;
+			}
+		}
+	}
+}

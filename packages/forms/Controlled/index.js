@@ -1,5 +1,6 @@
 import { MultiselectController } from '..';
 
+import AsyncSelectController from './AsyncSelectController';
 import CheckboxController from './CheckboxController';
 import DatepickerController from './DatepickerController';
 import InputController from './InputController';
@@ -9,7 +10,6 @@ import TextAreaController from './TextAreaController';
 import UploadController from './UploadController';
 
 const MAPPING = {
-
 	select        : SelectController,
 	text          : InputController,
 	number        : InputController,
@@ -19,7 +19,7 @@ const MAPPING = {
 	mobile_number : MobileNumberSelectController,
 	datepicker    : DatepickerController,
 	multi_select  : MultiselectController,
-
+	async_select  : AsyncSelectController,
 };
 
 const getField = (type = 'text') => {

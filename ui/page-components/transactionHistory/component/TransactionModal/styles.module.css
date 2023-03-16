@@ -1,0 +1,149 @@
+.card {
+	display: flex;
+	flex-direction: row;
+	gap: 11px;
+	align-items: center;
+	width: fit-content;
+	height: 56px;
+	padding: 8px 16px;
+	background: #fefbf7;
+	border-radius: 8px;
+}
+
+.card_line {
+	display: flex;
+	flex-direction: row;
+	gap: 11px;
+	align-items: center;
+	justify-content: space-between;
+	width: fit-content;
+	width: 100%;
+	padding: 8px 16px;
+	cursor: pointer;
+	border-radius: 8px;
+	box-shadow: 0 0 7px 1px #dde0e0;
+
+	.title2 {
+		font-size: 12px;
+		font-weight: 500;
+		text-transform: capitalize;
+	}
+}
+
+.trader {
+	font-size: 16px;
+	font-weight: 500;
+	line-height: 150%;
+	color: #2c3e50;
+
+	&.company {
+		width: 165px;
+		height: 24px;
+	}
+
+	&.verified {
+		width: 68px;
+		height: 18px;
+		font-size: 12px;
+		font-weight: 400;
+		color: #697989;
+	}
+}
+
+.main_card {
+	display: flex;
+	justify-content: center;
+}
+
+.footer {
+	display: flex;
+	justify-content: space-between;
+	max-height: 300px;
+	overflow: scroll;
+
+	.controls {
+		width: 48%;
+	}
+
+	.landedcost {
+		width: 48%;
+		padding: 5px;
+	}
+
+	.documents {
+		width: 48%;
+		padding: 5px;
+	}
+}
+
+.card_body {
+	max-height: 0;
+	margin-bottom: 2%;
+	overflow: hidden;
+	border-radius: 9px;
+	transition: 0.6s ease-in-out;
+
+	&.displayDrill {
+		max-height: 500px;
+		padding: 10px;
+		border-top: 1px solid #cddbff;
+		transition: 0.6s ease-in-out;
+	}
+
+	.title {
+		display: flex;
+		align-items: center;
+		padding: 5px;
+		font-size: 20px;
+		font-weight: 400px;
+	}
+}
+
+.arrow {
+	cursor: pointer;
+
+	:global {
+		.rotateIcon {
+			transform: rotate(180deg);
+		}
+
+		.hyperlinkIcon {
+			margin-left: 5px;
+			transition: transform 0.3s ease-in-out;
+		}
+	}
+}
+
+.hr {
+	border-bottom: 1px solid #c3d1df;
+}
+
+.flex {
+	margin: 10px;
+}
+
+.modal_div {
+	max-width: 100vw !important;
+
+	&.ui-modal-dialog {
+		height: 1000px;
+	}
+}
+
+.empty_div {
+	display: flex;
+	justify-content: center;
+}
+
+.empty {
+	width: 50%;
+	height: 50%;
+}
+
+.text {
+	display: flex;
+	justify-content: center;
+	margin-bottom: 10px;
+	font-size: 16px;
+	font-weight: 600;
+}

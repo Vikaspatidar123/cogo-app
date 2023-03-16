@@ -1,52 +1,52 @@
 .container {
-  background: #fcdc00;
-  padding: 4px 0 4px 32px;
-  margin: 0px -36px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	padding: 4px 0 4px 32px;
+	margin: 0 -36px;
+	background: #fcdc00;
 
-  @media (max-width: 767.99px) {
-    padding: 16px;
-    flex-direction: column;
-    margin: 0 0 12px 0;
-    padding: 0;
-    border-radius: 4px;
-  }
+	@media (max-width: 767px) {
+		flex-direction: column;
+		padding: 16px;
+		padding: 0;
+		margin: 0 0 12px;
+		border-radius: 4px;
+	}
 }
 
 .user_details_container {
-  padding: 8px;
-  flex: 0 0 25%;
+	flex: 0 0 25%;
+	padding: 8px;
 
-  @media (max-width: 767.99px) {
-    border-bottom: 1px solid rgba(217, 234, 253, 0.35);
-  }
+	@media (max-width: 767px) {
+		border-bottom: 1px solid rgb(217 234 253 / 35%);
+	}
 }
 
 .contact_details_container {
-  padding: 8px;
-  flex: 0.8 0.8 auto;
+	flex: 0.8 0.8 auto;
+	padding: 8px;
 
-  @media (max-width: 767.99px) {
-    width: 100%;
-  }
+	@media (max-width: 767px) {
+		width: 100%;
+	}
 }
 
 .progress_completion_container {
-  padding: 8px;
-  flex: 0 0 25%;
+	flex: 0 0 25%;
+	padding: 8px;
 
-  @media (max-width: 767.99px) {
-    display: none;
-  }
+	@media (max-width: 767px) {
+		display: none;
+	}
 }
 
 .completion_chnages {
-  padding: 8px;
-  flex: 0 0 14%;
+	flex: 0 0 14%;
+	padding: 8px;
 
-  @media (max-width: 767.99px) {
-    display: none;
-  }
+	@media (max-width: 767px) {
+		display: none;
+	}
 }

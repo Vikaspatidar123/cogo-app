@@ -81,15 +81,14 @@ const handleAuthentication = async ({
 		redirect({ isServer, res, path: `/v2/login?redirectPath=${asPath}` });
 		return { asPrefix };
 	}
+	if (
+		(user_data.organizations || []).length === 0
 
+	) {
+		redirect({ isServer, res, path: '/v2/get-started' });
+		return { asPrefix };
+	}
 	if (isUnauthenticated) {
-		if (
-			(user_data.organizations || []).length === 0
-			|| user_data.name === null
-		) {
-			redirect({ isServer, res, path: '/v2/get-started' });
-			return { asPrefix };
-		}
 		const org = user_data.organizations[0];
 		const branch = org?.branches?.[0];
 
@@ -108,11 +107,6 @@ const handleAuthentication = async ({
 
 	// Redirect old paths to branch id
 	const allStrings = asPath?.split('/');
-	const actual_org_id = allStrings?.[1];
-	// eslint-disable-next-line no-unused-vars
-	const current_org = user_data?.organizations.find(
-		(org) => org?.id === actual_org_id,
-	);
 	if (!allStrings[1] && !isEmpty(user_data)) {
 		const org = user_data.organizations[0] || {};
 		const orgId = org.id;

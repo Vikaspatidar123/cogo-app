@@ -2,7 +2,6 @@ import { useState } from 'react';
 
 import getAlertPreferencesControls from '../../../../configurations/alerts-preferences-controls';
 // import useGetPreferences from '../../../../../../hooks/useGetPreferences';
-
 import getUserAlert from '../hooks/getUserAlert';
 
 import CategoryForm from './CategoryForm';

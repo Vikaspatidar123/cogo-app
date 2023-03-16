@@ -7,11 +7,8 @@ import useOrganizationDetails from './hooks/useOrganizationDetails';
 import LoadingState from './LoadingState';
 import styles from './styles.module.css';
 
-// import SlidingTabs from '@/commons/components/UI/SlidingTabs';
-
 function OrganizationDetails() {
 	const {
-		isMobile,
 		loading = false,
 		organizationData = {},
 		setShowEditOrganizationDetails = () => { },
@@ -25,17 +22,9 @@ function OrganizationDetails() {
 		}
 		return (
 			<div className={styles.main_container}>
-				{isMobile && !showEditOrganizationDetails ? (
+				{!showEditOrganizationDetails ? (
 					<div className={styles.flex}>
-						<IcMEdit
-							style={{
-								width       : 16,
-								height      : 16,
-								cursor      : 'pointer',
-								marginRight : isMobile && 12,
-							}}
-							onClick={() => setShowEditOrganizationDetails(true)}
-						/>
+						<IcMEdit onClick={() => setShowEditOrganizationDetails(true)} />
 					</div>
 				) : null}
 
@@ -131,6 +120,7 @@ function OrganizationDetails() {
 									<img
 										src={
 											organizationData.logo
+											// eslint-disable-next-line max-len
 											|| 'https://cogoport-production.sgp1.digitaloceanspaces.com/92f7f7340ff071a93fcacfca9956b32a/company-info-icon.svg'
 										}
 										alt="Your Logo"
@@ -163,42 +153,11 @@ function OrganizationDetails() {
 
 	return (
 		<>
-			{isMobile && (
-				<MobileHeader
-					heading="Company Details"
-					onClickBackButton={onClickBackButton}
-				/>
-			)}
 
-			{/* {is_importer_exporter && is_service_provider && (
-				<div className={styles.toggle_container}>
-					<SlidingTabs
-						options={[
-							{
-								label: t(
-									'profile:accountDetails.tabOptions.organization.toggle.1',
-								),
-								value: 'importer_exporter',
-							},
-							{
-								label: t(
-									'profile:accountDetails.tabOptions.organization.toggle.2',
-								),
-								value: 'service_provider',
-							},
-						]}
-						activeTab={organizationType}
-						setActiveTab={setOrganizationType}
-					/>
-
-					{isMobile && !showEditOrganizationDetails ? (
-						<IcMEdit
-							onClick={() => setShowEditOrganizationDetails(true)}
-							style={{ width: 16, height: 16, cursor: 'pointer' }}
-						/>
-					) : null}
-				</div>
-			)} */}
+			<MobileHeader
+				heading="Company Details"
+				onClickBackButton={onClickBackButton}
+			/>
 
 			{renderOrganizationDetails()}
 		</>

@@ -1,4 +1,4 @@
-import { Button, Pagination } from '@cogoport/components';
+import { Button, Pagination, Placeholder } from '@cogoport/components';
 import { IcMPortArrow } from '@cogoport/icons-react';
 import { merge } from '@cogoport/utils';
 import React, { useState } from 'react';
@@ -67,6 +67,11 @@ function AirSchedules() {
 				My Schedules
 			</div>
 			<div className={styles.schedules_container}>
+				{loading && 		(
+					<div className={styles.card}>
+						<Placeholder height="370px" width="1250px" margin="0px 0px 20px 0px" />
+					</div>
+				)}
 				{(!loading && schedules?.list.length > 0)
 					? schedules?.list?.map((item) => (
 						<ScheduleCard

@@ -5,20 +5,17 @@ import React from 'react';
 import LegsItem from './LegsItem';
 import styles from './styles.module.css';
 
-// import StepsComponent from '@/ui/page-components/air-schedules/common/Steps';
-
 export function SchedulesModal({
 	openSchedulesModal, setOpenSchedulesModal, schedule, shippingLine, scheduleDetails,
 }) {
 	const handleClose = () => {
 		setOpenSchedulesModal(false);
 	};
-	const stepsList = [
-		{ title: scheduleDetails?.origin_port?.port_code || 'Origin' },
-		{ title: scheduleDetails?.destination_port?.port_code || 'Destination' },
-	];
 
-	const legs = schedule?.legs;
+	const originSchedule = scheduleDetails?.origin_port?.port_code || 'Origin';
+	const destinationSchedule =	 scheduleDetails?.destination_port?.port_code || 'Destination';
+
+	const legs = schedule?.legs || [];
 
 	return (
 		<Modal show={openSchedulesModal} closeOnOuterClick showCloseIcon onClose={handleClose}>
@@ -74,7 +71,15 @@ export function SchedulesModal({
 						</Pill>
 					</div>
 					<div className={styles.steps_container}>
-						<StepsComponent stepsList={stepsList} />
+						<div className={styles.dot_circle}>
+							<div className={styles.circle1}>
+								<div className={styles.port_code}>{originSchedule}</div>
+							</div>
+							<div className={styles.line} />
+							<div className={styles.circle2}>
+								<div className={styles.port_code}>{destinationSchedule}</div>
+							</div>
+						</div>
 					</div>
 				</div>
 				{legs?.length > 0 && legs?.map((leg) => (

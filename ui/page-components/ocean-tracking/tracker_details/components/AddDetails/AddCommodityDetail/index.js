@@ -11,16 +11,14 @@
 // import request from '../../../../common/utils/request';
 
 // import { SelectStyled, Details } from './styles';
-import { Modal, Toast } from '@cogoport/components';
-import { Select } from '@cogoport/components';
-import { Button } from '@cogoport/components';
+import { Modal, Toast, Select, Button } from '@cogoport/components';
 import { useState, useEffect } from 'react';
 
 import useAddCommodity from '../../../hooks/useAddCommodity';
 
 import styles from './styles.module.css';
 
-import { useForm } from '@/packages/forms';
+// import { useForm } from '@/packages/forms';
 import { useRequest } from '@/packages/request';
 
 function AddCommodityDetail({ isOpen, handleModal, trackerDetails, setTrackerDetails }) {
@@ -79,7 +77,7 @@ function AddCommodityDetail({ isOpen, handleModal, trackerDetails, setTrackerDet
 			// overflow="visible"
 			// width="60%"
 		>
-			<Modal.Header title="Setup detention / demurrage days" />
+			<Modal.Header title="Add Available Commodity" />
 			<Modal.Body>
 				<div className={styles.detail}>
 					<p>Add commodity and get automatic updates about the status of your shipments.</p>
@@ -111,64 +109,6 @@ function AddCommodityDetail({ isOpen, handleModal, trackerDetails, setTrackerDet
 					<Button onClick={() => onSubmit(value)}>Save</Button>
 				</div>
 			</Modal.Footer>
-			{/* <Formik
-				initialValues={{
-					commodity_name:
-						{
-							label : filterCommodity[0]?.name,
-							value : filterCommodity[0]?.id,
-						} || '',
-				}}
-				onSubmit={onSubmit}
-			>
-				{({ handleSubmit, setFieldValue, resetForm }) => {
-					formRef.current = { handleSubmit, setFieldValue, resetForm };
-					return (
-						<Form style={{ width: '100%' }}>
-							<FormItem>
-								<Field
-									name="commodity_name"
-									as={SelectStyled}
-									onChange={(option) => {
-										setFieldValue('commodity_name', option);
-									}}
-									placeholder="Please select a commodity"
-									options={(commodity || []).map((item) => ({
-										label    : item.name,
-										value    : item.id,
-										hsc_code : item.hsc_code,
-									}))}
-								/>
-								<ErrorMessage
-									component="p"
-									className="error-message"
-									name="commodity_name"
-								/>
-							</FormItem>
-						</Form>
-					);
-				}}
-			</Formik>
-			<Flex justifyContent="flex-end" alignItems="center" marginTop="24px">
-				<Button
-					variant="ghost"
-					size="lg"
-					style={{ marginRight: 8 }}
-					normalCase
-					onClick={handleModal}
-				>
-					CANCEL
-				</Button>
-				<Button
-					size="lg"
-					variant="secondary"
-					normalCase
-					disabled={loading}
-					onClick={onClick}
-				>
-					Save
-				</Button>
-			</Flex> */}
 		</Modal>
 	);
 }

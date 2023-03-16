@@ -24,6 +24,7 @@ import styles from './styles.module.css';
 
 import { useForm } from '@/packages/forms';
 import getField from '@/packages/forms/Controlled';
+import AddPocs from '../AddPoc';
 
 function LinkPocs({ handleNext }) {
 	// const { formRef, trackerPoc, setTrackerPoc, isMobile, general } = useSaasState();
@@ -89,7 +90,7 @@ function LinkPocs({ handleNext }) {
 	return (
 		<div>
 			<div className={styles.item}>
-				{/* {isPocModalOpen && (
+				{isPocModalOpen && (
 					<AddPocs
 						isOpen={isPocModalOpen}
 						handleModal={handlePocModal}
@@ -97,7 +98,7 @@ function LinkPocs({ handleNext }) {
 						addPocToState={addPocToState}
 						heading="New Contact"
 					/>
-				)} */}
+				)}
 				<Input
 					size="md"
 					placeholder="Enter name or email to search"

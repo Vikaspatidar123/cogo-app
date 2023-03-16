@@ -67,7 +67,6 @@ function IncotermDetails({ disabled, fetchTrackerDetails, trackerDetails, ...pro
 			<p>Add incoterms and shipper / consignee details to customize alerts</p>
 		</div>
 	);
-	console.log(isModalOpen, 'isModalOpen');
 	return (
 		<>
 			{poc_details?.length > 0 || shipment_details?.incoterm != null

@@ -6,8 +6,15 @@ import { WarnIcon } from '../../../configuration/icon-configuration';
 import AddCommodityDetail from './AddCommodityDetail';
 import styles from './styles.module.css';
 
-function AddDetails({ containersList, shipmentInfo, setTrackerDetails, trackerDetails }) {
-	const [selectedContainer, setSelectedContainer] = useState(0);
+function AddDetails({
+	containersList,
+	shipmentInfo,
+	setTrackerDetails,
+	trackerDetails,
+	selectedContainer,
+	setSelectedContainer,
+}) {
+	// const [selectedContainer, setSelectedContainer] = useState(0);
 	const handlePrevious = () => {
 		if (selectedContainer > 0) setSelectedContainer(selectedContainer - 1);
 	};

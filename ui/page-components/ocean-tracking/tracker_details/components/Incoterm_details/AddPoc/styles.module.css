@@ -1,0 +1,42 @@
+.Alert{
+    padding: 16px;
+    border-radius: 10px;
+    background: #e3ebf3;
+    display: flex;
+    align-items: center;
+    
+    /* .icon-container {
+      flex-shrink: 0;
+      height: 24px;
+      width: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+    } */
+  
+    p {
+      color: #364b5f;
+      margin: 0;
+      margin-left: 8px;
+      font-size: 10px;
+    }
+}
+.row{
+    display: flex;
+    flex-direction: row;
+}
+.col{
+    display: flex;
+    flex-direction: column;
+}
+.message{
+    margin-top: 2px;
+    color: #CB6464;
+}
+.button{
+ display: flex;
+ align-items: center;
+ justify-content: flex-end;
+ margin-top: 24px;
+}

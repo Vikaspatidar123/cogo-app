@@ -23,7 +23,7 @@ function useFetchTrackerDetails() {
 	const { general } = useSelector((s) => s);
 	const { query } = general;
 	const id = query?.tracker_id;
-	const { getAllOceanRoutes } = useGetOceanRoutes();
+	const { getAllOceanRoutes, maploading, setMapPoints, mapPoints } = useGetOceanRoutes();
 	const [{ loading }, trigger] = useRequest({
 		url    : 'get_saas_container_subscription',
 		method : 'get',
@@ -100,11 +100,14 @@ function useFetchTrackerDetails() {
 	return {
 		fetchTrackerDetails,
 		loading,
+		maploading,
 		setSelectedContainerId,
 		selectedContainerId,
 		loadingForFirstVisit,
 		trackerDetails,
 		setTrackerDetails,
+		mapPoints,
+		setMapPoints,
 	};
 }
 

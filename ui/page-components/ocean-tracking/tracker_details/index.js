@@ -1,10 +1,12 @@
 import { IcMArrowBack } from '@cogoport/icons-react';
+import { useState } from 'react';
 
 import useFetchTrackers from '../hooks/useFetchTrackers';
 
 import AddDetails from './components/AddDetails';
 import DetentionDetails from './components/Detention_details';
 import IncotermDetails from './components/Incoterm_details';
+import MilestonesContainer from './components/MileStoneContainer';
 import useFetchTrackerDetails from './hooks/useFtechTrackerDetails';
 import styles from './styles.module.css';
 
@@ -15,11 +17,14 @@ function TrackerDetails() {
 	const {
 		fetchTrackerDetails,
 		loading,
+		maploading,
 		setSelectedContainerId,
 		selectedContainerId,
 		loadingForFirstVisit,
 		trackerDetails,
 		setTrackerDetails,
+		mapPoints,
+		setMapPoints,
 	} = useFetchTrackerDetails();
 
 	// const {
@@ -27,6 +32,7 @@ function TrackerDetails() {
 	// } = useFetchTrackers();
 	// const containersList = tracker?.container_details;
 	// const [activeCarouselIndex, setActiveCarouselIndex] = useState(0);
+	const [selectedContainer, setSelectedContainer] = useState(0);
 	const isArchived = trackerDetails?.status === 'completed';
 	const { container_details = {}, shipment_info } = trackerDetails || {};
 	const containersList = container_details;
@@ -74,6 +80,8 @@ function TrackerDetails() {
 					</div>
 					<div className={styles.col}>
 						<AddDetails
+							selectedContainer={selectedContainer}
+							setSelectedContainer={setSelectedContainer}
 							selectedContainerId={selectedContainerId}
 							setSelectedContainerId={setSelectedContainerId}
 							containersList={containersList}
@@ -84,6 +92,18 @@ function TrackerDetails() {
 							hackyContainerNumber={trackerDetails?.input}
 						/>
 					</div>
+				</div>
+				<div className={styles.tracking}>
+					<MilestonesContainer
+						selectedContainerId={selectedContainerId}
+						selectedContainer={selectedContainer}
+						setSelectedContainerId={setSelectedContainerId}
+						// handleShareModal={handleShareModal}
+						mapLoading={maploading}
+						trackerDetails={trackerDetails}
+						mapPoints={mapPoints}
+						setMapPoints={setMapPoints}
+					/>
 				</div>
 			</div>
 		</div>

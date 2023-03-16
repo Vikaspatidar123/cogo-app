@@ -60,7 +60,6 @@ function DetentionDetails({ disabled, trackerDetails, setTrackerDetails, ...prop
 			<p>Add available detention / demurrage free days for proactive alerts on expiry</p>
 		</div>
 	);
-	console.log(isModalOpen, 'isModalOpen');
 	return (
 		<>
 			{!isEmpty ? renderInfo() : renderEmpty()}

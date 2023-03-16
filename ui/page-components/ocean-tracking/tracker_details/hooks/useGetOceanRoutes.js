@@ -67,8 +67,10 @@ function useGetOceanRoutes() {
 	};
 
 	return {
-		loading,
+		maploading: loading,
 		getAllOceanRoutes,
+		mapPoints,
+		setMapPoints,
 	};
 }
 

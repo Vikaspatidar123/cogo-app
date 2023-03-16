@@ -1,13 +1,12 @@
-
-.loader{
+.loader {
 	position: relative;
 }
 
-.map_unable{
-	color: #333;
-	font-weight: 500;
-	font-size: 15px;
-	top: -23px;
+.map_unable {
 	position: absolute;
+	top: -23px;
 	z-index: 400;
+	font-size: 15px;
+	font-weight: 500;
+	color: #333;
 }

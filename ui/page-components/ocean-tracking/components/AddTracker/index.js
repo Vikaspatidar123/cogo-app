@@ -56,7 +56,7 @@ function AddTrackerModal({ show, onclose }) {
 							)}
 						</div>
 						{!labeledValue ? <RenderForm /> : <CsvForm />}
-						
+
 					</div>
 
 				</Modal.Body>

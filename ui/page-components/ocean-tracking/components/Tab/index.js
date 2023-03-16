@@ -20,6 +20,7 @@ function Tab({ archived, setArchived }) {
 	const {
 		loading, trackers, setTrackers, pagination, setPagination, filters, setFilters, refetch,
 	} = useFetchTrackers();
+	console.log(trackers, '345');
 	const {
 		trackers: trackers1,
 		loading: loading1,

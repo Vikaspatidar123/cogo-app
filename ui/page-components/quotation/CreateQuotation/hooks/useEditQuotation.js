@@ -1,48 +1,35 @@
 import { Toast } from '@cogoport/components';
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 
+import { useRouter } from '@/packages/next';
 import { useRequestBf } from '@/packages/request';
 import { useSelector } from '@/packages/store';
 
-const useEditQuotation = ({ query, setValues, setValue, setActiveTab }) => {
+const useEditQuotation = () => {
 	const { profile } = useSelector((state) => state);
-
-	const { trigger, data } = useRequestBf('get', false, 'saas', {
-		authkey: 'get_saas_quote',
-	})('/saas/quote/');
-
-	const [loading, setLoading] = useState(false);
+	const { query } = useRouter();
+	const [{ loading, data }, trigger] = useRequestBf({
+		method  : 'get',
+		url     : '/saas/quote/',
+		authKey : 'get_saas_quote',
+	}, { manual: true });
 
 	const editQuotation = async (id) => {
 		try {
-			setLoading(true);
-			const resp = await trigger({ params: { quotationId: id, userId: profile.id } });
-			if (resp?.data) {
-				const { products, ...res } = resp?.data || {};
-				const allProduct = products.map((x) => ({ ...x, actualPrice: x.grossAmount }));
-				const setData = { products: allProduct, ...res };
-				setValues(setData);
-				setValue(
-					'additionalCharges',
-					resp?.data?.additionalChargesList?.additionalCharges,
-				);
-				// setValue('containerCount', resp?.data?.containerCount);
-				setValue('incotermCharges', resp?.data?.additionalChargesList?.incotermCharges);
-				setActiveTab(resp?.data?.transportMode);
-				setLoading(false);
-			}
+			await trigger({ params: { quotationId: id, userId: profile.id } });
 		} catch (err) {
-			setLoading(false);
 			Toast.error(err?.message);
 		}
 	};
+
 	useEffect(() => {
 		if (query.id) {
 			editQuotation(query.id);
 		}
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [query.id]);
+
 	return {
-		editQuotation,
 		editData    : data,
 		editLoading : loading,
 	};

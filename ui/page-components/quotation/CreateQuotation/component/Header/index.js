@@ -2,6 +2,7 @@ import { cl, Button } from '@cogoport/components';
 import { IcMArrowBack, IcMPlus } from '@cogoport/icons-react';
 import { useState, forwardRef } from 'react';
 
+import useRedirectUrl from '../../../utils/redirectUrl';
 import useCreateBuyer from '../../hooks/useCreateBuyer';
 
 import CreateBuyerModal from './CreateBuyerModal';
@@ -11,28 +12,32 @@ import styles from './styles.module.css';
 import getField from '@/packages/forms/Controlled';
 
 function Header(props, ref) {
-	const { control, fields, errors, setValue } = props;
+	const { control, fields, errors, setValue, watch, editData = {} } = props;
 
 	const [openModal, setOpenModal] = useState(false);
 	const { current } = ref;
+	const { redirectViewQuote } = useRedirectUrl();
+	const { sellerDetails = {} } = editData;
 	const { createBuyerAddress, loading } = useCreateBuyer({
 		setValue,
 		ref,
 	});
 	const SelectController = getField(fields[0]?.type);
-
+	const buyerId = watch('watch');
 	return (
 		<div className={styles.container}>
 			<div className={styles.title_container}>
-				<div className={styles.icon_container}>
+				<div className={styles.icon_container} role="presentation" onClick={redirectViewQuote}>
 					<IcMArrowBack width={18} height={18} />
 				</div>
-				<h1>Create Quotation</h1>
+				{editData?.sellerDetails ? <h1>Edit Quotation</h1> : <h1>Create Quotation</h1>}
 			</div>
+
 			<div className={styles.field_row}>
 				<div className={cl`${styles.field_col} ${styles.buyer_col} `}>
 					<SelectController
 						{...fields[0]}
+						key={buyerId}
 						control={control}
 						className={`${errors?.[fields[0].name] && styles.error}`}
 						handleChange={(data) => {
@@ -44,6 +49,7 @@ function Header(props, ref) {
 						<div className="text">OR</div>
 						<div className={styles.line} />
 					</div>
+
 					<Button
 						size="md"
 						themeType="accent"
@@ -55,6 +61,7 @@ function Header(props, ref) {
 				</div>
 				<div className={styles.seller_col}>
 					<SellerAddress
+						sellerDetails={sellerDetails}
 						ref={(r) => {
 							current.sellerAddress = r;
 						}}

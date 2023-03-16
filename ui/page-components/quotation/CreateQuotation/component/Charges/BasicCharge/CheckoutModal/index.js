@@ -31,7 +31,7 @@ function CheckoutModal({
 	locationLoading,
 }) {
 	const [traderCheck, setTrackerCheck] = useState(false);
-	console.log(serviceProduct, 'serviceProduct');
+
 	const { refetchDraft, draftLoading } = useDraft();
 	const { postPayemnt, paymentLoading } = usePayment;
 

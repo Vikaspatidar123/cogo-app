@@ -9,7 +9,7 @@ const createQuotePayload = ({ data, exchangeRate = 1, orgCurrency }) => {
 	} = data || {};
 
 	const { currency, expiryDate: expDate } = header;
-
+	console.log(buyerDetails, 'buyerDetails');
 	const {
 		id = '',
 		name = '',
@@ -18,6 +18,13 @@ const createQuotePayload = ({ data, exchangeRate = 1, orgCurrency }) => {
 		organization = {},
 		pincode = '',
 		organization_pocs = [],
+		billingAddressId = '',
+		billingPartyName = '',
+		pocEmail = '',
+		pocPhoneNumber = '',
+		pocName : sellerPocName = '',
+		pocPhoneCode = '',
+		countryId: sellerCountryId = '',
 	} = sellerAddress;
 
 	const {
@@ -54,16 +61,16 @@ const createQuotePayload = ({ data, exchangeRate = 1, orgCurrency }) => {
 	const products = product?.products;
 
 	const sellerAddressDetails = {
-		billingAddressId : id,
-		billingPartyName : name,
-		taxNumber        : tax_number,
+		billingAddressId : id || billingAddressId,
+		billingPartyName : name || billingPartyName,
+		taxNumber        : tax_number || taxNumber,
 		address,
-		countryId        : organization?.country_id,
+		countryId        : organization?.country_id || sellerCountryId,
 		pincode,
-		pocEmail         : organization_pocs[0]?.email,
-		pocPhoneNumber   : organization_pocs[0]?.mobile_number,
-		pocName          : organization_pocs[0]?.name,
-		pocPhoneCode     : organization_pocs[0]?.mobile_country_code,
+		pocEmail         : organization_pocs[0]?.email || pocEmail,
+		pocPhoneNumber   : organization_pocs[0]?.mobile_number || pocPhoneNumber,
+		pocName          : organization_pocs[0]?.name || pocName,
+		pocPhoneCode     : organization_pocs[0]?.mobile_country_code || pocPhoneCode,
 	};
 
 	const buyerAddressDetails = {

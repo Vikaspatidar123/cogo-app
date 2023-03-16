@@ -1,6 +1,6 @@
 import { cl, Button } from '@cogoport/components';
 import { IcMFcl } from '@cogoport/icons-react';
-import { useImperativeHandle, forwardRef, useState } from 'react';
+import { useImperativeHandle, forwardRef, useEffect, useState } from 'react';
 
 import containerDetailsFields from '../../../../configuration/containerDetailsControls';
 import styles from '../styles.module.css';
@@ -11,13 +11,13 @@ import { useForm } from '@/packages/forms';
 import getField from '@/packages/forms/Controlled';
 
 function ContainerDetails(props, ref) {
+	const { editOcean = {} } = props;
 	const {
 		control,
 		watch,
 		formState: { errors },
 		handleSubmit,
 		setValue,
-		getValues,
 	} = useForm({
 		defaultValues: {
 			serviceType    : 'FCL_FREIGHT',
@@ -35,13 +35,19 @@ function ContainerDetails(props, ref) {
 		'containerType',
 	]);
 	const disabledCalculateLoad = watchContainerType === 'DRY' && watchSericeType === 'FCL_FREIGHT';
-	// const imperativeHandle = () => ({
-	// 	handleSubmit: () => {
-	// 		const onSubmit = (data) => data;
 
-	// 		return handleSubmit((values) => (onSubmit(values)))();
-	// 	},
-	// });
+	useEffect(() => {
+		if (editOcean?.serviceType) {
+			setValue('serviceType', editOcean?.serviceType);
+			setValue('containerSize', editOcean?.containerSize);
+			setValue('containerCount', editOcean?.containerCount);
+			setValue('containerType', editOcean?.containerType);
+			setValue('weight', editOcean?.weight);
+			setValue('volume', editOcean?.volume);
+			setValue('quantity', editOcean?.quantity);
+		}
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [editOcean?.serviceType]);
 
 	useImperativeHandle(ref, () => ({
 		handleSubmit: () => {

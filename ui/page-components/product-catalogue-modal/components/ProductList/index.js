@@ -42,6 +42,7 @@ function ProductList({
 		}
 		setShowCatalogue(false);
 	};
+
 	useEffect(() => {
 		if (isCategory) {
 			if (multiSelect) {
@@ -71,20 +72,19 @@ function ProductList({
 						))}
 					</div>
 				)}
-				{loading
-          && loaderArr.map((ele) => (
-	<div key={ele} className={`${styles.row}`}>
-		{listView.map(({ key, width, categoryWidth }) => (
-			<div
-				key={key}
-				className={styles.col}
-				style={{ width: `${!isCategory ? width : categoryWidth}` }}
-			>
-				<Placeholder className={styles.loader} />
-			</div>
-		))}
-	</div>
-          ))}
+				{loading && loaderArr.map((ele) => (
+					<div key={ele} className={`${styles.row}`}>
+						{listView.map(({ key, width, categoryWidth }) => (
+							<div
+								key={key}
+								className={styles.col}
+								style={{ width: `${!isCategory ? width : categoryWidth}` }}
+							>
+								<Placeholder className={styles.loader} />
+							</div>
+						))}
+					</div>
+				))}
 				{!loading && list.length === 0 && (
 					<div className={styles.empty_state}>
 						<IcATransparency width={50} height={50} />
@@ -92,21 +92,20 @@ function ProductList({
 					</div>
 				)}
 				{!loading
-          && (list || [])?.map((rowItem) => (
-	<div
-		key={rowItem?.id}
-		className={cl`${styles.row} ${styles.mobile_row}`}
-	>
-		<ColItem
-			rowItem={rowItem}
-			isCategory={isCategory}
-			addProductId={addProductId}
-			setAddProductId={setAddProductId}
-			multiSelect={multiSelect}
-
-		/>
-	</div>
-          ))}
+					&& (list || [])?.map((rowItem) => (
+						<div
+							key={rowItem?.id}
+							className={cl`${styles.row} ${styles.mobile_row}`}
+						>
+							<ColItem
+								rowItem={rowItem}
+								isCategory={isCategory}
+								addProductId={addProductId}
+								setAddProductId={setAddProductId}
+								multiSelect={multiSelect}
+							/>
+						</div>
+					))}
 			</div>
 
 			{!isCategory && list.length > 0 && (

@@ -2,11 +2,13 @@ import { Toast } from '@cogoport/components';
 
 import createQuotePayload from '../utils/createQuotePayload';
 
+import { useRouter } from '@/packages/next';
 import { useRequestBf } from '@/packages/request';
 import { useSelector } from '@/packages/store';
 
-const useCreateQuotation = ({ query }) => {
+const useCreateQuotation = () => {
 	const { organization, id: userId, name, email } = useSelector((s) => s.profile);
+	const { query } = useRouter();
 	const { id: quoteId } = query || {};
 
 	const [{ loading: createLoading, data: createData }, createTrigger] = useRequestBf({
@@ -41,7 +43,7 @@ const useCreateQuotation = ({ query }) => {
 
 	const trigger = quoteId || quotationId !== '' ? editTrigger : createTrigger;
 
-	const createPayload = ({ data, exchangeRate, orgCurrency }) => {
+	const createPayload = ({ data, exchangeRate, orgCurrency, editData = {} }) => {
 		const {
 			expiryDate,
 			products,
@@ -51,10 +53,19 @@ const useCreateQuotation = ({ query }) => {
 			additionalChargesList,
 			otherDetails,
 		} = createQuotePayload({ data, exchangeRate, orgCurrency });
-
+		const { shipmentDetailId: editShipmentId, dealId: editDealId	} = editData;
 		if (query?.id) {
 			return {
+				quotationId      : quoteId,
+				shipmentDetailId : editShipmentId,
+				dealId           : editDealId,
+				sellerDetails    : sellerAddressDetails,
+				buyerDetails     : buyerAddressDetails,
+				expiryDate,
+				products,
+				...shipmentDetails,
 				...otherDetails,
+
 			};
 		}
 		if (quotationId !== '') {
@@ -88,8 +99,8 @@ const useCreateQuotation = ({ query }) => {
 		};
 	};
 
-	const postQuotation = async ({ data, exchangeRate, orgCurrency }) => {
-		const payloadData = createPayload({ data, exchangeRate, orgCurrency });
+	const postQuotation = async ({ data, exchangeRate, orgCurrency, editData = {} }) => {
+		const payloadData = createPayload({ data, exchangeRate, orgCurrency, editData });
 		console.log(payloadData, 'payload');
 
 		try {

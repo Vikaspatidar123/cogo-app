@@ -8,9 +8,14 @@ import styles from './styles.module.css';
 import ProductCatalogue from '@/ui/page-components/product-catalogue-modal/components';
 
 function ProductDetails(props, ref) {
+	const { editData = {} } = props;
+
 	const [showCatalogue, setShowCatalogue] = useState(false);
 	const [selectedData, setSelectedData] = useState([]);
 	const [selectedId, setSelectedId] = useState([]);
+
+	const { products:editProduct = [] } = editData;
+
 	return (
 		<div className={styles.container}>
 			<div className={styles.header_row}>
@@ -29,6 +34,7 @@ function ProductDetails(props, ref) {
 					ref={ref}
 					selectedData={selectedData}
 					setSelectedId={setSelectedId}
+					editProduct={editProduct}
 				/>
 			</div>
 			<ProductCatalogue

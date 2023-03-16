@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-import { useRouter } from 'next/router';
+import { useRouter } from '@/packages/next';
 
 const useRedirectUrl = () => {
 	const { push } = useRouter();

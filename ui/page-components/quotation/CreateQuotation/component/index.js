@@ -4,6 +4,7 @@ import { useState, useRef, forwardRef, useEffect } from 'react';
 import headerFields from '../configuration/headerControls';
 import useCreateQuotation from '../hooks/useCreateQuotation';
 import useCurrencyConversion from '../hooks/useCurrencyConversion';
+import useEditQuotation from '../hooks/useEditQuotation';
 import useSendQuotation from '../hooks/useSendQuotation';
 import getHandleSubmitData from '../utils/getHandleSubmitdata';
 
@@ -25,7 +26,6 @@ function CreateQuotation() {
 	const [confirmCreateQuotation, setConfirmCreateQuotation] = useState(false);
 
 	const { sendQuotation, sendQuoteLoading, sendQuotedata } = useSendQuotation();
-
 	const orgCurrency = organization?.country?.currency_code;
 
 	const {
@@ -39,6 +39,9 @@ function CreateQuotation() {
 			currency: orgCurrency,
 		},
 	});
+	const { editData = {}, editLoading } = useEditQuotation({ setValue, setTransportMode });
+
+	console.log(editData, 'editData');
 	const watchCurrency = watch('currency');
 	const date = watch('expiryDate');
 
@@ -46,6 +49,15 @@ function CreateQuotation() {
 	useEffect(() => {
 		quoteRef.current.date = date;
 	}, [date]);
+
+	useEffect(() => {
+		if (editData?.saasPartnerId) {
+			setTransportMode(editData?.transportMode);
+			setValue('buyerId', editData?.saasPartnerId);
+			setValue('expiryDate', new Date(editData?.expiryDate));
+			setValue('currency', editData?.currency);
+		}
+	}, [editData?.saasPartnerId]);
 
 	const {
 		// getExchangeRate,
@@ -55,7 +67,7 @@ function CreateQuotation() {
 		orgCurrency,
 		landingPageCall: true,
 	});
-	const { postQuotation, loading, createQuoteData } = useCreateQuotation({});
+	const { postQuotation, loading, createQuoteData } = useCreateQuotation();
 	const newHeaderFields = headerFields({ id, organization });
 
 	const submitForm = async () => {
@@ -69,7 +81,7 @@ function CreateQuotation() {
 
 	const createQuoteHandler = async () => {
 		const data = await submitForm();
-		postQuotation({ data, exchangeRate, orgCurrency });
+		postQuotation({ data, exchangeRate, orgCurrency, editData });
 	};
 	return (
 		<div>
@@ -77,8 +89,10 @@ function CreateQuotation() {
 				control={headerControls}
 				fields={newHeaderFields}
 				errors={headerError}
-				ref={quoteRef}
+				watch={watch}
 				setValue={setValue}
+				editData={editData}
+				ref={quoteRef}
 			/>
 			<div className={styles.container}>
 				<div className={styles.details_section}>
@@ -89,8 +103,9 @@ function CreateQuotation() {
 						setTransportMode={setTransportMode}
 						errors={headerError}
 					/>
-					<AllDetails transportMode={transportMode} ref={quoteRef} />
+					<AllDetails transportMode={transportMode} editData={editData} ref={quoteRef} />
 					<ProductDetails
+						editData={editData}
 						ref={(r) => {
 							quoteRef.current.product = r;
 						}}
@@ -99,11 +114,12 @@ function CreateQuotation() {
 				<div className={styles.charge_section}>
 					<Charges
 						submitForm={submitForm}
+						editData={editData}
+						quoteRef={quoteRef}
+						transportMode={transportMode}
 						ref={(r) => {
 							quoteRef.current.charges = r;
 						}}
-						quoteRef={quoteRef}
-						transportMode={transportMode}
 					/>
 				</div>
 			</div>

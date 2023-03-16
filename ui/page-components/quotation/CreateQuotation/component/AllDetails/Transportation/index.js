@@ -1,6 +1,6 @@
 import { cl } from '@cogoport/components';
 import { IcMPort, IcMLocation } from '@cogoport/icons-react';
-import { useState, useImperativeHandle, forwardRef } from 'react';
+import { useState, useImperativeHandle, useEffect, forwardRef } from 'react';
 
 import transportControls from '../../../configuration/transportControls';
 
@@ -10,13 +10,14 @@ import { useForm } from '@/packages/forms';
 import getField from '@/packages/forms/Controlled';
 
 function Transportation(props, ref) {
-	const { transportMode } = props || {};
+	const { transportMode, originId = '', destinationId = '' } = props || {};
 	const [destinationPortDetails, setDestinationPortDetails] = useState({});
 	const [originPortDetails, setOriginPortDetails] = useState({});
 	const transportFields = transportControls({ transportMode });
 	const {
 		control,
 		handleSubmit,
+		setValue,
 		formState: { errors },
 	} = useForm();
 
@@ -27,6 +28,14 @@ function Transportation(props, ref) {
 			setOriginPortDetails(data);
 		}
 	};
+
+	useEffect(() => {
+		if (originId && destinationId) {
+			setValue('originId', originId);
+			setValue('destinationId', destinationId);
+		}
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [originId, destinationId]);
 
 	useImperativeHandle(ref, () => ({
 		handleSubmit: () => {

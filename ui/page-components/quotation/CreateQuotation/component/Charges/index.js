@@ -14,8 +14,9 @@ import getField from '@/packages/forms/Controlled';
 import { shortFormatNumber } from '@/ui/commons/utils/getShortFormatNumber';
 
 function Charges(props, ref) {
-	const { submitForm, quoteRef, transportMode } = props;
+	const { submitForm, quoteRef, transportMode, editData = {} } = props;
 	const [totalQuotation, setTotalQuotation] = useState(0);
+
 	const { control, watch, setValue, handleSubmit, formState:{ errors } } = useForm();
 	const productValue = quoteRef?.current?.product?.totalProductValue;
 
@@ -31,6 +32,18 @@ function Charges(props, ref) {
 	useEffect(() => {
 		setValue('incoterm', 'CIF');
 	}, []);
+
+	useEffect(() => {
+		if (editData?.basicFreightCharges) {
+			setValue('incoterm', editData?.incoterm);
+			setValue('basicFreightCharges', editData?.basicFreightCharges);
+			setValue('dutiesAndTaxes', editData?.dutiesAndTaxes);
+			setValue('insurance', editData?.insurance);
+			setValue('incotermCharges', editData?.additionalChargesList?.incotermCharges);
+			setValue('additionalCharges', editData?.additionalChargesList?.additionalCharges);
+			setValue('comments', editData?.comments);
+		}
+	}, [editData?.basicFreightCharges]);
 
 	useEffect(() => {
 		if (

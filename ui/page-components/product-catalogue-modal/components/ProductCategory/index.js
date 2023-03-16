@@ -32,9 +32,11 @@ function ProductCategory({
 		refetchProduct,
 		allprductData,
 	} = useProductList({ labeledValue: 'category' });
+
 	useEffect(() => {
 		setSelectedId(selecteId);
 	}, [JSON.stringify(selecteId)]);
+
 	const addToForm = () => {
 		const arr = allprductData.filter((product) => selectedId.includes(product?.id));
 		if (multiSelect) {
@@ -91,10 +93,7 @@ function ProductCategory({
 							{(categoryViewData || []).map((item) => (
 								<div
 									className={cl`${styles.tab} ${styles.horizontal_tab}
-                            ${
-                              subCategory?.categoryCode
-                                === item?.categoryCode && styles.tabSelected
-									}`}
+									${subCategory?.categoryCode === item?.categoryCode && styles.tabSelected}`}
 									role="presentation"
 									onClick={() => setSubCategory(item)}
 								>
@@ -114,7 +113,6 @@ function ProductCategory({
 										{(subCategory?.subCategory || []).map((category) => (
 											<div
 												role="presentation"
-                        // eslint-disable-next-line max-len
 												className={cl`${styles.tab} ${styles.vertical_tab} ${
 													category?.subCategoryCode
 											=== categoryList?.subCategoryCode && styles.tabSelected

@@ -1,6 +1,6 @@
 import { cl, Popover, Tooltip, Placeholder } from '@cogoport/components';
 import { IcALocation, IcMArrowRotateDown, IcMPlusInCircle } from '@cogoport/icons-react';
-import { useState, useImperativeHandle, forwardRef } from 'react';
+import { useState, useEffect, useImperativeHandle, forwardRef } from 'react';
 
 import useCreateSeller from '../../../hooks/useCreateSeller';
 import useSellerAddress from '../../../hooks/useSellerAddress';
@@ -49,7 +49,8 @@ const sellerAddressContent = ({
 							key={id}
 							role="presentation"
 							className={cl`${styles.card}
-							${sellerAddressInfo?.id === id ? styles.selected : styles.hover_card}`}
+							${(sellerAddressInfo?.id === id || sellerAddressInfo?.billingAddressId === id)
+								? styles.selected : styles.hover_card}`}
 							onClick={() => {
 								setSellerAddressInfo(data);
 								setShowFilters(false);
@@ -72,6 +73,7 @@ const sellerAddressContent = ({
 );
 
 function SellerAddress(props, ref) {
+	const { sellerDetails = {} } = props;
 	const [sellerAddressInfo, setSellerAddressInfo] = useState();
 	const [showFilters, setShowFilters] = useState(false);
 	const [openModal, setOpenModal] = useState(false);
@@ -85,6 +87,12 @@ function SellerAddress(props, ref) {
 	useImperativeHandle(ref, () => (
 		sellerAddressInfo
 	));
+
+	useEffect(() => {
+		if (sellerDetails?.billingAddressId) {
+			setSellerAddressInfo(sellerDetails);
+		}
+	}, [sellerDetails?.billingAddressId]);
 
 	return (
 		<>
@@ -110,7 +118,11 @@ function SellerAddress(props, ref) {
 				>
 					<div className={styles.flex_box}>
 						<IcALocation fill="#FADA29" width={18} height={18} />
-						<p className={styles.text}>{`${sellerAddressInfo?.name || 'Seller Address'} `}</p>
+						<p className={styles.text}>
+							{`${sellerAddressInfo?.name
+						|| sellerAddressInfo?.billingPartyName || 'Seller Address'} `}
+
+						</p>
 					</div>
 					<IcMArrowRotateDown fill="#333" width={13} height={13} />
 				</div>

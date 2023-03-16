@@ -17,7 +17,7 @@ import { useForm, useFieldArray } from '@/packages/forms';
 import { shortFormatNumber } from '@/ui/commons/utils/getShortFormatNumber';
 
 function List(props, ref) {
-	const { selectedData = [], setSelectedId } = props || {};
+	const { selectedData = [], setSelectedId, editProduct } = props || {};
 	const {
 		control,
 		watch,
@@ -38,6 +38,7 @@ function List(props, ref) {
 		);
 		return value;
 	}, [watchFieldArr]);
+
 	useImperativeHandle(ref, () => ({
 		handleSubmit: () => {
 			const onSubmit = (values) => values;
@@ -64,7 +65,15 @@ function List(props, ref) {
 			})),
 		);
 	}, [selectedData]);
+
 	useEffect(() => { setSelectedId((watchFieldArr || []).map((x) => x.productId)); }, [watchFieldArr]);
+
+	useEffect(() => {
+		if (editProduct.length > 0) {
+			setValue('products', editProduct);
+		}
+	}, [editProduct.length]);
+
 	return (
 		<>
 			<div className={styles.container}>

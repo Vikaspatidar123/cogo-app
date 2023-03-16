@@ -1,6 +1,6 @@
 import { cl } from '@cogoport/components';
 import { IcMFfcl } from '@cogoport/icons-react';
-import { useImperativeHandle, forwardRef } from 'react';
+import { useImperativeHandle, forwardRef, useEffect } from 'react';
 
 import packageDetailsControls from '../../../../configuration/packageDetailsControls';
 import styles from '../styles.module.css';
@@ -9,9 +9,11 @@ import { useForm } from '@/packages/forms';
 import getField from '@/packages/forms/Controlled';
 
 function PackageDetails(props, ref) {
+	const { editAir = {} } = props;
 	const {
 		control,
 		handleSubmit,
+		setValue,
 		formState: { errors },
 	} = useForm({
 		defaultValues: {
@@ -19,6 +21,17 @@ function PackageDetails(props, ref) {
 			packageType     : 'BOX',
 		},
 	});
+
+	useEffect(() => {
+		if (editAir?.packageHandling) {
+			setValue('packageHandling', editAir?.packageHandling);
+			setValue('packageType', editAir?.packageType);
+			setValue('weight', editAir?.weight);
+			setValue('volume', editAir?.volume);
+			setValue('quantity', editAir?.quantity);
+		}
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [editAir?.packageHandling]);
 
 	useImperativeHandle(ref, () => ({
 		handleSubmit: () => {

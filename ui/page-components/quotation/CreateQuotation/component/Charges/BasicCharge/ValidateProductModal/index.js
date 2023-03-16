@@ -38,7 +38,7 @@ function ValidateProductModal(props) {
 	const productInfoArr = product?.products || [];
 	const currency = header?.currency;
 
-	const { postQuotation, loading: quotationLoading, createQuoteData } = useCreateQuotation({});
+	const { postQuotation, loading: quotationLoading, createQuoteData } = useCreateQuotation();
 	const { refetchDraft, draftLoading } = useDraft();
 	const { getExchangeRate, loading: currLoading } = useCurrencyConversion({});
 	const { getPortDetails, locationLoading } = useListLocation();

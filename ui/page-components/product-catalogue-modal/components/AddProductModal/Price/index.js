@@ -23,7 +23,7 @@ function Pricing({
 	const [profitpercentage, setProfitPercentage] = useState(0);
 
 	const { hsCode = undefined } = prefiledValues || {};
-	console.log(hsCode, 'hsCode', prefiledValues);
+
 	const controls = getControls();
 	const {
 		handleSubmit,

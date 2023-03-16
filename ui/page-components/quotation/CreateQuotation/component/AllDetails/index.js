@@ -4,18 +4,43 @@ import Details from './Details';
 import styles from './styles.module.css';
 import Transportation from './Transportation';
 
-function AllDetails({ transportMode = 'OCEAN' }, ref) {
+function AllDetails({ transportMode = 'OCEAN', editData = {} }, ref) {
 	const { current } = ref;
+	const {
+		containerCount,
+		containerSize,
+		containerType, originId, destinationId, serviceType, packageHandling, packageType, quantity, weight, volume,
+	} = editData;
+	const editAir = {
+		packageHandling,
+		packageType,
+		weight,
+		volume,
+		quantity,
+	};
+	const editOcean = {
+		serviceType, containerCount, containerSize, containerType, weight, volume, quantity,
+	};
 	return (
 		<div className={styles.container}>
 			<div className={styles.map}>
 				{/* maps */}
 			</div>
 			<div className={styles.transport}>
-				<Transportation transportMode={transportMode} ref={(r) => { current.transport = r; }} />
+				<Transportation
+					transportMode={transportMode}
+					originId={originId}
+					destinationId={destinationId}
+					ref={(r) => { current.transport = r; }}
+				/>
 			</div>
 			<div className={styles.details}>
-				<Details transportMode={transportMode} ref={(r) => { current.details = r; }} />
+				<Details
+					transportMode={transportMode}
+					editAir={editAir}
+					editOcean={editOcean}
+					ref={(r) => { current.details = r; }}
+				/>
 			</div>
 		</div>
 	);

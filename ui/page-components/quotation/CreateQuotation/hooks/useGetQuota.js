@@ -45,7 +45,7 @@ const useGetQuota = () => {
 						addon_quota = 0,
 						is_unlimited = false,
 					}) => {
-						if (product_name_slug === 'quick_quotation') {
+						if (product_name_slug === 'premium_services') {
 							const count = left_quota + addon_quota;
 							const quotaAvaliable = is_unlimited || count > 0;
 							setIsQuotaLeft(quotaAvaliable);

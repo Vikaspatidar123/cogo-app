@@ -1,6 +1,13 @@
 import { IcMEdit, IcMPreview, IcMDownload, IcMDelete } from '@cogoport/icons-react';
 
-const tooltipConfig = ({ documentStatus = '', quotationId = '', setShowDeleteModal, setQuoteId }) => {
+const tooltipConfig = ({ documentStatus = '', quotationId = '', setShowDeleteModal, setQuoteId, redirectData }) => {
+	const {
+		redirectQuotation,
+		redirectPreview,
+		redirectEdit,
+		downloadQuotation,
+	} = redirectData || {};
+
 	const tooltipContentConfig = [
 		{
 			name      : 'Preview',
@@ -19,6 +26,9 @@ const tooltipConfig = ({ documentStatus = '', quotationId = '', setShowDeleteMod
 			icon      : <IcMEdit width={10} height={10} />,
 			className : '',
 			condition : documentStatus !== 'SENT',
+			onClick   : () => {
+				redirectEdit(quotationId);
+			},
 		},
 		{
 			name      : 'Delete',

@@ -6,7 +6,7 @@ import React from 'react';
 
 import styles from './styles.module.css';
 
-import StepsComponent from '@/ui/page-components/air-schedules/common/Steps';
+// import StepsComponent from '@/ui/page-components/air-schedules/common/Steps';
 
 function LegsItem({ legItem }) {
 	const locationsList = legItem?.display_details || [];

@@ -93,3 +93,9 @@
 		width: 85%;
 	}
 }
+
+.solid_line {
+	min-height: 65px;
+	padding-top: 10px;
+	overflow-x: hidden;
+}

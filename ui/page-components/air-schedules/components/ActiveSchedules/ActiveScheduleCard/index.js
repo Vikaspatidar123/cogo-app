@@ -3,7 +3,7 @@ import { IcMArrowNext } from '@cogoport/icons-react';
 import { differenceInDays, format } from '@cogoport/utils';
 import React, { useState } from 'react';
 
-import StepsComponent from '../../../common/Steps';
+// import StepsComponent from '../../../common/Steps';
 
 import { SchedulesModal } from './SchedulesModal';
 import styles from './styles.module.css';

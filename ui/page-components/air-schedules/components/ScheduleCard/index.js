@@ -1,7 +1,6 @@
 import { IcMArrowNext, IcMCrossInCircle } from '@cogoport/icons-react';
 import React, { useState } from 'react';
 
-import StepsComponent from '../../common/Steps';
 import useDeleteSchedule from '../../hooks/useDeleteSchedule';
 
 import DeleteModal from './DeleteModal';
@@ -44,6 +43,9 @@ function ScheduleCard({ schedule, fetchSchedules }) {
 					{origin_airport_code}
 					)
 				</div>
+				{/* <div>
+					<p>venky</p>
+				</div> */}
 				<div className={styles.country_name}>
 					<span className={styles.country_name_span}>{destination_airport_name}</span>
 					(
@@ -51,9 +53,14 @@ function ScheduleCard({ schedule, fetchSchedules }) {
 					)
 				</div>
 			</div>
-			<div className={styles.steps_container}>
-				<StepsComponent stepsList={stepsList} />
+			<div className={styles.solid_line}>
+				<div className={`${styles.start}${styles.end}`}>
+					<div>
+						
+					</div>
+				</div>
 			</div>
+			<div className={styles.steps_container} />
 			<div className={styles.footer_container} role="presentation" onClick={handleViewDetails}>
 				<div className={styles.value_container}>
 					<div className={styles.number_container}>

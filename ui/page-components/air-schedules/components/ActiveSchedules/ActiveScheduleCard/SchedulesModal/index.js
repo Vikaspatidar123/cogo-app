@@ -5,7 +5,7 @@ import React from 'react';
 import LegsItem from './LegsItem';
 import styles from './styles.module.css';
 
-import StepsComponent from '@/ui/page-components/air-schedules/common/Steps';
+// import StepsComponent from '@/ui/page-components/air-schedules/common/Steps';
 
 export function SchedulesModal({
 	openSchedulesModal, setOpenSchedulesModal, schedule, shippingLine, scheduleDetails,

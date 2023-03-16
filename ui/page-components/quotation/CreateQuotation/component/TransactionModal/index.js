@@ -7,6 +7,7 @@ import iconUrl from '../../../utils/iconUrl.json';
 import Container from './Container';
 import Duties from './Duties';
 import styles from './styles.module.css';
+import TraderCheck from './TraderCheck';
 
 function TransactionModal({
 	transactionModal, setTransactionModal, setValue,
@@ -105,7 +106,7 @@ function TransactionModal({
 									badge={screeningRequestResponse?.length > 0
                             && screeningRequestResponse?.length}
 								>
-									<div>This is local search</div>
+									<TraderCheck tradeEngineResponse={transactionData} />
 								</TabPanel>
 
 								<TabPanel

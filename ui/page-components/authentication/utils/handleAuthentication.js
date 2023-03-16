@@ -71,15 +71,14 @@ const handleAuthentication = async ({
 		redirect({ isServer, res, path: `/v2/login?redirectPath=${asPath}` });
 		return { asPrefix };
 	}
+	if (
+		(user_data.organizations || []).length === 0
 
+	) {
+		redirect({ isServer, res, path: '/v2/get-started' });
+		return { asPrefix };
+	}
 	if (isUnauthenticated) {
-		if (
-			(user_data.organizations || []).length === 0
-			|| user_data.name === null
-		) {
-			redirect({ isServer, res, path: '/v2/get-started' });
-			return { asPrefix };
-		}
 		const org = user_data.organizations[0];
 		const branch = org?.branches?.[0];
 

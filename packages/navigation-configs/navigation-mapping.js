@@ -7,9 +7,12 @@
 // icon is used to show icon webside only
 // mobileIcon is used to show icon in mobile navigation only
 // isSubNavs is used to show sub navigations
-
 import {
 	IcMQuotations,
+	IcMUpwardGraph,
+	IcMTradeparties,
+	IcACrossBorder,
+	IcMProductCodeMapping,
 	IcMFfreferigeratedCargoType,
 } from '@cogoport/icons-react';
 
@@ -23,12 +26,6 @@ const navigationMappings = {
 		mobileIcon : <IcMQuotations width={20} height={20} />,
 	},
 
-	app_accept_terms_and_conditions: {
-		key       : 'app_accept_terms_and_conditions',
-		title     : 'Terms and Conditions',
-		href      : '/accept-terms-and-conditions',
-		showInNav : false,
-	},
 	app_documents: {
 		key     : 'app_documents',
 		title   : 'Documents',
@@ -50,6 +47,33 @@ const navigationMappings = {
 			},
 		],
 	},
+	app_bookings: {
+		key       : 'app_bookings',
+		title     : 'Shipments',
+		href      : '/shipments',
+		as        : '/shipments',
+		icon      : 'nav-booking',
+		showInNav : true,
+	},
+
+	saas_tools: {
+		key       : 'saas_tools',
+		title     : 'Tools',
+		icon      : 'nav-tools',
+		isSubNavs : true,
+		showInNav : true,
+		isNew     : true,
+		options   : [
+			{
+				key         : 'saas_tools-freight_rate_trend',
+				title       : 'Freight Rate Trend',
+				href        : '/v2/saas/freight-rate-trend',
+				as          : '/v2/saas/freight-rate-trend',
+				icon        : <IcMUpwardGraph width={40} height={40} fill="red" />,
+				description : 'keep track of freight rates',
+			},
+		],
+	},
 
 	saas_cogo_insurance: {
 		key         : 'saas_tools_insurance',
@@ -61,12 +85,90 @@ const navigationMappings = {
 		description : 'Buy insurance for your cargo here',
 		showInNav   : true,
 	},
+	saas_premium_services: {
+		key         : 'saas_premium_services',
+		title       : 'Premium Services',
+		icon        : 'nav-premium-services',
+		module_type : 'dashboards',
+		isNew       : true,
+		showInNav   : true,
+		isSubNavs   : true,
+		options     : [
+			{
+				key   : 'saas_premium_services-order_history',
+				title : 'Order History',
+				href  : '/v2/saas/order-history',
+				as    : '/v2/saas/order-history',
+				icon  : <IcACrossBorder width={40} height={40} />,
+			},
+		],
+	},
+	saas_planning: {
+		key       : 'saas_planning',
+		title     : 'Planning',
+		isSubNavs : true,
+		showInNav : true,
+		options   : [
+			{
+				key   : 'saas_planning-trade_partner',
+				title : 'Trade Partner',
+				icon  : <IcMTradeparties width={40} height={40} />,
+				href  : '/v2/saas/trade-partner',
+				as    : '/v2/saas/trade-partner',
+			},
+			{
+				key         : 'saas_planning-product_inventory',
+				title       : 'Product Catalog',
+				type        : 'link',
+				icon        : <IcMProductCodeMapping width={40} height={40} />,
+				href        : '/v2/saas/product-inventory',
+				as          : '/v2/saas/product-inventory',
+				module_type : 'dashboards',
+			},
+		],
+	},
+
+	app_discover_rates: {
+		key         : 'app_discover_rates',
+		title       : 'Discover Rates',
+		href        : '/book',
+		as          : '/book',
+		type        : 'link',
+		tag         : 'New Search',
+		module_type : 'crm',
+		showInNav   : true,
+	},
+
+	app_accept_terms_and_conditions: {
+		key       : 'app_accept_terms_and_conditions',
+		title     : 'Terms and Conditions',
+		href      : '/accept-terms-and-conditions',
+		type      : 'link',
+		showInNav : false,
+	},
 
 	app_get_started: {
 		key   : 'app_get_started',
 		title : 'Get Started',
 		theme : 'green',
+	},
 
+	saas_finance: {
+		key       : 'saas_finance',
+		title     : 'Finance',
+		icon      : 'nav-finance',
+		isSubNavs : true,
+		isNew     : true,
+		options   : [
+			{
+				key   : 'saas_finance-transaction_history',
+				title : 'Transaction History',
+				icon  : <IcMFfreferigeratedCargoType width={40} height={40} fill="red" />,
+				href  : '/saas/transaction-history',
+				as    : '/saas/transaction-history',
+			},
+
+		],
 	},
 
 	app_kyc: {
@@ -76,7 +178,6 @@ const navigationMappings = {
 		as        : '/kyc',
 		type      : 'link',
 		showInNav : false,
-
 	},
 	app_settings: {
 		key           : 'app_settings',
@@ -85,8 +186,6 @@ const navigationMappings = {
 		as            : '/v2/settings',
 		type          : 'link',
 		showMobileNav : true,
-
 	},
-
 };
 export default navigationMappings;

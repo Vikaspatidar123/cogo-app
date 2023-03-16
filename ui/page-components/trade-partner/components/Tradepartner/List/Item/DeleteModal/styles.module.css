@@ -1,29 +1,21 @@
 .wrapper {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	width: 100%;
-	padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 20px;
 }
 
 .button_wrapper {
-	display: flex;
-	justify-content: space-evenly;
-	width: 100%;
-	margin-top: 10px;
-
-	& .no.core-ui-button-root {
-		color: #db4634;
-		background: white !important;
-		border: 1px solid #db4634 !important;
-	}
-
-	.yes.core-ui-button-root {
-		background: #db4634 !important;
-	}
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 10px;
 }
-
+.no {
+  margin-right: 10%;
+}
 .text_wrapper {
-	font-weight: 500;
+  font-weight: 500;
 }

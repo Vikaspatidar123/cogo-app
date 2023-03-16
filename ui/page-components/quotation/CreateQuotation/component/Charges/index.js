@@ -14,7 +14,7 @@ import getField from '@/packages/forms/Controlled';
 import { shortFormatNumber } from '@/ui/commons/utils/getShortFormatNumber';
 
 function Charges(props, ref) {
-	const { submitForm, quoteRef } = props;
+	const { submitForm, quoteRef, transportMode } = props;
 	const [totalQuotation, setTotalQuotation] = useState(0);
 	const { control, watch, setValue, handleSubmit, formState:{ errors } } = useForm();
 	const productValue = quoteRef?.current?.product?.totalProductValue;
@@ -94,7 +94,10 @@ function Charges(props, ref) {
 				control={control}
 				errors={errors}
 				submitForm={submitForm}
-				ref={ref}
+				ref={quoteRef}
+				setValue={setValue}
+				watch={watch}
+				transportMode={transportMode}
 			/>
 
 			<div className={styles.hr} />

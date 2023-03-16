@@ -1,9 +1,11 @@
 import { cl, Button } from '@cogoport/components';
 import { IcMFcl } from '@cogoport/icons-react';
-import { useImperativeHandle, forwardRef } from 'react';
+import { useImperativeHandle, forwardRef, useState } from 'react';
 
 import containerDetailsFields from '../../../../configuration/containerDetailsControls';
 import styles from '../styles.module.css';
+
+import LoadCalculater from './LoadCalculater';
 
 import { useForm } from '@/packages/forms';
 import getField from '@/packages/forms/Controlled';
@@ -14,6 +16,8 @@ function ContainerDetails(props, ref) {
 		watch,
 		formState: { errors },
 		handleSubmit,
+		setValue,
+		getValues,
 	} = useForm({
 		defaultValues: {
 			serviceType    : 'FCL_FREIGHT',
@@ -22,9 +26,15 @@ function ContainerDetails(props, ref) {
 			containerType  : 'DRY',
 		},
 	});
-	const SelectController = getField('select');
-	const watchSericeType = watch('serviceType');
+	const [showCalculater, setShowCalculater] = useState(false);
 
+	const SelectController = getField('select');
+	const [watchContainerSize, watchSericeType, watchContainerType] = watch([
+		'containerSize',
+		'serviceType',
+		'containerType',
+	]);
+	const disabledCalculateLoad = watchContainerType === 'DRY' && watchSericeType === 'FCL_FREIGHT';
 	// const imperativeHandle = () => ({
 	// 	handleSubmit: () => {
 	// 		const onSubmit = (data) => data;
@@ -37,7 +47,7 @@ function ContainerDetails(props, ref) {
 		handleSubmit: () => {
 			const onSubmit = (values) => values;
 
-			const onError = () => true;
+			const onError = (err) => ({ check: true, err });
 
 			return new Promise((resolve) => {
 				handleSubmit(
@@ -60,7 +70,13 @@ function ContainerDetails(props, ref) {
 					<SelectController {...containerDetailsFields[0]} control={control} />
 				</div>
 				<div style={{ marginBottom: '12px' }}>
-					<Button themeType="secondary">Calculate Load</Button>
+					<Button
+						themeType="secondary"
+						disabled={!disabledCalculateLoad}
+						onClick={() => setShowCalculater(true)}
+					>
+						Calculate Load
+					</Button>
 				</div>
 			</div>
 			<div className={styles.row}>
@@ -73,7 +89,9 @@ function ContainerDetails(props, ref) {
 							{watchSericeType === 'FCL_FREIGHT' && index <= 3 && (
 								<div
 									key={field?.name}
-									className={cl`${styles.col} ${field?.name === 'containerType' && styles.type}
+									className={cl`${styles.col} ${
+										field?.name === 'containerType' && styles.type
+									}
 								${styles?.[field?.className]} }`}
 								>
 									<p className={styles.label}>{field.label}</p>
@@ -85,7 +103,10 @@ function ContainerDetails(props, ref) {
 								</div>
 							)}
 							{watchSericeType === 'LCL_FREIGHT' && index >= 3 && (
-								<div key={field?.name} className={cl`${styles.col} ${styles?.[field.className]}`}>
+								<div
+									key={field?.name}
+									className={cl`${styles.col} ${styles?.[field.className]}`}
+								>
 									<p className={styles.label}>{field.label}</p>
 									<Element
 										{...field}
@@ -98,7 +119,15 @@ function ContainerDetails(props, ref) {
 					);
 				})}
 			</div>
-
+			{showCalculater && (
+				<LoadCalculater
+					showCalculater={showCalculater}
+					setShowCalculater={setShowCalculater}
+					watchContainerSize={watchContainerSize}
+					setFormValues={setValue}
+					watchContainerType={watchContainerType}
+				/>
+			)}
 		</div>
 	);
 }

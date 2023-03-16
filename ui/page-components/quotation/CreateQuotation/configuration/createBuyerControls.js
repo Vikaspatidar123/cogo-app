@@ -1,8 +1,4 @@
-// eslint-disable-next-line max-len
-const emailValidator =	/^[^<>()[\]\\,;:%#^\s@"$&!@]+@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z0-9]+\.)+[a-zA-Z]{2,}))$/;
-
-const mobileValidator = /^[0-9]{10}$/;
-// const GstValidator = /^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}Z[0-9A-Z]{1}$/;
+import patterns from '@/ui/commons/configurations/patterns';
 
 const createBuyerControls = ({ countryInfo = {}, stateInfo = {} }) => {
 	const userDetailControl = [
@@ -30,7 +26,7 @@ const createBuyerControls = ({ countryInfo = {}, stateInfo = {} }) => {
 			rules       : {
 				required : true,
 				pattern  : {
-					value   : emailValidator,
+					value   : patterns.EMAIL,
 					message : 'Invalid email address',
 				},
 			},
@@ -49,26 +45,35 @@ const createBuyerControls = ({ countryInfo = {}, stateInfo = {} }) => {
 			rules       : {
 				required : true,
 				pattern  : {
-					value   : mobileValidator,
+					value   : patterns.MOBILE,
 					message : 'Invalid phone number',
 				},
 			},
 		},
 		{
-			name        : 'country',
-			label       : 'Country *',
-			type        : 'async_select',
-			placeholder : 'Enter Country',
-			className   : 'primary md',
-			rules       : { required: true },
-			asyncKey    : 'locations',
-			valueKey    : 'id',
-			// defaultOptions: true,
-			params      : {
+			name           : 'country',
+			label          : 'Country *',
+			type           : 'async_select',
+			placeholder    : 'Enter Country',
+			rules          : { required: true },
+			asyncKey       : 'locations',
+			defaultOptions : true,
+			labelKey       : 'label',
+			params         : {
 				filters: {
 					type: 'country',
 				},
 			},
+			getModifiedOptions: (options = []) => (options || []).map((x) => ({
+				...x,
+				value : x.id,
+				label : (
+					<div style={{ display: 'flex' }}>
+						<img src={x.flag_icon_url} alt="" />
+						<div style={{ marginLeft: '5px' }}>{x.name}</div>
+					</div>
+				),
+			})),
 		},
 	];
 
@@ -90,7 +95,7 @@ const createBuyerControls = ({ countryInfo = {}, stateInfo = {} }) => {
 		{
 			name        : 'state',
 			label       : 'State (optional)',
-			type        : 'select',
+			type        : 'async_select',
 			placeholder : 'Enter State',
 			asyncKey    : 'locations',
 			disabled    : !countryInfo?.id,
@@ -101,7 +106,7 @@ const createBuyerControls = ({ countryInfo = {}, stateInfo = {} }) => {
 		{
 			name        : 'city',
 			label       : 'City (optional)',
-			type        : 'text',
+			type        : 'async_select',
 			placeholder : 'Enter City',
 			asyncKey    : 'locations',
 			disabled    : !stateInfo?.id,
@@ -112,7 +117,8 @@ const createBuyerControls = ({ countryInfo = {}, stateInfo = {} }) => {
 	];
 
 	return {
-		userDetailControl, addressDetailsControl,
+		userDetailControl,
+		addressDetailsControl,
 	};
 };
 export default createBuyerControls;

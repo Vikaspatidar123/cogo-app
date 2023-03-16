@@ -1,0 +1,78 @@
+.head {
+  font-weight: 600;
+  font-size: 21px;
+}
+.sub_heading {
+  color: #6b6d81;
+  font-weight: 300;
+  @media screen and (max-width: 767px) {
+    display: flex;
+    font-weight: 400;
+    justify-content: center;
+  }
+}
+.head_container {
+  display: flex;
+  align-items: center;
+}
+.input_head {
+  display: flex;
+  margin: 22px 0;
+  justify-content: space-between;
+  :global {
+    .ui_input_suffix {
+      padding-right: 10px;
+    }
+  }
+  @media screen and (max-width: 767px) {
+    display: block;
+  }
+}
+
+.input_d {
+  width: 70px;
+  @media screen and (max-width: 767px) {
+    width: 80px;
+  }
+}
+.lable {
+  font-size: 13px;
+  padding-bottom: 3px;
+}
+
+.quantitiy {
+  width: 30%;
+  @media screen and (max-width: 767px) {
+    width: 100%;
+  }
+}
+
+.tooltip {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  @media screen and (max-width: 767px) {
+    margin-top: 20px;
+  }
+}
+
+.italic {
+  font-size: 10px;
+}
+
+.button_div {
+  display: flex;
+}
+
+.button {
+  margin-right: 5px;
+}
+
+.error_message {
+  color: red;
+  font-size: xx-small;
+}
+.container {
+  width: 60%;
+  color: #6b6d81;
+}

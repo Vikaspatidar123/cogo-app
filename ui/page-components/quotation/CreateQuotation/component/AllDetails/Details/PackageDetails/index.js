@@ -24,7 +24,7 @@ function PackageDetails(props, ref) {
 		handleSubmit: () => {
 			const onSubmit = (values) => values;
 
-			const onError = () => true;
+			const onError = (err) => ({ check: true, err });
 
 			return new Promise((resolve) => {
 				handleSubmit(

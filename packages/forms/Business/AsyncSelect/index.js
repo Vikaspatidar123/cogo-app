@@ -54,19 +54,16 @@ function AsyncSelect(props) {
 
 	const defaultParams = keyAsyncFieldsParamsMapping[asyncKey]?.() || {};
 
-	const getOptionFn = defaultParams?.authKey ? useGetAsyncOptionsBf : useGetAsyncOptions;
+	const callFunction = defaultParams.authKey ? useGetAsyncOptionsBf : useGetAsyncOptions;
 
-	const getAsyncOptionsProps = getOptionFn({
+	const getAsyncOptionsProps = callFunction({
 		...defaultParams,
 		initialCall,
 		params   : merge(params, defaultParams.params),
 		labelKey : rest.labelKey || defaultParams.labelKey,
 		valueKey : rest.valueKey || defaultParams.valueKey,
+		getModifiedOptions,
 	});
-
-	if (typeof getModifiedOptions === 'function' && !isEmpty(getAsyncOptionsProps.options)) {
-		getAsyncOptionsProps.options = getModifiedOptions({ options: getAsyncOptionsProps.options });
-	}
 
 	if (typeof getSelectedOption === 'function' && !isEmpty(rest.value)) {
 		let selectedValue;

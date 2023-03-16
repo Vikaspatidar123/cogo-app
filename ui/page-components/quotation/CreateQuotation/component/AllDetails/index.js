@@ -12,7 +12,7 @@ function AllDetails({ transportMode = 'OCEAN' }, ref) {
 				{/* maps */}
 			</div>
 			<div className={styles.transport}>
-				<Transportation ref={(r) => { current.transport = r; }} />
+				<Transportation transportMode={transportMode} ref={(r) => { current.transport = r; }} />
 			</div>
 			<div className={styles.details}>
 				<Details transportMode={transportMode} ref={(r) => { current.details = r; }} />

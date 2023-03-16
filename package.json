@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "@cogoport/charts": "^1.0.1",
-    "@cogoport/components": "^1.0.373",
+    "@cogoport/components": "^1.0.376",
     "@cogoport/icons-react": "^1.0.58",
     "@cogoport/utils": "^1.2.4",
     "axios": "^1.3.4",
@@ -31,6 +31,8 @@
     "qs": "^6.11.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "@stripe/react-stripe-js": "^1.6.0",
+    "@stripe/stripe-js": "^1.21.2",
     "react-google-recaptcha": "^2.1.0",
     "react-hook-form": "^7.43.2",
     "react-i18next": "^12.2.0",

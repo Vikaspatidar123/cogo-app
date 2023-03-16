@@ -10,9 +10,10 @@ import { useForm } from '@/packages/forms';
 import getField from '@/packages/forms/Controlled';
 
 function Transportation(props, ref) {
+	const { transportMode } = props || {};
 	const [destinationPortDetails, setDestinationPortDetails] = useState({});
 	const [originPortDetails, setOriginPortDetails] = useState({});
-	const transportFields = transportControls({ transportMode: 'OCEAN' });
+	const transportFields = transportControls({ transportMode });
 	const {
 		control,
 		handleSubmit,
@@ -30,9 +31,7 @@ function Transportation(props, ref) {
 	useImperativeHandle(ref, () => ({
 		handleSubmit: () => {
 			const onSubmit = (values) => values;
-
-			const onError = () => true;
-
+			const onError = (err) => ({ check: true, err });
 			return new Promise((resolve) => {
 				handleSubmit(
 					(values) => resolve(onSubmit(values)),

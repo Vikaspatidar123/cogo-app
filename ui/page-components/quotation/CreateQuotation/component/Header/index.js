@@ -11,17 +11,15 @@ import styles from './styles.module.css';
 import getField from '@/packages/forms/Controlled';
 
 function Header(props, ref) {
-	const { control, fields, errors } = props;
+	const { control, fields, errors, setValue } = props;
 
 	const [openModal, setOpenModal] = useState(false);
-
-	const {
-		createBuyerAddress,
-		loading,
-	} = useCreateBuyer();
-
-	const SelectController = getField(fields[0]?.type);
 	const { current } = ref;
+	const { createBuyerAddress, loading } = useCreateBuyer({
+		setValue,
+		ref,
+	});
+	const SelectController = getField(fields[0]?.type);
 
 	return (
 		<div className={styles.container}>
@@ -37,20 +35,30 @@ function Header(props, ref) {
 						{...fields[0]}
 						control={control}
 						className={`${errors?.[fields[0].name] && styles.error}`}
-						handleChange={(data) => { current.buyerDetails = data; }}
+						handleChange={(data) => {
+							current.buyerDetails = data;
+						}}
 					/>
 					<div className={styles.or_tag}>
 						<div className={styles.line} />
 						<div className="text">OR</div>
 						<div className={styles.line} />
 					</div>
-					<Button size="md" themeType="accent" onClick={() => setOpenModal(true)}>
+					<Button
+						size="md"
+						themeType="accent"
+						onClick={() => setOpenModal(true)}
+					>
 						<IcMPlus width={15} height={15} />
 						Add New
 					</Button>
 				</div>
 				<div className={styles.seller_col}>
-					<SellerAddress ref={(r) => { current.sellerAddress = r; }} />
+					<SellerAddress
+						ref={(r) => {
+							current.sellerAddress = r;
+						}}
+					/>
 				</div>
 			</div>
 

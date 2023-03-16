@@ -11,13 +11,13 @@
 import { IcMUpwardGraph, IcMQuotations } from '@cogoport/icons-react';
 
 const navigationMappings = {
-	app_bookings: {
-		key       : 'app_bookings',
-		title     : 'Shipments',
-		href      : '/shipments',
-		as        : '/shipments',
-		icon      : 'nav-booking',
-		showInNav : true,
+	app_dashboard: {
+		key        : 'app_dashboard',
+		title      : 'Dashboard',
+		href       : '/v2/dashboard',
+		as         : '/v2/dashboard',
+		showInNav  : true,
+		mobileIcon : <IcMQuotations width={20} height={20} />,
 	},
 
 	saas_tools: {
@@ -52,7 +52,6 @@ const navigationMappings = {
 		as        : '/kyc',
 		type      : 'link',
 		showInNav : false,
-
 	},
 	app_settings: {
 		key           : 'app_settings',
@@ -69,18 +68,17 @@ const navigationMappings = {
 		isSubNavs : true,
 		options   : [
 			{
-				key         : 'saas_planning-quotation',
-				title       : 'Quick Quotations',
+				key   : 'saas_planning-quotation',
+				title : 'Quick Quotations',
 				// eslint-disable-next-line max-len
-				description : 'The meaning of QUOTATION is something that is quoted; especially : a passage ',
-				icon        : <IcMQuotations width={30} height={30} />,
-				type        : 'link',
-				href        : '/v2/saas/quickquotation/viewlist',
-				as          : '/v2/saas/quickquotation/viewlist',
+				description:
+          'The meaning of QUOTATION is something that is quoted; especially : a passage ',
+				icon : <IcMQuotations width={30} height={30} />,
+				type : 'link',
+				href : '/v2/saas/quickquotation/viewlist',
+				as   : '/v2/saas/quickquotation/viewlist',
 			},
-
 		],
 	},
-
 };
 export default navigationMappings;

@@ -1,5 +1,5 @@
 import { Button } from '@cogoport/components';
-import { useState, useRef, forwardRef } from 'react';
+import { useState, useRef, forwardRef, useEffect } from 'react';
 
 import headerFields from '../configuration/headerControls';
 import useCreateQuotation from '../hooks/useCreateQuotation';
@@ -18,14 +18,16 @@ import { useSelector } from '@/packages/store';
 
 function CreateQuotation() {
 	const { id, organization } = useSelector((state) => state?.profile);
-	const quoteRef = useRef({});
+
 	const [transportMode, setTransportMode] = useState('OCEAN');
+
 	const orgCurrency = organization?.country?.currency_code;
 
 	const {
-		control:headerControls,
+		control: headerControls,
 		handleSubmit: headerHandleSubmit,
 		formState: { errors: headerError },
+		setValue,
 		watch,
 	} = useForm({
 		defaultValues: {
@@ -33,6 +35,12 @@ function CreateQuotation() {
 		},
 	});
 	const watchCurrency = watch('currency');
+	const date = watch('expiryDate');
+
+	const quoteRef = useRef({ date });
+	useEffect(() => {
+		quoteRef.current.date = date;
+	}, [date]);
 
 	const {
 		// getExchangeRate,
@@ -44,10 +52,13 @@ function CreateQuotation() {
 	});
 	const { postQuotation, loading } = useCreateQuotation({});
 	const newHeaderFields = headerFields({ id, organization });
-
+	console.log(watch('expiryDate'));
 	const submitForm = async () => {
-		const resp = await getHandleSubmitData({ quoteRef: quoteRef.current, headerHandleSubmit, transportMode });
-		console.log(typeof resp, 'resp', resp);
+		const resp = await getHandleSubmitData({
+			quoteRef: quoteRef.current,
+			headerHandleSubmit,
+			transportMode,
+		});
 		return resp;
 	};
 
@@ -62,6 +73,7 @@ function CreateQuotation() {
 				fields={newHeaderFields}
 				errors={headerError}
 				ref={quoteRef}
+				setValue={setValue}
 			/>
 			<div className={styles.container}>
 				<div className={styles.details_section}>
@@ -72,23 +84,31 @@ function CreateQuotation() {
 						setTransportMode={setTransportMode}
 						errors={headerError}
 					/>
-					<AllDetails
-						transportMode={transportMode}
-						ref={quoteRef}
+					<AllDetails transportMode={transportMode} ref={quoteRef} />
+					<ProductDetails
+						ref={(r) => {
+							quoteRef.current.product = r;
+						}}
 					/>
-					<ProductDetails ref={(r) => { quoteRef.current.product = r; }} />
 				</div>
 				<div className={styles.charge_section}>
 					<Charges
 						submitForm={submitForm}
-						ref={(r) => { quoteRef.current.charges = r; }}
+						ref={(r) => {
+							quoteRef.current.charges = r;
+						}}
 						quoteRef={quoteRef}
+						transportMode={transportMode}
 					/>
 				</div>
 			</div>
 			<div className={styles.btn_container}>
-				<Button themeType="secondary" size="lg" className={styles.back_btn}>Back</Button>
-				<Button size="lg" onClick={createQuoteHandler} loading={loading}>Create Quotation</Button>
+				<Button themeType="secondary" size="lg" className={styles.back_btn}>
+					Back
+				</Button>
+				<Button size="lg" onClick={createQuoteHandler} loading={loading}>
+					Create Quotation
+				</Button>
 			</div>
 		</div>
 	);

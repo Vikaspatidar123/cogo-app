@@ -13,7 +13,6 @@ function FileUploader(props) {
 		showProgress,
 		multiple,
 		docName,
-		accept,
 		...rest
 	} = props;
 

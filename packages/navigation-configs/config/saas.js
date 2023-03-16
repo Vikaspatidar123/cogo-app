@@ -8,7 +8,14 @@ const saas = {
 		isMainNav  : true,
 	},
 	'/saas/ocean-schedules': {
-		navigation : 'saas_tools-ocean_schedules',
+		navigation: 'saas_tools-ocean_schedules',
+	},
+	'/saas/trade-partner': {
+		navigation : 'saas_tools-trade_partner',
+		isMainNav  : true,
+	},
+	'/saas/trade-partner/[trade_id]': {
+		navigation : 'saas_tools-trade_partner',
 		isMainNav  : true,
 	},
 };

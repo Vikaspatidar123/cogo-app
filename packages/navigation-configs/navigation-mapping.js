@@ -25,14 +25,6 @@ const navigationMappings = {
 		showInNav  : true,
 		mobileIcon : <IcMQuotations width={20} height={20} />,
 	},
-	app_bookings: {
-		key       : 'app_bookings',
-		title     : 'Shipments',
-		href      : '/shipments',
-		as        : '/shipments',
-		icon      : 'nav-booking',
-		showInNav : true,
-	},
 
 	saas_tools: {
 		key       : 'saas_tools',
@@ -106,17 +98,6 @@ const navigationMappings = {
 				module_type : 'dashboards',
 			},
 		],
-	},
-
-	app_discover_rates: {
-		key         : 'app_discover_rates',
-		title       : 'Discover Rates',
-		href        : '/book',
-		as          : '/book',
-		type        : 'link',
-		tag         : 'New Search',
-		module_type : 'crm',
-		showInNav   : true,
 	},
 
 	app_accept_terms_and_conditions: {

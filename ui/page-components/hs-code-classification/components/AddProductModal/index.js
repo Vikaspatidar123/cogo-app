@@ -1,5 +1,3 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable jsx-a11y/no-static-element-interactions */
 import { Tooltip, Modal } from '@cogoport/components';
 import { IcMPlus } from '@cogoport/icons-react';
 import { useState } from 'react';
@@ -16,6 +14,7 @@ function AddProductModal({ data = {}, src = '' }) {
 				&& (
 					<>
 						<div
+							role="presentation"
 							className={`${styles.text} ${styles.not_mobile_icon}`}
 							onClick={() => {
 								setShow(true);
@@ -24,6 +23,7 @@ function AddProductModal({ data = {}, src = '' }) {
 							Add to Catalogue
 						</div>
 						<div
+							role="presentation"
 							className={`${styles.icon_container} ${styles.is_mobile_icon}`}
 							onClick={() => {
 								setShow(true);
@@ -37,6 +37,7 @@ function AddProductModal({ data = {}, src = '' }) {
 			{src === 'fav' && (
 				<Tooltip theme="light" content="Add to Product Catalogue">
 					<div
+						role="presentation"
 						className={`${styles.fav_icon}`}
 						onClick={() => {
 							setShow(true);

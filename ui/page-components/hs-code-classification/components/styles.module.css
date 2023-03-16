@@ -1,5 +1,3 @@
-/* stylelint-disable block-closing-brace-newline-before */
-/* stylelint-disable indentation */
 .button_div {
 	display: flex;
 
@@ -154,8 +152,8 @@
 }
 
 .icon_container {
-  display: flex;
-  align-items: center;
+	display: flex;
+	align-items: center;
 	margin-left: 6%;
 	text-align: center;
 }

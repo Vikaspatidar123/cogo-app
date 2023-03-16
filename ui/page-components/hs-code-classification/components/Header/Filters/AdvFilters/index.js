@@ -1,16 +1,12 @@
-/* eslint-disable no-unused-vars */
-import { Button } from '@cogoport/components';
+import { Button, Input } from '@cogoport/components';
 import { IcAIdea } from '@cogoport/icons-react';
 import React, { useEffect } from 'react';
 
-import Input from '../../../../common/controller/inputController';
-import SelectController from '../../../../common/controller/selectController';
 import getControls from '../../../../configurations/advFilter';
 import { COUNTRY_IDS } from '../../../../configurations/countryId';
 import styles from '../styles.module.css';
 
-import { useForm } from '@/packages/forms';
-import ControlledSelect from '@/packages/forms/Controlled/InputController';
+import { SelectController, useForm } from '@/packages/forms';
 
 function AdvFilters({
 	refetch,
@@ -21,7 +17,6 @@ function AdvFilters({
 	countryOptions,
 }) {
 	const {
-		fields,
 		handleSubmit,
 		watch,
 		setValues,

@@ -1,5 +1,3 @@
-// import { Skeleton } from '@cogoport/components';
-
 import { Placeholder } from '@cogoport/components';
 
 import Element from './Element';
@@ -20,7 +18,6 @@ const Item = ({ configs, data, loading }) => {
 					${config.key === 'displayHsCode' && styles.hscode
 					} ${config.key === 'addProduct' ? styles.add : ''}`}
 				>
-					{console.log(config, 'config')}
 					{loading && <Placeholder height="15px" width="30px" />}
 					{!loading && (
 						<Element

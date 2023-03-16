@@ -1,5 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-// import Skeleton from '@cogoport/front/components/admin/Skeleton';
 import { cl, Placeholder } from '@cogoport/components';
 import { IcMArrowDown } from '@cogoport/icons-react';
 import { useEffect, useState } from 'react';
@@ -27,6 +25,7 @@ function HeadingList({
 			setHeadingToggle(false);
 			setHead(false);
 		}
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [chapterToggle]);
 
 	useEffect(() => {
@@ -34,6 +33,7 @@ function HeadingList({
 			refetchHsCode(headingData.headingCode);
 			setHead(true);
 		} else setHead(false);
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [headingToggle]);
 
 	const addLoader = (mobileWidth, desktopWidth) => {

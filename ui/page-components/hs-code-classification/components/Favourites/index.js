@@ -1,4 +1,3 @@
-/* eslint-disable no-mixed-spaces-and-tabs */
 import { Modal, Placeholder } from '@cogoport/components';
 import { IcMDelete } from '@cogoport/icons-react';
 
@@ -34,7 +33,7 @@ function Favourites({
 			<Modal.Body>
 				{(isBookmarkEmpty && !loading)
 					? <div className={`${styles.no_data}`}>No Data Found</div>
-					   : (list || []).map((book) => (
+					: (list || []).map((book) => (
 						<div className={`${styles.card} ${styles.bookmark}`}>
 							<div className={`${styles.bm}`}>
 								<div className={`${styles.div_hs}`}>

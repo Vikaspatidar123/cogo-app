@@ -5,12 +5,9 @@ import { useRequestBf } from '@/packages/request';
 import { useSelector } from '@/packages/store';
 
 const useCategory = ({ hsCode, hsCodeId, setShow }) => {
-	const { profile, general } = useSelector((s) => s);
+	const { profile } = useSelector((s) => s);
 	const { id = '', organization = {} } = profile || {};
 	const { country = {} } = organization || {};
-	// eslint-disable-next-line no-unused-vars
-	const { scope = 'app' } = general || {};
-
 	const [{ loading: getproductLoading, data: productDetails }, getproductTrigger] = useRequestBf({
 		url    : '/saas/product/category',
 		method : 'get',
@@ -46,7 +43,6 @@ const useCategory = ({ hsCode, hsCodeId, setShow }) => {
 			});
 			return resp?.data?.id;
 		} catch (err) {
-			console.log(err?.error?.message);
 			return false;
 		}
 	};

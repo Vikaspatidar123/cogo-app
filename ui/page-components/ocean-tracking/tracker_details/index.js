@@ -1,5 +1,8 @@
 import { IcMArrowBack } from '@cogoport/icons-react';
 
+import useFetchTrackers from '../hooks/useFetchTrackers';
+
+import AddDetails from './components/AddDetails';
 import DetentionDetails from './components/Detention_details';
 import IncotermDetails from './components/Incoterm_details';
 import useFetchTrackerDetails from './hooks/useFtechTrackerDetails';
@@ -18,7 +21,15 @@ function TrackerDetails() {
 		trackerDetails,
 		setTrackerDetails,
 	} = useFetchTrackerDetails();
+
+	// const {
+	// 	 trackers, setTrackers,
+	// } = useFetchTrackers();
+	// const containersList = tracker?.container_details;
+	// const [activeCarouselIndex, setActiveCarouselIndex] = useState(0);
 	const isArchived = trackerDetails?.status === 'completed';
+	const { container_details = {}, shipment_info } = trackerDetails || {};
+	const containersList = container_details;
 	return (
 		<div>
 			<div className={styles.header}>
@@ -61,12 +72,18 @@ function TrackerDetails() {
 							setTrackerDetails={setTrackerDetails}
 						/>
 					</div>
-					{/* <div className={styles.col}>
-						<IncotermDetails
-							disabled={isArchived}
-							fetchTrackerDetails={fetchTrackerDetails}
+					<div className={styles.col}>
+						<AddDetails
+							selectedContainerId={selectedContainerId}
+							setSelectedContainerId={setSelectedContainerId}
+							containersList={containersList}
+							shipmentInfo={shipment_info}
+							trackerDetails={trackerDetails}
+							setTrackerDetails={setTrackerDetails}
+						// container_number should come inside containersList
+							hackyContainerNumber={trackerDetails?.input}
 						/>
-					</div> */}
+					</div>
 				</div>
 			</div>
 		</div>

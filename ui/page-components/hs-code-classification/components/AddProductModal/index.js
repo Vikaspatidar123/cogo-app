@@ -9,7 +9,6 @@ import styles from './styles.module.css';
 
 function AddProductModal({ data = {}, src = '' }) {
 	const [show, setShow] = useState(false);
-	// console.log(data, 'show');
 	return (
 		<div>
 

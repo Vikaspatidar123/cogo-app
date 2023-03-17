@@ -1,7 +1,12 @@
-import { IcMEnquiriesReceived, IcMWasteScrap, IcMEdit } from '@cogoport/icons-react';
+import {
+	IcMEnquiriesReceived,
+	IcMWasteScrap,
+	IcMEdit,
+} from '@cogoport/icons-react';
 import { useState } from 'react';
 
 import usePutArchiveUnarchiveStatus from '../../../../../hooks/usePutArchiveUnarchiveStatus';
+import ArchiveModal from '../ArchivedModal';
 import DeleteModal from '../DeleteModal';
 
 import styles from './styles.module.css';
@@ -18,14 +23,14 @@ function Popover({
 	getList,
 }) {
 	const [deleteModal, setDeleteModal] = useState(false);
-	const {
-		tradePartyStatus,
-	} = usePutArchiveUnarchiveStatus({
+	const [archive, setArchive] = useState(false);
+	const { tradePartyStatus } = usePutArchiveUnarchiveStatus({
 		archived,
 		getList,
+		setArchive,
 	});
 
-	const renderFunction = () => {
+	const onSubmit = () => {
 		tradePartyStatus(itemData);
 	};
 
@@ -45,20 +50,24 @@ function Popover({
 					<div className={styles.label}>Edit</div>
 				</div>
 			)}
-			<div className={styles.div} role="presentation" onClick={renderFunction}>
+			<div
+				className={styles.div}
+				role="presentation"
+				onClick={() => setArchive(true)}
+			>
 				<IcMEnquiriesReceived className={styles.icon} />
-				<div className={styles.label}>{!archived ? 'Archive' : 'Unarchive'}</div>
+				<div className={styles.label}>
+					{!archived ? 'Archive' : 'Unarchive'}
+				</div>
 			</div>
 			{!archived && itemData?.totalQuotes <= 0 && (
-				<div className={styles.div}>
+				<div
+					className={styles.div}
+					role="presentation"
+					onClick={() => setDeleteModal(true)}
+				>
 					<IcMWasteScrap className={styles.icon} />
-					<div
-						className={styles.label}
-						role="presentation"
-						onClick={() => setDeleteModal(true)}
-					>
-						Delete
-					</div>
+					<div className={styles.label}>Delete</div>
 				</div>
 			)}
 			{deleteModal && (
@@ -68,6 +77,14 @@ function Popover({
 					deleteTradeParty={deleteTradeParty}
 					deleteLoading={deleteLoading}
 					itemData={itemData}
+				/>
+			)}
+			{archive && (
+				<ArchiveModal
+					archive={archive}
+					setArchive={setArchive}
+					onSubmit={onSubmit}
+					archived={archived}
 				/>
 			)}
 		</div>

@@ -14,6 +14,7 @@ function Item({
 	handleClick,
 	loading,
 	functions,
+
 }) {
 	const { newFunctions } = itemFunctions({ functions });
 	const infoData = (singleItem, itm) => {
@@ -22,16 +23,16 @@ function Item({
 				<Tooltip
 					content={(
 						<div style={{ color: 'grey' }}>
-							{getValue(itm, singleItem, false, newFunctions)}
+							{getValue(itm, singleItem, newFunctions, false)}
 						</div>
 					)}
 					theme="light"
 				>
-					<div className={styles.info}>{getValue(itm, singleItem, false, newFunctions)}</div>
+					<div className={styles.info}>{getValue(itm, singleItem, newFunctions, false)}</div>
 				</Tooltip>
 			);
 		}
-		return getValue(itm, singleItem, false, newFunctions);
+		return getValue(itm, singleItem, newFunctions, false);
 	};
 	const renderItem = (itm) => (
 		<div className={styles.container}>

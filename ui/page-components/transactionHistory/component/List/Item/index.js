@@ -17,7 +17,6 @@ function Item({
 	fields,
 	handleClick,
 	loading,
-	isMobel = false,
 	functions,
 	sort,
 }) {
@@ -39,16 +38,16 @@ function Item({
 				<Tooltip
 					content={(
 						<div style={{ color: 'grey' }}>
-							{getValue(itm, singleItem, isMobel, newFunctions)}
+							{getValue(itm, singleItem, newFunctions)}
 						</div>
 					)}
 					theme="light"
 				>
-					<div className={styles.info}>{getValue(itm, singleItem, isMobel, newFunctions)}</div>
+					<div className={styles.info}>{getValue(itm, singleItem, newFunctions)}</div>
 				</Tooltip>
 			);
 		}
-		return getValue(itm, singleItem, isMobel, newFunctions);
+		return getValue(itm, singleItem, newFunctions);
 	};
 	const renderItem = (itm) => (
 		<div className={`${styles.container} ${(showDrill && 'displayDrill' && 'mobile')}`}>

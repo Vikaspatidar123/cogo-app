@@ -34,11 +34,9 @@ function Docuemnts({ documents = [], hsNumber = '' }) {
 						offLabel="Import"
 						onLabel="Export"
 						value={labeledValue}
-						onChange={() => {
-							setLabeledValue((prev) => {
-								if (prev === 'Import') return 'Export';
-								return 'Import';
-							});
+						onChange={(e) => {
+							if (e.target.checked) setLabeledValue('Export');
+							else setLabeledValue('Import');
 						}}
 					/>
 				</div>

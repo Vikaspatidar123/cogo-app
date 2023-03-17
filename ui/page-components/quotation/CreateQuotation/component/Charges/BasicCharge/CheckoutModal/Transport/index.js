@@ -37,7 +37,6 @@ function Transport({ transportMode = 'OCEAN', consignmentValue }) {
 			</div>
 			<div className={styles.total_amount}>
 				<div className={styles.value}>
-					shortFormatNumberConsignment Value:
 					{shortFormatNumber(consignmentValue, 'INR', true)}
 				</div>
 				<div className={styles.border} />

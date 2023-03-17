@@ -53,18 +53,23 @@ const useCreateQuotation = () => {
 			additionalChargesList,
 			otherDetails,
 		} = createQuotePayload({ data, exchangeRate, orgCurrency });
-		const { shipmentDetailId: editShipmentId, dealId: editDealId	} = editData;
+
+		const {
+			shipmentDetailId: editShipmentId, dealId: editDealId, buyerDetails = {},
+			saasPartnerId = '',
+		} = editData;
 		if (query?.id) {
 			return {
+				...shipmentDetails,
+				...otherDetails,
 				quotationId      : quoteId,
 				shipmentDetailId : editShipmentId,
 				dealId           : editDealId,
 				sellerDetails    : sellerAddressDetails,
-				buyerDetails     : buyerAddressDetails,
+				buyerDetails,
 				expiryDate,
 				products,
-				...shipmentDetails,
-				...otherDetails,
+				saasPartnerId,
 
 			};
 		}

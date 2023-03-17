@@ -26,6 +26,9 @@ function CreateQuotation() {
 	const [confirmCreateQuotation, setConfirmCreateQuotation] = useState(false);
 
 	const { sendQuotation, sendQuoteLoading, sendQuotedata } = useSendQuotation();
+	const createQuoteHook = useCreateQuotation();
+	const { postQuotation, loading, createQuoteData } = createQuoteHook || {};
+
 	const orgCurrency = organization?.country?.currency_code;
 
 	const {
@@ -41,11 +44,11 @@ function CreateQuotation() {
 	});
 	const { editData = {}, editLoading } = useEditQuotation({ setValue, setTransportMode });
 
-	console.log(editData, 'editData');
 	const watchCurrency = watch('currency');
 	const date = watch('expiryDate');
 
 	const quoteRef = useRef({ date });
+
 	useEffect(() => {
 		quoteRef.current.date = date;
 	}, [date]);
@@ -57,6 +60,7 @@ function CreateQuotation() {
 			setValue('expiryDate', new Date(editData?.expiryDate));
 			setValue('currency', editData?.currency);
 		}
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [editData?.saasPartnerId]);
 
 	const {
@@ -67,7 +71,6 @@ function CreateQuotation() {
 		orgCurrency,
 		landingPageCall: true,
 	});
-	const { postQuotation, loading, createQuoteData } = useCreateQuotation();
 	const newHeaderFields = headerFields({ id, organization });
 
 	const submitForm = async () => {
@@ -81,8 +84,9 @@ function CreateQuotation() {
 
 	const createQuoteHandler = async () => {
 		const data = await submitForm();
-		postQuotation({ data, exchangeRate, orgCurrency, editData });
+		if (data) postQuotation({ data, exchangeRate, orgCurrency, editData });
 	};
+
 	return (
 		<div>
 			<Header
@@ -117,6 +121,7 @@ function CreateQuotation() {
 						editData={editData}
 						quoteRef={quoteRef}
 						transportMode={transportMode}
+						createQuoteHook={createQuoteHook}
 						ref={(r) => {
 							quoteRef.current.charges = r;
 						}}

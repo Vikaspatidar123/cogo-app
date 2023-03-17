@@ -3,6 +3,7 @@ import { IcMPort, IcMLocation } from '@cogoport/icons-react';
 import { useState, useImperativeHandle, useEffect, forwardRef } from 'react';
 
 import transportControls from '../../../configuration/transportControls';
+import useListLocation from '../../../hooks/useListLocation';
 
 import styles from './styles.module.css';
 
@@ -10,14 +11,21 @@ import { useForm } from '@/packages/forms';
 import getField from '@/packages/forms/Controlled';
 
 function Transportation(props, ref) {
-	const { transportMode, originId = '', destinationId = '' } = props || {};
+	const {
+		transportMode, originId = '', destinationId = '',
+		originCountry = '', destinationCountry = '',
+	} = props || {};
 	const [destinationPortDetails, setDestinationPortDetails] = useState({});
 	const [originPortDetails, setOriginPortDetails] = useState({});
+
+	const { getPortDetails } = useListLocation();
+
 	const transportFields = transportControls({ transportMode });
 	const {
 		control,
 		handleSubmit,
 		setValue,
+		reset,
 		formState: { errors },
 	} = useForm();
 
@@ -29,13 +37,35 @@ function Transportation(props, ref) {
 		}
 	};
 
+	const getTransportDetailsEdit = async () => {
+		const filter = {
+			status : 'active',
+			id     : [originId, destinationId],
+		};
+		const resp = await getPortDetails(filter);
+		const originData = resp?.[0]?.id === originId ? resp?.[0] : resp?.[1];
+		const destinationData = resp?.[1]?.id === destinationId ? resp?.[1] : resp?.[0];
+		setOriginPortDetails({ ...originData, country: { name: originCountry } });
+		setDestinationPortDetails({ ...destinationData, country: { name: destinationCountry } });
+	};
+
 	useEffect(() => {
 		if (originId && destinationId) {
 			setValue('originId', originId);
 			setValue('destinationId', destinationId);
+			getTransportDetailsEdit();
 		}
 	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [originId, destinationId]);
+
+	useEffect(() => {
+		if (transportMode && !originId) {
+			reset({
+				originId      : null,
+				destinationId : null,
+			});
+		}
+	}, [transportMode]);
 
 	useImperativeHandle(ref, () => ({
 		handleSubmit: () => {

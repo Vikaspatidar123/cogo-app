@@ -5,8 +5,7 @@ import styles from './styles.module.css';
 function TraderCheck({ tradeEngineResponse = {} }) {
 	const { screeningRequestResponse = [], screeningPartyName = '' } =		tradeEngineResponse || {};
 	return (
-		<>
-
+		<div className={styles.container}>
 			<Pill color="blue" size="lg">
 				Trader Name:
 				{screeningPartyName?.toUpperCase()}
@@ -78,7 +77,7 @@ function TraderCheck({ tradeEngineResponse = {} }) {
 					</div>
 				</div>
 			)}
-		</>
+		</div>
 
 	);
 }

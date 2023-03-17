@@ -9,6 +9,10 @@
     justify-content: space-between;
     align-items: center;
 }
+
+.container{
+	margin: 20px 0;
+}
 .row{
     display: flex;
     justify-content: space-between;

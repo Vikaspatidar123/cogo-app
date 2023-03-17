@@ -5,7 +5,7 @@ const useServiceCodes = () => {
 		method  : 'get',
 		url     : 'saas/bill/product-codes',
 		authKey : 'get_saas_bill_product_codes',
-	});
+	}, { manual: true });
 
 	const getServiceCode = async () => {
 		try {

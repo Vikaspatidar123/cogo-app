@@ -54,7 +54,7 @@ function Duties({
 							style={{ width: field?.width }}
 						>
 							<p className={styles.label}>{field?.label}</p>
-							<Element {...field} control={control} />
+							<Element {...field} control={control} className={styles.disabled} />
 						</div>
 
 					);

@@ -15,12 +15,11 @@ const useListLocation = () => {
 					page_limit : 20,
 				},
 			});
-			return resp?.data?.list[0];
+			return resp?.data?.list;
 		} catch (err) {
 			return false;
 		}
 	};
-
 	return {
 		getPortDetails,
 		locationLoading: loading,

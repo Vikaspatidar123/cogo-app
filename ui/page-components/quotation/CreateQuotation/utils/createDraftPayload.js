@@ -20,7 +20,7 @@ const createDraftpayload = ({
 			id         : type !== 'country' ? id : '',
 			country_id : type === 'country' ? id : '',
 		});
-		return response?.country_code || response;
+		return response?.[0]?.country_code || response;
 	};
 
 	const createHeader = async (isScreening = false, tradeEngineInputId = '') => {

@@ -10,3 +10,7 @@
 .container{
 	margin-bottom: 20px ;
 }
+
+.disabled{
+	background-color: #f3f3f3;
+}

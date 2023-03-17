@@ -32,6 +32,7 @@
 	border-radius: 8px;
     padding: 8px 16px;
     margin-bottom: 10px ;
+    border: 2px solid #fff4e1;
     .trader_title{
         font-weight: 600;
         font-size: 16px;

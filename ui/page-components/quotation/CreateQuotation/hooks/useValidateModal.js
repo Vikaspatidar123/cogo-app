@@ -121,13 +121,15 @@ const useValidateModal = ({
 	const isProductVerified = () => {
 		const isProductVerifiedArr = [];
 
+		console.log(servicesSelected, 'servicesSelected');
+		console.log(isProductVerifiedArr, 'isProductVerifiedArr');
+
 		productIdArr.forEach((id) => {
 			const serviceObj = servicesSelected[id];
 			if (!serviceObj.destinationHs) isProductVerifiedArr.push(id);
 		});
 
-		if (isProductVerifiedArr.length > 0 && isUserSubscribed) {
-			// Toast.error('Please Validate all Products ');
+		if (isProductVerifiedArr.length > 0) {
 			return false;
 		}
 
@@ -172,8 +174,8 @@ const useValidateModal = ({
 		if (!docSelected) {
 			Toast.error('Please select atleast one services');
 		} else if (!isUserSubscribed && !isQuotaLeft && lineItemLength === 0) {
-			setShowCheckout(true);
 			await createQuoteFunc();
+			setShowCheckout(true);
 		} else if (!productVerify) {
 			Toast.error('Please Validate all Products ');
 		} else if (productVerify && lineItemLength > 0) {

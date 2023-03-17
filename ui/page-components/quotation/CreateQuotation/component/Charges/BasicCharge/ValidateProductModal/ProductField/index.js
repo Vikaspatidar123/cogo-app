@@ -52,8 +52,10 @@ function ProductField({
 	deleteProduct,
 	verifyHandler,
 	checkBoxChangeHandler,
+	commonLoading = false,
 }) {
 	const [verifiedData, setVerifiedData] = useState({});
+	const lineItemLength = productLineItemDetails.length;
 
 	const {
 		hsRecommendation, status, setStatus,
@@ -63,7 +65,7 @@ function ProductField({
 	const productLength = productInfoArr?.length;
 	const { hsCode, description, productId, name:productName } = productInfo;
 
-	const disableValidateBtn = (!isUserSubscribed && productLineItemDetails.length === 0
+	const disableValidateBtn = (!isUserSubscribed && lineItemLength === 0
         && !isQuotaLeft) || verifyLoading || !status;
 
 	useEffect(() => {
@@ -129,12 +131,12 @@ function ProductField({
 				</div>
 
 				{productLength > 1 && (
-					<div>
+					<div className={lineItemLength > 0 && commonLoading && styles.delete_icon}>
 						<ButtonIcon
 							size="lg"
 							icon={<IcMDelete />}
 							themeType="primary"
-							onClick={() => deleteProduct(productId, index)}
+							onClick={() => (lineItemLength === 0 || !commonLoading) && deleteProduct(productId, index)}
 						/>
 					</div>
 				)}
@@ -148,6 +150,7 @@ function ProductField({
 							id={`${productId}_${service?.name}`}
 							checked={servicesSelected?.[productId]?.[service?.name]}
 							onChange={() => checkBoxChangeHandler(productId, service?.name)}
+							disabled={commonLoading || lineItemLength > 0}
 						/>
 						<div>
 							<Tooltip placement="right" content={service?.tooltip}>

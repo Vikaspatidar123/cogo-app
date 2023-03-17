@@ -9,7 +9,10 @@ function AllDetails({ transportMode = 'OCEAN', editData = {} }, ref) {
 	const {
 		containerCount,
 		containerSize,
-		containerType, originId, destinationId, serviceType, packageHandling, packageType, quantity, weight, volume,
+		containerType, originId,
+		destinationId,
+		serviceType, packageHandling, packageType, quantity, weight, volume, originCountry, destinationCountry,
+
 	} = editData;
 	const editAir = {
 		packageHandling,
@@ -29,6 +32,8 @@ function AllDetails({ transportMode = 'OCEAN', editData = {} }, ref) {
 			<div className={styles.transport}>
 				<Transportation
 					transportMode={transportMode}
+					originCountry={originCountry}
+					destinationCountry={destinationCountry}
 					originId={originId}
 					destinationId={destinationId}
 					ref={(r) => { current.transport = r; }}

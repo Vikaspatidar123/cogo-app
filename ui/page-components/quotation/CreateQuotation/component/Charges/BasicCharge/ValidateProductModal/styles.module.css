@@ -26,6 +26,16 @@
 	}
 }
 
+.successMsg{
+	margin: 30px;
+	margin-bottom: 10px;
+	padding: 6px 12px;
+	font-size: 15px;
+	color: #589c52;
+	background: #e8ffe6;
+	text-align: center;
+}
+
 .loading_container{
 	.modal {
 		position: absolute;

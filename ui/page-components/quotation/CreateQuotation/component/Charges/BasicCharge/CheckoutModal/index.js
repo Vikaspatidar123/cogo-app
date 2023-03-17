@@ -1,6 +1,6 @@
 import { Button, Modal } from '@cogoport/components';
 import { IcMArrowLeft } from '@cogoport/icons-react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import useCheckoutModal from '../../../../hooks/useCheckoutModal';
 import useDraft from '../../../../hooks/useDraft';
@@ -14,6 +14,7 @@ import Transport from './Transport';
 function CheckoutModal({
 	showCheckout,
 	setShowCheckout,
+	setValidateProduct,
 	quotaValue,
 	paymentMode,
 	serviceProduct,
@@ -31,14 +32,15 @@ function CheckoutModal({
 	locationLoading,
 }) {
 	const [traderCheck, setTrackerCheck] = useState(false);
-
+	const [chargeData, setChargeData] = useState({});
 	const { refetchDraft, draftLoading } = useDraft();
-	const { postPayemnt, paymentLoading } = usePayment;
+	const { postPayemnt, paymentLoading } = usePayment();
+	const loading = draftLoading || paymentLoading || locationLoading;
 
 	const { id: quoteId = '' } = createQuoteData;
 	const headerResLength = Object.keys(headerResponse).length;
 
-	const { submitHandler, renderBtn } = useCheckoutModal({
+	const { submitHandler, renderBtn, createBillLineItems } = useCheckoutModal({
 		quoteId,
 		traderCheck,
 		paymentMode,
@@ -52,13 +54,21 @@ function CheckoutModal({
 		postTradeEngine,
 		setTransactionModal,
 		setShowCheckout,
+		serviceData,
+		setValidateProduct,
 	});
 
+	useEffect(() => {
+		if (paymentMode === 'directPay') {
+			const { payloadData, ...rest } = createBillLineItems();
+			setChargeData(rest);
+		}
+	}, [traderCheck]);
 	return (
 		<Modal show={showCheckout} onClose={() => setShowCheckout(false)} size="lg">
 			<Modal.Header title={(
 				<div className={styles.flex_box}>
-					<IcMArrowLeft style={{ cursor: 'pointer' }} onClick={() => setShowCheckout(false)} />
+					<IcMArrowLeft style={{ cursor: 'pointer' }} onClick={() => !loading && setShowCheckout(false)} />
 					<h3 className={styles.header}>Checkout</h3>
 				</div>
 			)}
@@ -72,13 +82,20 @@ function CheckoutModal({
 						isQuotaLeft={isQuotaLeft}
 						traderCheck={traderCheck}
 						setTrackerCheck={setTrackerCheck}
+						loading={loading}
 					/>
-					<Summary isQuotaLeft={isQuotaLeft} quotaValue={quotaValue} productInfoArr={productInfoArr} />
+					<Summary
+						isQuotaLeft={isQuotaLeft}
+						quotaValue={quotaValue}
+						productInfoArr={productInfoArr}
+						chargeData={chargeData}
+						serviceData={serviceData}
+					/>
 				</div>
 			</Modal.Body>
 			<Modal.Footer>
 				<Button
-					loading={draftLoading || paymentLoading || locationLoading}
+					loading={loading}
 					onClick={submitHandler}
 				>
 					{renderBtn()}

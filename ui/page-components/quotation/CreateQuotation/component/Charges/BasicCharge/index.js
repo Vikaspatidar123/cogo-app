@@ -50,7 +50,9 @@ const getSuffix = (name, getDutiesSubmitHandler, getRatesModalHandler) => {
 };
 
 function BasicCharge(
-	{ fields, control, errors, submitForm, watch, setValue, transportMode },
+	{
+		fields, control, errors, submitForm, watch, setValue, transportMode, createQuoteHook = {},
+	},
 	ref,
 ) {
 	const [paymentModal, setPaymentModal] = useState(false);
@@ -76,11 +78,7 @@ function BasicCharge(
 		// getQuota,
 	} = useGetQuota();
 
-	const {
-		postTradeEngine,
-		transactionResp,
-		tradeEngineLoading,
-	} = useTradeEngine();
+	const { postTradeEngine, transactionResp, tradeEngineLoading } = useTradeEngine();
 
 	const { loading: getDraftLoading, getDraftData, getDraft } = useGetDraft();
 	const { pendingStatus } = 	useCheckPaymentStatus(
@@ -97,7 +95,7 @@ function BasicCharge(
 
 	const getDutiesSubmitHandler = async () => {
 		const resp = await submitForm();
-		console.log(resp, 'resp');
+
 		if (resp) {
 			setQuoteRes(resp);
 			if (isQuotaLeft) {
@@ -152,6 +150,7 @@ function BasicCharge(
 				getDraftLoading={getDraftLoading}
 				setTransactionModal={setTransactionModal}
 				postTradeEngine={postTradeEngine}
+				createQuoteHook={createQuoteHook}
 			/>
 			{calculateCharge && (
 				<FreightCharges

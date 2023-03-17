@@ -9,7 +9,7 @@ const createQuotePayload = ({ data, exchangeRate = 1, orgCurrency }) => {
 	} = data || {};
 
 	const { currency, expiryDate: expDate } = header;
-	console.log(buyerDetails, 'buyerDetails');
+
 	const {
 		id = '',
 		name = '',
@@ -25,6 +25,7 @@ const createQuotePayload = ({ data, exchangeRate = 1, orgCurrency }) => {
 		pocName : sellerPocName = '',
 		pocPhoneCode = '',
 		countryId: sellerCountryId = '',
+		taxNumber: sellerTaxNumber = '',
 	} = sellerAddress;
 
 	const {
@@ -63,13 +64,13 @@ const createQuotePayload = ({ data, exchangeRate = 1, orgCurrency }) => {
 	const sellerAddressDetails = {
 		billingAddressId : id || billingAddressId,
 		billingPartyName : name || billingPartyName,
-		taxNumber        : tax_number || taxNumber,
+		taxNumber        : tax_number || sellerTaxNumber,
 		address,
 		countryId        : organization?.country_id || sellerCountryId,
 		pincode,
 		pocEmail         : organization_pocs[0]?.email || pocEmail,
 		pocPhoneNumber   : organization_pocs[0]?.mobile_number || pocPhoneNumber,
-		pocName          : organization_pocs[0]?.name || pocName,
+		pocName          : organization_pocs[0]?.name || sellerPocName,
 		pocPhoneCode     : organization_pocs[0]?.mobile_country_code || pocPhoneCode,
 	};
 
@@ -97,6 +98,7 @@ const createQuotePayload = ({ data, exchangeRate = 1, orgCurrency }) => {
 		destinationCountry : destinationCountry?.name,
 		destinationPortCode,
 		transportMode,
+		serviceType        : transportMode === 'AIR' ? 'AIR_FREIGHT' : '',
 		...details,
 	};
 

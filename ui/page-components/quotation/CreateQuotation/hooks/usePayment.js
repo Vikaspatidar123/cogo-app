@@ -18,7 +18,7 @@ const usePayment = () => {
 		method  : 'post',
 		url     : '/saas/payment',
 		authKey : 'post_saas_payment',
-	});
+	}, { manual: true });
 
 	const getServiceDataHandler = async ({ billLineItems }) => {
 		const resp = await getServiceCode();
@@ -28,7 +28,7 @@ const usePayment = () => {
 	};
 
 	const postPayemnt = async ({ quoteId, billRefId, currency, billLineItems, ...rest }) => {
-		const redirectUrl = `${process.env.APP_URL}app/${org_id}/${branch_id}
+		const redirectUrl = `${process.env.NEXT_PUBLIC_APP_BASE_URL}/app/${org_id}/${branch_id}
 		/${account_type}/saas/quickquotation/editquotation/${quoteId}`;
 
 		const billLineItemsData = await getServiceDataHandler({ billLineItems });
@@ -37,6 +37,8 @@ const usePayment = () => {
 			const resp = await trigger({
 				data: {
 					userId                : id,
+					billRefId,
+					currency,
 					organizationId        : organization?.id,
 					userName              : name,
 					userEmail             : email,
@@ -45,6 +47,7 @@ const usePayment = () => {
 					redirectUrl,
 					billType              : 'PREMIUM_SERVICES',
 					billLineItems         : billLineItemsData,
+					source                : 'SAAS',
 					...rest,
 				},
 			});

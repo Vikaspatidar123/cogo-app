@@ -4,9 +4,18 @@ import styles from './styles.module.css';
 
 import { shortFormatNumber } from '@/ui/commons/utils/getShortFormatNumber';
 
-function Summary({ isQuotaLeft = false, quotaValue, productInfoArr = [] }) {
+function Summary({ isQuotaLeft = false, quotaValue, productInfoArr = [], chargeData = {}, serviceData = {} }) {
+	const { currency } = serviceData;
+	const {
+		// totalAmount,
+		// discountAmount,
+		taxAmount,
+		subTotalAmount,
+		netAmount,
+	} = chargeData;
 	const productLength = productInfoArr.length;
 	const remainingAddon = +quotaValue - +productLength;
+
 	return (
 		<div className={styles.container}>
 			<h3 className={styles.title}>Summary</h3>
@@ -15,21 +24,21 @@ function Summary({ isQuotaLeft = false, quotaValue, productInfoArr = [] }) {
 					<div className={styles.flex_box}>
 						<p>Services</p>
 						<div className="price">
-							{/* {shortFormatNumber(totalDiscountServices, currency, true)} */}
-							12
+							{shortFormatNumber(subTotalAmount, currency, true)}
+
 						</div>
 					</div>
 
 					<div className={styles.flex_box}>
 						<p>Convenience Fee</p>
-						{/* <div className="price">{shortFormatNumber(gstAmount, currency, true)}</div> */}
-						23
+						<div className="price">{shortFormatNumber(taxAmount, currency, true)}</div>
+
 					</div>
 
 					<div className={cl`${styles.flex_box} ${styles.total_row}`}>
 						<p className={styles.total}>Total Amount:</p>
-						{/* <div className="price">{shortFormatNumber(total, currency, true)}</div> */}
-						12
+						<div className="price">{shortFormatNumber(netAmount, currency, true)}</div>
+
 					</div>
 				</div>
 			)}

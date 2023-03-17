@@ -17,9 +17,9 @@ const useCheckoutModal = ({
 	postTradeEngine,
 	setTransactionModal,
 	setShowCheckout,
+	setValidateProduct,
 }) => {
 	const { services = {}, currency: serviceCurrency = 'INR' } = serviceData || {};
-
 	const renderBtn = () => {
 		if (paymentMode === 'addon' || headerResLength > 0) {
 			return 'Get Details';
@@ -56,6 +56,7 @@ const useCheckoutModal = ({
 				metadata       : null,
 			};
 		});
+
 		const totalAmount = payloadData.reduce(
 			(acc, { totalAmount: currTotalAmt = 0 }) => +acc + +currTotalAmt,
 			0,
@@ -95,10 +96,7 @@ const useCheckoutModal = ({
 		}
 
 		const lineItem = createlineItem();
-		const {
-			payloadData,
-			...rest
-		} = createBillLineItems();
+		const { payloadData, ...rest } = createBillLineItems();
 
 		const draftResp = await refetchDraft({
 			draftHeader, lineItem,
@@ -119,11 +117,11 @@ const useCheckoutModal = ({
 				paymentMode        : 'QUOTA',
 			});
 			setShowCheckout(false);
+			setValidateProduct(false);
 		}
-		console.log(draftResp, 'draftResp');
 	};
 
-	return { submitHandler, renderBtn };
+	return { submitHandler, renderBtn, createBillLineItems };
 };
 
 export default useCheckoutModal;

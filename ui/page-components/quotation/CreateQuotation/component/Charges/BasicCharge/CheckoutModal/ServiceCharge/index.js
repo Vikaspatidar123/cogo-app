@@ -7,7 +7,10 @@ import styles from './styles.module.css';
 
 import { shortFormatNumber } from '@/ui/commons/utils/getShortFormatNumber';
 
-function ServiceCharge({ serviceProduct = {}, serviceData, isQuotaLeft, traderCheck, setTrackerCheck }) {
+function ServiceCharge({
+	serviceProduct = {}, serviceData, isQuotaLeft, traderCheck,
+	setTrackerCheck, loading = false,
+}) {
 	const { services = {}, currency = 'INR' } = serviceData || {};
 
 	const getTooltipContent = (index) => (
@@ -78,7 +81,11 @@ function ServiceCharge({ serviceProduct = {}, serviceData, isQuotaLeft, traderCh
 
 				<div className={cl`${styles.flex_box} ${styles.trader_row}`}>
 
-					<Checkbox checked={traderCheck} onChange={() => setTrackerCheck((prev) => !prev)} />
+					<Checkbox
+						checked={traderCheck}
+						onChange={() => setTrackerCheck((prev) => !prev)}
+						disabled={loading}
+					/>
 
 					<div className={styles.screen}>
 						<IcMScreenShare className="icon" width={25} height={25} />

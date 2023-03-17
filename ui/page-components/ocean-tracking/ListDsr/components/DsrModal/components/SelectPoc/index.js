@@ -14,34 +14,33 @@
 // import AddPocs from '../add-poc';
 
 // import StyledPocCard from './styles';
-import { Input, Button, Toast } from '@cogoport/components';
+import { Input, Button } from '@cogoport/components';
 import { useState, useMemo } from 'react';
 
-import useCreatePoc from '../../../hooks/useCreatePoc';
-import useFetchPoc from '../../../hooks/useFetchPoc';
+import useCreateDsr from '../../../../hooks/useCreateDsr';
 
 import styles from './styles.module.css';
 
 import { useForm } from '@/packages/forms';
 import getField from '@/packages/forms/Controlled';
-import AddPocs from '../AddPoc';
+import AddPocs from '@/ui/page-components/ocean-tracking/tracker_details/components/Incoterm_details/AddPoc';
+import useFetchPoc from '@/ui/page-components/ocean-tracking/tracker_details/hooks/useFetchPoc';
 
-function LinkPocs({ handleNext }) {
-	// const { formRef, trackerPoc, setTrackerPoc, isMobile, general } = useSaasState();
-	// const { profile, scope } = useSaasState();
-	const [trackerPoc, setTrackerPoc] = useState([]);
+function SelectPoc({ setHeading, setStep, setSelectedPoc, setDsrId }) {
 	const [loading, pocList, setPocList] = useFetchPoc();
+	const [submitLoading, createDsr] = useCreateDsr();
 	const [searchText, setSearchText] = useState('');
 	const [isPocModalOpen, setPocModal] = useState(false);
-	const { selected_poc_details = [] } = trackerPoc;
 
 	const filteredPocList = useMemo(
 		() => pocList.filter(
-			(item) => ['name', 'email'].filter((key) => item[key]?.toLowerCase().includes(searchText?.toLowerCase())).length > 0,
+			(item) => ['name', 'email']
+				.filter((key) => item[key]?.toLowerCase().includes(searchText?.toLowerCase())).length > 0,
 		),
 		[pocList, searchText],
 	);
-
+	console.log(pocList, 'pocList');
+	console.log(filteredPocList, 'filteredPocList');
 	const handlePocModal = () => {
 		setPocModal(!isPocModalOpen);
 	};
@@ -54,39 +53,26 @@ function LinkPocs({ handleNext }) {
 	// 	return <Skeleton count={3} />;
 	// }
 
-	const { createPoc } = useCreatePoc();
+	// const { createPoc } = useCreatePoc();
 	const onSubmit = async (values) => {
-		// eslint-disable-next-line no-shadow
-		const { pocList } = values;
-
-		const newPocList = pocList?.map(
-			(pocId) => filteredPocList?.filter((list) => list.id === pocId)[0],
-		);
-		// eslint-disable-next-line no-plusplus
-		for (let i = 0; i < newPocList.length; i++) {
-			const item = newPocList[i];
-			if (item.tradeContact === true) {
-				const { name, mobile_no, email } = item;
-
-				try {
-					// eslint-disable-next-line no-await-in-loop
-					const id = await createPoc(name, mobile_no, email);
-					item.id = id;
-				} catch (err) {
-					Toast.error(err?.message || "Couldn't create POC. please try again later.");
-					return;
-				}
-			}
-		}
-		setTrackerPoc({ ...trackerPoc, selected_poc_details: newPocList });
-		handleNext();
+		const { poc } = values;
+		console.log(values, 'values');
+		const data = await createDsr(poc);
+		console.log(data, '12334');
+		if (data == null) return;
+		setSelectedPoc({
+			id   : poc,
+			name : pocList.filter((item) => item.id === poc)[0]?.name,
+		});
+		setDsrId(data.id);
+		setStep((step) => step + 1);
 	};
 	const {
 		control,
 		handleSubmit,
 		formState: { errors },
 	} = useForm();
-	console.log(filteredPocList, 'filteredPocList');
+
 	return (
 		<div>
 			<div className={styles.item}>
@@ -134,9 +120,19 @@ function LinkPocs({ handleNext }) {
 				) : (
 					<p> Please add new contacts</p>
 				)}
+				<div className={styles.button_bottom}>
+					<Button
+						size="lg"
+						variant="secondary"
+						disabled={submitLoading}
+						onClick={handleSubmit(onSubmit)}
+					>
+						Next
+					</Button>
+				</div>
 			</form>
 		</div>
 	);
 }
 
-export default LinkPocs;
+export default SelectPoc;

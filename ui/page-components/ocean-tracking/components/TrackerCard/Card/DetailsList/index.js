@@ -28,11 +28,11 @@ function DetailsList({ containersList, shipmentInfo, activeCarouselIndex, setAct
 			<div className={styles.header_title}>
 				<div>
 					Container Details
-					{containersList.length > 1 && `(${containersList.length})` }
+					{containersList?.length > 1 && `(${containersList.length})` }
 
 					<div className={styles.line} />
 				</div>
-				{containersList.length > 1 && (
+				{containersList?.length > 1 && (
 					<div className={styles.arrow_div}>
 						<IcMArrowBack className={styles.icon} onClick={handlePrevious} />
 						<IcMArrowNext className={styles.icon} onClick={handleNext} />

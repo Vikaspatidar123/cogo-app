@@ -221,5 +221,53 @@ const saas = {
 			service_name : 'saas_traceability',
 		},
 	],
+	app_saas_dsr: [
+		{
+			api          : 'create_saas_dsr',
+			access_type  : 'private',
+			service_name : 'saas_traceability',
+		},
+		{
+			api          : 'create_dsr_to_subscription_mapping',
+			access_type  : 'private',
+			service_name : 'saas_traceability',
+		},
+		{
+			api          : 'create_dsr_schedule',
+			access_type  : 'private',
+			service_name : 'saas_traceability',
+		},
+		{
+			api          : 'update_dsr_schedule',
+			access_type  : 'private',
+			service_name : 'saas_traceability',
+		},
+		{
+			api          : 'list_saas_dsr',
+			access_type  : 'private',
+			service_name : 'saas_traceability',
+		},
+		{
+			api          : 'get_dsr_to_subscription_mapping',
+			access_type  : 'private',
+			service_name : 'saas_traceability',
+		},
+		{
+			api          : 'list_saas_subscription_poc_details',
+			access_type  : 'private',
+			service_name : 'saas_traceability',
+		},
+		{
+			api          : 'list_saas_container_subscriptions',
+			access_type  : 'private',
+			service_name : 'saas_traceability',
+		},
+		{
+			api          : 'update_saas_dsr',
+			access_type  : 'private',
+			service_name : 'saas_traceability',
+		},
+	],
+
 };
 export default saas;

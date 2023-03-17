@@ -11,6 +11,9 @@ const saas = {
 		navigation : 'saas_tools-ocean_tracking',
 		isMainNav  : true,
 	},
+	'/saas/dsr': {
+		navigation: 'saas_tracking',
+	},
 
 };
 

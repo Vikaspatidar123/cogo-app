@@ -1,0 +1,24 @@
+.dektop_header{
+    margin-bottom: 10px;
+    /* @media (max-width: 760px) {
+      display: none;
+    } */
+}
+.heading {
+    color: #282b2e;
+    font-weight: 700;
+    font-size: 20px;
+    margin: 0px;
+    margin-right: 24px;
+  }
+  .heading_container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .back{
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    cursor: pointer;
+  }

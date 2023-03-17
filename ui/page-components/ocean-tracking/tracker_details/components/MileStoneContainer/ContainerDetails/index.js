@@ -15,8 +15,6 @@ function ContainerDetailsModal({
 }) {
 	const { selectedContainer, setSelectedContainer } = useSaasState();
 
-	console.log(selectedContainer);
-
 	return (
 		<Modal
 			heading={`Container details (${containersDetails?.length} in total)`}

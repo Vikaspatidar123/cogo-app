@@ -1,14 +1,10 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 import CsvForm from './CsvForm';
 import RenderForm from './RenderForm';
 import styles from './styles.module.css';
 
-import { useForm } from '@/packages/forms';
-import { useRequest } from '@/packages/request';
-
-import { Button, Toggle, Radio, Input, Toast, Select } from '@cogoport/components';
-// import { Input } from '@cogoport/components';
+import { Button, Toggle } from '@cogoport/components';
 
 const { Modal } = require('@cogoport/components');
 
@@ -40,7 +36,6 @@ function AddTrackerModal({ show, onclose }) {
 								size="md"
 								disabled={false}
 								onLabel="Upload CSV"
-								// onLabel={{ label: 'Upload CSV', value: true }}
 								onChange={() => onchange()}
 								value={labeledValue}
 							/>

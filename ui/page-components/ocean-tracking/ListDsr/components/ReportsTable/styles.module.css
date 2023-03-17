@@ -1,0 +1,25 @@
+.item{
+    display: flex;
+    align-items: center;
+}
+.card{
+    padding: 16px 8px;
+    background-color: white;
+    height: 100%;
+    border-radius: 20px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+  
+    @media (max-width: 767px) {
+      margin-top: 8px;
+    }
+}
+.item{
+    display: flex;
+    padding: 10px;
+}
+.list_item{
+    width: 30%;
+    display: flex;
+    gap: 2px;
+    align-items: center;
+}

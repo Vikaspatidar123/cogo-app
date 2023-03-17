@@ -18,6 +18,7 @@ import { IcMArrowBack } from '@cogoport/icons-react';
 import { useState } from 'react';
 
 import DsrModal from './components/DsrModal';
+import ReportsTable from './components/ReportsTable';
 import useFetchDsr from './hooks/useFetchDsr';
 import styles from './styles.module.css';
 
@@ -75,6 +76,7 @@ function ListDsr() {
 					</Button>
 				</div>
 			</div>
+			<ReportsTable loading={loading} dsrList={dsrs} handleDsrModal={() => handleDsrModal} setDsrs={setDsrs} />
 			{/* {!isMobile ? (
 				<ReportsTable loading={loading} dsrList={dsrs} handleDsrModal={handleDsrModal} />
 			) : (

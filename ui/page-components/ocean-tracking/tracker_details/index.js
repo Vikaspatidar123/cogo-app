@@ -1,8 +1,6 @@
 import { IcMArrowBack } from '@cogoport/icons-react';
 import { useState } from 'react';
 
-import useFetchTrackers from '../hooks/useFetchTrackers';
-
 import AddDetails from './components/AddDetails';
 import DetentionDetails from './components/Detention_details';
 import IncotermDetails from './components/Incoterm_details';
@@ -27,11 +25,6 @@ function TrackerDetails() {
 		setMapPoints,
 	} = useFetchTrackerDetails();
 
-	// const {
-	// 	 trackers, setTrackers,
-	// } = useFetchTrackers();
-	// const containersList = tracker?.container_details;
-	// const [activeCarouselIndex, setActiveCarouselIndex] = useState(0);
 	const [selectedContainer, setSelectedContainer] = useState(0);
 	const isArchived = trackerDetails?.status === 'completed';
 	const { container_details = {}, shipment_info } = trackerDetails || {};
@@ -88,7 +81,6 @@ function TrackerDetails() {
 							shipmentInfo={shipment_info}
 							trackerDetails={trackerDetails}
 							setTrackerDetails={setTrackerDetails}
-						// container_number should come inside containersList
 							hackyContainerNumber={trackerDetails?.input}
 						/>
 					</div>
@@ -98,7 +90,6 @@ function TrackerDetails() {
 						selectedContainerId={selectedContainerId}
 						selectedContainer={selectedContainer}
 						setSelectedContainerId={setSelectedContainerId}
-						// handleShareModal={handleShareModal}
 						mapLoading={maploading}
 						trackerDetails={trackerDetails}
 						mapPoints={mapPoints}

@@ -13,10 +13,6 @@ const useAddTracker = () => {
 	const { push } = useRouter();
 
 	const addTracker = async (values) => {
-		// if (!values?.search_type) {
-		// 	Toast.error('Please Select Search type');
-		// 	return;
-		// }
 		const data = {
 			shipping_line_id       : values.shipping_line_id?.value,
 			search_type            : values?.search_type,
@@ -25,7 +21,6 @@ const useAddTracker = () => {
 		};
 
 		try {
-			// setLoading(true);
 			const res = await trigger({ data });
 
 			const { hasError } = res || {};
@@ -43,7 +38,6 @@ const useAddTracker = () => {
 			);
 		} catch (err) {
 			Toast.error("Couldn't add tracker");
-			// setLoading(false);
 		}
 	};
 

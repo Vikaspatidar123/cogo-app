@@ -15,7 +15,6 @@ function Header() {
 	const { general } = useSelector((s) => s);
 	const [isAddTrackerModalOpen, setAddTrackerModal] = useState(general?.query?.openModal);
 	const [show, setShow] = useState(false);
-	console.log(general?.query, 'general');
 	useEffect(() => {
 		if (general?.query?.redirect === 'true') {
 			setAddTrackerModal(true);

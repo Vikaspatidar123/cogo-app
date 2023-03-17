@@ -52,13 +52,6 @@ function FilterComponent({ trackers, setFilters, setShowFilters }) {
 		value : items.saas_container_subscription_id,
 	}));
 
-	// const bookWithCogoport = booked_with_cogoport.map((item) => (
-	// 	{
-	// 		label : item.id,
-	// 		value : item,
-	// 	}
-	// ));
-
 	const fields = Controls;
 
 	const handleSetFilters = () => {

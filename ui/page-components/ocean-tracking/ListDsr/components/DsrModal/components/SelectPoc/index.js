@@ -1,19 +1,3 @@
-// import { Flex, Text } from '@cogoport/front/components';
-// import { Formik, Field, Form, ErrorMessage } from 'formik';
-// import React, { useState, useMemo } from 'react';
-// import Skeleton from 'react-loading-skeleton';
-// import { toast } from 'react-toastify';
-// import * as Yup from 'yup';
-
-// import { useSaasState } from '../../../../../../../../common/context';
-// import { Input } from '../../../../../../../../common/ui';
-// import Button from '../../../../../../../../common/ui/Button';
-// import FormItem from '../../../../../../../../common/ui/FormItem';
-// import request from '../../../../../../../../common/utils/request';
-// import useFetchPoc from '../../../../../../hooks/useFetchPocs';
-// import AddPocs from '../add-poc';
-
-// import StyledPocCard from './styles';
 import { Input, Button } from '@cogoport/components';
 import { useState, useMemo } from 'react';
 
@@ -49,11 +33,6 @@ function SelectPoc({ setHeading, setStep, setSelectedPoc, setDsrId }) {
 		setPocList((prevPocList) => [data, ...prevPocList]);
 	};
 
-	// if (loading) {
-	// 	return <Skeleton count={3} />;
-	// }
-
-	// const { createPoc } = useCreatePoc();
 	const onSubmit = async (values) => {
 		const { poc } = values;
 		console.log(values, 'values');

@@ -1,4 +1,4 @@
-import { Placeholder, Pagination, Popover, Button } from '@cogoport/components';
+import { Placeholder, Pagination, Popover } from '@cogoport/components';
 import { IcMListView, IcMMap, IcMFilter } from '@cogoport/icons-react';
 import { useState } from 'react';
 
@@ -12,12 +12,9 @@ import styles from './styles.module.css';
 function TrackerCard({
 	archived, setArchived, loading, trackers, setTrackers, pagination, setPagination, filters, setFilters, selectedCardLabel, refetch,
 }) {
-	// const { loading, trackers, pagination, setPagination, filters, setFilters } = useFetchTrackers();
-
 	const [isMapView, setIsMapView] = useState(false);
 	const [showFilters, setShowFilters] = useState(false);
 	const trackerList = trackers?.list;
-	console.log(trackers, 'trackers');
 	return (
 		<div className={styles.container}>
 			<div className={styles.head}>

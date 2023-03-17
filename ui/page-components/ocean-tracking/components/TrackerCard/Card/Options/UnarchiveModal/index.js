@@ -2,7 +2,6 @@ import { Modal, Button } from '@cogoport/components';
 
 import styles from './styles.module.css';
 
-// import useDeleteTracker from '@/ui/page-components/ocean-tracking/hooks/useDeleteTracker';
 import useUnarchive from '@/ui/page-components/ocean-tracking/hooks/useUnarchive';
 
 function UnarchiveModal({

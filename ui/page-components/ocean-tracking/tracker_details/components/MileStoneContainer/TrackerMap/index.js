@@ -1,18 +1,5 @@
-// import Flex from '@cogoport/front/components/Flex';
-// import dynamic from 'next/dynamic';
-// import React, { useState, useEffect } from 'react';
-
-// import { isPastOrPresentDay } from '../../../page-components/tracker-details/components/milestones-container/common/utils';
-// import { useSaasState } from '../../context';
-// import UnionIcon from '../../icons/union.svg';
-// import 'leaflet/dist/leaflet.css';
-// import Modal from '../../ui/Modal';
-
-// import { ImageCard, TextCard, IFullscreen, MapUnable, Container } from './styles';
-
 import { Modal } from '@cogoport/components';
 import dynamic from 'next/dynamic';
-import Image from 'next/image';
 import { useState, useEffect } from 'react';
 
 import { isPastOrPresentDay } from '../common/utils';
@@ -39,7 +26,6 @@ function TrackerMap({
 	const [curvePoints, setCurvePoints] = useState([]);
 	const [completedPoints, setCompletedPoints] = useState([]);
 	const [remainingPoints, setRemainingPoints] = useState([]);
-	// const { isMobile } = useSaasState();
 	const RemainingPoint = points?.map((a) => ({
 		lat : a[1],
 		lng : a[0],
@@ -198,9 +184,6 @@ function TrackerMap({
 				show={isTrackerMapModalOpen}
 				onClose={handleTrackerMapModal}
 				placement="center"
-				// heading="Map"
-				// onClose={handleTrackerMapModal}
-				// isOpen={isTrackerMapModalOpen}
 			>
 				<TrackerMap
 					points={points}
@@ -219,13 +202,12 @@ function TrackerMap({
 	return isLoading || mapLoading ? (
 		<img
 			src="https://cogoport-maps.s3.ap-south-1.amazonaws.com/world+(2).svg"
-			// isMobile={isMobile}
 			alt=""
-			height={height}
+			height={600}
+			width={500}
 		/>
 	) : (
 		<div className={styles.container}>
-			{/* {!isModal && <IFullscreen onClick={handleTrackerMapModal} />} */}
 			<div className={points.length === 0 ? 'blur_screen' : ''}>
 				<CogoMaps
 					completedPoints={completedPoints}
@@ -236,7 +218,6 @@ function TrackerMap({
 					vesselLocationLat={vesselLocationLat}
 					vesselLocationLang={vesselLocationLang}
 					markers={markers}
-					// isMobile={isMobile}
 				/>
 			</div>
 			{!mapLoading && points.length === 0 && (
@@ -252,7 +233,6 @@ function TrackerMap({
 					</div>
 					<div className={styles.route} direction="row" justifyContent="space-evenly">
 						<div>{route?.origin_port || ''}</div>
-						{/* {route?.origin_port && <UnionIcon fill="black" style={{ margin: '18px' }} />} */}
 						<div>{route?.destination_port || ''}</div>
 					</div>
 				</div>

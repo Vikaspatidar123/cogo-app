@@ -1,11 +1,8 @@
 import { Toast } from '@cogoport/components';
 
 import { useRequest } from '@/packages/request';
-// import { useSelector } from '@/packages/store';
 
 function useAddCommodity({ trackerDetails, setTrackerDetails, handleModal }) {
-	// const { profile } = useSelector((s) => s);
-	// const { general } = useSelector((s) => s);
 	const [{ loading }, trigger] = useRequest({
 		url    : 'create_saas_shipment_details',
 		method : 'post',

@@ -9,25 +9,6 @@ function useGetOceanRoutes() {
 		url    : 'get_container_sea_route',
 		method : 'post',
 	}, { manual: true });
-
-	// const getAllOceanRoutes = async () => {
-	// 	let requestData = {};
-	// 	requestData = {
-	// 		status                         : 'active',
-	// 		saas_container_subscription_id : saasSubscriptionId,
-	// 	};
-
-	// 	try {
-	// 		const res = await trigger({ data: requestData });
-	// 		const { hasError, data } = res || {};
-	// 		Toast.error(data?.message);
-	// 		if (hasError) throw new Error();
-
-	// 		console.log(res, 'res');
-	// 	} catch (err) {
-	// 		Toast.error(err?.data?.message);
-	// 	}
-	// };
 	const getAllOceanRoutes = async (ocean_data) => {
 		try {
 			const container_no = ocean_data.container_details.map((c) => c.container_no).flat();

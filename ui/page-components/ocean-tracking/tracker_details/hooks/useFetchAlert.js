@@ -4,8 +4,6 @@ import { useRequest } from '@/packages/request';
 // import { useSelector } from '@/packages/store';
 
 const useFetchAlerts = () => {
-	// const { general } = useSelector((s) => s);
-	// const [loadingAlertDetails, setLoadingAlertDetails] = useState(false);
 	const [{ loading }, trigger] = useRequest({
 		url    : 'get_saas_container_alert',
 		method : 'get',

@@ -1,4 +1,4 @@
-import { FILTER_KEYS, FILTER_KEY_TO_ID, FILTER_CARDS_LIST } from './constants';
+import { FILTER_KEYS, FILTER_KEY_TO_ID} from './constants';
 
 const prepareFilters = (filters, filters_data) => {
 	const finalFilters = {};

@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import { FluidContainer, Popover } from '@cogoport/components';
 import { IcMDelete, IcMOverflowDot } from '@cogoport/icons-react';
 import { useState } from 'react';
@@ -12,8 +13,6 @@ import styles from './styles.module.css';
 import { useRouter } from '@/packages/next';
 
 function Card({ tracker, setTrackers, refetch }) {
-	console.log(tracker, 'tracker');
-
 	const SEVERITY_TO_ALERT_TYPE = {
 		LOW  : 'success',
 		HIGH : 'error',
@@ -43,7 +42,6 @@ function Card({ tracker, setTrackers, refetch }) {
 
 	const actionList = action ? action[activeCarouselIndex] : {};
 
-	console.log(containerStatus, 'containerStatus');
 	const [showPopover, setShowPopover] = useState(false);
 	const onRender = () => (
 		<Options
@@ -56,31 +54,17 @@ function Card({ tracker, setTrackers, refetch }) {
 	);
 	const { push } = useRouter();
 	const handleTrackingDetails = (key) => {
-		console.log(isTrackerEmpty, 'rtraceker empty');
 		if (isTrackerEmpty) return;
-		console.log('asd');
 		push('/saas/tracking/[tracker_id]', `/saas/tracking/${key}`);
 	};
 	const [showDeleteModal, setDeleteModal] = useState(false);
-	// const [show, setShow] = useState(false);
 	return (
 		<div>
 			<FluidContainer className={styles.container}>
-				{/* <div className={styles.head}>
-				<div className={styles.booking_no}>
-					{tracker.type === 'CONTAINER_NO' ? 'Container No:' : 'BL/Booking no:'}
-					{' '}
-					{tracker.input}
-
-				</div>
-				<div className={styles.icon_style}>
-					<IcMOverflowDot />
-				</div>
-			</div> */}
 				{!isTrackerEmpty && (
 					<>
 						<div className={styles.child_container}>
-							<div className={styles.stepper} onClick={() => handleTrackingDetails(tracker.id)}>
+							<div role="presentation" className={styles.stepper} onClick={() => handleTrackingDetails(tracker.id)}>
 								<div className={styles.booking_no}>
 									{tracker.type === 'CONTAINER_NO' ? 'Container No:' : 'BL/Booking no:'}
 									{' '}

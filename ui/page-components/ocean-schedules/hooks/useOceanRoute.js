@@ -18,7 +18,6 @@ const useOceanRoute = () => {
 					destination_port_id,
 				},
 			});
-
 			const respData = resp?.data?.the_geom;
 			setMapPoints(respData);
 			setRouteDataLength(respData?.length === 0);

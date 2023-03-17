@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import dynamic from 'next/dynamic';
 import { useState, useEffect } from 'react';
 
@@ -60,7 +59,7 @@ function Map({
 		if (billId === '') {
 			setMapPoints([]);
 		}
-	}, []);
+	}, [billId, setMapPoints]);
 
 	useEffect(() => {
 		if (originLength > 0 && destinationlength > 0) {
@@ -68,7 +67,7 @@ function Map({
 				getOceanRoute(origin_port?.id, destination_port?.id);
 			}
 		}
-	}, [JSON.stringify(origin_port), JSON.stringify(destination_port)]);
+	}, [destination_port?.id, destinationlength, getOceanRoute, originLength, origin_port?.id, transportMode]);
 
 	useEffect(() => {
 		if (mapPoints?.length > 0) {
@@ -113,7 +112,7 @@ function Map({
 		} else if (mapPoints?.length === 0) {
 			setCurvePoints([]);
 		}
-	}, [JSON.stringify(mapPoints)]);
+	}, [mapPoints, transportMode]);
 
 	return (
 		<div>

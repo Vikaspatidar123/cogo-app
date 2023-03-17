@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import { DateRangepicker, Button } from '@cogoport/components';
 import { format } from '@cogoport/utils';
 import React, { useEffect, useState } from 'react';
@@ -46,14 +45,10 @@ function Filter({
 			};
 			setFilters(airFilter);
 		}
-	}, [
-		filterCarrier,
+	}, [filterCarrier,
 		departureDate?.startDate,
-		departureDate?.endDate,
-		arrivalDate?.startDate,
-		arrivalDate?.endDate,
-		durationValue,
-	]);
+		departureDate.endDate,
+		arrivalDate?.startDate, arrivalDate?.endDate, durationValue, departureDate, arrivalDate, setFilters]);
 
 	const handleCheckList = (item, value) => {
 		if (value === 'carrier') {

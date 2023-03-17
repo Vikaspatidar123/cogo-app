@@ -12,8 +12,7 @@ function Route({ positions, map }) {
 		if (line.getBounds()?._northEast) {
 			map.fitBounds(line.getBounds());
 		}
-	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [map]);
+	}, [map, positions]);
 	return null;
 }
 export default Route;

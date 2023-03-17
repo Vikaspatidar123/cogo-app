@@ -1,8 +1,8 @@
 import { merge } from '@cogoport/utils';
 
-import useDebounceQuery from './useDebounceQuery';
+import { useRequestBf } from '../../request';
 
-import { useRequestBf } from '@/packages/request';
+import useDebounceQuery from './useDebounceQuery';
 
 function useGetAsyncOptionsBf({
 	endpoint = '',
@@ -12,19 +12,18 @@ function useGetAsyncOptionsBf({
 	params = {},
 	authKey = '',
 }) {
-	const { query, debounceQuery } = useDebounceQuery();``
-
+	const { query, debounceQuery } = useDebounceQuery();
 	const [{ data, loading }] = useRequestBf({
-		url: endpoint,
-		method: 'GET',
+		url    : endpoint,
+		method : 'GET',
 		authKey,
-		params: merge(params, { query }),
+		params : merge(params, { query }),
 	}, { manual: !(initialCall || query) });
 	const options = data?.list || [];
 
 	const [{ loading: loadingSingle }, triggerSingle] = useRequestBf({
-		url: endpoint,
-		method: 'GET',
+		url    : endpoint,
+		method : 'GET',
 		authKey,
 	}, { manual: true });
 

@@ -3,7 +3,7 @@ import styles from '../styles.module.css';
 
 import { useRouter } from '@/packages/next';
 
-function Profile({ setShowPopover = () => { } }) {
+function Profile({ setShowPopover = () => {} }) {
 	const router = useRouter();
 
 	const handleClick = async () => {
@@ -16,7 +16,11 @@ function Profile({ setShowPopover = () => { } }) {
 		<div className={styles.account_settings}>
 			<ProfileIcon style={{ marginRight: '12px' }} />
 
-			<div className={styles.A} onClick={(e) => handleClick(e)} role="presentation">
+			<div
+				className={styles.a_container}
+				onClick={(e) => handleClick(e)}
+				role="presentation"
+			>
 				Account Settings
 			</div>
 		</div>

@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import { setCookie } from '@cogoport/utils';
 
 const setCookieAndRedirect = (token, ctx, redirectPath = undefined) => {

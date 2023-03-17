@@ -1,119 +1,103 @@
 import { Toast } from '@cogoport/components';
-// import { useFormCogo } from '@cogoport/front/hooks';
 import { useEffect } from 'react';
 
 import getControls from './controls';
 
 import { useForm } from '@/packages/forms';
 import { useRequest } from '@/packages/request';
-import { useSelector } from '@/packages/store';
 
 const useEditPocDetails = ({
-	getOrganizationBillingAddress = () => { },
-	getOrganizationOtherAddresses = () => { },
-	type = '',
-	pocToUpdate = {},
-	address_data = {},
+	type,
+	address_data,
+	setShowPocModal,
+	refetch,
 	showPocModal,
-	setShowPocModal = () => { },
+	pocToUpdate,
 }) => {
-	const {
-		profile: { organization },
-	} = useSelector((state) => state);
-
 	const fields = getControls();
+	const endPoint = type === 'other_address'
+		? '/update_organization_address'
+		: '/update_organization_billing_address';
+	const editEndPoint = '/update_organization_poc';
+	const api = showPocModal === 'edit' ? editEndPoint : endPoint;
+	const [{ loading }, trigger] = useRequest(
+		{
+			url    : api,
+			method : 'post',
+		},
+		{ manual: true },
+	);
 
-	// const addPocAPI = type === 'billing_address'
-	// 	? 'update_channel_partner_billing_address'
-	// 	: 'update_channel_partner_address';
-
-	// const apiName = showPocModal === 'edit' ? '/update_channel_partner_poc' : addPocAPI;
-
-	// const addUpdatePocAPI = useRequest('post', false, 'partner')(apiName);
-
-	// const { loading } = addUpdatePocAPI;
-
-	const {
-		formState, setValues, handleSubmit,
-		control,
-	} = useForm();
-
-	// useEffect(() => {
-	// 	if (showPocModal === 'edit') {
-	// 		setValues({
-	// 			name         : pocToUpdate.name,
-	// 			email        : pocToUpdate.email,
-	// 			phone_number : {
-	// 				country_code : pocToUpdate.mobile_country_code,
-	// 				number       : pocToUpdate.mobile_number,
-	// 			},
-	// 			alternate_phone_number: {
-	// 				country_code : pocToUpdate.alternate_mobile_country_code,
-	// 				number       : pocToUpdate.alternate_mobile_number,
-	// 			},
-	// 		});
-	// 	}
-	// }, []);
-
-	// const onCreate = async (values) => {
-	// 	try {
-	// 		const poc_details = {
-	// 			name                    : values.name,
-	// 			email                   : values.email,
-	// 			mobile_number           : values.phone_number?.number,
-	// 			mobile_country_code     : values.phone_number?.country_code,
-	// 			alternate_mobile_number :
-	// 				values.alternate_phone_number?.number || undefined,
-	// 			alternate_mobile_country_code:
-	// 				values.alternate_phone_number?.country_code || undefined,
-	// 		};
-
-	// 		let body = {
-	// 			partner_id: partner.id,
-	// 		};
-
-	// 		if (showPocModal === 'edit') {
-	// 			body = { ...body, ...poc_details, poc_id: pocToUpdate.id };
-	// 		} else {
-	// 			body = {
-	// 				...body,
-	// 				address_id  : address_data.id,
-	// 				poc_details : [poc_details],
-	// 			};
-	// 		}
-
-	// 		await addUpdatePocAPI.trigger({
-	// 			data: body,
-	// 		});
-
-	// 		Toast.success(
-	// 			`POC ${showPocModal === 'edit'
-	// 				? 'editPoc'
-	// 				: 'toastMessage'
-	// 			}
-
-	// 	}`,
-	// 		);
-
-	// 		if (type === 'billing_address') {
-	// 			getOrganizationBillingAddress();
-	// 		} else {
-	// 			getOrganizationOtherAddresses();
-	// 		}
-
-	// 		setShowPocModal(false);
-	// 	} catch (err) {
-	// 		Toast.error(err.data);
-	// 	}
-	// };
+	const { formState, handleSubmit, control, setValue } = useForm();
+	const setValues = () => {
+		fields?.map((item) => setValue(item?.name, pocToUpdate[item.name]));
+		const phone_number = {
+			number       : pocToUpdate?.mobile_number,
+			country_code : pocToUpdate?.mobile_country_code,
+		};
+		setValue('phone_number', phone_number);
+		const alternate_phone_number = {
+			number       : pocToUpdate?.alternate_mobile_number,
+			country_code : pocToUpdate?.alternate_mobile_country_code,
+		};
+		setValue('alternate_phone_number', alternate_phone_number);
+	};
+	useEffect(() => {
+		if (pocToUpdate !== null && showPocModal === 'edit') {
+			setValues();
+		}
+		/* eslint-disable react-hooks/exhaustive-deps */
+	}, []);
+	const onCreate = async (value) => {
+		const { phone_number = {}, alternate_phone_number, ...prop } = value || {};
+		const poc_details = [
+			{
+				...prop,
+				mobile_number       : phone_number?.number || undefined,
+				mobile_country_code : phone_number?.country_code || undefined,
+				alternate_mobile_number:
+          value?.alternate_phone_number?.number || undefined,
+				alternate_mobile_country_code:
+          value?.alternate_phone_number?.country_code || undefined,
+			},
+		];
+		const edit = {
+			...prop,
+			mobile_number           : phone_number?.number || undefined,
+			mobile_country_code     : phone_number?.country_code || undefined,
+			alternate_mobile_number : alternate_phone_number?.number || undefined,
+			alternate_mobile_country_code:
+        alternate_phone_number?.country_code || undefined,
+		};
+		const payload = showPocModal === 'edit'
+			? {
+				...edit,
+				id: pocToUpdate.id,
+			}
+			: {
+				poc_details,
+				id: address_data.id,
+			};
+		try {
+			await trigger({
+				data: payload,
+			});
+			Toast.success('Successfull Update');
+			setShowPocModal(false);
+			refetch();
+		} catch (err) {
+			const error = Object.values(err?.response?.data).map((x) => x);
+			if (error) Toast.error(error);
+		}
+	};
 
 	return {
 		fields,
 		formState,
 		handleSubmit,
-		// onCreate,
-		// loading,
 		control,
+		onCreate,
+		loading,
 	};
 };
 

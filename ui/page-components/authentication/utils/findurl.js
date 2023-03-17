@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import redirections from './redirections';
 
 import redirect from '@/ui/commons/utils/redirect';

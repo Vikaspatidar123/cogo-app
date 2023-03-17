@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { Toast } from '@cogoport/components';
 import { merge } from '@cogoport/utils';
 import { useEffect, useState } from 'react';
@@ -6,34 +7,40 @@ import getOrganizationControls from '../EditOrganizationDetails/get-organization
 
 import {
 	useForm,
-	asyncFieldsLocations, useGetAsyncOptions,
+	asyncFieldsLocations,
+	useGetAsyncOptions,
 } from '@/packages/forms';
 import { useRequest } from '@/packages/request';
-import getUser from '@/ui/page-components/profile/hooks/getUser';
+import useGetUser from '@/ui/page-components/profile/hooks/useGetUser';
 
 const useEditOrganizationDetails = ({
 	organizationData = {},
-	getOrganization = () => { },
-	setShowEditOrganizationDetails = () => { },
+	getOrganization = () => {},
+	setShowEditOrganizationDetails = () => {},
 }) => {
 	const [errors, setErrors] = useState({});
-	const { refetch } = getUser();
-	const cityOptions = useGetAsyncOptions(merge(asyncFieldsLocations(), {
-		params: { filters: { type: ['city'] } },
-	}));
+	const { refetch } = useGetUser();
+	const cityOptions = useGetAsyncOptions(
+		merge(asyncFieldsLocations(), {
+			params: { filters: { type: ['city'] } },
+		}),
+	);
 	const controls = getOrganizationControls({ cityOptions, organizationData });
 
-	const [{ loading }, trigger] = useRequest({
-		url    : '/update_organization',
-		method : 'post',
-	}, { manual: true });
+	const [{ loading }, trigger] = useRequest(
+		{
+			url    : '/update_organization',
+			method : 'post',
+		},
+		{ manual: true },
+	);
 
-	const {
-		handleSubmit = () => { }, setValue, control,
-	} = useForm();
-
+	const { handleSubmit = () => {}, setValue, control } = useForm();
 	useEffect(() => {
 		(controls || []).map((item) => setValue(item.name, organizationData[item.name]));
+		if (organizationData.logo) {
+			setValue('logo', organizationData.logo);
+		}
 	}, [organizationData]);
 
 	const onError = (err) => {
@@ -62,11 +69,14 @@ const useEditOrganizationDetails = ({
 				city_id             : values.city_id || undefined,
 				registration_number : values.registration_number || undefined,
 				website             : values.website || undefined,
-				logo                : values.logo?.finalUrl || undefined,
+				logo                : values.logo || undefined,
 				about               : values.about || undefined,
 			};
 			const rep = await trigger({ data: body });
-			if (rep) { await refetch(); setShowEditOrganizationDetails(false); }
+			if (rep) {
+				await refetch();
+				setShowEditOrganizationDetails(false);
+			}
 			Toast.success('Successfull Update');
 			if (values.city_id) {
 				getOrganization();

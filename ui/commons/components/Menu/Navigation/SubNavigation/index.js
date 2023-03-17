@@ -13,11 +13,7 @@ function SubNavigation({ setIsOpen, setShowPopover, subscriptionNav }) {
 	const { options } = subscriptionNav || {};
 	const { push } = useRouter();
 	const handleClick = async (href, as) => {
-		push(
-			href,
-			as,
-			true,
-		);
+		push(href, as, true);
 		setShowPopover(false);
 		setIsOpen(false);
 	};
@@ -25,8 +21,9 @@ function SubNavigation({ setIsOpen, setShowPopover, subscriptionNav }) {
 		<div>
 			{options.map(({ title, href, as }) => (
 				<div
-					className={`${styles.A}`}
+					className={`${styles.a_container}`}
 					onClick={() => handleClick(href, as)}
+					role="presentation"
 				>
 					{title}
 				</div>

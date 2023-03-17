@@ -6,7 +6,6 @@ function CheckboxController(props) {
 	const {
 		name, control, rules, value, ...rest
 	} = props;
-
 	return (
 		<Controller
 			key={rest.id}

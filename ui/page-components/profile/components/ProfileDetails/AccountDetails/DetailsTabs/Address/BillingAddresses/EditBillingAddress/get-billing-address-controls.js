@@ -1,8 +1,10 @@
-/* eslint-disable max-len */
-// eslint-disable-next-line import/no-unresolved
+/* eslint-disable import/no-unresolved */
 import data from '@/.data-store/constants/countries.json';
 
-const country_code = data?.map((x) => ({ label: x.mobile_country_code, value: x.mobile_country_code }));
+const country_code = data?.map((x) => ({
+	label : x.mobile_country_code,
+	value : x.mobile_country_code,
+}));
 const fields = [
 	{
 		name        : 'name',
@@ -33,8 +35,7 @@ const fields = [
 		rules       : {
 			required : true,
 			pattern  : {
-				// value: geo.regex.GST,
-				message: 'translationKey',
+				message: 'GST Number Required ',
 			},
 		},
 	},
@@ -69,6 +70,7 @@ const fields = [
 		type        : 'text',
 		style       : { width: '370px' },
 		rules       : { required: true },
+		mode        : 'poc',
 	},
 	{
 		name        : 'phone_number',
@@ -77,14 +79,13 @@ const fields = [
 		type        : 'mobile_number',
 		inputType   : 'number',
 		select2     : 'new',
-		style       : { width: '245px' },
+		style       : { width: '200px' },
 		options     : country_code,
 		rules       : {
 			required : true,
-			validate : (value) => (value?.country_code && value?.number
-				? undefined
-				: 'phone_number'),
+			validate : (value) => (value?.country_code && value?.number ? undefined : 'Phone Number'),
 		},
+		mode: 'poc',
 	},
 	{
 		name        : 'poc_email',
@@ -93,35 +94,30 @@ const fields = [
 		type        : 'text',
 		style       : { width: '370px' },
 		rules       : { required: true },
+		mode        : 'poc',
 	},
 	{
-		name   : 'sez_proof',
-		label  : 'Sez Proof',
-		type   : 'file',
-		drag   : true,
-		style  : { width: '370px' },
-		accept :
-			'image/*,.pdf,.doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document',
-		rules: {
-			required: 'sez_proof',
+		name  : 'sez_proof',
+		label : 'Sez Proof',
+		type  : 'file',
+		drag  : true,
+		style : { width: '370px' },
+		rules : {
+			required: 'Sez Proof',
 		},
 	},
 	{
-		name   : 'tax_number_document_url',
-		label  : 'GST Proof',
-		type   : 'file',
-		style  : { width: '370px' },
-		accept :
-			'image/*,.pdf,.doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document',
-		rules: {
-			required: 'tax_number_document_url',
+		name  : 'tax_number_document_url',
+		label : 'GST Proof',
+		type  : 'file',
+		style : { width: '370px' },
+		rules : {
+			required: 'Tax Number Document Url',
 		},
 	},
 ];
 
-const getBillingAddressControls = ({
-	cityPincode = {},
-}) => fields.map((control) => {
+const getBillingAddressControls = ({ cityPincode = {} }) => (fields || []).map((control) => {
 	const { name } = control;
 	let newControl = { ...control };
 

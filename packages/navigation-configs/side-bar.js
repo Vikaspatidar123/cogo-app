@@ -1,4 +1,4 @@
-import { navigationMappings } from '@/packages/navigation-configs/index';
+import navigationMappings from './navigation-mapping';
 
 const getCondition = (urlItem) => {
 	const condition = {};

@@ -1,60 +1,53 @@
-
-
 .layout_container {
-	padding: 0px 48px;
+	padding: 0 48px;
 }
-.form-item-label {
-		margin: 32px 0 8px 0;
-		color: #828282;
-		font-weight: 700;
-		font-size: 12px;
-		line-height: 16px;
-	}
 
-.business-checkbox-group-container {
-		flex-direction: row;
-
-		
-	}
-
-
-.business-checkbox-label {
-		font-size: 12px;
-		margin-right: 36px;
-	}
-.heading{
-	font-weight: 500;
+.heading {
 	font-size: 16px;
+	font-weight: 500;
 	line-height: 19px;
-	color: #000000;
+	color: #000;
 }
 
-.button_container{
+.button_container {
 	display: flex;
 	justify-content: flex-end;
 	margin-top: 48px;
 }
 
-
-.layout{
-	display:flex;
+.layout {
+	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-between;
 }
 
+.field {
+	:global {
+		.ui_upload_droparea_container {
+			flex-direction: row;
+			min-height: 20px;
+			padding: 0;
 
-.field{
-	:global{
-		.ui_upload_droparea_container{
-			min-height:20px;
+			svg {
+				width: 40px;
+				height: 40px;
+			}
 		}
 	}
 }
 
-.lable{
-    margin: 32px 0px 8px;
-    color: rgb(130, 130, 130);
-    font-weight: 700;
-    font-size: 12px;
-    line-height: 16px;
+.lable {
+	margin: 8px 0;
+	font-size: 12px;
+	font-weight: 700;
+	line-height: 16px;
+	color: rgb(130 130 130);
+}
+
+.errors {
+	min-height: 16px;
+	margin-top: 4px;
+	font-size: 12px;
+	line-height: 16px;
+	color: #cb6464;
 }

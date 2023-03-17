@@ -1,13 +1,8 @@
 import { Toast } from '@cogoport/components';
 
 import { useRequest } from '@/packages/request';
-import { useSelector } from '@/packages/store';
 
 const useCreateBillingAddress = ({ isSez, orgId, setInviteTeam }) => {
-	const {
-		profile,
-	} = useSelector((state) => state);
-
 	const [{ loading: createBillingAddressLoading }, createBillingAddresstrigger] = useRequest({
 		url    : 'organization/create_organization_billing_address',
 		method : 'post',

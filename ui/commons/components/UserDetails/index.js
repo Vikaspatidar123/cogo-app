@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/no-static-element-interactions */
 import { Popover } from '@cogoport/components';
 import { IcMArrowDown } from '@cogoport/icons-react';
 import { startCase } from '@cogoport/utils';
@@ -11,9 +10,7 @@ import styles from './styles.module.css';
 import { useSelector } from '@/packages/store';
 
 function UserName() {
-	const {
-		business_name, branch_name, total_branches,
-	} = useSelector(
+	const { business_name, branch_name, total_branches } = useSelector(
 		({ profile }) => ({
 			business_name  : (profile.organization || {}).business_name || '',
 			branch_name    : (profile.branch || {}).branch_name || '',
@@ -29,7 +26,9 @@ function UserName() {
 		}
 	}, [showPopover]);
 
-	const renderBody = () => <Menu setShow={setShow} show={show} setShowPopover={setShowPopover} />;
+	const renderBody = () => (
+		<Menu setShow={setShow} show={show} setShowPopover={setShowPopover} />
+	);
 
 	return (
 		<div className={styles.container}>
@@ -47,6 +46,7 @@ function UserName() {
 					className={styles.container_flex}
 					style={{ cursor: 'pointer' }}
 					onClick={() => setShowPopover(!showPopover)}
+					role="presentation"
 				>
 					<div className={styles.bussiness_name} size={14} color="#333">
 						{startCase(business_name)}

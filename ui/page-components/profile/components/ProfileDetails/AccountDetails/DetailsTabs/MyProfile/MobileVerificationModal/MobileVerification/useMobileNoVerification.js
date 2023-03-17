@@ -1,16 +1,12 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { Toast } from '@cogoport/components';
-import { useTranslation } from 'next-i18next';
 import { useEffect, useMemo, useState } from 'react';
 
 import getControls from './controls';
 
 import { useForm } from '@/packages/forms';
-
-// import { getGeoConstants } from '@/constants/geo';
 import { useRequest } from '@/packages/request';
 import { useSelector } from '@/packages/store';
-
-// const geo = getGeoConstants();
 
 const useMobileNoVerification = ({ type = '' }) => {
 	const {
@@ -24,34 +20,32 @@ const useMobileNoVerification = ({ type = '' }) => {
 	const [showEnterOtpComponent, setShowEnterOtpComponent] = useState(false);
 	const [otpNumber, setOtpNumber] = useState('');
 
-	// const verifyMobileNumberAPI = useRequest(
-	// 	'post',
-	// 	false,
-	// 	'partner',
-	// )('/verify_channel_partner_user_mobile');
-	const [{ loading }, trigger] = useRequest({
-		url    : '/update_user',
-		method : 'post',
-	}, { manual: false });
+	const [{ loading }, trigger] = useRequest(
+		{
+			url    : '/update_user',
+			method : 'post',
+		},
+		{ manual: false },
+	);
 
 	const controls = getControls();
 
-	const newControls = useMemo(() => controls?.map((control) => {
-		if (control?.name === 'mobileNumber' && type === 'verify') {
-			return {
-				...control,
-				value: {
-					country_code:
-							mobileCountryCode
-							|| control?.value?.country_code,
-					// || geo.country.mobile_country_code,
-					number: mobileNumber || control?.value?.number || '',
-				},
-			};
-		}
+	const newControls = useMemo(
+		() => controls?.map((control) => {
+			if (control?.name === 'mobileNumber' && type === 'verify') {
+				return {
+					...control,
+					value: {
+						country_code : mobileCountryCode || control?.value?.country_code,
+						number       : mobileNumber || control?.value?.number || '',
+					},
+				};
+			}
 
-		return { ...control };
-	}), [controls, mobileCountryCode, mobileNumber]);
+			return { ...control };
+		}),
+		[controls, mobileCountryCode, mobileNumber],
+	);
 
 	const formProps = useForm();
 
@@ -64,6 +58,7 @@ const useMobileNoVerification = ({ type = '' }) => {
 	const verifyMobileNumber = async ({ actionType = {}, ...restProps }) => {
 		try {
 			const values = formProps.getValues();
+
 			let payload = {
 				mobile_country_code : values?.mobileNumber?.country_code,
 				mobile_number       : values?.mobileNumber?.number,
@@ -76,23 +71,17 @@ const useMobileNoVerification = ({ type = '' }) => {
 
 			if (actionType === 'SEND_OTP') {
 				setShowEnterOtpComponent(true);
-
-				// Toast.success(
-				// 	'verifyMobile',
-				// );
-
 				restProps?.timer?.restart?.();
 			}
 
 			if (actionType === 'VERIFY_OTP') {
-				Toast.success(
-					'verifyMobile',
-				);
+				Toast.success('Verify Mobile Number');
 
+				// eslint-disable-next-line no-undef
 				window.location.reload();
 			}
 		} catch (error) {
-			Toast.error((error.data));
+			Toast.error(error.data);
 		}
 	};
 
@@ -113,9 +102,9 @@ const useMobileNoVerification = ({ type = '' }) => {
 		showEnterOtpComponent,
 		otpNumber,
 		setOtpNumber,
-		// verifyMobileNumberAPI,
 		sendOtpNumber,
 		verifyOtpNumber,
+		loading,
 	};
 };
 

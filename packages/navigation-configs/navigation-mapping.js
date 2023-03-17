@@ -53,7 +53,10 @@ const navigationMappings = {
 				/>,
 				description: 'Seamlessly keep track of your shipments and deviations',
 			},
+<<<<<<< HEAD
 
+=======
+>>>>>>> cad61a42c8754eb279f725be1856a58084ef3d92
 		],
 	},
 
@@ -148,6 +151,9 @@ const navigationMappings = {
 		type          : 'link',
 		showMobileNav : true,
 	},
+<<<<<<< HEAD
 
+=======
+>>>>>>> cad61a42c8754eb279f725be1856a58084ef3d92
 };
 export default navigationMappings;

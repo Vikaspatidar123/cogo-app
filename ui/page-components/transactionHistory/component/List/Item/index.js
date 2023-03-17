@@ -17,7 +17,6 @@ function Item({
 	fields,
 	handleClick,
 	loading,
-	isMobel = false,
 	functions,
 	sort,
 }) {

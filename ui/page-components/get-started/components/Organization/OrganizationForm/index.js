@@ -92,7 +92,7 @@ function OrganizationForm({ setBillingAddressDetails, setOrgId, setOrgBranchId }
 				<div className={styles.button_container}>
 					<Button
 						size="lg"
-						themeType="accent"
+						themeType="primary"
 						type="submit"
 						className={styles.button}
 						loading={createOrganizationLoading}

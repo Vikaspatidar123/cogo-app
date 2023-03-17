@@ -15,5 +15,6 @@ const PUBLIC_PATHS = [
 	'/generate-outlook-token',
 	'/get-started',
 	'/signup',
+	'/verify-email/[id]',
 ];
 export default PUBLIC_PATHS;

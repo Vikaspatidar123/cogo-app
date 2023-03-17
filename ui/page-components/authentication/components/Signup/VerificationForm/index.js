@@ -2,8 +2,8 @@ import { Button } from '@cogoport/components';
 import { IcCSendEmail } from '@cogoport/icons-react';
 import React, { useState } from 'react';
 
-import useEmailVerification from '../../hooks/useEmailVerification';
-import useOtpVerification from '../../hooks/useOtpVerification';
+import useEmailVerification from '../../../hooks/useEmailVerification';
+import useOtpVerification from '../../../hooks/useOtpVerification';
 
 import styles from './styles.module.css';
 

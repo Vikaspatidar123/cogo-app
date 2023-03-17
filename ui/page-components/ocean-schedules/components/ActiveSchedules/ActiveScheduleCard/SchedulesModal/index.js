@@ -15,7 +15,7 @@ export function SchedulesModal({
 	const destinationSchedule =	 scheduleDetails?.destination_port?.port_code || 'Destination';
 
 	const legs = schedule?.legs || [];
-	console.log(legs, 'legs');
+
 	return (
 		<Modal show={openSchedulesModal} closeOnOuterClick showCloseIcon onClose={handleClose}>
 			<Modal.Header title="Schedule Details" />
@@ -78,7 +78,7 @@ export function SchedulesModal({
 					</div>
 				</div>
 				{legs?.length > 0 && (legs || []).map((leg) => (
-					<div>
+					<div className={styles.leg_container}>
 						<div className={styles.line_seperator} />
 						<LegsItem legItem={leg} />
 					</div>

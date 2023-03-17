@@ -12,7 +12,7 @@ function LegsItem({ legItem = {} }) {
 	const destinationSchedule =	locationsList.filter((item) => item.id === legItem.destination_port_id)[0]
 		?.display_name || 'Destination';
 	return (
-		<div>
+		<div className={styles.container}>
 			<div className={styles.header}>
 				{legItem?.transport_type}
 				:
@@ -34,10 +34,14 @@ function LegsItem({ legItem = {} }) {
 					</Pill>
 				</div>
 				<div className={styles.dot_circle}>
-					<div className={styles.circle1}><div className={styles.port_code}>{originSchedule}</div></div>
+					<div className={styles.circle1} />
 					<div className={styles.line} />
-					<div className={styles.circle2}>
-						<div className={styles.port_code}>{destinationSchedule}</div>
+					<div className={styles.circle2} />
+				</div>
+				<div>
+					<div className={styles.port_container}>
+						<div className={styles.port_code}>{originSchedule}</div>
+						<div>{destinationSchedule}</div>
 					</div>
 				</div>
 			</div>

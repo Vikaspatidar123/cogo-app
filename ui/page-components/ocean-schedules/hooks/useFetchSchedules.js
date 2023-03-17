@@ -1,8 +1,6 @@
 import { Toast } from '@cogoport/components';
 import { useState, useEffect } from 'react';
 
-import { prepareFilters } from '../utils/utils';
-
 import { useRequest } from '@/packages/request';
 import { useSelector } from '@/packages/store';
 
@@ -15,6 +13,8 @@ const useFetchSchedules = ({ pageLimit = 10, currentPage }) => {
 		method : 'get',
 		url    : '/list_sailing_schedule_subscriptions',
 	}, { manual: true });
+
+	const prepareFilters = () => {};
 
 	const fetchSchedules = async () => {
 		try {

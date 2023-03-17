@@ -82,11 +82,11 @@ export function SchedulesModal({
 						</div>
 					</div>
 				</div>
-				{legs?.length > 0 && legs?.map((leg) => (
-					<>
+				{legs?.length > 0 && (legs || []).map((leg) => (
+					<div className={styles.leg_container}>
 						<div className={styles.line_seperator} />
 						<LegsItem legItem={leg} />
-					</>
+					</div>
 				))}
 			</Modal.Body>
 		</Modal>

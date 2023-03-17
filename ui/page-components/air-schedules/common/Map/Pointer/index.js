@@ -11,8 +11,7 @@ function Pointer({ lat = '', lng = '', iconSvg }) {
 			iconAnchor : [12.75, 12.75],
 		});
 		L.marker([lat, lng], { icon }).addTo(map);
-	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [map]);
+	}, [iconSvg, lat, lng, map]);
 	return null;
 }
 

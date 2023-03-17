@@ -1,6 +1,5 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import { Toast } from '@cogoport/components';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 
 import request, { useRequest } from '@/packages/request';
 import { useSelector } from '@/packages/store';
@@ -22,7 +21,7 @@ const useFetchScheduleDetails = ({
 		method : 'get',
 	}, { manual: true });
 
-	const fetchScheduleDetails = async () => {
+	const fetchScheduleDetails = useCallback(async () => {
 		try {
 			const res = await request({
 				params: {
@@ -39,9 +38,9 @@ const useFetchScheduleDetails = ({
 		} catch (err) {
 			Toast.error(err);
 		}
-	};
+	}, [currentPage, filters, id, pageLimit, profile.id, scheduleDetails?.filter_data, sortBy]);
 
-	const fetchFilterScheduleDetails = async () => {
+	const fetchFilterScheduleDetails = useCallback(async () => {
 		try {
 			setActiveFilter(true);
 			const res = await trigger({
@@ -69,7 +68,7 @@ const useFetchScheduleDetails = ({
 		} catch (err) {
 			Toast.error(err);
 		}
-	};
+	}, [currentPage, filters, id, pageLimit, profile.id, trigger]);
 
 	useEffect(() => {
 		const isFirstVisit = general?.query?.isFirstVisit !== null;
@@ -78,11 +77,11 @@ const useFetchScheduleDetails = ({
 		} else {
 			fetchScheduleDetails(isFirstVisit);
 		}
-	}, [sortBy]);
+	}, [sortBy, fetchScheduleDetails, general?.query?.isFirstVisit]);
 
 	useEffect(() => {
 		fetchFilterScheduleDetails();
-	}, [filters, currentPage]);
+	}, [filters, currentPage, fetchFilterScheduleDetails]);
 
 	return {
 		activeFilter,

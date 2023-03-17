@@ -1,5 +1,5 @@
 import { Toast } from '@cogoport/components';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 
 import { useRequest } from '@/packages/request';
 import { useSelector } from '@/packages/store';
@@ -16,7 +16,7 @@ const useFetchSchedules = ({ currentPage }) => {
 		url    : '/list_saas_air_schedule_subscription',
 	}, { manual: true });
 
-	const fetchSchedules = async () => {
+	const fetchSchedules = useCallback(async () => {
 		try {
 			const res = await trigger({
 				params: {
@@ -36,12 +36,11 @@ const useFetchSchedules = ({ currentPage }) => {
 		} catch (err) {
 			Toast.error('Unable to fetch schedules. Please try again.');
 		}
-	};
+	}, [currentPage, filters, general?.query?.branch_id, schedules?.filter_data, trigger]);
 
 	useEffect(() => {
 		fetchSchedules();
-	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [filters, currentPage]);
+	}, [filters, currentPage, fetchSchedules]);
 
 	return {
 		loading,

@@ -12,6 +12,14 @@ const saas = {
 		navigation : 'saas_tools-freight_rate_trend',
 		isMainNav  : true,
 	},
+	'/saas/trade-partner': {
+		navigation : 'saas_tools-trade_partner',
+		isMainNav  : true,
+	},
+	'/saas/trade-partner/[trade_id]': {
+		navigation : 'saas_tools-trade_partner',
+		isMainNav  : true,
+	},
 };
 
 module.exports = saas;

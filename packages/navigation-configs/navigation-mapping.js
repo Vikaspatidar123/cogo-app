@@ -7,53 +7,23 @@
 // icon is used to show icon webside only
 // mobileIcon is used to show icon in mobile navigation only
 // isSubNavs is used to show sub navigations
-
-import { IcMAverage, IcMUpwardGraph } from '@cogoport/icons-react';
+import {
+	IcMQuotations,
+	IcMUpwardGraph,
+	IcMTradeparties,
+	IcACrossBorder,
+	IcMProductCodeMapping,
+	IcMFfreferigeratedCargoType,
+} from '@cogoport/icons-react';
 
 const navigationMappings = {
 	app_dashboard: {
-		key         : 'app_dashboard',
-		title       : 'Dashboard',
-		href        : '/v2/dashboard',
-		as          : '/v2/dashboard',
-		type        : 'link',
-		module_type : 'dashboards',
-		showInNav   : true,
-	},
-
-	saas_premium_services: {
-		key         : 'saas_premium_services',
-		title       : 'Premium Services',
-		icon        : 'nav-premium-services',
-		module_type : 'dashboards',
-		isNew       : true,
-		line        : true,
-		showInNav   : true,
-		isSubNavs   : true,
-		options     : [
-			{
-				key   : 'saas_premium_services-duties_and_taxes',
-				title : 'Duties & Taxes Calculator',
-				href  : '/v2/saas/premium-services/duties-taxes-calculator',
-				as    : '/v2/saas/premium-services/duties-taxes-calculator',
-				icon  : <IcMAverage width={40} height={40} fill="red" />,
-				type  : 'link',
-			},
-		],
-	},
-	app_accept_terms_and_conditions: {
-		key       : 'app_accept_terms_and_conditions',
-		title     : 'Terms and Conditions',
-		href      : '/accept-terms-and-conditions',
-		showInNav : false,
-	},
-	app_bookings: {
-		key       : 'app_bookings',
-		title     : 'Shipments',
-		href      : '/shipments',
-		as        : '/shipments',
-		icon      : 'nav-booking',
-		showInNav : true,
+		key        : 'app_dashboard',
+		title      : 'Dashboard',
+		href       : '/v2/dashboard',
+		as         : '/v2/dashboard',
+		showInNav  : true,
+		mobileIcon : <IcMQuotations width={20} height={20} />,
 	},
 
 	saas_tools: {
@@ -75,10 +45,81 @@ const navigationMappings = {
 		],
 	},
 
-	app_get_started: {
-		key   : 'app_get_started',
-		title : 'Get Started',
-		theme : 'green',
+	saas_premium_services: {
+		key         : 'saas_premium_services',
+		title       : 'Premium Services',
+		// type: 'link',
+		icon        : 'nav-premium-services',
+		module_type : 'dashboards',
+		isNew       : true,
+		line        : true,
+		showInNav   : true,
+		isSubNavs   : true,
+		options     : [
+			{
+				key   : 'saas_premium_services-order_history',
+				title : 'Order History',
+				href  : '/v2/saas/order-history',
+				as    : '/v2/saas/order-history',
+				icon  : <IcACrossBorder width={40} height={40} />,
+			},
+		],
+	},
+	app_accept_terms_and_conditions: {
+		key       : 'app_accept_terms_and_conditions',
+		title     : 'Terms and Conditions',
+		href      : '/accept-terms-and-conditions',
+		showInNav : false,
+	},
+	app_bookings: {
+		key       : 'app_bookings',
+		title     : 'Shipments',
+		href      : '/shipments',
+		as        : '/shipments',
+		icon      : 'nav-booking',
+		showInNav : true,
+	},
+
+	saas_finance: {
+		key       : 'saas_finance',
+		title     : 'Finance',
+		icon      : 'nav-finance',
+		isSubNavs : true,
+		isNew     : true,
+		options   : [
+			{
+				key   : 'saas_finance-transaction_history',
+				title : 'Transaction History',
+				icon  : <IcMFfreferigeratedCargoType width={40} height={40} fill="red" />,
+				href  : '/saas/transaction-history',
+				as    : '/saas/transaction-history',
+			},
+
+		],
+	},
+	saas_planning: {
+		key       : 'saas_planning',
+		title     : 'Planning',
+		isSubNavs : true,
+		showInNav : true,
+		options   : [
+			{
+				key   : 'saas_planning-trade_partner',
+				title : 'Trade Partner',
+				icon  : <IcMTradeparties width={40} height={40} />,
+				href  : '/v2/saas/trade-partner',
+				as    : '/v2/saas/trade-partner',
+			},
+			{
+				key         : 'saas_planning-product_inventory',
+				title       : 'Product Catalog',
+				type        : 'link',
+				icon        : <IcMProductCodeMapping width={40} height={40} />,
+				href        : '/v2/saas/product-inventory',
+				as          : '/v2/saas/product-inventory',
+				module_type : 'dashboards',
+			},
+		],
 	},
 
 	app_kyc: {

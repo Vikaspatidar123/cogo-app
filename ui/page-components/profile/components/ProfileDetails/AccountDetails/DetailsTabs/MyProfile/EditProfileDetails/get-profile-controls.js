@@ -1,4 +1,3 @@
-/* eslint-disable import/no-unresolved */
 import languages from '@/ui/commons/configurations/languages';
 import work_scopes from '@/ui/commons/constants/work-scope.json';
 
@@ -83,7 +82,6 @@ const getProfileControls = ({ userDetails = {} }) => [
 	{
 		name  : 'alternate_mobile_numbers',
 		type  : 'fieldArray',
-		// span  : 8,
 		value : [
 			{
 				mobile_number: {

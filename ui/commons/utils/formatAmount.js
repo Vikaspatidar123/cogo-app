@@ -17,12 +17,17 @@ const getCurrencyLocale = ({ currency }) => {
 	return currencyLocale;
 };
 
-const format = ({ locale, amount, options, currency }) => new Intl.NumberFormat(locale, {
-	...options,
-	...('style' in options && {
-		currency: options.currency || currency,
-	}),
-}).format(Number(amount));
+const format = ({ locale, amount, options, currency }) => {
+	try {
+		return new Intl.NumberFormat(locale, {
+			...('style' in options && {
+				currency: options?.currency || currency,
+			}),
+		}).format(Number(amount));
+	} catch (error) {
+		return 'null';
+	}
+};
 
 /**
  *  @typedef {Object}             [arguments]
@@ -33,14 +38,13 @@ const format = ({ locale, amount, options, currency }) => new Intl.NumberFormat(
 
 const formatAmount = ({
 	amount = '',
-	currency = GLOBALS_CONSTANTS.currency_code.INR,
+	currency = '',
 	options = {},
 }) => {
 	if (!isAmountValid({ amount })) {
 		return null;
 	}
-
-	const UPPERCASE_CURRENCY = (currency || '').toUpperCase();
+	const UPPERCASE_CURRENCY = (currency || GLOBALS_CONSTANTS.currency_code.INR).toUpperCase();
 
 	return format({
 		locale   : getCurrencyLocale({ currency: UPPERCASE_CURRENCY }),

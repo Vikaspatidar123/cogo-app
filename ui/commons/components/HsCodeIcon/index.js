@@ -20,12 +20,14 @@ import {
 	IcMMedical,
 	IcMCeramics,
 	IcMHelp,
+	IcMGrid,
 } from '@cogoport/icons-react';
 
 import styles from './styles.module.css';
 
 const HsCodeIcon = () => {
 	const MAPPING = {
+		'00' : <IcMGrid className={styles.icon} />,
 		'01' : <IcMOtherAnimal className={styles.icon} fill="#333" />,
 		'02' : <IcMVegetables fill="#dc3535" className={styles.icon} />,
 		'03' : <IcMEdibleOil fill="#f49d1a" className={styles.icon} />,

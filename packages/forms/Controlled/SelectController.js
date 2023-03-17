@@ -17,8 +17,8 @@ function SelectController(props) {
 				<Select
 					{...rest}
 					key={rest.id}
-					onChange={(e, obj) => {
-						onChange(e, obj);
+					onChange={(val, obj) => {
+						onChange(val, obj);
 						if (rest?.handleChange) {
 							rest?.handleChange(obj);
 						}

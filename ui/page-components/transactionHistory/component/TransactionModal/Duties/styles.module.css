@@ -1,0 +1,23 @@
+.container {
+	display: flex;
+	gap: 8px;
+	align-items: center;
+	padding: 0 12px;
+}
+
+.styled_row {
+	display: flex;
+	gap: 8px;
+	align-items: center;
+	justify-content: space-between;
+	padding: 12px;
+}
+
+.hr {
+	border-bottom: 1px solid #c3d1df;
+}
+
+.row {
+	display: flex;
+	flex-direction: row;
+}

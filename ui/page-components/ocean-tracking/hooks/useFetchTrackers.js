@@ -49,6 +49,7 @@ const useFetchTrackers = () => {
 	return {
 		loading,
 		trackers,
+		setTrackers,
 		fetchTrackers,
 		filters,
 		pagination,

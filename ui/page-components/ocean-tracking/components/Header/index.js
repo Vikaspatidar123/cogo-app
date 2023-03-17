@@ -7,6 +7,7 @@ import AddTrackerModal from '../AddTracker';
 
 import styles from './styles.module.css';
 
+import { Link } from '@/packages/next';
 import { useSelector } from '@/packages/store';
 
 function Header() {
@@ -40,7 +41,9 @@ function Header() {
 					<Button themeType="accent" size="sm" loading={loading}>Upgrade</Button>
 				</div>
 				<div className={styles.button_container}>
-					<div className={styles.status}>Manage status report</div>
+					<Link size="lg" variant="ghost" href="/saas/dsr" passHref>
+						<div className={styles.status}>Manage status report</div>
+					</Link>
 					<Button onClick={() => handleAddTrackerModal()}>Create New</Button>
 				</div>
 			</div>

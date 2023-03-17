@@ -7,9 +7,12 @@ const saas = {
 		navigation : 'saas_tools-ocean_tracking',
 		isMainNav  : true,
 	},
-	'/saas/ocean-tracking/[tracker_id]': {
+	'/saas/tracking/[tracker_id]': {
 		navigation : 'saas_tools-ocean_tracking',
 		isMainNav  : true,
+	},
+	'/saas/dsr': {
+		navigation: 'saas_tracking',
 	},
 
 	'/saas/freight-rate-trend': {

@@ -1,0 +1,12 @@
+.form{
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 20px;
+}
+.radio{
+    background-color: #F2F2F2;
+    margin: 10px;
+}
+.select{
+    margin-top: 10px;
+}

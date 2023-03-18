@@ -43,6 +43,9 @@ function Charges(props, ref) {
 			setValue('additionalCharges', editData?.additionalChargesList?.additionalCharges);
 			setValue('comments', editData?.comments);
 		}
+		if (editData?.incoterm) {
+			setValue('incoterm', editData?.incoterm);
+		}
 	}, [editData?.basicFreightCharges]);
 
 	useEffect(() => {

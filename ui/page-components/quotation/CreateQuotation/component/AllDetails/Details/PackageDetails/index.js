@@ -23,15 +23,17 @@ function PackageDetails(props, ref) {
 	});
 
 	useEffect(() => {
-		if (editAir?.packageHandling) {
-			setValue('packageHandling', editAir?.packageHandling);
-			setValue('packageType', editAir?.packageType);
+		if (editAir?.weight) {
 			setValue('weight', editAir?.weight);
 			setValue('volume', editAir?.volume);
 			setValue('quantity', editAir?.quantity);
 		}
+		if (editAir?.packageHandling) {
+			setValue('packageHandling', editAir?.packageHandling);
+			setValue('packageType', editAir?.packageType);
+		}
 	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [editAir?.packageHandling]);
+	}, [editAir?.weight]);
 
 	useImperativeHandle(ref, () => ({
 		handleSubmit: () => {

@@ -1,5 +1,3 @@
-import setExpiryDate from '../utils/setExpiryDate';
-
 const headerControls = ({ id = '', organization = {} }) => [
 	{
 		name        : 'buyerId',
@@ -28,14 +26,12 @@ const headerControls = ({ id = '', organization = {} }) => [
 			{ label: 'INR', value: 'INR' },
 			{ label: 'USD', value: 'USD' },
 		],
-		value : organization?.country?.currency_code || 'INR',
 		rules : { required: true },
 		style : { width: '120px' },
 	},
 	{
 		name        : 'expiryDate',
 		placeholder : 'DD/MM/YY',
-		value       : setExpiryDate(),
 		type        : 'datepicker',
 		label       : 'Set Expiry Date',
 		isClearable : true,

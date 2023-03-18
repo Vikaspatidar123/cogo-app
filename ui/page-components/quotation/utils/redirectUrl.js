@@ -10,8 +10,8 @@ const useRedirectUrl = () => {
 	const redirectQuotation = () => {
 		push('/saas/quickquotation/createquotation');
 	};
-	const redirectQuotationPrefill = () => {
-		push('/saas/quickquotation/createquotation?prefill=true');
+	const redirectRecentSearch = () => {
+		push('/saas/quickquotation/createquotation?recentSearch=true');
 	};
 	const redirectPreview = (quotationId) => {
 		push(
@@ -46,7 +46,7 @@ const useRedirectUrl = () => {
 		redirectEdit,
 		redirectViewQuote,
 		downloadQuotation,
-		redirectQuotationPrefill,
+		redirectRecentSearch,
 		subscriptionsUrl,
 		redirectTransaction,
 		downloadTransactionDocument,

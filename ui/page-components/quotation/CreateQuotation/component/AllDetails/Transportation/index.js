@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { cl } from '@cogoport/components';
 import { IcMPort, IcMLocation } from '@cogoport/icons-react';
 import { useState, useImperativeHandle, useEffect, forwardRef } from 'react';
@@ -12,9 +13,10 @@ import getField from '@/packages/forms/Controlled';
 
 function Transportation(props, ref) {
 	const {
-		transportMode, originId = '', destinationId = '',
-		originCountry = '', destinationCountry = '',
+		transportMode, editOriginId = '', editDestinationID = '',
+		originCountry = '', destinationCountry = '', setMapPoints, getOceanRoute,
 	} = props || {};
+
 	const [destinationPortDetails, setDestinationPortDetails] = useState({});
 	const [originPortDetails, setOriginPortDetails] = useState({});
 
@@ -40,32 +42,49 @@ function Transportation(props, ref) {
 	const getTransportDetailsEdit = async () => {
 		const filter = {
 			status : 'active',
-			id     : [originId, destinationId],
+			id     : [editOriginId, editDestinationID],
 		};
 		const resp = await getPortDetails(filter);
-		const originData = resp?.[0]?.id === originId ? resp?.[0] : resp?.[1];
-		const destinationData = resp?.[1]?.id === destinationId ? resp?.[1] : resp?.[0];
+		const originData = resp?.[0]?.id === editOriginId ? resp?.[0] : resp?.[1];
+		const destinationData = resp?.[1]?.id === editDestinationID ? resp?.[1] : resp?.[0];
 		setOriginPortDetails({ ...originData, country: { name: originCountry } });
 		setDestinationPortDetails({ ...destinationData, country: { name: destinationCountry } });
 	};
 
 	useEffect(() => {
-		if (originId && destinationId) {
-			setValue('originId', originId);
-			setValue('destinationId', destinationId);
+		if (editOriginId && editDestinationID) {
+			setValue('originId', editOriginId);
+			setValue('destinationId', editDestinationID);
 			getTransportDetailsEdit();
 		}
-	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [originId, destinationId]);
+	}, [editOriginId, editDestinationID]);
 
 	useEffect(() => {
-		if (transportMode && !originId) {
+		if (transportMode && !editOriginId) {
 			reset({
 				originId      : null,
 				destinationId : null,
 			});
+			setMapPoints([]);
 		}
 	}, [transportMode]);
+
+	useEffect(() => {
+		if (originPortDetails?.id && destinationPortDetails?.id) {
+			if (transportMode === 'OCEAN') {
+				getOceanRoute(originPortDetails?.id, destinationPortDetails?.id);
+			} else if (transportMode === 'AIR') {
+				setMapPoints([
+					{
+						departureLatitude  : originPortDetails?.latitude,
+						departureLongitude : originPortDetails?.longitude,
+						arrivalLatitude    : destinationPortDetails?.latitude,
+						arrivalLongitude   : destinationPortDetails?.longitude,
+					},
+				]);
+			}
+		}
+	}, [originPortDetails?.id, destinationPortDetails?.id]);
 
 	useImperativeHandle(ref, () => ({
 		handleSubmit: () => {

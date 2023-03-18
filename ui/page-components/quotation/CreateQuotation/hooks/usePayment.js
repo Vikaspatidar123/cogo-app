@@ -28,7 +28,7 @@ const usePayment = () => {
 	};
 
 	const postPayemnt = async ({ quoteId, billRefId, currency, billLineItems, ...rest }) => {
-		const redirectUrl = `${process.env.NEXT_PUBLIC_APP_BASE_URL}/app/${org_id}/${branch_id}
+		const redirectUrl = `${process.env.NEXT_PUBLIC_APP_BASE_URL}app/${org_id}/${branch_id}
 		/${account_type}/saas/quickquotation/editquotation/${quoteId}`;
 
 		const billLineItemsData = await getServiceDataHandler({ billLineItems });

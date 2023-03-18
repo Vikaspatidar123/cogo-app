@@ -5,8 +5,10 @@ import headerFields from '../configuration/headerControls';
 import useCreateQuotation from '../hooks/useCreateQuotation';
 import useCurrencyConversion from '../hooks/useCurrencyConversion';
 import useEditQuotation from '../hooks/useEditQuotation';
+import useRecentSearch from '../hooks/useRecentSearch';
 import useSendQuotation from '../hooks/useSendQuotation';
 import getHandleSubmitData from '../utils/getHandleSubmitdata';
+import setExpiryDate from '../utils/setExpiryDate';
 
 import AllDetails from './AllDetails';
 import Charges from './Charges';
@@ -17,15 +19,18 @@ import ProductDetails from './ProductDetails';
 import styles from './styles.module.css';
 
 import { useForm } from '@/packages/forms';
+import { useRouter } from '@/packages/next';
 import { useSelector } from '@/packages/store';
 
 function CreateQuotation() {
 	const { id, organization } = useSelector((state) => state?.profile);
+	const { query } = useRouter();
 
 	const [transportMode, setTransportMode] = useState('OCEAN');
 	const [confirmCreateQuotation, setConfirmCreateQuotation] = useState(false);
 
 	const { sendQuotation, sendQuoteLoading, sendQuotedata } = useSendQuotation();
+	const spotSearchData = useRecentSearch({ query, setTransportMode });
 	const createQuoteHook = useCreateQuotation();
 	const { postQuotation, loading, createQuoteData } = createQuoteHook || {};
 
@@ -39,13 +44,13 @@ function CreateQuotation() {
 		watch,
 	} = useForm({
 		defaultValues: {
-			currency: orgCurrency,
+			currency   : orgCurrency,
+			expiryDate : setExpiryDate(),
 		},
 	});
 	const { editData = {}, editLoading } = useEditQuotation({ setValue, setTransportMode });
 
-	const watchCurrency = watch('currency');
-	const date = watch('expiryDate');
+	const [watchCurrency, date] = watch(['currency', 'expiryDate']);
 
 	const quoteRef = useRef({ date });
 
@@ -107,7 +112,11 @@ function CreateQuotation() {
 						setTransportMode={setTransportMode}
 						errors={headerError}
 					/>
-					<AllDetails transportMode={transportMode} editData={editData} ref={quoteRef} />
+					<AllDetails
+						transportMode={transportMode}
+						editData={query?.id ? editData : spotSearchData}
+						ref={quoteRef}
+					/>
 					<ProductDetails
 						editData={editData}
 						ref={(r) => {
@@ -118,7 +127,7 @@ function CreateQuotation() {
 				<div className={styles.charge_section}>
 					<Charges
 						submitForm={submitForm}
-						editData={editData}
+						editData={query?.id ? editData : spotSearchData}
 						quoteRef={quoteRef}
 						transportMode={transportMode}
 						createQuoteHook={createQuoteHook}

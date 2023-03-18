@@ -9,7 +9,7 @@ import { useSelector } from '@/packages/store';
 const useCreateQuotation = () => {
 	const { organization, id: userId, name, email } = useSelector((s) => s.profile);
 	const { query } = useRouter();
-	const { id: quoteId } = query || {};
+	const { id: quoteId, recentSearch = false } = query || {};
 
 	const [{ loading: createLoading, data: createData }, createTrigger] = useRequestBf({
 		method  : 'post',
@@ -112,6 +112,9 @@ const useCreateQuotation = () => {
 			const resp = await trigger({
 				data: payloadData,
 			});
+			if (recentSearch) {
+				localStorage.removeItem('spotSearchResult');
+			}
 			return resp?.data;
 		} catch (err) {
 			Toast.error(err?.error?.message || 'Something went wrong');

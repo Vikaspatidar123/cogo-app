@@ -1,7 +1,7 @@
 import { useRequest } from '@/packages/request';
 
-const useOceanRoutes = () => {
-	const [{ loading, data }, trigger] = useRequest({
+const useOceanRoutes = ({ setMapPoints }) => {
+	const [{ loading }, trigger] = useRequest({
 		method : 'get',
 		url    : 'https://api.cogoport.com/location/get_sea_route',
 	}, { manual: true });
@@ -15,8 +15,7 @@ const useOceanRoutes = () => {
 				},
 			});
 			const respData = resp?.data?.the_geom;
-			// setMapPoints(respData);
-			// setRouteDataLength(respData?.length === 0);
+			setMapPoints(respData);
 		} catch (err) {
 			console.error(err?.error?.message);
 		}
@@ -24,7 +23,6 @@ const useOceanRoutes = () => {
 	return {
 		getOceanRoute,
 		routesLoading: loading,
-		// routeDataLength,
 	};
 };
 

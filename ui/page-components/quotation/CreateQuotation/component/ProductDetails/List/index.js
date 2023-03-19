@@ -5,19 +5,30 @@ import {
 	useImperativeHandle,
 	useMemo,
 	useEffect,
+	useRef,
 } from 'react';
 
 import { productFieldArr } from '../../../configuration/productControls';
+import useCurrencyConversion from '../../../hooks/useCurrencyConversion';
 
 import FormItem from './FormItem';
 import Item from './Item';
 import styles from './styles.module.css';
 
 import { useForm, useFieldArray } from '@/packages/forms';
+import { useRouter } from '@/packages/next';
+import { useSelector } from '@/packages/store';
 import { shortFormatNumber } from '@/ui/commons/utils/getShortFormatNumber';
 
 function List(props, ref) {
-	const { selectedData = [], setSelectedId, editProduct } = props || {};
+	const { selectedData = [], setSelectedId, editProduct = [], watchCurrency } = props || {};
+
+	const profileCurrency = useSelector((state) => state.profile.organization.country.currency_code);
+
+	const { query } = useRouter();
+
+	const initialRef = useRef({ initialRender: true, refCurrency: '' });
+	const { getExchangeRate } = useCurrencyConversion({});
 	const {
 		control,
 		watch,
@@ -39,6 +50,31 @@ function List(props, ref) {
 		return value;
 	}, [watchFieldArr]);
 
+	const newCurrency = async () => {
+		if (watchCurrency && profileCurrency) {
+			const baseCurr = query?.id ? initialRef.current.refCurrency : profileCurrency;
+			const currencyRate = await getExchangeRate(baseCurr, watchCurrency);
+			(fields || []).forEach((field, index) => {
+				const { quantity, actualPrice } = watchFieldArr[index];
+				const sellingPrice = actualPrice * currencyRate;
+				const totalPrice = quantity * sellingPrice;
+				setValue(`products.${index}.productExchangeRate`, currencyRate);
+				setValue(`products.${index}.price`, sellingPrice.toFixed(4));
+				setValue(`products.${index}.product_price`, totalPrice.toFixed(4));
+				setValue(`products.${index}.productCurrency`, watchCurrency);
+			});
+		}
+	};
+
+	useEffect(() => {
+		if (initialRef.current.initialRender) {
+			initialRef.current.initialRender = false;
+			initialRef.current.refCurrency = watchCurrency;
+		} else {
+			newCurrency();
+		}
+	}, [watchCurrency]);
+
 	useImperativeHandle(ref, () => ({
 		handleSubmit: () => {
 			const onSubmit = (values) => values;
@@ -55,6 +91,7 @@ function List(props, ref) {
 		totalProductValue: calTotalPrice(),
 	}));
 	// useMemo(() => { setSelectedId(watchFieldArr.map((x) => x.id)); }, [watchFieldArr]);
+
 	useMemo(() => {
 		setValue(
 			'products',
@@ -82,6 +119,8 @@ function List(props, ref) {
 					watchList={watch}
 					setValueList={setValue}
 					watchFieldArr={watchFieldArr}
+					watchCurrency={watchCurrency}
+					getExchangeRate={getExchangeRate}
 				/>
 
 				<div className={styles.product_list}>
@@ -107,7 +146,7 @@ function List(props, ref) {
 			<div className={cl`${styles.row} ${styles.total_value}`}>
 				<h3>
 					Consignment Total :
-					{shortFormatNumber(calTotalPrice(), 'INR') || 0}
+					{shortFormatNumber(calTotalPrice(), watchCurrency) || 0}
 				</h3>
 			</div>
 		</>

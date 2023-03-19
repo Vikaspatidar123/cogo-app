@@ -12,7 +12,10 @@ import getField from '@/packages/forms/Controlled';
 import { useSelector } from '@/packages/store';
 
 function FormItem(props) {
-	const { editData = {}, prepend, watchList, watchFieldArr = [], setValueList } = props;
+	const {
+		editData = {}, prepend,
+		watchList, watchFieldArr = [], setValueList, watchCurrency, getExchangeRate,
+	} = props;
 	const { id } = useSelector((state) => state.profile);
 	const [productForm, setProductForm] = useState({});
 
@@ -43,13 +46,6 @@ function FormItem(props) {
 		}
 	}, [productId]);
 
-	// const errorHandler = () => {
-	// 	const errorArr = Object.keys(errors);
-
-	// 	errorArr.map
-	// };
-	// useEffect(() => {}, [errors]);
-
 	const changeHandler = (field, data) => {
 		if (field?.name !== 'name') return;
 		setProductForm(data);
@@ -64,6 +60,7 @@ function FormItem(props) {
 		} = data || {};
 		const updateIndex = watchFieldArr.findIndex((ele) => ele?.productId === productId);
 		if (name && updateIndex < 0) {
+			const exchangeRate = await getExchangeRate(productCurrency, watchCurrency);
 			prepend({
 				productId,
 				name                : productName,
@@ -71,8 +68,8 @@ function FormItem(props) {
 				hsCode,
 				quantity,
 				productCurrency,
-				productExchangeRate : 1,
-				price               : (price).toFixed(4),
+				productExchangeRate : exchangeRate,
+				price               : (price * exchangeRate).toFixed(4),
 				actualPrice         : price,
 			});
 			setProductForm({});

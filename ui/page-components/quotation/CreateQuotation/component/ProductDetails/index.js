@@ -8,7 +8,7 @@ import styles from './styles.module.css';
 import ProductCatalogue from '@/ui/page-components/product-catalogue-modal/components';
 
 function ProductDetails(props, ref) {
-	const { editData = {} } = props;
+	const { editData = {}, watchCurrency = 'INR' } = props;
 
 	const [showCatalogue, setShowCatalogue] = useState(false);
 	const [selectedData, setSelectedData] = useState([]);
@@ -35,6 +35,7 @@ function ProductDetails(props, ref) {
 					selectedData={selectedData}
 					setSelectedId={setSelectedId}
 					editProduct={editProduct}
+					watchCurrency={watchCurrency}
 				/>
 			</div>
 			<ProductCatalogue

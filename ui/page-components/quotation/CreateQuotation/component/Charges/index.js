@@ -4,6 +4,7 @@ import { IcMMoney } from '@cogoport/icons-react';
 import { useEffect, forwardRef, useImperativeHandle, useState } from 'react';
 
 import chargesControls from '../../configuration/chargesControls';
+import useCurrencyConversion from '../../hooks/useCurrencyConversion';
 
 import BasicCharge from './BasicCharge';
 import IncoTermCharge from './IncotermCharge';
@@ -14,9 +15,17 @@ import getField from '@/packages/forms/Controlled';
 import { shortFormatNumber } from '@/ui/commons/utils/getShortFormatNumber';
 
 function Charges(props, ref) {
-	const { submitForm, quoteRef, transportMode, editData = {}, createQuoteHook = {} } = props;
-	const [totalQuotation, setTotalQuotation] = useState(0);
+	const { submitForm, quoteRef, transportMode, editData = {}, createQuoteHook = {}, watchCurrency = 'INR' } = props;
 
+	const [totalQuotation, setTotalQuotation] = useState(0);
+	const [exchangeRate, setExchangeRate] = useState(0);
+	const [storeCurrency, setStoreCurrency] = useState({
+		prevCurrency : undefined,
+		currCurrency : undefined,
+	});
+
+	const { prevCurrency, currCurrency } = storeCurrency;
+	const { getExchangeRate } = useCurrencyConversion({});
 	const { control, watch, setValue, handleSubmit, formState:{ errors } } = useForm();
 	const productValue = quoteRef?.current?.product?.totalProductValue;
 
@@ -46,7 +55,34 @@ function Charges(props, ref) {
 		if (editData?.incoterm) {
 			setValue('incoterm', editData?.incoterm);
 		}
-	}, [editData?.basicFreightCharges]);
+	}, [editData?.incoterm]);
+
+	useEffect(() => {
+		(async () => {
+			if (prevCurrency && currCurrency) {
+				const rate = await getExchangeRate(prevCurrency, currCurrency);
+				setExchangeRate(rate);
+				if (basicFreightCharges) {
+					setValue('basicFreightCharges', (basicFreightCharges * rate).toFixed(4));
+				}
+				if (dutiesAndTaxes) {
+					setValue('dutiesAndTaxes', (dutiesAndTaxes * rate).toFixed(4));
+				}
+				if (insurance) {
+					setValue('insurance', (insurance * rate).toFixed(4));
+				}
+			}
+		})();
+	}, [storeCurrency]);
+
+	useEffect(() => {
+		if (watchCurrency) {
+			setStoreCurrency((prev) => ({
+				prevCurrency : prev.currCurrency,
+				currCurrency : watchCurrency,
+			}));
+		}
+	}, [watchCurrency]);
 
 	useEffect(() => {
 		if (
@@ -122,6 +158,9 @@ function Charges(props, ref) {
 			<IncoTermCharge
 				watch={watch}
 				chargeFields={chargesControls}
+				exchangeRate={exchangeRate}
+				getExchangeRate={getExchangeRate}
+				setValue={setValue}
 				control={control}
 				errors={errors}
 				name="incotermCharges"
@@ -130,7 +169,11 @@ function Charges(props, ref) {
 			<IncoTermCharge
 				watch={watch}
 				chargeFields={chargesControls}
+				watchCurrency={watchCurrency}
+				exchangeRate={exchangeRate}
 				control={control}
+				getExchangeRate={getExchangeRate}
+				setValue={setValue}
 				errors={errors}
 				name="additionalCharges"
 				index="5"

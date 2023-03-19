@@ -9,7 +9,9 @@ import styles from '../styles.module.css';
 import { useFieldArray } from '@/packages/forms';
 
 function IncoTermCharge(props) {
-	const { control, chargeFields, errors, watch, name, index: i } = props || {};
+	const {
+		control, chargeFields, errors, watch, name, index: i, setValue, exchangeRate,
+	} = props || {};
 
 	const { fields, append, remove } = useFieldArray({
 		control,
@@ -18,6 +20,7 @@ function IncoTermCharge(props) {
 
 	const { CHARGES, MAPPING } = MappingConstant();
 	const watchIncoterm = watch('incoterm');
+	const chargeList = watch(name);
 
 	const addIncotermCharges = () => {
 		MAPPING[watchIncoterm]?.forEach((ele) => {
@@ -42,6 +45,21 @@ function IncoTermCharge(props) {
 			removeIncoterm();
 		}
 	}, [watchIncoterm]);
+
+	const changeCurrency = async () => {
+		if (fields.length > 0) {
+			fields.forEach((field, index) => {
+				const incoValue = exchangeRate * chargeList[index].value;
+				setValue(`${name}.${index}.value`, incoValue.toFixed(4));
+			});
+		}
+	};
+
+	useEffect(() => {
+		if (exchangeRate !== 0) {
+			changeCurrency();
+		}
+	}, [exchangeRate]);
 
 	return (
 		<>

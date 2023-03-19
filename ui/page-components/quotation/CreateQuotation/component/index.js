@@ -119,6 +119,7 @@ function CreateQuotation() {
 					/>
 					<ProductDetails
 						editData={editData}
+						watchCurrency={watchCurrency}
 						ref={(r) => {
 							quoteRef.current.product = r;
 						}}
@@ -131,6 +132,7 @@ function CreateQuotation() {
 						quoteRef={quoteRef}
 						transportMode={transportMode}
 						createQuoteHook={createQuoteHook}
+						watchCurrency={watchCurrency}
 						ref={(r) => {
 							quoteRef.current.charges = r;
 						}}

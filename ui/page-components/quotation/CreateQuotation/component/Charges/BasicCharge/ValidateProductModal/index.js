@@ -140,26 +140,28 @@ function ValidateProductModal(props) {
 					/>
 				))}
 
-				<CheckoutModal
-					showCheckout={showCheckout}
-					setShowCheckout={setShowCheckout}
-					setValidateProduct={setValidateProduct}
-					quotaValue={quotaValue}
-					paymentMode={paymentMode}
-					serviceProduct={serviceProduct}
-					headerResponse={headerResponse}
-					serviceData={serviceData}
-					isQuotaLeft={isQuotaLeft}
-					productInfoArr={productInfoArr}
-					createQuoteData={createQuoteData}
-					prioritySequence={prioritySequence}
-					createHeader={createHeader}
-					createlineItem={createlineItem}
-					consignmentValue={consignmentValue}
-					postTradeEngine={postTradeEngine}
-					setTransactionModal={setTransactionModal}
-					locationLoading={locationLoading}
-				/>
+				{showCheckout && (
+					<CheckoutModal
+						showCheckout={showCheckout}
+						setShowCheckout={setShowCheckout}
+						setValidateProduct={setValidateProduct}
+						quotaValue={quotaValue}
+						paymentMode={paymentMode}
+						serviceProduct={serviceProduct}
+						headerResponse={headerResponse}
+						serviceData={serviceData}
+						isQuotaLeft={isQuotaLeft}
+						productInfoArr={productInfoArr}
+						createQuoteData={createQuoteData}
+						prioritySequence={prioritySequence}
+						createHeader={createHeader}
+						createlineItem={createlineItem}
+						consignmentValue={consignmentValue}
+						postTradeEngine={postTradeEngine}
+						setTransactionModal={setTransactionModal}
+						locationLoading={locationLoading}
+					/>
+				)}
 
 			</Modal.Body>
 

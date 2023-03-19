@@ -64,6 +64,7 @@ function CheckoutModal({
 			setChargeData(rest);
 		}
 	}, [traderCheck]);
+
 	return (
 		<Modal show={showCheckout} onClose={() => setShowCheckout(false)} size="lg">
 			<Modal.Header title={(

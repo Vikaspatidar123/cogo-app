@@ -6,7 +6,7 @@ import { useRouter } from '@/packages/next';
 import { useRequestBf } from '@/packages/request';
 import { useSelector } from '@/packages/store';
 
-const useCreateQuotation = () => {
+const useCreateQuotation = ({ setConfirmCreateQuotation }) => {
 	const { organization, id: userId, name, email } = useSelector((s) => s.profile);
 	const { query } = useRouter();
 	const { id: quoteId, recentSearch = false } = query || {};
@@ -104,9 +104,8 @@ const useCreateQuotation = () => {
 		};
 	};
 
-	const postQuotation = async ({ data, exchangeRate, orgCurrency, editData = {} }) => {
+	const postQuotation = async ({ data, exchangeRate, orgCurrency, editData = {}, flag = false }) => {
 		const payloadData = createPayload({ data, exchangeRate, orgCurrency, editData });
-		console.log(payloadData, 'payload');
 
 		try {
 			const resp = await trigger({
@@ -114,6 +113,9 @@ const useCreateQuotation = () => {
 			});
 			if (recentSearch) {
 				localStorage.removeItem('spotSearchResult');
+			}
+			if (flag && resp?.data) {
+				setConfirmCreateQuotation(true);
 			}
 			return resp?.data;
 		} catch (err) {

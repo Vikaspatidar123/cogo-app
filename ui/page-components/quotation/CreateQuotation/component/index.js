@@ -31,7 +31,7 @@ function CreateQuotation() {
 
 	const { sendQuotation, sendQuoteLoading, sendQuotedata } = useSendQuotation();
 	const spotSearchData = useRecentSearch({ query, setTransportMode });
-	const createQuoteHook = useCreateQuotation();
+	const createQuoteHook = useCreateQuotation({ setConfirmCreateQuotation });
 	const { postQuotation, loading, createQuoteData } = createQuoteHook || {};
 
 	const orgCurrency = organization?.country?.currency_code;
@@ -89,7 +89,7 @@ function CreateQuotation() {
 
 	const createQuoteHandler = async () => {
 		const data = await submitForm();
-		if (data) postQuotation({ data, exchangeRate, orgCurrency, editData });
+		if (data) postQuotation({ data, exchangeRate, orgCurrency, editData, flag: true });
 	};
 
 	return (

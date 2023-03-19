@@ -8,7 +8,7 @@ const useRecentSearch = ({ query, setTransportMode }) => {
 		const preFillData = JSON.parse(localStorage.getItem('spotSearchResult'));
 
 		setTransportMode(
-			['lcl_freight', 'fcl_freight'].includes(preFillData.serviceType) ? 'OCEAN' : 'AIR',
+			['lcl_freight', 'fcl_freight'].includes(preFillData?.serviceType) ? 'OCEAN' : 'AIR',
 		);
 
 		const incoterm = incotermMap[preFillData?.incoterm];

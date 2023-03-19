@@ -47,7 +47,7 @@ function Header(props, ref) {
 					/>
 					<div className={styles.or_tag}>
 						<div className={styles.line} />
-						<div className="text">OR</div>
+						<div className={styles.text}>OR</div>
 						<div className={styles.line} />
 					</div>
 

@@ -157,11 +157,10 @@ function Charges(props, ref) {
 
 			<IncoTermCharge
 				watch={watch}
+				control={control}
 				chargeFields={chargesControls}
 				exchangeRate={exchangeRate}
-				getExchangeRate={getExchangeRate}
 				setValue={setValue}
-				control={control}
 				errors={errors}
 				name="incotermCharges"
 				index="4"
@@ -169,10 +168,8 @@ function Charges(props, ref) {
 			<IncoTermCharge
 				watch={watch}
 				chargeFields={chargesControls}
-				watchCurrency={watchCurrency}
 				exchangeRate={exchangeRate}
 				control={control}
-				getExchangeRate={getExchangeRate}
 				setValue={setValue}
 				errors={errors}
 				name="additionalCharges"

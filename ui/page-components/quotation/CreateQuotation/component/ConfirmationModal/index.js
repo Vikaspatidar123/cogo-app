@@ -1,5 +1,5 @@
-import { Button, Modal } from '@cogoport/components';
-import { IcMProfile, IcAMail } from '@cogoport/icons-react';
+import { cl, Button, Modal } from '@cogoport/components';
+import { IcMEmail, IcMProfile, IcAMail } from '@cogoport/icons-react';
 import { useRouter } from 'next/router';
 import { forwardRef, useState, useEffect } from 'react';
 
@@ -47,45 +47,50 @@ function ConfirmationModal(props, ref) {
 	};
 	const sendQuotationHandler = () => {
 		sendQuotation(quotationId);
-
 		setSendQuoteModal(false);
+	};
+	const closeModalHandler = () => {
+		setConfirmCreateQuotation(false);
+		redirectViewQuote();
 	};
 	return (
 		<>
 
 			<Modal
 				show={confirmCreateQuotation}
-				onClose={() => {
-					setConfirmCreateQuotation(false);
-					redirectViewQuote();
-				}}
-				closeOnOuterClick={() => setConfirmCreateQuotation(false)}
+				onClose={closeModalHandler}
+				closeOnOuterClick={closeModalHandler}
 			>
 				{!sendQuoteModal && (
 					<>
 						<div className={styles.flex_box}>
 							{sendQuoteLoading
-								? <img src={iconUrl.loading} alt="loading" />
+								? <img src={iconUrl.loading} alt="loading" className={styles.loading} />
 								: (
 									<div>
 										<div className={styles.flex_box}>
-											<img src={iconUrl.successGif} alt="cogo" />
+											<img src={iconUrl.successGif} className={styles.success_img} alt="cogo" />
 										</div>
 										<h2 className={styles.title}>{renderTitle()}</h2>
 									</div>
 								)}
 						</div>
-						<div className={styles.footer}>
+						<div className={cl`${styles.flex_box} ${styles.footer}`}>
 							<Button
 								themeType="secondary"
 								onClick={() => {
 									redirectPreview(quotationId);
 								}}
+								disabled={sendQuoteLoading}
 							>
 								Preview Quotation
 							</Button>
 
-							<Button onClick={() => setSendQuoteModal(true)}>
+							<Button
+								onClick={() => setSendQuoteModal(true)}
+								className={styles.send_btn}
+								disabled={sendQuoteLoading}
+							>
 								Send Quotation
 							</Button>
 
@@ -94,30 +99,39 @@ function ConfirmationModal(props, ref) {
 				)}
 				{sendQuoteModal && (
 					<>
-						<div className={styles.container}>
+						<div className={cl`${styles.container} ${styles.flex_box}`}>
 							<div>
 								<IcAMail width={100} height={100} />
 							</div>
-							<h3 className="sendTitle">
+							<h3 className={styles.title}>
 								This would send quotation pdf via mail to the recipient. Are you sure you want
 								to proceed?
 							</h3>
-							<div className="info">
-								<div>
+							<div className={styles.info}>
+								<div className={styles.flex_box}>
 									<IcMProfile fill="#838383" />
 									<p>{pocName}</p>
 								</div>
-								<div>
-									<IcMProfile fill="#838383" />
+								<div className={styles.flex_box}>
+									<IcMEmail fill="#838383" />
 									<p>{email}</p>
 								</div>
 							</div>
 						</div>
-						<div className={styles.footer}>
-							<Button themeType="secondary" onClick={() => setSendQuoteModal(false)}>
+						<div className={cl`${styles.flex_box} ${styles.footer}`}>
+							<Button
+								themeType="secondary"
+								onClick={() => setSendQuoteModal(false)}
+								disabled={sendQuoteLoading}
+							>
 								No
 							</Button>
-							<Button onClick={() => sendQuotationHandler()}>
+							<Button
+								onClick={() => sendQuotationHandler()}
+								className={styles.send_btn}
+								disabled={sendQuoteLoading}
+							>
+
 								Yes
 							</Button>
 						</div>

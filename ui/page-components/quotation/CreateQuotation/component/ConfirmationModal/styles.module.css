@@ -8,3 +8,35 @@
 	text-align: center;
 	margin: 0px;
 }
+
+.success_img{
+	width: 100px;
+	height: 100px;
+}
+
+.footer{
+	padding: 22px;
+}
+
+.send_btn{
+	margin-left: 12px;
+}
+
+.container{
+	flex-direction: column;
+	padding: 20px 20px 0;
+}
+
+.info{
+	text-align: left;
+	margin-top: 15px;
+
+	p{
+		margin: 0;
+		margin-left:4px
+	}
+}
+.loading{
+	width: 150px;
+	height: 150px;
+}

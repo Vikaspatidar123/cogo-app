@@ -12,7 +12,7 @@ import { Button, Toggle, Radio, Input, Toast, Select } from '@cogoport/component
 
 const { Modal } = require('@cogoport/components');
 
-function AddTrackerModal({ show, onclose }) {
+function AddTrackerModal({ show, setShow }) {
 	const [labeledValue, setLabeledValue] = useState(false);
 	const onchange = () => {
 		setLabeledValue(!labeledValue);
@@ -20,7 +20,7 @@ function AddTrackerModal({ show, onclose }) {
 
 	return (
 		<div>
-			<Modal size="lg" show={show} onClose={!show} placement="center" onClose={onclose}>
+			<Modal size="lg" show={show} onClose={() => setShow(false)} placement="center">
 				<Modal.Header title="Track Shipments" />
 				<Modal.Body>
 
@@ -61,7 +61,7 @@ function AddTrackerModal({ show, onclose }) {
 
 				</Modal.Body>
 				<Modal.Footer>
-					<Button onClick={onclose}>Cancel</Button>
+					<Button onClick={() => setShow(false)}>Cancel</Button>
 				</Modal.Footer>
 			</Modal>
 		</div>

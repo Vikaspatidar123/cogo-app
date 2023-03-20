@@ -56,7 +56,7 @@ const useBookmark = ({ setAddBookmark, setRemoveBookmark, refetchHsCode }) => {
 			}
 			Toast.success('Successfully Add In Favourites List');
 		} catch (err) {
-			console.log(err);
+			Toast.error(err?.err?.message);
 		}
 	};
 
@@ -85,7 +85,7 @@ const useBookmark = ({ setAddBookmark, setRemoveBookmark, refetchHsCode }) => {
 				Toast.success('Successfully Remove From Favourites List');
 			}
 		} catch (err) {
-			console.log(err);
+			Toast.error(err?.err?.message);
 		}
 	};
 	return {

@@ -1,5 +1,5 @@
 import { Toast } from '@cogoport/components';
-import { useEffect } from 'react';
+import { useEffect, useCallback } from 'react';
 
 import { useRequestBf } from '@/packages/request';
 import { useSelector } from '@/packages/store';
@@ -16,7 +16,7 @@ const useCategory = ({ hsCode, hsCodeId, setShow }) => {
 		url    : '/saas/product',
 		method : 'post',
 	}, { manual: true });
-	const getProduct = async () => {
+	const getProduct = useCallback(async () => {
 		try {
 			await getproductTrigger({
 				params: {
@@ -27,7 +27,7 @@ const useCategory = ({ hsCode, hsCodeId, setShow }) => {
 			Toast.error('Something went wrong, Please try again');
 			setShow(false);
 		}
-	};
+	}, [getproductTrigger, hsCode, setShow]);
 
 	const addProduct = async (payload) => {
 		try {
@@ -49,8 +49,7 @@ const useCategory = ({ hsCode, hsCodeId, setShow }) => {
 
 	useEffect(() => {
 		getProduct();
-	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
+	}, [getProduct]);
 
 	const onSubmit = async (value) => {
 		const {

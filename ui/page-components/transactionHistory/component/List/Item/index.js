@@ -42,9 +42,7 @@ function Item({
 					)}
 					theme="light"
 				>
-					<div className={styles.info}>
-						{getValue(itm, singleItem, newFunctions)}
-					</div>
+					<div className={styles.info}>{getValue(itm, singleItem, newFunctions)}</div>
 				</Tooltip>
 			);
 		}

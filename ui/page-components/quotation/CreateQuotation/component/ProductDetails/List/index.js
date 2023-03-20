@@ -42,7 +42,7 @@ const addProductFromCatalogue = ({ selectedData = [], watchCurrency, append, get
 };
 
 function List(props, ref) {
-	const { selectedData = [], setSelectedId, editProduct = [], watchCurrency } = props || {};
+	const { selectedData = [], setSelectedId, editProduct = [], watchCurrency, setConsignmentValue } = props || {};
 
 	const profileCurrency = useSelector((state) => state.profile.organization.country.currency_code);
 
@@ -63,6 +63,7 @@ function List(props, ref) {
 		control,
 	});
 	const { products: watchFieldArr } = watch();
+
 	const calTotalPrice = useCallback(() => {
 		const value = watchFieldArr?.reduce(
 			(prevObj, currObj) => +prevObj + +currObj.product_price,
@@ -70,6 +71,15 @@ function List(props, ref) {
 		);
 		return value;
 	}, [watchFieldArr]);
+
+	const productArr = JSON.stringify(watchFieldArr);
+
+	useEffect(() => {
+		if (productArr?.length > 2) {
+			const value = calTotalPrice();
+			setConsignmentValue(value);
+		}
+	}, [calTotalPrice, setConsignmentValue, productArr]);
 
 	const newCurrency = async () => {
 		if (watchCurrency && profileCurrency) {
@@ -109,7 +119,6 @@ function List(props, ref) {
 				)();
 			});
 		},
-		totalProductValue: calTotalPrice(),
 	}));
 
 	useMemo(() => {

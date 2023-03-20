@@ -28,6 +28,7 @@ function CreateQuotation() {
 
 	const [transportMode, setTransportMode] = useState('OCEAN');
 	const [confirmCreateQuotation, setConfirmCreateQuotation] = useState(false);
+	const [consignmentValue, setConsignmentValue] = useState();
 
 	const { sendQuotation, sendQuoteLoading, sendQuotedata } = useSendQuotation();
 	const spotSearchData = useRecentSearch({ query, setTransportMode });
@@ -120,6 +121,7 @@ function CreateQuotation() {
 					<ProductDetails
 						editData={editData}
 						watchCurrency={watchCurrency}
+						setConsignmentValue={setConsignmentValue}
 						ref={(r) => {
 							quoteRef.current.product = r;
 						}}
@@ -131,6 +133,7 @@ function CreateQuotation() {
 						editData={query?.id ? editData : spotSearchData}
 						quoteRef={quoteRef}
 						transportMode={transportMode}
+						consignmentValue={consignmentValue}
 						createQuoteHook={createQuoteHook}
 						watchCurrency={watchCurrency}
 						ref={(r) => {

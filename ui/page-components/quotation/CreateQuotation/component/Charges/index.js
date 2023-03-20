@@ -15,7 +15,10 @@ import getField from '@/packages/forms/Controlled';
 import { shortFormatNumber } from '@/ui/commons/utils/getShortFormatNumber';
 
 function Charges(props, ref) {
-	const { submitForm, quoteRef, transportMode, editData = {}, createQuoteHook = {}, watchCurrency = 'INR' } = props;
+	const {
+		submitForm, quoteRef, transportMode, editData = {}, createQuoteHook = {}, consignmentValue = 0,
+		watchCurrency = 'INR',
+	} = props;
 
 	const [totalQuotation, setTotalQuotation] = useState(0);
 	const [exchangeRate, setExchangeRate] = useState(0);
@@ -27,7 +30,6 @@ function Charges(props, ref) {
 	const { prevCurrency, currCurrency } = storeCurrency;
 	const { getExchangeRate } = useCurrencyConversion({});
 	const { control, watch, setValue, handleSubmit, formState:{ errors } } = useForm();
-	const productValue = quoteRef?.current?.product?.totalProductValue;
 
 	const SelectController = getField('select');
 	const TextAreaController = getField('textarea');
@@ -91,7 +93,7 @@ function Charges(props, ref) {
 			|| insurance > 0
 			|| additionalCharges?.length > 0
 			|| incotermCharges?.length > 0
-			|| productValue > 0
+			|| consignmentValue > 0
 		) {
 			let extraCharges = 0;
 			additionalCharges?.forEach((charge) => {
@@ -105,12 +107,12 @@ function Charges(props, ref) {
 				+basicFreightCharges
 					+ +dutiesAndTaxes
 					+ +insurance
-					+ productValue
+					+ consignmentValue
 					+ +extraCharges
 					+ +incotermCharge,
 			);
 		}
-	}, [JSON.stringify(watchCharges), productValue]);
+	}, [JSON.stringify(watchCharges), consignmentValue]);
 
 	useImperativeHandle(ref, () => ({
 		handleSubmit: () => {

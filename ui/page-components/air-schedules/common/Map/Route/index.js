@@ -8,8 +8,8 @@ function Route({ positions, map }) {
 		if (!map || !positions) return;
 		const line = L.polyline(positions, { ...pathOptions });
 		line.addTo(map);
-		// eslint-disable-next-line no-underscore-dangle
-		if (line.getBounds()?._northEast) {
+		const { _northEast:northEast } = line.getBounds() || {};
+		if (northEast) {
 			map.fitBounds(line.getBounds());
 		}
 	}, [map, positions]);

@@ -34,7 +34,7 @@ function ListDsr() {
 	const [dsrModalInfo, setDsrModalInfo] = useState(null);
 	// const [dsrModalInfo, setDsrModalInfo] = useState({ type: "new", step: 1 });
 
-	const handleDsrModal = (info = null) => {
+	const handleDsrModal = (info) => {
 		if (isDsrModalOpen === true) {
 			refetch();
 		}
@@ -56,13 +56,9 @@ function ListDsr() {
 			/>
 		);
 	}
-
+	console.log(dsrModalInfo, 'dsrModalInfo');
 	return (
 		<div>
-			{/* <MobileHeader>
-				<IconBack style={{ height: 20, width: 20 }} onClick={back} />
-				<h2 className="heading">Shipment Status Report</h2>
-			</MobileHeader> */}
 			<div className={styles.dektop_header}>
 				<div role="presentation" className={styles.back} onClick={back}>
 
@@ -71,21 +67,14 @@ function ListDsr() {
 				</div>
 				<div className={styles.heading_container}>
 					<h2 className={styles.heading}>Schedule Status Reports to Contacts</h2>
-					<Button size="lg" onClick={handleDsrModal}>
-						NEW STATUS REPORT
-					</Button>
+					<div className={styles.button}>
+						<Button size="md" onClick={handleDsrModal}>
+							NEW STATUS REPORT
+						</Button>
+					</div>
 				</div>
 			</div>
-			<ReportsTable loading={loading} dsrList={dsrs} handleDsrModal={() => handleDsrModal} setDsrs={setDsrs} />
-			{/* {!isMobile ? (
-				<ReportsTable loading={loading} dsrList={dsrs} handleDsrModal={handleDsrModal} />
-			) : (
-				<ReportsTableMobile
-					loading={loading}
-					dsrList={dsrs}
-					handleDsrModal={handleDsrModal}
-				/>
-			)} */}
+			<ReportsTable loading={loading} dsrList={dsrs} handleDsrModal={handleDsrModal} setDsrs={setDsrs} />
 			{darModal}
 		</div>
 	);

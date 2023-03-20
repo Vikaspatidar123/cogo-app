@@ -2,24 +2,14 @@
 // import React, { useState } from 'react';
 
 import { Modal } from '@cogoport/components';
-
-// import { useSaasState } from '../../../../common/context';
-// import { Modal } from '../../../../common/ui';
-
-// import SelectPoc from './components/select-poc';
-// import SelectSchedule from './components/select-schedule';
-// import SelectShipment from './components/select-shipment';
-// import Steps from './components/steps';
 import { useState } from 'react';
 
 import SelectPoc from './components/SelectPoc';
+import SelectSchedule from './components/SelectSchedule';
 import SelectShipment from './components/SelectShipment';
 import Steps from './components/Steps';
 
 function DsrModal({ isOpen, handleModal, type = 'new', dsrId, initialStep = 0, dsrs, setDsrs }) {
-	// const { dsrs } = useSaasState();
-
-	console.log(dsrId, 'dsrId::', dsrs);
 	const [step, setStep] = useState(initialStep);
 	const [heading, setHeading] = useState('');
 	const [selectedPoc, setSelectedPoc] = useState(null);
@@ -28,7 +18,6 @@ function DsrModal({ isOpen, handleModal, type = 'new', dsrId, initialStep = 0, d
 	const selectedDsr = dsrs?.filter?.((item) => item.id === selectedDsrId)[0] || {};
 	const pocName = selectedDsr?.poc_details?.name || selectedPoc?.name;
 	const pocId = selectedDsr?.poc_details?.id || selectedPoc?.id;
-	console.log(selectedDsr, pocId, selectedPoc, 'selectedDsr');
 
 	return (
 		<Modal
@@ -43,7 +32,6 @@ function DsrModal({ isOpen, handleModal, type = 'new', dsrId, initialStep = 0, d
 					current={step - 1}
 				/>
 			)}
-			{console.log(selectedDsrId, pocId, selectedDsr, 'selectedDsrId')}
 			{step === 0 ? (
 				<SelectPoc
 					setHeading={setHeading}
@@ -61,16 +49,17 @@ function DsrModal({ isOpen, handleModal, type = 'new', dsrId, initialStep = 0, d
 					pocId={pocId}
 				/>
 			) : step === 2 ? (
-				<div>asd</div>
-				// <SelectSchedule
-				// 	setHeading={setHeading}
-				// 	setStep={setStep}
-				// 	type={type}
-				// 	dsrId={selectedDsrId}
-				// 	selectedDsr={selectedDsr}
-				// 	pocName={pocName}
-				// 	handleModal={handleModal}
-				// />
+				<SelectSchedule
+					setHeading={setHeading}
+					setStep={setStep}
+					type={type}
+					dsrId={selectedDsrId}
+					selectedDsr={selectedDsr}
+					pocName={pocName}
+					handleModal={handleModal}
+					dsrs={dsrs}
+					setDsrs={setDsrs}
+				/>
 			) : null}
 		</Modal>
 	);

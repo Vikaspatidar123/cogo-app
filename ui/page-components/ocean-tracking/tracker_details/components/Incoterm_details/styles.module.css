@@ -79,15 +79,5 @@
     padding: 16px;
     flex-direction: column;
     border-color: #657a8e;
-
-    svg {
-      margin-right: 0;
-      margin-bottom: 16px;
-      fill: white;
-    }
-
-    p {
-      color: white;
-    }
   }
 }

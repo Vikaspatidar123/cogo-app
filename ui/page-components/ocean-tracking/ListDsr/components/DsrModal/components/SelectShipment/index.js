@@ -1,21 +1,4 @@
-// import { Flex, Text } from '@cogoport/front/components';
-// import { Formik, Field, ErrorMessage, Form } from 'formik';
-// import React, { useEffect, useMemo, useRef, useState } from 'react';
-// import Skeleton from 'react-loading-skeleton';
-// import { toast } from 'react-toastify';
-// import * as Yup from 'yup';
-
-// import { FormItem, Radio, Button, Checkbox, Card } from '../../../../../../common/ui';
-// import Table from '../../../../../../common/ui/Table';
-// import useDsrToSubscription from '../../../../hooks/useCreateDsrToSubscription';
-// import useFetchSubscriptions from '../../../../hooks/useFetchDsrToSubscription';
-// import useFetchShipments from '../../../../hooks/useFetchShipments';
-
-// import { TableCard } from './styles';
-import { Checkbox } from '@cogoport/components';
-import { Placeholder, Toast } from '@cogoport/components';
-import { Table } from '@cogoport/components';
-import { Button } from '@cogoport/components';
+import { Checkbox, Toast, Table, Button } from '@cogoport/components';
 import { useEffect, useMemo, useState } from 'react';
 
 import useDsrToSubscription from '../../../../hooks/useDsrToSubscription';
@@ -62,14 +45,8 @@ function SelectShipment({ setHeading, setStep, type, dsrId, pocName, pocId }) {
 		} else {
 			setValue((prv) => [...prv, item.id]);
 		}
-
-		// if (ispresent) value.filter((element) => element !== item.id);
-		// else setValue(item?.id);
 	};
-	console.log(value, 'info');
 	const onSubmit = async () => {
-		const { shipment } = value;
-		console.log(value, 'shipment');
 		if (!value) return Toast.error('No shipments selected');
 		const data = await dsrToSubscription(value, dsrId, subList);
 		if (data === false) return;
@@ -118,10 +95,6 @@ function SelectShipment({ setHeading, setStep, type, dsrId, pocName, pocId }) {
 		},
 	];
 
-	// if (loadingShipments || loadingSubscriptions) {
-	// 	return <Placeholder />;
-	// }
-
 	return (
 		<form>
 			<h4>
@@ -144,9 +117,6 @@ function SelectShipment({ setHeading, setStep, type, dsrId, pocName, pocId }) {
 			) : (
 				<p>No other shipments found</p>
 			)}
-			{/* <FormItem>
-				<ErrorMessage className="error-message" component="p" name="shipments" />
-			</FormItem> */}
 			<div className={styles.footer}>
 				<Button
 					size="lg"

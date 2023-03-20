@@ -1,7 +1,8 @@
 // import { Flex, Text } from '@cogoport/front/components';
 // import React, { useState, Fragment, useEffect } from 'react';
+import { Placeholder } from '@cogoport/components';
 import { Button } from '@cogoport/components';
-import { IcATruck } from '@cogoport/icons-react';
+import { IcATruck, IcMShare } from '@cogoport/icons-react';
 import { useState, useEffect } from 'react';
 
 // import ContainerDetailsModal from '../../../../common/components/container-details-modal';
@@ -37,7 +38,7 @@ import TrackerMap from './TrackerMap';
 // };
 function MilestonesContainer({
 	handleShareModal,
-	mapLoading, trackerDetails, selectedContainer, setMapPoints, mapPoints,
+	mapLoading, trackerDetails, selectedContainer, setMapPoints, mapPoints, loading,
 }) {
 	// const { general, trackerDetails, isMobile, selectedContainer, mapPoints } =		useSaasState();
 	const [selectedMilestonesList, setSelectedMilestonesList] = useState([]);
@@ -169,14 +170,6 @@ function MilestonesContainer({
 
 	return (
 		<div className={styles.card}>
-			{/* {isMobile && (
-				<ContainersPill>
-					<p>Container Details</p>
-					<Button variant="secondary" onClick={handleContainerDetailsModal}>
-						Details
-					</Button>
-				</ContainersPill>
-			)} */}
 			<div className={styles.header}>
 				<h1>TRACKING INFORMATION </h1>
 				{preditiveEta !== undefined
@@ -202,15 +195,12 @@ function MilestonesContainer({
 							</div>
 						</div>
 				)}
-				{/* <div>
-					<Button
-						variant="link"
-						icon={<IconShare style={{ height: 24, width: 24 }} />}
-						onClick={handleShareModal}
-					>
+				<div>
+					<div role="presentation" onClick={() => handleShareModal()} className={styles.share}>
+						<IcMShare />
 						Share
-					</Button>
-				</div> */}
+					</div>
+				</div>
 			</div>
 
 			{/* <ContainerDetailsModal
@@ -219,8 +209,8 @@ function MilestonesContainer({
 				containersDetails={container_details}
 				containerNo={containerNo}
 			/> */}
-
-			{selectedMilestonesList?.length > 0 ? (
+			{loading && <Placeholder height="500px" />}
+			{!loading && selectedMilestonesList?.length > 0 ? (
 				<div className={styles.tracking_details}>
 					<div className={styles.shipping_line}>
 						<div className={styles.step_container}>
@@ -298,7 +288,7 @@ function MilestonesContainer({
 														<p className={styles.heading}>{currentMilestone.location}</p>
 														{combinedMilestones.map((item) => {
 															const description = (
-																<div className={styles.vessel} direction="column">
+																<div className={styles.vessel}>
 																	<span>
 																		{formatDate(item.event_date || '')}
 																		{' '}

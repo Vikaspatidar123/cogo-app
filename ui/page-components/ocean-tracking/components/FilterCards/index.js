@@ -1,3 +1,5 @@
+import { IcCPin, IcMPin } from '@cogoport/icons-react';
+
 import {
 	FILTER_KEY_TO_LABEL,
 	FILTER_WIDTH,
@@ -35,7 +37,10 @@ function FilterCards({ id, onClick, activeKey, stats, ...props }) {
 						onClick={() => !isDisabled && onClick(headingKey)}
 					>
 						<div className={styles.heading}>
-							<h3>{heading}</h3>
+							<h3>
+								{heading}
+								{activeKey === headingKey && <IcMPin fill="green" height={15} width={15} />}
+							</h3>
 							<h1>{headingValue}</h1>
 						</div>
 
@@ -54,7 +59,11 @@ function FilterCards({ id, onClick, activeKey, stats, ...props }) {
 						disabled={isDisabled}
 						onClick={() => !isDisabled && onClick(headingKey)}
 					>
-						<h3>{heading}</h3>
+						<h3>
+							{heading}
+							{activeKey === headingKey && <IcMPin fill="green" height={15} width={15} />}
+						</h3>
+
 						<h1>{headingValue}</h1>
 					</div>
 				)}
@@ -66,7 +75,10 @@ function FilterCards({ id, onClick, activeKey, stats, ...props }) {
 						disabled={isSubheading1Disabled}
 						onClick={() => !isSubheading1Disabled && onClick(subheading1Key)}
 					>
-						<p className={styles.label}>{subheading1}</p>
+						<p className={styles.label}>
+							{subheading1}
+							{activeKey === subheading1Key && <IcMPin fill="green" height={15} width={15} />}
+						</p>
 						<p className={styles.value}>{subheading1Value}</p>
 					</div>
 					<div className={styles.vertical_line} />
@@ -76,7 +88,10 @@ function FilterCards({ id, onClick, activeKey, stats, ...props }) {
 						disabled={isSubheading2Disabled}
 						onClick={() => !isSubheading2Disabled && onClick(subheading2Key)}
 					>
-						<p className={styles.label}>{subheading2}</p>
+						<p className={styles.label}>
+							{subheading2}
+							{activeKey === subheading2Key && <IcMPin fill="green" height={15} width={15} />}
+						</p>
 						<p className={styles.value}>{subheading2Value}</p>
 					</div>
 				</div>
@@ -97,7 +112,10 @@ function FilterCards({ id, onClick, activeKey, stats, ...props }) {
 			onClick={() => !isDisabled && onClick(id)}
 		>
 			<div className={styles.card_content}>
-				<h3 className={styles.text}>{label}</h3>
+				<h3 className={styles.text}>
+					{label}
+					{activeKey === id && <IcMPin fill="green" height={15} width={15} />}
+				</h3>
 				<h1 className={styles.text}>{value}</h1>
 			</div>
 		</div>

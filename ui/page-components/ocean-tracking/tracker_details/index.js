@@ -1,5 +1,8 @@
+import { Placeholder } from '@cogoport/components';
 import { IcMArrowBack } from '@cogoport/icons-react';
 import { useState } from 'react';
+
+import ShareModal from '../components/TrackerCard/Card/Options/ShareModal';
 
 import AddDetails from './components/AddDetails';
 import DetentionDetails from './components/Detention_details';
@@ -29,6 +32,10 @@ function TrackerDetails() {
 	const isArchived = trackerDetails?.status === 'completed';
 	const { container_details = {}, shipment_info } = trackerDetails || {};
 	const containersList = container_details;
+	const [isShareModalOpen, setShareModal] = useState(false);
+	const handleShareModal = () => {
+		setShareModal(!isShareModalOpen);
+	};
 	return (
 		<div>
 			<div className={styles.header}>
@@ -57,32 +64,41 @@ function TrackerDetails() {
 			<div>
 				<div className={styles.row}>
 					<div className={styles.col}>
-						<IncotermDetails
-							trackerDetails={trackerDetails}
-							disabled={isArchived}
-							fetchTrackerDetails={fetchTrackerDetails}
-						/>
+						{loading && <Placeholder height="150px" width="350px" />}
+						{!loading && (
+							<IncotermDetails
+								trackerDetails={trackerDetails}
+								disabled={isArchived}
+								fetchTrackerDetails={fetchTrackerDetails}
+							/>
+						)}
 					</div>
 					<div className={styles.col}>
-						<DetentionDetails
-							trackerDetails={trackerDetails}
-							disabled={isArchived}
-							fetchTrackerDetails={fetchTrackerDetails}
-							setTrackerDetails={setTrackerDetails}
-						/>
+						{loading && <Placeholder height="150px" width="350px" />}
+						{!loading && (
+							<DetentionDetails
+								trackerDetails={trackerDetails}
+								disabled={isArchived}
+								fetchTrackerDetails={fetchTrackerDetails}
+								setTrackerDetails={setTrackerDetails}
+							/>
+						)}
 					</div>
 					<div className={styles.col}>
-						<AddDetails
-							selectedContainer={selectedContainer}
-							setSelectedContainer={setSelectedContainer}
-							selectedContainerId={selectedContainerId}
-							setSelectedContainerId={setSelectedContainerId}
-							containersList={containersList}
-							shipmentInfo={shipment_info}
-							trackerDetails={trackerDetails}
-							setTrackerDetails={setTrackerDetails}
-							hackyContainerNumber={trackerDetails?.input}
-						/>
+						{loading && <Placeholder height="150px" width="350px" />}
+						{!loading && (
+							<AddDetails
+								selectedContainer={selectedContainer}
+								setSelectedContainer={setSelectedContainer}
+								selectedContainerId={selectedContainerId}
+								setSelectedContainerId={setSelectedContainerId}
+								containersList={containersList}
+								shipmentInfo={shipment_info}
+								trackerDetails={trackerDetails}
+								setTrackerDetails={setTrackerDetails}
+								hackyContainerNumber={trackerDetails?.input}
+							/>
+						)}
 					</div>
 				</div>
 				<div className={styles.tracking}>
@@ -94,9 +110,18 @@ function TrackerDetails() {
 						trackerDetails={trackerDetails}
 						mapPoints={mapPoints}
 						setMapPoints={setMapPoints}
+						loading={loading}
+						handleShareModal={handleShareModal}
 					/>
 				</div>
 			</div>
+			{isShareModalOpen && (
+				<ShareModal
+					show={isShareModalOpen}
+					setShow={setShareModal}
+					tracker={trackerDetails}
+				/>
+			)}
 		</div>
 	);
 }

@@ -15,16 +15,17 @@
 
 // import StyledPocCard from './styles';
 import { Input, Button, Toast } from '@cogoport/components';
+import { Placeholder } from '@cogoport/components';
 import { useState, useMemo } from 'react';
 
 import useCreatePoc from '../../../hooks/useCreatePoc';
 import useFetchPoc from '../../../hooks/useFetchPoc';
+import AddPocs from '../AddPoc';
 
 import styles from './styles.module.css';
 
 import { useForm } from '@/packages/forms';
 import getField from '@/packages/forms/Controlled';
-import AddPocs from '../AddPoc';
 
 function LinkPocs({ handleNext }) {
 	// const { formRef, trackerPoc, setTrackerPoc, isMobile, general } = useSaasState();
@@ -121,7 +122,8 @@ function LinkPocs({ handleNext }) {
 				Contact List
 			</h3>
 			<form>
-				{ filteredPocList?.length > 0 ? (
+				{loading && [1, 2, 3].map(() => <Placeholder height="20px" width="324px" className={styles.loading} />)}
+				{!loading && (filteredPocList?.length > 0 ? (
 					filteredPocList.map((item) => {
 						const Element = getField('checkbox');
 						const label = `${item.name}(${item.email})`;
@@ -133,7 +135,7 @@ function LinkPocs({ handleNext }) {
 					})
 				) : (
 					<p> Please add new contacts</p>
-				)}
+				))}
 			</form>
 		</div>
 	);

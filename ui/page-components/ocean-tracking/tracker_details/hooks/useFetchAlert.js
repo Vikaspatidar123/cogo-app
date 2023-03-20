@@ -33,7 +33,7 @@ const useFetchAlerts = () => {
 		fetchAlertDetails();
 	}, []);
 
-	return { loadingAlertDetails: loading, fetchAlertDetails };
+	return { loading, fetchAlertDetails };
 };
 
 export default useFetchAlerts;

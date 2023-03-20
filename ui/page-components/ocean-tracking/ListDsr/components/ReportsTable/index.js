@@ -43,11 +43,11 @@ function ReportsTable({ loading, dsrList, handleDsrModal, setDsrs }) {
 					</div>
 					<div className={styles.list_item}>
 						{list?.schedule}
-						<IcMEdit />
+						<IcMEdit onClick={() => handleDsrModal({ type: 'update', step: 2, id: list?.id })} />
 					</div>
 					<div className={styles.list_item}>
 						{list?.shipments}
-						<IcMEdit />
+						<IcMEdit onClick={() => handleDsrModal({ type: 'update', step: 1, id: list.id })} />
 					</div>
 					<div className={styles.list_item}>
 						{list?.report_update
@@ -60,7 +60,6 @@ function ReportsTable({ loading, dsrList, handleDsrModal, setDsrs }) {
 					</div>
 				</div>
 			))}
-			{/* <Table columns={columns} data={dsrList} loading={loading} /> */}
 		</div>
 	);
 }

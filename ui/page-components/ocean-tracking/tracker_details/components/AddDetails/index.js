@@ -26,10 +26,9 @@ function AddDetails({
 	const itemData = containersList?.[selectedContainer] || {};
 	const [isModalOpen, setModal] = useState(false);
 	const handleModal = () => {
-		// if (disabled) return;
-		setModal(!isModalOpen);
+		setModal((prev) => !prev);
 	};
-	console.log(shipmentInfo, 'itemData');
+	console.log(isModalOpen, 'ismodal');
 	return (
 		<div>
 			<div className={styles.container}>

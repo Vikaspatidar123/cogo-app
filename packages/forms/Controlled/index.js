@@ -5,6 +5,8 @@ import CheckboxController from './CheckboxController';
 import DatepickerController from './DatepickerController';
 import InputController from './InputController';
 import MobileNumberSelectController from './MobileNumberSelectController';
+import RadioController from './RadioController';
+import RadioGroupController from './RadioGroupController';
 import SelectController from './SelectController';
 import TextAreaController from './TextAreaController';
 import UploadController from './UploadController';
@@ -20,6 +22,8 @@ const MAPPING = {
 	datepicker    : DatepickerController,
 	multi_select  : MultiselectController,
 	async_select  : AsyncSelectController,
+	radio         : RadioController,
+	radiogroup    : RadioGroupController,
 };
 
 const getField = (type = 'text') => {

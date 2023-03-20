@@ -4,19 +4,23 @@ import { Toast } from '@cogoport/components';
 import { APP_EVENT } from '../utils/constant';
 import trackEvent from '../utils/trackEvent';
 
+import { useRouter } from '@/packages/next';
 import { useRequest } from '@/packages/request/index';
 import setCookieAndRedirect from '@/ui/commons/utils/setCookieAndRedirect';
 
-const useOtpVerification = ({ formData = {}, otpValue = '', id }) => {
+const useOtpVerification = ({ formData = {}, otpValue = '', userDetails }) => {
+	const { query } = useRouter();
+	const { id } = userDetails || {};
 	const [{ loading: verifyLeadUserMobileApiLoading }, verifyLeadUserMobileApitrigger] = useRequest({
-		url    : '/lead/verify_lead_user_mobile',
+		url    : '/verify_user_mobile',
 		method : 'post',
 	}, { manual: true });
 
 	const [{ loading: resendLeadVerificationOtpApiLoading }, resendLeadVerificationOtpApitrigger] = useRequest({
-		url    : '/lead/resend_lead_verification_otp',
+		url    : '/verify_user_mobile',
 		method : 'post',
 	}, { manual: true });
+	const { lead_organization_id, source } = query;
 
 	const onClickVerifyLeadUserMobileNo = async () => {
 		try {
@@ -38,10 +42,15 @@ const useOtpVerification = ({ formData = {}, otpValue = '', id }) => {
 
 			Toast?.success('Verification Successful!');
 
-			const redirectUrl = '/v2/get-started';
+			const redirectUrl = `/v2/get-started?saastheme&lead_organization_id=${lead_organization_id}&source=${
+				source || 'subscriptions'
+			}`;
 
-			const { token } = response?.data || {};
-			if (token) setCookieAndRedirect(token, {}, redirectUrl);
+			const { user_session } = userDetails || {};
+			const { token } = user_session || {};
+			if (response) {
+				setCookieAndRedirect(token, {}, redirectUrl);
+			}
 		} catch (error) {
 			Toast.error(error?.data);
 		}
@@ -50,7 +59,8 @@ const useOtpVerification = ({ formData = {}, otpValue = '', id }) => {
 	const resendOtp = async ({ timer = {} }) => {
 		try {
 			const payload = {
-				lead_user_id: id,
+				mobile_number       : userDetails?.mobile_number,
+				mobile_country_code : userDetails?.mobile_country_code,
 			};
 
 			await resendLeadVerificationOtpApitrigger({

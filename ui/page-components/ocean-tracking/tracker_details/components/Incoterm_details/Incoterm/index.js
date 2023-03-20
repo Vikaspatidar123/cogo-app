@@ -1,53 +1,31 @@
-// import Flex from '@cogoport/front/components/Flex';
-// import Skeleton from '@cogoport/front/components/Skeleton';
-// import React, { useState, useEffect } from 'react';
-// import { toast } from 'react-toastify';
-
-// import { useSaasState } from '../../../../../../common/context';
-// import Button from '../../../../../../common/ui/Button';
-// import Modal from '../../../../../../common/ui/Modal';
-// import useFetchAlerts from '../../../../hooks/useFetchAlerts';
-
-// import { STEPS_INFO, MAX_STEPS } from './common/constants';
-// import AddAlerts from './components/add-alerts';
-// import LinkPocs from './components/link-poc';
-import { Modal, Placeholder, Toast, Button } from '@cogoport/components';
+import { Modal, Placeholder } from '@cogoport/components';
 import { useState, useEffect } from 'react';
 
 import { STEPS_INFO, MAX_STEPS } from '../../../common/constant';
 import useFetchAlerts from '../../../hooks/useFetchAlert';
+import AddAlerts from '../AddAlerts';
 import LinkPocs from '../LinkPocs';
 
-import styles from './styles.module.css';
-
-function IncotermModal({ isOpen, handleModal, fetchTrackerDetails, trackerDetails }) {
+function IncotermModal({
+	isOpen,
+	handleModal,
+	fetchTrackerDetails,
+	trackerDetails,
+	setAlertsShow,
+}) {
 	const [step, setStep] = useState(0);
 	const [subscriptionAlerts, setSubscriptionAlerts] = useState([]);
-	// const { formRef, trackerDetails, setSubscriptionAlerts, isMobile } = useSaasState();
-	const { fetchAlertDetails } = useFetchAlerts();
+	const [trackerPoc, setTrackerPoc] = useState([]);
 	const [determiningStep, setDeterminingStep] = useState(true);
+	const { fetchAlertDetails } = useFetchAlerts({ setSubscriptionAlerts, setStep, setDeterminingStep });
 
 	useEffect(() => {
 		if (trackerDetails?.id) {
-			fetchAlertDetails(trackerDetails.id)
-				.then((res) => {
-					if (res?.length > 0) {
-						setSubscriptionAlerts(res);
-						setStep(1);
-					}
-					setDeterminingStep(false);
-				})
-				.catch((err) => {
-					Toast.error(err);
-				});
+			fetchAlertDetails(trackerDetails.id);
 		}
 	}, [trackerDetails?.id]);
 
 	const [loading, setLoading] = useState(false);
-
-	const submitForm = () => {
-		formRef.current?.handleSubmit?.();
-	};
 
 	const handleNext = (callApi = false) => {
 		if (step < MAX_STEPS) {
@@ -67,14 +45,31 @@ function IncotermModal({ isOpen, handleModal, fetchTrackerDetails, trackerDetail
 			handleModal();
 		}
 	};
-
 	const handleModel = () => {
 		if (step === 0) {
-			return <LinkPocs handleNext={handleNext} setLoading={setLoading} />;
+			return (
+				<LinkPocs
+					handleNext={handleNext}
+					setLoading={setLoading}
+					handleModal={handleModal}
+					setTrackerPoc={setTrackerPoc}
+					trackerPoc={trackerPoc}
+				/>
+			);
 		}
-		// if (step === 1) {
-		// 	return <AddAlerts handleNext={handleNext} setLoading={setLoading} />;
-		// }
+		if (step === 1) {
+			return (
+				<AddAlerts
+					handleNext={handleNext}
+					setLoading={setLoading}
+					setTrackerPoc={setTrackerPoc}
+					trackerPoc={trackerPoc}
+					handlePrevious={handlePrevious}
+					subscriptionAlerts={subscriptionAlerts}
+					trackerDetails={trackerDetails}
+				/>
+			);
+		}
 		return null;
 	};
 
@@ -82,8 +77,7 @@ function IncotermModal({ isOpen, handleModal, fetchTrackerDetails, trackerDetail
 		<Modal
 			show={isOpen}
 			onClose={handleModal}
-			// width={isMobile ? 350 : 'none'}
-			// heading={STEPS_INFO[step]?.heading}
+			heading={STEPS_INFO[step]?.heading}
 			placement="center"
 		>
 			<Modal.Header title={STEPS_INFO[step]?.heading} />
@@ -94,42 +88,8 @@ function IncotermModal({ isOpen, handleModal, fetchTrackerDetails, trackerDetail
 					</div>
 				) : (
 					<div>
-						<Modal.Body>{handleModel()}</Modal.Body>
-						<Modal.Footer>
-							<div className={styles.item}>
-								{step === 1 && (
-									<Button
-										size="lg"
-										variant="ghost"
-										normalCase
-										onClick={handlePrevious}
-									>
-										Back
-									</Button>
-								)}
-								{step === 0 && (
-									<Button
-										variant="ghost"
-										size="lg"
-										normalCase
-										onClick={handleModal}
-									>
-										CANCEL
-									</Button>
-								)}
-								<Button
-									size="lg"
-									variant="secondary"
-									normalCase
-									disabled={loading}
-								// onClick={submitForm}
-									hideOverflow
-									type="submit"
-								>
-									{STEPS_INFO[step]?.nextButtonLabel}
-								</Button>
-							</div>
-						</Modal.Footer>
+						{handleModel()}
+
 					</div>
 				)}
 			</div>

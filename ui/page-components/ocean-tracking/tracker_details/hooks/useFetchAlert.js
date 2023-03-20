@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { useRequest } from '@/packages/request';
 // import { useSelector } from '@/packages/store';
 
-const useFetchAlerts = () => {
+const useFetchAlerts = ({ setSubscriptionAlerts, setStep, setDeterminingStep }) => {
 	const [{ loading }, trigger] = useRequest({
 		url    : 'get_saas_container_alert',
 		method : 'get',
@@ -22,6 +22,12 @@ const useFetchAlerts = () => {
 			if (hasError) throw new Error();
 
 			const { data } = res;
+			console.log(data, 'data');
+			if (data?.length > 0) {
+				setSubscriptionAlerts(data);
+				setStep(1);
+			}
+			setDeterminingStep(false);
 			// setLoadingAlertDetails(false);
 			return data;
 		} catch (err) {

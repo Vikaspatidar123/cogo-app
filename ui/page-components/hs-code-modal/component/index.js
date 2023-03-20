@@ -10,7 +10,7 @@ import { useState } from 'react';
 
 import useHsCodeData from '../hook/useHsCodeData';
 
-import useClickFunction from './ClickFunction';
+import useClickFunction from './clickFunction';
 import hsColumn from './Column';
 import { Loading } from './Configuration/icon-configuration';
 import HsTable from './HsTable';

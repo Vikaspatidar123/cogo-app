@@ -25,16 +25,14 @@ function HeadingList({
 			setHeadingToggle(false);
 			setHead(false);
 		}
-	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [chapterToggle]);
+	}, [chapterToggle, setHead]);
 
 	useEffect(() => {
 		if (headingToggle) {
 			refetchHsCode(headingData.headingCode);
 			setHead(true);
 		} else setHead(false);
-	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [headingToggle]);
+	}, [headingData.headingCode, headingToggle, refetchHsCode, setHead]);
 
 	const addLoader = (mobileWidth, desktopWidth) => {
 		<div>

@@ -13,8 +13,7 @@ function Paginations({
 		if (page && headingToggle) {
 			refetchHsCode(headCode, page);
 		}
-	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [page]);
+	}, [headCode, headingToggle, page, refetchHsCode]);
 
 	return (
 		<div className={styles.pagination_wrapper}>

@@ -1,5 +1,5 @@
 import { Toast } from '@cogoport/components';
-import { useEffect } from 'react';
+import { useEffect, useCallback } from 'react';
 
 import { useRequest } from '@/packages/request';
 
@@ -9,7 +9,7 @@ const useCurrencyConversion = ({ watchCurrency = '', orgCurrency = '', landingPa
 		url    : 'get_exchange_rate',
 	}, { manual: true });
 
-	const getExchangeRate = async (fromCur, toCur) => {
+	const getExchangeRate = useCallback(async (fromCur, toCur) => {
 		try {
 			if (fromCur === toCur) return 1;
 			const exData = await trigger({
@@ -23,14 +23,13 @@ const useCurrencyConversion = ({ watchCurrency = '', orgCurrency = '', landingPa
 			Toast.error(error?.error);
 			return null;
 		}
-	};
+	}, [trigger]);
 
 	useEffect(() => {
 		if (watchCurrency && landingPageCall) {
 			getExchangeRate(orgCurrency, watchCurrency);
 		}
-	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [watchCurrency]);
+	}, [getExchangeRate, landingPageCall, orgCurrency, watchCurrency]);
 
 	return { getExchangeRate, loading, exchangeRate };
 };

@@ -17,14 +17,13 @@ function TransactionModal({
 
 	const {
 		lineItem = [],
-		incoterm = '',
 		consignmentValue = '',
 		resultCurrency,
-		totalDutiesAndTaxes = '',
 		screeningPartyName,
 		restrictedPartyScreening = '',
 		screeningRequestResponse = [],
 	} = transactionData;
+
 	const transactionDataLength = Object.keys(transactionData).length;
 
 	return (
@@ -72,10 +71,6 @@ function TransactionModal({
 					</div>
 
 					<Duties
-						incoterm={incoterm}
-						consignmentValue={consignmentValue}
-						resultCurrency={resultCurrency}
-						totalDutiesAndTaxes={totalDutiesAndTaxes}
 						quotationSetValue={setValue}
 						setTransactionModal={setTransactionModal}
 						transactionData={transactionData}

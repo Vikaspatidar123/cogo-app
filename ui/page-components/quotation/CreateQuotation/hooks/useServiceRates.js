@@ -25,7 +25,6 @@ const useServiceRates = ({ prioritySequence = 0, setValidateProduct }) => {
 
 	useEffect(() => {
 		getServiceRates();
-	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	return {

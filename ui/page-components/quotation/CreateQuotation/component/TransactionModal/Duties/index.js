@@ -10,31 +10,37 @@ import { useForm } from '@/packages/forms';
 import getField from '@/packages/forms/Controlled';
 
 function Duties({
-	incoterm,
-	consignmentValue,
-	resultCurrency,
-	totalDutiesAndTaxes,
 	quotationSetValue,
 	setTransactionModal,
 	transactionData = {},
 	setShowSuccessModal,
 }) {
+	const {
+		totalDutiesAndTaxes = '',
+	} = transactionData;
+
 	const { fetchUpdateDuties = () => {}, loading } = useUpdateDuties();
 	const {
 		control,
 		setValue,
 	} = useForm();
 	const transactionDataLength = Object.keys(transactionData).length;
+
 	useEffect(() => {
 		if (transactionDataLength > 0) {
+			const {
+				incoterm = '',
+				consignmentValue = '',
+				resultCurrency,
+				totalDutiesAndTaxes: dutiesTax = '',
+			} = transactionData;
 			setValue('incoterm', incoterm);
 			setValue('consignment', consignmentValue);
 			setValue('result', resultCurrency);
-			setValue('applicable', totalDutiesAndTaxes);
-			quotationSetValue('dutiesAndTaxes', totalDutiesAndTaxes);
+			setValue('applicable', dutiesTax);
+			quotationSetValue('dutiesAndTaxes', dutiesTax);
 		}
-	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [transactionDataLength]);
+	}, [quotationSetValue, setValue, transactionData, transactionDataLength]);
 
 	const handelSubmit = async () => {
 		await fetchUpdateDuties(totalDutiesAndTaxes, transactionData?.quotationId);

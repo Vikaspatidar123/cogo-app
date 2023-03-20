@@ -36,7 +36,6 @@ function ConfirmationModal(props, ref) {
 				setShow(false);
 			}, 4000);
 		}
-	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [sendQuoteLoading, sendQuotedata]);
 
 	const renderTitle = () => {

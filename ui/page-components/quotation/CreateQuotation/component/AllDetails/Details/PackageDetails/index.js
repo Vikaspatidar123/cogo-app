@@ -24,16 +24,17 @@ function PackageDetails(props, ref) {
 
 	useEffect(() => {
 		if (editAir?.weight) {
-			setValue('weight', editAir?.weight);
-			setValue('volume', editAir?.volume);
-			setValue('quantity', editAir?.quantity);
+			const { weight, volume, quantity } = editAir || {};
+			setValue('weight', weight);
+			setValue('volume', volume);
+			setValue('quantity', quantity);
 		}
 		if (editAir?.packageHandling) {
-			setValue('packageHandling', editAir?.packageHandling);
-			setValue('packageType', editAir?.packageType);
+			const { packageHandling, packageType } = editAir || {};
+			setValue('packageHandling', packageHandling);
+			setValue('packageType', packageType);
 		}
-	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [editAir?.weight]);
+	}, [editAir, editAir?.weight, setValue]);
 
 	useImperativeHandle(ref, () => ({
 		handleSubmit: () => {

@@ -1,5 +1,5 @@
 import { Toast } from '@cogoport/components';
-import { useEffect } from 'react';
+import { useEffect, useCallback } from 'react';
 
 import { useRouter } from '@/packages/next';
 import { useRequestBf } from '@/packages/request';
@@ -14,20 +14,19 @@ const useEditQuotation = () => {
 		authKey : 'get_saas_quote',
 	}, { manual: true });
 
-	const editQuotation = async (id) => {
+	const editQuotation = useCallback(async (id) => {
 		try {
 			await trigger({ params: { quotationId: id, userId: profile.id } });
 		} catch (err) {
 			Toast.error(err?.message);
 		}
-	};
+	}, [profile.id, trigger]);
 
 	useEffect(() => {
 		if (query.id) {
 			editQuotation(query.id);
 		}
-	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [query.id]);
+	}, [editQuotation, query?.id]);
 
 	return {
 		editData    : data,

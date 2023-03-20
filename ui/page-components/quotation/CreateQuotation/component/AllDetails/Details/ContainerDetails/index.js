@@ -38,16 +38,19 @@ function ContainerDetails(props, ref) {
 
 	useEffect(() => {
 		if (editOcean?.serviceType) {
-			setValue('serviceType', editOcean?.serviceType);
-			setValue('containerSize', editOcean?.containerSize);
-			setValue('containerCount', editOcean?.containerCount);
-			setValue('containerType', editOcean?.containerType);
-			setValue('weight', editOcean?.weight);
-			setValue('volume', editOcean?.volume);
-			setValue('quantity', editOcean?.quantity);
+			const {
+				serviceType, containerCount, containerSize,
+				containerType, weight, volume, quantity,
+			} = editOcean || {};
+			setValue('serviceType', serviceType);
+			setValue('containerSize', containerSize);
+			setValue('containerCount', containerCount);
+			setValue('containerType', containerType);
+			setValue('weight', weight);
+			setValue('volume', volume);
+			setValue('quantity', quantity);
 		}
-	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [editOcean?.serviceType]);
+	}, [editOcean, editOcean?.serviceType, setValue]);
 
 	useImperativeHandle(ref, () => ({
 		handleSubmit: () => {

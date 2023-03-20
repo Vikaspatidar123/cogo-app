@@ -65,7 +65,6 @@ const useCalculation = ({
 	useEffect(() => {
 		setErrorMessage({});
 		Calculation();
-	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [JSON.stringify(globalValue)]);
 
 	return { Calculation };

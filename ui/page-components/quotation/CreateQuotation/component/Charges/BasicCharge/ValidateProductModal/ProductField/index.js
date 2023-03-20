@@ -72,7 +72,6 @@ function ProductField({
 		if (checkButton) {
 			verifyHandler(productId, verifiedData?.hsCode || hsCode);
 		}
-	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [checkButton]);
 
 	return (

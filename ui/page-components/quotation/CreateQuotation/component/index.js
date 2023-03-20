@@ -62,13 +62,13 @@ function CreateQuotation() {
 
 	useEffect(() => {
 		if (editData?.saasPartnerId) {
-			setTransportMode(editData?.transportMode);
-			setValue('buyerId', editData?.saasPartnerId);
-			setValue('expiryDate', new Date(editData?.expiryDate));
-			setValue('currency', editData?.currency);
+			const { transportMode: editTransport, saasPartnerId, expiryDate, currency } = editData || {};
+			setTransportMode(editTransport);
+			setValue('buyerId', saasPartnerId);
+			setValue('expiryDate', new Date(expiryDate));
+			setValue('currency', currency);
 		}
-	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [editData?.saasPartnerId]);
+	}, [editData, editData?.saasPartnerId, setValue]);
 
 	const {
 		// getExchangeRate,

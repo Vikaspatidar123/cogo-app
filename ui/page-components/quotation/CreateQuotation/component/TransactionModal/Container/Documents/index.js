@@ -14,7 +14,6 @@ function Docuemnts({ documents = [], hsNumber = '' }) {
 	useEffect(() => {
 		setImportDoc((documents || []).filter((x) => x.tradeType === 'IMPORT'));
 		setExportDoc((documents || []).filter((x) => x.tradeType === 'EXPORT'));
-	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	return (

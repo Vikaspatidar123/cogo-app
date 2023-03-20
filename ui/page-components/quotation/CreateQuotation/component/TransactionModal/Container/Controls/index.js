@@ -18,7 +18,6 @@ function Controls({ controls }) {
 
 	useEffect(() => {
 		if (doc) setMapDoc(doc);
-	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [labeledValue]);
 
 	return (

@@ -16,7 +16,7 @@ import { Checkbox } from '@cogoport/components';
 import { Placeholder, Toast } from '@cogoport/components';
 import { Table } from '@cogoport/components';
 import { Button } from '@cogoport/components';
-import { useEffect, useMemo } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
 import useDsrToSubscription from '../../../../hooks/useDsrToSubscription';
 import useFetchShipments from '../../../../hooks/useFetchShipment';
@@ -30,7 +30,8 @@ function SelectShipment({ setHeading, setStep, type, dsrId, pocName, pocId }) {
 	// const formRef = useRef(null);
 	const [loadingShipments, shipments] = useFetchShipments();
 	const [loadingSubscriptions, subList] = useFetchSubscriptions(dsrId);
-	const [submitLoading, dsrToSubscription] = useDsrToSubscription();
+	const { submitLoading, dsrToSubscription } = useDsrToSubscription();
+	const [value, setValue] = useState([]);
 
 	useEffect(() => {
 		setHeading(`Status report for ${pocName}`);
@@ -47,22 +48,39 @@ function SelectShipment({ setHeading, setStep, type, dsrId, pocName, pocId }) {
 		),
 		[shipments, associatedShipments],
 	);
+	const {
+		control,
+		handleSubmit,
+		formState: { errors },
+	} = useForm();
 
-	const loading = loadingShipments || loadingSubscriptions;
+	const handleChange = (item, e) => {
+		if (value.includes(item.id)) {
+			const check = value.filter((x) => x !== item.id);
+			console.log(check, 'check');
+			setValue(check);
+		} else {
+			setValue((prv) => [...prv, item.id]);
+		}
 
-	const onSubmit = async (values) => {
-		const { shipments } = values;
-		if (!shipments) return Toast.error('No shipments selected');
-		const data = await dsrToSubscription(shipments, dsrId, subList);
+		// if (ispresent) value.filter((element) => element !== item.id);
+		// else setValue(item?.id);
+	};
+	console.log(value, 'info');
+	const onSubmit = async () => {
+		const { shipment } = value;
+		console.log(value, 'shipment');
+		if (!value) return Toast.error('No shipments selected');
+		const data = await dsrToSubscription(value, dsrId, subList);
 		if (data === false) return;
 		setStep((step) => step + 1);
 	};
 
 	const columns = [
 		{
-			key          : 'shipper',
-			renderHeader : () => 'Shipper',
-			renderCell   : (record, index) => (
+			id       : 'shipper',
+			Header   : () => 'Shipper',
+			accessor : (record, index) => (
 				<Checkbox
 					name="shipments"
 					id={record.id}
@@ -71,19 +89,20 @@ function SelectShipment({ setHeading, setStep, type, dsrId, pocName, pocId }) {
 						(record.poc_details || []).filter((item) => item.user_type === 'SHIPPER')[0]
 							?.name
 					}
+					onChange={(e) => handleChange(record, e.target.checked)}
 				/>
 			),
 		},
 		{
-			key          : 'consignee',
-			renderHeader : () => 'Consignee',
-			renderCell   : (record, index) => (record.poc_details || []).filter((item) => item.user_type === 'CONSIGNEE')[0]
+			id       : 'consignee',
+			Header   : () => 'Consignee',
+			accessor : (record, index) => (record.poc_details || []).filter((item) => item.user_type === 'CONSIGNEE')[0]
 				?.name,
 		},
 		{
-			key          : 'port_pair',
-			renderHeader : () => 'Port Pair',
-			renderCell   : (record, index) => {
+			id       : 'port_pair',
+			Header   : () => 'Port Pair',
+			accessor : (record, index) => {
 				let str = '';
 				const { itinerary } = record;
 				str += itinerary?.origin || 'Origin';
@@ -93,20 +112,15 @@ function SelectShipment({ setHeading, setStep, type, dsrId, pocName, pocId }) {
 			},
 		},
 		{
-			key          : 'booking_number',
-			renderHeader : () => 'Booking Number',
-			renderCell   : (record, index) => record.input,
+			id       : 'booking_number',
+			Header   : () => 'Booking Number',
+			accessor : (record, index) => record.input,
 		},
 	];
 
-	if (loading) {
-		return <Placeholder />;
-	}
-	const {
-		control,
-		handleSubmit,
-		formState: { errors },
-	} = useForm();
+	// if (loadingShipments || loadingSubscriptions) {
+	// 	return <Placeholder />;
+	// }
 
 	return (
 		<form>

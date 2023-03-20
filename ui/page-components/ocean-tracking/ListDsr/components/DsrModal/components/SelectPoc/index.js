@@ -34,11 +34,15 @@ function SelectPoc({ setHeading, setStep, setSelectedPoc, setDsrId }) {
 	};
 
 	const onSubmit = async (values) => {
-		const { poc } = values;
-		console.log(values, 'values');
+		let poc = '';
+
+		filteredPocList.forEach((element) => {
+			if (values?.[element?.name] === true) {
+				poc = element.id;
+			}
+		});
 		const data = await createDsr(poc);
-		console.log(data, '12334');
-		if (data == null) return;
+		console.log(data, 'data');
 		setSelectedPoc({
 			id   : poc,
 			name : pocList.filter((item) => item.id === poc)[0]?.name,

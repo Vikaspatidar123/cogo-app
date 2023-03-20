@@ -1,6 +1,6 @@
 import { Toast } from '@cogoport/components';
-import { useRouter } from 'next/router';
 
+import { useRouter } from '@/packages/next';
 import { useRequest } from '@/packages/request';
 import { useSelector } from '@/packages/store';
 
@@ -13,11 +13,13 @@ const useAddTracker = () => {
 	const { push } = useRouter();
 
 	const addTracker = async (values) => {
+		if (!values?.search_type) {
+			Toast.error('Please Select Search type');
+			return;
+		}
 		const data = {
-			shipping_line_id       : values.shipping_line_id?.value,
-			search_type            : values?.search_type,
-			search_value           : values?.search_value,
-			organization_branch_id : general?.query?.branch_id,
+			...values,
+			organization_branch_id: general?.query?.branch_id,
 		};
 
 		try {
@@ -31,10 +33,9 @@ const useAddTracker = () => {
 				Toast.warning(message);
 			}
 			const container = 'container';
-
 			push(
 				'/saas/tracking/[tracker_id]',
-				`/saas/tracking/${id}?isFirstVisit=true&shippingLineId=${values.shipping_line_id.value}&trackingType=${container}`,
+				`/saas/tracking/${id}?isFirstVisit=true&shippingLineId=${values.shipping_line_id}&trackingType=${container}`,
 			);
 		} catch (err) {
 			Toast.error("Couldn't add tracker");
@@ -43,6 +44,7 @@ const useAddTracker = () => {
 
 	return {
 		addTracker,
+		loading,
 	};
 };
 

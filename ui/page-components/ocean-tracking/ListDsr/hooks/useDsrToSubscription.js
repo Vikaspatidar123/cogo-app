@@ -79,7 +79,7 @@ const useDsrToSubscription = () => {
 		}
 	};
 
-	return [loading, dsrToSubscription];
+	return { loading, dsrToSubscription };
 };
 
 export default useDsrToSubscription;

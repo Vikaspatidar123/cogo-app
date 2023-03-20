@@ -61,15 +61,16 @@ function DsrModal({ isOpen, handleModal, type = 'new', dsrId, initialStep = 0, d
 					pocId={pocId}
 				/>
 			) : step === 2 ? (
-				<SelectSchedule
-					setHeading={setHeading}
-					setStep={setStep}
-					type={type}
-					dsrId={selectedDsrId}
-					selectedDsr={selectedDsr}
-					pocName={pocName}
-					handleModal={handleModal}
-				/>
+				<div>asd</div>
+				// <SelectSchedule
+				// 	setHeading={setHeading}
+				// 	setStep={setStep}
+				// 	type={type}
+				// 	dsrId={selectedDsrId}
+				// 	selectedDsr={selectedDsr}
+				// 	pocName={pocName}
+				// 	handleModal={handleModal}
+				// />
 			) : null}
 		</Modal>
 	);

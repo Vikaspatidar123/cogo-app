@@ -47,7 +47,7 @@ function Header() {
 				</div>
 			</div>
 			{show && (
-				<AddTrackerModal show={show} overflow="auto" onclose={() => setShow(!show)} />
+				<AddTrackerModal show={show} overflow="auto" setShow={setShow} />
 			)}
 		</div>
 	);

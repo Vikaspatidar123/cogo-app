@@ -63,7 +63,7 @@ function CheckoutModal({
 			const { payloadData, ...rest } = createBillLineItems();
 			setChargeData(rest);
 		}
-	}, [traderCheck]);
+	}, [createBillLineItems, paymentMode, traderCheck]);
 
 	return (
 		<Modal show={showCheckout} onClose={() => setShowCheckout(false)} size="lg">

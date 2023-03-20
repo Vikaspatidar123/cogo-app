@@ -1,4 +1,5 @@
 import { Toast } from '@cogoport/components';
+import { useCallback } from 'react';
 
 import { SERVICES_MAPPING, DISPLAY_NAME } from '../utils/serviceMapping';
 
@@ -27,7 +28,7 @@ const useCheckoutModal = ({
 		return 'Proceed to Pay';
 	};
 
-	const createBillLineItems = () => {
+	const createBillLineItems = useCallback(() => {
 		const countArr = Object.keys(serviceProduct);
 
 		if (traderCheck) countArr.push(4);
@@ -86,7 +87,7 @@ const useCheckoutModal = ({
 			subTotalAmount : subTotalAmount.toFixed(2),
 			netAmount      : netAmount.toFixed(2),
 		};
-	};
+	}, [serviceProduct, services, traderCheck]);
 
 	const submitHandler = async () => {
 		const draftHeader = await createHeader(traderCheck);

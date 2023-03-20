@@ -75,7 +75,6 @@ const useCreateQuotation = ({ setConfirmCreateQuotation }) => {
 		}
 		if (quotationId !== '') {
 			return {
-				// 		...rest,
 				products,
 				expiryDate,
 				quotationId,
@@ -89,7 +88,6 @@ const useCreateQuotation = ({ setConfirmCreateQuotation }) => {
 			};
 		}
 
-		// create quote, quoteID === indefind;
 		return {
 			expiryDate,
 			products,
@@ -111,7 +109,8 @@ const useCreateQuotation = ({ setConfirmCreateQuotation }) => {
 			const resp = await trigger({
 				data: payloadData,
 			});
-			if (recentSearch) {
+			if (recentSearch && typeof window !== 'undefined') {
+				// eslint-disable-next-line no-undef
 				localStorage.removeItem('spotSearchResult');
 			}
 			if (flag && resp?.data) {

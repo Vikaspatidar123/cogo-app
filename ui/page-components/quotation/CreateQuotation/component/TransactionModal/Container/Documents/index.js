@@ -16,7 +16,7 @@ function Docuemnts({ documents = [], hsNumber = '' }) {
 		setExportDoc((documents || []).filter((x) => x.tradeType === 'EXPORT'));
 	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
-	console.log(labeledValue, 'labeledValue');
+
 	return (
 		<>
 

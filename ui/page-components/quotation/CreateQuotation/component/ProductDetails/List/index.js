@@ -125,15 +125,15 @@ function List(props, ref) {
 		if (selectedData.length > 0) {
 			addProductFromCatalogue({ selectedData, getExchangeRate, watchCurrency, append });
 		}
-	}, [selectedData]);
+	}, [append, getExchangeRate, selectedData, watchCurrency]);
 
-	useEffect(() => { setSelectedId((watchFieldArr || []).map((x) => x.productId)); }, [watchFieldArr]);
+	useEffect(() => { setSelectedId((watchFieldArr || []).map((x) => x.productId)); }, [setSelectedId, watchFieldArr]);
 
 	useEffect(() => {
 		if (editProduct.length > 0) {
 			setValue('products', editProduct);
 		}
-	}, [editProduct.length]);
+	}, [editProduct, editProduct.length, setValue]);
 
 	return (
 		<>

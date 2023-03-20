@@ -1,6 +1,7 @@
 import { Button } from '@cogoport/components';
 import { useState, useRef, forwardRef, useEffect } from 'react';
 
+import iconUrl from '../../utils/iconUrl.json';
 import headerFields from '../configuration/headerControls';
 import useCreateQuotation from '../hooks/useCreateQuotation';
 import useCurrencyConversion from '../hooks/useCurrencyConversion';
@@ -49,7 +50,7 @@ function CreateQuotation() {
 			expiryDate : setExpiryDate(),
 		},
 	});
-	const { editData = {}, editLoading } = useEditQuotation({ setValue, setTransportMode });
+	const { editData = {}, editLoading = false } = useEditQuotation({ setValue, setTransportMode });
 
 	const [watchCurrency, date] = watch(['currency', 'expiryDate']);
 
@@ -95,6 +96,12 @@ function CreateQuotation() {
 
 	return (
 		<div>
+			{editLoading && (
+				<div className={styles.loading_container}>
+					<img src={iconUrl.loading} alt="loading..." className={styles.cogoloader} />
+					<div className={styles.modal} />
+				</div>
+			)}
 			<Header
 				control={headerControls}
 				fields={newHeaderFields}

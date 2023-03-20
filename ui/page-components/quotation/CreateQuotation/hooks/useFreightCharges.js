@@ -7,6 +7,7 @@ const useFreightCharges = () => {
 		method : 'post',
 		url    : '/create_spot_search',
 	}, { manual: true });
+
 	const [{ loading:getSpotSearchloading, data:getSpotData }, getSpotSearch] = useRequest({
 		method : 'get',
 		url    : '/get_spot_search',
@@ -39,9 +40,8 @@ const useFreightCharges = () => {
 	return {
 		getSpotSearchfn,
 		createSpotSearch,
-		loading,
-		apiResponse: getSpotData,
-		getSpotSearchloading,
+		loading     : loading || getSpotSearchloading,
+		apiResponse : getSpotData,
 	};
 };
 

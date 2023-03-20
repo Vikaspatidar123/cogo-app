@@ -25,7 +25,6 @@ function MapComp({
 	const corner2 = L.latLng(90, 200);
 	const bounds = L.latLngBounds(corner1, corner2);
 	const pointLength = plotPoints.length;
-	// const heightVariable = isMobile ? '350px' : '260px';
 
 	useEffect(() => {
 		const timeout = setTimeout(() => {
@@ -44,7 +43,7 @@ function MapComp({
 				'<a href="https://www.cogoport.com/en/terms-and-conditions/" target="_blank">&copy; Cogoport T&C</a> | <a href="https://www.cogoport.com/en/privacy-policy/" target="_blank">Privacy & data protection</a> | <a href="https://leafletjs.com/" target="_blank" >Leaflet</a>',
 			);
 		}
-	}, [map]);
+	}, [bounds, map]);
 
 	return (
 		<CogoMaps

@@ -92,7 +92,7 @@ function SellerAddress(props, ref) {
 		if (sellerDetails?.billingAddressId) {
 			setSellerAddressInfo(sellerDetails);
 		}
-	}, [sellerDetails?.billingAddressId]);
+	}, [sellerDetails, sellerDetails?.billingAddressId]);
 
 	return (
 		<>

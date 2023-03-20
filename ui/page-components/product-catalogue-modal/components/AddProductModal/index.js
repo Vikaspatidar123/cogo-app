@@ -11,7 +11,6 @@ function AddProductModal({
 	showProduct,
 	setShowProduct,
 	prefiledValues = {},
-	setHSCode,
 	setIsEdit,
 	refetchProduct,
 }) {
@@ -49,10 +48,8 @@ function AddProductModal({
 			</div>
 
 			<Pricing
-				setHSCode={setHSCode}
 				AddProductHandler={AddProductHandler}
 				addProductLoading={addProductLoading || loading}
-				loading={loading}
 				productDetailsfromAPi={productDetailsfromAPi}
 				prefiledValues={prefiledValues}
 			/>

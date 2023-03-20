@@ -121,9 +121,6 @@ const useValidateModal = ({
 	const isProductVerified = () => {
 		const isProductVerifiedArr = [];
 
-		console.log(servicesSelected, 'servicesSelected');
-		console.log(isProductVerifiedArr, 'isProductVerifiedArr');
-
 		productIdArr.forEach((id) => {
 			const serviceObj = servicesSelected[id];
 			if (!serviceObj.destinationHs) isProductVerifiedArr.push(id);

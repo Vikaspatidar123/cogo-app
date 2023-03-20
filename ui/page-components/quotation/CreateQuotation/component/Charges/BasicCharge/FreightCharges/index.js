@@ -19,12 +19,11 @@ function FreightCharges({
 	transportMode,
 }) {
 	const [checked, setChecked] = useState('');
-	// const {} = watchValue||{};
 	const { profile } = useSelector((item) => item);
 	const [selectedData, setSelectedData] = useState({});
 	const { id = '', branch = {} } = profile || {};
 	const allData = Object.assign({}, ...infoData);
-	const { createSpotSearch, loading, apiResponse, getSpotSearchloading } = useFreightCharges();
+	const { createSpotSearch, loading, apiResponse } = useFreightCharges();
 	const cargo_value = {};
 	const data = FreightChargesPayload({
 		id,
@@ -47,28 +46,17 @@ function FreightCharges({
 	};
 
 	const submitHandler = async () => {
-		// if (prevCurr === selectedData?.total_price_currency) {
-		// 	setSpotCharge(selectedData?.total_price);
-		// } else {
-		// 	const resp = await exchangeApi(selectedData?.total_price_currency, prevCurr);
 		const val = selectedData?.total_price;
-
 		setValue('basicFreightCharges', val);
 		setCalculateCharge(false);
 	};
+
 	const titleRender = () => (
 		<div className={styles.title_container}>
 			<div className={styles.title}>
 				<IcAFinancial height={30} width={30} />
 				<div className={styles.title_div}>Freight Rates</div>
 			</div>
-			{/* <div
-				className={styles.hyperlink}
-				role="presentation"
-				onClick={redirectDiscover}
-			>
-				Discover Rates
-			</div> */}
 		</div>
 	);
 	return (

@@ -139,7 +139,7 @@ function ConfirmationModal(props, ref) {
 				)}
 			</Modal>
 			<Modal show={show} size="sm">
-				<img src={iconUrl.sendQuote} alt="send" />
+				<img src={iconUrl.sendQuote} alt="send" className={styles.send_img} />
 			</Modal>
 		</>
 

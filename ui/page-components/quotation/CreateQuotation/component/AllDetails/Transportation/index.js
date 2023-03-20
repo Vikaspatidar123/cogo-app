@@ -43,15 +43,13 @@ function Transportation(props, ref) {
 		const filter = {
 			status : 'active',
 			id     : [editOriginId, editDestinationID],
-			// includes : { country: true },
 		};
-
 		const includes = { country: true };
+
 		const resp = await getPortDetails(filter, includes);
 
 		const originData = resp?.[0]?.id === editOriginId ? resp?.[0] : resp?.[1];
 		const destinationData = resp?.[1]?.id === editDestinationID ? resp?.[1] : resp?.[0];
-		console.log();
 		setOriginPortDetails({ ...originData });
 		setDestinationPortDetails({ ...destinationData });
 	};

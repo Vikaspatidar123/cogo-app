@@ -81,8 +81,8 @@ function useHeader({
 				/>
 			)}
 			<AddProductModal
-				setShowProduct={setShowProduct}
 				showProduct={showProduct}
+				setShowProduct={setShowProduct}
 				prefiledValues={selectedData}
 				refetchProduct={refetchProduct}
 			/>

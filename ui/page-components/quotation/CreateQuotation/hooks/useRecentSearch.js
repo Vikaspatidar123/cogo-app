@@ -1,11 +1,13 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 
 import { containerSizeMap, containerTypeMap, serviceTypeMap, incotermMap } from '../utils/recentSearchMapping';
 
 const useRecentSearch = ({ query, setTransportMode }) => {
 	const [spotSearchData, setSpotSearchData] = useState({});
-	const getRecentSearchData = () => {
-		const preFillData = JSON.parse(localStorage.getItem('spotSearchResult'));
+
+	const getRecentSearchData = useCallback(() => {
+		// eslint-disable-next-line no-undef
+		const preFillData = typeof window !== 'undefined' && JSON.parse(localStorage.getItem('spotSearchResult'));
 
 		setTransportMode(
 			['lcl_freight', 'fcl_freight'].includes(preFillData?.serviceType) ? 'OCEAN' : 'AIR',
@@ -19,14 +21,14 @@ const useRecentSearch = ({ query, setTransportMode }) => {
 		return {
 			...preFillData, incoterm, containerSize, containerType, serviceType,
 		};
-	};
+	}, [setTransportMode]);
 
 	useEffect(() => {
 		if (query?.recentSearch && typeof window !== 'undefined') {
 			const data = getRecentSearchData();
 			setSpotSearchData(data);
 		}
-	}, [query?.recentSearch]);
+	}, [getRecentSearchData, query?.recentSearch]);
 
 	return spotSearchData;
 };

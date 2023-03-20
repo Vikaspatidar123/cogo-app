@@ -12,10 +12,8 @@ import getField from '@/packages/forms/Controlled/index';
 import { useSelector } from '@/packages/store';
 
 function Pricing({
-	setHSCode,
 	AddProductHandler,
 	addProductLoading,
-	loading,
 	productDetailsfromAPi,
 	prefiledValues,
 }) {

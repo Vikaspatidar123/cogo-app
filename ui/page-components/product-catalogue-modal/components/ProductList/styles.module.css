@@ -16,7 +16,10 @@
 		}
 	}
 }
-
+.scroll{
+	overflow-y: scroll;
+	max-height: 280px;
+}
 .row {
 	display: flex;
 	align-items: center;

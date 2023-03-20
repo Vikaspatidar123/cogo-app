@@ -42,7 +42,6 @@ function ProductCategory({
 			const productToAdd = (productItem || []).filter((data) => (
 				selectedId.includes(data.id) && !categoryselectedId.includes(data.id)));
 			setSelectedData(productToAdd);
-			setSelectedData(arr);
 		} else {
 			setSelectedData(...arr);
 		}

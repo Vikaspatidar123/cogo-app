@@ -97,7 +97,8 @@ function ProductList({
 						<div>No Product in your Catalogue</div>
 					</div>
 				)}
-				{!loading
+				<div className={isCategory && styles.scroll}>
+					{!loading
 					&& (list || [])?.map((rowItem) => (
 						<div
 							key={rowItem?.id}
@@ -112,6 +113,7 @@ function ProductList({
 							/>
 						</div>
 					))}
+				</div>
 			</div>
 
 			{!isCategory && list.length > 0 && (

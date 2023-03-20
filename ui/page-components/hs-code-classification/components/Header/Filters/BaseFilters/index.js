@@ -45,7 +45,7 @@ function BaseFilters({
 	useEffect(() => {
 		refetch(watchCountry);
 		resetDrillDownHandler();
-	}, [watchCountry]);
+	}, [watchCountry, refetch, resetDrillDownHandler]);
 
 	const field = getControls({ countryOptions });
 

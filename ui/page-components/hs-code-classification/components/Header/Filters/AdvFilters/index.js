@@ -47,7 +47,7 @@ function AdvFilters({
 	useEffect(() => {
 		refetch(country);
 		resetDrillDownHandler();
-	}, [country]);
+	}, [country, refetch, resetDrillDownHandler]);
 
 	return (
 		<form onSubmit={handleSubmit(onSubmit)}>

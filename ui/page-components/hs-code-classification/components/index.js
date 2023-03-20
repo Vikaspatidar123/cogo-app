@@ -1,7 +1,7 @@
 import {
 	IcMCross, IcMMinusInCircle, IcMStar, IcCBookmark,
 } from '@cogoport/icons-react';
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 
 import EmptyState from '../common/EmptyState';
 import useBookmark from '../hooks/useBookmark';
@@ -33,9 +33,10 @@ function HsClassification() {
 	const [searchTag, setSearchTag] = useState('');
 	const [resetDrillDown, setResetDrillDown] = useState(true);
 	const [openSelectedModal, setOpenSelectedModal] = useState(false);
-	const resetDrillDownHandler = () => {
+	const resetDrillDownHandler = useCallback(() => {
 		setResetDrillDown(false);
-	};
+	}, []);
+
 	const {
 		bookmarkData, refetchGetBookmark, refetchRemoveBookmark, getBookmarkLoading,
 	} = useBookmark({ refetchHsCode });

@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import { cl } from '@cogoport/components';
 import { IcMArrowDown } from '@cogoport/icons-react';
 import { useEffect, useState } from 'react';
@@ -34,7 +33,7 @@ function ChapterList({
 		if (chapterToggle && headings.length === 0) {
 			refetchHeading(chapterCode);
 		}
-	}, [chapterToggle]);
+	}, [chapterCode, chapterToggle, headings.length, refetchHeading]);
 
 	const description = () => {
 		if (chapterToggle) return chapterDescription;

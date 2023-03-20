@@ -10,12 +10,16 @@ const controls = [
 		},
 	},
 	{
-		label       : 'Selling Price',
-		name        : 'sellingPrice',
-		type        : 'number',
-		placeholder : 'Selling Price',
+		label       : 'Product Name',
+		name        : 'name',
+		type        : 'text',
+		placeholder : 'Add Product Name',
 		rules       : {
-			required: 'Required',
+			required  : 'Required',
+			maxLength : {
+				value   : 50,
+				message : 'length for product name is 50 characters',
+			},
 		},
 	},
 	{
@@ -28,16 +32,12 @@ const controls = [
 		},
 	},
 	{
-		label       : 'Product Name',
-		name        : 'name',
-		type        : 'text',
-		placeholder : 'Add Product Name',
+		label       : 'Selling Price',
+		name        : 'sellingPrice',
+		type        : 'number',
+		placeholder : 'Selling Price',
 		rules       : {
-			required  : 'Required',
-			maxLength : {
-				value   : 50,
-				message : 'length for product name is 50 characters',
-			},
+			required: 'Required',
 		},
 	},
 	{
@@ -66,6 +66,14 @@ const controls = [
 	},
 ];
 
-const getControls = () => controls.map((control) => ({ ...control }));
+const getControls = ({ currency = 'INR' }) => controls.map((control) => {
+	if (control?.name === 'sellingPrice' || control?.name === 'costPrice') {
+		return {
+			...control,
+			suffix: <div style={{ paddingRight: '8px', color: '#838383' }}>{currency}</div>,
+		};
+	}
+	return { ...control };
+});
 
 export default getControls;

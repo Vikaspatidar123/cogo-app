@@ -5,7 +5,15 @@
 		overflow: auto;
 	}
 }
-
+.flex_box{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	flex-wrap: wrap;
+	@media screen and (max-width: 767px){
+		flex-direction: column;
+	}
+}
 .container {
 	@media (max-width: 768px) {
 		width: 100%;
@@ -36,7 +44,7 @@
 .form_col {
 	width: 45%;
 	font-size: 13px;
-
+	margin: 12px 0;
 	@media (max-width: 768px) {
 		width: 100%;
 	}
@@ -64,6 +72,8 @@
 
 .form_label {
 	margin-bottom: 3px;
+	display: flex;
+	justify-content: space-between;
 }
 
 .error_text {
@@ -184,4 +194,9 @@
 .loading_btn {
 	width: 50px;
 	height: 20px;
+}
+
+
+.disabled{
+	background-color: #f3f3f3;
 }

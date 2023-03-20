@@ -56,6 +56,7 @@ const useGetProductClassificationId = ({
 			if (resp.data.message === 'Success') {
 				refetchProduct({});
 				setShowProduct(false);
+				Toast.success('Successfully added product');
 				// setLabeledValue('list');
 			}
 		} catch (error) {

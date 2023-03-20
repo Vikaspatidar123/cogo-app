@@ -31,10 +31,7 @@ function AddProductModal({
 		refetchProduct,
 	});
 	const AddProductHandler = async (data) => {
-		const resp = await addProduct(data, setShowProduct, pdId);
-		if (resp?.data?.message === 'Success') {
-			refetchProduct();
-		}
+		await addProduct(data, setShowProduct, pdId);
 	};
 	return (
 		<Modal show={showProduct} onClose={handleClick} onOuterClick={handleClick}>

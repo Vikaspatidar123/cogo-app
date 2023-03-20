@@ -1,5 +1,5 @@
 import { Tabs, TabPanel, Input, Button } from '@cogoport/components';
-import { IcMSearchlight, IcMListView, IcMGrid } from '@cogoport/icons-react';
+import { IcMSearchlight, IcMListView, IcMGrid, IcMPlus } from '@cogoport/icons-react';
 import { useState } from 'react';
 
 import iconUrl from '../../configuration/icon-config.json';
@@ -34,14 +34,14 @@ function useHeader({
 				{addCheck && (
 					<div className={styles.button}>
 						<Button
-							role="presentation"
-							size="lg"
+							size="md"
 							themeType="secondary"
 							onClick={() => {
 								setShowHsCodeModal(true);
 							}}
 						>
-							ADD NEW
+							<IcMPlus />
+							Add New
 						</Button>
 					</div>
 				)}

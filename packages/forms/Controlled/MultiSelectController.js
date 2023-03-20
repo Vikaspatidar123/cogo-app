@@ -4,8 +4,7 @@ import { Controller } from 'react-hook-form';
 
 function MultiSelectController(props) {
 	const {
-		name, control, value, rules,
-		...rest
+		name, control, value, rules, ...rest
 	} = props;
 	return (
 		<Controller

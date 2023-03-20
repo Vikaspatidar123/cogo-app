@@ -10,3 +10,9 @@
 	border-top-color: #fb0 !important;
 	border-left-color: #fb0 !important;
 }
+
+@media screen and (max-width: 767px) {
+	.ui_modal_dialog.ui_ps_placement_center {
+		top: 90%;
+	}
+}

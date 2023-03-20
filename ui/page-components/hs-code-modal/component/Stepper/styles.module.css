@@ -1,0 +1,51 @@
+.row {
+	display: flex;
+	padding: 18px;
+}
+
+@media screen and (min-width: 767px) {
+	.mobile_view {
+		display: block;
+		display: none;
+	}
+}
+@media screen and (max-width: 767px) {
+	.row {
+		display: block;
+		display: none;
+	}
+}
+
+.select_txt {
+	font-size: 14px;
+	font-weight: 600;
+}
+
+.column_heading {
+	display: flex;
+	flex-direction: row;
+}
+
+.flex_div {
+	display: flex;
+	align-content: center;
+	align-items: center;
+}
+
+.label_txt {
+	padding-right: 15px;
+	padding-left: 40px;
+	font-size: 14px;
+	font-weight: 600;
+	color: #356efd;
+}
+
+.select_label {
+	padding-right: 15px;
+	padding-left: 40px;
+	font-size: 14px;
+	font-weight: 600;
+	color: #356efd;
+	text-decoration-line: underline;
+	cursor: pointer;
+}

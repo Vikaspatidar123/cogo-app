@@ -12,13 +12,10 @@ const useGetBillingAddress = () => {
 		},
 		{ manual: true },
 	);
-	const [{ loading: addressLoading, data: addressesData }, triggerAddress] = useRequest(
-		{
-			url    : '/list_organization_addresses',
-			method : 'get',
-		},
-		{ manual: true },
-	);
+	const [{ loading: addressLoading, data: addressesData }, triggerAddress] = useRequest({
+		url    : '/list_organization_addresses',
+		method : 'get',
+	}, { manual: true });
 
 	const getAddress = async () => {
 		try {
@@ -45,10 +42,11 @@ const useGetBillingAddress = () => {
 	useEffect(() => {
 		getAddress();
 		getAdd();
-	// eslint-disable-next-line react-hooks/exhaustive-deps
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 	return {
 		getAddress,
+		getAdd,
 		loading,
 		addressesData,
 		data,

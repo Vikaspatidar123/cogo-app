@@ -1,0 +1,65 @@
+.container {
+	width: 100%;
+}
+
+.title {
+	margin: 0;
+}
+
+.section {
+	width: 100%;
+	padding: 20px 24px;
+	margin-top: 12px;
+	background: #fff;
+	border-radius: 8px;
+	box-shadow: rgb(0 0 0 / 15%) 0 2px 19px 1px;
+
+	@media screen and (max-width: 768px) {
+		box-shadow: 0 2px 5px rgb(0 0 0 / 10%);
+	}
+}
+
+.card_bill {
+	max-height: 160px;
+	overflow-y: auto;
+}
+
+.styled_row {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 100%;
+	margin-bottom: 15px;
+}
+
+.styled_col {
+	width: 100%;
+
+	.title {
+		font-weight: 500;
+	}
+
+	.value {
+		margin-top: 8px;
+		font-weight: 400;
+	}
+
+	.paymentMode {
+		display: inline;
+		padding: 0 10px;
+		border-right: 1px solid black;
+
+		:last-child {
+			border: none;
+		}
+	}
+
+	.downloadIcn {
+		margin-right: 5px;
+	}
+}
+
+.card {
+	max-height: 200px;
+	overflow-y: auto;
+}

@@ -7,9 +7,13 @@
 // icon is used to show icon webside only
 // mobileIcon is used to show icon in mobile navigation only
 // isSubNavs is used to show sub navigations
-
 import {
 	IcMQuotations,
+	IcMUpwardGraph,
+	IcMTradeparties,
+	IcACrossBorder,
+	IcMProductCodeMapping,
+	IcMFfreferigeratedCargoType,
 } from '@cogoport/icons-react';
 
 const navigationMappings = {
@@ -20,14 +24,111 @@ const navigationMappings = {
 		as         : '/v2/dashboard',
 		showInNav  : true,
 		mobileIcon : <IcMQuotations width={20} height={20} />,
+	},
 
+	saas_tools: {
+		key       : 'saas_tools',
+		title     : 'Tools',
+		icon      : 'nav-tools',
+		isSubNavs : true,
+		showInNav : true,
+		isNew     : true,
+		options   : [
+			{
+				key         : 'saas_tools-freight_rate_trend',
+				title       : 'Freight Rate Trend',
+				href        : '/v2/saas/freight-rate-trend',
+				as          : '/v2/saas/freight-rate-trend',
+				icon        : <IcMUpwardGraph width={40} height={40} fill="red" />,
+				description : 'keep track of freight rates',
+			},
+		],
+	},
+
+	saas_premium_services: {
+		key         : 'saas_premium_services',
+		title       : 'Premium Services',
+		icon        : 'nav-premium-services',
+		module_type : 'dashboards',
+		isNew       : true,
+		showInNav   : true,
+		isSubNavs   : true,
+		options     : [
+			{
+				key   : 'saas_premium_services-order_history',
+				title : 'Order History',
+				href  : '/v2/saas/order-history',
+				as    : '/v2/saas/order-history',
+				icon  : <IcACrossBorder width={40} height={40} />,
+			},
+		],
+	},
+	saas_planning: {
+		key       : 'saas_planning',
+		title     : 'Planning',
+		isSubNavs : true,
+		showInNav : true,
+		options   : [
+			{
+				key   : 'saas_planning-trade_partner',
+				title : 'Trade Partner',
+				icon  : <IcMTradeparties width={40} height={40} />,
+				href  : '/v2/saas/trade-partner',
+				as    : '/v2/saas/trade-partner',
+			},
+			{
+				key         : 'saas_planning-product_inventory',
+				title       : 'Product Catalog',
+				type        : 'link',
+				icon        : <IcMProductCodeMapping width={40} height={40} />,
+				href        : '/v2/saas/product-inventory',
+				as          : '/v2/saas/product-inventory',
+				module_type : 'dashboards',
+			},
+			{
+				key         : 'saas_planning-quotation',
+				title       : 'Quick Quotations',
+				// eslint-disable-next-line max-len
+				description : 'The meaning of QUOTATION is something that is quoted; especially : a passage ',
+				icon        : <IcMQuotations width={30} height={30} />,
+				type        : 'link',
+				href        : '/v2/saas/quickquotation/viewlist',
+				as          : '/v2/saas/quickquotation/viewlist',
+			},
+
+		],
+	},
+
+	app_accept_terms_and_conditions: {
+		key       : 'app_accept_terms_and_conditions',
+		title     : 'Terms and Conditions',
+		href      : '/accept-terms-and-conditions',
+		type      : 'link',
+		showInNav : false,
 	},
 
 	app_get_started: {
 		key   : 'app_get_started',
 		title : 'Get Started',
 		theme : 'green',
+	},
 
+	saas_finance: {
+		key       : 'saas_finance',
+		title     : 'Finance',
+		icon      : 'nav-finance',
+		isSubNavs : true,
+		isNew     : true,
+		options   : [
+			{
+				key   : 'saas_finance-transaction_history',
+				title : 'Transaction History',
+				icon  : <IcMFfreferigeratedCargoType width={40} height={40} fill="red" />,
+				href  : '/saas/transaction-history',
+				as    : '/saas/transaction-history',
+			},
+
+		],
 	},
 
 	app_kyc: {
@@ -37,7 +138,6 @@ const navigationMappings = {
 		as        : '/kyc',
 		type      : 'link',
 		showInNav : false,
-
 	},
 	app_settings: {
 		key           : 'app_settings',
@@ -46,26 +146,6 @@ const navigationMappings = {
 		as            : '/v2/settings',
 		type          : 'link',
 		showMobileNav : true,
-
-	},
-	saas_planning: {
-		key       : 'saas_planning',
-		title     : 'Planning',
-		showInNav : true,
-		isSubNavs : true,
-		options   : [
-			{
-				key         : 'saas_planning-quotation',
-				title       : 'Quick Quotations',
-				// eslint-disable-next-line max-len
-				description : 'The meaning of QUOTATION is something that is quoted; especially : a passage ',
-				icon        : <IcMQuotations width={30} height={30} />,
-				type        : 'link',
-				href        : '/v2/saas/planning/quickquotation/viewlist',
-				as          : '/v2/saas/planning/quickquotation/viewlist',
-			},
-
-		],
 	},
 
 };

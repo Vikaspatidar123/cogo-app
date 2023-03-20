@@ -15,7 +15,6 @@ function SelectShipment({ setHeading, setStep, type, dsrId, pocName, pocId }) {
 	const [loadingSubscriptions, subList] = useFetchSubscriptions(dsrId);
 	const { submitLoading, dsrToSubscription } = useDsrToSubscription();
 	const [value, setValue] = useState([]);
-
 	useEffect(() => {
 		setHeading(`Status report for ${pocName}`);
 	}, []);
@@ -31,16 +30,16 @@ function SelectShipment({ setHeading, setStep, type, dsrId, pocName, pocId }) {
 		),
 		[shipments, associatedShipments],
 	);
+
 	const {
 		control,
 		handleSubmit,
 		formState: { errors },
 	} = useForm();
 
-	const handleChange = (item, e) => {
+	const handleChange = (item) => {
 		if (value.includes(item.id)) {
 			const check = value.filter((x) => x !== item.id);
-			console.log(check, 'check');
 			setValue(check);
 		} else {
 			setValue((prv) => [...prv, item.id]);
@@ -63,9 +62,10 @@ function SelectShipment({ setHeading, setStep, type, dsrId, pocName, pocId }) {
 					id={record.id}
 					value={record.id}
 					label={
-						(record.poc_details || []).filter((item) => item.user_type === 'SHIPPER')[0]
-							?.name
-					}
+            (record.poc_details || []).filter(
+            	(item) => item.user_type === 'SHIPPER',
+            )[0]?.name
+          }
 					onChange={(e) => handleChange(record, e.target.checked)}
 				/>
 			),
@@ -73,8 +73,9 @@ function SelectShipment({ setHeading, setStep, type, dsrId, pocName, pocId }) {
 		{
 			id       : 'consignee',
 			Header   : () => 'Consignee',
-			accessor : (record, index) => (record.poc_details || []).filter((item) => item.user_type === 'CONSIGNEE')[0]
-				?.name,
+			accessor : (record, index) => (record.poc_details || []).filter(
+				(item) => item.user_type === 'CONSIGNEE',
+			)[0]?.name,
 		},
 		{
 			id       : 'port_pair',
@@ -97,19 +98,19 @@ function SelectShipment({ setHeading, setStep, type, dsrId, pocName, pocId }) {
 
 	return (
 		<form>
-			<h4>
-				Associated Shipments
-			</h4>
+			<h4>Associated Shipments</h4>
 			{associatedShipments.length > 0 ? (
 				<div className={styles.table_card} style={{ marginBottom: 24 }}>
-					<Table control={control} columns={columns} data={associatedShipments} />
+					<Table
+						control={control}
+						columns={columns}
+						data={associatedShipments}
+					/>
 				</div>
 			) : (
 				<p>Add shipments to show here</p>
 			)}
-			<h4>
-				Other Shipments
-			</h4>
+			<h4>Other Shipments</h4>
 			{otherShipments.length > 0 ? (
 				<div className={styles.table_card}>
 					<Table control={control} columns={columns} data={otherShipments} />
@@ -135,7 +136,6 @@ function SelectShipment({ setHeading, setStep, type, dsrId, pocName, pocId }) {
 				</Button>
 			</div>
 		</form>
-
 	);
 }
 

@@ -17,7 +17,7 @@ const useDsrToSubscription = () => {
 		method : 'post',
 	}, { manual: true });
 
-	const dsrToSubscription = async (subscriptions, dsrId, subList = []) => {
+	const dsrToSubscription = async (value, dsrId, subList = []) => {
 		try {
 			setLoading(true);
 			let type = 'new';
@@ -28,7 +28,7 @@ const useDsrToSubscription = () => {
 			if (type === 'new') {
 				const requestData = {
 					saas_dsr_id     : dsrId,
-					subscription_id : subscriptions,
+					subscription_id : value,
 				};
 				const res = await trigger1({ data: requestData });
 				const { hasError } = res || {};
@@ -40,11 +40,11 @@ const useDsrToSubscription = () => {
 			}
 
 			const shipmentsToRemove = subList
-				.filter((item) => !subscriptions.some((item2) => item2 === item.id))
+				.filter((item) => !value.some((item2) => item2 === item.id))
 				.map((item) => item.id);
 
 			// shipemnts that are not present in subList
-			const shipmentsToKeep = subscriptions.filter((item) => !subList.some((item2) => item2.id === item));
+			const shipmentsToKeep = value.filter((item) => !subList.some((item2) => item2.id === item));
 			const requestData = {
 				saas_dsr_id     : dsrId,
 				subscription_id : shipmentsToRemove,

@@ -8,10 +8,13 @@ import { useSelector } from '@/packages/store';
 function useFetchPoc() {
 	const { general } = useSelector((s) => s);
 	const [pocList, setPocList] = useState([]);
-	const [{ loading }, trigger] = useRequest({
-		url    : 'list_saas_subscription_poc_details',
-		method : 'get',
-	}, { manual: true });
+	const [{ loading }, trigger] = useRequest(
+		{
+			url    : 'list_saas_subscription_poc_details',
+			method : 'get',
+		},
+		{ manual: true },
+	);
 	const fetchPoc = async () => {
 		try {
 			const res = await trigger({
@@ -40,11 +43,9 @@ function useFetchPoc() {
 		fetchPoc();
 	}, []);
 
-	return [
-		loading,
-		pocList,
-		setPocList,
-	];
+	return {
+		loading, pocList, setPocList,
+	};
 }
 
 export default useFetchPoc;

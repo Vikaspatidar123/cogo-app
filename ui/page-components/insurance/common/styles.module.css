@@ -1,17 +1,29 @@
-.tag .tag_mobile {
+.tag {
+    left: -3px;
+    position: absolute;
+    top: -5px;
+}
+.tag_mobile {
     left: 0px;
     padding: 2px 8px;
     position: absolute;
     top: -29px;
-    right:none;
 }
 
 .text {
+    display: flex;
+    gap: 2px;
     color: #0694e6;
 	cursor: pointer;
 	font-size: 14px;
 	text-decoration: underline;
+    align-items: center;
+    height: auto;
 }
 
+.image {
+    display: flex;
+    align-items: flex-start;
+}
 
 

@@ -13,7 +13,7 @@ function Item({ item, fields, loading = false, functions = {}, isMobile = false 
 				<Tooltip
 					content={(
 						<div style={{ color: 'grey' }}>
-							{getValue(itm, singleItem, isMobile, newFunctions)}
+							{getValue(itm, singleItem, newFunctions, '-')}
 						</div>
 					)}
 					theme="light"
@@ -24,7 +24,7 @@ function Item({ item, fields, loading = false, functions = {}, isMobile = false 
 									singleItem.label,
 								)
 								&& singleItem.label}
-						{getValue(itm, singleItem, isMobile, newFunctions)}
+						{getValue(itm, singleItem, newFunctions, '-')}
 					</div>
 				</Tooltip>
 			);
@@ -34,7 +34,7 @@ function Item({ item, fields, loading = false, functions = {}, isMobile = false 
 				{isMobile
 					&& ['Created At', 'Transit Start Date', 'Commodity'].includes(singleItem.label)
 					&& singleItem.label}
-				{getValue(itm, singleItem, isMobile, newFunctions)}
+				{getValue(itm, singleItem, newFunctions, '-')}
 			</>
 		);
 	};

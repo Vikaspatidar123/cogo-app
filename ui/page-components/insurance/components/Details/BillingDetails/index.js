@@ -4,7 +4,7 @@ import { IcMArrowNext, IcMBldo, IcMPlus } from '@cogoport/icons-react';
 import { useMemo, useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
-import addres from '../../../common/AddressListPopover';
+import Addres from '../../../common/AddressListPopover';
 import getControls from '../../../configurations/controls';
 import useGetStateFromPincode from '../../../hooks/useGetStateFromPincode';
 
@@ -232,22 +232,24 @@ const billingDetails = ({
 									interactive
 									visible={showFilters && !addAddressModal}
 									onClickOutside={() => setshowFilters(false)}
-									content={addres({
-										setAllInfo,
-										addressdata,
-										checked,
-										setChecked,
-										loading: addressLoading,
-										setOrganizationAddressId,
-										addressApi,
-										setData,
-										setshowFilters,
-										insuranceType,
-										addAddressModal,
-										setAddAddressModal,
-										prosporerAddress,
-										setProsporerAddress,
-									})}
+									content={(
+										<Addres
+											setAllInfo={setAllInfo}
+											addressdata={addressdata}
+											checked={checked}
+											setChecked={setChecked}
+											loading={addressLoading}
+											setOrganizationAddressI={setOrganizationAddressId}
+											addressApi={addressApi}
+											setData={setData}
+											setshowFilters={setshowFilters}
+											insuranceType={insuranceType}
+											addAddressModal={addAddressModal}
+											setAddAddressModal={setAddAddressModal}
+											prosporerAddress={prosporerAddress}
+											setProsporerAddress={setProsporerAddress}
+										/>
+									)}
 								>
 									<div
 										className={styles.align_div_add_address}

@@ -42,6 +42,18 @@ const navigationMappings = {
 				icon        : <IcMUpwardGraph width={40} height={40} fill="red" />,
 				description : 'keep track of freight rates',
 			},
+			{
+				key   : 'saas_tools-hs_code_classification',
+				title : 'Product Classification',
+				href  : '/v2/saas/hs-classification',
+				as    : '/v2/saas/hs-classification',
+				icon  : <img
+					src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/product-classification.svg"
+					alt="cogo"
+				/>,
+				description: 'Find HS Codes with detailed description',
+
+			},
 		],
 	},
 

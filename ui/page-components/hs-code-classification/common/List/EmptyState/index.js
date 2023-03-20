@@ -9,16 +9,12 @@ function EmptyState({ heading = 'data', placement = 'center' }) {
 				<div className={placement}>
 					<div className={styles.heading}>
 						No
-						{' '}
 						{heading}
-						{' '}
 						found
 					</div>
 					<div className={styles.content}>
 						Looks like you do not have any
-						{' '}
 						{heading}
-						{' '}
 						in this category
 					</div>
 				</div>

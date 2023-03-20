@@ -1,6 +1,5 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import { Toast } from '@cogoport/components';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 
 import { COUNTRY_IDS } from '../configurations/countryId';
 
@@ -16,13 +15,11 @@ const useHSCode = () => {
 	const [headingObj, setheadingObj] = useState({});
 	const [hsCodeObj, setHsCodeObj] = useState({});
 	const [pageObj, setPageObj] = useState({});
-	const { profile, general } = useSelector((s) => s);
+	const { profile } = useSelector((s) => s);
 
 	const searchRef = useRef({});
 
 	const { id } = profile || {};
-	// eslint-disable-next-line no-unused-vars
-	const { scope } = general;
 
 	const [{ loading: getLoading }, trigger] = useRequestBf({
 		url     : 'saas/hs-code/section',
@@ -49,7 +46,7 @@ const useHSCode = () => {
 		method  : 'get',
 		authKey : 'get_saas_hs_code_search',
 	}, { manual: true });
-	const refetch = async (countryId = undefined) => {
+	const refetch = useCallback(async (countryId = undefined) => {
 		try {
 			const response = await trigger({ params: { countryId } });
 
@@ -60,9 +57,9 @@ const useHSCode = () => {
 		} catch (err) {
 			console.log(err);
 		}
-	};
+	}, [trigger]);
 
-	const refetchHeading = async (chapCode) => {
+	const refetchHeading = useCallback(async (chapCode) => {
 		try {
 			const response = await triggerHeading({
 				params: {
@@ -76,9 +73,9 @@ const useHSCode = () => {
 		} catch (err) {
 			console.log(err);
 		}
-	};
+	}, [triggerHeading]);
 
-	const refetchHsCode = async (headCode, pageNo = 1) => {
+	const refetchHsCode = useCallback(async (headCode, pageNo = 1) => {
 		try {
 			const response = await triggerHsCode({
 				params: {
@@ -109,9 +106,9 @@ const useHSCode = () => {
 		} catch (err) {
 			console.log(err);
 		}
-	};
+	}, [id, triggerHsCode]);
 
-	const refetchSearch = async (data) => {
+	const refetchSearch = useCallback(async (data) => {
 		try {
 			const resp = await triggerSearch({
 				params: {
@@ -128,16 +125,16 @@ const useHSCode = () => {
 			searchRef.current.customFilter = data.filterBy || constFilter[data.searchBy];
 		} catch (error) {
 			setApiData([]);
-			Toast.error(error.error.message, {
+			Toast.error(error?.error?.message, {
 				autoClose : 1000,
 				style     : { color: 'white' },
 			});
 		}
-	};
+	}, [triggerSearch]);
 
 	useEffect(() => {
 		refetch(COUNTRY_IDS.IN);
-	}, []);
+	}, [refetch]);
 
 	return {
 		refetch,

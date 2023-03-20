@@ -6,7 +6,6 @@ function CardHeader({ configs }) {
 	return (
 
 		<div className={styles.row}>
-
 			{(configs || []).map((config) => (
 				config?.label !== '' && (
 					<div
@@ -18,7 +17,6 @@ function CardHeader({ configs }) {
 					</div>
 				)
 			))}
-
 		</div>
 	);
 }

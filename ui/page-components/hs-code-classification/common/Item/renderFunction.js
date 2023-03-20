@@ -6,7 +6,6 @@ const newRenderFunction = {
 	renderSection: (data, config) => (
 		<div>
 			Section
-			{' '}
 			{data[config.key]}
 		</div>
 	),

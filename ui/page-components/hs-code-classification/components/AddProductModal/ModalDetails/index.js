@@ -1,7 +1,6 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import { Button, Modal } from '@cogoport/components';
 import { IcAFormsAndCertificates, IcMArrowRight } from '@cogoport/icons-react';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 
 import getField from '../../../../../../packages/forms/Controlled/index';
 import getControls from '../../../configurations/addProductControls';
@@ -38,18 +37,18 @@ function ModalDetails({ data = {}, setShow }) {
 		if (hsCode) {
 			setValue('hsCode', hsCode);
 		}
-	}, []);
+	}, [hsCode, setValue]);
 
-	const calculateProfit = () => {
+	const calculateProfit = useCallback(() => {
 		const profit = ((sellingPrice - costPrice) / costPrice) * 100;
 		setProfitPercentage(profit);
-	};
+	}, [costPrice, sellingPrice]);
 
 	useEffect(() => {
 		if (costPrice >= 0 && sellingPrice > 0) {
 			calculateProfit();
 		}
-	}, [costPrice, sellingPrice]);
+	}, [calculateProfit, costPrice, sellingPrice]);
 
 	const renderProfit = () => {
 		if (profitPercentage > 0) {
@@ -73,8 +72,6 @@ function ModalDetails({ data = {}, setShow }) {
 		<>
 			<div className={styles.container}>
 				{getproductLoading && 'Loading...'}
-
-				{/* < LoadingScreen loaderClass={styles.loading_icn} /> */}
 				<Modal.Header title={Head()} />
 				<Modal.Body>
 					<div className={styles.header}>

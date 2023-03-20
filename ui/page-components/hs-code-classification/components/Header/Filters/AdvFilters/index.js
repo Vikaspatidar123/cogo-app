@@ -1,4 +1,4 @@
-import { Button, Input } from '@cogoport/components';
+import { Button } from '@cogoport/components';
 import { IcAIdea } from '@cogoport/icons-react';
 import React, { useEffect } from 'react';
 
@@ -6,7 +6,7 @@ import getControls from '../../../../configurations/advFilter';
 import { COUNTRY_IDS } from '../../../../configurations/countryId';
 import styles from '../styles.module.css';
 
-import { SelectController, useForm } from '@/packages/forms';
+import { SelectController, useForm, InputController } from '@/packages/forms';
 
 function AdvFilters({
 	refetch,
@@ -19,44 +19,46 @@ function AdvFilters({
 	const {
 		handleSubmit,
 		watch,
-		setValues,
+		setValue,
 		formState: { errors },
 		control,
 	} = useForm();
+
 	const onSubmit = (data) => {
 		refetchSearch(data);
 		resetDrillDownHandler();
 		setSearchTag(data?.searchTerm);
 	};
 	const { country = '' } = watch();
-	const clearFilterHandler = () => {
-		const resetValue = {
-			country    : COUNTRY_IDS.IN,
-			searchBy   : '',
-			searchTerm : '',
-			filterBy   : '',
-		};
 
-		setValues(resetValue);
+	const clearFilterHandler = async () => {
 		refetch(country);
+		if (country !== COUNTRY_IDS.IN) {
+			setValue('country', COUNTRY_IDS.IN);
+			setValue('searchTerm', '');
+			setValue('filterBy', '');
+			setValue('searchBy', '');
+		}
 		setSearchTag('');
 	};
+
 	const field = getControls({ countryOptions });
+
 	useEffect(() => {
 		refetch(country);
 		resetDrillDownHandler();
-	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [country]);
+
 	return (
 		<form onSubmit={handleSubmit(onSubmit)}>
 			<div className={styles.filter_container}>
 				<div className={styles.fields_container}>
-					<SelectController {...field[0]} size="lg" control={control} />
-					<SelectController {...field[1]} size="lg" control={control} />
+					<SelectController {...field[0]} control={control} style={{ width: '150px' }} />
+					<SelectController {...field[1]} control={control} style={{ width: '150px' }} />
 					<div>
-						<Input
+						<InputController
 							{...field[2]}
-							size="md"
+							style={{ width: '250px' }}
 							control={control}
 							prefix={<IcAIdea width={20} height={20} />}
 						/>
@@ -66,7 +68,7 @@ function AdvFilters({
 							</div>
 						)}
 					</div>
-					<SelectController {...field[3]} control={control} size="lg" />
+					<SelectController {...field[3]} control={control} style={{ width: '150px' }} />
 				</div>
 				<div className={styles.button_container}>
 					<Button

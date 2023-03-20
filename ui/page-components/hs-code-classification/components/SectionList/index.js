@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import { cl, Placeholder } from '@cogoport/components';
 import { IcMArrowDown } from '@cogoport/icons-react';
 import React, { useEffect, useState } from 'react';
@@ -30,7 +29,7 @@ function SectionList({
 			setSectionToggle(false);
 			setResetDrillDown(true);
 		}
-	}, [resetDrillDown]);
+	}, [resetDrillDown, setResetDrillDown]);
 	const { Mapping } = IconMaping();
 	const { sectionCode, sectionDescription, chapters } = data || {};
 
@@ -48,7 +47,6 @@ function SectionList({
 			return (
 				<div>
 					{ `${data?.sectionDescription?.substring(0, 40)}....`}
-					{' '}
 				</div>
 			);
 		}

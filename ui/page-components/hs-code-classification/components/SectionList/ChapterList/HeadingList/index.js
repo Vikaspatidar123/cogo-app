@@ -77,7 +77,7 @@ function HeadingList({
 					)}
 				</div>
 			</div>
-			{/* {headingToggle && ( */}
+
 			<div className={styles.main_container}>
 				<div
 					className={cl`${styles.accordion} ${styles.hs_container} ${headingToggle && styles.hs_table}`}
@@ -94,7 +94,7 @@ function HeadingList({
 					/>
 				</div>
 			</div>
-			{/* )} */}
+
 		</div>
 	);
 }

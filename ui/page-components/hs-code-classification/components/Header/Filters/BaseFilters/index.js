@@ -1,4 +1,4 @@
-import { Button, Input } from '@cogoport/components';
+import { Button } from '@cogoport/components';
 import { IcAIdea } from '@cogoport/icons-react';
 import { useEffect } from 'react';
 
@@ -6,7 +6,7 @@ import getControls from '../../../../configurations/cardfilter';
 import { COUNTRY_IDS } from '../../../../configurations/countryId';
 import styles from '../styles.module.css';
 
-import { SelectController, useForm } from '@/packages/forms';
+import { SelectController, useForm, InputController } from '@/packages/forms';
 
 function BaseFilters({
 	refetch,
@@ -45,20 +45,21 @@ function BaseFilters({
 	useEffect(() => {
 		refetch(watchCountry);
 		resetDrillDownHandler();
-	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [watchCountry]);
+
 	const field = getControls({ countryOptions });
+
 	return (
 		<form onSubmit={handleSubmit(onSubmit)}>
 			<div className={`${styles.filter_container}`}>
 				<div className={`${styles.fields_container}`}>
-					<SelectController key={watchCountry} {...field[0]} control={control} size="lg" />
-					<SelectController {...field[1]} control={control} size="lg" />
+					<SelectController key={watchCountry} {...field[0]} control={control} style={{ width: '150px' }} />
+					<SelectController {...field[1]} control={control} style={{ width: '150px' }} />
 					<div>
-						<Input
+						<InputController
 							{...field[2]}
 							control={control}
-							size="md"
+							style={{ width: '250px' }}
 							prefix={<IcAIdea width={20} height={20} />}
 						/>
 						{errors.searchTerm && (
@@ -71,7 +72,6 @@ function BaseFilters({
 
 				<div className={`${styles.button_container}`}>
 					<Button
-						size="md"
 						themeType="secondary"
 						className="secondary sm"
 						type="button"

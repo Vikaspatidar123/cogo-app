@@ -17,7 +17,7 @@ function RecentSearch() {
 
 	return (
 		<div className={styles.container}>
-			<h2>Recent Searches</h2>
+			{!loading && recentDataLength > 0 && <h2>Recent Searches</h2>}
 			{loading && (
 				<div className={styles.loading_container}>
 					<img src={iconUrl.loading} alt="loading..." />

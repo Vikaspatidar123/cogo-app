@@ -1,10 +1,11 @@
 function sendListConfig({ created, setCreated, expiry, setExpiry, amount, setAmount }) {
 	const sendConfig = [
 		{
-			name      : 'Quotation No.',
-			key       : 'quotationNo',
-			width     : '150px',
-			className : 'hyper_link',
+			name       : 'Quotation No.',
+			key        : 'quotationNo',
+			width      : '150px',
+			className  : 'hyper_link',
+			renderFunc : 'renderHyperLink',
 		},
 		{
 			name  : 'Buyer',

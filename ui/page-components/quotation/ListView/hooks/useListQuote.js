@@ -1,5 +1,4 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 
 import { useRequestBf } from '@/packages/request';
 import { useSelector } from '@/packages/store';
@@ -31,53 +30,56 @@ const useListQuote = () => {
 		method  : 'get',
 		url     : 'saas/quote/summary',
 		authKey : 'get_saas_quote_summary',
-	});
+	}, { manual: true });
 
 	const [{ loading: deleteLoading }, deleteTrigger] = useRequestBf({
 		method  : 'delete',
 		url     : 'saas/quote',
 		authKey : 'delete_saas_quote',
-	});
+	}, { manual: true });
 
-	const refetchList = async () => {
+	const refetchList = useCallback(async () => {
+		const { status, date_range, showExpired, expiresIn } = filters || {};
+		const { sortType, sortBy } = sortObj || {};
 		try {
 			await sentlistTrigger({
 				params: {
 					organizationId : organization?.id,
 					page           : pagination,
 					pageLimit      : 10,
-					status         : filters?.status,
-					startDate      : filters?.date_range?.startDate,
-					endDate        : filters?.date_range?.endDate,
+					status,
+					startDate      : date_range?.startDate,
+					endDate        : date_range?.endDate,
 					searchTerm     : query,
-					sortType       : sortObj?.sortType ? 'ASC' : 'DESC',
-					sortBy         : sortObj?.sortBy,
-					showExpired    : filters?.showExpired || undefined,
-					expiresIn      : filters?.expiresIn || undefined,
+					sortType       : sortType ? 'ASC' : 'DESC',
+					sortBy,
+					showExpired    : showExpired || undefined,
+					expiresIn      : expiresIn || undefined,
 				},
 			});
 		} catch (err) {
 			console.log(err);
 		}
-	};
+	}, [filters, organization?.id, pagination, query, sentlistTrigger, sortObj]);
 
-	const refetchSummary = async () => {
+	const refetchSummary = useCallback(async () => {
+		const { status, date_range, showExpired, expiresIn } = filters || {};
 		try {
 			await summarytrigger({
 				params: {
 					organizationId : organization.id,
 					searchTerm     : query,
-					status         : filters?.status,
-					startDate      : filters?.date_range?.startDate,
-					endDate        : filters?.date_range?.endDate,
-					showExpired    : filters?.showExpired || undefined,
-					expiresIn      : filters?.expiresIn || undefined,
+					status,
+					startDate      : date_range?.startDate,
+					endDate        : date_range?.endDate,
+					showExpired    : showExpired || undefined,
+					expiresIn      : expiresIn || undefined,
 				},
 			});
 		} catch (err) {
 			console.log(err);
 		}
-	};
+	}, [filters, organization.id, query, summarytrigger]);
 
 	const deleteQuote = async (quoteId) => {
 		try {
@@ -99,11 +101,11 @@ const useListQuote = () => {
 
 	useEffect(() => {
 		refetchSummary();
-	}, []);
+	}, [refetchSummary]);
 
 	useEffect(() => {
 		refetchList();
-	}, [pagination]);
+	}, [pagination, refetchList]);
 
 	useEffect(() => {
 		if (sortObj || filterLength > 0 || (query !== undefined && query !== null)) {
@@ -122,7 +124,7 @@ const useListQuote = () => {
 		if (searchTerm !== undefined && searchTerm !== null) {
 			debounceQuery(searchTerm);
 		}
-	}, [searchTerm]);
+	}, [debounceQuery, searchTerm]);
 
 	return {
 		pagination,

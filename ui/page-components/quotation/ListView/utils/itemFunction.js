@@ -25,6 +25,9 @@ const itemFunction = () => {
 				</div>
 			</Popover>
 		),
+		renderHyperLink: (item, data, redirectPreview) => (
+			<div onClick={() => redirectPreview(data?.quotationId)} role="presentation">{data[item?.key]}</div>
+		),
 	};
 	return renderFunction;
 };

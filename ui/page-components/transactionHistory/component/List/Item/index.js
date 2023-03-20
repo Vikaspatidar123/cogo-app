@@ -17,7 +17,6 @@ function Item({
 	fields,
 	handleClick,
 	loading,
-	isMobel = false,
 	functions,
 	sort,
 }) {
@@ -32,28 +31,35 @@ function Item({
 	}, [sort]);
 
 	const { newFunctions } = itemFunctions({ functions });
-
 	const infoData = (singleItem, itm) => {
 		if (singleItem?.toolTip) {
 			return (
 				<Tooltip
 					content={(
 						<div style={{ color: 'grey' }}>
-							{getValue(itm, singleItem, isMobel, newFunctions)}
+							{getValue(itm, singleItem, newFunctions)}
 						</div>
 					)}
 					theme="light"
 				>
-					<div className={styles.info}>{getValue(itm, singleItem, isMobel, newFunctions)}</div>
+					<div className={styles.info}>{getValue(itm, singleItem, newFunctions)}</div>
 				</Tooltip>
 			);
 		}
-		return getValue(itm, singleItem, isMobel, newFunctions);
+		return getValue(itm, singleItem, newFunctions);
 	};
 	const renderItem = (itm) => (
-		<div className={`${styles.container} ${(showDrill && 'displayDrill' && 'mobile')}`}>
+		<div
+			className={`${styles.container} ${showDrill && styles.displayDrill && styles.mobile
+			}`}
+		>
 			<div className={styles.mobile_table}>
-				<MobileView fields={fields} infoData={infoData} itm={itm} loading={loading} />
+				<MobileView
+					fields={fields}
+					infoData={infoData}
+					itm={itm}
+					loading={loading}
+				/>
 			</div>
 
 			<div className={styles.row} role="presentation" onClick={handleClick}>
@@ -74,7 +80,11 @@ function Item({
 				))}
 			</div>
 
-			<div className={styles.arrow} role="presentation" onClick={() => onOpen(itm)}>
+			<div
+				className={styles.arrow}
+				role="presentation"
+				onClick={() => onOpen(itm)}
+			>
 				<div className={styles.arrow_icon_div}>
 					<IcMArrowRotateDown
 						width={15}
@@ -84,7 +94,11 @@ function Item({
 				</div>
 			</div>
 
-			<div className={showDrill ? `${styles.drill_down}${styles.displayDrill}` : `${styles.drill_down}`}>
+			<div
+				className={
+          showDrill ? `${styles.drill_down}${styles.displayDrill}` : `${styles.drill_down}`
+        }
+			>
 				<div className={styles.mobile_bill}>
 					{!drillDownLoading && (
 						<div className={styles.parent}>

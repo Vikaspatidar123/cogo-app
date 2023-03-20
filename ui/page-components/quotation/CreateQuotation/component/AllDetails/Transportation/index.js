@@ -14,7 +14,7 @@ import getField from '@/packages/forms/Controlled';
 function Transportation(props, ref) {
 	const {
 		transportMode, editOriginId = '', editDestinationID = '',
-		originCountry = '', destinationCountry = '', setMapPoints, getOceanRoute,
+		setMapPoints, getOceanRoute,
 	} = props || {};
 
 	const [destinationPortDetails, setDestinationPortDetails] = useState({});
@@ -43,12 +43,17 @@ function Transportation(props, ref) {
 		const filter = {
 			status : 'active',
 			id     : [editOriginId, editDestinationID],
+			// includes : { country: true },
 		};
-		const resp = await getPortDetails(filter);
+
+		const includes = { country: true };
+		const resp = await getPortDetails(filter, includes);
+
 		const originData = resp?.[0]?.id === editOriginId ? resp?.[0] : resp?.[1];
 		const destinationData = resp?.[1]?.id === editDestinationID ? resp?.[1] : resp?.[0];
-		setOriginPortDetails({ ...originData, country: { name: originCountry } });
-		setDestinationPortDetails({ ...destinationData, country: { name: destinationCountry } });
+		console.log();
+		setOriginPortDetails({ ...originData });
+		setDestinationPortDetails({ ...destinationData });
 	};
 
 	useEffect(() => {

@@ -59,7 +59,7 @@ function ProductCatalogue({
 						setSelectedData={setSelectedData}
 						setShowCatalogue={setShowCatalogue}
 						multiSelect={multiSelect}
-						selecteId={selectedId}
+						categoryselectedId={selectedId}
 					/>
 				)}
 				{labeledValue === 'list' && (

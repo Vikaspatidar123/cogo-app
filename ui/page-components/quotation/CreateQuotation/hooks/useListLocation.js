@@ -6,12 +6,12 @@ const useListLocation = () => {
 		url    : '/list_locations',
 	}, { manual: true });
 
-	const getPortDetails = async (filter) => {
+	const getPortDetails = async (filter, includes = {}) => {
 		try {
 			const resp = await trigger({
 				params: {
 					filters    : { ...filter },
-					includes   : { default_params_required: true },
+					includes   : { default_params_required: true, ...includes },
 					page_limit : 20,
 				},
 			});

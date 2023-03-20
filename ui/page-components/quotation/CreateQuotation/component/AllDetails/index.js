@@ -27,7 +27,6 @@ function AllDetails({ transportMode = 'OCEAN', editData = {} }, ref) {
 		serviceType,
 		packageHandling = null,
 		packageType = null, quantity, weight, volume,
-		originCountry = null, destinationCountry = null,
 	} = editData;
 	const editAir = {
 		packageHandling,
@@ -53,8 +52,6 @@ function AllDetails({ transportMode = 'OCEAN', editData = {} }, ref) {
 			<div className={styles.transport}>
 				<Transportation
 					transportMode={transportMode}
-					originCountry={originCountry}
-					destinationCountry={destinationCountry}
 					editOriginId={editOriginId}
 					editDestinationID={editDestinationID}
 					setMapPoints={setMapPoints}

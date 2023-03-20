@@ -16,11 +16,11 @@ function ProductCategory({
 	setSelectedData,
 	setShowCatalogue,
 	multiSelect,
-	selecteId = [],
+	categoryselectedId = [],
 }) {
 	const [subCategory, setSubCategory] = useState({});
 	const [categoryList, setCategoryList] = useState({});
-	const [selectedId, setSelectedId] = useState([]);
+	const [selectedId, setSelectedId] = useState(categoryselectedId);
 	const { MAPPING } = IconMaping();
 
 	const subCategoryLength = Object.keys(subCategory).length;
@@ -33,13 +33,15 @@ function ProductCategory({
 		allprductData,
 	} = useProductList({ labeledValue: 'category' });
 
-	useEffect(() => {
-		setSelectedId(selecteId);
-	}, [JSON.stringify(selecteId)]);
-
 	const addToForm = () => {
 		const arr = allprductData.filter((product) => selectedId.includes(product?.id));
 		if (multiSelect) {
+			const productItem = [
+				...new Map(allprductData.map((data) => [data.id, data])).values(),
+			];
+			const productToAdd = (productItem || []).filter((data) => (
+				selectedId.includes(data.id) && !categoryselectedId.includes(data.id)));
+			setSelectedData(productToAdd);
 			setSelectedData(arr);
 		} else {
 			setSelectedData(...arr);
@@ -132,6 +134,7 @@ function ProductCategory({
 											refetchProduct={refetchProduct}
 											loading={listLoading}
 											item={categoryList}
+											selectedId={categoryselectedId}
 											setSelectedId={setSelectedId}
 											isCategory
 											multiSelect={multiSelect}

@@ -20,6 +20,27 @@ import { useRouter } from '@/packages/next';
 import { useSelector } from '@/packages/store';
 import { shortFormatNumber } from '@/ui/commons/utils/getShortFormatNumber';
 
+const addProductFromCatalogue = ({ selectedData = [], watchCurrency, append, getExchangeRate }) => {
+	selectedData.forEach(async (product) => {
+		const { id, name, description, hsCode, sellingPrice, currency: productCurrency } = product || {};
+		const exchangeRate = await getExchangeRate(productCurrency, watchCurrency);
+		append({
+			productId           : id,
+			name,
+			description,
+			hsCode,
+			quantity            : '',
+			productCurrency     : watchCurrency || 'INR',
+			productExchangeRate : exchangeRate,
+			price               : (sellingPrice * exchangeRate).toFixed(4),
+			product_price       : '',
+			discountAmount      : 0,
+			taxAmount           : 0,
+			actualPrice         : (sellingPrice * exchangeRate).toFixed(4),
+		});
+	});
+};
+
 function List(props, ref) {
 	const { selectedData = [], setSelectedId, editProduct = [], watchCurrency } = props || {};
 
@@ -37,7 +58,7 @@ function List(props, ref) {
 		formState: { errors },
 	} = useForm();
 
-	const { fields, remove, prepend } = useFieldArray({
+	const { fields, remove, prepend, append } = useFieldArray({
 		name: 'products',
 		control,
 	});
@@ -90,17 +111,11 @@ function List(props, ref) {
 		},
 		totalProductValue: calTotalPrice(),
 	}));
-	// useMemo(() => { setSelectedId(watchFieldArr.map((x) => x.id)); }, [watchFieldArr]);
 
 	useMemo(() => {
-		setValue(
-			'products',
-			(selectedData || []).map((item) => ({
-				...item,
-				price     : item.sellingPrice,
-				productId : item.id,
-			})),
-		);
+		if (selectedData.length > 0) {
+			addProductFromCatalogue({ selectedData, getExchangeRate, watchCurrency, append });
+		}
 	}, [selectedData]);
 
 	useEffect(() => { setSelectedId((watchFieldArr || []).map((x) => x.productId)); }, [watchFieldArr]);

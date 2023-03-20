@@ -14,6 +14,7 @@ function ProductList({
 	pagination,
 	setPagination,
 	refetchProduct,
+	selectedId = [],
 	item = {},
 	isCategory = false,
 	setSelectedData,
@@ -23,7 +24,7 @@ function ProductList({
 	allprductData,
 }) {
 	const loaderArr = [1, 2, 3, 4, 5];
-	const [addProductId, setAddProductId] = useState([]);
+	const [addProductId, setAddProductId] = useState(selectedId);
 	const { list = [], totalRecords } = productList || {};
 	const { productClassificationId = '' } = item || {};
 
@@ -36,7 +37,12 @@ function ProductList({
 	const addToForm = () => {
 		const arr = allprductData.filter((product) => addProductId.includes(product?.id));
 		if (multiSelect) {
-			setSelectedData(arr);
+			const productItem = [
+				...new Map(allprductData.map((data) => [data.id, data])).values(),
+			];
+			const productToAdd = (productItem || []).filter((data) => (
+				addProductId.includes(data.id) && !selectedId.includes(data.id)));
+			setSelectedData(productToAdd);
 		} else {
 			setSelectedData(...arr);
 		}

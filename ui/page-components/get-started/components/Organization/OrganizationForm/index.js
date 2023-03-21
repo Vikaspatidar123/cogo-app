@@ -11,14 +11,18 @@ import styles from './styles.module.css';
 import {
 	useForm, SelectController, useGetAsyncOptions, asyncFieldsLocations, InputController, MultiselectController,
 } from '@/packages/forms';
+import { useRouter } from '@/packages/next';
 
 function OrganizationForm({ setBillingAddressDetails, setOrgId, setOrgBranchId }) {
 	const cityOptions = useGetAsyncOptions(merge(asyncFieldsLocations(), {
 		params: { filters: { type: ['country'] } },
 	}));
+	const { query } = useRouter();
+
 	const {
 		handleSubmit, control, formState: { errors }, watch,
 	} = useForm();
+	const { lead_organization_id = undefined } = query || {};
 
 	const formValues = watch();
 
@@ -33,7 +37,7 @@ function OrganizationForm({ setBillingAddressDetails, setOrgId, setOrgBranchId }
 	const {
 		onClickCreateOrganization,
 		createOrganizationLoading,
-	} = 		useCreateOrganization({ setBillingAddressDetails, setOrgId, setOrgBranchId });
+	} = 		useCreateOrganization({ setBillingAddressDetails, setOrgId, setOrgBranchId, lead_organization_id });
 
 	return (
 		<div className={styles.container}>

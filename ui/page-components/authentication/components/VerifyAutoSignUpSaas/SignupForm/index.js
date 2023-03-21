@@ -1,6 +1,6 @@
 import { Button, Checkbox } from '@cogoport/components';
 import { setCookie } from '@cogoport/utils';
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import ReCAPTCHA from 'react-google-recaptcha';
 
 import getSaasUserInfo from '../../../hooks/useSaasUserInfo';
@@ -60,7 +60,7 @@ function SignupForm({ setHasSignedup, setFormData, setUserDetails }) {
 		source,
 	} = query;
 	const check = source === 'quick_quotation';
-	const useSaasInfo = async () => {
+	const saasInfo = useCallback(async () => {
 		try {
 			const response = await getSaasUserInfo({
 				email_token,
@@ -89,10 +89,11 @@ function SignupForm({ setHasSignedup, setFormData, setUserDetails }) {
 		} catch (err) {
 			console.log(err);
 		}
-	};
+	}, [check, email_token, lead_organization_id, setValue, source]);
+
 	useEffect(() => {
-		useSaasInfo();
-	}, [query]);
+		saasInfo();
+	}, [query, saasInfo]);
 
 	return (
 		<form

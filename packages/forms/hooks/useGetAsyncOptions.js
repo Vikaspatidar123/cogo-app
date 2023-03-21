@@ -25,8 +25,7 @@ function useGetAsyncOptions({
 	const dependency = (data?.list || []).map(({ id }) => id).join('');
 	useEffect(() => {
 		if (options.length > 0) { setStoreOptions([...options]); }
-	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [dependency]);
+	}, [dependency, options]);
 
 	const [{ loading: loadingSingle }, triggerSingle] = useRequest({
 		url    : endpoint,

@@ -28,8 +28,7 @@ function useGetAsyncOptionsBf({
 
 	useEffect(() => {
 		if (options.length > 0) { setStoreOptions([...options]); }
-	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [dependency]);
+	}, [dependency, options]);
 
 	const [{ loading: loadingSingle }, triggerSingle] = useRequestBf({
 		url    : endpoint,

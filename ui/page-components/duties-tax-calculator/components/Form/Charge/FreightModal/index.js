@@ -1,6 +1,6 @@
 import { Modal, Button } from '@cogoport/components';
 import { IcAFinancial } from '@cogoport/icons-react';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 
 import { Loading } from '../../../../configuration/icon-configuration';
 import useCurrencyConversion from '../../../../hook/useCurrencyConversion';
@@ -43,9 +43,10 @@ function FreightModal({
 		originId      : originPort,
 		destinationId : destinationPort,
 	});
-	const spotSearchHandler = async () => {
+	const spotSearchHandler = useCallback(async () => {
 		await createSpotSearch(payload);
-	};
+	}, [createSpotSearch, payload]);
+
 	const checkboxHandler = (item) => {
 		if (checked !== item?.card) {
 			setChecked(item?.card);
@@ -66,14 +67,12 @@ function FreightModal({
 	};
 	const redirectDiscover = () => {
 		const callBackUrl = `${process.env.APP_URL}app/${org_id}/${branch_id}/${account_type}/book`;
-		// eslint-disable-next-line no-undef
 		window.open(callBackUrl, '_blank');
 	};
 
 	useEffect(() => {
 		spotSearchHandler();
-	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
+	}, [spotSearchHandler]);
 
 	const titleRender = () => (
 		<div className={styles.title_container}>

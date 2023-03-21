@@ -74,9 +74,18 @@ function CsvForm() {
 			fetchShippingLineForContainer(data);
 		} else setshowinput(false);
 	};
+
+	console.log(fileValue, 'fileValue');
+
 	return (
 		<div>
-			<FileSelect value={fileValue} onChange={setFileValue} accept="csv" />
+			<FileSelect
+				value={fileValue}
+				onChange={setFileValue}
+				accept="csv"
+				style={{ width: '300px' }}
+				loading={loading}
+			/>
 			<div className={styles.form}>
 				{controls.map((item) => (
 					<div className={styles.radio}>

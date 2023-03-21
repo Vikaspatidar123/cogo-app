@@ -116,7 +116,7 @@ function RenderForm() {
 				</div>
 			)}
 			<div className={styles.button}>
-				{console.log(value, '543')}
+
 				<Button onClick={() => addTracker(value)}> Track Shipment</Button>
 			</div>
 

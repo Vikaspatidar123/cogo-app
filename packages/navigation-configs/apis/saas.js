@@ -1,7 +1,4 @@
 const saas = {
-<<<<<<< HEAD
-	app_saas_tracking: [
-=======
 	app_saas_freight_rate_trend: [
 		{
 			api          : 'get_freight_trend_subscription',
@@ -71,7 +68,6 @@ const saas = {
 
 	app_saas_load_container : [],
 	app_saas_tracking       : [
->>>>>>> cad61a42c8754eb279f725be1856a58084ef3d92
 		{
 			api          : 'get_saas_container_subscription',
 			access_type  : 'private',

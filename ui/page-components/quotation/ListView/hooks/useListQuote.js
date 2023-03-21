@@ -118,7 +118,7 @@ const useListQuote = () => {
 		if (filterLength > 0 || (query !== undefined && query !== null)) {
 			refetchSummary();
 		}
-	}, [JSON.stringify(sortObj), JSON.stringify(filters), query]);
+	}, [sortObj, filters, query]);
 
 	useEffect(() => {
 		if (searchTerm !== undefined && searchTerm !== null) {

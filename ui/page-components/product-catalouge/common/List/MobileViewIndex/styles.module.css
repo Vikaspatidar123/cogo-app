@@ -53,9 +53,6 @@
 	padding: 4px 16px;
 	margin-top: 5px;
 
-	&.Amount {
-		align-self: flex-end;
-	}
 }
 
 .icon {

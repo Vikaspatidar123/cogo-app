@@ -9,7 +9,7 @@ function HsCodeList({
 }) {
 	return (
 		<>
-			<div className={cl`${styles.title} ${styles.hsCode_title}`}>Select HS Code</div>
+			<div className={cl`${styles.title} ${styles.hscode_title}`}>Select HS Code</div>
 			<div className={styles.scroll_content}>
 				{list.map(({
 					id, name, description, hsCode, costPrice, sellingPrice, currency,

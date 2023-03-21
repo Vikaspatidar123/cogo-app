@@ -3,20 +3,26 @@ import { Toast } from '@cogoport/components';
 import { useRequestBf } from '@/packages/request';
 import { useSelector } from '@/packages/store';
 
-const usePutArchiveUnarchiveStatus = ({ archived, getList }) => {
+const usePutArchiveUnarchiveStatus = ({ archived, getList, setArchive }) => {
 	const { profile } = useSelector((s) => s);
 
-	const [{ loading }, archivedTrigger] = useRequestBf({
-		url     : '/saas/organization/archive',
-		authKey : 'put_saas_organization_archive',
-		method  : 'put',
-	}, { manual: true });
+	const [{ loading }, archivedTrigger] = useRequestBf(
+		{
+			url     : '/saas/organization/archive',
+			authKey : 'put_saas_organization_archive',
+			method  : 'put',
+		},
+		{ manual: true },
+	);
 
-	const [unarchiveTrigger] = useRequestBf({
-		url     : '/saas/organization/unarchive',
-		authKey : 'put_saas_organization_unarchive',
-		method  : 'put',
-	}, { manual: true });
+	const [{ loading:archiveLoading }, unarchiveTrigger] = useRequestBf(
+		{
+			url     : '/saas/organization/unarchive',
+			authKey : 'put_saas_organization_unarchive',
+			method  : 'put',
+		},
+		{ manual: true },
+	);
 
 	const api = archived ? unarchiveTrigger : archivedTrigger;
 	const tradePartyStatus = async (itemData) => {
@@ -28,15 +34,19 @@ const usePutArchiveUnarchiveStatus = ({ archived, getList }) => {
 				},
 			});
 			if (res?.data?.message === 'Success') {
-				Toast.success(archived ? 'Unarchived Successfully' : 'Archived Successfully', {
-					autoClose: 2000,
-				});
+				setArchive(false);
+				Toast.success(
+					archived ? 'Unarchived Successfully' : 'Archived Successfully',
+					{
+						autoClose: 2000,
+					},
+				);
 				getList({});
 			}
 		} catch (error) {
 			Toast.error(error?.message);
 		}
 	};
-	return { tradePartyStatus, statusLoading: loading };
+	return { tradePartyStatus, statusLoading: loading || archiveLoading };
 };
 export default usePutArchiveUnarchiveStatus;

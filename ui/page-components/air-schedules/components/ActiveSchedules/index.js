@@ -15,6 +15,7 @@ import { useRouter } from '@/packages/next';
 function ActiveSchedules() {
 	const { query, push } = useRouter();
 
+	const [mapPoints, setMapPoints] = useState();
 	const id = query?.id;
 	const [currentPage, setCurrentPage] = useState(1);
 
@@ -52,6 +53,7 @@ function ActiveSchedules() {
 			</div>
 			<div className={styles.map_container}>
 				<Map
+					mapPoints={mapPoints}
 					portDetails={scheduleDetails}
 					transportMode="AIR"
 					width="100%"

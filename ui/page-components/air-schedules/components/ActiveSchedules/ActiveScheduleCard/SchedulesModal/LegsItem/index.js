@@ -1,10 +1,32 @@
 import { Pill } from '@cogoport/components';
 import { format, differenceInDays } from '@cogoport/utils';
-import React from 'react';
+import React, { useState } from 'react';
 
 import styles from './styles.module.css';
 
-function LegsItem({ legItem = {} }) {
+function LegsItem({ legItem = {}, route, setMapPoints }) {
+	// const [expanded, setExpanded] = useState(false);
+	// const openAccordian = () => {
+	// 	setExpanded(!expanded);
+	// 	if (!expanded) {
+	// 		setMarkers(
+	// 			legItem.map((leg) => ({
+	// 				lat : leg.display_details[1].latitude,
+	// 				lng : leg.display_details[1].longitude,
+	// 			})),
+	// 		);
+	// 		setMapPoints(
+	// 			legItem
+	// 				.map((leg) => leg.route_cordinates)
+	// 				.flat()
+	// 				.filter((x) => x.length > 0),
+	// 		);
+	// 	} else {
+	// 		setMapPoints(route);
+	// 		setMarkers([]);
+	// 	}
+	// };
+
 	const locationsList = legItem?.display_details || [];
 	const originSchedule =	 locationsList.filter((item) => item.id
     === legItem.origin_port_id)[0]?.display_name || 'Origin';

@@ -59,11 +59,21 @@ const handleAuthentication = async ({
 		routeConfig,
 		pathname,
 	});
-
+	const { organizations } = user_data || {};
+	if (isEmpty(organizations)) {
+		if (
+			(user_data?.organizations || []).length === 0
+			|| user_data.name === null
+		) {
+			redirect({ isServer, res, path: '/v2/get-started' });
+			return { asPrefix };
+		}
+	}
 	if (isEmpty(user_data)) {
 		if (!isServer) {
 			deleteCookie('cogo-auth-token', null, { req });
 		}
+
 		if (isUnauthenticated) {
 			return { asPrefix };
 		}
@@ -90,7 +100,6 @@ const handleAuthentication = async ({
 		});
 		return { asPrefix };
 	}
-
 	//  || asPath.includes('/kyc')
 	if (asPath.includes('/get-started')) {
 		return { asPrefix };

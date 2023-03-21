@@ -41,10 +41,7 @@ request.interceptors.request.use((oldConfig) => {
 	if (serviceName) {
 		newConfig.url = `/${serviceName}/${apiPath}`;
 	}
-	// newConfig.headers = {
-	// 	authorizationscope   : 'organization',
-	// 	authorizationscopeid : getOrganizationId(storeKey, oldConfig.ctx),
-	// };
+
 	return {
 		...newConfig,
 		paramsSerializer : { serialize: customSerializer },

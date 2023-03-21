@@ -130,13 +130,29 @@ function ListView({
 			Header   : () => 'Cost Price',
 			key      : 'price',
 			id       : 'price',
-			accessor : (record) => formatAmount(record?.costPrice, record?.currency),
+			accessor : (record) => formatAmount({
+				amount   : record?.costPrice,
+				currency : record?.currency,
+				options  : {
+					currency        : record?.currency,
+					style           : 'currency',
+					currencyDisplay : 'code',
+				},
+			}),
 		},
 		{
 			Header   : () => 'Selling Price',
 			id       : 'netAmount',
 			key      : 'netAmount',
-			accessor : (record) => formatAmount(record?.sellingPrice, record?.currency),
+			accessor : (record) => formatAmount({
+				amount   : record?.sellingPrice,
+				currency : record?.currency,
+				options  : {
+					currency        : record?.currency,
+					style           : 'currency',
+					currencyDisplay : 'code',
+				},
+			}),
 		},
 		{
 			Header   : () => 'Action',

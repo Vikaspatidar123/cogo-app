@@ -18,13 +18,14 @@ const useCreateOrganization = ({ setBillingAddressDetails, setOrgId, setOrgBranc
 	const onClickCreateOrganization = async (val) => {
 		try {
 			const payload = {
-				account_type        : 'importer_exporter',
-				country_id          : val?.country_id,
-				registration_number : val?.registration_number,
-				user_id             : profile?.id,
-				business_name       : val?.business_name,
-				preferred_languages : val?.preferred_languages,
-				work_scopes         : val?.work_scopes,
+				account_type         : 'importer_exporter',
+				country_id           : val?.country_id,
+				registration_number  : val?.registration_number,
+				user_id              : profile?.id,
+				business_name        : val?.business_name,
+				preferred_languages  : val?.preferred_languages,
+				work_scopes          : val?.work_scopes,
+				lead_organization_id : lead_organization_id || undefined,
 			};
 
 			const response = await createOrganizationtrigger({

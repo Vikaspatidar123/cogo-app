@@ -1,6 +1,5 @@
 import { Toast } from '@cogoport/components';
-import { useEffect, useState } from 'react';
-import { useCallback } from 'react/cjs/react.production.min';
+import { useEffect, useState, useCallback } from 'react';
 import { useSelector } from 'react-redux';
 
 import { useRequestBf } from '@/packages/request';
@@ -23,10 +22,10 @@ const useList = ({ activeTab }) => {
 		};
 		return mapping[item] || item;
 	};
-	const list = useCallback(() => {
+	const list = useCallback(async () => {
 		const { sortBy = undefined, sortType = undefined } = sort || {};
 		try {
-			trigger({
+			await trigger({
 				params: {
 					source         : 'SAAS',
 					organizationId : organization?.id,

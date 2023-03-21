@@ -1,6 +1,5 @@
 import { Toast } from '@cogoport/components';
-import { useState, useEffect } from 'react';
-import { useCallback } from 'react/cjs/react.production.min';
+import { useState, useEffect, useCallback } from 'react';
 
 import { useRequestBf } from '@/packages/request';
 

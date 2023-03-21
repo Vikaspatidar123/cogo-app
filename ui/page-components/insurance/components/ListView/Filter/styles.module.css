@@ -22,8 +22,7 @@
     display: flex;
 	justify-content: space-between;
 	align-items: flex-start;
-	padding: 8px 10px;
-	border-bottom: 1px solid #cddbff;
+	padding: 8px 0px;
 }
 
 .title {

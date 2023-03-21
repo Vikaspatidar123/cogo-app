@@ -2,7 +2,7 @@ import { Checkbox, Chips, Toast, Modal, Button } from '@cogoport/components';
 import { IcMPlus } from '@cogoport/icons-react';
 import { useState, useMemo } from 'react';
 
-import { getControls } from '../../configurations/addAddressControls';
+import getControls from '../../configurations/addAddressControls';
 import useCreateBillingAddres from '../../hooks/useCreateBillingAddress';
 import useGetStateFromPincode from '../../hooks/useGetStateFromPincode';
 

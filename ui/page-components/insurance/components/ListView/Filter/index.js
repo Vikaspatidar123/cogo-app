@@ -48,11 +48,11 @@ function FilterContent({ filters, setFilters }) {
 					<Chips
 						selectedItems={filters.policyType}
 						items={optionsType}
-						onItemsChange={(e) => setFilters((prev) => ({
+						onItemChange={(e) => setFilters((prev) => ({
 							...prev,
 							policyType: e,
 						}))}
-						size="sm"
+						size="lg"
 					/>
 				</div>
 				<div className={styles.section}>

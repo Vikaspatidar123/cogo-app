@@ -69,29 +69,33 @@ function OceanSchedules() {
 			</div>
 			<div className={styles.schedules_container}>
 				{loading && 		(
-					<div className={styles.card}>
-						<Placeholder height="370px" width="1250px" margin="0px 0px 20px 0px" />
-					</div>
+					<Placeholder height="270px" width="1250px" margin="0px 0px 20px 0px" />
 				)}
 				{!loading && schedules?.list.length > 0
 					? schedules?.list?.map((item) => (
-						<ScheduleCard
-							schedule={item}
-							refectSchedules={refectSchedules}
-							loading={loading}
-						/>
+						<>
+							{' '}
+							<ScheduleCard
+								schedule={item}
+								refectSchedules={refectSchedules}
+								loading={loading}
+							/>
+						</>
 					))
-					: <NoSchedulesCard /> }
+					: <NoSchedulesCard loading={loading} /> }
 			</div>
-			<div className={styles.pagination_container}>
-				<Pagination
-					type="number"
-					currentPage={currentPage}
-					totalItems={schedules?.total_count || 10}
-					pageSize={schedules?.page_limit}
-					onPageChange={setCurrentPage}
-				/>
-			</div>
+
+			{schedules?.list.length > 0 && (
+				<div className={styles.pagination_container}>
+					<Pagination
+						type="number"
+						currentPage={currentPage}
+						totalItems={schedules?.total_count || 10}
+						pageSize={schedules?.page_limit}
+						onPageChange={setCurrentPage}
+					/>
+				</div>
+			)}
 		</div>
 	);
 }

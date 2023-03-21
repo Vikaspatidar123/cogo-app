@@ -1,5 +1,5 @@
 import { Toast } from '@cogoport/components';
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 
 import { useRequest } from '@/packages/request';
 
@@ -10,7 +10,7 @@ const useOceanRoute = () => {
 		url    : 'https://api.cogoport.com/location/get_sea_route',
 		method : 'get',
 	}, { manual: true });
-	const getOceanRoute = async (origin_port_id, destination_port_id) => {
+	const getOceanRoute = useCallback(async (origin_port_id, destination_port_id) => {
 		try {
 			const resp = await oceanRouteTrigger({
 				params: {
@@ -24,7 +24,7 @@ const useOceanRoute = () => {
 		} catch (err) {
 			Toast.error(err?.error?.message);
 		}
-	};
+	}, [oceanRouteTrigger]);
 
 	return {
 		getOceanRoute,

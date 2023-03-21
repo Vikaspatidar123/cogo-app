@@ -19,7 +19,6 @@ function PortDetails({ data = {} }) {
 			<PortName location={origin} />
 			<IcMPortArrow size={1.1} style={{ margin: '-16px 10px 0' }} />
 			<PortName location={destination} />
-
 		</div>
 	);
 }

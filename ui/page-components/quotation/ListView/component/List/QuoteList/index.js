@@ -27,8 +27,7 @@ function QuoteList({ data, loading, pagination, setPagination, setSortObj, delet
 				<>
 					<div className={styles.desktop_view}>
 						<CardHeader config={sendConfig} setSortObj={setSortObj} />
-					</div>
-					<div className={styles.desktop_view}>
+
 						{(dataList || []).map((listItem) => (
 							<CardRow
 								key={listItem?.quotationId}

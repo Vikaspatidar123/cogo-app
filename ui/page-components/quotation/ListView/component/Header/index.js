@@ -21,28 +21,28 @@ function Header({
 		<>
 			<div className={styles.main_quote}>
 				<div className={styles.quote}>Quick Quotations</div>
-				<div className={styles.filter_btn}>
-					<Popover
-						placement="bottom"
-						interactive={showFilters}
-						visible={showFilters}
-						onClickOutside={() => setshowFilters(false)}
-						content={(
-							<FilterContent
-								filters={filters}
-								setFilters={setFilters}
-							/>
-						)}
-						maxWidth={350}
-					/>
+				<Popover
+					placement="bottom"
+					interactive={showFilters}
+					visible={showFilters}
+					onClickOutside={() => setshowFilters(false)}
+					content={(
+						<FilterContent
+							filters={filters}
+							setFilters={setFilters}
+						/>
+					)}
+					maxWidth={350}
+				>
 					<div
 						className={styles.filter_icon}
 						role="presentation"
-						onClick={() => setshowFilters(!showFilters)}
+						onClick={() => setshowFilters((prev) => !prev)}
 					>
 						<IcMFilter />
 					</div>
-				</div>
+				</Popover>
+
 			</div>
 			<div className={styles.container}>
 				<div className={cl`${styles.summary} ${styles.flex_container}`}>
@@ -68,7 +68,7 @@ function Header({
 							<Button
 								size="lg"
 								themeType="accent"
-								onClick={() => setshowFilters(!showFilters)}
+								onClick={() => setshowFilters((prev) => !prev)}
 							>
 								<div className={styles.btn_text}>Filter By</div>
 								<IcMFilter />
@@ -86,7 +86,6 @@ function Header({
 							)}
 						>
 							Create New
-
 						</div>
 					</Button>
 				</div>

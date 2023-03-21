@@ -34,10 +34,9 @@ const tooltipContent = ({ documentStatus, quotationId, setShowDeleteModal, setQu
 	);
 };
 
-function MobileCard({ data, loading, setQuoteId, setShowDeleteModal }) {
-	console.log(data, 'ele');
+function MobileCard({ data = [], loading = false, setQuoteId, setShowDeleteModal }) {
 	return data.map((ele) => (
-		<div className={styles.box}>
+		<div className={styles.box} key={ele?.quotationId}>
 			{loading && (
 				<div>
 					<Placeholder margin="0 0 12px 0" />
@@ -48,65 +47,59 @@ function MobileCard({ data, loading, setQuoteId, setShowDeleteModal }) {
 			)}
 			{!loading && (
 				<>
-
 					<div className={cl`${styles.date_row} ${styles.date_col}`}>
 						<div className={styles.flexs}>
 							<div className={styles.date}>ID:</div>
-							<div className={styles.quote_no}>{ele.quotationNo}</div>
+							<div className={styles.quote_no}>{ele?.quotationNo}</div>
 						</div>
 						<div>
 							<Popover
 								placement="bottom"
-								render={tooltipContent({ quotationId: ele.id, setShowDeleteModal, setQuoteId })}
+								render={tooltipContent({ quotationId: ele?.id, setShowDeleteModal, setQuoteId })}
 							>
 								<IcMOverflowDot />
 							</Popover>
 						</div>
 
 					</div>
-					<div className={styles.second}>
-						<div className={styles.date_col}>
-							<div className={styles.date}>Buyer:</div>
-							<div className={styles.date_digits}>
-								{ele.buyerName}
-							</div>
 
+					<div className={styles.date_col}>
+						<div className={styles.date}>Buyer:</div>
+						<div className={styles.date_digits}>
+							{ele?.buyerName}
 						</div>
 					</div>
-					<div className={styles.third} />
+
 					<div className={cl`${styles.date_row} ${styles.date_col}`}>
 						<div className={styles.flexs}>
 							<div className={styles.date}>Date:</div>
 							<div className={styles.date_digits}>
-								{ele.quotationDate}
+								{ele?.quotationDate}
 							</div>
 						</div>
 						<div className={styles.border} />
 						<div className={styles.flexs}>
 							<div className={styles.date}>Expiry:</div>
 							<div className={styles.date_digits}>
-								{ele.expiryDate}
+								{ele?.expiryDate}
 							</div>
 						</div>
-
 					</div>
-					<div className={styles.fourth} />
+
 					<div className={cl`${styles.amount} ${styles.date_col}`}>
 						<div className={styles.flexs}>
 							<div className={styles.date}>Amount:</div>
 							<div className={styles.date_digits}>
-								{shortFormatNumber(ele.totalAmount, 'usd')}
+								{shortFormatNumber(ele?.totalAmount, ele?.currency)}
 							</div>
 						</div>
-						<div>
-							<div className={styles.last}>
-								<IcCYelloCircle className={styles.dot} />
-								{ele.documentStatus}
-							</div>
 
+						<div className={styles.last}>
+							<IcCYelloCircle className={styles.dot} />
+							{ele?.documentStatus}
 						</div>
-
 					</div>
+
 				</>
 			)}
 		</div>

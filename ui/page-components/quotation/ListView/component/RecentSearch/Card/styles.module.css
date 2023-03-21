@@ -11,7 +11,7 @@
 	}
 
 	&.enabled {
-		background: #fffef9;
+		background: #f4f4f4;
 
 		&:hover {
 			filter: drop-shadow(0 4px 80px rgb(0 0 0 / 15%));
@@ -21,8 +21,6 @@
 	@media screen and (max-width: 767px) {
 		box-sizing: border-box;
 		width: 275px;
-
-		/* height: 143px; */
 		padding: 10px;
 		background: rgb(255 255 255) !important;
 		border: 1px solid rgb(209 209 225);

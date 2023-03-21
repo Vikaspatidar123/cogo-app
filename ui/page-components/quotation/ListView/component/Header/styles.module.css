@@ -9,10 +9,6 @@
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-
-	@media screen and (max-width: 767px) {
-		gap: 10px;
-	}
 }
 
 .filter_section {
@@ -33,29 +29,16 @@
 	display: none;
 
 	@media screen and (max-width: 767px) {
-		display: block;
 		display: flex;
 		justify-content: space-between;
 		margin-bottom: 25px;
-		-webkit-box-pack: justify;
-		-webkit-box-align: center;
-	}
-}
-
-.filter_btn {
-	min-width: 0;
-	height: 0;
-
-	@media screen and (max-width: 767px) {
-		min-width: 0;
-		height: 0;
 	}
 }
 
 .quote {
 	margin-left: 3px;
 	font-size: 18px;
-	font-weight: 400;
+	font-weight: 600;
 	color: rgb(89 80 133);
 }
 

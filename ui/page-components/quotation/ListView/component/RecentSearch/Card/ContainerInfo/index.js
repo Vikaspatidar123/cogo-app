@@ -110,7 +110,7 @@ function ContainerInfo({ data = {} }) {
 							<p>{chipValue}</p>
 						</div>
 						<div className={styles.desktop_view}>
-							{/* <Pill key={label} size="sm">{chipValue}</Pill> */}
+							<Pill key={label} size="sm">{chipValue}</Pill>
 						</div>
 					</>
 				);
@@ -139,17 +139,17 @@ function ContainerInfo({ data = {} }) {
 					</div>
 				</Tooltip>
 			</div>
+
 			<div className={styles.mobile_view}>
 				<Tooltip content={renderBox()} placement="bottom" className={styles.tool_content}>
 					<div className={styles.tool}>
 						{labels.map((label) => {
 							const chipValue = data[label] ? renderValue(label) : null;
-							console.log(chipValue, numberBox, 'sa');
 							if (chipValue && mobileBox < 3) {
 								mobileBox += 1;
 								return (
 									<>
-										<div className={cl`${styles.container_info}`}>
+										<div className={styles.container_info}>
 											{ chipValue }
 										</div>
 										<div className={styles.some} />
@@ -158,6 +158,7 @@ function ContainerInfo({ data = {} }) {
 							}
 							return null;
 						})}
+						<div className={styles.container_info}>...</div>
 					</div>
 				</Tooltip>
 			</div>

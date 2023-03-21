@@ -17,7 +17,7 @@ function RecentSearch() {
 
 	return (
 		<div className={styles.container}>
-			<h2 className={styles.recent_search}>RECENT SEARCHES</h2>
+			<h2 className={styles.recent_search}>Recent Search</h2>
 			{loading && (
 				<div className={styles.loading_container}>
 					<img src={iconUrl.loading} alt="loading..." />

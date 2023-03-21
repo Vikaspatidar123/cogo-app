@@ -56,20 +56,18 @@ function CardRow({ data, config, loading, setShowDeleteModal, setQuoteId }) {
 		);
 	};
 	return (
-		<div>
-			<div className={cl`${styles.card_row} ${styles.row_item}`}>
-				{config.map((item) => (
-					<div
-						className={cl`${styles.col} ${styles[item?.className]}`}
-						style={{ width: `${item?.width}` }}
-						onClick={() => viewQuoteHandler(item, data)}
-						role="presentation"
-					>
-						{getData({ item, data, renderFunction, loading, setShowDeleteModal, setQuoteId })}
-					</div>
-				))}
+		<div className={cl`${styles.card_row} ${styles.row_item}`}>
+			{config.map((item) => (
+				<div
+					className={cl`${styles.col} ${styles[item?.className]}`}
+					style={{ width: `${item?.width}` }}
+					onClick={() => viewQuoteHandler(item, data)}
+					role="presentation"
+				>
+					{getData({ item, data, renderFunction, loading, setShowDeleteModal, setQuoteId })}
+				</div>
+			))}
 
-			</div>
 		</div>
 	);
 }

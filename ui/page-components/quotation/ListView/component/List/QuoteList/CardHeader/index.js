@@ -4,7 +4,6 @@ import { IcMArrowDown } from '@cogoport/icons-react';
 import styles from '../styles.module.css';
 
 function CardHeader({ config, setSortObj }) {
-	console.log(config, 'heee');
 	return (
 		<div className={cl`${styles.card_row} ${styles.header_item}`}>
 			{config.map((cardHeader) => (

@@ -1,23 +1,22 @@
-.row {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-
-	@media screen {
-		position: relative;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		margin-bottom: 20px;
-		border: none !important;
+.title{
+	@media screen  and (max-width: 767px){
+		display: none;
 	}
 }
 
+
 .row_desktop {
 	display: flex;
-	-webkit-box-pack: justify;
 	justify-content: space-between;
 	margin-top: 14px;
+	flex-wrap: wrap;
+}
+
+.tab_container{
+	@media screen  and (max-width: 767px){
+		margin: auto;
+		display: block;
+	}
 }
 
 .tab_panel {
@@ -30,6 +29,7 @@
 	}
 }
 
+
 .input_box {
 	width: 15%;
 
@@ -38,28 +38,7 @@
 	}
 
 	@media screen and (max-width: 767px) {
-		display: flex;
-		flex-direction: column;
-		justify-content: space-between;
-		width: auto;
-		margin-top: 14px;
-		font-size: 12px;
-		-webkit-box-pack: justify;
-	}
-}
-
-.mobile_view {
-	display: none;
-
-	@media screen and (max-width: 767px) {
-		display: block;
-	}
-}
-
-.desktop_view {
-	display: block;
-
-	@media screen and (max-width: 767px) {
-		display: none;
+		margin-top: 18px;
+		width: 100%;
 	}
 }

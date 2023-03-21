@@ -4,7 +4,8 @@ import styles from './styles.module.css';
 
 function NoSchedulesCard({ loading }) {
 	return (
-		<div>
+		<>
+			{' '}
 			{!loading && (
 				<div className={styles.card}>
 					<img
@@ -16,7 +17,8 @@ function NoSchedulesCard({ loading }) {
 					No Schedules Found
 				</div>
 			)}
-		</div>
+		</>
+
 	);
 }
 

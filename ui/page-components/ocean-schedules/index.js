@@ -73,14 +73,11 @@ function OceanSchedules() {
 				)}
 				{!loading && schedules?.list.length > 0
 					? schedules?.list?.map((item) => (
-						<>
-							{' '}
-							<ScheduleCard
-								schedule={item}
-								refectSchedules={refectSchedules}
-								loading={loading}
-							/>
-						</>
+						<ScheduleCard
+							schedule={item}
+							refectSchedules={refectSchedules}
+							loading={loading}
+						/>
 					))
 					: <NoSchedulesCard loading={loading} /> }
 			</div>

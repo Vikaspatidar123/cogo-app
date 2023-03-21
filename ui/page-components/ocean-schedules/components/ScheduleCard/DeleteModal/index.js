@@ -19,7 +19,6 @@ function DeleteModal({ showDelete, setShowDelete = true, deleteSchedule, schedul
 				}}
 				>
 					Delete
-
 				</Button>
 			</Modal.Footer>
 		</Modal>

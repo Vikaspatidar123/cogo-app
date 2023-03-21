@@ -21,8 +21,6 @@ function Map({
 
 	const { origin_port = {}, destination_port = {} } = portDetails || {};
 
-	console.log(portDetails, 'portDetails');
-
 	const originLength = Object.keys(origin_port).length;
 	const destinationlength = Object.keys(destination_port).length;
 
@@ -115,8 +113,6 @@ function Map({
 			setCurvePoints([]);
 		}
 	}, [mapPoints, transportMode]);
-
-	console.log(origin_port, destination_port, curvePoints, "1234'");
 
 	return (
 		<div>

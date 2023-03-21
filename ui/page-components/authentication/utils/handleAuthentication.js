@@ -5,7 +5,7 @@ import getUserData from '../hooks/getUserData';
 
 import findurl from './findurl';
 
-import PUBLIC_PATHS from '@/packages/navigation-configs/config/public-paths';
+import router from '@/packages/navigation-configs/config/public-paths';
 import projectNavigationMappings from '@/packages/navigation-configs/navigation-mapping';
 import getAuthParam from '@/packages/request/helpers/get-auth-params';
 import { getCookie } from '@/packages/request/helpers/getCookieFromCtx';
@@ -36,6 +36,7 @@ const handleAuthentication = async ({
 	if (!routeConfig || (asPath || '').includes('_next')) {
 		return { asPrefix };
 	}
+	const { PUBLIC_PATHS, UNAUTHENTICATED } = router || {};
 	const token = getCookie('cogo-auth-token', { req });
 
 	if (asPath.includes('/url/')) {
@@ -44,7 +45,7 @@ const handleAuthentication = async ({
 	if (PUBLIC_PATHS.includes(asPath) || PUBLIC_PATHS.includes(pathname)) {
 		return { asPrefix };
 	}
-	const isUnauthenticated = PUBLIC_PATHS.includes(asPath) || PUBLIC_PATHS.includes(pathname);
+	const isUnauthenticated = UNAUTHENTICATED.includes(asPath) || UNAUTHENTICATED.includes(pathname);
 	if (token === null) {
 		if (isUnauthenticated) {
 			return { asPrefix };
@@ -59,16 +60,7 @@ const handleAuthentication = async ({
 		routeConfig,
 		pathname,
 	});
-	const { organizations } = user_data || {};
-	if (isEmpty(organizations)) {
-		if (
-			(user_data?.organizations || []).length === 0
-			|| user_data.name === null
-		) {
-			redirect({ isServer, res, path: '/v2/get-started' });
-			return { asPrefix };
-		}
-	}
+
 	if (isEmpty(user_data)) {
 		if (!isServer) {
 			deleteCookie('cogo-auth-token', null, { req });
@@ -81,11 +73,12 @@ const handleAuthentication = async ({
 		redirect({ isServer, res, path: `/v2/login?redirectPath=${asPath}` });
 		return { asPrefix };
 	}
-	if ((user_data.organizations || []).length === 0) {
-		redirect({ isServer, res, path: '/v2/get-started' });
-		return { asPrefix };
-	}
+
 	if (isUnauthenticated) {
+		if ((user_data.organizations || []).length === 0) {
+			redirect({ isServer, res, path: '/v2/get-started' });
+			return { asPrefix };
+		}
 		const org = user_data.organizations[0];
 		const branch = org?.branches?.[0];
 
@@ -101,30 +94,33 @@ const handleAuthentication = async ({
 	if (asPath.includes('/get-started')) {
 		return { asPrefix };
 	}
-
+	if ((user_data.organizations || []).length === 0 || user_data.name === null) {
+		redirect({ isServer, res, path: '/v2/get-started' });
+		return { asPrefix };
+	}
 	// Redirect old paths to branch id
 	const allStrings = asPath?.split('/');
-	if (!allStrings[1] && !isEmpty(user_data)) {
-		const org = user_data.organizations[0] || {};
-		const orgId = org.id;
-		const orgBranchId = org?.branches?.[0]?.id;
-		// const branch_id = current_org?.branches?.[0]?.id;
-		// const org_id = user_data?.organizations?.[0]?.id;
-		asPrefix = `/v2/${orgId}/${orgBranchId}/dashboard`;
+	const actual_org_id = allStrings?.[1];
+	const current_org = user_data?.organizations.find(
+		(org) => org?.id === actual_org_id,
+	);
+	if (!allStrings?.[3] && actual_org_id && !isEmpty(current_org)) {
+		const branch_id = current_org?.branches?.[0]?.id;
+		asPrefix = `/v2/${actual_org_id}/${branch_id}/dashboard`;
 		findurl({
-			item      : user_data,
+			item   : user_data,
 			asPrefix,
 			isServer,
 			res,
-			org_id    : orgId,
-			branch_id : orgBranchId,
+			org_id : actual_org_id,
+			branch_id,
 		});
 
 		return {
 			asPrefix,
 			query: {
-				org_id    : orgId,
-				branch_id : orgBranchId,
+				org_id: actual_org_id,
+				branch_id,
 			},
 		};
 	}
@@ -140,7 +136,7 @@ const handleAuthentication = async ({
 		const orgId = org.id;
 		const orgBranchId = org?.branches?.[0]?.id;
 		asPrefix = `/v2/${orgId}/${orgBranchId}/dashboard`;
-		if (isEmpty(current_organization) && !allStrings[3]) {
+		if (isEmpty(current_organization) && !allStrings?.[3]) {
 			findurl({
 				item      : user_data,
 				asPrefix,

@@ -1,4 +1,4 @@
-const PUBLIC_PATHS = [
+const All = [
 	'/login',
 	'/forgot-password',
 	'/reset-password/[id]',
@@ -17,4 +17,17 @@ const PUBLIC_PATHS = [
 	'/signup',
 	'/verify-email/[id]',
 ];
-export default PUBLIC_PATHS;
+const PUBLIC_PATHS = [
+	'/url/[token]',
+	'/forgot-password',
+	'/set-password/[id]',
+	'/reset-password/[id]',
+	'/verify-email/[id]',
+	'/terms-and-conditions/[id]',
+	'/verify-auto-sign-up-email/[token]',
+	'/verify-auto-login/[token]',
+	'/accept-invite/[id]',
+	'/verify-sign-up-saas/[token]',
+];
+const UNAUTHENTICATED = ['/login', '/signup'];
+export default { PUBLIC_PATHS, UNAUTHENTICATED, All };

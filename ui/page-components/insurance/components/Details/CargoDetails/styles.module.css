@@ -9,7 +9,7 @@
 	border-radius: 16px;
 	box-shadow:
 		0 17.8337px 60.0918px rgb(71 111 211 / 11%),
-		0 2.23306px 18.612px rgb(71 111 211 / 5.5%);
+		0 2.2331px 18.612px rgb(71 111 211 / 5.5%);
 }
 
 .yellow_line {
@@ -111,7 +111,7 @@
 	transform: translate(10px, -52px);
 }
 
-.padded_div {
+.padded_div_2 {
 	padding: 10px;
 }
 

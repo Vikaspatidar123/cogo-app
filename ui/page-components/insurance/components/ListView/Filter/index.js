@@ -10,7 +10,7 @@ function FilterContent({ filters, setFilters }) {
 
 	return (
 		<div className={styles.container}>
-			<div className={styles.heading}>
+			<div className={styles.heading_div}>
 				<div className={styles.title}>Apply Filters</div>
 				{Object.keys(filters).length > 0 && (
 					<div

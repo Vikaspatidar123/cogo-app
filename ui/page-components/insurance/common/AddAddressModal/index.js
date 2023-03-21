@@ -120,7 +120,7 @@ function AddModal({
 								className={styles.image}
 							/>
 						</div>
-						<div className={styles.title}>Add New Address</div>
+						<div className={styles.address_title}>Add New Address</div>
 					</div>
 					<div className={styles.section}>
 						<div className={styles.section_title}>

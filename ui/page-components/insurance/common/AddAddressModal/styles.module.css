@@ -16,7 +16,7 @@
 	vertical-align: middle;
 }
 
-.title {
+.address_title{
 	margin: 0;
 	font-weight: 500;
 }
@@ -35,8 +35,6 @@
 
 .title {
 	padding-right: 20px;
-	font-size: 14px;
-	font-weight: 400;
 }
 
 .design {

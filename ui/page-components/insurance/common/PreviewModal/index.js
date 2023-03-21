@@ -79,7 +79,7 @@ function PreviewModal({
 			<Modal.Body>
 				<div className={styles.heading}>
 					<IcMFsea width={20} height={20} />
-					<div className={styles.text}>
+					<div className={styles.heading_text}>
 						{type || transitMode}
 						{' '}
 						Insurance
@@ -90,7 +90,7 @@ function PreviewModal({
 					<div>
 						<div className={styles.content}>
 							<Avatar personName={name} size="55px" />
-							<div className={styles.name}>{name}</div>
+							<div className={styles.avatar_name}>{name}</div>
 						</div>
 						{cogoPolicyNo && (
 							<div className={styles.policy}>

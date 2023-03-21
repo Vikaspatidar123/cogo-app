@@ -164,7 +164,7 @@ const useCargoDetails = ({
 										);
 									})}
 							</div>
-							<div className={styles.padded_div}>
+							<div className={styles.padded_div_2}>
 								<div className={styles.bordered_div}>
 									<div className={isMobile
 										? styles.label_mobile : styles.label}

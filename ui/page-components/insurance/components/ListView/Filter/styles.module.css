@@ -18,19 +18,17 @@
 	width: 200px;
 }
 
-.heading {
+.heading_div {
 	display: flex;
 	align-items: flex-start;
 	justify-content: space-between;
 	padding: 8px 0;
+	border-bottom: 1px solid #cddbff;
 }
 
 .title {
 	margin: 0;
-	font-size: 12px;
-	font-size: 14px;
 	font-weight: 500;
-	color: #9b9b9b;
 	color: #000;
 }
 

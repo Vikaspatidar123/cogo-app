@@ -1,4 +1,4 @@
-import { Checkbox, Toast, Table, Button } from '@cogoport/components';
+import { Checkbox, Toast, Table, Button, Placeholder } from '@cogoport/components';
 import { useEffect, useMemo, useState } from 'react';
 
 import useDsrToSubscription from '../../../../hooks/useDsrToSubscription';
@@ -11,8 +11,8 @@ import { useForm } from '@/packages/forms';
 
 function SelectShipment({ setHeading, setStep, type, dsrId, pocName, pocId }) {
 	// const formRef = useRef(null);
-	const [loadingShipments, shipments] = useFetchShipments();
-	const [loadingSubscriptions, subList] = useFetchSubscriptions(dsrId);
+	const { loading, shipments } = useFetchShipments();
+	const { loadingSubscriptions, subList } = useFetchSubscriptions(dsrId);
 	const { submitLoading, dsrToSubscription } = useDsrToSubscription();
 	const [value, setValue] = useState([]);
 	useEffect(() => {
@@ -99,7 +99,8 @@ function SelectShipment({ setHeading, setStep, type, dsrId, pocName, pocId }) {
 	return (
 		<form>
 			<h4>Associated Shipments</h4>
-			{associatedShipments.length > 0 ? (
+			{loading && <Placeholder />}
+			{!loading && associatedShipments.length > 0 ? (
 				<div className={styles.table_card} style={{ marginBottom: 24 }}>
 					<Table
 						control={control}
@@ -108,15 +109,22 @@ function SelectShipment({ setHeading, setStep, type, dsrId, pocName, pocId }) {
 					/>
 				</div>
 			) : (
-				<p>Add shipments to show here</p>
+				<div>
+					{!loading
+						&& <p>Add shipments to show here</p>}
+				</div>
 			)}
 			<h4>Other Shipments</h4>
-			{otherShipments.length > 0 ? (
+			{loading && <Placeholder />}
+			{!loading && otherShipments.length > 0 ? (
 				<div className={styles.table_card}>
 					<Table control={control} columns={columns} data={otherShipments} />
 				</div>
 			) : (
-				<p>No other shipments found</p>
+				<div>
+					{!loading
+						&& <p>No other shipments found</p>}
+				</div>
 			)}
 			<div className={styles.footer}>
 				<Button

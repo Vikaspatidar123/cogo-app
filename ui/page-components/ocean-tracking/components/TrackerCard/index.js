@@ -1,8 +1,9 @@
 import { Placeholder, Pagination, Popover } from '@cogoport/components';
 import { IcMListView, IcMMap, IcMFilter } from '@cogoport/icons-react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 // import useFetchTrackers from '../../hooks/useFetchTrackers';
+import useGetallOceanRoutes from '../../hooks/useGetallOceanRoutes';
 import Map from '../Map/index';
 
 import Card from './Card';
@@ -12,9 +13,16 @@ import styles from './styles.module.css';
 function TrackerCard({
 	archived, setArchived, loading, trackers, setTrackers, pagination, setPagination, filters, setFilters, selectedCardLabel, refetch,
 }) {
+	const { getAllOceanRoutes, points } = useGetallOceanRoutes();
 	const [isMapView, setIsMapView] = useState(false);
 	const [showFilters, setShowFilters] = useState(false);
 	const trackerList = trackers?.list;
+
+	useEffect(() => {
+		if (trackers?.list) {
+			getAllOceanRoutes(trackers?.list);
+		}
+	}, [trackers, pagination]);
 	return (
 		<div className={styles.container}>
 			<div className={styles.head}>
@@ -92,7 +100,7 @@ function TrackerCard({
 					{!loading
 						? (
 							<div className={styles.map_container}>
-								<Map />
+								<Map points={points} height="80vh" />
 							</div>
 						) : (<Placeholder height="182px" width="324px" />)}
 				</div>

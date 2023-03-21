@@ -29,7 +29,7 @@ const useFetchSubscriptions = (id) => {
 		if (id != null) fetchSubscriptions();
 	}, []);
 
-	return [loading, subList];
+	return { loading, subList };
 };
 
 export default useFetchSubscriptions;

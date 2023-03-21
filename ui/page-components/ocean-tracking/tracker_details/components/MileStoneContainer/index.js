@@ -2,7 +2,7 @@
 // import React, { useState, Fragment, useEffect } from 'react';
 import { Placeholder } from '@cogoport/components';
 import { Button } from '@cogoport/components';
-import { IcATruck, IcMShare } from '@cogoport/icons-react';
+import { IcAShipAmber, IcMShare } from '@cogoport/icons-react';
 import { useState, useEffect } from 'react';
 
 // import ContainerDetailsModal from '../../../../common/components/container-details-modal';
@@ -218,6 +218,7 @@ function MilestonesContainer({
 								let prefixClass = '';
 								const currentMilestone = combinedMilestones.slice(-1)[0];
 								const isLast = idx === selectedMilestonesList.length - 1;
+								console.log(isLast, 'selectedMilestonesList');
 								const isShaded = !UNSHADED_MILESTONES.includes(
 									currentMilestone.milestone,
 								);
@@ -250,7 +251,7 @@ function MilestonesContainer({
 									prefixClass = 'wait';
 								}
 
-								if (isShaded) prefixClass += ' shaded';
+								if (isShaded) prefixClass += 'shaded';
 
 								// const Icon = TRANSPORT_MODE_TO_ICON[currentMilestone?.transport_mode] ?? Fragment;
 
@@ -265,7 +266,7 @@ function MilestonesContainer({
 											{!isLast ? (
 												<div className={styles.tail}>
 													<div className={styles.tail_content}>
-														<IcATruck size={10} />
+														<IcAShipAmber size={10} width={30} height={30} />
 													</div>
 												</div>
 											) : null}

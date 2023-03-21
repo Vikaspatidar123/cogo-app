@@ -47,6 +47,7 @@ function Tab({ archived, setArchived }) {
 			setFilters(newFilters);
 		} else {
 			newFilters[key] = stats[FILTER_KEY_TO_ID[key]];
+			console.log(newFilters, 'newFilters');
 			setFilters(newFilters);
 		}
 	};

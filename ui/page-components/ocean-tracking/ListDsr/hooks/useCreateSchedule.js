@@ -8,9 +8,10 @@ import { useSelector } from '@/packages/store';
 
 const useCreateSchedule = ({ dsrs, setDsrs, dsrId }) => {
 	const selectedDsr = dsrs?.filter?.((item) => item.id === dsrId)[0] || {};
+	console.log(dsrId, 'selectedDsr', dsrId);
 	const type = selectedDsr?.schedule == null ? 'new' : 'update';
 	const [{ loading }, trigger] = useRequest({
-		url    : type === 'new' ? '/create_dsr_schedule' : 'update_dsr_schedule',
+		url    : type === 'new' ? 'create_dsr_schedule' : 'update_dsr_schedule',
 		method : 'post',
 	}, { manual: true });
 

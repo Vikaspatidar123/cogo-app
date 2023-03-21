@@ -68,12 +68,20 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-bottom: 15px;
+  @media (max-width: 760px) {
+    align-items: flex-start;
+    padding: 5px;
+  }
 }
-.icon{
+.empty_header{
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   cursor: pointer;
 }
-.empty{
-  padding: 15px;
+.icon{
+  padding: 10px;
 }
+/* .empty{
+  padding: 15px;
+} */

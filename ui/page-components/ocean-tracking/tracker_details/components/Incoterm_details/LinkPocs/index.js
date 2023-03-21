@@ -1,4 +1,4 @@
-import { Input, Button, Toast, Modal, Checkbox } from '@cogoport/components';
+import { Input, Button, Toast, Modal, Checkbox, Placeholder } from '@cogoport/components';
 import { useState, useMemo } from 'react';
 
 import useCreatePoc from '../../../hooks/useCreatePoc';
@@ -29,10 +29,6 @@ function LinkPocs({ handleNext, handleModal, setTrackerPoc, trackerPoc }) {
 	const addPocToState = (data) => {
 		setPocList((prevPocList) => [data, ...prevPocList]);
 	};
-
-	// if (loading) {
-	// 	return <Skeleton count={3} />;
-	// }
 
 	const { createPoc } = useCreatePoc();
 	const onSubmit = async () => {
@@ -103,31 +99,31 @@ function LinkPocs({ handleNext, handleModal, setTrackerPoc, trackerPoc }) {
 						</Button>
 					</div>
 				</div>
-				{/* <h3 className={styles.list}>Contact List</h3> */}
+				<h3 className={styles.list}>Contact List</h3>
 				<div>
-					{filteredPocList?.length > 0 ? (
-          	filteredPocList.map((item) => {
-          		const Element = getField('checkbox');
-          		const label = `${item.name}(${item.email})`;
-          		return (
-	<div>
-		<Checkbox
-			control={control}
-			label={label}
-			value={check.includes(item.id)}
-			onChange={() => onCheck(item.id)}
-		/>
-	</div>
-          		);
-          	})
+					{loading && [1, 2, 3].map(() => <div className={styles.loading}><Placeholder /></div>)}
+					{!loading && filteredPocList?.length > 0 ? (
+						filteredPocList.map((item) => {
+							const label = `${item.name}(${item.email})`;
+							return (
+								<div>
+									<Checkbox
+										control={control}
+										label={label}
+										value={check.includes(item.id)}
+										onChange={() => onCheck(item.id)}
+									/>
+								</div>
+							);
+						})
 					) : (
-						<p> Please add new contacts</p>
+						<div>{!loading && <p> Please add new contacts</p> }</div>
 					)}
 				</div>
 			</Modal.Body>
 			<Modal.Footer>
 				<div className={styles.item}>
-					<Button size="lg" onClick={handleModal}>
+					<Button size="lg" onClick={handleModal} themeType="secondary">
 						CANCEL
 					</Button>
 					<Button

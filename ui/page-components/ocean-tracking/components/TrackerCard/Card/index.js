@@ -110,8 +110,16 @@ function Card({ tracker, setTrackers, refetch }) {
 				)}
 				{isTrackerEmpty && (
 					<div className={styles.empty}>
-						<div className={styles.icon}>
-							<IcMDelete onClick={() => setDeleteModal(!showDeleteModal)} width={20} height={20} />
+						<div className={styles.empty_header}>
+							<div className={styles.booking_no}>
+								{tracker.type === 'CONTAINER_NO' ? 'Container No:' : 'BL/Booking no:'}
+								{' '}
+								{tracker.input}
+							</div>
+							<div className={styles.icon}>
+								<IcMDelete onClick={() => setDeleteModal(!showDeleteModal)} width={20} height={20} />
+							</div>
+
 						</div>
 
 						<div className={styles.empty_container}>

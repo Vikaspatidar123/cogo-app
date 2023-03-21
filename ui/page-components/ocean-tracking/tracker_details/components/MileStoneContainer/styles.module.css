@@ -147,15 +147,16 @@
     margin-left: 10px;
     position: absolute;
 
-    :after {
-        z-index: 1;
-        content: '';
-        height: 10px;
-        width: 10px;
-        background-color: #0bc840;
-        border-radius: 50%;
-        display: block;
-    }
+   
+}
+.icon:after {
+    z-index: 1;
+    content: '';
+    height: 10px;
+    width: 10px;
+    background-color: #0bc840;
+    border-radius: 50%;
+    display: block;
 }
 .shaded .icon {
     height: 40px;
@@ -203,15 +204,7 @@
     margin-left: 60px;
     margin-bottom: 80px;
 
-    :before {
-        content: '';
-        height: 20px;
-        width: 20px;
-        flex-shrink: 0;
-        background: white;
-        border-radius: 50%;
-        margin-right: 16px;
-    }
+    
 
     p {
         margin: 0;
@@ -219,21 +212,28 @@
         font-size: 12px;
     }
 }
+.incoterm_handover_container:before {
+    content: '';
+    height: 20px;
+    width: 20px;
+    flex-shrink: 0;
+    background: white;
+    border-radius: 50%;
+    margin-right: 16px;
+}
 .shaded .content {
     background-color: #f2f7fb;
     border-radius: 10px;
     padding-top: 16px;
     padding-bottom: 16px;
-
-    .description {
-        font-weight: 400;
-        color: #7d7d7d;
-        margin-bottom: 16px;
-    }
-
-    .time {
-        margin-bottom: 16px;
-    }
+}
+.description {
+    font-weight: 400;
+    color: #7d7d7d;
+    margin-bottom: 16px;
+}
+.time {
+    margin-bottom: 16px;
 }
 .vessel{
     display: flex;

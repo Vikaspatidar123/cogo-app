@@ -80,8 +80,8 @@ function IncotermDetails({
 	return (
 		<>
 			{poc_details?.length > 0 || shipment_details?.incoterm != null
-					? renderInfo()
-					: renderEmpty()}
+				? renderInfo()
+				: renderEmpty()}
 			{isModalOpen && (
 				<IncotermModal
 					isOpen={isModalOpen}

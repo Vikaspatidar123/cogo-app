@@ -53,9 +53,14 @@ function SelectSchedule({
 		setHeading(`Status report for ${pocName}`);
 	}, []);
 	const [frequency, setFrequency] = useState();
-	const [day, setDay] = useState();
+	const [day, setDay] = useState('');
 	const [dailytime, setTime] = useState();
+	const [alert, setAlert] = useState(false);
 	const onSubmit = async () => {
+		if (dailytime === '') {
+			setAlert(true);
+			return;
+		}
 		const data = await createSchedule(frequency, day, dailytime, true);
 		if (data === false) return;
 		handleModal();
@@ -101,11 +106,13 @@ function SelectSchedule({
 				<Select
 					value={timeOptions.filter((item) => item.value === dailytime)[0]?.value}
 					placeholder="Select Time"
+					defaultValue={dailytime}
 					onChange={(option) => {
 						setTime(option);
 					}}
 					options={timeOptions}
 				/>
+				{alert && <div className={styles.alert}>Time is required</div>}
 			</div>
 			<div className={styles.button}>
 				<Button

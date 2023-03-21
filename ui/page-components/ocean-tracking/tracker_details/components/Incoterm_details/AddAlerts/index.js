@@ -27,7 +27,7 @@ function AddAlerts({
 		consignee : [],
 		dsr       : [],
 	});
-	setLoading(submitLoading);
+	// setLoading(submitLoading);
 	const syncServerToFields = async () => {
 		const pocDetailsFromServer = (subscriptionAlerts || []).map(
 			(u) => u?.poc_details,
@@ -302,18 +302,21 @@ function AddAlerts({
 				</from>
 			</Modal.Body>
 			<Modal.Footer>
-				<Button size="lg" onClick={handlePrevious}>
-					Back
-				</Button>
-				<Button
-					size="lg"
-					disabled={loading}
-					hideOverflow
-					type="submit"
-					onClick={() => handleSubmit()}
-				>
-					Save
-				</Button>
+				<div className={styles.button}>
+					<Button size="lg" onClick={handlePrevious} themeType="secondary">
+						Back
+					</Button>
+					<Button
+						size="lg"
+						disabled={loading}
+						hideOverflow
+						type="submit"
+						onClick={() => handleSubmit()}
+					>
+						Save
+					</Button>
+				</div>
+
 			</Modal.Footer>
 		</div>
 	);

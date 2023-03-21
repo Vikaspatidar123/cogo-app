@@ -65,7 +65,7 @@ function AddCommodityDetail({ isOpen, handleModal, trackerDetails, setTrackerDet
 			</Modal.Body>
 			<Modal.Footer>
 				<div className={styles.button}>
-					<Button onClick={handleModal}>Cancel</Button>
+					<Button onClick={handleModal} themeType="secondary">Cancel</Button>
 					<Button onClick={() => onSubmit(value)}>Save</Button>
 				</div>
 			</Modal.Footer>

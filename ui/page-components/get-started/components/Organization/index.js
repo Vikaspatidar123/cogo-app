@@ -8,7 +8,6 @@ import { useSelector } from '@/packages/store';
 
 function Organization({ setBillingAddressDetails, setOrgId, setOrgBranchId }) {
 	const handleBack = () => {
-		// eslint-disable-next-line no-undef
 		window.location.href = '/';
 	};
 	const { organizations } = useSelector(({ profile }) => profile);

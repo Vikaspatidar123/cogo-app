@@ -1,88 +1,89 @@
 .container {
-    height: 100%;
-    background-color: white;
-    display: flex;
-    justify-content: flex-start;
-    flex-direction: column;
-    box-shadow: 0px 17.8337px 60.0918px rgba(71, 111, 211, 0.11),
-        0px 2.23306px 18.612px rgba(71, 111, 211, 0.055);
-    border-radius: 16px;
-    padding: 5px 0px;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	height: 100%;
+	padding: 5px 0;
+	background-color: white;
+	border-radius: 16px;
+	box-shadow:
+		0 17.8337px 60.0918px rgb(71 111 211 / 11%),
+		0 2.23306px 18.612px rgb(71 111 211 / 5.5%);
 }
 
 .yellow_line {
-    border-radius: 0px 40px 40px 0px;
-	border: 3.5px solid #fcdc00;
-	height: 35%;
-	top: 32%;
 	position: absolute;
+	top: 32%;
+	height: 35%;
 	background-color: #fcdc00;
+	border: 3.5px solid #fcdc00;
+	border-radius: 0 40px 40px 0;
 }
 
 .padded_div {
-    padding-left: 15px;
+	padding-left: 15px;
 }
 
 .heading_wrapper {
-    padding: 8px;
 	display: flex;
 	flex-direction: column;
 	width: 35%;
+	padding: 8px;
 }
 
 .invoice_details_mobile {
-    padding: 8px;
 	display: flex;
 	flex-direction: column;
-    width: 100%;
+	width: 100%;
+	padding: 8px;
 }
 
 .heading_wrapper_mobile {
-    padding: 8px;
 	display: flex;
 	flex-direction: column;
-	width:100% ;
+	width: 100%;
+	padding: 8px;
 }
 
 .invoice_details {
-    padding: 8px;
 	display: flex;
 	flex-direction: column;
-    width: 85% ;
+	width: 85%;
+	padding: 8px;
 }
 
 .flex_2 {
-    display: flex;
-	width: 100%;
-	justify-content: space-between;
+	display: flex;
 	align-items: center;
+	justify-content: space-between;
+	width: 100%;
 }
 
 .heading {
-    font-weight: 500;
 	font-size: 18px;
+	font-weight: 500;
 }
 
 .line_wrapper {
-    display: flex;
+	display: flex;
 	width: 30%;
 }
 
 .line {
-    height: 3px;
-	border-width: 0;
-	background-color: #f68b21;
 	flex-grow: 1;
+	height: 3px;
+	background-color: #f68b21;
+	border-width: 0;
 }
 
 .content_wrapper {
-    display: flex;
+	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
 }
 
 .row {
-    display: flex;
-    align-items: center !important;
+	display: flex;
+	align-items: center !important;
 	padding: 10px;
 }

@@ -1,17 +1,17 @@
 .import_export {
-    display: flex;
-	justify-content: center;
+	display: flex;
 	align-items: center;
+	justify-content: center;
 	padding: 2px;
 }
 
-.type_label{
-    font-weight: 500;
-	font-size: 13px;
+.type_label {
 	display: flex;
 	align-items: center;
-	color: #6b6d81 !important;
 	padding-left: 3px;
+	font-size: 13px;
+	font-weight: 500;
+	color: #6b6d81 !important;
 }
 
 .container {
@@ -19,43 +19,43 @@
 }
 
 .heading {
-    display: flex;
-	justify-content: space-between;
+	display: flex;
 	align-items: flex-start;
-	padding: 8px 0px;
+	justify-content: space-between;
+	padding: 8px 0;
 }
 
 .title {
-    margin: 0;
-	color: #9b9b9b;
+	margin: 0;
 	font-size: 12px;
-    font-weight: 500;
-    font-size: 14px;
-    color: #000000;
+	font-size: 14px;
+	font-weight: 500;
+	color: #9b9b9b;
+	color: #000;
 }
 
 .clear_button {
-    display: flex;
+	display: flex;
 	align-items: center;
-	color: #6f6f6f;
 	margin: 0;
-	cursor: pointer;
 	font-size: 12px;
+	color: #6f6f6f;
+	cursor: pointer;
 }
 
 .clear_button:hover,
 .clear_button:active {
-    color: #333;
-    font-weight: 500;
+	font-weight: 500;
+	color: #333;
 }
 
 .section {
-    margin-bottom: 10px;
+	margin-bottom: 10px;
 	color: #333;
 }
 
 .heading {
 	margin: 0;
-	color: #9b9b9b;
 	font-size: 12px;
+	color: #9b9b9b;
 }

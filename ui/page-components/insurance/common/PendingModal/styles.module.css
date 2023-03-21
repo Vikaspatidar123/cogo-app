@@ -1,35 +1,32 @@
 .container {
-    display: flex;
-	justify-content: center;
-	align-items: center;
+	display: flex;
 	flex-direction: column;
-	text-align: center;
+	align-items: center;
+	justify-content: center;
 	padding: 10px;
+	text-align: center;
 }
 
 .title {
-    font-size: 22px;
-	color: #170f49;
+	font-size: 22px;
 	font-weight: 500;
+	color: #170f49;
 }
 
 .noresult {
-	color: #170f49;
-	font-weight: 400;
 	font-size: 14px;
+	font-weight: 400;
+	color: #170f49;
 }
 
 .txt {
-    color: #535075;
 	margin: 10px 0;
-    font-size: 16px;
+	font-size: 16px;
+	color: #535075;
 }
 
 .error {
-    font-size: 16px;
-    color: #535075;
 	margin: 10px 0;
+	font-size: 16px;
+	color: #535075;
 }
-
-
-

@@ -1,32 +1,31 @@
 .card_title {
-    font-weight: 500;
 	font-size: 14px;
+	font-weight: 500;
 }
 
 .caret {
-    margin-left: 5px;
-    width: 12px;
-    transition: transform 0.3s ease-in-out;
-    cursor: pointer;
+	width: 12px;
+	margin-left: 5px;
+	cursor: pointer;
+	transition: transform 0.3s ease-in-out;
 }
 
 .rotate {
-    transform: rotate(180deg);
-    transition: transform 0.3s ease-in-out;
+	transition: transform 0.3s ease-in-out;
+	transform: rotate(180deg);
 }
 
 .row {
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
+	display: flex;
+	flex-wrap: wrap;
+	width: 100%;
 }
 
-
 .col {
-    display: flex;
+	display: flex;
 	align-items: center;
-    justify-content: flex-start;
-    min-width: 2%;
-    width: 14%;
-    padding: 0px 5px;
+	justify-content: flex-start;
+	width: 14%;
+	min-width: 2%;
+	padding: 0 5px;
 }

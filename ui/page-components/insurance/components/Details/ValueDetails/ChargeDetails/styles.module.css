@@ -1,6 +1,6 @@
 .error_message {
-    font-size: 14px;
-	color:#CB6464;
+	font-size: 14px;
+	color: #cb6464;
 }
 
 .col {
@@ -8,28 +8,27 @@
 }
 
 .icon_div {
-    display: flex;
+	display: flex;
 	align-items: center;
 }
-.image {
 
-		margin-left: 3px;
-		cursor: pointer;
-	
+.image {
+	margin-left: 3px;
+	cursor: pointer;
 }
 
 .hidden {
-    display: none;
+	display: none;
 }
 
 .display {
-    display: block;
-    transform: translate(10px, -52px);
-    color: #697989 !important;
-    opacity: 1 !important;
-    position: absolute;
-    background-color: white;
-    transition: transform 1.4s;
-    padding-right: 4px !important;
-    padding-left: 4px !important;
+	position: absolute;
+	display: block;
+	padding-right: 4px !important;
+	padding-left: 4px !important;
+	color: #697989 !important;
+	background-color: white;
+	opacity: 1 !important;
+	transition: transform 1.4s;
+	transform: translate(10px, -52px);
 }

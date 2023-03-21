@@ -1,42 +1,42 @@
 .wrapper {
-    display: flex;
-	justify-content: center;
+	display: flex;
 	flex-direction: column;
 	align-items: center;
+	justify-content: center;
 	padding-top: 10px;
 }
 
 .label {
-    padding-top: 8px;
-	font-weight: 700;
+	padding-top: 8px;
 	font-size: 18px;
+	font-weight: 700;
 	text-align: center;
 }
 
 .button_wrapper {
-    width: 60%;
-	height: 35px;
 	display: flex;
 	flex-direction: row;
-	justify-content: space-around;
-	box-shadow: 0px 0px 8px rgba(44, 62, 80, 0.2), 0, 0, 0;
-	border-radius: 8px 8px 0px 0px;
 	align-items: center;
-	margin: 15px 0px 0px 0px;
+	justify-content: space-around;
+	width: 60%;
+	height: 35px;
+	margin: 15px 0 0;
+	border-radius: 8px 8px 0 0;
+	box-shadow: 0 0 8px rgb(44 62 80 / 20%), 0, 0, 0;
 }
 
 .styled_div {
-    padding-top: 3px;
-	font-weight: 500;
+	padding-top: 3px;
 	font-size: 13px;
+	font-weight: 500;
 	line-height: 150%;
-	text-align: center;
 	color: #3e5873;
+	text-align: center;
 }
 
 .list {
-    padding-top: 3px;
-	font-weight: 400;
+	padding-top: 3px;
 	font-size: 13px;
+	font-weight: 400;
 	color: #697989;
 }

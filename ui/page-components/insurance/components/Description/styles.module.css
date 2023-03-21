@@ -1,59 +1,59 @@
 .container {
-    background-color: #fcdc00;
-	height: 100%;
-	width: 100%;
-	border-radius: 14px 0px 0px 16px;
 	display: flex;
 	flex-direction: column;
+	width: 100%;
+	height: 100%;
+	background-color: #fcdc00;
+	border-radius: 14px 0 0 16px;
 }
 
 .row {
-    width: 100% !important;
-	border-radius: 16px 0px 0px 0px;
 	display: flex;
-	justify-content: center !important;
 	align-items: center;
+	justify-content: center !important;
+	width: 100% !important;
+	border-radius: 16px 0 0;
 }
 
 .image {
-    width: 98%;
-	margin-top: 3px !important;
+	width: 98%;
 	height: 210px;
+	margin-top: 3px !important;
 }
 
 .sub_heading {
-    padding-left: 12px;
+	padding-left: 12px;
 }
 
 .sub_heading_title {
-    font-weight: 500;
+	padding: 18px 0 0 20px;
 	font-size: 16px;
-	padding: 18px 0px 0px 20px;
+	font-weight: 500;
 }
 
 .line_wrapper {
-    display: flex;
+	display: flex;
+	align-items: center;
 	justify-content: flex-start;
 	width: 43%;
-	align-items: center;
 	padding-left: 20px;
 }
 
 .line {
-    height: 3px;
-	border-width: 0;
-	background-color: #f68b21;
 	flex-grow: 1;
+	height: 3px;
+	background-color: #f68b21;
+	border-width: 0;
 }
 
 .list {
-    font-weight: 500;
-	font-size: 14px;
-	padding: 10px 20px;
 	display: flex;
+	padding: 10px 20px;
+	font-size: 14px;
+	font-weight: 500;
 }
 
 .star {
-    fill: #f68b21 !important;
 	margin-right: 5px;
+	fill: #f68b21 !important;
 }

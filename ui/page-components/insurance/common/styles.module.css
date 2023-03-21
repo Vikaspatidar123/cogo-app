@@ -1,29 +1,28 @@
 .tag {
-    left: -3px;
-    position: absolute;
-    top: -5px;
+	position: absolute;
+	top: -5px;
+	left: -3px;
 }
+
 .tag_mobile {
-    left: 0px;
-    padding: 2px 8px;
-    position: absolute;
-    top: -29px;
+	position: absolute;
+	top: -29px;
+	left: 0;
+	padding: 2px 8px;
 }
 
 .text {
-    display: flex;
-    gap: 2px;
-    color: #0694e6;
-	cursor: pointer;
+	display: flex;
+	gap: 2px;
+	align-items: center;
+	height: auto;
 	font-size: 14px;
+	color: #0694e6;
 	text-decoration: underline;
-    align-items: center;
-    height: auto;
+	cursor: pointer;
 }
 
 .image {
-    display: flex;
-    align-items: flex-start;
+	display: flex;
+	align-items: flex-start;
 }
-
-

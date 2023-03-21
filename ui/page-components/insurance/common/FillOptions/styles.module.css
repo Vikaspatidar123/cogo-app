@@ -1,195 +1,195 @@
 .main {
-	padding-right: 25px;
 	padding-top: 10px;
+	padding-right: 25px;
 }
 
 .rotate {
-    transform: rotate(270deg);
-}
-.rotate2 {
-    transform: rotate(90deg);
+	transform: rotate(270deg);
 }
 
+.rotate2 {
+	transform: rotate(90deg);
+}
 
 .heading {
-    font-weight: 500;
-	font-size: 18px;
-	color: #000000;
 	padding-bottom: 36px;
+	font-size: 18px;
+	font-weight: 500;
+	color: #000;
 }
 
 .wrapper_mobile {
-    display: flex;
-	flex-direction:row
-}
-
-.wrapper {
-    display: flex;
-	flex-direction:column;
-}
-
-.container {
-    display: flex;
-	justify-content: flex-start;
-	width: 100%;
+	display: flex;
 	flex-direction: row;
 }
 
-.container_mobile {
-    display: flex;
-	justify-content: flex-start;
-	width: 100%;
+.wrapper {
+	display: flex;
 	flex-direction: column;
 }
 
+.container {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	width: 100%;
+}
+
+.container_mobile {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	width: 100%;
+}
+
 .mobile_view {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 .dot_pro {
-	font-weight: 700;
-	font-size: 16px;
 	width: 36px;
 	height: 36px;
+	font-size: 16px;
+	font-weight: 700;
+	color: #dce1e8;
+	background: #66acf7;
+	border: 2px solid #dce1e8;
 	border-radius: 50px;
-	border: 2px solid #DCE1E8;
-	color:#DCE1E8;
-	background:#66ACF7 ;
 }
 
 .dot_false {
-	font-weight: 700;
-	font-size: 16px;
 	width: 36px;
 	height: 36px;
+	font-size: 16px;
+	font-weight: 700;
+	color: #dce1e8;
+	background: #da9a3b;
+	border: 2px solid #dce1e8;
 	border-radius: 50px;
-	border: 2px solid #DCE1E8;
-	color:#DCE1E8;
-	background:#DA9A3B;
 }
 
 .dot_true {
-	font-weight: 700;
-	font-size: 16px;
 	width: 36px;
 	height: 36px;
+	font-size: 16px;
+	font-weight: 700;
+	color: #dce1e8;
+	background: #67c676;
+	border: 2px solid #dce1e8;
 	border-radius: 50px;
-	border: 2px solid #DCE1E8;
-	color:#DCE1E8;
-	background:#67C676;
 }
 
 .dot_active_true {
-	font-weight: 700;
-	font-size: 16px;
 	width: 36px;
 	height: 36px;
-	border-radius: 50px;
+	font-size: 16px;
+	font-weight: 700;
+	color: #fff;
+	background: #67c676;
 	border: none;
-	color:#FFFFFF;
-	background:#67C676;
+	border-radius: 50px;
 }
 
 .dot_active_false {
-	font-weight: 700;
-	font-size: 16px;
 	width: 36px;
 	height: 36px;
-	border-radius: 50px;
+	font-size: 16px;
+	font-weight: 700;
+	color: #fff;
+	background: #da9a3b;
 	border: none;
-	color:#FFFFFF;
-	background:#DA9A3B;
+	border-radius: 50px;
 }
 
 .dot_active_pro {
-	font-weight: 700;
-	font-size: 16px;
 	width: 36px;
 	height: 36px;
-	border-radius: 50px;
+	font-size: 16px;
+	font-weight: 700;
+	color: #fff;
+	background: #66acf7;
 	border: none;
-	color:#FFFFFF;
-	background:#66ACF7;
+	border-radius: 50px;
 }
 
 .count {
-	text-align: center;
 	padding-top: 6px;
+	text-align: center;
 }
 
 .image {
 	width: 38px;
-	margin: 0px 0px -6px -1px;
+	margin: 0 0 -6px -1px;
 }
 
 .line_mobile_active {
 	width: 100px;
-	height:0px;
-	margin-left: 0px;
-	border: 1px solid #24BA69;
+	height: 0;
+	margin-left: 0;
+	border: 1px solid #24ba69;
 }
 
 .line_active {
-	width: 0px;
+	width: 0;
 	height: 100px;
 	margin-left: 17px;
-	border: 1px solid #24BA69;
+	border: 1px solid #24ba69;
 }
 
 .line {
-	width: 0px;
+	width: 0;
 	height: 100px;
 	margin-left: 17px;
-	border:1px solid #DCE1E8;
+	border: 1px solid #dce1e8;
 }
 
 .line_mobile {
 	width: 100px;
-	height:0px;
-	margin-left: 0px;;
-	border:1px solid #DCE1E8;
+	height: 0;
+	margin-left: 0;
+	border: 1px solid #dce1e8;
 }
 
 .text_div_mobile {
 	width: 100%;
 	padding-top: 5px;
-	padding-left:0px !important;
+	padding-left: 0 !important;
 }
 
 .text_div {
 	width: 100%;
 	padding-top: 5px;
-	padding-left:22px;
+	padding-left: 22px;
 }
 
 .text {
-	font-weight: 500;
 	font-size: 14px;
+	font-weight: 500;
 	color: #697989;
 }
 
 .text_active {
-	font-weight: 500;
 	font-size: 14px;
+	font-weight: 500;
 	color: #4b5c6d;
 }
 
 .div_pro {
-	font-weight: 500;
 	font-size: 10px;
-	color: #66ACF7;
+	font-weight: 500;
+	color: #66acf7;
 }
 
 .div_false {
-	font-weight: 500;
 	font-size: 10px;
-	color: #DA9A3B;
+	font-weight: 500;
+	color: #da9a3b;
 }
 
 .div_true {
-	font-weight: 500;
 	font-size: 10px;
-	color:#67C676;
+	font-weight: 500;
+	color: #67c676;
 }

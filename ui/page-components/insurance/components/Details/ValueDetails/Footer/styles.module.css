@@ -1,75 +1,75 @@
 .icon {
-    padding-right: 5px;
+	padding-right: 5px;
 }
 
 .icon_left {
-    padding-left: 5px;
+	padding-left: 5px;
 }
 
 .flex_div {
-    display: flex;
+	display: flex;
 	align-items: center;
 }
 
 .flex {
-    display: flex;
-	padding: 8px;
-	width: 50% ;
-	justify-content: space-around;
+	display: flex;
 	align-items: center;
+	justify-content: space-around;
+	width: 50%;
+	padding: 8px;
 }
 
 .flex_mobile {
-    display: flex;
-	padding: 8px;
-	width: 100%;
-	justify-content: space-around;
+	display: flex;
 	align-items: center;
+	justify-content: space-around;
+	width: 100%;
+	padding: 8px;
 }
 
 .no_error {
-    border-color:#E0E0E0;
+	border-color: #e0e0e0;
 }
 
-.error{
-    border-color: red;
+.error {
+	border-color: red;
 }
 
 .conditions_div {
-    width: 100%;
+	width: 100%;
 	margin-left: 2px !important;
-	font-weight: 500;
 	font-size: 13px;
+	font-weight: 500;
 	color: #2c3e50;
 }
 
 .underline {
 	margin-left: 3px;
-    color: #1976d2;
+	color: #1976d2;
 	cursor: pointer;
 }
 
 .wrapper_2_mobile {
-    width: 100%;
-	align-items: flex-end;
 	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
 	justify-content: flex-end;
+	width: 100%;
 	padding: 8px;
-	flex-direction: column ;
 }
 
 .wrapper_2 {
-    width: 100%;
-	align-items: flex-end;
 	display: flex;
+	flex-direction: row;
+	gap: 5px;
+	align-items: flex-end;
 	justify-content: flex-end;
+	width: 100%;
 	padding: 8px;
-	flex-direction:row;
-	gap:5px
 }
 
 .align_div {
-    display: flex;
-	justify-content: center;
+	display: flex;
 	align-items: center;
+	justify-content: center;
 }

@@ -5,20 +5,20 @@
 
 .count {
 	min-width: 40px;
-	padding:0px 3px;
+	padding: 0 3px;
+	margin-left: 4px;
+	color: #000;
+	text-align: center;
 	background: #abcd62;
 	border-radius: 20px;
-	margin-left: 4px;
-	color: #000000;
-	text-align: center;
 }
 
 .text {
-    margin-left: 4px;
+	margin-left: 4px;
+	color: #000;
 	text-align: center;
-	color: #000000;
 }
 
-.chips{
-	gap : 0px !important;
+.chips {
+	gap: 0 !important;
 }

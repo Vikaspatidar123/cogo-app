@@ -1,17 +1,17 @@
 .container {
-    background: #fafbfe;
-	margin-top: 28px;
-	width: 100%;
 	display: flex;
-	padding: 20px;
 	flex-direction: row;
+	width: 100%;
+	padding: 20px;
+	margin-top: 28px;
+	background: #fafbfe;
 }
 
 .container_mobile {
-    background: #fafbfe;
-	margin-top: 28px;
-	width: 100%;
 	display: flex;
-	padding: 20px;
 	flex-direction: column;
+	width: 100%;
+	padding: 20px;
+	margin-top: 28px;
+	background: #fafbfe;
 }

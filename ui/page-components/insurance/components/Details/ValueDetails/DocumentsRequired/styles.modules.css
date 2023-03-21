@@ -1,29 +1,32 @@
 .docs_container {
-    margin-right: 42px;
-    padding: 5px;
-    width: 100%;
+	width: 100%;
+	padding: 5px;
+	margin-right: 42px;
 }
 
 @media screen and (max-width: 767px) {
-    margin-right: 0px;
+	margin-right: 0;
 }
+
 .docs {
-    display: grid;
-    grid-template-columns: 18% 50%;
-    align-items: center;
+	display: grid;
+	grid-template-columns: 18% 50%;
+	align-items: center;
 }
+
 .docs div:nth-child(2) {
-    padding: 1px !important;
+	padding: 1px !important;
 }
+
 .column {
-    display: flex;
-    align-items: center;
-    font-size: 14px;
-    font-weight: 500;
-    text-transform: uppercase;
+	display: flex;
+	align-items: center;
+	font-size: 14px;
+	font-weight: 500;
+	text-transform: uppercase;
 }
 
 .error_message {
-    font-size: 14px;
-	color:#CB6464;
+	font-size: 14px;
+	color: #cb6464;
 }

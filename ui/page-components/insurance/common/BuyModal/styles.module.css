@@ -1,37 +1,37 @@
 .button_div {
-    display: flex;
+	display: flex;
 	justify-content: center;
-	box-shadow: 0px -2px 4px rgba(20, 20, 43, 0.12);
-	border-radius: 0px 0px 10px 10px;
-	padding: 10px 0px 0px 0px;
+	padding: 10px 0 0;
 	margin-top: 12px;
+	border-radius: 0 0 10px 10px;
+	box-shadow: 0 -2px 4px rgb(20 20 43 / 12%);
 }
 
 .wrapper {
-    display: flex;
-	justify-content: center;
+	display: flex;
 	flex-direction: column;
+	justify-content: center;
 	padding: 10px;
 }
 
 .title {
-    display: flex;
+	display: flex;
 	align-items: center;
-	font-weight: 600;
+	margin: 10px 0;
 	font-size: 18px;
+	font-weight: 600;
 	color: #f68b21;
-	margin: 10px 0px;
-}	
+}
 
 .textWrapper {
-    background: #fdf9f5;
-    border-radius: 10px;
+	background: #fdf9f5;
+	border-radius: 10px;
 }
 
 .text {
-    padding: 15px;
-    font-weight: 500;
-    font-size: 14px;
-    color: #221f20;
-    line-height: 20px !important;
+	padding: 15px;
+	font-size: 14px;
+	font-weight: 500;
+	line-height: 20px !important;
+	color: #221f20;
 }

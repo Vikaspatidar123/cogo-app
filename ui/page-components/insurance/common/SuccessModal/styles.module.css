@@ -1,31 +1,31 @@
 .image_container {
-    justify-content: center;
 	display: flex;
+	justify-content: center;
 }
 
 .title {
-	font-weight: 700;
-	font-size: 24px;
-	color: #170f49;
 	display: flex;
 	justify-content: center;
-	text-align: center;
 	margin: 2px;
+	font-size: 24px;
+	font-weight: 700;
+	color: #170f49;
+	text-align: center;
 }
 
 .text {
-    display: flex;
-    justify-content: center;
-    line-height: 25px;
-    font-weight: 400;
-    font-size: 14px;
-    text-align: center;
-    color: #6f6c90;
-    margin-bottom: 14px;
+	display: flex;
+	justify-content: center;
+	margin-bottom: 14px;
+	font-size: 14px;
+	font-weight: 400;
+	line-height: 25px;
+	color: #6f6c90;
+	text-align: center;
 }
 
 .button_div {
-    display: flex;
+	display: flex;
+	gap: 5px;
 	justify-content: center;
-    gap: 5px
 }

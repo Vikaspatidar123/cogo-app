@@ -36,7 +36,6 @@ const useSignupAuthentication = ({
 				};
 
 				setUserDetails(userDetails);
-				setUserDetails(userDetails);
 			}
 		} catch (e) {
 			if (e?.response?.data?.email?.length > 0) {

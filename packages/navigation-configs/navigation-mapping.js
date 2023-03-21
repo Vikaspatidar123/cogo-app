@@ -108,6 +108,15 @@ const navigationMappings = {
 		showInNav : false,
 	},
 
+	app_manage_rfq: {
+		key        : 'app_manage_rfq',
+		title      : 'Manage Rfq',
+		href       : '/v2/manage-rfq',
+		as         : '/v2/manage-rfq',
+		showInNav  : true,
+		mobileIcon : <IcMQuotations width={20} height={20} />,
+	},
+
 	app_get_started: {
 		key   : 'app_get_started',
 		title : 'Get Started',

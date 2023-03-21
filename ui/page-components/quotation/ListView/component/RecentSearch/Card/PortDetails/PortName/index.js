@@ -10,7 +10,7 @@ function PortName({ location }) {
 	const info2 = `${location.port_code}, ${info1}`;
 
 	return (
-		<div>
+		<div className={styles.port_info}>
 			<div className={cl`${styles.text} ${styles.info}`}>{info2}</div>
 			<Tooltip
 				content={<div style={{ color: 'grey' }}>{location.name}</div>}

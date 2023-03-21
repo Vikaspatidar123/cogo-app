@@ -1,3 +1,37 @@
 .tool_content {
 	padding: 0;
 }
+
+.mobile_view {
+	display: none;
+
+	@media screen and (max-width: 767px) {
+		display: block;
+	}
+}
+
+.desktop_view {
+	display: block;
+
+	@media screen and (max-width: 767px) {
+		display: none;
+	}
+}
+
+.container_info {
+	display: inline;
+	padding: 0 3.5px;
+	font-size: 11px;
+}
+
+.tool {
+	display: flex;
+	font-size: 10px;
+	font-weight: 300;
+	color: rgb(51 51 51);
+}
+
+.some {
+	margin: 2px;
+	border-right: 1px solid rgb(51 51 51);
+}

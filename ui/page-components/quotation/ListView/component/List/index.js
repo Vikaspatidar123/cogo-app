@@ -20,28 +20,31 @@ function List({
 	const [activeTab, setActiveTab] = useState('SENT');
 	return (
 		<div>
-			<h2>Lists of Quotation</h2>
-			<div className={styles.row}>
-				<Tabs themeType="tertiary" activeTab={activeTab} onChange={setActiveTab}>
-					<TabPanel
-						name="SENT"
-						title={(
-							<div className={styles.tab_panel}>
-								<IcMDocument />
-								<span className={styles.text}>Send</span>
-							</div>
-						)}
-					/>
-					<TabPanel
-						name="RECEIVED"
-						title={(
-							<div className={styles.tab_panel}>
-								<IcMEnquiriesReceived />
-								<span className={styles.text}>Received</span>
-							</div>
-						)}
-					/>
-				</Tabs>
+			<h2 className={styles.title}>Lists of Quotation</h2>
+			<div className={styles.row_desktop}>
+				<div className={styles.tab_container}>
+					<Tabs themeType="tertiary" activeTab={activeTab} onChange={setActiveTab}>
+						<TabPanel
+							name="SENT"
+							title={(
+								<div className={styles.tab_panel}>
+									<IcMDocument />
+									<span className={styles.text}>Send</span>
+								</div>
+							)}
+						/>
+						<TabPanel
+							name="RECEIVED"
+							title={(
+								<div className={styles.tab_panel}>
+									<IcMEnquiriesReceived />
+									<span className={styles.text}>Received</span>
+								</div>
+							)}
+						/>
+					</Tabs>
+				</div>
+
 				<div className={styles.input_box}>
 					<Input
 						size="sm"

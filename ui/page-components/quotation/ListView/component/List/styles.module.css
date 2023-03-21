@@ -1,7 +1,22 @@
-.row {
+.title{
+	@media screen  and (max-width: 767px){
+		display: none;
+	}
+}
+
+
+.row_desktop {
 	display: flex;
-	align-items: center;
 	justify-content: space-between;
+	margin-top: 14px;
+	flex-wrap: wrap;
+}
+
+.tab_container{
+	@media screen  and (max-width: 767px){
+		margin: auto;
+		display: block;
+	}
 }
 
 .tab_panel {
@@ -14,10 +29,16 @@
 	}
 }
 
+
 .input_box {
 	width: 15%;
 
 	svg {
 		margin-right: 8px;
+	}
+
+	@media screen and (max-width: 767px) {
+		margin-top: 18px;
+		width: 100%;
 	}
 }

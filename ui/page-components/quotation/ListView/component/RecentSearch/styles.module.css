@@ -1,5 +1,5 @@
 .container {
-	margin: 30px 0;
+	margin: 25px 0;
 }
 
 .loading_container {
@@ -54,5 +54,16 @@
 				transform: translateX(10px) scale(0.9);
 			}
 		}
+	}
+}
+
+.recent_search {
+	margin-bottom: 10px;
+
+	@media screen and (max-width: 767px) {
+		margin-left: 3px;
+		font-size: 18px;
+		font-weight: 300;
+		color: rgb(89 80 133);
 	}
 }

@@ -1,7 +1,7 @@
 .container {
 	width: 380px;
 	padding: 7px 12px 10px;
-	margin-right: 20px;
+	margin: 5px 20px 5px 5px;
 	border: 1px solid #fada29;
 	border-radius: 6px;
 
@@ -11,11 +11,21 @@
 	}
 
 	&.enabled {
-		background: #fffef9;
+		background: #f4f4f4;
 
 		&:hover {
 			filter: drop-shadow(0 4px 80px rgb(0 0 0 / 15%));
 		}
+	}
+
+	@media screen and (max-width: 767px) {
+		box-sizing: border-box;
+		width: 275px;
+		padding: 10px;
+		background: rgb(255 255 255) !important;
+		border: 1px solid rgb(209 209 225);
+		border-radius: 16px;
+		box-shadow: rgb(115 78 133 / 15%) 0 15px 25px;
 	}
 }
 
@@ -25,6 +35,10 @@
 
 	.port_detail {
 		margin-left: 10px;
+
+		@media screen and (max-width: 767px) {
+			display: none;
+		}
 	}
 
 	&.info {
@@ -71,4 +85,64 @@
 			background: transparent;
 		}
 	}
+}
+
+.port_details {
+	display: none;
+
+	@media screen and (max-width: 767px) {
+		display: block;
+	}
+}
+
+.container_info {
+	display: none;
+
+	@media screen and (max-width: 767px) {
+		display: block;
+		margin-top: 20px;
+	}
+}
+
+.container2 {
+	display: block;
+
+	@media screen and (max-width: 767px) {
+		display: none;
+	}
+}
+
+.mobile_view {
+	display: none;
+
+	@media screen and (max-width: 767px) {
+		display: block;
+	}
+}
+
+.desktop_view {
+	display: block;
+
+	@media screen and (max-width: 767px) {
+		display: none;
+	}
+}
+
+.tag {
+	display: none;
+
+	@media screen and (max-width: 767px) {
+		display: flex;
+		justify-content: space-between;
+		margin-top: 20px;
+	}
+}
+
+.tags {
+	display: flex;
+	justify-content: space-between;
+}
+
+.tag_name {
+	margin-left: 5px;
 }

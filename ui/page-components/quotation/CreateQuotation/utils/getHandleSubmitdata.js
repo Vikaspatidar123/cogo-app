@@ -1,8 +1,34 @@
 import { Toast } from '@cogoport/components';
 
-const getHandleSubmitData = async ({ quoteRef = {}, headerHandleSubmit, transportMode }) => {
-	let refValues = Object.keys(quoteRef).filter((ref) => quoteRef?.[ref]?.handleSubmit);
-	const promises = Object.values(quoteRef).filter((ref) => ref?.handleSubmit).map((refObj) => refObj?.handleSubmit());
+const checkError = (promiseValues) => {
+	if (promiseValues.includes(true)) {
+		Toast.error('Please fill all deatils');
+		return true;
+	}
+	promiseValues.map((value) => {
+		if (value?.check) {
+			Toast.error('Please fill all deatils');
+			return true;
+		}
+		if (value?.products?.length === 0) {
+			Toast.error('Please add atleast one Product');
+			return true;
+		}
+		return false;
+	});
+	return false;
+};
+
+const getHandleSubmitData = async ({ quoteRef = {}, headerHandleSubmit, transportMode, premiumQuote = false }) => {
+	let refValues = Object.keys(quoteRef).filter((ref) => {
+		if (premiumQuote && ref === 'charges') {
+			return null;
+		}
+		return quoteRef?.[ref]?.handleSubmit;
+	});
+
+	const promises = refValues.map((ref) => quoteRef?.[ref]?.handleSubmit());
+
 	refValues = [...refValues, 'header'];
 
 	const val = new Promise((resolve) => {
@@ -16,8 +42,9 @@ const getHandleSubmitData = async ({ quoteRef = {}, headerHandleSubmit, transpor
 
 	const promiseValues = await Promise.all([...promises, val]);
 
-	if (promiseValues.includes(true)) {
-		Toast.error('Please fill all deatils');
+	const isError = checkError(promiseValues);
+
+	if (isError) {
 		return false;
 	}
 

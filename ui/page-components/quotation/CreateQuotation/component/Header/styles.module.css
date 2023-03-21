@@ -46,6 +46,9 @@
         .ui_select_container{
             width: 63%;
         }
+        .ui_select_options_container{
+            z-index: 1001;
+        }
     }
     @media screen and (max-width: 767px){
         width: 100%;

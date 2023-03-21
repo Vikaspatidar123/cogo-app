@@ -94,7 +94,7 @@ function BasicCharge(
 	);
 
 	const getDutiesSubmitHandler = async () => {
-		const resp = await submitForm();
+		const resp = await submitForm(true);
 
 		if (resp) {
 			setQuoteRes(resp);

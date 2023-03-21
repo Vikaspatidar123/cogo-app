@@ -70,21 +70,19 @@ function CreateQuotation() {
 		}
 	}, [editData, editData?.saasPartnerId, setValue]);
 
-	const {
-		// getExchangeRate,
-		exchangeRate = 1,
-	} = useCurrencyConversion({
+	const { exchangeRate = 1 } = useCurrencyConversion({
 		watchCurrency,
 		orgCurrency,
 		landingPageCall: true,
 	});
 	const newHeaderFields = headerFields({ id, organization });
 
-	const submitForm = async () => {
+	const submitForm = async (key = false) => {
 		const resp = await getHandleSubmitData({
-			quoteRef: quoteRef.current,
+			quoteRef     : quoteRef.current,
 			headerHandleSubmit,
 			transportMode,
+			premiumQuote : key,
 		});
 		return resp;
 	};

@@ -1,0 +1,115 @@
+const formControlsAdvanced = (isChannelPartner = false) => [
+	{
+		name    : 'export_transportation_pickup_type',
+		label   : 'Pickup Type',
+		type    : 'pills',
+		options : [
+			{ label: 'FTL', value: 'ftl' },
+			{ label: 'LTL', value: 'ltl' },
+		],
+		condition : { services: ['export_transportation'] },
+		rules     : { required: 'Pickup Type is required' },
+	},
+	{
+		label          : 'Pickup Pincode',
+		name           : 'export_transportation_location_id',
+		placeholder    : 'Search via pincode',
+		type           : 'location-select',
+		optionsListKey : 'locations',
+		grouped        : ['city'],
+		params         : {
+			filters  : { type: ['pincode', 'city'] },
+			includes : { continent_id: true },
+		},
+		condition : { services: ['export_transportation'] },
+		rules     : { required: 'Pickup Pincode is required' },
+	},
+	{
+		name           : 'export_transportation_truck_type',
+		label          : 'Pickup Truck Type',
+		type           : 'select',
+		optionsListKey : 'truck-types',
+		span           : 8,
+		condition      : {
+			services                          : ['export_transportation'],
+			export_transportation_pickup_type : 'ftl',
+		},
+		rules: { required: 'Truck Type is required' },
+	},
+	{
+		name      : 'export_transportation_trucks_count',
+		label     : 'Truck Count',
+		type      : 'number',
+		span      : 4,
+		condition : {
+			services                          : ['export_transportation'],
+			export_transportation_pickup_type : 'ftl',
+		},
+		rules: { required: 'Trucks is required', min: 1, max: 100 },
+	},
+	{
+		label       : 'Address',
+		name        : 'export_transportation_address',
+		placeholder : 'Enter address',
+		type        : 'text',
+		condition   : { services: ['export_transportation'] },
+	},
+	{
+		name    : 'import_transportation_pickup_type',
+		label   : 'Drop Type',
+		type    : 'pills',
+		value   : isChannelPartner ? null : 'ftl',
+		options : [
+			{ label: 'FTL', value: 'ftl' },
+			{ label: 'LTL', value: 'ltl' },
+		],
+		condition : { services: ['import_transportation'] },
+		rules     : { required: 'Drop Type is required' },
+	},
+	{
+		label          : 'Drop Pincode',
+		name           : 'import_transportation_location_id',
+		placeholder    : 'Search via pincode',
+		type           : 'location-select',
+		optionsListKey : 'locations',
+		grouped        : ['city'],
+		params         : {
+			filters  : { type: ['pincode', 'city'] },
+			includes : { continent_id: true },
+		},
+		condition : { services: ['import_transportation'] },
+		rules     : { required: 'Destination Pincode is required' },
+	},
+	{
+		name           : 'import_transportation_truck_type',
+		label          : 'Drop Truck Type',
+		type           : 'select',
+		optionsListKey : 'truck-types',
+		span           : 8,
+		condition      : {
+			services                          : ['import_transportation'],
+			import_transportation_pickup_type : 'ftl',
+		},
+		rules: { required: 'Truck Type is required' },
+	},
+	{
+		name      : 'import_transportation_trucks_count',
+		label     : 'Drop Trucks Count',
+		type      : 'number',
+		span      : 4,
+		condition : {
+			services                          : ['import_transportation'],
+			import_transportation_pickup_type : 'ftl',
+		},
+		rules: { required: 'Trucks is required', min: 0, max: 100 },
+	},
+	{
+		label       : 'Address',
+		name        : 'import_transportation_address',
+		placeholder : 'Enter address',
+		type        : 'text',
+		condition   : { services: ['import_transportation'] },
+	},
+];
+
+export default formControlsAdvanced;

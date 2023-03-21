@@ -1,3 +1,3 @@
-// import { CreateRfq } from '../../../../page-components/manage-rfq';
+import CreateRfq from '@/ui/page-components/manage-rfq/components/CreateRfq';
 
-// export default CreateRfq;
+export default CreateRfq;

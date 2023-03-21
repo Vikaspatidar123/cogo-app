@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 
 import useGetRfqStats from '../../hooks/useGetRfqStats';
+import WhyRfq from '../WhyRfq';
 // import useIsInViewport from '../../hooks/useIntersection';
 
 import Header from './Header';
@@ -38,7 +39,7 @@ function Dashboard() {
 					/> */}
 				</>
 			)}
-			{/* {!showDashboard && <WhyRfq setShowDashboard={setShowDashboard} />} */}
+			{!showDashboard && <WhyRfq setShowDashboard={setShowDashboard} />}
 		</>
 	);
 }

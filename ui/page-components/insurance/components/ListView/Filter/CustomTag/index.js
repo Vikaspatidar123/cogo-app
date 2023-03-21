@@ -1,6 +1,6 @@
 import { IcMCross } from '@cogoport/icons-react';
 
-import { Container, Tag, Txt } from './style';
+import styles from './styles.module.css';
 
 const FILTERS = {
 	riskCoverage : 'Risk',
@@ -19,32 +19,38 @@ function CustomTag({ filters = {}, setFilters }) {
 	const renderTag = (filterKey) => {
 		if (filterKey === 'status' && filters?.status) {
 			return (
-				<Tag>
-					<Txt>{`${FILTERS[filterKey]} : ${filters[filterKey].replace('_', ' ')}`}</Txt>
+				<div className={styles.tag}>
+					<div className={styles.text}>
+						{`${FILTERS[filterKey]} : ${filters[filterKey].replace('_', ' ')}`}
+					</div>
 					<IcMCross className="cross" onClick={() => crossHandler(filterKey)} />
-				</Tag>
+				</div>
 			);
 		}
 		if (filterKey === 'policyType' && filters?.policyType) {
 			return (
-				<Tag>
-					<Txt>{`${FILTERS[filterKey]} : ${filters[filterKey].replace('_', ' ')}`}</Txt>
+				<div className={styles.tag}>
+					<div className={styles.text}>
+						{`${FILTERS[filterKey]} : ${filters[filterKey].replace('_', ' ')}`}
+					</div>
 					<IcMCross className="cross" onClick={() => crossHandler(filterKey)} />
-				</Tag>
+				</div>
 			);
 		}
 		if (filterKey === 'riskCoverage' && filters?.riskCoverage) {
 			return (
-				<Tag>
-					<Txt>{`${FILTERS[filterKey]} : ${filters[filterKey]}`}</Txt>
+				<div className={styles.tag}>
+					<div className={styles.text}>
+						{`${FILTERS[filterKey]} : ${filters[filterKey]}`}
+					</div>
 					<IcMCross className="cross" onClick={() => crossHandler(filterKey)} />
-				</Tag>
+				</div>
 			);
 		}
 		return null;
 	};
 
-	return <Container>{Object?.keys(filters).map((ele) => renderTag(ele))}</Container>;
+	return <div className={styles.container}>{Object?.keys(filters).map((ele) => renderTag(ele))}</div>;
 }
 
 export default CustomTag;

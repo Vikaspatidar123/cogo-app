@@ -1,0 +1,26 @@
+.tag {
+    display: flex;
+	align-items: center;
+	border-radius: 50px;
+	background: #ffffff9c;
+	border: 1px solid #8f8f8f;
+	padding: 4px 10px;
+	margin-right: 5px;
+}
+
+.text {
+    margin: 0;
+	font-size: 12px;
+	margin-right: 5px;
+}
+
+.container {
+    display: flex;
+	align-items: center;
+	width: auto;
+    @media (max-width: 767px) {
+		flex-wrap: wrap;
+		margin-bottom: 20px;
+		margin-top: 20px;
+	}
+}

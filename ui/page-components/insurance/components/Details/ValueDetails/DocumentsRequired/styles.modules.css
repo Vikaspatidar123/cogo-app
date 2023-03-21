@@ -2,11 +2,12 @@
 	width: 100%;
 	padding: 5px;
 	margin-right: 42px;
+	@media (max-width: 767px) {
+		margin-right: 0;
+	}
 }
 
-@media screen and (max-width: 767px) {
-	margin-right: 0;
-}
+
 
 .docs {
 	display: grid;

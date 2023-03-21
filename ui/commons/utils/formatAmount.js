@@ -20,6 +20,7 @@ const getCurrencyLocale = ({ currency }) => {
 const format = ({ locale, amount, options, currency }) => {
 	try {
 		return new Intl.NumberFormat(locale, {
+			...options,
 			...('style' in options && {
 				currency: options?.currency || currency,
 			}),
@@ -36,53 +37,22 @@ const format = ({ locale, amount, options, currency }) => {
  *  @property {Object}            [options]
  */
 
-const getShortFormatNumber = (
-	locale,
-	price,
-	currency,
+const formatAmount = ({
+	amount = '',
+	currency = '',
 	options = {},
-	showCurrency = true,
-	noRoundOff = false,
-) => (currency
-	? Intl.NumberFormat(locale, {
-		style                 : showCurrency ? 'currency' : 'decimal',
-		currency,
-		notation              : noRoundOff ? 'standard' : 'compact',
-		compactDisplay        : 'short',
-		maximumFractionDigits : 2,
-		...options,
-	}).format(Number(price || 0))
-	: null);
+}) => {
+	if (!isAmountValid({ amount })) {
+		return null;
+	}
+	const UPPERCASE_CURRENCY = (currency || GLOBALS_CONSTANTS.currency_code.INR).toUpperCase();
 
-// const formatAmount = ({
-// 	amount = '',
-// 	currency = '',
-// 	options = {},
-// }) => {
-// 	if (!isAmountValid({ amount })) {
-// 		return null;
-// 	}
-// 	const UPPERCASE_CURRENCY = (currency || GLOBALS_CONSTANTS.currency_code.INR).toUpperCase();
-
-// 	return format({
-// 		locale   : getCurrencyLocale({ currency: UPPERCASE_CURRENCY }),
-// 		amount,
-// 		options,
-// 		currency : UPPERCASE_CURRENCY,
-// 	});
-// };
-
-const formatAmount = ({ amount = '', currency = '', options = {} }) => getShortFormatNumber(
-	'en-US',
-	amount || 0,
-	currency,
-	{
-		currencyDisplay       : 'symbol',
-		maximumFractionDigits : 2,
-	},
-
-	true,
-	options?.notation === 'standard',
-);
+	return format({
+		locale   : getCurrencyLocale({ currency: UPPERCASE_CURRENCY }),
+		amount,
+		options,
+		currency : UPPERCASE_CURRENCY,
+	});
+};
 
 export default formatAmount;

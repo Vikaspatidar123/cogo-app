@@ -84,8 +84,6 @@ const saas = {
 			access_type : 'private',
 			module      : 'dutiesTaxes',
 			feature     : 'dutiesTaxes',
-			module      : 'hsCode',
-			feature     : 'hsCode',
 		},
 		{
 			api         : 'get_saas_hs_code_heading',
@@ -140,8 +138,7 @@ const saas = {
 			access_type : 'private',
 			module      : 'dutiesTaxes',
 			feature     : 'dutiesTaxes',
-			module      : 'hsCode',
-			feature     : 'hsCode',
+
 		},
 		{
 			api         : 'get_saas_hs_code_favourites',
@@ -160,8 +157,7 @@ const saas = {
 			access_type : 'private',
 			module      : 'dutiesTaxes',
 			feature     : 'dutiesTaxes',
-			module      : 'hsCode',
-			feature     : 'hsCode',
+
 		},
 		{
 			api         : 'post_saas_hs_code_favourites',

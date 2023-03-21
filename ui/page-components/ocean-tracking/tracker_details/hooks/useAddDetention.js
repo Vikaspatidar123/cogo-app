@@ -4,8 +4,6 @@ import { useRequest } from '@/packages/request';
 // import { useSelector } from '@/packages/store';
 
 function useAddDetention({ shipment_info, trackerDetails, setTrackerDetails, handleModal }) {
-	// const { profile } = useSelector((s) => s);
-	// const { general } = useSelector((s) => s);
 	const {
 		origin_detention,
 		destination_detention,

@@ -42,7 +42,7 @@ const useFetchShipments = () => {
 		fetchShipments();
 	}, []);
 
-	return [loading, shipments];
+	return { loading, shipments };
 };
 
 export default useFetchShipments;

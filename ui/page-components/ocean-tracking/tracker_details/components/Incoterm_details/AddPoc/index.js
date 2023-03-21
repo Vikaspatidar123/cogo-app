@@ -152,7 +152,6 @@ function AddPocs({ isOpen, handleModal, addPocToState, heading }) {
 											{errors[name]?.message}
 										</div>
 										) : null}
-									{/* </FormItem> */}
 								</div>
 							);
 						})}
@@ -165,6 +164,7 @@ function AddPocs({ isOpen, handleModal, addPocToState, heading }) {
 							variant="ghost"
 							style={{ marginRight: 8 }}
 							onClick={handleModal}
+							themeType="secondary"
 						>
 							CANCEL
 						</Button>

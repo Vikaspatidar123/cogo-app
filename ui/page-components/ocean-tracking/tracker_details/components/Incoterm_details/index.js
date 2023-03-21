@@ -5,8 +5,7 @@
 // import { Card, DashedButton } from '../../../../common/ui';
 
 // import IncotermModal from './components/add-modal';
-// import { POC_TYPES } from './components/add-modal/common/constants';
-// import { IncotermContainer } from './styles';
+
 import { useState } from 'react';
 
 import { POC_TYPES } from '../../common/constant';
@@ -14,7 +13,12 @@ import { POC_TYPES } from '../../common/constant';
 import IncotermModal from './Incoterm';
 import styles from './styles.module.css';
 
-function IncotermDetails({ disabled, fetchTrackerDetails, trackerDetails, ...props }) {
+function IncotermDetails({
+	disabled,
+	fetchTrackerDetails,
+	trackerDetails,
+	...props
+}) {
 	const { poc_details = [], shipment_details } = trackerDetails || {};
 	const [isModalOpen, setModal] = useState(false);
 	const handleModal = () => {
@@ -62,7 +66,13 @@ function IncotermDetails({ disabled, fetchTrackerDetails, trackerDetails, ...pro
 	};
 
 	const renderEmpty = () => (
-		<div role="presentation" className={styles.dash_button} onClick={() => handleModal()} disabled={disabled} {...props}>
+		<div
+			role="presentation"
+			className={styles.dash_button}
+			onClick={() => handleModal()}
+			disabled={disabled}
+			{...props}
+		>
 			{/* <IconPlus /> */}
 			<p>Add incoterms and shipper / consignee details to customize alerts</p>
 		</div>
@@ -80,6 +90,7 @@ function IncotermDetails({ disabled, fetchTrackerDetails, trackerDetails, ...pro
 					trackerDetails={trackerDetails}
 				/>
 			)}
+
 		</>
 	);
 }

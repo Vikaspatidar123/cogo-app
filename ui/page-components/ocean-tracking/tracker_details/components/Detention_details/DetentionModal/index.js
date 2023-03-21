@@ -5,6 +5,7 @@
 // import * as Yup from 'yup';
 
 import { Modal, Button } from '@cogoport/components';
+import { IcMAlert } from '@cogoport/icons-react';
 
 import useAddDetention from '../../../hooks/useAddDetention';
 
@@ -19,42 +20,51 @@ function DetentionModal({ isOpen, handleModal, trackerDetails, setTrackerDetails
 
 	const controls = [
 		{
-			name  : 'origin_detention',
-			label : 'free detention days',
-			type  : 'number',
-			value : '',
-			rules : {
-				required: 'Please enter origin_detention',
-				// pattern  : {
-				// 	value   : emailValidator,
-				// 	message: 'Invalid email address',
-				// },
+			serial_no : '1',
+			name      : 'origin_detention',
+			label     : 'free detention days',
+			type      : 'number',
+			value     : '',
+			max       : 30,
+			min       : 0,
+			rules     : {
+				required : 'Please enter origin_detention',
+				maxValue : {
+					value   : 30,
+					message : 'Entered number cannot greater that 30',
+				},
 			},
 		},
 		{
-			name  : 'destination_detention',
-			label : 'free detention days',
-			type  : 'number',
-			value : '',
-			rules : {
-				required: 'Please enter destination_detention',
-				// pattern  : {
-				// 	value   : emailValidator,
-				// 	message: 'Invalid email address',
-				// },
+			serial_no : '2',
+			name      : 'destination_detention',
+			label     : 'free detention days',
+			type      : 'number',
+			value     : '',
+			max       : 30,
+			min       : 0,
+			rules     : {
+				required : 'Please enter destination_detention',
+				maxValue : {
+					value   : 30,
+					message : 'Entered number cannot greater that 30',
+				},
 			},
 		},
 		{
-			name  : 'destination_demurrage',
-			label : 'free demurrage days',
-			type  : 'number',
-			value : '',
-			rules : {
-				required: 'Please enter destination_demurrage',
-				// pattern  : {
-				// 	value   : emailValidator,
-				// 	message: 'Invalid email address',
-				// },
+			serial_no : '3',
+			name      : 'destination_demurrage',
+			label     : 'free demurrage days',
+			type      : 'number',
+			value     : '',
+			max       : 30,
+			min       : 0,
+			rules     : {
+				required : 'Please enter destination_demurrage',
+				maxValue : {
+					value   : 30,
+					message : 'Entered number cannot greater that 30',
+				},
 			},
 		},
 	];
@@ -64,7 +74,7 @@ function DetentionModal({ isOpen, handleModal, trackerDetails, setTrackerDetails
 		formState: { errors },
 	} = useForm();
 	// const [symbolsArr] = useState(['e', 'E', '+', '-', '.']);
-
+	console.log(errors, 'errors');
 	return (
 
 		<Modal
@@ -74,33 +84,44 @@ function DetentionModal({ isOpen, handleModal, trackerDetails, setTrackerDetails
             // heading={STEPS_INFO[step]?.heading}
 			placement="center"
 		>
+			<Modal.Header title="Setup detention / demurrage days" />
+			<div className={styles.Alert}>
+				<IcMAlert width={10} height={10} />
+				<p>
+					Get alerted when detention / demurrage free days are about to expire, and when they expire.
+				</p>
+			</div>
 			<form>
-				<Modal.Header title="Setup detention / demurrage days" />
 				<Modal.Body>
 
 					{controls.map((feild) => {
 						const { name } = feild;
 						const Element = getField('number');
 						return (
-							<div className={styles.content}>
-								<Element {...feild} control={control} size="md" />
-								<div className={styles.label}>{feild?.label}</div>
-								<div>
-									{errors[name]?.type === 'required' || 'pattern' ? (
-										<div>
-											{errors[name]?.message}
-										</div>
-									) : null}
+							<div>
+								{feild?.serial_no === '1' && <div className={styles.destination}>At Origin</div>}
+								{feild?.serial_no === '2' && <div className={styles.destination}>At Destination</div>}
+								<div className={styles.content}>
+									<div className={styles.input}>
+										<Element {...feild} control={control} size="md" />
+										<div className={styles.label}>{feild?.label}</div>
+									</div>
+									<div>
+										{errors[name]?.type === 'required' || 'maxValue' ? (
+											<div className={styles.error}>
+												{errors[name]?.message}
+											</div>
+										) : null}
+									</div>
 								</div>
 							</div>
-
 						);
 					})}
 
 				</Modal.Body>
 				<Modal.Footer>
 					<div className={styles.button}>
-						<Button onClick={handleModal}>Cancel</Button>
+						<Button onClick={handleModal} themeType="secondary">Cancel</Button>
 						<Button onClick={handleSubmit(onSubmit)}>Save</Button>
 					</div>
 				</Modal.Footer>

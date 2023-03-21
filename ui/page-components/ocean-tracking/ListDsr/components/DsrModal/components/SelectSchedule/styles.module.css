@@ -1,0 +1,17 @@
+.weekly{
+    display: flex;
+    flex-wrap: wrap;
+}
+.select{
+    display: flex;
+}
+.button{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-top: 24px;
+    gap: 10px;
+}
+.alert{
+    color: red;
+  }

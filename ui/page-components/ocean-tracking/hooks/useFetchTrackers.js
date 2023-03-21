@@ -13,9 +13,10 @@ const useFetchTrackers = () => {
 
 	const { general } = useSelector((s) => s);
 	const [{ loading }, trigger] = useRequest({
-		url    : '/list_saas_container_subscriptions',
+		url    : 'list_saas_container_subscriptions',
 		method : 'get',
 	}, { manual: true });
+
 
 	const fetchTrackers = async () => {
 		try {

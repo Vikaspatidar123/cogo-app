@@ -1,5 +1,3 @@
-// import { Tabs, TabPanel } from '@cogoport/components';
-// import { IcMProfile } from '@cogoport/icons-react';
 import { useState } from 'react';
 
 import {
@@ -31,10 +29,8 @@ function Tab({ archived, setArchived }) {
 		setFilters: setFilters1,
 		refetch: refetch1,
 	} = useArchiveList();
-	// console.log(trackers1, 'trc');
 	const { stats = {} } = trackers || {};
 	const [activeKey, setActiveKey] = useState(FILTER_KEYS.ALL_SHIPMENTS);
-	console.log(stats, 'stats');
 	const removeActiveKeyFromFilters = () => {
 		const newFilters = { ...filters };
 		delete newFilters[activeKey];
@@ -51,12 +47,11 @@ function Tab({ archived, setArchived }) {
 			setFilters(newFilters);
 		} else {
 			newFilters[key] = stats[FILTER_KEY_TO_ID[key]];
+			console.log(newFilters, 'newFilters');
 			setFilters(newFilters);
 		}
 	};
 	const selectedCardLabel = FILTER_KEY_TO_LABEL[FILTER_CARDS_LIST.filter((key) => key === activeKey)[0]] ?? '';
-
-	console.log(filters, 'filteres');
 	return (
 		<div>
 

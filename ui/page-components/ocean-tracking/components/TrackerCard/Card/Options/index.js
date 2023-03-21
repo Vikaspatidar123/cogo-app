@@ -29,7 +29,6 @@ function Options({ showPopover, setShowPopover, refetch, tracker, setTrackers })
 		setShowPopover(!showPopover);
 	};
 
-	console.log(showShareModal, 'showArchiveModal');
 	return (
 		<div>
 			{

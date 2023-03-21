@@ -28,7 +28,6 @@ function BottomContainer({
 					<Icon fill={type === 'error' ? '#EE3425' : '#ABCD62'} width={17} height={17} />
 					<div className={styles.text}>
 						<strong>{heading}</strong>
-						{/* (as per original plan) */}
 					</div>
 				</div>
 				<div className={styles.text2}>

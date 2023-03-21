@@ -1,5 +1,4 @@
 .content{
-    display: flex;
     padding: 10px;
 }
 .label{
@@ -12,4 +11,26 @@
     display: flex;
     justify-content: flex-end;
     gap: 10px;
+}
+.Alert{
+    padding: 16px;
+    border-radius: 10px;
+    background: #e3ebf3;
+    display: flex;
+    align-items: center;
+    p {
+      color: #364b5f;
+      margin: 0;
+      margin-left: 8px;
+      font-size: 10px;
+    }
+}
+.input{
+    display: flex;
+}
+.error{
+    color: red;
+}
+.destination{
+    color: gray;
 }

@@ -25,8 +25,8 @@ function RenderForm() {
 		{ label: 'Booking No / BL No', value: SEARCH_TYPES.BOOKING_NUMBER },
 		{ label: 'Container Number', value: SEARCH_TYPES.CONTAINER_NUMBER },
 	];
-	const [value, setValue] = useState(null);
-	const [showinput, setshowinput] = useState(false);
+	const [value, setValue] = useState({ search_type: '', search_value: '', shipping_line_id: '' });
+	const [showinput, setShowInput] = useState(false);
 	const [shippingLines, setShippingLines] = useState(null);
 	const [{ loading }, trigger] = useRequest({
 		url    : '/get_shipping_line_for_container_no',
@@ -46,7 +46,6 @@ function RenderForm() {
 			Toast.error(err?.message || 'No shipping lines found');
 		}
 	};
-
 	useEffect(() => {
 		getShippingLines();
 	}, []);
@@ -57,11 +56,11 @@ function RenderForm() {
 
 			const { data } = res;
 			if (data?.result?.shipping_line_id) {
-				const value = data.result.shipping_line_id;
+				const valueId = data.result.shipping_line_id;
 				const label = shippingLines?.filter?.((item) => item.id === value)[0]?.short_name;
 				console.log(label, 'label');
-				setValue('shipping_line_id', { label, value });
-			} else setValue('shipping_line_id', '');
+				setValue((prv) => ({ ...prv, shipping_line_id: valueId }));
+			} else setValue((prv) => ({ ...prv, shipping_line_id: '' }));
 		} catch (err) {
 			Toast.error(
 				"Couldn't fetch shipping line for the entered container number. Please try again later.",
@@ -69,14 +68,13 @@ function RenderForm() {
 		}
 	};
 
-	const new_input = (e) => {
-		const value = e;
-		if (value?.length >= 4) {
-			const data = value.toUpperCase();
-			setshowinput(true);
+	const newInput = (item) => {
+		if (item?.length >= 4) {
+			const data = item.toUpperCase();
+			setShowInput(true);
 			fetchShippingLineForContainer(data);
-			setValue(value);
-		} else setshowinput(false);
+			setValue((prv) => ({ ...prv, search_value: item }));
+		} else setShowInput(false);
 	};
 	return (
 		<div>
@@ -87,7 +85,7 @@ function RenderForm() {
 							name="search_type"
 							value={item.value}
 							label={item.label}
-							setValue={value}
+							onChange={(e) => setValue((prv) => ({ ...prv, search_type: e.target.value }))}
 						/>
 					</div>
 				))}
@@ -97,16 +95,16 @@ function RenderForm() {
 					name="search_value"
 					size="md"
 					placeholder="Enter Container / BL Booking"
-					onChange={(e) => new_input(e)}
+					onChange={(e) => newInput(e)}
 				/>
 			</div>
 			{showinput && (
 				<div className={styles.select}>
 					<Select
 						onChange={(option) => {
-							setValue(option);
+							setValue((prev) => ({ ...prev, shipping_line_id: option }));
 						}}
-						value={value}
+						value={value?.shipping_line_id}
 						options={(shippingLines || []).map((item) => ({
 							label : item.short_name,
 							value : item.id,
@@ -116,7 +114,6 @@ function RenderForm() {
 				</div>
 			)}
 			<div className={styles.button}>
-
 				<Button onClick={() => addTracker(value)}> Track Shipment</Button>
 			</div>
 

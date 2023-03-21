@@ -26,10 +26,9 @@ function AddDetails({
 	const itemData = containersList?.[selectedContainer] || {};
 	const [isModalOpen, setModal] = useState(false);
 	const handleModal = () => {
-		// if (disabled) return;
-		setModal(!isModalOpen);
+		setModal((prev) => !prev);
 	};
-	console.log(shipmentInfo, 'itemData');
+	console.log(isModalOpen, 'ismodal');
 	return (
 		<div>
 			<div className={styles.container}>
@@ -48,8 +47,6 @@ function AddDetails({
 					)}
 				</div>
 				<div className={styles.title_div}>
-					{/* <div className={styles.title}>20 FT | </div>
-				<div className={styles.title}> Standard Dry</div> */}
 					<div className={styles.title}>
 						{itemData?.container_length ? `${itemData?.container_length}ft` : ''}
 					</div>
@@ -100,13 +97,6 @@ function AddDetails({
 							</div>
 						</div>
 					</div>
-					{/* <div className={styles.element1}>
-					<div className={styles.sub_element}>Quantity</div>
-					<div>
-						<IcMOverflowDot />
-					</div>
-					<div className={styles.sub_element}>10</div>
-				</div> */}
 				</div>
 			</div>
 			{isModalOpen && (

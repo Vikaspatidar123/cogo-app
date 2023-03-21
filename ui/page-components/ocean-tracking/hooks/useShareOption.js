@@ -20,29 +20,8 @@ function useShareOption({
 		method : 'get',
 	}, { manual: true });
 
-	// const disableTracker = async () => {
-	// 	let requestData = {};
-	// 	requestData = {
-	// 		status                         : 'active',
-	// 		saas_container_subscription_id : saasSubscriptionId,
-	// 	};
-
-	// 	try {
-	// 		const res = await trigger({ data: requestData });
-	// 		const { hasError, data } = res || {};
-	// 		Toast.error(data?.message);
-	// 		if (hasError) throw new Error();
-
-	// 		console.log(res, 'res');
-	// 	} catch (err) {
-	// 		Toast.error(err?.data?.message);
-	// 	}
-	// };
-
 	const fetchShareDetails = async () => {
 		try {
-			// setLoadingShareDetails(true);
-
 			const res = await fetch({
 				params: { saas_container_subscription_id: saasSubscriptionId },
 			});
@@ -51,11 +30,9 @@ function useShareOption({
 			if (hasError) throw new Error();
 
 			const { data } = res;
-			// setLoadingShareDetails(false);
 			setShareDetailsList(data);
 		} catch (err) {
 			Toast.error("Couln't fetch share details", err);
-			// setLoadingShareDetails(false);
 		}
 	};
 
@@ -68,17 +45,13 @@ function useShareOption({
 		};
 
 		try {
-			// setLoading(true);
-
 			const res = await trigger({ data: requestData });
 
 			const { hasError } = res || {};
 			if (hasError) throw new Error();
 
 			setShareDetailsList([...shareDetailsList, { email: values.email }]);
-			// setLoading(false);
 		} catch (err) {
-			// setLoading(false);
 			Toast.error("Couldn't share details", err);
 		}
 	};

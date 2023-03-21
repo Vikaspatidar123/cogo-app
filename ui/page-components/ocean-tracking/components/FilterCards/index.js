@@ -1,10 +1,6 @@
-import { Tabs, TabPanel } from '@cogoport/components';
-import { IcMProfile } from '@cogoport/icons-react';
-import { useState } from 'react';
+import { IcCPin, IcMPin } from '@cogoport/icons-react';
 
 import {
-	FILTER_KEYS,
-	FILTER_KEY_TO_ID,
 	FILTER_KEY_TO_LABEL,
 	FILTER_WIDTH,
 	WIDE_FILTER_KEY,
@@ -33,35 +29,18 @@ function FilterCards({ id, onClick, activeKey, stats, ...props }) {
 		const isSubheading2Disabled = subheading2Value === 0;
 		return (
 			<div className={styles.tab_container}>
-				{/* <Tabs
-				tabIcon={<IcMProfile />}
-				activeTab={activeTab}
-				themeType="secondary"
-				onChange={setActiveTab}
-				fullWidth
-			>
-				<TabPanel name="local_rates" title="Local Rates" badge={3}>
-					<TrackerCard activeTab={activeTab} />
-				</TabPanel>
-
-				<TabPanel name="suggested_rates" title="Suggested Rates" badge={5}>
-					<TrackerCard activeTab={activeTab} />
-				</TabPanel>
-
-				<TabPanel name="freight_bookings" title="Freight Bookings" badge={2}>
-					<TrackerCard activeTab={activeTab} />
-				</TabPanel>
-			</Tabs> */}
 				{wide === 2 ? (
 					<div
 						role="presentation"
 						className={`${styles.header_container1} ${isDisabled && styles.disabled_card}`}
 						disabled={isDisabled}
 						onClick={() => !isDisabled && onClick(headingKey)}
-						// isActive={activeKey === headingKey}
 					>
 						<div className={styles.heading}>
-							<h3>{heading}</h3>
+							<h3>
+								{heading}
+								{activeKey === headingKey && <IcMPin fill="green" height={15} width={15} />}
+							</h3>
 							<h1>{headingValue}</h1>
 						</div>
 
@@ -71,19 +50,6 @@ function FilterCards({ id, onClick, activeKey, stats, ...props }) {
 								<div>Total Containers</div>
 								<div>{trackedContainer}</div>
 							</div>
-
-							{/* <span
-								style={{
-									fontSize     : 9,
-									marginBottom : -10,
-									color        : 'red',
-									fontWeight   : 600,
-								}}
-							>
-								Total Containers:
-								{' '}
-								{trackedContainer}
-							</span> */}
 						</div>
 					</div>
 				) : (
@@ -92,9 +58,12 @@ function FilterCards({ id, onClick, activeKey, stats, ...props }) {
 						className={`${styles.header_container} ${isDisabled && styles.disabled_card}`}
 						disabled={isDisabled}
 						onClick={() => !isDisabled && onClick(headingKey)}
-						// isActive={activeKey === headingKey}
 					>
-						<h3>{heading}</h3>
+						<h3>
+							{heading}
+							{activeKey === headingKey && <IcMPin fill="green" height={15} width={15} />}
+						</h3>
+
 						<h1>{headingValue}</h1>
 					</div>
 				)}
@@ -103,22 +72,26 @@ function FilterCards({ id, onClick, activeKey, stats, ...props }) {
 					<div
 						role="presentation"
 						className={`${styles.sub_heading} ${isSubheading1Disabled && styles.disabled_card}`}
-						// isActive={activeKey === subheading1Key}
 						disabled={isSubheading1Disabled}
 						onClick={() => !isSubheading1Disabled && onClick(subheading1Key)}
 					>
-						<p className={styles.label}>{subheading1}</p>
+						<p className={styles.label}>
+							{subheading1}
+							{activeKey === subheading1Key && <IcMPin fill="green" height={15} width={15} />}
+						</p>
 						<p className={styles.value}>{subheading1Value}</p>
 					</div>
 					<div className={styles.vertical_line} />
 					<div
 						role="presentation"
 						className={`${styles.sub_heading} ${isSubheading2Disabled && styles.disabled_card}`}
-						// isActive={activeKey === subheading2Key}
 						disabled={isSubheading2Disabled}
 						onClick={() => !isSubheading2Disabled && onClick(subheading2Key)}
 					>
-						<p className={styles.label}>{subheading2}</p>
+						<p className={styles.label}>
+							{subheading2}
+							{activeKey === subheading2Key && <IcMPin fill="green" height={15} width={15} />}
+						</p>
 						<p className={styles.value}>{subheading2Value}</p>
 					</div>
 				</div>
@@ -139,7 +112,10 @@ function FilterCards({ id, onClick, activeKey, stats, ...props }) {
 			onClick={() => !isDisabled && onClick(id)}
 		>
 			<div className={styles.card_content}>
-				<h3 className={styles.text}>{label}</h3>
+				<h3 className={styles.text}>
+					{label}
+					{activeKey === id && <IcMPin fill="green" height={15} width={15} />}
+				</h3>
 				<h1 className={styles.text}>{value}</h1>
 			</div>
 		</div>

@@ -22,7 +22,6 @@ function DetailsList({ containersList, shipmentInfo, activeCarouselIndex, setAct
 
 	const commodity = shipmentInfo?.commodity;
 	const itemData = containersList?.[activeCarouselIndex] || {};
-	console.log(itemData, 'itemData');
 	return (
 		<div className={styles.container}>
 			<div className={styles.header_title}>
@@ -40,8 +39,6 @@ function DetailsList({ containersList, shipmentInfo, activeCarouselIndex, setAct
 				)}
 			</div>
 			<div className={styles.title_div}>
-				{/* <div className={styles.title}>20 FT | </div>
-				<div className={styles.title}> Standard Dry</div> */}
 				<div className={styles.title}>
 					{itemData?.container_length ? `${itemData?.container_length}ft` : ''}
 				</div>
@@ -75,13 +72,6 @@ function DetailsList({ containersList, shipmentInfo, activeCarouselIndex, setAct
 
 					</div>
 				</div>
-				{/* <div className={styles.element1}>
-					<div className={styles.sub_element}>Quantity</div>
-					<div>
-						<IcMOverflowDot />
-					</div>
-					<div className={styles.sub_element}>10</div>
-				</div> */}
 			</div>
 		</div>
 	);

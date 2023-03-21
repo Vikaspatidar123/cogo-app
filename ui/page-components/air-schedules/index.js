@@ -80,17 +80,20 @@ function AirSchedules() {
 							loading={loading}
 						/>
 					))
-					: <NoSchedulesCard /> }
+					: <NoSchedulesCard loading={loading} /> }
 			</div>
-			<div className={styles.pagination_container}>
-				<Pagination
-					type="number"
-					currentPage={currentPage}
-					totalItems={schedules?.total_count || 10}
-					pageSize={schedules?.page_limit}
-					onPageChange={setCurrentPage}
-				/>
-			</div>
+
+			{schedules?.list.length > 0 && (
+				<div className={styles.pagination_container}>
+					<Pagination
+						type="number"
+						currentPage={currentPage}
+						totalItems={schedules?.total_count || 10}
+						pageSize={schedules?.page_limit}
+						onPageChange={setCurrentPage}
+					/>
+				</div>
+			)}
 		</div>
 	);
 }

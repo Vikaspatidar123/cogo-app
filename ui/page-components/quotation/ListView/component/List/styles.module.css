@@ -1,21 +1,20 @@
-.title{
-	@media screen  and (max-width: 767px){
+.title {
+	@media screen  and (max-width: 767px) {
 		display: none;
 	}
 }
 
-
 .row_desktop {
 	display: flex;
+	flex-wrap: wrap;
 	justify-content: space-between;
 	margin-top: 14px;
-	flex-wrap: wrap;
 }
 
-.tab_container{
-	@media screen  and (max-width: 767px){
-		margin: auto;
+.tab_container {
+	@media screen  and (max-width: 767px) {
 		display: block;
+		margin: auto;
 	}
 }
 
@@ -29,7 +28,6 @@
 	}
 }
 
-
 .input_box {
 	width: 15%;
 
@@ -38,7 +36,7 @@
 	}
 
 	@media screen and (max-width: 767px) {
-		margin-top: 18px;
 		width: 100%;
+		margin-top: 18px;
 	}
 }

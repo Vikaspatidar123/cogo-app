@@ -22,9 +22,9 @@
 }
 
 .date {
+	margin-right: 5px;
 	font-size: 14px;
 	font-weight: 600;
-	margin-right: 5px;
 }
 
 .date_digits {
@@ -58,5 +58,5 @@
 .dot {
 	width: 9px;
 	height: 9px;
-	margin-right: 5px
+	margin-right: 5px;
 }

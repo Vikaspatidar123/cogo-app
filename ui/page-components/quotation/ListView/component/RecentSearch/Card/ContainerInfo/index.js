@@ -1,4 +1,4 @@
-import { Tooltip, Pill, cl } from '@cogoport/components';
+import { Tooltip, Pill } from '@cogoport/components';
 import { IcCFtick } from '@cogoport/icons-react';
 import { startCase, upperCase } from '@cogoport/utils';
 

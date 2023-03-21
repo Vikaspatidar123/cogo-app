@@ -11,7 +11,7 @@
 	}
 
 	&.enabled {
-		background: #f4f4f4;
+		background: #fffef9;
 
 		&:hover {
 			filter: drop-shadow(0 4px 80px rgb(0 0 0 / 15%));

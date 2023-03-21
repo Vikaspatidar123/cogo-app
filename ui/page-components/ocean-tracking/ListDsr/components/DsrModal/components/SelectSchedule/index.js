@@ -119,6 +119,7 @@ function SelectSchedule({
 					size="lg"
 					variant="ghost"
 					onClick={() => setStep((step) => step - 1)}
+					themeType="secondary"
 				>
 					Back
 				</Button>

@@ -6,12 +6,6 @@ import styles from './styles.module.css';
 import { useRequest } from '@/packages/request';
 
 function CsvForm() {
-	// const {
-	// 	fields,
-	// 	handleSubmit,
-	// 	watch,
-	// 	formState: { errors },
-	// } = useForm(controls);
 	const SEARCH_TYPES = {
 		CONTAINER_NUMBER : 'CONTAINER_NO',
 		BOOKING_NUMBER   : 'BOOKING_NO/BL_NO',

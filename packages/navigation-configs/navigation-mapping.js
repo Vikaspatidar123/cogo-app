@@ -14,6 +14,7 @@ import {
 	IcACrossBorder,
 	IcMProductCodeMapping,
 	IcMFfreferigeratedCargoType,
+	IcADutiesTaxes,
 } from '@cogoport/icons-react';
 
 const navigationMappings = {
@@ -42,6 +43,19 @@ const navigationMappings = {
 				icon        : <IcMUpwardGraph width={40} height={40} fill="red" />,
 				description : 'keep track of freight rates',
 			},
+			{
+				key   : 'saas_tools-hs_code_classification',
+				title : 'Product Classification',
+				href  : '/v2/saas/hs-classification',
+				as    : '/v2/saas/hs-classification',
+				icon  : (
+					<img
+						src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/product-classification.svg"
+						alt="cogo"
+					/>
+				),
+				description: 'Find HS Codes with detailed description',
+			},
 		],
 	},
 
@@ -63,6 +77,16 @@ const navigationMappings = {
 				as    : '/v2/saas/order-history',
 				icon  : <IcACrossBorder width={40} height={40} />,
 			},
+			{
+				key   : 'saas_premium_services-duties_and_taxes',
+				title : 'Duties & Taxes Calculator',
+				href  : '/v2/saas/premium-services/duties-taxes-calculator',
+				as    : '/v2/saas/premium-services/duties-taxes-calculator',
+				icon  : <IcADutiesTaxes width={50} height={50} />,
+				description:
+          '',
+			},
+
 		],
 	},
 	app_accept_terms_and_conditions: {
@@ -94,7 +118,6 @@ const navigationMappings = {
 				href  : '/saas/transaction-history',
 				as    : '/saas/transaction-history',
 			},
-
 		],
 	},
 	saas_planning: {

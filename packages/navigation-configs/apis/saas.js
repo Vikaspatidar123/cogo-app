@@ -71,12 +71,21 @@ const saas = {
 			access_type : 'private',
 			module      : 'dutiesTaxes',
 			feature     : 'dutiesTaxes',
+		}],
+	app_saas_hs_code_list: [
+		{
+			api         : 'get_saas_hs_code',
+			access_type : 'private',
+			module      : 'hsCode',
+			feature     : 'hsCode',
 		},
 		{
 			api         : 'get_saas_hs_code_section',
 			access_type : 'private',
 			module      : 'dutiesTaxes',
 			feature     : 'dutiesTaxes',
+			module      : 'hsCode',
+			feature     : 'hsCode',
 		},
 		{
 			api         : 'get_saas_hs_code_heading',
@@ -131,6 +140,14 @@ const saas = {
 			access_type : 'private',
 			module      : 'dutiesTaxes',
 			feature     : 'dutiesTaxes',
+			module      : 'hsCode',
+			feature     : 'hsCode',
+		},
+		{
+			api         : 'get_saas_hs_code_favourites',
+			access_type : 'private',
+			module      : 'hsCode',
+			feature     : 'hsCode',
 		},
 		{
 			api         : 'get_saas_hs_code_search',
@@ -143,6 +160,44 @@ const saas = {
 			access_type : 'private',
 			module      : 'dutiesTaxes',
 			feature     : 'dutiesTaxes',
+			module      : 'hsCode',
+			feature     : 'hsCode',
+		},
+		{
+			api         : 'post_saas_hs_code_favourites',
+			access_type : 'private',
+			module      : 'hsCode',
+			feature     : 'hsCode',
+		},
+		{
+			api         : 'delete_saas_hs_code_favourites',
+			access_type : 'private',
+			module      : 'hsCode',
+			feature     : 'hsCode',
+		},
+		{
+			api         : 'post_saas_transaction_transaction_engine',
+			access_type : 'private',
+			module      : 'hsCode',
+			feature     : 'hsCode',
+		},
+		{
+			api         : 'get_saas_hs_code_countries',
+			access_type : 'private',
+			module      : 'hsCode',
+			feature     : 'hsCode',
+		},
+		{
+			api         : 'get_saas_product_category',
+			access_type : 'private',
+			module      : 'hsCode',
+			feature     : 'hsCode',
+		},
+		{
+			api         : 'post_saas_product',
+			access_type : 'private',
+			module      : 'hsCode',
+			feature     : 'hsCode',
 		},
 	],
 	app_saas_freight_rate_trend: [

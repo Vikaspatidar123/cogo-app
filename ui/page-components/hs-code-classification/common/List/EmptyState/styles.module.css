@@ -1,0 +1,35 @@
+.container {
+	display: flex;
+	justify-content: space-between;
+	padding: 60px 30px 36px;
+}
+
+.heading {
+	font-size: 22px;
+	font-weight: bold;
+}
+
+.Content {
+	font-size: 16px;
+}
+
+.icontainer {
+	min-width: 10%;
+	max-width: 17%;
+
+	@media (max-width: 767px) {
+		display: none;
+	}
+}
+
+.wrapper {
+	max-width: 45%;
+
+	&.side {
+		max-width: 100%;
+	}
+
+	@media (max-width: 767px) {
+		max-width: 100%;
+	}
+}

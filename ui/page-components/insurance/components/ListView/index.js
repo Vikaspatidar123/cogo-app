@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 import { Input, Chips, Button } from '@cogoport/components';
 import { IcMPlus, IcMSearchlight, IcMPlusInCircle } from '@cogoport/icons-react';
 import { useState } from 'react';
@@ -39,6 +38,7 @@ function ListView() {
 
 	const downloadFunction = ({ itemData }) => {
 		const { policyId } = itemData || {};
+		// eslint-disable-next-line no-undef
 		window.open(
 			`${process.env.BUSINESS_FINANCE_BASE_URL}/saas/insurance/pdf/${policyId}`,
 		);

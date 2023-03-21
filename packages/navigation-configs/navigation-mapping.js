@@ -85,6 +85,7 @@ const navigationMappings = {
 		description : 'Buy insurance for your cargo here',
 		showInNav   : true,
 	},
+
 	saas_premium_services: {
 		key         : 'saas_premium_services',
 		title       : 'Premium Services',

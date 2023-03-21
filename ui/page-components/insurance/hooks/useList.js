@@ -1,5 +1,6 @@
 import { Toast } from '@cogoport/components';
 import { useEffect, useState } from 'react';
+import { useCallback } from 'react/cjs/react.production.min';
 import { useSelector } from 'react-redux';
 
 import { useRequestBf } from '@/packages/request';
@@ -22,7 +23,7 @@ const useList = ({ activeTab }) => {
 		};
 		return mapping[item] || item;
 	};
-	const list = () => {
+	const list = useCallback(() => {
 		const { sortBy = undefined, sortType = undefined } = sort || {};
 		try {
 			trigger({
@@ -39,11 +40,11 @@ const useList = ({ activeTab }) => {
 		} catch (err) {
 			Toast.error(err?.error?.message);
 		}
-	};
+	}, [activeTab, filters, organization, sort, trigger]);
+
 	useEffect(() => {
 		list();
-	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [activeTab, filters, sort]);
+	}, [activeTab, filters, sort, list]);
 
 	return {
 		data,

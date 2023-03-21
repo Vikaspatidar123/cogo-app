@@ -1,5 +1,6 @@
 import { Toast } from '@cogoport/components';
 import { useState, useEffect } from 'react';
+import { useCallback } from 'react/cjs/react.production.min';
 
 import { useRequestBf } from '@/packages/request';
 
@@ -17,7 +18,7 @@ const useGetTermsConditions = ({
 		url     : '/saas/insurance/terms',
 	}, { manual: true });
 
-	const fetchTerms = async () => {
+	const fetchTerms = useCallback(async () => {
 		try {
 			const res = await trigger({
 				params: {
@@ -33,13 +34,13 @@ const useGetTermsConditions = ({
 		} catch (error) {
 			Toast.error(error?.error?.message);
 		}
-	};
+	}, [activeTab, countryCode, formDetails, trigger, type]);
+
 	useEffect(() => {
 		if (formDetails?.policyCommodityId) {
 			fetchTerms();
 		}
-	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [formDetails]);
+	}, [formDetails, fetchTerms]);
 	return {
 		fetchTermsLoading: loading,
 		terms,

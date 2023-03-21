@@ -88,8 +88,7 @@ function AddModal({
 				state : region?.name,
 			});
 		}
-	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [city, region, list]);
+	}, [city, region, list, setValues]);
 
 	const handleCloseModal = () => {
 		setAddAddressModal(false);

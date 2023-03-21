@@ -1,5 +1,6 @@
 import { Toast } from '@cogoport/components';
 import { useEffect } from 'react';
+import { useCallback } from 'react/cjs/react.production.min';
 import { useSelector } from 'react-redux';
 
 import { useRequestBf } from '@/packages/request';
@@ -13,7 +14,7 @@ const useGetSummaryDetails = ({ activeTab, filters, sort }) => {
 		url     : 'saas/insurance/list/summary',
 	});
 
-	const summary = async () => {
+	const summary = useCallback(async () => {
 		const { sortBy = undefined, sortType = undefined } = sort || {};
 
 		try {
@@ -30,11 +31,11 @@ const useGetSummaryDetails = ({ activeTab, filters, sort }) => {
 		} catch (err) {
 			Toast.error(err?.error?.message);
 		}
-	};
+	}, [activeTab, filters, organization, sort, trigger]);
+
 	useEffect(() => {
 		summary();
-	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [filters, sort, activeTab]);
+	}, [filters, sort, activeTab, summary]);
 
 	return {
 		summaryData    : data,

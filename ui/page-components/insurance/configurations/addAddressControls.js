@@ -1,9 +1,8 @@
-/* eslint-disable react-hooks/rules-of-hooks */
-/* eslint-disable max-len */
 import { useState } from 'react';
 
 const COUNTRY_INDIA_ID = '541d1232-58ce-4d64-83d6-556a42209eb7';
 
+// eslint-disable-next-line max-len
 const emailValidator = /^[^<>()[\]\\,;:%#^\s@"$&!@]+@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z0-9]+\.)+[a-zA-Z]{2,}))$/;
 
 const mobileValidator = /^[0-9]{10}$/;
@@ -117,7 +116,7 @@ export const addAddressControls = [
 	},
 ];
 
-export const getControls = ({ checked }) => {
+const useGetControls = ({ checked }) => {
 	const [country, setCountry] = useState();
 
 	return (addAddressControls || []).map((control) => {
@@ -146,3 +145,5 @@ export const getControls = ({ checked }) => {
 		};
 	});
 };
+
+export default useGetControls;

@@ -1,5 +1,5 @@
 import { Toast } from '@cogoport/components';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 
 import PendingModal from '../../../common/PendingModal';
 import PreviewModal from '../../../common/PreviewModal';
@@ -88,10 +88,9 @@ function ValueDetails({
 	const invoiceValue =		watcher[0] === 'USD' ? watcher[1] * exchangeRateResponse : watcher[1];
 	useEffect(() => {
 		debounceQuery(invoiceValue);
-	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [invoiceValue]);
+	}, [invoiceValue, debounceQuery]);
 
-	const rateHandler = async () => {
+	const rateHandler = useCallback(async () => {
 		if (watcher[0] && watcher[1]) {
 			await exchangeRate(setExchangeRateResponse);
 			if (invoiceValue && invoiceValue < 400000000) {
@@ -108,11 +107,11 @@ function ValueDetails({
 				});
 			}
 		}
-	};
+	}, [exchangeRate, invoiceValue, query, response, setRatesResponse, watcher]);
+
 	useEffect(() => {
 		rateHandler();
-	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [watcher[1], watcher[0], query]);
+	}, [watcher, query, rateHandler]);
 
 	const saveDraft = (values) => {
 		const { aadharDoc, gstDoc, panDoc, invoiceDoc, ...rest } = values || {};

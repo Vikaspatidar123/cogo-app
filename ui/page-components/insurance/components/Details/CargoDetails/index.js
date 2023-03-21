@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/rules-of-hooks */
 import { Toast, Tooltip, Button } from '@cogoport/components';
 import { IcMArrowBack, IcMArrowNext, IcMBldo } from '@cogoport/icons-react';
 import { useEffect, useState } from 'react';
@@ -11,7 +10,7 @@ import styles from './styles.module.css';
 import { useForm } from '@/packages/forms';
 import getField from '@/packages/forms/Controlled';
 
-const cargoDetails = ({
+const useCargoDetails = ({
 	formDetails = {},
 	setActiveStepper = () => {},
 	setFormDetails = () => {},
@@ -112,8 +111,7 @@ const cargoDetails = ({
 			'packaging',
 			descriptionPrefilled?.packaging || formDetails?.packaging || '',
 		);
-	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [descriptionPrefilled]);
+	}, [descriptionPrefilled, formDetails, setValue]);
 
 	return (
 		<div>
@@ -278,4 +276,4 @@ const cargoDetails = ({
 		</div>
 	);
 };
-export default cargoDetails;
+export default useCargoDetails;

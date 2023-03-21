@@ -20,7 +20,7 @@ const renderFunctions = ({
 	downloadFunction = () => {},
 	refetchPreview = () => {},
 	isMobile = false,
-	showPreviewModal = false,
+	// showPreviewModal = false,
 	setShowPreviewModal = () => {},
 	previewloading = false,
 	// cancellationFunction = () => {},

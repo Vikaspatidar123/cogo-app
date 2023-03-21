@@ -104,8 +104,7 @@ function Details({
 				svg : 3,
 			}));
 		}
-	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [query]);
+	}, [query, setActiveStepper]);
 
 	return (
 		<div className={isMobile ? styles.main_mobile : styles.main}>

@@ -1,7 +1,6 @@
 import { useRouter } from '@/packages/next';
 
-const redirectUrl = () => {
-	// eslint-disable-next-line react-hooks/rules-of-hooks
+const useRedirectUrl = () => {
 	const { push } = useRouter();
 	const redirectHome = () => {
 		push('/saas/insurance');
@@ -29,4 +28,5 @@ const redirectUrl = () => {
 		redirectBuy,
 	};
 };
-export default redirectUrl;
+
+export default useRedirectUrl;

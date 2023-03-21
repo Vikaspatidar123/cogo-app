@@ -32,8 +32,7 @@ function PendingModal({ pendingModal, setModal, stop, paymentStatus, checkLoadin
                  7282872743, Email: romil.shah@cogoport.com`,
 			);
 		}
-	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [paymentStatus]);
+	}, [paymentStatus, checkLoading]);
 
 	return (
 		<Modal className="primary md" show={pendingModal} closable={false}>

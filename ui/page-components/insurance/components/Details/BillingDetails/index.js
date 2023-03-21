@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/rules-of-hooks */
 import { Popover, Toast, Button } from '@cogoport/components';
 import { IcMArrowNext, IcMBldo, IcMPlus } from '@cogoport/icons-react';
 import { useMemo, useState, useEffect } from 'react';
@@ -14,7 +13,7 @@ import styles from './styles.module.css';
 import { useForm } from '@/packages/forms';
 import getField from '@/packages/forms/Controlled';
 
-const billingDetails = ({
+const useBillingDetails = ({
 	formDetails = {},
 	setActiveStepper = () => {},
 	setFormDetails = () => {},
@@ -81,8 +80,7 @@ const billingDetails = ({
 	useMemo(() => {
 		organisationAddress();
 		addressApi();
-	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
+	}, [organisationAddress, addressApi]);
 
 	const { cityLoading } = useGetStateFromPincode({
 		watchPincode,
@@ -138,16 +136,14 @@ const billingDetails = ({
 			setValue('billingCity', city?.name);
 			setValue('billingState', region?.name);
 		}
-	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [city, region]);
+	}, [city, region, list, setValue, watchPincode]);
 
 	useEffect(() => {
 		if (!watchPincode) {
 			resetField('billingState');
 			resetField('billingCity');
 		}
-	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [watchPincode]);
+	}, [watchPincode, resetField]);
 
 	console.log('cityLoading', cityLoading);
 
@@ -306,4 +302,4 @@ const billingDetails = ({
 	);
 };
 
-export default billingDetails;
+export default useBillingDetails;

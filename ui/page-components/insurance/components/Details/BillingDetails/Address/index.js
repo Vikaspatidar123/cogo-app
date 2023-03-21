@@ -42,12 +42,13 @@ function SellerAddress({
 	setAddAddressModal = () => {},
 	setisBillingAddress = () => {},
 }) {
+	const addressDependency = JSON.stringify(addressdata);
+
 	useEffect(() => {
 		if (Object.keys(formDetails).length === 0 && insuranceType[0] === 'SELF') {
 			setAllInfo(addressdata?.[0]);
 		}
-	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [JSON.stringify(addressdata)]);
+	}, [addressDependency, formDetails, insuranceType, setAllInfo, addressdata]);
 
 	useEffect(() => {
 		if (insuranceType[0] !== 'SELF') {
@@ -60,8 +61,7 @@ function SellerAddress({
 			resetField('aadharNumber');
 			resetField('panNumber');
 		}
-	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [insuranceType]);
+	}, [insuranceType, resetField]);
 
 	useEffect(() => {
 		if (allInfo && insuranceType[0] === 'SELF') {
@@ -73,8 +73,7 @@ function SellerAddress({
 		if (checked?.length > 0) {
 			setshowFilters(false);
 		}
-	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [allInfo, checked, insuranceType]);
+	}, [allInfo, checked, insuranceType, showFilters, setValue, setshowFilters]);
 
 	return (
 		<div className={styles.side_wrapper}>

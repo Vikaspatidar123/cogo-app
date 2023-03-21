@@ -15,11 +15,8 @@ function useGetAsyncOptionsBf({
 	getModifiedOptions = (a) => a,
 }) {
 	const { query, debounceQuery } = useDebounceQuery();
-<<<<<<< HEAD
 	const [storeOptions, setStoreOptions] = useState([]);
 
-=======
->>>>>>> a22cd7bad8f7ffd93144a38a65f348f3be17c96d
 	const [{ data, loading }] = useRequestBf({
 		url    : endpoint,
 		method : 'GET',

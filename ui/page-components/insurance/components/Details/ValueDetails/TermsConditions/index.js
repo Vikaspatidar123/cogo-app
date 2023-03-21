@@ -28,7 +28,6 @@ function TermsConditions({
 		termsHtml,
 	} = terms || {};
 
-	// eslint-disable-next-line react/no-unstable-nested-components
 	function CreateReactComponent() {
 		return <div dangerouslySetInnerHTML={{ __html: termsHtml }} />;
 	}

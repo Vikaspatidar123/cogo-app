@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 import { Button, Modal } from '@cogoport/components';
 import { IcMAverage, IcMDownload, IcMHome } from '@cogoport/icons-react';
 import React from 'react';
@@ -18,6 +17,7 @@ function SuccessModal({
 }) {
 	const { redirectList } = redirectUrl();
 	const downloadFunction = () => {
+		// eslint-disable-next-line no-undef
 		window.open(`${URL}${policyIdDownload}`);
 	};
 	return (

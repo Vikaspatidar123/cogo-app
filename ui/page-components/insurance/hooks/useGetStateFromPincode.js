@@ -1,15 +1,15 @@
 import { Toast } from '@cogoport/components';
-import { useMemo } from 'react';
+import { useMemo, useCallback } from 'react';
 
 import { useRequest } from '@/packages/request';
 
-const useGetStateFromPincode = ({ watchPincode, setCityState, insuranceType }) => {
+const useGetStateFromPincode = ({ watchPincode, setCityState }) => {
 	const COUNTRY_INDIA_ID = '541d1232-58ce-4d64-83d6-556a42209eb7';
 	const [{ loading }, trigger] = useRequest(
 		{ method: 'get', url: 'list_locations' },
 		{ manual: true },
 	);
-	const responseCity = async () => {
+	const responseCity = useCallback(async () => {
 		try {
 			const res = await trigger({
 				params: {
@@ -31,12 +31,11 @@ const useGetStateFromPincode = ({ watchPincode, setCityState, insuranceType }) =
 				},
 			});
 		}
-	};
+	}, [setCityState, trigger, watchPincode]);
 
 	useMemo(() => {
 		if (watchPincode !== '' && watchPincode?.length === 6) responseCity();
-	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [watchPincode, insuranceType]);
+	}, [watchPincode, responseCity]);
 	return {
 		cityLoading: loading,
 	};

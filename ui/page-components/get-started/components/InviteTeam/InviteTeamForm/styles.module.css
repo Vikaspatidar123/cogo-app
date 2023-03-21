@@ -47,14 +47,11 @@
 		align-items: center;
 		justify-content: center;
 		width: 70%;
+		margin: 20px 0 20px 60px;
 	}
 
 	.input_container {
 		width: 130%;
 		margin: 10px 0;
-	}
-
-	.form_container {
-		margin: 20px 0 20px 60px;
 	}
 }

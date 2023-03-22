@@ -1,5 +1,5 @@
 import { Toast } from '@cogoport/components';
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import { useSelector } from 'react-redux';
 
 import { useRequest } from '@/packages/request';
@@ -7,12 +7,6 @@ import { useRequest } from '@/packages/request';
 const useBillingAddress = () => {
 	const { profile } = useSelector((state) => state);
 	const [data, setData] = useState([]);
-
-	const params = {
-		organization_id : profile?.organization.id,
-		page_limit      : 100,
-		page            : 1,
-	};
 
 	const [{ loading }, trigger] = useRequest(
 		{
@@ -30,20 +24,31 @@ const useBillingAddress = () => {
 		{ manual: true },
 	);
 
-	const addressApi = async () => {
+	const addressApi = useCallback(async () => {
+		const params = {
+			organization_id : profile?.organization.id,
+			page_limit      : 100,
+			page            : 1,
+		};
 		try {
 			const resp = await trigger({
 				params,
 			});
+
 			if (resp?.data?.list) {
 				setData(resp?.data.list);
 			}
 		} catch (err) {
 			Toast.error(err?.error?.message);
 		}
-	};
+	}, [profile?.organization.id, trigger]);
 
-	const organisationAddress = async () => {
+	const organisationAddress = useCallback(async () => {
+		const params = {
+			organization_id : profile?.organization.id,
+			page_limit      : 100,
+			page            : 1,
+		};
 		try {
 			const resp = await organisationAddressApi({
 				params,
@@ -53,7 +58,7 @@ const useBillingAddress = () => {
 		} catch (error) {
 			Toast.error(error?.message);
 		}
-	};
+	}, [organisationAddressApi, profile?.organization.id]);
 
 	return {
 		organisationAddress,

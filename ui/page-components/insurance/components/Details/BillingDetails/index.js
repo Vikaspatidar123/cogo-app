@@ -35,6 +35,7 @@ const useBillingDetails = ({
 	setUploadType = () => {},
 	setisBillingAddress = () => {},
 }) => {
+	console.log('🚀 ~ file: index.js:38 ~ addressdata:', addressdata);
 	const [cityState, setCityState] = useState({});
 	const { profile } = useSelector((state) => state);
 	const fields = getControls(formDetails, profile, uploadType);
@@ -78,9 +79,11 @@ const useBillingDetails = ({
 	const watchPincode = watch('billingPincode');
 
 	useMemo(() => {
-		organisationAddress();
-		addressApi();
-	}, [organisationAddress, addressApi]);
+		if (addressdata.length === 0) {
+			organisationAddress();
+			addressApi();
+		}
+	}, [addressdata, addressApi, organisationAddress]);
 
 	const { cityLoading } = useGetStateFromPincode({
 		watchPincode,

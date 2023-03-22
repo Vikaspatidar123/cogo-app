@@ -1,0 +1,13 @@
+.container{
+    display: flex;
+    justify-content: space-between;
+    margin: 30px 0;
+}
+
+.child1{
+    width: 66%;
+}
+
+.child2{
+    width: 30%;
+}

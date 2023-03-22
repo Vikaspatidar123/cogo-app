@@ -1,0 +1,54 @@
+.container{
+    padding: 16px;
+	box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.15);
+
+}
+
+.text{
+    font-size: 18px;
+}
+
+.innerCard{
+    display: flex;
+    align-items: flex-start;
+    padding: 16px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.15);
+	border-radius : 10px;
+    margin-top:16px;
+    background-color: rgba(244, 247, 254, 0.6);
+}
+
+.icon{
+    background: #3B536B;
+    border-radius:50%;
+    margin-right: 15px;
+    display:flex;
+    justify-content: center;
+    align-items: center; 
+    position: relative;
+    padding: 1.6rem;
+
+    svg {
+        position: absolute;
+        top: 50%; 
+        right: 50%;
+        transform: translate(50%,-50%);
+        font-size:1.4rem;
+    }
+	
+}
+
+.text1{
+   font-size: 16px;
+   margin-bottom:2px;
+}
+
+.desc{
+    font-size: 14px; 
+    color: #828282;
+}
+
+.btn{
+    display: flex;
+    justify-content: flex-end;
+}

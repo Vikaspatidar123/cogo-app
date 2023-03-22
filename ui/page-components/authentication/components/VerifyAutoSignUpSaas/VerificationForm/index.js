@@ -2,19 +2,17 @@ import { Button } from '@cogoport/components';
 import { IcCSendEmail } from '@cogoport/icons-react';
 import React, { useState } from 'react';
 
-import useEmailVerification from '../../hooks/useEmailVerification';
-import useOtpVerification from '../../hooks/useOtpVerification';
+import useEmailVerification from '../../../hooks/useEmailVerification';
+import useOtpVerification from '../../../hooks/useOtpVerification';
 
 import styles from './styles.module.css';
 
 import OTPLayout from '@/packages/forms/Business/OTPLayout';
 import OrSeparator from '@/ui/commons/components/OrSeparator';
 
-function VerifictaionForm({ formData, userId }) {
+function VerifictaionForm({ formData, userDetails }) {
 	const OTP_LENGTH = 4;
 	const [otpValue, setOtpValue] = useState('');
-
-	const { id } = userId || {};
 
 	const { onClickResendEmail } = useEmailVerification();
 
@@ -22,11 +20,11 @@ function VerifictaionForm({ formData, userId }) {
 		loading = false,
 		onClickVerifyLeadUserMobileNo,
 		resendOtpLoading = false,
-		resendOtp = () => { },
+		resendOtp = () => {},
 	} = useOtpVerification({
 		formData,
 		otpValue,
-		id,
+		userDetails,
 	});
 
 	return (
@@ -40,7 +38,9 @@ function VerifictaionForm({ formData, userId }) {
 			<div className={styles.verification_text_container}>
 				Verification code has been sent to
 				{' '}
-				<span className={styles.verification_text_container_bold}>+91-9987653456</span>
+				<span className={styles.verification_text_container_bold}>
+					+91-9987653456
+				</span>
 				{' '}
 				via SMS
 			</div>
@@ -70,14 +70,16 @@ function VerifictaionForm({ formData, userId }) {
 				<br />
 				<span className={styles.footer_container_span}>testing@gmail.com.</span>
 				<br />
-				<span className={styles.footer_container_span}>Click on the link to verify.</span>
+				<span className={styles.footer_container_span}>
+					Click on the link to verify.
+				</span>
 				<br />
 				If you have not received the email within a few minutes,
 				<br />
 				please check your spam folder or click on
 				<button
 					className={styles.resend_mail_button}
-					onClick={() => onClickResendEmail(id)}
+					onClick={() => onClickResendEmail(userDetails?.id)}
 				>
 					resend email
 				</button>

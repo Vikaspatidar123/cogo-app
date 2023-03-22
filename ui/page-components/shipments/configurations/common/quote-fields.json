@@ -1,0 +1,18 @@
+{
+	"label": "Total amount",
+	"key": "total_price_discounted",
+	"currencyKey": "total_price_currency",
+	"type": "price",
+	"summaryFields": [
+		{
+			"key": "name"
+		},
+		{
+			"key": "total_price_discounted",
+			"currencyKey": "currency",
+			"type": "price",
+			"quantityKey": "quantity",
+			"totalKey": "total_price_discounted"
+		}
+	]
+}

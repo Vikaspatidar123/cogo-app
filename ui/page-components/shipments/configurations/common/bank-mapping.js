@@ -1,0 +1,17 @@
+export const bankMapping = {
+	rbi_bank : 'RBI Bank',
+	customs  : 'Customs',
+	vendor   : 'Vendor',
+	ministry : 'Ministry',
+	sbi      : 'SBI',
+	hdfc     : 'HDFC Bank',
+	icici    : 'ICICI Bank',
+	axis     : 'Axis Bank',
+	kotak    : 'Kotak Bank',
+	indusind : 'Indusind',
+	yes      : 'YES Bank',
+	pnb      : 'PNB BANK',
+	boi      : 'Bank of India',
+	bob      : 'Bank Of Baroda',
+	canara   : 'Canara bank',
+};

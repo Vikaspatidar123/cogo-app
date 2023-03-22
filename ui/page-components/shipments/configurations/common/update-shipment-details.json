@@ -1,0 +1,198 @@
+[
+	{
+		"name": "cargo_readiness_date",
+		"label": "Container Pickup Date",
+		"type": "datepicker",
+		"span": 6,
+		"withTimePicker": true,
+		"usePortal": true,
+		"placeholder": "Select",
+		"condition": {
+			"viewAs": "importer_exporter",
+			"service": ["fcl_freight_service"],
+			"document": {
+				"type": ["booking_note"],
+				"timing": "before_upload"
+			}
+		}
+	},
+	{
+		"label": " HS Code",
+		"name": "hs_code",
+		"type": "select",
+		"optionsListKey": "hs_codes",
+		"span": 6,
+		"condition": {
+			"viewAs": "importer_exporter",
+			"service": ["fcl_freight_service"],
+			"document": {
+				"type": ["booking_note"],
+				"timing": "before_upload"
+			}
+		}
+	},
+	{
+		"label": "Choose commodity description",
+		"name": "commodity_description",
+		"type": "textarea",
+		"rows": 5,
+		"span": 6,
+		"condition": {
+			"viewAs": "importer_exporter",
+			"service": ["fcl_freight_service"],
+			"document": {
+				"type": ["booking_note"],
+				"timing": "before_upload"
+			}
+		}
+	},
+	{
+		"name": "refer_temperature",
+		"label": "Reefer Temperature (C)",
+		"type": "number",
+		"placeholder": "####",
+		"min": -35,
+		"max": 30,
+		"condition": {
+			"viewAs": "importer_exporter",
+			"service": ["fcl_freight_service", "lcl_freight_service"],
+			"container_type": ["refer", "reefer"]
+		},
+		"rules": {
+			"min": -35,
+			"max": 30
+		}
+	},
+	{
+		"name": "refer_humidity",
+		"label": "Reefer Humidty (%)",
+		"type": "number",
+		"placeholder": "####",
+		"min": 0,
+		"max": 100,
+		"condition": {
+			"viewAs": "importer_exporter",
+			"service": ["fcl_freight_service", "lcl_freight_service"],
+			"container_type": ["refer", "reefer"]
+		},
+		"rules": {
+			"min": 0,
+			"max": 100
+		}
+	},
+	{
+		"name": "refer_ventilation",
+		"label": "Reefer Ventilation (%)",
+		"type": "number",
+		"placeholder": "####",
+		"min": 0,
+		"max": 100,
+		"condition": {
+			"viewAs": "importer_exporter",
+			"service": ["fcl_freight_service", "lcl_freight_service"],
+			"container_type": ["refer", "reefer"]
+		},
+		"rules": {
+			"min": 0,
+			"max": 100
+		}
+	},
+	{
+		"name": "refer_vent_setting",
+		"label": "Reefer vent Settings",
+		"type": "select",
+		"selectType": "pills",
+		"options": [
+			{ "value": "open", "label": "Open", "description": "Open" },
+			{ "value": "close", "label": "Close", "description": "Close" }
+		],
+		"placeholder": "Select",
+		"condition": {
+			"viewAs": "importer_exporter",
+			"service": ["fcl_freight_service", "lcl_freight_service"],
+			"container_type": ["refer", "reefer"]
+		}
+	},
+	{
+		"name": "bl_category",	
+		"label": "Choose BL Category",
+		"type": "select",
+		"options": [
+			{
+				"value": "hbl",
+				"label": "HBL",
+				"description": "House Bill of Lading"
+			},
+			{
+				"value": "mbl",
+				"label": "MBL",
+				"description": "Master Bill of Lading"
+			}
+		],
+		"span": 6,
+		"placeholder": "Select BL Category",
+		"condition": {
+			"viewAs": "importer_exporter",
+			"service": ["fcl_freight_service", "lcl_freight_service"],
+			"document": {
+				"type": ["draft_bill_of_lading", "draft_house_bill_of_lading", "draft_house_airway_bill", "draft_airway_bill"],
+				"timing": "before_upload"
+			},
+			"state": ["init", "awaiting_service_provider_confirmation", "confirmed_by_service_provider", "containers_gated_in"]
+		}
+	},
+	{
+		"name": "bl_type",	
+		"label": "Choose preferred Bill of Lading",
+		"type": "select",
+		"options": [
+			{
+				"value": "rfs",
+				"label": "RFS (Original) - Received For Shipment",
+				"description": "The RFS (Original)( Received for Shipment) Bill of Lading is generated once the container is gated inside the port for shipment. It acts as a proof of goods being received for sailing, post custom clearance. It can be helpful when the transit time of the shipment is less than a week"
+			},
+			{
+				"value": "sob",
+				"label": "SOB (Original) - Shipped on Board",
+				"description": "The SOB (Original)(Shipped on Board) Bill of Lading is generated once the shipment has sailed. It acts as a proof that cargo has been loaded on the ship and the ship has sailed. SOB (Original) Bill of Lading is submitted as a document to claim the money in cases of Letter of Credit"
+			},
+			{
+				"value": "seaway",
+				"label": "Seaway (Original) Bill",
+				"description": "The Seaway (Original) Bill is given directly to the consignee. The exporter receives an E-copy as a proof. It can be used when the goods are already paid for with approved line of credit, or there is a high level of trust between the exporter and consignee"
+			}
+		],
+		"span": 6,
+		"placeholder": "Type",
+		"condition": {
+			"viewAs": "importer_exporter",
+			"service": ["fcl_freight_service", "lcl_freight_service"],
+			"document": {
+				"type": ["draft_bill_of_lading"],
+				"timing": "before_upload"
+			},
+			"state": ["init", "awaiting_service_provider_confirmation", "confirmed_by_service_provider", "containers_gated_in"]
+		}
+	},
+	{
+		"name": "bls_count",
+		"label": "BL Count",
+		"type": "number",
+		"span": 6,
+		"value": 1,
+		"min": 1,
+		"placeholder": "Type",
+		"condition": {
+			"viewAs": "importer_exporter",
+			"service": ["fcl_freight_service", "lcl_freight_service"],
+			"document": {
+				"type": ["draft_bill_of_lading", "draft_house_bill_of_lading", "draft_house_airway_bill", "draft_airway_bill"],
+				"timing": "before_upload"
+			},
+			"state": ["init", "awaiting_service_provider_confirmation", "confirmed_by_service_provider", "containers_gated_in"]
+		},
+		"rules": {
+			"min": 1
+		}
+	}
+]

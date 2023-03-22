@@ -1,0 +1,37 @@
+{
+	"name": "shipment",
+	"title": "Shipments",
+	"filter_controls": [
+		{
+			"label": "Shipment Type",
+			"name": "shipment_type",
+			"type": "select-2",
+			"selectType": "pills",
+			"multiple": false,
+			"options": [
+				{ "label": "FCL", "value": "fcl_freight" },
+				{ "label": "LCL", "value": "lcl_freight" },
+				{ "label": "Air", "value": "air_freight" },
+				{ "label": "LTL", "value": "ltl_freight" },
+				{ "label": "FTL", "value": "ftl_freight" },
+				{ "label": "Trailer", "value": "trailer_freight" },
+				{ "label": "FCL Haulage", "value": "haulage_freight" }
+			]
+		}
+	],
+	"list_states": {
+		"ongoing": ["shipment_received", "confirmed_by_importer_exporter", "in_progress"],
+		"past": ["completed", "cancelled", "aborted"]
+	},
+	"routeInfo": {
+		"origin_pickup": "origin_pickup",
+		"origin_drop": "origin_drop",
+		"origin_port": "origin_port",
+		"origin_main_port": "origin_main_port",
+		"destination_main_port": "destination_main_port",
+		"destination_port": "destination_port",
+		"destination_pickup": "destination_pickup",
+		"destination_drop": "destination_drop"
+	},
+	"pending_tasks": {}
+}

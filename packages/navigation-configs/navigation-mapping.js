@@ -22,6 +22,14 @@ const navigationMappings = {
 		mobileIcon : <IcMQuotations width={20} height={20} />,
 
 	},
+	app_bookings: {
+		key       : 'app_bookings',
+		title     : 'Shipments',
+		href      : '/v2/shipments',
+		as        : '/v2/shipments',
+		showInNav : true,
+
+	},
 
 	app_get_started: {
 		key   : 'app_get_started',

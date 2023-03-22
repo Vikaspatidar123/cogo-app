@@ -68,8 +68,10 @@ function ReportsTable({ loading, dsrList, handleDsrModal, setDsrs }) {
 						{loading && <Placeholder width="300px" />}
 						{!loading && (
 							<div className={styles.list_item}>
-								{list?.status}
-								<ReportStatus record={list} dsrId={list?.id} setDsrs={setDsrs} />
+								<div className={styles.status}>{list?.status}</div>
+								<div className={styles.status}>
+									<ReportStatus record={list} dsrId={list?.id} setDsrs={setDsrs} />
+								</div>
 							</div>
 						)}
 					</div>

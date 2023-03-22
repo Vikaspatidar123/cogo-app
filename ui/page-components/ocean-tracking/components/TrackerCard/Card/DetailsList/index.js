@@ -49,17 +49,23 @@ function DetailsList({ containersList, shipmentInfo, activeCarouselIndex, setAct
 			</div>
 			<div className={styles.list_container}>
 				<div className={styles.element1}>
-					<div className={styles.sub_element}>Container no</div>
-					<div>
-						<IcMOverflowDot />
+					<div className={styles.sub_element}>
+						Container no
+						<div className={styles.colon}><IcMOverflowDot /></div>
 					</div>
-					<div className={styles.sub_element}>{itemData?.container_no}</div>
+					{/* <div>
+						<IcMOverflowDot />
+					</div> */}
+					<div className={styles.sub_element2}>{itemData?.container_no}</div>
 				</div>
 				<div className={styles.element1}>
-					<div className={styles.sub_element}>{commodity ? 'Commodity' : 'Commodity Unknown'}</div>
-					<div>
-						<IcMOverflowDot />
+					<div className={styles.sub_element}>
+						{commodity ? 'Commodity' : 'Commodity Unknown'}
+						<div className={styles.colon}>
+							<IcMOverflowDot />
+						</div>
 					</div>
+
 					<div className={styles.sub_element}>
 						{commodity || (
 							<img

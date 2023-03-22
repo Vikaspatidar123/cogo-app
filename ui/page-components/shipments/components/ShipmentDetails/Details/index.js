@@ -1,11 +1,14 @@
+// import dynamic from 'next/dynamic';
+// import React from 'react';
+
+// import { ShipmentDetailContext } from '../../commons/Context';
+// import useGetShipment from '../hooks/useGetShipment';
+// import useServiceList from '../hooks/useServiceList';
 import dynamic from 'next/dynamic';
-import React from 'react';
 
-import { ShipmentDetailContext } from '../../commons/Context';
-import useGetShipment from '../hooks/useGetShipment';
-import useServiceList from '../hooks/useServiceList';
+import { ShipmentDetailContext } from '../common/Context';
 
-const Admin = dynamic(() => import('./Admin'));
+// const Admin = dynamic(() => import('./Admin'));
 const Customer = dynamic(() => import('./Customer/components'));
 
 function ShipmentDetails({ viewAs = '' }) {
@@ -39,11 +42,12 @@ function ShipmentDetails({ viewAs = '' }) {
 					servicesList={servicesList}
 				/>
 			) : (
-				<Admin
-					servicesLoading={loading || isGettingShipment}
-					servicesList={servicesList}
-					refetchServices={refetchServices}
-				/>
+				<div>hello</div>
+				// <Admin
+				// 	servicesLoading={loading || isGettingShipment}
+				// 	servicesList={servicesList}
+				// 	refetchServices={refetchServices}
+				// />
 			)}
 		</ShipmentDetailContext.Provider>
 	);

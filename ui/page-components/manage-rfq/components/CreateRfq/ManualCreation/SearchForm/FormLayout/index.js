@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 
+import DraftEditLayout from './DraftEditLayout';
 import styles from './styles.module.css';
 
 function FormLayout(props) {

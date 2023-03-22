@@ -8,11 +8,26 @@
 	}
 }
 
+.row {
+	display: flex;
+	flex-flow: row wrap;
+	flex-grow: 0;
+	flex-shrink: 0;
+	align-items: normal;
+	justify-content: flex-start;
+}
+
+.col {
+	padding: 0 8px;
+	margin: 13px 0;
+}
+
 .row_container {
 	display: flex;
+	align-items: center;
 	width: 100%;
 
-	.icon-to-from {
+	.icon_to_from {
 		width: 25px;
 		height: 25px;
 		margin: 23px 0 0 10px;
@@ -33,6 +48,7 @@
 
 .section {
 	display: flex;
+	width: 100%;
 
 	@media (max-width: 768px) {
 		width: 100%;

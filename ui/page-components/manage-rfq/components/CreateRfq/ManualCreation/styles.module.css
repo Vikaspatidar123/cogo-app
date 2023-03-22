@@ -1,0 +1,29 @@
+.container {
+	display: flex;
+	justify-content: center;
+	width: 100%;
+	margin-block: 17px;
+	overflow-y: scroll;
+
+	::-webkit-scrollbar {
+		display: none;
+	}
+}
+
+.loader {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 500px;
+
+	.cogo_loader {
+		width: 100px;
+		height: 100px;
+	}
+}
+
+.body {
+	display: flex;
+	flex-direction: column;
+	width: 98%;
+}

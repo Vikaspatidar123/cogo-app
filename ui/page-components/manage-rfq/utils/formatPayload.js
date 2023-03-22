@@ -1,5 +1,5 @@
+import calculator from '../helpers/calculator';
 import getCommodityMapping from '../helpers/getCommodityMapping';
-import useCalculator from '../helpers/calculator';
 
 import formatCreateSearch from './formatCreateSearch';
 
@@ -61,7 +61,7 @@ const formatPayload = ({
 						container_type      : item?.container_type,
 						commodity           : item?.commodity,
 						containers_count:
-							itmData?.containers_count + Number(item?.containers_count),
+							(itmData?.containers_count || 0) + Number(item?.containers_count),
 						bls_count                  : Number(values?.bls_count || 1),
 						inco_term                  : values?.inco_term,
 						cargo_weight_per_container : Math.max(
@@ -102,7 +102,7 @@ const formatPayload = ({
 		let totalVolume = 0;
 
 		if (values.calculate_by === 'unit') {
-			const calculatedValue = useCalculator(values.dimensions, serviceType);
+			const calculatedValue = calculator(values.dimensions, serviceType);
 			packagesCount = calculatedValue?.packagesCount;
 			totalWeight = calculatedValue?.totalWeight;
 			totalVolume = calculatedValue?.totalVolume;
@@ -137,7 +137,7 @@ const formatPayload = ({
 		let newPackages = [];
 
 		if (values.calculate_by === 'unit') {
-			const calculatedValue = useCalculator(values.dimensions, serviceType);
+			const calculatedValue = calculator(values.dimensions, serviceType);
 			packagesCount = calculatedValue?.packagesCount;
 			totalWeight = calculatedValue?.totalWeight;
 			totalVolume = calculatedValue?.totalVolume;

@@ -1,5 +1,6 @@
 import { Button } from '@cogoport/components';
 
+import PortPairChildLayout from './PortPairChildLayout';
 import styles from './styles.module.css';
 
 import { useFieldArray } from '@/packages/forms';

@@ -1,11 +1,17 @@
 import { useState, useEffect } from 'react';
 
+import controls from '../../../configurations/SearchFormControls';
+import airControls from '../../../configurations/SearchFormControls/create-air-rfq-controls';
+import fclControls from '../../../configurations/SearchFormControls/create-fcl-rfq-controls';
+import lclControls from '../../../configurations/SearchFormControls/create-lcl-rfq-controls';
 import useCreateRfqDraft from '../../../hooks/useCreateRfqDraft';
 import useCreateRfqSearch from '../../../hooks/useCreateRfqSearch';
 import useGetRfq from '../../../hooks/useGetRfq';
 import useUpdateRfqDraft from '../../../hooks/useUpdateRfqDraft';
+import { airDefaultValues, lclDefaultValue, fclDefaultValue } from '../../../utils/defaultValues';
 import iconUrl from '../../../utils/iconUrl.json';
 
+import SearchForm from './SearchForm';
 import styles from './styles.module.css';
 
 import { useForm } from '@/packages/forms';
@@ -30,14 +36,19 @@ function ManualCreation({ currentStep, setCurrentStep, rfqId, ...rest }) {
 	const [draftFormData, setDraftFormData] = useState({ rfq_id: rfqId || '' });
 	const [services, setServices] = useState({});
 
-	const lclProps = useForm();
-	const fclProps = useForm();
-	const airProps = useForm();
+	const lclProps = useForm(lclDefaultValue);
+	const fclProps = useForm(fclDefaultValue);
+	const airProps = useForm(airDefaultValues);
 
 	const formProps = {
 		fcl_freight : fclProps,
 		lcl_freight : lclProps,
 		air_freight : airProps,
+	};
+	const fieldProps = {
+		fcl_freight : fclControls,
+		lcl_freight : lclControls,
+		air_freight : airControls,
 	};
 
 	const { createRfqSearch, searchLoading } = useCreateRfqSearch();
@@ -88,7 +99,40 @@ function ManualCreation({ currentStep, setCurrentStep, rfqId, ...rest }) {
 					<img src={iconUrl.loading} alt="loading.." className={styles.cogo_loader} />
 				</div>
 			) : (
-				<div className={styles.body} />
+				<div className={styles.body}>
+					{(draftFormData?.serviceType || ['fcl_freight']).map(
+						(serviceItem, idx) => (
+							<div key={`${serviceItem}_search_form`}>
+								<SearchForm
+									formProps={formProps}
+									fieldProps={fieldProps}
+									controls={controls}
+									idx={idx}
+									serviceItem={serviceItem}
+									createRfqDraft={createRfqDraft}
+									draftFormData={draftFormData}
+									setDraftFormData={setDraftFormData}
+									originDetails={originDetails}
+									editForm={editForm}
+									showForm={showForm}
+									setShowForm={setShowForm}
+									setEditForm={setEditForm}
+									setOriginDetails={setOriginDetails}
+									destinationDetails={destinationDetails}
+									setDestinationDetails={setDestinationDetails}
+									shippingLinesDetails={shippingLinesDetails}
+									setShippingLinesDetails={setShippingLinesDetails}
+									loading={searchLoading || createLoading}
+									updateLoading={updateLoading}
+									updateRfqDraft={updateRfqDraft}
+									setServices={setServices}
+									services={services}
+									totalDraftsCount={totalDraftsCount}
+								/>
+							</div>
+						),
+					)}
+				</div>
 			)}
 		</div>
 	);

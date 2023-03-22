@@ -9,46 +9,7 @@ const airControls = [
 		type      : 'fieldArray',
 		name      : 'search_rates',
 		addButton : 'Containers',
-		value     : [
-			{
-				origin_airport_id      : '',
-				destination_airport_id : '',
-				commodity_type         : 'general',
-				commodity_subtype      : 'all',
-				// cargo_ready_date       : addDays(new Date(), 1),
-				payment_type           : 'prepaid',
-				inco_term              : 'cif',
-				calculate_by           : 'total',
-				remarks                : [
-					{
-						preferred_air_lines : [],
-						excluded_air_lines  : [],
-						price               : { currency: 'INR', price: '' },
-					},
-				],
-				containers: [
-					{
-						packing_type   : 'pallet',
-						packages_count : '1',
-						volume         : '1',
-						package_weight : '1',
-						handling_type  : 'stackable',
-					},
-				],
-				dimensions: [
-					{
-						packing_type   : 'pallet',
-						packages_count : '1',
-						length         : '100',
-						height         : '100',
-						width          : '100',
-						package_weight : '1',
-						handling_type  : 'stackable',
-					},
-				],
-			},
-		],
-		controls: [
+		controls  : [
 			{
 				inlineLabel       : 'Origin',
 				name              : 'origin_airport_id',
@@ -86,13 +47,13 @@ const airControls = [
 				name         : 'cargo_ready_date',
 				placeholder  : 'Select date',
 				type         : 'datepicker',
-				span         : 3,
 				showOptional : false,
 				minDate      : new Date(),
 				rules        : {
 					required: 'Cargo Ready Date is required',
 				},
-				style: { height: '36px' },
+				style : { height: '36px' },
+				span  : 3,
 			},
 			{
 				name        : 'inco_term',
@@ -121,8 +82,8 @@ const airControls = [
 				inlineLabel : 'Commodity Subtype',
 				type        : 'select',
 				placeholder : 'Select',
-				span        : 2.25,
 				rules       : { required: 'Commodity Sub Type is required' },
+				span        : 2.25,
 			},
 			{
 				name        : 'payment_type',
@@ -151,8 +112,9 @@ const airControls = [
 					{ label: 'By Total weight/volume', value: 'total' },
 					{ label: 'By Package Details', value: 'unit' },
 				],
-				rules : { required: 'Required' },
-				span  : 12,
+				radioGroup : true,
+				rules      : { required: 'Required' },
+				span       : 12,
 			},
 			{
 				label     : 'Packages',

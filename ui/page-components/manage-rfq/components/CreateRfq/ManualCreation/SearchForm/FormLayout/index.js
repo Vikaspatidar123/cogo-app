@@ -1,11 +1,15 @@
+import { Toast, Button } from '@cogoport/components';
+import { IcMPlus } from '@cogoport/icons-react';
 import { useState, useEffect } from 'react';
 
 import DraftEditLayout from './DraftEditLayout';
+import PortPairLayout from './PortPairLayout';
 import styles from './styles.module.css';
 
 function FormLayout(props) {
 	const {
 		fields,
+		control,
 		serviceType,
 		formState: { errors },
 		draftFormData,
@@ -15,6 +19,7 @@ function FormLayout(props) {
 		reset,
 		setValues = () => {},
 	} = props;
+
 	const draftLength = (draftFormData?.formData?.[serviceType]?.data || [])
 		.length;
 
@@ -43,18 +48,56 @@ function FormLayout(props) {
 								<DraftEditLayout {...props} index={index} item={item} />
 							</div>
 						) : (
-							<DraftSeachLayout
-								{...props}
-								index={index}
-								item={item}
-								draftLength={draftLength}
-								serviceType={serviceType}
-								setValues={setValues}
-							/>
+
+							null
 						)
 					),
 				)}
 			</div>
+			{draftLength === 0 || showForm === serviceType ? (
+				<div
+					className={styles.form}
+					key={`form_${count}_${draftLength}`}
+				>
+					<div className={styles.header}>
+						<div className={styles.title}>
+							Port Pair
+							{' '}
+							{draftLength + 1}
+						</div>
+					</div>
+					<PortPairLayout
+						{...props}
+						{...fields[0]}
+						control={control}
+						draftLength={draftLength}
+						error={errors?.search_rates}
+						mode={serviceType}
+					/>
+				</div>
+			) : (
+				<div className={styles.button_box}>
+					<div>
+						<Button
+							themeType="secondary"
+							onClick={() => {
+								if (!showForm && !editForm) {
+									reset();
+									setShowForm(serviceType);
+								} else if (!editForm) {
+									Toast.error('save all forms to open new form');
+								} else {
+									Toast.error('save edited form to open new form');
+								}
+							}}
+						>
+							Add New Port Pair
+							{' '}
+							<IcMPlus className={styles.plus_icon} />
+						</Button>
+					</div>
+				</div>
+			)}
 		</div>
 	);
 }

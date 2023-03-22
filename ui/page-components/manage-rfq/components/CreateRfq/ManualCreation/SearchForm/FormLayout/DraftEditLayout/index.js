@@ -1,3 +1,5 @@
+import PortPairLayout from '../PortPairLayout';
+
 import { useForm } from '@/packages/forms';
 import controls from '@/ui/page-components/manage-rfq/configurations/SearchFormControls';
 
@@ -45,7 +47,7 @@ function DraftEditLayout(props) {
 			<PortPairLayout
 				{...props}
 				{...formProps}
-				{...fields.search_rates}
+				{...control.search_rates}
 				formType="editform"
 				editFormData={item}
 				editIndex={index}

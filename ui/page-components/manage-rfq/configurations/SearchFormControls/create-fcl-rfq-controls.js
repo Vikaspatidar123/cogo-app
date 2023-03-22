@@ -8,30 +8,7 @@ const fclControls = [
 		type      : 'fieldArray',
 		name      : 'search_rates',
 		addButton : 'Containers',
-		value     : [
-			{
-				origin_port_id      : '',
-				destination_port_id : '',
-				inco_term           : 'cif',
-				containers          : [
-					{
-						container_type             : 'standard',
-						container_size             : '20',
-						containers_count           : '1',
-						commodity                  : 'general',
-						cargo_weight_per_container : '18',
-					},
-				],
-				remarks: [
-					{
-						preferred_shipping_lines : [],
-						excluded_shipping_lines  : [],
-						price                    : { currency: 'INR', price: '' },
-					},
-				],
-			},
-		],
-		controls: [
+		controls  : [
 			{
 				inlineLabel       : 'Origin',
 				name              : 'origin_port_id',
@@ -43,12 +20,12 @@ const fclControls = [
 					filters  : { type: ['seaport', 'city'] },
 					includes : { continent_id: true },
 				},
-				grouped        : ['city', 'country'],
-				type           : 'location-select',
-				optionsListKey : 'locations',
-				showOptional   : false,
-				rules          : { required: 'Origin Port is required' },
-				span           : 3.9,
+				grouped      : ['city', 'country'],
+				type         : 'async_select',
+				asyncKey     : 'locations',
+				showOptional : false,
+				rules        : { required: 'Origin Port is required' },
+				span         : 3.9,
 			},
 			{
 				inlineLabel       : 'Destination',
@@ -61,12 +38,12 @@ const fclControls = [
 					filters  : { type: ['seaport', 'city'] },
 					includes : { continent_id: true },
 				},
-				grouped        : ['city', 'country'],
-				type           : 'location-select',
-				optionsListKey : 'locations',
-				showOptional   : false,
-				rules          : { required: 'Destination Port is required' },
-				span           : 3.7,
+				grouped      : ['city', 'country'],
+				type         : 'async_select',
+				asyncKey     : 'locations',
+				showOptional : false,
+				rules        : { required: 'Destination Port is required' },
+				span         : 3.7,
 			},
 			{
 				name        : 'inco_term',
@@ -207,7 +184,7 @@ const fclControls = [
 						name        : 'price',
 						inlineLabel : 'Indicative Price',
 						placeholder : 'Price',
-						type        : 'price-select',
+						type        : 'price_select',
 						span        : 3,
 						rules       : {
 							validate: (value) => ((value.price === 0 ? 0 : value.price || 1) <= 0

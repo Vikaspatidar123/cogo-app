@@ -8,33 +8,7 @@ const lclControls = [
 		type      : 'fieldArray',
 		name      : 'search_rates',
 		addButton : 'Containers',
-		value     : [
-			{
-				origin_port_id      : '',
-				destination_port_id : '',
-				commodity           : 'general',
-				inco_term           : 'cif',
-				calculate_by        : 'total',
-				remarks             : [
-					{
-						preferred_shipping_lines : [],
-						excluded_shipping_lines  : [],
-						price                    : { currency: 'INR', price: '' },
-					},
-				],
-				containers : [{ packages_count: '1', weight: '1', volume: '1' }],
-				dimensions : [
-					{
-						packages_count : '1',
-						weight         : '1',
-						length         : '100',
-						width          : '100',
-						height         : '100',
-					},
-				],
-			},
-		],
-		controls: [
+		controls  : [
 			{
 				inlineLabel       : 'Origin',
 				name              : 'origin_port_id',

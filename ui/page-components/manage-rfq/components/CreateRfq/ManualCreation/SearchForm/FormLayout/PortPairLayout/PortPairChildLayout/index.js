@@ -2,13 +2,15 @@ import { Toast } from '@cogoport/components';
 import { IcMPortArrow } from '@cogoport/icons-react';
 import { useState, useEffect, useMemo } from 'react';
 
-import AdditionalServices from './AdditionalServices';
+// import AdditionalServices from './AdditionalServices';
 import BodyDetails from './BodyDetails';
 import styles from './styles.module.css';
 
+import Item from '@/ui/page-components/manage-rfq/common/Layout/Item';
 import INCOTERM_OPTIONS from '@/ui/page-components/manage-rfq/configurations/SearchFormControls/inco-terms';
 import getServiceslist from '@/ui/page-components/manage-rfq/helpers/getServiceslist';
 import getCommoditySubType from '@/ui/page-components/manage-rfq/utils/getCommoditySubType';
+import getwidth from '@/ui/page-components/manage-rfq/utils/getWidth';
 
 function PortPairChildLayout(props) {
 	const {
@@ -33,6 +35,7 @@ function PortPairChildLayout(props) {
 		handleIndex,
 		draftFormData,
 	} = props;
+	console.log(props, 'props');
 
 	const [count, setCount] = useState(1);
 	const [showServices, setShowServices] = useState(false);
@@ -186,10 +189,12 @@ function PortPairChildLayout(props) {
 	} else {
 		data = controls;
 	}
+	console.log(data, 'data');
 
 	return (
 		<div className={styles.container}>
 			<div className={styles.row} key={`${count}_render`}>
+
 				{([...data] || []).map((controlItem) => {
 					const schedules = `${name}.${index}.${controlItem.name}`;
 					const { span = 6, type } = controlItem;
@@ -228,15 +233,13 @@ function PortPairChildLayout(props) {
 						|| controlItem.name === 'origin_airport_id'
 					) {
 						return (
-							<StyledCol
-								xs={12}
-								md={span || 12}
-								lg={span || 12}
-								xl={span || 12}
+							<div
+								className={styles.col}
+								style={{ width: getwidth(span) }}
 								key={schedules}
 							>
 								<div className={styles.row_container}>
-									<Section type="origin">
+									<div className={styles.section} type="origin">
 										<Item
 											{...controlItem}
 											id={schedules}
@@ -254,10 +257,10 @@ function PortPairChildLayout(props) {
 												);
 											}}
 										/>
-									</Section>
-									<IcMPortArrow className="icon-to-from" />
+									</div>
+									<IcMPortArrow className={styles.icon_to_from} />
 								</div>
-							</StyledCol>
+							</div>
 						);
 					}
 
@@ -266,15 +269,13 @@ function PortPairChildLayout(props) {
 						|| controlItem.name === 'destination_airport_id'
 					) {
 						return (
-							<StyledCol
-								xs={12}
-								md={span || 12}
-								lg={span || 12}
-								xl={span || 12}
+							<div
+								className={styles.col}
+								style={{ width: getwidth(span) }}
 								key={schedules}
 							>
 								<div className={styles.row_container}>
-									<Section>
+									<div className={styles.section}>
 										<Item
 											{...controlItem}
 											id={schedules}
@@ -292,20 +293,18 @@ function PortPairChildLayout(props) {
 												);
 											}}
 										/>
-									</Section>
+									</div>
 								</div>
-							</StyledCol>
+							</div>
 						);
 					}
 					if (controlItem.name === 'calculate_by') {
 						return (
-							<StyledCol
-								xs={12}
-								md={span || 12}
-								lg={span || 12}
-								xl={span || 12}
+							<div
+								className={styles.col}
+								style={{ width: getwidth(span) }}
 								key={schedules}
-								radioType={controlItem.type === 'radio'}
+								// radioType={controlItem.type === 'radio'}
 							>
 								<Item
 									{...controlItem}
@@ -319,16 +318,14 @@ function PortPairChildLayout(props) {
 										handleCalculateBy(val);
 									}}
 								/>
-							</StyledCol>
+							</div>
 						);
 					}
 					if (controlItem.name === 'commodity_type') {
 						return (
-							<StyledCol
-								xs={12}
-								md={span || 12}
-								lg={span || 12}
-								xl={span || 12}
+							<div
+								className={styles.col}
+								style={{ width: getwidth(span) }}
 								key={schedules}
 							>
 								<Item
@@ -343,19 +340,21 @@ function PortPairChildLayout(props) {
 										setCount((prev) => prev + 1);
 									}}
 								/>
-							</StyledCol>
+							</div>
 						);
 					}
 					if (controlItem.name === 'additional_services') {
 						return (
-							<StyledCol
-								xs={12}
-								md={span || 12}
-								lg={span || 12}
-								xl={span || 12}
+							<div
+								className={styles.col}
+								// xs={12}
+								// md={span || 12}
+								// lg={span || 12}
+								// xl={span || 12}
+								style={{ width: getwidth(span) }}
 								key={schedules}
 							>
-								<AdditionalServices
+								{/* <AdditionalServices
 									location={location}
 									mode={mode}
 									services={services}
@@ -370,8 +369,8 @@ function PortPairChildLayout(props) {
 										formValues?.additional_services || {}
 									}
 									index={index}
-								/>
-							</StyledCol>
+								/> */}
+							</div>
 						);
 					}
 					if (
@@ -379,15 +378,17 @@ function PortPairChildLayout(props) {
 						|| controlItem.name === 'inco_term'
 					) {
 						return (
-							<StyledCol
-								xs={12}
-								md={span || 12}
-								lg={span || 12}
-								xl={span || 12}
+							<div
+								className={styles.col}
+								// xs={12}
+								// md={span || 12}
+								// lg={span || 12}
+								// xl={span || 12}
+								style={{ width: getwidth(span) }}
 								key={schedules}
-								incoMenuSize={
-									mode === 'fcl_freight' && controlItem.name === 'inco_term'
-								}
+								// incoMenuSize={
+								// 	mode === 'fcl_freight' && controlItem.name === 'inco_term'
+								// }
 							>
 								<Item
 									{...controlItem}
@@ -403,16 +404,18 @@ function PortPairChildLayout(props) {
 											: DEFAULT_OPTIONS
 									}
 								/>
-							</StyledCol>
+							</div>
 						);
 					}
 
 					return (
-						<StyledCol
-							xs={12}
-							md={span || 12}
-							lg={span || 12}
-							xl={span || 12}
+						<div
+							className={styles.col}
+							// xs={12}
+							// md={span || 12}
+							// lg={span || 12}
+							// xl={span || 12}
+							style={{ width: getwidth(span) }}
 							key={schedules}
 						>
 							<Item
@@ -425,7 +428,7 @@ function PortPairChildLayout(props) {
 								value={field[controlItem.name]}
 								error={error?.[controlItem.name]}
 							/>
-						</StyledCol>
+						</div>
 					);
 				})}
 			</div>

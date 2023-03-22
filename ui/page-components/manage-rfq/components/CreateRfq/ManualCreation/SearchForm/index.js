@@ -12,6 +12,7 @@ function SearchForm(props) {
 		setDestinationDetails = () => {},
 		setOriginDetails = () => {},
 		formProps,
+		fieldProps,
 		controls,
 		destinationDetails,
 		originDetails,
@@ -59,6 +60,7 @@ function SearchForm(props) {
 		}
 		return newControlOptions;
 	};
+
 	return (
 		<div className={styles.container}>
 			<div className={styles.segmented_container}>
@@ -77,6 +79,7 @@ function SearchForm(props) {
 			<FormLayout
 				{...props}
 				{...formProps[serviceType]}
+				fields={fieldProps[serviceType]}
 				serviceType={serviceType}
 				controls={controls(serviceType)}
 			/>

@@ -1,4 +1,4 @@
-const useCalculator = (dimensions, serviceType = 'lcl_freight') => {
+const calculator = (dimensions, serviceType = 'lcl_freight') => {
 	let packagesCount = 0;
 	let totalWeight = 0;
 	let totalVolume = 0;
@@ -39,4 +39,4 @@ const useCalculator = (dimensions, serviceType = 'lcl_freight') => {
 	};
 };
 
-export default useCalculator;
+export default calculator;

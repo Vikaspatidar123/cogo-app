@@ -1,0 +1,105 @@
+
+.container {
+	padding: 8px;
+	flex: 1;
+	border-radius: 4px;
+	border: 1px solid #f2f2f2;
+	margin-right: 15px;
+}
+
+.port_pair {
+	display: flex;
+	align-items: center;
+
+	svg {
+		width: 16px;
+		height: 16px;
+		margin: 0 8px;
+		fill: #393f70;
+	}
+
+	@media (max-width: 768px) {
+		width: calc(100% - 30px);
+		font-size: 12px;
+	}
+}
+
+.service {
+	padding: 0 5px;
+	color: #4f4f4f;
+}
+
+.header {
+	display: flex;
+	align-items: center;
+	margin-bottom: 12px;
+}
+
+.location {
+	display: flex;
+	flex-direction: column;
+	width: calc(50% - 16px);
+}
+
+.name {
+	font-size: 13px;
+	display: flex;
+	align-items: center;
+	font-weight: 700;
+	cursor: pointer;
+}
+
+.code {
+	color: #393f70;
+	font-size: 13px;
+	margin-left: 2px;
+}
+
+.country {
+	font-size: 13px;
+	color: #393f70;
+}
+
+.port {
+	max-width: calc(100% - 60px);
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+	color: #393f70;
+
+	font-weight: 500;
+	font-size: 13px;
+	color: #393f70;
+}
+
+.container_left {
+	color: #697989;
+	font-weight: 500;
+	font-size: 12px;
+}
+
+.actions {
+	margin-top: 10px;
+	display: flex;
+	justify-content: space-between;
+
+	button.secondary.sm {
+		color: #356efd;
+	}
+}
+
+.service_icon {
+	display: flex;
+	padding: 4px;
+	border-radius: 100%;
+	border: 0.5px solid #e0e0e0;
+}
+
+.tag {
+	color: #221f20;
+	font-size: 12px;
+	border-radius: 4px;
+	padding: 2px 8px;
+	margin: 0 3px;
+	background: #fff7df;
+}

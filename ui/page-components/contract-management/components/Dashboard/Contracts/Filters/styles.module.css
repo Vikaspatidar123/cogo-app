@@ -1,0 +1,36 @@
+.container {
+	display: flex;
+}
+
+.filter_container {
+	width: 300px;
+	padding: 10px;
+}
+
+.filter_box  {
+	margin: 10px 0;
+}
+
+.label {
+	color: #5c6186;
+	font-weight: 500;
+}
+
+.footer {
+	display: flex;
+	justify-content: flex-end;
+}
+
+.search_filter {
+	width: 250px;
+}
+
+.active_dot {
+	height: 6px;
+	width: 6px;
+	background-color: blue;
+	border-radius: 50%;
+	position: absolute;
+	right: 11px;
+	top: 8px;
+}

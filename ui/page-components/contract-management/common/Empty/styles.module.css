@@ -1,0 +1,33 @@
+.container {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 60px 30px 36px 30px;
+	box-shadow: 0px 2px 3px rgb(16 24 40 / 10%), -2px -2px 3px rgb(16 24 40 / 10%);
+	border-radius: 4px;
+}
+
+.heading {
+	font-weight: 500;
+	font-size: 32px;
+}
+
+.content {
+	font-size: 20px;
+}
+
+.ic_container {
+	min-width: 25%;
+	max-width: 17%;
+
+	@media (max-width: 768px) {
+		display: none;
+	}
+}
+
+.wrapper {
+	max-width: 45%;
+	@media (max-width: 768px) {
+		max-width: 100%;
+	}
+}

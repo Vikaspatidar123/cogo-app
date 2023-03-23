@@ -65,7 +65,7 @@ function asyncFieldsHsCodeCountries() {
 	};
 }
 
-function asyncFieldShippingLine() {
+function asyncFieldsShippingLine() {
 	return {
 		labelKey    : 'short_name',
 		valueKey    : 'id',
@@ -80,7 +80,7 @@ function asyncFieldShippingLine() {
 	};
 }
 
-function asyncFieldAirLine() {
+function asyncFieldsAirLine() {
 	return {
 		labelKey    : 'label',
 		valueKey    : 'id',
@@ -100,6 +100,6 @@ export {
 	asyncFieldsPartner,
 	asyncFieldsPartnerRoles,
 	asyncFieldsHsCodeCountries,
-	asyncFieldShippingLine,
-	asyncFieldAirLine,
+	asyncFieldsShippingLine,
+	asyncFieldsAirLine,
 };

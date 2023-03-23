@@ -34,7 +34,6 @@ function BodyDetails(props) {
 		setShippingLinesDetails,
 	} = props;
 
-	console.log(props, 'props');
 	const locationName = `${container_name}.${container_index}.${name}`;
 	const checkFieldArray = watchSearchRates?.[container_index]?.[name] || [];
 	const { fields, remove, append } = useFieldArray({

@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 
 import Services from './Services';
 
+import getFormFields from '@/ui/page-components/manage-rfq/utils/getFormFields';
 import mutateMainFields from '@/ui/page-components/manage-rfq/utils/mutate-fields';
 
 function AdvancedOptions(props) {
@@ -16,6 +17,7 @@ function AdvancedOptions(props) {
 		errors = {},
 		showElements,
 		formProps,
+		control = {},
 		handleIndex,
 		expandServices,
 		showServices = false,
@@ -24,7 +26,8 @@ function AdvancedOptions(props) {
 	} = props;
 
 	const incoKey = Object.keys(formValues).find((key) => key.includes('inco_term'));
-	const { fields } = formProps;
+
+	const fields = getFormFields(advancedControls);
 
 	const mainFields = mutateMainFields({
 		fields,
@@ -49,6 +52,7 @@ function AdvancedOptions(props) {
 			location={location}
 			advancedControls={advancedControls}
 			fields={mainFields}
+			control={control}
 			showElements={showElements}
 			formValues={formValues}
 			errors={errors}

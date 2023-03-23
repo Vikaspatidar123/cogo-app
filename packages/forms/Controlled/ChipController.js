@@ -2,9 +2,9 @@ import { Chips } from '@cogoport/components';
 import React from 'react';
 import { Controller } from 'react-hook-form';
 
-function PillsController(props) {
+function ChipsController(props) {
 	const {
-		name, control, rules, ...rest
+		name, control, rules, options, ...rest
 	} = props;
 
 	return (
@@ -17,6 +17,7 @@ function PillsController(props) {
 				<Chips
 					{...rest}
 					key={rest.id}
+					items={options}
 					onItemChange={onChange}
 					selectedItems={value}
 					onBlur={onBlur}
@@ -26,4 +27,4 @@ function PillsController(props) {
 		/>
 	);
 }
-export default PillsController;
+export default ChipsController;

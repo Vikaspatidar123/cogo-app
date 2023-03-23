@@ -48,7 +48,6 @@ function FormLayout(props) {
 								<DraftEditLayout {...props} index={index} item={item} />
 							</div>
 						) : (
-
 							null
 						)
 					),

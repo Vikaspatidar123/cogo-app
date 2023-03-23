@@ -2,7 +2,7 @@ import { Toast } from '@cogoport/components';
 import { IcMPortArrow } from '@cogoport/icons-react';
 import { useState, useEffect, useMemo } from 'react';
 
-// import AdditionalServices from './AdditionalServices';
+import AdditionalServices from './AdditionalServices';
 import BodyDetails from './BodyDetails';
 import styles from './styles.module.css';
 
@@ -35,7 +35,6 @@ function PortPairChildLayout(props) {
 		handleIndex,
 		draftFormData,
 	} = props;
-	console.log(props, 'props');
 
 	const [count, setCount] = useState(1);
 	const [showServices, setShowServices] = useState(false);
@@ -189,7 +188,6 @@ function PortPairChildLayout(props) {
 	} else {
 		data = controls;
 	}
-	console.log(data, 'data');
 
 	return (
 		<div className={styles.container}>
@@ -347,14 +345,10 @@ function PortPairChildLayout(props) {
 						return (
 							<div
 								className={styles.col}
-								// xs={12}
-								// md={span || 12}
-								// lg={span || 12}
-								// xl={span || 12}
 								style={{ width: getwidth(span) }}
 								key={schedules}
 							>
-								{/* <AdditionalServices
+								<AdditionalServices
 									location={location}
 									mode={mode}
 									services={services}
@@ -369,7 +363,7 @@ function PortPairChildLayout(props) {
 										formValues?.additional_services || {}
 									}
 									index={index}
-								/> */}
+								/>
 							</div>
 						);
 					}
@@ -380,10 +374,6 @@ function PortPairChildLayout(props) {
 						return (
 							<div
 								className={styles.col}
-								// xs={12}
-								// md={span || 12}
-								// lg={span || 12}
-								// xl={span || 12}
 								style={{ width: getwidth(span) }}
 								key={schedules}
 								// incoMenuSize={
@@ -411,10 +401,6 @@ function PortPairChildLayout(props) {
 					return (
 						<div
 							className={styles.col}
-							// xs={12}
-							// md={span || 12}
-							// lg={span || 12}
-							// xl={span || 12}
 							style={{ width: getwidth(span) }}
 							key={schedules}
 						>

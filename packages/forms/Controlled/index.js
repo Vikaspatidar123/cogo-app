@@ -2,6 +2,7 @@ import { MultiselectController } from '..';
 
 import AsyncSelectController from './AsyncSelectController';
 import CheckboxController from './CheckboxController';
+import ChipsController from './ChipController';
 import DatepickerController from './DatepickerController';
 import InputController from './InputController';
 import MobileNumberSelectController from './MobileNumberSelectController';
@@ -24,7 +25,7 @@ const MAPPING = {
 	async_select  : AsyncSelectController,
 	radio         : RadioController,
 	price_select  : PriceController,
-	// chips         : ChipController,
+	chips         : ChipsController,
 };
 
 const getField = (type = 'text') => {

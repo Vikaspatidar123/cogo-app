@@ -1,6 +1,6 @@
 import { Select } from '@cogoport/components';
 
-import options from '../../constants/countries';
+import options from '../../constants/currencies';
 
 function SelectCurrency({ value, onChange, width = '30%', ...rest }) {
 	const handleChange = (selectedVal, object) => {

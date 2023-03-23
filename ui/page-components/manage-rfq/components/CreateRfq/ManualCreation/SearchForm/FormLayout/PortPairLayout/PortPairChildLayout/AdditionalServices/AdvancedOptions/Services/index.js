@@ -26,21 +26,24 @@ const placeServices = {
 	],
 };
 
-function Services({
-	incoTerm = '',
-	mode = '',
-	services = {},
-	setServices = () => {},
-	location = {},
-	advancedControls = [],
-	fields = {},
-	showElements,
-	formValues,
-	handleIndex,
-	errors = {},
-	setExpandServices = () => {},
-	expandServices,
-}) {
+function Services(props) {
+	const {
+		incoTerm = '',
+		mode = '',
+		services = {},
+		control,
+		setServices = () => {},
+		location = {},
+		advancedControls = [],
+		fields = {},
+		showElements,
+		formValues,
+		handleIndex,
+		errors = {},
+		setExpandServices = () => {},
+		expandServices,
+	} = props;
+
 	const [checkErrors, setCheckErrors] = useState({});
 	const mapping = getConfiguration('services', mode);
 	const details = getConfiguration('service-details', mode);
@@ -91,7 +94,8 @@ function Services({
 		});
 		return isIncluded;
 	};
-
+	console.log(services, 'services');
+	console.log(mode, 'mode', servicesList);
 	const renderServices = (place) => {
 		const placeService = placeServices[place];
 
@@ -99,11 +103,12 @@ function Services({
 			<>
 				<Form
 					controls={advancedControls.filter(
-						(control) => (control?.condition?.services?.length > 1
-								|| !control?.condition?.services)
-							&& !freightControls.includes(control.name)
-							&& isIncludedInPlace(control?.condition?.services, placeService),
+						(advControl) => (advControl?.condition?.services?.length > 1
+								|| !advControl?.condition?.services)
+							&& !freightControls.includes(advControl.name)
+							&& isIncludedInPlace(advControl?.condition?.services, placeService),
 					)}
+					control={control}
 					fields={fields}
 					showElements={showElements}
 					formValues={formValues}
@@ -124,11 +129,12 @@ function Services({
 
 						<Form
 							controls={advancedControls.filter(
-								(control) => control?.condition?.services?.length === 1
-										&& control?.condition?.services.includes(service)
-										&& !freightControls.includes(control.name),
+								(advControl) => advControl?.condition?.services?.length === 1
+										&& advControl?.condition?.services.includes(service)
+										&& !freightControls.includes(advControl.name),
 							)}
 							fields={fields}
+							control={control}
 							showElements={showElements}
 							formValues={formValues}
 							errors={errors}

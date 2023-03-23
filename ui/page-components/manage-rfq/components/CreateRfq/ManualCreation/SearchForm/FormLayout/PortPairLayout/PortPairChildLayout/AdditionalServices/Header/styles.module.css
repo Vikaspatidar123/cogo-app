@@ -19,3 +19,7 @@
 	display: flex;
 	align-items: center;
 }
+
+.btn_cancel {
+	margin-right: 12px;
+}

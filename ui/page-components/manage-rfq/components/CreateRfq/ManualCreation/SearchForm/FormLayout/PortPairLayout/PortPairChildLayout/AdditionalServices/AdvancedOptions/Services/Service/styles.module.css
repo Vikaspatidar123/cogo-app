@@ -45,6 +45,7 @@
 
 .controls_container {
 	display: flex;
+	align-items: center;
 }
 
 .error_icon {

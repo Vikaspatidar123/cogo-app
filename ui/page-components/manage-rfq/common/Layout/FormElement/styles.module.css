@@ -5,3 +5,7 @@
 		display: unset;
 	}
 }
+
+.col {
+	width: 100%;
+}

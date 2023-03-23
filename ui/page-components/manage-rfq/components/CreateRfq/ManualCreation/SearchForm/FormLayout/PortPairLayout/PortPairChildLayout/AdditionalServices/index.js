@@ -1,6 +1,6 @@
 import { Toast, Popover } from '@cogoport/components';
 import { isEmpty } from '@cogoport/utils';
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 
 import AdvancedOptions from './AdvancedOptions';
 import Header from './Header';
@@ -44,7 +44,9 @@ function AdditionalServices(props) {
 		watch,
 		handleSubmit,
 		formState: { errors },
+		control,
 	} = formProps;
+
 	const formValues = { ...mainValues, ...watch() };
 
 	const showElements = useMemo(
@@ -58,6 +60,14 @@ function AdditionalServices(props) {
 		}),
 		[JSON.stringify(formValues), JSON.stringify(services?.[mode]?.[handleIndex] || {})],
 	);
+
+	useEffect(() => {
+		if (showServices) {
+			setCurrentServices({ ...services });
+			setExpandServices({});
+			setExpandServices(services?.[mode]?.[handleIndex]);
+		}
+	}, [showServices]);
 
 	const handleApply = () => {
 		if (
@@ -115,6 +125,7 @@ function AdditionalServices(props) {
 				advancedControls={advancedControls}
 				showElements={showElements}
 				formValues={formValues}
+				control={control}
 				errors={errors}
 				showServices={showServices}
 				formProps={formProps}

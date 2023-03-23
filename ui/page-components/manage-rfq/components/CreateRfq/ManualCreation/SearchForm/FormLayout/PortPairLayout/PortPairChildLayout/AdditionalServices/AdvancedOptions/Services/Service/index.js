@@ -38,7 +38,7 @@ function Service({
 				{(checkErrors?.[service] || false) && <IcCError className={styles.error_icon} />}
 			</div>
 			<div className={styles.controls_container}>
-				<Checkbox value={selected} onClick={handleChange} />
+				<Checkbox value={selected} onChange={handleChange} />
 				<IcMArrowRotateUp
 					className={cl`${styles.arrow_up} ${expandServices?.[service] && styles.rotate}`}
 					onClick={() => {

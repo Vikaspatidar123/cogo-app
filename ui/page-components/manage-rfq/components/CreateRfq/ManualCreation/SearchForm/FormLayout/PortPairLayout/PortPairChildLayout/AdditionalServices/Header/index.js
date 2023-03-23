@@ -11,7 +11,8 @@ function Header({ onClose = () => {}, onSubmit = () => {} }) {
 				<Button
 					ghost
 					onClick={onClose}
-					className="secondary sm"
+					themeType="secondary"
+					className={styles.btn_cancel}
 					id="search_form_cargo_details_cancel_button"
 				>
 					Cancel
@@ -19,7 +20,6 @@ function Header({ onClose = () => {}, onSubmit = () => {} }) {
 
 				<Button
 					onClick={onSubmit}
-					className="secondary sm"
 					id="search_form_cargo_details_apply_button"
 				>
 					Apply

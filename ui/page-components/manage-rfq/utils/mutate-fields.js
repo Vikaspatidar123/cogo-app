@@ -1,5 +1,6 @@
-const mutateFields = ({ fields, mode, location, services, data }) => {
+const mutateFields = ({ fields = {}, mode, location, services, data }) => {
 	const newFields = fields;
+
 	Object.keys(newFields).forEach((key) => {
 		if (newFields[key].controls) {
 			newFields[key].controls = newFields[key].controls.map((item) => {

@@ -37,7 +37,13 @@ function PillInput(props, ref) {
 	};
 	return (
 		<div ref={ref}>
-			<div className={styles.label}>Additional Services (optional)</div>
+			<p className={styles.label}>
+				Additional Services
+				<div className={styles.subtext}>
+
+					(optional)
+				</div>
+			</p>
 			<div
 				className={styles.container}
 				role="presentation"
@@ -58,12 +64,12 @@ function PillInput(props, ref) {
 							<div className={styles.placeholder}>Select Options</div>
 						)}
 
-						<Input
+						{/* <Input
 							{...rest}
 							onFocus={onFocus}
 							onBlur={onFocus}
 							id="search_form_cargo_details_input"
-						/>
+						/> */}
 					</div>
 
 					<div className={styles.util_div}>

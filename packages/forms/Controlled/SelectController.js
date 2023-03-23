@@ -1,6 +1,7 @@
-import { Select } from '@cogoport/components';
 import React from 'react';
 import { Controller } from 'react-hook-form';
+
+import Select from '../Business/Select';
 
 function SelectController(props) {
 	const {

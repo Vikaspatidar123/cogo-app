@@ -5,6 +5,8 @@ import SelectCountryCode from '../SelectCountryCode';
 
 import styles from './styles.module.css';
 
+import ModalPage from '@/ui/page-components/dashboard/components/KYCPage/ModalPage';
+
 function SelectMobileNumber({
 	value,
 	onChange,
@@ -109,6 +111,10 @@ function SelectMobileNumber({
 					onChange={handleNumberChange}
 				/>
 			</div>
+			<ModalPage
+				control={control}
+			/>
+
 		</div>
 	);
 }

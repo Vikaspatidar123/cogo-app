@@ -10,3 +10,14 @@
 		width: 100%;
 	}
 }
+.panels{
+	display: flex;
+	@media (max-width: 768px) {
+		flex-direction: column;
+		width: 100%;
+	}
+}
+.actions {
+	margin-bottom: 20px;
+	margin-top: 10px;
+}

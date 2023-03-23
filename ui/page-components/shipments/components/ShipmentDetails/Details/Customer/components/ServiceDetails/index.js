@@ -17,14 +17,15 @@ import { useState, useContext, useEffect } from 'react';
 import { ShipmentDetailContext } from '../../../../common/Context';
 import AddTag from '../AddTag';
 import CancelHeader from '../CancelHeader';
+import Cancellation from '../Cancellation';
+import Tags from '../Tags';
 
 import PortDetails from './PortDetails';
 import styles from './styles.module.css';
 
 import CargoDetails from '@/ui/page-components/shipments/components/CargoDetails';
-import Cancellation from '../Cancellation';
 
-function Details({ servicesForMap = false }) {
+function ServicDetails({ servicesForMap = false }) {
 	const [open, setOpen] = useState(false);
 
 	const [{ shipment_data, primary_service, isGettingShipment, refetch }] = useContext(ShipmentDetailContext);
@@ -38,7 +39,7 @@ function Details({ servicesForMap = false }) {
 			setTags(shipment_data.tags);
 		}
 	}, [shipment_data]);
-
+	console.log(shipment_data, 'shipment_data');
 	return isGettingShipment ? (
 		<Placeholder />
 	) : (
@@ -93,4 +94,4 @@ function Details({ servicesForMap = false }) {
 	);
 }
 
-export default Details;
+export default ServicDetails;

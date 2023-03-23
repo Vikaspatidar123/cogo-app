@@ -3,6 +3,7 @@
 
 import { Placeholder } from '@cogoport/components';
 
+import ServicDetails from '../../../ServiceDetails';
 import BreadCrumbs from '../Breadcrumbs';
 
 // import BreadCrumbs from '../../../Breadcrumbs';
@@ -56,16 +57,16 @@ function MapAndDetails({
 				renderEmpty()
 			)} */}
 
-			<Details servicesForMap={servicesForMap} />
+			<ServicDetails servicesForMap={servicesForMap} />
 
-			<Panels className="actions">
-				<PendingTasks />
+			<div className={`${styles.panels} ${styles.actions}`}>
+				{/* <PendingTasks />
 
 				<QuickActions
 					setQuickAction={setQuickAction}
 					servicesForMap={servicesForMap}
-				/>
-			</Panels>
+				/> */}
+			</div>
 		</div>
 	);
 }

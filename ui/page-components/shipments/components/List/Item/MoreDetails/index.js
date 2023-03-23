@@ -4,16 +4,14 @@
 
 // import { Container, List, Label, Value, Item, Tasks, Dot } from './styles';
 // import format from 'date-fns/format';
-import { format } from 'util';
+import { format } from '@cogoport/utils';
 
 import styles from './styles.module.css';
 
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
+
 function MoreDetails({ data }) {
-	const handleDate = (item) => format({
-		date       : item,
-		dateFormat : 'dd MMM yyyy',
-		formatType : 'date',
-	});
+	const handleDate = (item) => format(item, 'dd MMM yyyy');
 	const list = [
 		{
 			label: 'ETD',

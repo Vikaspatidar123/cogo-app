@@ -15,6 +15,7 @@ import { ShipmentDetailContext } from '../../../../../common/Context';
 import styles from './styles.module.css';
 
 import { useRequest } from '@/packages/request';
+import MapAndDetails from './MapAndDetails';
 
 function TrackerInfomation({
 	currentSubscription,
@@ -152,7 +153,7 @@ function TrackerInfomation({
 				servicesForMap={servicesForMap}
 			/>
 
-			<TimelineNavigate
+			{/* <TimelineNavigate
 				selectedMilestonesList={selectedMilestonesList}
 				allContainers={allContainers}
 				trackerDetails={trackerDetails}
@@ -161,7 +162,7 @@ function TrackerInfomation({
 				preditiveEta={preditiveEta}
 				vesselName={vesselName}
 				servicesForMap={servicesForMap}
-			/>
+			/> */}
 		</div>
 	);
 }

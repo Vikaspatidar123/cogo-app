@@ -2,6 +2,8 @@
 // import React from 'react';
 
 import { Placeholder } from '@cogoport/components';
+import PendingTasks from '../../../PendingTasks';
+import QuickActions from '../../../QuickActions';
 
 import ServicDetails from '../../../ServiceDetails';
 import BreadCrumbs from '../Breadcrumbs';
@@ -60,12 +62,12 @@ function MapAndDetails({
 			<ServicDetails servicesForMap={servicesForMap} />
 
 			<div className={`${styles.panels} ${styles.actions}`}>
-				{/* <PendingTasks />
+				<PendingTasks />
 
 				<QuickActions
 					setQuickAction={setQuickAction}
 					servicesForMap={servicesForMap}
-				/> */}
+				/>
 			</div>
 		</div>
 	);

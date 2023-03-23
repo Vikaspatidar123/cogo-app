@@ -1,5 +1,5 @@
-// import { Tabs, TabPanel } from '@cogoport/front/components';
-// import React, { useEffect } from 'react';
+import { TabPanel, Tabs } from '@cogoport/components';
+import { useEffect } from 'react';
 
 // import SalesInvoice from '../../../../../Invoicing/components/IEInvoicing';
 // import IEPocAndSop from '../../../../../PocSop/IEPocAndSop';
@@ -8,6 +8,9 @@
 
 // import Overview from './Overview';
 // import { Container, Content, InvoiceDiv } from './styles';
+import RelationshipManager from '../RelationshipManager';
+
+import styles from './styles.module.css';
 
 function TabSections({
 	quickAction,
@@ -28,10 +31,10 @@ function TabSections({
 	}, [quickAction]);
 
 	return (
-		<Container id="ie_tabs">
+		<div className={styles.container} id="ie_tabs">
 			<RelationshipManager />
 
-			<Content>
+			<div className={styles.content}>
 				<Tabs activeTab={activeTab} onChange={handleTabChange}>
 					<TabPanel name="services" title="SERVICES">
 						<Overview
@@ -59,8 +62,8 @@ function TabSections({
 						/>
 					</TabPanel>
 				</Tabs>
-			</Content>
-		</Container>
+			</div>
+		</div>
 	);
 }
 

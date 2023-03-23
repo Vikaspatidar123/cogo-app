@@ -21,7 +21,7 @@ function MoreDetails({ data }) {
 				|| data?.state !== 'completed'
 					? handleDate(
 						data?.selected_schedule_departure || data?.schedule_departure,
-					  )
+					)
 					: null,
 		},
 		{

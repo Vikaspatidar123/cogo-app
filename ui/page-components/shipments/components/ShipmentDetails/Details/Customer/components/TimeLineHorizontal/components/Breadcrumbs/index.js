@@ -55,13 +55,21 @@ function BreadCrumbs({ servicesForMap = false }) {
 
 	return (
 		<div className={`${styles.container} ${servicesForMap ? styles.shipment_bread_crumb : ''}`}>
-			<Breadcrumb
+			{/* <Breadcrumb
 				breadCrumbs={breadcrumbs.array}
 				activeColor={breadcrumbs.activeColor}
 				descendentColor={breadcrumbs.descendentColor}
 				style={breadcrumbs.style}
 				onClick={(details) => handleClick(details)}
-			/>
+			/> */}
+			<Breadcrumb>
+				<Breadcrumb.Item
+					label={<a href="/shipments">Shipments</a>}
+					onClick={(details) => handleClick(details)}
+					style={{ color: 'blue' }}
+				/>
+				<Breadcrumb.Item label={`#${shipment_data?.serial_id}`} onClick={(details) => handleClick(details)} />
+			</Breadcrumb>
 			{pinned ? (
 				<IcMPin
 					fill="yellow"

@@ -12,10 +12,10 @@ import { useState, useEffect, useContext } from 'react';
 
 import { ShipmentDetailContext } from '../../../../../common/Context';
 
+import MapAndDetails from './MapAndDetails';
 import styles from './styles.module.css';
 
 import { useRequest } from '@/packages/request';
-import MapAndDetails from './MapAndDetails';
 
 function TrackerInfomation({
 	currentSubscription,
@@ -94,15 +94,9 @@ function TrackerInfomation({
 		}
 	};
 	const [{ loading }, trigger2] = useRequest({
-		url    : `/get_saas_container_subscription?id=${id}`,
+		url    : `get_saas_container_subscription?id=${id}`,
 		method : 'get',
 	}, { manual: true });
-
-	// const containerSubbscription = useRequest(
-	// 	'get',
-	// 	false,
-	// 	'app',
-	// )(`/get_saas_container_subscription?id=${id}`);
 
 	const fetchTrackerDetails = async () => {
 		try {

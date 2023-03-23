@@ -69,8 +69,8 @@ function Footer({ data, viewAs, isBookingDesk = false }) {
 			<div className={styles.item}>
 				{info.map((item) => (item.value ? (
 					<div className={styles.inner_item}>
-						<span className={`${styles.dot} ${styles.item.className || ''}`} />
-						<span className={`${styles.label} ${styles.item.className || ''}`}>
+						<span className={`${styles.dot} ${styles.item?.className || ''}`} />
+						<span className={`${styles.label} ${styles.item?.className || ''}`}>
 							{`${item.labelFront || ''} ${item.value} ${item.label || ''}`}
 						</span>
 					</div>

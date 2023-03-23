@@ -29,7 +29,7 @@ function ServicDetails({ servicesForMap = false }) {
 	const [open, setOpen] = useState(false);
 
 	const [{ shipment_data, primary_service, isGettingShipment, refetch }] = useContext(ShipmentDetailContext);
-
+	console.log(shipment_data, 'shipment_data');
 	const { is_cancellation_requested } = shipment_data || {};
 
 	const [tags, setTags] = useState([]);
@@ -39,7 +39,7 @@ function ServicDetails({ servicesForMap = false }) {
 			setTags(shipment_data.tags);
 		}
 	}, [shipment_data]);
-	console.log(shipment_data, 'shipment_data');
+
 	return isGettingShipment ? (
 		<Placeholder />
 	) : (

@@ -1,4 +1,4 @@
-import { Button } from '@cogoport/components';
+import { Button, cl } from '@cogoport/components';
 import React from 'react';
 
 import styles from './styles.module.css';
@@ -28,13 +28,13 @@ function Header({
 
 			{search_type === 'rfq' ? (
 				<>
-					<Text
-						className={index === 0 ? 'disabled' : null}
+					<div
+						className={cl`${styles.text} ${index === 0 ? styles.disabled : null}`}
 						onClick={index !== 0 ? () => clearPreviousValues() : null}
 					>
 						Clear from previous entry
-					</Text>
-					<Line />
+					</div>
+					<div className={styles.line} />
 				</>
 			) : null}
 		</>

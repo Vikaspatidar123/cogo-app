@@ -6,14 +6,12 @@ import Item from './Item';
 import styles from './styles.module.css';
 
 function FormElement({
-	fields,
 	controls,
 	errors = {},
 	showElements = {},
 	formValues = {},
 	control,
 }) {
-	console.log(controls, 'controls');
 	return (
 		<div className={styles.container}>
 			<div className={styles.row}>
@@ -55,13 +53,12 @@ function FormElement({
 	</div>
         		) : null;
         	}
-
         	return show ? (
 	<div className={styles.col}>
 		<Item
 			key={item.name}
 			name={item.name}
-			{...controls.find((s) => s.name === [item.name])}
+			{...controls.find((s) => s.name === item.name)}
 			formValue={formValues[item.name]}
 			error={errors[item.name]}
 			value={item.value}

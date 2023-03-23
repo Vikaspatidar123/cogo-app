@@ -1,28 +1,25 @@
-
-.container{
-	max-width: 280px;
-	padding: 14px 0;
-	width: 280px;
-	
-
+.container {
+  max-width: 280px;
+  padding: 14px 0;
+  width: 280px;
 }
 
 .mobile {
-	max-width: none;
-	width: 100%;
+  max-width: none;
+  width: 100%;
 }
-.button{
-	font-weight: normal;
-	font-size: 12px;
-	line-height: 14px;
-	text-decoration: underline;
-	color: #333333;
-	outline: none;
-	background: transparent;
-	padding: 0;
-	cursor: pointer;
+.button {
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 14px;
+  text-decoration: underline;
+  color: #333333;
+  outline: none;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
 
-	display: flex;
-	margin-left: auto;
-	border: none;
+  display: flex;
+  margin-left: auto;
+  border: none;
 }

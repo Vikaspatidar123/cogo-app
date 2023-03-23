@@ -299,7 +299,6 @@ function Options({
 				return (
 					<Popover
 						placement="bottom-start"
-						theme="light"
 						interactive
 						render={renderMainControls()}
 						visible={show}

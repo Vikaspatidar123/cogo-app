@@ -1,9 +1,9 @@
-import { Select, Pills } from '@cogoport/components';
 import React, { useEffect, useState } from 'react';
 
-// import SwitchSelect from '../SwitchSelect';
-
-import IncoTerms from '@/ui/commons/constants/inco-terms.json';
+import IncoTerms from '../../constants/inco-terms.json';
+import Chip from '../Chip';
+import Select from '../Select';
+import SwitchSelect from '../SwitchSelect';
 
 function IncoTermSelect({
 	tradeType,
@@ -68,7 +68,7 @@ function IncoTermSelect({
 		/>
 	) : (
 		<SwitchSelect label="Incoterms" switchProps={switchProps}>
-			<Pills
+			<Chip
 				name="inco_term"
 				selectType={selectType}
 				{...rest}

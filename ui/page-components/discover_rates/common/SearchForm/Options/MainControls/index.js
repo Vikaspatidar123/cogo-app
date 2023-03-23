@@ -1,4 +1,4 @@
-import { Button } from '@cogoport/components';
+import { Button, cl } from '@cogoport/components';
 import React, { forwardRef } from 'react';
 
 import advancedServices from '../../../../configurations/search/common/advanced-search-services.json';
@@ -28,10 +28,9 @@ function MainControls(
 	ref,
 ) {
 	const advancedService = advancedServices.includes(mode);
-	console.log(controls, 'controlscontrols', fields);
 	return (
 		<div
-			className={`${styles.container}${styles.search_form_cargo_details_popover}${mobile ? 'mobile ' : ''}`}
+			className={cl`${styles.container}${styles.search_form_cargo_details_popover}${mobile ? 'mobile ' : ''}`}
 			ref={ref}
 			id="search_form_cargo_details_popover"
 		>

@@ -37,7 +37,6 @@ function Child({
 			}}
 		/>
 	);
-
 	return (
 		<div className={`form-fieldArray-${name}-${index}`} key={field.id}>
 			<div className={styles.row}>
@@ -46,7 +45,7 @@ function Child({
         	const { span = 6, watch = true } = controlItem;
         	const show = !(controlItem.name in showElements)
             || showElements[controlItem.name];
-
+					console.log(controlItem.type, 'controlItemcontrolItem');
         	const extraProps = {};
         	if (controlItem.options) {
         		if (Array.isArray(controlItem.options)) {
@@ -80,7 +79,8 @@ function Child({
         		) : null;
         	}
 
-        	return show ? (
+        	{
+        		return show ? (
 	<div className={styles.col} style={{ padding: '0px 6px' }}>
 		<Item
 			{...controlItem}
@@ -96,6 +96,7 @@ function Child({
 		/>
 	</div>
         	) : null;
+        	}
 				})}
 				{showDeleteAlways
         || (index >= noDeleteButtonTill

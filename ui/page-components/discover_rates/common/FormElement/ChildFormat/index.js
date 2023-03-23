@@ -1,4 +1,4 @@
-import { Button } from '@cogoport/components';
+import { Button, cl } from '@cogoport/components';
 import React, { useImperativeHandle, forwardRef } from 'react';
 
 import Child from './child';
@@ -29,7 +29,6 @@ function ChildFormat(
 		control,
 		name,
 	});
-
 	const childEmptyValues = {};
 	controls.forEach((controlItem) => {
 		childEmptyValues[controlItem.name] = controlItem.value || '';
@@ -42,14 +41,14 @@ function ChildFormat(
 	useImperativeHandle(ref, () => ({ handleAppendChild, remove }));
 
 	return (
-		<div className={`form-fieldArray-${name} ${styles.container}`}>
+		<div className={cl`form-fieldArray-${name} ${styles.container}`}>
 			{label && <div className={`${styles.search}${styles.label}`}>{label}</div>}
 
 			{(fields || []).map((field, index) => (
 				<span key={field.id}>
 					{heading ? <div className={styles.heading}>{`${heading} ${index + 1}`}</div> : null}
 
-					{/* <Child
+					<Child
 						{...rest}
 						key={field.id}
 						field={field}
@@ -64,17 +63,17 @@ function ChildFormat(
 						showLastDivider={index < fields.length - 1 || !showButtons}
 						showDivider={showDivider}
 						deletePosition={deletePosition}
-					/> */}
+					/>
 
 					{showDivider && index < fields.length - 1 ? (
-						<div className={`${styles.line}form-fieldArray-line ${styles.margin} `} />
+						<div className={cl`${styles.line}form-fieldArray-line ${styles.margin} `} />
 					) : null}
 				</span>
 			))}
 
 			{showButtons && (
 				<>
-					<div className={`${styles.child_format_add_btn}${styles.button_div}`}>
+					<div className={cl`${styles.child_format_add_btn}${styles.button_div}`}>
 						<Button
 							style={{
 								color        : '#3879da',
@@ -93,12 +92,12 @@ function ChildFormat(
 							{`+ ${buttonText || 'ADD'}`}
 						</Button>
 
-						<div className={`form-fieldArray-line ${styles.line}`} />
+						<div className={cl`form-fieldArray-line ${styles.line}`} />
 					</div>
 
 					{showDivider ? (
 						<div
-							className={`${styles.childformat_divider}${styles.divider}`}
+							className={cl`${styles.childformat_divider}${styles.divider}`}
 							style={{ marginBottom: '16px', marginTop: '16px' }}
 						/>
 					) : null}

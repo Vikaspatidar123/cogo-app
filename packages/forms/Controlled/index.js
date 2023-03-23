@@ -2,7 +2,10 @@ import { MultiselectController } from '..';
 
 import AsyncSelectController from './AsyncSelectController';
 import CheckboxController from './CheckboxController';
+import ChipsController from './ChipController';
+import ControlledCommodityCon from './ControlledCommodityCon';
 import DatepickerController from './DatepickerController';
+import IncoTermSelectController from './IncoTermSelect';
 import InputController from './InputController';
 import InputNumberController from './InputNumberController';
 import MobileNumberSelectController from './MobileNumberSelectController';
@@ -11,16 +14,20 @@ import TextAreaController from './TextAreaController';
 import UploadController from './UploadController';
 
 const MAPPING = {
-	select        : SelectController,
-	text          : InputController,
-	number        : InputNumberController,
-	textarea      : TextAreaController,
-	file          : UploadController,
-	checkbox      : CheckboxController,
-	mobile_number : MobileNumberSelectController,
-	datepicker    : DatepickerController,
-	multi_select  : MultiselectController,
-	async_select  : AsyncSelectController,
+	select                     : SelectController,
+	text                       : InputController,
+	number                     : InputNumberController,
+	textarea                   : TextAreaController,
+	file                       : UploadController,
+	checkbox                   : CheckboxController,
+	mobile_number              : MobileNumberSelectController,
+	datepicker                 : DatepickerController,
+	multi_select               : MultiselectController,
+	async_select               : AsyncSelectController,
+	'inco-terms-select'        : IncoTermSelectController,
+	chips                      : ChipsController,
+	'container_type-commodity' : ControlledCommodityCon,
+
 };
 
 const getField = (type = 'text') => {

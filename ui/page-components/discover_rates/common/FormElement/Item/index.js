@@ -1,4 +1,5 @@
 // import usei18n, { replace } from '@cogo/i18n';
+import { cl } from '@cogoport/components';
 import { startCase } from '@cogoport/utils';
 import React from 'react';
 
@@ -14,7 +15,6 @@ import getField from '@/packages/forms/Controlled';
 function Item({ formValue, ...rest }) {
 	const value = formValue;
 	// const { keywords } = usei18n();
-
 	const Element = getField(rest.type);
 
 	const {
@@ -54,13 +54,13 @@ function Item({ formValue, ...rest }) {
 	return (
 		<div>
 			{errorClass && (
-				<div className={`${styles.search_form_item_error_msg_top}${styles.text}`}>
+				<div className={cl`${styles.search_form_item_error_msg_top}${styles.text}`}>
 					{handleError(rest, errorClass)}
 				</div>
 			)}
 			<div
-				className={`${styles[className]}${styles.container} ${styles[errorClass] || ''} ${
-					(!showMargin && 'no-margin') || ''
+				className={cl`${styles[className]} ${styles.container} ${styles[errorClass] || ''} ${
+					(!showMargin && styles.nomargin) || ''
 				} search_form_item_container`}
 			>
 				{restProps.type === 'container_type-commodity' ? (
@@ -113,7 +113,7 @@ function Item({ formValue, ...rest }) {
 					</>
 				)}
 				{errorClass && (
-					<div className={`${styles.text}error_msg search_form_item_error_msg_bottom`}>
+					<div className={cl`${styles.text}error_msg search_form_item_error_msg_bottom`}>
 						{handleError(rest, errorClass)}
 					</div>
 				)}

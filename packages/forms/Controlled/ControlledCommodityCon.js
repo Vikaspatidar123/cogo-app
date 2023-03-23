@@ -1,30 +1,27 @@
 import React from 'react';
 import { Controller } from 'react-hook-form';
 
-import Select from '../Business/Select';
+import CommodityType from '../Business/CommodityType';
 
-function SelectController(props) {
-	const { name, control, rules, value, ...rest } = props;
-
+function SelectController({ itemKey, name, value, control, ...rest }) {
 	return (
 		<Controller
-			key={rest.id}
+			key={itemKey}
 			control={control}
 			name={name}
-			rules={rules}
+			defaultValue={value}
+			rules={rest.rules}
+			shouldUnregister={rest.shouldUnregister}
 			render={({ field: { onChange, onBlur, value: newValue } }) => (
-				<Select
+				<CommodityType
 					{...rest}
-					key={rest.id}
+					key={itemKey}
 					onChange={(val, obj) => {
-          	onChange(val, obj);
-          	if (rest?.handleChange) {
-          		rest?.handleChange(obj);
-          	}
+						onChange(val, obj);
+						if (rest.handleChange) { rest.handleChange(obj, name); }
 					}}
 					value={newValue || value}
 					onBlur={onBlur}
-					data-test-value={value}
 				/>
 			)}
 		/>

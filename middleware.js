@@ -12,6 +12,31 @@ const languages = i18n.locales.filter((locale) => locale !== 'default');
 
 acceptLanguage.languages(languages);
 
+const getCookie = ({ request }) => {
+	let cookieLocale = request.cookies.get(LOCALE_COOKIE_KEY)?.value;
+	if (cookieLocale && !languages.includes(cookieLocale)) {
+		const cookieLocaleLanguage = cookieLocale.split('-')?.[0];
+
+		cookieLocale = languages.includes(cookieLocaleLanguage)
+			? cookieLocaleLanguage
+			: undefined;
+	}
+
+	return cookieLocale;
+};
+
+const removeLocales = ({ pathname, locales }) => pathname
+	.split('/')
+	.filter((splittedPathname) => !locales.includes(splittedPathname))
+	.join('/');
+
+const oldLocale = {
+	languages: languages.map((lang) => lang.split('-')[0]), // ['en', 'vi', ...]
+	isPresent({ pathname }) {
+		return this.languages.some((locale) => pathname.includes(`/${locale}/`));
+	},
+};
+
 export const middleware = async (request) => {
 	try {
 		if (
@@ -22,23 +47,27 @@ export const middleware = async (request) => {
 			return;
 		}
 
-		let cookieLocale = request.cookies.get(LOCALE_COOKIE_KEY)?.value;
-		if (cookieLocale && !languages.includes(cookieLocale)) {
-			const cookieLocaleLanguage = cookieLocale.split('-')?.[0];
+		const cookieLocale = getCookie({ request });
 
-			cookieLocale = languages.includes(cookieLocaleLanguage)
-				? cookieLocaleLanguage
-				: undefined;
-		}
+		const isOldLocalePresent = oldLocale.isPresent({
+			pathname: request.nextUrl.pathname,
+		});
 
-		if (request.nextUrl.locale === 'default') {
+		if (request.nextUrl.locale === 'default' || isOldLocalePresent) {
 			const language = acceptLanguage.get(
 				request.headers.get('accept-language'),
 			);
 
 			const locale = cookieLocale || language || DEFAULT_LOCALE;
 
-			const url = `/${locale}${request.nextUrl.pathname}${request.nextUrl.search}`;
+			let { pathname } = request.nextUrl;
+
+			pathname = removeLocales({ pathname, locales: languages });
+			if (isOldLocalePresent) {
+				pathname = removeLocales({ pathname, locales: oldLocale.languages });
+			}
+
+			const url = `/${locale}${pathname}${request.nextUrl.search}`;
 			const urlObj = new URL(url, request.url);
 
 			const response = NextResponse.redirect(urlObj);
@@ -49,30 +78,30 @@ export const middleware = async (request) => {
 			return response;
 		}
 
-		if (request.headers.has('referer')) {
-			if (cookieLocale !== request.nextUrl.locale) {
-				const response = NextResponse.next();
+		// if (request.headers.has('referer')) {
+		// 	if (cookieLocale !== request.nextUrl.locale) {
+		// 		const response = NextResponse.next();
 
-				response.cookies.set(LOCALE_COOKIE_KEY, request.nextUrl.locale);
+		// 		response.cookies.set(LOCALE_COOKIE_KEY, request.nextUrl.locale);
 
-				// eslint-disable-next-line consistent-return
-				return response;
-			}
-		} else {
-			// eslint-disable-next-line no-lonely-if
-			if (!cookieLocale || cookieLocale !== request.nextUrl.locale) {
-				const url = `/${request.nextUrl.locale}${request.nextUrl.pathname}${request.nextUrl.search}`;
+		// 		// eslint-disable-next-line consistent-return
+		// 		return response;
+		// 	}
+		// } else {
+		// 	// eslint-disable-next-line no-lonely-if
+		// 	if (!cookieLocale || cookieLocale !== request.nextUrl.locale) {
+		// 		const url = `/${request.nextUrl.locale}${request.nextUrl.pathname}${request.nextUrl.search}`;
 
-				const urlObj = new URL(url, request.url);
+		// 		const urlObj = new URL(url, request.url);
 
-				const response = NextResponse.redirect(urlObj);
+		// 		const response = NextResponse.redirect(urlObj);
 
-				response.cookies.set(LOCALE_COOKIE_KEY, request.nextUrl.locale);
+		// 		response.cookies.set(LOCALE_COOKIE_KEY, request.nextUrl.locale);
 
-				// eslint-disable-next-line consistent-return
-				return response;
-			}
-		}
+		// 		// eslint-disable-next-line consistent-return
+		// 		return response;
+		// 	}
+		// }
 
 		return;
 	} catch (error) {

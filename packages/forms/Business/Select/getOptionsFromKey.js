@@ -32,6 +32,8 @@ const getOptionsFromKey = (
 		data.options = ContainerSizes;
 	} else if (key === 'container-types') {
 		data.options = ContainerTypes;
+	} else if (commodityType) {
+		data.options = getCommodityList(commodityType, containerType);
 	} else if (key === 'commodities') {
 		data.options = getCommodityList('freight');
 	}

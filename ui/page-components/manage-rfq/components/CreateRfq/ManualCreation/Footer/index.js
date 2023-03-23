@@ -81,7 +81,7 @@ function Footer({
 						<IcMError />
 					</div>
 					<div className={styles.error_text}>{show}</div>
-					<div className={cl`${styles.btn_container} ${checkButton ? styles.justify : styles.cente}`}>
+					<div className={cl`${styles.btn_container} ${checkButton ? styles.justify : styles.center}`}>
 						<Button
 							className="secondary md"
 							onClick={() => setShow('')}

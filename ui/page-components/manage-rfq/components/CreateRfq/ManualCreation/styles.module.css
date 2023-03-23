@@ -27,3 +27,21 @@
 	flex-direction: column;
 	width: 98%;
 }
+
+.btn_box {
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	width: 98%;
+	margin-top: 20px;
+}
+
+.plus_icon {
+	width: 15px;
+	height: 15px;
+}
+
+.dummy_footer {
+	width: 100%;
+	height: 70px;
+}

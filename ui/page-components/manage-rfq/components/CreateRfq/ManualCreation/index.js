@@ -1,9 +1,12 @@
+import { Button, Toast } from '@cogoport/components';
+import { IcMPlus } from '@cogoport/icons-react';
 import { useState, useEffect } from 'react';
 
 import controls from '../../../configurations/SearchFormControls';
 import airControls from '../../../configurations/SearchFormControls/create-air-rfq-controls';
 import fclControls from '../../../configurations/SearchFormControls/create-fcl-rfq-controls';
 import lclControls from '../../../configurations/SearchFormControls/create-lcl-rfq-controls';
+import { FreightServices } from '../../../constant';
 import useCreateRfqDraft from '../../../hooks/useCreateRfqDraft';
 import useCreateRfqSearch from '../../../hooks/useCreateRfqSearch';
 import useGetRfq from '../../../hooks/useGetRfq';
@@ -34,7 +37,7 @@ function ManualCreation({ currentStep, setCurrentStep, rfqId, ...rest }) {
 	const [showForm, setShowForm] = useState('fcl_freight');
 	const [destinationDetails, setDestinationDetails] = useState({});
 	const [shippingLinesDetails, setShippingLinesDetails] = useState({});
-	const [draftFormData, setDraftFormData] = useState({ rfq_id: rfqId || '' });
+	const [draftFormData, setDraftFormData] = useState({ rfq_id: rfqId || '', serviceType: ['fcl_freight'] });
 	const [services, setServices] = useState({});
 
 	const lclProps = useForm(lclDefaultValue);
@@ -92,7 +95,7 @@ function ManualCreation({ currentStep, setCurrentStep, rfqId, ...rest }) {
 	const totalDraftsCount = (draftFormData?.formData?.fcl_freight?.data || []).length
 		+ (draftFormData?.formData?.lcl_freight?.data || []).length
 		+ (draftFormData?.formData?.air_freight?.data || []).length;
-
+	console.log(draftFormData, 'draftFormData');
 	return (
 		<div className={styles.container}>
 			{loading ? (
@@ -133,6 +136,38 @@ function ManualCreation({ currentStep, setCurrentStep, rfqId, ...rest }) {
 							</div>
 						),
 					)}
+					{(draftFormData?.serviceType || []).length > 0 && (draftFormData?.serviceType || []).length < 3 && (
+						<div className={styles.btn_box}>
+							<div>
+								<Button
+									themeType="secondary"
+									onClick={() => {
+										if (!showForm) {
+											const newServices = FreightServices.filter(
+												(el) => !draftFormData.serviceType.includes(el),
+											);
+											setDraftFormData({
+												...draftFormData,
+												serviceType: [
+													...draftFormData.serviceType,
+													newServices[0],
+												],
+											});
+										} else if (!editForm) {
+											Toast.error('save all forms to open new form');
+										} else {
+											Toast.error('save edited form to open new form');
+										}
+									}}
+								>
+									Add New Block
+									{' '}
+									<IcMPlus className={styles.plus_icon} />
+								</Button>
+							</div>
+						</div>
+					)}
+					<div className={styles.dummy_footer} />
 				</div>
 			)}
 			<Footer

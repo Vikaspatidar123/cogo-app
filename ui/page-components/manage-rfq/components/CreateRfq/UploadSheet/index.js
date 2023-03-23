@@ -1,11 +1,16 @@
-import { Upload } from '@cogoport/components';
+import { cl } from '@cogoport/components';
 import { isEmpty } from '@cogoport/utils';
 import { useState } from 'react';
 
 import { UploadFileControls } from '../../../configurations/create-quotation-controls';
 import useCreateRfqRequestSheet from '../../../hooks/useCreateRfqRequestSheet';
 
-import { useForm } from '@/packages/forms';
+import FirstStep from './FirstStep';
+import Footer from './Footer';
+import ResultModal from './ResultModal';
+import styles from './styles.module.css';
+
+import { useForm, UploadController } from '@/packages/forms';
 import RadioController from '@/packages/forms/Controlled/RadioController';
 
 function UploadSheet({
@@ -22,15 +27,16 @@ function UploadSheet({
 		isSuccess : false,
 		errorText : '',
 	});
-
+	const fields = UploadFileControls(isCogoFormat);
 	const {
 		formState: { errors },
+		control,
 		watch,
 		setValue,
 		handleSubmit,
 	} = useForm();
 
-	const { createRfqSheet } = useCreateRfqRequestSheet({
+	const { createRfqSheet, rfqSheetLoading } = useCreateRfqRequestSheet({
 		watchRequestType,
 		setShowResult,
 		basicDetails,
@@ -41,53 +47,45 @@ function UploadSheet({
 	const isUploaded = !isEmpty(watch('file_url'));
 
 	return (
-		<div className="" onSubmit={handleSubmit(createRfqSheet)}>
-			<Content>
-				<Title>
-					Upload
-					{' '}
-					{isCogoFormat ? 'excel' : 'file'}
-					{' '}
-					in
-					{' '}
-					{isCogoFormat ? 'cogo' : 'any'}
-					{' '}
-					format
-				</Title>
-				<Step>Step 1: Select service</Step>
+		<form className={styles.container} onSubmit={handleSubmit(createRfqSheet)}>
+			<div className={styles.content}>
+				<div className={styles.title}>
+					{`Upload ${isCogoFormat ? 'excel' : 'file'} in ${isCogoFormat ? 'cogo' : 'any'} format`}
+				</div>
+				<div className={styles.step}>Step 1: Select service</div>
 
-				<RadioGroupWrapper>
-					<RadioController {...fields.search_type} />
-					<Error>{errors?.search_type?.message}</Error>
-				</RadioGroupWrapper>
-				<Line />
+				<div className={styles.radiogroup_wrapper}>
+					<RadioController {...fields[0]} control={control} />
+					{errors?.search_type && <div className={styles.error}>{errors?.search_type?.message}</div>}
+				</div>
+				<div className={styles.line} />
 
 				{isCogoFormat && (
 					<>
 						<FirstStep service={watchServicetype} />
-						<Line />
+						<div className={styles.line} />
 					</>
 				)}
 
-				<Step>
+				<div className={styles.step}>
 					Step
 					{isCogoFormat ? 3 : 2}
 					: Upload your filled sheet
-				</Step>
-				<Uploader isUploaded={isUploaded}>
-					<FileUploader {...fields.file_url} />
-				</Uploader>
-				<Error>{errors?.file_url?.message}</Error>
-			</Content>
+				</div>
+				<div className={cl`${styles.uploader} ${isUploaded && styles.uploaded}`}>
+					<UploadController {...fields[1]} control={control} />
+				</div>
+				<div className={styles.error}>{errors?.file_url?.message}</div>
+			</div>
 
-			<Footer setCurrentStep={setCurrentStep} />
+			<Footer setCurrentStep={setCurrentStep} rfqSheetLoading={rfqSheetLoading} />
 
 			<ResultModal
 				showResult={showResult}
 				setValue={setValue}
 				setShowResult={setShowResult}
 			/>
-		</div>
+		</form>
 	);
 }
 

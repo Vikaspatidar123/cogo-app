@@ -14,7 +14,7 @@ const useCreateRfqRequestSheet = ({
 		},
 		profile: { id: user_id = '' },
 	} = useSelector((state) => state);
-	const { importerExporterDetails, basicDetails } = rest;
+	const { basicDetails } = rest;
 
 	const [{ loading }, trigger] = useRequest({
 		method : 'post',

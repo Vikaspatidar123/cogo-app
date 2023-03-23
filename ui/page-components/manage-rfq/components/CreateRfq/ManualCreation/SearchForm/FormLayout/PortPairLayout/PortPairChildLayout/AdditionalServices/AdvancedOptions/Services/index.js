@@ -94,8 +94,7 @@ function Services(props) {
 		});
 		return isIncluded;
 	};
-	console.log(services, 'services');
-	console.log(mode, 'mode', servicesList);
+
 	const renderServices = (place) => {
 		const placeService = placeServices[place];
 

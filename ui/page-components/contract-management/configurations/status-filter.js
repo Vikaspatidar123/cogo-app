@@ -1,19 +1,19 @@
 const statusFilter = [
 	{
-		label: 'All',
-		key: 'all',
+		label : 'All',
+		key   : 'all',
 	},
 	{
-		label: 'Active',
-		key: 'active',
+		label : 'Active',
+		key   : 'active',
 	},
 	{
-		label: 'Pending Approval',
-		key: 'pending_approval',
+		label : 'Pending Approval',
+		key   : 'pending_approval',
 	},
 	{
-		label: 'Expired',
-		key: 'expired',
+		label : 'Expired',
+		key   : 'expired',
 	},
 ];
 

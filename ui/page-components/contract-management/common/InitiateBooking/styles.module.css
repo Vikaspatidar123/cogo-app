@@ -1,0 +1,49 @@
+.container {
+	padding: 15px;
+	.core-ui-button-root {
+		height: 32px;
+		padding: 9px 12px;
+		margin-top: 30px;
+		margin-left: auto;
+		display: flex;
+		font-size: 12px;
+	}
+}
+
+.text {
+	font-weight: 500;
+	font-size: 16px;
+	margin-left: 10px;
+	&.text {
+		margin-bottom: 10px;
+		font-size: 18px;
+	}
+}
+
+.text1 {
+	color: red;
+}
+
+.header {
+	display: flex;
+	align-items: center;
+	margin-bottom: 16px;
+}
+
+.content {
+	span {
+		font-weight: 700;
+		margin-left: 5px;
+	}
+}
+
+.row {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	flex-wrap: wrap;
+}
+
+.styled_form_item {
+	width: 45%;
+}

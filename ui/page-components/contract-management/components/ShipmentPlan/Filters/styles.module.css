@@ -1,0 +1,33 @@
+.container {
+	display: flex;
+	margin: 10px;
+}
+
+.select_wrapper {
+	width: 200px;
+	.core-ui-select__menu {
+		max-width: 50% !important;
+		min-width: 200px !important;
+	}
+}
+
+.tags {
+	display: flex;
+}
+
+.tag {
+	border-radius: 4px;
+	padding: 4px 8px;
+	margin-right: 10px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+	border: 1px solid #bdbdbd;
+
+	svg {
+		height: 18px;
+		width: 18px;
+		margin-right: 4px;
+	}
+}

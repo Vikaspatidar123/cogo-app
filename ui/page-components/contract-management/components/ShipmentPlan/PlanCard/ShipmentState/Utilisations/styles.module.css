@@ -1,0 +1,70 @@
+.container {
+	display: flex;
+	flex-direction: column;
+	margin: 8px 0;
+}
+
+.progress_container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	flex-direction: column;
+	margin-top: 15px;
+
+	:first-child {
+		margin-top: 0;
+	}
+}
+
+.contract_title {
+	color: #828282;
+	font-size: 14px;
+	font-weight: 500;
+	margin-right: 15px;
+}
+
+.contract_date {
+	color: #333333;
+	margin-left: 20px;
+}
+
+.utilisation_count {
+	font-size: 14px;
+	color: #4f4f4f;
+	font-weight: 700;
+
+	@media (max-width: 768px) {
+		margin-top: 0px;
+	}
+}
+
+.stats {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	margin-bottom: 5px;
+}
+
+.progress {
+	background: #f2f4f7;
+	border-radius: 8px;
+	overflow: hidden;
+	width: 250px;
+	height: 10px;
+}
+
+.low_progress {
+	background: red;
+	border-radius: 8px;
+	overflow: hidden;
+	width: 250px;
+	height: 10px;
+}
+
+
+.percentage {
+	background: #c4dc91;
+    /* width: ${({ barWidth }) => barWidth}; */
+	height: 100%;
+	border-radius: 8px;
+}

@@ -1,5 +1,4 @@
-import { useRouter } from '@cogo/next';
-import Pagination from '@cogoport/front/components/admin/Pagination';
+import { Pagination } from '@cogoport/components';
 import { IcMTick } from '@cogoport/icons-react';
 import { useState } from 'react';
 
@@ -8,7 +7,9 @@ import useGetListContracts from '../../../hooks/useGetContractList';
 
 import Filters from './Filters';
 import Quotations from './QuotationList';
-import { Container, Header, Title, PaginationWrap, Tags, Tag } from './styles';
+import styles from './styles.module.css';
+
+import { useRouter } from '@/packages/next';
 
 function Contracts({ data }) {
 	const { query } = useRouter();
@@ -26,6 +27,7 @@ function Contracts({ data }) {
 	const { total_count, page_limit, page } = pageData || {};
 
 	const { active, expired, pending_approval } = data || {};
+	console.log(data, 'data');
 	const statCount = {
 		active           : active?.count,
 		expired          : expired?.count,
@@ -34,17 +36,18 @@ function Contracts({ data }) {
 	};
 
 	return (
-		<Container>
-			<Title>My Contracts</Title>
-			<Header>
-				<Tags>
+		<div className={styles.container}>
+			<div className={styles.title}>My Contracts</div>
+			<div className={styles.header}>
+				<div className={styles.tags}>
 					{statusFilter.map(({ label, key }) => (
-						<Tag
+						<div
+							className={styles.tag}
+							role="presentation"
 							onClick={() => {
 								setActiveFilter(key);
 								setPagination(1);
 							}}
-							active={key === activeFilter}
 						>
 							{key === activeFilter && <IcMTick />}
 							<div>
@@ -54,11 +57,11 @@ function Contracts({ data }) {
 								{statCount[key] || 0}
 								)
 							</div>
-						</Tag>
+						</div>
 					))}
-				</Tags>
+				</div>
 				<Filters filterValue={filterValue} setFilterValue={setFilterValue} />
-			</Header>
+			</div>
 
 			<Quotations
 				contractList={contractList}
@@ -66,16 +69,16 @@ function Contracts({ data }) {
 				activeFilter={activeFilter}
 			/>
 
-			<PaginationWrap>
+			<div className={styles.pagination_wrap}>
 				<Pagination
-					className="md"
-					total={total_count}
-					pagination={page}
-					pageLimit={page_limit}
-					setPagination={setPagination}
+					type="table"
+					currentPage={page}
+					pageSize={5}
+					totalItems={total_count}
+					onPageChange={(e) => setPagination(e)}
 				/>
-			</PaginationWrap>
-		</Container>
+			</div>
+		</div>
 	);
 }
 

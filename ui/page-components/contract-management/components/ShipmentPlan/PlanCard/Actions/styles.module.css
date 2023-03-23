@@ -1,0 +1,15 @@
+.container {
+	display: flex;
+	flex: 3;
+	justify-content: flex-end;
+}
+
+.edit_btn {
+	display: flex;
+	align-items: center;
+	font-size: 14px;
+	color: #034afd;
+	text-decoration: underline;
+	margin-right: 16px;
+	cursor: pointer;
+}

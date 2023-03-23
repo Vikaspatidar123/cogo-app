@@ -1,6 +1,4 @@
-import styled from '@cogoport/front/styled';
-
-export const Card = styled.div`
+.card {
 	display: flex;
 	align-items: center;
 	border-right: 1px solid #e0e0e0;
@@ -13,42 +11,42 @@ export const Card = styled.div`
 	:last-child {
 		border-right: none;
 	}
-`;
+}
 
-export const Tag = styled.div`
+.tag {
 	color: #4f4f4f;
 	font-size: 12px;
 	border: 1px solid #e0e0e0;
 	border-radius: 4px;
 	padding: 4px 8px;
-	margin: 0px 3px;
-`;
+	margin: 0 3px;
+}
 
-export const ServiceIcon = styled.div`
+.service_icon {
 	border: 0.5px solid #e0e0e0;
 	border-radius: 100%;
 	display: flex;
 	padding: 4px;
-`;
+}
 
-export const ServiceName = styled.div`
+.service_name {
 	color: #4f4f4f;
 	font-size: 14px;
-	margin: 0px 5px 0px 5px;
-`;
+	margin: 0 5px 0 5px;
+}
 
-export const Container = styled.div`
+.container {
 	display: flex;
-	padding: 10px 0px;
-`;
+	padding: 10px 0;
+}
 
-export const Validity = styled.div`
+.validity {
 	font-size: 14px;
 	color: #4f4f4f;
-	padding: 0px 5px;
+	padding: 0 5px;
 
 	span {
 		color: #4f4f4f;
 		font-weight: 500;
 	}
-`;
+}

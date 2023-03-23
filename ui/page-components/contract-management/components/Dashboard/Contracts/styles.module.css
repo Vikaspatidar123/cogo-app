@@ -1,32 +1,37 @@
-import styled from '@cogoport/front/styled';
-
-export const Container = styled.div`
+.container {
 	margin-top: 26px;
-`;
+}
 
-export const Header = styled.div`
+.header {
 	margin-block: 8px;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-`;
+	margin-left: 10px;
 
-export const Title = styled.div`
+	@media (max-width: 768px) {
+		display: flex;
+		flex-direction: column;
+	}
+}
+
+.title {
 	font-weight: 500;
 	font-size: 20px;
 	color: #2c3e50;
-`;
+	margin-left: 10px;
+}
 
-export const PaginationWrap = styled.div`
+.pagination_wrap {
 	display: flex;
 	justify-content: flex-end;
-`;
+}
 
-export const Tags = styled.div`
+.tags {
 	display: flex;
-`;
+}
 
-export const Tag = styled.div`
+.tag {
 	border-radius: 4px;
 	padding: 4px 8px;
 	margin-right: 10px;
@@ -34,12 +39,11 @@ export const Tag = styled.div`
 	justify-content: center;
 	align-items: center;
 	cursor: pointer;
-	border: 1px solid ${({ active }) => (active ? `#ACDADF` : `#bdbdbd `)};
-	background: ${({ active }) => (active ? `#CFEAED` : `unset`)};
+	border: 1px solid #bdbdbd;
 
 	svg {
 		height: 18px;
 		width: 18px;
 		margin-right: 4px;
 	}
-`;
+}

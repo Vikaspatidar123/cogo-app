@@ -52,10 +52,20 @@ const navigationMappings = {
 					alt="cogo"
 				/>,
 				description: 'Find HS Codes with detailed description',
-
 			},
 		],
 	},
+
+	app_contract_management:
+			{
+				key         : 'app_contract_management',
+				title       : 'Contract Management',
+				href        : '/v2/contract-management',
+				as          : '/v2/contract-management',
+				icon        : <IcMUpwardGraph width={40} height={40} fill="red" />,
+				description : 'contract management',
+				showInNav   : true,
+			},
 
 	saas_premium_services: {
 		key         : 'saas_premium_services',

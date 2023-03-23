@@ -1,0 +1,58 @@
+.container {
+	padding: 0 15px;
+}
+
+.details {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.validity {
+	margin-right: 10px;
+	color: #000000;
+	font-weight: 500;
+}
+
+.frequency {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.errorText {
+	margin: 20px 0px 0px 0px;
+	padding: 10px 0px;
+	background: #f59c3d;
+	border-radius: 4px;
+	color: #000;
+	text-align: center;
+
+	span {
+		font-weight: 600;
+	}
+}
+
+.title {
+	font-size: 20px;
+	color: #170f49;
+	font-weight: 700;
+}
+
+.tag {
+	font-size: 14px;
+	color: #221f20;
+	margin-right: 8px;
+	margin-bottom: 2px;
+	padding: 2px 6px;
+	background: #f3fafa;
+	border-radius: 4px;
+	width: fit-content;
+}
+
+.notification {
+	font-size: 18px;
+	font-weight: 600;
+	color: #ee3425;
+	margin-top: 15px;
+}

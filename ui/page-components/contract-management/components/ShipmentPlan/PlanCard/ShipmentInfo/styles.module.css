@@ -1,0 +1,28 @@
+.count {
+	display: inline;
+	border: 1px solid #e0e0e0;
+	border-radius: 8px;
+	height: fit-content;
+	padding: 2px 8px;
+	color: #000000;
+	font-size: 14px;
+	font-weight: 500;
+}
+
+.container {
+	display: flex;
+	flex: 3;
+	justify-content: flex-end;
+	align-items: center;
+}
+
+.note {
+	font-size: 14px;
+	color: #333333;
+	margin-right: 5px;
+
+	span {
+		font-weight: 700;
+		margin-left: 3px;
+	}
+}

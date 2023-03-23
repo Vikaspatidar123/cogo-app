@@ -1,10 +1,12 @@
-import { useRouter } from '@cogo/next';
+import { Button } from '@cogoport/components';
 
 import { KEYS_MAPPING } from '../../../../../../configurations/payload-key-mapping';
 import { SERVICE_MAPPING } from '../../../../../../constants';
 
 import Route from './Route';
-import { Container, Actions, PortPairs, ViewMore, ViewMoreBtn } from './styles';
+import styles from './styles.module.css';
+
+import { useRouter } from '@/packages/next';
 
 function Ports({ item }) {
 	const { push } = useRouter();
@@ -41,33 +43,32 @@ function Ports({ item }) {
 	const isMoreThanThree = portPairData.length > 3;
 	const viewMore = isMoreThanThree ? formattedData.length : 0;
 	return (
-		<Container>
-			<PortPairs>
+		<div className={styles.container}>
+			<div className={styles.port_pairs}>
 				{(firstThreeService || []).map((val) => <Route val={val} status={status} />)}
-			</PortPairs>
+			</div>
 
 			{(status === 'active' || status === 'pending_approval') && (
-				<Actions>
+				<div className={styles.actions}>
 					{isMoreThanThree && (
-						<ViewMore>
+						<div className={styles.view_more}>
 							+
 							{viewMore}
 							{' '}
 							More
-						</ViewMore>
+						</div>
 					)}
-					<ViewMoreBtn
-						className="secondary sm"
+					<Button
 						onClick={() => push(
 							`/contract-management/[contract_id]?contract_status=${status}`,
 							`/contract-management/${item.id}?contract_status=${status}`,
 						)}
 					>
 						View
-					</ViewMoreBtn>
-				</Actions>
+					</Button>
+				</div>
 			)}
-		</Container>
+		</div>
 	);
 }
 

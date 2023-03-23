@@ -18,6 +18,7 @@ const saas = {
 		navigation : 'saas_tools-trade_partner',
 		isMainNav  : true,
 	},
+
 };
 
 module.exports = saas;

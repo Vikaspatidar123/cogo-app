@@ -1,0 +1,32 @@
+.container {
+	margin-top: 10px;
+}
+
+.title {
+	color: #170f49;
+	font-weight: 700;
+}
+
+.options {
+	display: flex;
+	margin-top: 27px;
+
+	.core-ui-radiogroup-container {
+		flex-direction: row;
+		gap: 70px;
+	}
+
+	.core-ui-radio-radio-container {
+		border: 1.5px solid #000 !important;
+
+		&.checked {
+			border: 1.5px solid #000 !important;
+		}
+	}
+
+	.core-ui-radio-icon {
+		&.checked {
+			background: #000 !important;
+		}
+	}
+}

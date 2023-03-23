@@ -1,72 +1,73 @@
+import { cl, Placeholder } from '@cogoport/components';
 import React from 'react';
+
 import { STATS_MAPPING } from '../../../configurations/stats-mapping';
 
-import {
-	StyledRow,
-	StyledCol,
-	Card,
-	Title,
-	Count,
-	Comparison,
-	Ratio,
-	UpwordIcon,
-	RatioCount,
-	SkeletonWrapper,
-} from './styles';
+import styles from './styles.module.css';
 
-const StatsCard = ({ data, loading }) => {
+function StatsCard({ data, loading }) {
 	return (
-		<StyledRow>
+		<div className={styles.styled_row}>
 			{(STATS_MAPPING || []).map((item) => {
 				const isLoss = data?.[item.count]?.percentage > 0;
 				return (
-					<StyledCol md={4}>
-						<Card bgColor={item.backgroundColor}>
-							<Title>{item.title}</Title>
-							<Count>
+					<div className={styles.styled_col}>
+						<div className={styles.card}>
+							<div className={styles.title}>{item.title}</div>
+							<div className={styles.count}>
 								{loading ? (
-									<SkeletonWrapper height="28px" width="60px" />
+									<Placeholder height="28px" width="60px" />
 								) : (
 									<>
-										{data?.[item.count]?.count < 9 &&
-										data?.[item.count]?.count !== 0
+										{' '}
+										{data?.[item.count]?.count < 9
+										&& data?.[item.count]?.count !== 0
 											? `0${data?.[item.count]?.count}`
 											: data?.[item.count]?.count || 0}
 									</>
 								)}
-							</Count>
+							</div>
 
-							<Comparison fill={item.fill} stroke={item.stroke}>
-								<Ratio>
+							<div
+								className={cl`${styles.comparison}
+							    ${styles.comparison[item.className]}`}
+							>
+								<div className={styles.ratio}>
 									{loading ? (
-										<SkeletonWrapper height="20px" width="170px" />
+										<Placeholder height="20px" width="170px" />
 									) : (
 										<>
+											{' '}
 											{item.count === 'active' ? (
 												<>
-													<UpwordIcon>{item.icon}</UpwordIcon>
-													<RatioCount>$0 saved</RatioCount>
+													{isLoss ? <div className={styles.downward_icon}>{item.icon}</div>
+														: <div className={styles.upword_icon}>{item.icon}</div>}
+													<div className={styles.ratio_count}>$0 saved</div>
 												</>
 											) : (
 												<>
-													<UpwordIcon loss={isLoss}>{item.icon}</UpwordIcon>
-													<RatioCount loss={isLoss}>
-														{Math.abs(data?.[item.count]?.percentage)}%
-													</RatioCount>
+													<div className={styles.upword_icon}>{item.icon}</div>
+													{isLoss ? <div className={styles.loss_color}>{item.icon}</div>
+														: (
+															<div className={styles.ratio_count}>
+																{Math.abs(data?.[item.count]?.percentage)}
+																%
+															</div>
+														)}
 													vs last month
 												</>
 											)}
 										</>
 									)}
-								</Ratio>
+								</div>
 								{item.lineGraph}
-							</Comparison>
-						</Card>
-					</StyledCol>
+							</div>
+						</div>
+					</div>
 				);
 			})}
-		</StyledRow>
+		</div>
 	);
-};
+}
 
 export default StatsCard;

@@ -1,5 +1,5 @@
-import isEmpty from '@cogo/utils/isEmpty';
 import { IcABlog } from '@cogoport/icons-react';
+import { isEmpty } from '@cogoport/utils';
 import React from 'react';
 
 import Empty from '../../../../common/Empty';
@@ -7,7 +7,7 @@ import { getContractState } from '../../../../utils/getUnit';
 
 import Loader from './Loader';
 import QuotationCard from './QuotationCard';
-import { Rfqs } from './styles';
+import styles from './styles.module.css';
 
 function Quotations({ contractList, loading, activeFilter }) {
 	if (loading) {
@@ -25,9 +25,9 @@ function Quotations({ contractList, loading, activeFilter }) {
 	}
 
 	return (
-		<Rfqs>
+		<div className={styles.rfqs}>
 			<QuotationCard contractList={contractList} activeFilter={activeFilter} />
-		</Rfqs>
+		</div>
 	);
 }
 

@@ -1,0 +1,12 @@
+.container {
+	padding: 12px;
+	background: #ffffff;
+	box-shadow: 0 0 4px rgba(44, 62, 80, 0.2);
+	border-radius: 4px;
+	margin-bottom: 25px;
+	transition: 0.4s;
+
+	@media (max-width: 768px) {
+		width:fit-content;
+	}
+}

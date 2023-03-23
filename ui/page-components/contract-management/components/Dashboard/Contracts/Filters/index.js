@@ -1,7 +1,6 @@
-import { Select, Popover, Button } from '@cogoport/components';
+import { Input, Select, Popover, Button } from '@cogoport/components';
 import { IcMSearchlight } from '@cogoport/icons-react';
 import { startCase } from '@cogoport/utils';
-import { Input } from 'postcss';
 import React from 'react';
 
 import {
@@ -14,6 +13,11 @@ import styles from './styles.module.css';
 function Filters({ filterValue = {}, setFilterValue = () => {} }) {
 	const { status, service_type, trade_type, source } = filterValue || {};
 	const isActiveFilter = status || service_type || trade_type || source;
+
+	const resetFilter = () => {
+		setFilterValue('');
+	};
+
 	const content = () => (
 		<div className={styles.filter_container}>
 			{CONTRACT_FILTERS.map(({ label, key }) => (
@@ -43,10 +47,6 @@ function Filters({ filterValue = {}, setFilterValue = () => {} }) {
 		</div>
 	);
 
-	const resetFilter = () => {
-		setFilterValue('');
-	};
-
 	return (
 		<div className={styles.container}>
 			<Popover
@@ -55,21 +55,20 @@ function Filters({ filterValue = {}, setFilterValue = () => {} }) {
 				content={content()}
 				interactive
 			>
-				<Button className="secondary md">
+				<Button size="md">
 					Filter
 					{isActiveFilter && <div className={styles.active_dot} />}
 				</Button>
 			</Popover>
 			<div className={styles.search_filter}>
 				<Input
-					className="primary sm"
 					placeholder="Search Contract ID/ Contract Name"
 					suffix={<IcMSearchlight />}
 					value={filterValue?.contract_reference_id}
 					onChange={(e) => {
 						setFilterValue((p) => ({
 							...p,
-							contract_reference_id: e.target.value,
+							contract_reference_id: e,
 						}));
 					}}
 				/>

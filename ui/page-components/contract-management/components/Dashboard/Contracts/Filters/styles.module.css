@@ -1,5 +1,26 @@
 .container {
 	display: flex;
+
+	:global {
+	.ui_button_container {
+		margin: 0 10px;
+	}
+
+	.ui_input_container {
+		height: 33px;
+		.ui_input_control {
+		font-size: 12px;
+		}
+	}
+
+	svg {
+		margin: 0 5px 0 -6px;
+	}
+
+	@media (max-width: 768px) {
+		margin-top : 10px;
+	}
+}
 }
 
 .filter_container {

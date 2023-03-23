@@ -1,38 +1,33 @@
-import { useEffect } from 'react';
-import { useSelector } from '@cogo/store';
-import useRequest from '@cogo/commons/hooks/useRequest';
-import { toast } from '@cogoport/front/components';
-import { getApiErrorString } from '@cogoport/front/utils';
+import { Toast } from '@cogoport/components';
+import { useEffect, useCallback } from 'react';
+
+import getApiErrorString from '@/packages/forms/utils/getApiError';
+import { useRequest } from '@/packages/request';
 
 const useGetStats = () => {
-	const {
-		general: { scope },
-	} = useSelector((state) => state);
+	const [{ loading, data }, trigger] = useRequest({
+		url    : '/get_contract_stats',
+		method : 'get',
+	}, { manual: true });
 
-	const { trigger, data, loading } = useRequest(
-		'get',
-		false,
-		scope,
-	)('/get_contract_stats');
-
-	const getStats = async () => {
+	const getStats = useCallback(async () => {
 		try {
 			await trigger({
 				params: {
 					filters: {
-						service_types: ['fcl_freight', 'lcl_freight', 'air_freight'],
-						movement_type: ['international'],
+						service_types : ['fcl_freight', 'lcl_freight', 'air_freight'],
+						movement_type : ['international'],
 					},
 				},
 			});
 		} catch (error) {
-			toast.error(getApiErrorString(error));
+			Toast.error(getApiErrorString(error));
 		}
-	};
+	}, [trigger]);
 
 	useEffect(() => {
 		getStats();
-	}, []);
+	}, [getStats]);
 
 	return {
 		data,

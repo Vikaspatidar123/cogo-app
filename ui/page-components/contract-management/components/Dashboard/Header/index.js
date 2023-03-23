@@ -1,12 +1,12 @@
 import React from 'react';
 
-import { Container, Title } from './styles';
+import styles from './styles.module.css';
 
 function Header() {
 	return (
-		<Container>
-			<Title>Contract Management</Title>
-		</Container>
+		<div className={styles.container}>
+			<div className={styles.title}>Contract Management</div>
+		</div>
 	);
 }
 

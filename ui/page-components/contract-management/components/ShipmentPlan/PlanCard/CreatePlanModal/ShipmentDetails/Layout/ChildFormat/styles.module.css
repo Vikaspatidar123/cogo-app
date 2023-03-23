@@ -1,0 +1,41 @@
+.styled_row {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	margin-bottom: 14px;
+	margin-left: 18px !important;
+}
+
+.styled_col {
+	display: flex;
+	flex-direction: column;
+	padding-left: 0px !important;
+
+	.core-ui-input-root {
+		/* width: ${({ check }) => (check ? '75%' : '100%')}; */
+		/* background: ${({ isReadonly }) => isReadonly && 'lightgrey'};
+		cursor: ${({ isReadonly }) => (isReadonly ? 'not-allowed' : 'pointer')}; */
+	}
+}
+
+.remove_icon {
+	margin-left: 5px;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+}
+
+.addIcon {
+	margin-left: 10px;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+}
+
+.shipment_no {
+	text-decoration-line: underline;
+	font-size: 14px;
+	display: flex;
+	align-items: center;
+}

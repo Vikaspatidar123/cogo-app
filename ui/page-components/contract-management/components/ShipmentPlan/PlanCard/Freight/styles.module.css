@@ -1,0 +1,54 @@
+.label {
+	color: #828282;
+	font-size: 12px;
+
+	@media (max-width: 1280px) {
+		font-size: 10px;
+	}
+}
+
+.price {
+	display: flex;
+	font-size: 20px;
+	color: #333333;
+	font-weight: 600;
+
+	@media (max-width: 1280px) {
+		font-size: 16px;
+	}
+}
+
+.unit {
+	color: #828282;
+	font-weight: 400;
+	font-size: 16px;
+	margin : 3px;
+	@media (max-width: 1280px) {
+		font-size: 10px;
+	}
+}
+
+.container { 
+	display: flex;
+	justify-content: flex-end;
+	flex: 4;
+}
+
+.card {
+	margin: 0 12px;
+
+	:last-child {
+		margin-right: 0;
+	}
+}
+
+.note {
+	color: #828282;
+	font-size: 12px;
+	text-decoration: underline;
+	cursor: pointer;
+
+	@media (max-width: 1280px) {
+		font-size: 12px;
+	}
+}

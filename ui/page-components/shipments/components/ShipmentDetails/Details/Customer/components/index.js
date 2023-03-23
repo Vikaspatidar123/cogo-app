@@ -8,6 +8,7 @@ import { isEmpty } from '@cogoport/utils';
 import { useState, useEffect } from 'react';
 
 import styles from './styles.module.css';
+import TabSections from './Tabs';
 import TimeLineHorizontal from './TimeLineHorizontal';
 
 function ImporterExporter({ servicesLoading = false, servicesList = [] }) {
@@ -38,14 +39,14 @@ function ImporterExporter({ servicesLoading = false, servicesList = [] }) {
 				servicesList={servicesList}
 			/>
 
-			{/* <Tabs
+			<TabSections
 				quickAction={quickAction}
 				setQuickAction={setQuickAction}
 				setActiveTab={setActiveTab}
 				activeTab={activeTab}
 				servicesLoading={servicesLoading}
 				servicesList={servicesList}
-			/> */}
+			/>
 		</div>
 	);
 }

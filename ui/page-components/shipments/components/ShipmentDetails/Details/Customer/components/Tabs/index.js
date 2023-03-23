@@ -10,6 +10,7 @@ import { useEffect } from 'react';
 // import { Container, Content, InvoiceDiv } from './styles';
 import RelationshipManager from '../RelationshipManager';
 
+import Overview from './Overview';
 import styles from './styles.module.css';
 
 function TabSections({
@@ -45,7 +46,7 @@ function TabSections({
 						/>
 					</TabPanel>
 
-					<TabPanel name="invoices" title="INVOICE">
+					{/* <TabPanel name="invoices" title="INVOICE">
 						<InvoiceDiv>
 							<SalesInvoice isCustomer />
 						</InvoiceDiv>
@@ -60,7 +61,7 @@ function TabSections({
 							quickAction={quickAction}
 							setQuickAction={setQuickAction}
 						/>
-					</TabPanel>
+					</TabPanel> */}
 				</Tabs>
 			</div>
 		</div>

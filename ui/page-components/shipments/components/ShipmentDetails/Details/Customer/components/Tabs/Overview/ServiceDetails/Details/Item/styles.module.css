@@ -1,0 +1,25 @@
+.container{
+    display: flex;
+	align-items: center;
+
+	border-bottom: 1px solid #f2f2f2;
+}
+.container:last-child {
+    border: none;
+}
+.key{
+    margin: 10px;
+	font-weight: 400;
+	font-size: 14px;
+	color: #333333;
+}
+.value{
+    margin: 8px 24px 4px 8px;
+	font-weight: 500;
+	font-size: 14px;
+	color: #333333;
+	text-transform: capitalize;
+}
+.cancelled {
+    color: #bdbdbd;
+}

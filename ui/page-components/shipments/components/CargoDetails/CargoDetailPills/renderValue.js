@@ -9,6 +9,8 @@ import { Popover } from '@cogoport/components';
 import { format, startCase, upperCase } from '@cogoport/utils';
 
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
+import { IcMOpenlink } from '@cogoport/icons-react';
+import styles from './styles.module.css'
 
 export const renderValue = (label, detail) => {
 	const { packages = [] } = detail || {};
@@ -89,7 +91,7 @@ export const renderValue = (label, detail) => {
 	);
 
 	const formatCertificate = (certificates) => (
-		<CertificateContainer>
+		<div className={styles.certificate_container}>
 			{(certificates || []).map((item, key) => (
 				<a href={item} target="_blank" rel="noreferrer">
 					Click to view certificate
@@ -100,7 +102,7 @@ export const renderValue = (label, detail) => {
 					<br />
 				</a>
 			))}
-		</CertificateContainer>
+		</div>
 	);
 
 	switch (label) {

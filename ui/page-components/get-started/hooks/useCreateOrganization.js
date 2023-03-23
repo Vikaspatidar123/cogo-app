@@ -3,26 +3,29 @@ import { Toast } from '@cogoport/components';
 import { useRequest } from '@/packages/request';
 import { useSelector } from '@/packages/store';
 
-const useCreateOrganization = ({ setBillingAddressDetails, setOrgId, setOrgBranchId }) => {
+const useCreateOrganization = ({ setBillingAddressDetails, setOrgId, setOrgBranchId, lead_organization_id }) => {
 	const {
 		profile,
 	} = useSelector((state) => state);
-
+	const apiName = lead_organization_id
+		? 'saas_tools/convert_saas_lead_organization'
+		: 'create_organization';
 	const [{ loading: createOrganizationLoading }, createOrganizationtrigger] = useRequest({
-		url    : 'create_organization',
+		url    : apiName,
 		method : 'post',
 	}, { manual: true });
 
 	const onClickCreateOrganization = async (val) => {
 		try {
 			const payload = {
-				account_type        : 'importer_exporter',
-				country_id          : val?.country_id,
-				registration_number : val?.registration_number,
-				user_id             : profile?.id,
-				business_name       : val?.business_name,
-				preferred_languages : val?.preferred_languages,
-				work_scopes         : val?.work_scopes,
+				account_type         : 'importer_exporter',
+				country_id           : val?.country_id,
+				registration_number  : val?.registration_number,
+				user_id              : profile?.id,
+				business_name        : val?.business_name,
+				preferred_languages  : val?.preferred_languages,
+				work_scopes          : val?.work_scopes,
+				lead_organization_id : lead_organization_id || undefined,
 			};
 
 			const response = await createOrganizationtrigger({

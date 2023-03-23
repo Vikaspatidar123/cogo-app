@@ -2,7 +2,7 @@ function asyncFieldsLocations2() {
 	return {
 		valueKey    : 'id',
 		labelKey    : 'name',
-		endpoint    : 'list_locations_v2',
+		endpoint    : 'list_locations',
 		initialCall : true,
 		params      : {
 			filters    : { status: 'active' },

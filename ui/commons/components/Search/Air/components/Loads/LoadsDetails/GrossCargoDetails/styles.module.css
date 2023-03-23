@@ -1,0 +1,82 @@
+.container {
+  margin: 12px 8px 4px 8px;
+}
+
+.button_container {
+  width: 100%;
+  margin-top: 12px;
+
+  display: flex;
+  justify-content: flex-end;
+}
+
+.label {
+  margin-bottom: 2px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #393f70;
+  height: 16px;
+}
+
+.layout_container {
+  display: flex;
+  align-items: flex-start;
+  :global {
+    .business-checkbox-label {
+      margin-bottom: 4px;
+    }
+
+    .ui_upload_droparea_container {
+      flex-direction: row;
+      min-height: 20px;
+      padding: 0;
+      width: 40%;
+      svg {
+        width: 40px;
+        height: 40px;
+      }
+    }
+    .core-ui-input-root {
+      border: 1px solid #cbcff5;
+    }
+
+    .core-ui-select__control {
+      border: 1px solid #cbcff5;
+    }
+
+    .business-checkbox-label {
+      color: #393f70;
+    }
+  }
+}
+
+.single_control {
+  .fade-in {
+    display: none;
+  }
+}
+.info_container {
+  /* margin-top: 12px; */
+  :global {
+    .business-checkbox-label {
+      color: #393f70;
+    }
+    .ui_checkbox_group_container {
+      padding: 0px;
+    }
+  }
+}
+
+.error_message {
+  font-size: 12px;
+  color: red;
+}
+.modal_title {
+  font-size: 20px;
+  font-weight: 500;
+  color: #1444a1;
+}
+
+.modal {
+  padding: 20px;
+}

@@ -1,0 +1,11 @@
+[
+  {
+    "value": "per_package",
+	"label": "Per Package"
+  },
+  
+  {
+    "value": "gross",
+	"label": "Total/Gross"
+  }
+]

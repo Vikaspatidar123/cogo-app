@@ -1,43 +1,48 @@
-import styled from '@cogoport/front/styled';
-import getGeoConstants from '@cogo/globalization/constants/geo';
+// import getGeoConstants from '@cogo/globalization/constants/geo';
 
-const geo = getGeoConstants();
+// const geo = getGeoConstants();
 
 const ftlControls = () => [
 	{
-		name: 'free_detention_hours',
-		label: 'Detention free time',
-		type: 'number',
-		suffix: <Suffix>days</Suffix>,
+		name   : 'free_detention_hours',
+		label  : 'Detention free time',
+		type   : 'number',
+		suffix : <div style={{
+			fontSize : '12px',
+			color    : '#828282',
+		}}
+		>
+			days
+           </div>,
 	},
 	{
-		name: 'address',
-		label: 'Address',
-		type: 'text',
-		placeholder: 'Type address',
-		rules: {
+		name        : 'address',
+		label       : 'Address',
+		type        : 'text',
+		placeholder : 'Type address',
+		rules       : {
 			required: true,
 		},
 	},
 	{
-		name: 'preferred_freight_rate_currency',
-		label: 'Currency',
-		type: 'select',
-		optionsListKey: 'currencies',
-		value: geo.country.currency.code,
+		name           : 'preferred_freight_rate_currency',
+		label          : 'Currency',
+		type           : 'select',
+		optionsListKey : 'currencies',
+		// value: geo.country.currency.code,
 	},
 	{
-		name: 'preferred_freight_rate',
-		label: 'Indicative basic freight per truck*',
-		type: 'number',
-		rules: {
+		name  : 'preferred_freight_rate',
+		label : 'Indicative basic freight per truck*',
+		type  : 'number',
+		rules : {
 			required: true,
 		},
 	},
 	{
-		name: 'negotiation_remarks',
-		label: 'Comments to procurement',
-		type: 'text',
+		name  : 'negotiation_remarks',
+		label : 'Comments to procurement',
+		type  : 'text',
 	},
 	// {
 	// 	name: 'expected_cargo_pick_up_date',
@@ -104,43 +109,43 @@ const ftlControls = () => [
 	// 	],
 	// },
 	{
-		label: 'Commodity detail',
-		name: 'commodity_description',
-		type: 'text',
-		span: 6,
-		show: true,
-		rules: { required: 'Required', minLength: 5 },
-		condition: { trade_type: ['export'] },
+		label     : 'Commodity detail',
+		name      : 'commodity_description',
+		type      : 'text',
+		span      : 6,
+		show      : true,
+		rules     : { required: 'Required', minLength: 5 },
+		condition : { trade_type: ['export'] },
 	},
 	{
-		name: 'cargo_stacking_type',
-		label: 'Cargo stacking type',
-		type: 'pills',
-		condition: { trade_type: 'export' },
-		options: [
+		name      : 'cargo_stacking_type',
+		label     : 'Cargo stacking type',
+		type      : 'pills',
+		condition : { trade_type: 'export' },
+		options   : [
 			{ label: 'Stackable', value: 'stackable' },
 			{ label: 'Non stackable', value: 'non_stackable' },
 		],
 	},
 	{
-		label: 'Commodity detail',
-		name: 'commodity_description',
-		type: 'text',
-		span: 6,
-		show: true,
-		rules: { required: 'This is required' },
-		condition: {
-			cargo_handling_type: ['destuffing_at_dock'],
-			trade_type: ['import'],
+		label     : 'Commodity detail',
+		name      : 'commodity_description',
+		type      : 'text',
+		span      : 6,
+		show      : true,
+		rules     : { required: 'This is required' },
+		condition : {
+			cargo_handling_type : ['destuffing_at_dock'],
+			trade_type          : ['import'],
 		},
 	},
 	{
-		name: 'cargo_stacking_type',
-		label: 'Cargo stacking type',
-		type: 'pills',
-		condition: {
-			cargo_handling_type: ['destuffing_at_dock'],
-			trade_type: ['import'],
+		name      : 'cargo_stacking_type',
+		label     : 'Cargo stacking type',
+		type      : 'pills',
+		condition : {
+			cargo_handling_type : ['destuffing_at_dock'],
+			trade_type          : ['import'],
 		},
 		options: [
 			{ label: 'Stackable', value: 'stackable' },
@@ -163,8 +168,3 @@ const ftlControls = () => [
 	// },
 ];
 export default ftlControls;
-
-const Suffix = styled.div`
-	font-size: 12px;
-	color: #828282;
-`;

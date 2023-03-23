@@ -1,0 +1,52 @@
+.container{
+	margin-bottom: 0px;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+
+
+	.custom-select-input-chipcontainer {
+		height: inherit;
+	}
+
+	.custom-select-input-select-placeholder {
+		font-weight: 400;
+		font-size: 14px;
+		display: flex;
+		align-items: center;
+		color: #cbcff5;
+	}
+
+	.custom-select-input-subcontainer {
+		border: 1px solid #cbcff5 !important;
+		border-radius: 4px;
+	}
+
+	.business-checkbox-item {
+		margin-top: 15px;
+	}
+
+	.business-checkbox-label {
+		color: #393f70;
+	}
+}
+
+
+.field {
+	
+}
+
+.lable {
+	margin: 5px 0 5px 0;
+	font-weight: 500;
+	font-size: 14px;
+	color: #393f70;
+}
+
+.errors {
+	min-height: 16px;
+	margin-top: 4px;
+	font-size: 12px;
+	line-height: 16px;
+	color: #cb6464;
+}

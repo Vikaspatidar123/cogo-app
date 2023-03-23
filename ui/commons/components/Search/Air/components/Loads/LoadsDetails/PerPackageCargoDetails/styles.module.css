@@ -1,0 +1,46 @@
+
+.container{
+	width: 100%;
+	padding: 4px;
+}
+
+
+.button_container{
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	margin: 8px 0px;
+
+	:global {
+		.core-ui-button-root {
+			background: #ffffff;
+			color: #7a5ef3;
+			border: none;
+		}
+	}	
+}
+
+.package_details{
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+
+	height: 24px;
+	margin-right: 8px;
+	padding: 0 5px;
+
+	background-color: aliceblue;
+
+	font-weight: 500;
+	font-size: 12px;
+	border-radius: 4px;
+}
+
+.confirm_button{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+
+	position: sticky;
+}

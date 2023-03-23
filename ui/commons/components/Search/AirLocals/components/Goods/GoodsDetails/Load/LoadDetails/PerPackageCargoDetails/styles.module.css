@@ -1,0 +1,58 @@
+.container {
+  :global {
+    .form-item-label {
+      color: #393f70;
+      font-weight: 500;
+      font-size: 12px;
+      margin: 8px 0px 5px 0px;
+    }
+
+    .core-ui-select__control {
+      border: 1px solid #cbcff5;
+    }
+
+    .core-ui-input-root {
+      border: 1px solid #cbcff5 !important;
+    }
+
+    .css-1es5rth {
+      background: #7a5ef3;
+    }
+
+    .css-32vh1f .core-ui-button-root {
+      color: #7a5ef3;
+    }
+  }
+}
+.button_container {
+  width: 100%;
+  padding: 12px 0 12px 0;
+  background: #ffffff;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  position: sticky;
+  bottom: 0px;
+  z-index: 100;
+}
+
+.suffix {
+  margin-top: 14px;
+}
+
+.display_live_cal {
+  display: flex;
+  justify-content: space-between;
+  margin: 8px;
+  max-width: 60%;
+}
+
+.totals {
+  background: #f1efff;
+  font-size: 10px;
+  padding: 4px;
+  border-radius: 4px;
+  margin-right: 4px;
+}

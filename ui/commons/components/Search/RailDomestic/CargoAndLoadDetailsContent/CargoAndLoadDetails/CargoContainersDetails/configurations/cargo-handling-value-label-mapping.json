@@ -1,0 +1,6 @@
+{
+  "stuffing_at_factory": "Origin Cargo Stuffing At Factory",
+  "stuffing_at_dock": "Origin Cargo Stuffing At Terminal",
+  "delivery_from_dock": "Destination Cargo Destuffing At Factory",
+  "destuffing_at_dock": "Destination Cargo Destuffing At Terminal"
+}

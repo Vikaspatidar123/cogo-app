@@ -1,11 +1,11 @@
 /* eslint-disable import/no-unresolved */
 import COUNTRIES from '@/.data-store/constants/countries.json';
 
-const countriesHash = {};
+const countriesHash = COUNTRIES.reduce(
+	(pv, acc) => ({ ...pv, [acc.id]: acc }),
+	{},
+);
 
-(COUNTRIES || []).forEach((item) => {
-	countriesHash[item.id] = item;
-	countriesHash[item.country_code] = item;
-});
+const getCountryDetails = ({ country_id }) => countriesHash[country_id] || {};
 
-export default countriesHash;
+export default getCountryDetails;

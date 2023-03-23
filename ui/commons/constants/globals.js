@@ -3,7 +3,9 @@ const GLOBAL_CONSTANTS = {
 		IN: '6fd98605-9d5d-479d-9fac-cf905d292b88',
 	},
 	country_ids: {
-		IN: '541d1232-58ce-4d64-83d6-556a42209eb7',
+		IN : '541d1232-58ce-4d64-83d6-556a42209eb7',
+		VN : '177fcbad-8ef7-4324-871c-6c31745f4411',
+		GB : '222d4b9d-56a8-4580-b761-a71c653263fb',
 	},
 	currency_code: {
 		INR : 'INR',
@@ -60,23 +62,6 @@ const GLOBAL_CONSTANTS = {
 			ft : 'FT',
 		},
 	},
-	countainer_sizes: [
-		{
-			label : '20ft',
-			value : '20',
-		},
-		{
-			label : '40ft',
-			value : '40',
-		},
-		{
-			label : '40ft HC',
-			value : '40HC',
-		},
-		{
-			label : '45ft HC',
-			value : '45HC',
-		}],
 };
 
 export default GLOBAL_CONSTANTS;

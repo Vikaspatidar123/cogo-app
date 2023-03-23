@@ -4,6 +4,7 @@ import AsyncSelectController from './AsyncSelectController';
 import CheckboxController from './CheckboxController';
 import DatepickerController from './DatepickerController';
 import InputController from './InputController';
+import InputNumberController from './InputNumberController';
 import MobileNumberSelectController from './MobileNumberSelectController';
 import SelectController from './SelectController';
 import TextAreaController from './TextAreaController';
@@ -12,7 +13,7 @@ import UploadController from './UploadController';
 const MAPPING = {
 	select        : SelectController,
 	text          : InputController,
-	number        : InputController,
+	number        : InputNumberController,
 	textarea      : TextAreaController,
 	file          : UploadController,
 	checkbox      : CheckboxController,

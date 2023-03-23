@@ -1,4 +1,4 @@
-import CONTAINER_SIZES from '@cogo/commons/constants/CONTAINER_SIZES';
+import CONTAINER_SIZES from '@/ui/commons/constants/CONTAINER_SIZES';
 
 const formControlsAdvanced = [
 	{

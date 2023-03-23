@@ -1,40 +1,43 @@
-// import { Placeholder } from '@cogoport/components';
+import { Placeholder } from '@cogoport/components';
+import { IcMPortArrow } from '@cogoport/icons-react';
 
-// function Route({ originDetails, destinationDetails, index, loading }) {
-// 	function LocationCard({
-// 		name,
-// 		port_code: portCode,
-// 		display_name: displayName,
-// 	}) {
-// 		return (
-// 			<Location>
-// 				{loading ? (
-// 					<Placeholder width="150px" height="37px" />
-// 				) : (
-// 					<>
-// 						<Name>
-// 							<Port>{name}</Port>
-// 							<Code>
-// 								(
-// 								{portCode}
-// 								)
-// 							</Code>
-// 						</Name>
-// 						<Country>{(displayName || '').split(',')[2]}</Country>
-// 					</>
-// 				)}
-// 			</Location>
-// 		);
-// 	}
+import styles from './styles.module.css';
 
-// 	return (
-// 		<Container>
-// 			<Index>{index + 1}</Index>
-// 			<LocationCard {...originDetails} />
-// 			<StyledArrow />
-// 			<LocationCard {...destinationDetails} />
-// 		</Container>
-// 	);
-// }
+function Route({ originDetails, destinationDetails, index, loading }) {
+	function LocationCard({
+		name,
+		port_code: portCode,
+		display_name: displayName,
+	}) {
+		return (
+			<div className={styles.location}>
+				{loading ? (
+					<Placeholder width="150px" height="37px" />
+				) : (
+					<>
+						<div className={styles.name}>
+							<div className={styles.port}>{name}</div>
+							<div className={styles.code}>
+								(
+								{portCode}
+								)
+							</div>
+						</div>
+						<div className={styles.country}>{(displayName || '').split(',')[2]}</div>
+					</>
+				)}
+			</div>
+		);
+	}
 
-// export default Route;
+	return (
+		<div className={styles.container}>
+			<div className={styles.index_list}>{index + 1}</div>
+			<LocationCard {...originDetails} />
+			<IcMPortArrow className={styles.styled_arrow} />
+			<LocationCard {...destinationDetails} />
+		</div>
+	);
+}
+
+export default Route;

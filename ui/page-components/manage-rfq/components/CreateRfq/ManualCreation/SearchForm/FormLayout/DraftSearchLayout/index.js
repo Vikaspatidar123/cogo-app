@@ -2,6 +2,9 @@ import { cl, Toast } from '@cogoport/components';
 import { IcMEdit, IcMDuplicate, IcMDelete } from '@cogoport/icons-react';
 import { useEffect } from 'react';
 
+import ContainerInfo from './ContainerInfo';
+import Route from './Route';
+import ShippingLineInfo from './ShippingLineInfo';
 import styles from './styles.module.css';
 
 import getConfiguration from '@/ui/page-components/manage-rfq/configurations/SearchFormControls/getConfiguration';
@@ -66,7 +69,7 @@ function DraftSearchLayout({
 
 	const isAdditionalRemarks =	detentionDemurrageCount !== 0 || price?.price !== '';
 	const shippingRemarks = remarks[0] || {};
-	const hasKey = 'calculate_by' in item?.search_rates?.[0];
+	const hasKey = 'calculate_by' in (item?.search_rates?.[0] || {});
 	const serviceDetails = getConfiguration('service-details', serviceType);
 
 	const prefferedType =		serviceType !== 'air_freight'

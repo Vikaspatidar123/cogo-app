@@ -11,6 +11,7 @@ import useUpdateRfqDraft from '../../../hooks/useUpdateRfqDraft';
 import { airDefaultValues, lclDefaultValue, fclDefaultValue } from '../../../utils/defaultValues';
 import iconUrl from '../../../utils/iconUrl.json';
 
+import Footer from './Footer';
 import SearchForm from './SearchForm';
 import styles from './styles.module.css';
 
@@ -134,6 +135,17 @@ function ManualCreation({ currentStep, setCurrentStep, rfqId, ...rest }) {
 					)}
 				</div>
 			)}
+			<Footer
+				draftFormData={draftFormData}
+				showForm={showForm}
+				editForm={editForm}
+				currentStep={currentStep}
+				setCurrentStep={setCurrentStep}
+				importerExporterDetails={importerExporterDetails}
+				createRfqSearch={createRfqSearch}
+				totalDraftsCount={totalDraftsCount}
+				loading={createLoading || searchLoading}
+			/>
 		</div>
 	);
 }

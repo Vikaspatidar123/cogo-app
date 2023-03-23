@@ -3,6 +3,7 @@ import { IcMPlus } from '@cogoport/icons-react';
 import { useState, useEffect } from 'react';
 
 import DraftEditLayout from './DraftEditLayout';
+import DraftSearchLayout from './DraftSearchLayout';
 import PortPairLayout from './PortPairLayout';
 import styles from './styles.module.css';
 
@@ -48,7 +49,14 @@ function FormLayout(props) {
 								<DraftEditLayout {...props} index={index} item={item} />
 							</div>
 						) : (
-							null
+							<DraftSearchLayout
+								{...props}
+								index={index}
+								item={item}
+								draftLength={draftLength}
+								serviceType={serviceType}
+								setValues={setValues}
+							/>
 						)
 					),
 				)}

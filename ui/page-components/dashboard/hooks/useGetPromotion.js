@@ -25,7 +25,6 @@ function useGetPromotion() {
 	useEffect(() => {
 		promotionData();
 	}, []);
-	console.log(promotion_data, 'promotion_data');
 	return { loading, promotionData, promotion_data };
 }
 export default useGetPromotion;

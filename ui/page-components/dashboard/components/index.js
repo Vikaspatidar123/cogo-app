@@ -10,6 +10,7 @@ import Elgibility from './Elgibility';
 import ExportFactoring from './ExportFactoring';
 import KYCPage from './KYCPage';
 import PayLaterWidgets from './PayLaterWidgets';
+import Promotion from './Promotion';
 import Schedule from './Schedule';
 import Shipments from './Shipments';
 import styles from './styles.module.css';
@@ -21,13 +22,11 @@ const INDIA_COUNTRY_ID = '541d1232-58ce-4d64-83d6-556a42209eb7';
 function SassDashboard() {
 	const { promotionData, promotion_data } = useGetPromotion();
 	const { loading, schedules, air_data } = GetSchedules();
-	const { blogsData, blogs_data } = Blogs();
-	const { schedulesData, air_track } = GetTracking();
+	const { air_track } = GetTracking();
 	const airTracking = air_track?.dashboard_products?.air_tracking || {};
 	const oceanTracking = air_track?.dashboard_products?.container_tracking	|| {};
 	const { airData, oceanData } = air_data?.dashboard_products || {};
-	console.log(promotion_data, ' promotion_data');
-	console.log(blogs_data?.length, '  blogs_data ');
+
 	const { query, country_id } = useSelector(({ general, profile }) => ({
 		query      : general?.query,
 		country_id : profile?.organization?.country_id,
@@ -63,8 +62,7 @@ function SassDashboard() {
 					{
 						(Object.keys(airTracking?.data || {}).length > 0
 						|| Object.keys(oceanTracking?.data || {}).length > 0 ? (
-							// <Track />
-							// <p>...</p>
+
 							<ActiveTracking
 								airTracking={airTracking}
 								oceanTracking={oceanTracking}
@@ -81,8 +79,10 @@ function SassDashboard() {
 						&& query?.account_type === 'importer-exporter' && <PayLaterWidgets />}
 						<Elgibility />
 						<ExportFactoring />
-						{/* <Promotion /> */}
-						{/* <Blogs /> */}
+
+						<Promotion
+							promotion_data={promotion_data}
+						/>
 					</div>
 				</div>
 			</div>

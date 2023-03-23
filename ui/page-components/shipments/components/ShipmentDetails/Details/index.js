@@ -6,16 +6,16 @@
 // import useServiceList from '../hooks/useServiceList';
 import dynamic from 'next/dynamic';
 
-import { ShipmentDetailContext } from '../common/Context';
+import useGetShipment from '../hooks/useGetShipment';
+import useServiceList from '../hooks/useServiceList';
 
-// const Admin = dynamic(() => import('./Admin'));
 const Customer = dynamic(() => import('./Customer/components'));
 
-function ShipmentDetails({ viewAs = '' }) {
+function Details() {
 	const { get } = useGetShipment();
-	const { data, isGettingShipment, ...rest } = get || {};
+	const { data, isGettingShipment } = get || {};
 
-	const { list, loading, refetchServices } = useServiceList(
+	const { list, loading } = useServiceList(
 		data?.shipment_data,
 		data?.primary_service,
 	);
@@ -27,30 +27,14 @@ function ShipmentDetails({ viewAs = '' }) {
 		}
 	});
 
-	const contextValues = {
-		isGettingShipment,
-		viewAs,
-		...rest,
-		...(data || {}),
-	};
-
 	return (
-		<ShipmentDetailContext.Provider value={[contextValues]}>
-			{['importer_exporter'].includes(viewAs) ? (
-				<Customer
-					servicesLoading={loading || isGettingShipment}
-					servicesList={servicesList}
-				/>
-			) : (
-				<div>hello</div>
-				// <Admin
-				// 	servicesLoading={loading || isGettingShipment}
-				// 	servicesList={servicesList}
-				// 	refetchServices={refetchServices}
-				// />
-			)}
-		</ShipmentDetailContext.Provider>
+		<div>
+			<Customer
+				servicesLoading={loading || isGettingShipment}
+				servicesList={servicesList}
+			/>
+		</div>
 	);
 }
 
-export default ShipmentDetails;
+export default Details;

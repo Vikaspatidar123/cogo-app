@@ -22,13 +22,13 @@ const useGetShipmentList = (viewAs = 'importer_exporter', allParams = { isBookin
 		branch_id : general?.query?.branch_id,
 		scope     : general?.scope,
 	}));
-
 	const [currentTab, setCurrentTab] = useState('ongoing');
+	const { getshipment } = getShipmentList();
 
 	const config =		viewAs === 'importer_exporter' ? getConfigsShipper() : getConfigsSupplier();
 	const configFunc =		viewAs === 'importer_exporter' ? getConfigsShipper : getConfigsSupplier;
 
-	const shipperApiFunc = (restFilters, currentPage) => getShipmentList(
+	const shipperApiFunc = (restFilters, currentPage) => getshipment(
 		{
 			...restFilters,
 			state: isBookingDesk
@@ -40,9 +40,7 @@ const useGetShipmentList = (viewAs = 'importer_exporter', allParams = { isBookin
 					: restFilters?.task,
 				pending_task_status: isBookingDesk ? 'pending' : undefined,
 				importer_exporter_branch_id:
-						scope === 'app' && viewAs === 'importer_exporter'
-							? branch_id
-							: undefined,
+					viewAs === 'importer_exporter' ? branch_id : undefined,
 			},
 			global_state: config.list_states[currentTab],
 		},
@@ -62,7 +60,7 @@ const useGetShipmentList = (viewAs = 'importer_exporter', allParams = { isBookin
 		},
 		{ page: currentPage, ...params },
 	);
-	const listApiFunc =		viewAs === 'importer_exporter' ? shipperApiFunc : supplierApiFunc;
+	const listApiFunc =	viewAs === 'importer_exporter' ? shipperApiFunc : supplierApiFunc;
 
 	console.log(listApiFunc, 'listApiFunc');
 

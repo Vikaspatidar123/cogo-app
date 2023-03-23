@@ -1,0 +1,19 @@
+.container{
+    width: 100%;
+	border-radius: 4px;
+	background: #fff0f0;
+	padding: 16px;
+	display: flex;
+	margin-bottom: 16px;
+}
+.row{
+    display: flex;
+}
+.col{
+    display: flex;
+    flex-direction: column;
+}
+.icon_wrapper{
+    margin-right: 12px;
+	margin-top: 4px;
+}

@@ -1,0 +1,8 @@
+.service{
+    border-bottom: 1px solid #e0e0e0;
+	padding: 6px 0px;
+	display: flex;
+}
+ .service:last-child {
+    border-bottom: none;
+}

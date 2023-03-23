@@ -1,0 +1,23 @@
+.code{
+    font-size: 10px;
+	color: #828282;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+	margin-bottom: 1px;
+
+	@media (max-width: 768px) {
+		width: 70%;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		overflow: hidden;
+	}
+}
+.container{
+    margin-left: 4px;
+	width: 40%;
+
+	@media (max-width: 768px) {
+		width: 30%;
+	}
+}

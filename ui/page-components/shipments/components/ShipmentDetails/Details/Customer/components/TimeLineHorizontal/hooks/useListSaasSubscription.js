@@ -1,14 +1,13 @@
 import { useEffect } from 'react';
 
 import { useRequest } from '@/packages/request';
-import useSelector from '@/packages/store';
+import { useSelector } from '@/packages/store';
 
 const ListSaasSubscriptions = () => {
-	const { query } = useSelector(({ general }) => ({
-		scope : general?.scope,
-		query : general?.query,
-	}));
-	const [{ loading }, data, trigger] = useRequest({
+	const { general } = useSelector((state) => state);
+	const { query } = general;
+
+	const [{ loading, data }, trigger] = useRequest({
 		url    : 'list_saas_container_subscriptions',
 		method : 'get',
 	}, { manual: true });

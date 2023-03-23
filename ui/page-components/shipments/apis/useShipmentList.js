@@ -1,34 +1,35 @@
 import { Toast } from '@cogoport/components';
+import { useEffect } from 'react';
 
 import filterServiceMapping from '../configurations/common/filter-service-mapping.json';
 
 // import { getRequest } from '.';
 import { useRequest } from '@/packages/request';
 
-const useListShipmentList = ({ filterValues, otherParams = {} }) => {
-	const {
-		invoice_type,
-		serial_id,
-		global_state,
-		importer_exporter_id,
-		color_code,
-		partner_id,
-		bl_number,
-		shipment_type,
-		is_all_services_allocated,
-		outSideServiceFilters = {},
-		q,
-		container_number,
-		agent_id,
-		...rest
-	} = filterValues || {};
-	console.log(filterValues, 'filterValues', otherParams);
+const useListShipmentList = () => {
 	const [{ loading }, trigger] = useRequest({
 		url    : 'list_shipments',
 		method : 'get',
 	}, { manual: true });
+	const getshipment = async (filterValues, otherParams = {}) => {
+		const {
+			invoice_type,
+			serial_id,
+			global_state,
+			importer_exporter_id,
+			color_code,
+			partner_id,
+			bl_number,
+			shipment_type,
+			is_all_services_allocated,
+			outSideServiceFilters = {},
+			q,
+			container_number,
+			agent_id,
+			...rest
+		} = filterValues || {};
+		console.log(filterValues, 'filterValues', otherParams);
 
-	const getshipment = async () => {
 		try {
 			const filters = {
 				filters: {
@@ -60,9 +61,11 @@ const useListShipmentList = ({ filterValues, otherParams = {} }) => {
 				params: filters,
 			});
 			// if (response?.hasError) return;
+			console.log(response, 'response');
 			return response;
 		} catch (error) {
 			console.log(error);
+			return null;
 		}
 	};
 

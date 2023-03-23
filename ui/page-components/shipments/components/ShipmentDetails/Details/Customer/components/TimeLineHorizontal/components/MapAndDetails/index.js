@@ -1,0 +1,73 @@
+// import { Skeleton } from '@cogoport/front/components';
+// import React from 'react';
+
+import { Placeholder } from '@cogoport/components';
+
+import BreadCrumbs from '../Breadcrumbs';
+
+// import BreadCrumbs from '../../../Breadcrumbs';
+// import Details from '../../../Details';
+// import PendingTasks from '../../../PendingTasks';
+// import QuickActions from '../../../QuickActions';
+// import TrackMapNavigate from '../TrackMapNavigate';
+
+// import { LeftPanel, Panels } from './styles';
+import styles from './styles.module.css';
+
+function MapAndDetails({
+	mapLoading = false,
+	mapPoints = [],
+	trackerDetails = [],
+	selectedContainer = '',
+	isTrackEmpty = false,
+	setQuickAction,
+	selectedMilestonesList = '',
+	setSelectedMilestonesList,
+	setPreditiveEta,
+	setVesselName,
+	servicesForMap = false,
+}) {
+	const renderEmpty = () => {
+		if (mapLoading) return <Placeholder />;
+
+		return servicesForMap ? (
+			<div style={{ height: '400px', width: '100%', alignItems: 'center' }}>
+				<div style={{ textAlign: 'center', width: '100%', marginTop: '100px' }}>
+					No Data Found for the Container
+				</div>
+			</div>
+		) : null;
+	};
+	return (
+		<div className={`${styles.left_panel} ${servicesForMap ? styles.show_tracking : ''}`}>
+			<BreadCrumbs servicesForMap={servicesForMap} />
+
+			{/* {!isTrackEmpty && !mapLoading && servicesForMap ? (
+				<TrackMapNavigate
+					mapPoints={mapPoints}
+					trackerDetails={trackerDetails}
+					selectedContainer={selectedContainer}
+					setSelectedMilestonesList={setSelectedMilestonesList}
+					selectedMilestonesList={selectedMilestonesList}
+					setPreditiveEta={setPreditiveEta}
+					setVesselName={setVesselName}
+				/>
+			) : (
+				renderEmpty()
+			)} */}
+
+			<Details servicesForMap={servicesForMap} />
+
+			<Panels className="actions">
+				<PendingTasks />
+
+				<QuickActions
+					setQuickAction={setQuickAction}
+					servicesForMap={servicesForMap}
+				/>
+			</Panels>
+		</div>
+	);
+}
+
+export default MapAndDetails;

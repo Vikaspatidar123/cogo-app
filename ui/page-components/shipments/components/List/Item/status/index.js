@@ -2,13 +2,13 @@
 // import { shape, string } from 'prop-types';
 // import React from 'react';
 
-import Link from 'next/link';
-
 import getText from '../../../../utils/get-text';
 
 // import { Container, Alert, Action, Message } from './styles';
 
 import styles from './styles.module.css';
+
+import { Link } from '@/packages/next';
 
 function Status({ data, viewAs, isBookingDesk = false }) {
 	const { id } = data || {};
@@ -25,7 +25,7 @@ function Status({ data, viewAs, isBookingDesk = false }) {
 	const impExpHref = '/shipments/[id]';
 	const impExpAs = `/shipments/${shipment_id}`;
 
-	const href =		viewAs === 'importer_exporter'
+	const href = viewAs === 'importer_exporter'
 		? impExpHref
 		: '/shipments/[id]/[service_id]';
 	const as =		viewAs === 'importer_exporter'
@@ -44,7 +44,7 @@ function Status({ data, viewAs, isBookingDesk = false }) {
 					{data?.serial_id || data?.shipment_serial_id}
 				</span>
 			</div>
-			<div className={`${styles.alert} ${styles.stateData.color || styles.yellow}`}>{stateData.text}</div>
+			{/* <div className={`${styles.alert} ${styles.stateData.color || styles.yellow}`}>{stateData.text}</div> */}
 			<Link href={href} as={as} passHref>
 				<div className={styles.action}>{buttonText}</div>
 			</Link>

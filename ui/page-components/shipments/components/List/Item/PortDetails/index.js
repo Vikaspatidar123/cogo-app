@@ -5,6 +5,7 @@
 import { IcMPortArrow } from '@cogoport/icons-react';
 
 import singleLocationServices from '../../../../configurations/common/single-location-services.json';
+
 import Item from './Item';
 
 // import Item from './Item';

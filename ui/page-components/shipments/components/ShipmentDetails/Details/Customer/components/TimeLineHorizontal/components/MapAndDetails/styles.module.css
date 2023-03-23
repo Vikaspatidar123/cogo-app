@@ -1,0 +1,12 @@
+.left_panel{
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+}
+.show_tracking {
+	width: 65%;
+
+	@media (max-width: 768px) {
+		width: 100%;
+	}
+}

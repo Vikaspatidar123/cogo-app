@@ -52,7 +52,6 @@ function ShipmentList() {
 		// if (!loading && data.length === 0) {
 		// 	return <EmptyState viewAs={viewAs} />;
 		// }
-
 		return (
 			<div>
 				{total > 10 ? (

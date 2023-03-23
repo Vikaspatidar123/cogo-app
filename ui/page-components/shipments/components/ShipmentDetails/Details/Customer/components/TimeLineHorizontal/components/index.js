@@ -154,7 +154,6 @@ function TrackerInfomation({
 
 			<TimelineNavigate
 				selectedMilestonesList={selectedMilestonesList}
-				containerSubbscription={containerSubbscription}
 				allContainers={allContainers}
 				trackerDetails={trackerDetails}
 				currentSubscription={currentSubscription}

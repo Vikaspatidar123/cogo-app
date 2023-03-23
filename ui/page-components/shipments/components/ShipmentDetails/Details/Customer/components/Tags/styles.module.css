@@ -1,0 +1,77 @@
+.custom_tag{
+    display: flex;
+	width: 100%;
+	flex-wrap: wrap;
+}
+.popover_tag {
+    margin-bottom: 8px;
+    align-items: center;
+}
+.tag_container{
+    display: flex;
+	margin-top: 4px;
+	align-items: center;
+	background: #f5fafe;
+	padding: 4px 8px;
+	border: 0.3px solid #b3d5fb;
+	border-radius: 4px;
+	font-weight: 400;
+	font-size: 10px;
+	color: #2c3e50;
+	height: fit-content;
+	margin-right: 8px;
+}
+.tag{
+    margin: 0;
+}
+.delete_tag{
+    display: flex;
+	align-items: center;
+	justify-content: center;
+	font-weight: 400;
+	font-size: 12px;
+	line-height: 12px;
+	color: #4f4f4f;
+	margin-left: 12px;
+	cursor: pointer;
+}
+.delete_tag:hover {
+    color: #e74c3c;
+}
+.container{
+	margin: 4px 0px 12px 0px;
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+
+	align-items: center;
+	flex-wrap: wrap;
+}
+.core-ui-button-root {
+	padding: 4px 8px !important;
+	text-transform: none !important;
+	font-weight: 500 !important;
+	color: #2c3e50 !important;
+	border: 1.5px solid #2c3e50 !important;
+}
+.all_tag{
+	display: flex;
+	align-items: center;
+}
+.button_wrap{
+	display: flex;
+	justify-content: flex-end;
+}
+.tag_display{
+	display: flex;
+}
+.view{
+	margin: 0;
+	font-weight: 400;
+	font-size: 12px;
+	line-height: 14px;
+	text-decoration-line: underline;
+	color: #034afd;
+	cursor: pointer;
+	margin-right: 8px;
+}

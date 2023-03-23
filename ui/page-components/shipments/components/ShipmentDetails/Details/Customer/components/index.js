@@ -8,6 +8,7 @@ import { isEmpty } from '@cogoport/utils';
 import { useState, useEffect } from 'react';
 
 import styles from './styles.module.css';
+import TimeLineHorizontal from './TimeLineHorizontal';
 
 function ImporterExporter({ servicesLoading = false, servicesList = [] }) {
 	const [activeTab, setActiveTab] = useState('services');
@@ -37,14 +38,14 @@ function ImporterExporter({ servicesLoading = false, servicesList = [] }) {
 				servicesList={servicesList}
 			/>
 
-			<Tabs
+			{/* <Tabs
 				quickAction={quickAction}
 				setQuickAction={setQuickAction}
 				setActiveTab={setActiveTab}
 				activeTab={activeTab}
 				servicesLoading={servicesLoading}
 				servicesList={servicesList}
-			/>
+			/> */}
 		</div>
 	);
 }

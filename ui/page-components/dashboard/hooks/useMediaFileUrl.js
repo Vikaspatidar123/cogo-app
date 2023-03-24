@@ -3,15 +3,15 @@ import { useState, useEffect } from 'react';
 
 import { useRequest } from '@/packages/request';
 
-function useGetPromotion() {
+function useGetMediaFileUrl() {
 	const [{ loading, data: promotionData }, trigger] = useRequest({
-		url    : '/get_app_dashboard_promotion',
+		url    : '/get_media_upload_url',
 		method : 'get',
 	}, { manual: true });
 
-	const getPromotionData = async () => {
+	const getPromotionData = async (file_name) => {
 		try {
-			await trigger();
+			await trigger({ params: file_name });
 		} catch (err) {
 			Toast.error(
 				err?.message || ' Please try again.',
@@ -24,4 +24,4 @@ function useGetPromotion() {
 	}, []);
 	return { loading, promotionData };
 }
-export default useGetPromotion;
+export default useGetMediaFileUrl;

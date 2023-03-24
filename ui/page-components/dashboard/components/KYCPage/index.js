@@ -50,6 +50,7 @@ function KYCPage() {
 									src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/crown_new.svg"
 									alt="img"
 								/>
+								<span className={styles.standard}>Standard</span>
 							</div>
 						</div>
 						<div className={styles.Benifits}>

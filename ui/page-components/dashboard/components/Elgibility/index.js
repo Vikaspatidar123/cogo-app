@@ -6,7 +6,7 @@ function Elgibility() {
 			<div className={styles.first}>
 				<div className={styles.top} />
 				<div className={styles.body}>
-					ship Now,
+					Ship Now,
 					<span className={styles.blue}>Pay Later</span>
 					Easily apply online in just a few minutes
 				</div>

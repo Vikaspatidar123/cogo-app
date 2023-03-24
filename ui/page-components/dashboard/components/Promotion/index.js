@@ -1,37 +1,47 @@
-import { Carousel } from '@cogoport/components';
+import { Carousel, DateRangepicker, Placeholder } from '@cogoport/components';
+
+import useGetPromotion from '../../hooks/useGetPromotion';
 
 import styles from './styles.module.css';
 
-import { Router } from '@/packages/next';
+import { useRouter } from '@/packages/next';
 
-function Promotion({ promotion_data }) {
-	console.log(promotion_data?.promotion[0].image_url, "promotion_data'");
-	const onHandelPush = (item) => {
-		Router.push(item.route_url);
-	};
+function Promotion() {
+	const { push } = useRouter();
 
-	const imgData = promotion_data?.promotion;
+	const { loading = false, promotionData = {} } = useGetPromotion();
+	const imgData = promotionData?.promotion;
+
+	const carouselData = (data) => (
+		<div onClick={() => push(data.route_url)} role="presentation">
+			<img className={styles.image} src={data.image_url} alt="img" />
+		</div>
+	);
+
+	const mainData = [];
+
+	imgData?.forEach((data) => {
+		mainData.push({
+			key    : data?.id,
+			render : () => (<div>{carouselData(data)}</div>),
+		});
+	});
+
+	console.log(mainData, 'myObject');
 
 	return (
-		<div style={{ border: '1px solid red' }}>
-			{' '}
-			{
-            imgData?.forEach((element) => {
-	<div style={{ border: '1px solid red' }}>
-		<img src={element.image_url} alt="" />
-	</div>;
-	console.log(element.image_url, 'element');
-            })
-}
-			{/* <Carousel size="md" slides={CAROUSELDATA} /> */}
-			{/* { promotion_data?.promotion?.map((item) => (
-				<div key={item.id} onClick={() => onHandelPush(item)}>
-					<div className={styles.img}>
-						<img src={item.image_url} alt="" />
-
-					</div>
-				</div>
-			))} */}
+		<div>
+			{loading && <Placeholder />}
+			{!loading && (
+				<Carousel
+					classname={styles.total}
+					showDots={false}
+					showArrow={false}
+					size="md"
+					slides={mainData}
+					isInfinite
+				/>
+			)}
 		</div>
 	);
 }

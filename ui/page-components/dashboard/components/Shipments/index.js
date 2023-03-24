@@ -1,5 +1,5 @@
 import { Placeholder, cl } from '@cogoport/components';
-import { IcMArrowNext } from '@cogoport/icons-react';
+import { IcMArrowNext, IcCFlcl } from '@cogoport/icons-react';
 import { format } from '@cogoport/utils';
 
 import ListShipments from '../../hooks/ListShipments';
@@ -33,11 +33,14 @@ function Shipments() {
 											</div>
 											<div className={styles.lcl}>
 												<div className={styles.sub_lcl}>
-													<img
+													{/* <img
 														className={styles.new_img}
 														src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/blue.svg"
 														alt="img"
-													/>
+													/> */}
+													<div className={styles.new_img}>
+														<IcCFlcl className={styles.new_imgs} />
+													</div>
 													<p className={styles.new_lcl}>LCL</p>
 
 												</div>
@@ -61,11 +64,12 @@ function Shipments() {
 											</div>
 										</div>
 										<div className={styles.third_data}>
-											<img
+											{/* <img
 												className={styles.img}
 												src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/blue.svg"
 												alt="img"
-											/>
+											/> */}
+											<IcCFlcl className={styles.new} />
 											<p className={styles.black}>{val?.commodity}</p>
 											<p className={styles.pink}>
 												Inco-

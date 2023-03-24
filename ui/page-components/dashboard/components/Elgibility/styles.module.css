@@ -20,6 +20,8 @@
 }
 
 .blue {
+	margin-right: 5px;
+	margin-left: 5px;
 	font-weight: bold;
 	color: #b3d5fb;
 }

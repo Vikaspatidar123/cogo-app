@@ -3,13 +3,13 @@ import { useState, useEffect } from 'react';
 
 import { useRequest } from '@/packages/request';
 
-function GetSchedules() {
+function getSchedules() {
 	const [{ loading, data: air_data }, trigger] = useRequest({
 		url    : '/get_app_dashboard_schedule',
 		method : 'get',
 	}, { manual: true });
 
-	const schedules = async (organization_id) => {
+	const schedulesData = async (organization_id) => {
 		try {
 			const reqData = {
 				organization: organization_id,
@@ -27,8 +27,8 @@ function GetSchedules() {
 	};
 
 	useEffect(() => {
-		schedules();
+		schedulesData();
 	}, []);
-	return { loading, schedules, air_data };
+	return { loading, schedulesData, air_data };
 }
-export default GetSchedules;
+export default getSchedules;

@@ -1,15 +1,27 @@
-import { Modal, Input, Upload } from '@cogoport/components';
+import Toast, { Modal, Input, Upload } from '@cogoport/components';
+
+import useGetMediaFileUrl from '../../hooks/useMediaFileUrl';
+import getControl from '../configuration';
 
 // import { Input } from 'postcss';
 import styles from './styles.module.css';
 
-import { MobileNumberSelectController } from '@/packages/forms';
-import SelectMobileNumber from '@/packages/forms/Business/SelectMobileNumber';
+import { useForm } from '@/packages/forms';
+// import SelectMobileNumber from '@/packages/forms/Business/SelectMobileNumber';
+import getField from '@/packages/forms/Controlled';
+import FormItem from '@/ui/commons/components/FormItem';
 
 function ModalPage({ open, setOpen }) {
+	const { loading, promotionData } = useGetMediaFileUrl();
+	const controls = getControl();
+	console.log(controls, 'controls');
+
+	const {
+		setValue,
+		control,
+	} = useForm();
 	return (
 		<Modal
-			// className={sty}
 			size="md"
 			show={open}
 			onClose={() => setOpen(false)}
@@ -19,28 +31,15 @@ function ModalPage({ open, setOpen }) {
 			<Modal.Body>
 				<p>We just need some additional details from you</p>
 				<div>
-					<p>Registration No. (PAN for India)</p>
-					<div style={{ marginRight: '10px' }}>
-						<Input size="md" placeholder="Medium" />
-					</div>
-				</div>
-				<div>
-					<p>Company's Address Proof</p>
-					<div>
-						<Upload />
-					</div>
-				</div>
-				<div>
-					<p>Mobile Number</p>
-					{/* <div>
-						<SelectMobileNumber />
-						<MobileNumberSelectController
-							control={control}
-							name="mobile_number"
-							type="mobile-number-select"
-							placeholder="Mobile Number"
-						/>
-					</div> */}
+					{controls.map((itm) => {
+						const Element = getField(itm?.type);
+						return (
+							<FormItem label={itm?.label} className={itm?.name} key={itm.id}>
+								{console.log(itm?.type, 'label')}
+								<Element {...itm} control={control} />
+							</FormItem>
+						);
+					})}
 				</div>
 			</Modal.Body>
 			<Modal.Footer>
@@ -51,7 +50,6 @@ function ModalPage({ open, setOpen }) {
 				</p>
 				<button className={styles.button}>Avail Your Free Searches</button>
 			</Modal.Footer>
-
 		</Modal>
 	);
 }

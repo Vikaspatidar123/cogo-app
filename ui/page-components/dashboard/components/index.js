@@ -3,7 +3,6 @@ import { useSelector } from 'react-redux';
 import Blogs from '../hooks/Blogs';
 import GetSchedules from '../hooks/GetSchedules';
 import GetTracking from '../hooks/GetTracking';
-import useGetPromotion from '../hooks/useGetPromotion';
 
 import DiscoverRates from './DiscoverRates';
 import Elgibility from './Elgibility';
@@ -20,7 +19,6 @@ import ActiveTracking from './Tracking/ActiveTracking';
 const INDIA_COUNTRY_ID = '541d1232-58ce-4d64-83d6-556a42209eb7';
 
 function SassDashboard() {
-	const { promotionData, promotion_data } = useGetPromotion();
 	const { loading, schedules, air_data } = GetSchedules();
 	const { air_track } = GetTracking();
 	const airTracking = air_track?.dashboard_products?.air_tracking || {};
@@ -80,9 +78,7 @@ function SassDashboard() {
 						<Elgibility />
 						<ExportFactoring />
 
-						<Promotion
-							promotion_data={promotion_data}
-						/>
+						<Promotion />
 					</div>
 				</div>
 			</div>

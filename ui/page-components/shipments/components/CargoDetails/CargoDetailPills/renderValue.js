@@ -6,11 +6,12 @@
 
 // import { CertificateContainer } from './styles';
 import { Popover } from '@cogoport/components';
+import { IcMOpenlink } from '@cogoport/icons-react';
 import { format, startCase, upperCase } from '@cogoport/utils';
 
+import styles from './styles.module.css';
+
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
-import { IcMOpenlink } from '@cogoport/icons-react';
-import styles from './styles.module.css'
 
 export const renderValue = (label, detail) => {
 	const { packages = [] } = detail || {};
@@ -312,7 +313,7 @@ export const renderValue = (label, detail) => {
 		case 'bl_type':
 			return upperCase(detail.bl_type);
 		case 'cargo_readiness_date':
-			return formatDate({
+			return format({
 				date       : detail?.cargo_readiness_date,
 				dateFormat : GLOBAL_CONSTANTS.formats.date['dd MMM yyyy'],
 				formatType : 'date',
@@ -329,7 +330,7 @@ export const renderValue = (label, detail) => {
 			return `${detail?.hs_code?.hs_code} - ${detail?.hs_code?.name}`;
 
 		case 'delivery_date':
-			return formatDate({
+			return format({
 				date       : detail?.delivery_date,
 				dateFormat : GLOBAL_CONSTANTS.formats.date['dd MMM yyyy'],
 				formatType : 'date',

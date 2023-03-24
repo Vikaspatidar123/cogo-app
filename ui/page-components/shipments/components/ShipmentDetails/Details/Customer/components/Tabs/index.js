@@ -9,8 +9,10 @@ import { useEffect } from 'react';
 // import Overview from './Overview';
 // import { Container, Content, InvoiceDiv } from './styles';
 import RelationshipManager from '../RelationshipManager';
+import IEDocuments from './IEDocuments';
 
 import Overview from './Overview';
+import SalesInvoice from './SalesInvoice';
 import styles from './styles.module.css';
 
 function TabSections({
@@ -46,22 +48,22 @@ function TabSections({
 						/>
 					</TabPanel>
 
-					{/* <TabPanel name="invoices" title="INVOICE">
-						<InvoiceDiv>
+					<TabPanel name="invoices" title="INVOICE">
+						<div className={styles.invoice_div}>
 							<SalesInvoice isCustomer />
-						</InvoiceDiv>
+						</div>
 					</TabPanel>
 
 					<TabPanel name="documents" title="DOCUMENTS">
 						<IEDocuments />
 					</TabPanel>
 
-					<TabPanel name="sop_poc" title="SOP AND POC">
+					{/* <TabPanel name="sop_poc" title="SOP AND POC">
 						<IEPocAndSop
 							quickAction={quickAction}
 							setQuickAction={setQuickAction}
 						/>
-					</TabPanel> */}
+					</TabPanel>  */}
 				</Tabs>
 			</div>
 		</div>

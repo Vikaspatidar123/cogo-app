@@ -1,0 +1,24 @@
+.container{
+    padding-bottom: 0px;
+}
+.heading{
+	font-weight: 500;
+	font-size: 18px;
+	line-height: 15px;
+	color: #393f70;
+	margin-bottom: 40px;
+	text-transform: uppercase;
+}
+.button_container{
+	display: flex;
+	width: 100%;
+	justify-content: flex-end;
+	align-items: center;
+	border-top: 1px solid #cddbff;
+	padding-top: 20px;
+	margin-top: 40px;
+	.core-ui-button-root {
+		background: #2c3e50;
+		padding: 12px 12px 22px 12px;
+	}
+}

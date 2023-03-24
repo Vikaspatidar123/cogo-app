@@ -10,7 +10,10 @@ import { useContext } from 'react';
 // import Invoice from './Invoice';
 // import { Container } from './styles';
 import { ShipmentDetailContext } from '../../../../../common/Context';
+import useGetInvoicingPartyData from '../../../../../hooks/useGetInvoicingPartyData';
+import Header from './Header';
 
+import Invoice from './Invoice';
 import styles from './styles.module.css';
 
 function SalesInvoice() {
@@ -39,7 +42,7 @@ function SalesInvoice() {
 
 	return (
 		<div className={styles.container}>
-			{/* <Header shipmentData={shipment_data} invoiceData={invoiceData} /> */}
+			<Header shipmentData={shipment_data} invoiceData={invoiceData} />
 
 			<Invoice
 				shipmentData={shipment_data}

@@ -1,9 +1,3 @@
-// import { useRequest } from '@cogo/commons/hooks';
-// import incoTerms from '@cogo/smart-components/constants/inco-terms.json';
-// import { useSelector } from '@cogo/store';
-// import { toast } from '@cogoport/front/components/admin';
-// import { getApiErrorString } from '@cogoport/front/utils';
-// import { useEffect } from 'react';
 import { Toast } from '@cogoport/components';
 import { useEffect } from 'react';
 
@@ -34,16 +28,6 @@ const useGetShipment = () => {
 		url    : 'update_shipment',
 		method : 'post',
 	}, { manual: true });
-	// const getAPi = '/get_shipment';
-	// const updateAPi = '/update_shipment';
-
-	// const {
-	// 	trigger: getShipmentApi,
-	// 	loading: isGettingShipment,
-	// 	data: shipment,
-	// } = useRequest('get', false, scope)(getAPi);
-
-	// const updateQuotation = useRequest('post', false, scope)(updateAPi);
 
 	const getShipment = async () => {
 		try {

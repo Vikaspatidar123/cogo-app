@@ -1,0 +1,116 @@
+.cotainer{
+    display: flex;
+	justify-content: center;
+	flex-direction: column;
+	width: 100%;
+	position: relative;
+	margin-bottom: 12px;
+}
+.invoice_detail_container{
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding-bottom: 12px;
+
+	@media (max-width: 768px) {
+		flex-direction: column;
+	}
+}
+.invoice_party_details{
+	display: flex;
+	width: 36%;
+	justify-content: center;
+	flex-direction: column;
+
+	@media (max-width: 768px) {
+		justify-content: space-between;
+		width: 100%;
+		margin-bottom: 4px;
+	}
+}
+.invoice_party_number{
+	font-weight: 500;
+	font-size: 14px;
+	color: #333333;
+	display: flex;
+	align-items: center;
+}
+.so_number{
+	padding-left: 4px;
+	font-weight: 500;
+	font-size: 14px;
+	color: #333333;
+}
+.approved {
+	text-decoration: underline;
+	cursor: pointer;
+}
+.reviewed {
+	text-decoration: underline;
+	cursor: pointer;
+}
+.gst{
+	display: flex;
+	align-items: center;
+	margin-top: 4px;
+}
+.label{
+	font-weight: 500;
+	font-size: 12px;
+	line-height: 16px;
+	color: #333333;
+}
+.gst_number{
+	font-weight: 400;
+	font-size: 12px;
+	line-height: 16px;
+	text-transform: capitalize;
+	color: #6591fe;
+	margin-left: 8px;
+	text-decoration-line: underline;
+}
+.invoiceValue_container{
+	display: flex;
+	width: 25%;
+	align-items: center;
+	font-size: 16px;
+
+	@media (max-width: 768px) {
+		width: 100%;
+	}
+}
+.invoice_value_title{
+	font-weight: 500;
+	line-height: 16px;
+	text-transform: capitalize;
+	color: #333333;
+	font-size: 14px;
+}
+.invoice_value{
+	font-weight: 500;
+	line-height: 16px;
+	text-transform: capitalize;
+	color: #4097f5;
+	margin-left: 8px;
+	font-size: 14px;
+}
+.invoice_info{
+	display: flex;
+	width: 32%;
+	justify-content: space-around;
+	align-items: center;
+
+	@media (max-width: 768px) {
+		width: 100%;
+		justify-content: flex-end;
+	}
+}
+.payment_type{
+	font-weight: 500;
+	font-size: 14px;
+	line-height: 16px;
+	margin: 0;
+	margin-right: 4px;
+	color: #4f4f4f;
+}

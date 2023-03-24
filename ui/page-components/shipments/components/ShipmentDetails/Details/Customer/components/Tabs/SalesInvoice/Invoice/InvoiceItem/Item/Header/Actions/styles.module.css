@@ -1,0 +1,36 @@
+.conatiner{
+    display: flex;
+	align-items: center;
+	flex-direction: column;
+	margin-right: 44px;
+	@media (max-width: 768px) {
+		margin-right: 4px;
+	}
+}
+.info_container{
+	font-weight: 400;
+	font-size: 10px;
+	line-height: 16px;
+	background: #fbd69f;
+	color: #393f70;
+	border-radius: 4px;
+	width: fit-content;
+	padding: 4px 7px;
+	margin-bottom: 6px;
+}
+.reviewed {
+	background: #fbd69f;
+	color: #393f70;
+}
+.approved {
+	background: #fef6df;
+	color: #2c3e50;
+}
+.amendment_requested {
+	background: #fbe6e6;
+	color: #2c3e50;
+}
+.row{
+	display: flex;
+	align-items: center;
+}

@@ -4,6 +4,8 @@
 
 // import Header from './Header';
 // import { Container, InvoiceInfo } from './styles';
+import Header from './Header';
+import InvoiceServiceWise from './InvoiceServiceWise';
 import styles from './styles.module.css';
 
 function ItemHeader({

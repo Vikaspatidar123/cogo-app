@@ -8,6 +8,8 @@ import { isEmpty, startCase } from '@cogoport/utils';
 import { useState } from 'react';
 
 import styles from './styles.module.css';
+
+import formatAmount from '@/ui/commons/utils/formatAmount';
 // import {
 // 	Container,
 // 	InvoicingPartyName,

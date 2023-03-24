@@ -1,18 +1,10 @@
-// import handleTimer from '@cogo/bookings/utils/handleTimer';
-// import formatAmount from '@cogo/globalization/utils/formatAmount';
-// import { isEmpty } from '@cogoport/front/utils';
 import { isEmpty } from '@cogoport/utils';
 import { useRef, useEffect } from 'react';
 
-// import {
-// 	Container,
-// 	TotalShipmenTitle,
-// 	ShipmentValue,
-// 	TotalValue,
-// 	TriggerTime,
-// 	FlexRow,
-// 	IconWrapper,
-// } from './styles';
+import styles from './styles.module.css';
+
+import formatAmount from '@/ui/commons/utils/formatAmount';
+import handleTimer from '@/ui/page-components/shipments/utils/handleTimer';
 
 function Header({ invoiceData = {} }) {
 	const {
@@ -42,27 +34,27 @@ function Header({ invoiceData = {} }) {
 	const showTimer = !isEmpty(invoice_trigger_date);
 
 	return (
-		<Container>
-			<FlexRow className={showTimer ? 'active' : 'inactive'}>
-				<IconWrapper>
+		<div className={styles.container}>
+			<div className={`${styles.flex_row} ${showTimer ? styles.active : styles.inactive}`}>
+				<div className={styles.icon_wrapper}>
 					<img
 						src="https://cdn.cogoport.io/cms-prod/cogo_admin/vault/original/ic-over-due.svg"
 						alt="timer"
 					/>
-				</IconWrapper>
+				</div>
 
-				<TriggerTime id="proforma_trigger">
+				<p className={styles.trigger_time} id="proforma_trigger">
 					<span id="timer" ref={timerRef} />
 					<span style={{ fontWeight: 400, marginLeft: '4px' }}>
 						(Until Profoma trigger)
 					</span>
-				</TriggerTime>
-			</FlexRow>
+				</p>
+			</div>
 
-			<TotalValue>
-				<TotalShipmenTitle>Total Shipment Value - </TotalShipmenTitle>
+			<div className={styles.total_value}>
+				<p className={styles.total_shipment_title}>Total Shipment Value - </p>
 
-				<ShipmentValue>
+				<span className={styles.shipment_value}>
 					{formatAmount({
 						amount   : net_total_price_discounted,
 						currency : net_total_price_currency,
@@ -72,9 +64,9 @@ function Header({ invoiceData = {} }) {
 							maximumFractionDigits : 2,
 						},
 					})}
-				</ShipmentValue>
-			</TotalValue>
-		</Container>
+				</span>
+			</div>
+		</div>
 	);
 }
 

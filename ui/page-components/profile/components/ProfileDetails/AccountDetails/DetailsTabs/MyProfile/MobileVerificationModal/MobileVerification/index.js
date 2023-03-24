@@ -3,8 +3,6 @@ import { Button, Modal } from '@cogoport/components';
 import styles from './styles.module.css';
 import useMobileNoVerification from './useMobileNoVerification';
 
-// import OTPLayout from '@/temp/form/components/Business/OTPLayout';
-// import Layout from '@/temp/form/FormLayout';
 import OTPLayout from '@/packages/forms/Business/OTPLayout';
 import getField from '@/packages/forms/Controlled';
 
@@ -44,7 +42,6 @@ function MobileVerification({ type = '' }) {
 										{errors[item?.name]?.message}
 									</div>
 								</div>
-
 							);
 						})}
 					</div>
@@ -80,14 +77,15 @@ function MobileVerification({ type = '' }) {
 							onClick={verifyOtpNumber}
 							themeType="accent"
 							className={styles.button}
-							disabled={verifyMobileNumberAPI.loading || otpNumber?.length !== 4}
+							disabled={
+                verifyMobileNumberAPI.loading || otpNumber?.length !== 4
+              }
 						>
 							SUBMIT
 						</Button>
 					)}
 				</Modal.Footer>
 			</from>
-
 		</div>
 	);
 }

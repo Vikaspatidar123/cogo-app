@@ -1,0 +1,16 @@
+.form {
+	display: flex;
+	justify-content: flex-end;
+	padding-right: 10px;
+
+	:global {
+		.core_ui_select__menu {
+			min-width: 0 !important;
+			max-width: 150px !important;
+		}
+
+		.ui_select_container {
+			width: 180px;
+		}
+	}
+}

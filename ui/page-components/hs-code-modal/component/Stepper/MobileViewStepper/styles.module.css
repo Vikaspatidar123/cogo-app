@@ -1,0 +1,45 @@
+.container {
+	display: flex;
+	justify-content: center;
+	padding: 18px;
+}
+
+.div_flex {
+	display: flex;
+	align-items: center;
+}
+
+.dot {
+	width: 15px;
+	height: 15px;
+	background: #e67f1e;
+	background: #e0e0e0;
+	border: 2px solid #e67f1e;
+	border: 2px solid #e0e0e0;
+	border-radius: 50px;
+}
+
+.completed {
+	background: #e67f1e;
+	border: 2px solid #e67f1e;
+}
+
+.line {
+	width: 75px;
+	height: 0;
+	border: 1px solid #e0e0e0;
+}
+
+.completed_line {
+	border: 1px solid #e67f1e;
+}
+
+.label {
+	font-size: 12px;
+	font-weight: 500;
+	color: #b7b7b8;
+}
+
+.completed_label {
+	color: #e67f1e;
+}

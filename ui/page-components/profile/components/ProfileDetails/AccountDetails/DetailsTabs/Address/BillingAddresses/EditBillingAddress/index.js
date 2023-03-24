@@ -3,7 +3,6 @@ import { Button, Modal } from '@cogoport/components';
 import styles from './styles.module.css';
 import useEditBillingAddress from './useEditBillingAddress';
 
-// import Layout from '@/temp/form/FormLayout';
 import getField from '@/packages/forms/Controlled';
 
 function EditBillingAddress({
@@ -11,7 +10,9 @@ function EditBillingAddress({
 	addressIdxToUpdate,
 	getOrganizationBillingAddress = {},
 	organizationBillingAddressesList = [],
-	handleCloseModal = () => { },
+	handleCloseModal = () => {},
+	mobalType,
+	getAddress,
 }) {
 	const {
 		control,
@@ -20,27 +21,36 @@ function EditBillingAddress({
 		handleSubmit,
 		onCreate,
 		loading,
+		formState,
 	} = useEditBillingAddress({
 		organizationType,
 		addressIdxToUpdate,
 		getOrganizationBillingAddress,
 		organizationBillingAddressesList,
 		handleCloseModal,
+		mobalType,
+		getAddress,
 	});
+	const { errors = {} } = formState || {};
 
 	return (
 		<div>
-			<Modal.Header title="Edit Billing Address" />
+			<Modal.Header title={`${mobalType ? 'Edit' : ' Add'} Billing Address`} />
 			<Modal.Body>
 				<div className={styles.layout}>
 					{fields.map((item) => {
-						const ELEMENT = getField(item.type);
+						const Element = getField(item.type);
 						const show = showElements[item.name];
 						return (
 							show && (
 								<div className={styles.field}>
 									<div className={styles.lable}>{item.label}</div>
-									<ELEMENT {...item} control={control} />
+									<Element {...item} control={control} />
+									{errors && (
+										<div className={styles.errors}>
+											{errors[item?.name]?.message}
+										</div>
+									)}
 								</div>
 							)
 						);
@@ -59,11 +69,8 @@ function EditBillingAddress({
 					Cancel
 				</Button>
 
-				<Button
-					disabled={loading}
-					onClick={handleSubmit(onCreate)}
-				>
-					Update
+				<Button disabled={loading} onClick={handleSubmit(onCreate)}>
+					{mobalType ? 'Update' : 'Add'}
 				</Button>
 			</Modal.Footer>
 		</div>

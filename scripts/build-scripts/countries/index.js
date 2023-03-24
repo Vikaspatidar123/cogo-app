@@ -11,7 +11,6 @@ const setCountries = async () => {
 		fs.mkdirSync(dirPath, { recursive: true });
 	} catch (err) {
 		console.log("Can't make Countries folder");
-		console.log(err);
 	}
 	console.log('Building Countries ...');
 	await getCountries(

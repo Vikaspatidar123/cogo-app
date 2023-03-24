@@ -1,0 +1,23 @@
+.wrapper {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	padding: 20px;
+}
+
+.button_wrapper {
+	display: flex;
+	justify-content: center;
+	width: 100%;
+	margin-top: 10px;
+}
+
+.no {
+	margin-right: 10%;
+}
+
+.text_wrapper {
+	font-weight: 500;
+}

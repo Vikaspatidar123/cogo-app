@@ -1,5 +1,3 @@
-import LoadingRateCard from '@cogo/product/rfq/common/LoadingRateCard';
-import Title from '@cogo/product/rfq/common/TitleCard';
 import { RadioGroup } from '@cogoport/components';
 import { IcMArrowLeft, IcMArrowRight } from '@cogoport/icons-react';
 import { isEmpty } from '@cogoport/utils';
@@ -8,7 +6,10 @@ import EmptyPage from '../../../../../common/Empty';
 import EmptyRateCard from '../../../../../common/EmptyRateCard';
 import RateCard from '../../../../../common/RateCard';
 
+import LoadingRateCard from './LoadingRatesCard';
 import styles from './styles.module.css';
+
+import Title from '@/ui/page-components/manage-rfq/common/TitleCard';
 
 function ListRate({
 	activePortPair,

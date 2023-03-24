@@ -31,6 +31,7 @@ function Ports({ rfqItem, handleDeleteRfq, handleDuplicateRfq }) {
 
 	const viewButton = status !== 'uploaded' ? (
 		<Button
+			themeType="secondary"
 			onClick={() => {
 				push(
 					// eslint-disable-next-line max-len
@@ -91,13 +92,13 @@ function Ports({ rfqItem, handleDeleteRfq, handleDuplicateRfq }) {
 			<div className={styles.live_button}>
 				{status === 'draft' ? (
 					<Button
+						themeType="secondary"
 						onClick={() => push(
 							`/manage-rfq/create/?rfq_id=${rfqItem?.id}&stage=3&type=manual_entry`,
 							`/manage-rfq/create/?rfq_id=${rfqItem?.id}&stage=3&type=manual_entry`,
 						)}
 					>
 						<IcMEdit width={12} height={12} />
-						{' '}
 						Edit
 					</Button>
 				) : (

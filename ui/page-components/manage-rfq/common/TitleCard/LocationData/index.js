@@ -6,10 +6,9 @@ function LocationData({ locationData = {} }) {
 	const { port_code: code, name, display_name: country } = locationData || {};
 	return (
 		<div className={styles.location}>
-			<Tooltip content={country} theme="light-border">
+			<Tooltip content={country}>
 				<div className={styles.name}>
 					<div className={styles.port}>{name}</div>
-					{' '}
 					<div className={styles.code}>
 						(
 						{code}

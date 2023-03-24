@@ -6,14 +6,7 @@ import AdditionalServices from '../AdditionalServices';
 import LoadingCard from './LoadingCard';
 import LocationData from './LocationData';
 import RenderTags from './RenderTags';
-import {
-	Container,
-	Index,
-	PortContainer,
-	IndexContainer,
-	Header,
-	ExtraServices,
-} from './styles';
+import styles from './styles.module.css';
 
 function Title({
 	activePortPair,
@@ -28,31 +21,31 @@ function Title({
 	return portPairloading ? (
 		<LoadingCard />
 	) : (
-		<Container>
-			<Header>
-				<PortContainer>
-					<IndexContainer>
-						<Index>{activePortPair + 1}</Index>
-					</IndexContainer>
+		<div className={styles.container}>
+			<div className={styles.header}>
+				<div className={styles.port_container}>
+					<div className={styles.index_container}>
+						<div className={styles.index_list}>{activePortPair + 1}</div>
+					</div>
 					<LocationData
 						locationData={detail?.origin_port || detail?.origin_airport}
 					/>
-					<IcMPortArrow className="anchor-icon" />
+					<IcMPortArrow className={styles.anchor_icon} />
 					<LocationData
 						locationData={
 							detail?.destination_port || detail?.destination_airport
 						}
 					/>
-				</PortContainer>
+				</div>
 				<RenderTags tagData={tagData} />
-			</Header>
-			<ExtraServices>
+			</div>
+			<div className={styles.extra_service}>
 				<AdditionalServices
 					serviceDetails={detail?.service_details}
 					type="titlecard"
 				/>
-			</ExtraServices>
-		</Container>
+			</div>
+		</div>
 	);
 }
 

@@ -19,15 +19,10 @@ const useListRfqSearches = ({
 
 	const isNewRate = rateFilter === 'is_new_rates';
 
-	const [{ data, loading }, trigger] = useRequest(
-		{
-			method : 'get',
-			url    : '/list_rfq_searches',
-		},
-		{
-			manual: true,
-		},
-	);
+	const [{ data, loading }, trigger] = useRequest({
+		method : 'get',
+		url    : '/list_rfq_searches',
+	}, { manual: true });
 
 	const listRfqSearches = useCallback(async () => {
 		const response = await trigger({

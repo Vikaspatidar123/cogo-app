@@ -1,0 +1,24 @@
+.container {
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 14px 20px;
+	box-shadow: 0 0 8px rgb(44 62 80 / 20%);
+}
+
+.footer_left {
+	margin-left: 10px;
+	font-size: 13px;
+	font-weight: 500;
+	color: #393f70;
+}
+
+.footer_right {
+	display: flex;
+	align-items: center;
+	margin-right: 20px;
+}

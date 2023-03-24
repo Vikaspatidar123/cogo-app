@@ -4,7 +4,7 @@ import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 import getCountryDetails from '@/ui/page-components/manage-rfq/utils/getCountryDetails';
 
 const INDIA_COUNTRY_CODE = getCountryDetails({
-	country_id: GLOBAL_CONSTANTS.country_ids.IN,
+	country_id: GLOBAL_CONSTANTS.COUNTRY_IDS.IN,
 }).country_code;
 
 const getCommoditySubTypeoptions = ({

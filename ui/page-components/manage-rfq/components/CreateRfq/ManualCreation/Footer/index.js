@@ -64,7 +64,6 @@ function Footer({
 				</div>
 
 				<Button
-					themeType="secondary"
 					onClick={handleClick}
 					disabled={loading}
 				>

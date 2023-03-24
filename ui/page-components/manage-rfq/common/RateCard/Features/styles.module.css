@@ -1,0 +1,24 @@
+.container {
+    display: flex;
+	flex: 6;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: flex-start;
+	padding: 6px;
+}
+
+.text_div {
+    white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	width: 130px;
+	font-weight: 400;
+	font-size: 12px;
+	margin-left: 4px;
+}
+
+.text_container {
+    display: flex;
+	align-items: center;
+	padding: 8px 10px 10px 10px;
+}

@@ -18,11 +18,8 @@ const useIsInViewport = (ref, rootMargin) => {
 		return false;
 	}, [rootMargin]);
 
-	console.log('🚀 ~ file: useIntersection.js:7 ~ observer ~ observer:', observer);
-
 	useEffect(() => {
-		observer.observe(ref.current);
-
+		observer.observe(ref?.current);
 		return () => {
 			observer.disconnect();
 		};

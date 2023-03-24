@@ -1,0 +1,52 @@
+.container {
+    display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.left_container {
+    display: flex;
+	align-items: center;
+}
+
+.id {
+    font-weight: 400;
+	font-size: 20px;
+	color: #828282;
+	display: flex;
+	align-items: center;
+}
+
+.name {
+    font-weight: 600;
+    font-size: 20px;
+    color: #2c3e50;
+    margin: 0 16px 0 16px;
+    display: flex;
+    align-items: center;
+}
+
+.name_id {
+	margin-left: 4px;
+}
+
+.explore_tag {
+    padding: 2px 4px;
+	border-radius: 4px;
+	color: #fff;
+	font-size: 12px;
+	background-color: #849e4c;
+	margin-left: 8px;
+}
+
+.right_container{
+    display: flex;
+    align-items: center;
+}
+
+.date {
+    font-weight: 400;
+	font-size: 12px;
+	color: #828282;
+	margin-left: 12px;
+}

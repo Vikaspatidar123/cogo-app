@@ -95,7 +95,7 @@ function ManualCreation({ currentStep, setCurrentStep, rfqId, ...rest }) {
 	const totalDraftsCount = (draftFormData?.formData?.fcl_freight?.data || []).length
 		+ (draftFormData?.formData?.lcl_freight?.data || []).length
 		+ (draftFormData?.formData?.air_freight?.data || []).length;
-	console.log(draftFormData, 'draftFormData');
+
 	return (
 		<div className={styles.container}>
 			{loading ? (
@@ -154,9 +154,9 @@ function ManualCreation({ currentStep, setCurrentStep, rfqId, ...rest }) {
 												],
 											});
 										} else if (!editForm) {
-											Toast.error('save all forms to open new form');
+											Toast.error('Save all forms to open a new form.');
 										} else {
-											Toast.error('save edited form to open new form');
+											Toast.error('To open a new form, save the edited form. ');
 										}
 									}}
 								>

@@ -1,0 +1,22 @@
+.container {
+	margin-top: 26px;
+}
+
+.header {
+    margin-block: 12px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.title {
+    font-weight: 500;
+	font-size: 20px;
+	color: #2c3e50;
+	margin-block: 4px;
+}
+
+.pagination_container {
+    display: flex;
+	justify-content: flex-end;
+}

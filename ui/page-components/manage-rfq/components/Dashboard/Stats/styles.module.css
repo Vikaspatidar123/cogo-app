@@ -1,4 +1,109 @@
-.row {	
+.row {
+    display: flex;	
+    flex-wrap: wrap;
+    width: 100%;
     margin-top: 15px;
 	justify-content: center;
+}
+
+.column {
+    width: 24%;
+    @media (max-width: 768px) {
+		margin-bottom: 12px;
+	}
+	margin-right: 10px;
+}
+
+.card_orange {
+    width: 100%;
+	border-radius: 4px;
+    background-color: #FEF3E9;
+	padding: 12px;
+	box-shadow: 0px 2px 3px rgba(16, 24, 40, 0.1),
+		-2px -2px 3px rgba(16, 24, 40, 0.1);
+	transition: 0.4s;
+}
+
+.card_purple {
+    background-color: #F2F3FA;
+    padding: 12px;
+	box-shadow: 0px 2px 3px rgba(16, 24, 40, 0.1),
+		-2px -2px 3px rgba(16, 24, 40, 0.1);
+	transition: 0.4s;
+    width: 100%;
+	border-radius: 4px;
+}
+
+.card_green {
+    background-color: #F7FAEF;
+    padding: 12px;
+	box-shadow: 0px 2px 3px rgba(16, 24, 40, 0.1),
+		-2px -2px 3px rgba(16, 24, 40, 0.1);
+	transition: 0.4s;
+    width: 100%;
+	border-radius: 4px;
+}
+
+.card_yellow {
+    background-color: #FFFCE6;
+    padding: 12px;
+	box-shadow: 0px 2px 3px rgba(16, 24, 40, 0.1),
+		-2px -2px 3px rgba(16, 24, 40, 0.1);
+	transition: 0.4s;
+    width: 100%;
+	border-radius: 4px;
+}
+
+.title {
+    font-weight: 500;
+	font-size: 16px;
+}
+
+.count {
+    margin-top: 10px;
+	font-weight: 600;
+	font-size: 30px;
+}
+
+.comparision {
+    display: flex;
+	justify-content: space-between;
+	align-items: flex-end;
+}
+
+
+.graph_orange {
+
+}
+
+.ratio {
+    display: flex;
+	align-items: center;
+	color: #667085;
+}
+
+.downward_icon{
+	margin-right: 5px;
+	color:#CB6464;
+	transform: rotate(270deg);
+}
+
+.upward_icon{
+	margin-right: 5px;
+	color: #027a48;
+	transform: rotate(90deg);
+}
+
+.ratio_count_negative {
+    margin-right: 5px;
+	color:#CB6464;
+	font-weight: 500;
+	font-size: 14px;
+}
+
+.ratio_count_positive {
+    margin-right: 5px;
+	color: #027a48;
+	font-weight: 500;
+	font-size: 14px;
 }

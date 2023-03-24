@@ -1,0 +1,42 @@
+.button_wrapper {
+    width: 70%;
+	margin-inline: auto;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+}
+
+.text_input {
+    padding-top: 30px;
+	font-size: 14px;
+	display: flex;
+	justify-content: center;
+	white-space: nowrap;
+	padding: 0px 10px 0px 0px;
+
+}
+
+.input_container {
+    display: flex;
+	padding-top: 10px;
+	align-items: center;
+}
+
+.text {
+    padding-top: 30px;
+	font-size: 14px;
+	display: flex;
+	justify-content: center;
+	white-space: nowrap;
+}
+
+.error_container {
+    display: flex;
+	height: 16px;
+	margin-bottom: 10px;
+}
+
+.error_text {
+    color: #bf291e;
+	font-size: 12px;
+}

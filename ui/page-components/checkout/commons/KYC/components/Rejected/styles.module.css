@@ -1,23 +1,23 @@
 .container {
 	display: flex;
 	flex-direction: column;
-	padding: 84px 0;
 	align-items: center;
+	padding: 84px 0;
 }
 
 .rejection_text {
-	font-weight: 600;
-	font-size: 20px;
-	text-transform: uppercase;
-	color: #cb6464;
 	margin-bottom: 16px;
+	font-size: 20px;
+	font-weight: 600;
+	color: #cb6464;
+	text-transform: uppercase;
 }
 
 .detail_text {
-	font-weight: 500;
-	font-size: 12px;
-	color: #393f70;
 	margin-bottom: 8px;
+	font-size: 12px;
+	font-weight: 500;
+	color: #393f70;
 
 	.red {
 		color: #cb6464;

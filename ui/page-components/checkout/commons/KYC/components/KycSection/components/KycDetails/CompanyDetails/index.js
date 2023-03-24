@@ -1,5 +1,4 @@
 import Layout from '@cogo/business-modules/form/Layout';
-import { Flex, Text } from '@cogoport/front/components';
 import { Button } from '@cogoport/front/components/admin';
 
 // import { LayoutContainer } from './styles';
@@ -25,21 +24,21 @@ function CompanyDetails({
 	});
 
 	return (
-		<Flex direction="column">
-			<Text size={14} color="#333333">
+		<div style={{ display: 'flex', flexDirection: 'column' }}>
+			<div style={{ color: '#333333' }}>
 				Kindly check the details before you proceed
-			</Text>
+			</div>
 
-			<LayoutContainer>
+			<div className={styles.layout_container}>
 				<Layout controls={controls} fields={fields} errors={formState.errors} />
-			</LayoutContainer>
+			</div>
 
-			<Flex justifyContent="flex-end">
+			<div style={{ display: 'flex', justifyContent: 'flex-end' }}>
 				<Button disabled={loading} onClick={handleSubmit(onSubmit)}>
 					SAVE AND CONTINUE
 				</Button>
-			</Flex>
-		</Flex>
+			</div>
+		</div>
 	);
 }
 

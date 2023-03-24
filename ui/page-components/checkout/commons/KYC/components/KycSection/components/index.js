@@ -1,17 +1,16 @@
-import KycIntro from './KycIntro';
-import KycDetails from './KycDetails';
 import KycCompleted from './KycCompleted';
+import KycDetails from './KycDetails';
+import KycIntro from './KycIntro';
 import LoadingState from './LoadingState';
+import styles from './styles.module.css';
 import useKycSection from './useKycSection';
 import KycVerified from './Verified';
 
-import styles from './styles.module.css';
-
 const KYC_STATUS_COMPONENT_MAPPING = {
-	pending_from_user: KycDetails,
-	pending_verification: KycCompleted,
-	verified: KycVerified,
-	rejected: KycDetails,
+	pending_from_user    : KycDetails,
+	pending_verification : KycCompleted,
+	verified             : KycVerified,
+	rejected             : KycDetails,
 };
 
 function KycSection({ source, channelPartnerDetails = {} }) {
@@ -53,8 +52,8 @@ function KycSection({ source, channelPartnerDetails = {} }) {
 				kycDetails,
 				setKycDetails,
 			},
-			pending_verification: {},
-			verified: {
+			pending_verification : {},
+			verified             : {
 				channelPartnerDetails,
 			},
 			rejected: {

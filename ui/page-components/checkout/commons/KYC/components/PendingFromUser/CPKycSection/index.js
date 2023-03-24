@@ -1,7 +1,7 @@
 import KycDetails from '../../KycSection/components/KycDetails';
 import useKycSection from '../../KycSection/components/useKycSection';
 
-const CPKycSection = ({ source, setShow, onClose, channelPartnerDetails }) => {
+function CPKycSection({ source, setShow, onClose, channelPartnerDetails }) {
 	const { kycDetails, setKycDetails } = useKycSection({
 		channelPartnerDetails,
 	});
@@ -16,6 +16,6 @@ const CPKycSection = ({ source, setShow, onClose, channelPartnerDetails }) => {
 			channelPartnerDetails={channelPartnerDetails}
 		/>
 	);
-};
+}
 
 export default CPKycSection;

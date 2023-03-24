@@ -1,9 +1,9 @@
 .layout_container {
 	.form-item-label {
+		margin: 32px 0 12px;
 		font-size: 12px;
-		color: #393f70;
-		margin: 32px 0 12px 0;
 		font-weight: 500;
+		color: #393f70;
 	}
 
 	.main_upload_container {

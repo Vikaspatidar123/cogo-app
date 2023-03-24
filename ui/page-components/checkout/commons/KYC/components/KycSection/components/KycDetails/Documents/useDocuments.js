@@ -1,8 +1,9 @@
-import { useEffect } from 'react';
-import { useFormCogo } from '@cogoport/front/hooks';
 import { useRequest } from '@cogo/commons/hooks';
-import { get, getApiErrorString } from '@cogoport/front/utils';
 import { toast } from '@cogoport/front/components/admin';
+import { useFormCogo } from '@cogoport/front/hooks';
+import { get, getApiErrorString } from '@cogoport/front/utils';
+import { useEffect } from 'react';
+
 import controls from './get-documents-controls';
 
 const useDocuments = ({
@@ -16,9 +17,9 @@ const useDocuments = ({
 		'partner',
 	)('/get_channel_partner_documents', {
 		params: {
-			partner_id: channelPartnerDetails.id,
-			account_types: channelPartnerDetails.account_types,
-			filters: {
+			partner_id    : channelPartnerDetails.id,
+			account_types : channelPartnerDetails.account_types,
+			filters       : {
 				document_type: 'business_address_proof',
 			},
 		},
@@ -63,18 +64,17 @@ const useDocuments = ({
 			].filter((accountType) => accountType);
 
 			const payload = {
-				partner_id: id,
-				account_types: accountTypes,
-				name: 'Business Address Proof',
-				document_type: 'business_address_proof',
-				image_url: get(values, 'business_address_proof.url'),
-				verification_id: verification?.[0].id,
+				partner_id      : id,
+				account_types   : accountTypes,
+				name            : 'Business Address Proof',
+				document_type   : 'business_address_proof',
+				image_url       : get(values, 'business_address_proof.url'),
+				verification_id : verification?.[0].id,
 			};
 
-			const response =
-				await createChannelPartnerVerificationDocumentApi.trigger({
-					data: payload,
-				});
+			const response =				await createChannelPartnerVerificationDocumentApi.trigger({
+				data: payload,
+			});
 
 			toast.success('Business Address Proof added successfully!');
 

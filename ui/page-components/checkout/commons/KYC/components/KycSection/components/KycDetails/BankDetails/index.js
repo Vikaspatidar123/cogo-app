@@ -18,11 +18,11 @@ function BankDetails(props) {
 	const { handleSubmit = () => {}, fields = {} } = formProps;
 
 	return (
-		<Container>
-			<Form onSubmit={handleSubmit(onSubmit)}>
+		<div className={styles.container}>
+			<div className={styles.form} onSubmit={handleSubmit(onSubmit)}>
 				<Layout controls={controls} fields={fields} errors={errors} />
 
-				<ButtonContainer>
+				<div className={styles.button_container}>
 					<Button
 						type="submit"
 						className="primary md"
@@ -30,9 +30,9 @@ function BankDetails(props) {
 					>
 						{createBankDetailsApiLoading ? 'Submitting' : 'Submit'}
 					</Button>
-				</ButtonContainer>
-			</Form>
-		</Container>
+				</div>
+			</div>
+		</div>
 	);
 }
 

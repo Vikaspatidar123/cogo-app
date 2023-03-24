@@ -1,4 +1,4 @@
-import { Flex } from '@cogoport/front/components';
+
 import { Button } from '@cogoport/front/components/admin';
 import Checkbox from '@cogoport/front/components/admin/CheckBox';
 
@@ -30,8 +30,8 @@ function Declaration({
 	});
 
 	return (
-		<Flex direction="column">
-			<LayoutContainer>
+		<div style={{ display: 'flex', flexdirection:"column"}}>
+			<div className={styles.layout_container}>
 				<Checkbox
 					className="primary lg"
 					checked={checked}
@@ -39,24 +39,24 @@ function Declaration({
 					style={{ marginTop: 2 }}
 				/>
 
-				<Body>
+				<div className={styles.body}>
 					I certify that the information I am about to provided is true and
 					complete to the best of my knowledge. I am aware that this self
 					declaration statement is subject to review and verification and if
 					such information has been falsified I may be prosecuted or other
 					actions might be taken to recover funds.
-				</Body>
-			</LayoutContainer>
+				</div>
+			</div>
 
-			<Flex justifyContent="flex-end">
+			<div style={{ display: 'flex', justifyContent:"flex-end"}}>
 				<Button
 					disabled={apiLoading || disableSubmitButton}
 					onClick={handleSubmitKyc}
 				>
 					SAVE AND SUBMIT KYC
 				</Button>
-			</Flex>
-		</Flex>
+			</div>
+		</div>
 	);
 }
 

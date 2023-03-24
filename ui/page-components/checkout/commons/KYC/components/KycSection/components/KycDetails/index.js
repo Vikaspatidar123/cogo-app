@@ -1,11 +1,13 @@
-import styles from './styles.module.css';
-import RejectedIcon from '../../icons/alert-rejected.svg';
-import useKycDetails from './hooks/useKycDetails';
-import TAG_COMPONENT_MAPPING from './utils/component-mapping';
-import InfoIcon from '../../icons/info-icon.svg';
-import CaretUp from '../../icons/caret-up.svg';
-import CaretDown from '../../icons/caret-down.svg';
 import { Tooltip } from '@cogoport/components';
+
+import RejectedIcon from '../../icons/alert-rejected.svg';
+import CaretDown from '../../icons/caret-down.svg';
+import CaretUp from '../../icons/caret-up.svg';
+import InfoIcon from '../../icons/info-icon.svg';
+
+import useKycDetails from './hooks/useKycDetails';
+import styles from './styles.module.css';
+import TAG_COMPONENT_MAPPING from './utils/component-mapping';
 
 function KycDetails({
 	source,
@@ -39,7 +41,7 @@ function KycDetails({
 		}
 
 		return (
-			
+
 			<div className={styles.rejected_label}>
 				<div className={styles.header}>
 					<RejectedIcon style={{ width: 20, height: 20, marginRight: 8 }} />
@@ -47,13 +49,13 @@ function KycDetails({
 					<div className={styles.rejected_text}>Your KYC has been Rejected!</div>
 
 					<div className={styles.rejected_sub_text}>
-					
+
 						Kindly resubmit the details to proceed further.
 					</div>
 				</div>
 
 				<div className={styles.rejection_reason}>
-				
+
 					{`Reason : ${kycDetails.kyc_rejection_reason}`}
 				</div>
 			</div>
@@ -74,33 +76,32 @@ function KycDetails({
 
 					const showHiddenComponentContent = showHiddenComponentContents[key];
 
-					const status =
-						TAG_COMPONENT_MAPPING[(verification_progress || {})[key]] || null;
+					const status =						TAG_COMPONENT_MAPPING[(verification_progress || {})[key]] || null;
 
 					return (
-						<div className={styles.item_container}
+						<div
+							className={styles.item_container}
 							key={key}
 							ref={(element) => {
 								componentsRef.current[key] = element;
 							}}
 						>
-							<ItemStroke />
-							<div className={styles.item_header}
-							    role="presentation"
-								onClick={() =>
-									setShowHiddenComponentContents((previousState) => ({
-										...previousState,
-										[key]: !previousState[key],
-									}))
-								}
+							<div className={styles.item_stroke} />
+							<div
+								className={styles.item_header}
+								role="presentation"
+								onClick={() => setShowHiddenComponentContents((previousState) => ({
+									...previousState,
+									[key]: !previousState[key],
+								}))}
 							>
 								<div className={styles.flex}>
-									<div className={styles.text} >
+									<div className={styles.text}>
 										{title}
 									</div>
 
 									<Tooltip
-										content={<div style={{fontSize:'12px'}}>{tooltip}</div>}
+										content={<div style={{ fontSize: '12px' }}>{tooltip}</div>}
 										animation="scale"
 										placement="top"
 									>

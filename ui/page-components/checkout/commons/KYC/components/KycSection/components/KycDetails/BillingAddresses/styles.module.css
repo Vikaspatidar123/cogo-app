@@ -1,36 +1,32 @@
-import styled from '@cogoport/front/styled';
-
-export const Container = styled.div`
+.container {
 	background: #f9f9f9;
 
 	@media (min-width: 768px) {
 		display: flex;
 		flex-direction: column;
-
+		padding: 16px 32px;
 		margin-top: 16px;
-
 		border-radius: 10px;
-		padding: 16px 32px 16px 32px;
 	}
-`;
+}
 
-export const BookingContactAlign = styled.div`
+.booking_contact_align {
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
 	height: 100%;
-`;
+}
 
-export const Content = styled.div`
+.content {
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
-`;
+}
 
-export const AddMoreButtonContainer = styled.div`
+.add_more_button_container {
 	display: flex;
 	flex-direction: row;
-	justify-content: center;
 	align-items: center;
+	justify-content: center;
 	margin-top: 16px;
-`;
+}

@@ -6,16 +6,17 @@ import Heading from './Heading';
 import DownArrowIcon from './icons/down-arrow.svg';
 import SelectedServicesInvoiceTo from './SelectedServicesInvoiceTo';
 import SelectServicesInvoiceToAndCurrencyForm from './SelectServicesInvoiceToAndCurrencyForm';
-import {
-	Container,
-	ContentVisible,
-	HeadingContainer,
-	BillingDetailsContainer,
-	SelectedServicesInvoiceToContainer,
-	ContentHidden,
-	FadeIn,
-	HiddenContentTogglerContainer,
-} from './styles';
+// import {
+// 	Container,
+// 	ContentVisible,
+// 	HeadingContainer,
+// 	BillingDetailsContainer,
+// 	SelectedServicesInvoiceToContainer,
+// 	ContentHidden,
+// 	FadeIn,
+// 	HiddenContentTogglerContainer,
+// } from './styles';
+import styles from './styles.module.css';
 
 const geo = getGeoConstants();
 
@@ -67,9 +68,9 @@ function SelectedAddressList({
 	};
 
 	return (
-		<Container marginBottom={marginBottom}>
-			<ContentVisible>
-				<HeadingContainer>
+		<div className={styles.container} marginBottom={marginBottom}>
+			<div className={styles.content_visible}>
+				<div className={styles.heading_container}>
 					<Heading
 						businessName={businessName}
 						tradeParty={startCase(tradeParty)}
@@ -83,19 +84,19 @@ function SelectedAddressList({
 						detail={detail}
 						currencyConversions={conversions}
 					/>
-				</HeadingContainer>
+				</div>
 
-				<BillingDetailsContainer>
+				<div className={styles.billing_details_container}>
 					<BillingDetails address={address} taxNumber={taxNumber} />
-				</BillingDetailsContainer>
+				</div>
 
-				<SelectedServicesInvoiceToContainer>
+				<div className={styles.selected_services_invoice_to_container}>
 					<SelectedServicesInvoiceTo services={services} />
-				</SelectedServicesInvoiceToContainer>
-			</ContentVisible>
+				</div>
+			</div>
 
-			<FadeIn type={showHiddenContent ? 'enter' : 'exit'}>
-				<ContentHidden>
+			<div className={styles.fade_in} type={showHiddenContent ? 'enter' : 'exit'}>
+				<div className={styles.content_hidden}>
 					<SelectServicesInvoiceToAndCurrencyForm
 						key={id}
 						savedServicesInvoiceTo={savedServicesInvoiceTo}
@@ -113,16 +114,18 @@ function SelectedAddressList({
 						paymentModes={paymentModes}
 						setPaymentModes={setPaymentModes}
 					/>
-				</ContentHidden>
-			</FadeIn>
+				</div>
+			</div>
 
-			<HiddenContentTogglerContainer
+			<div
+				role="presentation"
+				className={styles.hidden_content_toggler_container}
 				showHiddenContent={showHiddenContent}
 				onClick={() => setShowHiddenContent('toggle')}
 			>
 				<DownArrowIcon />
-			</HiddenContentTogglerContainer>
-		</Container>
+			</div>
+		</div>
 	);
 }
 

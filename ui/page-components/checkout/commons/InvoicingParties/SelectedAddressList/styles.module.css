@@ -1,32 +1,31 @@
-import animate, { fadeIn } from '@cogoport/front/animate';
-import styled from '@cogoport/front/styled';
 
-export const Container = styled.section`
+
+.container{
 	border: 1px solid #cddbff;
 	border-radius: 4px;
 	background-color: #ffffff;
 
 	margin-bottom: ${(props) => props.marginBottom};
-`;
+}
 
-export const ContentVisible = styled.div`
+.content_visible{
 	display: flex;
 	flex-direction: column;
 
 	padding: 16px;
-`;
+}
 
-export const HeadingContainer = styled.div`
+.heading_container {
 	margin-bottom: 8px;
-`;
+}
 
-export const BillingDetailsContainer = styled.div`
+.billing_details_container {
 	margin-bottom: 8px;
-`;
+}
 
-export const SelectedServicesInvoiceToContainer = styled.div``;
+/* export const SelectedServicesInvoiceToContainer = styled.div``; */
 
-export const FadeIn = animate({
+/* .fade_in = animate({
 	enter: {
 		...fadeIn,
 		easing   : 'easeOutCubic',
@@ -37,7 +36,7 @@ export const FadeIn = animate({
 		easing   : 'easeInCubic',
 		duration : 300,
 	},
-});
+}); */
 
 export const ContentHidden = styled.div`
 	border-top: 1px solid #cddbff;

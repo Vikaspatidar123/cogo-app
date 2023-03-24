@@ -1,4 +1,3 @@
-import { Flex } from '@cogoport/front/components';
 import { startCase } from '@cogoport/front/utils';
 import React from 'react';
 
@@ -25,11 +24,11 @@ function BillingAddressItem({
 	const docName = data[docAccessKey]?.split('/').pop();
 
 	return (
-		<Container marginBottom={marginBottom}>
-			<IndexContainer>
-				<Index>{index + 1}</Index>
-			</IndexContainer>
-			<AddressContainer>
+		<div className={styles.container} marginBottom={marginBottom}>
+			<div className={styles.index_container}>
+				<div className={styles.Index}>{index + 1}</div>
+			</div>
+			<div className={styles.address_container}>
 				<div>{data.address}</div>
 
 				<div className="gst-number">
@@ -38,17 +37,17 @@ function BillingAddressItem({
 						: `Address Type : ${startCase(data.address_type)}`}
 				</div>
 
-				<DocContainer>
-					<Flex>
+				<div className={styles.doc_container}>
+					<div>
 						<DocIcon style={{ marginRight: 8 }} />
-						<DocText>{docName}</DocText>
-					</Flex>
-					<Flex>
-						<LinkText onClick={handleOpenDocument}>View</LinkText>
-					</Flex>
-				</DocContainer>
-			</AddressContainer>
-		</Container>
+						<div className={styles.DocText}>{docName}</div>
+					</div>
+					<div>
+						<div className={styles.LinkText} onClick={handleOpenDocument}>View</div>
+					</div>
+				</div>
+			</div>
+		</div>
 	);
 }
 

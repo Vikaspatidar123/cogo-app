@@ -123,6 +123,9 @@ function Item(props) {
 			{lowerlabel && (
 				<div className={styles.lowerlabel}>{lowerlabel}</div>
 			)}
+			{errorOriginal && (
+				<p className={styles.error}>{errorOriginal}</p>
+			)}
 		</div>
 	);
 }

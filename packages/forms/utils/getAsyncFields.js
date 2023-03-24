@@ -17,6 +17,7 @@ function asyncFieldsLocations(labelKey = 'name', valueKey = 'id') {
 		valueKey,
 		labelKey,
 		endpoint    : 'list_locations',
+		// authKey     : 'get_list_locations',
 		initialCall : true,
 		params      : {
 			filters    : { status: 'active' },
@@ -65,6 +66,48 @@ function asyncFieldsHsCodeCountries() {
 	};
 }
 
+function asyncFieldsCommoditiesList() {
+	return {
+		labelKey      : 'label',
+		valueKey      : 'id',
+		endpoint      : 'saas/insurance/list-commodities',
+		authKey       : 'get_saas_insurance_list_commodities',
+		initialCall   : true,
+		defaultParams : {},
+	};
+}
+
+function asyncInsuranceCountryList() {
+	return {
+		labelKey      : 'label',
+		valueKey      : 'id',
+		endpoint      : 'saas/insurance/list/countries',
+		authKey       : 'get_saas_insurance_list_commodities',
+		initialCall   : true,
+		defaultParams : {},
+	};
+}
+
+function asyncFieldsPartnerQuotation() {
+	return {
+		labelKey    : 'displayName',
+		valueKey    : 'id',
+		endpoint    : 'saas/organization/partner/list',
+		authKey     : 'get_saas_organization_partner_list',
+		initialCall : false,
+	};
+}
+
+function asyncProductList() {
+	return {
+		labelKey    : 'name',
+		valueKey    : 'name',
+		authKey     : 'get_saas_product_list',
+		endpoint    : 'saas/product/list',
+		initialCall : false,
+	};
+}
+
 function asyncFieldsShippingLine() {
 	return {
 		labelKey    : 'short_name',
@@ -100,6 +143,10 @@ export {
 	asyncFieldsPartner,
 	asyncFieldsPartnerRoles,
 	asyncFieldsHsCodeCountries,
+	asyncFieldsCommoditiesList,
+	asyncInsuranceCountryList,
+	asyncFieldsPartnerQuotation,
+	asyncProductList,
 	asyncFieldsShippingLine,
 	asyncFieldsAirLine,
 };

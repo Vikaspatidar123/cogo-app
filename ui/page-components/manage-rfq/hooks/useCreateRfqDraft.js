@@ -17,7 +17,7 @@ const useCreateRfqDraft = ({
 	importerExporterDetails,
 }) => {
 	const {
-		general: { scope = '', query: { org_id = '', branch_id = '' } = {} },
+		general: { query: { org_id = '', branch_id = '' } = {} },
 		profile: { id: userId = '' },
 	} = useSelector((state) => state);
 
@@ -37,19 +37,17 @@ const useCreateRfqDraft = ({
 
 		try {
 			const Payload = {
-				performed_by_id   : userId,
-				performed_by_type : scope === 'app' ? 'user' : 'agent',
-				status            : 'draft',
-				importer_exporter_id:
-					scope === 'app' ? org_id : importerExporterDetails?.id,
-				importer_exporter_branch_id:
-					scope === 'app' ? branch_id : importerExporterDetails?.branch_id,
-				user_id     : scope === 'app' ? userId : importerExporterDetails?.user_id,
-				draft_id    : draftFormData?.formData?.[serviceType]?.draft_id || '',
-				rfq_id      : draftFormData?.rfq_id || '',
-				rfq_name    : importerExporterDetails?.rfqName,
-				rfq_type    : importerExporterDetails?.rfqType,
-				search_type : serviceType,
+				performed_by_id             : userId,
+				performed_by_type           : 'user',
+				status                      : 'draft',
+				importer_exporter_id        : org_id,
+				importer_exporter_branch_id : branch_id,
+				user_id                     : userId,
+				draft_id                    : draftFormData?.formData?.[serviceType]?.draft_id || '',
+				rfq_id                      : draftFormData?.rfq_id || '',
+				rfq_name                    : importerExporterDetails?.rfqName,
+				rfq_type                    : importerExporterDetails?.rfqType,
+				search_type                 : serviceType,
 				preferred_operator_ids:
 					formData?.search_rates?.[0]?.remarks?.[0]?.[
 						serviceType === 'air_freight'
@@ -126,6 +124,7 @@ const useCreateRfqDraft = ({
 				rfq_id: res.data.rfq_id,
 			});
 		} catch (err) {
+			console.log(err, 'err');
 			Toast.error(getApiErrorString(err?.data));
 		}
 	};

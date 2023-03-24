@@ -119,6 +119,7 @@ function PortPairLayout(props) {
 							themeType="secondary"
 							onClick={handleSubmit(handlePayload)}
 							disabled={loading}
+							loading={loading}
 						>
 							Save
 						</Button>

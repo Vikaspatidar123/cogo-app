@@ -3,8 +3,8 @@ import { Input, InputGroup } from '@cogoport/components';
 import SelectCurrency from '../SelectCurrency';
 
 function PriceSelect({
-	onChange, disabled = false, currencyDisabled = false, value, priceKey,
-	currencyKey, selectPlaceholder, placeholder, width = '70%', selectWidth,
+	onChange, disabled = false, currencyDisabled = false, value, priceKey = 'price',
+	currencyKey = 'currency', selectPlaceholder, placeholder, width = '70%', selectWidth,
 }) {
 	const handleChange = (selectedVal) => {
 		onChange({
@@ -35,6 +35,7 @@ function PriceSelect({
 				type="number"
 				disabled={disabled}
 				onChange={handlePriceSelect}
+				value={value?.[priceKey]}
 				placeholder={placeholder}
 				style={{ width }}
 			/>

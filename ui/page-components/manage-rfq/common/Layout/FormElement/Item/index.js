@@ -11,7 +11,7 @@ import handleError from '@/ui/page-components/manage-rfq/helpers/get-form-error'
 function Item({ formValue, ...rest }) {
 	const value = formValue;
 	// const { keywords } = usei18n();
-	console.log(rest.type, 'rest.type');
+
 	const Element = getField(rest.type);
 
 	const {

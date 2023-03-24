@@ -96,7 +96,7 @@ const fclControls = [
 					{
 						inlineLabel : 'Containers Count',
 						name        : 'containers_count',
-						subLabel    : 'containers',
+						suffix      : 'containers',
 						type        : 'number',
 						placeholder : 'Containers Count',
 						rules       : {
@@ -108,7 +108,7 @@ const fclControls = [
 					},
 					{
 						inlineLabel : 'Weight',
-						subLabel    : 'in metric tonnes',
+						suffix      : 'in metric tonnes',
 						name        : 'cargo_weight_per_container',
 						placeholder : 'Cargo weight per container',
 						type        : 'number',
@@ -124,7 +124,7 @@ const fclControls = [
 				controls : [
 					{
 						inlineLabel : 'Minimum Origin Demurrage',
-						subLabel    : 'days',
+						suffix      : 'days',
 						name        : 'min_origin_demurrage',
 						placeholder : '0',
 						type        : 'number',
@@ -133,7 +133,7 @@ const fclControls = [
 					},
 					{
 						inlineLabel : 'Minimum Origin Detention',
-						subLabel    : 'days',
+						suffix      : 'days',
 						name        : 'min_origin_detention',
 						placeholder : '0',
 						type        : 'number',
@@ -142,7 +142,7 @@ const fclControls = [
 					},
 					{
 						inlineLabel : 'Minimum Destination Demurrage',
-						subLabel    : 'days',
+						suffix      : 'days',
 						name        : 'min_destination_demurrage',
 						placeholder : '0',
 						type        : 'number',
@@ -151,7 +151,7 @@ const fclControls = [
 					},
 					{
 						inlineLabel : 'Minimum Destination Detention',
-						subLabel    : 'days',
+						suffix      : 'days',
 						name        : 'min_destination_detention',
 						placeholder : '0',
 						type        : 'number',

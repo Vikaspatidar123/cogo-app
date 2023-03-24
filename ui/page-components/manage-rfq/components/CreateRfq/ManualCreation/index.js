@@ -32,9 +32,9 @@ function ManualCreation({ currentStep, setCurrentStep, rfqId, ...rest }) {
 		rfqName : quotation_name,
 		rfqType : reason_type,
 	});
-	const [originDetails, setOriginDetails] = useState({});
 	const [editForm, setEditForm] = useState('');
 	const [showForm, setShowForm] = useState('fcl_freight');
+	const [originDetails, setOriginDetails] = useState({});
 	const [destinationDetails, setDestinationDetails] = useState({});
 	const [shippingLinesDetails, setShippingLinesDetails] = useState({});
 	const [draftFormData, setDraftFormData] = useState({ rfq_id: rfqId || '', serviceType: ['fcl_freight'] });

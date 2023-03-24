@@ -1,0 +1,202 @@
+[
+	{
+		"name": "cargo_handling_type",
+		"label": "Origin Cargo Stuffing",
+		"type": "pills",
+		"caret": true,
+		"options": [
+			{
+				"value": "stuffing_at_factory",
+				"label": "Factory Stuffing"
+			},
+			{
+				"value": "stuffing_at_dock",
+				"label": "Dock Stuffing"
+			}
+		],
+		"condition": { "services": ["export_fcl_customs", "export_transportation"] },
+		"rules": { "required": "Cargo Stuffing is required" }
+	},
+	{
+		"label": "Pickup Pincode",
+		"name": "location_id",
+		"placeholder": "Search via pincode",
+		"type": "location-select",
+		"caret": true,
+		"optionsListKey": "locations",
+		"grouped": ["city"],
+		"params": { "filters": { "type": ["pincode", "city"] } },
+		"condition": { "services": ["export_transportation"] },
+		"rules": { "required": "Pincode is required" }
+	},
+	{
+		"name": "truck_type",
+		"label": "Truck Type",
+		"type": "select",
+		"caret": true,
+		"optionsListKey": "truck-types",
+		"span": 8,
+		"condition": {
+			"cargo_handling_type": ["stuffing_at_dock"],
+			"services": ["export_transportation"]
+		},
+		"rules": { "required": "Truck Type is required" }
+	},
+	{
+		"name": "trucks_count",
+		"label": "Trucks count",
+		"type": "number",
+		"span": 4,
+		"condition": {
+			"cargo_handling_type": ["stuffing_at_dock"],
+			"services": ["export_transportation"]
+		},
+		"rules": { "required": "Trucks count is required", "min": 0 }
+	},
+	{
+		"name": "cargo_handling_type",
+		"label": "Destination Cargo Handling",
+		"type": "pills",
+		"caret": true,
+		"span": 12,
+		"options": [
+			{
+				"label": "Direct Port Delivery",
+				"value": "direct_port_delivery"
+			},
+			{
+				"label": "Destuffing at Factory",
+				"value": "delivery_from_dock"
+			},
+			{
+				"label": "Destuffing at CFS",
+				"value": "destuffing_at_dock"
+			},
+			{
+				"label": "DPD Without CFS",
+				"value": "dpd_without_cfs"
+			},
+			{
+				"label": "DPD CFS Dock Destuffing",
+				"value": "dpd_cfs_dock_destuffing"
+			},
+			{
+				"label": "DPD CFS Factory Destuffing",
+				"value": "dpd_cfs_factory_destuffing"
+			},
+			{
+				"label": "Empanelled CFS Dock Destuffing",
+				"value": "enpanelled_cfs_dock_destuffing"
+			},
+			{
+				"label": "Empanelled CFS Factory Destuffing",
+				"value": "enpanelled_cfs_factory_destuffing"
+			},
+			{
+				"label": " Non-Empanelled CFS Factory Destuffing",
+				"value": "non_enpanelled_cfs_factory_destuffing"
+			},
+			{
+				"label": "Non-Empanelled CFS Dock Destuffing",
+				"value": "non_enpanelled_cfs_dock_destuffing"
+			}
+		],
+		"condition": { "services": ["import_fcl_customs", "import_transportation"] },
+		"rules": { "required": "Cargo Handling is required" }
+	},
+	{
+		"label": "Pickup Pincode",
+		"name": "location_id",
+		"placeholder": "Search via pincode",
+		"type": "location-select",
+		"caret": true,
+		"span": 12,
+		"optionsListKey": "locations",
+		"grouped": ["city"],
+		"params": { "filters": { "type": ["pincode", "city"] } },
+		"condition": { "services": ["import_transportation"] },
+		"rules": { "required": "Pincode is required" }
+	},
+	{
+		"name": "truck_type",
+		"label": "Truck Type",
+		"type": "select",
+		"caret": true,
+		"optionsListKey": "truck-types",
+		"span": 8,
+		"condition": {
+			"cargo_handling_type": ["destuffing_at_dock"],
+			"services": ["import_transportation"]
+		},
+		"rules": { "required": "Truck Type is required" }
+	},
+	{
+		"name": "trucks_count",
+		"label": "Trucks count",
+		"type": "number",
+		"span": 4,
+		"value": 1,
+		"condition": {
+			"cargo_handling_type": ["destuffing_at_dock"],
+			"services": ["import_transportation"]
+		},
+		"rules": { "required": "Trucks count is required", "min": 0 }
+	},
+	{
+		"name": "cargo_handling_type",
+		"label": "Origin CFS Cargo Stuffing",
+		"type": "pills",
+		"caret": true,
+		"span": 12,
+		"options": [
+			{
+				"value": "stuffing_at_factory",
+				"label": "Factory Stuffing"
+			},
+			{
+				"value": "stuffing_at_dock",
+				"label": "Dock Stuffing"
+			}
+		],
+		"condition": { "services": ["export_fcl_cfs"] },
+		"rules": { "required": " Stuffing is required" }
+	},
+	{
+		"name": "cargo_handling_type",
+		"label": "Select type of stuffing",
+		"type": "pills",
+		"span": 12,
+		"options": [
+			{
+				"label": "DPD without cfs",
+				"value": "dpd_without_cfs"
+			},
+			{
+				"label": "DPD cfs dock destuffing",
+				"value": "dpd_cfs_dock_destuffing"
+			},
+			{
+				"label": "DPD cfs factory destuffing",
+				"value": "dpd_cfs_factory_destuffing"
+			},
+			{
+				"label": "Empanelled cfs dock destuffing",
+				"value": "enpanelled_cfs_dock_destuffing"			
+			},
+			{
+				"label": "Empanelled cfs factory destuffing",
+				"value": "enpanelled_cfs_factory_destuffing"
+			},
+			{
+				"label": "Non-empanelled cfs dock destuffing",
+				"value": "non_enpanelled_cfs_dock_destuffing"
+			},
+			{
+				"label": "Non-empanelled cfs factory destuffing",
+				"value": "non_enpanelled_cfs_factory_destuffing"
+			}
+		],
+		"condition": { "services": ["import_fcl_cfs"] },
+		"rules": { "required": " Stuffing is required" }
+	}
+]

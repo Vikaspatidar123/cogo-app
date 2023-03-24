@@ -1,0 +1,161 @@
+import styled from '@cogoport/front/styled';
+
+export const FormContainer = styled.div`
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+	border-radius: 8px;
+
+	& .form-item-container .form-item-label {
+		color: #333333;
+	}
+
+	.ui-textarea {
+		font-family: Roboto;
+	}
+`;
+
+export const InputsContainer = styled.div`
+	.core-ui-select__indicators {
+		height: inherit;
+	}
+`;
+
+export const DocHeader = styled.div`
+	font-weight: 400;
+	font-size: 12px;
+	color: #828282;
+`;
+
+export const DocContainer = styled.div`
+	border: 1px solid #e0e0e0;
+	border-radius: 4px;
+	padding: 8px 20px;
+	margin: 8px 0;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+`;
+
+export const DocText = styled.div`
+	font-weight: 400;
+	font-size: 12px;
+`;
+
+export const LinkText = styled.div`
+	font-weight: 500;
+	font-size: 10px;
+	color: #034afd;
+	text-decoration-line: underline;
+	cursor: pointer;
+`;
+
+export const CheckboxContainer = styled.div`
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	font-size: 12px;
+
+	margin-bottom: 16px;
+
+	.checkboxLabel {
+		margin-left: 8px;
+		color: #828282;
+	}
+
+	.knowMore {
+		color: #356efd;
+
+		&:hover {
+			text-decoration: underline;
+			cursor: pointer;
+		}
+	}
+`;
+
+export const ButtonGroup = styled.div`
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-end;
+	align-items: center;
+`;
+
+export const Form = styled.form`
+	display: flex;
+	flex-direction: column;
+
+	& .form-item-container {
+		margin-bottom: 16px;
+
+		display: flex;
+		flex-direction: column;
+	}
+
+	& .form-item-label,
+	& .business-checkbox-label {
+		margin-top: 0;
+		margin-bottom: 0;
+
+		color: #828282;
+		font-size: 12px;
+		font-weight: 400;
+		margin-bottom: 4px;
+	}
+
+	& .business-checkbox-label {
+		margin-bottom: unset;
+	}
+
+	& .core-ui-input-root {
+		padding: 12px;
+
+		& .core-ui-input-suffix {
+			display: flex;
+			flex-direction: row;
+			justify-content: center;
+			align-items: center;
+		}
+	}
+
+	& .core-ui-select__control {
+		height: 40px;
+	}
+
+	& .err-msz {
+		padding-left: 0;
+	}
+
+	& input.toUpperCase,
+	& .toUpperCase input {
+		text-transform: uppercase;
+	}
+
+	.business-checkbox-label {
+		margin-bottom: 0;
+	}
+
+	margin-top: 16px;
+
+	& .form-lower-label {
+		color: #67c676;
+	}
+
+	& .core-ui-Pills-container {
+		margin: -4px;
+
+		& .core-ui-Pills-item {
+			margin: 4px;
+		}
+
+		& .core-ui-tag-root {
+			border: 1px solid #ddd;
+			background-color: #ffffff;
+			padding: 4px 8px;
+		}
+	}
+
+	& input.toUpperCase,
+	& .toUpperCase input {
+		text-transform: uppercase;
+	}
+`;

@@ -1,0 +1,341 @@
+[
+	{
+		"label": "Origin Location",
+		"name": "origin_location_id",
+		"placeholder": "Port/Airport/Pincode",
+		"includedInOptions": false,
+		"type": "location-select",
+		"optionsListKey": "locations",
+		"params": { "filters": { "type": ["pincode", "seaport", "airport"] } },
+		"rules": { "required": "Origin Location is required" }
+	},
+	{
+		"label": "Destination Location",
+		"name": "destination_location_id",
+		"placeholder": "Port/Airport/Pincode",
+		"includedInOptions": false,
+		"type": "location-select",
+		"optionsListKey": "locations",
+		"params": { "filters": { "type": ["pincode", "seaport", "airport"] } },
+		"rules": { "required": "Destination Location is required" }
+	},
+	{
+		"name": "cargo_readiness_date",
+		"labe": "Cargo ready Date",
+		"type": "datepicker",
+		"placeholder": "DD/MM/YYYY",
+		"rules": { "required": "cargo ready date is required" }
+	},
+	{
+		"name": "calculateBy",
+		"label": "Calculate By",
+		"type": "radio",
+		"placeholder": "Enter Gender",
+		"options": [
+			{ "label": "By Trucks", "value": "truck" },
+			{ "label": "By Cargo", "value": "cargo" }
+		],
+		"value": "truck",
+		"rules": { "required": "Required" }
+	},
+	{
+		"name": "commodity_type",
+		"label": "Commodity Type",
+		"type": "select",
+		"placeholder": "Commodity type",
+		"value": "general",
+		"options": [
+			{ "label": "General Cargo", "value": "general" },
+			{ "label": "Special Consideration", "value": "special_consideration" },
+			{ "label": "Temperature Controlled/Pharma", "value": "temp_controlled" },
+			{ "label": "Other Special", "value": "other_special" }
+		],
+		"rules": { "required": "Commodity Type is Required" }
+	},
+	{
+		"name": "commodity",
+		"label": "Commodity",
+		"type": "select",
+		"placeholder": "Commodity",
+		"options": [],
+		"rules": { "required": "Commodity is Required" }
+	},
+	{
+		"name": "halt_time_value",
+		"type": "number",
+		"size": "md",
+		"span": 5
+	},
+	{
+		"name": "halt_time_unit",
+		"type": "select",
+		"placeholder": "Unit",
+		"span": 7,
+		"caret": true,
+		"options": [
+			{
+				"label": "Days",
+				"value": "days"
+			},
+			{
+				"label": "Hours",
+				"value": "hours"
+			},
+			{
+				"label": "Minutes",
+				"value": "minutes"
+			}
+		]
+	},
+
+	{
+		"label": "Trucks",
+		"type": "fieldArray",
+		"name": "trucks",
+		"addButton": "+Add Trucks",
+		"value": [
+			{
+				"truck_type": "open_body_pickup_1ton",
+				"trucks_count": "1"
+			}
+		],
+		"controls": [
+			{
+				"name": "truck_type",
+				"label": "Truck Type",
+				"type": "select",
+				"optionsListKey": "truck-types",
+				"rules": { "required": "Truck Type is required" }
+			},
+			{
+				"name": "trucks_count",
+				"label": "Number of Trucks",
+				"subLabel": "trucks",
+				"type": "number",
+				"rules": { "min": 1, "required": "No. of Trucks is required" }
+			}
+		]
+	},
+
+	{
+		"label": "Packages",
+		"type": "fieldArray",
+		"name": "dimensions",
+		"addButton": "+Add Packages",
+		"value": [
+			{
+				"packing_type": "pallet"
+			}
+		],
+		"controls": [
+			{
+				"name": "packing_type",
+				"span": 4,
+				"type": "select",
+				"label": "Packing Type",
+				"placeholder": "Select Package type",
+				"rules": { "required": "Package Type is required" },
+				"options": [
+					{
+						"label": "Pallet",
+						"value": "pallet"
+					},
+					{
+						"label": "Box",
+						"value": "box"
+					},
+					{
+						"label": "Crate",
+						"value": "crate"
+					},
+					{
+						"label": "Loose",
+						"value": "loose"
+					}
+				]
+			},
+
+			{
+				"name": "packages_count",
+				"label": "Quantity",
+				"type": "number",
+				"subLabel": "packages",
+				"placeholder": "Package Count",
+				"className": "primary md",
+				"span": 4,
+				"rules": { "required": "Package count is required" }
+			},
+
+			{
+				"name": "weight",
+				"label": "Weight per package",
+				"subLabel": "kgs",
+				"placeholder": "Package Weight",
+				"className": "primary md",
+				"type": "number",
+				"span": 4,
+				"rules": { "required": "Package Weight required" }
+			},
+			{
+				"label": "Length",
+				"name": "length",
+				"placeholder": "Length",
+				"subLabel": "m",
+				"type": "number",
+				"step": 0.1,
+				"rules": { "min": 0.01, "max": 100, "required": "Length is required" }
+			},
+			{
+				"label": "Width",
+				"name": "width",
+				"placeholder": "Width",
+				"subLabel": "m",
+				"type": "number",
+				"step": 0.1,
+				"rules": { "min": 0.01, "max": 100, "required": "Width is required" }
+			},
+			{
+				"label": "Height",
+				"name": "height",
+				"placeholder": "Height",
+				"subLabel": "m",
+				"type": "number",
+				"step": 0.1,
+				"rules": { "min": 0.01, "max": 100, "required": "Height is required" }
+			},
+			{
+				"name": "handling_type",
+				"label": "Handling",
+				"type": "select",
+				"className": "primary md",
+				"span": 4,
+				"placeholder": "Handling Type",
+
+				"rules": { "required": "Handling Type is required" },
+				"options": [
+					{
+						"label": "Stackable",
+						"value": "stackable"
+					},
+					{
+						"label": "Non-Stackable",
+						"value": "non_stackable"
+					}
+				]
+			}
+		]
+	},
+
+	{
+		"name": "packages",
+		"label": "Packages",
+		"type": "fieldArray",
+		"value": [
+			{
+				"packing_type": "",
+				"packages_count": "",
+				"package_weight": "",
+				"volume": "",
+				"handling_type": ""
+			}
+		],
+
+		"controls": [
+			{
+				"name": "packing_type",
+				"type": "select",
+				"label": "Package Type",
+				"placeholder": "Packing Type",
+				"rules": { "required": "Package Type is required" },
+				"options": [
+					{
+						"label": "Pallet",
+						"value": "pallet"
+					},
+					{
+						"label": "Box",
+						"value": "box"
+					},
+					{
+						"label": "Crate",
+						"value": "crate"
+					},
+					{
+						"label": "Loose",
+						"value": "loose"
+					}
+				]
+			},
+
+			{
+				"name": "packages_count",
+				"label": "Total Quantity",
+				"type": "number",
+				"placeholder": "Count",
+				"subLabel": "packages",
+				"rules": { "required": "Package count is required" }
+			},
+
+			{
+				"name": "package_weight",
+				"label": "Total Weight",
+				"type": "number",
+				"subLabel": "kgs",
+				"placeholder": "Total Weight",
+				"rules": { "required": "Package weight is required" }
+			},
+			{
+				"name": "volume",
+				"label": "Gross Volume",
+				"type": "number",
+				"subLabel": "cc",
+				"placeholder": "Total Volume",
+				"rules": { "required": "Volume required" }
+			},
+			{
+				"label": "Length",
+				"name": "length",
+				"placeholder": "Length",
+				"subLabel": "m",
+				"type": "number",
+				"step": 0.1,
+				"rules": { "min": 0.01, "max": 100, "required": "Length is required" }
+			},
+			{
+				"label": "Width",
+				"name": "width",
+				"placeholder": "Width",
+				"subLabel": "m",
+				"type": "number",
+				"step": 0.1,
+				"rules": { "min": 0.01, "max": 100, "required": "Width is required" }
+			},
+			{
+				"label": "Height",
+				"name": "height",
+				"placeholder": "Height",
+				"subLabel": "m",
+				"type": "number",
+				"step": 0.1,
+				"rules": { "min": 0.01, "max": 100, "required": "Height is required" }
+			},
+			{
+				"name": "handling_type",
+				"label": "Handling",
+				"type": "select",
+				"placeholder": "Handling Type",
+				"rules": { "required": "Handling Type is required" },
+				"options": [
+					{
+						"label": "Stackable",
+						"value": "stackable"
+					},
+					{
+						"label": "Non-Stackable",
+						"value": "non_stackable"
+					}
+				]
+			}
+		]
+	}
+]

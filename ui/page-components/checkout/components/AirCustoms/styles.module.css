@@ -1,0 +1,168 @@
+.left_component {
+	width: 70%;
+}
+
+.right_component {
+	width: 28%;
+}
+
+.container {
+	display: flex;
+	justify-content: space-between;
+	margin-top: 16px;
+}
+
+.main_content {
+	box-sizing: border-box;
+	padding: 4px 16px 16px;
+	margin-top: 20px;
+	border: 1px solid #cedcea;
+}
+
+.container_border {
+	padding: 16px 24px;
+	margin-top: 16px;
+	margin-bottom: 16px;
+	background: #fff;
+	box-shadow: 0 1px 6px rgb(169 188 218 / 65%);
+}
+
+.middle_content {
+	display: flex;
+	align-items: end;
+	padding: 20px 0;
+}
+
+.logo {
+	width: 50px;
+	height: 50px;
+}
+
+.data {
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+	margin: 0 12px;
+}
+
+.Title {
+	font-size: 18px;
+	font-weight: 600;
+}
+
+.information {
+	display: flex;
+	justify-content: end;
+
+	.charges {
+		margin-right: 10px;
+	}
+}
+
+.button_link {
+	display: inline;
+	padding: 0;
+	font-size: 14px;
+	color: #366efd;
+	text-decoration: underline;
+	cursor: pointer;
+	background-color: transparent;
+	border: 0;
+}
+
+.footer {
+	display: flex;
+	justify-content: space-between;
+	height: 40px;
+	padding: 0 20px;
+	background-color: #cedcea;
+	border-radius: 0 0 4px 4px;
+
+	.details {
+		display: flex;
+		align-items: center;
+		margin-right: 16px;
+		cursor: pointer;
+	}
+
+	.details-title {
+		margin-right: 12px;
+	}
+
+	.additional_services {
+		display: flex;
+		align-items: center;
+		width: 100%;
+	}
+
+	.additional-services-title {
+		margin-right: 2%;
+	}
+}
+
+.timeDate {
+	display: flex;
+	flex-direction: row;
+	gap: 12px;
+	justify-content: center;
+	font-size: 14px;
+	font-weight: 400;
+}
+
+.line_Vr {
+	border-right: 1px solid #d9d9d9;
+}
+
+.service_details_container {
+	@media (max-width: 768px) {
+		margin-bottom: 70px;
+	}
+}
+
+.service_logo {
+	display: flex;
+	align-items: center;
+	justify-content: space-evenly;
+	width: 65%;
+	height: 100%;
+}
+
+.service_icon_container {
+	padding: 10px 3px;
+	border-bottom: 4px solid #f4b746;
+
+	&.additional-services-logo {
+		padding: 10px 3px;
+		border-bottom: 4px solid #67c676;
+	}
+}
+
+.multi_container {
+	display: flex;
+	justify-content: space-between;
+	width: 80%;
+	padding-top: 16px;
+	margin-top: 10px;
+
+	.bold {
+		font-weight: 500;
+	}
+
+	@media (max-width: 768px) {
+		flex-direction: column;
+	}
+}
+
+.mobile_container {
+	position: relative;
+	overflow-y: auto;
+
+	.proceed {
+		position: fixed;
+		bottom: 0;
+		left: 0;
+		width: 100%;
+		height: 50px;
+		background-color: #2c3e50;
+	}
+}

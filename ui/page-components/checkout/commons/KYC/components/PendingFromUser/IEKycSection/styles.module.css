@@ -1,0 +1,41 @@
+.layout_container {
+	.form-item-label {
+		font-size: 12px;
+		color: #393f70;
+		margin: 32px 0 12px 0;
+		font-weight: 500;
+	}
+
+	.main_upload_container {
+		border: 1px dashed #cddbff;
+	}
+
+	.core-ui-input-root {
+		margin-bottom: 8px;
+		border: 1px solid #cddbff !important;
+	}
+
+	.form-lower-label {
+		line-height: unset;
+	}
+
+	.custom-select-input-container {
+		.custom-select-input-subcontainer {
+			border: 1px solid #cddbff;
+
+			.core-ui-input-root {
+				border: unset !important;
+			}
+		}
+	}
+
+	.upload-area {
+		display: flex;
+		justify-content: center;
+	}
+}
+
+.button_container {
+	display: flex;
+	justify-content: flex-end;
+}

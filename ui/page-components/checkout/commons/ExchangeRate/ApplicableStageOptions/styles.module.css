@@ -1,0 +1,13 @@
+.options_container {
+	cursor: pointer;
+	width: 100%;
+
+	:hover {
+		background-color: #f6f5fe;
+	}
+}
+
+.text {
+	padding: 12px;
+	size: 12px;
+}

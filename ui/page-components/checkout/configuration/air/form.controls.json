@@ -1,0 +1,344 @@
+[
+	{
+		"label": "Origin Airport",
+		"name": "origin_location_id",
+		"apiKey": "origin_airport_id",
+		"placeholder": "Origin Airport",
+		"includedInOptions": false,
+		"type": "location-select",
+		"optionsListKey": "locations",
+		"params": { "filters": { "type": ["airport"] } },
+		"rules": { "required": "Origin Airport is required" }
+	},
+	{
+		"label": "Destination Airport",
+		"name": "destination_location_id",
+		"apiKey": "destination_airport_id",
+		"placeholder": "Destination Airport",
+		"includedInOptions": false,
+		"type": "location-select",
+		"optionsListKey": "locations",
+		"params": { "filters": { "type": ["airport"] } },
+		"rules": { "required": "Destination Airport is required" }
+	},
+	{
+		"label": "Service Types",
+		"name": "service_types",
+		"placeholder": "Service Types",
+		"type": "select",
+		"options": [
+			{ "label": "Express", "value": "express" },
+			{ "label": "Normal", "value": "normal" }
+		],
+		"rules": { "required": "Service Type is required" }
+	},
+	{
+		"label": "Cargo Clearence Date",
+		"name": "cargo_clearence_date",
+		"placeholder": "Cargo clearence date",
+		"type": "datepicker",
+		"rules": { "required": "Cargo Clearence Date is required" }
+	},
+	{
+		"name": "currency",
+		"label": "Currency",
+		"type": "select",
+		"optionsListKey": "currencies",
+		"placeholder": "Select Currency",
+		"rules": { "required": "Currency is required" }
+	},
+	{
+		"name": "price",
+		"label": "Price",
+		"type": "number",
+		"placeholder": "Enter cargo value",
+		"rules": { "required": "Price is required" }
+	},
+	{
+		"name": "dry_ice_required",
+		"label": "Dry ice required",
+		"type": "checkbox-select",
+		"placeholder": "Dry ice required",
+		"multiple": true,
+		"options": [{ "label": "Dry Ice required", "value": true }]
+	},
+	{
+		"name": "commodity_type",
+		"label": "Commodity Type",
+		"type": "select",
+		"placeholder": "Commodity type",
+		"options": [
+			{ "label": "General Cargo", "value": "general" },
+			{ "label": "Dangerous Goods", "value": "dangerous" },
+			{ "label": "Temperature Controlled/Pharma", "value": "temp_controlled" },
+			{ "label": "Other Special", "value": "other_special" }
+		],
+		"rules": { "required": "Commodity subtype is required" }
+	},
+	{
+		"name": "commodity_subtype",
+		"label": "Sub Type",
+		"type": "select",
+		"placeholder": "Commodity subtype",
+		"rules": { "required": "Commodity subtype is required" }
+	},
+	{
+		"label": "Cargo Description",
+		"name": "cargo_description",
+		"placeholder": "Cargo Description",
+		"type": "text",
+		"rules": { "required": "Cargo description is required" }
+	},
+	{
+		"name": "temp_controlled_type",
+		"label": "Temperature ControlType",
+		"type": "select",
+		"placeholder": "Temperature Control Type",
+		"options": [
+			{ "label": "Active", "value": "active" },
+			{ "label": "Passive", "value": "passive" }
+		]
+	},
+	{
+		"name": "calculateBy",
+		"label": "Calculate By",
+		"type": "radio",
+		"placeholder": "Enter Gender",
+		"options": [
+			{ "label": "By Package Details", "value": "unit" },
+			{ "label": "By Total weight/volume", "value": "total" }
+		],
+		"value": "unit",
+		"rules": { "required": "Required" }
+	},
+	{
+		"name": "msdsDoc_url",
+		"label": "Upload MSDS document",
+		"type": "file",
+		"themeType": "secondary",
+		"drag": true,
+		"onlyURLOnChange": true,
+		"uploadIcon": "ic-upload",
+		"accept": "image/*,.pdf,.doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+		"uploadType": "aws",
+		"rules": { "required": "MSDS document is required" }
+	},
+	{
+		"name": "packingList_url",
+		"label": "Upload Packing List",
+		"type": "file",
+		"themeType": "secondary",
+		"drag": true,
+		"onlyURLOnChange": true,
+		"uploadIcon": "ic-upload",
+		"accept": "image/*,.pdf,.doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+		"uploadType": "aws",
+		"rules": { "required": "Packing List is required" }
+	},
+	{
+		"label": "Packages",
+		"type": "fieldArray",
+		"name": "containers",
+		"value": [
+			{
+				"package_type": "",
+				"weight": "",
+				"packages_count": "",
+				"volume": "",
+				"stackability": ""
+			}
+		],
+		"controls": [
+			{
+				"label": "package_type",
+				"name": "package_type",
+				"type": "select",
+				"placeholder": "Package type",
+				"options": [
+					{
+						"label": "Pallet",
+						"value": "pallet"
+					},
+					{
+						"label": "Box",
+						"value": "box"
+					},
+					{
+						"label": "Crate",
+						"value": "crate"
+					},
+					{
+						"label": "Loose",
+						"value": "loose"
+					}
+				],
+				"rules": { "required": "Package type is required" }
+			},
+			{
+				"label": "Packages count",
+				"name": "packages_count",
+				"placeholder": "Packages count",
+				"subLabel": "packages",
+				"type": "number",
+				"step": 0.1,
+				"rules": { "min": 1, "max": 10000, "required": "Packages is required" }
+			},
+			{
+				"label": "Gross Weight",
+				"name": "weight",
+				"subLabel": "kgs",
+				"type": "number",
+				"step": 0.1,
+				"rules": { "required": "Gross Weight is required", "min": 0.000000001 }
+			},
+			{
+				"label": "Total Volume",
+				"name": "volume",
+				"subLabel": "cbm",
+				"type": "number",
+				"step": 0.1,
+				"rules": { "required": "Total Volume is required", "min": 0.001 }
+			},
+			{
+				"label": "stackability",
+				"name": "stackability",
+				"type": "select",
+				"placeholder": "Stackability",
+				"options": [
+					{
+						"label": "Stackable",
+						"value": "stackable"
+					},
+					{
+						"label": "Non-stackable",
+						"value": "non_stackable"
+					}
+				],
+				"rules": { "required": "stakability is required" }
+			}
+		]
+	},
+	{
+		"label": "Packages",
+		"type": "fieldArray",
+		"name": "dimensions",
+		"addButton": "+Add Packages",
+		"value": [
+			{
+				"package_type": "pallet",
+				"packages_count": 1,
+				"weight": 1,
+				"length": 1,
+				"width": 1,
+				"height": 1,
+				"stackability": "stackable"
+			}
+		],
+		"controls": [
+			{
+				"label": "package_type",
+				"name": "package_type",
+				"type": "select",
+				"placeholder": "Package type",
+				"options": [
+					{
+						"label": "Pallet",
+						"value": "pallet"
+					},
+					{
+						"label": "Box",
+						"value": "box"
+					},
+					{
+						"label": "Crate",
+						"value": "crate"
+					},
+					{
+						"label": "Loose",
+						"value": "loose"
+					}
+				],
+				"rules": { "required": "Package type is required" }
+			},
+			{
+				"label": "Packages count",
+				"name": "packages_count",
+				"placeholder": "Packages count",
+				"subLabel": "packages",
+				"type": "number",
+				"rules": { "min": 1, "max": 10000, "required": "Packages is required" }
+			},
+			{
+				"label": "Weight per package",
+				"name": "weight",
+				"subLabel": "kgs",
+				"type": "number",
+				"step": 0.1,
+				"rules": { "required": "Weight is required", "min": 0.001 }
+			},
+			{
+				"label": "Length",
+				"name": "length",
+				"placeholder": "Length",
+				"subLabel": "m",
+				"type": "number",
+				"step": 0.1,
+				"rules": { "min": 0.01, "max": 100, "required": "Length is required" }
+			},
+			{
+				"label": "Width",
+				"name": "width",
+				"placeholder": "Width",
+				"subLabel": "m",
+				"type": "number",
+				"step": 0.1,
+				"rules": { "min": 0.01, "max": 100, "required": "Width is required" }
+			},
+			{
+				"label": "Height",
+				"name": "height",
+				"placeholder": "Height",
+				"subLabel": "m",
+				"type": "number",
+				"step": 0.1,
+				"rules": { "min": 0.01, "max": 100, "required": "Height is required" }
+			},
+			{
+				"label": "stackability",
+				"name": "stackability",
+				"type": "select",
+				"placeholder": "Stackability",
+				"options": [
+					{
+						"label": "Stackable",
+						"value": "stackable"
+					},
+					{
+						"label": "Non-stackable",
+						"value": "non_stackable"
+					}
+				],
+				"rules": { "required": "stakability is required" }
+			}
+		]
+	},
+	{
+		"name": "paymentTerms",
+		"label": "Payment Terms",
+		"type": "radio",
+		"value": "prepaid",
+		"options": [
+			{ "label": "Prepaid", "value": "prepaid" },
+			{ "label": "Collect", "value": "collect" },
+			{ "label": "Third Party", "value": "third_party" }
+		],
+		"rules": { "required": " Payment Terms required" }
+	},
+	{
+		"label": "Incoterm",
+		"name": "incoterm",
+		"type": "select",
+		"placeholder": "Incoterm",
+		"rules": { "required": "Incoterm is required" }
+	}
+]

@@ -1,0 +1,26 @@
+.title {
+	padding-top: 10px;
+	margin: 0 0 3px;
+	font-size: 16px;
+	font-weight: 500;
+	line-height: 19px;
+	color: #000;
+}
+
+.tnc {
+	font-size: 14px;
+	font-weight: 400;
+	line-height: 16px;
+	color: #000;
+}
+
+.a {
+	font-size: 14px;
+	font-weight: 400;
+	line-height: 16px;
+	color: #5936f0;
+
+	&:hover {
+		text-decoration: underline;
+	}
+}

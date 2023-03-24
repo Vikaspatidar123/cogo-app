@@ -1,0 +1,60 @@
+.container {
+	display: flex;
+	flex-direction: column;
+	background: #ffffff;
+}
+
+.tag_container {
+	position: absolute;
+	left: 0;
+	top: 0;
+
+	border-radius: 0 0 10px 0;
+	background: #356efd;
+	font-weight: 500;
+	font-size: 10px;
+	text-align: center;
+	padding: 6px 16px;
+	color: #ffffff;
+	text-transform: uppercase;
+}
+
+.incomplete_tag {
+	display: flex;
+	background: #f2f2f2;
+	font-size: 14px;
+	align-items: center;
+	color: #333333;
+	margin-right: 21px;
+	padding: 0 6px;
+}
+
+.pending_tag {
+	display: flex;
+	background: #fce4bf;
+	font-size: 14px;
+	align-items: center;
+	color: #333333;
+	margin-right: 21px;
+	padding: 0 6px;
+}
+
+.rejected_tag {
+	display: flex;
+	background: #f7cdcd;
+	font-size: 14px;
+	align-items: center;
+	color: #333333;
+	margin-right: 21px;
+	padding: 0 6px;
+}
+
+.verified_tag {
+	display: flex;
+	background: #cdf7d4;
+	font-size: 14px;
+	align-items: center;
+	color: #333333;
+	margin-right: 21px;
+	padding: 0 6px;
+}

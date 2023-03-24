@@ -1,0 +1,85 @@
+.layout_container {
+	background: #f9f9f9;
+	border-radius: 10px;
+	padding: 32px;
+	margin: 16px 0;
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+
+	.form-item-label {
+		margin: 16px 0 8px 0;
+		font-size: 10px;
+		color: #333333;
+	}
+}
+
+.control_container {
+	width: 33%;
+	margin-right: 48px;
+
+	margin-bottom: 12px;
+}
+
+.control_header {
+	margin: 16px 0 8px 0;
+	font-size: 10px;
+	color: #333333;
+	font-weight: bold;
+}
+
+.verification_text {
+	font-size: 10px;
+	line-height: 12px;
+	text-decoration-line: underline;
+	color: #034afd;
+	${(props) => props.showLoading && `color: #F9F9F9;`}
+	text-align: right;
+	cursor: pointer;
+	display: flex;
+	justify-content: flex-start;
+	margin-bottom: 6px;
+}
+
+.value_container {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	margin-bottom: 8px;
+}
+
+.verified_icon_text_container {
+	margin: 0 16px;
+	display: flex;
+	align-items: center;
+}
+
+.verified_text {
+	font-style: italic;
+	font-weight: 300;
+	font-size: 12px;
+	color: #333333;
+}
+
+.select_container {
+	width: 49%;
+}
+
+.text_icon_container {
+	display: flex;
+	align-items: center;
+	flex-wrap: ${(props) => (props.wrap === 'wrap' ? 'wrap' : '')};
+	justify-content: ${(props) => props.justifyContent};
+}
+
+.link_container {
+	text-decoration: underline;
+	white-space: nowrap;
+	overflow: hidden;
+}
+
+.flex {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}

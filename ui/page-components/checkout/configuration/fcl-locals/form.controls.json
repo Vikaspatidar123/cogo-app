@@ -1,0 +1,98 @@
+[
+	{
+		"label": "Locals Location",
+		"name": "port_id",
+		"placeholder": "Search via port name/code",
+		"includedInOptions": false,
+		"type": "location-select",
+		"optionsListKey": "locations",
+		"grouped": ["city"],
+		"params": { "filters": { "type": ["seaport", "city"] } },
+		"rules": { "required": "Location is required" }
+	},
+	{
+		"label": "Locals Type (Handling Type)",
+		"name": "trade_type",
+		"type": "select",
+        "size": "lg",
+		"placeholder": "Select Locals type",
+		"includedInOptions": false,
+		"options": [
+			{ "label": "Origin", "value": "export" },
+			{ "label": "Destination", "value": "import" }
+		],
+		"rules": { "required": "Locals Type is required" }
+	},
+    {
+        "type": "select",
+        "name": "shipping_line_id",
+        "optionsListKey": "shipping-lines",
+        "caret": true,
+        "label": "Shipping Line",
+        "size": "lg",
+        "placeholder": "Search shipping line...",
+        "rules": { "required": "Shipping Line is required" }
+    },
+    {
+		"label": "Payment Type",
+		"name": "payment_type",
+		"type": "select",
+        "size": "lg",
+		"placeholder": "Select Payment type",
+		"includedInOptions": false,
+		"options": [
+			{ "label": "Collect (Cogoport pays at Destination)", "value": "collect" },
+			{ "label": "Prepaid (You pay at Source)", "value": "prepaid" }
+		]
+	},
+	{
+        "label": "Container",
+        "type": "fieldArray",
+        "name": "containers",
+        "addButton": "+Add Containers",
+        "value": [{
+            "containers_count": 1,
+            "container_type_size": "40_standard",
+            "commodity": "general",
+            "cargo_weight_per_container": 26
+        }],
+        "controls": [{
+            "label": "Containers Count",
+            "name": "containers_count",
+            "subLabel": "containers",
+            "type": "number",
+            "placeholder": "Containers Count",
+            "value": 1,
+            "rules": { "min": 1, "max": 10000, "required": "Container count is required" }
+        }, {
+            "label": "Container Type",
+            "name": "container_type_size",
+            "type": "select",
+            "placeholder": "Container Size/Type",
+            "options": [
+                { "value": "20_standard", "label": "20ft Standard" },
+                { "value": "40_standard", "label": "40ft Standard" },
+                { "value": "40HC_standard", "label": "40HC Standard" },
+                { "value": "45HC_standard", "label": "45HC Standard" },
+                { "value": "20_reefer", "label": "20ft Reefer" },
+                { "value": "40_reefer", "label": "40ft Reefer" }
+            ],
+            "rules": { "required": "Container is required" }
+        }, {
+            "name": "commodity",
+            "label": "Commodity",
+            "type": "select",
+            "placeholder": "Commodity",
+            "optionsListKey": "commodities",
+            "rules": { "required": "Commodity is required" }
+        }, {
+            "label": "Cargo Weight per Container",
+            "subLabel": "in metric tonnes",
+            "name": "cargo_weight_per_container",
+            "placeholder": "Cargo weight per container",
+            "type": "number",
+            "rules": { "min": 0.1, "max": 40, "required": "Weight is required" },
+            "value": 26
+        }]
+    }
+]

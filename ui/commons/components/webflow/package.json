@@ -1,0 +1,7 @@
+{
+	"name": "@cogo/app-webflow",
+	"description": "Webflow things of Cogoport",
+	"version": "0.0.1",
+	"main": "index.ts",
+	"sideEffects": false
+}

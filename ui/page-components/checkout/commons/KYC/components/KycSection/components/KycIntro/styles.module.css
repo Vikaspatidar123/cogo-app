@@ -1,0 +1,10 @@
+.button_container {
+	display: flex;
+	align-items: flex-start;
+	height: 44px;
+}
+
+.container  {
+	display: flex;
+	justify-content: space-between;
+}

@@ -1,0 +1,82 @@
+import styled from '@cogoport/front/styled';
+import animate, { fadeIn } from '@cogoport/front/animate';
+
+export const FadeIn = animate({
+	enter: {
+		...fadeIn,
+		easing: 'easeInOutQuad',
+		duration: 300,
+	},
+});
+
+export const Container = styled.div`
+	box-shadow: 0px 1px 6px rgba(169, 188, 218, 0.65);
+	border-radius: 10px;
+	padding: 16px 24px;
+	margin-bottom: 22px;
+	position: relative;
+`;
+
+export const Heading = styled.div`
+	font-weight: 500;
+	font-size: 16px;
+	color: #333333;
+	display: flex;
+`;
+
+export const ToolTipText = styled.div`
+	font-size: 12px;
+`;
+
+export const FreightStroke = styled.div`
+	position: absolute;
+	left: 0;
+	width: 6px;
+	top: 10px;
+	height: 32px;
+	background-color: #356efd;
+	border-radius: 0 4px 4px 0;
+`;
+
+export const LayoutContainer = styled.div`
+	background: #f9f9f9;
+	border-radius: 10px;
+	padding: 32px;
+	margin: 16px 0;
+	display: flex;
+`;
+
+export const ButtonContainer = styled.div`
+	display: flex;
+	justify-content: flex-end;
+`;
+
+export const HeadingContainer = styled.div`
+	display: flex;
+	justify-content: space-between;
+	cursor: pointer;
+`;
+
+export const BorderLeft = styled.div`
+	position: absolute;
+	left: 0;
+	top: 4px;
+	border-left: 3px solid #e0e0e0;
+	border-radius: 0px 0px 4px 4px;
+`;
+
+export const Body = styled.div`
+	font-size: 16px;
+	color: #000000;
+	width: 95%;
+	margin-left: 16px;
+`;
+
+export const IconCaret = styled.div`
+	display: flex;
+`;
+
+// propritorship/ partnershop  ---> name , photo
+// not Tick
+
+// signing auto=hority   update work scope

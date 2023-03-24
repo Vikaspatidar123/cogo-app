@@ -1,0 +1,80 @@
+[
+	{
+		"name": "unsatisfactory_rate",
+		"type": "checkbox",
+		"label": "",
+		"options": [
+			{
+				"label": "Rate not satisfactory",
+				"value": true
+			}
+		]
+	},
+	{
+		"name": "preferred_freight_rate_currency",
+		"label": "Currency",
+		"type": "select",
+		"size": "lg",
+		"caret": true,
+		"options": [
+			{ "value": "USD", "label": "USD" },
+			{ "value": "INR", "label": "INR" },
+			{ "value": "EUR", "label": "EUR" },
+			{ "value": "GBP", "label": "GBP" }
+		],
+		"rules": { "required": "Required" }
+	},
+	{
+		"name": "preferred_freight_rate",
+		"label": "Indicative Rate",
+		"type": "number",
+		"size": "lg",
+		"rules": { "required": "Required" }
+	},
+	{
+		"name": "unsatisfactory_destination_detention",
+		"type": "checkbox",
+		"label": "",
+		"options": [
+			{
+				"label": "Destination detention not satisfactory",
+				"value": true
+			}
+		]
+	},
+	{
+		"name": "preferred_detention_days",
+		"type": "number",
+		"size": "lg",
+		"label": "Preferred Detention Days"
+	},
+	{
+		"name": "unpreferred_shipping_lines",
+		"type": "checkbox",
+		"label": "",
+		"options": [
+			{
+				"label": "Unpreferred Shipping Line",
+				"value": true
+			}
+		]
+	},
+	{
+		"name": "preferred_shipping_line_ids",
+		"label": "Preferred Shipping lines",
+		"type": "select",
+		"size": "lg",
+		"optionsListKey": "shipping-lines",
+		"multiple": true,
+		"defaultOptions": true,
+		"autoCloseMenu": false,
+		"caret": true,
+		"placeholder": "Search via name..."
+	},
+	{
+		"name": "remarks",
+		"type": "text",
+		"size": "lg",
+		"label": "Remarks"
+	}
+]

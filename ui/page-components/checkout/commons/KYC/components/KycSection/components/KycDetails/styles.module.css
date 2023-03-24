@@ -1,0 +1,85 @@
+/* import animate, { fadeIn } from '@cogoport/front/animate'; */
+.rejected_label {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	padding: 24px 0;
+	background: #fbe6e6;
+	border: 1px solid #cb6464;
+	border-radius: 4px;
+	margin-bottom: 12px;
+}
+
+.header {
+	display: flex;
+}
+
+.rejected_text {
+	font-weight: 600;
+	font-size: 20px;
+	color: #cb6464;
+}
+
+.rejected_sub_text {
+	font-weight: 500;
+	font-size: 14px;
+	color: #cb6464;
+	margin-left: 8px;
+	align-self: center;
+}
+
+.rejection_reason {
+	font-size: 10px;
+	color: #4f4f4f;
+	margin-top: 4px;
+}
+
+.item_container {
+	box-shadow: 0px 1px 6px rgba(169, 188, 218, 0.65);
+	border-radius: 4px;
+	padding: 16px 24px;
+	margin-bottom: 16px;
+
+	position: relative;
+}
+
+.iotem_stroke {
+	position: absolute;
+	top: 10px;
+	left: 0;
+
+	width: 6px;
+	height: 32px;
+	background-color: #356efd;
+	border-radius: 0 4px 4px 0;
+}
+
+.item_header {
+	cursor: pointer;
+
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.text {
+	color:#333333;
+	font-size: 16px;
+	font-weight: 500;
+}
+
+.flex {
+	display: flex;
+}
+
+
+/* .fadeIn = animate({
+	enter: {
+		...fadeIn,
+		easing: 'easeInOutQuad',
+		duration: 300,
+	},
+})
+} */

@@ -1,0 +1,27 @@
+.title {
+	padding-bottom: 12px;
+	margin-bottom: 12px;
+	font-size: 14px;
+	font-weight: 500;
+	line-height: 15px;
+	color: #4f4f4f;
+	border-bottom: 1px solid #bdbdbd;
+}
+
+.footer {
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	padding-top: 12px;
+	margin-top: 12px;
+
+	.core-ui-button-root {
+		font-size: 12px;
+		font-weight: 500;
+		text-transform: none;
+	}
+
+	.secondary {
+		color: black;
+	}
+}

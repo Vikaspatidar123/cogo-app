@@ -1,0 +1,24 @@
+.header {
+	height: 60px;
+	padding: 0 32px;
+	display: flex;
+	align-items: center;
+	box-shadow: rgba(18, 28, 37, 0.08) 0px 2px 20px -12px,
+		rgba(18, 28, 37, 0.04) 0px 2px 4px 0px;
+}
+
+.content {
+	padding: 32px;
+}
+
+.a {
+	text-decoration: none;
+	display: inline-block;
+	cursor: pointer;
+	margin-right: 12px;
+}
+
+.logo {
+	width: auto;
+	height: 24px;
+}

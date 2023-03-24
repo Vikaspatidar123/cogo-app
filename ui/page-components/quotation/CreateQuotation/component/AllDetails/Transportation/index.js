@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { cl } from '@cogoport/components';
+import { cl, Toast } from '@cogoport/components';
 import { IcMPort, IcMLocation } from '@cogoport/icons-react';
 import { useState, useImperativeHandle, useEffect, forwardRef } from 'react';
 
@@ -29,6 +29,8 @@ function Transportation(props, ref) {
 		setValue,
 		reset,
 		formState: { errors },
+		setError,
+		clearErrors,
 	} = useForm();
 
 	const changeHandler = (name, data) => {
@@ -74,8 +76,19 @@ function Transportation(props, ref) {
 
 	useEffect(() => {
 		if (originPortDetails?.id && destinationPortDetails?.id) {
-			if (transportMode === 'OCEAN') {
+			if (originPortDetails?.id === destinationPortDetails?.id) {
+				Toast.error('Same Port Selected');
+				setError('originId', {});
+				setError('destinationId', {});
+			} else if (originPortDetails?.country?.id === destinationPortDetails?.country?.id) {
+				Toast.error('Same Country Selected');
+				setError('originId', {});
+				setError('destinationId', {});
+			} else if (transportMode === 'OCEAN') {
 				getOceanRoute(originPortDetails?.id, destinationPortDetails?.id);
+				if (errors.originId || errors.destinationId) {
+					clearErrors();
+				}
 			} else if (transportMode === 'AIR') {
 				setMapPoints([
 					{
@@ -85,6 +98,9 @@ function Transportation(props, ref) {
 						arrivalLongitude   : destinationPortDetails?.longitude,
 					},
 				]);
+				if (errors.originId || errors.destinationId) {
+					clearErrors();
+				}
 			}
 		}
 	}, [originPortDetails?.id, destinationPortDetails?.id]);

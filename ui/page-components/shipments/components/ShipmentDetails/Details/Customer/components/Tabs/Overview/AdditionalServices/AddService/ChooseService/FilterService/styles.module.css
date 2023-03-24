@@ -1,0 +1,13 @@
+.container{
+    display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 40px;
+	.core-ui-select__control {
+		width: 200px;
+	}
+
+	.core-ui-select__menu {
+		width: 10px !important;
+	}
+}

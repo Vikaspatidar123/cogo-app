@@ -1,0 +1,16 @@
+.container{
+    background: #f9f9f9;
+	padding: 8px 16px;
+	border-radius: 4px;
+	border-bottom: 1px solid #e0e0e0;
+	@media (max-width: 768px) {
+		display: none;
+	}
+}
+.row{
+    display: flex;
+    padding-bottom: 0;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 0;
+}

@@ -47,30 +47,30 @@ function Form({ extraParams, service, onClose, shipment_data, services }) {
 
 	if (!controls.length) {
 		rednerForm = (
-			<Text>
+			<p className={styles.text}>
 				{`Are you sure you want to add ${startCase(
 					`${service?.type} ${service?.service}`,
 				)} service?`}
-			</Text>
+			</p>
 		);
 	}
 	return (
-		<Container>
+		<div>
 			<form onSubmit={handleSubmit(addService, onError)}>
-				<FormDiv>
-					<Heading>
+				<div className={styles.form_div}>
+					<div className={styles.heading}>
 						{`Add ${startCase(service?.type)} ${
 							serviceCustomNames[service?.service_type]
 							|| startCase(service?.service_type)
 						}`}
-					</Heading>
+					</div>
 
 					{rednerForm}
-				</FormDiv>
+				</div>
 
 				<Footer onClose={onClose} isLoading={loading} />
 			</form>
-		</Container>
+		</div>
 	);
 }
 

@@ -1,11 +1,10 @@
-// import { startCase } from '@cogoport/front/utils';
-// import React from 'react';
+import { startCase } from '@cogoport/utils';
 
-// import FilterService from './FilterServices';
-// import Price from './Price';
-// import ServicesList from './ServicesList';
-// import { Loading } from './styles';
-// import tableFields from './tableFields';
+import FilterService from './FilterService';
+import Price from './Price';
+import ServicesList from './ServicesList';
+import styles from './styles.module.css';
+import tableFields from './tableFields';
 
 function ChooseService({
 	setAddRate,
@@ -33,7 +32,8 @@ function ChooseService({
 
 	const fields = tableFields(priceRequest, countObj);
 
-	const ServiceOptions = (shipment_data?.services || []).map((service) => ({ label: startCase(service), value: service }));
+	const ServiceOptions = (shipment_data?.services || []).map((service) => (
+		{ label: startCase(service), value: service }));
 
 	return (
 		<>
@@ -44,12 +44,12 @@ function ChooseService({
 			/>
 
 			{loading ? (
-				<Loading>
+				<div className={styles.loading}>
 					Loading
 					<span>.</span>
 					<span>.</span>
 					<span>.</span>
-				</Loading>
+				</div>
 			) : (
 				<ServicesList fields={fields} data={list} loading={loading} />
 			)}

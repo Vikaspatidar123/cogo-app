@@ -16,7 +16,7 @@ const useList = ({ shipment_id, services, isSeller = false, show }) => {
 	});
 	const [{ loading, data }, trigger] = useRequest({
 		url    : 'get_shipment_additional_service_codes',
-		method : 'post',
+		method : 'get',
 	}, { manual: true });
 	// const { trigger, loading, data } = useRequest(
 	// 	'get',

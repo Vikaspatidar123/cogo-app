@@ -1,0 +1,30 @@
+
+.switch_select_label {
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 16px;
+    margin-bottom: 16px;
+    color: #393f70;
+}
+.switch_select_container {
+    margin-top: 24px;
+}
+.form_div{
+    overflow: auto;
+	height: calc(100vh - 33.5vh);
+}
+.heading{
+    font-weight: 500;
+	font-size: 18px;
+	line-height: 15px;
+	text-transform: uppercase;
+	color: #393f70;
+}
+.text{
+    font-weight: 500;
+	font-size: 16px;
+	color: #393f70;
+	margin: 0 auto;
+	padding-bottom: 12px;
+	margin-top: 24px;
+}

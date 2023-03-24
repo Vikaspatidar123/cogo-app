@@ -26,19 +26,31 @@
 // 	SuggestedContainer,
 // } from './styles';
 // import useAddedList from './useAddedList';
+import { Button, Placeholder, Modal } from '@cogoport/components';
+import { IcMPlus } from '@cogoport/icons-react';
+import { isEmpty } from '@cogoport/utils';
 import { useState, useContext, useEffect } from 'react';
 
+import EmptyState from '../../../EmptyState';
+
+import AddService from './AddService';
+import useList from './AddService/hooks/useList';
 import useAddedList from './hooks/useAddedList';
+import ItemAdded from './ItemAdded';
+import actions from './ItemAdded/actions';
+import getStatus from './ItemAdded/getStatus';
+import styles from './styles.module.css';
 
 import { useSelector } from '@/packages/store';
 import { ShipmentDetailContext } from '@/ui/page-components/shipments/components/ShipmentDetails/common/Context';
+import useRequestRate from '@/ui/page-components/shipments/components/ShipmentDetails/hooks/useRequestRate';
 
 const emptyStateContent = {
 	heading     : 'No Services Founds!',
 	description : 'Looks like you did not add any service.',
 };
 
-function List({ services, isSeller, quickAction, setQuickAction }) {
+function AdditionalServicesList({ services, isSeller, quickAction, setQuickAction }) {
 	const { scope, isShipper } = useSelector(({ general }) => ({
 		isShipper : general.query.account_type === 'importer_exporter',
 		scope     : general.scope,
@@ -74,9 +86,9 @@ function List({ services, isSeller, quickAction, setQuickAction }) {
 	const addedItems = listAdded.slice(0, 4);
 
 	const content = (
-		<AddedServices>
+		<div>
 			{listAdded?.map((item) => {
-				const status = getStaus({ item });
+				const status = getStatus({ item });
 
 				return (
 					<ItemAdded
@@ -93,7 +105,7 @@ function List({ services, isSeller, quickAction, setQuickAction }) {
 					/>
 				);
 			})}
-		</AddedServices>
+		</div>
 	);
 
 	const handleClick = () => {
@@ -106,17 +118,17 @@ function List({ services, isSeller, quickAction, setQuickAction }) {
 	}, [quickAction]);
 
 	return (
-		<Container>
-			<Added>
-				<Heading>ADDITIONAL SERVICES</Heading>
+		<div className={styles.container}>
+			<div className={styles.added}>
+				<div className={styles.heading}>ADDITIONAL SERVICES</div>
 
 				{!isEmpty(listAdded) ? (
-					<AddedServices>
+					<div>
 						{open ? (
-							<>
+							<div>
 								<div style={{ display: 'flex', flexWrap: 'wrap' }}>
 									{addedItems?.map((item) => {
-										const status = getStaus({ item });
+										const status = getStatus({ item });
 
 										return (
 											<ItemAdded
@@ -135,7 +147,7 @@ function List({ services, isSeller, quickAction, setQuickAction }) {
 									})}
 								</div>
 
-								<BtnWrap className="first">
+								<div className={`${styles.first} ${styles.button_wrap}`}>
 									{listAdded.length > 5 && (
 										<Button
 											className="primary md text"
@@ -144,39 +156,43 @@ function List({ services, isSeller, quickAction, setQuickAction }) {
 											View All services
 										</Button>
 									)}
-								</BtnWrap>
-							</>
+								</div>
+							</div>
 						) : null}
 						{showAll ? <div>{content}</div> : null}
-					</AddedServices>
+					</div>
 				) : (
-					((ServicesLoading || isGettingShipment) && <ServicesLoader />) || (
+					((ServicesLoading || isGettingShipment) && <Placeholder />) || (
 						<EmptyState isMobile showContent={emptyStateContent} />
 					)
 				)}
-			</Added>
+			</div>
 
 			{!isGettingShipment ? (
-				<SuggestedContainer>
-					<SuggestedServices>
+				<div className={styles.suggested_container}>
+					<div className={styles.suggested_services}>
 						{items.map((service) => (
-							<ServiceContainer onClick={() => requestRate(service)}>
-								<ServiceName>{service?.name}</ServiceName>
+							<div
+								role="presentation"
+								className={styles.service_container}
+								onClick={() => requestRate(service)}
+							>
+								<span className={styles.service_name}>{service?.name}</span>
 								<IcMPlus />
-							</ServiceContainer>
+							</div>
 						))}
-					</SuggestedServices>
+					</div>
 
 					{list?.length > 4 ? (
-						<BtnWrap>
+						<div className={styles.button_wrap}>
 							<Button className="primary sm" onClick={() => setShow(true)}>
 								+ Add Additional Services
 							</Button>
-						</BtnWrap>
+						</div>
 					) : null}
-				</SuggestedContainer>
+				</div>
 			) : (
-				<Loader />
+				<Placeholder />
 			)}
 
 			{addRate ? (
@@ -187,13 +203,13 @@ function List({ services, isSeller, quickAction, setQuickAction }) {
 					closable={false}
 					onOuterClick={() => setAddRate(null)}
 				>
-					<AddRate
+					{/* <AddRate
 						item={addRate?.item || addRate}
 						shipment_data={shipment_data}
 						status={addRate?.status}
 						setAddRate={setAddRate}
 						refetch={refetch}
-					/>
+					/> */}
 				</Modal>
 			) : null}
 
@@ -215,8 +231,8 @@ function List({ services, isSeller, quickAction, setQuickAction }) {
 					/>
 				</Modal>
 			) : null}
-		</Container>
+		</div>
 	);
 }
 
-export default List;
+export default AdditionalServicesList;

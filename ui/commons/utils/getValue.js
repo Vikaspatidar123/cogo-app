@@ -19,11 +19,11 @@ const getValue = (
 
 	val = iterateSubKeys(itemField, val);
 
-	if (itemField.func) {
+	if (itemField?.func) {
 		if (functions[itemField.func]) {
-			val = functions[itemField.func](itemData, itemField);
-		} else if (startCase(itemField.func)) {
-			val = startCase(itemField.func)(val);
+			val = functions[itemField?.func](itemData, itemField);
+		} else if (startCase(itemField?.func)) {
+			val = startCase(itemField?.func)(val);
 		}
 	}
 

@@ -7,8 +7,10 @@
 // import { Container } from './styles';
 // import useList from './useList';
 import { useState } from 'react';
+
 import EmptyState from '../../../../EmptyState';
 
+import ChooseService from './ChooseService';
 import Header from './Header';
 import useList from './hooks/useList';
 import styles from './styles.module.css';
@@ -55,13 +57,14 @@ function AddService({
 					refetch={refetch}
 				/>
 			) : (
-				<AddRate
-					isSeller={isSeller}
-					item={showAddRate}
-					setAddRate={setAddRate}
-					setShow={setShow}
-					refetch={refetch}
-				/>
+			// <AddRate
+			// 	isSeller={isSeller}
+			// 	item={showAddRate}
+			// 	setAddRate={setAddRate}
+			// 	setShow={setShow}
+			// 	refetch={refetch}
+			// />
+				<div>addrate</div>
 			)}
 		</div>
 	);

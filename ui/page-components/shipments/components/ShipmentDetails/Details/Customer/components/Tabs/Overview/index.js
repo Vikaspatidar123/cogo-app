@@ -22,11 +22,14 @@ import { useContext } from 'react';
 import possibleFullRouteConfigs from '../../../../../../../constants/possible-full-route.json';
 import { ShipmentDetailContext } from '../../../../../common/Context';
 
+import AdditionalServicesList from './AdditionalServices';
+import Assured from './Assured';
 import ServiceDetails from './ServiceDetails';
 import styles from './styles.module.css';
 
 import { helperFuncs } from '@/ui/page-components/shipments/helpers/helperFuncs';
 import { upsellTransportation } from '@/ui/page-components/shipments/helpers/upsellTransportation';
+import TermsAndConditions from './TermsandConditions';
 
 function Overview({
 	quickAction,
@@ -100,23 +103,23 @@ function Overview({
 					<Placeholder />
 				)}
 
-				{/* <div className={styles.right_panel}>
-					<AdditionalServiceList
+				<div className={styles.right_panel}>
+					<AdditionalServicesList
 						services={servicesList}
 						title_text="SUGGESTED SERVICES"
 						quickAction={quickAction}
 						setQuickAction={setQuickAction}
 					/>
-				</div> */}
+				</div>
 			</div>
 
-			{/* {shipment_data?.is_cogo_assured ? (
+			{shipment_data?.is_cogo_assured ? (
 				<Assured shipment_data={shipment_data} />
 			) : null}
 
 			{shipment_data?.terms_and_conditions?.length > 0 ? (
 				<TermsAndConditions shipment_data={shipment_data} />
-			) : null} */}
+			) : null}
 		</div>
 	);
 }

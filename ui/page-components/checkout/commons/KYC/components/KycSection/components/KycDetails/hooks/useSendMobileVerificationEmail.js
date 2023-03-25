@@ -1,35 +1,31 @@
-import { useRequest } from '@cogo/commons/hooks';
-import { useSelector } from '@cogo/store';
-import { toast } from '@cogoport/front/components/admin';
-import { getApiErrorString } from '@cogoport/front/utils';
+import { Toast } from '@cogoport/components';
+
+import getApiErrorString from '@/packages/forms/utils/getApiError';
+import { useRequest } from '@/packages/request';
 
 const useSendMobileVerificationEmail = ({ user_id = '' }) => {
-	const {
-		general: { scope },
-	} = useSelector((state) => state);
-
-	const sendMobileVerificationEmailApi = useRequest(
-		'post',
-		false,
-		scope,
-	)('/send_mobile_verification_email');
+	const [{ loading }, trigger] = useRequest({
+		url    : '/send_mobile_verification_email',
+		method : 'post',
+	}, { manual: true });
 
 	const sendVerificationLink = async () => {
 		try {
-			await sendMobileVerificationEmailApi.trigger({
+			await trigger({
 				data: {
 					user_id,
 				},
 			});
 
-			toast.success('Mobile Verification Link Sent Successfully!');
+			Toast.success('Mobile Verification Link Sent Successfully!');
 		} catch (error) {
-			toast.error(getApiErrorString(error.data));
+			Toast.error(getApiErrorString(error.data));
 		}
 	};
 
 	return {
 		sendVerificationLink,
+		loading,
 	};
 };
 

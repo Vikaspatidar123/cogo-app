@@ -1,8 +1,8 @@
-import Layout from '@cogo/business-modules/form/Layout';
-import { Flex, Text } from '@cogoport/front/components';
-import { Button } from '@cogoport/front/components/admin';
+// import Layout from '@cogo/business-modules/form/Layout';
 
 // import { LayoutContainer } from './styles';
+
+import { Button } from '@cogoport/components';
 
 import styles from './styles.module.css';
 import useDocuments from './useDocuments';
@@ -26,24 +26,24 @@ function Documents({
 	});
 
 	return (
-		<Flex direction="column">
-			<Text size={14} color="#333333">
+		<div style={{ display: 'flex', flexDirection: 'column' }}>
+			<div style={{ color: '#333333' }}>
 				We need these documents to check the legitamacy of your organization
-			</Text>
+			</div>
 
-			<LayoutContainer>
-				<Layout controls={controls} fields={fields} errors={formState.errors} />
-			</LayoutContainer>
+			<div className={styles.layout_container}>
+				{/* <Layout controls={controls} fields={fields} errors={formState.errors} /> */}
+			</div>
 
-			<Flex justifyContent="flex-end">
+			<div style={{ display: 'flex', justifyContent: 'flex-end' }}>
 				<Button
 					disabled={createChannelPartnerVerificationDocumentLoading}
 					onClick={handleSubmit(onSubmit)}
 				>
 					SAVE AND CONTINUE
 				</Button>
-			</Flex>
-		</Flex>
+			</div>
+		</div>
 	);
 }
 

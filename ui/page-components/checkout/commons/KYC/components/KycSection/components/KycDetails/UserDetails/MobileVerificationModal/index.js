@@ -1,7 +1,8 @@
-import { useSelector } from '@cogo/store';
-import { Modal } from '@cogoport/front/components/admin';
+import { Modal } from '@cogoport/components';
 
 import MobileVerification from './MobileVerification';
+
+import { useSelector } from '@/packages/store';
 
 function MobileNoVerificationModal({
 	channelPartnerDetails = {},

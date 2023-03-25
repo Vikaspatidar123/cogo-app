@@ -1,9 +1,10 @@
-import { isEmpty } from '@cogoport/front/utils';
-import global from '@cogo/commons/constants/global';
-import { useRequest } from '@cogo/commons/hooks';
+import { Toast } from '@cogoport/components';
+import { isEmpty } from '@cogoport/utils';
 import { useState } from 'react';
-import showErrorsInToast from '@cogo/utils/showErrorsInToastV2';
+
 import formatBankDetails from '../utils/formatBankDetails';
+
+import { useRequest } from '@/packages/request';
 
 const { INDIA_COUNTRY_ID } = global;
 
@@ -19,7 +20,10 @@ const useGetChannelPartner = ({ STATE_CONSTANTS, channelPartnerDetails }) => {
 		ACCOUNT_CREATED,
 	} = STATE_CONSTANTS;
 
-	const api = useRequest('get', false, 'partner')('/get_channel_partner');
+	const [{ loading }, trigger] = useRequest({
+		url    : '/get_channel_partner',
+		method : 'get',
+	}, { manual: true });
 
 	const getOrganizationDetails = ({ response = {} }) => {
 		const {
@@ -29,13 +33,13 @@ const useGetChannelPartner = ({ STATE_CONSTANTS, channelPartnerDetails }) => {
 		} = response;
 
 		return {
-			activeComponentKey: ORGANIZATION_DETAILS,
-			[ORGANIZATION_DETAILS]: {
+			activeComponentKey     : ORGANIZATION_DETAILS,
+			[ORGANIZATION_DETAILS] : {
 				formValues: {
-					country_id: countryId,
-					tax: countryId === INDIA_COUNTRY_ID ? '' : registrationNumber,
-					panGstin: countryId === INDIA_COUNTRY_ID ? registrationNumber : '',
-					organization_name: organizationName,
+					country_id        : countryId,
+					tax               : countryId === INDIA_COUNTRY_ID ? '' : registrationNumber,
+					panGstin          : countryId === INDIA_COUNTRY_ID ? registrationNumber : '',
+					organization_name : organizationName,
 					// select_city: '',
 				},
 			},
@@ -50,8 +54,8 @@ const useGetChannelPartner = ({ STATE_CONSTANTS, channelPartnerDetails }) => {
 		}
 
 		return {
-			activeComponentKey: PLAN,
-			[PERSONA]: {
+			activeComponentKey : PLAN,
+			[PERSONA]          : {
 				formValues: {
 					supplyService: categoryTypes,
 				},
@@ -67,16 +71,16 @@ const useGetChannelPartner = ({ STATE_CONSTANTS, channelPartnerDetails }) => {
 		}
 
 		const obj = {
-			'importer_exporter,service_provider': 'both',
-			importer_exporter: 'buy',
-			service_provider: 'sell',
+			'importer_exporter,service_provider' : 'both',
+			importer_exporter                    : 'buy',
+			service_provider                     : 'sell',
 		};
 
 		const planService = obj[accountTypes.sort().join(',')] || '';
 
 		return {
-			activeComponentKey: SERVICES,
-			[PLAN]: {
+			activeComponentKey : SERVICES,
+			[PLAN]             : {
 				formValues: {
 					planService,
 				},
@@ -88,9 +92,7 @@ const useGetChannelPartner = ({ STATE_CONSTANTS, channelPartnerDetails }) => {
 		const { logistics_services: logisticsServices = {} } = response;
 
 		const isServicesValuePresent = Object.keys(logisticsServices || {}).every(
-			(serviceKey) => {
-				return !isEmpty(logisticsServices[serviceKey] || []);
-			},
+			(serviceKey) => !isEmpty(logisticsServices[serviceKey] || []),
 		);
 
 		if (!isServicesValuePresent) {
@@ -98,8 +100,8 @@ const useGetChannelPartner = ({ STATE_CONSTANTS, channelPartnerDetails }) => {
 		}
 
 		const KEYS_MAPPING = {
-			sell_services: 'sellServices',
-			buy_services: 'buyServices',
+			sell_services : 'sellServices',
+			buy_services  : 'buyServices',
 		};
 
 		const servicesFormValues = Object.keys(logisticsServices).reduce(
@@ -115,8 +117,8 @@ const useGetChannelPartner = ({ STATE_CONSTANTS, channelPartnerDetails }) => {
 		);
 
 		return {
-			activeComponentKey: TRADE_LANES,
-			[SERVICES]: {
+			activeComponentKey : TRADE_LANES,
+			[SERVICES]         : {
 				formValues: servicesFormValues,
 			},
 		};
@@ -126,9 +128,7 @@ const useGetChannelPartner = ({ STATE_CONSTANTS, channelPartnerDetails }) => {
 		const { logistics_services: logisticsServices = {} } = response;
 
 		const isServicesValuePresent = Object.keys(logisticsServices || {}).every(
-			(serviceKey) => {
-				return Object.keys(logisticsServices[serviceKey]).length > 0;
-			},
+			(serviceKey) => Object.keys(logisticsServices[serviceKey]).length > 0,
 		);
 
 		if (!isServicesValuePresent) {
@@ -142,16 +142,14 @@ const useGetChannelPartner = ({ STATE_CONSTANTS, channelPartnerDetails }) => {
 				}
 
 				return Object.keys(logisticsServices[serviceKey]).every(
-					(freightKey) => {
-						return logisticsServices[serviceKey][freightKey] === 'complete';
-					},
+					(freightKey) => logisticsServices[serviceKey][freightKey] === 'complete',
 				);
 			},
 		);
 
 		const serviceKeysMapping = {
-			buy_services: 'buyServices',
-			sell_services: 'sellServices',
+			buy_services  : 'buyServices',
+			sell_services : 'sellServices',
 		};
 
 		const serviceFreightCompleted = Object.keys(logisticsServices).reduce(
@@ -238,9 +236,9 @@ const useGetChannelPartner = ({ STATE_CONSTANTS, channelPartnerDetails }) => {
 			let taxNumberDocumentUrl = {};
 			if (tax_number_document_url) {
 				taxNumberDocumentUrl = {
-					name: decodeURIComponent(tax_number_document_url.split('/').pop()),
-					url: tax_number_document_url,
-					uid: tax_number_document_url,
+					name : decodeURIComponent(tax_number_document_url.split('/').pop()),
+					url  : tax_number_document_url,
+					uid  : tax_number_document_url,
 				};
 			}
 
@@ -251,12 +249,12 @@ const useGetChannelPartner = ({ STATE_CONSTANTS, channelPartnerDetails }) => {
 
 			accountInformationState.addressDetails = {
 				isTaxApplicable,
-				formList: isTaxApplicable ? billingAddress : addresses,
-				formValues: {
+				formList   : isTaxApplicable ? billingAddress : addresses,
+				formValues : {
 					address,
 					pincode,
-					[taxNumberKey]: tax_number,
-					[taxNumberProofKey]: taxNumberDocumentUrl,
+					[taxNumberKey]      : tax_number,
+					[taxNumberProofKey] : taxNumberDocumentUrl,
 				},
 			};
 		}
@@ -272,9 +270,7 @@ const useGetChannelPartner = ({ STATE_CONSTANTS, channelPartnerDetails }) => {
 		}
 
 		const isFormsFilled = Object.values(accountInformationState).every(
-			(componentState) => {
-				return !isEmpty(componentState);
-			},
+			(componentState) => !isEmpty(componentState),
 		);
 
 		return {
@@ -293,8 +289,8 @@ const useGetChannelPartner = ({ STATE_CONSTANTS, channelPartnerDetails }) => {
 		}
 
 		return {
-			activeComponentKey: ACCOUNT_CREATED,
-			[ACCOUNT_CREATED]: {
+			activeComponentKey : ACCOUNT_CREATED,
+			[ACCOUNT_CREATED]  : {
 				formValues: {
 					features,
 				},
@@ -302,33 +298,27 @@ const useGetChannelPartner = ({ STATE_CONSTANTS, channelPartnerDetails }) => {
 		};
 	};
 
-	const getParams = ({ partnerId = '' }) => {
-		return {
-			id: partnerId,
-		};
-	};
-
-	const formatChannelPartnerState = ({ partner, partnerId }) => {
-		return {
-			partnerId,
-			activeComponentKey: ORGANIZATION_DETAILS,
-			...getOrganizationDetails({ response: partner }),
-			...getPersona({ response: partner }),
-			...getPlan({ response: partner }),
-			...getServices({ response: partner }),
-			...getTradeLanes({ response: partner }),
-			...getAccountInformation({ response: partner }),
-			...getAccountCreated({ response: partner }),
-			componentLoading: false,
-		};
-	};
-
-	const [channelPartnerState, setChannelPartnerState] = useState(() => {
-		return formatChannelPartnerState({
-			partner: channelPartnerDetails,
-			partnerId: channelPartnerDetails.id,
-		});
+	const getParams = ({ partnerId = '' }) => ({
+		id: partnerId,
 	});
+
+	const formatChannelPartnerState = ({ partner, partnerId }) => ({
+		partnerId,
+		activeComponentKey : ORGANIZATION_DETAILS,
+		...getOrganizationDetails({ response: partner }),
+		...getPersona({ response: partner }),
+		...getPlan({ response: partner }),
+		...getServices({ response: partner }),
+		...getTradeLanes({ response: partner }),
+		...getAccountInformation({ response: partner }),
+		...getAccountCreated({ response: partner }),
+		componentLoading   : false,
+	});
+
+	const [channelPartnerState, setChannelPartnerState] = useState(() => formatChannelPartnerState({
+		partner   : channelPartnerDetails,
+		partnerId : channelPartnerDetails.id,
+	}));
 
 	const onSuccess = ({ response = {}, partnerId = '' }) => {
 		const { partner = {} } = response;
@@ -341,19 +331,19 @@ const useGetChannelPartner = ({ STATE_CONSTANTS, channelPartnerDetails }) => {
 			return;
 		}
 
-		showErrorsInToast(error.data);
+		Toast.error(error.data);
 	};
 
 	const getChannelPartner = async ({ partnerId = '' }) => {
 		try {
-			// setState((previousState) => ({
-			// 	...previousState,
-			// 	componentLoading: true,
-			// }));
+			setState((previousState) => ({
+				...previousState,
+				loading: true,
+			}));
 
 			const params = getParams({ partnerId });
 
-			const response = await api.trigger({ params });
+			const response = await trigger({ params });
 
 			onSuccess({ response: response.data, partnerId });
 		} catch (error) {
@@ -366,6 +356,7 @@ const useGetChannelPartner = ({ STATE_CONSTANTS, channelPartnerDetails }) => {
 		formatChannelPartnerState,
 		channelPartnerState,
 		setChannelPartnerState,
+		loading,
 	};
 };
 

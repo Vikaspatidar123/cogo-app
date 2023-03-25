@@ -1,70 +1,71 @@
-import { get, isEmpty } from '@cogoport/front/utils';
+import { getByKey, isEmpty } from '@cogoport/utils';
 import { useEffect, useRef, useState } from 'react';
-import global from '@cogo/commons/constants/global';
-import CompanyDetails from '../CompanyDetails';
-import BillingAddresses from '../BillingAddresses';
+
 import BankDetails from '../BankDetails';
-import Documents from '../Documents';
-import UserDetails from '../UserDetails';
-import SigningAuthority from '../SigningAuthority';
+import BillingAddresses from '../BillingAddresses';
+import CompanyDetails from '../CompanyDetails';
 import Declaration from '../Declaration';
-import useGetChannelPartner from './useGetChannelPartner';
+import Documents from '../Documents';
+import SigningAuthority from '../SigningAuthority';
 import TradeBodyInformation from '../TradeBodyInformation';
+import UserDetails from '../UserDetails';
+
+import useGetChannelPartner from './useGetChannelPartner';
 
 const COMPONENTS_MAPPING = {
 	organization: {
-		title: 'Company Details',
-		tooltip: 'Company Details',
-		component: CompanyDetails,
+		title     : 'Company Details',
+		tooltip   : 'Company Details',
+		component : CompanyDetails,
 	},
 	billing_address: {
-		title: 'Billing Address',
-		tooltip: 'Billing Address',
-		component: BillingAddresses,
+		title     : 'Billing Address',
+		tooltip   : 'Billing Address',
+		component : BillingAddresses,
 	},
 	bank_detail: {
-		title: 'Bank Details',
-		tooltip: 'Bank Details',
-		component: BankDetails,
+		title     : 'Bank Details',
+		tooltip   : 'Bank Details',
+		component : BankDetails,
 	},
 	documents: {
-		title: 'Documents',
-		tooltip: 'Documents',
-		component: Documents,
+		title     : 'Documents',
+		tooltip   : 'Documents',
+		component : Documents,
 	},
 	user: {
-		title: 'User Details',
-		tooltip: 'User Details',
-		component: UserDetails,
+		title     : 'User Details',
+		tooltip   : 'User Details',
+		component : UserDetails,
 	},
 	trade_bodies: {
-		title: 'Trade Body Information',
-		tooltip: 'Trade Body Information',
-		component: TradeBodyInformation,
+		title     : 'Trade Body Information',
+		tooltip   : 'Trade Body Information',
+		component : TradeBodyInformation,
 	},
 	signing_authority: {
-		title: 'Signing Authority',
-		tooltip: 'Signing Authority',
-		component: SigningAuthority,
+		title     : 'Signing Authority',
+		tooltip   : 'Signing Authority',
+		component : SigningAuthority,
 	},
 	declaration: {
-		title: 'Declaration',
-		tooltip: 'Declaration',
-		component: Declaration,
+		title     : 'Declaration',
+		tooltip   : 'Declaration',
+		component : Declaration,
 	},
 };
 
 const STATE_CONSTANTS = {
-	SET_PASSWORD: 'setPassword',
-	ORGANIZATION_DETAILS: 'organizationDetails',
-	PERSONA: 'persona',
-	PLAN: 'plan',
-	SERVICES: 'services',
-	TRADE_LANES: 'tradeLanes',
-	ACCOUNT_INFORMATION: 'accountInformation',
-	TERMS_AND_CONDITIONS: 'termsAndConditions',
-	ACCOUNT_CREATED: 'accountCreated',
-	SUBSCRIPTION: 'subscription',
+	SET_PASSWORD         : 'setPassword',
+	ORGANIZATION_DETAILS : 'organizationDetails',
+	PERSONA              : 'persona',
+	PLAN                 : 'plan',
+	SERVICES             : 'services',
+	TRADE_LANES          : 'tradeLanes',
+	ACCOUNT_INFORMATION  : 'accountInformation',
+	TERMS_AND_CONDITIONS : 'termsAndConditions',
+	ACCOUNT_CREATED      : 'accountCreated',
+	SUBSCRIPTION         : 'subscription',
 };
 
 const useKycDetails = ({
@@ -82,15 +83,14 @@ const useKycDetails = ({
 		channelPartnerDetails,
 	});
 
-	const [showHiddenComponentContents, setShowHiddenComponentContents] =
-		useState(() => {
-			const hash = {};
-			Object.keys(COMPONENTS_MAPPING).forEach((componentKey) => {
-				hash[componentKey] = componentKey === 'declaration';
-			});
-
-			return hash;
+	const [showHiddenComponentContents, setShowHiddenComponentContents] =		useState(() => {
+		const hash = {};
+		Object.keys(COMPONENTS_MAPPING).forEach((componentKey) => {
+			hash[componentKey] = componentKey === 'declaration';
 		});
+
+		return hash;
+	});
 
 	const componentsRef = useRef({});
 
@@ -117,9 +117,9 @@ const useKycDetails = ({
 
 			const element = componentsRef.current[componentKey];
 			element?.scrollIntoView({
-				behavior: 'smooth',
-				block: 'center',
-				inline: 'nearest',
+				behavior : 'smooth',
+				block    : 'center',
+				inline   : 'nearest',
 			});
 
 			return {
@@ -134,10 +134,10 @@ const useKycDetails = ({
 		let showComponent = true;
 
 		if (
-			componentKey === 'billing_address' &&
-			(isEmpty(channelPartnerState) ||
-				channelPartnerState.organizationDetails.formValues.country_id !==
-					global.INDIA_COUNTRY_ID)
+			componentKey === 'billing_address'
+			&& (isEmpty(channelPartnerState)
+				|| channelPartnerState.organizationDetails.formValues.country_id
+					!== global.INDIA_COUNTRY_ID)
 		) {
 			showComponent = false;
 		}
@@ -145,8 +145,7 @@ const useKycDetails = ({
 		if (componentKey === 'bank_detail') {
 			const { PLAN } = STATE_CONSTANTS;
 
-			const planService =
-				get(channelPartnerState, `[${PLAN}].formValues.planService`) || '';
+			const planService =	getByKey(channelPartnerState, `[${PLAN}].formValues.planService`) || '';
 
 			if (!['sell', 'both'].includes(planService)) {
 				showComponent = false;
@@ -163,17 +162,17 @@ const useKycDetails = ({
 			channelPartnerDetails,
 		},
 		billing_address: {
-			CONSTANTS: { COMPONENT_KEYS: { ...STATE_CONSTANTS } },
-			state: channelPartnerState,
-			setState: setChannelPartnerState,
+			CONSTANTS : { COMPONENT_KEYS: { ...STATE_CONSTANTS } },
+			state     : channelPartnerState,
+			setState  : setChannelPartnerState,
 			kycDetails,
 			setKycDetails,
 			channelPartnerDetails,
 		},
 		bank_detail: {
-			CONSTANTS: { COMPONENT_KEYS: { ...STATE_CONSTANTS } },
-			state: channelPartnerState,
-			setState: setChannelPartnerState,
+			CONSTANTS : { COMPONENT_KEYS: { ...STATE_CONSTANTS } },
+			state     : channelPartnerState,
+			setState  : setChannelPartnerState,
 			kycDetails,
 			setKycDetails,
 			channelPartnerDetails,

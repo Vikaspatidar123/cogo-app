@@ -1,37 +1,29 @@
-import { useRequest } from '@cogo/commons/hooks';
-import { useSelector } from '@cogo/store';
-import { toast } from '@cogoport/front/components/admin';
-import { getApiErrorString } from '@cogoport/front/utils';
-import copyToClipboard from '@cogo/utils/copyToClipboard';
+import { Toast } from '@cogoport/components';
+import { copyToClipboard } from '@cogoport/utils';
 import { useEffect } from 'react';
 
-const useGenerateMobileVerificationLink = ({ user_id = '' }) => {
-	const {
-		general: { scope },
-	} = useSelector((state) => state);
+import getApiErrorString from '@/packages/forms/utils/getApiError';
+import { useRequest } from '@/packages/request';
 
-	const generateMobileVerificationLinkApi = useRequest(
-		'post',
-		false,
-		scope,
-	)('/generate_mobile_verification_link');
+const useGenerateMobileVerificationLink = ({ user_id = '' }) => {
+	const [{ loading, data }, trigger] = useRequest({
+		url    : '/generate_mobile_verification_link',
+		method : 'post',
+	}, { manual: true });
 
 	const generateVerificationLink = async () => {
 		try {
-			await generateMobileVerificationLinkApi.trigger({
+			await trigger({
 				data: {
 					user_id,
 				},
 			});
 
-			toast.success('Mobile Verification Link Generated Successfully!');
+			Toast.success('Mobile Verification Link Generated Successfully!');
 		} catch (error) {
-			toast.error(getApiErrorString(error.data));
+			Toast.error(getApiErrorString(error.data));
 		}
 	};
-
-	const { loading: loadingMobileVerificationLink = false, data = {} } =
-		generateMobileVerificationLinkApi;
 
 	const { mobile_number_verification_link: mobileVerificationLink = '' } = data;
 
@@ -39,13 +31,13 @@ const useGenerateMobileVerificationLink = ({ user_id = '' }) => {
 		if (mobileVerificationLink) {
 			copyToClipboard(mobileVerificationLink);
 
-			toast.success('Link Copied to Clipboard');
+			Toast.success('Link Copied to Clipboard');
 		}
 	}, [mobileVerificationLink]);
 
 	return {
 		generateVerificationLink,
-		loadingMobileVerificationLink,
+		loadingMobileVerificationLink: loading,
 		mobileVerificationLink,
 	};
 };

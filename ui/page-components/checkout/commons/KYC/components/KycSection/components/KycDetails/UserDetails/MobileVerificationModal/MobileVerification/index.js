@@ -1,5 +1,6 @@
-import OTPLayout from '@cogo/business-modules/components/OTPLayout';
-import Layout from '@cogo/business-modules/form/Layout';
+// import OTPLayout from '@cogo/business-modules/components/OTPLayout';
+// import Layout from '@cogo/business-modules/form/Layout';
+import { Button } from '@cogoport/components';
 import React from 'react';
 
 // import { Container, Title, Form, Button, OtpContainer } from './styles';
@@ -30,21 +31,21 @@ function MobileVerification({
 	const { fields = {}, handleSubmit = () => {} } = formProps;
 
 	return (
-		<Container>
-			<Title>Mobile Number Verification</Title>
+		<div className={styles.container}>
+			<div className={styles.title}>Mobile Number Verification</div>
 
-			<Form onSubmit={handleSubmit(onSubmit, onErrors)}>
-				<Layout controls={controls} fields={fields} errors={errors} />
+			<form onSubmit={handleSubmit(onSubmit, onErrors)}>
+				{/* <Layout controls={controls} fields={fields} errors={errors} /> */}
 
 				{showEnterOtpComponent && (
-					<OtpContainer>
+					<div className={styles.otp_container}>
 						<OTPLayout
 							otpLength={OTP_LENGTH}
 							setOtpValue={setOtpNumber}
 							loading={false}
 							sendOtp={(obj) => sendOtpNumber({ ...obj })}
 						/>
-					</OtpContainer>
+					</div>
 				)}
 
 				{!showEnterOtpComponent && (
@@ -67,8 +68,8 @@ function MobileVerification({
 						Submit
 					</Button>
 				)}
-			</Form>
-		</Container>
+			</form>
+		</div>
 	);
 }
 

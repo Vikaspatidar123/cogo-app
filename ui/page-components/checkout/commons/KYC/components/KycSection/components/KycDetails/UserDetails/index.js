@@ -1,6 +1,7 @@
 // import Layout from '@cogo/business-modules/form/Layout';
 
-import { Button, Popover } from '@cogoport/components';
+import { Select, Button, Popover } from '@cogoport/components';
+import { isEmpty } from '@cogoport/utils';
 
 import VerifiedIcon from '../../../icons/verified-icon.svg';
 import useGenerateMobileVerificationLink from '../hooks/useGenerateMobileVerificationLink';
@@ -99,8 +100,9 @@ function UserDetails({
 							</div>
 
 							{!selectedUser.mobile_verified && selectedUser.email_verified && (
-								<div className={style.text_icon_container}>
+								<div className={styles.text_icon_container}>
 									<div
+										role="presentation"
 										className={styles.verification_text}
 										onClick={() => setShowMobileVerificationModal('verify')}
 									>
@@ -120,6 +122,7 @@ function UserDetails({
 										}
 									>
 										<div
+											role="presentation"
 											className={styles.verification_text}
 											onClick={() => {
 												generateVerificationLink();
@@ -135,7 +138,11 @@ function UserDetails({
 							&& !selectedUser.mobile_verified
 							&& selectedUser.email_verified ? (
 								<div className={styles.text_icon_container}>
-									<div className={styles.verification_text} onClick={sendVerificationLink}>
+									<div
+										className={styles.verification_text}
+										role="presentation"
+										onClick={sendVerificationLink}
+									>
 										Send Link on Email
 									</div>
 								</div>
@@ -143,6 +150,7 @@ function UserDetails({
 
 							{selectedUser.mobile_number && selectedUser.mobile_verified && (
 								<div
+									role="presentation"
 									className={styles.verification_text}
 									onClick={() => setShowMobileVerificationModal('change')}
 								>
@@ -170,8 +178,8 @@ function UserDetails({
 							{!selectedUser.email_verified && (
 								<div className={styles.text_icon_container}>
 									<div
+										role="presentation"
 										className={styles.verification_text}
-
 										showLoading={loadingResendEmail}
 										onClick={() => verifyEmailId()}
 									>

@@ -1,13 +1,7 @@
-import Layout from '@cogo/business-modules/form/Layout';
-import { Flex, Text } from '@cogoport/front/components';
-import { Button, Select } from '@cogoport/front/components/admin';
+// import Layout from '@cogo/business-modules/form/Layout';
 
-import {
-	LayoutContainer,
-	SelectContainer,
-	Separator,
-	SeparatorText,
-} from './styles';
+import { Select, Button } from '@cogoport/components';
+
 import styles from './styles.module.css';
 import useSigningAuthority from './useSigningAuthority';
 
@@ -31,14 +25,14 @@ function SigningAuthority({
 	} = useSigningAuthority({ channelPartnerDetails, kycDetails, setKycDetails });
 
 	return (
-		<Flex direction="column">
-			<Text size={14} color="#333333">
+		<div className={styles.flex}>
+			<div style={{ color: '#333333' }}>
 				Please select a key decision maker in the company from the dropdown. If
 				the person is not available in the list, send an invite to them.
-			</Text>
+			</div>
 
-			<LayoutContainer>
-				<SelectContainer>
+			<div className={styles.layout_container}>
+				<div className={styles.select_container}>
 					<Select
 						placeholder="Select User"
 						type="select"
@@ -51,34 +45,34 @@ function SigningAuthority({
 						value={selectedUser}
 					/>
 
-					<Flex justifyContent="flex-end" margin="16px 0">
+					<div style={{ display: 'flex', justifyContent: 'center', margin: '16px 0' }}>
 						<Button
 							disabled={updateUserAPILoading}
 							onClick={selectSigningAuthority}
 						>
 							CHOOSE
 						</Button>
-					</Flex>
-				</SelectContainer>
+					</div>
+				</div>
 
-				<Flex alignItems="center">
-					<Separator />
-					<SeparatorText>OR</SeparatorText>
-					<Separator />
-				</Flex>
+				<div style={{ display: 'flex', alignItems: 'center' }}>
+					<div className={styles.separator} />
+					<div className={styles.separator_text}>OR</div>
+					<div />
+				</div>
 
-				<Layout controls={controls} fields={fields} errors={formState.errors} />
+				{/* <Layout controls={controls} fields={fields} errors={formState.errors} /> */}
 
-				<Flex justifyContent="flex-end" margin="16px 0">
+				<div style={{ display: 'flex', justifyContent: 'flex-end', margin: '16px 0' }}>
 					<Button
 						disabled={inviteUserAPILoading}
 						onClick={handleSubmit(onCreate)}
 					>
 						INVITE
 					</Button>
-				</Flex>
-			</LayoutContainer>
-		</Flex>
+				</div>
+			</div>
+		</div>
 	);
 }
 

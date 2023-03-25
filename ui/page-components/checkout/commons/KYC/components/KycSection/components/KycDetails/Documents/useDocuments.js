@@ -1,41 +1,41 @@
+import { Toast } from '@cogoport/components';
+import { getByKey } from '@cogoport/utils';
 import { useEffect } from 'react';
-import { useFormCogo } from '@cogoport/front/hooks';
-import { useRequest } from '@cogo/commons/hooks';
-import { get, getApiErrorString } from '@cogoport/front/utils';
-import { toast } from '@cogoport/front/components/admin';
+
 import controls from './get-documents-controls';
+
+import getApiErrorString from '@/packages/forms/utils/getApiError';
+import { useRequest } from '@/packages/request';
 
 const useDocuments = ({
 	channelPartnerDetails = {},
 	kycDetails,
 	setKycDetails,
 }) => {
-	const getOrganizationDocumentsApi = useRequest(
-		'get',
-		true,
-		'partner',
-	)('/get_channel_partner_documents', {
-		params: {
-			partner_id: channelPartnerDetails.id,
-			account_types: channelPartnerDetails.account_types,
-			filters: {
+	const [{ loading }, trigger] = useRequest({
+		url    : '/create_channel_partner_document',
+		method : 'post',
+	}, { manual: true });
+
+	const getOrganizationDocumentsApi = [{ loading }, trigger] = useRequest({
+		url    : '/',
+		method : 'get',
+		params : {
+			partner_id    : channelPartnerDetails.id,
+			account_types : channelPartnerDetails.account_types,
+			filters       : {
 				document_type: 'business_address_proof',
 			},
 		},
-	});
-
-	const createChannelPartnerVerificationDocumentApi = useRequest(
-		'post',
-		false,
-		'partner',
-	)('/create_channel_partner_document');
+	}, { manual: true });
 
 	const {
 		fields = {},
 		handleSubmit = () => {},
 		formState = {},
 		setValue = () => {},
-	} = useFormCogo(controls);
+		control,
+	} = useForm();
 
 	const { data = [] } = getOrganizationDocumentsApi;
 
@@ -45,7 +45,7 @@ const useDocuments = ({
 
 	const onSubmit = async (values = {}) => {
 		if (!values.business_address_proof?.url) {
-			toast.info('Please re-upload the document');
+			Toast.info('Please re-upload the document');
 			return;
 		}
 
@@ -63,30 +63,29 @@ const useDocuments = ({
 			].filter((accountType) => accountType);
 
 			const payload = {
-				partner_id: id,
-				account_types: accountTypes,
-				name: 'Business Address Proof',
-				document_type: 'business_address_proof',
-				image_url: get(values, 'business_address_proof.url'),
-				verification_id: verification?.[0].id,
+				partner_id      : id,
+				account_types   : accountTypes,
+				name            : 'Business Address Proof',
+				document_type   : 'business_address_proof',
+				image_url       : getByKey(values, 'business_address_proof.url'),
+				verification_id : verification?.[0].id,
 			};
 
-			const response =
-				await createChannelPartnerVerificationDocumentApi.trigger({
-					data: payload,
-				});
+			const response = await trigger({
+				data: payload,
+			});
 
-			toast.success('Business Address Proof added successfully!');
+			Toast.success('Business Address Proof added successfully!');
 
 			setKycDetails({
 				...kycDetails,
 				verification_progress: {
 					...kycDetails.verification_progress,
-					...(get(response, 'data.verification_progress') || {}),
+					...(getByKey(response, 'data.verification_progress') || {}),
 				},
 			});
 		} catch (err) {
-			toast.error(getApiErrorString(err.data));
+			Toast.error(getApiErrorString(err.data));
 		}
 	};
 
@@ -96,8 +95,7 @@ const useDocuments = ({
 		onSubmit,
 		controls,
 		formState,
-		createChannelPartnerVerificationDocumentLoading:
-			createChannelPartnerVerificationDocumentApi.loading,
+		createChannelPartnerVerificationDocumentLoading: loading,
 	};
 };
 

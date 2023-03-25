@@ -7,11 +7,10 @@ const useKycIntro = ({
 	setKycDetails = () => {},
 	kycDetails = {},
 }) => {
-	const startKYCVerificationAPI = useRequest(
-		'post',
-		false,
-		'partner',
-	)('/update_channel_partner_verification');
+	const [{ loading }, startKYCVerificationAPI] = useRequest({
+		url    : '/update_channel_partner_verification',
+		method : 'post',
+	}, { manual: true });
 
 	const handleStartKYC = async () => {
 		try {
@@ -19,7 +18,7 @@ const useKycIntro = ({
 				id: verification.id,
 			};
 
-			const res = await startKYCVerificationAPI.trigger({ data: body });
+			const res = await startKYCVerificationAPI({ data: body });
 
 			setKycDetails({
 				...kycDetails,
@@ -32,7 +31,7 @@ const useKycIntro = ({
 	};
 
 	return {
-		startKYCVerificationLoading: startKYCVerificationAPI.loading,
+		startKYCVerificationLoading: loading,
 		handleStartKYC,
 	};
 };

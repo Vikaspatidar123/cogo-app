@@ -8,14 +8,13 @@ import styles from './styles.module.css';
 import { useRequest } from '@/packages/request';
 
 function Verified({ channelPartnerDetails = {} }) {
-	const getOrganizationDocumentsAPI = useRequest(
-		'get',
-		false,
-		'partner',
-	)('/get_channel_partner_documents');
+	const [{ loading }, getOrganizationDocumentsAPI] = useRequest({
+		url    : '/get_channel_partner_documents',
+		method : 'get',
+	}, { manual: true });
 
 	useEffect(() => {
-		getOrganizationDocumentsAPI.trigger({
+		getOrganizationDocumentsAPI({
 			params: {
 				partner_id    : channelPartnerDetails.id,
 				account_types : ['importer_exporter'],

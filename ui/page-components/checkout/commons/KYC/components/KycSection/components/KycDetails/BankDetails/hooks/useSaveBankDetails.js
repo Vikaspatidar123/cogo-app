@@ -1,6 +1,8 @@
-import { useRequest } from '@cogo/commons/hooks';
-import showErrorsInToast from '@cogo/utils/showErrorsInToastV2';
+import { Toast } from '@cogoport/components';
+
 import formatBankDetails from '../../utils/formatBankDetails';
+
+import { useRequest } from '@/packages/request';
 
 const useSaveBankDetails = ({
 	action = '',
@@ -15,8 +17,7 @@ const useSaveBankDetails = ({
 		COMPONENT_KEYS: { ACCOUNT_INFORMATION },
 	} = CONSTANTS;
 
-	const { partnerId = '', [ACCOUNT_INFORMATION]: accountInformation = {} } =
-		state;
+	const { partnerId = '', [ACCOUNT_INFORMATION]: accountInformation = {} } =		state;
 
 	const { bankDetails = {} } = accountInformation;
 	const { formValues: bankDetailsFormValues = {} } = bankDetails;
@@ -26,20 +27,19 @@ const useSaveBankDetails = ({
 		apiName = 'update_channel_partner_bank_details';
 	}
 
-	const api = useRequest('post', false, 'partner')(`/${apiName}`);
+	const [{ loading }, trigger] = useRequest({
+		url    : `/${apiName}`,
+		method : 'post',
+	}, { manual: true });
 
 	const getPayload = ({ values = {} }) => {
-		const { verification = [], twin_importer_exporter_id = '' } =
-			channelPartnerDetails;
+		const { verification = [], twin_importer_exporter_id = '' } =			channelPartnerDetails;
 
 		const account_type = twin_importer_exporter_id
 			? 'importer_exporter'
 			: 'service_provider';
 
-		const verification_data =
-			verification.find((data) => {
-				return data.account_type === account_type;
-			}) || {};
+		const verification_data =			verification.find((data) => data.account_type === account_type) || {};
 
 		const {
 			account_holder_name,
@@ -52,13 +52,13 @@ const useSaveBankDetails = ({
 		} = values;
 
 		return {
-			id: partnerId,
+			id               : partnerId,
 			account_holder_name,
 			bank_account_number,
 			ifsc_number,
 			bank_name,
 			branch_name,
-			cancelled_cheque: {
+			cancelled_cheque : {
 				...(action === 'edit' && {
 					id: bankDetailsFormValues?.cancelled_cheque?.id,
 				}),
@@ -94,14 +94,14 @@ const useSaveBankDetails = ({
 	};
 
 	const onFailure = (error = {}) => {
-		showErrorsInToast(error.data);
+		Toast.error(error.data);
 	};
 
 	const saveBankDetails = async ({ values = {} }) => {
 		try {
 			const payload = getPayload({ values });
 
-			const response = await api.trigger({ data: payload });
+			const response = await trigger({ data: payload });
 
 			onSuccess({ response: response.data });
 		} catch (error) {
@@ -110,7 +110,7 @@ const useSaveBankDetails = ({
 	};
 
 	return {
-		loading: api.loading,
+		loading,
 		saveBankDetails,
 	};
 };

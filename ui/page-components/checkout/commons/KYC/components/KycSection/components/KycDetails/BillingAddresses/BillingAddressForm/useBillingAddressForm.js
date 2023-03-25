@@ -1,9 +1,11 @@
-import { useEffect } from 'react';
-import { useFormCogo } from '@cogoport/front/hooks';
-import { get, isEmpty } from '@cogoport/front/utils';
 import global from '@cogo/commons/constants/global';
 import { useRequest } from '@cogo/commons/hooks';
 import { useSelector } from '@cogo/store';
+import { useFormCogo } from '@cogoport/front/hooks';
+import { isEmpty } from '@cogoport/front/utils';
+import { getByKey } from '@cogoport/utils';
+import { useEffect } from 'react';
+
 import { getControls } from '../utils/controls';
 
 const { INDIA_COUNTRY_ID } = global;
@@ -59,16 +61,15 @@ const useBillingAddressForm = ({
 
 		const values = getValues();
 
-		const { identity_number, addresses = [] } =
-			getAddressFromGstinApi.data || {};
+		const { identity_number, addresses = [] } =			getAddressFromGstinApi.data || {};
 
 		if (identity_number === watchGstList) {
 			setValues({
 				...values,
 				gst_number: watchGstList,
 				...(!isEmpty(addresses) && {
-					pincode: values.pincode || get(addresses, '[0].pincode') || '',
-					address: values.address || get(addresses, '[0].address') || '',
+					pincode : values.pincode || getByKey(addresses, '[0].pincode') || '',
+					address : values.address || getByKey(addresses, '[0].address') || '',
 				}),
 			});
 
@@ -77,9 +78,9 @@ const useBillingAddressForm = ({
 
 		setValues({
 			...values,
-			gst_number: '',
-			pincode: '',
-			address: '',
+			gst_number : '',
+			pincode    : '',
+			address    : '',
 		});
 
 		getGstAddress();
@@ -89,18 +90,18 @@ const useBillingAddressForm = ({
 		try {
 			const response = await getAddressFromGstinApi.trigger({
 				params: {
-					identity_number: watchGstList,
-					identity_type: 'tax',
-					country_code: 'IN',
-					provider_name: 'cogoscore',
+					identity_number : watchGstList,
+					identity_type   : 'tax',
+					country_code    : 'IN',
+					provider_name   : 'cogoscore',
 				},
 			});
 
 			setValues({
 				...getValues(),
-				gst_number: watchGstList,
-				pincode: get(response, 'data.addresses[0].pincode') || '',
-				address: get(response, 'data.addresses[0].address') || '',
+				gst_number : watchGstList,
+				pincode    : getByKey(response, 'data.addresses[0].pincode') || '',
+				address    : getByKey(response, 'data.addresses[0].address') || '',
 			});
 		} catch (error) {
 			console.log('error :: ', error);
@@ -113,32 +114,28 @@ const useBillingAddressForm = ({
 		onFailure = () => {},
 	}) => {
 		try {
-			const { verification = [], twin_importer_exporter_id = '' } =
-				channelPartnerDetails;
+			const { verification = [], twin_importer_exporter_id = '' } =				channelPartnerDetails;
 
 			const account_type = twin_importer_exporter_id
 				? 'importer_exporter'
 				: 'service_provider';
 
-			const verification_data =
-				verification.find((data) => {
-					return data.account_type === account_type;
-				}) || {};
+			const verification_data =				verification.find((data) => data.account_type === account_type) || {};
 
 			const payload = {
-				partner_id: channelPartnerDetails.id,
-				address: values.address,
-				pincode: values.pincode,
+				partner_id : channelPartnerDetails.id,
+				address    : values.address,
+				pincode    : values.pincode,
 				...(isGstApplicable && {
-					is_tax_applicable: !isGstApplicable,
-					address_type: values.address_type,
-					name: 'other',
-					country_id: state.organizationDetails.formValues.country_id,
-					tax_exemption_proof: values.tax_exemption_proof.url,
+					is_tax_applicable   : !isGstApplicable,
+					address_type        : values.address_type,
+					name                : 'other',
+					country_id          : state.organizationDetails.formValues.country_id,
+					tax_exemption_proof : values.tax_exemption_proof.url,
 				}),
 				...(!isGstApplicable && {
-					tax_number: values.gst_number || values.tax,
-					tax_number_document_url: isCountryIndia
+					tax_number              : values.gst_number || values.tax,
+					tax_number_document_url : isCountryIndia
 						? values.gst_proof.url
 						: values.tax_proof.url,
 				}),
@@ -149,15 +146,14 @@ const useBillingAddressForm = ({
 				data: payload,
 			});
 
-			const previousSavedBillingAddresses =
-				get(state, `[${ACCOUNT_INFORMATION}].addressDetails.formList`) || [];
+			const previousSavedBillingAddresses =				getByKey(state, `[${ACCOUNT_INFORMATION}].addressDetails.formList`) || [];
 
 			if (isEmpty(previousSavedBillingAddresses)) {
 				setKycDetails((previousState) => ({
 					...previousState,
 					verification_progress: {
 						...previousState.verification_progress,
-						...(get(response, 'data.verification_progress') || {}),
+						...(getByKey(response, 'data.verification_progress') || {}),
 					},
 				}));
 			}
@@ -168,8 +164,8 @@ const useBillingAddressForm = ({
 					...(previousState[ACCOUNT_INFORMATION] || {}),
 					addressDetails: {
 						...(previousState[ACCOUNT_INFORMATION]?.addressDetails || {}),
-						isTaxApplicable: isCountryIndia ? !isGstApplicable : null,
-						formList: [
+						isTaxApplicable : isCountryIndia ? !isGstApplicable : null,
+						formList        : [
 							...((previousState[ACCOUNT_INFORMATION]?.addressDetails || {})
 								.formList || []),
 							payload,
@@ -186,8 +182,8 @@ const useBillingAddressForm = ({
 			onFailure();
 
 			const CONTROL_NAME_MESSAGE_MATCH_MAPPING = {
-				pincode: 'Pincode does not belong to the GST',
-				gst_number: 'Gst number is invalid for the PAN number provided',
+				pincode    : 'Pincode does not belong to the GST',
+				gst_number : 'Gst number is invalid for the PAN number provided',
 			};
 
 			const { message: errorMessage } = error.error || {};
@@ -196,8 +192,8 @@ const useBillingAddressForm = ({
 				([name, matchMessage]) => {
 					if ((errorMessage || '').includes(matchMessage)) {
 						setError(name, {
-							type: 'custom',
-							message: errorMessage,
+							type    : 'custom',
+							message : errorMessage,
 						});
 					}
 				},
@@ -219,10 +215,10 @@ const useBillingAddressForm = ({
 		let showElement = true;
 
 		if (
-			(['address_type', 'tax_exemption_proof'].includes(name) &&
-				!isGstApplicable) ||
-			(['gst_list', 'gst_number', 'gst_proof'].includes(name) &&
-				isGstApplicable)
+			(['address_type', 'tax_exemption_proof'].includes(name)
+				&& !isGstApplicable)
+			|| (['gst_list', 'gst_number', 'gst_proof'].includes(name)
+				&& isGstApplicable)
 		) {
 			showElement = false;
 		}
@@ -251,8 +247,8 @@ const useBillingAddressForm = ({
 						}
 
 						if (
-							event.target.value.length === 15 &&
-							gstinOptions.some((gstin) => gstin.value === event.target.value)
+							event.target.value.length === 15
+							&& gstinOptions.some((gstin) => gstin.value === event.target.value)
 						) {
 							setValues({
 								...getValues(),
@@ -277,12 +273,12 @@ const useBillingAddressForm = ({
 
 	return {
 		showElements,
-		formProps: { ...formProps, fields: newFields },
-		errors: formState.errors,
+		formProps    : { ...formProps, fields: newFields },
+		errors       : formState.errors,
 		onSubmit,
-		userControls: newControls,
+		userControls : newControls,
 		onClickCancelButton,
-		loading: billingAddressApi.loading,
+		loading      : billingAddressApi.loading,
 	};
 };
 

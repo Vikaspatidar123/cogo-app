@@ -1,8 +1,8 @@
-import Layout from '@cogo/business-modules/form/Layout';
-import { Flex } from '@cogoport/front/components';
-import { Button } from '@cogoport/front/components/admin';
+// import Layout from '@cogo/business-modules/form/Layout';
 
 // import { ButtonContainer, LayoutContainer, SubHeading } from './styles';
+
+import { Button } from '@cogoport/components';
 
 import styles from './styles.module.css';
 import useTradeBodyInformation from './useTradeBodyInformation';
@@ -26,18 +26,18 @@ function TradeBodyInformation({
 	});
 
 	return (
-		<Flex direction="column">
-			<SubHeading>
+		<div className={styles.flex}>
+			<div className={styles.sub_heading}>
 				Please confirm the trade bodies, this is for smooth shipment for all
 				your future bookings. We will keep in touch with you via phone or email
 				if required.
-			</SubHeading>
+			</div>
 
-			<LayoutContainer>
-				<Layout controls={controls} fields={fields} errors={formState.errors} />
-			</LayoutContainer>
+			<div className={styles.layout_container}>
+				{/* <Layout controls={controls} fields={fields} errors={formState.errors} /> */}
+			</div>
 
-			<ButtonContainer>
+			<div className={styles.button_container}>
 				<Button
 					className="primary md"
 					disabled={updateOrganizationAPILoading}
@@ -45,8 +45,8 @@ function TradeBodyInformation({
 				>
 					Save and Continue
 				</Button>
-			</ButtonContainer>
-		</Flex>
+			</div>
+		</div>
 	);
 }
 

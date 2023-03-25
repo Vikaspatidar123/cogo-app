@@ -1,16 +1,11 @@
+import { isEmpty } from '@cogoport/utils';
 import { useEffect, useMemo, useState } from 'react';
-import { isEmpty } from '@cogoport/front/utils';
-import global from '@cogo/commons/constants/global';
-import { useRequest } from '@cogo/commons/hooks';
-import { useSelector } from '@cogo/store';
+
+import { useRequest } from '@/packages/request';
 
 const { INDIA_COUNTRY_ID } = global;
 
 const useBillingAddresses = (props) => {
-	const {
-		general: { scope },
-	} = useSelector((state) => state);
-
 	const { CONSTANTS, state } = props;
 
 	const {
@@ -22,15 +17,12 @@ const useBillingAddresses = (props) => {
 		[ACCOUNT_INFORMATION]: accountInformation,
 	} = state || {};
 
-	const { formValues: organizationDetailsFormValues } =
-		organizationDetails || {};
+	const { formValues: organizationDetailsFormValues } =		organizationDetails || {};
 
 	const { addressDetails } = accountInformation || {};
 	const { formList, isTaxApplicable } = addressDetails || {};
 
-	const [showBookingContactForm, setShowBookingContactForm] = useState(() => {
-		return isEmpty(formList || []);
-	});
+	const [showBookingContactForm, setShowBookingContactForm] = useState(() => isEmpty(formList || []));
 	const [isGstApplicable, setIsGstApplicable] = useState(() => {
 		if (isEmpty(accountInformation)) {
 			return false;
@@ -43,7 +35,10 @@ const useBillingAddresses = (props) => {
 		return false;
 	});
 
-	const api = useRequest('get', false, scope)('/get_cogoscore_tax_numbers');
+	const [{ loading, data }, trigger] = useRequest({
+		url    : '/get_cogoscore_tax_numbers',
+		method : 'get',
+	}, { manual: true });
 
 	useEffect(() => {
 		getGstinList();
@@ -55,18 +50,16 @@ const useBillingAddresses = (props) => {
 			return;
 		}
 
-		await api.trigger({
+		await trigger({
 			params: {
 				registration_number: panGstin,
 			},
 		});
 	};
 
-	const gstinList = ((api.data || {}).data || {}).gsts || [];
+	const gstinList = ((data || {}).data || {}).gsts || [];
 
-	const gstinOptions = useMemo(() => {
-		return gstinList.map((gstin) => ({ label: gstin, value: gstin }));
-	}, [gstinList.length]);
+	const gstinOptions = useMemo(() => gstinList.map((gstin) => ({ label: gstin, value: gstin })), [gstinList.length]);
 
 	return {
 		showBookingContactForm,
@@ -74,6 +67,7 @@ const useBillingAddresses = (props) => {
 		isGstApplicable,
 		setIsGstApplicable,
 		gstinOptions,
+		loading,
 	};
 };
 

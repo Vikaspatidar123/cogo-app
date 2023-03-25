@@ -1,13 +1,13 @@
-import { useFormCogo } from '@cogoport/front/hooks';
-import { useSelector } from '@cogo/store';
-import { useRequest } from '@cogo/commons/hooks';
-import getApiErrorString from '@cogoport/front/utils/functions/getApiErrorString';
-import { toast } from '@cogoport/front/components/admin';
-import { patterns } from '@cogoport/front/constants';
-import { isEmpty } from '@cogoport/front/utils';
-import global from '@cogo/commons/constants/global';
+import { Toast } from '@cogoport/components';
+import { isEmpty } from '@cogoport/utils';
+
 import getCompanyControls from './get-company-controls';
 import getCompanyTypeOptions from './getCompanyTypeOptions';
+
+import { useForm } from '@/packages/forms';
+import getApiErrorString from '@/packages/forms/utils/getApiError';
+import { useRequest } from '@/packages/request';
+import patterns from '@/ui/commons/configurations/patterns';
 
 const { INDIA_COUNTRY_ID } = global;
 
@@ -16,10 +16,6 @@ const useCompanyDetails = ({
 	setKycDetails = () => {},
 	kycDetails = {},
 }) => {
-	const {
-		general: { scope },
-	} = useSelector((state) => state);
-
 	const {
 		verification,
 		importer_exporter = {},
@@ -32,18 +28,18 @@ const useCompanyDetails = ({
 
 	const controls = getCompanyControls(organizationDetails);
 
-	const api = useRequest(
-		'post',
-		false,
-		scope,
-	)('/update_channel_partner_organization');
+	const [{ loading }, trigger] = useRequest({
+		url    : '/update_channel_partner_organization',
+		method : 'post',
+	}, { manual: true });
 
 	const {
 		fields = {},
 		handleSubmit = () => {},
 		formState = {},
 		watch,
-	} = useFormCogo(controls);
+		control,
+	} = useForm();
 
 	const countryId = watch('country_id');
 
@@ -55,12 +51,12 @@ const useCompanyDetails = ({
 			if (countryId === INDIA_COUNTRY_ID) {
 				newField = {
 					...newField,
-					maxLength: 10,
-					rules: {
+					maxLength : 10,
+					rules     : {
 						...newField.rules,
 						pattern: {
-							value: patterns.PAN_NUMBER,
-							message: 'Please enter a valid PAN',
+							value   : patterns.PAN_NUMBER,
+							message : 'Please enter a valid PAN',
 						},
 					},
 				};
@@ -89,21 +85,21 @@ const useCompanyDetails = ({
 	const onSubmit = async (values = {}) => {
 		try {
 			const payload = {
-				partner_id: channelPartnerDetails.id,
-				business_name: values.business_name || undefined,
-				country_id: values.country_id || undefined,
+				partner_id    : channelPartnerDetails.id,
+				business_name : values.business_name || undefined,
+				country_id    : values.country_id || undefined,
 				registration_number:
 					(values.registration_number || '').toUpperCase() || undefined,
-				company_type: values.company_type || undefined,
-				account_types: channelPartnerDetails.account_types,
-				verification_id: verification?.[0].id,
+				company_type    : values.company_type || undefined,
+				account_types   : channelPartnerDetails.account_types,
+				verification_id : verification?.[0].id,
 			};
 
-			const res = await api.trigger({
+			const res = await trigger({
 				data: payload,
 			});
 
-			toast.success('Details updated successfully!');
+			Toast.success('Details updated successfully!');
 
 			setKycDetails({
 				...kycDetails,
@@ -111,7 +107,7 @@ const useCompanyDetails = ({
 					res.data?.verification_progress || kycDetails?.verification_progress,
 			});
 		} catch (err) {
-			toast.error(getApiErrorString(err.data));
+			Toast.error(getApiErrorString(err.data));
 		}
 	};
 
@@ -120,7 +116,7 @@ const useCompanyDetails = ({
 		fields: newFields,
 		handleSubmit,
 		onSubmit,
-		loading: api.loading,
+		loading,
 		formState,
 	};
 };

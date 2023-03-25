@@ -1,6 +1,4 @@
-import styled from '@cogoport/front/styled';
-
-export const LayoutContainer = styled.div`
+.layout_container {
 	background: #f9f9f9;
 	border-radius: 10px;
 	padding: 16px 32px 32px;
@@ -15,4 +13,4 @@ export const LayoutContainer = styled.div`
 	.form-lower-label {
 		color: #10a016;
 	}
-`;
+}

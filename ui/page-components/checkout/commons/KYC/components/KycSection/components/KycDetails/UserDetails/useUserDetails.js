@@ -1,6 +1,5 @@
-// import { get } from '@cogoport/front/utils';
 import { Toast } from '@cogoport/components';
-import { isEmpty } from '@cogoport/utils';
+import { getByKey, isEmpty } from '@cogoport/utils';
 import { useEffect, useState } from 'react';
 
 import controls from './get-user-controls';
@@ -15,37 +14,35 @@ const useUserDetails = ({
 	setKycDetails = () => {},
 }) => {
 	const [selectedUser, setSelectedUser] = useState({});
-	const [showMobileVerificationModal, setShowMobileVerificationModal] =		useState(null);
+	const [showMobileVerificationModal, setShowMobileVerificationModal] = useState(null);
 
-	const getChannelPartnerUsersApi = useRequest(
-		'get',
-		false,
+	const [{ loading }, getChannelPartnerUsersApi] = useRequest({
+		url    : '/get_channel_partner_users',
+		method : 'get',
+	}, { manual: true });
 
-	)('/get_channel_partner_users');
+	const [{ loading }, updateChannelPartnerVerificationApi] = useRequest({
+		url    : '/update_channel_partner_verification',
+		method : 'post',
+	}, { manual: true });
 
-	const updateChannelPartnerVerificationApi = useRequest(
-		'post',
-		false,
+	const [{ loading : resendApiLoading}, resendEmailVerificationMailApi] = useRequest({
+		url    : '/resend_channel_partner_user_verification_email',
+		method : 'post',
+	}, { manual: true });
 
-	)('/update_channel_partner_verification');
 
-	const resendEmailVerificationMailApi = useRequest(
-		'post',
-		false,
+	const [{ loading: createChannelApiLoading }, createChannelPartnerVerificationDocumentApi] = useRequest({
+		url    : '/create_channel_partner_document',
+		method : 'post',
+	}, { manual: true });
 
-	)('/resend_channel_partner_user_verification_email');
+	const [{ loading }, getOrganizationDocumentsApi] = useRequest({
+		url    : '/create_channel_partner_document',
+		method : 'get',
+	}, { manual: true });
 
-	const createChannelPartnerVerificationDocumentApi = useRequest(
-		'post',
-		false,
 
-	)('/create_channel_partner_document');
-
-	const getOrganizationDocumentsApi = useRequest(
-		'get',
-		false,
-
-	)('/get_channel_partner_documents');
 
 	const {
 		fields = {},
@@ -68,14 +65,14 @@ const useUserDetails = ({
 
 	const getChannelPartnerUsers = async () => {
 		try {
-			const response = await getChannelPartnerUsersApi.trigger({
+			const response = await getChannelPartnerUsersApi({
 				params: {
 					partner_id    : channelPartnerDetails.id,
 					account_types : channelPartnerDetails.account_types,
 				},
 			});
 
-			const usersList = get(response, 'data.list') || [];
+			const usersList = getByKey(response, 'data.list') || [];
 
 			const { kyc_submitted_for_user_id: kycSubmittedForUserId = '' } =				kycDetails;
 			if (!kycSubmittedForUserId) {
@@ -102,23 +99,23 @@ const useUserDetails = ({
 			kyc_submitted_for_user_id : obj.user_id,
 		};
 
-		const response = await updateChannelPartnerVerificationApi.trigger({
+		const response = await updateChannelPartnerVerificationApi({
 			data: payload,
 		});
 
 		setKycDetails((previousState) => ({
 			...(previousState || {}),
-			// ...(get(response, 'data.verification') || {}),
+			...(getByKey(response, 'data.verification') || {}),
 			verification_progress: {
 				...(previousState.verification_progress || {}),
-				// ...(get(response, 'data.verification_progress') || {}),
+				...(getByKey(response, 'data.verification_progress') || {}),
 			},
 		}));
 	};
 
 	const getOrganizationDocuments = async () => {
 		try {
-			const response = await getOrganizationDocumentsApi.trigger({
+			const response = await getOrganizationDocumentsApi({
 				params: {
 					partner_id    : channelPartnerDetails.id,
 					account_types : channelPartnerDetails.account_types,
@@ -129,7 +126,7 @@ const useUserDetails = ({
 				},
 			});
 
-			// const documentUrl = get(response, 'data[0].image_url') || '';
+			const documentUrl = getByKey(response, 'data[0].image_url') || '';
 
 			if (!documentUrl) {
 				return;
@@ -152,7 +149,7 @@ const useUserDetails = ({
 				user_id    : selectedUser.user_id,
 			};
 
-			await resendEmailVerificationMailApi.trigger({ params });
+			await resendEmailVerificationMailApi({ params });
 
 			Toast.success(
 				`Verification Email sent to "${selectedUser.email}" successfully!`,
@@ -181,19 +178,19 @@ const useUserDetails = ({
 				account_types   : accountTypes,
 				name            : 'Photo ID Proof',
 				document_type   : 'user_id_proof',
-				image_url       : get(values, 'user_id_proof.url'),
+				image_url       : getByKey(values, 'user_id_proof.url'),
 				verification_id : verification?.[0].id,
 			};
 
-			const response =				await createChannelPartnerVerificationDocumentApi.trigger({
+			const response = await createChannelPartnerVerificationDocumentApi({
 				data: payload,
 			});
 
 			setKycDetails({
 				...kycDetails,
 				verification_progress: {
-					// ...(get(kycDetails, 'verification_progress') || {}),
-					// ...(get(response, 'data.verification_progress') || {}),
+					...(getByKey(kycDetails, 'verification_progress') || {}),
+					...(getByKey(response, 'data.verification_progress') || {}),
 				},
 			});
 
@@ -204,7 +201,7 @@ const useUserDetails = ({
 	};
 
 	return {
-		// usersList: get(getChannelPartnerUsersApi, 'data.list') || [],
+		usersList: getByKey(getChannelPartnerUsersApi, 'data.list') || [],
 		selectedUser,
 		handleChangeUser,
 		setShowMobileVerificationModal,
@@ -215,9 +212,9 @@ const useUserDetails = ({
 		onSubmit,
 		controls,
 		createChannelPartnerVerificationDocumentLoading:
-			createChannelPartnerVerificationDocumentApi.loading,
+		createChannelApiLoading.loading,
 		verifyEmailId,
-		loadingResendEmail: resendEmailVerificationMailApi.loading,
+		loadingResendEmail: resendApiLoading.loading,
 	};
 };
 

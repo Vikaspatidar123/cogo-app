@@ -1,34 +1,30 @@
-import { toast } from '@cogoport/front/components/admin';
-import { useFormCogo } from '@cogoport/front/hooks';
-import { getApiErrorString } from '@cogoport/front/utils';
-import { useRequest } from '@cogo/commons/hooks';
-import { useSelector } from '@cogo/store';
+import { Toast } from '@cogoport/components';
+
 import getTradeControls from './get-trade-controls';
+
+import getApiErrorString from '@/packages/forms/utils/getApiError';
+import { useRequest } from '@/packages/request';
 
 const useTradeBodyInformation = ({
 	channelPartnerDetails = {},
 	kycDetails = {},
 	setKycDetails = () => {},
 }) => {
-	const {
-		general: { scope },
-	} = useSelector((state) => state);
-
 	const { id = '' } = channelPartnerDetails;
 
 	const controls = getTradeControls(channelPartnerDetails);
 
-	const updateOrganizationAPI = useRequest(
-		'post',
-		false,
-		scope,
-	)('/update_channel_partner_organization');
+	const [{ loading }, updateOrganizationAPI] = useRequest({
+		url    : '/update_channel_partner_organization',
+		method : 'post',
+	}, { manual: true });
 
 	const {
 		fields = {},
 		handleSubmit = () => {},
 		formState = {},
-	} = useFormCogo(controls);
+		control,
+	} = useForm();
 
 	const onSubmit = async (values = {}) => {
 		try {
@@ -36,15 +32,15 @@ const useTradeBodyInformation = ({
 				trade_bodies: values.trade_bodies || undefined,
 			};
 
-			const res = await updateOrganizationAPI.trigger({
+			const res = await updateOrganizationAPI({
 				data: {
 					...body,
-					partner_id: id,
-					account_types: channelPartnerDetails.account_types,
+					partner_id    : id,
+					account_types : channelPartnerDetails.account_types,
 				},
 			});
 
-			toast.success('Details updated successfully!');
+			Toast.success('Details updated successfully!');
 
 			setKycDetails({
 				...kycDetails,
@@ -52,7 +48,7 @@ const useTradeBodyInformation = ({
 					res.data?.verification_progress || kycDetails.verification_progress,
 			});
 		} catch (err) {
-			toast.error(getApiErrorString(err.data));
+			Toast.error(getApiErrorString(err.data));
 		}
 	};
 
@@ -61,7 +57,7 @@ const useTradeBodyInformation = ({
 		fields,
 		handleSubmit,
 		onSubmit,
-		updateOrganizationAPILoading: updateOrganizationAPI.loading,
+		updateOrganizationAPILoading: loading,
 		formState,
 	};
 };

@@ -12,13 +12,13 @@ function Location({
 	fields,
 	setLocation,
 	location,
+	control,
 	mode,
 	errors,
 }) {
 	if (!value) {
 		return null;
 	}
-
 	const icon = {
 		origin_fcl_freight      : 'ic-dryport',
 		destination_fcl_freight : 'ic-port',
@@ -44,9 +44,10 @@ function Location({
 				<IcMTransaction />
 				<div style={{ marginLeft: 10, flexGrow: 1 }}>
 					<SelectController
-						{...fields[value.formName]}
+						{...fields.find((x) => x.name === value.formName)}
 						handleChange={handleChange}
 						style={{}}
+						control={control}
 					/>
 					{errors[origin.name] ? (
 						<div className={styles.error}>{errors[value.formName]?.message}</div>

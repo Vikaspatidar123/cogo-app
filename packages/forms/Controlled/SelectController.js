@@ -17,10 +17,10 @@ function SelectController(props) {
 					{...rest}
 					key={rest.id}
 					onChange={(val, obj) => {
-          	onChange(val, obj);
-          	if (rest?.handleChange) {
-          		rest?.handleChange(obj);
-          	}
+						onChange(val, obj);
+						if (rest?.handleChange) {
+							rest?.handleChange(obj);
+						}
 					}}
 					value={newValue || value}
 					onBlur={onBlur}

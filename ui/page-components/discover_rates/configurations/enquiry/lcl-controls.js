@@ -10,7 +10,7 @@ const lclControls = () => [
 			{ value: 21, label: '21 days' },
 			{ value: 28, label: '28 days' },
 		],
-		type      : 'pills',
+		type      : 'chips',
 		condition : {},
 		span      : 12,
 	},
@@ -45,7 +45,7 @@ const lclControls = () => [
 	{
 		name    : 'cargo_stacking_type',
 		label   : 'Cargo stacking type',
-		type    : 'pills',
+		type    : 'chips',
 		options : [
 			{ label: 'Stackable', value: 'stackable' },
 			{ label: 'Non stackable', value: 'non_stackable' },
@@ -55,7 +55,7 @@ const lclControls = () => [
 	{
 		name    : 'bl_type',
 		label   : 'B/L Type',
-		type    : 'pills',
+		type    : 'chips',
 		options : [
 			{
 				value : 'rfs',
@@ -107,7 +107,7 @@ const lclControls = () => [
 			{
 				label   : 'Type',
 				name    : 'packing_type',
-				type    : 'pills',
+				type    : 'chips',
 				options : [
 					{ label: 'Pallet', value: 'pallet' },
 					{ label: 'Box', value: 'box' },

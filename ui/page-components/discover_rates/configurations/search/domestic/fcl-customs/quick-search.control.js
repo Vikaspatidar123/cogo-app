@@ -4,7 +4,7 @@ const formControlsAdvanced = [
 	{
 		name        : 'cargo_handling_type',
 		label       : 'Type of Stuffing',
-		type        : 'pills',
+		type        : 'chips',
 		placeholder : 'Select type of stuffing',
 		options     : [
 			{
@@ -57,7 +57,7 @@ const formControlsAdvanced = [
 			{
 				label   : 'Container Size',
 				name    : 'container_size',
-				type    : 'pills',
+				type    : 'chips',
 				span    : 12,
 				options : CONTAINER_SIZES,
 			},
@@ -70,13 +70,13 @@ const formControlsAdvanced = [
 					container_type: {
 						label          : 'Container Type',
 						name           : 'container_type',
-						type           : 'pills',
+						type           : 'chips',
 						optionsListKey : 'container-types',
 					},
 					commodity: {
 						label          : 'Select Commodity',
 						name           : 'commodity',
-						type           : 'pills',
+						type           : 'chips',
 						commodity_type : 'fcl_customs',
 					},
 				},

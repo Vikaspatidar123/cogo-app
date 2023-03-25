@@ -55,7 +55,7 @@ const controls = [
 			{
 				label: 'Container Size',
 				name: 'container_size',
-				type: 'pills',
+				type: 'chips',
 				span: 12,
 				options: CONTAINER_SIZES,
 			},
@@ -68,13 +68,13 @@ const controls = [
 					container_type: {
 						label: 'Container Type',
 						name: 'container_type',
-						type: 'pills',
+						type: 'chips',
 						optionsListKey: 'container-types',
 					},
 					commodity: {
 						label: 'Select Commodity',
 						name: 'commodity',
-						type: 'pills',
+						type: 'chips',
 						commodity_type: 'local',
 					},
 				},

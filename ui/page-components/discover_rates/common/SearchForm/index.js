@@ -99,7 +99,7 @@ function Form(
 	}
 
 	const allControls = [...restControls, ...advancedControls];
-	const useFormProps = useForm(allControls);
+	const useFormProps = useForm();
 
 	const {
 		fields,
@@ -190,7 +190,6 @@ function Form(
 		form_id,
 		date,
 	}));
-
 	let cargoDetailsSpan = 3;
 	if (
 		(isSmall && !['rfq', 'contract'].includes(search_type))
@@ -215,17 +214,15 @@ function Form(
 	} else if (mode === 'trailer_freight') {
 		locationsSpan = 5;
 	}
-
 	if (mode === 'ftl_freight') {
-		return (
-			<div>FTL</div>
-		// <FTL
-		// 	extraParams={extraParams}
-		// 	data={searchData}
-		// 	search_type="ftl_freight"
-		// 	onPush={onPush}
-		// />
-		);
+		// return (
+		// 	<FTL
+		// 		extraParams={extraParams}
+		// 		data={searchData}
+		// 		search_type="ftl_freight"
+		// 		onPush={onPush}
+		// 	/>
+		// );
 	}
 
 	if (mode === 'ltl_freight') {
@@ -348,7 +345,7 @@ function Form(
 								<Options
 									location={location}
 									optionsControls={optionsControls}
-									fields={fields}
+									fields={allControls}
 									submit={handleSubmit(submitData, onError)}
 									mode={mode}
 									advancedControls={advancedControls}
@@ -408,10 +405,10 @@ function Form(
 									sm={12}
 									className={cl`${styles.search_form_search_btn_container_col} ${styles.search_form_section_search_btn}`}
 									style={{
-                  	display        : 'flex',
-                  	justifyContent : 'center',
-                  	paddingTop     : '22px',
-                  	marginTop      : '2px',
+										display        : 'flex',
+										justifyContent : 'center',
+										paddingTop     : '22px',
+										marginTop      : '2px',
 									}}
 								>
 									<Button
@@ -420,9 +417,9 @@ function Form(
 										isLoading={loading}
 										disabled={loading}
 										style={{
-                    	background : '#2C3E50',
-                    	padding    : '4px 8px',
-                    	opacity    : loading ? 0.6 : 1,
+											background : '#2C3E50',
+											padding    : '4px 8px',
+											opacity    : loading ? 0.6 : 1,
                     	// height     : mobile ? '24px' : '38px',
 										}}
 									>
@@ -430,9 +427,9 @@ function Form(
 
 										<IcMSearchlight
 											style={{
-                      	margin : '2px 2px 0px 0px',
-                      	width  : 24,
-                      	height : 24,
+												margin : '2px 2px 0px 0px',
+												width  : 24,
+												height : 24,
 											}}
 										/>
 										{/* )  */}

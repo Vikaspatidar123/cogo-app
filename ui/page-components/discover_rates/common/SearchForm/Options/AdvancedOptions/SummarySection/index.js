@@ -3,7 +3,7 @@ import React from 'react';
 import Location from './Location';
 import styles from './styles.module.css';
 
-function SummarySection({ mode, location, fields, setLocation, errors }) {
+function SummarySection({ mode, location, fields, setLocation, errors, control }) {
 	return (
 		<div className={styles.upper_container}>
 			<div className={styles.container}>
@@ -15,6 +15,7 @@ function SummarySection({ mode, location, fields, setLocation, errors }) {
 					location={location}
 					mode={mode}
 					errors={errors}
+					control={control}
 				/>
 				<Location
 					type="destination"
@@ -24,6 +25,7 @@ function SummarySection({ mode, location, fields, setLocation, errors }) {
 					location={location}
 					mode={mode}
 					errors={errors}
+					control={control}
 				/>
 			</div>
 		</div>

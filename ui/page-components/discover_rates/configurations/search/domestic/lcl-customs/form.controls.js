@@ -25,7 +25,7 @@ const formControls = () => [
 	{
 		label         : 'Commodity',
 		name          : 'commodity',
-		type          : 'pills',
+		type          : 'chips',
 		commodityType : 'lcl_freight',
 		collapse      : true,
 		rules         : { required: 'Commodity is required' },

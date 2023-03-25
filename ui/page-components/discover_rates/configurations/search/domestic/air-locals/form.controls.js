@@ -26,7 +26,7 @@ const formControls = (setOperatorName) => [
 	{
 		label: 'Commodity',
 		name: 'commodity',
-		type: 'pills',
+		type: 'chips',
 		commodityType: 'air_customs',
 		value: 'all_commodity',
 		rules: { required: 'Commodity is required' },

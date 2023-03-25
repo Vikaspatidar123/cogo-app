@@ -86,7 +86,7 @@ const formControlsAdvanced = (setOperatorName, is_org_pass_through) => [
 			{
 				label   : 'Container Size',
 				name    : 'container_size',
-				type    : 'pills',
+				type    : 'chips',
 				span    : 12,
 				options : CONTAINER_SIZES,
 			},
@@ -108,13 +108,13 @@ const formControlsAdvanced = (setOperatorName, is_org_pass_through) => [
 					container_type: {
 						label          : 'Container Type',
 						name           : 'container_type',
-						type           : 'pills',
+						type           : 'chips',
 						optionsListKey : 'container-types',
 					},
 					commodity: {
 						label : 'Select Commodity',
 						name  : 'commodity',
-						type  : 'pills',
+						type  : 'chips',
 					},
 				},
 				rules: {

@@ -21,7 +21,7 @@ const controls = [
 			{
 				label          : 'Container Size',
 				name           : 'container_size',
-				type           : 'pills',
+				type           : 'chips',
 				span           : 12,
 				optionsListKey : 'container-sizes',
 				rules          : { required: 'Containers size is required' },
@@ -35,13 +35,13 @@ const controls = [
 					container_type: {
 						label          : 'Container Type',
 						name           : 'container_type',
-						type           : 'pills',
+						type           : 'chips',
 						optionsListKey : 'container-types',
 					},
 					commodity: {
 						label          : 'Select Commodity',
 						name           : 'commodity',
-						type           : 'pills',
+						type           : 'chips',
 						commodity_type : 'freight',
 					},
 				},
@@ -63,7 +63,7 @@ const controls = [
 		label      : '',
 		name       : 'inco_term',
 		type       : 'inco-terms-select',
-		selectType : 'pills',
+		selectType : 'chips',
 		style      : { control: { width: '200px' } },
 		rules      : { required: 'Incoterm is required' },
 	},

@@ -23,7 +23,7 @@ const referControls = () => [
 	{
 		name    : 'refer_vent_setting',
 		label   : 'Vent Settings',
-		type    : 'pills',
+		type    : 'chips',
 		span    : 6,
 		options : [
 			{ value: 'open', label: 'Open' },

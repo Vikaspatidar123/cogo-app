@@ -5,7 +5,6 @@ import React from 'react';
 
 import handleError from '../../../utils/get-form-error';
 
-// import { Grid1, Message } from '@cogo/deprecated_legacy/ui';
 import IcTruck from './ic-truck.svg';
 import styles from './styles.module.css';
 import ValueChip from './ValueChip';

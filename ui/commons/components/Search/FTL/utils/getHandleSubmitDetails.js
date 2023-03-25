@@ -1,7 +1,5 @@
 const getHandleSubmitDetails = async ({ refObj = {} }) => {
-	const promises = Object.values(refObj).map((obj) => {
-		return obj?.handleSubmit() || {};
-	});
+	const promises = Object.values(refObj).map((obj) => obj?.handleSubmit() || {});
 
 	const promiseValues = await Promise.all([...promises]);
 

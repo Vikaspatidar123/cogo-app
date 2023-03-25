@@ -87,7 +87,6 @@ function Options({
 		services,
 		data   : {},
 	});
-
 	const handleToggle = (e, flag) => {
 		if (e) {
 			e.preventDefault();
@@ -180,8 +179,8 @@ function Options({
 			fields={optionFormControls}
 			control={control}
 			onShowAdvanced={() => {
-				setShow(false);
-				setShowAdvance(true);
+      	setShow(false);
+      	setShowAdvance(true);
 			}}
 			onClose={() => setShow(false)}
 			onSubmit={handleSubmit(handleApply, onError)}
@@ -354,6 +353,7 @@ function Options({
 			className={className}
 			index={index}
 			disabledFields={disabledFields}
+			control={control}
 		/>
 	);
 
@@ -391,13 +391,13 @@ function Options({
 				<div style={{ width: '100%' }}>{handlePopover()}</div>
 			)}
 
-			<div
+			{/* <div
 				className={`${styles.date_select_container}search-form-optons-validity-picker`}
 			>
 				<div className={styles.label}>VALIDITY DATE</div>
 				<DateRangeBox date={date} setDate={setDate} mobile={mobile} />
 				<div style={{ fontSize: '12px', color: '#CB6464' }}>{validityErr}</div>
-			</div>
+			</div> */}
 
 			{mobile ? (
 				<Modal

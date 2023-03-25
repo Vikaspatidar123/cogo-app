@@ -60,6 +60,8 @@ function MainControls(
 		className="search_form_cargo_details_add_services_button"
 		type="button"
 		onClick={onShowAdvanced}
+		size="md"
+		themeType="linkUi"
 		id="search_form_cargo_details_add_services_button"
 	>
 		Add Trucking and Customs

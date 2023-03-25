@@ -24,7 +24,7 @@ const controls = [
 	{
 		label: 'Commodity/service',
 		name: 'commodity',
-		type: 'pills',
+		type: 'chips',
 		commodityType: 'air_freight',
 		value: 'general',
 		rules: { required: 'Commodity is required' },
@@ -33,7 +33,7 @@ const controls = [
 		label: '',
 		name: 'inco_term',
 		type: 'inco-terms-select',
-		selectType: 'pills',
+		selectType: 'chips',
 		incoTermType: 'air_freight',
 		rules: { require: 'Inco-term is required' },
 	},

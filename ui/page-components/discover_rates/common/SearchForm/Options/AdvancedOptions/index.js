@@ -1,6 +1,7 @@
 import { Modal } from '@cogoport/components';
 import React from 'react';
-// import Form from '../../../FormElement';
+
+import Form from '../../../FormElement';
 
 import Header from './Header';
 import Section from './Section';
@@ -27,6 +28,7 @@ function AdvancedOptions({
 	formValues = {},
 	errors = {},
 	loading = false,
+	control,
 }) {
 	const containerDetailsModes = [
 		'fcl_freight',
@@ -38,12 +40,10 @@ function AdvancedOptions({
 	const incoKey = Object.keys(formValues).find((key) => key.includes('inco_term'));
 
 	return (
-	// <UICustomTheme theme={CUSTOM_THEME}>
 		<Modal
 			show={show}
 			closable={false}
-			themeType="very-large"
-			fullscreen={mobile}
+			size="xl"
 		>
 			<div>
 				<Header onClose={onClose} onSubmit={submit} loading={loading}>
@@ -58,19 +58,19 @@ function AdvancedOptions({
 									location={location}
 									mode={mode}
 									setLocation={setLocation}
-									fields={{ ...optionsFields, ...fields }}
+									fields={[...optionsFields, ...fields]}
 									errors={errors}
+									control={control}
 								/>
 							)}
-
-							{/* <Form
-								controls={advancedControls.filter((control) => freightControls.includes(control.name))}
-								fields={{ ...optionsFields, ...fields }}
+							<Form
+								controls={advancedControls.filter((item) => freightControls.includes(item.name))}
+								fields={[...optionsFields, ...fields]}
 								showElements={showElements}
 								formValues={formValues}
 								errors={errors}
-							/> */}
-							Form hear
+								control={control}
+							/>
 						</Section>
 					</div>
 
@@ -78,18 +78,18 @@ function AdvancedOptions({
 						<Section
 							border
 							title={
-									containerDetailsModes.includes(mode)
-										? 'CONTAINER DETAILS'
-										: 'CARGO DETAILS'
-								}
+                containerDetailsModes.includes(mode)
+                	? 'CONTAINER DETAILS'
+                	: 'CARGO DETAILS'
+              }
 						>
-							{/* <Form
+							<Form
 								controls={controls}
-								fields={{ ...optionsFields, ...fields }}
+								// fields={{ ...optionsFields, ...fields }}
 								formValues={formValues}
 								errors={errors}
-							/> */}
-							Form hear
+								control={control}
+							/>
 						</Section>
 					</div>
 
@@ -106,12 +106,12 @@ function AdvancedOptions({
 							showElements={showElements}
 							formValues={formValues}
 							errors={errors}
+							control={control}
 						/>
 					</div>
 				</div>
 			</div>
 		</Modal>
-	// </UICustomTheme>
 	);
 }
 

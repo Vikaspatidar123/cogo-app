@@ -41,9 +41,9 @@ function FormElement({
 			showDeleteButton={item.showDeleteButton}
 			showDivider={item.showDivider}
 			noDeleteButtonTill={
-							controls.find((s) => s.name === [item.name])
-								?.noDeleteButtonTill
-						}
+                    controls.find((s) => s.name === [item.name])
+                    	?.noDeleteButtonTill
+                  }
 			label={item.label}
 			formValues={formValues[item.name]}
 			error={errors[item.name]}
@@ -53,7 +53,8 @@ function FormElement({
 	</div>
         		) : null;
         	}
-        	return show ? (
+        	{
+        		return show ? (
 	<div className={styles.col}>
 		<Item
 			key={item.name}
@@ -65,7 +66,8 @@ function FormElement({
 			control={control}
 		/>
 	</div>
-        	) : null;
+        		) : null;
+        	}
 				})}
 			</div>
 		</div>

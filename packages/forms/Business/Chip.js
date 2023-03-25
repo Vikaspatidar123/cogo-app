@@ -19,8 +19,6 @@ function Chip(props, ref) {
 		{ ...rest },
 	);
 	const optionDate = data?.options.map((item) => ({ ...item, key: item.value, children: item.label })) || options;
-
-	const finalOptions = [...options, ...optionDate];
 	return (
 		<Chips
 			{...rest}
@@ -28,7 +26,7 @@ function Chip(props, ref) {
 			name={name}
 			onItemChange={onChange}
 			selectedItems={valueProp}
-			items={finalOptions}
+			items={optionDate}
 			multiple={multiple}
 		/>
 	);

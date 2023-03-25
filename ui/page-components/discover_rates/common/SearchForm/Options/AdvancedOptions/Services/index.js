@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 
 import domesticServices from '../../../../../configurations/domestic-services.json';
-// import Form from '../../../../FormElement';
+import Form from '../../../../FormElement';
 import getConfiguration from '../../../utils/getConfiguration';
 
 import Service from './Service';
@@ -41,6 +41,7 @@ function Services({
 	search_type = '',
 	data = {},
 	errors = {},
+	control,
 }) {
 	const mapping = getConfiguration('services', mode);
 	const details = getConfiguration('service-details', mode);
@@ -99,18 +100,19 @@ function Services({
 		const placeService = placeServices[place];
 		return (
 			<>
-				{/* <Form
+				<Form
 					controls={advancedControls.filter(
-						(control) => (control?.condition?.services?.length > 1
-								|| !control?.condition?.services)
-							&& !freightControls.includes(control.name)
-							&& isIncludedInPlace(control?.condition?.services, placeService),
+						(item) => (item?.condition?.services?.length > 1
+								|| !item?.condition?.services)
+							&& !freightControls.includes(item.name)
+							&& isIncludedInPlace(item?.condition?.services, placeService),
 					)}
 					fields={{ ...optionsFields, ...fields }}
 					showElements={showElements}
 					formValues={formValues}
 					errors={errors}
-				/> */}
+					control={control}
+				/>
 				<div>Need form</div>
 				{servicesList.map((service) => (placeService.includes(service) ? (
 					<>
@@ -121,17 +123,18 @@ function Services({
 							details={details[service]}
 							onChange={handleChange}
 						/>
-						{/* <Form
+						<Form
 							controls={advancedControls.filter(
-								(control) => control?.condition?.services?.length === 1
-										&& control?.condition?.services.includes(service)
-										&& !freightControls.includes(control.name),
+								(item) => item?.condition?.services?.length === 1
+										&& item?.condition?.services.includes(service)
+										&& !freightControls.includes(item.name),
 							)}
 							fields={{ ...optionsFields, ...fields }}
 							showElements={showElements}
 							formValues={formValues}
 							errors={errors}
-						/> */}
+							control={control}
+						/>
 						<div>Need form</div>
 					</>
 				) : null))}

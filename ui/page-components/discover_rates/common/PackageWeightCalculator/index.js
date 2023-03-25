@@ -36,10 +36,10 @@ const calculateWeight = (packages) => {
 	return 0;
 };
 
-function Calculator({ onChange, onBack, value }) {
+function Calculator({ onChange = () => {}, onBack, value }) {
 	const ref = useRef({});
-	const { fields, watch } = useForm(controls);
-
+	const { fields, watch, control } = useForm();
+	console.log(controls, 'controls');
 	useEffect(() => {
 		const subscription = watch((formValues) => {
 			const volume = calculateVolume(
@@ -91,7 +91,8 @@ function Calculator({ onChange, onBack, value }) {
 				</div>
 				<SelectController
 					name="selected_unit"
-					{...fields.selected_unit}
+					{...controls[0]}
+					control={control}
 					style={style}
 				/>
 			</div>
@@ -117,13 +118,14 @@ function Calculator({ onChange, onBack, value }) {
 				<div className={styles.col}>
 					<ChildFormat
 						name="packages"
-						{...fields.packages}
+						{...controls[1]}
+						control={control}
 						showButtons={false}
 						showDeleteButton
 						deletePosition="front"
 						noDeleteButtonTill={0}
 						ref={(r) => {
-            	ref.current = r;
+            	        ref.current = r;
 						}}
 					/>
 				</div>

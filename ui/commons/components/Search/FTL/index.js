@@ -1,26 +1,26 @@
+import { Button, Toast, Toggle } from '@cogoport/components';
 import React, { useRef, useState } from 'react';
-import { Button, toast, Toggle } from '@cogoport/front/components/admin';
-import { BtnContainer, Container, ToggleContainer } from './styles';
-import SearchForm from './SearchForm';
+
 import useCreateSpotSearch from './hooks/useCreateSpotSearch';
+import SearchForm from './SearchForm';
+import styles from './styles.module.css';
 import getFormattedTouchPointDataPayload from './utils/getFormattedTouchPointDataPayload';
+import getFormattedTouchPointDataprefill from './utils/getFormattedTouchPointDataprefill';
 import getPayLoad from './utils/getPayLoad';
 import { getTouchPoints } from './utils/getTouchPoints';
-import getFormattedTouchPointDataprefill from './utils/getFormattedTouchPointDataprefill';
 
-const FTL = ({
+function FTL({
 	search_type = '',
 	data: searchData = {},
 	onPush,
 	extraParams = {},
-}) => {
+}) {
 	const { createSpotSearch, loading } = useCreateSpotSearch({
 		extraParams,
 		search_type,
 		onPush,
 	});
-	const { returnJourneyTouchPoints } =
-		getFormattedTouchPointDataprefill(searchData);
+	const { returnJourneyTouchPoints } =		getFormattedTouchPointDataprefill(searchData);
 
 	const [touchPointsToggle, setTouchPointsToggle] = useState(
 		returnJourneyTouchPoints,
@@ -44,8 +44,7 @@ const FTL = ({
 			return;
 		}
 
-		const ftl_freight_service_touch_points_attribute =
-			getFormattedTouchPointDataPayload(data, touchPointsToggle);
+		const ftl_freight_service_touch_points_attribute = getFormattedTouchPointDataPayload(data, touchPointsToggle);
 
 		const payload = getPayLoad(data, typeOfJourney);
 
@@ -57,7 +56,7 @@ const FTL = ({
 		const data = await ftlRef.current.searchForm?.handleSubmit();
 
 		if (data?.hasError && typeOfJourney !== 'round') {
-			toast.error('Please fill all required fields!');
+			Toast.error('Please fill all required fields!');
 			setErrors({
 				...data?.errors,
 			});
@@ -77,7 +76,7 @@ const FTL = ({
 	};
 
 	return (
-		<Container>
+		<div className={styles.container}>
 			<SearchForm
 				mode="ftl_freight"
 				ref={(r) => {
@@ -92,22 +91,22 @@ const FTL = ({
 				extraParams={extraParams}
 			/>
 
-			<BtnContainer>
-				<ToggleContainer>
+			<div className={styles.btn_container}>
+				<div className={styles.toggle_container}>
 					<Toggle
 						offLabel={{ label: 'One-way', value: 'one_way' }}
 						onLabel={{ label: 'Round Trip', value: 'round' }}
 						value={typeOfJourney}
 						onChange={(event) => handleToggle(event)}
 					/>
-				</ToggleContainer>
+				</div>
 
 				<Button type="button" onClick={handleClick} disabled={loading}>
 					Search Rates
 				</Button>
-			</BtnContainer>
-		</Container>
+			</div>
+		</div>
 	);
-};
+}
 
 export default FTL;

@@ -62,7 +62,7 @@ const ftlControls = () => [
 	// 			label: 'Type',
 	// 			name: 'packing_type',
 	// 			placeholder: 'Select',
-	// 			type: 'pills',
+	// 			type: 'chips',
 	// 			caret: true,
 	// 			options: [
 	// 				{ label: 'Pallet', value: 'pallet' },
@@ -120,7 +120,7 @@ const ftlControls = () => [
 	{
 		name      : 'cargo_stacking_type',
 		label     : 'Cargo stacking type',
-		type      : 'pills',
+		type      : 'chips',
 		condition : { trade_type: 'export' },
 		options   : [
 			{ label: 'Stackable', value: 'stackable' },
@@ -142,7 +142,7 @@ const ftlControls = () => [
 	{
 		name      : 'cargo_stacking_type',
 		label     : 'Cargo stacking type',
-		type      : 'pills',
+		type      : 'chips',
 		condition : {
 			cargo_handling_type : ['destuffing_at_dock'],
 			trade_type          : ['import'],

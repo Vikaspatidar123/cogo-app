@@ -3,7 +3,7 @@ const controls = [
 		name       : 'truck_type',
 		label      : '',
 		type       : 'truck-type-select',
-		selectType : 'pills',
+		selectType : 'chips',
 		rules      : { required: 'Truck Type is required' },
 	},
 	{

@@ -43,7 +43,7 @@ function AsyncSelect(props) {
 		asyncKey,
 		initialCall,
 		getModifiedOptions,
-		getSelectedOption,
+		getSelectedOption = () => {},
 		...rest
 	} = props;
 
@@ -73,7 +73,7 @@ function AsyncSelect(props) {
 
 		getSelectedOption(selectedOption[0]);
 	}
-
+	console.log(getAsyncOptionsProps, 'getAsyncOptionsProps', rest);
 	const Element = multiple ? MultiSelect : Select;
 
 	return (

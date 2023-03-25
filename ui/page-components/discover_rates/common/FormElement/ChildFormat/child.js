@@ -45,7 +45,6 @@ function Child({
         	const { span = 6, watch = true } = controlItem;
         	const show = !(controlItem.name in showElements)
             || showElements[controlItem.name];
-					console.log(controlItem.type, 'controlItemcontrolItem');
         	const extraProps = {};
         	if (controlItem.options) {
         		if (Array.isArray(controlItem.options)) {

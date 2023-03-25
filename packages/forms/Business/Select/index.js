@@ -12,7 +12,7 @@ function SelectController(props) {
 		...rest
 	} = props;
 	const Element = multiple ? MultiSelect : Select;
-
+	console.log(options, 'options');
 	let finalOptions = options || [];
 	let finalValueKey = valueKey || 'value';
 	let finalLabelKey = labelKey || 'label';

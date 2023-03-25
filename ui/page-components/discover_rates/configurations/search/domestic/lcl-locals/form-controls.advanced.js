@@ -9,7 +9,7 @@ const controls = () => [
 	{
 		label: 'Bill of lading (B/L) type',
 		name: 'bl_type',
-		type: 'pills',
+		type: 'chips',
 		caret: true,
 		options: [
 			{
@@ -30,7 +30,7 @@ const controls = () => [
 	{
 		name: 'export_transportation_cargo_handling_type',
 		label: 'Origin Cargo Stuffing',
-		type: 'pills',
+		type: 'chips',
 		caret: true,
 		options: [
 			{
@@ -69,7 +69,7 @@ const controls = () => [
 		label: 'Truck Type',
 		type: 'select',
 		caret: true,
-		optionsListKey: 'truck-types',
+		optionsListKey: 'truck_types',
 		span: 8,
 		condition: {
 			export_transportation_cargo_handling_type: ['stuffing_at_dock'],
@@ -91,7 +91,7 @@ const controls = () => [
 	{
 		name: 'import_transportation_cargo_handling_type',
 		label: 'Destination Cargo Handling',
-		type: 'pills',
+		type: 'chips',
 		caret: true,
 		span: 12,
 		options: [
@@ -165,7 +165,7 @@ const controls = () => [
 		label: 'Truck Type',
 		type: 'select',
 		caret: true,
-		optionsListKey: 'truck-types',
+		optionsListKey: 'truck_types',
 		span: 8,
 		condition: {
 			import_transportation_cargo_handling_type: ['destuffing_at_dock'],
@@ -188,7 +188,7 @@ const controls = () => [
 	{
 		name: 'export_fcl_cfs_have_ad_code',
 		label: 'Have AD Code?',
-		type: 'pills',
+		type: 'chips',
 		span: 6,
 		options: [
 			{ label: 'Yes', value: 'yes' },
@@ -200,7 +200,7 @@ const controls = () => [
 	{
 		name: 'export_fcl_cfs_ad_code_reg',
 		label: 'Do you want AD Code Registration?',
-		type: 'pills',
+		type: 'chips',
 		caret: true,
 		span: 6,
 		options: [
@@ -213,7 +213,7 @@ const controls = () => [
 	{
 		name: 'export_fcl_cfs_cargo_handling_type',
 		label: 'Origin CFS Cargo Stuffing',
-		type: 'pills',
+		type: 'chips',
 		caret: true,
 		span: 12,
 		options: [
@@ -249,7 +249,7 @@ const controls = () => [
 	{
 		name: 'import_fcl_cfs_cargo_handling_type',
 		label: 'Select type of stuffing',
-		type: 'pills',
+		type: 'chips',
 		span: 12,
 		options: [
 			{

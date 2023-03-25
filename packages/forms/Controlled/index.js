@@ -7,6 +7,7 @@ import ControlledCommodityCon from './ControlledCommodityCon';
 import DatepickerController from './DatepickerController';
 import IncoTermSelectController from './IncoTermSelect';
 import InputController from './InputController';
+import InputGroupController from './InputGroupController';
 import InputNumberController from './InputNumberController';
 import MobileNumberSelectController from './MobileNumberSelectController';
 import SelectController from './SelectController';
@@ -27,6 +28,7 @@ const MAPPING = {
 	'inco-terms-select'        : IncoTermSelectController,
 	chips                      : ChipsController,
 	'container_type-commodity' : ControlledCommodityCon,
+	'input-group'              : InputGroupController,
 
 };
 

@@ -72,7 +72,6 @@ function Route({
 		}
 		return null;
 	};
-
 	return (
 		<div className={styles.container} id="search_form_route_container">
 			<div className={`${styles.section}${styles[className]}`}>
@@ -80,17 +79,19 @@ function Route({
 
 				<AsyncSelectController
 					id={`search_${origin.name}`}
+					key={`search_${origin.name}`}
 					{...origin}
 					control={control}
 					caret
 					placeholder={origin.placeholder || ''}
 					noOptionsMessage="Type to search..."
 					asyncKey="locations2"
+					value={location?.origin?.id}
 					disabled={
-						disabledFields?.origin
-						&& index !== 0
-						&& !singleLocationServices.includes(mode)
-					}
+							disabledFields?.origin
+							&& index !== 0
+							&& !singleLocationServices.includes(mode)
+						}
 					params={{
 						...(origin.params || {}),
 						filters     : origin?.params?.filters,
@@ -126,23 +127,23 @@ function Route({
 				{handleLabel('destination')}
 
 				{singleLocationServices.includes(mode) ? (
-					<Select
+					<AsyncSelectController
 						id={`search_${destination.name}`}
+						value={location?.destination?.id}
 						{...destination}
-						// style={CUSTOM_THEME(className)}
 						control={control}
 						noOptionsMessage="Type to search..."
 						placeholder={destination.placeholder || ''}
 						disabled={
-							disabledFields?.destination
-							&& index !== 0
-							&& !singleLocationServices.includes(mode)
-						}
+              disabledFields?.destination
+              && index !== 0
+              && !singleLocationServices.includes(mode)
+            }
 						handleChange={(obj) => {
-							setLocation({
-								...location,
-								destination: { ...(obj || {}), formName: destination.name },
-							});
+            	setLocation({
+            		...location,
+            		destination: { ...(obj || {}), formName: destination.name },
+            	});
 						}}
 					/>
 				) : (
@@ -155,33 +156,35 @@ function Route({
 						noOptionsMessage="Type to search..."
 						placeholder={destination.placeholder || ''}
 						disabled={
-							disabledFields?.destination
-							&& index !== 0
-							&& !singleLocationServices.includes(mode)
-						}
+              disabledFields?.destination
+              && index !== 0
+              && !singleLocationServices.includes(mode)
+            }
 						handleChange={(obj) => {
-							setLocation({
-								...location,
-								destination: { ...(obj || {}), formName: destination.name },
-							});
+            	setLocation({
+            		...location,
+            		destination: { ...(obj || {}), formName: destination.name },
+            	});
 						}}
 						params={{
-							...(destination.params || {}),
-							filters     : destination?.params?.filters,
-							preferences : {
-								organization_id : extraParams?.id || org_id,
-								service_type    : mode,
-							},
+            	...(destination.params || {}),
+            	filters     : destination?.params?.filters,
+            	preferences : {
+            		organization_id : extraParams?.id || org_id,
+            		service_type    : mode,
+            	},
 						}}
 						searchParams={{
-							intent          : 'rate_search',
-							organization_id : extraParams?.id || org_id,
-							service_type    : mode,
+            	intent          : 'rate_search',
+            	organization_id : extraParams?.id || org_id,
+            	service_type    : mode,
 						}}
 					/>
 				)}
 				{errors[destination.name] ? (
-					<div className={styles.error}>{errors[destination.name]?.message}</div>
+					<div className={styles.error}>
+						{errors[destination.name]?.message}
+					</div>
 				) : null}
 			</div>
 		</div>

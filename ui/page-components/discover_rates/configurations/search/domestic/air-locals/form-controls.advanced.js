@@ -3,7 +3,7 @@ const formControlsAdvanced = (isChannelPartner = false) => [
 	{
 		name: 'export_transportation_pickup_type',
 		label: 'Pickup Type',
-		type: 'pills',
+		type: 'chips',
 		options: [
 			{ label: 'FTL', value: 'ftl' },
 			{ label: 'LTL', value: 'ltl' },
@@ -15,7 +15,7 @@ const formControlsAdvanced = (isChannelPartner = false) => [
 		label: 'Pickup Pincode',
 		name: 'export_transportation_location_id',
 		placeholder: 'Search via pincode',
-		type: 'location-select',
+		type: 'async_select',
 		optionsListKey: 'locations',
 		grouped: ['city'],
 		params: { filters: { type: ['pincode', 'city'] } },
@@ -26,7 +26,7 @@ const formControlsAdvanced = (isChannelPartner = false) => [
 		name: 'export_transportation_truck_type',
 		label: 'Pickup Truck Type',
 		type: 'select',
-		optionsListKey: 'truck-types',
+		asyncKey: 'truck_types',
 		span: 8,
 		condition: {
 			services: ['export_transportation'],
@@ -128,7 +128,7 @@ const formControlsAdvanced = (isChannelPartner = false) => [
 	{
 		name: 'import_transportation_pickup_type',
 		label: 'Drop Type',
-		type: 'pills',
+		type: 'chips',
 		value: isChannelPartner ? null : 'ftl',
 		options: [
 			{ label: 'FTL', value: 'ftl' },
@@ -142,7 +142,7 @@ const formControlsAdvanced = (isChannelPartner = false) => [
 		name: 'import_transportation_location_id',
 		placeholder: 'Search via pincode',
 		type: 'location-select',
-		optionsListKey: 'locations',
+		asyncKey: 'locations',
 		grouped: ['city'],
 		params: { filters: { type: ['pincode', 'city'] } },
 		condition: { services: ['import_transportation'] },
@@ -152,7 +152,7 @@ const formControlsAdvanced = (isChannelPartner = false) => [
 		name: 'import_transportation_truck_type',
 		label: 'Drop Truck Type',
 		type: 'select',
-		optionsListKey: 'truck-types',
+		asyncKey: 'truck_types',
 		span: 8,
 		condition: {
 			services: ['import_transportation'],

@@ -95,7 +95,7 @@ const airControls = () => [
 	// {
 	// 	name: 'cargo_stacking_type',
 	// 	label: 'Cargo stacking type',
-	// 	type: 'pills',
+	// 	type: 'chips',
 	// 	errorName: 'Cargo stacking',
 	// 	options: [
 	// 		{ label: 'Stackable', value: 'stackable' },
@@ -153,7 +153,7 @@ const airControls = () => [
 	// 			label: 'Type',
 	// 			name: 'packing_type',
 	// 			placeholder: 'Select',
-	// 			type: 'pills',
+	// 			type: 'chips',
 	// 			options: [
 	// 				{ label: 'Pallet', value: 'pallet' },
 	// 				{ label: 'Box', value: 'box' },

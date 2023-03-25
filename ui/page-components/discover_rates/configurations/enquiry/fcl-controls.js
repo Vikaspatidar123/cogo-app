@@ -15,7 +15,7 @@ const fclControls = () => [
 			{ value: 21, label: '21 days' },
 			{ value: 28, label: '28 days' },
 		],
-		type      : 'pills',
+		type      : 'chips',
 		condition : {},
 		span      : 12,
 		rules     : { required: 'Required' },
@@ -61,7 +61,7 @@ const fclControls = () => [
 	{
 		name    : 'bl_type',
 		label   : 'B/L Type',
-		type    : 'pills',
+		type    : 'chips',
 		options : [
 			{
 				value : 'rfs',
@@ -127,7 +127,7 @@ const fclControls = () => [
 	{
 		name    : 'destination_cargo_handling_type',
 		label   : 'Destination Cargo Handling',
-		type    : 'pills',
+		type    : 'chips',
 		options : [
 			{
 				label : 'Direct Port Delivery',
@@ -161,7 +161,7 @@ const fclControls = () => [
 	{
 		name    : 'origin_cargo_handling_type',
 		label   : 'Origin Cargo Handling',
-		type    : 'pills',
+		type    : 'chips',
 		options : [
 			{
 				label : 'Stuffing at Factory',

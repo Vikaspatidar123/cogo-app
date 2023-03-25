@@ -90,7 +90,13 @@ function MobileCard({ data = [], loading = false, setQuoteId, setShowDeleteModal
 						<div className={styles.flexs}>
 							<div className={styles.date}>Amount:</div>
 							<div className={styles.date_digits}>
-								{formatAmount({ amount: ele?.totalAmount, currency: ele?.currency })}
+								{formatAmount({
+									amount   : ele?.totalAmount,
+									currency : ele?.currency,
+									options  : {
+										style: 'currency',
+									},
+								})}
 							</div>
 						</div>
 

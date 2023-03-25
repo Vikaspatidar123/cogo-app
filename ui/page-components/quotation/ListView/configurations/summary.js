@@ -50,7 +50,13 @@ const getSummary = ({ summaryResp }) => {
 		if (ele.name === 'Amount') {
 			return {
 				...ele,
-				value: formatAmount({ amount: totalAmount, currency: defaultCurrency }),
+				value: formatAmount({
+					amount   : totalAmount,
+					currency : defaultCurrency,
+					options  : {
+						style: 'currency',
+					},
+				}),
 			};
 		}
 		return {

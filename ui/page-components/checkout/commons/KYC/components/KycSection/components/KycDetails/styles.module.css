@@ -2,13 +2,13 @@
 .rejected_label {
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
 	align-items: center;
+	justify-content: center;
 	padding: 24px 0;
+	margin-bottom: 12px;
 	background: #fbe6e6;
 	border: 1px solid #cb6464;
 	border-radius: 4px;
-	margin-bottom: 12px;
 }
 
 .header {
@@ -16,39 +16,37 @@
 }
 
 .rejected_text {
-	font-weight: 600;
 	font-size: 20px;
+	font-weight: 600;
 	color: #cb6464;
 }
 
 .rejected_sub_text {
-	font-weight: 500;
-	font-size: 14px;
-	color: #cb6464;
-	margin-left: 8px;
 	align-self: center;
+	margin-left: 8px;
+	font-size: 14px;
+	font-weight: 500;
+	color: #cb6464;
 }
 
 .rejection_reason {
+	margin-top: 4px;
 	font-size: 10px;
 	color: #4f4f4f;
-	margin-top: 4px;
 }
 
 .item_container {
-	box-shadow: 0px 1px 6px rgba(169, 188, 218, 0.65);
-	border-radius: 4px;
+	position: relative;
 	padding: 16px 24px;
 	margin-bottom: 16px;
-
-	position: relative;
+	border-radius: 4px;
+	box-shadow: 0 1px 6px rgb(169 188 218 / 65%);
 }
 
 .iotem_stroke {
 	position: absolute;
 	top: 10px;
 	left: 0;
-
 	width: 6px;
 	height: 32px;
 	background-color: #356efd;
@@ -56,24 +54,22 @@
 }
 
 .item_header {
-	cursor: pointer;
-
 	display: flex;
 	flex-direction: row;
-	justify-content: space-between;
 	align-items: center;
+	justify-content: space-between;
+	cursor: pointer;
 }
 
 .text {
-	color:#333333;
 	font-size: 16px;
 	font-weight: 500;
+	color: #333;
 }
 
 .flex {
 	display: flex;
 }
-
 
 /* .fadeIn = animate({
 	enter: {

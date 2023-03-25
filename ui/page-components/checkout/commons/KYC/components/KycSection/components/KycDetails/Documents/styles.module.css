@@ -3,11 +3,13 @@
 	border-radius: 10px;
 	padding: 16px 32px 32px;
 	margin: 16px 0;
+	background: #f9f9f9;
+	border-radius: 10px;
 
 	.form-item-label {
-		margin: 16px 0 8px 0;
+		margin: 16px 0 8px;
 		font-size: 10px;
-		color: #333333;
+		color: #333;
 	}
 
 	.form-lower-label {

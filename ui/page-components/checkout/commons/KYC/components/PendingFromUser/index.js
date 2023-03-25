@@ -1,17 +1,18 @@
 import { get } from '@cogoport/front/utils';
-import styles from './styles.module.css';
+
 import CPKycSection from './CPKycSection';
+import CPLoading from './CPLoading';
 import IEKycSection from './IEKycSection';
 // import LSPKycSection from './LSPKycSection';
-import CPLoading from './CPLoading';
+import styles from './styles.module.css';
 
 const KYC_ACCOUNT_TYPE_COMPONENT_MAPPING = {
-	channel_partner: CPKycSection,
-	importer_exporter: IEKycSection,
-	service_provider: CPKycSection,
+	channel_partner   : CPKycSection,
+	importer_exporter : IEKycSection,
+	service_provider  : CPKycSection,
 };
 
-const PendingFromUser = ({ organizationData, setShow, onClose, source }) => {
+function PendingFromUser({ organizationData, setShow, onClose, source }) {
 	const { tags, account_type = '' } = organizationData;
 
 	const {
@@ -29,9 +30,9 @@ const PendingFromUser = ({ organizationData, setShow, onClose, source }) => {
 		scope,
 	)('/get_channel_partner', {
 		params: {
-			id: organizationData.partner_id,
-			account_types: [organizationData.account_type],
-			importer_exporter_data_required: true,
+			id                              : organizationData.partner_id,
+			account_types                   : [organizationData.account_type],
+			importer_exporter_data_required : true,
 		},
 	});
 
@@ -73,6 +74,6 @@ const PendingFromUser = ({ organizationData, setShow, onClose, source }) => {
 			{renderKycByAccountType()}
 		</>
 	);
-};
+}
 
 export default PendingFromUser;

@@ -1,5 +1,5 @@
-import React from 'react';
 import { Button } from '@cogoport/front/components/admin';
+import React from 'react';
 // import {
 // 	Container,
 // 	Content,
@@ -7,9 +7,9 @@ import { Button } from '@cogoport/front/components/admin';
 // 	BookingContactAlign,
 // } from './styles';
 
-import styles from './styles.module.css';
 import BillingAddressForm from './BillingAddressForm';
 import BillingAddressItem from './BillingAddressItem';
+import styles from './styles.module.css';
 import useBillingAddresses from './useBillingAddresses';
 
 function BillingAddresses(props) {
@@ -33,9 +33,9 @@ function BillingAddresses(props) {
 	const { formList } = addressDetails || {};
 
 	return (
-		<Container>
-			<BookingContactAlign>
-				<Content>
+		<div className={styles.container}>
+			<div className={styles.booking_contact_align}>
+				<div className={styles.content}>
 					{(formList || []).map((item, index) => (
 						<BillingAddressItem
 							index={index}
@@ -56,7 +56,7 @@ function BillingAddresses(props) {
 							gstinOptions={gstinOptions}
 						/>
 					) : (
-						<AddMoreButtonContainer>
+						<div className={styles.add_more_button_container}>
 							<Button
 								className="secondary md"
 								onClick={() => setShowBookingContactForm(true)}
@@ -64,11 +64,11 @@ function BillingAddresses(props) {
 							>
 								+ Another Address
 							</Button>
-						</AddMoreButtonContainer>
+						</div>
 					)}
-				</Content>
-			</BookingContactAlign>
-		</Container>
+				</div>
+			</div>
+		</div>
 	);
 }
 

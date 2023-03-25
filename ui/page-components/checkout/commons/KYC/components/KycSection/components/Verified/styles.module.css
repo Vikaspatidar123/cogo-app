@@ -1,24 +1,24 @@
-.container  {
+.container {
 	display: flex;
 	flex-direction: column;
-	width: 50%;
-	justify-content: center;
 	align-items: center;
+	justify-content: center;
+	width: 50%;
 }
 
 .message {
 	font-size: 14px;
 	font-weight: 450;
 	line-height: 16px;
-	background: #ffffff;
+	background: #fff;
 }
 
 .message_text {
+	margin-left: 24px;
 	font-size: 12px;
 	font-weight: 450;
 	line-height: 16px;
-	background: #ffffff;
-	margin-left: 24px;
+	background: #fff;
 }
 
 .message_container {
@@ -27,25 +27,25 @@
 	margin-top: 16px;
 }
 
-.Pdf  {
+.Pdf {
+	box-sizing: border-box;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 50%;
 	margin-right: 7px;
+	overflow: hidden;
 	background: #f9f9f9;
 	border: 1px solid #bdbdbd;
-	box-sizing: border-box;
 	border-radius: 8px;
-	width: 50%;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	overflow: hidden;
 }
 
-.text_tag  {
-	font-size: 12px;
-	line-height: 20px;
-	font-weight: 500;
-	color: #333333;
+.text_tag {
 	margin-bottom: 4px;
+	font-size: 12px;
+	font-weight: 500;
+	line-height: 20px;
+	color: #333;
 }
 
 .border_right {

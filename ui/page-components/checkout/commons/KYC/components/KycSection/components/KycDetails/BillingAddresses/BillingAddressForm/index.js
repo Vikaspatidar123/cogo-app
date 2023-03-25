@@ -1,6 +1,5 @@
 import Layout from '@cogo/business-modules/form/Layout';
 import global from '@cogo/commons/constants/global';
-import { Flex } from '@cogoport/front/components';
 import { Button } from '@cogoport/front/components/admin';
 import Checkbox from '@cogoport/front/components/admin/CheckBox';
 import { isEmpty } from '@cogoport/front/utils';
@@ -70,11 +69,11 @@ function BillingAddressForm(props) {
 	}
 
 	return (
-		<FormContainer>
-			<Form onSubmit={handleSubmit((values) => onSubmit({ values }))}>
-				<InputsContainer>
+		<div className={styles.form_container}>
+			<div className={styles.form} onSubmit={handleSubmit((values) => onSubmit({ values }))}>
+				<div className={styles.inputs_container}>
 					{isCheckboxVisible ? (
-						<CheckboxContainer>
+						<div className={styles.checkbox_container}>
 							<Checkbox
 								className="primary md"
 								checked={isGstApplicable}
@@ -90,7 +89,7 @@ function BillingAddressForm(props) {
 							</span>
 							{' '}
 							<span className="knowMore">Know more</span>
-						</CheckboxContainer>
+						</div>
 					) : null}
 
 					<Layout
@@ -102,21 +101,21 @@ function BillingAddressForm(props) {
 
 					{isGstApplicable ? (
 						<>
-							<DocHeader>Sample GST Exemption Proof</DocHeader>
-							<DocContainer>
-								<Flex>
+							<div className={styles.doc_header}>Sample GST Exemption Proof</div>
+							<div className={styles.doc_container}>
+								<div style={{ display: 'flex' }}>
 									<DocIcon style={{ marginRight: 8 }} />
-									<DocText>Sample Tax Exemption Proof.pdf</DocText>
-								</Flex>
-								<Flex>
-									<LinkText>View</LinkText>
-								</Flex>
-							</DocContainer>
+									<div className={styles.doc_text}>Sample Tax Exemption Proof.pdf</div>
+								</div>
+								<div style={{ display: 'flex' }}>
+									<div className={styles.link_text}>View</div>
+								</div>
+							</div>
 						</>
 					) : null}
-				</InputsContainer>
+				</div>
 
-				<ButtonGroup>
+				<div className={styles.button_group}>
 					{state.accountInformation?.addressDetails?.formList.length > 0 && (
 						<Button
 							className="secondary md"
@@ -135,9 +134,9 @@ function BillingAddressForm(props) {
 					>
 						ADD ADDRESS
 					</Button>
-				</ButtonGroup>
-			</Form>
-		</FormContainer>
+				</div>
+			</div>
+		</div>
 	);
 }
 

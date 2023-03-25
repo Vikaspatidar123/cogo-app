@@ -3,12 +3,13 @@ import { isEmpty } from '@cogoport/front/utils';
 
 import AddInvoicingPartyModal from './AddInvoicingPartyModal';
 import SelectedAddressList from './SelectedAddressList';
-import {
-	Container,
-	Header,
-	Title,
-	SelectedAddressListContainer,
-} from './styles';
+// import {
+// 	Container,
+// 	Header,
+// 	Title,
+// 	SelectedAddressListContainer,
+// } from './styles';
+import styles from './styles.module.css';
 import useInvoicingParties from './useInvoicingParties';
 
 function InvoicingParties(props) {
@@ -42,12 +43,12 @@ function InvoicingParties(props) {
 	} = useInvoicingParties(props);
 
 	return (
-		<Container>
-			<Header>
-				<Title>Invoicing Party</Title>
-			</Header>
+		<div className={styles.container}>
+			<div className={styles.header}>
+				<div className={styles.title}>Invoicing Party</div>
+			</div>
 
-			<SelectedAddressListContainer>
+			<div className={styles.selected_address_list_container}>
 				{invoicingParties.length === 0 ? (
 					<EmptyState
 						height="200px"
@@ -86,7 +87,7 @@ function InvoicingParties(props) {
 						/>
 					);
 				})}
-			</SelectedAddressListContainer>
+			</div>
 
 			<AddInvoicingPartyModal
 				setShow={setShowAddInvoicingPartyModal}
@@ -96,7 +97,7 @@ function InvoicingParties(props) {
 				onSelectInvoicingParty={onSelectInvoicingParty}
 				source={source}
 			/>
-		</Container>
+		</div>
 	);
 }
 

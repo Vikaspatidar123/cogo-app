@@ -11,6 +11,7 @@ function FormElement({
 	showElements = {},
 	formValues = {},
 	control,
+	showButtons = false,
 }) {
 	return (
 		<div className={styles.container}>
@@ -27,7 +28,6 @@ function FormElement({
 	/>
         		);
         	}
-
         	if (item.type === 'fieldArray') {
         		return show ? (
 	<div className={styles.col} key={item.name}>
@@ -36,7 +36,7 @@ function FormElement({
 			{...controls.find((s) => s.name === [item.name])}
 			key={item.name}
 			buttonText={item.buttonText}
-			showButtons={item.showButtons}
+			showButtons={item.showButtons || showButtons}
 			heading={item.heading}
 			showDeleteButton={item.showDeleteButton}
 			showDivider={item.showDivider}

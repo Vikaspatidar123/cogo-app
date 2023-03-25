@@ -1,17 +1,20 @@
+// import Layout from '@cogo/business-modules/form/Layout';
+import { Button } from '@cogoport/components';
+import { isEmpty } from '@cogoport/utils';
 import React, {
 	useImperativeHandle,
 	forwardRef,
 	useCallback,
 	useEffect,
 } from 'react';
-import { useFormCogo } from '@cogoport/front/hooks';
-import Layout from '@cogo/business-modules/form/Layout';
-import { Button } from '@cogoport/front/components/admin';
-import { isEmpty } from '@cogoport/front/utils';
-import { Container, ButtonContainer } from './styles';
-import getControls from './controls';
 
-const GeneralSpecialConsideration = (
+import getControls from './controls';
+import styles from './styles.module.css';
+
+import { useForm } from '@/packages/forms';
+import FormElement from '@/ui/page-components/discover_rates/common/FormElement';
+
+function GeneralSpecialConsideration(
 	{
 		cargoDate,
 		setErrorMessage = false,
@@ -21,36 +24,33 @@ const GeneralSpecialConsideration = (
 		cargoType,
 	},
 	ref,
-) => {
+) {
 	const controls = getControls(cargoType);
 
 	const {
 		fields,
 		formState = {},
 		handleSubmit = () => {},
-		setValues,
-	} = useFormCogo(controls);
-
+		setValue,
+		control,
+	} = useForm();
+	console.log(controls, 'controls');
 	const { errors = {} } = formState || {};
 
 	const imperativeHandle = useCallback(() => {
 		const isError = isEmpty(goodsDetail);
 		return {
-			handleSubmit: () => {
-				return {
-					hasError: isError,
-					...(!isError && { values: { ...goodsDetail } }),
-					...(isError && { errors: { errorMsg: 'Goods are required' } }),
-				};
-			},
+			handleSubmit: () => ({
+				hasError: isError,
+				...(!isError && { values: { ...goodsDetail } }),
+				...(isError && { errors: { errorMsg: 'Goods are required' } }),
+			}),
 		};
 	}, [goodsDetail]);
 
 	useEffect(() => {
 		if (goodsDetail?.commodity) {
-			setValues({
-				commodity: goodsDetail?.commodity,
-			});
+			setValue('commodity', goodsDetail?.commodity);
 		}
 	}, [goodsDetail]);
 
@@ -78,24 +78,23 @@ const GeneralSpecialConsideration = (
 	};
 
 	return (
-		<Container>
-			<Layout controls={controls} fields={fields} errors={errors} />
+		<div className={styles.container}>
+			<FormElement control={control} controls={controls} showButtons errors={errors} />
 
-			<ButtonContainer>
+			<div className={styles.button_container}>
 				<Button
-					className="secondary sm"
 					onClick={onCancel}
 					style={{ marginRight: '8px' }}
 				>
 					CANCEL
 				</Button>
 
-				<Button className="primary sm" onClick={handleSubmit(onSubmit)}>
+				<Button onClick={handleSubmit(onSubmit)}>
 					CONFIRM
 				</Button>
-			</ButtonContainer>
-		</Container>
+			</div>
+		</div>
 	);
-};
+}
 
 export default forwardRef(GeneralSpecialConsideration);

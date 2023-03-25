@@ -1,0 +1,55 @@
+.container {
+  display: flex;
+  align-items: center;
+  padding: 12px;
+  height: 40px;
+  background: #ffffff;
+  border: 1px solid #cbcff5;
+  border-radius: 4px;
+  cursor: pointer;
+
+  .text {
+    font-weight: 400;
+    font-size: 14px;
+    color: #cbcff5;
+  }
+}
+.container:hover {
+  border: 1px solid blue;
+}
+
+.details_container {
+  display: flex;
+  flex-wrap: wrap;
+  height: fit-content;
+  max-height: 36px;
+  padding: 4px 0px;
+  overflow-y: scroll;
+  align-items: center;
+}
+
+.display_container {
+  background: #f2efff;
+  border-radius: 4px;
+  padding: 2px 5px;
+  margin-bottom: 4px;
+  display: flex;
+}
+
+.details {
+  margin-right: 4px;
+  font-weight: 400;
+  font-size: 8px;
+  line-height: 14px;
+  color: #393f70;
+}
+
+.tool_tip_content {
+  padding: 8px;
+  font-size: 12px;
+  color: #393f70;
+
+  &.show_per_package {
+    border-bottom: 1px solid black;
+  }
+}

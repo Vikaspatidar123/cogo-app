@@ -1,55 +1,53 @@
+import { Tooltip, cl } from '@cogoport/components';
+import { startCase } from '@cogoport/utils';
 import React from 'react';
-import { ToolTip } from '@cogoport/front/components/admin';
-import { startCase } from '@cogoport/front/utils';
 
-import { Container, DetailsContainer, Details, ToolTipContent } from './styles';
+import styles from './styles.module.css';
 
-const ShowTruckInfo = ({
+function ShowTruckInfo({
 	loadData = {},
 	setShowPopover = () => {},
 	showPopover,
-}) => {
+}) {
 	const trucks = loadData?.truck_details || [];
 
-	const toolTipDisplay = () => {
-		return (trucks || []).map((item, index) => {
-			return (
-				<ToolTipContent
-					className={index === (trucks || []).length - 1 ? 'no-margin' : ''}
-				>
-					{index + 1} - Type : {startCase(item.truck_type)}, Count :{' '}
-					{item.trucks_count}
-				</ToolTipContent>
-			);
-		});
-	};
+	const toolTipDisplay = () => (trucks || []).map((item, index) => (
+		<div
+			className={cl`{${styles.tool_tip_content}${index === (trucks || []).length - 1 ? styles.no_margin : ''}`}
+		>
+			{index + 1}
+			{' '}
+			- Type :
+			{startCase(item.truck_type)}
+			, Count :
+			{' '}
+			{item.trucks_count}
+		</div>
+	));
 
 	return (
-		<ToolTip
-			theme="light"
+		<Tooltip
 			placement="top"
 			animation="shift-away"
 			content={toolTipDisplay()}
 		>
-			<Container onClick={() => setShowPopover(!showPopover)}>
+			<div className={styles.container} role="presentation" onClick={() => setShowPopover(!showPopover)}>
 				{!trucks?.length ? (
 					<div className="text">What are you shipping</div>
 				) : (
-					<DetailsContainer>
-						{(trucks || []).map((item) => {
-							return (
-								<>
-									<Details>{startCase(item?.truck_type)}</Details>
+					<div className={styles.details_container}>
+						{(trucks || []).map((item) => (
+							<>
+								<div className={styles.details}>{startCase(item?.truck_type)}</div>
 
-									<Details>{item?.trucks_count}</Details>
-								</>
-							);
-						})}
-					</DetailsContainer>
+								<div className={styles.details}>{item?.trucks_count}</div>
+							</>
+						))}
+					</div>
 				)}
-			</Container>
-		</ToolTip>
+			</div>
+		</Tooltip>
 	);
-};
+}
 
 export default ShowTruckInfo;

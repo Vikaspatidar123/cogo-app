@@ -37,16 +37,18 @@ function ChildFormat(
 	const handleAppendChild = () => {
 		append(childEmptyValues);
 	};
-
 	useImperativeHandle(ref, () => ({ handleAppendChild, remove }));
-
 	return (
 		<div className={cl`form-fieldArray-${name} ${styles.container}`}>
-			{label && <div className={`${styles.search}${styles.label}`}>{label}</div>}
+			{label && (
+				<div className={`${styles.search}${styles.label}`}>{label}</div>
+			)}
 
 			{(fields || []).map((field, index) => (
 				<span key={field.id}>
-					{heading ? <div className={styles.heading}>{`${heading} ${index + 1}`}</div> : null}
+					{heading ? (
+						<div className={styles.heading}>{`${heading} ${index + 1}`}</div>
+					) : null}
 
 					<Child
 						{...rest}
@@ -66,24 +68,28 @@ function ChildFormat(
 					/>
 
 					{showDivider && index < fields.length - 1 ? (
-						<div className={cl`${styles.line}form-fieldArray-line ${styles.margin} `} />
+						<div
+							className={cl`${styles.line}form-fieldArray-line ${styles.margin} `}
+						/>
 					) : null}
 				</span>
 			))}
 
 			{showButtons && (
 				<>
-					<div className={cl`${styles.child_format_add_btn}${styles.button_div}`}>
+					<div
+						className={cl`${styles.child_format_add_btn}${styles.button_div}`}
+					>
 						<Button
 							style={{
-								color        : '#3879da',
-								padding      : '0px 4px',
-								opacity      : disableButtons ? 0.6 : 1,
-								fontSize     : 10,
-								background   : 'transparent',
-								border       : 'none',
-								fontWeight   : 'bold',
-								marginBottom : '10px',
+              	color        : '#3879da',
+              	padding      : '0px 4px',
+              	opacity      : disableButtons ? 0.6 : 1,
+              	fontSize     : 10,
+              	background   : 'transparent',
+              	border       : 'none',
+              	fontWeight   : 'bold',
+              	marginBottom : '10px',
 							}}
 							onClick={handleAppendChild}
 							disabled={disableButtons}

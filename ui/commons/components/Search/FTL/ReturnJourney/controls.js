@@ -1,28 +1,28 @@
 const controls = [
 	{
-		name: 'halt_time_value',
-		type: 'number',
-		size: 'md',
-		span: 5,
+		name  : 'halt_time_value',
+		type  : 'number',
+		size  : 'md',
+		style : { width: '100px' },
 	},
 	{
-		name: 'halt_time_unit',
-		type: 'select',
-		placeholder: 'Unit',
-		span: 7,
-		caret: false,
-		options: [
+		name        : 'halt_time_unit',
+		type        : 'select',
+		placeholder : 'Unit',
+		style       : { width: '150px' },
+		caret       : false,
+		options     : [
 			{
-				label: 'Days',
-				value: 'days',
+				label : 'Days',
+				value : 'days',
 			},
 			{
-				label: 'Hours',
-				value: 'hours',
+				label : 'Hours',
+				value : 'hours',
 			},
 			{
-				label: 'Minutes',
-				value: 'minutes',
+				label : 'Minutes',
+				value : 'minutes',
 			},
 		],
 	},

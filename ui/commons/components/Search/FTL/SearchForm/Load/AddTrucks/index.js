@@ -1,10 +1,11 @@
 import React, { forwardRef } from 'react';
-import { Container } from './styles';
+
 import Multitruck from './MultiTruck';
+import styles from './styles.module.css';
 
 function AddTruck({ setLoadData, loadData, setShowPopover, location }, ref) {
 	return (
-		<Container>
+		<div className={styles.container}>
 			<Multitruck
 				setLoadData={setLoadData}
 				loadData={loadData}
@@ -12,7 +13,7 @@ function AddTruck({ setLoadData, loadData, setShowPopover, location }, ref) {
 				ref={ref}
 				location={location}
 			/>
-		</Container>
+		</div>
 	);
 }
 

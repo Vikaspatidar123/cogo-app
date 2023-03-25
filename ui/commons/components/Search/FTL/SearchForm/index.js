@@ -1,7 +1,5 @@
-import usei18n from '@cogo/i18n';
-import { useSelector } from '@cogo/store';
-import { Grid } from '@cogoport/front/components';
-import useForm from '@cogoport/front/hooks/useFormCogo';
+// import usei18n from '@cogo/i18n';
+import { isEmpty } from '@cogoport/utils';
 import React, {
 	useEffect,
 	useState,
@@ -9,25 +7,18 @@ import React, {
 	useImperativeHandle,
 	forwardRef,
 } from 'react';
-import isEmpty from '@cogo/utils/isEmpty';
-import Route from './Route';
-import Load from './Load';
-import Goods from './Goods';
-import {
-	Container,
-	Main,
-	Section,
-	Options,
-	Heading,
-	Header,
-	Icon,
-} from './styles';
-import getHandleSubmitDetails from '../utils/getHandleSubmitDetails';
-import getControls from './form.controls';
+
 import EditIcon from '../icons/edit-icon.svg';
 import ReturnJourney from '../ReturnJourney';
+import getHandleSubmitDetails from '../utils/getHandleSubmitDetails';
 
-const { Row } = Grid;
+import getControls from './form.controls';
+import Goods from './Goods';
+import Load from './Load';
+import Route from './Route';
+import styles from './styles.module.css';
+
+import { useForm } from '@/packages/forms';
 
 function SearchForm(
 	{
@@ -45,10 +36,8 @@ function SearchForm(
 	ref,
 ) {
 	const { detail = {} } = searchData || {};
-	const { keywords } = usei18n();
-	const { isMobile: mobile } = useSelector(({ general }) => ({
-		isMobile: general.isMobile,
-	}));
+	// const { keywords } = usei18n();
+	const mobile = false;
 
 	let locationPrefilling = {};
 	if (!isEmpty(detail)) {
@@ -56,8 +45,8 @@ function SearchForm(
 			destination: {
 				id: detail.destination_location?.id,
 				display_name:
-					detail.destination_location?.display_name ||
-					detail.destination_location?.name,
+					detail.destination_location?.display_name
+					|| detail.destination_location?.name,
 			},
 			origin: {
 				id: detail.origin_location?.id,
@@ -73,8 +62,8 @@ function SearchForm(
 
 	const controls = getControls();
 
-	const useFormProps = useForm(controls);
-	const { fields, reset } = useFormProps;
+	const useFormProps = useForm();
+	const { fields, reset, control } = useFormProps;
 
 	const [originControl, destinationControl] = controls;
 
@@ -92,40 +81,35 @@ function SearchForm(
 		}
 	}, [mode]);
 
-	useImperativeHandle(ref, () => {
-		return {
-			handleSubmit: () => {
-				return getHandleSubmitDetails({ refObj: searchFormRef.current });
-			},
-		};
-	});
+	useImperativeHandle(ref, () => ({
+		handleSubmit: () => getHandleSubmitDetails({ refObj: searchFormRef.current }),
+	}));
 
 	return (
 		<>
 			{typeOfJourney === 'round' ? (
-				<Header>
-					<Heading>Forward Journey Details</Heading>
-					<Icon onClick={() => setTypeOfJourney('one_way')}>
+				<div className={styles.header}>
+					<div className={styles.heading}>Forward Journey Details</div>
+					<div role="presentation" className={styles.icon} onClick={() => setTypeOfJourney('one_way')}>
 						<EditIcon />
 						Edit
-					</Icon>
-				</Header>
+					</div>
+				</div>
 			) : null}
-
-			<Container>
-				<Main>
+			<div className={styles.container}>
+				<div className={styles.main}>
 					<form>
-						<Row>
-							<Section xs={12} md={12} sm={12}>
+						<div className={styles.row}>
+							<div className={styles.section}>
 								<Route
 									ref={(r) => {
 										searchFormRef.current.route = r;
 									}}
-									origin={fields[originControl?.name]}
+									origin={controls.find((x) => x.name === originControl.name)}
 									setLocation={setLocation}
 									location={location}
-									destination={fields[destinationControl?.name]}
-									keywords={keywords}
+									destination={controls.find((x) => x.name === destinationControl.name)}
+									// keywords={keywords}
 									error={error?.route?.errorMsg}
 									index={index}
 									mobile={mobile}
@@ -134,13 +118,14 @@ function SearchForm(
 									typeOfJourney={typeOfJourney}
 									touchPointsToggle={touchPointsToggle}
 									extraParams={extraParams}
+									control={control}
 								/>
-							</Section>
-						</Row>
+							</div>
+						</div>
 					</form>
-				</Main>
+				</div>
 
-				<Options>
+				<div className={styles.options}>
 					<Goods
 						ref={(r) => {
 							searchFormRef.current.good = r;
@@ -158,8 +143,8 @@ function SearchForm(
 						typeOfJourney={typeOfJourney}
 						location={location}
 					/>
-				</Options>
-			</Container>
+				</div>
+			</div>
 
 			{typeOfJourney === 'round' ? (
 				<ReturnJourney

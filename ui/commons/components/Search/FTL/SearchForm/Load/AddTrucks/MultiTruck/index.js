@@ -1,43 +1,43 @@
+// import Layout from '@cogo/business-modules/form/Layout';
+import { Button } from '@cogoport/components';
+import { isEmpty } from '@cogoport/utils';
 import React, {
 	useImperativeHandle,
 	forwardRef,
 	useCallback,
 	useEffect,
 } from 'react';
-import Layout from '@cogo/business-modules/form/Layout';
-import { Button } from '@cogoport/front/components/admin';
-import { useFormCogo } from '@cogoport/front/hooks';
-import { isEmpty } from '@cogoport/front/utils';
-import { Container, Wrapper, ButtonContainer } from './styles';
+
 import getControls from './controls';
+import styles from './styles.module.css';
+
+import { useForm } from '@/packages/forms';
+import getField from '@/packages/forms/Controlled';
+import FormElement from '@/ui/page-components/discover_rates/common/FormElement';
 
 function Multitruck({ setLoadData, loadData, setShowPopover, location }, ref) {
 	const controls = getControls(location);
 	const {
-		fields,
 		formState: { errors },
 		handleSubmit,
-		setValues,
-	} = useFormCogo(controls);
-
+		setValue,
+		control,
+	} = useForm();
+	console.log(controls, 'controlscontrolscontrols');
 	useEffect(() => {
 		if (loadData.active_tab === 'truck' && loadData.truck_details?.length) {
-			setValues({
-				trucks: loadData.truck_details,
-			});
+			setValue('trucks', loadData.truck_details);
 		}
 	}, [loadData]);
 
 	const imperativeHandle = useCallback(() => {
 		const isError = isEmpty(loadData);
 		return {
-			handleSubmit: () => {
-				return {
-					hasError: isError,
-					...(!isError && { values: { ...loadData } }),
-					...(isError && { errors: { errorMsg: 'Loads are required' } }),
-				};
-			},
+			handleSubmit: () => ({
+				hasError: isError,
+				...(!isError && { values: { ...loadData } }),
+				...(isError && { errors: { errorMsg: 'Loads are required' } }),
+			}),
 		};
 	}, [loadData]);
 
@@ -45,8 +45,8 @@ function Multitruck({ setLoadData, loadData, setShowPopover, location }, ref) {
 
 	const handleData = (data) => {
 		setLoadData({
-			active_tab: 'truck',
-			truck_details: data?.trucks,
+			active_tab    : 'truck',
+			truck_details : data?.trucks,
 		});
 		setShowPopover(false);
 	};
@@ -56,24 +56,18 @@ function Multitruck({ setLoadData, loadData, setShowPopover, location }, ref) {
 	};
 
 	return (
-		<Container>
-			<Wrapper>
-				<Layout controls={controls} fields={fields} errors={errors} />
-			</Wrapper>
+		<div className={styles.container}>
+			<div className={styles.wrapper}>
+				<FormElement control={control} controls={controls} showButtons />
+			</div>
 
-			<ButtonContainer>
-				<Button
-					className="secondary sm"
-					onClick={onCancel}
-					style={{ marginRight: '8px' }}
-				>
+			<div className={styles.button_container}>
+				<Button onClick={onCancel} style={{ marginRight: '8px' }}>
 					CANCEL
 				</Button>
-				<Button className="primary sm" onClick={handleSubmit(handleData)}>
-					Confirm
-				</Button>
-			</ButtonContainer>
-		</Container>
+				<Button onClick={handleSubmit(handleData)}>Confirm</Button>
+			</div>
+		</div>
 	);
 }
 

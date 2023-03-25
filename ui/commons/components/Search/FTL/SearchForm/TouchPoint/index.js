@@ -1,23 +1,19 @@
-import { Button, Modal, ToolTip } from '@cogoport/front/components/admin';
+import { Button, Modal, Tooltip } from '@cogoport/components';
 import React, {
 	useState,
 	useImperativeHandle,
 	forwardRef,
 	useEffect,
 } from 'react';
-import { useSelector } from '@cogo/store';
-import getFormattedTouchPointDataprefill from '../../utils/getFormattedTouchPointDataprefill';
-import AddTouchPointModal from './AddTouchPointModal';
-import {
-	MoreBtn,
-	TouchPointName,
-	Name,
-	TouchPointContainer,
-	Container,
-	Wrapper,
-} from './styles';
 
-const TouchPoint = (
+import getFormattedTouchPointDataprefill from '../../utils/getFormattedTouchPointDataprefill';
+
+import AddTouchPointModal from './AddTouchPointModal';
+import styles from './styles.module.css';
+
+import { useSelector } from '@/packages/store';
+
+function TouchPoint(
 	{
 		validate,
 		searchData = {},
@@ -27,13 +23,12 @@ const TouchPoint = (
 		location = {},
 	},
 	ref,
-) => {
+) {
 	const {
 		general: { isMobile },
 	} = useSelector((state) => state);
 
-	const { forwardJourneyTouchPoints } =
-		getFormattedTouchPointDataprefill(searchData);
+	const { forwardJourneyTouchPoints } = getFormattedTouchPointDataprefill(searchData);
 
 	const [show, setShow] = useState(false);
 	const [touchPointItems, setTouchPointItems] = useState(() => {
@@ -54,46 +49,45 @@ const TouchPoint = (
 	const onOuterClick = () => {
 		setShow(false);
 	};
-	const content = () => {
-		return (
-			<>
-				{touchPointItems.map((touchPoint, idx) => {
-					return (
-						<TouchPointContainer>
-							<div className="circle" />
-							{idx < touchPointItems.length - 1 && <div className="line" />}
+	const content = () => (
+		<>
+			{touchPointItems.map((touchPoint, idx) => (
+				<div className={styles.touch_point_container}>
+					<div className={styles.circle} />
+					{idx < touchPointItems.length - 1 && <div className="line" />}
 
-							<div> Touch Point {idx + 1}</div>
-							<Name>
-								{touchPoint.name?.split(' ', 1)},{' '}
-								{touchPoint.display_name?.split('-', 1)}
-							</Name>
-						</TouchPointContainer>
-					);
-				})}
-			</>
-		);
-	};
+					<div>
+						{' '}
+						Touch Point
+						{idx + 1}
+					</div>
+					<div className={styles.name}>
+						{touchPoint.name?.split(' ', 1)}
+						,
+						{' '}
+						{touchPoint.display_name?.split('-', 1)}
+					</div>
+				</div>
+			))}
+		</>
+	);
 
-	useImperativeHandle(ref, () => {
-		return {
-			handleSubmit: () => {
-				return {
-					hasError: !(touchPointItems.length > 0),
-					values: {
-						touchPoints: touchPointItems,
-					},
-				};
+	useImperativeHandle(ref, () => ({
+		handleSubmit: () => ({
+			hasError : !(touchPointItems.length > 0),
+			values   : {
+				touchPoints: touchPointItems,
 			},
-		};
-	});
+		}),
+	}));
 
 	return (
-		<Container>
+		<div className={styles.container}>
 			<Button
-				className="secondary sm"
+				size="md"
+				themeType="secondary"
 				onClick={() => {
-					onClick();
+        	    onClick();
 				}}
 				style={{ textTransform: 'none' }}
 				disabled={typeOfJourney === 'round'}
@@ -102,44 +96,44 @@ const TouchPoint = (
 			</Button>
 
 			{touchPointItems.length > 0 && (
-				<Wrapper>
-					<ToolTip
-						theme="light"
+				<div className={styles.wrapper}>
+					<Tooltip
 						placement="bottom"
-						content={
+						content={(
 							<div style={{ fontSize: '10px', width: '150px' }}>
-								{touchPointItems[0].name?.split(',', 1) ||
-									touchPointItems[0].display_name?.split('-', 1)}
+								{touchPointItems[0].name?.split(',', 1)
+                  || touchPointItems[0].display_name?.split('-', 1)}
 							</div>
-						}
+						)}
 					>
-						<TouchPointName>
-							{touchPointItems[0].name?.split(',', 1) ||
-								touchPointItems[0].display_name?.split('-', 1)}
-						</TouchPointName>
-					</ToolTip>
+						<div className={styles.touch_point_name}>
+							{touchPointItems[0].name?.split(',', 1)
+                || touchPointItems[0].display_name?.split('-', 1)}
+						</div>
+					</Tooltip>
 
 					{touchPointItems.length > 1 ? (
-						<ToolTip
-							theme="light"
+						<Tooltip
 							placement="bottom"
-							content={
+							content={(
 								<div style={{ fontSize: '10px', width: '150px' }}>
 									{content()}
 								</div>
-							}
+							)}
 						>
-							<MoreBtn className={typeOfJourney}>
+							<div className={`${styles[typeOfJourney]}${styles.more_btn}`}>
 								{' '}
-								+{touchPointItems.length - 1} more
-							</MoreBtn>
-						</ToolTip>
+								+
+								{touchPointItems.length - 1}
+								{' '}
+								more
+							</div>
+						</Tooltip>
 					) : null}
-				</Wrapper>
+				</div>
 			)}
 
 			<Modal
-				className="primary sm"
 				show={show}
 				onClose={() => setShow(false)}
 				styles={{ dialog: { width: isMobile ? 350 : 550 } }}
@@ -154,8 +148,8 @@ const TouchPoint = (
 					location={location}
 				/>
 			</Modal>
-		</Container>
+		</div>
 	);
-};
+}
 
 export default forwardRef(TouchPoint);

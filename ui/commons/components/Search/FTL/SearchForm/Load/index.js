@@ -1,11 +1,13 @@
+import { Popover, Tabs, TabPanel } from '@cogoport/components';
 import React, { useState, forwardRef, useEffect } from 'react';
-import { Popover, Tabs, TabPanel } from '@cogoport/front/components/admin';
-import getEntityOptions from '@cogo/globalization/utils/getEntityOptions';
-import { Container, Label, Main, ErrorMsg } from './styles';
+
 import AddCargo from './AddCargo';
 import AddTruck from './AddTrucks';
-import ShowTruckInfo from './ShowTruckInfo';
 import ShowCargoInfo from './ShowCargoInfo';
+import ShowTruckInfo from './ShowTruckInfo';
+import styles from './styles.module.css';
+
+import getEntityOptions from '@/ui/commons/utils/getEntityOptions';
 
 const TabContent = forwardRef(
 	(
@@ -25,7 +27,6 @@ const TabContent = forwardRef(
 
 		return (
 			<Tabs
-				className="horizontal two"
 				activeTab={activeTab}
 				onChange={handleTabChange}
 			>
@@ -76,17 +77,15 @@ function Load(props, ref) {
 
 	const [showPopover, setShowPopover] = useState(false);
 
-	const [loadData, setLoadData] = useState(() => {
-		return {
-			active_tab: 'truck',
-			truck_details: [
-				{
-					trucks_count: 1,
-					truck_type: '',
-				},
-			],
-		};
-	});
+	const [loadData, setLoadData] = useState(() => ({
+		active_tab    : 'truck',
+		truck_details : [
+			{
+				trucks_count : 1,
+				truck_type   : '',
+			},
+		],
+	}));
 
 	const [activeTab, setActiveTab] = useState();
 
@@ -96,36 +95,31 @@ function Load(props, ref) {
 
 	const truckDetails = (Object.values(service_details) || [])
 		.filter((element) => element.service_type === 'ftl_freight')
-		.map((truck_data) => {
-			return {
-				truck_type: truck_data.truck_type,
-				trucks_count: truck_data.trucks_count,
-			};
-		});
+		.map((truck_data) => ({
+			truck_type   : truck_data.truck_type,
+			trucks_count : truck_data.trucks_count,
+		}));
 
-	const { packages, volume } =
-		(Object.values(service_details) || [])?.[0] || {};
+	const { packages, volume } = (Object.values(service_details) || [])?.[0] || {};
 
 	useEffect(() => {
-		setLoadData((prev) => {
-			return {
-				...prev,
-				truck_details: [
-					{
-						trucks_count: 1,
-						truck_type: geo.options.country_truck_type,
-					},
-				],
-			};
-		});
+		setLoadData((prev) => ({
+			...prev,
+			truck_details: [
+				{
+					trucks_count : 1,
+					truck_type   : geo.options.country_truck_type,
+				},
+			],
+		}));
 	}, [location]);
 
 	useEffect(() => {
 		if (Object.keys(detail).length > 0) {
 			if (detail.load_selection_type === 'truck') {
 				setLoadData({
-					active_tab: 'truck',
-					truck_details: truckDetails,
+					active_tab    : 'truck',
+					truck_details : truckDetails,
 				});
 			} else if (detail.load_selection_type === 'cargo_gross') {
 				const grossPrefill = (packages || []).map((package_data) => ({
@@ -134,58 +128,54 @@ function Load(props, ref) {
 				}))[0];
 
 				setLoadData({
-					gross_details: grossPrefill,
-					active_tab: 'cargo',
-					sub_active_tab: 'gross',
+					gross_details  : grossPrefill,
+					active_tab     : 'cargo',
+					sub_active_tab : 'gross',
 				});
 			} else if (detail.load_selection_type === 'cargo_per_package') {
 				setLoadData({
-					per_package_details: packages,
-					active_tab: 'cargo',
-					sub_active_tab: 'per_package',
+					per_package_details : packages,
+					active_tab          : 'cargo',
+					sub_active_tab      : 'per_package',
 				});
 			}
 		}
 	}, [searchData]);
 
-	const content = () => {
-		return (
-			<Main>
-				<TabContent
-					ref={ref}
-					activeTab={activeTab}
-					setActiveTab={setActiveTab}
-					loadData={loadData}
-					setLoadData={setLoadData}
-					location={location}
-					setShowPopover={setShowPopover}
-				/>
-			</Main>
-		);
-	};
+	const content = () => (
+		<div className={styles.main}>
+			<TabContent
+				ref={ref}
+				activeTab={activeTab}
+				setActiveTab={setActiveTab}
+				loadData={loadData}
+				setLoadData={setLoadData}
+				location={location}
+				setShowPopover={setShowPopover}
+			/>
+		</div>
+	);
 
-	const renderPopoverContent = () => {
-		return loadData.active_tab === 'cargo' ? (
-			<ShowCargoInfo
-				loadData={loadData}
-				setShowPopover={setShowPopover}
-				showPopover={showPopover}
-			/>
-		) : (
-			<ShowTruckInfo
-				loadData={loadData}
-				setShowPopover={setShowPopover}
-				showPopover={showPopover}
-			/>
-		);
-	};
+	const renderPopoverContent = () => (loadData.active_tab === 'cargo' ? (
+		<ShowCargoInfo
+			loadData={loadData}
+			setShowPopover={setShowPopover}
+			showPopover={showPopover}
+		/>
+	) : (
+		<ShowTruckInfo
+			loadData={loadData}
+			setShowPopover={setShowPopover}
+			showPopover={showPopover}
+		/>
+	));
 	return (
-		<Container>
-			<Label>Load</Label>
+		<div className={styles.container}>
+			<div className={styles.label}>Load</div>
 
 			<Popover
+				placement="bottom"
 				animation="shift-away"
-				theme="light"
 				content={content()}
 				onClickOutside={() => setShowPopover(false)}
 				interactive
@@ -197,10 +187,10 @@ function Load(props, ref) {
 					}}
 				>
 					{renderPopoverContent()}
-					{error ? <ErrorMsg>Loads are required</ErrorMsg> : null}
+					{error ? <div className={styles.error_msg}>Loads are required</div> : null}
 				</div>
 			</Popover>
-		</Container>
+		</div>
 	);
 }
 

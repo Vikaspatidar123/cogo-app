@@ -1,7 +1,7 @@
 .container {
   /* width: 50%; */
   max-height: 400px;
-  overflow-y: scroll;
+  /* overflow-y: scroll; */
   :global {
     .custom-select-input-select-value {
       font-size: 12px;

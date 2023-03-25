@@ -20,7 +20,7 @@ function FTL({
 		search_type,
 		onPush,
 	});
-	const { returnJourneyTouchPoints } =		getFormattedTouchPointDataprefill(searchData);
+	const { returnJourneyTouchPoints } = getFormattedTouchPointDataprefill(searchData);
 
 	const [touchPointsToggle, setTouchPointsToggle] = useState(
 		returnJourneyTouchPoints,
@@ -31,7 +31,6 @@ function FTL({
 	const [typeOfJourney, setTypeOfJourney] = useState(
 		searchData.detail?.trip_type || 'one_way',
 	);
-
 	const ftlRef = useRef({});
 
 	const handleClick = async () => {
@@ -94,10 +93,12 @@ function FTL({
 			<div className={styles.btn_container}>
 				<div className={styles.toggle_container}>
 					<Toggle
-						offLabel={{ label: 'One-way', value: 'one_way' }}
-						onLabel={{ label: 'Round Trip', value: 'round' }}
+						// offLabel={{ label: 'One-way', value: 'one_way' }}
+						// onLabel={{ label: 'Round Trip', value: 'round' }}
+						offLabel="One-way"
+						onLabel="Round Trip"
 						value={typeOfJourney}
-						onChange={(event) => handleToggle(event)}
+						onChange={(event) => handleToggle(event.target.checked ? 'round' : 'one_way')}
 					/>
 				</div>
 

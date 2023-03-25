@@ -1,3 +1,6 @@
+// import Layout from '@cogo/business-modules/form/Layout';
+import { IcMPortArrow } from '@cogoport/icons-react';
+import { getByKey } from '@cogoport/utils';
 import {
 	useRef,
 	forwardRef,
@@ -5,27 +8,17 @@ import {
 	useCallback,
 	useEffect,
 } from 'react';
-import { Flex } from '@cogoport/front/components';
-import Layout from '@cogo/business-modules/form/Layout';
-import { useFormCogo } from '@cogoport/front/hooks';
-import { get } from '@cogoport/front/utils';
+
 import Icon from '../icons/ic-arrow-right.svg';
 import TouchPoint from '../SearchForm/TouchPoint';
-import controls from './controls';
-import {
-	LocationContainer,
-	LocationText,
-	Container,
-	TouchPointContainer,
-	Label,
-	Arrow,
-	Heading,
-	HaltTimeContainer,
-	RouteTouchPointContainer,
-	ErrorMsg,
-} from './styles';
 
-const ReturnJourney = (
+import controls from './controls';
+import styles from './styles.module.css';
+
+import { useForm } from '@/packages/forms';
+import FormElement from '@/ui/page-components/discover_rates/common/FormElement';
+
+function ReturnJourney(
 	{
 		location,
 		touchPointsToggle,
@@ -34,33 +27,30 @@ const ReturnJourney = (
 		searchData = {},
 	},
 	ref,
-) => {
+) {
 	const ftlRef = useRef({});
 
-	const haltData =
-		get(searchData, 'touch_points.primary_service.destination[0]') || {};
+	const haltData = getByKey(searchData, 'touch_points.primary_service.destination[0]') || {};
 
 	const {
-		fields,
 		formState: { errors },
 		watch,
-		setValues,
-	} = useFormCogo(controls);
+		setValue,
+		control,
+	} = useForm();
 
 	const formValues = watch();
 
 	useEffect(() => {
 		if (Object.keys(haltData).length) {
-			setValues({
-				halt_time_value: haltData.halt_time_value,
-				halt_time_unit: haltData.halt_time_unit,
-			});
+			setValue('halt_time_value', haltData.halt_time_value);
+			setValue('halt_time_unit', haltData.halt_time_unit);
 		}
 	}, [haltData]);
 
 	const haltTime = {
-		halt_time_value: formValues.halt_time_value || '',
-		halt_time_unit: formValues.halt_time_unit || '',
+		halt_time_value : formValues.halt_time_value || '',
+		halt_time_unit  : formValues.halt_time_unit || '',
 	};
 
 	const validate = async () => {
@@ -74,24 +64,22 @@ const ReturnJourney = (
 		const isError = haltTimeData.length === 1;
 
 		return {
-			handleSubmit: () => {
-				return {
-					hasError: isError,
-					...(!isError && { values: { ...haltTime } }),
-					...(isError && {
-						errors: { errorMsg: 'Halt time/unit is required' },
-					}),
-				};
-			},
+			handleSubmit: () => ({
+				hasError: isError,
+				...(!isError && { values: { ...haltTime } }),
+				...(isError && {
+					errors: { errorMsg: 'Halt time/unit is required' },
+				}),
+			}),
 		};
 	}, [haltTime]);
 
 	useImperativeHandle(ref, imperativeHandle, [imperativeHandle]);
 
-	Object.keys(fields).forEach((field) => {
+	controls.forEach((field, index) => {
 		if (field === 'halt_time_unit' && haltTime.halt_time_value) {
-			fields[field] = {
-				...fields[field],
+			controls[index] = {
+				...controls[index],
 				rules: {
 					required: true,
 				},
@@ -100,51 +88,52 @@ const ReturnJourney = (
 	});
 
 	return (
-		<Container>
-			<Flex>
-				<Heading>Return Journey</Heading>
-			</Flex>
+		<div className={styles.container}>
+			<div className={styles.flex}>
+				<div className={styles.heading}>Return Journey</div>
+			</div>
 
-			<Flex width="100%">
-				<RouteTouchPointContainer>
-					<LocationContainer>
-						<Label>Pickup Point</Label>
-						<LocationText>{location.destination?.display_name}</LocationText>
-					</LocationContainer>
+			<div className={styles.flex}>
+				<div className={styles.route_touch_point_container}>
+					<div className={styles.location_container}>
+						<div className={styles.label}>Pickup Point</div>
+						<div className={styles.location_text}>
+							{location.destination?.display_name}
+						</div>
+					</div>
 
-					<TouchPointContainer>
-						<Arrow>
-							<Icon type="arrow-search" size={1.1} />
-						</Arrow>
+					<div className={styles.touch_point_container}>
+						<div className={styles.arrow}>
+							<IcMPortArrow />
+						</div>
 
 						<TouchPoint
 							searchData={searchData}
 							touchPointsToggle={touchPointsToggle}
 							validate={validate}
 							ref={(r) => {
-								ftlRef.current.TouchPointsRef = r;
+              	ftlRef.current.TouchPointsRef = r;
 							}}
 							setTouchPointsToggle={setTouchPointsToggle}
 							location={location}
 						/>
-					</TouchPointContainer>
+					</div>
 
-					<LocationContainer>
-						<Label>Delivery Point</Label>
-						<LocationText>{location.origin?.display_name}</LocationText>
-					</LocationContainer>
-				</RouteTouchPointContainer>
+					<div className={styles.location_container}>
+						<div className={styles.label}>Delivery Point</div>
+						<div className={styles.location_text}>{location.origin?.display_name}</div>
+					</div>
+				</div>
 
-				<HaltTimeContainer>
-					<Label>Halt Time</Label>
+				<div className={styles.halt_time_container}>
+					<div className={styles.label}>Halt Time</div>
 
-					<Layout controls={controls} fields={fields} errors={errors} />
-
-					{error ? <ErrorMsg>{error}</ErrorMsg> : null}
-				</HaltTimeContainer>
-			</Flex>
-		</Container>
+					<FormElement control={control} controls={controls} showButtons errors={errors} />
+					{error ? <div className={styles.error_msg}>{error}</div> : null}
+				</div>
+			</div>
+		</div>
 	);
-};
+}
 
 export default forwardRef(ReturnJourney);

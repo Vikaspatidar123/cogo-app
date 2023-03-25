@@ -1,16 +1,11 @@
 import React, { useRef } from 'react';
-import {
-	Container,
-	Box,
-	Title,
-	ListWrapper,
-	SingleList,
-	Wrapper,
-} from './styles';
-import DragIcon from '../../../../icons/drag-icon.svg';
-import DeleteIcon from '../../../../icons/delete-icon.svg';
 
-const List = ({ onDeleteTouchPoint, touchPoints, setTouchPoints }) => {
+import DeleteIcon from '../../../../icons/delete-icon.svg';
+import DragIcon from '../../../../icons/drag-icon.svg';
+
+import styles from './styles.module.css';
+
+function List({ onDeleteTouchPoint, touchPoints, setTouchPoints }) {
 	const dragItem = useRef();
 	const dragOverItem = useRef();
 
@@ -28,41 +23,43 @@ const List = ({ onDeleteTouchPoint, touchPoints, setTouchPoints }) => {
 	};
 
 	return (
-		<Container>
-			{(touchPoints || []).map((touchPoint, index) => {
-				return (
-					<ListWrapper
-						className="draggable"
-						draggable="true"
-						onDragStart={() => {
-							dragItem.current = index;
-						}}
-						onDragEnter={() => {
-							dragOverItem.current = index;
-						}}
-						onDragEnd={handleSort}
-						onDragOver={(e) => e.preventDefault()}
-					>
-						<Title> Touch Point {index + 1}</Title>
+		<div>
+			{(touchPoints || []).map((touchPoint, index) => (
+				<div
+					className={`${styles.draggable}${styles.list_wrapper}`}
+					draggable="true"
+					onDragStart={() => {
+          	dragItem.current = index;
+					}}
+					onDragEnter={() => {
+          	dragOverItem.current = index;
+					}}
+					onDragEnd={handleSort}
+					onDragOver={(e) => e.preventDefault()}
+				>
+					<div className={styles.title}>
+						{' '}
+						Touch Point
+						{index + 1}
+					</div>
 
-						<SingleList>
-							<Wrapper>
-								<DragIcon size={1.5} />
+					<li className={styles.single_list}>
+						<div className={styles.wrapper}>
+							<DragIcon size={1.5} />
 
-								<Box>{touchPoint?.display_name}</Box>
+							<div className={styles.box}>{touchPoint?.display_name}</div>
 
-								<DeleteIcon
-									size={1.5}
-									style={{ cursor: 'pointer' }}
-									onClick={() => onDeleteTouchPoint(index)}
-								/>
-							</Wrapper>
-						</SingleList>
-					</ListWrapper>
-				);
-			})}
-		</Container>
+							<DeleteIcon
+								size={1.5}
+								style={{ cursor: 'pointer' }}
+								onClick={() => onDeleteTouchPoint(index)}
+							/>
+						</div>
+					</li>
+				</div>
+			))}
+		</div>
 	);
-};
+}
 
 export default List;

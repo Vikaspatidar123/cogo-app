@@ -1,60 +1,52 @@
-import { Button, toast } from '@cogoport/front/components/admin';
-import useFormCogo from '@cogoport/front/hooks/useFormCogo';
+import { Button, Toast } from '@cogoport/components';
 import { React, useState, useEffect, forwardRef } from 'react';
-import GLOBAL_CONSTANTS from '@cogo/globalization/constants/globals.json';
-import getField from '../../../../../../form/components';
-import {
-	Container,
-	Title,
-	BtnWrapper,
-	InputField,
-	ErrorMessage,
-	InputContainer,
-	Content,
-	AddIconContainer,
-	Wrapper,
-} from './styles';
-import List from './List';
 
-const Location = getField('location-select');
+import List from './List';
+import styles from './styles.module.css';
+
+import { useForm } from '@/packages/forms';
+import getField from '@/packages/forms/Controlled';
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
+
+const Location = getField('async_select');
 
 const { IN: INDIA_COUNTRY_ID } = GLOBAL_CONSTANTS.country_ids;
 
 const location_control = [
 	{
-		name: 'touch_point_location_id',
-		type: 'location-select',
-		placeholder: 'Enter Location',
-		optionsListKey: 'locations',
-		defaultOptions: true,
-		caret: false,
-		params: {
-			apply_sorting: false,
-			filters: {
-				type: ['pincode', 'seaport', 'airport', 'city'],
-				country_id: [INDIA_COUNTRY_ID],
+		name           : 'touch_point_location_id',
+		type           : 'async_select',
+		placeholder    : 'Enter Location',
+		asyncKey       : 'locations',
+		defaultOptions : true,
+		caret          : false,
+		params         : {
+			apply_sorting : false,
+			filters       : {
+				type       : ['pincode', 'seaport', 'airport', 'city'],
+				country_id : [INDIA_COUNTRY_ID],
 			},
 		},
-		theme: 'admin',
-		size: 'lg',
-		rules: { required: 'Required' },
+		theme : 'admin',
+		size  : 'lg',
+		rules : { required: 'Required' },
 	},
 ];
 
-const AddTouchPointModal = ({
+function AddTouchPointModal({
 	onClick,
 	touchPointItems,
 	setTouchPointItems = () => {},
 	validate,
 	typeOfJourney,
 	location = {},
-}) => {
+}) {
 	const [value, setValue] = useState({
-		id: '',
-		display_name: '',
-		name: '',
-		trip_type: typeOfJourney,
-		error: false,
+		id           : '',
+		display_name : '',
+		name         : '',
+		trip_type    : typeOfJourney,
+		error        : false,
 	});
 
 	const [touchPoints, setTouchPoints] = useState(touchPointItems);
@@ -63,12 +55,10 @@ const AddTouchPointModal = ({
 		const { display_name = '', name = '', id } = obj;
 
 		if (id === location.origin?.id || id === location.destination?.id) {
-			setValue((prev) => {
-				return {
-					...prev,
-					error: true,
-				};
-			});
+			setValue((prev) => ({
+				...prev,
+				error: true,
+			}));
 			return;
 		}
 
@@ -76,8 +66,8 @@ const AddTouchPointModal = ({
 			id,
 			display_name,
 			name,
-			trip_type: typeOfJourney,
-			error: false,
+			trip_type : typeOfJourney,
+			error     : false,
 		});
 	};
 
@@ -89,14 +79,12 @@ const AddTouchPointModal = ({
 
 		for (let i = 0; i < touchPoints.length; i += 1) {
 			if (touchPoints[i].id === currId) {
-				toast.error('Selected touch point already exists in route');
+				Toast.error('Selected touch point already exists in route');
 				return;
 			}
 		}
 
-		setTouchPoints((previousState) => {
-			return [...previousState, value];
-		});
+		setTouchPoints((previousState) => [...previousState, value]);
 	};
 
 	const onDeleteTouchPoint = (index) => {
@@ -105,13 +93,12 @@ const AddTouchPointModal = ({
 			...touchPoints.slice(index + 1, touchPoints.length),
 		]);
 	};
-
 	const {
-		fields,
 		setValue: setLocationValue = () => {},
 		formState,
 		handleSubmit,
-	} = useFormCogo(location_control);
+		control,
+	} = useForm();
 
 	const { errors } = formState;
 
@@ -132,33 +119,38 @@ const AddTouchPointModal = ({
 	};
 
 	return (
-		<Container>
-			<Title>Add Touch points</Title>
+		<div className={styles.container}>
+			<div className={styles.title}>Add Touch points</div>
 
-			<Content>
-				<InputField>
-					<InputContainer>
-						<Wrapper>
+			<div className={styles.content}>
+				<div className={styles.input_field}>
+					<div className={styles.input_container}>
+						<div className={styles.wrapper}>
 							<Location
-								{...fields.touch_point_location_id}
+								{...location_control.find(
+                	(x) => x.name === 'touch_point_location_id',
+								)}
 								handleChange={(obj) => handleObj(obj)}
+								control={control}
 							/>
 							{value?.error ? (
-								<ErrorMessage className="touchpoint_error">
+								<div
+									className={`${styles.touchpoint_error}${styles.error_message}`}
+								>
 									Touchpoint must be diffrent from origin and destination!!
-								</ErrorMessage>
+								</div>
 							) : null}
-						</Wrapper>
+						</div>
 
-						<AddIconContainer>
-							<Button onClick={handleSubmit(onSubmit)}>Add</Button>
-						</AddIconContainer>
-					</InputContainer>
+						<div className={styles.add_icon_container}>
+							<Button size="md" onClick={handleSubmit(onSubmit)}>Add</Button>
+						</div>
+					</div>
 
 					{Object.keys(errors?.touch_point_location_id || {}).length ? (
-						<ErrorMessage>Location is required</ErrorMessage>
+						<div className={styles.error_message}>Location is required</div>
 					) : null}
-				</InputField>
+				</div>
 
 				<List
 					touchPoints={touchPoints}
@@ -166,23 +158,25 @@ const AddTouchPointModal = ({
 					setTouchPoints={setTouchPoints}
 				/>
 
-				<BtnWrapper>
+				<div className={styles.btn_wrapper}>
 					<Button
-						className="secondary md"
+						className={styles.button}
+						size="md"
+						themeType="secondary"
 						onClick={() => {
-							onCancel();
+            	onCancel();
 						}}
 					>
 						Cancel
 					</Button>
 
-					<Button className="primary md" onClick={handleSave}>
+					<Button size="md" onClick={handleSave}>
 						Save
 					</Button>
-				</BtnWrapper>
-			</Content>
-		</Container>
+				</div>
+			</div>
+		</div>
 	);
-};
+}
 
 export default forwardRef(AddTouchPointModal);

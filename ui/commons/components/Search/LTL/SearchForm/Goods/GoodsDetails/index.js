@@ -1,26 +1,29 @@
-import React, { useState, forwardRef } from 'react';
+import GLOBAL_CONSTANTS from '@cogo/globalization/constants/globals.json';
+import formatDate from '@cogo/globalization/utils/formatDate';
 import { SingleDatePicker } from '@cogoport/front/components/DateTimePicker';
 import SegmentedControl from '@cogoport/front/components/SegmentedControl';
-import formatDate from '@cogo/globalization/utils/formatDate';
-import GLOBAL_CONSTANTS from '@cogo/globalization/constants/globals.json';
-import {
-	Container,
-	HeaderContainer,
-	DatePickerContainer,
-	DateContainer,
-	DateDiv,
-	SelectDate,
-	DateContent,
-} from './styles';
+import React, { useState, forwardRef } from 'react';
+
 import Calendar from '../../../icons/calender.svg';
+
 import GeneralSpecialGoods from './GeneralSpecialGoods';
+import styles from './styles.module.css';
+// import {
+// 	Container,
+// 	HeaderContainer,
+// 	DatePickerContainer,
+// 	DateContainer,
+// 	DateDiv,
+// 	SelectDate,
+// 	DateContent,
+// } from './styles';
 
 const OPTIONS = [
 	{ label: 'GENERAL CARGO', value: 'general_cargo' },
 	{ label: 'SPECIAL CONSIDERATION', value: 'special_consideration' },
 ];
 
-const GoodsDetails = ({ setGoodsDetail, goodsDetail, setShowPopover }, ref) => {
+function GoodsDetails({ setGoodsDetail, goodsDetail, setShowPopover }, ref) {
 	const [cargoDate, setCargoDate] = useState(
 		goodsDetail?.cargoDate || new Date(),
 	);
@@ -29,27 +32,27 @@ const GoodsDetails = ({ setGoodsDetail, goodsDetail, setShowPopover }, ref) => {
 	const [errorMessge, setErrorMessage] = useState(false);
 
 	const renderBody = () => (
-		<DateContainer>
+		<div className={styles.date_container}>
 			<Calendar size={1.5} />
 
-			<DateDiv>
-				<SelectDate>Select a day</SelectDate>
+			<div className={styles.date_div}>
+				<div className={styles.select_date}>Select a day</div>
 
-				<DateContent>
+				<div className={styles.date_content}>
 					{formatDate({
-						date: cargoDate,
-						dateFormat: GLOBAL_CONSTANTS.formats.date['dd MMM yyyy'],
-						formatType: 'date',
+						date       : cargoDate,
+						dateFormat : GLOBAL_CONSTANTS.formats.date['dd MMM yyyy'],
+						formatType : 'date',
 					})}
-				</DateContent>
-			</DateDiv>
-		</DateContainer>
+				</div>
+			</div>
+		</div>
 	);
 
 	return (
-		<Container>
-			<HeaderContainer>
-				<DatePickerContainer>
+		<div className={styles.container}>
+			<div className={styles.header_container}>
+				<div className={styles.date_picker_container}>
 					<div className="headerText">Cargo Ready Date:</div>
 
 					<SingleDatePicker
@@ -59,12 +62,12 @@ const GoodsDetails = ({ setGoodsDetail, goodsDetail, setShowPopover }, ref) => {
 						value={cargoDate}
 						minDate={new Date()}
 					/>
-				</DatePickerContainer>
+				</div>
 
 				{errorMessge && (
 					<div className="errMessage">Cargo Ready Date is required</div>
 				)}
-			</HeaderContainer>
+			</div>
 
 			<div className="commodityType">Commodity Type</div>
 
@@ -85,8 +88,8 @@ const GoodsDetails = ({ setGoodsDetail, goodsDetail, setShowPopover }, ref) => {
 				ref={ref}
 				cargoType={cargoType}
 			/>
-		</Container>
+		</div>
 	);
-};
+}
 
 export default forwardRef(GoodsDetails);

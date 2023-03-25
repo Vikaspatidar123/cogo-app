@@ -1,0 +1,74 @@
+.goodscontent {
+	@media (max-width: 768px) {
+		.tippy-box {
+			width: 360px;
+		}
+	}
+
+	/* constcontainerstyled.div`display */
+
+	/* flex-flow: column wrap;
+	flex-flowflex-flowflex-flowflex-flowflex-flowflex-flowflex-flowflex-flowflex-flowflex-flowflex-flowflex-flow */
+
+	/* width: 50%; */
+
+	/* widthwidth widthwidth widthwidth widthwidth widthwidth .tippy-box .tippy-arrow {
+		display: none !important;
+	}
+
+	@media (max-width: 768px) {
+		width: 100%;
+	}
+
+	exportconstlabelstyled.label`font-weight */
+
+	/* ` .terms_container {
+		display: flex; */
+
+	/* exportconsttermscontainerstyled.div`displayexportconsttermscontainerstyled.div`displayexportconsttermscontainerstyled.div`displayexportconsttermscontainerstyled.div`displayexportconsttermscontainerstyled.div`displayexportconsttermscontainerstyled.div`displayexportconsttermscontainerstyled.div`displayexportconsttermscontainerstyled.div`displayexportconsttermscontainerstyled.div`displayexportconsttermscontainerstyled.div`displayexportconsttermscontainerstyled.div`displayexportconsttermscontainerstyled.div`display
+border: 1px solid #cbcff5;
+	borderborderborderborderborderborderborderborderborderborderborder
+cursor: pointer;
+
+	cursorcursor cursorcursor cursorcursor cursorcursor cursorcursor .text {
+		font-size: 14px;
+		font-weight: 400;
+		color: #cbcff5;
+	}
+
+	&:hover {
+		border: 1px solid blue;
+	}
+
+	exportconstdetailscontainerstyled.div`displayexportconstdetailscontainerstyled.div`displayconstdetailscontainerstyled.div`display
+align-items: center;
+	align-itemsalign-itemsalign-itemsalign-itemsalign-itemsalign-itemsalign-itemsalign-itemsalign-itemsalign-itemsalign-itemsalign-items
+height: fit-content;
+	heightheightheightheightheightheightheightheightheightheightheight
+max-height: 36px;
+	max-heightmax-heightmax-heightmax-heightmax-heightmax-heightmax-heightmax-heightmax-heightmax-height
+overflow-y: scroll;
+	overflow-yoverflow-yoverflow-yoverflow-yoverflow-yoverflow-yoverflow-yoverflow-yoverflow-yexportconstdetailsstyled.div`margin-rightexportconstdetailsstyled.div`margin-rightexportconstdetailsstyled.div`margin-rightconstdetailsstyled.div`margin-right
+font-size: 8px;
+	font-sizefont-sizefont-sizefont-sizefont-sizefont-sizefont-sizefont-sizefont-sizefont-sizefont-sizefont-size
+background: #f2efff;
+	backgroundbackgroundbackgroundbackgroundbackgroundbackgroundbackgroundbackgroundbackgroundbackgroundbackground
+border-radius: 4px;
+	border-radiusborder-radiusborder-radiusborder-radiusborder-radiusborder-radiusborder-radiusborder-radiusborder-radiusborder-radius
+padding: 2px 5px;
+	paddingpaddingpaddingpaddingpaddingpaddingpaddingpaddingpadding
+margin-bottom: 4px;
+	margin-bottommargin-bottommargin-bottommargin-bottommargin-bottommargin-bottommargin-bottommargin-bottom
+`
+export const ErrorMsg = styled.div`
+	margin: 0;
+	exportconsterrormsgstyled.div`marginexportconsterrormsgstyled.div`marginexportconsterrormsgstyled.div`marginexportconsterrormsgstyled.div`marginexportconsterrormsgstyled.div`marginexportconsterrormsgstyled.div`marginexportconsterrormsgstyled.div`marginexportconsterrormsgstyled.div`marginexportconsterrormsgstyled.div`marginexportconsterrormsgstyled.div`marginexportconsterrormsgstyled.div`marginexportconsterrormsgstyled.div`marginconsterrormsgstyled.div`margin
+font-weight: normal;
+	font-weightfont-weightfont-weightfont-weightfont-weightfont-weightfont-weightfont-weightfont-weightfont-weightfont-weightfont-weight
+font-size: 12px;
+	font-sizefont-sizefont-sizefont-sizefont-sizefont-sizefont-sizefont-sizefont-sizefont-sizefont-size
+line-height: 16px;
+	line-heightline-heightline-heightline-heightline-heightline-heightline-heightline-heightline-heightline-height
+color: rgb(203 100 100);colorcolorcolorcolorcolorcolorcolorcolorcolorcolorcolorcolorcolor
+` */
+}

@@ -1,6 +1,4 @@
-import styled from '@cogoport/front/styled';
-
-export const Container = styled.div`
+.container {
 	.core-ui-button-root {
 		padding: 5px !important;
 	}
@@ -12,36 +10,37 @@ export const Container = styled.div`
 	.core-ui-input-root {
 		border: 1px solid #cddbff !important;
 	}
-`;
+}
 
-export const Wrapper = styled.div`
+.wrapper {
 	height: 220px;
 	overflow-y: auto;
+
 	.form-item-label {
-		font-weight: 500;
+		margin: 12px 0 8px;
 		font-size: 12px;
+		font-weight: 500;
 		color: #393f70;
-		margin: 12px 0 8px 0;
 	}
 
 	.core-ui-button-root {
-		font-weight: 400;
 		font-size: 12px;
+		font-weight: 400;
 		color: #393f70;
-		border: none !important;
 		text-transform: none;
+		border: none !important;
 	}
 
 	.form-field-array-add-btn {
-		font-size: 18px;
-		height: 20px;
 		width: 20px;
+		height: 20px;
+		font-size: 18px;
 		font-weight: 500;
 	}
 
 	.form-fieldArray-cargos {
-		padding-left: 0px;
-		padding-right: 0px;
+		padding-right: 0;
+		padding-left: 0;
 	}
 
 	.core-ui-select__control {
@@ -55,18 +54,18 @@ export const Wrapper = styled.div`
 	.core-ui-input-suffix {
 		display: flex;
 		align-items: center;
-		color: #828282;
 		font-size: 14px;
+		color: #828282;
 	}
-`;
+}
 
-export const ButtonContainer = styled.div`
-	width: 100%;
-	margin-top: 10px;
+.button_container {
 	display: flex;
 	justify-content: flex-end;
+	width: 100%;
+	margin-top: 10px;
 
 	.core-ui-button-root {
 		border: 1px solid #393f70 !important;
 	}
-`;
+}

@@ -1,17 +1,19 @@
+// import Layout from '@cogo/business-modules/form/Layout';
+import { Button } from '@cogoport/components';
+// import { useFormCogo } from '@cogoport/front/hooks';
+// import { isEmpty } from '@cogoport/front/utils';
 import React, {
 	useImperativeHandle,
 	forwardRef,
 	useCallback,
 	useEffect,
 } from 'react';
-import { useFormCogo } from '@cogoport/front/hooks';
-import Layout from '@cogo/business-modules/form/Layout';
-import { Button } from '@cogoport/front/components/admin';
-import { isEmpty } from '@cogoport/front/utils';
-import { Container, ButtonContainer } from './styles';
-import getControls from './controls';
 
-const GeneralSpecialConsideration = (
+import getControls from './controls';
+// import { Container, ButtonContainer } from './styles';
+import styles from './styles.module.css';
+
+function GeneralSpecialConsideration(
 	{
 		cargoDate,
 		setErrorMessage = false,
@@ -21,7 +23,7 @@ const GeneralSpecialConsideration = (
 		cargoType,
 	},
 	ref,
-) => {
+) {
 	const controls = getControls(cargoType);
 
 	const {
@@ -36,13 +38,11 @@ const GeneralSpecialConsideration = (
 	const imperativeHandle = useCallback(() => {
 		const isError = isEmpty(goodsDetail);
 		return {
-			handleSubmit: () => {
-				return {
-					hasError: isError,
-					...(!isError && { values: { ...goodsDetail } }),
-					...(isError && { errors: { errorMsg: 'Goods are required' } }),
-				};
-			},
+			handleSubmit: () => ({
+				hasError: isError,
+				...(!isError && { values: { ...goodsDetail } }),
+				...(isError && { errors: { errorMsg: 'Goods are required' } }),
+			}),
 		};
 	}, [goodsDetail]);
 
@@ -78,10 +78,10 @@ const GeneralSpecialConsideration = (
 	};
 
 	return (
-		<Container>
-			<Layout controls={controls} fields={fields} errors={errors} />
+		<div className={styles.containe} r>
+			{/* <Layout controls={controls} fields={fields} errors={errors} /> */}
 			<div style={{ display: 'flex' }}>
-				<ButtonContainer>
+				<div className={styles.button_container}>
 					<Button
 						className="secondary sm"
 						onClick={onCancel}
@@ -93,10 +93,10 @@ const GeneralSpecialConsideration = (
 					<Button className="primary sm" onClick={handleSubmit(onSubmit)}>
 						CONFIRM
 					</Button>
-				</ButtonContainer>
+				</div>
 			</div>
-		</Container>
+		</div>
 	);
-};
+}
 
 export default forwardRef(GeneralSpecialConsideration);

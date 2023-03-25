@@ -1,8 +1,9 @@
 import React from 'react';
+
 import ShowGrossInfo from './ShowGrossInfo';
 import ShowPackageInfo from './ShowPackageInfo';
 
-const ShowCargoInfo = ({ loadData = {}, setShowPopover, showPopover }) => {
+function ShowCargoInfo({ loadData = {}, setShowPopover, showPopover }) {
 	if (loadData?.sub_active_tab === 'gross') {
 		return (
 			<ShowGrossInfo
@@ -20,6 +21,6 @@ const ShowCargoInfo = ({ loadData = {}, setShowPopover, showPopover }) => {
 			setShowPopover={setShowPopover}
 		/>
 	);
-};
+}
 
 export default ShowCargoInfo;

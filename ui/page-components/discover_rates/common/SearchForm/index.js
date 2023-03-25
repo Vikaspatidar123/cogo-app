@@ -18,7 +18,7 @@ import getControls from './utils/getControls';
 import { useForm } from '@/packages/forms';
 // import FTL from '@/ui/commons/components/Search//FTL';
 // import Haulage from '@/ui/commons/components/Search//Haulage';
-// import LTL from '@/ui/commons/components/Search//LTL';
+import LTL from '@/ui/commons/components/Search//LTL';
 // import RailDomestic from '@/ui/commons/components/Search//RailDomestic';
 // import Air from '@/ui/commons/components/Search/Air';
 import AirLocals from '@/ui/commons/components/Search/AirLocals';
@@ -227,13 +227,13 @@ function Form(
 
 	if (mode === 'ltl_freight') {
 		return (
-			<div>LTL</div>
-		// <LTL
-		// 	data={searchData}
-		// 	search_type={search_type}
-		// 	extraParams={extraParams}
-		// 	onPush={onPush}
-		// />
+			// <div>LTL</div>
+		<LTL
+			data={searchData}
+			search_type={search_type}
+			extraParams={extraParams}
+			onPush={onPush}
+		/>
 		);
 	}
 
@@ -298,153 +298,153 @@ function Form(
 			<div>RailDomestic</div>
 		);
 	}
-	return (
-		<div
-			className={cl`${styles.search_form_container} ${styles.container} ${
-      	styles[className]
-			} ${styles[search_type] || ''}`}
-			style={{
-      	background: search_type === 'dashboard' ? '#f9f9f9' : '#ffffff',
-			}}
-		>
-			<div className={`${styles.main}${styles.search_type} ` || ''}>
-				<div>
-					<form onSubmit={handleSubmit(submitData, onError)}>
-						<div className={styles.row}>
-							<div className={styles.search_form_route_container_col}>
-								<Route
-									origin={allControls.find((x) => x.name === origin?.name)}
-									setLocation={setLocation}
-									location={location}
-									destination={allControls.find(
-                  	(x) => x.name === destination?.name,
-									)}
-                  // keywords={keywords}
-									className={className}
-									errors={errors}
-									search_type={search_type}
-									index={index}
-                  // mobile={mobile}
-									mode={mode}
-									extraParams={extraParams}
-									disabledFields={disabledFields}
-									control={control}
-								/>
-							</div>
+	// 	return (
+	// 		<div
+	// 			className={cl`${styles.search_form_container} ${styles.container} ${
+	//       	styles[className]
+	// 			} ${styles[search_type] || ''}`}
+	// 			style={{
+	//       	background: search_type === 'dashboard' ? '#f9f9f9' : '#ffffff',
+	// 			}}
+	// 		>
+	// 			<div className={`${styles.main}${styles.search_type} ` || ''}>
+	// 				<div>
+	// 					<form onSubmit={handleSubmit(submitData, onError)}>
+	// 						<div className={styles.row}>
+	// 							<div className={styles.search_form_route_container_col}>
+	// 								<Route
+	// 									origin={allControls.find((x) => x.name === origin?.name)}
+	// 									setLocation={setLocation}
+	// 									location={location}
+	// 									destination={allControls.find(
+	//                   	(x) => x.name === destination?.name,
+	// 									)}
+	//                   // keywords={keywords}
+	// 									className={className}
+	// 									errors={errors}
+	// 									search_type={search_type}
+	// 									index={index}
+	//                   // mobile={mobile}
+	// 									mode={mode}
+	// 									extraParams={extraParams}
+	// 									disabledFields={disabledFields}
+	// 									control={control}
+	// 								/>
+	// 							</div>
 
-							<div className={styles.search_form_options_container_col}>
-								{index === 0 && search_type !== 'rfq' ? (
-									<div
-										className={`${styles.label} ${styles.search_form_options_container_col__label}`}
-									>
-										{containerDetailsModes.includes(mode)
-                    	? 'Container Details'
-                    	: 'Cargo Details'}
-									</div>
-								) : null}
-								<Options
-									location={location}
-									optionsControls={optionsControls}
-									fields={allControls}
-									submit={handleSubmit(submitData, onError)}
-									mode={mode}
-									advancedControls={advancedControls}
-									setOptions={setOptions}
-									options={options}
-									services={services}
-									setServices={setServices}
-                  // mobile={mobile}
-									setLocation={setLocation}
-									className={className}
-									formProps={showElementsFuncProps}
-									loading={loading}
-									search_type={search_type}
-									index={index}
-									disabledFields={disabledFields}
-									setShowServices={setShow}
-									showServices={show}
-									applyServices={handleSubmit(applyServices, onError)}
-									date={date}
-									setDate={setDate}
-									validityErr={validityErr}
-									operatorName={operatorName}
-									contractType={contractType}
-								/>
-							</div>
+	// 							<div className={styles.search_form_options_container_col}>
+	// 								{index === 0 && search_type !== 'rfq' ? (
+	// 									<div
+	// 										className={`${styles.label} ${styles.search_form_options_container_col__label}`}
+	// 									>
+	// 										{containerDetailsModes.includes(mode)
+	//                     	? 'Container Details'
+	//                     	: 'Cargo Details'}
+	// 									</div>
+	// 								) : null}
+	// 								<Options
+	// 									location={location}
+	// 									optionsControls={optionsControls}
+	// 									fields={allControls}
+	// 									submit={handleSubmit(submitData, onError)}
+	// 									mode={mode}
+	// 									advancedControls={advancedControls}
+	// 									setOptions={setOptions}
+	// 									options={options}
+	// 									services={services}
+	// 									setServices={setServices}
+	//                   // mobile={mobile}
+	// 									setLocation={setLocation}
+	// 									className={className}
+	// 									formProps={showElementsFuncProps}
+	// 									loading={loading}
+	// 									search_type={search_type}
+	// 									index={index}
+	// 									disabledFields={disabledFields}
+	// 									setShowServices={setShow}
+	// 									showServices={show}
+	// 									applyServices={handleSubmit(applyServices, onError)}
+	// 									date={date}
+	// 									setDate={setDate}
+	// 									validityErr={validityErr}
+	// 									operatorName={operatorName}
+	// 									contractType={contractType}
+	// 								/>
+	// 							</div>
 
-							{mode === 'trailer_freight' && (
-								<div style={{ margin: 'auto' }}>
-									<div
-										className={styles.row}
-										style={{
-                    	marginTop      : '20px',
-                    	alignItems     : 'center',
-                    	justifyContent : 'center',
-										}}
-									>
-										<Checkbox
-											className="primary md"
-											checked={checked}
-											onChange={setChecked}
-										/>
-										<text
-											style={{ marginLeft: '8px' }}
-											size={12}
-											color="#393F70"
-										>
-											Round Trip
-										</text>
-									</div>
-								</div>
-							)}
+	// 							{mode === 'trailer_freight' && (
+	// 								<div style={{ margin: 'auto' }}>
+	// 									<div
+	// 										className={styles.row}
+	// 										style={{
+	//                     	marginTop      : '20px',
+	//                     	alignItems     : 'center',
+	//                     	justifyContent : 'center',
+	// 										}}
+	// 									>
+	// 										<Checkbox
+	// 											className="primary md"
+	// 											checked={checked}
+	// 											onChange={setChecked}
+	// 										/>
+	// 										<text
+	// 											style={{ marginLeft: '8px' }}
+	// 											size={12}
+	// 											color="#393F70"
+	// 										>
+	// 											Round Trip
+	// 										</text>
+	// 									</div>
+	// 								</div>
+	// 							)}
 
-							{['rfq', 'contract', 'forecast'].includes(search_type) ? null : (
-								<div
-									xs={12}
-									md={isSmall || scope === 'app' ? 1 : 2}
-									sm={12}
-									className={cl`${styles.search_form_search_btn_container_col} ${styles.search_form_section_search_btn}`}
-									style={{
-										display        : 'flex',
-										justifyContent : 'center',
-										paddingTop     : '22px',
-										marginTop      : '2px',
-									}}
-								>
-									<Button
-										type="submit"
-										id="search_form_sumbit_btn"
-										isLoading={loading}
-										disabled={loading}
-										style={{
-											background : '#2C3E50',
-											padding    : '4px 8px',
-											opacity    : loading ? 0.6 : 1,
-                    	// height     : mobile ? '24px' : '38px',
-										}}
-									>
-										{/* {!mobile ? ( */}
+	// 							{['rfq', 'contract', 'forecast'].includes(search_type) ? null : (
+	// 								<div
+	// 									xs={12}
+	// 									md={isSmall || scope === 'app' ? 1 : 2}
+	// 									sm={12}
+	// 									className={cl`${styles.search_form_search_btn_container_col} ${styles.search_form_section_search_btn}`}
+	// 									style={{
+	// 										display        : 'flex',
+	// 										justifyContent : 'center',
+	// 										paddingTop     : '22px',
+	// 										marginTop      : '2px',
+	// 									}}
+	// 								>
+	// 									<Button
+	// 										type="submit"
+	// 										id="search_form_sumbit_btn"
+	// 										isLoading={loading}
+	// 										disabled={loading}
+	// 										style={{
+	// 											background : '#2C3E50',
+	// 											padding    : '4px 8px',
+	// 											opacity    : loading ? 0.6 : 1,
+	//                     	// height     : mobile ? '24px' : '38px',
+	// 										}}
+	// 									>
+	// 										{/* {!mobile ? ( */}
 
-										<IcMSearchlight
-											style={{
-												margin : '2px 2px 0px 0px',
-												width  : 24,
-												height : 24,
-											}}
-										/>
-										{/* )  */}
-										{/* : (
-                    	                   'SEARCH RATES'
-										)} */}
-									</Button>
-								</div>
-							)}
-						</div>
-					</form>
-				</div>
-			</div>
-		</div>
-	);
+// 										<IcMSearchlight
+// 											style={{
+// 												margin : '2px 2px 0px 0px',
+// 												width  : 24,
+// 												height : 24,
+// 											}}
+// 										/>
+// 										{/* )  */}
+// 										{/* : (
+//                     	                   'SEARCH RATES'
+// 										)} */}
+// 									</Button>
+// 								</div>
+// 							)}
+// 						</div>
+// 					</form>
+// 				</div>
+// 			</div>
+// 		</div>
+// 	);
 }
 
 export default forwardRef(Form);

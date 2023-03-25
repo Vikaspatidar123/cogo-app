@@ -13,11 +13,12 @@ import isEmpty from '@cogo/utils/isEmpty';
 import Route from './Route';
 import Load from './Load';
 import Goods from './Goods';
-import { Container, Main, Section, Options } from './styles';
+// import { Container, Main, Section, Options } from './styles';
+import styles from './styles.module.css';
 import getHandleSubmitDetails from '../utils/getHandleSubmitDetails';
 import getControls from './form.controls';
 
-const { Row } = Grid;
+// const { Row } = Grid;
 
 const SearchForm = (
 	{ mode = '', isEdit = false, index = 0, searchData, error, extraParams },
@@ -78,11 +79,11 @@ const SearchForm = (
 	});
 
 	return (
-		<Container>
-			<Main>
+		<div classNAme={styles.container}>
+			<div classNAme={styles.main}>
 				<form>
-					<Row>
-						<Section xs={12} md={12} sm={12}>
+					<div>
+						<div classNAme={styles.section} xs={12} md={12} sm={12}>
 							<Route
 								ref={(r) => {
 									searchFormRef.current.route = r;
@@ -99,12 +100,12 @@ const SearchForm = (
 								searchData={searchData}
 								extraParams={extraParams}
 							/>
-						</Section>
-					</Row>
+						</div>
+					</div>
 				</form>
-			</Main>
+			</div>
 
-			<Options>
+			< div classNAme={styles.options}>
 				<Goods
 					ref={(r) => {
 						searchFormRef.current.good = r;
@@ -119,8 +120,8 @@ const SearchForm = (
 					searchData={searchData}
 					error={error?.load?.errorMsg}
 				/>
-			</Options>
-		</Container>
+			</div>
+		</div>
 	);
 };
 

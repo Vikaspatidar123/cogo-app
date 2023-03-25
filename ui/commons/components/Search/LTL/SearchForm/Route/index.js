@@ -1,19 +1,13 @@
-import React, { forwardRef, useImperativeHandle } from 'react';
 import SelectControler from '@cogo/business-modules/form/components/Controlled/ControlledLocation';
 import Icon from '@cogo/deprecated_legacy/icons/Icon';
-import { useSelector } from '@cogo/store';
 import { replace } from '@cogo/i18n';
+import { useSelector } from '@cogo/store';
 import { isEmpty } from '@cogoport/front/utils';
-import {
-	Container,
-	Section,
-	Arrow,
-	Label,
-	ArrowSection,
-	ErrorMsg,
-} from './styles';
+import React, { forwardRef, useImperativeHandle } from 'react';
 
-const Route = (
+import styles from './styles.module.css';
+
+function Route(
 	{
 		origin = {},
 		destination = {},
@@ -27,7 +21,7 @@ const Route = (
 		extraParams,
 	},
 	ref,
-) => {
+) {
 	const { showArrow = true } = destination || {};
 	const { org_id: app_org_id } = useSelector(({ general }) => ({
 		org_id: general.query.org_id,
@@ -37,10 +31,10 @@ const Route = (
 
 	const handleLabel = (locationKey) => {
 		const originLabel = (
-			<Label>{showArrow ? 'Pickup Point ' : origin?.label}</Label>
+			<div className={styles.label}>{showArrow ? 'Pickup Point ' : origin?.label}</div>
 		);
 		const destinationLabel = (
-			<Label>{showArrow ? 'Delivery Point' : destination?.label}</Label>
+			<div className={styles.label}>{showArrow ? 'Delivery Point' : destination?.label}</div>
 		);
 
 		if (mobile) {
@@ -58,31 +52,29 @@ const Route = (
 		return null;
 	};
 
-	const imperativeHandle = () => {
-		return {
-			handleSubmit: async () => {
-				const isError = Object.keys(location).length !== 2;
+	const imperativeHandle = () => ({
+		handleSubmit: async () => {
+			const isError = Object.keys(location).length !== 2;
 
-				return {
-					hasError: isError,
-					...(!isError && { values: { location } }),
-					...(isError && {
-						errors: {
-							errorMsg: {
-								origin: isEmpty(location.origin),
-								destination: isEmpty(location.destination),
-							},
+			return {
+				hasError: isError,
+				...(!isError && { values: { location } }),
+				...(isError && {
+					errors: {
+						errorMsg: {
+							origin      : isEmpty(location.origin),
+							destination : isEmpty(location.destination),
 						},
-					}),
-				};
-			},
-		};
-	};
+					},
+				}),
+			};
+		},
+	});
 
 	useImperativeHandle(ref, imperativeHandle);
 	return (
-		<Container id="search_form_route_container">
-			<Section>
+		<div className={styles.container} id="search_form_route_container">
+			<div className={styles.Section}>
 				{handleLabel('origin')}
 
 				<SelectControler
@@ -95,10 +87,10 @@ const Route = (
 					value={location?.origin?.id}
 					params={{
 						...(origin.params || {}),
-						filters: origin?.params?.filters,
-						preferences: {
-							organization_id: org_id,
-							service_type: mode,
+						filters     : origin?.params?.filters,
+						preferences : {
+							organization_id : org_id,
+							service_type    : mode,
 						},
 					}}
 					handleChange={(obj) => {
@@ -108,23 +100,23 @@ const Route = (
 						});
 					}}
 					searchParams={{
-						intent: 'rate_search',
-						organization_id: org_id,
-						service_type: mode,
+						intent          : 'rate_search',
+						organization_id : org_id,
+						service_type    : mode,
 					}}
 				/>
 				{errorMsg?.origin ? <ErrorMsg>Origin Port is required</ErrorMsg> : null}
-			</Section>
+			</div>
 
-			<ArrowSection>
+			<div className={styles.arrow_section}>
 				{showArrow && (
 					<Arrow>
 						<Icon type="arrow-search" size={1.1} />
 					</Arrow>
 				)}
-			</ArrowSection>
+			</div>
 
-			<Section>
+			<div className={styles.section}>
 				{handleLabel('destination')}
 
 				<SelectControler
@@ -146,24 +138,24 @@ const Route = (
 					}}
 					params={{
 						...(destination.params || {}),
-						filters: destination?.params?.filters,
-						preferences: {
-							organization_id: org_id,
-							service_type: mode,
+						filters     : destination?.params?.filters,
+						preferences : {
+							organization_id : org_id,
+							service_type    : mode,
 						},
 					}}
 					searchParams={{
-						intent: 'rate_search',
-						organization_id: org_id,
-						service_type: mode,
+						intent          : 'rate_search',
+						organization_id : org_id,
+						service_type    : mode,
 					}}
 				/>
 				{errorMsg?.destination ? (
-					<ErrorMsg>Destination Port is required</ErrorMsg>
+					<div className={styles.error_msg}>Destination Port is required</div>
 				) : null}
-			</Section>
-		</Container>
+			</div>
+		</div>
 	);
-};
+}
 
 export default forwardRef(Route);

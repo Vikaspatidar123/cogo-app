@@ -1,11 +1,8 @@
-import { Grid } from '@cogoport/front/components';
-import styled from '@cogoport/front/styled';
 
-const { Col } = Grid;
 
-export const Section = styled(Col)``;
+/* .section = styled(Col)``; */
 
-export const Container = styled.div`
+.container {
 	border-radius: 10px;
 	padding: 8px 0px 8px 8px;
 	width: 100%;
@@ -39,9 +36,9 @@ export const Container = styled.div`
 		background: #ffffff;
 		flex-direction: column;
 	}
-`;
+}
 
-export const Main = styled.div`
+.main {
 	width: 55%;
 
 	@media (max-width: 768px) {
@@ -55,9 +52,9 @@ export const Main = styled.div`
 	&.contract {
 		max-width: 100%;
 	}
-`;
+}
 
-export const Options = styled.div`
+.options {
 	width: 45%;
 	display: flex;
 	align-items: flex-start;
@@ -68,20 +65,20 @@ export const Options = styled.div`
 		flex-direction: column;
 		padding-left: 0px;
 	}
-`;
+}
 
-export const Heading = styled.p`
+.heading{
 	font-size: 20px;
 	margin: 0 0 12px 8px;
 	color: #393f70;
-`;
+}
 
-export const Header = styled.div`
+.header {
 	display: flex;
 	justify-content: space-between;
-`;
+}
 
-export const Icon = styled.div`
+.icon {
 	font-weight: 500;
 	font-size: 14px;
 	color: #5936f0;
@@ -93,4 +90,4 @@ export const Icon = styled.div`
 		height: 10px;
 		margin-right: 4px;
 	}
-`;
+}

@@ -54,7 +54,8 @@ const getSummary = ({ summaryResp }) => {
 					amount   : totalAmount,
 					currency : defaultCurrency,
 					options  : {
-						style: 'currency',
+						style    : 'currency',
+						notation : 'compact',
 					},
 				}),
 			};

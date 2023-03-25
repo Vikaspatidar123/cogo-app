@@ -37,7 +37,7 @@ function BtnContainer({ data = {} }) {
 			destination    : destination_port || destination_airport,
 			origin         : origin_airport || origin_port,
 		};
-		// eslint-disable-next-line no-undef
+
 		localStorage.setItem('spotSearchResult', JSON.stringify(spotSearchData));
 
 		redirectRecentSearch();

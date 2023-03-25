@@ -86,14 +86,12 @@ const navigationMappings = {
 				module_type : 'dashboards',
 			},
 			{
-				key         : 'saas_planning-quotation',
-				title       : 'Quick Quotations',
-				// eslint-disable-next-line max-len
-				description : 'The meaning of QUOTATION is something that is quoted; especially : a passage ',
-				icon        : <IcMQuotations width={30} height={30} />,
-				type        : 'link',
-				href        : '/v2/saas/quickquotation/viewlist',
-				as          : '/v2/saas/quickquotation/viewlist',
+				key   : 'saas_planning-quotation',
+				title : 'Quick Quotations',
+				icon  : <IcMQuotations width={30} height={30} />,
+				type  : 'link',
+				href  : '/v2/saas/quickquotation/viewlist',
+				as    : '/v2/saas/quickquotation/viewlist',
 			},
 
 		],

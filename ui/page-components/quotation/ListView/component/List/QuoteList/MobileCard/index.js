@@ -6,7 +6,7 @@ import tooltipConfig from '../../../../configurations/tooltipConfig';
 
 import styles from './styles.module.css';
 
-import { shortFormatNumber } from '@/ui/commons/utils/getShortFormatNumber';
+import formatAmount from '@/ui/commons/utils/formatAmount';
 
 const tooltipContent = ({ documentStatus, quotationId, setShowDeleteModal, setQuoteId }) => {
 	const tooltipContentConfig = tooltipConfig({ documentStatus, quotationId, setShowDeleteModal, setQuoteId });
@@ -16,7 +16,7 @@ const tooltipContent = ({ documentStatus, quotationId, setShowDeleteModal, setQu
 			{(tooltipContentConfig || []).map((item, index) => (
 				item?.condition && (
 					<div
-						style={{ borderTop: `${index > 0 && '1px solid #d3d3d3'}` }}
+						style={{ borderTop: `${index > 0 && "1px solid #d3d3d3"}` }}
 						className={cl`${styles.info} ${styles[item?.className]}`}
 					>
 						{item?.icon}
@@ -90,7 +90,7 @@ function MobileCard({ data = [], loading = false, setQuoteId, setShowDeleteModal
 						<div className={styles.flexs}>
 							<div className={styles.date}>Amount:</div>
 							<div className={styles.date_digits}>
-								{shortFormatNumber(ele?.totalAmount, ele?.currency)}
+								{formatAmount({ amount: ele?.totalAmount, currency: ele?.currency })}
 							</div>
 						</div>
 

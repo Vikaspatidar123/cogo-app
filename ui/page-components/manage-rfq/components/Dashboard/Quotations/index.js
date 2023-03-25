@@ -63,12 +63,11 @@ function Quotations({
 				<div className={styles.pagination_container}>
 					{!isEmpty(rfqList) && (
 						<Pagination
-							className="primary md"
-							pageRange={5}
-							pageLimit={10}
-							total={total_count}
-							pagination={page}
-							setPagination={setPagination}
+							type="compact"
+							currentPage={page}
+							totalItems={total_count}
+							// pageSize={5}
+							onPageChange={setPagination}
 						/>
 					)}
 				</div>

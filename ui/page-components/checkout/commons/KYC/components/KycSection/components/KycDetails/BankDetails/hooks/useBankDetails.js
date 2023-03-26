@@ -1,7 +1,10 @@
 import { useEffect, useState } from 'react';
-import { useFormCogo } from '@cogoport/front/hooks';
+
 import { getControls } from '../utils/controls';
+
 import useSaveBankDetails from './useSaveBankDetails';
+
+import { useForm } from '@/packages/forms';
 
 // const MIN_UPLOAD_INVOICE = 5;
 
@@ -45,7 +48,11 @@ const useBankDetails = ({
 		isFormSaved,
 	});
 
-	const formProps = useFormCogo(controls);
+	const {
+		formProps = {},
+		control,
+	} = useForm();
+
 	const { formState = {}, watch = () => {} } = formProps;
 
 	useEffect(() => {
@@ -59,6 +66,7 @@ const useBankDetails = ({
 
 	return {
 		controls,
+		control,
 		formProps,
 		errors: formState.errors,
 		onSubmit,

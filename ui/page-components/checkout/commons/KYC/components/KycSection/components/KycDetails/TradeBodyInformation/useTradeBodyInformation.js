@@ -2,6 +2,7 @@ import { Toast } from '@cogoport/components';
 
 import getTradeControls from './get-trade-controls';
 
+import { useForm } from '@/packages/forms';
 import getApiErrorString from '@/packages/forms/utils/getApiError';
 import { useRequest } from '@/packages/request';
 
@@ -20,7 +21,6 @@ const useTradeBodyInformation = ({
 	}, { manual: true });
 
 	const {
-		fields = {},
 		handleSubmit = () => {},
 		formState = {},
 		control,
@@ -54,7 +54,7 @@ const useTradeBodyInformation = ({
 
 	return {
 		controls,
-		fields,
+		control,
 		handleSubmit,
 		onSubmit,
 		updateOrganizationAPILoading: loading,

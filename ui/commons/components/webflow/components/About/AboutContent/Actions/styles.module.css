@@ -1,6 +1,7 @@
 .button_wrap {
 	flex-wrap: wrap;
 	padding-top: 8px;
+
 	/* layout: flex row flex-start center; */
 
 	button {

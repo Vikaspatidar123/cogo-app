@@ -1,11 +1,9 @@
-// import Layout from '@cogo/business-modules/form/Layout';
-
-// import { ButtonContainer, LayoutContainer, SubHeading } from './styles';
-
 import { Button } from '@cogoport/components';
 
 import styles from './styles.module.css';
 import useTradeBodyInformation from './useTradeBodyInformation';
+
+import getField from '@/packages/forms/Controlled';
 
 function TradeBodyInformation({
 	channelPartnerDetails = {},
@@ -13,8 +11,8 @@ function TradeBodyInformation({
 	setKycDetails = () => {},
 }) {
 	const {
-		controls = [],
-		fields = {},
+		control,
+		controls,
 		handleSubmit = () => {},
 		onSubmit = () => {},
 		updateOrganizationAPILoading = false,
@@ -25,6 +23,8 @@ function TradeBodyInformation({
 		setKycDetails,
 	});
 
+	const { errors = {} } = formState || {};
+
 	return (
 		<div className={styles.flex}>
 			<div className={styles.sub_heading}>
@@ -33,8 +33,21 @@ function TradeBodyInformation({
 				if required.
 			</div>
 
-			<div className={styles.layout_container}>
-				{/* <Layout controls={controls} fields={fields} errors={formState.errors} /> */}
+			<div className={styles.layout}>
+				{controls.map((item) => {
+					const Element = getField(item.type);
+					return (
+						<div className={styles.field}>
+							<div className={styles.lable}>{item.label}</div>
+							<Element {...item} control={control} />
+							{errors && (
+								<div className={styles.errors}>
+									{errors[item?.name]?.message}
+								</div>
+							)}
+						</div>
+					);
+				})}
 			</div>
 
 			<div className={styles.button_container}>

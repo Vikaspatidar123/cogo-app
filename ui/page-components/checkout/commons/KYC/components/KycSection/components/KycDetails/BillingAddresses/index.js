@@ -1,11 +1,5 @@
-import { Button } from '@cogoport/front/components/admin';
+import { Button } from '@cogoport/components';
 import React from 'react';
-// import {
-// 	Container,
-// 	Content,
-// 	AddMoreButtonContainer,
-// 	BookingContactAlign,
-// } from './styles';
 
 import BillingAddressForm from './BillingAddressForm';
 import BillingAddressItem from './BillingAddressItem';

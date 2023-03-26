@@ -1,22 +1,13 @@
-import getGeoConstants from '@cogo/globalization/constants/geo';
-import { get, startCase } from '@cogoport/front/utils';
+import { getByKey, startCase } from '@cogoport/utils';
 
 import BillingDetails from './BillingDetails';
 import Heading from './Heading';
-import DownArrowIcon from './icons/down-arrow.svg';
+// import DownArrowIcon from './icons/down-arrow.svg';
 import SelectedServicesInvoiceTo from './SelectedServicesInvoiceTo';
 import SelectServicesInvoiceToAndCurrencyForm from './SelectServicesInvoiceToAndCurrencyForm';
-// import {
-// 	Container,
-// 	ContentVisible,
-// 	HeadingContainer,
-// 	BillingDetailsContainer,
-// 	SelectedServicesInvoiceToContainer,
-// 	ContentHidden,
-// 	FadeIn,
-// 	HiddenContentTogglerContainer,
-// } from './styles';
 import styles from './styles.module.css';
+
+import getGeoConstants from '@/ui/commons/constants/geo';
 
 const geo = getGeoConstants();
 
@@ -38,15 +29,15 @@ function SelectedAddressList({
 	paymentModes,
 	setPaymentModes,
 }) {
-	const id = get(invoicingParty, 'id');
-	const businessName = get(invoicingParty, 'business_name');
-	const tradeParty = get(invoicingParty, 'trade_party_type') || 'self';
-	const invoiceCurrency =		get(invoicingParty, 'invoice_currency') || geo.country.currency.code;
-	const address = get(invoicingParty, 'address');
-	const taxNumber = get(invoicingParty, 'tax_number');
-	const services = get(invoicingParty, 'services') || [];
+	const id = getByKey(invoicingParty, 'id');
+	const businessName = getByKey(invoicingParty, 'business_name');
+	const tradeParty = getByKey(invoicingParty, 'trade_party_type') || 'self';
+	const invoiceCurrency =	getByKey(invoicingParty, 'invoice_currency') || geo.country.currency.code;
+	const address = getByKey(invoicingParty, 'address');
+	const taxNumber = getByKey(invoicingParty, 'tax_number');
+	const services = getByKey(invoicingParty, 'services') || [];
 
-	const showHiddenContent = get(
+	const showHiddenContent = getByKey(
 		invoicingParty,
 		'state.showHiddenContent',
 		false,
@@ -123,7 +114,7 @@ function SelectedAddressList({
 				showHiddenContent={showHiddenContent}
 				onClick={() => setShowHiddenContent('toggle')}
 			>
-				<DownArrowIcon />
+				{/* <DownArrowIcon /> */}
 			</div>
 		</div>
 	);

@@ -1,4 +1,4 @@
-import KycCompletedIcon from '../../icons/kyc-completed.svg';
+import { IcCTick } from '@cogoport/icons-react';
 
 import styles from './styles.module.css';
 
@@ -6,7 +6,7 @@ function KycCompleted() {
 	return (
 		<div className={styles.main_container}>
 			<div className={styles.container}>
-				<KycCompletedIcon
+				<IcCTick
 					style={{ width: 145, height: 145, marginBottom: 24 }}
 				/>
 				<div className={styles.heading}>KYC Submission Completed!</div>

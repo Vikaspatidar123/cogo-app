@@ -1,10 +1,11 @@
-import { useRequest } from '@cogo/commons/hooks';
-import getGeoConstants from '@cogo/globalization/constants/geo';
-import GLOBAL_CONSTANTS from '@cogo/globalization/constants/globals.json';
-import { useSelector } from '@cogo/store';
-import { toast } from '@cogoport/front/components/admin';
-import { get, isEmpty, startCase } from '@cogoport/front/utils';
+import { Toast } from '@cogoport/components';
+import { getByKey, isEmpty, startCase } from '@cogoport/utils';
 import { useState } from 'react';
+
+import { useRequest } from '@/packages/request';
+import { useSelector } from '@/packages/store';
+import getGeoConstants from '@/ui/commons/constants/geo';
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
 const geo = getGeoConstants();
 
@@ -15,10 +16,10 @@ const formatSavedServicesInvoiceTo = ({ services }) => {
 	};
 
 	return (services || []).map((service) => {
-		const id = get(service, 'id');
-		const tradeType = get(service, 'trade_type');
+		const id = getByKey(service, 'id');
+		const tradeType = getByKey(service, 'trade_type');
 
-		let serviceName =			get(service, 'service_name') || get(service, 'service_type');
+		let serviceName =	getByKey(service, 'service_name') || getByKey(service, 'service_type');
 		if (tradeType in TRADE_TYPE_MAPPING) {
 			serviceName = `${TRADE_TYPE_MAPPING[tradeType]}_${serviceName}`;
 		}
@@ -42,7 +43,7 @@ const formatServices = ({ savedServicesInvoiceTo, invoicingPartyServices }) => {
 
 		return {
 			...invoicingPartyService,
-			label: get(serviceIdHash, `[${service_id}].label`) || '',
+			label: getByKey(serviceIdHash, `[${service_id}].label`) || '',
 		};
 	});
 };
@@ -78,9 +79,9 @@ const useInvoicingParties = (props) => {
 
 	const { detail, invoice, refetchGetCheckout } = props;
 
-	const savedInvoicingParties = get(invoice, 'billing_addresses') || [];
+	const savedInvoicingParties = getByKey(invoice, 'billing_addresses') || [];
 
-	const services = get(detail, 'services') || {};
+	const services = getByKey(detail, 'services') || {};
 
 	const savedServicesInvoiceTo = formatSavedServicesInvoiceTo({
 		services: Object.values(services),
@@ -95,7 +96,7 @@ const useInvoicingParties = (props) => {
 		...savedInvoicingParty,
 		services: formatServices({
 			savedServicesInvoiceTo,
-			invoicingPartyServices: get(savedInvoicingParty, 'services') || [],
+			invoicingPartyServices: getByKey(savedInvoicingParty, 'services') || [],
 		}),
 		state: {
 			isSaved           : true,
@@ -131,7 +132,10 @@ const useInvoicingParties = (props) => {
 		return mode;
 	});
 
-	const api = useRequest('post', false, scope)('/update_checkout');
+	const [{ loading }, trigger] = useRequest({
+		url    : '/update_checkout',
+		method : 'post',
+	}, { manual: true });
 
 	const getPayload = ({ newInvoicingPartiesState }) => {
 		const invoicingPartiesPayload = [];
@@ -216,11 +220,11 @@ const useInvoicingParties = (props) => {
 		try {
 			const payload = getPayload({ newInvoicingPartiesState });
 
-			await api.trigger({
+			await trigger({
 				data: payload,
 			});
 
-			toast.success('Invoicing Party saved successfully');
+			Toast.success('Invoicing Party saved successfully');
 
 			(invoicingParties || []).forEach((invoicingParty) => {
 				setShowHiddenContent({ id: invoicingParty?.id, action: 'false' });
@@ -231,21 +235,21 @@ const useInvoicingParties = (props) => {
 			console.log('error :: ', error);
 
 			if (error?.data?.credit) {
-				toast.error(error?.data?.credit, {
+				Toast.error(error?.data?.credit, {
 					autoClose       : 7000,
 					hideProgressBar : false,
 					closeOnClick    : true,
 					pauseOnHover    : true,
 				});
 			} else if (error?.data?.payment_mode) {
-				toast.error(error?.data?.payment_mode, {
+				Toast.error(error?.data?.payment_mode, {
 					autoClose       : 7000,
 					hideProgressBar : false,
 					closeOnClick    : true,
 					pauseOnHover    : true,
 				});
 			} else {
-				toast.error(error?.data?.base);
+				Toast.error(error?.data?.base);
 			}
 		}
 	};
@@ -330,7 +334,7 @@ const useInvoicingParties = (props) => {
 			const showHiddenContentActionMapping = {
 				true   : true,
 				false  : false,
-				toggle : !(get(invoicingParty, 'state.showHiddenContent') || false),
+				toggle : !(getByKey(invoicingParty, 'state.showHiddenContent') || false),
 			};
 
 			const updatedInvoicingParty = {
@@ -457,7 +461,7 @@ const useInvoicingParties = (props) => {
 
 	return {
 		savedServicesInvoiceTo,
-		invoicingParties : filteredInvoicingParties,
+		invoicingParties: filteredInvoicingParties,
 		showAddInvoicingPartyModal,
 		setShowAddInvoicingPartyModal,
 		onSelectInvoicingParty,
@@ -466,7 +470,7 @@ const useInvoicingParties = (props) => {
 		onChangeInvoicingPartyServices,
 		deleteInvoicingParty,
 		saveInvoicingPartiesServicesAndInvoiceCurrency,
-		loading          : api.loading,
+		loading,
 		paymentModes,
 		setPaymentModes,
 	};

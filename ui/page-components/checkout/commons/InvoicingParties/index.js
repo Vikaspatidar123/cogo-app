@@ -1,14 +1,7 @@
-import EmptyState from '@cogo/commons/EmptyState';
-import { isEmpty } from '@cogoport/front/utils';
+import { isEmpty } from '@cogoport/utils';
 
 import AddInvoicingPartyModal from './AddInvoicingPartyModal';
 import SelectedAddressList from './SelectedAddressList';
-// import {
-// 	Container,
-// 	Header,
-// 	Title,
-// 	SelectedAddressListContainer,
-// } from './styles';
 import styles from './styles.module.css';
 import useInvoicingParties from './useInvoicingParties';
 
@@ -50,11 +43,12 @@ function InvoicingParties(props) {
 
 			<div className={styles.selected_address_list_container}>
 				{invoicingParties.length === 0 ? (
-					<EmptyState
-						height="200px"
-						width="100%"
-						bottomText="No billing addresses/invoicing parties found, add to proceed"
-					/>
+					<>No billing addresses/invoicing parties found, add to proceed</>
+					// <EmptyState
+					// 	height="200px"
+					// 	width="100%"
+					// 	bottomText="No billing addresses/invoicing parties found, add to proceed"
+					// />
 				) : null}
 
 				{invoicingParties.map((invoicingParty, index) => {

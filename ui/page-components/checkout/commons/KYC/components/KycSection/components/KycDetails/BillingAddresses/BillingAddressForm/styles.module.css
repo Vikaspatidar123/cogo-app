@@ -81,14 +81,14 @@
 	display: flex;
 	flex-direction: column;
 
-	& .form-item-container {
+	.form-item-container {
 		display: flex;
 		flex-direction: column;
 		margin-bottom: 16px;
 	}
 
-	& .form-item-label,
-	& .business-checkbox-label {
+	.form-item-label,
+	.business-checkbox-label {
 		margin-top: 0;
 		margin-bottom: 0;
 		margin-bottom: 4px;
@@ -97,11 +97,11 @@
 		color: #828282;
 	}
 
-	& .business-checkbox-label {
+	.business-checkbox-label {
 		margin-bottom: unset;
 	}
 
-	& .core-ui-input-root {
+	.core-ui-input-root {
 		padding: 12px;
 
 		& .core-ui-input-suffix {
@@ -112,16 +112,16 @@
 		}
 	}
 
-	& .core-ui-select__control {
+	.core-ui-select__control {
 		height: 40px;
 	}
 
-	& .err-msz {
+	.err-msz {
 		padding-left: 0;
 	}
 
-	& input.toUpperCase,
-	& .toUpperCase input {
+	.input.toUpperCase,
+	.toUpperCase input {
 		text-transform: uppercase;
 	}
 
@@ -131,11 +131,11 @@
 
 	margin-top: 16px;
 
-	& .form-lower-label {
+	.form-lower-label {
 		color: #67c676;
 	}
 
-	& .core-ui-Pills-container {
+	.core-ui-Pills-container {
 		margin: -4px;
 
 		& .core-ui-Pills-item {
@@ -149,8 +149,45 @@
 		}
 	}
 
-	& input.toUpperCase,
-	& .toUpperCase input {
+	.input.toUpperCase,
+	.toUpperCase input {
 		text-transform: uppercase;
+	}
+}
+
+.lable {
+	margin: 8px 0;
+	font-size: 12px;
+	font-weight: 700;
+	line-height: 16px;
+	color: rgb(130 130 130);
+}
+
+.errors {
+	min-height: 16px;
+	margin-top: 4px;
+	font-size: 12px;
+	line-height: 16px;
+	color: #cb6464;
+}
+
+.layout {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
+
+.field {
+	:global {
+		.ui_upload_droparea_container {
+			flex-direction: row;
+			min-height: 20px;
+			padding: 0;
+
+			svg {
+				width: 40px;
+				height: 40px;
+			}
+		}
 	}
 }

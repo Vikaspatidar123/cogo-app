@@ -1,4 +1,4 @@
-import { startCase } from '@cogoport/front/utils';
+import { startCase } from '@cogoport/utils';
 import React from 'react';
 
 import DocIcon from '../icons/doc-icon.svg';
@@ -43,7 +43,14 @@ function BillingAddressItem({
 						<div className={styles.DocText}>{docName}</div>
 					</div>
 					<div>
-						<div className={styles.LinkText} onClick={handleOpenDocument}>View</div>
+						<div
+							className={styles.LinkText}
+							role="presentation"
+							onClick={handleOpenDocument}
+						>
+							View
+
+						</div>
 					</div>
 				</div>
 			</div>

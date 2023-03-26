@@ -4,9 +4,9 @@
 	padding: 4px 16px;
 
 	.core-ui-select__control {
-		background: #f9f9f9 !important;
 		min-width: 125px;
 		max-width: 150px;
+		background: #f9f9f9 !important;
 		border: none !important;
 	}
 
@@ -23,7 +23,7 @@
 		border-style: none !important;
 	}
 
-	.tippy-arrow:before {
+	.tippy-arrow::before {
 		border-style: none !important;
 	}
 
@@ -33,14 +33,14 @@
 }
 
 .content {
-	font-weight: 400;
 	font-size: 12px;
+	font-weight: 400;
 	color: #393f70;
 }
 
-.styled_text { 
+.styled_text {
 	font-size: 12px;
-	text-decoration: underline;
 	color: #5936f0;
+	text-decoration: underline;
 	cursor: pointer;
 }

@@ -1,12 +1,10 @@
-import global from '@cogo/commons/constants/global';
-import { useRequest } from '@cogo/commons/hooks';
-import { useSelector } from '@cogo/store';
-import { useFormCogo } from '@cogoport/front/hooks';
-import { isEmpty } from '@cogoport/front/utils';
-import { getByKey } from '@cogoport/utils';
+import { getByKey, isEmpty } from '@cogoport/utils';
 import { useEffect } from 'react';
 
 import { getControls } from '../utils/controls';
+
+import { useForm } from '@/packages/forms';
+import { useRequest } from '@/packages/request';
 
 const { INDIA_COUNTRY_ID } = global;
 
@@ -22,10 +20,6 @@ const useBillingAddressForm = ({
 	channelPartnerDetails,
 }) => {
 	const {
-		general: { scope },
-	} = useSelector((reduxState) => reduxState);
-
-	const {
 		COMPONENT_KEYS: { ACCOUNT_INFORMATION },
 	} = CONSTANTS;
 
@@ -39,20 +33,44 @@ const useBillingAddressForm = ({
 		apiName = '/create_channel_partner_address';
 	}
 
-	const billingAddressApi = useRequest('post', false, scope)(apiName);
+	const [{ loading: billingLoading }, billingAddressApi] = useRequest({
+		url    : `/${apiName}`,
+		method : 'post',
+	}, { manual: true });
 
-	const getAddressFromGstinApi = useRequest(
-		'get',
-		false,
-		scope,
-	)('/get_business');
+	const [{ loading }, getAddressFromGstinApi] = useRequest({
+		url    : '/get_business',
+		method : 'get',
+	}, { manual: true });
 
 	const newControls = getControls({ countryId });
 
-	const formProps = useFormCogo(newControls);
+	const formProps = useForm(newControls);
 	const { formState, setError, watch, getValues, setValues } = formProps;
 
 	const watchGstList = watch('gst_list') || '';
+
+	const getGstAddress = async () => {
+		try {
+			const response = await getAddressFromGstinApi.trigger({
+				params: {
+					identity_number : watchGstList,
+					identity_type   : 'tax',
+					country_code    : 'IN',
+					provider_name   : 'cogoscore',
+				},
+			});
+
+			setValues({
+				...getValues(),
+				gst_number : watchGstList,
+				pincode    : getByKey(response, 'data.addresses[0].pincode') || '',
+				address    : getByKey(response, 'data.addresses[0].address') || '',
+			});
+		} catch (error) {
+			console.log('error :: ', error);
+		}
+	};
 
 	useEffect(() => {
 		if (!watchGstList) {
@@ -61,7 +79,7 @@ const useBillingAddressForm = ({
 
 		const values = getValues();
 
-		const { identity_number, addresses = [] } =			getAddressFromGstinApi.data || {};
+		const { identity_number, addresses = [] } =	getAddressFromGstinApi.data || {};
 
 		if (identity_number === watchGstList) {
 			setValues({
@@ -86,28 +104,6 @@ const useBillingAddressForm = ({
 		getGstAddress();
 	}, [watchGstList]);
 
-	const getGstAddress = async () => {
-		try {
-			const response = await getAddressFromGstinApi.trigger({
-				params: {
-					identity_number : watchGstList,
-					identity_type   : 'tax',
-					country_code    : 'IN',
-					provider_name   : 'cogoscore',
-				},
-			});
-
-			setValues({
-				...getValues(),
-				gst_number : watchGstList,
-				pincode    : getByKey(response, 'data.addresses[0].pincode') || '',
-				address    : getByKey(response, 'data.addresses[0].address') || '',
-			});
-		} catch (error) {
-			console.log('error :: ', error);
-		}
-	};
-
 	const onSubmit = async ({
 		values,
 		onSuccess = () => {},
@@ -120,7 +116,7 @@ const useBillingAddressForm = ({
 				? 'importer_exporter'
 				: 'service_provider';
 
-			const verification_data =				verification.find((data) => data.account_type === account_type) || {};
+			const verification_data =	verification.find((data) => data.account_type === account_type) || {};
 
 			const payload = {
 				partner_id : channelPartnerDetails.id,
@@ -142,11 +138,11 @@ const useBillingAddressForm = ({
 				verification_id: verification_data.id,
 			};
 
-			const response = await billingAddressApi.trigger({
+			const response = await billingAddressApi({
 				data: payload,
 			});
 
-			const previousSavedBillingAddresses =				getByKey(state, `[${ACCOUNT_INFORMATION}].addressDetails.formList`) || [];
+			const previousSavedBillingAddresses = getByKey(state, `[${ACCOUNT_INFORMATION}].addressDetails.formList`) || [];
 
 			if (isEmpty(previousSavedBillingAddresses)) {
 				setKycDetails((previousState) => ({
@@ -278,7 +274,7 @@ const useBillingAddressForm = ({
 		onSubmit,
 		userControls : newControls,
 		onClickCancelButton,
-		loading      : billingAddressApi.loading,
+		loading      : billingLoading,
 	};
 };
 

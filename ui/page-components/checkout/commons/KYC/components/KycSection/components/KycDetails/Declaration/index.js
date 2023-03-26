@@ -1,8 +1,5 @@
+import { Button, Checkbox } from '@cogoport/components';
 
-import { Button } from '@cogoport/front/components/admin';
-import Checkbox from '@cogoport/front/components/admin/CheckBox';
-
-// import { LayoutContainer, Body } from './styles';
 import styles from './styles.module.css';
 import useDeclaration from './useDeclaration';
 
@@ -30,7 +27,7 @@ function Declaration({
 	});
 
 	return (
-		<div style={{ display: 'flex', flexdirection:"column"}}>
+		<div style={{ display: 'flex', flexdirection: 'column' }}>
 			<div className={styles.layout_container}>
 				<Checkbox
 					className="primary lg"
@@ -48,7 +45,7 @@ function Declaration({
 				</div>
 			</div>
 
-			<div style={{ display: 'flex', justifyContent:"flex-end"}}>
+			<div style={{ display: 'flex', justifyContent: 'flex-end' }}>
 				<Button
 					disabled={apiLoading || disableSubmitButton}
 					onClick={handleSubmitKyc}

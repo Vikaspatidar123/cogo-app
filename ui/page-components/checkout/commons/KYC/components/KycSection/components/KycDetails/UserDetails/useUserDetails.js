@@ -49,7 +49,8 @@ const useUserDetails = ({
 		handleSubmit = () => {},
 		formState = {},
 		setValue = () => {},
-	} = useForm(controls);
+		control,
+	} = useForm();
 
 	useEffect(() => {
 		getChannelPartnerUsers();
@@ -211,6 +212,7 @@ const useUserDetails = ({
 		handleSubmit,
 		onSubmit,
 		controls,
+		control,
 		createChannelPartnerVerificationDocumentLoading:
 		createChannelApiLoading.loading,
 		verifyEmailId,

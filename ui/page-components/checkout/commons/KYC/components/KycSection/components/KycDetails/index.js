@@ -1,9 +1,10 @@
 import { Tooltip } from '@cogoport/components';
+import { IcCFcrossInCircle } from '@cogoport/icons-react';
 
-import RejectedIcon from '../../icons/alert-rejected.svg';
-import CaretDown from '../../icons/caret-down.svg';
-import CaretUp from '../../icons/caret-up.svg';
-import InfoIcon from '../../icons/info-icon.svg';
+// import RejectedIcon from '../../icons/alert-rejected.svg';
+// import CaretDown from '../../icons/caret-down.svg';
+// import CaretUp from '../../icons/caret-up.svg';
+// import InfoIcon from '../../icons/info-icon.svg';
 
 import useKycDetails from './hooks/useKycDetails';
 import styles from './styles.module.css';
@@ -44,7 +45,7 @@ function KycDetails({
 
 			<div className={styles.rejected_label}>
 				<div className={styles.header}>
-					<RejectedIcon style={{ width: 20, height: 20, marginRight: 8 }} />
+					<IcCFcrossInCircle style={{ width: 20, height: 20, marginRight: 8 }} />
 
 					<div className={styles.rejected_text}>Your KYC has been Rejected!</div>
 
@@ -76,7 +77,7 @@ function KycDetails({
 
 					const showHiddenComponentContent = showHiddenComponentContents[key];
 
-					const status =						TAG_COMPONENT_MAPPING[(verification_progress || {})[key]] || null;
+					const status = TAG_COMPONENT_MAPPING[(verification_progress || {})[key]] || null;
 
 					return (
 						<div
@@ -106,7 +107,7 @@ function KycDetails({
 										placement="top"
 									>
 										<div>
-											<InfoIcon style={{ marginLeft: 8, marginBottom: -2 }} />
+											{/* <InfoIcon style={{ marginLeft: 8, marginBottom: -2 }} /> */}
 										</div>
 									</Tooltip>
 								</div>
@@ -114,20 +115,19 @@ function KycDetails({
 								<div className={styles.flex}>
 									{status}
 
-									{showHiddenComponentContent ? <CaretUp /> : <CaretDown />}
+									{/* {showHiddenComponentContent ? <CaretUp /> : <CaretDown />} */}
 								</div>
 							</div>
 
 							{showHiddenComponentContent && (
-								<></>
-								// <FadeIn type="enter">
-								// 	<div>
-								// 		<Component
-								// 			key={`${key}__${showHiddenComponentContent}`}
-								// 			{...(componentProps[key] || {})}
-								// 		/>
-								// 	</div>
-								// </FadeIn>
+							// <FadeIn type="enter">
+								<div>
+									<Component
+										key={`${key}__${showHiddenComponentContent}`}
+										{...(componentProps[key] || {})}
+									/>
+								</div>
+							// </FadeIn>
 							)}
 						</div>
 					);

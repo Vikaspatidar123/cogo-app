@@ -4,7 +4,7 @@ import { startCase } from '@cogoport/utils';
 
 import ApplicableStageOptions from './ApplicableStageOptions';
 import useHandleUpdateStage from './hooks/useHandleUpdateStage';
-import styles from './styles.modules.css';
+import styles from './styles.module.css';
 
 import Spinner from '@/ui/commons/components/Spinner';
 import getGeoConstants from '@/ui/commons/constants/geo';

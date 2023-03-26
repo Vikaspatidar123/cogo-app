@@ -4,7 +4,7 @@
 	height: 44px;
 }
 
-.container  {
+.container {
 	display: flex;
 	justify-content: space-between;
 }

@@ -1,5 +1,3 @@
-import global from '@cogo/commons/constants/global';
-
 import registrationNumbersMapping from '../../utils/registrationNumbersMapping';
 
 const { INDIA_COUNTRY_ID } = global;

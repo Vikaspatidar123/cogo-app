@@ -5,6 +5,8 @@ import { Select, Button } from '@cogoport/components';
 import styles from './styles.module.css';
 import useSigningAuthority from './useSigningAuthority';
 
+import getField from '@/packages/forms/Controlled';
+
 function SigningAuthority({
 	channelPartnerDetails = {},
 	kycDetails = {},
@@ -18,11 +20,13 @@ function SigningAuthority({
 		selectedUser,
 		updateUserAPILoading = false,
 		selectSigningAuthority = () => {},
-		fields = {},
 		formState = {},
 		inviteUserAPILoading = false,
 		controls = [],
+		control,
 	} = useSigningAuthority({ channelPartnerDetails, kycDetails, setKycDetails });
+
+	const { errors = {} } = formState;
 
 	return (
 		<div className={styles.flex}>
@@ -61,7 +65,25 @@ function SigningAuthority({
 					<div />
 				</div>
 
-				{/* <Layout controls={controls} fields={fields} errors={formState.errors} /> */}
+				<div className={styles.layout_container}>
+					<div className={styles.layout}>
+						{controls.map((item) => {
+							const Element = getField(item.type);
+							return (
+								<div className={styles.field}>
+									<div className={styles.lable}>{item.label}</div>
+									<Element {...item} control={control} />
+									{errors && (
+										<div className={styles.errors}>
+											{errors[item?.name]?.message}
+										</div>
+									)}
+								</div>
+							);
+						})}
+					</div>
+
+				</div>
 
 				<div style={{ display: 'flex', justifyContent: 'flex-end', margin: '16px 0' }}>
 					<Button

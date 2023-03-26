@@ -1,6 +1,6 @@
 import { Button } from '@cogoport/components';
 
-import KycIcon from '../../icons/kyc-icon.svg';
+// import KycIcon from '../../icons/kyc-icon.svg';
 
 import styles from './styles.module.css';
 import useKycIntro from './useKycIntro';
@@ -18,7 +18,7 @@ function KycIntro({
 
 	return (
 		<div className={styles.container}>
-			<KycIcon style={{ width: 170, height: 145, marginLeft: -6 }} />
+			{/* <KycIcon style={{ width: 170, height: 145, marginLeft: -6 }} /> */}
 
 			<div className={styles.button_container}>
 				<Button

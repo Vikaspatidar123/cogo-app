@@ -1,44 +1,45 @@
 .container {
 	padding: 24px;
-	background-color: rgba(247, 255, 255, 0.178);
 	margin-top: 24px;
+	background-color: rgb(247 255 255 / 17.8%);
+
 	@media (max-width: _md) {
-		margin-top: 16px;
 		width: calc(100% + 32px);
-		margin-left: -16px;
 		padding: 16px 16px 0;
+		margin-top: 16px;
+		margin-left: -16px;
 	}
 }
 
 .heading {
 	margin: 0;
 	font-size: 16px;
+	font-style: normal;
 	font-weight: bold;
 	font-stretch: normal;
-	font-style: normal;
 	line-height: 1.5;
-	letter-spacing: normal;
 	color: _grey.primary_text;
+	letter-spacing: normal;
 }
 
 .ul {
-	margin: 0;
-	padding: 0;
-	outline: none;
-	list-style: none;
 	display: flex;
 	flex-wrap: wrap;
+	padding: 0;
+	margin: 0;
+	list-style: none;
+	outline: none;
 }
 
 .li {
-	height: 48px;
-	border-radius: 24px;
-	margin-right: 16px;
 	display: flex;
-	width: 140px;
 	align-items: center;
-	border: 1px solid _blue_primary.default;
-	color: #1a4696;
 	justify-content: center;
+	width: 140px;
+	height: 48px;
 	margin: 16px 16px 16px 0;
+	margin-right: 16px;
+	color: #1a4696;
+	border: 1px solid _blue_primary.default;
+	border-radius: 24px;
 }

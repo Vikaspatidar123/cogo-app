@@ -5,7 +5,7 @@
 	border-radius: 4px;
 	background-color: #ffffff;
 
-	margin-bottom: ${(props) => props.marginBottom};
+	/* margin-bottom: ${(props) => props.marginBottom}; */
 }
 
 .content_visible{
@@ -38,11 +38,11 @@
 	},
 }); */
 
-export const ContentHidden = styled.div`
+.content_hidden {
 	border-top: 1px solid #cddbff;
-`;
+}
 
-export const HiddenContentTogglerContainer = styled.div`
+.hidden_content_toggler_container {
 	cursor: pointer;
 
 	background-color: #f2f6ff;
@@ -61,4 +61,4 @@ export const HiddenContentTogglerContainer = styled.div`
 		transform: ${(props) => `rotate(${props.showHiddenContent ? '180deg' : '0deg'});`};
 		transition: transform 0.5s;
 	}
-`;
+}

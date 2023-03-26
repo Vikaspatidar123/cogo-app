@@ -1,4 +1,4 @@
-import { getCountryId } from '@cogo/commons/utils/getCountryId';
+import { getCountryId } from '@/ui/commons/utils/getCountryId';
 
 const VIETNAM_COUNTRY_ID = getCountryId('VN');
 

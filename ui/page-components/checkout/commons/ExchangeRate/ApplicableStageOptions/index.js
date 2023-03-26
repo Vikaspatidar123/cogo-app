@@ -45,7 +45,7 @@ const ApplicableStageOptions = ({
 				key={selectedValue}
 			>
 				<div
-					className={syles.options_container}
+					className={styles.options_container}
 					role="presentation"
 					onClick={() => handleUpdateStage(selectedValue)}
 				>

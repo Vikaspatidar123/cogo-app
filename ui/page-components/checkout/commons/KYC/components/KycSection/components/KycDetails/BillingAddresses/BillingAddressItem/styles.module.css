@@ -1,30 +1,30 @@
-
-
-.container{
-	padding: 10px 15px;
-	border-radius: 8px;
+.container {
 	display: flex;
+	padding: 10px 15px;
 	background-color: #f2f2f2;
+	border-radius: 8px;
 
-	margin-bottom: ${(props) => `${props.marginBottom}px`};
+	/* margin-bottom: ${(props) => `${props.marginBottom}px`}; */
 }
 
-.button_group{
+.button_group {
 	position: absolute;
 	top: 16px;
 	right: 16px;
 	display: flex;
 	flex-direction: row;
 	gap: 8px;
+
 	& .svg-container {
 		display: flex;
 		flex-direction: row;
-		justify-content: center;
 		align-items: center;
+		justify-content: center;
+
 		& svg {
-			cursor: pointer;
 			width: 16px;
 			height: 16px;
+			cursor: pointer;
 		}
 	}
 
@@ -33,50 +33,50 @@
 	}
 }
 
-.index_container{
+.index_container {
 	width: 20px;
 }
 
 .index {
-	background: #e0e0e0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 	width: 20px;
 	height: 20px;
-	border-radius: 10px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
 	font-size: 14px;
+	background: #e0e0e0;
+	border-radius: 10px;
 }
 
-.address_container{
+.address_container {
+	width: 100%;
+	margin: 0 32px 0 16px;
 	font-size: 12px;
 	line-height: 16px;
-	margin: 0 32px 0 16px;
-	width: 100%;
 
 	.gst-number {
 		margin-top: 16px;
 	}
 }
 
-.doc_container{
-	background: #ffffff;
-	border: 1px solid #e0e0e0;
-	border-radius: 4px;
-	padding: 8px 20px 6px 20px;
-	margin: 8px 0;
+.doc_container {
 	display: flex;
 	justify-content: space-between;
+	padding: 8px 20px 6px;
+	margin: 8px 0;
+	background: #fff;
+	border: 1px solid #e0e0e0;
+	border-radius: 4px;
 }
 
-.docText{
-	font-weight: 400;
+.docText {
 	font-size: 12px;
+	font-weight: 400;
 }
 
 .link_text {
-	font-weight: 500;
 	font-size: 10px;
+	font-weight: 500;
 	color: #034afd;
 	text-decoration-line: underline;
 	cursor: pointer;

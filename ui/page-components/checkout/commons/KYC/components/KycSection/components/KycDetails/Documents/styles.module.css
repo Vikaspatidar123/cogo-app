@@ -1,6 +1,4 @@
 .layout_container {
-	background: #f9f9f9;
-	border-radius: 10px;
 	padding: 16px 32px 32px;
 	margin: 16px 0;
 	background: #f9f9f9;
@@ -14,5 +12,42 @@
 
 	.form-lower-label {
 		color: #10a016;
+	}
+}
+
+.lable {
+	margin: 8px 0;
+	font-size: 12px;
+	font-weight: 700;
+	line-height: 16px;
+	color: rgb(130 130 130);
+}
+
+.errors {
+	min-height: 16px;
+	margin-top: 4px;
+	font-size: 12px;
+	line-height: 16px;
+	color: #cb6464;
+}
+
+.layout {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
+
+.field {
+	:global {
+		.ui_upload_droparea_container {
+			flex-direction: row;
+			min-height: 20px;
+			padding: 0;
+
+			svg {
+				width: 40px;
+				height: 40px;
+			}
+		}
 	}
 }

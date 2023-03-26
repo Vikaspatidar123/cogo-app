@@ -1,5 +1,3 @@
-// import Layout from '@cogo/business-modules/form/Layout';
-
 import { Select, Button, Popover } from '@cogoport/components';
 import { isEmpty } from '@cogoport/utils';
 
@@ -10,6 +8,8 @@ import useSendMobileVerificationEmail from '../hooks/useSendMobileVerificationEm
 import MobileNoVerificationModal from './MobileVerificationModal';
 import styles from './styles.module.css';
 import useUserDetails from './useUserDetails';
+
+import getField from '@/packages/forms/Controlled';
 
 function UserDetails({
 	channelPartnerDetails = {},
@@ -22,8 +22,8 @@ function UserDetails({
 		handleChangeUser = () => {},
 		setShowMobileVerificationModal = () => {},
 		showMobileVerificationModal,
-		fields = {},
 		formState = {},
+		control,
 		handleSubmit = () => {},
 		onSubmit = () => {},
 		createChannelPartnerVerificationDocumentLoading = false,
@@ -53,6 +53,8 @@ function UserDetails({
 			<div className={styles.link_container}>{mobileVerificationLink}</div>
 		</div>
 	);
+
+	const { errors = {} } = formState;
 
 	return (
 		<div style={{ display: 'flex', flexDirection: 'column' }}>
@@ -191,13 +193,24 @@ function UserDetails({
 					</div>
 				)}
 
-				{/* {showUserDetailsForm ? (
-					<Layout
-						controls={controls}
-						fields={fields}
-						errors={formState.errors}
-					/>
-				) : null} */}
+				{showUserDetailsForm ? (
+					<div className={styles.layout}>
+						{controls.map((item) => {
+							const Element = getField(item.type);
+							return (
+								<div className={styles.field}>
+									<div className={styles.lable}>{item.label}</div>
+									<Element {...item} control={control} />
+									{errors && (
+										<div className={styles.errors}>
+											{errors[item?.name]?.message}
+										</div>
+									)}
+								</div>
+							);
+						})}
+					</div>
+				) : null}
 			</div>
 
 			{showUserDetailsForm ? (

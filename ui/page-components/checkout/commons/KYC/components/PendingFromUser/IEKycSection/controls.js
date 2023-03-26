@@ -1,6 +1,6 @@
-import Icon from '../../../icons/upload-icon.svg';
+import { IcMCloudUpload } from '@cogoport/icons-react';
 
-const uploadIcon = () => <Icon size={3.0} />;
+const uploadIcon = () => <IcMCloudUpload size={3.0} />;
 
 const controls = [
 	{

@@ -1,37 +1,71 @@
-import styled from '@cogoport/front/styled';
-
-export const LayoutContainer = styled.div`
-	background: #f9f9f9;
-	border-radius: 10px;
+.layout_container {
 	padding: 32px;
 	margin: 16px 0;
+	background: #f9f9f9;
+	border-radius: 10px;
 
 	.form-item-label {
-		margin: 16px 0 8px 0;
+		margin: 16px 0 8px;
 		font-size: 10px;
-		color: #333333;
+		color: #333;
 	}
-`;
+}
 
-export const SelectContainer = styled.div`
+.select_container {
 	width: 32.4%;
-`;
+}
 
-export const Separator = styled.div`
-	border-bottom: 1px solid #e0e0e0;
+.separator {
 	width: 50%;
-`;
+	border-bottom: 1px solid #e0e0e0;
+}
 
-export const SeparatorText = styled.div`
-	font-weight: 500;
-	font-size: 18px;
+.separator_text {
 	z-index: 10;
-	color: #000000;
 	margin: 8px;
-`;
-
+	font-size: 18px;
+	font-weight: 500;
+	color: #000;
+}
 
 .flex {
 	display: flex;
 	flex-direction: column;
+}
+
+.lable {
+	margin: 8px 0;
+	font-size: 12px;
+	font-weight: 700;
+	line-height: 16px;
+	color: rgb(130 130 130);
+}
+
+.errors {
+	min-height: 16px;
+	margin-top: 4px;
+	font-size: 12px;
+	line-height: 16px;
+	color: #cb6464;
+}
+
+.layout {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
+
+.field {
+	:global {
+		.ui_upload_droparea_container {
+			flex-direction: row;
+			min-height: 20px;
+			padding: 0;
+
+			svg {
+				width: 40px;
+				height: 40px;
+			}
+		}
+	}
 }

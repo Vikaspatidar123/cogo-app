@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 
 import controls from './invite-signatory-controls';
 
+import { useForm } from '@/packages/forms';
 import getApiErrorString from '@/packages/forms/utils/getApiError';
 import { useRequest } from '@/packages/request';
 
@@ -29,7 +30,7 @@ const useSigningAuthority = ({
 		method : 'post',
 	}, { manual: true });
 
-	const formProps = useForm();
+	const { control, formProps } = useForm();
 
 	const {
 		fields = {},
@@ -144,6 +145,7 @@ const useSigningAuthority = ({
 		fields,
 		formState,
 		controls,
+		control,
 		inviteUserAPILoading : inviteUserAPILoaoding,
 	};
 };

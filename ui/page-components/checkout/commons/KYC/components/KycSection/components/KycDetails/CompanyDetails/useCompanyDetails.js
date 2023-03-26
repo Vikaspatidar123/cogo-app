@@ -34,7 +34,6 @@ const useCompanyDetails = ({
 	}, { manual: true });
 
 	const {
-		fields = {},
 		handleSubmit = () => {},
 		formState = {},
 		watch,
@@ -44,8 +43,8 @@ const useCompanyDetails = ({
 	const countryId = watch('country_id');
 
 	const newFields = {};
-	Object.keys(fields).forEach((key) => {
-		let newField = fields[key];
+	Object.keys(control).forEach((key) => {
+		let newField = control[key];
 
 		if (key === 'registration_number') {
 			if (countryId === INDIA_COUNTRY_ID) {
@@ -112,6 +111,7 @@ const useCompanyDetails = ({
 	};
 
 	return {
+		control,
 		controls,
 		fields: newFields,
 		handleSubmit,

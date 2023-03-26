@@ -1,14 +1,14 @@
-import Layout from '@cogo/business-modules/form/Layout';
-import global from '@cogo/commons/constants/global';
-import { Button } from '@cogoport/front/components/admin';
-import Checkbox from '@cogoport/front/components/admin/CheckBox';
-import { isEmpty } from '@cogoport/front/utils';
+import { Button, Checkbox } from '@cogoport/components';
+import { isEmpty } from '@cogoport/utils';
 import React from 'react';
 
 import DocIcon from '../icons/doc-icon.svg';
 
 import styles from './styles.module.css';
 import useBillingAddressForm from './useBillingAddressForm';
+
+import { useForm } from '@/packages/forms';
+import getField from '@/packages/forms/Controlled';
 
 const { INDIA_COUNTRY_ID } = global;
 
@@ -43,7 +43,6 @@ function BillingAddressForm(props) {
 
 	const {
 		userControls = [],
-		formProps = () => {},
 		errors = {},
 		onSubmit = () => {},
 		onClickCancelButton = () => {},
@@ -54,7 +53,10 @@ function BillingAddressForm(props) {
 		countryId,
 	});
 
-	const { fields = {}, handleSubmit = () => {} } = formProps;
+	const {
+		handleSubmit = () => {},
+		control,
+	} = useForm();
 
 	let isCheckboxVisible = false;
 	if (categoryTypes.includes('trucking') || categoryTypes.includes('other')) {
@@ -92,12 +94,25 @@ function BillingAddressForm(props) {
 						</div>
 					) : null}
 
-					<Layout
-						controls={userControls}
-						fields={fields}
-						errors={errors}
-						showElements={showElements}
-					/>
+					<div className={styles.layout}>
+						{userControls.map((item) => {
+							const Element = getField(item.type);
+							const show = showElements[item.name];
+							return (
+								show && (
+									<div className={styles.field}>
+										<div className={styles.lable}>{item.label}</div>
+										<Element {...item} control={control} />
+										{errors && (
+											<div className={styles.errors}>
+												{errors[item?.name]?.message}
+											</div>
+										)}
+									</div>
+								)
+							);
+						})}
+					</div>
 
 					{isGstApplicable ? (
 						<>

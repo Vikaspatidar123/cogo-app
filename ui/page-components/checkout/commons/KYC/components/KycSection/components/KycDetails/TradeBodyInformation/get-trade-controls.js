@@ -3,7 +3,7 @@ const getTradeControls = (channelPartnerDetails) => [
 		id            : 'cp-lsp__onboarding__organizationDetails__trade_bodies',
 		label         : 'Trade Body',
 		name          : 'trade_bodies',
-		type          : 'checkbox-tiles',
+		type          : 'checkbox',
 		multiple      : true,
 		autoCloseMenu : false,
 		span          : 12,

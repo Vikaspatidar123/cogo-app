@@ -1,9 +1,9 @@
-import Layout from '@cogo/business-modules/form/Layout';
-import { Button } from '@cogoport/front/components/admin';
+import { Button } from '@cogoport/components';
 
-// import { LayoutContainer } from './styles';
 import styles from './styles.module.css';
 import useCompanyDetails from './useCompanyDetails';
+
+import getField from '@/packages/forms/Controlled';
 
 function CompanyDetails({
 	channelPartnerDetails = {},
@@ -11,8 +11,8 @@ function CompanyDetails({
 	setKycDetails = () => {},
 }) {
 	const {
+		control,
 		controls = [],
-		fields = {},
 		handleSubmit = () => {},
 		onSubmit = () => {},
 		loading = false,
@@ -23,6 +23,8 @@ function CompanyDetails({
 		kycDetails,
 	});
 
+	const { errors = {} } = formState;
+
 	return (
 		<div style={{ display: 'flex', flexDirection: 'column' }}>
 			<div style={{ color: '#333333' }}>
@@ -30,7 +32,22 @@ function CompanyDetails({
 			</div>
 
 			<div className={styles.layout_container}>
-				<Layout controls={controls} fields={fields} errors={formState.errors} />
+				<div className={styles.layout}>
+					{controls.map((item) => {
+						const Element = getField(item.type);
+						return (
+							<div className={styles.field}>
+								<div className={styles.lable}>{item.label}</div>
+								<Element {...item} control={control} />
+								{errors && (
+									<div className={styles.errors}>
+										{errors[item?.name]?.message}
+									</div>
+								)}
+							</div>
+						);
+					})}
+				</div>
 			</div>
 
 			<div style={{ display: 'flex', justifyContent: 'flex-end' }}>

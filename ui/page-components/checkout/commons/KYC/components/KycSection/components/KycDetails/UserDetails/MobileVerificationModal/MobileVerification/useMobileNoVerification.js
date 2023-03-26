@@ -1,6 +1,7 @@
 import { Toast } from '@cogoport/components';
 import { useEffect, useMemo, useState } from 'react';
 
+import { useForm } from '@/packages/forms';
 import getApiErrorString from '@/packages/forms/utils/getApiError';
 import { useRequest } from '@/packages/request';
 
@@ -45,23 +46,9 @@ const useMobileNoVerification = ({
 		}
 
 		return { ...control };
-	}), [controls, selectedUser]);
+	}), [selectedUser.mobile_country_code, selectedUser.mobile_number, type]);
 
-	const formProps = useFormCogo(newControls);
-
-	const watchMobileNumberControl = formProps.watch('mobileNumber');
-
-	useEffect(() => {
-		if (showEnterOtpComponent) setShowEnterOtpComponent(false);
-	}, [watchMobileNumberControl]);
-
-	const onSubmit = () => sendOtpNumber({});
-
-	const onErrors = (errs = {}) => setErrors({ ...errs });
-
-	const sendOtpNumber = ({ timer = {} }) => verifyMobileNumber({ actionType: 'SEND_OTP', timer });
-
-	const verifyOtpNumber = () => verifyMobileNumber({ actionType: 'VERIFY_OTP' });
+	const { formProps = {}, control } = useForm();
 
 	const verifyMobileNumber = async ({ actionType = {}, ...restProps }) => {
 		try {
@@ -77,7 +64,7 @@ const useMobileNoVerification = ({
 				payload = { ...payload, mobile_otp: otpNumber };
 			}
 
-			await verifyMobileNumberAPI?({ data: payload });
+			await verifyMobileNumberAPI?.trigger({ data: payload });
 
 			if (actionType === 'SEND_OTP') {
 				setShowEnterOtpComponent(true);
@@ -97,9 +84,24 @@ const useMobileNoVerification = ({
 		}
 	};
 
+	const watchMobileNumberControl = formProps.watch('mobileNumber');
+
+	useEffect(() => {
+		if (showEnterOtpComponent) setShowEnterOtpComponent(false);
+	}, [showEnterOtpComponent, watchMobileNumberControl]);
+
+	const onErrors = (errs = {}) => setErrors({ ...errs });
+
+	const sendOtpNumber = ({ timer = {} }) => verifyMobileNumber({ actionType: 'SEND_OTP', timer });
+
+	const verifyOtpNumber = () => verifyMobileNumber({ actionType: 'VERIFY_OTP' });
+
+	const onSubmit = () => sendOtpNumber({});
+
 	return {
 		controls: newControls,
 		formProps,
+		control,
 		errors,
 		onSubmit,
 		onErrors,
@@ -109,6 +111,7 @@ const useMobileNoVerification = ({
 		verifyMobileNumberAPI,
 		sendOtpNumber,
 		verifyOtpNumber,
+		loading,
 	};
 };
 

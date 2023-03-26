@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-import KYCVerifiedIcon from '../../icons/verified-icon.svg';
+// import KYCVerifiedIcon from '../../icons/verified-icon.svg';
 
 import FullView from './FullView';
 import styles from './styles.module.css';
@@ -32,7 +32,7 @@ function Verified({ channelPartnerDetails = {} }) {
 	return (
 		<div className={styles.flex}>
 			<div className={styles.container}>
-				<KYCVerifiedIcon size={6} />
+				{/* <KYCVerifiedIcon size={6} /> */}
 				<div className={styles.message_container}>
 					<div className={styles.message_text}>Verification Complete</div>
 					<div className={styles.message}>KYC Verified Successfully!</div>

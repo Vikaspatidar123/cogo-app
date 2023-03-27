@@ -1,0 +1,43 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  padding: 34px 16px;
+  background: #f9f9f9;
+  border-radius: 10px;
+
+  min-height: 192px;
+}
+
+.main {
+  width: 100%;
+  max-width: 950px;
+  margin: 0 auto;
+}
+
+.title {
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 21px;
+  color: black;
+  margin: 0 0 16px;
+}
+
+.content {
+  .videoCaption {
+    margin-top: -24px;
+  }
+
+  .enquiries-empty-list-page {
+    &.first {
+      margin-top: 16px;
+    }
+
+    & > p:nth-child(2) {
+      margin-bottom: 0;
+
+      + ol {
+        margin-top: 2px;
+      }
+    }
+  }
+}

@@ -2,6 +2,7 @@ import { Toast } from '@cogoport/components';
 import { useEffect, useState, useCallback } from 'react';
 import { useSelector } from 'react-redux';
 
+import getApiErrorString from '@/packages/forms/utils/getApiError';
 import { useRequestBf } from '@/packages/request';
 
 const useList = ({ activeTab }) => {
@@ -37,7 +38,7 @@ const useList = ({ activeTab }) => {
 				},
 			});
 		} catch (err) {
-			Toast.error(err?.error?.message);
+			Toast.error(getApiErrorString(err));
 		}
 	}, [activeTab, filters, organization, sort, trigger]);
 

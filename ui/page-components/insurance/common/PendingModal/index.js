@@ -20,6 +20,7 @@ function PendingModal({ pendingModal, setModal, stop, paymentStatus, checkLoadin
 
 	const [url, setUrl] = useState(pendingUrl);
 	const [text, setText] = useState('Hang on! Checking payment status');
+
 	useEffect(() => {
 		if (!checkLoading && paymentStatus === 'PAID') {
 			setUrl(successUrl);
@@ -32,7 +33,7 @@ function PendingModal({ pendingModal, setModal, stop, paymentStatus, checkLoadin
                  7282872743, Email: romil.shah@cogoport.com`,
 			);
 		}
-	}, [paymentStatus, checkLoading]);
+	}, [paymentStatus, checkLoading, stop]);
 
 	return (
 		<Modal className="primary md" show={pendingModal} closable={false}>

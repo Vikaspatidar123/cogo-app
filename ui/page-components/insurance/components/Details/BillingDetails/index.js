@@ -1,6 +1,7 @@
-import { Popover, Toast, Button } from '@cogoport/components';
-import { IcMArrowNext, IcMBldo, IcMPlus } from '@cogoport/icons-react';
-import { useMemo, useState, useEffect } from 'react';
+import { Popover, Button } from '@cogoport/components';
+import { IcMArrowNext, IcMBldo } from '@cogoport/icons-react';
+import { isEmpty } from '@cogoport/utils';
+import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
 import Addres from '../../../common/AddressListPopover';
@@ -17,12 +18,9 @@ const useBillingDetails = ({
 	formDetails = {},
 	setActiveStepper = () => {},
 	setFormDetails = () => {},
-	insuranceType = '',
+	insuranceType = [],
 	setInsuranceType = () => {},
-	organisationAddress = () => {},
-	addressApi = () => {},
-	setData = () => {},
-	addressdata,
+	addressdata = [],
 	checked = '',
 	setChecked = () => {},
 	addressLoading = false,
@@ -35,33 +33,94 @@ const useBillingDetails = ({
 	setUploadType = () => {},
 	setisBillingAddress = () => {},
 }) => {
-	console.log('🚀 ~ file: index.js:38 ~ addressdata:', addressdata);
-	const [cityState, setCityState] = useState({});
 	const { profile } = useSelector((state) => state);
+	const names = profile?.name?.split(' ');
 	const fields = getControls(formDetails, profile, uploadType);
 	const [showFilters, setshowFilters] = useState(false);
-	const [allInfo, setAllInfo] = useState();
 	const [prosporerAddress, setProsporerAddress] = useState({});
 	const [addAddressModal, setAddAddressModal] = useState(false);
+	const { name, pincode, tax_number } = prosporerAddress || {};
 
 	const {
-		handleSubmit, control,
+		handleSubmit,
+		control,
 		setValue,
-		resetField,
+		reset,
 		setError,
-		formState: { errors }, watch,
-	} = useForm();
+		formState: { errors },
+		watch,
+	} = useForm({
+		defaultValues: {
+			insuredFirstName: !isEmpty(formDetails)
+				? formDetails.insuredFirstName
+				: names[0],
+			insuredLastName: !isEmpty(formDetails)
+				? formDetails.insuredLastName
+				: names[1] || '',
+			email   : !isEmpty(formDetails) ? formDetails.email : profile?.email,
+			phoneNo : !isEmpty(formDetails)
+				? formDetails.phoneNo
+				: profile?.mobile_number,
+			gstin: !isEmpty(formDetails)
+				? formDetails.gstin
+				: addressdata?.[0]?.tax_number,
+			partyName: !isEmpty(formDetails)
+				? formDetails.partyName
+				: addressdata?.[0]?.name,
+			aadharNumber   : !isEmpty(formDetails) ? formDetails.aadharNumber : '',
+			billingAddress : !isEmpty(formDetails)
+				? formDetails.billingAddress
+				: addressdata?.[0]?.address,
+			billingPincode: !isEmpty(formDetails)
+				? formDetails.billingPincode
+				: addressdata?.[0]?.pincode,
+			billingState     : !isEmpty(formDetails) ? formDetails?.billingState : '',
+			billingCity      : !isEmpty(formDetails) ? formDetails?.billingCity : '',
+			panNumber        : !isEmpty(formDetails) ? formDetails?.panNumber : '',
+			proposersAddress : !isEmpty(formDetails)
+				? formDetails?.proposersAddress
+				: '',
+		},
+	});
+
+	const watchPincode = watch('billingPincode');
+
+	const { cityLoading, cityState } = useGetStateFromPincode({
+		watchPincode,
+	});
+
+	useEffect(() => {
+		if (!isEmpty(prosporerAddress)) {
+			setValue('proposersAddress', `${name},${pincode},${tax_number}`);
+		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [name, pincode, prosporerAddress, tax_number]);
+
+	useEffect(() => {
+		if (!isEmpty(cityState) && !cityLoading) {
+			setValue('billingCity', cityState?.city?.name);
+			setValue('billingState', cityState?.region?.name);
+		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [cityState, cityLoading]);
 
 	const submit = (values) => {
 		let checkEmptyFlag = 0;
-		Object.keys(values)
-			.filter((item) => (uploadType === 'CORPORATE' ? item !== 'aadharNumber' : item !== 'gstin'))
-			.forEach((itm) => {
-				if (!values[itm]) {
-					checkEmptyFlag += 1;
-					setError(itm, { type: 'required', message: 'required' });
-				}
-			});
+		let requiredValueFields = [];
+		if (insuranceType?.[0] === 'SELF') {
+			requiredValueFields = Object.keys(values).filter((item) => (uploadType === 'CORPORATE'
+				? !['aadharNumber', 'proposersAddress'].includes(item)
+				: !['gstin', 'proposersAddress'].includes(item)));
+		} else if (insuranceType?.[0] === 'OTHER') {
+			requiredValueFields = Object.keys(values)
+				.filter((item) => (uploadType === 'CORPORATE' ? item !== 'aadharNumber' : item !== 'gstin'));
+		}
+		requiredValueFields.forEach((itm) => {
+			if (!values[itm]) {
+				checkEmptyFlag += 1;
+				setError(itm, { type: 'required', message: 'required' });
+			}
+		});
 		if (checkEmptyFlag === 0) {
 			setFormDetails((prev) => ({
 				...prev,
@@ -76,44 +135,101 @@ const useBillingDetails = ({
 		}
 	};
 
-	const watchPincode = watch('billingPincode');
-
-	useMemo(() => {
-		if (addressdata.length === 0) {
-			organisationAddress();
-			addressApi();
+	useEffect(() => {
+		if (insuranceType[0] === 'OTHER') {
+			reset({
+				billingAddress : '',
+				billingCity    : '',
+				billingState   : '',
+				billingPincode : '',
+				partyName      : '',
+				gstin          : '',
+				panNumber      : '',
+			});
+		} else {
+			reset({
+				gstin: !isEmpty(formDetails)
+					? formDetails.gstin
+					: addressdata?.[0]?.tax_number,
+				partyName: !isEmpty(formDetails)
+					? formDetails.partyName
+					: addressdata?.[0]?.name,
+				aadharNumber   : !isEmpty(formDetails) ? formDetails.aadharNumber : '',
+				billingAddress : !isEmpty(formDetails)
+					? formDetails.billingAddress
+					: addressdata?.[0]?.address,
+				billingPincode: !isEmpty(formDetails)
+					? formDetails.billingPincode
+					: addressdata?.[0]?.pincode,
+				billingState     : !isEmpty(formDetails) ? formDetails?.billingState : '',
+				billingCity      : !isEmpty(formDetails) ? formDetails?.billingCity : '',
+				panNumber        : !isEmpty(formDetails) ? formDetails?.panNumber : '',
+				proposersAddress : !isEmpty(formDetails)
+					? formDetails?.proposersAddress
+					: '',
+			});
 		}
-	}, [addressdata, addressApi, organisationAddress]);
-
-	const { cityLoading } = useGetStateFromPincode({
-		watchPincode,
-		setCityState,
-		insuranceType,
-	});
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [insuranceType?.[0]]);
 
 	const returnField = ({ item }) => {
 		const Element = getField(item.type);
 		const renderingField = fields.find((ele) => ele.name === item.name);
 		return (
-			<div
-				className={styles.field}
-				key={item.name}
-			>
-				<Element
-					{...renderingField}
-					control={control}
-				/>
-				<div>
-					<span className={watch(renderingField?.name) !== '' ? styles.display : styles.hidden}>
-						{renderingField.placeholder}
-					</span>
-				</div>
-				{(errors[renderingField.name]?.type === 'required'
-					|| errors[renderingField.name]?.type === 'pattern'
-					|| errors[renderingField.name]?.type === 'maxLength') && (
-						<div className={styles.error_message}>
-							{errors[renderingField.name]?.message}
+			<div className={styles.field} key={item.name}>
+				{renderingField.popover ? (
+					<Popover
+						animation="scale"
+						placement="top"
+						interactive
+						trigger="hover"
+						visible={showFilters && !addAddressModal}
+						onClickOutside={() => setshowFilters(false)}
+						content={(
+							<Addres
+								addressdata={addressdata}
+								checked={checked}
+								setChecked={setChecked}
+								loading={addressLoading}
+								setOrganizationAddressId={setOrganizationAddressId}
+								setshowFilters={setshowFilters}
+								insuranceType={insuranceType}
+								addAddressModal={addAddressModal}
+								setAddAddressModal={setAddAddressModal}
+								setProsporerAddress={setProsporerAddress}
+							/>
+						)}
+					>
+						<div
+							role="presentation"
+							className={styles.align_div_add_address}
+							onClick={() => setshowFilters(true)}
+						>
+							{!isEmpty(prosporerAddress) || formDetails?.proposersAddress
+								? "Proposer's Address (Click to change)"
+								: renderingField.placeholder}
 						</div>
+						{(!isEmpty(prosporerAddress) || formDetails?.proposersAddress) && (
+							<Element
+								{...renderingField}
+								control={control}
+								readonly
+								disabled
+							/>
+						)}
+					</Popover>
+				) : (
+					<>
+						<div>{renderingField.placeholder}</div>
+						<Element {...renderingField} control={control} />
+					</>
+				)}
+				{(errors[renderingField.name]?.type === 'required'
+          || errors[renderingField.name]?.type === 'pattern'
+          || errors[renderingField.name]?.type === 'maxLength') && (
+	<div className={styles.error_message}>
+		{errors[renderingField.name]?.message}
+	</div>
 				)}
 			</div>
 		);
@@ -128,38 +244,24 @@ const useBillingDetails = ({
 		draftResponse(draftPayload, policyid);
 	};
 
-	const { list } = cityState || {};
-	const { region, city } = list?.[0] || {};
-
-	useMemo(() => {
-		if (list?.length === 0) {
-			Toast.error('Invalid Pincode');
-		}
-		if (city && region?.name && watchPincode?.length === 6) {
-			setValue('billingCity', city?.name);
-			setValue('billingState', region?.name);
-		}
-	}, [city, region, list, setValue, watchPincode]);
-
-	useEffect(() => {
-		if (!watchPincode) {
-			resetField('billingState');
-			resetField('billingCity');
-		}
-	}, [watchPincode, resetField]);
-
-	console.log('cityLoading', cityLoading);
-
 	return (
 		<div>
 			<div className={styles.container}>
 				<div className={styles.yellow_line} />
 				<div className={styles.padded_div}>
-					<div className={isMobile ? styles.heading_wrapper_mobile : styles.heading_wrapper}>
+					<div
+						className={
+              isMobile ? styles.heading_wrapper_mobile : styles.heading_wrapper
+            }
+					>
 						<div className={isMobile ? styles.flex_2_mobile : styles.flex_2}>
 							<div className={styles.heading}>Personal Details</div>
 						</div>
-						<div className={isMobile ? styles.line_wrapper_mobile : styles.line_wrapper}>
+						<div
+							className={
+                isMobile ? styles.line_wrapper_mobile : styles.line_wrapper
+              }
+						>
 							<div className={styles.line} />
 						</div>
 					</div>
@@ -174,27 +276,23 @@ const useBillingDetails = ({
 							<div className={styles.heading_wrapper_billing}>
 								<div className={styles.flex_3}>
 									<div className={styles.heading_billing}>Billing Details</div>
-									<div className={isMobile ? styles.flex_self_mobile : styles.flex_self}>
+									<div
+										className={
+                      isMobile ? styles.flex_self_mobile : styles.flex_self
+                    }
+									>
 										<SellerAddress
 											addressdata={addressdata}
 											insuranceType={insuranceType}
 											setInsuranceType={setInsuranceType}
-											setValue={setValue}
 											setChecked={setChecked}
 											checked={checked}
 											loading={addressLoading}
 											setOrganizationAddressId={setOrganizationAddressId}
-											resetField={resetField}
-											addressApi={addressApi}
-											organisationAddress={organisationAddress}
-											setData={setData}
-											formDetails={formDetails}
 											setUploadType={setUploadType}
 											uploadType={uploadType}
 											showFilters={showFilters}
 											setshowFilters={setshowFilters}
-											allInfo={allInfo}
-											setAllInfo={setAllInfo}
 											addAddressModal={addAddressModal}
 											setAddAddressModal={setAddAddressModal}
 											setisBillingAddress={setisBillingAddress}
@@ -205,75 +303,35 @@ const useBillingDetails = ({
 									<div className={styles.line} />
 								</div>
 							</div>
-							{insuranceType?.length !== 0 && (
-								<div className={styles.div_as_row}>
-									{fields
-										.filter((items, index) => index > 3)
-										.map((item) => {
-											if (!['aadharNumber', 'gstin'].includes(item.name)) {
-												return returnField({ item });
-											}
-											if (item.name === 'aadharNumber' && uploadType === 'INDIVIDUAL') {
-												return returnField({ item });
-											}
-											if (item.name === 'gstin' && uploadType === 'CORPORATE') {
-												return returnField({ item });
-											}
-											return null;
-										})}
-								</div>
-							)}
-							{insuranceType[0] === 'OTHER' && (
-								<Popover
-									animation="scale"
-									theme="light-border"
-									placement="top"
-									interactive
-									visible={showFilters && !addAddressModal}
-									onClickOutside={() => setshowFilters(false)}
-									content={(
-										<Addres
-											setAllInfo={setAllInfo}
-											addressdata={addressdata}
-											checked={checked}
-											setChecked={setChecked}
-											loading={addressLoading}
-											setOrganizationAddressI={setOrganizationAddressId}
-											addressApi={addressApi}
-											setData={setData}
-											setshowFilters={setshowFilters}
-											insuranceType={insuranceType}
-											addAddressModal={addAddressModal}
-											setAddAddressModal={setAddAddressModal}
-											prosporerAddress={prosporerAddress}
-											setProsporerAddress={setProsporerAddress}
-										/>
-									)}
-								>
-									<div
-										className={styles.align_div_add_address}
-										role="presentation"
-										onClick={() => {
-											setshowFilters(!showFilters);
-										}}
-									>
-										<IcMPlus />
-										Add/Change proposer address
-									</div>
-								</Popover>
-							)}
-							{insuranceType[0] === 'OTHER'
-								&& Object.keys(prosporerAddress).length > 0 && (
-									<div className={styles.section_2}>
-										<div className={styles.selected}>
-											<div className={styles.card_text_org_name}>{prosporerAddress?.name}</div>
-											<div className={styles.card_text}>
-												{`${prosporerAddress?.address} - ${prosporerAddress?.pincode}`}
-											</div>
-											<div className={styles.card_text}>{prosporerAddress?.tax_number}</div>
-										</div>
-									</div>
-							)}
+							<div className={styles.div_as_row}>
+								{fields
+									.filter((items, index) => index > 3)
+									.map((item) => {
+										if (
+											!['aadharNumber', 'gstin', 'proposersAddress'].includes(
+												item.name,
+											)
+										) {
+											return returnField({ item });
+										}
+										if (
+											item.name === 'aadharNumber'
+                      && uploadType === 'INDIVIDUAL'
+										) {
+											return returnField({ item });
+										}
+										if (item.name === 'gstin' && uploadType === 'CORPORATE') {
+											return returnField({ item });
+										}
+										if (
+											item.name === 'proposersAddress'
+                     && insuranceType?.[0] === 'OTHER'
+										) {
+											return returnField({ item });
+										}
+										return null;
+									})}
+							</div>
 							<div className={styles.wrapper_2}>
 								<Button
 									themeType="accent"

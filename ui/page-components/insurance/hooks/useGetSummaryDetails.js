@@ -15,7 +15,6 @@ const useGetSummaryDetails = ({ activeTab, filters, sort }) => {
 
 	const summary = useCallback(async () => {
 		const { sortBy = undefined, sortType = undefined } = sort || {};
-
 		try {
 			await trigger({
 				params: {

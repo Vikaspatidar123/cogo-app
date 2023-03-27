@@ -1,5 +1,5 @@
 import { merge } from '@cogoport/utils';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 
 import { useRequestBf } from '../../request';
 
@@ -23,7 +23,7 @@ function useGetAsyncOptionsBf({
 		authKey,
 		params : merge(params, { query }),
 	}, { manual: !(initialCall || query) });
-	const options = getModifiedOptions(data?.list || []);
+	const options = useMemo(() => getModifiedOptions(data?.list || []), [data, getModifiedOptions]);
 	const dependency = (data?.list || []).map(({ id }) => id).join('');
 
 	useEffect(() => {

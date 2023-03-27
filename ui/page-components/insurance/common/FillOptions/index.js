@@ -22,7 +22,7 @@ function FillOptaions({ activeStepper, isMobile }) {
 			<div className={isMobile ? styles.wrapper_mobile : styles.wrapper}>
 				{(Config || []).map((x) => (
 					<div key={x?.step} className={isMobile ? styles.container_mobile : styles.container}>
-						<div className={isMobile && styles.mobile_view}>
+						<div className={isMobile ? styles.mobile_view : ''}>
 							{activeStepper.svg !== x.step ? (
 								<div
 									className={x.active || Maping[activeStepper[x.step]] !== 'Pending'

@@ -1,16 +1,14 @@
-import { useState } from 'react';
 import { useSelector } from 'react-redux';
 
 import { useRequestBf } from '@/packages/request';
 
 const useCreateInsurance = () => {
 	const { profile } = useSelector((state) => state);
-	const [{ loading }, trigger] = useRequestBf({
+	const [{ loading, data }, trigger] = useRequestBf({
 		method  : 'post',
 		url     : '/saas/insurance',
 		authkey : 'post_saas_insurance',
 	}, { manual: true });
-	const [policyIdDownload, setPolicyIdDownload] = useState();
 	const insurance = async (policyId = '', saasBillId = '', setModal = () => {}) => {
 		try {
 			const resp = await trigger({
@@ -21,7 +19,6 @@ const useCreateInsurance = () => {
 				},
 			});
 			if (resp?.data) {
-				setPolicyIdDownload(resp?.data?.policyId);
 				setModal((prev) => ({
 					...prev,
 					showSuccessModal : true,
@@ -37,6 +34,6 @@ const useCreateInsurance = () => {
 		}
 	};
 
-	return { insurance, createInsuranceLoading: loading, policyIdDownload };
+	return { insurance, createInsuranceLoading: loading, policyIdDownload: data?.policyId };
 };
 export default useCreateInsurance;

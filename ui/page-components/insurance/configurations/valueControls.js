@@ -1,8 +1,6 @@
-import { IcMCloudUpload } from '@cogoport/icons-react';
-
 const get = (formObject = {}, key = '') => formObject[key] || null;
 
-// const invoiceNumberValidator = /^[A-Za-z]+-\d+$/g;
+const invoiceNumberValidator = /^[^~!@#$%^&*()+=}:;"'<>?{]+$/;
 
 const controls = [
 	{
@@ -19,13 +17,11 @@ const controls = [
 				value : 'USD',
 			},
 		],
-		span: 4,
 	},
 	{
 		name        : 'cargoAmount',
 		placeholder : 'Consignment Value',
 		type        : 'number',
-		span        : 6,
 		rules       : {
 			maxValue: {
 				value   : 400000000,
@@ -37,12 +33,11 @@ const controls = [
 		name        : 'invoiceNo',
 		placeholder : 'Invoice No.',
 		type        : 'text',
-		span        : 6,
 		rules       : {
-			// pattern: {
-			// 	// value: invoiceNumberValidator,
-			// 	message: 'No special characters are allowed',
-			// },
+			pattern: {
+				value   : invoiceNumberValidator,
+				message : 'No special characters are allowed',
+			},
 		},
 	},
 	{
@@ -50,7 +45,6 @@ const controls = [
 		placeholder           : 'Invoice Date',
 		maxDate               : new Date(),
 		type                  : 'datepicker',
-		span                  : 6,
 		isPreviousDaysAllowed : true,
 	},
 	{
@@ -58,44 +52,24 @@ const controls = [
 		placeholder : 'Invoice Proof',
 		type        : 'file',
 		accept      : '.pdf, .png, .jpg, .jpeg,',
-		format      : '(only pdf, png, jpg, jpeg, formats)',
-		iconSvg     : <IcMCloudUpload fill="#CFEAED" width={40} height={40} />,
-		drag        : true,
-		uploadType  : 'aws',
-		span        : 4,
 	},
 	{
 		name        : 'panDoc',
 		placeholder : 'PAN Proof',
 		type        : 'file',
 		accept      : '.pdf, .png, .jpg, .jpeg,',
-		format      : '(only pdf, png, jpg, jpeg, formats)',
-		iconSvg     : <IcMCloudUpload fill="#CFEAED" width={40} height={40} />,
-		drag        : true,
-		uploadType  : 'aws',
-		span        : 4,
 	},
 	{
 		name        : 'gstDoc',
 		placeholder : 'Tax Number Proof',
 		type        : 'file',
 		accept      : '.pdf, .png, .jpg, .jpeg,',
-		format      : '(only pdf, png, jpg, jpeg, formats)',
-		iconSvg     : <IcMCloudUpload fill="#CFEAED" width={40} height={40} />,
-		drag        : true,
-		uploadType  : 'aws',
-		span        : 4,
 	},
 	{
 		name        : 'aadharDoc',
 		placeholder : 'Aadhar Proof',
 		type        : 'file',
 		accept      : '.pdf, .png, .jpg, .jpeg,',
-		format      : '(only pdf, png, jpg, jpeg, formats)',
-		iconSvg     : <IcMCloudUpload fill="#CFEAED" width={40} height={40} />,
-		drag        : true,
-		uploadType  : 'aws',
-		span        : 4,
 	},
 ];
 

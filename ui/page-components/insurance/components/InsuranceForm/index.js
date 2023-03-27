@@ -17,7 +17,7 @@ import { useRouter } from '@/packages/next';
 function InsuranceFrom() {
 	const { isMobile } = useSelector((state) => state);
 	const { query } = useRouter();
-	const { type, policyId = '', policyType = '' } = query || {};
+	const { type, policyType = '', policyId = '' } = query || {};
 	const [activeTab, setActiveTab] = useState(policyType || 'IMPORT');
 	const [showFaq, setFaq] = useState('none');
 	const { redirectHome } = redirectUrl();
@@ -25,13 +25,15 @@ function InsuranceFrom() {
 		policyId,
 		type,
 	});
-	const { faqDetails = [], response } = useGetFaq();
+
+	const { faqDetails = [] } = useGetFaq({ showFaq });
 	const [activeStepper, setActiveStepper] = useState({
 		1   : 'pro',
 		2   : false,
 		3   : false,
 		svg : 0,
 	});
+
 	return (
 		<div>
 			<FAQComponent
@@ -64,14 +66,14 @@ function InsuranceFrom() {
 						src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/faq.svg"
 						onClick={() => {
 							setFaq('block');
-							response();
 						}}
 						role="presentation"
 						alt=""
 						className={showFaq === 'block' ? styles.faq_hidden : styles.faq}
 					/>
 				</div>
-				{policyId && Object.keys(draftDetailsPrefilling).length > 0 && (
+
+				{policyId && Object.keys(draftDetailsPrefilling || {})?.length > 0 && (
 					<InsuredDetails
 						type={type}
 						isMobile={isMobile}

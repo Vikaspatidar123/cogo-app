@@ -36,14 +36,14 @@ export const addAddressControls = [
 		span        : 6,
 	},
 	{
-		label          : 'Country',
-		name           : 'country_id',
-		type           : 'select',
-		placeholder    : 'Enter Country',
-		rules          : { required: 'required *' },
-		optionsListKey : 'countries',
-		valueKey       : 'id',
-		params         : {
+		label       : 'Country',
+		name        : 'country_id',
+		type        : 'async_select',
+		placeholder : 'Enter Country',
+		rules       : { required: 'required *' },
+		asyncKey    : 'locations',
+		valueKey    : 'id',
+		params      : {
 			filters: {
 				type: 'country',
 			},

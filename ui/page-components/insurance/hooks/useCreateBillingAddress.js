@@ -35,16 +35,11 @@ const useCreateBillingAddres = ({ checked, addressType }) => {
 			const resp = await api.trigger({
 				data: {
 					...rest,
-					poc_details:
-						poc_name || number || country_code
-							? [
-								{
-									name          : poc_name,
-									mobile_number : number,
-									mobile_code   : country_code,
-								},
-							]
-							: [],
+					poc_details: poc_name || number || country_code ? [{
+						name          : poc_name,
+						mobile_number : number,
+						mobile_code   : country_code,
+					}] : [],
 					address_type: checked ? '' : addressType,
 				},
 			});
@@ -58,7 +53,7 @@ const useCreateBillingAddres = ({ checked, addressType }) => {
 		} catch (error) {
 			Toast.error(
 				error?.error?.gst_number?.[0]?.toUpperCase()
-					|| error?.error?.pincode?.[0]?.toUpperCase(),
+          || error?.error?.pincode?.[0]?.toUpperCase(),
 				{
 					autoClose : 7000,
 					style     : { backgroundColor: 'white' },
@@ -68,6 +63,10 @@ const useCreateBillingAddres = ({ checked, addressType }) => {
 		}
 	};
 
-	return { createSellerAddres, createAddressLoading: api?.[0]?.loading, response };
+	return {
+		createSellerAddres,
+		createAddressLoading: api?.[0]?.loading,
+		response,
+	};
 };
 export default useCreateBillingAddres;

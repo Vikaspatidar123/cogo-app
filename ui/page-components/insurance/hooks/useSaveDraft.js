@@ -1,5 +1,4 @@
 import { Toast } from '@cogoport/components';
-import { useState } from 'react';
 import { useSelector } from 'react-redux';
 
 import { useRequestBf } from '@/packages/request';
@@ -15,14 +14,21 @@ const useSaveDraft = ({
 }) => {
 	const { profile } = useSelector((state) => state);
 	const { id, organization } = profile;
-	const [{ loading }, trigger] = useRequestBf({
-		method  : 'post',
-		authKey : 'post_saas_insurance_draft',
-		url     : '/saas/insurance/draft',
-	}, { manual: true });
-	const [policyIdDraft, setPolicyDraft] = useState();
+	const [{ data, loading }, trigger] = useRequestBf(
+		{
+			method  : 'post',
+			authKey : 'post_saas_insurance_draft',
+			url     : '/saas/insurance/draft',
+		},
+		{ manual: true },
+	);
 	const response = async (draftPayload, policyid) => {
-		const { aadharNumber = '', gstin = '', panNumber = '', ...rest } = draftPayload || {};
+		const {
+			aadharNumber = '',
+			gstin = '',
+			panNumber = '',
+			...rest
+		} = draftPayload || {};
 		try {
 			const resp = await trigger({
 				data: {
@@ -42,7 +48,6 @@ const useSaveDraft = ({
 			});
 
 			if (resp?.data) {
-				setPolicyDraft(resp?.data?.id);
 				setDraftModal(true);
 			}
 		} catch (error) {
@@ -52,7 +57,7 @@ const useSaveDraft = ({
 	return {
 		draftResponse : response,
 		draftLoading  : loading,
-		policyIdDraft,
+		policyIdDraft : data?.data?.id,
 	};
 };
 

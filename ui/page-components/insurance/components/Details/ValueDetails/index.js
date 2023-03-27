@@ -1,5 +1,4 @@
-import { Toast } from '@cogoport/components';
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState } from 'react';
 
 import PendingModal from '../../../common/PendingModal';
 import PreviewModal from '../../../common/PreviewModal';
@@ -9,7 +8,7 @@ import useCurrencyConversion from '../../../hooks/useCurrencyConversion';
 import useGetRates from '../../../hooks/useGetRates';
 
 import ChargeDetails from './ChargeDetails';
-// import DocumentsRequired from './DocumentsRequired';
+import DocumentsRequired from './DocumentsRequired';
 import Footer from './Footer';
 import InvoiceDetails from './InvoiceDetails';
 import PricingSummary from './PricingSummary';
@@ -47,15 +46,14 @@ function ValueDetails({
 	setModal = () => {},
 	showModal = {},
 }) {
-	const { showSuccessModal, pendingModal } = showModal || {};
-	const { exchangeRate } = useCurrencyConversion();
-	const [exchangeRateResponse, setExchangeRateResponse] = useState();
+	const { showSuccessModal = false, pendingModal = false } = showModal || {};
 	const [checked, setChecked] = useState(false);
 	const [termsconditionshow, setTermsConditionsShow] = useState(false);
 	const [showPreviewModal, setShowPreviewModal] = useState(false);
 	const fields = getControls({ formDetails, uploadType });
 	const [agree, setAgree] = useState(false);
 	const [finalData, setFinalData] = useState();
+	const [uploadedFiles, setUploadedFiles] = useState({});
 	const { query, debounceQuery } = useSearchQuery();
 	const {
 		control,
@@ -65,11 +63,23 @@ function ValueDetails({
 		formState: { errors },
 	} = useForm();
 
-	const { response = () => {}, ratesLoading } = useGetRates({
+	const watcher = watch(['policyCurrency', 'cargoAmount', 'invoiceNo', 'invoiceDate']);
+	const watchInvoiceAmount = watch('cargoAmount');
+
+	useEffect(() => {
+		debounceQuery(watchInvoiceAmount);
+	}, [debounceQuery, watchInvoiceAmount]);
+
+	const { data } = useCurrencyConversion({ watchPolicyCurrency: watcher[0], query });
+
+	const { ratesLoading } = useGetRates({
 		activeTab,
 		formDetails,
 		countryCode,
+		responseFromCurrencyExchange: data,
+		setRatesResponse,
 	});
+
 	const submit = (values) => {
 		submitHandler({
 			values,
@@ -81,41 +91,11 @@ function ValueDetails({
 			formDetails,
 			checked,
 			setAgree,
+			uploadedFiles,
 		});
 	};
-	const watcher = watch(['policyCurrency', 'cargoAmount', 'invoiceNo', 'invoiceDate']);
-
-	const invoiceValue =		watcher[0] === 'USD' ? watcher[1] * exchangeRateResponse : watcher[1];
-	useEffect(() => {
-		debounceQuery(invoiceValue);
-	}, [invoiceValue, debounceQuery]);
-
-	const rateHandler = useCallback(async () => {
-		if (watcher[0] && watcher[1]) {
-			await exchangeRate(setExchangeRateResponse);
-			if (invoiceValue && invoiceValue < 400000000) {
-				if (query) {
-					response({
-						setRatesResponse,
-						query,
-					});
-				}
-			} else if (invoiceValue && invoiceValue > 400000000) {
-				Toast.error('Maximum Invoice amount is INR 400000000 only', {
-					autoClose : 3000,
-					style     : { background: '#FFD9D4', color: '#333' },
-				});
-			}
-		}
-	}, [exchangeRate, invoiceValue, query, response, setRatesResponse, watcher]);
-
-	useEffect(() => {
-		rateHandler();
-	}, [watcher, query, rateHandler]);
 
 	const saveDraft = (values) => {
-		const { aadharDoc, gstDoc, panDoc, invoiceDoc, ...rest } = values || {};
-
 		setFormDetails((prev) => ({
 			...prev,
 			...values,
@@ -124,12 +104,9 @@ function ValueDetails({
 		const draftPayload = {
 			...formDetails,
 			verificationDoc: {
-				aadharDoc  : aadharDoc || null,
-				gstDoc     : gstDoc || null,
-				invoiceDoc : invoiceDoc || null,
-				panDoc     : panDoc || null,
+				...uploadedFiles,
 			},
-			...rest,
+			...values,
 			...ratesResponse,
 		};
 
@@ -158,7 +135,6 @@ function ValueDetails({
 										isMobile={isMobile}
 										control={control}
 										errors={errors}
-										watch={watch}
 									/>
 								</div>
 								<div
@@ -178,7 +154,6 @@ function ValueDetails({
 										isMobile={isMobile}
 										control={control}
 										errors={errors}
-										watch={watch}
 									/>
 								</div>
 								<div className={isMobile
@@ -198,9 +173,14 @@ function ValueDetails({
 								ratesLoading={ratesLoading}
 							/>
 						</div>
-						{/* <div className={styles.row}>
-							<DocumentsRequired fields={fields} control={control} errors={errors} />
-						</div> */}
+						<div className={styles.row}>
+							<DocumentsRequired
+								fields={fields}
+								control={control}
+								errors={errors}
+								setUploadedFiles={setUploadedFiles}
+							/>
+						</div>
 					</form>
 					<Footer
 						saveDraft={saveDraft}

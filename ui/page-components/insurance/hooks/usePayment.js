@@ -1,10 +1,17 @@
+/* eslint-disable no-undef */
 import { Toast } from '@cogoport/components';
+import { useCallback } from 'react';
 import { useSelector } from 'react-redux';
 
 import { useRouter } from '@/packages/next';
-import { useRequest } from '@/packages/request';
+import { useRequestBf } from '@/packages/request';
+import { loadScript } from '@/ui/commons/utils/loadScript';
 
-const usePayment = ({ ratesResponse = {}, isBillingAddress = false, checked = [] }) => {
+const usePayment = ({
+	ratesResponse = {},
+	isBillingAddress = false,
+	checked = [],
+}) => {
 	const { profile = {} } = useSelector((state) => state);
 	const {
 		id = '',
@@ -15,12 +22,15 @@ const usePayment = ({ ratesResponse = {}, isBillingAddress = false, checked = []
 		mobile_country_code = '',
 	} = profile;
 	const { query } = useRouter();
-	const { org_id = '', branch_id = '', account_type = '', type = '' } = query || {};
-	const [{ data, loading }, trigger] = useRequest({
-		method  : 'post',
-		authKey : 'post_saas_payment',
-		url     : '/saas/payment',
-	}, { manual: true });
+	const { org_id = '', branch_id = '', type = '' } = query || {};
+	const [{ data, loading }, trigger] = useRequestBf(
+		{
+			method  : 'post',
+			authKey : 'post_saas_payment',
+			url     : '/saas/payment',
+		},
+		{ manual: true },
+	);
 
 	const {
 		taxAmount = 0,
@@ -28,7 +38,7 @@ const usePayment = ({ ratesResponse = {}, isBillingAddress = false, checked = []
 		serviceChargeList = [],
 		totalCharges = 0,
 	} = ratesResponse || {};
-	const callBackUrl = `${process.env.APP_URL}app/${org_id}/${branch_id}/${account_type}/saas/insurance/${type}`;
+	const callBackUrl = `${process.env.NEXT_PUBLIC_APP_URL}v2/${org_id}/${branch_id}/saas/insurance/${type}`;
 
 	const addressKey = isBillingAddress
 		? 'organizationBillingAddressId'
@@ -57,44 +67,75 @@ const usePayment = ({ ratesResponse = {}, isBillingAddress = false, checked = []
 		}),
 	);
 
-	const payment = async (info) => {
-		try {
-			const resp = await trigger({
-				data: {
-					source                : 'SAAS',
-					userId                : id,
-					organizationId        : organization?.id,
-					[addressKey]          : checked?.[0],
-					currency              : 'INR',
-					billRefId             : info?.id,
-					billType              : 'INSURANCE',
-					userName              : name,
-					userEmail             : email,
-					userMobile            : mobile_number,
-					userMobileCountryCode : mobile_country_code,
-					redirectUrl           : callBackUrl,
-					billLineItems         : modifiedServiceChargesList,
-					totalAmount           : totalCharges,
-					taxAmount,
-					subTotalAmount        : totalCharges,
-					netAmount             : totalApplicableCharges,
-					discountAmount        : 0,
-				},
-			});
-			if (resp?.data) {
-				// eslint-disable-next-line no-undef
-				window.open(resp.data.url, '_self', '');
+	const payment = useCallback(
+		async (info) => {
+			await Promise.all([
+				loadScript(
+					'https://uat.billdesk.com/jssdk/v1/dist/billdesksdk/billdesksdk.esm.js',
+				),
+				loadScript('https://uat.billdesk.com/jssdk/v1/dist/billdesksdk.js'),
+			]);
+			try {
+				const resp = await trigger({
+					data: {
+						source                : 'SAAS',
+						userId                : id,
+						organizationId        : organization?.id,
+						[addressKey]          : checked?.[0],
+						currency              : 'INR',
+						billRefId             : info?.id,
+						billType              : 'INSURANCE',
+						userName              : name,
+						userEmail             : email,
+						userMobile            : mobile_number,
+						userMobileCountryCode : mobile_country_code,
+						redirectUrl           : callBackUrl,
+						billLineItems         : modifiedServiceChargesList,
+						totalAmount           : totalCharges,
+						taxAmount,
+						subTotalAmount        : totalCharges,
+						netAmount             : totalApplicableCharges,
+						discountAmount        : 0,
+					},
+				});
+				if (resp?.data) {
+					if (resp?.data?.url) {
+						window.open(resp.data.url, '_self', '');
+					} else if (typeof window !== 'undefined' && window.loadBillDeskSdk) {
+						await window.loadBillDeskSdk(resp?.data?.billDeskConfig);
+					}
+				}
+			} catch (err) {
+				Toast.error(
+					'We could not initiate payment right now!!! Please try again later',
+					{
+						style: {
+							background : '#FFD9D4',
+							color      : '#333',
+						},
+						autoClose: 5000,
+					},
+				);
 			}
-		} catch (err) {
-			Toast.error('We could not initiate payment right now!!! Please try again later', {
-				style: {
-					background : '#FFD9D4',
-					color      : '#333',
-				},
-				autoClose: 5000,
-			});
-		}
-	};
+		},
+		[
+			addressKey,
+			callBackUrl,
+			checked,
+			email,
+			id,
+			mobile_country_code,
+			mobile_number,
+			modifiedServiceChargesList,
+			name,
+			organization?.id,
+			taxAmount,
+			totalApplicableCharges,
+			totalCharges,
+			trigger,
+		],
+	);
+
 	return { payment, data, loading };
 };
 export default usePayment;

@@ -79,9 +79,9 @@ function asyncFieldsCommoditiesList() {
 function asyncInsuranceCountryList() {
 	return {
 		labelKey      : 'label',
-		valueKey      : 'id',
+		valueKey      : 'locationId',
 		endpoint      : 'saas/insurance/list/countries',
-		authKey       : 'get_saas_insurance_list_commodities',
+		authKey       : 'get_saas_insurance_list_countries',
 		initialCall   : true,
 		defaultParams : {},
 	};

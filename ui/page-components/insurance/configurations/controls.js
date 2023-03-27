@@ -93,7 +93,8 @@ const controls = [
 	{
 		name        : 'billingPincode',
 		placeholder : 'Pincode',
-		type        : 'text',
+		type        : 'number',
+		stepper     : false,
 		span        : 4,
 		rules       : {
 			pattern: {
@@ -109,7 +110,6 @@ const controls = [
 		span        : 4,
 		disabled    : true,
 	},
-
 	{
 		name        : 'billingCity',
 		placeholder : 'City',
@@ -129,40 +129,16 @@ const controls = [
 			},
 		},
 	},
+	{
+		name        : 'proposersAddress',
+		placeholder : 'Add/Change Proposer\'s Address',
+		popover     : true,
+	},
 ];
 
-const getControls = (formDetails = {}, profile = {}, uploadType = '') => controls.map((control) => {
-	const names = profile?.name?.split(' ');
-	if (control.name === 'insuredFirstName') {
-		return {
-			...control,
-			value: get(formDetails, control.name) || names?.[0],
-		};
-	}
-	if (control.name === 'insuredLastName') {
-		return {
-			...control,
-			value: get(formDetails, control.name) || names?.[1],
-		};
-	}
-	if (control.name === 'aadharNumber') {
-		return {
-			...control,
-			placeholder : uploadType === 'CORPORATE' ? 'Aadhar No (optional)' : 'Aadhar No',
-			value       : get(formDetails, control.name),
-		};
-	}
-	if (control.name === 'gstin') {
-		return {
-			...control,
-			placeholder : uploadType === 'INDIVIDUAL' ? 'GST Number (optional)' : 'GST Number',
-			value       : get(formDetails, control.name),
-		};
-	}
-	return {
-		...control,
-		value: get(formDetails, control.name) || profile[control?.profileKey],
-	};
-});
+const getControls = (formDetails = {}, profile = {}) => controls.map((control) => ({
+	...control,
+	value: get(formDetails, control.name) || profile[control?.profileKey],
+}));
 
 export default getControls;

@@ -17,7 +17,7 @@ function FAQComponent({
 					: styles.content_wrapper_hidden}
 			>
 				<div className={styles.head}>
-					<div role="presentation" onClick={() => setFaq('none')}>
+					<div role="presentation" onClick={() => setFaq('none')} className={styles.flex}>
 						<IcMCross />
 						<div style={{ paddingLeft: '5px' }}>Close</div>
 					</div>
@@ -39,6 +39,7 @@ function FAQComponent({
 						<div>Sorry for the inconvenience.</div>
 					</div>
 				)}
+
 			</div>
 		</div>
 	);

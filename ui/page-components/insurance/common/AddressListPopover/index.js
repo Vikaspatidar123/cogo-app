@@ -4,7 +4,6 @@ import { IcMPlansExpiring, IcMCrossInCircle, IcMPlus } from '@cogoport/icons-rea
 import styles from './styles.module.css';
 
 function Addres({
-	setAllInfo = () => {},
 	addressdata,
 	checked = [],
 	setChecked = () => {},
@@ -66,14 +65,16 @@ function Addres({
 					)}
 					{addressdata?.length > 0
 						&& (addressdata || []).map((data) => {
-							const { name, pincode, tax_number, organization_pocs = [], address } = data;
+							const {
+								name = '', pincode = '',
+								tax_number = '', organization_pocs = [], address = '',
+							} = data || {};
 							return (
 								<div
-									key={data.id}
+									key={data?.id}
 									role="presentation"
 									onClick={() => {
 										setChecked([data?.id]);
-										setAllInfo(data);
 										setOrganizationAddressId(data?.id);
 										setProsporerAddress(data);
 										setisBillingAddress(!!data?.tax_number);
@@ -82,10 +83,9 @@ function Addres({
 								>
 									<div className={styles.section}>
 										<Checkbox
-											checked={checked.includes(data.id)}
+											checked={checked.includes(data?.id)}
 											onChange={() => {
 												setChecked([data?.id]);
-												setAllInfo(data);
 												setOrganizationAddressId(data?.id);
 												setProsporerAddress(data);
 												setisBillingAddress(!!data?.tax_number);

@@ -28,9 +28,6 @@ export const OPTIONS = [
 function AddModal({
 	addAddressModal = false,
 	setAddAddressModal = () => {},
-	addressApi = () => {},
-	organisationAddress = () => {},
-	// setAddresses = () => {},
 }) {
 	const [checked, setChecked] = useState(false);
 	const [showPoc, setShowPoc] = useState(false);
@@ -45,7 +42,7 @@ function AddModal({
 	} = useForm();
 
 	const watcher = watch(['pincode', 'country_id']);
-	const { createSellerAddres, createAddressLoading, response } = useCreateBillingAddres({
+	const { createSellerAddres, createAddressLoading } = useCreateBillingAddres({
 		checked,
 		addressType,
 	});
@@ -57,15 +54,11 @@ function AddModal({
 		const Element = item.type === 'text' ? InputController : SelectController;
 		return (
 			<div className={styles.field}>
+				<div>{fields[index].label}</div>
 				<Element
 					{...fields[index]}
 					control={control}
 				/>
-				<div>
-					<span className={watch(fields[index]?.name) !== '' ? styles.display : styles.hidden}>
-						{fields[index].placeholder}
-					</span>
-				</div>
 				{(errors[fields[index].name]?.type === 'required'
 					|| errors[fields[index].name]?.type === 'pattern'
 					|| errors[fields[index].name]?.type === 'maxLength'
@@ -96,10 +89,6 @@ function AddModal({
 
 	const onSubmit = async (data) => {
 		await createSellerAddres(data, handleCloseModal);
-		if (response?.data?.id) {
-			organisationAddress();
-			addressApi();
-		}
 	};
 
 	return (

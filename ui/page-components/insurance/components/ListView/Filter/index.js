@@ -39,7 +39,9 @@ function FilterContent({ filters, setFilters }) {
 						options={options}
 						onChange={(e) => setFilters((prev) => ({
 							...prev,
-							status: e,
+							status    : e,
+							page      : 1,
+							pageLimit : 10,
 						}))}
 					/>
 				</div>
@@ -50,7 +52,9 @@ function FilterContent({ filters, setFilters }) {
 						items={optionsType}
 						onItemChange={(e) => setFilters((prev) => ({
 							...prev,
-							policyType: e,
+							policyType : e,
+							page       : 1,
+							pageLimit  : 10,
 						}))}
 						size="lg"
 					/>
@@ -65,6 +69,8 @@ function FilterContent({ filters, setFilters }) {
 							setFilters((prev) => ({
 								...prev,
 								...e,
+								page      : 1,
+								pageLimit : 10,
 							}));
 						}}
 					/>

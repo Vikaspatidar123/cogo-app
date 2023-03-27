@@ -7,7 +7,6 @@ function Footer({
 	saveDraft = () => {},
 	submit = () => {},
 	handleSubmit = () => {},
-	// agree = '',
 	setTermsConditionsShow = () => {},
 	ratesLoading = false,
 	isMobile = false,
@@ -63,7 +62,9 @@ function Footer({
 					</div>
 				</Button>
 				<Button
-					disabled={ratesLoading || Object.keys(ratesResponse).length <= 0 || !checked}
+					disabled={
+						ratesLoading || Object.keys(ratesResponse).length <= 0 || !checked
+}
 					onClick={handleSubmit(submit)}
 				>
 					{renderBtn()}

@@ -11,7 +11,10 @@ const useGetCancellation = ({ setCancelModal }) => {
 		url     : '/saas/insurance/cancel',
 	});
 
-	const requestCancellation = async ({ policyId = '', cancellationReason = '' }) => {
+	const requestCancellation = async ({
+		policyId = '',
+		cancellationReason = '',
+	}) => {
 		try {
 			const res = await trigger({
 				params: {

@@ -16,8 +16,6 @@ const useCargoDetails = ({
 	setFormDetails = () => {},
 	sanctionAPIloading = false,
 	setCommodityName = () => {},
-	setCommodityQuery = () => {},
-	commodityQuery = '',
 	activeTab = '',
 	isMobile,
 	draftResponse = () => {},
@@ -31,8 +29,6 @@ const useCargoDetails = ({
 	const [descriptionPrefilled, setDescription] = useState();
 	const fields = getControls({
 		setCommodityName,
-		setCommodityQuery,
-		commodityQuery,
 		activeTab,
 		formDetails,
 		setDescription,
@@ -49,13 +45,26 @@ const useCargoDetails = ({
 		setError,
 		formState: { errors },
 		setValue,
-	} = useForm();
+	} = useForm({
+		defaultValues: {
+			riskCoverage      : 'ALL_RISK',
+			incoterm          : formDetails?.incoterm || 'CIF',
+			policyCommodityId : formDetails?.policyCommodityId || '',
+			policyCountryId   : formDetails?.policyCountryId || '',
+			cargoDescription  : formDetails?.cargoDescription || '',
+			packaging         : formDetails?.packaging || '',
+			trasitDate        : formDetails?.trasitDate || new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
+			locationFrom      : formDetails?.locationFrom || '',
+			locationTo        : formDetails?.locationTo || '',
+		},
+	});
 
 	const [watchCountry, watchCoverageFrom, watchCoverageTo] = watch([
 		'policyCountryId',
 		'locationFrom',
 		'locationTo',
 	]);
+
 	const submit = (values) => {
 		Object.keys(values).forEach((itm) => {
 			if (!values[itm]) {
@@ -94,8 +103,9 @@ const useCargoDetails = ({
 			svg : 1,
 		}));
 	};
+
 	useEffect(() => {
-		if (watchCoverageFrom !== '' && watchCoverageTo !== '') {
+		if (watchCoverageFrom && watchCoverageTo) {
 			if (watchCoverageFrom === watchCoverageTo) {
 				Toast.error('selected same locations');
 			}
@@ -139,20 +149,12 @@ const useCargoDetails = ({
 												className={styles.col}
 												key={item.name}
 											>
+												<div>{renderingField.placeholder}</div>
 												<Element
 													key={item.name}
 													{...renderingField}
 													control={control}
 												/>
-												<div>
-													<span
-														className={watch(renderingField?.name) !== ''
-															? styles.display : styles.hidden}
-													>
-														{renderingField?.placeholder}
-													</span>
-												</div>
-
 												{errors[renderingField?.name]?.type === 'required'
 												|| errors[renderingField?.name]?.type === 'pattern'
 												|| errors[renderingField?.name]?.type === 'minLength' ? (
@@ -187,41 +189,22 @@ const useCargoDetails = ({
 															<Tooltip
 																content={renderingField.tooltip}
 																placement="top"
-																theme="light-border"
 															>
 																<div>
+																	<div>{renderingField.placeholder}</div>
 																	<Element
 																		{...renderingField}
 																		control={control}
 																	/>
-																	<div>
-																		<span
-																			className={
-																					watch(renderingField?.name) !== ''
-																						? styles.display : styles.hidden
-																				}
-																		>
-																			{renderingField.placeholder}
-																		</span>
-																	</div>
 																</div>
 															</Tooltip>
 														) : (
 															<>
+																<div>{renderingField.placeholder}</div>
 																<Element
 																	{...renderingField}
 																	control={control}
 																/>
-																<div>
-																	<span
-																		className={
-																			watch(renderingField.name) !== ''
-																				? styles.display : styles.hidden
-																		}
-																	>
-																		{renderingField.placeholder}
-																	</span>
-																</div>
 															</>
 														)}
 														{(errors[renderingField.name]?.type === 'required'

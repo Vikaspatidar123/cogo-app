@@ -1,5 +1,4 @@
 import { Radio, Popover, Toggle } from '@cogoport/components';
-import { useEffect } from 'react';
 
 import AddModal from '../../../../common/AddAddressModal';
 import Addres from '../../../../common/AddressListPopover';
@@ -7,73 +6,29 @@ import { CheckBoxOptions } from '../../../../common/constants';
 
 import styles from './styles.module.css';
 
-const OPTIONS = [
-	{
-		label : 'Individual',
-		value : 'INDIVIDUAL',
-	},
-	{
-		label : 'Corporate',
-		value : 'CORPORATE',
-	},
-];
-
 function SellerAddress({
 	addressdata = [],
 	insuranceType = [],
 	setInsuranceType = () => {},
-	setValue = () => {},
 	setChecked = () => {},
 	checked = [],
 	loading = false,
 	setOrganizationAddressId = () => {},
-	resetField,
-	addressApi = () => {},
-	organisationAddress = () => {},
-	setData = () => {},
-	formDetails,
 	uploadType = '',
 	setUploadType = () => {},
 	showFilters = false,
 	setshowFilters = () => {},
-	allInfo,
-	setAllInfo = () => {},
 	addAddressModal = false,
 	setAddAddressModal = () => {},
 	setisBillingAddress = () => {},
 }) {
-	const addressDependency = JSON.stringify(addressdata);
-
-	useEffect(() => {
-		if (Object.keys(formDetails).length === 0 && insuranceType[0] === 'SELF') {
-			setAllInfo(addressdata?.[0]);
+	const onToggleHandle = () => {
+		if (uploadType === 'CORPORATE') {
+			setUploadType('INDIVIDUAL');
+		} else {
+			setUploadType('CORPORATE');
 		}
-	}, [addressDependency, formDetails, insuranceType, setAllInfo, addressdata]);
-
-	useEffect(() => {
-		if (insuranceType[0] !== 'SELF') {
-			resetField('billingState');
-			resetField('billingCity');
-			resetField('billingAddress');
-			resetField('partyName');
-			resetField('gstin');
-			resetField('billingPincode');
-			resetField('aadharNumber');
-			resetField('panNumber');
-		}
-	}, [insuranceType, resetField]);
-
-	useEffect(() => {
-		if (allInfo && insuranceType[0] === 'SELF') {
-			setValue('gstin', allInfo?.tax_number);
-			setValue('partyName', allInfo.name);
-			setValue('billingAddress', allInfo.address);
-			setValue('billingPincode', allInfo.pincode);
-		}
-		if (checked?.length > 0) {
-			setshowFilters(false);
-		}
-	}, [allInfo, checked, insuranceType, showFilters, setValue, setshowFilters]);
+	};
 
 	return (
 		<div className={styles.side_wrapper}>
@@ -81,7 +36,7 @@ function SellerAddress({
 				<div className={styles.insurance_buy_div}>
 					<div>Buying insurance for:</div>
 					{(CheckBoxOptions || []).map((x) => (
-						<div className={styles.div_margin_left} key={x.value}>
+						<div className={styles.div_margin_left} key={`${x.value}_${x.label}`}>
 							<Radio
 								checked={insuranceType.includes(x.value)}
 								label={x.label}
@@ -96,20 +51,15 @@ function SellerAddress({
 						{insuranceType[0] === 'SELF' && (
 							<Popover
 								animation="scale"
-								theme="light-border"
 								placement="top"
-								interactive
 								visible={showFilters && !addAddressModal}
 								onClickOutside={() => setshowFilters(false)}
 								content={Addres({
-									setAllInfo,
 									addressdata,
 									checked,
 									setChecked,
 									loading,
 									setOrganizationAddressId,
-									addressApi,
-									setData,
 									setshowFilters,
 									insuranceType,
 									addAddressModal,
@@ -120,7 +70,7 @@ function SellerAddress({
 								<div
 									role="presentation"
 									onClick={() => {
-										setshowFilters(true);
+										setshowFilters(!showFilters);
 									}}
 									className={styles.underline}
 								>
@@ -132,10 +82,13 @@ function SellerAddress({
 				</div>
 				<div>
 					<Toggle
-						offLabel={OPTIONS?.[0].value}
-						onLabel={OPTIONS?.[1].value}
-						value={uploadType}
-						onChange={setUploadType}
+						size="md"
+						name="insurance_type"
+						offLabel="INDIVIDUAL"
+						onLabel="CORPORATE"
+						checked={uploadType === 'CORPORATE'}
+						showOnOff
+						onChange={() => onToggleHandle()}
 						disabled={false}
 					/>
 				</div>
@@ -144,8 +97,6 @@ function SellerAddress({
 				<AddModal
 					addAddressModal={addAddressModal}
 					setAddAddressModal={setAddAddressModal}
-					addressApi={addressApi}
-					organisationAddress={organisationAddress}
 				/>
 			)}
 		</div>

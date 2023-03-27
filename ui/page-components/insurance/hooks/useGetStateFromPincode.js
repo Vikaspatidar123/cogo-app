@@ -1,17 +1,17 @@
 import { Toast } from '@cogoport/components';
-import { useMemo, useCallback } from 'react';
+import { useCallback, useEffect } from 'react';
 
 import { useRequest } from '@/packages/request';
 
-const useGetStateFromPincode = ({ watchPincode, setCityState }) => {
+const useGetStateFromPincode = ({ watchPincode }) => {
 	const COUNTRY_INDIA_ID = '541d1232-58ce-4d64-83d6-556a42209eb7';
-	const [{ loading }, trigger] = useRequest(
+	const [{ data, loading }, trigger] = useRequest(
 		{ method: 'get', url: 'list_locations' },
 		{ manual: true },
 	);
 	const responseCity = useCallback(async () => {
 		try {
-			const res = await trigger({
+			await trigger({
 				params: {
 					filters: {
 						postal_code : watchPincode,
@@ -21,9 +21,6 @@ const useGetStateFromPincode = ({ watchPincode, setCityState }) => {
 					includes: { country: '', region: '', city: '' },
 				},
 			});
-			if (res?.data) {
-				setCityState(res?.data);
-			}
 		} catch (error) {
 			Toast.error(error?.error?.message, {
 				style: {
@@ -31,13 +28,17 @@ const useGetStateFromPincode = ({ watchPincode, setCityState }) => {
 				},
 			});
 		}
-	}, [setCityState, trigger, watchPincode]);
+	}, [trigger, watchPincode]);
 
-	useMemo(() => {
-		if (watchPincode !== '' && watchPincode?.length === 6) responseCity();
-	}, [watchPincode, responseCity]);
+	useEffect(() => {
+		if (watchPincode && watchPincode?.length === 6) {
+			responseCity();
+		}
+	}, [responseCity, watchPincode]);
+
 	return {
-		cityLoading: loading,
+		cityState   : data?.list?.[0],
+		cityLoading : loading,
 	};
 };
 export default useGetStateFromPincode;

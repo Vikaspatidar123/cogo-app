@@ -1,35 +1,35 @@
 import { Toast } from '@cogoport/components';
-import { useState } from 'react';
+import { useEffect, useCallback } from 'react';
 
 import { useRequestBf } from '@/packages/request';
 
-const useGetFaq = () => {
-	const [faqs, setFaqs] = useState();
-
-	const [{ loading }, trigger] = useRequestBf({
+const useGetFaq = ({ showFaq }) => {
+	const [{ loading, data }, trigger] = useRequestBf({
 		url     : '/saas/faq',
 		method  : 'get',
 		authKey : 'get_saas_faq',
 	}, { manual: true });
 
-	const response = async () => {
+	const response = useCallback(async () => {
 		try {
-			const res = await trigger({
+			await trigger({
 				params: {
 					serviceName: 'INSURANCE',
 				},
 			});
-
-			if (res?.data) {
-				setFaqs(res?.data);
-			}
 		} catch (error) {
 			Toast.error(error?.error?.message);
 		}
-	};
+	}, [trigger]);
+
+	useEffect(() => {
+		if (showFaq === 'block') {
+			response();
+		}
+	}, [response, showFaq]);
 
 	return {
-		faqDetails: faqs,
+		faqDetails: data,
 		loading,
 		response,
 	};

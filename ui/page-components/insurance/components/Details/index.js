@@ -1,10 +1,12 @@
+import { Placeholder } from '@cogoport/components';
+import { isEmpty } from '@cogoport/utils';
 import { useState, useMemo } from 'react';
 
 import DraftModal from '../../common/DraftModal/index';
 import useBillingAddress from '../../hooks/useBillingAddress';
 import useCheckStatus from '../../hooks/useCheckStatus';
 import useCreateInsurance from '../../hooks/useCreateInsurance';
-import useInsurance from '../../hooks/useInsurance';
+import useCheckoutInsurance from '../../hooks/useInsurance';
 import usePayment from '../../hooks/usePayment';
 import useSaveDraft from '../../hooks/useSaveDraft';
 
@@ -26,6 +28,15 @@ function Details({
 	draftDetailsPrefilling = {},
 	policyId = '',
 }) {
+	const iff = () => {
+		if (!isEmpty(formDetails)) {
+			if (formDetails?.policyForSelf) {
+				return 'SELF';
+			}
+			return 'OTHER';
+		}
+		return 'SELF';
+	};
 	const [countryDetails, setCountryDetails] = useState({});
 	const [modal, setModal] = useState({
 		pendingModal     : false,
@@ -36,21 +47,19 @@ function Details({
 	);
 	const [draftModal, setDraftModal] = useState(false);
 	const [ratesResponse, setRatesResponse] = useState();
-	const [checked, setChecked] = useState([]);
 	const [organizationAddressId, setOrganizationAddressId] = useState();
 	const [commodityName, setCommodityName] = useState('');
-	const [commodityQuery, setCommodityQuery] = useState();
-	const [countryCode, setCountryCode] = useState(formDetails?.policyCountryCode || '');
-	const [insuranceType, setInsuranceType] = useState(['SELF']);
+	const [countryCode, setCountryCode] = useState(
+		formDetails?.policyCountryCode || '',
+	);
+	const [insuranceType, setInsuranceType] = useState([iff()]);
 	const [isBillingAddress, setisBillingAddress] = useState();
+	const { query } = useRouter();
 
-	const {
-		organisationAddress = () => {},
-		addressApi = () => {},
-		addressdata = [],
-		addressLoading = false,
-		setData = () => {},
-	} = useBillingAddress();
+	const { addressdata = [], addressLoading = false } = useBillingAddress();
+
+	const [checked, setChecked] = useState();
+
 	const {
 		insurance = () => {},
 		createInsuranceLoading = false,
@@ -74,7 +83,7 @@ function Details({
 		insuranceType,
 	});
 
-	const { resp, insuranceLoading } = useInsurance({
+	const { resp, insuranceLoading } = useCheckoutInsurance({
 		payment,
 		type,
 		uploadType,
@@ -87,7 +96,6 @@ function Details({
 		insuranceType,
 	});
 
-	const { query } = useRouter();
 	const { checkLoading, stop, paymentStatus } = useCheckStatus({
 		query,
 		insurance,
@@ -110,29 +118,31 @@ function Details({
 		<div className={isMobile ? styles.main_mobile : styles.main}>
 			{activeStepper?.[1] === 'pro' && (
 				<div>
-					<BillingDetails
-						formDetails={formDetails}
-						setActiveStepper={setActiveStepper}
-						setFormDetails={setFormDetails}
-						insuranceType={insuranceType}
-						setInsuranceType={setInsuranceType}
-						addressApi={addressApi}
-						organisationAddress={organisationAddress}
-						addressdata={addressdata}
-						setChecked={setChecked}
-						checked={checked}
-						addressLoading={addressLoading}
-						setOrganizationAddressId={setOrganizationAddressId}
-						isMobile={isMobile}
-						draftResponse={draftResponse}
-						draftLoading={draftLoading}
-						setData={setData}
-						policyid={policyIdDraft}
-						policyIdCreated={policyId}
-						uploadType={uploadType}
-						setUploadType={setUploadType}
-						setisBillingAddress={setisBillingAddress}
-					/>
+					{!addressLoading && (
+						<BillingDetails
+							formDetails={formDetails}
+							setActiveStepper={setActiveStepper}
+							setFormDetails={setFormDetails}
+							insuranceType={insuranceType}
+							setInsuranceType={setInsuranceType}
+							addressdata={addressdata}
+							setChecked={setChecked}
+							checked={checked}
+							addressLoading={addressLoading}
+							setOrganizationAddressId={setOrganizationAddressId}
+							isMobile={isMobile}
+							draftResponse={draftResponse}
+							draftLoading={draftLoading}
+							policyid={policyIdDraft}
+							policyIdCreated={policyId}
+							uploadType={uploadType}
+							setUploadType={setUploadType}
+							setisBillingAddress={setisBillingAddress}
+						/>
+					)}
+					{
+						addressLoading && <Placeholder />
+					}
 				</div>
 			)}
 			{activeStepper?.[2] === 'pro' && (
@@ -143,8 +153,6 @@ function Details({
 					setFormDetails={setFormDetails}
 					activeTab={activeTab}
 					setCommodityName={setCommodityName}
-					setCommodityQuery={setCommodityQuery}
-					commodityQuery={commodityQuery}
 					commodityName={commodityName}
 					isMobile={isMobile}
 					draftResponse={draftResponse}
@@ -185,7 +193,9 @@ function Details({
 					showModal={modal}
 				/>
 			)}
-			{draftModal && <DraftModal draftModal={draftModal} setDraftModal={setDraftModal} />}
+			{draftModal && (
+				<DraftModal draftModal={draftModal} setDraftModal={setDraftModal} />
+			)}
 		</div>
 	);
 }

@@ -136,5 +136,8 @@ const saas = {
 
 	app_saas_load_container: [],
 
+	saas_cogo_insurance  : [],
+	saas_tools_insurance : [],
+
 };
 export default saas;

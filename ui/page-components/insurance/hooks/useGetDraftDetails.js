@@ -1,39 +1,36 @@
 import { Toast } from '@cogoport/components';
-import { useState, useEffect } from 'react';
+import { useEffect, useCallback } from 'react';
 
 import { useRequestBf } from '@/packages/request';
 
 const useGetDraftDetails = ({ policyId }) => {
-	const [draftDetailsPrefilling, setDraftDetailsPrefilling] = useState({});
-	const [trigger, { loading }] = useRequestBf({
+	const [{ loading, data }, trigger] = useRequestBf({
 		method  : 'get',
 		authKey : 'get_saas_insurance_draft_details',
 		url     : '/saas/insurance/draft/details',
 	}, { manual: true });
 
-	const response = async () => {
+	const response = useCallback(async () => {
 		try {
-			const res = await trigger({
+			await trigger({
 				params: {
 					policyId,
 				},
 			});
-			if (res?.data) {
-				setDraftDetailsPrefilling(res?.data);
-			}
 		} catch (error) {
 			Toast.error(error?.error?.message);
 		}
-	};
+	}, [policyId, trigger]);
+
 	useEffect(() => {
 		if (policyId) {
 			response();
 		}
-	});
+	}, [policyId, response]);
 	return {
-		draftDetails        : response,
-		draftDetailsLoading : loading,
-		draftDetailsPrefilling,
+		draftDetails           : response,
+		draftDetailsLoading    : loading,
+		draftDetailsPrefilling : data,
 	};
 };
 

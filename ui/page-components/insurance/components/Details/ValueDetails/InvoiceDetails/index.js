@@ -6,7 +6,6 @@ function InvoiceDetails({
 	control = {},
 	errors = {},
 	fields = [],
-	watch,
 }) {
 	return (
 		<>
@@ -20,16 +19,12 @@ function InvoiceDetails({
 							className={styles.col}
 							key={item.name}
 						>
+							<div>{renderingField.placeholder}</div>
 							<Element
 								{...renderingField}
 								key={item.name}
 								control={control}
 							/>
-							<div>
-								<span className={watch(renderingField?.name) !== '' ? styles.display : styles.hidden}>
-									{renderingField.placeholder}
-								</span>
-							</div>
 							{errors[renderingField.name]?.type === 'required'
 							|| errors[renderingField.name]?.type === 'pattern'
 							|| errors[renderingField.name]?.type === 'minLength'

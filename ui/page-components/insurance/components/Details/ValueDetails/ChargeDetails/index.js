@@ -9,7 +9,6 @@ function ChargeDetails({
 	control = {},
 	errors = {},
 	fields = [],
-	watch,
 }) {
 	return (
 		<>
@@ -23,37 +22,27 @@ function ChargeDetails({
 							className={styles.col}
 							key={item.name}
 						>
+							{
+								renderingField.name !== 'policyCurrency'
+									? <div>{renderingField.placeholder}</div>
+									: (
+										<Tooltip
+											placement="top"
+											content="This currency is used to calculate the amount payable"
+										>
+											<div className={styles.icon_div}>
+												{renderingField.placeholder}
+												<IcMInfo />
+											</div>
+										</Tooltip>
+									)
+
+							}
 							<Element
 								{...renderingField}
 								control={control}
 								key={item.name}
 							/>
-							<div>
-								{renderingField.name !== 'policyCurrency' ? (
-									<span className={watch(renderingField?.name) !== ''
-										? styles.display : styles.hidden}
-									>
-										{renderingField.placeholder}
-									</span>
-								) : (
-									<span className={watch(renderingField?.name) !== ''
-										? styles.display : styles.hidden}
-									>
-										<div className={styles.icon_div}>
-											{renderingField.placeholder}
-											<Tooltip
-												theme="light"
-												placement="right"
-												content="This currency is used to calculate the amount payable"
-											>
-												<div>
-													<IcMInfo />
-												</div>
-											</Tooltip>
-										</div>
-									</span>
-								)}
-							</div>
 							{errors[renderingField.name]?.type === 'required'
 							|| errors[renderingField.name]?.type === 'pattern'
 							|| errors[renderingField.name]?.type === 'minLength'

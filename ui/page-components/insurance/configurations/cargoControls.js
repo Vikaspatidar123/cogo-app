@@ -10,7 +10,6 @@ const controls = [
 		name               : 'policyCommodityId',
 		placeholder        : 'Commodity',
 		asyncKey           : 'commodities_list_insurance',
-		span               : 4,
 		defaultOptions     : true,
 		type               : 'async_select',
 		getModifiedOptions : (options) => (options || []).map((x) => ({
@@ -32,11 +31,9 @@ const controls = [
 		placeholder        : 'Country',
 		type               : 'async_select',
 		asyncKey           : 'insurance_country_list',
-		span               : 4,
-		defaultOptions     : true,
 		getModifiedOptions : (options = []) => (options || []).map((x) => ({
 			...x,
-			value: x.id,
+			value: x.locationId,
 			label:
 	<div className={styles.country_flag_options}>
 		{x.countryFlagIcon ? <img src={x.countryFlagIcon} alt="cogo" /> : <IcCCompleteJourney />}
@@ -64,48 +61,40 @@ const controls = [
 			{ label: 'DAP - Delivered At Place', value: 'DAP' },
 			{ label: 'DDP - Delivered Duty Paid', value: 'DDP' },
 		],
-		span: 4,
 	},
 	{
 		name        : 'cargoDescription',
 		placeholder : 'Cargo Description',
 		type        : 'text',
-		span        : 4,
 	},
 	{
 		name        : 'packaging',
 		placeholder : 'Packaging Description',
 		type        : 'text',
-		span        : 4,
 	},
-
 	{
 		name        : 'transitDate',
 		placeholder : 'Transit Start Date',
 		type        : 'datepicker',
 		minDate     : new Date().setDate(new Date().getDate() + 1),
-		span        : 4,
+		maxDate     : new Date().setDate(new Date().getDate() + 31),
 	},
 	{
 		name        : 'locationFrom',
 		placeholder : 'Coverage From',
 		type        : 'text',
-		span        : 4,
 		tooltip     : 'Insurance coverage starts from place',
 	},
 	{
 		name        : 'locationTo',
 		placeholder : 'Coverage To',
 		type        : 'text',
-		span        : 4,
 		tooltip     : 'Insurance coverage ends to place',
 	},
 	{
 		name        : 'riskCoverage',
 		placeholder : 'Coverage',
-		disable     : false,
 		type        : 'select',
-		span        : 4,
 	},
 ];
 
@@ -121,18 +110,17 @@ const getControls = ({
 	if (control.name === 'policyCommodityId') {
 		return {
 			...control,
-			value    : get(formDetails, control.name),
-			onChange : (e) => {
+			onChange: (e) => {
 				setDescription(e);
 				setCommodityName(e?.commodity);
 			},
 		};
 	}
+
 	if (control.name === 'policyCountryId') {
 		return {
 			...control,
 			placeholder : activeTab === 'IMPORT' ? 'Origin Country' : 'Destination Country',
-			value       : get(formDetails, control.name),
 			onChange    : (e) => {
 				setCountryDetails({
 					checkSantion      : e?.countryType,
@@ -145,32 +133,7 @@ const getControls = ({
 			},
 		};
 	}
-	if (control.name === 'riskCoverage') {
-		return {
-			...control,
-			value   : 'ALL_RISK',
-			options : [
-				{
-					label : 'All Risk',
-					value : 'ALL_RISK',
-				},
-			],
-		};
-	}
-	if (control.name === 'transitDate') {
-		return {
-			...control,
-			value:
-					get(formDetails, control.name)
-					|| new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
-		};
-	}
-	if (control.name === 'incoterm') {
-		return {
-			...control,
-			value: get(formDetails, control.name) || 'CIF',
-		};
-	}
+
 	return {
 		...control,
 		value: get(formDetails, control.name),

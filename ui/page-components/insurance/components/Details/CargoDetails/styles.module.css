@@ -175,3 +175,8 @@
 	display: flex;
 	gap: 5px;
 }
+
+.error_message {
+	font-size: 14px;
+	color: #cb6464;
+}

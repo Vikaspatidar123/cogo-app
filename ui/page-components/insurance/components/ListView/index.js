@@ -46,6 +46,10 @@ function ListView() {
 
 	const handleTabChange = (value) => {
 		setActiveTab(value);
+		setFilters(() => ({
+			page      : 1,
+			pageLimit : 10,
+		}));
 	};
 
 	const createFunction = () => {
@@ -82,7 +86,7 @@ function ListView() {
 							size="sm"
 							onChange={(e) => setFilters((prev) => ({
 								...prev,
-								searchTerm : e?.target?.value,
+								searchTerm : e,
 								page       : 1,
 							}))}
 							placeholder="Search by Country or Policy Id"

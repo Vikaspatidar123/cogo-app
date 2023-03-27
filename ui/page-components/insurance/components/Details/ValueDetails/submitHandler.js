@@ -10,15 +10,8 @@ const submitHandler = ({
 	formDetails,
 	checked,
 	setAgree,
+	uploadedFiles,
 }) => {
-	const {
-		aadharDoc = null,
-		gstDoc = null,
-		panDoc = null,
-		invoiceDoc = null,
-		...rest
-	} = values || {};
-
 	if (!checked) {
 		setAgree(true);
 		Toast.error('Please accept terms and conditions', {
@@ -35,10 +28,10 @@ const submitHandler = ({
 		setFormDetails((prev) => ({
 			...prev,
 			verificationDoc: {
-				aadharDoc  : aadharDoc || null,
-				gstDoc     : gstDoc || null,
-				invoiceDoc : invoiceDoc || null,
-				panDoc     : panDoc || null,
+				aadharDoc  : uploadedFiles.aadharDoc || null,
+				invoiceDoc : uploadedFiles.invoiceDoc || null,
+				gstDoc     : uploadedFiles.gstDoc || null,
+				panDoc     : uploadedFiles.panDoc || null,
 			},
 			...values,
 		}));
@@ -47,12 +40,16 @@ const submitHandler = ({
 			setFinalData(() => ({
 				...formDetails,
 				verificationDoc: {
-					aadharDoc  : aadharDoc || null,
-					gstDoc     : gstDoc || null,
-					invoiceDoc : invoiceDoc || null,
-					panDoc     : panDoc || null,
+					aadharDoc: {
+						name    : 'Aadhar',
+						url     : uploadedFiles.aadharDoc || null,
+						success : true,
+					},
+					invoiceDoc : { name: 'Invoice', url: uploadedFiles.invoiceDoc || null, success: true },
+					gstDoc     : { name: 'GstDoc', url: uploadedFiles.gstDoc || null, success: true },
+					panDoc     : { name: 'Invoice', url: uploadedFiles.panDoc || null, success: true },
 				},
-				...rest,
+				...values,
 			}));
 			setActiveStepper(() => ({
 				1   : true,

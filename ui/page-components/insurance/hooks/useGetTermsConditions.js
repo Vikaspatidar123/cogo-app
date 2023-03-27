@@ -10,12 +10,14 @@ const useGetTermsConditions = ({
 	countryCode = '',
 }) => {
 	const [terms, setTerms] = useState();
-
-	const [{ loading }, trigger] = useRequestBf({
-		method  : 'get',
-		authkey : 'get_saas_insurance_terms',
-		url     : '/saas/insurance/terms',
-	}, { manual: true });
+	const [{ loading }, trigger] = useRequestBf(
+		{
+			method  : 'get',
+			authkey : 'get_saas_insurance_terms',
+			url     : '/saas/insurance/terms',
+		},
+		{ manual: true },
+	);
 
 	const fetchTerms = useCallback(async () => {
 		try {

@@ -30,6 +30,7 @@ specifiers:
   redux: ^4.2.1
   redux-thunk: ^2.4.2
   stylelint: ^15.2.0
+  uuid: ^9.0.0
 
 dependencies:
   '@cogoport/charts': 1.0.1_biqbaboplfbrettd7655fr4n2y
@@ -51,6 +52,7 @@ dependencies:
   react-redux: 8.0.5_egguyi6kvemdtrnkbl3bdoeaey
   redux: 4.2.1
   redux-thunk: 2.4.2_redux@4.2.1
+  uuid: 9.0.0
 
 devDependencies:
   '@cogoport/eslint-config': 1.1.0_eslint@8.35.0
@@ -5035,6 +5037,7 @@ packages:
     resolution: {integrity: sha512-l7bvmSeIwX5lp07WtIiP9u2ytZMv7jIeB8iacR28PuUEFG5j0HGAPnMqyG5kbZNBG2H7tRsrQ4HCjuMOPnANZw==}
     engines: {node: '>=12.22.0'}
     hasBin: true
+    requiresBuild: true
     peerDependencies:
       fibers: '>= 3.1.0'
       node-sass: ^6.0.0 || ^7.0.0
@@ -6643,6 +6646,11 @@ packages:
   /util-deprecate/1.0.2:
     resolution: {integrity: sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==}
     dev: true
+
+  /uuid/9.0.0:
+    resolution: {integrity: sha512-MXcSTerfPa4uqyzStbRoTgt5XIe3x5+42+q1sDuy3R5MDk66URdLMOZe5aPX/SQd+kuYAh0FdP/pO28IkQyTeg==}
+    hasBin: true
+    dev: false
 
   /v8-compile-cache/2.3.0:
     resolution: {integrity: sha512-l8lCEmLcLYZh4nbunNZvQCJc5pv7+RCwa8q/LdUx8u7lsWvPDKmpodJAJNwkAhJC//dFY48KuIEmjtd4RViDrA==}

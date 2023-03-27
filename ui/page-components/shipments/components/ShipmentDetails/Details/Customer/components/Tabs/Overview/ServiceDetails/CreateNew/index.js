@@ -64,7 +64,7 @@ function CreateNew({
 				</div>
 			) : null}
 
-			<Modal
+			{/* <Modal
 				show={upsellModal}
 				onClose={() => setUpsellModal(false)}
 				className="primary lg"
@@ -83,7 +83,7 @@ function CreateNew({
 					services={serviceList}
 					isIE={isIE}
 				/>
-			</Modal>
+			</Modal> */}
 		</>
 	);
 }

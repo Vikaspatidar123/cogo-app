@@ -1,0 +1,9 @@
+.button_container{
+    display: flex;
+	width: 100%;
+	justify-content: space-between;
+}
+.line{
+	border-bottom: 1px solid #ded7fc;
+	margin: 16px 0px 32px 0px;
+}

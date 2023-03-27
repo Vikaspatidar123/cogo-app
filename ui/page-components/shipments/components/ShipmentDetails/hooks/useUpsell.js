@@ -64,11 +64,11 @@ const useUpsell = ({ service, services, extraParams, shipment_data }) => {
 			service?.[control.name] || prefilledValues[control.name] || control.value,
 	}));
 
-	const { fields, handleSubmit, watch, register, reset, unregister } = useForm();
+	const { control, handleSubmit, watch, register, reset, unregister } = useForm();
 
 	const formValues = watch();
 	const formProps = {
-		fields,
+		control,
 		formValues,
 		handleSubmit,
 		watch,

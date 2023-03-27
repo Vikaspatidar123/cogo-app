@@ -9,8 +9,9 @@ import { useEffect } from 'react';
 // import Overview from './Overview';
 // import { Container, Content, InvoiceDiv } from './styles';
 import RelationshipManager from '../RelationshipManager';
-import IEDocuments from './IEDocuments';
 
+import IEDocuments from './IEDocuments';
+import IEPocAndSop from './IEPocAndSop';
 import Overview from './Overview';
 import SalesInvoice from './SalesInvoice';
 import styles from './styles.module.css';
@@ -58,12 +59,12 @@ function TabSections({
 						<IEDocuments />
 					</TabPanel>
 
-					{/* <TabPanel name="sop_poc" title="SOP AND POC">
+					<TabPanel name="sop_poc" title="SOP AND POC">
 						<IEPocAndSop
 							quickAction={quickAction}
 							setQuickAction={setQuickAction}
 						/>
-					</TabPanel>  */}
+					</TabPanel>
 				</Tabs>
 			</div>
 		</div>

@@ -1,24 +1,6 @@
 import { Placeholder } from '@cogoport/components';
 import { useContext } from 'react';
 
-// import { ShipmentDetailContext } from '../../../../../../commons/Context';
-// import { helperFuncs } from '../../../../../commons/Overview/Services/helpers/getHelperFuncs';
-// import { upsellTransportation } from '../../../../../commons/Overview/Services/helpers/UpsellTransportation';
-// import TermsAndConditions from '../../../../../commons/Overview/TermsAndConditions';
-// import possibleFullRouteConfigs from '../../../../../commons/Route/possible-full-route.json';
-
-// import AdditionalServiceList from './AdditionalServices/List';
-// import Assured from './Assured';
-// import Loader from './Loader';
-// import ServiceDetails from './ServiceDetails';
-// import {
-// 	Container,
-// 	Services,
-// 	ServiceContainer,
-// 	RightPanel,
-// 	Heading,
-// 	Line,
-// } from './styles';
 import possibleFullRouteConfigs from '../../../../../../../constants/possible-full-route.json';
 import { ShipmentDetailContext } from '../../../../../common/Context';
 
@@ -26,10 +8,10 @@ import AdditionalServicesList from './AdditionalServices';
 import Assured from './Assured';
 import ServiceDetails from './ServiceDetails';
 import styles from './styles.module.css';
+import TermsAndConditions from './TermsandConditions';
 
 import { helperFuncs } from '@/ui/page-components/shipments/helpers/helperFuncs';
 import { upsellTransportation } from '@/ui/page-components/shipments/helpers/upsellTransportation';
-import TermsAndConditions from './TermsandConditions';
 
 function Overview({
 	quickAction,

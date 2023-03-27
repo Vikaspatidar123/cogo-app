@@ -1,9 +1,4 @@
-// import React from 'react';
-
-// import CreateNew from '../../../../../../commons/Overview/Services/ServiceDetails/CreateNew';
-
-// import Header from './Header';
-// import { Container, CreateContainer } from './styles';
+import CreateNew from './CreateNew';
 import Header from './Header';
 import styles from './styles.module.css';
 
@@ -35,13 +30,12 @@ function ServiceDetails({
 	) : (
 		routeLeg?.service_types?.[0] !== cancelUpsellFor && (
 			<div className={styles.create_container}>
-				{/* <CreateNew
+				<CreateNew
 					routeLeg={routeLeg}
 					serviceList={serviceList}
 					shipment_data={shipmentData}
 					isIE
-				/> */}
-				<div>1223</div>
+				/>
 			</div>
 		)
 	);

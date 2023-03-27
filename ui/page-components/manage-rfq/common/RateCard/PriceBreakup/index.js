@@ -5,7 +5,7 @@ import { UNIT_MAPPING } from '../../../constants';
 import handleLineItemsBreakup from './handleLineItemsBreakup';
 import styles from './styles.module.css';
 
-import formatAmount from '@/packages/forms/utils/get-formatted-price';
+import formatAmount from '@/ui/commons/utils/formatAmount';
 
 function PriceBreakup({ details = {}, data = {} }) {
 	const searchType = data?.service_type || 'fcl_freight';
@@ -131,16 +131,14 @@ function PriceBreakup({ details = {}, data = {} }) {
 					<div className={styles.price_title}>
 						<div className={styles.basic_title}>{startCase(service_type)}</div>
 						<div className={styles.basic_price}>
-							{formatAmount(
-								total_price_discounted || 0,
-								total_price_currency,
-								{
+							{formatAmount({
+								amount   :	total_price_discounted || 0,
+								currency :	total_price_currency,
+								options  :	{
 									style                 : 'currency',
-									currencyDisplay       : 'code',
 									maximumFractionDigits : 0,
 								},
-							)}
-							{' '}
+							})}
 							{UNIT_MAPPING[bookingCharges?.line_items?.[0]?.unit]}
 						</div>
 					</div>

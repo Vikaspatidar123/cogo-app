@@ -15,6 +15,7 @@ function Quotations({
 	getRfqStats,
 	setShowDashboard = () => {},
 }) {
+	console.log(inViewport, 'inViewport');
 	const filterMapping = {
 		all        : '',
 		live       : 'Active',

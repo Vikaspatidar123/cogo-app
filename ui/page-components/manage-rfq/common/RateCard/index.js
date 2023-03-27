@@ -61,7 +61,7 @@ function RateCard({ typeName, ratesBreakdown = {}, detail = {} }) {
 				</div>
 
 				<Button
-					className="primary  sm text button-text-black"
+					themeType="linkUi"
 					onClick={(e) => {
 						e.stopPropagation();
 						setShowPrice(!showPrice);

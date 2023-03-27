@@ -41,6 +41,7 @@ function Footer({
 						setShowContractCreation(true);
 					}}
 					disabled={!selectedPairs}
+					className={styles.req_btn}
 				>
 					Request Contract
 				</Button>

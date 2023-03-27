@@ -73,7 +73,7 @@ function AdditionalServices({ serviceDetails = {}, type = 'portcard' }) {
 						/>
 					)}
 					maxWidth={300}
-					theme="light-border"
+
 				>
 					<div className={styles.extra}>
 						+

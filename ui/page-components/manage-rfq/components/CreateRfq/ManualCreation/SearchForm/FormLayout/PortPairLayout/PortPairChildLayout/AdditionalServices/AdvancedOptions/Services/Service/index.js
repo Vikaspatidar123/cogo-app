@@ -4,7 +4,7 @@ import React from 'react';
 
 import styles from './styles.module.css';
 
-import IconMapping from '@/ui/page-components/manage-rfq/configurations/icon-mapping';
+import IconMapping from '@/ui/page-components/manage-rfq/constant/icon-mapping';
 
 function Service({
 	service = '',

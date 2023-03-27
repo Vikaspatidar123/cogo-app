@@ -24,7 +24,7 @@ const useListRfqSearches = ({
 		url    : '/list_rfq_searches',
 	}, { manual: true });
 
-	const listRfqSearches = useCallback(async () => {
+	const listRfqSearches = async () => {
 		const response = await trigger({
 			params: {
 				page                     : 1,
@@ -46,12 +46,11 @@ const useListRfqSearches = ({
 			setActivePortPair(0);
 			setShowModal(response.data.contract_guide_view ? 'whyModal' : '');
 		}
-	}, [isNewRate, location, rateFilter, rfq_id, search_type, setActivePortPair, setShowModal, trigger]);
+	};
 
 	useEffect(() => {
 		listRfqSearches();
-	}, [rfq_id, listFiltersDependency, listRfqSearches]);
-
+	}, [rfq_id, listFilters]);
 	return {
 		portPairloading : loading,
 		portPairList,

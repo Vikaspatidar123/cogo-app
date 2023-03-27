@@ -23,7 +23,7 @@ const useGetRfqSearch = ({
 		{ manual: true },
 	);
 
-	const getRefSearch = useCallback(async () => {
+	const getRefSearch = async () => {
 		const response = await trigger({
 			params: {
 				rfq_id,
@@ -33,13 +33,13 @@ const useGetRfqSearch = ({
 		if (response?.data) {
 			setPortPairRates(response.data);
 		}
-	}, [id, rfq_id, trigger]);
+	};
 
 	useEffect(() => {
 		if (serial_id && !portPairloading && spot_searches) {
 			getRefSearch();
 		}
-	}, [id, activePortPair, getRefSearch, serial_id, spot_searches, portPairloading]);
+	}, [id, activePortPair]);
 
 	return {
 		portPairRateloading: loading,

@@ -66,7 +66,7 @@ function Quotations({
 							type="compact"
 							currentPage={page}
 							totalItems={total_count}
-							// pageSize={5}
+							pageSize={10}
 							onPageChange={setPagination}
 						/>
 					)}

@@ -1,154 +1,141 @@
-// import DatePicker from '@cogo/business-modules/form/components/Controlled/DatePicker';
-// import InputController from '@cogo/business-modules/form/components/Controlled/InputController';
-// import { addDays } from '@cogo/date';
-// import { Grid } from '@cogoport/front/components';
-// import Button from '@cogoport/front/components/admin/Button';
-// import { useFormCogo } from '@cogoport/front/hooks';
-// import { startCase } from '@cogoport/front/utils';
-// import React from 'react';
+import { cl, Button } from '@cogoport/components';
+import { IcMTick, IcMPlus, IcMArrowBack } from '@cogoport/icons-react';
+import { startCase } from '@cogoport/utils';
 
-// import CreateContractsControls from '../../configurations/create-contract-details';
-// import getNameSuggestions from '../../helpers/getNameSuggestions';
-// import useCreateContractRfq from '../../hooks/useCreateContractRfq';
+import CreateContractsControls from '../../configurations/create-contract-details';
+import getNameSuggestions from '../../helpers/getNameSuggestions';
+import useCreateContractRfq from '../../hooks/useCreateContractRfq';
+import addDays from '../../utils/addDays';
+import getwidth from '../../utils/getWidth';
 
-// import PortPairs from './portpairs';
-// import {
-// 	Container,
-// 	Header,
-// 	BackIcon,
-// 	Title,
-// 	StyledCol,
-// 	Label,
-// 	SubTitle,
-// 	Tags,
-// 	Tag,
-// 	PlusIcon,
-// 	TickIcon,
-// 	SubLabel,
-// 	// TermsAndConditions,
-// 	Buttons,
-// 	Error,
-// 	// TermsText
-// } from './styles';
+import PortPairs from './portpairs';
+import styles from './styles.module.css';
 
-// const { Row } = Grid;
+import { InputController, DatepickerController, useForm } from '@/packages/forms';
 
-// function CreateContract({
-// 	formData,
-// 	setShowContractCreation = () => {},
-// 	setShowModal = () => {},
-// }) {
-// 	const RfqId = formData?.[0]?.rfq_id || '';
-// 	const { nameSuggestions } = getNameSuggestions({
-// 		formData,
-// 	});
-// 	const { loading, onContractRequest } = useCreateContractRfq({
-// 		RfqId,
-// 		setShowModal,
-// 		setShowContractCreation,
-// 	});
+function CreateContract({
+	formData,
+	setShowContractCreation = () => {},
+	setShowModal = () => {},
+}) {
+	const RfqId = formData?.[0]?.rfq_id || '';
+	const { nameSuggestions } = getNameSuggestions({
+		formData,
+	});
+	const { loading, onContractRequest } = useCreateContractRfq({
+		RfqId,
+		setShowModal,
+		setShowContractCreation,
+	});
 
-// 	const {
-// 		fields,
-// 		watch,
-// 		setValue,
-// 		handleSubmit,
-// 		setError,
-// 		formState: { errors },
-// 	} = useFormCogo(CreateContractsControls({ formData }));
+	const {
+		fields,
+		watch,
+		setValue,
+		handleSubmit,
+		setError,
+		formState: { errors },
+	} = useForm(CreateContractsControls({ formData }));
 
-// 	const watchName = watch('contract_name');
-// 	const ValidityStart = watch('validity_start') || new Date();
+	const watchName = watch('contract_name');
+	const ValidityStart = watch('validity_start') || new Date();
 
-// 	const submitForm = (val) => {
-// 		onContractRequest(val);
-// 	};
+	const submitForm = (val) => {
+		onContractRequest(val);
+	};
 
-// 	return (
-// 		<Container>
-// 			<Header>
-// 				<BackIcon onClick={() => setShowContractCreation(false)} />
-// 				Back to RFQ
-// 			</Header>
+	return (
+		<div className={styles.container}>
+			<div className={styles.header}>
+				<IcMArrowBack className={styles.backicon} onClick={() => setShowContractCreation(false)} />
+				Back to RFQ
+			</div>
 
-// 			<Title>One last step, finalise your contract</Title>
-// 			<Row>
-// 				<StyledCol sm={3.7}>
-// 					<Label>{fields.contract_name.label}</Label>
-// 					<InputController
-// 						{...fields.contract_name}
-// 						className={(errors?.contract_name?.message || '') && 'error-class'}
-// 					/>
-// 					<Error>{errors?.contract_name?.message}</Error>
-// 				</StyledCol>
-// 				<StyledCol sm={0.1} />
-// 				<StyledCol sm={2.1}>
-// 					<Label>{fields.validity_start.label}</Label>
-// 					<DatePicker
-// 						{...fields.validity_start}
-// 						maxDate={addDays(new Date(), 29)}
-// 						className={(errors?.validity_start?.message || '') && 'error-class'}
-// 					/>
-// 					<SubLabel>{fields.validity_start.miniLabel}</SubLabel>
-// 					{' '}
-// 					<Error>{errors?.validity_start?.message}</Error>
-// 				</StyledCol>
-// 				<StyledCol sm={2.1}>
-// 					<Label>{fields.validity_end.label}</Label>
-// 					<DatePicker
-// 						{...fields.validity_end}
-// 						minDate={ValidityStart}
-// 						maxDate={addDays(ValidityStart, 29)}
-// 						className={(errors?.validity_end?.message || '') && 'error-class'}
-// 					/>
-// 					<SubLabel>{fields.validity_end.miniLabel}</SubLabel>
-// 					{' '}
-// 					<Error>{errors?.validity_end?.message}</Error>
-// 				</StyledCol>
-// 			</Row>
-// 			<Row>
-// 				<StyledCol sm={12}>
-// 					<SubTitle>Name Suggestions</SubTitle>
-// 					<Tags>
-// 						{nameSuggestions.map((name) => (
-// 							<Tag
-// 								onClick={() => {
-// 									setValue('contract_name', name);
-// 									setError('contract_name', undefined);
-// 								}}
-// 								active={startCase(watchName) === name}
-// 							>
-// 								{startCase(watchName) === name ? <TickIcon /> : <PlusIcon />}
-// 								<div>{name}</div>
-// 							</Tag>
-// 						))}
-// 					</Tags>
-// 				</StyledCol>
-// 			</Row>
-// 			<PortPairs
-// 				formData={formData}
-// 				errors={errors}
-// 				fields={fields}
-// 				watch={watch}
-// 			/>
-// 			<Buttons>
-// 				<Button
-// 					className="secondary md"
-// 					onClick={() => setShowContractCreation(false)}
-// 					disabled={loading}
-// 				>
-// 					Back
-// 				</Button>
-// 				<Button
-// 					className="primary md"
-// 					onClick={handleSubmit(submitForm)}
-// 					disabled={loading}
-// 				>
-// 					Request Contract
-// 				</Button>
-// 			</Buttons>
-// 		</Container>
-// 	);
-// }
+			<div className={styles.title}>One last step, finalise your contract</div>
 
-// export default CreateContract;
+			<div className={styles.row}>
+				<div className={styles.cols} style={{ width: getwidth(3.7) }}>
+					<div className={styles.label}>{fields.contract_name.label}</div>
+					<InputController
+						{...fields.contract_name}
+						className={(errors?.contract_name?.message || '') && styles.error_class}
+					/>
+					<div className={styles.error}>{errors?.contract_name?.message}</div>
+				</div>
+
+				<div className={styles.cols} style={{ width: getwidth(0.1) }} />
+
+				<div className={styles.cols} style={{ width: getwidth(2.1) }}>
+					<div className={styles.label}>{fields.validity_start.label}</div>
+					<DatepickerController
+						{...fields.validity_start}
+						maxDate={addDays(new Date(), 29)}
+						className={(errors?.validity_start?.message || '') && styles.error_class}
+					/>
+					<div className={styles.sublabel}>{fields.validity_start.miniLabel}</div>
+					{' '}
+					<div className={styles.error}>{errors?.validity_start?.message}</div>
+				</div>
+
+				<div className={styles.cols} style={{ width: getwidth(2.1) }}>
+					<div className={styles.label}>{fields.validity_end.label}</div>
+					<DatepickerController
+						{...fields.validity_end}
+						minDate={ValidityStart}
+						maxDate={addDays(ValidityStart, 29)}
+						className={(errors?.validity_end?.message || '') && styles.error_class}
+					/>
+					<div className={styles.sublabel}>{fields.validity_end.miniLabel}</div>
+					{' '}
+					<div className={styles.error}>{errors?.validity_end?.message}</div>
+				</div>
+			</div>
+			<div className={styles.row}>
+				<div className={styles.cols} style={{ width: getwidth(12) }}>
+					<div className={styles.subtitle}>Name Suggestions</div>
+					<div className={styles.tags}>
+						{nameSuggestions.map((name) => (
+							<div
+								className={cl`${styles.tag} ${startCase(watchName) === name ? styles.active : ''}`}
+								role="presentation"
+								onClick={() => {
+									setValue('contract_name', name);
+									setError('contract_name', undefined);
+								}}
+							>
+								{startCase(watchName) === name ? <IcMTick className={styles.tickicon} />
+									: <IcMPlus className={styles.plusicon} />}
+								<div>{name}</div>
+							</div>
+						))}
+					</div>
+				</div>
+			</div>
+			<PortPairs
+				formData={formData}
+				errors={errors}
+				fields={fields}
+				watch={watch}
+			/>
+			<div className={styles.btn_container}>
+				<Button
+					themeType="secondary"
+					onClick={() => setShowContractCreation(false)}
+					disabled={loading}
+				>
+					Back
+				</Button>
+				<Button
+					themeType="secondary"
+					onClick={handleSubmit(submitForm)}
+					disabled={loading}
+					loading={loading}
+				>
+					Request Contract
+				</Button>
+			</div>
+		</div>
+	);
+}
+
+export default CreateContract;

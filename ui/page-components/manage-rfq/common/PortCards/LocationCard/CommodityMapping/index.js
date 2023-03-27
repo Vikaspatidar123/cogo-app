@@ -23,7 +23,6 @@ function CommodityMapping({ tagData }) {
 				<Tooltip
 					content={<ToolTipContent data={tagData.slice(5)} />}
 					maxWidth={290}
-					theme="light-border"
 				>
 					<div className={styles.extra}>
 						+

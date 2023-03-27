@@ -13,6 +13,7 @@ const useIsInViewport = (ref, rootMargin) => {
 				},
 				{ rootMargin },
 			);
+			console.log(observerBool, 'observerBool');
 			return observerBool;
 		}
 		return false;

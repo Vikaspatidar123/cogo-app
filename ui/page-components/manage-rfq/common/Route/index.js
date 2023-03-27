@@ -24,7 +24,7 @@ function Route({ item = {}, source = '' }) {
 	function LocationData({ details }) {
 		return (
 			<div className={styles.location}>
-				<Tooltip placement="top" content={details?.name} theme="light">
+				<Tooltip placement="top" content={details?.name}>
 					<div className={styles.name}>
 						<div className={styles.port}>{details?.name}</div>
 						{' '}

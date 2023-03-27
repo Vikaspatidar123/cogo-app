@@ -89,7 +89,7 @@ function Ports({
 
 				<AsyncSelect
 					isClearable
-					optionsListKey="locations"
+					asyncKey="locations"
 					placeholder="Select port"
 					value={location}
 					onChange={(val) => setListFilter((prev) => ({

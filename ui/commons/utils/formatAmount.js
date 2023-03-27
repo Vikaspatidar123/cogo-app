@@ -20,6 +20,7 @@ const getCurrencyLocale = ({ currency }) => {
 const format = ({ locale, amount, options, currency }) => {
 	try {
 		return new Intl.NumberFormat(locale, {
+			...options,
 			...('style' in options && {
 				currency: options?.currency || currency,
 			}),

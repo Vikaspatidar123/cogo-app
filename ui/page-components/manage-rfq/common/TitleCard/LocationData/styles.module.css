@@ -1,6 +1,6 @@
 .location {
-    flex: 4.5;
 	display: flex;
+	flex: 4.5;
 	flex-direction: column;
 	width: 45%;
 
@@ -10,31 +10,30 @@
 }
 
 .name {
-    font-size: 13px;
 	display: flex;
 	align-items: center;
+	font-size: 13px;
 	font-weight: 700;
 	cursor: default;
 }
 
 .code {
-    font-weight: 400;
-	color: black;
-	font-size: 13px;
 	margin-left: 2px;
+	font-size: 13px;
+	font-weight: 400;
+	color: black;
 }
 
 .country {
-    font-size: 13px;
+	font-size: 13px;
 	color: #393f70;
 }
 
 .port {
-    max-width: calc(100% - 30px);
+	max-width: calc(100% - 30px);
+	overflow: hidden;
+	font-size: 13px;
+	color: #393f70;
 	text-overflow: ellipsis;
 	white-space: nowrap;
-	overflow: hidden;
-	color: #393f70;
-	font-weight: 500;
-	font-size: 13px;
 }

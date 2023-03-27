@@ -1,0 +1,241 @@
+import styled from '@cogoport/front/styled';
+import animated from '@cogo/deprecated_legacy/animated';
+
+export const Container = styled.div`
+	margin-bottom: 16px;
+	margin-top: 16px;
+	background: #ffffff;
+	border: 1px solid #e0e0e0;
+	box-sizing: border-box;
+	border-radius: 10px;
+
+	@media (max-width: 760px) {
+		border: 1px solid rgb(224, 224, 224);
+	}
+
+	.css-7rtwp5 {
+		margin-top: 36px;
+	}
+`;
+
+export const Card = styled.div`
+	display: flex;
+
+	@media (max-width: 760px) {
+		flex-direction: column;
+	}
+`;
+
+export const Text = styled.div`
+	font-size: 10px;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 10px;
+	line-height: 12px;
+	letter-spacing: 0.02em;
+	color: #333333;
+	&.spot_negotiation_rate {
+		background: #e6fbe9;
+	}
+	&.cogo_assured_rate {
+		margin-left: 40px;
+		font-size: 12px;
+		margin-top: 4px;
+		font-weight: 400;
+	}
+`;
+export const CogoAssured = styled.div`
+	background: #d9eafd;
+	border-radius: 9px 0px 4px 0px;
+	width: fit-content;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 4px 12px;
+	&.cogo_assured_rate {
+		height: 48px;
+		border-radius: 9px 0px 8px 0px;
+	}
+	svg {
+		font-size: 20px;
+		margin-right: 8px;
+	}
+`;
+export const CogoportText = styled.div`
+	font-size: 14px;
+	font-weight: 500;
+	color: #333333;
+`;
+
+export const LineVrt = styled.div`
+	margin-top: 60px;
+	margin-bottom: 60px;
+	background-color: #e7e7e7;
+	height: auto;
+	width: 1px;
+
+	&.horizontal {
+		height: 1px;
+		width: 100%;
+		margin-top: 14px;
+	}
+`;
+
+export const TripTypeDiv = styled.div`
+	display: flex;
+	flex-direction: column;
+	margin-top: 4px;
+	margin-bottom: 24px;
+`;
+
+export const TripTypeTag = styled.div`
+	text-align: center;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin: auto;
+	background: #ded7fc;
+	border-radius: 4px;
+	padding: 2px 5px;
+	font-size: 10px;
+	color: #333333;
+
+	margin-bottom: 4px;
+`;
+
+export const ExtraDetails = styled.p`
+	margin: 0px;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 12px;
+	line-height: 16px;
+	letter-spacing: 0.02em;
+	color: #000000;
+	margin-left: 8px;
+`;
+
+export const AnimatedContainer = animated({
+	enter: {
+		translateY: [-10, 0],
+		opacity: [0, 1],
+		easing: 'easeInOutQuad',
+		duration: 500,
+	},
+	exit: {
+		translateY: [0, 10],
+		opacity: [1, 0],
+		duration: 300,
+	},
+});
+
+export const Details = styled.div`
+	display: Flex;
+`;
+
+export const FlexCol = styled.div`
+	display: flex;
+	font-size: 10px;
+	align-items: center;
+	flex-wrap: wrap;
+	flex: 1;
+	padding: 5px 8px 6px 12px;
+
+	@media (max-width: 1350px) {
+		padding-left: 10px;
+	}
+
+	@media (max-width: 500px) {
+		padding-left: 10px;
+	}
+`;
+
+export const ContainerValues = styled.div`
+	color: #000000;
+	margin-left: 10px;
+	max-width: 200px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+
+	@media (min-width: 1371px) and (max-width: 1416px) {
+		max-width: 150px;
+	}
+
+	@media (min-width: 1290px) and (max-width: 1370px) {
+		max-width: 85px;
+	}
+
+	@media (min-width: 1164px) and (max-width: 1291px) {
+		max-width: 80px;
+	}
+
+	@media (min-width: 760px) and (max-width: 1163px) {
+		max-width: 180px;
+	}
+
+	@media (max-width: 760px) {
+		max-width: 150px;
+	}
+`;
+
+export const Div = styled.div`
+	display: flex;
+	font-size: 10px;
+	align-items: center;
+	background: #dfe1ef;
+	border-radius: 4px;
+	margin: 5px;
+	padding: 4px;
+	flex-wrap: wrap;
+	.moreTruck {
+		color: #5936f0;
+		text-decoration: underline;
+		margin-left: 4px;
+	}
+
+	.truckCount {
+		margin-left: 4px;
+	}
+`;
+
+export const LineHorizontal = styled.div`
+	height: auto;
+	width: 1px;
+`;
+
+export const RouteDiv = styled.div`
+	display: flex;
+	width: 80%;
+	border-bottom: 1px dashed #aab9d6;
+`;
+
+export const QuotationDiv = styled.div``;
+
+export const TransitTimeDiv = styled.div`
+	font-size: 12px;
+	margin: 32px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+`;
+
+export const Wrapper = styled.div`
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	width: 100%;
+`;
+
+export const ContentContainer = styled.div`
+	display: flex;
+	flex-wrap: wrap;
+`;
+
+export const ToolTipContent = styled.div`
+	font-size: 12px;
+	padding: 5px;
+	border-bottom: 1px solid black;
+	span {
+		margin: 4px;
+	}
+`;

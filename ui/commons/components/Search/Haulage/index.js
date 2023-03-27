@@ -1,22 +1,19 @@
+/* eslint-disable import/no-cycle */
+import { Tabs, TabPanel } from '@cogoport/components';
 import { useState, useMemo } from 'react';
-import SearchForm from '@cogo/app-search/common/SearchForm/index.js';
-import SegmentedControl from '@cogoport/front/components/SegmentedControl';
 
-import { Flex, Text } from '@cogoport/front/components';
+import styles from './styles.module.css';
+
+import SearchForm from '@/ui/page-components/discover_rates/common/SearchForm';
 
 const CONSTANT_KEYS = {
-	TRAILER_FREIGHT: 'trailer_freight',
-	HAULAGE_FREIGHT: 'haulage_freight',
+	TRAILER_FREIGHT : 'trailer_freight',
+	HAULAGE_FREIGHT : 'haulage_freight',
 };
 
 const { TRAILER_FREIGHT, HAULAGE_FREIGHT } = CONSTANT_KEYS;
 
-const SERVICE_TYPE_OPTIONS = [
-	{ label: 'Trailer', value: TRAILER_FREIGHT },
-	{ label: 'Rail', value: HAULAGE_FREIGHT },
-];
-
-const Haulage = ({ extraParams }) => {
+function Haulage({ extraParams }) {
 	const [serviceType, setServiceType] = useState(TRAILER_FREIGHT);
 
 	const componentProps = {
@@ -30,41 +27,49 @@ const Haulage = ({ extraParams }) => {
 		},
 	};
 
-	const SERVICE_TYPE_COMPONENT_MAPPING = useMemo(() => {
-		return {
-			[TRAILER_FREIGHT]: SearchForm,
-			[HAULAGE_FREIGHT]: SearchForm,
-		};
-	}, []);
+	const SERVICE_TYPE_COMPONENT_MAPPING = useMemo(
+		() => ({
+			[TRAILER_FREIGHT] : SearchForm,
+			[HAULAGE_FREIGHT] : SearchForm,
+		}),
+		[],
+	);
 
-	const ActiveSearchComponent =
-		SERVICE_TYPE_COMPONENT_MAPPING[serviceType] || null;
+	const ActiveSearchComponent = SERVICE_TYPE_COMPONENT_MAPPING[serviceType] || null;
 
 	return (
-		<Flex direction="column" margin="0 16px">
-			<Flex direction="column" marginBottom={16}>
-				<Text as="div" marginBottom={2} color="#393F70">
-					Select Service Type
-				</Text>
+		<div className={styles.direction}>
+			<div className={styles.column}>
+				<text className={styles.text}>Select Service Type</text>
 
-				<Flex>
-					<SegmentedControl
-						options={SERVICE_TYPE_OPTIONS}
-						activeTab={serviceType}
-						setActiveTab={setServiceType}
-						separatorMarginRight={4}
-					/>
-				</Flex>
-			</Flex>
+				{/* <div className={styles.flex}> */}
 
-			{ActiveSearchComponent && (
-				<ActiveSearchComponent
-					key={serviceType}
-					{...(componentProps[serviceType] || {})}
-				/>
-			)}
-		</Flex>
+				{/* </div> */}
+			</div>
+			<Tabs
+				activeTab={serviceType}
+				onChange={setServiceType}
+				themeType="primary"
+			>
+				<TabPanel name={TRAILER_FREIGHT} title="Trailer">
+					{ActiveSearchComponent && (
+						<ActiveSearchComponent
+							key={serviceType}
+							{...(componentProps[serviceType] || {})}
+						/>
+					)}
+				</TabPanel>
+				<TabPanel name={HAULAGE_FREIGHT} title="Rail">
+					{ActiveSearchComponent && (
+						<ActiveSearchComponent
+							key={serviceType}
+							{...(componentProps[serviceType] || {})}
+						/>
+					)}
+				</TabPanel>
+			</Tabs>
+		</div>
 	);
-};
+}
 
 export default Haulage;

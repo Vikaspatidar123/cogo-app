@@ -26,7 +26,7 @@ const formControlsAdvanced = (isChannelPartner = false) => [
 		name           : 'export_transportation_truck_type',
 		label          : 'Pickup Truck Type',
 		type           : 'select',
-		optionsListKey : 'truck_types',
+		asyncKey : 'truck_types',
 		span           : 8,
 		condition      : {
 			services                          : ['export_transportation'],

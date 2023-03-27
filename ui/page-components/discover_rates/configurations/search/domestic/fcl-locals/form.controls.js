@@ -6,8 +6,8 @@ const formControlsAdvanced = (setOperatorName, is_org_pass_through) => [
 		name              : 'port_id',
 		placeholder       : 'Search via port name/code',
 		includedInOptions : false,
-		type              : 'location-select',
-		optionsListKey    : 'locations',
+		type              : 'async_select',
+		asyncKey          : 'locations',
 		grouped           : ['city'],
 		params            : { filters: { type: ['seaport', 'city'] } },
 		rules             : { required: 'Port is required' },
@@ -40,15 +40,15 @@ const formControlsAdvanced = (setOperatorName, is_org_pass_through) => [
 		  ]
 		: []),
 	{
-		name           : 'shipping_line_id',
-		label          : 'Shipping Line',
-		type           : 'select',
-		placeholder    : 'Select Shipping Line',
-		optionsListKey : 'shipping-lines',
-		caret          : true,
-		isClearable    : true,
-		multiple       : false,
-		handleChange   : (obj) => {
+		name         : 'shipping_line_id',
+		label        : 'Shipping Line',
+		type         : 'select',
+		placeholder  : 'Select Shipping Line',
+		asyncKey     : 'shipping-lines',
+		caret        : true,
+		isClearable  : true,
+		multiple     : false,
+		handleChange : (obj) => {
 			setOperatorName(obj);
 		},
 		labelKey : 'short_name',

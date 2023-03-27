@@ -1,26 +1,16 @@
+import { Datepicker, Tabs, TabPanel } from '@cogoport/components';
+// import SegmentedControl from '@cogoport/front/components/SegmentedControl';
 import React, { useState, forwardRef } from 'react';
-import { SingleDatePicker } from '@cogoport/front/components/DateTimePicker';
-import SegmentedControl from '@cogoport/front/components/SegmentedControl';
-import formatDate from '@cogo/globalization/utils/formatDate';
-import GLOBAL_CONSTANTS from '@cogo/globalization/constants/globals.json';
-import {
-	Container,
-	HeaderContainer,
-	DatePickerContainer,
-	DateContainer,
-	DateDiv,
-	SelectDate,
-	DateContent,
-} from './styles';
+
 import Calendar from '../../../icons/calender.svg';
+
 import GeneralSpecialGoods from './GeneralSpecialGoods';
+import styles from './styles.module.css';
 
-const OPTIONS = [
-	{ label: 'GENERAL CARGO', value: 'general_cargo' },
-	{ label: 'SPECIAL CONSIDERATION', value: 'special_consideration' },
-];
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
+import formatDate from '@/ui/commons/utils/formatDate';
 
-const GoodsDetails = ({ setGoodsDetail, goodsDetail, setShowPopover }, ref) => {
+function GoodsDetails({ setGoodsDetail, goodsDetail, setShowPopover }, ref) {
 	const [cargoDate, setCargoDate] = useState(
 		goodsDetail?.cargoDate || new Date(),
 	);
@@ -29,64 +19,76 @@ const GoodsDetails = ({ setGoodsDetail, goodsDetail, setShowPopover }, ref) => {
 	const [errorMessge, setErrorMessage] = useState(false);
 
 	const renderBody = () => (
-		<DateContainer>
+		<div className={styles.date_container}>
 			<Calendar size={1.5} />
 
-			<DateDiv>
-				<SelectDate>Select a day</SelectDate>
+			<div className={styles.date_div}>
+				<div className={styles.select_date}>Select a day</div>
 
-				<DateContent>
+				<div className={styles.date_content}>
 					{formatDate({
-						date: cargoDate,
-						dateFormat: GLOBAL_CONSTANTS.formats.date['dd MMM yyyy'],
-						formatType: 'date',
+						date       : cargoDate,
+						dateFormat : GLOBAL_CONSTANTS.formats.date['dd MMM yyyy'],
+						formatType : 'date',
 					})}
-				</DateContent>
-			</DateDiv>
-		</DateContainer>
+				</div>
+			</div>
+		</div>
 	);
 
 	return (
-		<Container>
-			<HeaderContainer>
-				<DatePickerContainer>
-					<div className="headerText">Cargo Ready Date:</div>
+		<div className={styles.container}>
+			<div className={styles.header_container}>
+				<div className={styles.date_picker_container}>
+					<div className={styles.header_text}>Cargo Ready Date:</div>
 
-					<SingleDatePicker
+					<Datepicker
 						renderBody={renderBody}
-						withTimePicker={false}
 						onChange={setCargoDate}
 						value={cargoDate}
 						minDate={new Date()}
 					/>
-				</DatePickerContainer>
+				</div>
 
 				{errorMessge && (
-					<div className="errMessage">Cargo Ready Date is required</div>
+					<div className={styles.err_message}>Cargo Ready Date is required</div>
 				)}
-			</HeaderContainer>
-
-			<div className="commodityType">Commodity Type</div>
-
-			<div style={{ width: 'fit-content', marginBottom: 20 }}>
-				<SegmentedControl
-					options={OPTIONS}
-					activeTab={cargoType}
-					setActiveTab={setCargoType}
-				/>
 			</div>
 
-			<GeneralSpecialGoods
-				cargoDate={cargoDate}
-				setErrorMessage={setErrorMessage}
-				setGoodsDetail={setGoodsDetail}
-				goodsDetail={goodsDetail}
-				setShowPopover={setShowPopover}
-				ref={ref}
-				cargoType={cargoType}
-			/>
-		</Container>
+			<div className={styles.commodity_type}>Commodity Type</div>
+
+			<div style={{ width: 'fit-content', marginBottom: 20 }}>
+
+				<Tabs activeTab={cargoType} onChange={setCargoType} themeType="primary">
+					<TabPanel
+						name="general_cargo"
+						title="GENERAL CARGO"
+					>
+						<GeneralSpecialGoods
+							cargoDate={cargoDate}
+							setErrorMessage={setErrorMessage}
+							setGoodsDetail={setGoodsDetail}
+							goodsDetail={goodsDetail}
+							setShowPopover={setShowPopover}
+							ref={ref}
+							cargoType={cargoType}
+						/>
+					</TabPanel>
+					<TabPanel name="special_consideration" title="SPECIAL CONSIDERATION">
+						<GeneralSpecialGoods
+							cargoDate={cargoDate}
+							setErrorMessage={setErrorMessage}
+							setGoodsDetail={setGoodsDetail}
+							goodsDetail={goodsDetail}
+							setShowPopover={setShowPopover}
+							ref={ref}
+							cargoType={cargoType}
+						/>
+					</TabPanel>
+				</Tabs>
+			</div>
+		</div>
 	);
-};
+}
 
 export default forwardRef(GoodsDetails);

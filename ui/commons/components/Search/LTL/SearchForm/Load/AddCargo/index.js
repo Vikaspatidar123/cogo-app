@@ -1,46 +1,63 @@
+// import SegmentedControl from '@cogoport/front/components/SegmentedControl';
+import { Tabs, TabPanel } from '@cogoport/components';
 import React, { useState, forwardRef } from 'react';
-import SegmentedControl from '@cogoport/front/components/SegmentedControl';
-import { Container, Wrapper, Heading } from './styles';
-import PerPackage from './PerPackage';
-import TabOptions from './TabOptions.json';
-import Gross from './Gross';
 
-const AddCargo = (
+import Gross from './Gross';
+import PerPackage from './PerPackage';
+import styles from './styles.module.css';
+
+function AddCargo(
 	{ setLoadData = () => {}, loadData = {}, setShowPopover },
 	ref,
-) => {
+) {
 	const { sub_active_tab } = loadData;
 
 	const [activeKey, setActiveKey] = useState(sub_active_tab);
 
 	return (
-		<Container>
-			<Wrapper>
-				<Heading>Select Type:</Heading>
-				<SegmentedControl
-					options={TabOptions}
-					activeTab={activeKey}
-					setActiveTab={setActiveKey}
-				/>
-			</Wrapper>
+		<div className={styles.container}>
+			<div className={styles.heading}>Select Type:</div>
+			<div className={styles.wrapper}>
 
-			{activeKey === 'per_package' ? (
-				<PerPackage
-					setLoadData={setLoadData}
-					loadData={loadData}
-					ref={ref}
-					setShowPopover={setShowPopover}
-				/>
-			) : (
-				<Gross
-					setLoadData={setLoadData}
-					loadData={loadData}
-					ref={ref}
-					setShowPopover={setShowPopover}
-				/>
-			)}
-		</Container>
+				<Tabs
+					className="horizontal two"
+					activeTab={activeKey}
+					onChange={setActiveKey}
+					themeType="primary"
+				>
+					<TabPanel
+						name="per_package"
+						title="Package"
+						id="per_package"
+						className="horizontal two"
+						setLoadData={setActiveKey}
+					>
+						<PerPackage
+							setLoadData={setLoadData}
+							loadData={loadData}
+							ref={ref}
+							setShowPopover={setShowPopover}
+							setActiveKey={setActiveKey}
+						/>
+					</TabPanel>
+					<TabPanel
+						name="gross"
+						title="Total/Gross"
+						id="gross"
+						setLoadData={setActiveKey}
+					>
+						<Gross
+							setLoadData={setLoadData}
+							loadData={loadData}
+							ref={ref}
+							setShowPopover={setShowPopover}
+							setActiveKey={setActiveKey}
+						/>
+					</TabPanel>
+				</Tabs>
+			</div>
+		</div>
 	);
-};
+}
 
 export default forwardRef(AddCargo);

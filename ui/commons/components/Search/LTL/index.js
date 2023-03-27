@@ -1,16 +1,17 @@
+import { Button } from '@cogoport/components';
 import React, { useRef, useState } from 'react';
-import { Button } from '@cogoport/front/components/admin';
-import { BtnContainer, Container } from './styles';
-import SearchForm from './SearchForm';
+
 import useCreateSpotSearch from './hooks/useCreateSpotSearch';
+import SearchForm from './SearchForm';
+import styles from './styles.module.css';
 import getPayLoad from './utils/getPayLoad';
 
-const LTL = ({
+function LTL({
 	search_type = '',
 	data: searchData,
 	onPush,
 	extraParams = {},
-}) => {
+}) {
 	const { createSpotSearch, loading } = useCreateSpotSearch({
 		extraParams,
 		search_type,
@@ -36,7 +37,7 @@ const LTL = ({
 	};
 
 	return (
-		<Container>
+		<div className={styles.container}>
 			<SearchForm
 				mode="ltl_freight"
 				ref={(r) => {
@@ -47,13 +48,13 @@ const LTL = ({
 				extraParams={extraParams}
 			/>
 
-			<BtnContainer>
+			<div className={styles.btn_container}>
 				<Button type="button" onClick={handleClick} disabled={loading}>
 					Search Rates
 				</Button>
-			</BtnContainer>
-		</Container>
+			</div>
+		</div>
 	);
-};
+}
 
 export default LTL;

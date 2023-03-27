@@ -1,0 +1,8 @@
+{
+	"name": "@cogo/search-results",
+	"description": "Search Results module for all transactions at cogoport",
+	"version": "0.0.1",
+	"main": "./index.js",
+	"sideEffects": false,
+	"dependencies": {}
+}

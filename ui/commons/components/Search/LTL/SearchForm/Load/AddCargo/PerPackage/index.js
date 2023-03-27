@@ -1,31 +1,32 @@
+// import Layout from '@cogo/business-modules/form/Layout';
+import { Button } from '@cogoport/components';
+import { isEmpty } from '@cogoport/utils';
 import React, {
 	useImperativeHandle,
 	useCallback,
 	forwardRef,
 	useEffect,
 } from 'react';
-import { useFormCogo } from '@cogoport/front/hooks';
-import Layout from '@cogo/business-modules/form/Layout';
 
-import { Button } from '@cogoport/front/components/admin';
-import { isEmpty } from '@cogoport/front/utils';
-import controls from './controls';
 import { getFormattedData } from '../../utils/getFormattedData';
-import { Container, Wrapper, ButtonContainer } from './styles';
 
-const PerPackage = ({ setLoadData, loadData, setShowPopover }, ref) => {
-	const { fields, handleSubmit, formState, setValues } = useFormCogo(controls);
+import controls from './controls';
+import styles from './styles.module.css';
+
+import { useForm } from '@/packages/forms';
+import FormElement from '@/ui/page-components/discover_rates/common/FormElement';
+
+function PerPackage({ setLoadData, loadData, setShowPopover }, ref) {
+	const { handleSubmit, formState, setValue, control } = useForm();
 
 	const formattedPackageData = getFormattedData(loadData);
 
 	useEffect(() => {
 		if (
-			loadData.sub_active_tab === 'per_package' &&
-			formattedPackageData?.length
+			loadData.sub_active_tab === 'per_package'
+      && formattedPackageData?.length
 		) {
-			setValues({
-				packages: formattedPackageData,
-			});
+			setValue('packages', formattedPackageData);
 		}
 	}, []);
 
@@ -33,13 +34,11 @@ const PerPackage = ({ setLoadData, loadData, setShowPopover }, ref) => {
 		const isError = isEmpty(loadData);
 
 		return {
-			handleSubmit: () => {
-				return {
-					hasError: isError,
-					...(!isError && { values: { ...loadData } }),
-					...(isError && { errors: { errorMsg: 'Loads are required' } }),
-				};
-			},
+			handleSubmit: () => ({
+				hasError: isError,
+				...(!isError && { values: { ...loadData } }),
+				...(isError && { errors: { errorMsg: 'Loads are required' } }),
+			}),
 		};
 	}, [loadData]);
 
@@ -47,8 +46,8 @@ const PerPackage = ({ setLoadData, loadData, setShowPopover }, ref) => {
 
 	const handleData = (data) => {
 		setLoadData({
-			sub_active_tab: 'per_package',
-			per_package_details: data,
+			sub_active_tab      : 'per_package',
+			per_package_details : data,
 		});
 		setShowPopover(false);
 	};
@@ -58,30 +57,32 @@ const PerPackage = ({ setLoadData, loadData, setShowPopover }, ref) => {
 	};
 
 	return (
-		<Container>
-			<Wrapper>
-				<Layout
-					controls={controls}
-					fields={fields}
-					errors={formState.errors}
-					theme="admin"
-				/>
-			</Wrapper>
+		<div className={styles.container}>
+			<div className={styles.wrapper}>
 
-			<ButtonContainer>
+				<FormElement
+					controls={controls}
+					errors={formState.errors}
+					control={control}
+					showButtons
+				/>
+			</div>
+
+			<div className={styles.button_container}>
 				<Button
-					className="secondary sm"
+					size="md"
+					themeType="secondary"
 					onClick={onCancel}
 					style={{ marginRight: '8px' }}
 				>
 					CANCEL
 				</Button>
-				<Button className="primary sm" onClick={handleSubmit(handleData)}>
+				<Button size="md" onClick={handleSubmit(handleData)}>
 					Confirm
 				</Button>
-			</ButtonContainer>
-		</Container>
+			</div>
+		</div>
 	);
-};
+}
 
 export default forwardRef(PerPackage);

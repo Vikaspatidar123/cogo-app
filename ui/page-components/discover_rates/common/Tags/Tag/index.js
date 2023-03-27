@@ -46,7 +46,6 @@ function TagSingle({
 			? 'selected'
 			: ''
 	}`;
-
 	return (
 		<div
 			key={item.value}

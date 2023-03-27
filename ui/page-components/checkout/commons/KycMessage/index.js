@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import KYC from '../KYC';
+import KYC from '../../../../commons/components/KYC';
 
 import styles from './styles.module.css';
 

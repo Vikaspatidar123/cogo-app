@@ -28,14 +28,32 @@ function CreateContract({
 		setShowContractCreation,
 	});
 
+	const fieldValues = formData.map((itemData) => ({
+		max_weight:
+			itemData.service_type === 'air_freight' ? itemData.reqCount : undefined,
+		max_volume:
+			itemData.service_type === 'lcl_freight' ? itemData.reqCount : undefined,
+		max_containers_count:
+			itemData.service_type === 'fcl_freight' ? itemData.reqCount : undefined,
+		selected_rate_card_id : itemData.card,
+		spot_search_id        : itemData.search_id,
+	}));
+
+	const fields = CreateContractsControls();
 	const {
-		fields,
+		control,
 		watch,
 		setValue,
 		handleSubmit,
 		setError,
 		formState: { errors },
-	} = useForm(CreateContractsControls({ formData }));
+	} = useForm({
+		defaultValues: {
+			contract_name            : '',
+			terms_and_conditions     : '',
+			search_rate_card_details : fieldValues,
+		},
+	});
 
 	const watchName = watch('contract_name');
 	const ValidityStart = watch('validity_start') || new Date();
@@ -54,11 +72,14 @@ function CreateContract({
 			<div className={styles.title}>One last step, finalise your contract</div>
 
 			<div className={styles.row}>
-				<div className={styles.cols} style={{ width: getwidth(3.7) }}>
-					<div className={styles.label}>{fields.contract_name.label}</div>
+				<div
+					className={cl`${styles.cols} ${(errors?.contract_name?.message || '') && styles.error_class}`}
+					style={{ width: getwidth(3.7) }}
+				>
+					<div className={styles.label}>{fields[0]?.label}</div>
 					<InputController
-						{...fields.contract_name}
-						className={(errors?.contract_name?.message || '') && styles.error_class}
+						{...fields[0]}
+						control={control}
 					/>
 					<div className={styles.error}>{errors?.contract_name?.message}</div>
 				</div>
@@ -66,33 +87,36 @@ function CreateContract({
 				<div className={styles.cols} style={{ width: getwidth(0.1) }} />
 
 				<div className={styles.cols} style={{ width: getwidth(2.1) }}>
-					<div className={styles.label}>{fields.validity_start.label}</div>
+					<div className={styles.label}>{fields[1].label}</div>
 					<DatepickerController
-						{...fields.validity_start}
+						{...fields[1]}
+						control={control}
 						maxDate={addDays(new Date(), 29)}
 						className={(errors?.validity_start?.message || '') && styles.error_class}
 					/>
-					<div className={styles.sublabel}>{fields.validity_start.miniLabel}</div>
-					{' '}
+					<div className={styles.sublabel}>{fields[1].miniLabel}</div>
 					<div className={styles.error}>{errors?.validity_start?.message}</div>
 				</div>
 
 				<div className={styles.cols} style={{ width: getwidth(2.1) }}>
-					<div className={styles.label}>{fields.validity_end.label}</div>
+					<div className={styles.label}>{fields[2].label}</div>
 					<DatepickerController
-						{...fields.validity_end}
+						{...fields[2]}
+						control={control}
 						minDate={ValidityStart}
 						maxDate={addDays(ValidityStart, 29)}
 						className={(errors?.validity_end?.message || '') && styles.error_class}
 					/>
-					<div className={styles.sublabel}>{fields.validity_end.miniLabel}</div>
-					{' '}
+					<div className={styles.sublabel}>{fields[2].miniLabel}</div>
 					<div className={styles.error}>{errors?.validity_end?.message}</div>
 				</div>
 			</div>
+
 			<div className={styles.row}>
 				<div className={styles.cols} style={{ width: getwidth(12) }}>
+
 					<div className={styles.subtitle}>Name Suggestions</div>
+
 					<div className={styles.tags}>
 						{nameSuggestions.map((name) => (
 							<div
@@ -109,12 +133,14 @@ function CreateContract({
 							</div>
 						))}
 					</div>
+
 				</div>
 			</div>
 			<PortPairs
 				formData={formData}
 				errors={errors}
 				fields={fields}
+				control={control}
 				watch={watch}
 			/>
 			<div className={styles.btn_container}>
@@ -126,10 +152,11 @@ function CreateContract({
 					Back
 				</Button>
 				<Button
-					themeType="secondary"
+					themeType="accent"
 					onClick={handleSubmit(submitForm)}
 					disabled={loading}
 					loading={loading}
+					className={styles.submit_btn}
 				>
 					Request Contract
 				</Button>

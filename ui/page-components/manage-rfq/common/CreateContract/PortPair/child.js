@@ -1,5 +1,7 @@
 import { cl, Tooltip } from '@cogoport/components';
+import { IcMPortArrow } from '@cogoport/icons-react';
 
+import getwidth from '../../../utils/getWidth';
 import AdditionalServices from '../../AdditionalServices';
 
 import Item from './Item';
@@ -14,14 +16,14 @@ const perPriceMapping = {
 };
 
 const portDetails = ({ item, locationType, portType }) => {
-	function PortContent(classType) {
+	function PortContent({ classType }) {
 		return (
 			<>
 				<div className={cl`${styles.port_header} ${styles?.[classType]}`}>
-					<div className="port-name">
+					<div className={styles.port_name}>
 						{item?.[`${locationType}_${portType}`]?.name}
 					</div>
-					<div className="portcode">
+					<div className={styles.portcode}>
 						(
 						{item?.[`${locationType}_${portType}`]?.port_code}
 						)
@@ -38,8 +40,8 @@ const portDetails = ({ item, locationType, portType }) => {
 	}
 	return (
 		<Tooltip
-			animateFill
 			content={<PortContent classType="tooltip" />}
+			maxWidth={300}
 			interactive
 		>
 			<div>
@@ -74,46 +76,54 @@ function PortPairChild({
 	};
 
 	return (
-		<div className={cl`${styles.col} ${styles.styled_col}`} sm={12}>
+		<div className={styles.styled_col} style={{ width: getwidth(12) }}>
 
 			<div className={styles.row}>
-				<div className={cl`${styles.col} ${styles.port_col}`} sm={0.3}>
+				<div className={styles.port_col} style={{ width: getwidth(0.3) }}>
 					<div className={styles.number}>{portIndex + 1}</div>
 				</div>
 
-				<div className={cl`${styles.col} ${styles.port_col} ${styles.padding_req}`} sm={2.1}>
+				<div
+					className={cl` ${styles.port_col} ${styles.padding_req}`}
+					style={{ width: getwidth(2.1) }}
+				>
 					{portDetails({ item, locationType: 'origin', portType })}
 				</div>
 
-				<div className={cl`${styles.col} ${styles.port_col}`} sm={0.3}>
-					<PortIcon />
+				<div className={styles.port_col} style={{ width: getwidth(0.3) }}>
+					<IcMPortArrow fill="#393f70" width={20} height={20} />
 				</div>
 
-				<div className={cl`${styles.col} ${styles.port_col} ${styles.padding_req}`} sm={2.1}>
+				<div
+					className={cl`${styles.col} ${styles.port_col} ${styles.padding_req}`}
+					style={{ width: getwidth(2.1) }}
+				>
 					{portDetails({ item, locationType: 'destination', portType })}
 				</div>
 
-				<div className={cl`${styles.col} ${styles.port_col}`} sm={2.3}>
-					<CommodityTags>
+				<div className={styles.port_col} style={{ width: getwidth(2.3) }}>
+					<div className={styles.commodities_tags}>
 						{(item.commodities[0] || []).map((itm) => (
 							!itm.includes('Container') && (
-								<CommodityTag>{itm}</CommodityTag>
+								<div className={styles.commodity_tag}>{itm}</div>
 							)
 						))}
-					</CommodityTags>
-					<ServicesTag>
+					</div>
+
+					<div className={styles.service_tag}>
 						<AdditionalServices
 							serviceDetails={item.service_details}
 							type="createcontract"
 						/>
-					</ServicesTag>
+					</div>
 				</div>
 
-				<div className={cl`${styles.col} ${styles.port_col}`} sm={3.3}>
-					<Prices>
-						<FreightPrice sm={6}>
-							<div className="title-price">Basic Freight</div>
-							<div className="freight-price-value">
+				<div className={styles.port_col} style={{ width: getwidth(3.3) }}>
+					<div className={styles.price}>
+
+						<div className={cl`${styles.col} ${styles.freight_price}`} style={{ width: getwidth(6) }}>
+							<div className={styles.title_price}>Basic Freight</div>
+							<div className={styles.freight_price_value}>
 								{formatAmount({
 									amount   : item?.rate?.freight_price_discounted,
 									currency : item?.rate?.freight_price_currency,
@@ -123,14 +133,15 @@ function PortPairChild({
 										maximumFractionDigits : 0,
 									},
 								})}
-								<span className="per-price-mapping">
+								<span className={styles.per_price_mapping}>
 									{perPriceMapping[serviceType]}
 								</span>
 							</div>
-						</FreightPrice>
-						<FreightPrice sm={6}>
-							<div className="title-price">Total</div>
-							<div className="total-price-value">
+						</div>
+
+						<div className={cl`${styles.col} ${styles.freight_price}`} style={{ width: getwidth(6) }}>
+							<div className={styles.title_price}>Total</div>
+							<div className={styles.total_price_value}>
 								{formatAmount({
 									amount   : item?.rate?.total_price_discounted,
 									currency : item?.rate?.total_price_currency,
@@ -140,18 +151,18 @@ function PortPairChild({
 										maximumFractionDigits : 0,
 									},
 								})}
-								<span className="per-price-mapping">
+								<span className={styles.per_price_mapping}>
 									{perPriceMapping[serviceType]}
 								</span>
 							</div>
-						</FreightPrice>
-					</Prices>
+						</div>
+					</div>
 				</div>
 
 				{controls.map((controlItem) => {
 					if (controlItem.name && filterControls(controlItem.name)) {
 						return (
-							<div className={cl`${styles.col} ${styles.port_col}`} sm={1.6}>
+							<div className={styles.port_col} style={{ width: getwidth(1.6) }}>
 								<Item
 									{...controlItem}
 									key={`${name}.${index}.${controlItem.name}`}
@@ -170,7 +181,7 @@ function PortPairChild({
 							</div>
 						);
 					}
-					return <></>;
+					return <div />;
 				})}
 			</div>
 		</div>

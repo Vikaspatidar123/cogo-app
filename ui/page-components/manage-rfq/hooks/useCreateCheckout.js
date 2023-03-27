@@ -13,7 +13,7 @@ const useCreateCheckout = ({ searchId, selectedCardId }) => {
 
 	const [{ data: resp }, trigger] = useRequest({
 		method : 'post',
-		ur     : '/create_rfq_checkout',
+		url    : '/create_rfq_checkout',
 	}, { manual: true });
 
 	const handleCreateCheckout = async () => {

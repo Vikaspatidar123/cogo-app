@@ -41,20 +41,21 @@
 }
 
 .error_class {
-	border: 1px solid #bf291e;
+	:global {
+		.react-datepicker__input-container input,
+		.ui_input_container {
+			border: 1px solid #bf291e;
 
-	:hover {
-		border: 1px solid #bf291e;
-	}
-
-	:focus-within {
-		box-shadow: 0 0 0 1px #bf291e;
+			&:hover {
+				border: 1px solid #bf291e;
+			}
+		}
 	}
 }
 
 .sublabel {
 	padding: 2px 0 0 2px;
-	font-size: 12px;
+	font-size: 11px;
 	color: #828282;
 }
 
@@ -134,6 +135,10 @@
 .btn_container {
 	display: flex;
 	margin: 15px 0 20px;
+
+	.submit_btn {
+		margin-left: 12px;
+	}
 }
 
 .backicon {

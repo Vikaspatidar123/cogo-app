@@ -4,6 +4,7 @@ import React, { useMemo } from 'react';
 import IconMapping from '../../constant/icon-mapping';
 import getwidth from '../../utils/getWidth';
 
+import PortPair from './PortPair';
 import styles from './styles.module.css';
 
 const mapping = { fcl_freight: 'FCL', lcl_freight: 'LCL', air_freight: 'AIR' };
@@ -19,6 +20,7 @@ function FreightMap({
 	errors,
 	fields,
 	watch,
+	control,
 	serviceType = 'fcl_freight',
 	portType = 'port',
 }) {
@@ -62,8 +64,9 @@ function FreightMap({
 				</div>
 			</div>
 			<PortPair
-				{...fields.search_rate_card_details}
+				{...fields[3]}
 				fields={fields}
+				control={control}
 				watch={watch}
 				portType={portType}
 				serviceType={serviceType}
@@ -75,7 +78,7 @@ function FreightMap({
 	);
 }
 
-function PortPairs({ formData, errors, fields, watch }) {
+function PortPairs({ formData, errors, fields, watch, control }) {
 	const freightPairs = useMemo(() => {
 		let fclPortPairs = [];
 		let lclPortPairs = [];
@@ -107,6 +110,7 @@ function PortPairs({ formData, errors, fields, watch }) {
 							formData={freightPairs[itm]}
 							errors={errors}
 							fields={fields}
+							control={control}
 							watch={watch}
 							serviceType={itm}
 							portType={itm === 'air_freight' ? 'airport' : 'port'}

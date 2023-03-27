@@ -24,6 +24,7 @@ function ShippingCompany({ typeName, ratesBreakdown }) {
 				>
 					{startCase(RATE_COLOR_MAPPING[typeName]?.textType)}
 				</Pill>
+
 			</div>
 		</div>
 	);

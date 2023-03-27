@@ -31,7 +31,7 @@ export const RATE_COLOR_MAPPING = {
 	},
 	new_rate: {
 		colorType : '#FFFFFF;',
-		bgColor   : '#F68B21;',
+		bgColor   : 'orange',
 		textType  : 'New Rate',
 	},
 };

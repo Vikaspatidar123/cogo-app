@@ -1,5 +1,5 @@
 import { getByKey, isEmpty } from '@cogoport/utils';
-import { useEffect } from 'react';
+import { useEffect, useCallback } from 'react';
 
 import { getControls } from '../utils/controls';
 
@@ -50,7 +50,7 @@ const useBillingAddressForm = ({
 
 	const watchGstList = watch('gst_list') || '';
 
-	const getGstAddress = async () => {
+	const getGstAddress = useCallback(async () => {
 		try {
 			const response = await getAddressFromGstinApi.trigger({
 				params: {
@@ -70,7 +70,7 @@ const useBillingAddressForm = ({
 		} catch (error) {
 			console.log('error :: ', error);
 		}
-	};
+	}, [getAddressFromGstinApi, getValues, setValues, watchGstList]);
 
 	useEffect(() => {
 		if (!watchGstList) {
@@ -102,7 +102,7 @@ const useBillingAddressForm = ({
 		});
 
 		getGstAddress();
-	}, [watchGstList]);
+	}, [getAddressFromGstinApi.data, getGstAddress, getValues, setValues, watchGstList]);
 
 	const onSubmit = async ({
 		values,
@@ -142,7 +142,10 @@ const useBillingAddressForm = ({
 				data: payload,
 			});
 
-			const previousSavedBillingAddresses = getByKey(state, `[${ACCOUNT_INFORMATION}].addressDetails.formList`) || [];
+			const previousSavedBillingAddresses = getByKey(
+				state,
+				`[${ACCOUNT_INFORMATION}].addressDetails.formList`,
+			) || [];
 
 			if (isEmpty(previousSavedBillingAddresses)) {
 				setKycDetails((previousState) => ({
@@ -259,7 +262,7 @@ const useBillingAddressForm = ({
 		if (['gst_number', 'pincode', 'address'].includes(name)) {
 			newField = {
 				...newField,
-				disabled: getAddressFromGstinApi.loading,
+				disabled: loading,
 			};
 		}
 

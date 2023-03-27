@@ -1,4 +1,4 @@
-// import AddInvoicingParty from '@cogo/business-modules/components/AddInvoicingParty';
+import AddInvoicingParty from '../../AddInvoicingParty';
 
 function AddInvoicingPartyModal({
 	setShow,

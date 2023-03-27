@@ -1,7 +1,6 @@
 import { Button } from '@cogoport/components';
+import { IcMOverview } from '@cogoport/icons-react';
 import React from 'react';
-
-// import PreviewIcon from '../../../icons/preview-icon.svg';
 
 import styles from './styles.module.css';
 
@@ -29,7 +28,7 @@ function FullView({ url, containerStyle = {} }) {
 			>
 				<div className={styles.flex}>
 					Preview
-					{/* <PreviewIcon style={{ marginLeft: '4px' }} size={1.5} /> */}
+					<IcMOverview style={{ marginLeft: '4px' }} size={1.5} />
 				</div>
 			</Button>
 		</div>

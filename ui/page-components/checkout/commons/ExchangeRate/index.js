@@ -1,4 +1,4 @@
-import { Button, Popover } from '@cogoport/components';
+import { Button, Popover, Loader } from '@cogoport/components';
 import { IcMArrowDown } from '@cogoport/icons-react';
 import { startCase } from '@cogoport/utils';
 
@@ -6,7 +6,6 @@ import ApplicableStageOptions from './ApplicableStageOptions';
 import useHandleUpdateStage from './hooks/useHandleUpdateStage';
 import styles from './styles.module.css';
 
-import Spinner from '@/ui/commons/components/Spinner';
 import getGeoConstants from '@/ui/commons/constants/geo';
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
@@ -123,12 +122,7 @@ function ExchangeRate({ detail = {}, conversions = {}, rate = {}, refetch }) {
 				</Popover>
 
 				{loading && (
-					<Spinner
-						size={10}
-						borderWidth={1}
-						outerBorderColor="#ffffff"
-						spinBorderColor="#393f70"
-					/>
+					<Loader themeType="primary" />
 				)}
 			</div>
 		</div>

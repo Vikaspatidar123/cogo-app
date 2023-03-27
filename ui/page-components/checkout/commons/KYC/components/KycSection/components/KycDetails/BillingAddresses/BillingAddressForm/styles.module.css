@@ -4,7 +4,7 @@
 	gap: 16px;
 	border-radius: 8px;
 
-	& .form-item-container .form-item-label {
+	.form-item-container .form-item-label {
 		color: #333;
 	}
 
@@ -63,7 +63,7 @@
 	.knowMore {
 		color: #356efd;
 
-		&:hover {
+		:hover {
 			text-decoration: underline;
 			cursor: pointer;
 		}
@@ -87,7 +87,6 @@
 		margin-bottom: 16px;
 	}
 
-	.form-item-label,
 	.business-checkbox-label {
 		margin-top: 0;
 		margin-bottom: 0;
@@ -97,9 +96,6 @@
 		color: #828282;
 	}
 
-	.business-checkbox-label {
-		margin-bottom: unset;
-	}
 
 	.core-ui-input-root {
 		padding: 12px;
@@ -125,10 +121,6 @@
 		text-transform: uppercase;
 	}
 
-	.business-checkbox-label {
-		margin-bottom: 0;
-	}
-
 	margin-top: 16px;
 
 	.form-lower-label {
@@ -149,7 +141,6 @@
 		}
 	}
 
-	.input.toUpperCase,
 	.toUpperCase input {
 		text-transform: uppercase;
 	}

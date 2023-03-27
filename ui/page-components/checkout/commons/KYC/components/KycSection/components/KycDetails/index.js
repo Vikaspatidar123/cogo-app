@@ -1,10 +1,5 @@
 import { Tooltip } from '@cogoport/components';
-import { IcCFcrossInCircle } from '@cogoport/icons-react';
-
-// import RejectedIcon from '../../icons/alert-rejected.svg';
-// import CaretDown from '../../icons/caret-down.svg';
-// import CaretUp from '../../icons/caret-up.svg';
-// import InfoIcon from '../../icons/info-icon.svg';
+import { IcCFcrossInCircle, IcMArrowRotateDown, IcMArrowRotateUp, IcMInfo } from '@cogoport/icons-react';
 
 import useKycDetails from './hooks/useKycDetails';
 import styles from './styles.module.css';
@@ -107,7 +102,7 @@ function KycDetails({
 										placement="top"
 									>
 										<div>
-											{/* <InfoIcon style={{ marginLeft: 8, marginBottom: -2 }} /> */}
+											<IcMInfo style={{ marginLeft: 8, marginBottom: -2 }} />
 										</div>
 									</Tooltip>
 								</div>
@@ -115,7 +110,7 @@ function KycDetails({
 								<div className={styles.flex}>
 									{status}
 
-									{/* {showHiddenComponentContent ? <CaretUp /> : <CaretDown />} */}
+									{showHiddenComponentContent ? <IcMArrowRotateUp /> : <IcMArrowRotateDown />}
 								</div>
 							</div>
 

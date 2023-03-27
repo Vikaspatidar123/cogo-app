@@ -1,4 +1,4 @@
-// import HouseIcon from '../icons/house.svg';
+import { IcAWarehouse } from '@cogoport/icons-react';
 
 import styles from './styles.module.css';
 
@@ -10,7 +10,7 @@ function BillingDetails({
 		<div className={styles.container}>
 			<div className={styles.billing_address_container}>
 				<div className={styles.billing_address}>
-					{/* <HouseIcon className="house-icon" /> */}
+					<IcAWarehouse className="house-icon" />
 					{address}
 				</div>
 			</div>

@@ -33,7 +33,6 @@
 	line-height: 12px;
 	text-decoration-line: underline;
 	color: #034afd;
-	${(props) => props.showLoading && `color: #F9F9F9;`}
 	text-align: right;
 	cursor: pointer;
 	display: flex;
@@ -68,8 +67,7 @@
 .text_icon_container {
 	display: flex;
 	align-items: center;
-	flex-wrap: ${(props) => (props.wrap === 'wrap' ? 'wrap' : '')};
-	justify-content: ${(props) => props.justifyContent};
+	flex-wrap: wrap;
 }
 
 .link_container {

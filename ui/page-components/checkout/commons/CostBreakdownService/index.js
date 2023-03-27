@@ -36,7 +36,7 @@ function CostBreakdownService({ mode, service }) {
 
 	return (
 		<div className={styles.container}>
-			<div className={styles.header} hasRate={is_rate_available}>
+			<div className={`${styles.header} ${is_rate_available ? <div className={styles.marginBottom} /> : ''} `}>
 				<div className={styles.title}>
 					{config?.title || startCase(service_type)}
 					{renderDetails()}

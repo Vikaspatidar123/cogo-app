@@ -1,6 +1,6 @@
-import UploadIcon from '../../../icons/upload-icon.svg';
+import { IcMUpload } from '@cogoport/icons-react';
 
-const uploadIcon = () => <UploadIcon size={3.0} />;
+const uploadIcon = () => <IcMUpload size={3.0} />;
 
 const controls = [
 	{

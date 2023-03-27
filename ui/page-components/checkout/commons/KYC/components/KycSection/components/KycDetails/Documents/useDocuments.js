@@ -18,17 +18,17 @@ const useDocuments = ({
 		method : 'post',
 	}, { manual: true });
 
-	const getOrganizationDocumentsApi =	[{ loading }, trigger] = useRequest({
-	 	url    : '/',
-	 	method : 'get',
-	 	params : {
-	 		partner_id    : channelPartnerDetails.id,
-	 		account_types : channelPartnerDetails.account_types,
-	 		filters       : {
-	 			document_type: 'business_address_proof',
-	 		},
-	 	},
-	 }, { manual: true });
+	const [{ loading: getApiLoaidng }, getOrganizationDocumentsApi] = useRequest({
+		url    : '/',
+		method : 'get',
+		params : {
+			partner_id    : channelPartnerDetails.id,
+			account_types : channelPartnerDetails.account_types,
+			filters       : {
+				document_type: 'business_address_proof',
+			},
+		},
+	}, { manual: true });
 
 	const {
 		fields = {},
@@ -98,6 +98,7 @@ const useDocuments = ({
 		control,
 		formState,
 		createChannelPartnerVerificationDocumentLoading: loading,
+		getApiLoaidng,
 	};
 };
 

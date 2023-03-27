@@ -1,6 +1,6 @@
 import { Toast } from '@cogoport/components';
 import { getByKey, isEmpty, pick } from '@cogoport/utils';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 
 import controls from './invite-signatory-controls';
 
@@ -39,11 +39,7 @@ const useSigningAuthority = ({
 		setValues = () => {},
 	} = formProps;
 
-	useEffect(() => {
-		getChannelPartnerUsers();
-	}, []);
-
-	const getChannelPartnerUsers = async () => {
+	const getChannelPartnerUsers = useCallback(async () => {
 		try {
 			const params = {
 				partner_id    : channelPartnerDetails.id,
@@ -68,7 +64,7 @@ const useSigningAuthority = ({
 		} catch (error) {
 			console.log('error :: ', error);
 		}
-	};
+	}, [channelPartnerDetails.account_types, channelPartnerDetails.id, getChannelPartnerUsersApi]);
 
 	const handleChangeUser = (_, obj) => {
 		setSelectedUser(obj.user_id);
@@ -134,6 +130,10 @@ const useSigningAuthority = ({
 		}
 	};
 
+	useEffect(() => {
+		getChannelPartnerUsers();
+	}, [getChannelPartnerUsers]);
+
 	return {
 		usersList            : getByKey(getChannelPartnerUsersApi, 'data.list') || [],
 		handleChangeUser,
@@ -146,6 +146,7 @@ const useSigningAuthority = ({
 		formState,
 		controls,
 		control,
+		loading,
 		inviteUserAPILoading : inviteUserAPILoaoding,
 	};
 };

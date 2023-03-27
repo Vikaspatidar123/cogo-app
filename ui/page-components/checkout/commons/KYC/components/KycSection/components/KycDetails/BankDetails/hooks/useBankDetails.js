@@ -6,8 +6,6 @@ import useSaveBankDetails from './useSaveBankDetails';
 
 import { useForm } from '@/packages/forms';
 
-// const MIN_UPLOAD_INVOICE = 5;
-
 const useBankDetails = ({
 	CONSTANTS = {},
 	state = {},
@@ -43,7 +41,6 @@ const useBankDetails = ({
 	});
 
 	const controls = getControls({
-		// MIN_UPLOAD_INVOICE,
 		values: bankDetailsFormValues,
 		isFormSaved,
 	});

@@ -1,5 +1,3 @@
-// import Layout from '@cogo/business-modules/form/Layout';
-
 import { Select, Button } from '@cogoport/components';
 
 import styles from './styles.module.css';

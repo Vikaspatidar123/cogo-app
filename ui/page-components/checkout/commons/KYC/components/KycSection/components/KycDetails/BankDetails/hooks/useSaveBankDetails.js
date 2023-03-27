@@ -48,7 +48,6 @@ const useSaveBankDetails = ({
 			bank_name,
 			branch_name,
 			cancelled_cheque = {},
-			// invoices = [],
 		} = values;
 
 		return {
@@ -64,7 +63,6 @@ const useSaveBankDetails = ({
 				}),
 				url: cancelled_cheque.url,
 			},
-			// invoices: invoices.map((invoice) => invoice.url),
 			verification_id: verification_data.id,
 		};
 	};

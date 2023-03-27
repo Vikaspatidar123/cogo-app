@@ -5,6 +5,8 @@ import SelectedAddressList from './SelectedAddressList';
 import styles from './styles.module.css';
 import useInvoicingParties from './useInvoicingParties';
 
+import EmptyState from '@/ui/commons/components/EmptyState';
+
 function InvoicingParties(props) {
 	const {
 		organization,
@@ -43,12 +45,11 @@ function InvoicingParties(props) {
 
 			<div className={styles.selected_address_list_container}>
 				{invoicingParties.length === 0 ? (
-					<>No billing addresses/invoicing parties found, add to proceed</>
-					// <EmptyState
-					// 	height="200px"
-					// 	width="100%"
-					// 	bottomText="No billing addresses/invoicing parties found, add to proceed"
-					// />
+					<EmptyState
+						height="200px"
+						width="100%"
+						message="No billing addresses/invoicing parties found, add to proceed"
+					/>
 				) : null}
 
 				{invoicingParties.map((invoicingParty, index) => {
@@ -61,8 +62,12 @@ function InvoicingParties(props) {
 							invoicingParties={invoicingParties}
 							invoicingParty={invoicingParty}
 							setShowHiddenContent={(action) => setShowHiddenContent({ id, action })}
-							onChangeInvoicingPartyCurrency={(invoiceCurrency) => onChangeInvoicingPartyCurrency({ id, invoiceCurrency })}
-							onChangeService={(serviceId) => onChangeInvoicingPartyServices({ invoicingParty, serviceId })}
+							onChangeInvoicingPartyCurrency={(invoiceCurrency) => onChangeInvoicingPartyCurrency(
+								{ id, invoiceCurrency },
+							)}
+							onChangeService={(serviceId) => onChangeInvoicingPartyServices(
+								{ invoicingParty, serviceId },
+							)}
 							deleteInvoicingParty={() => {
 								deleteInvoicingParty({ invoicingParty });
 							}}

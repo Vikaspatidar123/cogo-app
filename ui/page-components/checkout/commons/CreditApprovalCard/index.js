@@ -8,13 +8,16 @@ import { useRequest } from '@/packages/request';
 
 function CreditApprovalCard({ refetchCheckout, getCheckoutLoading }) {
 	const {
-		general: { asPrefix = '', scope = '', isMobile = false },
+		general: { asPrefix = '' },
 		profile: { id: user_id = '', organization = {} },
 	} = useSelector((state) => state);
 
 	const { id: organization_id = '' } = organization || {};
 
-	const api = useRequest('post', false, scope)('/create_terms_and_condition');
+	const [{ loading }, api] = useRequest({
+		url    : 'create_terms_and_condition',
+		method : 'post',
+	}, { manual: false });
 
 	const refreshButton = () => {
 		refetchCheckout();
@@ -57,7 +60,7 @@ function CreditApprovalCard({ refetchCheckout, getCheckoutLoading }) {
 				<div
 					style={{
 						display       : 'flex',
-						flexDirection : isMobile ? 'column' : 'row',
+						flexDirection : 'row',
 					}}
 				>
 					<div className={styles.tnc_text}>
@@ -70,12 +73,12 @@ function CreditApprovalCard({ refetchCheckout, getCheckoutLoading }) {
 						style={{
 							display    : 'flex',
 							alignItems : 'center',
-							marginTop  : isMobile ? 12 : 0,
+							marginTop  : 0,
 						}}
 					>
 						<Button
 							onClick={onClickGoToAgreement}
-							disabled={api?.loading}
+							disabled={loading}
 						>
 							Go to agreement
 						</Button>

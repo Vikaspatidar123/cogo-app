@@ -1,6 +1,5 @@
+import { IcMRolesIncluded } from '@cogoport/icons-react';
 import { useEffect } from 'react';
-
-// import KYCVerifiedIcon from '../../icons/verified-icon.svg';
 
 import FullView from './FullView';
 import styles from './styles.module.css';
@@ -24,7 +23,7 @@ function Verified({ channelPartnerDetails = {} }) {
 				},
 			},
 		});
-	}, []);
+	}, [channelPartnerDetails.id, getOrganizationDocumentsAPI]);
 
 	const { data = [] } = getOrganizationDocumentsAPI;
 	const { image_url = '' } = data[0] || {};
@@ -32,7 +31,7 @@ function Verified({ channelPartnerDetails = {} }) {
 	return (
 		<div className={styles.flex}>
 			<div className={styles.container}>
-				{/* <KYCVerifiedIcon size={6} /> */}
+				<IcMRolesIncluded size={6} />
 				<div className={styles.message_container}>
 					<div className={styles.message_text}>Verification Complete</div>
 					<div className={styles.message}>KYC Verified Successfully!</div>

@@ -4,7 +4,6 @@ import { useEffect } from 'react';
 import useUpdateCheckout from '../../hooks/useUpdateCheckout';
 import ErrorMessage from '../../utils/error-message';
 
-// import controls from './controls';
 import styles from './styles.module.css';
 
 import { SelectController, useForm } from '@/packages/forms';

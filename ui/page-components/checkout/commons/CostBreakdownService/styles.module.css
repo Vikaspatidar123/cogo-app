@@ -8,8 +8,10 @@
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
+}
 
-	/* margin-bottom: ${({ hasRate }) => (hasRate ? '16px' : '0')}; */
+.marginBottom {
+	margin-bottom: 16px;
 }
 
 .title {

@@ -1,10 +1,11 @@
-import { get } from '@cogoport/front/utils';
+import { getByKey } from '@cogoport/utils';
 
 import CPKycSection from './CPKycSection';
 import CPLoading from './CPLoading';
 import IEKycSection from './IEKycSection';
-// import LSPKycSection from './LSPKycSection';
 import styles from './styles.module.css';
+
+import { useRequest } from '@/packages/request';
 
 const KYC_ACCOUNT_TYPE_COMPONENT_MAPPING = {
 	channel_partner   : CPKycSection,
@@ -15,28 +16,23 @@ const KYC_ACCOUNT_TYPE_COMPONENT_MAPPING = {
 function PendingFromUser({ organizationData, setShow, onClose, source }) {
 	const { tags, account_type = '' } = organizationData;
 
-	const {
-		general: { scope },
-	} = useSelector((state) => state);
-
 	let accountType = account_type;
 	if (tags.includes('partner') || account_type === 'service_provider') {
 		accountType = 'channel_partner';
 	}
 
-	const api = useRequest(
-		'get',
-		accountType === 'channel_partner',
-		scope,
-	)('/get_channel_partner', {
-		params: {
+	const [{ loading }, api] = useRequest({
+		url         : 'get_channel_partner',
+		accountType : 'channel_partner',
+		method      : 'get',
+		params      : {
 			id                              : organizationData.partner_id,
 			account_types                   : [organizationData.account_type],
 			importer_exporter_data_required : true,
 		},
-	});
+	}, { manual: true });
 
-	if (accountType === 'channel_partner' && api.loading) {
+	if (accountType === 'channel_partner' && loading) {
 		return <CPLoading />;
 	}
 
@@ -46,7 +42,7 @@ function PendingFromUser({ organizationData, setShow, onClose, source }) {
 				source,
 				setShow,
 				onClose,
-				channelPartnerDetails: get(api, 'data.partner') || {},
+				channelPartnerDetails: getByKey(api, 'data.partner') || {},
 			},
 			importer_exporter: {
 				source,

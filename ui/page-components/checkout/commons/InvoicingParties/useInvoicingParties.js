@@ -3,7 +3,6 @@ import { getByKey, isEmpty, startCase } from '@cogoport/utils';
 import { useState } from 'react';
 
 import { useRequest } from '@/packages/request';
-import { useSelector } from '@/packages/store';
 import getGeoConstants from '@/ui/commons/constants/geo';
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
@@ -75,8 +74,6 @@ const updateServicesInInvoicingParty = ({
 };
 
 const useInvoicingParties = (props) => {
-	const scope = useSelector(({ general }) => general.scope);
-
 	const { detail, invoice, refetchGetCheckout } = props;
 
 	const savedInvoicingParties = getByKey(invoice, 'billing_addresses') || [];
@@ -180,7 +177,7 @@ const useInvoicingParties = (props) => {
 							interest_percent     : interest,
 							selected_credit_days : credit_days,
 							credit_source        : paymentTerms,
-						  }
+						}
 						: undefined,
 					payment_mode         : paymentMode,
 					payment_mode_details : {
@@ -194,7 +191,7 @@ const useInvoicingParties = (props) => {
 						interest_percent     : interest,
 						selected_credit_days : credit_days,
 						credit_source        : paymentTerms,
-					  }
+					}
 					: undefined,
 				payment_mode     : paymentMode,
 				invoice_currency : invoiceCurrency,
@@ -214,44 +211,6 @@ const useInvoicingParties = (props) => {
 			id                  : detail.id,
 			invoices_attributes : invoicingPartiesPayload,
 		};
-	};
-
-	const saveInvoicingParties = async ({ newInvoicingPartiesState }) => {
-		try {
-			const payload = getPayload({ newInvoicingPartiesState });
-
-			await trigger({
-				data: payload,
-			});
-
-			Toast.success('Invoicing Party saved successfully');
-
-			(invoicingParties || []).forEach((invoicingParty) => {
-				setShowHiddenContent({ id: invoicingParty?.id, action: 'false' });
-			});
-
-			refetchGetCheckout?.();
-		} catch (error) {
-			console.log('error :: ', error);
-
-			if (error?.data?.credit) {
-				Toast.error(error?.data?.credit, {
-					autoClose       : 7000,
-					hideProgressBar : false,
-					closeOnClick    : true,
-					pauseOnHover    : true,
-				});
-			} else if (error?.data?.payment_mode) {
-				Toast.error(error?.data?.payment_mode, {
-					autoClose       : 7000,
-					hideProgressBar : false,
-					closeOnClick    : true,
-					pauseOnHover    : true,
-				});
-			} else {
-				Toast.error(error?.data?.base);
-			}
-		}
 	};
 
 	const onSelectInvoicingParty = ({ selectedInvoicingParty }) => {
@@ -349,6 +308,44 @@ const useInvoicingParties = (props) => {
 		}));
 	};
 
+	const saveInvoicingParties = async ({ newInvoicingPartiesState }) => {
+		try {
+			const payload = getPayload({ newInvoicingPartiesState });
+
+			await trigger({
+				data: payload,
+			});
+
+			Toast.success('Invoicing Party saved successfully');
+
+			(invoicingParties || []).forEach((invoicingParty) => {
+				setShowHiddenContent({ id: invoicingParty?.id, action: 'false' });
+			});
+
+			refetchGetCheckout?.();
+		} catch (error) {
+			console.log('error :: ', error);
+
+			if (error?.data?.credit) {
+				Toast.error(error?.data?.credit, {
+					autoClose       : 7000,
+					hideProgressBar : false,
+					closeOnClick    : true,
+					pauseOnHover    : true,
+				});
+			} else if (error?.data?.payment_mode) {
+				Toast.error(error?.data?.payment_mode, {
+					autoClose       : 7000,
+					hideProgressBar : false,
+					closeOnClick    : true,
+					pauseOnHover    : true,
+				});
+			} else {
+				Toast.error(error?.data?.base);
+			}
+		}
+	};
+
 	const onChangeInvoicingPartyCurrency = ({ id, invoiceCurrency }) => {
 		setInvoicingParties((prevInvoicingParties) => prevInvoicingParties.map((invoicingParty) => ({
 			...invoicingParty,
@@ -363,7 +360,8 @@ const useInvoicingParties = (props) => {
 		serviceId,
 	}) => {
 		setInvoicingParties((prevInvoicingParties) => {
-			const isServicePresentInChangedInvoicingParty =				changedInvoicingParty.services.some((service) => service.service_id === serviceId);
+			const isServicePresentInChangedInvoicingParty = changedInvoicingParty;
+			services.some((service) => service.service_id === serviceId);
 
 			const changedInvoicingPartyIndex = prevInvoicingParties.findIndex(
 				(invoicingParty) => invoicingParty.id === changedInvoicingParty.id,

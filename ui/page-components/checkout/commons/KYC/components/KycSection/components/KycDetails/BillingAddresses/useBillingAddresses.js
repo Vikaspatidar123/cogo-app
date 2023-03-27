@@ -1,5 +1,5 @@
 import { isEmpty } from '@cogoport/utils';
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useState, useCallack } from 'react';
 
 import { useRequest } from '@/packages/request';
 
@@ -40,11 +40,7 @@ const useBillingAddresses = (props) => {
 		method : 'get',
 	}, { manual: true });
 
-	useEffect(() => {
-		getGstinList();
-	}, []);
-
-	const getGstinList = async () => {
+	const getGstinList = useCallack(async () => {
 		const { country_id, panGstin } = organizationDetailsFormValues || {};
 		if (country_id !== INDIA_COUNTRY_ID) {
 			return;
@@ -55,7 +51,11 @@ const useBillingAddresses = (props) => {
 				registration_number: panGstin,
 			},
 		});
-	};
+	}, []);
+
+	useEffect(() => {
+		getGstinList();
+	}, [getGstinList]);
 
 	const gstinList = ((data || {}).data || {}).gsts || [];
 

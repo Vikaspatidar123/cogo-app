@@ -1,9 +1,7 @@
-import { Input } from '@cogoport/components';
+import { Loader, Input } from '@cogoport/components';
 import React, { forwardRef } from 'react';
 
 import styles from './styles.module.css';
-
-import Spinner from '@/ui/commons/components/Spinner';
 
 const AnimatedCheckbox = forwardRef(
 	(
@@ -34,7 +32,7 @@ const AnimatedCheckbox = forwardRef(
 					&& 'ui-core-checkbox-root'}
 			>
 				{loading ? (
-					<Spinner />
+					<Loader themeType="primary" />
 				) : (
 					<Input
 						ref={ref}

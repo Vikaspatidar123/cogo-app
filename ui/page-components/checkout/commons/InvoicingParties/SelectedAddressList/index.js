@@ -1,8 +1,8 @@
+import { IcMArrowDown } from '@cogoport/icons-react';
 import { getByKey, startCase } from '@cogoport/utils';
 
 import BillingDetails from './BillingDetails';
 import Heading from './Heading';
-// import DownArrowIcon from './icons/down-arrow.svg';
 import SelectedServicesInvoiceTo from './SelectedServicesInvoiceTo';
 import SelectServicesInvoiceToAndCurrencyForm from './SelectServicesInvoiceToAndCurrencyForm';
 import styles from './styles.module.css';
@@ -21,7 +21,6 @@ function SelectedAddressList({
 	deleteInvoicingParty,
 	saveInvoicingParty,
 	loading,
-	marginBottom,
 	detail,
 	rate,
 	conversions,
@@ -59,7 +58,7 @@ function SelectedAddressList({
 	};
 
 	return (
-		<div className={styles.container} marginBottom={marginBottom}>
+		<div className={styles.container}>
 			<div className={styles.content_visible}>
 				<div className={styles.heading_container}>
 					<Heading
@@ -114,7 +113,7 @@ function SelectedAddressList({
 				showHiddenContent={showHiddenContent}
 				onClick={() => setShowHiddenContent('toggle')}
 			>
-				{/* <DownArrowIcon /> */}
+				<IcMArrowDown />
 			</div>
 		</div>
 	);

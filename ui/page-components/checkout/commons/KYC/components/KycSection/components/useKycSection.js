@@ -1,5 +1,5 @@
 import { getByKey } from '@cogoport/utils';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 
 import { useRequest } from '@/packages/request';
 
@@ -11,7 +11,7 @@ const useKycSection = ({ channelPartnerDetails = {} }) => {
 		method : 'get',
 	}, { manual: true });
 
-	const getChannelPartnerVerification = async () => {
+	const getChannelPartnerVerification = useCallback(async () => {
 		const response = await trigger({
 			params: {
 				id: getByKey(channelPartnerDetails, 'verification[0].id'),
@@ -19,11 +19,11 @@ const useKycSection = ({ channelPartnerDetails = {} }) => {
 		});
 
 		setKycDetails(getByKey(response, 'data') || {});
-	};
+	}, [channelPartnerDetails, trigger]);
 
 	useEffect(() => {
 		getChannelPartnerVerification();
-	}, []);
+	}, [getChannelPartnerVerification]);
 
 	return {
 		kycDetails,

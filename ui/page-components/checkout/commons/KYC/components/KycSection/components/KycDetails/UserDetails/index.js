@@ -1,7 +1,7 @@
 import { Select, Button, Popover } from '@cogoport/components';
+import { IcCFtick } from '@cogoport/icons-react';
 import { isEmpty } from '@cogoport/utils';
 
-import VerifiedIcon from '../../../icons/verified-icon.svg';
 import useGenerateMobileVerificationLink from '../hooks/useGenerateMobileVerificationLink';
 import useSendMobileVerificationEmail from '../hooks/useSendMobileVerificationEmail';
 
@@ -95,7 +95,7 @@ function UserDetails({
 
 								{selectedUser.mobile_verified && (
 									<div className={styles.verified_iocon_text_container}>
-										<VerifiedIcon style={{ marginRight: 4 }} />
+										<IcCFtick style={{ marginRight: 4 }} />
 										<div className={styles.verified_text}>Verified</div>
 									</div>
 								)}
@@ -171,7 +171,7 @@ function UserDetails({
 								{selectedUser.email_verified && (
 									<div className={styles.verified_icon_text_container}>
 
-										<VerifiedIcon style={{ marginRight: 4 }} />
+										<IcCFtick style={{ marginRight: 4 }} />
 										<div className={styles.verified_text}>Verified</div>
 									</div>
 								)}

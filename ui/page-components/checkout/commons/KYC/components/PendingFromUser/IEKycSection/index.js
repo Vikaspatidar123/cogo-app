@@ -1,4 +1,3 @@
-// import Layout from '@cogo/business-modules/form/Layout';
 import { Button, Toast } from '@cogoport/components';
 import { useEffect } from 'react';
 
@@ -6,6 +5,7 @@ import controls from './controls';
 import styles from './styles.module.css';
 
 import { useForm } from '@/packages/forms';
+import getField from '@/packages/forms/Controlled';
 import getApiErrorString from '@/packages/forms/utils/getApiError';
 import { useRequest } from '@/packages/request';
 import { useSelector } from '@/packages/store';
@@ -26,7 +26,9 @@ function IEKycSection({ organizationData, onClose, source }) {
 		scope,
 	)('/submit_organization_kyc');
 
-	const { fields, handleSubmit, formState, setValues, watch } = useForm(controls);
+	const { fields, handleSubmit, formState, setValues, watch, control } = useForm();
+
+	const { errors = {} } = formState;
 
 	useEffect(() => {
 		setValues({
@@ -34,7 +36,7 @@ function IEKycSection({ organizationData, onClose, source }) {
 			registration_number,
 			preferred_languages,
 		});
-	}, []);
+	}, [country_id, preferred_languages, registration_number, setValues]);
 
 	const countryId = watch('country_id');
 
@@ -94,11 +96,22 @@ function IEKycSection({ organizationData, onClose, source }) {
 
 	return (
 		<div className={styles.layout_container}>
-			{/* <Layout
-				controls={controls}
-				fields={newFields}
-				errors={formState.errors}
-			/> */}
+			<div className={styles.layout}>
+				{controls.map((item) => {
+					const Element = getField(item.type);
+					return (
+						<div className={styles.field}>
+							<div className={styles.lable}>{item.label}</div>
+							<Element {...item} control={control} />
+							{errors && (
+								<div className={styles.errors}>
+									{errors[item?.name]?.message}
+								</div>
+							)}
+						</div>
+					);
+				})}
+			</div>
 
 			<div className={styles.button_container}>
 				<Button

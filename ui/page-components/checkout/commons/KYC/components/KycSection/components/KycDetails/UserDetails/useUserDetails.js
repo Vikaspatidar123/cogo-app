@@ -1,6 +1,6 @@
 import { Toast } from '@cogoport/components';
 import { getByKey, isEmpty } from '@cogoport/utils';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 
 import controls from './get-user-controls';
 
@@ -16,33 +16,30 @@ const useUserDetails = ({
 	const [selectedUser, setSelectedUser] = useState({});
 	const [showMobileVerificationModal, setShowMobileVerificationModal] = useState(null);
 
-	const [{ loading }, getChannelPartnerUsersApi] = useRequest({
+	const [{ loading : getPartnerUserLoading }, getChannelPartnerUsersApi] = useRequest({
 		url    : '/get_channel_partner_users',
 		method : 'get',
 	}, { manual: true });
 
-	const [{ loading }, updateChannelPartnerVerificationApi] = useRequest({
+	const [{ loading : updatePartnerVerificationApiLoading }, updateChannelPartnerVerificationApi] = useRequest({
 		url    : '/update_channel_partner_verification',
 		method : 'post',
 	}, { manual: true });
 
-	const [{ loading : resendApiLoading}, resendEmailVerificationMailApi] = useRequest({
+	const [{ loading : resendApiLoading }, resendEmailVerificationMailApi] = useRequest({
 		url    : '/resend_channel_partner_user_verification_email',
 		method : 'post',
 	}, { manual: true });
-
 
 	const [{ loading: createChannelApiLoading }, createChannelPartnerVerificationDocumentApi] = useRequest({
 		url    : '/create_channel_partner_document',
 		method : 'post',
 	}, { manual: true });
 
-	const [{ loading }, getOrganizationDocumentsApi] = useRequest({
+	const [{ loading: getorganizationDocLoading }, getOrganizationDocumentsApi] = useRequest({
 		url    : '/create_channel_partner_document',
 		method : 'get',
 	}, { manual: true });
-
-
 
 	const {
 		fields = {},
@@ -52,19 +49,7 @@ const useUserDetails = ({
 		control,
 	} = useForm();
 
-	useEffect(() => {
-		getChannelPartnerUsers();
-	}, []);
-
-	useEffect(() => {
-		if (isEmpty(selectedUser)) {
-			return;
-		}
-
-		getOrganizationDocuments();
-	}, [selectedUser]);
-
-	const getChannelPartnerUsers = async () => {
+	const getChannelPartnerUsers = useCallback(async () => {
 		try {
 			const response = await getChannelPartnerUsersApi({
 				params: {
@@ -90,7 +75,7 @@ const useUserDetails = ({
 		} catch (error) {
 			console.log('error :: ', error);
 		}
-	};
+	}, [channelPartnerDetails.account_types, channelPartnerDetails.id, getChannelPartnerUsersApi, kycDetails]);
 
 	const handleChangeUser = async (_, obj) => {
 		setSelectedUser(obj);
@@ -114,7 +99,7 @@ const useUserDetails = ({
 		}));
 	};
 
-	const getOrganizationDocuments = async () => {
+	const getOrganizationDocuments = useCallback(async () => {
 		try {
 			const response = await getOrganizationDocumentsApi({
 				params: {
@@ -141,7 +126,8 @@ const useUserDetails = ({
 		} catch (error) {
 			console.log('error :: ', error);
 		}
-	};
+	}, [channelPartnerDetails.account_types,
+		channelPartnerDetails.id, getOrganizationDocumentsApi, selectedUser.user_id, setValue]);
 
 	const verifyEmailId = async () => {
 		try {
@@ -201,9 +187,21 @@ const useUserDetails = ({
 		}
 	};
 
+	useEffect(() => {
+		getChannelPartnerUsers();
+	}, [getChannelPartnerUsers]);
+
+	useEffect(() => {
+		if (isEmpty(selectedUser)) {
+			return;
+		}
+		getOrganizationDocuments();
+	}, [getOrganizationDocuments, selectedUser]);
+
 	return {
 		usersList: getByKey(getChannelPartnerUsersApi, 'data.list') || [],
 		selectedUser,
+		getPartnerUserLoading,
 		handleChangeUser,
 		setShowMobileVerificationModal,
 		showMobileVerificationModal,
@@ -214,9 +212,11 @@ const useUserDetails = ({
 		controls,
 		control,
 		createChannelPartnerVerificationDocumentLoading:
-		createChannelApiLoading.loading,
+		createChannelApiLoading,
 		verifyEmailId,
-		loadingResendEmail: resendApiLoading.loading,
+		loadingResendEmail: resendApiLoading,
+		updatePartnerVerificationApiLoading,
+		getorganizationDocLoading,
 	};
 };
 

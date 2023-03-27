@@ -2,17 +2,15 @@ import { Toast } from '@cogoport/components';
 import { useState } from 'react';
 
 import { useRequest } from '@/packages/request';
-import { useSelector } from '@/packages/store';
 
 const useHandleUpdateStage = ({ detail, refetch }) => {
-	const {
-		general: { scope },
-	} = useSelector((state) => state);
-
 	const [value, setValue] = useState(detail?.applicable_state || '');
 	const [showPopover, setShowPopover] = useState(false);
 
-	const updateCheckout = useRequest('post', false, scope)('/update_checkout');
+	const [{ loading }, updateCheckout] = useRequest({
+		url    : 'update_checkout',
+		method : 'post',
+	}, { manual: false });
 
 	const handleUpdateStage = async (selectedValue) => {
 		try {
@@ -34,7 +32,7 @@ const useHandleUpdateStage = ({ detail, refetch }) => {
 		value,
 		showPopover,
 		setShowPopover,
-		loading: updateCheckout.loading,
+		loading,
 	};
 };
 

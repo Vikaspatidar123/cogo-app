@@ -1,11 +1,9 @@
-import { RadioGroup } from '@cogoport/components';
+import { Loader, RadioGroup } from '@cogoport/components';
 import { isEmpty } from '@cogoport/utils';
 import { useEffect } from 'react';
 
 import styles from './styles.module.css';
 import usePaymentModes from './usePaymentModes';
-
-import Spinner from '@/ui/commons/components/Spinner';
 
 const STYLE = {
 	padding   : '16px 32px',
@@ -55,7 +53,7 @@ function PaymentModes({
 				paymentMode,
 			},
 		}));
-	}, []);
+	}, [PAYMENT_TERMS, creditDetails, invoicingParty.id, paymentMode, paymentTerms, setPaymentModes]);
 
 	useEffect(() => {
 		setPaymentModes((pv) => ({
@@ -71,12 +69,7 @@ function PaymentModes({
 	if (loading) {
 		return (
 			<div className={styles.spinner_container}>
-				<Spinner
-					size={40}
-					borderWidth={4}
-					outerBorderColor="#f2f6ff"
-					spinBorderColor="#393f70"
-				/>
+				<Loader themeType="primary" />
 			</div>
 		);
 	}
@@ -97,7 +90,7 @@ function PaymentModes({
 				} = item;
 
 				return (
-					<div style={{ display: 'flex', flexDirection: 'column' }} md={span} key={item}>
+					<div style={{ display: 'flex', flexDirection: 'column' }} key={item}>
 						{!isEmpty(paymentModeOptions) && (
 							<>
 								<div className={styles.header}>{title}</div>

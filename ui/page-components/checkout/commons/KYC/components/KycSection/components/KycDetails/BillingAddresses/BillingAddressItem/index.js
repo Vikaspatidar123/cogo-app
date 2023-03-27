@@ -1,7 +1,6 @@
+import { IcMDocument } from '@cogoport/icons-react';
 import { startCase } from '@cogoport/utils';
 import React from 'react';
-
-import DocIcon from '../icons/doc-icon.svg';
 
 import styles from './styles.module.css';
 
@@ -9,7 +8,6 @@ function BillingAddressItem({
 	isGstApplicable,
 	data = {},
 	index = 0,
-	marginBottom,
 }) {
 	const docAccessKey = isGstApplicable
 		? 'tax_exemption_proof'
@@ -24,7 +22,7 @@ function BillingAddressItem({
 	const docName = data[docAccessKey]?.split('/').pop();
 
 	return (
-		<div className={styles.container} marginBottom={marginBottom}>
+		<div className={styles.container}>
 			<div className={styles.index_container}>
 				<div className={styles.Index}>{index + 1}</div>
 			</div>
@@ -39,7 +37,7 @@ function BillingAddressItem({
 
 				<div className={styles.doc_container}>
 					<div>
-						<DocIcon style={{ marginRight: 8 }} />
+						<IcMDocument style={{ marginRight: 8 }} />
 						<div className={styles.DocText}>{docName}</div>
 					</div>
 					<div>

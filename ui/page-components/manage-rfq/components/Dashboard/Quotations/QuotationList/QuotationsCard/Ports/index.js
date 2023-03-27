@@ -22,7 +22,7 @@ function Ports({ rfqItem, handleDeleteRfq, handleDuplicateRfq }) {
 	moreData.splice(0, 3);
 
 	const DuplicateAction = (
-		<Button onClick={handleDuplicateRfq}>
+		<Button onClick={handleDuplicateRfq} themeType="link">
 			<IcMCopy width={12} height={12} />
 			{' '}
 			<span>Duplicate</span>
@@ -45,7 +45,7 @@ function Ports({ rfqItem, handleDeleteRfq, handleDuplicateRfq }) {
 			View
 		</Button>
 	) : (
-		<Button />
+		<div />
 	);
 
 	return (
@@ -68,7 +68,6 @@ function Ports({ rfqItem, handleDeleteRfq, handleDuplicateRfq }) {
 			<div className={!isEmpty(moreData) ? styles.view_more : styles.view_more_empty}>
 				{!isEmpty(moreData) && (
 					<Popover
-						theme="light"
 						interactive
 						placement="left"
 						content={(
@@ -115,6 +114,7 @@ function Ports({ rfqItem, handleDeleteRfq, handleDuplicateRfq }) {
 								{DuplicateAction}
 								<Button
 									onClick={handleDeleteRfq}
+									themeType="link"
 								>
 									<IcMDelete width={18} height={18} />
 									{' '}
@@ -124,11 +124,11 @@ function Ports({ rfqItem, handleDeleteRfq, handleDuplicateRfq }) {
 						)}
 					>
 						<span>
-							<IcMOverflowDot width={20} height={20} />
+							<IcMOverflowDot width={20} height={20} className={styles.icon_hover} />
 						</span>
 					</Popover>
 				) : (
-					<IcMDelete width={20} height={20} onClick={handleDeleteRfq} />
+					<IcMDelete width={20} height={20} onClick={handleDeleteRfq} className={styles.icon_hover} />
 				)}
 			</div>
 		</div>

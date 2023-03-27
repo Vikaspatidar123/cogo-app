@@ -3,40 +3,40 @@
 }
 
 .pairs {
-    width: 80%;
 	display: flex;
 	align-items: center;
+	width: 80%;
 }
 
 .uploaded {
-    margin-top: 12px;
-	font-weight: 400;
+	margin-top: 12px;
 	font-size: 16px;
+	font-weight: 400;
 	color: #2c3e50;
 }
 
 .view_more {
+	display: flex;
 	flex: 0.6;
+	align-items: center;
+	justify-content: center;
 	margin-left: 12px;
 	border: 1px solid #e0e0e0;
 	border-radius: 4px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
 }
 
 .view_more_empty {
-    flex: 0.6;
+	display: flex;
+	flex: 0.6;
+	align-items: center;
+	justify-content: center;
 	margin-left: 12px;
 	border: unset;
 	border-radius: 4px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
 }
 
 .modal_container {
-    display: flex;
+	display: flex;
 	flex-direction: column;
 	max-height: 250px;
 	overflow-y: auto;
@@ -48,19 +48,23 @@
 }
 
 .more {
-    text-align: center;
-	cursor: pointer;
 	color: #c9c9c9;
+	text-align: center;
+	cursor: pointer;
 }
 
 .live_button {
-    flex: 1;
 	display: flex;
+	flex: 1;
 	align-items: center;
 	justify-content: space-around;
 }
 
 .actions {
-    display: flex;
+	display: flex;
 	flex-direction: column;
+}
+
+.icon_hover {
+	cursor: pointer;
 }

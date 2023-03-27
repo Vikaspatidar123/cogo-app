@@ -25,9 +25,9 @@ function ConfirmationModal({
 			closable={false}
 		>
 			<Modal.Body>
-				<h3>
+				<h3 className={styles.title}>
 					{showModal.type === 'delete'
-						? 'Are you sure you want to delete RFQ'
+						? 'Are you sure you want to delete RFQ ?'
 						: `Create Duplicate for the RFQ ID  ${showModal.serialId} ?`}
 				</h3>
 				{showModal.type === 'duplicate' && (
@@ -43,7 +43,7 @@ function ConfirmationModal({
 										setError(false);
 									}
 								}}
-								style={{ border: error && '1px solid #BF291E' }}
+								style={{ border: error && "1px solid #BF291E" }}
 							/>
 						</div>
 						<div className={styles.error_container}>
@@ -51,23 +51,24 @@ function ConfirmationModal({
 						</div>
 					</>
 				)}
-			</Modal.Body>
-			<Modal.Footer>
 				<div className={styles.button_wrapper}>
 					<Button
 						disabled={loading}
 						onClick={handleClose}
+						themeType="secondary"
 					>
-						no
+						No
 					</Button>
 					<Button
 						disabled={loading}
+						themeType="accent"
 						onClick={() => handleAction(rfqName, error, setError)}
 					>
-						yes
+						Yes
 					</Button>
 				</div>
-			</Modal.Footer>
+			</Modal.Body>
+
 		</Modal>
 	);
 }

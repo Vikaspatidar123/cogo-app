@@ -1,4 +1,4 @@
-import countries from '@/.data-store/constants/countries.json';
+import countries from '../../../.data-store/constants/countries.json';
 
 const previousCurriencies = [];
 const optionsAll = [];
@@ -15,5 +15,6 @@ const optionsAll = [];
 const prefferdCurrencies = ['INR', 'USD', 'GBP', 'EUR'];
 const prefferedOptons = optionsAll.filter((option) => prefferdCurrencies.includes(option.key));
 const restOptionsList = optionsAll.filter((option) => !prefferdCurrencies.includes(option.key));
+// const restOptions = sort(restOptionsList, { key: 'label' });
 const options = [...prefferedOptons, ...restOptionsList];
 export default options;

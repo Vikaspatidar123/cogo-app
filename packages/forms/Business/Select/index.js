@@ -12,7 +12,6 @@ function SelectController(props) {
 		...rest
 	} = props;
 	const Element = multiple ? MultiSelect : Select;
-	console.log(options, 'options');
 	let finalOptions = options || [];
 	let finalValueKey = valueKey || 'value';
 	let finalLabelKey = labelKey || 'label';
@@ -23,9 +22,17 @@ function SelectController(props) {
 		finalValueKey = valueKey || data.valueKey;
 		finalLabelKey = labelKey || data.labelKey;
 	}
-
+	// const customComponentsAll = {};
+	// if (rest.ControlComponent) {
+	// 	customComponentsAll.Control = rest.ControlComponent;
+	// }
 	return (
-		<Element {...rest} valueKey={finalValueKey} labelKey={finalLabelKey} options={finalOptions} />
+		<Element
+			{...rest}
+			valueKey={finalValueKey}
+			labelKey={finalLabelKey}
+			options={finalOptions}
+		/>
 	);
 }
 

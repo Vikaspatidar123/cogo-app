@@ -1,6 +1,8 @@
 import { useState } from 'react';
 
+import NoSearch from '../../common/NoSearch';
 import useGetUserQuota from '../../hooks/useGetUserQuota';
+import KycBenefits from '../KycBenefits';
 
 import NewSearch from './NewSearch';
 
@@ -22,8 +24,7 @@ function SearchPage() {
 	);
 	const { left_quota = 0, addon_quota = 0 } = listStoreQuotaAPI || {};
 	const blockSearch = !(
-		left_quota + addon_quota > 0
-		|| listStoreQuotaAPI?.is_unlimited
+		left_quota + addon_quota > 0 || listStoreQuotaAPI?.is_unlimited
 	);
 	return (
 		<div>
@@ -33,10 +34,15 @@ function SearchPage() {
 			<NewSearch
 				loading={quotaLoading}
 				blockSearch={blockSearch}
-				// defaultSearchMode={defaultSearchMode}
+        // defaultSearchMode={defaultSearchMode}
 				style={{ marginBottom: 16 }}
 				listStoreQuotaAPI={listStoreQuotaAPI}
 			/>
+			{kyc_status === 'pending_from_user' || kyc_status === 'rejected' ? (
+				<KycBenefits />
+			) : null}
+
+			{!quotaLoading && blockSearch ? <NoSearch /> : <div>ok</div>}
 		</div>
 	);
 }

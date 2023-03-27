@@ -1,4 +1,3 @@
-import { Select } from '@cogoport/components';
 import { isEmpty } from '@cogoport/utils';
 import React, { useState, useRef } from 'react';
 
@@ -6,6 +5,8 @@ import getBoundedClick from '../../utils/getBoundedClick';
 
 import styles from './styles.module.css';
 import Tag from './Tag';
+
+import SelectController from '@/packages/forms/Business/Select';
 
 function Tags({
 	list = [],
@@ -38,7 +39,8 @@ function Tags({
 	return (
 		<div
 			ref={cRef}
-			className={`${styles.with_mobile} ${styles.without_mobile} ${styles.search_type || ''
+			className={`${styles.with_mobile} ${styles.without_mobile} ${
+      	styles.search_type || ''
 			}`}
 		>
 			{prefix ? (
@@ -46,15 +48,15 @@ function Tags({
 			) : null}
 
 			{list.map((item) => {
-				const { value } = item || {};
+      	const { value } = item || {};
 
-				if (search_type === 'forecast') {
-					const flag = ['domestic', 'container_transportation'].includes(value);
+      	if (search_type === 'forecast') {
+      		const flag = ['domestic', 'container_transportation'].includes(value);
 
-					if (flag) {
-						return null;
-					}
-				}
+      		if (flag) {
+      			return null;
+      		}
+      	}
 
       	// Removed Rail Domestic from App Side
 
@@ -72,7 +74,7 @@ function Tags({
 
       		if (valueShowPropMapping[value]) {
       			return (
-	<Select
+	<SelectController
 		key={value}
 		name={`search-${value}-tags`}
 		options={newOptions}
@@ -82,10 +84,10 @@ function Tags({
 		onChange={onChange}
 		menuPlacement="auto"
 		style={{
-			menu: {
-				width : 150,
-				left  : 0,
-			},
+                	menu: {
+                		width : 150,
+                		left  : 0,
+                	},
 		}}
 		ControlComponent={() => (
 			<Tag
@@ -94,25 +96,25 @@ function Tags({
 				className={styles[className]}
 				id={`search_form_mode_${value}`}
 				onClick={() => {
-					setShowTagOptionsValue(value);
+                    	setShowTagOptionsValue(value);
 				}}
 			/>
 		)}
 	/>
       			);
-					}
-				}
+      		}
+      	}
 
-				return (
-					<Tag
-						key={value}
-						item={item}
-						selected={selected}
-						onClick={onChange}
-						className={className}
-						id={`search_form_mode_${value}`}
-					/>
-				);
+      	return (
+	<Tag
+		key={value}
+		item={item}
+		selected={selected}
+		onClick={onChange}
+		className={className}
+		id={`search_form_mode_${value}`}
+	/>
+      	);
 			})}
 		</div>
 	);

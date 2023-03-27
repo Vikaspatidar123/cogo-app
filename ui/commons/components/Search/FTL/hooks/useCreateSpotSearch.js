@@ -4,34 +4,18 @@ import { isEmpty } from '@cogoport/utils';
 import { useRouter } from '@/packages/next';
 import { useRequest } from '@/packages/request';
 import { useSelector } from '@/packages/store';
-import getGeoConstants from '@/ui/commons/constants/geo';
 import getApiErrorString from '@/ui/commons/utils/getApiErrorString';
 
-const geo = getGeoConstants();
-
-const cogoVerseTeamIDS = [
-	geo.uuid.cogoverse_admin_id,
-	geo.uuid.cogoverse_executive_id,
-	geo.uuid.cogoverse_kam_id,
-];
-
 const useCreateSpotSearch = ({ extraParams, onPush }) => {
-	const {
-		scope = '',
-		query = {},
-		userRoleIDs = [],
-	} = useSelector(({ general, profile }) => ({
-		scope       : general?.scope,
-		query       : general?.query,
-		userRoleIDs : profile?.partner?.user_role_ids,
-	}));
-
 	const router = useRouter();
 
-	const [{ loading }, trigger] = useRequest({
-		url    : '/create_spot_search',
-		method : 'post',
-	}, { manual: true });
+	const [{ loading }, trigger] = useRequest(
+		{
+			url    : '/create_spot_search',
+			method : 'post',
+		},
+		{ manual: true },
+	);
 
 	const { importer_exporter_id, importer_exporter_branch_id, user_id } = extraParams;
 
@@ -41,19 +25,6 @@ const useCreateSpotSearch = ({ extraParams, onPush }) => {
 	) => {
 		if (isEmpty(ftl_freight_service_touch_points_attributes)) return;
 
-		if (scope === 'partner' && !extraParams.importer_exporter_id) {
-			Toast.error('Please select importer exporter');
-			return;
-		}
-		if (scope === 'partner' && !extraParams.importer_exporter_branch_id) {
-			Toast.error('Please select organization branch');
-			return;
-		}
-		if (scope === 'partner' && !extraParams.user_id) {
-			Toast.error('Please select organization user');
-			return;
-		}
-
 		try {
 			const ftl_freight_services_attributes = payload.map(
 				(ftl_service_attributes) => ({
@@ -62,8 +33,6 @@ const useCreateSpotSearch = ({ extraParams, onPush }) => {
 				}),
 			);
 
-			const isCogoVerseMember = userRoleIDs.some((elem) => cogoVerseTeamIDS.includes(elem));
-
 			const newPayload = {
 				search_type : 'ftl_freight',
 				source      : 'platform',
@@ -71,36 +40,18 @@ const useCreateSpotSearch = ({ extraParams, onPush }) => {
 				importer_exporter_branch_id,
 				user_id,
 				ftl_freight_services_attributes,
-				tags:
-          scope === 'partner'
-          && (query?.source === 'communication' || isCogoVerseMember)
-          	? ['cogoverse']
-          	: undefined,
 			};
 
 			const res = await trigger({ data: newPayload });
 
 			const { data = {} } = res || {};
 
-			let partneras = `/book/${data?.id}/${extraParams?.importer_exporter_id}`;
-			let partnerHref = '/book/[search_id]/[importer_exporter_id]';
-
-			if (query?.source) {
-				partneras += `?source=${query?.source}`;
-				partnerHref += `?source=${query?.source}`;
-			}
-
-			const ROUTE_MAPPING = {
-				app: {
-					href : '/book/[search_id]',
-					as   : `/book/${(data || {}).id}`,
-				},
-				partner: {
-					href : partnerHref,
-					as   : partneras,
-				},
+			const APP = {
+				href : '/book/[search_id]',
+				as   : `/book/${(data || {}).id}`,
 			};
-			const { href, as } = ROUTE_MAPPING[scope];
+
+			const { href, as } = APP;
 			router.push(href, as);
 
 			if (onPush) {

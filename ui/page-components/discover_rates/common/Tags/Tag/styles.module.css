@@ -77,22 +77,27 @@
 .small {
   background-color: #fff;
 }
-
+.active {
+  background-color: #e0d06161 !important;
+}
 .search_form_mode_fcl_freight {
-  margin-left: 16px;
-  color: #356efd;
+  color: #356efd !important;
 }
 .search_form_mode_lcl_freight {
-  color: #66acf7;
+  /* color: #fff !important; */
+  color: #66acf7 !important;
 }
 .search_form_mode_air_freight {
-  color: #ef9b9b;
+  /* color: #fff !important; */
+  color: #ef9b9b !important;
 }
 .search_form_mode_container_transportation {
-  color: rgb(150, 226, 162);
+  /* color: #fff !important; */
+  color: rgb(150, 226, 162) !important;
 }
 .search_form_mode_domestic {
-  color: #81c0af;
+  /* color: #81c0af !important; */
+  color: #81c0af !important;
 }
 
 .search_form_mode_fcl_freight {
@@ -100,11 +105,11 @@
   color: #fff;
 }
 .search_form_mode_lcl_freight {
-  background-color: red;
+  color: red;
   color: #fff;
 }
 .search_form_mode_air_freight {
-  background-color: #ef9b9b;
+  color: #ef9b9b;
   color: #fff;
 }
 .search_form_mode_container_transportation {
@@ -114,8 +119,4 @@
 .search_form_mode_domestic {
   background-color: #81c0af;
   color: #fff;
-}
-
-.active {
-  background: red;
 }

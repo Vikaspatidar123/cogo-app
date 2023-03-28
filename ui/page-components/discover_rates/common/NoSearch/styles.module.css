@@ -1,0 +1,9 @@
+.flex {
+  display: block;
+  margin-bottom: 16px;
+}
+.text {
+  line-height: 15px;
+  margin-bottom: 32px;
+  color=: #fff;
+}

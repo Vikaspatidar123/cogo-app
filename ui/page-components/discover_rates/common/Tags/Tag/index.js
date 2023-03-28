@@ -1,20 +1,20 @@
-import { cl } from '@cogoport/components';
+import { cl, Button } from '@cogoport/components';
 import {
 	IcCHaulage as IcSurface,
 	IcMArrowRotateDown,
+	IcMShip,
+	IcMLcl,
+	IcMAir,
 } from '@cogoport/icons-react';
 import React from 'react';
 
-import IcAir from './ic-air.svg';
 import IcDomestic from './ic-domestic.svg';
-import IcFcl from './ic-fcl.svg';
-import IcLcl from './ic-lcl.svg';
 import styles from './styles.module.css';
 
 const ICON_MAPPING = {
-	'ic-fcl'      : IcFcl,
-	'ic-lcl'      : IcLcl,
-	'ic-air'      : IcAir,
+	'ic-fcl'      : IcMShip,
+	'ic-lcl'      : IcMLcl,
+	'ic-air'      : IcMAir,
 	'ic-surface'  : IcSurface,
 	'ic-domestic' : IcDomestic,
 };
@@ -43,7 +43,7 @@ function TagSingle({
 	const Icon = ICON_MAPPING[item.icon];
 	const className = `${classNameProp} ${
 		selected === item.value || (item.options && isAnyOptionSelected())
-			? 'selected'
+			? styles.selected
 			: ''
 	}`;
 	return (
@@ -51,13 +51,17 @@ function TagSingle({
 			key={item.value}
 			role="presentation"
 			onClick={() => {
-      	       onClick(item.value);
+      	onClick(item.value);
 			}}
 			className={cl`${styles.container}${styles[id]} ${styles[className]}`}
 			id={id}
 		>
-			<div className={styles.id}>
-				<div className={`${styles.container_label} ${styles[className]}`}>
+			<Button
+				size="md"
+				themeType="secondary"
+				className={cl`${styles[id]}${item.value === selected && styles.active}`}
+			>
+				<div className={cl`${styles.container_label} ${styles[className]}`}>
 					<Icon style={{ width: 20, height: 20 }} />
 
 					<div style={{ marginLeft: 8 }}>
@@ -68,7 +72,7 @@ function TagSingle({
 						<IcMArrowRotateDown style={{ marginLeft: 6 }} />
 					) : null}
 				</div>
-			</div>
+			</Button>
 		</div>
 	);
 }

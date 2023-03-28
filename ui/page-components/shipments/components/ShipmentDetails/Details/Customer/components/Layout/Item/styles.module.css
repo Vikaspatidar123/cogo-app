@@ -1,0 +1,22 @@
+.container{
+    display: flex;
+	flex-direction: column;
+}
+.label{
+    font-weight: bold;
+	font-size: 14px;
+	line-height: 16px;
+	margin-top: 32px;
+	margin-bottom: 16px;
+	color: #393f70;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.lower_label{
+	display: inline-block;
+	font-size: 10px;
+	color: #adadad;
+	line-height: 20px;
+	margin-bottom: 6px;
+}

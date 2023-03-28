@@ -1,0 +1,45 @@
+.container{
+    display: flex;
+	justify-content: space-between;
+	align-items: flex-start;
+	background: #ffffff;
+	border-radius: 10px;
+	padding: 60px 30px 36px 30px;
+}
+.wrapper{
+	max-width: 45%;
+	@media (max-width: 760px) {
+		max-width: 100%;
+	}
+}
+.button{
+	text-decoration: none;
+	background: transparent;
+	border: none;
+	cursor: pointer;
+	box-shadow: none;
+	text-align: center;
+
+	border-radius: 4px;
+
+	font-weight: 500;
+	font-size: 12px;
+	line-height: 14px;
+
+	background: black;
+	color: white;
+	border: 1px solid black;
+	outline: none;
+
+	padding: 8px 11px;
+
+	transition: all 0.3s;
+	text-transform: uppercase;
+}
+.icon_container{
+	max-width: 17%;
+	min-width: 10%;
+	@media (max-width: _md) {
+		display: none;
+	}
+}

@@ -1,11 +1,4 @@
-import SearchForm from '@cogo/app-search/common/SearchForm';
-import formatMainServiceData from '@cogo/app-search/utils/format-main-service-data';
-import TruckingTouchPoints from '@cogo/business-modules/components/TruckingTouchPoints';
-import { APP_EVENT, trackEvent } from '@cogo/commons/analytics';
-import GLOBAL_CONSTANTS from '@cogo/globalization/constants/globals.json';
-import formatDate from '@cogo/globalization/utils/formatDate';
-import { useSelector } from '@cogo/store';
-import { Button, Modal } from '@cogoport/front/components';
+import { Modal, Button } from '@cogoport/components';
 import { IcMFtrailorFull } from '@cogoport/icons-react';
 import React, { useState, useEffect } from 'react';
 
@@ -14,22 +7,13 @@ import Loading from '../loading';
 import LocationDetails from '../LocationDetails';
 
 import ContainerDetails from './ContainerDetails';
-import {
-	Container,
-	Pill,
-	Line,
-	ButtonWrap,
-	ServiceWrap,
-	FlexRow,
-	ButtonStyled,
-	AnimatedContainer,
-	InfoWrapper,
-	EditContainer,
-	RatesCount,
-	Count,
-	Date,
-	ServiceTypeText,
-} from './styles';
+import styles from './styles.module.css';
+
+import { useSelector } from '@/packages/store';
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
+import formatDate from '@/ui/commons/utils/formatDate';
+import { APP_EVENT, trackEvent } from '@/ui/page-components/discover_rates/common/analytics';
+import SearchForm from '@/ui/page-components/discover_rates/common/SearchForm';
 
 const SEARCH_TYPE_MAPPING = {
 	ftl_freight : 'FTL',
@@ -52,7 +36,7 @@ function FtlInfo({
 	rates = [],
 	possible_additional_services = [],
 }) {
-	const { scope, query } = useSelector(({ general }) => general);
+	const { query } = useSelector(({ general }) => general);
 	const { touch_points = {} } = searchData || {};
 	const { primary_service = {} } = touch_points || {};
 	const { enroute = [] } = primary_service || {};
@@ -66,11 +50,11 @@ function FtlInfo({
 	}, [editSearch]);
 
 	if (loading) {
-		return <Loading isMobile={isMobile} scope={scope} />;
+		return <Loading isMobile={isMobile} />;
 	}
 
 	const searchForm = (
-		<EditContainer className={scope === 'app' ? 'app' : ''}>
+		<div className={styles.edit_container}>
 			<SearchForm
 				mode={data.search_type}
 				onPush={() => setEditSearch(false)}
@@ -104,34 +88,34 @@ function FtlInfo({
 			>
 				X
 			</Button>
-		</EditContainer>
+		</div>
 	);
 
 	const details = (
-		<Container
-			className={scope === 'app' ? 'app' : ''}
+		<div
+			className={styles.container}
 			style={results_type === 'rfq' ? { position: 'relative' } : {}}
 		>
-			<ServiceWrap>
+			<div className={styles.service_wrap}>
 				<IcMFtrailorFull color="#81C0AF" width={42} height={42} />
 
-				<ServiceTypeText>
+				<div className={styles.service_type_text}>
 					{SEARCH_TYPE_MAPPING[data.search_type]}
-				</ServiceTypeText>
+				</div>
 
-				{data?.inco_term ? <Pill>{data?.inco_term}</Pill> : null}
-			</ServiceWrap>
+				{data?.inco_term ? <div className={styles.pill}>{data?.inco_term}</div> : null}
+			</div>
 
 			<LocationDetails data={data} />
 
 			{data?.search_type === 'ftl_freight' && enroute.length ? (
 				<>
-					{!isMobile ? <Line /> : <Line className="mobile" />}
+					<div className={styles.Line} />
 					<TruckingTouchPoints touchPoints={enroute} />
 				</>
 			) : null}
-			{!isMobile ? <Line /> : <Line className="mobile" />}
-			<Date>
+			<div className={styles.Line} />
+			<div className={styles.date}>
 				<div>
 					(
 					{formatDate({
@@ -141,31 +125,30 @@ function FtlInfo({
 					})}
 					)
 				</div>
-			</Date>
+			</div>
 
-			<FlexRow>
+			<div className={styles.flex_row}>
 				<ContainerDetails searchData={searchData} data={data} />
 				{results_type === 'rfq' ? (
 					<div style={{ display: 'flex' }}>
-						{!isMobile ? <Line /> : <Line className="mobile" />}
+						<div className={styles.Line} />
 
-						<RatesCount>
+						<div className={styles.rates_count}>
 							<div style={{ color: '#828282', fontSize: '16px' }}>
 								Rates Available
 							</div>
-							<Count>{(rates || []).length}</Count>
-						</RatesCount>
+							<div className={styles.count}>{(rates || []).length}</div>
+						</div>
 					</div>
 				) : null}
 
 				{!NON_STANDALONE_SEERVICES.includes(data?.search_type)
 				&& !query?.shipment_id
 				&& results_type !== 'rfq' ? (
-					<ButtonStyled
+					<Button
 						onClick={() => {
-							if (scope === 'app') {
-								trackEvent(APP_EVENT.search_clicked_on_edit_search, {});
-							}
+							trackEvent(APP_EVENT.search_clicked_on_edit_search, {});
+
 							setEditSearch(true);
 						}}
 					>
@@ -174,32 +157,32 @@ function FtlInfo({
 							alt="edit"
 							style={{ width: '2em', height: '2em', margin: 'auto' }}
 						/>
-					</ButtonStyled>
+					</Button>
 					) : null}
-			</FlexRow>
-		</Container>
+			</div>
+		</div>
 	);
 	const handleAddServiceClick = () => {
 		setOpen(true);
 	};
 	return (
 		<>
-			<InfoWrapper
-				className={editSearch ? 'edit' : ''}
+			<div
+				className={`${styles.info_wrapper} ${editSearch ? 'edit' : ''}`}
 				style={results_type === 'rfq' ? { marginBottom: '0px' } : {}}
 			>
-				<AnimatedContainer>
+				<div className={styles.animated_container}>
 					{!editSearch ? details : searchForm}
-				</AnimatedContainer>
-			</InfoWrapper>
+				</div>
+			</div>
 
 			{results_type !== 'rfq' ? (
-				<ButtonWrap>
+				<div className={styles.button_wrap}>
 					<Button onClick={handleAddServiceClick}>Add Services</Button>
-				</ButtonWrap>
+				</div>
 			) : null}
 
-			{open && isMobile ? (
+			{open && (
 				<Modal show={open} onClose={() => setOpen(false)} width={330}>
 					<AdditionalServices
 						data={data}
@@ -208,7 +191,7 @@ function FtlInfo({
 						possible_additional_services={possible_additional_services}
 					/>
 				</Modal>
-			) : null}
+			)}
 		</>
 	);
 }

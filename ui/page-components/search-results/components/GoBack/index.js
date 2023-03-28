@@ -1,9 +1,10 @@
-import { useRouter } from '@cogo/next';
-import { useSelector } from '@cogo/store';
 import { IcMArrowBack } from '@cogoport/icons-react';
 import React from 'react';
 
-import { RowBack, Back } from './styles';
+import styles from './styles.module.css';
+
+import { useRouter } from '@/packages/next';
+import { useSelector } from '@/packages/store';
 
 function GoBack() {
 	const {
@@ -16,7 +17,7 @@ function GoBack() {
 	const { push } = useRouter();
 
 	return shipment_id ? (
-		<RowBack>
+		<div className={styles.row_back}>
 			<div
 				onClick={() => push('/shipments/[id]', `/shipments/${shipment_id}`)}
 				role="presentation"
@@ -28,12 +29,14 @@ function GoBack() {
 				/>
 			</div>
 
-			<Back
+			<div
+				role="presentation"
+				className={styles.back}
 				onClick={() => push('/shipments/[id]', `/shipments/${shipment_id}`)}
 			>
 				Go back to shipment
-			</Back>
-		</RowBack>
+			</div>
+		</div>
 	) : null;
 }
 

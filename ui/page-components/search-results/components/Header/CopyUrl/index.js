@@ -1,8 +1,9 @@
-import { Btn, cogoToast, Tooltip } from '@cogo/deprecated_legacy/ui';
-import { useSelector } from '@cogo/store';
-import copyToClipboard from '@cogo/utils/copyToClipboard';
+import { Toast, Button, Tooltip } from '@cogoport/components';
 import { IcMCopy } from '@cogoport/icons-react';
+import { copyToClipboard } from '@cogoport/utils';
 import React from 'react';
+
+import { useSelector } from '@/packages/store';
 
 function CopyUrl({ detail }) {
 	const { search_id, importer_exporter_id, org_id, user_profile } = useSelector(
@@ -23,7 +24,7 @@ function CopyUrl({ detail }) {
 				detail?.importer_exporter_branch_id
 			}/importer-exporter/book/${search_id}`,
 		);
-		cogoToast.success('Copied');
+		Toast.success('Copied');
 	};
 
 	if (
@@ -34,7 +35,7 @@ function CopyUrl({ detail }) {
 
 	return (
 		<Tooltip placement="top" renderBody={renderBody}>
-			<Btn
+			<Button
 				className="small"
 				style={{
 					marginLeft : 8,
@@ -52,7 +53,7 @@ function CopyUrl({ detail }) {
 					}}
 					themeType="#0848f5"
 				/>
-			</Btn>
+			</Button>
 		</Tooltip>
 	);
 }

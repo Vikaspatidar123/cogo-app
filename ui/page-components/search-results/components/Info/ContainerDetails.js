@@ -1,10 +1,10 @@
-import startCase from '@cogo/utils/startCase';
-import { Flex, ToolTip } from '@cogoport/front/components';
+import { Tooltip } from '@cogoport/components';
+import { startCase } from '@cogoport/utils';
 import React from 'react';
 
 import CLASS_MAPPING from '../../../business-modules/components/Search/Air/utils/classMapping';
 
-import { FlexCol, ContainerValues } from './styles';
+import styles from './styles.module.css';
 
 const GOODS_MAPPING = [
 	'fcl_freight',
@@ -165,122 +165,131 @@ function ConatinerDetails({ data = {} }) {
 	return (
 		<>
 			{GOODS_MAPPING.includes(data?.search_type) ? (
-				<FlexCol>
+				<div className={styles.flex_col}>
 					{commodity ? (
-						<Flex style={{ marginBottom: '8px' }}>
+						<div style={{ display: 'flex', marginBottom: '8px' }}>
 							<span>COMMODITY</span>
-							<ToolTip placement="bottom" theme="light" content={commodity}>
-								<ContainerValues>{commodity}</ContainerValues>
-							</ToolTip>
-						</Flex>
+							<Tooltip placement="bottom" theme="light" content={commodity}>
+								<div className={styles.container_values}>{commodity}</div>
+							</Tooltip>
+						</div>
 					) : null}
 
 					{size ? (
-						<Flex>
+						<div style={{ display: 'flex' }}>
 							<span>CONTAINER</span>
-							<ToolTip placement="bottom" theme="light" content={size}>
-								<ContainerValues>{size}</ContainerValues>
-							</ToolTip>
-						</Flex>
+							<Tooltip placement="bottom" theme="light" content={size}>
+								<div className={styles.container_values}>{size}</div>
+							</Tooltip>
+						</div>
 					) : null}
-				</FlexCol>
+				</div>
 			) : null}
 
 			{LOAD_CARGO_MAPPING.includes(data?.search_type) ? (
 				<>
-					<FlexCol>
+					<div className={styles.flex_col}>
 						{data?.volume ? (
-							<Flex style={{ marginBottom: '8px' }}>
+							<div style={{ display: 'flex', marginBottom: '8px' }}>
 								<span style={{ width: 100 }}>Volume</span>
-								<ContainerValues>
+								<div className={styles.container_values}>
 									{totalPackageVolume}
-									{' '}
 									cbm
-								</ContainerValues>
-							</Flex>
+								</div>
+							</div>
 						) : null}
 
 						{data?.weight ? (
-							<Flex style={{ marginBottom: '8px' }}>
+							<div style={{ display: 'flex', marginBottom: '8px' }}>
 								<span style={{ width: 100 }}>Weight</span>
-								<ContainerValues>
+								<div className={styles.container_values}>
 									{totalPackageWeight}
-									{' '}
 									kgs
-								</ContainerValues>
-							</Flex>
+								</div>
+							</div>
 						) : null}
 
 						{data?.packages_count ? (
-							<Flex>
+							<div style={{ display: 'flex' }}>
 								<span style={{ width: 100 }}>Packages count</span>
-								<ContainerValues>{packageCount}</ContainerValues>
-							</Flex>
+								<div className={styles.container_values}>
+									{packageCount}
+								</div>
+							</div>
 						) : null}
-					</FlexCol>
+					</div>
 
-					<FlexCol>
+					<div className={styles.flex_col}>
 						{data?.cargo_clearance_date ? (
-							<Flex style={{ marginBottom: '8px' }}>
+							<div style={{ display: 'flex', marginBottom: '8px' }}>
 								<span style={{ width: 130 }}>Cargo Readiness Date</span>
-								<ContainerValues>{data?.cargo_clearance_date}</ContainerValues>
-							</Flex>
+								<div className={styles.container_values}>
+									{data?.cargo_clearance_date}
+								</div>
+							</div>
 						) : null}
 
 						{data?.logistics_service_type ? (
-							<Flex style={{ marginBottom: '8px' }}>
+							<div style={{ display: 'flex', marginBottom: '8px' }}>
+
 								<span style={{ width: 130 }}>logistics service type</span>
-								<ContainerValues>
+								<div className={styles.container_values}>
 									{data?.logistics_service_type}
-								</ContainerValues>
-							</Flex>
+								</div>
+							</div>
 						) : null}
 
 						{data?.payment_type ? (
-							<Flex style={{ marginBottom: '8px' }}>
+							<div style={{ display: 'flex', marginBottom: '8px' }}>
+
 								<span style={{ width: 130 }}>Payment Type</span>
-								<ContainerValues>
+								<div className={styles.container_values}>
 									{startCase(data?.payment_type)}
-								</ContainerValues>
-							</Flex>
+								</div>
+							</div>
 						) : null}
 
 						{commoditySubType || data?.commodity ? (
-							<Flex>
+							<div style={{ display: 'flex' }}>
 								<span style={{ width: 130 }}>Commodity</span>
-								<ContainerValues>
+								<div className={styles.container_values}>
 									{commodity_type === 'dangerous'
 										? `Class ${classDescription}`
 										: startCase(commoditySubType || data?.commodity)}
-								</ContainerValues>
-							</Flex>
+								</div>
+							</div>
 						) : null}
-					</FlexCol>
+					</div>
 				</>
 			) : null}
 
 			{LOAD_TRUCK_MAPPING.includes(data?.search_type) ? (
-				<FlexCol>
+				<div className={styles.flex_col}>
 					{data?.truck_type ? (
-						<Flex style={{ marginBottom: '8px' }}>
+						<div style={{ display: 'flex', marginBottom: '8px' }}>
+
 							<span>Truck Type</span>
-							<ToolTip
+							<Tooltip
 								placement="bottom"
 								theme="light"
 								content={startCase(data?.truck_type)}
 							>
-								<ContainerValues>{startCase(data?.truck_type)}</ContainerValues>
-							</ToolTip>
-						</Flex>
+								<div className={styles.container_values}>
+									{startCase(data?.truck_type)}
+								</div>
+							</Tooltip>
+						</div>
 					) : null}
 
 					{data?.trucks_count ? (
-						<Flex>
+						<div style={{ display: 'flex' }}>
 							<span>Truck Count</span>
-							<ContainerValues>{data?.trucks_count}</ContainerValues>
-						</Flex>
+							<div className={styles.container_values}>
+								{data?.trucks_count}
+							</div>
+						</div>
 					) : null}
-				</FlexCol>
+				</div>
 			) : null}
 		</>
 	);

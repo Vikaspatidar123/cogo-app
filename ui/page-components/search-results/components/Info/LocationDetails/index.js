@@ -1,9 +1,8 @@
-import getLocationInfo from '@cogo/business-modules/helpers/locations-search';
-import { ToolTip } from '@cogoport/front/components';
+import { Tooltip } from '@cogoport/components';
 import { IcMPortArrow } from '@cogoport/icons-react';
 import React from 'react';
 
-import { Port, FlexRow, FlexColumn, IconWrap } from './styles';
+import styles from './styles.module.css';
 
 const singleLocation = ['fcl_customs', 'lcl_customs', 'air_customs', 'fcl_cfs'];
 
@@ -16,45 +15,45 @@ function LocationDetails({ data = {} }) {
 	const className = singleLocation.includes(data?.search_type) ? 'single' : '';
 
 	return (
-		<FlexRow className={className}>
-			<FlexColumn>
-				<ToolTip placement="top" theme="light" content={origin?.name}>
-					<Port
-						className={destination ? '' : 'full'}
+		<div className={`${styles.flex_row} ${className}`}>
+			<div className={styles.flex_column}>
+				<Tooltip placement="top" theme="light" content={origin?.name}>
+					<div
+						className={`${styles.port} ${destination ? '' : 'full'}`}
 						style={{ maxWidth: destination ? '' : '80%' }}
 					>
 						{origin?.name}
-					</Port>
-				</ToolTip>
+					</div>
+				</Tooltip>
 
-				<Port className={destination ? 'full-name' : 'full-detail'}>
+				<div className={`${styles.port} ${destination ? 'full-name' : 'full-detail'}`}>
 					{`${origin?.port_code ? `${origin?.port_code},` : ''} ${
 						origin_country?.pop() || ''
 					}`}
-				</Port>
-			</FlexColumn>
+				</div>
+			</div>
 
 			{destination ? (
 				<>
-					<IconWrap>
+					<div className={styles.icon_wrap}>
 						<IcMPortArrow
 							style={{ width: '1.5em', height: '1.5em', color: '#356efd' }}
 						/>
-					</IconWrap>
+					</div>
 
-					<FlexColumn>
-						<ToolTip placement="top" theme="light" content={destination?.name}>
-							<Port>{destination?.name}</Port>
-						</ToolTip>
-						<Port className="full-name">
+					<div className={styles.flex_column}>
+						<Tooltip placement="top" theme="light" content={destination?.name}>
+							<div className={styles.port}>{destination?.name}</div>
+						</Tooltip>
+						<div className={`${styles.port} ${styles.full_name}`}>
 							{`${destination?.port_code ? `${destination?.port_code},` : ''} ${
 								destination_country?.[2] || ''
 							}`}
-						</Port>
-					</FlexColumn>
+						</div>
+					</div>
 				</>
 			) : null}
-		</FlexRow>
+		</div>
 	);
 }
 

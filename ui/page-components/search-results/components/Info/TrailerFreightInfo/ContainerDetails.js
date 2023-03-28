@@ -1,14 +1,8 @@
-import { Flex } from '@cogoport/front/components';
-import { Button, Popover, ToolTip } from '@cogoport/front/components/admin';
-import { isEmpty, startCase } from '@cogoport/front/utils';
+import { Tooltip, Button, Popover } from '@cogoport/components';
+import { isEmpty, startCase } from '@cogoport/utils';
 import React from 'react';
 
-import {
-	ContainerValues,
-	Div,
-	ContainerDiv,
-	MultiContainerValues,
-} from './styles';
+import styles from './styles.module.css';
 
 const handleCommodity = (commodity) => {
 	let value = '';
@@ -37,13 +31,13 @@ function GetMultiContainerDetails({ service_details }) {
 				} = item || {};
 
 				return (
-					<MultiContainerValues key={id}>
+					<div className={styles.multi_container_values} key={id}>
 						{`${container_size}FT x ${containers_count} | ${startCase(
 							handleCommodity(commodity),
 						)} | ${startCase(
 							container_type,
 						)} | ${cargo_weight_per_container}MT | ${additional_service_type}`}
-					</MultiContainerValues>
+					</div>
 				);
 			})}
 		</Flex>
@@ -89,10 +83,10 @@ function ConatinerDetails({
 	} = data || {};
 
 	return (
-		<ContainerDiv>
-			<Div>
-				<Flex>
-					<ToolTip
+		<div className={styles.container_div}>
+			<div className={styles.div}>
+				<div style={{ display: 'flex' }}>
+					<Tooltip
 						theme="light"
 						animation="shift-away"
 						interactive
@@ -107,29 +101,29 @@ function ConatinerDetails({
 						)}
 					>
 						<div>
-							<ContainerValues>
+							<div className={styles.container_values}>
 								{`${container_size}FT x ${containers_count} | ${handleCommodity(
 									commodity,
 								)} | ${startCase(
 									container_type,
 								)} | ${cargo_weight_per_container}MT`}
-							</ContainerValues>
+							</div>
 						</div>
-					</ToolTip>
+					</Tooltip>
 
 					{service_type === 'trailer_freight' && (
 						<PopoverComponent service_details={service_details} />
 					)}
-				</Flex>
+				</div>
 
 				{service_type === 'rail_domestic_freight' && (
-					<Flex>
-						<ContainerValues>{`Service Type: ${additional_service_type}`}</ContainerValues>
+					<div style={{ display: 'flex' }}>
+						<div className={styles.container_values}>{`Service Type: ${additional_service_type}`}</div>
 						<PopoverComponent service_details={service_details} />
-					</Flex>
+					</div>
 				)}
-			</Div>
-		</ContainerDiv>
+			</div>
+		</div>
 	);
 }
 

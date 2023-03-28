@@ -1,12 +1,10 @@
-import SearchForm from '@cogo/app-search/common/SearchForm';
-import formatMainServiceData from '@cogo/app-search/utils/format-main-service-data';
-import { APP_EVENT, trackEvent } from '@cogo/commons/analytics';
-import GLOBAL_CONSTANTS from '@cogo/globalization/constants/globals.json';
-import formatDate from '@cogo/globalization/utils/formatDate';
-import { useSelector } from '@cogo/store';
-import { Button, Modal, ToolTip } from '@cogoport/front/components/admin';
-import { get, startCase } from '@cogoport/front/utils';
+// import SearchForm from '@cogo/app-search/common/SearchForm';
+// import formatMainServiceData from '@cogo/app-search/utils/format-main-service-data';
+import { Tooltip } from '@cogoport/components';
+import { Button } from '@cogoport/components';
+import { Modal } from '@cogoport/components';
 import { IcCFhaulage, IcMFtrailorFull } from '@cogoport/icons-react';
+import { getByKey, startCase } from '@cogoport/utils';
 import React, { useState, useEffect } from 'react';
 
 import AdditionalServices from '../../AdditionalServices';
@@ -14,27 +12,12 @@ import Loading from '../loading';
 
 import ContainerDetails from './ContainerDetails';
 import LocationDetails from './LocationDetails';
-import {
-	Container,
-	Pill,
-	Line,
-	ButtonWrap,
-	ServiceWrap,
-	FlexRow,
-	StyledButton,
-	AnimatedContainer,
-	InfoWrapper,
-	EditContainer,
-	RatesCount,
-	Count,
-	FreightDetailsDiv,
-	ServiceTypeText,
-	FreightDetailsText,
-	FreightDetails,
-	EditButton,
-	ButtonBorder,
-	CancelButton,
-} from './styles';
+import styles from './styles.module.css';
+
+import { useSelector } from '@/packages/store';
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
+import formatDate from '@/ui/commons/utils/formatDate';
+import { APP_EVENT, trackEvent } from '@/ui/page-components/discover_rates/common/analytics';
 
 const NON_STANDALONE_SERVICES = ['fcl_cfs'];
 
@@ -85,7 +68,7 @@ function TrailerFreightInfo({
 	}
 
 	const searchForm = (
-		<EditContainer className={scope === 'app' ? 'app' : ''}>
+		<div className={styles.edit_container}>
 			<SearchForm
 				mode={data.search_type}
 				onPush={() => setEditSearch(false)}
@@ -105,27 +88,27 @@ function TrailerFreightInfo({
 				className="small result"
 			/>
 
-			<CancelButton
+			<Button
 				service_type={service_type}
 				type="button"
 				onClick={() => setEditSearch(false)}
 			>
 				X
-			</CancelButton>
-		</EditContainer>
+			</Button>
+		</div>
 	);
 
 	function CargoDate({ type = '' }) {
 		return (
 			<>
-				<FreightDetailsText type={type}>Cargo Ready Date</FreightDetailsText>
-				<FreightDetails>
+				<div className={styles.freight_details_text} type={type}>Cargo Ready Date</div>
+				<div className={styles.freight_details}>
 					{formatDate({
 						date       : cargo_readiness_date,
 						dateFormat : GLOBAL_CONSTANTS.formats.date['dd MMM yyyy'],
 						formatType : 'date',
 					})}
-				</FreightDetails>
+				</div>
 			</>
 		);
 	}
@@ -133,31 +116,31 @@ function TrailerFreightInfo({
 	function ShipmentType({ type = '' }) {
 		return (
 			<>
-				<FreightDetailsText type={type}>Type of Shipment </FreightDetailsText>
-				<FreightDetails>{startCase(container_load_type)}</FreightDetails>
+				<div className={styles.freight_details_text} type={type}>Type of Shipment </div>
+				<div className={styles.freight_details}>{startCase(container_load_type)}</div>
 			</>
 		);
 	}
 
 	const details = (
-		<Container
-			className={scope === 'app' ? 'app' : ''}
+		<div
+			className={styles.container}
 			style={results_type === 'rfq' ? { position: 'relative' } : {}}
 		>
-			<ServiceWrap>
-				{get(SEARCH_TYPE_DETAILS_MAPPING, `[${data.search_type}].icon`)}
+			<div className={styles.service_wrap}>
+				{getByKey(SEARCH_TYPE_DETAILS_MAPPING, `[${data.search_type}].icon`)}
 
-				<ServiceTypeText search_type={data.search_type}>
+				<div className={styles.service_type_text} search_type={data.search_type}>
 					{SEARCH_TYPE_DETAILS_MAPPING[data?.search_type].label}
-				</ServiceTypeText>
+				</div>
 
-				{data?.inco_term ? <Pill>{data?.inco_term}</Pill> : null}
-			</ServiceWrap>
+				{data?.inco_term ? <div className={styles.pill}>{data?.inco_term}</div> : null}
+			</div>
 
 			<LocationDetails data={data} />
 
-			<FreightDetailsDiv>
-				<ToolTip
+			<div className={styles.freight_details_div}>
+				<Tooltip
 					theme="light"
 					animation="shift-away"
 					interactive
@@ -166,12 +149,12 @@ function TrailerFreightInfo({
 					<div>
 						<CargoDate />
 					</div>
-				</ToolTip>
-			</FreightDetailsDiv>
+				</Tooltip>
+			</div>
 
 			{service_type === 'rail_domestic_freight' && (
-				<FreightDetailsDiv>
-					<ToolTip
+				<div className={styles.freight_details_div}>
+					<Tooltip
 						theme="light"
 						interactive
 						animation="shift-away"
@@ -180,11 +163,11 @@ function TrailerFreightInfo({
 						<div>
 							<ShipmentType />
 						</div>
-					</ToolTip>
-				</FreightDetailsDiv>
+					</Tooltip>
+				</div>
 			)}
 
-			<FlexRow>
+			<div className={styles.flex_row}>
 				<ContainerDetails
 					data={data}
 					service_type={service_type}
@@ -193,21 +176,21 @@ function TrailerFreightInfo({
 
 				{results_type === 'rfq' ? (
 					<div style={{ display: 'flex' }}>
-						{!isMobile ? <Line /> : <Line className="mobile" />}
+						<div className={styles.line} />
 
-						<RatesCount>
+						<div className={styles.rates_count}>
 							<div style={{ color: '#828282', fontSize: '16px' }}>
 								Rates Available
 							</div>
-							<Count>{(rates || []).length}</Count>
-						</RatesCount>
+							<div className={styles.count}>{(rates || []).length}</div>
+						</div>
 					</div>
 				) : null}
 
 				{!NON_STANDALONE_SERVICES.includes(data?.search_type)
 				&& !query?.shipment_id
 				&& results_type !== 'rfq' ? (
-					<StyledButton
+					<Button
 						onClick={() => {
 							if (scope === 'app') {
 								trackEvent(APP_EVENT.search_clicked_on_edit_search, {});
@@ -215,13 +198,13 @@ function TrailerFreightInfo({
 							setEditSearch(true);
 						}}
 					>
-						<ButtonBorder>
+						<div className={styles.button_border}>
 							<EditButton />
-						</ButtonBorder>
-					</StyledButton>
+						</div>
+					</Button>
 					) : null}
-			</FlexRow>
-		</Container>
+			</div>
+		</div>
 	);
 
 	const handleAddServiceClick = () => {
@@ -230,21 +213,21 @@ function TrailerFreightInfo({
 
 	return (
 		<>
-			<InfoWrapper
-				className={editSearch ? 'edit' : ''}
+			<div
+				className={`${styles.info_wrapper} ${editSearch ? 'edit' : ''}`}
 				style={results_type === 'rfq' ? { marginBottom: '0px' } : {}}
 			>
-				<AnimatedContainer>
+				<div className={styles.animated_container}>
 					{!editSearch ? details : searchForm}
-				</AnimatedContainer>
-			</InfoWrapper>
+				</div>
+			</div>
 
 			{results_type !== 'rfq' ? (
-				<ButtonWrap>
+				<div className={styles.button_wrap}>
 					<Button type="button" onClick={handleAddServiceClick}>
 						Add Services
 					</Button>
-				</ButtonWrap>
+				</div>
 			) : null}
 
 			{open && isMobile ? (

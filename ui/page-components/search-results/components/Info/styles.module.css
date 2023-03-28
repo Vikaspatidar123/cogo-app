@@ -1,18 +1,5 @@
-import styled, { keyframes } from '@cogoport/front/styled';
 
-const slide = keyframes`
-	0% {
-		width: 0px;
-		opacity: 0;
- 	}
-
- 	100% {
-	 	width: calc(100% - 267px);
-		opacity: 1;
-  	}
-`;
-
-export const Container = styled.div`
+.container {
 	width: 100%;
 	border-radius: 10px;
 	display: flex;
@@ -30,17 +17,17 @@ export const Container = styled.div`
 	@media (max-width: 1164px) {
 		background: #ffffff;
 	}
-`;
+}
 
-export const InfoWrapper = styled.div`
+.info_wrapper {
 	@media (max-width: 760px) {
 		&.edit {
 			margin-bottom: 248px;
 		}
 	}
-`;
+}
 
-export const EditContainer = styled.div`
+.edit_container {
 	display: flex;
 	align-items: flex-end;
 	width: 100%;
@@ -51,9 +38,9 @@ export const EditContainer = styled.div`
 	&.app {
 		border: 1px solid #e0e0e0;
 	}
-`;
+}
 
-export const Text = styled.div`
+.text {
 	font-size: 14px;
 	line-height: 16px;
 	letter-spacing: 0.02em;
@@ -64,10 +51,10 @@ export const Text = styled.div`
 	@media (max-width: 760px) {
 		margin-right: 10px;
 	}
-`;
+}
 
-export const Pill = styled.div`
-	background-color: #dce1ff;
+.pill {
+ 	background-color: #dce1ff;
 	padding: 2px 6px;
 	border-radius: 4px;
 	font-size: 10px;
@@ -79,9 +66,9 @@ export const Pill = styled.div`
 		margin-right: 10px;
 		margin-top: 0px;
 	}
-`;
+}
 
-export const Line = styled.div`
+.line {
 	border: 1px solid #e0e0e0;
 
 	@media (max-width: 760px) {
@@ -95,9 +82,9 @@ export const Line = styled.div`
 		height: 100%;
 		width: 1px;
 	}
-`;
+}
 
-export const ButtonWrap = styled.div`
+.button_wrap {
 	background-color: #ffffff;
 	padding: 0px 4px 2px 4px;
 	border-radius: 0px 0px 4px 4px;
@@ -112,9 +99,9 @@ export const ButtonWrap = styled.div`
 	@media (min-width: 768px) {
 		display: none;
 	}
-`;
+}
 
-export const ServiceWrap = styled.div`
+.service_wrap {
 	display: flex;
 	flex-direction: column;
 	padding: 10px 16px;
@@ -124,9 +111,9 @@ export const ServiceWrap = styled.div`
 		justify-content: flex-start;
 		flex-direction: row;
 	}
-`;
+}
 
-export const FlexRow = styled.div`
+.flex_row {
 	display: flex;
 	justify-content: space-around;
 	padding-right: 20px;
@@ -134,10 +121,10 @@ export const FlexRow = styled.div`
 	color: #828282;
 	font-size: 12px;
 	flex-wrap: wrap;
-`;
-
-export const FlexCol = styled.div`
-	display: flex;
+}
+ 
+.flex_col {
+  	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	flex: 1;
@@ -151,9 +138,9 @@ export const FlexCol = styled.div`
 	@media (max-width: 500px) {
 		padding-left: 10px;
 	}
-`;
+}
 
-export const ContainerValues = styled.div`
+.container_values {
 	color: #000000;
 	margin-left: 20px;
 	max-width: 200px;
@@ -180,36 +167,9 @@ export const ContainerValues = styled.div`
 	@media (max-width: 760px) {
 		max-width: 150px;
 	}
-`;
+}
 
-export const ButtonStyled = styled.button`
-	border-radius: 4px;
-	border: none;
-	background: transparent;
-	cursor: pointer;
-	padding: 0px;
-	font-size: 14px;
-	line-height: 160%;
-	letter-spacing: 0.02em;
-
-	display: flex;
-	align-items: center;
-	outline: none;
-
-	&:hover {
-		font-weight: bold;
-	}
-
-	&:focus-visible {
-		outline: auto blue;
-	}
-
-	&.mobile-view {
-		padding-bottom: 6px;
-	}
-`;
-
-export const FlexDisplay = styled.div`
+.flex_display {
 	display: flex;
 	flex: 1;
 
@@ -220,22 +180,42 @@ export const FlexDisplay = styled.div`
 	@media (max-width: 760px) {
 		flex-direction: column;
 	}
-`;
+}
 
-export const AnimatedContainer = styled.div`
+.animated_container {
 	animation: ${slide} 0.4s linear;
-`;
+}
 
-export const RatesCount = styled.div`
+.rates_count {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	margin-left: 30px;
-`;
+}
 
-export const Count = styled.div`
+.count {
 	color: #000000;
 	font-size: 18px;
 	font-weight: 700;
 	text-align: center;
-`;
+}
+
+.loading_container {
+	width: 100%;
+	border-radius: 10px;
+	display: flex;
+	background: #f9f9f9;
+
+	&.app {
+		border: 1px solid #e0e0e0;
+	}
+
+	@media (max-width: 760px) {
+		border: 1px solid #bdbdbd;
+		flex-direction: column;
+	}
+
+	@media (max-width: 1164px) {
+		background: #ffffff;
+	}
+}

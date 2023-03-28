@@ -1,32 +1,16 @@
-import { useSelector } from '@cogo/store';
-import { ToolTip } from '@cogoport/front/components/admin';
+import { Tooltip } from '@cogoport/components';
 import { IcACarriageInsurancePaidTo } from '@cogoport/icons-react';
 import { startCase } from '@cogoport/utils';
 
 import Loading from '../loading';
 
 import LocationDetails from './LocationDetails';
-import {
-	Container,
-	Line,
-	ServiceTypeText,
-	ServiceWrap,
-	StyledText,
-	CommodityDetails,
-	Commodity,
-	CommodityDescription,
-	DescriptionContainer,
-	TradeTypeContainer,
-	TradeTypeFlexContainer,
-} from './styles';
+import styles from './styles.module.css';
 
 function CargoInsuranceInfo({
 	data = {},
-	isMobile = false,
 	loading = false,
 }) {
-	const { scope } = useSelector(({ general }) => general);
-
 	const {
 		commodity = '',
 		cargo_insurance_commodity_description = '',
@@ -35,71 +19,67 @@ function CargoInsuranceInfo({
 	} = data || {};
 
 	if (loading) {
-		return <Loading isMobile={isMobile} scope={scope} />;
+		return <Loading />;
 	}
 
 	return (
-		<Container>
-			<ServiceWrap>
+		<div className={styles.container}>
+			<div className={styles.service_wrap}>
 				<IcACarriageInsurancePaidTo height={30} width={30} />
 
-				<ServiceTypeText>CARGO INSURANCE</ServiceTypeText>
-			</ServiceWrap>
+				<div className={styles.service_type_text}>CARGO INSURANCE</div>
+			</div>
 
-			<Line style={isMobile ? { marginBottom: '10px' } : {}} />
+			<div className={styles.line} />
 
 			<LocationDetails data={data} />
 
-			<Line style={isMobile ? { marginTop: '10px' } : {}} />
+			<div className={styles.line} />
 
-			<CommodityDetails>
-				<DescriptionContainer>
-					<StyledText>Commodity</StyledText>
-
-					<ToolTip
+			<div className={styles.commodity_details}>
+				<div className={styles.description_container}>
+					<div className={styles.styled_text}>Commodity</div>
+					<Tooltip
 						theme="light"
 						animation="shift-away"
 						interactive
 						content={commodity}
 					>
-						<Commodity>{commodity}</Commodity>
-					</ToolTip>
-				</DescriptionContainer>
+						<div className={styles.commodity}>{commodity}</div>
+					</Tooltip>
+				</div>
 
-				<DescriptionContainer>
-					<StyledText>Description</StyledText>
+				<div className={styles.description_container}>
+					<div className={styles.styled_text}>Description</div>
 
-					<ToolTip
+					<Tooltip
 						theme="light"
 						animation="shift-away"
 						interactive
 						content={cargo_insurance_commodity_description}
 					>
-						<CommodityDescription>
-							(
+						<div className={styles.commodity_description}>
 							{cargo_insurance_commodity_description}
-							)
-						</CommodityDescription>
-					</ToolTip>
-				</DescriptionContainer>
-			</CommodityDetails>
+						</div>
+					</Tooltip>
+				</div>
+			</div>
 
-			<Line style={isMobile ? { marginTop: '10px' } : {}} />
+			<div className={styles.line} />
 
-			<TradeTypeContainer>
-				<TradeTypeFlexContainer>
-					<StyledText>Trade Type</StyledText>
+			<div className={styles.trade_type_container}>
+				<div className={styles.styled_text}>Trade Type</div>
 
-					<div>{startCase(trade_type) || '-'}</div>
-				</TradeTypeFlexContainer>
+				<div>{startCase(trade_type) || '-'}</div>
 
-				<TradeTypeFlexContainer>
-					<StyledText>Transit Mode</StyledText>
+			</div>
+			<div className={styles.trade_type_flex_container}>
+				<div className={styles.styled_text}>Transit Mode</div>
+				<div>{startCase(transit_mode) || '-'}</div>
 
-					<div>{startCase(transit_mode) || '-'}</div>
-				</TradeTypeFlexContainer>
-			</TradeTypeContainer>
-		</Container>
+			</div>
+
+		</div>
 	);
 }
 

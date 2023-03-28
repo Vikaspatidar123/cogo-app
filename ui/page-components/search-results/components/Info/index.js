@@ -1,8 +1,6 @@
 import SearchForm from '@cogo/app-search/common/SearchForm';
 import formatMainServiceData from '@cogo/app-search/utils/format-main-service-data';
-import { APP_EVENT, trackEvent } from '@cogo/commons/analytics';
-import { useSelector } from '@cogo/store';
-import { Button, Modal } from '@cogoport/front/components';
+import { Button, Modal } from '@cogoport/components';
 import React, { useState, useEffect } from 'react';
 
 import AdditionalServices from '../AdditionalServices';
@@ -11,21 +9,10 @@ import ContainerDetails from './ContainerDetails';
 import Mapping from './icons-services-mapping';
 import Loading from './loading';
 import LocationDetails from './LocationDetails';
-import {
-	Container,
-	Text,
-	Pill,
-	Line,
-	ButtonWrap,
-	ServiceWrap,
-	FlexRow,
-	ButtonStyled,
-	AnimatedContainer,
-	InfoWrapper,
-	EditContainer,
-	RatesCount,
-	Count,
-} from './styles';
+import styles from './styles.module.css';
+
+import { useSelector } from '@/packages/store';
+import { APP_EVENT, trackEvent } from '@/ui/page-components/discover_rates/common/analytics';
 
 const NON_STANDALONE_SEERVICES = ['fcl_cfs'];
 
@@ -60,7 +47,7 @@ function Info({
 	const paddingXButton = data?.search_type === 'air_freight' ? 10 : 4;
 
 	const searchForm = (
-		<EditContainer className={scope === 'app' ? 'app' : ''}>
+		<div className={styles.edit_container}>
 			<SearchForm
 				serviceDetails={data?.service_details}
 				mode={data.search_type}
@@ -94,60 +81,56 @@ function Info({
 			>
 				X
 			</Button>
-		</EditContainer>
+		</div>
 	);
 
 	const details = (
-		<Container
-			className={scope === 'app' ? 'app' : ''}
+		<div
+			className={styles.container}
 			style={results_type === 'rfq' ? { position: 'relative' } : {}}
 		>
-			<ServiceWrap>
-				<Text>{service_icon_mapping?.tag}</Text>
-				{data?.inco_term ? <Pill>{data?.inco_term}</Pill> : null}
-			</ServiceWrap>
-			<Line style={isMobile ? { marginBottom: '10px' } : {}} />
+			<div className={styles.service_wrap}>
+				<div className={styles.text}>{service_icon_mapping?.tag}</div>
+				{data?.inco_term ? <div className={styles.pill}>{data?.inco_term}</div> : null}
+			</div>
 
+			<div className={styles.line} />
 			<LocationDetails data={data} />
-			<Line style={isMobile ? { marginTop: '10px' } : {}} />
-
-			<FlexRow>
+			<div className={styles.line} />
+			<div className={styles.flex_row}>
 				<ContainerDetails data={data} />
 
 				{results_type === 'rfq' ? (
 					<div style={{ display: 'flex' }}>
-						{!isMobile ? <Line /> : <Line className="mobile" />}
-
-						<RatesCount>
+						<div className={styles.line} />
+						<div className={styles.rates_count}>
 							<div style={{ color: '#828282', fontSize: '16px' }}>
 								Rates Available
 							</div>
-							<Count>{(rates || []).length}</Count>
-						</RatesCount>
+							<div className={styles.count}>{(rates || []).length}</div>
+						</div>
 					</div>
 				) : null}
 
 				{!NON_STANDALONE_SEERVICES.includes(data?.search_type)
 				&& !query?.shipment_id
 				&& results_type !== 'rfq' ? (
-					<ButtonStyled
+					<Button
 						onClick={() => {
-							if (scope === 'app') {
-								trackEvent(APP_EVENT.search_clicked_on_edit_search, {});
-							}
+							trackEvent(APP_EVENT.search_clicked_on_edit_search, {});
+
 							setEditSearch(true);
 						}}
-						className={`${isMobile && 'mobile-view'}`}
 					>
 						<img
 							src="https://cdn.cogoport.io/cms-prod/cogo_admin/vault/original/edit-button.svg"
 							alt="edit"
 							style={{ width: '3em', height: '3em', margin: 'auto' }}
 						/>
-					</ButtonStyled>
+					</Button>
 					) : null}
-			</FlexRow>
-		</Container>
+			</div>
+		</div>
 	);
 
 	const handleAddServiceClick = () => {
@@ -156,19 +139,19 @@ function Info({
 
 	return (
 		<>
-			<InfoWrapper
-				className={editSearch ? 'edit' : ''}
+			<div
+				className={`${styles.info_wrapper} ${editSearch ? 'edit' : ''}`}
 				style={results_type === 'rfq' ? { marginBottom: '0px' } : {}}
 			>
-				<AnimatedContainer>
+				<div className={styles.animated_container}>
 					{!editSearch ? details : searchForm}
-				</AnimatedContainer>
-			</InfoWrapper>
+				</div>
+			</div>
 
 			{results_type !== 'rfq' ? (
-				<ButtonWrap>
+				<div className={styles.button_wrap}>
 					<Button onClick={handleAddServiceClick}>Add Services</Button>
-				</ButtonWrap>
+				</div>
 			) : null}
 
 			{open && isMobile ? (

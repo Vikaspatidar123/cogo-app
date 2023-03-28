@@ -1,16 +1,8 @@
-import convertHourToDay from '@cogo/utils/converHourToDay';
-import startCase from '@cogo/utils/startCase';
-import { ToolTip } from '@cogoport/front/components/admin';
+import { Tooltip } from '@cogoport/components';
+import { startCase } from '@cogoport/utils';
 import React from 'react';
 
-import {
-	FlexCol,
-	ContainerValues,
-	Div,
-	Wrapper,
-	ContentContainer,
-	ToolTipContent,
-} from './styles';
+import styles from './styles.module.css';
 
 function ContainerDetails({ searchData = {}, data = {} }) {
 	const { service_rates = {} } = data || {};
@@ -31,8 +23,8 @@ function ContainerDetails({ searchData = {}, data = {} }) {
 	const trucks = truckDetails;
 
 	const ToolTipDisplay = () => (trucks || []).map((item, index) => (
-		<ContentContainer>
-			<ToolTipContent>
+		<div className={styles.content_container}>
+			<div className={styles.tool_tip_content}>
 				{index + 1}
 				{' '}
 				-
@@ -53,23 +45,24 @@ function ContainerDetails({ searchData = {}, data = {} }) {
 					Transit Time:
 					{convertHourToDay(item?.transit_time)}
 				</span>
-			</ToolTipContent>
-		</ContentContainer>
+			</div>
+		</div>
 	));
 
 	return (
 		<>
+			{' '}
 			{data?.service_type === 'ftl_freight' ? (
-				<FlexCol>
+				<div className={styles.flex_col}>
 					{detail?.load_selection_type === 'truck' ? (
 						<>
-							<Div>
+							<div className={styles.div}>
 								<span>Truck Type:</span>
-								<ContainerValues>
+								<div className={styles.container_values}>
 									{startCase(trucks[0]?.truck_type)}
-								</ContainerValues>
+								</div>
 								{trucks.length > 1 ? (
-									<ToolTip
+									<Tooltip
 										placement="bottom"
 										theme="light"
 										content={ToolTipDisplay()}
@@ -83,18 +76,18 @@ function ContainerDetails({ searchData = {}, data = {} }) {
 											more
 											{' '}
 										</div>
-									</ToolTip>
+									</Tooltip>
 								) : null}
-							</Div>
+							</div>
 							{trucks.length === 1 ? (
 								<>
-									<Div>
+									<div className={styles.div}>
 										{' '}
 										Truck count :
 										{truckDetails[0]?.trucks_count}
-									</Div>
+									</div>
 									{truckDetails[0]?.detention_free_time && (
-										<Div>
+										<div className={styles.div}>
 											{' '}
 											Detention Free Time:
 											{' '}
@@ -102,107 +95,107 @@ function ContainerDetails({ searchData = {}, data = {} }) {
 												truckDetails[0]?.detention_free_time,
 											)}
 											{' '}
-										</Div>
+										</div>
 									)}
 									{truckDetails[0]?.transit_time && (
-										<Div>
+										<div className={styles.div}>
 											{' '}
 											Transit Time:
 											{' '}
 											{convertHourToDay(truckDetails[0]?.transit_time)}
 											{' '}
-										</Div>
+										</div>
 									)}
 								</>
 							) : null}
 
-							<Div style={{ marginLeft: '12px' }}>
+							<div className={styles.div} style={{ marginLeft: '12px' }}>
 								<span>Commodity:</span>
-								<ContainerValues>
+								<div className={styles.container_values}>
 									{detail.commodity || 'General'}
-								</ContainerValues>
-							</Div>
+								</div>
+							</div>
 						</>
 					) : (
-						<Wrapper>
-							<Div style={{ marginLeft: '12px' }}>
+						<div className={styles.wrapper}>
+							<div className={styles.div} style={{ marginLeft: '12px' }}>
 								<span>Commodity</span>
-								<ContainerValues>
+								<div className={styles.container_values}>
 									{startCase(detail.commodity || 'General')}
-								</ContainerValues>
-							</Div>
+								</div>
+							</div>
 
 							{detail?.volume ? (
-								<Div style={{ marginLeft: '8px' }}>
+								<div className={styles.div} style={{ marginLeft: '8px' }}>
 									<span>Volume</span>
-									<ContainerValues>{detail?.volume}</ContainerValues>
-								</Div>
+									<div className={styles.container_values}>{detail?.volume}</div>
+								</div>
 							) : null}
 							{detail?.weight ? (
-								<Div style={{ marginLeft: '8px' }}>
+								<div className={styles.div} style={{ marginLeft: '8px' }}>
 									<span>Weight</span>
-									<ContainerValues>{detail?.weight}</ContainerValues>
-								</Div>
+									<div className={styles.container_values}>{detail?.weight}</div>
+								</div>
 							) : null}
 							{detail?.packages[0]?.packages_count ? (
-								<Div>
+								<div className={styles.div}>
 									<span>Packages count</span>
-									<ContainerValues>
+									<div className={styles.container_values}>
 										{detail?.packages[0].packages_count}
-									</ContainerValues>
-								</Div>
+									</div>
+								</div>
 							) : null}
-						</Wrapper>
+						</div>
 					)}
-				</FlexCol>
+				</div>
 			) : (
-				<Wrapper>
-					<Div style={{ marginLeft: '12px' }}>
+				<div className={styles.wrapper}>
+					<div className={styles.div} style={{ marginLeft: '12px' }}>
 						<span>Commodity</span>
-						<ContainerValues>{detail.commodity || 'General'}</ContainerValues>
-					</Div>
+						<div className={styles.container_values}>{detail.commodity || 'General'}</div>
+					</div>
 
 					{detail?.volume ? (
-						<Div style={{ marginLeft: '8px' }}>
+						<div className={styles.div} style={{ marginLeft: '8px' }}>
 							<span>Volume</span>
-							<ContainerValues>
+							<div className={styles.container_values}>
 								{detail?.volume}
 								{' '}
 								cc
-							</ContainerValues>
-						</Div>
+							</div>
+						</div>
 					) : null}
 					{detail?.weight ? (
-						<Div style={{ marginLeft: '8px' }}>
+						<div className={styles.div} style={{ marginLeft: '8px' }}>
 							<span>Weight</span>
-							<ContainerValues>
+							<div className={styles.container_values}>
 								{detail.weight}
 								{' '}
 								Kg
-							</ContainerValues>
-						</Div>
+							</div>
+						</div>
 					) : null}
 
 					{perPackageDetails[0]?.line_items ? (
-						<Div style={{ marginLeft: '8px' }}>
+						<div className={styles.div} style={{ marginLeft: '8px' }}>
 							<span>Chargable weight:</span>
-							<ContainerValues>
+							<div className={styles.container_values}>
 								{perPackageDetails[0].line_items[0]?.quantity.toFixed(2)}
 								{' '}
 								Kg
-							</ContainerValues>
-						</Div>
+							</div>
+						</div>
 					) : null}
 					{perPackageDetails[0]?.transit_time ? (
-						<Div style={{ marginLeft: '8px' }}>
+						<div className={styles.div} style={{ marginLeft: '8px' }}>
 							<span>Transit Time</span>
-							<ContainerValues>
+							<div className={styles.container_values}>
 								{convertHourToDay(perPackageDetails[0].transit_time)}
 								{' '}
-							</ContainerValues>
-						</Div>
+							</div>
+						</div>
 					) : null}
-				</Wrapper>
+				</div>
 			)}
 		</>
 	);

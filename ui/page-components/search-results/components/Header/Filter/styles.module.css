@@ -1,10 +1,8 @@
-import styled from '@cogoport/front/styled';
-
-export const Container = styled.div`
+.container { 
 	margin-right: 4px;
 	position: relative;
 	.bussiness_module_filter_header {
-		margin-bottom: 0px;
+		margin-bottom: 0;
 	}
 	.filter-control-label {
 		margin-top: 14px;
@@ -13,20 +11,14 @@ export const Container = styled.div`
 		width: 100%;
 	}
 
-	&.web-view {
+	.web-view {
 		.core-ui-button-root {
 			padding: 6px 16px;
 		}
 	}
+}
 
-	&.mobile-view {
-		.core-ui-button-root {
-			padding: 6px 10px;
-		}
-	}
-`;
-
-export const FilterDot = styled.div`
+.filter_dot {
 	border-radius: 50%;
 	background: rgb(3, 74, 253);
 	position: absolute;
@@ -34,4 +26,4 @@ export const FilterDot = styled.div`
 	right: 12px;
 	height: 8px;
 	width: 8px;
-`;
+}

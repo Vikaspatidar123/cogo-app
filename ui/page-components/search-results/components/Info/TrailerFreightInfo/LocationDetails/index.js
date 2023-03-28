@@ -1,46 +1,39 @@
-import { ToolTip } from '@cogoport/front/components/admin';
+import { Tooltip } from '@cogoport/components';
 
-import {
-	Port,
-	IconWrap,
-	TripType,
-	LocationDetailsDiv,
-	DottedLine,
-	Circle,
-} from './styles';
+import styles from './styles.module.css';
 
 function LocationDetails({ data }) {
 	const { origin_location, destination_location } = data;
 	return (
-		<LocationDetailsDiv>
-			<ToolTip
+		<div className={styles.location_details_div}>
+			<Tooltip
 				theme="light"
 				animation="shift-away"
 				interactive
 				content={origin_location?.port_code || origin_location?.name}
 			>
-				<Port>{origin_location?.port_code || origin_location?.name}</Port>
-			</ToolTip>
+				<div className={styles.port}>{origin_location?.port_code || origin_location?.name}</div>
+			</Tooltip>
 
-			<TripType>
-				<IconWrap>
-					<Circle />
-					<DottedLine />
-					<Circle />
-				</IconWrap>
-			</TripType>
+			<div className={styles.trip_type}>
+				<div className={styles.icon_wrap}>
+					<div className={styles.Circle} />
+					<div className={styles.dotted_line} />
+					<div className={styles.Circle} />
+				</div>
+			</div>
 
-			<ToolTip
+			<Tooltip
 				theme="light"
 				animation="shift-away"
 				interactive
 				content={destination_location?.port_code || destination_location?.name}
 			>
-				<Port>
+				<div className={styles.port}>
 					{destination_location?.port_code || destination_location?.name}
-				</Port>
-			</ToolTip>
-		</LocationDetailsDiv>
+				</div>
+			</Tooltip>
+		</div>
 	);
 }
 

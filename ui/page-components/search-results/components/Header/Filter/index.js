@@ -1,12 +1,10 @@
-import FilterContent from '@cogo/business-modules/components/filters';
-import useGetFilters from '@cogo/business-modules/hooks/useGetFilters';
-import { Button } from '@cogoport/front/components/admin';
-import { isEmpty } from '@cogoport/front/utils';
+import { Button } from '@cogoport/components';
 import { IcMFilter } from '@cogoport/icons-react';
+import { isEmpty } from '@cogoport/utils';
 import { useEffect, useState } from 'react';
 
 import controls from './controls';
-import { Container, FilterDot } from './styles';
+import styles from './styles.module.css';
 
 function Filter({ setFilters, state, isMobile }) {
 	const [openFilter, setOpenFilter] = useState(false);
@@ -70,7 +68,7 @@ function Filter({ setFilters, state, isMobile }) {
 	});
 
 	return (
-		<Container className={`${isMobile ? 'mobile-view' : 'web-view'}`}>
+		<div className={styles.container}>
 			<FilterContent
 				fields={newFields}
 				applyFilters={applyFilters}
@@ -79,18 +77,18 @@ function Filter({ setFilters, state, isMobile }) {
 				setOpen={setOpenFilter}
 				open={openFilter}
 				isScrollable
+			/>
+			<Button
+				className="secondary md"
+				onClick={() => setOpenFilter(!openFilter)}
 			>
-				<Button
-					className="secondary md"
-					onClick={() => setOpenFilter(!openFilter)}
-				>
-					{!isMobile ? 'FILTERS' : ''}
-					{' '}
-					<IcMFilter />
-					{filtersApplied > 0 && <FilterDot />}
-				</Button>
-			</FilterContent>
-		</Container>
+				{!isMobile ? 'FILTERS' : ''}
+				{' '}
+				<IcMFilter />
+				{filtersApplied > 0 && <div className={styles.filter_dot} />}
+			</Button>
+
+		</div>
 	);
 }
 

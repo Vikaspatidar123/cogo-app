@@ -1,6 +1,4 @@
-import styled, { keyframes } from '@cogoport/front/styled';
-
-const slide = keyframes`
+.slide {
 	0% {
 		width: 0px;
 		opacity: 0;
@@ -10,9 +8,9 @@ const slide = keyframes`
 	 	width: calc(100% - 267px);
 		opacity: 1;
   	}
-`;
+}
 
-export const Container = styled.div`
+.container {
 	width: 100%;
 	border-radius: 10px;
 	display: flex;
@@ -31,9 +29,9 @@ export const Container = styled.div`
 	@media (max-width: 1164px) {
 		background: #ffffff;
 	}
-`;
+}
 
-export const InfoWrapper = styled.div`
+.info_wrapper {
 	@media (max-width: 760px) {
 		margin-bottom: 124px;
 
@@ -41,9 +39,9 @@ export const InfoWrapper = styled.div`
 			margin-bottom: 248px;
 		}
 	}
-`;
+}
 
-export const EditContainer = styled.div`
+.edit_container {
 	display: flex;
 	align-items: flex-end;
 	width: 100%;
@@ -54,9 +52,9 @@ export const EditContainer = styled.div`
 	&.app {
 		border: 1px solid #e0e0e0;
 	}
-`;
-
-export const Pill = styled.div`
+}
+ 
+.pill {
 	background-color: #dce1ff;
 	padding: 2px 6px;
 	border-radius: 4px;
@@ -69,9 +67,9 @@ export const Pill = styled.div`
 		margin-right: 10px;
 		margin-top: 0px;
 	}
-`;
+}
 
-export const Line = styled.div`
+.line {
 	border-right: 1px solid #e0e0e0;
 
 	@media (max-width: 760px) {
@@ -85,9 +83,9 @@ export const Line = styled.div`
 		height: 100%;
 		width: 1px;
 	}
-`;
+}
 
-export const ButtonWrap = styled.div`
+.button_wrap {
 	background-color: #ffffff;
 	padding: 0px 4px 2px 4px;
 	border-radius: 0px 0px 4px 4px;
@@ -102,9 +100,9 @@ export const ButtonWrap = styled.div`
 	@media (min-width: 768px) {
 		display: none;
 	}
-`;
+}
 
-export const ServiceWrap = styled.div`
+.service_wrap {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -121,16 +119,16 @@ export const ServiceWrap = styled.div`
 		width: 25px;
 		height: 25px;
 	}
-`;
+}
 
-export const FlexRow = styled.div`
+.flex_row {
 	display: flex;
 	width: 100%;
 	color: #828282;
 	font-size: 12px;
-`;
+}
 
-export const FlexCol = styled.div`
+.flex_col {
 	display: flex;
 	align-items: center;
 	flex-wrap: wrap;
@@ -145,9 +143,9 @@ export const FlexCol = styled.div`
 	@media (max-width: 500px) {
 		padding-left: 10px;
 	}
-`;
+}
 
-export const ContainerValues = styled.div`
+.container_values {
 	color: #000000;
 	margin-left: 10px;
 	max-width: 200px;
@@ -181,27 +179,27 @@ export const ContainerValues = styled.div`
 	@media (max-width: 760px) {
 		max-width: 150px;
 	}
-`;
+}
 
-export const AnimatedContainer = styled.div`
+.animated_container {
 	animation: ${slide} 0.4s linear;
-`;
+}
 
-export const RatesCount = styled.div`
+.rates_count {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	margin-left: 30px;
-`;
+}
 
-export const Count = styled.div`
+.count { 
 	color: #000000;
 	font-size: 18px;
 	font-weight: 700;
 	text-align: center;
-`;
+}
 
-export const Div = styled.div`
+.div {
 	display: flex;
 	align-items: center;
 	background: #dfe1ef;
@@ -209,56 +207,38 @@ export const Div = styled.div`
 	margin: 5px;
 	padding: 4px;
 	font-size: 10px;
-`;
+}
 
-export const Date = styled.div`
+.date {
 	font-size: 10px;
 	width: 20%;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	border-right: 2px solid #f2f2f2;
-`;
+}
 
-export const Wrapper = styled.div`
+.wrapper {
 	display: flex;
 	align-items: center;
 	flex-wrap: wrap;
 	width: 100%;
-`;
-
-export const ToolTipContent = styled.div`
+}
+ 
+.tool_tip_content {
 	font-size: 12px;
 	padding: 5px;
 
 	border-bottom: 1px solid black;
-`;
-export const ButtonStyled = styled.button`
-	border-radius: 4px;
-	border: none;
-	background: transparent;
-	cursor: pointer;
-	padding-left: 12px;
-	font-size: 14px;
-	display: flex;
-	align-items: center;
-	outline: none;
-	border-left: 2px solid #f2f2f2;
-	&:hover {
-		font-weight: bold;
-	}
-	&:focus-visible {
-		outline: auto blue;
-	}
-`;
+}
 
-export const ServiceTypeText = styled.div`
+.service_type_text { 
 	font-size: 10px;
 	color: #8fbdb1;
 	margin-top: 2px;
-`;
+}
 
-export const ContentContainer = styled.div`
+.content_container { 
 	display: flex;
 	flex-wrap: wrap;
-`;
+}

@@ -1,14 +1,8 @@
-import startCase from '@cogo/utils/startCase';
-import { ToolTip } from '@cogoport/front/components/admin';
+import { Tooltip } from '@cogoport/components';
+import { startCase } from '@cogoport/utils';
 import React from 'react';
 
-import {
-	FlexCol,
-	ContainerValues,
-	Div,
-	Wrapper,
-	ContentContainer,
-} from './styles';
+import styles from './styles.module.css';
 
 function ConatinerDetails({ searchData = {} }) {
 	const { detail = {} } = searchData || {};
@@ -25,30 +19,31 @@ function ConatinerDetails({ searchData = {} }) {
 		});
 
 	const ToolTipDisplay = () => (trucks || []).map((item) => (
-		<ContentContainer>
-			<Div>{startCase(item.truck_type)}</Div>
-			<Div>
+		<div className={styles.content_container}>
+			<div className={styles.div}>{startCase(item.truck_type)}</div>
+			<div className={styles.div}>
 				Truck Count:
 				{item.trucks_count}
-			</Div>
-		</ContentContainer>
+			</div>
+		</div>
 	));
 
 	return (
 		<>
+			{' '}
 			{detail.search_type === 'ftl_freight' ? (
-				<FlexCol>
+				<div className={styles.flex_col}>
 					{detail.load_selection_type === 'truck' ? (
 						<>
-							<Div>
+							<div className={styles.div}>
 								<span>Truck Type:</span>
-								<ToolTip
+								<Tooltip
 									placement="bottom"
 									theme="light"
 									content={ToolTipDisplay()}
 									maxWidth={800}
 								>
-									<ContainerValues>
+									<div className={styles.container_values}>
 										{startCase(detail.truck_type)}
 										{trucks.length > 1 ? (
 											<div className="moreTruck">
@@ -58,80 +53,80 @@ function ConatinerDetails({ searchData = {} }) {
 												more
 											</div>
 										) : null}
-									</ContainerValues>
-								</ToolTip>
-							</Div>
-							<Div style={{ marginLeft: '12px' }}>
+									</div>
+								</Tooltip>
+							</div>
+							<div className={styles.div} style={{ marginLeft: '12px' }}>
 								<span>Total Truck Count</span>
-								<ContainerValues>{totalTruckCount}</ContainerValues>
-							</Div>
-							<Div style={{ marginLeft: '12px' }}>
+								<div className={styles.container_values}>{totalTruckCount}</div>
+							</div>
+							<div className={styles.div} style={{ marginLeft: '12px' }}>
 								<span>Commodity:</span>
-								<ContainerValues>
+								<div className={styles.container_values}>
 									{detail.commodity || 'General'}
-								</ContainerValues>
-							</Div>
+								</div>
+							</div>
 						</>
 					) : (
-						<Wrapper>
-							<Div style={{ marginLeft: '12px' }}>
+						<div className={styles.wrapper}>
+							<div className={styles.div} style={{ marginLeft: '12px' }}>
 								<span>Commodity</span>
-								<ContainerValues>
+								<div className={styles.container_values}>
 									{startCase(detail.commodity || 'General')}
-								</ContainerValues>
-							</Div>
+								</div>
+							</div>
 
 							{detail?.volume ? (
-								<Div style={{ marginLeft: '8px' }}>
+								<div className={styles.div} style={{ marginLeft: '8px' }}>
 									<span>Volume</span>
-									<ContainerValues>
+									<div className={styles.container_values}>
 										{detail.volume}
 										{' '}
 										cc
-									</ContainerValues>
-								</Div>
+									</div>
+								</div>
 							) : null}
 							{detail?.weight ? (
-								<Div style={{ marginLeft: '8px' }}>
+								<div className={styles.div} style={{ marginLeft: '8px' }}>
 									<span>Weight</span>
-									<ContainerValues>
+									<div className={styles.container_values}>
 										{detail.weight}
 										{' '}
 										Kg
-									</ContainerValues>
-								</Div>
+									</div>
+								</div>
 							) : null}
-						</Wrapper>
+						</div>
 					)}
-				</FlexCol>
+				</div>
 			) : (
-				<Wrapper>
-					<Div style={{ marginLeft: '12px' }}>
+				<div className={styles.wrapper}>
+					<div className={styles.div} style={{ marginLeft: '12px' }}>
 						<span>Commodity</span>
-						<ContainerValues>{detail.commodity || 'General'}</ContainerValues>
-					</Div>
+						<div className={styles.container_values}>{detail.commodity || 'General'}</div>
+					</div>
 
 					{detail?.volume ? (
-						<Div style={{ marginLeft: '8px' }}>
+						<div className={styles.div} style={{ marginLeft: '8px' }}>
 							<span>Volume</span>
-							<ContainerValues>
+							<div className={styles.container_values}>
 								{detail.volume}
 								{' '}
 								cc
-							</ContainerValues>
-						</Div>
+							</div>
+						</div>
 					) : null}
 					{detail.weight ? (
-						<Div style={{ marginLeft: '8px' }}>
+						<div className={styles.div} style={{ marginLeft: '8px' }}>
 							<span>Weight</span>
-							<ContainerValues>
+							<div className={styles.container_values}>
 								{detail.weight}
 								{' '}
 								Kg
-							</ContainerValues>
-						</Div>
+							</div>
+						</div>
 					) : null}
-				</Wrapper>
+				</div>
 			)}
 		</>
 	);

@@ -1,14 +1,12 @@
-import getConfig from '@cogo/app-search/hooks/configuration';
-import Select from '@cogo/business-modules/form/components/Business/Select';
-import { APP_EVENT, trackEvent } from '@cogo/commons/analytics';
-import { usePartnerEntityType, useScope } from '@cogo/commons/hooks';
-import React from 'react';
+import { Select } from '@cogoport/components';
+import getConfig from 'next/config';
 
 import SELECT_CUSTOM_THEME from '../select-custom-theme';
 
+import { APP_EVENT, trackEvent } from '@/ui/page-components/discover_rates/common/analytics';
+
 function Sort({ sortBy = '', search_type = '', setSort = () => {} }) {
 	const { isChannelPartner = false } = usePartnerEntityType();
-	const { scope } = useScope();
 	const sortList = getConfig('sort', search_type, isChannelPartner);
 
 	if ((sortList || []).length < 2) {
@@ -25,15 +23,14 @@ function Sort({ sortBy = '', search_type = '', setSort = () => {} }) {
 	};
 
 	const handleChange = (val) => {
-		if (scope === 'app') {
-			for (let i = 0; i < sortList.length; i += 1) {
-				if (sortList[i].value === val) {
-					trackEvent(APP_EVENT.search_sorted_search_results, {
-						type: sortList[i].label,
-					});
-				}
+		for (let i = 0; i < sortList.length; i += 1) {
+			if (sortList[i].value === val) {
+				trackEvent(APP_EVENT.search_sorted_search_results, {
+					type: sortList[i].label,
+				});
 			}
 		}
+
 		setSort(val);
 	};
 

@@ -1,9 +1,8 @@
-// import React from 'react';
+import { Placeholder } from '@cogoport/components';
 
-// import InvoicingParties from '../../commons/InvoicingParties';
-// import NotifyParty from '../NotifyParty';
-// import PocDetails from '../PocDetails';
-// import PocLoader from '../PocDetails/PocLoader';
+import InvoicingParties from '../InvoicingParties';
+import NotifyParty from '../NotifyParty';
+import PocDetails from '../PocDetails';
 
 function StakeHolderPocDetails({
 	tradeParties,
@@ -54,7 +53,7 @@ function StakeHolderPocDetails({
 					);
 				})
 			) : (
-				<PocLoader />
+				<Placeholder />
 			)}
 
 			{!tradePartyLoading ? (
@@ -63,7 +62,7 @@ function StakeHolderPocDetails({
 					listShipmentTradePartners={listShipmentTradePartners}
 				/>
 			) : (
-				<PocLoader />
+				<Placeholder />
 			)}
 
 			{!tradePartyLoading ? (
@@ -72,7 +71,7 @@ function StakeHolderPocDetails({
 					tradePartyFilters={tradePartyFilters}
 				/>
 			) : (
-				<PocLoader />
+				<Placeholder />
 			)}
 		</>
 	);

@@ -1,11 +1,12 @@
 /* eslint-disable no-param-reassign */
-import isEmpty from '@cogo/utils/isEmpty';
+
+import { isEmpty } from '@cogoport/utils';
 
 const formatValues = (values, type, apiValues, shipment_data) => {
 	if (type === 'update_carrier_booking_reference_number') {
 		if (
-			!isEmpty(values?.booking_reference_delay_reasons) &&
-			values?.booking_ref_status === 'not_placed'
+			!isEmpty(values?.booking_reference_delay_reasons)
+			&& values?.booking_ref_status === 'not_placed'
 		) {
 			const newPayload = {
 				booking_reference_delay_reasons: [
@@ -16,8 +17,8 @@ const formatValues = (values, type, apiValues, shipment_data) => {
 		}
 
 		const newPayload = {
-			booking_reference_number: values?.booking_reference_number,
-			booking_reference_proof: values?.booking_reference_proof,
+			booking_reference_number : values?.booking_reference_number,
+			booking_reference_proof  : values?.booking_reference_proof,
 		};
 		return newPayload;
 	}
@@ -45,9 +46,9 @@ const formatValues = (values, type, apiValues, shipment_data) => {
 			});
 		}
 		if (
-			values &&
-			(shipment_data.service_type === 'fcl_freight_service' ||
-				shipment_data.shipment_type === 'fcl_freight')
+			values
+			&& (shipment_data.service_type === 'fcl_freight_service'
+				|| shipment_data.shipment_type === 'fcl_freight')
 		) {
 			(values.movement_details || []).forEach((item) => {
 				if (!Object.keys(item).includes('service_type')) {
@@ -71,13 +72,13 @@ const formatValues = (values, type, apiValues, shipment_data) => {
 		delete values.booking_note_quantity;
 		delete values.containers_count;
 		const newDocuments = (values.documents || []).map((item) => ({
-			file_name: item.name,
-			document_url: item.url,
-			data: {
+			file_name    : item.name,
+			document_url : item.url,
+			data         : {
 				...item,
-				url: undefined,
-				name: undefined,
-				success: undefined,
+				url     : undefined,
+				name    : undefined,
+				success : undefined,
 			},
 		}));
 		return { ...values, documents: newDocuments };
@@ -88,9 +89,9 @@ const formatValues = (values, type, apiValues, shipment_data) => {
 	if (type === 'update-document') {
 		const data = {
 			...((values.documents || [])[0] || {}),
-			url: undefined,
-			name: undefined,
-			success: undefined,
+			url     : undefined,
+			name    : undefined,
+			success : undefined,
 		};
 		return { document_url: ((values.documents || [])[0] || {}).url, data };
 	}
@@ -109,8 +110,8 @@ const formatValues = (values, type, apiValues, shipment_data) => {
 	}
 	if (type === 'containers') {
 		const update_data = (apiValues.list || []).map((item) => ({
-			id: item.id,
-			data: values,
+			id   : item.id,
+			data : values,
 		}));
 		return update_data;
 	}
@@ -142,8 +143,8 @@ const formatValues = (values, type, apiValues, shipment_data) => {
 		Object.keys(values || {}).forEach((key) => {
 			if (key === 'containers') {
 				const rollover_containers_data = (values[key] || []).map((item) => ({
-					id: item,
-					data: { is_rollover: true },
+					id   : item,
+					data : { is_rollover: true },
 				}));
 				newValues = { ...newValues, rollover_containers_data };
 			}
@@ -170,13 +171,13 @@ const formatValues = (values, type, apiValues, shipment_data) => {
 		} = values;
 		return {
 			...restProps,
-			pickup_details: { landmark: pickup_landmark, address: pickup_address },
-			delivery_details: {
+			pickup_details   : { landmark: pickup_landmark, address: pickup_address },
+			delivery_details : {
 				fullname,
 				mobile,
 				email,
-				landmark: delivery_landmark,
-				address: delivery_address,
+				landmark : delivery_landmark,
+				address  : delivery_address,
 			},
 		};
 	}
@@ -202,17 +203,17 @@ const formatValues = (values, type, apiValues, shipment_data) => {
 				cargo_type === 'OTHER'
 					? cargo_type_other_text || 'other cargo'
 					: undefined,
-			sidedoor: sidedoor.includes('true'),
-			hydraulic: hydraulic.includes('true'),
-			pickup_details: {
-				address: pickup_address,
-				time_from: pickup_time_from,
-				time_to: pickup_time_to,
+			sidedoor       : sidedoor.includes('true'),
+			hydraulic      : hydraulic.includes('true'),
+			pickup_details : {
+				address   : pickup_address,
+				time_from : pickup_time_from,
+				time_to   : pickup_time_to,
 			},
 			delivery_details: {
-				address: delivery_address,
-				time_from: delivery_time_from,
-				time_to: delivery_time_to,
+				address   : delivery_address,
+				time_from : delivery_time_from,
+				time_to   : delivery_time_to,
 				contact_company_name,
 				contact_name,
 				contact_phone,

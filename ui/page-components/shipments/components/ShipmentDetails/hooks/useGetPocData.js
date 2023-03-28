@@ -1,13 +1,11 @@
-// import getGeoConstants from '@cogo/globalization/constants/geo';
-// import { useSelector } from '@cogo/store';
 import { useState, useRef } from 'react';
+
+import StakeholderOptions from '../../../utils/stakeholdersOptions';
+
+import useGetServiceProviders from './useGetserviceProviders';
 
 import { useSelector } from '@/packages/store';
 import getGeoConstants from '@/ui/commons/constants/geo';
-
-// import stakeholdersOptions from '../utils/stakeholdersOptions';
-
-// import useGetServiceProviders from './useGetServiceProviders';
 
 const geo = getGeoConstants();
 
@@ -67,7 +65,7 @@ const useGetPocData = ({ tradeParties, shipment_data, scope, shipment_id }) => {
 		services,
 	} = useGetServiceProviders({ utilities, shipment_id });
 
-	const { superadmin, stakeholders } = stakeholdersOptions(isOkam);
+	const { superadmin, stakeholders } = StakeholderOptions(isOkam);
 
 	const stakeholder_types = superadmin;
 

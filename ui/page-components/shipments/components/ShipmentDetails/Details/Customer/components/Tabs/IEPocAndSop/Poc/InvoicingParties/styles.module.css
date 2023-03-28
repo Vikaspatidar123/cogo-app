@@ -1,0 +1,74 @@
+.detail_container{
+    border: 2px solid #eceff8;
+	border-radius: 4px;
+	margin-bottom: 20px;
+}
+.poc_header{
+	background: #eceff8;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 6px 12px;
+	margin-bottom: 16px;
+	font-weight: 600;
+	min-height: 40px;
+}
+.poc_detail_container{
+	margin: 16px;
+	display: flex;
+	justify-content: space-between;
+}
+.poc_details_header {
+	display: flex;
+	justify-content: flex-end;
+	padding-bottom: 10px;
+	height: 35px;
+}
+.company_details{
+	padding: 8px;
+}
+.details {
+	color: #5c6186;
+	font-size: 16px;
+	font-weight: 600;
+	line-height: 24px;
+}
+.service_text {
+	display: flex;
+	flex-wrap: wrap;
+	color: #5c6186;
+	font-size: 14px;
+	line-height: 24px;
+	width: fit-content;
+	white-space: nowrap;
+}
+.company_name{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.icon_container{
+	padding: 8px;
+	cursor: pointer;
+	@media (max-width: 768px) {
+		padding: 4px;
+	}
+}
+.service{
+	display: flex;
+	flex-wrap: wrap;
+}
+.services {
+	color: #5c6186;
+	font-size: 14px;
+	font-weight: 600;
+	line-height: 24px;
+	padding-left: 4px;
+}
+.poc_container{
+	margin-top: 8px;
+}
+.poc_list{
+	max-height: 300px;
+	overflow: auto;
+}

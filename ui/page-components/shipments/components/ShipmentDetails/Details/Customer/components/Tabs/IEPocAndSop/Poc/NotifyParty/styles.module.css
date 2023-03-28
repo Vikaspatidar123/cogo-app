@@ -1,0 +1,27 @@
+.container{
+    border: 2px solid #eceff8;
+	border-radius: 4px;
+	margin-bottom: 20px;
+}
+.header{
+	background: #eceff8;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 6px 12px;
+	margin-bottom: 16px;
+	font-weight: 600;
+	min-height: 40px;
+}
+.list{
+	margin: 12px 16px;
+	display: flex;
+	font-weight: 500;
+	flex-direction: column;
+	justify-content: center;
+}
+.detail{
+	display: flex;
+	align-items: center;
+	margin-bottom: 8px;
+}

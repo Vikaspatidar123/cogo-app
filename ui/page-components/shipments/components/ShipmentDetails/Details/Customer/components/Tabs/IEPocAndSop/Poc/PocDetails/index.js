@@ -3,6 +3,8 @@ import { IcMArrowRotateDown, IcMArrowRotateUp, IcMEdit } from '@cogoport/icons-r
 import { startCase } from '@cogoport/utils';
 import { forwardRef, useState } from 'react';
 
+import AddPoc from '../AddPoc';
+
 import PocInfo from './PocInfo';
 import styles from './styles.module.css';
 

@@ -1,6 +1,3 @@
-// import { useSelector } from '@cogo/store';
-// import { Modal } from '@cogoport/front/components/admin';
-// import { isEmpty } from '@cogoport/front/utils';
 import { Placeholder } from '@cogoport/components';
 import { useContext } from 'react';
 
@@ -8,22 +5,10 @@ import AddDetailContainer from './AddDetailContainer';
 
 import { useSelector } from '@/packages/store';
 import { ShipmentDetailContext } from '@/ui/page-components/shipments/components/ShipmentDetails/common/Context';
+import useGetPocData from '@/ui/page-components/shipments/components/ShipmentDetails/hooks/useGetPocData';
 import useListShipTradePartners from
 	'@/ui/page-components/shipments/components/ShipmentDetails/hooks/useListShipTradePartners';
-// import { ShipmentDetailContext } from '../../../commons/Context';
-// import InternalExternalPocs from '../commons/InternalExternalPocs';
-// import useGetPocData from '../hooks/useGetPocData';
-// import useListShipTradePartners from '../hooks/useListShipTradePartners';
-
-// import AddCompany from './AddCompany';
-// import AddCpDetails from './AddCpDetails';
-// import AddDetailContainer from './AddDetailsContainer';
-// import AddDetailsLoader from './AddDetailsContainer/AddDetailsLoader';
-// import PocLoader from './PocDetails/PocLoader';
-// import PocFilters from './PocFilters';
-// import PocServProvDetails from './PocServProvDetails';
-// import StakeHolderPocDetails from './StakeHolderPocDetails';
-// import { Container, Line, PocList } from './styles';
+import StakeHolderPocDetails from './StakeHolderPocDetails';
 
 function Poc() {
 	const { scope } = useSelector(({ general }) => ({ scope: general?.scope }));

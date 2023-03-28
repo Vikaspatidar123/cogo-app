@@ -1,10 +1,15 @@
-import { getFormattedValues } from '@cogo/app-common';
-import merge from '@cogo/utils/merge';
-import isEmpty from '@cogo/utils/isEmpty';
-import { postData } from '../apis';
-import formatValues from './format-values';
+// import { getFormattedValues } from '@cogo/app-common';
+// import isEmpty from '@cogo/utils/isEmpty';
+// import merge from '@cogo/utils/merge';
+
+// import { postData } from '../apis';
+import { isEmpty, merge } from '@cogoport/utils';
+
 import checkRequirement from './checkRequirement';
+import formatValues from './format-values';
 import preUpdateData from './pre-update';
+
+import getFormattedValues from '@/ui/commons/utils/getFormattedValues';
 
 const onNext = async (
 	state,
@@ -51,18 +56,19 @@ const onNext = async (
 		let dataFromApi = {};
 		(config.dataFromApi || []).forEach((item) => {
 			if (
-				config?.formatType === 'update_carrier_booking_reference_number' &&
-				item?.condition?.booking_ref_status &&
-				item?.condition?.booking_ref_status === rawValues?.booking_ref_status
+				config?.formatType === 'update_carrier_booking_reference_number'
+				&& item?.condition?.booking_ref_status
+				&& item?.condition?.booking_ref_status === rawValues?.booking_ref_status
 			) {
 				dataFromApi = { ...dataFromApi, [item.value]: undefined };
 			} else if (!data[item.key] && item.alt === 'undefined') {
 				dataFromApi = { ...dataFromApi, [item.value]: undefined };
-			} else
+			} else {
 				dataFromApi = {
 					...dataFromApi,
 					[item.value]: data[item.key] || item.key,
 				};
+			}
 		});
 
 		let payload = null;
@@ -109,9 +115,9 @@ const onNext = async (
 					isApiCalled = true;
 					setMessage({ type: 'success', message: 'Task updated' });
 					if (
-						config.askMoreDetails &&
-						onAskMoreDetails &&
-						config.askMoreDetails.isConfirm
+						config.askMoreDetails
+						&& onAskMoreDetails
+						&& config.askMoreDetails.isConfirm
 					) {
 						onAskMoreDetails();
 					} else if (isLastStep || !hitAtOneGo) {

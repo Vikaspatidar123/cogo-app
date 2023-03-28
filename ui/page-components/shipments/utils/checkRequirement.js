@@ -1,5 +1,4 @@
-import startCase from '@cogo/utils/startCase';
-import isEmpty from '@cogo/utils/isEmpty';
+import { isEmpty, startCase } from '@cogoport/utils';
 
 const checkForUniqness = (values, uniqeField) => {
 	const numbers = (values || []).map((item) => item[uniqeField]);
@@ -32,30 +31,31 @@ const checkRequirement = ({
 	}
 
 	if (
-		config.uniqeField &&
-		checkForUniqness(
+		config.uniqeField
+		&& checkForUniqness(
 			(values || {})[config.uniqeFieldDataKey || 'data'],
 			config.uniqeField,
 		)
 	) {
 		setMessage({
-			type: 'error',
-			message: `Please provide distinct ${startCase(config.uniqeField || '')}`,
+			type    : 'error',
+			message : `Please provide distinct ${startCase(config.uniqeField || '')}`,
 		});
 		setIsLoading(false);
 		return false;
 	}
 
 	if (
-		config.checkForContainers &&
-		checkForContainers(
+		config.checkForContainers
+		&& checkForContainers(
 			(values || {}).documents || [],
 			(shipment_data || {}).containers_count,
 		)
 	) {
 		setMessage({
-			type: 'error',
-			message: `Containers count in booking notes should be equal to total container count i.e. ${shipment_data.containers_count}`,
+			type    : 'error',
+			message : `Containers count in booking notes should be equal to total container 
+			count i.e. ${shipment_data.containers_count}`,
 		});
 		setIsLoading(false);
 		return false;
@@ -63,14 +63,15 @@ const checkRequirement = ({
 
 	if (config?.formatType === 'update_carrier_booking_reference_number') {
 		if (
-			values?.booking_ref_status === 'placed' &&
-			isEmpty(values?.booking_reference_number) &&
-			isEmpty(values?.booking_reference_proof)
+			values?.booking_ref_status === 'placed'
+			&& isEmpty(values?.booking_reference_number)
+			&& isEmpty(values?.booking_reference_proof)
 		) {
 			setMessage({
 				type: 'error',
 				message:
-					'Booking Reference Number or Booking Reference proof, atleast one is mandatory to complete this task.',
+					`Booking Reference Number or Booking Reference proof, 
+					atleast one is mandatory to complete this task.`,
 			});
 			setIsLoading(false);
 			return false;

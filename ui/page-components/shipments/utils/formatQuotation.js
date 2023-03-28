@@ -1,4 +1,4 @@
-const formatQuotation = (values = {}, charge_codes = {}, permanentControls, shipment_data) => {
+const formatQuotation = (permanentControls, shipment_data, values = {}, charge_codes = {}) => {
 	const allServices = {
 		[shipment_data?.id]: { service_type: shipment_data?.service_type, id: shipment_data?.id },
 		...(shipment_data?.operator_dependent_services || {}),

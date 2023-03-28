@@ -1,7 +1,7 @@
 import { Container } from './styles';
 
-const ErrorMessage = ({ message }) => {
+function ErrorMessage({ message }) {
 	return <Container>{message || ''}</Container>;
-};
+}
 
 export default ErrorMessage;

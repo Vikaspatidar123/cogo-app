@@ -1,10 +1,12 @@
-import React from 'react';
 import { useSelector } from '@cogo/store';
 import { Button } from '@cogoport/front/components';
+import React from 'react';
+
 import useSaveRfq from '../../../hooks/useSaveRfq';
+
 import { Container, ButtonWrap } from './styles';
 
-const Footer = ({
+function Footer({
 	total = 1,
 	hookSetters = () => {},
 	bookedRates = [],
@@ -15,7 +17,7 @@ const Footer = ({
 	rates = [],
 	serial_id = 1,
 	intLoading = false,
-}) => {
+}) {
 	const { isMobile } = useSelector(({ general }) => ({ isMobile: general?.isMobile }));
 
 	const { loading, handlePrevious, handleOverview, handleSave } = useSaveRfq({
@@ -74,6 +76,6 @@ const Footer = ({
 			</ButtonWrap>
 		</Container>
 	);
-};
+}
 
 export default Footer;

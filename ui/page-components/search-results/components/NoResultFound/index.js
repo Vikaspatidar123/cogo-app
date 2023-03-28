@@ -1,17 +1,19 @@
-import React, { useState } from 'react';
-import dynamic from 'next/dynamic';
+import getLocationDetails from '@cogo/app-search/utils/getLocationDetails';
+import isSingleLocation from '@cogo/app-search/utils/isSingleLocation';
+import { usePartnerEntityType } from '@cogo/commons/hooks';
+import getGeoConstants from '@cogo/globalization/constants/geo';
 import { useRouter } from '@cogo/next';
 import { useSelector } from '@cogo/store';
 import { Button } from '@cogoport/front/components';
-import isSingleLocation from '@cogo/app-search/utils/isSingleLocation';
-import getLocationDetails from '@cogo/app-search/utils/getLocationDetails';
-import { usePartnerEntityType } from '@cogo/commons/hooks';
 // import useUpdateSearch from '../../../hooks/useUpdateSearch';
-import getGeoConstants from '@cogo/globalization/constants/geo';
+import dynamic from 'next/dynamic';
+import React, { useState } from 'react';
+
 import useCreateRateTask from '../../hooks/useCreateRateTask';
-import serviceableCountries from './serviceble-countries';
+
 // import BasicPlan from './BasicPlan';
 import FeedBackModal from './FeedbackModal';
+import serviceableCountries from './serviceble-countries';
 import {
 	Main,
 	Title,
@@ -55,10 +57,10 @@ function NoResultFound({
 	const [showCreateEnquiry, setShowCreateEnquiry] = useState(false);
 	const { scope, organization, unPrefixedPath, skippable_checks } = useSelector(
 		({ general, profile }) => ({
-			scope: general.scope,
-			unPrefixedPath: general?.unPrefixedPath,
-			organization: profile?.organization || {},
-			skippable_checks: profile?.organization?.skippable_checks || [],
+			scope            : general.scope,
+			unPrefixedPath   : general?.unPrefixedPath,
+			organization     : profile?.organization || {},
+			skippable_checks : profile?.organization?.skippable_checks || [],
 		}),
 	);
 	const create_enquiry_check = !CREATE_JOB_SERVICES.includes(
@@ -97,21 +99,18 @@ function NoResultFound({
 		}
 	};
 
-	const showAgent =
-		organization?.agent?.id &&
-		scope === 'app' &&
-		type === 'no_result_found' &&
-		!skippable_checks?.includes('hide_rm_detail');
+	const showAgent =		organization?.agent?.id
+		&& scope === 'app'
+		&& type === 'no_result_found'
+		&& !skippable_checks?.includes('hide_rm_detail');
 	let description = '';
 
 	if (showAgent) {
 		description = 'Don’t worry, our team is here to help.';
 	} else if (type === 'no_result_found' && headerData?.expired) {
-		description =
-			'Please search again to proceed. You can do this quickly by clicking on the lens icon on the search form above and click on search rates again';
+		description =			'Please search again to proceed. You can do this quickly by clicking on the lens icon on the search form above and click on search rates again';
 	} else if (type === 'no_servicable_country') {
-		description =
-			' We continue to add new countries to our network every month. If you would like to be informed when we launch in these countries, tap below.';
+		description =			' We continue to add new countries to our network every month. If you would like to be informed when we launch in these countries, tap below.';
 	}
 
 	const title = () => {
@@ -131,7 +130,8 @@ function NoResultFound({
 
 		return (
 			<Title>
-				Presently, we do not offer services between{' '}
+				Presently, we do not offer services between
+				{' '}
 				<Country>{origin?.country}</Country>
 				{destination && (
 					<Country>{` and ${destination.country || ''}`}</Country>
@@ -141,11 +141,10 @@ function NoResultFound({
 		);
 	};
 
-	const showButton =
-		scope === 'partner' &&
-		!data?.tags?.includes('partner') &&
-		!headerData.negotiation_status &&
-		type === 'no_result_found';
+	const showButton =		scope === 'partner'
+		&& !data?.tags?.includes('partner')
+		&& !headerData.negotiation_status
+		&& type === 'no_result_found';
 
 	const showEnq = data?.id !== geo.uuid.cogo_demo_account_shipper;
 
@@ -170,31 +169,29 @@ function NoResultFound({
 		<div>
 			{requestRateServices.includes(headerData?.search_type)
 				? showButton && (
-						<Button onClick={handleFeedback} disabled={headerData?.expired}>
-							{enquiryQuota?.left_limit > 0 || !isChannelPartner
-								? 'REQUEST FOR RATE'
-								: 'BUY NOW'}
-						</Button>
+					<Button onClick={handleFeedback} disabled={headerData?.expired}>
+						{enquiryQuota?.left_limit > 0 || !isChannelPartner
+							? 'REQUEST FOR RATE'
+							: 'BUY NOW'}
+					</Button>
 				  )
 				: showButton && (
-						<Button onClick={handleButtonClick} disabled={headerData?.expired}>
-							{enquiryQuota?.left_limit > 0 || !isChannelPartner
-								? 'CREATE ENQUIRY'
-								: 'BUY NOW'}
-						</Button>
+					<Button onClick={handleButtonClick} disabled={headerData?.expired}>
+						{enquiryQuota?.left_limit > 0 || !isChannelPartner
+							? 'CREATE ENQUIRY'
+							: 'BUY NOW'}
+					</Button>
 				  )}
 		</div>
 	);
 
-	const renderJobButton = () => {
-		return (
-			<div>
-				<Button onClick={handleCreateJob} disabled={rateTaskLoad}>
-					Request Rate
-				</Button>
-			</div>
-		);
-	};
+	const renderJobButton = () => (
+		<div>
+			<Button onClick={handleCreateJob} disabled={rateTaskLoad}>
+				Request Rate
+			</Button>
+		</div>
+	);
 
 	return (
 		<MainContainer>
@@ -223,9 +220,7 @@ function NoResultFound({
 
 							{organization?.agent?.mobile_number && (
 								<Action
-									onClick={() =>
-										goTo(`tel:${organization?.agent?.mobile_number}`)
-									}
+									onClick={() => goTo(`tel:${organization?.agent?.mobile_number}`)}
 									style={{ display: 'inline' }}
 								>
 									{`Phone/WhatsApp : ${organization?.agent?.mobile_country_code} ${organization?.agent?.mobile_number}`}

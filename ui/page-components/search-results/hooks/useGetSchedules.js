@@ -1,8 +1,6 @@
-import { useState, useEffect } from 'react';
-
-import { useSelector } from '@cogo/store';
-
 import { useRequest } from '@cogo/commons/hooks';
+import { useSelector } from '@cogo/store';
+import { useState, useEffect } from 'react';
 
 const useGetSchedules = () => {
 	const { query, scope } = useSelector(({ general }) => general);

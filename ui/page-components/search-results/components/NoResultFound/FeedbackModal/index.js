@@ -1,24 +1,23 @@
+import Layout from '@cogo/business-modules/form/Layout';
 import { Button } from '@cogoport/front/components/admin';
 import { useFormCogo } from '@cogoport/front/hooks';
-import Layout from '@cogo/business-modules/form/Layout';
 import { useEffect } from 'react';
-import { Container, Footer, DislikeModal, HeaderText, Body } from './styles';
-import commonControls from './controls';
-import useRequestForRate from './useRequestForRate';
-import getPriorityAirlineOptions from './getPriorityAirlineOptions';
 
-const FeedBackModal = ({
+import commonControls from './controls';
+import getPriorityAirlineOptions from './getPriorityAirlineOptions';
+import { Container, Footer, DislikeModal, HeaderText, Body } from './styles';
+import useRequestForRate from './useRequestForRate';
+
+function FeedBackModal({
 	onClose,
 	show,
 	details,
 	requestService,
 	proceeedWithFeedback = true,
-}) => {
-	const { priorityAirlineOptions, airlineOptions } =
-		getPriorityAirlineOptions();
+}) {
+	const { priorityAirlineOptions, airlineOptions } =		getPriorityAirlineOptions();
 	const initialControls = commonControls({ airlineOptions });
-	const controls =
-		initialControls[requestService?.service_type || details?.service_type];
+	const controls =		initialControls[requestService?.service_type || details?.service_type];
 	const {
 		fields,
 		handleSubmit,
@@ -37,8 +36,8 @@ const FeedBackModal = ({
 	};
 	useEffect(() => {
 		priorityAirlineOptions({
-			origin_airport_id: details.origin_airport_id,
-			destination_airport_id: details.origin_airport_id,
+			origin_airport_id      : details.origin_airport_id,
+			destination_airport_id : details.origin_airport_id,
 		});
 	}, []);
 
@@ -94,5 +93,5 @@ const FeedBackModal = ({
 			)}
 		</DislikeModal>
 	);
-};
+}
 export default FeedBackModal;

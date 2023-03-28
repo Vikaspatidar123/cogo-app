@@ -18,12 +18,16 @@ function PromocodeThumbnail({ promotion = {}, promotion_discount = [] }) {
 
 			{promotion_discount.unit === 'percentage' ? (
 				<CircleICon>
-					<Discount>{Math.round(promotion_discount.value)}%</Discount>
+					<Discount>
+						{Math.round(promotion_discount.value)}
+						%
+					</Discount>
 				</CircleICon>
 			) : (
 				<Badge>
 					<DiscountAmount>
-						{Math.round(promotion_discount.value)}{' '}
+						{Math.round(promotion_discount.value)}
+						{' '}
 						{promotion_discount.amount_currency}
 					</DiscountAmount>
 				</Badge>

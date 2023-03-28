@@ -1,12 +1,14 @@
-import formatDate from '@cogo/globalization/utils/formatDate';
+import { useScope } from '@cogo/commons/hooks';
 import GLOBAL_CONSTANTS from '@cogo/globalization/constants/globals.json';
+import formatDate from '@cogo/globalization/utils/formatDate';
+import { useRouter } from '@cogo/next';
 import { useSelector } from '@cogo/store';
 import Button from '@cogoport/front/components/admin/Button';
 import { startCase, upperCase } from '@cogoport/front/utils';
 import React from 'react';
-import { useRouter } from '@cogo/next';
-import { useScope } from '@cogo/commons/hooks';
+
 import { getUnit, getServiceUnit } from '../../../../../utils/get-unit';
+
 import {
 	ModalWrapper,
 	TitleBg,
@@ -23,12 +25,12 @@ import {
 	CloseModal,
 } from './styles';
 
-const PriceLockedModal = ({
+function PriceLockedModal({
 	priceLocked,
 	setPriceLocked,
 	contractData,
 	details,
-}) => {
+}) {
 	const { scope } = useScope();
 	const { push } = useRouter();
 	const {
@@ -60,12 +62,11 @@ const PriceLockedModal = ({
 		permissionsNavigations: profile.permissions_navigations,
 	}));
 
-	const showContracts =
-		scope === 'partner'
-			? Object.keys(permissionsNavigations).includes(
-					'contract_rates-international_contracts',
+	const showContracts =		scope === 'partner'
+		? Object.keys(permissionsNavigations).includes(
+			'contract_rates-international_contracts',
 			  )
-			: true;
+		: true;
 
 	const redirectToContract = () => {
 		if (scope === 'partner') {
@@ -94,7 +95,10 @@ const PriceLockedModal = ({
 					<div>
 						{origin_port?.name || origin_airport?.name}
 						<span>
-							({origin_port?.port_code || origin_airport?.port_code}){' '}
+							(
+							{origin_port?.port_code || origin_airport?.port_code}
+							)
+							{' '}
 						</span>
 					</div>
 
@@ -105,7 +109,9 @@ const PriceLockedModal = ({
 					<div>
 						{destination_port?.name || destination_airport?.name}
 						<span>
-							({destination_port?.port_code || destination_airport?.port_code})
+							(
+							{destination_port?.port_code || destination_airport?.port_code}
+							)
 						</span>
 					</div>
 					<div>{destination_country?.name}</div>
@@ -113,9 +119,14 @@ const PriceLockedModal = ({
 			</PortPair>
 
 			<Detail>
-				Total {startCase(getUnit(search_type))} Requested :
+				Total
+				{' '}
+				{startCase(getUnit(search_type))}
+				{' '}
+				Requested :
 				<span className="sub-content">
-					{max_containers_count || max_volume || max_weight}{' '}
+					{max_containers_count || max_volume || max_weight}
+					{' '}
 					{getServiceUnit(search_type)}
 				</span>
 			</Detail>
@@ -123,23 +134,42 @@ const PriceLockedModal = ({
 				Contract Validity :
 				<span className="sub-content">
 					{formatDate({
-						date: validity_start,
-						dateFormat: GLOBAL_CONSTANTS.formats.date['dd MMM'],
-						formatType: 'date',
-					})}{' '}
-					to{' '}
+						date       : validity_start,
+						dateFormat : GLOBAL_CONSTANTS.formats.date['dd MMM'],
+						formatType : 'date',
+					})}
+					{' '}
+					to
+					{' '}
 					{formatDate({
-						date: validity_end,
-						dateFormat: GLOBAL_CONSTANTS.formats.date['dd MMM'],
-						formatType: 'date',
+						date       : validity_end,
+						dateFormat : GLOBAL_CONSTANTS.formats.date['dd MMM'],
+						formatType : 'date',
 					})}
 				</span>
 			</Detail>
 			{commodity && <Tag>{startCase(commodity)}</Tag>}
 			{container_type && <Tag>{startCase(container_type)}</Tag>}
-			{container_size && <Tag>{container_size}FT</Tag>}
-			{volume && <Tag>VOL: {volume}CBM</Tag>}
-			{weight && <Tag>WT: {weight}KGS</Tag>}
+			{container_size && (
+				<Tag>
+					{container_size}
+					FT
+				</Tag>
+			)}
+			{volume && (
+				<Tag>
+					VOL:
+					{volume}
+					CBM
+				</Tag>
+			)}
+			{weight && (
+				<Tag>
+					WT:
+					{weight}
+					KGS
+				</Tag>
+			)}
 			{inco_term && <Tag>{upperCase(inco_term)}</Tag>}
 			{trade_type && <Tag>{startCase(trade_type)}</Tag>}
 
@@ -161,6 +191,6 @@ const PriceLockedModal = ({
 			</Footer>
 		</ModalWrapper>
 	);
-};
+}
 
 export default PriceLockedModal;

@@ -1,10 +1,11 @@
-import { Grid } from '@cogoport/front/components';
 import Spinner from '@cogo/commons/components/Spinner';
+import { Grid } from '@cogoport/front/components';
 import { startCase } from '@cogoport/front/utils';
 import { IcMDelete } from '@cogoport/icons-react';
+
 import { Container, DetailCon, DeleteCon } from './styles';
 
-const RenderLineItems = ({ lineItems, deleteLineItem = () => {}, loading }) => {
+function RenderLineItems({ lineItems, deleteLineItem = () => {}, loading }) {
 	const { Row, Col } = Grid;
 
 	const renderDeleteBtn = (item) => {
@@ -30,34 +31,36 @@ const RenderLineItems = ({ lineItems, deleteLineItem = () => {}, loading }) => {
 
 	return (
 		<Container>
-			{(lineItems || []).map((line_item) => {
-				return (
-					<DetailCon>
-						<Row>
-							<Col xs={12} md={12} lg={2.5} xl={2.5}>
-								{startCase(line_item?.name)} ({line_item?.code})
-							</Col>
-							<Col xs={12} md={12} lg={2} xl={2}>
-								{startCase(line_item?.unit)}
-							</Col>
-							<Col xs={12} md={12} lg={2} xl={2}>
-								{startCase(line_item?.currency)}
-							</Col>
-							{/* <Col xs={12} md={12} lg={2} xl={2}>
+			{(lineItems || []).map((line_item) => (
+				<DetailCon>
+					<Row>
+						<Col xs={12} md={12} lg={2.5} xl={2.5}>
+							{startCase(line_item?.name)}
+							{' '}
+							(
+							{line_item?.code}
+							)
+						</Col>
+						<Col xs={12} md={12} lg={2} xl={2}>
+							{startCase(line_item?.unit)}
+						</Col>
+						<Col xs={12} md={12} lg={2} xl={2}>
+							{startCase(line_item?.currency)}
+						</Col>
+						{/* <Col xs={12} md={12} lg={2} xl={2}>
 								{line_item?.buy_price}
 							</Col> */}
-							<Col xs={12} md={12} lg={2} xl={2}>
-								{line_item?.price}
-							</Col>
-							{line_item?.source === 'manual'
-								? renderDeleteBtn(line_item)
-								: null}
-						</Row>
-					</DetailCon>
-				);
-			})}
+						<Col xs={12} md={12} lg={2} xl={2}>
+							{line_item?.price}
+						</Col>
+						{line_item?.source === 'manual'
+							? renderDeleteBtn(line_item)
+							: null}
+					</Row>
+				</DetailCon>
+			))}
 		</Container>
 	);
-};
+}
 
 export default RenderLineItems;

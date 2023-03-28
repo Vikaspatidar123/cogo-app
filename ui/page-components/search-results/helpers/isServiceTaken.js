@@ -1,15 +1,15 @@
 const serviceMappings = {
 	fcl_freight: {
-		import_transportation: ['trailer_freight', 'ftl_freight'],
-		export_transportation: ['trailer_freight', 'ftl_freight'],
+		import_transportation : ['trailer_freight', 'ftl_freight'],
+		export_transportation : ['trailer_freight', 'ftl_freight'],
 	},
 	air_freight: {
-		import_transportation: ['ltl_freight', 'ftl_freight'],
-		export_transportation: ['ltl_freight', 'ftl_freight'],
+		import_transportation : ['ltl_freight', 'ftl_freight'],
+		export_transportation : ['ltl_freight', 'ftl_freight'],
 	},
 	lcl_freight: {
-		import_transportation: ['ltl_freight', 'ftl_freight'],
-		export_transportation: ['ltl_freight', 'ftl_freight'],
+		import_transportation : ['ltl_freight', 'ftl_freight'],
+		export_transportation : ['ltl_freight', 'ftl_freight'],
 	},
 };
 
@@ -32,9 +32,8 @@ const isServiceTaken = (service, data) => {
 	}
 
 	const serviceRelated = Object.values(service_details || {}).find(
-		(serviceItem) =>
-			services.includes(serviceItem?.service_type) &&
-			(!trade_type || trade_type === serviceItem.trade_type),
+		(serviceItem) => services.includes(serviceItem?.service_type)
+			&& (!trade_type || trade_type === serviceItem.trade_type),
 	);
 
 	return !!serviceRelated;

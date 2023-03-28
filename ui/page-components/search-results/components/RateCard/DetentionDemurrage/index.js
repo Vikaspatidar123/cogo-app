@@ -5,12 +5,15 @@ import {
 	IcMArrowRotateDown,
 	IcMArrowRotateUp,
 } from '@cogoport/icons-react';
+
 import AddMoreDays from './AddMoreDays';
 import { Container, FlexColumn, StyledButton } from './styles';
 
-const TickIcon = () => <IcMFtick fill="#07bc0c" height="20px" width="20px" />;
+function TickIcon() {
+	return <IcMFtick fill="#07bc0c" height="20px" width="20px" />;
+}
 
-const DetentionDemurrage = (props) => {
+function DetentionDemurrage(props) {
 	const {
 		data: rateData = {},
 		show = '',
@@ -34,31 +37,23 @@ const DetentionDemurrage = (props) => {
 	});
 
 	const minDays = (key) => {
-		const min_days = mainServices.map((item) => {
-			return item?.[key]?.free_limit || 0;
-		});
+		const min_days = mainServices.map((item) => item?.[key]?.free_limit || 0);
 		return Math.min(...min_days);
 	};
 
 	const selectedDays = (key) => {
-		const selected_days = mainServices.map((item) => {
-			return item?.[key]?.additional_days;
-		});
+		const selected_days = mainServices.map((item) => item?.[key]?.additional_days);
 		return selected_days[0];
 	};
 
 	const additionalDays = (key) => {
-		const additionalDaysPresent =
-			mainServices.find((service) => {
-				return service?.[key]?.additional_days > 0;
-			}) || {};
+		const additionalDaysPresent =			mainServices.find((service) => service?.[key]?.additional_days > 0) || {};
 
 		if (isEmpty(additionalDaysPresent)) {
 			return minDays(key);
 		}
 
-		const { free_limit = 0, additional_days = 0 } =
-			additionalDaysPresent?.[key] || {};
+		const { free_limit = 0, additional_days = 0 } =			additionalDaysPresent?.[key] || {};
 
 		return free_limit + additional_days;
 	};
@@ -108,20 +103,28 @@ const DetentionDemurrage = (props) => {
 						{originDetentionFreeLimit ? (
 							<Flex>
 								<TickIcon />
-								Origin Detention: {additionalDays('origin_detention')} Days
+								Origin Detention:
+								{' '}
+								{additionalDays('origin_detention')}
+								{' '}
+								Days
 							</Flex>
 						) : null}
 
 						{originDemurrageFreeLimit ? (
 							<Flex style={{ marginTop: '6px' }}>
 								<TickIcon />
-								Origin Demurrage : {additionalDays('origin_demurrage')} Days
+								Origin Demurrage :
+								{' '}
+								{additionalDays('origin_demurrage')}
+								{' '}
+								Days
 							</Flex>
 						) : null}
 					</FlexColumn>
 
-					{(originDemurrageMaxLimit || originDetentionMaxLimit) &&
-					rateData?.source !== 'cogo_assured_rate' ? (
+					{(originDemurrageMaxLimit || originDetentionMaxLimit)
+					&& rateData?.source !== 'cogo_assured_rate' ? (
 						<StyledButton
 							onClick={() => handleChange('origin')}
 							className="secondary sm"
@@ -135,7 +138,7 @@ const DetentionDemurrage = (props) => {
 								)}
 							</Flex>
 						</StyledButton>
-					) : null}
+						) : null}
 				</Flex>
 
 				<Flex alignItems="flex-end">
@@ -143,22 +146,28 @@ const DetentionDemurrage = (props) => {
 						{destinationDetentionFreeLimit ? (
 							<Flex>
 								<TickIcon />
-								Destination Detention :{' '}
-								{additionalDays('destination_detention')} Days
+								Destination Detention :
+								{' '}
+								{additionalDays('destination_detention')}
+								{' '}
+								Days
 							</Flex>
 						) : null}
 
 						{destinationDemurrageFreeLimit ? (
 							<Flex style={{ marginTop: '6px' }}>
 								<TickIcon />
-								Destination Demurrage :{' '}
-								{additionalDays('destination_demurrage')} Days
+								Destination Demurrage :
+								{' '}
+								{additionalDays('destination_demurrage')}
+								{' '}
+								Days
 							</Flex>
 						) : null}
 					</FlexColumn>
 
-					{(destinationDemurrageMaxLimit || destinationDetentionMaxLimit) &&
-					rateData?.source !== 'cogo_assured_rate' ? (
+					{(destinationDemurrageMaxLimit || destinationDetentionMaxLimit)
+					&& rateData?.source !== 'cogo_assured_rate' ? (
 						<StyledButton
 							onClick={() => handleChange('destination')}
 							className="secondary sm"
@@ -172,7 +181,7 @@ const DetentionDemurrage = (props) => {
 								)}
 							</Flex>
 						</StyledButton>
-					) : null}
+						) : null}
 				</Flex>
 			</Container>
 
@@ -194,15 +203,15 @@ const DetentionDemurrage = (props) => {
 					originDetentionAdditionalDays={originDetentionAdditionalDays}
 					originDEmurrageAdditionalDays={originDEmurrageAdditionalDays}
 					destinationDetentionAdditionalDays={
-						destinationDetentionAdditionalDays
+					destinationDetentionAdditionalDays
 					}
 					destinationDemurrageAdditionalDays={
-						destinationDemurrageAdditionalDays
+					destinationDemurrageAdditionalDays
 					}
 					{...props}
 				/>
 			)}
 		</>
 	);
-};
+}
 export default DetentionDemurrage;

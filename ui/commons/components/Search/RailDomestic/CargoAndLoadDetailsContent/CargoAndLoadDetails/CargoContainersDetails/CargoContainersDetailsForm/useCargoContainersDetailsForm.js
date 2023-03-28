@@ -1,8 +1,9 @@
-import { useState, useImperativeHandle, useEffect } from 'react';
 import { useFormCogo } from '@cogoport/front/hooks';
 import { get, isEmpty } from '@cogoport/front/utils';
-import containerSizeTypesMapping from './configurations/container-size-types-mapping.json';
+import { useState, useImperativeHandle, useEffect } from 'react';
+
 import commodityTypeSubTypesMapping from './configurations/commodity-type-sub-types-mapping.json';
+import containerSizeTypesMapping from './configurations/container-size-types-mapping.json';
 import getControls from './utils/controls';
 
 const CARGO_HANDLING_CONTROL_KEYS = ['is_door_pickup', 'is_doorstep_delivery'];
@@ -19,20 +20,18 @@ const imperativeHandle = {
 			const newValues = addCargoHandlingDataInFormValues({ values });
 
 			return {
-				hasError: false,
-				values: newValues,
+				hasError : false,
+				values   : newValues,
 			};
 		}
 
 		return {
-			hasError: true,
-			errors: {},
+			hasError : true,
+			errors   : {},
 		};
 	},
-	onError: (errors) => {
-		return { hasError: true, errors };
-	},
-	handleSubmit: ({
+	onError      : (errors) => ({ hasError: true, errors }),
+	handleSubmit : ({
 		formHandleSubmit,
 		validateContainersCount,
 		validateCargoHandlingData,
@@ -42,16 +41,14 @@ const imperativeHandle = {
 
 		return new Promise((resolve) => {
 			formHandleSubmit(
-				(values) => {
-					return resolve(
-						onSubmit({
-							values,
-							validateContainersCount,
-							validateCargoHandlingData,
-							addCargoHandlingDataInFormValues,
-						}),
-					);
-				},
+				(values) => resolve(
+					onSubmit({
+						values,
+						validateContainersCount,
+						validateCargoHandlingData,
+						addCargoHandlingDataInFormValues,
+					}),
+				),
 				(errors) => resolve(onError(errors)),
 			)();
 		});
@@ -63,12 +60,12 @@ const useCargoContainersDetailsForm = (props, ref) => {
 
 	const [state, setState] = useState({
 		is_door_pickup: {
-			showPopover: false,
-			data: get(formValues, 'is_door_pickup_data') || null,
+			showPopover : false,
+			data        : get(formValues, 'is_door_pickup_data') || null,
 		},
 		is_doorstep_delivery: {
-			showPopover: false,
-			data: get(formValues, 'is_doorstep_delivery_data') || null,
+			showPopover : false,
+			data        : get(formValues, 'is_doorstep_delivery_data') || null,
 		},
 	});
 
@@ -92,35 +89,29 @@ const useCargoContainersDetailsForm = (props, ref) => {
 			}
 
 			if (name === 'commodity_subtype') {
-				setState((previousState) => {
-					return {
-						...previousState,
-						...CARGO_HANDLING_CONTROL_KEYS.reduce((pv, controlName) => {
-							return {
-								...pv,
-								[controlName]: {
-									...(previousState[controlName] || {}),
-									showPopover: false,
-									data: null,
-								},
-							};
-						}, {}),
-					};
-				});
+				setState((previousState) => ({
+					...previousState,
+					...CARGO_HANDLING_CONTROL_KEYS.reduce((pv, controlName) => ({
+						...pv,
+						[controlName]: {
+							...(previousState[controlName] || {}),
+							showPopover : false,
+							data        : null,
+						},
+					}), {}),
+				}));
 
 				CARGO_HANDLING_CONTROL_KEYS.forEach((key) => setValue(key, []));
 			}
 
 			if (CARGO_HANDLING_CONTROL_KEYS.includes(name)) {
-				setState((previousState) => {
-					return {
-						...previousState,
-						[name]: {
-							...previousState[name],
-							showPopover: values[name].includes(true),
-						},
-					};
-				});
+				setState((previousState) => ({
+					...previousState,
+					[name]: {
+						...previousState[name],
+						showPopover: values[name].includes(true),
+					},
+				}));
 			}
 		});
 
@@ -129,16 +120,14 @@ const useCargoContainersDetailsForm = (props, ref) => {
 
 	const cargoHandlingPopover = {
 		onSubmitSuccess: ({ controlName, values }) => {
-			setState((previousState) => {
-				return {
-					...previousState,
-					[controlName]: {
-						...previousState[controlName],
-						showPopover: false,
-						data: values,
-					},
-				};
-			});
+			setState((previousState) => ({
+				...previousState,
+				[controlName]: {
+					...previousState[controlName],
+					showPopover : false,
+					data        : values,
+				},
+			}));
 		},
 		onClose: ({ controlName }) => {
 			setState((previousState) => {
@@ -187,15 +176,13 @@ const useCargoContainersDetailsForm = (props, ref) => {
 			});
 		},
 		onClickShowPopover: ({ controlName }) => {
-			setState((previousState) => {
-				return {
-					...previousState,
-					[controlName]: {
-						...previousState[controlName],
-						showPopover: true,
-					},
-				};
-			});
+			setState((previousState) => ({
+				...previousState,
+				[controlName]: {
+					...previousState[controlName],
+					showPopover: true,
+				},
+			}));
 		},
 	};
 
@@ -220,9 +207,7 @@ const useCargoContainersDetailsForm = (props, ref) => {
 	};
 
 	const validateCargoHandlingData = ({ values }) => {
-		const isCargoHandlingChecked = CARGO_HANDLING_CONTROL_KEYS.some((key) => {
-			return state[key].isChecked;
-		});
+		const isCargoHandlingChecked = CARGO_HANDLING_CONTROL_KEYS.some((key) => state[key].isChecked);
 
 		if (!isCargoHandlingChecked) {
 			return true;
@@ -269,8 +254,7 @@ const useCargoContainersDetailsForm = (props, ref) => {
 	};
 
 	const onSubmit = (values) => {
-		const isValidCargoHandlingData =
-			validateCargoHandlingData({ values }) || true;
+		const isValidCargoHandlingData =			validateCargoHandlingData({ values }) || true;
 
 		if (isValidCargoHandlingData) {
 			const newValues = addCargoHandlingDataInFormValues({ values });
@@ -286,16 +270,16 @@ const useCargoContainersDetailsForm = (props, ref) => {
 		if (controlName === 'container_type') {
 			newField = {
 				...field,
-				options: containerSizeTypesMapping[watchContainerSize] || [],
-				disabled: !watchContainerSize,
+				options  : containerSizeTypesMapping[watchContainerSize] || [],
+				disabled : !watchContainerSize,
 			};
 		}
 
 		if (controlName === 'commodity_subtype') {
 			newField = {
 				...field,
-				options: commodityTypeSubTypesMapping[watchCommodityType],
-				disabled: !watchCommodityType,
+				options  : commodityTypeSubTypesMapping[watchCommodityType],
+				disabled : !watchCommodityType,
 			};
 		}
 
@@ -313,13 +297,11 @@ const useCargoContainersDetailsForm = (props, ref) => {
 		const { handleSubmit: handleSubmitImperativeHandle } = imperativeHandle;
 
 		return {
-			handleSubmit: () => {
-				return handleSubmitImperativeHandle({
-					formHandleSubmit: handleSubmit,
-					validateCargoHandlingData,
-					addCargoHandlingDataInFormValues,
-				});
-			},
+			handleSubmit: () => handleSubmitImperativeHandle({
+				formHandleSubmit: handleSubmit,
+				validateCargoHandlingData,
+				addCargoHandlingDataInFormValues,
+			}),
 			getValues,
 		};
 	});

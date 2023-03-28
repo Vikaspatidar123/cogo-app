@@ -1,13 +1,14 @@
-import { Button } from '@cogoport/front/components';
 import { useRequest } from '@cogo/commons/hooks';
 import { useSelector } from '@cogo/store';
+import { Button } from '@cogoport/front/components';
 import { useEffect } from 'react';
+
 import { Container } from './styles';
 
-const RefreshRate = ({ detail = {}, refetch = () => {} }) => {
+function RefreshRate({ detail = {}, refetch = () => {} }) {
 	const { scope, query } = useSelector(({ general }) => ({
-		scope: general?.scope,
-		query: general.query,
+		scope : general?.scope,
+		query : general.query,
 	}));
 	const updateSpotSearchAPI = useRequest(
 		'post',
@@ -17,8 +18,8 @@ const RefreshRate = ({ detail = {}, refetch = () => {} }) => {
 
 	const refresh = async () => {
 		const params = {
-			only_rates_update_required: true,
-			id: detail?.spot_search_id,
+			only_rates_update_required : true,
+			id                         : detail?.spot_search_id,
 		};
 		await updateSpotSearchAPI.trigger({ params });
 		if (typeof refetch === 'function') {
@@ -43,6 +44,6 @@ const RefreshRate = ({ detail = {}, refetch = () => {} }) => {
 			</Button>
 		</Container>
 	);
-};
+}
 
 export default RefreshRate;

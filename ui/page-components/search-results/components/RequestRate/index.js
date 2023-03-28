@@ -1,10 +1,12 @@
-import { useState } from 'react';
 import { Button } from '@cogoport/front/components/admin';
 import { IcMInfo } from '@cogoport/icons-react';
-import { Container, Content, DetailCon, DetailText, InfoText } from './styles';
+import { useState } from 'react';
+
 import FeedBackModal from '../NoResultFound/FeedbackModal';
 
-const RequestRate = ({ headerData }) => {
+import { Container, Content, DetailCon, DetailText, InfoText } from './styles';
+
+function RequestRate({ headerData }) {
 	const [showFeedbackModal, setShowFeedBackModal] = useState(false);
 	const addedAdditionalService = [];
 	Object.keys(headerData?.service_details || {}).forEach((service) => {
@@ -19,17 +21,17 @@ const RequestRate = ({ headerData }) => {
 		}
 	});
 	let proceeedWithFeedback = !(
-		['fcl_freight', 'air_freight'].includes(headerData?.service_type) &&
-		headerData?.inco_term === 'exw'
+		['fcl_freight', 'air_freight'].includes(headerData?.service_type)
+		&& headerData?.inco_term === 'exw'
 	);
 	if (['fcl_freight', 'air_freight'].includes(headerData?.service_type)) {
 		if (
-			(addedAdditionalService.includes('export_ftl_freight') ||
-				addedAdditionalService.includes('export_ltl_freight') ||
-				addedAdditionalService.includes('export_haulage_freight') ||
-				addedAdditionalService.includes('export_trailer_freight')) &&
-			(addedAdditionalService.includes('export_fcl_customs') ||
-				addedAdditionalService.includes('export_air_customs'))
+			(addedAdditionalService.includes('export_ftl_freight')
+				|| addedAdditionalService.includes('export_ltl_freight')
+				|| addedAdditionalService.includes('export_haulage_freight')
+				|| addedAdditionalService.includes('export_trailer_freight'))
+			&& (addedAdditionalService.includes('export_fcl_customs')
+				|| addedAdditionalService.includes('export_air_customs'))
 		) {
 			proceeedWithFeedback = true;
 		}
@@ -80,6 +82,6 @@ const RequestRate = ({ headerData }) => {
 			) : null}
 		</>
 	);
-};
+}
 
 export default RequestRate;

@@ -1,7 +1,7 @@
 import { useRequest } from '@cogo/commons/hooks';
+import { useRouter } from '@cogo/next';
 import { useSelector } from '@cogo/store';
 import { toast } from '@cogoport/front/components';
-import { useRouter } from '@cogo/next';
 
 const useRequestForRate = ({ onClose, reset, details, requestService }) => {
 	const {
@@ -28,19 +28,19 @@ const useRequestForRate = ({ onClose, reset, details, requestService }) => {
 				toast.error('Please add currency');
 			} else {
 				const body = {
-					id: search_id,
-					remarks: remarks ? [remarks] : undefined,
-					performed_by_org_id: details.importer_exporter.id,
-					preferred_shipping_line_ids: preferred_shipping_line_ids || undefined,
-					preferred_airline_ids: preferred_airline_ids || undefined,
-					preferred_freight_rate: preferred_freight_rate || undefined,
+					id                          : search_id,
+					remarks                     : remarks ? [remarks] : undefined,
+					performed_by_org_id         : details.importer_exporter.id,
+					preferred_shipping_line_ids : preferred_shipping_line_ids || undefined,
+					preferred_airline_ids       : preferred_airline_ids || undefined,
+					preferred_freight_rate      : preferred_freight_rate || undefined,
 
 					preferred_freight_rate_currency:
 						preferred_freight_rate_currency || undefined,
 					cargo_readiness_date,
-					service_id: requestService?.service_id || undefined,
-					service_type: requestService?.service_type || undefined,
-					selected_card: requestService?.selected_card,
+					service_id    : requestService?.service_id || undefined,
+					service_type  : requestService?.service_type || undefined,
+					selected_card : requestService?.selected_card,
 				};
 
 				await trigger({

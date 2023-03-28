@@ -1,12 +1,12 @@
 import { useRequest } from '@cogo/commons/hooks';
-import { useSelector } from '@cogo/store';
 import useGetInfiniteList from '@cogo/commons/hooks/useGetInfiniteList';
+import { useSelector } from '@cogo/store';
 
 const useGetRfqSpotSearches = (id, serialId) => {
 	const { scope, authorizationparameters } = useSelector(
 		({ general, profile }) => ({
-			scope: general.scope,
-			authorizationparameters: profile?.authorizationparameters,
+			scope                   : general.scope,
+			authorizationparameters : profile?.authorizationparameters,
 		}),
 	);
 
@@ -21,8 +21,8 @@ const useGetRfqSpotSearches = (id, serialId) => {
 		});
 		return trigger({
 			params: {
-				rfq_id: id,
-				serial_id: serialId,
+				rfq_id    : id,
+				serial_id : serialId,
 				...(restFilters || {}),
 			},
 		});

@@ -1,9 +1,11 @@
-import { useState, useEffect } from 'react';
-import { useSelector } from '@cogo/store';
-import { useFormCogo } from '@cogoport/front/hooks';
 import { useRequest } from '@cogo/commons/hooks';
 import getGeoConstants from '@cogo/globalization/constants/geo';
 import formatDate from '@cogo/globalization/utils/formatDate';
+import { useSelector } from '@cogo/store';
+import { useFormCogo } from '@cogoport/front/hooks';
+import { useState, useEffect } from 'react';
+
+import StyledLabel from '../commons/StyledLabel';
 import {
 	airControls,
 	lclControls,
@@ -12,22 +14,22 @@ import {
 	getShowElements,
 	getFclAirSchedule,
 } from '../utils/shipping-line-function';
+
 import getPriorityAirlineOptions from './getPriorityAirlineOptions';
 import useGetSpotLineBookingShippingLines from './useGetSpotLineBookingShippingLines';
-import StyledLabel from '../commons/StyledLabel';
 
 const geo = getGeoConstants();
 
 const OPTIONS1 = [
 	{
-		label: 'Sell Without Buy',
-		value: 'sell_without_buy',
+		label : 'Sell Without Buy',
+		value : 'sell_without_buy',
 	},
 	{
-		label: 'Spot Line Booking',
-		value: 'spot_booking',
-		backgroundColor: '#EF9B9B',
-		color: '#000000',
+		label           : 'Spot Line Booking',
+		value           : 'spot_booking',
+		backgroundColor : '#EF9B9B',
+		color           : '#000000',
 	},
 ];
 
@@ -42,33 +44,29 @@ const useGetShippingLine = ({
 	const [manualSelect, setManualSelect] = useState(false);
 
 	const [scheduleList, setScheduleList] = useState({
-		list: [],
-		isApiCalled: false,
+		list        : [],
+		isApiCalled : false,
 	});
 
-	const OPTIONS =
-		check_multiple_containers_fcl?.length > 1 &&
-		data?.service_type === 'fcl_freight'
-			? [
-					{
-						label: 'Sell Without Buy',
-						value: 'sell_without_buy',
-					},
+	const OPTIONS =		check_multiple_containers_fcl?.length > 1
+		&& data?.service_type === 'fcl_freight'
+		? [
+			{
+				label : 'Sell Without Buy',
+				value : 'sell_without_buy',
+			},
 			  ]
-			: OPTIONS1;
+		: OPTIONS1;
 
-	const { spotBookingDefaultShippingLines = [] } =
-		useGetSpotLineBookingShippingLines();
+	const { spotBookingDefaultShippingLines = [] } =		useGetSpotLineBookingShippingLines();
 
-	const { priorityAirlineOptions, airlineOptions } =
-		getPriorityAirlineOptions();
+	const { priorityAirlineOptions, airlineOptions } =		getPriorityAirlineOptions();
 
 	const trade_type = data?.trade_type;
 
-	const apiSchedules =
-		service_type === 'fcl_freight'
-			? '/get_sailing_schedules'
-			: '/get_air_schedules';
+	const apiSchedules =		service_type === 'fcl_freight'
+		? '/get_sailing_schedules'
+		: '/get_air_schedules';
 
 	const getApiSchedules = useRequest('get', false, scope)(apiSchedules);
 
@@ -120,15 +118,15 @@ const useGetShippingLine = ({
 
 				(scheduleList.list || []).forEach((listObj) => {
 					const present_date = formatDate({
-						date: new Date(),
-						dateFormat: geo.formats.date.default,
-						formatType: 'date',
+						date       : new Date(),
+						dateFormat : geo.formats.date.default,
+						formatType : 'date',
 					});
 
 					const departure_date = formatDate({
-						date: listObj?.departure,
-						dateFormat: geo.formats.date.default,
-						formatType: 'date',
+						date       : listObj?.departure,
+						dateFormat : geo.formats.date.default,
+						formatType : 'date',
 					});
 
 					const present_split = present_date.split('/');
@@ -169,26 +167,26 @@ const useGetShippingLine = ({
 		let params = {};
 		if (service_type === 'fcl_freight') {
 			params = {
-				origin_port_id: data?.origin_port_id,
-				destination_port_id: data?.destination_port_id,
-				filters: {
+				origin_port_id      : data?.origin_port_id,
+				destination_port_id : data?.destination_port_id,
+				filters             : {
 					shipping_line_id: formValues?.shipping_line_id,
 				},
-				page_limit: 1000,
-				sort_by: 'departure',
-				sort_type: 'asc',
+				page_limit : 1000,
+				sort_by    : 'departure',
+				sort_type  : 'asc',
 			};
 		}
 		if (service_type === 'air_freight') {
 			params = {
 				filters: {
-					origin_airport_id: data?.origin_airport_id,
-					destination_airport_id: data?.destination_airport_id,
-					airline_id: formValues?.airline_id,
+					origin_airport_id      : data?.origin_airport_id,
+					destination_airport_id : data?.destination_airport_id,
+					airline_id             : formValues?.airline_id,
 				},
-				page_limit: 1000,
-				sort_id: 'departure',
-				sort_type: 'asc',
+				page_limit : 1000,
+				sort_id    : 'departure',
+				sort_type  : 'asc',
 			};
 		}
 
@@ -196,9 +194,9 @@ const useGetShippingLine = ({
 			getFclAirSchedule(getApiSchedules.trigger, setScheduleList, params);
 		}
 		if (
-			formValues?.shipping_line_id &&
-			service_type === 'fcl_freight' &&
-			scope === 'partner'
+			formValues?.shipping_line_id
+			&& service_type === 'fcl_freight'
+			&& scope === 'partner'
 		) {
 			getFclAirSchedule(getApiSchedules.trigger, setScheduleList, params);
 		}
@@ -214,8 +212,8 @@ const useGetShippingLine = ({
 
 	useEffect(() => {
 		priorityAirlineOptions({
-			origin_airport_id: data?.origin_airport_id,
-			destination_airport_id: data?.destination_airport_id,
+			origin_airport_id      : data?.origin_airport_id,
+			destination_airport_id : data?.destination_airport_id,
 		});
 	}, []);
 

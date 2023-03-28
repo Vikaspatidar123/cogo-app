@@ -1,20 +1,10 @@
-import Grid from '@cogoport/front/components/Grid';
-import formatAmount from '@cogo/globalization/utils/formatAmount';
-import {
-	RowContainer,
-	ChargeName,
-	TotalPrice,
-	CostCalculation,
-	Price,
-	Unit,
-	Quantity,
-	Cross,
-} from './styles';
+import styles from './styles.module.css';
 
-const { Row, Col } = Grid;
-const LineItems = ({ line_items = [] }) => {
+import formatAmount from '@/ui/commons/utils/formatAmount';
+
+function LineItems({ line_items = [] }) {
 	return (
-		<RowContainer>
+		<div className={styles.row_container}>
 			{(line_items || []).map((item = {}) => {
 				const {
 					name = '',
@@ -26,58 +16,65 @@ const LineItems = ({ line_items = [] }) => {
 					total_price = 0,
 				} = item || {};
 				return (
-					<Row key={name} className="line-item">
-						<Col md={4}>
-							<ChargeName>
-								{name} {code ? `(${code})` : ''}
-							</ChargeName>
-						</Col>
-						<Col
-							md={4}
+					<div style={{ display: 'flex' }} key={name} className="line-item">
+						<div style={{ display: 'flex', flexDirection: 'column' }}>
+							<div className={styles.charge_name}>
+								{name}
+								{' '}
+								{code ? `(${code})` : ''}
+							</div>
+						</div>
+						<div
 							style={{
-								textAlign: 'center',
+								textAlign     : 'right',
+								display       : 'flex',
+								flexDirection : 'column',
 							}}
 						>
-							<CostCalculation>
-								<Quantity>{quantity}</Quantity>
-								<Cross>x</Cross>
-								<Price>
+							<div className={styles.cost_calculation}>
+								<div className={styles.quantity}>{quantity}</div>
+								<div className={styles.cross}>x</div>
+								<div className={styles.price}>
 									{formatAmount({
-										amount: price,
+										amount  : price,
 										currency,
-										options: {
-											style: 'currency',
-											currencyDisplay: 'symbol',
-											maximumFractionDigits: 0,
+										options : {
+											style                 : 'currency',
+											currencyDisplay       : 'symbol',
+											maximumFractionDigits : 0,
 										},
 									})}
-								</Price>
-								<Unit>/ {unit?.replace('_', ' ')}</Unit>
-							</CostCalculation>
-						</Col>
-						<Col
-							md={4}
+								</div>
+								<div className={styles.unit}>
+									/
+									{unit?.replace('_', ' ')}
+								</div>
+							</div>
+						</div>
+						<div
 							style={{
-								textAlign: 'right',
+								textAlign     : 'right',
+								display       : 'flex',
+								flexDirection : 'column',
 							}}
 						>
-							<TotalPrice>
+							<div className={styles.total_price}>
 								{formatAmount({
-									amount: total_price || 0,
+									amount  : total_price || 0,
 									currency,
-									options: {
-										style: 'currency',
-										currencyDisplay: 'symbol',
-										maximumFractionDigits: 0,
+									options : {
+										style                 : 'currency',
+										currencyDisplay       : 'symbol',
+										maximumFractionDigits : 0,
 									},
 								})}
-							</TotalPrice>
-						</Col>
-					</Row>
+							</div>
+						</div>
+					</div>
 				);
 			})}
-		</RowContainer>
+		</div>
 	);
-};
+}
 
 export default LineItems;

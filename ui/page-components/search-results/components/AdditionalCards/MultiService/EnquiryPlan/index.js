@@ -1,36 +1,28 @@
-import React from 'react';
-import { Btn } from '@cogo/deprecated_legacy/ui';
-import { useRouter } from '@cogo/next';
-import { useSelector } from '@cogo/store';
+import { Button } from '@cogoport/components';
 import { IcCFtick } from '@cogoport/icons-react';
-import {
-	Container,
-	SettingIcon,
-	PlanType,
-	Benefit,
-	Row,
-	Desktop,
-	Mobile,
-	SpaceBetween,
-	Main,
-} from './styles';
+import React from 'react';
 
-const EnquiryPlan = ({ enquiryQuota }) => {
+import styles from './styles.module.css';
+
+import { useRouter } from '@/packages/next';
+import { useSelector } from '@/packages/store';
+
+function EnquiryPlan({ enquiryQuota }) {
 	const { push } = useRouter();
 	const { unPrefixedPath } = useSelector(({ general }) => ({ ...general }));
 	const afterPaymentUrl = unPrefixedPath;
 
 	const benefits = (
 		<>
-			<Row style={{ marginBottom: '8px' }}>
+			<div className={styles.row} style={{ marginBottom: '8px' }}>
 				<IcCFtick style={{ marginRight: 8 }} />
-				<Benefit>The best rates to give you a competitive edge</Benefit>
-			</Row>
+				<div className={styles.Benefit}>The best rates to give you a competitive edge</div>
+			</div>
 
-			<Row>
+			<div className={styles.row}>
 				<IcCFtick style={{ marginRight: 8 }} />
-				<Benefit>The quickest service in the business</Benefit>
-			</Row>
+				<div className={styles.Benefit}>The quickest service in the business</div>
+			</div>
 		</>
 	);
 
@@ -45,51 +37,49 @@ const EnquiryPlan = ({ enquiryQuota }) => {
 	};
 
 	const freeLeft = (
-		<Benefit className="trialLeft">{handleEnquiriesCount()}</Benefit>
+		<div className={`${styles.Benefit} ${styles.trialLeft}`}>{handleEnquiriesCount()}</div>
 	);
 
 	return (
-		<Container>
-			<SpaceBetween>
+		<div className={styles.container}>
+			<div className={styles.space_between}>
 				<div style={{ display: 'flex' }}>
-					<SettingIcon>
+					<div className={styles.setting_icon}>
 						<img
 							src="https://cdn.cogoport.io/cms-prod/cogo_admin/vault/original/ic-settings.svg"
 							alt="settings"
 							width={24}
 							height={24}
 						/>
-					</SettingIcon>
+					</div>
 
-					<Main>
-						<PlanType style={{ marginBottom: 8 }}>Basic Plan</PlanType>
-						<Row>
-							<PlanType className="subType">Paid</PlanType>
-							<Mobile className="mobile">{freeLeft}</Mobile>
-						</Row>
-					</Main>
+					<div className={styles.main}>
+						<div className={styles.plan_type} style={{ marginBottom: 8 }}>Basic Plan</div>
+						<div className={styles.row}>
+							<div className={`${styles.plan_type} ${styles.subType}`}>Paid</div>
+							<div className={styles.mobile}>{freeLeft}</div>
+						</div>
+					</div>
 				</div>
 
-				<Desktop>{benefits}</Desktop>
+				<div className={styles.desktop}>{benefits}</div>
 
 				<div>
-					<Desktop>{freeLeft}</Desktop>
-					<Btn
+					<div className={styles.desktop}>{freeLeft}</div>
+					<Button
 						className="mid uppercase"
-						onClick={() =>
-							push(
-								`/pricing/[service_type]?afterPaymentUrl=${afterPaymentUrl}`,
-								`/pricing/spot-negotiation?afterPaymentUrl=${afterPaymentUrl}`,
-							)
-						}
+						onClick={() => push(
+							`/pricing/[service_type]?afterPaymentUrl=${afterPaymentUrl}`,
+							`/pricing/spot-negotiation?afterPaymentUrl=${afterPaymentUrl}`,
+						)}
 					>
 						Explore plan
-					</Btn>
+					</Button>
 				</div>
-			</SpaceBetween>
+			</div>
 
-			<Mobile>{benefits}</Mobile>
-		</Container>
+			<div className={styles.mobile}>{benefits}</div>
+		</div>
 	);
-};
+}
 export default EnquiryPlan;

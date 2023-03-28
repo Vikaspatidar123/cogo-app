@@ -1,13 +1,14 @@
-import React from 'react';
 import SelectOrg from '@cogo/partner-search/components/SelectOrganization';
+import React from 'react';
+
 import { Container, Label } from './styles';
 
-const SwitchUsers = ({
+function SwitchUsers({
 	importer_exporter_details = {},
 	setImporterExporterDetails = () => {},
 	showEdit = false,
 	service,
-}) => {
+}) {
 	return (
 		<Container>
 			<Label>Type to search</Label>
@@ -22,6 +23,6 @@ const SwitchUsers = ({
 			/>
 		</Container>
 	);
-};
+}
 
 export default SwitchUsers;

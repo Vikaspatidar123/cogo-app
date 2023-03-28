@@ -1,67 +1,64 @@
-import React from 'react';
-import isEmpty from '@cogo/utils/isEmpty';
 import getLocationInfo from '@cogo/business-modules/helpers/locations-search';
+import isEmpty from '@cogo/utils/isEmpty';
 import { Flex } from '@cogoport/front/components';
-import { Container, Circle, Line, RouteContainer, Location } from './styles';
+import React from 'react';
+
 import ShippingLine from './ShippingLine';
+import { Container, Circle, Line, RouteContainer, Location } from './styles';
 
 const pick_services = ['trailer_freight', 'ftl_freight', 'ltl_freight'];
 
 const mapping1 = ['fcl_customs', 'lcl_customs', 'air_customs'];
 
-const Route = ({
+function Route({
 	data = {},
 	details = {},
 	results_type = '',
 	isOriginHaulageRates = false,
 	isDestinationHaulageRates = false,
 	isMobile,
-}) => {
-	const originIcd =
-		details?.trade_type === 'export'
-			? details?.origin_port?.is_icd || details?.port?.is_icd
-			: details?.origin_port?.is_icd;
-	const destinationIcd =
-		details?.trade_type === 'import'
-			? details?.destination_port?.is_icd || details?.port?.is_icd
-			: details?.destination_port?.is_icd;
+}) {
+	const originIcd =		details?.trade_type === 'export'
+		? details?.origin_port?.is_icd || details?.port?.is_icd
+		: details?.origin_port?.is_icd;
+	const destinationIcd =		details?.trade_type === 'import'
+		? details?.destination_port?.is_icd || details?.port?.is_icd
+		: details?.destination_port?.is_icd;
 
 	const getICDKeys = () => {
 		let origin_key = null;
 		let destination_key = null;
 
 		if (originIcd) {
-			origin_key =
-				details?.search_type === 'fcl_customs' ||
-				details?.search_type === 'fcl_freight_local'
-					? 'main_port'
-					: 'origin_main_port';
+			origin_key =				details?.search_type === 'fcl_customs'
+				|| details?.search_type === 'fcl_freight_local'
+				? 'main_port'
+				: 'origin_main_port';
 		} else {
 			origin_key = 'origin_port';
 		}
 
 		if (destinationIcd) {
-			destination_key =
-				details?.search_type === 'fcl_customs' ||
-				details?.search_type === 'fcl_freight_local'
-					? 'main_port'
-					: 'destination_main_port';
+			destination_key =				details?.search_type === 'fcl_customs'
+				|| details?.search_type === 'fcl_freight_local'
+				? 'main_port'
+				: 'destination_main_port';
 		} else {
 			destination_key = 'destination_port';
 		}
 
 		return {
-			origin: origin_key,
-			destination: destination_key,
+			origin      : origin_key,
+			destination : destination_key,
 		};
 	};
 
 	const { origin, destination } = getLocationInfo(
 		'search_type',
 		{ ...data, ...details },
-		details?.search_type === 'fcl_freight' ||
-			(details?.search_type === 'fcl_customs' && details?.port?.is_icd) ||
-			(details?.search_type === 'fcl_freight_local' && details?.port?.is_icd)
+		details?.search_type === 'fcl_freight'
+			|| (details?.search_type === 'fcl_customs' && details?.port?.is_icd)
+			|| (details?.search_type === 'fcl_freight_local' && details?.port?.is_icd)
 			? getICDKeys()
 			: {},
 	);
@@ -83,7 +80,7 @@ const Route = ({
 	const uniq_origin_pickup = [...new Set(originPickup)];
 	const originPickupData = !isEmpty(uniq_origin_pickup)
 		? (origin_services || []).filter(
-				(item) => item.service_type === (uniq_origin_pickup || [])[0],
+			(item) => item.service_type === (uniq_origin_pickup || [])[0],
 		  )
 		: null;
 
@@ -93,7 +90,7 @@ const Route = ({
 	const uniq_destination_pickup = [...new Set(destinationPickup)];
 	const destinationPickupData = !isEmpty(uniq_destination_pickup)
 		? (destination_services || []).filter(
-				(item) => item.service_type === (uniq_destination_pickup || [])[0],
+			(item) => item.service_type === (uniq_destination_pickup || [])[0],
 		  )
 		: null;
 
@@ -233,6 +230,6 @@ const Route = ({
 			</RouteContainer>
 		</Container>
 	);
-};
+}
 
 export default Route;

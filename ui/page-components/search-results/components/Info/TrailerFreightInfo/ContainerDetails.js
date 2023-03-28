@@ -1,7 +1,8 @@
-import React from 'react';
-import { isEmpty, startCase } from '@cogoport/front/utils';
 import { Flex } from '@cogoport/front/components';
 import { Button, Popover, ToolTip } from '@cogoport/front/components/admin';
+import { isEmpty, startCase } from '@cogoport/front/utils';
+import React from 'react';
+
 import {
 	ContainerValues,
 	Div,
@@ -21,7 +22,7 @@ const handleCommodity = (commodity) => {
 	return value;
 };
 
-const GetMultiContainerDetails = ({ service_details }) => {
+function GetMultiContainerDetails({ service_details }) {
 	return (
 		<Flex direction="column" style={{ margin: '4px' }}>
 			{Object.values(service_details).map((item) => {
@@ -47,9 +48,9 @@ const GetMultiContainerDetails = ({ service_details }) => {
 			})}
 		</Flex>
 	);
-};
+}
 
-const PopoverComponent = ({ service_details }) => {
+function PopoverComponent({ service_details }) {
 	const show = Object.keys(service_details).length > 1;
 
 	if (!show) return null;
@@ -71,13 +72,13 @@ const PopoverComponent = ({ service_details }) => {
 			)}
 		</Popover>
 	);
-};
+}
 
-const ConatinerDetails = ({
+function ConatinerDetails({
 	data = {},
 	service_type,
 	service_details = {},
-}) => {
+}) {
 	const {
 		container_size = '',
 		containers_count = '',
@@ -95,7 +96,7 @@ const ConatinerDetails = ({
 						theme="light"
 						animation="shift-away"
 						interactive
-						content={
+						content={(
 							<div>
 								{`${container_size}FT x ${containers_count} | ${handleCommodity(
 									commodity,
@@ -103,7 +104,7 @@ const ConatinerDetails = ({
 									container_type,
 								)} | ${cargo_weight_per_container}MT`}
 							</div>
-						}
+						)}
 					>
 						<div>
 							<ContainerValues>
@@ -130,6 +131,6 @@ const ConatinerDetails = ({
 			</Div>
 		</ContainerDiv>
 	);
-};
+}
 
 export default ConatinerDetails;

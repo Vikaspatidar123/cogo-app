@@ -1,4 +1,5 @@
 import { ToolTip } from '@cogoport/front/components/admin';
+
 import {
 	Port,
 	IconWrap,
@@ -8,7 +9,7 @@ import {
 	Circle,
 } from './styles';
 
-const LocationDetails = ({ data }) => {
+function LocationDetails({ data }) {
 	const { origin_location, destination_location } = data;
 	return (
 		<LocationDetailsDiv>
@@ -41,6 +42,6 @@ const LocationDetails = ({ data }) => {
 			</ToolTip>
 		</LocationDetailsDiv>
 	);
-};
+}
 
 export default LocationDetails;

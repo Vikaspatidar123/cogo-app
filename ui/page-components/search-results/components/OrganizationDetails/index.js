@@ -1,16 +1,17 @@
-import React, { useState, useEffect } from 'react';
-import { useSelector } from '@cogo/store';
 import { useRequest } from '@cogo/commons/hooks';
+import { useSelector } from '@cogo/store';
 import { Popover, Button } from '@cogoport/front/components';
 import { IcMArrowRotateDown } from '@cogoport/icons-react';
+import React, { useState, useEffect } from 'react';
+
 import { Container, OptionLabel, Card } from './styles';
 
-const OrganizationDetails = ({ org_id, org_name, branch_id }) => {
+function OrganizationDetails({ org_id, org_name, branch_id }) {
 	const [show, setShow] = useState(false);
 	const [users, setUsers] = useState([]);
 	const { scope, isMobile } = useSelector(({ general }) => ({
-		scope: general?.scope,
-		isMobile: general?.isMobile,
+		scope    : general?.scope,
+		isMobile : general?.isMobile,
 	}));
 
 	const { trigger } = useRequest(
@@ -22,9 +23,9 @@ const OrganizationDetails = ({ org_id, org_name, branch_id }) => {
 	const getOrgUsers = async () => {
 		const params = {
 			filters: {
-				organization_id: org_id,
-				organization_branch_id: branch_id,
-				status: 'active',
+				organization_id        : org_id,
+				organization_branch_id : branch_id,
+				status                 : 'active',
 			},
 			page_limit: 1000,
 		};
@@ -46,7 +47,10 @@ const OrganizationDetails = ({ org_id, org_name, branch_id }) => {
 
 	const renderBody = () => (
 		<Container>
-			<OptionLabel className="bold">USERS - {org_name}</OptionLabel>
+			<OptionLabel className="bold">
+				USERS -
+				{org_name}
+			</OptionLabel>
 
 			{(users || []).map((user) => (
 				<Card>
@@ -57,7 +61,9 @@ const OrganizationDetails = ({ org_id, org_name, branch_id }) => {
 						className="clickable"
 						onClick={() => goTo(`tel:${user?.mobile_number}`)}
 					>
-						{user?.mobile_country_code} {user?.mobile_number}
+						{user?.mobile_country_code}
+						{' '}
+						{user?.mobile_number}
 					</OptionLabel>
 
 					<OptionLabel
@@ -82,20 +88,22 @@ const OrganizationDetails = ({ org_id, org_name, branch_id }) => {
 		>
 			<Button
 				style={{
-					marginLeft: 20,
-					display: 'flex',
-					alignItems: 'center',
-					border: '1px solid #000000',
-					background: '#ffffff',
-					color: '#000000',
-					marginTop: isMobile ? '20px' : '',
+					marginLeft : 20,
+					display    : 'flex',
+					alignItems : 'center',
+					border     : '1px solid #000000',
+					background : '#ffffff',
+					color      : '#000000',
+					marginTop  : isMobile ? '20px' : '',
 				}}
 				onClick={() => setShow(true)}
 			>
-				DETAILS <IcMArrowRotateDown style={{ marginLeft: 4 }} />
+				DETAILS
+				{' '}
+				<IcMArrowRotateDown style={{ marginLeft: 4 }} />
 			</Button>
 		</Popover>
 	);
-};
+}
 
 export default OrganizationDetails;

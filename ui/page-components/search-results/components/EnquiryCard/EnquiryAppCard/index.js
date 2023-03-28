@@ -1,8 +1,10 @@
 import React from 'react';
-import { useSelector } from '@cogo/store';
-import { Container, Title, Description, Action, ActionContainer } from './styles';
 
-const Card = () => {
+import styles from './styles.module.css';
+
+import { useSelector } from '@/packages/store';
+
+function Card() {
 	const { scope, organization, agent, skippable_checks } = useSelector(({ general, profile }) => ({
 		scope            : general.scope,
 		organization     : profile?.organization || {},
@@ -24,37 +26,47 @@ const Card = () => {
 
 	return (
 		<>
+			{' '}
 			{showRmDetails ? (
-				<Container>
-					<Title>
-						<span style={{ fontWeight: 'normal' }}>Can’t find the right fit?</span> Contact Your Key Account Manager Now.
-					</Title>
+				<div className={styles.container}>
+					<div className={styles.title}>
+						<span style={{ fontWeight: 'normal' }}>Can’t find the right fit?</span>
+						{' '}
+						Contact Your Key Account Manager Now.
+					</div>
 
-					<Description>
+					<div className={styles.description}>
 						For extra destination free days, specific carrier, or a better rate.
-					</Description>
+					</div>
 
-					<ActionContainer>
-						<Action
+					<div className={styles.action_container}>
+						<div
+							className={styles.action}
+							role="presentation"
 							onClick={() => goTo(`mailto:${organization?.agent?.email}`)}
 							style={{ display: 'inline' }}
 						>
-							{`Name : ${organization?.agent?.name},`} {`Email : ${organization?.agent?.email},`}
-						</Action>
+							{`Name : ${organization?.agent?.name},`}
+							{' '}
+							{`Email : ${organization?.agent?.email},`}
+						</div>
 
 						{organization?.agent?.mobile_number && (
-							<Action
+							<div
+								role="presentation"
+								className={styles.action}
 								onClick={() => goTo(`tel:${organization?.agent?.mobile_number}`)}
 								style={{ display: 'inline', paddingLeft: 0 }}
 							>
-								{`Phone/WhatsApp : ${organization?.agent?.mobile_country_code} ${organization?.agent?.mobile_number}`}
-							</Action>
+								{`Phone/WhatsApp :
+								 ${organization?.agent?.mobile_country_code} ${organization?.agent?.mobile_number}`}
+							</div>
 						)}
-					</ActionContainer>
-				</Container>
+					</div>
+				</div>
 			) : null}
 		</>
 	);
-};
+}
 
 export default Card;

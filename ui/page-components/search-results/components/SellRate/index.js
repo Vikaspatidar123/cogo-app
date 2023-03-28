@@ -1,21 +1,23 @@
 import { useState } from 'react';
+
 import useCreateEmptyCheckout from '../../hooks/useCreateEmptyCheckout';
+
 import DetailCard from './DetailCard';
 import { Container, Header } from './styles';
 
-const SellRate = ({
+function SellRate({
 	rates = [],
 	wayToBook,
 	data = {},
 	searchData = {},
 	setAddRate = () => {},
 	setWayToBook = () => {},
-}) => {
+}) {
 	const { touch_points } = searchData || {};
 
 	const [spotBookingDetails, showSpotBookingDetails] = useState({
-		checkout_id: '',
-		showForm: false,
+		checkout_id : '',
+		showForm    : false,
 	});
 
 	const { handleSave, loading } = useCreateEmptyCheckout({
@@ -44,6 +46,6 @@ const SellRate = ({
 			/>
 		</Container>
 	);
-};
+}
 
 export default SellRate;

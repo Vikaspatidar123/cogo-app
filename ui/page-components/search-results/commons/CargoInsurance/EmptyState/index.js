@@ -1,5 +1,6 @@
 import { IcMVerySad } from '@cogoport/icons-react';
-import { NoSupport, SadContainer, SadText } from './styles';
+
+import styles from './styles.module.css';
 
 const TEXT_MAPPING = {
 	blocked_country:
@@ -10,14 +11,14 @@ const TEXT_MAPPING = {
 		'We are sorry, we offer insurance only for shipments that operates from INDIA or to INDIA',
 };
 
-const EmptyState = ({ reason }) => {
+function EmptyState({ reason }) {
 	return (
-		<NoSupport>
-			<SadContainer>
+		<div className={styles.no_support}>
+			<div className={styles.sad_container}>
 				<IcMVerySad style={{ marginTop: '10px' }} width={40} height={40} />
-				<SadText>{TEXT_MAPPING[reason]}</SadText>
-			</SadContainer>
-		</NoSupport>
+				<div className={styles.sad_text}>{TEXT_MAPPING[reason]}</div>
+			</div>
+		</div>
 	);
-};
+}
 export default EmptyState;

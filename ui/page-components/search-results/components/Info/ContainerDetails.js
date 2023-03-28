@@ -1,8 +1,10 @@
-import React from 'react';
-import { Flex, ToolTip } from '@cogoport/front/components';
 import startCase from '@cogo/utils/startCase';
-import { FlexCol, ContainerValues } from './styles';
+import { Flex, ToolTip } from '@cogoport/front/components';
+import React from 'react';
+
 import CLASS_MAPPING from '../../../business-modules/components/Search/Air/utils/classMapping';
+
+import { FlexCol, ContainerValues } from './styles';
 
 const GOODS_MAPPING = [
 	'fcl_freight',
@@ -27,7 +29,7 @@ const LOAD_TRUCK_MAPPING = ['ftl_freight'];
 
 const ROUND_FIG_NUMBER = 1000000;
 
-const ConatinerDetails = ({ data = {} }) => {
+function ConatinerDetails({ data = {} }) {
 	const { commodity_details, service_details = {} } = data || {};
 
 	const {
@@ -44,8 +46,8 @@ const ConatinerDetails = ({ data = {} }) => {
 
 	Object.values(service_details).forEach((service_data) => {
 		if (
-			service_data.service_type === 'air_freight' &&
-			data?.search_type === 'air_freight'
+			service_data.service_type === 'air_freight'
+			&& data?.search_type === 'air_freight'
 		) {
 			airFreightService.push(service_data);
 		}
@@ -53,8 +55,8 @@ const ConatinerDetails = ({ data = {} }) => {
 
 	Object.values(service_details).forEach((service_data) => {
 		if (
-			service_data.service_type === 'air_freight_local' &&
-			data?.search_type === 'air_freight_local'
+			service_data.service_type === 'air_freight_local'
+			&& data?.search_type === 'air_freight_local'
 		) {
 			airFreightLocalService.push(service_data);
 		}
@@ -62,8 +64,8 @@ const ConatinerDetails = ({ data = {} }) => {
 
 	Object.values(service_details).forEach((service_data) => {
 		if (
-			service_data.service_type === 'lcl_freight' &&
-			data?.search_type === 'lcl_freight'
+			service_data.service_type === 'lcl_freight'
+			&& data?.search_type === 'lcl_freight'
 		) {
 			lclFreightService.push(service_data);
 		}
@@ -71,8 +73,8 @@ const ConatinerDetails = ({ data = {} }) => {
 
 	Object.values(service_details).forEach((service_data) => {
 		if (
-			service_data.service_type === 'air_customs' &&
-			data?.search_type === 'air_customs'
+			service_data.service_type === 'air_customs'
+			&& data?.search_type === 'air_customs'
 		) {
 			airCustomsService.push(service_data);
 		}
@@ -80,8 +82,8 @@ const ConatinerDetails = ({ data = {} }) => {
 
 	Object.values(service_details).forEach((service_data) => {
 		if (
-			service_data.service_type === 'lcl_customs' &&
-			data?.search_type === 'lcl_customs'
+			service_data.service_type === 'lcl_customs'
+			&& data?.search_type === 'lcl_customs'
 		) {
 			lclCustomsService.push(service_data);
 		}
@@ -120,17 +122,16 @@ const ConatinerDetails = ({ data = {} }) => {
 		totalPackageWeight += item.weight;
 	});
 
-	totalPackageVolume =
-		Math.round(totalPackageVolume * ROUND_FIG_NUMBER) / ROUND_FIG_NUMBER;
+	totalPackageVolume =		Math.round(totalPackageVolume * ROUND_FIG_NUMBER) / ROUND_FIG_NUMBER;
 
 	let classDescription = '';
 	Object.keys(CLASS_MAPPING).forEach((element) => {
 		const newElement = CLASS_MAPPING[element];
 		if (commodity_class?.subclass_id) {
 			if (
-				newElement.subclass_id === commodity_class?.subclass_id &&
-				newElement?.subclass_codes?.toString() ===
-					commodity_class?.subclass_codes?.toString()
+				newElement.subclass_id === commodity_class?.subclass_id
+				&& newElement?.subclass_codes?.toString()
+					=== commodity_class?.subclass_codes?.toString()
 			) {
 				classDescription = newElement.subclass_id;
 			}
@@ -149,19 +150,17 @@ const ConatinerDetails = ({ data = {} }) => {
 		.filter((cs) => cs?.container_size)
 		.map((item) => `${item?.container_size} ft`);
 	const uniq_container_sizes = [...new Set(container_sizes)];
-	const size =
-		(uniq_container_sizes || []).length === 1
-			? uniq_container_sizes[0]
-			: (uniq_container_sizes || []).join(', ');
+	const size =		(uniq_container_sizes || []).length === 1
+		? uniq_container_sizes[0]
+		: (uniq_container_sizes || []).join(', ');
 
 	const commodities = (services || [])
 		.filter((item) => item?.commodity)
 		.map((comm) => startCase(comm?.commodity));
 	const uniq_commodities = [...new Set(commodities)];
-	const commodity =
-		(uniq_commodities || []).length === 1
-			? uniq_commodities[0]
-			: (uniq_commodities || []).join(', ');
+	const commodity =		(uniq_commodities || []).length === 1
+		? uniq_commodities[0]
+		: (uniq_commodities || []).join(', ');
 
 	return (
 		<>
@@ -193,14 +192,22 @@ const ConatinerDetails = ({ data = {} }) => {
 						{data?.volume ? (
 							<Flex style={{ marginBottom: '8px' }}>
 								<span style={{ width: 100 }}>Volume</span>
-								<ContainerValues>{totalPackageVolume} cbm</ContainerValues>
+								<ContainerValues>
+									{totalPackageVolume}
+									{' '}
+									cbm
+								</ContainerValues>
 							</Flex>
 						) : null}
 
 						{data?.weight ? (
 							<Flex style={{ marginBottom: '8px' }}>
 								<span style={{ width: 100 }}>Weight</span>
-								<ContainerValues>{totalPackageWeight} kgs</ContainerValues>
+								<ContainerValues>
+									{totalPackageWeight}
+									{' '}
+									kgs
+								</ContainerValues>
 							</Flex>
 						) : null}
 
@@ -277,6 +284,6 @@ const ConatinerDetails = ({ data = {} }) => {
 			) : null}
 		</>
 	);
-};
+}
 
 export default ConatinerDetails;

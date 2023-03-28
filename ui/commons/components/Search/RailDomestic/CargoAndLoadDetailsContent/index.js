@@ -1,17 +1,17 @@
-import { forwardRef } from 'react';
-import { Modal } from '@cogoport/front/components/admin';
 import { Flex } from '@cogoport/front/components';
+import { Modal } from '@cogoport/front/components/admin';
 import { isEmpty } from '@cogoport/front/utils';
-import { Container, Title, ContentContainer, ErrorMessage } from './styles';
+import { forwardRef } from 'react';
+
 import CargoAndLoadDetails from './CargoAndLoadDetails';
 import SavedContainerContents from './SavedContainerContents';
+import { Container, Title, ContentContainer, ErrorMessage } from './styles';
 import useCargoAndLoadDetailsContent from './useCargoAndLoadDetailsContent';
 
-const CargoAndLoadDetailsContent = (props, ref) => {
+function CargoAndLoadDetailsContent(props, ref) {
 	const { isFormSubmitted } = props;
 
-	const { showModal, setShowModal, draftData, savedData, onSave, onClose } =
-		useCargoAndLoadDetailsContent(props, ref);
+	const { showModal, setShowModal, draftData, savedData, onSave, onClose } =		useCargoAndLoadDetailsContent(props, ref);
 
 	return (
 		<Container>
@@ -35,8 +35,8 @@ const CargoAndLoadDetailsContent = (props, ref) => {
 				// styles={{ dialog: { overflow: 'visible' } }}
 				styles={{
 					dialog: {
-						margin: 'auto',
-						padding: 0,
+						margin  : 'auto',
+						padding : 0,
 					},
 				}}
 			>
@@ -48,6 +48,6 @@ const CargoAndLoadDetailsContent = (props, ref) => {
 			</Modal>
 		</Container>
 	);
-};
+}
 
 export default forwardRef(CargoAndLoadDetailsContent);

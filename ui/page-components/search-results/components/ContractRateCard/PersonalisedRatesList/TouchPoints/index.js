@@ -1,58 +1,50 @@
-import { Button, ToolTip } from '@cogoport/front/components/admin';
-import Grid from '@cogoport/front/components/Grid';
-import { isEmpty } from '@cogoport/front/utils';
-import {
-	TouchPointsName,
-	TouchContainer,
-	Text,
-	TransitHeading,
-	Days,
-	TransitDiv,
-} from './styles';
+import { Tooltip, Button } from '@cogoport/components';
+import { isEmpty } from '@cogoport/utils';
+
 import RenderTouchPoints from './RenderTouchPoints';
+import styles from './styles.module.css';
 
-const { Col } = Grid;
-
-const TouchPoints = (props) => {
+function TouchPoints(props) {
 	const { touch_points, service_type, transit_time } = props;
-	const { forward_touch_points = [], return_touch_points = [] } =
-		touch_points || {};
+	const { forward_touch_points = [], return_touch_points = [] } =		touch_points || {};
 
 	if (
-		(service_type === 'ltl_freight' || service_type === 'air_freight') &&
-		transit_time
+		(service_type === 'ltl_freight' || service_type === 'air_freight')
+		&& transit_time
 	) {
 		return (
-			<Col md={3}>
-				<TransitDiv>
-					<TransitHeading>Transit Time:</TransitHeading>
-					<Days>{transit_time}</Days>
-				</TransitDiv>
-			</Col>
+			<div className={styles.col}>
+				<div className={styles.transit_div}>
+					<div className={styles.transit_heading}>Transit Time:</div>
+					<div className={styles.days}>{transit_time}</div>
+				</div>
+			</div>
 		);
 	}
 
 	if (service_type === 'ftl_freight') {
 		return (
-			<Col md={3}>
-				<TouchContainer>
-					<TouchPointsName>
+			<div className={styles.col}>
+				<div className={styles.touch_container}>
+					<div className={styles.touch_points_name}>
 						Touch Points
-						<Text size={14} bold>
-							({forward_touch_points.length + return_touch_points.length})
-						</Text>
-					</TouchPointsName>
+						<div style={{ fontWeight: 'bold' }}>
+							(
+							{forward_touch_points.length + return_touch_points.length}
+							)
+						</div>
+					</div>
 
 					{!isEmpty(forward_touch_points) || !isEmpty(return_touch_points) ? (
-						<ToolTip
+						<Tooltip
 							theme="light"
 							placement="right"
-							content={
+							content={(
 								<RenderTouchPoints
 									forward_touch_points={forward_touch_points}
 									return_touch_points={return_touch_points}
 								/>
-							}
+							)}
 						>
 							<Button
 								className="primary sm text"
@@ -60,13 +52,13 @@ const TouchPoints = (props) => {
 							>
 								View Details
 							</Button>
-						</ToolTip>
+						</Tooltip>
 					) : null}
-				</TouchContainer>
-			</Col>
+				</div>
+			</div>
 		);
 	}
 	return null;
-};
+}
 
 export default TouchPoints;

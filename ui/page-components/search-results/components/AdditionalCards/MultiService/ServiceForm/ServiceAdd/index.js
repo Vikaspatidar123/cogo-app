@@ -1,9 +1,11 @@
 import React from 'react';
-import Layout from '@cogo/business-modules/form/Layout';
-import { forwardRef } from '@cogo/deprecated_legacy/hooks';
-import useAddService from '../../../../../hooks/useAddService';
 
-const ServiceForm = (
+import useAddService from '../../../../../hooks/useAddService';
+import styles from '../styles.module.css';
+
+import getField from '@/packages/forms/Controlled';
+
+function ServiceForm(
 	{
 		service,
 		detail = {},
@@ -19,14 +21,14 @@ const ServiceForm = (
 		params,
 	},
 	ref,
-) => {
+) {
 	const { search_type } = detail || {};
-	const { controls, showElements, errors, formProps } = useAddService({
+	const { controls, showElements, errors, control } = useAddService({
 		detail,
 		service,
 		search_type,
-		services: Object.values(detail?.service_details || {}),
-		onAdd: () => {
+		services : Object.values(detail?.service_details || {}),
+		onAdd    : () => {
 			refetch();
 			onClose();
 		},
@@ -41,18 +43,30 @@ const ServiceForm = (
 		ref,
 	});
 
-	const { fields } = formProps || {};
-
 	return (
-		<>
-			<Layout
-				controls={controls}
-				fields={fields}
-				errors={errors}
-				showElements={showElements}
-			/>
-		</>
-	);
-};
+		<div className={styles.container}>
+			<div className={styles.header_container}>
+				{controls.map((item) => {
+					const Element = getField(item.type);
+					const show = showElements[item.name];
+					return (
+						show && (
+							<div className={styles.field} key={item.name}>
+								<div className={styles.lable}>{item.label}</div>
+								<Element {...item} control={control} />
+								{errors && (
+									<div className={styles.errors}>
+										{errors[item?.name]?.message}
+									</div>
+								)}
+							</div>
+						)
+					);
+				})}
 
-export default forwardRef(ServiceForm);
+			</div>
+		</div>
+	);
+}
+
+export default ServiceForm;

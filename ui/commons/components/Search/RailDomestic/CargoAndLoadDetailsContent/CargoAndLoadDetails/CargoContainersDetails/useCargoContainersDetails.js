@@ -1,6 +1,7 @@
 import { toast } from '@cogoport/front/components/admin';
 import { isEmpty } from '@cogoport/front/utils';
 import { useState, useImperativeHandle, useRef, useEffect } from 'react';
+
 import CONSTANTS from './utils/constants';
 
 const {
@@ -11,9 +12,7 @@ const {
 const useCargoContainersDetails = (props, ref) => {
 	const { formValuesList, containerLoadSubType } = props;
 
-	const [showForm, setShowForm] = useState(() => {
-		return !((formValuesList || []).length > 0);
-	});
+	const [showForm, setShowForm] = useState(() => !((formValuesList || []).length > 0));
 	const [savedFormList, setSavedFormList] = useState(formValuesList || []);
 	const [editFormId, setEditFormId] = useState('');
 
@@ -24,9 +23,9 @@ const useCargoContainersDetails = (props, ref) => {
 		if (showForm && editFormId && formContainerRef.current) {
 			setTimeout(() => {
 				formContainerRef.current.scrollIntoView({
-					behavior: 'smooth',
-					block: 'center',
-					inline: 'nearest',
+					behavior : 'smooth',
+					block    : 'center',
+					inline   : 'nearest',
 				});
 			}, 500);
 		}
@@ -85,23 +84,21 @@ const useCargoContainersDetails = (props, ref) => {
 	};
 
 	// calculated on basis of 20FT/22FT = 1, 44FT = (20FT/22FT) * 2
-	const calculateTotalContainersCount = ({ values }) => {
-		return savedFormList.reduce((total, item) => {
-			const { id, container_size, container_count } = item;
+	const calculateTotalContainersCount = ({ values }) => savedFormList.reduce((total, item) => {
+		const { id, container_size, container_count } = item;
 
-			let count = +container_count || 0;
+		let count = +container_count || 0;
 
-			if (id === editFormId && !isEmpty(values)) {
-				count = +values.container_count || 0;
-			}
+		if (id === editFormId && !isEmpty(values)) {
+			count = +values.container_count || 0;
+		}
 
-			if (`${container_size}FT` === CONSTANTS['44FT']) {
-				count *= 2;
-			}
+		if (`${container_size}FT` === CONSTANTS['44FT']) {
+			count *= 2;
+		}
 
-			return +((total || 0) + count);
-		}, 0);
-	};
+		return +((total || 0) + count);
+	}, 0);
 
 	const validateContainersCount = ({ values }) => {
 		const totalContainerCounts = calculateTotalContainersCount({ values });
@@ -121,39 +118,35 @@ const useCargoContainersDetails = (props, ref) => {
 		return MAXIMUM_FULL_RAKE_CONTAINER_COUNT.includes(totalContainerCounts);
 	};
 
-	useImperativeHandle(ref, () => {
-		return {
-			handleSubmit: async () => {
-				const isValidTotalContainersCount = validateContainersCount({});
-				if (!isValidTotalContainersCount) {
-					return {
-						hasError: true,
-						errors: {},
-					};
-				}
-
-				if (!showForm) {
-					return {
-						hasError: false,
-						values: savedFormList,
-					};
-				}
-
-				const { handleSubmit } = formImperativeHandleRef.current;
-
-				const response = await handleSubmit();
-				const { hasError, values } = response;
-
+	useImperativeHandle(ref, () => ({
+		handleSubmit: async () => {
+			const isValidTotalContainersCount = validateContainersCount({});
+			if (!isValidTotalContainersCount) {
 				return {
-					...response,
-					...(!hasError && { values: onSaveSuccess({ values }) }),
+					hasError : true,
+					errors   : {},
 				};
-			},
-			getValues: () => {
-				return savedFormList;
-			},
-		};
-	});
+			}
+
+			if (!showForm) {
+				return {
+					hasError : false,
+					values   : savedFormList,
+				};
+			}
+
+			const { handleSubmit } = formImperativeHandleRef.current;
+
+			const response = await handleSubmit();
+			const { hasError, values } = response;
+
+			return {
+				...response,
+				...(!hasError && { values: onSaveSuccess({ values }) }),
+			};
+		},
+		getValues: () => savedFormList,
+	}));
 
 	return {
 		showForm,

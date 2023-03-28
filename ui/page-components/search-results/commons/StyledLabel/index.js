@@ -1,8 +1,9 @@
-import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
-import formatDate from '@/ui/commons/utils/formatDate';
 import { cl } from '@cogoport/components';
 
 import styles from './styles.module.css';
+
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
+import formatDate from '@/ui/commons/utils/formatDate';
 
 function StyledLabel(props) {
 	const { data = {} } = props || {};
@@ -30,9 +31,9 @@ function StyledLabel(props) {
 
 				<div className={styles.dates}>
 					{formatDate({
-          	date       : data?.arrival,
-          	dateFormat : GLOBAL_CONSTANTS.formats.date['dd MMM yyyy'],
-          	formatType : 'date',
+						date       : data?.arrival,
+						dateFormat : GLOBAL_CONSTANTS.formats.date['dd MMM yyyy'],
+						formatType : 'date',
 					})}
 				</div>
 

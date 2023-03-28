@@ -1,9 +1,10 @@
+import { Toast, Button } from '@cogoport/components';
+import { startCase } from '@cogoport/utils';
 import React from 'react';
-import startCase from '@cogo/utils/startCase';
-import showErrorsInToast from '@cogo/utils/showErrorsInToast';
-import { useRequest } from '@cogo/commons/hooks';
-import { Button, toast } from '@cogoport/front/components';
-import { ButtonWrap } from './styles';
+
+import styles from './styles.module.css';
+
+import { useRequest } from '@/packages/request';
 
 const DELETE_SUBSIDIARY_SERVICES = ['ftl_freight'];
 
@@ -40,15 +41,15 @@ function DeleteConfirmation({
 			: service_split[0];
 
 		if (
-			data?.service_type === 'fcl_freight' &&
-			serviceToBeDeleted === 'trailer_freight' &&
-			data?.checkout_id
+			data?.service_type === 'fcl_freight'
+			&& serviceToBeDeleted === 'trailer_freight'
+			&& data?.checkout_id
 		) {
 			serviceToBeDeleted = 'haulage_freight';
 		} else if (
-			data?.service_type === 'air_freight' &&
-			data?.trade_type === 'domestic' &&
-			service_split.includes('Agent Handling Fees - Rebate')
+			data?.service_type === 'air_freight'
+			&& data?.trade_type === 'domestic'
+			&& service_split.includes('Agent Handling Fees - Rebate')
 		) {
 			serviceToBeDeleted = 'Agent Handling Fees - Rebate';
 		}
@@ -59,8 +60,8 @@ function DeleteConfirmation({
 		} else if (service_split[0] === 'destination') {
 			trade_type = 'import';
 		} else if (
-			data?.service_type === 'air_freight' &&
-			data?.trade_type === 'domestic'
+			data?.service_type === 'air_freight'
+			&& data?.trade_type === 'domestic'
 		) {
 			trade_type = 'domestic';
 		}
@@ -68,10 +69,9 @@ function DeleteConfirmation({
 		let deleted_services = [];
 
 		deleted_services = (servicesList || []).filter(
-			(item) =>
-				(item?.service_type === service_split[1] ||
-					item?.service_name === service_split[1]) &&
-				(item?.trade_type === trade_type || !item?.trade_type),
+			(item) => (item?.service_type === service_split[1]
+					|| item?.service_name === service_split[1])
+				&& (item?.trade_type === trade_type || !item?.trade_type),
 		);
 
 		if (serviceToBeDeleted === 'air_freight_local') {
@@ -79,8 +79,8 @@ function DeleteConfirmation({
 			deleted_services = (servicesList || []).filter((item) => {
 				if (data?.service_type === 'air_freight') {
 					return (
-						item?.service_type === serviceToBeDeleted &&
-						item?.trade_type === trade_type
+						item?.service_type === serviceToBeDeleted
+						&& item?.trade_type === trade_type
 					);
 				}
 
@@ -89,9 +89,8 @@ function DeleteConfirmation({
 		} else if (serviceToBeDeleted === 'Agent Handling Fees - Rebate') {
 			deleted_services = [];
 			deleted_services = (servicesList || []).filter(
-				(item) =>
-					item?.service_name === serviceToBeDeleted &&
-					item?.trade_type === trade_type,
+				(item) => item?.service_name === serviceToBeDeleted
+					&& item?.trade_type === trade_type,
 			);
 		} else if (serviceToBeDeleted === 'cargo_insurance') {
 			deleted_services = [];
@@ -101,8 +100,8 @@ function DeleteConfirmation({
 		}
 
 		if (
-			data?.service_type === 'ftl_freight' &&
-			DELETE_SUBSIDIARY_SERVICES.includes(serviceToBeDeleted)
+			data?.service_type === 'ftl_freight'
+			&& DELETE_SUBSIDIARY_SERVICES.includes(serviceToBeDeleted)
 		) {
 			deleted_services = [];
 			deleted_services = (servicesList || []).filter(
@@ -126,21 +125,21 @@ function DeleteConfirmation({
 		setLoading(true);
 		try {
 			const payload = {
-				id: data?.checkout_id ? data?.checkout_id : data?.spot_search_id,
-				service: serviceToBeDeleted,
-				[service_type]: params,
+				id             : data?.checkout_id ? data?.checkout_id : data?.spot_search_id,
+				service        : serviceToBeDeleted,
+				[service_type] : params,
 			};
 
 			const res = await updateSpotSearchApi.trigger({ data: payload });
 
 			if (!res.hasError) {
-				toast.success('Service deleted successfully!');
+				Toast.success('Service deleted successfully!');
 				setLoading(false);
 				setShow(false);
 				refetch();
 			}
 		} catch (err) {
-			showErrorsInToast(err?.data);
+			Toast.error(err?.data);
 			setShow(false);
 			setLoading(false);
 		}
@@ -165,7 +164,7 @@ function DeleteConfirmation({
 				)}?`}
 			</h2>
 
-			<ButtonWrap>
+			<div className={styles.button_wrap}>
 				<Button
 					id="search_results_additional_service_delete_cancel_btn"
 					onClick={() => {
@@ -179,9 +178,9 @@ function DeleteConfirmation({
 
 				<Button
 					style={{
-						background: '#ffffff',
-						color: '#000000',
-						border: '1px solid #000000',
+						background : '#ffffff',
+						color      : '#000000',
+						border     : '1px solid #000000',
 					}}
 					onClick={() => handleDeleteService()}
 					disabled={loading}
@@ -189,7 +188,7 @@ function DeleteConfirmation({
 				>
 					Delete
 				</Button>
-			</ButtonWrap>
+			</div>
 		</>
 	);
 }

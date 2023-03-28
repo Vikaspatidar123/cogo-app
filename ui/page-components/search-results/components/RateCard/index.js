@@ -1,15 +1,18 @@
-import React, { useState } from 'react';
+import GLOBAL_CONSTANTS from '@cogo/globalization/constants/globals.json';
+import formatDate from '@cogo/globalization/utils/formatDate';
 import { useSelector } from '@cogo/store';
 import { Flex } from '@cogoport/front/components';
 import { startCase } from '@cogoport/front/utils';
-import formatDate from '@cogo/globalization/utils/formatDate';
-import GLOBAL_CONSTANTS from '@cogo/globalization/constants/globals.json';
 import { IcCFtick } from '@cogoport/icons-react';
-import Quotation from './Quotation';
-import Route from './Route';
-import QuotationDetails from './QuotationDetails';
+import React, { useState } from 'react';
+
+import DetentionDemurrage from './DetentionDemurrage';
 import HaulageText from './HaulageText';
 import Promocode from './Promocode';
+import Quotation from './Quotation';
+import QuotationDetails from './QuotationDetails';
+import Route from './Route';
+import ScheduleDetails from './ScheduleDetails';
 import {
 	Container,
 	Card,
@@ -34,58 +37,56 @@ import {
 	FclTransitTime,
 	Schedules,
 } from './styles';
-import DetentionDemurrage from './DetentionDemurrage';
-import { FclTags } from './Tags/FclTags';
 import AirTags from './Tags/AirTags';
-import ScheduleDetails from './ScheduleDetails';
+import { FclTags } from './Tags/FclTags';
 
 const RATE_SOURCE_MAPPING = {
-	spot_rates: 'System Rate',
-	spot_negotiation_rate: 'Enquiry Reverted Rate',
-	predicted: 'Predicted Rate',
-	cogo_assured_rate: 'Assured',
+	spot_rates            : 'System Rate',
+	spot_negotiation_rate : 'Enquiry Reverted Rate',
+	predicted             : 'Predicted Rate',
+	cogo_assured_rate     : 'Assured',
 };
 
 const detailsToShow = (data, details) => {
 	const detailsData = [
 		{
 			value:
-				data?.transit_time &&
-				['air_freight', 'lcl_freight'].includes(data?.service_type)
+				data?.transit_time
+				&& ['air_freight', 'lcl_freight'].includes(data?.service_type)
 					? `Transit Time - ${data?.transit_time || 0} ${
-							['lcl_freight'].includes(data?.service_type) ? 'Days' : 'Hours'
+						['lcl_freight'].includes(data?.service_type) ? 'Days' : 'Hours'
 					  }  `
 					: null,
 		},
 
 		{
 			value:
-				details?.chargeable_weight &&
-				['air_freight'].includes(data?.service_type)
+				details?.chargeable_weight
+				&& ['air_freight'].includes(data?.service_type)
 					? `Chargeable weight - ${details?.chargeable_weight || 0}kgs`
 					: null,
 		},
 
 		{
 			value:
-				(data?.origin_storage?.free_limit ||
-					data?.origin_storage?.free_limit === 0) &&
-				['air_freight', 'lcl_freight'].includes(data?.service_type)
+				(data?.origin_storage?.free_limit
+					|| data?.origin_storage?.free_limit === 0)
+				&& ['air_freight', 'lcl_freight'].includes(data?.service_type)
 					? `${
-							data?.origin_storage?.free_limit || 0
+						data?.origin_storage?.free_limit || 0
 					  } free origin storage hours `
 					: null,
 		},
 
 		{
 			value:
-				(data?.destination_storage?.free_limit ||
-					data?.destination_storage?.free_limit === 0) &&
-				['air_freight', 'lcl_freight'].includes(data?.service_type)
+				(data?.destination_storage?.free_limit
+					|| data?.destination_storage?.free_limit === 0)
+				&& ['air_freight', 'lcl_freight'].includes(data?.service_type)
 					? `${
-							data?.destination_storage?.free_limit || 0
+						data?.destination_storage?.free_limit || 0
 					  } free destination storage ${
-							data?.service_type === 'air_freight' ? 'hours' : 'days'
+						data?.service_type === 'air_freight' ? 'hours' : 'days'
 					  }`
 					: null,
 		},
@@ -99,37 +100,31 @@ const detailsToShow = (data, details) => {
 	];
 
 	return detailsData
-		.map((item) =>
-			item?.value ? (
-				<Flex style={{ alignItems: 'center', width: '40%', margin: '4px' }}>
-					<IcCFtick style={{ fontSize: '16px', color: 'red' }} />
-					<ExtraDetails>{item?.value}</ExtraDetails>
-				</Flex>
-			) : null,
-		)
+		.map((item) => (item?.value ? (
+			<Flex style={{ alignItems: 'center', width: '40%', margin: '4px' }}>
+				<IcCFtick style={{ fontSize: '16px', color: 'red' }} />
+				<ExtraDetails>{item?.value}</ExtraDetails>
+			</Flex>
+		) : null))
 		.filter((item) => !!item);
 };
 
-const tagsToShow = (data) => {
-	return data?.tags
-		?.map((item) =>
-			item ? (
-				<Flex style={{ alignItems: 'center', width: '40%', margin: '4px' }}>
-					<IcCFtick style={{ fontSize: '16px' }} />
+const tagsToShow = (data) => data?.tags
+	?.map((item) => (item ? (
+		<Flex style={{ alignItems: 'center', width: '40%', margin: '4px' }}>
+			<IcCFtick style={{ fontSize: '16px' }} />
 
-					<ExtraDetails>{item}</ExtraDetails>
-				</Flex>
-			) : null,
-		)
-		.filter((item) => !!item);
-};
+			<ExtraDetails>{item}</ExtraDetails>
+		</Flex>
+	) : null))
+	.filter((item) => !!item);
 
 function RateCard(props) {
 	const { scope, isMobile, partnerId } = useSelector(
 		({ general, profile }) => ({
-			scope: general?.scope,
-			isMobile: general?.isMobile,
-			partnerId: profile?.partner?.id,
+			scope     : general?.scope,
+			isMobile  : general?.isMobile,
+			partnerId : profile?.partner?.id,
 		}),
 	);
 
@@ -154,16 +149,14 @@ function RateCard(props) {
 		(x) => x.shipping_line_id === scheduleId,
 	);
 	const isOriginHaulageRates = !!Object.values(data?.service_rates).find(
-		(service) =>
-			service?.is_rate_available &&
-			service?.service_type === 'haulage_freight' &&
-			service?.trade_type === 'export',
+		(service) => service?.is_rate_available
+			&& service?.service_type === 'haulage_freight'
+			&& service?.trade_type === 'export',
 	);
 	const isDestinationHaulageRates = !!Object.values(data?.service_rates).find(
-		(service) =>
-			service?.is_rate_available &&
-			service?.service_type === 'haulage_freight' &&
-			service?.trade_type === 'import',
+		(service) => service?.is_rate_available
+			&& service?.service_type === 'haulage_freight'
+			&& service?.trade_type === 'import',
 	);
 
 	let flag = false;
@@ -191,24 +184,28 @@ function RateCard(props) {
 						{data?.service_type === 'fcl_freight' ? <>(ETD)</> : null}
 						<Dates>
 							{formatDate({
-								date: data?.departure,
-								dateFormat: GLOBAL_CONSTANTS.formats.date['dd MMM yyyy'],
-								formatType: 'date',
+								date       : data?.departure,
+								dateFormat : GLOBAL_CONSTANTS.formats.date['dd MMM yyyy'],
+								formatType : 'date',
 							})}
 						</Dates>
 						<Line />
 						<Dates>
 							{formatDate({
-								date: data?.arrival,
-								dateFormat: GLOBAL_CONSTANTS.formats.date['dd MMM yyyy'],
-								formatType: 'date',
+								date       : data?.arrival,
+								dateFormat : GLOBAL_CONSTANTS.formats.date['dd MMM yyyy'],
+								formatType : 'date',
 							})}
 						</Dates>
 						{data?.service_type === 'fcl_freight' ? <>(ETA)</> : null}
 					</ScheduleDate>
 					{data?.service_type === 'fcl_freight' && data?.transit_time ? (
 						<FclTransitTime>
-							Transit Time : {data?.transit_time} Days
+							Transit Time :
+							{' '}
+							{data?.transit_time}
+							{' '}
+							Days
 						</FclTransitTime>
 					) : null}
 				</Schedules>
@@ -221,9 +218,9 @@ function RateCard(props) {
 				<RateValidityDate>
 					<Dates>
 						{formatDate({
-							date: data?.validity_start,
-							dateFormat: GLOBAL_CONSTANTS.formats.date['dd MMM yyyy'],
-							formatType: 'date',
+							date       : data?.validity_start,
+							dateFormat : GLOBAL_CONSTANTS.formats.date['dd MMM yyyy'],
+							formatType : 'date',
 						})}
 					</Dates>
 
@@ -231,9 +228,9 @@ function RateCard(props) {
 
 					<Dates>
 						{formatDate({
-							date: data?.validity_end,
-							dateFormat: GLOBAL_CONSTANTS.formats.date['dd MMM yyyy'],
-							formatType: 'date',
+							date       : data?.validity_end,
+							dateFormat : GLOBAL_CONSTANTS.formats.date['dd MMM yyyy'],
+							formatType : 'date',
 						})}
 					</Dates>
 				</RateValidityDate>
@@ -265,20 +262,24 @@ function RateCard(props) {
 								)}
 
 								<Text className={data?.source}>
-									{RATE_SOURCE_MAPPING[data?.source] || 'System Rate'}{' '}
+									{RATE_SOURCE_MAPPING[data?.source] || 'System Rate'}
+									{' '}
 								</Text>
 							</CogoAssured>
 
-							{['air_freight', 'fcl_freight'].includes(data?.service_type) &&
-							data?.cogo_entity_id &&
-							partnerId !== data?.cogo_entity_id ? (
+							{['air_freight', 'fcl_freight'].includes(data?.service_type)
+							&& data?.cogo_entity_id
+							&& partnerId !== data?.cogo_entity_id ? (
 								<CogoUniverse>via Cogo Universe</CogoUniverse>
-							) : null}
+								) : null}
 						</Flex>
 
 						{data?.service_type === 'haulage_freight' ? (
 							<Wrapper className="payment_term">
-								<Text> {startCase(data?.haulage_type)}</Text>
+								<Text>
+									{' '}
+									{startCase(data?.haulage_type)}
+								</Text>
 							</Wrapper>
 						) : null}
 
@@ -332,11 +333,13 @@ function RateCard(props) {
 								if (item?.remarks?.length > 0) {
 									return (
 										<CRContainer>
-											<Code>{item?.code} :</Code>
+											<Code>
+												{item?.code}
+												{' '}
+												:
+											</Code>
 											<Code className="remarks">
-												{(item?.remarks || []).map((items) => {
-													return <div>{items}</div>;
-												})}
+												{(item?.remarks || []).map((items) => <div>{items}</div>)}
 											</Code>
 										</CRContainer>
 									);

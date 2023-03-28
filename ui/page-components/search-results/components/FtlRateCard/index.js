@@ -1,14 +1,17 @@
-import React, { useState } from 'react';
+import TruckingTouchPoints from '@cogo/business-modules/components/TruckingTouchPoints';
 import { useSelector } from '@cogo/store';
 import { Flex } from '@cogoport/front/components';
-import { startCase } from 'lodash';
-import TruckingTouchPoints from '@cogo/business-modules/components/TruckingTouchPoints';
 import { IcCFtick } from '@cogoport/icons-react';
-import Quotation from '../RateCard/Quotation';
-import Route from '../RateCard/Route';
-import QuotationDetails from '../RateCard/QuotationDetails';
+import { startCase } from 'lodash';
+import React, { useState } from 'react';
+
+import ContractRateCard from '../ContractRateCard';
 import HaulageText from '../RateCard/HaulageText';
 import Promocode from '../RateCard/Promocode';
+import Quotation from '../RateCard/Quotation';
+import QuotationDetails from '../RateCard/QuotationDetails';
+import Route from '../RateCard/Route';
+
 import ContainerDetails from './ContainerDetails';
 import {
 	Container,
@@ -26,66 +29,59 @@ import {
 	TripTypeDiv,
 	TripTypeTag,
 } from './styles';
-import ContractRateCard from '../ContractRateCard';
 
 const RATE_SOURCE_MAPPING = {
-	spot_rates: 'System Rate',
-	spot_negotiation_rate: 'Enquiry Reverted Rate',
-	predicted: 'Predicted Rate',
-	cogo_assured_rate: 'Assured',
+	spot_rates            : 'System Rate',
+	spot_negotiation_rate : 'Enquiry Reverted Rate',
+	predicted             : 'Predicted Rate',
+	cogo_assured_rate     : 'Assured',
 };
 
 const detailsToShow = (data) => {
 	const details = [
 		{
 			value:
-				data?.destination_detention?.free_limit ||
-				data?.destination_detention?.free_limit === 0 ||
-				data?.search_type === 'fcl_freight'
+				data?.destination_detention?.free_limit
+				|| data?.destination_detention?.free_limit === 0
+				|| data?.search_type === 'fcl_freight'
 					? `${
-							data?.destination_detention?.free_limit || 0
+						data?.destination_detention?.free_limit || 0
 					  } free detention days`
 					: null,
 		},
 		{
 			value:
-				data?.destination_storage?.free_limit ||
-				data?.destination_storage?.free_limit === 0 ||
-				['air_freight', 'lcl_freight'].includes(data?.search_type)
+				data?.destination_storage?.free_limit
+				|| data?.destination_storage?.free_limit === 0
+				|| ['air_freight', 'lcl_freight'].includes(data?.search_type)
 					? `${data?.destination_storage?.free_limit || 0} free storage ${
-							data?.search_type === 'air_freight' ? 'hours' : 'days'
+						data?.search_type === 'air_freight' ? 'hours' : 'days'
 					  }`
 					: null,
 		},
 	];
 
 	return details
-		.map((item) =>
-			item?.value ? (
-				<Flex style={{ alignItems: 'center', width: '40%', margin: '4px' }}>
-					<IcCFtick style={{ fontSize: '16px', color: 'red' }} />
-					<ExtraDetails>{item?.value}</ExtraDetails>
-				</Flex>
-			) : null,
-		)
+		.map((item) => (item?.value ? (
+			<Flex style={{ alignItems: 'center', width: '40%', margin: '4px' }}>
+				<IcCFtick style={{ fontSize: '16px', color: 'red' }} />
+				<ExtraDetails>{item?.value}</ExtraDetails>
+			</Flex>
+		) : null))
 		.filter((item) => !!item);
 };
 
-const tagsToShow = (data) => {
-	return data?.tags
-		?.map((item) =>
-			item ? (
-				<Flex style={{ alignItems: 'center', width: '40%', margin: '4px' }}>
-					<IcCFtick style={{ fontSize: '16px' }} />
+const tagsToShow = (data) => data?.tags
+	?.map((item) => (item ? (
+		<Flex style={{ alignItems: 'center', width: '40%', margin: '4px' }}>
+			<IcCFtick style={{ fontSize: '16px' }} />
 
-					<ExtraDetails>{item}</ExtraDetails>
-				</Flex>
-			) : null,
-		)
-		.filter((item) => !!item);
-};
+			<ExtraDetails>{item}</ExtraDetails>
+		</Flex>
+	) : null))
+	.filter((item) => !!item);
 
-const FtlRateCard = ({
+function FtlRateCard({
 	searchData = {},
 	data = {},
 	setState = () => {},
@@ -95,7 +91,7 @@ const FtlRateCard = ({
 	enquiry_page = false,
 	results_type = '',
 	id,
-}) => {
+}) {
 	if (data?.source === 'contract') {
 		return <ContractRateCard data={data} details={data} />;
 	}
@@ -107,21 +103,19 @@ const FtlRateCard = ({
 	const { enroute = [] } = primary_service || {};
 
 	const { scope, isMobile } = useSelector(({ general }) => ({
-		scope: general?.scope,
-		isMobile: general?.isMobile,
+		scope    : general?.scope,
+		isMobile : general?.isMobile,
 	}));
 
 	const isOriginHaulageRates = !!Object.values(data?.service_rates).find(
-		(service) =>
-			service?.is_rate_available &&
-			service?.service_type === 'haulage_freight' &&
-			service?.trade_type === 'export',
+		(service) => service?.is_rate_available
+			&& service?.service_type === 'haulage_freight'
+			&& service?.trade_type === 'export',
 	);
 	const isDestinationHaulageRates = !!Object.values(data?.service_rates).find(
-		(service) =>
-			service?.is_rate_available &&
-			service?.service_type === 'haulage_freight' &&
-			service?.trade_type === 'import',
+		(service) => service?.is_rate_available
+			&& service?.service_type === 'haulage_freight'
+			&& service?.trade_type === 'import',
 	);
 
 	const forwardJourney = enroute.filter(
@@ -132,7 +126,7 @@ const FtlRateCard = ({
 		(element) => element.trip_type === 'round',
 	);
 
-	const TripType = () => {
+	function TripType() {
 		return (
 			<>
 				{data?.service_type !== 'ltl_freight' ? (
@@ -142,7 +136,7 @@ const FtlRateCard = ({
 				) : null}
 			</>
 		);
-	};
+	}
 
 	return (
 		<Container
@@ -208,9 +202,7 @@ const FtlRateCard = ({
 					<LineVrt />
 
 					{returnJourney?.length > 0 || forwardJourney?.length > 0 ? (
-						<>
-							<TruckingTouchPoints touchPoints={enroute} />
-						</>
+						<TruckingTouchPoints touchPoints={enroute} />
 					) : null}
 
 					<LineVrt />
@@ -247,6 +239,6 @@ const FtlRateCard = ({
 			</AnimatedContainer>
 		</Container>
 	);
-};
+}
 
 export default FtlRateCard;

@@ -1,7 +1,3 @@
-import { useRouter } from '@/packages/next';
-import { useSelector } from '@/packages/store';
-import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
-import getCountryDetails from '@/ui/commons/utils/getCountryDetails';
 import isServicableCountry from '@cogo/app-search/utils/isServicableCountry';
 // import { Flex } from '@cogoport/front/components';
 // import { Skeleton } from '@cogoport/front/components/admin';
@@ -31,6 +27,11 @@ import OrganizationDetails from './OrganizationDetails';
 import RateCards from './RateCards';
 import RequestRate from './RequestRate';
 import SellRate from './SellRate';
+
+import { useRouter } from '@/packages/next';
+import { useSelector } from '@/packages/store';
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
+import getCountryDetails from '@/ui/commons/utils/getCountryDetails';
 // import {
 // 	Container,
 // 	Text,

@@ -1,18 +1,18 @@
 import CheckboxGroup from '@cogo/business-modules/form/components/Business/Checkbox';
 import Input from '@cogo/business-modules/form/components/Controlled/InputController';
-import withControl from '@cogo/business-modules/form/components/Controlled/withControl';
 import SelectController from '@cogo/business-modules/form/components/Controlled/SelectController';
 import TextAreaController from '@cogo/business-modules/form/components/Controlled/TextareaControlled';
-import ErrorMessage from './ErrorMessage';
+import withControl from '@cogo/business-modules/form/components/Controlled/withControl';
 
+import ErrorMessage from './ErrorMessage';
 import { Container, Label, Group, Price } from './styles';
 
-const DislikeFeedbackModalFormElements = ({
+function DislikeFeedbackModalFormElements({
 	showElements,
 	formValues,
 	errors,
 	fields,
-}) => {
+}) {
 	const {
 		feedbacks,
 		preferred_freight_rate,
@@ -52,8 +52,8 @@ const DislikeFeedbackModalFormElements = ({
 					</Price>
 					<ErrorMessage
 						message={
-							errors.preferred_freight_rate?.message ||
-							errors.preferred_freight_rate_currency?.message
+							errors.preferred_freight_rate?.message
+							|| errors.preferred_freight_rate_currency?.message
 						}
 					/>
 				</Group>
@@ -76,6 +76,6 @@ const DislikeFeedbackModalFormElements = ({
 			})}
 		</Container>
 	);
-};
+}
 
 export default DislikeFeedbackModalFormElements;

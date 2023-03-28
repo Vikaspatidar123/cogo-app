@@ -1,0 +1,29 @@
+.scroll {
+	overflow-y: auto;
+	transition: all 0.3s;
+
+	@media (max-width: 760px) {
+		display: none;
+	}
+}
+
+.container {
+	background: #f9f9f9;
+	border-radius: 10px;
+	padding: 20px;
+	margin-bottom: 20px;
+	min-height: 344px;
+	transition: all 0.3s;
+
+	@media (max-width: 760px) {
+		display: none;
+	}
+}
+
+.title {
+	font-weight: bold;
+	font-size: 22px;
+	line-height: 26px;
+	color: black;
+	margin: 0 0 10px;
+}

@@ -1,19 +1,14 @@
-import React, { useState } from 'react';
-import { Modal, Button, Input } from '@cogoport/front/components';
+import { Button, Input, Modal } from '@cogoport/components';
 import { IcMSearchdark } from '@cogoport/icons-react';
+import React, { useState } from 'react';
+
+import useEnquiry from '../../../hooks/useEnquiry';
+
 import Service from './Service';
 import ServiceForm from './ServiceForm';
-import useEnquiry from '../../../hooks/useEnquiry';
-import {
-	Container,
-	AnimatedContainer,
-	ButtonContainer,
-	AddServiceHeading,
-	InputWrap,
-	ServiceFormWrap,
-} from './styles';
+import styles from './styles.module.css';
 
-const MultiServiceEnquiry = ({
+function MultiServiceEnquiry({
 	detail = {},
 	show = false,
 	onClose = () => {},
@@ -28,7 +23,7 @@ const MultiServiceEnquiry = ({
 	setAddedServiceEnquiry,
 	prefillDetails,
 	setPrefillDetails,
-}) => {
+}) {
 	const { negotiation_services } = detail;
 
 	const [serviceID, setServiceID] = useState();
@@ -69,75 +64,74 @@ const MultiServiceEnquiry = ({
 		results_type,
 	});
 
-	const serviceItem = (service) => {
-		return (
-			<>
-				<Service
-					service={service}
-					detail={detail}
-					setSelectedService={setSelectedService}
-					isOpen={
-						selectedService?.service === service?.service &&
-						selectedService?.trade_type === service?.trade_type &&
-						!(detail?.negotiation_services || []).length
+	const serviceItem = (service) => (
+		<>
+			<Service
+				service={service}
+				detail={detail}
+				setSelectedService={setSelectedService}
+				isOpen={
+						selectedService?.service === service?.service
+						&& selectedService?.trade_type === service?.trade_type
+						&& !(detail?.negotiation_services || []).length
 					}
-					results_type={results_type}
-					payLoad={payLoad}
-					setPayLoad={setPayLoad}
-					setServiceID={setServiceID}
-					addedServiceEnquiry={addedServiceEnquiry}
-					setAddedServiceEnquiry={setAddedServiceEnquiry}
-					clubbingSimilarNegoServices={clubbingSimilarNegoServices}
-					handleDeletion={handleDeletion}
-					formData={formData}
-					negotiationServiceIds={negotiationServiceIds}
-					negoServicesArr={negoServicesArr}
-				/>
+				results_type={results_type}
+				payLoad={payLoad}
+				setPayLoad={setPayLoad}
+				setServiceID={setServiceID}
+				addedServiceEnquiry={addedServiceEnquiry}
+				setAddedServiceEnquiry={setAddedServiceEnquiry}
+				clubbingSimilarNegoServices={clubbingSimilarNegoServices}
+				handleDeletion={handleDeletion}
+				formData={formData}
+				negotiationServiceIds={negotiationServiceIds}
+				negoServicesArr={negoServicesArr}
+			/>
 
-				<AnimatedContainer
-					type={
-						selectedService?.service === service?.service &&
-						selectedService?.trade_type === service?.trade_type &&
-						!(detail?.negotiation_services || []).length
+			<div
+				className={styles.animated_container}
+				type={
+						selectedService?.service === service?.service
+						&& selectedService?.trade_type === service?.trade_type
+						&& !(detail?.negotiation_services || []).length
 							? 'enter'
 							: 'exit'
 					}
-				>
-					<ServiceFormWrap>
-						<ServiceForm
-							detail={detail}
-							service={selectedService}
-							location={location}
-							onClose={() => setSelectedService(null)}
-							refetch={refetch}
-							handleServiceAdd={handleChange}
-							formData={formData}
-							setFormData={setFormData}
-							apiData={apiData}
-							setApiData={setApiData}
-							setSelectedService={setSelectedService}
-							setAddedServiceEnquiry={setAddedServiceEnquiry}
-							addedServiceEnquiry={addedServiceEnquiry}
-							prefillDetails={prefillDetails}
-							setPrefillDetails={setPrefillDetails}
-						/>
-					</ServiceFormWrap>
-				</AnimatedContainer>
-			</>
-		);
-	};
+			>
+				<div className={styles.service_form_wrap}>
+					<ServiceForm
+						detail={detail}
+						service={selectedService}
+						location={location}
+						onClose={() => setSelectedService(null)}
+						refetch={refetch}
+						handleServiceAdd={handleChange}
+						formData={formData}
+						setFormData={setFormData}
+						apiData={apiData}
+						setApiData={setApiData}
+						setSelectedService={setSelectedService}
+						setAddedServiceEnquiry={setAddedServiceEnquiry}
+						addedServiceEnquiry={addedServiceEnquiry}
+						prefillDetails={prefillDetails}
+						setPrefillDetails={setPrefillDetails}
+					/>
+				</div>
+			</div>
+		</>
+	);
 
 	return show ? (
 		<Modal show={show} width={widthCondition} onClose={onClose} position="">
-			<Container>
-				<AddServiceHeading>
+			<div className={styles.container}>
+				<div className={styles.add_service_heading}>
 					{!negotiationServiceIds?.length
 						? 'Add Services for Enquiry'
 						: 'Selected Service for Enquiry Creation'}
-				</AddServiceHeading>
+				</div>
 
 				{!negotiationServiceIds?.length ? (
-					<InputWrap>
+					<div className={styles.input_wrap}>
 						<Input
 							type="text"
 							placeholder="Search any service"
@@ -149,25 +143,23 @@ const MultiServiceEnquiry = ({
 								<IcMSearchdark style={{ width: '1.5em', height: '1.5em' }} />
 							}
 						/>
-					</InputWrap>
+					</div>
 				) : null}
 
-				{!negotiationServiceIds.length &&
-					(val?.length
+				{!negotiationServiceIds.length
+					&& (val?.length
 						? notSelectedServices
 						: [...mainServices, ...originServices, ...destinationServices]
 					).map((service) => serviceItem(service))}
 
 				{negotiationServiceIds?.length
 					? [...mainServices, ...originServices, ...destinationServices]
-							.filter((serviceObj) =>
-								negoServicesArr.includes(serviceObj?.service_type),
-							)
-							?.map((service) => serviceItem(service))
+						.filter((serviceObj) => negoServicesArr.includes(serviceObj?.service_type))
+						?.map((service) => serviceItem(service))
 					: null}
 
 				{negotiationServiceIds?.length ? null : (
-					<ButtonContainer>
+					<div className={styles.button_container}>
 						<Button
 							onClick={createEnquiry}
 							disabled={(negotiation_services || []).length > 0 || isLoading}
@@ -177,10 +169,10 @@ const MultiServiceEnquiry = ({
 						>
 							Create Enquiry
 						</Button>
-					</ButtonContainer>
+					</div>
 				)}
-			</Container>
+			</div>
 		</Modal>
 	) : null;
-};
+}
 export default MultiServiceEnquiry;

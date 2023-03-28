@@ -1,13 +1,14 @@
 import { Flex } from '@cogoport/front/components';
+
 import ContainerDetailsListItem from './ContainerDetailsListItem';
 
-const ContainerDetailsList = ({
+function ContainerDetailsList({
 	list,
 	editFormId,
 	onClickListEditButton,
 	onClickListDeleteButton,
 	renderCargoContainerDetailsForm,
-}) => {
+}) {
 	return (
 		<Flex direction="column" paddingBottom={16}>
 			{list.map((item, index) => {
@@ -34,6 +35,6 @@ const ContainerDetailsList = ({
 			})}
 		</Flex>
 	);
-};
+}
 
 export default ContainerDetailsList;

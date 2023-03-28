@@ -1,15 +1,16 @@
-import React, { useState, useEffect } from 'react';
-import { useSelector } from '@cogo/store';
-import { Button, Modal } from '@cogoport/front/components';
 import SearchForm from '@cogo/app-search/common/SearchForm';
 import formatMainServiceData from '@cogo/app-search/utils/format-main-service-data';
 import { APP_EVENT, trackEvent } from '@cogo/commons/analytics';
-import LocationDetails from './LocationDetails';
+import { useSelector } from '@cogo/store';
+import { Button, Modal } from '@cogoport/front/components';
+import React, { useState, useEffect } from 'react';
+
 import AdditionalServices from '../AdditionalServices';
+
+import ContainerDetails from './ContainerDetails';
 import Mapping from './icons-services-mapping';
 import Loading from './loading';
-import ContainerDetails from './ContainerDetails';
-
+import LocationDetails from './LocationDetails';
 import {
 	Container,
 	Text,
@@ -28,7 +29,7 @@ import {
 
 const NON_STANDALONE_SEERVICES = ['fcl_cfs'];
 
-const Info = ({
+function Info({
 	data = {},
 	detail = {},
 	setOpen = () => {},
@@ -41,7 +42,7 @@ const Info = ({
 	results_type = '',
 	rates = [],
 	possible_additional_services = [],
-}) => {
+}) {
 	const { scope, query } = useSelector(({ general }) => general);
 
 	const [editSearch, setEditSearch] = useState(false);
@@ -65,10 +66,10 @@ const Info = ({
 				mode={data.search_type}
 				onPush={() => setEditSearch(false)}
 				extraParams={{
-					importer_exporter_id: importer_exporter_details.id,
-					importer_exporter_name: importer_exporter_details.name,
-					importer_exporter_branch_id: importer_exporter_details?.branch_id,
-					user_id: importer_exporter_details?.user_id,
+					importer_exporter_id        : importer_exporter_details.id,
+					importer_exporter_name      : importer_exporter_details.name,
+					importer_exporter_branch_id : importer_exporter_details?.branch_id,
+					user_id                     : importer_exporter_details?.user_id,
 				}}
 				data={formatMainServiceData(
 					data?.search_type,
@@ -81,13 +82,13 @@ const Info = ({
 
 			<Button
 				style={{
-					marginBottom: isMobile ? 0 : paddingXButton,
-					background: 'white',
-					color: 'black',
-					fontSize: 18,
-					padding: '6px 10px',
-					height: 36,
-					marginLeft: 8,
+					marginBottom : isMobile ? 0 : paddingXButton,
+					background   : 'white',
+					color        : 'black',
+					fontSize     : 18,
+					padding      : '6px 10px',
+					height       : 36,
+					marginLeft   : 8,
 				}}
 				onClick={() => setEditSearch(false)}
 			>
@@ -126,9 +127,9 @@ const Info = ({
 					</div>
 				) : null}
 
-				{!NON_STANDALONE_SEERVICES.includes(data?.search_type) &&
-				!query?.shipment_id &&
-				results_type !== 'rfq' ? (
+				{!NON_STANDALONE_SEERVICES.includes(data?.search_type)
+				&& !query?.shipment_id
+				&& results_type !== 'rfq' ? (
 					<ButtonStyled
 						onClick={() => {
 							if (scope === 'app') {
@@ -144,7 +145,7 @@ const Info = ({
 							style={{ width: '3em', height: '3em', margin: 'auto' }}
 						/>
 					</ButtonStyled>
-				) : null}
+					) : null}
 			</FlexRow>
 		</Container>
 	);
@@ -182,6 +183,6 @@ const Info = ({
 			) : null}
 		</>
 	);
-};
+}
 
 export default Info;

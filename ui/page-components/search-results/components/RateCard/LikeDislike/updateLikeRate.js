@@ -1,6 +1,6 @@
-import { useState } from 'react';
-import { useSelector } from '@cogo/store';
 import { useRequest } from '@cogo/commons/hooks';
+import { useSelector } from '@cogo/store';
+import { useState } from 'react';
 
 const updateLikeRate = ({ details, updateRate, rate }) => {
 	const {
@@ -24,10 +24,10 @@ const updateLikeRate = ({ details, updateRate, rate }) => {
 			setLoading(true);
 
 			const params = {
-				id: search_id,
-				is_liked: true,
-				selected_card: rate.card,
-				performed_by_org_id: details.importer_exporter.id,
+				id                  : search_id,
+				is_liked            : true,
+				selected_card       : rate.card,
+				performed_by_org_id : details.importer_exporter.id,
 			};
 
 			await trigger({
@@ -35,9 +35,9 @@ const updateLikeRate = ({ details, updateRate, rate }) => {
 			});
 
 			updateRate(rate.card, {
-				likes_count: (rate.likes_count || 0) + 1,
-				is_liked: true,
-				is_disliked: false,
+				likes_count : (rate.likes_count || 0) + 1,
+				is_liked    : true,
+				is_disliked : false,
 			});
 		} catch (err) {
 			console.log(err);

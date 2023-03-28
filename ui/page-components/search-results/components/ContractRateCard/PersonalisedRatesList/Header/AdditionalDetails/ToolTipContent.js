@@ -1,19 +1,18 @@
 import React from 'react';
-import { Dot, LocationDiv } from './styles';
 
-const ToolTipContent = ({ leftPincodes }) => {
+import styles from './styles.module.css';
+
+function ToolTipContent({ leftPincodes }) {
 	return (
 		<>
-			{(leftPincodes || []).map((item = {}) => {
-				return (
-					<LocationDiv>
-						<Dot />
-						{item.display_name}
-					</LocationDiv>
-				);
-			})}
+			{(leftPincodes || []).map((item = {}) => (
+				<div className={styles.location_div}>
+					<div className={styles.dot} />
+					{item.display_name}
+				</div>
+			))}
 		</>
 	);
-};
+}
 
 export default ToolTipContent;

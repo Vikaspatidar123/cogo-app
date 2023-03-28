@@ -1,30 +1,38 @@
-import { ToolTip } from '@cogoport/front/components';
-import { Pincode, TouchPoints, PincodeLink, Container } from './styles';
+import { Tooltip } from '@cogoport/components';
+
+import styles from './styles.module.css';
 import ToolTipContent from './ToolTipContent';
 
-const AdditionalDetails = ({ touch_point_locations = [] }) => {
+function AdditionalDetails({ touch_point_locations = [] }) {
 	const leftPincodes = touch_point_locations.slice(
 		1,
 		touch_point_locations.length,
 	);
 
 	return (
-		<Container>
-			<TouchPoints>Touch Points ({touch_point_locations.length}):</TouchPoints>
-			<Pincode>
+		<div className={styles.container}>
+			<div className={styles.touch_points}>
+				Touch Points (
+				{touch_point_locations.length}
+				):
+			</div>
+			<div className={styles.pin_code}>
 				{touch_point_locations?.[0]?.name}
-				<ToolTip
+				<Tooltip
 					placement="bottom"
 					content={<ToolTipContent leftPincodes={leftPincodes} />}
 					theme="light"
 				>
 					{touch_point_locations.length > 1 && (
-						<PincodeLink>+{touch_point_locations.length - 1}</PincodeLink>
+						<div className={styles.pin_code_link}>
+							+
+							{touch_point_locations.length - 1}
+						</div>
 					)}
-				</ToolTip>
-			</Pincode>
-		</Container>
+				</Tooltip>
+			</div>
+		</div>
 	);
-};
+}
 
 export default AdditionalDetails;

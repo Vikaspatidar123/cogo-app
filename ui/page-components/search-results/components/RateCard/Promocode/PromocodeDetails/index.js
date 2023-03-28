@@ -1,7 +1,6 @@
 import Modal from '@cogoport/front/components/admin/Modal';
 
 import PromocodeThumbnail from './PromocodeThumbnail';
-
 import {
 	HeaderText,
 	Container,
@@ -36,7 +35,9 @@ function PromocodeDetails({ promotion = {}, setShowDetails = () => {} }) {
 						<TermsTitle>Terms & Conditions </TermsTitle>
 						{promotion.terms_and_conditions?.map((term, i) => (
 							<TermsContent>
-								{i + 1}. {term}
+								{i + 1}
+								.
+								{term}
 							</TermsContent>
 						))}
 					</Terms>

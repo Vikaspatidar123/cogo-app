@@ -1,17 +1,18 @@
-import { ToolTip } from '@cogoport/front/components/admin';
-import GLOBAL_CONSTANTS from '@cogo/globalization/constants/globals.json';
-import formatAmount from '@cogo/globalization/utils/formatAmount';
-import { Rate, TooltipContainer, InfoIcon, Flex } from './styles';
+import { Tooltip } from '@cogoport/components';
+import { IcMInfo } from '@cogoport/icons-react';
 
-const tooltipContent = () => {
-	return (
-		<TooltipContainer>
-			<div>Inclusive of Taxes</div>
-		</TooltipContainer>
-	);
-};
+import styles from './styles.module.css';
 
-const PremiumRate = (props) => {
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
+import formatAmount from '@/ui/commons/utils/formatAmount';
+
+const tooltipContent = () => (
+	<div className={styles.tool_tip_container}>
+		<div>Inclusive of Taxes</div>
+	</div>
+);
+
+function PremiumRate(props) {
 	const { rateData = {} } = props;
 
 	const {
@@ -22,77 +23,75 @@ const PremiumRate = (props) => {
 	} = rateData || {};
 
 	return (
-		<>
-			<div>
-				<Rate>
-					<Flex>
-						Premium:
-						<ToolTip theme="light" placement="top" content={tooltipContent()}>
-							<sup>
-								<InfoIcon />
-							</sup>
-						</ToolTip>
-					</Flex>
+		<div>
+			<div className={styles.rate}>
+				<div className={styles.flex}>
+					Premium:
+					<Tooltip theme="light" placement="top" content={tooltipContent()}>
+						<sup>
+							<IcMInfo />
+						</sup>
+					</Tooltip>
+				</div>
 
-					<div>
-						{formatAmount({
-							amount: netPremium,
-							currency: GLOBAL_CONSTANTS.currency_code.INR,
-							options: {
-								style: 'currency',
-								currencyDisplay: 'code',
-								maximumFractionDigits: 2,
-							},
-						})}
-					</div>
-				</Rate>
-
-				<Rate>
-					<div>Platform Charges:</div>
-					<div>
-						{formatAmount({
-							amount: platformCharges,
-							currency: GLOBAL_CONSTANTS.currency_code.INR,
-							options: {
-								style: 'currency',
-								currencyDisplay: 'code',
-								maximumFractionDigits: 2,
-							},
-						})}
-					</div>
-				</Rate>
-
-				<Rate className="final">
-					<div>Convenience Fee:</div>
-					<div>
-						{formatAmount({
-							amount: convenienceFee,
-							currency: GLOBAL_CONSTANTS.currency_code.INR,
-							options: {
-								style: 'currency',
-								currencyDisplay: 'code',
-								maximumFractionDigits: 2,
-							},
-						})}
-					</div>
-				</Rate>
-
-				<Rate>
-					<div>Amount Payable:</div>
-					<div>
-						{formatAmount({
-							amount: totalApplicableCharges,
-							currency: GLOBAL_CONSTANTS.currency_code.INR,
-							options: {
-								style: 'currency',
-								currencyDisplay: 'code',
-								maximumFractionDigits: 2,
-							},
-						})}
-					</div>
-				</Rate>
+				<div>
+					{formatAmount({
+						amount   : netPremium,
+						currency : GLOBAL_CONSTANTS.currency_code.INR,
+						options  : {
+							style                 : 'currency',
+							currencyDisplay       : 'code',
+							maximumFractionDigits : 2,
+						},
+					})}
+				</div>
 			</div>
-		</>
+
+			<div className={styles.rate}>
+				<div>Platform Charges:</div>
+				<div>
+					{formatAmount({
+						amount   : platformCharges,
+						currency : GLOBAL_CONSTANTS.currency_code.INR,
+						options  : {
+							style                 : 'currency',
+							currencyDisplay       : 'code',
+							maximumFractionDigits : 2,
+						},
+					})}
+				</div>
+			</div>
+
+			<div className={`${styles.rate} ${styles.final}`}>
+				<div>Convenience Fee:</div>
+				<div>
+					{formatAmount({
+						amount   : convenienceFee,
+						currency : GLOBAL_CONSTANTS.currency_code.INR,
+						options  : {
+							style                 : 'currency',
+							currencyDisplay       : 'code',
+							maximumFractionDigits : 2,
+						},
+					})}
+				</div>
+			</div>
+
+			<div className={styles.rate}>
+				<div>Amount Payable:</div>
+				<div>
+					{formatAmount({
+						amount   : totalApplicableCharges,
+						currency : GLOBAL_CONSTANTS.currency_code.INR,
+						options  : {
+							style                 : 'currency',
+							currencyDisplay       : 'code',
+							maximumFractionDigits : 2,
+						},
+					})}
+				</div>
+			</div>
+		</div>
 	);
-};
+}
 export default PremiumRate;

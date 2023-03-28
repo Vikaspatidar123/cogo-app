@@ -13,11 +13,10 @@ const inco_terms = ['fca', 'fas', 'fob'];
 const { IN: INDIA_COUNTRY_ID } = GLOBAL_CONSTANTS.country_ids;
 
 export const showEnquiryFunc = (rates_count = 0, data = {}) => {
-	const notShowEnq =
-		inco_terms.includes(data?.inco_term) &&
-		data?.destination_country_id === INDIA_COUNTRY_ID &&
-		rates_count > 0 &&
-		data?.containers_count < 5;
+	const notShowEnq =		inco_terms.includes(data?.inco_term)
+		&& data?.destination_country_id === INDIA_COUNTRY_ID
+		&& rates_count > 0
+		&& data?.containers_count < 5;
 
 	// if (!notShowEnq) {
 	// 	notShowEnq =

@@ -1,16 +1,17 @@
-import Button from '@cogoport/front/components/admin/Button';
-import Grid from '@cogoport/front/components/Grid';
-import formatAmount from '@cogo/globalization/utils/formatAmount';
-import { BookingContainer, PerTruck, Text, ButtonContainer } from './styles';
+import { Button } from '@cogoport/components';
+
 import useCreateCheckout from '../../../../hooks/useCreateCheckout';
 
-const { Col } = Grid;
-const BookNow = ({
+import styles from './styles.module.css';
+
+import formatAmount from '@/ui/commons/utils/formatAmount';
+
+function BookNow({
 	perTruck,
 	service_type,
 	data = {},
 	spot_search_id = '',
-}) => {
+}) {
 	const { handleBook = () => {}, loading } = useCreateCheckout({
 		data,
 		spot_search_id,
@@ -24,61 +25,62 @@ const BookNow = ({
 	const renderPricePerType = () => {
 		if (service_type === 'air_freight' || service_type === 'ltl_freight') {
 			return (
-				<PerTruck>
-					<Text size="12px">Price Per Shipment:</Text>
-					<Text bold size="14px">
+				<div className={styles.per_truck}>
+					<div style={{ fontSize: '12px' }}>Price Per Shipment:</div>
+					<div style={{ fontWeight: 'bold' }}>
 						{formatAmount({
-							amount: data?.price,
-							currency: data?.total_price_currency,
-							options: {
-								style: 'currency',
-								currencyDisplay: 'symbol',
-								maximumFractionDigits: 0,
+							amount   : data?.price,
+							currency : data?.total_price_currency,
+							options  : {
+								style                 : 'currency',
+								currencyDisplay       : 'symbol',
+								maximumFractionDigits : 0,
 							},
 						})}
-					</Text>
-				</PerTruck>
+					</div>
+				</div>
 			);
 		}
 		if (service_type === 'ftl_freight') {
 			return (
-				<PerTruck>
-					<Text bold size="20px">
+				<div className={styles.per_truck}>
+					<div style={{ fontWeight: 'bold', fontSize: '20px' }}>
 						{formatAmount({
-							amount: data?.price,
-							currency: data?.total_price_currency,
-							options: {
-								style: 'currency',
-								currencyDisplay: 'symbol',
-								maximumFractionDigits: 0,
+							amount   : data?.price,
+							currency : data?.total_price_currency,
+							options  : {
+								style                 : 'currency',
+								currencyDisplay       : 'symbol',
+								maximumFractionDigits : 0,
 							},
 						})}
-					</Text>
-					<Text size="16px">/ truck</Text>
-				</PerTruck>
+					</div>
+					<div style={{ fontSize: '16px' }}>/ truck </div>
+				</div>
 			);
 		}
 		return null;
 	};
 	return (
-		<Col md={3}>
-			<BookingContainer>
+		<div style={{ display: 'flex', flexDirection: 'column' }}>
+			<div className={styles.booking_container}>
 				{renderPricePerType()}
-				<ButtonContainer>
-					<Text bold size="20px">
+				<div className={styles.button_container}>
+					<div style={{ fontWeight: 'bold', fontSize: '20px' }}>
 						{perTruck}
-					</Text>
+					</div>
 					<Button
 						className="primary md"
 						disabled={loading}
 						onClick={() => handleCreate(data.id)}
 					>
-						Book now{' '}
+						Book now
+						{' '}
 					</Button>
-				</ButtonContainer>
-			</BookingContainer>
-		</Col>
+				</div>
+			</div>
+		</div>
 	);
-};
+}
 
 export default BookNow;

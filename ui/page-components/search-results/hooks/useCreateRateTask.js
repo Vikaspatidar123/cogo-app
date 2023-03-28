@@ -1,5 +1,5 @@
-import { useSelector } from '@cogo/store';
 import { useRequest } from '@cogo/commons/hooks';
+import { useSelector } from '@cogo/store';
 import { toast } from '@cogoport/front/components';
 
 const useCreateRateTask = (allParams) => {
@@ -17,17 +17,17 @@ const useCreateRateTask = (allParams) => {
 	const createApi = async () => {
 		try {
 			const payload = {
-				service: headerData?.service_type || data?.service_type,
-				port_id: headerData?.port_id || data?.port_id,
-				main_port_id: headerData?.main_port_id || data?.main_port_id,
-				container_size: headerData?.container_size || data?.container_size,
-				container_type: headerData?.container_type || data?.container_type,
-				commodity: headerData?.commodity || data?.commodity,
-				trade_type: headerData?.trade_type || data?.trade_type,
+				service        : headerData?.service_type || data?.service_type,
+				port_id        : headerData?.port_id || data?.port_id,
+				main_port_id   : headerData?.main_port_id || data?.main_port_id,
+				container_size : headerData?.container_size || data?.container_size,
+				container_type : headerData?.container_type || data?.container_type,
+				commodity      : headerData?.commodity || data?.commodity,
+				trade_type     : headerData?.trade_type || data?.trade_type,
 				shipping_line_id:
 					headerData?.shipping_line_id || data?.shipping_line_id,
-				source: 'shipment',
-				task_type: 'locals_at_actuals',
+				source    : 'shipment',
+				task_type : 'locals_at_actuals',
 			};
 
 			const res = await trigger({

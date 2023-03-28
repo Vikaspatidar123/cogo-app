@@ -1,15 +1,16 @@
-import { useState, useEffect } from 'react';
-import startCase from '@cogo/utils/startCase';
-import { useSelector } from '@cogo/store';
-import { useRequest } from '@cogo/commons/hooks';
-import getConfiguration from '@cogo/app-search/utils/getConfiguration';
 import domesticServices from '@cogo/app-search/configurations/domestic-services.json';
-import showErrorsInToast from '@cogo/utils/showErrorsInToast';
-import { toast } from '@cogoport/front/components';
-import isEmpty from '@cogo/utils/isEmpty';
+import getConfiguration from '@cogo/app-search/utils/getConfiguration';
 import MAPPING from '@cogo/app-search/utils/icons';
 import { trackEvent } from '@cogo/commons/analytics';
 import { PARTNER_EVENT } from '@cogo/commons/analytics/constants';
+import { useRequest } from '@cogo/commons/hooks';
+import { useSelector } from '@cogo/store';
+import isEmpty from '@cogo/utils/isEmpty';
+import showErrorsInToast from '@cogo/utils/showErrorsInToast';
+import startCase from '@cogo/utils/startCase';
+import { toast } from '@cogoport/front/components';
+import { useState, useEffect } from 'react';
+
 import isServiceTaken from '../helpers/isServiceTaken';
 
 const track = ({
@@ -23,14 +24,14 @@ const track = ({
 
 		const shipment = requiredPayload[search_parameter];
 		trackEvent(PARTNER_EVENT.enquiry_created_enquiry, {
-			search_id: detail?.id,
+			search_id            : detail?.id,
 			search_type,
-			search_origin: detail?.origin_port?.name,
-			search_destination: detail?.destination_port?.name,
-			company_name: detail?.importer_exporter?.business_name,
-			user_name: detail?.user?.name,
-			user_email: detail?.user?.email,
-			main_service_details: {
+			search_origin        : detail?.origin_port?.name,
+			search_destination   : detail?.destination_port?.name,
+			company_name         : detail?.importer_exporter?.business_name,
+			user_name            : detail?.user?.name,
+			user_email           : detail?.user?.email,
+			main_service_details : {
 				service_name: detail?.service_type,
 				indicative_amount_currency:
 					shipment?.[0]?.preferred_freight_rate_currency,
@@ -52,17 +53,17 @@ const notToCreateEnquiry = [
 const rfqSellingDateServices = ['ftl_freight', 'fcl_freight', 'air_freight'];
 
 const incoTermMapping = {
-	cif: 'export',
-	cfr: 'export',
-	cpt: 'export',
-	cip: 'export',
-	dat: 'export',
-	dap: 'export',
-	ddp: 'export',
-	fob: 'import',
-	exw: 'import',
-	fca: 'import',
-	fas: 'import',
+	cif : 'export',
+	cfr : 'export',
+	cpt : 'export',
+	cip : 'export',
+	dat : 'export',
+	dap : 'export',
+	ddp : 'export',
+	fob : 'import',
+	exw : 'import',
+	fca : 'import',
+	fas : 'import',
 };
 const useEnquiry = ({
 	detail,
@@ -78,8 +79,8 @@ const useEnquiry = ({
 	results_type,
 }) => {
 	const { scope, isMobile } = useSelector(({ general }) => ({
-		scope: general?.scope,
-		isMobile: general?.isMobile,
+		scope    : general?.scope,
+		isMobile : general?.isMobile,
 	}));
 
 	const createEnquiryApi = useRequest('post', false, scope, {
@@ -110,21 +111,15 @@ const useEnquiry = ({
 
 	const clubbingSimilarNegoServices = {};
 
-	const negotiationServiceIds =
-		(detail?.negotiation_services || []).map((obj) => {
-			return obj?.service_id;
-		}) || [];
+	const negotiationServiceIds =		(detail?.negotiation_services || []).map((obj) => obj?.service_id) || [];
 
-	const negoServicesArr = (detail?.negotiation_services || []).map((obj) => {
-		return obj?.service;
-	});
+	const negoServicesArr = (detail?.negotiation_services || []).map((obj) => obj?.service);
 
 	Object.keys(detail?.service_details || {}).forEach((key) => {
 		// eslint-disable-next-line no-undef
-		const trade_type =
-			detail?.service_details[key]?.trade_type ||
+		const trade_type =			detail?.service_details[key]?.trade_type
 			// eslint-disable-next-line no-undef
-			incoTermMapping[detail?.service_details[key]?.inco_term];
+			|| incoTermMapping[detail?.service_details[key]?.inco_term];
 		if (negotiationServiceIds.includes(key)) {
 			clubbingSimilarNegoServices[
 				`${detail?.service_details[key]?.service_type}:${trade_type}`
@@ -146,10 +141,9 @@ const useEnquiry = ({
 			if (service?.similar_service_details?.length) {
 				serviceType = service?.service;
 			} else {
-				serviceType =
-					addedServiceEnquiry[
-						`${service?.service}:${service?.trade_type}`
-					]?.[0];
+				serviceType =					addedServiceEnquiry[
+					`${service?.service}:${service?.trade_type}`
+				]?.[0];
 			}
 			if (key !== `${serviceType}:${service?.trade_type}`) {
 				tempForApiData[key] = apiData[key];
@@ -159,8 +153,8 @@ const useEnquiry = ({
 		Object.keys(formData || {}).forEach((key) => {
 			if (
 				!(
-					key === `${service?.service}:${service?.trade_type}` ||
-					key === service?.id
+					key === `${service?.service}:${service?.trade_type}`
+					|| key === service?.id
 				)
 			) {
 				tempForFormData[key] = formData[key];
@@ -188,13 +182,11 @@ const useEnquiry = ({
 
 	const serviceForEnquiry = Object.values(service_details || {})
 		.filter((item) => !notToCreateEnquiry.includes(item?.service_type))
-		.map((service) => {
-			return {
-				...service,
-				// eslint-disable-next-line no-undef
-				trade_type: service?.trade_type || incoTermMapping[service?.inco_term],
-			};
-		});
+		.map((service) => ({
+			...service,
+			// eslint-disable-next-line no-undef
+			trade_type: service?.trade_type || incoTermMapping[service?.inco_term],
+		}));
 
 	const clubbingSameService = {};
 	(serviceForEnquiry || []).forEach((obj) => {
@@ -213,50 +205,46 @@ const useEnquiry = ({
 	});
 
 	const allPossibleServices = Object.keys(groupingServiceForEnquiry || {}).map(
-		(key) => {
-			return {
-				...(groupingServiceForEnquiry?.[key]?.[0] || {}),
-				service: groupingServiceForEnquiry?.[key]?.[0]?.service_type,
-				service_id: groupingServiceForEnquiry?.[key]?.[0]?.service_type,
-				title: startCase(groupingServiceForEnquiry?.[key]?.[0]?.service_type),
-				isMain:
+		(key) => ({
+			...(groupingServiceForEnquiry?.[key]?.[0] || {}),
+			service    : groupingServiceForEnquiry?.[key]?.[0]?.service_type,
+			service_id : groupingServiceForEnquiry?.[key]?.[0]?.service_type,
+			title      : startCase(groupingServiceForEnquiry?.[key]?.[0]?.service_type),
+			isMain:
 					groupingServiceForEnquiry?.[key]?.[0]?.service_type === search_type,
-				isOrigin:
+			isOrigin:
 					groupingServiceForEnquiry?.[key]?.[0]?.trade_type === 'export',
-				similar_service_details: groupingServiceForEnquiry?.[key],
-				trade_type: groupingServiceForEnquiry?.[key]?.[0]?.trade_type,
-				container_size: undefined,
-			};
-		},
+			similar_service_details : groupingServiceForEnquiry?.[key],
+			trade_type              : groupingServiceForEnquiry?.[key]?.[0]?.trade_type,
+			container_size          : undefined,
+		}),
 	);
 
 	const serviceForRfq = (serviceForEnquiry || [])
 		.filter((service) => service?.service_type === search_type)
-		.map((serviceObj) => {
-			return {
-				...serviceObj,
-				isMain: serviceObj?.service_type === search_type,
-				service: serviceObj?.service_type,
-				title: startCase(serviceObj?.service_type),
-			};
-		});
+		.map((serviceObj) => ({
+			...serviceObj,
+			isMain  : serviceObj?.service_type === search_type,
+			service : serviceObj?.service_type,
+			title   : startCase(serviceObj?.service_type),
+		}));
 
 	const mappingCargoDate = {
-		ftl_freight: 'expected_cargo_pick_up_date',
-		fcl_freight: 'cargo_readiness_date',
-		air_freight: 'cargo_clearance_date',
+		ftl_freight : 'expected_cargo_pick_up_date',
+		fcl_freight : 'cargo_readiness_date',
+		air_freight : 'cargo_clearance_date',
 	};
 
 	notTakenServices?.forEach((service) => {
 		const serviceObj = {
-			id: service,
+			id               : service,
 			service,
-			title: serviceDetails[service]?.title || startCase(service),
-			isEnquiryCreated: false,
-			isDetailsAdded: false,
-			isOrigin: service.includes('export'),
-			trade_type: service.includes('export') ? 'export' : 'import',
-			isMain: service === search_type,
+			title            : serviceDetails[service]?.title || startCase(service),
+			isEnquiryCreated : false,
+			isDetailsAdded   : false,
+			isOrigin         : service.includes('export'),
+			trade_type       : service.includes('export') ? 'export' : 'import',
+			isMain           : service === search_type,
 		};
 
 		if (service === 'export_haulage_freight') {
@@ -318,11 +306,11 @@ const useEnquiry = ({
 			const heading = mainServices.includes(service?.service_type)
 				? `${startCase(mapped.tag)}`
 				: `${service?.isOrigin ? 'origin' : 'destination'} ${startCase(
-						mapped.tag,
+					mapped.tag,
 				  )}`;
 			if (
-				service?.service?.includes(value.toLowerCase()) ||
-				heading.toLowerCase().includes(value.toLowerCase())
+				service?.service?.includes(value.toLowerCase())
+				|| heading.toLowerCase().includes(value.toLowerCase())
 			) {
 				newServices.push(service);
 			}
@@ -334,9 +322,9 @@ const useEnquiry = ({
 		setNegoServices({
 			...negoServices,
 			[newService.id]: {
-				service: newService.service_type,
-				service_id: newService.id,
-				remarks: newService.remarks,
+				service    : newService.service_type,
+				service_id : newService.id,
+				remarks    : newService.remarks,
 			},
 		});
 	};
@@ -363,17 +351,17 @@ const useEnquiry = ({
 			return;
 		}
 		const requiredPayload = {
-			negotiation_status: 'awaiting_responses',
-			id: detail?.spot_search_id,
+			negotiation_status : 'awaiting_responses',
+			id                 : detail?.spot_search_id,
 			...formattedApiData,
 		};
 		const array = [];
 		Object.keys(requiredPayload || {}).forEach((key) => {
 			const newKey = key.split(':')[0];
 			if (
-				newKey !== 'id' &&
-				newKey !== 'negotiation_status' &&
-				newKey !== `${search_type}_services_attributes`
+				newKey !== 'id'
+				&& newKey !== 'negotiation_status'
+				&& newKey !== `${search_type}_services_attributes`
 			) {
 				const service_name = newKey.split('_services_attributes')[0];
 				array.push(service_name);
@@ -381,35 +369,35 @@ const useEnquiry = ({
 		});
 
 		if (
-			search_type === 'air_freight' &&
-			requiredPayload.air_freight_services_attributes
+			search_type === 'air_freight'
+			&& requiredPayload.air_freight_services_attributes
 		) {
 			requiredPayload.air_freight_services_attributes[0] = {
 				...requiredPayload.air_freight_services_attributes[0],
-				cargo_clearance_date: detail?.cargo_clearance_date,
-				commodity: detail?.commodity,
-				packages: detail?.packages,
+				cargo_clearance_date : detail?.cargo_clearance_date,
+				commodity            : detail?.commodity,
+				packages             : detail?.packages,
 				commodity_description:
-					detail?.commodity_details?.[0]?.commodity_description ||
-					'replace later',
+					detail?.commodity_details?.[0]?.commodity_description
+					|| 'replace later',
 			};
 		}
 
 		const testArr = [];
 		detail.packages.forEach((item) => {
 			const obj = {
-				packing_type: item.packing_type,
-				packages_count: item.packages_count,
-				height: item.height,
-				width: item.width,
-				length: item.length,
+				packing_type   : item.packing_type,
+				packages_count : item.packages_count,
+				height         : item.height,
+				width          : item.width,
+				length         : item.length,
 			};
 			testArr.push(obj);
 		});
 
 		if (
-			search_type === 'air_freight' &&
-			requiredPayload.ltl_freight_services_attributes
+			search_type === 'air_freight'
+			&& requiredPayload.ltl_freight_services_attributes
 		) {
 			requiredPayload.ltl_freight_services_attributes[0] = {
 				...requiredPayload.ltl_freight_services_attributes[0],
@@ -451,8 +439,8 @@ const useEnquiry = ({
 
 	const rfqSaveHandle = async () => {
 		if (
-			!datePickerValue &&
-			rfqSellingDateServices.includes(detail?.search_type)
+			!datePickerValue
+			&& rfqSellingDateServices.includes(detail?.search_type)
 		) {
 			toast.error('Sailing date is required!');
 			return;
@@ -460,8 +448,8 @@ const useEnquiry = ({
 		const expectedDateName = mappingCargoDate[service_type];
 		const serviceAttributeDAta = (mainServices || []).map((item) => {
 			const tempData = {
-				id: item?.id,
-				[expectedDateName]: datePickerValue,
+				id                 : item?.id,
+				[expectedDateName] : datePickerValue,
 			};
 			return tempData;
 		});
@@ -469,10 +457,10 @@ const useEnquiry = ({
 		try {
 			const keyName = `${service_type}_services_attributes`;
 			const payloadRfq = {
-				id: detail?.spot_search_id,
-				negotiation_services: payLoad,
-				negotiation_status: 'awaiting_responses',
-				[keyName]: serviceAttributeDAta,
+				id                   : detail?.spot_search_id,
+				negotiation_services : payLoad,
+				negotiation_status   : 'awaiting_responses',
+				[keyName]            : serviceAttributeDAta,
 			};
 			const res = await createEnquiryApi.trigger({ data: payloadRfq });
 			setIsLoading(false);

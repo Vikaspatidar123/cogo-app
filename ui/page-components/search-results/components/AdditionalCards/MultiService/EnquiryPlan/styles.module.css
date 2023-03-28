@@ -1,0 +1,103 @@
+.container {
+	background: #F2F6FF;
+	border: 1px solid #CDDBFF;
+	box-sizing: border-box;
+	border-radius: 10px;
+	padding: 16px;
+	margin-bottom: 24px;
+	width: 84%;
+
+	@media (max-width: 760px){
+		width: 100%;
+		margin-top: 18px;
+	}
+}
+
+.space_between {
+	display: flex;
+	justify-content: space-between;
+}
+
+.setting_icon {
+	background: #FFFFFF;
+	border-radius: 10px;
+	margin-right: 24px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 7px;
+
+	@media (max-width: 760px) {
+		margin-left: -5px;
+		height: 31px;
+		margin-top: 2px;
+		width: 32px;
+	}
+}
+
+.desktop {
+	@media (max-width: 760px) {
+		display: none;
+	}
+}
+
+.mobile {
+	@media (min-width: 760px) {
+		display: none;
+	}
+
+	@media (max-width: 760px) {
+		font-size: 12px;
+		margin-left: 34px;
+		margin-top: 15px;
+	}
+
+	.mobile {
+		@media (max-width: 760px) {
+			margin-top: 2px;
+			margin-left: 4px;
+		}
+	}
+}
+
+.plan_type {
+	margin: 0;
+	font-style: normal;
+	font-weight: bold;
+	font-size: 14px;
+	line-height: 16px;
+	letter-spacing: 0.04em;
+	color: #000000;
+
+	.subType {
+		font-weight: normal;
+		font-size: 10px;
+		line-height: 12px;
+	}
+}
+
+.benefit {
+	margin: 0px;
+	font-size: 10px;
+	line-height: 12px;
+	letter-spacing: 0.04em;	
+	color: #828282;
+
+	.trialLeft {
+		text-transform: uppercase;
+		color: #67C676;
+		margin-bottom: 4px;
+	}
+}
+
+.row {
+	display: flex;
+	align-items: center;
+}
+
+.main {
+	@media (max-width: 760px) {
+		margin-top: 0px;
+		margin-left: -15px;
+	}
+}

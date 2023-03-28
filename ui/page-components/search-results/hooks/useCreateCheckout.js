@@ -1,11 +1,11 @@
-import { useState } from 'react';
-import { useRequest } from '@cogo/commons/hooks';
-import { useSelector } from '@cogo/store';
 import { flattenErrorToString } from '@cogo/commons/helpers';
+import { useRequest } from '@cogo/commons/hooks';
+import getGeoConstants from '@cogo/globalization/constants/geo';
 import { useRouter } from '@cogo/next';
+import { useSelector } from '@cogo/store';
 import isEmpty from '@cogo/utils/isEmpty';
 import { toast } from '@cogoport/front/components';
-import getGeoConstants from '@cogo/globalization/constants/geo';
+import { useState } from 'react';
 
 const geo = getGeoConstants();
 
@@ -31,9 +31,9 @@ const useCreateCheckout = ({
 		query = {},
 		userRoleIDs = [],
 	} = useSelector(({ general, profile }) => ({
-		scope: general?.scope,
-		query: general?.query,
-		userRoleIDs: profile?.partner?.user_role_ids,
+		scope       : general?.scope,
+		query       : general?.query,
+		userRoleIDs : profile?.partner?.user_role_ids,
 	}));
 
 	const { trigger } = useRequest(
@@ -50,17 +50,15 @@ const useCreateCheckout = ({
 	const handleCreateCheckout = async () => {
 		setLoading(true);
 
-		const isCogoVerseMember = userRoleIDs.some((elem) =>
-			cogoVerseTeamIDS.includes(elem),
-		);
+		const isCogoVerseMember = userRoleIDs.some((elem) => cogoVerseTeamIDS.includes(elem));
 
 		const params = {
-			id: query?.search_id,
-			source: source || null,
-			selected_card: data?.card,
+			id            : query?.search_id,
+			source        : source || null,
+			selected_card : data?.card,
 			tags:
-				scope === 'partner' &&
-				(query?.source === 'communication' || isCogoVerseMember)
+				scope === 'partner'
+				&& (query?.source === 'communication' || isCogoVerseMember)
 					? ['cogoverse']
 					: undefined,
 		};
@@ -76,7 +74,7 @@ const useCreateCheckout = ({
 						`/checkout/${res?.data?.id}/${query.shipment_id}`,
 					);
 				} else {
-					let partnerHref = `/checkout/[checkout_id]`;
+					let partnerHref = '/checkout/[checkout_id]';
 					let partnerAs = `/checkout/${res?.data?.id}`;
 
 					if (query?.source) {
@@ -140,9 +138,9 @@ const useCreateCheckout = ({
 		setLoading(true);
 		try {
 			const payload = {
-				id: query?.rfq_id,
-				search_id: spot_search_id,
-				selected_cards: [id],
+				id             : query?.rfq_id,
+				search_id      : spot_search_id,
+				selected_cards : [id],
 			};
 			const res = await createRfqCheckouts.trigger({ data: payload });
 			if (!res.hasError) {

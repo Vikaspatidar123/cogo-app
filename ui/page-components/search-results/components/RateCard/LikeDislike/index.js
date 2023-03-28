@@ -1,14 +1,12 @@
+import Tooltip from '@cogoport/front/components/ToolTip';
+import { IcCLike } from '@cogoport/icons-react';
 import { useState } from 'react';
 
-import Tooltip from '@cogoport/front/components/ToolTip';
-
-import { IcCLike } from '@cogoport/icons-react';
 import DislikeFeedback from './DislikeFeedback';
+import { Container, Count, MainContainer } from './styles';
 import updateLikeRate from './updateLikeRate';
 
-import { Container, Count, MainContainer } from './styles';
-
-const LikeDislike = ({ details, updateRate, rate }) => {
+function LikeDislike({ details, updateRate, rate }) {
 	const [show, setShow] = useState(false);
 
 	const { handleLikeRateCard } = updateLikeRate({
@@ -61,6 +59,6 @@ const LikeDislike = ({ details, updateRate, rate }) => {
 			/>
 		</MainContainer>
 	);
-};
+}
 
 export default LikeDislike;

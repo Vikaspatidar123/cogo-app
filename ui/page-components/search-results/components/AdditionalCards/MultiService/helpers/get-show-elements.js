@@ -1,5 +1,4 @@
-import React from 'react';
-import { HAZ_CLASSES } from '@cogo/smart-components/constants/commodities';
+import { HAZ_CLASSES } from '@/ui/commons/constants/commodities';
 
 const getFunction = {
 	services: (control, services) => {
@@ -11,9 +10,10 @@ const getFunction = {
 	origin_cargo_handling_type : (control, fieldValues) => control.condition?.origin_cargo_handling_type?.includes(
 		fieldValues.origin_cargo_handling_type?.value,
 	),
-	origin_cfs_cargo_handling_type: (control, fieldValues) => control.condition?.origin_cfs_cargo_handling_type?.includes(
-		fieldValues.origin_cfs_cargo_handling_type?.value,
-	),
+	origin_cfs_cargo_handling_type:
+ (control, fieldValues) => control.condition?.origin_cfs_cargo_handling_type?.includes(
+ 	fieldValues.origin_cfs_cargo_handling_type?.value,
+ ),
 	origin_pickup_type              : (control, fieldValues) => fieldValues.origin_pickup_type?.value === control.condition?.origin_pickup_type,
 	destination_pickup_type         : (control, fieldValues) => fieldValues.destination_pickup_type?.value === control.condition?.destination_pickup_type,
 	destination_cargo_handling_type : (control, fieldValues) => control.condition?.destination_cargo_handling_type?.includes(

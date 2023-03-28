@@ -1,7 +1,6 @@
+// import { getRequest } from '@cogo/app-common';
+import { Toast } from '@cogoport/components';
 import { useState, useEffect } from 'react';
-import { toast } from '@cogoport/front/components';
-import showErrorsInToast from '@cogo/utils/showErrorsInToast';
-import { getRequest } from '@cogo/app-common';
 
 const useList = (endpoint, scope = 'app') => (params = {}) => getRequest(scope).get(endpoint, { params });
 
@@ -28,20 +27,20 @@ const getList = (hook, defaultFilters) => {
 			.then((res) => {
 				const { data, messages } = res;
 				if (res.hasError) {
-					showErrorsInToast(messages);
+					Toast.error(messages);
 				} else {
 					setList({
 						data:
-							 page === 1
-							 	? [...(data?.list || [])]
-							 	: [...(list.data || []), ...(data?.list || [])],
+							page === 1
+								? [...(data?.list || [])]
+								: [...(list.data || []), ...(data?.list || [])],
 						hasMore     : (data?.list || []).length > PAGE_LIMIT,
 						total_count : data?.total_count,
 					});
 				}
 			})
 			.catch((e) => {
-				toast.error('Something went wrong, we are working on it!');
+				Toast.error('Something went wrong, we are working on it!');
 			})
 			.then(() => {
 				setLoading(false);

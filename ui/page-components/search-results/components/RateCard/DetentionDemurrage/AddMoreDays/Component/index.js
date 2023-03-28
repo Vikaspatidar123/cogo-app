@@ -1,21 +1,23 @@
+import GLOBAL_CONSTANTS from '@cogo/globalization/constants/globals.json';
 import { Flex, Text } from '@cogoport/front/components';
-import { useState } from 'react';
 import { Button, toast } from '@cogoport/front/components/admin';
 import { isEmpty } from '@cogoport/front/utils';
-import GLOBAL_CONSTANTS from '@cogo/globalization/constants/globals.json';
+import { useState } from 'react';
+
 import DaysSelect from '../../../commons/DaysSelect';
-import { StyledText, Container } from './styles';
 import useAddMoreDays from '../../hooks/useAddMoreDays;';
 import slabPriceCalculator from '../../utils/slabPriceCalculator';
 
+import { StyledText, Container } from './styles';
+
 const CODE_MAPPING = {
-	origin_detention: 'EDT',
-	origin_demurrage: 'EDE',
-	destination_detention: 'DET',
-	destination_demurrage: 'DEA',
+	origin_detention      : 'EDT',
+	origin_demurrage      : 'EDE',
+	destination_detention : 'DET',
+	destination_demurrage : 'DEA',
 };
 
-const Component = ({
+function Component({
 	freeLimit,
 	maxLimit,
 	additional_days,
@@ -27,7 +29,7 @@ const Component = ({
 	refetch = () => {},
 	service_rates,
 	rateData,
-}) => {
+}) {
 	const { fetchApi, loading } = useAddMoreDays({ refetch });
 
 	const [days, setDays] = useState(
@@ -52,11 +54,11 @@ const Component = ({
 
 		return {
 			container_size,
-			preferred_rate_currency: currency,
+			preferred_rate_currency : currency,
 			containers_count,
-			preferred_rate: final_price,
-			preferred_rate_unit: 'per_container',
-			preferred_rate_quantity: extraDays,
+			preferred_rate          : final_price,
+			preferred_rate_unit     : 'per_container',
+			preferred_rate_quantity : extraDays,
 		};
 	});
 
@@ -82,9 +84,9 @@ const Component = ({
 			Object.values(service_rates).forEach((service) => {
 				if (service.service_id === service_id && preferred_rate === 0) {
 					params = {
-						code: CODE_MAPPING[key],
-						service_type: 'fcl_freight_local',
-						status: 'inactive',
+						code         : CODE_MAPPING[key],
+						service_type : 'fcl_freight_local',
+						status       : 'inactive',
 						service_id,
 					};
 				}
@@ -101,9 +103,9 @@ const Component = ({
 			return [
 				...acc,
 				{
-					code: CODE_MAPPING[key],
-					service_type: 'fcl_freight_local',
-					status: 'active',
+					code         : CODE_MAPPING[key],
+					service_type : 'fcl_freight_local',
+					status       : 'active',
 					preferred_rate,
 					preferred_rate_unit,
 					preferred_rate_quantity:
@@ -117,8 +119,8 @@ const Component = ({
 		}, []);
 
 		return {
-			id: spot_search_id,
-			service: 'subsidiary',
+			id      : spot_search_id,
+			service : 'subsidiary',
 			subsidiary_services,
 		};
 	};
@@ -138,13 +140,24 @@ const Component = ({
 				<Container type={type}>
 					<Flex direction="column">
 						<StyledText>
-							{freeLimit} {type} free days include in your price
+							{freeLimit}
+							{' '}
+							{type}
+							{' '}
+							free days include in your price
 						</StyledText>
 
 						<StyledText
 							style={{ marginTop: '8px', fontSize: '14px', fontWeight: '600' }}
 						>
-							Get additional {type} days for your {activeTab}:
+							Get additional
+							{' '}
+							{type}
+							{' '}
+							days for your
+							{' '}
+							{activeTab}
+							:
 						</StyledText>
 
 						<DaysSelect
@@ -171,11 +184,17 @@ const Component = ({
 									return (
 										<Flex>
 											<Text>
-												{container_size}ft X {containers_count} :
+												{container_size}
+												ft X
+												{containers_count}
+												{' '}
+												:
 											</Text>
 
 											<Text style={{ marginLeft: '4px' }}>
-												{preferred_rate_currency} {preferred_rate}
+												{preferred_rate_currency}
+												{' '}
+												{preferred_rate}
 											</Text>
 										</Flex>
 									);
@@ -197,5 +216,5 @@ const Component = ({
 			) : null}
 		</>
 	);
-};
+}
 export default Component;

@@ -1,9 +1,6 @@
-import React, { useState } from 'react';
-import Icon from '@cogo/deprecated_legacy/icons/Icon';
-import getLocationInfo from '@cogo/business-modules/helpers/locations-search';
-import MAPPING from '@cogo/app-search/utils/icons';
 import ContainerInfo from '@cogo/app-search/common/ContainerInfo';
-import { Checkbox, Flex, ToolTip } from '@cogoport/front/components';
+import getLocationInfo from '@cogo/business-modules/helpers/locations-search';
+import { Checkbox, Tooltip, Button } from '@cogoport/components';
 import {
 	IcCTick,
 	IcMArrowUp,
@@ -11,23 +8,17 @@ import {
 	IcMMinusInCircle,
 	IcMPortArrow,
 } from '@cogoport/icons-react';
+import React, { useState } from 'react';
+
+import MAPPING from '../../../Info/icons-services-mapping';
+
 import enquiryLocations from './enquiry-locations';
 import { renderItem } from './Item';
-import {
-	Container,
-	ServiceType,
-	Button,
-	IconContainer,
-	CheckBoxContainer,
-	PortPairs,
-	Port,
-	Div,
-	ServiceDetails,
-} from './styles';
+import styles from './styles.module.css';
 
 const mainServices = ['fcl_freight', 'lcl_freight', 'air_freight'];
 
-const Service = ({
+function Service({
 	service,
 	setSelectedService,
 	isOpen = false,
@@ -40,7 +31,7 @@ const Service = ({
 	handleDeletion,
 	clubbingSimilarNegoServices = {},
 	negotiationServiceIds = [],
-}) => {
+}) {
 	const locationDetails = enquiryLocations[service?.service];
 	const [isChecked, setIsChecked] = useState(false);
 	const { origin, destination } = getLocationInfo('', service, locationDetails);
@@ -61,23 +52,20 @@ const Service = ({
 	if (!Object.keys(clubbingSimilarNegoServices).length) {
 		if (service?.similar_service_details?.length) {
 			service_type = service?.service;
-			servicesObjectArr =
-				formData?.[`${service?.service}:${service?.trade_type}`];
+			servicesObjectArr =				formData?.[`${service?.service}:${service?.trade_type}`];
 		} else {
-			servicesObjectArr =
-				formData?.[`${service?.service}:${service?.trade_type}`];
+			servicesObjectArr =				formData?.[`${service?.service}:${service?.trade_type}`];
 		}
 	} else {
-		servicesObjectArr =
-			clubbingSimilarNegoServices[`${service?.service}:${service?.trade_type}`];
+		servicesObjectArr =			clubbingSimilarNegoServices[`${service?.service}:${service?.trade_type}`];
 		service_type = service?.service;
 	}
 
 	const handleChange = (enquirySelected) => {
 		if (enquirySelected) {
 			const payloadObject = {
-				service: service?.service,
-				service_id: service?.id,
+				service    : service?.service,
+				service_id : service?.id,
 			};
 			setPayLoad([...(payLoad || []), payloadObject]);
 		} else if (!enquirySelected) {
@@ -100,22 +88,24 @@ const Service = ({
 		),
 
 		renderDeleteButton: (
-			<Div
+			<div
+				className={styles.div}
+				role="presentation"
 				onClick={() => handleDeletion(service)}
 				style={{ marginRight: '10px' }}
 			>
 				<IcMMinusInCircle
 					style={{ color: '#EF9B9B', width: '2em', height: '2em' }}
 				/>
-			</Div>
+			</div>
 		),
 	};
 
 	let showEditButton = false;
 	Object.keys(addedServiceEnquiry || {}).forEach((key) => {
 		if (
-			key === `${service?.service}:${service?.trade_type}` ||
-			key === service?.id
+			key === `${service?.service}:${service?.trade_type}`
+			|| key === service?.id
 		) {
 			if (addedServiceEnquiry[key]?.length) {
 				showEditButton = true;
@@ -124,26 +114,28 @@ const Service = ({
 	});
 
 	return (
-		<Flex alignItems="center">
-			<Container
+		<div style={{ display: 'flex', alignItems: 'center' }}>
+			<div
+				role="presentation"
+				className={styles.container}
 				onClick={results_type === 'rfq' ? null : handleClick}
 				marginBottom={isOpen ? 0 : 16}
 			>
-				<Flex>
-					<IconContainer>
-						<Icon
+				<div style={{ display: 'flex' }}>
+					<div className={styles.icon_container}>
+						<div
+							className={styles.icon}
 							type={mapped.icon}
 							style={{ height: '2.5em', width: '2.5em' }}
 						/>
-					</IconContainer>
+					</div>
 
-					<Flex alignItems="center" justifyContent="space-between" flex="1">
-						<Flex
-							display="block"
-							style={{ marginLeft: '20px', marginTop: '6px' }}
+					<div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flex: '1' }}>
+						<div
+							style={{ marginLeft: '20px', marginTop: '6px', display: 'flex' }}
 						>
-							<Flex>
-								<ServiceType>{service?.title}</ServiceType>
+							<div style={{ display: 'flex' }}>
+								<div className={styles.service_type}>{service?.title}</div>
 
 								{showEditButton ? (
 									<IcCTick style={{ marginLeft: '8px', marginBottom: '5px' }} />
@@ -152,54 +144,62 @@ const Service = ({
 								{negotiationServiceIds.length ? (
 									<IcCTick style={{ marginLeft: '8px', marginBottom: '5px' }} />
 								) : null}
-							</Flex>
+							</div>
 
-							{mainServices.includes(service?.service_type) &&
-							!negotiationServiceIds.length ? (
-								<PortPairs>
-									<ToolTip
+							{mainServices.includes(service?.service_type)
+							&& !negotiationServiceIds.length ? (
+								<div className={styles.port_pairs}>
+									<Tooltip
 										placement="bottom"
 										theme="light"
-										content={
+										content={(
 											<div
 												style={{ fontSize: '10px' }}
-											>{`${origin?.port_code} ${origin?.display_name}}`}</div>
-										}
+											>
+												{`${origin?.port_code} ${origin?.display_name}}`}
+											</div>
+										)}
 									>
-										<Port>{`${origin?.port_code}, ${origin?.display_name}`}</Port>
-									</ToolTip>
+										<div className={styles.port}>
+											{`${origin?.port_code}, ${origin?.display_name}`}
+										</div>
+									</Tooltip>
 
 									<IcMPortArrow style={{ margin: '2px 8px 0px 8px' }} />
 
-									<ToolTip
+									<Tooltip
 										placement="bottom"
 										theme="light"
-										content={
+										content={(
 											<div
 												style={{ fontSize: '10px' }}
-											>{`${destination?.port_code} ${destination?.display_name}`}</div>
-										}
+											>
+												{`${destination?.port_code} ${destination?.display_name}`}
+											</div>
+										)}
 									>
-										<Port>{`${destination?.port_code}, ${destination?.display_name}`}</Port>
-									</ToolTip>
-								</PortPairs>
-							) : null}
+										<div className={styles.port}>
+											{`${destination?.port_code}, ${destination?.display_name}`}
+										</div>
+									</Tooltip>
+								</div>
+								) : null}
 							<ContainerInfo detail={service} />
-						</Flex>
+						</div>
 
-						<Flex>
-							{mainServices.includes(service?.service_type) &&
-							!negotiationServiceIds.length &&
-							service?.service_type === 'air_freight' ? (
+						<div style={{ display: 'flex' }}>
+							{mainServices.includes(service?.service_type)
+							&& !negotiationServiceIds.length
+							&& service?.service_type === 'air_freight' ? (
 								<div>
 									<p>Cargo Ready Date</p>
 									<p>{service?.cargo_clearance_date}</p>
 								</div>
-							) : null}
-						</Flex>
+								) : null}
+						</div>
 
 						{results_type !== 'rfq' ? (
-							<Flex justifyContent="flex-end">
+							<div style={{ display: 'flex', justifyContent: 'flex-end' }}>
 								{showEditButton ? (
 									<>
 										{buttons?.renderDeleteButton}
@@ -208,29 +208,27 @@ const Service = ({
 								) : (
 									buttons.renderButton
 								)}
-							</Flex>
+							</div>
 						) : null}
-					</Flex>
-				</Flex>
+					</div>
+				</div>
 
-				{(servicesObjectArr || []).map((obj) => {
-					return (
-						<ServiceDetails>{renderItem([obj], service_type)}</ServiceDetails>
-					);
-				})}
-			</Container>
+				{(servicesObjectArr || []).map((obj) => (
+					<div className={styles.service_details}>{renderItem([obj], service_type)}</div>
+				))}
+			</div>
 
 			{results_type === 'rfq' ? (
-				<CheckBoxContainer>
+				<div className={styles.check_box_container}>
 					<Checkbox
 						checked={isChecked}
 						onChange={handleChange}
 						id="enquiry_create_choose_checkbox"
 					/>
-				</CheckBoxContainer>
+				</div>
 			) : null}
-		</Flex>
+		</div>
 	);
-};
+}
 
 export default Service;

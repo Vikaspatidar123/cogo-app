@@ -1,12 +1,11 @@
-import Grid from '@cogoport/front/components/Grid';
-import IconsMapping from '@cogo/product/contract-rates/common/IconsMapping';
-import { Container, ServiceName, IconDiv, StyledCol } from './styles';
-import PortsInfo from '../PortsInfo';
+// import IconsMapping from '@cogo/product/contract-rates/common/IconsMapping';
+
 import ContainerInfo from '../ContainerInfo';
+import PortsInfo from '../PortsInfo';
 
-const { Row, Col } = Grid;
+import styles from './styles.module.css';
 
-const Header = ({ data, source = '' }) => {
+function Header({ data, source = '' }) {
 	const {
 		origin_location,
 		destination_location,
@@ -16,35 +15,35 @@ const Header = ({ data, source = '' }) => {
 
 	const service = service_type.split('_');
 	return (
-		<Container>
-			<Row style={{ width: '108%' }}>
-				<Col md={0.6} style={{ borderRight: '1px solid #F2F2F2' }}>
-					<IconDiv>
-						{IconsMapping[service_type]}
-						<ServiceName>{service[0]}</ServiceName>
-					</IconDiv>
-				</Col>
-				<StyledCol md={5.5}>
+		<div className={styles.container}>
+			<div style={{ width: '108%', display: 'flex' }}>
+				<div style={{ borderRight: '1px solid #F2F2F2', display: 'flex', flexDirection: 'column' }}>
+					<div className={styles.icon_div}>
+						{/* {IconsMapping[service_type]} */}
+						<div className={styles.service_name}>{service[0]}</div>
+					</div>
+				</div>
+				<div className={styles.styled_col}>
 					<PortsInfo
 						originPort={origin_location}
 						trip={trip_type}
 						destinationPort={destination_location}
-						separator={
+						separator={(
 							<img
 								src="https://cdn.cogoport.io/cms-prod/cogo_admin/vault/original/union-2.svg"
 								alt="union-icon"
 								className="ports-direction-svg"
 							/>
-						}
+						)}
 					/>
-				</StyledCol>
+				</div>
 
-				<Col className="space-top" md={5}>
+				<div className={`${styles.col} ${styles.space_top}`}>
 					<ContainerInfo data={data} source={source} />
-				</Col>
-			</Row>
-		</Container>
+				</div>
+			</div>
+		</div>
 	);
-};
+}
 
 export default Header;

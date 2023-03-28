@@ -1,15 +1,16 @@
+import convertHourToDate from '@cogo/utils/converHourToDay';
+import { Flex } from '@cogoport/front/components';
+import { ToolTip, Button, Popover } from '@cogoport/front/components/admin';
 import { startCase, isEmpty } from '@cogoport/front/utils';
 import React from 'react';
-import convertHourToDate from '@cogo/utils/converHourToDay';
-import { ToolTip, Button, Popover } from '@cogoport/front/components/admin';
-import { Flex } from '@cogoport/front/components';
+
 import { Div, ContainerValues, StyledFlex } from './styles';
 
 const SERVICE_TYPE_MAPPING = {
-	T2T: 'Terminal 2 Terminal',
-	T2D: 'Terminal 2 Door',
-	D2T: 'Door 2 Terminal',
-	D2D: 'Door 2 Door',
+	T2T : 'Terminal 2 Terminal',
+	T2D : 'Terminal 2 Door',
+	D2T : 'Door 2 Terminal',
+	D2D : 'Door 2 Door',
 };
 
 const handleCommodity = (commodity) => {
@@ -24,7 +25,7 @@ const handleCommodity = (commodity) => {
 	return value;
 };
 
-const GetMultiContainerDetails = ({ service_details }) => {
+function GetMultiContainerDetails({ service_details }) {
 	return (
 		<StyledFlex>
 			{Object.values(service_details).map((item) => {
@@ -49,9 +50,9 @@ const GetMultiContainerDetails = ({ service_details }) => {
 			})}
 		</StyledFlex>
 	);
-};
+}
 
-const ContainerDetails = ({ data = {}, details = {}, service_type }) => {
+function ContainerDetails({ data = {}, details = {}, service_type }) {
 	const { service_details = {} } = details;
 
 	const {
@@ -75,11 +76,13 @@ const ContainerDetails = ({ data = {}, details = {}, service_type }) => {
 				<>
 					<Div>
 						<Flex>
-							<ContainerValues>{`${container_size}FT x ${containers_count} | ${startCase(
-								handleCommodity(commodity),
-							)} | ${startCase(
-								container_type,
-							)} | ${cargo_weight_per_container}MT`}</ContainerValues>
+							<ContainerValues>
+								{`${container_size}FT x ${containers_count} | ${startCase(
+									handleCommodity(commodity),
+								)} | ${startCase(
+									container_type,
+								)} | ${cargo_weight_per_container}MT`}
+							</ContainerValues>
 							<Popover
 								content={
 									<GetMultiContainerDetails service_details={service_details} />
@@ -147,6 +150,6 @@ const ContainerDetails = ({ data = {}, details = {}, service_type }) => {
 			)}
 		</>
 	);
-};
+}
 
 export default ContainerDetails;

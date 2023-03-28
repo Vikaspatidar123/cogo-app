@@ -1,11 +1,14 @@
-import React, { useState } from 'react';
 import { useSelector } from '@cogo/store';
 import { Flex } from '@cogoport/front/components';
 import { IcCFtick } from '@cogoport/icons-react';
+import React, { useState } from 'react';
+
+import LocationDetails from '../Info/TrailerFreightInfo/LocationDetails';
+import PromoCode from '../RateCard/Promocode';
 import Quotation from '../RateCard/Quotation';
 import QuotationDetails from '../RateCard/QuotationDetails';
-import PromoCode from '../RateCard/Promocode';
 
+import ContainerDetails from './ContainerDetails';
 import {
 	Container,
 	Card,
@@ -21,17 +24,15 @@ import {
 	QuotationButton,
 	LineVertical,
 } from './styles';
-import ContainerDetails from './ContainerDetails';
-import LocationDetails from '../Info/TrailerFreightInfo/LocationDetails';
 
 const RATE_SOURCE_MAPPING = {
-	spot_rates: 'System Rate',
-	spot_negotiation_rate: 'Enquiry Reverted Rate',
-	predicted: 'Predicted Rate',
-	cogo_assured_rate: 'Assured',
+	spot_rates            : 'System Rate',
+	spot_negotiation_rate : 'Enquiry Reverted Rate',
+	predicted             : 'Predicted Rate',
+	cogo_assured_rate     : 'Assured',
 };
 
-const TrailerFreightRateCard = ({
+function TrailerFreightRateCard({
 	id,
 	state,
 	setState = () => {},
@@ -40,10 +41,10 @@ const TrailerFreightRateCard = ({
 	refetch = () => {},
 	enquiry_page = false,
 	results_type = '',
-}) => {
+}) {
 	const { scope } = useSelector(({ general }) => ({
-		scope: general?.scope,
-		isMobile: general?.isMobile,
+		scope    : general?.scope,
+		isMobile : general?.isMobile,
 	}));
 
 	const [open, setOpen] = useState(true);
@@ -54,13 +55,12 @@ const TrailerFreightRateCard = ({
 	const { service_details = {} } = details || {};
 
 	Object.values(service_details).map((item) => {
-		const { containers_count = '', cargo_weight_per_container = '' } =
-			item || {};
+		const { containers_count = '', cargo_weight_per_container = '' } =			item || {};
 
 		totalContainerCount += containers_count;
 
-		totalCargoWeightPerContainerCount +=
-			containers_count * cargo_weight_per_container * 1000;
+		totalCargoWeightPerContainerCount
+			+= containers_count * cargo_weight_per_container * 1000;
 
 		return null;
 	});
@@ -112,7 +112,11 @@ const TrailerFreightRateCard = ({
 								</FreightDetailsDiv>
 								<FreightDetailsDiv>
 									<FreightDetailsText>EST. TRANSIT TIME : </FreightDetailsText>
-									<FreightDetails>{maxTransitTime || ''} Days</FreightDetails>
+									<FreightDetails>
+										{maxTransitTime || ''}
+										{' '}
+										Days
+									</FreightDetails>
 								</FreightDetailsDiv>
 							</Flex>
 
@@ -151,8 +155,9 @@ const TrailerFreightRateCard = ({
 							<FreightDetailsDiv>
 								<FreightDetailsText>Avg. Cost/Container :</FreightDetailsText>
 								<FreightDetails>
-									{Number(data?.total_price / totalContainerCount).toFixed(4) ||
-										' '}{' '}
+									{Number(data?.total_price / totalContainerCount).toFixed(4)
+										|| ' '}
+									{' '}
 									{data?.total_price_currency}
 								</FreightDetails>
 							</FreightDetailsDiv>
@@ -161,7 +166,8 @@ const TrailerFreightRateCard = ({
 								<FreightDetails>
 									{Number(
 										data?.total_price / totalCargoWeightPerContainerCount,
-									).toFixed(4) || ''}{' '}
+									).toFixed(4) || ''}
+									{' '}
 									{data?.total_price_currency}
 								</FreightDetails>
 							</FreightDetailsDiv>
@@ -178,6 +184,6 @@ const TrailerFreightRateCard = ({
 			/>
 		</Container>
 	);
-};
+}
 
 export default TrailerFreightRateCard;

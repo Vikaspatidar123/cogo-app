@@ -1,22 +1,24 @@
 /* eslint-disable no-unused-vars */
-import React, { useCallback, useState } from 'react';
-import { InfiniteScroll } from '@cogo/deprecated_legacy/ui';
-import { useRouter } from '@cogo/next';
-// import { Skeleton } from '@cogoport/front/components/admin';
-import { useSelector } from '@cogo/store';
 import useQuickSearch from '@cogo/app-search/hooks/useQuickSearch';
-import Loading from './List/Loading';
+import { InfiniteScroll } from '@cogo/deprecated_legacy/ui';
+
+// import { Skeleton } from '@cogoport/front/components/admin';
+
+import React, { useCallback, useState } from 'react';
+
 import List from './List';
 import { useList, getList } from './List/getList';
-import { Title, Scroll } from './styles';
+import Loading from './List/Loading';
+import styles from './styles.module.css';
 
-const AlternativeRates = ({
+import { useRouter } from '@/packages/next';
+
+function AlternativeRates({
 	search_id = '',
 	data = {},
 	importer_exporter_id = '',
 	type = '',
-}) => {
-	const { scope } = useSelector(({ general }) => general);
+}) {
 	const { push } = useRouter();
 	const { quickSearch } = useQuickSearch();
 
@@ -26,7 +28,7 @@ const AlternativeRates = ({
 	const params = { globalParams: { spot_search_id: search_id } };
 
 	const { loading, list, hookSetters } = getList(
-		useList('list_alternate_spot_searches', scope),
+		useList('list_alternate_spot_searches'),
 		params,
 		true,
 		search_id,
@@ -45,11 +47,11 @@ const AlternativeRates = ({
 			quickSearch(
 				{ ...data, ...portIds },
 				{
-					setIsLoading: setAlternate,
-					extraParams: {
+					setIsLoading : setAlternate,
+					extraParams  : {
 						importer_exporter_id,
-						importer_exporter_branch_id: data?.importer_exporter_branch_id,
-						user_id: data?.user_id,
+						importer_exporter_branch_id : data?.importer_exporter_branch_id,
+						user_id                     : data?.user_id,
 					},
 					onCreate: (postData) => {
 						push(postData.href, postData.as);
@@ -60,19 +62,18 @@ const AlternativeRates = ({
 		setDisableRate(true);
 	};
 
-	const renderList = () =>
-		list?.data.map((rate) => (
-			<List
-				rate={rate}
-				onClickResultRow={onClickResultRow}
-				disableRate={disableRate}
-				creatingAlternate={creatingAlternate}
-			/>
-		));
+	const renderList = () => list?.data.map((rate) => (
+		<List
+			rate={rate}
+			onClickResultRow={onClickResultRow}
+			disableRate={disableRate}
+			creatingAlternate={creatingAlternate}
+		/>
+	));
 
 	const infiniteScrollContainer = () => (
 		<>
-			<Title>Alternative rates</Title>
+			<div className={styles.title}>Alternative rates</div>
 
 			<InfiniteScroll
 				pageStart={1}
@@ -110,6 +111,6 @@ const AlternativeRates = ({
 	// ) : (
 	// 	<Scroll style={{ paddingBottom: 40 }}>{infiniteScrollContainer()}</Scroll>
 	// );
-};
+}
 
 export default AlternativeRates;

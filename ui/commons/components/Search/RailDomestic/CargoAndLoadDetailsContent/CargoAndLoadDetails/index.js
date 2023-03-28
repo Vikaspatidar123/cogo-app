@@ -1,5 +1,6 @@
 import { Button } from '@cogoport/front/components/admin';
 import { get } from '@cogoport/front/utils';
+
 import CargoContainersDetails from './CargoContainersDetails';
 import CargoDetails from './CargoDetails';
 import {
@@ -13,7 +14,7 @@ import {
 } from './styles';
 import useCargoAndLoadDetails from './useCargoAndLoadDetails';
 
-const CargoAndLoadDetails = (props) => {
+function CargoAndLoadDetails(props) {
 	const { formValues } = props;
 
 	const {
@@ -76,6 +77,6 @@ const CargoAndLoadDetails = (props) => {
 			</MainContainer>
 		</Container>
 	);
-};
+}
 
 export default CargoAndLoadDetails;

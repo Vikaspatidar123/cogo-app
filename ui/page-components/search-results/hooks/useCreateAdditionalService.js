@@ -1,8 +1,8 @@
-import { useState, useEffect } from 'react';
 import { useRequest } from '@cogo/commons/hooks';
+import showErrorsInToast from '@cogo/utils/showErrorsInToast';
 import startCase from '@cogo/utils/startCase';
 import { toast } from '@cogoport/front/components';
-import showErrorsInToast from '@cogo/utils/showErrorsInToast';
+import { useState, useEffect } from 'react';
 
 const useCreateAdditionalService = ({
 	data = {},
@@ -46,15 +46,13 @@ const useCreateAdditionalService = ({
 		trade_type = '',
 	} = data || {};
 
-	const { services, detail } =
-		serviceMappings[search_type] || serviceMappings[service_type] || {};
+	const { services, detail } =		serviceMappings[search_type] || serviceMappings[service_type] || {};
 
 	let additionalServices = [];
 	if (service_type === 'air_freight' && trade_type === 'domestic') {
 		additionalServices = services?.air_domestic;
 	} else {
-		additionalServices =
-			services?.[inco_term] || services?.[data?.trade_type] || [];
+		additionalServices =			services?.[inco_term] || services?.[data?.trade_type] || [];
 	}
 
 	const servicesList = Object.values(service_details || {});
@@ -99,11 +97,10 @@ const useCreateAdditionalService = ({
 
 		if (val) {
 			const filtered_services = (remainingServicesToAdd || []).filter(
-				(item) =>
-					(detail[item]?.title || '')
-						.toLowerCase()
-						.includes(val.toLowerCase()) ||
-					item.toLowerCase().includes(val.toLowerCase()),
+				(item) => (detail[item]?.title || '')
+					.toLowerCase()
+					.includes(val.toLowerCase())
+					|| item.toLowerCase().includes(val.toLowerCase()),
 			);
 			setRemainingServicesToAdd(
 				filtered_services.length ? filtered_services : finalServicesToAdd,
@@ -119,20 +116,19 @@ const useCreateAdditionalService = ({
 		)?.[0];
 
 		const services_Arr = (servicesList || []).filter(
-			(item) =>
-				item?.service_type === serviceObj?.service &&
-				(item?.trade_type === serviceObj?.trade_type ||
-					!item?.trade_type ||
-					!serviceObj?.trade_type),
+			(item) => item?.service_type === serviceObj?.service
+				&& (item?.trade_type === serviceObj?.trade_type
+					|| !item?.trade_type
+					|| !serviceObj?.trade_type),
 		);
 
 		const subsidiaryServicesArr = [];
 		(services_Arr || []).forEach((item) => {
 			const service = {
-				code: serviceObj?.code,
-				service_type: serviceObj?.service,
-				service_id: item?.id,
-				status: 'active',
+				code         : serviceObj?.code,
+				service_type : serviceObj?.service,
+				service_id   : item?.id,
+				status       : 'active',
 			};
 			subsidiaryServicesArr.push(service);
 		});
@@ -142,15 +138,15 @@ const useCreateAdditionalService = ({
 			let payload = {};
 			if (!data?.checkout_id) {
 				payload = {
-					id: data?.spot_search_id,
-					service: 'subsidiary',
-					subsidiary_services: subsidiaryServicesArr,
+					id                  : data?.spot_search_id,
+					service             : 'subsidiary',
+					subsidiary_services : subsidiaryServicesArr,
 				};
 			} else {
 				payload = {
-					id: data?.checkout_id,
-					service: 'subsidiary',
-					subsidiary_services_attributes: subsidiaryServicesArr,
+					id                             : data?.checkout_id,
+					service                        : 'subsidiary',
+					subsidiary_services_attributes : subsidiaryServicesArr,
 				};
 			}
 
@@ -178,8 +174,8 @@ const useCreateAdditionalService = ({
 			tradeType = 'Destination';
 		}
 		const service = {
-			label: `${tradeType} ${item?.name}(${startCase(item?.service)})`,
-			value: item?.key,
+			label : `${tradeType} ${item?.name}(${startCase(item?.service)})`,
+			value : item?.key,
 		};
 		subsidiaryServicesList.push(service);
 	});

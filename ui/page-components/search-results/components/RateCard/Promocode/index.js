@@ -1,7 +1,6 @@
 import { useState } from 'react';
 
 import PromocodeDetails from './PromocodeDetails';
-
 import { Container, Text } from './styles';
 
 function PromoCode({ promotion = {} }) {
@@ -36,7 +35,12 @@ function PromoCode({ promotion = {} }) {
 		<>
 			<Container onClick={() => setShowDetails(true)}>
 				<Text>
-					Apply {promotion.promocodes[0]?.promocode} to get{' '}
+					Apply
+					{' '}
+					{promotion.promocodes[0]?.promocode}
+					{' '}
+					to get
+					{' '}
 					{getDiscountPercent(promotion)}
 				</Text>
 			</Container>

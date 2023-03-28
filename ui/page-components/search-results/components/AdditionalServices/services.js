@@ -12,14 +12,14 @@ export const getServiceName = (service) => {
 		return `${service?.service_name}:${service?.service}`;
 	}
 	if (
-		service?.service_type === 'subsidiary' &&
-		service?.trade_type === 'export'
+		service?.service_type === 'subsidiary'
+		&& service?.trade_type === 'export'
 	) {
 		return `origin:${service?.service_name}`;
 	}
 	if (
-		service?.service_type === 'subsidiary' &&
-		service?.trade_type === 'import'
+		service?.service_type === 'subsidiary'
+		&& service?.trade_type === 'import'
 	) {
 		return `destination:${service?.service_name}`;
 	}
@@ -30,8 +30,8 @@ export const getServiceName = (service) => {
 		return `destination:${service?.service_type}`;
 	}
 	if (
-		service?.trade_type === 'domestic' &&
-		service?.service_type === 'air_freight_local'
+		service?.trade_type === 'domestic'
+		&& service?.service_type === 'air_freight_local'
 	) {
 		return `terminal_${service?.terminal_charge_type}`;
 	}

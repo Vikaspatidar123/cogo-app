@@ -1,19 +1,20 @@
 import { Flex } from '@cogoport/front/components';
 import SegmentedControl from '@cogoport/front/components/SegmentedControl';
+
 import Component from './Component';
 
 const OPTIONS = [
 	{
-		value: 'origin',
-		label: 'ORIGIN',
+		value : 'origin',
+		label : 'ORIGIN',
 	},
 	{
-		value: 'destination',
-		label: 'DESTINATION',
+		value : 'destination',
+		label : 'DESTINATION',
 	},
 ];
 
-const AddMoreDays = (props) => {
+function AddMoreDays(props) {
 	const {
 		data: rateData,
 		activeTab = '',
@@ -40,29 +41,29 @@ const AddMoreDays = (props) => {
 	const COMPONENT_MAPPING = {
 		origin: {
 			detention: {
-				freeLimit: originDetentionFreeLimit,
-				maxLimit: originDetentionMaxLimit,
-				additional_days: originDetentionAdditionalDays,
+				freeLimit       : originDetentionFreeLimit,
+				maxLimit        : originDetentionMaxLimit,
+				additional_days : originDetentionAdditionalDays,
 			},
 
 			demurrage: {
-				freeLimit: originDemurrageFreeLimit,
-				maxLimit: originDemurrageMaxLimit,
-				additional_days: originDEmurrageAdditionalDays,
+				freeLimit       : originDemurrageFreeLimit,
+				maxLimit        : originDemurrageMaxLimit,
+				additional_days : originDEmurrageAdditionalDays,
 			},
 		},
 
 		destination: {
 			detention: {
-				freeLimit: destinationDetentionFreeLimit,
-				maxLimit: destinationDetentionMaxLimit,
-				additional_days: destinationDetentionAdditionalDays,
+				freeLimit       : destinationDetentionFreeLimit,
+				maxLimit        : destinationDetentionMaxLimit,
+				additional_days : destinationDetentionAdditionalDays,
 			},
 
 			demurrage: {
-				freeLimit: destinationDemurrageFreeLimit,
-				maxLimit: destinationDemurrageMaxLimit,
-				additional_days: destinationDemurrageAdditionalDays,
+				freeLimit       : destinationDemurrageFreeLimit,
+				maxLimit        : destinationDemurrageMaxLimit,
+				additional_days : destinationDemurrageAdditionalDays,
 			},
 		},
 	};
@@ -103,5 +104,5 @@ const AddMoreDays = (props) => {
 			</Flex>
 		</div>
 	);
-};
+}
 export default AddMoreDays;

@@ -1,16 +1,15 @@
+// import AddressModal from '@cogo/product-pricing/components/Card/AddressModal';
+// import useGetPaymentAmount from '@cogo/product-pricing/hooks/useGetPaymentAmount';
+import { Button } from '@cogoport/components';
 import React, { useState } from 'react';
-import { Btn } from '@cogo/deprecated_legacy/ui';
-import useGetPaymentAmount from '@cogo/product-pricing/hooks/useGetPaymentAmount';
-import AddressModal from '@cogo/product-pricing/components/Card/AddressModal';
-import { Container } from './styles';
 
-const BuyEnquiry = ({ buttonText = '', className = '', onPayment = null }) => {
+function BuyEnquiry({ buttonText = '', className = '', onPayment = null }) {
 	const { currency, numberValues, amount } = useGetPaymentAmount({ service_type: 'spot-negotiation' });
 	const [addressModal, setAddressModal] = useState(false);
 
 	return (
-		<Container>
-			<Btn className={className} onClick={() => setAddressModal(true)}>{buttonText}</Btn>
+		<div>
+			<Button className={className} onClick={() => setAddressModal(true)}>{buttonText}</Button>
 			{addressModal ? (
 				<AddressModal
 					{...{
@@ -25,7 +24,7 @@ const BuyEnquiry = ({ buttonText = '', className = '', onPayment = null }) => {
 					}}
 				/>
 			) : null}
-		</Container>
+		</div>
 	);
-};
+}
 export default BuyEnquiry;

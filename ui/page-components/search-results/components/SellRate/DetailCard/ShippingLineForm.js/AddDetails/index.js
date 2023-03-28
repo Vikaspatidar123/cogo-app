@@ -1,15 +1,15 @@
-import { useEffect } from 'react';
-import { useSelector } from '@cogo/store';
 import { useRequest } from '@cogo/commons/hooks';
-import { useRouter } from '@cogo/next';
-import { Button } from '@cogoport/front/components/admin';
 import formatAmount from '@cogo/globalization/utils/formatAmount';
+import { useRouter } from '@cogo/next';
+import { useSelector } from '@cogo/store';
+import { Button } from '@cogoport/front/components/admin';
+import { useEffect } from 'react';
 
 import AddLineItems from './AddLineItems';
 import Loader from './Loader';
 import { Container, BtnContainer, PriceCon, Text, LeadText } from './styles';
 
-const AddDetails = ({ spotBookingDetails }) => {
+function AddDetails({ spotBookingDetails }) {
 	const { scope } = useSelector(({ general }) => ({
 		scope: general?.scope,
 	}));
@@ -30,9 +30,7 @@ const AddDetails = ({ spotBookingDetails }) => {
 		return null;
 	});
 
-	const services = (service_ids || []).map((item) => {
-		return { ...serviceRates?.[item], ...serviceDetails?.[item] };
-	});
+	const services = (service_ids || []).map((item) => ({ ...serviceRates?.[item], ...serviceDetails?.[item] }));
 
 	const line_item_check = (service_ids || []).filter((id) => {
 		if (serviceRates?.[id]?.line_items?.length > 0) {
@@ -44,8 +42,8 @@ const AddDetails = ({ spotBookingDetails }) => {
 	useEffect(() => {
 		getCheckout.trigger({
 			params: {
-				id: spotBookingDetails?.checkout_id,
-				quotation_type: 'customize',
+				id             : spotBookingDetails?.checkout_id,
+				quotation_type : 'customize',
 			},
 		});
 	}, []);
@@ -60,28 +58,26 @@ const AddDetails = ({ spotBookingDetails }) => {
 
 	return (
 		<Container>
-			{(services || []).map((service) => {
-				return (
-					<AddLineItems
-						getCheckout={getCheckout}
-						service={service}
-						spotBookingDetails={spotBookingDetails}
-						rate={rate}
-					/>
-				);
-			})}
+			{(services || []).map((service) => (
+				<AddLineItems
+					getCheckout={getCheckout}
+					service={service}
+					spotBookingDetails={spotBookingDetails}
+					rate={rate}
+				/>
+			))}
 			<BtnContainer>
 				<PriceCon>
 					<Text>
 						<div>Total Landed Cost :</div>
 						<div className="price">
 							{formatAmount({
-								amount: rate?.total_price_discounted,
-								currency: rate?.total_price_currency,
-								options: {
-									style: 'currency',
-									currencyDisplay: 'code',
-									maximumFractionDigits: 0,
+								amount   : rate?.total_price_discounted,
+								currency : rate?.total_price_currency,
+								options  : {
+									style                 : 'currency',
+									currencyDisplay       : 'code',
+									maximumFractionDigits : 0,
 								},
 							})}
 						</div>
@@ -89,12 +85,10 @@ const AddDetails = ({ spotBookingDetails }) => {
 					<LeadText>(Including Taxes, Convience and Platform Fees)</LeadText>
 				</PriceCon>
 				<Button
-					onClick={() =>
-						router.push(
-							'/checkout/[checkout_id]',
-							`/checkout/${spotBookingDetails?.checkout_id}`,
-						)
-					}
+					onClick={() => router.push(
+						'/checkout/[checkout_id]',
+						`/checkout/${spotBookingDetails?.checkout_id}`,
+					)}
 					disabled={line_item_check?.length !== service_ids?.length}
 				>
 					Go To Checkout
@@ -102,6 +96,6 @@ const AddDetails = ({ spotBookingDetails }) => {
 			</BtnContainer>
 		</Container>
 	);
-};
+}
 
 export default AddDetails;

@@ -1,15 +1,13 @@
-import { forwardRef } from 'react';
-import { Button } from '@cogoport/front/components/admin';
 import Layout from '@cogo/business-modules/form/Layout';
-import Grid from '@cogoport/front/components/Grid';
-
 import { Flex } from '@cogoport/front/components';
-import { Container, ButtonContainer } from './styles';
+import { Button } from '@cogoport/front/components/admin';
+import Grid from '@cogoport/front/components/Grid';
+import { forwardRef } from 'react';
 
 import CargoHandlingPopover from './CargoHandlingPopover';
-
-import useCargoContainersDetailsForm from './useCargoContainersDetailsForm';
 import CargoHandlingPopoverSavedContent from './CargoHandlingPopoverSavedContent';
+import { Container, ButtonContainer } from './styles';
+import useCargoContainersDetailsForm from './useCargoContainersDetailsForm';
 
 const layouts = {
 	0: [
@@ -24,11 +22,10 @@ const layouts = {
 
 const { Row, Col } = Grid;
 
-const CargoContainersDetailsForm = (props, ref) => {
+function CargoContainersDetailsForm(props, ref) {
 	const { showCancelButton, onClickCancelButton } = props;
 
-	const { controls, formProps, cargoHandlingPopover, onSubmit, state } =
-		useCargoContainersDetailsForm(props, ref);
+	const { controls, formProps, cargoHandlingPopover, onSubmit, state } =		useCargoContainersDetailsForm(props, ref);
 
 	const {
 		fields,
@@ -40,9 +37,7 @@ const CargoContainersDetailsForm = (props, ref) => {
 	return (
 		<Container>
 			{Object.entries(layouts).map(([layout, layoutControlsName]) => {
-				const layoutControls = controls.filter((control) => {
-					return layoutControlsName.includes(control.name);
-				});
+				const layoutControls = controls.filter((control) => layoutControlsName.includes(control.name));
 
 				const isPickupAndDelivery = layoutControlsName.every((controlName) => {
 					const controlNames = ['is_door_pickup', 'is_doorstep_delivery'];
@@ -63,9 +58,7 @@ const CargoContainersDetailsForm = (props, ref) => {
 				return (
 					<Row key={layout}>
 						{layoutControlsName.map((controlName) => {
-							const controlObj = layoutControls.find((control) => {
-								return control.name === controlName;
-							});
+							const controlObj = layoutControls.find((control) => control.name === controlName);
 
 							if (!controlObj) {
 								return null;
@@ -105,9 +98,7 @@ const CargoContainersDetailsForm = (props, ref) => {
 									{isCargoHandlingChecked && (
 										<CargoHandlingPopoverSavedContent
 											data={data}
-											onClickShowPopover={() =>
-												onClickShowPopover({ controlName })
-											}
+											onClickShowPopover={() => onClickShowPopover({ controlName })}
 										/>
 									)}
 								</Col>
@@ -139,6 +130,6 @@ const CargoContainersDetailsForm = (props, ref) => {
 			</ButtonContainer>
 		</Container>
 	);
-};
+}
 
 export default forwardRef(CargoContainersDetailsForm);

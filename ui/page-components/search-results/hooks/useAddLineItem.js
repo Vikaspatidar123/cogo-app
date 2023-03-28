@@ -1,7 +1,8 @@
-import { useFormCogo } from '@cogoport/front/hooks';
-import { useSelector } from '@cogo/store';
 import { useRequest } from '@cogo/commons/hooks';
+import { useSelector } from '@cogo/store';
 import { toast } from '@cogoport/front/components';
+import { useFormCogo } from '@cogoport/front/hooks';
+
 import getControls from '../utils/lineItemControls';
 
 const useAddLineItem = ({ service, spotBookingDetails, getCheckout }) => {
@@ -30,10 +31,10 @@ const useAddLineItem = ({ service, spotBookingDetails, getCheckout }) => {
 
 		const line_item_arr = (values?.line_items || []).map((line_item) => {
 			const line_item_object = {
-				code: line_item?.code,
-				unit: line_item?.unit,
-				currency: line_item?.currency,
-				price: Number(line_item?.sell_price),
+				code     : line_item?.code,
+				unit     : line_item?.unit,
+				currency : line_item?.currency,
+				price    : Number(line_item?.sell_price),
 			};
 
 			if (line_item_object?.unit === 'per_wm') {
@@ -44,8 +45,8 @@ const useAddLineItem = ({ service, spotBookingDetails, getCheckout }) => {
 		});
 
 		const body = {
-			id: spotBookingDetails?.checkout_id,
-			line_items_to_add: {
+			id                : spotBookingDetails?.checkout_id,
+			line_items_to_add : {
 				[service_id]: line_item_arr,
 			},
 		};
@@ -58,8 +59,8 @@ const useAddLineItem = ({ service, spotBookingDetails, getCheckout }) => {
 				toast.success('Line Item(s) Added Successfully');
 				getCheckout.trigger({
 					params: {
-						id: spotBookingDetails?.checkout_id,
-						quotation_type: 'customize',
+						id             : spotBookingDetails?.checkout_id,
+						quotation_type : 'customize',
 					},
 				});
 			}
@@ -73,8 +74,8 @@ const useAddLineItem = ({ service, spotBookingDetails, getCheckout }) => {
 		const service_id = service?.id;
 
 		const body = {
-			id: spotBookingDetails?.checkout_id,
-			line_items_to_delete: {
+			id                   : spotBookingDetails?.checkout_id,
+			line_items_to_delete : {
 				[service_id]: [values?.code],
 			},
 		};
@@ -87,8 +88,8 @@ const useAddLineItem = ({ service, spotBookingDetails, getCheckout }) => {
 				toast.success('Line Item Deleted Successfully');
 				getCheckout.trigger({
 					params: {
-						id: spotBookingDetails?.checkout_id,
-						quotation_type: 'customize',
+						id             : spotBookingDetails?.checkout_id,
+						quotation_type : 'customize',
 					},
 				});
 			}

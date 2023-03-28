@@ -1,6 +1,9 @@
-import { forwardRef } from 'react';
 import { Flex } from '@cogoport/front/components';
+import { forwardRef } from 'react';
+
+import AddMoreContainerButton from './AddMoreContainerButton';
 import CargoContainersDetailsForm from './CargoContainersDetailsForm';
+import ContainerDetailsList from './ContainerDetailsList';
 import {
 	Container,
 	HeaderContainer,
@@ -10,16 +13,14 @@ import {
 	ContainerCountContainer,
 } from './styles';
 import useCargoContainersDetails from './useCargoContainersDetails';
-import ContainerDetailsList from './ContainerDetailsList';
 import CONSTANTS from './utils/constants';
-import AddMoreContainerButton from './AddMoreContainerButton';
 
 const {
 	MAXIMUM_FULL_RAKE_CONTAINER_COUNT,
 	MAXIMUM_PIECE_MILE_CONTAINER_COUNT,
 } = CONSTANTS;
 
-const CargoContainersDetails = (props, ref) => {
+function CargoContainersDetails(props, ref) {
 	const { containerLoadSubType } = props;
 
 	const {
@@ -46,8 +47,7 @@ const CargoContainersDetails = (props, ref) => {
 	}
 
 	if (containerLoadSubType === 'piece_mile') {
-		isValidTotalContainersCount =
-			totalContainerCounts <= MAXIMUM_PIECE_MILE_CONTAINER_COUNT;
+		isValidTotalContainersCount =			totalContainerCounts <= MAXIMUM_PIECE_MILE_CONTAINER_COUNT;
 	}
 
 	const formValues = savedFormList.find((item) => item.id === editFormId) || {};
@@ -72,30 +72,32 @@ const CargoContainersDetails = (props, ref) => {
 
 						{containerLoadSubType === 'full_rake' && (
 							<span className="container-count__value--total-count">
-								/{isValidTotalContainersCount || '(80 or 90)'}
+								/
+								{isValidTotalContainersCount || '(80 or 90)'}
 							</span>
 						)}
 
 						{containerLoadSubType === 'piece_mile' && (
 							<span className="container-count__value--total-count">
-								/{MAXIMUM_PIECE_MILE_CONTAINER_COUNT}
+								/
+								{MAXIMUM_PIECE_MILE_CONTAINER_COUNT}
 							</span>
 						)}
 					</span>
 
-					{!isValidTotalContainersCount &&
-						containerLoadSubType === 'full_rake' && (
+					{!isValidTotalContainersCount
+						&& containerLoadSubType === 'full_rake' && (
 							<span className="container-count__value__text--invalid">
 								Total containers count should be equal to 80 or 90
 							</span>
-						)}
+					)}
 
-					{!isValidTotalContainersCount &&
-						containerLoadSubType === 'piece_mile' && (
+					{!isValidTotalContainersCount
+						&& containerLoadSubType === 'piece_mile' && (
 							<span className="container-count__value__text--invalid">
 								Total containers count should not be greater than 1000
 							</span>
-						)}
+					)}
 				</ContainerCountContainer>
 
 				<Flex style={{ margin: 'auto 0 auto auto' }}>
@@ -146,6 +148,6 @@ const CargoContainersDetails = (props, ref) => {
 			</ContainerDetailsListContainer>
 		</Container>
 	);
-};
+}
 
 export default forwardRef(CargoContainersDetails);

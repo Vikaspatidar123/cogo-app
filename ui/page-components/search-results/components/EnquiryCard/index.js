@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
 import dynamic from 'next/dynamic';
-import EnquiryAppCard from './EnquiryAppCard';
-import { Container } from './styles';
-import EnquiryPartnerCard from './EnquiryPartnerCard';
+import React, { useState } from 'react';
+
 import { showEnquiryFunc } from '../showEnquiry';
+
+import EnquiryAppCard from './EnquiryAppCard';
+import EnquiryPartnerCard from './EnquiryPartnerCard';
+import styles from './styles.module.css';
 
 const CreateRfqEnquiry = dynamic(
 	() => import('../AdditionalCards/MultiService/RfqEnquiry'),
@@ -14,14 +16,14 @@ const CreateEnquiry = dynamic(() => import('../AdditionalCards/MultiService'), {
 	ssr: false,
 });
 
-const EnquiryCard = ({
+function EnquiryCard({
 	detail = {},
 	refetch = () => {},
 	// enquiryQuota = {},
 	scope = '',
 	results_type,
 	ratesCount = 0,
-}) => {
+}) {
 	const [show, setShow] = useState(false);
 	const [formData, setFormData] = useState({});
 
@@ -33,14 +35,13 @@ const EnquiryCard = ({
 
 	const { notShowEnq } = showEnquiryFunc(ratesCount, detail);
 
-	const notShowFtlEnq =
-		detail?.rates_count > 0 &&
-		['ftl_freight', 'ltl_freight'].includes(detail?.search_type);
+	const notShowFtlEnq =		detail?.rates_count > 0
+		&& ['ftl_freight', 'ltl_freight'].includes(detail?.search_type);
 
 	return scope === 'app' && !notShowFtlEnq ? (
 		<EnquiryAppCard />
 	) : (
-		<Container className={className}>
+		<div className={`${styles.container} ${className}`}>
 			{!notShowEnq && !notShowFtlEnq ? (
 				<EnquiryPartnerCard data={detail} setShow={setShow} />
 			) : null}
@@ -71,8 +72,8 @@ const EnquiryCard = ({
 					setPrefillDetails={setPrefillDetails}
 				/>
 			) : null}
-		</Container>
+		</div>
 	);
-};
+}
 
 export default EnquiryCard;

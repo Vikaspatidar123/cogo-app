@@ -1,18 +1,20 @@
 import React from 'react';
-import BookingRoute from '@cogo/app-search/common/BookingRoute';
-import { Container, Heading, SubHeading } from './styles';
 
-const SelectedServices = ({ detail = {} }) => (
-	<Container>
-		<Heading>Select Your Services</Heading>
+import styles from './styles.module.css';
 
-		<SubHeading>
-			Add services as per your requirement and then select the ones you want to create an enquiry on
-		</SubHeading>
+function SelectedServices({ detail = {} }) {
+	return (
+		<div className={styles.container}>
+			<div className={styles.heading}>Select Your Services</div>
 
-		<div style={{ marginTop: 32 }}>
-			<BookingRoute data={detail} showServiceDetails={false} />
+			<div className={styles.sub_heading}>
+				Add services as per your requirement and then select the ones you want to create an enquiry on
+			</div>
+
+			<div style={{ marginTop: 32 }}>
+				{/* <BookingRoute data={detail} showServiceDetails={false} /> */}
+			</div>
 		</div>
-	</Container>
-);
+	);
+}
 export default SelectedServices;

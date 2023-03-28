@@ -13,9 +13,8 @@ const useGetEnquiryQuota = () => {
 		params: { filters: { service: 'spot_negotiation' } },
 	});
 
-	const object =
-		(data?.list || []).find((item) => item?.service === 'spot_negotiation') ||
-		{};
+	const object =		(data?.list || []).find((item) => item?.service === 'spot_negotiation')
+		|| {};
 
 	const onPayment = () => {
 		trigger();

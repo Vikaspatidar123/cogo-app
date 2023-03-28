@@ -1,8 +1,9 @@
-import { forwardRef } from 'react';
 import Layout from '@cogo/business-modules/form/Layout';
+import { forwardRef } from 'react';
+
 import useDoorstepDeliveryForm from './useDoorstepDeliveryForm';
 
-const DoorstepDeliveryForm = (props, ref) => {
+function DoorstepDeliveryForm(props, ref) {
 	const { controls, formProps, showFields } = useDoorstepDeliveryForm(
 		props,
 		ref,
@@ -21,6 +22,6 @@ const DoorstepDeliveryForm = (props, ref) => {
 			showElements={showFields}
 		/>
 	);
-};
+}
 
 export default forwardRef(DoorstepDeliveryForm);

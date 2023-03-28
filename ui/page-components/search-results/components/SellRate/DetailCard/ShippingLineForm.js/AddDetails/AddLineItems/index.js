@@ -2,7 +2,9 @@ import Layout from '@cogo/business-modules/form/Layout';
 import { Grid } from '@cogoport/front/components';
 import { Button } from '@cogoport/front/components/admin';
 import { startCase } from '@cogoport/front/utils';
+
 import useAddLineItem from '../../../../../../hooks/useAddLineItem';
+
 import RenderLineItems from './RenderLineItems';
 import {
 	Container,
@@ -12,7 +14,7 @@ import {
 	GrayLine,
 } from './styles';
 
-const AddLineItem = ({ service, spotBookingDetails, getCheckout }) => {
+function AddLineItem({ service, spotBookingDetails, getCheckout }) {
 	const line_items = service?.line_items;
 	const { Row, Col } = Grid;
 
@@ -52,7 +54,12 @@ const AddLineItem = ({ service, spotBookingDetails, getCheckout }) => {
 	return (
 		<Container>
 			<Text>
-				{startCase(service?.service_type)} ({service?.container_size} FT)
+				{startCase(service?.service_type)}
+				{' '}
+				(
+				{service?.container_size}
+				{' '}
+				FT)
 			</Text>
 			<DetailCon>
 				<Row>
@@ -86,6 +93,6 @@ const AddLineItem = ({ service, spotBookingDetails, getCheckout }) => {
 			</ButtonContainer>
 		</Container>
 	);
-};
+}
 
 export default AddLineItem;

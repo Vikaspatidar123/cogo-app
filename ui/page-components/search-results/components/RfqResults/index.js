@@ -1,23 +1,25 @@
-import React, { useState } from 'react';
 import { useSelector } from '@cogo/store';
 import { Checkbox } from '@cogoport/front/components';
-import Header from './Header';
-import Footer from './Footer';
+import React, { useState } from 'react';
+
+import useGetRfqSpotSearches from '../../hooks/useGetRfqSpotSearch';
+import EnquriyStatus from '../AdditionalCards/EnquriyStatus';
+import EnquiryCard from '../EnquiryCard';
 import Info from '../Info';
 import Loader from '../Loader';
 import NoResultFound from '../NoResultFound';
 import RateCard from '../RateCard';
-import EnquiryCard from '../EnquiryCard';
-import EnquriyStatus from '../AdditionalCards/EnquriyStatus';
-import useGetRfqSpotSearches from '../../hooks/useGetRfqSpotSearch';
+
+import Footer from './Footer';
+import Header from './Header';
 import { Container } from './styles';
 
-const RfqResults = () => {
+function RfqResults() {
 	const [bookedRates, setBookedRates] = useState({});
 	const { isMobile, query, scope } = useSelector(({ general }) => ({
-		isMobile: general?.isMobile,
-		query: general?.query,
-		scope: general?.scope,
+		isMobile : general?.isMobile,
+		query    : general?.query,
+		scope    : general?.scope,
 	}));
 
 	const {
@@ -30,10 +32,8 @@ const RfqResults = () => {
 
 	const { id, serial_id, total, spot_search } = fullResponse || {};
 
-	const isAwaitingResponse =
-		spot_search?.detail?.negotiation_status === 'awaiting_responses';
-	const isCompletedResponse =
-		spot_search?.detail?.negotiation_status === 'completed';
+	const isAwaitingResponse =		spot_search?.detail?.negotiation_status === 'awaiting_responses';
+	const isCompletedResponse =		spot_search?.detail?.negotiation_status === 'completed';
 	const handleBookResults = (cardId) => {
 		setBookedRates({ ...bookedRates, [cardId]: !bookedRates[cardId] });
 	};
@@ -90,13 +90,13 @@ const RfqResults = () => {
 						{((spot_search?.rates || []).length === 1
 							? i === 0
 							: i % 10 === 1) && !isAwaitingResponse ? (
-							<EnquiryCard
-								detail={spot_search?.detail}
-								refetch={refetch}
-								scope={scope}
-								results_type="rfq"
-							/>
-						) : null}
+								<EnquiryCard
+									detail={spot_search?.detail}
+									refetch={refetch}
+									scope={scope}
+									results_type="rfq"
+								/>
+							) : null}
 					</>
 				))}
 			</>
@@ -133,6 +133,6 @@ const RfqResults = () => {
 			/>
 		</Container>
 	);
-};
+}
 
 export default RfqResults;

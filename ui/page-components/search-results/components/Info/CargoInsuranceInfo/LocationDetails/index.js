@@ -3,7 +3,7 @@ import { IcMPortArrow } from '@cogoport/icons-react';
 
 import { Port, IconWrap, LocationDetailsDiv } from './styles';
 
-const LocationDetails = ({ data }) => {
+function LocationDetails({ data }) {
 	const { origin_country, destination_country } = data;
 
 	return (
@@ -35,6 +35,6 @@ const LocationDetails = ({ data }) => {
 			</ToolTip>
 		</LocationDetailsDiv>
 	);
-};
+}
 
 export default LocationDetails;

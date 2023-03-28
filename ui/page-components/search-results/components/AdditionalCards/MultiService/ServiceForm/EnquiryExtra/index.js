@@ -1,9 +1,12 @@
 import React, { forwardRef } from 'react';
-import Layout from '@cogo/business-modules/form/Layout';
 
 import useUpdateEnquiryParams from '../../../../../hooks/useUpdateEnquiryParams';
 
-const EnquiryExtraControls = (
+import styles from './styles.module.css';
+
+import getField from '@/packages/forms/Controlled';
+
+function EnquiryExtraControls(
 	{
 		service,
 		detail,
@@ -21,8 +24,8 @@ const EnquiryExtraControls = (
 		index,
 	},
 	ref,
-) => {
-	const { controls, fields, errors, showElements } = useUpdateEnquiryParams({
+) {
+	const { controls, errors, showElements, control } = useUpdateEnquiryParams({
 		service,
 		location,
 		handleServiceAdd,
@@ -41,15 +44,29 @@ const EnquiryExtraControls = (
 	});
 
 	return (
-		<>
-			<Layout
-				controls={controls}
-				fields={fields}
-				errors={errors}
-				showElements={showElements}
-			/>
-		</>
+		<div className={styles.container}>
+			<div className={styles.header_container}>
+				{controls.map((item) => {
+					const Element = getField(item.type);
+					const show = showElements[item.name];
+					return (
+						show && (
+							<div className={styles.field} key={item.name}>
+								<div className={styles.lable}>{item.label}</div>
+								<Element {...item} control={control} />
+								{errors && (
+									<div className={styles.errors}>
+										{errors[item?.name]?.message}
+									</div>
+								)}
+							</div>
+						)
+					);
+				})}
+
+			</div>
+		</div>
 	);
-};
+}
 
 export default forwardRef(EnquiryExtraControls);

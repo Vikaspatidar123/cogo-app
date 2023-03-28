@@ -1,36 +1,34 @@
-import { useState, useMemo, useImperativeHandle, useEffect } from 'react';
-import { useFormCogo } from '@cogoport/front/hooks';
 import showElementsFunc from '@cogo/app-search/common/SearchForm/utils/show-elements';
-import formatSearch from '@cogo/app-search/utils/format-create-search';
-import { useRequest } from '@cogo/commons/hooks';
-import { useSelector } from '@cogo/store';
-
-import formatMainServiceData from '@cogo/app-search/utils/format-main-service-data';
-import fclControls from '@cogo/app-search/configurations/search/fcl/form-controls.advanced';
-import lclControls from '@cogo/app-search/configurations/search/lcl/form.controls.advanced';
 import airControls from '@cogo/app-search/configurations/search/air/form.controls.advanced';
-
+import airLocalsControls from '@cogo/app-search/configurations/search/domestic/air-locals/form-controls.advanced';
 import fclCustomsControls from '@cogo/app-search/configurations/search/domestic/fcl-customs/form-controls.advanced';
-
 import fclLocalsControls from '@cogo/app-search/configurations/search/domestic/fcl-locals/form-controls.advanced';
 import lclLocalsControls from '@cogo/app-search/configurations/search/domestic/lcl-locals/form-controls.advanced';
-import airLocalsControls from '@cogo/app-search/configurations/search/domestic/air-locals/form-controls.advanced';
-
-import { toast } from '@cogoport/front/components';
+import fclControls from '@cogo/app-search/configurations/search/fcl/form-controls.advanced';
+import lclControls from '@cogo/app-search/configurations/search/lcl/form.controls.advanced';
+import formatSearch from '@cogo/app-search/utils/format-create-search';
+import formatMainServiceData from '@cogo/app-search/utils/format-main-service-data';
 import { trackEvent, APP_EVENT } from '@cogo/commons/analytics';
+import { useRequest } from '@cogo/commons/hooks';
+import { useSelector } from '@cogo/store';
 import isEmpty from '@cogo/utils/isEmpty';
+import { toast } from '@cogoport/front/components';
+import { useState, useMemo, useImperativeHandle, useEffect } from 'react';
+
 import getServiceValues from '../helpers/get-service-values';
 
+import { useForm } from '@/packages/forms';
+
 const controlsMapping = {
-	fcl_freight: fclControls(),
-	lcl_freight: lclControls(),
-	air_freight: airControls(),
-	fcl_customs: fclCustomsControls(),
-	lcl_customs: lclControls(),
-	air_customs: airControls(),
-	fcl_freight_local: fclLocalsControls(),
-	lcl_freight_local: lclLocalsControls(),
-	air_freight_local: airLocalsControls(),
+	fcl_freight       : fclControls(),
+	lcl_freight       : lclControls(),
+	air_freight       : airControls(),
+	fcl_customs       : fclCustomsControls(),
+	lcl_customs       : lclControls(),
+	air_customs       : airControls(),
+	fcl_freight_local : fclLocalsControls(),
+	lcl_freight_local : lclLocalsControls(),
+	air_freight_local : airLocalsControls(),
 };
 
 const useAddService = ({
@@ -58,8 +56,8 @@ const useAddService = ({
 	);
 
 	const { scope, query } = useSelector(({ general }) => ({
-		scope: general?.scope,
-		query: (general || {}).query || {},
+		scope : general?.scope,
+		query : (general || {}).query || {},
 	}));
 	const { search_id, checkout_id } = query;
 
@@ -69,21 +67,20 @@ const useAddService = ({
 			service?.[control.name] || prefilledValues[control.name] || control.value,
 		disabled: !!(
 			addedServiceEnquiry?.[`${service?.service}:${service?.trade_type}`]
-				?.length ||
-			addedServiceEnquiry?.[`${service?.service}:${service?.trade_type}`]
+				?.length
+			|| addedServiceEnquiry?.[`${service?.service}:${service?.trade_type}`]
 				?.length
 		),
 	}));
 
 	(controls || []).forEach((obj, index) => {
 		if (
-			obj?.name === 'import_transportation_location_id' ||
-			obj?.name === 'export_transportation_location_id'
+			obj?.name === 'import_transportation_location_id'
+			|| obj?.name === 'export_transportation_location_id'
 		) {
-			controls[index].value =
-				prefillDetails?.addServiceDetails?.[
-					`${service?.service}:${service?.trade_type}`
-				]?.[obj?.name];
+			controls[index].value =				prefillDetails?.addServiceDetails?.[
+				`${service?.service}:${service?.trade_type}`
+			]?.[obj?.name];
 		}
 	});
 
@@ -96,12 +93,13 @@ const useAddService = ({
 		unregister,
 		setValues,
 		setValue,
-	} = useFormCogo(controls);
+		control,
+	} = useForm();
 
 	Object.keys(fields || {}).forEach((key) => {
 		if (
-			key === 'import_transportation_location_id' ||
-			key === 'export_transportation_location_id'
+			key === 'import_transportation_location_id'
+			|| key === 'export_transportation_location_id'
 		) {
 			fields[key].handleChange = (val) => {
 				setLocationObj({ [key]: val });
@@ -180,14 +178,13 @@ const useAddService = ({
 		unregister,
 	};
 	const showElements = useMemo(
-		() =>
-			showElementsFunc({
-				...formProps,
-				advancedControls: controls,
-				mode: search_type,
-				location: {},
-				services: { [service?.service]: true },
-			}),
+		() => showElementsFunc({
+			...formProps,
+			advancedControls : controls,
+			mode             : search_type,
+			location         : {},
+			services         : { [service?.service]: true },
+		}),
 		[JSON.stringify(formValues)],
 	);
 
@@ -228,10 +225,10 @@ const useAddService = ({
 			const rawParams = {
 				...mainServiceData,
 				...values,
-				packages: packages || undefined,
-				packages_count: packages_count || undefined,
-				volume: volume || undefined,
-				weight: weight || undefined,
+				packages       : packages || undefined,
+				packages_count : packages_count || undefined,
+				volume         : volume || undefined,
+				weight         : weight || undefined,
 			};
 
 			const payload = formatSearch(
@@ -269,12 +266,12 @@ const useAddService = ({
 	useEffect(() => {
 		const formatPackageInformation = [
 			{
-				packing_type: 'pallet',
-				packages_count: 1,
-				dimensions: {
-					length: 1,
-					width: 1,
-					height: 1,
+				packing_type   : 'pallet',
+				packages_count : 1,
+				dimensions     : {
+					length : 1,
+					width  : 1,
+					height : 1,
 				},
 			},
 		];
@@ -307,6 +304,7 @@ const useAddService = ({
 		formValues,
 		formProps,
 		addService,
+		control,
 	};
 };
 export default useAddService;

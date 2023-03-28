@@ -1,5 +1,6 @@
 import { startCase } from 'lodash';
 import React from 'react';
+
 import ShippingLineForm from './ShippingLineForm.js';
 import { Container, Text } from './styles';
 
@@ -12,7 +13,7 @@ const DRIVER_TEXT_SHOW = [
 	'air_customs',
 ];
 
-const DetailCard = ({
+function DetailCard({
 	rates = [],
 	data,
 	handleSave = () => {},
@@ -23,7 +24,7 @@ const DetailCard = ({
 	wayToBook,
 	spotBookingDetails,
 	showSpotBookingDetails = () => {},
-}) => {
+}) {
 	const { service_details = {} } = data || {};
 
 	const check_multiple_containers_fcl = Object.values(
@@ -39,7 +40,10 @@ const DetailCard = ({
 	return (
 		<Container>
 			{data?.search_type ? (
-				<Text>Customize {startCase(data?.search_type)}</Text>
+				<Text>
+					Customize
+					{startCase(data?.search_type)}
+				</Text>
 			) : null}
 			{DRIVER_TEXT_SHOW.includes(data?.search_type) ? (
 				<Text className="lead-text">
@@ -62,6 +66,6 @@ const DetailCard = ({
 			/>
 		</Container>
 	);
-};
+}
 
 export default DetailCard;

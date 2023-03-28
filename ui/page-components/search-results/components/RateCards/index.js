@@ -1,4 +1,5 @@
 import React, { useMemo } from 'react';
+
 import CargoInsuranceRateCard from '../CargoInsuranceRateCard';
 import FtlRateCard from '../FtlRateCard';
 import RateCard from '../RateCard';
@@ -14,26 +15,22 @@ function RateCards({
 	index,
 	scheduleList,
 }) {
-	const SEARCH_TYPE_SELECTED_RATE_CARD_COMPONENT_MAPPING = useMemo(() => {
-		return {
-			ftl_freight: FtlRateCard,
-			ltl_freight: FtlRateCard,
-			trailer_freight: TrailerFreightRateCard,
-			rail_domestic_freight: TrailerFreightRateCard,
-			cargo_insurance: CargoInsuranceRateCard,
-			others: RateCard,
-		};
-	}, []);
+	const SEARCH_TYPE_SELECTED_RATE_CARD_COMPONENT_MAPPING = useMemo(() => ({
+		ftl_freight           : FtlRateCard,
+		ltl_freight           : FtlRateCard,
+		trailer_freight       : TrailerFreightRateCard,
+		rail_domestic_freight : TrailerFreightRateCard,
+		cargo_insurance       : CargoInsuranceRateCard,
+		others                : RateCard,
+	}), []);
 
 	const { search_type } = details;
 
-	const componentKey =
-		search_type in SEARCH_TYPE_SELECTED_RATE_CARD_COMPONENT_MAPPING
-			? search_type
-			: 'others';
+	const componentKey =		search_type in SEARCH_TYPE_SELECTED_RATE_CARD_COMPONENT_MAPPING
+		? search_type
+		: 'others';
 
-	const Component =
-		SEARCH_TYPE_SELECTED_RATE_CARD_COMPONENT_MAPPING[componentKey] || null;
+	const Component =		SEARCH_TYPE_SELECTED_RATE_CARD_COMPONENT_MAPPING[componentKey] || null;
 
 	return (
 		<Component

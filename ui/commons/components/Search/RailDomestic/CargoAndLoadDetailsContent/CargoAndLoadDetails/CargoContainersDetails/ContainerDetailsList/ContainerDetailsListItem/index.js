@@ -1,8 +1,10 @@
 import { Flex, Grid, Text } from '@cogoport/front/components';
 import { get, startCase } from '@cogoport/front/utils';
 import { IcMEdit, IcMDelete } from '@cogoport/icons-react';
-import { Container, ActionsButtonContainer } from './styles';
+
 import COMMODITY_TYPE_SUB_TYPE_LABEL_MAPPING from '../configurations/commodity-type-sub-type-label-mapping.json';
+
+import { Container, ActionsButtonContainer } from './styles';
 // import CARGO_HANDLING_VALUE_LABEL_MAPPING from '../../configurations/cargo-handling-value-label-mapping.json';
 
 const { Row, Col } = Grid;
@@ -12,47 +14,41 @@ const items = {
 		// use the below commented span values after adding transportation details
 		const value = get(values, 'container_size');
 		return {
-			span: 1.5, // span: 1,
-			label: 'Container Size',
-			value: `${value} FT` || '---',
+			span  : 1.5, // span: 1,
+			label : 'Container Size',
+			value : `${value} FT` || '---',
 		};
 	},
-	container_type: (values) => {
-		return {
-			span: 2, // span: 1.75,
-			label: 'Container Type',
-			value: startCase(get(values, 'container_type') || '') || '---',
-		};
-	},
+	container_type: (values) => ({
+		span  : 2, // span: 1.75,
+		label : 'Container Type',
+		value : startCase(get(values, 'container_type') || '') || '---',
+	}),
 	cargo_weight_per_container: (values) => {
 		const value = get(values, 'cargo_weight_per_container') || '';
 
 		return {
-			span: 1.5, // span: 1,
-			label: 'Cargo Weight',
-			value: value ? `${Number(value).toFixed(2)} MT` : '---',
+			span  : 1.5, // span: 1,
+			label : 'Cargo Weight',
+			value : value ? `${Number(value).toFixed(2)} MT` : '---',
 		};
 	},
-	container_count: (values) => {
-		return {
-			span: 1.5, // span: 1,
-			label: 'Container Count',
-			value: get(values, 'container_count') || '---',
-		};
-	},
-	commodity_type: (values) => {
-		return {
-			span: 1.5, // span: 1.25,
-			label: 'Commodity Type',
-			value: startCase(get(values, 'commodity_type') || '') || '---',
-		};
-	},
+	container_count: (values) => ({
+		span  : 1.5, // span: 1,
+		label : 'Container Count',
+		value : get(values, 'container_count') || '---',
+	}),
+	commodity_type: (values) => ({
+		span  : 1.5, // span: 1.25,
+		label : 'Commodity Type',
+		value : startCase(get(values, 'commodity_type') || '') || '---',
+	}),
 	commodity_subtype: (values) => {
 		const { commodity_type, commodity_subtype } = values;
 
 		return {
-			span: 2,
-			label: 'Commodity Sub-Type',
+			span  : 2,
+			label : 'Commodity Sub-Type',
 			value:
 				get(
 					COMMODITY_TYPE_SUB_TYPE_LABEL_MAPPING,
@@ -60,13 +56,11 @@ const items = {
 				) || '---',
 		};
 	},
-	packaging_type: (values) => {
-		return {
-			span: 1.5, // span: 1,
-			label: 'Packaging Type',
-			value: startCase(get(values, 'packaging_type') || '') || '---',
-		};
-	},
+	packaging_type: (values) => ({
+		span  : 1.5, // span: 1,
+		label : 'Packaging Type',
+		value : startCase(get(values, 'packaging_type') || '') || '---',
+	}),
 	// is_door_pickup: (values) => {
 	// 	const { is_door_pickup } = values;
 
@@ -123,7 +117,7 @@ const items = {
 	// },
 };
 
-const ContainerDetailsListItem = ({ item, onEdit, onDelete }) => {
+function ContainerDetailsListItem({ item, onEdit, onDelete }) {
 	return (
 		<Container>
 			<ActionsButtonContainer className="actions-button-container">
@@ -161,7 +155,8 @@ const ContainerDetailsListItem = ({ item, onEdit, onDelete }) => {
 						<Col key={key} xs={12} sm={6} md={span}>
 							<Flex direction="column" margin={4}>
 								<Text as="div" size={11} bold={400}>
-									{label}:
+									{label}
+									:
 								</Text>
 
 								<Text as="div" size={12} bold={500}>
@@ -174,6 +169,6 @@ const ContainerDetailsListItem = ({ item, onEdit, onDelete }) => {
 			</Row>
 		</Container>
 	);
-};
+}
 
 export default ContainerDetailsListItem;

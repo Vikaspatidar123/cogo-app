@@ -1,6 +1,6 @@
 import { useRequest, useScope } from '@cogo/commons/hooks';
-import { toast } from '@cogoport/front/components';
 import { useSelector } from '@cogo/store';
+import { toast } from '@cogoport/front/components';
 
 const useCreateContract = ({
 	data = {},
@@ -32,11 +32,11 @@ const useCreateContract = ({
 		try {
 			const body = {
 				...values,
-				status: 'pending_approval',
-				id: query?.search_id,
-				selected_card: data?.card,
-				preferred_shipping_line_ids: preferred_shipping_line_ids || undefined,
-				exclude_shipping_line_ids: exclude_shipping_line_ids || undefined,
+				status                      : 'pending_approval',
+				id                          : query?.search_id,
+				selected_card               : data?.card,
+				preferred_shipping_line_ids : preferred_shipping_line_ids || undefined,
+				exclude_shipping_line_ids   : exclude_shipping_line_ids || undefined,
 				max_containers_count:
 					search_type === 'fcl_freight'
 						? Number(max_containers_count)

@@ -1,15 +1,18 @@
-import React, { useState, forwardRef } from 'react';
+import { useRequest } from '@cogo/commons/hooks';
+import getGeoConstants from '@cogo/globalization/constants/geo';
+import formatAmount from '@cogo/globalization/utils/formatAmount';
+import { useRouter } from '@cogo/next';
 import { useSelector } from '@cogo/store';
 import { Flex } from '@cogoport/front/components';
-import { startCase } from '@cogoport/front/utils';
 import { Button } from '@cogoport/front/components/admin';
-import { useRequest } from '@cogo/commons/hooks';
-import { useRouter } from '@cogo/next';
-import formatAmount from '@cogo/globalization/utils/formatAmount';
+import { startCase } from '@cogoport/front/utils';
 import { IcMArrowRotateDown, IcMArrowRotateUp } from '@cogoport/icons-react';
-import getGeoConstants from '@cogo/globalization/constants/geo';
-import LineItems from './LineItems';
+import React, { useState, forwardRef } from 'react';
+
+import formatSwbPayload from '../../../utils/format-swb-payload';
 import FeedBackModal from '../../NoResultFound/FeedbackModal';
+
+import LineItems from './LineItems';
 import {
 	Container,
 	Service,
@@ -21,7 +24,6 @@ import {
 	AnimatedContainer,
 	BtnContainer,
 } from './styles';
-import formatSwbPayload from '../../../utils/format-swb-payload';
 
 const LOCALS = [
 	'origin_air_freight_local',
@@ -54,10 +56,10 @@ function QuotationDetails(
 		query = {},
 		userRoleIDs = [],
 	} = useSelector(({ general, profile }) => ({
-		isMobile: general.isMobile,
-		scope: general.scope,
-		query: general?.query,
-		userRoleIDs: profile?.partner?.user_role_ids,
+		isMobile    : general.isMobile,
+		scope       : general.scope,
+		query       : general?.query,
+		userRoleIDs : profile?.partner?.user_role_ids,
 	}));
 
 	const createCheckoutApi = useRequest(
@@ -69,9 +71,9 @@ function QuotationDetails(
 	const [open, setOpen] = useState(false);
 	const [openService, setOpenService] = useState('');
 	const [requestService, setRequestService] = useState({
-		service_id: undefined,
-		service_type: undefined,
-		selected_card: undefined,
+		service_id    : undefined,
+		service_type  : undefined,
+		selected_card : undefined,
 	});
 	const [showFeedbackModal, setShowFeedBackModal] = useState(false);
 	const services_ids = Object.keys(data?.service_rates || {});
@@ -106,8 +108,8 @@ function QuotationDetails(
 		} else if (item?.trade_type === 'export') {
 			service = `origin_${item?.service_type}`;
 		} else if (
-			item?.trade_type === 'domestic' &&
-			details?.service_type === 'air_freight'
+			item?.trade_type === 'domestic'
+			&& details?.service_type === 'air_freight'
 		) {
 			service = `terminal_${serviceData?.terminal_charge_type}`;
 		} else {
@@ -134,8 +136,7 @@ function QuotationDetails(
 
 	const handleLineItemsBreakup = (item) => {
 		const service = details?.service_details[item?.id];
-		const { is_rate_available = false, service_type: serviceType = '' } =
-			item || {};
+		const { is_rate_available = false, service_type: serviceType = '' } =			item || {};
 
 		const {
 			container_size,
@@ -210,8 +211,8 @@ function QuotationDetails(
 			}
 
 			if (
-				['air_freight', 'air_freight_local'].includes(service_type) &&
-				trade_type !== 'domestic'
+				['air_freight', 'air_freight_local'].includes(service_type)
+				&& trade_type !== 'domestic'
 			) {
 				return `${size}${type}${comm} ${packageType} ${packageHandlingType} ${additonalInfo}`;
 			}
@@ -221,9 +222,9 @@ function QuotationDetails(
 			}
 
 			if (
-				trade_type === 'domestic' &&
-				terminal_charge_type &&
-				service_type === 'air_freight_local'
+				trade_type === 'domestic'
+				&& terminal_charge_type
+				&& service_type === 'air_freight_local'
 			) {
 				return `${size}${type}${comm} ${packageType} ${packageHandlingType} ${additonalInfo}`;
 			}
@@ -242,23 +243,23 @@ function QuotationDetails(
 
 					{is_rate_available
 						? formatAmount({
-								amount: item?.total_price_discounted,
-								currency: item?.total_price_currency,
-								options: {
-									style: 'currency',
-									currencyDisplay: 'code',
-									maximumFractionDigits: 0,
-								},
+							amount   : item?.total_price_discounted,
+							currency : item?.total_price_currency,
+							options  : {
+								style                 : 'currency',
+								currencyDisplay       : 'code',
+								maximumFractionDigits : 0,
+							},
 						  })
 						: fclLocals}
 				</ServiceDetails>
 
 				{is_rate_available
 					? (item?.line_items || []).map((lineItem, index) => (
-							<>
-								{index !== 0 ? <Line /> : null}
-								<LineItems item={lineItem} isMobile={isMobile} />
-							</>
+						<>
+							{index !== 0 ? <Line /> : null}
+							<LineItems item={lineItem} isMobile={isMobile} />
+						</>
 					  ))
 					: null}
 			</>
@@ -300,29 +301,26 @@ function QuotationDetails(
 				}
 			});
 
-			const primary_service =
-				details?.search_type === 'trailer_freight'
-					? 'haulage_freight'
-					: details?.search_type;
+			const primary_service =				details?.search_type === 'trailer_freight'
+				? 'haulage_freight'
+				: details?.search_type;
 
-			const isCogoVerseMember = userRoleIDs.some((elem) =>
-				cogoVerseTeamIDS.includes(elem),
-			);
+			const isCogoVerseMember = userRoleIDs.some((elem) => cogoVerseTeamIDS.includes(elem));
 
 			const payload = {
-				source: 'spot_search',
-				source_id: details?.id,
+				source                      : 'spot_search',
+				source_id                   : details?.id,
 				primary_service,
-				importer_exporter_id: details?.importer_exporter_id,
-				importer_exporter_branch_id: details?.importer_exporter_branch_id,
-				user_id: details?.user?.id,
-				quotation_type: 'customize',
+				importer_exporter_id        : details?.importer_exporter_id,
+				importer_exporter_branch_id : details?.importer_exporter_branch_id,
+				user_id                     : details?.user?.id,
+				quotation_type              : 'customize',
 				existing_shipment_id:
 					details?.source === 'upsell' ? details?.source_id : undefined,
 				...service_payload_final,
 				tags:
-					scope === 'partner' &&
-					(query?.source === 'communication' || isCogoVerseMember)
+					scope === 'partner'
+					&& (query?.source === 'communication' || isCogoVerseMember)
 						? ['cogoverse']
 						: undefined,
 			};
@@ -345,9 +343,7 @@ function QuotationDetails(
 			return true;
 		}
 
-		const check = (groupedService || []).every((serv) => {
-			return serv?.is_rate_available;
-		});
+		const check = (groupedService || []).every((serv) => serv?.is_rate_available);
 
 		return check;
 	};
@@ -355,43 +351,41 @@ function QuotationDetails(
 	const handleRateFeedback = (service) => {
 		setShowFeedBackModal(true);
 		setRequestService({
-			service_id: groupedServices[service][0]?.id,
-			service_type: groupedServices[service][0]?.service_type,
-			selected_card: data?.card || null,
+			service_id    : groupedServices[service][0]?.id,
+			service_type  : groupedServices[service][0]?.service_type,
+			selected_card : data?.card || null,
 		});
 	};
 
-	const handleShowButtons = (service) => {
-		return (
-			<BtnContainer>
-				{/* {!CUSTOMS.includes(details?.search_type) ? ( */}
+	const handleShowButtons = (service) => (
+		<BtnContainer>
+			{/* {!CUSTOMS.includes(details?.search_type) ? ( */}
+			<Button
+				onClick={() => {
+					handleAddRate(service);
+				}}
+				disabled={service === openService && createCheckoutApi.loading}
+				className="primary sm"
+				type="button"
+			>
+				Add Rate
+			</Button>
+			{/* // ) : null} */}
+			{!LOCALS.includes(service) && !service.includes('subsidiary') ? (
 				<Button
 					onClick={() => {
-						handleAddRate(service);
+						handleRateFeedback(service);
 					}}
-					disabled={service === openService && createCheckoutApi.loading}
-					className="primary sm"
+					style={{ marginLeft: '10px' }}
+					className="secondary sm"
 					type="button"
+					disabled={service.includes('cargo_insurance')}
 				>
-					Add Rate
+					{!service.includes('cargo_insurance') ? 'REQUEST RATE' : 'No Rates'}
 				</Button>
-				{/* // ) : null} */}
-				{!LOCALS.includes(service) && !service.includes('subsidiary') ? (
-					<Button
-						onClick={() => {
-							handleRateFeedback(service);
-						}}
-						style={{ marginLeft: '10px' }}
-						className="secondary sm"
-						type="button"
-						disabled={service.includes('cargo_insurance')}
-					>
-						{!service.includes('cargo_insurance') ? 'REQUEST RATE' : 'No Rates'}
-					</Button>
-				) : null}
-			</BtnContainer>
-		);
-	};
+			) : null}
+		</BtnContainer>
+	);
 
 	return (
 		<Container ref={ref} className={isConfirmed ? 'confirmed' : ''}>
@@ -407,24 +401,24 @@ function QuotationDetails(
 								<ServiceText>{startCase(service)}</ServiceText>
 							)}
 
-							{checkIfRateAvailable(groupedServices[service]) ||
-							service.includes('fcl_freight_local') ||
-							service.includes('air_freight_local') ||
-							(CUSTOMS.includes(details?.search_type) &&
-								!service.includes('subsidiary')) ? (
-								<Flex
-									style={
+							{checkIfRateAvailable(groupedServices[service])
+							|| service.includes('fcl_freight_local')
+							|| service.includes('air_freight_local')
+							|| (CUSTOMS.includes(details?.search_type)
+								&& !service.includes('subsidiary')) ? (
+									<Flex
+										style={
 										isMobile
 											? { cursor: 'pointer', marginLeft: 'auto' }
 											: { cursor: 'pointer' }
 									}
-									onClick={() => handleOpen(service)}
-								>
-									{handleIcon(service)}
-								</Flex>
-							) : (
-								handleShowButtons(service)
-							)}
+										onClick={() => handleOpen(service)}
+									>
+										{handleIcon(service)}
+									</Flex>
+								) : (
+									handleShowButtons(service)
+								)}
 						</FlexRow>
 					</Service>
 
@@ -432,9 +426,7 @@ function QuotationDetails(
 						type={open && service === openService ? 'enter' : 'exit'}
 					>
 						<div>
-							{(groupedServices[service] || []).map((item) =>
-								handleLineItemsBreakup(item),
-							)}
+							{(groupedServices[service] || []).map((item) => handleLineItemsBreakup(item))}
 						</div>
 					</AnimatedContainer>
 					{showFeedbackModal ? (

@@ -1,9 +1,9 @@
 import { Modal } from '@cogoport/front/components';
-
 import { IcCFtick } from '@cogoport/icons-react';
+
 import { Container, Title, Description, Submit } from './styles';
 
-const SuccessModal = ({ show, setShow, title, description, cta = 'Okay' }) => {
+function SuccessModal({ show, setShow, title, description, cta = 'Okay' }) {
 	const handleClose = () => {
 		setShow(false);
 	};
@@ -18,6 +18,6 @@ const SuccessModal = ({ show, setShow, title, description, cta = 'Okay' }) => {
 			</Container>
 		</Modal>
 	);
-};
+}
 
 export default SuccessModal;

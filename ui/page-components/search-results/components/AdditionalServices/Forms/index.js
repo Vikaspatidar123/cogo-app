@@ -1,10 +1,13 @@
+import { Button } from '@cogoport/components';
 import React from 'react';
-import { Button } from '@cogoport/front/components';
-import FormElement from '@cogo/app-search/common/FormElement';
-import useAddService from '../../../hooks/useAddService';
-import { Container, BtnWrap, CancelBtnWrap, Text } from './styles';
 
-const Forms = ({
+import useAddService from '../../../hooks/useAddService';
+
+import styles from './styles.module.css';
+
+import getField from '@/packages/forms/Controlled';
+
+function Forms({
 	search_type = '',
 	addService: service = '',
 	onClose = () => {},
@@ -12,7 +15,7 @@ const Forms = ({
 	refetch = () => {},
 	detail,
 	data,
-}) => {
+}) {
 	const {
 		onError,
 		addService,
@@ -21,32 +24,48 @@ const Forms = ({
 		controls,
 		errors,
 		formProps,
+		control,
 	} = useAddService({
 		detail,
-		service: { service },
+		service : { service },
 		search_type,
-		onAdd: () => {
+		onAdd   : () => {
 			refetch();
 			onClose();
 		},
 		services,
 		data,
 	});
-	const { handleSubmit, fields } = formProps || {};
+	const { handleSubmit } = formProps || {};
 
 	return (
-		<Container>
-			<Text>{`Add ${detail[service]?.title}`}</Text>
+		<div className={styles.container}>
+			<div className={styles.text}>{`Add ${detail[service]?.title}`}</div>
 
-			<FormElement
-				controls={controls}
-				fields={fields}
-				errors={errors}
-				showElements={showElements}
-			/>
+			<div className={styles.form_container}>
+				<div className={styles.header_container}>
+					{controls.map((item) => {
+						const Element = getField(item.type);
+						const show = showElements[item.name];
+						return (
+							show && (
+								<div className={styles.field} key={item.name}>
+									<div className={styles.lable}>{item.label}</div>
+									<Element {...item} control={control} />
+									{errors && (
+										<div className={styles.errors}>
+											{errors[item?.name]?.message}
+										</div>
+									)}
+								</div>
+							)
+						);
+					})}
 
-			<BtnWrap>
-				<CancelBtnWrap>
+				</div>
+			</div>
+			<div className={styles.btn_wrap}>
+				<div className={styles.cancel_btn_wrap}>
 					<Button
 						onClick={onClose}
 						disabled={loading}
@@ -54,7 +73,7 @@ const Forms = ({
 					>
 						Cancel
 					</Button>
-				</CancelBtnWrap>
+				</div>
 
 				<Button
 					onClick={handleSubmit(addService, onError)}
@@ -63,9 +82,9 @@ const Forms = ({
 				>
 					Save and proceed
 				</Button>
-			</BtnWrap>
-		</Container>
+			</div>
+		</div>
 	);
-};
+}
 
 export default Forms;

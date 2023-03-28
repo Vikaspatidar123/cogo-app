@@ -1,8 +1,8 @@
+import { getFormattedValues } from '@cogo/app-common';
+import formatSearch from '@cogo/app-search/utils/format-create-search';
+import formatMainServiceData from '@cogo/app-search/utils/format-main-service-data';
 import { toast } from '@cogoport/front/components';
 import { useRef, useState } from 'react';
-import formatMainServiceData from '@cogo/app-search/utils/format-main-service-data';
-import formatSearch from '@cogo/app-search/utils/format-create-search';
-import { getFormattedValues } from '@cogo/app-common';
 
 const isPackageFormatted = (obj) => {
 	const requiredArr = [
@@ -36,15 +36,15 @@ const formattedPackage = (packagesArr) => {
 		temp.push({
 			packing_type: packageObj?.packing_type,
 			length:
-				packageObj?.dimensions?.length ||
-				packageObj?.['dimensions (meters)']?.length,
+				packageObj?.dimensions?.length
+				|| packageObj?.['dimensions (meters)']?.length,
 
 			width:
-				packageObj?.dimensions?.width ||
-				packageObj?.['dimensions (meters)']?.width,
+				packageObj?.dimensions?.width
+				|| packageObj?.['dimensions (meters)']?.width,
 			height:
-				packageObj?.dimensions?.height ||
-				packageObj?.['dimensions (meters)']?.height,
+				packageObj?.dimensions?.height
+				|| packageObj?.['dimensions (meters)']?.height,
 			packages_count: packageObj?.packages_count,
 		});
 	});
@@ -335,8 +335,8 @@ const useEnquiryModalForm = ({
 					...apiData,
 					...(finalObject || {}),
 					[`${service?.service}:${service?.trade_type}`]: [
-						...(finalObject[`${service?.service}:${service?.trade_type}`] ||
-							[]),
+						...(finalObject[`${service?.service}:${service?.trade_type}`]
+							|| []),
 					],
 				});
 				setFormData({
@@ -351,8 +351,7 @@ const useEnquiryModalForm = ({
 				});
 				toast.success('Service information saved successfully !');
 			} else {
-				const { formattedPayloadArr, serviceType, payload } =
-					formatAddedServices(payloadData, res, serviceResponseArr, service);
+				const { formattedPayloadArr, serviceType, payload } =					formatAddedServices(payloadData, res, serviceResponseArr, service);
 
 				setApiData({
 					...apiData,
@@ -363,19 +362,17 @@ const useEnquiryModalForm = ({
 				setFormData({
 					...formData,
 					[`${service?.service}:${service?.trade_type}`]:
-						formattedPayloadArr.map((obj, index) => {
-							return {
-								...obj,
-								service_name: payload?.service,
-								origin_location_id:
+						formattedPayloadArr.map((obj, index) => ({
+							...obj,
+							service_name: payload?.service,
+							origin_location_id:
 									locationObj.export_transportation_location_id || undefined,
-								destination_location_id:
+							destination_location_id:
 									locationObj.import_transportation_location_id || undefined,
-								hs_code:
+							hs_code:
 									extraDetails?.[`${service?.service}:${service?.trade_type}`]
 										?.hs_code?.[index]?.label,
-							};
-						}),
+						})),
 				});
 
 				setAddedServiceEnquiry({

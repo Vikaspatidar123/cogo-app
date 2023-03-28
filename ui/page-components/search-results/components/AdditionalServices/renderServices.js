@@ -12,20 +12,18 @@ const renderServices = (addedServices = [], servicesToAdd = [], data) => {
 			? item.split('import_')
 			: item.split('export_');
 		const service = items[1];
-		const isServiceAdded =
-			addedServices.filter(
-				(serviceItem) =>
-					serviceItem.trade_type === tradeType &&
-					(serviceItem.service_type === service ||
-						(service === 'transportation' &&
-							tp.includes(serviceItem.service_type))),
-			).length > 0;
+		const isServiceAdded =			addedServices.filter(
+			(serviceItem) => serviceItem.trade_type === tradeType
+					&& (serviceItem.service_type === service
+						|| (service === 'transportation'
+							&& tp.includes(serviceItem.service_type))),
+		).length > 0;
 
 		if (service === 'haulage_freight') {
 			if (
-				tradeType === 'import' &&
-				(data?.search_type === 'fcl_customs' ||
-					data?.search_type === 'fcl_freight_local')
+				tradeType === 'import'
+				&& (data?.search_type === 'fcl_customs'
+					|| data?.search_type === 'fcl_freight_local')
 			) {
 				return origin?.is_icd && !isServiceAdded;
 			}

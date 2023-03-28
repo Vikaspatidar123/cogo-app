@@ -1,5 +1,6 @@
-import React from 'react';
 import { BreadCrumbs } from '@cogo/smart-components';
+import React from 'react';
+
 import { Container, Title } from './styles';
 
 const breadcrumbs = {
@@ -22,17 +23,19 @@ const breadcrumbs = {
 	},
 };
 
-const Header = ({ serial_id = 1, total = 1 }) => (
-	<Container>
-		<BreadCrumbs
-			breadcrumbs={breadcrumbs.array}
-			activeColor={breadcrumbs.activeColor}
-			descendentColor={breadcrumbs.descendentColor}
-			style={breadcrumbs.style}
-		/>
+function Header({ serial_id = 1, total = 1 }) {
+	return (
+		<Container>
+			<BreadCrumbs
+				breadcrumbs={breadcrumbs.array}
+				activeColor={breadcrumbs.activeColor}
+				descendentColor={breadcrumbs.descendentColor}
+				style={breadcrumbs.style}
+			/>
 
-		<Title>{`Search: ${serial_id} of ${total}`}</Title>
-	</Container>
-);
+			<Title>{`Search: ${serial_id} of ${total}`}</Title>
+		</Container>
+	);
+}
 
 export default Header;

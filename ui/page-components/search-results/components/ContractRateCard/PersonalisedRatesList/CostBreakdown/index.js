@@ -1,38 +1,33 @@
-import formatAmount from '@cogo/globalization/utils/formatAmount';
 import LineItems from './LineItems';
-import {
-	Container,
-	MainHeading,
-	TotalHeading,
-	FooterDiv,
-	TotalAmount,
-} from './styles';
+import styles from './styles.module.css';
 
-const CostBreakdown = ({
+import formatAmount from '@/ui/commons/utils/formatAmount';
+
+function CostBreakdown({
 	line_items = [],
 	total_price,
 	total_price_currency,
-}) => {
+}) {
 	return (
-		<Container>
-			<MainHeading>Cost Breakdown</MainHeading>
+		<div className={styles.container}>
+			<div className={styles.main_heading}>Cost Breakdown</div>
 			<LineItems line_items={line_items} />
-			<FooterDiv>
-				<TotalHeading>Total</TotalHeading>
-				<TotalAmount>
+			<div className={styles.footer_div}>
+				<div className={styles.total_heading}>Total</div>
+				<div className={styles.total_amount}>
 					{formatAmount({
-						amount: total_price || 0,
-						currency: total_price_currency,
-						options: {
-							style: 'currency',
-							currencyDisplay: 'symbol',
-							maximumFractionDigits: 0,
+						amount   : total_price || 0,
+						currency : total_price_currency,
+						options  : {
+							style                 : 'currency',
+							currencyDisplay       : 'symbol',
+							maximumFractionDigits : 0,
 						},
 					})}
-				</TotalAmount>
-			</FooterDiv>
-		</Container>
+				</div>
+			</div>
+		</div>
 	);
-};
+}
 
 export default CostBreakdown;

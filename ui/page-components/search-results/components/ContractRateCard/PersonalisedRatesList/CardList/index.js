@@ -1,28 +1,16 @@
-import Grid from '@cogoport/front/components/Grid';
 import { useState } from 'react';
-import formatAmount from '@cogo/globalization/utils/formatAmount';
-import PortsInfo from '../PortsInfo';
-import {
-	Container,
-	Gradient,
-	Wave,
-	Footer,
-	CustomText,
-	Details,
-	MainContainer,
-	PortsContainer,
-	StyledHr,
-	ToggleIcon,
-	Insidecontainer,
-} from './styles';
+
+import BookNow from '../BookNow';
 import ContainerInfo from '../ContainerInfo';
 import CostBreakdown from '../CostBreakdown';
+import PortsInfo from '../PortsInfo';
 import TouchPoints from '../TouchPoints';
-import BookNow from '../BookNow';
 
-const { Row, Col } = Grid;
+import styles from './styles.module.css';
 
-const CardList = ({ data = {}, details }) => {
+import formatAmount from '@/ui/commons/utils/formatAmount';
+
+function CardList({ data = {}, details }) {
 	const {
 		origin_location = {},
 		line_items = [],
@@ -38,44 +26,45 @@ const CardList = ({ data = {}, details }) => {
 
 	const [showTable, setshowTable] = useState(false);
 
-	const styles = { borderRight: '1px solid #AAB9D6' };
-
 	const perTruck = formatAmount({
-		amount: total_price,
-		currency: total_price_currency,
-		options: {
-			style: 'currency',
-			currencyDisplay: 'code',
-			maximumFractionDigits: 0,
+		amount   : total_price,
+		currency : total_price_currency,
+		options  : {
+			style                 : 'currency',
+			currencyDisplay       : 'code',
+			maximumFractionDigits : 0,
 		},
 	});
 
 	return (
-		<Container>
-			<Gradient>
-				<Wave>Contract ID: {contract_reference_id}</Wave>
-			</Gradient>
+		<div className={styles.container}>
+			<div className={styles.gradient}>
+				<div className={styles.wave}>
+					Contract ID:
+					{contract_reference_id}
+				</div>
+			</div>
 
-			<Row>
-				<Col md={9}>
-					<MainContainer>
-						<Row>
-							<Col md={9} style={styles}>
-								<PortsContainer>
+			<div className={styles.row}>
+				<div className={styles.col}>
+					<div className={styles.main_container}>
+						<div className={styles.Row}>
+							<div className={styles.col}>
+								<div className={styles.ports_container}>
 									<PortsInfo
 										originPort={origin_location}
 										destinationPort={destination_location}
 										trip={trip_type}
-										separator={
+										separator={(
 											<img
 												src="https://cdn.cogoport.io/cms-prod/cogo_admin/vault/original/union-2.svg"
 												alt="union-icon"
 												className="ports-direction-svg"
 											/>
-										}
+										)}
 									/>
-								</PortsContainer>
-							</Col>
+								</div>
+							</div>
 
 							<TouchPoints
 								touch_points={touch_points}
@@ -83,14 +72,14 @@ const CardList = ({ data = {}, details }) => {
 								transit_time={transit_time}
 							/>
 
-							<Col md={12}>
-								<StyledHr />
+							<div className={styles.col}>
+								<div className={styles.styled_hr} />
 
 								<ContainerInfo data={data} source="list_item" />
-							</Col>
-						</Row>
-					</MainContainer>
-				</Col>
+							</div>
+						</div>
+					</div>
+				</div>
 
 				<BookNow
 					perTruck={perTruck}
@@ -98,30 +87,34 @@ const CardList = ({ data = {}, details }) => {
 					data={data}
 					spot_search_id={details?.id}
 				/>
-			</Row>
+			</div>
 			<div />
 
-			<Insidecontainer className="accordion" aria-expanded={showTable}>
+			<div
+				className={`${styles.inside_container}
+			         ${styles.accordion}`}
+				aria-expanded={showTable}
+			>
 				<CostBreakdown
 					line_items={line_items}
 					total_price={total_price}
 					total_price_currency={total_price_currency}
 				/>
-			</Insidecontainer>
+			</div>
 
-			<Footer>
-				<Details onClick={() => setshowTable(!showTable)}>
+			<div className={styles.footer}>
+				<div className={styles.details} role="presentation" onClick={() => setshowTable(!showTable)}>
 					View Details
-					<ToggleIcon toggleDropdown={showTable} />
-				</Details>
+					{/* <ToggleIcon toggleDropdown={showTable} /> */}
+				</div>
 
-				<CustomText>
+				<div className={styles.custom_text}>
 					Incidentals, Surcharges, any additional charges will apply as per
 					contract terms
-				</CustomText>
-			</Footer>
-		</Container>
+				</div>
+			</div>
+		</div>
 	);
-};
+}
 
 export default CardList;

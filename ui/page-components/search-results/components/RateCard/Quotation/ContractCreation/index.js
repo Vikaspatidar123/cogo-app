@@ -1,13 +1,14 @@
 import { useState } from 'react';
+
 import CreateContract from './CreateContract';
 import PriceLockedModal from './PriceLockedModal';
 
-const ContractCreation = ({
+function ContractCreation({
 	data = {},
 	details,
 	showContract = false,
 	setShowContract = () => {},
-}) => {
+}) {
 	const [priceLocked, setPriceLocked] = useState(false);
 	const [contractData, setContractData] = useState({});
 
@@ -34,6 +35,6 @@ const ContractCreation = ({
 			)}
 		</>
 	);
-};
+}
 
 export default ContractCreation;

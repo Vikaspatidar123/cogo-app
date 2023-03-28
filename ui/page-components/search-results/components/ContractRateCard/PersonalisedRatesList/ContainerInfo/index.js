@@ -1,6 +1,7 @@
-import { startCase } from '@cogoport/front/utils';
+import { startCase } from '@cogoport/utils';
 import React, { useCallback } from 'react';
-import { Container, Box } from './styles';
+
+import styles from './styles.module.css';
 
 const keys = [
 	'truck_type',
@@ -14,7 +15,7 @@ const keys = [
 	'total_volume',
 ];
 
-const ContainerInfo = ({ data = {}, source = '' }) => {
+function ContainerInfo({ data = {}, source = '' }) {
 	const { chargeable_weight } = data || {};
 
 	const getContainerDetail = useCallback(
@@ -25,7 +26,8 @@ const ContainerInfo = ({ data = {}, source = '' }) => {
 				case 'truck_type':
 					content = (
 						<span>
-							Truck type :{' '}
+							Truck type :
+							{' '}
 							<b>{startCase(data?.truck_type?.replace('_', ' '))}</b>
 						</span>
 					);
@@ -34,7 +36,9 @@ const ContainerInfo = ({ data = {}, source = '' }) => {
 				case 'trucks_count':
 					content = (
 						<span>
-							Truck Count : <b>{data?.trucks_count}</b>
+							Truck Count :
+							{' '}
+							<b>{data?.trucks_count}</b>
 						</span>
 					);
 
@@ -43,7 +47,13 @@ const ContainerInfo = ({ data = {}, source = '' }) => {
 				case 'forward_tat':
 					content = (
 						<span>
-							Forward Tat : <b>{data?.forward_tat} days</b>
+							Forward Tat :
+							{' '}
+							<b>
+								{data?.forward_tat}
+								{' '}
+								days
+							</b>
 						</span>
 					);
 
@@ -52,7 +62,8 @@ const ContainerInfo = ({ data = {}, source = '' }) => {
 				case 'rate_type':
 					content = source === 'list_item' && (
 						<span>
-							Rate Type :{' '}
+							Rate Type :
+							{' '}
 							<b style={{ textTransform: 'capitalize' }}>
 								{startCase(data?.rate_type)}
 							</b>
@@ -64,7 +75,9 @@ const ContainerInfo = ({ data = {}, source = '' }) => {
 				case 'commodity':
 					content = (
 						<span>
-							Commodity : <b>{startCase(data?.commodity)}</b>
+							Commodity :
+							{' '}
+							<b>{startCase(data?.commodity)}</b>
 						</span>
 					);
 
@@ -73,7 +86,11 @@ const ContainerInfo = ({ data = {}, source = '' }) => {
 				case 'volume':
 					content = (
 						<span>
-							Volume : <b>{data?.volume}</b> CC
+							Volume :
+							{' '}
+							<b>{data?.volume}</b>
+							{' '}
+							CC
 						</span>
 					);
 
@@ -82,7 +99,13 @@ const ContainerInfo = ({ data = {}, source = '' }) => {
 				case 'chargeable_weight':
 					content = source === 'list_item' && (
 						<span>
-							Chargeable Weight : <b>{chargeable_weight} kg</b>
+							Chargeable Weight :
+							{' '}
+							<b>
+								{chargeable_weight}
+								{' '}
+								kg
+							</b>
 						</span>
 					);
 
@@ -91,9 +114,12 @@ const ContainerInfo = ({ data = {}, source = '' }) => {
 				case 'total_weight':
 					content = (
 						<span>
-							Total Weight :{' '}
+							Total Weight :
+							{' '}
 							<b>
-								{data?.total_weight} {data?.total_weight_unit}
+								{data?.total_weight}
+								{' '}
+								{data?.total_weight_unit}
 							</b>
 						</span>
 					);
@@ -103,9 +129,12 @@ const ContainerInfo = ({ data = {}, source = '' }) => {
 				case 'total_volume':
 					content = (
 						<span>
-							Total Volume :{' '}
+							Total Volume :
+							{' '}
 							<b>
-								{data?.total_volume} {data?.total_volume_unit}
+								{data?.total_volume}
+								{' '}
+								{data?.total_volume_unit}
 							</b>
 						</span>
 					);
@@ -122,7 +151,7 @@ const ContainerInfo = ({ data = {}, source = '' }) => {
 	);
 
 	return (
-		<Container>
+		<div className={styles.container}>
 			{keys?.map((key) => {
 				if (!data?.[key]) return null;
 
@@ -131,13 +160,13 @@ const ContainerInfo = ({ data = {}, source = '' }) => {
 				if (!content) return null;
 
 				return (
-					<Box key={key} className={key}>
+					<div className={`${styles.box} ${styles.key}`} key={key}>
 						{content}
-					</Box>
+					</div>
 				);
 			})}
-		</Container>
+		</div>
 	);
-};
+}
 
 export default ContainerInfo;

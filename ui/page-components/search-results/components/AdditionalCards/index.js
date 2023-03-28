@@ -1,9 +1,11 @@
+// import { AuthorizeKyc } from '@cogo/authorization';
 import React from 'react';
-import { useSelector } from '@cogo/store';
-import { AuthorizeKyc } from '@cogo/authorization';
-import { Container, Title, Description, Action } from './styles';
 
-const GenericCard = ({
+import styles from './styles.module.css';
+
+import { useSelector } from '@/packages/store';
+
+function GenericCard({
 	theme = '',
 	title = '',
 	description = '',
@@ -11,28 +13,28 @@ const GenericCard = ({
 	onClick = () => {},
 	bg = '',
 	kyc = {},
-}) => {
+}) {
 	const scope = useSelector((state) => (state.general || {}).scope);
 
 	const action = (
-		<Action theme={theme} onClick={onClick}>
+		<div className={styles.action} role="presentation" theme={theme} onClick={onClick}>
 			{cta}
-		</Action>
+		</div>
 	);
 
-	const actionWithKyc = (
-		<AuthorizeKyc config={kyc?.message}>{action}</AuthorizeKyc>
-	);
+	// const actionWithKyc = (
+	// 	<AuthorizeKyc config={kyc?.message}>{action}</AuthorizeKyc>
+	// );
 
 	return (
-		<Container theme={theme} bg={bg}>
-			<Title theme={theme}>{title}</Title>
+		<div className={styles.container} theme={theme} bg={bg}>
+			<div className={styles.title} theme={theme}>{title}</div>
 
-			<Description theme={theme}>{description}</Description>
+			<div className={styles.description} theme={theme}>{description}</div>
 
 			{kyc?.check && scope === 'app' ? actionWithKyc : action}
-		</Container>
+		</div>
 	);
-};
+}
 
 export default GenericCard;

@@ -1,16 +1,15 @@
+import { Button } from '@cogoport/front/components/admin';
+import { useFormCogo } from '@cogoport/front/hooks';
 import { useEffect, useState } from 'react';
 
-import { useFormCogo } from '@cogoport/front/hooks';
-import { Button } from '@cogoport/front/components/admin';
+import getFeedbackConfig from '../../../../helpers/getFeedbackConfig';
+import SuccessModal from '../SuccessModal';
 
 import FormElements from './FormElements';
-import useDislikeFeedback from './useDislikeFeedback';
-import SuccessModal from '../SuccessModal';
-import getFeedbackConfig from '../../../../helpers/getFeedbackConfig';
-
 import { Container, Footer, DislikeModal, HeaderText } from './styles';
+import useDislikeFeedback from './useDislikeFeedback';
 
-const DislikeFeedbackModal = ({ details, rate, updateRate, show, onClose }) => {
+function DislikeFeedbackModal({ details, rate, updateRate, show, onClose }) {
 	const [showSuccess, setShowSuccess] = useState(false);
 
 	const controls = getFeedbackConfig(rate.service_type);
@@ -48,22 +47,22 @@ const DislikeFeedbackModal = ({ details, rate, updateRate, show, onClose }) => {
 
 		let showElement = true;
 		if (
-			name === 'preferred_airline_ids' &&
-			!(formValues.feedbacks || []).includes('unpreferred_airlines')
+			name === 'preferred_airline_ids'
+			&& !(formValues.feedbacks || []).includes('unpreferred_airlines')
 		) {
 			showElement = false;
 		}
 
 		if (
-			name === 'preferred_shipping_line_ids' &&
-			!(formValues.feedbacks || []).includes('unpreferred_shipping_lines')
+			name === 'preferred_shipping_line_ids'
+			&& !(formValues.feedbacks || []).includes('unpreferred_shipping_lines')
 		) {
 			showElement = false;
 		}
 
 		if (
-			name === 'preferred_detention_free_days' &&
-			!(formValues.feedbacks || []).includes(
+			name === 'preferred_detention_free_days'
+			&& !(formValues.feedbacks || []).includes(
 				'unsatisfactory_destination_detention',
 			)
 		) {
@@ -79,30 +78,30 @@ const DislikeFeedbackModal = ({ details, rate, updateRate, show, onClose }) => {
 	useEffect(() => {
 		const subscription = watch((value, { name }) => {
 			if (
-				name === 'feedbacks' &&
-				!value[name].includes('unsatisfactory_rate')
+				name === 'feedbacks'
+				&& !value[name].includes('unsatisfactory_rate')
 			) {
 				setValue('preferred_freight_rate_currency', '');
 				setValue('preferred_freight_rate', '');
 			}
 
 			if (
-				name === 'feedbacks' &&
-				!value[name].includes('unpreferred_airlines')
+				name === 'feedbacks'
+				&& !value[name].includes('unpreferred_airlines')
 			) {
 				setValue('preferred_airline_ids', '');
 			}
 
 			if (
-				name === 'feedbacks' &&
-				!value[name].includes('unsatisfactory_destination_detention')
+				name === 'feedbacks'
+				&& !value[name].includes('unsatisfactory_destination_detention')
 			) {
 				setValue('preferred_detention_free_days', '');
 			}
 
 			if (
-				name === 'feedbacks' &&
-				!value[name].includes('unpreferred_shipping_lines')
+				name === 'feedbacks'
+				&& !value[name].includes('unpreferred_shipping_lines')
 			) {
 				setValue('preferred_shipping_line_ids', '');
 			}
@@ -159,6 +158,6 @@ const DislikeFeedbackModal = ({ details, rate, updateRate, show, onClose }) => {
 			/>
 		</>
 	);
-};
+}
 
 export default DislikeFeedbackModal;

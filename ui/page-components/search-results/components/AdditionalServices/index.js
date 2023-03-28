@@ -1,29 +1,21 @@
-import React, { useState } from 'react';
-import { useSelector } from '@cogo/store';
-import { Flex, Modal, Button, Select, Input } from '@cogoport/front/components';
-import startCase from '@cogo/utils/startCase';
+import { Modal, Button, Select, Input } from '@cogoport/components';
 import { IcCTick, IcACarriageInsurancePaidTo } from '@cogoport/icons-react';
+import { startCase } from '@cogoport/utils';
+import React, { useState } from 'react';
+
+import CargoInsurance from '../../commons/CargoInsurance';
+import useCreateAdditionalService from '../../hooks/useCreateAdditionalService';
+
+import DeleteConfirmation from './DeleteConfirmation';
 import Forms from './Forms';
-import { getServiceName } from './services';
 import {
 	nonRemovableServices,
 	nonRemovableServicesAir,
 	serviceMappings,
 } from './mappings';
-import DeleteConfirmation from './DeleteConfirmation';
 import renderServices from './renderServices';
-import useCreateAdditionalService from '../../hooks/useCreateAdditionalService';
-import {
-	Container,
-	Text,
-	ServicesWrap,
-	Services,
-	Pill,
-	ServicesIcon,
-	ActiveService,
-	Line,
-} from './styles';
-import CargoInsurance from '../../commons/CargoInsurance';
+import { getServiceName } from './services';
+import styles from './styles.module.css';
 
 function AdditionalServices({
 	data = {},
@@ -31,11 +23,6 @@ function AdditionalServices({
 	refetch = () => {},
 	view = '',
 }) {
-	const { scope, isMobile } = useSelector(({ general }) => ({
-		scope: general?.scope,
-		isMobile: general?.isMobile,
-	}));
-
 	const {
 		origin_country_id = '',
 		destination_country_id = '',
@@ -46,7 +33,7 @@ function AdditionalServices({
 		importer_exporter_id = '',
 	} = data || {};
 
-	const className = view === 'checkout' ? '' : 'search';
+	// const className = view === 'checkout' ? '' : 'search';
 	const [subsidiaryService, setSubsidiaryService] = useState('');
 
 	const {
@@ -87,8 +74,8 @@ function AdditionalServices({
 		const serviceName = service.split(':');
 
 		if (
-			data?.service_type !== 'air_freight' &&
-			data?.service_type !== 'ftl_freight'
+			data?.service_type !== 'air_freight'
+			&& data?.service_type !== 'ftl_freight'
 		) {
 			if (
 				(nonRemovableServices || []).includes(
@@ -123,12 +110,12 @@ function AdditionalServices({
 				}}
 				disabled={loading}
 				style={{
-					border: 'none',
-					padding: '0px',
-					fontSize: '30px',
-					display: 'flex',
-					alignItems: 'center',
-					height: '20px',
+					border     : 'none',
+					padding    : '0px',
+					fontSize   : '30px',
+					display    : 'flex',
+					alignItems : 'center',
+					height     : '20px',
 				}}
 				id="search_results_additional_service_delete"
 			>
@@ -148,40 +135,39 @@ function AdditionalServices({
 	};
 
 	return (
-		<Container className={scope === 'app' ? 'app' : className}>
-			<ServicesWrap scope={scope}>
-				<Text>Additional services</Text>
+		<div className={styles.container}>
+			<div className={styles.services_wrap}>
+				<div className={styles.text}>Additional services</div>
 				<div style={{ maxHeight: '200px', overflow: 'auto' }}>
 					{(uniq_services_list || []).map((service) => (
-						<Pill>
-							<Flex style={{ maxWidth: '90%', alignItems: 'center' }}>
-								<ActiveService>
+						<div className={styles.pill}>
+							<div style={{ display: 'flex', maxWidth: '90%', alignItems: 'center' }}>
+								<div className={styles.active_service}>
 									<img
 										src="https://cdn.cogoport.io/cms-prod/cogo_admin/vault/original/Hangar.svg"
 										alt="hangar"
 										style={{ width: 14, height: 14 }}
 									/>
-								</ActiveService>
-								<Services>{handleServiceName(service)}</Services>
+								</div>
+								<div className={styles.services}>{handleServiceName(service)}</div>
 								<IcCTick style={{ marginTop: '2px', width: 20, height: 20 }} />
-							</Flex>
+							</div>
 
 							{handleServiceDelete(service)}
-						</Pill>
+						</div>
 					))}
 				</div>
 
-				{(remainingServicesToAdd || []).length > 0 &&
-				data?.source !== 'upsell' ? (
+				{(remainingServicesToAdd || []).length > 0
+				&& data?.source !== 'upsell' ? (
 					<>
-						<Line style={{ margin: '8px 0px' }} />
-						<Text style={{ marginBottom: 10 }}>Add more</Text>
+						<div className={styles.line} style={{ margin: '8px 0px' }} />
+						<div style={{ marginBottom: 10 }}>Add more</div>
 
 						<div
 							style={{
-								overflow: 'auto',
-								maxHeight: '350px',
-								padding: isMobile ? '0px 4px' : '',
+								overflow  : 'auto',
+								maxHeight : '350px',
 							}}
 						>
 							<Input
@@ -193,29 +179,30 @@ function AdditionalServices({
 							/>
 
 							{(remainingServicesToAdd || []).map((service) => (
-								<Pill
-									className="inactive"
+								<div
+									role="presentation"
+									className={`${styles.pill} ${styles.inactive}`}
 									onClick={() => handleAdd(service)}
 									id={`search_results_additional_service_${service}`}
 								>
-									<Flex style={{ maxWidth: '90%' }}>
+									<div style={{ maxWidth: '90%', display: 'flex' }}>
 										<img
 											src="https://cdn.cogoport.io/cms-prod/cogo_admin/vault/original/Hangar.svg"
 											alt="hangar"
 											style={{ width: 14, height: 14 }}
 										/>
-										<Services>{detail?.[service]?.title}</Services>
-									</Flex>
+										<div className={styles.services}>{detail?.[service]?.title}</div>
+									</div>
 
-									<ServicesIcon className="add"> + </ServicesIcon>
-								</Pill>
+									<div className={`${styles.services_icon} ${styles.add}`}> + </div>
+								</div>
 							))}
 						</div>
 					</>
-				) : null}
+					) : null}
 
-				<Line />
-				<Text>Subsidiary services</Text>
+				<div className={styles.line} />
+				<div>Subsidiary services</div>
 				<Select
 					name="subsidiary_service"
 					onChange={(v) => setSubsidiaryService(v)}
@@ -233,8 +220,8 @@ function AdditionalServices({
 					{loading ? 'Adding...' : 'Add'}
 				</Button>
 
-				{!uniq_services_list.includes('cargo_insurance') &&
-				[
+				{!uniq_services_list.includes('cargo_insurance')
+				&& [
 					'fcl_freight',
 					'lcl_freight',
 					'air_freight',
@@ -243,25 +230,26 @@ function AdditionalServices({
 					'air_domestic',
 				].includes(search_type) ? (
 					<>
-						<Line style={{ marginTop: '8px' }} />
+						<div className={styles.line} style={{ marginTop: '8px' }} />
 
-						<Text style={{ marginBottom: '8px' }}>Cargo Insurance</Text>
+						<div style={{ marginBottom: '8px' }}>Cargo Insurance</div>
 
-						<Pill
-							className="inactive"
+						<div
+							role="presentation"
+							className={`${styles.pill} ${styles.inactive}`}
 							onClick={() => setAddCargoInsurance(true)}
 							id="search_results_additional_service_cargo_insurance"
 						>
-							<Flex style={{ maxWidth: '90%' }}>
+							<div style={{ display: 'flex', maxWidth: '90%' }}>
 								<IcACarriageInsurancePaidTo />
-								<Services>Cargo Insurance</Services>
-							</Flex>
+								<div className={styles.services}>Cargo Insurance</div>
+							</div>
 
-							<ServicesIcon className="add"> + </ServicesIcon>
-						</Pill>
+							<div className={`${styles.services_icon} ${styles.add}`}> + </div>
+						</div>
 					</>
-				) : null}
-			</ServicesWrap>
+					) : null}
+			</div>
 
 			{addService ? (
 				<Modal
@@ -325,7 +313,7 @@ function AdditionalServices({
 					/>
 				</Modal>
 			) : null}
-		</Container>
+		</div>
 	);
 }
 

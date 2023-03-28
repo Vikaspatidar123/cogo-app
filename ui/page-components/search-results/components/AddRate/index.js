@@ -1,20 +1,12 @@
-import { Button } from '@cogoport/front/components/admin';
+import { Button } from '@cogoport/components';
 import React from 'react';
-import { useSelector } from '@cogo/store';
-import { Container, DetailCon, DetailText } from './styles';
 
-const AddRate = ({ type, setAddRate = () => {} }) => {
-	const { scope } = useSelector(({ general }) => ({
-		scope: general?.scope,
-	}));
+import styles from './styles.module.css';
 
-	if (scope === 'app') {
-		return <></>;
-	}
-
+function AddRate({ type, setAddRate = () => {} }) {
 	return (
-		<Container>
-			<DetailCon>
+		<div className={styles.container}>
+			<div className={styles.detail_Ccn}>
 				<img
 					src="https://cdn.cogoport.io/cms-prod/cogo_admin/vault/original/rates.svg"
 					alt="rates"
@@ -22,21 +14,21 @@ const AddRate = ({ type, setAddRate = () => {} }) => {
 					height={56}
 				/>
 				<div>
-					<DetailText style={{ margin: '8px 0px 5px 0px' }}>
+					<div className={styles.detail_text} style={{ margin: '8px 0px 5px 0px' }}>
 						{type !== 'rates-found'
 							? 'No Rates Found!'
 							: 'Not happy with the Rates Found ?'}
-					</DetailText>
+					</div>
 
-					<DetailText className="lead-text">
+					<div className={`${styles.detail_text} ${styles.lead_text}`}>
 						Please add your sell price to book shipment. Make sure to gather
 						market intelligence by talking to your customer, team members,
 						managers, etc.
-					</DetailText>
+					</div>
 				</div>
-			</DetailCon>
+			</div>
 
-			<DetailCon className="btn">
+			<div className={`${styles.detail_con} ${styles.btn}`}>
 				<Button
 					onClick={() => {
 						setAddRate(true);
@@ -45,9 +37,9 @@ const AddRate = ({ type, setAddRate = () => {} }) => {
 				>
 					Proceed With Booking
 				</Button>
-			</DetailCon>
-		</Container>
+			</div>
+		</div>
 	);
-};
+}
 
 export default AddRate;

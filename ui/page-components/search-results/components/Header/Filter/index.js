@@ -1,13 +1,14 @@
 import FilterContent from '@cogo/business-modules/components/filters';
 import useGetFilters from '@cogo/business-modules/hooks/useGetFilters';
-import { useEffect, useState } from 'react';
 import { Button } from '@cogoport/front/components/admin';
-import { IcMFilter } from '@cogoport/icons-react';
 import { isEmpty } from '@cogoport/front/utils';
-import { Container, FilterDot } from './styles';
-import controls from './controls';
+import { IcMFilter } from '@cogoport/icons-react';
+import { useEffect, useState } from 'react';
 
-const Filter = ({ setFilters, state, isMobile }) => {
+import controls from './controls';
+import { Container, FilterDot } from './styles';
+
+function Filter({ setFilters, state, isMobile }) {
 	const [openFilter, setOpenFilter] = useState(false);
 
 	const { shippingLineOptions, priceRange, response, rates = [] } = state;
@@ -83,12 +84,14 @@ const Filter = ({ setFilters, state, isMobile }) => {
 					className="secondary md"
 					onClick={() => setOpenFilter(!openFilter)}
 				>
-					{!isMobile ? 'FILTERS' : ''} <IcMFilter />
+					{!isMobile ? 'FILTERS' : ''}
+					{' '}
+					<IcMFilter />
 					{filtersApplied > 0 && <FilterDot />}
 				</Button>
 			</FilterContent>
 		</Container>
 	);
-};
+}
 
 export default Filter;

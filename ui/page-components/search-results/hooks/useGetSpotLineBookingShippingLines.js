@@ -1,7 +1,7 @@
-import { useEffect } from 'react';
-import { useSelector } from '@cogo/store';
 import { useRequest } from '@cogo/commons/hooks';
 import getGeoConstants from '@cogo/globalization/constants/geo';
+import { useSelector } from '@cogo/store';
+import { useEffect } from 'react';
 
 const geo = getGeoConstants();
 
@@ -15,8 +15,8 @@ const useGetSpotLineBookingShippingLines = () => {
 				filters: {
 					id: geo.uuid.spot_booking_shipping_lines,
 				},
-				operator: 'shipping_line',
-				status: 'active',
+				operator : 'shipping_line',
+				status   : 'active',
 			};
 			const res = await listOperators.trigger({ params: payload });
 
@@ -30,9 +30,7 @@ const useGetSpotLineBookingShippingLines = () => {
 
 	const { list = [] } = listOperators?.data || {};
 
-	const spotBookingDefaultShippingLines = (list || []).map((item) => {
-		return item;
-	});
+	const spotBookingDefaultShippingLines = (list || []).map((item) => item);
 
 	useEffect(() => {
 		listApi();

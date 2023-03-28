@@ -1,21 +1,24 @@
 import React from 'react';
-import { Card, Title, Item, Dot, Label } from './styles';
+
 import { Intelligence } from '../../constants';
 
-const ContractIntelligence = () => {
+import styles from './styles.module.css';
+
+function ContractIntelligence() {
 	return (
-		<Card>
-			<Title>Lock price feature</Title>
-			{Intelligence.map(({ label, color }) => {
-				return (
-					<Item>
-						<Dot bg={color} />
-						<Label>{label}</Label>
-					</Item>
-				);
-			})}
-		</Card>
+		<div className={styles.card}>
+			<div className={styles.title}>Lock price feature</div>
+			{Intelligence.map(({ label, color }) => (
+				<div className={styles.item}>
+					<div className={styles.dot}>
+						{color ? <div style={{ backgroundColor: `${color}` }} />
+							: <div style={{ backgroundColor: '#8cc1f9' }} />}
+						<div className={styles.label}>{label}</div>
+					</div>
+				</div>
+			))}
+		</div>
 	);
-};
+}
 
 export default ContractIntelligence;

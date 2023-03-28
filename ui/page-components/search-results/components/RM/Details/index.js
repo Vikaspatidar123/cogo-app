@@ -1,6 +1,7 @@
-import React from 'react';
 import { useSelector } from '@cogo/store';
 import { IcCSendWhatsapp, IcMEmail } from '@cogoport/icons-react';
+import React from 'react';
+
 import {
 	Container,
 	UserName,
@@ -10,12 +11,12 @@ import {
 	IconsContainer,
 } from './styles';
 
-const RM = () => {
+function RM() {
 	const { agent, kyc_status } = useSelector(({ profile }) => ({
-		account_type: profile?.organization?.account_type,
-		agent: profile?.organization?.agent,
-		user_name: profile.name,
-		kyc_status: profile?.organization?.kyc_status,
+		account_type : profile?.organization?.account_type,
+		agent        : profile?.organization?.agent,
+		user_name    : profile.name,
+		kyc_status   : profile?.organization?.kyc_status,
 	}));
 
 	const goTo = (href) => {
@@ -56,7 +57,9 @@ const RM = () => {
 				{agent?.mobile_country_code ? (
 					<SpaceBetween onClick={() => goTo(`tel:${agent?.mobile_number}`)}>
 						<Description className="link">
-							{agent?.mobile_country_code} {agent?.mobile_number}
+							{agent?.mobile_country_code}
+							{' '}
+							{agent?.mobile_number}
 						</Description>
 
 						<IconsContainer>
@@ -67,6 +70,6 @@ const RM = () => {
 			</div>
 		</Container>
 	);
-};
+}
 
 export default RM;

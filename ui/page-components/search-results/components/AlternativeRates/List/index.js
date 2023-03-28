@@ -1,85 +1,83 @@
-import React from 'react';
-import formatAmount from '@cogo/globalization/utils/formatAmount';
 import { IcMLocation } from '@cogoport/icons-react';
-import {
-	Container,
-	Heading,
-	Communicate,
-	ViewResult,
-	Deviation,
-} from './styles';
+import React from 'react';
 
-const List = ({ rate, onClickResultRow, creatingAlternate }) => {
+import styles from './styles.module.css';
+
+import formatAmount from '@/ui/commons/utils/formatAmount';
+
+function List({ rate, onClickResultRow, creatingAlternate }) {
 	return (
-		<Container>
+		<div className={styles.container}>
 			<div style={{ width: '45%' }}>
-				<Deviation className="icon-deviation">
+				<div className={`${styles.deviation} ${styles.icon_deviation}`}>
 					<IcMLocation
 						style={{
-							width: '30px',
-							height: '30px',
-							margin: '0 auto',
-							display: 'block',
-							position: 'absolute',
-							top: '10px',
-							left: '6px',
+							width    : '30px',
+							height   : '30px',
+							margin   : '0 auto',
+							display  : 'block',
+							position : 'absolute',
+							top      : '10px',
+							left     : '6px',
 						}}
 					/>
 
 					<IcMLocation
 						style={{
-							width: '30px',
-							height: '30px',
-							margin: '0 auto',
-							display: 'block',
-							position: 'absolute',
-							top: '10px',
-							left: '18px',
+							width    : '30px',
+							height   : '30px',
+							margin   : '0 auto',
+							display  : 'block',
+							position : 'absolute',
+							top      : '10px',
+							left     : '18px',
 						}}
 					/>
-				</Deviation>
+				</div>
 			</div>
 
 			<div style={{ display: 'flex', flexDirection: 'column' }}>
-				<Heading>
-					{(rate?.origin_port || rate?.origin_airport)?.name} to New{' '}
+				<div className={styles.heading}>
+					{(rate?.origin_port || rate?.origin_airport)?.name}
+					{' '}
+					to New
+					{' '}
 					{(rate?.destination_port || rate?.destination_airport)?.name}
-				</Heading>
+				</div>
 
-				<Communicate>
+				<div className={styles.communicate}>
 					Rates starting from:
 					<strong style={{ marginLeft: '4px' }}>
 						{formatAmount({
-							amount: rate.freight_price,
-							currency: rate.freight_price_currency,
-							options: {
-								style: 'currency',
-								currencyDisplay: 'code',
-								maximumFractionDigits: 0,
+							amount   : rate.freight_price,
+							currency : rate.freight_price_currency,
+							options  : {
+								style                 : 'currency',
+								currencyDisplay       : 'code',
+								maximumFractionDigits : 0,
 							},
 						})}
 					</strong>
-				</Communicate>
+				</div>
 
-				<ViewResult
+				<div
+					className={`${styles.view_result} ${creatingAlternate ? 'disable' : ''}`}
 					onClick={
 						!creatingAlternate
-							? () =>
-									onClickResultRow({
-										origin_port_id: rate?.origin_port?.id,
-										destination_port_id: rate?.destination_port?.id,
-										origin_airport_id: rate?.origin_airport_id,
-										destination_airport_id: rate?.destination_airport_id,
-									})
+							? () => onClickResultRow({
+								origin_port_id         : rate?.origin_port?.id,
+								destination_port_id    : rate?.destination_port?.id,
+								origin_airport_id      : rate?.origin_airport_id,
+								destination_airport_id : rate?.destination_airport_id,
+							})
 							: null
 					}
-					className={creatingAlternate ? 'disable' : ''}
 				>
 					{creatingAlternate ? 'Getting results' : 'See results'}
-				</ViewResult>
+				</div>
 			</div>
-		</Container>
+		</div>
 	);
-};
+}
 
 export default List;

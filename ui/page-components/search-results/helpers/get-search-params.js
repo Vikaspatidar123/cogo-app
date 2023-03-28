@@ -38,9 +38,9 @@ const SERVICE_ATTRIBUTES = {
 		'container_size',
 		'commodity',
 	],
-	ftl_freight: ['commodity', 'truck_type', 'trucks_count'],
-	ltl_freight: ['commodity', 'weight'],
-	fcl_customs: [
+	ftl_freight : ['commodity', 'truck_type', 'trucks_count'],
+	ltl_freight : ['commodity', 'weight'],
+	fcl_customs : [
 		'trade_type',
 		'containers_count',
 		'container_type',
@@ -122,18 +122,16 @@ const getSearchDetails = (detail) => {
 		location.origin = newDetail?.origin_airport;
 		location.destination = newDetail?.destination_airport;
 	} else {
-		location.origin =
-			newDetail?.origin_location ||
-			newDetail?.port ||
-			newDetail?.airport ||
-			newDetail?.location;
+		location.origin =			newDetail?.origin_location
+			|| newDetail?.port
+			|| newDetail?.airport
+			|| newDetail?.location;
 		location.destination = newDetail?.destination_location;
 	}
 
-	const { tradeType } =
-		incotermsArray.find(
-			(incoterm) => incoterm.value === newDetail?.inco_term,
-		) || {};
+	const { tradeType } =		incotermsArray.find(
+		(incoterm) => incoterm.value === newDetail?.inco_term,
+	) || {};
 	const singleLocationAttributes = {
 		location: location?.origin?.display_name || location?.origin?.name,
 	};
@@ -150,8 +148,8 @@ const getSearchDetails = (detail) => {
 	/* other attributes for search */
 	const searchSpecificAttributes = {
 		user_company:
-			detail?.importer_exporter?.business_name ||
-			detail?.importer_exporter?.short_name,
+			detail?.importer_exporter?.business_name
+			|| detail?.importer_exporter?.short_name,
 		shipment_mode: SEARCH_TYPE_MAPPING[search_type],
 	};
 	const serviceDetails = Object.values(detail?.service_details || {})

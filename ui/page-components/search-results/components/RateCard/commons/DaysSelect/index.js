@@ -1,12 +1,13 @@
 import { toast, Input } from '@cogoport/front/components/admin';
+
 import { Container, MethodContainer, Vline, StyledText } from './styles';
 
 const MAPPING = {
-	subtract: 'Cannot remove existing days',
-	add: 'Cannot add more days',
+	subtract : 'Cannot remove existing days',
+	add      : 'Cannot add more days',
 };
 
-const DaysSelect = ({ days, minimumDays, maximumDays, setDays }) => {
+function DaysSelect({ days, minimumDays, maximumDays, setDays }) {
 	const onChangeDays = (type) => {
 		const i = type === 'subtract' ? -1 : 1;
 
@@ -48,5 +49,5 @@ const DaysSelect = ({ days, minimumDays, maximumDays, setDays }) => {
 			</Container>
 		</div>
 	);
-};
+}
 export default DaysSelect;

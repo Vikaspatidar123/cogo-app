@@ -1,11 +1,12 @@
-import React from 'react';
-import Select from '@cogo/business-modules/form/components/Business/Select';
-import { usePartnerEntityType, useScope } from '@cogo/commons/hooks';
 import getConfig from '@cogo/app-search/hooks/configuration';
+import Select from '@cogo/business-modules/form/components/Business/Select';
 import { APP_EVENT, trackEvent } from '@cogo/commons/analytics';
+import { usePartnerEntityType, useScope } from '@cogo/commons/hooks';
+import React from 'react';
+
 import SELECT_CUSTOM_THEME from '../select-custom-theme';
 
-const Sort = ({ sortBy = '', search_type = '', setSort = () => {} }) => {
+function Sort({ sortBy = '', search_type = '', setSort = () => {} }) {
 	const { isChannelPartner = false } = usePartnerEntityType();
 	const { scope } = useScope();
 	const sortList = getConfig('sort', search_type, isChannelPartner);
@@ -15,16 +16,16 @@ const Sort = ({ sortBy = '', search_type = '', setSort = () => {} }) => {
 	}
 
 	const controls = {
-		name: 'sort_by',
-		type: 'select',
-		value: sortBy,
-		caret: true,
-		placeholder: 'Sort By',
-		options: sortList,
+		name        : 'sort_by',
+		type        : 'select',
+		value       : sortBy,
+		caret       : true,
+		placeholder : 'Sort By',
+		options     : sortList,
 	};
 
 	const handleChange = (val) => {
-		if (scope === 'app')
+		if (scope === 'app') {
 			for (let i = 0; i < sortList.length; i += 1) {
 				if (sortList[i].value === val) {
 					trackEvent(APP_EVENT.search_sorted_search_results, {
@@ -32,6 +33,7 @@ const Sort = ({ sortBy = '', search_type = '', setSort = () => {} }) => {
 					});
 				}
 			}
+		}
 		setSort(val);
 	};
 
@@ -42,6 +44,6 @@ const Sort = ({ sortBy = '', search_type = '', setSort = () => {} }) => {
 			style={SELECT_CUSTOM_THEME('sort')}
 		/>
 	);
-};
+}
 
 export default Sort;

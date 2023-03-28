@@ -1,22 +1,21 @@
 import React, { useState } from 'react';
-import { useSelector } from '@cogo/store';
-import showErrorsInToast from '@cogo/utils/showErrorsInToast';
-import { getRequest } from '@cogo/app-common';
-import Card from './Card';
-import MultiServiceEnquiry from '../MultiService';
-import { Message } from './styles';
 
-const CreateEnquiry = ({
+import MultiServiceEnquiry from '../MultiService';
+
+import Card from './Card';
+import styles from './styles.module.css';
+
+function CreateEnquiry({
 	data = {},
 	refetch = () => {},
 	enquiryQuota = {},
-}) => {
+}) {
 	const [view, setView] = useState(false);
 	const [showMessage] = useState(false);
 
 	const { scope, importer_exporter_id } = useSelector(({ general }) => ({
-		scope: general.scope,
-		importer_exporter_id: (general.query || {}).importer_exporter_id,
+		scope                : general.scope,
+		importer_exporter_id : (general.query || {}).importer_exporter_id,
 	}));
 
 	const onEnquiryHandler = () => {
@@ -57,12 +56,12 @@ const CreateEnquiry = ({
 				enquiryQuota={enquiryQuota}
 			/>
 
-			<Message classsName={showMessage ? 'active' : ''}>
+			<div className={styles.message} classsName={showMessage ? 'active' : ''}>
 				Looks like orgnization kyc is not completed, so you won’t be able create
 				an enquiry.
-			</Message>
+			</div>
 		</>
 	);
-};
+}
 
 export default CreateEnquiry;

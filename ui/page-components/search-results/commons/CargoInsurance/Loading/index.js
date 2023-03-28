@@ -1,16 +1,14 @@
-import { Text, LoaderWrapper } from './styles';
+import styles from './styles.module.css';
 
-const Loading = () => {
+function Loading() {
 	return (
-		<>
-			<LoaderWrapper>
-				<Text>Please wait while we fetch Details!!</Text>{' '}
-				<img
-					src="https://cdn.cogoport.io/cms-prod/cogo_admin/vault/original/loading-cargo-insurance.svg"
-					alt=" loading details"
-				/>
-			</LoaderWrapper>
-		</>
+		<div className={styles.loader_wrapper}>
+			<div className={styles.text}>Please wait while we fetch Details!!</div>
+			<img
+				src="https://cdn.cogoport.io/cms-prod/cogo_admin/vault/original/loading-cargo-insurance.svg"
+				alt=" loading details"
+			/>
+		</div>
 	);
-};
+}
 export default Loading;

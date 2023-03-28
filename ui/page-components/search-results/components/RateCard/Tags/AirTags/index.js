@@ -1,6 +1,7 @@
 import { ToolTip } from '@cogoport/front/components';
 import { startCase } from '@cogoport/front/utils';
 import React from 'react';
+
 import { AlertMessage, RateType, Container } from './styles';
 
 function AirTags({ data }) {
@@ -14,11 +15,13 @@ function AirTags({ data }) {
 				placement="top-end"
 				theme="light"
 				animation="shift-away"
-				content={
-					<li>{`Basic freight is ${
-						data?.price_type === 'all_in' ? 'inclusive' : 'exclusive'
-					} of surcharges`}</li>
-				}
+				content={(
+					<li>
+						{`Basic freight is ${
+							data?.price_type === 'all_in' ? 'inclusive' : 'exclusive'
+						} of surcharges`}
+					</li>
+				)}
 			>
 				{data?.price_type === 'all_in' ? (
 					<AlertMessage>All Inclusive</AlertMessage>

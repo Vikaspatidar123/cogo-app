@@ -1,15 +1,16 @@
-import React from 'react';
-import { useSelector } from '@cogo/store';
 import { useRouter } from '@cogo/next';
+import { useSelector } from '@cogo/store';
 import { IcMArrowBack } from '@cogoport/icons-react';
+import React from 'react';
+
 import { RowBack, Back } from './styles';
 
-const GoBack = () => {
+function GoBack() {
 	const {
 		query: { shipment_id },
 	} = useSelector(({ general }) => ({
-		query: (general || {}).query || {},
-		scope: (general || {}).scope,
+		query : (general || {}).query || {},
+		scope : (general || {}).scope,
 	}));
 
 	const { push } = useRouter();
@@ -34,6 +35,6 @@ const GoBack = () => {
 			</Back>
 		</RowBack>
 	) : null;
-};
+}
 
 export default GoBack;

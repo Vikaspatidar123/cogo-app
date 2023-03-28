@@ -1,11 +1,13 @@
-import React from 'react';
 import useGetPermission from '@cogo/business-modules/hooks/useGetPermission';
-import { Flex } from '@cogoport/front/components';
 import isEmpty from '@cogo/utils/isEmpty';
+import { Flex } from '@cogoport/front/components';
+import React from 'react';
+
 import CC from '../../../helpers/condition-constants';
+
 import { Space, Pill } from './styles';
 
-const Margins = ({ margins = [] }) => {
+function Margins({ margins = [] }) {
 	const { isConditionMatches } = useGetPermission();
 
 	const salesMargin = (margins || []).filter(
@@ -53,27 +55,30 @@ const Margins = ({ margins = [] }) => {
 					'or',
 				) ? (
 					<Space>
-						+<Pill>{handleMargin(salesMargin, 'demand')}</Pill>
+						+
+						<Pill>{handleMargin(salesMargin, 'demand')}</Pill>
 					</Space>
-				) : null}
+					) : null}
 
 				{isConditionMatches(
 					[...CC.SEE_ALL_MARGINS, ...CC.SEE_SUPPLY_MARGIN],
 					'or',
 				) ? (
 					<Space>
-						+<Pill>{handleMargin(supplyMargin, 'supply')}</Pill>
+						+
+						<Pill>{handleMargin(supplyMargin, 'supply')}</Pill>
 					</Space>
-				) : null}
+					) : null}
 			</Flex>
 
 			{isConditionMatches(CC.SEE_ALL_MARGINS, 'or') ? (
 				<Space>
-					+<Pill>{handleMargin(cogoMargin, 'cogoport')}</Pill>
+					+
+					<Pill>{handleMargin(cogoMargin, 'cogoport')}</Pill>
 				</Space>
 			) : null}
 		</Flex>
 	);
-};
+}
 
 export default Margins;

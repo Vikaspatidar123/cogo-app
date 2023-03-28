@@ -1,7 +1,8 @@
 import { useRequest } from '@cogo/commons/hooks';
-import { useSelector } from '@cogo/store';
-import { useRouter } from '@cogo/next';
 import getGeoConstants from '@cogo/globalization/constants/geo';
+import { useRouter } from '@cogo/next';
+import { useSelector } from '@cogo/store';
+
 import getServicesAttributes from '../utils/getServicesAttributes';
 
 const geo = getGeoConstants();
@@ -26,9 +27,9 @@ const useCreateSpotSearch = ({
 		query = {},
 		userRoleIDs = [],
 	} = useSelector(({ general, profile }) => ({
-		scope: general?.scope,
-		query: general?.query,
-		userRoleIDs: profile?.partner?.user_role_ids,
+		scope       : general?.scope,
+		query       : general?.query,
+		userRoleIDs : profile?.partner?.user_role_ids,
 	}));
 
 	const createSpotSearchApi = useRequest(
@@ -44,15 +45,14 @@ const useCreateSpotSearch = ({
 			userId: importer_exporter_user_id,
 		} = importerExporterDetails || {};
 
-		const servicesAttributes =
-			getServicesAttributes({ searchType, formValues }) || {};
+		const servicesAttributes =			getServicesAttributes({ searchType, formValues }) || {};
 
 		return {
-			source: 'platform',
+			source      : 'platform',
 			importer_exporter_id,
 			importer_exporter_branch_id,
-			user_id: importer_exporter_user_id,
-			search_type: searchType,
+			user_id     : importer_exporter_user_id,
+			search_type : searchType,
 			...servicesAttributes,
 		};
 	};
@@ -81,13 +81,10 @@ const useCreateSpotSearch = ({
 		try {
 			let payload = getPayload({ formValues });
 
-			const isCogoVerseMember = userRoleIDs.some((elem) =>
-				cogoVerseTeamIDS.includes(elem),
-			);
+			const isCogoVerseMember = userRoleIDs.some((elem) => cogoVerseTeamIDS.includes(elem));
 
-			const checkIsCogoVerse =
-				scope === 'partner' &&
-				(query?.source === 'communication' || isCogoVerseMember);
+			const checkIsCogoVerse =				scope === 'partner'
+				&& (query?.source === 'communication' || isCogoVerseMember);
 
 			if (checkIsCogoVerse) {
 				payload = { ...payload, tags: ['cogoverse'] };

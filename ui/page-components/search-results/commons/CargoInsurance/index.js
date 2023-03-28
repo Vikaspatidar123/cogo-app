@@ -1,8 +1,4 @@
-import FormElement from '@cogo/app-search/common/FormElement';
-import GLOBAL_CONSTANTS from '@cogo/globalization/constants/globals.json';
-import { useSelector } from '@cogo/store';
-import { Button } from '@cogoport/front/components/admin';
-import { useFormCogo } from '@cogoport/front/hooks';
+import { Button } from '@cogoport/components';
 import { isEmpty } from '@cogoport/utils';
 import { useEffect, useState } from 'react';
 
@@ -15,7 +11,11 @@ import controls from './controls';
 import EmptyState from './EmptyState';
 import Loading from './Loading';
 import PremiumRate from './PremiumRate';
-import { Container, BtnWrap, CancelBtnWrap, Text } from './styles';
+import styles from './styles.module.css';
+
+import { useForm } from '@/packages/forms';
+import getField from '@/packages/forms/Controlled';
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
 const LABEL_MAPPING = {
 	export   : 'Destination Location',
@@ -43,10 +43,6 @@ function CargoInsurance({
 	spot_search_id = '',
 	importer_exporter_id,
 }) {
-	const {
-		general: { scope = '' },
-	} = useSelector((state) => state);
-
 	const [commodity, setCommodity] = useState('');
 	const [rateData, setRateData] = useState({});
 
@@ -64,12 +60,12 @@ function CargoInsurance({
 	});
 
 	const {
-		fields,
 		handleSubmit,
 		formState: { errors },
 		setValue,
 		watch,
-	} = useFormCogo(finalControls);
+		control,
+	} = useForm();
 
 	const cargoValue = watch('cargo_value');
 	const cargoValueCurrency = watch('cargo_value_currency');
@@ -91,7 +87,6 @@ function CargoInsurance({
 
 	const { getCargoInsruanceRate, loading = '' } = useGetCargoInsuranceRate({
 		checkout_id,
-		scope,
 		setRateData,
 	});
 
@@ -121,7 +116,6 @@ function CargoInsurance({
 		trade_type,
 		user_id,
 		checkout_id,
-		scope,
 		refetch,
 		setAddCargoInsurance,
 		rateData,
@@ -158,19 +152,34 @@ function CargoInsurance({
 	}
 
 	return (
-		<Container>
-			<Text>Add Cargo Insurance</Text>
+		<div className={styles.container}>
+			<div className={styles.text}>Add Cargo Insurance</div>
 
-			<FormElement controls={finalControls} fields={fields} errors={errors} />
+			<div className={styles.header_container}>
+				{finalControls.map((item) => {
+					const Element = getField(item.type);
+					return (
+						<div className={styles.field} key={item.name}>
+							<div className={styles.lable}>{item.label}</div>
+							<Element {...item} control={control} />
+							{errors && (
+								<div className={styles.errors}>
+									{errors[item?.name]?.message}
+								</div>
+							)}
+						</div>
+					);
+				})}
 
+			</div>
 			{loading && <Loading />}
 
 			{!isEmpty(rateData) && !loading ? (
 				<PremiumRate rateData={rateData} />
 			) : null}
 
-			<BtnWrap>
-				<CancelBtnWrap>
+			<div className={styles.btn_wrap}>
+				<div className={styles.cancel_btn_wrap}>
 					<Button
 						type="button"
 						disabled={loading || cargoLoading}
@@ -178,7 +187,7 @@ function CargoInsurance({
 					>
 						Cancel
 					</Button>
-				</CancelBtnWrap>
+				</div>
 
 				<Button
 					onClick={handleSubmit(handleAddCargoInsurance)}
@@ -187,8 +196,8 @@ function CargoInsurance({
 				>
 					Save and proceed
 				</Button>
-			</BtnWrap>
-		</Container>
+			</div>
+		</div>
 	);
 }
 

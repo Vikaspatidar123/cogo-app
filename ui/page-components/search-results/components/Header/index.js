@@ -1,14 +1,15 @@
-import React from 'react';
-import dynamic from 'next/dynamic';
 import { useSelector } from '@cogo/store';
-import Sort from './Sort';
-import RefreshRate from './RefreshRate';
-import { Main, Section } from './styles';
+import dynamic from 'next/dynamic';
+import React from 'react';
+
 import Filter from './Filter';
+import RefreshRate from './RefreshRate';
+import Sort from './Sort';
+import { Main, Section } from './styles';
 
 const CopyUrl = dynamic(() => import('./CopyUrl'), { ssr: false });
 
-const Header = ({
+function Header({
 	search_type = '',
 	refetch = () => {},
 	setSort = () => {},
@@ -17,7 +18,7 @@ const Header = ({
 	detail = {},
 	state = {},
 	isMobile,
-}) => {
+}) {
 	const scope = useSelector(({ general }) => general.scope);
 
 	return (
@@ -37,6 +38,6 @@ const Header = ({
 			</Section>
 		</Main>
 	);
-};
+}
 
 export default Header;

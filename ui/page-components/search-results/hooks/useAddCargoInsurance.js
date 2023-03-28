@@ -32,22 +32,22 @@ const useAddCargoInsurance = ({
 			cargo_insurance_commodity_description = '',
 		} = values;
 		const payload = {
-			id: spot_search_id || checkout_id,
-			service: 'cargo_insurance',
-			[key]: [
+			id      : spot_search_id || checkout_id,
+			service : 'cargo_insurance',
+			[key]   : [
 				{
-					risk_coverage: 'all_risk',
+					risk_coverage                : 'all_risk',
 					trade_type,
-					transit_mode: `${transitMode}`.toLowerCase(),
+					transit_mode                 : `${transitMode}`.toLowerCase(),
 					cargo_value,
 					cargo_value_currency,
-					cargo_insurance_commodity_id: cargo_insurance_commodity,
+					cargo_insurance_commodity_id : cargo_insurance_commodity,
 					origin_country_id,
 					destination_country_id,
 					commodity,
 					cargo_insurance_commodity_description,
-					status: 'active',
-					saas_rate: { ...rateData },
+					status                       : 'active',
+					saas_rate                    : { ...rateData },
 				},
 			],
 		};

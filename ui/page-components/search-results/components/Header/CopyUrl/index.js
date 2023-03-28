@@ -1,16 +1,15 @@
-import React from 'react';
-
-import { useSelector } from '@cogo/store';
 import { Btn, cogoToast, Tooltip } from '@cogo/deprecated_legacy/ui';
+import { useSelector } from '@cogo/store';
 import copyToClipboard from '@cogo/utils/copyToClipboard';
 import { IcMCopy } from '@cogoport/icons-react';
+import React from 'react';
 
-const CopyUrl = ({ detail }) => {
+function CopyUrl({ detail }) {
 	const { search_id, importer_exporter_id, org_id, user_profile } = useSelector(
 		({ general, profile }) => ({
-			user_profile: profile,
-			importer_exporter_id: general?.query?.importer_exporter_id,
-			search_id: general?.query?.search_id,
+			user_profile         : profile,
+			importer_exporter_id : general?.query?.importer_exporter_id,
+			search_id            : general?.query?.search_id,
 		}),
 	);
 
@@ -38,24 +37,24 @@ const CopyUrl = ({ detail }) => {
 			<Btn
 				className="small"
 				style={{
-					marginLeft: 8,
-					background: 'black',
-					border: 'none',
-					padding: 0,
+					marginLeft : 8,
+					background : 'black',
+					border     : 'none',
+					padding    : 0,
 				}}
 				onClick={handleCopy}
 			>
 				<IcMCopy
 					style={{
-						width: 20,
-						height: 20,
-						padding: 2,
+						width   : 20,
+						height  : 20,
+						padding : 2,
 					}}
 					themeType="#0848f5"
 				/>
 			</Btn>
 		</Tooltip>
 	);
-};
+}
 
 export default CopyUrl;

@@ -1,9 +1,12 @@
-import React, { useRef, useEffect } from 'react';
+import DatePickerControlled from '@cogo/business-modules/form/components/Controlled/DatePicker';
 import InputController from '@cogo/business-modules/form/components/Controlled/InputController';
 import SelectController from '@cogo/business-modules/form/components/Controlled/SelectController';
-import DatePickerControlled from '@cogo/business-modules/form/components/Controlled/DatePicker';
-import getOperatorsConfig from '@cogo/product/rfq/utils/getOperatorsConfig';
 import { addDays } from '@cogo/date';
+import getOperatorsConfig from '@cogo/product/rfq/utils/getOperatorsConfig';
+import React, { useRef, useEffect } from 'react';
+
+import { getUnit } from '../../../../../../utils/get-unit';
+
 import PortSelect from './PortSelect';
 import {
 	Container,
@@ -15,15 +18,14 @@ import {
 	Note,
 	SubLabel,
 } from './styles';
-import { getUnit } from '../../../../../../utils/get-unit';
 
-const CreateContractModal = ({
+function CreateContractModal({
 	fields,
 	errors,
 	details: portDetails = {},
 	watchForm,
 	setValue,
-}) => {
+}) {
 	const startDate = watchForm?.validity_start;
 	const { search_type = '' } = portDetails || {};
 	const elementRef = useRef(null);
@@ -43,9 +45,8 @@ const CreateContractModal = ({
 		case 'fcl_freight':
 			label = fields.max_containers_count.label;
 			input = fields.max_containers_count;
-			error =
-				errors?.max_containers_count?.message ||
-				errors?.max_containers_count?.type === 'min';
+			error =				errors?.max_containers_count?.message
+				|| errors?.max_containers_count?.type === 'min';
 			break;
 		case 'lcl_freight':
 			label = fields.max_volume.label;
@@ -63,8 +64,8 @@ const CreateContractModal = ({
 			break;
 	}
 	const { params, updateCache, getCacheOptions } = getOperatorsConfig({
-		formValues: watchForm,
-		formType: 'lock_rate',
+		formValues : watchForm,
+		formType   : 'lock_rate',
 	});
 	useEffect(() => {
 		setValue('validity_end', '');
@@ -86,7 +87,9 @@ const CreateContractModal = ({
 			<StyledRow>
 				<StyledCol md={12} lg={6}>
 					<Label>
-						Validity <SubLabel>(Max 30 Days)</SubLabel>
+						Validity
+						{' '}
+						<SubLabel>(Max 30 Days)</SubLabel>
 					</Label>
 					<InlineLabel>Start Date</InlineLabel>
 					<DatePickerControlled
@@ -123,7 +126,12 @@ const CreateContractModal = ({
 				<StyledRow>
 					<StyledCol md={12} lg={6}>
 						<Label>
-							Preferred {shippingLabel} lines{' '}
+							Preferred
+							{' '}
+							{shippingLabel}
+							{' '}
+							lines
+							{' '}
 							<span className="shipping-line">(OPTIONAL)</span>
 						</Label>
 						<InlineLabel>Search</InlineLabel>
@@ -144,7 +152,12 @@ const CreateContractModal = ({
 
 					<StyledCol md={12} lg={6}>
 						<Label>
-							Exclude {shippingLabel} lines{' '}
+							Exclude
+							{' '}
+							{shippingLabel}
+							{' '}
+							lines
+							{' '}
 							<span className="shipping-line">(OPTIONAL)</span>
 						</Label>
 						<InlineLabel>Search</InlineLabel>
@@ -165,6 +178,6 @@ const CreateContractModal = ({
 			<div ref={elementRef} />
 		</Container>
 	);
-};
+}
 
 export default CreateContractModal;

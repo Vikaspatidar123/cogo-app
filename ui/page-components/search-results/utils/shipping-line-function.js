@@ -5,102 +5,102 @@ const SPECIAL_CONSIDERATION = ['dangerous', 'temp_controlled', 'other_special'];
 export const airControls = (scope, trade_type, airlineOptions) => {
 	const controls = [
 		{
-			name: 'airline_id',
-			label: 'Choose an Airline',
-			type: 'select',
-			optionsListKey: 'air-lines',
-			defaultOptions: airlineOptions,
-			className: 'primary sm',
-			placeholder: 'Choose an Airline',
-			caret: true,
-			span: 6,
-			rules: { required: 'Required' },
+			name           : 'airline_id',
+			label          : 'Choose an Airline',
+			type           : 'select',
+			optionsListKey : 'air-lines',
+			defaultOptions : airlineOptions,
+			className      : 'primary sm',
+			placeholder    : 'Choose an Airline',
+			caret          : true,
+			span           : 6,
+			rules          : { required: 'Required' },
 		},
 		{
-			label: 'Departure',
-			name: 'departure',
-			type: 'datepicker',
-			placeholder: 'Departure',
-			className: 'primary sm',
-			minDate: addDays(new Date(), 1),
-			span: 6,
-			rules: { required: 'Required' },
+			label       : 'Departure',
+			name        : 'departure',
+			type        : 'datepicker',
+			placeholder : 'Departure',
+			className   : 'primary sm',
+			minDate     : addDays(new Date(), 1),
+			span        : 6,
+			rules       : { required: 'Required' },
 		},
 		{
-			name: 'arrival',
-			label: 'Arrival',
-			placeholder: 'Arrival',
-			minDate: addDays(new Date(), 1),
-			className: 'primary sm',
-			type: 'datepicker',
-			span: 6,
-			rules: { required: 'Required' },
+			name        : 'arrival',
+			label       : 'Arrival',
+			placeholder : 'Arrival',
+			minDate     : addDays(new Date(), 1),
+			className   : 'primary sm',
+			type        : 'datepicker',
+			span        : 6,
+			rules       : { required: 'Required' },
 		},
 		{
-			name: 'number_of_stops',
-			label: 'Number of Stops',
-			type: 'number',
-			placeholder: 'Enter number of stops',
-			className: 'primary sm',
-			span: 6,
-			rules: { required: 'Required', min: 0 },
+			name        : 'number_of_stops',
+			label       : 'Number of Stops',
+			type        : 'number',
+			placeholder : 'Enter number of stops',
+			className   : 'primary sm',
+			span        : 6,
+			rules       : { required: 'Required', min: 0 },
 		},
 		{
-			label: 'Select Suitable Schedules',
-			name: 'suitable_schedule',
-			type: 'pills',
-			className: 'primary sm',
-			span: 12,
-			options: [],
-			rules: { required: 'Required' },
+			label     : 'Select Suitable Schedules',
+			name      : 'suitable_schedule',
+			type      : 'pills',
+			className : 'primary sm',
+			span      : 12,
+			options   : [],
+			rules     : { required: 'Required' },
 		},
 	];
 
 	if (trade_type !== 'domestic') {
 		controls.push({
-			name: 'msds_certificate',
-			span: 12,
-			type: 'file',
-			themeType: 'secondary',
-			onlyURLOnChange: true,
-			drag: true,
-			uploadIcon: 'ic-upload',
-			label: 'Upload MSDS certificate',
-			className: 'primary sm',
+			name            : 'msds_certificate',
+			span            : 12,
+			type            : 'file',
+			themeType       : 'secondary',
+			onlyURLOnChange : true,
+			drag            : true,
+			uploadIcon      : 'ic-upload',
+			label           : 'Upload MSDS certificate',
+			className       : 'primary sm',
 			accept:
 				'image/*,.pdf,.doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document',
-			uploadType: 'aws',
-			condition: { is_haz: true },
-			rules: { required: 'Document is required' },
+			uploadType : 'aws',
+			condition  : { is_haz: true },
+			rules      : { required: 'Document is required' },
 		});
 
 		controls.push({
-			name: 'packing_list',
-			span: 12,
-			type: 'file',
-			themeType: 'secondary',
-			onlyURLOnChange: true,
-			drag: true,
-			uploadIcon: 'ic-upload',
-			className: 'primary sm',
-			label: 'Upload Packing List',
+			name            : 'packing_list',
+			span            : 12,
+			type            : 'file',
+			themeType       : 'secondary',
+			onlyURLOnChange : true,
+			drag            : true,
+			uploadIcon      : 'ic-upload',
+			className       : 'primary sm',
+			label           : 'Upload Packing List',
 			accept:
 				'image/*,.pdf,.doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document',
-			uploadType: 'aws',
-			condition: { is_haz: true },
-			rules: { required: 'Document is required' },
+			uploadType : 'aws',
+			condition  : { is_haz: true },
+			rules      : { required: 'Document is required' },
 		});
 	}
 
 	if (scope === 'app') {
 		controls.push({
-			label: 'Cargo Readiness Date',
-			name: 'cargo_readiness_date',
-			type: 'datepicker',
-			className: 'primary sm',
-			placeholder: 'Date',
-			span: 6,
-			rules: { required: 'Required' },
+			label       : 'Cargo Readiness Date',
+			name        : 'cargo_readiness_date',
+			type        : 'datepicker',
+			className   : 'primary sm',
+			placeholder : 'Date',
+			span        : 6,
+			rules       : { required: 'Required' },
 		});
 	}
 	return controls;
@@ -117,169 +117,165 @@ export const fclControls = (
 
 	const controls = [
 		{
-			name: 'shipping_line_id',
-			label: 'Shipping Line',
-			type: 'select',
-			className: 'primary sm',
-			placeholder: 'Select Shipping Line',
-			optionsListKey: 'shipping-lines',
-			defaultOptions: spotBookingDefaultShippingLines || true,
-			caret: true,
-			span: 6,
-			rules: { required: 'Required' },
+			name           : 'shipping_line_id',
+			label          : 'Shipping Line',
+			type           : 'select',
+			className      : 'primary sm',
+			placeholder    : 'Select Shipping Line',
+			optionsListKey : 'shipping-lines',
+			defaultOptions : spotBookingDefaultShippingLines || true,
+			caret          : true,
+			span           : 6,
+			rules          : { required: 'Required' },
 		},
 		{
-			name: 'origin_main_port_id',
-			label: 'Via Origin Main Port',
-			type: 'location-select',
-			optionsListKey: 'locations',
-			className: 'primary sm',
-			params: {
+			name           : 'origin_main_port_id',
+			label          : 'Via Origin Main Port',
+			type           : 'location-select',
+			optionsListKey : 'locations',
+			className      : 'primary sm',
+			params         : {
 				filters: {
-					type: ['seaport'],
-					country_id: origin_country_id,
-					is_icd: false,
+					type       : ['seaport'],
+					country_id : origin_country_id,
+					is_icd     : false,
 				},
 			},
-			caret: true,
-			multiple: false,
-			rules: { required: 'Required' },
+			caret    : true,
+			multiple : false,
+			rules    : { required: 'Required' },
 		},
 		{
-			name: 'destination_main_port_id',
-			label: 'Via Destination Main Port',
-			type: 'location-select',
-			optionsListKey: 'locations',
-			className: 'primary sm',
-			params: {
+			name           : 'destination_main_port_id',
+			label          : 'Via Destination Main Port',
+			type           : 'location-select',
+			optionsListKey : 'locations',
+			className      : 'primary sm',
+			params         : {
 				filters: {
-					type: ['seaport'],
-					country_id: destination_country_id,
-					is_icd: false,
+					type       : ['seaport'],
+					country_id : destination_country_id,
+					is_icd     : false,
 				},
 			},
-			caret: true,
-			multiple: false,
-			rules: { required: 'Required' },
+			caret    : true,
+			multiple : false,
+			rules    : { required: 'Required' },
 		},
 		{
-			label: 'Select Suitable Schedule',
-			name: 'suitable_schedule',
-			type: 'select',
-			className: 'primary sm',
-			placeholder: 'Select Suitable Schedules',
-			span: 6,
-			disabled: manualSelect,
-			options: [],
-			showOptional: false,
-			rules: { required: !manualSelect },
+			label        : 'Select Suitable Schedule',
+			name         : 'suitable_schedule',
+			type         : 'select',
+			className    : 'primary sm',
+			placeholder  : 'Select Suitable Schedules',
+			span         : 6,
+			disabled     : manualSelect,
+			options      : [],
+			showOptional : false,
+			rules        : { required: !manualSelect },
 		},
 		{
-			label: 'Departure',
-			name: 'departure',
-			type: 'datepicker',
-			placeholder: 'Departure',
-			className: 'primary sm',
+			label       : 'Departure',
+			name        : 'departure',
+			type        : 'datepicker',
+			placeholder : 'Departure',
+			className   : 'primary sm',
 			minDate:
 				wayToBook === 'spot_booking'
 					? addDays(new Date(), 4)
 					: addDays(new Date(), 1),
-			span: 6,
-			rules: { required: 'Required' },
+			span  : 6,
+			rules : { required: 'Required' },
 		},
 		{
-			name: 'arrival',
-			label: 'Arrival',
-			placeholder: 'Arrival',
+			name        : 'arrival',
+			label       : 'Arrival',
+			placeholder : 'Arrival',
 			minDate:
 				wayToBook === 'spot_booking'
 					? addDays(new Date(), 4)
 					: addDays(new Date(), 1),
-			type: 'datepicker',
-			className: 'primary sm',
-			span: 6,
-			rules: { required: 'Required' },
+			type      : 'datepicker',
+			className : 'primary sm',
+			span      : 6,
+			rules     : { required: 'Required' },
 		},
 		{
-			name: 'number_of_stops',
-			label: 'Number of Stops',
-			type: 'number',
-			placeholder: 'Enter number of stops',
-			className: 'primary sm',
-			span: 6,
-			rules: { required: 'Required', min: 0 },
+			name        : 'number_of_stops',
+			label       : 'Number of Stops',
+			type        : 'number',
+			placeholder : 'Enter number of stops',
+			className   : 'primary sm',
+			span        : 6,
+			rules       : { required: 'Required', min: 0 },
 		},
 		{
-			label: 'Detention free days at origin',
-			name: 'free_days_detention_origin',
-			type: 'number',
-			span: 6,
-			value: 4,
-			className: 'primary sm',
-			rules: {
-				required: 'Min Price is required',
-				validate: (value) =>
-					value < 0 || value > 21
-						? 'Cannot be more than 21 and less than 0'
-						: true,
+			label     : 'Detention free days at origin',
+			name      : 'free_days_detention_origin',
+			type      : 'number',
+			span      : 6,
+			value     : 4,
+			className : 'primary sm',
+			rules     : {
+				required : 'Min Price is required',
+				validate : (value) => (value < 0 || value > 21
+					? 'Cannot be more than 21 and less than 0'
+					: true),
 			},
 		},
 		{
-			label: 'Detention free days at destination',
-			name: 'free_days_detention_destination',
-			type: 'number',
-			span: 6,
-			value: 4,
-			className: 'primary sm',
-			rules: {
-				required: 'Min Price is required',
-				validate: (value) =>
-					value < 0 || value > 21
-						? 'Cannot be more than 21 and less than 0'
-						: true,
+			label     : 'Detention free days at destination',
+			name      : 'free_days_detention_destination',
+			type      : 'number',
+			span      : 6,
+			value     : 4,
+			className : 'primary sm',
+			rules     : {
+				required : 'Min Price is required',
+				validate : (value) => (value < 0 || value > 21
+					? 'Cannot be more than 21 and less than 0'
+					: true),
 			},
 		},
 		{
-			label: 'Demurrage free days at origin',
-			name: 'free_days_demurrage_origin',
-			type: 'number',
-			span: 6,
-			value: 4,
-			className: 'primary sm',
-			rules: {
-				required: 'Min Price is required',
-				validate: (value) =>
-					value < 0 || value > 21
-						? 'Cannot be more than 21 and less than 0'
-						: true,
+			label     : 'Demurrage free days at origin',
+			name      : 'free_days_demurrage_origin',
+			type      : 'number',
+			span      : 6,
+			value     : 4,
+			className : 'primary sm',
+			rules     : {
+				required : 'Min Price is required',
+				validate : (value) => (value < 0 || value > 21
+					? 'Cannot be more than 21 and less than 0'
+					: true),
 			},
 		},
 		{
-			label: 'Demurrage free days at destination',
-			name: 'free_days_demurrage_destination',
-			type: 'number',
-			span: 6,
-			value: 4,
-			className: 'primary sm',
-			rules: {
-				required: 'Min Price is required',
-				validate: (value) =>
-					value < 0 || value > 21
-						? 'Cannot be more than 21 and less than 0'
-						: true,
+			label     : 'Demurrage free days at destination',
+			name      : 'free_days_demurrage_destination',
+			type      : 'number',
+			span      : 6,
+			value     : 4,
+			className : 'primary sm',
+			rules     : {
+				required : 'Min Price is required',
+				validate : (value) => (value < 0 || value > 21
+					? 'Cannot be more than 21 and less than 0'
+					: true),
 			},
 		},
 	];
 
 	if (scope === 'app') {
 		controls.push({
-			label: 'Cargo Readiness Date',
-			name: 'cargo_readiness_date',
-			type: 'datepicker',
-			placeholder: 'Date',
-			className: 'primary sm',
-			span: 6,
-			rules: { required: 'Required' },
+			label       : 'Cargo Readiness Date',
+			name        : 'cargo_readiness_date',
+			type        : 'datepicker',
+			placeholder : 'Date',
+			className   : 'primary sm',
+			span        : 6,
+			rules       : { required: 'Required' },
 		});
 	}
 
@@ -293,44 +289,44 @@ export const fclControls = (
 export const lclControls = (scope) => {
 	const controls = [
 		{
-			label: 'Departure',
-			name: 'departure',
-			type: 'datepicker',
-			placeholder: 'Departure',
-			className: 'primary sm',
-			minDate: addDays(new Date(), 1),
-			span: 6,
-			rules: { required: 'Required' },
+			label       : 'Departure',
+			name        : 'departure',
+			type        : 'datepicker',
+			placeholder : 'Departure',
+			className   : 'primary sm',
+			minDate     : addDays(new Date(), 1),
+			span        : 6,
+			rules       : { required: 'Required' },
 		},
 		{
-			name: 'arrival',
-			label: 'Arrival',
-			placeholder: 'Arrival',
-			className: 'primary sm',
-			minDate: addDays(new Date(), 1),
-			type: 'datepicker',
-			span: 6,
-			rules: { required: 'Required' },
+			name        : 'arrival',
+			label       : 'Arrival',
+			placeholder : 'Arrival',
+			className   : 'primary sm',
+			minDate     : addDays(new Date(), 1),
+			type        : 'datepicker',
+			span        : 6,
+			rules       : { required: 'Required' },
 		},
 		{
-			name: 'number_of_stops',
-			label: 'Number of Stops',
-			type: 'number',
-			className: 'primary sm',
-			placeholder: 'Enter number of stops',
-			span: 6,
-			rules: { required: 'Required', min: 0 },
+			name        : 'number_of_stops',
+			label       : 'Number of Stops',
+			type        : 'number',
+			className   : 'primary sm',
+			placeholder : 'Enter number of stops',
+			span        : 6,
+			rules       : { required: 'Required', min: 0 },
 		},
 	];
 	if (scope === 'app') {
 		controls.push({
-			label: 'Cargo Readiness Date',
-			name: 'cargo_readiness_date',
-			type: 'datepicker',
-			className: 'primary sm',
-			placeholder: 'Date',
-			span: 6,
-			rules: { required: 'Required' },
+			label       : 'Cargo Readiness Date',
+			name        : 'cargo_readiness_date',
+			type        : 'datepicker',
+			className   : 'primary sm',
+			placeholder : 'Date',
+			span        : 6,
+			rules       : { required: 'Required' },
 		});
 	}
 	return controls;
@@ -339,41 +335,41 @@ export const lclControls = (scope) => {
 export const ftlControls = () => {
 	const controls = [
 		{
-			name: 'truck_details',
-			type: 'fieldArray',
-			showButtons: true,
-			showDivider: false,
-			lineColor: '#f2f2f2',
-			className: 'primary sm',
-			value: [
+			name        : 'truck_details',
+			type        : 'fieldArray',
+			showButtons : true,
+			showDivider : false,
+			lineColor   : '#f2f2f2',
+			className   : 'primary sm',
+			value       : [
 				{
-					code: '',
-					alias: '',
-					currency: '',
-					price: '',
-					unit: '',
+					code     : '',
+					alias    : '',
+					currency : '',
+					price    : '',
+					unit     : '',
 				},
 			],
 			controls: [
 				{
-					name: 'truck_type',
-					label: 'Truck Type',
-					type: 'select',
-					caret: true,
-					placeholder: 'Truck Type',
-					className: 'primary sm',
-					optionsListKey: 'truck-types',
-					span: 4,
-					rules: { required: 'Required' },
+					name           : 'truck_type',
+					label          : 'Truck Type',
+					type           : 'select',
+					caret          : true,
+					placeholder    : 'Truck Type',
+					className      : 'primary sm',
+					optionsListKey : 'truck-types',
+					span           : 4,
+					rules          : { required: 'Required' },
 				},
 				{
-					name: 'trucks_count',
-					label: 'Trucks count',
-					placeholder: 'Truck Count',
-					className: 'primary sm',
-					type: 'number',
-					span: 3,
-					rules: { required: 'Required', min: 0 },
+					name        : 'trucks_count',
+					label       : 'Trucks count',
+					placeholder : 'Truck Count',
+					className   : 'primary sm',
+					type        : 'number',
+					span        : 3,
+					rules       : { required: 'Required', min: 0 },
 				},
 			],
 		},
@@ -419,8 +415,8 @@ export const getShowElements = (
 		}
 		(controls || []).forEach((control) => {
 			if (
-				nonMandatoryElements.includes(control.name) &&
-				wayToBook === 'sell_without_buy'
+				nonMandatoryElements.includes(control.name)
+				&& wayToBook === 'sell_without_buy'
 			) {
 				showElements[control.name] = false;
 			} else {
@@ -477,8 +473,8 @@ export const getFclAirSchedule = async (trigger, setScheduleList, params) => {
 		if (!res?.hasError) {
 			const schedules = res?.data?.list || [];
 			setScheduleList({
-				list: schedules,
-				isApiCalled: true,
+				list        : schedules,
+				isApiCalled : true,
 			});
 		}
 	} catch (err) {

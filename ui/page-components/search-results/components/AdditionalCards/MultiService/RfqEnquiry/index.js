@@ -1,28 +1,21 @@
+import { Modal, Button, Datepicker } from '@cogoport/components';
+import { isEmpty } from '@cogoport/utils';
 import React, { useState, useEffect } from 'react';
-import { Modal, Button, Text } from '@cogoport/front/components';
-import { useSelector } from '@cogo/store';
-import { SingleDatePicker } from '@cogoport/front/components/DateTimePicker';
-import isEmpty from '@cogo/utils/isEmpty';
-
-import Service from '../Service';
 
 import useEnquiry from '../../../../hooks/useEnquiry';
+import Service from '../Service';
+import styles from '../styles.module.css';
 
-import { Container, ButtonContainer, AddServiceHeading } from '../styles';
-
-const MultiServiceRfqEnquiry = ({
+function MultiServiceRfqEnquiry({
 	detail = {},
 	show = false,
 	onClose = () => {},
-	// enquiryQuota = {},
 	refetch = () => {},
 	results_type,
-}) => {
+}) {
 	const [selectedService, setSelectedService] = useState(null);
 	const [datePickerValue, setDatePickerValue] = useState();
-	const { isMobile } = useSelector(({ general }) => ({
-		isMobile: general?.isMobile,
-	}));
+
 	const { service_type } = detail;
 	const [serviceID, setServiceID] = useState();
 	const rfqSellingDateServices = ['ftl_freight', 'fcl_freight', 'air_freight'];
@@ -53,75 +46,72 @@ const MultiServiceRfqEnquiry = ({
 		}
 	}, []);
 
-	let widthCondition = 800;
+	const widthCondition = 800;
 
-	if (isMobile) {
-		widthCondition = 'auto';
-	}
+	const serviceItem = (service) => (
+		<Service
+			service={service}
+			detail={detail}
+			setSelectedService={setSelectedService}
+			isOpen={selectedService?.id === service?.id}
+			results_type={results_type}
+			payLoad={payLoad}
+			setPayLoad={setPayLoad}
+			setServiceID={setServiceID}
+			setAllServices={setAllServices}
+		/>
+	);
 
-	const serviceItem = (service) => {
-		return (
-			<>
-				<Service
-					service={service}
-					detail={detail}
-					setSelectedService={setSelectedService}
-					isOpen={selectedService?.id === service?.id}
-					results_type={results_type}
-					payLoad={payLoad}
-					setPayLoad={setPayLoad}
-					setServiceID={setServiceID}
-					setAllServices={setAllServices}
-				/>
-			</>
-		);
-	};
+	return (
+		<>
+			{' '}
+			{ show ? (
+				<Modal show={show} width={widthCondition} onClose={onClose}>
+					<div className={styles.container}>
+						<div className={styles.add_service_heading}>Add Services for Enquiry</div>
 
-	return show ? (
-		<Modal show={show} width={widthCondition} onClose={onClose}>
-			<Container>
-				<AddServiceHeading>Add Services for Enquiry</AddServiceHeading>
+						{(mainServices || []).map((service) => serviceItem(service))}
 
-				{(mainServices || []).map((service) => serviceItem(service))}
+						{[...originServices, ...destinationServices].length > 0 ? (
+							<>
+								{[...originServices, ...destinationServices]
+									.filter((item) => item?.isServiceAdded)
+									.map((service) => serviceItem(service))}
+							</>
+						) : null}
 
-				{[...originServices, ...destinationServices].length > 0 ? (
-					<>
-						{[...originServices, ...destinationServices]
-							.filter((item) => item?.isServiceAdded)
-							.map((service) => serviceItem(service))}
-					</>
-				) : null}
+						{rfqSellingDateServices?.includes(service_type) ? (
+							<div style={{ marginTop: '20px' }}>
+								<div style={{ fontWeight: 'bold', marginBottom: '4px' }}>
+									Select Sailing Date
+								</div>
 
-				{rfqSellingDateServices?.includes(service_type) ? (
-					<div style={{ marginTop: '20px' }}>
-						<Text style={{ fontWeight: 'bold', marginBottom: '4px' }}>
-							Select Sailing Date
-						</Text>
+								<Datepicker
+									withTimePicker={false}
+									onChange={setDatePickerValue}
+									value={datePickerValue}
+									minDate={new Date()}
+								/>
+							</div>
+						) : null}
 
-						<SingleDatePicker
-							withTimePicker={false}
-							onChange={setDatePickerValue}
-							value={datePickerValue}
-							minDate={new Date()}
-						/>
+						<div className={styles.button_container}>
+							<Button
+								style={{
+									width   : '180px',
+									height  : '44px',
+									opacity : isLoading ? '0.6' : '1',
+								}}
+								onClick={rfqSaveHandle}
+								disabled={isLoading}
+							>
+								{isLoading ? 'Saving Enquiry...' : 'SAVE AND PROCEED'}
+							</Button>
+						</div>
 					</div>
-				) : null}
-
-				<ButtonContainer>
-					<Button
-						style={{
-							width: '180px',
-							height: '44px',
-							opacity: isLoading ? '0.6' : '1',
-						}}
-						onClick={rfqSaveHandle}
-						disabled={isLoading}
-					>
-						{isLoading ? 'Saving Enquiry...' : 'SAVE AND PROCEED'}
-					</Button>
-				</ButtonContainer>
-			</Container>
-		</Modal>
-	) : null;
-};
+				</Modal>
+			) : null}
+		</>
+	);
+}
 export default MultiServiceRfqEnquiry;

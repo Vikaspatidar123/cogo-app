@@ -1,10 +1,11 @@
-import { useState, useEffect, useImperativeHandle, useMemo } from 'react';
-import { addDays } from '@cogo/date';
-import { useFormCogo } from '@cogoport/front/hooks';
-import getConfiguration from '@cogo/app-search/utils/getConfiguration';
+import showElementFunc from '@cogo/app-search/common/SearchForm/utils/show-elements';
 import referControls from '@cogo/app-search/configurations/enquiry/refer.controls.js';
 import formatSearch from '@cogo/app-search/utils/format-create-search';
-import showElementFunc from '@cogo/app-search/common/SearchForm/utils/show-elements';
+import getConfiguration from '@cogo/app-search/utils/getConfiguration';
+import { addDays } from '@cogo/date';
+import { useState, useEffect, useImperativeHandle, useMemo } from 'react';
+
+import { useForm } from '@/packages/forms';
 
 const useUpdateEnquiryParams = ({
 	service,
@@ -38,8 +39,8 @@ const useUpdateEnquiryParams = ({
 	);
 
 	if (
-		service?.similar_service_details?.[index]?.container_type === 'refer' &&
-		service?.service === 'fcl_freight'
+		service?.similar_service_details?.[index]?.container_type === 'refer'
+		&& service?.service === 'fcl_freight'
 	) {
 		_controls = [..._controls, ...referControls()];
 	}
@@ -51,10 +52,9 @@ const useUpdateEnquiryParams = ({
 	if (service?.similar_service_details?.length) {
 		prefillData = prefillDetails?.extraDetails?.[serviceKey];
 	} else {
-		prefillData =
-			prefillDetails?.extraDetails?.[
-				`${service?.service}:${service?.trade_type}`
-			]?.[index];
+		prefillData =			prefillDetails?.extraDetails?.[
+			`${service?.service}:${service?.trade_type}`
+		]?.[index];
 	}
 
 	(_controls || []).forEach((obj) => {
@@ -79,27 +79,27 @@ const useUpdateEnquiryParams = ({
 		unregister,
 		register,
 		reset,
-	} = useFormCogo(_controls);
+		control,
+	} = useForm();
 
 	const showElements = useMemo(
-		() =>
-			showElementFunc({
-				advancedControls: _controls,
-				formValues: service,
-				mode: service?.similar_service_details?.length
+		() => showElementFunc({
+			advancedControls : _controls,
+			formValues       : service,
+			mode             : service?.similar_service_details?.length
+				? service?.service
+				: payload?.service,
+			location,
+			services: {
+				[service?.similar_service_details?.length
 					? service?.service
-					: payload?.service,
-				location,
-				services: {
-					[service?.similar_service_details?.length
-						? service?.service
-						: payload?.service]: true,
-				},
-				unregister,
-				register,
-				reset,
-				setValue,
-			}),
+					: payload?.service]: true,
+			},
+			unregister,
+			register,
+			reset,
+			setValue,
+		}),
 		[JSON.stringify(service)],
 	);
 
@@ -111,8 +111,8 @@ const useUpdateEnquiryParams = ({
 		.filter((obj) => showElements?.[obj?.name])
 		.map((item) => {
 			if (
-				item.name === 'destination_cargo_handling_type' &&
-				!['INNSA', 'INMAA'].includes(location?.destination?.port_code)
+				item.name === 'destination_cargo_handling_type'
+				&& !['INNSA', 'INMAA'].includes(location?.destination?.port_code)
 			) {
 				return {
 					...item,
@@ -130,9 +130,9 @@ const useUpdateEnquiryParams = ({
 		}
 
 		if (
-			fieldKey === 'msds_certificate' &&
-			search_type === 'air_freight' &&
-			commodity === 'hazardous'
+			fieldKey === 'msds_certificate'
+			&& search_type === 'air_freight'
+			&& commodity === 'hazardous'
 		) {
 			fields[fieldKey].rules = { required: 'Document is required1111' };
 		}
@@ -204,41 +204,37 @@ const useUpdateEnquiryParams = ({
 	useEffect(() => {
 		if (prefillData?.packages) {
 			const formatPackageInformation = (prefillData?.packages || []).map(
-				(obj) => {
-					return {
-						packing_type: obj?.packing_type,
-						packages_count: Number(obj?.packages_count),
-						dimensions: {
-							length: Number(obj?.dimensions?.length),
-							width: Number(obj?.dimensions?.width),
-							height: Number(obj?.dimensions?.height),
-						},
-					};
-				},
+				(obj) => ({
+					packing_type   : obj?.packing_type,
+					packages_count : Number(obj?.packages_count),
+					dimensions     : {
+						length : Number(obj?.dimensions?.length),
+						width  : Number(obj?.dimensions?.width),
+						height : Number(obj?.dimensions?.height),
+					},
+				}),
 			);
 			setValue('packages', formatPackageInformation);
 		} else if (service?.packages?.length) {
-			const formatPackageInformation = (service?.packages || []).map((obj) => {
-				return {
-					packing_type: obj?.packing_type,
-					packages_count: obj?.packages_count,
-					dimensions: {
-						length: obj?.length,
-						width: obj?.width,
-						height: obj?.height,
-					},
-				};
-			});
+			const formatPackageInformation = (service?.packages || []).map((obj) => ({
+				packing_type   : obj?.packing_type,
+				packages_count : obj?.packages_count,
+				dimensions     : {
+					length : obj?.length,
+					width  : obj?.width,
+					height : obj?.height,
+				},
+			}));
 			setValue('packages', formatPackageInformation);
 		} else {
 			const formatPackageInformation = [
 				{
-					packing_type: 'pallet',
-					packages_count: 1,
-					dimensions: {
-						length: 1,
-						width: 1,
-						height: 1,
+					packing_type   : 'pallet',
+					packages_count : 1,
+					dimensions     : {
+						length : 1,
+						width  : 1,
+						height : 1,
 					},
 				},
 			];
@@ -252,6 +248,7 @@ const useUpdateEnquiryParams = ({
 
 	return {
 		controls,
+		control,
 		fields,
 		errors,
 		showElements,

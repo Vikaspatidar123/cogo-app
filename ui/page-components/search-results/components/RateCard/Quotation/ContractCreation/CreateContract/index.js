@@ -1,20 +1,22 @@
-import React from 'react';
-import { IcMCross } from '@cogoport/icons-react';
 import Button from '@cogoport/front/components/admin/Button';
 import { useFormCogo } from '@cogoport/front/hooks';
-import { Header, ModalWrapper, Footer, Body } from './styles';
-import CreateContractModal from './CreateContractModal';
+import { IcMCross } from '@cogoport/icons-react';
+import React from 'react';
+
 import createContracts from '../../../../../configurations/create-contract-controls';
 import useCreateContract from '../../../../../hooks/useCreateContract';
 
-const CreateContract = ({
+import CreateContractModal from './CreateContractModal';
+import { Header, ModalWrapper, Footer, Body } from './styles';
+
+function CreateContract({
 	data = {},
 	details = {},
 	showContract = false,
 	setShowContract = () => {},
 	setPriceLocked = () => {},
 	setContractData = () => {},
-}) => {
+}) {
 	const newControls = createContracts();
 
 	const {
@@ -86,6 +88,6 @@ const CreateContract = ({
 			</>
 		</ModalWrapper>
 	);
-};
+}
 
 export default CreateContract;

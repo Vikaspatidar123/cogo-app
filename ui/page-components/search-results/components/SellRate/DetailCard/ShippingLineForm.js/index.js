@@ -1,11 +1,13 @@
-import { useEffect } from 'react';
 import Layout from '@cogo/business-modules/form/Layout';
+import { useSelector } from '@cogo/store';
+import { Flex, Text } from '@cogoport/front/components';
 import { Button, CheckBox } from '@cogoport/front/components/admin';
 import SegmentedControl from '@cogoport/front/components/SegmentedControl';
-import { Flex, Text } from '@cogoport/front/components';
 import { isEmpty } from '@cogoport/utils';
-import { useSelector } from '@cogo/store';
+import { useEffect } from 'react';
+
 import useGetShippingLine from '../../../../hooks/useGetShippingLine';
+
 // import AddLineItem from './AddDetails';
 import {
 	Container,
@@ -17,7 +19,7 @@ import {
 
 const MAIN_SERVICE_TO_FILTER = ['fcl_freight'];
 
-const ShippingLineForm = ({
+function ShippingLineForm({
 	rates = [],
 	handleSave = () => {},
 	setAddRate = () => {},
@@ -28,7 +30,7 @@ const ShippingLineForm = ({
 	spotBookingDetails,
 	check_multiple_containers_fcl = [],
 	showSpotBookingDetails = () => {},
-}) => {
+}) {
 	const {
 		general: { isMobile = false },
 	} = useSelector((state) => state);
@@ -55,8 +57,8 @@ const ShippingLineForm = ({
 	useEffect(() => {
 		reset();
 		setScheduleList({
-			list: [],
-			isApiCalled: false,
+			list        : [],
+			isApiCalled : false,
 		});
 		showSpotBookingDetails({
 			...spotBookingDetails,
@@ -134,9 +136,9 @@ const ShippingLineForm = ({
 				<Button
 					style={{ marginLeft: '10px' }}
 					disabled={
-						loading ||
-						(check_multiple_containers_fcl?.length > 1 &&
-							wayToBook === 'spot_booking')
+						loading
+						|| (check_multiple_containers_fcl?.length > 1
+							&& wayToBook === 'spot_booking')
 					}
 					onClick={handleSubmit(handleSave)}
 					className="primary sm"
@@ -152,6 +154,6 @@ const ShippingLineForm = ({
 			)} */}
 		</Container>
 	);
-};
+}
 
 export default ShippingLineForm;

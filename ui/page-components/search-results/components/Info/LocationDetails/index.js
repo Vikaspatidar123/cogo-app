@@ -1,12 +1,13 @@
-import React from 'react';
 import getLocationInfo from '@cogo/business-modules/helpers/locations-search';
 import { ToolTip } from '@cogoport/front/components';
 import { IcMPortArrow } from '@cogoport/icons-react';
+import React from 'react';
+
 import { Port, FlexRow, FlexColumn, IconWrap } from './styles';
 
 const singleLocation = ['fcl_customs', 'lcl_customs', 'air_customs', 'fcl_cfs'];
 
-const LocationDetails = ({ data = {} }) => {
+function LocationDetails({ data = {} }) {
 	const { origin, destination } = getLocationInfo('search_type', data);
 
 	const origin_country = origin?.display_name?.split(', ');
@@ -55,6 +56,6 @@ const LocationDetails = ({ data = {} }) => {
 			) : null}
 		</FlexRow>
 	);
-};
+}
 
 export default LocationDetails;

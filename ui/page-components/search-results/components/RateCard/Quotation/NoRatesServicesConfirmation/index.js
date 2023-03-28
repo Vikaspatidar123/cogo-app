@@ -1,18 +1,19 @@
-import React, { useState } from 'react';
 import { useRequest } from '@cogo/commons/hooks';
-import startCase from '@cogo/utils/startCase';
 import showErrorsInToast from '@cogo/utils/showErrorsInToast';
+import startCase from '@cogo/utils/startCase';
 import { Button, toast } from '@cogoport/front/components';
+import React, { useState } from 'react';
+
 import { Container, ButtonWrap } from './styles';
 
-const NoRatesServicesConfirmation = ({
+function NoRatesServicesConfirmation({
 	noRatesArr = [],
 	setConfirmation = () => {},
 	data = {},
 	scope = '',
 	search_id = '',
 	refetch = () => {},
-}) => {
+}) {
 	const [loading, setLoading] = useState(false);
 	const uniq_services = [...new Set(noRatesArr)];
 	const count = (uniq_services || []).length;
@@ -72,10 +73,9 @@ const NoRatesServicesConfirmation = ({
 		}
 		return startCase(service);
 	};
-	const services =
-		count > 1
-			? (uniq_services || []).map((item) => handleServiceName(item))
-			: handleServiceName(uniq_services[0]);
+	const services =		count > 1
+		? (uniq_services || []).map((item) => handleServiceName(item))
+		: handleServiceName(uniq_services[0]);
 
 	return (
 		<Container>
@@ -106,6 +106,6 @@ const NoRatesServicesConfirmation = ({
 			</ButtonWrap>
 		</Container>
 	);
-};
+}
 
 export default NoRatesServicesConfirmation;

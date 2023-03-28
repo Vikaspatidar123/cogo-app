@@ -1,21 +1,12 @@
-import { Flex } from '@cogoport/front/components';
+import { startCase } from '@cogoport/utils';
 import { useState } from 'react';
-import { isEmpty, startCase } from '@cogoport/utils';
-import {
-	AnimatedContainer,
-	Card,
-	Circle,
-	CogoAssured,
-	Container,
-	Line,
-	LineVrt,
-	Location,
-	RouteContainer,
-} from './styles';
+
 import Quotation from '../RateCard/Quotation';
 import QuotationDetails from '../RateCard/QuotationDetails';
 
-const CargoInsuranceRateCard = (props) => {
+import styles from './styles.module.css';
+
+function CargoInsuranceRateCard(props) {
 	const [open, setOpen] = useState(false);
 	const [viewSchedules, setViewSchedules] = useState(false);
 
@@ -38,82 +29,79 @@ const CargoInsuranceRateCard = (props) => {
 	} = details || {};
 
 	return (
-		<Container id={id}>
-			<CogoAssured>{startCase(risk_coverage)}</CogoAssured>
+		<div className={styles.container} id={id}>
+			<div className={styles.cogo_assured}>{startCase(risk_coverage)}</div>
 
-			<Card>
-				<Flex justifyContent="center" alignItems="center" flex={1}>
-					<RouteContainer>
-						<Flex display="block" style={{ width: '100%' }}>
-							<Flex style={{ width: '100%' }}>
-								<Circle
-									className={!isEmpty(origin_country) ? 'inactive' : null}
+			<div className={styles.card}>
+				<div style={{display : 'flex', justifyContent : 'center', alignItems : 'center', flex : '1'}}>
+					<div className={styles.route_container}>
+						<div style={{ width: '100%', display: 'flex' }}>
+							<div style={{ width: '100%', display: 'flex' }}>
+								<div
+									className={`${styles.circle} ${!isEmpty(origin_country) ? 'inactive' : null}`}
 								/>
 
-								<Line
-									className={!isEmpty(origin_country) ? 'inactive' : null}
+								<div
+									className={`${styles.Line} ${!isEmpty(origin_country) ? 'inactive' : null}`}
 									style={{ width: '100%' }}
 								/>
-							</Flex>
-						</Flex>
+							</div>
+						</div>
 
-						<Flex display="column" alignItems="center">
-							<Flex>
-								<Line
-									className={!isEmpty(origin_country) ? 'inactive' : null}
+						<div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+							<div style={{ display: 'flex' }}>
+								<div
+									className={`${styles.Line} ${!isEmpty(origin_country) ? 'inactive' : null}`}
 									style={{ width: '30px' }}
 								/>
 
-								<Circle className="main" />
+								<div className={`${styles.circle} ${styles.main}`} />
 
-								<Line
-									className={!isEmpty(origin_country) ? 'main' : null}
+								<div
+									className={`${styles.Line} ${!isEmpty(origin_country) ? 'main' : null}`}
 									style={{ width: '30px' }}
 								/>
-							</Flex>
+							</div>
 
-							<Location className="main">
+							<div className={`${styles.location} ${styles.main}`}>
 								{origin_country?.display_name || origin_country?.name || '-'}
-							</Location>
-						</Flex>
+							</div>
+						</div>
 
-						<Flex direction="column" alignItems="center">
-							<Flex>
+						<div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+							<div style={{ display: 'flex' }}>
 								<Line
 									className={!isEmpty(origin_country) ? 'main' : null}
 									style={{ width: '30px' }}
 								/>
-								<Circle className="main" />
+								<div className={`${styles.circle} ${styles.main}`} />
 
 								<Line
 									className={!isEmpty(origin_country) ? 'inactive' : null}
 									style={{ width: '30px' }}
 								/>
-							</Flex>
+							</div>
 
-							<Location className="main">
-								{destination_country?.display_name ||
-									destination_country?.name ||
-									'-'}
-							</Location>
-						</Flex>
+							<div className={`${styles.location} ${styles.main}`}>
+								{destination_country?.display_name
+									|| destination_country?.name
+									|| '-'}
+							</div>
+						</div>
 
-						<Flex display="block" style={{ width: '100%' }}>
-							<Flex style={{ width: '100%' }}>
-								<Line
-									className={!isEmpty(origin_country) ? 'inactive' : null}
+						<div style={{ width: '100%', display: 'flex' }}>
+								<div
+									className={`${styles.line} ${!isEmpty(origin_country) ? 'inactive' : null}`}
 									style={{ width: '100%' }}
 								/>
-
-								<Circle
-									className={!isEmpty(origin_country) ? 'inactive' : null}
+								<div
+									className={`${styles.circle} ${!isEmpty(origin_country) ? 'inactive' : null}`}
 								/>
-							</Flex>
-						</Flex>
-					</RouteContainer>
-				</Flex>
+						</div>
+					</div>
+				</div>
 
-				<LineVrt />
+				<div className={styles.line_vrt} />
 
 				<Quotation
 					data={data}
@@ -131,10 +119,10 @@ const CargoInsuranceRateCard = (props) => {
 					setViewSchedules={setViewSchedules}
 					isConfirmed={false}
 				/>
-			</Card>
+			</div>
 
 			{open && (
-				<AnimatedContainer type={open ? 'enter' : 'exit'}>
+				<div className={styles.animated_container} type={open ? 'enter' : 'exit'}>
 					<QuotationDetails
 						searchData={searchData}
 						details={details}
@@ -142,10 +130,10 @@ const CargoInsuranceRateCard = (props) => {
 						id={id}
 						isConfirmed={false}
 					/>
-				</AnimatedContainer>
+				</div>
 			)}
-		</Container>
+		</div>
 	);
-};
+}
 
 export default CargoInsuranceRateCard;

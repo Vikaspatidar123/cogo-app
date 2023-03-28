@@ -1,16 +1,18 @@
-import React, { useState, useEffect } from 'react';
-import { useSelector } from '@cogo/store';
-import { Button, Modal } from '@cogoport/front/components';
 import SearchForm from '@cogo/app-search/common/SearchForm';
 import formatMainServiceData from '@cogo/app-search/utils/format-main-service-data';
-import { APP_EVENT, trackEvent } from '@cogo/commons/analytics';
 import TruckingTouchPoints from '@cogo/business-modules/components/TruckingTouchPoints';
-import formatDate from '@cogo/globalization/utils/formatDate';
+import { APP_EVENT, trackEvent } from '@cogo/commons/analytics';
 import GLOBAL_CONSTANTS from '@cogo/globalization/constants/globals.json';
+import formatDate from '@cogo/globalization/utils/formatDate';
+import { useSelector } from '@cogo/store';
+import { Button, Modal } from '@cogoport/front/components';
 import { IcMFtrailorFull } from '@cogoport/icons-react';
-import LocationDetails from '../LocationDetails';
+import React, { useState, useEffect } from 'react';
+
 import AdditionalServices from '../../AdditionalServices';
 import Loading from '../loading';
+import LocationDetails from '../LocationDetails';
+
 import ContainerDetails from './ContainerDetails';
 import {
 	Container,
@@ -30,13 +32,13 @@ import {
 } from './styles';
 
 const SEARCH_TYPE_MAPPING = {
-	ftl_freight: 'FTL',
-	ltl_freight: 'LTL',
+	ftl_freight : 'FTL',
+	ltl_freight : 'LTL',
 };
 
 const NON_STANDALONE_SEERVICES = ['fcl_cfs'];
 
-const FtlInfo = ({
+function FtlInfo({
 	data = {},
 	setOpen = () => {},
 	open = false,
@@ -49,7 +51,7 @@ const FtlInfo = ({
 	results_type = '',
 	rates = [],
 	possible_additional_services = [],
-}) => {
+}) {
 	const { scope, query } = useSelector(({ general }) => general);
 	const { touch_points = {} } = searchData || {};
 	const { primary_service = {} } = touch_points || {};
@@ -73,10 +75,10 @@ const FtlInfo = ({
 				mode={data.search_type}
 				onPush={() => setEditSearch(false)}
 				extraParams={{
-					importer_exporter_id: importer_exporter_details.id,
-					importer_exporter_name: importer_exporter_details.name,
-					importer_exporter_branch_id: importer_exporter_details?.branch_id,
-					user_id: importer_exporter_details?.user_id,
+					importer_exporter_id        : importer_exporter_details.id,
+					importer_exporter_name      : importer_exporter_details.name,
+					importer_exporter_branch_id : importer_exporter_details?.branch_id,
+					user_id                     : importer_exporter_details?.user_id,
 				}}
 				data={formatMainServiceData(
 					data?.search_type,
@@ -89,14 +91,14 @@ const FtlInfo = ({
 
 			<Button
 				style={{
-					background: 'white',
-					color: 'black',
-					fontSize: 18,
-					padding: 10,
-					height: 34,
-					marginLeft: 8,
-					display: 'Flex',
-					alignItems: 'center',
+					background : 'white',
+					color      : 'black',
+					fontSize   : 18,
+					padding    : 10,
+					height     : 34,
+					marginLeft : 8,
+					display    : 'Flex',
+					alignItems : 'center',
 				}}
 				onClick={() => setEditSearch(false)}
 			>
@@ -133,9 +135,9 @@ const FtlInfo = ({
 				<div>
 					(
 					{formatDate({
-						date: detail.cargo_readiness_date,
-						dateFormat: GLOBAL_CONSTANTS.formats.date['dd MMM yyyy'],
-						formatType: 'date',
+						date       : detail.cargo_readiness_date,
+						dateFormat : GLOBAL_CONSTANTS.formats.date['dd MMM yyyy'],
+						formatType : 'date',
 					})}
 					)
 				</div>
@@ -156,9 +158,9 @@ const FtlInfo = ({
 					</div>
 				) : null}
 
-				{!NON_STANDALONE_SEERVICES.includes(data?.search_type) &&
-				!query?.shipment_id &&
-				results_type !== 'rfq' ? (
+				{!NON_STANDALONE_SEERVICES.includes(data?.search_type)
+				&& !query?.shipment_id
+				&& results_type !== 'rfq' ? (
 					<ButtonStyled
 						onClick={() => {
 							if (scope === 'app') {
@@ -173,7 +175,7 @@ const FtlInfo = ({
 							style={{ width: '2em', height: '2em', margin: 'auto' }}
 						/>
 					</ButtonStyled>
-				) : null}
+					) : null}
 			</FlexRow>
 		</Container>
 	);
@@ -209,6 +211,6 @@ const FtlInfo = ({
 			) : null}
 		</>
 	);
-};
+}
 
 export default FtlInfo;

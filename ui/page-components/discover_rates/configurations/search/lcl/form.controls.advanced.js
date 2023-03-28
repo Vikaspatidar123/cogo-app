@@ -23,12 +23,12 @@ const formControlsAdvanced = (isChannelPartner = false) => [
 		rules       : { required: 'Pickup Pincode is required' },
 	},
 	{
-		name           : 'export_transportation_truck_type',
-		label          : 'Pickup Truck Type',
-		type           : 'select',
-		asyncKey : 'truck_types',
-		span           : 8,
-		condition      : {
+		name      : 'export_transportation_truck_type',
+		label     : 'Pickup Truck Type',
+		type      : 'select',
+		asyncKey  : 'truck_types',
+		span      : 8,
+		condition : {
 			services                          : ['export_transportation'],
 			export_transportation_pickup_type : 'ftl',
 		},

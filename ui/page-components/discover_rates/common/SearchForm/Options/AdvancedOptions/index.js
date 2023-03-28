@@ -85,7 +85,6 @@ function AdvancedOptions({
 						>
 							<Form
 								controls={controls}
-								// fields={{ ...optionsFields, ...fields }}
 								formValues={formValues}
 								errors={errors}
 								control={control}

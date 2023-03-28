@@ -1,4 +1,4 @@
-import { Popover, Modal } from '@cogoport/components';
+import { Popover, Modal, cl } from '@cogoport/components';
 import React, { useState, useEffect, useMemo } from 'react';
 
 import { getControls } from '../utils/handleOptionsChange';
@@ -179,8 +179,8 @@ function Options({
 			fields={optionFormControls}
 			control={control}
 			onShowAdvanced={() => {
-      	setShow(false);
-      	setShowAdvance(true);
+				setShow(false);
+				setShowAdvance(true);
 			}}
 			onClose={() => setShow(false)}
 			onSubmit={handleSubmit(handleApply, onError)}
@@ -375,12 +375,12 @@ function Options({
 	};
 
 	return (
-		<div className={`${styles.container}${styles.search_type}`}>
+		<div className={cl`${styles.container} ${styles[search_type]}`}>
 			{search_type === 'rfq' ? (
 				<div style={{ width: mainServices.includes(mode) ? '100%' : '50%' }}>
 					{index === 0 ? (
 						<div
-							className={`${styles.label}${styles.search_form_options_container_col__label}`}
+							className={cl`${styles.label} ${styles.search_form_options_container_col__label}`}
 						>
 							Container Details
 						</div>

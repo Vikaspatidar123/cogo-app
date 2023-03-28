@@ -1,0 +1,8 @@
+.container {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+.mobile_view {
+  padding-bottom: 15px;
+}

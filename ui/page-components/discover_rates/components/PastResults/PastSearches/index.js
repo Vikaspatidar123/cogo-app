@@ -1,4 +1,3 @@
-import { setPastSearchesState } from '@cogo/app-store';
 import { cl } from '@cogoport/components';
 import React, { useEffect, useState } from 'react';
 
@@ -9,13 +8,17 @@ import getRecommendedSearches from '../../../hooks/useGetRecommendedSearches';
 import Item from './Item';
 import styles from './styles.module.css';
 
-import { useSelector, useDispatch } from '@/packages/store';
+import {
+	setPastSearchesState,
+	useSelector,
+	useDispatch,
+} from '@/packages/store';
 
-function PastSearches({ mobile, setPastSearchCount }) {
+function PastSearches({ mobile = false, setPastSearchCount = () => {} }) {
 	const [loading, setLoading] = useState(false);
 	const dispatch = useDispatch();
 
-	const { list, kyc_status, branch_id, user_id } = useSelector(
+	const { list = [], kyc_status, branch_id, user_id } = useSelector(
 		({ search, profile, general }) => ({
 			list       : search.past_searches || [],
 			kyc_status : (profile.organization || {}).kyc_status,
@@ -23,31 +26,32 @@ function PastSearches({ mobile, setPastSearchCount }) {
 			user_id    : profile?.id,
 		}),
 	);
+	const className = `${mobile ? styles.mobile : ''}`;
+	const SetDateInStore = async () => {
+		const resp = await getRecommendedSearches();
+		const { data = {} } = resp || {};
 
-	const className = `${mobile ? 'mobile' : ''}`;
-
+		if (!resp.hasError) {
+			dispatch(
+				setPastSearchesState({
+					past_searches: data.list || [],
+				}),
+			);
+			setPastSearchCount({
+				count   : (data.list || []).length,
+				loading : false,
+			});
+		} else {
+			setPastSearchCount({ count: 0, loading: false });
+		}
+		setLoading(false);
+	};
 	useEffect(() => {
 		if ((list || []).length > 0) {
 			return;
 		}
-
 		setLoading(true);
-		getRecommendedSearches().then((res) => {
-			if (!res.hasError) {
-				dispatch(
-					setPastSearchesState({
-						past_searches: res?.data?.list || [],
-					}),
-				);
-				setPastSearchCount({
-					count   : (res?.data?.list || []).length,
-					loading : false,
-				});
-			} else {
-				setPastSearchCount({ count: 0, loading: false });
-			}
-			setLoading(false);
-		});
+		SetDateInStore();
 	}, []);
 
 	const content = {
@@ -65,25 +69,21 @@ function PastSearches({ mobile, setPastSearchCount }) {
 	};
 
 	return (
-		<div className={cl`${styles[className]}${styles.container}`}>
-			{loading && <Loader mobile={mobile} />}
-			{!loading && list.length === 0 ? (
-				{/* <EmptyState
-					{...content[kyc_status === 'pending_from_user' ? 'kyc' : 'default']}
-				/> */}
-			) : (
-      	list.map((item) => (
-	<Item
-		key={item.created_at}
-		data={{
-            	...item,
-            	importer_exporter_branch_id: branch_id,
-            	user_id,
-		}}
-		mobile={mobile}
-	/>
-      	))
-			)}
+		<div className={cl`${styles[className]} ${styles.container}`}>
+			{/* {loading && <Loader mobile={mobile} />} */}
+
+			{	(list || [])?.map((item) => (
+				<Item
+					key={item.created_at}
+					data={{
+						...item,
+						importer_exporter_branch_id: branch_id,
+						user_id,
+					}}
+					mobile={mobile}
+				/>
+	  ))}
+
 		</div>
 	);
 }

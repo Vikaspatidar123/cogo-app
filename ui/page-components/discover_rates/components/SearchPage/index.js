@@ -43,7 +43,7 @@ function SearchPage() {
 				<KycBenefits />
 			) : null}
 
-			{!quotaLoading && blockSearch ? <NoSearch /> : <PastResults />}
+			{quotaLoading && blockSearch ? <NoSearch /> : <PastResults />}
 
 			<div className="g-signin2" data-onsuccess="onSignIn" />
 		</div>

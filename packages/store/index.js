@@ -1,4 +1,5 @@
 export { default as profileStore } from './store/profile';
+export { default as searchStore } from './store/enquiry';
 
 export {
 	Provider,
@@ -11,6 +12,7 @@ export {
 
 export { default as createWithStore } from './store';
 
+export * from './store/enquiry/actions';
 // export default configureStore({
 // 	reducer: reducers,
 // });

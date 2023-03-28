@@ -29,10 +29,10 @@ function PastResults() {
 							<PastSearches mobile={isMobile} />
 						</TabPanel>
 
-						<TabPanel name="quotations" title="Quotations">
-							{/* <Quotations mobile={isMobile} /> */}
+						{/* <TabPanel name="quotations" title="Quotations">
+							<Quotations mobile={isMobile} />
 							Quotations
-						</TabPanel>
+						</TabPanel> */}
 					</Tabs>
 				</div>
 			</div>

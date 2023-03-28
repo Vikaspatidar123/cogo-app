@@ -1,53 +1,46 @@
-import React from 'react';
-import { shape, bool } from 'prop-types';
+import { cl } from "@cogoport/components";
 
-import Status from './Status';
-import SearchType from '../../../../../common/SearchType';
-import PortDetails from '../../../../../common/PortDetails';
-import ContainerInfo from '../../../../../common/ContainerInfo';
+import ContainerInfo from "../../../../common/ContainerInfo";
+import PortDetails from "../../../../common/PortDetails";
+import SearchType from "../../../../common/SearchType";
 
-import { Container, Section, Main, IconSection } from './styles';
+import Status from "./Status";
+import styles from "./styles.module.css";
 
-const ReceivedRevert = ({ data, mobile }) => {
-	const className = `${mobile ? 'mobile' : ''}`;
+function ReceivedRevert({ data, mobile }) {
+  const className = `${mobile ? styles.mobile : ""}`;
 
-	return (
-		<Container className={data.expired ? 'disabled' : 'enabled'}>
-			<Section>
-				<IconSection className={className}>
-					<SearchType
-						search_type={data.search_type}
-						mobile={mobile}
-						width="90px"
-					/>
-				</IconSection>
-				<Main className={className}>
-					<Section className={className}>
-						<PortDetails data={data} mobile={mobile} />
-						<div
-							style={{
-								maxWidth: !mobile ? 180 : '',
-							}}
-						>
-							<ContainerInfo detail={data} />
-						</div>
-					</Section>
-					{(mobile && <Status data={data} mobile={mobile} />) || null}
-				</Main>
-				{(!mobile && <Status data={data} mobile={mobile} />) || null}
-			</Section>
-		</Container>
-	);
-};
-
-ReceivedRevert.propTypes = {
-	data: shape({}),
-	mobile: bool,
-};
-
-ReceivedRevert.defaultProps = {
-	data: {},
-	mobile: false,
-};
+  return (
+    <div
+      className={cl`${styles.container} ${
+        data.expired ? styles.disabled : styles.enabled
+      }`}
+    >
+      <div className={styles.section}>
+        <div className={cl`${styles[className]} ${styles.icon_section}`}>
+          <SearchType
+            search_type={data.search_type}
+            mobile={mobile}
+            width="90px"
+          />
+        </div>
+        <div className={cl`${styles[className]} ${styles.main}`}>
+          <div className={cl`${styles[className]} ${styles.section}`}>
+            <PortDetails data={data} mobile={mobile} />
+            <div
+              style={{
+                maxWidth: !mobile ? 180 : "",
+              }}
+            >
+              <ContainerInfo detail={data} />
+            </div>
+          </div>
+          {(mobile && <Status data={data} mobile={mobile} />) || null}
+        </div>
+        {(!mobile && <Status data={data} mobile={mobile} />) || null}
+      </div>
+    </div>
+  );
+}
 
 export default ReceivedRevert;

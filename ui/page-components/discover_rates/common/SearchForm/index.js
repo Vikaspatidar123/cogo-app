@@ -302,7 +302,7 @@ function Form(
       	background: search_type === 'dashboard' ? '#f9f9f9' : '#ffffff',
 			}}
 		>
-			<div className={`${styles.main}${styles.search_type} ` || ''}>
+			<div className={cl`${styles.main} ${styles.search_type} ` || ''}>
 				<div>
 					<form onSubmit={handleSubmit(submitData, onError)}>
 						<div className={styles.row}>
@@ -330,7 +330,7 @@ function Form(
 							<div className={styles.search_form_options_container_col}>
 								{index === 0 && search_type !== 'rfq' ? (
 									<div
-										className={`${styles.label} ${styles.search_form_options_container_col__label}`}
+										className={cl`${styles.label} ${styles.search_form_options_container_col__label}`}
 									>
 										{containerDetailsModes.includes(mode)
                     	? 'Container Details'
@@ -395,9 +395,7 @@ function Form(
 
 							{['rfq', 'contract', 'forecast'].includes(search_type) ? null : (
 								<div
-									xs={12}
-									md={isSmall || scope === 'app' ? 1 : 2}
-									sm={12}
+
 									className={cl`${styles.search_form_search_btn_container_col} ${styles.search_form_section_search_btn}`}
 									style={{
                   	display        : 'flex',

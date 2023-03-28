@@ -1,23 +1,23 @@
-import React, { useState } from 'react';
-import { shape, bool, string, func } from 'prop-types';
-import useForm from '@cogoport/front/hooks/useFormCogo';
-import { Popover } from '@cogo/deprecated_legacy/ui';
-import { useRouter } from '@cogo/next';
-import showErrorsInToast from '@cogo/utils/showErrorsInToast';
-import { usePartnerEntityType } from '@cogo/commons/hooks';
-import { trackEvent } from '@cogo/commons/analytics';
-import { APP_EVENT } from '@cogo/commons/analytics/constants';
+import { Popover, cl, Button } from '@cogoport/components';
 import { IcMSearchlight } from '@cogoport/icons-react';
+import React, { useState } from 'react';
+
+import { trackEvent } from '../../../../../common/analytics';
+import { APP_EVENT } from '../../../../../common/analytics/constants';
+import getConfiguration from '../../../../../hooks/configurations';
+import useCreateSearch from '../../../../../hooks/useCreateSearch';
+import formatMainServiceData from '../../../../../utils/format-main-service-data';
+import style from '../styles.module.css';
+
 import Header from './Header';
-import Form from '../../../../../../common/FormElement';
-import useCreateSearch from '../../../../../../hooks/useCreateSearch';
-import getConfiguration from '../../../../../../hooks/configuration';
-import formatMainServiceData from '../../../../../../utils/format-main-service-data';
+import styles from './styles.module.css';
 
-import { Container } from './styles';
-import { Rates, EditOptions } from '../styles';
+import { useForm } from '@/packages/forms';
+import { useRouter } from '@/packages/next';
+import showErrorsInToast from '@/ui/commons/utils/showErrorsInToast';
+import Form from '@/ui/page-components/discover_rates/common/FormElement';
 
-const QuickSearch = ({ data, extraParams = {}, mobile, type, refresh }) => {
+function QuickSearch({ data, extraParams = {}, mobile, type, refresh }) {
 	const [isLoading, setIsLoading] = useState(false);
 	const [show, setShow] = useState(false);
 	const className = `${mobile ? 'mobile' : ''} ${type || ''}`;
@@ -26,7 +26,7 @@ const QuickSearch = ({ data, extraParams = {}, mobile, type, refresh }) => {
 	const { createNewSearch } = useCreateSearch({});
 
 	const { push } = useRouter();
-	const { isChannelPartner = false } = usePartnerEntityType();
+	const isChannelPartner = false;
 	const tempControls = getConfiguration(
 		'controls-quick-search',
 		search_type,
@@ -42,7 +42,7 @@ const QuickSearch = ({ data, extraParams = {}, mobile, type, refresh }) => {
 		value: formattedData[item.name],
 	}));
 
-	const { fields, handleSubmit } = useForm(controls);
+	const { handleSubmit, control } = useForm();
 
 	const submit = async (values, e) => {
 		e.preventDefault();
@@ -57,28 +57,28 @@ const QuickSearch = ({ data, extraParams = {}, mobile, type, refresh }) => {
 			...formattedData,
 			...values,
 			search_type,
-			status: 'active',
-			commodity: data.commodity,
+			status    : 'active',
+			commodity : data.commodity,
 			...extraParams,
 		};
 
 		const otherParams = {
-			fcl_freight: ['origin_port_id', 'destination_port_id'],
-			lcl_freight: ['origin_port_id', 'destination_port_id', 'inco_term'],
-			air_freight: ['origin_airport_id', 'destination_airport_id', 'inco_term'],
-			trailer_freight: [
+			fcl_freight     : ['origin_port_id', 'destination_port_id'],
+			lcl_freight     : ['origin_port_id', 'destination_port_id', 'inco_term'],
+			air_freight     : ['origin_airport_id', 'destination_airport_id', 'inco_term'],
+			trailer_freight : [
 				'origin_location_id',
 				'destination_location_id',
 				'haulage_type',
 				'transport_mode',
 				'shipping_line_id',
 			],
-			ftl_freight: ['origin_location_id', 'destination_location_id'],
-			ltl_freight: ['origin_location_id', 'destination_location_id'],
-			fcl_customs: ['port_id'],
-			lcl_customs: ['trade_type', 'packages_count', 'location_id'],
-			air_customs: ['trade_type', 'packages_count', 'airport_id'],
-			haulage_freight: [
+			ftl_freight     : ['origin_location_id', 'destination_location_id'],
+			ltl_freight     : ['origin_location_id', 'destination_location_id'],
+			fcl_customs     : ['port_id'],
+			lcl_customs     : ['trade_type', 'packages_count', 'location_id'],
+			air_customs     : ['trade_type', 'packages_count', 'airport_id'],
+			haulage_freight : [
 				'origin_location_id',
 				'destination_location_id',
 				'haulage_type',
@@ -100,70 +100,69 @@ const QuickSearch = ({ data, extraParams = {}, mobile, type, refresh }) => {
 			const n = params.containers.length;
 			for (let i = 0; i < n; i += 1) {
 				size = params.containers[i].container_size;
-				container_type =
-					params.containers[i].container_type_commodity.container_type;
+				container_type = params.containers[i].container_type_commodity.container_type;
 				count = params.containers[i].containers_count;
 				commodity = params.containers[i].container_type_commodity.commodity;
 				weight = params.containers[i].cargo_weight_per_container;
 				container_details.push({
-					container_count: count,
-					container_size: size,
+					container_count : count,
+					container_size  : size,
 					container_type,
 					commodity,
 					weight,
 				});
 			}
 			trackEvent(APP_EVENT.search_past_spot_rates, {
-				type: params.search_type,
-				origin: params.origin_port.name,
-				destination: params.destination_port.name,
-				containers: container_details,
-				incoterm: params.inco_term,
+				type        : params.search_type,
+				origin      : params.origin_port.name,
+				destination : params.destination_port.name,
+				containers  : container_details,
+				incoterm    : params.inco_term,
 			});
 		} else if (params.search_type === 'lcl_freight') {
 			trackEvent(APP_EVENT.search_past_spot_rates, {
-				type: params.search_type,
-				origin: params.origin_port.name,
-				destination: params.destination_port.name,
-				commodity: params.commodity,
-				incoterm: params.inco_term,
-				packages_count: params.packages_count,
-				weight: params.weight,
-				volume: params.volume,
+				type           : params.search_type,
+				origin         : params.origin_port.name,
+				destination    : params.destination_port.name,
+				commodity      : params.commodity,
+				incoterm       : params.inco_term,
+				packages_count : params.packages_count,
+				weight         : params.weight,
+				volume         : params.volume,
 			});
 		} else if (params.search_type === 'air_freight') {
 			trackEvent(APP_EVENT.search_past_spot_rates, {
-				type: params.search_type,
-				origin: params.origin_airport.name,
-				destination: params.destination_airport.name,
-				commodity: params.commodity,
-				incoterm: params.inco_term,
-				packages_count: params.packages_count,
-				weight: params.weight,
-				volume: params.volume,
+				type           : params.search_type,
+				origin         : params.origin_airport.name,
+				destination    : params.destination_airport.name,
+				commodity      : params.commodity,
+				incoterm       : params.inco_term,
+				packages_count : params.packages_count,
+				weight         : params.weight,
+				volume         : params.volume,
 			});
 		} else if (
-			params.search_type === 'trailer_freight' ||
-			params.search_type === 'haulage_freight'
+			params.search_type === 'trailer_freight'
+      || params.search_type === 'haulage_freight'
 		) {
 			trackEvent(APP_EVENT.search_past_spot_rates, {
-				type: params.search_type,
-				origin: params.origin_location.name,
-				destination: params.destination_location.name,
-				container_count: params.containers[0].containers_count,
-				container_size: params.containers[0].container_size,
-				container_type: params.containers[0].container_type,
-				commodity: params.containers[0].commodity,
-				weight: params.containers[0].cargo_weight_per_container,
+				type            : params.search_type,
+				origin          : params.origin_location.name,
+				destination     : params.destination_location.name,
+				container_count : params.containers[0].containers_count,
+				container_size  : params.containers[0].container_size,
+				container_type  : params.containers[0].container_type,
+				commodity       : params.containers[0].commodity,
+				weight          : params.containers[0].cargo_weight_per_container,
 			});
 		} else if (params.search_type === 'ftl_freight') {
 			trackEvent(APP_EVENT.search_past_spot_rates, {
-				type: params.search_type,
-				origin: params.origin_location.name,
-				destination: params.destination_location.name,
-				commodity: params.commodity,
-				truck_type: params.truck_type,
-				truck_count: params.trucks_count,
+				type        : params.search_type,
+				origin      : params.origin_location.name,
+				destination : params.destination_location.name,
+				commodity   : params.commodity,
+				truck_type  : params.truck_type,
+				truck_count : params.trucks_count,
 			});
 		} else if (params.search_type === 'ltl_freight') {
 			const packages_values = [];
@@ -180,18 +179,18 @@ const QuickSearch = ({ data, extraParams = {}, mobile, type, refresh }) => {
 				const y = l.concat(w).concat(d);
 				const z = details.packages_count;
 				packages_values.push({
-					type: x,
-					dimension: y,
-					count: z,
+					type      : x,
+					dimension : y,
+					count     : z,
 				});
 			}
 			trackEvent(APP_EVENT.search_past_spot_rates, {
-				type: params.search_type,
-				origin: params.origin_location.name,
-				destination: params.destination_location.name,
-				commodity: params.commodity,
-				total_weight: params.weight,
-				packages: packages_values,
+				type         : params.search_type,
+				origin       : params.origin_location.name,
+				destination  : params.destination_location.name,
+				commodity    : params.commodity,
+				total_weight : params.weight,
+				packages     : packages_values,
 			});
 		} else if (params.search_type === 'fcl_customs') {
 			const container_details = [];
@@ -203,37 +202,36 @@ const QuickSearch = ({ data, extraParams = {}, mobile, type, refresh }) => {
 			const n = params.containers.length;
 			for (let i = 0; i < n; i += 1) {
 				size = params.containers[i].container_size;
-				container_type =
-					params.containers[i].container_type_commodity.container_type;
+				container_type = params.containers[i].container_type_commodity.container_type;
 				count = params.containers[i].containers_count;
 				commodity = params.containers[i].container_type_commodity.commodity;
 				weight = params.containers[i].cargo_weight_per_container;
 				container_details.push({
-					container_count: count,
-					container_size: size,
+					container_count : count,
+					container_size  : size,
 					container_type,
 					commodity,
 					weight,
 				});
 			}
 			trackEvent(APP_EVENT.search_past_spot_rates, {
-				type: params.search_type,
-				location: params.location,
-				custom_type: params.custom_type,
-				containers: container_details,
+				type        : params.search_type,
+				location    : params.location,
+				custom_type : params.custom_type,
+				containers  : container_details,
 			});
 		} else if (
-			params.search_type === 'lcl_customs' ||
-			params.search_type === 'air_customs'
+			params.search_type === 'lcl_customs'
+      || params.search_type === 'air_customs'
 		) {
 			trackEvent(APP_EVENT.search_past_spot_rates, {
-				type: params.search_type,
-				location: params.location,
-				custom_type: params.custom_type,
-				commodity: params.commodity,
-				packages_count: params.packages_count,
-				weight: params.weight,
-				volume: params.volume,
+				type           : params.search_type,
+				location       : params.location,
+				custom_type    : params.custom_type,
+				commodity      : params.commodity,
+				packages_count : params.packages_count,
+				weight         : params.weight,
+				volume         : params.volume,
 			});
 		}
 
@@ -251,77 +249,65 @@ const QuickSearch = ({ data, extraParams = {}, mobile, type, refresh }) => {
 	};
 
 	const renderPopover = () => (
-		<Container className={mobile ? 'mobile' : ''}>
+		<div className={cl`${styles.container} ${mobile ? styles.mobile : ''}`}>
 			<form onSubmit={handleSubmit(submit, onError)}>
 				<Header onClose={() => setShow(false)} isLoading={isLoading} />
 				<Form
 					controls={controls}
-					fields={fields}
 					mode={search_type}
 					errors={errors}
+					control={control}
 				/>
 			</form>
-		</Container>
+		</div>
 	);
 
-	const buttonText =
-		type === 'negotiation'
-			? 'REPEAT SEARCH'
-			: (mobile && <IcMSearchlight width="20px" height="20px" fill="#fff" />) ||
-			  'Show Rates';
+	const buttonText = type === 'negotiation'
+    	? 'REPEAT SEARCH'
+    	: (mobile && <IcMSearchlight width="20px" height="20px" fill="#fff" />)
+        || 'Show Rates';
 
 	return (
 		<>
-			<Rates
-				className={className}
+			<Button
+				size="md"
+				themeType="secondary"
+				className={cl`${style[className]} ${style.rates}`}
 				onClick={handleSubmit(submit, onError)}
 				disabled={isLoading}
 			>
 				{buttonText}
 				{refresh && refresh()}
-			</Rates>
+			</Button>
 			{(type !== 'negotiation' && (
 				<Popover
 					show={show}
 					withArrow
 					usePortal
 					placement="left"
-					renderBody={renderPopover}
+					render={renderPopover()}
 					onOuterClick={() => {
-						setShow(false);
+          	setShow(false);
 					}}
 					onClickOutside={() => {
-						setShow(false);
+          	setShow(false);
 					}}
 				>
-					<EditOptions
+					<Button
 						onClick={() => {
-							setShow(true);
+            	setShow(true);
 						}}
-						className={className}
+						size="md"
+						themeType="tertiary"
+						className={cl`${style[className]} ${style.edit_options}`}
 					>
 						{mobile ? 'Edit' : 'Edit Options'}
-					</EditOptions>
+					</Button>
 				</Popover>
-			)) ||
-				null}
+			))
+        || null}
 		</>
 	);
-};
-
-QuickSearch.propTypes = {
-	data: shape({}).isRequired,
-	extraParams: shape({}),
-	mobile: bool,
-	type: string,
-	refresh: func,
-};
-
-QuickSearch.defaultProps = {
-	extraParams: {},
-	mobile: false,
-	type: null,
-	refresh: null,
-};
+}
 
 export default QuickSearch;

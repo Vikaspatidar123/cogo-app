@@ -1,34 +1,23 @@
+import { cl } from '@cogoport/components';
 import React from 'react';
-import { shape, bool } from 'prop-types';
 
 import QuickSearch from '../../Section/QuickSearch';
 
-import { Container } from './styles';
+import styles from './styles.module.css';
 
-const Status = ({ data, mobile }) => {
+function Status({ data, mobile }) {
 	return (
-		<Container className={mobile ? 'mobile' : ''}>
+		<div className={cl`${styles.container}${mobile ? styles.mobile : ''}`}>
 			<QuickSearch
 				data={data}
 				mobile={mobile}
 				extraParams={{
-					importer_exporter_id: data.importer_exporter_id,
-					importer_exporter_branch_id: data?.importer_exporter_branch_id,
-					user_id: data?.user_id,
+					importer_exporter_branch_id : data?.importer_exporter_branch_id,
+					user_id                     : data?.user_id,
 				}}
 			/>
-		</Container>
+		</div>
 	);
-};
-
-Status.propTypes = {
-	data: shape({}),
-	mobile: bool,
-};
-
-Status.defaultProps = {
-	data: {},
-	mobile: false,
-};
+}
 
 export default Status;

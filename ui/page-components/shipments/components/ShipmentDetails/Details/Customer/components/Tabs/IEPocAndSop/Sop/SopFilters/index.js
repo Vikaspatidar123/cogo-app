@@ -1,6 +1,7 @@
 // import { Select } from '@cogoport/front/components';
 // import { IcMFilter } from '@cogoport/icons-react';
-import { Select } from '@cogoport/components';
+
+import { MultiSelect } from '@cogoport/components';
 import { IcMFilter } from '@cogoport/icons-react';
 import { useContext, useState } from 'react';
 
@@ -29,7 +30,7 @@ function SopFilters({ setFilters = () => {}, trade_partners_details }) {
 
 	return (
 		<div>
-			<Select
+			<MultiSelect
 				placeholder={<div style={{ color: '#333' }}>{renderPlaceHolder}</div>}
 				options={conditions}
 				value={selectValue}

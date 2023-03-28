@@ -22,7 +22,7 @@ const getValue = (itemData, itemField, functions, emptyState) => {
 
 	val = iterateSubKeys(itemField, val);
 
-	if (itemField?.func) {
+	if (itemField.func) {
 		if (functions[itemField.func]) {
 			val = functions[itemField.func](itemData, itemField);
 		} else if (ActionFunction[itemField.func]) {

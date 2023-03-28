@@ -1,10 +1,11 @@
-import { useImperativeHandle } from 'react';
 import { useFormCogo } from '@cogoport/front/hooks';
+import { useImperativeHandle } from 'react';
+
 import getControls from './utils/controls';
 
 const CARGO_HANDLING_VALUE_CONTROL_NAMES_MAPPING = {
-	delivery_from_dock: ['cargo_handling', 'location', 'address'],
-	destuffing_at_dock: [
+	delivery_from_dock : ['cargo_handling', 'location', 'address'],
+	destuffing_at_dock : [
 		'cargo_handling',
 		'location',
 		'address',
@@ -16,8 +17,7 @@ const CARGO_HANDLING_VALUE_CONTROL_NAMES_MAPPING = {
 const formatFormValues = ({ values }) => {
 	const { cargo_handling } = values || {};
 
-	const controlNames =
-		CARGO_HANDLING_VALUE_CONTROL_NAMES_MAPPING[cargo_handling] || [];
+	const controlNames =		CARGO_HANDLING_VALUE_CONTROL_NAMES_MAPPING[cargo_handling] || [];
 
 	const formattedValues = {};
 	controlNames.forEach((controlName) => {
@@ -30,16 +30,12 @@ const formatFormValues = ({ values }) => {
 };
 
 const imperativeHandle = {
-	onSubmit: ({ values }) => {
-		return {
-			hasError: false,
-			values: formatFormValues({ values }),
-		};
-	},
-	onError: (errors) => {
-		return { hasError: true, errors };
-	},
-	handleSubmit: ({ formHandleSubmit }) => {
+	onSubmit: ({ values }) => ({
+		hasError : false,
+		values   : formatFormValues({ values }),
+	}),
+	onError      : (errors) => ({ hasError: true, errors }),
+	handleSubmit : ({ formHandleSubmit }) => {
 		const { onSubmit, onError } = imperativeHandle;
 
 		return new Promise((resolve) => {
@@ -76,11 +72,9 @@ const useDoorstepDeliveryForm = (props, ref) => {
 		const { handleSubmit: handleSubmitImperativeHandle } = imperativeHandle;
 
 		return {
-			handleSubmit: () => {
-				return handleSubmitImperativeHandle({
-					formHandleSubmit: handleSubmit,
-				});
-			},
+			handleSubmit: () => handleSubmitImperativeHandle({
+				formHandleSubmit: handleSubmit,
+			}),
 		};
 	});
 

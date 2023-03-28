@@ -1,0 +1,102 @@
+.main_container {
+	margin: -24px 24px 16px 24px;
+
+	.core-ui-input-suffix {
+		display: flex;
+		align-items: center;
+	}
+
+	.core-ui-tag-root {
+		background: #e0e0e0;
+
+		&:hover {
+			border-color: #333333 !important;
+		}
+	}
+
+	.active .core-ui-tag-root {
+		background: #b4f3be !important;
+		border-color: #b4f3be !important;
+		cursor: default;
+	}
+
+	.form-item-label {
+		margin-top: 16px !important;
+		margin-bottom: 8px !important;
+	}
+
+	.core-ui-select__indicators {
+		margin: auto;
+	}
+}
+
+.button_div { 
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	background: #fcedbf;
+	border-radius: 0 0 8px 8px;
+	padding: 16px 24px;
+}
+
+.right {
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	margin-top: 24px;
+}
+
+.container {
+	margin-bottom: 0;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+
+	.custom-select-input-chipcontainer {
+		height: inherit;
+	}
+
+	.custom-select-input-select-placeholder {
+		font-weight: 400;
+		font-size: 14px;
+		display: flex;
+		align-items: center;
+		color: #cbcff5;
+	}
+
+	.custom-select-input-subcontainer {
+		border: 1px solid #cbcff5 !important;
+		border-radius: 4px;
+	}
+
+	.business-checkbox-item {
+		margin-top: 15px;
+	}
+
+	.business-checkbox-label {
+		color: #393f70;
+	}
+}
+
+.lable {
+	margin: 5px 0 5px 0;
+	font-weight: 500;
+	font-size: 14px;
+	color: #393f70;
+}
+
+.errors {
+	min-height: 16px;
+	margin-top: 4px;
+	font-size: 12px;
+	line-height: 16px;
+	color: #cb6464;
+}
+
+.header_container {
+	margin-bottom: 0;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
+  

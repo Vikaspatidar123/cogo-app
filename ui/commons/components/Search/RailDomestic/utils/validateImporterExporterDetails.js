@@ -9,8 +9,8 @@ const validateImporterExporterDetails = ({ importerExporterDetails }) => {
 
 	if (!importer_exporter_id) {
 		toast.warn('Please select shipper name', {
-			autoClose: 1000,
-			style: { background: '#ffffff' },
+			autoClose : 1000,
+			style     : { background: '#ffffff' },
 		});
 
 		return false;
@@ -18,8 +18,8 @@ const validateImporterExporterDetails = ({ importerExporterDetails }) => {
 
 	if (!importer_exporter_user_id) {
 		toast.warn('Please select User', {
-			autoClose: 1000,
-			style: { background: '#ffffff' },
+			autoClose : 1000,
+			style     : { background: '#ffffff' },
 		});
 
 		return false;

@@ -1,6 +1,7 @@
-import { useState, useRef, useMemo } from 'react';
-import { isEmpty } from '@cogoport/front/utils';
 import showErrorsInToast from '@cogo/utils/showErrorsInToastV2';
+import { isEmpty } from '@cogoport/front/utils';
+import { useState, useRef, useMemo } from 'react';
+
 import useCreateSpotSearch from './CreateSpotSearch/hooks/useCreateSpotSearch';
 import formatSavedFormValues from './utils/formatSavedFormValues';
 import getImperativeHandleValues from './utils/getImperativeHandleValues';
@@ -13,16 +14,15 @@ const useRailDomestic = ({
 	onPush,
 }) => {
 	const [loading, setLoading] = useState(false);
-	const [isSearchRatesButtonClicked, setIsSearchRatesButtonClicked] =
-		useState(false);
+	const [isSearchRatesButtonClicked, setIsSearchRatesButtonClicked] =		useState(false);
 
 	const imperativeHandleRef = useRef({});
 
 	const { createSpotSearch } = useCreateSpotSearch({
 		importerExporterDetails,
 		searchType,
-		onSuccess: () => {},
-		onFailure: ({ errors }) => {
+		onSuccess : () => {},
+		onFailure : ({ errors }) => {
 			showErrorsInToast(errors?.data);
 
 			setLoading(false);
@@ -61,9 +61,7 @@ const useRailDomestic = ({
 		}
 	};
 
-	const formValues = useMemo(() => {
-		return formatSavedFormValues({ searchData });
-	}, []);
+	const formValues = useMemo(() => formatSavedFormValues({ searchData }), []);
 
 	return {
 		loading,

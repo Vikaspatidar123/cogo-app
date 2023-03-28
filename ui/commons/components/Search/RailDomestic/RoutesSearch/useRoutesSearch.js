@@ -1,8 +1,9 @@
-import { useImperativeHandle } from 'react';
 import { useFormCogo } from '@cogoport/front/hooks';
+import { useImperativeHandle } from 'react';
+
 import getControls from './utils/controls';
-import imperativeHandle from './utils/imperativeHandle';
 import getMutatedFields from './utils/getMutatedFields';
+import imperativeHandle from './utils/imperativeHandle';
 
 const useRoutesSearch = (props, ref) => {
 	const { importerExporterDetails, searchType, formValues } = props;
@@ -25,11 +26,9 @@ const useRoutesSearch = (props, ref) => {
 		const { handleSubmit: handleSubmitImperativeHandle } = imperativeHandle;
 
 		return {
-			handleSubmit: () => {
-				return handleSubmitImperativeHandle({
-					formHandleSubmit: handleSubmit,
-				});
-			},
+			handleSubmit: () => handleSubmitImperativeHandle({
+				formHandleSubmit: handleSubmit,
+			}),
 		};
 	});
 

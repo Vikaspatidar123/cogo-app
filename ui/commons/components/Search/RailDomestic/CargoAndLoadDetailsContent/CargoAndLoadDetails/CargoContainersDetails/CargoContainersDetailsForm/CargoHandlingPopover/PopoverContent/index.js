@@ -1,21 +1,23 @@
-import { useRef } from 'react';
 import { Button } from '@cogoport/front/components/admin';
+import { useRef } from 'react';
+
 import DoorPickupForm from '../../DoorPickupForm';
 import DoorstepDeliveryForm from '../../DoorstepDeliveryForm';
+
 import { Container, Header, ActionsButton, Main } from './styles';
 
 const CONTROL_NAME_COMPONENT_MAPPING = {
-	is_door_pickup: DoorPickupForm,
-	is_doorstep_delivery: DoorstepDeliveryForm,
+	is_door_pickup       : DoorPickupForm,
+	is_doorstep_delivery : DoorstepDeliveryForm,
 };
 
-const PopoverContent = ({
+function PopoverContent({
 	show,
 	formValues,
 	onSubmitSuccess,
 	onClose,
 	controlName,
-}) => {
+}) {
 	if (!show) {
 		return null;
 	}
@@ -69,6 +71,6 @@ const PopoverContent = ({
 			</Main>
 		</Container>
 	);
-};
+}
 
 export default PopoverContent;

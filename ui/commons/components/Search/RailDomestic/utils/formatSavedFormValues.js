@@ -20,8 +20,8 @@ const formatSavedFormValues = ({ searchData }) => {
 
 	return {
 		routeSearch: {
-			origin_location_id: origin_location?.id,
-			destination_location_id: destination_location?.id,
+			origin_location_id      : origin_location?.id,
+			destination_location_id : destination_location?.id,
 		},
 		cargoAndLoadDetailsContent: {
 			cargoDetails: {
@@ -54,14 +54,14 @@ const formatSavedFormValues = ({ searchData }) => {
 						container_size,
 						container_type,
 						cargo_weight_per_container,
-						container_count: containers_count,
-						commodity_type: commodity,
+						container_count           : containers_count,
+						commodity_type            : commodity,
 						commodity_subtype,
-						packaging_type: packing_type,
-						is_door_pickup: '',
-						is_door_pickup_data: null,
-						is_doorstep_delivery: '',
-						is_doorstep_delivery_data: null,
+						packaging_type            : packing_type,
+						is_door_pickup            : '',
+						is_door_pickup_data       : null,
+						is_doorstep_delivery      : '',
+						is_doorstep_delivery_data : null,
 					};
 
 					return [...pv, obj];

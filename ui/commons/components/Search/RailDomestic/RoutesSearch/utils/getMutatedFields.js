@@ -7,9 +7,9 @@ const getMutatedFields = ({ fields, importer_exporter_id, searchType }) => {
 			newField = {
 				...newField,
 				searchParams: {
-					intent: 'rate_search',
-					organization_id: importer_exporter_id,
-					service_type: searchType,
+					intent          : 'rate_search',
+					organization_id : importer_exporter_id,
+					service_type    : searchType,
 				},
 			};
 		}

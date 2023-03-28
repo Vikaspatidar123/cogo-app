@@ -1,14 +1,10 @@
 const imperativeHandle = {
-	onSubmit: (values) => {
-		return {
-			hasError: false,
-			values,
-		};
-	},
-	onError: (errors) => {
-		return { hasError: true, errors };
-	},
-	handleSubmit: ({ formHandleSubmit }) => {
+	onSubmit: (values) => ({
+		hasError: false,
+		values,
+	}),
+	onError      : (errors) => ({ hasError: true, errors }),
+	handleSubmit : ({ formHandleSubmit }) => {
 		const { onSubmit, onError } = imperativeHandle;
 
 		return new Promise((resolve) => {

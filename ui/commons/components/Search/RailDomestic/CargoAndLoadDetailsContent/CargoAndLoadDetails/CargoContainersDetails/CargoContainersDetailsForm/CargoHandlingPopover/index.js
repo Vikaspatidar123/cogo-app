@@ -1,10 +1,11 @@
-import { Popover } from '@cogoport/front/components/admin';
 import getField from '@cogo/business-modules/form/components';
 import { useSelector } from '@cogo/store';
-import { PopoverFieldContainer } from './styles';
-import PopoverContent from './PopoverContent';
+import { Popover } from '@cogoport/front/components/admin';
 
-const CargoHandlingPopover = ({
+import PopoverContent from './PopoverContent';
+import { PopoverFieldContainer } from './styles';
+
+function CargoHandlingPopover({
 	show,
 	control,
 	field,
@@ -14,7 +15,7 @@ const CargoHandlingPopover = ({
 	onSubmitSuccess,
 	onClose,
 	onClickOutside,
-}) => {
+}) {
 	const {
 		general: { isMobile },
 	} = useSelector((state) => state);
@@ -31,7 +32,7 @@ const CargoHandlingPopover = ({
 			visible={show}
 			placement={isMobile ? 'bottom' : 'right'}
 			theme="light"
-			content={
+			content={(
 				<PopoverContent
 					show={show}
 					formValues={formValues}
@@ -41,7 +42,7 @@ const CargoHandlingPopover = ({
 					railCommodityType={railCommodityType}
 					railCommoditySubType={railCommoditySubType}
 				/>
-			}
+			)}
 			interactive
 			onClickOutside={() => onClickOutside({ controlName })}
 		>
@@ -50,6 +51,6 @@ const CargoHandlingPopover = ({
 			</PopoverFieldContainer>
 		</Popover>
 	);
-};
+}
 
 export default CargoHandlingPopover;

@@ -1,16 +1,15 @@
-import { forwardRef } from 'react';
+import Layout from '@cogo/business-modules/form/Layout';
 import { Grid } from '@cogoport/front/components';
 import { IcMPortArrow } from '@cogoport/icons-react';
-import Layout from '@cogo/business-modules/form/Layout';
+import { forwardRef } from 'react';
 
 import { Container, ArrowIconContainer } from './styles';
 import useRoutesSearch from './useRoutesSearch';
 
 const { Row, Col } = Grid;
 
-const RoutesSearch = (props, ref) => {
-	const { originLocationControl, destinationLocationControl, formProps } =
-		useRoutesSearch(props, ref);
+function RoutesSearch(props, ref) {
+	const { originLocationControl, destinationLocationControl, formProps } =		useRoutesSearch(props, ref);
 
 	const {
 		fields,
@@ -44,6 +43,6 @@ const RoutesSearch = (props, ref) => {
 			</Row>
 		</Container>
 	);
-};
+}
 
 export default forwardRef(RoutesSearch);

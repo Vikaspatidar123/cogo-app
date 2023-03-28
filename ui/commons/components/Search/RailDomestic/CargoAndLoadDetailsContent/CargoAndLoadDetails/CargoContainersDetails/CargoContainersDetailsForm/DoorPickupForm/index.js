@@ -1,8 +1,9 @@
-import { forwardRef } from 'react';
 import Layout from '@cogo/business-modules/form/Layout';
+import { forwardRef } from 'react';
+
 import useDoorPickupForm from './useDoorPickupForm';
 
-const DoorPickupForm = (props, ref) => {
+function DoorPickupForm(props, ref) {
 	const { controls, formProps, showFields } = useDoorPickupForm(props, ref);
 
 	const {
@@ -18,6 +19,6 @@ const DoorPickupForm = (props, ref) => {
 			showElements={showFields}
 		/>
 	);
-};
+}
 
 export default forwardRef(DoorPickupForm);

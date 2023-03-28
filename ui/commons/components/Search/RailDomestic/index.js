@@ -1,7 +1,7 @@
 import { Button } from '@cogoport/front/components/admin';
-import RoutesSearch from './RoutesSearch';
+
 import CargoAndLoadDetailsContent from './CargoAndLoadDetailsContent';
-import useRailDomestic from './useRailDomestic';
+import RoutesSearch from './RoutesSearch';
 import {
 	Container,
 	FormInputsContainerRow,
@@ -9,13 +9,14 @@ import {
 	RouteContainerCol,
 	CargoAndLoadDetailsContainerCol,
 } from './styles';
+import useRailDomestic from './useRailDomestic';
 
-const RailDomestic = ({
+function RailDomestic({
 	data: searchData,
 	importerExporterDetails,
 	searchType,
 	onPush,
-}) => {
+}) {
 	const {
 		loading,
 		imperativeHandleRef,
@@ -66,6 +67,6 @@ const RailDomestic = ({
 			</ButtonContainer>
 		</Container>
 	);
-};
+}
 
 export default RailDomestic;

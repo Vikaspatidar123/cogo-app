@@ -1,9 +1,3 @@
-// import { isEmpty } from '@cogoport/front/utils';
-// import React, { useState, useEffect } from 'react';
-
-// import { Container } from './styles';
-// import Tabs from './Tabs';
-// import TimeLineHorizontal from './TimeLineHorizontal';
 import { isEmpty } from '@cogoport/utils';
 import { useState, useEffect } from 'react';
 

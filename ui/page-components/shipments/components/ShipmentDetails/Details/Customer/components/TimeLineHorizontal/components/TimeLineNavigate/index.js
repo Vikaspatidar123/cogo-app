@@ -1,8 +1,3 @@
-// import GLOBAL_CONSTANTS from '@cogo/globalization/constants/globals.json';
-// import formatDate from '@cogo/globalization/utils/formatDate';
-// import { useSelector } from '@cogo/store';
-// import { Flex } from '@cogoport/front/components';
-// import { IcMTrailorFull } from '@cogoport/icons-react';
 import { IcMTrailorFull } from '@cogoport/icons-react';
 import { useState, Fragment, useEffect } from 'react';
 
@@ -10,34 +5,13 @@ import ListSaasSubscriptions from '../../hooks/useListSaasSubscription';
 import { isPastOrPresentDay } from '../../utils/constants';
 import { UNSHADED_MILESTONES } from '../../utils/milestone';
 import { INCOTERM_TO_SHIPPERS_RESPONSIBILITY } from '../../utils/milestone_type';
+import EmptyState from '../EmptyState';
 
 import styles from './styles.module.css';
 
 import { useSelector } from '@/packages/store';
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 import formatDate from '@/ui/commons/utils/formatDate';
-// import ListSaasSubscriptions from '../../hooks/getListSaasSubscriptions';
-// import {
-// 	// formatDate,
-// 	// formatTime,
-// 	isPastOrPresentDay,
-// } from '../../utils/constants';
-// import { UNSHADED_MILESTONES } from '../../utils/milestone';
-// import { INCOTERM_TO_SHIPPERS_RESPONSIBILITY } from '../../utils/milestone_type';
-// import EmptyState from '../EmptyState';
-
-// import {
-// 	StyledStep,
-// 	StyledStepsContainer,
-// 	Title,
-// 	SubTitle,
-// 	Container,
-// 	CustomTag,
-// 	TagTitle,
-// 	MainContainer,
-// 	LocationText,
-// 	Circle,
-// } from './styles';
 
 const TRANSPORT_MODE_TO_ICON = {
 	TRUCK  : <IcMTrailorFull size={2} />,
@@ -263,8 +237,8 @@ function TimelineNavigate({
 												<p className={styles.heading}>{currentMilestone.location}</p>
 												{combinedMilestones.map((item) => {
 													const description = (
-														<Flex direction="column">
-															<Title>
+														<div className={styles.vessel}>
+															<div className={styles.title}>
 																{formatDate({
 																	date: item.event_date || '',
 																	dateFormat:
@@ -284,15 +258,15 @@ function TimelineNavigate({
 																) -
 																{' '}
 																{item.milestone || ''}
-															</Title>
+															</div>
 															{item?.vessel_name?.length > 2 && (
-																<SubTitle>
+																<div className={styles.sub_title}>
 																	<b>Vessel name:</b>
 																	{' '}
 																	{item?.vessel_name || '-'}
-																</SubTitle>
+																</div>
 															)}
-														</Flex>
+														</div>
 													);
 													return (
 														<>

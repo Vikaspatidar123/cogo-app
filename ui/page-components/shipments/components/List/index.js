@@ -3,6 +3,7 @@ import { useState } from 'react';
 
 import useGetShipmentList from '../../hooks/useGetShipmentList';
 
+import EmptyState from './EmptyState';
 import Header from './Header';
 import Item from './Item';
 import styles from './styles.module.css';
@@ -37,7 +38,9 @@ function ShipmentList() {
 		if (loading) {
 			return <Placeholder height="150px" width="100%" margin="30px 0px 20px 0px" />;
 		}
-
+		if (!loading && data.length === 0) {
+			return <EmptyState viewAs={viewAs} />;
+		}
 		return (
 			<div>
 				{total > 10 ? (

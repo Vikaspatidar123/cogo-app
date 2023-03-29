@@ -1,8 +1,6 @@
 // import React from 'react';
 // import { Btn } from '@cogo/deprecated_legacy/ui';
 // import { useRouter } from '@cogo/next';
-// import ICNonFunded from './ic-empty-non-funded.svg';
-// import { Container, Heading, Content, IcContainer, Wrapper } from './styles';
 import { Button } from '@cogoport/components';
 
 import styles from './styles.module.css';
@@ -11,16 +9,6 @@ import { useRouter } from '@/packages/next';
 
 function EmptyState({ viewAs = '' }) {
 	const { push } = useRouter();
-	// const handleCreate = () => {
-	// 	if (viewAs === 'importer_exporter') {
-	// 		push('/book');
-	// 	} else {
-	// 		push(
-	// 			'/rate-management/[service]/[module]',
-	// 			'/rate-management/fcl-freight/freight',
-	// 		);
-	// 	}
-	// };
 
 	return (
 		<div className={styles.container}>
@@ -42,7 +30,7 @@ function EmptyState({ viewAs = '' }) {
 				</Button>
 			</div>
 			<div className={styles.icon_container}>
-				{/* <ICNonFunded height="100%" width="100%" style={{ marginLeft: 20 }} /> */}
+				<ICNonFunded height="100%" width="100%" style={{ marginLeft: 20 }} />
 			</div>
 		</div>
 	);

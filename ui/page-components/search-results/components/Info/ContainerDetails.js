@@ -2,9 +2,9 @@ import { Tooltip } from '@cogoport/components';
 import { startCase } from '@cogoport/utils';
 import React from 'react';
 
-import CLASS_MAPPING from '../../../business-modules/components/Search/Air/utils/classMapping';
-
 import styles from './styles.module.css';
+
+import CLASS_MAPPING from '@/ui/commons/components/Search/Air/utils/classMapping';
 
 const GOODS_MAPPING = [
 	'fcl_freight',

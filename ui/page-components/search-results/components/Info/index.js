@@ -1,8 +1,7 @@
-import SearchForm from '@cogo/app-search/common/SearchForm';
-import formatMainServiceData from '@cogo/app-search/utils/format-main-service-data';
 import { Button, Modal } from '@cogoport/components';
 import React, { useState, useEffect } from 'react';
 
+import formatMainServiceData from '../../utils/format-main-service-data';
 import AdditionalServices from '../AdditionalServices';
 
 import ContainerDetails from './ContainerDetails';
@@ -13,6 +12,7 @@ import styles from './styles.module.css';
 
 import { useSelector } from '@/packages/store';
 import { APP_EVENT, trackEvent } from '@/ui/page-components/discover_rates/common/analytics';
+import SearchForm from '@/ui/page-components/discover_rates/common/SearchForm';
 
 const NON_STANDALONE_SEERVICES = ['fcl_cfs'];
 

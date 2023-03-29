@@ -1,21 +1,5 @@
-import airServiceDetails from '@cogo/app-search/configurations/search/air/services/details.json';
-import airIncotermsMapping from '@cogo/app-search/configurations/search/air/services/mapping.json';
-import airCustomsDetails from '@cogo/app-search/configurations/search/domestic/air-customs/details.json';
-import airCustomsMapping from '@cogo/app-search/configurations/search/domestic/air-customs/mapping.json';
-import airLocalsDetails from '@cogo/app-search/configurations/search/domestic/air-locals/details.json';
-import airLocalsMapping from '@cogo/app-search/configurations/search/domestic/air-locals/mapping.json';
-import fclCustomsDetails from '@cogo/app-search/configurations/search/domestic/fcl-customs/details.json';
-import fclCustomsMapping from '@cogo/app-search/configurations/search/domestic/fcl-customs/mapping.json';
-import fclLocalsDetails from '@cogo/app-search/configurations/search/domestic/fcl-locals/details.json';
-import fclLocalsMapping from '@cogo/app-search/configurations/search/domestic/fcl-locals/mapping.json';
-import lclCustomsDetails from '@cogo/app-search/configurations/search/domestic/lcl-customs/details.json';
-import lclCustomsMapping from '@cogo/app-search/configurations/search/domestic/lcl-customs/mapping.json';
-import lclLocalsDetails from '@cogo/app-search/configurations/search/domestic/lcl-locals/details.json';
-import lclLocalsMapping from '@cogo/app-search/configurations/search/domestic/lcl-locals/mapping.json';
-import fclServiceDetails from '@cogo/app-search/configurations/search/fcl/services/details.json';
-import fclIncotermsMapping from '@cogo/app-search/configurations/search/fcl/services/mapping.json';
-import lclServiceDetails from '@cogo/app-search/configurations/search/lcl/services/details.json';
-import lclIncotermsMapping from '@cogo/app-search/configurations/search/lcl/services/mapping.json';
+import { AirServicesDetails, FCLServicesDetails, LCLServicesDetails }
+	from '@/ui/page-components/discover_rates/configurations';
 
 function Police() {
 	return (
@@ -99,39 +83,39 @@ export const nonRemovableServicesAir = [
 
 export const serviceMappings = {
 	fcl_freight: {
-		services : fclIncotermsMapping,
-		detail   : fclServiceDetails,
+		// services : fclIncotermsMapping,
+		detail: FCLServicesDetails,
 	},
 	lcl_freight: {
-		services : lclIncotermsMapping,
-		detail   : lclServiceDetails,
+		// services : lclIncotermsMapping,
+		detail: LCLServicesDetails,
 	},
 	air_freight: {
-		services : airIncotermsMapping,
-		detail   : airServiceDetails,
+		// services : airIncotermsMapping,
+		detail: AirServicesDetails,
 	},
-	fcl_customs: {
-		services : fclCustomsMapping,
-		detail   : fclCustomsDetails,
-	},
-	lcl_customs: {
-		services : lclCustomsMapping,
-		detail   : lclCustomsDetails,
-	},
-	air_customs: {
-		services : airCustomsMapping,
-		detail   : airCustomsDetails,
-	},
-	fcl_freight_local: {
-		services : fclLocalsMapping,
-		detail   : fclLocalsDetails,
-	},
-	lcl_freight_local: {
-		services : lclLocalsMapping,
-		detail   : lclLocalsDetails,
-	},
-	air_freight_local: {
-		services : airLocalsMapping,
-		detail   : airLocalsDetails,
-	},
+	// fcl_customs: {
+	// 	services : fclCustomsMapping,
+	// 	detail   : fclCustomsDetails,
+	// },
+	// lcl_customs: {
+	// 	services : lclCustomsMapping,
+	// 	detail   : lclCustomsDetails,
+	// },
+	// air_customs: {
+	// 	services : airCustomsMapping,
+	// 	detail   : airCustomsDetails,
+	// },
+	// fcl_freight_local: {
+	// 	services : fclLocalsMapping,
+	// 	detail   : fclLocalsDetails,
+	// },
+	// lcl_freight_local: {
+	// 	services : lclLocalsMapping,
+	// 	detail   : lclLocalsDetails,
+	// },
+	// air_freight_local: {
+	// 	services : airLocalsMapping,
+	// 	detail   : airLocalsDetails,
+	// },
 };

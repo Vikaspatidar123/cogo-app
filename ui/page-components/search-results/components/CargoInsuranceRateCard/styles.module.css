@@ -19,7 +19,7 @@
 	}
 }
 
-.animated_container { animated({
+/* .animated_container { animated({
 	enter: {
 		translateY: [-10, 0],
 		opacity: [0, 1],
@@ -32,7 +32,7 @@
 		duration: 300,
 	},
 })
-}
+} */
 
 .line_vrt {
 	background-color: #e7e7e7;
@@ -44,7 +44,7 @@
 	display: flex;
 	justify-content: center;
 	align-content: center;
-	padding: 10px 24px 0px 24px;
+	padding: 10px 24px 0 24px;
 	width: 100%;
 
 	@media (max-width: 760px) {
@@ -71,7 +71,7 @@
 		border: 1px solid #e7e7e7;
 		background: #ffffff;
 	}
-]
+}
 
 .line {
 	width: 100%;
@@ -110,7 +110,7 @@
 .cogo_assured {
 	position: absolute;
 	background: #d9eafd;
-	border-radius: 9px 0px 4px 0px;
+	border-radius: 9px 0 4px 0;
 	width: fit-content;
 	display: flex;
 	flex-direction: column;
@@ -118,7 +118,7 @@
 	padding: 4px 12px;
 	.cogo_assured_rate {
 		height: 48px;
-		border-radius: 9px 0px 8px 0px;
+		border-radius: 9px 0 8px 0;
 	}
 
 	svg {

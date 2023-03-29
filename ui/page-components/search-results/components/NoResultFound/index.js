@@ -1,6 +1,4 @@
-import getLocationDetails from '@cogo/app-search/utils/getLocationDetails';
-import isSingleLocation from '@cogo/app-search/utils/isSingleLocation';
-import { usePartnerEntityType } from '@cogo/commons/hooks';
+// import { usePartnerEntityType } from '@cogo/commons/hooks';
 
 // import useUpdateSearch from '../../../hooks/useUpdateSearch';
 import { Button } from '@cogoport/components';
@@ -10,6 +8,9 @@ import React, { useState } from 'react';
 import useCreateRateTask from '../../hooks/useCreateRateTask';
 
 // import BasicPlan from './BasicPlan';
+import getLocationDetails from '../../utils/getLocationDetails';
+import isSingleLocation from '../../utils/isSingleLocation';
+
 import FeedBackModal from './FeedbackModal';
 import serviceableCountries from './serviceble-countries';
 import styles from './styles.module.css';
@@ -72,7 +73,7 @@ function NoResultFound({
 	const { search_type } = headerData;
 
 	const origin = getLocationDetails({}, headerData, 'origin');
-	const { isChannelPartner } = usePartnerEntityType();
+	// const { isChannelPartner } = usePartnerEntityType();
 	const destination = !isSingleLocation(search_type)
 		? getLocationDetails({}, headerData, 'destination')
 		: null;
@@ -138,14 +139,14 @@ function NoResultFound({
 	const showEnq = data?.id !== geo.uuid.cogo_demo_account_shipper;
 
 	const handleButtonClick = () => {
-		if (!isChannelPartner || enquiryQuota?.left_limit > 0) {
-			setShowCreateEnquiry(true);
-		} else {
-			push(
-				`/pricing/[service_type]?afterPaymentUrl=${unPrefixedPath}`,
-				`/pricing/spot-negotiation?afterPaymentUrl=${unPrefixedPath}`,
-			);
-		}
+		// if (!isChannelPartner || enquiryQuota?.left_limit > 0) {
+		// 	setShowCreateEnquiry(true);
+		// } else {
+		// 	push(
+		// 		`/pricing/[service_type]?afterPaymentUrl=${unPrefixedPath}`,
+		// 		`/pricing/spot-negotiation?afterPaymentUrl=${unPrefixedPath}`,
+		// 	);
+		// }
 	};
 
 	const handleFeedback = () => {

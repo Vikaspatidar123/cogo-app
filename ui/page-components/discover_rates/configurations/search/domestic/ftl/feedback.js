@@ -1,4 +1,4 @@
-import GLOBAL_CONSTANTS from '@cogo/globalization/constants/globals.json';
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
 const ftlFeedBackControls = [
 	{

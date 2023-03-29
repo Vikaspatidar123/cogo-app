@@ -110,8 +110,8 @@
 .service_type_text {
 	font-size: 10px;
 	font-weight: 500;
-	color: ${(props) =>
-		props.search_type === 'trailer_freight' ? '#8fbdb1' : 'rgb(180, 226, 162)'};
+	/* color: ${(props) =>
+		props.search_type === 'trailer_freight' ? '#8fbdb1' : 'rgb(180, 226, 162)'}; */
 	margin-top: 2px;
 }
 
@@ -153,7 +153,7 @@
 }
 
 .animated_container {
-	animation: ${slide} 0.4s linear;
+	/* animation: ${slide} 0.4s linear; */
 }
 
 .rates_count {
@@ -196,17 +196,6 @@
 .freight_Ddtails_text {
 	font-size: 14px;
 	font-weight: 500;
-	${(props) => {
-		if (props.type !== 'tool_tip') {
-			return `
-			text-overflow: ellipsis;
-			white-space: nowrap;
-			overflow: hidden;
-			`;
-		}
-		return null;
-	}};
-
 	width: 90%;
 }
 

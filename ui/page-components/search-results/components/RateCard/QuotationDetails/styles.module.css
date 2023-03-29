@@ -169,7 +169,7 @@
 	}
 }
 
-animated_container {
+/* animated_container {
 	enter: {
 		translateY: [-10, 0],
 		opacity: [0, 1],
@@ -182,7 +182,7 @@ animated_container {
 		easing: 'easeInOutQuad',
 		duration: 300,
 	},
-}
+} */
 
 .total_price {
 	display: flex;

@@ -3,12 +3,12 @@ import { isEmpty } from '@cogoport/utils';
 import { useState } from 'react';
 
 import DaysSelect from '../../../commons/DaysSelect';
-import useAddMoreDays from '../../hooks/useAddMoreDays;';
 import slabPriceCalculator from '../../utils/slabPriceCalculator';
 
 import styles from './styles.module.css';
 
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
+import useAddMoreDays from '@/ui/page-components/search-results/hooks/useAddMoreDays;';
 
 const CODE_MAPPING = {
 	origin_detention      : 'EDT',

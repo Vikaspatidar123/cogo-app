@@ -28,7 +28,7 @@
 	width: 10px;
 	border-radius: 100%;
 	margin: 5px 10px 0 10px;
-	background-color: ${({ bg }) => bg || '#8cc1f9'};
+	/* background-color: ${({ bg }) => bg || '#8cc1f9'}; */
 }
 
 .label {

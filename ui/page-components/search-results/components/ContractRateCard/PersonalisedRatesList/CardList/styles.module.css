@@ -27,16 +27,16 @@
 	color: #000000;
 }
 
- ToggleIcon = styled(IcMArrowDown)`
+.toggle_icon {
 	width: 12px;
 	height: 12px;
 	margin-left: 5px;
 
 	transition: all 0.8s ease-in-out;
-
+/* 
 	transform: ${({ toggleDropdown }) =>
-		toggleDropdown ? 'rotate(180deg)' : 'rotate(360deg)'};
-`;
+		toggleDropdown ? 'rotate(180deg)' : 'rotate(360deg)'}; */
+}
 
 .inside_container {
 	display: flex;
@@ -83,7 +83,7 @@
 
 .footer {
 	background: #ded7fc;
-	border-radius: 0px 0px 4px 4px;
+	border-radius: 0 0 4px 4px;
 	height: 30px;
 	left: 0;
 	position: absolute;

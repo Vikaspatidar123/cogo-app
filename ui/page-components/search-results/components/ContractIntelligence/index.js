@@ -1,7 +1,6 @@
 import React from 'react';
 
-import { Intelligence } from '../../constants';
-
+import { Intelligence } from './constant';
 import styles from './styles.module.css';
 
 function ContractIntelligence() {

@@ -17,7 +17,7 @@ function GenericCard({
 	const scope = useSelector((state) => (state.general || {}).scope);
 
 	const action = (
-		<div className={styles.action} role="presentation" theme={theme} onClick={onClick}>
+		<div className={styles.action} role="presentation" onClick={onClick}>
 			{cta}
 		</div>
 	);
@@ -27,12 +27,12 @@ function GenericCard({
 	// );
 
 	return (
-		<div className={styles.container} theme={theme} bg={bg}>
-			<div className={styles.title} theme={theme}>{title}</div>
+		<div className={styles.container}>
+			<div className={styles.title}>{title}</div>
 
-			<div className={styles.description} theme={theme}>{description}</div>
+			<div className={styles.description}>{description}</div>
 
-			{kyc?.check && scope === 'app' ? actionWithKyc : action}
+			{/* {kyc?.check && scope === 'app' ? actionWithKyc : action} */}
 		</div>
 	);
 }

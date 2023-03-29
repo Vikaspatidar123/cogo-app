@@ -1,4 +1,4 @@
-import getLocationInfo from '@cogo/business-modules/helpers/locations-search';
+import getLocationInfo from '../AdditionalCards/MultiService/Service/locations-search';
 
 const tp = ['ftl_freight', 'ltl_freight', 'trailer_freight'];
 

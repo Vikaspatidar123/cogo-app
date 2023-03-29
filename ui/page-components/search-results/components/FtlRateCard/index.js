@@ -1,4 +1,3 @@
-import TruckingTouchPoints from '@cogo/business-modules/components/TruckingTouchPoints';
 import { IcCFtick } from '@cogoport/icons-react';
 import { startCase } from '@cogoport/utils';
 import React, { useState } from 'react';
@@ -12,6 +11,8 @@ import Route from '../RateCard/Route';
 
 import ContainerDetails from './ContainerDetails';
 import styles from './styles.module.css';
+
+import TruckingTouchPoints from '@/packages/bussiness-modules/TruckingTouchPoints';
 
 const RATE_SOURCE_MAPPING = {
 	spot_rates            : 'System Rate',

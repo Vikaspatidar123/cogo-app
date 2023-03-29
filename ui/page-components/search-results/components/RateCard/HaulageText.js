@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { HaulageService, HaulageServiceDiv } from './styles';
+import styles from './styles.module.css';
 
 function HaulageText({
 	details,
@@ -91,9 +91,9 @@ function HaulageText({
 	}
 
 	return (
-		<HaulageServiceDiv>
-			<HaulageService>{text}</HaulageService>
-		</HaulageServiceDiv>
+		<div className={styles.haulage_service_div}>
+			<div className={styles.haulage_service}>{text}</div>
+		</div>
 	);
 }
 

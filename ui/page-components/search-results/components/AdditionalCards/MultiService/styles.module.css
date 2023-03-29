@@ -60,7 +60,7 @@
 	}
 }
 
-.animated_container { animated({
+/* .animated_container { animated({
 	enter: {
 		translateY: [-10, 0],
 		opacity: [0, 1],
@@ -73,7 +73,7 @@
 		duration: 400,
 	},
 })
-}
+} */
 
 .form_wrap { 
 	background: #f9f9f9;

@@ -7,12 +7,11 @@
 	justify-content: space-between;
 	cursor: pointer;
 	margin: auto;
-	margin-bottom: ${(p) => p.marginBottom}px;
-	box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+	box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 	width: 96%;
 
 	&:hover {
-		box-shadow: 0px 2px 55px rgba(56, 59, 68, 0.1);
+		box-shadow: 0 2px 55px rgba(56, 59, 68, 0.1);
 	}
 
 	&.notAdded {
@@ -163,5 +162,5 @@
 .flex_row {
 	display: flex;
 	width: 48%;
-	margin: 4px 0px;
+	margin: 4px 0;
 }

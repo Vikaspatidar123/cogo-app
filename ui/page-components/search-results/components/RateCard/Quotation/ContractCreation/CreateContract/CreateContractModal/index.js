@@ -1,4 +1,3 @@
-import getOperatorsConfig from '@cogo/product/rfq/utils/getOperatorsConfig';
 import { addDays } from '@cogoport/utils';
 import React, { useRef, useEffect } from 'react';
 
@@ -8,6 +7,7 @@ import PortSelect from './PortSelect';
 import styles from './styles.module.css';
 
 import { DatepickerController, InputController, SelectController } from '@/packages/forms';
+import getOperatorsConfig from '@/ui/page-components/search-results/utils/getOperatorsConfig';
 
 function CreateContractModal({
 	fields,

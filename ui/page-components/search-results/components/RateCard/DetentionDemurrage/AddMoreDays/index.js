@@ -1,5 +1,3 @@
-import SegmentedControl from '@cogoport/front/components/SegmentedControl';
-
 import Component from './Component';
 
 const OPTIONS = [
@@ -72,12 +70,13 @@ function AddMoreDays(props) {
 	return (
 		<div style={{ padding: '12px 20px' }}>
 			<div style={{ display: 'flex' }}>
-				<SegmentedControl
+				{/* tabs required  ------->>>>>> */}
+				{/* <SegmentedControl
 					options={OPTIONS}
 					activeTab={activeTab}
 					setActiveTab={setActiveTab}
 					separatorMarginRight={4}
-				/>
+				/> */}
 			</div>
 
 			<div style={{ display: 'flex' }}>

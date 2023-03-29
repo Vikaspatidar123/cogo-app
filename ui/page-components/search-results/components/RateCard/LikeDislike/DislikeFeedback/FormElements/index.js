@@ -1,10 +1,9 @@
-import withControl from '@cogo/business-modules/form/components/Controlled/withControl';
 import { Input, CheckboxGroup } from '@cogoport/components';
 
 import ErrorMessage from './ErrorMessage';
 import styles from './styles.module.css';
 
-import { SelectController } from '@/packages/forms';
+import { SelectController, withControl } from '@/packages/forms';
 import TextAreaController from '@/packages/forms/Controlled/TextAreaController';
 
 function DislikeFeedbackModalFormElements({

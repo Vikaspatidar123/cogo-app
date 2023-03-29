@@ -182,7 +182,7 @@
 }
 
 .animated_container {
-	animation: ${slide} 0.4s linear;
+	/* animation: ${slide} 0.4s linear; */
 }
 
 .rates_count {

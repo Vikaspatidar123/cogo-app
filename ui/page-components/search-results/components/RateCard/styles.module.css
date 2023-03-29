@@ -1,7 +1,4 @@
-import styled from '@cogoport/front/styled';
-import animated from '@cogo/deprecated_legacy/animated';
-
-export const Container = styled.div`
+.container {
 	margin-bottom: 16px;
 	margin-top: 16px;
 	background: #ffffff;
@@ -12,16 +9,16 @@ export const Container = styled.div`
 	@media (max-width: 760px) {
 		border: 1px solid rgb(224, 224, 224);
 	}
-`;
+}
 
-export const Card = styled.div`
+.card {
 	display: flex;
 	@media (max-width: 760px) {
 		flex-direction: column;
 	}
-`;
+}
 
-export const Text = styled.div`
+.text {
 	font-size: 10px;
 	font-style: normal;
 	font-weight: normal;
@@ -32,26 +29,26 @@ export const Text = styled.div`
 	&.spot_negotiation_rate {
 		background: #e6fbe9;
 	}
-	&.cogo_assured_rate {
+	.cogo_assured_rate {
 		margin-left: 40px;
 		font-size: 12px;
 		margin-top: 4px;
 		font-weight: 400;
 	}
-	&.schedule_type {
+	.schedule_type {
 		margin-left: 4px;
 	}
-`;
+}
 
-export const CogoAssured = styled.div`
-	background: #d9eafd;
+.cogo_assured {
+ 	background: #d9eafd;
 	border-radius: 9px 0px 4px 0px;
 	width: fit-content;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	padding: 4px 12px;
-	&.cogo_assured_rate {
+	.cogo_assured_rate {
 		height: 48px;
 		border-radius: 9px 0px 8px 0px;
 	}
@@ -60,15 +57,15 @@ export const CogoAssured = styled.div`
 		font-size: 20px;
 		margin-right: 8px;
 	}
-`;
-
-export const CogoportText = styled.div`
+}
+ 
+.cogoport_text {
 	font-size: 14px;
 	font-weight: 500;
 	color: #333333;
-`;
+}
 
-export const Dates = styled.div`
+.dates {
 	font-style: normal;
 	font-weight: normal;
 	font-size: 12px;
@@ -80,21 +77,21 @@ export const Dates = styled.div`
 	color: #333333;
 	padding-left: 12px;
 	padding-right: 12px;
-`;
+}
 
-export const LineVrt = styled.div`
-	background-color: #e7e7e7;
+.line_vrt {
+ 	background-color: #e7e7e7;
 	height: auto;
 	width: 1px;
 
-	&.horizontal {
+	.horizontal {
 		height: 1px;
 		width: 100%;
 		margin-top: 14px;
 	}
-`;
+}
 
-export const CodeAndRemarks = styled.div`
+.code_and_remarks {
 	display: flex;
 	flex-wrap: wrap;
 	height: 50px;
@@ -102,15 +99,15 @@ export const CodeAndRemarks = styled.div`
 	justify-content: flex-start;
 	border-top: 1px solid #e0e0e0;
 	padding-left: 11px;
-`;
+}
 
-export const CRContainer = styled.div`
+.cr_container {
 	padding-top: 10px;
 	padding-bottom: 10px;
 	width: 25%;
-`;
+}
 
-export const Code = styled.div`
+.code {
 	font-size: 10px;
 	font-weight: 500;
 	color: #333333;
@@ -120,22 +117,22 @@ export const Code = styled.div`
 		font-size: 8px;
 		color: #828282;
 	}
-`;
+}
 
-export const Line = styled.div`
+.line {
 	border: 0.5px dashed #bdbdbd;
 	width: 108px;
 	height: 1px;
 	margin: 0px 2px;
-`;
+}
 
-export const RateValidity = styled.div`
-	display: flex;
+.rate_validity {
+ 	display: flex;
 	flex-direction: column;
 	margin: 15px 0px 24px 0px;
-`;
+}
 
-export const RateValidityTag = styled.div`
+.rate_validity_tag {
 	text-align: center;
 	display: flex;
 	align-items: center;
@@ -148,25 +145,25 @@ export const RateValidityTag = styled.div`
 	color: #333333;
 
 	margin-bottom: 4px;
-`;
-
-export const RateValidityDate = styled.div`
+}
+ 
+.rate_validity_date {
 	text-align: center;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	margin: auto;
-`;
+}
 
-export const Dot = styled.div`
+.dot {
 	width: 5px;
 	height: 5px;
 	border-radius: 100%;
 	background: #000000;
 	margin-right: 6px;
-`;
+}
 
-export const ExtraDetails = styled.p`
+.extra_details {
 	margin: 0px;
 	font-style: normal;
 	font-weight: normal;
@@ -175,9 +172,9 @@ export const ExtraDetails = styled.p`
 	letter-spacing: 0.02em;
 	color: #000000;
 	margin-left: 8px;
-`;
+}
 
-export const HaulageService = styled.p`
+.haulage_service {
 	margin: 0px;
 	font-size: 9px;
 	background: aliceblue;
@@ -187,15 +184,15 @@ export const HaulageService = styled.p`
 		font-size: 10px;
 		font-weight: bold;
 	}
-`;
+}
 
-export const HaulageServiceDiv = styled.div`
-	display: flex;
+.haulage_service_div {
+ 	display: flex;
 	align-items: center;
 	justify-content: center;
-`;
+}
 
-export const AnimatedContainer = animated({
+ /* AnimatedContainer = animated({
 	enter: {
 		translateY: [-10, 0],
 		opacity: [0, 1],
@@ -207,22 +204,23 @@ export const AnimatedContainer = animated({
 		opacity: [1, 0],
 		duration: 300,
 	},
-});
+}); */
 
-export const Details = styled.div`
+.details {
 	display: Flex;
 	padding: 6px;
 	margin-left: 8px;
-`;
+	
+}
 
-export const LineHorizontal = styled.div`
+.line_horizontal {
 	height: 1px;
 	width: auto;
 	background-color: #e7e7e7;
 	margin-top: 8px;
-`;
+}
 
-export const Div = styled.div`
+.div {
 	display: flex;
 	font-size: 10px;
 	align-items: center;
@@ -231,9 +229,9 @@ export const Div = styled.div`
 	margin: 5px;
 	padding: 4px;
 	flex-wrap: wrap;
-`;
+}
 
-export const ContainerValues = styled.div`
+.container_values {
 	color: #000000;
 	margin-left: 5px;
 	max-width: 150px;
@@ -260,9 +258,9 @@ export const ContainerValues = styled.div`
 	@media (max-width: 760px) {
 		max-width: 150px;
 	}
-`;
+}
 
-export const Wrapper = styled.div`
+.wrapper {
 	display: flex;
 	align-items: center;
 	background: #d9eafd;
@@ -270,9 +268,9 @@ export const Wrapper = styled.div`
 	width: fit-content;
 	align-items: center;
 	padding: 4px 12px;
-`;
+}
 
-export const CogoUniverse = styled.div`
+.cogo_universe {
 	background: #d9eafd;
 	font-size: 10px;
 	display: flex;
@@ -281,15 +279,16 @@ export const CogoUniverse = styled.div`
 	padding: 4px 12px;
 	margin-left: 4px;
 	height: 20px;
-`;
-
-export const Schedules = styled.div`
+}
+ 
+.schedules {
 	display: flex;
 	flex-direction: column;
 	margin: 8px 0;
-`;
-export const ScheduleTag = styled.div`
-	text-align: center;
+}
+
+.schedule_tag {
+ 	text-align: center;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -300,20 +299,20 @@ export const ScheduleTag = styled.div`
 	color: #333333;
 	margin-bottom: 4px;
 	align-self: center;
-`;
+}
 
-export const ScheduleDate = styled.div`
-	text-align: center;
+.schedule_date {
+ 	text-align: center;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	margin: auto;
-`;
+}
 
-export const FclTransitTime = styled.div`
+.fcl_transit_time {
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	margin-top: 4px;
 	font-size: 12px;
-`;
+}

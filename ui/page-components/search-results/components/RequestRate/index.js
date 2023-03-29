@@ -1,10 +1,10 @@
-import { Button } from '@cogoport/front/components/admin';
+import { Button } from '@cogoport/components';
 import { IcMInfo } from '@cogoport/icons-react';
 import { useState } from 'react';
 
 import FeedBackModal from '../NoResultFound/FeedbackModal';
 
-import { Container, Content, DetailCon, DetailText, InfoText } from './styles';
+import styles from './styles.module.css';
 
 function RequestRate({ headerData }) {
 	const [showFeedbackModal, setShowFeedBackModal] = useState(false);
@@ -39,8 +39,8 @@ function RequestRate({ headerData }) {
 
 	return (
 		<>
-			<Container>
-				<DetailCon>
+			<div className={styles.container}>
+				<div className={styles.detai_iCon}>
 					<img
 						src="https://cdn.cogoport.io/cms-prod/cogo_admin/vault/original/request-rate.svg"
 						alt="request rates"
@@ -48,27 +48,27 @@ function RequestRate({ headerData }) {
 						height={56}
 					/>
 
-					<Content>
-						<DetailText>
+					<div className={styles.content}>
+						<div className={styles.detail_text}>
 							Rates are currently not available. Do you want to send feedback to
 							market intelligence ?
-						</DetailText>
-						<InfoText>
+						</div>
+						<div className={styles.info_text}>
 							<IcMInfo color="#B53E4E" />
 							Please Note : Submitting feedback will result in Cogoport team to
 							improve their rates.
-						</InfoText>
-					</Content>
-				</DetailCon>
-				<DetailCon>
+						</div>
+					</div>
+				</div>
+				<div className={styles.detail_icon}>
 					<Button
 						onClick={() => setShowFeedBackModal(true)}
 						className="secondary md"
 					>
 						SEND FEEDBACK
 					</Button>
-				</DetailCon>
-			</Container>
+				</div>
+			</div>
 
 			{showFeedbackModal ? (
 				<FeedBackModal

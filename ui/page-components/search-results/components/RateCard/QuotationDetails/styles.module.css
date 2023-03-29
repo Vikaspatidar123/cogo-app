@@ -1,13 +1,12 @@
-import styled from '@cogoport/front/styled';
-import animated from '@cogo/deprecated_legacy/animated';
 
-export const Container = styled.div`
+/* import animated from '@cogo/deprecated_legacy/animated'; */
+.container {
 	width: 100%;
 	background: #ffffff;
 	border-radius: 0px 0px 10px 10px;
-`;
+}
 
-export const Service = styled.div`
+.service {
 	background: #f5fafe;
 	margin-bottom: 2px;
 	padding: 16px 30px;
@@ -28,19 +27,18 @@ export const Service = styled.div`
 		flex-direction: column;
 		padding: 16px 10px;
 	}
-`;
+}
 
-export const ServiceText = styled.p`
-	margin: 0px;
+.service_text {
 	font-size: 14px;
 	line-height: 12px;
 	display: flex;
 	align-items: center;
 	letter-spacing: 0.02em;
 	color: #333333;
-`;
+}
 
-export const Price = styled.div`
+.price {
 	font-size: 14px;
 	font-weight: 500;
 	line-height: 12px;
@@ -52,7 +50,7 @@ export const Price = styled.div`
 		margin-right: 8px;
 	}
 
-	&.no-rate {
+	.no_rate {
 		display: flex;
 		justify-content: flex-end;
 
@@ -60,9 +58,9 @@ export const Price = styled.div`
 			margin-right: 0px;
 		}
 	}
-`;
+}
 
-export const LineItem = styled.div`
+.line_item {
 	padding: 12px 60px 12px 36px;
 	font-size: 12px;
 	font-weight: 400;
@@ -74,18 +72,18 @@ export const LineItem = styled.div`
 		padding: 12px;
 		flex-direction: column;
 	}
-`;
+}
 
-export const Line = styled.div`
+.line {
 	border: 1px solid #efefef;
-`;
+}
 
-export const Line2 = styled.div`
+.line2 {
 	border-top: 4px solid #ffffff;
 	width: 100%;
-`;
+}
 
-export const Pill = styled.div`
+.pill {
 	border: 1px solid #66acf7;
 	border-radius: 10px;
 	color: #66acf7;
@@ -97,54 +95,54 @@ export const Pill = styled.div`
 	height: fit-content;
 	width: fit-content;
 
-	&.main {
+	.main {
 		background: #66acf7;
 		color: #ffffff;
 		padding: 2px 4px;
 		margin-top: 0px;
 	}
 
-	&.no-margin {
+	.no_margin {
 		margin-left: 6px;
 	}
-`;
+}
 
-export const Space = styled.span`
+.space {
 	display: flex;
 	margin-left: 4px;
 	margin-top: 6px;
 
-	&.top {
+	.top {
 		margin-top: 0px;
 	}
-`;
+}
 
-export const FlexRow = styled.div`
+.flex_row {
 	display: flex;
 	flex: 1;
 	justify-content: space-between;
-`;
+}
 
-export const Text = styled.div`
+.text {
 	max-width: 250px;
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
-`;
+}
 
-export const MobileMargins = styled.div`
+.mobile_margins {
 	display: flex;
 	justify-content: flex-end;
 	font-size: 10px;
 	white-space: nowrap;
 	margin-top: 8px;
 
-	&.top {
+	.top {
 		margin-top: 12px;
 	}
-`;
+}
 
-export const ServiceDetails = styled.div`
+.service-_details {
 	background: #f1f1f1;
 	color: #333333;
 	font-size: 12px;
@@ -160,18 +158,18 @@ export const ServiceDetails = styled.div`
 		padding-left: 10px;
 		padding-right: 10px;
 	}
-`;
+}
 
-export const ServiceInfo = styled.div`
+.service_info {
 	@media (max-width: 760px) {
 		width: 150px;
 		white-space: nowrap;
 		overflow: hidden;
 		text-overflow: ellipsis;
 	}
-`;
+}
 
-export const AnimatedContainer = animated({
+animated_container {
 	enter: {
 		translateY: [-10, 0],
 		opacity: [0, 1],
@@ -184,16 +182,16 @@ export const AnimatedContainer = animated({
 		easing: 'easeInOutQuad',
 		duration: 300,
 	},
-});
+}
 
-export const TotalPrice = styled.div`
+.total_price {
 	display: flex;
 	flex-direction: column;
 	margin-left: auto;
 	align-items: flex-end;
-`;
+}
 
-export const BtnContainer = styled.div`
+.btn_container {
 	display: flex;
 	align-items: center;
-`;
+}

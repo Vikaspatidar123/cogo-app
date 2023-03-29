@@ -1,10 +1,12 @@
-import { APP_EVENT, trackEvent } from '@cogo/commons/analytics';
-import COMMODITY_MAPPING from '@cogo/commons/constants/COMMODITY_MAPPING';
-import CONTAINER_SIZE_MAPPING from '@cogo/commons/constants/CONTAINER_SIZE_MAPPING';
-import CONTAINER_TYPE_MAPPING from '@cogo/commons/constants/CONTAINER_TYPE_MAPPING';
-import SEARCH_TYPE_MAPPING from '@cogo/commons/constants/SEARCH_TYPE_MAPPING';
-import TRUCK_TYPE_MAPPING from '@cogo/commons/constants/TRUCK_TYPE_MAPPING';
-import startCase from '@cogo/utils/startCase';
+import { startCase } from '@cogoport/utils';
+
+import { APP_EVENT, trackEvent } from '../../discover_rates/common/analytics';
+
+import COMMODITY_MAPPING from '@/packages/forms/constants/COMMODITY_MAPPING';
+import CONTAINER_SIZE_MAPPING from '@/packages/forms/constants/CONTAINER_SIZE_MAPPING';
+import CONTAINER_TYPE_MAPPING from '@/packages/forms/constants/CONTAINER_TYPE_MAPPING';
+import SEARCH_TYPE_MAPPING from '@/packages/forms/constants/SEARCH_TYPE_MAPPING';
+import TRUCK_TYPE_MAPPING from '@/packages/forms/constants/TRUCK_TYPE_MAPPING';
 
 const EVENT_ATTRIBUTES_TO_PASS = {
 	fcl_freight: [

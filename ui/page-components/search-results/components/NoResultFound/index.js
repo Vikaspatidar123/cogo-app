@@ -1,11 +1,9 @@
 import getLocationDetails from '@cogo/app-search/utils/getLocationDetails';
 import isSingleLocation from '@cogo/app-search/utils/isSingleLocation';
 import { usePartnerEntityType } from '@cogo/commons/hooks';
-import getGeoConstants from '@cogo/globalization/constants/geo';
-import { useRouter } from '@cogo/next';
-import { useSelector } from '@cogo/store';
-import { Button } from '@cogoport/front/components';
+
 // import useUpdateSearch from '../../../hooks/useUpdateSearch';
+import { Button } from '@cogoport/components';
 import dynamic from 'next/dynamic';
 import React, { useState } from 'react';
 
@@ -14,19 +12,11 @@ import useCreateRateTask from '../../hooks/useCreateRateTask';
 // import BasicPlan from './BasicPlan';
 import FeedBackModal from './FeedbackModal';
 import serviceableCountries from './serviceble-countries';
-import {
-	Main,
-	Title,
-	Description,
-	Country,
-	Line,
-	Action,
-	ActionContainer,
-	TitleRm,
-	MainContainer,
-	ContainerInfo,
-	Bg,
-} from './styles';
+import styles from './styles.module.css';
+
+import { useRouter } from '@/packages/next';
+import { useSelector } from '@/packages/store';
+import getGeoConstants from '@/ui/commons/constants/geo';
 
 const geo = getGeoConstants();
 
@@ -108,9 +98,9 @@ function NoResultFound({
 	if (showAgent) {
 		description = 'Don’t worry, our team is here to help.';
 	} else if (type === 'no_result_found' && headerData?.expired) {
-		description =			'Please search again to proceed. You can do this quickly by clicking on the lens icon on the search form above and click on search rates again';
+		description = 'Please search again to proceed. You can do this quickly by clicking on the lens icon on the search form above and click on search rates again';
 	} else if (type === 'no_servicable_country') {
-		description =			' We continue to add new countries to our network every month. If you would like to be informed when we launch in these countries, tap below.';
+		description = ' We continue to add new countries to our network every month. If you would like to be informed when we launch in these countries, tap below.';
 	}
 
 	const title = () => {
@@ -125,19 +115,18 @@ function NoResultFound({
 
 	const renderTitle = () => {
 		if (type === 'no_result_found') {
-			return <Title>{title()}</Title>;
+			return <div className={styles.title}>{title()}</div>;
 		}
 
 		return (
-			<Title>
+			<div className={styles.title}>
 				Presently, we do not offer services between
-				{' '}
-				<Country>{origin?.country}</Country>
+				<div className={styles.country}>{origin?.country}</div>
 				{destination && (
-					<Country>{` and ${destination.country || ''}`}</Country>
+					<div className={styles.country}>{` and ${destination.country || ''}`}</div>
 				)}
 				.
-			</Title>
+			</div>
 		);
 	};
 
@@ -174,14 +163,14 @@ function NoResultFound({
 							? 'REQUEST FOR RATE'
 							: 'BUY NOW'}
 					</Button>
-				  )
+				)
 				: showButton && (
 					<Button onClick={handleButtonClick} disabled={headerData?.expired}>
 						{enquiryQuota?.left_limit > 0 || !isChannelPartner
 							? 'CREATE ENQUIRY'
 							: 'BUY NOW'}
 					</Button>
-				  )}
+				)}
 		</div>
 	);
 
@@ -194,46 +183,47 @@ function NoResultFound({
 	);
 
 	return (
-		<MainContainer>
-			<Main className={type === 'no_result_found' && 'no_result_found'}>
+		<div className={styles.main_container}>
+			<div className={`${styles.main} ${type === 'no_result_found' && 'no_result_found'}`}>
 				{renderTitle()}
-				<Description>{description}</Description>
+				<div className={styles.description}>{description}</div>
 				{/* {isChannelPartner ? <BasicPlan enquiryQuota={enquiryQuota} /> : null} */}
 
 				{showAgent && (
 					<>
-						<TitleRm>Contact Your Key Account Manager Now</TitleRm>
-						<ActionContainer>
-							<Action
+						<div className={styles.title_rm}>Contact Your Key Account Manager Now</div>
+						<div className={styles.action_container}>
+							<Button
 								onClick={() => goTo(`mailto:${organization?.agent?.email}`)}
 								style={{ display: 'inline' }}
 							>
 								{`Name : ${organization?.agent?.name}`}
-							</Action>
+							</Button>
 
-							<Action
+							<Button
 								onClick={() => goTo(`mailto:${organization?.agent?.email}`)}
 								style={{ display: 'inline' }}
 							>
 								{`Email : ${organization?.agent?.email}`}
-							</Action>
+							</Button>
 
 							{organization?.agent?.mobile_number && (
-								<Action
+								<Button
 									onClick={() => goTo(`tel:${organization?.agent?.mobile_number}`)}
 									style={{ display: 'inline' }}
 								>
-									{`Phone/WhatsApp : ${organization?.agent?.mobile_country_code} ${organization?.agent?.mobile_number}`}
-								</Action>
+									{`Phone/WhatsApp : 
+									${organization?.agent?.mobile_country_code} ${organization?.agent?.mobile_number}`}
+								</Button>
 							)}
-						</ActionContainer>
+						</div>
 					</>
 				)}
 
 				{type === 'no_servicable_country' && (
 					<>
-						<Line />
-						<Description>
+						<div className={styles.line} />
+						<div className={styles.description}>
 							{'Meanwhile, you can book shipments to and from '}
 							{serviceableCountries.map((country) => (
 								<>
@@ -250,18 +240,19 @@ function NoResultFound({
 							>
 								Try a new search
 							</Button>
-						</Description>
+						</div>
 					</>
 				)}
-			</Main>
+			</div>
 
-			<ContainerInfo>
+			<div className={styles.container_info}>
 				{showEnq && create_enquiry_check ? renderButtons() : renderJobButton()}
-				<Bg
+				<div
+					className={styles.bg}
 					src="https://cdn.cogoport.io/cms-prod/cogo_admin/vault/original/ic-noresults.svg"
 					style={{ width: 250, height: 250 }}
 				/>
-			</ContainerInfo>
+			</div>
 
 			{results_type === 'rfq' ? (
 				<CreateRfqEnquiry
@@ -299,7 +290,7 @@ function NoResultFound({
 					details={headerData}
 				/>
 			) : null}
-		</MainContainer>
+		</div>
 	);
 }
 

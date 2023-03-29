@@ -1,10 +1,10 @@
-import GLOBAL_CONSTANTS from '@cogo/globalization/constants/globals.json';
-
 // const location_ids = [
 // 	'1b94734e-7d51-4e94-9dd2-ef96aee64a8f',
 // 	'fe92b7c7-9481-4a3b-8d79-df9a7bf94a4e',
 // 	'72abc4ba-6368-4501-9a86-8065f5c191f8',
 // ];
+
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
 const inco_terms = ['fca', 'fas', 'fob'];
 

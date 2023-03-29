@@ -1,48 +1,38 @@
-import Modal from '@cogoport/front/components/admin/Modal';
+import { Modal } from '@cogoport/components';
 
 import PromocodeThumbnail from './PromocodeThumbnail';
-import {
-	HeaderText,
-	Container,
-	Row,
-	Details,
-	DetailsTitle,
-	DetailsDescription,
-	TermsTitle,
-	Terms,
-	TermsContent,
-} from './styles';
+import styles from './styles.module.css';
 
 function PromocodeDetails({ promotion = {}, setShowDetails = () => {} }) {
 	return (
-		<Modal className="primary xl" onClose={() => setShowDetails(false)} show>
-			<HeaderText>Promo code Available</HeaderText>
-			<Container>
+		<Modal onClose={() => setShowDetails(false)} show>
+			<div className={styles.header_text}>Promo code Available</div>
+			<div className={styles.container}>
 				{promotion.promotion_discounts.map((promotion_discount) => (
-					<Row>
+					<div className={styles.row}>
 						<PromocodeThumbnail
 							promotion={promotion}
 							promotion_discount={promotion_discount}
 						/>
-						<Details>
-							<DetailsTitle>{promotion.promocodes[0]?.promocode}</DetailsTitle>
-							<DetailsDescription>{promotion?.description}</DetailsDescription>
-						</Details>
-					</Row>
+						<div className={styles.details}>
+							<div className={styles.details_title}>{promotion.promocodes[0]?.promocode}</div>
+							<div className={styles.details_description}>{promotion?.description}</div>
+						</div>
+					</div>
 				))}
-				<Row>
-					<Terms>
-						<TermsTitle>Terms & Conditions </TermsTitle>
+				<div className={styles.row}>
+					<div className={styles.terms}>
+						<div className={styles.terms_title}>Terms & Conditions </div>
 						{promotion.terms_and_conditions?.map((term, i) => (
-							<TermsContent>
+							<div className={styles.terms_content}>
 								{i + 1}
 								.
 								{term}
-							</TermsContent>
+							</div>
 						))}
-					</Terms>
-				</Row>
-			</Container>
+					</div>
+				</div>
+			</div>
 		</Modal>
 	);
 }

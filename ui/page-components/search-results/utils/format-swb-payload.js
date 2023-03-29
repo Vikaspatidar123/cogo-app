@@ -1,4 +1,4 @@
-import getGeoConstants from '@cogo/globalization/constants/geo';
+import getGeoConstants from '@/ui/commons/constants/geo';
 
 const geo = getGeoConstants();
 
@@ -71,7 +71,7 @@ const formatSwbPayload = ({
 					: undefined,
 				destination_main_port_id: service?.destination_port?.is_icd
 					? values?.destination_main_port_id
-					  || service?.destination_main_port_id
+					|| service?.destination_main_port_id
 					: undefined,
 				departure : suitable_schedule_arr?.[1] || values?.departure || undefined,
 				arrival   : suitable_schedule_arr?.[0] || values?.arrival || undefined,

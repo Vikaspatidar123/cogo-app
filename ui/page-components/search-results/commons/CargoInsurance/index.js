@@ -3,7 +3,6 @@ import { isEmpty } from '@cogoport/utils';
 import { useEffect, useState } from 'react';
 
 import useAddCargoInsurance from '../../hooks/useAddCargoInsurance';
-import useGetCargoInsuranceRate from '../../hooks/useGetCargoInsuranceRate';
 import useGetCommodityOptions from '../../hooks/useGetCommodityOptions';
 import useGetCargoInsuranceSupportedCountries from '../../hooks/useGetInsuranceSupportedCountries';
 

@@ -1,29 +1,14 @@
-import { useScope } from '@cogo/commons/hooks';
-import GLOBAL_CONSTANTS from '@cogo/globalization/constants/globals.json';
-import formatDate from '@cogo/globalization/utils/formatDate';
-import { useRouter } from '@cogo/next';
-import { useSelector } from '@cogo/store';
-import Button from '@cogoport/front/components/admin/Button';
-import { startCase, upperCase } from '@cogoport/front/utils';
+import { Modal, Button } from '@cogoport/components';
+import { IcMPortArrow } from '@cogoport/icons-react';
+import { startCase, upperCase } from '@cogoport/utils';
 import React from 'react';
 
 import { getUnit, getServiceUnit } from '../../../../../utils/get-unit';
 
-import {
-	ModalWrapper,
-	TitleBg,
-	Title,
-	Heading,
-	PortPair,
-	PortArrow,
-	Port,
-	Detail,
-	Tag,
-	Note,
-	Footer,
-	CloseIcon,
-	CloseModal,
-} from './styles';
+import styles from './styles.module.css';
+
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
+import formatDate from '@/ui/commons/utils/formatDate';
 
 function PriceLockedModal({
 	priceLocked,
@@ -31,8 +16,6 @@ function PriceLockedModal({
 	contractData,
 	details,
 }) {
-	const { scope } = useScope();
-	const { push } = useRouter();
 	const {
 		max_containers_count = 0,
 		max_volume = 0,
@@ -58,40 +41,17 @@ function PriceLockedModal({
 		trade_type,
 	} = details || {};
 
-	const { permissionsNavigations } = useSelector(({ profile }) => ({
-		permissionsNavigations: profile.permissions_navigations,
-	}));
-
-	const showContracts =		scope === 'partner'
-		? Object.keys(permissionsNavigations).includes(
-			'contract_rates-international_contracts',
-			  )
-		: true;
-
-	const redirectToContract = () => {
-		if (scope === 'partner') {
-			push(
-				'/contract-rates/dashboard/[active_tab]',
-				'/contract-rates/dashboard/pending_approval',
-			);
-		} else if (scope === 'app') {
-			push('/contract-management?activetab=pending_approval');
-		}
-	};
 	return (
-		<ModalWrapper show={priceLocked} className="secondary md">
-			<CloseModal>
-				<CloseIcon onClick={() => setPriceLocked(false)} />
-			</CloseModal>
-			<Heading>
-				<Title>
+		<Modal show={priceLocked}>
+			<Modal.Header>
+				<div className={styles.title}>
 					<span>Price locked requested</span>
-					<TitleBg />
-				</Title>
-			</Heading>
+					{/* <TitleBg /> */}
+				</div>
+			</Modal.Header>
 
-			<PortPair>
-				<Port>
+			<div className={styles.port_pair}>
+				<div className={styles.port}>
 					<div>
 						{origin_port?.name || origin_airport?.name}
 						<span>
@@ -103,9 +63,9 @@ function PriceLockedModal({
 					</div>
 
 					<div>{origin_country?.name}</div>
-				</Port>
-				<PortArrow />
-				<Port destination>
+				</div>
+				<IcMPortArrow />
+				<div className={`${styles.port} ${styles.destination}`}>
 					<div>
 						{destination_port?.name || destination_airport?.name}
 						<span>
@@ -115,10 +75,10 @@ function PriceLockedModal({
 						</span>
 					</div>
 					<div>{destination_country?.name}</div>
-				</Port>
-			</PortPair>
+				</div>
+			</div>
 
-			<Detail>
+			<div className={styles.detail}>
 				Total
 				{' '}
 				{startCase(getUnit(search_type))}
@@ -129,8 +89,8 @@ function PriceLockedModal({
 					{' '}
 					{getServiceUnit(search_type)}
 				</span>
-			</Detail>
-			<Detail>
+			</div>
+			<div className={styles.detail}>
 				Contract Validity :
 				<span className="sub-content">
 					{formatDate({
@@ -147,49 +107,43 @@ function PriceLockedModal({
 						formatType : 'date',
 					})}
 				</span>
-			</Detail>
-			{commodity && <Tag>{startCase(commodity)}</Tag>}
-			{container_type && <Tag>{startCase(container_type)}</Tag>}
+			</div>
+			{commodity && <div className={styles.tag}>{startCase(commodity)}</div>}
+			{container_type && <div className={styles.tag}>{startCase(container_type)}</div>}
 			{container_size && (
-				<Tag>
+				<div className={styles.tag}>
 					{container_size}
 					FT
-				</Tag>
+				</div>
 			)}
 			{volume && (
-				<Tag>
+				<div className={styles.tag}>
 					VOL:
 					{volume}
 					CBM
-				</Tag>
+				</div>
 			)}
 			{weight && (
-				<Tag>
+				<div className={styles.tag}>
 					WT:
 					{weight}
 					KGS
-				</Tag>
+				</div>
 			)}
-			{inco_term && <Tag>{upperCase(inco_term)}</Tag>}
-			{trade_type && <Tag>{startCase(trade_type)}</Tag>}
+			{inco_term && <div className={styles.tag}>{upperCase(inco_term)}</div>}
+			{trade_type && <div className={styles.tag}>{startCase(trade_type)}</div>}
 
-			<Note>
+			<div className={styles.note}>
 				*Your contract will be live soon. Check the status of Contracts in
 				manage contracts section
-			</Note>
+			</div>
 
-			<Footer>
-				{showContracts ? (
-					<Button className="primary md " onClick={redirectToContract}>
-						Go to contract
-					</Button>
-				) : (
-					<Button className="primary md " onClick={() => setPriceLocked(false)}>
-						Close
-					</Button>
-				)}
-			</Footer>
-		</ModalWrapper>
+			<Modal.Footer>
+				<Button className="primary md " onClick={() => setPriceLocked(false)}>
+					Close
+				</Button>
+			</Modal.Footer>
+		</Modal>
 	);
 }
 

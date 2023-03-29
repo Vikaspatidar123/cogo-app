@@ -1,8 +1,8 @@
-import { startCase } from 'lodash';
+import { startCase } from '@cogoport/utils';
 import React from 'react';
 
 import ShippingLineForm from './ShippingLineForm.js';
-import { Container, Text } from './styles';
+import styles from './styles.module.css';
 
 const DRIVER_TEXT_SHOW = [
 	'ftl_freight',
@@ -38,17 +38,17 @@ function DetailCard({
 	});
 
 	return (
-		<Container>
+		<div className={styles.container}>
 			{data?.search_type ? (
-				<Text>
+				<div className={styles.text}>
 					Customize
 					{startCase(data?.search_type)}
-				</Text>
+				</div>
 			) : null}
 			{DRIVER_TEXT_SHOW.includes(data?.search_type) ? (
-				<Text className="lead-text">
+				<div className={`${styles.text} ${styles.lead_text}`}>
 					Click the Go to Checkout button to be able to Customize Checkout!
-				</Text>
+				</div>
 			) : null}
 
 			<ShippingLineForm
@@ -64,7 +64,7 @@ function DetailCard({
 				check_multiple_containers_fcl={check_multiple_containers_fcl}
 				showSpotBookingDetails={showSpotBookingDetails}
 			/>
-		</Container>
+		</div>
 	);
 }
 

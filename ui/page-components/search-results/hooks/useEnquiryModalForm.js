@@ -1,8 +1,9 @@
-import { getFormattedValues } from '@cogo/app-common';
-import formatSearch from '@cogo/app-search/utils/format-create-search';
-import formatMainServiceData from '@cogo/app-search/utils/format-main-service-data';
-import { toast } from '@cogoport/front/components';
+import { Toast } from '@cogoport/components';
 import { useRef, useState } from 'react';
+
+import formatCreateSearch from '../utils/format-create-search';
+
+import getFormattedValues from '@/ui/commons/utils/getFormattedValues';
 
 const isPackageFormatted = (obj) => {
 	const requiredArr = [
@@ -316,7 +317,7 @@ const useEnquiryModalForm = ({
 
 			const rawParams = getRawParams(detail, res);
 
-			const payloadData = formatSearch(
+			const payloadData = formatCreateSearch(
 				rawParams,
 				detail?.search_type,
 				{ [service?.service]: true },
@@ -349,9 +350,12 @@ const useEnquiryModalForm = ({
 						`${service?.service}:${service?.trade_type}`,
 					],
 				});
-				toast.success('Service information saved successfully !');
+				Toast.success('Service information saved successfully !');
 			} else {
-				const { formattedPayloadArr, serviceType, payload } =					formatAddedServices(payloadData, res, serviceResponseArr, service);
+				const {
+					formattedPayloadArr,
+					serviceType, payload,
+				} = formatAddedServices(payloadData, res, serviceResponseArr, service);
 
 				setApiData({
 					...apiData,
@@ -379,11 +383,11 @@ const useEnquiryModalForm = ({
 					...addedServiceEnquiry,
 					[`${service?.service}:${service?.trade_type}`]: [payload?.service],
 				});
-				toast.success('Service information saved successfully !');
+				Toast.success('Service information saved successfully !');
 			}
 			setSelectedService({});
 		} else {
-			toast.error('Please fill required values !');
+			Toast.error('Please fill required values !');
 		}
 	};
 

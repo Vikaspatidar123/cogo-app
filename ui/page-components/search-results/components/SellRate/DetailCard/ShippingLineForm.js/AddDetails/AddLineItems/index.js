@@ -1,26 +1,19 @@
-import Layout from '@cogo/business-modules/form/Layout';
-import { Grid } from '@cogoport/front/components';
-import { Button } from '@cogoport/front/components/admin';
-import { startCase } from '@cogoport/front/utils';
+import { Button } from '@cogoport/components';
+import { startCase } from '@cogoport/utils';
 
 import useAddLineItem from '../../../../../../hooks/useAddLineItem';
 
 import RenderLineItems from './RenderLineItems';
-import {
-	Container,
-	ButtonContainer,
-	Text,
-	DetailCon,
-	GrayLine,
-} from './styles';
+import styles from './styles.module.css';
+
+import getField from '@/packages/forms/Controlled';
 
 function AddLineItem({ service, spotBookingDetails, getCheckout }) {
 	const line_items = service?.line_items;
-	const { Row, Col } = Grid;
 
 	const {
 		controls,
-		fields,
+		control,
 		handleSubmit,
 		errors,
 		handleSave,
@@ -40,58 +33,69 @@ function AddLineItem({ service, spotBookingDetails, getCheckout }) {
 		}
 
 		return (
-			<DetailCon>
-				<Layout
-					themeType="admin"
-					controls={controls}
-					fields={fields}
-					errors={errors}
-				/>
-			</DetailCon>
+			<div className={styles.detail_icon}>
+				<div className={styles.header_container}>
+					{controls.map((item) => {
+						const Element = getField(item.type);
+						return (
+
+							<div className={styles.field} key={item.name}>
+								<div className={styles.lable}>{item.label}</div>
+								<Element {...item} control={control} />
+								{errors && (
+									<div className={styles.errors}>
+										{errors[item?.name]?.message}
+									</div>
+								)}
+							</div>
+						);
+					})}
+
+				</div>
+			</div>
 		);
 	};
 
 	return (
-		<Container>
-			<Text>
+		<div className={styles.container}>
+			<div className={styles.text}>
 				{startCase(service?.service_type)}
 				{' '}
 				(
 				{service?.container_size}
 				{' '}
 				FT)
-			</Text>
-			<DetailCon>
-				<Row>
-					<Col xs={12} md={12} lg={2.5} xl={2.5}>
+			</div>
+			<div className={styles.detail_icon}>
+				<div className={styles.row}>
+					<div className={styles.col}>
 						Line Item
-					</Col>
-					<Col xs={12} md={12} lg={2} xl={2}>
+					</div>
+					<div className={styles.col}>
 						Unit
-					</Col>
-					<Col xs={12} md={12} lg={2} xl={2}>
+					</div>
+					<div className={styles.col}>
 						Currency
-					</Col>
+					</div>
 					{/* <Col xs={12} md={12} lg={2} xl={2}>
 						Buy Price
 					</Col> */}
-					<Col xs={12} md={12} lg={2} xl={2}>
+					<div className={styles.col}>
 						Sell Price
-					</Col>
-				</Row>
-			</DetailCon>
+					</div>
+				</div>
+			</div>
 			{showLineItems()}
-			<GrayLine />
-			<ButtonContainer>
+			<div className={styles.gray_line} />
+			<div className={styles.button_container}>
 				<Button
-					className="primary sm"
 					disabled={loading || service?.line_items?.length > 0}
 					onClick={handleSubmit(handleSave)}
 				>
 					Save
 				</Button>
-			</ButtonContainer>
-		</Container>
+			</div>
+		</div>
 	);
 }
 

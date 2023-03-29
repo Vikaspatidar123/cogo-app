@@ -1,5 +1,4 @@
-import { useSelector } from '@cogo/store';
-import { Checkbox } from '@cogoport/front/components';
+import { Checkbox } from '@cogoport/components';
 import React, { useState } from 'react';
 
 import useGetRfqSpotSearches from '../../hooks/useGetRfqSpotSearch';
@@ -12,14 +11,13 @@ import RateCard from '../RateCard';
 
 import Footer from './Footer';
 import Header from './Header';
-import { Container } from './styles';
+
+import { useSelector } from '@/packages/store';
 
 function RfqResults() {
 	const [bookedRates, setBookedRates] = useState({});
 	const { isMobile, query, scope } = useSelector(({ general }) => ({
-		isMobile : general?.isMobile,
-		query    : general?.query,
-		scope    : general?.scope,
+		query: general?.query,
 	}));
 
 	const {
@@ -41,11 +39,7 @@ function RfqResults() {
 	const handleRateCards = () => {
 		if (loading) {
 			return (
-				<>
-					<Loader isMobile={isMobile} scope={scope} />
-					<Loader isMobile={isMobile} scope={scope} />
-					<Loader isMobile={isMobile} scope={scope} />
-				</>
+				<Loader />
 			);
 		}
 
@@ -104,7 +98,7 @@ function RfqResults() {
 	};
 
 	return (
-		<Container>
+		<div>
 			<Header total={total} serial_id={serial_id} />
 			<Info
 				data={spot_search?.detail}
@@ -131,7 +125,7 @@ function RfqResults() {
 				serial_id={serial_id}
 				intLoading={loading}
 			/>
-		</Container>
+		</div>
 	);
 }
 

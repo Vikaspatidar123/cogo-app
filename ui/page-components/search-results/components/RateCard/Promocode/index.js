@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 import PromocodeDetails from './PromocodeDetails';
-import { Container, Text } from './styles';
+import styles from './styles.module.css';
 
 function PromoCode({ promotion = {} }) {
 	const [showDetails, setShowDetails] = useState(false);
@@ -33,8 +33,8 @@ function PromoCode({ promotion = {} }) {
 	};
 	return (
 		<>
-			<Container onClick={() => setShowDetails(true)}>
-				<Text>
+			<div className={styles.container} role="presentation" onClick={() => setShowDetails(true)}>
+				<div className={styles.text}>
 					Apply
 					{' '}
 					{promotion.promocodes[0]?.promocode}
@@ -42,8 +42,8 @@ function PromoCode({ promotion = {} }) {
 					to get
 					{' '}
 					{getDiscountPercent(promotion)}
-				</Text>
-			</Container>
+				</div>
+			</div>
 			{showDetails && (
 				<PromocodeDetails
 					promotion={promotion}

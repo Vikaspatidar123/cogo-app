@@ -1,5 +1,4 @@
-import Button from '@cogoport/front/components/admin/Button';
-import { useFormCogo } from '@cogoport/front/hooks';
+import { Modal, Button } from '@cogoport/components';
 import { IcMCross } from '@cogoport/icons-react';
 import React from 'react';
 
@@ -7,7 +6,8 @@ import createContracts from '../../../../../configurations/create-contract-contr
 import useCreateContract from '../../../../../hooks/useCreateContract';
 
 import CreateContractModal from './CreateContractModal';
-import { Header, ModalWrapper, Footer, Body } from './styles';
+
+import { useForm } from '@/packages/forms';
 
 function CreateContract({
 	data = {},
@@ -20,12 +20,12 @@ function CreateContract({
 	const newControls = createContracts();
 
 	const {
-		fields,
+		control,
 		handleSubmit,
 		formState: { errors },
 		watch,
 		setValue,
-	} = useFormCogo(newControls);
+	} = useForm();
 	const watchForm = watch();
 
 	const { search_type = '' } = details || {};
@@ -42,14 +42,14 @@ function CreateContract({
 	};
 
 	return (
-		<ModalWrapper
+		<Modal
 			show={showContract}
 			onClose={() => setShowContract(false)}
 			onOuterClick={() => setShowContract(false)}
 			className="secondary md"
 		>
 			<>
-				<Header>
+				<Modal.Header>
 					<div className="title">Request Contract</div>
 					<IcMCross
 						width={20}
@@ -57,20 +57,20 @@ function CreateContract({
 						cursor="pointer"
 						onClick={() => setShowContract(false)}
 					/>
-				</Header>
+				</Modal.Header>
 
-				<Body>
+				<Modal.Body>
 					<CreateContractModal
 						details={details}
 						errors={errors}
-						fields={fields}
+						fields={control}
 						controls={newControls}
 						watchForm={watchForm}
 						setValue={setValue}
 					/>
-				</Body>
+				</Modal.Body>
 
-				<Footer>
+				<Modal.Footer>
 					<Button
 						className="secondary md close-create-contract-modal"
 						onClick={() => setShowContract(false)}
@@ -84,9 +84,9 @@ function CreateContract({
 					>
 						Create
 					</Button>
-				</Footer>
+				</Modal.Footer>
 			</>
-		</ModalWrapper>
+		</Modal>
 	);
 }
 

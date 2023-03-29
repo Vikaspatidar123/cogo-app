@@ -1,7 +1,5 @@
-import styled from '@cogoport/front/styled';
-import { Flex, Text } from '@cogoport/front/components';
-
-export const Container = styled(Flex)`
+.container {
+	display: flex;
 	border: 1px solid #bdaff9;
 	border-radius: 4px;
 	align-items: center;
@@ -11,27 +9,27 @@ export const Container = styled(Flex)`
 		border: none;
 		width: 28px;
 		margin: 4px;
-		padding: 0px;
+		padding: 0;
 	}
 
 	.core-ui-input-control {
 		text-align: center;
 	}
-`;
+}
 
-export const MethodContainer = styled.div`
+.method_container {
 	padding: 10px;
 	cursor: pointer;
-`;
+}
 
-export const Vline = styled.div`
+.v_line {
 	height: 24px;
 	border: 1px solid #bdaff9;
 	margin: 4px auto;
-`;
+}
 
-export const StyledText = styled(Text)`
+.styled_text { 
 	font-size: 12px;
 	color: #393f70;
 	margin-top: 4px;
-`;
+}

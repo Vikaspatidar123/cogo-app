@@ -1,65 +1,57 @@
-import Spinner from '@cogo/commons/components/Spinner';
-import { Grid } from '@cogoport/front/components';
-import { startCase } from '@cogoport/front/utils';
+import { Loader } from '@cogoport/components';
 import { IcMDelete } from '@cogoport/icons-react';
+import { startCase } from '@cogoport/utils';
 
-import { Container, DetailCon, DeleteCon } from './styles';
+import styles from './styles.module.css';
 
 function RenderLineItems({ lineItems, deleteLineItem = () => {}, loading }) {
-	const { Row, Col } = Grid;
-
 	const renderDeleteBtn = (item) => {
 		if (loading) {
 			return (
-				<Spinner
-					size={22}
-					borderWidth={3}
-					outerBorderColor="#cbcff5"
-					spinBorderColor="#5936f0"
-				/>
+				<Loader />
 			);
 		}
 
 		return (
-			<Col xs={12} md={12} lg={1} xl={1}>
-				<DeleteCon onClick={() => deleteLineItem(item)}>
+			<div className={styles.col}>
+				<div className={styles.delete_icon} role="presentation" onClick={() => deleteLineItem(item)}>
 					<IcMDelete height="17px" width="17px" />
-				</DeleteCon>
-			</Col>
+				</div>
+			</div>
 		);
 	};
 
 	return (
-		<Container>
+		<div className={styles.container}>
 			{(lineItems || []).map((line_item) => (
-				<DetailCon>
-					<Row>
-						<Col xs={12} md={12} lg={2.5} xl={2.5}>
+				<div className={styles.detail_icon}>
+					<div className={styles.row}>
+						<div className={styles.col}>
 							{startCase(line_item?.name)}
 							{' '}
 							(
 							{line_item?.code}
 							)
-						</Col>
-						<Col xs={12} md={12} lg={2} xl={2}>
+						</div>
+						<div className={styles.col}>
 							{startCase(line_item?.unit)}
-						</Col>
-						<Col xs={12} md={12} lg={2} xl={2}>
+						</div>
+						<div className={styles.col}>
 							{startCase(line_item?.currency)}
-						</Col>
+						</div>
 						{/* <Col xs={12} md={12} lg={2} xl={2}>
 								{line_item?.buy_price}
 							</Col> */}
-						<Col xs={12} md={12} lg={2} xl={2}>
+						<div className={styles.col}>
 							{line_item?.price}
-						</Col>
+						</div>
 						{line_item?.source === 'manual'
 							? renderDeleteBtn(line_item)
 							: null}
-					</Row>
-				</DetailCon>
+					</div>
+				</div>
 			))}
-		</Container>
+		</div>
 	);
 }
 

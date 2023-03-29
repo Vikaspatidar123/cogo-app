@@ -1,13 +1,14 @@
-import airFeedBackControls from '@cogo/app-search/configurations/search/air/feedback.js';
-import airCustomsFeedBackControls from '@cogo/app-search/configurations/search/domestic/air-customs/feedback.js';
-import fclCustomsFeedbackControls from '@cogo/app-search/configurations/search/domestic/fcl-customs/feedback.js';
-import ftlFeedBackControls from '@cogo/app-search/configurations/search/domestic/ftl/feedback.js';
-import haulageFreightFeedBackControls from '@cogo/app-search/configurations/search/domestic/haulage-freight/feedback.js';
-import lclCustomsFeedBackControls from '@cogo/app-search/configurations/search/domestic/lcl-customs/feedback.js';
-import ltlFeedBackControls from '@cogo/app-search/configurations/search/domestic/ltl/feedback.js';
-import trailerFreightFeedBackControls from '@cogo/app-search/configurations/search/domestic/trailer/feedback.js';
-import fclFeedBackControls from '@cogo/app-search/configurations/search/fcl/feedback.js';
-import lclFeedBackControls from '@cogo/app-search/configurations/search/lcl/feedback.js';
+import airFeedBackControls from '../../discover_rates/configurations/search/air/feedback';
+import airCustomsFeedBackControls from '../../discover_rates/configurations/search/domestic/air-customs/feedback';
+import fclCustomsFeedbackControls from '../../discover_rates/configurations/search/domestic/fcl-customs/feedback';
+import ftlFeedBackControls from '../../discover_rates/configurations/search/domestic/ftl/feedback';
+import haulageFreightFeedBackControls from
+	'../../discover_rates/configurations/search/domestic/haulage-freight/feedback';
+import lclCustomsFeedBackControls from '../../discover_rates/configurations/search/domestic/lcl-customs/feedback';
+import ltlFeedBackControls from '../../discover_rates/configurations/search/domestic/ltl/feedback';
+import trailerFreightFeedBackControls from '../../discover_rates/configurations/search/domestic/trailer/feedback';
+import fclFeedBackControls from '../../discover_rates/configurations/search/fcl/feedback';
+import lclFeedBackControls from '../../discover_rates/configurations/search/lcl/feedback';
 
 const getFeedbackConfig = (mode) => {
 	switch (mode) {

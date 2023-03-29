@@ -33,7 +33,7 @@ function CargoInsuranceRateCard(props) {
 			<div className={styles.cogo_assured}>{startCase(risk_coverage)}</div>
 
 			<div className={styles.card}>
-				<div style={{display : 'flex', justifyContent : 'center', alignItems : 'center', flex : '1'}}>
+				<div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flex: '1' }}>
 					<div className={styles.route_container}>
 						<div style={{ width: '100%', display: 'flex' }}>
 							<div style={{ width: '100%', display: 'flex' }}>
@@ -90,13 +90,13 @@ function CargoInsuranceRateCard(props) {
 						</div>
 
 						<div style={{ width: '100%', display: 'flex' }}>
-								<div
-									className={`${styles.line} ${!isEmpty(origin_country) ? 'inactive' : null}`}
-									style={{ width: '100%' }}
-								/>
-								<div
-									className={`${styles.circle} ${!isEmpty(origin_country) ? 'inactive' : null}`}
-								/>
+							<div
+								className={`${styles.line} ${!isEmpty(origin_country) ? 'inactive' : null}`}
+								style={{ width: '100%' }}
+							/>
+							<div
+								className={`${styles.circle} ${!isEmpty(origin_country) ? 'inactive' : null}`}
+							/>
 						</div>
 					</div>
 				</div>

@@ -1,18 +1,18 @@
-import { useRequest } from '@cogo/commons/hooks';
-import { useSelector } from '@cogo/store';
 import { IcMAirport } from '@cogoport/icons-react';
 
-import { Flex, OptionText } from '../components/styles';
+import { Flex, OptionText } from '../components/styles.module.css';
+
+import { useRequest } from '@/packages/request';
 
 const getPriorityAirlineOptions = () => {
-	const {
-		general: { scope },
-	} = useSelector((state) => state);
-	const { data, trigger, loading } = useRequest(
-		'get',
-		false,
-		scope,
-	)('/list_priority_airlines');
+	const [{ loading, data }, trigger] = useRequest(
+		{
+			url    : 'list_priority_airlines',
+			method : 'get',
+		},
+		{ manual: true },
+	);
+
 	const priorityAirlineOptions = async (params) => {
 		try {
 			await trigger({

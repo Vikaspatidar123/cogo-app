@@ -1,13 +1,12 @@
-import { useRequest } from '@cogo/commons/hooks';
-import showErrorsInToast from '@cogo/utils/showErrorsInToast';
-import startCase from '@cogo/utils/startCase';
-import { toast } from '@cogoport/front/components';
+import { Toast } from '@cogoport/components';
+import { startCase } from '@cogoport/utils';
 import { useState, useEffect } from 'react';
+
+import { useRequest } from '@/packages/request';
 
 const useCreateAdditionalService = ({
 	data = {},
 	possible_additional_services = [],
-	scope = '',
 	renderServices = () => {},
 	refetch = () => {},
 	serviceMappings = {},
@@ -19,24 +18,18 @@ const useCreateAdditionalService = ({
 	const [addService, setAddService] = useState(null);
 	const [show, setShow] = useState(false);
 	const [deleteService, setDeleteService] = useState('');
-	const [loading, setLoading] = useState(false);
 	const [remainingServicesToAdd, setRemainingServicesToAdd] = useState([]);
 	const [addCargoInsurance, setAddCargoInsurance] = useState(false);
 
-	let createSubsidiaryServiceApi = {};
-	if (!data?.checkout_id) {
-		createSubsidiaryServiceApi = useRequest(
-			'post',
-			false,
-			scope,
-		)('/create_spot_search_service');
-	} else {
-		createSubsidiaryServiceApi = useRequest(
-			'post',
-			false,
-			scope,
-		)('/create_checkout_service');
-	}
+	const apiName = !data?.checkout_id ? '/create_spot_search_service' : '/create_checkout_service';
+
+	const [{ loading }, createSubsidiaryServiceApi] = useRequest(
+		{
+			url    : `${apiName}`,
+			method : 'post',
+		},
+		{ manual: true },
+	);
 
 	const {
 		service_details,
@@ -133,7 +126,6 @@ const useCreateAdditionalService = ({
 			subsidiaryServicesArr.push(service);
 		});
 
-		setLoading(true);
 		try {
 			let payload = {};
 			if (!data?.checkout_id) {
@@ -153,16 +145,13 @@ const useCreateAdditionalService = ({
 			const res = await createSubsidiaryServiceApi.trigger({ data: payload });
 
 			if (!res.hasError) {
-				toast.success('Service added successfully!');
-				setLoading(false);
+				Toast.success('Service added successfully!');
 				setSubsidiaryService('');
 				refetch();
 			}
 		} catch (err) {
-			showErrorsInToast(err?.data);
-			setLoading(false);
+			Toast.err(err?.data);
 		}
-		setLoading(false);
 	};
 
 	const subsidiaryServicesList = [];
@@ -190,7 +179,6 @@ const useCreateAdditionalService = ({
 		addService,
 		query,
 		loading,
-		setLoading,
 		deleteService,
 		setDeleteService,
 		show,

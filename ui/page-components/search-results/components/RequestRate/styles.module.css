@@ -1,6 +1,4 @@
-import styled from '@cogoport/front/styled';
-
-export const Container = styled.div`
+.container  {
 	width: 100%;
 	background: #ffffff;
 	margin-top: 16px;
@@ -9,22 +7,22 @@ export const Container = styled.div`
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-`;
+}
 
-export const DetailCon = styled.div`
+.detail_icon { 
 	display: flex;
 	align-items: center;
-`;
+}
 
-export const DetailText = styled.div`
+.detail_text { 
 	font-size: 14px;
 	font-weight: 500;
 	line-height: 19px;
 	color: #393f70;
 	margin-bottom: 2px;
-`;
+}
 
-export const InfoText = styled.div`
+.info_text { 
 	font-style: italic;
 	display: flex;
 	font-size: 10px;
@@ -37,10 +35,10 @@ export const InfoText = styled.div`
 		height: 12px;
 		margin-right: 4px;
 	}
-`;
+}
 
-export const Content = styled.div`
+.content { 
 	display: flex;
 	flex-direction: column;
 	margin-left: 8px;
-`;
+}

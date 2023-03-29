@@ -1,19 +1,20 @@
-import { useRequest } from '@cogo/commons/hooks';
-import { useSelector } from '@cogo/store';
-import { useState } from 'react';
+import { useRequest } from '@/packages/request';
+import { useSelector } from '@/packages/store';
 
 const updateLikeRate = ({ details, updateRate, rate }) => {
 	const {
-		general: { query = {}, scope },
+		general: { query = {} },
 	} = useSelector((state) => state);
 
 	const { search_id = '' } = query;
 
-	const [loading, setLoading] = useState(false);
-
-	const url = '/create_spot_search_rate_feedback';
-
-	const { trigger } = useRequest('post', false, scope)(url);
+	const [{ loading }, trigger] = useRequest(
+		{
+			url    : 'create_spot_search_rate_feedback',
+			method : 'post',
+		},
+		{ manual: true },
+	);
 
 	const handleLikeRateCard = async () => {
 		if (rate.is_liked || loading) {
@@ -21,8 +22,6 @@ const updateLikeRate = ({ details, updateRate, rate }) => {
 		}
 
 		try {
-			setLoading(true);
-
 			const params = {
 				id                  : search_id,
 				is_liked            : true,
@@ -42,8 +41,6 @@ const updateLikeRate = ({ details, updateRate, rate }) => {
 		} catch (err) {
 			console.log(err);
 		}
-
-		setLoading(false);
 	};
 
 	return {

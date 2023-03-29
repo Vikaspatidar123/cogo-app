@@ -1,11 +1,10 @@
-// import { usePartnerEntityType } from '@cogo/commons/hooks';
 import React from 'react';
 
 import EnquiryPlan from '../../MultiService/EnquiryPlan';
 
-// import KycMessage from './KycMessage';
 import styles from './styles.module.css';
 
+import usePartnerEntityType from '@/packages/forms/hooks/usePartnerEntityType';
 import { useSelector } from '@/packages/store';
 
 function Card({ onClick = () => {}, enquiryQuota = {} }) {
@@ -89,8 +88,6 @@ function Card({ onClick = () => {}, enquiryQuota = {} }) {
 							)}
 						</div>
 					)}
-
-					{/* {showKycMessage && <KycMessage />} */}
 				</div>
 			) : null}
 		</>

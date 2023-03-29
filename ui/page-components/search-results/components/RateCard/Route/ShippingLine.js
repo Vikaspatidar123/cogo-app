@@ -1,6 +1,7 @@
+import { Tooltip } from '@cogoport/components';
 import React from 'react';
 
-import { ShippingLine, Tooltip } from './styles';
+import styles from './styles.module.css';
 
 function ShippingLineComp({
 	show = false,
@@ -23,11 +24,11 @@ function ShippingLineComp({
 				/>
 			) : null}
 			{data?.source === 'cogo_assured_rate' ? (
-				<ShippingLine>Cogoport Assured</ShippingLine>
+				<div className={styles.shipping_line}>Cogoport Assured</div>
 			) : (
-				<ShippingLine>
+				<div className={styles.shipping_line}>
 					{data?.shipping_line?.short_name || data?.airline?.short_name}
-				</ShippingLine>
+				</div>
 			)}
 		</Tooltip>
 	);

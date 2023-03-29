@@ -1,4 +1,4 @@
-import { useRequest } from '@cogo/commons/hooks';
+import { useRequest } from '@/packages/request';
 
 const useGetCargoInsuranceSupportedCountries = (country_id) => {
 	const apiData = useRequest('get', true, 'saas', {

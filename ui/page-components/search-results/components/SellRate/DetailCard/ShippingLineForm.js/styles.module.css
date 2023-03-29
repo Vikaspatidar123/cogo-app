@@ -1,8 +1,4 @@
-import styled from '@cogoport/front/styled';
-
-export const Container = styled.div``;
-
-export const ShipmentDetails = styled.div`
+.shipment_details { 
 	padding-bottom: 20px;
 	.core-ui-select__value-container {
 		margin-top: -6px;
@@ -15,33 +11,33 @@ export const ShipmentDetails = styled.div`
 	.core-ui-select__menu {
 		max-width: unset;
 	}
-`;
+}
 
-export const BtnContainer = styled.div`
+.btn_container { 
 	padding: 10px;
 	margin-top: 10px;
 	display: flex;
 	justify-content: flex-end;
-`;
+}
 
-export const Line = styled.div`
+.line {
 	border-bottom: 1px solid #393f70;
-	margin: 20px 0px 10px 0px;
-`;
+	margin: 20px 0 10px 0;
+}
 
-export const RadioContainer = styled.div`
+.radio_container {
 	width: fit-content;
 	margin-top: 18px;
-`;
+}
 
-export const Text = styled.div`
+.text { 
 	font-size: 16px;
 	font-weight: 500;
 	color: #393f70;
 	margin: 20px;
-`;
+}
 
-export const HeaderContainer = styled.div`
+.header_container {
 	display: flex;
 	justify-content: space-between;
 
@@ -59,4 +55,35 @@ export const HeaderContainer = styled.div`
 			margin-bottom: -80px;
 		}
 	}
-`;
+}
+
+.lable {
+	margin: 5px 0 5px 0;
+	font-weight: 500;
+	font-size: 14px;
+	color: #393f70;
+  }
+
+.errors {
+	min-height: 16px;
+	margin-top: 4px;
+	font-size: 12px;
+	line-height: 16px;
+	color: #cb6464;
+}
+
+.header_container {
+	margin-bottom: 0;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	:global{
+	  .ui_select_container{
+		width:200px
+	  }
+	  .ui_toggle_container{
+		padding:0;
+	  }
+	}
+}
+  

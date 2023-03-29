@@ -1,10 +1,6 @@
-import styled from '@cogoport/front/styled';
-import { IcMInfo } from '@cogoport/icons-react';
-import Button from '@cogoport/front/components/admin/Button';
-
-export const Container = styled.div`
+.container {
 	display: flex;
-	padding: 8px 60px 0px 60px;
+	padding: 8px 60px 0 60px;
 	text-align: center;
 	justify-content: space-between;
 	flex-direction: column;
@@ -19,16 +15,16 @@ export const Container = styled.div`
 		font-size: 12px;
 		white-space: nowrap;
 	}
-`;
+}
 
-export const DislikeContainer = styled.div`
+.dislike_container {
 	display: flex;
 	justify-content: flex-end;
 	margin: 0 -56px 16px 0;
 	padding-top: 8px;
-`;
+}
 
-export const Text = styled.div`
+.text {
 	font-size: 12px;
 	font-weight: 400;
 	line-height: 12px;
@@ -36,7 +32,7 @@ export const Text = styled.div`
 	color: #828282;
 	margin-bottom: 6px;
 
-	&.red {
+	.red {
 		font-style: normal;
 		font-weight: normal;
 		font-size: 10px;
@@ -52,46 +48,20 @@ export const Text = styled.div`
 		margin-bottom: 18px;
 		color: #ffffff;
 	}
-`;
+}
 
-export const BreakupBtnContainer = styled.div`
+.breakup_btn_container {
 	align-items: center;
 	justify-content: center;
-`;
+}
 
-export const BreakupBtn = styled.button`
-	background: #ecf5ff;
-	border-radius: 10px;
-	font-style: normal;
-	font-weight: normal;
-	font-size: 12px;
-	line-height: 16px;
-	border: none;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	cursor: pointer;
-
-	color: #828282;
-	padding: 4px 16px;
-
-	&.confirmed {
-		background: #ded7fc;
-		border-radius: 8px;
-		font-weight: bold;
-		font-size: 10px;
-		line-height: 16px;
-		letter-spacing: 0.04em;
-		color: #333333;
-	}
-`;
-export const CoinContainer = styled.div`
+.coin_container {
 	display: flex;
 	align-items: center;
 	margin-top: 18px;
-`;
+}
 
-export const Label = styled.div`
+.label {
 	font-weight: 400;
 	font-size: 12px;
 	line-height: 14px;
@@ -101,23 +71,23 @@ export const Label = styled.div`
 	&.cogo-assured {
 		color: #404e65;
 	}
-`;
-
-export const Points = styled.div`
+}
+ 
+.points {
 	color: #333333;
 
 	font-weight: 500;
 	font-size: 16px;
 	line-height: 19px;
 
-	&.cogo-assured {
+	.cogo-assured {
 		color: #404e65;
 	}
-`;
+}
 
-export const LimitedOfferDeal = styled.div`
+.limited_offer_deal {
 	background: #fbd69f;
-	border-radius: 0px 0px 8px 8px;
+	border-radius: 0 0 8px 8px;
 	font-weight: bold;
 	font-size: 14px;
 	line-height: 16px;
@@ -126,23 +96,11 @@ export const LimitedOfferDeal = styled.div`
 	padding: 6px 12px;
 	margin-top: -9px;
 	margin-bottom: 22px;
-`;
+}
 
-export const ButtonPriceContainer = styled.div`
-	&.confirmed {
+.button_price_container {
+	.confirmed {
 		margin-top: 26px;
 	}
-`;
+}
 
-export const InfoIcon = styled(IcMInfo)`
-	width: 16px;
-	height: 16px;
-	margin: 4px;
-	z-index: 1;
-	color: #cb6464;
-`;
-
-export const LockButton = styled(Button)`
-	margin-bottom: 15px;
-	height: 40px !important;
-`;

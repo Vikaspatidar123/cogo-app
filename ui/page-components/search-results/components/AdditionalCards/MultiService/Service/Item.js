@@ -1,8 +1,7 @@
 import { Tooltip } from '@cogoport/components';
 import { startCase } from '@cogoport/utils';
 
-import { serviceConfigurations } from '../../../../helpers/configurations';
-
+import { serviceConfigurations } from './configurations';
 import styles from './styles.module.css';
 
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';

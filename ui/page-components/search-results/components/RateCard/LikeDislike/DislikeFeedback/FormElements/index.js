@@ -1,11 +1,11 @@
-import CheckboxGroup from '@cogo/business-modules/form/components/Business/Checkbox';
-import Input from '@cogo/business-modules/form/components/Controlled/InputController';
-import SelectController from '@cogo/business-modules/form/components/Controlled/SelectController';
-import TextAreaController from '@cogo/business-modules/form/components/Controlled/TextareaControlled';
 import withControl from '@cogo/business-modules/form/components/Controlled/withControl';
+import { Input, CheckboxGroup } from '@cogoport/components';
 
 import ErrorMessage from './ErrorMessage';
-import { Container, Label, Group, Price } from './styles';
+import styles from './styles.module.css';
+
+import { SelectController } from '@/packages/forms';
+import TextAreaController from '@/packages/forms/Controlled/TextAreaController';
 
 function DislikeFeedbackModalFormElements({
 	showElements,
@@ -36,27 +36,27 @@ function DislikeFeedbackModalFormElements({
 	const Checkbox = withControl(CheckboxGroup);
 
 	return (
-		<Container>
-			<Group>
-				<Label>{fields.feedbacks.label}</Label>
+		<div className={styles.container}>
+			<div className={styles.group}>
+				<div className={styles.label}>{fields.feedbacks.label}</div>
 				<Checkbox {...fields.feedbacks} />
 				<ErrorMessage message={errors.feedbacks?.message} />
-			</Group>
+			</div>
 
 			{(formValues.feedbacks || []).includes('unsatisfactory_rate') ? (
-				<Group>
-					<Label>{fields.preferred_freight_rate.label}</Label>
-					<Price>
+				<div className={styles.group}>
+					<div className={styles.label}>{fields.preferred_freight_rate.label}</div>
+					<div className={styles.price}>
 						<SelectController {...fields.preferred_freight_rate_currency} />
 						<Input {...fields.preferred_freight_rate} />
-					</Price>
+					</div>
 					<ErrorMessage
 						message={
 							errors.preferred_freight_rate?.message
 							|| errors.preferred_freight_rate_currency?.message
 						}
 					/>
-				</Group>
+				</div>
 			) : null}
 
 			{Object.values(rest).map((field) => {
@@ -67,14 +67,14 @@ function DislikeFeedbackModalFormElements({
 				}
 
 				return (
-					<Group key={field.name}>
-						<Label>{field.label}</Label>
+					<div className={styles.group} key={field.name}>
+						<div className={styles.label}>{field.label}</div>
 						<Element {...field} />
 						<ErrorMessage message={errors[field.name]?.message} />
-					</Group>
+					</div>
 				);
 			})}
-		</Container>
+		</div>
 	);
 }
 

@@ -1,14 +1,6 @@
-import { APP_EVENT, trackEvent } from '@cogo/commons/analytics';
-import formatAmount from '@cogo/globalization/utils/formatAmount';
-import { useSelector } from '@cogo/store';
-import {
-	Button,
-	Modal,
-	Text as OgText,
-	ToolTip,
-} from '@cogoport/front/components';
-import { isEmpty } from '@cogoport/front/utils';
-import { IcMArrowRotateDown, IcMArrowRotateUp } from '@cogoport/icons-react';
+import { Button, Modal, Tooltip } from '@cogoport/components';
+import { IcMArrowRotateDown, IcMArrowRotateUp, IcMInfo } from '@cogoport/icons-react';
+import { isEmpty } from '@cogoport/utils';
 import React, { useState } from 'react';
 
 import useCreateCheckout from '../../../hooks/useCreateCheckout';
@@ -17,18 +9,11 @@ import LikeDislike from '../LikeDislike';
 import CogoPoints from './CogoPoints';
 import ContractCreation from './ContractCreation';
 import NoRatesServicesConfirmation from './NoRatesServicesConfirmation';
-import {
-	Container,
-	Text,
-	BreakupBtn,
-	LimitedOfferDeal,
-	ButtonPriceContainer,
-	DislikeContainer,
-	CoinContainer,
-	InfoIcon,
-	BreakupBtnContainer,
-	LockButton,
-} from './styles';
+import styles from './styles.module.css';
+
+import { useSelector } from '@/packages/store';
+import formatAmount from '@/ui/commons/utils/formatAmount';
+import { APP_EVENT, trackEvent } from '@/ui/page-components/discover_rates/common/analytics';
 
 const LIKE_DISLIKE_ALLOWED = [
 	'fcl_freight',
@@ -121,13 +106,13 @@ function Quotation({
 			borderRadius : 10,
 			marginBottom : '8px 0px 16px 0px',
 			color        : '#51390c',
-		  }
+		}
 		: {
 			background : loading ? '#c2c2c2' : '#333333',
 			border     : loading ? '1px solid #c2c2c2' : '1px solid #333333',
 			boxSizing  : 'border-box',
 			margin     : '8px 0px 16px 0px',
-		  };
+		};
 
 	let isPriceDiscounted = false;
 	if (
@@ -181,23 +166,24 @@ function Quotation({
 		&& contractCard < 1
 		&& isEmpty(isRateAvailable);
 	return (
-		<Container>
+		<div className={styles.container}>
 			{LIKE_DISLIKE_ALLOWED.includes(details?.search_type) && (
-				<DislikeContainer>
+				<div className={styles.dislike_container}>
 					<LikeDislike details={details} updateRate={updateRate} rate={data} />
-				</DislikeContainer>
+				</div>
 			)}
 			{isConfirmed ? (
-				<LimitedOfferDeal>Limited Time Offer</LimitedOfferDeal>
+				<div className={styles.limited_offer_deal}>Limited Time Offer</div>
 			) : (
 				basicFreight
 			)}
-			<ButtonPriceContainer className={isConfirmed ? 'confirmed' : ''}>
+			<div className={`${styles.ButtonPriceContainer} ${isConfirmed ? 'confirmed' : ''}`}>
 				{enquiry_page === false
 				&& !['rfq', 'contract'].includes(results_type) ? (
 					<>
 						{isPriceDiscounted && (
-							<OgText
+							<div
+								className={styles.text}
 								align="center"
 								size="1em"
 								color="#999"
@@ -213,7 +199,7 @@ function Quotation({
 										maximumFractionDigits : 0,
 									},
 								})}`}
-							</OgText>
+							</div>
 						)}
 						<Button
 							onClick={() => {
@@ -311,21 +297,21 @@ function Quotation({
 						Customize Quote
 					</Button>
 				) : null}
-			</ButtonPriceContainer>
+			</div>
 			{lockFreight && (
-				<LockButton
+				<Button
 					className="secondary sm"
 					ghost
 					onClick={() => setShowContract(true)}
 				>
 					Lock Freight Price
-				</LockButton>
+				</Button>
 			)}
 			{!['trailer_freight', 'rail_domestic_freight'].includes(
 				data?.service_type,
 			) && (
-				<BreakupBtnContainer>
-					<BreakupBtn
+				<div className={styles.breakup_btn_container}>
+					<Button
 						onClick={() => {
 							if (scope === 'app') {
 								let line;
@@ -357,10 +343,10 @@ function Quotation({
 						) : (
 							<IcMArrowRotateDown style={{ marginLeft: '6px' }} size={1.25} />
 						)}
-					</BreakupBtn>
+					</Button>
 					<br />
 					{scope === 'app' && (
-						<BreakupBtn
+						<Button
 							onClick={() => {
 								setViewSchedules(!viewSchedules);
 								setScheduleId(data.shipping_line?.id);
@@ -372,10 +358,10 @@ function Quotation({
 							) : (
 								<IcMArrowRotateUp style={{ marginLeft: '6px' }} size={1.25} />
 							)}
-						</BreakupBtn>
+						</Button>
 					)}
 					{unavailableRatesCount && data.service_type === 'fcl_freight' ? (
-						<ToolTip
+						<Tooltip
 							theme="light"
 							placement="top"
 							content={(
@@ -389,16 +375,16 @@ function Quotation({
 							)}
 						>
 							<div>
-								<InfoIcon />
+								<IcMInfo />
 							</div>
-						</ToolTip>
+						</Tooltip>
 					) : null}
-				</BreakupBtnContainer>
+				</div>
 			)}
 
-			<CoinContainer>
+			<div className={styles.coin_container}>
 				<CogoPoints rate={data} />
-			</CoinContainer>
+			</div>
 			{confirmation ? (
 				<Modal
 					show={confirmation}
@@ -421,7 +407,7 @@ function Quotation({
 				showContract={showContract}
 				setShowContract={setShowContract}
 			/>
-		</Container>
+		</div>
 	);
 }
 

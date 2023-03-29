@@ -1,11 +1,10 @@
 import useGetPermission from '@cogo/business-modules/hooks/useGetPermission';
-import isEmpty from '@cogo/utils/isEmpty';
-import { Flex } from '@cogoport/front/components';
+import { isEmpty } from '@cogoport/utils';
 import React from 'react';
 
 import CC from '../../../helpers/condition-constants';
 
-import { Space, Pill } from './styles';
+import styles from './styles.module.css';
 
 function Margins({ margins = [] }) {
 	const { isConditionMatches } = useGetPermission();
@@ -48,36 +47,36 @@ function Margins({ margins = [] }) {
 	};
 
 	return (
-		<Flex display="block">
-			<Flex style={{ marginBottom: '8px' }}>
+		<div style={{ display: 'flex' }}>
+			<div style={{ display: 'flex', marginBottom: '8px' }}>
 				{isConditionMatches(
 					[...CC.SEE_ALL_MARGINS, ...CC.SEE_SALES_MARGIN],
 					'or',
 				) ? (
-					<Space>
+					<div className={styles.space}>
 						+
-						<Pill>{handleMargin(salesMargin, 'demand')}</Pill>
-					</Space>
+						<div className={styles.pill}>{handleMargin(salesMargin, 'demand')}</div>
+					</div>
 					) : null}
 
 				{isConditionMatches(
 					[...CC.SEE_ALL_MARGINS, ...CC.SEE_SUPPLY_MARGIN],
 					'or',
 				) ? (
-					<Space>
+					<div className={styles.space}>
 						+
-						<Pill>{handleMargin(supplyMargin, 'supply')}</Pill>
-					</Space>
+						<div className={styles.pill}>{handleMargin(supplyMargin, 'supply')}</div>
+					</div>
 					) : null}
-			</Flex>
+			</div>
 
 			{isConditionMatches(CC.SEE_ALL_MARGINS, 'or') ? (
-				<Space>
+				<div className={styles.space}>
 					+
-					<Pill>{handleMargin(cogoMargin, 'cogoport')}</Pill>
-				</Space>
+					<div className={styles.pill}>{handleMargin(cogoMargin, 'cogoport')}</div>
+				</div>
 			) : null}
-		</Flex>
+		</div>
 	);
 }
 

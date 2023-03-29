@@ -1,9 +1,9 @@
-import { useRequest } from '@cogo/commons/hooks';
-import { useRouter } from '@cogo/next';
-import { useSelector } from '@cogo/store';
-import isEmpty from '@cogo/utils/isEmpty';
-import { toast } from '@cogoport/front/components';
-import { useState } from 'react';
+import { Toast } from '@cogoport/components';
+import { isEmpty } from '@cogoport/utils';
+
+import { useRouter } from '@/packages/next';
+import { useRequest } from '@/packages/request';
+import { useSelector } from '@/packages/store';
 
 const useSaveRfq = ({
 	total = 1,
@@ -16,21 +16,22 @@ const useSaveRfq = ({
 	serial_id = 1,
 }) => {
 	const router = useRouter();
-	const [loading, setLoading] = useState(false);
 
-	const { scope, query } = useSelector(({ general }) => ({
-		isMobile : general?.isMobile,
-		scope    : general?.scope,
-		query    : general?.query,
+	const { query } = useSelector(({ general }) => ({
+		query: general?.query,
 	}));
 	const { rfq_id } = query;
 
-	const createRfqCheckouts = useRequest('post', false, scope)('/create_rfq_checkouts');
+	const [{ loading }, createRfqCheckouts] = useRequest(
+		{
+			url    : 'create_rfq_checkouts',
+			method : 'post',
+		},
+		{ manual: true },
+	);
 
 	const handleOverview = () => {
-		setLoading(true);
 		router.push('/rfq/[rfq_id]/overview', `/rfq/${rfq_id}/overview`);
-		setLoading(false);
 	};
 
 	const handleNext = () => {
@@ -51,10 +52,8 @@ const useSaveRfq = ({
 
 		const card_ids = (rates_arr || []).filter((item) => item?.checked === true).map((item) => item?.id);
 
-		setLoading(true);
 		if (isEmpty(card_ids)) {
 			handleNext();
-			setLoading(false);
 		} else {
 			try {
 				const payload = {
@@ -65,30 +64,23 @@ const useSaveRfq = ({
 				const res = await createRfqCheckouts.trigger({ data: payload });
 
 				if (!res.hasError) {
-					toast.success('Rates saved successfully!');
+					Toast.success('Rates saved successfully!');
 					setBookedRates({});
 					handleNext();
-					setLoading(false);
 				}
 			} catch (err) {
-				toast.error(err?.data || 'Something went wrong!');
-				setLoading(false);
+				Toast.error(err?.data || 'Something went wrong!');
 			}
 		}
-		setLoading(false);
 	};
 
 	const handlePrevious = () => {
-		setLoading(true);
 		try {
 			router.push('/rfq/[rfq_id]/[serial_id]', `/rfq/${rfq_id}/${serial_id - 1}`);
 			hookSetters.setFilters({ ...(filters || {}), serial_id: serial_id - 1 });
-			setLoading(false);
 		} catch (err) {
-			toast.error(err?.data);
-			setLoading(false);
+			Toast.error(err?.data);
 		}
-		setLoading(false);
 	};
 
 	return { loading, handlePrevious, handleOverview, handleSave };

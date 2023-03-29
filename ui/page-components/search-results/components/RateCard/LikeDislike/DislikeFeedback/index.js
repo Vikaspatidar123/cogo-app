@@ -1,13 +1,14 @@
-import { Button } from '@cogoport/front/components/admin';
-import { useFormCogo } from '@cogoport/front/hooks';
+import { Button, Modal } from '@cogoport/components';
 import { useEffect, useState } from 'react';
 
 import getFeedbackConfig from '../../../../helpers/getFeedbackConfig';
 import SuccessModal from '../SuccessModal';
 
 import FormElements from './FormElements';
-import { Container, Footer, DislikeModal, HeaderText } from './styles';
+import styles from './styles.module.css';
 import useDislikeFeedback from './useDislikeFeedback';
+
+import { useForm } from '@/packages/forms';
 
 function DislikeFeedbackModal({ details, rate, updateRate, show, onClose }) {
 	const [showSuccess, setShowSuccess] = useState(false);
@@ -15,13 +16,13 @@ function DislikeFeedbackModal({ details, rate, updateRate, show, onClose }) {
 	const controls = getFeedbackConfig(rate.service_type);
 
 	const {
-		fields,
 		handleSubmit,
 		formState: { errors },
 		watch,
 		reset,
+		control,
 		setValue,
-	} = useFormCogo(controls);
+	} = useForm();
 
 	const formValues = watch();
 
@@ -113,7 +114,7 @@ function DislikeFeedbackModal({ details, rate, updateRate, show, onClose }) {
 	return (
 		<>
 			{show ? (
-				<DislikeModal
+				<Modal
 					position="bottom-right"
 					className="md"
 					show={show}
@@ -121,17 +122,17 @@ function DislikeFeedbackModal({ details, rate, updateRate, show, onClose }) {
 					onOuterClick={onClose}
 					styles={{ dialog: { paddingBottom: 0 } }}
 				>
-					<Container onSubmit={handleSubmit(onSubmit)}>
-						<HeaderText>Reason for dislike</HeaderText>
+					<div className={styles.container} onSubmit={handleSubmit(onSubmit)}>
+						<div className={styles.header_text}>Reason for dislike</div>
 
 						<FormElements
 							showElements={showElements}
 							formValues={formValues}
-							fields={fields}
+							fields={control}
 							errors={errors}
 						/>
 
-						<Footer>
+						<div className={styles.footer}>
 							<Button
 								disabled={loading}
 								style={{ marginRight: 8 }}
@@ -144,9 +145,9 @@ function DislikeFeedbackModal({ details, rate, updateRate, show, onClose }) {
 							<Button type="submit" disabled={loading} className="primary sm">
 								SUBMIT
 							</Button>
-						</Footer>
-					</Container>
-				</DislikeModal>
+						</div>
+					</div>
+				</Modal>
 			) : null}
 
 			<SuccessModal

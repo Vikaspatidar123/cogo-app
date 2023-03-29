@@ -1,32 +1,30 @@
-import { Skeleton } from '@cogoport/front/components/admin';
+import { Placeholder } from '@cogoport/components';
 
-import { GrayLine } from '../AddLineItems/styles';
-
-import { Container, DetailCon, Details, BtnCon } from './styles';
+import styles from './styles.module.css';
 
 const array = new Array(2).fill(0);
 
 function Loader() {
 	return (
-		<Container>
+		<div className={styles.container}>
 			{array.map(() => (
-				<DetailCon>
-					<Skeleton height="20px" width="200px" />
+				<div className={styles.detail_icon}>
+					<Placeholder height="20px" width="200px" />
 
-					<Details>
-						<Skeleton height="30px" width="150px" />
-						<Skeleton height="30px" width="150px" />
-						<Skeleton height="30px" width="150px" />
-						<Skeleton height="30px" width="150px" />
-						<Skeleton height="30px" width="150px" />
-					</Details>
-					<GrayLine />
-					<BtnCon>
-						<Skeleton height="30px" width="100px" />
-					</BtnCon>
-				</DetailCon>
+					<div className={styles.details}>
+						<Placeholder height="30px" width="150px" />
+						<Placeholder height="30px" width="150px" />
+						<Placeholder height="30px" width="150px" />
+						<Placeholder height="30px" width="150px" />
+						<Placeholder height="30px" width="150px" />
+					</div>
+					<div />
+					<div className={styles.btn_icon}>
+						<Placeholder height="30px" width="100px" />
+					</div>
+				</div>
 			))}
-		</Container>
+		</div>
 	);
 }
 

@@ -1,12 +1,13 @@
-import Layout from '@cogo/business-modules/form/Layout';
-import { Button } from '@cogoport/front/components/admin';
-import { useFormCogo } from '@cogoport/front/hooks';
+import { Button, Modal } from '@cogoport/components';
 import { useEffect } from 'react';
 
 import commonControls from './controls';
 import getPriorityAirlineOptions from './getPriorityAirlineOptions';
-import { Container, Footer, DislikeModal, HeaderText, Body } from './styles';
+import styles from './styles.module.css';
 import useRequestForRate from './useRequestForRate';
+
+import getField from '@/packages/forms/Controlled';
+import useForm from '@/packages/store';
 
 function FeedBackModal({
 	onClose,
@@ -15,15 +16,15 @@ function FeedBackModal({
 	requestService,
 	proceeedWithFeedback = true,
 }) {
-	const { priorityAirlineOptions, airlineOptions } =		getPriorityAirlineOptions();
+	const { priorityAirlineOptions, airlineOptions } = getPriorityAirlineOptions();
 	const initialControls = commonControls({ airlineOptions });
-	const controls =		initialControls[requestService?.service_type || details?.service_type];
+	const controls = initialControls[requestService?.service_type || details?.service_type];
 	const {
-		fields,
+		control,
 		handleSubmit,
 		formState: { errors },
 		reset,
-	} = useFormCogo(controls);
+	} = useForm();
 	const { loading, onSubmitFeedback } = useRequestForRate({
 		onClose,
 		reset,
@@ -42,7 +43,7 @@ function FeedBackModal({
 	}, []);
 
 	return (
-		<DislikeModal
+		<Modal
 			position="bottom-right"
 			className="md"
 			show={show}
@@ -50,35 +51,46 @@ function FeedBackModal({
 			onOuterClick={onClose}
 			styles={{ dialog: { paddingBottom: 0 } }}
 		>
+
 			{proceeedWithFeedback ? (
-				<Container onSubmit={handleSubmit(onSubmit)}>
-					<HeaderText>Rate Market Intelligence</HeaderText>
+				<form>
+					<div className={styles.container} onSubmit={handleSubmit(onSubmit)}>
+						<div className={styles.header_text}>Rate Market Intelligence</div>
 
-					<Layout
-						fields={fields}
-						controls={controls}
-						errors={errors}
-						themeType="admin"
-					/>
+						{controls.map((item) => {
+							const Element = getField(item.type);
+							return (
+								<div className={styles.field}>
+									<div className={styles.lable}>{item.labelShow}</div>
+									<Element {...item} control={control} />
+									{errors && (
+										<div className={styles.errors}>
+											{errors[item?.name]?.message}
+										</div>
+									)}
+								</div>
+							);
+						})}
 
-					<Footer>
-						<Button
-							style={{ marginRight: 8 }}
-							className="secondary sm"
-							onClick={onClose}
-						>
-							CANCEL
-						</Button>
+						<div className={styles.footer}>
+							<Button
+								style={{ marginRight: 8 }}
+								className="secondary sm"
+								onClick={onClose}
+							>
+								CANCEL
+							</Button>
 
-						<Button disabled={loading} type="submit" className="primary sm">
-							SUBMIT
-						</Button>
-					</Footer>
-				</Container>
+							<Button disabled={loading} type="submit" className="primary sm">
+								SUBMIT
+							</Button>
+						</div>
+					</div>
+				</form>
 			) : (
-				<Container>
-					<HeaderText>Add The Mandatory Additional Services First</HeaderText>
-					<Body>
+				<div className={styles.container}>
+					<div className={styles.header_text}>Add The Mandatory Additional Services First</div>
+					<div className={styles.body}>
 						<li>
 							The Services Include:-
 							<ul>Origin Transportation</ul>
@@ -88,10 +100,11 @@ function FeedBackModal({
 								<ul>Origin Air Customs</ul>
 							)}
 						</li>
-					</Body>
-				</Container>
+					</div>
+				</div>
 			)}
-		</DislikeModal>
+
+		</Modal>
 	);
 }
 export default FeedBackModal;

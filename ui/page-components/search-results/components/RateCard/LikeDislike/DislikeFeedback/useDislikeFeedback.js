@@ -1,17 +1,17 @@
-import { useRequest } from '@cogo/commons/hooks';
-import { useSelector } from '@cogo/store';
-import { toast } from '@cogoport/front/components';
+import { Toast } from '@cogoport/components';
+
+import { useRequest } from '@/packages/request';
+import { useSelector } from '@/packages/store';
 
 const useDislikeFeedback = ({ reset, details, rate, updateRate, onClose }) => {
 	const {
-		general: { query = {}, scope },
+		general: { query = {} },
 	} = useSelector((state) => state);
 
 	const { search_id = '' } = query;
 
 	const freight = rate.service_type;
 
-	const url = '/create_spot_search_rate_feedback';
 	const keysToSend = {
 		fcl_freight     : 'preferred_freight_rate',
 		ftl_freight     : 'preferred_freight_rate',
@@ -36,7 +36,14 @@ const useDislikeFeedback = ({ reset, details, rate, updateRate, onClose }) => {
 		haulage_freight : 'preferred_freight_rate_currency',
 		trailer_freight : 'preferred_freight_rate_currency',
 	};
-	const { loading, trigger } = useRequest('post', false, scope)(url);
+
+	const [{ loading }, trigger] = useRequest(
+		{
+			url    : 'create_spot_search_rate_feedback',
+			method : 'post',
+		},
+		{ manual: true },
+	);
 
 	const onSubmitFeedback = async (values = {}) => {
 		const keyToSend = keysToSend[freight];
@@ -78,7 +85,7 @@ const useDislikeFeedback = ({ reset, details, rate, updateRate, onClose }) => {
 				reset();
 			}
 		} catch (err) {
-			toast.error('Something went wrong');
+			Toast.error('Something went wrong');
 		}
 	};
 

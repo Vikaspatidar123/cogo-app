@@ -1,5 +1,3 @@
-import ContainerInfo from '@cogo/app-search/common/ContainerInfo';
-import getLocationInfo from '@cogo/business-modules/helpers/locations-search';
 import { Checkbox, Tooltip, Button } from '@cogoport/components';
 import {
 	IcCTick,
@@ -10,10 +8,12 @@ import {
 } from '@cogoport/icons-react';
 import React, { useState } from 'react';
 
+import ContainerInfo from '../../../ContractRateCard/PersonalisedRatesList/ContainerInfo';
 import MAPPING from '../../../Info/icons-services-mapping';
 
 import enquiryLocations from './enquiry-locations';
 import { renderItem } from './Item';
+import getLocationInfo from './locations-search';
 import styles from './styles.module.css';
 
 const mainServices = ['fcl_freight', 'lcl_freight', 'air_freight'];
@@ -119,7 +119,6 @@ function Service({
 				role="presentation"
 				className={styles.container}
 				onClick={results_type === 'rfq' ? null : handleClick}
-				marginBottom={isOpen ? 0 : 16}
 			>
 				<div style={{ display: 'flex' }}>
 					<div className={styles.icon_container}>

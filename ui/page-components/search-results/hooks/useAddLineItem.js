@@ -1,30 +1,28 @@
-import { useRequest } from '@cogo/commons/hooks';
-import { useSelector } from '@cogo/store';
-import { toast } from '@cogoport/front/components';
-import { useFormCogo } from '@cogoport/front/hooks';
+import { Toast } from '@cogoport/components';
 
 import getControls from '../utils/lineItemControls';
 
-const useAddLineItem = ({ service, spotBookingDetails, getCheckout }) => {
-	const { scope } = useSelector(({ general }) => ({
-		scope: general?.scope,
-	}));
+import { useForm } from '@/packages/forms';
+import { useRequest } from '@/packages/request';
 
+const useAddLineItem = ({ service, spotBookingDetails, getCheckout }) => {
 	const controls = getControls();
 
-	const updateCheckoutCustomizeQuotation = useRequest(
-		'post',
-		false,
-		scope,
-	)('/update_checkout_customize_quotation');
+	const [{ loading }, updateCheckoutCustomizeQuotation] = useRequest(
+		{
+			url    : 'update_checkout_customize_quotation',
+			method : 'post',
+		},
+		{ manual: true },
+	);
 
 	const {
-		fields,
+		control,
 		handleSubmit,
 		watch,
 		setValue,
 		formState: { errors },
-	} = useFormCogo(controls);
+	} = useForm();
 
 	const handleSave = async (values) => {
 		const service_id = service?.id;
@@ -56,7 +54,7 @@ const useAddLineItem = ({ service, spotBookingDetails, getCheckout }) => {
 				data: body,
 			});
 			if (!res.hasError) {
-				toast.success('Line Item(s) Added Successfully');
+				Toast.success('Line Item(s) Added Successfully');
 				getCheckout.trigger({
 					params: {
 						id             : spotBookingDetails?.checkout_id,
@@ -66,7 +64,7 @@ const useAddLineItem = ({ service, spotBookingDetails, getCheckout }) => {
 			}
 		} catch (err) {
 			const error_message = Object.values(err?.data || {});
-			toast.error(error_message[0]);
+			Toast.error(error_message[0]);
 		}
 	};
 
@@ -85,7 +83,7 @@ const useAddLineItem = ({ service, spotBookingDetails, getCheckout }) => {
 				data: body,
 			});
 			if (!res.hasError) {
-				toast.success('Line Item Deleted Successfully');
+				Toast.success('Line Item Deleted Successfully');
 				getCheckout.trigger({
 					params: {
 						id             : spotBookingDetails?.checkout_id,
@@ -95,20 +93,20 @@ const useAddLineItem = ({ service, spotBookingDetails, getCheckout }) => {
 			}
 		} catch (err) {
 			const error_message = Object.values(err?.data || {});
-			toast.error(error_message[0]);
+			Toast.error(error_message[0]);
 		}
 	};
 
 	return {
 		errors,
 		controls,
-		fields,
+		control,
 		handleSubmit,
 		watch,
 		setValue,
 		handleSave,
 		deleteLineItem,
-		loading: updateCheckoutCustomizeQuotation?.loading,
+		loading,
 	};
 };
 

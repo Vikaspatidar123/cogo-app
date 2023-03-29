@@ -1,17 +1,15 @@
-import domesticServices from '@cogo/app-search/configurations/domestic-services.json';
-import getConfiguration from '@cogo/app-search/utils/getConfiguration';
-import MAPPING from '@cogo/app-search/utils/icons';
-import { trackEvent } from '@cogo/commons/analytics';
-import { PARTNER_EVENT } from '@cogo/commons/analytics/constants';
-import { useRequest } from '@cogo/commons/hooks';
-import { useSelector } from '@cogo/store';
-import isEmpty from '@cogo/utils/isEmpty';
-import showErrorsInToast from '@cogo/utils/showErrorsInToast';
-import startCase from '@cogo/utils/startCase';
-import { toast } from '@cogoport/front/components';
+import { Toast } from '@cogoport/components';
+import { isEmpty, startCase } from '@cogoport/utils';
 import { useState, useEffect } from 'react';
 
+import { trackEvent } from '../../discover_rates/common/analytics';
+import { PARTNER_EVENT } from '../../discover_rates/common/analytics/constants';
+import getConfiguration from '../../discover_rates/common/SearchForm/utils/getConfiguration';
+import domesticServiceDetails from '../../discover_rates/configurations/search/domestic/domestic-service-details';
+import MAPPING from '../components/Info/icons-services-mapping';
 import isServiceTaken from '../helpers/isServiceTaken';
+
+import { useRequest } from '@/packages/request';
 
 const track = ({
 	search_type,
@@ -78,26 +76,27 @@ const useEnquiry = ({
 	formData,
 	results_type,
 }) => {
-	const { scope, isMobile } = useSelector(({ general }) => ({
-		scope    : general?.scope,
-		isMobile : general?.isMobile,
-	}));
+	const [{ loading }, createEnquiryApi] = useRequest(
+		{
+			url    : 'update_spot_search',
+			method : 'post',
+		},
+		{ manual: true },
+	);
 
-	const createEnquiryApi = useRequest('post', false, scope, {
-		autoCancel: false,
-	})('/update_spot_search');
-
-	const createEnquiries = useRequest(
-		'post',
-		false,
-		scope,
-	)('/create_spot_search_negotiation');
+	const [{ loading: createLoading }, createEnquiries] = useRequest(
+		{
+			url    : 'create_spot_search_negotiation',
+			method : 'post',
+		},
+		{ manual: true },
+	);
 
 	const [isLoading, setIsLoading] = useState(false);
 	const [negoServices, setNegoServices] = useState({});
 	const [selectedService, setSelectedService] = useState(null);
 	const { search_type, inco_term, service_details, service_type } = detail;
-	const domesticService = domesticServices.includes(search_type);
+	const domesticService = domesticServiceDetails.includes(search_type);
 	const serviceDetails = getConfiguration('service-details', search_type) || {};
 	const rawConfig = getConfiguration('services', search_type);
 	const location = { origin: null, destination: null };
@@ -169,7 +168,7 @@ const useEnquiry = ({
 		setFormData(tempForFormData);
 		setApiData(tempForApiData);
 
-		toast.success('Service excluded from enquiry creation');
+		Toast.success('Service excluded from enquiry creation');
 	};
 
 	const config = domesticService
@@ -280,11 +279,6 @@ const useEnquiry = ({
 		}
 	}, []);
 
-	let widthCondition = 850;
-	if (isMobile) {
-		widthCondition = '100%';
-	}
-
 	const [notSelectedServices, setNotSelectedServices] = useState([
 		...(mainServices || []),
 		...(originServices || []),
@@ -307,7 +301,7 @@ const useEnquiry = ({
 				? `${startCase(mapped.tag)}`
 				: `${service?.isOrigin ? 'origin' : 'destination'} ${startCase(
 					mapped.tag,
-				  )}`;
+				)}`;
 			if (
 				service?.service?.includes(value.toLowerCase())
 				|| heading.toLowerCase().includes(value.toLowerCase())
@@ -346,7 +340,7 @@ const useEnquiry = ({
 			];
 		});
 		if (!check) {
-			toast.error('Please select atleast one service !');
+			Toast.error('Please select atleast one service !');
 			setIsLoading(false);
 			return;
 		}
@@ -420,19 +414,19 @@ const useEnquiry = ({
 			const res = await createEnquiries.trigger({ data: requiredPayload });
 			if (!res?.hasError) {
 				setIsLoading(false);
-				toast.success('Enquiry Created Successfully !');
+				Toast.success('Enquiry Created Successfully !');
 				refetch();
 			} else {
-				toast.error('Something went wrong !');
+				Toast.error('Something went wrong !');
 				setIsLoading(false);
 			}
 		} catch (err) {
 			setIsLoading(false);
 			// eslint-disable-next-line no-console
 			if (err?.data) {
-				toast.error(JSON.stringify(err?.data));
+				Toast.error(JSON.stringify(err?.data));
 			} else {
-				toast.error(err?.message);
+				Toast.error(err?.message);
 			}
 		}
 	};
@@ -442,7 +436,7 @@ const useEnquiry = ({
 			!datePickerValue
 			&& rfqSellingDateServices.includes(detail?.search_type)
 		) {
-			toast.error('Sailing date is required!');
+			Toast.error('Sailing date is required!');
 			return;
 		}
 		const expectedDateName = mappingCargoDate[service_type];
@@ -465,12 +459,12 @@ const useEnquiry = ({
 			const res = await createEnquiryApi.trigger({ data: payloadRfq });
 			setIsLoading(false);
 			if (!res.hasError) {
-				toast.success('Created Enquiry');
+				Toast.success('Created Enquiry');
 				refetch();
 			}
 		} catch (err) {
 			setIsLoading(false);
-			showErrorsInToast(err.data);
+			Toast.error(err.data);
 		}
 	};
 	return {
@@ -488,7 +482,6 @@ const useEnquiry = ({
 		setSelectedService,
 		val,
 		setVal,
-		widthCondition,
 		handleQuerySearch,
 		notSelectedServices,
 		setAllServices,

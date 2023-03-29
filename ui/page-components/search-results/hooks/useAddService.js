@@ -1,23 +1,13 @@
-import showElementsFunc from '@cogo/app-search/common/SearchForm/utils/show-elements';
-import airControls from '@cogo/app-search/configurations/search/air/form.controls.advanced';
-import airLocalsControls from '@cogo/app-search/configurations/search/domestic/air-locals/form-controls.advanced';
-import fclCustomsControls from '@cogo/app-search/configurations/search/domestic/fcl-customs/form-controls.advanced';
-import fclLocalsControls from '@cogo/app-search/configurations/search/domestic/fcl-locals/form-controls.advanced';
-import lclLocalsControls from '@cogo/app-search/configurations/search/domestic/lcl-locals/form-controls.advanced';
-import fclControls from '@cogo/app-search/configurations/search/fcl/form-controls.advanced';
-import lclControls from '@cogo/app-search/configurations/search/lcl/form.controls.advanced';
-import formatSearch from '@cogo/app-search/utils/format-create-search';
-import formatMainServiceData from '@cogo/app-search/utils/format-main-service-data';
-import { trackEvent, APP_EVENT } from '@cogo/commons/analytics';
-import { useRequest } from '@cogo/commons/hooks';
-import { useSelector } from '@cogo/store';
-import isEmpty from '@cogo/utils/isEmpty';
-import { toast } from '@cogoport/front/components';
+import { Toast } from '@cogoport/components';
+import { isEmpty } from '@cogoport/utils';
 import { useState, useMemo, useImperativeHandle, useEffect } from 'react';
 
-import getServiceValues from '../helpers/get-service-values';
+import { APP_EVENT, trackEvent } from '../../discover_rates/common/analytics';
+import formatCreateSearch from '../utils/format-create-search';
 
 import { useForm } from '@/packages/forms';
+import { useRequest } from '@/packages/request';
+import { useSelector } from '@/packages/store';
 
 const controlsMapping = {
 	fcl_freight       : fclControls(),
@@ -55,9 +45,8 @@ const useAddService = ({
 		{ service_details: services },
 	);
 
-	const { scope, query } = useSelector(({ general }) => ({
-		scope : general?.scope,
-		query : (general || {}).query || {},
+	const { query } = useSelector(({ general }) => ({
+		query: (general || {}).query || {},
 	}));
 	const { search_id, checkout_id } = query;
 
@@ -111,20 +100,15 @@ const useAddService = ({
 		setErrors(errs);
 	};
 
-	let CreateAdditionalService = {};
-	if (!data?.checkout_id) {
-		CreateAdditionalService = useRequest(
-			'post',
-			false,
-			scope,
-		)('/create_spot_search_service');
-	} else {
-		CreateAdditionalService = useRequest(
-			'post',
-			false,
-			scope,
-		)('/create_checkout_service');
-	}
+	const apiName = !data?.checkout_id ? 'create_spot_search_service' : 'create_checkout_service';
+
+	const [{ loading }, CreateAdditionalService] = useRequest(
+		{
+			url    : `${apiName}`,
+			method : 'post',
+		},
+		{ manual: true },
+	);
 
 	useImperativeHandle(ref, () => ({ handleSubmit, onError }));
 	const formValues = watch();
@@ -136,7 +120,7 @@ const useAddService = ({
 
 		setParams(rawParams);
 
-		const payload = formatSearch(
+		const payload = formatCreateSearch(
 			rawParams,
 			search_type,
 			{ [service?.service]: true },
@@ -241,24 +225,23 @@ const useAddService = ({
 				...payload,
 				id: data?.checkout_id ? checkout_id : search_id,
 			};
-			if (scope === 'app') {
-				trackEvent(APP_EVENT.search_added_additional_service, {
-					service_name: payload.service,
-				});
-			}
+
+			trackEvent(APP_EVENT.search_added_additional_service, {
+				service_name: payload.service,
+			});
+
 			const res = await CreateAdditionalService.trigger({
 				data: payloadToSend,
 			});
 			if (!res.hasError) {
-				toast.success('Service added succesfully');
+				Toast.success('Service added succesfully');
 				onAdd();
 			} else {
-				toast.error(res?.message);
+				Toast.error(res?.message);
 			}
 			setLoading(false);
 		} catch (err) {
-			console.log(err);
-			toast.error(err?.data);
+			Toast.error(err?.data);
 			setLoading(false);
 		}
 	};
@@ -290,11 +273,15 @@ const useAddService = ({
 				setValue('export_transportation_packages', formatPackageInformation);
 			}
 		}
-	}, [params]);
+	}, [formValues?.export_transportation_packages,
+		formValues?.import_transportation_packages,
+		params, setValue,
+		showElements?.export_transportation_packages,
+		showElements?.import_transportation_packages]);
 
 	useEffect(() => {
 		setShowElementAdd(showElements);
-	}, [showElements]);
+	}, [setShowElementAdd, showElements]);
 
 	return {
 		onError,
@@ -305,6 +292,7 @@ const useAddService = ({
 		formProps,
 		addService,
 		control,
+		loading,
 	};
 };
 export default useAddService;

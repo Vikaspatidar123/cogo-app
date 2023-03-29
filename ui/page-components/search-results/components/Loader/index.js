@@ -1,48 +1,43 @@
-import { Flex } from '@cogoport/front/components';
-import { Skeleton } from '@cogoport/front/components/admin';
+import { Placeholder } from '@cogoport/components';
 import React from 'react';
 
-import { Container, Card, LineVrt, FlexDisplay } from './styles';
+import styles from './styles.module.css';
 
-function Loader({ isMobile = false, scope = '' }) {
+function Loader() {
 	return (
-		<Container className={scope === 'app' ? 'app' : ''}>
-			<Card>
-				<Flex display="block" flex={1}>
-					<Skeleton
-						width={isMobile ? '250px' : '540px'}
+		<div className={styles.container}>
+			<div className={styles.card}>
+				<div style={{ display: 'flex', flex: '1' }}>
+					<Placeholder
+						width="540px"
 						height="40px"
-						style={
-						isMobile
-							? { margin: '20px auto 20px auto' }
-							: { margin: '30px 30px 20px 30px' }
-					}
+						style={{ margin: '30px 30px 20px 30px' }}
 					/>
 
-					<Skeleton width="200px" height="30px" style={{ margin: 'auto' }} />
+					<Placeholder width="200px" height="30px" style={{ margin: 'auto' }} />
 
-					<LineVrt className="horizontal" />
+					<div className={`${styles.line_vrt} ${styles.horizontal}`} />
 
-					<Skeleton width="200px" style={{ margin: '10px 0px 10px 20px' }} />
-				</Flex>
+					<Placeholder width="200px" style={{ margin: '10px 0px 10px 20px' }} />
+				</div>
 
-				<FlexDisplay>
-					<LineVrt />
+				<div className={styles.flex_display}>
+					<div className={styles.line_vrt} />
 
-					<Flex display="block" flex={1} style={{ margin: 'auto' }}>
-						{!isMobile && <Skeleton width="160px" style={{ margin: 'auto' }} />}
+					<div style={{ margin: 'auto', display: 'flex', flex: '1' }}>
+						<Placeholder width="160px" style={{ margin: 'auto' }} />
 
-						<Skeleton
+						<Placeholder
 							width="160px"
 							height="44px"
 							style={{ margin: 'auto', marginTop: '30px', marginBottom: '20px' }}
 						/>
 
-						{!isMobile && <Skeleton width="160px" style={{ margin: 'auto' }} />}
-					</Flex>
-				</FlexDisplay>
-			</Card>
-		</Container>
+						<Placeholder width="160px" style={{ margin: 'auto' }} />
+					</div>
+				</div>
+			</div>
+		</div>
 	);
 }
 

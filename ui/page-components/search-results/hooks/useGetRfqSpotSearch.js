@@ -1,16 +1,22 @@
-import { useRequest } from '@cogo/commons/hooks';
-import useGetInfiniteList from '@cogo/commons/hooks/useGetInfiniteList';
-import { useSelector } from '@cogo/store';
+import useGetInfiniteList from './useGetInfiniteList';
+
+import { useRequest } from '@/packages/request';
+import { useSelector } from '@/packages/store';
 
 const useGetRfqSpotSearches = (id, serialId) => {
-	const { scope, authorizationparameters } = useSelector(
-		({ general, profile }) => ({
-			scope                   : general.scope,
-			authorizationparameters : profile?.authorizationparameters,
+	const { authorizationparameters } = useSelector(
+		({ profile }) => ({
+			authorizationparameters: profile?.authorizationparameters,
 		}),
 	);
 
-	const { trigger } = useRequest('get', false, scope)('/get_rfq_search');
+	const [{ loading }, trigger] = useRequest(
+		{
+			url    : 'get_rfq_search',
+			method : 'get',
+		},
+		{ manual: true },
+	);
 
 	const listAPi = (restFilters) => {
 		const appliedFilters = {};
@@ -29,7 +35,6 @@ const useGetRfqSpotSearches = (id, serialId) => {
 	};
 
 	const {
-		loading,
 		filters,
 		list: { fullResponse },
 		hookSetters,

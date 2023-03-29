@@ -1,10 +1,9 @@
 import getLocationInfo from '@cogo/business-modules/helpers/locations-search';
-import isEmpty from '@cogo/utils/isEmpty';
-import { Flex } from '@cogoport/front/components';
+import { isEmpty } from '@cogoport/utils';
 import React from 'react';
 
 import ShippingLine from './ShippingLine';
-import { Container, Circle, Line, RouteContainer, Location } from './styles';
+import styles from './styles.module.css';
 
 const pick_services = ['trailer_freight', 'ftl_freight', 'ltl_freight'];
 
@@ -81,7 +80,7 @@ function Route({
 	const originPickupData = !isEmpty(uniq_origin_pickup)
 		? (origin_services || []).filter(
 			(item) => item.service_type === (uniq_origin_pickup || [])[0],
-		  )
+		)
 		: null;
 
 	const destinationPickup = (
@@ -91,7 +90,7 @@ function Route({
 	const destinationPickupData = !isEmpty(uniq_destination_pickup)
 		? (destination_services || []).filter(
 			(item) => item.service_type === (uniq_destination_pickup || [])[0],
-		  )
+		)
 		: null;
 
 	const show = !isEmpty(data?.shipping_line) || !isEmpty(data?.airline);
@@ -102,7 +101,7 @@ function Route({
 	};
 
 	return (
-		<Container>
+		<div className={styles.container}>
 			<ShippingLine
 				show={show}
 				showLogo={showLogo}
@@ -110,100 +109,99 @@ function Route({
 				isMobile={isMobile}
 			/>
 
-			<RouteContainer>
-				<Flex display="block" style={{ width: '100%' }}>
-					<Flex style={{ width: '100%' }}>
-						<Circle className={!isEmpty(originPickup) ? null : 'inactive'} />
-						<Line
+			<div className={sytles.route_container}>
+				<div style={{ width: '100%', display:'flex' }}>
+					<div style={{ width: '100%' , display:'flex' }}>
+						<div className={styles.circle} className={!isEmpty(originPickup) ? null : 'inactive'} />
+						<div className={styles.line}
 							className={!isEmpty(originPickup) ? null : 'inactive'}
 							style={{ width: '100%' }}
 						/>
-					</Flex>
+					</div>
 
 					{!isEmpty(originPickup) ? (
-						<Location>
+						<div className={styles.location}>
 							{(originPickupData || [])[0]?.origin_location?.name}
-						</Location>
+						</div>
 					) : null}
-				</Flex>
+				</div>
 
 				{originIcd ? (
-					<Flex display="block" style={{ width: '100%', marginLeft: '-4px' }}>
-						<Flex style={{ width: '100%' }}>
-							<Circle />
-							<Line
+					<div style={{ display:'flex', width: '100%', marginLeft: '-4px' }}>
+						<div style={{ width: '100%', display:'flex' }}>
+							<div className={styles.circle} />
+							<div className={styles.line}
 								style={{ width: '100%' }}
 								className={isOriginHaulageRates ? 'rates' : 'inactive'}
 							/>
-						</Flex>
-						<Location>
+						</div>
+						<div className={styles.location}>
 							{details?.origin_port?.port_code || details?.port?.port_code}
-						</Location>
-					</Flex>
+						</div>
+					</div>
 				) : null}
 
 				{origin ? (
-					<Flex
-						display="block"
+					<div
+						display="flex"
 						style={
 							results_type === 'rfq'
 								? { marginLeft: '-30px' }
 								: { marginLeft: '-9px' }
 						}
 					>
-						<Flex>
-							<Circle className="main" />
-							<Line
-								className={destination ? 'main' : 'inactive'}
+						<div style={{display:'flex'}}>
+							<div className={`${styles.circle} ${styles.main}`} />
+							<div className={`${styles.line} ${destination ? 'main' : 'inactive'}`}
 								style={{ width: '15px' }}
 							/>
-						</Flex>
+						</div>
 
-						<Location className="main">
+						<div className={`${styles.Location} ${styles.main}`}>
 							{origin?.port_code || origin?.name}
-						</Location>
-					</Flex>
+						</div>
+					</div>
 				) : null}
 
 				{destination || origin ? (
-					<Flex display="block" style={{ width: '100%', ...customMargin }}>
-						<Flex>
+					<div style={{ display:'flex', width: '100%', ...customMargin }}>
+						<div style={{display:'flex'}}>
 							{destination?.port_code || destination?.postal_code ? (
-								<Circle className="main" />
+									<div className={`${styles.circle} ${styles.main}`} />
 							) : null}
 
-							<Line
-								className={
-									destinationIcd || !isEmpty(destinationPickup)
-										? null
-										: 'inactive'
-								}
+							<div 
+							className={`${styles.line} ${destinationIcd || !isEmpty(destinationPickup)
+								? null
+								: 'inactive'
+						    }}`}				
 								style={{ width: '100%' }}
 							/>
-						</Flex>
+						</div>
 
-						<Location className="main">
+						<div className={`${styles.Location} ${styles.main}`}>
 							{destination?.port_code || destination?.name}
-						</Location>
-					</Flex>
+						</div>
+					</div>
 				) : null}
 
 				{destinationIcd ? (
-					<Flex display="block" style={{ width: '100%', marginLeft: '-4px' }}>
-						<Flex>
-							<Circle />
-							<Line
+					<div style={{ display:'flex', width: '100%', marginLeft: '-4px' }}>
+						<div style={{display:'flex'}}>
+							<div className={styles.circle} />
+							<div 
+							className={`${styles.line} ${!isEmpty(destinationPickup) ? null : 'inactive'} ${}`}
 								className={`${
 									!isEmpty(destinationPickup) ? null : 'inactive'
 								} ${isDestinationHaulageRates ? 'rates' : ''}`}
 								style={{ width: '100%' }}
 							/>
-						</Flex>
+						</div>
 
-						<Location style={{ textAlign: 'end' }}>
+						<div className={styles.Location} style={{ textAlign: 'end' }}>
 							{details?.destination_port?.port_code || details?.port?.port_code}
-						</Location>
-					</Flex>
+						</div>
+					</div>
 				) : null}
 
 				{/* {mapping2.includes(details?.search_type) &&
@@ -218,17 +216,17 @@ function Route({
 					</Flex>
 				) : null} */}
 
-				<Flex display="block" style={{ marginLeft: '-4px' }}>
-					<Circle className={!isEmpty(destinationPickup) ? null : 'inactive'} />
+				<div  style={{display:'flex' , marginLeft: '-4px' }}>
+					<div  className={`${styles.circle} ${!isEmpty(destinationPickup) ? null : 'inactive'}`} />
 
 					{!isEmpty(destinationPickup) ? (
-						<Location>
+						<div className={styles.location}>
 							{(destinationPickupData || [])[0]?.destination_location?.name}
-						</Location>
+						</div>
 					) : null}
-				</Flex>
-			</RouteContainer>
-		</Container>
+				</div>
+			</div>
+		</div>
 	);
 }
 

@@ -1,28 +1,27 @@
-import { useRequest } from '@cogo/commons/hooks';
-import showErrorsInToast from '@cogo/utils/showErrorsInToast';
-import startCase from '@cogo/utils/startCase';
-import { Button, toast } from '@cogoport/front/components';
-import React, { useState } from 'react';
+import { Toast, Button } from '@cogoport/components';
+import { startCase } from '@cogoport/utils';
 
-import { Container, ButtonWrap } from './styles';
+import styles from './styles.module.css';
+
+import { useRequest } from '@/packages/request';
 
 function NoRatesServicesConfirmation({
 	noRatesArr = [],
 	setConfirmation = () => {},
 	data = {},
-	scope = '',
 	search_id = '',
 	refetch = () => {},
 }) {
-	const [loading, setLoading] = useState(false);
 	const uniq_services = [...new Set(noRatesArr)];
 	const count = (uniq_services || []).length;
 
-	const updateSpotSearchApi = useRequest(
-		'post',
-		false,
-		scope,
-	)('/update_spot_search');
+	const [{ loading }, updateSpotSearchApi] = useRequest(
+		{
+			url    : 'update_spot_search',
+			method : 'post',
+		},
+		{ manual: true },
+	);
 
 	const rates = Object.keys(data?.service_rates).map((item) => ({
 		id: item,
@@ -30,8 +29,6 @@ function NoRatesServicesConfirmation({
 	}));
 
 	const handleDeleteService = async () => {
-		setLoading(true);
-
 		const services_params = {};
 		(rates || []).forEach((item) => {
 			if (!item?.is_rate_available) {
@@ -51,17 +48,14 @@ function NoRatesServicesConfirmation({
 			const res = await updateSpotSearchApi.trigger({ data: payload });
 
 			if (!res.hasError) {
-				setLoading(false);
 				setConfirmation(false);
-				toast.success('Services have been removed');
+				Toast.success('Services have been removed');
 				refetch();
 			}
 		} catch (err) {
-			setLoading(false);
 			setConfirmation(false);
-			showErrorsInToast(err?.data);
+			Toast.error(err?.data);
 		}
-		setLoading(false);
 	};
 
 	const handleServiceName = (service) => {
@@ -78,7 +72,7 @@ function NoRatesServicesConfirmation({
 		: handleServiceName(uniq_services[0]);
 
 	return (
-		<Container>
+		<div>
 			<h3>
 				{`Rates are not available for ${
 					count > 1 ? 'these services' : 'this service'
@@ -91,7 +85,7 @@ function NoRatesServicesConfirmation({
 				} will be removed if you proceed. Are you sure you want to continue?`}
 			</h4>
 
-			<ButtonWrap>
+			<div className={styles.button_wrap}>
 				<Button
 					onClick={() => setConfirmation(false)}
 					style={{ marginRight: '20px', background: 'none', color: '#000000' }}
@@ -103,8 +97,8 @@ function NoRatesServicesConfirmation({
 				<Button onClick={() => handleDeleteService()} disabled={loading}>
 					Proceed
 				</Button>
-			</ButtonWrap>
-		</Container>
+			</div>
+		</div>
 	);
 }
 

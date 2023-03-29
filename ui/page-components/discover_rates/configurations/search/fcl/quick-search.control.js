@@ -19,12 +19,12 @@ const controls = [
 				rules : { min: 1, max: 10000, required: 'Containers count is required' },
 			},
 			{
-				label          : 'Container Size',
-				name           : 'container_size',
-				type           : 'chips',
-				span           : 12,
-				optionsListKey : 'container-sizes',
-				rules          : { required: 'Containers size is required' },
+				label     : 'Container Size',
+				name      : 'container_size',
+				type      : 'chips',
+				span      : 12,
+				optionKey : 'container-sizes',
+				rules     : { required: 'Containers size is required' },
 			},
 			{
 				label         : 'Container Type',
@@ -33,10 +33,10 @@ const controls = [
 				span          : 12,
 				controlFields : {
 					container_type: {
-						label          : 'Container Type',
-						name           : 'container_type',
-						type           : 'chips',
-						optionsListKey : 'container-types',
+						label     : '',
+						name      : 'container_type',
+						type      : 'chips',
+						optionKey : 'container-types',
 					},
 					commodity: {
 						label          : 'Select Commodity',
@@ -53,7 +53,7 @@ const controls = [
 				name        : 'cargo_weight_per_container',
 				placeholder : 'between 0 to 30 metric tonnes',
 				type        : 'number',
-				span        : 12,
+				style       : { width: '80%' },
 				rules       : { min: 0.1, max: 30, required: 'Cargo Weight is required' },
 			},
 		],

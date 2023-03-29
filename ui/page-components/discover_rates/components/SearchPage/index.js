@@ -42,7 +42,6 @@ function SearchPage() {
 			{kyc_status === 'pending_from_user' || kyc_status === 'rejected' ? (
 				<KycBenefits />
 			) : null}
-
 			{quotaLoading && blockSearch ? <NoSearch /> : <PastResults />}
 		</div>
 	);

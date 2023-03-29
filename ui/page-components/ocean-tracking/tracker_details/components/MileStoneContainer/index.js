@@ -1,41 +1,14 @@
-// import { Flex, Text } from '@cogoport/front/components';
-// import React, { useState, Fragment, useEffect } from 'react';
 import { Placeholder } from '@cogoport/components';
-import { Button } from '@cogoport/components';
 import { IcAShipAmber, IcMShare } from '@cogoport/icons-react';
 import { useState, useEffect } from 'react';
 
-// import ContainerDetailsModal from '../../../../common/components/container-details-modal';
-// import TrackerMap from '../../../../common/components/map-tracking';
-// import { useSaasState } from '../../../../common/context';
-// import LoadingBanner from '../../../../common/icons/loading-banner.svg';
-// import IconShare from '../../../../common/icons/share.svg';
-// import IconTridot from '../../../../common/icons/tridot-loading-animated.svg';
-// import IconTruck from '../../../../common/icons/truck.svg';
-// import IconVessel from '../../../../common/icons/vessel.svg';
-// import Button from '../../../../common/ui/Button';
-// import { INCOTERM_TO_SHIPPERS_RESPONSIBILITY } from '../../../../common/utils/constants';
 import { INCOTERM_TO_SHIPPERS_RESPONSIBILITY } from '../../common/constant';
 
 import { UNSHADED_MILESTONES } from './common/constant';
 import { processList, formatDate, formatTime, isPastOrPresentDay } from './common/utils';
 import styles from './styles.module.css';
 import TrackerMap from './TrackerMap';
-// import { UNSHADED_MILESTONES } from './common/constants';
-// import {
-// 	StyledStep,
-// 	StyledStepsContainer,
-// 	Card,
-// 	Header,
-// 	ContainersPill,
-// 	LocationText,
-// 	Circle,
-// } from './styles';
 
-// const TRANSPORT_MODE_TO_ICON = {
-// 	TRUCK  : IconTruck,
-// 	VESSEL : IconVessel,
-// };
 function MilestonesContainer({
 	handleShareModal,
 	mapLoading, trackerDetails, selectedContainer, setMapPoints, mapPoints, loading,
@@ -202,13 +175,6 @@ function MilestonesContainer({
 					</div>
 				</div>
 			</div>
-
-			{/* <ContainerDetailsModal
-				isOpen={isContainerDetailsModalOpen}
-				handleModal={handleContainerDetailsModal}
-				containersDetails={container_details}
-				containerNo={containerNo}
-			/> */}
 			{loading && <Placeholder height="500px" />}
 			{!loading && selectedMilestonesList?.length > 0 ? (
 				<div className={styles.tracking_details}>

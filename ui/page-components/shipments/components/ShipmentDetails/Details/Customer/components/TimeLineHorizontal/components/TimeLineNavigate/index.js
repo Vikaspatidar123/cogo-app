@@ -128,10 +128,10 @@ function TimelineNavigate({
 					<div className={styles.tag_title}>Tracking Information</div>
 					<div className={styles.container}>
 						{(data?.list || []).map((item) => (item?.container_details?.length !== 0 ? (
-							<div className={styles.custom_tag}
-								className={
-										currentSubscription?.id === item?.id ? 'set-tracking' : ''
-									}
+							<div
+								role="presentation"
+								className={`${styles.custom_tag} 
+                                ${currentSubscription?.id === item?.id ? styles.set_tracking : ''}`}
 								id={item.container_details[0]?.container_no}
 								onClick={(e) => handleSubscription(e)}
 								style={{
@@ -139,7 +139,7 @@ function TimelineNavigate({
 								}}
 							>
 								{item.container_details[0]?.container_no}
-							</CustomTag>
+							</div>
 						) : null))}
 					</div>
 				</div>
@@ -148,33 +148,33 @@ function TimelineNavigate({
 			{preditiveEta !== undefined
 				&& preditiveEta?.ActualArrivalTime !== null
 				&& preditiveEta?.ActualArrivalTime !== undefined && (
-					<LocationText className="blinking">
-						<Flex>
-							<Circle />
+					<div className={`${styles.location_text} ${styles.blinking}`}>
+						<div className={styles.flex}>
+							<div className={styles.circle} />
 							<div>
-								<Flex>
+								<div className={styles.flex}>
 									<b> CountryName :</b>
 									{' '}
 									{preditiveEta?.CountryName}
 									<b> | Vessel Name :</b>
 									{' '}
 									{vesselName || '-'}
-								</Flex>
-								<Flex>
+								</div>
+								<div className={styles.flex}>
 									<b> Prediction ETA : </b>
 									{formatDate({
 										date       : preditiveEta?.ScheduleArrivalTime || '-',
 										dateFormat : GLOBAL_CONSTANTS.formats.date['dd MMM yyyy'],
 										formatType : 'date',
 									})}
-								</Flex>
+								</div>
 							</div>
-						</Flex>
-					</LocationText>
+						</div>
+					</div>
 			)}
 
 			{selectedMilestonesList?.length > 0 ? (
-				<StyledStepsContainer>
+				<div className={styles.step_container}>
 					{selectedMilestonesList.map((combinedMilestones, idx) => {
 						let prefixClass = '';
 						const currentMilestone = combinedMilestones.slice(-1)[0];
@@ -227,11 +227,11 @@ function TimelineNavigate({
 
 						const unshadedLocation = `${currentMilestone.milestone} - ${currentMilestone.location}`;
 						return (
-							<StyledStep key={currentMilestone.id} id={currentMilestone.id}>
+							<div className={styles.steps} key={currentMilestone.id} id={currentMilestone.id}>
 								<div className={prefixClass}>
 									{!isLast ? (
-										<div className="tail">
-											<div className="tail-content">
+										<div className={styles.tail}>
+											<div className={styles.tail_content}>
 												{/* <Icon size={2} /> */}
 												{
 													TRANSPORT_MODE_TO_ICON[
@@ -242,25 +242,25 @@ function TimelineNavigate({
 										</div>
 									) : null}
 									{incotermStep >= idx ? (
-										<div className="incoterm-line">
+										<div className={styles.incoterm_line}>
 											{idx === 0 ? (
-												<div className="incoterm-label">
+												<div className={styles.incoterm_label}>
 													Inco:
 													{incoterm}
 												</div>
 											) : null}
 										</div>
 									) : null}
-									<div className="icon" />
+									<div className={styles.icon} />
 									<div
-										className="content"
+										className={styles.content}
 										{...(idx === 1 && {
 											'data-instructional-overlay-step': '6',
 										})}
 									>
 										{isShaded ? (
 											<>
-												<p className="heading">{currentMilestone.location}</p>
+												<p className={styles.heading}>{currentMilestone.location}</p>
 												{combinedMilestones.map((item) => {
 													const description = (
 														<Flex direction="column">
@@ -298,7 +298,7 @@ function TimelineNavigate({
 														<>
 															<p>{description}</p>
 															{isMobile && (
-																<p className="time">
+																<p className={styles.time}>
 																	{formatDate({
 																		date: item.event_date,
 																		timeFormat:
@@ -315,21 +315,21 @@ function TimelineNavigate({
 											</>
 										) : (
 											<>
-												<p className="time">{unshadedTimeHeading}</p>
-												<p className="description">{unshadedLocation}</p>
+												<p className={styles.time}>{unshadedTimeHeading}</p>
+												<p className={styles.description}>{unshadedLocation}</p>
 											</>
 										)}
 									</div>
 									{incotermStep === idx && (
-										<div className="incoterm-handover-container">
+										<div className={styles.incoterm_handover_container}>
 											<p>Handover to consignee as per incoterm</p>
 										</div>
 									)}
 								</div>
-							</StyledStep>
+							</div>
 						);
 					})}
-				</StyledStepsContainer>
+				</div>
 			) : (
 				<EmptyState />
 			)}

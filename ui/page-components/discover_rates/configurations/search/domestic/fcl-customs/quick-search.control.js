@@ -68,10 +68,10 @@ const formControlsAdvanced = [
 				span          : 12,
 				controlFields : {
 					container_type: {
-						label          : 'Container Type',
-						name           : 'container_type',
-						type           : 'chips',
-						optionsListKey : 'container-types',
+						label     : 'Container Type',
+						name      : 'container_type',
+						type      : 'chips',
+						optionKey : 'container-types',
 					},
 					commodity: {
 						label          : 'Select Commodity',

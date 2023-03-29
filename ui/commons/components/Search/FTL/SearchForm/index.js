@@ -107,13 +107,13 @@ function SearchForm(
 							<div className={styles.section}>
 								<Route
 									ref={(r) => {
-                  	                searchFormRef.current.route = r;
+                  	searchFormRef.current.route = r;
 									}}
 									origin={controls.find((x) => x.name === originControl.name)}
 									setLocation={setLocation}
 									location={location}
 									destination={controls.find(
-                  	                (x) => x.name === destinationControl.name,
+                  	(x) => x.name === destinationControl.name,
 									)}
                   // keywords={keywords}
 									error={error?.route?.errorMsg}

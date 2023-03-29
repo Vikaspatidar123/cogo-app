@@ -1,43 +1,43 @@
 import React from 'react';
 
-import getResults from '../../hooks/getResults';
+// import getResults from '../../hooks/getResults';
 
 import { Head } from '@/packages/next';
-import { useSelector } from '@/packages/store';
+// import { useSelector } from '@/packages/store';
 // import Results from '@/ui/page-components/search-results';
 
 function SearchResults() {
-	const {
-		query: { search_id, importer_exporter_id },
-		scope,
-	} = useSelector(({ general, profile }) => ({
-		query        : general.query || {},
-		scope        : general.scope,
-		organization : profile?.organization,
-	}));
+	// const {
+	// 	query: { search_id, importer_exporter_id },
+	// 	scope,
+	// } = useSelector(({ general, profile }) => ({
+	// 	query        : general.query || {},
+	// 	scope        : general.scope,
+	// 	organization : profile?.organization,
+	// }));
 
-	const {
-		headerData: initialHeaderData,
-		rates,
-		possible_subsidiary_services,
-		loading,
-		invoice,
-		refetch,
-		setState = () => {},
-		state,
-		searchData,
-		...restResults
-	} = getResults(search_id);
+	// const {
+	// 	headerData: initialHeaderData,
+	// 	rates,
+	// 	possible_subsidiary_services,
+	// 	loading,
+	// 	invoice,
+	// 	refetch,
+	// 	setState = () => {},
+	// 	state,
+	// 	searchData,
+	// 	...restResults
+	// } = getResults(search_id);
 
-	const headerData = {
-		search_type        : null,
-		rates_count        : 0,
-		negotiation_status : null,
-		expired            : false,
-		shipment_id        : null,
-		...(initialHeaderData || {}),
-		importer_exporter_id,
-	};
+	// const headerData = {
+	// 	search_type        : null,
+	// 	rates_count        : 0,
+	// 	negotiation_status : null,
+	// 	expired            : false,
+	// 	shipment_id        : null,
+	// 	...(initialHeaderData || {}),
+	// 	importer_exporter_id,
+	// };
 
 	return (
 		<>

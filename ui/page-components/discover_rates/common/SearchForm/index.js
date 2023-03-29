@@ -189,7 +189,6 @@ function Form(
 		form_id,
 		date,
 	}));
-	console.log(mode, 'modemode');
 	let cargoDetailsSpan = 3;
 	if (
 		(isSmall && !['rfq', 'contract'].includes(search_type))
@@ -395,7 +394,6 @@ function Form(
 
 							{['rfq', 'contract', 'forecast'].includes(search_type) ? null : (
 								<div
-
 									className={cl`${styles.search_form_search_btn_container_col} ${styles.search_form_section_search_btn}`}
 									style={{
                   	display        : 'flex',

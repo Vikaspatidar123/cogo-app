@@ -45,7 +45,6 @@ function SearchPage() {
 
 			{quotaLoading && blockSearch ? <NoSearch /> : <PastResults />}
 
-			<div className="g-signin2" data-onsuccess="onSignIn" />
 		</div>
 	);
 }

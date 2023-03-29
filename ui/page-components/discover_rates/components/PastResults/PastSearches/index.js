@@ -30,7 +30,6 @@ function PastSearches({ mobile = false, setPastSearchCount = () => {} }) {
 	const SetDateInStore = async () => {
 		const resp = await getRecommendedSearches();
 		const { data = {} } = resp || {};
-
 		if (!resp.hasError) {
 			dispatch(
 				setPastSearchesState({
@@ -70,7 +69,7 @@ function PastSearches({ mobile = false, setPastSearchCount = () => {} }) {
 
 	return (
 		<div className={cl`${styles[className]} ${styles.container}`}>
-			{/* {loading && <Loader mobile={mobile} />} */}
+			{loading && <Loader mobile={mobile} />}
 
 			{	(list || [])?.map((item) => (
 				<Item

@@ -149,11 +149,11 @@ function QuickSearch({ data, extraParams = {}, mobile, type, refresh }) {
 				type            : params.search_type,
 				origin          : params.origin_location.name,
 				destination     : params.destination_location.name,
-				container_count : params.containers[0].containers_count,
-				container_size  : params.containers[0].container_size,
-				container_type  : params.containers[0].container_type,
-				commodity       : params.containers[0].commodity,
-				weight          : params.containers[0].cargo_weight_per_container,
+				container_count : params.containers[0]?.containers_count,
+				container_size  : params.containers[0]?.container_size,
+				container_type  : params.containers[0]?.container_type,
+				commodity       : params.containers[0]?.commodity,
+				weight          : params.containers[0]?.cargo_weight_per_container,
 			});
 		} else if (params.search_type === 'ftl_freight') {
 			trackEvent(APP_EVENT.search_past_spot_rates, {

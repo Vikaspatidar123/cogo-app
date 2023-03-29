@@ -68,15 +68,18 @@
   overflow-y: auto;
   max-height: 110vh;
 }
-.step {
+.steps {
   position: relative;
+  display: inline-block;
+		width: 100%;
+		max-width: 800px;
 }
 .tail {
   z-index: 1;
   top: 15px;
   position: absolute;
   height: 100%;
-  width: 4px;
+  width: 3px;
   left: 18px;
   display: flex;
   flex-direction: column;

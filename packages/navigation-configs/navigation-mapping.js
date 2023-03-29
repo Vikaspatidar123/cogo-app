@@ -1,4 +1,4 @@
-// key is used to identify the navigation
+// key is used to identify the navigation is same as declear in admin side
 // title is used to show navigation title
 // href and as is also used for redirect to navigation page
 // type => if type is link then after click it will redirect to coresponding navigation
@@ -43,6 +43,17 @@ const navigationMappings = {
 				description : 'keep track of freight rates',
 			},
 			{
+				key   : 'saas_tools-air_tracking',
+				title : 'Air Tracking',
+				href  : '/v2/saas/air-tracking',
+				as    : '/v2/saas/air-tracking',
+				icon  : <img
+					src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/air-tracking.svg"
+					alt="cogo"
+				/>,
+				description: 'Track your shipment on the map in real time',
+			},
+			{
 				key   : 'saas_tools-hs_code_classification',
 				title : 'Product Classification',
 				href  : '/v2/saas/hs-classification',
@@ -52,7 +63,6 @@ const navigationMappings = {
 					alt="cogo"
 				/>,
 				description: 'Find HS Codes with detailed description',
-
 			},
 		],
 	},
@@ -75,6 +85,7 @@ const navigationMappings = {
 			},
 		],
 	},
+
 	saas_planning: {
 		key       : 'saas_planning',
 		title     : 'Planning',
@@ -148,5 +159,6 @@ const navigationMappings = {
 		type          : 'link',
 		showMobileNav : true,
 	},
+
 };
 export default navigationMappings;

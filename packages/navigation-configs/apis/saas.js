@@ -93,11 +93,6 @@ const saas = {
 			access_type  : 'private',
 			service_name : 'freight_trend',
 		},
-		{
-			api          : 'list_saas_store_quota',
-			access_type  : 'private',
-			service_name : 'saas_traceability',
-		},
 	],
 
 	app_saas_transaction_history: [
@@ -134,7 +129,53 @@ const saas = {
 		},
 	],
 
-	app_saas_load_container: [],
+	app_saas_load_container : [],
+	app_saas_tracking       : [
+
+		{
+			api          : 'create_saas_shipment_details',
+			access_type  : 'private',
+			service_name : 'saas_traceability',
+		},
+		{
+			api          : 'get_saas_container_alert',
+			access_type  : 'private',
+			service_name : 'saas_traceability',
+		},
+		{
+			api          : 'saas_get_user_quota_usage',
+			access_type  : 'private',
+			service_name : 'saas_subscriptions_v2',
+		},
+		{
+			api          : 'get_airline_from_airway_bill',
+			access_type  : 'private',
+			service_name : 'saas_traceability',
+		},
+		{
+			api          : 'create_organization_billing_address',
+			access_type  : 'private',
+			service_name : 'organization',
+		},
+		{
+			api          : 'list_organization_billing_addresses',
+			access_type  : 'private',
+			service_name : 'organization',
+		},
+	],
+
+	app_saas_map_tracking: [
+		{
+			api          : 'list_all_subscriptions',
+			access_type  : 'public',
+			service_name : 'air_tracking',
+		},
+		{
+			api          : 'get_container_sea_route',
+			access_type  : 'public',
+			service_name : 'saas_traceability',
+		},
+	],
 
 };
 export default saas;

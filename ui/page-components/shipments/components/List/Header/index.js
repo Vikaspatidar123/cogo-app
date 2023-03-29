@@ -35,6 +35,7 @@ function Header({ filters, hookSetters, config, setParams, viewAs }) {
 			<div className={styles.right}>
 				{/* <Sort setSort={setParams} sortBy={filters.sortBy} /> */}
 				<Input
+					size="md"
 					style={{ marginRight: 10 }}
 					onChange={(e) => {
 						hookSetters.setFilters({
@@ -44,8 +45,9 @@ function Header({ filters, hookSetters, config, setParams, viewAs }) {
 					}}
 					value={serial_id}
 					placeholder="Shipment ID"
+					className={styles.input}
 				/>
-				Filters
+				{/* Filters */}
 				{/* {renderFilters} */}
 			</div>
 		</div>

@@ -1,14 +1,3 @@
-// import { Tabs, TabPanel } from '@cogoport/front/components';
-// import { Pagination } from '@cogoport/front/components/admin';
-// import React, { useState } from 'react';
-
-// import useGetShipmentList from '../../../hooks/useGetShipmentList';
-// import EmptyState from '../EmptyState';
-// import Loader from '../ShipmentCard/Loader';
-
-// import Header from './Header';
-// import Item from './Item';
-// import { Container, Main, PaginationContainer } from './styles';
 import { Placeholder, Pagination, Tabs, TabPanel } from '@cogoport/components';
 import { useState } from 'react';
 
@@ -46,12 +35,9 @@ function ShipmentList() {
 
 	const renderTabPanel = () => {
 		if (loading) {
-			return <Placeholder />;
+			return <Placeholder height="150px" width="100%" margin="30px 0px 20px 0px" />;
 		}
 
-		// if (!loading && data.length === 0) {
-		// 	return <EmptyState viewAs={viewAs} />;
-		// }
 		return (
 			<div>
 				{total > 10 ? (

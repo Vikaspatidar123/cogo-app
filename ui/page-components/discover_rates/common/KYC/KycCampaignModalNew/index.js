@@ -1,6 +1,6 @@
 /* eslint-disable react/no-unescaped-entities */
 import React, { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector } from '@/packages/store';
 import { Flex, Text, BgImage } from '@cogoport/front/components';
 import { Modal } from '@cogo/deprecated_legacy/ui';
 import styled from '@cogoport/front/styled';

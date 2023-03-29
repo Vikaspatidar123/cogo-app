@@ -109,11 +109,11 @@ function Options({
 				...(weight_and_volume || {}),
 				...(container_type_commodity || {}),
 			};
-			optionFormControls.forEach((control) => {
-				if (restProps[control.name]) {
+			optionFormControls.forEach((item) => {
+				if (restProps[item.name]) {
 					restValues = {
 						...restValues,
-						[control.name]: restProps[control.name],
+						[item.name]: restProps[item.name],
 					};
 				}
 			});
@@ -128,7 +128,20 @@ function Options({
 			setShow(!show);
 		}
 	};
-
+	const handleIncotermChange = () => {
+		const incoKey = (optionFormControls || []).find(
+			(key) => key.name === 'inco_term',
+		)?.name;
+		if (incoKey && mode === 'fcl_freight') {
+			if (location?.origin?.country_code === INDIA_COUNTRY_CODE) {
+				setValue(incoKey, 'cif');
+			} else {
+				setValue(incoKey, 'fob');
+			}
+		} else if (incoKey) {
+			setValue(incoKey, '');
+		}
+	};
 	const handleModeChangeReset = () => {
 		reset();
 		handleIncotermChange();
@@ -241,21 +254,6 @@ function Options({
 		});
 		return () => subscription.unsubscribe();
 	}, [watch, mode]);
-
-	const handleIncotermChange = () => {
-		const incoKey = (optionFormControls || []).find(
-			(key) => key.name === 'inco_term',
-		)?.name;
-		if (incoKey && mode === 'fcl_freight') {
-			if (location?.origin?.country_code === INDIA_COUNTRY_CODE) {
-				setValue(incoKey, 'cif');
-			} else {
-				setValue(incoKey, 'fob');
-			}
-		} else if (incoKey) {
-			setValue(incoKey, '');
-		}
-	};
 
 	useEffect(() => {
 		if (search_type !== 'rfq' || index === 0) {

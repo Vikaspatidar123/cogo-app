@@ -38,7 +38,6 @@ function AdvancedOptions({
 	const freightControls = ['bls_count', 'bl_type'];
 
 	const incoKey = Object.keys(formValues).find((key) => key.includes('inco_term'));
-
 	return (
 		<Modal
 			show={show}

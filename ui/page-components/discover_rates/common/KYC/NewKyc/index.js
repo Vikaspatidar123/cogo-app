@@ -1,9 +1,11 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+
 import FormBody from './components/FormBody';
 import { Container } from './styles';
 
-const NewKyc = ({ onFinalSubmit, showMobile = true, text, ...rest }) => {
+import { useSelector } from '@/packages/store';
+
+function NewKyc({ onFinalSubmit, showMobile = true, text, ...rest }) {
 	const { scope, agent_id, organization, user_profile } = useSelector(({ general, profile }) => ({
 		scope        : general?.scope,
 		agent_id     : profile?.id,
@@ -36,5 +38,5 @@ const NewKyc = ({ onFinalSubmit, showMobile = true, text, ...rest }) => {
 			/>
 		</Container>
 	);
-};
+}
 export default NewKyc;

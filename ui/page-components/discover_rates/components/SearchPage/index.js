@@ -44,7 +44,6 @@ function SearchPage() {
 			) : null}
 
 			{quotaLoading && blockSearch ? <NoSearch /> : <PastResults />}
-
 		</div>
 	);
 }

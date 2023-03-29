@@ -1,5 +1,4 @@
 // import { replace } from '@cogo/i18n';
-import { Select } from '@cogoport/components';
 import { IcMPortArrow } from '@cogoport/icons-react';
 import React from 'react';
 
@@ -7,7 +6,7 @@ import React from 'react';
 
 import styles from './styles.module.css';
 
-import { SelectController, AsyncSelectController } from '@/packages/forms';
+import { AsyncSelectController } from '@/packages/forms';
 import { useSelector } from '@/packages/store';
 
 const singleLocationServices = [

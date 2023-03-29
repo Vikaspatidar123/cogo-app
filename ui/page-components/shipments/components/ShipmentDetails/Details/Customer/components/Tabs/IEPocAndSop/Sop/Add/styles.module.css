@@ -1,0 +1,36 @@
+.container{
+    padding: 22px;
+	background: #ffffff;
+	border: 1px dashed #bdbdbd;
+	border-radius: 4px;
+}
+.form_box{
+	padding-bottom: 10px;
+}
+.heading{
+	margin-bottom: 8px;
+	font-weight: 500;
+	font-size: 14px;
+	color: #4f4f4f;
+}
+.sop_heading{
+	margin-top: 16px;
+	font-weight: 500;
+	font-size: 15px;
+	color: #232323;
+}
+.sop_heading_error{
+	color: #f06d6d;
+	margin-top: 0px;
+	margin-left: 16px;
+	margin-right: 16px;
+}
+.detail_upload{
+	padding: 0;
+	margin-left: -5px;
+
+}
+.action_row{
+	display: flex;
+	justify-content: flex-end;
+}

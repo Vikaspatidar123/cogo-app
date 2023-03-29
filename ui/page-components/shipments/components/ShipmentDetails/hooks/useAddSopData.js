@@ -1,0 +1,118 @@
+import { Toast } from '@cogoport/components';
+
+import useGetSopPayload from '../../../helpers/format-sop-payload';
+
+import { useRequest } from '@/packages/request';
+import { useSelector } from '@/packages/store';
+
+const useAddSopData = ({
+	formValues,
+	api,
+	sopID,
+	originalData,
+	reload,
+	setReload = () => {},
+	setSopAddForm = () => {},
+	trade_partners_details,
+	dataFromOtherSource,
+}) => {
+	const { scope } = useSelector(({ general }) => ({
+		query : general?.query,
+		scope : general?.scope,
+	}));
+
+	let create_payload = {};
+	const apitoCall = api === 'create'
+		? '/create_shipment_operating_procedure'
+		: '/update_shipment_operating_instruction';
+	const [{ loading }, trigger] = useRequest({
+		url    : apitoCall,
+		method : 'post',
+	}, { manual: true });
+	// const { loading, trigger } = useRequest('post', false, scope)(apitoCall);
+	const { shipment_payload, booking_party_payload, status } = useGetSopPayload(
+		formValues,
+		trade_partners_details,
+		dataFromOtherSource,
+	);
+
+	if (api === 'create') {
+		create_payload =			formValues.soptype === 'for_booking_party'
+			? booking_party_payload
+			: shipment_payload;
+	}
+
+	const update_payload = [];
+	if (api === 'update') {
+		(formValues || []).forEach((row, index) => {
+			const elememt = {};
+			const instruction = row.mainData;
+			const originalInstruction = originalData[index]?.mainData;
+			let isadded = false;
+			if (originalData?.length >= index) {
+				if (instruction?.instruction !== originalInstruction?.instruction) {
+					elememt.instruction = instruction.instruction;
+					isadded = true;
+				}
+				if (instruction?.url_links !== originalInstruction?.url_links) {
+					elememt.url_links = instruction?.url_links;
+					isadded = true;
+				}
+				if (instruction.status !== originalInstruction?.status) {
+					elememt.status = instruction?.status;
+					isadded = true;
+				}
+				if (isadded) {
+					elememt.id = instruction?.id;
+					update_payload.push(elememt);
+				}
+			} else {
+				if (instruction?.instruction) {
+					elememt.instruction = instruction.instruction;
+				}
+				if (instruction?.url_links) {
+					elememt.url_links = instruction?.url_links;
+				}
+				if (instruction?.status) {
+					elememt.status = instruction?.status;
+				}
+				update_payload.push(elememt);
+			}
+		});
+	}
+
+	const payload =		api === 'create'
+		? create_payload
+		: { sop_instructions: update_payload, procedure_id: sopID };
+
+	const handleAddSop = async () => {
+		try {
+			if (status) {
+				const res = await trigger({
+					params: payload,
+				});
+				if (!res.hasError) {
+					Toast.success(' Added Succesfully');
+					setReload(!reload);
+					setSopAddForm(false);
+				} else {
+					Toast.error('Something went wrong');
+				}
+			} else {
+				Toast.info('Instruction or Attachment, atleast one is required!');
+			}
+		} catch (error) {
+			Toast.error('Something went wrong');
+		}
+	};
+
+	return {
+		loading,
+		sopID,
+		trigger,
+		handleAddSop,
+		payload,
+	};
+};
+
+export default useAddSopData;

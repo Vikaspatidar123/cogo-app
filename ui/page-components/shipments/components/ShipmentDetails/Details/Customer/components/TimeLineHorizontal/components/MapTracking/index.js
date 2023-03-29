@@ -35,7 +35,6 @@ function TrackerMap({
 		lat : a[1],
 		lng : a[0],
 	}));
-
 	let center = {};
 
 	const resetPointAndMarkers = () => {
@@ -187,7 +186,6 @@ function TrackerMap({
 			}, 0);
 		}
 	}, [markers]);
-
 	if (!isLoading && curvePoints.length > 0) {
 		center = {
 			lat : curvePoints[Math.ceil(curvePoints.length / 2)].lat,

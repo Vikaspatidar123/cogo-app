@@ -35,7 +35,7 @@ function MapComp({
 	const bounds = L.latLngBounds(corner1, corner2);
 	const curvePointLength = curvePoints.length;
 	const heightVariable = isMobile ? '300px' : height;
-
+	
 	useEffect(() => {
 		const timeout = setTimeout(() => {
 			if (map) map.invalidateSize(true);
@@ -72,7 +72,7 @@ function MapComp({
 				<Pointer
 					lat={curvePoints[0]?.lat}
 					lng={curvePoints[0]?.lng}
-					iconSvg="source"
+					iconSvg="sourceIcon"
 					map={map}
 				/>
 			)}
@@ -81,7 +81,7 @@ function MapComp({
 				<Pointer
 					lat={currentMilestone?.lat}
 					lng={currentMilestone?.lng}
-					iconSvg="current-location"
+					iconSvg="current_location"
 					map={map}
 				/>
 			)}
@@ -106,7 +106,7 @@ function MapComp({
 				<Pointer
 					lat={curvePoints[curvePointLength - 1]?.lat}
 					lng={curvePoints[curvePointLength - 1]?.lng}
-					iconSvg="destination-icon"
+					iconSvg="destinationIcon"
 					map={map}
 				/>
 			)}

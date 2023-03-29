@@ -1,13 +1,6 @@
 import { TabPanel, Tabs } from '@cogoport/components';
 import { useEffect } from 'react';
 
-// import SalesInvoice from '../../../../../Invoicing/components/IEInvoicing';
-// import IEPocAndSop from '../../../../../PocSop/IEPocAndSop';
-// import IEDocuments from '../../../../commons/Documents/IEDocuments';
-// import RelationshipManager from '../RelationshipManager';
-
-// import Overview from './Overview';
-// import { Container, Content, InvoiceDiv } from './styles';
 import RelationshipManager from '../RelationshipManager';
 
 import IEDocuments from './IEDocuments';

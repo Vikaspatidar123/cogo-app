@@ -1,6 +1,3 @@
-// import React from 'react';
-
-// import { DetailContainer } from './styles';
 import styles from './styles.module.css';
 
 function AddDetailContainer({

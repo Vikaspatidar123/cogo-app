@@ -1,7 +1,3 @@
-// import formatAmount from '@cogo/globalization/utils/formatAmount';
-// import { ToolTip } from '@cogoport/front/components';
-// import { isEmpty, startCase } from '@cogoport/front/utils';
-// import { IcMArrowRotateDown, IcMArrowRotateUp } from '@cogoport/icons-react';
 import { Popover } from '@cogoport/components';
 import { IcMArrowRotateDown, IcMArrowRotateUp } from '@cogoport/icons-react';
 import { isEmpty, startCase } from '@cogoport/utils';
@@ -10,28 +6,6 @@ import { useState } from 'react';
 import styles from './styles.module.css';
 
 import formatAmount from '@/ui/commons/utils/formatAmount';
-// import {
-// 	Container,
-// 	InvoicingPartyName,
-// 	InvoiceValueContainer,
-// 	InvoiceValueTitle,
-// 	InvoiceValue,
-// 	InvoicePartyDetails,
-// 	Line,
-// 	ChildrenContainer,
-// 	Wrapper,
-// 	IconWrapper,
-// 	BookingText,
-// 	AssuredWrapper,
-// 	DetailContainer,
-// 	Row,
-// 	IconContainer,
-// 	TotalInvoice,
-// 	AnimatedContainer,
-// 	ServiceNames,
-// 	StatusInfo,
-// 	StatusContainer,
-// } from './styles';
 
 function Header({
 	item = {},
@@ -111,7 +85,7 @@ function Header({
 							</div>
 
 							{item?.isBookingParty ? (
-								<div className={styles.booking_text}>(Booking Party)</div>
+								<div className={styles.booking_text}>Booking Party</div>
 							) : null}
 						</div>
 

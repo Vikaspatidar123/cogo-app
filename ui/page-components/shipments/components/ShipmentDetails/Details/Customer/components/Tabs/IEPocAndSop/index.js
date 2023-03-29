@@ -1,6 +1,7 @@
 // import { useSelector } from '@cogo/store';
 import { useState } from 'react';
 
+import Poc from './Poc';
 import Sop from './Sop';
 import styles from './styles.module.css';
 
@@ -30,9 +31,9 @@ function IEPocAndSop({ quickAction, setQuickAction = () => {} }) {
 			<div className={styles.poc_div}>
 				<div>POCs</div>
 
-				{/* <div className={styles.poc_container}>
+				<div className={styles.poc_container}>
 					<Poc scope={scope} />
-				</div> */}
+				</div>
 			</div>
 		</div>
 	);

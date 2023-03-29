@@ -1,0 +1,23 @@
+.heading{
+    font-weight: 500;
+	font-size: 18px;
+	line-height: 15px;
+	color: #393f70;
+	margin-bottom: 20px;
+}
+.details{
+	color: #393f70;
+	margin-top: 10px;
+	display: flex;
+	width: 100%;
+}
+.detail_text {
+	font-size: 14px;
+	line-height: 20px;
+	padding-left: 5px;
+}
+.detail_header {
+	font-weight: 600;
+	font-size: 14px;
+	line-height: 20px;
+}

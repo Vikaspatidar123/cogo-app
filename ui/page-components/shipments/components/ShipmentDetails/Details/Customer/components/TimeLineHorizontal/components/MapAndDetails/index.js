@@ -1,20 +1,11 @@
-// import { Skeleton } from '@cogoport/front/components';
-// import React from 'react';
-
 import { Placeholder } from '@cogoport/components';
+
 import PendingTasks from '../../../PendingTasks';
 import QuickActions from '../../../QuickActions';
-
 import ServicDetails from '../../../ServiceDetails';
 import BreadCrumbs from '../Breadcrumbs';
+import TrackMapNavigate from '../TrackMapNavigate';
 
-// import BreadCrumbs from '../../../Breadcrumbs';
-// import Details from '../../../Details';
-// import PendingTasks from '../../../PendingTasks';
-// import QuickActions from '../../../QuickActions';
-// import TrackMapNavigate from '../TrackMapNavigate';
-
-// import { LeftPanel, Panels } from './styles';
 import styles from './styles.module.css';
 
 function MapAndDetails({
@@ -45,7 +36,7 @@ function MapAndDetails({
 		<div className={`${styles.left_panel} ${servicesForMap ? styles.show_tracking : ''}`}>
 			<BreadCrumbs servicesForMap={servicesForMap} />
 
-			{/* {!isTrackEmpty && !mapLoading && servicesForMap ? (
+			{!isTrackEmpty && !mapLoading && servicesForMap ? (
 				<TrackMapNavigate
 					mapPoints={mapPoints}
 					trackerDetails={trackerDetails}
@@ -57,8 +48,7 @@ function MapAndDetails({
 				/>
 			) : (
 				renderEmpty()
-			)} */}
-
+			)}
 			<ServicDetails servicesForMap={servicesForMap} />
 
 			<div className={`${styles.panels} ${styles.actions}`}>

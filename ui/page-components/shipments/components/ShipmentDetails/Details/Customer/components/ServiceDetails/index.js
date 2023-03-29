@@ -1,16 +1,3 @@
-// import { Modal } from '@cogoport/front/components';
-// import React, { useContext, useState, useEffect } from 'react';
-
-// import { ShipmentDetailContext } from '../../../../../commons/Context';
-// import CancelHeader from '../../../../commons/CancelHeader';
-// import Cancellation from '../../../../commons/Cancellation';
-// import CargoDetails from '../../../../commons/CargoDetails';
-// import AddTag from '../Addtag';
-// import Tags from '../Tags';
-
-// import Loader from './Loader';
-// import PortDetails from './PortDetails';
-// import { Container, ServiceDetail, ContainerInfo } from './styles';
 import { Placeholder, Modal } from '@cogoport/components';
 import { useState, useContext, useEffect } from 'react';
 

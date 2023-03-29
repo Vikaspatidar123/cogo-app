@@ -24,7 +24,6 @@ const useGetPocData = ({ tradeParties, shipment_data, scope, shipment_id }) => {
 		addCompanyModal : false,
 		trade_party_id  : '',
 	});
-
 	let showAll = false;
 	(partner?.user_role_ids || []).forEach((id) => {
 		if (showAllRoles?.includes(id)) {
@@ -38,9 +37,7 @@ const useGetPocData = ({ tradeParties, shipment_data, scope, shipment_id }) => {
 			isOkam = true;
 		}
 	});
-	if (scope === 'app') {
-		isOkam = true;
-	}
+	isOkam = true;
 
 	const formRef = useRef(null);
 
@@ -124,12 +121,10 @@ const useGetPocData = ({ tradeParties, shipment_data, scope, shipment_id }) => {
 		: [
 			...clean_so_view_stakeholders,
 			{ label: 'Collection Party', value: 'collection_party' },
-		  ];
-
+		];
 	const not_added_final_stakeholders = showAll
 		? superadmin
 		: view_final_stakeholders;
-
 	let final_stakeholders = [];
 	let arr1 = [];
 	if (tradeParties.length === 0) {

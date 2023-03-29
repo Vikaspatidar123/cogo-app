@@ -1,6 +1,3 @@
-// import { Tabs } from '@cogoport/front/components/admin';
-// import TabPanel from '@cogoport/front/components/admin/Tabs/TabPanel';
-// import { upperCase } from '@cogoport/front/utils';
 import { TabPanel, Tabs } from '@cogoport/components';
 import { upperCase } from '@cogoport/utils';
 import { useState, useContext } from 'react';
@@ -11,14 +8,6 @@ import useGetShipmentDocuments from '../../../../../hooks/useGetShipmentDocument
 
 import Filters from './Filters';
 import PendingDocuments from './PendingDocuments';
-// import { ShipmentDetailContext } from '../../../../commons/Context';
-// import useGetpendingTasks from '../../../hooks/useGetPendingDocs';
-// import useGetShipmentDocuments from '../../../hooks/useGetShipmentDocuments';
-// import Filters from '../Filters';
-// import Pending from '../PendingDocuments';
-// import UploadedDocuments from '../UploadedDocuments';
-
-// import { Container } from './styles';
 import styles from './styles.module.css';
 import UploadedDocuments from './UploadedDocuments';
 

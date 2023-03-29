@@ -1,16 +1,8 @@
-// import getValue from '@cogo/smart-components/utils/getValue';
-// import { Skeleton } from '@cogoport/front/components/admin';
-// import Grid from '@cogoport/front/components/Grid';
-// import React from 'react';
-
 import { Placeholder } from '@cogoport/components';
 
 import styles from './styles.module.css';
 
 import getValue from '@/ui/commons/utils/getValue';
-// import { TitleBlack, Row, Label } from './styles';
-
-// const { Col } = Grid;
 
 function CardItem({
 	item,

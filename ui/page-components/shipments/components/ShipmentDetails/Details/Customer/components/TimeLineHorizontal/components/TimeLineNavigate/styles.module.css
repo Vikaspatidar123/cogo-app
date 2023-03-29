@@ -1,0 +1,19 @@
+.main_container{
+    width: 32%;
+	padding-left: 32px;
+	@media (max-width: 768px) {
+		width: 100%;
+		padding-left: 8px;
+	}
+}
+.tag_title{
+	color: #2c3e50;
+	font-weight: 700;
+	font-size: 16px;
+	margin-bottom: 22px;
+}
+.container{
+	display: flex;
+	flex-wrap: wrap;
+	width: 100%;
+}

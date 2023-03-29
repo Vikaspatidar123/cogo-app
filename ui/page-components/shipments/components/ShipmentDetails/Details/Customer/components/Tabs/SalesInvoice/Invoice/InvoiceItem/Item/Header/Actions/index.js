@@ -1,5 +1,3 @@
-// import { Button } from '@cogoport/front/components';
-// import { startCase } from '@cogoport/front/utils';
 import { Button } from '@cogoport/components';
 import { startCase } from '@cogoport/utils';
 import { useState } from 'react';
@@ -7,9 +5,6 @@ import { useState } from 'react';
 import AmendInvoice from '../AmendInvoice';
 
 import styles from './styles.module.css';
-// import AmendInvoice from '../AmendInvoice';
-
-// import { Container, InfoContainer, Row } from './styles';
 
 function Actions({ invoice }) {
 	const [showAmend, setShowAmend] = useState(false);

@@ -1,0 +1,46 @@
+.image{
+    width: 200px;
+}
+.container{
+    position: relative;
+}
+.mobile_view {
+    padding-left: 16px;
+}
+.loading_screen {
+    position: absolute;
+    z-index: 1000;
+    top: 35%;
+    align-self: center;
+    width: 90%;
+    text-align: center;
+    left: 5%;
+    color: #4f4f60;
+}
+.blur_screen {
+    filter: blur(8px);
+}
+.leaflet_container {
+    background-color: #fff !important;
+    border: none !important;
+}
+.icon{
+    right: -15px;
+	position: absolute;
+	cursor: pointer;
+	z-index: 1;
+}
+.map_unable{
+    color: #282b2e;
+	font-size: large;
+	font-weight: 600;
+	margin: 10px;
+}
+.text_card{
+    text-align: center;
+}
+.flex{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}

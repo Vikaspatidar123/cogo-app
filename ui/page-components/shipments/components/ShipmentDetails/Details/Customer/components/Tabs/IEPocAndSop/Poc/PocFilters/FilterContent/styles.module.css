@@ -1,0 +1,11 @@
+.container{
+    width: 200px;
+}
+.form_item_container {
+    padding: 5px;
+}
+.apply_btn {
+    display: flex;
+    justify-content: flex-end;
+    margin: 2px 0px 2px 0px;
+}

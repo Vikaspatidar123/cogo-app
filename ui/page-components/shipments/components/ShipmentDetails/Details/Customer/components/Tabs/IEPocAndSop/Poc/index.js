@@ -1,14 +1,20 @@
-import { Placeholder } from '@cogoport/components';
+import { Placeholder, Modal } from '@cogoport/components';
+import { isEmpty } from '@cogoport/utils';
 import { useContext } from 'react';
 
+import AddCpDetails from './AddCpDetails';
 import AddDetailContainer from './AddDetailContainer';
+import InternalExternalPocs from './InternalExternalPocs';
+import PocFilters from './PocFilters';
+import PocServProvDetails from './PocServProvDetails';
+import StakeHolderPocDetails from './StakeHolderPocDetails';
+import styles from './styles.module.css';
 
 import { useSelector } from '@/packages/store';
 import { ShipmentDetailContext } from '@/ui/page-components/shipments/components/ShipmentDetails/common/Context';
 import useGetPocData from '@/ui/page-components/shipments/components/ShipmentDetails/hooks/useGetPocData';
 import useListShipTradePartners from
 	'@/ui/page-components/shipments/components/ShipmentDetails/hooks/useListShipTradePartners';
-import StakeHolderPocDetails from './StakeHolderPocDetails';
 
 function Poc() {
 	const { scope } = useSelector(({ general }) => ({ scope: general?.scope }));
@@ -49,6 +55,7 @@ function Poc() {
 		scope,
 		shipment_id,
 	});
+	console.log(final_stakeholders, 'final_stakeholders');
 
 	const stakeHolderDetails = () => (!tradePartyLoading ? (
 		(final_stakeholders || [])?.map((stakeholder) => (
@@ -95,11 +102,11 @@ function Poc() {
 			return null;
 		})
 	) : (
-		<AddDetailsLoader />
+		<Placeholder />
 	));
 
 	const serviceProviderPOCDetails = () => {
-		const condition =			!isEmpty(tradePartyFilters?.trade_partner)
+		const condition = !isEmpty(tradePartyFilters?.trade_partner)
 			&& tradePartyFilters?.trade_partner !== 'collection_party';
 
 		return condition
@@ -125,7 +132,7 @@ function Poc() {
 	const renderPOC = () => {
 		if (isOkam) {
 			return (
-				<PocList className={scope}>
+				<div className={styles.scope}>
 					{stakeHolderDetails()}
 
 					{scope === 'partner' ? (
@@ -141,12 +148,12 @@ function Poc() {
 						/>
 					) : null}
 
-					{!tradePartyLoading ? stakeHolderPOCDetails() : <PocLoader />}
-				</PocList>
+					{!tradePartyLoading ? stakeHolderPOCDetails() : <Placeholder />}
+				</div>
 			);
 		}
 		return (
-			<PocList className={scope}>
+			<div className={styles.scope}>
 				{stakeHolderDetails()}
 
 				{serviceProviderDetails()}
@@ -162,14 +169,14 @@ function Poc() {
 					listShipmentTradePartners={listShipmentTradePartners}
 				/>
 
-				{!tradePartyLoading ? stakeHolderPOCDetails() : <PocLoader />}
+				{!tradePartyLoading ? stakeHolderPOCDetails() : <Placeholder />}
 
-				{!serviceListLoading ? serviceProviderPOCDetails() : <PocLoader />}
-			</PocList>
+				{!serviceListLoading ? serviceProviderPOCDetails() : <Placeholder />}
+			</div>
 		);
 	};
 	return (
-		<Container>
+		<div className={styles.container}>
 			<PocFilters
 				isOkam={isOkam}
 				showAll={showAll}
@@ -181,7 +188,7 @@ function Poc() {
 				filterCPServices={filterCPServices}
 			/>
 
-			<Line />
+			<div className={styles.line} />
 
 			{renderPOC()}
 
@@ -193,7 +200,7 @@ function Poc() {
 					onClose={onClose}
 					onOuterClick={onClose}
 				>
-					<AddCompany
+					{/* <AddCompany
 						stakeholderOptions={not_added_final_stakeholders}
 						listServiceRefetch={listServiceRefetch}
 						service_prov_ids={service_prov_ids}
@@ -201,10 +208,10 @@ function Poc() {
 						setUtilities={setUtilities}
 						utilities={utilities}
 						listShipmentTradePartners={listShipmentTradePartners}
-					/>
+					/> */}
 				</Modal>
 			) : null}
-		</Container>
+		</div>
 	);
 }
 

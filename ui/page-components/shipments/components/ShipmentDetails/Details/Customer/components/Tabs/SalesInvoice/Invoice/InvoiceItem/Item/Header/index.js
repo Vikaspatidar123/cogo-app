@@ -1,24 +1,3 @@
-// import formatAmount from '@cogo/globalization/utils/formatAmount';
-// import { ToolTip } from '@cogoport/front/components/admin';
-// import { startCase, isEmpty } from '@cogoport/front/utils';
-// import React from 'react';
-
-// import Actions from './Actions';
-// import {
-// 	Container,
-// 	InvoiceDetailContainer,
-// 	InvoicePartyDetails,
-// 	InvoicePartyNumber,
-// 	Gst,
-// 	GstNumber,
-// 	InvoiceInfo,
-// 	InvoiceValueContainer,
-// 	InvoiceValueTitle,
-// 	InvoiceValue,
-// 	Label,
-// 	PaymentType,
-// 	SoNumber,
-// } from './styles';
 import { Popover } from '@cogoport/components';
 import { isEmpty, startCase } from '@cogoport/utils';
 

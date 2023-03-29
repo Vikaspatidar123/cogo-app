@@ -1,9 +1,4 @@
-// import { Button, Modal } from '@cogoport/front/components';
 
-// import Layout from '../../../../../../../../commons/Layout';
-// import useReviewInvoice from '../../../../../../../hooks/useAmendInvoice';
-
-// import { Container, ButtonContainer, Heading } from './styles';
 import { Button, Modal } from '@cogoport/components';
 
 import styles from './styles.module.css';

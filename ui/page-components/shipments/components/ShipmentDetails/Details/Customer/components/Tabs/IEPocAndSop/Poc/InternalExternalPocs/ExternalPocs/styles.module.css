@@ -1,0 +1,47 @@
+.container{
+    display: flex;
+	flex-direction: column;
+	padding-bottom: 50px;
+}
+.company_details{
+	display: flex;
+	flex-direction: column;
+	padding: 8px 16px 8px 24px;
+}
+.details {
+	color: #5c6186;
+	font-size: 16px;
+	font-weight: 600;
+	line-height: 24px;
+}
+.poc_container{
+	display: flex;
+	width: 100%;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 4px;
+}
+.wrapper{
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	cursor: pointer;
+	border-top-right-radius: 4px;
+}
+.icon_container{
+	padding: 12px;
+	cursor: pointer;
+	@media (max-width: 768px) {
+		padding: 4px;
+	}
+}
+.poc_detail{
+	max-height: 300px;
+	overflow: auto;
+}
+.trade_type{
+	text-align: center;
+	font-size: 16px;
+	font-weight: 600;
+	text-transform: capitalize;
+}

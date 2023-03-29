@@ -1,0 +1,304 @@
+.empty {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 32px;
+}
+
+.empty_content {
+	align-items: center;
+}
+
+.card {
+	width: 100%;
+	height: 100%;
+	padding: 16px 16px 16px 0;
+	margin-top: 20px;
+	background-color: white;
+	border-radius: 20px;
+	box-shadow: 0 0 5px rgb(0 0 0 / 50%);
+
+	@media (max-width: 760px) {
+		margin-top: 8px;
+	}
+}
+
+.header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0 24px;
+	margin-bottom: 24px;
+
+	h1 {
+		margin: 0;
+		font-size: 14px;
+		font-weight: 700;
+	}
+
+	@media (max-width: 760px) {
+		padding-left: 16px;
+	}
+}
+
+.location_text {
+	width: 40%;
+	padding-top: 16px;
+	padding-bottom: 16px;
+	padding-left: 11px;
+	margin-left: 327px;
+	background-color: #aad1ff;
+	border-radius: 10px;
+	animation: mymove 1.5s infinite;
+
+	@keyframes mymove {
+		from { background-color: #aad1ff; }
+		to { background-color: #f2f7fb; }
+	}
+}
+
+.flex {
+	display: flex;
+}
+
+.circle {
+	width: 10px;
+	height: 10px;
+	margin: 4px 12px;
+	background: #f00;
+	border-radius: 5px;
+}
+
+.tracking_details {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+
+	@media (max-width: 760px) {
+		flex-direction: column;
+	}
+}
+
+.shipping_line {
+	width: 50%;
+	height: 60vh;
+	padding-right: 0;
+	overflow-y: auto;
+
+	@media (max-width: 760px) {
+		width: 100%;
+	}
+}
+
+.step_container {
+	padding-left: 40px;
+	margin-top: 32px;
+	margin-right: 5px;
+	margin-bottom: 5px;
+
+	@media (max-width: 760px) {
+		padding-left: 24px;
+	}
+}
+
+.step {
+	position: relative;
+}
+
+.tail {
+	position: absolute;
+	top: 15px;
+	left: 18px;
+	z-index: 1;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	width: 4px;
+	height: 100%;
+	background-color: #e8eff5;
+}
+
+.finish .tail {
+	background-color: #0bc840;
+}
+
+.tail_content {
+	margin-left: -32px;
+	transform: rotate(270deg);
+}
+
+.incoterm_line {
+	position: absolute;
+	left: -40px;
+	width: 4px;
+	height: 100%;
+	background-color: #8dc2f9;
+}
+
+.incoterm_label {
+	position: absolute;
+	padding: 4px;
+	font-size: 12px;
+	color: white;
+	background: #8dc2f9;
+	writing-mode: vertical-lr;
+	transform: rotate(180deg);
+}
+
+.icon {
+	position: absolute;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 20px;
+	height: 20px;
+	margin-left: 10px;
+	background-color: #e8eff5;
+	border-radius: 50%;
+}
+
+.icon::after {
+	z-index: 1;
+	display: block;
+	width: 10px;
+	height: 10px;
+	content: "";
+	background-color: #0bc840;
+	border-radius: 50%;
+}
+
+.shaded .icon {
+	width: 40px;
+	height: 40px;
+	margin-left: 0;
+}
+
+.wait .icon::after {
+	background-color: #ff6161;
+}
+
+.content {
+	width: calc(100% - 60px);
+	padding: 16px;
+	margin-bottom: 80px;
+	margin-left: 60px;
+	background-color: #f2f7fb;
+	border-radius: 10px;
+}
+
+.heading {
+	margin: 0 0 16px;
+	font-size: 14px;
+	font-weight: 700;
+}
+
+.description {
+	margin-bottom: 16px;
+	font-weight: 300;
+	color: #7d7d7d;
+}
+
+.time {
+	margin: 0;
+	margin-bottom: 4px;
+	font-size: 10px;
+	font-weight: 700;
+	color: #b4b4b4;
+}
+
+.incoterm_handover_container {
+	display: flex;
+	align-items: center;
+	padding: 12px;
+	margin-bottom: 80px;
+	margin-left: 60px;
+	background: #8dc2f9;
+	border-radius: 100px;
+
+	::before {
+		flex-shrink: 0;
+		width: 20px;
+		height: 20px;
+		margin-right: 16px;
+		content: "";
+		background: white;
+		border-radius: 50%;
+	}
+
+	p {
+		margin: 0;
+		font-size: 12px;
+		color: white;
+	}
+}
+
+.shaded .content {
+	padding-top: 16px;
+	padding-bottom: 16px;
+	background-color: #f2f7fb;
+	border-radius: 10px;
+
+	.description {
+		margin-bottom: 16px;
+		font-weight: 400;
+		color: #7d7d7d;
+	}
+
+	.time {
+		margin-bottom: 16px;
+	}
+}
+
+.vessel {
+	display: flex;
+	flex-direction: column;
+}
+
+.tracker {
+	position: relative;
+	width: 50%;
+
+	@media (max-width: 760px) {
+		width: 100%;
+	}
+}
+
+.tracking {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 100%;
+	padding: 0 24px;
+	margin-bottom: 24px;
+	-webkit-box-pack: justify;
+	-webkit-box-align: center;
+}
+
+.row {
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: space-between;
+	margin: 0;
+	-webkit-box-pack: justify;
+}
+
+.first {
+	width: 50%;
+	height: 65vh;
+	padding-right: 0;
+	overflow-y: auto;
+}
+
+.second {
+	width: 48%;
+}
+
+.icons {
+	transform: rotate(193deg);
+}
+
+.share {
+	display: flex;
+	align-items: center;
+	cursor: pointer;
+}

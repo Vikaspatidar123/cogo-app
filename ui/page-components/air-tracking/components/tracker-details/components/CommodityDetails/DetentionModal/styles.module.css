@@ -1,0 +1,22 @@
+.icon {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.detail {
+	margin-top: 16px;
+	font-size: 14px;
+	color: #7d7d7d;
+}
+
+.button {
+	display: flex;
+	gap: 10px;
+	justify-content: flex-end;
+}
+
+.list {
+	padding: 20px;
+	margin-bottom: 100px;
+}

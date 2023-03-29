@@ -14,7 +14,7 @@ import styles from './styles.module.css';
 import usePaymentType from './usePaymentsType';
 
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
-import formatDate from '@/ui/commons/utils/formatDate';
+// import formatDate from '@/ui/commons/utils/formatDate';
 
 const showFilledPaymentDetails = ({ goodsDetail = {}, toggleState }) => {
 	let displayGoodsType = '';
@@ -28,11 +28,11 @@ const showFilledPaymentDetails = ({ goodsDetail = {}, toggleState }) => {
 	return (
 		<div className={styles.details_container}>
 			<div className={styles.details}>
-				{formatDate({
+				{/* {formatDate({
 					date       : goodsDetail?.cargoDate,
 					dateFormat : GLOBAL_CONSTANTS.formats.date['dd MMM yyyy'],
 					formatType : 'date',
-				})}
+				})} */}
 			</div>
 
 			{(displayGoodsType

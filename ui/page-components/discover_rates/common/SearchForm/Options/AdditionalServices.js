@@ -1,5 +1,3 @@
-import React from 'react';
-
 import AdvancedOptions from './AdvancedOptions';
 import RfqAdditionalService from './RfqAdditionalServices';
 

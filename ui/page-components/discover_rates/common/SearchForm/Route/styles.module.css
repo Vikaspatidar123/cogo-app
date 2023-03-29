@@ -72,7 +72,7 @@
 .arrow {
   margin: auto auto 8px;
   text-align: center;
-
+  padding: 0 15px;
   @media (max-width: 540px) {
     display: none;
   }
@@ -88,18 +88,18 @@
   color: #cb6464;
 }
 
-.label{
-	font-weight: bold;
-	font-size: 12px;
-	line-height: 14px;
-	display: block;
-	color: #828282;
-	text-overflow: ellipsis;
-	white-space: nowrap;
-	overflow: hidden;
-	text-transform: uppercase;
+.label {
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 14px;
+  display: block;
+  color: #828282;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  text-transform: uppercase;
 
-	.margin_below {
-		margin-bottom: 10px;
-	}
+  .margin_below {
+    margin-bottom: 10px;
+  }
 }

@@ -1,3 +1,4 @@
+import { cl } from '@cogoport/components';
 import React, { useState, useCallback, forwardRef } from 'react';
 
 import SearchForm from '../../../common/SearchForm';
@@ -71,7 +72,7 @@ function NewSearch(
 		);
 	};
 	return (
-		<div style={style} className={`${styles.container} ${styles.app}`}>
+		<div style={style} className={cl`${styles.container} ${styles.app}`}>
 			<div className={styles.header}>
 				<div className={styles.tags}>
 					<div className={styles.heading}>Search Rates</div>

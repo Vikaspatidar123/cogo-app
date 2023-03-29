@@ -21,7 +21,6 @@ function CommodityType({
 	const { id } = rest;
 
 	let label = 'Container Type';
-	console.log(commodityOptions, 'commodityOptions', typeValue, label, objs, controlFields);
 
 	const typeLabel = () => {
 		let newLabel = typeValue;

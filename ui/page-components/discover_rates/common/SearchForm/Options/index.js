@@ -1,4 +1,4 @@
-import { Popover, Modal } from '@cogoport/components';
+import { Popover, Modal, cl } from '@cogoport/components';
 import React, { useState, useEffect, useMemo } from 'react';
 
 import { getControls } from '../utils/handleOptionsChange';
@@ -109,11 +109,11 @@ function Options({
 				...(weight_and_volume || {}),
 				...(container_type_commodity || {}),
 			};
-			optionFormControls.forEach((control) => {
-				if (restProps[control.name]) {
+			optionFormControls.forEach((item) => {
+				if (restProps[item.name]) {
 					restValues = {
 						...restValues,
-						[control.name]: restProps[control.name],
+						[item.name]: restProps[item.name],
 					};
 				}
 			});
@@ -128,7 +128,20 @@ function Options({
 			setShow(!show);
 		}
 	};
-
+	const handleIncotermChange = () => {
+		const incoKey = (optionFormControls || []).find(
+			(key) => key.name === 'inco_term',
+		)?.name;
+		if (incoKey && mode === 'fcl_freight') {
+			if (location?.origin?.country_code === INDIA_COUNTRY_CODE) {
+				setValue(incoKey, 'cif');
+			} else {
+				setValue(incoKey, 'fob');
+			}
+		} else if (incoKey) {
+			setValue(incoKey, '');
+		}
+	};
 	const handleModeChangeReset = () => {
 		reset();
 		handleIncotermChange();
@@ -179,8 +192,8 @@ function Options({
 			fields={optionFormControls}
 			control={control}
 			onShowAdvanced={() => {
-      	setShow(false);
-      	setShowAdvance(true);
+				setShow(false);
+				setShowAdvance(true);
 			}}
 			onClose={() => setShow(false)}
 			onSubmit={handleSubmit(handleApply, onError)}
@@ -241,21 +254,6 @@ function Options({
 		});
 		return () => subscription.unsubscribe();
 	}, [watch, mode]);
-
-	const handleIncotermChange = () => {
-		const incoKey = (optionFormControls || []).find(
-			(key) => key.name === 'inco_term',
-		)?.name;
-		if (incoKey && mode === 'fcl_freight') {
-			if (location?.origin?.country_code === INDIA_COUNTRY_CODE) {
-				setValue(incoKey, 'cif');
-			} else {
-				setValue(incoKey, 'fob');
-			}
-		} else if (incoKey) {
-			setValue(incoKey, '');
-		}
-	};
 
 	useEffect(() => {
 		if (search_type !== 'rfq' || index === 0) {
@@ -375,12 +373,12 @@ function Options({
 	};
 
 	return (
-		<div className={`${styles.container}${styles.search_type}`}>
+		<div className={cl`${styles.container} ${styles[search_type]}`}>
 			{search_type === 'rfq' ? (
 				<div style={{ width: mainServices.includes(mode) ? '100%' : '50%' }}>
 					{index === 0 ? (
 						<div
-							className={`${styles.label}${styles.search_form_options_container_col__label}`}
+							className={cl`${styles.label} ${styles.search_form_options_container_col__label}`}
 						>
 							Container Details
 						</div>

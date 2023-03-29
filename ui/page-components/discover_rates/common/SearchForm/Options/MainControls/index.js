@@ -30,7 +30,7 @@ function MainControls(
 	const advancedService = advancedServices.includes(mode);
 	return (
 		<div
-			className={cl`${styles.container}${styles.search_form_cargo_details_popover}${mobile ? 'mobile ' : ''}`}
+			className={cl`${styles.container} ${styles.search_form_cargo_details_popover} ${mobile ? 'mobile ' : ''}`}
 			ref={ref}
 			id="search_form_cargo_details_popover"
 		>

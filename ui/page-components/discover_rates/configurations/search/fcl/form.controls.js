@@ -13,7 +13,7 @@ const formControls = () => [
 		// valueKey          : 'id',
 		params            : { filters: { type: ['seaport', 'country'] } },
 		rules             : { required: 'Origin Port is required' },
-		style             : { width: '300px' },
+		style             : { width: '350px' },
 	},
 	{
 		label             : 'Destination Port',
@@ -25,7 +25,7 @@ const formControls = () => [
 		grouped           : ['country'],
 		params            : { filters: { type: ['seaport', 'country'] } },
 		rules             : { required: 'Destination Port is required' },
-		style             : { width: '300px' },
+		style             : { width: '350px' },
 	},
 	{
 		name        : 'containers',

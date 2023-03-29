@@ -33,7 +33,7 @@ function FormElement({
 	<div className={styles.col} key={item.name}>
 		<ChildFormat
 			{...item}
-			{...controls.find((s) => s.name === [item.name])}
+			{...controls.find((s) => s.name === item.name)}
 			key={item.name}
 			buttonText={item.buttonText}
 			showButtons={item.showButtons || showButtons}

@@ -3,6 +3,7 @@ import { useState } from 'react';
 import NoSearch from '../../common/NoSearch';
 import useGetUserQuota from '../../hooks/useGetUserQuota';
 import KycBenefits from '../KycBenefits';
+import PastResults from '../PastResults';
 
 import NewSearch from './NewSearch';
 
@@ -42,7 +43,7 @@ function SearchPage() {
 				<KycBenefits />
 			) : null}
 
-			{!quotaLoading && blockSearch ? <NoSearch /> : <div>ok</div>}
+			{quotaLoading && blockSearch ? <NoSearch /> : <PastResults />}
 		</div>
 	);
 }

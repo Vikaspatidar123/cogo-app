@@ -38,7 +38,6 @@ function AdvancedOptions({
 	const freightControls = ['bls_count', 'bl_type'];
 
 	const incoKey = Object.keys(formValues).find((key) => key.includes('inco_term'));
-
 	return (
 		<Modal
 			show={show}
@@ -85,7 +84,6 @@ function AdvancedOptions({
 						>
 							<Form
 								controls={controls}
-								// fields={{ ...optionsFields, ...fields }}
 								formValues={formValues}
 								errors={errors}
 								control={control}

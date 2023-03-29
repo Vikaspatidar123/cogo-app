@@ -13,16 +13,16 @@ const controls = () => [
 		caret   : true,
 		options : [
 			{
-				value : 'rfs',
-				label : 'RFS (Original) - Received For Shipment',
+				key      : 'rfs',
+				children : 'RFS (Original) - Received For Shipment',
 			},
 			{
-				value : 'sob',
-				label : 'SOB (Original) - Shipped on Board',
+				key      : 'sob',
+				children : 'SOB (Original) - Shipped on Board',
 			},
 			{
-				value : 'seaway',
-				label : 'Seaway (Original) Bill',
+				key      : 'seaway',
+				children : 'Seaway (Original) Bill',
 			},
 		],
 		condition: { services: ['fcl_freight'] },
@@ -96,44 +96,44 @@ const controls = () => [
 		span    : 12,
 		options : [
 			{
-				label : 'Direct Port Delivery',
-				value : 'direct_port_delivery',
+				children : 'Direct Port Delivery',
+				key      : 'direct_port_delivery',
 			},
 			{
-				label : 'Destuffing at Factory',
-				value : 'delivery_from_dock',
+				children : 'Destuffing at Factory',
+				key      : 'delivery_from_dock',
 			},
 			{
-				label : 'Destuffing at CFS',
-				value : 'destuffing_at_dock',
+				children : 'Destuffing at CFS',
+				key      : 'destuffing_at_dock',
 			},
 			{
-				label : 'DPD Without CFS',
-				value : 'dpd_without_cfs',
+				children : 'DPD Without CFS',
+				key      : 'dpd_without_cfs',
 			},
 			{
-				label : 'DPD CFS Dock Destuffing',
-				value : 'dpd_cfs_dock_destuffing',
+				children : 'DPD CFS Dock Destuffing',
+				key      : 'dpd_cfs_dock_destuffing',
 			},
 			{
-				label : 'DPD CFS Factory Destuffing',
-				value : 'dpd_cfs_factory_destuffing',
+				children : 'DPD CFS Factory Destuffing',
+				key      : 'dpd_cfs_factory_destuffing',
 			},
 			{
-				label : 'Enapanelled CFS Dock Destuffing',
-				value : 'enpanelled_cfs_dock_destuffing',
+				children : 'Enapanelled CFS Dock Destuffing',
+				key      : 'enpanelled_cfs_dock_destuffing',
 			},
 			{
-				label : 'Enapanelled CFS Factory Destuffing',
-				value : 'enpanelled_cfs_factory_destuffing',
+				children : 'Enapanelled CFS Factory Destuffing',
+				key      : 'enpanelled_cfs_factory_destuffing',
 			},
 			{
-				label : ' Non-Enapanelled CFS Factory Destuffing',
-				value : 'non_enpanelled_cfs_factory_destuffing',
+				children : ' Non-Enapanelled CFS Factory Destuffing',
+				key      : 'non_enpanelled_cfs_factory_destuffing',
 			},
 			{
-				label : 'Non-Enapanelled CFS Dock Destuffing',
-				value : 'non_enpanelled_cfs_dock_destuffing',
+				children : 'Non-Enapanelled CFS Dock Destuffing',
+				key      : 'non_enpanelled_cfs_dock_destuffing',
 			},
 		],
 		condition : { services: ['import_fcl_customs', 'import_transportation'] },
@@ -218,12 +218,12 @@ const controls = () => [
 		span    : 12,
 		options : [
 			{
-				value : 'stuffing_at_factory',
-				label : 'Factory Stuffing',
+				key      : 'stuffing_at_factory',
+				children : 'Factory Stuffing',
 			},
 			{
-				value : 'stuffing_at_dock',
-				label : 'Dock Stuffing',
+				key      : 'stuffing_at_dock',
+				children : 'Dock Stuffing',
 			},
 		],
 		condition : { services: ['export_fcl_cfs'] },
@@ -253,32 +253,32 @@ const controls = () => [
 		span    : 12,
 		options : [
 			{
-				label : 'DPD without cfs',
-				value : 'dpd_without_cfs',
+				children : 'DPD without cfs',
+				key      : 'dpd_without_cfs',
 			},
 			{
-				label : 'DPD cfs dock destuffing',
-				value : 'dpd_cfs_dock_destuffing',
+				children : 'DPD cfs dock destuffing',
+				key      : 'dpd_cfs_dock_destuffing',
 			},
 			{
-				label : 'DPD cfs factory destuffing',
-				value : 'dpd_cfs_factory_destuffing',
+				children : 'DPD cfs factory destuffing',
+				key      : 'dpd_cfs_factory_destuffing',
 			},
 			{
-				label : 'Enpanelled cfs dock destuffing',
-				value : 'enpanelled_cfs_dock_destuffing',
+				children : 'Enpanelled cfs dock destuffing',
+				key      : 'enpanelled_cfs_dock_destuffing',
 			},
 			{
-				label : 'Enpanelled cfs factory destuffing',
-				value : 'enpanelled_cfs_factory_destuffing',
+				children : 'Enpanelled cfs factory destuffing',
+				key      : 'enpanelled_cfs_factory_destuffing',
 			},
 			{
-				label : 'Non-enpanelled cfs dock destuffing',
-				value : 'non_enpanelled_cfs_dock_destuffing',
+				children : 'Non-enpanelled cfs dock destuffing',
+				key      : 'non_enpanelled_cfs_dock_destuffing',
 			},
 			{
-				label : 'Non-enpanelled cfs factory destuffing',
-				value : 'non_enpanelled_cfs_factory_destuffing',
+				children : 'Non-enpanelled cfs factory destuffing',
+				key      : 'non_enpanelled_cfs_factory_destuffing',
 			},
 		],
 		condition : { services: ['import_fcl_cfs'] },

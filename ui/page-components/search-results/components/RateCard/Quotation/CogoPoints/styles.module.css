@@ -1,11 +1,9 @@
-import styled from '@cogoport/front/styled';
-
-export const Container = styled.div`
+.container {
 	display: flex;
 	align-items: center;
-`;
+}
 
-export const Label = styled.div`
+.label {
 	font-weight: 400;
 	font-size: 12px;
 	line-height: 14px;
@@ -15,9 +13,9 @@ export const Label = styled.div`
 	&.cogo-assured {
 		color: #404e65;
 	}
-`;
+}
 
-export const Points = styled.div`
+.points { 
 	color: #333333;
 
 	font-weight: 500;
@@ -27,4 +25,4 @@ export const Points = styled.div`
 	&.cogo-assured {
 		color: #404e65;
 	}
-`;
+}

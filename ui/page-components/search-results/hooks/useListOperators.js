@@ -1,17 +1,18 @@
-import { useRequest } from '@cogo/commons/hooks';
-import getGeoConstants from '@cogo/globalization/constants/geo';
-import { useSelector } from '@cogo/store';
 import { useEffect } from 'react';
+
+import { useRequest } from '@/packages/request';
+import getGeoConstants from '@/ui/commons/constants/geo';
 
 const geo = getGeoConstants();
 
 const useListOperators = () => {
-	const { scope } = useSelector(({ general }) => ({ scope: general?.scope }));
-	const { trigger, data, loading } = useRequest(
-		'get',
-		false,
-		scope,
-	)('/list_operators');
+	const [{ loading, data }, trigger] = useRequest(
+		{
+			url    : 'list_operators',
+			method : 'get',
+		},
+		{ manual: true },
+	);
 
 	const listApi = () => trigger({
 		params: {

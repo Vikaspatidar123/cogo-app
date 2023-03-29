@@ -1,7 +1,7 @@
 import SelectOrg from '@cogo/partner-search/components/SelectOrganization';
 import React from 'react';
 
-import { Container, Label } from './styles';
+import styles from './styles.module.css';
 
 function SwitchUsers({
 	importer_exporter_details = {},
@@ -10,8 +10,8 @@ function SwitchUsers({
 	service,
 }) {
 	return (
-		<Container>
-			<Label>Type to search</Label>
+		<div className={styles.container}>
+			<div className={styles.label}>Type to search</div>
 
 			<SelectOrg
 				importer_exporter_details={importer_exporter_details}
@@ -21,7 +21,7 @@ function SwitchUsers({
 				service={service}
 				search_type="results"
 			/>
-		</Container>
+		</div>
 	);
 }
 

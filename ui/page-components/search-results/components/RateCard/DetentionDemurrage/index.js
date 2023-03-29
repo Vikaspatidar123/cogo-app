@@ -1,13 +1,13 @@
-import { Flex, Text } from '@cogoport/front/components';
-import { isEmpty } from '@cogoport/front/utils';
+import { Button } from '@cogoport/components';
 import {
 	IcMFtick,
 	IcMArrowRotateDown,
 	IcMArrowRotateUp,
 } from '@cogoport/icons-react';
+import { isEmpty } from '@cogoport/utils';
 
 import AddMoreDays from './AddMoreDays';
-import { Container, FlexColumn, StyledButton } from './styles';
+import styles from './styles.module.css';
 
 function TickIcon() {
 	return <IcMFtick fill="#07bc0c" height="20px" width="20px" />;
@@ -47,7 +47,7 @@ function DetentionDemurrage(props) {
 	};
 
 	const additionalDays = (key) => {
-		const additionalDaysPresent =			mainServices.find((service) => service?.[key]?.additional_days > 0) || {};
+		const additionalDaysPresent = mainServices.find((service) => service?.[key]?.additional_days > 0) || {};
 
 		if (isEmpty(additionalDaysPresent)) {
 			return minDays(key);
@@ -97,93 +97,93 @@ function DetentionDemurrage(props) {
 
 	return (
 		<>
-			<Container>
-				<Flex alignItems="flex-end">
-					<FlexColumn>
+			<div className={styles.container}>
+				<div style={{ display: 'flex', alignItems: 'flex-end' }}>
+					<div className={styles.flex_column}>
 						{originDetentionFreeLimit ? (
-							<Flex>
+							<div style={{ display: 'flex' }}>
 								<TickIcon />
 								Origin Detention:
 								{' '}
 								{additionalDays('origin_detention')}
 								{' '}
 								Days
-							</Flex>
+							</div>
 						) : null}
 
 						{originDemurrageFreeLimit ? (
-							<Flex style={{ marginTop: '6px' }}>
+							<div style={{ display: 'flex', marginTop: '6px' }}>
 								<TickIcon />
 								Origin Demurrage :
 								{' '}
 								{additionalDays('origin_demurrage')}
 								{' '}
 								Days
-							</Flex>
+							</div>
 						) : null}
-					</FlexColumn>
+					</div>
 
 					{(originDemurrageMaxLimit || originDetentionMaxLimit)
 					&& rateData?.source !== 'cogo_assured_rate' ? (
-						<StyledButton
+						<Button
 							onClick={() => handleChange('origin')}
 							className="secondary sm"
 						>
-							<Flex style={{ alignItems: 'center' }}>
-								<Text style={{ marginRight: '6px' }}>+ Add More</Text>
+							<div style={{ display: 'flex', alignItems: 'center' }}>
+								<div style={{ marginRight: '6px' }}>+ Add More</div>
 								{show && activeTab === 'origin' ? (
 									<IcMArrowRotateUp width={18} height={18} />
 								) : (
 									<IcMArrowRotateDown width={18} height={18} />
 								)}
-							</Flex>
-						</StyledButton>
+							</div>
+						</Button>
 						) : null}
-				</Flex>
+				</div>
 
-				<Flex alignItems="flex-end">
-					<FlexColumn>
+				<div style={{ display: 'flex', alignItems: 'center' }}>
+					<div className={styles.flex_column}>
 						{destinationDetentionFreeLimit ? (
-							<Flex>
+							<div style={{ display: 'flex', alignItems: 'center' }}>
 								<TickIcon />
 								Destination Detention :
 								{' '}
 								{additionalDays('destination_detention')}
 								{' '}
 								Days
-							</Flex>
+							</div>
 						) : null}
 
 						{destinationDemurrageFreeLimit ? (
-							<Flex style={{ marginTop: '6px' }}>
+							<div style={{ display: 'flex', marginTop: '6px' }}>
 								<TickIcon />
 								Destination Demurrage :
 								{' '}
 								{additionalDays('destination_demurrage')}
 								{' '}
 								Days
-							</Flex>
+							</div>
 						) : null}
-					</FlexColumn>
+					</div>
 
 					{(destinationDemurrageMaxLimit || destinationDetentionMaxLimit)
 					&& rateData?.source !== 'cogo_assured_rate' ? (
-						<StyledButton
+						<Button
 							onClick={() => handleChange('destination')}
 							className="secondary sm"
 						>
-							<Flex style={{ alignItems: 'center' }}>
-								<Text style={{ marginRight: '6px' }}>+ Add More</Text>
+							<div style={{ display: 'flex', alignItems: 'center' }}>
+								<div style={{ marginRight: '6px' }}>+ Add More</div>
 								{show && activeTab === 'destination' ? (
 									<IcMArrowRotateUp width={18} height={18} />
 								) : (
 									<IcMArrowRotateDown width={18} height={18} />
 								)}
-							</Flex>
-						</StyledButton>
+							</div>
+						</Button>
 						) : null}
-				</Flex>
-			</Container>
+				</div>
+			</div>
 
 			{show && (
 				<AddMoreDays

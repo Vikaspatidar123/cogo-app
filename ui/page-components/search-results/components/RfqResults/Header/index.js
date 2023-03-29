@@ -1,7 +1,6 @@
-import { BreadCrumbs } from '@cogo/smart-components';
 import React from 'react';
 
-import { Container, Title } from './styles';
+import styles from './styles.module.css';
 
 const breadcrumbs = {
 	activeColor     : '#333333',
@@ -25,16 +24,16 @@ const breadcrumbs = {
 
 function Header({ serial_id = 1, total = 1 }) {
 	return (
-		<Container>
-			<BreadCrumbs
+		<div className={styles.container}>
+			{/* <BreadCrumbs
 				breadcrumbs={breadcrumbs.array}
 				activeColor={breadcrumbs.activeColor}
 				descendentColor={breadcrumbs.descendentColor}
 				style={breadcrumbs.style}
-			/>
+			/> */}
 
-			<Title>{`Search: ${serial_id} of ${total}`}</Title>
-		</Container>
+			<div className={styles.title}>{`Search: ${serial_id} of ${total}`}</div>
+		</div>
 	);
 }
 

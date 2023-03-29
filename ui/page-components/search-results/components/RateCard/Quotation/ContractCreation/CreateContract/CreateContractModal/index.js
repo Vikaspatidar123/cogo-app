@@ -1,23 +1,13 @@
-import DatePickerControlled from '@cogo/business-modules/form/components/Controlled/DatePicker';
-import InputController from '@cogo/business-modules/form/components/Controlled/InputController';
-import SelectController from '@cogo/business-modules/form/components/Controlled/SelectController';
-import { addDays } from '@cogo/date';
 import getOperatorsConfig from '@cogo/product/rfq/utils/getOperatorsConfig';
+import { addDays } from '@cogoport/utils';
 import React, { useRef, useEffect } from 'react';
 
 import { getUnit } from '../../../../../../utils/get-unit';
 
 import PortSelect from './PortSelect';
-import {
-	Container,
-	StyledRow,
-	StyledCol,
-	Label,
-	ErrorText,
-	InlineLabel,
-	Note,
-	SubLabel,
-} from './styles';
+import styles from './styles.module.css';
+
+import { DatepickerController, InputController, SelectController } from '@/packages/forms';
 
 function CreateContractModal({
 	fields,
@@ -72,60 +62,60 @@ function CreateContractModal({
 	}, [startDate]);
 
 	return (
-		<Container>
+		<div className={styles.container}>
 			<PortSelect portDetail={portDetails} />
-			<Note>Note: Rate will be locked for basic freights only.</Note>
-			<StyledRow>
-				<StyledCol md={12} lg={6}>
-					<Label>{fields.contract_name.label}</Label>
-					<InlineLabel>Name</InlineLabel>
+			<div className={styles.note}>Note: Rate will be locked for basic freights only.</div>
+			<div className={styles.styled_row}>
+				<div className={styles.styled_col}>
+					<div className={styles.label}>{fields.contract_name.label}</div>
+					<div className={styles.inline_label}>Name</div>
 					<InputController {...fields.contract_name} />
-					<ErrorText>{errors?.contract_name?.message}</ErrorText>
-				</StyledCol>
-			</StyledRow>
+					<div className={styles.error_text}>{errors?.contract_name?.message}</div>
+				</div>
+			</div>
 
-			<StyledRow>
-				<StyledCol md={12} lg={6}>
-					<Label>
+			<div className={styles.styled_row}>
+				<div className={styles.styled_col}>
+					<div className={styles.label}>
 						Validity
 						{' '}
-						<SubLabel>(Max 30 Days)</SubLabel>
-					</Label>
-					<InlineLabel>Start Date</InlineLabel>
-					<DatePickerControlled
+						<div className={styles.sub_label}>(Max 30 Days)</div>
+					</div>
+					<div className={styles.inline_label}>Start Date</div>
+					<DatepickerController
 						{...fields.validity_start}
 						minDate={new Date()}
 						maxDate={addDays(new Date(), 29)}
 					/>
-					<ErrorText>{errors?.validity_start?.message}</ErrorText>
-				</StyledCol>
+					<div className={styles.error_text}>{errors?.validity_start?.message}</div>
+				</div>
 
-				<StyledCol md={12} lg={6} className="end-date">
-					<InlineLabel>End Date</InlineLabel>
-					<DatePickerControlled
+				<div className={`${styles.styled_col} ${styles.end - date}`}>
+					<div className={styles.inline_label}>End Date</div>
+					<DatepickerController
 						{...fields.validity_end}
 						theme="admin"
 						minDate={startDate}
 						maxDate={addDays(startDate, 29)}
 						disabled={!startDate}
 					/>
-					<ErrorText>{errors?.validity_end?.message}</ErrorText>
-				</StyledCol>
-			</StyledRow>
+					<div className={styles.error_text}>{errors?.validity_end?.message}</div>
+				</div>
+			</div>
 
-			<StyledRow>
-				<StyledCol md={12} lg={6}>
-					<Label>{label}</Label>
-					<InlineLabel>{label}</InlineLabel>
+			<div className={styles.styled_row}>
+				<div className={styles.styled_col}>
+					<div className={styles.label}>{label}</div>
+					<div className={styles.inline_label}>{label}</div>
 					<InputController {...input} min={50} />
-					<ErrorText>{error && `Min ${getUnit(search_type)}  is 50`}</ErrorText>
-				</StyledCol>
-			</StyledRow>
+					<div className={styles.error_text}>{error && `Min ${getUnit(search_type)}  is 50`}</div>
+				</div>
+			</div>
 
 			{search_type !== 'lcl_freight' && (
-				<StyledRow>
-					<StyledCol md={12} lg={6}>
-						<Label>
+				<div className={styles.styled_row}>
+					<div className={styles.styled_col}>
+						<div className={styles.label}>
 							Preferred
 							{' '}
 							{shippingLabel}
@@ -133,8 +123,8 @@ function CreateContractModal({
 							lines
 							{' '}
 							<span className="shipping-line">(OPTIONAL)</span>
-						</Label>
-						<InlineLabel>Search</InlineLabel>
+						</div>
+						<div className={styles.inline_label}>Search</div>
 						<SelectController
 							{...fields.preferred_shipping_line_ids}
 							onFocus={async () => {
@@ -145,13 +135,13 @@ function CreateContractModal({
 							cacheOptions={getCacheOptions('preferred_shipping_line_ids')}
 							optionsListKey={optionsListKey}
 						/>
-						<ErrorText>
+						<div className={styles.error_text}>
 							{errors?.preferred_shipping_line_ids?.message}
-						</ErrorText>
-					</StyledCol>
+						</div>
+					</div>
 
-					<StyledCol md={12} lg={6}>
-						<Label>
+					<div className={styles.styled_col}>
+						<div className={styles.label}>
 							Exclude
 							{' '}
 							{shippingLabel}
@@ -159,8 +149,8 @@ function CreateContractModal({
 							lines
 							{' '}
 							<span className="shipping-line">(OPTIONAL)</span>
-						</Label>
-						<InlineLabel>Search</InlineLabel>
+						</div>
+						<div className={styles.inline_label}>Search</div>
 						<SelectController
 							{...fields.exclude_shipping_line_ids}
 							onFocus={async () => {
@@ -171,12 +161,12 @@ function CreateContractModal({
 							cacheOptions={getCacheOptions('exclude_shipping_line_ids')}
 							optionsListKey={optionsListKey}
 						/>
-						<ErrorText>{errors?.exclude_shipping_line_ids?.message}</ErrorText>
-					</StyledCol>
-				</StyledRow>
+						<div className={styles.error_text}>{errors?.exclude_shipping_line_ids?.message}</div>
+					</div>
+				</div>
 			)}
 			<div ref={elementRef} />
-		</Container>
+		</div>
 	);
 }
 

@@ -1,6 +1,4 @@
-import styled from '@cogoport/front/styled';
-
-export const Container = styled.div`
+.container {
 	position: relative;
 	margin: 10px;
 
@@ -11,18 +9,18 @@ export const Container = styled.div`
 
 	width: 275px;
 	height: 160px;
-`;
+}
 
-export const BannerImage = styled.div`
+.banner_image { 
 	position: relative;
 	background-image: url(${({ img }) => img});
 	background-repeat: no-repeat;
 	background-size: cover;
 	height: 100px;
 	width: 100%;
-`;
+}
 
-export const CircleICon = styled.div`
+.circle_icon {
 	display: flex;
 	align-items: center;
 	justify-content: space-around;
@@ -34,9 +32,9 @@ export const CircleICon = styled.div`
 
 	height: 45px;
 	width: 45px;
-`;
+}
 
-export const Badge = styled.div`
+.badge { 
 	position: absolute;
 	top: 0;
 	right: 0;
@@ -45,9 +43,9 @@ export const Badge = styled.div`
 	width: fit-content;
 	background: rgba(154, 183, 254, 0.7);
 	border-radius: 3px;
-`;
-
-export const DiscountAmount = styled.div`
+}
+ 
+.discount_amount { 
 	font-weight: 500;
 	font-size: 14px;
 
@@ -55,9 +53,9 @@ export const DiscountAmount = styled.div`
 	letter-spacing: 0.02em;
 
 	color: #356efd;
-`;
+}
 
-export const Discount = styled.div`
+.discount {
 	font-weight: 700;
 	font-size: 14px;
 
@@ -65,9 +63,9 @@ export const Discount = styled.div`
 	letter-spacing: 0.02em;
 
 	color: #356efd;
-`;
+}
 
-export const PromoCodeName = styled.div`
+.promo_code_name {
 	background: #356efd;
 	color: #ffffff;
 	border-radius: 4px;
@@ -80,9 +78,9 @@ export const PromoCodeName = styled.div`
 	bottom: 0px;
 	left: 0px;
 	padding: 2px 10px;
-`;
+}
 
-export const PromoCodeDescription = styled.div`
+.promo_code_description {
 	padding: 5px;
 	font-weight: 400;
 	font-size: 10px;
@@ -90,4 +88,4 @@ export const PromoCodeDescription = styled.div`
 	overflow: hidden;
 
 	color: #333333;
-`;
+}

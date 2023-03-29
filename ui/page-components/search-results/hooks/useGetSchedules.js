@@ -1,16 +1,19 @@
-import { useRequest } from '@cogo/commons/hooks';
-import { useSelector } from '@cogo/store';
 import { useState, useEffect } from 'react';
 
+import { useRequest } from '@/packages/request';
+import { useSelector } from '@/packages/store';
+
 const useGetSchedules = () => {
-	const { query, scope } = useSelector(({ general }) => general);
+	const { query } = useSelector(({ general }) => general);
 	const [scheduleList, setScheduleList] = useState();
 
-	const { trigger } = useRequest(
-		'get',
-		false,
-		scope,
-	)('/get_spot_search_schedules');
+	const [{ loading }, trigger] = useRequest(
+		{
+			url    : 'get_spot_search_schedules',
+			method : 'get',
+		},
+		{ manual: true },
+	);
 
 	const getSchedules = () => {
 		trigger({
@@ -25,10 +28,10 @@ const useGetSchedules = () => {
 			.catch(() => {});
 	};
 	useEffect(() => {
-		if (scope === 'app') getSchedules();
+		getSchedules();
 	}, []);
 
-	return { scheduleList, getSchedules };
+	return { scheduleList, getSchedules, loading };
 };
 
 export default useGetSchedules;

@@ -1,15 +1,20 @@
-import { useRequest } from '@cogo/commons/hooks';
-import getGeoConstants from '@cogo/globalization/constants/geo';
-import { useSelector } from '@cogo/store';
-import { useEffect } from 'react';
+import { useEffect, useCallback } from 'react';
+
+import { useRequest } from '@/packages/request';
+import getGeoConstants from '@/ui/commons/constants/geo';
 
 const geo = getGeoConstants();
 
 const useGetSpotLineBookingShippingLines = () => {
-	const { scope } = useSelector(({ general }) => ({ scope: general?.scope }));
-	const listOperators = useRequest('get', false, scope)('/list_operators');
+	const [{ loading }, listOperators] = useRequest(
+		{
+			url    : 'list_operators',
+			method : 'get',
+		},
+		{ manual: true },
+	);
 
-	const listApi = async () => {
+	const listApi = useCallback(async () => {
 		try {
 			const payload = {
 				filters: {
@@ -26,7 +31,7 @@ const useGetSpotLineBookingShippingLines = () => {
 		} catch (error) {
 			console.log(error);
 		}
-	};
+	}, [listOperators]);
 
 	const { list = [] } = listOperators?.data || {};
 
@@ -34,9 +39,9 @@ const useGetSpotLineBookingShippingLines = () => {
 
 	useEffect(() => {
 		listApi();
-	}, []);
+	}, [listApi]);
 
-	return { spotBookingDefaultShippingLines };
+	return { spotBookingDefaultShippingLines, loading };
 };
 
 export default useGetSpotLineBookingShippingLines;

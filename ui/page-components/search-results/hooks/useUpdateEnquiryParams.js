@@ -1,9 +1,9 @@
-import showElementFunc from '@cogo/app-search/common/SearchForm/utils/show-elements';
-import referControls from '@cogo/app-search/configurations/enquiry/refer.controls.js';
-import formatSearch from '@cogo/app-search/utils/format-create-search';
-import getConfiguration from '@cogo/app-search/utils/getConfiguration';
-import { addDays } from '@cogo/date';
+import { addDays } from '@cogoport/utils';
 import { useState, useEffect, useImperativeHandle, useMemo } from 'react';
+
+import getConfiguration from '../../discover_rates/common/SearchForm/utils/getConfiguration';
+import referControls from '../../discover_rates/configurations/enquiry/refer.controls';
+import formatCreateSearch from '../utils/format-create-search';
 
 import { useForm } from '@/packages/forms';
 
@@ -24,7 +24,7 @@ const useUpdateEnquiryParams = ({
 
 	const { search_type, commodity } = detail;
 
-	const payload = formatSearch(
+	const payload = formatCreateSearch(
 		params,
 		search_type,
 		{ [service?.service]: true },

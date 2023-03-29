@@ -1,10 +1,11 @@
-import { useRequest } from '@cogo/commons/hooks';
-import getGeoConstants from '@cogo/globalization/constants/geo';
-import { useRouter } from '@cogo/next';
-import { useSelector } from '@cogo/store';
-import { toast } from '@cogoport/front/components';
+import { Toast } from '@cogoport/components';
 
 import formatSwbPayload from '../utils/format-swb-payload';
+
+import { useRouter } from '@/packages/next';
+import { useRequest } from '@/packages/request';
+import { useSelector } from '@/packages/store';
+import getGeoConstants from '@/ui/commons/constants/geo';
 
 const geo = getGeoConstants();
 
@@ -28,11 +29,13 @@ const useCreateEmptyCheckout = ({ data, touch_points, wayToBook }) => {
 	}));
 	const { service_details } = data;
 
-	const CreateCheckoutApi = useRequest(
-		'post',
-		false,
-		scope,
-	)('/create_checkout');
+	const [{ loading }, CreateCheckoutApi] = useRequest(
+		{
+			url    : 'create_checkout',
+			method : 'post',
+		},
+		{ manual: true },
+	);
 
 	const handleSave = async (values) => {
 		try {
@@ -83,12 +86,12 @@ const useCreateEmptyCheckout = ({ data, touch_points, wayToBook }) => {
 				);
 			}
 		} catch (err) {
-			toast.error(err?.data || 'Something went wrong!');
+			Toast.error(err?.data || 'Something went wrong!');
 		}
 	};
 	return {
 		handleSave,
-		loading: CreateCheckoutApi.loading,
+		loading,
 	};
 };
 

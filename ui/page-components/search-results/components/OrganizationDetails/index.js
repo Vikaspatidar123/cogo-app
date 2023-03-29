@@ -1,24 +1,22 @@
-import { useRequest } from '@cogo/commons/hooks';
-import { useSelector } from '@cogo/store';
-import { Popover, Button } from '@cogoport/front/components';
+import { Popover, Button } from '@cogoport/components';
 import { IcMArrowRotateDown } from '@cogoport/icons-react';
 import React, { useState, useEffect } from 'react';
 
-import { Container, OptionLabel, Card } from './styles';
+import styles from './styles.module.css';
+
+import { useRequest } from '@/packages/request';
 
 function OrganizationDetails({ org_id, org_name, branch_id }) {
 	const [show, setShow] = useState(false);
 	const [users, setUsers] = useState([]);
-	const { scope, isMobile } = useSelector(({ general }) => ({
-		scope    : general?.scope,
-		isMobile : general?.isMobile,
-	}));
 
-	const { trigger } = useRequest(
-		'get',
-		false,
-		scope,
-	)('/list_organization_users');
+	const [{ loading }, trigger] = useRequest(
+		{
+			url    : 'list_organization_users',
+			method : 'get',
+		},
+		{ manual: true },
+	);
 
 	const getOrgUsers = async () => {
 		const params = {
@@ -46,36 +44,36 @@ function OrganizationDetails({ org_id, org_name, branch_id }) {
 	}, [org_id]);
 
 	const renderBody = () => (
-		<Container>
-			<OptionLabel className="bold">
+		<div className={styles.container}>
+			<div className={`${styles.option_label} ${styles.bold}`}>
 				USERS -
 				{org_name}
-			</OptionLabel>
+			</div>
 
 			{(users || []).map((user) => (
-				<Card>
-					<OptionLabel style={{ width: '33%' }}>{user?.name}</OptionLabel>
-
-					<OptionLabel
+				<div className={styles.card}>
+					<div className={styles.option_label} style={{ width: '33%' }}>{user?.name}</div>
+					<div
+						role="presentation"
+						className={`${styles.option_label} ${styles.clickable}`}
 						style={{ width: '31%' }}
-						className="clickable"
 						onClick={() => goTo(`tel:${user?.mobile_number}`)}
 					>
 						{user?.mobile_country_code}
-						{' '}
 						{user?.mobile_number}
-					</OptionLabel>
+					</div>
 
-					<OptionLabel
+					<div
+						role="presentation"
+						className={`${styles.option_label} ${styles.clickable}`}
 						style={{ width: '36%', marginLeft: 10 }}
-						className="clickable"
 						onClick={() => goTo(`mailto:${user?.email}`)}
 					>
 						{user?.email}
-					</OptionLabel>
-				</Card>
+					</div>
+				</div>
 			))}
-		</Container>
+		</div>
 	);
 
 	return (
@@ -94,7 +92,6 @@ function OrganizationDetails({ org_id, org_name, branch_id }) {
 					border     : '1px solid #000000',
 					background : '#ffffff',
 					color      : '#000000',
-					marginTop  : isMobile ? '20px' : '',
 				}}
 				onClick={() => setShow(true)}
 			>

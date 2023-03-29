@@ -1,26 +1,15 @@
-import useGetPermission from '@cogo/business-modules/hooks/useGetPermission';
-import formatAmount from '@cogo/globalization/utils/formatAmount';
-import { useSelector } from '@cogo/store';
-import isEmpty from '@cogo/utils/isEmpty';
-import startCase from '@cogo/utils/startCase';
+import { isEmpty, startCase } from '@cogoport/utils';
 import React from 'react';
 
 import CC from '../../../helpers/condition-constants';
 
 import Margins from './Margins';
-import {
-	LineItem,
-	FlexRow,
-	Text,
-	Pill,
-	Space,
-	MobileMargins,
-	TotalPrice,
-} from './styles';
+import styles from './styles.module.css';
 
-function LineItems({ item = {}, isMobile = false }) {
+import formatAmount from '@/ui/commons/utils/formatAmount';
+
+function LineItems({ item = {} }) {
 	const { isConditionMatches, isChannelPartner } = useGetPermission();
-	const scope = useSelector(({ general }) => general?.scope);
 
 	const {
 		name,
@@ -56,12 +45,12 @@ function LineItems({ item = {}, isMobile = false }) {
 		: total_price_discounted;
 
 	return (
-		<LineItem>
-			<FlexRow>
-				<FlexRow>
-					<Text>{name}</Text>
+		<div className={styles.line_item}>
+			<div className={styles.flex_row}>
+				<div className={styles.flex_row}>
+					<div className={styles.text}>{name}</div>
 
-					{!isMobile && !isChannelPartner && scope === 'partner' ? (
+					{!isChannelPartner ? (
 						<div>
 							{`${formatAmount({
 								amount  : priceWithoutMargin,
@@ -74,24 +63,24 @@ function LineItems({ item = {}, isMobile = false }) {
 							})}`}
 						</div>
 					) : null}
-				</FlexRow>
+				</div>
 
-				<FlexRow>
-					{!isMobile && scope === 'partner' && !isChannelPartner ? (
+				<div className={styles.flex_row}>
+					{!isChannelPartner ? (
 						<div style={{ marginTop: '-6px' }}>
 							{!isEmpty(margins) ? (
 								<Margins margins={margins} />
 							) : (
-								<Space>
+								<div className={styles.space}>
 									+
 									{' '}
-									<Pill className="no-margin">No margin</Pill>
-								</Space>
+									<div className={`${styles.pill} ${styles.no_margin}`}>No margin</div>
+								</div>
 							)}
 						</div>
 					) : null}
 
-					<TotalPrice>
+					<div className={styles.total_price}>
 						<span style={{ fontWeight: 500 }}>
 							{formatAmount({
 								amount  : total_price_discounted,
@@ -108,20 +97,21 @@ function LineItems({ item = {}, isMobile = false }) {
 							[...CC.SEE_SALES_MARGIN, ...CC.SEE_SUPPLY_MARGIN],
 							'or',
 						) ? (
-							<Space>
+							<div className={styles.space}>
 								{price_discounted}
 								(
 								{startCase(unit)}
 								) x
 								{quantity}
-							</Space>
+							</div>
 							) : null}
-					</TotalPrice>
-				</FlexRow>
-			</FlexRow>
+					</div>
+				</div>
+			</div>
 
-			{isMobile && scope === 'partner' && !isChannelPartner ? (
-				<MobileMargins className="top">
+			{/* mobileview  ----->>> */}
+			{!isChannelPartner ? (
+				<div className={`${styles.MobileMargins} ${styles.top}`}>
 					{`${formatAmount({
 						amount  : priceWithoutMargin,
 						currency,
@@ -136,12 +126,12 @@ function LineItems({ item = {}, isMobile = false }) {
 						{!isEmpty(margins) ? (
 							<Margins margins={margins} />
 						) : (
-							<Pill className="no-margin">No margin</Pill>
+							<div className={`${styles.pill} ${styles.no_margin}`}>No margin</div>
 						)}
 					</div>
-				</MobileMargins>
+				</div>
 			) : null}
-		</LineItem>
+		</div>
 	);
 }
 

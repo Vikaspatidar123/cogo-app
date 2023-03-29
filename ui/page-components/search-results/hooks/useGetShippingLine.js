@@ -1,9 +1,4 @@
-import { useRequest } from '@cogo/commons/hooks';
-import getGeoConstants from '@cogo/globalization/constants/geo';
-import formatDate from '@cogo/globalization/utils/formatDate';
-import { useSelector } from '@cogo/store';
-import { useFormCogo } from '@cogoport/front/hooks';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 
 import StyledLabel from '../commons/StyledLabel';
 import {
@@ -17,6 +12,11 @@ import {
 
 import getPriorityAirlineOptions from './getPriorityAirlineOptions';
 import useGetSpotLineBookingShippingLines from './useGetSpotLineBookingShippingLines';
+
+import { useForm } from '@/packages/forms';
+import { useRequest } from '@/packages/request';
+import getGeoConstants from '@/ui/commons/constants/geo';
+import formatDate from '@/ui/commons/utils/formatDate';
 
 const geo = getGeoConstants();
 
@@ -39,7 +39,6 @@ const useGetShippingLine = ({
 	wayToBook,
 }) => {
 	const service_type = data?.search_type;
-	const { scope } = useSelector(({ general }) => ({ scope: general?.scope }));
 
 	const [manualSelect, setManualSelect] = useState(false);
 
@@ -55,7 +54,7 @@ const useGetShippingLine = ({
 				label : 'Sell Without Buy',
 				value : 'sell_without_buy',
 			},
-			  ]
+		]
 		: OPTIONS1;
 
 	const { spotBookingDefaultShippingLines = [] } =		useGetSpotLineBookingShippingLines();
@@ -68,36 +67,41 @@ const useGetShippingLine = ({
 		? '/get_sailing_schedules'
 		: '/get_air_schedules';
 
-	const getApiSchedules = useRequest('get', false, scope)(apiSchedules);
+	const [{ loading }, getApiSchedules] = useRequest(
+		{
+			url    : apiSchedules,
+			method : 'get',
+		},
+		{ manual: true },
+	);
 
 	let controls = [];
 	if (service_type === 'fcl_freight') {
 		controls = fclControls(
 			wayToBook,
-			scope,
 			data,
 			spotBookingDefaultShippingLines,
 			manualSelect,
 		);
 	}
 	if (service_type === 'lcl_freight') {
-		controls = lclControls(scope, wayToBook);
+		controls = lclControls(wayToBook);
 	}
 	if (service_type === 'air_freight') {
-		controls = airControls(scope, trade_type, airlineOptions);
+		controls = airControls(trade_type, airlineOptions);
 	}
 	if (service_type === 'ftl_freight' && data?.load_selection_type !== 'truck') {
 		controls = ftlControls();
 	}
 
 	const {
-		fields,
+		control,
 		handleSubmit,
 		watch,
 		reset,
 		formState: { errors },
 		setValue,
-	} = useFormCogo(controls);
+	} = useForm();
 
 	const formValues = watch();
 
@@ -105,13 +109,12 @@ const useGetShippingLine = ({
 		service_type,
 		controls,
 		scheduleList,
-		scope,
 		data,
 		wayToBook,
 		manualSelect,
 	);
 
-	Object.keys(fields).forEach((key) => {
+	Object.keys(control).forEach((key) => {
 		if (key === 'suitable_schedule') {
 			if (scheduleList.list.length) {
 				const options = [];
@@ -148,22 +151,24 @@ const useGetShippingLine = ({
 						const label = <StyledLabel data={listObj} />;
 						options.push({
 							label,
-							value: `${listObj.arrival}_${listObj.departure}_${listObj.transit_time}_${listObj?.number_of_stops}`,
+							value:
+							`${listObj.arrival}_${listObj.departure}_
+							${listObj.transit_time}_${listObj?.number_of_stops}`,
 						});
 					}
 				});
-				fields[key].options = options;
+				control[key].options = options;
 			}
 		}
 
 		if (key === 'shipping_line_id' && wayToBook === 'spot_booking') {
-			fields[key].params = {
+			control[key].params = {
 				filters: { id: geo.uuid.spot_booking_shipping_lines },
 			};
 		}
 	});
 
-	const serviceTypeBasedDecision = () => {
+	const serviceTypeBasedDecision = useCallback(() => {
 		let params = {};
 		if (service_type === 'fcl_freight') {
 			params = {
@@ -190,40 +195,40 @@ const useGetShippingLine = ({
 			};
 		}
 
-		if (formValues.airline_id && scope === 'partner') {
+		if (formValues.airline_id) {
 			getFclAirSchedule(getApiSchedules.trigger, setScheduleList, params);
 		}
 		if (
 			formValues?.shipping_line_id
 			&& service_type === 'fcl_freight'
-			&& scope === 'partner'
 		) {
 			getFclAirSchedule(getApiSchedules.trigger, setScheduleList, params);
 		}
-	};
+	}, [data?.destination_airport_id,
+		data?.destination_port_id,
+		data?.origin_airport_id,
+		data?.origin_port_id,
+		formValues.airline_id,
+		formValues?.shipping_line_id, getApiSchedules.trigger, service_type]);
 
 	useEffect(() => {
 		serviceTypeBasedDecision();
-	}, [
-		formValues?.airline_id,
-		formValues?.shipping_line_id,
-		formValues?.cargo_readiness_date,
-	]);
+	}, [formValues.airline_id, formValues.shipping_line_id, formValues.cargo_readiness_date, serviceTypeBasedDecision]);
 
 	useEffect(() => {
 		priorityAirlineOptions({
 			origin_airport_id      : data?.origin_airport_id,
 			destination_airport_id : data?.destination_airport_id,
 		});
-	}, []);
+	}, [data?.destination_airport_id, data?.origin_airport_id, priorityAirlineOptions]);
 
 	useEffect(() => {
 		setValue('suitable_schedule', '');
-	}, [manualSelect]);
+	}, [manualSelect, setValue]);
 
 	return {
 		errors,
-		fields,
+		control,
 		handleSubmit,
 		reset,
 		controls,
@@ -233,6 +238,7 @@ const useGetShippingLine = ({
 		OPTIONS,
 		manualSelect,
 		setManualSelect,
+		loading,
 	};
 };
 

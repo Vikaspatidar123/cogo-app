@@ -1,31 +1,31 @@
-import styled from '@cogoport/front/styled';
-
-export const Container = styled.div`
+.container {
 	margin-top: 20px;
-`;
+ }
 
-export const DetailCon = styled.div`
-	box-shadow: rgb(0 0 0 / 40%) 0px 0px 6px;
+.detail_icon {
+	box-shadow: rgb(0 0 0 / 40%) 0 0 6px;
 	border-radius: 5px;
 	padding: 30px 20px;
 	margin-bottom: 25px;
-`;
+}
 
-export const Details = styled.div`
+.details {
 	display: flex;
 	justify-content: space-between;
-	margin: 20px 0px;
-`;
+	margin: 20px 0;
+}
 
-export const BtnCon = styled.div`
+.btn_icon {
 	display: flex;
 	justify-content: flex-end;
-	margin: 20px 0px 0px 0px;
-`;
+	margin: 20px;
+}
 
-export const GrayLine = styled.div`
+.gray_line {
 	border: 1px dashed #393f70;
 	opacity: 0.5;
-	margin: 20px 0px;
+	margin: 20px 0;
 	width: 100%;
-`;
+ }
+
+

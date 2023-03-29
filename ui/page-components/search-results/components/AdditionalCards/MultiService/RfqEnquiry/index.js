@@ -44,7 +44,7 @@ function MultiServiceRfqEnquiry({
 		if (!isEmpty(mainServices)) {
 			setSelectedService((mainServices || [])[0] || {});
 		}
-	}, []);
+	}, [mainServices]);
 
 	const widthCondition = 800;
 

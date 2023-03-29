@@ -1,4 +1,4 @@
-import { addDays } from '@cogo/date';
+import { addDays } from '@cogoport/utils';
 
 const SPECIAL_CONSIDERATION = ['dangerous', 'temp_controlled', 'other_special'];
 

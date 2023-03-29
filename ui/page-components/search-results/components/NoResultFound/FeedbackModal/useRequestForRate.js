@@ -1,18 +1,33 @@
-import { useRequest } from '@cogo/commons/hooks';
-import { useRouter } from '@cogo/next';
-import { useSelector } from '@cogo/store';
-import { toast } from '@cogoport/front/components';
+import { Toast } from '@cogoport/components';
+
+import { useRouter } from '@/packages/next';
+import { useRequest } from '@/packages/request';
+import { useSelector } from '@/packages/store';
 
 const useRequestForRate = ({ onClose, reset, details, requestService }) => {
 	const {
-		general: { query = {}, scope },
+		general: { query = {} },
 	} = useSelector((state) => state);
 
 	const { search_id = '' } = query;
 	const Router = useRouter();
-	const url = '/create_spot_search_rate_request';
 
-	const { loading, trigger } = useRequest('post', false, scope)(url);
+	const [{ loading }, trigger] = useRequest(
+		{
+			url    : 'create_spot_search_rate_request',
+			method : 'post',
+		},
+		{ manual: true },
+	);
+
+	const handleResponse = () => {
+		onClose();
+		Toast.success('Your request has been submitted');
+		if (!requestService) {
+			Router.push('/sales/dashboards');
+		}
+		reset();
+	};
 
 	const onSubmitFeedback = async (values = {}) => {
 		const {
@@ -25,7 +40,7 @@ const useRequestForRate = ({ onClose, reset, details, requestService }) => {
 		} = values;
 		try {
 			if (preferred_freight_rate && !preferred_freight_rate_currency) {
-				toast.error('Please add currency');
+				Toast.error('Please add currency');
 			} else {
 				const body = {
 					id                          : search_id,
@@ -51,14 +66,6 @@ const useRequestForRate = ({ onClose, reset, details, requestService }) => {
 		} catch (err) {
 			console.log(err);
 		}
-	};
-	const handleResponse = () => {
-		onClose();
-		toast.success('Your request has been submitted');
-		if (!requestService) {
-			Router.push('/sales/dashboards');
-		}
-		reset();
 	};
 
 	return {

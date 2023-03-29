@@ -1,41 +1,38 @@
-import styled from '@cogoport/front/styled';
-import { IcMPortArrow } from '@cogoport/icons-react';
-
-export const PortArrow = styled(IcMPortArrow)`
+.port_arrow {
 	height: 30px;
 	width: 40px;
 	margin: 0px 30px;
-`;
+}
 
-export const PortName = styled.div`
+.port_name { 
 	font-weight: 700;
 	font-size: 12px;
 	width: 200px;
-`;
+}
 
-export const TopSection = styled.div`
+.top_section { 
 	display: flex;
 	flex-direction: row;
 	margin-bottom: 10px;
-`;
+}
 
-export const Tag = styled.div`
+.tag  {
 	background: #dfe1ef;
 	font-size: 12px;
 	padding: 4px 6px;
 	border-radius: 4px;
 	margin-right: 5px;
 	margin-bottom: 5px;
-`;
+}
 
-export const Card = styled.div`
+.card { 
 	width: 450px;
-	padding: 10px 10px 10px 0px;
+	padding: 10px 10px 10px 0;
 	border-radius: 4px;
 	margin-right: 20px;
-`;
+}
 
-export const CardRow = styled.div`
+.card_row { 
 	width: 510px;
 	display: flex;
 	flex-direction: row;
@@ -47,9 +44,9 @@ export const CardRow = styled.div`
 	}
 	-ms-overflow-style: none;
 	scrollbar-width: none;
-`;
+}
 
-export const BottomSection = styled.div`
+.bottom_section {
 	display: flex;
 	flex-wrap: wrap;
-`;
+}

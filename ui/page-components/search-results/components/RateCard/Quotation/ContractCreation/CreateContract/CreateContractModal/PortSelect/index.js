@@ -1,15 +1,8 @@
-import { startCase, upperCase } from '@cogoport/front/utils';
+import { IcMPortArrow } from '@cogoport/icons-react';
+import { startCase, upperCase } from '@cogoport/utils';
 import React from 'react';
 
-import {
-	PortArrow,
-	PortName,
-	TopSection,
-	Tag,
-	Card,
-	CardRow,
-	BottomSection,
-} from './styles';
+import styles from './styles.module.css';
 
 function PortSelect({ portDetail = {} }) {
 	const {
@@ -27,48 +20,48 @@ function PortSelect({ portDetail = {} }) {
 	} = portDetail || {};
 
 	return (
-		<CardRow>
-			<Card>
-				<TopSection>
-					<PortName>
+		<div className={styles.card_row}>
+			<div className={styles.card}>
+				<div className={styles.top_section}>
+					<div className={styles.port_name}>
 						{origin_port?.display_name || origin_airport?.display_name || '-'}
-					</PortName>
-					<PortArrow />
-					<PortName>
+					</div>
+					<IcMPortArrow />
+					<div className={styles.port_name}>
 						{destination_port?.display_name
 							|| destination_airport?.display_name
 							|| '-'}
-					</PortName>
-				</TopSection>
-				<BottomSection>
-					{commodity && <Tag>{startCase(commodity)}</Tag>}
+					</div>
+				</div>
+				<div className={styles.bottom_section}>
+					{commodity && <div className={styles.tag}>{startCase(commodity)}</div>}
 					{container_size && (
-						<Tag>
+						<div className={styles.tag}>
 							{container_size}
 							{' '}
 							{container_size.includes('HC') ? ' ' : 'FT'}
-						</Tag>
+						</div>
 					)}
-					{container_type && <Tag>{startCase(container_type)}</Tag>}
+					{container_type && <div className={styles.tag}>{startCase(container_type)}</div>}
 					{volume && (
-						<Tag>
+						<div className={styles.tag}>
 							VOL:
 							{volume}
 							CBM
-						</Tag>
+						</div>
 					)}
 					{weight && (
-						<Tag>
+						<div className={styles.tag}>
 							WT:
 							{weight}
 							KGS
-						</Tag>
+						</div>
 					)}
-					{inco_term && <Tag>{upperCase(inco_term)}</Tag>}
-					{trade_type && <Tag>{startCase(trade_type)}</Tag>}
-				</BottomSection>
-			</Card>
-		</CardRow>
+					{inco_term && <div className={styles.tag}>{upperCase(inco_term)}</div>}
+					{trade_type && <div className={styles.tag}>{startCase(trade_type)}</div>}
+				</div>
+			</div>
+		</div>
 	);
 }
 

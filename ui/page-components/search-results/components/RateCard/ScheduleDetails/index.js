@@ -1,63 +1,64 @@
-import GLOBAL_CONSTANTS from '@cogo/globalization/constants/globals.json';
-import formatDate from '@cogo/globalization/utils/formatDate';
-import { ToolTip } from '@cogoport/front/components';
+import { Tooltip } from '@cogoport/components';
 import { IcMInfo } from '@cogoport/icons-react';
 
-import { Container, Section, Label, Value, EmptyMsg } from './styles';
+import styles from './styles.module.css';
+
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
+import formatDate from '@/ui/commons/utils/formatDate';
 
 function ScheduleDetails({ list }) {
 	return (
-		<Container>
+		<div className={styles.container}>
 			{(list || []).map((item) => (
 				<div className="card">
-					<Section>
-						<Label>ETD</Label>
-						<Value>
+					<div className={styles.section}>
+						<div className={styles.label}>ETD</div>
+						<div className={styles.value}>
 							{item.departure
 								? formatDate({
 									date       : item.departure,
 									dateFormat : GLOBAL_CONSTANTS.formats.date['dd MMM yyyy'],
 									formatType : 'date',
-								  })
+								})
 								: '-'}
-						</Value>
-					</Section>
+						</div>
+					</div>
 
-					<Section>
-						<Label>ETA</Label>
-						<Value>
+					<div className={styles.section}>
+						<div className={styles.label}>ETA</div>
+						<div className={styles.value}>
 							{item.arrival
 								? formatDate({
 									date       : item.arrival,
 									dateFormat : GLOBAL_CONSTANTS.formats.date['dd MMM yyyy'],
 									formatType : 'date',
-								  })
+								})
 								: '-'}
-						</Value>
-					</Section>
-					<Section>
-						<Label>Transit Time</Label>
-						<Value>{`${item.transit_time} Days`}</Value>
-					</Section>
-					<Section>
-						<Label>No of stops</Label>
-						<Value className="blue">
+						</div>
+					</div>
+					<div className={styles.section}>
+						<div className={styles.label}>Transit Time</div>
+						<div className={styles.value}>{`${item.transit_time} Days`}</div>
+					</div>
+					<div className={styles.section}>
+						<div className={styles.label}>No of stops</div>
+						<div className={`${styles.value} ${styles.blue}`}>
 							{item.number_of_stops === 0
 								? 'Direct'
 								: `${item.number_of_stops} stops`}
-						</Value>
-					</Section>
+						</div>
+					</div>
 
-					<Section>
-						<Label> Gate-in (cut off)</Label>
-						<Value>{item.gate_in_cutoff ? item.gate_in_cutoff : '-'}</Value>
-					</Section>
+					<div className={styles.section}>
+						<div className={styles.label}>Gate-in (cut off)</div>
+						<div className={styles.value}>{item.gate_in_cutoff ? item.gate_in_cutoff : '-'}</div>
+					</div>
 
-					<Section>
-						<Label>Reliability Score</Label>
-						<Value className="green">
+					<div className={styles.section}>
+						<div className={styles.label}>Reliability Score</div>
+						<div className={`${styles.value} ${styles.green}`}>
 							{item.reliability_score ? `${item.reliability_score} %` : '-'}
-							<ToolTip
+							<Tooltip
 								placement="top"
 								theme="light"
 								content="Reliability score is calculated on the basis of accuracy of schedules"
@@ -65,13 +66,13 @@ function ScheduleDetails({ list }) {
 								<div>
 									<IcMInfo width="16px" height="16px" fill="black" />
 								</div>
-							</ToolTip>
-						</Value>
-					</Section>
+							</Tooltip>
+						</div>
+					</div>
 				</div>
 			))}
-			{list.length === 0 && <EmptyMsg>No Schedule Found</EmptyMsg>}
-		</Container>
+			{list.length === 0 && <div className={styles.empty_msg}>No Schedule Found</div>}
+		</div>
 	);
 }
 

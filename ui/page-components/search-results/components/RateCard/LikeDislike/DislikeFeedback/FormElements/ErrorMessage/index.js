@@ -1,7 +1,7 @@
-import { Container } from './styles';
+import styles from './styles.module.css';
 
 function ErrorMessage({ message }) {
-	return <Container>{message || ''}</Container>;
+	return <div className={styles.container}>{message || ''}</div>;
 }
 
 export default ErrorMessage;

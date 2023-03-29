@@ -1,21 +1,24 @@
-import { useRequest } from '@cogo/commons/hooks';
-import formatAmount from '@cogo/globalization/utils/formatAmount';
-import { useRouter } from '@cogo/next';
-import { useSelector } from '@cogo/store';
-import { Button } from '@cogoport/front/components/admin';
+import { Button } from '@cogoport/components';
 import { useEffect } from 'react';
 
 import AddLineItems from './AddLineItems';
 import Loader from './Loader';
-import { Container, BtnContainer, PriceCon, Text, LeadText } from './styles';
+import styles from './styles.module.css';
+
+import { useRouter } from '@/packages/next';
+import { useRequest } from '@/packages/request';
+import formatAmount from '@/ui/commons/utils/formatAmount';
 
 function AddDetails({ spotBookingDetails }) {
-	const { scope } = useSelector(({ general }) => ({
-		scope: general?.scope,
-	}));
-
 	const router = useRouter();
-	const getCheckout = useRequest('get', false, scope)('/get_checkout');
+
+	const [{ loading }, getCheckout] = useRequest(
+		{
+			url    : 'get_checkout',
+			method : 'get',
+		},
+		{ manual: true },
+	);
 
 	const detail = getCheckout?.data?.detail;
 	const rate = getCheckout?.data?.rate;
@@ -50,14 +53,14 @@ function AddDetails({ spotBookingDetails }) {
 
 	if (getCheckout?.loading) {
 		return (
-			<Container>
+			<div className={styles.container}>
 				<Loader />
-			</Container>
+			</div>
 		);
 	}
 
 	return (
-		<Container>
+		<div className={styles.container}>
 			{(services || []).map((service) => (
 				<AddLineItems
 					getCheckout={getCheckout}
@@ -66,11 +69,11 @@ function AddDetails({ spotBookingDetails }) {
 					rate={rate}
 				/>
 			))}
-			<BtnContainer>
-				<PriceCon>
-					<Text>
+			<div className={styles.btn_container}>
+				<div className={styles.price_Con}>
+					<div className={styles.text}>
 						<div>Total Landed Cost :</div>
-						<div className="price">
+						<div className={styles.price}>
 							{formatAmount({
 								amount   : rate?.total_price_discounted,
 								currency : rate?.total_price_currency,
@@ -81,9 +84,9 @@ function AddDetails({ spotBookingDetails }) {
 								},
 							})}
 						</div>
-					</Text>
-					<LeadText>(Including Taxes, Convience and Platform Fees)</LeadText>
-				</PriceCon>
+					</div>
+					<div className={styles.lead_text}>(Including Taxes, Convience and Platform Fees)</div>
+				</div>
 				<Button
 					onClick={() => router.push(
 						'/checkout/[checkout_id]',
@@ -93,8 +96,8 @@ function AddDetails({ spotBookingDetails }) {
 				>
 					Go To Checkout
 				</Button>
-			</BtnContainer>
-		</Container>
+			</div>
+		</div>
 	);
 }
 

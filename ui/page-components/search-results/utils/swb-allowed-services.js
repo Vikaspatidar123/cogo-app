@@ -1,4 +1,4 @@
-import getGeoConstants from '@cogo/globalization/constants/geo';
+import getGeoConstants from '@/ui/commons/constants/geo';
 
 const SELL_WITHOUT_BUY_ALLOWED_SERVICES = [
 	'fcl_freight',
@@ -22,7 +22,8 @@ const swbAllowedServices = ({ search_type, trade_type, rates }) => {
 	let swb_with_rates = false;
 	let swb_without_rates = false;
 
-	const ftl_default_provider_check = (rates || []).every((rate) => rate?.service_provider_id === geo?.uuid.cogoxpress_id);
+	const ftl_default_provider_check = (rates || [])
+		.every((rate) => rate?.service_provider_id === geo?.uuid.cogoxpress_id);
 
 	if (SELL_WITHOUT_BUY_ALLOWED_SERVICES.includes(search_type)) {
 		swb_without_rates = true;

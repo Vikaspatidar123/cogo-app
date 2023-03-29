@@ -1,18 +1,18 @@
-import { useRequest } from '@cogo/commons/hooks';
-import { useSelector } from '@cogo/store';
-import { toast } from '@cogoport/front/components';
+import { Toast } from '@cogoport/components';
+
+import { useRequest } from '@/packages/request';
 
 const useCreateRateTask = (allParams) => {
 	const { ...params } = allParams;
 	const { headerData = {}, data = {} } = params;
 
-	const { scope } = useSelector(({ general }) => ({ scope: general?.scope }));
-
-	const { loading = false, trigger = () => {} } = useRequest(
-		'post',
-		false,
-		scope,
-	)('/create_fcl_freight_rate_task');
+	const [{ loading }, trigger] = useRequest(
+		{
+			url    : 'create_fcl_freight_rate_task',
+			method : 'post',
+		},
+		{ manual: true },
+	);
 
 	const createApi = async () => {
 		try {
@@ -35,10 +35,10 @@ const useCreateRateTask = (allParams) => {
 			});
 
 			if (!res.hasError) {
-				toast.success('Job Created Successfully');
+				Toast.success('Job Created Successfully');
 			}
 		} catch (error) {
-			toast.error(error?.data);
+			Toast.error(error?.data);
 		}
 	};
 

@@ -1,29 +1,19 @@
-import { useRequest } from '@cogo/commons/hooks';
-import getGeoConstants from '@cogo/globalization/constants/geo';
-import formatAmount from '@cogo/globalization/utils/formatAmount';
-import { useRouter } from '@cogo/next';
-import { useSelector } from '@cogo/store';
-import { Flex } from '@cogoport/front/components';
-import { Button } from '@cogoport/front/components/admin';
-import { startCase } from '@cogoport/front/utils';
+import { Button } from '@cogoport/components';
 import { IcMArrowRotateDown, IcMArrowRotateUp } from '@cogoport/icons-react';
+import { startCase } from '@cogoport/utils';
 import React, { useState, forwardRef } from 'react';
+import { useSelector } from 'react-redux';
 
 import formatSwbPayload from '../../../utils/format-swb-payload';
 import FeedBackModal from '../../NoResultFound/FeedbackModal';
 
 import LineItems from './LineItems';
-import {
-	Container,
-	Service,
-	Line,
-	FlexRow,
-	ServiceDetails,
-	ServiceInfo,
-	ServiceText,
-	AnimatedContainer,
-	BtnContainer,
-} from './styles';
+import styles from './styles.module.css';
+
+import { useRouter } from '@/packages/next';
+import { useRequest } from '@/packages/request';
+import getGeoConstants from '@/ui/commons/constants/geo';
+import formatAmount from '@/ui/commons/utils/formatAmount';
 
 const LOCALS = [
 	'origin_air_freight_local',
@@ -62,11 +52,13 @@ function QuotationDetails(
 		userRoleIDs : profile?.partner?.user_role_ids,
 	}));
 
-	const createCheckoutApi = useRequest(
-		'post',
-		false,
-		scope,
-	)('/create_checkout');
+	const [{ loading }, createCheckoutApi] = useRequest(
+		{
+			url    : 'create_checkout',
+			method : 'post',
+		},
+		{ manual: true },
+	);
 
 	const [open, setOpen] = useState(false);
 	const [openService, setOpenService] = useState('');
@@ -238,8 +230,8 @@ function QuotationDetails(
 
 		return (
 			<>
-				<ServiceDetails>
-					<ServiceInfo>{handleService()}</ServiceInfo>
+				<div className={styles.service_details}>
+					<div className={styles.service_info}>{handleService()}</div>
 
 					{is_rate_available
 						? formatAmount({
@@ -250,17 +242,17 @@ function QuotationDetails(
 								currencyDisplay       : 'code',
 								maximumFractionDigits : 0,
 							},
-						  })
+						})
 						: fclLocals}
-				</ServiceDetails>
+				</div>
 
 				{is_rate_available
 					? (item?.line_items || []).map((lineItem, index) => (
 						<>
-							{index !== 0 ? <Line /> : null}
+							{index !== 0 ? <div className={styles.line} /> : null}
 							<LineItems item={lineItem} isMobile={isMobile} />
 						</>
-					  ))
+					))
 					: null}
 			</>
 		);
@@ -358,7 +350,7 @@ function QuotationDetails(
 	};
 
 	const handleShowButtons = (service) => (
-		<BtnContainer>
+		<div className={styles.btn_container}>
 			{/* {!CUSTOMS.includes(details?.search_type) ? ( */}
 			<Button
 				onClick={() => {
@@ -384,21 +376,19 @@ function QuotationDetails(
 					{!service.includes('cargo_insurance') ? 'REQUEST RATE' : 'No Rates'}
 				</Button>
 			) : null}
-		</BtnContainer>
+		</div>
 	);
 
 	return (
-		<Container ref={ref} className={isConfirmed ? 'confirmed' : ''}>
+		<div className={`${styles.container} ${isConfirmed ? 'confirmed' : ''}`} ref={ref}>
 			{(Object.keys(groupedServices || {}) || []).map((service) => (
 				<>
-					<Service
-						className={`${isConfirmed ? 'confirmed' : ''}service_dropdown`}
-					>
-						<FlexRow>
+					<div className={`${styles.service} ${styles.isConfirmed ? 'confirmed' : ''}service_dropdown}`}>
+						<div className={styles.flex_row}>
 							{(groupedServices[service] || [])[0]?.service ? (
-								<ServiceText>{handleServicesNames(service)}</ServiceText>
+								<div className={styles.service_text}>{handleServicesNames(service)}</div>
 							) : (
-								<ServiceText>{startCase(service)}</ServiceText>
+								<div className={styles.service_text}>{startCase(service)}</div>
 							)}
 
 							{checkIfRateAvailable(groupedServices[service])
@@ -406,29 +396,27 @@ function QuotationDetails(
 							|| service.includes('air_freight_local')
 							|| (CUSTOMS.includes(details?.search_type)
 								&& !service.includes('subsidiary')) ? (
-									<Flex
-										style={
-										isMobile
-											? { cursor: 'pointer', marginLeft: 'auto' }
-											: { cursor: 'pointer' }
-									}
+									<div
+										role="presentation"
+										style={{ display: 'flex', cursor: 'pointer' }}
 										onClick={() => handleOpen(service)}
 									>
 										{handleIcon(service)}
-									</Flex>
+									</div>
 								) : (
 									handleShowButtons(service)
 								)}
-						</FlexRow>
-					</Service>
+						</div>
+					</div>
 
-					<AnimatedContainer
+					<div
+						className={styles.animated_container}
 						type={open && service === openService ? 'enter' : 'exit'}
 					>
 						<div>
 							{(groupedServices[service] || []).map((item) => handleLineItemsBreakup(item))}
 						</div>
-					</AnimatedContainer>
+					</div>
 					{showFeedbackModal ? (
 						<FeedBackModal
 							onClose={() => {
@@ -441,7 +429,7 @@ function QuotationDetails(
 					) : null}
 				</>
 			))}
-		</Container>
+		</div>
 	);
 }
 

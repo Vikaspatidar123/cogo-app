@@ -1,9 +1,9 @@
-import { useRequest } from '@cogo/commons/hooks';
-import { toast } from '@cogoport/front/components/admin';
+import { Toast } from '@cogoport/components';
+
+import { useRequest } from '@/packages/request';
 
 const useAddCargoInsurance = ({
 	checkout_id = '',
-	scope = '',
 	refetch = () => {},
 	setAddCargoInsurance,
 	rateData = {},
@@ -18,7 +18,13 @@ const useAddCargoInsurance = ({
 		? 'create_checkout_service'
 		: 'create_spot_search_service';
 
-	const AddCargoInsuranceApi = useRequest('post', false, scope)(`/${apiName}`);
+	const [{ loading }, AddCargoInsuranceApi] = useRequest(
+		{
+			url    : `/${apiName}`,
+			method : 'post',
+		},
+		{ manual: true },
+	);
 
 	const key = checkout_id
 		? 'cargo_insurance_services_attributes'
@@ -58,7 +64,7 @@ const useAddCargoInsurance = ({
 			});
 
 			if (!res.hasError) {
-				toast.success('Cargo Insurance added successfully!');
+				Toast.success('Cargo Insurance added successfully!');
 				setAddCargoInsurance(false);
 				refetch();
 			}
@@ -69,7 +75,7 @@ const useAddCargoInsurance = ({
 
 	return {
 		handleAddCargoInsurance,
-		cargoLoading: AddCargoInsuranceApi.loading,
+		cargoLoading: loading,
 	};
 };
 

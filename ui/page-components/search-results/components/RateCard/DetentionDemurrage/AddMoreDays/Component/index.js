@@ -1,14 +1,14 @@
-import GLOBAL_CONSTANTS from '@cogo/globalization/constants/globals.json';
-import { Flex, Text } from '@cogoport/front/components';
-import { Button, toast } from '@cogoport/front/components/admin';
-import { isEmpty } from '@cogoport/front/utils';
+import { Button, Toast } from '@cogoport/components';
+import { isEmpty } from '@cogoport/utils';
 import { useState } from 'react';
 
 import DaysSelect from '../../../commons/DaysSelect';
 import useAddMoreDays from '../../hooks/useAddMoreDays;';
 import slabPriceCalculator from '../../utils/slabPriceCalculator';
 
-import { StyledText, Container } from './styles';
+import styles from './styles.module.css';
+
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
 const CODE_MAPPING = {
 	origin_detention      : 'EDT',
@@ -128,7 +128,7 @@ function Component({
 	const onAddDays = () => {
 		const payload = getPayload();
 		if (payload.subsidiary_services.length === 0) {
-			toast.error('Additional Days can not  be 0');
+			Toast.error('Additional Days can not  be 0');
 			return;
 		}
 		fetchApi(payload);
@@ -136,18 +136,20 @@ function Component({
 
 	return (
 		<>
+			{' '}
 			{maxLimit ? (
-				<Container type={type}>
-					<Flex direction="column">
-						<StyledText>
+				<div className={`${styles.container} ${styles.div}`} type={type}>
+					<div style={{ display: 'flex', flexDirection: 'column' }}>
+						<div className={styles.styled_text}>
 							{freeLimit}
 							{' '}
 							{type}
 							{' '}
 							free days include in your price
-						</StyledText>
+						</div>
 
-						<StyledText
+						<div
+							className={styles.styled_text}
 							style={{ marginTop: '8px', fontSize: '14px', fontWeight: '600' }}
 						>
 							Get additional
@@ -158,7 +160,7 @@ function Component({
 							{' '}
 							{activeTab}
 							:
-						</StyledText>
+						</div>
 
 						<DaysSelect
 							days={days}
@@ -166,13 +168,13 @@ function Component({
 							minimumDays={freeLimit}
 							maximumDays={maxLimit}
 						/>
-					</Flex>
+					</div>
 
-					<Flex direction="column" style={{ justifyContent: 'space-between' }}>
-						<Flex direction="column" style={{ alignItems: 'flex-end' }}>
-							<StyledText> Price</StyledText>
+					<div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+						<div style={{ alignItems: 'flex-end', display: 'flex', flexDirection: 'column' }}>
+							<div className={styles.styled_text}> Price</div>
 
-							<StyledText>
+							<div className={styles.styled_text}>
 								{totalPrice.map((item) => {
 									const {
 										container_size,
@@ -182,25 +184,25 @@ function Component({
 									} = item;
 
 									return (
-										<Flex>
-											<Text>
+										<div style={{ display: 'flex' }}>
+											<div className={styles.text}>
 												{container_size}
 												ft X
 												{containers_count}
 												{' '}
 												:
-											</Text>
+											</div>
 
-											<Text style={{ marginLeft: '4px' }}>
+											<div style={{ marginLeft: '4px' }}>
 												{preferred_rate_currency}
 												{' '}
 												{preferred_rate}
-											</Text>
-										</Flex>
+											</div>
+										</div>
 									);
 								})}
-							</StyledText>
-						</Flex>
+							</div>
+						</div>
 
 						<Button
 							className="secondary sm"
@@ -211,8 +213,8 @@ function Component({
 						>
 							Add
 						</Button>
-					</Flex>
-				</Container>
+					</div>
+				</div>
 			) : null}
 		</>
 	);

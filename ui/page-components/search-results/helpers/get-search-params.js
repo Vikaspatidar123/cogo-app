@@ -1,10 +1,11 @@
-import COMMODITY_MAPPING from '@cogo/commons/constants/COMMODITY_MAPPING';
-import CONTAINER_SIZE_MAPPING from '@cogo/commons/constants/CONTAINER_SIZE_MAPPING';
-import CONTAINER_TYPE_MAPPING from '@cogo/commons/constants/CONTAINER_TYPE_MAPPING';
-import SEARCH_TYPE_MAPPING from '@cogo/commons/constants/SEARCH_TYPE_MAPPING';
-import TRUCK_TYPE_MAPPING from '@cogo/commons/constants/TRUCK_TYPE_MAPPING';
-import incotermsArray from '@cogo/smart-components/constants/inco-terms.json';
-import startCase from '@cogo/utils/startCase';
+import { startCase } from '@cogoport/utils';
+
+import COMMODITY_MAPPING from '@/packages/forms/constants/COMMODITY_MAPPING';
+import CONTAINER_SIZE_MAPPING from '@/packages/forms/constants/CONTAINER_SIZE_MAPPING';
+import CONTAINER_TYPE_MAPPING from '@/packages/forms/constants/CONTAINER_TYPE_MAPPING';
+import incotermsArray from '@/packages/forms/constants/inco-terms.json';
+import SEARCH_TYPE_MAPPING from '@/packages/forms/constants/SEARCH_TYPE_MAPPING';
+import TRUCK_TYPE_MAPPING from '@/packages/forms/constants/TRUCK_TYPE_MAPPING';
 
 const SERVICE_ATTRIBUTES = {
 	fcl_freight: [
@@ -129,7 +130,7 @@ const getSearchDetails = (detail) => {
 		location.destination = newDetail?.destination_location;
 	}
 
-	const { tradeType } =		incotermsArray.find(
+	const { tradeType } = incotermsArray.find(
 		(incoterm) => incoterm.value === newDetail?.inco_term,
 	) || {};
 	const singleLocationAttributes = {

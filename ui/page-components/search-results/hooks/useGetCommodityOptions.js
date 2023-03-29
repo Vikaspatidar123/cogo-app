@@ -1,4 +1,4 @@
-import { useRequest } from '@cogo/commons/hooks';
+import { useRequest } from '@/packages/request';
 
 const getCommodityOptions = () => {
 	const apiData = useRequest('get', true, 'saas', {

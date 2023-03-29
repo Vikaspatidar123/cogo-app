@@ -1,8 +1,8 @@
-import getGeoConstants from '@cogo/globalization/constants/geo';
-import insertLiveChat from '@cogo/product/live-chat/helpers/create-live-chat';
-import initializeLiveChat from '@cogo/product/live-chat/helpers/initialize';
-
 import getSearchDetails from './get-search-params';
+
+import insertLiveChat from '@/packages/forms/constants/live-chat/helpers/create-live-chat';
+import initializeLiveChat from '@/packages/forms/constants/live-chat/helpers/initialize';
+import getGeoConstants from '@/ui/commons/constants/geo';
 
 const geo = getGeoConstants();
 

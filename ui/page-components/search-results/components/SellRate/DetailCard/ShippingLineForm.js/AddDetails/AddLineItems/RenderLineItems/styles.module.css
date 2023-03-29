@@ -1,15 +1,22 @@
-import styled from '@cogoport/front/styled';
-
-export const Container = styled.div`
+.container {
 	color: #393f70;
 	font-size: 16px;
 	font-weight: 500;
-`;
+}
 
-export const DetailCon = styled.div`
-	padding: 20px 0px 0px 0px;
-`;
+.detail_icon {
+	padding: 20px 0 0 0;
+}
 
-export const DeleteCon = styled.div`
+.delete_icon {
 	cursor: pointer;
-`;
+}
+
+.row {
+	display: flex;
+}
+
+.col {
+	display: flex;
+	flex-direction: column;
+}

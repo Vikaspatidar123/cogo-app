@@ -1,4 +1,3 @@
-import { Flex } from '@cogoport/front/components';
 import SegmentedControl from '@cogoport/front/components/SegmentedControl';
 
 import Component from './Component';
@@ -72,16 +71,16 @@ function AddMoreDays(props) {
 
 	return (
 		<div style={{ padding: '12px 20px' }}>
-			<Flex>
+			<div style={{ display: 'flex' }}>
 				<SegmentedControl
 					options={OPTIONS}
 					activeTab={activeTab}
 					setActiveTab={setActiveTab}
 					separatorMarginRight={4}
 				/>
-			</Flex>
+			</div>
 
-			<Flex>
+			<div style={{ display: 'flex' }}>
 				{Object.keys(COMPONENT_MAPPING[activeTab]).map((key) => {
 					const componentProps = COMPONENT_MAPPING[activeTab][key];
 
@@ -101,7 +100,7 @@ function AddMoreDays(props) {
 						/>
 					);
 				})}
-			</Flex>
+			</div>
 		</div>
 	);
 }

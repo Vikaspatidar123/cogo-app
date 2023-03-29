@@ -1,58 +1,49 @@
 import { IcCFtick } from '@cogoport/icons-react';
 
-import {
-	Container,
-	TextLabel,
-	Text,
-	InnerContainer,
-	Footer,
-	Tab,
-	MainContiner,
-	Refund,
-} from './styles';
+import styles from './styles.module.css';
 
 function BasicPlan({ enquiryQuota = {} }) {
 	return (
-		<MainContiner>
-			<Refund className="normal">
+		<div>
+			<div className={`${styles.Refund} ${styles.normal}`}>
 				No need to worry, place an enquiry with us and our team will get back to
 				you soon
-			</Refund>
+			</div>
 
-			<Container>
-				<InnerContainer>
-					<Text>basic</Text>
+			<div className={styles.container}>
+				<div className={styles.inner_container}>
+					<div className={styles.text}>basic</div>
 
-					<TextLabel>
+					<div className={styles.text_label}>
 						{enquiryQuota?.left_limit}
 						{' '}
 						free enquries left!
-					</TextLabel>
+					</div>
 
-					{enquiryQuota?.left_limit ? <Tab>Active</Tab> : null}
-				</InnerContainer>
+					{enquiryQuota?.left_limit ? <div className={styles.tab}>Active</div> : null}
+				</div>
 				{/* <Text className="rate">$500/10 enquries</Text> */}
 
-				<Footer>
-					<InnerContainer className="label">
+				<div className={styles.footer}>
+					<div className={`${styles.inner_container} ${styles.label}`}>
 						<IcCFtick style={{ marginRight: 8 }} />
-						<Text className="text">
+						<div className={styles.text}>
 							The best rates to give you a competitive edge
-						</Text>
-					</InnerContainer>
+						</div>
+					</div>
 
-					<InnerContainer className="label">
+					<div className={`${styles.inner_container} ${styles.label}`}>
 						<IcCFtick style={{ marginRight: 8 }} />
-						<Text className="text">The quickest service in the business</Text>
-					</InnerContainer>
-				</Footer>
-			</Container>
+						<div className={styles.text}>The quickest service in the business</div>
+					</div>
+				</div>
+			</div>
 
-			<Refund>
+			<div className={styles.refund}>
 				Also, if you book with us after an enquiry, the price of that enquiry will
 				be refunded.
-			</Refund>
-		</MainContiner>
+			</div>
+		</div>
 	);
 }
 export default BasicPlan;

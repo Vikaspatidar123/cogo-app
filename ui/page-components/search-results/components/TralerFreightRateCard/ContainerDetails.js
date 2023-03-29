@@ -1,10 +1,8 @@
-import convertHourToDate from '@cogo/utils/converHourToDay';
-import { Flex } from '@cogoport/front/components';
-import { ToolTip, Button, Popover } from '@cogoport/front/components/admin';
-import { startCase, isEmpty } from '@cogoport/front/utils';
+import { Button, Tooltip, Popover } from '@cogoport/components';
+import { isEmpty, startCase } from '@cogoport/utils';
 import React from 'react';
 
-import { Div, ContainerValues, StyledFlex } from './styles';
+import styles from './styles.module.css';
 
 const SERVICE_TYPE_MAPPING = {
 	T2T : 'Terminal 2 Terminal',
@@ -27,7 +25,7 @@ const handleCommodity = (commodity) => {
 
 function GetMultiContainerDetails({ service_details }) {
 	return (
-		<StyledFlex>
+		<div className={styles.styled_flex}>
 			{Object.values(service_details).map((item) => {
 				const {
 					container_size = '',
@@ -39,16 +37,16 @@ function GetMultiContainerDetails({ service_details }) {
 				} = item || {};
 
 				return (
-					<Div key={item?.id} style={{ fontSize: '12px' }}>
+					<div className={styles.div} key={item?.id} style={{ fontSize: '12px' }}>
 						{`${container_size}FT x ${containers_count} | ${startCase(
 							handleCommodity(commodity),
 						)} | ${startCase(
 							container_type,
 						)} | ${cargo_weight_per_container}MT | ${additional_service_type}`}
-					</Div>
+					</div>
 				);
 			})}
-		</StyledFlex>
+		</div>
 	);
 }
 
@@ -74,15 +72,15 @@ function ContainerDetails({ data = {}, details = {}, service_type }) {
 		<>
 			{service_type === 'rail_domestic_freight' && (
 				<>
-					<Div>
-						<Flex>
-							<ContainerValues>
+					<div className={styles.div}>
+						<div className={styles.flex}>
+							<div className={styles.container_values}>
 								{`${container_size}FT x ${containers_count} | ${startCase(
 									handleCommodity(commodity),
 								)} | ${startCase(
 									container_type,
 								)} | ${cargo_weight_per_container}MT`}
-							</ContainerValues>
+							</div>
 							<Popover
 								content={
 									<GetMultiContainerDetails service_details={service_details} />
@@ -101,51 +99,51 @@ function ContainerDetails({ data = {}, details = {}, service_type }) {
 									</Button>
 								)}
 							</Popover>
-						</Flex>
-					</Div>
+						</div>
+					</div>
 
-					<Div>
+					<div className={styles.div}>
 						<span>Service Type: </span>
-						<ContainerValues>
+						<div className={styles.container_values}>
 							{SERVICE_TYPE_MAPPING[details.additional_service_type]}
-						</ContainerValues>
-					</Div>
+						</div>
+					</div>
 				</>
 			)}
 
 			{service_type === 'trailer_freight' && (
 				<>
-					<Div>
+					<div className={styles.div}>
 						<span>Detention Free Time: </span>
-						<ContainerValues>
+						<div className={styles.container_values}>
 							{convertHourToDate(detention_free_time || '12')}
-						</ContainerValues>
-					</Div>
-					<Div>
+						</div>
+					</div>
+					<div className={styles.div}>
 						<span>Transit Time: </span>
-						<ContainerValues>
+						<div className={styles.container_values}>
 							{convertHourToDate(transit_time || '12')}
-						</ContainerValues>
-					</Div>
-					<ToolTip
+						</div>
+					</div>
+					<Tooltip
 						placement="top"
 						content={
-							<ContainerValues>{startCase(trailer_type || '')}</ContainerValues>
+							<div className={styles.container_values}>{startCase(trailer_type || '')}</div>
 						}
 						theme="light"
 						interactive
 					>
-						<Div>
+						<div className={styles.div}>
 							<span>Trailer Type: </span>
-							<ContainerValues>
+							<div className={styles.container_values}>
 								{startCase(trailer_type || 'pen_body_pickup_1ton')}
-							</ContainerValues>
-						</Div>
-					</ToolTip>
-					<Div>
+							</div>
+						</div>
+					</Tooltip>
+					<div className={styles.div}>
 						<span>Trailer Count: </span>
-						<ContainerValues>{startCase(trailer_count || '1')}</ContainerValues>
-					</Div>
+						<div className={styles.container_values}>{startCase(trailer_count || '1')}</div>
+					</div>
 				</>
 			)}
 		</>

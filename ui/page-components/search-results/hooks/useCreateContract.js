@@ -1,6 +1,7 @@
-import { useRequest, useScope } from '@cogo/commons/hooks';
-import { useSelector } from '@cogo/store';
-import { toast } from '@cogoport/front/components';
+import { Toast } from '@cogoport/components';
+
+import { useRequest } from '@/packages/request';
+import { useSelector } from '@/packages/store';
 
 const useCreateContract = ({
 	data = {},
@@ -9,16 +10,17 @@ const useCreateContract = ({
 	setShowContract = () => {},
 	search_type = '',
 }) => {
-	const { scope } = useScope();
 	const { query } = useSelector(({ general }) => ({
 		query: general.query,
 	}));
 
-	const { loading, trigger } = useRequest(
-		'post',
-		false,
-		scope,
-	)('/create_spot_search_contract');
+	const [{ loading }, trigger] = useRequest(
+		{
+			url    : 'create_spot_search_contract',
+			method : 'post',
+		},
+		{ manual: true },
+	);
 
 	const createContract = async (values) => {
 		const {
@@ -53,7 +55,7 @@ const useCreateContract = ({
 				setContractData({ ...values, ...res?.data, search_type });
 			}
 		} catch (e) {
-			toast.error(e?.error?.message);
+			Toast.error(e?.error?.message);
 		}
 	};
 	return {

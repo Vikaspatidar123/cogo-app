@@ -1,11 +1,11 @@
-import { flattenErrorToString } from '@cogo/commons/helpers';
-import { useRequest } from '@cogo/commons/hooks';
-import getGeoConstants from '@cogo/globalization/constants/geo';
-import { useRouter } from '@cogo/next';
-import { useSelector } from '@cogo/store';
-import isEmpty from '@cogo/utils/isEmpty';
-import { toast } from '@cogoport/front/components';
+import { Toast } from '@cogoport/components';
+import { isEmpty } from '@cogoport/utils';
 import { useState } from 'react';
+
+import { useRouter } from '@/packages/next';
+import { useRequest } from '@/packages/request';
+import { useSelector } from '@/packages/store';
+import getGeoConstants from '@/ui/commons/constants/geo';
 
 const geo = getGeoConstants();
 
@@ -22,45 +22,43 @@ const useCreateCheckout = ({
 	source = '',
 }) => {
 	const router = useRouter();
-	const [loading, setLoading] = useState(false);
 	const [confirmation, setConfirmation] = useState(false);
 	const [noRatesServices, setNoRatesServices] = useState([]);
 
 	const {
-		scope = '',
 		query = {},
 		userRoleIDs = [],
 	} = useSelector(({ general, profile }) => ({
-		scope       : general?.scope,
 		query       : general?.query,
 		userRoleIDs : profile?.partner?.user_role_ids,
 	}));
 
-	const { trigger } = useRequest(
-		'post',
-		false,
-		scope,
-	)('/create_spot_search_checkout');
-	const createRfqCheckouts = useRequest(
-		'post',
-		false,
-		scope,
-	)('/create_rfq_checkouts');
+	const [{ loading }, trigger] = useRequest(
+		{
+			url    : 'create_spot_search_checkout',
+			method : 'post',
+		},
+		{ manual: true },
+	);
+
+	const [{ loading : createLoading }, createRfqCheckouts] = useRequest(
+		{
+			url    : 'create_rfq_checkouts',
+			method : 'post',
+		},
+		{ manual: true },
+	);
 
 	const handleCreateCheckout = async () => {
-		setLoading(true);
-
 		const isCogoVerseMember = userRoleIDs.some((elem) => cogoVerseTeamIDS.includes(elem));
 
 		const params = {
 			id            : query?.search_id,
 			source        : source || null,
 			selected_card : data?.card,
-			tags:
-				scope === 'partner'
-				&& (query?.source === 'communication' || isCogoVerseMember)
-					? ['cogoverse']
-					: undefined,
+			tags          : (query?.source === 'communication' || isCogoVerseMember)
+				? ['cogoverse']
+				: undefined,
 		};
 
 		try {
@@ -84,13 +82,11 @@ const useCreateCheckout = ({
 					router.push(partnerHref, partnerAs);
 				}
 			} else {
-				setLoading(false);
 				setConfirmation(false);
-				toast.error(res?.messages);
+				Toast.error(res?.messages);
 			}
 		} catch (e) {
-			toast.error(flattenErrorToString(e));
-			setLoading(false);
+			Toast.error(e?.messages);
 			setConfirmation(false);
 		}
 	};
@@ -135,7 +131,6 @@ const useCreateCheckout = ({
 	};
 
 	const handleSave = async () => {
-		setLoading(true);
 		try {
 			const payload = {
 				id             : query?.rfq_id,
@@ -151,10 +146,8 @@ const useCreateCheckout = ({
 				);
 			}
 		} catch (err) {
-			toast.error(err?.data || 'Something went wrong!');
-			setLoading(false);
+			Toast.error(err?.data || 'Something went wrong!');
 		}
-		setLoading(false);
 	};
 
 	return {
@@ -164,6 +157,7 @@ const useCreateCheckout = ({
 		setConfirmation,
 		noRatesServices,
 		handleSave,
+		createLoading,
 	};
 };
 

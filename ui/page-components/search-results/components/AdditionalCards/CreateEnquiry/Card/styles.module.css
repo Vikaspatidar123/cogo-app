@@ -34,7 +34,7 @@
 	cursor: pointer;
 	outline: none;
 
-	&:hover {
+	:hover {
 		text-decoration: underline;
 	}
 }

@@ -1,6 +1,6 @@
-import { toast, Input } from '@cogoport/front/components/admin';
+import { Toast, Input } from '@cogoport/components';
 
-import { Container, MethodContainer, Vline, StyledText } from './styles';
+import styles from './styles.module.css';
 
 const MAPPING = {
 	subtract : 'Cannot remove existing days',
@@ -14,7 +14,7 @@ function DaysSelect({ days, minimumDays, maximumDays, setDays }) {
 		const limit_type = type === 'subtract' ? minimumDays : maximumDays;
 
 		if (Number(days) === limit_type) {
-			toast.info(MAPPING[type]);
+			Toast.info(MAPPING[type]);
 		} else {
 			setDays((prev) => Number(prev) + i || '');
 		}
@@ -24,29 +24,40 @@ function DaysSelect({ days, minimumDays, maximumDays, setDays }) {
 		const { value } = e.target;
 
 		if (value > maximumDays) {
-			toast.error(MAPPING.add);
+			Toast.error(MAPPING.add);
 		} else if (value < minimumDays) {
-			toast.error(MAPPING.subtract);
+			Toast.error(MAPPING.subtract);
 		} else setDays(Number(value));
 	};
 
 	return (
 		<div>
-			<StyledText>Total days</StyledText>
+			<div className={styles.styled_text}>Total days</div>
 
-			<Container>
-				<MethodContainer onClick={() => onChangeDays('subtract')}>
+			<div className={styles.container}>
+				<div
+					className={styles.method_container}
+					role="presentation"
+					onClick={() => onChangeDays('subtract')}
+				>
 					-
-				</MethodContainer>
+				</div>
 
-				<Vline />
+				<div className={styles.v_line} />
 
 				<Input type="number" value={days} onChange={(e) => handleChange(e)} />
 
-				<Vline />
+				<div className={styles.v_line} />
 
-				<MethodContainer onClick={() => onChangeDays('add')}>+</MethodContainer>
-			</Container>
+				<div
+					className={styles.method_container}
+					role="presentation"
+					onClick={() => onChangeDays('add')}
+				>
+					+
+
+				</div>
+			</div>
 		</div>
 	);
 }

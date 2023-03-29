@@ -1,9 +1,9 @@
-import Tooltip from '@cogoport/front/components/ToolTip';
+import { Tooltip } from '@cogoport/components';
 import { IcCLike } from '@cogoport/icons-react';
 import { useState } from 'react';
 
 import DislikeFeedback from './DislikeFeedback';
-import { Container, Count, MainContainer } from './styles';
+import styles from './styles.module.css';
 import updateLikeRate from './updateLikeRate';
 
 function LikeDislike({ details, updateRate, rate }) {
@@ -20,19 +20,20 @@ function LikeDislike({ details, updateRate, rate }) {
 	};
 
 	return (
-		<MainContainer>
+		<div className={styles.main_container}>
 			<Tooltip
 				placement="top"
 				theme="light"
 				content={rate.is_liked ? 'Liked' : 'Like'}
 			>
-				<Container
-					className={`${rate.is_liked ? 'active' : ''}`}
+				<div
+					className={`${styles.container} ${rate.is_liked ? 'active' : ''}`}
+					role="presentation"
 					onClick={handleLikeRateCard}
 				>
-					<Count>{rate.likes_count}</Count>
+					<div className={styles.count}>{rate.likes_count}</div>
 					<IcCLike width="20px" height="16px" />
-				</Container>
+				</div>
 			</Tooltip>
 
 			<Tooltip
@@ -40,12 +41,13 @@ function LikeDislike({ details, updateRate, rate }) {
 				theme="light"
 				content={rate.is_disliked ? 'Disliked' : 'Dislike'}
 			>
-				<Container
-					className={`dislike ${rate.is_disliked ? 'active' : ''}`}
+				<div
+					className={`dislike ${styles.container} ${rate.is_disliked ? 'active' : ''}`}
+					role="presentation"
 					onClick={onClickDislike}
 				>
 					<IcCLike width="20px" height="16px" />
-				</Container>
+				</div>
 			</Tooltip>
 
 			<DislikeFeedback
@@ -57,7 +59,7 @@ function LikeDislike({ details, updateRate, rate }) {
 					setShow(false);
 				}}
 			/>
-		</MainContainer>
+		</div>
 	);
 }
 

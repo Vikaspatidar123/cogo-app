@@ -1,5 +1,3 @@
-import { useSelector } from '@cogo/store';
-import { Flex } from '@cogoport/front/components';
 import { IcCFtick } from '@cogoport/icons-react';
 import React, { useState } from 'react';
 
@@ -9,21 +7,7 @@ import Quotation from '../RateCard/Quotation';
 import QuotationDetails from '../RateCard/QuotationDetails';
 
 import ContainerDetails from './ContainerDetails';
-import {
-	Container,
-	Card,
-	Text,
-	CogoAssured,
-	CogoportText,
-	Details,
-	LineHorizontal,
-	FreightDetailsDiv,
-	FreightDetailsText,
-	FreightDetails,
-	InfoDiv,
-	QuotationButton,
-	LineVertical,
-} from './styles';
+import styles from './styles.module.css';
 
 const RATE_SOURCE_MAPPING = {
 	spot_rates            : 'System Rate',
@@ -42,11 +26,6 @@ function TrailerFreightRateCard({
 	enquiry_page = false,
 	results_type = '',
 }) {
-	const { scope } = useSelector(({ general }) => ({
-		scope    : general?.scope,
-		isMobile : general?.isMobile,
-	}));
-
 	const [open, setOpen] = useState(true);
 
 	let totalContainerCount = 0;
@@ -78,62 +57,62 @@ function TrailerFreightRateCard({
 	});
 
 	return (
-		<Container
-			className={scope === 'app' ? 'app' : ''}
+		<div
+			className={styles.container}
 			style={
 				results_type === 'rfq' ? { width: '100%', marginLeft: '10px' } : {}
 			}
 			id={id}
 		>
 			<div style={{ display: 'flex', flexDirection: 'column' }}>
-				<Card>
-					<Flex display="block" flex={1}>
-						<CogoAssured className={data?.source}>
+				<div className={styles.card}>
+					<div className={styles.flex}>
+						<div className={`${styles.cogo_assured} ${data?.source}`}>
 							{data?.source === 'cogo_assured_rate' && (
 								<div style={{ display: 'flex' }}>
 									<IcCFtick />
-									<CogoportText>Cogoport</CogoportText>
+									<div className={styles.cogoportText}>Cogoport</div>
 								</div>
 							)}
-							<Text className={data?.source}>
+							<div className={`${styles.text} ${data?.source}`}>
 								{RATE_SOURCE_MAPPING[data?.source] || 'System Rate'}
-							</Text>
-						</CogoAssured>
+							</div>
+						</div>
 
-						<InfoDiv>
+						<div className={styles.info_div}>
 							<LocationDetails data={details} />
 
-							<Flex padding={16}>
-								<FreightDetailsDiv>
-									<FreightDetailsText>OPERATOR : </FreightDetailsText>
-									<FreightDetails>
+							<div className={styles.flex} style={{ padding: '16px' }}>
+								<div className={styles.freight_details_div}>
+									<div className={styles.freight_details_text}>OPERATOR : </div>
+									<div className={styles.freight_details}>
 										{data?.service_provider?.business_name || ' '}
-									</FreightDetails>
-								</FreightDetailsDiv>
-								<FreightDetailsDiv>
-									<FreightDetailsText>EST. TRANSIT TIME : </FreightDetailsText>
-									<FreightDetails>
+									</div>
+								</div>
+								<div className={styles.freight_details_div}>
+									<div className={styles.freight_details_text}>EST. TRANSIT TIME : </div>
+									<div className={styles.freight_details}>
 										{maxTransitTime || ''}
 										{' '}
 										Days
-									</FreightDetails>
-								</FreightDetailsDiv>
-							</Flex>
+									</div>
+								</div>
+							</div>
 
-							<Details>
+							<div className={styles.details}>
 								<ContainerDetails
 									data={data}
 									details={details}
 									service_type={data.service_type}
 								/>
-							</Details>
-						</InfoDiv>
+							</div>
+						</div>
 						<PromoCode promotion={data.promocode} />
-					</Flex>
+					</div>
 
-					<LineVertical />
+					<div className={styles.line_vertical} />
 
-					<QuotationButton>
+					<div className={styles.quotation_button}>
 						<Quotation
 							data={data}
 							state={state}
@@ -149,31 +128,31 @@ function TrailerFreightRateCard({
 							isConfirmed={false}
 						/>
 
-						<LineHorizontal />
+						<div className={styles.line_vertical} />
 
-						<Flex paddingTop={16} paddingLeft={16} direction="column">
-							<FreightDetailsDiv>
-								<FreightDetailsText>Avg. Cost/Container :</FreightDetailsText>
-								<FreightDetails>
+						<div className={styles.flex} style={{ padding: '16px 0 0 16px', flexDirection: 'column' }}>
+							<div className={styles.freight_details_div}>
+								<div className={styles.freight_details_text}>Avg. Cost/Container :</div>
+								<div className={styles.freight_details}>
 									{Number(data?.total_price / totalContainerCount).toFixed(4)
 										|| ' '}
 									{' '}
 									{data?.total_price_currency}
-								</FreightDetails>
-							</FreightDetailsDiv>
-							<FreightDetailsDiv>
-								<FreightDetailsText>Avg. Cost/Tonne :</FreightDetailsText>
-								<FreightDetails>
+								</div>
+							</div>
+							<div className={styles.freight_details_div}>
+								<div className={styles.freight_details_text}>Avg. Cost/Tonne :</div>
+								<div className={styles.freight_details}>
 									{Number(
 										data?.total_price / totalCargoWeightPerContainerCount,
 									).toFixed(4) || ''}
 									{' '}
 									{data?.total_price_currency}
-								</FreightDetails>
-							</FreightDetailsDiv>
-						</Flex>
-					</QuotationButton>
-				</Card>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 
 			<QuotationDetails
@@ -182,7 +161,7 @@ function TrailerFreightRateCard({
 				id={id}
 				isConfirmed={false}
 			/>
-		</Container>
+		</div>
 	);
 }
 

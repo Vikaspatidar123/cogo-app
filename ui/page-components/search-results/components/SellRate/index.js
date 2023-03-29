@@ -3,7 +3,7 @@ import { useState } from 'react';
 import useCreateEmptyCheckout from '../../hooks/useCreateEmptyCheckout';
 
 import DetailCard from './DetailCard';
-import { Container, Header } from './styles';
+import styles from './styles.module.css';
 
 function SellRate({
 	rates = [],
@@ -29,10 +29,10 @@ function SellRate({
 	});
 
 	return (
-		<Container>
-			<Header>
+		<div className={styles.container}>
+			<div className={styles.header}>
 				<div>Configure Sell Rate</div>
-			</Header>
+			</div>
 			<DetailCard
 				setAddRate={setAddRate}
 				rates={rates}
@@ -44,7 +44,7 @@ function SellRate({
 				spotBookingDetails={spotBookingDetails}
 				showSpotBookingDetails={showSpotBookingDetails}
 			/>
-		</Container>
+		</div>
 	);
 }
 

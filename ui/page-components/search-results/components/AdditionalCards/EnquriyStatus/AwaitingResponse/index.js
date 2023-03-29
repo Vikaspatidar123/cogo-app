@@ -1,3 +1,4 @@
+import { Button } from '@cogoport/components';
 import React, { useState } from 'react';
 
 import MultiServiceEnquiry from '../../MultiService';
@@ -38,7 +39,7 @@ function AwaitingResponse({
 	return (
 		<div className={styles.container}>
 			<div className={styles.Main}>
-				{rates_count > 0 ? null : <Title>Success!!!</Title>}
+				{rates_count > 0 ? null : <div className={styles.title}>Success!!!</div>}
 				<div className={styles.Description}>{title}</div>
 				<div className={styles.Description}>{description}</div>
 
@@ -57,7 +58,10 @@ function AwaitingResponse({
 			</div>
 
 			{rates_count <= 0 ? (
-				<div className={styles.bg} src="https://cdn.cogoport.io/cms-prod/cogo_admin/vault/original/person-with-phone.svg" />
+				<div
+					className={styles.bg}
+					src="https://cdn.cogoport.io/cms-prod/cogo_admin/vault/original/person-with-phone.svg"
+				/>
 			) : null}
 
 			<MultiServiceEnquiry

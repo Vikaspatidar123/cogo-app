@@ -1,14 +1,8 @@
-import { Button } from '@cogoport/front/components/admin';
+import { Button } from '@cogoport/components';
 
 import CargoAndLoadDetailsContent from './CargoAndLoadDetailsContent';
 import RoutesSearch from './RoutesSearch';
-import {
-	Container,
-	FormInputsContainerRow,
-	ButtonContainer,
-	RouteContainerCol,
-	CargoAndLoadDetailsContainerCol,
-} from './styles';
+import styles from './styles.module.css';
 import useRailDomestic from './useRailDomestic';
 
 function RailDomestic({
@@ -31,9 +25,9 @@ function RailDomestic({
 	});
 
 	return (
-		<Container>
-			<FormInputsContainerRow style={{ margin: '0 16px 16px 16px' }}>
-				<RouteContainerCol xs={12} md={8}>
+		<div className={styles.container}>
+			<div className={styles.form_inputs_container_row} style={{ margin: '0 16px 16px 16px' }}>
+				<div className={styles.route_container_col}>
 					<RoutesSearch
 						ref={(r) => {
 							imperativeHandleRef.current.routeSearch = r;
@@ -42,9 +36,9 @@ function RailDomestic({
 						searchType={searchType}
 						formValues={formValues.routeSearch}
 					/>
-				</RouteContainerCol>
+				</div>
 
-				<CargoAndLoadDetailsContainerCol xs={12} md={4}>
+				<div className={styles.cargo_and_load_details_container_col}>
 					<CargoAndLoadDetailsContent
 						ref={(r) => {
 							imperativeHandleRef.current.cargoAndLoadDetailsContent = r;
@@ -52,10 +46,10 @@ function RailDomestic({
 						isFormSubmitted={isSearchRatesButtonClicked}
 						formValues={formValues.cargoAndLoadDetailsContent}
 					/>
-				</CargoAndLoadDetailsContainerCol>
-			</FormInputsContainerRow>
+				</div>
+			</div>
 
-			<ButtonContainer>
+			<div className={styles.button_container}>
 				<Button
 					type="button"
 					className="primary md"
@@ -64,8 +58,8 @@ function RailDomestic({
 				>
 					Search Rates
 				</Button>
-			</ButtonContainer>
-		</Container>
+			</div>
+		</div>
 	);
 }
 

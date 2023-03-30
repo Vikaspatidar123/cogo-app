@@ -60,7 +60,6 @@ function AdditionalServices({
 		setAddCargoInsurance,
 	} = useCreateAdditionalService({
 		possible_additional_services,
-		scope,
 		renderServices,
 		data,
 		serviceMappings,

@@ -38,7 +38,6 @@ function SearchResults() {
 		...(initialHeaderData || {}),
 		importer_exporter_id,
 	};
-
 	return (
 		<>
 			<Head>

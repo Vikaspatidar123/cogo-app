@@ -3,7 +3,14 @@ import { isEmpty } from '@cogoport/utils';
 import { useState, useMemo, useImperativeHandle, useEffect } from 'react';
 
 import { APP_EVENT, trackEvent } from '../../discover_rates/common/analytics';
-import formatCreateSearch from '../utils/format-create-search';
+import airControls from '../../discover_rates/configurations/search/air/form.controls.advanced';
+import airLocalsControls from '../../discover_rates/configurations/search/domestic/air-locals/form-controls.advanced';
+import fclCustomsControls from '../../discover_rates/configurations/search/domestic/fcl-customs/form-controls.advanced';
+import fclLocalsControls from '../../discover_rates/configurations/search/domestic/fcl-locals/form-controls.advanced';
+import lclLocalsControls from '../../discover_rates/configurations/search/domestic/lcl-locals/form-controls.advanced';
+import fclControls from '../../discover_rates/configurations/search/fcl/form-controls.advanced';
+import lclControls from '../../discover_rates/configurations/search/lcl/form.controls.advanced';
+import getServiceValues from '../helpers/get-service-values';
 
 import { useForm } from '@/packages/forms';
 import { useRequest } from '@/packages/request';
@@ -53,22 +60,22 @@ const useAddService = ({
 	const controls = (controlsMapping[search_type] || []).map((control) => ({
 		...control,
 		value:
-			service?.[control.name] || prefilledValues[control.name] || control.value,
+      service?.[control.name] || prefilledValues[control.name] || control.value,
 		disabled: !!(
 			addedServiceEnquiry?.[`${service?.service}:${service?.trade_type}`]
 				?.length
-			|| addedServiceEnquiry?.[`${service?.service}:${service?.trade_type}`]
-				?.length
+      || addedServiceEnquiry?.[`${service?.service}:${service?.trade_type}`]
+      	?.length
 		),
 	}));
 
 	(controls || []).forEach((obj, index) => {
 		if (
 			obj?.name === 'import_transportation_location_id'
-			|| obj?.name === 'export_transportation_location_id'
+      || obj?.name === 'export_transportation_location_id'
 		) {
-			controls[index].value =				prefillDetails?.addServiceDetails?.[
-				`${service?.service}:${service?.trade_type}`
+			controls[index].value = prefillDetails?.addServiceDetails?.[
+        	`${service?.service}:${service?.trade_type}`
 			]?.[obj?.name];
 		}
 	});
@@ -88,7 +95,7 @@ const useAddService = ({
 	Object.keys(fields || {}).forEach((key) => {
 		if (
 			key === 'import_transportation_location_id'
-			|| key === 'export_transportation_location_id'
+      || key === 'export_transportation_location_id'
 		) {
 			fields[key].handleChange = (val) => {
 				setLocationObj({ [key]: val });
@@ -100,7 +107,9 @@ const useAddService = ({
 		setErrors(errs);
 	};
 
-	const apiName = !data?.checkout_id ? 'create_spot_search_service' : 'create_checkout_service';
+	const apiName = !data?.checkout_id
+		? 'create_spot_search_service'
+		: 'create_checkout_service';
 
 	const [{ loading }, CreateAdditionalService] = useRequest(
 		{
@@ -273,11 +282,14 @@ const useAddService = ({
 				setValue('export_transportation_packages', formatPackageInformation);
 			}
 		}
-	}, [formValues?.export_transportation_packages,
+	}, [
+		formValues?.export_transportation_packages,
 		formValues?.import_transportation_packages,
-		params, setValue,
+		params,
+		setValue,
 		showElements?.export_transportation_packages,
-		showElements?.import_transportation_packages]);
+		showElements?.import_transportation_packages,
+	]);
 
 	useEffect(() => {
 		setShowElementAdd(showElements);

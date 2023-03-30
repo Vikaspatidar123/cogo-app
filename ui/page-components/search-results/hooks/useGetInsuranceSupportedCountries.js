@@ -1,17 +1,28 @@
-import { useRequest } from '@/packages/request';
+import { useRequestBf } from '@/packages/request';
 
 const useGetCargoInsuranceSupportedCountries = (country_id) => {
-	const apiData = useRequest('get', true, 'saas', {
-		authkey: 'saas_insurance_country_supported',
-	})('saas/insurance/country-supported', {
-		params: {
-			policyCountryId: country_id,
+	// const apiData = useRequest('get', true, 'saas', {
+
+	// })('saas/insurance/country-supported', {
+	// 	params: {
+	// 		policyCountryId: country_id,
+	// 	},
+	// });
+	const [{ loading, data }] = useRequestBf(
+		{
+			url     : 'saas/insurance/country-supported',
+			authkey : 'saas_insurance_country_supported',
+			method  : 'get',
+			params  : {
+				policyCountryId: country_id,
+			},
 		},
-	});
+		{ manual: false },
+	);
 
 	return {
-		isEligible : apiData?.data,
-		loading    : apiData?.loading,
+		isEligible: data,
+		loading,
 	};
 };
 

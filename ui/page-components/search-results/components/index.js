@@ -1,6 +1,6 @@
-
 // import { Flex } from '@cogoport/front/components';
 // import { Skeleton } from '@cogoport/front/components/admin';
+import { Placeholder } from '@cogoport/components';
 import { IcMArrowBack } from '@cogoport/icons-react';
 import dynamic from 'next/dynamic';
 import React, { useState, useEffect, useMemo } from 'react';
@@ -27,6 +27,7 @@ import OrganizationDetails from './OrganizationDetails';
 import RateCards from './RateCards';
 import RequestRate from './RequestRate';
 import SellRate from './SellRate';
+import styles from './styles.module.css';
 
 import { useRouter } from '@/packages/next';
 import { useSelector } from '@/packages/store';
@@ -337,7 +338,7 @@ function Results({
 		}
 
 		return (
-			<LeftSection scope={scope}>
+			<div className={styles.left_section}>
 				<AdditionalServices
 					data={data}
 					refetch={refetch}
@@ -346,7 +347,7 @@ function Results({
 				{rates_count > 0 && scope === 'app' && count < 1 && (
 					<ContractIntelligence />
 				)}
-			</LeftSection>
+			</div>
 		);
 
 		// if (
@@ -375,85 +376,86 @@ function Results({
 		/>
 	);
 
-	// return (
-	// 	<Container>
-	// 		<HeaderWrap className={scope === 'partner' ? 'partner' : ''}>
-	// 			<Flex>
-	// 				{shipment_id ? (
-	// 					<GoBackToShipment />
-	// 				) : (
-	// 					<>
-	// 						<HoverEffect
-	// 							onClick={() => (replace('/book'))}
-	// 						>
-	// 							<IcMArrowBack style={{ width: 20, height: 20 }} />
-	// 						</HoverEffect>
-	// 						<Text className="link">Back to Discover Rates</Text>
-	// 					</>
-	// 				)}
-	// 			</Flex>
+	return (
+		<div className={styles.container}>
+			<div className={styles.header_wrap}>
+				<div className={styles.flex}>
+					{shipment_id ? (
+						<GoBackToShipment />
+					) : (
+						<>
+							<div
+								role="presentation"
+								className={styles.hover_effect}
+								onClick={() => replace('/book')}
+							>
+								<IcMArrowBack style={{ width: 20, height: 20 }} />
+							</div>
+							<text className={styles.link}>Back to Discover Rates</text>
+						</>
+					)}
+				</div>
+			</div>
 
-	// 		</HeaderWrap>
+			<div className={styles.flex}>
+				<div className={styles.flex_div}>
+					<SelectedRateInfo
+						data={data}
+						loading={loading}
+						searchData={searchData}
+						importer_exporter_details={importer_exporter_details}
+						setShowEdit={setShowEdit}
+						refetch={refetch}
+						possible_additional_services={possible_additional_services}
+						detail={detail}
+					/>
 
-	// 		<Flex>
-	// 			<FlexDiv>
-	// 				<SelectedRateInfo
-	// 					data={data}
-	// 					loading={loading}
-	// 					searchData={searchData}
-	// 					importer_exporter_details={importer_exporter_details}
-	// 					setShowEdit={setShowEdit}
-	// 					refetch={refetch}
-	// 					possible_additional_services={possible_additional_services}
-	// 					detail={detail}
-	// 				/>
+					{rates_count > 0 && (
+						<ContractAd
+							loading={loading}
+							contractDetail={contract_detail}
+							importerExporterId={importerExporterId}
+						/>
+					)}
+					{!addRate ? (
+						<>
+							<div className={styles.results_header}>
+								{!loading ? (
+									<div className={styles.text_bold}>
+										{`${(rates || []).length} ${
+                    	(rates || []).length === 1 ? 'rate' : 'rates'
+										} found`}
+									</div>
+								) : (
+									<Placeholder />
+								)}
 
-	// 				{rates_count > 0 && (
-	// 					<ContractAd
-	// 						loading={loading}
-	// 						contractDetail={contract_detail}
-	// 						importerExporterId={importerExporterId}
-	// 					/>
-	// 				)}
-	// 				{!addRate ? (
-	// 					<>
-	// 						<ResultsHeader>
-	// 							{!loading ? (
-	// 								<TextBold>
-	// 									{`${(rates || []).length} ${
-	//                 	(rates || []).length === 1 ? 'rate' : 'rates'
-	// 									} found`}
-	// 								</TextBold>
-	// 							) : (
-	// 								<Skeleton />
-	// 							)}
+								{/* {!loading ? (
+									<Header
+										search_type={data?.search_type}
+										refetch={refetch}
+										setSort={setSort}
+										sortBy={sort}
+										filters={filters}
+										setFilters={setFilters}
+										detail={data}
+										state={state}
+										isMobile={isMobile}
+									/>
+								) : null} */}
+							</div>
 
-	// 							{!loading ? (
-	// 								<Header
-	// 									search_type={data?.search_type}
-	// 									refetch={refetch}
-	// 									setSort={setSort}
-	// 									sortBy={sort}
-	// 									filters={filters}
-	// 									setFilters={setFilters}
-	// 									detail={data}
-	// 									state={state}
-	// 									isMobile={isMobile}
-	// 								/>
-	// 							) : null}
-	// 						</ResultsHeader>
+							{handleRateCards()}
+						</>
+					) : (
+          	configureSellRate()
+					)}
+				</div>
 
-	// 						{handleRateCards()}
-	// 					</>
-	// 				) : (
-	//       	configureSellRate()
-	// 				)}
-	// 			</FlexDiv>
-
-	// 			{handleAdditionalServices()}
-	// 		</Flex>
-	// 	</Container>
-	// );
+				{handleAdditionalServices()}
+			</div>
+		</div>
+	);
 }
 
 export default Results;

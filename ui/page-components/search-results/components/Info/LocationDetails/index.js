@@ -2,6 +2,8 @@ import { Tooltip } from '@cogoport/components';
 import { IcMPortArrow } from '@cogoport/icons-react';
 import React from 'react';
 
+import getLocationInfo from '../../AdditionalCards/MultiService/Service/locations-search';
+
 import styles from './styles.module.css';
 
 const singleLocation = ['fcl_customs', 'lcl_customs', 'air_customs', 'fcl_cfs'];

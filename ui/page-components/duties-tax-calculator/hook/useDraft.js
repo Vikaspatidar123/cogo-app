@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 import { Toast } from '@cogoport/components';
 import { useState } from 'react';
 
@@ -47,7 +46,6 @@ const useDraft = () => {
 			if (!isQuotaLeft && billId === '') localStorage.setItem('draftId', resp?.data?.id);
 			return resp?.data?.id;
 		} catch (err) {
-			console.log(err?.error?.message);
 			Toast.error('Something went wrong! Please try after sometime');
 			return null;
 		}

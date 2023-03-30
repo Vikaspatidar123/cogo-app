@@ -12,7 +12,6 @@ const useServiceCode = () => {
 			const resp = await trigger({});
 			return resp?.data;
 		} catch (err) {
-			console.log(err?.message);
 			return null;
 		}
 	};

@@ -1,5 +1,5 @@
 import { Toast } from '@cogoport/components';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 
 import { useRouter } from '@/packages/next';
 import { useRequestBf } from '@/packages/request';
@@ -35,7 +35,7 @@ const useCheckPaymentStatus = ({
 		}
 	};
 
-	const checkPaymentStatus = async () => {
+	const checkPaymentStatus = useCallback(async () => {
 		try {
 			const resp = await trigger({
 				params: {
@@ -66,14 +66,13 @@ const useCheckPaymentStatus = ({
 			console.log(err?.error?.message);
 			return null;
 		}
-	};
+	}, []);
 
 	useEffect(() => {
 		if (billId) {
 			checkPaymentStatus();
 		}
-	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [billId]);
+	}, [billId, checkPaymentStatus]);
 
 	return {
 		checkPaymentStatus,

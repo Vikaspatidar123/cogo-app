@@ -50,7 +50,6 @@ const useTradeEngine = () => {
 				getTradeEngine(resp?.data?.id);
 			}
 		} catch (err) {
-			console.log(err, 'erer');
 			Toast.error('Something went wrong! Please try after sometime');
 		}
 	};

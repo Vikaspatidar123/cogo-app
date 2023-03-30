@@ -76,11 +76,9 @@ const usePayment = () => {
 				},
 			});
 			if (resp?.data) {
-				/* eslint-disable no-undef */
 				window.open(resp?.data?.url, '_self', '');
 			}
 		} catch (err) {
-			console.log(err?.error?.message);
 			Toast.error('Something went wrong! Please try after sometime');
 		}
 	};

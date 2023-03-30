@@ -1,4 +1,9 @@
 const saas = {
+	'/saas/premium-services/duties-taxes-calculator': {
+		navigation : 'saas_premium_services-duties_and_taxes',
+		isMainNav  : true,
+	},
+
 	'/saas/hs-classification': {
 		navigation: 'saas_tools-hs_code_classification',
 	},

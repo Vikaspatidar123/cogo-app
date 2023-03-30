@@ -14,6 +14,7 @@ import {
 	IcACrossBorder,
 	IcMProductCodeMapping,
 	IcMFfreferigeratedCargoType,
+	IcADutiesTaxes,
 } from '@cogoport/icons-react';
 
 const navigationMappings = {
@@ -47,12 +48,13 @@ const navigationMappings = {
 				title : 'Product Classification',
 				href  : '/v2/saas/hs-classification',
 				as    : '/v2/saas/hs-classification',
-				icon  : <img
-					src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/product-classification.svg"
-					alt="cogo"
-				/>,
+				icon  : (
+					<img
+						src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/product-classification.svg"
+						alt="cogo"
+					/>
+				),
 				description: 'Find HS Codes with detailed description',
-
 			},
 		],
 	},
@@ -60,9 +62,11 @@ const navigationMappings = {
 	saas_premium_services: {
 		key         : 'saas_premium_services',
 		title       : 'Premium Services',
+		// type: 'link',
 		icon        : 'nav-premium-services',
 		module_type : 'dashboards',
 		isNew       : true,
+		line        : true,
 		showInNav   : true,
 		isSubNavs   : true,
 		options     : [
@@ -72,6 +76,47 @@ const navigationMappings = {
 				href  : '/v2/saas/order-history',
 				as    : '/v2/saas/order-history',
 				icon  : <IcACrossBorder width={40} height={40} />,
+			},
+			{
+				key   : 'saas_premium_services-duties_and_taxes',
+				title : 'Duties & Taxes Calculator',
+				href  : '/v2/saas/premium-services/duties-taxes-calculator',
+				as    : '/v2/saas/premium-services/duties-taxes-calculator',
+				icon  : <IcADutiesTaxes width={50} height={50} />,
+				description:
+          '',
+			},
+
+		],
+	},
+	app_accept_terms_and_conditions: {
+		key       : 'app_accept_terms_and_conditions',
+		title     : 'Terms and Conditions',
+		href      : '/accept-terms-and-conditions',
+		showInNav : false,
+	},
+	app_bookings: {
+		key       : 'app_bookings',
+		title     : 'Shipments',
+		href      : '/shipments',
+		as        : '/shipments',
+		icon      : 'nav-booking',
+		showInNav : true,
+	},
+
+	saas_finance: {
+		key       : 'saas_finance',
+		title     : 'Finance',
+		icon      : 'nav-finance',
+		isSubNavs : true,
+		isNew     : true,
+		options   : [
+			{
+				key   : 'saas_finance-transaction_history',
+				title : 'Transaction History',
+				icon  : <IcMFfreferigeratedCargoType width={40} height={40} fill="red" />,
+				href  : '/saas/transaction-history',
+				as    : '/saas/transaction-history',
 			},
 		],
 	},
@@ -100,44 +145,11 @@ const navigationMappings = {
 		],
 	},
 
-	app_accept_terms_and_conditions: {
-		key       : 'app_accept_terms_and_conditions',
-		title     : 'Terms and Conditions',
-		href      : '/accept-terms-and-conditions',
-		type      : 'link',
-		showInNav : false,
-	},
-
-	app_get_started: {
-		key   : 'app_get_started',
-		title : 'Get Started',
-		theme : 'green',
-	},
-
-	saas_finance: {
-		key       : 'saas_finance',
-		title     : 'Finance',
-		icon      : 'nav-finance',
-		isSubNavs : true,
-		isNew     : true,
-		options   : [
-			{
-				key   : 'saas_finance-transaction_history',
-				title : 'Transaction History',
-				icon  : <IcMFfreferigeratedCargoType width={40} height={40} fill="red" />,
-				href  : '/saas/transaction-history',
-				as    : '/saas/transaction-history',
-			},
-
-		],
-	},
-
 	app_kyc: {
 		key       : 'app_kyc',
 		title     : 'KYC',
 		href      : '/kyc',
 		as        : '/kyc',
-		type      : 'link',
 		showInNav : false,
 	},
 	app_settings: {
@@ -145,7 +157,6 @@ const navigationMappings = {
 		title         : 'Settings',
 		href          : '/v2/settings',
 		as            : '/v2/settings',
-		type          : 'link',
 		showMobileNav : true,
 	},
 };

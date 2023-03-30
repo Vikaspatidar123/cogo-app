@@ -1,0 +1,50 @@
+.container {
+	width: 100%;
+	padding: 20px 30px;
+	background: #fff;
+}
+
+.title {
+	display: flex;
+	gap: 6px;
+	align-items: center;
+	margin-bottom: 20px;
+	font-size: 18px;
+}
+
+.col {
+	padding: 15px 10px;
+}
+
+.label {
+	display: flex;
+	gap: 5px;
+	align-items: center;
+	margin-bottom: 5px;
+	font-weight: 300;
+}
+
+.error_txt {
+	margin-top: 5px;
+	font-size: 12px;
+	font-weight: 400;
+	color: #e63946;
+}
+
+.btn_container {
+	display: flex;
+	gap: 10px;
+	justify-content: flex-end;
+	margin-top: 25px;
+}
+
+.checkout_btn {
+	padding: 20px 22px;
+	margin-top: 0;
+	box-shadow: 0 -4px 17px 0 #7c7c7c3b;
+}
+
+.text {
+	padding: 0 8px;
+	color: #bbb;
+}

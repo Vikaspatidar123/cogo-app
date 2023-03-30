@@ -1,5 +1,8 @@
 import { merge } from '@cogoport/utils';
-import { useEffect, useState, useMemo } from 'react';
+import {
+	useEffect, useState,
+	// useMemo
+} from 'react';
 
 import { useRequestBf } from '../../request';
 
@@ -23,12 +26,19 @@ function useGetAsyncOptionsBf({
 		authKey,
 		params : merge(params, { query }),
 	}, { manual: !(initialCall || query) });
-	const options = useMemo(() => getModifiedOptions(data?.list || []), [data, getModifiedOptions]);
-	const dependency = (data?.list || []).map(({ id }) => id).join('');
+	// const options = useMemo(() => getModifiedOptions(data?.list || []), [data, getModifiedOptions]);
+	const options = data?.list || [];
+	const optionValues = options.map((item) => item[valueKey]);
+
+	// useEffect(() => {
+	// 	if (options.length > 0) { setStoreOptions([...options]); }
+	// }, [dependency, options]);
 
 	useEffect(() => {
-		if (options.length > 0) { setStoreOptions([...options]); }
-	}, [dependency, options]);
+		storeOptions.push(...options);
+		setStoreOptions(storeOptions);
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [JSON.stringify(optionValues)]);
 
 	const [{ loading: loadingSingle }, triggerSingle] = useRequestBf({
 		url    : endpoint,

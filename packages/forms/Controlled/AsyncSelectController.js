@@ -26,7 +26,6 @@ function AsyncSelectController(props) {
 					}}
 					value={newValue}
 					onBlur={onBlur}
-					data-test-value={value}
 				/>
 			)}
 		/>

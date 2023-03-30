@@ -3,6 +3,7 @@ import getConfig from 'next/config';
 
 import SELECT_CUSTOM_THEME from '../select-custom-theme';
 
+import usePartnerEntityType from '@/packages/forms/hooks/usePartnerEntityType';
 import { APP_EVENT, trackEvent } from '@/ui/page-components/discover_rates/common/analytics';
 
 function Sort({ sortBy = '', search_type = '', setSort = () => {} }) {

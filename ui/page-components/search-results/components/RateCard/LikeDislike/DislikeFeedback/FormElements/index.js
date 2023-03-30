@@ -44,7 +44,7 @@ function DislikeFeedbackModalFormElements({
 
 			{(formValues.feedbacks || []).includes('unsatisfactory_rate') ? (
 				<div className={styles.group}>
-					<div className={styles.label}>{fields.preferred_freight_rate.label}</div>
+					<div className={styles.label}>{fields.preferred_freight_rate?.label}</div>
 					<div className={styles.price}>
 						<SelectController {...fields.preferred_freight_rate_currency} />
 						<Input {...fields.preferred_freight_rate} />

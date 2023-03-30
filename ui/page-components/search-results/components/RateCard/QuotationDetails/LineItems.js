@@ -2,6 +2,7 @@ import { isEmpty, startCase } from '@cogoport/utils';
 import React from 'react';
 
 import CC from '../../../helpers/condition-constants';
+import useGetPermission from '../../../hooks/useGetPermission';
 
 import Margins from './Margins';
 import styles from './styles.module.css';

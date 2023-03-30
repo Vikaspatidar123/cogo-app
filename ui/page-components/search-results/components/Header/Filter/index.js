@@ -3,6 +3,8 @@ import { IcMFilter } from '@cogoport/icons-react';
 import { isEmpty } from '@cogoport/utils';
 import { useEffect, useState } from 'react';
 
+import useGetFilters from '../../../hooks/useGetFilters';
+
 import controls from './controls';
 import styles from './styles.module.css';
 
@@ -69,7 +71,7 @@ function Filter({ setFilters, state, isMobile }) {
 
 	return (
 		<div className={styles.container}>
-			<FilterContent
+			{/* <FilterContent
 				fields={newFields}
 				applyFilters={applyFilters}
 				reset={handleReset}
@@ -77,7 +79,7 @@ function Filter({ setFilters, state, isMobile }) {
 				setOpen={setOpenFilter}
 				open={openFilter}
 				isScrollable
-			/>
+			/> */}
 			<Button
 				className="secondary md"
 				onClick={() => setOpenFilter(!openFilter)}

@@ -17,6 +17,7 @@ import AddRate from './AddRate';
 import ContractAd from './ContractAd';
 import ContractIntelligence from './ContractIntelligence';
 import GoBackToShipment from './GoBack';
+import Header from './Header';
 import Info from './Info';
 import CargoInsuranceInfo from './Info/CargoInsuranceInfo';
 import FtlInfo from './Info/FtlInfo';
@@ -423,14 +424,14 @@ function Results({
 								{!loading ? (
 									<div className={styles.text_bold}>
 										{`${(rates || []).length} ${
-                    	(rates || []).length === 1 ? 'rate' : 'rates'
+											(rates || []).length === 1 ? 'rate' : 'rates'
 										} found`}
 									</div>
 								) : (
 									<Placeholder />
 								)}
 
-								{/* {!loading ? (
+								{!loading ? (
 									<Header
 										search_type={data?.search_type}
 										refetch={refetch}
@@ -442,13 +443,13 @@ function Results({
 										state={state}
 										isMobile={isMobile}
 									/>
-								) : null} */}
+								) : null}
 							</div>
 
 							{handleRateCards()}
 						</>
 					) : (
-          	configureSellRate()
+						configureSellRate()
 					)}
 				</div>
 

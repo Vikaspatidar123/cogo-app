@@ -11,10 +11,14 @@ function RefreshRate({ detail = {}, refetch = () => {} }) {
 		scope : general?.scope,
 		query : general.query,
 	}));
-	const updateSpotSearchAPI = useRequest(
-		'post',
-		false,
-	)('/update_spot_search');
+
+	const [{ loading }, updateSpotSearchAPI] = useRequest(
+		{
+			url    : 'update_spot_search',
+			method : 'post',
+		},
+		{ manual: true },
+	);
 
 	const refresh = async () => {
 		const params = {
@@ -37,10 +41,10 @@ function RefreshRate({ detail = {}, refetch = () => {} }) {
 		<div className={styles.container}>
 			<Button
 				style={{ marginLeft: 8 }}
-				disabled={updateSpotSearchAPI.loading}
+				disabled={loading}
 				onClick={refresh}
 			>
-				{updateSpotSearchAPI.loading ? 'Refreshing ...' : 'Refresh Rate'}
+				{loading ? 'Refreshing ...' : 'Refresh Rate'}
 			</Button>
 		</div>
 	);

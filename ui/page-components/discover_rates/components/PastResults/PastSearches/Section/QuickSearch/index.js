@@ -51,7 +51,7 @@ function QuickSearch({ data, extraParams = {}, mobile, type, refresh }) {
 			return;
 		}
 		const { inco_term = undefined, ...rest } = values || {};
-		const editData = rest.containers.length > 0 && rest;
+		const editData = rest.containers?.length > 0 && rest;
 		const params = {
 			...formattedData,
 			...editData,

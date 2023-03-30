@@ -1,12 +1,12 @@
 // import SearchForm from '@cogo/app-search/common/SearchForm';
 // import formatMainServiceData from '@cogo/app-search/utils/format-main-service-data';
-import { Tooltip } from '@cogoport/components';
-import { Button } from '@cogoport/components';
-import { Modal } from '@cogoport/components';
+
+import { Button, Tooltip, Modal } from '@cogoport/components';
 import { IcCFhaulage, IcMFtrailorFull } from '@cogoport/icons-react';
 import { getByKey, startCase } from '@cogoport/utils';
 import React, { useState, useEffect } from 'react';
 
+import formatMainServiceData from '../../../utils/format-main-service-data';
 import AdditionalServices from '../../AdditionalServices';
 import Loading from '../loading';
 
@@ -18,6 +18,7 @@ import { useSelector } from '@/packages/store';
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 import formatDate from '@/ui/commons/utils/formatDate';
 import { APP_EVENT, trackEvent } from '@/ui/page-components/discover_rates/common/analytics';
+import SearchForm from '@/ui/page-components/discover_rates/common/SearchForm';
 
 const NON_STANDALONE_SERVICES = ['fcl_cfs'];
 
@@ -199,7 +200,7 @@ function TrailerFreightInfo({
 						}}
 					>
 						<div className={styles.button_border}>
-							<EditButton />
+							{/* <EditButton /> */}
 						</div>
 					</Button>
 					) : null}

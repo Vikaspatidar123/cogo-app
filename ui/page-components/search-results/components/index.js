@@ -1,4 +1,4 @@
-import isServicableCountry from '@cogo/app-search/utils/isServicableCountry';
+
 // import { Flex } from '@cogoport/front/components';
 // import { Skeleton } from '@cogoport/front/components/admin';
 import { IcMArrowBack } from '@cogoport/icons-react';

@@ -1,6 +1,7 @@
-import getLocationInfo from '@cogo/business-modules/helpers/locations-search';
 import { isEmpty } from '@cogoport/utils';
 import React from 'react';
+
+import getLocationInfo from '../../AdditionalCards/MultiService/Service/locations-search';
 
 import ShippingLine from './ShippingLine';
 import styles from './styles.module.css';
@@ -109,12 +110,12 @@ function Route({
 				isMobile={isMobile}
 			/>
 
-			<div className={sytles.route_container}>
-				<div style={{ width: '100%', display:'flex' }}>
-					<div style={{ width: '100%' , display:'flex' }}>
-						<div className={styles.circle} className={!isEmpty(originPickup) ? null : 'inactive'} />
-						<div className={styles.line}
-							className={!isEmpty(originPickup) ? null : 'inactive'}
+			<div className={styles.route_container}>
+				<div style={{ width: '100%', display: 'flex' }}>
+					<div style={{ width: '100%', display: 'flex' }}>
+						<div className={`${styles.circle} ${!isEmpty(originPickup) ? null : 'inactive'}`} />
+						<div
+							className={styles.line}
 							style={{ width: '100%' }}
 						/>
 					</div>
@@ -127,12 +128,13 @@ function Route({
 				</div>
 
 				{originIcd ? (
-					<div style={{ display:'flex', width: '100%', marginLeft: '-4px' }}>
-						<div style={{ width: '100%', display:'flex' }}>
+					<div style={{ display: 'flex', width: '100%', marginLeft: '-4px' }}>
+						<div style={{ width: '100%', display: 'flex' }}>
 							<div className={styles.circle} />
-							<div className={styles.line}
+							<div
+								className={`${styles.line} ${isOriginHaulageRates ? 'rates' : 'inactive'}`}
 								style={{ width: '100%' }}
-								className={isOriginHaulageRates ? 'rates' : 'inactive'}
+
 							/>
 						</div>
 						<div className={styles.location}>
@@ -150,9 +152,10 @@ function Route({
 								: { marginLeft: '-9px' }
 						}
 					>
-						<div style={{display:'flex'}}>
+						<div style={{ display: 'flex' }}>
 							<div className={`${styles.circle} ${styles.main}`} />
-							<div className={`${styles.line} ${destination ? 'main' : 'inactive'}`}
+							<div
+								className={`${styles.line} ${destination ? 'main' : 'inactive'}`}
 								style={{ width: '15px' }}
 							/>
 						</div>
@@ -164,17 +167,17 @@ function Route({
 				) : null}
 
 				{destination || origin ? (
-					<div style={{ display:'flex', width: '100%', ...customMargin }}>
-						<div style={{display:'flex'}}>
+					<div style={{ display: 'flex', width: '100%', ...customMargin }}>
+						<div style={{ display: 'flex' }}>
 							{destination?.port_code || destination?.postal_code ? (
-									<div className={`${styles.circle} ${styles.main}`} />
+								<div className={`${styles.circle} ${styles.main}`} />
 							) : null}
 
-							<div 
-							className={`${styles.line} ${destinationIcd || !isEmpty(destinationPickup)
-								? null
-								: 'inactive'
-						    }}`}				
+							<div
+								className={`${styles.line} ${destinationIcd || !isEmpty(destinationPickup)
+									? null
+									: 'inactive'
+								}}`}
 								style={{ width: '100%' }}
 							/>
 						</div>
@@ -186,12 +189,12 @@ function Route({
 				) : null}
 
 				{destinationIcd ? (
-					<div style={{ display:'flex', width: '100%', marginLeft: '-4px' }}>
-						<div style={{display:'flex'}}>
+					<div style={{ display: 'flex', width: '100%', marginLeft: '-4px' }}>
+						<div style={{ display: 'flex' }}>
 							<div className={styles.circle} />
-							<div 
-							className={`${styles.line} ${!isEmpty(destinationPickup) ? null : 'inactive'} ${}`}
-								className={`${
+							<div
+								className={`${styles.line} ${!isEmpty(destinationPickup) ? null : 'inactive'} 
+								${
 									!isEmpty(destinationPickup) ? null : 'inactive'
 								} ${isDestinationHaulageRates ? 'rates' : ''}`}
 								style={{ width: '100%' }}
@@ -216,8 +219,8 @@ function Route({
 					</Flex>
 				) : null} */}
 
-				<div  style={{display:'flex' , marginLeft: '-4px' }}>
-					<div  className={`${styles.circle} ${!isEmpty(destinationPickup) ? null : 'inactive'}`} />
+				<div style={{ display: 'flex', marginLeft: '-4px' }}>
+					<div className={`${styles.circle} ${!isEmpty(destinationPickup) ? null : 'inactive'}`} />
 
 					{!isEmpty(destinationPickup) ? (
 						<div className={styles.location}>

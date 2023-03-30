@@ -1,17 +1,17 @@
-import { ToolTip } from '@cogoport/front/components';
-import { startCase } from '@cogoport/front/utils';
+import { Tooltip } from '@cogoport/components';
+import { startCase } from '@cogoport/utils';
 import React from 'react';
 
-import { AlertMessage, RateType, Container } from './styles';
+import styles from './styles.module.css';
 
 function AirTags({ data }) {
 	return (
-		<Container>
+		<div className={styles.container}>
 			{data?.rate_type && data?.rate_type !== 'general' ? (
-				<RateType>{startCase(data?.rate_type)}</RateType>
+				<div className={styles.rate_type}>{startCase(data?.rate_type)}</div>
 			) : null}
 
-			<ToolTip
+			<Tooltip
 				placement="top-end"
 				theme="light"
 				animation="shift-away"
@@ -24,12 +24,12 @@ function AirTags({ data }) {
 				)}
 			>
 				{data?.price_type === 'all_in' ? (
-					<AlertMessage>All Inclusive</AlertMessage>
+					<div className={styles.alert_message}>All Inclusive</div>
 				) : (
-					<AlertMessage>Net - Net</AlertMessage>
+					<div className={styles.alert_message}>Net - Net</div>
 				)}
-			</ToolTip>
-		</Container>
+			</Tooltip>
+		</div>
 	);
 }
 

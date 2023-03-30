@@ -6,8 +6,8 @@ import React, { useState } from 'react';
 import useCreateCheckout from '../../../hooks/useCreateCheckout';
 import LikeDislike from '../LikeDislike';
 
-import CogoPoints from './CogoPoints';
 import ContractCreation from './ContractCreation';
+import CogoPoints from './ContractCreation/CogoPoints';
 import NoRatesServicesConfirmation from './NoRatesServicesConfirmation';
 import styles from './styles.module.css';
 
@@ -80,7 +80,7 @@ function Quotation({
 	const basicFreight =		data?.freight_price_discounted >= 0
 		&& details?.trade_type !== 'domestic'
 		&& details?.service_type !== 'cargo_insurance' ? (
-			<Text className={isConfirmed ? 'confirmed' : ''}>
+			<div className={isConfirmed ? 'confirmed' : ''}>
 				{`Freight ${data.service_type === 'air_freight' ? 'per kg' : ''} :`}
 				<span style={{ fontWeight: 700, marginLeft: '4px' }}>
 					{formatAmount({
@@ -93,7 +93,7 @@ function Quotation({
 						},
 					})}
 				</span>
-			</Text>
+			</div>
 		) : null;
 
 	const buttonStyles = isConfirmed
@@ -184,7 +184,6 @@ function Quotation({
 						{isPriceDiscounted && (
 							<div
 								className={styles.text}
-								align="center"
 								size="1em"
 								color="#999"
 								style={{ marginBottom: 4, textDecoration: 'line-through' }}

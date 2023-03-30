@@ -1,7 +1,8 @@
-import SelectOrg from '@cogo/partner-search/components/SelectOrganization';
 import React from 'react';
 
 import styles from './styles.module.css';
+
+import SelectOrganization from '@/ui/page-components/discover_rates/components/SelectOrganization';
 
 function SwitchUsers({
 	importer_exporter_details = {},
@@ -13,7 +14,7 @@ function SwitchUsers({
 		<div className={styles.container}>
 			<div className={styles.label}>Type to search</div>
 
-			<SelectOrg
+			<SelectOrganization
 				importer_exporter_details={importer_exporter_details}
 				setImporterExporterDetails={setImporterExporterDetails}
 				className="small"

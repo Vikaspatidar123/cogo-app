@@ -1,9 +1,5 @@
-import GLOBAL_CONSTANTS from '@cogo/globalization/constants/globals.json';
-import formatDate from '@cogo/globalization/utils/formatDate';
-import { useSelector } from '@cogo/store';
-import { Flex } from '@cogoport/front/components';
-import { startCase } from '@cogoport/front/utils';
 import { IcCFtick } from '@cogoport/icons-react';
+import { startCase } from '@cogoport/utils';
 import React, { useState } from 'react';
 
 import DetentionDemurrage from './DetentionDemurrage';
@@ -13,32 +9,13 @@ import Quotation from './Quotation';
 import QuotationDetails from './QuotationDetails';
 import Route from './Route';
 import ScheduleDetails from './ScheduleDetails';
-import {
-	Container,
-	Card,
-	Text,
-	LineVrt,
-	Line,
-	Dates,
-	Code,
-	ExtraDetails,
-	AnimatedContainer,
-	CodeAndRemarks,
-	CRContainer,
-	CogoAssured,
-	CogoportText,
-	RateValidity,
-	RateValidityTag,
-	RateValidityDate,
-	Wrapper,
-	CogoUniverse,
-	ScheduleTag,
-	ScheduleDate,
-	FclTransitTime,
-	Schedules,
-} from './styles';
+import styles from './styles.module.css';
 import AirTags from './Tags/AirTags';
 import { FclTags } from './Tags/FclTags';
+
+import { useSelector } from '@/packages/store';
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
+import formatDate from '@/ui/commons/utils/formatDate';
 
 const RATE_SOURCE_MAPPING = {
 	spot_rates            : 'System Rate',
@@ -101,26 +78,26 @@ const detailsToShow = (data, details) => {
 
 	return detailsData
 		.map((item) => (item?.value ? (
-			<Flex style={{ alignItems: 'center', width: '40%', margin: '4px' }}>
+			<div style={{ display: 'flex', alignItems: 'center', width: '40%', margin: '4px' }}>
 				<IcCFtick style={{ fontSize: '16px', color: 'red' }} />
-				<ExtraDetails>{item?.value}</ExtraDetails>
-			</Flex>
+				<div className={styles.extra_details}>{item?.value}</div>
+			</div>
 		) : null))
 		.filter((item) => !!item);
 };
 
 const tagsToShow = (data) => data?.tags
 	?.map((item) => (item ? (
-		<Flex style={{ alignItems: 'center', width: '40%', margin: '4px' }}>
+		<div style={{ display: 'flex', alignItems: 'center', width: '40%', margin: '4px' }}>
 			<IcCFtick style={{ fontSize: '16px' }} />
 
-			<ExtraDetails>{item}</ExtraDetails>
-		</Flex>
+			<div className={styles.extra_details}>{item}</div>
+		</div>
 	) : null))
 	.filter((item) => !!item);
 
 function RateCard(props) {
-	const { scope, isMobile, partnerId } = useSelector(
+	const { partnerId } = useSelector(
 		({ general, profile }) => ({
 			scope     : general?.scope,
 			isMobile  : general?.isMobile,
@@ -173,114 +150,114 @@ function RateCard(props) {
 			}
 
 			return (
-				<Schedules>
-					<ScheduleTag>
+				<div className={styles.schedules}>
+					<div className={styles.schedule_tag}>
 						Schedule
 						{['fake', 'predicted'].includes(data?.schedule_source)
 							? ' - Estimated'
 							: null}
-					</ScheduleTag>
-					<ScheduleDate>
+					</div>
+					<div className={styles.schedule_date}>
 						{data?.service_type === 'fcl_freight' ? <>(ETD)</> : null}
-						<Dates>
+						<div className={styles.dates}>
 							{formatDate({
 								date       : data?.departure,
 								dateFormat : GLOBAL_CONSTANTS.formats.date['dd MMM yyyy'],
 								formatType : 'date',
 							})}
-						</Dates>
-						<Line />
-						<Dates>
+						</div>
+						<div className={styles.line} />
+						<div className={styles.dates}>
 							{formatDate({
 								date       : data?.arrival,
 								dateFormat : GLOBAL_CONSTANTS.formats.date['dd MMM yyyy'],
 								formatType : 'date',
 							})}
-						</Dates>
+						</div>
 						{data?.service_type === 'fcl_freight' ? <>(ETA)</> : null}
-					</ScheduleDate>
+					</div>
 					{data?.service_type === 'fcl_freight' && data?.transit_time ? (
-						<FclTransitTime>
+						<div className={styles.fcl_transit_time}>
 							Transit Time :
 							{' '}
 							{data?.transit_time}
 							{' '}
 							Days
-						</FclTransitTime>
+						</div>
 					) : null}
-				</Schedules>
+				</div>
 			);
 		}
 		return (
-			<RateValidity>
-				<RateValidityTag>Rate Validity</RateValidityTag>
+			<div className={styles.rate_validity}>
+				<div className={styles.rate_validity_tag}>Rate Validity</div>
 
-				<RateValidityDate>
-					<Dates>
+				<div className={styles.rate_validity_date}>
+					<div className={styles.dates}>
 						{formatDate({
 							date       : data?.validity_start,
 							dateFormat : GLOBAL_CONSTANTS.formats.date['dd MMM yyyy'],
 							formatType : 'date',
 						})}
-					</Dates>
+					</div>
 
-					<Line />
+					<div className={styles.line} />
 
-					<Dates>
+					<div className={styles.dates}>
 						{formatDate({
 							date       : data?.validity_end,
 							dateFormat : GLOBAL_CONSTANTS.formats.date['dd MMM yyyy'],
 							formatType : 'date',
 						})}
-					</Dates>
-				</RateValidityDate>
-			</RateValidity>
+					</div>
+				</div>
+			</div>
 		);
 	};
 
 	return (
-		<Container
-			className={scope === 'app' ? 'app' : ''}
+		<div
+			className={styles.container}
 			style={
 				results_type === 'rfq' ? { width: '100%', marginLeft: '10px' } : {}
 			}
 			id={id}
 		>
-			<Card>
-				<Flex display="block" flex={1}>
-					<Flex justifyContent="space-between">
-						<Flex>
-							<CogoAssured className={data?.source}>
+			<div className={styles.card}>
+				<div style={{ display: 'flex', flex: '1' }} display="block">
+					<div style={{ display: 'flex', justifyContent: 'space-between' }}>
+						<div style={{ display: 'flex' }}>
+							<div className={`${styles.cogo_assured} ${data?.source}`}>
 								{data?.source === 'cogo_assured_rate' && (
 									<div style={{ display: 'flex' }}>
 										<img
 											src="https://cdn.cogoport.io/cms-prod/cogo_admin/vault/original/ic-verifiedmark.svg"
 											alt="approve"
 										/>
-										<CogoportText>Cogoport</CogoportText>
+										<div className={styles.cogoport_text}>Cogoport</div>
 									</div>
 								)}
 
-								<Text className={data?.source}>
+								<div className={data?.source}>
 									{RATE_SOURCE_MAPPING[data?.source] || 'System Rate'}
 									{' '}
-								</Text>
-							</CogoAssured>
+								</div>
+							</div>
 
 							{['air_freight', 'fcl_freight'].includes(data?.service_type)
 							&& data?.cogo_entity_id
 							&& partnerId !== data?.cogo_entity_id ? (
-								<CogoUniverse>via Cogo Universe</CogoUniverse>
+								<div className={styles.cogo_universe}>via Cogo Universe </div>
 								) : null}
-						</Flex>
+						</div>
 
 						{data?.service_type === 'haulage_freight' ? (
-							<Wrapper className="payment_term">
-								<Text>
+							<div className={`${styles.wrapper} ${styles.payment_term}`}>
+								<div className={styles.text}>
 									{' '}
 									{startCase(data?.haulage_type)}
-								</Text>
-							</Wrapper>
+								</div>
+							</div>
 						) : null}
 
 						{data?.service_type === 'fcl_freight' ? (
@@ -290,7 +267,7 @@ function RateCard(props) {
 						{data?.service_type === 'air_freight' ? (
 							<AirTags data={data} />
 						) : null}
-					</Flex>
+					</div>
 
 					<Route
 						data={data}
@@ -298,7 +275,6 @@ function RateCard(props) {
 						results_type={results_type}
 						isOriginHaulageRates={isOriginHaulageRates}
 						isDestinationHaulageRates={isDestinationHaulageRates}
-						isMobile={isMobile}
 					/>
 
 					{showSchedules()}
@@ -314,93 +290,93 @@ function RateCard(props) {
 
 					{detailsToShow(data, details)?.length > 0 ? (
 						<>
-							<LineVrt className="horizontal" />
+							<div className={`${styles.line_vrt} ${styles.styles.horizontal}`} />
 
-							<Flex style={{ padding: '10px 30px', flexWrap: 'wrap' }}>
+							<div style={{ display: 'flex', padding: '10px 30px', flexWrap: 'wrap' }}>
 								{detailsToShow(data, details)}
 								{tagsToShow(data)}
-							</Flex>
+							</div>
 
-							{results_type === 'rfq' && isMobile ? (
-								<LineVrt className="horizontal" style={{ marginTop: '0px' }} />
-							) : null}
+							{results_type === 'rfq'
+								&& <div className={`${styles.line_vrt} ${styles.styles.horizontal}`} style={{ marginTop: '0px' }} />}
 						</>
 					) : null}
 
-					{scope === 'partner' && flag ? (
-						<CodeAndRemarks>
+					{ flag ? (
+						<div className={styles.code_and_remarks}>
 							{(data?.line_items || []).map((item) => {
 								if (item?.remarks?.length > 0) {
 									return (
-										<CRContainer>
-											<Code>
+										<div className={styles.cr_container}>
+											<div className={styles.code}>
 												{item?.code}
 												{' '}
 												:
-											</Code>
-											<Code className="remarks">
+											</div>
+											<div className={`${styles.code} ${styles.remarks}`}>
 												{(item?.remarks || []).map((items) => <div>{items}</div>)}
-											</Code>
-										</CRContainer>
+											</div>
+										</div>
 									);
 								}
 								return null;
 							})}
-						</CodeAndRemarks>
+						</div>
 					) : null}
-				</Flex>
+				</div>
 
-				<LineVrt />
+				<div className={styles.line_vrt}>
 
-				<Quotation
-					data={data}
-					state={state}
-					setState={setState}
-					setOpen={setOpen}
-					open={open}
-					refetch={refetch}
-					enquiry_page={enquiry_page}
-					details={details}
-					results_type={results_type}
-					spot_search_id={details?.id}
-					id={id}
-					viewSchedules={viewSchedules}
-					setViewSchedules={setViewSchedules}
-					isConfirmed={false}
-					setScheduleId={setScheduleId}
-				/>
-			</Card>
-
-			{open && (
-				<AnimatedContainer type={open ? 'enter' : 'exit'}>
-					<QuotationDetails
-						searchData={searchData}
-						details={details}
+					<Quotation
 						data={data}
+						state={state}
+						setState={setState}
+						setOpen={setOpen}
+						open={open}
+						refetch={refetch}
+						enquiry_page={enquiry_page}
+						details={details}
+						results_type={results_type}
+						spot_search_id={details?.id}
 						id={id}
+						viewSchedules={viewSchedules}
+						setViewSchedules={setViewSchedules}
 						isConfirmed={false}
+						setScheduleId={setScheduleId}
 					/>
-				</AnimatedContainer>
-			)}
+				</div>
 
-			{viewSchedules && (
-				<AnimatedContainer type={viewSchedules ? 'enter' : 'exit'}>
-					{scheduleData.map((x) => (
-						<ScheduleDetails list={x.schedules} />
-					))}
-				</AnimatedContainer>
-			)}
+				{open && (
+					<div className={styles.animated_container} type={open ? 'enter' : 'exit'}>
+						<QuotationDetails
+							searchData={searchData}
+							details={details}
+							data={data}
+							id={id}
+							isConfirmed={false}
+						/>
+					</div>
+				)}
 
-			{data?.service_type === 'fcl_freight' ? (
-				<DetentionDemurrage
-					show={show}
-					setShow={setShow}
-					activeTab={activeTab}
-					setActiveTab={setActiveTab}
-					{...props}
-				/>
-			) : null}
-		</Container>
+				{viewSchedules && (
+					<div className={styles.animated_container} type={viewSchedules ? 'enter' : 'exit'}>
+						{scheduleData.map((x) => (
+							<ScheduleDetails list={x.schedules} />
+						))}
+					</div>
+				)}
+
+				{data?.service_type === 'fcl_freight' ? (
+					<DetentionDemurrage
+						show={show}
+						setShow={setShow}
+						activeTab={activeTab}
+						setActiveTab={setActiveTab}
+						{...props}
+					/>
+				) : null}
+			</div>
+		</div>
 	);
 }
 

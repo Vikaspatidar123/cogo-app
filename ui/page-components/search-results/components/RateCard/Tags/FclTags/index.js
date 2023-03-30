@@ -1,6 +1,6 @@
-import { startCase } from '@cogoport/front/utils';
+import { startCase } from '@cogoport/utils';
 
-import { Text, TextWrapper, Wrapper } from './styles';
+import styles from './styles.module.css';
 
 const SCHEDULE_TYPE_MAPPING = {
 	transshipment : 'Trans-shipment',
@@ -9,29 +9,29 @@ const SCHEDULE_TYPE_MAPPING = {
 
 export function FclTags({ data }) {
 	return (
-		<TextWrapper>
+		<div className={styles.text_wrapper}>
 			{data?.payment_term ? (
 				<div>
-					<Wrapper className="payment_term">
-						<Text>
+					<div className={`${styles.wrapper} ${styles.payment_term}`}>
+						<div className={styles.text}>
 							{' '}
 							{startCase(data.payment_term)}
-						</Text>
-					</Wrapper>
+						</div>
+					</div>
 				</div>
 			) : null}
 
 			{data?.schedule_type ? (
 				<div>
-					<Wrapper>
-						<Text className="schedule_type">
+					<div className={styles.wrapper}>
+						<div className={`${styles.text} ${styles.schedule_type}`}>
 							{' '}
 							{SCHEDULE_TYPE_MAPPING[data.schedule_type]
 									|| startCase(data.schedule_type)}
-						</Text>
-					</Wrapper>
+						</div>
+					</div>
 				</div>
 			) : null}
-		</TextWrapper>
+		</div>
 	);
 }

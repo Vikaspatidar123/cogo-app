@@ -1,5 +1,5 @@
 import { Button, Checkbox } from '@cogoport/components';
-import SegmentedControl from '@cogoport/front/components/SegmentedControl';
+// import SegmentedControl from '@cogoport/front/components/SegmentedControl';
 import { isEmpty } from '@cogoport/utils';
 import { useEffect } from 'react';
 
@@ -60,12 +60,13 @@ function ShippingLineForm({
 			return (
 				<div className={styles.header_container}>
 					<div className={styles.radio_container}>
-						<SegmentedControl
+						{/* <SegmentedControl
 							options={OPTIONS}
 							activeTab={wayToBook}
 							setActiveTab={setWayToBook}
 							separatorMarginRight={4}
-						/>
+						/> */}
+						{/* use tabs here ---->>> */}
 					</div>
 
 					{scheduleList.isApiCalled && !isEmpty(scheduleList?.list) ? (
@@ -88,6 +89,7 @@ function ShippingLineForm({
 							</div>
 						</div>
 					) : null}
+					s
 				</div>
 			);
 		}

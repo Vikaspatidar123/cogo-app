@@ -1,8 +1,8 @@
-import useGetPermission from '@cogo/business-modules/hooks/useGetPermission';
 import { isEmpty } from '@cogoport/utils';
 import React from 'react';
 
 import CC from '../../../helpers/condition-constants';
+import useGetPermission from '../../../hooks/useGetPermission';
 
 import styles from './styles.module.css';
 

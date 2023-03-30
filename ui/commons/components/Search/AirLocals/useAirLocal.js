@@ -6,16 +6,7 @@ import CLASS_MAPPING from './utils/classMapping';
 import { useRouter } from '@/packages/next';
 import { useRequest } from '@/packages/request';
 import { useSelector } from '@/packages/store';
-import getGeoConstants from '@/ui/commons/constants/geo';
 import showErrorsInToast from '@/ui/commons/utils/showErrorsInToast';
-
-const geo = getGeoConstants();
-
-const cogoVerseTeamIDS = [
-	geo.uuid.cogoverse_admin_id,
-	geo.uuid.cogoverse_executive_id,
-	geo.uuid.cogoverse_kam_id,
-];
 
 const useAirLocal = ({
 	extraParams = {},
@@ -51,18 +42,21 @@ const useAirLocal = ({
 
 	const router = useRouter();
 
-	const [{ loading }, trigger] = useRequest({
-		url    : '/create_spot_search',
-		method : 'post',
-	}, { manual: true });
+	const [{ loading }, trigger] = useRequest(
+		{
+			url    : '/create_spot_search',
+			method : 'post',
+		},
+		{ manual: true },
+	);
 	const airFormRef = useRef({});
 
 	const getAirFreightServices = ({ airPayloadObj, PackagesArr }) => {
 		const completeAirPayload = PackagesArr.map((elem) => {
-			let volume =				Number(elem.length || 0)
-				* Number(elem.width || 0)
-				* Number(elem.height || 0)
-				* Number(elem.packages_count || 0);
+			let volume = Number(elem.length || 0)
+        * Number(elem.width || 0)
+        * Number(elem.height || 0)
+        * Number(elem.packages_count || 0);
 			const weight = Number(elem.package_weight) * Number(elem.packages_count);
 
 			volume /= 1000000;
@@ -100,13 +94,13 @@ const useAirLocal = ({
 		const terminalCharge = () => {
 			if (
 				TradeType.selectedTradeType === 'domestic'
-				&& terminalHandlingType.selectedHandlingType === 'destination'
+        && terminalHandlingType.selectedHandlingType === 'destination'
 			) {
 				return 'inbound';
 			}
 			if (
 				TradeType.selectedTradeType === 'domestic'
-				&& terminalHandlingType.selectedHandlingType === 'origin'
+        && terminalHandlingType.selectedHandlingType === 'origin'
 			) {
 				return 'outbound';
 			}
@@ -138,11 +132,11 @@ const useAirLocal = ({
 				totalWeight += Number(item.quantity) * Number(item.total_weight);
 				totalQuantity += Number(item.quantity);
 				totalVolume
-					+= (Number(item.length)
-						* Number(item.width)
-						* Number(item.height)
-						* Number(item.quantity))
-					/ 1000000;
+          += (Number(item.length)
+            * Number(item.width)
+            * Number(item.height)
+            * Number(item.quantity))
+          / 1000000;
 
 				packages = [
 					...packages,
@@ -171,21 +165,21 @@ const useAirLocal = ({
 						class_description,
 						subclass_id,
 						subclass_codes:
-							subclass_codes.length > 0 ? subclass_codes : undefined,
+              subclass_codes.length > 0 ? subclass_codes : undefined,
 					},
 					msds_document:
-						'https://cogoport-testing.sgp1.digitaloceanspaces.com/e82569a6e67f3bdb3f73497cc1d8346c/sample.pdf',
+            'https://cogoport-testing.sgp1.digitaloceanspaces.com/e82569a6e67f3bdb3f73497cc1d8346c/sample.pdf',
 				},
 			];
 		} else if (commodity_type === 'temp_controlled') {
 			const commoditySubTypeArray = commodity_sub_type.split('-');
-			const [temp_controlled_type, temp_controlled_range] =				commoditySubTypeArray || [];
+			const [temp_controlled_type, temp_controlled_range] = commoditySubTypeArray || [];
 
 			commodity_details = [
 				{
 					commodity_type,
 					packing_list:
-						'https://cogoport-testing.sgp1.digitaloceanspaces.com/843e68957145a8994d3ac3fc09877a3e/sample.pdf',
+            'https://cogoport-testing.sgp1.digitaloceanspaces.com/843e68957145a8994d3ac3fc09877a3e/sample.pdf',
 					temp_controlled_type,
 					temp_controlled_range,
 					special_instruction: 'dfgh',
@@ -225,8 +219,6 @@ const useAirLocal = ({
 			PackagesArr   : packages,
 		});
 
-		const isCogoVerseMember = userRoleIDs.some((elem) => cogoVerseTeamIDS.includes(elem));
-
 		return {
 			search_type : 'air_freight_local',
 			source      : 'platform',
@@ -234,11 +226,6 @@ const useAirLocal = ({
 			importer_exporter_id,
 			user_id,
 			air_freight_local_services_attributes,
-			tags:
-				scope === 'partner'
-				&& (query?.source === 'communication' || isCogoVerseMember)
-					? ['cogoverse']
-					: undefined,
 		};
 	};
 

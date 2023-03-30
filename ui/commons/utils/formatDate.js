@@ -3,11 +3,11 @@ import { format } from '@cogoport/utils';
 import getGeoConstants from '@/ui/commons/constants/geo';
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
-const geoConstants = getGeoConstants();
+// const geoConstants = getGeoConstants();
 
 const formatTypeFunMapping = {
 	date({ date, dateFormat }) {
-		let formatDate = geoConstants.formats.date.default;
+		let formatDate = 'dd/MM/yyyy';
 		if (dateFormat in GLOBAL_CONSTANTS.formats.date) {
 			formatDate = dateFormat;
 		}
@@ -15,7 +15,7 @@ const formatTypeFunMapping = {
 		return format(date, formatDate);
 	},
 	time({ date, timeFormat }) {
-		let formatTime = geoConstants.formats.time['12hrs'];
+		let formatTime = 'hh:mm aaa';
 		if (timeFormat in GLOBAL_CONSTANTS.formats.time) {
 			formatTime = timeFormat;
 		}

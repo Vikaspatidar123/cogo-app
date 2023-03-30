@@ -1,7 +1,7 @@
 // import { KycCampaign as KYC } from '@cogo/business-modules/components/kyc';
 // import { Flex, Text, Button } from '@cogo/commons/components';
 
-import { Modal, Button } from '@cogoport/components';
+import { Modal, Button, cl } from '@cogoport/components';
 import { useState } from 'react';
 
 import styles from './styles.module.css';
@@ -18,7 +18,7 @@ function KYCDialog() {
 	const [show, setShow] = useState(false);
 	const text = 'You have exhausted your balance of available searches. Buy more searches and discover rates across FCL, LCL, Air and Haulage in one place.';
 	return (
-		<div className={styles.flex}>
+		<div className={cl`${styles.flex} ${styles.card}`}>
 			<Modal
 				show={show}
 				onClose={() => {
@@ -30,23 +30,14 @@ function KYCDialog() {
 				{/* <KYC onFinalSubmit={() => setShow(false)} /> */}
 			</Modal>
 			<div
-				bgColor="#2C3E50"
-				borderRadius={8}
-				padding={24}
-				direction={!isMobile ? 'row' : 'column-reverse'}
+				className={styles.text_card}
+				// direction={!isMobile ? 'row' : 'column-reverse'}
 			>
-				<div width={!isMobile ? 480 : '100%'} display="block">
-					<text>{text}</text>
+				<div width={!isMobile ? 480 : '100%'}>
+					<text className={styles.text}>{text}</text>
 
-					<div justifyContent={!isMobile ? 'flex-start' : 'center'}>
+					<div className={styles.button}>
 						<Button
-							style={{
-              	backgroundColor : '#FFF',
-              	color           : '#333',
-              	borderColor     : '#FFF',
-							}}
-							size="lg"
-              // onClick={() => push('/saas/subscriptions', '/saas/subscriptions')}
 							onClick={() => push(
               		'/saas/cogo-subscriptions/manage-subscription',
               		'/saas/cogo-subscriptions/manage-subscription',
@@ -57,7 +48,7 @@ function KYCDialog() {
 					</div>
 				</div>
 
-				<div justifyContent={!isMobile ? 'flex-end' : 'center'} flex={1}>
+				<div>
 					<img
 						src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/nogstIcon.svg"
 						alt="loading"

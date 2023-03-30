@@ -79,7 +79,7 @@ function FTL({
 			<SearchForm
 				mode="ftl_freight"
 				ref={(r) => {
-					ftlRef.current.searchForm = r;
+        	ftlRef.current.searchForm = r;
 				}}
 				typeOfJourney={typeOfJourney}
 				setTypeOfJourney={setTypeOfJourney}
@@ -93,8 +93,8 @@ function FTL({
 			<div className={styles.btn_container}>
 				<div className={styles.toggle_container}>
 					<Toggle
-						// offLabel={{ label: 'One-way', value: 'one_way' }}
-						// onLabel={{ label: 'Round Trip', value: 'round' }}
+            // offLabel={{ label: 'One-way', value: 'one_way' }}
+            // onLabel={{ label: 'Round Trip', value: 'round' }}
 						offLabel="One-way"
 						onLabel="Round Trip"
 						value={typeOfJourney}

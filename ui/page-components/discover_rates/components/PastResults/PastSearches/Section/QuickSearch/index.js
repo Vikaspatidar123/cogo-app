@@ -36,7 +36,6 @@ function QuickSearch({ data, extraParams = {}, mobile, type, refresh }) {
 	const formattedData = formatMainServiceData(search_type, [
 		{ ...(data || {}), service_type: search_type },
 	]);
-
 	const controls = tempControls.map((item) => ({
 		...item,
 		value: formattedData[item.name],
@@ -47,15 +46,16 @@ function QuickSearch({ data, extraParams = {}, mobile, type, refresh }) {
 	const submit = async (values, e) => {
 		e.preventDefault();
 		setIsLoading(true);
-
 		if (values === null) {
 			setIsLoading(false);
 			return;
 		}
-
+		const { inco_term = undefined, ...rest } = values || {};
+		const editData = rest.containers.length > 0 && rest;
 		const params = {
 			...formattedData,
-			...values,
+			...editData,
+			inco_term,
 			search_type,
 			status    : 'active',
 			commodity : data.commodity,
@@ -98,6 +98,7 @@ function QuickSearch({ data, extraParams = {}, mobile, type, refresh }) {
 			let commodity;
 			let weight;
 			const n = params.containers.length;
+
 			for (let i = 0; i < n; i += 1) {
 				size = params.containers[i].container_size;
 				container_type = params.containers[i].container_type_commodity.container_type;
@@ -112,6 +113,7 @@ function QuickSearch({ data, extraParams = {}, mobile, type, refresh }) {
 					weight,
 				});
 			}
+
 			trackEvent(APP_EVENT.search_past_spot_rates, {
 				type        : params.search_type,
 				origin      : params.origin_port.name,
@@ -247,7 +249,6 @@ function QuickSearch({ data, extraParams = {}, mobile, type, refresh }) {
 	const onError = (err) => {
 		setErrors(err);
 	};
-
 	const renderPopover = () => (
 		<div className={cl`${styles.container} ${mobile ? styles.mobile : ''}`}>
 			<form onSubmit={handleSubmit(submit, onError)}>
@@ -287,15 +288,15 @@ function QuickSearch({ data, extraParams = {}, mobile, type, refresh }) {
 					placement="left"
 					render={renderPopover()}
 					onOuterClick={() => {
-          	setShow(false);
+                    	setShow(false);
 					}}
 					onClickOutside={() => {
-          	setShow(false);
+                 	setShow(false);
 					}}
 				>
 					<Button
 						onClick={() => {
-            	setShow(true);
+                 	setShow(true);
 						}}
 						size="md"
 						themeType="tertiary"

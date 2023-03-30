@@ -7,3 +7,24 @@
   margin-bottom: 32px;
   color=: #fff;
 }
+
+.card {
+  background: #fada29;
+  border-radius: 8px;
+  padding: 24;
+}
+.text_card {
+  display: flex;
+  flex-direction: row;
+  padding: 27px;
+  @media (max-width: _md) {
+    width: 100%;
+    flex-direction: column-reverse;
+  }
+}
+.button {
+  padding-top: 20px;
+  @media (max-width: _md) {
+    padding-top: 5px;
+  }
+}

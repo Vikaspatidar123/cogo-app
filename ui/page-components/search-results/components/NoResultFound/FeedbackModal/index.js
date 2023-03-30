@@ -6,8 +6,8 @@ import getPriorityAirlineOptions from './getPriorityAirlineOptions';
 import styles from './styles.module.css';
 import useRequestForRate from './useRequestForRate';
 
+import { useForm } from '@/packages/forms';
 import getField from '@/packages/forms/Controlled';
-import useForm from '@/packages/store';
 
 function FeedBackModal({
 	onClose,
@@ -55,7 +55,7 @@ function FeedBackModal({
 			{proceeedWithFeedback ? (
 				<form>
 					<div className={styles.container} onSubmit={handleSubmit(onSubmit)}>
-						<div className={styles.header_text}>Rate Market Intelligence</div>
+						<Modal.Header title="Rate Market Intelligence " />
 
 						{controls.map((item) => {
 							const Element = getField(item.type);
@@ -72,7 +72,7 @@ function FeedBackModal({
 							);
 						})}
 
-						<div className={styles.footer}>
+						<Modal.Footer>
 							<Button
 								style={{ marginRight: 8 }}
 								className="secondary sm"
@@ -84,7 +84,7 @@ function FeedBackModal({
 							<Button disabled={loading} type="submit" className="primary sm">
 								SUBMIT
 							</Button>
-						</div>
+						</Modal.Footer>
 					</div>
 				</form>
 			) : (

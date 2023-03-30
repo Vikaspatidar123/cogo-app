@@ -20,8 +20,6 @@ const controls = ({ airlineOptions = [] }) => ({
 			caret        : true,
 			options      : CURRENCY_CODE_OPTIONS,
 			showOptional : false,
-			span         : 4,
-			className    : 'primary sm',
 		},
 
 		{
@@ -29,14 +27,11 @@ const controls = ({ airlineOptions = [] }) => ({
 			label        : 'Indicative Rate',
 			type         : 'number',
 			showOptional : false,
-			span         : 4,
-			className    : 'primary sm',
 		},
 		{
 			name  : 'cargo_readiness_date',
 			label : 'Cargo Ready Date',
 			type  : 'datepicker',
-			span  : 4,
 			rules : { required: 'Required' },
 		},
 		{
@@ -50,9 +45,7 @@ const controls = ({ airlineOptions = [] }) => ({
 			autoCloseMenu  : false,
 			placeholder:
 					"Enter preferred shipping line only if customer won't accept any other line",
-			showOptional : false,
-			span         : 12,
-			className    : 'primary sm',
+			showOptional: false,
 		},
 		{
 			name         : 'remarks',
@@ -61,7 +54,6 @@ const controls = ({ airlineOptions = [] }) => ({
 			showOptional : false,
 			placeholder:
 					'Please add commodity details and other specific requirements here...',
-			span      : 12,
 			rules     : { required: 'Required' },
 			className : 'primary sm',
 		},
@@ -74,23 +66,17 @@ const controls = ({ airlineOptions = [] }) => ({
 			caret        : true,
 			options      : CURRENCY_CODE_OPTIONS,
 			showOptional : false,
-			span         : 4,
-			className    : 'primary sm',
 		},
 		{
 			name         : 'preferred_freight_rate',
 			label        : 'Indicative Rate',
 			type         : 'number',
 			showOptional : false,
-			span         : 4,
-			className    : 'primary sm',
 		},
 		{
 			name  : 'cargo_readiness_date',
 			label : 'Cargo Ready Date',
 			type  : 'datepicker',
-			span  : 4,
-			rules : { required: 'Required' },
 		},
 		{
 			name           : 'preferred_airline_ids',
@@ -105,19 +91,15 @@ const controls = ({ airlineOptions = [] }) => ({
 					"Enter preferred airline line only if customer won't accept any other line",
 			showOptional : false,
 			rules        : { required: true },
-			span         : 12,
-			className    : 'primary sm',
 		},
 		{
 			name         : 'remarks',
 			type         : 'text',
 			label        : 'Remarks',
 			showOptional : false,
-			span         : 12,
 			placeholder:
 					'Please add commodity details and other specific requirements here...',
-			rules     : { required: 'Required' },
-			className : 'primary sm',
+			rules: { required: 'Required' },
 		},
 	],
 	ftl_freight: [
@@ -128,34 +110,26 @@ const controls = ({ airlineOptions = [] }) => ({
 			caret        : true,
 			options      : CURRENCY_CODE_OPTIONS,
 			showOptional : false,
-			span         : 4,
-			className    : 'primary sm',
 		},
 		{
 			name         : 'preferred_freight_rate',
 			label        : 'Indicative Rate',
 			type         : 'number',
 			showOptional : false,
-			span         : 4,
-			className    : 'primary sm',
 		},
 		{
 			name  : 'cargo_readiness_date',
 			label : 'Cargo Ready Date',
 			type  : 'datepicker',
-			span  : 4,
-			rules : { required: 'Required' },
 		},
 		{
 			name         : 'remarks',
 			type         : 'text',
 			label        : 'Remarks',
 			showOptional : false,
-			span         : 12,
 			rules        : { required: 'Required' },
 			placeholder:
 					'Please add commodity details and other specific requirements here...',
-			className: 'primary sm',
 		},
 	],
 	lcl_freight: [
@@ -166,22 +140,17 @@ const controls = ({ airlineOptions = [] }) => ({
 			caret        : true,
 			options      : CURRENCY_CODE_OPTIONS,
 			showOptional : false,
-			span         : 4,
-			className    : 'primary sm',
 		},
 		{
 			name         : 'preferred_freight_rate',
 			label        : 'Indicative Rate',
 			type         : 'number',
 			showOptional : false,
-			span         : 4,
-			className    : 'primary sm',
 		},
 		{
 			name  : 'cargo_readiness_date',
 			label : 'Cargo Ready Date',
 			type  : 'datepicker',
-			span  : 4,
 			rules : { required: 'Required' },
 		},
 		{
@@ -189,11 +158,9 @@ const controls = ({ airlineOptions = [] }) => ({
 			type         : 'text',
 			label        : 'Remarks',
 			showOptional : false,
-			span         : 12,
 			rules        : { required: 'Required' },
 			placeholder:
 					'Please add commodity details and other specific requirements here...',
-			className: 'primary sm',
 		},
 	],
 	ltl_freight: [
@@ -204,27 +171,21 @@ const controls = ({ airlineOptions = [] }) => ({
 			caret        : true,
 			options      : CURRENCY_CODE_OPTIONS,
 			showOptional : false,
-			span         : 4,
-			className    : 'primary sm',
 		},
 		{
 			name         : 'preferred_freight_rate',
 			label        : 'Indicative Rate',
 			type         : 'number',
 			showOptional : false,
-			span         : 4,
-			className    : 'primary sm',
 		},
 		{
 			name         : 'remarks',
 			type         : 'text',
 			label        : 'Remarks',
 			showOptional : false,
-			span         : 12,
 			rules        : { required: 'Required' },
 			placeholder:
 					'Please add commodity details and other specific requirements here...',
-			className: 'primary sm',
 		},
 	],
 	fcl_customs: [
@@ -235,27 +196,21 @@ const controls = ({ airlineOptions = [] }) => ({
 			caret        : true,
 			options      : CURRENCY_CODE_OPTIONS,
 			showOptional : false,
-			span         : 4,
-			className    : 'primary sm',
 		},
 		{
 			name         : 'preferred_freight_rate',
 			label        : 'Indicative Rate',
 			type         : 'number',
 			showOptional : false,
-			span         : 4,
-			className    : 'primary sm',
 		},
 		{
 			name         : 'remarks',
 			type         : 'text',
 			label        : 'Remarks',
 			showOptional : false,
-			span         : 12,
 			rules        : { required: 'Required' },
 			placeholder:
 					'Please add commodity details and other specific requirements here...',
-			className: 'primary sm',
 		},
 	],
 	fcl_cfs: [
@@ -266,27 +221,21 @@ const controls = ({ airlineOptions = [] }) => ({
 			caret        : true,
 			options      : CURRENCY_CODE_OPTIONS,
 			showOptional : false,
-			span         : 4,
-			className    : 'primary sm',
 		},
 		{
 			name         : 'preferred_freight_rate',
 			label        : 'Indicative Rate',
 			type         : 'number',
 			showOptional : false,
-			span         : 4,
-			className    : 'primary sm',
 		},
 		{
 			name         : 'remarks',
 			type         : 'text',
 			label        : 'Remarks',
 			showOptional : false,
-			span         : 12,
 			rules        : { required: 'Required' },
 			placeholder:
 					'Please add commodity details and other specific requirements here...',
-			className: 'primary sm',
 		},
 	],
 	lcl_customs: [
@@ -297,27 +246,25 @@ const controls = ({ airlineOptions = [] }) => ({
 			caret        : true,
 			options      : CURRENCY_CODE_OPTIONS,
 			showOptional : false,
-			span         : 4,
-			className    : 'primary sm',
+
 		},
 		{
 			name         : 'preferred_freight_rate',
 			label        : 'Indicative Rate',
 			type         : 'number',
 			showOptional : false,
-			span         : 4,
-			className    : 'primary sm',
+
 		},
 		{
 			name         : 'remarks',
 			type         : 'text',
 			label        : 'Remarks',
 			showOptional : false,
-			span         : 12,
-			rules        : { required: 'Required' },
+
+			rules: { required: 'Required' },
 			placeholder:
 					'Please add commodity details and other specific requirements here...',
-			className: 'primary sm',
+
 		},
 	],
 	air_customs: [
@@ -328,16 +275,14 @@ const controls = ({ airlineOptions = [] }) => ({
 			caret        : true,
 			options      : CURRENCY_CODE_OPTIONS,
 			showOptional : false,
-			span         : 4,
-			className    : 'primary sm',
+
 		},
 		{
 			name         : 'preferred_freight_rate',
 			label        : 'Indicative Rate',
 			type         : 'number',
 			showOptional : false,
-			span         : 4,
-			className    : 'primary sm',
+
 		},
 
 		{
@@ -345,11 +290,11 @@ const controls = ({ airlineOptions = [] }) => ({
 			type         : 'text',
 			label        : 'Remarks',
 			showOptional : false,
-			span         : 12,
-			rules        : { required: 'Required' },
+
+			rules: { required: 'Required' },
 			placeholder:
 					'Please add commodity details and other specific requirements here...',
-			className: 'primary sm',
+
 		},
 	],
 	haulage_freight: [
@@ -360,16 +305,14 @@ const controls = ({ airlineOptions = [] }) => ({
 			caret        : true,
 			options      : CURRENCY_CODE_OPTIONS,
 			showOptional : false,
-			span         : 4,
-			className    : 'primary sm',
+
 		},
 		{
 			name         : 'preferred_freight_rate',
 			label        : 'Indicative Rate',
 			type         : 'number',
 			showOptional : false,
-			span         : 4,
-			className    : 'primary sm',
+
 		},
 
 		{
@@ -377,11 +320,11 @@ const controls = ({ airlineOptions = [] }) => ({
 			type         : 'text',
 			label        : 'Remarks',
 			showOptional : false,
-			span         : 12,
-			rules        : { required: 'Required' },
+
+			rules: { required: 'Required' },
 			placeholder:
 					'Please add commodity details and other specific requirements here...',
-			className: 'primary sm',
+
 		},
 	],
 	fcl_freight_local: [
@@ -392,16 +335,14 @@ const controls = ({ airlineOptions = [] }) => ({
 			caret        : true,
 			options      : CURRENCY_CODE_OPTIONS,
 			showOptional : false,
-			span         : 4,
-			className    : 'primary sm',
+
 		},
 		{
 			name         : 'preferred_freight_rate',
 			label        : 'Indicative Rate',
 			type         : 'number',
 			showOptional : false,
-			span         : 4,
-			className    : 'primary sm',
+
 		},
 
 		{
@@ -409,11 +350,11 @@ const controls = ({ airlineOptions = [] }) => ({
 			type         : 'text',
 			label        : 'Remarks',
 			showOptional : false,
-			span         : 12,
-			rules        : { required: 'Required' },
+
+			rules: { required: 'Required' },
 			placeholder:
 					'Please add commodity details and other specific requirements here...',
-			className: 'primary sm',
+
 		},
 	],
 	trailer_freight: [
@@ -424,16 +365,14 @@ const controls = ({ airlineOptions = [] }) => ({
 			caret        : true,
 			options      : CURRENCY_CODE_OPTIONS,
 			showOptional : false,
-			span         : 4,
-			className    : 'primary sm',
+
 		},
 		{
 			name         : 'preferred_freight_rate',
 			label        : 'Indicative Rate',
 			type         : 'number',
 			showOptional : false,
-			span         : 4,
-			className    : 'primary sm',
+
 		},
 
 		{
@@ -441,11 +380,11 @@ const controls = ({ airlineOptions = [] }) => ({
 			type         : 'text',
 			label        : 'Remarks',
 			showOptional : false,
-			span         : 12,
-			rules        : { required: 'Required' },
+
+			rules: { required: 'Required' },
 			placeholder:
 					'Please add commodity details and other specific requirements here...',
-			className: 'primary sm',
+
 		},
 	],
 	subsidiary: [
@@ -456,27 +395,25 @@ const controls = ({ airlineOptions = [] }) => ({
 			caret        : true,
 			options      : CURRENCY_CODE_OPTIONS,
 			showOptional : false,
-			span         : 4,
-			className    : 'primary sm',
+
 		},
 		{
 			name         : 'preferred_freight_rate',
 			label        : 'Indicative Rate',
 			type         : 'number',
 			showOptional : false,
-			span         : 4,
-			className    : 'primary sm',
+
 		},
 		{
 			name         : 'remarks',
 			type         : 'text',
 			label        : 'Remarks',
 			showOptional : false,
-			span         : 12,
-			rules        : { required: 'Required' },
+
+			rules: { required: 'Required' },
 			placeholder:
 					'Please add commodity details and other specific requirements here...',
-			className: 'primary sm',
+
 		},
 	],
 });

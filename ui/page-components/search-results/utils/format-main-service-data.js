@@ -1,10 +1,12 @@
 import { isEmpty } from '@cogoport/utils';
 
-import airControls from '../../discover_rates/configurations/enquiry/air-controls';
-import fclControls from '../../discover_rates/configurations/enquiry/fcl-controls';
-import ftlControls from '../../discover_rates/configurations/enquiry/ftl-controls';
-import lclControls from '../../discover_rates/configurations/enquiry/lcl-controls';
-import ltlControls from '../../discover_rates/configurations/enquiry/ltl-controls';
+import {
+	AirControls, AirCustomsControls, FCLControls,
+	FCLCustomsControls, FCLLocalsControls,
+	FTLControls, LCLControls, LCLCustomsControls, LTLControls, TrailerQuickSearchControls,
+} from '../../discover_rates/configurations';
+import haulageFreightFeedBackControls from
+	'../../discover_rates/configurations/search/domestic/haulage-freight/feedback';
 
 const containerModes = [
 	'fcl_freight',
@@ -41,11 +43,11 @@ const formatMainServiceData = (mode, services) => {
 	const data = {};
 	if (containerModes.includes(mode)) {
 		const controls = {
-			fcl_freight: fclControls(),
-			// trailer_freight       : trailersControls,
-			// haulage_freight       : haulageControls,
-			// fcl_customs           : fclCustomsControls(),
-			// fcl_freight_local     : fclLocalControls(),
+			fcl_freight       : FCLControls(),
+			trailer_freight   : TrailerQuickSearchControls,
+			haulage_freight   : haulageFreightFeedBackControls,
+			fcl_customs       : FCLCustomsControls(),
+			fcl_freight_local : FCLLocalsControls(),
 			// rail_domestic_freight : railControls,
 		};
 		(controls[mode] || []).forEach((control) => {
@@ -71,15 +73,15 @@ const formatMainServiceData = (mode, services) => {
 	}
 
 	const otheSearchContrls = {
-		ftl_freight : ftlControls,
-		lcl_freight : lclControls,
-		air_freight : airControls,
-		// lcl_customs : lclCustoms(),
-		// air_customs : airCustoms(),
-		ltl_freight : ltlControls,
+		ftl_freight : FTLControls,
+		lcl_freight : LCLControls,
+		air_freight : AirControls,
+		lcl_customs : LCLCustomsControls(),
+		air_customs : AirCustomsControls(),
+		ltl_freight : LTLControls,
 	};
 
-	(otheSearchContrls[mode] || []).forEach((control) => {
+	(otheSearchContrls[mode] || [])?.forEach((control) => {
 		if (control.name === 'commodity' && isEmpty(singleService?.commodity)) {
 			data[control.name] =				handleCommodity({ mode, commodity: singleService?.commodity }) || null;
 		} else if (control.name === 'packages') {

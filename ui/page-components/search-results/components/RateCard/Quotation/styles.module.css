@@ -25,6 +25,7 @@
 }
 
 .text {
+	display: flex;
 	font-size: 12px;
 	font-weight: 400;
 	line-height: 12px;
@@ -43,7 +44,7 @@
 		margin-bottom: 10px;
 	}
 
-	&.confirmed {
+	.confirmed {
 		margin-top: 16px;
 		margin-bottom: 18px;
 		color: #ffffff;

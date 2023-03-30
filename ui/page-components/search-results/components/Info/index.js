@@ -115,7 +115,9 @@ function Info({
 				{!NON_STANDALONE_SEERVICES.includes(data?.search_type)
 				&& !query?.shipment_id
 				&& results_type !== 'rfq' ? (
-					<Button
+					<div
+						className={styles.button_styled}
+						role="presentation"
 						onClick={() => {
 							trackEvent(APP_EVENT.search_clicked_on_edit_search, {});
 
@@ -127,7 +129,7 @@ function Info({
 							alt="edit"
 							style={{ width: '3em', height: '3em', margin: 'auto' }}
 						/>
-					</Button>
+					</div>
 					) : null}
 			</div>
 		</div>

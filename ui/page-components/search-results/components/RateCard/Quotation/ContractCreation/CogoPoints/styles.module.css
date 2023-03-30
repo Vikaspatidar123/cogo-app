@@ -23,7 +23,7 @@
 	font-size: 16px;
 	line-height: 19px;
 
-	&.cogo-assured {
+	.cogo-assured {
 		color: #404e65;
 	}
 }

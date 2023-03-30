@@ -27,6 +27,29 @@
 	}
 }
 
+.button_styled {
+	border-radius: 4px;
+	border: none;
+	background: transparent;
+	cursor: pointer;
+	padding: 0;
+	font-size: 14px;
+	line-height: 160%;
+	letter-spacing: 0.02em;
+
+	display: flex;
+	align-items: center;
+	outline: none;
+
+	:hover {
+		font-weight: bold;
+	}
+
+	:focus-visible {
+		outline: auto blue;
+	}
+}
+
 .edit_container {
 	display: flex;
 	align-items: flex-end;
@@ -35,7 +58,7 @@
 	padding: 4px 10px;
 	border-radius: 10px;
 
-	&.app {
+	.app {
 		border: 1px solid #e0e0e0;
 	}
 }

@@ -8,13 +8,10 @@ function ShippingLineComp({
 	showLogo = false,
 	data = {},
 	className = '',
-	isMobile,
 }) {
 	return (
 		<Tooltip
-			className={`${show ? '' : 'not-show'} ${className || ''} ${
-				isMobile ? 'mobile' : 'web'
-			}`}
+			className={`${show ? '' : 'not-show'} ${className || ''}`}
 		>
 			{showLogo ? (
 				<img

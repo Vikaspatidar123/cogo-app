@@ -22,25 +22,6 @@
 
 .container {
 	padding: 4px;
-
-	.business-checkbox-item {
-		margin-bottom: 8px;
-
-		.business-checkbox-label {
-			font-size: 12px;
-		}
-	}
-	.form-item-label {
-		font-size: 12px;
-		margin: 12px 0 8px 0;
-	}
-	.form-lower-label {
-		margin-bottom: 0;
-	}
-
-	.core-ui-select__indicators {
-		height: auto;
-	}
 }
 
 .header_text { 

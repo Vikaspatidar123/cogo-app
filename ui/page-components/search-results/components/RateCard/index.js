@@ -224,10 +224,10 @@ function RateCard(props) {
 			id={id}
 		>
 			<div className={styles.card}>
-				<div style={{ display: 'flex', flex: '1' }} display="block">
+				<div display="block" style={{ flex: '1' }}>
 					<div style={{ display: 'flex', justifyContent: 'space-between' }}>
 						<div style={{ display: 'flex' }}>
-							<div className={`${styles.cogo_assured} ${data?.source}`}>
+							<div className={`${styles.cogo_assured} ${styles.data?.source}`}>
 								{data?.source === 'cogo_assured_rate' && (
 									<div style={{ display: 'flex' }}>
 										<img
@@ -238,7 +238,7 @@ function RateCard(props) {
 									</div>
 								)}
 
-								<div className={data?.source}>
+								<div className={styles.data?.source}>
 									{RATE_SOURCE_MAPPING[data?.source] || 'System Rate'}
 									{' '}
 								</div>
@@ -345,37 +345,37 @@ function RateCard(props) {
 						setScheduleId={setScheduleId}
 					/>
 				</div>
-
-				{open && (
-					<div className={styles.animated_container} type={open ? 'enter' : 'exit'}>
-						<QuotationDetails
-							searchData={searchData}
-							details={details}
-							data={data}
-							id={id}
-							isConfirmed={false}
-						/>
-					</div>
-				)}
-
-				{viewSchedules && (
-					<div className={styles.animated_container} type={viewSchedules ? 'enter' : 'exit'}>
-						{scheduleData.map((x) => (
-							<ScheduleDetails list={x.schedules} />
-						))}
-					</div>
-				)}
-
-				{data?.service_type === 'fcl_freight' ? (
-					<DetentionDemurrage
-						show={show}
-						setShow={setShow}
-						activeTab={activeTab}
-						setActiveTab={setActiveTab}
-						{...props}
-					/>
-				) : null}
 			</div>
+
+			{open && (
+				<div className={styles.animated_container} type={open ? 'enter' : 'exit'}>
+					<QuotationDetails
+						searchData={searchData}
+						details={details}
+						data={data}
+						id={id}
+						isConfirmed={false}
+					/>
+				</div>
+			)}
+
+			{viewSchedules && (
+				<div className={styles.animated_container} type={viewSchedules ? 'enter' : 'exit'}>
+					{scheduleData.map((x) => (
+						<ScheduleDetails list={x.schedules} />
+					))}
+				</div>
+			)}
+
+			{data?.service_type === 'fcl_freight' ? (
+				<DetentionDemurrage
+					show={show}
+					setShow={setShow}
+					activeTab={activeTab}
+					setActiveTab={setActiveTab}
+					{...props}
+				/>
+			) : null}
 		</div>
 	);
 }

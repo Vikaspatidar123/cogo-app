@@ -220,7 +220,7 @@ const useGetShippingLine = ({
 			origin_airport_id      : data?.origin_airport_id,
 			destination_airport_id : data?.destination_airport_id,
 		});
-	}, [data?.destination_airport_id, data?.origin_airport_id, priorityAirlineOptions]);
+	}, [data?.destination_airport_id, data?.origin_airport_id]);
 
 	useEffect(() => {
 		setValue('suitable_schedule', '');

@@ -77,11 +77,10 @@ function Quotation({
 		? price / (details?.chargeable_weight || 1) || 0
 		: price || 0;
 
-	const basicFreight =		data?.freight_price_discounted >= 0
-		&& details?.trade_type !== 'domestic'
-		&& details?.service_type !== 'cargo_insurance' ? (
-			<div className={isConfirmed ? 'confirmed' : ''}>
-				{`Freight ${data.service_type === 'air_freight' ? 'per kg' : ''} :`}
+	const basicFreight = data?.freight_price_discounted >= 0
+		&& details?.trade_type !== 'domestic' ? (
+			<div className={`${styles.text}`}>
+				{`Freight ${data.service_type === 'air_freight' ? 'per kg' : ''} `}
 				<span style={{ fontWeight: 700, marginLeft: '4px' }}>
 					{formatAmount({
 						amount   : freight_price,
@@ -388,7 +387,7 @@ function Quotation({
 				<Modal
 					show={confirmation}
 					onClose={() => setConfirmation(false)}
-					width={isMobile ? 300 : 550}
+					width={550}
 				>
 					<NoRatesServicesConfirmation
 						noRatesArr={noRatesServices}

@@ -193,7 +193,7 @@ function ConatinerDetails({ data = {} }) {
 							<div style={{ display: 'flex', marginBottom: '8px' }}>
 								<span style={{ width: 100 }}>Volume</span>
 								<div className={styles.container_values}>
-									{totalPackageVolume}
+									{totalPackageVolume || 0}
 									cbm
 								</div>
 							</div>

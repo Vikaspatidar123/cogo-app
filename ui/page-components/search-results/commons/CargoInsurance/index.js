@@ -47,7 +47,7 @@ function CargoInsurance({
 
 	const cargoInsuranceCountryId =		trade_type === 'export' ? destination_country_id : origin_country_id;
 
-	const { isEligible, loading: apiLoading } =		useGetCargoInsuranceSupportedCountries(cargoInsuranceCountryId);
+	const { isEligible, loading: apiLoading } =	useGetCargoInsuranceSupportedCountries(cargoInsuranceCountryId);
 
 	const transitMode = TRANSIT_MODE_MAPPING[service_type] || 'ROAD';
 
@@ -84,10 +84,10 @@ function CargoInsurance({
 		);
 	}, [cargoInsuranceCommodity]);
 
-	const { getCargoInsruanceRate, loading = '' } = useGetCargoInsuranceRate({
-		checkout_id,
-		setRateData,
-	});
+	// const { getCargoInsruanceRate, loading = '' } = useGetCargoInsuranceRate({
+	// 	checkout_id,
+	// 	setRateData,
+	// });
 
 	useEffect(() => {
 		if (cargoValue && !isEmpty(cargoInsuranceCommodity)) {

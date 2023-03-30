@@ -208,6 +208,7 @@ function AdditionalServices({
 					placeholder="Select..."
 					value={subsidiaryService}
 					options={subsidiaryServicesList}
+					style={{ width: '250px' }}
 				/>
 
 				<Button

@@ -6,8 +6,6 @@ import getBoundedClick from '../../utils/getBoundedClick';
 import styles from './styles.module.css';
 import Tag from './Tag';
 
-import SelectController from '@/packages/forms/Business/Select';
-
 function Tags({
 	list = [],
 	onClick = () => {},
@@ -74,7 +72,24 @@ function Tags({
 
       		if (valueShowPropMapping[value]) {
       			return (
-	<SelectController
+	<Tag
+		item={item}
+		selected={selected}
+		options={newOptions}
+		className={styles[className]}
+		id={`search_form_mode_${value}`}
+		onClick={() => {
+                	setShowTagOptionsValue(value);
+		}}
+		onChange={onChange}
+		showTagOptionsValue={showTagOptionsValue}
+		value={value}
+	/>
+      			);
+      		}
+      	}
+      	{
+      		/* <SelectController
 		key={value}
 		name={`search-${value}-tags`}
 		options={newOptions}
@@ -100,11 +115,8 @@ function Tags({
 				}}
 			/>
 		)}
-	/>
-      			);
-      		}
+	/> */
       	}
-
       	return (
 	<Tag
 		key={value}

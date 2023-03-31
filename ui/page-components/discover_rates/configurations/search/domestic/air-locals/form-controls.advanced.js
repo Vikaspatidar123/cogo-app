@@ -5,8 +5,8 @@ const formControlsAdvanced = (isChannelPartner = false) => [
 		label   : 'Pickup Type',
 		type    : 'chips',
 		options : [
-			{ label: 'FTL', value: 'ftl' },
-			{ label: 'LTL', value: 'ltl' },
+			{ children: 'FTL', key: 'ftl' },
+			{ children: 'LTL', key: 'ltl' },
 		],
 		condition : { services: ['export_transportation'] },
 		rules     : { require: 'Pickup Type is required' },
@@ -21,6 +21,7 @@ const formControlsAdvanced = (isChannelPartner = false) => [
 		params         : { filters: { type: ['pincode', 'city'] } },
 		condition      : { services: ['export_transportation'] },
 		rules          : { required: 'Origin Pincode is required' },
+		style          : { width: '200px' },
 	},
 	{
 		name      : 'export_transportation_truck_type',
@@ -131,8 +132,8 @@ const formControlsAdvanced = (isChannelPartner = false) => [
 		type    : 'chips',
 		value   : isChannelPartner ? null : 'ftl',
 		options : [
-			{ label: 'FTL', value: 'ftl' },
-			{ label: 'LTL', value: 'ltl' },
+			{ children: 'FTL', key: 'ftl' },
+			{ children: 'LTL', key: 'ltl' },
 		],
 		condition : { services: ['import_transportation'] },
 		rules     : { require: 'Drop Type is required' },

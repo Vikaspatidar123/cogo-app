@@ -1,4 +1,4 @@
-import { get } from '@cogoport/front/utils';
+import { getByKey } from '@cogoport/utils';
 
 const controls = [
 	{
@@ -6,8 +6,8 @@ const controls = [
 		label   : 'Origin Cargo Stuffing',
 		type    : 'pills',
 		options : [
-			{ label: 'Factory Stuffing', value: 'stuffing_at_factory' },
-			{ label: 'Terminal Stuffing', value: 'stuffing_at_dock' },
+			{ children: 'Factory Stuffing', key: 'stuffing_at_factory' },
+			{ children: 'Terminal Stuffing', key: 'stuffing_at_dock' },
 		],
 		rules : { required: true },
 		span  : 12,
@@ -56,7 +56,7 @@ const getControls = ({ values }) => controls.map((control) => {
 
 	return {
 		...control,
-		value: get(values, name) || '',
+		value: getByKey(values, name) || '',
 	};
 });
 

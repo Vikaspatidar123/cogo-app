@@ -1,3 +1,17 @@
 .row {
   display: flex;
+  flex-direction: row;
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
+}
+.card {
+  padding: 0px 20px;
+}
+.modal {
+  :global {
+    /* .ui_modal_body_container {
+      max-height: 410px;
+    } */
+  }
 }

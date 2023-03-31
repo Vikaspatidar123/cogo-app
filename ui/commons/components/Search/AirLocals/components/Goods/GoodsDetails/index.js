@@ -1,5 +1,3 @@
-// import Layout from '@cogo/business-modules/form/Layout';
-// import { useFormCogo } from '@cogoport/front/hooks';
 import React, { useState, useEffect } from 'react';
 
 import COMMODITY_TYPE_MAPPING from '../../../utils/CommodityMappping';
@@ -9,6 +7,7 @@ import Load from './Load';
 import styles from './styles.module.css';
 
 import { useForm } from '@/packages/forms';
+import FormElement from '@/ui/page-components/discover_rates/common/FormElement';
 
 const OPTIONS = [
 	{ label: 'General Cargo', value: 'general' },
@@ -42,8 +41,7 @@ function GoodsDetails({
 		tomorrow,
 		showFilledValues,
 	});
-	console.log(controls, 'controls');
-	const { fields = {}, formState, watch, setValues } = useForm();
+	const { formState, watch, setValue, control } = useForm();
 	const { errors = {} } = formState || {};
 
 	const watchCommodity = watch('commodity_type');
@@ -64,21 +62,13 @@ function GoodsDetails({
 			setCommoditySubTypeOptions(serviceTypeGooods[watchCommodity]);
 
 			if (showFilledValues.commodityType === watchCommodity) {
-				setValues({
-					commodity_subtype: showFilledValues.commoditySubType,
-				});
+				setValue('commodity_subtype', showFilledValues.commoditySubType);
 			} else if (watchCommodity !== 'general') {
-				setValues({
-					commodity_subtype: MAPPING[watchCommodity],
-				});
+				setValue('commodity_subtype', MAPPING[watchCommodity]);
 			} else if (selectedTradeType === 'domestic') {
-				setValues({
-					commodity_subtype: 'others',
-				});
+				setValue('commodity_subtype', 'others');
 			} else {
-				setValues({
-					commodity_subtype: 'all',
-				});
+				setValue('commodity_subtype', 'all');
 			}
 		}
 	};
@@ -90,8 +80,8 @@ function GoodsDetails({
 	return (
 		<div className={styles.container}>
 			<div className={styles.header_container}>
-				{/* <Layout controls={controls} fields={fields} errors={errors} /> */}
-				form chiya bhai
+				<FormElement control={control} controls={controls} showButtons errors={errors} />
+
 			</div>
 
 			<div style={{ width: '100%' }}>

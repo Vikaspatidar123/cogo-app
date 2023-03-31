@@ -20,7 +20,11 @@ function Header({
 						CANCEL
 					</Button>
 
-					<Button onClick={onSubmit} style={{ marginLeft: '8px' }} id="search_form_cargo_details_apply_button">
+					<Button
+						onClick={() => onSubmit()}
+						style={{ marginLeft: '8px' }}
+						id="search_form_cargo_details_apply_button"
+					>
 						APPLY
 					</Button>
 				</div>

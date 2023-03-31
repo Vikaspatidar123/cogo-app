@@ -15,13 +15,12 @@ const controls = [
 		],
 		controls: [
 			{
-				name      : 'packing_type',
-				span      : 4,
-				type      : 'select',
-				label     : 'Package Type',
-				className : 'primary md',
-				rules     : { required: 'Package Type is required' },
-				options   : [
+				name    : 'packing_type',
+				style   : { width: '150px' },
+				type    : 'select',
+				label   : 'Package Type',
+				rules   : { required: 'Package Type is required' },
+				options : [
 					{
 						label : 'Pallet',
 						value : 'pallet',
@@ -46,7 +45,7 @@ const controls = [
 				label     : 'Quantity',
 				type      : 'number',
 				className : 'primary md',
-				span      : 4,
+				style     : { width: '150px' },
 				rules     : { required: true },
 			},
 

@@ -1,4 +1,3 @@
-// import Layout from '@cogo/business-modules/form/Layout';
 import { Button, Modal } from '@cogoport/components';
 import React, { useState, useEffect } from 'react';
 
@@ -7,6 +6,7 @@ import OverWeightModal from './OverWeightModal';
 import styles from './styles.module.css';
 
 import { useForm } from '@/packages/forms';
+import FormElement from '@/ui/page-components/discover_rates/common/FormElement';
 
 function PerPackageCargoDetails({
 	setShowPopover = () => {},
@@ -21,8 +21,7 @@ function PerPackageCargoDetails({
 	const [overWeightDoc, setOverWeightDoc] = useState({});
 
 	const controls = getControls({ showFilledValues });
-	console.log(controls, 'controls');
-	const { fields, handleSubmit, formState, watch } = useForm();
+	const { handleSubmit, formState, watch, control } = useForm();
 	const { errors } = formState;
 
 	const [totalVal, setTotalVal] = useState({});
@@ -57,7 +56,7 @@ function PerPackageCargoDetails({
 
 	useEffect(() => {
 		let totalVolume = 0;
-		watchDimensions.forEach((item) => {
+		watchDimensions?.forEach((item) => {
 			totalVolume
 				+= (Number(item.length || 0)
 					* Number(item.width || 0)
@@ -69,7 +68,7 @@ function PerPackageCargoDetails({
 		totalVolume = Math.round(totalVolume * 1000000) / 1000000;
 
 		let totalWt = 0;
-		watchDimensions.forEach((item) => {
+		watchDimensions?.forEach((item) => {
 			totalWt += Number(item.total_weight || 0) * Number(item.quantity || 0);
 		});
 
@@ -110,8 +109,8 @@ function PerPackageCargoDetails({
 	return (
 		<>
 			<div className={styles.container}>
-				{/* <Layout controls={controls} fields={fields} errors={errors} /> */}
-				form Total ok
+				<FormElement control={control} controls={controls} showButtons errors={errors} />
+
 				<div className={styles.button_container}>
 					<div className={styles.display_live_cal}>
 						<div className="totals">
@@ -129,7 +128,7 @@ function PerPackageCargoDetails({
 					</div>
 
 					<div>
-						<Button onClick={() => setShowPopover(false)} ghost>
+						<Button onClick={() => setShowPopover(false)}>
 							Cancel
 						</Button>
 						<Button

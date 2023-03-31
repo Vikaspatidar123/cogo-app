@@ -260,9 +260,9 @@ function Results({
 		if (loading) {
 			return (
 				<>
-					<Loader isMobile={isMobile} scope={scope} />
-					<Loader isMobile={isMobile} scope={scope} />
-					<Loader isMobile={isMobile} scope={scope} />
+					<Loader scope={scope} />
+					<Loader scope={scope} />
+					<Loader scope={scope} />
 				</>
 			);
 		}

@@ -38,76 +38,76 @@ function AdvancedOptions({
 	const freightControls = ['bls_count', 'bl_type'];
 
 	const incoKey = Object.keys(formValues).find((key) => key.includes('inco_term'));
+	const head = (
+		<Header onClose={onClose} onSubmit={submit} loading={loading}>
+			ADVANCED SEARCH
+		</Header>
+	);
 	return (
-		<Modal
-			show={show}
-			closable={false}
-			size="xl"
-		>
+		<Modal show={show} onClose={onClose} size="xl" className={styles.modal}>
 			<div>
-				<Header onClose={onClose} onSubmit={submit} loading={loading}>
-					ADVANCED SEARCH
-				</Header>
-
-				<div className={styles.row} style={{ width: '100%' }}>
-					<div>
-						<Section title="ORIGIN/DESTINATION">
-							{show && (
-								<SummarySection
-									location={location}
-									mode={mode}
-									setLocation={setLocation}
+				<Modal.Header title={head} />
+				<Modal.Body>
+					<div className={styles.row} style={{ width: '100%' }}>
+						<div>
+							<Section title="ORIGIN/DESTINATION">
+								{show && (
+									<SummarySection
+										location={location}
+										mode={mode}
+										setLocation={setLocation}
+										fields={[...optionsFields, ...fields]}
+										errors={errors}
+										control={control}
+									/>
+								)}
+								<Form
+									controls={advancedControls.filter((item) => freightControls.includes(item.name))}
 									fields={[...optionsFields, ...fields]}
+									showElements={showElements}
+									formValues={formValues}
 									errors={errors}
 									control={control}
 								/>
-							)}
-							<Form
-								controls={advancedControls.filter((item) => freightControls.includes(item.name))}
-								fields={[...optionsFields, ...fields]}
+							</Section>
+						</div>
+
+						<div>
+							<Section
+								border
+								title={
+                  containerDetailsModes.includes(mode)
+                  	? 'CONTAINER DETAILS'
+                  	: 'CARGO DETAILS'
+                }
+							>
+								<Form
+									controls={controls}
+									formValues={formValues}
+									errors={errors}
+									control={control}
+								/>
+							</Section>
+						</div>
+
+						<div className={styles.card}>
+							<Services
+								mode={mode}
+								incoTerm={formValues?.[incoKey]}
+								services={services}
+								setServices={setServices}
+								location={location}
+								advancedControls={advancedControls}
+								optionsFields={optionsFields}
+								fields={fields}
 								showElements={showElements}
 								formValues={formValues}
 								errors={errors}
 								control={control}
 							/>
-						</Section>
+						</div>
 					</div>
-
-					<div>
-						<Section
-							border
-							title={
-                containerDetailsModes.includes(mode)
-                	? 'CONTAINER DETAILS'
-                	: 'CARGO DETAILS'
-              }
-						>
-							<Form
-								controls={controls}
-								formValues={formValues}
-								errors={errors}
-								control={control}
-							/>
-						</Section>
-					</div>
-
-					<div>
-						<Services
-							mode={mode}
-							incoTerm={formValues?.[incoKey]}
-							services={services}
-							setServices={setServices}
-							location={location}
-							advancedControls={advancedControls}
-							optionsFields={optionsFields}
-							fields={fields}
-							showElements={showElements}
-							formValues={formValues}
-							errors={errors}
-							control={control}
-						/>
-					</div>
-				</div>
+				</Modal.Body>
 			</div>
 		</Modal>
 	);

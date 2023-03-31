@@ -27,7 +27,14 @@ function ContractAd({ contractDetail, loading, importerExporterId }) {
 		<>
 			{count <= 0 && (
 				<div className={`${styles.container} ${styles.advertise}`}>
-					{!loading ? <div className={styles.advertise} /> : <Placeholder height="100px" width="100%" />}
+					{!loading ? (
+						<div className={styles.advertise}>
+							<img
+								src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/lock-price-banner.svg"
+								alt="cogoport"
+							/>
+						</div>
+					) : <Placeholder height="100px" width="100%" />}
 				</div>
 			)}
 
@@ -35,7 +42,13 @@ function ContractAd({ contractDetail, loading, importerExporterId }) {
 				<div className={styles.container}>
 					{!loading ? (
 						<>
-							<div className={styles.contract_tag} />
+							<div className={styles.contract_tag}>
+								<img
+
+									src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/contract-ad.svg"
+									alt="cogoport"
+								/>
+							</div>
 							<div className={styles.content}>
 								<div className={styles.label}>
 									This organization has already

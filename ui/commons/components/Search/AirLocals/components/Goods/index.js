@@ -276,6 +276,7 @@ function Goods(props, ref) {
 
 			<Popover
 				theme="light"
+				placement="bottom"
 				render={(
 					<>
 						{showPopover ? (

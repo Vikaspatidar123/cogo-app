@@ -61,15 +61,15 @@ const getLocationDetails = (data, type, service_key) => {
 };
 
 const getLocationInfo = (
+	service_key = 'primary_service',
 	data,
 	keys = { origin: null, destination: null },
-	service_key = 'primary_service',
 ) => {
 	if (keys?.destination || keys?.origin) {
-		const origin =			getByKey(data, keys?.origin) || getByKey(data, keys?.alternateOrigin);
+		const origin = getByKey(data, keys?.origin) || getByKey(data, keys?.alternateOrigin);
 
-		const destination =			getByKey(data, keys?.destination)
-			|| getByKey(data, keys?.alternateDestination);
+		const destination = getByKey(data, keys?.destination)
+      || getByKey(data, keys?.alternateDestination);
 
 		return { origin, destination };
 	}

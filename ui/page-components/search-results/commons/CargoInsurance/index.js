@@ -84,10 +84,10 @@ function CargoInsurance({
 		);
 	}, [cargoInsuranceCommodity]);
 
-	// const { getCargoInsruanceRate, loading = '' } = useGetCargoInsuranceRate({
-	// 	checkout_id,
-	// 	setRateData,
-	// });
+	const { getCargoInsruanceRate, loading = '' } = useGetCargoInsuranceRate({
+		checkout_id,
+		setRateData,
+	});
 
 	useEffect(() => {
 		if (cargoValue && !isEmpty(cargoInsuranceCommodity)) {

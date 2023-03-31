@@ -4,10 +4,11 @@ const formControls = (setOperatorName) => [
 		name              : 'location_id',
 		placeholder       : 'Search via name',
 		includedInOptions : false,
-		type              : 'location-select',
-		optionsListKey    : 'locations',
+		type              : 'async_select',
+		asyncKey          : 'locations',
 		params            : { filters: { type: ['city', 'seaport'] } },
 		rules             : { required: 'Port is required' },
+		style             : { width: '350px' },
 	},
 	{
 		label             : 'LOCALS TYPE (HANDLING TYPE)',
@@ -20,7 +21,8 @@ const formControls = (setOperatorName) => [
 			{ label: 'Origin', value: 'export' },
 			{ label: 'Destination', value: 'import' },
 		],
-		rules: { required: 'Locals Type is required' },
+		rules : { required: 'Locals Type is required' },
+		style : { width: '350px' },
 	},
 	{
 		label         : 'Commodity',
@@ -32,13 +34,12 @@ const formControls = (setOperatorName) => [
 		rules         : { required: 'Commodity is required' },
 	},
 	{
-		name           : 'shipping_line_id',
-		label          : 'Shipping Line',
-		type           : 'select',
-		placeholder    : 'Select Shipping Line',
-		optionsListKey : 'shipping-lines',
-		caret          : true,
-		handleChange   : (obj) => {
+		name         : 'shipping_line_id',
+		label        : 'Shipping Line',
+		type         : 'async_select',
+		asyncKey     : 'shipping-lines',
+		caret        : true,
+		handleChange : (obj) => {
 			setOperatorName(obj);
 		},
 		isClearable : true,

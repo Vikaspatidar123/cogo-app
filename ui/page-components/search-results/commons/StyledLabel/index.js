@@ -10,7 +10,7 @@ function StyledLabel(props) {
 
 	return (
 		<div className={styles.schedules}>
-			<div className={cl`${styles.top}${styles.transit_time}`}>
+			<div className={cl`${styles.top} ${styles.transit_time}`}>
 				No of Stops:
 				{' '}
 				{data.number_of_stops}
@@ -41,7 +41,7 @@ function StyledLabel(props) {
 			</div>
 
 			{data?.transit_time ? (
-				<div className={cl`${styles.bottom}${styles.transit_time}`}>
+				<div className={cl`${styles.bottom} ${styles.transit_time}`}>
 					Transit Time :
 					{' '}
 					{data?.transit_time}

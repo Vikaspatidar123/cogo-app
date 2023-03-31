@@ -1,15 +1,6 @@
-import Component from './Component';
+import { Tabs, TabPanel } from '@cogoport/components';
 
-const OPTIONS = [
-	{
-		value : 'origin',
-		label : 'ORIGIN',
-	},
-	{
-		value : 'destination',
-		label : 'DESTINATION',
-	},
-];
+import Component from './Component';
 
 function AddMoreDays(props) {
 	const {
@@ -70,34 +61,36 @@ function AddMoreDays(props) {
 	return (
 		<div style={{ padding: '12px 20px' }}>
 			<div style={{ display: 'flex' }}>
-				{/* tabs required  ------->>>>>> */}
-				{/* <SegmentedControl
-					options={OPTIONS}
-					activeTab={activeTab}
-					setActiveTab={setActiveTab}
-					separatorMarginRight={4}
-				/> */}
+				<Tabs activeTab={activeTab} themeType="primary" onChange={setActiveTab}>
+					<TabPanel name="origin" title="ORIGIN">
+						<div />
+					</TabPanel>
+
+					<TabPanel name="destination" title="DESTINATION">
+						<div />
+					</TabPanel>
+				</Tabs>
 			</div>
 
-			<div style={{ display: 'flex' }}>
+			<div style={{ display: 'flex', padding: '12px 20px' }}>
 				{Object.keys(COMPONENT_MAPPING[activeTab]).map((key) => {
-					const componentProps = COMPONENT_MAPPING[activeTab][key];
+        	const componentProps = COMPONENT_MAPPING[activeTab][key];
 
-					return (
-						<Component
-							key={`${activeTab}__${key}`}
-							{...componentProps}
-							activeTab={activeTab}
-							type={key}
-							mainServices={mainServices}
-							localServicesDetails={localServicesDetails}
-							localServicesRates={localServicesRates}
-							spot_search_id={spot_search_id}
-							refetch={refetch}
-							service_rates={service_rates}
-							rateData={rateData}
-						/>
-					);
+        	return (
+	<Component
+		key={`${activeTab}__${key}`}
+		{...componentProps}
+		activeTab={activeTab}
+		type={key}
+		mainServices={mainServices}
+		localServicesDetails={localServicesDetails}
+		localServicesRates={localServicesRates}
+		spot_search_id={spot_search_id}
+		refetch={refetch}
+		service_rates={service_rates}
+		rateData={rateData}
+	/>
+        	);
 				})}
 			</div>
 		</div>

@@ -1,5 +1,12 @@
 // import Icon from '@cogo/deprecated_legacy/icons/Icon';
-import { Checkbox } from '@cogoport/components';
+import { Checkbox, cl } from '@cogoport/components';
+import {
+	IcCAirCustoms,
+	IcASurfaceFttRail,
+	IcAOceanFclLcl,
+	IcATransporters,
+	IcCLclCustoms,
+} from '@cogoport/icons-react';
 import React from 'react';
 
 import styles from './styles.module.css';
@@ -12,19 +19,19 @@ function Service({
 }) {
 	const mainServices = ['freight'];
 	const MAPPING = {
-		fcl_freight            : 'ic-fcl',
-		import_transportation  : 'ic-trailer',
-		export_fcl_customs     : 'ic-customs',
-		import_fcl_customs     : 'ic-customs',
-		import_haulage_freight : 'ic-dryport',
-		export_haulage_freight : 'ic-dryport',
-		export_transportation  : 'ic-trailer',
-		import_fcl_cfs         : 'ic-customs',
-		export_fcl_cfs         : 'ic-customs',
-		export_lcl_customs     : 'ic-customs',
-		import_lcl_customs     : 'ic-customs',
-		import_air_customs     : 'ic-customs',
-		export_air_customs     : 'ic-customs',
+		fcl_freight            : <IcAOceanFclLcl width={30} height={30} />,
+		import_transportation  : <IcASurfaceFttRail width={30} height={30} />,
+		export_fcl_customs     : <IcCAirCustoms width={30} height={30} />,
+		import_fcl_customs     : <IcCAirCustoms width={30} height={30} />,
+		import_haulage_freight : <IcATransporters width={30} height={30} />,
+		export_haulage_freight : <IcATransporters width={30} height={30} />,
+		export_transportation  : <IcASurfaceFttRail width={30} height={30} />,
+		import_fcl_cfs         : <IcCLclCustoms width={30} height={30} />,
+		export_fcl_cfs         : <IcCLclCustoms width={30} height={30} />,
+		export_lcl_customs     : <IcCLclCustoms width={30} height={30} />,
+		import_lcl_customs     : <IcCLclCustoms width={30} height={30} />,
+		import_air_customs     : <IcCLclCustoms width={30} height={30} />,
+		export_air_customs     : <IcCLclCustoms width={30} height={30} />,
 	};
 
 	const isMainService = mainServices.includes(service);
@@ -39,16 +46,18 @@ function Service({
 
 	return (
 		<div
-			className={selected ? `${styles.selected}${styles.container}` : `${styles.container}`}
-			// service={service}
+			className={
+        selected
+        	? cl`${styles.selected} ${styles.container}`
+        	: cl`${styles.container}`
+      }
+      // service={service}
 			role="presentation"
 			onClick={handleChange}
 		>
 			<div className={styles.service_name}>
-				{/* <Icon
-					type={MAPPING?.[service]}
-					style={{ height: 30, width: 30, marginRight: 10 }}
-				/> */}
+				{MAPPING?.[service]}
+
 				{details?.title || ''}
 			</div>
 

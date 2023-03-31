@@ -4,13 +4,12 @@ import React from 'react';
 import CC from '../../../helpers/condition-constants';
 import useGetPermission from '../../../hooks/useGetPermission';
 
-import Margins from './Margins';
 import styles from './styles.module.css';
 
 import formatAmount from '@/ui/commons/utils/formatAmount';
 
 function LineItems({ item = {} }) {
-	const { isConditionMatches, isChannelPartner } = useGetPermission();
+	const { isConditionMatches } = useGetPermission();
 
 	const {
 		name,
@@ -50,53 +49,25 @@ function LineItems({ item = {} }) {
 			<div className={styles.flex_row}>
 				<div className={styles.flex_row}>
 					<div className={styles.text}>{name}</div>
-
-					{!isChannelPartner ? (
-						<div>
-							{`${formatAmount({
-								amount  : priceWithoutMargin,
-								currency,
-								options : {
-									style                 : 'currency',
-									currencyDisplay       : 'code',
-									maximumFractionDigits : 0,
-								},
-							})}`}
-						</div>
-					) : null}
 				</div>
 
 				<div className={styles.flex_row}>
-					{!isChannelPartner ? (
-						<div style={{ marginTop: '-6px' }}>
-							{!isEmpty(margins) ? (
-								<Margins margins={margins} />
-							) : (
-								<div className={styles.space}>
-									+
-									{' '}
-									<div className={`${styles.pill} ${styles.no_margin}`}>No margin</div>
-								</div>
-							)}
-						</div>
-					) : null}
-
 					<div className={styles.total_price}>
 						<span style={{ fontWeight: 500 }}>
 							{formatAmount({
-								amount  : total_price_discounted,
-								currency,
-								options : {
-									style                 : 'currency',
-									currencyDisplay       : 'code',
-									maximumFractionDigits : 0,
-								},
+              	amount  : total_price_discounted,
+              	currency,
+              	options : {
+              		style                 : 'currency',
+              		currencyDisplay       : 'code',
+              		maximumFractionDigits : 0,
+              	},
 							})}
 						</span>
 
 						{isConditionMatches(
-							[...CC.SEE_SALES_MARGIN, ...CC.SEE_SUPPLY_MARGIN],
-							'or',
+            	[...CC.SEE_SALES_MARGIN, ...CC.SEE_SUPPLY_MARGIN],
+            	'or',
 						) ? (
 							<div className={styles.space}>
 								{price_discounted}
@@ -105,33 +76,10 @@ function LineItems({ item = {} }) {
 								) x
 								{quantity}
 							</div>
-							) : null}
+            	) : null}
 					</div>
 				</div>
 			</div>
-
-			{/* mobileview  ----->>> */}
-			{!isChannelPartner ? (
-				<div className={`${styles.MobileMargins} ${styles.top}`}>
-					{`${formatAmount({
-						amount  : priceWithoutMargin,
-						currency,
-						options : {
-							style                 : 'currency',
-							currencyDisplay       : 'code',
-							maximumFractionDigits : 0,
-						},
-					})}`}
-
-					<div style={{ marginTop: '-6px' }}>
-						{!isEmpty(margins) ? (
-							<Margins margins={margins} />
-						) : (
-							<div className={`${styles.pill} ${styles.no_margin}`}>No margin</div>
-						)}
-					</div>
-				</div>
-			) : null}
 		</div>
 	);
 }

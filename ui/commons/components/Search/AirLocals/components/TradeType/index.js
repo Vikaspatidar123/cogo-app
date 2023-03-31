@@ -81,18 +81,13 @@ function TradeType(props, ref) {
 				value={selectedTradeType}
 				onChange={setSelected}
 				style={{
-        	menu: {
-        		right        : 0,
-        		background   : 'white',
-        		boxShadow    : '0 4px 80px rgba(0, 0, 0, 0.15)',
-        		borderRadius : 10,
-        		zIndex       : 99999,
-        		width        : 244,
-        	},
+					width: '244px',
 				}}
 			/>
 			{formError?.TradeType ? (
-				<div className={styles.error_message_container}>Trade Type is required</div>
+				<div className={styles.error_message_container}>
+					Trade Type is required
+				</div>
 			) : null}
 		</div>
 	);

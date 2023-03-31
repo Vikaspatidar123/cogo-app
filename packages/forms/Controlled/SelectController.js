@@ -5,7 +5,6 @@ import Select from '../Business/Select';
 
 function SelectController(props) {
 	const { name, control, rules, value, ...rest } = props;
-
 	return (
 		<Controller
 			key={rest.id}

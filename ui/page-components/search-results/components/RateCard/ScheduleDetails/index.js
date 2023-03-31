@@ -10,7 +10,7 @@ function ScheduleDetails({ list }) {
 	return (
 		<div className={styles.container}>
 			{(list || []).map((item) => (
-				<div className="card">
+				<div className={styles.card}>
 					<div className={styles.section}>
 						<div className={styles.label}>ETD</div>
 						<div className={styles.value}>

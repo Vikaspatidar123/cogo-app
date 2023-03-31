@@ -1,11 +1,11 @@
 // import usei18n, { replace } from '@cogo/i18n';
 import { cl } from '@cogoport/components';
+import { IcATruck } from '@cogoport/icons-react';
 import { startCase } from '@cogoport/utils';
 import React from 'react';
 
 import handleError from '../../../utils/get-form-error';
 
-import IcTruck from './ic-truck.svg';
 import styles from './styles.module.css';
 import ValueChip from './ValueChip';
 
@@ -29,7 +29,6 @@ function Item({ formValue, ...rest }) {
 	const props = { placeholder };
 
 	const Element = getField(type);
-
 	if (
 		(restProps.type === 'select' || restProps.type === 'creatable-select')
     && !restProps.style
@@ -46,7 +45,7 @@ function Item({ formValue, ...rest }) {
 	}
 
 	if (restProps.prefix === 'truck') {
-		props.prefix = <IcTruck size={1.5} />;
+		props.prefix = <IcATruck size={1.5} />;
 	}
 
 	const errorClass = restProps.error ? 'error' : null;

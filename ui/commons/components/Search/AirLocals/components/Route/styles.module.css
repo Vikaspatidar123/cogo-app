@@ -1,5 +1,6 @@
 .container {
-  margin-bottom: 20px;
+  /* margin-bottom: 20px; */
+  margin-top: 10%;
   .form-item-label {
     margin: 24px 0 12px 0;
     font-weight: 500;
@@ -29,4 +30,7 @@
 .error_message_container {
   color: #cb6464;
   font-size: 12px;
+}
+.lable {
+  padding-bottom: 5px;
 }

@@ -62,8 +62,15 @@ function Options({
 		mode,
 		location,
 	);
-
-	const { setValue, watch, handleSubmit, clearErrors, reset, control } = useForm();
+	const {
+		setValue,
+		watch,
+		handleSubmit,
+		clearErrors,
+		reset,
+		control,
+		register,
+	} = useForm();
 	const formValues1 = options.values || {};
 	const formValues = { ...(formProps.formValues || {}), ...formValues1 };
 	const allErrors = { ...(errors || {}), ...(formProps?.errors || {}) };
@@ -99,6 +106,7 @@ function Options({
 	};
 
 	const handleApply = (values) => {
+		submit(values);
 		if (values) {
 			const {
 				container_type_commodity,
@@ -281,15 +289,21 @@ function Options({
 		setValue('packages_count', total_packages_count || 1);
 		setPackageInformation(value?.packages);
 	};
-
-	const fieldKey = optionFormControls.map((x) => x.name);
-	// if (fieldKey.includes('commodity')) {
-	// 	fields.commodity.onChange = handleReset;
-	// }
-	// if (fieldKey.includes('cbm_calculator')) {
-	// 	fields.cbm_calculator.onChange = handlePackageDetails;
-	// }
-
+	const fields = {};
+	const fieldKey = optionFormControls.map((controlItem) => {
+		const registerValues = register(controlItem.name, {
+			...(controlItem.rules || {}),
+		});
+		const field = { ...controlItem, ...registerValues };
+		fields[controlItem.name] = field;
+		return controlItem.name;
+	});
+	if (fieldKey.includes('commodity')) {
+		fields.commodity.onChange = handleReset;
+	}
+	if (fieldKey.includes('cbm_calculator')) {
+		fields.cbm_calculator.onChange = handlePackageDetails;
+	}
 	const handlePopover = () => {
 		if (!disabledFields?.container_details) {
 			if (!mobile) {
@@ -325,34 +339,36 @@ function Options({
 	};
 
 	const additionalServices = () => (
-		<AdditionalServices
-			{...rest}
-			show={showAdvance}
-			location={location}
-			mode={mode}
-			controls={optionFormControls}
-			optionsFields={optionFormControls}
-			advancedControls={advancedControls}
-			fields={mainFields}
-			submit={submit}
-			services={services}
-			setServices={setServices}
-			mobile={mobile}
-			setLocation={setLocation}
-			showElements={showElements}
-			formValues={formValues}
-			errors={allErrors}
-			loading={loading}
-			onClose={() => {
-      	setServices({});
-      	setShowAdvance(false);
-			}}
-			search_type={search_type}
-			className={className}
-			index={index}
-			disabledFields={disabledFields}
-			control={control}
-		/>
+		showAdvance && (
+			<AdditionalServices
+				{...rest}
+				show={showAdvance}
+				location={location}
+				mode={mode}
+				controls={optionFormControls}
+				optionsFields={optionFormControls}
+				advancedControls={advancedControls}
+				fields={mainFields}
+				submit={submit}
+				services={services}
+				setServices={setServices}
+				mobile={mobile}
+				setLocation={setLocation}
+				showElements={showElements}
+				formValues={formValues}
+				errors={allErrors}
+				loading={loading}
+				onClose={() => {
+					setServices({});
+					setShowAdvance(false);
+				}}
+				search_type={search_type}
+				className={className}
+				index={index}
+				disabledFields={disabledFields}
+				control={control}
+			/>
+		)
 	);
 
 	const handleServices = () => {
@@ -371,7 +387,6 @@ function Options({
 		}
 		return additionalServices();
 	};
-
 	return (
 		<div className={cl`${styles.container} ${styles[search_type]}`}>
 			{search_type === 'rfq' ? (

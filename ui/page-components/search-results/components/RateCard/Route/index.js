@@ -1,3 +1,4 @@
+import { cl } from '@cogoport/components';
 import { isEmpty } from '@cogoport/utils';
 import React from 'react';
 
@@ -18,31 +19,31 @@ function Route({
 	isDestinationHaulageRates = false,
 	isMobile,
 }) {
-	const originIcd =		details?.trade_type === 'export'
-		? details?.origin_port?.is_icd || details?.port?.is_icd
-		: details?.origin_port?.is_icd;
-	const destinationIcd =		details?.trade_type === 'import'
-		? details?.destination_port?.is_icd || details?.port?.is_icd
-		: details?.destination_port?.is_icd;
+	const originIcd = details?.trade_type === 'export'
+    	? details?.origin_port?.is_icd || details?.port?.is_icd
+    	: details?.origin_port?.is_icd;
+	const destinationIcd = details?.trade_type === 'import'
+    	? details?.destination_port?.is_icd || details?.port?.is_icd
+    	: details?.destination_port?.is_icd;
 
 	const getICDKeys = () => {
 		let origin_key = null;
 		let destination_key = null;
 
 		if (originIcd) {
-			origin_key =				details?.search_type === 'fcl_customs'
-				|| details?.search_type === 'fcl_freight_local'
-				? 'main_port'
-				: 'origin_main_port';
+			origin_key = details?.search_type === 'fcl_customs'
+        || details?.search_type === 'fcl_freight_local'
+        	? 'main_port'
+        	: 'origin_main_port';
 		} else {
 			origin_key = 'origin_port';
 		}
 
 		if (destinationIcd) {
-			destination_key =				details?.search_type === 'fcl_customs'
-				|| details?.search_type === 'fcl_freight_local'
-				? 'main_port'
-				: 'destination_main_port';
+			destination_key = details?.search_type === 'fcl_customs'
+        || details?.search_type === 'fcl_freight_local'
+        	? 'main_port'
+        	: 'destination_main_port';
 		} else {
 			destination_key = 'destination_port';
 		}
@@ -57,8 +58,8 @@ function Route({
 		'search_type',
 		{ ...data, ...details },
 		details?.search_type === 'fcl_freight'
-			|| (details?.search_type === 'fcl_customs' && details?.port?.is_icd)
-			|| (details?.search_type === 'fcl_freight_local' && details?.port?.is_icd)
+      || (details?.search_type === 'fcl_customs' && details?.port?.is_icd)
+      || (details?.search_type === 'fcl_freight_local' && details?.port?.is_icd)
 			? getICDKeys()
 			: {},
 	);
@@ -100,7 +101,6 @@ function Route({
 	const customMargin = {
 		marginLeft: mapping1.includes(details?.search_type) ? '-15px' : '',
 	};
-
 	return (
 		<div className={styles.container}>
 			<ShippingLine
@@ -113,11 +113,12 @@ function Route({
 			<div className={styles.route_container}>
 				<div style={{ width: '100%', display: 'flex' }}>
 					<div style={{ width: '100%', display: 'flex' }}>
-						<div className={`${styles.circle} ${!isEmpty(originPickup) ? null : 'inactive'}`} />
 						<div
-							className={styles.line}
-							style={{ width: '100%' }}
+							className={cl`${styles.circle} ${
+              	!isEmpty(originPickup) ? null : styles.inactive
+							}`}
 						/>
+						<div className={styles.line} style={{ width: '100%' }} />
 					</div>
 
 					{!isEmpty(originPickup) ? (
@@ -132,9 +133,10 @@ function Route({
 						<div style={{ width: '100%', display: 'flex' }}>
 							<div className={styles.circle} />
 							<div
-								className={`${styles.line} ${isOriginHaulageRates ? 'rates' : 'inactive'}`}
+								className={cl`${styles.line} ${
+                	isOriginHaulageRates ? styles.rates : styles.inactive
+								}`}
 								style={{ width: '100%' }}
-
 							/>
 						</div>
 						<div className={styles.location}>
@@ -145,58 +147,62 @@ function Route({
 
 				{origin ? (
 					<div
-						display="flex"
 						style={
-							results_type === 'rfq'
-								? { marginLeft: '-30px' }
-								: { marginLeft: '-9px' }
-						}
+              results_type === 'rfq'
+              	? { marginLeft: '-30px', display: 'block' }
+              	: { marginLeft: '-9px', display: 'block' }
+            }
 					>
 						<div style={{ display: 'flex' }}>
-							<div className={`${styles.circle} ${styles.main}`} />
+							<div className={cl`${styles.circle} ${styles.main}`} />
 							<div
-								className={`${styles.line} ${destination ? 'main' : 'inactive'}`}
+								className={cl`${styles.active_line} ${
+                	destination ? styles.main : styles.inactive
+								}`}
 								style={{ width: '15px' }}
 							/>
 						</div>
 
-						<div className={`${styles.Location} ${styles.main}`}>
+						<div className={cl`${styles.location} ${styles.main}`}>
 							{origin?.port_code || origin?.name}
 						</div>
 					</div>
 				) : null}
 
 				{destination || origin ? (
-					<div style={{ display: 'flex', width: '100%', ...customMargin }}>
+					<div style={{ display: 'block', width: '100%', ...customMargin }}>
 						<div style={{ display: 'flex' }}>
 							{destination?.port_code || destination?.postal_code ? (
-								<div className={`${styles.circle} ${styles.main}`} />
+								<div className={cl`${styles.circle} ${styles.main}`} />
 							) : null}
 
 							<div
-								className={`${styles.line} ${destinationIcd || !isEmpty(destinationPickup)
-									? null
-									: 'inactive'
+								className={cl`${styles.line} ${
+                	destinationIcd || !isEmpty(destinationPickup)
+                		? null
+                		: styles.inactive
 								}}`}
 								style={{ width: '100%' }}
 							/>
 						</div>
 
-						<div className={`${styles.Location} ${styles.main}`}>
+						<div className={cl`${styles.location} ${styles.main}`}>
 							{destination?.port_code || destination?.name}
 						</div>
 					</div>
 				) : null}
 
 				{destinationIcd ? (
-					<div style={{ display: 'flex', width: '100%', marginLeft: '-4px' }}>
+					<div style={{ display: 'block', width: '100%', marginLeft: '-4px' }}>
 						<div style={{ display: 'flex' }}>
 							<div className={styles.circle} />
 							<div
-								className={`${styles.line} ${!isEmpty(destinationPickup) ? null : 'inactive'} 
-								${
-									!isEmpty(destinationPickup) ? null : 'inactive'
-								} ${isDestinationHaulageRates ? 'rates' : ''}`}
+								className={cl`${styles.line} ${
+                	!isEmpty(destinationPickup) ? null : styles.inactive
+								} 
+								${!isEmpty(destinationPickup) ? null : styles.inactive} ${
+                	isDestinationHaulageRates ? 'rates' : ''
+								}`}
 								style={{ width: '100%' }}
 							/>
 						</div>
@@ -207,8 +213,8 @@ function Route({
 					</div>
 				) : null}
 
-				{/* {mapping2.includes(details?.search_type) &&
-				!(originIcd || destinationIcd) ? (
+				{/* {mapping2.includes(details?.search_type)
+				&& !(originIcd || destinationIcd) ? (
 					<Flex display="block" style={{ width: '400px', marginLeft: '-10px' }}>
 						<Flex style={{ width: '100%' }}>
 							<Line
@@ -217,10 +223,14 @@ function Route({
 							/>
 						</Flex>
 					</Flex>
-				) : null} */}
+					) : null} */}
 
 				<div style={{ display: 'flex', marginLeft: '-4px' }}>
-					<div className={`${styles.circle} ${!isEmpty(destinationPickup) ? null : 'inactive'}`} />
+					<div
+						className={cl`${styles.circle} ${
+            	!isEmpty(destinationPickup) ? null : styles.inactive
+						}`}
+					/>
 
 					{!isEmpty(destinationPickup) ? (
 						<div className={styles.location}>

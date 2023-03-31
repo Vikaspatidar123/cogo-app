@@ -127,7 +127,9 @@ function DetentionDemurrage(props) {
 					&& rateData?.source !== 'cogo_assured_rate' ? (
 						<Button
 							onClick={() => handleChange('origin')}
-							className="secondary sm"
+							size="md"
+							themeType="secondary"
+							className={styles.styled_button}
 						>
 							<div style={{ display: 'flex', alignItems: 'center' }}>
 								<div style={{ marginRight: '6px' }}>+ Add More</div>
@@ -170,7 +172,9 @@ function DetentionDemurrage(props) {
 					&& rateData?.source !== 'cogo_assured_rate' ? (
 						<Button
 							onClick={() => handleChange('destination')}
-							className="secondary sm"
+							size="md"
+							themeType="secondary"
+							className={styles.styled_button}
 						>
 							<div style={{ display: 'flex', alignItems: 'center' }}>
 								<div style={{ marginRight: '6px' }}>+ Add More</div>

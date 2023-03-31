@@ -119,10 +119,10 @@ export const fclControls = (
 		{
 			name           : 'shipping_line_id',
 			label          : 'Shipping Line',
-			type           : 'select',
 			className      : 'primary sm',
 			placeholder    : 'Select Shipping Line',
-			optionsListKey : 'shipping-lines',
+			type           : 'async_select',
+			asyncKey       : 'shipping-lines',
 			defaultOptions : spotBookingDefaultShippingLines || true,
 			caret          : true,
 			span           : 6,

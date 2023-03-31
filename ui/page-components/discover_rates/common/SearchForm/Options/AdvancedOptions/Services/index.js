@@ -1,3 +1,4 @@
+import { cl } from '@cogoport/components';
 import React, { useEffect } from 'react';
 
 import domesticServices from '../../../../../configurations/domestic-services.json';
@@ -113,7 +114,6 @@ function Services({
 					errors={errors}
 					control={control}
 				/>
-				<div>Need form</div>
 				{servicesList.map((service) => (placeService.includes(service) ? (
 					<>
 						<Service
@@ -135,7 +135,6 @@ function Services({
 							errors={errors}
 							control={control}
 						/>
-						<div>Need form</div>
 					</>
 				) : null))}
 			</>
@@ -146,7 +145,7 @@ function Services({
 	const destinationServices = (servicesList || []).filter((item) => item.includes('import'));
 
 	return (
-		<div className={`${search_type === 'rfq' ? styles.rfq : ''}${styles.container}`}>
+		<div className={cl`${search_type === 'rfq' ? styles.rfq : ''} ${styles.container}`}>
 			{originServices?.length > 0 ? (
 				<>
 					<h4 className={styles.title}>ORIGIN SERVICES</h4>
@@ -157,7 +156,7 @@ function Services({
 
 			{destinationServices?.length > 0 ? (
 				<>
-					<div className={`${styles.title}${styles.margin_top}`}>DESTINATION SERVICES</div>
+					<div className={cl`${styles.title} ${styles.margin_top}`}>DESTINATION SERVICES</div>
 					{renderServices('destination')}
 				</>
 			) : null}

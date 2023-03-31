@@ -411,11 +411,8 @@ function Form(
                     	background : '#2C3E50',
                     	padding    : '4px 8px',
                     	opacity    : loading ? 0.6 : 1,
-                    	// height     : mobile ? '24px' : '38px',
 										}}
 									>
-										{/* {!mobile ? ( */}
-
 										<IcMSearchlight
 											style={{
                       	margin : '2px 2px 0px 0px',
@@ -423,10 +420,6 @@ function Form(
                       	height : 24,
 											}}
 										/>
-										{/* )  */}
-										{/* : (
-                    	                   'SEARCH RATES'
-										)} */}
 									</Button>
 								</div>
 							)}

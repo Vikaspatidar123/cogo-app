@@ -1,4 +1,4 @@
-import { Button } from '@cogoport/components';
+import { Button, cl } from '@cogoport/components';
 import { IcMArrowRotateDown, IcMArrowRotateUp } from '@cogoport/icons-react';
 import { startCase } from '@cogoport/utils';
 import React, { useState, forwardRef } from 'react';
@@ -357,7 +357,6 @@ function QuotationDetails(
 					handleAddRate(service);
 				}}
 				disabled={service === openService && createCheckoutApi.loading}
-				className="primary sm"
 				type="button"
 			>
 				Add Rate
@@ -380,10 +379,12 @@ function QuotationDetails(
 	);
 
 	return (
-		<div className={`${styles.container} ${isConfirmed ? 'confirmed' : ''}`} ref={ref}>
+		<div className={cl`${styles.container} ${isConfirmed ? styles.confirmed : ''}`} ref={ref}>
 			{(Object.keys(groupedServices || {}) || []).map((service) => (
 				<>
-					<div className={`${styles.service} ${styles.isConfirmed ? 'confirmed' : ''}service_dropdown}`}>
+					<div className={cl`${styles.service}
+					${styles.isConfirmed ? styles.confirmed : ''} ${styles.service_dropdown}}`}
+					>
 						<div className={styles.flex_row}>
 							{(groupedServices[service] || [])[0]?.service ? (
 								<div className={styles.service_text}>{handleServicesNames(service)}</div>
@@ -410,8 +411,8 @@ function QuotationDetails(
 					</div>
 
 					<div
-						className={styles.animated_container}
-						type={open && service === openService ? 'enter' : 'exit'}
+						className={cl`${styles.animated_container} 
+						${open && service === openService ? styles.enter : styles.exit}`}
 					>
 						<div>
 							{(groupedServices[service] || []).map((item) => handleLineItemsBreakup(item))}

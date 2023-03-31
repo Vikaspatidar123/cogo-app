@@ -78,7 +78,7 @@
   background-color: #fff;
 }
 .active {
-  background-color: #e0d06161 !important;
+  background-color: #fcdc0061 !important;
 }
 .search_form_mode_fcl_freight {
   color: #356efd !important;
@@ -119,4 +119,15 @@
 .search_form_mode_domestic {
   background-color: #81c0af;
   color: #fff;
+}
+
+.options {
+  padding: 7px 20px;
+  cursor: pointer;
+  border: 1px solid #d0d0a7;
+  border-radius: 4px;
+  margin-top: 3px;
+}
+.options:hover {
+  background: #e1d37261;
 }

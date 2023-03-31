@@ -1,3 +1,4 @@
+import { cl } from '@cogoport/components';
 import { isEmpty } from '@cogoport/utils';
 import React, { useState, useRef } from 'react';
 
@@ -5,8 +6,6 @@ import getBoundedClick from '../../utils/getBoundedClick';
 
 import styles from './styles.module.css';
 import Tag from './Tag';
-
-import SelectController from '@/packages/forms/Business/Select';
 
 function Tags({
 	list = [],
@@ -39,12 +38,12 @@ function Tags({
 	return (
 		<div
 			ref={cRef}
-			className={`${styles.with_mobile} ${styles.without_mobile} ${
+			className={cl`${styles.with_mobile} ${styles.without_mobile} ${
       	styles.search_type || ''
 			}`}
 		>
 			{prefix ? (
-				<div className={`${styles.text}${styles.web}`}>{prefix}</div>
+				<div className={cl`${styles.text} ${styles.web}`}>{prefix}</div>
 			) : null}
 
 			{list.map((item) => {
@@ -74,7 +73,24 @@ function Tags({
 
       		if (valueShowPropMapping[value]) {
       			return (
-	<SelectController
+	<Tag
+		item={item}
+		selected={selected}
+		options={newOptions}
+		className={styles[className]}
+		id={`search_form_mode_${value}`}
+		onClick={() => {
+                	setShowTagOptionsValue(value);
+		}}
+		onChange={onChange}
+		showTagOptionsValue={showTagOptionsValue}
+		value={value}
+	/>
+      			);
+      		}
+      	}
+      	{
+      		/* <SelectController
 		key={value}
 		name={`search-${value}-tags`}
 		options={newOptions}
@@ -100,11 +116,8 @@ function Tags({
 				}}
 			/>
 		)}
-	/>
-      			);
-      		}
+	/> */
       	}
-
       	return (
 	<Tag
 		key={value}

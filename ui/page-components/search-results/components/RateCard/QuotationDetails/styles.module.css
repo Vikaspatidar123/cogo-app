@@ -142,7 +142,7 @@
 	}
 }
 
-.service-_details {
+.service_details {
 	background: #f1f1f1;
 	color: #333333;
 	font-size: 12px;
@@ -169,20 +169,27 @@
 	}
 }
 
-/* animated_container {
-	enter: {
-		translateY: [-10, 0],
-		opacity: [0, 1],
-		easing: 'easeInOutQuad',
-		duration: 500,
-	},
-	exit: {
-		translateY: [0, 10],
-		opacity: [1, 0],
-		easing: 'easeInOutQuad',
-		duration: 300,
-	},
-} */
+.animated_container {
+
+	animation: fade_right 0.9s ease-in-out;
+
+	@keyframes fade_right {
+		0% {
+			opacity: 0;
+
+			transform: translateY(-10px);
+		}
+		80% {
+			transform: translateY(0px);
+			opacity: 0.5;
+		}
+		100% {
+			opacity: 1;
+			transform: translate(500px));
+			duration: 500,
+		}
+	}
+}
 
 .total_price {
 	display: flex;
@@ -194,4 +201,7 @@
 .btn_container {
 	display: flex;
 	align-items: center;
+}
+.exit{
+    display: none;
 }

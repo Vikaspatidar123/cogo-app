@@ -1,4 +1,4 @@
-import { Button, Toast } from '@cogoport/components';
+import { Button, Toast, cl } from '@cogoport/components';
 import { isEmpty } from '@cogoport/utils';
 import { useState } from 'react';
 
@@ -138,7 +138,7 @@ function Component({
 		<>
 			{' '}
 			{maxLimit ? (
-				<div className={`${styles.container} ${styles.div}`} type={type}>
+				<div className={cl`${styles.container} ${styles.div}`} type={type}>
 					<div style={{ display: 'flex', flexDirection: 'column' }}>
 						<div className={styles.styled_text}>
 							{freeLimit}
@@ -205,7 +205,8 @@ function Component({
 						</div>
 
 						<Button
-							className="secondary sm"
+							 size="md"
+							themeType="secondary"
 							disabled={loading}
 							onClick={() => {
 								onAddDays();

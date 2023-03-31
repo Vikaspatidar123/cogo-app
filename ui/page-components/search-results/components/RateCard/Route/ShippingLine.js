@@ -1,4 +1,4 @@
-import { Tooltip } from '@cogoport/components';
+import { Tooltip, cl } from '@cogoport/components';
 import React from 'react';
 
 import styles from './styles.module.css';
@@ -10,8 +10,11 @@ function ShippingLineComp({
 	className = '',
 }) {
 	return (
-		<Tooltip
-			className={`${show ? '' : 'not-show'} ${className || ''}`}
+	// <Tooltip
+	// 	}
+	// >
+		<div
+			className={cl`${show ? '' : styles.not_show} ${styles[className] || ''}`}
 		>
 			{showLogo ? (
 				<img
@@ -27,7 +30,8 @@ function ShippingLineComp({
 					{data?.shipping_line?.short_name || data?.airline?.short_name}
 				</div>
 			)}
-		</Tooltip>
+		</div>
+	// </Tooltip>
 	);
 }
 

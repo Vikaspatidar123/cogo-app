@@ -1,10 +1,16 @@
-import { IcMTransaction, IcMBookmark, IcMMarketing } from '@cogoport/icons-react';
+import {
+	IcMTransaction,
+	IcMPortArrow,
+	IcAFreeOnBoard,
+	IcATransporters,
+	IcADomesticAir,
+} from '@cogoport/icons-react';
 import { startCase } from '@cogoport/utils';
 import React from 'react';
 
 import styles from './styles.module.css';
 
-import { SelectController } from '@/packages/forms';
+import { AsyncSelectController } from '@/packages/forms';
 
 function Location({
 	type,
@@ -20,15 +26,14 @@ function Location({
 		return null;
 	}
 	const icon = {
-		origin_fcl_freight      : 'ic-dryport',
-		destination_fcl_freight : 'ic-port',
-		origin_lcl_freight      : 'ic-dryport',
-		destination_lcl_freight : 'ic-port',
-		origin_air_freight      : 'ic-air',
-		destination_air_freight : 'ic-air',
+		origin_fcl_freight      : IcAFreeOnBoard,
+		destination_fcl_freight : IcATransporters,
+		origin_lcl_freight      : IcAFreeOnBoard,
+		destination_lcl_freight : IcATransporters,
+		origin_air_freight      : IcADomesticAir,
+		destination_air_freight : IcADomesticAir,
 	};
-
-	const IconText = type === 'origin' ? IcMBookmark : IcMMarketing;
+	const IconText = type === 'origin' ? IcMPortArrow : IcMPortArrow;
 
 	const handleChange = (obj) => {
 		setLocation({ ...location, [type]: { ...obj, formName: value.formName } });
@@ -41,16 +46,21 @@ function Location({
 				<div className={styles.title}>{`${startCase(type)} of Shipment`}</div>
 			</div>
 			<div className={styles.main}>
-				<IcMTransaction />
+				<IcAFreeOnBoard />
 				<div style={{ marginLeft: 10, flexGrow: 1 }}>
-					<SelectController
+					<AsyncSelectController
 						{...fields.find((x) => x.name === value.formName)}
 						handleChange={handleChange}
 						style={{}}
 						control={control}
+						style={{
+							width: '250px',
+						}}
 					/>
 					{errors[origin.name] ? (
-						<div className={styles.error}>{errors[value.formName]?.message}</div>
+						<div className={styles.error}>
+							{errors[value.formName]?.message}
+						</div>
 					) : null}
 				</div>
 			</div>

@@ -3,10 +3,11 @@ const getControls = ({ setLocation = () => {}, location = {} }) => [
 		name           : 'origin',
 		label          : 'AIRPORT',
 		defaultOptions : true,
-		type           : 'location-select',
+		type           : 'async_select',
 		placeholder    : 'Shipping from',
-		optionsListKey : 'locations',
-		handleChange   : (obj) => {
+		asyncKey       : 'locations',
+
+		handleChange: (obj) => {
 			setLocation((pv) => ({
 				...pv,
 				origin: obj,
@@ -17,7 +18,7 @@ const getControls = ({ setLocation = () => {}, location = {} }) => [
 		},
 		grouped : ['city', 'country'],
 		value   : location?.origin?.id,
-		span    : 12,
+		style   : { width: '244px' },
 		rules   : {
 			required: 'true',
 		},

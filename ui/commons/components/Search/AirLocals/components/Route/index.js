@@ -3,7 +3,7 @@ import React from 'react';
 import getControls from './controls';
 import styles from './styles.module.css';
 
-import { useForm } from '@/packages/forms';
+import { useForm, AsyncSelectController } from '@/packages/forms';
 
 function Route({
 	location = {},
@@ -16,13 +16,24 @@ function Route({
 		setLocation,
 		location,
 	});
-	console.log(controls, 'controls');
-	const { fields = {}, formState = () => {} } = useForm(controls);
+	const { formState = () => {}, control } = useForm();
 	const { errors = {} } = formState || {};
 
 	return (
 		<div className={styles.container}>
-			{/* <Layout controls={controls} fields={fields} errors={errors} /> */}
+			{/* <FormElement
+				control={control}
+				controls={controls}
+				// showButtons
+				errors={errors}
+			/> */}
+			<div className={styles.lable}>AIRPORT</div>
+			<AsyncSelectController
+				control={control}
+				{...controls[0]}
+				errors={errors}
+			/>
+
 			{route?.origin ? (
 				<div className={styles.error_message_container}>Airport is required</div>
 			) : null}

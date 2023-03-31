@@ -65,3 +65,7 @@
 .row {
   display: flex;
 }
+
+.search_form_options_container_col {
+  margin-left: 30px;
+}

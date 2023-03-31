@@ -387,7 +387,6 @@ function Options({
 		}
 		return additionalServices();
 	};
-
 	return (
 		<div className={cl`${styles.container} ${styles[search_type]}`}>
 			{search_type === 'rfq' ? (

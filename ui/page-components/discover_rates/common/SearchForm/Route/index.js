@@ -1,4 +1,5 @@
 // import { replace } from '@cogo/i18n';
+import { cl } from '@cogoport/components';
 import { IcMPortArrow } from '@cogoport/icons-react';
 import React from 'react';
 
@@ -6,7 +7,7 @@ import React from 'react';
 
 import styles from './styles.module.css';
 
-import { AsyncSelectController } from '@/packages/forms';
+import { AsyncSelectController, SelectController } from '@/packages/forms';
 import { useSelector } from '@/packages/store';
 
 const singleLocationServices = [
@@ -47,7 +48,7 @@ function Route({
 
 	const handleLabel = (locationKey) => {
 		const originLabel = (
-			<div className={`${styles.label}${styles.margin_below}`}>
+			<div className={cl`${styles.label}${styles.margin_below}`}>
 				{showArrow ? 'ORIGIN OF SHIPMENT' : origin?.label}
 			</div>
 		);
@@ -73,7 +74,7 @@ function Route({
 	};
 	return (
 		<div className={styles.container} id="search_form_route_container">
-			<div className={`${styles.section}${styles[className]}`}>
+			<div className={cl`${styles.section} ${styles[className]}`}>
 				{handleLabel('origin')}
 
 				<AsyncSelectController
@@ -122,11 +123,11 @@ function Route({
 				</div>
 			)}
 
-			<div className={`${styles.section}${styles[className]}`}>
+			<div className={cl`${styles.section} ${styles[className]}`}>
 				{handleLabel('destination')}
 
 				{singleLocationServices.includes(mode) ? (
-					<AsyncSelectController
+					<SelectController
 						id={`search_${destination.name}`}
 						value={location?.destination?.id}
 						{...destination}

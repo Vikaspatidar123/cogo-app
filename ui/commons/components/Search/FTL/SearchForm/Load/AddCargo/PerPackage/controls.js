@@ -120,10 +120,9 @@ const controls = [
 				label     : 'Handling',
 				type      : 'select',
 				className : 'primary md',
-				span      : 4,
-
-				rules   : { required: 'Handling Type is required' },
-				options : [
+				style     : { width: '200px' },
+				rules     : { required: 'Handling Type is required' },
+				options   : [
 					{
 						label : 'Stackable',
 						value : 'stackable',

@@ -9,6 +9,7 @@ const formControls = (setOperatorName) => [
 		grouped           : ['city'],
 		params            : { filters: { type: ['airport', 'city'] } },
 		rules             : { required: 'AirPort is required' },
+		style             : { width: '350px' },
 	},
 	{
 		label             : 'LOCALS TYPE (HANDLING TYPE)',
@@ -21,7 +22,8 @@ const formControls = (setOperatorName) => [
 			{ label: 'Origin', value: 'export' },
 			{ label: 'Destination', value: 'import' },
 		],
-		rules: { required: 'Locals Type is required' },
+		rules : { required: 'Locals Type is required' },
+		style : { width: '350px' },
 	},
 	{
 		label         : 'Commodity',

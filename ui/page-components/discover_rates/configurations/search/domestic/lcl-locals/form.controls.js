@@ -4,10 +4,11 @@ const formControls = (setOperatorName) => [
 		name              : 'location_id',
 		placeholder       : 'Search via name',
 		includedInOptions : false,
-		type              : 'location-select',
-		optionsListKey    : 'locations',
+		type              : 'async_select',
+		asyncKey          : 'locations',
 		params            : { filters: { type: ['city', 'seaport'] } },
 		rules             : { required: 'Port is required' },
+		style             : { width: '350px' },
 	},
 	{
 		label             : 'LOCALS TYPE (HANDLING TYPE)',
@@ -20,7 +21,8 @@ const formControls = (setOperatorName) => [
 			{ label: 'Origin', value: 'export' },
 			{ label: 'Destination', value: 'import' },
 		],
-		rules: { required: 'Locals Type is required' },
+		rules : { required: 'Locals Type is required' },
+		style : { width: '350px' },
 	},
 	{
 		label         : 'Commodity',

@@ -371,9 +371,9 @@ function Form(
 									<div
 										className={styles.row}
 										style={{
-											marginTop      : '20px',
-											alignItems     : 'center',
-											justifyContent : 'center',
+                    	marginTop      : '20px',
+                    	alignItems     : 'center',
+                    	justifyContent : 'center',
 										}}
 									>
 										<Checkbox
@@ -396,10 +396,10 @@ function Form(
 								<div
 									className={cl`${styles.search_form_search_btn_container_col} ${styles.search_form_section_search_btn}`}
 									style={{
-										display        : 'flex',
-										justifyContent : 'center',
-										paddingTop     : '22px',
-										marginTop      : '2px',
+                  	display        : 'flex',
+                  	justifyContent : 'center',
+                  	paddingTop     : '22px',
+                  	marginTop      : '2px',
 									}}
 								>
 									<Button
@@ -408,12 +408,11 @@ function Form(
 										isLoading={loading}
 										disabled={loading}
 										style={{
-											background : '#2C3E50',
-											padding    : '4px 8px',
-											opacity    : loading ? 0.6 : 1,
+                    	background : '#2C3E50',
+                    	padding    : '4px 8px',
+                    	opacity    : loading ? 0.6 : 1,
 										}}
 									>
-
 										<IcMSearchlight
 											style={{
                       	margin : '2px 2px 0px 0px',
@@ -421,7 +420,6 @@ function Form(
                       	height : 24,
 											}}
 										/>
-
 									</Button>
 								</div>
 							)}

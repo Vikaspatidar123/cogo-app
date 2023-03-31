@@ -64,10 +64,25 @@ function asyncFieldsHsCodeCountries() {
 		defaultParams : { page_limit: 20 },
 	};
 }
+function asyncAirLines() {
+	return {
+		valueKey       : 'id',
+		labelKey       : 'short_name',
+		endpoint       : 'list_operators',
+		defaultOptions : true,
+		defaultParams  : {
+			filters    : { operator_type: 'airline', status: 'active' },
+			page_limit : 100,
+			sort_by    : 'short_name',
+			sort_type  : 'asc',
+		},
+	};
+}
 export {
 	asyncFieldsLocations,
 	asyncFieldsLocations2,
 	asyncFieldsPartner,
 	asyncFieldsPartnerRoles,
 	asyncFieldsHsCodeCountries,
+	asyncAirLines,
 };

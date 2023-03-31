@@ -11,6 +11,7 @@ const formControlsAdvanced = () => [
 		grouped           : ['city'],
 		params            : { filters: { type: ['seaport', 'city'] } },
 		rules             : { required: 'Port is required' },
+		style             : { width: '350px' },
 	},
 	{
 		label             : 'CUSTOMS TYPE',
@@ -23,7 +24,8 @@ const formControlsAdvanced = () => [
 			{ label: 'Origin', value: 'export' },
 			{ label: 'Destination', value: 'import' },
 		],
-		rules: { required: 'Customs Type is required' },
+		rules : { required: 'Customs Type is required' },
+		style : { width: '350px' },
 	},
 	{
 		name        : 'cargo_handling_type',

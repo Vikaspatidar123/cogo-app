@@ -4,6 +4,7 @@
   max-height: 600px;
   max-height: 360px;
   overflow-y: auto;
+
   :global {
     .form-item-label {
       margin: 8px 0 4px 0;

@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 
 import { useRequest } from '@/packages/request';
-// import { useSelector } from '@/packages/store';
 
 const useFetchAlerts = ({ setSubscriptionAlerts, setStep, setDeterminingStep }) => {
 	const [{ loading }, trigger] = useRequest({
@@ -11,7 +10,6 @@ const useFetchAlerts = ({ setSubscriptionAlerts, setStep, setDeterminingStep }) 
 
 	const fetchAlertDetails = async (saasTrackerId) => {
 		try {
-			// setLoadingAlertDetails(true);
 			const res = await trigger({
 				params: {
 					saas_container_subscription_id: saasTrackerId,
@@ -28,10 +26,8 @@ const useFetchAlerts = ({ setSubscriptionAlerts, setStep, setDeterminingStep }) 
 				setStep(1);
 			}
 			setDeterminingStep(false);
-			// setLoadingAlertDetails(false);
 			return data;
 		} catch (err) {
-			// setLoadingAlertDetails(false);
 			return false;
 		}
 	};

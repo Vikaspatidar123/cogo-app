@@ -37,3 +37,9 @@
        overflow-x: scroll;
       }
 }
+.loading{
+    margin-bottom: 10px;
+}
+.status{
+    width: 25%;
+}

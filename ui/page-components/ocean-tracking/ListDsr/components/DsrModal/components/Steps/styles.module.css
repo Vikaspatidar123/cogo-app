@@ -9,6 +9,8 @@
     line-height: 40px;
     padding-left: 8px;
     padding-right: 8px;
+    background-color: gray;
+    color: white;
     /* background-color: ${({ isActive }) => (isActive ? '#B3D5FB' : '#F2F2F2')}; */
     flex: 1;
 }
@@ -39,5 +41,8 @@
     border-style: solid;
     border-width: 20px 10px;
     left: -20px;
+  }
+  .active{
+    background-color: blue;
   }
  

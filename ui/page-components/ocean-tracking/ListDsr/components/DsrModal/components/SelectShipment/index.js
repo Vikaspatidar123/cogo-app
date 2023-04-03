@@ -1,4 +1,4 @@
-import { Checkbox, Toast, Table, Button, Placeholder } from '@cogoport/components';
+import { Checkbox, Toast, Table, Button, Placeholder, Modal } from '@cogoport/components';
 import { useEffect, useMemo, useState } from 'react';
 
 import useDsrToSubscription from '../../../../hooks/useDsrToSubscription';
@@ -14,6 +14,7 @@ function SelectShipment({ setHeading, setStep, type, dsrId, pocName, pocId }) {
 	const { loading, shipments } = useFetchShipments();
 	const { loadingSubscriptions, subList } = useFetchSubscriptions(dsrId);
 	const { submitLoading, dsrToSubscription } = useDsrToSubscription();
+
 	const [value, setValue] = useState([]);
 	useEffect(() => {
 		setHeading(`Status report for ${pocName}`);
@@ -131,6 +132,7 @@ function SelectShipment({ setHeading, setStep, type, dsrId, pocName, pocId }) {
 					size="lg"
 					variant="ghost"
 					onClick={() => setStep((step) => step - 1)}
+					themeType="secondary"
 				>
 					Back
 				</Button>

@@ -20,14 +20,15 @@ function DetentionModal({ isOpen, handleModal, trackerDetails, setTrackerDetails
 
 	const controls = [
 		{
-			serial_no : '1',
-			name      : 'origin_detention',
-			label     : 'free detention days',
-			type      : 'number',
-			value     : '',
-			max       : 30,
-			min       : 0,
-			rules     : {
+			serial_no   : '1',
+			name        : 'origin_detention',
+			label       : 'free detention days',
+			type        : 'number',
+			placeholder : 'Enter number of days here',
+			value       : '',
+			max         : 30,
+			min         : 0,
+			rules       : {
 				required : 'Please enter origin_detention',
 				maxValue : {
 					value   : 30,
@@ -36,14 +37,15 @@ function DetentionModal({ isOpen, handleModal, trackerDetails, setTrackerDetails
 			},
 		},
 		{
-			serial_no : '2',
-			name      : 'destination_detention',
-			label     : 'free detention days',
-			type      : 'number',
-			value     : '',
-			max       : 30,
-			min       : 0,
-			rules     : {
+			serial_no   : '2',
+			name        : 'destination_detention',
+			label       : 'free detention days',
+			type        : 'number',
+			placeholder : 'Enter number of days here',
+			value       : '',
+			max         : 30,
+			min         : 0,
+			rules       : {
 				required : 'Please enter destination_detention',
 				maxValue : {
 					value   : 30,
@@ -52,14 +54,15 @@ function DetentionModal({ isOpen, handleModal, trackerDetails, setTrackerDetails
 			},
 		},
 		{
-			serial_no : '3',
-			name      : 'destination_demurrage',
-			label     : 'free demurrage days',
-			type      : 'number',
-			value     : '',
-			max       : 30,
-			min       : 0,
-			rules     : {
+			serial_no   : '3',
+			name        : 'destination_demurrage',
+			label       : 'free demurrage days',
+			type        : 'number',
+			placeholder : 'Enter number of days here',
+			value       : '',
+			max         : 30,
+			min         : 0,
+			rules       : {
 				required : 'Please enter destination_demurrage',
 				maxValue : {
 					value   : 30,

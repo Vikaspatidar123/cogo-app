@@ -7,10 +7,8 @@ function Steps({ stepList, current }) {
 	return (
 		<div className={styles.content}>
 			{stepList.map((step, idx) => (
-				<div className={styles.steps}>
-					<div className={styles.prev_arrow} />
+				<div className={`${styles.steps} ${idx === current ? styles.active : ''}`}>
 					<p className={styles.heading}>{step.heading}</p>
-					<div className={styles.next_arrow} />
 				</div>
 			))}
 		</div>

@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 import { IcMFtick, IcMError } from '@cogoport/icons-react';
 import { format } from '@cogoport/utils';
 import { Fragment } from 'react';

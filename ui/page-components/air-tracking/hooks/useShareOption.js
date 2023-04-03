@@ -55,7 +55,7 @@ function useShareOption({
 	};
 	useEffect(() => {
 		fetchShareDetails();
-	}, []);
+	}, [fetchShareDetails]);
 
 	return {
 		loading,

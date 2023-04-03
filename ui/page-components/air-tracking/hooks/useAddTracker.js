@@ -46,6 +46,7 @@ const useAddTracker = () => {
 
 	return {
 		addTracker,
+		loading,
 	};
 };
 

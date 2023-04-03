@@ -2,8 +2,6 @@ import { Placeholder, Pagination, Popover } from '@cogoport/components';
 import { IcMListView, IcMMap, IcMFilter } from '@cogoport/icons-react';
 import { useState, useEffect } from 'react';
 
-// import useFetchTrackers from '../../hooks/useFetchTrackers';
-import Map from '../Map/index';
 import TrackerMap from '../tracker-details/MileStoneContainer/TrackerMap';
 
 import Card from './Card';
@@ -14,8 +12,6 @@ function TrackerCard({
 	archived, setArchived,
 	loading, trackers, setTrackers, pagination, setPagination, filters, setFilters, selectedCardLabel, refetch,
 }) {
-	// const { loading, trackers, pagination, setPagination, filters, setFilters } = useFetchTrackers();
-
 	const [isMapView, setIsMapView] = useState(false);
 	const [showFilters, setShowFilters] = useState(false);
 	const [points, setPoints] = useState([]);

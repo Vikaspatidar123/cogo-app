@@ -6,6 +6,7 @@ import { WarnIcon } from '../../../../configuration/icon-configuration';
 import styles from './styles.module.css';
 
 function DetailsList({ containersList, activeCarouselIndex, setActiveCarouselIndex, commodityDetails }) {
+	const listLength = containersList.length;
 	const handlePrevious = () => {
 		if (activeCarouselIndex > 0) {
 			setActiveCarouselIndex(
@@ -14,7 +15,7 @@ function DetailsList({ containersList, activeCarouselIndex, setActiveCarouselInd
 		}
 	};
 	const handleNext = () => {
-		if (activeCarouselIndex < containersList?.length - 1) {
+		if (activeCarouselIndex < listLength - 1) {
 			setActiveCarouselIndex(
 				(previousActiveCarouselIndex) => previousActiveCarouselIndex + 1,
 			);
@@ -28,7 +29,7 @@ function DetailsList({ containersList, activeCarouselIndex, setActiveCarouselInd
 			<div className={styles.header_title}>
 				<div>
 					Cargo Details
-					{containersList?.length > 1 && `(${containersList.length})` }
+					{containersList?.length > 1 && `(${listLength})` }
 
 					<div className={styles.line} />
 				</div>

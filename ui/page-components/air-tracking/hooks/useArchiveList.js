@@ -42,7 +42,7 @@ const useArchiveList = () => {
 
 	useEffect(() => {
 		fetchTrackers();
-	}, [filters, pagination]);
+	}, [fetchTrackers, filters, pagination]);
 
 	const refetch = () => fetchTrackers(false);
 

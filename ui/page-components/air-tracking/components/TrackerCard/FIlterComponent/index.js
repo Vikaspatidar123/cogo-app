@@ -13,7 +13,7 @@ const POC_TYPES = { CONSIGNEE: 'CONSIGNEE', SHIPPER: 'SHIPPER' };
 function FilterComponent({ trackers, setFilters, setShowFilters }) {
 	const { watch, setValue, control } = useForm();
 
-	const removeDuplicates = (list = [], key) => {
+	const removeDuplicates = (key, list = []) => {
 		const obj = {};
 		list.forEach((item) => {
 			obj[item[key]] = item;
@@ -25,10 +25,7 @@ function FilterComponent({ trackers, setFilters, setShowFilters }) {
 	const {
 		air_lines = {},
 		poc_details = [],
-		booked_with_cogoport = [],
 	} = filter_data;
-
-	console.log(filter_data, 'filter_data');
 
 	const shippingLinesList = Object.keys(air_lines).map((key) => ({
 		label : air_lines[key].short_name,
@@ -53,13 +50,6 @@ function FilterComponent({ trackers, setFilters, setShowFilters }) {
 		label : items.name,
 		value : items.saas_container_subscription_id,
 	}));
-
-	// const bookWithCogoport = booked_with_cogoport.map((item) => (
-	// 	{
-	// 		label : item.id,
-	// 		value : item,
-	// 	}
-	// ));
 
 	const fields = Controls;
 
@@ -90,7 +80,6 @@ function FilterComponent({ trackers, setFilters, setShowFilters }) {
 				</div>
 			)}
 
-			{console.log(fields, 'fields')}
 			{shippingLinesList.length > 0 && (
 				<div className={styles.label_selector_ctn}>
 					<div className={styles.label}>

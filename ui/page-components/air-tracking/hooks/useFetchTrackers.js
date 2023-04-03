@@ -17,7 +17,7 @@ const useFetchTrackers = () => {
 		method : 'get',
 	}, { manual: true });
 
-	const fetchTrackers = async () => {
+	const fetchTrackers = useCallback(async () => {
 		try {
 			const res = await trigger({
 				params: {
@@ -38,11 +38,11 @@ const useFetchTrackers = () => {
 		} catch (err) {
 			Toast.error('Cannot fetch store quota. Please try again later.');
 		}
-	};
+	}, [filters, general?.query?.branch_id, pagination.page, trackers?.filter_data, trigger]);
 
 	useEffect(() => {
 		fetchTrackers();
-	}, [filters, pagination]);
+	}, [fetchTrackers, filters, pagination]);
 
 	const refetch = () => fetchTrackers(false);
 

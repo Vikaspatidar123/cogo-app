@@ -37,7 +37,8 @@ const useAddTrackerCSV = () => {
 			const airValue = 'air';
 
 			push(
-				`/saas/air-tracking/${airline_id}?isFirstVisit=true&shippingLineId=${airline_id}&trackingType=${airValue}`,
+				`/saas/air-tracking/${airline_id}?
+				isFirstVisit=true&shippingLineId=${airline_id}&trackingType=${airValue}`,
 			);
 		} catch (err) {
 			Toast.error("Couldn't add tracker");
@@ -45,6 +46,7 @@ const useAddTrackerCSV = () => {
 	};
 	return {
 		addTrackerCSV,
+		loading,
 	};
 };
 

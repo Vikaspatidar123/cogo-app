@@ -56,20 +56,8 @@ function Card({ tracker, setTrackers, refetch }) {
 		push('/saas/air-tracking/[tracker_id]', `/saas/air-tracking/${key}`);
 	};
 
-	// const [show, setShow] = useState(false);
 	return (
 		<FluidContainer className={styles.container}>
-			{/* <div className={styles.head}>
-				<div className={styles.booking_no}>
-					{tracker.type === 'CONTAINER_NO' ? 'Container No:' : 'BL/Booking no:'}
-					{' '}
-					{tracker.input}
-
-				</div>
-				<div className={styles.icon_style}>
-					<IcMOverflowDot />
-				</div>
-			</div> */}
 			<div className={styles.child_container}>
 				<div className={styles.stepper} role="presentation" onClick={() => handleTrackingDetails(tracker.id)}>
 					<div className={styles.booking_no}>

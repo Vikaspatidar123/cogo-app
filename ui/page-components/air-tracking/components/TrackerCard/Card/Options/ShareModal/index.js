@@ -5,6 +5,7 @@ import styles from './styles.module.css';
 
 import { useForm } from '@/packages/forms';
 import getField from '@/packages/forms/Controlled';
+import patterns from '@/ui/commons/configurations/patterns';
 import useShareOption from '@/ui/page-components/air-tracking/hooks/useShareOption';
 
 function ShareModal({
@@ -12,7 +13,6 @@ function ShareModal({
 }) {
 	const saasSubscriptionId = tracker?.id;
 
-	const emailValidator = `$` 	/^[^<>()[\]\\,;:%#^\s@"$&!@]+@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z0-9]+\.)+[a-zA-Z]{2,}))$/;
 	const controls = [
 		{
 			name  : 'email',
@@ -22,7 +22,7 @@ function ShareModal({
 			rules : {
 				required : 'Please enter email',
 				pattern  : {
-					value   : emailValidator,
+					value   : patterns.EMAIL,
 					message : 'Invalid email address',
 				},
 			},
@@ -35,15 +35,10 @@ function ShareModal({
 		formState: { errors },
 	} = useForm();
 	const {
-		loading,
 		apiLoading,
 		shareDetailsList,
-		setShareDetailsList,
 		onSubmit,
 	} = useShareOption({ saasSubscriptionId });
-	// const shareData = () => {
-
-	// };
 
 	return (
 		<Modal size="md" show={show} onClose={() => setShow(!show)} placement="center">
@@ -93,7 +88,7 @@ function ShareModal({
 								{shareDetailsList
 									.slice(0)
 									.reverse()
-									.map((item, idx) => {
+									.map((item) => {
 										const bgColor = item.email[0];
 										return (
 											<div className={styles.list}>

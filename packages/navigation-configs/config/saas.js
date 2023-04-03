@@ -15,6 +15,12 @@ const saas = {
 		navigation : 'saas_tools-freight_rate_trend',
 		isMainNav  : true,
 	},
+	'/saas/air-schedules': {
+		navigation: 'saas_schedules-air_schedules',
+	},
+	'/saas/ocean-schedules': {
+		navigation: 'saas_tools-ocean_schedules',
+	},
 	'/saas/trade-partner': {
 		navigation : 'saas_tools-trade_partner',
 		isMainNav  : true,

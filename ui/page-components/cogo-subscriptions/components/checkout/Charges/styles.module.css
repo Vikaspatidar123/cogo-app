@@ -1,46 +1,46 @@
 .wrapper {
-	background-color: #f7faef;
 	display: flex;
 	align-items: center;
-	padding: 25px;
 	justify-content: space-between;
+	padding: 25px;
+	background-color: #f7faef;
 }
 
 .label {
-	font-weight: 600;
+	padding: 0;
 	font-size: 16px;
-	padding: 0px;
+	font-weight: 600;
 }
 
 .div {
-	padding: 40px 16px 30px 16px;
+	padding: 40px 16px 30px;
 }
 
 .styled_row {
-	font-weight: 600;
-	font-size: 18px;
 	display: flex;
-	color: #575f6e;
 	align-items: center;
-	padding-bottom: 10px;
-	margin: 0px;
 	justify-content: space-between;
+	padding-bottom: 10px;
+	margin: 0;
+	font-size: 18px;
+	font-weight: 600;
+	color: #575f6e;
 }
 
 .crossedprice {
-	text-decoration: line-through;
-	color: #db4634;
-	font-weight: 400;
 	font-size: 12px;
+	font-weight: 400;
+	color: #db4634;
+	text-decoration: line-through;
 }
 
 .styled_col {
-	font-weight: 600;
-	font-size: 16px;
-	color: #575f6e;
 	display: flex;
 	align-items: flex-start;
 	justify-content: flex-start;
+	font-size: 16px;
+	font-weight: 600;
+	color: #575f6e;
 }
 
 .styled_col.discount_name {
@@ -66,36 +66,35 @@
 }
 
 .crossed_price {
-	text-decoration: line-through;
-	color: #db4634;
-	font-weight: 400;
 	font-size: 14px;
+	font-weight: 400;
+	color: #db4634;
+	text-decoration: line-through;
 }
 
 .styled_col2 {
-	font-weight: 600;
-	font-size: 16px;
-	color: #575f6e;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
+	font-size: 16px;
+	font-weight: 600;
+	color: #575f6e;
 }
-
 
 .line {
 	border: 1px solid #e0e0e0;
 }
 
 .dashed_line {
-	border: none;
 	padding: 4px;
+	border: none;
 }
 
 .button_wrapper {
-	padding-top: 20px;
 	display: flex;
 	justify-content: center;
+	padding-top: 20px;
 }
 
 .flex_div {
@@ -105,15 +104,15 @@
 }
 
 .gst {
-	color: #db4634;
 	font-size: 10px;
+	color: #db4634;
 }
 
 .activate_later_ctn {
-	padding: 40px 0px 0 0px;
 	display: flex;
 	justify-content: space-between;
 	width: 100%;
+	padding: 40px 0 0;
 }
 
 .activate_later_text_check_box {
@@ -127,9 +126,9 @@
 }
 
 .activate_later_txt {
+	padding: 0 5px 0 2px;
 	font-size: 15px;
 	font-weight: 400;
-	padding: 0 5px 0 2px;
 }
 
 .tooltip_ctn {
@@ -147,8 +146,8 @@
 }
 
 .line.discount_dashed_line {
-	padding: 0px;
-	margin: 0px;
+	padding: 0;
+	margin: 0;
 	border: 1px dashed #f68b21;
 }
 
@@ -157,39 +156,39 @@
 }
 
 .discount_content .heading {
-	font-weight: 600;
 	margin-bottom: 7px;
+	font-weight: 600;
 }
 
 .discount_content .content {
 	display: flex;
 	justify-content: space-between;
-	font-weight: 300;
 	font-size: 13px;
+	font-weight: 300;
 }
 
 .input_wrapper {
 	display: flex;
-	justify-content: space-between;
 	align-items: center;
-	font-weight: 380;
-	color: #000000;
-	background: #fbfbfc;
+	justify-content: space-between;
 	padding: 15px 8px;
-	margin: 20px 0px;
+	margin: 20px 0;
+	font-weight: 380;
+	color: #000;
+	background: #fbfbfc;
 }
 
 .input_wrapper .applycoupon {
-	color: #034afd;
-	font-weight: 400;
 	font-size: 14px;
+	font-weight: 400;
+	color: #034afd;
 	cursor: pointer;
 }
 
 .input_wrapper .removecoupon {
-	color: #bf291e;
-	font-weight: 400;
 	font-size: 14px;
+	font-weight: 400;
+	color: #bf291e;
 	cursor: pointer;
 }
 
@@ -204,17 +203,17 @@
 }
 
 .applied_coupon {
-	margin-left: 5px;
 	display: flex;
 	flex-direction: column;
-	font-weight: 600;
+	margin-left: 5px;
 	font-size: 13px;
+	font-weight: 600;
 	color: #4f4f4f;
 }
 
 .applied_coupon .discount {
-	font-weight: 600;
 	font-size: 11px;
+	font-weight: 600;
 	color: #849e4c;
 }
 
@@ -225,19 +224,19 @@
 
 .coupon_container {
 	position: fixed;
-	right: 0;
 	top: -10px;
+	right: 0;
+	z-index: 1000;
 	width: 445px;
 	height: 100vh;
 	min-height: 50vh;
 	max-height: 100vh;
+	padding: 0 20px 20px;
+	margin-top: 12px;
 	overflow: auto;
 	background: #fbfbfc;
-	z-index: 1000;
-	margin-top: 12px;
-	padding: 0 20px 20px 20px;
-	box-shadow: -2px 2px 25px rgba(0, 0, 0, 0.15);
 	border-radius: 8px;
+	box-shadow: -2px 2px 25px rgb(0 0 0 / 15%);
 	transition: all 0.3s;
 }
 
@@ -246,7 +245,6 @@
 		width: 95%;
 	}
 }
-
 
 .coupon_container.show {
 	transform: translateX(0%);

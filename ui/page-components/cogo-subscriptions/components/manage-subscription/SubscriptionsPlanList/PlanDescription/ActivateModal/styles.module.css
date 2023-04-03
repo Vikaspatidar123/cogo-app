@@ -1,37 +1,35 @@
 .container {
 	width: 100%;
 }
-	
+
 .div_title {
-	font-weight: 700;
+	margin-left: 30%;
 	font-size: 18px;
+	font-weight: 700;
 	line-height: 46px;
 	color: #170f49;
-	margin-left: 30%;
 }
-	
+
 
 .div_text {
 	display: flex;
 	justify-content: center;
-	font-weight: 400;
-	font-size: 14px;
-	line-height: 30px;
-	text-align: center;
-	color: #6f6c90;
 	margin-bottom: 30px;
+	font-size: 14px;
+	font-weight: 400;
+	line-height: 30px;
+	color: #6f6c90;
+	text-align: center;
 }
-	
 
 
-.button_div {	
+.button_div {
 	display: flex;
 	justify-content: flex-end;
-	background: #ffffff;
-	box-shadow: 0px -2px 4px rgba(20, 20, 43, 0.12);
-	border-radius: 0px 0px 10px 10px;
+	background: #fff;
+	border-radius: 0 0 10px 10px;
+	box-shadow: 0 -2px 4px rgb(20 20 43 / 12%);
 }
-	
 
 
 .image {
@@ -40,19 +38,19 @@
 		height: 160px;
 	}
 }
-	
+
 
 .image_container {
+	display: flex;
+	justify-content: center;
 	width: 100%;
 	height: 100%;
-	justify-content: center;
-	display: flex;
 }
-	
+
 
 .plan_text {
-	font-weight: 600;
-	font-size: 14px;
 	padding: 0 3px;
+	font-size: 14px;
+	font-weight: 600;
 }
-	
+

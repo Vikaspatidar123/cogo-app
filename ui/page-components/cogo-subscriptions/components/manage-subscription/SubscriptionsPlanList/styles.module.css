@@ -2,44 +2,42 @@
 	width: 100%;
 }
 
-.wrapper{
-	width: 100%;
+.wrapper {
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
 	align-items: center;
+	justify-content: center;
+	width: 100%;
 	padding: 0 20px 20px;
 }
-	
+
 
 @media screen and (max-width: 767px) {
-	.wrapper{
-		overflow-x: auto;
+	.wrapper {
 		max-width: 100%;
-		padding: 0;
 		height: auto;
+		padding: 0;
+		overflow-x: auto;
 	}
 }
 
-
 .div {
-	padding: 5px;
 	display: flex;
 	flex-direction: row;
-	justify-content: center;
 	align-items: center;
-	height: 99%;
+	justify-content: center;
 	width: 100%;
+	height: 99%;
+	padding: 5px;
 }
-	
 
 
 @media screen and (max-width: 767px) {
-	.div{
-		width: fit-content;
+	.div {
 		flex-wrap: wrap;
-		height: auto;
 		gap: 1rem;
+		width: fit-content;
+		height: auto;
 	}
 }
 
@@ -48,95 +46,97 @@
 }
 
 .div_ctn.mobile_view:hover {
-	transform: scale(1.1);
 	transition: transform 0.8s;
+	transform: scale(1.1);
 }
 
-
 .plan_wrapper.hover_class.activate_later {
-		border-radius: 0px 4px 4px 4px;
+	border-radius: 0 4px 4px;
 }
 
 .plan_wrapper.hover_class.activate_later:hover {
 	border: 0.5px solid #ffde01;
-	border-radius: 0px 4px 4px 4px;
+	border-radius: 0 4px 4px;
 }
 
 .selected {
+	background: #fff;
 	border: 1px solid #db4634;
- 	scale: 1.1;
- 	transition: transform 1s ;
- 	background: #fff;
+	transition: transform 1s;
+	scale: 1.1;
 }
 
 .hover_class:hover {
-		cursor: pointer;
-		z-index: 2;
-		background-color: white;
-		border: 0.5px solid #db4634;
-		border-radius: 4px;
-
-		:global{
-			.ui_button_container{
-				:local {
-					background-color: #ee3425;
-					color : #fff;
-					animation: wiggle 1s linear infinite;
-				}	
-			}
-		}
-}
-
-.plan_wrapper {
-	overflow-y: auto;
-	overflow-x: hidden;
-	border: 1px solid #e0e0e0;
+	z-index: 2;
+	cursor: pointer;
+	background-color: white;
+	border: 0.5px solid #db4634;
 	border-radius: 4px;
-	background: white;
 
-	:global{
-		.ui_button_container:hover{
-			animation: unset;	
+	:global {
+		.ui_button_container {
+			:local {
+				color: #fff;
+				background-color: #ee3425;
+				animation: wiggle 1s linear infinite;
+			}
 		}
 	}
 }
-	
+
+.plan_wrapper {
+	overflow-x: hidden;
+	overflow-y: auto;
+	background: white;
+	border: 1px solid #e0e0e0;
+	border-radius: 4px;
+
+	:global {
+		.ui_button_container:hover {
+			animation: unset;
+		}
+	}
+}
 
 
-
-@keyframes wiggle  {
+@keyframes wiggle {
 	0%,
 	2% {
 		transform: rotateZ(0);
 	}
+
 	10% {
 		transform: rotateZ(-5deg);
 	}
+
 	15% {
 		transform: rotateZ(2.5deg);
 	}
+
 	20% {
 		transform: rotateZ(-2.5deg);
 	}
+
 	25% {
 		transform: rotateZ(1.5deg);
 	}
+
 	30% {
 		transform: rotateZ(-1deg);
 	}
+
 	30%,
 	100% {
 		transform: rotateZ(0);
 	}
 }
 
-
 /* @media screen and (max-width: 768px) {
 	z-index: auto;
 	transform: ${(props) => (props.isSelected ? '' : 'scale(1.02) !important')};
 	transition: ${(props) => (props.isSelected ? '' : 'transform 0.3s !important')};
 }
-		
+
 @media screen and (max-width: 767px) {
 	width: 100%;
 	scale: ${(props) => props.isSelected && '1.025'};
@@ -144,23 +144,22 @@
 } */
 
 .view_details_button {
-	font-size: 16px;
-	text-transform: capitalize;
-	border-radius: 6px;
-	padding: 14px 24px;
-	background: #ee3425;
-	color : #fff;
 	display: flex;
 	align-items: center;
+	padding: 14px 24px;
 	font-size: 16px;
 	font-weight: 700;
+	color: #fff;
+	text-transform: capitalize;
 	cursor: pointer;
+	background: #ee3425;
+	border-radius: 6px;
 }
 
 .enterprise {
 	display: flex;
-	justify-content: center;
 	align-items: center;
+	justify-content: center;
 }
 
 .icon_container {
@@ -177,38 +176,37 @@
 }
 
 .btn_container {
-	margin-top: 20px;
 	display: flex;
 	justify-content: center;
+	margin-top: 20px;
 }
 
 .feature_plan {
-	max-height: 0;
 	width: 100%;
+	max-height: 0;
 	overflow: hidden;
 	transition: 0.6s ease-in-out;
 }
-	
+
 .feature_plan.showfeature {
-	max-height: max-content;
 	height: auto;
+	max-height: max-content;
 	transition: 0.6s ease-in-out;
 }
 
-
 .tag {
-	border-width: 1px 1px 0px;
-	background: #f3fafa;
-	border: 1px solid #cfeaed;
-	border-bottom: 0px;
-	border-radius: 4px 4px 0px 0px;
-	font-weight: 600;
-	font-size: 14px;
 	display: inline-flex;
 	padding: 2px 4px;
+	font-size: 14px;
+	font-weight: 600;
+	background: #f3fafa;
+	border: 1px solid #cfeaed;
+	border-width: 1px 1px 0;
+	border-bottom: 0;
+	border-radius: 4px 4px 0 0;
 }
 
 .days {
-	font-weight: 600;
 	margin-right: 4px;
+	font-weight: 600;
 }

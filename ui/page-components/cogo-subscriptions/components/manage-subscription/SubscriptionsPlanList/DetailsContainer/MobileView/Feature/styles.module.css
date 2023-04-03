@@ -1,24 +1,24 @@
-.header{
+.header {
 	display: flex;
-	justify-content: space-between;
 	align-items: center;
+	justify-content: space-between;
 	padding: 0.75rem 1.5rem;
-	color: #535075;
 	font-size: 14px;
-	background: #ffffff;
+	color: #535075;
+	background: #fff;
 	border: 1px solid #d8deeb;
 }
 
 .header.active_header {
-	background: #EE3425;
-	border-width: 1px 0px;
-	border-style: solid;
+	color: #fff;
+	background: #ee3425;
 	border-color: #f3f5fa;
-	color: #ffffff;
+	border-style: solid;
+	border-width: 1px 0;
 }
 
 .header svg {
-		transition: transform 0.2s ease-in-out;	
+	transition: transform 0.2s ease-in-out;
 }
 
 .open {
@@ -26,30 +26,28 @@
 }
 
 .header:hover {
-		cursor: pointer;
+	cursor: pointer;
 }
 
-
-
 .table_container {
-	padding: 0.5rem;
 	width: 100%;
-	background: #f8f9fd;
-	border-radius: 0px 0px 8px 8px;
-	transition: max-height 0.1s ease-in-out;
-	visibility: hidden;
 	max-height: 0;
+	padding: 0.5rem;
 	overflow: hidden;
+	visibility: hidden;
+	background: #f8f9fd;
+	border-radius: 0 0 8px 8px;
+	transition: max-height 0.1s ease-in-out;
 }
 
 .table_container.accordion {
+	max-height: 3000px;
 	visibility: visible;
 	transition: max-height 0.5s ease-in-out;
-	max-height: 3000px;
 }
 
-@media screen and (max-width: 480px){
-	.table_container{
+@media screen and (max-width: 480px) {
+	.table_container {
 		padding: 0.25rem;
 	}
 }

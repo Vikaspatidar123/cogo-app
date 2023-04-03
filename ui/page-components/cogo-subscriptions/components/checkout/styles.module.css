@@ -1,19 +1,19 @@
 .label {
-	font-weight:700;
-	font-size: 22px;
 	display: flex;
+	gap: 12px;
 	align-items: center;
 	padding: 10px;
-	cursor: pointer;
-	gap: 12px;
 	margin: 12px 0;
+	font-size: 22px;
+	font-weight: 700;
+	cursor: pointer;
 }
 
 /* width: ${(props) => (props.width ? props.width : '20%')}; */
 .wrapper {
 	height: auto;
+	padding: 0;
 	border: 1px solid #e0e0e0;
-	padding: 0px;
 	border-radius: 4px;
 }
 
@@ -22,14 +22,14 @@
 }
 
 .container .loading {
-	height: 400px;
+	display: block;
 	width: 400px;
-	display:block;
+	height: 400px;
+	margin-right: auto;
 	margin-left: auto;
-	margin-right:auto;
 }
 
-.wd_28{
+.wd_28 {
 	width: 28%;
 }
 
@@ -40,16 +40,15 @@
 .wd_39 {
 	width: 39%;
 }
-	
+
 
 .padded_row {
+	display: flex;
+	align-items: stretch;
+	justify-content: space-between;
 	padding: 20px;
 	margin: 40px 20px;
-	display: flex;
-	justify-content: space-between;
-	align-items: stretch;
 }
-
 
 @media screen and (max-width: 768px) {
 	.padded_row {
@@ -57,26 +56,25 @@
 		gap: 16px;
 		margin: 0;
 	}
-	.wrapper{	
+
+	.wrapper {
 		width: 100%;
 	}
 
-	.wd_28{
+	.wd_28 {
 		width: 100%;
 	}
-	
+
 	.wd_29 {
 		width: 100%;
 	}
-	
+
 	.wd_39 {
 		width: 100%;
 	}
 }
-
 @media screen and (max-width: 480px) {
 	.padded_row {
 		padding: 12px;
 	}
 }
-

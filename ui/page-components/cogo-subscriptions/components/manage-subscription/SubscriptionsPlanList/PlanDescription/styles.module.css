@@ -5,7 +5,7 @@
 	align-items: center;
 	color: #bdbdbd;
 }
-	
+
 
 .styled_row {
 	display: flex;
@@ -15,7 +15,7 @@
 	align-items: center;
 	padding: 5px;
 }
-	
+
 
 .styled_row.price_row {
 		margin-top: 0;
@@ -38,7 +38,7 @@
 	font-weight: 500;
 	font-size: 20px;
 }
-	
+
 
 .row2 {
 	display: flex;
@@ -66,7 +66,7 @@
 	margin-left: 0px ;
 	margin-right: 0px ;
 }
-	
+
 
 
 .price {
@@ -75,18 +75,18 @@
 	font-size: 32px;
 	align-items: center;
 }
-	
+
 .price .perPeriod {
 		font-size: 12px;
 }
 
 
 
-	
+
 @media screen and (max-width: 768px) {
-	.list{	
+	.list{
 		padding: 12px;
-	}		
+	}
 }
 
 
@@ -113,12 +113,6 @@
 	padding: 3px;
 	align-items: center;
 } */
-	
-
-
-	
-
-
 
 
 
@@ -133,31 +127,31 @@
 
 .plan_title {
 	display: flex;
-	align-items: flex-start;
 	flex-direction: column;
+	align-items: flex-start;
 }
 
 .plan_type_icon {
-	margin-right: 12px;
 	margin-top: 16px;
+	margin-right: 12px;
 }
 
 .container {
+	position: relative;
 	width: 100%;
 	padding: 12px 20px;
-	position: relative;
 }
 
 .heading {
-	font-weight: 700;
 	font-size: 20px;
+	font-weight: 700;
 }
 
 .price {
 	display: flex;
-	font-weight: 700;
-	font-size: 32px;
 	align-items: center;
+	font-size: 32px;
+	font-weight: 700;
 }
 
 .subheading {
@@ -169,7 +163,7 @@
 	justify-content: center;
 }
 
-.plan_prev_price{
+.plan_prev_price {
 	display: flex;
 	justify-content: center;
 	margin-top: 12px;
@@ -183,7 +177,7 @@
 
 .per_period {
 	font-size: 12px;
-} 
+}
 
 .plan_features {
 	display: flex;
@@ -196,23 +190,22 @@
 	margin-top: 12px;
 }
 
-
 .number {
-	font-weight: 700;
-	font-size: 14px;
 	margin-right: 4px;
+	font-size: 14px;
+	font-weight: 700;
 }
 
 .text {
-	font-weight: 400;
 	font-size: 14px;
+	font-weight: 400;
 	white-space: nowrap;
 }
 
 .flex {
 	display: flex;
-	padding: 3px;
 	align-items: center;
+	padding: 3px;
 	margin: 2px 0;
 }
 
@@ -222,51 +215,49 @@
 
 .center_div {
 	display: flex;
-	width: 100%;
 	justify-content: center;
-	margin: 24px 0 16px 0;
-}	
-	
+	width: 100%;
+	margin: 24px 0 16px;
+}
 
 
 .ribbon_wrapper {
+	position: absolute;
+	top: 0;
+	right: -4px;
 	display: flex;
 	justify-content: flex-end;
-	right: -4px;
-	top : 0;
-	position: absolute;
 }
-	
+
 
 .crossed_price {
-	text-decoration: line-through;
 	color: #db4634;
+	text-decoration: line-through;
 }
 
 .active_div {
-	font-weight: 400;
-	font-size: 26px;
-	color: #67c676;
 	display: flex;
+	font-size: 26px;
+	font-weight: 400;
+	color: #67c676;
 }
 
-.tick_icon{
+.tick_icon {
 	margin-right: 8px;
 }
 
-
 .active {
-	font-weight: 400;
-	font-size: 26px;
-	color: #67c676;
 	display: flex;
-    align-items: center;
+	align-items: center;
+	font-size: 26px;
+	font-weight: 400;
+	color: #67c676;
 }
 
 .active_plan {
-	display: flex ;
-	width: 100%;
-	justify-content: center;
+	display: flex;
 	align-items: center;
+	justify-content: center;
+	width: 100%;
 	margin-top: 24px;
 }

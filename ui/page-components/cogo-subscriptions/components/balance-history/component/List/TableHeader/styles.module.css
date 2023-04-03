@@ -1,7 +1,7 @@
 .row {
 	display: flex;
-	justify-content: space-between;
 	align-items: center;
+	justify-content: space-between;
 	padding: 20px 30px;
 	color: #575f6e;
 }
@@ -34,18 +34,19 @@
 	display: flex;
 	gap: 4px;
 }
+
 .flex svg {
 	vertical-align: middle;
 }
 
- .asc {
-	transform: rotate(0deg);
+.asc {
 	transition: 0.2s linear;
+	transform: rotate(0deg);
 }
 
- .desc {
-	transform: rotate(-180deg);
+.desc {
 	transition: 0.2s linear;
+	transform: rotate(-180deg);
 }
 
 .credit {
@@ -58,9 +59,9 @@
 
 .grey_dot {
 	display: inline-block;
-	border-radius: 100%;
 	width: 5px;
 	height: 5px;
-	background: #b5b5b5;
 	margin-right: 5px;
+	background: #b5b5b5;
+	border-radius: 100%;
 }

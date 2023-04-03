@@ -1,88 +1,88 @@
 .title_container {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 0 16px;
+	display: flex;
+	gap: 10px;
+	align-items: center;
+	padding: 0 16px;
 }
 
 .title {
-  font-size: 18px;
-  font-weight: 600;
+	font-size: 18px;
+	font-weight: 600;
 }
 
 .icon_container {
-  border: 1px solid black;
-  border-radius: 100%;
+	border: 1px solid black;
+	border-radius: 100%;
 }
 
 .icon_container svg {
-  vertical-align: text-bottom;
+	vertical-align: text-bottom;
 }
 
 .section {
-  padding: 20px 20px 20px 50px;
-  border-top: 1px solid #dedede;
+	padding: 20px 20px 20px 50px;
+	border-top: 1px solid #dedede;
 }
 
 .section .product_title {
-  color: #575f6e;
+	color: #575f6e;
 }
 
 .input_container {
-  width: 60%;
+	width: 60%;
 }
 
 .input_container .lable_position {
-  transform: translate(0, 42%);
+	transform: translate(0, 42%);
 }
 
 .input_container .input_box {
-  border-radius: 5px;
-  width: 100%;
+	width: 100%;
+	border-radius: 5px;
 }
 
 @media screen and (max-width: 767px) {
-  .section {
-    padding: 20px 40px;
-  }
+	.section {
+		padding: 20px 40px;
+	}
 
-  .modal_container{
-	:global {
-		.ui_modal_dialog{
-			top: 90%;
+	.modal_container {
+		:global {
+			.ui_modal_dialog {
+				top: 90%;
+			}
 		}
 	}
-  }
 }
 
 .row {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-top: 12px;
+	display: flex;
+	gap: 12px;
+	align-items: center;
+	margin-top: 12px;
 }
 
 .row.subheading_container {
-  margin: 10px;
+	margin: 10px;
 }
 
 .row .subheading {
-  font-size: 12px;
+	font-size: 12px;
 }
 
 .footer {
-  padding: 16px;
-  box-shadow: 0 -2px 4px 0 #14142b1f;
+	padding: 16px;
+	box-shadow: 0 -2px 4px 0 #14142b1f;
 }
 
 .btn_container {
-  display: flex;
-  justify-content: flex-end;
-  gap: 15px;
+	display: flex;
+	gap: 15px;
+	justify-content: flex-end;
 }
 
 .price {
-  color: #9d9b9b;
-  border-left: 1px dashed #9d9b9b;
-  padding-left: 10px;
+	padding-left: 10px;
+	color: #9d9b9b;
+	border-left: 1px dashed #9d9b9b;
 }

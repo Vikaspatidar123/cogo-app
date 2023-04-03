@@ -14,6 +14,9 @@ function Map({
 
 	const { origin_port = {}, destination_port = {} } = portDetails || {};
 
+	// const originLength = Object.keys(origin_port).length;
+	// const destinationlength = Object.keys(destination_port).length;
+
 	const createBezier = (inputPoints, step) => {
 		let t = 0;
 		const bezierPoints = [];

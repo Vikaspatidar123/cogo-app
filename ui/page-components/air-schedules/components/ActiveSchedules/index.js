@@ -15,14 +15,13 @@ import { useRouter } from '@/packages/next';
 function ActiveSchedules() {
 	const { query, push } = useRouter();
 
-	const [mapPoints, setMapPoints] = useState();
 	const id = query?.id;
 	const [currentPage, setCurrentPage] = useState(1);
 
 	const {
 		setFilters, scheduleDetails,
 		setCarrierList, carrierList,
-		loading,
+		loading, mapPoints,
 	} = useFetchScheduleDetails({
 		pageLimit: 6, id, currentPage,
 	});

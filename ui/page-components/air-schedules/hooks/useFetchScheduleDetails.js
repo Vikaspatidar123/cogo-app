@@ -14,6 +14,8 @@ const useFetchScheduleDetails = ({
 	const [carrierList, setCarrierList] = useState([]);
 	const [activeFilter, setActiveFilter] = useState(false);
 
+	const [mapPoints, setMapPoints] = useState();
+
 	const prepareFilters = () => {};
 
 	const [{ loading }, trigger] = useRequest({
@@ -64,6 +66,14 @@ const useFetchScheduleDetails = ({
 			}));
 			setCarrierList(arrList);
 			setScheduleDetails(data);
+			setMapPoints([
+				{
+					departure_lat  : data.origin_airport?.latitude,
+					departure_long : data.origin_airport?.longitude,
+					arrival_lat    : data.destination_airport?.latitude,
+					arrival_long   : data.destination_airport?.longitude,
+				},
+			]);
 			setActiveFilter(false);
 		} catch (err) {
 			Toast.error(err);
@@ -94,6 +104,8 @@ const useFetchScheduleDetails = ({
 		setSortBy,
 		setCarrierList,
 		loading,
+		mapPoints,
+		setMapPoints,
 	};
 };
 

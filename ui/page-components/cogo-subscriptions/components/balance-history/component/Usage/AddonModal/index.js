@@ -1,9 +1,8 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import { Button, Modal, Toast } from '@cogoport/components';
 import { IcMPlus } from '@cogoport/icons-react';
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 
 import LegendInput from '../../../../../common/LegendInput';
 import Slider from '../../../../../common/Slider';
@@ -83,7 +82,7 @@ function AddonModal({
 		});
 	};
 
-	const getDataHandler = () => {
+	const getDataHandler = useCallback(() => {
 		getPlan({
 			setPlan,
 			createCheckout,
@@ -91,7 +90,8 @@ function AddonModal({
 			setCheckoutResponse,
 			addons: true,
 		});
-	};
+	}, [createCheckout, getPlan, plan_pricing_id]);
+
 	useEffect(() => {
 		(async () => {
 			if (paymentStatus?.status !== 'active' && apiTries < 10 && pendingModal) {
@@ -107,7 +107,7 @@ function AddonModal({
 				}
 			}
 		})();
-	}, [apiTries]);
+	}, [apiTries, checkout_id, paymentStatus?.status, pendingModal, setRazorLoading, verifyRazor]);
 
 	useEffect(() => {
 		if (durationValue < 0) {
@@ -121,7 +121,7 @@ function AddonModal({
 
 	useEffect(() => {
 		if (addModal) getDataHandler();
-	}, [addModal]);
+	}, [addModal, getDataHandler]);
 
 	return (
 		<div className={styles.modal_container}>

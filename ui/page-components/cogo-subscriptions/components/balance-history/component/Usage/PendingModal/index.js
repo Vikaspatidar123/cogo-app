@@ -1,7 +1,6 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import { Modal, Button } from '@cogoport/components';
 import { IcMInformation } from '@cogoport/icons-react';
-import { useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 
 import redirectUrl from '../../../../../utils/redirectUrl';
 
@@ -20,19 +19,20 @@ function PendingModal({
 	const { status = '' } = paymentStatus || {};
 	const { redirectBalanceHistory } = redirectUrl();
 
-	const closeModalHandler = () => {
+	const closeModalHandler = useCallback(() => {
 		setPendingModal(false);
 		setRazorLoading(false);
 		redirectBalanceHistory();
 		setAddModal(false);
-	};
+	}, [redirectBalanceHistory, setAddModal, setPendingModal, setRazorLoading]);
+
 	useEffect(() => {
 		if (apiTries > 10) {
 			setTimeout(() => {
 				closeModalHandler();
 			}, 10000);
 		}
-	}, [apiTries]);
+	}, [apiTries, closeModalHandler]);
 
 	useEffect(() => {
 		if (status === 'active') {
@@ -40,7 +40,7 @@ function PendingModal({
 				closeModalHandler();
 			}, 10000);
 		}
-	}, [status]);
+	}, [closeModalHandler, status]);
 
 	return (
 		<Modal

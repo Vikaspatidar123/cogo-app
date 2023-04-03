@@ -1,8 +1,8 @@
 .label {
 	position: absolute;
 	top: 0;
-	padding: 0px 5px 0;
-	margin: 0px 7px;
+	padding: 0 5px 0;
+	margin: 0 7px;
 	translate: 0 50%;
 	color: grey;
 	background: #fff;
@@ -14,7 +14,6 @@
 	top: -15px;
 	font-size: 11px;
 }
-	
 
 .container {
 	display: flex;
@@ -41,11 +40,9 @@
 			border: none;
 		}
 
-		.ui_input_container:hover{
+		.ui_input_container:hover {
 			z-index: auto;
 		}
 	}
 }
 
-
-	

@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import { Radio, Button } from '@cogoport/components';
 import { IcMPlusInCircle } from '@cogoport/icons-react';
 import { useState, useEffect } from 'react';
@@ -17,7 +16,7 @@ function BillingDetails({
 
 	useEffect(() => {
 		billingAddress({ setAddresses });
-	}, []);
+	}, [billingAddress, setAddresses]);
 
 	const renderName = (pocDetail) => {
 		if (pocDetail?.length > 0) {

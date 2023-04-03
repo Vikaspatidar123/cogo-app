@@ -13,24 +13,18 @@
 }
 
 .side_label {
-	font-weight: 400;
 	font-size: 18px;
 	color: #6f6c90;
 	text-align: center;
 	padding: 20px;
 }
-	
-/* u tag */
+
 .click {
-	font-weight: 400;
-	font-size: 14px;
 	color: #f68b21;
 	cursor: pointer;
 }
-	
+
 .stylediv {
 	color: #6f6c90;
-	font-weight: 400;
-	font-size: 14px;
 	padding: 20px;
 }

@@ -1,12 +1,7 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import { Pagination } from '@cogoport/components';
 import { useState, useEffect } from 'react';
 
 import useGetOrderDetails from '../../../../hooks/useGetOrderDetails';
-
-// import {
-// 	Container, ScrollTable, Title, TableContainer,
-// } from './style';
 
 import styles from './styles.module.css';
 import TableHeader from './TableHeader';
@@ -30,7 +25,7 @@ function List({ pendingModal }) {
 
 	useEffect(() => {
 		if (!pendingModal) fetchOrderDetails();
-	}, [pagination, pendingModal, orderBy]);
+	}, [pagination, pendingModal, orderBy, fetchOrderDetails]);
 
 	return (
 		<div className={styles.container}>

@@ -28,9 +28,6 @@ function StripSection({
 	totalPrice,
 	discount_percentage,
 }) {
-	// const { selectedAddress } = useSaasState();
-	// const { name } = selectedAddress;
-
 	const [cardHolder, setCardHolder] = useState('name');
 	const [loading, setLoading] = useState(false);
 

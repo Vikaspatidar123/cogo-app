@@ -7,13 +7,19 @@ import { useRouter } from '@/packages/next';
 function Error404() {
 	const router = useRouter();
 
+	const handleBack = () => {
+		router.back();
+	};
 	return (
 		<div className={styles.component}>
-			<div className={styles.container}>
+			<div className={styles.world_map} />
+			<div className={styles.text_container}>
 				<div className={styles.title}>404</div>
 				<div className={styles.description}>Looks like you are off course</div>
 				<div className={styles.button_container}>
-					<Button onClick={() => router.back()}>Get back to base</Button>
+					<Button onClick={handleBack} themeType="accent">
+						Get back to base
+					</Button>
 				</div>
 			</div>
 		</div>

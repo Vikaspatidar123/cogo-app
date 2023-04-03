@@ -27,7 +27,6 @@ function SuccessModal({
 				<div className={styles.label}>Congratulations!</div>
 				<div className={styles.side_label}>
 					You are now subscribed to
-					{' '}
 					{name}
 					. Start exploring features and optimize your
 					business operations!

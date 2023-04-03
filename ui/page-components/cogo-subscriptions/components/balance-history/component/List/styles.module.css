@@ -77,7 +77,6 @@
 }
 
 
-
 @media screen and (max-width: 767px) {
 	.container {
 		padding-bottom: 55px;
@@ -101,12 +100,12 @@
 		gap: 1rem;
 	}
 
-	.table_container .pagination{
+	.table_container .pagination {
 		:global {
 			.ui_paginnation_number_container {
 				gap: 5px;
 			}
-	
+
 			.ui_paginnation_number_prev {
 				background: transparent;
 			}

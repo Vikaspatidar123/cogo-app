@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import { Modal, Button } from '@cogoport/components';
 import { merge } from '@cogoport/utils';
 import React, { useState, useEffect } from 'react';
@@ -55,7 +54,7 @@ function AddModal({
 			setMobileCode(code);
 			setValue('country', '');
 		}
-	}, [country_code]);
+	}, [code, country_code, setValue]);
 	const handleCloseModal = () => {
 		setAddAddressModal(false);
 	};

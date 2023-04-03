@@ -1,5 +1,4 @@
 import { Placeholder } from '@cogoport/components';
-// import { formatDateToString } from '@cogoport/front/date';
 import { IcCRedCircle, IcCGreenCircle, IcMArrowNext } from '@cogoport/icons-react';
 import { format } from '@cogoport/utils';
 
@@ -12,7 +11,6 @@ const renderEventName = (type, name) => {
 		return (
 			<>
 				<IcCGreenCircle width={6} height={6} />
-				{' '}
 				{name}
 			</>
 		);
@@ -28,7 +26,6 @@ const renderEventName = (type, name) => {
 	return (
 		<>
 			<IcCRedCircle width={6} height={6} />
-			{' '}
 			{name}
 		</>
 	);
@@ -150,7 +147,6 @@ function TableList({ list = [], loading = false, isMobile = false }) {
 									{format(created_at, 'dd MMM yyyy')}
 								</div>
 								<div className={`${tableStyles.wd_150} ${tableStyles.flex}`}>
-									{' '}
 									{renderUsage(is_credit, quantity)}
 								</div>
 							</div>

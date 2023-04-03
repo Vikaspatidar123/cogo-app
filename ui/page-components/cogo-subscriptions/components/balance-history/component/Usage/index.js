@@ -29,8 +29,7 @@ function Usage({ pendingModal, setPendingModal }) {
 		if (!pendingModal) {
 			getPlan({ setUserPlan });
 		}
-	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [pendingModal]);
+	}, [getPlan, pendingModal]);
 
 	const { billing_cycle = {}, current_usages = [] } = userPlan || {};
 	const { is_free_plan } = billing_cycle || {};
@@ -53,6 +52,7 @@ function Usage({ pendingModal, setPendingModal }) {
 		const totalCount = +total + +addon;
 		const leftCount = +count + +addon;
 		const percentage = (+leftCount * 100) / +totalCount;
+		const calculateWidth = `${Math.round(percentage) % ''}`;
 
 		return (
 			<div
@@ -60,7 +60,7 @@ function Usage({ pendingModal, setPendingModal }) {
 					percentage < 20 && !is_unlimited ? styles.panic_container : styles.chill_container
 				}
 			>
-				<div className={styles.progress} style={{ width: `${Math.round(percentage)}%` }} />
+				<div className={styles.progress} style={{ width: `${calculateWidth}` }} />
 			</div>
 		);
 	};
@@ -79,13 +79,6 @@ function Usage({ pendingModal, setPendingModal }) {
 			<div className={styles.title_container}>
 				<div className={styles.title}>
 					Add-Ons
-					{/* <div className="subtitle">
-						<div className="note1"> ( Note: </div>
-						<div className="note2">
-							*You wont be able to purchase add-ons in the Starter Pack. Please click here
-							to upgrade your plan )
-						</div>
-					</div> */}
 				</div>
 				{!isMobile && (
 					<Button className="md" onClick={redirectManageSubscription}>

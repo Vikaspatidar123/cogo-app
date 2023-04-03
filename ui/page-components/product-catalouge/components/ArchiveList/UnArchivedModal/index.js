@@ -19,7 +19,14 @@ function UnArchiveModal({ archive, setArchive, refetchArchive }) {
 				You can retrive your Unarchived product anytime from the All Categories tab
 			</div>
 			<div className={styles.button_div}>
-				<Button className={styles.secondary_button} onClick={() => setArchive(false)}>No</Button>
+				<Button
+					themeType="secondary"
+					className={styles.secondary_button}
+					onClick={() => setArchive(false)}
+				>
+					No
+
+				</Button>
 				<Button className={styles.primary_button} onClick={() => refetchArchive()}>Yes</Button>
 			</div>
 		</Modal>

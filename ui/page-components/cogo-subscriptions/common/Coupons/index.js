@@ -119,8 +119,6 @@ function Coupons({
 									</div>
 								</div>
 								<div className={styles.holes_lower} />
-								{/* <div className={styles.line_div} /> */}
-								{/* </div> */}
 								<div className={styles.button}>
 									<div>
 										<span className={styles.lable}>Code: </span>

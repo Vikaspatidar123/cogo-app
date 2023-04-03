@@ -5,7 +5,7 @@ import getUserData from '../hooks/getUserData';
 
 import findurl from './findurl';
 
-import PUBLIC_PATHS from '@/packages/navigation-configs/config/public-paths';
+import router from '@/packages/navigation-configs/config/public-paths';
 import projectNavigationMappings from '@/packages/navigation-configs/navigation-mapping';
 import getAuthParam from '@/packages/request/helpers/get-auth-params';
 import { getCookie } from '@/packages/request/helpers/getCookieFromCtx';
@@ -36,6 +36,7 @@ const handleAuthentication = async ({
 	if (!routeConfig || (asPath || '').includes('_next')) {
 		return { asPrefix };
 	}
+	const { PUBLIC_PATHS, UNAUTHENTICATED } = router || {};
 	const token = getCookie('cogo-auth-token', { req });
 
 	if (asPath.includes('/url/')) {
@@ -44,7 +45,7 @@ const handleAuthentication = async ({
 	if (PUBLIC_PATHS.includes(asPath) || PUBLIC_PATHS.includes(pathname)) {
 		return { asPrefix };
 	}
-	const isUnauthenticated = PUBLIC_PATHS.includes(asPath) || PUBLIC_PATHS.includes(pathname);
+	const isUnauthenticated = UNAUTHENTICATED.includes(asPath) || UNAUTHENTICATED.includes(pathname);
 	if (token === null) {
 		if (isUnauthenticated) {
 			return { asPrefix };
@@ -64,6 +65,7 @@ const handleAuthentication = async ({
 		if (!isServer) {
 			deleteCookie('cogo-auth-token', null, { req });
 		}
+
 		if (isUnauthenticated) {
 			return { asPrefix };
 		}
@@ -71,14 +73,12 @@ const handleAuthentication = async ({
 		redirect({ isServer, res, path: `/v2/login?redirectPath=${asPath}` });
 		return { asPrefix };
 	}
-	if (
-		(user_data.organizations || []).length === 0
 
-	) {
-		redirect({ isServer, res, path: '/v2/get-started' });
-		return { asPrefix };
-	}
 	if (isUnauthenticated) {
+		if ((user_data.organizations || []).length === 0) {
+			redirect({ isServer, res, path: '/v2/get-started' });
+			return { asPrefix };
+		}
 		const org = user_data.organizations[0];
 		const branch = org?.branches?.[0];
 
@@ -90,37 +90,43 @@ const handleAuthentication = async ({
 		});
 		return { asPrefix };
 	}
-
 	//  || asPath.includes('/kyc')
 	if (asPath.includes('/get-started')) {
 		return { asPrefix };
 	}
-
+	if ((user_data.organizations || []).length === 0 || user_data.name === null) {
+		redirect({ isServer, res, path: '/v2/get-started' });
+		return { asPrefix };
+	}
 	// Redirect old paths to branch id
 	const allStrings = asPath?.split('/');
-	if (!allStrings[1] && !isEmpty(user_data)) {
-		const org = user_data.organizations[0] || {};
-		const orgId = org.id;
-		const orgBranchId = org?.branches?.[0]?.id;
-		// const branch_id = current_org?.branches?.[0]?.id;
-		// const org_id = user_data?.organizations?.[0]?.id;
-		asPrefix = `/v2/${orgId}/${orgBranchId}/dashboard`;
+	const actual_org_id = allStrings?.[1];
+	const current_org = user_data?.organizations.find(
+		(org) => org?.id === actual_org_id,
+	);
+	if (!allStrings?.[3] && actual_org_id && !isEmpty(current_org)) {
+		const branch_id = current_org?.branches?.[0]?.id;
+		asPrefix = `/v2/${actual_org_id}/${branch_id}/dashboard`;
 		findurl({
-			item: user_data, asPrefix, isServer, res, org_id: orgId, branch_id: orgBranchId,
+			item   : user_data,
+			asPrefix,
+			isServer,
+			res,
+			org_id : actual_org_id,
+			branch_id,
 		});
 
 		return {
 			asPrefix,
 			query: {
-				org_id    : orgId,
-				branch_id : orgBranchId,
+				org_id: actual_org_id,
+				branch_id,
 			},
 		};
 	}
 	// For 404 and error pages - pathname is _error
 	if (pathname.includes('/404')) {
 		const asPathArr = asPath.split('/') || [];
-		// const reqPath = asPathArr.filter((item, i) => i < 5).join('/');
 		const errOrgId = asPathArr.length > 2 ? asPathArr[2] : null;
 		const current_organization = user_data.organizations.find(
 			(org) => org.id === errOrgId,
@@ -129,9 +135,14 @@ const handleAuthentication = async ({
 		const orgId = org.id;
 		const orgBranchId = org?.branches?.[0]?.id;
 		asPrefix = `/v2/${orgId}/${orgBranchId}/dashboard`;
-		if (isEmpty(current_organization) && !allStrings[3]) {
+		if (isEmpty(current_organization) && !allStrings?.[3]) {
 			findurl({
-				item: user_data, asPrefix, isServer, res, org_id: orgId, branch_id: orgBranchId,
+				item      : user_data,
+				asPrefix,
+				isServer,
+				res,
+				org_id    : orgId,
+				branch_id : orgBranchId,
 			});
 			return {
 				asPrefix,
@@ -145,12 +156,7 @@ const handleAuthentication = async ({
 		return {
 			asPrefix,
 			query:
-				asPathArr.length >= 5
-					? {
-						org_id    : asPathArr[2],
-						branch_id : asPathArr[3],
-					}
-					: {},
+        asPathArr.length >= 5 ? { org_id: asPathArr[2], branch_id: asPathArr[3] } : {},
 		};
 	}
 	const { org_id, branch_id } = query || {};
@@ -162,7 +168,12 @@ const handleAuthentication = async ({
 	if (isEmpty(current_organization) || asPath.includes('/v2/select-account')) {
 		const newPath = `/v2/${org?.id}/${orgBranchId}`;
 		findurl({
-			item: user_data, asPrefix, isServer, res, org_id: org?.id, orgBranchId,
+			item   : user_data,
+			asPrefix,
+			isServer,
+			res,
+			org_id : org?.id,
+			orgBranchId,
 		});
 		return {
 			asPrefix : newPath,
@@ -199,7 +210,6 @@ const handleAuthentication = async ({
 
 	await store.dispatch(
 		setProfileStoreState({
-			// pathPrefix,
 			asPrefix,
 			defaultRoute,
 			organization_set        : !isEmpty(current_organization),

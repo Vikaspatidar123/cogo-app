@@ -1,7 +1,7 @@
 .container {
 	margin: 24px 4px 24px 4px;
 }
-	
+
 .container .rangewidth {
 	width: 88%;
 }
@@ -9,12 +9,12 @@
 .container .textleft {
 	margin-left: 25px;
 }
-	
+
 .container .flexrange {
 	flex-direction: row;
 	justify-content: space-between;
 	width: 95%;
-	margin-top: 5px;	
+	margin-top: 5px;
 }
 
 .container .flexrange p {
@@ -23,14 +23,14 @@
 	font-size: 11px;
 	font-weight: 300;
 }
-	
+
 .container .marker {
 	justify-content: space-between;
 	margin-top: 10px;
 	width: 89%;
 	margin-left: 3px;
 }
-	
+
 .container .slider {
 	width: 90%;
 	height: 6px;
@@ -45,7 +45,7 @@
 	background: #999;
 }
 
-.flex{
+.flex {
 	display: flex;
 }
 
@@ -57,5 +57,5 @@
     font-weight: 300;
 	text-align: left;
     line-height: 1.4;
-    margin: 0px;
+    margin: 0;
 }

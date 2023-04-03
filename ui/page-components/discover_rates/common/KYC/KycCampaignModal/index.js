@@ -1,0 +1,85 @@
+// import { Flex, Text } from "@cogoport/front/components";
+import { Modal } from '@cogoport/components';
+import React, { useState } from 'react';
+
+import FormBody from './FormBody';
+import styles from './styles.module.css';
+
+import { useSelector } from '@/packages/store';
+
+export function KycCampaign({
+	onFinalSubmit = () => {},
+	trackAnalytics = false,
+}) {
+	const { scope, agent_id, organization, user_profile } = useSelector(
+		({ general, profile }) => ({
+			scope        : general?.scope,
+			agent_id     : profile?.id,
+			organization : profile?.organization,
+			countryId:
+        profile?.organization?.country_id || profile?.partner?.country_id,
+			user_profile: profile,
+		}),
+	);
+
+	const initialValues = {
+		preferred_languages : user_profile?.preferred_languages,
+		registration_number : user_profile?.organization?.registration_number,
+		mobile              : {
+			mobile_country_code : user_profile?.mobile_country_code,
+			mobile_number       : user_profile?.mobile_number,
+		},
+		country_id:
+      user_profile?.organization?.country_id
+      || user_profile?.partner?.country_id,
+		country_code: organization?.country?.country_code,
+	};
+
+	return (
+		<div className={styles.flex} style={{ padding: '8px' }}>
+			<div className={styles.flex} style={{ marginBottom: '12px' }}>
+				<h2 className={styles.text}>
+					Get Additional Sport Searches for free!
+				</h2>
+				<text className={styles.text}>
+					We just need some additional details from you
+				</text>
+			</div>
+			<FormBody
+				{...initialValues}
+				scope={scope}
+				agent_id={agent_id}
+				onFinalSubmit={onFinalSubmit}
+				trackAnalytics={trackAnalytics}
+			/>
+		</div>
+	);
+}
+
+export function KycCampaignModal({ trackAnalytics = false }) {
+	const { isMobile, kyc_status } = useSelector(({ general, profile }) => ({
+		isMobile   : general?.isMobile,
+		kyc_status : profile?.organization?.kyc_status,
+	}));
+	const [show, setShow] = useState(false);
+
+	return (
+		<Modal
+			show={
+        (kyc_status === 'rejected' || kyc_status === 'pending_from_user')
+        && show
+      }
+			onClose={() => {
+      	setShow(false);
+			}}
+			closable
+			width={750}
+			fullscreen={isMobile}
+		>
+			<KycCampaign
+				trackAnalytics={trackAnalytics}
+				onFinalSubmit={() => setShow(false)}
+			/>
+		</Modal>
+	);
+}

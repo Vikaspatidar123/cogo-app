@@ -1,0 +1,44 @@
+[
+	{
+		"label": "Weight",
+		"name": "weight",
+		"subLabel": "(Kgs)",
+		"placeholder": "0.1 to 400 kgs",
+		"value": 1,
+		"min": 0.01,
+		"max": 10000,
+		"type": "number",
+		"isShowStepper": false,
+		"showMessage": false,
+		"span": 5,
+		"validateOn": ["onBlur"],
+		"validations": [
+			{
+				"type": "min",
+				"message": "Weight cannot be less than or 0.01",
+				"min": 0.01
+			}
+		]
+	},
+	{
+		"label": "Volume",
+		"name": "volume",
+		"subLabel": "(cbm)",
+		"placeholder": "0.01 to 400 cubic m",
+		"type": "number",
+		"min": 0.01,
+		"max": 1000,
+		"value": 1,
+		"isShowStepper": false,
+		"showMessage": false,
+		"span": 4,
+		"validateOn": ["onBlur"],
+		"validations": [
+			{
+				"type": "min",
+				"message": "Volume cannot be less than or 0.01",
+				"min": 0.01
+			}
+		]
+	}
+]

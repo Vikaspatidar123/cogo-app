@@ -1,0 +1,59 @@
+.without_mobile {
+  display: grid;
+  grid-auto-flow: column;
+  grid-column-gap: 5px;
+  width: max-content;
+
+}
+
+.with_mobile {
+  display: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+
+    .core-ui-select-root.core-ui-select__container {
+      max-width: 200px;
+    }
+
+    .core-ui-select__menu {
+      min-width: auto !important;
+    }
+
+}
+&.search_form_mode_fcl_freight {
+  margin: 0;
+}
+.rfq {
+  display: flex;
+  align-items: center;
+}
+
+.select {
+  display: flex;
+  flex-direction: column;
+  .core-ui-select__menu {
+    max-width: 120px !important;
+    min-width: 0px !important;
+  }
+}
+
+.text {
+  margin-right: 10px;
+  font-weight: 700;
+  color: #333333;
+  font-size: 16px;
+}
+
+.mobile {
+  display: none;
+  @media (max-width: 760px) {
+    display: block;
+  }
+}
+.web {
+  display: block;
+  @media (max-width: 760px) {
+    display: none;
+  }
+}

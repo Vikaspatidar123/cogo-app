@@ -1,0 +1,52 @@
+.port_arrow {
+	height: 30px;
+	width: 40px;
+	margin: 0px 30px;
+}
+
+.port_name { 
+	font-weight: 700;
+	font-size: 12px;
+	width: 200px;
+}
+
+.top_section { 
+	display: flex;
+	flex-direction: row;
+	margin-bottom: 10px;
+}
+
+.tag  {
+	background: #dfe1ef;
+	font-size: 12px;
+	padding: 4px 6px;
+	border-radius: 4px;
+	margin-right: 5px;
+	margin-bottom: 5px;
+}
+
+.card { 
+	width: 450px;
+	padding: 10px 10px 10px 0;
+	border-radius: 4px;
+	margin-right: 20px;
+}
+
+.card_row { 
+	width: 510px;
+	display: flex;
+	flex-direction: row;
+	overflow-x: scroll;
+	margin: 20px 30px 10px 30px;
+
+	::-webkit-scrollbar {
+		display: none;
+	}
+	-ms-overflow-style: none;
+	scrollbar-width: none;
+}
+
+.bottom_section {
+	display: flex;
+	flex-wrap: wrap;
+}

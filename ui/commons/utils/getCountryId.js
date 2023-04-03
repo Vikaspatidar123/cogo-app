@@ -1,5 +1,4 @@
 // eslint-disable-next-line import/no-unresolved
-import countryCodes from '@/data-store/constants/countries.json';
+import COUNTRIES from '@/.data-store/constants/countries.json';
 
-export const getCountryId = (countryCode = '') => countryCodes
-	.find(({ country_code }) => country_code === countryCode)?.id;
+export const getCountryId = (countryCode = '') => COUNTRIES.find(({ country_code }) => country_code === countryCode)?.id;

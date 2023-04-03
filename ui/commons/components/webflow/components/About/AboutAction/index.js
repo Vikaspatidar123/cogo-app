@@ -1,5 +1,4 @@
-import { setAboutState } from '@cogo/app-store';
-import { useDispatch } from '@cogo/store';
+import { useDispatch, setAboutState } from '@/packages/store';
 import React, { Children, cloneElement } from 'react';
 
 let modifiedChildren = null;

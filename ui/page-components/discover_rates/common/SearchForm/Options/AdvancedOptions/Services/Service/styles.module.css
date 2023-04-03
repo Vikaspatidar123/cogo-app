@@ -1,0 +1,39 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px 14px 5px 5px;
+  background: #f9f9f9;
+  border-radius: 4px;
+  margin-bottom: 5px;
+  transition: all 0.3s;
+  cursor: pointer;
+  /* .svg {
+		* {
+			fill: ${({ service }) => (service === 'freight' ? 'black' : undefined)};
+		}
+	} */
+}
+.container:hover {
+  background: #f2f2f2;
+}
+.selected {
+  background: #f2f2f2;
+
+  div {
+    font-weight: bold;
+  }
+}
+.service_name {
+  color: black;
+
+  font-size: 14px;
+  line-height: 22px;
+
+  margin-right: 10px;
+
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+}

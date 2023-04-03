@@ -8,6 +8,7 @@ import {
 	asyncFieldsPartner,
 	asyncFieldsPartnerRoles,
 	asyncFieldsHsCodeCountries,
+	asyncAirLines,
 } from '../../utils/getAsyncFields';
 
 /**
@@ -34,6 +35,7 @@ const keyAsyncFieldsParamsMapping = {
 	partners          : asyncFieldsPartner,
 	partner_roles     : asyncFieldsPartnerRoles,
 	hs_code_countries : asyncFieldsHsCodeCountries,
+	'air-lines'       : asyncAirLines,
 };
 
 function AsyncSelect(props) {
@@ -43,7 +45,7 @@ function AsyncSelect(props) {
 		asyncKey,
 		initialCall,
 		getModifiedOptions,
-		getSelectedOption,
+		getSelectedOption = () => {},
 		...rest
 	} = props;
 
@@ -57,8 +59,13 @@ function AsyncSelect(props) {
 		valueKey : rest.valueKey || defaultParams.valueKey,
 	});
 
-	if (typeof getModifiedOptions === 'function' && !isEmpty(getAsyncOptionsProps.options)) {
-		getAsyncOptionsProps.options = getModifiedOptions({ options: getAsyncOptionsProps.options });
+	if (
+		typeof getModifiedOptions === 'function'
+    && !isEmpty(getAsyncOptionsProps.options)
+	) {
+		getAsyncOptionsProps.options = getModifiedOptions({
+			options: getAsyncOptionsProps.options,
+		});
 	}
 
 	if (typeof getSelectedOption === 'function' && !isEmpty(rest.value)) {
@@ -69,19 +76,16 @@ function AsyncSelect(props) {
 			selectedValue = rest.value;
 		}
 
-		const selectedOption = getAsyncOptionsProps.options.filter((option) => option.id === selectedValue);
+		const selectedOption = getAsyncOptionsProps.options.filter(
+			(option) => option.id === selectedValue,
+		);
 
 		getSelectedOption(selectedOption[0]);
 	}
-
+	console.log(getAsyncOptionsProps, 'getAsyncOptionsProps', rest);
 	const Element = multiple ? MultiSelect : Select;
 
-	return (
-		<Element
-			{...rest}
-			{...getAsyncOptionsProps}
-		/>
-	);
+	return <Element {...rest} {...getAsyncOptionsProps} />;
 }
 
 export default AsyncSelect;

@@ -1,0 +1,27 @@
+.container {
+  margin-top: 15px;
+  width: 300px;
+  @media (max-width: 768px) {
+    width: auto;
+  }
+  .rfq {
+    width: 100%;
+    min-width: 300px;
+  }
+}
+
+.title {
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 14px;
+  color: black;
+  margin: 0px 14px 8px 0px;
+  .margin_top {
+    margin-top: 14px;
+  }
+}
+.line {
+  height: 1px;
+  background: #bdbdbd;
+  margin: 12px 0px;
+}

@@ -1,0 +1,103 @@
+.container {
+	padding: 6px 6px;
+	min-width: 400px;
+  
+	@media (max-width: 768px) {
+	  min-width: 300px;
+	}
+	:global {
+	  .form-item-label {
+		margin: 12px 0;
+  
+		font-weight: 500;
+		font-size: 12px;
+		color: #393f70;
+	  }
+  
+	  .core-ui-select__control {
+		background: #ffffff;
+		border: 1px solid #cbcff5;
+		border-radius: 4px;
+	  }
+  
+	  .core-ui-select-root {
+		max-height: 32px;
+	  }
+	}
+	.commodity_type {
+	  font-weight: 500;
+	  font-size: 12px;
+	  color: #393f70;
+  
+	  margin-bottom: 16px;
+	}
+  }
+  
+  .header_container {
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 16px;
+	padding: 16px 0;
+	border-bottom: 1px solid #ded7fc;
+  
+	.header_text {
+	  font-size: 12px;
+	  color: #393f70;
+  
+	  white-space: nowrap;
+	  margin-right: 4px;
+	}
+  
+	.err_message {
+	  font-size: 12px;
+	  color: red;
+	}
+  
+	@media (max-width: 768px) {
+	  :global {
+		.core-ui-date-time-picker-container {
+		  width: 62%;
+		}
+	  }
+	}
+  }
+  
+  .date_picker_container {
+	width: 100%;
+  
+	display: flex;
+	align-items: center;
+  }
+  
+  .date_container {
+	display: flex;
+	align-items: center;
+	border: 1px solid #cbcff5;
+	border-radius: 4px;
+	padding: 4px 12px;
+	cursor: pointer;
+  
+	& svg {
+	  margin-right: 12px;
+	}
+  }
+  
+  .date_div {
+	display: flex;
+	flex-direction: column;
+  }
+  
+  .select_date {
+	font-size: 8px;
+	display: flex;
+	align-items: center;
+	color: #cbcff5;
+  }
+  
+  .date_content {
+	font-size: 12px;
+	display: flex;
+	align-items: center;
+	color: #5c6186;
+  }
+  

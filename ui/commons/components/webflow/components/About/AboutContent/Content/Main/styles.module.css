@@ -130,13 +130,13 @@
 		overflow-y: hidden;
 		display: block !important;
 		margin-bottom: 16px;
-		> div {
+		/* > div {
 			width: ${({ length }) => `${length * 242 + (length - 1) * 16 + 16}px`};
 			display: block !important;
 			&:first-child {
 				margin-left: 16px;
 			}
-		}
+		} */
 		> div > div {
 			display: inline-block;
 			vertical-align: top;

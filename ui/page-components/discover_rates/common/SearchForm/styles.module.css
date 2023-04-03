@@ -1,0 +1,71 @@
+.container {
+  background: #ffffff;
+  border-radius: 10px;
+  padding: 26px 12px 30px;
+
+  .small {
+    display: flex;
+    width: 100%;
+    background: #f9f9f9;
+    padding: 0px;
+    border-radius: 0px;
+  }
+
+  .result {
+    width: 95%;
+
+    @media (max-width: 768px) {
+      width: 85%;
+    }
+  }
+
+  .contract {
+    background: #ffffff;
+  }
+  .mobile {
+    padding: 0px;
+  }
+
+  @media (max-width: 540px) {
+    padding: 0px 8px 12px;
+    background: #ffffff;
+  }
+}
+
+.main {
+  margin: 0 auto;
+  width: 100%;
+  max-width: 100%;
+
+  .rfq {
+    max-width: 100%;
+  }
+
+  .contract {
+    max-width: 100%;
+  }
+}
+
+.label {
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 14px;
+  display: block;
+  color: #828282;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  text-transform: uppercase;
+
+  .margin_below {
+    margin-bottom: 10px;
+  }
+}
+
+.row {
+  display: flex;
+}
+
+.search_form_options_container_col {
+  margin-left: 30px;
+}

@@ -1,12 +1,10 @@
-import { Select } from '@cogoport/components';
 import React from 'react';
 import { Controller } from 'react-hook-form';
 
-function SelectController(props) {
-	const {
-		name, control, rules, value, ...rest
-	} = props;
+import Select from '../Business/Select';
 
+function SelectController(props) {
+	const { name, control, rules, value, ...rest } = props;
 	return (
 		<Controller
 			key={rest.id}

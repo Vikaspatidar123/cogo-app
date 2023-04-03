@@ -1,9 +1,9 @@
 import { getCookie } from '@cogoport/utils';
 
-import GLOBAL_CONSTANTS from '../globals';
-
 import IN from './IN';
 import VN from './VN';
+
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
 const { country_entity_ids } = GLOBAL_CONSTANTS;
 

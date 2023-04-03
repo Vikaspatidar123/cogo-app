@@ -1,0 +1,12 @@
+{
+  "conventional_end_opening": "standard",
+  "high_cube_end_opening": "standard",
+  "side_access": "open_side",
+  "refrigerated": "refer",
+  "flat_rack": "flat_rack",
+  "flat_rack_collapsible": "flat_rack",
+  "platform": "flat_rack",
+  "open_top": "open_top",
+  "tank": "iso_tank",
+  "high_cube_refrigerated": "refer"
+}

@@ -1,0 +1,38 @@
+.container {
+	box-shadow: rgb(0 0 0 / 30%) 0 0 6px;
+	padding: 20px;
+	margin-bottom: 25px;
+	border-radius: 5px;
+}
+
+.text { 
+	font-size: 16px;
+	font-weight: 500;
+	color: #393f70;
+}
+
+.button_container {
+	display: flex;
+	justify-content: flex-end;
+	margin-top: 20px;
+}
+
+.detail_icon {
+	margin-top: 10px;
+
+	.core-ui-select__value-container {
+		margin-top: -6px;
+		margin-left: -10px;
+	}
+
+	.core-ui-select__indicators {
+		margin-top: -5px;
+	}
+}
+
+.gray_line { 
+	border: 1px dashed #393f70;
+	opacity: 0.5;
+	margin: 20px 0;
+	width: 100%;
+}

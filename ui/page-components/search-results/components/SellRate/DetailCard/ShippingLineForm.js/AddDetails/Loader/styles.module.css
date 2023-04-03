@@ -1,0 +1,31 @@
+.container {
+	margin-top: 20px;
+ }
+
+.detail_icon {
+	box-shadow: rgb(0 0 0 / 40%) 0 0 6px;
+	border-radius: 5px;
+	padding: 30px 20px;
+	margin-bottom: 25px;
+}
+
+.details {
+	display: flex;
+	justify-content: space-between;
+	margin: 20px 0;
+}
+
+.btn_icon {
+	display: flex;
+	justify-content: flex-end;
+	margin: 20px;
+}
+
+.gray_line {
+	border: 1px dashed #393f70;
+	opacity: 0.5;
+	margin: 20px 0;
+	width: 100%;
+ }
+
+

@@ -1,0 +1,28 @@
+[
+	{ "value": "fcl_freight", "label": "FCL", "icon": "ic-fcl" },
+	{ "value": "lcl_freight", "label": "LCL", "icon": "ic-lcl" },
+	{ "value": "air_freight", "label": "AIR", "icon": "ic-air" },
+	{ 
+		"value": "container_transportation", 
+		"label": "Container Transportation", 
+		"icon": "ic-surface", 
+		"options": [
+			{ "value": "haulage", "label": "Haulage" },
+			{ "value": "rail_domestic_freight", "label": "Rail Domestic" }
+		] 
+	},
+	{
+		"value": "domestic",
+		"label": "Domestic",
+		"icon": "ic-domestic",
+		"options": [
+			{ "value": "ftl_freight", "label": "FTL" },
+			{ "value": "ltl_freight", "label": "LTL" },
+			{ "value": "fcl_customs", "label": "FCL Customs" },
+			{ "value": "lcl_customs", "label": "LCL Customs" },
+			{ "value": "air_customs", "label": "AIR Customs" },
+			{ "value": "fcl_freight_local", "label": "FCL Locals" },
+			{ "value": "air_freight_local", "label": "AIR Locals" }
+		]
+	}
+]

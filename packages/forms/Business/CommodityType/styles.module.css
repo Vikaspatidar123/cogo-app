@@ -1,0 +1,70 @@
+/* import animated from '@cogo/deprecated_legacy/animated'; */
+
+.back {
+  outline: none;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+
+  display: flex;
+  margin-right: 5px;
+  border: none;
+
+  height: 16px;
+  width: 16px;
+}
+
+.main {
+  position: relative;
+  height: inherit;
+}
+
+.label {
+  font-size: 12px !important;
+  font-weight: bold;
+  line-height: 14px;
+  color: #4f4f4f;
+  margin-bottom: 5px;
+
+  display: flex;
+  align-items: center;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+
+  .sub_label {
+    font-weight: normal;
+    margin-left: 4px;
+  }
+}
+
+.section {
+  opacity: 0;
+  display: none;
+  transition: all 0.3s;
+}
+.active {
+  opacity: 1;
+  display: block;
+}
+.type_label {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 125px;
+}
+
+/* export const AnimatedContainer = animated({
+	enter: {
+		translateX : [-10, 0],
+		opacity    : [0, 1],
+		easing     : 'easeInOutQuad',
+		duration   : 500,
+	},
+	exit: {
+		translateX : [0, 10],
+		opacity    : [1, 0],
+		duration   : 300,
+	},
+}); */

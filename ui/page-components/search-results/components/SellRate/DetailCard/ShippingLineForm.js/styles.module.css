@@ -1,0 +1,89 @@
+.shipment_details { 
+	padding-bottom: 20px;
+	.core-ui-select__value-container {
+		margin-top: -6px;
+	}
+
+	.core-ui-select__indicators {
+		margin-top: -5px;
+	}
+
+	.core-ui-select__menu {
+		max-width: unset;
+	}
+}
+
+.btn_container { 
+	padding: 10px;
+	margin-top: 10px;
+	display: flex;
+	justify-content: flex-end;
+}
+
+.line {
+	border-bottom: 1px solid #393f70;
+	margin: 20px 0 10px 0;
+}
+
+.radio_container {
+	width: fit-content;
+	margin-top: 18px;
+}
+
+.text { 
+	font-size: 16px;
+	font-weight: 500;
+	color: #393f70;
+	margin: 20px;
+}
+
+.header_container {
+	display: flex;
+	justify-content: space-between;
+
+	@media (max-width: 768px) {
+		flex-direction: column;
+
+		.checkbox_container {
+			margin-bottom: unset;
+			margin-top: 16px;
+		}
+	}
+
+	@media (min-width: 990px) and (max-width: 1224px) {
+		.checkbox_container {
+			margin-bottom: -80px;
+		}
+	}
+}
+
+.lable {
+	margin: 5px 0 5px 0;
+	font-weight: 500;
+	font-size: 14px;
+	color: #393f70;
+  }
+
+.errors {
+	min-height: 16px;
+	margin-top: 4px;
+	font-size: 12px;
+	line-height: 16px;
+	color: #cb6464;
+}
+
+.header_container {
+	margin-bottom: 0;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	:global{
+	  .ui_select_container{
+		width:200px
+	  }
+	  .ui_toggle_container{
+		padding:0;
+	  }
+	}
+}
+  

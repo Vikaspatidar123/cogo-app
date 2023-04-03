@@ -1,3 +1,4 @@
+import book from './config/book';
 import dashboard from './config/dashboard';
 import route from './config/public-paths';
 import rolesAndPermissions from './config/roles-n-permission';
@@ -11,6 +12,7 @@ const routeConfig = withPrefix({
 	...saas,
 	...settings,
 	...dashboard,
+	...book,
 });
 
 const routes = {

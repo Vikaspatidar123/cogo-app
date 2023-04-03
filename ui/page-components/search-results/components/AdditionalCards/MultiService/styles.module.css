@@ -1,0 +1,92 @@
+.heading {
+	font-weight: bold;
+	font-size: 14px;
+	line-height: 20px;
+	letter-spacing: 0.02em;
+	color: #000000;
+}
+
+.sub_heading {
+	font-size: 12px;
+	line-height: 16px;
+	letter-spacing: 0.02em;
+	color: #828282;
+	text-transform: initial;
+}
+
+.container {
+	.ui-single-date-picker-input-container {
+		width: 50%;
+	}
+}
+
+.input_wrap {
+	.core-ui-input-root {
+		width: 40%;
+		height: 32px;
+		font-size: 12px;
+		margin-bottom: 16px;
+		margin-left: 16px;
+	}
+}
+
+.service_form_wrap {
+	background: #f9f9f9;
+	border-radius: 4px 4px 10px 10px;
+	padding: 12px 16px;
+	margin: 10px 0px 16px 16px;
+	width: 96%;
+}
+
+.service_category {
+	margin-top: 32px;
+	font-weight: bold;
+	font-size: 14px;
+	line-height: 16px;
+	letter-spacing: 0.04em;
+	color: #000000;
+}
+
+.button_container {
+	display: flex;
+	justify-content: center;
+	margin: 40px 0px;
+
+	.core-ui-button-root {
+		width: 240px;
+		height: 44px;
+		background: #333333;
+		font-size: 14px;
+	}
+}
+
+/* .animated_container { animated({
+	enter: {
+		translateY: [-10, 0],
+		opacity: [0, 1],
+		easing: 'easeInOutQuad',
+		duration: 500,
+	},
+	exit: {
+		translateY: [0, 10],
+		opacity: [1, 0],
+		duration: 400,
+	},
+})
+} */
+
+.form_wrap { 
+	background: #f9f9f9;
+	border-radius: 4px 4px 10px 10px;
+	padding: 12px 16px;
+	margin-bottom: 16px;
+	width: 80%;
+}
+
+.add_service_heading { 
+	color: #4f4f4f;
+	font-style: normal;
+	font-weight: 500;
+	font-size: 14px;
+	margin: 16px;
+}

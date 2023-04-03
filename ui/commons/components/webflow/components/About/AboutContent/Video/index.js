@@ -1,7 +1,7 @@
 import React from 'react';
 
 import SingleVideo from './SingleVideo';
-import styles from './styles';
+import styles from './styles.module.css';
 
 function Video({ videos, showDescription, showThumbNail, showVideo }) {
 	return (

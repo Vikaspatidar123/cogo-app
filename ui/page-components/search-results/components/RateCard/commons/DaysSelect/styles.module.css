@@ -1,0 +1,35 @@
+.container {
+	display: flex;
+	border: 1px solid #bdaff9;
+	border-radius: 4px;
+	align-items: center;
+	max-width: 92px;
+
+	.core-ui-input-root {
+		border: none;
+		width: 28px;
+		margin: 4px;
+		padding: 0;
+	}
+
+	.core-ui-input-control {
+		text-align: center;
+	}
+}
+
+.method_container {
+	padding: 10px;
+	cursor: pointer;
+}
+
+.v_line {
+	height: 24px;
+	border: 1px solid #bdaff9;
+	margin: 4px auto;
+}
+
+.styled_text { 
+	font-size: 12px;
+	color: #393f70;
+	margin-top: 4px;
+}

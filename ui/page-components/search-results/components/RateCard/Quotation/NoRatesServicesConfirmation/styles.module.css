@@ -1,0 +1,11 @@
+.button_wrap {
+	display: flex;
+	justify-content: center;
+
+	:global{
+	.core-ui-button-root {
+		height: 44px;
+		width: 100px;
+	}
+ }
+}

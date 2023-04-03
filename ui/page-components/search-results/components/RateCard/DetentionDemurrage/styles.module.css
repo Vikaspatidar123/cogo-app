@@ -1,0 +1,20 @@
+.container {
+	display: flex;
+	justify-content: space-between;
+	padding: 8px 8px;
+	width: 80%;
+	margin: auto;
+}
+
+.flex_column {
+	display: flex;
+	flex-direction: column;
+}
+
+.styled_button {
+	margin-left: 8px;
+	background: #ecf5ff !important;
+	border-radius: 10px;
+	color: #828282 !important;
+	border: none;
+}

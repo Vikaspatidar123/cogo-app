@@ -1,0 +1,42 @@
+{
+  "general": {
+    "coke_and_coal": "Coal & Coke",
+    "minerals_ores": "Minerals & Ores",
+    "food_grains_and_flours_and_pulses": "Food Grains, Flours & Pulses",
+    "cement_and_clinker": "Cement & Clinker",
+    "chemical_manures": "Chemical Manures",
+    "iron_and_steel": "Iron & Steel",
+    "petroleum_products_and_gases": "Petroleum Products & Gases",
+    "automobile": "Automobile",
+    "sugar_and_salt_and_spices_and_oils": "Sugar, Salt, Spices, Oils and more",
+    "pig_and_sponge_and_wrought_iron": "Pig, Sponge, Wrought Iron and More",
+    "stone_bamboo_chips_and_granite": "Stone/Bamboo Chips, Granite and More",
+    "others": "Others"
+  },
+  "temp_controlled": {
+    "active_general_pharma": "Active General Pharma",
+    "active_chilled": "Chilled: 2-8 degree Celsius",
+    "active_ambient": "Ambient: 15-25 degree Celsius",
+    "active_frozen": "Frozen: 0 to -20 degree Celsius",
+    "passive_general_pharma": "Passive General Pharma",
+    "passive_chilled": "Chilled: 2-8 degree Celsius",
+    "passive_ambient": "Ambient: 15-25 degree Celsius",
+    "passive_frozen": "Frozen: 0 to -20 degree Celsius"
+  },
+  "dangerous": {
+    "class_2.1": "Class 2.1 (Flammable Gases)",
+    "class_2.2": "Class 2.2 (Non-Flammable, Non-Toxic Gases)",
+    "class_2.3": "Class 2.3 (Toxic Gases)",
+    "class_3": "Class 3 (Flammable Liquids)",
+    "class_4.1": "Class 4.1 (Flammable Solid)",
+    "class_4.2": "Class 4.2 (Spontaneously Combustible)",
+    "class_4.3": "Class 4.3 (Dangerous When Wet)",
+    "class_5.1": "Class 5.1 (Oxidizing Substances)",
+    "class_5.2": "Class 5.2 (Organic Peroxide)",
+    "class_6.1": "Class 6.1 (Toxic Liquids/Solids)",
+    "class_6.2": "Class 6.2 (Biological Substances)",
+    "class_7": "Class 7 (Radioactive Material)",
+    "class_8": "Class 8 (Corrosives Liquids/Solids)",
+    "class_9": "Class 9 (Miscellaneous Dangerous Substances and Articles, Including Environmentally Hazardous Substances)"
+  }
+}

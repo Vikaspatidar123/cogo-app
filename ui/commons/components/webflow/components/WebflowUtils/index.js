@@ -1,5 +1,5 @@
 import { Link } from '@/packages/next';
-import { rest } from '@cogo/deprecated_legacy/rest';
+// import { rest } from '@cogo/deprecated_legacy/rest';
 import { Button, Toast } from '@cogoport/components';
 import React, { useState } from 'react';
 
@@ -9,22 +9,23 @@ function WebflowUtils() {
 	const [loading, setLoading] = useState(false);
 	const onReload = () => {
 		setLoading(true);
-		rest
-			.get(`${process.env.APP_URL}api/reload-webflow`)
-			.then((res) => {
-				if (res.hasError) {
-					Toast.error(`ERRROR: ${(res.messages || []).join(', ')}`, {
-						hideAfter: 6,
-					});
-				} else {
-					Toast.success(`${res.data.message}`);
-				}
-				setLoading(false);
-			})
-			.catch((e) => {
-				Toast.error(`ERRROR: ${e.message}`, { hideAfter: 6 });
-				setLoading(false);
-			});
+		// rest
+		// 	.get(`${process.env.APP_URL}api/reload-webflow`)
+		// 	.then((res) => {
+		// 		if (res.hasError) {
+		// 			Toast.error(`ERRROR: ${(res.messages || []).join(', ')}`, {
+		// 				hideAfter: 6,
+		// 			});
+		// 		} else {
+		// 			Toast.success(`${res.data.message}`);
+		// 		}
+		// 		setLoading(false);
+		// 	})
+		// 	.catch((e) => {
+		// 		Toast.error(`ERRROR: ${e.message}`, { hideAfter: 6 });
+		// 		setLoading(false);
+		// 	});
+		window.alert('restrestrestrest');
 	};
 	return (
 		<div>

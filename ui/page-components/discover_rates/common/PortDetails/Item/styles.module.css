@@ -1,0 +1,32 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  /* flex-grow: 1; */
+  /* flex-basis: calc(50% - 7px); */
+  /* max-width: 164px; */
+  flex: 1;
+  max-width: calc(50% - 0.5em - 16px);
+}
+
+.info {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 164px;
+
+  font-size: 10px;
+  line-height: 12px;
+  color: #828282;
+  margin-bottom: 1px;
+}
+
+.name {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 164px;
+
+  font-size: 14px;
+  line-height: 16px;
+  color: black;
+}

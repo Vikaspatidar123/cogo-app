@@ -1,0 +1,17 @@
+.container {
+  .search-past-results-empty-list-page {
+    &.first {
+      margin-top: 16px;
+    }
+
+    & > p:nth-child(2) {
+      margin-bottom: 0;
+      + ol {
+        margin-top: 2px;
+      }
+    }
+  }
+
+  &.mobile {
+  }
+}

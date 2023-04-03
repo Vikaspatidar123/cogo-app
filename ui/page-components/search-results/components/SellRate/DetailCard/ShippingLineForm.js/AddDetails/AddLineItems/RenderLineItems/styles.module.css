@@ -1,0 +1,22 @@
+.container {
+	color: #393f70;
+	font-size: 16px;
+	font-weight: 500;
+}
+
+.detail_icon {
+	padding: 20px 0 0 0;
+}
+
+.delete_icon {
+	cursor: pointer;
+}
+
+.row {
+	display: flex;
+}
+
+.col {
+	display: flex;
+	flex-direction: column;
+}

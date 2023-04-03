@@ -1,5 +1,5 @@
 import { useSelector } from '@/packages/store';
-import { rest } from '@cogo/deprecated_legacy/rest';
+// import { rest } from '@cogo/deprecated_legacy/rest';
 import { isEmpty } from '@cogoport/utils';
 import React, { useState, useEffect } from 'react';
 
@@ -13,11 +13,14 @@ function FromAPI({ slug }) {
 
 	useEffect(() => {
 		if (!isEmpty(slug)) {
-			rest.get(`${initialaUrl}api/about/getAboutData?slug=${slug}`, true).then((res) => {
-				if (!res.hasError && res.data.success) {
-					setData(res.data.data);
-				}
-			});
+			// rest
+			// 	.get(`${initialaUrl}api/about/getAboutData?slug=${slug}`, true)
+			// 	.then((res) => {
+			// 		if (!res.hasError && res.data.success) {
+			// 			setData(res.data.data);
+			// 		}
+			// 	});
+			window.alert('rest req');
 		}
 	}, [initialaUrl, slug]);
 

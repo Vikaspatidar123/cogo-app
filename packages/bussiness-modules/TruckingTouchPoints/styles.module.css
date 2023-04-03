@@ -1,0 +1,60 @@
+.more_btn { 
+	color: #5936f0;
+	cursor: pointer;
+	text-decoration-line: underline;
+}
+
+.div {
+	font-size: 10px;
+	color: #5936f0;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.touch_point_container {
+	padding: 8px 8px 8px 16px;
+	position: relative;
+
+	.circle {
+		position: absolute;
+		top: 12px;
+		left: 4px;
+
+		width: 8px;
+		height: 8px;
+		background: #5936f0;
+		border-radius: 50%;
+		z-index: 1;
+	}
+
+	.line {
+		position: absolute;
+		top: 12px;
+		left: 7.5px;
+
+		height: 100%;
+		border: 0.5px dashed #5936f0;
+		z-index: 0;
+	}
+}
+
+.touch_point_div { 
+	display: flex;
+	flex-direction: column;
+	width: 30%;
+	font-size: 10px;
+	align-items: center;
+	justify-content: center;
+}
+
+.details_div { 
+	display: flex;
+	justify-content: space-between;
+}
+
+.title { 
+	border-bottom: 1px solid #dfe6f4;
+	color: #393f70;
+	padding: 4px;
+}

@@ -1,13 +1,12 @@
-import { setAboutState } from '@cogo/app-store';
-import { rest } from '@cogo/deprecated_legacy/rest';
-import { Modal, UICustomTheme, Loader } from '@cogo/deprecated_legacy/ui';
-import { useSelector, useDispatch } from '@cogo/store';
-import isEmpty from '@cogo/utils/isEmpty';
+import { setAboutState } from '@/packages/store';
+// import { rest } from '@cogo/deprecated_legacy/rest';
+// import { Modal, UICustomTheme, Loader } from '@cogo/deprecated_legacy/ui';
+import { useSelector, useDispatch } from '@/packages/store';
+import { Modal } from '@cogoport/components';
+import { isEmpty } from '@cogoport/utils';
 import React, { useEffect, useState } from 'react';
 
 import { AboutContent } from '../AboutContent';
-
-import { modalTheme } from './styles';
 
 function AboutModal() {
 	const [state, setState] = useState({
@@ -18,7 +17,7 @@ function AboutModal() {
 	const webflowData = useSelector(({ webflow }) => webflow);
 	const dispatch = useDispatch();
 	const scope = useSelector(({ general }) => general?.scope);
-	const initialaUrl =		scope === 'partner' ? process.env.PARTNER_URL : process.env.APP_URL;
+	const initialaUrl = scope === 'partner' ? process.env.PARTNER_URL : process.env.APP_URL;
 
 	const onClose = () => {
 		dispatch(
@@ -31,40 +30,41 @@ function AboutModal() {
 
 	useEffect(() => {
 		if (webflowData.about.isOpen) {
-			rest
-				.get(
-					`${initialaUrl}api/about/getAboutData?slug=${webflowData.about.slug}`,
-					true,
-				)
-				.then((res) => {
-					if (!res.hasError && res.data.success) {
-						setState({
-							...state,
-							loading : false,
-							data    : res.data.data,
-						});
-					} else {
-						setState({
-							...state,
-							loading : false,
-							data    : {},
-						});
-						if (isEmpty(webflowData.about.defaultData || {})) onClose();
-					}
-				});
+			// rest
+			// 	.get(
+			// 		`${initialaUrl}api/about/getAboutData?slug=${webflowData.about.slug}`,
+			// 		true,
+			// 	)
+			// 	.then((res) => {
+			// 		if (!res.hasError && res.data.success) {
+			// 			setState({
+			// 				...state,
+			// 				loading : false,
+			// 				data    : res.data.data,
+			// 			});
+			// 		} else {
+			// 			setState({
+			// 				...state,
+			// 				loading : false,
+			// 				data    : {},
+			// 			});
+			// 			if (isEmpty(webflowData.about.defaultData || {})) onClose();
+			// 		}
+			// 	});
+			window.alert('rest reques');
 		}
 	}, [webflowData.about.isOpen]);
 
 	if (
 		!state.loading
-		&& isEmpty(state.data)
-		&& isEmpty(webflowData.about.defaultData || {})
+    && isEmpty(state.data)
+    && isEmpty(webflowData.about.defaultData || {})
 	) {
 		return null;
 	}
 
 	return (
-		<UICustomTheme theme={modalTheme}>
+		<div>
 			<Modal
 				show={webflowData.about.isOpen}
 				onClose={onClose}
@@ -74,16 +74,18 @@ function AboutModal() {
 				fullscreen={isMobile}
 			>
 				{state.loading ? (
-					<Loader size={2} caption="Please wait we are fetching data" />
+					<div>loader req</div>
 				) : (
+				/* <Loader size={2} caption="Please wait we are fetching data" /> */
+
 					<AboutContent
 						data={
-							!isEmpty(state.data) ? state.data : webflowData.about.defaultData
-						}
+              !isEmpty(state.data) ? state.data : webflowData.about.defaultData
+            }
 					/>
 				)}
 			</Modal>
-		</UICustomTheme>
+		</div>
 	);
 }
 

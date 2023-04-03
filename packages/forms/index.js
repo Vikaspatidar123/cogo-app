@@ -17,4 +17,8 @@ export { default as getApiError } from './utils/getApiError';
 export { default as handleError } from './utils/handleError';
 export { default as getFormattedPrice } from './utils/get-formatted-price';
 export { default as MobileNumberSelectController } from './Controlled/MobileNumberSelectController';
+export { default as withControl } from './Controlled/withControl';
+export { default as InputNumberController } from './Controlled/InputNumberController';
+export { default as AsyncSelectController } from './Controlled/AsyncSelectController';
+export { default as InputGroupController } from './Controlled/InputGroupController';
 export * from './utils/getAsyncFields';

@@ -1,7 +1,6 @@
 import { Link } from '@/packages/next';
-import { setAboutState } from '@cogo/app-store';
-import { Button, UICustomTheme } from '@cogo/deprecated_legacy/ui';
-import { useDispatch } from '@cogo/store';
+import { setAboutState, useDispatch } from '@/packages/store';
+import { Button } from '@cogoport/components';
 import React from 'react';
 
 // import { ButtonWrap, buttonTheme } from './styles';
@@ -29,33 +28,33 @@ function Actions({ actions, show, className }) {
 		);
 	};
 	return (
-		<UICustomTheme className={styles.button_theme}>
+		<div className={styles.button_theme}>
 			<div className={`${styles.button_wrap} ${className}`}>
 				{actions
-					&& actions.map((action, i) => {
-						if (i % 2 === 0) {
-							return (
-								<Button
-									key={`action_${i + 1}`}
-									themeType="primary rounded"
-									onClick={() => onActionClick(action)}
-								>
-									{renderAction(action)}
-								</Button>
-							);
-						}
-						return (
-							<Button
-								key={`action_${i + 1}`}
-								themeType="primary rounded outline"
-								onClick={() => onActionClick(action)}
-							>
-								{renderAction(action)}
-							</Button>
-						);
-					})}
+          && actions.map((action, i) => {
+          	if (i % 2 === 0) {
+          		return (
+	<Button
+		key={`action_${i + 1}`}
+		themeType="primary rounded"
+		onClick={() => onActionClick(action)}
+	>
+		{renderAction(action)}
+	</Button>
+          		);
+          	}
+          	return (
+	<Button
+		key={`action_${i + 1}`}
+		themeType="primary rounded outline"
+		onClick={() => onActionClick(action)}
+	>
+		{renderAction(action)}
+	</Button>
+          	);
+          })}
 			</div>
-		</UICustomTheme>
+		</div>
 	);
 }
 

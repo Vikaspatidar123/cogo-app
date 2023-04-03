@@ -358,11 +358,11 @@ const useGetCheckout = () => {
 			loading: isSetLoading ? true : prevState.loading,
 		}));
 		getCheckout();
-	}, [getCheckout]);
+	}, []);
 
 	useEffect(() => {
 		getCheckout();
-	}, [getCheckout]);
+	}, []);
 
 	useEffect(() => {
 		refetch(true);

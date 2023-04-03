@@ -1,0 +1,133 @@
+.container {
+  margin-bottom: 8px;
+  :global {
+    .core-ui-select-root {
+      width: auto;
+    }
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    /* Firefox */
+    input[type="number"] {
+      -moz-appearance: textfield;
+    }
+  }
+}
+
+.wrapper {
+  margin-top: 8px;
+}
+
+.chip {
+  background: #9befa8;
+  border-radius: 4px;
+  display: flex;
+  min-width: 0px;
+  box-sizing: border-box;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 12px;
+  padding: 8px 4px;
+
+  display: flex;
+  align-items: center;
+  color: #000000;
+}
+
+.button {
+  background: #f2f2f2;
+  outline: none;
+  padding: 6px;
+
+  border: 0.5px dashed #bdbdbd;
+  border-radius: 2px;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 10px;
+  line-height: 140%;
+  /* identical to box height, or 14px */
+
+  display: flex;
+  align-items: center;
+  letter-spacing: 0.02em;
+
+  /* Gray 3 */
+
+  color: #828282;
+}
+.back {
+  outline: none;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+
+  display: flex;
+  margin-right: 5px;
+  border: none;
+
+  height: 16px;
+  width: 16px;
+}
+
+.space_between {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.label {
+  font-size: 12px !important;
+  font-weight: bold;
+  line-height: 14px;
+  color: #4f4f4f;
+
+  display: flex;
+  align-items: center;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+
+  .sub_label {
+    font-weight: normal;
+    margin-left: 4px;
+  }
+}
+
+.calc_label {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 10px;
+  line-height: 12px;
+  /* identical to box height */
+
+  display: flex;
+  align-items: center;
+  letter-spacing: 0.02em;
+
+  /* Gray 3 */
+
+  color: #828282;
+}
+.row {
+	display: flex;
+  
+	flex-flow: row wrap;
+  
+	flex-grow: 0;
+  
+	flex-shrink: 0;
+  
+	align-items: normal;
+  
+	justify-content: flex-start;
+  }
+  .col {
+	padding: 0 8px;
+  }

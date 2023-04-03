@@ -1,0 +1,15 @@
+
+.container{
+	font-size: 12px;
+	font-weight: 500;
+	text-align: center;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: aliceblue;
+	height: 24px;
+	width: 100%;
+}
+.text{
+	padding: 8px 0px;
+}

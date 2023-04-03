@@ -4,15 +4,15 @@
  * @param {Object} 			[eventData] - A serialized JSON of the data that needs to be send along with the event
  */
 
-import { UNDEFINED_ATTRIBUTES } from '../undefined_attributes';
+import { UNDEFINED_ATTRIBUTES } from '@/ui/page-components/authentication/utils/undefined_attributes';
 
 const trackEvent = (eventName, eventData) => {
 	if (typeof window !== 'undefined' && window.dataLayer) {
 		window.dataLayer.push({
 			...UNDEFINED_ATTRIBUTES,
 			...eventData,
-			_type: 'event',
-			event: eventName,
+			_type : 'event',
+			event : eventName,
 		});
 	}
 };

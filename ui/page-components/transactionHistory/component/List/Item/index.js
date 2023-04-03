@@ -31,7 +31,6 @@ function Item({
 	}, [sort]);
 
 	const { newFunctions } = itemFunctions({ functions });
-
 	const infoData = (singleItem, itm) => {
 		if (singleItem?.toolTip) {
 			return (
@@ -50,9 +49,17 @@ function Item({
 		return getValue(itm, singleItem, newFunctions);
 	};
 	const renderItem = (itm) => (
-		<div className={`${styles.container} ${(showDrill && 'displayDrill' && 'mobile')}`}>
+		<div
+			className={`${styles.container} ${showDrill && styles.displayDrill && styles.mobile
+			}`}
+		>
 			<div className={styles.mobile_table}>
-				<MobileView fields={fields} infoData={infoData} itm={itm} loading={loading} />
+				<MobileView
+					fields={fields}
+					infoData={infoData}
+					itm={itm}
+					loading={loading}
+				/>
 			</div>
 
 			<div className={styles.row} role="presentation" onClick={handleClick}>
@@ -73,7 +80,11 @@ function Item({
 				))}
 			</div>
 
-			<div className={styles.arrow} role="presentation" onClick={() => onOpen(itm)}>
+			<div
+				className={styles.arrow}
+				role="presentation"
+				onClick={() => onOpen(itm)}
+			>
 				<div className={styles.arrow_icon_div}>
 					<IcMArrowRotateDown
 						width={15}
@@ -83,7 +94,11 @@ function Item({
 				</div>
 			</div>
 
-			<div className={showDrill ? `${styles.drill_down}${styles.displayDrill}` : `${styles.drill_down}`}>
+			<div
+				className={
+          showDrill ? `${styles.drill_down}${styles.displayDrill}` : `${styles.drill_down}`
+        }
+			>
 				<div className={styles.mobile_bill}>
 					{!drillDownLoading && (
 						<div className={styles.parent}>

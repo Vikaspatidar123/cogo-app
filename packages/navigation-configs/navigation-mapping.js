@@ -53,6 +53,41 @@ const navigationMappings = {
 				/>,
 				description: 'Seamlessly keep track of your shipments and deviations',
 			},
+			{
+				key   : 'saas_tools-air_schedules',
+				title : 'Air Schedules',
+				href  : '/v2/saas/air-schedules',
+				as    : '/v2/saas/air-schedules',
+				icon  : <img
+					src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/air-schedule.svg"
+					alt="cogo"
+				/>,
+				description: 'Seamlessly keep track of your shipment schedule and deviations',
+			},
+			{
+				key   : 'saas_tools-ocean_schedules',
+				title : 'Ocean Schedules',
+				href  : '/v2/saas/ocean-schedules',
+				as    : '/v2/saas/ocean-schedules',
+				icon  : <img
+					src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/ocean-schedule.svg"
+					alt="cogo"
+				/>,
+				description: 'Seamlessly keep track of your shipment schedules and deviations',
+			},
+			{
+
+				key   : 'saas_tools-hs_code_classification',
+				title : 'Product Classification',
+				href  : '/v2/saas/hs-classification',
+				as    : '/v2/saas/hs-classification',
+				icon  : <img
+					src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/product-classification.svg"
+					alt="cogo"
+				/>,
+				description: 'Find HS Codes with detailed description',
+
+			},
 		],
 	},
 

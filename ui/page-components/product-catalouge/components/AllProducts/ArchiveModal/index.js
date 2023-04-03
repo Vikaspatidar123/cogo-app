@@ -18,7 +18,14 @@ function ArchiveModal({ archive, setArchive, refetchArchive }) {
 				<div className={styles.text}>You can retrive your archived product anytime from the archived tab</div>
 			</div>
 			<div className={styles.button_div}>
-				<Button className={styles.secondary_button} onClick={() => setArchive(false)}>No</Button>
+				<Button
+					themeType="secondary"
+					className={styles.secondary_button}
+					onClick={() => setArchive(false)}
+				>
+					No
+
+				</Button>
 				<Button
 					className={styles.primary_button}
 					onClick={() => {

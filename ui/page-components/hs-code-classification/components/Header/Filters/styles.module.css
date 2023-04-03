@@ -1,0 +1,50 @@
+.filter_container {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 100%;
+
+	@media screen and (max-width: 767px) {
+		flex-direction: column;
+		justify-content: space-between;
+		width: 100%;
+		margin-top: 20px;
+	}
+}
+
+.fields_container {
+	display: flex;
+	gap: 12px;
+	justify-content: space-evenly;
+
+	@media screen and (max-width: 767px) {
+		flex-direction: column;
+		justify-content: space-between;
+		width: 100%;
+		margin-top: 20px;
+	}
+}
+
+.container {
+	align-items: center;
+}
+
+.button_container {
+	display: flex;
+	gap: 22px;
+
+	@media screen and (max-width: 1300px) {
+		gap: 8px;
+	}
+	@media screen and (max-width: 767px) {
+		justify-content: flex-end;
+		width: 100%;
+		margin-top: 20px;
+		margin-top: 30px;
+	}
+}
+
+.error_message {
+	margin: 0;
+	color: #ff733b;
+}

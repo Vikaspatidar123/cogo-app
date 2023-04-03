@@ -1,4 +1,7 @@
 const saas = {
+	'/saas/hs-classification': {
+		navigation: 'saas_tools-hs_code_classification',
+	},
 	'/saas/freight-rate-trend': {
 		navigation : 'saas_tools-freight_rate_trend',
 		isMainNav  : true,

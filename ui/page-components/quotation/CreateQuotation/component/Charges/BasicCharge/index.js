@@ -18,7 +18,7 @@ import ValidateProductModal from './ValidateProductModal';
 import getField from '@/packages/forms/Controlled';
 
 const style = {
-	padding  : ' 0px',
+	padding  : '0',
 	fontSize : '9px',
 };
 const getSuffix = (name, getDutiesSubmitHandler, getRatesModalHandler) => {
@@ -67,7 +67,6 @@ function BasicCharge(
 	const { current } = ref || {};
 	const { getRatesModalHandler, data } = getRatesModal({
 		current,
-		watch,
 		setCalculateCharge,
 	});
 	const {
@@ -97,7 +96,8 @@ function BasicCharge(
 		const resp = await submitForm(true);
 
 		if (resp) {
-			setQuoteRes(resp);
+			const incoterm = watch('incoterm');
+			setQuoteRes({ ...resp, incoterm });
 			if (isQuotaLeft) {
 				setValidateProduct(true);
 			} else {

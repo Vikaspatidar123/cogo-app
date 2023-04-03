@@ -32,12 +32,12 @@ const useRedirectUrl = () => {
 		push('/saas/transaction-history');
 	};
 	const downloadQuotation = (quotationId) => {
-		window.open(`${process.env.BUSINESS_FINANCE_BASE_URL}/saas/pdf/${quotationId}`);
+		window.open(`${process.env.NEXT_PUBLIC_BUSINESS_FINANCE_BASE_URL}/saas/pdf/${quotationId}`);
 	};
 
 	const downloadTransactionDocument = ({ docLink, docName, hsNumber }) => {
-		const url = `${process.env.BUSINESS_FINANCE_BASE_URL}
-        /saas/trade-engine/pdf?docLink=${docLink}&docName=${docName}&hsNumber=${hsNumber}`;
+		// eslint-disable-next-line max-len
+		const url = `${process.env.NEXT_PUBLIC_BUSINESS_FINANCE_BASE_URL}/saas/trade-engine/pdf?docLink=${docLink}&docName=${docName}&hsNumber=${hsNumber}`;
 		window.open(url);
 	};
 	return {

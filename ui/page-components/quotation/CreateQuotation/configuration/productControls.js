@@ -164,8 +164,7 @@ const productFieldArr = [
 				disabled    : true,
 				size        : 'sm',
 				width       : '15%',
-
-				rules: { required: true },
+				// rules       : { required: true },
 			},
 			{
 				name        : 'quantity',

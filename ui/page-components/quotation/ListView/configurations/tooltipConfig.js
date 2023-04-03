@@ -1,4 +1,4 @@
-import { IcMEdit, IcMPreview, IcMDownload, IcMDelete } from '@cogoport/icons-react';
+import { IcMEdit, IcMEyeopen, IcMDownload, IcMDelete } from '@cogoport/icons-react';
 
 const tooltipConfig = ({ documentStatus = '', quotationId = '', setShowDeleteModal, setQuoteId, redirectData }) => {
 	const {
@@ -9,7 +9,7 @@ const tooltipConfig = ({ documentStatus = '', quotationId = '', setShowDeleteMod
 	const tooltipContentConfig = [
 		{
 			name      : 'Preview',
-			icon      : <IcMPreview width={10} height={10} />,
+			icon      : <IcMEyeopen width={10} height={10} />,
 			className : '',
 			condition : true,
 			onClick   : () => {

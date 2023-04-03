@@ -119,6 +119,7 @@ function List(props, ref) {
 				)();
 			});
 		},
+		productSetValue: setValue,
 	}));
 
 	useMemo(() => {

@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import { cl } from '@cogoport/components';
 import { IcMMoney } from '@cogoport/icons-react';
 import { useEffect, forwardRef, useImperativeHandle, useState } from 'react';
@@ -125,6 +124,7 @@ function Charges(props, ref) {
 				)();
 			});
 		},
+
 	}));
 
 	return (

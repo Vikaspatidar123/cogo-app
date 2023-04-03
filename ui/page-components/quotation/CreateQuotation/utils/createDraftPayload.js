@@ -9,7 +9,7 @@ const createDraftpayload = ({
 }) => {
 	const {
 		transportMode,
-		charges = {},
+		incoterm = '',
 		destinationPortDetails = {}, originPortDetails = {}, header = {}, sellerAddress = {}, buyerDetails = {},
 	} = quoteRes;
 
@@ -37,7 +37,7 @@ const createDraftpayload = ({
 		const buyerCountryCode = await getCountryDetails(buyerCountryId, 'country');
 
 		const draftHeader = {
-			incoterm               : charges?.incoterm,
+			incoterm,
 			resultCurrency         : header?.currency,
 			quotationId            : quoteId,
 			modeOfTransport        : transportMode === 'OCEAN' ? 'SEA' : 'AIR',

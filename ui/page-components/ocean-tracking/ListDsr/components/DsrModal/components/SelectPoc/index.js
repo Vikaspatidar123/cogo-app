@@ -11,7 +11,7 @@ import AddPocs from '@/ui/page-components/ocean-tracking/tracker_details/compone
 import useFetchPoc from '@/ui/page-components/ocean-tracking/tracker_details/hooks/useFetchPoc';
 
 function SelectPoc({ setHeading, setStep, setSelectedPoc, setDsrId }) {
-	const {loading, pocList, setPocList} = useFetchPoc();
+	const { loading, pocList, setPocList } = useFetchPoc();
 	const [submitLoading, createDsr] = useCreateDsr();
 	const [searchText, setSearchText] = useState('');
 	const [isPocModalOpen, setPocModal] = useState(false);

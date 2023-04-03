@@ -24,8 +24,6 @@ function useUnarchive({
 			const { hasError, data } = res || {};
 			Toast.error(data?.message);
 			if (hasError) throw new Error();
-
-			console.log(res, 'res');
 		} catch (err) {
 			Toast.error(err?.data?.message);
 		}

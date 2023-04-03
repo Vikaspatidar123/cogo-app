@@ -1,4 +1,4 @@
-import { IcCPin, IcMPin } from '@cogoport/icons-react';
+import { IcMPin } from '@cogoport/icons-react';
 
 import {
 	FILTER_KEY_TO_LABEL,

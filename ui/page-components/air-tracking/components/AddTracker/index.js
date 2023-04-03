@@ -41,7 +41,9 @@ function AddTrackerModal({ show, onclose }) {
 							/>
 							{labeledValue && (
 								<a
-									href="https://cogoport-production.sgp1.digitaloceanspaces.com/ea41e8fc91cc30257bb086056c3b6291/airway_bill_no.csv"
+									href="https://cogoport-production.sgp1.
+									digitaloceanspaces.com/ea41e8fc91cc30257bb086056c3b6291/
+									airway_bill_no.csv"
 									download="container_number_for_csv.csv"
 									style={{ marginLeft: 5, fontSize: 10 }}
 								>

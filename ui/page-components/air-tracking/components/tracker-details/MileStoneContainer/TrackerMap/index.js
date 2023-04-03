@@ -1,7 +1,6 @@
 import { Modal } from '@cogoport/components';
 import { IcMLocation } from '@cogoport/icons-react';
 import dynamic from 'next/dynamic';
-import Image from 'next/image';
 import { useState, useEffect } from 'react';
 
 import { isPastOrPresentDay } from '../common/utils';
@@ -17,7 +16,6 @@ function TrackerMap({
 	vesselLocationLang,
 	type,
 	height = '80vh',
-	isModal = false,
 	markers = [],
 	route = {},
 }) {
@@ -167,7 +165,7 @@ function TrackerMap({
 				setLoading(false);
 			}, 0);
 		}
-	}, [points.length]);
+	}, [CurvePoint, RemainingPoint, points, points?.length, type]);
 
 	useEffect(() => {
 		if (type === 'ocean_schedule' && curvePoints.length > 0) {
@@ -176,7 +174,7 @@ function TrackerMap({
 				setLoading(false);
 			}, 0);
 		}
-	}, [markers]);
+	}, [curvePoints.length, markers, type]);
 
 	if (isTrackerMapModalOpen) {
 		return (

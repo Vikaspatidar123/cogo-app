@@ -1,12 +1,10 @@
-import { Modal, Placeholder, Toast, Button } from '@cogoport/components';
+import { Modal, Placeholder, Toast } from '@cogoport/components';
 import { useState, useEffect } from 'react';
 
 import { STEPS_INFO, MAX_STEPS } from '../../../common/constant';
 import useFetchAlerts from '../../../hooks/useFetchAlert';
 import AddAlerts from '../AddAlerts';
 import LinkPocs from '../LinkPocs';
-
-import styles from './styles.module.css';
 
 function PocModal({ isOpen, handleModal, fetchTrackerDetails, trackerDetails }) {
 	const [step, setStep] = useState(0);
@@ -30,8 +28,6 @@ function PocModal({ isOpen, handleModal, fetchTrackerDetails, trackerDetails }) 
 				});
 		}
 	}, [fetchAlertDetails, trackerDetails.id]);
-
-	const [loading, setLoading] = useState(false);
 
 	const handleNext = (callApi = false) => {
 		if (step < MAX_STEPS) {
@@ -57,7 +53,6 @@ function PocModal({ isOpen, handleModal, fetchTrackerDetails, trackerDetails }) 
 			return (
 				<LinkPocs
 					handleNext={handleNext}
-					setLoading={setLoading}
 					setTrackerPoc={setTrackerPoc}
 					trackerPoc={trackerPoc}
 					handleModal={handleModal}
@@ -68,7 +63,6 @@ function PocModal({ isOpen, handleModal, fetchTrackerDetails, trackerDetails }) 
 			return (
 				<AddAlerts
 					handleNext={handleNext}
-					setLoading={setLoading}
 					setTrackerPoc={setTrackerPoc}
 					trackerPoc={trackerPoc}
 					handlePrevious={handlePrevious}
@@ -95,40 +89,6 @@ function PocModal({ isOpen, handleModal, fetchTrackerDetails, trackerDetails }) 
 				) : (
 					<div>
 						<Modal.Body>{handleModel()}</Modal.Body>
-						{/* <Modal.Footer>
-							<div className={styles.item}>
-								{step === 1 && (
-									<Button
-										size="lg"
-										variant="ghost"
-										normalCase
-										onClick={handlePrevious}
-									>
-										Back
-									</Button>
-								)}
-								{step === 0 && (
-									<Button
-										variant="ghost"
-										size="lg"
-										normalCase
-										onClick={handleModal}
-									>
-										CANCEL
-									</Button>
-								)}
-								<Button
-									size="lg"
-									variant="secondary"
-									normalCase
-									disabled={loading}
-									hideOverflow
-									type="submit"
-								>
-									{STEPS_INFO[step]?.nextButtonLabel}
-								</Button>
-							</div>
-						</Modal.Footer> */}
 					</div>
 				)}
 			</div>

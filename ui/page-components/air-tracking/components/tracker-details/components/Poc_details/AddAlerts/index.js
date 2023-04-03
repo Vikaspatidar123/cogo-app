@@ -1,6 +1,6 @@
 import { Modal, Button, Tooltip, Checkbox, Toast } from '@cogoport/components';
 import { IcMInfo } from '@cogoport/icons-react';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 
 import useCreateAlerts from '../../../hooks/useCreateAlerts';
 import useFetchMasterList from '../../../hooks/useFetchMasterList';
@@ -11,7 +11,6 @@ import FormItem from '@/ui/commons/components/FormItem';
 
 function AddAlerts({
 	handlePrevious,
-	setLoading,
 	trackerPoc,
 	subscriptionAlerts,
 	setTrackerPoc,
@@ -27,8 +26,8 @@ function AddAlerts({
 		consignee : [],
 		dsr       : [],
 	});
-	// setLoading(submitLoading);
-	const syncServerToFields = async () => {
+
+	const syncServerToFields = useCallback(async () => {
 		const pocDetailsFromServer = (subscriptionAlerts || []).map(
 			(u) => u?.poc_details,
 		);
@@ -66,7 +65,8 @@ function AddAlerts({
 			});
 		});
 		setValue(prefilledValues);
-	};
+	}, [selected_poc_details, setTrackerPoc, subscriptionAlerts]);
+
 	const isUpdate = subscriptionAlerts?.length > 0;
 	useEffect(() => {
 		if (isUpdate) {
@@ -74,7 +74,7 @@ function AddAlerts({
 		} else {
 			setPocDetails(selected_poc_details);
 		}
-	}, []);
+	}, [isUpdate, selected_poc_details, syncServerToFields]);
 	useEffect(() => {
 		setPocDetails(selected_poc_details);
 	}, [selected_poc_details]);
@@ -183,42 +183,30 @@ function AddAlerts({
 	function CheckboxContainerComp({ value, ...props }) {
 		return (
 			<div className={styles.check_box_container}>
-				{' '}
 				<Checkbox
 					className={styles.check_box}
 					{...props}
 					checked={value}
 					position
 				/>
-				{' '}
-
 			</div>
 		);
 	}
 	return (
 		<div>
-			{' '}
 			<Modal.Body>
-				{' '}
 				<from style={{ width: '100%', marginTop: 32, overflowX: 'auto' }}>
-					{' '}
 					<FormItem style={{ minWidth: 100 }}>
-						{' '}
 						<div className={styles.container}>
-							{' '}
 							<div className={styles.main} style={{ minWidth: 150 }}>
-								{' '}
+
 &nbsp;
 							</div>
-							{' '}
 							{pocDetails?.map((detail) => (
 								<div className={styles.item}>{detail?.name}</div>))}
 						</div>
-						{' '}
 						<div className={styles.container} style={{ background: '#F9F9F9' }}>
-							{' '}
 							<div className={styles.main}>{POC.SHIPPER}</div>
-							{' '}
 							{pocDetails?.map((detail) => (
 								<CheckboxContainerComp
 									key={detail?.id}
@@ -230,11 +218,8 @@ function AddAlerts({
 								/>
 							))}
 						</div>
-						{' '}
 						<div className={styles.container}>
-							{' '}
 							<div className={styles.main}>{POC.CONSIGNEE}</div>
-							{' '}
 							{pocDetails?.map((detail) => (
 								<CheckboxContainerComp
 									key={detail?.id}
@@ -246,7 +231,6 @@ function AddAlerts({
 								/>
 							))}
 						</div>
-						{' '}
 						<div
 							className={styles.container}
 							style={{
@@ -254,9 +238,7 @@ function AddAlerts({
 								borderBottom : '1px dashed black',
 							}}
 						>
-							{' '}
 							<div className={styles.main}>{POC.DSR}</div>
-							{' '}
 							{pocDetails.map((detail) => (
 								<CheckboxContainerComp
 									key={detail?.id}
@@ -267,36 +249,27 @@ function AddAlerts({
 								/>
 							))}
 						</div>
-						{' '}
 						<div className={styles.container}>
-							{' '}
 							<div
 								className={styles.main}
 								style={{ fontWeight: 'bold', fontSize: 16 }}
 							>
-								{' '}
 								Configure Alerts
 							</div>
-							{' '}
 							{pocDetails?.map((detail) => (
 								<div className={styles.empty} key={detail?.id} />))}
 						</div>
-						{' '}
 						{masterList?.map((list, index) => (
 							<div
 								className={styles.container}
 								style={{ background: index % 2 ? '#F9F9F9' : 'none' }}
 								key={list?.alert_name}
 							>
-								{' '}
 								<div className={styles.main}>
-									{' '}
 									{list?.alert_name}
-									{' '}
 									{list?.description ? (
 										<TooltipContent description={list?.description} />) : null}
 								</div>
-								{' '}
 								{pocDetails?.map((detail) => (
 									<CheckboxContainerComp
 										key={detail?.id}
@@ -314,22 +287,14 @@ function AddAlerts({
 							</div>
 						))}
 					</FormItem>
-					{' '}
-
 				</from>
-				{' '}
-
 			</Modal.Body>
-			{' '}
+
 			<Modal.Footer>
-				{' '}
 				<div className={styles.button}>
-					{' '}
 					<Button size="lg" onClick={handlePrevious} themeType="secondary">
-						{' '}
 						Back
 					</Button>
-					{' '}
 					<Button
 						size="lg"
 						disabled={loading}
@@ -337,17 +302,10 @@ function AddAlerts({
 						type="submit"
 						onClick={() => handleSubmit()}
 					>
-						{' '}
 						Save
 					</Button>
-					{' '}
-
 				</div>
-				{' '}
-
 			</Modal.Footer>
-			{' '}
-
 		</div>
 	);
 }

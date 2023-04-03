@@ -1,4 +1,4 @@
-import { Toast, Select, FileSelect, Button } from '@cogoport/components';
+import { Toast, Select, Button } from '@cogoport/components';
 import { useState, useEffect } from 'react';
 
 import useAddTrackerCSV from '../../../hooks/useAddTrackerCSV';
@@ -9,7 +9,6 @@ import FileUploader from '@/packages/forms/Business/FileUploader';
 import { useRequest } from '@/packages/request';
 
 function CsvForm() {
-	const [value, setValue] = useState(null);
 	const [newvalue, setNewvalue] = useState({
 		airlineId    : '',
 		airwayBillNo : '',
@@ -42,8 +41,6 @@ function CsvForm() {
 			Toast.error(err?.message || 'No air lines found');
 		}
 	};
-
-	console.log(newvalue?.option, 'newvalue');
 
 	useEffect(() => {
 		getShippingLines();

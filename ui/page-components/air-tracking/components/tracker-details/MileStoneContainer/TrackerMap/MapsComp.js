@@ -18,10 +18,10 @@ const styleName = [
 ];
 
 const LAYER = styleName.map(({ title, style }) => ({
-	name        : title,
-	// eslint-disable-next-line max-len
-	url         : `https://${version}.base.maps.ls.hereapi.com/maptile/2.1/maptile/newest/${style}/{z}/{x}/{y}/512/png8?apiKey=Yi1Uv0y9PgZ24UVbBYY7-fRwaz-DPdmGWdIddQW0A9g&mv=in337jp128&ppi=320`,
-	attribution : '',
+	name : title,
+	url  : `https://${version}.base.maps.ls.hereapi.com/maptile/2.1/maptile/newest/
+	${style}/{z}/{x}/{y}/512/png8?apiKey=Yi1Uv0y9PgZ24UVbBYY7-fRwaz-DPdmGWdIddQW0A9g&mv=in337jp128&ppi=320`,
+	attribution: '',
 }));
 const lineOptions = { color: 'green' };
 const remainigRoutelineOptions = { color: 'blue' };
@@ -64,7 +64,7 @@ function MapComp({
 				'<a href="https://www.cogoport.com/en/terms-and-conditions/" target="_blank">&copy; Cogoport T&C</a> | <a href="https://www.cogoport.com/en/privacy-policy/" target="_blank">Privacy & data protection</a> | <a href="https://leafletjs.com/" target="_blank" >Leaflet</a>',
 			);
 		}
-	}, [map]);
+	}, [bounds, map]);
 
 	return (
 		<CogoMaps

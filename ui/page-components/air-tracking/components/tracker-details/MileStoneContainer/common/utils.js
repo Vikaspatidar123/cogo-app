@@ -1,7 +1,5 @@
 import { isEmpty, isSameDay, format } from '@cogoport/utils';
 
-import { UNSHADED_MILESTONES } from './constant';
-
 const isPastOrPresentDay = (inputDate) => {
 	const isCurrentDay = isSameDay(inputDate, new Date());
 

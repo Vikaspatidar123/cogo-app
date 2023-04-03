@@ -1,19 +1,15 @@
 import { useSaasState } from '../../context';
-import IconLeft from '../../icons/left-arrow.svg';
-import IconRight from '../../icons/right-arrow.svg';
 import Modal from '../../ui/Modal';
 import { CONTAINER_LENGTH_TO_BARS } from '../../utils/constants';
 import ContainerIcon from '../container-icon';
-
-import { ContainerCard } from './styles';
 
 function ContainerDetailsModal({
 	isOpen,
 	handleModal,
 	containersDetails = {},
-	containerNo,
+
 }) {
-	const { selectedContainer, setSelectedContainer } = useSaasState();
+	const { setSelectedContainer } = useSaasState();
 
 	return (
 		<Modal
@@ -23,7 +19,7 @@ function ContainerDetailsModal({
 		>
 			<div className="content">
 				{containersDetails?.map((item, idx) => (
-					<ContainerCard key={idx} onClick={() => { setSelectedContainer(idx); handleModal(); }}>
+					<div role="presentation" onClick={() => { setSelectedContainer(idx); handleModal(); }}>
 						<div className="left-container">
 							<ContainerIcon
 								label={idx + 1}
@@ -41,7 +37,7 @@ function ContainerDetailsModal({
 								{item?.container_no}
 							</p>
 						</div>
-					</ContainerCard>
+					</div>
 				))}
 			</div>
 		</Modal>

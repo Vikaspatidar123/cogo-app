@@ -1,5 +1,5 @@
 import { Input, Toast, Select, Button } from '@cogoport/components';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 
 import useAddTracker from '../../../hooks/useAddTracker';
 
@@ -28,7 +28,7 @@ function RenderForm() {
 		url    : '/list_operators',
 		method : 'get',
 	}, { manual: false });
-	const getShippingLines = async () => {
+	const getShippingLines = useCallback(async () => {
 		try {
 			const res = await airLines({
 				params: {
@@ -40,11 +40,11 @@ function RenderForm() {
 		} catch (err) {
 			Toast.error(err?.message || 'No airlines found');
 		}
-	};
+	}, [airLines]);
 
 	useEffect(() => {
 		getShippingLines();
-	}, []);
+	}, [getShippingLines]);
 
 	const fetchShippingLineForContainer = async (id) => {
 		try {
@@ -62,9 +62,7 @@ function RenderForm() {
 				"Couldn't fetch shipping line for the entered container number. Please try again later.",
 			);
 		}
-		return {
-
-		};
+		return { apiloading, loading };
 	};
 	const new_input = (e) => {
 		const value2 = e;

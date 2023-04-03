@@ -16,7 +16,8 @@ function LinkPocs({ handleNext, setTrackerPoc, trackerPoc, handleModal }) {
 	const [check, setCheck] = useState([]);
 	const filteredPocList = useMemo(
 		() => pocList?.filter(
-			(item) => ['name', 'email']?.filter((key) => item[key]?.toLowerCase().includes(searchText?.toLowerCase())).length > 0,
+			(item) => ['name', 'email']
+				?.filter((key) => item[key]?.toLowerCase().includes(searchText?.toLowerCase())).length > 0,
 		),
 		[pocList, searchText],
 	);
@@ -30,17 +31,15 @@ function LinkPocs({ handleNext, setTrackerPoc, trackerPoc, handleModal }) {
 	const { createPoc } = useCreatePoc();
 	const onSubmit = async (values) => {
 		const { data } = values;
-		// eslint-disable-next-line no-shadow
 		const newPocList = data?.map(
 			(pocId) => filteredPocList?.filter((list) => list.id === pocId)[0],
 		);
-		// eslint-disable-next-line no-plusplus
-		for (let i = 0; i < newPocList?.length; i++) {
+
+		for (let i = 0; i < newPocList?.length; i + 1) {
 			const item = newPocList[i];
 			if (item.tradeContact === true) {
 				const { name, mobile_no, email } = item;
 				try {
-					// eslint-disable-next-line no-await-in-loop
 					const id = await createPoc(name, mobile_no, email);
 					item.id = id;
 				} catch (err) {
@@ -57,7 +56,6 @@ function LinkPocs({ handleNext, setTrackerPoc, trackerPoc, handleModal }) {
 	const {
 		control,
 		handleSubmit,
-		formState: { errors },
 	} = useForm();
 	const onCheck = (id) => {
 		if (check.includes(id)) {

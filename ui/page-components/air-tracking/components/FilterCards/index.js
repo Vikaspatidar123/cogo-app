@@ -8,7 +8,7 @@ import styles from './styles.module.css';
 
 function FilterCards({ id, onClick, activeKey, stats, ...props }) {
 	const wide = FILTER_WIDTH[id];
-	console.log(wide, 'wide');
+
 	if (wide === 1 || wide === 2) {
 		const headingKey = id;
 		const subheading1Key = WIDE_FILTER_KEY[id].subheading1;

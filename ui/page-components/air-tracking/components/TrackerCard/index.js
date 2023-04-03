@@ -1,5 +1,5 @@
-import { Placeholder, Pagination, Popover, Button } from '@cogoport/components';
-import { IcMListView, IcMMap, IcMFilter, IcMArrowBack } from '@cogoport/icons-react';
+import { Placeholder, Pagination, Popover } from '@cogoport/components';
+import { IcMListView, IcMMap, IcMFilter } from '@cogoport/icons-react';
 import { useState, useEffect } from 'react';
 
 // import useFetchTrackers from '../../hooks/useFetchTrackers';

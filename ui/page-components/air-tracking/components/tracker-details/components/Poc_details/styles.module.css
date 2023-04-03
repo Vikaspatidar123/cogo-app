@@ -103,8 +103,6 @@
 		padding: 16px;
 		padding-right: 2px;
 		padding-left: 10px;
-
-		/* margin-bottom: 16px; */
 		margin-left: 0%;
 		border: 1px dashed;
 		border-color: white;
@@ -114,10 +112,6 @@
 			margin-right: 0;
 			margin-bottom: 16px;
 			fill: red;
-		}
-
-		p {
-			/* color: white; */
 		}
 	}
 }

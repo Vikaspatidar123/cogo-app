@@ -3,12 +3,6 @@ import { Toast } from '@cogoport/components';
 import { useRequest } from '@/packages/request';
 
 function useAddDetention({ shipment_info, trackerDetails, setTrackerDetails, handleModal }) {
-	const {
-		origin_detention,
-		destination_detention,
-		destination_demurrage,
-		combined_destination_detention,
-	} = shipment_info || {};
 	const processValue = (val) => {
 		if (val) {
 			return val;

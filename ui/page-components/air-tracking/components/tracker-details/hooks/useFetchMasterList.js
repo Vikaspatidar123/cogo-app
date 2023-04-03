@@ -1,5 +1,5 @@
 import { Toast } from '@cogoport/components';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 
 import { useRequest } from '@/packages/request';
 
@@ -12,7 +12,7 @@ const useFetchMasterList = () => {
 		},
 		{ manual: true },
 	);
-	const fetchList = async () => {
+	const fetchList = useCallback(async () => {
 		try {
 			const res = await trigger({});
 			const { data } = res;
@@ -20,10 +20,12 @@ const useFetchMasterList = () => {
 		} catch (err) {
 			Toast.error('Unable to fetch list of alerts. Please try again.');
 		}
-	};
+	}, [trigger]);
+
 	useEffect(() => {
 		fetchList();
-	}, []);
+	}, [fetchList]);
+
 	return { loading, masterList, setMasterList };
 };
 export default useFetchMasterList;

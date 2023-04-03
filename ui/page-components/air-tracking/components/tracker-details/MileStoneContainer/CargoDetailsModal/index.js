@@ -1,6 +1,5 @@
 import { Modal } from '@cogoport/components';
 import { IcCYelloCircle } from '@cogoport/icons-react';
-import React, { useState, useRef } from 'react';
 
 import styles from './styles.module.css';
 

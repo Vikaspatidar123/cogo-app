@@ -96,7 +96,7 @@ function useFetchTrackerDetails() {
 				fetchTrackerDetails(isFirstVisit);
 			}
 		}
-	}, [apiTries, general?.query?.isFirstVisit, id]);
+	}, [apiTries, fetchTrackerDetails, general?.query?.isFirstVisit, id]);
 
 	return {
 		fetchTrackerDetails,

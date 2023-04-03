@@ -1,11 +1,3 @@
-// import AmericanExpressIcon from '../icons/americanexpress.svg';
-// import JCBIcon from '../icons/jcb.svg';
-// import MaestroIcon from '../icons/maestro.svg';
-// import MasterIcon from '../icons/mastercard.svg';
-// import RupayIcon from '../icons/rupay.svg';
-// import UnionPayIcon from '../icons/unionpay.svg';
-// import VisaIcon from '../icons/visa.svg';
-
 const MILESTONE_TYPES = {
 	EMPTY_CONTAINER_PICKUP : 'Empty Container Pickup',
 	TOLL_PLAZA_CROSSED     : 'Toll Plaza Crossed',

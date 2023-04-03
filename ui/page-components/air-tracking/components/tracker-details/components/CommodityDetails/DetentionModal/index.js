@@ -1,5 +1,5 @@
 import { Modal, Toast, Select, Button } from '@cogoport/components';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 
 import useAddCommodity from '../../../hooks/useAddCommodity';
 
@@ -13,26 +13,29 @@ function AddCommodityDetail({ isOpen, handleModal, trackerDetails, setTrackerDet
 
 	const [value, setValue] = useState();
 
-	const [{ loading }, trigger] = useRequest({
+	const [{ data }, trigger] = useRequest({
 		url    : 'list_hs_codes',
 		method : 'get',
 	}, { manual: true });
 
-	const getCommodity = async () => {
+	const getCommodity = useCallback(async () => {
 		try {
 			const res = await trigger({
 				params: { page_limit: 2000 },
 			});
-			setCommodity(res?.data?.list);
+			if (data) {
+				setCommodity(res?.data?.list);
+			}
 		} catch (err) {
 			Toast.error(err?.message || 'No commodity found');
 		}
-	};
+	}, [data, trigger]);
+
 	useEffect(() => {
 		getCommodity();
-	}, []);
+	}, [getCommodity]);
 
-	if (commodity.length === 0) return null;
+	if (data.length === 0) return null;
 
 	return (
 		<Modal

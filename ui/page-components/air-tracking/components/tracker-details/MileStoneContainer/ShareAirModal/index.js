@@ -3,7 +3,7 @@ import { useState } from 'react';
 
 import ShareModal from '../../../TrackerCard/Card/Options/ShareModal';
 
-function ShareAirModal({ setTrackers, refetch, tracker, isOpen, handleModal }) {
+function ShareAirModal({ setTrackers, refetch, tracker, handleModal }) {
 	const [showShareModal, setShareModal] = useState(true);
 	const handleShare = () => {
 		setShareModal(!showShareModal);
@@ -11,7 +11,6 @@ function ShareAirModal({ setTrackers, refetch, tracker, isOpen, handleModal }) {
 	return (
 
 		<Modal onClick={() => handleShare()} onClose={() => handleModal(false)}>
-			{/* <div>Hello</div> */}
 			{showShareModal && (
 				<ShareModal
 					tracker={tracker}

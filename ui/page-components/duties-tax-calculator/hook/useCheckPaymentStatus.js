@@ -1,5 +1,5 @@
 import { Toast } from '@cogoport/components';
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 
 import { useRouter } from '@/packages/next';
 import { useRequestBf } from '@/packages/request';
@@ -16,7 +16,7 @@ const useCheckPaymentStatus = ({
 	const { query } = useRouter();
 
 	const { billId = '' } = query || {};
-	let count = 0;
+	const count = useRef(0);
 
 	const [{ loading }, trigger] = useRequestBf({
 		url     : 'saas/bill/status',
@@ -24,7 +24,7 @@ const useCheckPaymentStatus = ({
 		method  : 'get',
 	}, { manual: true });
 
-	const paymentSuccessHandler = async (data) => {
+	const paymentSuccessHandler = useCallback(async (data) => {
 		setShowPendingModal(false);
 
 		if (!isQuotaLeft && !isUserSubscribed) {
@@ -33,7 +33,7 @@ const useCheckPaymentStatus = ({
 		} else {
 			postTradeEngine(data?.billRefId, 'PAYMENT', billId);
 		}
-	};
+	}, [billId, getDraftFn, isQuotaLeft, isUserSubscribed, postTradeEngine, setShowPendingModal, setValidateModal]);
 
 	const checkPaymentStatus = useCallback(async () => {
 		try {
@@ -48,8 +48,8 @@ const useCheckPaymentStatus = ({
 				paymentSuccessHandler(resp?.data);
 			} else {
 				setShowPendingModal(true);
-				if (count < 10) {
-					count += 1;
+				if (count.current < 10) {
+					count.current += 1;
 					setTimeout(async () => {
 						await checkPaymentStatus();
 					}, 2000);
@@ -63,10 +63,10 @@ const useCheckPaymentStatus = ({
 			}
 			return resp?.data;
 		} catch (err) {
-			console.log(err?.error?.message);
+			Toast.error(err?.error?.message);
 			return null;
 		}
-	}, []);
+	}, [billId, paymentSuccessHandler, setShowPendingModal, trigger]);
 
 	useEffect(() => {
 		if (billId) {

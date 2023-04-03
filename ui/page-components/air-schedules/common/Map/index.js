@@ -14,9 +14,6 @@ function Map({
 
 	const { origin_port = {}, destination_port = {} } = portDetails || {};
 
-	// const originLength = Object.keys(origin_port).length;
-	// const destinationlength = Object.keys(destination_port).length;
-
 	const createBezier = (inputPoints, step) => {
 		let t = 0;
 		const bezierPoints = [];
@@ -54,25 +51,25 @@ function Map({
 				(mapPoints || []).map((pt) => {
 					if (
 						![
-							pt.arrivalLatitude,
-							pt.arrivalLongitude,
-							pt.departureLatitude,
-							pt.departureLongitude,
+							pt.arrival_lat,
+							pt.arrival_long,
+							pt.departure_lat,
+							pt.departure_long,
 						].includes(null)
 						&& ![
-							pt.arrivalLatitude,
-							pt.arrivalLongitude,
-							pt.departureLatitude,
-							pt.departureLongitude,
+							pt.arrival_lat,
+							pt.arrival_long,
+							pt.departure_lat,
+							pt.departure_long,
 						].includes(undefined)
 					) {
 						const source = {
-							lat : pt.departureLatitude,
-							lng : pt.departureLongitude,
+							lat : pt.departure_lat,
+							lng : pt.departure_long,
 						};
 						const dest = {
-							lat : pt.arrivalLatitude,
-							lng : pt.arrivalLongitude,
+							lat : pt.arrival_lat,
+							lng : pt.arrival_long,
 						};
 						createBezier([source, dest], 0.001);
 						return true;

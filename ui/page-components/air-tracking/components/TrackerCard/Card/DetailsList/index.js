@@ -14,7 +14,6 @@ function DetailsList({ containersList, activeCarouselIndex, setActiveCarouselInd
 		}
 	};
 	const handleNext = () => {
-		// eslint-disable-next-line no-unsafe-optional-chaining
 		if (activeCarouselIndex < containersList?.length - 1) {
 			setActiveCarouselIndex(
 				(previousActiveCarouselIndex) => previousActiveCarouselIndex + 1,
@@ -77,6 +76,7 @@ function DetailsList({ containersList, activeCarouselIndex, setActiveCarouselInd
 
 								? (
 									<>
+										{' '}
 										{commodityDetails?.commodity?.length > 16 ? (
 											<Tooltip
 												theme="light"

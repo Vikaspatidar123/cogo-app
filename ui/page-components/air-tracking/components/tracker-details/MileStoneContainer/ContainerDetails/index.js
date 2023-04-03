@@ -1,7 +1,8 @@
+import { Modal } from '@cogoport/components';
+import { IcAContainer } from '@cogoport/icons-react';
+
 import { useSaasState } from '../../context';
-import Modal from '../../ui/Modal';
 import { CONTAINER_LENGTH_TO_BARS } from '../../utils/constants';
-import ContainerIcon from '../container-icon';
 
 function ContainerDetailsModal({
 	isOpen,
@@ -21,7 +22,7 @@ function ContainerDetailsModal({
 				{containersDetails?.map((item, idx) => (
 					<div role="presentation" onClick={() => { setSelectedContainer(idx); handleModal(); }}>
 						<div className="left-container">
-							<ContainerIcon
+							<IcAContainer
 								label={idx + 1}
 								bars={CONTAINER_LENGTH_TO_BARS[item?.container_length]}
 							/>

@@ -10,10 +10,9 @@ import useShareOption from '@/ui/page-components/air-tracking/hooks/useShareOpti
 function ShareModal({
 	show, setShow, tracker,
 }) {
-	// console.log()
 	const saasSubscriptionId = tracker?.id;
 
-	const emailValidator = /^[^<>()[\]\\,;:%#^\s@"$&!@]+@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z0-9]+\.)+[a-zA-Z]{2,}))$/;
+	const emailValidator = `$` 	/^[^<>()[\]\\,;:%#^\s@"$&!@]+@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z0-9]+\.)+[a-zA-Z]{2,}))$/;
 	const controls = [
 		{
 			name  : 'email',

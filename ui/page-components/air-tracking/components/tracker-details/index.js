@@ -21,12 +21,8 @@ function TrackerDetails() {
 		maploading,
 	} = useFetchTrackerDetails();
 
-	const [selectedContainer, setSelectedContainer] = useState(0);
 	const isArchived = trackerDetails?.status === 'completed';
 	const [isShareModalOpen, setShareModal] = useState(false);
-	const isTrackerEmpty = trackerDetails?.tracking_status !== 'Found';
-
-	console.log(isTrackerEmpty, trackerDetails, 'isTrackerEmpty');
 
 	const handleShareModal = () => {
 		setShareModal(!isShareModalOpen);
@@ -60,7 +56,6 @@ function TrackerDetails() {
 						<div className={styles.track}>
 							<MilestonesContainer
 								selectedContainerId={selectedContainerId}
-								selectedContainer={selectedContainer}
 								setSelectedContainerId={setSelectedContainerId}
 								handleShareModal={handleShareModal}
 								mapLoading={maploading}

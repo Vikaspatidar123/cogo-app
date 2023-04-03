@@ -60,8 +60,26 @@ function MapComp({
 		if (map) {
 			map.setMaxBounds(bounds);
 			map?.attributionControl?.setPrefix(
-				// eslint-disable-next-line max-len
-				'<a href="https://www.cogoport.com/en/terms-and-conditions/" target="_blank">&copy; Cogoport T&C</a> | <a href="https://www.cogoport.com/en/privacy-policy/" target="_blank">Privacy & data protection</a> | <a href="https://leafletjs.com/" target="_blank" >Leaflet</a>',
+				`${
+				<a
+					href="https://www.cogoport.com/en/terms-and-conditions/"
+					target="_blank"
+					rel="noreferrer"
+				>
+					{' '}
+					&copy; Cogoport T&C
+				</a> 
+				 <a href="https://www.cogoport.com/en/privacy-policy/" target="_blank" 
+				 rel="noreferrer" > 
+				 Privacy & data protection</a> 
+	| <a
+	href="https://leafletjs.com/"
+	target="_blank"
+	rel="noreferrer"
+       >
+	Leaflet
+
+</a>}`,
 			);
 		}
 	}, [bounds, map]);

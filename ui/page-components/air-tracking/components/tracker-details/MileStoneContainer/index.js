@@ -25,6 +25,11 @@ function MilestonesContainer({
 	const containersMilestonesList = trackerDetails?.data ?? [];
 	const incoterm = trackerDetails?.shipment_details?.incoterm;
 	const mapPoints = [];
+
+	const handleContainerDetailsModal = () => {
+		setContainerDetailsModal(!isContainerDetailsModalOpen);
+	};
+
 	if (trackerDetails?.air_flight_info?.length > 0) {
 		trackerDetails?.data[0]?.tracking_data
 			?.sort((a, b) => (a?.actual_date > b?.actual_date ? 1 : -1))
@@ -150,13 +155,13 @@ function MilestonesContainer({
 				{' '}
 
 			</div>
-			{' '}
-			{/* <CargoDetailsModal
+
+			<CargoDetailsModal
 				isOpen={isContainerDetailsModalOpen}
 				handleModal={handleShareModal}
 				airwayDetails={airway_bill_details}
 			/>
-			{' '} */}
+
 			{selectedMilestonesList?.length > 0 ? (
 				<div className={styles.tracking_details}>
 					{' '}

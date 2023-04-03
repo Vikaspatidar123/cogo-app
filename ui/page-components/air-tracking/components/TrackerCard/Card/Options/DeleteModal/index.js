@@ -7,7 +7,6 @@ import useDeleteTracker from '@/ui/page-components/air-tracking/hooks/useDeleteT
 function DeleteModal({
 	show, setShow, refetch, tracker, setTrackers, type,
 }) {
-	// console.log()
 	const saasSubscriptionId = tracker?.id;
 
 	const { disableTracker } = useDeleteTracker({ saasSubscriptionId, type, setTrackers });
@@ -16,11 +15,7 @@ function DeleteModal({
 		setShow(!show);
 		refetch();
 	};
-	// const archiveData = async () => {
-	// 	await disableTracker();
-	// 	setShowArchiveModal(!showArchiveModal);
-	// 	refetch();
-	// };
+
 	const text = () => {
 		if (type === 'delete') {
 			return 'Are you sure that you want to delete this tracker?';
@@ -35,7 +30,6 @@ function DeleteModal({
 			<div className={styles.footer}>
 				<Button onClick={() => setShow(!show)}>Cancel</Button>
 				<Button onClick={() => deleteData()}>OK</Button>
-				{/* {showArchiveModal && (<Button onClick={() => archiveData()}>OK</Button>)} */}
 			</div>
 		</Modal>
 	);

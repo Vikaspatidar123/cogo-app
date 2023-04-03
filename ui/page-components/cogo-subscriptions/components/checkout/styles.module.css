@@ -9,7 +9,6 @@
 	cursor: pointer;
 }
 
-/* width: ${(props) => (props.width ? props.width : '20%')}; */
 .wrapper {
 	height: auto;
 	padding: 0;
@@ -40,7 +39,6 @@
 .wd_39 {
 	width: 39%;
 }
-
 
 .padded_row {
 	display: flex;

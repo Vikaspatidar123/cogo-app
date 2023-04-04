@@ -33,7 +33,6 @@ const INCOTERM_TYPES = {
 	DDP : 'DDP',
 };
 
-// Last milestones until which shipper is responsible for shipment
 const INCOTERM_TO_SHIPPERS_RESPONSIBILITY = {
 	[INCOTERM_TYPES.EXW] : [MILESTONE_TYPES.EMPTY_CONTAINER_PICKUP],
 	[INCOTERM_TYPES.FCA] : [MILESTONE_TYPES.UNLOADED_FROM_RAIL],

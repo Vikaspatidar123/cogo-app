@@ -18,12 +18,12 @@ function CsvForm() {
 	const [airLinesData, setAirLineData] = useState(null);
 	const [fileValue, setFileValue] = useState();
 
-	const [{ setLoading:loading }, trigger] = useRequest({
+	const [{ loading:setLoading }, trigger] = useRequest({
 		url    : '/create_saas_air_tracker_via_csv',
 		method : 'post',
 	}, { manual: false });
 
-	const [{ apiloading }, airLines] = useRequest({
+	const [{ loading:apiloading }, airLines] = useRequest({
 		url    : '/list_operators',
 		method : 'get',
 	}, { manual: false });

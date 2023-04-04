@@ -10,7 +10,7 @@
 
 .dash_button {
 	align-items: center;
-	padding: 34px 16px;
+	padding: 24px 16px;
 	margin-left: 20px;
 	background-color: transparent;
 	border-radius: 20px;
@@ -18,11 +18,11 @@
 
 	.details {
 		display: flex;
-		justify-content: space-around;
 	}
 
 	.heading {
 		font-weight: 600;
+		margin-bottom: 10px;
 	}
 
 	@media screen and (max-width: 767px) {

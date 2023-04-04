@@ -35,7 +35,7 @@ function AddCommodityDetail({ isOpen, handleModal, trackerDetails, setTrackerDet
 		getCommodity();
 	}, [getCommodity]);
 
-	if (data.length === 0) return null;
+	if (data?.length === 0) return null;
 
 	return (
 		<Modal
@@ -47,9 +47,6 @@ function AddCommodityDetail({ isOpen, handleModal, trackerDetails, setTrackerDet
 			<Modal.Body>
 				<div className={styles.detail}>
 					<p>Add commodity and get automatic updates about the status of your shipments.</p>
-				</div>
-				<div className={styles.icon}>
-					{/* <IconCommodity size={8} /> */}
 				</div>
 				<div className={styles.list}>
 					<Select

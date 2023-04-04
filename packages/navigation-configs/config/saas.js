@@ -18,6 +18,11 @@ const saas = {
 		navigation : 'saas_tools-trade_partner',
 		isMainNav  : true,
 	},
+	'/saas/air-tracking': {
+		navigation : 'saas_tools-air_tracking',
+		isMainNav  : true,
+
+	},
 };
 
 module.exports = saas;

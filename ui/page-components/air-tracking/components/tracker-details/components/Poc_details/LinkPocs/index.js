@@ -1,4 +1,4 @@
-import { Input, Button, Toast, Modal, Placeholder, Checkbox } from '@cogoport/components';
+import { Input, Button, Toast, Placeholder, Checkbox } from '@cogoport/components';
 import { useState, useMemo } from 'react';
 
 import useCreatePoc from '../../../hooks/useCreatePoc';
@@ -40,7 +40,7 @@ function LinkPocs({ handleNext, setTrackerPoc, trackerPoc, handleModal }) {
 			if (item.tradeContact === true) {
 				const { name, mobile_no, email } = item;
 				try {
-					const id = await createPoc(name, mobile_no, email);
+					const id = createPoc(name, mobile_no, email);
 					item.id = id;
 				} catch (err) {
 					Toast.error(
@@ -114,8 +114,7 @@ function LinkPocs({ handleNext, setTrackerPoc, trackerPoc, handleModal }) {
 					);
 				})) : (<div>{!loading && <p> Please add new contacts</p> }</div>)}
 			</div>
-
-			<Modal.Footer>
+			<div className={styles.footer}>
 				<Button size="lg" onClick={handleModal} themeType="secondary">
 					CANCEL
 				</Button>
@@ -127,7 +126,7 @@ function LinkPocs({ handleNext, setTrackerPoc, trackerPoc, handleModal }) {
 				>
 					Customize Alerts
 				</Button>
-			</Modal.Footer>
+			</div>
 		</div>
 	);
 }

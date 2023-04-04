@@ -85,7 +85,7 @@ function useFetchTrackerDetails() {
 	useEffect(() => {
 		const isFirstVisit = general?.query?.isFirstVisit != null;
 		if (isFirstVisit) updateTimer();
-	}, [general?.query?.isFirstVisit, timeRemaining, updateTimer]);
+	}, [timeRemaining]);
 
 	useEffect(() => {
 		if (id) {
@@ -96,7 +96,7 @@ function useFetchTrackerDetails() {
 				fetchTrackerDetails(isFirstVisit);
 			}
 		}
-	}, [apiTries, fetchTrackerDetails, general?.query?.isFirstVisit, id]);
+	}, []);
 
 	return {
 		fetchTrackerDetails,

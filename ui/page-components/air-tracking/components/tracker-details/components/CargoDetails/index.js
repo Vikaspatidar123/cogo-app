@@ -1,13 +1,22 @@
 import { Placeholder } from '@cogoport/components';
-import React from 'react';
+import { IcMArrowBack, IcMArrowNext } from '@cogoport/icons-react';
+import { useState } from 'react';
 
 import styles from './styles.module.css';
 
 function CargoDetails({ loading, trackerDetails }) {
-	const cargoDetails = trackerDetails?.commodity_details;
-
+	const { airway_bill_details = {} } = trackerDetails || {};
+	const cargoList = [airway_bill_details];
+	const [selected, setSelected] = useState(0);
+	const handlePrevious = () => {
+		if (selected > 0) setSelected(selected - 1);
+	};
+	const handleNext = () => {
+		if (selected < cargoList.length - 1) setSelected(selected + 1);
+	};
+	const item = cargoList[0] || {};
 	return (
-		<div className={styles.cargo_details}>
+		<div className={styles.cargo_details} key={item?.container_number}>
 			{!loading
 				? (
 					<div
@@ -15,13 +24,19 @@ function CargoDetails({ loading, trackerDetails }) {
 						className={styles.dash_button}
 					>
 						<div className={styles.heading}>Cargo Details</div>
+						{cargoList.length > 1 && (
+							<div className="icons-container">
+								<IcMArrowBack size={1} onClick={handlePrevious} />
+								<IcMArrowNext size={1} onClick={handleNext} />
+							</div>
+						)}
 						<div className={styles.details}>
 							weight:
-							<div>{cargoDetails?.weight}</div>
+							<div>{cargoList[0]?.weight}</div>
 						</div>
 						<div className={styles.details}>
 							Piece:
-							<div>{cargoDetails?.piece}</div>
+							<div>{cargoList[0]?.piece}</div>
 						</div>
 					</div>
 				) : (<Placeholder height="50px" width="324px" margin="0px 0px 20px 0px" />)}

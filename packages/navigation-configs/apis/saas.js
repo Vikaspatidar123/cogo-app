@@ -176,6 +176,103 @@ const saas = {
 			service_name : 'saas_traceability',
 		},
 	],
+	app_saas_air_tracking: [
+		{
+			api          : 'create_saas_air_subscription',
+			access_type  : 'private',
+			service_name : 'air_tracking',
+		},
+		{
+			api          : 'get_saas_air_subscription',
+			access_type  : 'private',
+			service_name : 'air_tracking',
+		},
+		{
+			api          : 'create_saas_air_shipment_details',
+			access_type  : 'private',
+			service_name : 'air_tracking',
+		},
+		{
+			api          : 'create_saas_air_shipment_poc',
+			access_type  : 'private',
+			service_name : 'air_tracking',
+		},
+		{
+			api          : 'create_saas_air_subscription_poc',
+			access_type  : 'private',
+			service_name : 'air_tracking',
+		},
+		{
+			api          : 'create_saas_air_subscription_share',
+			access_type  : 'private',
+			service_name : 'air_tracking',
+		},
+		{
+			api          : 'create_saas_air_timeline',
+			access_type  : 'private',
+			service_name : 'air_tracking',
+		},
+		{
+			api          : 'deactivate_saas_air_subscription',
+			access_type  : 'private',
+			service_name : 'air_tracking',
+		},
+		{
+			api          : 'get_saas_air_shipment_details',
+			access_type  : 'private',
+			service_name : 'air_tracking',
+		},
+		{
+			api          : 'get_saas_air_subscription_shared_details',
+			access_type  : 'private',
+			service_name : 'air_tracking',
+		},
+		{
+			api          : 'get_saas_air_timeline',
+			access_type  : 'private',
+			service_name : 'air_tracking',
+		},
+		{
+			api          : 'list_saas_air_subscriptions',
+			access_type  : 'private',
+			service_name : 'air_tracking',
+		},
+		{
+			api          : 'list_saas_air_subscription_poc_details',
+			access_type  : 'private',
+			service_name : 'air_tracking',
+		},
+		{
+			api          : 'get_airline_from_airway_bill',
+			access_type  : 'private',
+			service_name : 'operator',
+		},
+		{
+			api          : 'create_update_saas_air_alert',
+			access_type  : 'private',
+			service_name : 'air_tracking',
+		},
+		{
+			api          : 'unarchive_saas_air_subscription',
+			access_type  : 'private',
+			service_name : 'air_tracking',
+		},
+		{
+			api          : 'saas_get_user_quota_usage',
+			access_type  : 'private',
+			service_name : 'saas_subscriptions_v2',
+		},
+		{
+			api          : 'create_saas_air_tracker_via_csv',
+			access_type  : 'private',
+			service_name : 'air_tracking',
+		},
+		{
+			api          : 'list_saas_store_quota',
+			access_type  : 'private',
+			service_name : 'saas_traceability',
+		},
+	],
 
 };
 export default saas;

@@ -38,11 +38,11 @@ const useArchiveList = () => {
 		} catch (err) {
 			Toast.error('Cannot fetch store quota. Please try again later.');
 		}
-	}, [filters, general?.query?.branch_id, pagination.page, trackers?.filter_data, trigger]);
+	}, []);
 
 	useEffect(() => {
 		fetchTrackers();
-	}, [fetchTrackers, filters, pagination]);
+	}, [filters, pagination]);
 
 	const refetch = () => fetchTrackers(false);
 

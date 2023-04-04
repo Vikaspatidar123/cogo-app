@@ -103,6 +103,11 @@
 
 .step {
 	position: relative;
+	> div {
+		display: inline-block;
+		width: 100%;
+		max-width: 800px;
+	}
 }
 
 .tail {

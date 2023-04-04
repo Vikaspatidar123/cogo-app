@@ -1,3 +1,4 @@
+import { Toast } from '@cogoport/components';
 import { nanoid } from 'nanoid';
 import { useState, useEffect, useCallback } from 'react';
 
@@ -29,7 +30,7 @@ function useFetchPoc() {
 				}),
 			);
 		} catch (err) {
-			console.log(err.message);
+			Toast.error('Unable to fetch poclist. Please try again.');
 		}
 	}, [general?.query?.branch_id, trigger]);
 

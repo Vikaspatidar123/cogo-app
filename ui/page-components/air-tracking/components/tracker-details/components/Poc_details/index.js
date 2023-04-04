@@ -54,18 +54,18 @@ function PocDetails({ disabled, fetchTrackerDetails, trackerDetails, ...props })
 	};
 
 	const renderEmpty = () => (
-		<div
-			role="presentation"
-			className={styles.dash_button}
-			onClick={() => handleModal()}
-			disabled={disabled}
-			{...props}
-		>
-			<div className={styles.flex}>
-				<div className={styles.flexs}>
-					<IcMPlus />
-				</div>
-				<p className={styles.flexs}>Add POC Details</p>
+		<div className={styles.commodity_details}>
+
+			<div
+				role="presentation"
+				className={styles.dash_button}
+				onClick={() => handleModal()}
+				disabled={disabled}
+				{...props}
+			>
+				<div className={styles.icon}><IcMPlus width={30} height={30} /></div>
+
+				<div className={styles.heading}>Add POC Details</div>
 			</div>
 
 		</div>

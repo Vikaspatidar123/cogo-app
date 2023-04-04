@@ -3,7 +3,6 @@ import { useState, useEffect } from 'react';
 
 import { INCOTERM_TO_SHIPPERS_RESPONSIBILITY } from '../common/incoterm';
 
-import CargoDetailsModal from './CargoDetailsModal';
 import { UNSHADED_MILESTONES } from './common/constant';
 import {
 	processList,
@@ -21,14 +20,9 @@ function MilestonesContainer({
 }) {
 	const [selectedMilestonesList, setSelectedMilestonesList] = useState([]);
 	const [incotermStep, setIncotermStep] = useState(-1);
-	const [isContainerDetailsModalOpen, setContainerDetailsModal] = useState(false);
 	const containersMilestonesList = trackerDetails?.data ?? [];
 	const incoterm = trackerDetails?.shipment_details?.incoterm;
 	const mapPoints = [];
-
-	const handleContainerDetailsModal = () => {
-		setContainerDetailsModal(!isContainerDetailsModalOpen);
-	};
 
 	if (trackerDetails?.air_flight_info?.length > 0) {
 		trackerDetails?.data[0]?.tracking_data
@@ -73,10 +67,8 @@ function MilestonesContainer({
 				}
 			});
 	}
-
-	const { airway_bill_details = {} } = trackerDetails || {};
 	const getIndexInList = (key) => {
-		for (let i = 0; i < containersMilestonesList.length; i++) {
+		for (let i = 0; i < containersMilestonesList.length; i += 1) {
 			if (containersMilestonesList[i]?.airway_bill_no === key) return i;
 		}
 		return false;
@@ -156,12 +148,6 @@ function MilestonesContainer({
 
 			</div>
 
-			<CargoDetailsModal
-				isOpen={isContainerDetailsModalOpen}
-				handleModal={handleShareModal}
-				airwayDetails={airway_bill_details}
-			/>
-
 			{selectedMilestonesList?.length > 0 ? (
 				<div className={styles.tracking_details}>
 					{' '}
@@ -182,6 +168,7 @@ function MilestonesContainer({
 									currentMilestone?.event_date,
 								);
 								let prefixClass = '';
+								let shadedClass = '';
 								const isNextMilestonePastOrPresent = isLast
 									? false
 									: isPastOrPresentDay(nextMilestone?.event_date);
@@ -204,7 +191,7 @@ function MilestonesContainer({
 								} else {
 									prefixClass = 'wait';
 								}
-								if (isShaded) prefixClass += ' shaded';
+								if (isShaded) shadedClass = 'shaded';
 								const unshadedTimeHeading = `${formatDate(
 									currentMilestone.event_date,
 								)} | (${formatTime(currentMilestone.event_date)})`;
@@ -215,8 +202,10 @@ function MilestonesContainer({
 										key={currentMilestone.id}
 										id={currentMilestone.id}
 									>
-										{' '}
-										<div className={styles.prefixClass}>
+										<div
+											className={`${styles?.[prefixClass]} 
+											${shadedClass === 'shaded' ? styles.shaded : ''}`}
+										>
 											{' '}
 											{!isLast ? (
 												<div className={styles.tail}>

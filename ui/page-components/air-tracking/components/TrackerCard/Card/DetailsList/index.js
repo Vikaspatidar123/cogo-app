@@ -5,7 +5,7 @@ import { WarnIcon } from '../../../../configuration/icon-configuration';
 
 import styles from './styles.module.css';
 
-function DetailsList({ containersList, activeCarouselIndex, setActiveCarouselIndex, commodityDetails }) {
+function DetailsList({ containersList = [], activeCarouselIndex, setActiveCarouselIndex, commodityDetails }) {
 	const listLength = containersList.length;
 	const handlePrevious = () => {
 		if (activeCarouselIndex > 0) {

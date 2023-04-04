@@ -1,10 +1,9 @@
 import { Toast } from '@cogoport/components';
 import { useState, useEffect, useRef, useCallback } from 'react';
 
-import { COUNTRY_IDS } from '../configurations/countryId';
-
 import { useRequestBf } from '@/packages/request';
 import { useSelector } from '@/packages/store';
+import COUNTRY_IDS from '@/ui/commons/constants/globals';
 
 const constFilter = {
 	HS_CODE : 'STARTS_WITH',

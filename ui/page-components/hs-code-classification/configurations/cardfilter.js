@@ -1,4 +1,4 @@
-import { COUNTRY_IDS } from './countryId';
+import COUNTRY_IDS from '@/ui/commons/constants/globals';
 
 const CARDFILTER = [
 	{

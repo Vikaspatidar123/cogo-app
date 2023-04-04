@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from 'react';
 
 import CardHeader from './CardHeader';
@@ -24,6 +25,7 @@ function DetailContainer({ planFeatureData = {} }) {
 			data : planFeatureData[selectedData.key],
 		});
 	}, []);
+
 	return (
 		<div className={styles.container}>
 			<div className={styles.header}>

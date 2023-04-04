@@ -3,10 +3,10 @@ import { IcAIdea } from '@cogoport/icons-react';
 import React, { useEffect } from 'react';
 
 import getControls from '../../../../configurations/advFilter';
-import { COUNTRY_IDS } from '../../../../configurations/countryId';
 import styles from '../styles.module.css';
 
 import { SelectController, useForm, InputController } from '@/packages/forms';
+import COUNTRY_IDS from '@/ui/commons/constants/globals';
 
 function AdvFilters({
 	refetch,

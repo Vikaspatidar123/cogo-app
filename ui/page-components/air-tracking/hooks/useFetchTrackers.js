@@ -41,7 +41,6 @@ const useFetchTrackers = () => {
 	}, []);
 
 	useEffect(() => {
-		console.log('hello');
 		fetchTrackers();
 	}, [filters, pagination]);
 

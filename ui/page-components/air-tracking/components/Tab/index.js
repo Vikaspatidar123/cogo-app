@@ -18,8 +18,8 @@ function Tab({ archived, setArchived }) {
 		loading, trackers, setTrackers, pagination, setPagination, filters, setFilters, refetch,
 	} = useFetchTrackers();
 	const {
-		trackers: trackers1,
-		loading: loading1,
+		trackers: trackersArchived,
+		loading: loadingArchived,
 		setTrackers: setTrackers1,
 		pagination: pagination1,
 		setPagination: setPagination1,
@@ -95,8 +95,8 @@ function Tab({ archived, setArchived }) {
 				<TrackerCard
 					archived={archived}
 					setArchived={setArchived}
-					loading={loading1}
-					trackers={trackers1}
+					loading={loadingArchived}
+					trackers={trackersArchived}
 					setTrackers={setTrackers1}
 					pagination={pagination1}
 					setPagination={setPagination1}

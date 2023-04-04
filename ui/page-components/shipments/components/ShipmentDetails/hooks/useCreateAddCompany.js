@@ -42,22 +42,23 @@ const useCreateAddCompany = ({
 			field.name === 'tax_number_document_url'
 			&& firstFormProps.not_reg_under_gst
 		) {
-			controls[index].tax_number_document_url = {
+			controls[index] = {
 				...field,
 				disabled : true,
 				rules    : { required: false },
 			};
-			if (field.name === 'tax_number') {
-				controls[index].tax_number = {
-					...field,
-					disabled : true,
-					rules    : { required: false },
-				};
-			}
+			controls.forEach((item, idx) => {
+				if (item.name === 'tax_number') {
+					controls[idx] = {
+						...item,
+						disabled : true,
+						rules    : { required: false },
+					};
+				}
+			});
 		}
-
 		if (
-			field === 'not_reg_under_gst'
+			field.name === 'not_reg_under_gst'
 			&& firstFormProps?.not_reg_under_gst === true
 		) {
 			setValues({ tax_number_document_url: '', tax_number: '' });

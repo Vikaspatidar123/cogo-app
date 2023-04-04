@@ -2,6 +2,7 @@ import { Placeholder, Modal } from '@cogoport/components';
 import { isEmpty } from '@cogoport/utils';
 import { useContext } from 'react';
 
+import AddCompany from './AddCompany';
 import AddCpDetails from './AddCpDetails';
 import AddDetailContainer from './AddDetailContainer';
 import InternalExternalPocs from './InternalExternalPocs';
@@ -200,7 +201,7 @@ function Poc() {
 					onClose={onClose}
 					onOuterClick={onClose}
 				>
-					{/* <AddCompany
+					<AddCompany
 						stakeholderOptions={not_added_final_stakeholders}
 						listServiceRefetch={listServiceRefetch}
 						service_prov_ids={service_prov_ids}
@@ -208,7 +209,7 @@ function Poc() {
 						setUtilities={setUtilities}
 						utilities={utilities}
 						listShipmentTradePartners={listShipmentTradePartners}
-					/> */}
+					/>
 				</Modal>
 			) : null}
 		</div>

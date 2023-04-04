@@ -1,6 +1,7 @@
 // import { Button } from '@cogoport/front/components/admin';
 import { Button } from '@cogoport/components';
 import { useState } from 'react';
+import AddSop from '../Add';
 
 import SopFilters from '../SopFilters';
 
@@ -20,10 +21,10 @@ function Header({
 }) {
 	const [sopaddForm, setSopAddForm] = useState(false);
 
-	const isSopAddOpen =		sopaddForm || quickAction === 'sop_poc' || sops?.length < 1;
+	const isSopAddOpen = sopaddForm || quickAction === 'sop_poc' || sops?.length < 1;
 
 	return (
-		<>
+		<div>
 			<div className={styles.button_container}>
 				<div style={{ display: 'flex', flexDirection: 'column' }}>
 					<SopFilters
@@ -41,7 +42,7 @@ function Header({
 
 			<div className={styles.line} />
 
-			{/* {isSopAddOpen ? (
+			{isSopAddOpen ? (
 				<AddSop
 					sops={sops}
 					trade_partners_details={trade_partners_details}
@@ -50,8 +51,8 @@ function Header({
 					reload={reload}
 					setReload={setReload}
 				/>
-			) : null} */}
-		</>
+			) : null}
+		</div>
 	);
 }
 

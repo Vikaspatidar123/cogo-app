@@ -17,6 +17,7 @@ const controls = ({ primary_service, trade_partners_details }) => [
 				errorName   : 'Instruction',
 				placeholder : 'Start typing to add SOP ',
 				className   : 'primary sm',
+				size        : 'md',
 				rows        : 1,
 				resize      : true,
 			},

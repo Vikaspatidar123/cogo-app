@@ -28,7 +28,7 @@ function Child({
 
 				{controls.map((controlItem) => {
 					const { span = 6, watch = true, show = true } = controlItem;
-					const elemShow =					(!(controlItem.name in showElements)
+					const elemShow = (!(controlItem.name in showElements)
 						|| showElements[controlItem.name])
 					&& show;
 
@@ -66,6 +66,7 @@ function Child({
 								disabled={disabled}
 								themeType={themeType}
 								label={customLabels[controlItem.name] || controlItem.label}
+								control={control}
 							/>
 						</div>
 					) : null;

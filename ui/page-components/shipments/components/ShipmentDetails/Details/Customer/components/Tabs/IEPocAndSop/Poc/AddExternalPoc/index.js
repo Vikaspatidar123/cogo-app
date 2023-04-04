@@ -68,12 +68,12 @@ function AddExternalPoc({
 						</p>
 					</div>
 					<div className={styles.line} />
-					<Layout
+					{/* <Layout
 						theme="admin"
 						control={control}
 						controls={controlPoc}
 						errors={errors}
-					/>
+					/> */}
 					<div className={styles.button_container}>
 						<Button
 							disabled={loading}

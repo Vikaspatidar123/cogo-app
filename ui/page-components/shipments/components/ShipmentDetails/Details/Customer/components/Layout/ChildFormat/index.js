@@ -1,8 +1,8 @@
 import { Button } from '@cogoport/components';
 import { startCase } from '@cogoport/utils';
 import { useFieldArray } from 'react-hook-form';
-import Child from './Child';
 
+import Child from './Child';
 import styles from './styles.module.css';
 
 function ChildFormat({
@@ -39,7 +39,7 @@ function ChildFormat({
 	return (
 		<div className={styles.container}>
 			{fields.map((field, index) => (
-				<>
+				<div>
 					{displayHeading ? (
 						<div className={styles.heading}>
 							{showButtons ? `${startCase(name)} ${index + 1}` : heading}
@@ -61,7 +61,7 @@ function ChildFormat({
 						customLabels={customValues?.label?.[index]}
 						disabled={disabled}
 					/>
-				</>
+				</div>
 			))}
 
 			{showAddButton && showButtons && !disabled ? (

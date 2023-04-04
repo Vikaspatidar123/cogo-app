@@ -1,0 +1,40 @@
+.element{
+    height: 100%;
+	width: 100%;
+	position: absolute;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+.select_layout{
+	display: flex;
+}
+.label{
+	font-weight: 500;
+	font-size: 12px;
+	padding-bottom: 5px;
+	color: #4f4f4f;
+	margin-top: 15px;
+}
+.pincode_container{
+	display: flex;
+	min-height: 40px;
+	margin-left: 8px;
+	align-items: center;
+	justify-content: center;
+}
+.footer{
+	margin: auto 0px 16px 0px;
+	display: flex;
+	flex-direction: column;
+}
+.line{
+	border: 1px solid #ded7fc;
+	margin: 20px 0px 0px 0px;
+}
+.button_container{
+	margin: 8px 0px 10px 0px;
+	display: flex;
+	justify-content: flex-end;
+	gap: 16px;
+}

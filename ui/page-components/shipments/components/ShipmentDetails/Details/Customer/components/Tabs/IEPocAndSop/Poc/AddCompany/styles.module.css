@@ -1,0 +1,45 @@
+.company_details{
+    flex-grow: 1;
+	overflow: hidden;
+	position: relative;
+}
+.footer{
+	margin: 16px 0;
+	display: flex;
+	flex-direction: column;
+}
+.line{
+	border: 1px solid #ded7fc;
+	margin: auto 0px 10px 0px;
+}
+.button_container{
+	margin: 8px 0px;
+	display: flex;
+	justify-content: flex-end;
+	gap: 16px;
+}
+.container{
+	display: flex;
+	flex-direction: column;
+	min-height: 500px;
+}
+.header_container{
+	height: 30%;
+}
+.heading{
+	font-weight: 500;
+	font-size: 18px;
+	color: #393f70;
+}
+.role_container{
+	display: flex;
+	align-items: center;
+	padding-bottom: 10px;
+	padding-top: 10px;
+}
+.label{
+	font-weight: 500;
+	font-size: 12px;
+	padding-right: 10px;
+	color: #4f4f4f;
+}

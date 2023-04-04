@@ -33,9 +33,8 @@ function AddSop({
 		trade_partners_details,
 	});
 
-	const { control, watch, handleSubmit } = useForm(fieldControls);
+	const { control, watch, handleSubmit } = useForm();
 	const formValues = watch();
-
 	const { handleAddSop, loading } = useAddSopData({
 		formValues,
 		api          : 'create',
@@ -50,13 +49,13 @@ function AddSop({
 	useEffect(() => {
 		const { instruction_items, heading, conditions } = formValues;
 		let hasIntructions = false;
-		if (instruction_items.length) {
+		if (instruction_items?.length) {
 			if (instruction_items[0].instruction || instruction_items[0].file) {
 				hasIntructions = true;
 			}
 		}
 
-		if (heading || conditions.length || hasIntructions) {
+		if (heading || conditions?.length || hasIntructions) {
 			sethasData(true);
 		} else {
 			sethasData(false);
@@ -76,20 +75,21 @@ function AddSop({
 
 	return (
 		<div className={styles.container}>
+
 			<div>
-				{/* <RadioGroup {...fields.soptype} /> */}
+				<RadioGroup {...fieldControls[3]} control={control} radioGroup />
 			</div>
 
 			<div className={styles.form_box}>
 				{formValues.soptype === 'for_booking_party' ? (
 					<>
 						<div className={styles.heading}>Applicable if (optional)</div>
-						{/* <Select {...fields.conditions} /> */}
+						<Select {...fieldControls[2]} control={control} />
 					</>
 				) : null}
 
 				<div className={styles.sop_heading}>
-					{/* <Input {...fields.heading} /> */}
+					<Input {...fieldControls[1]} control={control} />
 					{showheadingError ? (
 						<p className={styles.sop_heading_error}>Heading is Required</p>
 					) : null}
@@ -99,7 +99,6 @@ function AddSop({
 				<Layout
 					themeType="admin"
 					controls={[fieldControls[0]]}
-					// fields={fields}
 					control={control}
 					errors={errors}
 				/>

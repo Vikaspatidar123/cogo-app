@@ -12,6 +12,7 @@
 import { Pill } from '@cogoport/components';
 
 import ChildFormat from './ChildFormat';
+import EditLineItems from './EditLineItems';
 import Item from './Item';
 import styles from './styles.module.css';
 
@@ -37,15 +38,30 @@ function Layout({
 					const { type, span = 6, subType } = controlItem;
 					const show =						!(controlItem.name in showElements)
 						|| showElements[controlItem.name];
-
-					console.log(controlItem, 'config');
-
+					if (type === 'fieldArray' && subType === 'edit_items' && show) {
+						return (
+							<div className={styles.col}>
+								<EditLineItems
+									{...controlItem}
+									control={control}
+									// {...fields[controlItem.name]}
+									error={errors[controlItem.name]}
+									showElements={showElements[controlItem.name]}
+									id_prefix={id_prefix}
+									customValues={customValues[controlItem.name]}
+									themeType={themeType}
+								/>
+							</div>
+						);
+					}
 					if (type === 'fieldArray' && show) {
+						console.log(type, 'config', show);
 						return (
 							<div className={styles.col}>
 								<ChildFormat
 									{...controlItem}
-									{...fields[controlItem.name]}
+									control={control}
+									// {...fields[controlItem.name]}
 									error={errors[controlItem.name]}
 									showElements={showElements[controlItem.name]}
 									id_prefix={id_prefix}
@@ -58,7 +74,7 @@ function Layout({
 
 					return show ? (
 						<div className={styles.col}>
-							<Item
+							{/* <Item
 								{...controlItem}
 								control={control}
 								label={
@@ -68,12 +84,12 @@ function Layout({
 								value={controlItem.value}
 								id_prefix={id_prefix}
 								themeType={themeType}
-							/>
+							/> */}
 						</div>
 					) : null;
 				})}
 
-				{openTruck.map((item) => (
+				{/* {openTruck.map((item) => (
 					<Pill
 						key={item.label}
 						prefix={item.prefixIcon}
@@ -82,7 +98,7 @@ function Layout({
 					>
 						{item.label}
 					</Pill>
-				))}
+				))} */}
 			</div>
 		</div>
 	);

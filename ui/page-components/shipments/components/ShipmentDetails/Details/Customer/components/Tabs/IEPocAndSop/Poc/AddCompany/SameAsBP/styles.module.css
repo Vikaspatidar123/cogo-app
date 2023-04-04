@@ -1,0 +1,26 @@
+.container{
+    height: 100%;
+	width: 100%;
+	position: absolute;
+	display: flex;
+	flex-direction: column;
+}
+.checkout_box_container{
+	margin: 12px 16px;
+	display: flex;
+	align-items: center;
+}
+.footer{
+	margin: auto 0px 16px 0px;
+	display: flex;
+	flex-direction: column;
+}
+.line{
+	border: 1px solid #ded7fc;
+	margin: 20px 0px 0px 0px;
+}
+.button_container{
+	margin: 10px 0px;
+	display: flex;
+	justify-content: flex-end;
+}

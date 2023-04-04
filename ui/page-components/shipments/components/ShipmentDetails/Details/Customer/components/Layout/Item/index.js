@@ -53,9 +53,10 @@ function Item(props) {
 		errorName = '',
 		id_prefix = null,
 		themeType = 'admin',
+		control,
 	} = props || {};
+	console.log(control, '123control');
 	const Element = getField(type);
-	console.log(type, 'type');
 	const { label, lowerlabel } = props;
 	const errorClass = error ? 'error' : null;
 
@@ -86,7 +87,7 @@ function Item(props) {
 			) : null}
 
 			<div>
-				{/* <Element {...newProps} {...props} /> */}
+				<Element {...newProps} {...props} control={control} />
 
 				{lowerlabel && (
 					<div className={styles.lower_label}>{lowerlabel}</div>

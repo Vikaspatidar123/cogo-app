@@ -18,8 +18,8 @@ function Tab({ archived, setArchived }) {
 		loading, trackers, setTrackers, pagination, setPagination, filters, setFilters, refetch,
 	} = useFetchTrackers();
 	const {
-		trackers: trackers1,
-		loading: loading1,
+		trackers: trackersArchived,
+		loading: loadingArchived,
 		setTrackers: setTrackers1,
 		pagination: pagination1,
 		setPagination: setPagination1,
@@ -36,7 +36,6 @@ function Tab({ archived, setArchived }) {
 		return newFilters;
 	};
 	const onClick = (key) => {
-		// if key is active key
 		if (key === activeKey) return;
 
 		const newFilters = removeActiveKeyFromFilters();
@@ -45,7 +44,6 @@ function Tab({ archived, setArchived }) {
 			setFilters(newFilters);
 		} else {
 			newFilters[key] = stats[FILTER_KEY_TO_ID[key]];
-			console.log(newFilters, 'newFilters');
 			setFilters(newFilters);
 		}
 	};
@@ -96,8 +94,8 @@ function Tab({ archived, setArchived }) {
 				<TrackerCard
 					archived={archived}
 					setArchived={setArchived}
-					loading={loading1}
-					trackers={trackers1}
+					loading={loadingArchived}
+					trackers={trackersArchived}
 					setTrackers={setTrackers1}
 					pagination={pagination1}
 					setPagination={setPagination1}

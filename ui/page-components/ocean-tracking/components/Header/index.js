@@ -7,7 +7,7 @@ import AddTrackerModal from '../AddTracker';
 
 import styles from './styles.module.css';
 
-import { Link } from '@/packages/next';
+import { useRouter, Link } from '@/packages/next';
 import { useSelector } from '@/packages/store';
 
 function Header() {
@@ -15,6 +15,7 @@ function Header() {
 	const { general } = useSelector((s) => s);
 	const [isAddTrackerModalOpen, setAddTrackerModal] = useState(general?.query?.openModal);
 	const [show, setShow] = useState(false);
+	const { push } = useRouter();
 	useEffect(() => {
 		if (general?.query?.redirect === 'true') {
 			setAddTrackerModal(true);
@@ -24,7 +25,9 @@ function Header() {
 		setAddTrackerModal(!isAddTrackerModalOpen);
 		setShow(!show);
 	};
-
+	const handelRouting = () => {
+		push('/saas/cogo-subscriptions/manage-subscription');
+	};
 	return (
 		<div>
 			<div className={styles.container}>
@@ -36,7 +39,15 @@ function Header() {
 						{quotaCount}
 						)
 					</div>
-					<Button themeType="accent" size="sm" loading={loading}>Upgrade</Button>
+					<Button
+						themeType="accent"
+						size="sm"
+						loading={loading}
+						onClick={() => handelRouting}
+					>
+						Upgrade
+
+					</Button>
 				</div>
 				<div className={styles.button_container}>
 					<Link size="lg" variant="ghost" href="/saas/dsr" passHref>

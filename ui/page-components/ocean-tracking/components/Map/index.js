@@ -3,17 +3,6 @@ import { useState, useEffect } from 'react';
 
 import useFetchTrackerDetails from '../../tracker_details/hooks/useFtechTrackerDetails';
 
-const version = 1;
-const styleName = [
-	{ title: 'Normal Day', style: 'normal.day' },
-	{ title: 'Normal Day Grey', style: 'normal.day.grey' },
-	{ title: 'Normal Day Transit', style: 'normal.day.transit' },
-	{ title: 'Reduced Day', style: 'reduced.day' },
-	{ title: 'Norma lNight', style: 'normal.night' },
-	{ title: 'Reduced Night', style: 'reduced.night' },
-	{ title: 'Pedestrian Day', style: 'pedestrian.day' },
-];
-
 const LAYER = [{
 	name        : 'Cogo Maps',
 	url         : 'https://api.cogoport.com/cogo-tiles/{z}/{x}/{y}.png',
@@ -23,18 +12,12 @@ const LAYER = [{
 const CogoMaps = dynamic(() => import('./MapsComp'), { ssr: false });
 function Map({ points, height = '80vh' }) {
 	const {
-		trackerDetails,
 		setTrackerDetails,
 
 	} = useFetchTrackerDetails();
 	const [airPoints, setAirPoints] = useState([]);
 	const [OceanPoints, setOceanPoints] = useState([]);
-	// const { isMobile, setTrackerDetails, setAirTrackerDetails } = useSaasState();
 	const [isLoading, setLoading] = useState(true);
-	const [selectedContainerId, setSelectedContainerId] = useState(null);
-	const [showTracker, setShowTracker] = useState(null);
-	const [trackerLoading, setTrackerLoading] = useState(false);
-	const [containerNumber, setContainerNumber] = useState(null);
 	const [filter_points, setFilterPoints] = useState([]);
 	const [timeouts, setAllTimeouts] = useState([]);
 
@@ -150,11 +133,8 @@ function Map({ points, height = '80vh' }) {
 	}, [points]);
 	const showTrack = (p, type) => {
 		handleTrackerModal();
-		setTrackerLoading(true);
 		setFilterPoints(points.filter((x) => x.id === p.id));
 		if (type === 'ocean') {
-			setShowTracker('ocean');
-			setContainerNumber(p.container_no);
 			const trackingContainersData = [
 				{
 					container_number : p.container_no,
@@ -168,10 +148,6 @@ function Map({ points, height = '80vh' }) {
 				data        : trackingContainersData,
 			};
 			setTrackerDetails(track_data);
-			setSelectedContainerId(p.container_no);
-			setTimeout(() => {
-				setTrackerLoading(false);
-			}, 2000);
 		}
 		return true;
 	};

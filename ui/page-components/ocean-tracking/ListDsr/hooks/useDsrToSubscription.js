@@ -2,11 +2,8 @@ import { Toast } from '@cogoport/components';
 import { useState } from 'react';
 
 import { useRequest } from '@/packages/request';
-import { useSelector } from '@/packages/store';
 
 const useDsrToSubscription = () => {
-	const { general } = useSelector((s) => s);
-
 	const [loading, setLoading] = useState(false);
 	const [{ loading:apiloading1 }, trigger1] = useRequest({
 		url    : 'create_dsr_to_subscription_mapping',
@@ -42,8 +39,6 @@ const useDsrToSubscription = () => {
 			const shipmentsToRemove = subList
 				.filter((item) => !value.some((item2) => item2 === item.id))
 				.map((item) => item.id);
-
-			// shipemnts that are not present in subList
 			const shipmentsToKeep = value.filter((item) => !subList.some((item2) => item2.id === item));
 			const requestData = {
 				saas_dsr_id     : dsrId,

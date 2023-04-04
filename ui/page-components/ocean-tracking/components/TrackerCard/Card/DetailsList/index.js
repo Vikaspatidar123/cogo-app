@@ -53,9 +53,6 @@ function DetailsList({ containersList, shipmentInfo, activeCarouselIndex, setAct
 						Container no
 						<div className={styles.colon}><IcMOverflowDot /></div>
 					</div>
-					{/* <div>
-						<IcMOverflowDot />
-					</div> */}
 					<div className={styles.sub_element2}>{itemData?.container_no}</div>
 				</div>
 				<div className={styles.element1}>

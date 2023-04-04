@@ -29,7 +29,8 @@ function DetentionDetails({ disabled, trackerDetails, setTrackerDetails, ...prop
 		}
 		if (!hideDestination) {
 			if (destination_detention > 0 && destination_demurrage > 0) {
-				destinationValue = `${destination_detention} detention and ${destination_demurrage} demurrage days free`;
+				destinationValue = `${destination_detention} 
+				detention and ${destination_demurrage} demurrage days free`;
 			} else if (destination_detention > 0) {
 				destinationValue = `${destination_detention} detention days free`;
 			} else if (destination_demurrage > 0) {
@@ -55,8 +56,13 @@ function DetentionDetails({ disabled, trackerDetails, setTrackerDetails, ...prop
 	};
 
 	const renderEmpty = () => (
-		<div role="presentation" className={styles.dash_button} onClick={() => handleModal()} disabled={disabled} {...props}>
-			{/* <IconPlus /> */}
+		<div
+			role="presentation"
+			className={styles.dash_button}
+			onClick={() => handleModal()}
+			disabled={disabled}
+			{...props}
+		>
 			<p>Add available detention / demurrage free days for proactive alerts on expiry</p>
 		</div>
 	);
@@ -64,7 +70,12 @@ function DetentionDetails({ disabled, trackerDetails, setTrackerDetails, ...prop
 		<>
 			{!isEmpty ? renderInfo() : renderEmpty()}
 			{isModalOpen && (
-				<DetentionModal isOpen={isModalOpen} handleModal={handleModal} setTrackerDetails={setTrackerDetails} trackerDetails={trackerDetails} />
+				<DetentionModal
+					isOpen={isModalOpen}
+					handleModal={handleModal}
+					setTrackerDetails={setTrackerDetails}
+					trackerDetails={trackerDetails}
+				/>
 			)}
 		</>
 	);

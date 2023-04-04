@@ -18,7 +18,6 @@ function Header() {
 	useEffect(() => {
 		if (general?.query?.redirect === 'true') {
 			setAddTrackerModal(true);
-			// setShowJoyride(false);
 		}
 	}, []);
 	const handleAddTrackerModal = () => {

@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 import { FluidContainer, Popover } from '@cogoport/components';
 import { IcMDelete, IcMOverflowDot } from '@cogoport/icons-react';
 import { useState } from 'react';
@@ -64,7 +63,11 @@ function Card({ tracker, setTrackers, refetch }) {
 				{!isTrackerEmpty && (
 					<>
 						<div className={styles.child_container}>
-							<div role="presentation" className={styles.stepper} onClick={() => handleTrackingDetails(tracker.id)}>
+							<div
+								role="presentation"
+								className={styles.stepper}
+								onClick={() => handleTrackingDetails(tracker.id)}
+							>
 								<div className={styles.booking_no}>
 									{tracker.type === 'CONTAINER_NO' ? 'Container No:' : 'BL/Booking no:'}
 									{' '}

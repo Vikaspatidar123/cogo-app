@@ -20,7 +20,6 @@ const useFetchAlerts = ({ setSubscriptionAlerts, setStep, setDeterminingStep }) 
 			if (hasError) throw new Error();
 
 			const { data } = res;
-			console.log(data, 'data');
 			if (data?.length > 0) {
 				setSubscriptionAlerts(data);
 				setStep(1);

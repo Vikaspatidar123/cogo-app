@@ -32,14 +32,12 @@ function useDeleteTracker({
 		}
 
 		try {
-			const res = await trigger({ data: requestData });
+			await trigger({ data: requestData });
 
 			setTrackers((prevTrackers) => ({
 				...prevTrackers,
 				list: (prevTrackers?.list || []).filter((item) => item.id !== saasSubscriptionId),
 			}));
-
-			console.log(res, 'res');
 		} catch (err) {
 			Toast.error('Unable to delete this tracker. Please try again.');
 		}

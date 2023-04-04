@@ -1,6 +1,5 @@
 import React from 'react';
 
-// import { StyledStep, StyledSteps } from './styles';
 import styles from './styles.module.css';
 
 function Steps({ stepList, current }) {

@@ -1,15 +1,8 @@
 import { Toast } from '@cogoport/components';
 
 import { useRequest } from '@/packages/request';
-// import { useSelector } from '@/packages/store';
 
 function useAddDetention({ shipment_info, trackerDetails, setTrackerDetails, handleModal }) {
-	const {
-		origin_detention,
-		destination_detention,
-		destination_demurrage,
-		combined_destination_detention,
-	} = shipment_info || {};
 	const processValue = (val) => {
 		if (val) {
 			return val;
@@ -42,11 +35,9 @@ function useAddDetention({ shipment_info, trackerDetails, setTrackerDetails, han
 			};
 
 			setTrackerDetails(updatedTrackerDetails);
-			// setLoading(false);
 			handleModal();
 		} catch (err) {
 			Toast.error("Couldn't add shipment details", err);
-			// setLoading(false);
 		}
 	};
 

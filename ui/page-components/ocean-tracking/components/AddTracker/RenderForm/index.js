@@ -8,12 +8,6 @@ import styles from './styles.module.css';
 import { useRequest } from '@/packages/request';
 
 function RenderForm() {
-	// const {
-	// 	fields,
-	// 	handleSubmit,
-	// 	watch,
-	// 	formState: { errors },
-	// } = useForm(controls);
 	const { addTracker } = useAddTracker();
 	const SEARCH_TYPES = {
 		CONTAINER_NUMBER : 'CONTAINER_NO',

@@ -1,6 +1,3 @@
-// import { Flex } from '@cogoport/front/components';
-// import { formatDateToString } from '@cogoport/front/date';
-// import React from 'react';
 import { Placeholder } from '@cogoport/components';
 import { IcMEdit } from '@cogoport/icons-react';
 import { format } from '@cogoport/utils';

@@ -15,10 +15,8 @@ function TrackerMap({
 	vesselLocationLang,
 	type,
 	height = '80vh',
-	isModal = false,
 	markers = [],
 	route = {},
-	mapPoints,
 }) {
 	const [isTrackerMapModalOpen, setTrackerMapModal] = useState(false);
 	const [currentMilestone, setCurrentMilestone] = useState(false);
@@ -231,7 +229,7 @@ function TrackerMap({
 						{' '}
 						{route?.tracking_no}
 					</div>
-					<div className={styles.route} direction="row" justifyContent="space-evenly">
+					<div className={styles.route}>
 						<div>{route?.origin_port || ''}</div>
 						<div>{route?.destination_port || ''}</div>
 					</div>

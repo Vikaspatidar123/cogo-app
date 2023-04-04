@@ -2,7 +2,6 @@ import { Placeholder, Pagination, Popover } from '@cogoport/components';
 import { IcMListView, IcMMap, IcMFilter } from '@cogoport/icons-react';
 import { useState, useEffect } from 'react';
 
-// import useFetchTrackers from '../../hooks/useFetchTrackers';
 import useGetallOceanRoutes from '../../hooks/useGetallOceanRoutes';
 import Map from '../Map/index';
 
@@ -11,7 +10,17 @@ import FilterComponent from './FIlterComponent';
 import styles from './styles.module.css';
 
 function TrackerCard({
-	archived, setArchived, loading, trackers, setTrackers, pagination, setPagination, filters, setFilters, selectedCardLabel, refetch,
+	archived,
+	setArchived,
+	loading,
+	trackers,
+	setTrackers,
+	pagination,
+	setPagination,
+	filters,
+	setFilters,
+	selectedCardLabel,
+	refetch,
 }) {
 	const { getAllOceanRoutes, points } = useGetallOceanRoutes();
 	const [isMapView, setIsMapView] = useState(false);
@@ -41,7 +50,7 @@ function TrackerCard({
 						className={styles.status}
 						onClick={() => { setArchived(!archived); }}
 					>
-						Archived Shipments
+						{!archived ? 'Archived Shipments' : 'UnArchived Shipments'}
 					</div>
 					<div
 						role="presentation"

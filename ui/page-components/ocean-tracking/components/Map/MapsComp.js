@@ -5,19 +5,13 @@ import { useState, useEffect } from 'react';
 const Pointer = dynamic(() => import('./Pointer'), { ssr: false });
 const Route = dynamic(() => import('./Route'), { ssr: false });
 
-const version = 1;
-const styleName = [
-	{ title: 'Normal Day', style: 'normal.day' },
-	{ title: 'Normal Day Transit', style: 'normal.day.transit' },
-	{ title: 'Pedestrian Day', style: 'pedestrian.day' },
+const LAYER = [
+	{
+		name        : 'Cogo Maps',
+		url         : 'https://api.cogoport.com/cogo-tiles/{z}/{x}/{y}.png',
+		attribution : '',
+	},
 ];
-
-const LAYER = styleName.map(({ title, style }) => ({
-	name        : title,
-	// eslint-disable-next-line max-len
-	url         : `https://${version}.base.maps.ls.hereapi.com/maptile/2.1/maptile/newest/${style}/{z}/{x}/{y}/512/png8?apiKey=Yi1Uv0y9PgZ24UVbBYY7-fRwaz-DPdmGWdIddQW0A9g&mv=in337jp128&ppi=320`,
-	attribution : '',
-}));
 
 const center = { lat: '28.679079', lng: '77.069710' };
 const airPathOptions = { color: 'green' };
@@ -51,8 +45,10 @@ function MapComp({
 		if (map) {
 			map.setMaxBounds(bounds);
 			map?.attributionControl?.setPrefix(
-				// eslint-disable-next-line max-len
-				'<a href="https://www.cogoport.com/en/terms-and-conditions/" target="_blank">&copy; Cogoport T&C</a> | <a href="https://www.cogoport.com/en/privacy-policy/" target="_blank">Privacy & data protection</a> | <a href="https://leafletjs.com/" target="_blank" >Leaflet</a>',
+				`<a href="https://www.cogoport.com/en/terms-and-conditions/" 
+				target="_blank">&copy; Cogoport T&C</a> | 
+				<a href="https://www.cogoport.com/en/privacy-policy/" target="_blank">Privacy & data protection</a> 
+				| <a href="https://leafletjs.com/" target="_blank" >Leaflet</a>`,
 			);
 		}
 	}, [map]);

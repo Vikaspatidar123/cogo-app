@@ -5,24 +5,17 @@ import { useRequest } from '@/packages/request';
 import { useSelector } from '@/packages/store';
 
 const useFetchDsr = () => {
-	// const [loading, setLoading] = useState(false);
-	// const { dsrs, general, setDsrs } = useSaasState();
-	// const { scope } = general;
 	const { general } = useSelector((s) => s);
-	const { scope } = general;
 	const [dsrs, setDsrs] = useState();
 	const [{ loading }, trigger] = useRequest({
 		url    : 'list_saas_dsr',
 		method : 'get',
 	}, { manual: true });
-	const fetchDsr = async (showLoading = true) => {
+	const fetchDsr = async () => {
 		try {
-			// if (showLoading) setLoading(true);
-
 			const res = await trigger({
 				params: { filters: { organization_branch_id: general?.query?.branch_id } },
 			});
-			// if (showLoading) setLoading(false);
 			const { hasError } = res || {};
 			if (hasError) throw new Error();
 
@@ -30,7 +23,6 @@ const useFetchDsr = () => {
 			setDsrs(data?.list);
 		} catch (err) {
 			Toast.error('Unable to create status report. Please try again.');
-			// if (showLoading) setLoading(false);
 		}
 	};
 

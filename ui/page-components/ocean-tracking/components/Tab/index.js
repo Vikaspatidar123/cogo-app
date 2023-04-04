@@ -14,11 +14,9 @@ import TrackerCard from '../TrackerCard';
 import styles from './styles.module.css';
 
 function Tab({ archived, setArchived }) {
-	const [activeTab, setActiveTab] = useState('local_rates');
 	const {
 		loading, trackers, setTrackers, pagination, setPagination, filters, setFilters, refetch,
 	} = useFetchTrackers();
-	console.log(trackers, '345');
 	const {
 		trackers: trackers1,
 		loading: loading1,
@@ -81,7 +79,6 @@ function Tab({ archived, setArchived }) {
 			)}
 			{!archived && (
 				<TrackerCard
-					activeTab={activeTab}
 					archived={archived}
 					setArchived={setArchived}
 					loading={loading}
@@ -97,7 +94,6 @@ function Tab({ archived, setArchived }) {
 			)}
 			{ archived && (
 				<TrackerCard
-					activeTab={activeTab}
 					archived={archived}
 					setArchived={setArchived}
 					loading={loading1}

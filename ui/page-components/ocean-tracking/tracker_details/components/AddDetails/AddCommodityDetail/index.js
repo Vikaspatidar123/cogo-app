@@ -5,15 +5,11 @@ import useAddCommodity from '../../../hooks/useAddCommodity';
 
 import styles from './styles.module.css';
 
-// import { useForm } from '@/packages/forms';
 import { useRequest } from '@/packages/request';
 
 function AddCommodityDetail({ isOpen, handleModal, trackerDetails, setTrackerDetails }) {
 	const [commodity, setCommodity] = useState([]);
 	const { onSubmit } = useAddCommodity({ trackerDetails, setTrackerDetails, handleModal });
-
-	const { shipment_info } = trackerDetails || [];
-	const commodity_label = shipment_info?.commodity;
 	const [value, setValue] = useState();
 
 	const [{ loading }, trigger] = useRequest({
@@ -38,16 +34,14 @@ function AddCommodityDetail({ isOpen, handleModal, trackerDetails, setTrackerDet
 		<Modal
 			show={isOpen}
 			onClose={() => handleModal()}
-			// placement="center"
+			placement="center"
 		>
 			<Modal.Header title="Add Available Commodity" />
 			<Modal.Body>
 				<div className={styles.detail}>
 					<p>Add commodity and get automatic updates about the status of your shipments.</p>
 				</div>
-				<div className={styles.icon}>
-					{/* <IconCommodity size={8} /> */}
-				</div>
+				<div className={styles.icon} />
 				<div className={styles.list}>
 					<Select
 						value={value?.value}

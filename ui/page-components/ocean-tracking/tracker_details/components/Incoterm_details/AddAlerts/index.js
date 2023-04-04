@@ -27,7 +27,6 @@ function AddAlerts({
 		consignee : [],
 		dsr       : [],
 	});
-	// setLoading(submitLoading);
 	const syncServerToFields = async () => {
 		const pocDetailsFromServer = (subscriptionAlerts || []).map(
 			(u) => u?.poc_details,

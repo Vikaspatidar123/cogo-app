@@ -10,7 +10,6 @@ import useShareOption from '@/ui/page-components/ocean-tracking/hooks/useShareOp
 function ShareModal({
 	show, setShow, tracker,
 }) {
-	// console.log()
 	const saasSubscriptionId = tracker?.id;
 
 	const emailValidator = /^[^<>()[\]\\,;:%#^\s@"$&!@]+@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -39,13 +38,8 @@ function ShareModal({
 		loading,
 		apiLoading,
 		shareDetailsList,
-		setShareDetailsList,
 		onSubmit,
 	} = useShareOption({ saasSubscriptionId });
-	// const shareData = () => {
-
-	// };
-	console.log(shareDetailsList, 'shareDetailsList');
 	return (
 		<Modal size="md" show={show} onClose={() => setShow(!show)} placement="center">
 			<Modal.Header title="Share via Email" />

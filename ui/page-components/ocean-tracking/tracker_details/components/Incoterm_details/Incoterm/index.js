@@ -11,7 +11,6 @@ function IncotermModal({
 	handleModal,
 	fetchTrackerDetails,
 	trackerDetails,
-	setAlertsShow,
 }) {
 	const [step, setStep] = useState(0);
 	const [subscriptionAlerts, setSubscriptionAlerts] = useState([]);

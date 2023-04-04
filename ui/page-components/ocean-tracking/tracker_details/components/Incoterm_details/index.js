@@ -1,11 +1,3 @@
-// import React, { Fragment, useState } from 'react';
-
-// import { useSaasState } from '../../../../common/context';
-// import IconPlus from '../../../../common/icons/plus.svg';
-// import { Card, DashedButton } from '../../../../common/ui';
-
-// import IncotermModal from './components/add-modal';
-
 import { useState } from 'react';
 
 import { POC_TYPES } from '../../common/constant';
@@ -73,7 +65,6 @@ function IncotermDetails({
 			disabled={disabled}
 			{...props}
 		>
-			{/* <IconPlus /> */}
 			<p>Add incoterms and shipper / consignee details to customize alerts</p>
 		</div>
 	);

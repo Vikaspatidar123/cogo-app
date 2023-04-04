@@ -1,4 +1,4 @@
-import { Modal, Button, Select, Input } from '@cogoport/components';
+import { Modal, Button, Select, Input, cl } from '@cogoport/components';
 import { IcCTick, IcACarriageInsurancePaidTo } from '@cogoport/icons-react';
 import { startCase } from '@cogoport/utils';
 import React, { useState } from 'react';
@@ -23,17 +23,16 @@ function AdditionalServices({
 	refetch = () => {},
 	view = '',
 }) {
-	const {
-		origin_country_id = '',
-		destination_country_id = '',
-		trade_type = '',
-		user_id = '',
-		checkout_id = '',
-		spot_search_id = '',
-		importer_exporter_id = '',
-	} = data || {};
-
-	// const className = view === 'checkout' ? '' : 'search';
+	// const {
+	// 	origin_country_id = '',
+	// 	destination_country_id = '',
+	// 	trade_type = '',
+	// 	user_id = '',
+	// 	checkout_id = '',
+	// 	spot_search_id = '',
+	// 	importer_exporter_id = '',
+	// } = data || {};
+	// const className = view === 'checkout' ? '' : styles.search;
 	const [subsidiaryService, setSubsidiaryService] = useState('');
 
 	const {
@@ -109,12 +108,12 @@ function AdditionalServices({
 				}}
 				disabled={loading}
 				style={{
-        	border     : 'none',
-        	padding    : '0px',
-        	fontSize   : '30px',
-        	display    : 'flex',
-        	alignItems : 'center',
-        	height     : '20px',
+					border     : 'none',
+					padding    : '0px',
+					fontSize   : '30px',
+					display    : 'flex',
+					alignItems : 'center',
+					height     : '20px',
 				}}
 				id="search_results_additional_service_delete"
 			>
@@ -134,7 +133,7 @@ function AdditionalServices({
 	};
 
 	return (
-		<div className={styles.container}>
+		<div className={cl`${styles.container}`}>
 			<div className={styles.services_wrap}>
 				<div className={styles.text}>Additional services</div>
 				<div style={{ maxHeight: '200px', overflow: 'auto' }}>
@@ -234,7 +233,7 @@ function AdditionalServices({
 					{loading ? 'Adding...' : 'Add'}
 				</Button>
 
-				{!uniq_services_list.includes('cargo_insurance')
+				{/* {!uniq_services_list.includes('cargo_insurance')
         && [
         	'fcl_freight',
         	'lcl_freight',
@@ -262,7 +261,7 @@ function AdditionalServices({
 			<div className={`${styles.services_icon} ${styles.add}`}> + </div>
 		</div>
 	</>
-        	) : null}
+        	) : null} */}
 			</div>
 
 			{addService ? (
@@ -306,7 +305,7 @@ function AdditionalServices({
 				</Modal>
 			) : null}
 
-			{addCargoInsurance ? (
+			{/* {addCargoInsurance ? (
 				<Modal
 					show={addCargoInsurance}
 					onClose={() => setAddCargoInsurance(false)}
@@ -327,7 +326,7 @@ function AdditionalServices({
 						importer_exporter_id={importer_exporter_id}
 					/>
 				</Modal>
-			) : null}
+			) : null} */}
 		</div>
 	);
 }

@@ -3,6 +3,7 @@ import { IcCFtick } from '@cogoport/icons-react';
 import { startCase } from '@cogoport/utils';
 import React, { useState } from 'react';
 
+import CogoAssuredSchedule from './CogoAssuredSchedule';
 import DetentionDemurrage from './DetentionDemurrage';
 import HaulageText from './HaulageText';
 import Promocode from './Promocode';
@@ -129,6 +130,7 @@ function RateCard(props) {
 		searchData = {},
 		id,
 		scheduleList,
+		selectAssuredSchedule,
 	} = props;
 	const [open, setOpen] = useState(false);
 	const [show, setShow] = useState(false);
@@ -202,29 +204,10 @@ function RateCard(props) {
 			);
 		}
 		return (
-			<div className={styles.rate_validity}>
-				<div className={styles.rate_validity_tag}>Rate Validity</div>
-
-				<div className={styles.rate_validity_date}>
-					<div className={styles.dates}>
-						{formatDate({
-            	date       : data?.validity_start,
-            	dateFormat : GLOBAL_CONSTANTS.formats.date['dd MMM yyyy'],
-            	formatType : 'date',
-						})}
-					</div>
-
-					<div className={styles.line} />
-
-					<div className={styles.dates}>
-						{formatDate({
-            	date       : data?.validity_end,
-            	dateFormat : GLOBAL_CONSTANTS.formats.date['dd MMM yyyy'],
-            	formatType : 'date',
-						})}
-					</div>
-				</div>
-			</div>
+			<CogoAssuredSchedule
+				rate={data}
+				selectAssuredSchedule={selectAssuredSchedule}
+			/>
 		);
 	};
 
@@ -240,24 +223,22 @@ function RateCard(props) {
 				<div className={styles.rate}>
 					<div style={{ display: 'flex', justifyContent: 'space-between' }}>
 						<div style={{ display: 'flex' }}>
-							<div
-								className={cl`${styles.cogo_assured} ${styles.data?.source}`}
-							>
-								{data?.source === 'cogo_assured_rate' && (
-									<div style={{ display: 'flex' }}>
-										<img
-											src="https://cdn.cogoport.io/cms-prod/cogo_admin/vault/original/ic-verifiedmark.svg"
-											alt="approve"
-										/>
-										<div className={styles.cogoport_text}>Cogoport</div>
-									</div>
-								)}
-
-								<div className={styles.data?.source}>
-									{RATE_SOURCE_MAPPING[data?.source] || 'System Rate'}
-									{' '}
+							{data?.source === 'cogo_assured_rate' ? (
+								<div className={styles.cogo_assured_icon}>
+									<img
+										src="https://cdn.cogoport.io/cms-prod/cogo_partner/vault/original/cogoassured-logo.svg"
+										alt="approve"
+									/>
 								</div>
-							</div>
+							) : (
+								<div
+									className={cl`${styles[data.source]} ${styles.cogo_assured}`}
+								>
+									<text className={cl`${styles[data?.source]} ${styles.text}`}>
+										{RATE_SOURCE_MAPPING[data?.source] || 'System Rates'}
+									</text>
+								</div>
+							)}
 
 							{['air_freight', 'fcl_freight'].includes(data?.service_type)
               && data?.cogo_entity_id
@@ -269,7 +250,6 @@ function RateCard(props) {
 						{data?.service_type === 'haulage_freight' ? (
 							<div className={cl`${styles.wrapper} ${styles.payment_term}`}>
 								<div className={styles.text}>
-									{' '}
 									{startCase(data?.haulage_type)}
 								</div>
 							</div>
@@ -311,9 +291,9 @@ function RateCard(props) {
 
 							<div
 								style={{
-									display  : 'flex',
-									padding  : '10px 30px',
-									flexWrap : 'wrap',
+                	display  : 'flex',
+                	padding  : '10px 30px',
+                	flexWrap : 'wrap',
 								}}
 							>
 								{detailsToShow(data, details)}
@@ -329,7 +309,7 @@ function RateCard(props) {
 						</>
 					) : null}
 
-					{flag ? (
+					{/* {flag ? (
 						<div className={styles.code_and_remarks}>
 							{(data?.line_items || []).map((item) => {
               	if (item?.remarks?.length > 0) {
@@ -351,28 +331,28 @@ function RateCard(props) {
               	return null;
 							})}
 						</div>
-					) : null}
+					) : null} */}
 				</div>
 
-				<div className={styles.line_vrt}>
-					<Quotation
-						data={data}
-						state={state}
-						setState={setState}
-						setOpen={setOpen}
-						open={open}
-						refetch={refetch}
-						enquiry_page={enquiry_page}
-						details={details}
-						results_type={results_type}
-						spot_search_id={details?.id}
-						id={id}
-						viewSchedules={viewSchedules}
-						setViewSchedules={setViewSchedules}
-						isConfirmed={false}
-						setScheduleId={setScheduleId}
-					/>
-				</div>
+				<div className={styles.line_vrt} />
+				<Quotation
+					data={data}
+					state={state}
+					setState={setState}
+					setOpen={setOpen}
+					open={open}
+					refetch={refetch}
+					enquiry_page={enquiry_page}
+					details={details}
+					results_type={results_type}
+					spot_search_id={details?.id}
+					id={id}
+					viewSchedules={viewSchedules}
+					setViewSchedules={setViewSchedules}
+					isConfirmed={false}
+					setScheduleId={setScheduleId}
+				/>
+
 			</div>
 
 			{open && (
@@ -395,7 +375,7 @@ function RateCard(props) {
 					className={styles.animated_container}
 					type={viewSchedules ? 'enter' : 'exit'}
 				>
-					{scheduleData.map((x) => (
+					{(scheduleData || []).map((x) => (
 						<ScheduleDetails list={x.schedules} />
 					))}
 				</div>

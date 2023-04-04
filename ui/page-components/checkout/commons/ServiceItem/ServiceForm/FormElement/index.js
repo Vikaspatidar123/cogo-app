@@ -2,7 +2,7 @@ import ErrorMessage from '../../../../utils/error-message';
 
 import styles from './styles.module.css';
 
-import { InputController, SelectController } from '@/packages/forms';
+import { InputController, SelectController, ChipsController, AsyncSelectController } from '@/packages/forms';
 import TextAreaController from '@/packages/forms/Controlled/TextAreaController';
 
 function SearchResultsServiceItemFormElement({ field, errors }) {
@@ -10,8 +10,8 @@ function SearchResultsServiceItemFormElement({ field, errors }) {
 		<div className={styles.container}>
 			<div className={styles.label}>{field.label}</div>
 			<div>
-				{/* {field.type === 'pills' && <PillsControlled {...field} />} */}
-				{/* {field.type === 'location-select' && <ControlledLocation {...field} />} */}
+				{field.type === 'chips' && <ChipsController {...field} />}
+				{field.type === 'async_select' && <AsyncSelectController {...field} />}
 				{field.type === 'select' && <SelectController {...field} />}
 				{field.type === 'number' && <InputController {...field} />}
 				{field.type === 'textarea' && <TextAreaController {...field} />}

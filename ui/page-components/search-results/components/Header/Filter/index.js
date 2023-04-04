@@ -71,7 +71,7 @@ function Filter({ setFilters, state, isMobile }) {
 	});
 
 	return (
-		<div className={`${styles.container}`}>
+		<div>
 			<FilterContent
 				fields={newFields}
 				applyFilters={applyFilters}

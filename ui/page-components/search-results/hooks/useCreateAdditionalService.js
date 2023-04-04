@@ -72,6 +72,7 @@ const useCreateAdditionalService = ({
 	});
 
 	const finalServicesToAdd = renderServices(servicesList, servicesToAdd, data);
+	console.log(finalServicesToAdd, 'finalServicesToAdd', servicesList, servicesArr, servicesToAdd);
 
 	useEffect(() => {
 		setRemainingServicesToAdd(finalServicesToAdd);

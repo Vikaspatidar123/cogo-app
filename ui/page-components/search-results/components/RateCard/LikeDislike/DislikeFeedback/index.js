@@ -25,6 +25,11 @@ function DislikeFeedbackModal({ details, rate, updateRate, show, onClose }) {
 	} = useForm();
 
 	const formValues = watch();
+	const fields = {};
+	(controls || []).forEach((controlItem) => {
+		const field = { ...controlItem, control };
+		fields[controlItem.name] = field;
+	});
 
 	const onSuccess = (card, values) => {
 		setShowSuccess(true);
@@ -115,37 +120,46 @@ function DislikeFeedbackModal({ details, rate, updateRate, show, onClose }) {
 		<>
 			{show ? (
 				<Modal
-					position="bottom-right"
-					className="md"
+					placement="bottom-right"
 					show={show}
 					onClose={onClose}
 					onOuterClick={onClose}
-					styles={{ dialog: { paddingBottom: 0 } }}
+					scroll
 				>
-					<div className={styles.container} onSubmit={handleSubmit(onSubmit)}>
-						<div className={styles.header_text}>Reason for dislike</div>
+					<div className={styles.container}>
+						{/* <div className={styles.header_text}>Reason for dislike</div> */}
+						<Modal.Header title="Reason for dislike" />
+						<Modal.Body>
+							<FormElements
+								showElements={showElements}
+								formValues={formValues}
+								fields={fields}
+								errors={errors}
+							/>
+						</Modal.Body>
+						<Modal.Footer>
+							<div className={styles.footer}>
+								<Button
+									disabled={loading}
+									style={{ marginRight: 8 }}
+									onClick={onClose}
+									size="md"
+									themeType="tertiary"
+								>
+									CANCEL
+								</Button>
 
-						<FormElements
-							showElements={showElements}
-							formValues={formValues}
-							fields={control}
-							errors={errors}
-						/>
-
-						<div className={styles.footer}>
-							<Button
-								disabled={loading}
-								style={{ marginRight: 8 }}
-								className="secondary sm"
-								onClick={onClose}
-							>
-								CANCEL
-							</Button>
-
-							<Button type="submit" disabled={loading} className="primary sm">
-								SUBMIT
-							</Button>
-						</div>
+								<Button
+									type="submit"
+									disabled={loading}
+									size="md"
+									themeType="primary"
+									onClick={handleSubmit(onSubmit)}
+								>
+									SUBMIT
+								</Button>
+							</div>
+						</Modal.Footer>
 					</div>
 				</Modal>
 			) : null}

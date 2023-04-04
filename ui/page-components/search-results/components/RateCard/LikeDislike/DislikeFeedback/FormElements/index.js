@@ -4,7 +4,7 @@ import ErrorMessage from './ErrorMessage';
 import styles from './styles.module.css';
 
 import { SelectController, withControl } from '@/packages/forms';
-import TextAreaController from '@/packages/forms/Controlled/TextAreaController';
+import getField from '@/packages/forms/Controlled';
 
 function DislikeFeedbackModalFormElements({
 	showElements,
@@ -18,19 +18,6 @@ function DislikeFeedbackModalFormElements({
 		preferred_freight_rate_currency,
 		...rest
 	} = fields;
-
-	const getElement = (type) => {
-		switch (type) {
-			case 'number':
-				return Input;
-			case 'select':
-				return SelectController;
-			case 'text':
-				return TextAreaController;
-			default:
-				return null;
-		}
-	};
 
 	const Checkbox = withControl(CheckboxGroup);
 
@@ -59,7 +46,7 @@ function DislikeFeedbackModalFormElements({
 			) : null}
 
 			{Object.values(rest).map((field) => {
-				const Element = getElement(field.type);
+				const Element = getField(field.type);
 
 				if (!showElements[field.name]) {
 					return null;

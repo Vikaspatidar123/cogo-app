@@ -90,13 +90,13 @@ function Quotation({
 		{`Freight ${data.service_type === 'air_freight' ? 'per kg' : ''} `}
 		<span style={{ fontWeight: 700, marginLeft: '4px' }}>
 			{formatAmount({
-          	amount   : freight_price,
-          	currency : data?.freight_price_currency,
-          	options  : {
-          		style                 : 'currency',
-          		currencyDisplay       : 'symbol',
-          		maximumFractionDigits : 0,
-          	},
+				amount   : freight_price,
+				currency : data?.freight_price_currency,
+				options  : {
+					style                 : 'currency',
+					currencyDisplay       : 'symbol',
+					maximumFractionDigits : 0,
+				},
 			})}
 		</span>
 	</div>
@@ -362,22 +362,24 @@ function Quotation({
 					</Button>
 					<br />
 
-					<Button
-						onClick={() => {
-            	setViewSchedules(!viewSchedules);
-            	setScheduleId(data.shipping_line?.id);
-						}}
-						className={styles.button}
-						size="md"
-						themeType="tertiary"
-					>
-						View Schedules
-						{!viewSchedules ? (
-							<IcMArrowRotateDown style={{ marginLeft: '6px' }} size={1.25} />
-						) : (
-							<IcMArrowRotateUp style={{ marginLeft: '6px' }} size={1.25} />
-						)}
-					</Button>
+					{data?.source !== 'cogo_assured_rate' && (
+						<Button
+							onClick={() => {
+								setViewSchedules(!viewSchedules);
+								setScheduleId(data.shipping_line?.id);
+							}}
+							className={styles.button}
+							size="md"
+							themeType="tertiary"
+						>
+							View Schedules
+							{!viewSchedules ? (
+								<IcMArrowRotateDown style={{ marginLeft: '6px' }} size={1.25} />
+							) : (
+								<IcMArrowRotateUp style={{ marginLeft: '6px' }} size={1.25} />
+							)}
+						</Button>
+					)}
 
 					{unavailableRatesCount && data.service_type === 'fcl_freight' ? (
 						<Tooltip

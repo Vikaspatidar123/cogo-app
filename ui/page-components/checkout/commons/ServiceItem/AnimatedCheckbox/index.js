@@ -1,4 +1,4 @@
-import { Loader, Input } from '@cogoport/components';
+import { Loader, Checkbox } from '@cogoport/components';
 import React, { forwardRef } from 'react';
 
 import styles from './styles.module.css';
@@ -34,7 +34,7 @@ const AnimatedCheckbox = forwardRef(
 				{loading ? (
 					<Loader themeType="primary" />
 				) : (
-					<Input
+					<Checkbox
 						ref={ref}
 						onChange={(e) => onChange(e.target.checked)}
 						type="checkbox"

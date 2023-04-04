@@ -1,20 +1,20 @@
 .card {
 	display: flex;
-	flex-direction: column;
-	padding: 12px 6px;
-	width: fit-content;
-	background: #ffffff;
-	border: 1px solid #e0e0e0;
-	margin-top: 10px;
-	border-radius: 4px;
+    flex-direction: column;
+    padding: 12px 6px;
+    width: fit-content;
+    background: rgb(255, 255, 255);
+    border: 1px solid rgb(224, 224, 224);
+    margin-top: 10px;
+    border-radius: 4px;
 }
 
 .title {
-	color: #4f4f4f;
-	font-size: 20px;
-	font-weight: 500;
-	margin-bottom: 10px;
-	padding-left: 30px;
+	color: rgb(79, 79, 79);
+    font-size: 20px;
+    font-weight: 500;
+    margin-bottom: 10px;
+    padding-left: 30px;
 }
 
 .item {
@@ -33,6 +33,6 @@
 
 .label {
 	font-size: 14px;
-	color: #4f4f4f;
-	flex: 3;
+    color: rgb(79, 79, 79);
+    flex: 3 1 0%;
 }

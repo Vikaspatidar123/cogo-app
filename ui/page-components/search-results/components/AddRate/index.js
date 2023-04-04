@@ -1,9 +1,12 @@
-import { Button } from '@cogoport/components';
+import { Button, cl } from '@cogoport/components';
 import React from 'react';
 
 import styles from './styles.module.css';
 
-function AddRate({ type, setAddRate = () => {} }) {
+function AddRate({ type, show = false, setAddRate = () => {} }) {
+	if (!show) {
+		return <div />;
+	}
 	return (
 		<div className={styles.container}>
 			<div className={styles.detail_Ccn}>
@@ -14,10 +17,13 @@ function AddRate({ type, setAddRate = () => {} }) {
 					height={56}
 				/>
 				<div>
-					<div className={styles.detail_text} style={{ margin: '8px 0px 5px 0px' }}>
+					<div
+						className={styles.detail_text}
+						style={{ margin: '8px 0px 5px 0px' }}
+					>
 						{type !== 'rates-found'
-							? 'No Rates Found!'
-							: 'Not happy with the Rates Found ?'}
+            	? 'No Rates Found!'
+            	: 'Not happy with the Rates Found ?'}
 					</div>
 
 					<div className={`${styles.detail_text} ${styles.lead_text}`}>
@@ -28,12 +34,11 @@ function AddRate({ type, setAddRate = () => {} }) {
 				</div>
 			</div>
 
-			<div className={`${styles.detail_con} ${styles.btn}`}>
+			<div className={cl`${styles.detail_con} ${styles.btn}`}>
 				<Button
 					onClick={() => {
-						setAddRate(true);
+          	setAddRate(true);
 					}}
-					className="primary md"
 				>
 					Proceed With Booking
 				</Button>

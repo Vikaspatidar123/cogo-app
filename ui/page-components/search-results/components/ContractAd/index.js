@@ -1,4 +1,4 @@
-import { Placeholder, Button } from '@cogoport/components';
+import { Placeholder, Button, cl } from '@cogoport/components';
 import React from 'react';
 
 import styles from './styles.module.css';
@@ -15,23 +15,18 @@ function ContractAd({ contractDetail, loading, importerExporterId }) {
 			'/contract-management?activeTab=active',
 			'/contract-management?activeTab=active',
 		);
-		// } else {
-		// 	push(
-		// 		`/contract-rates/dashboard/[active_tab]?importerExporterId=${importerExporterId}`,
-		// 		`/contract-rates/dashboard/active?importerExporterId=${importerExporterId}`,
-		// 	);
-		// }
 	};
 
 	return (
 		<>
 			{count <= 0 && (
-				<div className={`${styles.container} ${styles.advertise}`}>
+				<div className={cl`${styles.container} ${styles.advertise}`}>
 					{!loading ? (
-						<div className={styles.advertise}>
+						<div>
 							<img
 								src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/lock-price-banner.svg"
 								alt="cogoport"
+								className={styles.img}
 							/>
 						</div>
 					) : <Placeholder height="100px" width="100%" />}
@@ -44,7 +39,6 @@ function ContractAd({ contractDetail, loading, importerExporterId }) {
 						<>
 							<div className={styles.contract_tag}>
 								<img
-
 									src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/contract-ad.svg"
 									alt="cogoport"
 								/>

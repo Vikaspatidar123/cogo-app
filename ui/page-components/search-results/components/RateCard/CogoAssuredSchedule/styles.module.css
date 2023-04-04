@@ -1,0 +1,23 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  padding: 12px 22px;
+  margin-top: 12px;
+  background: #fef3e9;
+
+  @media (max-width: 768px) {
+    overflow-x: auto;
+  }
+}
+
+.sailing_weeks {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #2c3e50;
+}

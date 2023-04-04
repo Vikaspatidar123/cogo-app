@@ -5,8 +5,8 @@
 		"apiKey": "origin_airport_id",
 		"placeholder": "Origin Airport",
 		"includedInOptions": false,
-		"type": "location-select",
-		"optionsListKey": "locations",
+		"type": "async_select",
+		"asyncKey": "locations",
 		"params": { "filters": { "type": ["airport"] } },
 		"rules": { "required": "Origin Airport is required" }
 	},
@@ -16,8 +16,8 @@
 		"apiKey": "destination_airport_id",
 		"placeholder": "Destination Airport",
 		"includedInOptions": false,
-		"type": "location-select",
-		"optionsListKey": "locations",
+		"type": "async_select",
+		"asyncKey": "locations",
 		"params": { "filters": { "type": ["airport"] } },
 		"rules": { "required": "Destination Airport is required" }
 	},
@@ -42,8 +42,8 @@
 	{
 		"name": "currency",
 		"label": "Currency",
-		"type": "select",
-		"optionsListKey": "currencies",
+		"type": "async_select",
+		"asyncKey": "currencies",
 		"placeholder": "Select Currency",
 		"rules": { "required": "Currency is required" }
 	},

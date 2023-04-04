@@ -1,3 +1,4 @@
+import { cl } from '@cogoport/components';
 import { IcMArrowDown, IcMArrowUp, IcMFcl } from '@cogoport/icons-react';
 import { startCase } from '@cogoport/utils';
 
@@ -56,9 +57,9 @@ function FCL(props) {
 
 	const { credit_details, credit_terms_amd_condition } = detail || {};
 
-	const showCreditApprovalCard =		credit_details?.is_any_invoice_on_credit
-		&& !credit_terms_amd_condition?.is_tnc_accepted
-		&& credit_details?.credit_source === 'pre_approved_clean_credit';
+	const showCreditApprovalCard = credit_details?.is_any_invoice_on_credit
+    && !credit_terms_amd_condition?.is_tnc_accepted
+    && credit_details?.credit_source === 'pre_approved_clean_credit';
 
 	// if (isMobile) {
 	// 	return <FclMobile {...props} />;
@@ -129,10 +130,8 @@ function FCL(props) {
 										{transit_time ? (
 											<div>
 												Transit time:
-												{' '}
 												<span className="bold">
 													{transit_time}
-													{' '}
 													days
 												</span>
 											</div>
@@ -142,7 +141,9 @@ function FCL(props) {
 									</div>
 
 									<AboutAction slug="cancellation-terms">
-										<div className={styles.button_link}>Cancellation Charges & Policy</div>
+										<div className={styles.button_link}>
+											Cancellation Charges & Policy
+										</div>
 									</AboutAction>
 								</div>
 							</div>
@@ -153,14 +154,14 @@ function FCL(props) {
 
 				<div className={styles.service_details_container}>
 					<div className={styles.footer}>
+						<div>Additional Services</div>
 						<div className="additional-services">
-							Additional Services:
 							<div className={styles.service_logo}>
 								{allServices.map((service) => (
-									<div className={`${styles.service_icon_container} ${service?.isSelected
-										? 'additional-services-logo '
-										: 'temp'}`}
-
+									<div
+										className={cl`${styles.service_icon_container} ${
+                    	service?.isSelected ? styles.additional_services_logo : styles.temp
+										}`}
 									>
 										<ServiceIcon service={service.service_type} />
 									</div>

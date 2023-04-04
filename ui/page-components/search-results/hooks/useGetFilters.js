@@ -119,6 +119,7 @@ const useGetFilters = ({ controls = [], initialFilters = {} }) => {
 		setValue,
 		getValues,
 		setValues,
+		control      : fields,
 	};
 };
 export default useGetFilters;

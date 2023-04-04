@@ -24,7 +24,6 @@ function FilterContent({
 		reset();
 		setOpen(false);
 	};
-
 	const renderElement = () => controls.map((item) => {
 		const Element = getField(item.type);
 		if (
@@ -40,8 +39,10 @@ function FilterContent({
 		}
 		return (
 			<div className={styles.filter_display}>
-				<div className={cl`${styles.filter_control_label}${styles.label}`}>{item.label}</div>
-				{/* <Element control={control} {...item} {...props} /> */}
+				<div className={cl`${styles.filter_control_label}${styles.label}`}>
+					{item.label}
+				</div>
+				<Element control={control} {...item} {...props} />
 			</div>
 		);
 	});
@@ -52,17 +53,16 @@ function FilterContent({
 				className={cl`${styles.header}${styles.bussiness_module_filter_header}`}
 			>
 				<div className={styles.heading}>{heading}</div>
-
-				<div>
-					<Button onClick={() => handleReset()}>RESET FORM</Button>
+				<div className={styles.button}>
+					<Button onClick={() => handleReset()} size="md" themeType="primary">
+						RESET FORM
+					</Button>
 
 					<Button
 						onClick={() => handleClick()}
-						style={{
-							background : '#393f70',
-							color      : '#ffffff',
-							marginLeft : '10px',
-						}}
+						size="md"
+						themeType="accent"
+						style={{ marginLeft: '10px' }}
 					>
 						SHOW RESULTS
 					</Button>

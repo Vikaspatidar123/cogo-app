@@ -66,12 +66,26 @@ function asyncFieldsHsCodeCountries() {
 }
 function asyncAirLines() {
 	return {
-		valueKey       : 'id',
-		labelKey       : 'short_name',
-		endpoint       : 'list_operators',
-		defaultOptions : true,
-		defaultParams  : {
+		valueKey      : 'id',
+		labelKey      : 'short_name',
+		endpoint      : 'list_operators',
+		initialCall   : true,
+		defaultParams : {
 			filters    : { operator_type: 'airline', status: 'active' },
+			page_limit : 100,
+			sort_by    : 'short_name',
+			sort_type  : 'asc',
+		},
+	};
+}
+function asyncShippingLines() {
+	return {
+		valueKey    : 'id',
+		labelKey    : 'short_name',
+		endpoint    : 'list_operators',
+		initialCall : true,
+		params      : {
+			filters    : { operator_type: 'shipping_line', status: 'active' },
 			page_limit : 100,
 			sort_by    : 'short_name',
 			sort_type  : 'asc',
@@ -85,4 +99,5 @@ export {
 	asyncFieldsPartnerRoles,
 	asyncFieldsHsCodeCountries,
 	asyncAirLines,
+	asyncShippingLines,
 };

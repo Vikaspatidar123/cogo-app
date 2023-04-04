@@ -98,7 +98,6 @@ function SearchResultsServiceItem({
 		<div className={styles.container}>
 			<div className={styles.main}>
 				<AnimatedCheckbox
-					className="primary lg"
 					checked={service.isSelected}
 					disabled={isSelectDisabled}
 					loading={totalLoading}
@@ -117,7 +116,7 @@ function SearchResultsServiceItem({
 				</div>
 			</div>
 
-			<Modal position="top-left" show={show} onClose={handleClose} width={300}>
+			<Modal placement="top-left" show={show} onClose={handleClose} width={300}>
 				<ServiceForm
 					show={show}
 					handleClose={setShow}

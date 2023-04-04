@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react';
 import { trackEvent } from '../../discover_rates/common/analytics';
 import { PARTNER_EVENT } from '../../discover_rates/common/analytics/constants';
 import getConfiguration from '../../discover_rates/common/SearchForm/utils/getConfiguration';
-import domesticServiceDetails from '../../discover_rates/configurations/search/domestic/domestic-service-details';
+import domesticServiceDetails from '../../discover_rates/configurations/domestic-services.json';
 import MAPPING from '../components/Info/icons-services-mapping';
 import isServiceTaken from '../helpers/isServiceTaken';
 

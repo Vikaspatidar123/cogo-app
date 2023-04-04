@@ -36,6 +36,7 @@ function SearchResults() {
 		...(initialHeaderData || {}),
 		importer_exporter_id,
 	};
+	console.log(headerData.checkout_id, 'headerData', headerData);
 	return (
 		<>
 			<Head>

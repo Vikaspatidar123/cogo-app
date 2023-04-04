@@ -117,7 +117,7 @@
 .left_section {
   display: flex;
   flex-direction: column;
-  /* width: ${({ scope }) => (scope === 'app' ? '300px' : '0px')}; */
+  width: 300px;
 }
 .flex {
   display: flex;

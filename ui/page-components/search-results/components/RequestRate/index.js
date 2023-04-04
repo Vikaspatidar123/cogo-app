@@ -63,7 +63,7 @@ function RequestRate({ headerData }) {
 				<div className={styles.detail_icon}>
 					<Button
 						onClick={() => setShowFeedBackModal(true)}
-						className="secondary md"
+						themeType="secondary"
 					>
 						SEND FEEDBACK
 					</Button>

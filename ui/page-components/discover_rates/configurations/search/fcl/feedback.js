@@ -44,16 +44,14 @@ const fclFeedBackControls = [
 		type  : 'number',
 	},
 	{
-		name           : 'preferred_shipping_line_ids',
-		label          : 'Preferred Shipping lines',
-		type           : 'select',
-		optionsListKey : 'shipping-lines',
-		multiple       : true,
-		defaultOptions : true,
-		autoCloseMenu  : false,
-		caret          : true,
+		name        : 'preferred_shipping_line_ids',
+		label       : 'Preferred Shipping lines',
+		type        : 'async_select',
+		asyncKey    : 'shipping-lines',
+		multiple    : true,
+		initialCall : true,
 		placeholder:
-			"Enter preferred shipping line only if customer won't accept any other line",
+      "Enter preferred shipping line only if customer won't accept any other line",
 	},
 	{
 		name  : 'preferred_detention_free_days',
@@ -62,10 +60,10 @@ const fclFeedBackControls = [
 	},
 	{
 		name  : 'remarks',
-		type  : 'text',
+		type  : 'textarea',
 		label : 'Remarks',
 		placeholder:
-			'Please add commodity details and other specific requirements here...',
+      'Please add commodity details and other specific requirements here...',
 	},
 ];
 

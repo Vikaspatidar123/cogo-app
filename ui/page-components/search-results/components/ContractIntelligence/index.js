@@ -9,11 +9,8 @@ function ContractIntelligence() {
 			<div className={styles.title}>Lock price feature</div>
 			{Intelligence.map(({ label, color }) => (
 				<div className={styles.item}>
-					<div className={styles.dot}>
-						{color ? <div style={{ backgroundColor: `${color}` }} />
-							: <div style={{ backgroundColor: '#8cc1f9' }} />}
-						<div className={styles.label}>{label}</div>
-					</div>
+					<div className={styles.dot} style={{ backgroundColor: color }} />
+					<div className={styles.label}>{label}</div>
 				</div>
 			))}
 		</div>

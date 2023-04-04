@@ -9,11 +9,13 @@ import LocationDetails from '../LocationDetails';
 import ContainerDetails from './ContainerDetails';
 import styles from './styles.module.css';
 
+import TruckingTouchPoints from '@/packages/bussiness-modules/TruckingTouchPoints';
 import { useSelector } from '@/packages/store';
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 import formatDate from '@/ui/commons/utils/formatDate';
 import { APP_EVENT, trackEvent } from '@/ui/page-components/discover_rates/common/analytics';
 import SearchForm from '@/ui/page-components/discover_rates/common/SearchForm';
+import formatMainServiceData from '@/ui/page-components/discover_rates/utils/format-main-service-data';
 
 const SEARCH_TYPE_MAPPING = {
 	ftl_freight : 'FTL',
@@ -50,7 +52,7 @@ function FtlInfo({
 	}, [editSearch]);
 
 	if (loading) {
-		return <Loading isMobile={isMobile} />;
+		return <Loading />;
 	}
 
 	const searchForm = (

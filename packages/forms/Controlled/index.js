@@ -11,6 +11,7 @@ import MobileNumberSelectController from './MobileNumberSelectController';
 import MultiselectController from './MultiSelectController';
 import RadioController from './RadioController';
 import SelectController from './SelectController';
+import SliderController from './SliderController';
 import TextAreaController from './TextAreaController';
 import UploadController from './UploadController';
 
@@ -27,9 +28,11 @@ const MAPPING = {
 	async_select               : AsyncSelectController,
 	chips                      : ChipsController,
 	radio                      : RadioController,
+	slider                     : SliderController,
 	'container_type-commodity' : ControlledCommodityCon,
 	'input-group'              : InputGroupController,
 	'inco-terms-select'        : IncoTermSelectController,
+
 };
 
 const getField = (type = 'text') => {

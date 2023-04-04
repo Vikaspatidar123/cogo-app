@@ -1,4 +1,4 @@
-import { Button } from '@cogoport/components';
+import { Button, Modal } from '@cogoport/components';
 
 import useAddService from '../../../hooks/useAddService';
 
@@ -22,6 +22,11 @@ function SearchResultsServiceItemForm({
 		reset,
 		control,
 	} = useForm();
+	const fields = {};
+	service.controls.forEach((controlItem) => {
+		const field = { ...controlItem, control };
+		fields[controlItem.name] = field;
+	});
 
 	const { handleAddService, loading } = useAddService(service, summary, source);
 	const watchMap = {};
@@ -52,10 +57,13 @@ function SearchResultsServiceItemForm({
 	};
 	return (
 		<div className={styles.container}>
-			<div className={styles.title}>{`Add ${service.title}`}</div>
+			<Modal.Header title={`Add ${service.title}`} />
+			{/* <div className={styles.title}>{`Add ${service.title}`}</div> */}
+
 			<form onSubmit={handleSubmit(onSubmit)}>
-				<div>
-					{(service.controls || []).map((item) => {
+				<Modal.Body>
+					<div>
+						{(service.controls || []).map((item) => {
           	let flag = true;
 
           	Object.keys(item.condition).forEach((condItem) => {
@@ -74,21 +82,24 @@ function SearchResultsServiceItemForm({
 	<FormElement
 		key={control.name}
 		errors={errors}
-		field={service.controls.find((x) => x.name === [item.name])}
+		field={fields[item.name]}
 	/>
           	);
-					})}
-				</div>
-
-				<div className={styles.footer}>
-					<Button className="secondary sm" onClick={handleCloseButton}>
-						Cancel
-					</Button>
-					<Button className="sm" type="submit" loading={loading}>
-						Save
-					</Button>
-				</div>
+						})}
+					</div>
+				</Modal.Body>
+				<Modal.Footer>
+					<div className={styles.footer}>
+						<Button size="md" themeType="tertiary" onClick={handleCloseButton}>
+							Cancel
+						</Button>
+						<Button size="md" themeType="primary" type="submit" loading={loading}>
+							Save
+						</Button>
+					</div>
+				</Modal.Footer>
 			</form>
+
 		</div>
 	);
 }

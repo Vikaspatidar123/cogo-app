@@ -1,16 +1,17 @@
 .container {
 	height: 360px;
 	overflow-y: scroll;
-
-	.ui-core-checkbox-root.checked {
-		background-color: #356efd;
+  :global{
+	.ui_checkbox_group_container{
 		border: none;
+		display: block;
 	}
-	.business-checkbox-label {
+	.ui_checkbox_label{
 		font-weight: 500;
 		font-size: 12px;
 		color: #828282;
 	}
+}
 }
 
 .group {

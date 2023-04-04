@@ -4,8 +4,8 @@
 	"apiKey": "origin_port_id",
 	"placeholder": "Origin Port",
 	"includedInOptions": false,
-	"type": "location-select",
-	"optionsListKey": "locations",
+	"type": "async_select",
+	"asyncKey": "locations",
 	"grouped": ["city", "country"],
 	"params": { "filters": { "type": ["seaport", "country", "city"] } },
 	"rules": { "required": "Origin Port is required" }
@@ -15,8 +15,8 @@
 	"apiKey": "destination_port_id",
 	"placeholder": "Destination Port",
 	"includedInOptions": false,
-	"type": "location-select",
-	"optionsListKey": "locations",
+	"type": "async_select",
+	"asyncKey": "locations",
 	"grouped": ["city", "country"],
 	"params": { "filters": { "type": ["seaport", "country", "city"] } },
 	"rules": { "required": "Destination Port is required" }
@@ -56,9 +56,9 @@
 	}, {
 		"name": "commodity",
 		"label": "Commodity",
-		"type": "select",
+		"type": "async_select",
 		"placeholder": "Commodity",
-		"optionsListKey": "commodities",
+		"asyncKey": "commodities",
 		"rules": { "required": "Commodity is required" }
 	}, {
 		"label": "Cargo Weight per Container",

@@ -41,7 +41,7 @@ function Info({
 	}, [editSearch]);
 
 	if (loading) {
-		return <Loading isMobile={isMobile} scope={scope} />;
+		return <Loading />;
 	}
 
 	const paddingXButton = data?.search_type === 'air_freight' ? 10 : 4;

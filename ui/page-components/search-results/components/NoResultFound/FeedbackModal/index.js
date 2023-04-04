@@ -44,44 +44,43 @@ function FeedBackModal({
 
 	return (
 		<Modal
-			position="bottom-right"
-			className="md"
+			placement="bottom-right"
 			show={show}
 			onClose={onClose}
 			onOuterClick={onClose}
-			styles={{ dialog: { paddingBottom: 0 } }}
 		>
 
 			{proceeedWithFeedback ? (
 				<form>
-					<div className={styles.container} onSubmit={handleSubmit(onSubmit)}>
+					<div className={styles.container}>
 						<Modal.Header title="Rate Market Intelligence " />
-
-						{controls.map((item) => {
-							const Element = getField(item.type);
-							return (
-								<div className={styles.field}>
-									<div className={styles.lable}>{item.labelShow}</div>
-									<Element {...item} control={control} />
-									{errors && (
-										<div className={styles.errors}>
-											{errors[item?.name]?.message}
-										</div>
-									)}
-								</div>
-							);
-						})}
-
+						<div className={styles.layout}>
+							{controls.map((item) => {
+								const Element = getField(item.type);
+								return (
+									<div className={styles.field}>
+										<div className={styles.lable}>{item.labelShow}</div>
+										<Element {...item} control={control} />
+										{errors && (
+											<div className={styles.errors}>
+												{errors[item?.name]?.message}
+											</div>
+										)}
+									</div>
+								);
+							})}
+						</div>
 						<Modal.Footer>
 							<Button
 								style={{ marginRight: 8 }}
-								className="secondary sm"
 								onClick={onClose}
+								size="md"
+								themeType="tertiary"
 							>
 								CANCEL
 							</Button>
 
-							<Button disabled={loading} type="submit" className="primary sm">
+							<Button disabled={loading} onClick={handleSubmit(onSubmit)} size="md" themeType="primary">
 								SUBMIT
 							</Button>
 						</Modal.Footer>

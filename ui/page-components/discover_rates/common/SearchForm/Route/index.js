@@ -86,7 +86,7 @@ function Route({
 					placeholder={origin.placeholder || ''}
 					noOptionsMessage="Type to search..."
 					asyncKey="locations2"
-					value={location?.origin?.id}
+					// value={location?.origin?.id}
 					disabled={
 							disabledFields?.origin
 							&& index !== 0
@@ -155,6 +155,7 @@ function Route({
 						asyncKey="locations2"
 						noOptionsMessage="Type to search..."
 						placeholder={destination.placeholder || ''}
+						// value={location?.destination?.id}
 						disabled={
               disabledFields?.destination
               && index !== 0

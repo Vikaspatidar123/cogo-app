@@ -21,4 +21,6 @@ export { default as withControl } from './Controlled/withControl';
 export { default as InputNumberController } from './Controlled/InputNumberController';
 export { default as AsyncSelectController } from './Controlled/AsyncSelectController';
 export { default as InputGroupController } from './Controlled/InputGroupController';
+export { default as SliderController } from './Controlled/SliderController';
+export { default as ChipsController } from './Controlled/ChipController';
 export * from './utils/getAsyncFields';

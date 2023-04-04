@@ -1,5 +1,5 @@
 import { Tooltip } from '@cogoport/components';
-import { IcCLike } from '@cogoport/icons-react';
+import { IcCLike, IcMDislike } from '@cogoport/icons-react';
 import { useState } from 'react';
 
 import DislikeFeedback from './DislikeFeedback';
@@ -23,7 +23,6 @@ function LikeDislike({ details, updateRate, rate }) {
 		<div className={styles.main_container}>
 			<Tooltip
 				placement="top"
-				theme="light"
 				content={rate.is_liked ? 'Liked' : 'Like'}
 			>
 				<div
@@ -38,7 +37,6 @@ function LikeDislike({ details, updateRate, rate }) {
 
 			<Tooltip
 				placement="top"
-				theme="light"
 				content={rate.is_disliked ? 'Disliked' : 'Dislike'}
 			>
 				<div
@@ -46,7 +44,7 @@ function LikeDislike({ details, updateRate, rate }) {
 					role="presentation"
 					onClick={onClickDislike}
 				>
-					<IcCLike width="20px" height="16px" />
+					<IcMDislike width={20} height={16} fill="#828282" />
 				</div>
 			</Tooltip>
 

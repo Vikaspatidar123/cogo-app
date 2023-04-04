@@ -62,9 +62,9 @@
 	{
 		"name": "preferred_shipping_line_ids",
 		"label": "Preferred Shipping lines",
-		"type": "select",
+		"type": "async_select",
 		"size": "lg",
-		"optionsListKey": "shipping-lines",
+		"asyncKey": "shipping-lines",
 		"multiple": true,
 		"defaultOptions": true,
 		"autoCloseMenu": false,

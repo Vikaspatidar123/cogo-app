@@ -7,14 +7,15 @@ import handleLiveChat from '../helpers/handle-live-chat';
 import triggerAnalytics from '../helpers/triggerAnalytics';
 import useGetEnquiryQuota from '../hooks/useGetEnquiryQuota';
 import useGetSchedules from '../hooks/useGetSchedules';
+import isServicableCountry from '../utils/isServicableCountry';
 import swbAllowedServices from '../utils/swb-allowed-services';
 // import EnquiryCard from './EnquiryCard';
 
 import AdditionalServices from './AdditionalServices';
 import AddRate from './AddRate';
+import CogoAssuredList from './CogoAssuredList';
 import ContractAd from './ContractAd';
 import ContractIntelligence from './ContractIntelligence';
-import EnquiryCard from './EnquiryCard';
 import GoBackToShipment from './GoBack';
 import Header from './Header';
 import Info from './Info';
@@ -93,7 +94,6 @@ function SelectedRateInfo({
 	const componentKey = service_type in SERVICE_TYPE_SELECTED_RATE_COMPONENT_MAPPING
     	? service_type
     	: 'others';
-
 	const Component = SERVICE_TYPE_SELECTED_RATE_COMPONENT_MAPPING[componentKey] || null;
 
 	if (!Component) {
@@ -164,7 +164,7 @@ function Results({
 		user_id   : data?.user_id,
 	});
 	useEffect(() => {
-		if (scope === 'app' && data && data?.search_type) {
+		if (data && data?.search_type) {
 			triggerAnalytics(data, data?.importer_exporter);
 		}
 		if (data) {
@@ -216,7 +216,15 @@ function Results({
 	const isAwaitingResponse = negotiation_status === 'awaiting_responses';
 	const isCompletedResponse = negotiation_status === 'completed';
 	const rates_count = (rates || []).length;
-
+	const cogoAssuredRates = [];
+	const marketplaceRates = [];
+	rates.forEach((rate) => {
+		if (rate.source === 'cogo_assured_rate') {
+			cogoAssuredRates.push(rate);
+		} else {
+			marketplaceRates.push(rate);
+		}
+	});
 	// const isOrgCP = ((data?.importer_exporter || {}).tags || []).includes(
 	// 	'partner',
 	// );
@@ -248,19 +256,14 @@ function Results({
 		if (loading) {
 			return (
 				<>
-					<Loader scope={scope} />
-					<Loader scope={scope} />
-					<Loader scope={scope} />
+					<Loader />
+					<Loader />
+					<Loader />
 				</>
 			);
 		}
 
-		if (
-			!loading
-      && rates_count === 0
-      && !isAwaitingResponse
-      && scope === 'app'
-		) {
+		if (!loading && rates_count === 0 && !isAwaitingResponse) {
 			return (
 				<NoResultFound
 					id={search_id}
@@ -272,7 +275,7 @@ function Results({
 				/>
 			);
 		}
-		if (!loading && rates_count === 0 && !isAwaitingResponse) {
+		if (!loading && rates_count.length === 0 && !isAwaitingResponse) {
 			return (
 				<>
 					{swb_without_rates ? <AddRate setAddRate={setAddRate} /> : null}
@@ -298,8 +301,14 @@ function Results({
 						enquiryQuota={enquiryQuota}
 					/>
 				) : null}
-
-				{(rates || []).map((item, i) => (
+				{cogoAssuredRates.length > 0 ? (
+					<CogoAssuredList
+						list={cogoAssuredRates}
+						searchData={searchData}
+						details={data}
+					/>
+				) : null}
+				{(marketplaceRates || []).map((item, i) => (
 					<>
 						<RateCards
 							setState={setState}
@@ -312,9 +321,14 @@ function Results({
 							scheduleList={scheduleList}
 						/>
 
-						{(rates_count === 1 ? i === 0 : i % 10 === 1) && swb_with_rates ? (
-							<AddRate type="rates-found" setAddRate={setAddRate} />
-						) : null}
+						{(marketplaceRates === 1 ? i === 0 : i % 10 === 1)
+            && swb_with_rates ? (
+	<AddRate
+		type="rates-found"
+		setAddRate={setAddRate}
+		show={false}
+	/>
+            	) : null}
 					</>
 				))}
 			</>
@@ -333,9 +347,7 @@ function Results({
 					refetch={refetch}
 					possible_additional_services={possible_additional_services}
 				/>
-				{rates_count > 0 && scope === 'app' && count < 1 && (
-					<ContractIntelligence />
-				)}
+				{rates_count > 0 && count < 1 && <ContractIntelligence />}
 			</div>
 		);
 

@@ -1,8 +1,10 @@
 import { Placeholder, Pagination, Popover } from '@cogoport/components';
 import { IcMListView, IcMMap, IcMFilter } from '@cogoport/icons-react';
+import { isEmpty } from '@cogoport/utils';
 import { useState, useEffect } from 'react';
 
 import useGetallOceanRoutes from '../../hooks/useGetallOceanRoutes';
+import EmptyState from '../Emptystate';
 import Map from '../Map/index';
 
 import Card from './Card';
@@ -26,7 +28,7 @@ function TrackerCard({
 	const [isMapView, setIsMapView] = useState(false);
 	const [showFilters, setShowFilters] = useState(false);
 	const trackerList = trackers?.list;
-
+	const empty = isEmpty(trackerList);
 	useEffect(() => {
 		if (trackers?.list) {
 			getAllOceanRoutes(trackers?.list);
@@ -88,6 +90,11 @@ function TrackerCard({
 
 				</div>
 			</div>
+			{empty && (
+				<div>
+					<EmptyState />
+				</div>
+			)}
 			{!isMapView && (
 				<div>
 					{!loading

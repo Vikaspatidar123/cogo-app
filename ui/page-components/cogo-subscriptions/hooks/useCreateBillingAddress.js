@@ -53,10 +53,6 @@ const useCreateBillingAddres = ({ profile }) => {
 			Toast.error(
 				error?.error?.gst_number?.[0]?.toUpperCase()
 					|| error?.error?.pincode?.[0]?.toUpperCase(),
-				{
-					autoClose : 7000,
-					style     : { backgroundColor: 'white' },
-				},
 			);
 			return null;
 		}

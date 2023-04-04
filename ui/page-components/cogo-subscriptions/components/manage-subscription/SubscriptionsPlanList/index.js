@@ -1,9 +1,6 @@
-/* eslint-disable import/order */
-/* eslint-disable react-hooks/exhaustive-deps */
 import { IcMArrowNext, IcMArrowDown } from '@cogoport/icons-react';
 import { useState, useEffect, useRef } from 'react';
 
-// import useWindowDimensions from '../../common/isMobile';
 import { dimensions } from '../../../constants/dimensions';
 import useGetPlanFeatures from '../../../hooks/useGetPlanFeatures';
 
@@ -12,20 +9,9 @@ import MobileView from './DetailsContainer/MobileView';
 import EnterpriseDescription from './EnterpriseDescription';
 import PlanDescription from './PlanDescription';
 import StarterPlanDescription from './starterPlanDescription';
-import { useSelector } from '@/packages/store';
-// import {
-// 	Container,
-// 	Div,
-// 	PlanWrapper,
-// 	Wrapper,
-// 	ViewDetailsButton,
-// 	IconContainer,
-// 	FeaturePlan,
-// 	BtnContainer,
-// 	DivCtn,
-// } from './styles';
-
 import styles from './styles.module.css';
+
+import { useSelector } from '@/packages/store';
 
 function SubscriptionsPlanList({
 	activeTab,
@@ -48,7 +34,6 @@ function SubscriptionsPlanList({
 		general: { isMobile = false },
 	} = useSelector((state) => state);
 
-	// const { width } = useWindowDimensions();
 	const sortedPlan = item_plans?.sort(
 		(a, b) => a.priority_sequence - b.priority_sequence,
 	);
@@ -59,7 +44,7 @@ function SubscriptionsPlanList({
 
 	useEffect(() => {
 		refetchPlanFeatures({ saas_product_family_id });
-	}, []);
+	}, [refetchPlanFeatures, saas_product_family_id]);
 
 	const getActiveLaterClass = (item) => {
 		if (item?.display_pricing?.[activeTab]?.activate_later) {
@@ -112,10 +97,8 @@ function SubscriptionsPlanList({
 								key={item?.id}
 								width={dimensions[item?.priority_sequence]?.[0]}
 								height={dimensions[item?.priority_sequence]?.[1]}
-								// isSelected={clickedPlan?.description === item?.description}
 								onClick={() => item?.display_pricing?.[`to_show_for_${activeTab}_button`] === true
 									&& setClickedPlan(item)}
-								// onOuterClick={() => setClickedPlan({})}
 								role="presentation"
 							>
 								{item?.priority_sequence > 0 ? (

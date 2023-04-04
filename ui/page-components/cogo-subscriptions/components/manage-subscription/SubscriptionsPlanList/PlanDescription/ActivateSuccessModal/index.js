@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 import { Modal } from '@cogoport/components';
 
 import styles from './styles.module.css';
@@ -8,6 +7,7 @@ function ActivateSuccessModal({ modal, setShowModal, name }) {
 		setShowModal(false);
 		window?.location?.reload();
 	};
+
 	return (
 		<Modal
 			show={modal}
@@ -20,7 +20,6 @@ function ActivateSuccessModal({ modal, setShowModal, name }) {
 				<div className={styles.label}>Congratulations!</div>
 				<div className={styles.side_label}>
 					You are now subscribed to
-					{' '}
 					{name}
 					. Start exploring features and optimize your
 					business operations!

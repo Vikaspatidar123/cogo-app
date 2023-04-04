@@ -1,15 +1,15 @@
-/* eslint-disable no-empty-pattern */
 import { Toast } from '@cogoport/components';
+import { useCallback } from 'react';
 
 import { useRequest } from '@/packages/request';
 
 const useFetchBillingAddress = ({ profile }) => {
-	const [{}, trigger] = useRequest({
+	const [{ laoding }, trigger] = useRequest({
 		url    : '/list_organization_billing_addresses',
 		method : 'get',
 	}, { manual: true });
 
-	const billingAddress = async ({ setAddresses }) => {
+	const billingAddress = useCallback(async ({ setAddresses }) => {
 		try {
 			const resp = await trigger({
 				params: {
@@ -22,7 +22,8 @@ const useFetchBillingAddress = ({ profile }) => {
 		} catch (error) {
 			Toast.error(error?.message);
 		}
-	};
-	return { billingAddress };
+	}, [profile?.organization.id, trigger]);
+
+	return { billingAddress, laoding };
 };
 export default useFetchBillingAddress;

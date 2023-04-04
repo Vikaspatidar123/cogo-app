@@ -1,23 +1,20 @@
-/* eslint-disable no-unsafe-optional-chaining */
-/* eslint-disable react-hooks/exhaustive-deps */
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 
 import styles from './styles.module.css';
 
 function CardHeader({ plans = {} }) {
 	const [sortedPlan, setSortedPlan] = useState([]);
-	const getSortPlanObj = () => {
+	const getSortPlanObj = useCallback(() => {
 		const planObjArray = Object.values(plans);
 		const sortPlanObjArray = planObjArray.sort(
-			(a, b) => a?.priority_sequence - b?.priority_sequence,
+			(a, b) => a.priority_sequence - b.priority_sequence,
 		);
-
 		setSortedPlan(sortPlanObjArray);
-	};
+	}, [plans]);
 
 	useEffect(() => {
 		getSortPlanObj();
-	}, [JSON.stringify(plans)]);
+	}, [getSortPlanObj]);
 
 	return (
 		<div className={`${styles.row} ${styles.header}`}>

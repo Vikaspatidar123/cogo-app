@@ -3,9 +3,6 @@ import { merge } from '@cogoport/utils';
 import React, { useState, useEffect } from 'react';
 
 import TitleStyle from '../../../../common/Line';
-import {
-	mobileValidator,
-} from '../../../../configuration/addAddressControls';
 import getControls from '../../../../configuration/config';
 import useCreateBillingAddres from '../../../../hooks/useCreateBillingAddress';
 
@@ -228,7 +225,7 @@ function AddModal({
 									rules={{
 										required : true,
 										pattern  : {
-											value   : mobileValidator,
+											value   : patterns.MOBILE,
 											message : 'Invalid phone number',
 										},
 									}}

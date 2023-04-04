@@ -11,7 +11,6 @@
 	font-weight: 700;
 }
 
-
 .subscription_details {
 	display: flex;
 	align-items: center;
@@ -61,7 +60,6 @@
 	margin-left: 2px;
 }
 
-
 .row2 {
 	display: flex;
 	align-items: center;
@@ -73,14 +71,6 @@
 	font-weight: 600;
 	color: #1f1945;
 }
-
-/* export const Tagged = styled(Tag)`
-	background-color: #fce4bf;
-	font-weight: 500;
-	font-size: 12px !important;
-	padding: 3px;
-	color: #000000;
-`; */
 
 .styled_col3 {
 	display: flex;
@@ -96,7 +86,6 @@
 	width: 16%;
 }
 
-/* hr tag */
 .line {
 	border: 1.5px solid #fbd69f;
 }

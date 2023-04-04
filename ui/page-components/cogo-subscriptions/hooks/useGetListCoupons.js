@@ -1,6 +1,5 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import { Toast } from '@cogoport/components';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 import { useRequest } from '@/packages/request';
 import { useSelector } from '@/packages/store';
@@ -14,7 +13,7 @@ const useGetListCoupons = ({ amount, currency }) => {
 		method : 'get',
 	}, { manual: true });
 
-	const fetchCoupons = async () => {
+	const fetchCoupons = useCallback(async () => {
 		try {
 			await trigger({
 				params: {
@@ -28,10 +27,11 @@ const useGetListCoupons = ({ amount, currency }) => {
 		} catch (error) {
 			Toast.error('Could not fetch details.Please try again later');
 		}
-	};
+	}, [amount, currency, filters, profile?.organization.id, trigger]);
+
 	useEffect(() => {
 		fetchCoupons({ params: { filters } });
-	}, [filters]);
+	}, [fetchCoupons, filters]);
 	return {
 		fetchCouponsLoading : loading,
 		couponsList         : data?.list,

@@ -1,8 +1,6 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable import/order */
 import { useEffect, useState } from 'react';
-import CardHeader from './CardHeader';
 
+import CardHeader from './CardHeader';
 import styles from './styles.module.css';
 import TableList from './TableList';
 
@@ -25,7 +23,7 @@ function DetailContainer({ planFeatureData = {} }) {
 			key  : 'general',
 			data : planFeatureData[selectedData.key],
 		});
-	}, [planFeatureData]);
+	}, []);
 	return (
 		<div className={styles.container}>
 			<div className={styles.header}>
@@ -46,24 +44,6 @@ function DetailContainer({ planFeatureData = {} }) {
 			</div>
 
 			<div className={styles.tab_container}>
-				{/* <Tabs activeTab={activeTab} onChange={setActiveTab} themeType="primary-vertical">
-					{(planFeatureArray || []).map((featureKey) => {
-						const feature = planFeatureData[featureKey];
-						return (
-							<TabPanel
-								name={featureKey}
-								title={feature?.display_name}
-								// className="vertical two"
-							>
-								<div key={feature?.display_name}>
-									<CardHeader plans={feature?.plans} />
-									<TableList features={feature?.features} />
-								</div>
-							</TabPanel>
-						);
-					})}
-				</Tabs> */}
-
 				<div className={styles.col1}>
 					{(planFeatureArray || []).map((featureKey) => {
 						const feature = planFeatureData[featureKey];

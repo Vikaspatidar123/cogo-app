@@ -31,7 +31,7 @@ function SuccessModal({
 					. Start exploring features and optimize your
 					business operations!
 				</div>
-				<div className={styles.stylediv}>
+				<div className={styles.style_div}>
 					Would like to explore our other plans
 					<u className={styles.click} role="presentation" onClick={closeModal}> click here </u>
 				</div>

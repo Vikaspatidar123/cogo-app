@@ -30,7 +30,7 @@ function StarterPlanDescription({ item, priority_sequence_active_plan, activeTab
 			</div>
 			<div
 				className={styles.price}
-				style={{ color: prioritySequence === priority_sequence_active_plan ? '#2c3e50' : '#bdbdbd' }}
+				style={{ color: prioritySequence === `${priority_sequence_active_plan ? '#2c3e50' : '#bdbdbd'}` }}
 			>
 				Free
 			</div>

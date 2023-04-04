@@ -12,6 +12,10 @@
 	border-top-right-radius: 8px;
 }
 
+.flex svg {
+	vertical-align: middle;
+}
+
 .row.table_head svg {
 	cursor: pointer;
 }
@@ -33,10 +37,6 @@
 .flex {
 	display: flex;
 	gap: 4px;
-}
-
-.flex svg {
-	vertical-align: middle;
 }
 
 .asc {

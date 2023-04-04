@@ -1,18 +1,16 @@
-/* eslint-disable no-unsafe-optional-chaining */
-/* eslint-disable react-hooks/exhaustive-deps */
 import { Tooltip } from '@cogoport/components';
 import { IcMTick, IcMInfo, IcMCross } from '@cogoport/icons-react';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 
 import styles from '../CardHeader/styles.module.css';
 
 function TableList({ features = {} }) {
 	const [featureArray, setFeatureArray] = useState([]);
 
-	const getFeatureData = () => {
+	const getFeatureData = useCallback(() => {
 		const featureObjArray = Object.values(features);
 		setFeatureArray(featureObjArray);
-	};
+	}, [features]);
 
 	const renderPlanDetail = (type, value) => {
 		if (type === 'icon') {
@@ -30,7 +28,6 @@ function TableList({ features = {} }) {
 				return (
 					<>
 						<img src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/Limited.svg" alt="cogo" />
-						{' '}
 						<div className={styles.value_txt}>{value}</div>
 					</>
 				);
@@ -43,7 +40,7 @@ function TableList({ features = {} }) {
 	const getPlanDetails = (planValues = {}) => {
 		const planValuesObjArray = Object.values(planValues);
 		const sortPlanValuesObjArray = planValuesObjArray.sort(
-			(a, b) => a?.priority_sequence - b?.priority_sequence,
+			(a, b) => a.priority_sequence - b.priority_sequence,
 		);
 
 		return (sortPlanValuesObjArray || []).map(({ type = '', value = '' }) => (
@@ -53,7 +50,7 @@ function TableList({ features = {} }) {
 
 	useEffect(() => {
 		getFeatureData();
-	}, [JSON.stringify(features)]);
+	}, [getFeatureData]);
 	return (
 		<>
 			{(featureArray || []).map(

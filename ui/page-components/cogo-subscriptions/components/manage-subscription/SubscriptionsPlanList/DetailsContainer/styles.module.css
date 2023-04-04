@@ -8,13 +8,11 @@
 	border-radius: 8px;
 }
 
-
 .header {
 	display: flex;
 	align-items: flex-start;
 	justify-content: space-between;
 }
-
 
 .header .title {
 	font-size: 22px;
@@ -40,7 +38,6 @@
 	background-color: #fbd69f;
 	border-radius: 50px;
 }
-
 
 .tab_container {
 	display: flex;
@@ -80,65 +77,3 @@
 	height: 100%;
 	padding: 15px;
 }
-
-
-
-/* .ui-tabs-list {
-		width: 330px !important;
-		padding: 0 30px !important;
-		margin-top: 75px !important;
-	}
-
-	.ui-tabs-list-container {
-		padding: 14px 24px !important;
-		margin-bottom: 15px !important;
-		border-radius: 12px !important;
-		border: 2px solid #f3f5fa !important;
-		background: #fff !important;
-
-		&:hover {
-			box-shadow: 0px 10px 45px 0px #00000040 !important;
-			box-shadow: 0px 5px 20px -4px #00000040 !important;
-		}
-		.ui-tabs-list-title {
-			font-weight: 300 !important;
-			font-size: 15px !important;
-			color: #535075 !important;
-			-webkit-text-stroke: 0.7px !important;
-		}
-	}
-
-	.ui-tabs-list-container.active {
-		border: none !important;
-		background: #232631 !important;
-		box-shadow: 0px 10px 45px 0px #00000040 !important;
-
-		.ui-tabs-list-title {
-			font-weight: 500 !important;
-			color: #fff !important;
-		}
-	}
-
-	@media screen and (max-width: 767px) {
-		.ui-tabs.list {
-			overflow-x: auto;
-			max-width: 100%;
-		}
-
-		.ui-tabs-list {
-			width: 50% !important;
-			padding: 0 !important;
-		}
-
-		.ui-tabs-tabpanel {
-			width: 50% !important;
-		}
-
-		.ui-tabs-list-container {
-			padding: 8px 16px !important;
-
-			.ui-tabs-list-title {
-				font-size: 12px !important;
-			}
-		}
-	} */

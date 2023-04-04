@@ -1,3 +1,5 @@
+import { useCallback } from 'react';
+
 import { useRequest } from '@/packages/request';
 
 const useGetPlanFeatures = () => {
@@ -6,7 +8,7 @@ const useGetPlanFeatures = () => {
 		method : 'get',
 	}, { manual: true });
 
-	const refetchPlanFeatures = async ({ saas_product_family_id = '' }) => {
+	const refetchPlanFeatures = useCallback(async ({ saas_product_family_id = '' }) => {
 		try {
 			await trigger({
 				params: {
@@ -17,7 +19,7 @@ const useGetPlanFeatures = () => {
 		} catch (err) {
 			console.log(err);
 		}
-	};
+	}, [trigger]);
 
 	return {
 		refetchPlanFeatures,

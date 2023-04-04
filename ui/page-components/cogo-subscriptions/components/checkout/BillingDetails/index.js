@@ -69,7 +69,6 @@ function BillingDetails({
 									>
 										<div className={`${styles.row} ${styles.name}`}>
 											{name}
-											{' '}
 											{renderName(organization_pocs)}
 										</div>
 										<div className={`${styles.row} ${styles.address}`}>
@@ -79,7 +78,6 @@ function BillingDetails({
 										</div>
 										<div className={`${styles.row} ${styles.tax_number}`}>
 											GST Number :
-											{' '}
 											{tax_number}
 										</div>
 									</div>

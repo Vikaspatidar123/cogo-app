@@ -1,7 +1,6 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import { Modal, Button } from '@cogoport/components';
 import { IcMInformation } from '@cogoport/icons-react';
-import { useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 
 import styles from './styles.module.css';
 
@@ -14,9 +13,10 @@ function PendingModal({
 }) {
 	const { status = '' } = paymentStatus || {};
 
-	const closeModalHandler = () => {
+	const closeModalHandler = useCallback(() => {
 		setRazorLoading(false);
-	};
+	}, [setRazorLoading]);
+
 	useEffect(() => {
 		if (apiTries < 10 && status === 'active') {
 			setAddModal(true);
@@ -27,7 +27,7 @@ function PendingModal({
 				closeModalHandler();
 			}, 10000);
 		}
-	}, [apiTries, status]);
+	}, [apiTries, closeModalHandler, setAddModal, setRazorLoading, status]);
 
 	return (
 		<Modal

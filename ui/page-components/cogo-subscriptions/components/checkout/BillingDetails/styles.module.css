@@ -27,7 +27,6 @@
 	padding-bottom: 20px;
 }
 
-
 .div .scroll_content {
 	max-height: 330px;
 	overflow: auto;
@@ -55,7 +54,6 @@
 	padding: 10px;
 }
 
-
 .address_wrapper .col_style {
 	display: flex;
 	align-items: center;
@@ -63,8 +61,6 @@
 
 .border {
 	width: 100%;
-
-	/* padding: 12x 12px 12px 26px; */
 	height: 10%;
 	cursor: pointer;
 	border: 1px solid #e7f0ff;

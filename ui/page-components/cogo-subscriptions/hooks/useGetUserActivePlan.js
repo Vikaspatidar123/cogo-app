@@ -1,4 +1,5 @@
 import { Toast } from '@cogoport/components';
+import { useCallback } from 'react';
 
 import { useRequest } from '@/packages/request';
 
@@ -8,7 +9,7 @@ const useGetUSerActivePlan = ({ profile }) => {
 		method : 'get',
 	}, { manual: true });
 
-	const getPlan = async ({ setUserPlan = () => {} }) => {
+	const getPlan = useCallback(async ({ setUserPlan = () => {} }) => {
 		try {
 			const activePlanResponse = await trigger({
 				params: {
@@ -19,7 +20,8 @@ const useGetUSerActivePlan = ({ profile }) => {
 		} catch (error) {
 			Toast.error(error?.message);
 		}
-	};
+	}, [profile?.organization?.id, trigger]);
+
 	return { getPlan, loading };
 };
 

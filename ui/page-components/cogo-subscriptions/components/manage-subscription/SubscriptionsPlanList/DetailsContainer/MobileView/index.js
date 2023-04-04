@@ -1,7 +1,4 @@
-/* eslint-disable import/order */
 import Feature from './Feature';
-// import { Container, Header, Body } from './styles';
-
 import styles from './styles.module.css';
 
 function MobileView({ planFeatureData = {} }) {

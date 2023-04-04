@@ -9,7 +9,6 @@
 	padding-bottom: 40px;
 }
 
-
 .heading_container .heading {
 	padding-bottom: 10px;
 	font-size: 26px;
@@ -58,11 +57,9 @@
 	text-align: center;
 }
 
-
 .txt {
 	font-size: 16px;
 }
-
 
 .styled_tag {
 	position: absolute;
@@ -73,7 +70,6 @@
 	background-color: #f8aea8;
 	border-radius: 8px;
 }
-
 
 @media screen and (max-width: 767px) {
 	.container {

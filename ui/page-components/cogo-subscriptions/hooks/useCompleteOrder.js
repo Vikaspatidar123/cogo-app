@@ -1,5 +1,3 @@
-/* eslint-disable no-promise-executor-return */
-/* eslint-disable no-undef */
 import { Toast } from '@cogoport/components';
 
 import { loadScript } from '../utils/loadScript';
@@ -45,10 +43,11 @@ const useCompleteOrder = ({
 				setStripeModal(true);
 				if (!completeOrderResponse?.hasError && !addons) {
 					await loadScript(CHARGEBEE_JS_URL);
-					// eslint-disable-next-line no-undef
-					const chargebeeInstance = Chargebee.init({ site: process.env.CHARGEBEE_SITE });
+					const chargebeeInstance = window.Chargebee.init({ site: process.env.CHARGEBEE_SITE });
 					chargebeeInstance.openCheckout({
-						hostedPage: () => new Promise((res) => res(completeOrderResponse?.data)),
+						hostedPage: () => new Promise((res) => {
+							res(completeOrderResponse?.data);
+						}),
 					});
 				}
 			}

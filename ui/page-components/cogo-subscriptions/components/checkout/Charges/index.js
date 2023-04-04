@@ -117,27 +117,18 @@ function Charges({
 					<div className={styles.line} />
 				</div>
 
-				{/* <div className={styles.styled_row}>
-					<div className={styles.styled_col}>
-						<div>Total</div>
-					</div>
-					<div className={styles.styled_col}>{shortFormatNumber(amount, currency)}</div>
-				</div> */}
-
 				{couponCodeLength > 0 && (
 					<div className={styles.styled_row}>
 						<div className={`${styles.styled_col} ${styles.discount_name}`}>
 							<Tooltip
 								placement="top-start"
 								theme="light-border"
-								// content={couponCode?.description}
 								content={discountTooltip({ discountedAmount, currency })}
 								animation="scale"
 								interactive
 								visibility
 							>
 								<div>
-									{/* {startCase(couponCode?.name)} */}
 									Discount
 									<div className={`${styles.line_wrapper} ${styles.discount_line}`}>
 										<div className={`${styles.line} ${styles.discount_dashed_line}`} />
@@ -244,18 +235,6 @@ function Charges({
 							disabled={!allow_activate_later}
 							value={check}
 						/>
-						{/* <div className={styles.activate_later_txt}>Activate later</div>
-						<Tooltip
-							placement="top"
-							content={description()}
-							animation="scale"
-							maxWidth={350}
-							interactive
-						>
-							<div className="icon-container">
-								<IcMHelpInCircle />
-							</div>
-						</Tooltip> */}
 					</div>
 					{check && (
 						<Datepicker
@@ -288,7 +267,6 @@ function Charges({
 					</Button>
 				</div>
 			</div>
-			{/* {showCoupons && ( */}
 
 			<div
 				className={`${styles.coupon_container} ${showCoupons ? styles.show : styles.hide}`}
@@ -305,7 +283,6 @@ function Charges({
 					/>
 				)}
 			</div>
-			{/* )} */}
 		</div>
 	);
 }

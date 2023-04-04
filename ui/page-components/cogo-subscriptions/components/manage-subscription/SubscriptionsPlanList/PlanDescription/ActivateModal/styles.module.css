@@ -10,7 +10,6 @@
 	color: #170f49;
 }
 
-
 .div_text {
 	display: flex;
 	justify-content: center;
@@ -22,7 +21,6 @@
 	text-align: center;
 }
 
-
 .button_div {
 	display: flex;
 	justify-content: flex-end;
@@ -31,14 +29,12 @@
 	box-shadow: 0 -2px 4px rgb(20 20 43 / 12%);
 }
 
-
 .image {
 	svg {
 		width: 130px;
 		height: 160px;
 	}
 }
-
 
 .image_container {
 	display: flex;
@@ -47,10 +43,8 @@
 	height: 100%;
 }
 
-
 .plan_text {
 	padding: 0 3px;
 	font-size: 14px;
 	font-weight: 600;
 }
-

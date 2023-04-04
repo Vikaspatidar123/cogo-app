@@ -1,4 +1,3 @@
-/* eslint-disable no-unsafe-optional-chaining */
 import { IcMFtick } from '@cogoport/icons-react';
 
 import { getCurrencyDetail } from '../../../utils/getCurrencyDetail';
@@ -17,11 +16,10 @@ function SubscriptionDetails({ plans = {}, query }) {
 
 	const { metadata = '' } = plan || {};
 	const { amount, currency, preValue } = getCurrencyDetail({ pricing, periods });
+	const pricingData = metadata?.display_pricing?.[query?.period]?.[preValue];
+	const pricingperiods = pricing?.[`${periods}`]?.[0]?.price;
 
-	const percentage = ((metadata?.display_pricing?.[query?.period]?.[preValue]
-			- pricing?.[`${periods}`]?.[0]?.price)
-			* 100)
-		/ metadata?.display_pricing?.[query?.period]?.[preValue];
+	const percentage = ((pricingData - pricingperiods) * 100) / pricingData;
 
 	return (
 		<div>
@@ -36,12 +34,10 @@ function SubscriptionDetails({ plans = {}, query }) {
 							<div className={styles.heading}>{plan?.description}</div>
 						</div>
 						<div className={styles.row2}>
-							{/* <Tagged background="#fce4bf"> tag */}
 							<div className={styles.offer_tag}>
 								{Math.round(percentage)}
 								% off
 							</div>
-							{/* </Tagged> */}
 						</div>
 					</div>
 				</div>

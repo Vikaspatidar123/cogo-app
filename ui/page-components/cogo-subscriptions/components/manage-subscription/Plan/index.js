@@ -1,6 +1,5 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import { Toast, Tabs, TabPanel } from '@cogoport/components';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState, useMemo } from 'react';
 
 import SuccessModal from '../../../common/SuccessModal';
 import useGetRequestCallback from '../../../hooks/useGetRequestCallback';
@@ -53,7 +52,8 @@ function Plan() {
 	const { requestCallback, callbackLoading } = useGetRequestCallback({ profile });
 
 	const { saas_checkout_id = '', saas_plan = '' } = query || {};
-	const requestData = { saas_checkout_id, gateway: 'chargebee' };
+
+	const requestData = useMemo(() => ({ saas_checkout_id, gateway: 'chargebee' }), [saas_checkout_id]);
 
 	const { billing_cycle } = userplan;
 	const userActivePlan = userplan?.item_plans?.find(
@@ -65,21 +65,22 @@ function Plan() {
 
 	useEffect(() => {
 		getPlan({ setUserPlan });
-	}, []);
+	}, [getPlan]);
+
 	const { item_plans = [], saas_plan_pricing_id = '' } = userplan || {};
-	const checkPaymentStatus = async (payload) => {
+	const checkPaymentStatus = useCallback(async (payload) => {
 		if (apiTries < 1) setRazorLoading(true);
 		const res = await verifyRazor(payload);
 		await wait(WAIT_TIME);
 		setApiTries(apiTries + 1);
 		setPaymentStatus(res);
-	};
+	}, [apiTries, setRazorLoading, verifyRazor]);
 
 	useEffect(() => {
 		if (query?.state === 'succeeded') {
 			checkPaymentStatus(requestData);
 		} else setRazorLoading(false);
-	}, [query]);
+	}, [checkPaymentStatus, query, requestData, setRazorLoading]);
 
 	useEffect(() => {
 		(async () => {
@@ -91,7 +92,7 @@ function Plan() {
 				}
 			}
 		})();
-	}, [apiTries]);
+	}, [apiTries, checkPaymentStatus, paymentStatus?.status, razorLoading, requestData]);
 
 	useEffect(() => {
 		if (Object.keys(item_plans).length > 0) {

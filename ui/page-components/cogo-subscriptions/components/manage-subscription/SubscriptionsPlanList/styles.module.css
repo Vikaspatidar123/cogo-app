@@ -11,7 +11,6 @@
 	padding: 0 20px 20px;
 }
 
-
 @media screen and (max-width: 767px) {
 	.wrapper {
 		max-width: 100%;
@@ -30,7 +29,6 @@
 	height: 99%;
 	padding: 5px;
 }
-
 
 @media screen and (max-width: 767px) {
 	.div {
@@ -59,6 +57,20 @@
 	border-radius: 0 4px 4px;
 }
 
+.plan_wrapper {
+	overflow-x: hidden;
+	overflow-y: auto;
+	background: white;
+	border: 1px solid #e0e0e0;
+	border-radius: 4px;
+
+	:global {
+		.ui_button_container:hover {
+			animation: unset;
+		}
+	}
+}
+
 .selected {
 	background: #fff;
 	border: 1px solid #db4634;
@@ -75,7 +87,7 @@
 
 	:global {
 		.ui_button_container {
-			:local {
+			.local {
 				color: #fff;
 				background-color: #ee3425;
 				animation: wiggle 1s linear infinite;
@@ -83,21 +95,6 @@
 		}
 	}
 }
-
-.plan_wrapper {
-	overflow-x: hidden;
-	overflow-y: auto;
-	background: white;
-	border: 1px solid #e0e0e0;
-	border-radius: 4px;
-
-	:global {
-		.ui_button_container:hover {
-			animation: unset;
-		}
-	}
-}
-
 
 @keyframes wiggle {
 	0%,
@@ -125,23 +122,10 @@
 		transform: rotateZ(-1deg);
 	}
 
-	30%,
 	100% {
 		transform: rotateZ(0);
 	}
 }
-
-/* @media screen and (max-width: 768px) {
-	z-index: auto;
-	transform: ${(props) => (props.isSelected ? '' : 'scale(1.02) !important')};
-	transition: ${(props) => (props.isSelected ? '' : 'transform 0.3s !important')};
-}
-
-@media screen and (max-width: 767px) {
-	width: 100%;
-	scale: ${(props) => props.isSelected && '1.025'};
-	transition: ${(props) => (props.isSelected ? '' : 'scale 0.3s !important')};
-} */
 
 .view_details_button {
 	display: flex;

@@ -3,12 +3,6 @@ import { Toast } from '@cogoport/components';
 import { useRequest } from '@/packages/request';
 
 const useSubscriptionActivateNow = () => {
-	// const { trigger, loading } = useRequest(
-	// 	'post',
-	// 	false,
-	// 	scope,
-	// )('/subscription_activate_now');
-
 	const [{ loading }, trigger] = useRequest({
 		url    : '/subscription_activate_now',
 		method : 'post',

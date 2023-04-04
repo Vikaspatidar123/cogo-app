@@ -67,7 +67,6 @@
 	text-overflow: ellipsis;
 	text-transform: uppercase;
 	-webkit-line-clamp: 2;
-	-webkit-box-orient: vertical;
 }
 
 .background_image {
@@ -216,12 +215,18 @@
 	border: 1px dashed #fbd1a6;
 }
 
+.holes_lower::after {
+	top: -12px;
+	left: 339px;
+	clip-path: inset(-5px 10px -5px -5px);
+	box-shadow: 0 1px 3px rgb(0 0 0 / 20%);
+}
+
 .holes_lower::before .holes_lower::after {
 	position: absolute;
 	z-index: 1;
 	width: 25px;
 	height: 25px;
-	content: "";
 	background-color: #fbfbfc;
 	border-radius: 50%;
 }
@@ -233,9 +238,3 @@
 	box-shadow: 0 1px 3px rgb(0 0 0 / 20%);
 }
 
-.holes_lower::after {
-	top: -12px;
-	left: 339px;
-	clip-path: inset(-5px 10px -5px -5px);
-	box-shadow: 0 1px 3px rgb(0 0 0 / 20%);
-}

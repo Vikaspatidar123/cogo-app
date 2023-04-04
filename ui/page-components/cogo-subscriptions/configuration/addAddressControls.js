@@ -1,7 +1,5 @@
 import patterns from '@/ui/commons/configurations/patterns';
 
-export const mobileValidator = /^[0-9]{10}$/;
-
 export const addAddressControls = (countryInfo, stateInfo, mobileCode) => [
 	{
 		label       : 'POC Name',
@@ -17,7 +15,6 @@ export const addAddressControls = (countryInfo, stateInfo, mobileCode) => [
 		type        : 'text',
 		placeholder : 'Enter Billing Party Name',
 		rulues      : { required: true },
-		// valueKey: 'business_name',
 	},
 	{
 		label       : 'Email Id *',
@@ -41,7 +38,7 @@ export const addAddressControls = (countryInfo, stateInfo, mobileCode) => [
 		rules       : {
 			required : true,
 			pattern  : {
-				value   : mobileValidator,
+				value   : patterns.MOBILE,
 				message : 'Invalid phone number',
 			},
 		},
@@ -71,14 +68,12 @@ export const addAddressControls = (countryInfo, stateInfo, mobileCode) => [
 	{
 		label          : 'Country *',
 		name           : 'country',
-		// type: 'select',
 		type           : 'select',
 		placeholder    : 'Enter Country',
 		className      : 'primary md',
 		rules          : { required: true },
 		optionsListKey : 'countries',
 		valueKey       : 'id',
-		// defaultOptions: true,
 		disabled       : !mobileCode?.country_code,
 		params         : {
 			filters: {

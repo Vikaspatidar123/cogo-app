@@ -1,124 +1,3 @@
-/* .label {
-	font-weight: 500;
-	font-size: 20px;
-	display: flex;
-	align-items: center;
-	color: #bdbdbd;
-}
-
-
-.styled_row {
-	display: flex;
-	margin-top: 5px;
-	justify-content: space-between;
-	margin-left: 0px;
-	align-items: center;
-	padding: 5px;
-}
-
-
-.styled_row.price_row {
-		margin-top: 0;
-		padding-top: 0;
-		padding-bottom: 0;
-}
-
-.styled_row.heading {
-		align-items: flex-start;
-}
-
-.annually_txt {
-		color: #a4a2a2;
-}
-
-
-
-
-.heading {
-	font-weight: 500;
-	font-size: 20px;
-}
-
-
-.row2 {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-}
-
-.row2.subheading {
-	font-size: 11px;
-}
-
-
-.styled_col {
-	display: flex;
-	align-items: center;
-	flex-direction: column;
-	margin-left: 0px ;
-	margin-right: 0px ;
-}
-
-.styled_col_2 {
-	display: flex;
-	align-items: flex-start;
-	flex-direction: column;
-	margin-left: 0px ;
-	margin-right: 0px ;
-}
-
-
-
-.price {
-	display: flex;
-	font-weight: 700;
-	font-size: 32px;
-	align-items: center;
-}
-
-.price .perPeriod {
-		font-size: 12px;
-}
-
-
-
-
-@media screen and (max-width: 768px) {
-	.list{
-		padding: 12px;
-	}
-}
-
-
-@media screen and (max-width: 480px) {
-	.list {
-		padding: 8px 0;
-	}
-}
-
-.number {
-	font-weight: 500;
-	font-size: 14px;
-	margin-left: 7px;
-}
-
-.text {
-	font-weight: 400;
-	font-size: 14px;
-	margin-left: 3px;
-}
-
-.flex {
-	display: flex;
-	padding: 3px;
-	align-items: center;
-} */
-
-
-
-
-/* NEW CSS */
-
 .plan_type_heading {
 	display: flex;
 	align-items: center;
@@ -220,7 +99,6 @@
 	margin: 24px 0 16px;
 }
 
-
 .ribbon_wrapper {
 	position: absolute;
 	top: 0;
@@ -228,7 +106,6 @@
 	display: flex;
 	justify-content: flex-end;
 }
-
 
 .crossed_price {
 	color: #db4634;

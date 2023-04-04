@@ -178,12 +178,6 @@ function AddonModal({
 									)}
 								/>
 							</div>
-							{/* {discount_percent > 0 && (
-								<Tagged background="#fce4bf">
-									{discount_percent}
-									% off
-								</Tagged>
-							)} */}
 						</div>
 						<div className={`${styles.row} ${styles.subheading_container}`}>
 							<div className="subheading">

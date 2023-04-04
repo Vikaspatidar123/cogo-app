@@ -1,4 +1,5 @@
 import { Toast } from '@cogoport/components';
+import { useCallback } from 'react';
 
 import { useRequest } from '@/packages/request';
 
@@ -8,7 +9,7 @@ const useGetPlanDetails = ({ profile }) => {
 		method : 'get',
 	}, { manual: true });
 
-	const getPlan = async ({
+	const getPlan = useCallback(async ({
 		setPlan,
 		query,
 		createCheckout,
@@ -37,7 +38,8 @@ const useGetPlanDetails = ({ profile }) => {
 		} catch (error) {
 			Toast.error(error?.message);
 		}
-	};
+	}, [profile?.organization?.id, trigger]);
+
 	return { getPlan, planDataLoading: loading };
 };
 export default useGetPlanDetails;

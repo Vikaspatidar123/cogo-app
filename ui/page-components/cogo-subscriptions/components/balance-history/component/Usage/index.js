@@ -166,9 +166,7 @@ function Usage({ pendingModal, setPendingModal }) {
 												<IcMError fill="#DB4634" width={13} height={13} />
 												<div className="txt">
 													Only
-													{' '}
 													{+left_quota + +addon_quota}
-													{' '}
 													remaining, kindly add on to
 													continue
 												</div>

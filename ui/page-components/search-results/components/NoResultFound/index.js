@@ -90,7 +90,6 @@ function NoResultFound({
 	};
 
 	const showAgent =		organization?.agent?.id
-		&& scope === 'app'
 		&& type === 'no_result_found'
 		&& !skippable_checks?.includes('hide_rm_detail');
 	let description = '';
@@ -104,9 +103,6 @@ function NoResultFound({
 	}
 
 	const title = () => {
-		if (scope === 'app') {
-			return 'That’s odd, it doesn’t look like we have any results for you.';
-		}
 		if (headerData?.expired) {
 			return 'This search is expired';
 		}
@@ -187,8 +183,6 @@ function NoResultFound({
 			<div className={`${styles.main} ${type === 'no_result_found' && 'no_result_found'}`}>
 				{renderTitle()}
 				<div className={styles.description}>{description}</div>
-				{/* {isChannelPartner ? <BasicPlan enquiryQuota={enquiryQuota} /> : null} */}
-
 				{showAgent && (
 					<>
 						<div className={styles.title_rm}>Contact Your Key Account Manager Now</div>
@@ -196,6 +190,8 @@ function NoResultFound({
 							<Button
 								onClick={() => goTo(`mailto:${organization?.agent?.email}`)}
 								style={{ display: 'inline' }}
+								size="md"
+								themeType="linkUi"
 							>
 								{`Name : ${organization?.agent?.name}`}
 							</Button>
@@ -203,6 +199,8 @@ function NoResultFound({
 							<Button
 								onClick={() => goTo(`mailto:${organization?.agent?.email}`)}
 								style={{ display: 'inline' }}
+								size="md"
+								themeType="linkUi"
 							>
 								{`Email : ${organization?.agent?.email}`}
 							</Button>
@@ -211,6 +209,8 @@ function NoResultFound({
 								<Button
 									onClick={() => goTo(`tel:${organization?.agent?.mobile_number}`)}
 									style={{ display: 'inline' }}
+									size="md"
+									themeType="linkUi"
 								>
 									{`Phone/WhatsApp : 
 									${organization?.agent?.mobile_country_code} ${organization?.agent?.mobile_number}`}
@@ -247,10 +247,11 @@ function NoResultFound({
 
 			<div className={styles.container_info}>
 				{showEnq && create_enquiry_check ? renderButtons() : renderJobButton()}
-				<div
+				<img
 					className={styles.bg}
 					src="https://cdn.cogoport.io/cms-prod/cogo_admin/vault/original/ic-noresults.svg"
 					style={{ width: 250, height: 250 }}
+					alt="cogo"
 				/>
 			</div>
 

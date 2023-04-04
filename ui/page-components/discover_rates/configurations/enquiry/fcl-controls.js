@@ -98,8 +98,8 @@ const fclControls = () => [
 	{
 		name           : 'preferred_shipping_line_ids',
 		label          : 'Preferred Shipping lines',
-		type           : 'select',
-		optionsListKey : 'shipping-lines',
+		type           : 'async_select',
+		asyncKey       : 'shipping-lines',
 		multiple       : true,
 		defaultOptions : true,
 		caret          : true,

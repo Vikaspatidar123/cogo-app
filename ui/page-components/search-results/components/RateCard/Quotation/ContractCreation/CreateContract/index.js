@@ -26,6 +26,11 @@ function CreateContract({
 		watch,
 		setValue,
 	} = useForm();
+	const fields = {};
+	newControls.forEach((controlItem) => {
+		const field = { ...controlItem, control };
+		fields[controlItem.name] = field;
+	});
 	const watchForm = watch();
 
 	const { search_type = '' } = details || {};
@@ -63,7 +68,7 @@ function CreateContract({
 					<CreateContractModal
 						details={details}
 						errors={errors}
-						fields={control}
+						fields={fields}
 						controls={newControls}
 						watchForm={watchForm}
 						setValue={setValue}

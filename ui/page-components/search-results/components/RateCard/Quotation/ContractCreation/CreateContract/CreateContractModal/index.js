@@ -1,3 +1,4 @@
+import { cl } from '@cogoport/components';
 import { addDays } from '@cogoport/utils';
 import React, { useRef, useEffect } from 'react';
 
@@ -6,7 +7,7 @@ import { getUnit } from '../../../../../../utils/get-unit';
 import PortSelect from './PortSelect';
 import styles from './styles.module.css';
 
-import { DatepickerController, InputController, SelectController } from '@/packages/forms';
+import { DatepickerController, InputController, SelectController, AsyncSelectController } from '@/packages/forms';
 import getOperatorsConfig from '@/ui/page-components/search-results/utils/getOperatorsConfig';
 
 function CreateContractModal({
@@ -90,7 +91,7 @@ function CreateContractModal({
 					<div className={styles.error_text}>{errors?.validity_start?.message}</div>
 				</div>
 
-				<div className={`${styles.styled_col} ${styles.end - date}`}>
+				<div className={cl`${styles.styled_col} ${styles.end_date}`}>
 					<div className={styles.inline_label}>End Date</div>
 					<DatepickerController
 						{...fields.validity_end}
@@ -122,10 +123,10 @@ function CreateContractModal({
 							{' '}
 							lines
 							{' '}
-							<span className="shipping-line">(OPTIONAL)</span>
+							<span className={styles.shipping_line}>(OPTIONAL)</span>
 						</div>
 						<div className={styles.inline_label}>Search</div>
-						<SelectController
+						<AsyncSelectController
 							{...fields.preferred_shipping_line_ids}
 							onFocus={async () => {
 								await updateCache('preferred_shipping_line_ids');
@@ -148,10 +149,10 @@ function CreateContractModal({
 							{' '}
 							lines
 							{' '}
-							<span className="shipping-line">(OPTIONAL)</span>
+							<span className={styles.shipping_line}>(OPTIONAL)</span>
 						</div>
 						<div className={styles.inline_label}>Search</div>
-						<SelectController
+						<AsyncSelectController
 							{...fields.exclude_shipping_line_ids}
 							onFocus={async () => {
 								await updateCache('exclude_shipping_line_ids');

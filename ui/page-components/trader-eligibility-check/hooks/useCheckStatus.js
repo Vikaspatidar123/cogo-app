@@ -1,5 +1,5 @@
 import { Toast } from '@cogoport/components';
-import { useCallback, useState } from 'react';
+import { useCallback, useRef, useState } from 'react';
 
 import { useRequestBf } from '@/packages/request';
 
@@ -14,7 +14,8 @@ const useCheckStatus = ({ query, setPaymentStatusModal, createTradeEngine }) => 
 	}, { manual: true });
 
 	const { billId = '' } = query || {};
-	let count = 0;
+
+	const count = useRef(0);
 
 	const checkPaymentStatus = useCallback(async () => {
 		setPaymentStatusModal(true);
@@ -31,8 +32,8 @@ const useCheckStatus = ({ query, setPaymentStatusModal, createTradeEngine }) => 
 				});
 			} else {
 				setPaymentStatusModal(true);
-				if (count < 10) {
-					count += 1;
+				if (count.current < 10) {
+					count.current += 1;
 					setTimeout(async () => {
 						await checkPaymentStatus();
 					}, 2000);

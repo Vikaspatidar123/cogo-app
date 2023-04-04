@@ -1,9 +1,10 @@
 import { IcMArrowBack } from '@cogoport/icons-react';
-import { useRouter } from 'next/router';
 
 import MapContainer from '../../../common/MapContainer';
 
 import styles from './styles.module.css';
+
+import { useRouter } from '@/packages/next';
 
 function Info({ MAPPING, prefillData, localStorageData }) {
 	const { push } = useRouter();
@@ -17,7 +18,7 @@ function Info({ MAPPING, prefillData, localStorageData }) {
 		if (name === 'hsCode' || name === 'transportMode') return prefillData?.[name];
 
 		return (
-			<div className="country_info">
+			<div className={styles.country_info}>
 				<img src={localStorageData?.[name]?.flag_icon_url} alt="" />
 				<span>{prefillData?.[name]}</span>
 			</div>

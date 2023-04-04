@@ -27,7 +27,7 @@ const useGetServiceRates = (prioritySequence = 0) => {
 	};
 
 	useEffect(() => {
-		if (prioritySequence) {
+		if (prioritySequence >= 0) {
 			fetchServiceRates();
 		}
 	}, [prioritySequence]);

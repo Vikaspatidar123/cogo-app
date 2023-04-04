@@ -1,10 +1,11 @@
 import { Button, Modal } from '@cogoport/components';
 import { IcMInformation } from '@cogoport/icons-react';
-import { useRouter } from 'next/router';
 
 import iconUrl from '../../utils/iconUrl.json';
 
 import styles from './styles.module.css';
+
+import { useRouter } from '@/packages/next';
 
 function PendingModal({ showPendingModal, setShowPendingModal, stop }) {
 	const { query } = useRouter();

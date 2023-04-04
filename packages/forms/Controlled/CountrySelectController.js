@@ -17,6 +17,7 @@ function CountrySelectController({ name, itemKey, value, control, ...rest }) {
 					key={itemKey}
 					onChange={(val, obj) => {
 						onChange(val, obj);
+
 						if (rest?.handleChange) {
 							rest?.handleChange(obj);
 						}

@@ -1,8 +1,8 @@
 import { Toast } from '@cogoport/components';
-import { useRouter } from 'next/router';
 
 import useGetProductCode from './useGetProductCodes';
 
+import { useRouter } from '@/packages/next';
 import { useRequestBf } from '@/packages/request';
 import { useSelector } from '@/packages/store';
 
@@ -12,9 +12,9 @@ const usePayment = ({ hsCode = '' }) => {
 	const { id, name, email, mobile_number, mobile_country_code } = profile || {};
 	const { org_id = '', branch_id = '', account_type = '', trade_engine_id } = query || {};
 	// eslint-disable-next-line max-len
-	const callBackUrl1 = `${process.env.APP_URL}app/${org_id}/${branch_id}/${account_type}/saas/premium-services/import-export-doc`;
+	const callBackUrl1 = `${process.env.NEXT_PUBLIC_APP_URL}app/${org_id}/${branch_id}/${account_type}/saas/premium-services/import-export-doc`;
 	// eslint-disable-next-line max-len
-	const callBackUrl2 = `${process.env.APP_URL}app/${org_id}/${branch_id}/${account_type}/saas/premium-services/import-export-doc/${trade_engine_id}/result`;
+	const callBackUrl2 = `${process.env.NEXT_PUBLIC_APP_URL}app/${org_id}/${branch_id}/${account_type}/saas/premium-services/import-export-doc/${trade_engine_id}/result`;
 
 	const { getProductCode, getProductCodeLoading } = useGetProductCode();
 

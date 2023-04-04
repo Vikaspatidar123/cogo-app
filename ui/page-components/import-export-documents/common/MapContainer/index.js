@@ -19,11 +19,12 @@ function MapContainer({
 	mapZoom = 2.7,
 }) {
 	const [curvePoints, setCurvePoints] = useState([]);
-	const { mapPoints = [], setMapPoints } = useState();
+	const [mapPoints, setMapPoints] = useState([]);
 
 	const originId = importCountry?.id;
 	const destinationId = exportCountry?.id;
-	const { getOceanRoute } = useOceanRoute();
+
+	const { getOceanRoute } = useOceanRoute({ setMapPoints });
 
 	const createBezier = (inputPoints, step) => {
 		let t = 0;

@@ -5,6 +5,11 @@
 	.title {
 		padding: 2px 26px;
 		background: #f8f2e7;
+
+		h3 {
+			margin: 18px 0;
+			font-weight: 600;
+		}
 	}
 
 	.content {
@@ -40,6 +45,7 @@
 		padding: 20px 40px;
 		margin: 0;
 		font-size: 16px;
+		font-weight: 600;
 		color: #333;
 		background: #e0e0e0;
 	}

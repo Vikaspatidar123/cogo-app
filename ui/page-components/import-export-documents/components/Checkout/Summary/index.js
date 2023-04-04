@@ -1,8 +1,9 @@
 import { Button } from '@cogoport/components';
-import { useRouter } from 'next/router';
 
 import Charges from './Charges';
 import styles from './styles.module.css';
+
+import { useRouter } from '@/packages/next';
 
 function Summary({
 	quotaValue = 0,

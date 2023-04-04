@@ -12,6 +12,7 @@ function Details({ isUserSubscribed, isQuotaLeft }) {
 		exportCountry = {},
 		importCountry = {},
 	} = transportDetails || {};
+
 	return (
 		<div className={styles.container}>
 			<h3>Documents Details</h3>

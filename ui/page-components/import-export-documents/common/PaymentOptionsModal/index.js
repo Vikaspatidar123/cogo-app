@@ -4,10 +4,11 @@ import {
 	IcACreditAndPayments,
 	IcAAccountRelated,
 } from '@cogoport/icons-react';
-import { useRouter } from 'next/router';
 import { useState } from 'react';
 
 import styles from './styles.module.css';
+
+import { useRouter } from '@/packages/next';
 
 function PaymentOptionsModal({
 	isUserSubscribed = false,

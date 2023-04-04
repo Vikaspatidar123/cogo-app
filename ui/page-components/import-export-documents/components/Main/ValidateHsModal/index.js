@@ -1,5 +1,4 @@
 import { Button, Popover, Input, Modal } from '@cogoport/components';
-import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
 
 import useVerifyHscode from '../../../hooks/useVerifyHsCode';
@@ -8,6 +7,8 @@ import validateFn from '../../../utils/validateFn';
 
 import styles from './styles.module.css';
 import TitleContainer from './TitleContainer';
+
+import { useRouter } from '@/packages/next';
 
 const sugestionContent = ({
 	inputValue,
@@ -85,7 +86,7 @@ function ValidateHsModal({
 	}, []);
 	return (
 		<Modal
-			size="sm"
+			size="md"
 			show={show}
 			onClose={() => setShow(false)}
 			showCloseIcon={!billId}
@@ -105,7 +106,7 @@ function ValidateHsModal({
 						placement="bottom"
 						visible={validateInProgress && inputValue.length > 0}
 					>
-						<div className={styles.input_container}>
+						<div>
 							<p>HS Code</p>
 							<Input value={hsCode} className={styles.hs_input} disabled />
 						</div>
@@ -121,9 +122,9 @@ function ValidateHsModal({
 								Validate
 							</Button>
 						) : (
-							<div className="valid">
-								<img src={iconUrl.validate} alt="validated" className="validate_svg" />
-								<div className="validate"> Validated</div>
+							<div className={styles.valid}>
+								<img src={iconUrl.validate} alt="validated" className={styles.validate_svg} />
+								<div className={styles.validate}> Validated</div>
 							</div>
 						)}
 					</div>

@@ -30,6 +30,7 @@
 	.hyper_link {
 		font-size: 13px;
 		color: #f68b21;
+		cursor: pointer;
 
 		:hover {
 			text-decoration: underline;

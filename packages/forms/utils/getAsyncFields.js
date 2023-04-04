@@ -86,6 +86,25 @@ function asyncProductList() {
 	};
 }
 
+function asyncCountrySelect() {
+	return {
+		valueKey : 'id',
+		labelKey : 'display_name',
+		endpoint : 'list_locations',
+		params   : {
+			filters  : { type: 'country' },
+			includes : {
+				default_params_required: true,
+				// flag_icon_url: true,
+				// country_code: true,
+			},
+			page_limit : 20,
+			sort_by    : 'name',
+			sort_type  : 'asc',
+		},
+	};
+}
+
 export {
 	asyncFieldsLocations,
 	asyncFieldsLocations2,
@@ -94,4 +113,5 @@ export {
 	asyncFieldsHsCodeCountries,
 	asyncFieldsPartnerQuotation,
 	asyncProductList,
+	asyncCountrySelect,
 };

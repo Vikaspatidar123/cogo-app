@@ -120,44 +120,108 @@ const saas = {
 			access_type : 'private',
 		},
 		{
-			api                          : 'saas_get_user_quota_usage',
-			access_type                  : 'private',
-			app_saas_transaction_history : [
-				{
-					api         : 'get_saas_payment_details',
-					access_type : 'private',
-					module      : 'transactionHistory',
-					feature     : 'transactionHistory',
-				},
-				{
-					api         : 'get_saas_payment_history',
-					access_type : 'private',
-					module      : 'transactionHistory',
-					feature     : 'transactionHistory',
-				},
-				{
-					api         : 'get_saas_trade_engine',
-					access_type : 'private',
-					module      : 'transactionHistory',
-					feature     : 'transactionHistory',
-				},
-			],
+			api         : 'saas_get_user_quota_usage',
+			access_type : 'private',
+		},
+	],
+	app_saas_transaction_history: [
+		{
+			api         : 'get_saas_payment_details',
+			access_type : 'private',
+			module      : 'transactionHistory',
+			feature     : 'transactionHistory',
+		},
+		{
+			api         : 'get_saas_payment_history',
+			access_type : 'private',
+			module      : 'transactionHistory',
+			feature     : 'transactionHistory',
+		},
+		{
+			api         : 'get_saas_trade_engine',
+			access_type : 'private',
+			module      : 'transactionHistory',
+			feature     : 'transactionHistory',
+		},
+	],
 
-			app_saas_order_history: [
-				{
-					api          : 'get_saas_trade_engine_order_history',
-					access_type  : 'private',
-					service_name : 'order_history',
-				},
-				{
-					api          : 'get_saas_trade_engine',
-					access_type  : 'private',
-					service_name : 'order_history',
-				},
-			],
-
-			app_saas_load_container: [],
-
-		}],
+	app_saas_order_history: [
+		{
+			api          : 'get_saas_trade_engine_order_history',
+			access_type  : 'private',
+			service_name : 'order_history',
+		},
+		{
+			api          : 'get_saas_trade_engine',
+			access_type  : 'private',
+			service_name : 'order_history',
+		},
+	],
+	app_saas_import_export_doc: [
+		{
+			api          : 'saas_get_user_quota_usage',
+			access_type  : 'private',
+			service_name : 'saas_subscriptions_v2',
+		},
+		{
+			api          : 'get_saas_bill_status',
+			access_type  : 'private',
+			service_name : 'saas_subscriptions_v2',
+		},
+		{
+			api         : 'post_saas_trade_engine_document_draft',
+			access_type : 'private',
+			module      : 'import-export-documents',
+			feature     : 'import-export-documents',
+		},
+		{
+			api         : 'get_saas_bill_product_codes',
+			access_type : 'private',
+			module      : 'import-export-documents',
+			feature     : 'import-export-documents',
+		},
+		{
+			api         : 'get_saas_trade_engine_service_rates',
+			access_type : 'private',
+			module      : 'import-export-documents',
+			feature     : 'import-export-documents',
+		},
+		{
+			api         : 'post_saas_payment',
+			access_type : 'private',
+			module      : 'import-export-documents',
+			feature     : 'import-export-documents',
+		},
+		{
+			api         : 'get_saas_trade_engine',
+			access_type : 'private',
+			module      : 'import-export-documents',
+			feature     : 'import-export-documents',
+		},
+		{
+			api         : 'post_saas_trade_engine',
+			access_type : 'private',
+			module      : 'import-export-documents',
+			feature     : 'import-export-documents',
+		},
+		{
+			api         : 'get_saas_trade_engine_verify_six_digit',
+			access_type : 'private',
+			module      : 'import-export-documents',
+			feature     : 'import-export-documents',
+		},
+		{
+			api         : 'post_saas_trade_engine_hs_engine',
+			access_type : 'private',
+			module      : 'import-export-documents',
+			feature     : 'import-export-documents',
+		},
+		{
+			api         : 'get_saas_trade_engine_pdf',
+			access_type : 'private',
+			module      : 'import-export-documents',
+			feature     : 'import-export-documents',
+		},
+	],
 };
 export default saas;

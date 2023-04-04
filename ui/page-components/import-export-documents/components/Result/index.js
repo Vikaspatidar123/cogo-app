@@ -1,6 +1,5 @@
 import { cl, TabPanel, Tabs } from '@cogoport/components';
 import { IcMArrowBack } from '@cogoport/icons-react';
-import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
 
 import PendingModal from '../../common/PendingModal';
@@ -10,6 +9,8 @@ import iconUrl from '../../utils/iconUrl.json';
 
 import Document from './Document';
 import styles from './styles.module.css';
+
+import { useRouter } from '@/packages/next';
 
 function Result() {
 	const { push, query } = useRouter();
@@ -84,13 +85,9 @@ function Result() {
 							themeType="primary"
 							onChange={setActiveTab}
 						>
-							<TabPanel name="IMPORT" title="Import">
-								<div>This is local search</div>
-							</TabPanel>
+							<TabPanel name="IMPORT" title="Import" />
 
-							<TabPanel name="EXPORT" title="Export">
-								<div>This is suggested</div>
-							</TabPanel>
+							<TabPanel name="EXPORT" title="Export" />
 
 						</Tabs>
 						<div className={styles.tag_container}>

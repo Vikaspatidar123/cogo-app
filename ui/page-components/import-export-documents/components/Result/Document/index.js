@@ -33,7 +33,7 @@ function Document({ doc = {}, hsNumber = '' }) {
 	};
 	const downloadHandler = () => {
 		// eslint-disable-next-line max-len
-		const url = `${process.env.BUSINESS_FINANCE_BASE_URL}/saas/trade-engine/pdf?docLink=${docLink}&docName=${docName}&hsNumber=${hsNumber}`;
+		const url = `${process.env.NEXT_PUBLIC_BUSINESS_FINANCE_BASE_URL}/saas/trade-engine/pdf?docLink=${docLink}&docName=${docName}&hsNumber=${hsNumber}`;
 		window.open(url);
 	};
 
@@ -54,7 +54,7 @@ function Document({ doc = {}, hsNumber = '' }) {
 							Preview
 						</Button>
 					</div>
-					<div className="cta_mobile_view">
+					<div className={styles.cta_mobile_view}>
 						<Button className={styles.download_btn} themeType="linkUi" onClick={downloadHandler}>
 							<IcMDownload />
 						</Button>

@@ -51,6 +51,7 @@
 
 	.row {
 		display: flex;
+		align-items: center;
 		justify-content: space-between;
 		padding: 12px;
 	}
@@ -82,15 +83,12 @@
 	}
 
 	.label {
-		font-weight: 300;
-	}
-
-	.value {
+		font-weight: 600;
 	}
 
 	.desc_row {
 		display: flex;
-		width: 33%;
+		width: 34%;
 	}
 
 	.back_arrow {

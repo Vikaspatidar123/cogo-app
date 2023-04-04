@@ -32,6 +32,19 @@ const saas = {
 		navigation : 'saas_tools-trade_partner',
 		isMainNav  : true,
 	},
+	'/saas/premium-services/import-export-doc': {
+		navigation : 'saas_premium_services-import_export_docs',
+		isMainNav  : true,
+	},
+	'/saas/premium-services/import-export-doc/[trade_engine_id]': {
+		navigation : 'saas_premium_services-import_export_docs',
+		isMainNav  : true,
+	},
+	'/saas/premium-services/import-export-doc/[trade_engine_id]/result': {
+		navigation : 'saas_premium_services-import_export_docs',
+		isMainNav  : true,
+	},
+
 };
 
 module.exports = saas;

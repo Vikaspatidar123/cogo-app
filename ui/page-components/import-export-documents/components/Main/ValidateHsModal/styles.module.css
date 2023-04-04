@@ -46,7 +46,7 @@
 
 .row_container {
 	display: flex;
-	align-items: center;
+	align-items: flex-end;
 	padding: 12px 32px;
 
 	&.subheading {
@@ -62,10 +62,6 @@
 		input {
 			cursor: not-allowed;
 		}
-	}
-
-	.input_container {
-		width: 65%;
 	}
 }
 
@@ -100,6 +96,7 @@
 }
 
 .btn_container {
+	margin-bottom: 12px;
 	margin-left: 20px;
 
 	.valid {

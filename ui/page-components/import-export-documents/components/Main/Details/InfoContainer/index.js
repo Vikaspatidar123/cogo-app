@@ -1,5 +1,4 @@
 import { cl, Button } from '@cogoport/components';
-import { useRouter } from 'next/router';
 import { useState } from 'react';
 
 import HsCode from '../../../../../hs-code-modal';
@@ -18,6 +17,7 @@ import styles from './styles.module.css';
 
 import { useForm } from '@/packages/forms';
 import getField from '@/packages/forms/Controlled';
+import { useRouter } from '@/packages/next';
 
 function InfoContainer({
 	transportDetails = {},
@@ -41,10 +41,10 @@ function InfoContainer({
 
 	const SelectProductModal = showCatalogue ? ProductCatalogue : HsCode;
 
-	const formProps = useForm(documentConfig);
+	const formProps = useForm();
 	const {
-		fields,
 		handleSubmit,
+		control,
 		watch,
 		setValue,
 		setValues,
@@ -69,7 +69,7 @@ function InfoContainer({
 		billId,
 	});
 
-	const { submitHandler, changeHandler, validateSubmitHandler, getKey, renderLabel } =		infoValidateFn({
+	const { submitHandler, changeHandler, validateSubmitHandler, getKey, renderLabel } = infoValidateFn({
 		verifySixDigitHs,
 		watchHsCode,
 		setShowValidate,
@@ -88,6 +88,7 @@ function InfoContainer({
 		selectedData,
 		watchExport,
 		watchImport,
+		styles,
 	});
 
 	return (
@@ -112,7 +113,8 @@ function InfoContainer({
 								{errors?.[name] && <p className={styles.error}>required *</p>}
 							</div>
 							<Element
-								{...fields?.[name]}
+								{...config}
+								control={control}
 								key={getKey(name)}
 								handleChange={(e) => changeHandler(name, e)}
 							/>

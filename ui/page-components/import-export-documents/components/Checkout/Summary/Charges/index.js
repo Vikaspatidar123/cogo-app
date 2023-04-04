@@ -20,7 +20,7 @@ function Charges({ quotaValue = 0, isQuotaLeft = false, getPrice }) {
 					</div>
 					<div className={cl`${styles.row} ${styles.total}`}>
 						<div>Remaining Quota</div>
-						<div className="value">{quotaValue - 1}</div>
+						<div className={styles.value}>{quotaValue - 1}</div>
 					</div>
 				</div>
 			)}

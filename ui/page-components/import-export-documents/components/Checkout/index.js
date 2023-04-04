@@ -1,4 +1,3 @@
-import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 
 import useGetQuota from '../../hooks/useGetQuota';
@@ -9,6 +8,8 @@ import checkoutFn from '../../utils/checkoutFn';
 import Info from './Info';
 import styles from './styles.module.css';
 import Summary from './Summary';
+
+import { useRouter } from '@/packages/next';
 
 function Checkout() {
 	const { query } = useRouter();

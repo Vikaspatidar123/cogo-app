@@ -29,6 +29,7 @@ const useInfoValidateFn = ({
 	selectedData,
 	watchExport = '',
 	watchImport = '',
+	styles,
 }) => {
 	const { hsCode = '', name: productName = '', description = '' } = selectedData || {};
 
@@ -95,7 +96,6 @@ const useInfoValidateFn = ({
 				originHs      : '',
 				destinationHs : data?.hsCode,
 				productName   : data?.productName,
-				// productName: 'asds',
 			},
 		];
 		return {
@@ -107,7 +107,7 @@ const useInfoValidateFn = ({
 	const renderLabel = (name, label) => {
 		if (name === 'hsCode') {
 			return (
-				<div className="label_container">
+				<div className={styles.label_container}>
 					{label}
 					<Tooltip
 						content={TOOLTIP_CONTENT}
@@ -195,7 +195,6 @@ const useInfoValidateFn = ({
 
 	const changeHandler = (name, value) => {
 		if (name === 'transportMode') {
-			console.log(value?.value, 'valeu');
 			setTransportDetails((prev) => ({
 				...prev,
 				transportMode: value?.value,

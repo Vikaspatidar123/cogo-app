@@ -1,4 +1,4 @@
-import { Input, RadioGroup } from '@cogoport/components';
+import { Input, RadioGroup, Toast } from '@cogoport/components';
 import { useEffect } from 'react';
 
 import { FREQUENCY_OPTIONS } from '../../../constants';
@@ -14,10 +14,10 @@ function Frequency({
 }) {
 	useEffect(() => {
 		if (freqCount > 365) {
-			toast.error('Frequency cannot exceed more than 365');
+			Toast.error('Frequency cannot exceed more than 365');
 			setFreqCount('');
 		}
-	}, [freqCount]);
+	}, [freqCount, setFreqCount]);
 
 	return (
 		<div className={styles.container}>

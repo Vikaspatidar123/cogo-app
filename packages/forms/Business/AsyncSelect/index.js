@@ -35,7 +35,7 @@ const keyAsyncFieldsParamsMapping = {
 	partners          : asyncFieldsPartner,
 	partner_roles     : asyncFieldsPartnerRoles,
 	hs_code_countries : asyncFieldsHsCodeCountries,
-	shipping_lines    : asyncFieldsShippingLines,
+	shipping_line     : asyncFieldsShippingLines,
 };
 
 function AsyncSelect(props) {

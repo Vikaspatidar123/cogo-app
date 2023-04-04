@@ -34,15 +34,12 @@ function ChildFormat(
 	};
 
 	useImperativeHandle(ref, () => ({ handleAppendChild, remove }));
-	console.log(fields, 'fiel');
+
 	return (
 		<div className={`form-fields-${name}`}>
 			{fields.map((field, index) => (
 				<Child
 					{...rest}
-					key={field.id}
-					field={field}
-					listLength={fields.length}
 					index={index}
 					control={control}
 					controls={controls}

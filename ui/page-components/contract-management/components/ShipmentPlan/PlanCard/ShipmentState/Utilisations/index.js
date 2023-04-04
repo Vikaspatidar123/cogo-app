@@ -60,11 +60,11 @@ function Utilisation({ itemData = {} }) {
 						</div>
 					)}
 				</div>
-				{console.log(barWidth, isEqualAndOvered, 'barWidth')}
+
 				{ isEqualAndOvered ? <div className={styles.low_progress} />
 					: (
 						<div className={styles.progress} overflow={isEqualAndOvered}>
-							<div className={styles.percentage} barWidth={barWidth} />
+							<div className={styles.percentage} style={{ width: barWidth }} />
 						</div>
 					)}
 			</div>

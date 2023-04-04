@@ -78,6 +78,8 @@ function CreatePlanModal({
 		control,
 	} = useForm();
 
+	console.log(control, "control:::'");
+
 	const handleFormSubmit = async (data) => {
 		await createBulkContractUtilisation({
 			data,
@@ -169,7 +171,7 @@ function CreatePlanModal({
 				id: data?.id,
 			})));
 		}
-	}, [frequency, schedule, freqCount, plan_data, days, useCount, setValue, check, validity_start, validity_end]);
+	}, [frequency, schedule, freqCount, plan_data]);
 	return (
 		<Modal
 			show={showModal}
@@ -179,7 +181,7 @@ function CreatePlanModal({
 			<div className={styles.container}>
 				<div className={styles.title}>Shipment Plan</div>
 
-				<div style={{ margin: '20px 0px 15px 0px' }}>
+				<div style={{ margin: '20px 0 15px 0' }}>
 					<Route
 						originPort={origin_port}
 						destinationPort={destination_port}

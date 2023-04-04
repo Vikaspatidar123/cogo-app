@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { useRequest } from '@/packages/request';
 
 const useGetShippinglines = () => {
-	const [{ data, loading }, trigger] = useRequest({
+	const [{ loading, data }, trigger] = useRequest({
 		url    : '/list_operators',
 		method : 'get',
 	}, { manual: true });

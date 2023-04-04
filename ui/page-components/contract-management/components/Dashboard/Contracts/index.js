@@ -24,15 +24,19 @@ function Contracts({ data }) {
 		setPagination = () => {},
 	} = useGetListContracts({ filterValue, activeFilter });
 
-	const { total_count, page_limit, page } = pageData || {};
+	const { total_count, page } = pageData || {};
 
 	const { active, expired, pending_approval } = data || {};
-	console.log(data, 'data');
+
+	const activeCount = active?.count;
+	const PendingCount = pending_approval?.count;
+	const expiredCount = expired?.count;
+
 	const statCount = {
-		active           : active?.count,
-		expired          : expired?.count,
-		pending_approval : pending_approval?.count,
-		all              : active?.count + pending_approval?.count + expired?.count,
+		active           : activeCount,
+		expired          : expiredCount,
+		pending_approval : PendingCount,
+		all              : activeCount + PendingCount + expiredCount,
 	};
 
 	return (

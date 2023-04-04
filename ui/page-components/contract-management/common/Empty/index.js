@@ -1,6 +1,6 @@
 import styles from './styles.module.css';
 
-function Empty({ label, subLabel, svgHeight, svgWidth, icon }) {
+function Empty({ label, subLabel, svgHeight, svgWidth }) {
 	return (
 		<div className={styles.container}>
 			<div className={styles.wrapper}>
@@ -9,9 +9,7 @@ function Empty({ label, subLabel, svgHeight, svgWidth, icon }) {
 					{subLabel || 'Looks like you do not have any records for this section'}
 				</div>
 			</div>
-			<div className={styles.ic_container} height={svgHeight} width={svgWidth}>
-				{/* {icon || <EmptyIcon />} */}
-			</div>
+			<div className={styles.ic_container} height={svgHeight} width={svgWidth} />
 		</div>
 	);
 }

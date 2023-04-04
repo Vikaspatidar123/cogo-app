@@ -7,7 +7,7 @@ const app_contract_management = [
 	{
 		api          : 'list_operators',
 		access_type  : 'private',
-		service_name : 'contract',
+		service_name : 'operator',
 	},
 	{
 		api          : 'get_contract_stats',

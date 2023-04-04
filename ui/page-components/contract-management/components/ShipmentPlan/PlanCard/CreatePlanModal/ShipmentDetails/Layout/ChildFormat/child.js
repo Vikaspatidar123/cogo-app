@@ -10,7 +10,6 @@ function Child({
 	controls,
 	listLength,
 	control,
-	field,
 	index,
 	name,
 	remove,
@@ -24,7 +23,7 @@ function Child({
 	showButtons,
 	isEditPlan,
 }) {
-	console.log(controls, 'controls1232');
+	console.log(control, 'controls1232');
 	return (
 		<div className={`${styles.styled_row} form-fields-${name}-${index}`}>
 			<div className={styles.shipment_no}>

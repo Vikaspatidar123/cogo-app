@@ -1,6 +1,6 @@
 import { Button } from '@cogoport/components';
 import { format, isEmpty, startCase } from '@cogoport/utils';
-import usei18n, { getFormattedPrice } from 'i18next';
+// import usei18n, { getFormattedPrice } from 'i18next';
 import React from 'react';
 
 import { getUnit } from '../../../../utils/getUnit';
@@ -10,13 +10,14 @@ import Route from '../Route';
 import styles from './styles.module.css';
 
 import { useRouter } from '@/packages/next';
+import formatAmount from '@/ui/commons/utils/formatAmount';
 
 function ManualShipmentCard({
 	requestData = [],
 	loading = false,
 	itemData = {},
 }) {
-	const { numLocale } = usei18n();
+	// const { numLocale } = usei18n();
 	const { push } = useRouter();
 	const {
 		destination_port = {},
@@ -113,11 +114,19 @@ function ManualShipmentCard({
 										</div>
 										<div className={styles.right_side}>
 											<div className={styles.freight_price}>
-												{getFormattedPrice(
-													numLocale,
+												{formatAmount({
+													amount   : net_total,
+													currency : net_total_price_currency || 'INR',
+													options  : {
+														notation : 'standard',
+														style    : 'currency',
+													},
+												})}
+												{/* {getFormattedPrice(
+													// numLocale,
 													net_total,
 													net_total_price_currency || 'INR',
-												)}
+												)} */}
 											</div>
 											<Button
 												className="secondary md"

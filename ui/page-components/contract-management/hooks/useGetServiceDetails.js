@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react';
+import { Toast } from '@cogoport/components';
+import { useState, useEffect, useCallback } from 'react';
 
 import { SERVICE_TYPE_SMALL } from '../components/ShipmentPlan/constants';
 import { KEYS_MAPPING } from '../configurations/payload-key-mapping';
@@ -11,7 +12,7 @@ const useGetServiceDetails = ({
 	serviceType,
 	techOpsServiceId,
 	activeTab,
-	// isTechops,
+	isTechops,
 }) => {
 	const [pagination, setPagination] = useState(1);
 	const {
@@ -19,8 +20,10 @@ const useGetServiceDetails = ({
 	} = useSelector((state) => state);
 
 	const { origin, destination } = filterData || {};
-	console.log(serviceType, 'serviceType');
-	const service = `${SERVICE_TYPE_SMALL[serviceType]}_freight`;
+	const { serviceType: techopsServiceType = '' } = query || {};
+	const service = isTechops
+		? techopsServiceType
+		: `${SERVICE_TYPE_SMALL[serviceType]}_freight`;
 
 	const [{
 		data: serviceData,
@@ -30,7 +33,7 @@ const useGetServiceDetails = ({
 		method : 'get',
 	}, { manual: true });
 
-	const getServiceDetails = async () => {
+	const getServiceDetails = useCallback(async () => {
 		const filters = {
 			contract_id                                  : query.contract_id,
 			[KEYS_MAPPING[serviceType]?.id?.origin]      : origin || undefined,
@@ -51,15 +54,15 @@ const useGetServiceDetails = ({
 				},
 			});
 		} catch (error) {
-			console.log(error, 'err');
+			Toast.error(error?.error?.message);
 		}
-	};
+	}, [destination, origin, pagination, query.contract_id, serviceType, techOpsServiceId, trigger]);
 
 	useEffect(() => {
 		if (serviceType) {
 			getServiceDetails();
 		}
-	}, [activeTab, pagination, JSON.stringify(filterData), serviceType]);
+	}, [activeTab, getServiceDetails, pagination, serviceType]);
 
 	return {
 		serviceLoading,

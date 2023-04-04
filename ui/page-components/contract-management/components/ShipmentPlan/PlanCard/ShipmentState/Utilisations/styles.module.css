@@ -64,7 +64,6 @@
 
 .percentage {
 	background: #c4dc91;
-    /* width: ${({ barWidth }) => barWidth}; */
 	height: 100%;
 	border-radius: 8px;
 }

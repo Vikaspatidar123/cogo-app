@@ -8,7 +8,6 @@ function ShipmentDetails({
 	controls,
 	control,
 	errors,
-	fields,
 	schedule,
 	frequency,
 	getValues = () => {},
@@ -22,22 +21,21 @@ function ShipmentDetails({
 
 		<div className={styles.container}>
 			<TableHeader serviceType={serviceType} />
-			<div className={styles.layout_container}>
-				<Layout
-					controls={controls}
-					control={control}
-					errors={errors}
-					fields={fields}
-					schedule={schedule}
-					frequency={frequency}
-					getValues={getValues}
-					handleSubmit={handleSubmit}
-					contractServiceId={contractServiceId}
-					serviceType={serviceType}
-					freqCount={freqCount}
-					isEditPlan={isEditPlan}
-				/>
-			</div>
+			{/* <div className={styles.layout_container}> */}
+			<Layout
+				controls={controls}
+				control={control}
+				errors={errors}
+				schedule={schedule}
+				frequency={frequency}
+				getValues={getValues}
+				handleSubmit={handleSubmit}
+				contractServiceId={contractServiceId}
+				serviceType={serviceType}
+				freqCount={freqCount}
+				isEditPlan={isEditPlan}
+			/>
+			{/* </div> */}
 		</div>
 	);
 }

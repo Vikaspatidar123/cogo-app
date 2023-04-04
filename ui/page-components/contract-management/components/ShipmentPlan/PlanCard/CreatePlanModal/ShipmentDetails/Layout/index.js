@@ -15,6 +15,7 @@ function Layout({
 	freqCount,
 	isEditPlan,
 }) {
+	console.log(controls, 'controls');
 	return (
 		<div>
 			{controls.map((controlItem) => (

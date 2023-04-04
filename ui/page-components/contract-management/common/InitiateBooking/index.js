@@ -124,15 +124,21 @@ function InitiateBooking({
 			onClose={() => setShowBookingModal(false)}
 			onOuterClick={() => setShowBookingModal(false)}
 		>
-			<div className={styles.container}>
-				<div className={styles.header}>
-					{SERVICE_ICON_MAPPING[service_type]}
-					{' '}
-					<div className={styles.text}>
-						{getUnit(service_type)}
-						{' '}
-						Details
-					</div>
+			<div>
+				<div>
+					<Modal.Header title={(
+						<div style={{ display: 'flex' }}>
+							{' '}
+							{SERVICE_ICON_MAPPING[service_type]}
+							<div className={styles.text}>
+								{getUnit(service_type)}
+								Details
+							</div>
+						</div>
+
+					)}
+					/>
+
 					{!readyForBooking && (
 						<Popover
 							placement="bottom"
@@ -174,14 +180,15 @@ function InitiateBooking({
 							);
 						})}
 					</div>
-
-					<Button
-						disabled={loading || !readyForBooking}
-						onClick={handleSubmit(handleFormSubmit)}
-						style={{ float: 'right', margin: '10px' }}
-					>
-						create booking
-					</Button>
+					<Modal.Footer>
+						<Button
+							disabled={loading || !readyForBooking}
+							onClick={handleSubmit(handleFormSubmit)}
+							style={{ float: 'right', margin: '10px' }}
+						>
+							create booking
+						</Button>
+					</Modal.Footer>
 				</form>
 			</div>
 		</Modal>

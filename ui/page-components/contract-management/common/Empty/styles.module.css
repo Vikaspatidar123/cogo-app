@@ -3,7 +3,7 @@
 	justify-content: space-between;
 	align-items: center;
 	padding: 60px 30px 36px 30px;
-	box-shadow: 0px 2px 3px rgb(16 24 40 / 10%), -2px -2px 3px rgb(16 24 40 / 10%);
+	box-shadow: 0 2px 3px rgb(16 24 40 / 10%), -2px -2px 3px rgb(16 24 40 / 10%);
 	border-radius: 4px;
 }
 

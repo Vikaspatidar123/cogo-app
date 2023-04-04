@@ -3,9 +3,13 @@ import { isEmpty, startCase } from '@cogoport/utils';
 
 import handleLineItems from './handleLineItems';
 
+import formatAmount from '@/ui/commons/utils/formatAmount';
+
 const handleLineItemsBreakup = (item, details, containerCount, source) => {
 	// const { numLocale } = usei18n();
 	const { line_items = [] } = item || {};
+
+	const totalPriceDiscounted = item.total_price_discounted;
 
 	const {
 		container_size,
@@ -90,14 +94,22 @@ const handleLineItemsBreakup = (item, details, containerCount, source) => {
 			? handleLineItems({ items: line_items, source })
 			: []),
 		{
-			features: handleService(),
-			// price    : !isEmpty(line_items)
-			// 	? getFormattedPrice(
-			// 		numLocale,
-			// 		item?.total_price_discounted / containerCount,
-			// 		item?.total_price_currency,
-			// 	)
-			// 	: 'Local charges will be billed at Actual',
+			features : handleService(),
+			price    : !isEmpty(line_items)
+				? 				formatAmount({
+					amount   : totalPriceDiscounted / containerCount,
+					currency : item?.total_price_currency,
+					options  : {
+						notation : 'standard',
+						style    : 'currency',
+					},
+				})
+				// getFormattedPrice(
+				// 	// numLocale,
+				// 	item?.total_price_discounted / containerCount,
+				// 	item?.total_price_currency,
+				// )
+				: 'Local charges will be billed at Actual',
 		},
 	];
 };

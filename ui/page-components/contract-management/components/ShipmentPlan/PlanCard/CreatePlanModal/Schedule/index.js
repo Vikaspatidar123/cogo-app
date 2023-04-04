@@ -10,7 +10,6 @@ function Schedule({ schedule, setSchedule = () => {}, disableOptions }) {
 			<div className={styles.title}>Frequency Distribution</div>
 			<div className={styles.options}>
 				<RadioGroup
-					className="primary lg"
 					options={SCHEDULE_OPTIONS}
 					value={schedule}
 					onChange={(item) => setSchedule(item)}

@@ -9,19 +9,13 @@
 
 .button_wrapper {
 	display: flex;
-	justify-content: space-evenly;
+	justify-content: center;
 	width: 100%;
 	margin-top: 10px;
+}
 
-	& .no.core-ui-button-root {
-		color: #db4634;
-		background: white !important;
-		border: 1px solid #db4634 !important;
-	}
-
-	.yes.core-ui-button-root {
-		background: #db4634 !important;
-	}
+.no {
+	margin-right: 10%;
 }
 
 .text_wrapper {

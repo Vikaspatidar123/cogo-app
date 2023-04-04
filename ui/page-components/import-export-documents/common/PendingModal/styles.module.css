@@ -1,0 +1,30 @@
+.container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+
+	.loading_banner {
+		width: 300;
+		height: auto;
+	}
+
+	.loading {
+		width: 40px;
+		height: auto;
+		margin-bottom: 32px;
+	}
+}
+
+.title {
+	font-size: 22px;
+	font-weight: 500;
+	color: #170f49;
+}
+
+.text {
+	margin: 10px 0;
+	font-size: 16px;
+	color: #535075;
+}

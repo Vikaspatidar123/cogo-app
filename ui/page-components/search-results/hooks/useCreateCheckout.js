@@ -7,20 +7,19 @@ import { useRequest } from '@/packages/request';
 import { useSelector } from '@/packages/store';
 import getGeoConstants from '@/ui/commons/constants/geo';
 
-const geo = getGeoConstants();
-
-const cogoVerseTeamIDS = [
-	geo.uuid.cogoverse_admin_id,
-	geo.uuid.cogoverse_executive_id,
-	geo.uuid.cogoverse_kam_id,
-];
-
 const useCreateCheckout = ({
 	data = {},
 	spot_search_id = '',
 	id = '',
 	source = '',
 }) => {
+	const geo = getGeoConstants();
+
+	const cogoVerseTeamIDS = [
+		geo.uuid.cogoverse_admin_id,
+		geo.uuid.cogoverse_executive_id,
+		geo.uuid.cogoverse_kam_id,
+	];
 	const router = useRouter();
 	const [confirmation, setConfirmation] = useState(false);
 	const [noRatesServices, setNoRatesServices] = useState([]);

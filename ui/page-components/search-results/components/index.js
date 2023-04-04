@@ -1,5 +1,3 @@
-// import { Flex } from '@cogoport/front/components';
-// import { Skeleton } from '@cogoport/front/components/admin';
 import { Placeholder } from '@cogoport/components';
 import { IcMArrowBack } from '@cogoport/icons-react';
 import dynamic from 'next/dynamic';
@@ -10,12 +8,13 @@ import triggerAnalytics from '../helpers/triggerAnalytics';
 import useGetEnquiryQuota from '../hooks/useGetEnquiryQuota';
 import useGetSchedules from '../hooks/useGetSchedules';
 import swbAllowedServices from '../utils/swb-allowed-services';
+// import EnquiryCard from './EnquiryCard';
 
 import AdditionalServices from './AdditionalServices';
-// import EnquiryCard from './EnquiryCard';
 import AddRate from './AddRate';
 import ContractAd from './ContractAd';
 import ContractIntelligence from './ContractIntelligence';
+import EnquiryCard from './EnquiryCard';
 import GoBackToShipment from './GoBack';
 import Header from './Header';
 import Info from './Info';
@@ -34,17 +33,6 @@ import { useRouter } from '@/packages/next';
 import { useSelector } from '@/packages/store';
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 import getCountryDetails from '@/ui/commons/utils/getCountryDetails';
-// import {
-// 	Container,
-// 	Text,
-// 	TextBold,
-// 	FlexDiv,
-// 	ResultsHeader,
-// 	HeaderWrap,
-// 	HoverEffect,
-// 	SearchAndDetails,
-// 	LeftSection,
-// } from './styles';
 
 const SwitchUsers = dynamic(() => import('./SwitchUsers'), { ssr: false });
 const EnquriyStatus = dynamic(() => import('./AdditionalCards/EnquriyStatus'), {
@@ -424,7 +412,7 @@ function Results({
 								{!loading ? (
 									<div className={styles.text_bold}>
 										{`${(rates || []).length} ${
-											(rates || []).length === 1 ? 'rate' : 'rates'
+                    	(rates || []).length === 1 ? 'rate' : 'rates'
 										} found`}
 									</div>
 								) : (
@@ -449,7 +437,7 @@ function Results({
 							{handleRateCards()}
 						</>
 					) : (
-						configureSellRate()
+          	configureSellRate()
 					)}
 				</div>
 

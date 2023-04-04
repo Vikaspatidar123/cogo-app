@@ -7,13 +7,13 @@ import styles from './styles.module.css';
 
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
-const { IN: INDIA_COUNTRY_ID } = GLOBAL_CONSTANTS.country_ids;
-
 function ConfirmationTexts({
 	primaryServiceData = {},
 	trade_type = '',
 	services = {},
 }) {
+	const { IN: INDIA_COUNTRY_ID } = GLOBAL_CONSTANTS.country_ids;
+
 	const primaryService = (Object.values(services) || [])
 		.map((per_service) => {
 			if (per_service?.service_type === primaryServiceData?.service_type) {

@@ -1,7 +1,3 @@
-import getGeoConstants from '@/ui/commons/constants/geo';
-
-const geo = getGeoConstants();
-
 const controls = [
 	{
 		name        : 'cargo_value_currency',
@@ -9,7 +5,7 @@ const controls = [
 		type        : 'select',
 		placeholder : 'Cargo Value',
 		value       : {
-			currency : geo.country.currency.code,
+			currency : 'INR',
 			price    : '',
 		},
 		rules: {

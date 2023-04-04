@@ -5,7 +5,6 @@ import getGeoConstants from '@/ui/commons/constants/geo';
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 import getFormattedValues from '@/ui/commons/utils/getFormattedValues';
 
-const geo = getGeoConstants();
 
 const mergeContainerDetails = (containers) => {
 	const mergedValues = {};
@@ -38,6 +37,7 @@ const formatDataForSingleService = ({
 	service = '',
 	checked = true,
 }) => {
+	const geo = getGeoConstants();
 	if (mode === 'fcl_freight') {
 		const newValues = (values.containers || []).map((item) => ({
 			origin_port_id      : values.origin_port_id,

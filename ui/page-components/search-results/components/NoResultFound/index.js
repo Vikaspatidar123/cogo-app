@@ -19,8 +19,6 @@ import { useRouter } from '@/packages/next';
 import { useSelector } from '@/packages/store';
 import getGeoConstants from '@/ui/commons/constants/geo';
 
-const geo = getGeoConstants();
-
 const CREATE_JOB_SERVICES = [
 	'fcl_freight_local',
 	'lcl_freight_local',
@@ -45,6 +43,7 @@ function NoResultFound({
 	results_type,
 	data,
 }) {
+	const geo = getGeoConstants();
 	const [showCreateEnquiry, setShowCreateEnquiry] = useState(false);
 	const { scope, organization, unPrefixedPath, skippable_checks } = useSelector(
 		({ general, profile }) => ({

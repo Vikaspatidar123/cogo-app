@@ -16,9 +16,8 @@ const SELL_WITHOUT_BUY_ALLOWED_SERVICES = [
 
 const SELL_WITHOUT_BUY_WITH_RATES_SERVICES = ['fcl_freight', 'air_freight'];
 
-const geo = getGeoConstants();
-
 const swbAllowedServices = ({ search_type, trade_type, rates }) => {
+	const geo = getGeoConstants();
 	let swb_with_rates = false;
 	let swb_without_rates = false;
 

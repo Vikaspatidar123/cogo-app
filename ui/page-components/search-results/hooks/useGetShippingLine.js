@@ -18,8 +18,6 @@ import { useRequest } from '@/packages/request';
 import getGeoConstants from '@/ui/commons/constants/geo';
 import formatDate from '@/ui/commons/utils/formatDate';
 
-const geo = getGeoConstants();
-
 const OPTIONS1 = [
 	{
 		label : 'Sell Without Buy',
@@ -38,6 +36,8 @@ const useGetShippingLine = ({
 	data,
 	wayToBook,
 }) => {
+	const geo = getGeoConstants();
+
 	const service_type = data?.search_type;
 
 	const [manualSelect, setManualSelect] = useState(false);

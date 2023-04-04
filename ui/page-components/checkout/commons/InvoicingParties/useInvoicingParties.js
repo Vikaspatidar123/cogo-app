@@ -6,8 +6,6 @@ import { useRequest } from '@/packages/request';
 import getGeoConstants from '@/ui/commons/constants/geo';
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
-const geo = getGeoConstants();
-
 const formatSavedServicesInvoiceTo = ({ services }) => {
 	const TRADE_TYPE_MAPPING = {
 		export : 'origin',
@@ -74,6 +72,8 @@ const updateServicesInInvoicingParty = ({
 };
 
 const useInvoicingParties = (props) => {
+	const geo = getGeoConstants();
+
 	const { detail, invoice, refetchGetCheckout } = props;
 
 	const savedInvoicingParties = getByKey(invoice, 'billing_addresses') || [];

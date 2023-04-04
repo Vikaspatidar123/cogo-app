@@ -7,14 +7,6 @@ import { useRequest } from '@/packages/request';
 import { useSelector } from '@/packages/store';
 import getGeoConstants from '@/ui/commons/constants/geo';
 
-const geo = getGeoConstants();
-
-const cogoVerseTeamIDS = [
-	geo.uuid.cogoverse_admin_id,
-	geo.uuid.cogoverse_executive_id,
-	geo.uuid.cogoverse_kam_id,
-];
-
 const useCreateEmptyCheckout = ({ data, touch_points, wayToBook }) => {
 	const router = useRouter();
 
@@ -28,6 +20,13 @@ const useCreateEmptyCheckout = ({ data, touch_points, wayToBook }) => {
 		userRoleIDs : profile?.partner?.user_role_ids,
 	}));
 	const { service_details } = data;
+	const geo = getGeoConstants();
+
+	const cogoVerseTeamIDS = [
+		geo.uuid.cogoverse_admin_id,
+		geo.uuid.cogoverse_executive_id,
+		geo.uuid.cogoverse_kam_id,
+	];
 
 	const [{ loading }, CreateCheckoutApi] = useRequest(
 		{

@@ -9,9 +9,8 @@ import styles from './styles.module.css';
 import getGeoConstants from '@/ui/commons/constants/geo';
 import formatAmount from '@/ui/commons/utils/formatAmount';
 
-const geo = getGeoConstants();
-
 function EditCogoPoints({ cogopoint_data = {}, refetch }) {
+	const geo = getGeoConstants();
 	const [checked, setChecked] = useState(
 		cogopoint_data.redeemed_cogopoints?.cogopoints > 0,
 	);

@@ -9,10 +9,8 @@ import Results from '@/ui/page-components/search-results/components';
 function SearchResults() {
 	const {
 		query: { search_id, importer_exporter_id },
-		scope,
 	} = useSelector(({ general, profile }) => ({
 		query        : general.query || {},
-		scope        : general.scope,
 		organization : profile?.organization,
 	}));
 

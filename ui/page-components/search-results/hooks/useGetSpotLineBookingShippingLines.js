@@ -3,8 +3,6 @@ import { useEffect, useCallback } from 'react';
 import { useRequest } from '@/packages/request';
 import getGeoConstants from '@/ui/commons/constants/geo';
 
-const geo = getGeoConstants();
-
 const useGetSpotLineBookingShippingLines = () => {
 	const [{ loading }, listOperators] = useRequest(
 		{
@@ -13,6 +11,7 @@ const useGetSpotLineBookingShippingLines = () => {
 		},
 		{ manual: true },
 	);
+	const geo = getGeoConstants();
 
 	const listApi = useCallback(async () => {
 		try {

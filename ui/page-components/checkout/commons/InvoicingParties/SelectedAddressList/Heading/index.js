@@ -11,8 +11,6 @@ const PAYMENT_MODE_SHORT_FORM = {
 	paylater_rolling_credit   : 'Paylater',
 };
 
-const geo = getGeoConstants();
-
 const roundFigure = (amount) => Math.round(amount * 100) / 100;
 
 function Heading({
@@ -28,6 +26,7 @@ function Heading({
 	detail,
 }) {
 	const { services: serviceRates = {} } = rate || {};
+	const geo = getGeoConstants();
 
 	const {
 		cogofx_currencies = {},

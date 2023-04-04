@@ -5,14 +5,6 @@ import { useSelector } from '@cogo/store';
 
 import getServicesAttributes from '../utils/getServicesAttributes';
 
-const geo = getGeoConstants();
-
-const cogoVerseTeamIDS = [
-	geo.uuid.cogoverse_admin_id,
-	geo.uuid.cogoverse_executive_id,
-	geo.uuid.cogoverse_kam_id,
-];
-
 const useCreateSpotSearch = ({
 	importerExporterDetails,
 	searchType = '',
@@ -20,6 +12,13 @@ const useCreateSpotSearch = ({
 	onFailure: onFailureCallback,
 	redirectOnSuccess = true,
 }) => {
+	const geo = getGeoConstants();
+
+	const cogoVerseTeamIDS = [
+		geo.uuid.cogoverse_admin_id,
+		geo.uuid.cogoverse_executive_id,
+		geo.uuid.cogoverse_kam_id,
+	];
 	const router = useRouter();
 
 	const {

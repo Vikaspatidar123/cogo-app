@@ -9,8 +9,6 @@ import styles from './styles.module.css';
 
 import getGeoConstants from '@/ui/commons/constants/geo';
 
-const geo = getGeoConstants();
-
 function SelectedAddressList({
 	savedServicesInvoiceTo,
 	invoicingParties,
@@ -28,6 +26,7 @@ function SelectedAddressList({
 	paymentModes,
 	setPaymentModes,
 }) {
+	const geo = getGeoConstants();
 	const id = getByKey(invoicingParty, 'id');
 	const businessName = getByKey(invoicingParty, 'business_name');
 	const tradeParty = getByKey(invoicingParty, 'trade_party_type') || 'self';

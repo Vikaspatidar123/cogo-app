@@ -3,9 +3,9 @@ import { useEffect } from 'react';
 import { useRequest } from '@/packages/request';
 import getGeoConstants from '@/ui/commons/constants/geo';
 
-const geo = getGeoConstants();
-
 const useListOperators = () => {
+	const geo = getGeoConstants();
+
 	const [{ loading, data }, trigger] = useRequest(
 		{
 			url    : 'list_operators',

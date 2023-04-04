@@ -5,10 +5,9 @@ import styles from './styles.module.css';
 import getGeoConstants from '@/ui/commons/constants/geo';
 import formatAmount from '@/ui/commons/utils/formatAmount';
 
-const geo = getGeoConstants();
-
 function ViewCogoPoints({ cogopoint_data, setEditPoints, editPoints }) {
 	const cogopoints = cogopoint_data.redeemed_cogopoints?.cogopoints || 0;
+	const geo = getGeoConstants();
 
 	if (editPoints) {
 		return null;

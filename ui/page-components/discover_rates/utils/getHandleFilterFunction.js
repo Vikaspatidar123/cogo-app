@@ -3,9 +3,8 @@ import { getByKey } from '@cogoport/utils';
 import getGeoConstants from '@/ui/commons/constants/geo';
 import formatDate from '@/ui/commons/utils/formatDate';
 
-const geo = getGeoConstants();
-
 export const arrivalDeparture = ({ rateCard, key, filters }) => {
+	const geo = getGeoConstants();
 	const rateCardDate = formatDate({
 		date       : rateCard[key],
 		dateFormat : geo.formats.date.default,

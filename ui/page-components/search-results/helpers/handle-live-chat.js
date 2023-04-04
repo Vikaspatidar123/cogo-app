@@ -4,8 +4,6 @@ import insertLiveChat from '@/packages/forms/constants/live-chat/helpers/create-
 import initializeLiveChat from '@/packages/forms/constants/live-chat/helpers/initialize';
 import getGeoConstants from '@/ui/commons/constants/geo';
 
-const geo = getGeoConstants();
-
 const openChatWidget = (TIMEOUT, user_profile, details) => {
 	try {
 		const LCW = window.LiveChatWidget;
@@ -25,6 +23,7 @@ const openChatWidget = (TIMEOUT, user_profile, details) => {
 };
 
 const handleLiveChat = (user_profile, details, scope) => {
+	const geo = getGeoConstants();
 	const entity_types = user_profile?.partner?.entity_types;
 	const account_type = user_profile?.organization?.account_type;
 	const isChannelPartner =		entity_types?.includes('channel_partner')

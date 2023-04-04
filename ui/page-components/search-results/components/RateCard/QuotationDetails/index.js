@@ -24,18 +24,17 @@ const LOCALS = [
 
 const CUSTOMS = ['fcl_customs', 'lcl_customs', 'air_customs'];
 
-const geo = getGeoConstants();
-
-const cogoVerseTeamIDS = [
-	geo.uuid.cogoverse_admin_id,
-	geo.uuid.cogoverse_executive_id,
-	geo.uuid.cogoverse_kam_id,
-];
-
 function QuotationDetails(
 	{ data = {}, details = {}, isConfirmed = false, searchData = {} },
 	ref,
 ) {
+	const geo = getGeoConstants();
+
+	const cogoVerseTeamIDS = [
+		geo.uuid.cogoverse_admin_id,
+		geo.uuid.cogoverse_executive_id,
+		geo.uuid.cogoverse_kam_id,
+	];
 	const { service_details = {} } = details || {};
 	const { touch_points = {} } = searchData || {};
 	const router = useRouter();

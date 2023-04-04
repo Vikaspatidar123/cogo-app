@@ -1,6 +1,5 @@
 import getGeoConstants from '@/ui/commons/constants/geo';
 
-const geo = getGeoConstants();
 
 const formatSwbPayload = ({
 	service_details,
@@ -24,7 +23,7 @@ const formatSwbPayload = ({
 	const subsidiary_services_params = [];
 	const rail_domestic_freight_params = [];
 	const cargo_insurance_params = [];
-
+	const geo = getGeoConstants();
 	const INCO_TERM_EXPORT = ['cif', 'cfr', 'cpt', 'cip', 'dat', 'dap', 'ddp'];
 	// const INCO_TERM_IMPORT = ['ddp', 'exw', 'fob', 'fas', 'fca'];
 

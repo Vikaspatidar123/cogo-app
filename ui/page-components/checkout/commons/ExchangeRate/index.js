@@ -9,14 +9,12 @@ import styles from './styles.module.css';
 import getGeoConstants from '@/ui/commons/constants/geo';
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
-const geo = getGeoConstants();
-
 function ExchangeRate({ detail = {}, conversions = {}, rate = {}, refetch }) {
 	const { handleUpdateStage, value, showPopover, setShowPopover, loading } = useHandleUpdateStage({
-		detail,
-		refetch,
+    	detail,
+    	refetch,
 	});
-
+	const geo = getGeoConstants();
 	const { primary_service = '', trade_type = '' } = detail || {};
 
 	const { services = {} } = rate;
@@ -35,10 +33,10 @@ function ExchangeRate({ detail = {}, conversions = {}, rate = {}, refetch }) {
 
 	const { line_items = [] } = main_service || {};
 
-	const currency =		(
-		(line_items || []).find((item) => item.code === 'BAS')
-			|| (line_items || []).find((item) => item.currency !== base_currency)
-			|| line_items[0]
+	const currency = (
+    	(line_items || []).find((item) => item.code === 'BAS')
+      || (line_items || []).find((item) => item.currency !== base_currency)
+      || line_items[0]
 	)?.currency || GLOBAL_CONSTANTS.currency_code.USD;
 
 	let currency_conversion = '';
@@ -64,16 +62,16 @@ function ExchangeRate({ detail = {}, conversions = {}, rate = {}, refetch }) {
 					FX Rate: 1
 					{' '}
 					{currency !== base_currency
-						? currency
-						: GLOBAL_CONSTANTS.currency_code.USD}
+          	? currency
+          	: GLOBAL_CONSTANTS.currency_code.USD}
 					{' '}
 					=
 					{' '}
 					{Number(currency_conversion).toFixed(4)}
 					{' '}
 					{currency !== base_currency
-						? base_currency
-						: geo.country.currency.code}
+          	? base_currency
+          	: geo.country.currency.code}
 				</div>
 
 				{value !== 'liners_exchange_rate' ? (
@@ -107,7 +105,9 @@ function ExchangeRate({ detail = {}, conversions = {}, rate = {}, refetch }) {
 						style={{ display: 'flex', marginLeft: '4px' }}
 						role="presentation"
 						onClick={() => {
-							if (value !== 'liners_exchange_rate') { setShowPopover(!showPopover); }
+            	if (value !== 'liners_exchange_rate') {
+            		setShowPopover(!showPopover);
+            	}
 						}}
 					>
 						<div className={styles.styled_text}>{startCase(value)}</div>
@@ -120,9 +120,7 @@ function ExchangeRate({ detail = {}, conversions = {}, rate = {}, refetch }) {
 					</div>
 				</Popover>
 
-				{loading && (
-					<Loader themeType="primary" />
-				)}
+				{loading && <Loader themeType="primary" />}
 			</div>
 		</div>
 	);

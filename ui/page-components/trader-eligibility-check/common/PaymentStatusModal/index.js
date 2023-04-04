@@ -42,8 +42,7 @@ function PaymentStatusModal({
 				and get back to you in 24-48 hrs.`,
 			);
 		}
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [paymentStatus]);
+	}, [checkLoading, paymentStatus, setPaymentStatusModal, successUrl]);
 
 	return (
 		<Modal

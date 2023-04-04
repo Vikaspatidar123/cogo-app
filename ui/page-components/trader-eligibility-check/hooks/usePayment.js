@@ -88,7 +88,6 @@ const usePayment = () => {
 				},
 			});
 			if (resp?.data) {
-				// eslint-disable-next-line no-undef
 				window.open(resp.data.url, '_self', '');
 			}
 		} catch (err) {

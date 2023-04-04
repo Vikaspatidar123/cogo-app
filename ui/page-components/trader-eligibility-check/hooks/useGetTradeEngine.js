@@ -1,4 +1,5 @@
 import { Toast } from '@cogoport/components';
+import { useCallback } from 'react';
 
 import { useRequestBf } from '@/packages/request';
 
@@ -9,7 +10,7 @@ const useGetTradeEngine = () => {
 		method  : 'get',
 	}, { manual: true });
 
-	const getTradeEngineList = async ({ draftId, draftIdFromAddon }) => {
+	const getTradeEngineList = useCallback(async ({ draftId, draftIdFromAddon }) => {
 		try {
 			await trigger({
 				params: {
@@ -23,7 +24,7 @@ const useGetTradeEngine = () => {
 				},
 			});
 		}
-	};
+	}, [trigger]);
 
 	return {
 		getTradeEngineList,

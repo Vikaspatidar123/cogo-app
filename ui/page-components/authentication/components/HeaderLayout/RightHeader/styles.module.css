@@ -1,0 +1,31 @@
+.container {
+	display: flex;
+	align-items: center;
+}
+
+.label {
+	margin: 0 4px;
+	color: _black0.3;
+
+	@media (max-width: _md) {
+		display: none;
+	}
+}
+
+.text_button {
+	font-size: 14px;
+	font-weight: 700;
+	line-height: 14px;
+	color: black !important;
+	text-decoration: none;
+	text-transform: uppercase;
+	letter-spacing: 0.02em;
+	background: none;
+	background: transparent;
+	border: none;
+
+	&:hover {
+		box-shadow: none;
+		transform: translateY(-1px);
+	}
+}

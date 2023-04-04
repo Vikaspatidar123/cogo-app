@@ -1,5 +1,5 @@
 import { Toast } from '@cogoport/components';
-import { useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 
 import useSearchQuery from './useSearchQuery';
 
@@ -10,15 +10,14 @@ const useGetStateFromPincode = ({ watchPincode = undefined, setCityState, watchC
 
 	useEffect(() => {
 		debounceQuery(watchPincode);
-	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [watchPincode]);
+	}, [debounceQuery, watchPincode]);
 
 	const [{ loading }, trigger] = useRequest({
 		url    : 'list_locations',
 		method : 'get',
 	}, { manual: true });
 
-	const responseCity = async () => {
+	const responseCity = useCallback(async () => {
 		try {
 			const res = await trigger({
 				params: {
@@ -40,12 +39,11 @@ const useGetStateFromPincode = ({ watchPincode = undefined, setCityState, watchC
 				},
 			});
 		}
-	};
+	}, [query, setCityState, trigger, watchCountry]);
 
 	useEffect(() => {
 		if (query)responseCity();
-	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [query]);
+	}, [query, responseCity]);
 
 	return {
 		cityLoading: loading,

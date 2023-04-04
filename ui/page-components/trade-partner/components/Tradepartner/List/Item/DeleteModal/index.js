@@ -1,4 +1,5 @@
 import { Loader, Button, Modal } from '@cogoport/components';
+import { IcMDelete } from '@cogoport/icons-react';
 import React from 'react';
 
 import styles from './styles.module.css';
@@ -14,10 +15,13 @@ function DeleteModal({
 			onClose={() => setDeleteModal(false)}
 		>
 			<div className={styles.wrapper}>
+				<div>
+					<IcMDelete width={30} height={30} />
+				</div>
 				<div className={styles.text_wrapper}>
 					Are you sure you want to delete
 					&nbsp;
-					{itemData?.partyName?.toUpperCase()}
+					<b>{itemData?.partyName?.toUpperCase()}</b>
 					&nbsp;
 					from
 					the trade party list?
@@ -28,6 +32,7 @@ function DeleteModal({
 						onClick={() => {
 							setDeleteModal(false);
 						}}
+						themeType="secondary"
 					>
 						N0
 					</Button>

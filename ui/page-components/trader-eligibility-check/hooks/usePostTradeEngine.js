@@ -1,4 +1,5 @@
 import { Toast } from '@cogoport/components';
+import { useCallback } from 'react';
 
 import useGetTradeEngine from './useGetTradeEngine';
 
@@ -20,7 +21,7 @@ const usePostTradeEngine = () => {
 
 	const { getTradeEngineList, tradeEngineResponse, getTradeEngineListLoading } = useGetTradeEngine();
 
-	const createTradeEngine = async ({ draftIdFromAddon, billId, draftId }) => {
+	const createTradeEngine = useCallback(async ({ draftIdFromAddon, billId, draftId }) => {
 		try {
 			const res = await trigger({
 				data: {
@@ -42,7 +43,8 @@ const usePostTradeEngine = () => {
 				Toast.error(error?.error?.message);
 			}
 		}
-	};
+	}, [getTradeEngineList, id, organization?.id, trigger]);
+
 	return {
 		createTradeEngine,
 		createTradeEngineLoading: loading,

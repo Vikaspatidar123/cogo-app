@@ -27,7 +27,7 @@
 		:global {
 			.leaflet-container.leaflet-touch-drag.leaflet-touch-zoom {
 				width: 100%;
-				height: 680px !important;
+				height: 680px;
 			}
 		}
 	}
@@ -71,7 +71,7 @@
 		:global {
 			.leaflet-container.leaflet-touch-drag.leaflet-touch-zoom {
 				width: 100%;
-				height: 365px !important;
+				height: 365px;
 			}
 		}
 	}

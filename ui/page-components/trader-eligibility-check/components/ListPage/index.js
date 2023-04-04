@@ -30,13 +30,12 @@ function ListPage() {
 	});
 	const { screeningRequestResponse, screeningPartyName = '' } = tradeEngineResponse || {};
 	useEffect(() => {
-		if (billId) {
+		if (billId && checkPaymentStatus && createTradeEngine && draftIdFromAddon) {
 			checkPaymentStatus();
 		} else if (draftIdFromAddon) {
 			createTradeEngine({ draftIdFromAddon });
 		}
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
+	}, [billId, checkPaymentStatus, createTradeEngine, draftIdFromAddon]);
 
 	return (
 		<div className={styles.wrapper2}>

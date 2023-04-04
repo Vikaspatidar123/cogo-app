@@ -1,5 +1,5 @@
 import { Toast } from '@cogoport/components';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 
 import { useRequestBf } from '@/packages/request';
 
@@ -16,7 +16,7 @@ const useCheckStatus = ({ query, setPaymentStatusModal, createTradeEngine }) => 
 	const { billId = '' } = query || {};
 	let count = 0;
 
-	const checkPaymentStatus = async () => {
+	const checkPaymentStatus = useCallback(async () => {
 		setPaymentStatusModal(true);
 		try {
 			const res = await trigger({
@@ -49,7 +49,7 @@ const useCheckStatus = ({ query, setPaymentStatusModal, createTradeEngine }) => 
 			setPaymentStatus('ERROR');
 			Toast.error(err?.error?.message);
 		}
-	};
+	}, []);
 
 	return {
 		checkPaymentStatus,

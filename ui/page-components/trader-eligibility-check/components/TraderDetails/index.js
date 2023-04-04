@@ -40,9 +40,10 @@ function TraderDetails({
 		watchCountry,
 		setCityState,
 	});
+	console.log(cityLoading);
+
 	const { list } = cityState || {};
 	const { region, city } = list?.[0] || {};
-	console.log('cityLoading', cityLoading);
 
 	useMemo(() => {
 		if (list?.length === 0) {
@@ -55,8 +56,7 @@ function TraderDetails({
 			setValue('city', city?.name);
 			setValue('state', region?.name);
 		}
-	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [city, region]);
+	}, [city, list?.length, region?.name, setValue, watchPincode]);
 
 	const submit = (values) => {
 		setFormDetails(() => ({

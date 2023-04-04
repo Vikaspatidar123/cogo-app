@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 import { Button } from '@cogoport/components';
 import { useState, useEffect } from 'react';
 

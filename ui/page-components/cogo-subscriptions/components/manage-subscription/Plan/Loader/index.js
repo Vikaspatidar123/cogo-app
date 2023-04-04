@@ -20,7 +20,7 @@ function Loader() {
 			{cardArr.map((ele, index) => (
 				<div style={{ width: dimensions[index][0] }} className={styles.card} height={dimensions[index][1]}>
 					{loaderRow.map(() => (
-						<div className={styles.loader_div}>
+						<div className={styles.loader_div} key={widthDimension[index]}>
 							<Placeholder margin="10px 0px" height="30px" width={widthDimension[index]} />
 						</div>
 					))}

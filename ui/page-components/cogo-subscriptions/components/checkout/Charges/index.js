@@ -8,9 +8,10 @@ import { useState } from 'react';
 import Coupons from '../../../common/Coupons';
 import useUpdateSaasCheckout from '../../../hooks/useUpdateSaasCheckout';
 import { getCurrencyDetail } from '../../../utils/getCurrencyDetail';
-import { shortFormatNumber } from '../../../utils/getShortFormatNumber';
 
 import styles from './styles.module.css';
+
+import formatAmount from '@/ui/commons/utils/formatAmount';
 
 const description = () => (
 	<div className={styles.tooltip_ctn}>
@@ -27,7 +28,14 @@ const discountTooltip = ({ discountedAmount, currency }) => (
 			<div>Coupons Discount</div>
 			<div>
 				-
-				{shortFormatNumber(discountedAmount || 0, currency, true)}
+				{formatAmount({
+					amount  : discountedAmount,
+					currency,
+					options : {
+						notation : 'standard',
+						style    : 'currency',
+					},
+				})}
 			</div>
 		</div>
 	</div>
@@ -107,10 +115,30 @@ function Charges({
 						{plan?.metadata?.display_pricing?.[`${query?.period}`]
 							?.prev_value_inr && (
 								<div className={`${styles.crossed_price} ${styles.crossedprice}`}>
-									<div className={styles.flex_div}>{shortFormatNumber(crossedAmount, currency)}</div>
+									<div className={styles.flex_div}>
+										{formatAmount({
+											amount  : crossedAmount,
+											currency,
+											options : {
+												notation : 'standard',
+												style    : 'currency',
+											},
+										})}
+										{
+}
+									</div>
 								</div>
 						)}
-						<div className={styles.flex_div}>{shortFormatNumber(amount, currency)}</div>
+						<div className={styles.flex_div}>
+							{formatAmount({
+								amount,
+								currency,
+								options: {
+									notation : 'standard',
+									style    : 'currency',
+								},
+							})}
+						</div>
 					</div>
 				</div>
 				<div className={styles.line_wrapper}>
@@ -138,8 +166,14 @@ function Charges({
 						</div>
 						<div className={`${styles.discount_name} ${styles.price}`}>
 							-
-							{' '}
-							{shortFormatNumber(discountedAmount || 0, currency, true)}
+							{formatAmount({
+								amount  : discountedAmount,
+								currency,
+								options : {
+									notation : 'standard',
+									style    : 'currency',
+								},
+							})}
 						</div>
 					</div>
 				)}
@@ -155,15 +189,12 @@ function Charges({
 							<div className={styles.applied_coupon}>
 								<div>
 									Code
-									{' '}
 									{couponCode?.promocodes?.[0]?.promocode?.toUpperCase()}
-									{' '}
 									applied
 								</div>
 								<div className={styles.discount}>
 									{couponCode?.promotion_discounts?.[0]?.unit === 'flat'
 										&& couponCode?.promotion_discounts?.[0]?.amount_currency}
-									{' '}
 									{couponCode?.promotion_discounts?.[0]?.value}
 									{couponCode?.promotion_discounts?.[0]?.unit === 'percentage' && '%'}
 									OFF
@@ -203,11 +234,14 @@ function Charges({
 						<div>Total</div>
 					</div>
 					<div className={`${styles.styled_col} ${styles.price}`}>
-						{shortFormatNumber(
-							couponCodeLength > 0 ? totalAmount : amount,
+						{formatAmount({
+							amount  : couponCodeLength > 0 ? totalAmount : amount,
 							currency,
-							true,
-						)}
+							options : {
+								notation : 'standard',
+								style    : 'currency',
+							},
+						})}
 					</div>
 				</div>
 

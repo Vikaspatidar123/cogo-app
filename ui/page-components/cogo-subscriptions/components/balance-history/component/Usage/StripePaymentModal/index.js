@@ -5,10 +5,10 @@ import { IcMUserAllocations } from '@cogoport/icons-react';
 import { CardElement, useElements } from '@stripe/react-stripe-js';
 import React, { useState, useMemo } from 'react';
 
-import FormItem from '../../../../../common/FormItem';
-import { shortFormatNumber } from '../../../../../utils/getShortFormatNumber';
-
 import styles from './styles.module.css';
+
+import FormItem from '@/ui/commons/components/FormItem';
+import formatAmount from '@/ui/commons/utils/formatAmount';
 
 function StripSection({
 	apiTries,
@@ -110,10 +110,26 @@ function StripSection({
 					<div className={styles.info}>
 						<div className={styles.title}>
 							Total:
-							<div>{shortFormatNumber(finalAmt, currency)}</div>
+							<div>
+								{formatAmount({
+									amount  : finalAmt,
+									currency,
+									options : {
+										notation : 'standard',
+										style    : 'currency',
+									},
+								})}
+							</div>
 							{discount_percentage > 0 && (
 								<div className="crossedPrice">
-									{shortFormatNumber(totalPrice, currency)}
+									{formatAmount({
+										amount  : totalPrice,
+										currency,
+										options : {
+											notation : 'standard',
+											style    : 'currency',
+										},
+									})}
 								</div>
 							)}
 						</div>
@@ -143,7 +159,16 @@ function StripSection({
 							loading={loading}
 						>
 							Pay
-							<div className="amt">{shortFormatNumber(finalAmt, currency)}</div>
+							<div className="amt">
+								{formatAmount({
+									amount  : finalAmt,
+									currency,
+									options : {
+										notation : 'standard',
+										style    : 'currency',
+									},
+								})}
+							</div>
 						</Button>
 					</div>
 				</div>

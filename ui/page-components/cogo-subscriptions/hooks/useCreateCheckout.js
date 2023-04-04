@@ -55,16 +55,10 @@ const useCreateCheckout = () => {
 				});
 			}
 			if (response?.data?.errors) {
-				Toast.error('Something went wrong. Please try after sometime', {
-					autoClose : 5000,
-					style     : { backgroundColor: '#e8afa8' },
-				});
+				Toast.error('Something went wrong. Please try after sometime');
 			}
 		} catch (error) {
-			Toast.error(error?.message || 'Something went wrong. Please try after sometime', {
-				autoClose : 5000,
-				style     : { backgroundColor: '#e8afa8' },
-			});
+			Toast.error(error?.message || 'Something went wrong. Please try after sometime');
 		}
 	};
 	return { createCheckout, checkoutLoading: loading };

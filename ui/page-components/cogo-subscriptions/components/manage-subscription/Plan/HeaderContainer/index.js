@@ -44,7 +44,7 @@ function HeaderContainer() {
 			<div className={styles.scroll_footer}>
 				<div className={styles.footer}>
 					{iconList.map(({ icon, text, isComing }) => (
-						<div className={styles.col}>
+						<div className={styles.col} key={icon}>
 							<div className={styles.icn_container}>{icon}</div>
 							{isComing && <div className={styles.styled_tag}>Coming Soon...</div>}
 							<div className={styles.txt}>{text}</div>

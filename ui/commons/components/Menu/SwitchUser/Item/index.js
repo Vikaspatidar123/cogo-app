@@ -1,6 +1,4 @@
-/* eslint-disable no-undef */
 import { Avatar, Badge } from '@cogoport/components';
-// import { IcMPin } from '@cogoport/icons-react';
 
 import KycStatus from '../../KycStatus';
 
@@ -26,10 +24,6 @@ function SwitchPartnerItem({ item }) {
 			onClick={() => onSwitch(item.id)}
 			role="presentation"
 		>
-			{/* <div className={styles.active}>
-					{active && <IcMPin />}
-			</div> */}
-			{/* <div className={styles.profile}> */}
 			<div className={styles.main}>
 				{activeUser ? (
 					<Badge

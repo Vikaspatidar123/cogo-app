@@ -123,7 +123,7 @@ function Plan() {
 					onChange={setActiveTab}
 				>
 					{ options.map((val) => (
-						<TabPanel name={val.value} title={val.label} />
+						<TabPanel name={val.value} title={val.label} key={val.id} />
 					)) }
 				</Tabs>
 			</div>

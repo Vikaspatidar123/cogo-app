@@ -11,13 +11,13 @@ import useCompleteOrder from '../../../../../hooks/useCompleteOrder';
 import useCreateCheckout from '../../../../../hooks/useCreateCheckout';
 import useGetPlanDetails from '../../../../../hooks/useGetPlanDetails';
 import useVerifyRazor from '../../../../../hooks/useVerifyRazorPayStatus';
-import { shortFormatNumber } from '../../../../../utils/getShortFormatNumber';
 import PendingModal from '../PendingModal';
 import StripePaymentModal from '../StripePaymentModal';
 
 import styles from './styles.module.css';
 
 import { useSelector } from '@/packages/store';
+import formatAmount from '@/ui/commons/utils/formatAmount';
 
 const WAIT_TIME = 3 * 1000;
 const wait = (time) => new Promise((res) => {
@@ -111,10 +111,7 @@ function AddonModal({
 
 	useEffect(() => {
 		if (durationValue < 0) {
-			Toast.error('Enter valid Number', {
-				autoClose : 5000,
-				style     : { background: '#FFE6E3', color: '#333' },
-			});
+			Toast.error('Enter valid Number');
 			setDurationValue(0);
 		}
 	}, [durationValue]);
@@ -173,7 +170,14 @@ function AddonModal({
 										<div
 											className={styles.price}
 										>
-											{shortFormatNumber(totalPrice, currency)}
+											{formatAmount({
+												amount  : totalPrice,
+												currency,
+												options : {
+													notation : 'standard',
+													style    : 'currency',
+												},
+											})}
 										</div>
 									)}
 								/>
@@ -181,7 +185,16 @@ function AddonModal({
 						</div>
 						<div className={`${styles.row} ${styles.subheading_container}`}>
 							<div className="subheading">
-								{`1 ${product_name} = ${shortFormatNumber(plan_price, currency)}`}
+								{`1 ${product_name} = ${
+									formatAmount({
+										amount  : plan_price,
+										currency,
+										options : {
+											notation : 'standard',
+											style    : 'currency',
+										},
+									})
+								}`}
 							</div>
 						</div>
 					</div>

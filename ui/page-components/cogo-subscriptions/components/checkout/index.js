@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable react-hooks/exhaustive-deps */
 import { Toast } from '@cogoport/components';
 import { IcMArrowBack } from '@cogoport/icons-react';
@@ -54,10 +53,7 @@ function Checkout() {
 
 	useEffect(() => {
 		if (checkoutResponse?.errors) {
-			Toast.error('Something went wrong. Please try again after sometime', {
-				autoClose : 5000,
-				style     : { background: '#FFD8D8', color: '#000' },
-			});
+			Toast.error('Something went wrong. Please try again after sometime');
 		}
 	}, [checkoutResponse]);
 
@@ -71,6 +67,7 @@ function Checkout() {
 				<img
 					src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/loading.svg"
 					className={styles.loading}
+					alt="loading-svg"
 				/>
 			)}
 			{!planDataLoading && !checkoutLoading && (

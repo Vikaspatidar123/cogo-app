@@ -55,7 +55,7 @@ function BillingDetails({
 								tax_number = '',
 								organization_pocs = [],
 							}) => (
-								<div className={styles.address_wrapper}>
+								<div className={styles.address_wrapper} key={id}>
 									<div className={styles.col_style}>
 										<Radio
 											checked={checked?.includes(id)}

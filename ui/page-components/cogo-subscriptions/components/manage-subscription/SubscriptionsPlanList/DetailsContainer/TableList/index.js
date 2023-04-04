@@ -55,7 +55,7 @@ function TableList({ features = {} }) {
 		<>
 			{(featureArray || []).map(
 				({ display_name = '', description = null, plan_values = {} }) => (
-					<div className={styles.row}>
+					<div className={styles.row} key={plan_values}>
 						<div className={`${styles.col} ${styles.feature} ${styles.feature_name}`} width="30%">
 							<div className={styles.info_icon}>
 								{description ? (

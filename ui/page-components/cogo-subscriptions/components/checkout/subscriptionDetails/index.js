@@ -1,10 +1,11 @@
 import { IcMFtick } from '@cogoport/icons-react';
 
 import { getCurrencyDetail } from '../../../utils/getCurrencyDetail';
-import { shortFormatNumber } from '../../../utils/getShortFormatNumber';
 import logoMapping from '../../../utils/logoMapping';
 
 import styles from './styles.module.css';
+
+import formatAmount from '@/ui/commons/utils/formatAmount';
 
 function SubscriptionDetails({ plans = {}, query }) {
 	const { plan, pricing } = plans || {};
@@ -41,7 +42,16 @@ function SubscriptionDetails({ plans = {}, query }) {
 						</div>
 					</div>
 				</div>
-				<div className={styles.styled_col3}>{shortFormatNumber(amount, currency)}</div>
+				<div className={styles.styled_col3}>
+					{formatAmount({
+						amount,
+						currency,
+						options: {
+							notation : 'standard',
+							style    : 'currency',
+						},
+					})}
+				</div>
 			</div>
 
 			<div className={styles.feature_row}>

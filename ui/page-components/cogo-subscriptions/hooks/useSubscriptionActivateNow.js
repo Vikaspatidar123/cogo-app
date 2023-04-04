@@ -19,9 +19,7 @@ const useSubscriptionActivateNow = () => {
 					plan_pricing_id,
 				},
 			});
-			Toast.success('Plan Activated Successfully', {
-				style: { background: '#ecfccb' },
-			});
+			Toast.success('Plan Activated Successfully');
 			setShowActivateModal(false);
 			setShowModal(true);
 		} catch (error) {

@@ -13,6 +13,10 @@
 	padding: 15px 0;
 }
 
+.title svg {
+	vertical-align: middle;
+}
+
 .info .card_name svg {
 	vertical-align: middle;
 }
@@ -36,10 +40,6 @@
 	font-size: 22px;
 	font-weight: 500;
 	border-bottom: 1px solid #db4634;
-}
-
-.title svg {
-	vertical-align: middle;
 }
 
 .title .crossed_price {

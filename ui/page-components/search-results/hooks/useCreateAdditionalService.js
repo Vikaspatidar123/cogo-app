@@ -21,7 +21,9 @@ const useCreateAdditionalService = ({
 	const [remainingServicesToAdd, setRemainingServicesToAdd] = useState([]);
 	const [addCargoInsurance, setAddCargoInsurance] = useState(false);
 
-	const apiName = !data?.checkout_id ? '/create_spot_search_service' : '/create_checkout_service';
+	const apiName = !data?.checkout_id
+		? '/create_spot_search_service'
+		: '/create_checkout_service';
 
 	const [{ loading }, createSubsidiaryServiceApi] = useRequest(
 		{
@@ -39,13 +41,13 @@ const useCreateAdditionalService = ({
 		trade_type = '',
 	} = data || {};
 
-	const { services, detail } =		serviceMappings[search_type] || serviceMappings[service_type] || {};
+	const { services, detail } = serviceMappings[search_type] || serviceMappings[service_type] || {};
 
 	let additionalServices = [];
 	if (service_type === 'air_freight' && trade_type === 'domestic') {
 		additionalServices = services?.air_domestic;
 	} else {
-		additionalServices =			services?.[inco_term] || services?.[data?.trade_type] || [];
+		additionalServices = services?.[inco_term] || services?.[data?.trade_type] || [];
 	}
 
 	const servicesList = Object.values(service_details || {});
@@ -93,7 +95,7 @@ const useCreateAdditionalService = ({
 				(item) => (detail[item]?.title || '')
 					.toLowerCase()
 					.includes(val.toLowerCase())
-					|| item.toLowerCase().includes(val.toLowerCase()),
+          || item.toLowerCase().includes(val.toLowerCase()),
 			);
 			setRemainingServicesToAdd(
 				filtered_services.length ? filtered_services : finalServicesToAdd,
@@ -107,12 +109,11 @@ const useCreateAdditionalService = ({
 		const serviceObj = (possible_additional_services || []).filter(
 			(item) => item.key === subsidiaryService,
 		)?.[0];
-
 		const services_Arr = (servicesList || []).filter(
 			(item) => item?.service_type === serviceObj?.service
-				&& (item?.trade_type === serviceObj?.trade_type
-					|| !item?.trade_type
-					|| !serviceObj?.trade_type),
+        && (item?.trade_type === serviceObj?.trade_type
+          || !item?.trade_type
+          || !serviceObj?.trade_type),
 		);
 
 		const subsidiaryServicesArr = [];
@@ -142,7 +143,7 @@ const useCreateAdditionalService = ({
 				};
 			}
 
-			const res = await createSubsidiaryServiceApi.trigger({ data: payload });
+			const res = await createSubsidiaryServiceApi({ data: payload });
 
 			if (!res.hasError) {
 				Toast.success('Service added successfully!');

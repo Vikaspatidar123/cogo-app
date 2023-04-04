@@ -74,7 +74,7 @@ function AdditionalServices({
 
 		if (
 			data?.service_type !== 'air_freight'
-			&& data?.service_type !== 'ftl_freight'
+      && data?.service_type !== 'ftl_freight'
 		) {
 			if (
 				(nonRemovableServices || []).includes(
@@ -104,17 +104,17 @@ function AdditionalServices({
 			<Button
 				ghost
 				onClick={() => {
-					setShow(true);
-					setDeleteService(service);
+        	setShow(true);
+        	setDeleteService(service);
 				}}
 				disabled={loading}
 				style={{
-					border     : 'none',
-					padding    : '0px',
-					fontSize   : '30px',
-					display    : 'flex',
-					alignItems : 'center',
-					height     : '20px',
+        	border     : 'none',
+        	padding    : '0px',
+        	fontSize   : '30px',
+        	display    : 'flex',
+        	alignItems : 'center',
+        	height     : '20px',
 				}}
 				id="search_results_additional_service_delete"
 			>
@@ -140,7 +140,13 @@ function AdditionalServices({
 				<div style={{ maxHeight: '200px', overflow: 'auto' }}>
 					{(uniq_services_list || []).map((service) => (
 						<div className={styles.pill}>
-							<div style={{ display: 'flex', maxWidth: '90%', alignItems: 'center' }}>
+							<div
+								style={{
+                	display    : 'flex',
+                	maxWidth   : '90%',
+                	alignItems : 'center',
+								}}
+							>
 								<div className={styles.active_service}>
 									<img
 										src="https://cdn.cogoport.io/cms-prod/cogo_admin/vault/original/Hangar.svg"
@@ -148,7 +154,9 @@ function AdditionalServices({
 										style={{ width: 14, height: 14 }}
 									/>
 								</div>
-								<div className={styles.services}>{handleServiceName(service)}</div>
+								<div className={styles.services}>
+									{handleServiceName(service)}
+								</div>
 								<IcCTick style={{ marginTop: '2px', width: 20, height: 20 }} />
 							</div>
 
@@ -158,47 +166,53 @@ function AdditionalServices({
 				</div>
 
 				{(remainingServicesToAdd || []).length > 0
-				&& data?.source !== 'upsell' ? (
-					<>
-						<div className={styles.line} style={{ margin: '8px 0px' }} />
-						<div style={{ marginBottom: 10 }}>Add more</div>
+        && data?.source !== 'upsell' ? (
+	<>
+		<div className={styles.line} style={{ margin: '8px 0px' }} />
+		<div style={{ marginBottom: 10 }}>Add more</div>
 
-						<div
-							style={{
-								overflow  : 'auto',
-								maxHeight : '350px',
-							}}
-						>
-							<Input
-								type="text"
-								placeholder="Search...."
-								onChange={(e) => handleSearch(e.target.value)}
-								name="service"
-								value={query}
-							/>
+		<div
+			style={{
+              	overflow  : 'auto',
+              	maxHeight : '350px',
+			}}
+		>
+			<Input
+				type="text"
+				placeholder="Search...."
+				onChange={(e) => handleSearch(e.target.value)}
+				name="service"
+				value={query}
+			/>
 
-							{(remainingServicesToAdd || []).map((service) => (
-								<div
-									role="presentation"
-									className={`${styles.pill} ${styles.inactive}`}
-									onClick={() => handleAdd(service)}
-									id={`search_results_additional_service_${service}`}
-								>
-									<div style={{ maxWidth: '90%', display: 'flex' }}>
-										<img
-											src="https://cdn.cogoport.io/cms-prod/cogo_admin/vault/original/Hangar.svg"
-											alt="hangar"
-											style={{ width: 14, height: 14 }}
-										/>
-										<div className={styles.services}>{detail?.[service]?.title}</div>
-									</div>
-
-									<div className={`${styles.services_icon} ${styles.add}`}> + </div>
-								</div>
-							))}
+			{(remainingServicesToAdd || []).map((service) => (
+				<div
+					role="presentation"
+					className={`${styles.pill} ${styles.inactive}`}
+					onClick={() => handleAdd(service)}
+					id={`search_results_additional_service_${service}`}
+				>
+					<div style={{ maxWidth: '90%', display: 'flex' }}>
+						<img
+							src="https://cdn.cogoport.io/cms-prod/cogo_admin/vault/original/Hangar.svg"
+							alt="hangar"
+							style={{ width: 14, height: 14 }}
+						/>
+						<div className={styles.services}>
+							{detail?.[service]?.title}
 						</div>
-					</>
-					) : null}
+					</div>
+
+					<div className={`${styles.services_icon} ${styles.add}`}>
+						{' '}
+						+
+						{' '}
+					</div>
+				</div>
+			))}
+		</div>
+	</>
+        	) : null}
 
 				<div className={styles.line} />
 				<div>Subsidiary services</div>
@@ -221,34 +235,34 @@ function AdditionalServices({
 				</Button>
 
 				{!uniq_services_list.includes('cargo_insurance')
-				&& [
-					'fcl_freight',
-					'lcl_freight',
-					'air_freight',
-					'ftl_freight',
-					'ltl_freight',
-					'air_domestic',
-				].includes(search_type) ? (
-					<>
-						<div className={styles.line} style={{ marginTop: '8px' }} />
+        && [
+        	'fcl_freight',
+        	'lcl_freight',
+        	'air_freight',
+        	'ftl_freight',
+        	'ltl_freight',
+        	'air_domestic',
+        ].includes(search_type) ? (
+	<>
+		<div className={styles.line} style={{ marginTop: '8px' }} />
 
-						<div style={{ marginBottom: '8px' }}>Cargo Insurance</div>
+		<div style={{ marginBottom: '8px' }}>Cargo Insurance</div>
 
-						<div
-							role="presentation"
-							className={`${styles.pill} ${styles.inactive}`}
-							onClick={() => setAddCargoInsurance(true)}
-							id="search_results_additional_service_cargo_insurance"
-						>
-							<div style={{ display: 'flex', maxWidth: '90%' }}>
-								<IcACarriageInsurancePaidTo />
-								<div className={styles.services}>Cargo Insurance</div>
-							</div>
+		<div
+			role="presentation"
+			className={`${styles.pill} ${styles.inactive}`}
+			onClick={() => setAddCargoInsurance(true)}
+			id="search_results_additional_service_cargo_insurance"
+		>
+			<div style={{ display: 'flex', maxWidth: '90%' }}>
+				<IcACarriageInsurancePaidTo />
+				<div className={styles.services}>Cargo Insurance</div>
+			</div>
 
-							<div className={`${styles.services_icon} ${styles.add}`}> + </div>
-						</div>
-					</>
-					) : null}
+			<div className={`${styles.services_icon} ${styles.add}`}> + </div>
+		</div>
+	</>
+        	) : null}
 			</div>
 
 			{addService ? (
@@ -256,7 +270,7 @@ function AdditionalServices({
 					show={!!addService}
 					onClose={() => handleClose()}
 					position="top-right"
-					width={300}
+					size="sm"
 				>
 					<Forms
 						onClose={() => handleClose()}
@@ -274,20 +288,21 @@ function AdditionalServices({
 				<Modal
 					show={show}
 					onClose={() => setShow(false)}
-					position="top-right"
-					width={330}
+					placement="top-right"
+					size="sm"
 				>
-					<DeleteConfirmation
-						deleteService={deleteService}
-						setShow={setShow}
-						setDeleteService={setDeleteService}
-						loading={loading}
-						setLoading={setLoading}
-						servicesList={servicesList}
-						data={data}
-						refetch={refetch}
-						scope={scope}
-					/>
+					<Modal.Body>
+						<DeleteConfirmation
+							deleteService={deleteService}
+							setShow={setShow}
+							setDeleteService={setDeleteService}
+							loading={loading}
+							setLoading={setLoading}
+							servicesList={servicesList}
+							data={data}
+							refetch={refetch}
+						/>
+					</Modal.Body>
 				</Modal>
 			) : null}
 

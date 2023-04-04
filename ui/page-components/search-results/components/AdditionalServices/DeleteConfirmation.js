@@ -17,22 +17,16 @@ function DeleteConfirmation({
 	servicesList = [],
 	data = {},
 	refetch = () => {},
-	scope = '',
 }) {
-	let updateSpotSearchApi = {};
-	if (!data?.checkout_id) {
-		updateSpotSearchApi = useRequest(
-			'post',
-			false,
-			scope,
-		)('/update_spot_search');
-	} else {
-		updateSpotSearchApi = useRequest(
-			'post',
-			false,
-			scope,
-		)('/update_checkout_service');
-	}
+	const url = !data?.checkout_id ? '/update_spot_search' : '/update_checkout_service';
+
+	const [{ loading:apiLoading }, updateSpotSearchApi] = useRequest(
+		{
+			url,
+			method: 'post',
+		},
+		{ manual: true },
+	);
 
 	const handleDeleteService = async () => {
 		const service_split = deleteService.split(':');
@@ -130,7 +124,7 @@ function DeleteConfirmation({
 				[service_type] : params,
 			};
 
-			const res = await updateSpotSearchApi.trigger({ data: payload });
+			const res = await updateSpotSearchApi({ data: payload });
 
 			if (!res.hasError) {
 				Toast.success('Service deleted successfully!');

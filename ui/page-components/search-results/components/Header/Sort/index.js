@@ -1,14 +1,17 @@
 import { Select } from '@cogoport/components';
-import getConfig from 'next/config';
 
 import SELECT_CUSTOM_THEME from '../select-custom-theme';
 
 import usePartnerEntityType from '@/packages/forms/hooks/usePartnerEntityType';
-import { APP_EVENT, trackEvent } from '@/ui/page-components/discover_rates/common/analytics';
+import {
+	APP_EVENT,
+	trackEvent,
+} from '@/ui/page-components/discover_rates/common/analytics';
+import getConfiguration from '@/ui/page-components/discover_rates/hooks/configurations';
 
 function Sort({ sortBy = '', search_type = '', setSort = () => {} }) {
 	const { isChannelPartner = false } = usePartnerEntityType();
-	const sortList = getConfig('sort', search_type, isChannelPartner);
+	const sortList = getConfiguration('sort', search_type, isChannelPartner);
 
 	if ((sortList || []).length < 2) {
 		return null;
@@ -39,7 +42,12 @@ function Sort({ sortBy = '', search_type = '', setSort = () => {} }) {
 		<Select
 			{...controls}
 			onChange={handleChange}
-			style={SELECT_CUSTOM_THEME('sort')}
+      // style={SELECT_CUSTOM_THEME('sort')}
+			style={{
+				borderColor : '#67c676',
+				background  : '#e6fbe9',
+				width       : '250px',
+			}}
 		/>
 	);
 }

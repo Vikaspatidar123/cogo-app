@@ -35,10 +35,13 @@ const useGetCheckout = () => {
 		}));
 	};
 
-	const [{ loading }, trigger] = useRequest({
-		url    : '/get_checkout',
-		method : 'get',
-	}, { manual: true });
+	const [{ loading }, trigger] = useRequest(
+		{
+			url    : '/get_checkout',
+			method : 'get',
+		},
+		{ manual: true },
+	);
 
 	const getCheckout = useCallback(() => {
 		trigger({
@@ -77,11 +80,13 @@ const useGetCheckout = () => {
 					const service = detail.services[serviceId];
 					const serviceRate = rate.services[serviceId];
 
-					const serviceName =						service.trade_type && service.trade_type !== 'domestic'
-						? `${service.trade_type}_${service.service_type}`
-						: service.service_type;
+					const serviceName = service.trade_type && service.trade_type !== 'domestic'
+            	? `${service.trade_type}_${service.service_type}`
+            	: service.service_type;
 
-					const serviceConfig = config.find((item) => item.name === serviceName);
+					const serviceConfig = config.find(
+						(item) => item.name === serviceName,
+					);
 
 					const costBreakdownObj = {
 						id                : serviceId,
@@ -100,9 +105,9 @@ const useGetCheckout = () => {
 					switch (service.service_type) {
 						case 'fcl_freight':
 							origin = origin || service.origin_main_port || service.origin_port;
-							destination =								destination
-								|| service.destination_main_port
-								|| service.destination_port;
+							destination = destination
+                || service.destination_main_port
+                || service.destination_port;
 
 							rateObject.destination_detention = {
 								free_limit: service.free_days_destination_detention,
@@ -113,9 +118,9 @@ const useGetCheckout = () => {
 							break;
 						case 'lcl_freight':
 							origin = origin || service.origin_main_port || service.origin_port;
-							destination =								destination
-								|| service.destination_main_port
-								|| service.destination_port;
+							destination = destination
+                || service.destination_main_port
+                || service.destination_port;
 
 							rateObject.destination_detention = {
 								free_limit: service.free_days_destination_detention,
@@ -208,7 +213,7 @@ const useGetCheckout = () => {
 							case 'fcl_freight':
 								summary.containers.push({
 									cargo_weight_per_container:
-										service.cargo_weight_per_container,
+                    service.cargo_weight_per_container,
 									commodity        : service.commodity,
 									container_size   : service.container_size,
 									container_type   : service.container_type,
@@ -279,7 +284,7 @@ const useGetCheckout = () => {
 							case 'fcl_freight_local':
 								summary.packages.push({
 									cargo_weight_per_container:
-										service.cargo_weight_per_container,
+                    service.cargo_weight_per_container,
 									commodity        : service.commodity,
 									container_size   : service.container_size,
 									container_type   : service.container_type,
@@ -290,7 +295,7 @@ const useGetCheckout = () => {
 							case 'fcl_customs':
 								summary.packages.push({
 									cargo_weight_per_container:
-										service.cargo_weight_per_container,
+                    service.cargo_weight_per_container,
 									commodity        : service.commodity,
 									container_size   : service.container_size,
 									container_type   : service.container_type,

@@ -54,8 +54,7 @@ function KYC({
 		<Modal
 			show={show}
 			onClose={() => setShow(false)}
-			className="primary lg"
-			styles={{ dialog: { padding: 24 } }}
+			// styles={{ dialog: { padding: 24 } }}
 			closable={source !== 'booking_confirmation'}
 		>
 			{renderModalContent()}

@@ -26,8 +26,9 @@ function SearchResultsServiceItemForm({
 	const { handleAddService, loading } = useAddService(service, summary, source);
 	const watchMap = {};
 
-	control.forEach((item) => {
+	service.controls?.forEach((item) => {
 		const condition = { ...(item.condition || {}) };
+
 		delete condition.services;
 		Object.keys(condition).forEach((conditionRule) => {
 			if (!watchMap[conditionRule]) {
@@ -49,33 +50,33 @@ function SearchResultsServiceItemForm({
 		handleClose(false);
 		reset();
 	};
-
 	return (
 		<div className={styles.container}>
 			<div className={styles.title}>{`Add ${service.title}`}</div>
 			<form onSubmit={handleSubmit(onSubmit)}>
 				<div>
-					{(control || []).map((item) => {
-						let flag = true;
+					{(service.controls || []).map((item) => {
+          	let flag = true;
 
-						Object.keys(item.condition).forEach((condItem) => {
-							if (watchMap[condItem] !== undefined) {
-								if (!item.condition[condItem].includes(watchMap[condItem])) {
-									flag = false;
-								}
-							}
-						});
+          	Object.keys(item.condition).forEach((condItem) => {
+          		if (watchMap[condItem] !== undefined) {
+          			if (!item.condition[condItem].includes(watchMap[condItem])) {
+          				flag = false;
+          			}
+          		}
+          	});
 
-						if (!flag) {
-							return null;
-						}
+          	if (!flag) {
+          		return null;
+          	}
 
-						return (
-							<FormElement
-								key={control.name}
-								errors={errors}
-							/>
-						);
+          	return (
+	<FormElement
+		key={control.name}
+		errors={errors}
+		field={service.controls.find((x) => x.name === [item.name])}
+	/>
+          	);
 					})}
 				</div>
 

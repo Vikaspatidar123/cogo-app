@@ -92,8 +92,7 @@ function ExchangeRate({ detail = {}, conversions = {}, rate = {}, refetch }) {
 
 				<Popover
 					visible={showPopover}
-					theme="light-border"
-					content={(
+					render={(
 						<ApplicableStageOptions
 							handleUpdateStage={handleUpdateStage}
 							primary_service={primary_service}

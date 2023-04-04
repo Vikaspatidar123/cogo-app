@@ -18,31 +18,31 @@ function IEKycSection({ organizationData, onClose, source }) {
 		general: { scope = '' },
 	} = useSelector((state) => state);
 
-	const { country_id, registration_number, preferred_languages } =		organizationData;
+	const { country_id, registration_number, preferred_languages } = organizationData;
 
-	const submitKycAPI = useRequest(
-		'post',
-		false,
-		scope,
-	)('/submit_organization_kyc');
+	const [{ loading }, submitKycAPI] = useRequest(
+		{
+			url    : '/submit_organization_kyc',
+			method : 'post',
+		},
+		{ manual: true },
+	);
 
-	const { fields, handleSubmit, formState, setValues, watch, control } = useForm();
+	const { handleSubmit, formState, setValue, watch, control } = useForm();
 
 	const { errors = {} } = formState;
 
 	useEffect(() => {
-		setValues({
-			country_id,
-			registration_number,
-			preferred_languages,
-		});
-	}, [country_id, preferred_languages, registration_number, setValues]);
+		setValue('country_id', country_id);
+		setValue('registration_number', registration_number);
+		setValue('preferred_languages', preferred_languages);
+	}, [country_id, preferred_languages, registration_number]);
 
 	const countryId = watch('country_id');
 
 	const newFields = {};
-	Object.keys(fields).forEach((key) => {
-		let newField = fields[key];
+	controls.forEach((key, index) => {
+		let newField = controls[index];
 
 		if (key === 'registration_number') {
 			if (countryId === INDIA_COUNTRY_ID) {
@@ -82,7 +82,7 @@ function IEKycSection({ organizationData, onClose, source }) {
 			kyc_submitted_from        : source,
 		};
 		try {
-			const res = await submitKycAPI.trigger({ data: body });
+			const res = await submitKycAPI({ data: body });
 
 			if (!res.hasError) {
 				Toast.success('Kyc submitted successfully!');
@@ -98,26 +98,23 @@ function IEKycSection({ organizationData, onClose, source }) {
 		<div className={styles.layout_container}>
 			<div className={styles.layout}>
 				{controls.map((item) => {
-					const Element = getField(item.type);
-					return (
-						<div className={styles.field}>
-							<div className={styles.lable}>{item.label}</div>
-							<Element {...item} control={control} />
-							{errors && (
-								<div className={styles.errors}>
-									{errors[item?.name]?.message}
-								</div>
-							)}
-						</div>
-					);
+        	const Element = getField(item.type);
+        	return (
+	<div className={styles.field}>
+		<div className={styles.lable}>{item.label}</div>
+		<Element {...item} control={control} />
+		{errors && (
+			<div className={styles.errors}>
+				{errors[item?.name]?.message}
+			</div>
+		)}
+	</div>
+        	);
 				})}
 			</div>
 
 			<div className={styles.button_container}>
-				<Button
-					disabled={submitKycAPI.loading}
-					onClick={handleSubmit(onSubmit)}
-				>
+				<Button disabled={loading} onClick={handleSubmit(onSubmit)}>
 					Submit KYC
 				</Button>
 			</div>

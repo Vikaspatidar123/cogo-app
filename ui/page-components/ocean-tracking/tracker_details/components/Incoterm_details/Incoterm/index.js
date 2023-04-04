@@ -22,7 +22,7 @@ function IncotermModal({
 		if (trackerDetails?.id) {
 			fetchAlertDetails(trackerDetails.id);
 		}
-	}, [trackerDetails?.id]);
+	}, [fetchAlertDetails, trackerDetails.id]);
 
 	const [loading, setLoading] = useState(false);
 

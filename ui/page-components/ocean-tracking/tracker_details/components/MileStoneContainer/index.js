@@ -54,11 +54,10 @@ function MilestonesContainer({
 			}
 			return false;
 		});
-
-		// eslint-disable-next-line no-undef
 		const anchorTarget = document.getElementById(mostRecentPastOrPresentMilestoneId);
 		anchorTarget?.scrollIntoView?.({ behavior: 'smooth', block: 'start' });
 	}, [selectedMilestonesList]);
+
 	useEffect(() => {
 		if (mapPoints?.length) {
 			setOceanPoints(
@@ -68,8 +67,7 @@ function MilestonesContainer({
 				)?.route,
 			);
 		}
-	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [selectedContainer, mapPoints]);
+	}, [selectedContainer, mapPoints, containersMilestonesList]);
 
 	useEffect(() => {
 		if (containersMilestonesList?.[selectedContainer] !== undefined) {

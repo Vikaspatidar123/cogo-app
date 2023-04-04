@@ -28,7 +28,7 @@ function IncotermDetails({
 		const { trade_type } = shipment_details || {};
 		const incoterm = trackerDetails?.shipment_info?.incoterm;
 		return (
-			<div role="presentation" className={styles.card} onClick={handleModal}>
+			<div role="presentation" className={styles.card} onClick={() => handleModal}>
 				{shipperDetails != null && (
 					<div className={styles.info}>
 						<div className={styles.label}>Shipper:</div>

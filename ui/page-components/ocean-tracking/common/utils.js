@@ -3,12 +3,10 @@ import { FILTER_KEYS, FILTER_KEY_TO_ID } from './constants';
 const prepareFilters = (filters, filters_data) => {
 	const finalFilters = {};
 	Object.keys(filters).forEach((key) => {
-		console.log(key, 'key');
 		if (key === 'shipping_line_id') {
 			finalFilters[FILTER_KEY_TO_ID[key]] = filters[key];
 		} else if (key === FILTER_KEYS.SHIPPER || key === FILTER_KEYS.CONSIGNEE) {
 			finalFilters[FILTER_KEY_TO_ID[key]] = [];
-			console.log(FILTER_KEY_TO_ID[key], 'FILTER_KEY_TO_ID[key]');
 			const pocKeys = filters[key];
 			const pocDetailsList = filters_data.poc_details || [];
 			pocKeys.forEach((pocKey) => {

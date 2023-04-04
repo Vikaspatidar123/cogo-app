@@ -20,7 +20,7 @@ function Header() {
 		if (general?.query?.redirect === 'true') {
 			setAddTrackerModal(true);
 		}
-	}, []);
+	}, [general?.query?.redirect]);
 	const handleAddTrackerModal = () => {
 		setAddTrackerModal(!isAddTrackerModalOpen);
 		setShow(!show);

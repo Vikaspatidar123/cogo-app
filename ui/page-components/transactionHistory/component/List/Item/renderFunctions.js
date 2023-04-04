@@ -20,7 +20,7 @@ const itemFunctions = ({ functions }) => {
 	const newFunctions = {
 		renderAmount: (data, config) => formatAmount({
 			amount   : data[config.key],
-			currency : data.billCurrency,
+			currency : data?.billCurrency,
 			options  : {
 				notation : 'standard',
 				style    : 'currency',

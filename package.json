@@ -18,7 +18,9 @@
     "preinstall": "npx only-allow pnpm"
   },
   "dependencies": {
+    "@cogoport/maps": "^1.0.2",
     "@cogoport/charts": "^1.0.1",
+    "@cogoport/maps": "^1.0.0",
     "@cogoport/components": "^1.0.347",
     "@cogoport/icons-react": "^1.0.58",
     "@cogoport/maps": "^1.0.2",

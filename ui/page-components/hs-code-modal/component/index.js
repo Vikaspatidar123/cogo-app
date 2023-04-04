@@ -8,11 +8,11 @@ import {
 } from '@cogoport/icons-react';
 import { useState } from 'react';
 
-import { Loading } from '../configuration/icon-configuration';
 import useHsCodeData from '../hook/useHsCodeData';
 
 import useClickFunction from './clickFunction';
 import hsColumn from './Column';
+import { Loading } from './Configuration/icon-configuration';
 import HsTable from './HsTable';
 import HsTag from './HsTag';
 import Stepper from './Stepper';

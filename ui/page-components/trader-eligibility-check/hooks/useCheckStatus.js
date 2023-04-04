@@ -50,7 +50,7 @@ const useCheckStatus = ({ query, setPaymentStatusModal, createTradeEngine }) => 
 			setPaymentStatus('ERROR');
 			Toast.error(err?.error?.message);
 		}
-	}, []);
+	}, [billId, createTradeEngine, setPaymentStatusModal, trigger]);
 
 	return {
 		checkPaymentStatus,

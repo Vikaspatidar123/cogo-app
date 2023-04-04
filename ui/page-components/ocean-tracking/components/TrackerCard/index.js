@@ -8,6 +8,7 @@ import EmptyState from '../Emptystate';
 import Map from '../Map/index';
 
 import Card from './Card';
+import CardPlaceholder from './CardPlaceholder';
 import FilterComponent from './FIlterComponent';
 import styles from './styles.module.css';
 
@@ -90,7 +91,7 @@ function TrackerCard({
 
 				</div>
 			</div>
-			{empty && (
+			{!loading && empty && (
 				<div>
 					<EmptyState />
 				</div>
@@ -108,7 +109,7 @@ function TrackerCard({
 									/>
 								))}
 							</div>
-						) : (<Placeholder height="182px" />)}
+						) : ([1, 2, 3, 4].map(() => <CardPlaceholder height="182px" />))}
 				</div>
 			)}
 			{isMapView && (

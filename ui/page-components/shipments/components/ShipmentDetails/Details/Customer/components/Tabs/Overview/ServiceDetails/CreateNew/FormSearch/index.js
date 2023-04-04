@@ -33,7 +33,7 @@ function Form({ extraParams, service, onClose, shipment_data, services }) {
 		services,
 	});
 
-	const { fields, formValues, handleSubmit } = formProps;
+	const { control, formValues, handleSubmit } = formProps;
 
 	let rednerForm = (
 		<FormElement

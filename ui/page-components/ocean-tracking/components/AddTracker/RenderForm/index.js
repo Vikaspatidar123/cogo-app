@@ -1,5 +1,5 @@
 import { Radio, Input, Toast, Select, Button } from '@cogoport/components';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 
 import useAddTracker from '../../../hooks/useAddTracker';
 
@@ -32,17 +32,18 @@ function RenderForm() {
 		method : 'get',
 	}, { manual: false });
 
-	const getShippingLines = async () => {
+	const getShippingLines = useCallback(async () => {
 		try {
 			const res = await shipping();
 			setShippingLines(res?.data?.list);
 		} catch (err) {
 			Toast.error(err?.message || 'No shipping lines found');
 		}
-	};
+	}, [shipping]);
+
 	useEffect(() => {
 		getShippingLines();
-	}, []);
+	}, [getShippingLines]);
 
 	const fetchShippingLineForContainer = async (id) => {
 		try {
@@ -52,7 +53,6 @@ function RenderForm() {
 			if (data?.result?.shipping_line_id) {
 				const valueId = data.result.shipping_line_id;
 				const label = shippingLines?.filter?.((item) => item.id === value)[0]?.short_name;
-				console.log(label, 'label');
 				setValue((prv) => ({ ...prv, shipping_line_id: valueId }));
 			} else setValue((prv) => ({ ...prv, shipping_line_id: '' }));
 		} catch (err) {

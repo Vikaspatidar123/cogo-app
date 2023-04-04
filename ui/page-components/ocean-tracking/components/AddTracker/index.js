@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 import { useState } from 'react';
 
 import CsvForm from './CsvForm';
@@ -46,7 +45,6 @@ function AddTrackerModal({ show, setShow }) {
 									download="container_number_for_csv.csv"
 									style={{ marginLeft: 5, fontSize: 10 }}
 								>
-									{' '}
 									Sample
 								</a>
 							)}

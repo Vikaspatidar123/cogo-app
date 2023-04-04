@@ -11,10 +11,7 @@ const LAYER = [{
 
 const CogoMaps = dynamic(() => import('./MapsComp'), { ssr: false });
 function Map({ points, height = '80vh' }) {
-	const {
-		setTrackerDetails,
-
-	} = useFetchTrackerDetails();
+	const { setTrackerDetails } = useFetchTrackerDetails();
 	const [airPoints, setAirPoints] = useState([]);
 	const [OceanPoints, setOceanPoints] = useState([]);
 	const [isLoading, setLoading] = useState(true);

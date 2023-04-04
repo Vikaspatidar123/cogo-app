@@ -6,7 +6,7 @@ function Route({ positions, map, pathOptions }) {
 		if (!map || !positions) return;
 		const line = L.polyline(positions, { ...pathOptions });
 		line.addTo(map);
-	}, [map]);
+	}, [map, pathOptions, positions]);
 	return null;
 }
 export default Route;

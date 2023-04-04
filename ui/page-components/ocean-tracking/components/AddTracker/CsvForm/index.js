@@ -1,5 +1,5 @@
 import { Radio, Input, Toast, Select, FileSelect } from '@cogoport/components';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 
 import styles from './styles.module.css';
 
@@ -30,18 +30,18 @@ function CsvForm() {
 		method : 'get',
 	}, { manual: false });
 
-	const getShippingLines = async () => {
+	const getShippingLines = useCallback(async () => {
 		try {
 			const res = await shipping();
 			setShippingLines(res?.data?.list);
 		} catch (err) {
 			Toast.error(err?.message || 'No shipping lines found');
 		}
-	};
+	}, [shipping]);
 
 	useEffect(() => {
 		getShippingLines();
-	}, []);
+	}, [getShippingLines]);
 
 	const fetchShippingLineForContainer = async (id) => {
 		try {
@@ -51,7 +51,6 @@ function CsvForm() {
 			if (data?.result?.shipping_line_id) {
 				const value = data.result.shipping_line_id;
 				const label = shippingLines?.filter?.((item) => item.id === value)[0]?.short_name;
-				console.log(label, 'label');
 			}
 		} catch (err) {
 			Toast.error(
@@ -61,15 +60,12 @@ function CsvForm() {
 	};
 
 	const new_input = (e) => {
-		const value = e;
 		if (value?.length >= 4) {
 			const data = value.toUpperCase();
 			setshowinput(true);
 			fetchShippingLineForContainer(data);
 		} else setshowinput(false);
 	};
-
-	console.log(fileValue, 'fileValue');
 
 	return (
 		<div>

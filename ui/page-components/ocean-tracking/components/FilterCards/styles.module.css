@@ -1,7 +1,7 @@
 .tab_container{
     width: 23%;
     background: #FFFFFF;
-    box-shadow: 0px 1px 6px rgba(169, 188, 218, 0.45);
+    box-shadow: 0 1px 6px rgba(169, 188, 218, 0.45);
     border-radius: 8px;
     border: 1px solid #F5B02E;
     cursor: pointer;
@@ -19,7 +19,7 @@
   
     h1 {
       font-size: 20px;
-      margin: 0px;
+      margin: 0;
     }
   
     h3 {
@@ -33,12 +33,12 @@
     padding: 20px;
     h1 {
       font-size: 20px;
-      margin: 0px;
+      margin: 0;
     }
   
     h3 {
       font-size: 12px;
-      margin: 0px;
+      margin: 0;
     }
   }
 .disabled_card{
@@ -83,7 +83,7 @@
   }
   .vertical_line{
     border: 1px dashed #F2E3C3;
-    margin: 10px 0px 10px 0px;
+    margin: 10px 0 10px 0;
   }
   .horizontal_line{
     border: 1px solid #F2E3C3;
@@ -106,7 +106,7 @@
 	}
   }
   .sub_content{ 
-    margin: 0px 20px 0px 10px;
+    margin: 0 20px 0 10px;
     display: flex;
     justify-content: space-between;
     padding: 4px;

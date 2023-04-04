@@ -52,10 +52,6 @@
   min-width: 150px;
 }
 .check_box {
-  /* input:checked ~ .checkmark {
-		background-color: ${({ color }) => (color === 'blue' ? '#4097F5' : '#67C676')};
-	} */
-
   input:disabled ~ .checkmark {
     cursor: not-allowed;
   }

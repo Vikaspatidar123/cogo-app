@@ -1,10 +1,8 @@
 import { Toast } from '@cogoport/components';
-import { useState, useEffect } from 'react';
 
 import { constructScheduleString } from '../common/utils';
 
 import { useRequest } from '@/packages/request';
-import { useSelector } from '@/packages/store';
 
 const useCreateSchedule = ({ dsrs, setDsrs, dsrId }) => {
 	const selectedDsr = dsrs?.filter?.((item) => item.id === dsrId)[0] || {};
@@ -17,8 +15,6 @@ const useCreateSchedule = ({ dsrs, setDsrs, dsrId }) => {
 
 	const createSchedule = async (frequency, day, time, updateState = true) => {
 		try {
-			console.log(frequency, 'frequency', day);
-			// if (showLoading) setLoading(true);
 			const requestData = {
 				...(type === 'new' && { saas_dsr_id: dsrId }),
 				...(type === 'update' && { id: dsrId }),
@@ -27,7 +23,6 @@ const useCreateSchedule = ({ dsrs, setDsrs, dsrId }) => {
 				schedule_time  : `${time}`,
 			};
 			const res = await trigger({ data: requestData });
-			// setLoading(false);
 			const { hasError } = res || {};
 			const message = res?.data?.message;
 			if (hasError) throw new Error();

@@ -10,7 +10,7 @@ import getField from '@/packages/forms/Controlled';
 import AddPocs from '@/ui/page-components/ocean-tracking/tracker_details/components/Incoterm_details/AddPoc';
 import useFetchPoc from '@/ui/page-components/ocean-tracking/tracker_details/hooks/useFetchPoc';
 
-function SelectPoc({ setHeading, setStep, setSelectedPoc, setDsrId }) {
+function SelectPoc({ setStep, setSelectedPoc, setDsrId }) {
 	const { loading, pocList, setPocList } = useFetchPoc();
 	const [submitLoading, createDsr] = useCreateDsr();
 	const [searchText, setSearchText] = useState('');
@@ -23,8 +23,6 @@ function SelectPoc({ setHeading, setStep, setSelectedPoc, setDsrId }) {
 		),
 		[pocList, searchText],
 	);
-	console.log(pocList, 'pocList');
-	console.log(filteredPocList, 'filteredPocList');
 	const handlePocModal = () => {
 		setPocModal(!isPocModalOpen);
 	};
@@ -42,7 +40,6 @@ function SelectPoc({ setHeading, setStep, setSelectedPoc, setDsrId }) {
 			}
 		});
 		const data = await createDsr(poc);
-		console.log(data, 'data');
 		setSelectedPoc({
 			id   : poc,
 			name : pocList.filter((item) => item.id === poc)[0]?.name,
@@ -53,7 +50,6 @@ function SelectPoc({ setHeading, setStep, setSelectedPoc, setDsrId }) {
 	const {
 		control,
 		handleSubmit,
-		formState: { errors },
 	} = useForm();
 
 	return (

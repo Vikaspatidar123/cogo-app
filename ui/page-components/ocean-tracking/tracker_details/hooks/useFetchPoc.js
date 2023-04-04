@@ -22,7 +22,6 @@ function useFetchPoc() {
 					filters: { organization_branch_id: general?.query?.branch_id },
 				},
 			});
-			// setLoading(false);
 			const { hasError } = res || {};
 			if (hasError) throw new Error();
 
@@ -34,9 +33,7 @@ function useFetchPoc() {
 				}),
 			);
 		} catch (err) {
-			console.log(err);
 			Toast.error('Unable to fetch contacts. Please try again.');
-			// setLoading(false);
 		}
 	};
 	useEffect(() => {

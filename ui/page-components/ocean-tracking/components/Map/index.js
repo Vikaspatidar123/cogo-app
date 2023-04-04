@@ -1,4 +1,3 @@
-// import { CogoMaps } from '@cogoport/maps';
 import dynamic from 'next/dynamic';
 import { useState, useEffect } from 'react';
 

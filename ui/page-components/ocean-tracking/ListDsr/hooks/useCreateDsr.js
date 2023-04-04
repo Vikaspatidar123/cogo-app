@@ -1,5 +1,4 @@
 import { Toast } from '@cogoport/components';
-import { useState, useEffect } from 'react';
 
 import { useRequest } from '@/packages/request';
 import { useSelector } from '@/packages/store';
@@ -14,7 +13,6 @@ const useCreateDsr = () => {
 
 	const createDsr = async (pocId) => {
 		try {
-			// if (showLoading) setLoading(true);
 			const requestData = {
 				trade_contact_id       : pocId,
 				created_by             : profile.id,
@@ -26,7 +24,6 @@ const useCreateDsr = () => {
 			return data;
 		} catch (err) {
 			Toast.error(err?.message || 'Unable to create status report. Please try again.');
-			// if (showLoading) setLoading(false);
 			return null;
 		}
 	};

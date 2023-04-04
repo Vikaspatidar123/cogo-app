@@ -1,9 +1,3 @@
-// import { Text, Flex } from '@cogoport/front/components';
-// import { Formik, Field, ErrorMessage, Form } from 'formik';
-// import React, { useState, useRef } from 'react';
-// import { toast } from 'react-toastify';
-// import * as Yup from 'yup';
-
 import { Modal, Button } from '@cogoport/components';
 import { IcMAlert } from '@cogoport/icons-react';
 
@@ -76,15 +70,11 @@ function DetentionModal({ isOpen, handleModal, trackerDetails, setTrackerDetails
 		handleSubmit,
 		formState: { errors },
 	} = useForm();
-	// const [symbolsArr] = useState(['e', 'E', '+', '-', '.']);
-	console.log(errors, 'errors');
 	return (
 
 		<Modal
 			show={isOpen}
 			onClose={handleModal}
-            // width={isMobile ? 350 : 'none'}
-            // heading={STEPS_INFO[step]?.heading}
 			placement="center"
 		>
 			<Modal.Header title="Setup detention / demurrage days" />

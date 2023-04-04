@@ -1,11 +1,3 @@
-// import React, { Fragment, useState } from 'react';
-
-// import { useSaasState } from '../../../../common/context';
-// import IconPlus from '../../../../common/icons/plus.svg';
-// import { Card, DashedButton } from '../../../../common/ui';
-
-// import IncotermModal from './components/add-modal';
-
 import { useState } from 'react';
 
 import { POC_TYPES } from '../../common/constant';
@@ -36,7 +28,7 @@ function IncotermDetails({
 		const { trade_type } = shipment_details || {};
 		const incoterm = trackerDetails?.shipment_info?.incoterm;
 		return (
-			<div role="presentation" className={styles.card} onClick={handleModal}>
+			<div role="presentation" className={styles.card} onClick={() => handleModal}>
 				{shipperDetails != null && (
 					<div className={styles.info}>
 						<div className={styles.label}>Shipper:</div>
@@ -73,7 +65,6 @@ function IncotermDetails({
 			disabled={disabled}
 			{...props}
 		>
-			{/* <IconPlus /> */}
 			<p>Add incoterms and shipper / consignee details to customize alerts</p>
 		</div>
 	);

@@ -1,5 +1,3 @@
-// import { Toast } from '@cogoport/components';
-
 import { useRequest } from '@/packages/request';
 import { useSelector } from '@/packages/store';
 
@@ -28,7 +26,6 @@ function useCreatePoc() {
 			if (message) throw new Error(message);
 			return res?.data?.id;
 		} catch (err) {
-			console.log(err);
 			return null;
 		}
 	};

@@ -11,7 +11,6 @@ function IncotermModal({
 	handleModal,
 	fetchTrackerDetails,
 	trackerDetails,
-	setAlertsShow,
 }) {
 	const [step, setStep] = useState(0);
 	const [subscriptionAlerts, setSubscriptionAlerts] = useState([]);
@@ -23,7 +22,7 @@ function IncotermModal({
 		if (trackerDetails?.id) {
 			fetchAlertDetails(trackerDetails.id);
 		}
-	}, [trackerDetails?.id]);
+	}, [fetchAlertDetails, trackerDetails.id]);
 
 	const [loading, setLoading] = useState(false);
 

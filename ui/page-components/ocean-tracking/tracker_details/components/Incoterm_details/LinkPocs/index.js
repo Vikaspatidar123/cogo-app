@@ -8,17 +8,16 @@ import AddPocs from '../AddPoc';
 import styles from './styles.module.css';
 
 import { useForm } from '@/packages/forms';
-import getField from '@/packages/forms/Controlled';
 
 function LinkPocs({ handleNext, handleModal, setTrackerPoc, trackerPoc }) {
 	const { loading, pocList, setPocList } = useFetchPoc();
 	const [searchText, setSearchText] = useState('');
 	const [isPocModalOpen, setPocModal] = useState(false);
-	const { selected_poc_details = [] } = trackerPoc || {};
 	const [check, setCheck] = useState([]);
 	const filteredPocList = useMemo(
 		() => pocList.filter(
-			(item) => ['name', 'email'].filter((key) => item[key]?.toLowerCase().includes(searchText?.toLowerCase())).length > 0,
+			(item) => ['name', 'email']
+				.filter((key) => item[key]?.toLowerCase().includes(searchText?.toLowerCase())).length > 0,
 		),
 		[pocList, searchText],
 	);
@@ -32,12 +31,10 @@ function LinkPocs({ handleNext, handleModal, setTrackerPoc, trackerPoc }) {
 
 	const { createPoc } = useCreatePoc();
 	const onSubmit = async () => {
-		// eslint-disable-next-line no-shadow
 		const newPocList = check?.map(
 			(pocId) => filteredPocList?.filter((list) => list.id === pocId)[0],
 		);
-		// eslint-disable-next-line no-plusplus
-		for (let i = 0; i < newPocList.length; i++) {
+		for (let i = 0; i < newPocList.length; i += 1) {
 			const item = newPocList[i];
 			if (item.tradeContact === true) {
 				const { name, mobile_no, email } = item;
@@ -60,7 +57,6 @@ function LinkPocs({ handleNext, handleModal, setTrackerPoc, trackerPoc }) {
 	const {
 		control,
 		handleSubmit,
-		formState: { errors },
 	} = useForm();
 	const onCheck = (id) => {
 		if (check.includes(id)) {

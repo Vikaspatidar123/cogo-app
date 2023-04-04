@@ -14,7 +14,6 @@ function AddDetails({
 	selectedContainer,
 	setSelectedContainer,
 }) {
-	// const [selectedContainer, setSelectedContainer] = useState(0);
 	const handlePrevious = () => {
 		if (selectedContainer > 0) setSelectedContainer(selectedContainer - 1);
 	};
@@ -28,7 +27,6 @@ function AddDetails({
 	const handleModal = () => {
 		setModal((prev) => !prev);
 	};
-	console.log(isModalOpen, 'ismodal');
 	return (
 		<div>
 			<div className={styles.container}>

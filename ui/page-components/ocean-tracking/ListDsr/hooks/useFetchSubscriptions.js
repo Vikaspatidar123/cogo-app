@@ -12,8 +12,6 @@ const useFetchSubscriptions = (id) => {
 	const fetchSubscriptions = async () => {
 		try {
 			const res = await trigger({ params: { id } });
-
-			// setLoading(false);
 			const { hasError } = res || {};
 			if (hasError) throw new Error();
 
@@ -21,7 +19,6 @@ const useFetchSubscriptions = (id) => {
 			setSubList(data);
 		} catch (err) {
 			Toast.error(err);
-			// setLoading(false);
 		}
 	};
 

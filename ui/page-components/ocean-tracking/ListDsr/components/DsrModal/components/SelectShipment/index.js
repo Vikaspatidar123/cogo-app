@@ -1,4 +1,4 @@
-import { Checkbox, Toast, Table, Button, Placeholder, Modal } from '@cogoport/components';
+import { Checkbox, Toast, Table, Button, Placeholder } from '@cogoport/components';
 import { useEffect, useMemo, useState } from 'react';
 
 import useDsrToSubscription from '../../../../hooks/useDsrToSubscription';
@@ -9,8 +9,7 @@ import styles from './styles.module.css';
 
 import { useForm } from '@/packages/forms';
 
-function SelectShipment({ setHeading, setStep, type, dsrId, pocName, pocId }) {
-	// const formRef = useRef(null);
+function SelectShipment({ setHeading, setStep, dsrId, pocName, pocId }) {
 	const { loading, shipments } = useFetchShipments();
 	const { loadingSubscriptions, subList } = useFetchSubscriptions(dsrId);
 	const { submitLoading, dsrToSubscription } = useDsrToSubscription();
@@ -49,8 +48,9 @@ function SelectShipment({ setHeading, setStep, type, dsrId, pocName, pocId }) {
 	const onSubmit = async () => {
 		if (!value) return Toast.error('No shipments selected');
 		const data = await dsrToSubscription(value, dsrId, subList);
-		if (data === false) return;
+		if (data === false) return null;
 		setStep((step) => step + 1);
+		return null;
 	};
 
 	const columns = [

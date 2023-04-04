@@ -28,11 +28,9 @@ function useAddCommodity({ trackerDetails, setTrackerDetails, handleModal }) {
 				};
 
 				setTrackerDetails(updatedTrackerDetails);
-				// setLoading(false);
 				handleModal();
 			} catch (err) {
 				Toast.error("Couldn't add shipment details", err);
-			// setLoading(false);
 			}
 		}
 	};

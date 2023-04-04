@@ -1,6 +1,6 @@
 import { Placeholder } from '@cogoport/components';
 import { IcAShipAmber, IcMShare } from '@cogoport/icons-react';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 
 import { INCOTERM_TO_SHIPPERS_RESPONSIBILITY } from '../../common/constant';
 
@@ -11,37 +11,25 @@ import TrackerMap from './TrackerMap';
 
 function MilestonesContainer({
 	handleShareModal,
-	mapLoading, trackerDetails, selectedContainer, setMapPoints, mapPoints, loading,
+	mapLoading, trackerDetails, selectedContainer, mapPoints, loading,
 }) {
-	// const { general, trackerDetails, isMobile, selectedContainer, mapPoints } =		useSaasState();
 	const [selectedMilestonesList, setSelectedMilestonesList] = useState([]);
 	const [oceanPoints, setOceanPoints] = useState([]);
 	const [incotermStep, setIncotermStep] = useState(-1);
-	const [isContainerDetailsModalOpen, setContainerDetailsModal] = useState(false);
 
 	const [vesselLocationLat, setVesselLocationLat] = useState();
 	const [vesselLocationLang, setVesselLocationLang] = useState();
 	const [preditiveEta, setPreditiveEta] = useState({});
 	const [vesselName, setVesselName] = useState();
-	const containersMilestonesList = trackerDetails?.data ?? [];
+	const containersMilestonesList = useMemo(() => trackerDetails?.data ?? [], [trackerDetails?.data]);
 	const incoterm = trackerDetails?.shipment_details?.incoterm;
-
-	// const { container_details } = trackerDetails;
-
-	const containerNo = trackerDetails?.input;
-	const handleContainerDetailsModal = () => {
-		setContainerDetailsModal(!isContainerDetailsModalOpen);
-	};
 
 	useEffect(() => {
 		const processedMilestonesList = processList(
 			containersMilestonesList?.[selectedContainer]?.tracking_data ?? [],
 		);
-		console.log('in useEffect', containersMilestonesList);
 		setSelectedMilestonesList(processedMilestonesList);
 	}, [selectedContainer, containersMilestonesList]);
-
-	console.log(containersMilestonesList, 'containersMilestonesList');
 	useEffect(() => {
 		let newIncotermStep = -1;
 		const incotermMilestonesList = INCOTERM_TO_SHIPPERS_RESPONSIBILITY[incoterm] ?? [];
@@ -66,11 +54,10 @@ function MilestonesContainer({
 			}
 			return false;
 		});
-
-		// eslint-disable-next-line no-undef
 		const anchorTarget = document.getElementById(mostRecentPastOrPresentMilestoneId);
 		anchorTarget?.scrollIntoView?.({ behavior: 'smooth', block: 'start' });
 	}, [selectedMilestonesList]);
+
 	useEffect(() => {
 		if (mapPoints?.length) {
 			setOceanPoints(
@@ -80,8 +67,7 @@ function MilestonesContainer({
 				)?.route,
 			);
 		}
-	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [selectedContainer, mapPoints]);
+	}, [selectedContainer, mapPoints, containersMilestonesList]);
 
 	useEffect(() => {
 		if (containersMilestonesList?.[selectedContainer] !== undefined) {
@@ -129,8 +115,6 @@ function MilestonesContainer({
 
 	const renderEmpty = () => (
 		<div className={styles.empty}>
-			{/* <LoadingBanner style={{ width: 300, height: 'auto' }} /> */}
-			{/* <IconTridot style={{ width: 40, height: 'auto', marginBottom: 24 }} /> */}
 			<div className={styles.empty_content}>
 				Retrieving Tracking Data
 			</div>
@@ -182,9 +166,9 @@ function MilestonesContainer({
 						<div className={styles.step_container}>
 							{selectedMilestonesList.map((combinedMilestones, idx) => {
 								let prefixClass = '';
+								let shadedClass = '';
 								const currentMilestone = combinedMilestones.slice(-1)[0];
 								const isLast = idx === selectedMilestonesList.length - 1;
-								console.log(isLast, 'selectedMilestonesList');
 								const isShaded = !UNSHADED_MILESTONES.includes(
 									currentMilestone.milestone,
 								);
@@ -217,18 +201,17 @@ function MilestonesContainer({
 									prefixClass = 'wait';
 								}
 
-								if (isShaded) prefixClass += 'shaded';
-
-								// const Icon = TRANSPORT_MODE_TO_ICON[currentMilestone?.transport_mode] ?? Fragment;
+								if (isShaded) shadedClass = 'shaded';
 
 								const unshadedTimeHeading = `${formatDate(
 									currentMilestone.event_date,
 								)} | (${formatTime(currentMilestone.event_date)})`;
-
 								const unshadedLocation = `${currentMilestone.milestone} - ${currentMilestone.location}`;
 								return (
 									<div className={styles.step} key={currentMilestone.id} id={currentMilestone.id}>
-										<div className={styles.prefixClass}>
+										<div className={`${styles?.[prefixClass]} 
+										${shadedClass === 'shaded' ? styles.shaded : ''}`}
+										>
 											{!isLast ? (
 												<div className={styles.tail}>
 													<div className={styles.tail_content}>
@@ -275,21 +258,15 @@ function MilestonesContainer({
 																</div>
 															);
 															return (
-																<>
-																	<p>{description}</p>
-																	{/* {isMobile && (
-																		<p className={styles.time}>
-																		{formatTime(item.event_date)}</p>
-																	)} */}
-																</>
+																<p>{description}</p>
 															);
 														})}
 													</>
 												) : (
-													<>
+													<div>
 														<p className={styles.time}>{unshadedTimeHeading}</p>
 														<p className={styles.description}>{unshadedLocation}</p>
-													</>
+													</div>
 												)}
 											</div>
 											{incotermStep === idx && (

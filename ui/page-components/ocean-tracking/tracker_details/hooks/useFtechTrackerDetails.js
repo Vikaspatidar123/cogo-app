@@ -59,12 +59,8 @@ function useFetchTrackerDetails() {
 			containsData = trackerData?.tracking_status === 'Found';
 
 			setSelectedContainerId(trackerData?.container_number);
-			// setLoading(false);
-			// setError(false);
 		} catch (err) {
 			Toast.error("Couldn't fetch tracker's details", err);
-			// setLoading(false);
-			// setError(true);
 		}
 
 		if (isFirstVisit && containsData) {

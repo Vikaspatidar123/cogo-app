@@ -21,7 +21,6 @@ function TrackerDetails() {
 		maploading,
 		setSelectedContainerId,
 		selectedContainerId,
-		loadingForFirstVisit,
 		trackerDetails,
 		setTrackerDetails,
 		mapPoints,
@@ -57,7 +56,6 @@ function TrackerDetails() {
 								{trackerDetails?.input}
 							</p>
 						)}
-						{/* <IconMenu size={1.5} onClick={handleMobileMenu} /> */}
 					</div>
 				)}
 			</div>

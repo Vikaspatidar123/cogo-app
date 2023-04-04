@@ -1,25 +1,10 @@
-// import { Flex } from '@cogoport/front/components';
-// import { Formik, Field, ErrorMessage, Form } from 'formik';
-// import React, { useEffect, useMemo, useRef, useState } from 'react';
-// import Skeleton from 'react-loading-skeleton';
-// import Select from 'react-select';
-// import * as Yup from 'yup';
-
 import { Radio, Select, Button } from '@cogoport/components';
 import { useEffect, useState } from 'react';
 
-import { parseScheduleString } from '../../../../common/utils';
 import useCreateSchedule from '../../../../hooks/useCreateSchedule';
 
 import styles from './styles.module.css';
 
-import { useForm } from '@/packages/forms';
-import getField from '@/packages/forms/Controlled';
-// import { FormItem, Radio, Button } from '../../../../../../common/ui';
-// import { parseScheduleString } from '../../../../common/utils';
-// import useCreateSchedule from '../../../../hooks/useCreateSchedule';
-
-// import { StyledCheckbox } from './styles';
 const DAYS = [
 	'Sunday',
 	'Monday',
@@ -38,12 +23,9 @@ const TIME = [...Array(24).keys()].reduce((acc, curr) => {
 function SelectSchedule({
 	setHeading,
 	setStep,
-	type,
 	dsrId,
 	pocName,
-	pocId,
 	handleModal,
-	selectedDsr,
 	dsrs,
 	setDsrs,
 }) {

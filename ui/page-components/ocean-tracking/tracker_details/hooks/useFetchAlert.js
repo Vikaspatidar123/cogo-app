@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 
 import { useRequest } from '@/packages/request';
 
@@ -8,7 +8,7 @@ const useFetchAlerts = ({ setSubscriptionAlerts, setStep, setDeterminingStep }) 
 		method : 'get',
 	}, { manual: true });
 
-	const fetchAlertDetails = async (saasTrackerId) => {
+	const fetchAlertDetails = useCallback(async (saasTrackerId) => {
 		try {
 			const res = await trigger({
 				params: {
@@ -20,7 +20,6 @@ const useFetchAlerts = ({ setSubscriptionAlerts, setStep, setDeterminingStep }) 
 			if (hasError) throw new Error();
 
 			const { data } = res;
-			console.log(data, 'data');
 			if (data?.length > 0) {
 				setSubscriptionAlerts(data);
 				setStep(1);
@@ -30,7 +29,7 @@ const useFetchAlerts = ({ setSubscriptionAlerts, setStep, setDeterminingStep }) 
 		} catch (err) {
 			return false;
 		}
-	};
+	}, [setDeterminingStep, setStep, setSubscriptionAlerts, trigger]);
 	useEffect(() => {
 		fetchAlertDetails();
 	}, []);

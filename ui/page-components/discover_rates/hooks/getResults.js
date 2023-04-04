@@ -23,6 +23,15 @@ import getSearch from './useGetSearch';
 
 import showErrorsInToast from '@/ui/commons/utils/showErrorsInToast';
 
+const FILTER_MAPPING = {
+	arrival          : arrivalDeparture,
+	departure        : arrivalDeparture,
+	price_range      : pricesRange,
+	shipping_line_id : shippingLine,
+	payment_term     : paymentTerm,
+	schedule_type    : scheduleType,
+};
+
 const filteredItem = ({ rateCard, filters }) => {
 	const checkerArray = [];
 	Object.keys(filters).forEach((key) => {
@@ -79,16 +88,7 @@ const HANDLE_SORT_MAPPING = {
 	total_price_discounted_low_to_high : totalFreightLowToHigh,
 };
 
-const FILTER_MAPPING = {
-	arrival          : arrivalDeparture,
-	departure        : arrivalDeparture,
-	price_range      : pricesRange,
-	shipping_line_id : shippingLine,
-	payment_term     : paymentTerm,
-	schedule_type    : scheduleType,
-};
-
-const getResultsState = (id, extraParams = {}) => {
+const useResultsState = (id, extraParams = {}) => {
 	const [state, setState] = useState({
 		services                     : ['freight'],
 		offers                       : [],
@@ -243,4 +243,4 @@ const getResultsState = (id, extraParams = {}) => {
 	};
 };
 
-export default getResultsState;
+export default useResultsState;

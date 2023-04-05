@@ -10,15 +10,15 @@ function Filters({ services, activeTab, setActiveTab }) {
 			{(services || []).length > 1 && (
 				<div className={styles.container}>
 					<div className={styles.tags}>
-						{services.map((label, key) => (
+						{services.map((label) => (
 							<div
 								className={styles.tag}
 								role="presentation"
 								onClick={() => {
-									setActiveTab(key);
+									setActiveTab(label);
 								}}
 							>
-								{key === activeTab && <IcMTick />}
+								{label === activeTab && <IcMTick />}
 								{upperCase(label).slice(0, 3)}
 							</div>
 						))}

@@ -23,6 +23,7 @@ function ShipmentPlan() {
 		id: contract_id,
 	});
 	const { services = [] } = contractData || {};
+	console.log(services, 'services');
 	const [activeTab, setActiveTab] = useState(services[0] || '');
 
 	const {

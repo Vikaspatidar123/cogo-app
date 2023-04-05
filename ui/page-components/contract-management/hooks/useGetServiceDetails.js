@@ -21,6 +21,7 @@ const useGetServiceDetails = ({
 
 	const { origin, destination } = filterData || {};
 	const { serviceType: techopsServiceType = '' } = query || {};
+
 	const service = isTechops
 		? techopsServiceType
 		: `${SERVICE_TYPE_SMALL[serviceType]}_freight`;

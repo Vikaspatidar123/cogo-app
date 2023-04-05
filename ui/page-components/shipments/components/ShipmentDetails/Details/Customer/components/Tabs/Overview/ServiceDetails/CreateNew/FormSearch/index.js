@@ -1,12 +1,6 @@
-// import useUpsell from '@cogo/bookings/ShipmentDetails/hooks/useUpsell';
-// import startCase from '@cogo/utils/startCase';
-// import React from 'react';
-
-// import FormElement from '../../../../commons/Layout';
-// import Footer from '../../Footer';
-
-// import { Text, Heading, Container, FormDiv } from './styles';
 import { startCase } from '@cogoport/utils';
+
+import Layout from '../../../../../Layout';
 
 import styles from './styles.module.css';
 
@@ -17,7 +11,7 @@ const serviceCustomNames = {
 	destination_haulage : 'Port to ICD Haulage',
 };
 
-function Form({ extraParams, service, onClose, shipment_data, services }) {
+function FormSearch({ extraParams, service, onClose, shipment_data, services }) {
 	const {
 		controls,
 		showElements,
@@ -36,9 +30,9 @@ function Form({ extraParams, service, onClose, shipment_data, services }) {
 	const { control, formValues, handleSubmit } = formProps;
 
 	let rednerForm = (
-		<FormElement
+		<Layout
 			controls={controls}
-			fields={fields}
+			control={control}
 			errors={errors}
 			showElements={showElements}
 			formValues={formValues}
@@ -68,10 +62,10 @@ function Form({ extraParams, service, onClose, shipment_data, services }) {
 					{rednerForm}
 				</div>
 
-				<Footer onClose={onClose} isLoading={loading} />
+				{/* <Footer onClose={onClose} isLoading={loading} /> */}
 			</form>
 		</div>
 	);
 }
 
-export default Form;
+export default FormSearch;

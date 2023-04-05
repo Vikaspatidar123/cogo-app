@@ -8,6 +8,7 @@ import {
 	asyncFieldsPartner,
 	asyncFieldsPartnerRoles,
 	asyncFieldsHsCodeCountries,
+	asyncFieldsPinCodeLocations,
 } from '../../utils/getAsyncFields';
 
 /**
@@ -34,6 +35,7 @@ const keyAsyncFieldsParamsMapping = {
 	partners          : asyncFieldsPartner,
 	partner_roles     : asyncFieldsPartnerRoles,
 	hs_code_countries : asyncFieldsHsCodeCountries,
+	pinCode           : asyncFieldsPinCodeLocations,
 };
 
 function AsyncSelect(props) {

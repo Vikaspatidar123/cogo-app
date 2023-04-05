@@ -27,6 +27,7 @@ function asyncFieldsLocations(labelKey = 'name', valueKey = 'id') {
 		},
 	};
 }
+
 function asyncFieldsPartner() {
 	return {
 		labelKey    : 'business_name',
@@ -64,10 +65,24 @@ function asyncFieldsHsCodeCountries() {
 		defaultParams : { page_limit: 20 },
 	};
 }
+function asyncFieldsPinCodeLocations(labelKey = 'name', valueKey = 'id') {
+	return {
+		valueKey,
+		labelKey,
+		endpoint    : 'list_locations',
+		initialCall : true,
+		params      : {
+			filters    : { status: 'active' },
+			page_limit : 20,
+			includes   : { country: true, default_params_required: true },
+		},
+	};
+}
 export {
 	asyncFieldsLocations,
 	asyncFieldsLocations2,
 	asyncFieldsPartner,
 	asyncFieldsPartnerRoles,
 	asyncFieldsHsCodeCountries,
+	asyncFieldsPinCodeLocations,
 };

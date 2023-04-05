@@ -14,7 +14,9 @@ import { Pill } from '@cogoport/components';
 import ChildFormat from './ChildFormat';
 import EditLineItems from './EditLineItems';
 import Item from './Item';
+import ServiceChargeEdit from './ServiceChargeEdit';
 import styles from './styles.module.css';
+import SupplierSelect from './SupplierSelect';
 
 import IN from '@/ui/commons/constants/geo/IN';
 
@@ -36,8 +38,46 @@ function Layout({
 			<div className={styles.row}>
 				{controls.map((controlItem) => {
 					const { type, span = 6, subType } = controlItem;
-					const show =						!(controlItem.name in showElements)
+					console.log(type, 'type12');
+					const show = !(controlItem.name in showElements)
 						|| showElements[controlItem.name];
+
+					if (type === 'supplier-select') {
+						return (
+							<div className={styles.col}>
+								<SupplierSelect
+									{...controlItem}
+									control={control}
+									// {...fields[controlItem.name]}
+									label={
+										customValues[controlItem.name]?.label
+										|| fields[controlItem.name]?.label
+									}
+									error={errors[controlItem.name]}
+									value={controlItem.value}
+									id_prefix={id_prefix}
+									themeType={themeType}
+								/>
+							</div>
+						);
+					}
+					if (type === 'fieldArray' && subType === 'edit_service' && show) {
+						return (
+							<div className={styles.col}>
+								<ServiceChargeEdit
+									{...controlItem}
+									control={control}
+									// {...fields[controlItem.name]}
+									error={errors[controlItem.name]}
+									showElements={showElements[controlItem.name]}
+									id_prefix={id_prefix}
+									customValues={customValues[controlItem.name]}
+									themeType={themeType}
+									disabledProps={disabledProps}
+								/>
+							</div>
+						);
+					}
 					if (type === 'fieldArray' && subType === 'edit_items' && show) {
 						return (
 							<div className={styles.col}>
@@ -55,7 +95,6 @@ function Layout({
 						);
 					}
 					if (type === 'fieldArray' && show) {
-						console.log(type, 'config', show);
 						return (
 							<div className={styles.col}>
 								<ChildFormat
@@ -74,7 +113,7 @@ function Layout({
 
 					return show ? (
 						<div className={styles.col}>
-							{/* <Item
+							<Item
 								{...controlItem}
 								control={control}
 								label={
@@ -84,7 +123,7 @@ function Layout({
 								value={controlItem.value}
 								id_prefix={id_prefix}
 								themeType={themeType}
-							/> */}
+							/>
 						</div>
 					) : null;
 				})}

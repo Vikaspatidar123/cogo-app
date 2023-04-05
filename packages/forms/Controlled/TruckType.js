@@ -4,6 +4,8 @@
 
 import { Controller } from 'react-hook-form';
 
+import SelectTruckTypes from '@/ui/commons/components/SelectTruckType';
+
 function InputController({ itemKey, name, value, control, ...rest }) {
 	return (
 		<Controller
@@ -14,7 +16,7 @@ function InputController({ itemKey, name, value, control, ...rest }) {
 			rules={rest.rules}
 			shouldUnregister={rest.shouldUnregister}
 			render={({ field: { onChange, onBlur, value: newValue } }) => (
-				<TruckType
+				<SelectTruckTypes
 					{...rest}
 					key={itemKey}
 					onChange={onChange}

@@ -16,13 +16,12 @@ function Tracking() {
 				<div>
 					<p className={styles.trace}>Track & Trace</p>
 				</div>
+
 			</div>
-			<div className={styles.cargo}>
+			<div className={styles.cargo} role="presentation" onClick={() => push('/saas/air-tracking')}>
 				<div className={styles.symbol}>
-					<img
-						src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/air.svg"
-						alt="img"
-					/>
+					<img src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/air.svg" alt="img" />
+
 				</div>
 				<div>
 					<p className={styles.symbols}>
@@ -32,17 +31,14 @@ function Tracking() {
 							src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/another.svg"
 							alt="img"
 						/> */}
-						<IcMArrowNext
-							className={styles.arrow}
-							onClick={() => push('/saas/air-tracking')}
-						/>
+						<IcMArrowNext className={styles.arrow} />
+
 					</p>
-					<p className={styles.bill}>
-						Track and Trace Your Air Shipments by Airway Bill Number.
-					</p>
+					<p className={styles.bill}>Track and Trace Your Air Shipments by Airway Bill Number.</p>
 				</div>
+
 			</div>
-			<div className={styles.container}>
+			<div className={styles.container} role="presentation" onClick={() => push('/saas/ocean-tracking')}>
 				<div className={styles.container_img}>
 					<img
 						src="	https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/containerIcon_new.svg"
@@ -57,14 +53,13 @@ function Tracking() {
 							src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/another.svg"
 							alt="img"
 						/> */}
-						<IcMArrowNext
-							className={styles.arrow}
-							onClick={() => push('/saas/ocean-tracking')}
-						/>
+						<IcMArrowNext className={styles.arrow} />
 					</p>
-					<p className={styles.Trace}>
-						Track and Trace your Ocean shipments by Bill of Loading,Booking,or
-						Container Number
+					<p
+						className={styles.Trace}
+					>
+						Track and Trace your Ocean shipments by Bill of Loading,Booking,or Container Number
+
 					</p>
 				</div>
 			</div>

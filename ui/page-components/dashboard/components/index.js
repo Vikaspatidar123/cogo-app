@@ -1,8 +1,6 @@
-import { useSelector } from 'react-redux';
-
 import Blogs from '../hooks/Blogs';
-import GetSchedules from '../hooks/GetSchedules';
 import GetTracking from '../hooks/GetTracking';
+import GetSchedules from '../hooks/useGetSchedules';
 
 import DiscoverRates from './DiscoverRates';
 import Elgibility from './Elgibility';
@@ -15,6 +13,8 @@ import Shipments from './Shipments';
 import styles from './styles.module.css';
 import Tracking from './Tracking';
 import ActiveTracking from './Tracking/ActiveTracking';
+
+import { useSelector } from '@/packages/store';
 
 const INDIA_COUNTRY_ID = '541d1232-58ce-4d64-83d6-556a42209eb7';
 

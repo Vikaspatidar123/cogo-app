@@ -8,9 +8,8 @@ import styles from './styles.module.css';
 import { useRouter } from '@/packages/next';
 
 function KYCPage() {
-	const { push } = useRouter();
 	const [open, setOpen] = useState(false);
-	console.log(open);
+	const { push } = useRouter();
 	return (
 		<>
 			<div className={styles.image}>
@@ -57,16 +56,11 @@ function KYCPage() {
 							</div>
 						</div>
 						<div
-							role="presentation"
 							className={styles.Benifits}
+							role="presentation"
 							onClick={() => push('/saas/cogo-subscriptions/manage-subscription')}
 						>
 							<p className={styles.text}>view Benifits</p>
-							{/* <img
-								className={styles.arrow}
-								src="IcMArrowNext"
-								alt="img"
-							/> */}
 							<IcMArrowNext className={styles.arrow} />
 						</div>
 					</div>

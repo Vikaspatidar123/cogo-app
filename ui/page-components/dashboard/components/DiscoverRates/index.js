@@ -1,5 +1,5 @@
-import { Button } from '@cogoport/components';
-import { IcMSearchlight } from '@cogoport/icons-react';
+import { cl } from '@cogoport/components';
+import { IcMArrowNext, IcMSearchlight } from '@cogoport/icons-react';
 
 import styles from './styles.module.css';
 
@@ -7,6 +7,11 @@ import { useRouter } from '@/packages/next';
 
 function DiscoverRates() {
 	const { push } = useRouter();
+
+	const handelRouting = () => {
+		push('/book');
+	};
+
 	return (
 		<div className={styles.container}>
 			<div className={styles.text}>
@@ -24,8 +29,9 @@ function DiscoverRates() {
 						Don’t miss out on the competitive rates across FCL, LCL, Air and
 						Haulage in one place.
 					</div>
-					<div className={styles.btn}>
-						<Button themeType="linkUi" onClick={() => push('/book')}>Go to rates</Button>
+					<div className={styles.btn} role="presentation" onClick={() => handelRouting()}>
+						<p className={cl`${styles.viewalls} ${styles.viewall}`}>Go to Rates</p>
+						<IcMArrowNext className={styles.arrow} />
 					</div>
 				</div>
 				<div />

@@ -18,9 +18,9 @@ function Shipments() {
 		<div>
 			{usable.length > 0 && (
 				<div>
-					{usable.map((val) => (
-						<div className={styles.header}>
-							<p className={styles.ongoing}>Your Ongoing Shipments</p>
+					<div className={styles.header}>
+						<p className={styles.ongoing}>Your Ongoing Shipments</p>
+						{usable.map((val) => (
 							<div className={styles.second}>
 								<div className={styles.inner}>
 									<div className={styles.data}>
@@ -132,18 +132,16 @@ function Shipments() {
 										</div>
 
 									</div>
-
 								</div>
 							</div>
-							<div className={styles.bottom}>
-								{/* <button className={styles.viewall} /> */}
-								<p className={cl`${styles.viewalls} ${styles.viewall}`}>View all</p>
-								<IcMArrowNext className={styles.arrow} />
-							</div>
+						))}
+						<div className={styles.bottom}>
+							{/* <button className={styles.viewall} /> */}
+							<p className={cl`${styles.viewalls} ${styles.viewall}`}>View all</p>
+							<IcMArrowNext className={styles.arrow} />
 						</div>
-					))}
+					</div>
 				</div>
-
 			)}
 		</div>
 	);

@@ -2,7 +2,10 @@ import { IcMArrowNext } from '@cogoport/icons-react';
 
 import styles from './styles.module.css';
 
+import { useRouter } from '@/packages/next';
+
 function ActiveTracking({ airTracking, oceanTracking }) {
+	const { push } = useRouter();
 	return (
 		<div className={styles.header}>
 			<div className={styles.first}>
@@ -20,7 +23,7 @@ function ActiveTracking({ airTracking, oceanTracking }) {
 				<div className={styles.left}>
 					<div className={styles.left_top}>
 						<p className={styles.text}>Air Trcking</p>
-						<IcMArrowNext className={styles.arrow} />
+						<IcMArrowNext onClick={() => push('/saas/air-tracking')} className={styles.arrow} />
 					</div>
 					<div className={styles.left_bottom}>
 						<div className={styles.inner}>
@@ -53,7 +56,7 @@ function ActiveTracking({ airTracking, oceanTracking }) {
 				<div className={styles.left}>
 					<div className={styles.left_top}>
 						<p className={styles.text}>Ocean Trcking</p>
-						<IcMArrowNext className={styles.arrow} />
+						<IcMArrowNext onClick={() => push('/saas/ocean-tracking')} className={styles.arrow} />
 					</div>
 					<div className={styles.left_bottom}>
 						<div className={styles.inner}>

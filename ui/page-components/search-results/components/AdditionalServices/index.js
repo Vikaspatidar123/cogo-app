@@ -1,5 +1,5 @@
 import { Modal, Button, Select, Input, cl } from '@cogoport/components';
-import { IcCTick, IcACarriageInsurancePaidTo } from '@cogoport/icons-react';
+import { IcCTick, IcACarriageInsurancePaidTo, IcMPlus } from '@cogoport/icons-react';
 import { startCase } from '@cogoport/utils';
 import React, { useState } from 'react';
 
@@ -67,7 +67,6 @@ function AdditionalServices({
 		subsidiaryService,
 		setSubsidiaryService,
 	});
-
 	const handleServiceDelete = (service) => {
 		const serviceName = service.split(':');
 
@@ -101,12 +100,13 @@ function AdditionalServices({
 
 		return (
 			<Button
-				ghost
 				onClick={() => {
         	setShow(true);
         	setDeleteService(service);
 				}}
 				disabled={loading}
+				size="xs"
+				themeType="accent"
 				style={{
 					border     : 'none',
 					padding    : '0px',
@@ -115,6 +115,7 @@ function AdditionalServices({
 					alignItems : 'center',
 					height     : '20px',
 				}}
+				className={styles.cancel}
 				id="search_results_additional_service_delete"
 			>
 				-
@@ -142,7 +143,7 @@ function AdditionalServices({
 							<div
 								style={{
                 	display    : 'flex',
-                	maxWidth   : '90%',
+                	maxWidth   : '94%',
                 	alignItems : 'center',
 								}}
 							>
@@ -179,36 +180,33 @@ function AdditionalServices({
 			<Input
 				type="text"
 				placeholder="Search...."
-				onChange={(e) => handleSearch(e.target.value)}
+				onChange={(e) => handleSearch(e)}
 				name="service"
 				value={query}
 			/>
-
-			{(remainingServicesToAdd || []).map((service) => (
-				<div
-					role="presentation"
-					className={`${styles.pill} ${styles.inactive}`}
-					onClick={() => handleAdd(service)}
-					id={`search_results_additional_service_${service}`}
-				>
-					<div style={{ maxWidth: '90%', display: 'flex' }}>
-						<img
-							src="https://cdn.cogoport.io/cms-prod/cogo_admin/vault/original/Hangar.svg"
-							alt="hangar"
-							style={{ width: 14, height: 14 }}
-						/>
-						<div className={styles.services}>
-							{detail?.[service]?.title}
+			<div className={styles.add_service}>
+				{(remainingServicesToAdd || []).map((service) => (
+					<div
+						role="presentation"
+						className={cl`${styles.pills} ${styles.inactive}`}
+						onClick={() => handleAdd(service)}
+						id={`search_results_additional_service_${service}`}
+					>
+						<div style={{ maxWidth: '90%', display: 'flex' }}>
+							<img
+								src="https://cdn.cogoport.io/cms-prod/cogo_admin/vault/original/Hangar.svg"
+								alt="hangar"
+								style={{ width: 14, height: 14 }}
+							/>
+							<div className={styles.services}>
+								{detail?.[service]?.title}
+							</div>
 						</div>
-					</div>
 
-					<div className={`${styles.services_icon} ${styles.add}`}>
-						{' '}
-						+
-						{' '}
+						<IcMPlus className={styles.services_icon} />
 					</div>
-				</div>
-			))}
+				))}
+			</div>
 		</div>
 	</>
         	) : null}
@@ -268,7 +266,7 @@ function AdditionalServices({
 				<Modal
 					show={!!addService}
 					onClose={() => handleClose()}
-					position="top-right"
+					placement="top-right"
 					size="sm"
 				>
 					<Forms

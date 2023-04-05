@@ -63,7 +63,7 @@ function CreateNew({
 			<Modal
 				show={upsellModal}
 				onClose={() => setUpsellModal(false)}
-				className="primary lg"
+				className="primary md"
 				styles={{ dialog: { width: isMobile ? 360 : 700 } }}
 			>
 				<FormSearch

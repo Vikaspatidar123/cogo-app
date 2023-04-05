@@ -1,8 +1,3 @@
-// import getField from '@cogo/business-modules/form/components';
-// import React from 'react';
-
-// import Message from './Message';
-// import { Container, Label, LowerLabel, FormField } from './styles';
 import Message from './Message';
 import styles from './styles.module.css';
 
@@ -47,6 +42,8 @@ const getErrorMessage = ({ errorClass, error, rules, errorName, label }) => {
 
 function Item(props) {
 	const {
+		label,
+		lowerlabel,
 		type,
 		rules,
 		error,
@@ -57,9 +54,8 @@ function Item(props) {
 	} = props || {};
 	console.log(control, '123control');
 	const Element = getField(type);
-	const { label, lowerlabel } = props;
 	const errorClass = error ? 'error' : null;
-
+	console.log(label, 'label');
 	const newProps = {};
 
 	if (id_prefix) {

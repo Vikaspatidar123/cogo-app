@@ -3,6 +3,7 @@ import { Placeholder } from '@cogoport/components';
 import styles from './styles.module.css';
 
 import getValue from '@/ui/commons/utils/getValue';
+import getWidth from '@/ui/page-components/shipments/utils/getWidth';
 
 function CardItem({
 	item,
@@ -25,9 +26,10 @@ function CardItem({
 				if (singleItem?.show === false) {
 					return null;
 				}
-
+				const width = getWidth(singleItem?.span);
+				console.log(width, 'width');
 				return (
-					<div className={styles.col}>
+					<div className={styles.col} style={{ width: width }}>
 						{loading ? <Placeholder width="100%" height="20px" /> : null}
 
 						<div className={styles.label}>{singleItem.label}</div>

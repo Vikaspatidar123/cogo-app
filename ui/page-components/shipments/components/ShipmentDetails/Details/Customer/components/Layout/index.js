@@ -116,9 +116,6 @@ function Layout({
 							<Item
 								{...controlItem}
 								control={control}
-								label={
-									customValues[controlItem.name]?.label
-								}
 								error={errors[controlItem.name]}
 								value={controlItem.value}
 								id_prefix={id_prefix}
@@ -127,17 +124,6 @@ function Layout({
 						</div>
 					) : null;
 				})}
-
-				{/* {openTruck.map((item) => (
-					<Pill
-						key={item.label}
-						prefix={item.prefixIcon}
-						size="md"
-						color={item.color}
-					>
-						{item.label}
-					</Pill>
-				))} */}
 			</div>
 		</div>
 	);

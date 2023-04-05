@@ -1,12 +1,3 @@
-// import { useRequest } from '@cogo/commons/hooks';
-// import toast from '@cogoport/front/components/toast';
-// import React, { useState, useEffect, useContext } from 'react';
-
-// import { ShipmentDetailContext } from '../../../../../../commons/Context';
-
-// import { Container } from './styles';
-// import MapAndDetails from './SubLeftPanelDetails';
-// import TimelineNavigate from './TimelineNavigate';
 import { Toast } from '@cogoport/components';
 import { useState, useEffect, useContext } from 'react';
 
@@ -14,9 +5,9 @@ import { ShipmentDetailContext } from '../../../../../common/Context';
 
 import MapAndDetails from './MapAndDetails';
 import styles from './styles.module.css';
+import TimelineNavigate from './TimeLineNavigate';
 
 import { useRequest } from '@/packages/request';
-import TimelineNavigate from './TimeLineNavigate';
 
 function TrackerInfomation({
 	currentSubscription,
@@ -32,8 +23,6 @@ function TrackerInfomation({
 	);
 
 	const id = currentSubscription?.id;
-
-	// const [loading, setLoading] = useState(false);
 	const selectedContainer = 0;
 	const [isShareModalOpen, setShareModal] = useState(false);
 	const [selectedContainerId, setSelectedContainerId] = useState(null);
@@ -48,10 +37,6 @@ function TrackerInfomation({
 		method     : 'post',
 		autoCancel : false,
 	}, { manual: true });
-
-	// const ocanRequest = useRequest('post', false, 'app', {
-	// 	autoCancel: false,
-	// })('/get_container_sea_route');
 
 	const isTrackerEmpty = trackerDetails?.tracking_status !== 'Found';
 
@@ -101,7 +86,6 @@ function TrackerInfomation({
 
 	const fetchTrackerDetails = async () => {
 		try {
-			// setLoading(true);
 			const res = await trigger2({});
 			const { hasError } = res || {};
 			if (hasError) throw new Error();
@@ -114,7 +98,6 @@ function TrackerInfomation({
 			});
 			getAllOceanRoutes(trackerData);
 			setSelectedContainerId(trackerData?.container_number);
-			// setLoading(false);
 		} catch (err) {
 			if (err.message !== 'canceled') {
 				Toast.error("Couldn't fetch tracker's details", err);

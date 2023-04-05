@@ -1,16 +1,6 @@
-// import { Modal } from '@cogoport/front/components';
 import { Placeholder, Modal } from '@cogoport/components';
 import { useContext, useState } from 'react';
 
-// import { ShipmentDetailContext } from '../../../../../commons/Context';
-// import EmptyState from '../../../../../commons/EmptyState';
-// import Task from '../../../../../PerformPendingTasks/components/Task';
-// import useGetShipmentPendingTasks from '../../hooks/useGetShipmentPendingTasks';
-
-// import Card from './Card';
-// import Footer from './Footer';
-// import Loader from './Loader';
-// import { Container, EmptyContainer } from './styles';
 import { ShipmentDetailContext } from '../../../../common/Context';
 import useGetShipmentPendingTasks from '../../hooks/useGetShipmentPendingTasks';
 import EmptyState from '../EmptyState';

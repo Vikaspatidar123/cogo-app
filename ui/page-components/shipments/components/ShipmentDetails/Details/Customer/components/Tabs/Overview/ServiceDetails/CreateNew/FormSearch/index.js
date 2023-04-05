@@ -1,3 +1,4 @@
+import { Modal, Button } from '@cogoport/components';
 import { startCase } from '@cogoport/utils';
 
 import Footer from '../../../../../Footer';
@@ -53,16 +54,42 @@ function FormSearch({ extraParams, service, onClose, shipment_data, services }) 
 		<div>
 			<form onSubmit={handleSubmit(addService, onError)}>
 				<div className={styles.form_div}>
-					<div className={styles.heading}>
+					<Modal.Header title={`Add ${startCase(service?.type)} ${
+						serviceCustomNames[service?.service_type]
+							|| startCase(service?.service_type)
+					}`}
+					/>
+					{/* <div className={styles.heading}>
 						{`Add ${startCase(service?.type)} ${
 							serviceCustomNames[service?.service_type]
 							|| startCase(service?.service_type)
 						}`}
-					</div>
-
-					{rednerForm}
+					</div> */}
+					<Modal.Body>
+						<div className={styles.content}>
+							{rednerForm}
+						</div>
+					</Modal.Body>
 				</div>
-				<Footer onClose={onClose} isLoading={loading} />
+				<Modal.Footer>
+					<Button
+						themeType="secondary"
+						onClick={onClose}
+						disabled={loading}
+						id="shipment_form_header_cancel"
+					>
+						Cancel
+					</Button>
+					<Button
+						type="submit"
+						disabled={loading}
+						style={{ marginLeft: 16 }}
+						id="shipment_form_header_submit"
+					>
+						{loading ? 'Adding Service...' : 'Submit'}
+					</Button>
+				</Modal.Footer>
+
 			</form>
 		</div>
 	);

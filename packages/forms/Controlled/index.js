@@ -13,19 +13,21 @@ import TextAreaController from './TextAreaController';
 import UploadController from './UploadController';
 
 const MAPPING = {
-	select        : SelectController,
-	text          : InputController,
-	number        : InputController,
-	textarea      : TextAreaController,
-	file          : UploadController,
-	checkbox      : CheckboxController,
-	mobile_number : MobileNumberSelectController,
-	datepicker    : DatepickerController,
-	multi_select  : MultiselectController,
-	async_select  : AsyncSelectController,
-	radio         : RadioController,
-	price_select  : PriceController,
-	chips         : ChipsController,
+	select             : SelectController,
+	text               : InputController,
+	number             : InputController,
+	textarea           : TextAreaController,
+	file               : UploadController,
+	checkbox           : CheckboxController,
+	mobile_number      : MobileNumberSelectController,
+	datepicker         : DatepickerController,
+	multi_select       : MultiselectController,
+	async_select       : AsyncSelectController,
+	radio              : RadioController,
+	price_select       : PriceController,
+	chips              : ChipsController,
+	email              : InputController,
+	'creatable-select' : SelectController,
 };
 
 const getField = (type = 'text') => {

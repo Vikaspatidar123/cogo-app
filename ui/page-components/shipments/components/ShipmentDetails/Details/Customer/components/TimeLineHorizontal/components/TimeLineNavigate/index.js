@@ -151,6 +151,7 @@ function TimelineNavigate({
 				<div className={styles.step_container}>
 					{selectedMilestonesList.map((combinedMilestones, idx) => {
 						let prefixClass = '';
+						let shadedClass = '';
 						const currentMilestone = combinedMilestones.slice(-1)[0];
 						const isLast = idx === selectedMilestonesList.length - 1;
 						const isShaded = !UNSHADED_MILESTONES.includes(
@@ -187,7 +188,7 @@ function TimelineNavigate({
 							prefixClass = 'wait';
 						}
 
-						if (isShaded) prefixClass += ' shaded';
+						if (isShaded) shadedClass = ' shaded';
 
 						const unshadedTimeHeading = `${formatDate({
 							date       : currentMilestone.event_date,
@@ -202,7 +203,9 @@ function TimelineNavigate({
 						const unshadedLocation = `${currentMilestone.milestone} - ${currentMilestone.location}`;
 						return (
 							<div className={styles.steps} key={currentMilestone.id} id={currentMilestone.id}>
-								<div className={prefixClass}>
+								<div className={`${styles?.[prefixClass]} 
+								${shadedClass === 'shaded' ? styles.shaded : ''}`}
+								>
 									{!isLast ? (
 										<div className={styles.tail}>
 											<div className={styles.tail_content}>

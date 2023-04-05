@@ -3,6 +3,8 @@ import { IcMInfo } from '@cogoport/icons-react';
 
 import styles from './styles.module.css';
 
+import getWidth from '@/ui/page-components/shipments/utils/getWidth';
+
 function Field({ field = {}, showCode = false }) {
 	const renderHeaderText = () => {
 		if (showCode && field.name) {
@@ -10,10 +12,11 @@ function Field({ field = {}, showCode = false }) {
 		}
 		return field.label;
 	};
-
+	const width = getWidth(field?.span);
 	return (
 		<div
 			className={styles.col}
+			style={{ width: width }}
 			key={field?.key || field?.label}
 		>
 			<div className={styles.card_title}>

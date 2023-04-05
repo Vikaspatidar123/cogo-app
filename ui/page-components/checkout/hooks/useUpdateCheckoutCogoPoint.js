@@ -1,3 +1,5 @@
+import { useCallback } from 'react';
+
 import { useRequest } from '@/packages/request';
 import { useSelector } from '@/packages/store';
 
@@ -16,7 +18,7 @@ const useUpdateCheckoutCogoPoint = ({
 		method : 'post',
 	}, { manual: true });
 
-	const updateCheckoutCogoPoint = async (cogopoints) => {
+	const updateCheckoutCogoPoint = useCallback(async (cogopoints) => {
 		if (cogopoints > max_redeemable_cogopoints) {
 			setError(`Your balance is ${max_redeemable_cogopoints} cogoPoints`);
 			return false;
@@ -36,7 +38,7 @@ const useUpdateCheckoutCogoPoint = ({
 		}
 
 		return true;
-	};
+	}, [checkout_id, max_redeemable_cogopoints, setError, trigger]);
 
 	return {
 		loading,

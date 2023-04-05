@@ -3,7 +3,10 @@ import { IcMSearchlight } from '@cogoport/icons-react';
 
 import styles from './styles.module.css';
 
+import { useRouter } from '@/packages/next';
+
 function DiscoverRates() {
+	const { push } = useRouter();
 	return (
 		<div className={styles.container}>
 			<div className={styles.text}>
@@ -22,7 +25,7 @@ function DiscoverRates() {
 						Haulage in one place.
 					</div>
 					<div className={styles.btn}>
-						<Button themeType="linkUi">Go to rates</Button>
+						<Button themeType="linkUi" onClick={() => push('/book')}>Go to rates</Button>
 					</div>
 				</div>
 				<div />

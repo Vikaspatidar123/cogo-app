@@ -5,7 +5,10 @@ import { useState } from 'react';
 import ModalPage from './ModalPage';
 import styles from './styles.module.css';
 
+import { useRouter } from '@/packages/next';
+
 function KYCPage() {
+	const { push } = useRouter();
 	const [open, setOpen] = useState(false);
 	console.log(open);
 	return (
@@ -53,7 +56,11 @@ function KYCPage() {
 								<span className={styles.standard}>Standard</span>
 							</div>
 						</div>
-						<div className={styles.Benifits}>
+						<div
+							role="presentation"
+							className={styles.Benifits}
+							onClick={() => push('/saas/cogo-subscriptions/manage-subscription')}
+						>
 							<p className={styles.text}>view Benifits</p>
 							{/* <img
 								className={styles.arrow}

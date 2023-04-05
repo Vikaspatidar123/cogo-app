@@ -4,10 +4,13 @@ import GetSchedules from '../../hooks/GetSchedules';
 
 import styles from './styles.module.css';
 
+import { useRouter } from '@/packages/next';
+
 function Schedule() {
 	const { loading, schedules, air_data } = GetSchedules();
 	const k = air_data;
 	console.log(k, 'k');
+	const { push } = useRouter();
 	return (
 		<div className={styles.header}>
 			<p className={styles.Schedules}>Schedules</p>
@@ -29,7 +32,7 @@ function Schedule() {
 									src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/another.svg"
 									alt="img"
 								/> */}
-								<IcMArrowNext className={styles.arrow} />
+								<IcMArrowNext onClick={() => push('/saas/ocean-schedules')} className={styles.arrow} />
 							</p>
 							<p
 								className={styles.plan}
@@ -56,7 +59,7 @@ function Schedule() {
 									src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/another.svg"
 									alt="img"
 								/> */}
-								<IcMArrowNext className={styles.arrow} />
+								<IcMArrowNext className={styles.arrow} onClick={() => push('/saas/air-schedules')} />
 							</p>
 							<p
 								className={styles.plan}

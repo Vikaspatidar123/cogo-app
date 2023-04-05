@@ -4,21 +4,25 @@ import GetTracking from '../../hooks/GetTracking';
 
 import styles from './styles.module.css';
 
+import { useRouter } from '@/packages/next';
+
 function Tracking() {
 	// const { loading, schedulesData, air_track } = GetTracking();
 	// console.log(air_track, 'air_track');
+	const { push } = useRouter();
 	return (
 		<div className={styles.header}>
 			<div className={styles.track}>
 				<div>
 					<p className={styles.trace}>Track & Trace</p>
 				</div>
-
 			</div>
 			<div className={styles.cargo}>
 				<div className={styles.symbol}>
-					<img src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/air.svg" alt="img" />
-
+					<img
+						src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/air.svg"
+						alt="img"
+					/>
 				</div>
 				<div>
 					<p className={styles.symbols}>
@@ -28,12 +32,15 @@ function Tracking() {
 							src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/another.svg"
 							alt="img"
 						/> */}
-						<IcMArrowNext className={styles.arrow} />
-
+						<IcMArrowNext
+							className={styles.arrow}
+							onClick={() => push('/saas/air-tracking')}
+						/>
 					</p>
-					<p className={styles.bill}>Track and Trace Your Air Shipments by Airway Bill Number.</p>
+					<p className={styles.bill}>
+						Track and Trace Your Air Shipments by Airway Bill Number.
+					</p>
 				</div>
-
 			</div>
 			<div className={styles.container}>
 				<div className={styles.container_img}>
@@ -50,13 +57,14 @@ function Tracking() {
 							src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/another.svg"
 							alt="img"
 						/> */}
-						<IcMArrowNext className={styles.arrow} />
+						<IcMArrowNext
+							className={styles.arrow}
+							onClick={() => push('/saas/ocean-tracking')}
+						/>
 					</p>
-					<p
-						className={styles.Trace}
-					>
-						Track and Trace your Ocean shipments by Bill of Loading,Booking,or Container Number
-
+					<p className={styles.Trace}>
+						Track and Trace your Ocean shipments by Bill of Loading,Booking,or
+						Container Number
 					</p>
 				</div>
 			</div>

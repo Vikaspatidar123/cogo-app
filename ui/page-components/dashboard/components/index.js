@@ -27,12 +27,19 @@ function SassDashboard() {
 	}));
 	return (
 		<div className={styles.main_class}>
-			<div className={styles.left_container}>
-				<KYCPage />
-				<Shipments />
-				<DiscoverRates />
-				<Schedule />
-				{
+			<div className={styles.main_class2}>
+				<div className={styles.part1}>
+					<div className={styles.top}>
+						<KYCPage />
+					</div>
+					<Shipments />
+					<div>
+						<div className={styles.child1}>
+							<DiscoverRates />
+						</div>
+					</div>
+					<Schedule />
+					{
 						(Object.keys(airTracking?.data || {}).length > 0
 						|| Object.keys(oceanTracking?.data || {}).length > 0 ? (
 
@@ -44,17 +51,21 @@ function SassDashboard() {
 								<Tracking />
 							))
 					}
-			</div>
-			<div className={styles.right_container}>
-				<div className={styles.child2}>
-					{country_id === INDIA_COUNTRY_ID
+				</div>
+				<div className={styles.part2}>
+					<div className={styles.child2}>
+						{country_id === INDIA_COUNTRY_ID
 						&& query?.account_type === 'importer-exporter' && <PayLaterWidgets />}
-					<Elgibility />
-					<ExportFactoring />
-					<Promotion />
+						<Elgibility />
+						<ExportFactoring />
+
+						<Promotion />
+					</div>
 				</div>
 			</div>
+
 		</div>
+
 	);
 }
 export default SassDashboard;

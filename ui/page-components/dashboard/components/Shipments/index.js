@@ -1,11 +1,12 @@
 import { Button } from '@cogoport/components';
 import { IcMArrowNext, IcCFlcl, IcMFship } from '@cogoport/icons-react';
 import { format } from '@cogoport/utils';
-import { useRouter } from 'next/router';
 
 import ListShipments from '../../hooks/ListShipments';
 
 import styles from './styles.module.css';
+
+import { useRouter } from '@/packages/next';
 
 function Shipments() {
 	const { data } = ListShipments();
@@ -96,7 +97,12 @@ function Shipments() {
 
 								<div className={styles.details}>
 									<p className={styles.cart}>Added to cart</p>
-									<Button onClick={() => push('/shipments')}>VIEW DETAILs</Button>
+									<Button
+										onClick={() => push('/shipments/[id]', `/shipments/${val?.id}`)}
+									>
+										VIEW DETAILS
+
+									</Button>
 									<div className={styles.dot}>
 										<div className={styles.dot2} />
 										<p className={styles.tasks}>
@@ -110,7 +116,14 @@ function Shipments() {
 						</div>
 					))}
 					<div className={styles.bottom}>
-						<p className={styles.viewall}>View all</p>
+						<p
+							role="presentation"
+							className={styles.viewall}
+							onClick={() => push('/shipments', '/shipments')}
+						>
+							View all
+
+						</p>
 						<IcMArrowNext className={styles.arrow} />
 					</div>
 				</div>

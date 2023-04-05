@@ -7,10 +7,10 @@
 }
 
 .second {
+	margin: 20px 0;
 	background: rgb(255 255 255);
 	border: 1px solid rgb(224 224 224);
 	border-radius: 10px;
-	margin: 20px 0 20px;
 	box-shadow: rgb(0 0 0 / 10%) 0 2px 15px;
 }
 
@@ -186,11 +186,10 @@
 	justify-content: flex-end;
 }
 
-
 .viewall {
-	color: rgb(53 110 253);
 	padding-right: 10px;
 	line-height: 1.4;
+	color: rgb(53 110 253);
 	text-decoration: underline;
 }
 

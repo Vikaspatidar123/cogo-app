@@ -12,57 +12,117 @@ function KYCPage() {
 	const { push } = useRouter();
 
 	return (
-		<div className={styles.image}>
-			<div className={styles.inner}>
-				<img
-					src="https://cdn.cogoport.io/cms-prod/cogo_admin/vault/original/tds-doc-icon.svg"
-					alt="img"
-					height={30}
-					width={30}
-				/>
-				<div className={styles.display_text}>
-					Please complete your KYC to Book Logisticss
-				</div>
+	// <div className={styles.image}>
+	// 	<div className={styles.inner}>
+	// 		<img
+	// 			src="https://cdn.cogoport.io/cms-prod/cogo_admin/vault/original/tds-doc-icon.svg"
+	// 			alt="img"
+	// 			height={30}
+	// 			width={30}
+	// 		/>
+	// 		<div className={styles.display_text}>
+	// 			Please complete your KYC to Book Logisticss
+	// 		</div>
 
-				<Button
-					onClick={() => { setOpen(true); }}
-					size="md"
-					themeType="accent"
-				>
-					SUBMIT KYC
+	// 		<Button
+	// 			onClick={() => { setOpen(true); }}
+	// 			size="md"
+	// 			themeType="accent"
+	// 		>
+	// 			SUBMIT KYC
 
-				</Button>
-				{open && (
-					<ModalPage
-						open={open}
-						setOpen={setOpen}
+	// 		</Button>
+	// 		{open && (
+	// 			<ModalPage
+	// 				open={open}
+	// 				setOpen={setOpen}
+	// 			/>
+	// 		)}
+	// 	</div>
+
+		// 	<div className={styles.line}>
+		// 		<div>
+		// 			Your Account
+		// 			<div className={styles.flex}>
+		// 				<img
+		// 					src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/crown_new.svg"
+		// 					alt="img"
+		// 					height={20}
+		// 					width={20}
+		// 				/>
+		// 				<span className={styles.standard}>Standard</span>
+		// 			</div>
+		// 		</div>
+		// 		<div
+		// 			style={{ display: 'flex' }}
+		// 			role="presentation"
+		// 			onClick={() => push('/saas/cogo-subscriptions/manage-subscription')}
+		// 		>
+		// 			<p className={styles.text}>view Benefits</p>
+		// 			<IcMArrowNext className={styles.arrow} />
+		// 		</div>
+		// 	</div>
+		// </div>
+		<>
+			<div className={styles.image}>
+
+				<div className={styles.inner}>
+					<img
+						className={styles.image1}
+						src="	https://cdn.cogoport.io/cms-prod/cogo_admin/vault/original/tds-doc-icon.svg"
+						alt="img"
 					/>
-				)}
-			</div>
+					<div className={styles.image2}>
+						Please complete your KYC to Book Logisticss
+					</div>
+					<div className={styles.image3}>
+						<Button
+							onClick={() => { setOpen(true); }}
+							// onClick={() => (
+							// 	<ModalPage />
+							// )}
+							size="md"
+							themeType="accent"
+						>
+							SUBMIT KYC
 
-			<div className={styles.line}>
-				<div>
-					Your Account
-					<div className={styles.flex}>
-						<img
-							src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/crown_new.svg"
-							alt="img"
-							height={20}
-							width={20}
-						/>
-						<span className={styles.standard}>Standard</span>
+						</Button>
+						{open && (
+							<ModalPage
+								open={open}
+								setOpen={setOpen}
+							/>
+						)}
 					</div>
 				</div>
-				<div
-					style={{ display: 'flex' }}
-					role="presentation"
-					onClick={() => push('/saas/cogo-subscriptions/manage-subscription')}
-				>
-					<p className={styles.text}>view Benefits</p>
-					<IcMArrowNext className={styles.arrow} />
+				<div className={styles.line}>
+					<div className={styles.sub_line}>
+						<div className={styles.lines}>
+							<p className={styles.Account}>Your Account</p>
+							<div>
+								<img
+									src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/crown_new.svg"
+									alt="img"
+								/>
+								<span className={styles.standard}>Standard</span>
+							</div>
+						</div>
+						<div
+							className={styles.Benifits}
+							role="presentation"
+							onClick={() => push('/saas/cogo-subscriptions/manage-subscription')}
+						>
+							<p className={styles.text}>view Benifits</p>
+							<IcMArrowNext className={styles.arrow} />
+						</div>
+					</div>
+
 				</div>
+
 			</div>
-		</div>
+			<div />
+		</>
+
 	);
 }
 export default KYCPage;

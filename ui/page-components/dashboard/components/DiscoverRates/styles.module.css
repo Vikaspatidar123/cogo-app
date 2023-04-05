@@ -28,6 +28,10 @@
 	background: #3b536b;
 	border-radius: 50%;
 
+	@media screen and (max-width: 767px) {
+		height: 10px;
+	}
+
 	svg {
 		position: absolute;
 		top: 50%;

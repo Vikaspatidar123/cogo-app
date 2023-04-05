@@ -1,140 +1,77 @@
 .image {
-  display: flex;
-  flex-flow: row wrap;
-  align-items: normal;
-  justify-content: flex-start;
-  margin-right: -8px;
-  margin-left: -8px;
+	display: flex;
+	justify-content: flex-start;
+	padding: 20px;
+	background: rgb(255 255 255);
+	border-radius: 10px;
+	box-shadow: rgb(0 0 0 / 15%) 0 2px 4px;
 
-  @media screen and (max-width: 767px) {
-    display: flex;
-    flex-direction: column;
-  }
-}
-
-.image1 {
-  width: 30px;
-  height: 33px;
+	@media screen and (max-width: 767px) {
+		display: flex;
+		flex-direction: column;
+	}
 }
 
 .inner {
-  position: relative;
-  right: auto;
-  left: auto;
-  box-sizing: border-box;
-  display: flex;
-  flex: 0 0 58.3333%;
-  align-items: center;
-
-  /* width: 58.3333%;
-	max-width: 58.3333%; */
-  min-height: 1px;
-  padding-right: 8px;
-  padding-left: 8px;
-  margin-left: 0%;
+	display: flex;
+	width: 60%;
 }
 
-.image2 {
-  width: 60%;
-  margin: 0 15px;
-  font-size: 14px;
-  line-height: 1.4;
-  text-align: left;
-}
-
-.image3 {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0;
-  -webkit-box-pack: center;
-  -webkit-box-align: center;
+.display_text {
+	width: 60%;
+	margin: 5px 15px;
+	line-height: 1.4;
 }
 
 .line {
-  position: relative;
-  right: auto;
-  left: auto;
-  box-sizing: border-box;
-  flex: 0 0 41.6667%;
+	display: flex;
+	justify-content: space-around;
+	width: 40%;
+	border-left: 1px solid rgb(224 224 224);
 
-  /* width: 41.6667%;
-	max-width: 41.6667%; */
-  min-height: 1px;
-  padding-right: 8px;
-  padding-left: 8px;
-  margin-left: 0%;
-  border-left: 1px solid rgb(224 224 224);
-
-  @media screen and (max-width: 767px) {
-    margin-top: 15px;
-    border: none;
-  }
+	@media screen and (max-width: 767px) {
+		margin-top: 15px;
+		border: none;
+	}
 }
 
-.sub_line {
-  display: flex;
-  justify-content: space-around;
-  height: 100%;
-  margin: 0;
-}
-
-.lines {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin: 0;
-}
-
-.Account {
-  margin: 0;
-  font-size: 12px;
-  line-height: 1.4;
-  text-align: left;
-}
-
-.Benifits {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  margin: 0;
+.flex {
+	display: flex;
 }
 
 .text {
-  margin: 0;
-  font-size: 14px;
-  line-height: 1.4;
-  color: rgb(53 110 253);
-  text-align: left;
-  text-decoration: underline;
-  cursor: pointer;
+	margin: 10px;
+	color: rgb(53 110 253);
+	text-decoration: underline;
+	cursor: pointer;
 }
 
 .arrow {
-  margin-left: 5px;
-  color: rgb(53 110 253);
-  cursor: pointer;
+	margin: 13px 0;
+	color: rgb(53 110 253);
+	cursor: pointer;
 }
 
 .para {
-  margin: 0 0 8px;
-  font-size: 10px;
-  line-height: 1.4;
-  color: rgb(153 153 153);
-  text-align: center;
+	margin: 0 0 8px;
+	font-size: 10px;
+	line-height: 1.4;
+	color: rgb(153 153 153);
+	text-align: center;
 }
 
 .standard {
-  margin-left: 5px;
-  font-weight: bolder;
+	margin-left: 5px;
+	font-weight: 600;
 }
+
 .head {
-  color: rgb(130, 130, 130);
-  font-size: 12px;
-  line-height: 1.4;
-  margin: 0px;
+	margin: 0;
+	font-size: 12px;
+	line-height: 1.4;
+	color: rgb(130 130 130);
 }
+
 .errors {
-  color: rgb(203, 100, 100);
+	color: rgb(203 100 100);
 }

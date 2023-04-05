@@ -1,26 +1,6 @@
-.img {
-	width: fit-content;
-}
-
-.total {
-	/* border-radius: ${({ borderRadius }) => borderRadius}; */
-
-	/* background-color: #fff;
-	padding: ${({ padding }) => padding};
-	cursor: ${({ cursor }) => cursor}; */
-	width: 100%;
-	max-width: 100%;
-	border-top-left-radius: 10px;
-	border-top-right-radius: 10px;
-
-	/* height: ${({ height }) => height && '8.12rem'};
-	object-fit: ${({ height }) => height && 'cover'};} */
-}
-
 .image {
 	width: 100%;
-	max-width: 100%;
-	padding: 1rem;
+	margin-top: 20px;
 	cursor: pointer;
 	background-color: white;
 	border-radius: 10px;

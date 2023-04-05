@@ -1,23 +1,19 @@
 import { IcMArrowNext } from '@cogoport/icons-react';
 
-import useGetSchedules from '../../hooks/useGetSchedules';
-
 import styles from './styles.module.css';
 
 import { useRouter } from '@/packages/next';
 
 function Schedule() {
-	const { loading, schedules, air_data } = useGetSchedules();
 	const { push } = useRouter();
-	const k = air_data;
 
 	return (
 		<div className={styles.header}>
-			<p className={styles.Schedules}>Schedules</p>
+			<p>Schedules</p>
 			<div className={styles.total}>
-				<div className={styles.left}>
-					<div className={styles.ocean}>
-						<div className={styles.ocean_img}>
+				<div>
+					<div className={styles.container}>
+						<div className={styles.icon_img}>
 							<img
 								className={styles.img}
 								src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/nav-ocean-shedules.svg"
@@ -27,11 +23,6 @@ function Schedule() {
 						<div>
 							<p className={styles.new_img}>
 								Ocean Schedule
-								{/* <img
-									className={styles.arrow}
-									src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/another.svg"
-									alt="img"
-								/> */}
 								<IcMArrowNext
 									role="presentation"
 									onClick={() => push('/saas/ocean-schedules')}
@@ -42,15 +33,14 @@ function Schedule() {
 								className={styles.plan}
 							>
 								Plan an Upcoming shipment using comprehensive shipping schedules
-
 							</p>
 
 						</div>
 					</div>
-					<div className={styles.air}>
-						<div className={styles.air2}>
+					<div className={styles.container}>
+						<div className={styles.icon_img} style={{ background: 'rgb(251 230 230)' }}>
 							<img
-								className={styles.air_img}
+								className={styles.img}
 								src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/nav-air-schedules.svg"
 								alt="img"
 							/>
@@ -58,11 +48,6 @@ function Schedule() {
 						<div>
 							<p className={styles.new_img}>
 								Air Schedule
-								{/* <img
-									className={styles.arrow}
-									src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/another.svg"
-									alt="img"
-								/> */}
 								<IcMArrowNext
 									role="presentation"
 									onClick={() => push('/saas/air-schedules')}
@@ -73,18 +58,17 @@ function Schedule() {
 								className={styles.plan}
 							>
 								Plan an Upcoming shipment using comprehensive airschedules
-
 							</p>
 						</div>
 					</div>
 				</div>
-				<div className={styles.right}>
-					<img
-						className={styles.circle}
-						src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/two-clock_new.svg"
-						alt="img"
-					/>
-				</div>
+
+				<img
+					className={styles.circle}
+					src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/two-clock_new.svg"
+					alt="img"
+				/>
+
 			</div>
 		</div>
 	);

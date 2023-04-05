@@ -10,7 +10,6 @@ function PayLaterWidgets() {
 			</div>
 			<div className={styles.Header}>
 				Ship Now,
-				{' '}
 				<span className="blue">Pay Later </span>
 				Easily apply online in just a few minutes
 			</div>

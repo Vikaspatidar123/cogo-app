@@ -1,36 +1,28 @@
 .container {
 	padding: 20px;
-
-	/* padding-right: 111px; */
-	margin-top: -9px;
-
-	/* padding: 16px;
-	box-shadow: 0 2px 4px rgb(0 0 0 / 15%); */
-	background: #fff;
+	margin-top: 20px;
 	border-radius: 10px;
-	box-shadow: 0 2px 4px rgb(0 0 0 / 15%);
+	box-shadow: rgb(0 0 0 / 15%) 0 2px 4px;
 }
 
 .text {
 	font-size: 18px;
 }
 
-.innerCard {
-	display: flex;
-	align-items: flex-start;
+.display_container {
 	padding: 20px;
 	margin-top: 16px;
-	margin-bottom: 0.6rem;
 	background-color: rgb(244 247 254 / 60%);
 	border-radius: 10px;
 	box-shadow: 0 2px 4px rgb(0 0 0 / 15%);
 }
 
+.innerCard {
+	display: flex;
+}
+
 .icon {
 	position: relative;
-	display: flex;
-	align-items: center;
-	justify-content: center;
 	padding: 1.6rem;
 	margin-right: 15px;
 	background: #3b536b;
@@ -45,23 +37,14 @@
 	}
 }
 
-.text1 {
-	margin-bottom: 2px;
-	font-size: 16px;
-}
-
 .desc {
-	margin: 0;
-	font-size: 14px;
-	line-height: 1.4;
 	color: #828282;
-	text-align: left;
 }
 
 .btn {
-	margin-top: 20px;
 	display: flex;
 	justify-content: flex-end;
+	margin-top: 20px;
 
 	.arrow {
 		margin-top: 3px;
@@ -70,28 +53,7 @@
 }
 
 .viewall {
-	display: flex;
-	align-items: center;
-	font-size: 10px;
-	font-weight: 500;
-	color: rgb(53 110 253);
-	text-transform: capitalize;
-	cursor: pointer;
-	background: transparent;
-	border: none;
-	border-radius: 4px;
-	outline: none;
-	box-shadow: none;
-	transition: box-shadow 0.1s linear 0s, background-color 0.1s linear 0s, border-color 0.1s linear 0s;
-	will-change: box-shadow, background-color, border-color;
-	-webkit-box-align: center;
-}
-
-.viewalls {
 	padding-right: 10px;
-	margin: 0;
-	font-size: 14px;
-	line-height: 1.4;
-	text-align: left;
+	color: rgb(53 110 253);
 	text-decoration: underline;
 }

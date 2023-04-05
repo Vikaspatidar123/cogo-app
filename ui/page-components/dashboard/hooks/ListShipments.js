@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import { useRequest } from '@/packages/request';
 
 function ListShipments() {
-	const [{ loading, data: asd }, trigger] = useRequest({
+	const [{ loading, data }, trigger] = useRequest({
 		url    : '/list_shipments',
 		method : 'get',
 	}, { manual: true });
@@ -30,6 +30,6 @@ function ListShipments() {
 	useEffect(() => {
 		shipmentsData();
 	}, []);
-	return { loading, shipmentsData, asd };
+	return { loading, shipmentsData, data };
 }
 export default ListShipments;

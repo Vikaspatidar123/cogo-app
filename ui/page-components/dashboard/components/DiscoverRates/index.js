@@ -1,4 +1,3 @@
-import { cl } from '@cogoport/components';
 import { IcMArrowNext, IcMSearchlight } from '@cogoport/icons-react';
 
 import styles from './styles.module.css';
@@ -17,24 +16,26 @@ function DiscoverRates() {
 			<div className={styles.text}>
 				Start discovering your rates/track your deals
 			</div>
-			<div className={styles.innerCard}>
-				<div className={styles.icon}>
-					<IcMSearchlight fill="white" />
+
+			<div className={styles.display_container}>
+				<div className={styles.innerCard}>
+					<div className={styles.icon}>
+						<IcMSearchlight fill="white" />
+					</div>
+					<div>
+						<div className={styles.text}>
+							Discover Rates
+						</div>
+						<div className={styles.desc}>
+							Don’t miss out on the competitive rates across FCL, LCL, Air and
+							Haulage in one place.
+						</div>
+					</div>
 				</div>
-				<div style={{ width: '92%' }}>
-					<div className={styles.text1}>
-						Discover Rates
-					</div>
-					<div className={styles.desc}>
-						Don’t miss out on the competitive rates across FCL, LCL, Air and
-						Haulage in one place.
-					</div>
-					<div className={styles.btn} role="presentation" onClick={() => handelRouting()}>
-						<p className={cl`${styles.viewalls} ${styles.viewall}`}>Go to Rates</p>
-						<IcMArrowNext className={styles.arrow} />
-					</div>
+				<div className={styles.btn} role="presentation" onClick={() => handelRouting()}>
+					<p className={styles.viewall}>Go to Rates</p>
+					<IcMArrowNext className={styles.arrow} />
 				</div>
-				<div />
 			</div>
 		</div>
 	);

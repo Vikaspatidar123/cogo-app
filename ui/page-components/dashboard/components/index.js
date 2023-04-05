@@ -1,6 +1,4 @@
-import Blogs from '../hooks/Blogs';
 import GetTracking from '../hooks/GetTracking';
-import GetSchedules from '../hooks/useGetSchedules';
 
 import DiscoverRates from './DiscoverRates';
 import Elgibility from './Elgibility';
@@ -19,11 +17,9 @@ import { useSelector } from '@/packages/store';
 const INDIA_COUNTRY_ID = '541d1232-58ce-4d64-83d6-556a42209eb7';
 
 function SassDashboard() {
-	const { loading, schedules, air_data } = GetSchedules();
 	const { air_track } = GetTracking();
 	const airTracking = air_track?.dashboard_products?.air_tracking || {};
 	const oceanTracking = air_track?.dashboard_products?.container_tracking	|| {};
-	const { airData, oceanData } = air_data?.dashboard_products || {};
 
 	const { query, country_id } = useSelector(({ general, profile }) => ({
 		query      : general?.query,
@@ -31,33 +27,12 @@ function SassDashboard() {
 	}));
 	return (
 		<div className={styles.main_class}>
-			<div className={styles.main_class2}>
-				<div className={styles.part1}>
-					<div className={styles.top}>
-						<KYCPage />
-					</div>
-					<Shipments />
-					<div className={styles.container}>
-						{/* <div>
-					<KYCPage />
-				</div> */}
-						<div className={styles.child1}>
-							<DiscoverRates />
-							{/* <Schedule /> */}
-						</div>
-					</div>
-					<Schedule />
-					{/* {
-						(Object.keys(airData.data).length > 0
-						|| Object.keys(oceanData.data).length > 0 ? (
-							// <Track />
-							<p>...</p>
-							) : (
-								<Schedule />
-							))
-					} */}
-					{/* <Tracking /> */}
-					{
+			<div className={styles.left_container}>
+				<KYCPage />
+				<Shipments />
+				<DiscoverRates />
+				<Schedule />
+				{
 						(Object.keys(airTracking?.data || {}).length > 0
 						|| Object.keys(oceanTracking?.data || {}).length > 0 ? (
 
@@ -69,20 +44,16 @@ function SassDashboard() {
 								<Tracking />
 							))
 					}
-
-				</div>
-				<div className={styles.part2}>
-					<div className={styles.child2}>
-						{country_id === INDIA_COUNTRY_ID
+			</div>
+			<div className={styles.right_container}>
+				<div className={styles.child2}>
+					{country_id === INDIA_COUNTRY_ID
 						&& query?.account_type === 'importer-exporter' && <PayLaterWidgets />}
-						<Elgibility />
-						<ExportFactoring />
-
-						<Promotion />
-					</div>
+					<Elgibility />
+					<ExportFactoring />
+					<Promotion />
 				</div>
 			</div>
-
 		</div>
 	);
 }

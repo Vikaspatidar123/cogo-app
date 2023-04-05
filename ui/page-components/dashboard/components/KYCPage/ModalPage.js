@@ -1,13 +1,10 @@
-import { Modal, Input, Upload, Button, Toast } from '@cogoport/components';
+import { Modal, Button, Toast } from '@cogoport/components';
 
-import useGetMediaFileUrl from '../../hooks/useMediaFileUrl';
 import { getControls } from '../configuration';
 
-// import { Input } from 'postcss';
 import styles from './styles.module.css';
 
 import { useForm } from '@/packages/forms';
-// import SelectMobileNumber from '@/packages/forms/Business/SelectMobileNumber';
 import getField from '@/packages/forms/Controlled';
 import { useRequest } from '@/packages/request';
 import { useSelector } from '@/packages/store';
@@ -21,8 +18,8 @@ function ModalPage({ open, setOpen }) {
 		},
 		{ manual: true },
 	);
-	// const { loading, promotionData } = useGetMediaFileUrl();
-	const { scope, agent_id, organization, user_profile } = useSelector(
+
+	const { agent_id, organization, user_profile } = useSelector(
 		({ general, profile }) => ({
 			scope        : general?.scope,
 			agent_id     : profile?.id,
@@ -47,24 +44,13 @@ function ModalPage({ open, setOpen }) {
 	const controls = getControls(initialValues);
 
 	const {
-		setValue,
 		control,
 		handleSubmit,
 		formState: { errors },
 	} = useForm();
 
 	const onSubmit = async (values = {}) => {
-		// setMobile({
-		// 	mobile_number       : values?.mobile?.mobile_number,
-		// 	mobile_country_code : values?.mobile?.mobile_country_code,
-		// });
-		// setFormValue(values);
 		try {
-			// trackEvent(APP_EVENT.kyc_requested_verfication, {
-			// 	company_name : organization.business_name,
-			// 	company_type : organization.account_type,
-			// });
-
 			await otpVerifyAPI({
 				data: {
 					id                  : agent_id,
@@ -72,9 +58,7 @@ function ModalPage({ open, setOpen }) {
 					mobile_country_code : values?.mobile?.country_code,
 				},
 			});
-
-			// setShow(true);
-			Toast.success('OTP sent');
+			Toast?.success('OTP sent');
 		} catch (err) {
 			Toast.errors(err?.data);
 		}
@@ -98,15 +82,15 @@ function ModalPage({ open, setOpen }) {
 			<Modal.Body>
 				<div>
 					{controls.map((itm) => {
-          	const Element = getField(itm?.type);
-          	return (
-	<FormItem label={itm?.label} className={itm?.name} key={itm.id}>
-		<Element {...itm} control={control} />
-		{errors[itm.name] && (
-			<p className={styles.errors}>{errors[itm.name].message}</p>
-		)}
-	</FormItem>
-          	);
+						const Element = getField(itm?.type);
+						return (
+							<FormItem label={itm?.label} className={itm?.name} key={itm.id}>
+								<Element {...itm} control={control} />
+								{errors[itm.name] && (
+									<p className={styles.errors}>{errors[itm.name].message}</p>
+								)}
+							</FormItem>
+						);
 					})}
 				</div>
 			</Modal.Body>
@@ -115,7 +99,7 @@ function ModalPage({ open, setOpen }) {
 					We attach great importance to protecting your private data, which is
 					only used to verify your business and complete transactions
 				</p>
-				<Button onClick={handleSubmit(onSubmit)}>
+				<Button onClick={handleSubmit(onSubmit)} loading={loading}>
 					Avail Your Free Searches
 				</Button>
 			</Modal.Footer>

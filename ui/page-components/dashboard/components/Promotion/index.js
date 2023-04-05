@@ -1,4 +1,4 @@
-import { Carousel, DateRangepicker, Placeholder } from '@cogoport/components';
+import { Carousel, Placeholder } from '@cogoport/components';
 
 import useGetPromotion from '../../hooks/useGetPromotion';
 
@@ -27,14 +27,11 @@ function Promotion() {
 		});
 	});
 
-	console.log(mainData, 'myObject');
-
 	return (
 		<div>
 			{loading && <Placeholder />}
 			{!loading && (
 				<Carousel
-					classname={styles.total}
 					showDots={false}
 					showArrow={false}
 					size="md"

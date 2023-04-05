@@ -1,6 +1,6 @@
 .Container {
 	position: relative;
-	padding: 20px;
+	padding: 36px 22px 22px 24px;
 	background: #1e1e1e;
 	border-radius: 10px;
 	box-shadow: 0 2px 20px rgb(0 0 0 / 15%);
@@ -19,15 +19,17 @@
 	color: #fff;
 	letter-spacing: 0.02em;
 
-	.yellow {
+	& .yellow {
 		font-weight: bold;
 		color: #f5a80e;
 	}
 
 	div {
 		margin: 12px 0 0;
+		font-family: Roboto;
 		font-size: 14px;
 		font-style: normal;
+		font-weight: 400;
 		line-height: 21px;
 		color: #fff;
 	}
@@ -55,5 +57,6 @@
 
 .ButtonContainer {
 	display: flex;
+	align-items: center;
 	justify-content: center;
 }

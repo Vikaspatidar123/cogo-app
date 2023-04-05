@@ -1,5 +1,3 @@
-// import Layout from '@cogo/bookings/commons/Layout';
-// import { Button } from '@cogoport/front/components/admin';
 import { Button } from '@cogoport/components';
 import { forwardRef, useImperativeHandle } from 'react';
 
@@ -8,10 +6,6 @@ import Layout from '../../../../../Layout';
 import styles from './styles.module.css';
 
 import usePocFilters from '@/ui/page-components/shipments/components/ShipmentDetails/hooks/usePocFilters';
-
-// import usePocFilters from '../../../hooks/usePocFilters';
-
-// import { Container } from './styles';
 
 function FilterContent(
 	{
@@ -27,7 +21,7 @@ function FilterContent(
 	ref,
 ) {
 	const {
-		fields,
+		control,
 		filter_control,
 		onError,
 		errors,
@@ -55,7 +49,7 @@ function FilterContent(
 		<div className={styles.container}>
 			<Layout
 				className="primary sm"
-				fields={fields}
+				control={control}
 				controls={filter_control}
 				errors={errors}
 			/>

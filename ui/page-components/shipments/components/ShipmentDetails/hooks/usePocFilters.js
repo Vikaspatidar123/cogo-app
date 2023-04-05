@@ -101,7 +101,7 @@ const usePocFilters = ({
 
 	const filter_control = filter_controls(filter_options);
 
-	const { fields, handleSubmit, watch, setValue } = useForm(filter_control);
+	const { control, handleSubmit, watch, setValue } = useForm(filter_control);
 
 	const filterProps = watch();
 
@@ -117,7 +117,7 @@ const usePocFilters = ({
 	};
 
 	return {
-		fields,
+		control,
 		filter_control,
 		onError,
 		errors,

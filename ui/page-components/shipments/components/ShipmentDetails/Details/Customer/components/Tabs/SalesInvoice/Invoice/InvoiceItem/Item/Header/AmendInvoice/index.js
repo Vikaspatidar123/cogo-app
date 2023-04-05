@@ -1,5 +1,6 @@
-
 import { Button, Modal } from '@cogoport/components';
+
+import Layout from '../../../../../../../Layout';
 
 import styles from './styles.module.css';
 
@@ -12,7 +13,7 @@ function AmendInvoice({
 }) {
 	const {
 		onReview,
-		fields,
+		control,
 		controls,
 		errors,
 		handleSubmit,
@@ -44,8 +45,7 @@ function AmendInvoice({
 				{isApprove ? (
 					<p>Are you sure you want to approve?</p>
 				) : (
-					<div>layout</div>
-				// <Layout fields={fields} controls={controls} errors={errors} />
+					<Layout control={control} controls={controls} errors={errors} />
 				)}
 
 				<div className={styles.button_container}>

@@ -1,16 +1,3 @@
-// import { IcCFtick } from '@cogoport/icons-react';
-// import React from 'react';
-
-// import {
-// 	Container,
-// 	Header,
-// 	Text,
-// 	AssuredDetails,
-// 	Heading,
-// 	IconWrapper,
-// 	ItemLabel,
-// 	FlexRow,
-// } from './styles';
 import { IcCFtick } from '@cogoport/icons-react';
 
 import styles from './styles.module.css';

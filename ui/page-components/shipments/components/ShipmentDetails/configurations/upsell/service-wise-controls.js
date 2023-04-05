@@ -111,8 +111,9 @@ const controls = {
 		{
 			name       : 'truck_type',
 			label      : '',
-			type       : 'truck-type-select',
-			selectType : 'pills',
+			type       : 'chips',
+			optionKey  : 'truck_types',
+			selectType : 'chips',
 			className  : 'primary sm',
 			span       : 12,
 			lg         : 12,

@@ -55,7 +55,7 @@ const useUpdateShipmentStakeholders = ({
 	}
 
 	const {
-		// fields,
+		control,
 		watch,
 		handleSubmit,
 		setValue,
@@ -63,17 +63,11 @@ const useUpdateShipmentStakeholders = ({
 		formState: { errors: errorVal },
 	} = useForm(finalControls);
 
-	// useResetErrors({ errors, setErrors, currentStateErrors: errorVal });
-
 	const formValues = watch();
 
 	const stakeholder_type = formValues.stakeholder_type || oldStakeholderType;
 
 	const config = possibleStakeholders[stakeholder_type];
-
-	// fields.stakeholder_id.params = {
-	// 	filters: { role_ids: agentIdMapping[stakeholder_type] || undefined },
-	// };
 
 	const showElements = {
 		stakeholder_id : !!stakeholder_type,
@@ -122,7 +116,7 @@ const useUpdateShipmentStakeholders = ({
 
 	return {
 		controls: finalControls,
-		fields,
+		control,
 		handleSubmit,
 		onError,
 		updateStakeHolder,

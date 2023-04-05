@@ -1,10 +1,3 @@
-// import getValue from '@cogo/smart-components/utils/getValue';
-// import { Skeleton } from '@cogoport/front/components/admin';
-// import Grid from '@cogoport/front/components/Grid';
-// import React from 'react';
-
-// import { TitleBlack, Row, Label } from './styles';
-
 import { Placeholder } from '@cogoport/components';
 
 import styles from './styles.module.css';

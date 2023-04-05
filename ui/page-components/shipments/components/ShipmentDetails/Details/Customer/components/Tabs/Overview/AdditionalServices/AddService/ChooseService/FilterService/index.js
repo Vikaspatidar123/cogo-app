@@ -1,12 +1,7 @@
-// import { Input, Select } from '@cogoport/front/components';
-// import { IcMSearchlight } from '@cogoport/icons-react';
-// import React from 'react';
-
 import { Input, Select } from '@cogoport/components';
 import { IcMSearchlight } from '@cogoport/icons-react';
 
 import styles from './styles.module.css';
-// import { Container } from './styles';
 
 function FilterService({ setFilters, filters, uniqueServices }) {
 	return (

@@ -1,7 +1,3 @@
-// import getGeoConstants from '@cogo/globalization/constants/geo';
-// import { useSelector } from '@cogo/store';
-// import { Button } from '@cogoport/front/components/admin';
-// import { IcMArrowRotateUp, IcMArrowRotateDown } from '@cogoport/icons-react';
 import { Button } from '@cogoport/components';
 import { IcMArrowRotateDown, IcMArrowRotateUp } from '@cogoport/icons-react';
 import { useState } from 'react';
@@ -42,7 +38,6 @@ function ExternalPocs({
 	const { partner } = useSelector(({ profile }) => ({
 		partner: (profile || {}).partner || {},
 	}));
-	console.log(partner, 'partner');
 
 	const canEditStakeholders = partner?.user_role_ids?.some((ele) => [
 		geo.uuid.super_admin_id,

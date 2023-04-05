@@ -10,24 +10,22 @@ import PriceController from './PriceController';
 import RadioController from './RadioController';
 import SelectController from './SelectController';
 import TextAreaController from './TextAreaController';
-import TruckType from './TruckType';
 import UploadController from './UploadController';
 
 const MAPPING = {
-	select              : SelectController,
-	text                : InputController,
-	number              : InputController,
-	textarea            : TextAreaController,
-	file                : UploadController,
-	checkbox            : CheckboxController,
-	mobile_number       : MobileNumberSelectController,
-	datepicker          : DatepickerController,
-	multi_select        : MultiselectController,
-	async_select        : AsyncSelectController,
-	radio               : RadioController,
-	price_select        : PriceController,
-	chips               : ChipsController,
-	'truck-type-select' : TruckType,
+	select        : SelectController,
+	text          : InputController,
+	number        : InputController,
+	textarea      : TextAreaController,
+	file          : UploadController,
+	checkbox      : CheckboxController,
+	mobile_number : MobileNumberSelectController,
+	datepicker    : DatepickerController,
+	multi_select  : MultiselectController,
+	async_select  : AsyncSelectController,
+	radio         : RadioController,
+	price_select  : PriceController,
+	chips         : ChipsController,
 };
 
 const getField = (type = 'text') => {

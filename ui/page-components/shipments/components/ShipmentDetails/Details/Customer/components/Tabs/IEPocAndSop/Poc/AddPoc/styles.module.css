@@ -1,0 +1,33 @@
+.container{
+    height: 550px;
+}
+.heading{
+    font-weight: 500;
+	font-size: 18px;
+	line-height: 15px;
+	margin: 0;
+	color: #393f70;
+	text-transform: uppercase;
+}
+.company_details{
+	display: flex;
+	margin: 16px 0px;
+	width: 100%;
+}
+.company_name{
+	font-weight: 400;
+	font-size: 12px;
+	line-height: 14px;
+	margin: 0;
+	color: #4f4f4f;
+}
+.line{
+	border: 1px solid #ded7fc;
+	margin: 8px 0px;
+}
+.button_container{
+	margin: 16px 0px;
+	display: flex;
+	justify-content: flex-end;
+	gap: 16px;
+}

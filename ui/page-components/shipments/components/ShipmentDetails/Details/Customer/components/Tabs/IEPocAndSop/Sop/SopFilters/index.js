@@ -1,6 +1,3 @@
-// import { Select } from '@cogoport/front/components';
-// import { IcMFilter } from '@cogoport/icons-react';
-
 import { MultiSelect } from '@cogoport/components';
 import { IcMFilter } from '@cogoport/icons-react';
 import { useContext, useState } from 'react';

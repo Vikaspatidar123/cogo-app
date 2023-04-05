@@ -1,7 +1,3 @@
-// import React from 'react';
-
-// import InvoiceItem from './InvoiceItem';
-// import { Container } from './styles';
 import InvoiceItem from './InvoiceItem';
 import styles from './styles.module.css';
 

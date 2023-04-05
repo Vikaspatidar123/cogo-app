@@ -1,8 +1,3 @@
-// import { useSelector } from '@cogo/store';
-// import { IcMPlus } from '@cogoport/icons-react';
-// import FormSearch from '../../../../Route/Form';
-
-// import { Container, Text, StyledModal } from './styles';
 import { Modal } from '@cogoport/components';
 import { IcMPlus } from '@cogoport/icons-react';
 import { useState } from 'react';

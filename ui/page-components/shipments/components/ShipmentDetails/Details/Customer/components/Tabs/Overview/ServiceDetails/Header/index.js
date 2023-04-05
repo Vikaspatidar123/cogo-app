@@ -1,5 +1,3 @@
-// import { Popover, Modal } from '@cogoport/front/components/admin';
-// import { IcMOverflowDot } from '@cogoport/icons-react';
 import { Popover, Modal } from '@cogoport/components';
 import { IcMOverflowDot } from '@cogoport/icons-react';
 import { useState } from 'react';
@@ -10,18 +8,6 @@ import Status from '../Status';
 import styles from './styles.module.css';
 
 import getConfigs from '@/ui/page-components/shipments/components/ShipmentDetails/configurations/Supplier/get-configs';
-// import getConfigs from '../../../../../../../configurations/Supplier/get-configs';
-// import Details from '../Details';
-// import Status from '../Status';
-
-// import {
-// 	Container,
-// 	HeaderWrap,
-// 	Heading,
-// 	DialogBox,
-// 	EditCancel,
-// 	Text,
-// } from './styles';
 
 function Header({
 	serviceData = {},

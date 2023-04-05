@@ -102,7 +102,6 @@ function AddCompany({
 			<div className={styles.company_details}>
 				<Layout
 					theme="admin"
-					// fields={fields}
 					controls={controls}
 					control={control}
 					errors={errors}

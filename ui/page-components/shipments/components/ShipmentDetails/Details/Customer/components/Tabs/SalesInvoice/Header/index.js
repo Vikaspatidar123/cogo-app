@@ -10,7 +10,6 @@ function Header({ invoiceData = {} }) {
 	const {
 		net_total_price_discounted = 0,
 		net_total_price_currency,
-		// invoice_tat_show,
 		invoice_trigger_date,
 	} = invoiceData || {};
 

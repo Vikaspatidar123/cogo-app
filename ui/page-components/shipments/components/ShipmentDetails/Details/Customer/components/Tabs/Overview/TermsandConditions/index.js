@@ -1,5 +1,3 @@
-// import { Container, Header, Heading } from './styles';
-// import TncItem from './TncItem';
 import styles from './styles.module.css';
 import TncItem from './TncItem';
 

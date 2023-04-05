@@ -1,4 +1,3 @@
-// import { Container, Anchor } from './styles';
 import styles from './styles.module.css';
 
 function PredefinedTncAndPrivacyPolicy() {

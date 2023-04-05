@@ -20,7 +20,7 @@ function EditStakeHolder({
 	const stakeholder_type = data?.stakeholder_type;
 
 	const {
-		fields,
+		control,
 		controls,
 		handleSubmit,
 		errors,
@@ -61,7 +61,7 @@ function EditStakeHolder({
 			) : null}
 			<div>
 				<Layout
-					fields={fields}
+					control={control}
 					controls={controls}
 					errors={errors}
 					showElements={showElements}

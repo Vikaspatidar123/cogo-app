@@ -1,7 +1,3 @@
-// import { startCase } from '@cogoport/front/utils';
-// import React from 'react';
-
-// import { Container, Pill, Text } from './styles';
 import { startCase } from '@cogoport/utils';
 
 import styles from './styles.module.css';

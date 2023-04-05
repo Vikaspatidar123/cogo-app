@@ -1,6 +1,3 @@
-// import { Popover } from '@cogoport/front/components/admin';
-// import { startCase } from '@cogoport/front/utils';
-// import { IcMFilter } from '@cogoport/icons-react';
 import { Popover } from '@cogoport/components';
 import { IcMFilter } from '@cogoport/icons-react';
 import { startCase } from '@cogoport/utils';
@@ -12,19 +9,6 @@ import styles from './styles.module.css';
 
 import useGetLocationById from '@/ui/page-components/shipments/components/ShipmentDetails/hooks/useGetLocationById';
 import useHandleFilters from '@/ui/page-components/shipments/components/ShipmentDetails/hooks/useHandleFilters';
-
-// import useHandleFilters from '../../hooks/useHandleFilters';
-// import getLocationById from '../../utils/getLocationById';
-// import Cross from '../cross';
-
-// import FilterContent from './FilterContent';
-// import {
-// 	FilterButton,
-// 	FilterContainer,
-// 	Filters,
-// 	FilterBg,
-// 	FilterText,
-// } from './styles';
 
 function PocFilters({
 	isOkam,

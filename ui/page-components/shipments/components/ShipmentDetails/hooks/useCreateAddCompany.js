@@ -27,7 +27,7 @@ const useCreateAddCompany = ({
 		}
 	});
 
-	const { control, handleSubmit, watch, setValues } = useForm();
+	const { control, handleSubmit, watch, setValues } = useForm(controls);
 	const [errors, setErrors] = useState({});
 	const [compType, setCompType] = useState(
 		['shipper', 'booking_party'].includes(roleCheck)

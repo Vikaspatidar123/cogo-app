@@ -1,10 +1,3 @@
-// import getByKey from '@cogo/utils/getByKey';
-// import React from 'react';
-
-// import Status from '../Status';
-
-// import Item from './Item';
-// import { Container, Heading } from './styles';
 import { getByKey } from '@cogoport/utils';
 
 import Status from '../Status';

@@ -1,14 +1,9 @@
-// import { CheckBox, Button } from '@cogoport/front/components/admin';
 import { Checkbox, Button } from '@cogoport/components';
 import { useState } from 'react';
 
 import styles from './styles.module.css';
 
 import useCreateAddCompany from '@/ui/page-components/shipments/components/ShipmentDetails/hooks/useCreateAddCompany';
-
-// import useCreateAddCompany from '../../../hooks/useCreateShipAndCons';
-
-// import { Container, CheckoutBoxContainer, ButtonContainer } from './styles';
 
 function Create({
 	tradePartnerData = {},

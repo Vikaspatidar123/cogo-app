@@ -1,4 +1,3 @@
-// import { useSelector } from '@cogo/store';
 import { useState } from 'react';
 
 import Poc from './Poc';

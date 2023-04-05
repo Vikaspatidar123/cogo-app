@@ -1,27 +1,12 @@
-// import { Button } from '@cogoport/front/components/admin';
-// import { startCase } from '@cogoport/front/utils';
-// import { IcMArrowRotateUp, IcMArrowRotateDown } from '@cogoport/icons-react';
 import { Button } from '@cogoport/components';
 import { IcMArrowRotateDown, IcMArrowRotateUp } from '@cogoport/icons-react';
 import { startCase } from '@cogoport/utils';
 import { useState } from 'react';
+
 import AddPoc from '../AddPoc';
 import PocInfo from '../PocDetails/PocInfo';
 
 import styles from './styles.module.css';
-// import AddPoc from '../AddPoc';
-// import PocInfo from '../PocDetails/PocInfo';
-
-// import {
-// 	PocHeader,
-// 	PocDetailsContainer,
-// 	DetailsContainer,
-// 	CompanyDetails,
-// 	PocDetail,
-// 	IconContainer,
-// 	Wrapper,
-// 	PocListContainer,
-// } from './styles';
 
 function PocServProvDetails({
 	workScopes,

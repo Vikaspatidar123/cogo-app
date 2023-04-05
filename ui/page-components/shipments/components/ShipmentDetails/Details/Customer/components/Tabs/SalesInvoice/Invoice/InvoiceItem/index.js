@@ -1,8 +1,3 @@
-// import React from 'react';
-
-// import Header from './Header';
-// import Item from './Item';
-// import { Container } from './styles';
 import Header from './Header';
 import ItemHeader from './Item';
 import styles from './styles.module.css';

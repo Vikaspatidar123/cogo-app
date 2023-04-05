@@ -1,11 +1,8 @@
-// import formatAmount from '@cogo/globalization/utils/formatAmount';
-// import { startCase, isEmpty } from '@cogoport/front/utils';
 import { isEmpty, startCase } from '@cogoport/utils';
 import { useContext } from 'react';
 
 import formatAmount from '@/ui/commons/utils/formatAmount';
 import { ShipmentDetailContext } from '@/ui/page-components/shipments/components/ShipmentDetails/common/Context';
-// import { ShipmentDetailContext } from '../../../../../../../commons/Context';
 
 function TableColumn(serviceItem = {}) {
 	const [contextValues] = useContext(ShipmentDetailContext);
@@ -35,9 +32,9 @@ function TableColumn(serviceItem = {}) {
 			? startCase(serviceItem?.display_name)
 			: (serviceItem?.trade_type === 'import'
 						&& `Destination ${startCase(serviceItem?.display_name)}`)
-				  || (serviceItem?.trade_type === 'export'
+				|| (serviceItem?.trade_type === 'export'
 						&& `Origin ${startCase(serviceItem?.display_name)}`)
-				  || startCase(serviceItem?.display_name);
+				|| startCase(serviceItem?.display_name);
 	}
 
 	return [

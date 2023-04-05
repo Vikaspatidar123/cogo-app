@@ -1,8 +1,3 @@
-// import getField from '@cogo/business-modules/form/components';
-// import { useRequest } from '@cogo/commons/hooks';
-// import { useSelector } from '@cogo/store';
-// import { useFormCogo } from '@cogoport/front/hooks';
-// import { startCase } from '@cogoport/front/utils';
 import { startCase } from '@cogoport/utils';
 import { useEffect, useContext } from 'react';
 
@@ -18,19 +13,11 @@ const Select = getField('select');
 const Input = getField('text');
 
 function Filters({ hookSetters, shipmentFilters, isShow = true, page = 1 }) {
-	// const { scope } = useSelector(({ general }) => ({ scope: general.scope }));
-
 	const [{ shipment_data }] = useContext(ShipmentDetailContext);
 	const [{ loading, data }, trigger] = useRequest({
 		url    : 'list_shipment_organizations',
 		method : 'get',
 	}, { manual: true });
-
-	// const { trigger, data } = useRequest(
-	// 	'get',
-	// 	false,
-	// 	scope,
-	// )('/list_shipment_organizations');
 
 	const getShipmentOrganization = async () => {
 		await trigger({ params: { shipment_id: shipment_data?.id } });

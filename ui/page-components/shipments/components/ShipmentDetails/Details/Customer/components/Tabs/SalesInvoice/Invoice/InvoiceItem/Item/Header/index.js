@@ -14,7 +14,6 @@ function Header({ children, invoice = {}, shipmentData = {} }) {
 		billing_address,
 		payment_mode,
 		credit_option,
-		status,
 	} = invoice;
 
 	const handleDownload = () => {

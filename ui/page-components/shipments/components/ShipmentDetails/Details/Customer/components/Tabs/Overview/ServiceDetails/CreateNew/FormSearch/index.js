@@ -1,5 +1,6 @@
 import { startCase } from '@cogoport/utils';
 
+import Footer from '../../../../../Footer';
 import Layout from '../../../../../Layout';
 
 import styles from './styles.module.css';
@@ -61,8 +62,7 @@ function FormSearch({ extraParams, service, onClose, shipment_data, services }) 
 
 					{rednerForm}
 				</div>
-
-				{/* <Footer onClose={onClose} isLoading={loading} /> */}
+				<Footer onClose={onClose} isLoading={loading} />
 			</form>
 		</div>
 	);

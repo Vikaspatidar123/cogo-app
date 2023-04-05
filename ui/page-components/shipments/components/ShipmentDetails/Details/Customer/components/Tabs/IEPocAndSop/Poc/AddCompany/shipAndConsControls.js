@@ -1,5 +1,3 @@
-// import patterns from '@cogoport/front/constants/pattterns';
-
 import { poc_options } from './options';
 
 import patterns from '@/ui/commons/configurations/patterns';

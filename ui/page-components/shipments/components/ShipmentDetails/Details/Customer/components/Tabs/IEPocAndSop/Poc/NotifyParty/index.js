@@ -1,13 +1,9 @@
-// import { startCase } from '@cogoport/front/utils';
-// import { IcMFtick, IcMEdit } from '@cogoport/icons-react';
 import { IcMEdit, IcMFtick } from '@cogoport/icons-react';
 import { startCase } from '@cogoport/utils';
 import { useState } from 'react';
 
 import Create from './Create';
 import styles from './styles.module.css';
-// import Create from './Create';
-// import { Container, Header, List, Details } from './styles';
 
 function NotifyParty({
 	tradePartnerData = {},

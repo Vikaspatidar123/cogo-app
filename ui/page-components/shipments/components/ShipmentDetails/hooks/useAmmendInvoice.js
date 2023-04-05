@@ -1,9 +1,3 @@
-/* eslint-disable no-param-reassign */
-// import { useRequest } from '@cogo/commons/hooks';
-// import { useSelector } from '@cogo/store';
-// import { toast } from '@cogoport/front/components';
-// import { useFormCogo } from '@cogoport/front/hooks';
-// import { getApiErrorString } from '@cogoport/front/utils';
 import { Toast } from '@cogoport/components';
 import { useState } from 'react';
 
@@ -33,23 +27,13 @@ const controls = [
 ];
 
 const useReviewInvoice = ({ invoice, onClose }) => {
-	// const { scope } = useSelector(({ general }) => ({
-	// 	scope: general.scope,
-	// }));
-
 	const [errors, setErrors] = useState({});
 
-	const { fields, handleSubmit } = useform(controls);
+	const { control, handleSubmit } = useform(controls);
 	const [{ loading }, trigger] = useRequest({
 		url    : 'update_shipment_invoice_status',
 		method : 'post',
 	}, { manual: true });
-
-	// const updateLineItemsAPI = useRequest(
-	// 	'post',
-	// 	false,
-	// 	scope,
-	// )('/update_shipment_invoice_status');
 
 	const onError = (err) => {
 		setErrors(err);
@@ -88,7 +72,7 @@ const useReviewInvoice = ({ invoice, onClose }) => {
 
 	return {
 		onReview,
-		fields,
+		control,
 		errors,
 		controls,
 		onError,

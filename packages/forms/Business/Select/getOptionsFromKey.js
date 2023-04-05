@@ -6,6 +6,7 @@ import getCommodityList from '../../utils/getCommodityList';
 import ContainerSizes from '@/packages/forms/constants/container-size.json';
 import ContainerTypes from '@/packages/forms/constants/container-types.json';
 import currencies from '@/packages/forms/constants/currencies';
+import Languages from '@/packages/forms/constants/languages.json';
 import TruckTypes from '@/packages/forms/constants/truck-types.json';
 
 const getOptionsFromKey = (
@@ -37,6 +38,8 @@ const getOptionsFromKey = (
 		data.options = getCommodityList(commodityType, containerType);
 	    } else if (key === 'commodities') {
 		data.options = getCommodityList('freight');
+	} else if (key === 'languages') {
+		data.options = Languages;
 	}
 	return data.options ? data : null;
 };

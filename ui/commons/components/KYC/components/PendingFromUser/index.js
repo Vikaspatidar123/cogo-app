@@ -1,16 +1,13 @@
+import { Modal } from '@cogoport/components';
 import { getByKey } from '@cogoport/utils';
 
-import CPKycSection from './CPKycSection';
-import CPLoading from './CPLoading';
 import IEKycSection from './IEKycSection';
 import styles from './styles.module.css';
 
 import { useRequest } from '@/packages/request';
 
 const KYC_ACCOUNT_TYPE_COMPONENT_MAPPING = {
-	channel_partner   : CPKycSection,
-	importer_exporter : IEKycSection,
-	service_provider  : CPKycSection,
+	importer_exporter: IEKycSection,
 };
 
 function PendingFromUser({ organizationData, setShow, onClose, source }) {
@@ -31,10 +28,6 @@ function PendingFromUser({ organizationData, setShow, onClose, source }) {
 			importer_exporter_data_required : true,
 		},
 	}, { manual: true });
-
-	if (accountType === 'channel_partner' && loading) {
-		return <CPLoading />;
-	}
 
 	const renderKycByAccountType = () => {
 		const kycAccountTypeComponentProps = {
@@ -66,7 +59,7 @@ function PendingFromUser({ organizationData, setShow, onClose, source }) {
 
 	return (
 		<>
-			<div className={styles.header_text}>SUBMIT YOUR KYC</div>
+			<Modal.Header title="SUBMIT YOUR KYC" />
 			{renderKycByAccountType()}
 		</>
 	);

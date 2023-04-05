@@ -1,41 +1,47 @@
 .layout_container {
-	.form-item-label {
-		margin: 32px 0 12px;
-		font-size: 12px;
-		font-weight: 500;
-		color: #393f70;
-	}
+  .form-item-label {
+    margin: 32px 0 12px;
+    font-size: 12px;
+    font-weight: 500;
+    color: #393f70;
+  }
 
-	.main_upload_container {
-		border: 1px dashed #cddbff;
-	}
+  .main_upload_container {
+    border: 1px dashed #cddbff;
+  }
 
-	.core-ui-input-root {
-		margin-bottom: 8px;
-		border: 1px solid #cddbff !important;
-	}
+  .core-ui-input-root {
+    margin-bottom: 8px;
+    border: 1px solid #cddbff !important;
+  }
 
-	.form-lower-label {
-		line-height: unset;
-	}
+  .form-lower-label {
+    line-height: unset;
+  }
 
-	.custom-select-input-container {
-		.custom-select-input-subcontainer {
-			border: 1px solid #cddbff;
+  .custom-select-input-container {
+    .custom-select-input-subcontainer {
+      border: 1px solid #cddbff;
 
-			.core-ui-input-root {
-				border: unset !important;
-			}
-		}
-	}
+      .core-ui-input-root {
+        border: unset !important;
+      }
+    }
+  }
 
-	.upload-area {
-		display: flex;
-		justify-content: center;
-	}
+  .upload-area {
+    display: flex;
+    justify-content: center;
+  }
 }
 
 .button_container {
-	display: flex;
-	justify-content: flex-end;
+  display: flex;
+  justify-content: flex-end;
+}
+.lable {
+  font-size: 12px;
+  color: rgb(57, 63, 112);
+  margin: 32px 0px 12px;
+  font-weight: 500;
 }

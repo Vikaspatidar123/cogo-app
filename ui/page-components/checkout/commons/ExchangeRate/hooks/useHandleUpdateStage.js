@@ -14,10 +14,9 @@ const useHandleUpdateStage = ({ detail, refetch }) => {
 
 	const handleUpdateStage = async (selectedValue) => {
 		try {
-			await updateCheckout.trigger({
+			await updateCheckout({
 				params: { applicable_state: selectedValue, id: detail?.id },
 			});
-
 			setShowPopover(false);
 			setValue(selectedValue);
 			Toast.success('updated succesfully');

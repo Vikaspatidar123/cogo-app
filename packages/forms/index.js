@@ -23,4 +23,5 @@ export { default as AsyncSelectController } from './Controlled/AsyncSelectContro
 export { default as InputGroupController } from './Controlled/InputGroupController';
 export { default as SliderController } from './Controlled/SliderController';
 export { default as ChipsController } from './Controlled/ChipController';
+export { default as PriceSelectContriller } from './Controlled/PriceSelectContriller';
 export * from './utils/getAsyncFields';

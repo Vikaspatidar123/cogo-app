@@ -26,7 +26,6 @@ function SelectController(props) {
 	// if (rest.ControlComponent) {
 	// 	customComponentsAll.Control = rest.ControlComponent;
 	// }
-	console.log(finalOptions, 'finalOptions', options);
 	return (
 		<Element
 			{...rest}

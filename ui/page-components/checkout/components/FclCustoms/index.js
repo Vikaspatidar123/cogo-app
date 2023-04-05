@@ -106,7 +106,7 @@ function FclCustoms(props) {
 
 					<div className={styles.middle_content}>
 						{shipping_line?.logo_url ? (
-							<div className={styles.logo} src={shipping_line?.logo_url} alt="logo" />
+							<img className={styles.logo} src={shipping_line?.logo_url} alt="logo" />
 						) : (
 							<IcMCustoms width={40} height={40} />
 						)}

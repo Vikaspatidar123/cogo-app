@@ -1,4 +1,4 @@
-import { Button, Toast } from '@cogoport/components';
+import { Button, Modal, Toast } from '@cogoport/components';
 import { useEffect } from 'react';
 
 import controls from './controls';
@@ -96,28 +96,29 @@ function IEKycSection({ organizationData, onClose, source }) {
 
 	return (
 		<div className={styles.layout_container}>
-			<div className={styles.layout}>
-				{controls.map((item) => {
-        	const Element = getField(item.type);
-        	return (
-	<div className={styles.field}>
-		<div className={styles.lable}>{item.label}</div>
-		<Element {...item} control={control} />
-		{errors && (
-			<div className={styles.errors}>
-				{errors[item?.name]?.message}
-			</div>
-		)}
-	</div>
-        	);
-				})}
-			</div>
-
-			<div className={styles.button_container}>
+			<Modal.Body>
+				<div className={styles.layout}>
+					{controls.map((item) => {
+						const Element = getField(item.type);
+						return (
+							<div className={styles.field}>
+								<div className={styles.lable}>{item.label}</div>
+								<Element {...item} control={control} />
+								{errors && (
+									<div className={styles.errors}>
+										{errors[item?.name]?.message}
+									</div>
+								)}
+							</div>
+						);
+					})}
+				</div>
+			</Modal.Body>
+			<Modal.Footer>
 				<Button disabled={loading} onClick={handleSubmit(onSubmit)}>
 					Submit KYC
 				</Button>
-			</div>
+			</Modal.Footer>
 		</div>
 	);
 }

@@ -1,110 +1,102 @@
 .container {
-	display: flex;
-	flex-wrap: wrap;
-	padding: 16px 8px 13px 16px;
-	margin-bottom: 10px;
-	box-shadow: 0 1px 6px rgb(169 188 218 / 65%);
+  /* display: flex; */
+  flex-wrap: wrap;
+  padding: 16px 8px 13px 16px;
+  margin-bottom: 10px;
+  box-shadow: 0 1px 6px rgb(169 188 218 / 65%);
 
-	@media (max-width: 768px) {
-		flex-direction: column;
-		width: 100%;
-	}
+  @media (max-width: 768px) {
+    flex-direction: column;
+    width: 100%;
+  }
 }
 
 .text {
-	font-size: 12px;
-	font-weight: 400;
-	color: #2c3e50;
-
-	&.detention_demurrage {
-		display: flex;
-		align-items: center;
-	}
+  font-size: 12px;
+  font-weight: 400;
+  color: #2c3e50;
 }
-
+.detention_demurrage {
+  display: flex;
+  align-items: center;
+}
 .inner_text {
-	display: flex;
-	align-items: center;
-	font-size: 12px;
-	font-weight: 400;
-	color: #2c3e50;
-	opacity: 0.8;
+  display: flex;
+  align-items: center;
+  font-size: 12px;
+  font-weight: 400;
+  color: #2c3e50;
+  opacity: 0.8;
 }
 
-/* export const InfoIcon = styled(IcMInformation)`
-	margin-left: 4px;
-`;
-
-export const TickIcon = styled(IcCFtick)`
-	width: 20px;
-	height: 20px;
-	margin-right: 4px;
-`; */
+.text_div {
+  display: flex;
+}
 
 .textDiv {
-	display: flex;
-	width: 35%;
-	margin-bottom: 10px;
+  display: flex;
+  width: 35%;
+  margin-bottom: 10px;
 
-	&.bl_release {
-		width: 30%;
-	}
+  &.bl_release {
+    width: 30%;
+  }
 
-	&.confirmation_text {
-		width: 35%;
-	}
+  &.confirmation_text {
+    width: 35%;
+  }
 
-	&.cancellation_charges {
-		width: 35%;
-	}
+  @media (max-width: 768px) {
+    width: 100%;
 
-	@media (max-width: 768px) {
-		width: 100%;
+    &.bl_release {
+      width: 100%;
+    }
 
-		&.bl_release {
-			width: 100%;
-		}
+    &.confirmation_text {
+      width: 100%;
+    }
 
-		&.confirmation_text {
-			width: 100%;
-		}
-
-		&.cancellation_charges {
-			width: 100%;
-		}
-	}
+    &.cancellation_charges {
+      width: 100%;
+    }
+  }
 }
-
+.cancellation_charges {
+  width: 35%;
+}
 .progress_bar {
-	position: relative;
-	width: 100px;
-	height: 8px;
-	background-color: #e4e1e8;
-	border-radius: 10px;
-
-	span {
-		position: absolute;
-		top: 0;
-		left: 0;
-		height: 8px;
-		background-color: #67c676;
-		border-radius: 10px;
-
-		/* width: ${({ value }) => value || 0}%; */
-	}
+  width: 100px;
+  height: 8px;
+  :global {
+    .ui_progressbar_filename {
+      display: none;
+    }
+    .ui_progressbar_progress {
+      background: #67c676;
+    }
+  }
 }
 
 .progress_div {
-	display: flex;
-	align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .progress_percent {
-	display: flex;
-	align-items: center;
-	margin-right: 4px;
-	font-size: 12px;
-	font-weight: 500;
-	line-height: 14px;
-	color: #67c676;
+  display: flex;
+  align-items: center;
+  margin-right: 4px;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 14px;
+  color: #67c676;
+}
+.trick {
+  display: flex;
+  justify-content: space-between;
+}
+
+.second {
+  margin-top: 16px;
 }

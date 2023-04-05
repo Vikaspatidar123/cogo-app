@@ -19,8 +19,8 @@ function ApplyCoupon({
 	return (
 		<>
 			{!isCouponApplied && (
-				<Button onClick={applyCoupon}>
-					<IcMPromotions />
+				<Button className={styles.button} size="md" themeType="secondary" onClick={applyCoupon}>
+					<IcMPromotions width={20} height={20} />
 					<div className={styles.text} role="presentation" onClick={applyCoupon}>Apply Coupon</div>
 				</Button>
 			)}

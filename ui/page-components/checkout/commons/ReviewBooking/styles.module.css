@@ -1,26 +1,26 @@
 .title {
-	padding-top: 10px;
-	margin: 0 0 3px;
-	font-size: 16px;
-	font-weight: 500;
-	line-height: 19px;
-	color: #000;
+  padding-top: 10px;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 19px;
+  color: rgb(0, 0, 0);
+  margin: 0px 0px 3px;
 }
 
 .tnc {
-	font-size: 14px;
-	font-weight: 400;
-	line-height: 16px;
-	color: #000;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 16px;
+  color: #000;
+  display: flex;
 }
 
 .a {
-	font-size: 14px;
-	font-weight: 400;
-	line-height: 16px;
-	color: #5936f0;
-
-	&:hover {
-		text-decoration: underline;
-	}
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 16px;
+  color: #5936f0;
+}
+.a:hover {
+  text-decoration: underline;
 }

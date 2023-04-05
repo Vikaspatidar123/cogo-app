@@ -1,3 +1,4 @@
+import { cl } from '@cogoport/components';
 import { startCase } from '@cogoport/utils';
 
 import LineItem from './LineItem';
@@ -36,7 +37,7 @@ function CostBreakdownService({ mode, service }) {
 
 	return (
 		<div className={styles.container}>
-			<div className={`${styles.header} ${is_rate_available ? <div className={styles.marginBottom} /> : ''} `}>
+			<div className={cl`${styles.header} ${is_rate_available && styles.is_rate_available}`}>
 				<div className={styles.title}>
 					{config?.title || startCase(service_type)}
 					{renderDetails()}

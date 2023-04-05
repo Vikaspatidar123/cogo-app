@@ -57,7 +57,7 @@ function ExchangeRate({ detail = {}, conversions = {}, rate = {}, refetch }) {
 
 	return (
 		<div className={styles.container}>
-			<div style={{ display: 'flex', justifyContent: 'space-between' }}>
+			<div className={styles.support}>
 				<div className={styles.content}>
 					FX Rate: 1
 					{' '}
@@ -76,8 +76,9 @@ function ExchangeRate({ detail = {}, conversions = {}, rate = {}, refetch }) {
 
 				{value !== 'liners_exchange_rate' ? (
 					<Button
-						className="primary text sm"
-						style={{ fontSize: '10px' }}
+						size="md"
+						themeType="linkUi"
+						style={{ fontSize: '10px', color: 'blue' }}
 						onClick={() => window.open(supporting_document, '_blank')}
 					>
 						Supporting Document

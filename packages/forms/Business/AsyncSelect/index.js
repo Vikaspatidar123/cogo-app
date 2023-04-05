@@ -10,6 +10,7 @@ import {
 	asyncFieldsHsCodeCountries,
 	asyncAirLines,
 	asyncShippingLines,
+	asyncCountrySelect,
 } from '../../utils/getAsyncFields';
 
 /**
@@ -38,6 +39,7 @@ const keyAsyncFieldsParamsMapping = {
 	hs_code_countries : asyncFieldsHsCodeCountries,
 	'air-lines'       : asyncAirLines,
 	'shipping-lines'  : asyncShippingLines,
+	countries         : asyncCountrySelect,
 };
 
 function AsyncSelect(props) {

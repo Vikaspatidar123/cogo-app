@@ -59,6 +59,9 @@ function RateSummaryFooter({
 					<Button
 						type="button"
 						onClick={onSubmit}
+						size="md"
+						themeType="accent"
+						className={styles.submit}
 						disabled={
 							loading
 							|| isKycPending

@@ -1,3 +1,5 @@
+import { cl } from '@cogoport/components';
+
 import units from '../../../utils/units.json';
 
 import styles from './styles.module.css';
@@ -44,12 +46,12 @@ function CostBreakdownServiceLineItem({ lineItem }) {
 					<div className={styles.title}>{`${lineItem.name} (${lineItem.code})`}</div>
 				</div>
 				<div className={styles.col}>
-					<div className={styles.hidden}>{renderDetails()}</div>
-					<div className={styles.visible}>{renderPrice()}</div>
-				</div>
-				<div className={styles.col}>
 					<div className={styles.hidden}>{renderPrice()}</div>
 					<div className={styles.visible}>{renderDetails()}</div>
+				</div>
+				<div className={styles.col}>
+					<div className={styles.hidden}>{renderDetails()}</div>
+					<div className={cl`${styles.visible} ${styles.price}`}>{renderPrice()}</div>
 				</div>
 			</div>
 		</div>

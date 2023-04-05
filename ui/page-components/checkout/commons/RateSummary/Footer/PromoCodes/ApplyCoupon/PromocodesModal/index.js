@@ -54,7 +54,7 @@ function PromocodeDetails({
 			show={showCoupons}
 		>
 			<div className={styles.modal_container}>
-				<div className={styles.header_text}>Promo codes</div>
+				<Modal.Header className={styles.header_text} title="Promo codes" />
 
 				{loading && <Loading />}
 				{!loading && list?.length === 0 && <Empty />}

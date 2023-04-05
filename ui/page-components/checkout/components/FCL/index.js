@@ -119,7 +119,7 @@ function FCL(props) {
 					<div>
 						<div className={styles.middle_content}>
 							{shipping_line?.logo_url ? (
-								<div className={styles.logo} src={shipping_line?.logo_url} />
+								<img className={styles.logo} src={shipping_line?.logo_url} alt="logo" />
 							) : (
 								<IcMFcl height={40} width={40} style={{ marginRight: 8 }} />
 							)}
@@ -141,9 +141,9 @@ function FCL(props) {
 									</div>
 
 									<AboutAction slug="cancellation-terms">
-										<div className={styles.button_link}>
+										<a className={styles.button_link}>
 											Cancellation Charges & Policy
-										</div>
+										</a>
 									</AboutAction>
 								</div>
 							</div>
@@ -154,8 +154,9 @@ function FCL(props) {
 
 				<div className={styles.service_details_container}>
 					<div className={styles.footer}>
-						<div>Additional Services</div>
-						<div className="additional-services">
+
+						<div className={styles.additional_services}>
+							Additional Services
 							<div className={styles.service_logo}>
 								{allServices.map((service) => (
 									<div
@@ -168,9 +169,9 @@ function FCL(props) {
 								))}
 							</div>
 						</div>
-						<div className="details">
+						<div className={styles.details}>
 							<div
-								className="details-title"
+								className={styles.details_title}
 								onClick={changeToggle}
 								role="presentation"
 							>

@@ -116,7 +116,7 @@ function FCLLocals(props) {
 					<div>
 						<div className={styles.middle_content}>
 							{shipping_line?.logo_url ? (
-								<div className={styles.logo} src={shipping_line?.logo_url} alt="logo" />
+								<img className={styles.logo} src={shipping_line?.logo_url} alt="logo" />
 							) : (
 								<IcMLocalCharges width={40} height={40} fill="#2D3342" />
 							)}

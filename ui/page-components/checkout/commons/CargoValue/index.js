@@ -7,7 +7,7 @@ import ErrorMessage from '../../utils/error-message';
 import controls from './controls';
 import styles from './styles.module.css';
 
-import { MobileNumberSelectController, useForm } from '@/packages/forms';
+import { useForm, PriceSelectContriller } from '@/packages/forms';
 
 function CargoValue({
 	cargo_value,
@@ -25,6 +25,7 @@ function CargoValue({
 		price    : cargo_value,
 		currency : cargo_value_currency,
 	};
+
 	useEffect(() => {
 		setValue('cargo_value_currency', cargo);
 	}, [cargo_value, cargo_value_currency, setValue]);
@@ -35,7 +36,6 @@ function CargoValue({
 	);
 
 	const onSubmit = async (values) => {
-		console.log(values, 'values');
 		const obj = {
 			cargo_value_currency : values.cargo_value_currency.currency,
 			cargo_value          : values.cargo_value_currency.price,
@@ -53,7 +53,7 @@ function CargoValue({
 
 			<div className={styles.section}>
 				<div className={styles.cargo_value_container}>
-					<MobileNumberSelectController control={control} {...controls[0]} />
+					<PriceSelectContriller control={control} {...controls[0]} />
 				</div>
 
 				<Button

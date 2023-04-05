@@ -8,13 +8,18 @@ function ReviewBooking() {
 			</div>
 			<div className={styles.tnc}>
 				By placing this booking, you are agreeing to our
-				<div className={styles.a} href="https://www.cogoport.com/terms-and-conditions" target="_blank">
+				<a
+					className={styles.a}
+					href="https://www.cogoport.com/terms-and-conditions"
+					target="_blank"
+					rel="noreferrer"
+				>
 					Terms & Conditions
-				</div>
+				</a>
 				{' and '}
-				<div className={styles.a} href="https://www.cogoport.com/privacy-policy" target="_blank">
+				<a className={styles.a} href="https://www.cogoport.com/privacy-policy" target="_blank" rel="noreferrer">
 					Privacy policy
-				</div>
+				</a>
 			</div>
 		</>
 	);

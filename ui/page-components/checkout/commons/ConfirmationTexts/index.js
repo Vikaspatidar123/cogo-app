@@ -1,4 +1,4 @@
-import { Tooltip } from '@cogoport/components';
+import { Tooltip, cl, ProgressBar } from '@cogoport/components';
 import { IcCFtick, IcMInformation } from '@cogoport/icons-react';
 import { format } from '@cogoport/utils';
 import React from 'react';
@@ -39,7 +39,7 @@ function ConfirmationTexts({
 
 		const hash = {};
 		keys.forEach((key) => {
-			hash[key] =				(curr[key]?.free_limit || 0) + (curr[key]?.additional_days || 0);
+			hash[key] = (curr[key]?.free_limit || 0) + (curr[key]?.additional_days || 0);
 		});
 
 		if (index === 0) {
@@ -56,56 +56,60 @@ function ConfirmationTexts({
 
 	const { origin_country_id } = primaryServiceData;
 
-	const isExportingCountryIndia =		INDIA_COUNTRY_ID === origin_country_id && trade_type === 'export';
+	const isExportingCountryIndia = INDIA_COUNTRY_ID === origin_country_id && trade_type === 'export';
 
 	const isShowDestinationDays = destination_detention || destination_demurrage;
 
 	return (
 		<div className={styles.container}>
-			<div className={`${styles.text_div} ${styles.confirmation_text}`}>
-				<IcCFtick />
-				<div className={styles.text}>
-					Confirmation in 24 Hrs
-					<div className={styles.inner_text}>
-						<div className={styles.progress_div}>
-							<Tooltip
-								theme="light"
-								content={<div>Probability of Confirmation</div>}
-							>
-								<div className={styles.progress_percent}>
-									{primaryServiceData?.reliability_score || 53}
-									%
-									<IcMInformation />
-								</div>
-							</Tooltip>
+			<div className={styles.trick}>
+				<div className={cl`${styles.text_div} ${styles.confirmation_text}`}>
+					<IcCFtick width={20} height={20} />
+					<div className={styles.text}>
+						Confirmation in 24 Hrs
+						<div className={styles.inner_text}>
+							<div className={styles.progress_div}>
+								<Tooltip content={<div>Probability of Confirmation</div>}>
+									<div className={styles.progress_percent}>
+										{primaryServiceData?.reliability_score || 53}
+										%
+										<IcMInformation />
+									</div>
+								</Tooltip>
 
-							<div className={styles.progress_bar} value={primaryServiceData?.reliability_score || 53}>
-								<span />
+								<div className={styles.progress_bar}>
+									<ProgressBar
+										progress={primaryServiceData?.reliability_score || 53}
+										uploadText=""
+									/>
+								</div>
 							</div>
+						</div>
+					</div>
+				</div>
+
+				<div className={cl`${styles.text_div} ${styles.bl_release}`}>
+					<IcCFtick width={20} height={20} />
+					<div className={styles.text}>
+						{trade_type === 'export'
+            	? 'B/L release in 24hrs of ETD'
+            	: 'B/L release in 24hrs of ETA.'}
+						<div className={styles.inner_text}>Subject to Payment Received</div>
+					</div>
+				</div>
+
+				<div className={cl`${styles.text_div} ${styles.cancellation_charges}`}>
+					<IcCFtick width={20} height={20} />
+					<div className={styles.text}>
+						Min cancellation fee of $50 will apply
+						<div className={styles.inner_text}>
+							For more details please read T&Cs
 						</div>
 					</div>
 				</div>
 			</div>
 
-			<div className={`${styles.text_div} ${styles.bl_release}`}>
-				<IcCFtick />
-				<div className={styles.text}>
-					{trade_type === 'export'
-						? 'B/L release in 24hrs of ETD'
-						: 'B/L release in 24hrs of ETA.'}
-					<div className={styles.inner_text}>Subject to Payment Received</div>
-				</div>
-			</div>
-
-			<div className={`${styles.text_div} ${styles.ancellation_charges}`}>
-				<IcCFtick />
-				<div className={styles.text}>
-					Min cancellation fee of $50 will apply
-					<div className={styles.inner_text}>For more details please read T&Cs</div>
-				</div>
-			</div>
-
-			<div className={styles.text_div}>
+			<div className={cl`${styles.text_div} ${styles.second}`}>
 				<div className={styles.text}>
 					<div className={styles.text}>
 						{isShowDestinationDays ? (
@@ -131,7 +135,7 @@ function ConfirmationTexts({
 								) : null}
 							</>
 						) : null}
-						<div className={`${styles.text} ${styles.detention_demurrage}`}>
+						<div className={cl`${styles.text} ${styles.detention_demurrage}`}>
 							<b>Origin</b>
 							:
 							{' '}
@@ -141,23 +145,27 @@ function ConfirmationTexts({
 							days,
 							{origin_demurrage || (isExportingCountryIndia ? 4 : 0)}
 							{' '}
-							demurrage days
+							demurrage
+							days
 							{' '}
 						</div>
-						<div className={styles.inner_text}>For extra day(s) charges refer T&C </div>
+						<div className={styles.inner_text}>
+							For extra day(s) charges refer T&C
+							{' '}
+						</div>
 					</div>
 				</div>
 
 				{primaryServiceData?.terminal_cutoff ? (
 					<div className={styles.text_div}>
-						<IcCFtick />
+						<IcCFtick width={20} height={20} />
 						<div className={styles.text}>
 							Terminal Deadline
 							<div className={styles.inner_text}>
 								{format({
-									date       : primaryServiceData.terminal_cutoff,
-									dateFormat : GLOBAL_CONSTANTS.formats.date['dd MMM yyyy'],
-									formatType : 'date',
+                	date       : primaryServiceData.terminal_cutoff,
+                	dateFormat : GLOBAL_CONSTANTS.formats.date['dd MMM yyyy'],
+                	formatType : 'date',
 								})}
 							</div>
 						</div>

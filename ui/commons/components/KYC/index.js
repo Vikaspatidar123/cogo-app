@@ -21,7 +21,6 @@ function KYC({
 	const { kyc_status } = organizationData;
 
 	const [kycStatus, setKycStatus] = useState(kyc_status);
-
 	const kycStatusComponentProps = {
 		pending_from_user: {
 			organizationData,
@@ -54,7 +53,6 @@ function KYC({
 		<Modal
 			show={show}
 			onClose={() => setShow(false)}
-			// styles={{ dialog: { padding: 24 } }}
 			closable={source !== 'booking_confirmation'}
 		>
 			{renderModalContent()}

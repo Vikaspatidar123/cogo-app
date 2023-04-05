@@ -6,6 +6,7 @@
 	margin-bottom: 20px;
 	background: #ffe3e3;
 	border-radius: 4px;
+	display: flex;
 }
 
 .flex1 {
@@ -17,13 +18,13 @@
 
 .text {
 	font-size: 18px;
-	font-weight: 500;
+	font-weight: 700;
 	color: #393f70;
 }
 
 .text1 {
 	font-size: 14px;
-	font-weight: 500;
+	font-weight: 600;
 	color: #5b608a;
 
 	@media (max-width: 1366px) {
@@ -33,7 +34,7 @@
 
 .submit_btn {
 	padding: 6px 12px;
-	font-size: 12px;
+	font-size: 14px;
 	color: #393f70;
 	cursor: pointer;
 	background: #fff;

@@ -1,3 +1,4 @@
+import { cl } from '@cogoport/components';
 import { useState } from 'react';
 
 import SearchResultsServiceCost from '../../../CostBreakdownService';
@@ -24,7 +25,7 @@ function CheckoutServicesItem({ service, summary, refetch }) {
 	};
 
 	return (
-		<div className={`${styles.container} ${show ? 'active' : 'inactive'}`}>
+		<div className={cl`${styles.container} ${show ? styles.active : styles.inactive}`}>
 			<div className={styles.header} role="presentation" onClick={onToggle}>
 				<SearchResultsServiceItem
 					service={service}
@@ -35,7 +36,7 @@ function CheckoutServicesItem({ service, summary, refetch }) {
 			</div>
 
 			{services.length ? (
-				<div className={`${styles.body} ${styles.active}`}>
+				<div className={cl`${styles.body} ${styles.active}`}>
 					{services.map((item) => (
 						<SearchResultsServiceCost
 							key={`${item.id}_${item.container}`}

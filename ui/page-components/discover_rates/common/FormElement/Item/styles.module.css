@@ -8,6 +8,9 @@
     .ui_chips_container {
       flex-wrap: wrap;
     }
+    .ui_ps_size_sm{
+      min-width: 67px;
+    }
   }
 }
 

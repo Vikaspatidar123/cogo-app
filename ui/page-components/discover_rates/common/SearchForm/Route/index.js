@@ -48,12 +48,12 @@ function Route({
 
 	const handleLabel = (locationKey) => {
 		const originLabel = (
-			<div className={cl`${styles.label}${styles.margin_below}`}>
+			<div className={cl`${styles.label} ${styles.margin_below}`}>
 				{showArrow ? 'ORIGIN OF SHIPMENT' : origin?.label}
 			</div>
 		);
 		const destinationLabel = (
-			<div className={`${styles.label}${styles.margin_below}`}>
+			<div className={`${styles.label} ${styles.margin_below}`}>
 				{showArrow ? 'DESTINATION OF SHIPMENT' : destination?.label}
 			</div>
 		);
@@ -140,10 +140,10 @@ function Route({
               && !singleLocationServices.includes(mode)
             }
 						handleChange={(obj) => {
-            	setLocation({
-            		...location,
-            		destination: { ...(obj || {}), formName: destination.name },
-            	});
+							setLocation({
+								...location,
+								destination: { ...(obj || {}), formName: destination.name },
+							});
 						}}
 					/>
 				) : (
@@ -162,23 +162,23 @@ function Route({
               && !singleLocationServices.includes(mode)
             }
 						handleChange={(obj) => {
-            	setLocation({
-            		...location,
-            		destination: { ...(obj || {}), formName: destination.name },
-            	});
+							setLocation({
+								...location,
+								destination: { ...(obj || {}), formName: destination.name },
+							});
 						}}
 						params={{
-            	...(destination.params || {}),
-            	filters     : destination?.params?.filters,
-            	preferences : {
-            		organization_id : extraParams?.id || org_id,
-            		service_type    : mode,
-            	},
+							...(destination.params || {}),
+							filters     : destination?.params?.filters,
+							preferences : {
+								organization_id : extraParams?.id || org_id,
+								service_type    : mode,
+							},
 						}}
 						searchParams={{
-            	intent          : 'rate_search',
-            	organization_id : extraParams?.id || org_id,
-            	service_type    : mode,
+							intent          : 'rate_search',
+							organization_id : extraParams?.id || org_id,
+							service_type    : mode,
 						}}
 					/>
 				)}

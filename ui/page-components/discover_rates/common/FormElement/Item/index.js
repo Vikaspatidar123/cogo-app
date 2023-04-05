@@ -29,6 +29,7 @@ function Item({ formValue, ...rest }) {
 	const props = { placeholder };
 
 	const Element = getField(type);
+
 	if (
 		(restProps.type === 'select' || restProps.type === 'creatable-select')
     && !restProps.style
@@ -61,7 +62,7 @@ function Item({ formValue, ...rest }) {
 			)}
 			<div
 				className={cl`${styles[className]} ${styles.container} ${
-        	styles[errorClass] || ''
+					styles[errorClass] || ''
 				} ${(!showMargin && styles.nomargin) || ''} search_form_item_container`}
 			>
 				{restProps.type === 'container_type-commodity' ? (
@@ -85,11 +86,7 @@ function Item({ formValue, ...rest }) {
 										style={{ maxWidth: '208px', marginLeft: 4 }}
 										value={startCase(value || '')}
 										name={rest.name}
-										onCancel={
-                      restProps.onChange
-                      	? () => restProps.onChange(rest.name, '')
-                      	: null
-                    }
+										onCancel={restProps.onChange ? () => restProps.onChange(rest.name, '') : null}
 									/>
 								) : null}
 							</div>
@@ -100,11 +97,12 @@ function Item({ formValue, ...rest }) {
 								width="100%"
 								{...restProps}
 								{...props}
+								size="sm"
 								className={className}
 								id={`search_form_${rest.name}`}
 							/>
 						))
-              || null}
+					|| null}
 
 						{lowerlabel && (
 							<div className={styles.lower_label}>{lowerlabel}</div>

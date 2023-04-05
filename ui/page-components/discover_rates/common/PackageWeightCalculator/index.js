@@ -35,11 +35,22 @@ const calculateWeight = (packages) => {
 	}
 	return 0;
 };
-
+console.log(controls, 'controls');
 function Calculator({ onChange = () => {}, onBack, value }) {
 	const ref = useRef({});
-	const { fields, watch, control } = useForm();
-	console.log(controls, 'controls');
+	const { fields, watch, control } = useForm({
+		defaultValues: {
+			selected_unit : '100',
+			packages      : [
+				{
+					no_of_pieces : 1,
+					dimensions   : { length: 1, width: 1, height: 1 },
+					weight       : 1,
+				},
+			],
+		},
+	});
+
 	useEffect(() => {
 		const subscription = watch((formValues) => {
 			const volume = calculateVolume(
@@ -91,6 +102,7 @@ function Calculator({ onChange = () => {}, onBack, value }) {
 				</div>
 				<SelectController
 					name="selected_unit"
+					size="sm"
 					{...controls[0]}
 					control={control}
 					style={style}
@@ -125,7 +137,7 @@ function Calculator({ onChange = () => {}, onBack, value }) {
 						deletePosition="front"
 						noDeleteButtonTill={0}
 						ref={(r) => {
-            	        ref.current = r;
+							ref.current = r;
 						}}
 					/>
 				</div>
@@ -133,7 +145,7 @@ function Calculator({ onChange = () => {}, onBack, value }) {
 					className={styles.col}
 					style={{ paddingLeft: 8, paddingRight: 4, marginTop: 8 }}
 				>
-					<Button type="button" onClick={() => ref.current.handleAppendChild()}>
+					<Button themeType="accent" size="sm" onClick={() => ref.current.handleAppendChild()}>
 						+ ADD MORE
 					</Button>
 				</div>

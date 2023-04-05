@@ -165,7 +165,7 @@ function DeleteConfirmation({
 						setShow(false);
 						setDeleteService('');
 					}}
-					disabled={loading}
+					disabled={loading || apiLoading}
 				>
 					Cancel
 				</Button>
@@ -177,7 +177,7 @@ function DeleteConfirmation({
 						border     : '1px solid #000000',
 					}}
 					onClick={() => handleDeleteService()}
-					disabled={loading}
+					disabled={loading || apiLoading}
 					id="search_results_additional_service_delete_save_btn"
 				>
 					Delete

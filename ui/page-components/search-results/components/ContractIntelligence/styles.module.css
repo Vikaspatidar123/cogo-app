@@ -12,7 +12,7 @@
 .title {
 	color: rgb(79, 79, 79);
     font-size: 20px;
-    font-weight: 500;
+    font-weight: 600;
     margin-bottom: 10px;
     padding-left: 30px;
 }
@@ -28,7 +28,6 @@
 	width: 10px;
 	border-radius: 100%;
 	margin: 5px 10px 0 10px;
-	/* background-color: ${({ bg }) => bg || '#8cc1f9'}; */
 }
 
 .label {

@@ -82,7 +82,7 @@ function Filter({ setFilters, state, isMobile }) {
 				isScrollable
 				control={control}
 			>
-				<Button onClick={() => setOpenFilter(!openFilter)}>
+				<Button onClick={() => setOpenFilter(!openFilter)} themeType="secondary">
 					{!isMobile ? 'FILTERS' : ''}
 					{' '}
 					<IcMFilter />

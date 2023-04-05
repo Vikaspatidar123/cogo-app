@@ -16,11 +16,12 @@ function Header({
 				<div className={styles.title}>OPTIONS</div>
 
 				<div className={styles.right}>
-					<Button ghost onClick={onClose} id="search_form_cargo_details_cancel_button">
+					<Button themeType="secondary" onClick={onClose} id="search_form_cargo_details_cancel_button">
 						CANCEL
 					</Button>
 
 					<Button
+						themeType="accent"
 						onClick={() => onSubmit()}
 						style={{ marginLeft: '8px' }}
 						id="search_form_cargo_details_apply_button"
@@ -35,6 +36,7 @@ function Header({
 					<div
 						className={cl`${styles.text} ${index === 0 ? styles.disabled : null}`}
 						onClick={index !== 0 ? () => clearPreviousValues() : null}
+						role="presentation"
 					>
 						Clear from previous entry
 					</div>

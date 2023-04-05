@@ -91,9 +91,7 @@ function SelectedRateInfo({
 
 	const { service_type } = data || {};
 
-	const componentKey = service_type in SERVICE_TYPE_SELECTED_RATE_COMPONENT_MAPPING
-    	? service_type
-    	: 'others';
+	const componentKey = service_type in SERVICE_TYPE_SELECTED_RATE_COMPONENT_MAPPING ? service_type : 'others';
 	const Component = SERVICE_TYPE_SELECTED_RATE_COMPONENT_MAPPING[componentKey] || null;
 
 	if (!Component) {
@@ -424,7 +422,7 @@ function Results({
 								{!loading ? (
 									<div className={styles.text_bold}>
 										{`${(rates || []).length} ${
-                    	(rates || []).length === 1 ? 'rate' : 'rates'
+											(rates || []).length === 1 ? 'rate' : 'rates'
 										} found`}
 									</div>
 								) : (
@@ -448,9 +446,7 @@ function Results({
 
 							{handleRateCards()}
 						</>
-					) : (
-          	configureSellRate()
-					)}
+					) : (configureSellRate())}
 				</div>
 
 				{handleAdditionalServices()}

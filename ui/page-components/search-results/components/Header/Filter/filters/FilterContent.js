@@ -1,5 +1,5 @@
-import { Button, cl } from '@cogoport/components';
-import React from 'react';
+import { Button, cl, Slider } from '@cogoport/components';
+import React, { useState } from 'react';
 
 import styles from './styles.module.css';
 
@@ -54,19 +54,20 @@ function FilterContent({
 			>
 				<div className={styles.heading}>{heading}</div>
 				<div className={styles.button}>
-					<Button onClick={() => handleReset()} size="md" themeType="primary">
+					<Button onClick={() => handleReset()} size="sm" themeType="secondary">
 						RESET FORM
 					</Button>
 
 					<Button
 						onClick={() => handleClick()}
-						size="md"
+						size="sm"
 						themeType="accent"
 						style={{ marginLeft: '10px' }}
 					>
 						SHOW RESULTS
 					</Button>
 				</div>
+
 			</div>
 
 			{renderElement()}

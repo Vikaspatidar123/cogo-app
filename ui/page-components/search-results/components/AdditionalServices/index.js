@@ -227,6 +227,7 @@ function AdditionalServices({
 				<Button
 					style={{ marginTop: '10px' }}
 					onClick={handleSubsidiaryService}
+					themeType="link"
 					disabled={loading}
 					id="search_results_subsidiary_service_add"
 				>

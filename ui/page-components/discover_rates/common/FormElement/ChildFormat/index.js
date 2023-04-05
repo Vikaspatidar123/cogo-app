@@ -82,14 +82,14 @@ function ChildFormat(
 					>
 						<Button
 							style={{
-              	color        : '#3879da',
-              	padding      : '0px 4px',
-              	opacity      : disableButtons ? 0.6 : 1,
-              	fontSize     : 10,
-              	background   : 'transparent',
-              	border       : 'none',
-              	fontWeight   : 'bold',
-              	marginBottom : '10px',
+								color        : '#3879da',
+								padding      : '0px 4px',
+								opacity      : disableButtons ? 0.6 : 1,
+								fontSize     : 10,
+								background   : 'transparent',
+								border       : 'none',
+								fontWeight   : 'bold',
+								marginBottom : '10px',
 							}}
 							onClick={handleAppendChild}
 							disabled={disableButtons}

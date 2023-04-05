@@ -294,11 +294,10 @@ function Form(
 	}
 	return (
 		<div
-			className={cl`${styles.search_form_container} ${styles.container} ${
-      	styles[className]
+			className={cl`${styles.search_form_container} ${styles.container} ${styles[className]
 			} ${styles[search_type] || ''}`}
 			style={{
-      	background: search_type === 'dashboard' ? '#f9f9f9' : '#ffffff',
+				background: search_type === 'dashboard' ? '#f9f9f9' : '#ffffff',
 			}}
 		>
 			<div className={cl`${styles.main} ${styles.search_type} ` || ''}>
@@ -311,14 +310,14 @@ function Form(
 									setLocation={setLocation}
 									location={location}
 									destination={allControls.find(
-                  	(x) => x.name === destination?.name,
+										(x) => x.name === destination?.name,
 									)}
-                  // keywords={keywords}
+									// keywords={keywords}
 									className={className}
 									errors={errors}
 									search_type={search_type}
 									index={index}
-                  // mobile={mobile}
+									// mobile={mobile}
 									mode={mode}
 									extraParams={extraParams}
 									disabledFields={disabledFields}
@@ -329,11 +328,12 @@ function Form(
 							<div className={styles.search_form_options_container_col}>
 								{index === 0 && search_type !== 'rfq' ? (
 									<div
-										className={cl`${styles.label} ${styles.search_form_options_container_col__label}`}
+										className={cl`${styles.label}
+										${styles.search_form_options_container_col__label}`}
 									>
 										{containerDetailsModes.includes(mode)
-                    	? 'Container Details'
-                    	: 'Cargo Details'}
+											? 'Container Details'
+											: 'Cargo Details'}
 									</div>
 								) : null}
 								<Options
@@ -347,7 +347,7 @@ function Form(
 									options={options}
 									services={services}
 									setServices={setServices}
-                  // mobile={mobile}
+									// mobile={mobile}
 									setLocation={setLocation}
 									className={className}
 									formProps={showElementsFuncProps}
@@ -371,9 +371,9 @@ function Form(
 									<div
 										className={styles.row}
 										style={{
-                    	marginTop      : '20px',
-                    	alignItems     : 'center',
-                    	justifyContent : 'center',
+											marginTop      : '20px',
+											alignItems     : 'center',
+											justifyContent : 'center',
 										}}
 									>
 										<Checkbox
@@ -394,12 +394,13 @@ function Form(
 
 							{['rfq', 'contract', 'forecast'].includes(search_type) ? null : (
 								<div
-									className={cl`${styles.search_form_search_btn_container_col} ${styles.search_form_section_search_btn}`}
+									className={cl`${styles.search_form_search_btn_container_col}
+									${styles.search_form_section_search_btn}`}
 									style={{
-                  	display        : 'flex',
-                  	justifyContent : 'center',
-                  	paddingTop     : '22px',
-                  	marginTop      : '2px',
+										display        : 'flex',
+										justifyContent : 'center',
+										paddingTop     : '22px',
+										marginTop      : '2px',
 									}}
 								>
 									<Button
@@ -408,16 +409,16 @@ function Form(
 										isLoading={loading}
 										disabled={loading}
 										style={{
-                    	background : '#2C3E50',
-                    	padding    : '4px 8px',
-                    	opacity    : loading ? 0.6 : 1,
+											background : '#2c3e50',
+											padding    : '4px 8px',
+											opacity    : loading ? 0.6 : 1,
 										}}
 									>
 										<IcMSearchlight
 											style={{
-                      	margin : '2px 2px 0px 0px',
-                      	width  : 24,
-                      	height : 24,
+												margin : '2px 2px 0 0',
+												width  : 24,
+												height : 24,
 											}}
 										/>
 									</Button>

@@ -168,25 +168,23 @@ function RateCard(props) {
 				<div className={styles.schedules}>
 					<div className={styles.schedule_tag}>
 						Schedule
-						{['fake', 'predicted'].includes(data?.schedule_source)
-            	? ' - Estimated'
-            	: null}
+						{['fake', 'predicted'].includes(data?.schedule_source) ? ' - Estimated' : null}
 					</div>
 					<div className={styles.schedule_date}>
 						{data?.service_type === 'fcl_freight' ? <>(ETD)</> : null}
 						<div className={styles.dates}>
 							{formatDate({
-              	date       : data?.departure,
-              	dateFormat : GLOBAL_CONSTANTS.formats.date['dd MMM yyyy'],
-              	formatType : 'date',
+								date       : data?.departure,
+								dateFormat : GLOBAL_CONSTANTS.formats.date['dd MMM yyyy'],
+								formatType : 'date',
 							})}
 						</div>
 						<div className={styles.line} />
 						<div className={styles.dates}>
 							{formatDate({
-              	date       : data?.arrival,
-              	dateFormat : GLOBAL_CONSTANTS.formats.date['dd MMM yyyy'],
-              	formatType : 'date',
+								date       : data?.arrival,
+								dateFormat : GLOBAL_CONSTANTS.formats.date['dd MMM yyyy'],
+								formatType : 'date',
 							})}
 						</div>
 						{data?.service_type === 'fcl_freight' ? <>(ETA)</> : null}
@@ -226,6 +224,7 @@ function RateCard(props) {
 							{data?.source === 'cogo_assured_rate' ? (
 								<div className={styles.cogo_assured_icon}>
 									<img
+										// eslint-disable-next-line max-len
 										src="https://cdn.cogoport.io/cms-prod/cogo_partner/vault/original/cogoassured-logo.svg"
 										alt="approve"
 									/>
@@ -240,11 +239,9 @@ function RateCard(props) {
 								</div>
 							)}
 
-							{['air_freight', 'fcl_freight'].includes(data?.service_type)
-              && data?.cogo_entity_id
-              && partnerId !== data?.cogo_entity_id ? (
-	<div className={styles.cogo_universe}>via Cogo Universe </div>
-              	) : null}
+							{['air_freight', 'fcl_freight'].includes(data?.service_type) && data?.cogo_entity_id
+							&& partnerId !== data?.cogo_entity_id
+								? <div className={styles.cogo_universe}>via Cogo Universe </div> : null}
 						</div>
 
 						{data?.service_type === 'haulage_freight' ? (
@@ -291,9 +288,9 @@ function RateCard(props) {
 
 							<div
 								style={{
-                	display  : 'flex',
-                	padding  : '10px 30px',
-                	flexWrap : 'wrap',
+									display  : 'flex',
+									padding  : '10px 30px',
+									flexWrap : 'wrap',
 								}}
 							>
 								{detailsToShow(data, details)}

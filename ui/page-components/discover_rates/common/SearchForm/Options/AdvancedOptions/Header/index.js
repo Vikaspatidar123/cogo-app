@@ -1,4 +1,3 @@
-// import Icon from '@cogo/deprecated_legacy/icons/advanced-search.svg';
 import { Button } from '@cogoport/components';
 import { IcMSearchlight } from '@cogoport/icons-react';
 import React from 'react';
@@ -18,12 +17,13 @@ function Header({
 				{children}
 			</h2>
 			<div className={styles.right}>
-				<Button onClick={onClose} ghost>
+				<Button themeType="secondary" onClick={onClose} ghost>
 					CANCEL
 				</Button>
 
 				<Button
 					disabled={loading}
+					themeType="accent"
 					onClick={onSubmit}
 					style={{ marginLeft: '16px' }}
 				>

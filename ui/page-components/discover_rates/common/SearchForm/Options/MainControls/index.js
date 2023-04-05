@@ -28,6 +28,7 @@ function MainControls(
 	ref,
 ) {
 	const advancedService = advancedServices.includes(mode);
+	console.log(controls, 'controls');
 	return (
 		<div
 			className={cl`${styles.container} ${styles.search_form_cargo_details_popover} ${mobile ? 'mobile ' : ''}`}
@@ -53,20 +54,18 @@ function MainControls(
 			/>
 
 			{onShowAdvanced
-      && advancedService
-      && search_type !== 'rfq'
-      && contractType !== 'with_carrier' ? (
-	<Button
-		className="search_form_cargo_details_add_services_button"
-		type="button"
-		onClick={onShowAdvanced}
-		size="md"
-		themeType="linkUi"
-		id="search_form_cargo_details_add_services_button"
-	>
-		Add Trucking and Customs
-	</Button>
-      	) : null}
+					&& advancedService && search_type !== 'rfq'
+					&& contractType !== 'with_carrier' ? (
+						<Button
+							className="search_form_cargo_details_add_services_button"
+							type="button"
+							onClick={onShowAdvanced}
+							themeType="linkUi"
+							id="search_form_cargo_details_add_services_button"
+						>
+							Add Trucking and Customs
+						</Button>
+				) : null}
 		</div>
 	);
 }

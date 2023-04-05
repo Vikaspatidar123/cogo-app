@@ -233,6 +233,7 @@ const useCreateSearch = ({
 
 	const submitData = async (values, e) => {
 		e.preventDefault();
+		console.log(values, 'values', e);
 		if (optionsControls.display.length > 0) {
 			options.handleSubmit(
 				(optionVals) => {

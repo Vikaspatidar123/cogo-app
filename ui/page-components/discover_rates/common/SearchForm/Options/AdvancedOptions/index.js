@@ -75,11 +75,7 @@ function AdvancedOptions({
 						<div>
 							<Section
 								border
-								title={
-                  containerDetailsModes.includes(mode)
-                  	? 'CONTAINER DETAILS'
-                  	: 'CARGO DETAILS'
-                }
+								title={containerDetailsModes.includes(mode) ? 'CONTAINER DETAILS' : 'CARGO DETAILS'}
 							>
 								<Form
 									controls={controls}

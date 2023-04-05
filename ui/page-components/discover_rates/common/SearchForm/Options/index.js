@@ -84,7 +84,7 @@ function Options({
 			location,
 			services,
 		}),
-		[JSON.stringify(formValues), JSON.stringify(services)],
+		[formValues, services],
 	);
 
 	const mainFields = mutateMainFields({
@@ -390,7 +390,7 @@ function Options({
 	return (
 		<div className={cl`${styles.container} ${styles[search_type]}`}>
 			{search_type === 'rfq' ? (
-				<div style={{ width: mainServices.includes(mode) ? '100%' : '50%' }}>
+				<div style={{ width: mainservices.includes(mode) ? '100%' : '50%' }}>
 					{index === 0 ? (
 						<div
 							className={cl`${styles.label} ${styles.search_form_options_container_col__label}`}

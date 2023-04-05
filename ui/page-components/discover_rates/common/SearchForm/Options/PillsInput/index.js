@@ -57,16 +57,16 @@ const PillInput = forwardRef(
 				<div
 					className={styles.container}
 					onClick={action !== 'disable' ? onClick : null}
+					role="presentation"
 					id="search_form_cargo_details_container"
 				>
 					<div
-						className={`${
-            	styles.sub_container
-						}search_form_cargo_details_sub_container ${styles[className]} 
-					${modifiedValues.length === 0 ? 'placeholder' : ''} 
-					${error ? 'error' : ''}
-					${show ? 'show' : ''} 
-					${action === 'disable' ? 'disable' : ''}`}
+						className={`${styles.sub_container
+						} search_form_cargo_details_sub_container ${styles[className]}
+						${modifiedValues.length === 0 ? styles.container_placeholder : ''} 
+						${error ? styles.container_error : ''}
+						${show ? styles.show : ''} 
+						${action === 'disable' ? styles.disable : ''}`}
 					>
 						<div className={styles.chip_container}>
 							{modifiedValues.length > 0 ? handleShowChips() : null}

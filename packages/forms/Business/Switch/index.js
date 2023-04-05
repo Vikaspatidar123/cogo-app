@@ -1,4 +1,4 @@
-import { Toggle } from '@cogoport/components';
+import { cl, Toggle } from '@cogoport/components';
 import React from 'react';
 
 import styles from './styles.module.css';
@@ -15,7 +15,7 @@ function IncoTermSelect({ right, left, active, onChange, style, id }) {
 	return (
 		<div className={styles.row} style={style}>
 			<div
-				className={left.value === active ? `${styles.active}${styles.trade_type}` : `${styles.trade_type}`}
+				className={cl`${styles.trade_type} ${left.value === active ? styles.active : ''}`}
 			>
 				{left.title}
 
@@ -27,7 +27,7 @@ function IncoTermSelect({ right, left, active, onChange, style, id }) {
 				id={`${id || 'switch'}_toggle`}
 			/>
 			<div
-				className={left.value === active ? `${styles.active}${styles.trade_type}` : `${styles.trade_type}`}
+				className={cl`${styles.trade_type} ${left.value === active ? styles.active : ''}`}
 			>
 				{right.title}
 

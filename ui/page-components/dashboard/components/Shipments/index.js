@@ -1,6 +1,7 @@
 import { Button } from '@cogoport/components';
 import { IcMArrowNext, IcCFlcl, IcMFship } from '@cogoport/icons-react';
 import { format } from '@cogoport/utils';
+import { useRouter } from 'next/router';
 
 import ListShipments from '../../hooks/ListShipments';
 
@@ -9,6 +10,7 @@ import styles from './styles.module.css';
 function Shipments() {
 	const { data } = ListShipments();
 	const usable = data?.list || [];
+	const { push } = useRouter();
 
 	return (
 		<div>
@@ -94,7 +96,7 @@ function Shipments() {
 
 								<div className={styles.details}>
 									<p className={styles.cart}>Added to cart</p>
-									<Button>VIEW DETAILS</Button>
+									<Button onClick={() => push('/shipments')}>VIEW DETAILs</Button>
 									<div className={styles.dot}>
 										<div className={styles.dot2} />
 										<p className={styles.tasks}>

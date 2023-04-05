@@ -1,4 +1,3 @@
-// import { Flex, Text } from "@cogoport/front/components";
 import { Modal } from '@cogoport/components';
 import React, { useState } from 'react';
 
@@ -34,16 +33,18 @@ export function KycCampaign({
       || user_profile?.partner?.country_id,
 		country_code: organization?.country?.country_code,
 	};
-
+	const head = () => (
+		<div>
+			<div className={styles.head}>Get Additional Sport Searches for free!</div>
+			<text className={styles.text}>
+				We just need some additional details from you
+			</text>
+		</div>
+	);
 	return (
 		<div className={styles.flex} style={{ padding: '8px' }}>
 			<div className={styles.flex} style={{ marginBottom: '12px' }}>
-				<h2 className={styles.text}>
-					Get Additional Sport Searches for free!
-				</h2>
-				<text className={styles.text}>
-					We just need some additional details from you
-				</text>
+				<Modal.Header title={head()} />
 			</div>
 			<FormBody
 				{...initialValues}

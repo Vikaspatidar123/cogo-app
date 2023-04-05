@@ -1,13 +1,15 @@
 /* eslint-disable react/no-unescaped-entities */
-import React, { useState, useEffect } from 'react';
-import { useSelector } from '@/packages/store';
-import { Flex, Text, BgImage } from '@cogoport/front/components';
 import { Modal } from '@cogo/deprecated_legacy/ui';
-import styled from '@cogoport/front/styled';
 import getStaticPath from '@cogo/static';
+import { Flex, Text, BgImage } from '@cogoport/front/components';
+import styled from '@cogoport/front/styled';
+import React, { useState, useEffect } from 'react';
+
 import FormBody from './FormBody';
 
-export const KycCampaignEbook = ({ onFinalSubmit = () => {}, onDontShow = () => {}, trackAnalytics = false }) => {
+import { useSelector } from '@/packages/store';
+
+export function KycCampaignEbook({ onFinalSubmit = () => {}, onDontShow = () => {}, trackAnalytics = false }) {
 	const { scope, agent_id, user_profile, isMobile } = useSelector(({ general, profile }) => ({
 		scope        : general?.scope,
 		agent_id     : profile?.id,
@@ -44,9 +46,9 @@ export const KycCampaignEbook = ({ onFinalSubmit = () => {}, onDontShow = () => 
 			/>
 		</Flex>
 	);
-};
+}
 
-export const KycCampaignEbookModal = ({ trackAnalytics = false }) => {
+export function KycCampaignEbookModal({ trackAnalytics = false }) {
 	const { isMobile, kyc_status, profile_id, organization_id } = useSelector(({ general, profile }) => ({
 		isMobile        : general?.isMobile,
 		kyc_status      : profile?.organization?.kyc_status,
@@ -131,7 +133,7 @@ export const KycCampaignEbookModal = ({ trackAnalytics = false }) => {
 			</Modal>
 		</Container>
 	);
-};
+}
 
 const Container = styled.div`
 	.ui-modal-dialog {

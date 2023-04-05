@@ -1,0 +1,59 @@
+.button_div {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 85px;
+  @media (max-width: 768px) {
+    width: 100%;
+  }
+}
+.form_data {
+  margin-left: -8px;
+}
+.container {
+  &.otp {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+  }
+}
+
+.form_wrapper {
+  width: 360px;
+  margin-left: auto;
+  margin-right: auto;
+
+  @media (max-width: 768px) {
+    width: calc(100% - 16px);
+  }
+
+  .aws {
+    .upload-area {
+      padding: 16px 40px !important;
+      height: auto !important;
+    }
+  }
+}
+
+.flex {
+  display: flex;
+  direction: column;
+  align-items: center;
+  margin-top: 12px;
+}
+.label {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 16px;
+  letter-spacing: 0.04em;
+  margin-top: 10px;
+  margin-bottom: 16px;
+  color: rgb(51, 51, 51);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.error {
+  color: rgb(203, 100, 100);
+}

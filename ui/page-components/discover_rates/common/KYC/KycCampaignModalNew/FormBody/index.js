@@ -2,28 +2,30 @@
 /* eslint-disable max-len */
 /* eslint-disable react/no-unescaped-entities */
 /* eslint-disable no-mixed-spaces-and-tabs */
+import { useRequest } from '@cogo/commons/hooks';
 import { useForm } from '@cogo/deprecated_legacy/forms';
 import { cogoToast, Select2 } from '@cogo/deprecated_legacy/ui';
+import { AwsUploader } from '@cogo/smart-components';
 import countryCode from '@cogo/smart-components/constants/country-codes.json';
+import getStaticPath from '@cogo/static';
+import { useSelector } from '@cogo/store';
+import styled from '@cogo/styled';
+import showErrorsInToast from '@cogo/utils/showErrorsInToast';
 import { Button, Flex, Text, Input, BgImage } from '@cogoport/front/components';
 import { useState } from 'react';
-import { useRequest } from '@cogo/commons/hooks';
-import showErrorsInToast from '@cogo/utils/showErrorsInToast';
-import styled from '@cogo/styled';
-import { AwsUploader } from '@cogo/smart-components';
-import { useSelector } from '@cogo/store';
-import getStaticPath from '@cogo/static';
-import { controls } from './controls.js';
-import { Container, FormWrapper } from './styles';
+
 import ProgressBar from '../ProgressBar';
 
-const Form = ({
+import { controls } from './controls.js';
+import { Container, FormWrapper } from './styles';
+
+function Form({
 	scope,
 	agent_id,
 	onFinalSubmit,
 	onDontShow = () => {},
 	...rest
-}) => {
+}) {
 	const { country_code, preferred_languages, country_id } = rest || {};
 	const [isOpen, setIsOpen] = useState(false);
 	const { fields, getValues } = useForm([
@@ -33,10 +35,10 @@ const Form = ({
 
 	const { profile_id, organization_id } = useSelector(
 		({ general, profile }) => ({
-			isMobile: general?.isMobile,
-			kyc_status: profile?.organization?.kyc_status,
-			profile_id: profile?.id,
-			organization_id: profile?.organization?.id,
+			isMobile        : general?.isMobile,
+			kyc_status      : profile?.organization?.kyc_status,
+			profile_id      : profile?.id,
+			organization_id : profile?.organization?.id,
 		}),
 	);
 
@@ -47,18 +49,18 @@ const Form = ({
 	const [countrycode, setCountrycode] = useState({});
 
 	const formattedList = countryCode.map((code) => ({
-		value: code.value,
-		label: `${code.value}: ${code.label}`,
+		value : code.value,
+		label : `${code.value}: ${code.label}`,
 	}));
 	const onSubmit = async (e) => {
 		e.preventDefault();
 		const values = getValues();
 		if (values) {
 			const data = {
-				id: agent_id,
-				registration_number: values?.registration_number,
-				mobile_number: values?.mobile,
-				mobile_country_code: countrycode?.country_code,
+				id                  : agent_id,
+				registration_number : values?.registration_number,
+				mobile_number       : values?.mobile,
+				mobile_country_code : countrycode?.country_code,
 			};
 			setFormValue({
 				...data,
@@ -101,18 +103,18 @@ const Form = ({
 						<Flex display="block" flex={1}>
 							<div
 								style={{
-									backgroundColor: '#F5FAFE',
-									display: 'flex',
-									borderRadius: '5px',
-									marginLeft: '20px',
+									backgroundColor : '#F5FAFE',
+									display         : 'flex',
+									borderRadius    : '5px',
+									marginLeft      : '20px',
 								}}
 							>
 								<h2
 									style={{
-										fontSize: '16px',
-										fontWeight: '400',
-										alignItems: 'center',
-										marginLeft: '10px',
+										fontSize   : '16px',
+										fontWeight : '400',
+										alignItems : 'center',
+										marginLeft : '10px',
 									}}
 								>
 									Share some basic information about your company
@@ -124,20 +126,21 @@ const Form = ({
 										<Flex direction="column">
 											<Text
 												style={{
-													color: '#333333',
-													fontWeight: '500',
-													fontSize: '12px',
+													color      : '#333333',
+													fontWeight : '500',
+													fontSize   : '12px',
 												}}
 											>
 												Company's registration number
-											</Text>{' '}
+											</Text>
+											{' '}
 											<br />
 											<Flex direction="column">
 												<Input
 													style={{
-														height: '44px',
-														margin: '4px',
-														marginTop: '-8px',
+														height    : '44px',
+														margin    : '4px',
+														marginTop : '-8px',
 													}}
 													{...fields?.registration_number}
 												/>
@@ -149,35 +152,34 @@ const Form = ({
 										<Flex direction="column">
 											<Text
 												style={{
-													color: '#333333',
-													fontWeight: '500',
-													fontSize: '12px',
-													marginTop: '4px',
+													color      : '#333333',
+													fontWeight : '500',
+													fontSize   : '12px',
+													marginTop  : '4px',
 												}}
 											>
 												Mobile number
-											</Text>{' '}
+											</Text>
+											{' '}
 											<br />
 											<Flex>
 												<StyledSelect2
 													caret
 													placeholder="Select"
-													onChange={(a) =>
-														setCountrycode((val) => ({
-															...val,
-															country_code: a,
-														}))
-													}
+													onChange={(a) => setCountrycode((val) => ({
+														...val,
+														country_code: a,
+													}))}
 													value={countrycode?.country_code}
 													options={formattedList}
 													style={{ width: 180 }}
 												/>
 												<Input
 													style={{
-														height: '44px',
-														margin: '4px',
-														marginTop: '-8px',
-														flex: 1,
+														height    : '44px',
+														margin    : '4px',
+														marginTop : '-8px',
+														flex      : 1,
 													}}
 													{...fields?.mobile}
 												/>
@@ -191,14 +193,15 @@ const Form = ({
 										<Flex direction="column">
 											<Text
 												style={{
-													color: '#333333',
-													fontWeight: '500',
-													fontSize: '12px',
-													marginTop: '4px',
+													color      : '#333333',
+													fontWeight : '500',
+													fontSize   : '12px',
+													marginTop  : '4px',
 												}}
 											>
 												Company's address proof
-											</Text>{' '}
+											</Text>
+											{' '}
 											<br />
 											<AwsUploader
 												name="utility_bill_document_url"
@@ -221,10 +224,10 @@ const Form = ({
 								<Text
 									align="center"
 									style={{
-										fontStyle: 'italic',
-										color: '#999',
-										marginBottom: '25px',
-										fontSize: '10px',
+										fontStyle    : 'italic',
+										color        : '#999',
+										marginBottom : '25px',
+										fontSize     : '10px',
 									}}
 								>
 									We attach great importance to protecting your private data,
@@ -267,7 +270,7 @@ const Form = ({
 			)}
 		</Container>
 	);
-};
+}
 
 const StyledButton = styled(Button)`
 	background-color: #2c3e50 !important;

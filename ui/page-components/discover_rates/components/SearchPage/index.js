@@ -16,7 +16,8 @@ function SearchPage() {
 		apiTries,
 		setApiTries,
 	});
-	const { kyc_status, query } = useSelector(({ general, profile }) => ({
+	const { list = [], kyc_status, query } = useSelector(({ search, general, profile }) => ({
+		list       : search.past_searches || [],
 		kyc_status : profile?.organization?.kyc_status,
 		query      : general?.query,
 	}));
@@ -42,7 +43,7 @@ function SearchPage() {
 			{kyc_status === 'pending_from_user' || kyc_status === 'rejected' ? (
 				<KycBenefits />
 			) : null}
-			{quotaLoading && blockSearch ? <NoSearch /> : <PastResults />}
+			{quotaLoading && blockSearch && list.length === 0 ? <NoSearch /> : <PastResults />}
 		</div>
 	);
 }

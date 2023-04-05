@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { useCallback } from 'react/cjs/react.production.min';
 
 import { useRequest } from '@/packages/request';
 

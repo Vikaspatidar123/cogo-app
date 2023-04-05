@@ -53,7 +53,7 @@ function PortPairLayout(props) {
 	const watchSearchRates = watch('search_rates');
 	const childEmptyValues = {};
 
-	controls.forEach((controlItem) => {
+	controls?.forEach((controlItem) => {
 		childEmptyValues[controlItem.name] = controlItem.value || '';
 	});
 

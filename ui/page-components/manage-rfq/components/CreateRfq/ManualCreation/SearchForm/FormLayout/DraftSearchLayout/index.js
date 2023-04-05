@@ -1,6 +1,6 @@
 import { cl, Toast } from '@cogoport/components';
 import { IcMEdit, IcMDuplicate, IcMDelete } from '@cogoport/icons-react';
-import { useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 
 import ContainerInfo from './ContainerInfo';
 import Route from './Route';
@@ -68,15 +68,15 @@ function DraftSearchLayout({
 	}, 0);
 
 	const isAdditionalRemarks =	detentionDemurrageCount !== 0 || price?.price !== '';
-	const shippingRemarks = remarks[0] || {};
+	const shippingRemarks = useCallback(() => remarks[0] || {}, [remarks]);
 	const hasKey = 'calculate_by' in (item?.search_rates?.[0] || {});
 	const serviceDetails = getConfiguration('service-details', serviceType);
 
-	const prefferedType =		serviceType !== 'air_freight'
+	const prefferedType = serviceType !== 'air_freight'
 		? 'preferred_shipping_lines'
 		: 'preferred_air_lines';
 
-	const excludedType =		serviceType !== 'air_freight'
+	const excludedType = serviceType !== 'air_freight'
 		? 'excluded_shipping_lines'
 		: 'excluded_air_lines';
 
@@ -215,7 +215,8 @@ function DraftSearchLayout({
 				/>
 				<div className={styles.action_buttons}>
 					<IcMEdit
-						className={cl`${styles.edit_icon} ${(editForm || showForm) && styles.disable}`}
+						disable={editForm || showForm}
+						className={cl`${styles.edit_icon}`}
 						onClick={() => handleClick()}
 					/>
 					<IcMDuplicate className={styles.duplicate_icon} onClick={() => handleDuplicate()} />

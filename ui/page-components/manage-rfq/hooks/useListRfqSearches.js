@@ -1,5 +1,4 @@
-import { useEffect, useState } from 'react';
-import { useCallback } from 'react/cjs/react.production.min';
+import { useEffect, useState, useCallback } from 'react';
 
 import { useRequest } from '@/packages/request';
 
@@ -24,7 +23,7 @@ const useListRfqSearches = ({
 		url    : '/list_rfq_searches',
 	}, { manual: true });
 
-	const listRfqSearches = async () => {
+	const listRfqSearches = useCallback(async () => {
 		const response = await trigger({
 			params: {
 				page                     : 1,
@@ -46,11 +45,11 @@ const useListRfqSearches = ({
 			setActivePortPair(0);
 			setShowModal(response.data.contract_guide_view ? 'whyModal' : '');
 		}
-	};
+	}, [isNewRate, location, rateFilter, rfq_id, search_type, setActivePortPair, setShowModal, trigger]);
 
 	useEffect(() => {
 		listRfqSearches();
-	}, [rfq_id, listFilters]);
+	}, [rfq_id, listFilters, listRfqSearches]);
 	return {
 		portPairloading : loading,
 		portPairList,

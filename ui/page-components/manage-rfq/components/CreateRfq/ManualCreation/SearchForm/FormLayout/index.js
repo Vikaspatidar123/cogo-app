@@ -99,7 +99,6 @@ function FormLayout(props) {
 							}}
 						>
 							Add New Port Pair
-							{' '}
 							<IcMPlus className={styles.plus_icon} />
 						</Button>
 					</div>

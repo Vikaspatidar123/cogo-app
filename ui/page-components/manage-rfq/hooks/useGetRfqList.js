@@ -27,24 +27,28 @@ const useGetRfqList = ({ activeFilter }) => {
 	);
 
 	const getRfqList = useCallback(async () => {
-		const StatusMapping = {
-			all        : undefined,
-			live       : ['live'],
-			requested  : ['uploaded'],
-			draft      : ['draft'],
-			is_expired : ['is_expired'],
-		};
-		await trigger({
-			params: {
-				page                     : pagination,
-				list_count_data_required : true,
-				port_pair_data_required  : true,
-				filters                  : {
-					status    : StatusMapping[activeFilter],
-					serial_id : query || undefined,
+		try {
+			const StatusMapping = {
+				all        : undefined,
+				live       : ['live'],
+				requested  : ['uploaded'],
+				draft      : ['draft'],
+				is_expired : ['is_expired'],
+			};
+			await trigger({
+				params: {
+					page                     : pagination,
+					list_count_data_required : true,
+					port_pair_data_required  : true,
+					filters                  : {
+						status    : StatusMapping[activeFilter],
+						serial_id : query || undefined,
+					},
 				},
-			},
-		});
+			});
+		} catch (error) {
+			console.log(error);
+		}
 	}, [query, activeFilter, pagination, trigger]);
 
 	useEffect(() => {

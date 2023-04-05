@@ -24,7 +24,7 @@ function ShipmentPlan() {
 	});
 	const { services = [] } = contractData || {};
 	const [activeTab, setActiveTab] = useState(services[0] || '');
-	console.log(activeTab, services, 'rugved');
+
 	const {
 		serviceData = {},
 		setPagination = () => {},

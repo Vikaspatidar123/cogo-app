@@ -1,10 +1,9 @@
-// import Item from '@cogo/business-modules/form/Layout/Item';
 import { IcMDelete, IcMPlusInCircle } from '@cogoport/icons-react';
-import React from 'react';
 
 import styles from './styles.module.css';
 
 import getField from '@/packages/forms/Controlled';
+import getWidth from '@/ui/page-components/contract-management/utils/getWidth';
 
 function Child({
 	controls,
@@ -13,20 +12,17 @@ function Child({
 	index,
 	name,
 	remove,
-	error,
 	schedule,
 	showDeleteButton = true,
 	noDeleteButtonTill = 0,
 	disabled = false,
-	themeType,
 	handleAppendChild = () => {},
 	showButtons,
 	isEditPlan,
 }) {
-	console.log(control, 'controls1232');
 	return (
 		<div className={`${styles.styled_row} form-fields-${name}-${index}`}>
-			<div className={styles.shipment_no}>
+			<div className={styles.shipment_no} style={{ width: '23%' }}>
 				{index + 1}
 				{index + 1 === 1 && 'st'}
 				{index + 1 === 2 && 'nd'}
@@ -40,7 +36,8 @@ function Child({
 				const Element = getField(controlItem.type);
 				if (!Element) return null;
 				return (
-					<div className={styles.list}>
+					<div className={styles.list} style={{ width: getWidth(controlItem?.span) }}>
+						{' '}
 						<div className={styles.label}>{controlItem.label}</div>
 						<Element
 							{...controlItem}

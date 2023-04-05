@@ -1,4 +1,4 @@
-import { Button } from '@cogoport/components';
+import { ButtonIcon } from '@cogoport/components';
 import { IcMPlusInCircle } from '@cogoport/icons-react';
 import React from 'react';
 
@@ -16,14 +16,14 @@ function CreatePlanBox({ setShowModal = () => {}, loading = false }) {
 				<div className={styles.container}>
 					<div className={styles.card}>
 						<div className={styles.title}>Create a Plan</div>
-						<Button
-							className="primary md"
+						<ButtonIcon
+							size="md"
+							icon={<IcMPlusInCircle />}
+							themeType="secondary"
 							onClick={() => {
 								setShowModal(true);
 							}}
-						>
-							<IcMPlusInCircle />
-						</Button>
+						/>
 					</div>
 					<div className={styles.empty_component} />
 				</div>

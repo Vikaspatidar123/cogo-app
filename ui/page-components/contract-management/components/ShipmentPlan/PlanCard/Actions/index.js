@@ -39,7 +39,7 @@ function Actions({
 			getShipmentPlans(serviceId, serviceType);
 		}
 	};
-	const showCreateUpdateBtn =		!isPlanAbsent && showPlanBox && contract_status !== 'expired';
+	const showCreateUpdateBtn =	!isPlanAbsent && showPlanBox && contract_status !== 'expired';
 
 	const withShippingLineContract =		source === 'manual'
 		&& contract_type === 'with_carrier'
@@ -71,7 +71,7 @@ function Actions({
 							</div>
 					)}
 					{status !== 'rejected' && (
-						<Button className="secondary md" onClick={viewShipmentPlan}>
+						<Button themeType="secondary" onClick={viewShipmentPlan}>
 							{showPlanBox ? 'Hide' : 'Shipment'}
 							{' '}
 							Plan
@@ -82,7 +82,7 @@ function Actions({
 
 			{withShippingLineContract && (
 				<>
-					<Button className="secondary md" onClick={viewShipmentPlan} style={{ marginLeft: '10px' }}>
+					<Button themeType="secondary" onClick={viewShipmentPlan} style={{ marginLeft: '10px' }}>
 						{showPlanBox ? 'Hide' : 'View'}
 						Requested
 					</Button>
@@ -100,7 +100,6 @@ function Actions({
 
 			{!withShippingLineContract && (
 				<Button
-					className="primary sm"
 					onClick={() => setShowBookingModal(true)}
 					disabled={disabledBooking}
 					style={{ marginLeft: '10px' }}

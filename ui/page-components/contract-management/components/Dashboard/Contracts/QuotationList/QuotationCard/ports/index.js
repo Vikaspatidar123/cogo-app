@@ -59,6 +59,7 @@ function Ports({ item }) {
 						</div>
 					)}
 					<Button
+						themeType="secondary"
 						onClick={() => push(
 							`/contract-management/[contract_id]?contract_status=${status}`,
 							`/contract-management/${item.id}?contract_status=${status}`,

@@ -5,13 +5,7 @@ const ShipmentPlanControls = ({ validity_start, validity_end }) => [
 		initialCount       : 1,
 		noDeleteButtonTill : 1,
 		showAddIcon        : false,
-		value              : [
-			{
-				max_count  : '',
-				date_range : '',
-			},
-		],
-		controls: [
+		controls           : [
 			{
 				name      : 'max_count',
 				type      : 'number',

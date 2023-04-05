@@ -1,9 +1,7 @@
 import { Modal } from '@cogoport/components';
 import { format, isEmpty } from '@cogoport/utils';
-import React, { useState } from 'react';
+import { useState } from 'react';
 
-// import InitiateBookingModal from '../../../common/InitiateBooking';
-// import RequestBookingModal from '../../../common/RequestBooking';
 import InitiateBooking from '../../../common/InitiateBooking';
 import RequestBooking from '../../../common/RequestBooking';
 import useGetContractShipmentData from '../../../hooks/useGetContractShipmentData';
@@ -112,7 +110,7 @@ function PlanCard({
 		},
 	};
 
-	const utilisationCountExceed =		Number(KEYS_MAPPING[service_type]?.booked)
+	const utilisationCountExceed =	Number(KEYS_MAPPING[service_type]?.booked)
 		> Number(KEYS_MAPPING[service_type]?.req);
 
 	return (

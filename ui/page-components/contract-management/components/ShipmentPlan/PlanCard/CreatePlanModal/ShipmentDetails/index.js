@@ -21,7 +21,6 @@ function ShipmentDetails({
 
 		<div className={styles.container}>
 			<TableHeader serviceType={serviceType} />
-			{/* <div className={styles.layout_container}> */}
 			<Layout
 				controls={controls}
 				control={control}
@@ -35,7 +34,6 @@ function ShipmentDetails({
 				freqCount={freqCount}
 				isEditPlan={isEditPlan}
 			/>
-			{/* </div> */}
 		</div>
 	);
 }

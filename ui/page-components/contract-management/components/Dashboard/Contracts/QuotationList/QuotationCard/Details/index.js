@@ -25,9 +25,7 @@ function Details({ item, activeFilter }) {
 				{contract_name && (
 					<Tooltip
 						content={<div>{contract_name}</div>}
-						animation="shift-away"
 						placement="right"
-						theme="light-border"
 					>
 						<div className={styles.contract_name}>
 							Contract Name :

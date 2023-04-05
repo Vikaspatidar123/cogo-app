@@ -404,7 +404,8 @@ function QuotationDetails(
 										{handleIcon(service)}
 									</div>
 								) : (
-									handleShowButtons(service)
+									/* handleShowButtons(service) */
+									null
 								)}
 						</div>
 					</div>

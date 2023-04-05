@@ -1,40 +1,39 @@
+import { Button, Toast } from '@cogoport/components';
 import React, { useState } from 'react';
-import { Btn, cogoToast, Input } from '@cogo/deprecated_legacy/ui';
-import { useRequest } from '@cogo/commons/hooks';
-import showErrorsInToast from '@cogo/utils/showErrorsInToast';
-import { ButtonDiv, Container, InputDiv, ResendOtp } from './styles';
 
+import styles from './styles.module.css';
 import Timer from './Timer';
 
+import OtpInput from '@/packages/forms/Business/OTPLayout/components/OtpInput';
+import { useRequest } from '@/packages/request';
+import showErrorsInToast from '@/ui/commons/utils/showErrorsInToast';
+
 const buttonStyle = {
-	width: '142px',
-	height: '44px',
-	borderRadius: '10px',
-	fontSize: '14px',
+	width        : '142px',
+	height       : '44px',
+	borderRadius : '10px',
+	fontSize     : '14px',
 };
-const Bar = ({
+function Bar({
 	formValues,
-	scope,
 	id,
 	mobileNumber,
 	mobileCountryCode,
 	preferredLanguages,
 	countryId,
 	onFinalSubmit,
-}) => {
+}) {
 	const [otp, setOtp] = useState('');
 
-	const otpVarifyAPI = useRequest('post', false, scope)('/verify_user_mobile');
+	const [{ loading:otpLoading }, otpVarifyAPI] = useRequest({
+		url    : '/verify_user_mobile',
+		method : 'post',
+	}, { manual: true });
 
-	const otpLoading = otpVarifyAPI?.loading;
-
-	const submitKycAPI = useRequest(
-		'post',
-		false,
-		scope,
-	)('/submit_organization_kyc');
-
-	const kycLoading = submitKycAPI?.loading;
+	const [{ loading:kycLoading }, submitKycAPI] = useRequest({
+		url    : '/submit_organization_kyc',
+		method : 'post',
+	}, { manual: true });
 
 	const handleChange = (e) => {
 		setOtp(e?.target?.value);
@@ -44,12 +43,12 @@ const Bar = ({
 			const res = await otpVarifyAPI.trigger({
 				data: {
 					id,
-					mobile_number: mobileNumber,
-					mobile_country_code: mobileCountryCode,
+					mobile_number       : mobileNumber,
+					mobile_country_code : mobileCountryCode,
 				},
 			});
 			if (!res.hasError) {
-				cogoToast.success('OTP resended');
+				Toast.success('OTP resended');
 			} else {
 				showErrorsInToast(res?.messages);
 			}
@@ -59,27 +58,27 @@ const Bar = ({
 	};
 	const handleSubmit = async () => {
 		try {
-			const res = await otpVarifyAPI.trigger({
+			const res = await otpVarifyAPI({
 				data: {
 					id,
-					mobile_number: mobileNumber,
-					mobile_country_code: mobileCountryCode,
-					mobile_otp: otp,
+					mobile_number       : mobileNumber,
+					mobile_country_code : mobileCountryCode,
+					mobile_otp          : otp,
 				},
 			});
 			if (!res.hasError) {
 				try {
-					const resSubmit = await submitKycAPI.trigger({
+					const resSubmit = await submitKycAPI({
 						data: {
 							id,
-							preferred_languages: preferredLanguages,
-							country_id: countryId,
-							registration_number: formValues?.registration_number,
-							utility_bill_document_url: formValues?.utility_bill_document_url,
+							preferred_languages       : preferredLanguages,
+							country_id                : countryId,
+							registration_number       : formValues?.registration_number,
+							utility_bill_document_url : formValues?.utility_bill_document_url,
 						},
 					});
 					if (!resSubmit.hasError) {
-						cogoToast.success('KYC submitted successfully');
+						Toast.success('KYC submitted successfully');
 						window.location.reload();
 						if (onFinalSubmit) {
 							onFinalSubmit();
@@ -98,29 +97,29 @@ const Bar = ({
 		}
 	};
 	return (
-		<Container>
+		<div className={styles.container}>
 			<Timer initialMinute={2} initialSecond={120} />
-			{/* <OTP
-			length={6}
-			isNumberInput
-			handleOnChange={(otp) => console.log('OTP', otp)}
-		/> */}
-			<InputDiv>
-				<Input type="text" value={otp} onChange={handleChange} />
-			</InputDiv>
-			<ResendOtp onClick={handleResendOtp}>RESEND OTP?</ResendOtp>
+			<div className={styles.input_div}>
+				<OtpInput value={otp} onChange={handleChange} />
+			</div>
+			<div
+				className={styles.resend_otp}
+				role="presentation"
+				onClick={handleResendOtp}
+			>
+				RESEND OTP?
+			</div>
 			{/* {otpTime ? <a} */}
-			<ButtonDiv>
-				<Btn
+			<div className={styles.button_div}>
+				<Button
 					style={buttonStyle}
 					disabled={otpLoading || kycLoading}
-					className="small"
 					onClick={handleSubmit}
 				>
 					SUBMIT
-				</Btn>
-			</ButtonDiv>
-		</Container>
+				</Button>
+			</div>
+		</div>
 	);
-};
+}
 export default Bar;

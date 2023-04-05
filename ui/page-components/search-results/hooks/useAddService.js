@@ -3,6 +3,7 @@ import { isEmpty } from '@cogoport/utils';
 import { useState, useMemo, useImperativeHandle, useEffect } from 'react';
 
 import { APP_EVENT, trackEvent } from '../../discover_rates/common/analytics';
+import showElementsFunc from '../../discover_rates/common/SearchForm/utils/show-elements';
 import airControls from '../../discover_rates/configurations/search/air/form.controls.advanced';
 import airLocalsControls from '../../discover_rates/configurations/search/domestic/air-locals/form-controls.advanced';
 import fclCustomsControls from '../../discover_rates/configurations/search/domestic/fcl-customs/form-controls.advanced';
@@ -10,6 +11,8 @@ import fclLocalsControls from '../../discover_rates/configurations/search/domest
 import lclLocalsControls from '../../discover_rates/configurations/search/domestic/lcl-locals/form-controls.advanced';
 import fclControls from '../../discover_rates/configurations/search/fcl/form-controls.advanced';
 import lclControls from '../../discover_rates/configurations/search/lcl/form.controls.advanced';
+import formatSearch from '../../discover_rates/utils/format-create-search';
+import formatMainServiceData from '../../discover_rates/utils/format-main-service-data';
 import getServiceValues from '../helpers/get-service-values';
 
 import { useForm } from '@/packages/forms';
@@ -129,7 +132,7 @@ const useAddService = ({
 
 		setParams(rawParams);
 
-		const payload = formatCreateSearch(
+		const payload = formatSearch(
 			rawParams,
 			search_type,
 			{ [service?.service]: true },
@@ -154,7 +157,8 @@ const useAddService = ({
 	}, [JSON.stringify(formValues)]);
 
 	useEffect(() => {
-		setValues(
+		console.log('req to changes');
+		setValue(
 			prefillDetails?.addServiceDetails?.[
 				`${service?.service}:${service?.trade_type}`
 			],

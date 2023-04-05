@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Container } from './styles';
 
-const Timer = (props) => {
+import styles from './styles.module.css';
+
+function Timer(props) {
 	const { initialMinute = 0, initialSeconds = 0 } = props;
 	const [minutes, setMinutes] = useState(initialMinute);
 	const [seconds, setSeconds] = useState(initialSeconds);
@@ -24,16 +25,19 @@ const Timer = (props) => {
 		};
 	});
 	return (
-		<Container style={{ color: '#325398', marginTop: '30px' }}>
+		<div className={styles.container} style={{ color: '#325398', marginTop: '30px' }}>
 			{(minutes === 0 && seconds === 0) ? <h1>00:00</h1> : (
 				<h1>
 					{' '}
-					0{minutes}:{seconds < 10 ? `0${seconds}` : seconds}
+					0
+					{minutes}
+					:
+					{seconds < 10 ? `0${seconds}` : seconds}
 				</h1>
 			)}
-		</Container>
+		</div>
 
 	);
-};
+}
 
 export default Timer;

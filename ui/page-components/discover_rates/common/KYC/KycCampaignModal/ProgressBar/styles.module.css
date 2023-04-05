@@ -1,0 +1,23 @@
+.button_div {
+  display: flex;
+  justify-content: center;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  &.input {
+    width: 40px !important;
+  }
+}
+
+.resend_otp {
+  font-weight: bold;
+  font-size: 10px;
+  letter-spacing: 0.02em;
+  text-decoration-line: underline;
+  color: #034afd;
+  cursor: pointer;
+  margin: 16px 0px;
+}

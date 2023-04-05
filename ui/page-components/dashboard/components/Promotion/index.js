@@ -27,8 +27,6 @@ function Promotion() {
 		});
 	});
 
-	console.log(mainData, 'myObject');
-
 	return (
 		<div>
 			{loading && <Placeholder />}

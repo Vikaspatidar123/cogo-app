@@ -1,5 +1,5 @@
 .container {
-	padding: 0 15px;
+	padding: 25px;
 }
 
 .details {
@@ -10,8 +10,8 @@
 
 .validity {
 	margin-right: 10px;
-	color: #000000;
 	font-weight: 500;
+	color: #000;
 }
 
 .frequency {
@@ -21,12 +21,12 @@
 }
 
 .errorText {
-	margin: 20px 0px 0px 0px;
-	padding: 10px 0px;
-	background: #f59c3d;
-	border-radius: 4px;
+	padding: 10px 0;
+	margin: 20px 0 0;
 	color: #000;
 	text-align: center;
+	background: #f59c3d;
+	border-radius: 4px;
 
 	span {
 		font-weight: 600;
@@ -35,24 +35,24 @@
 
 .title {
 	font-size: 20px;
-	color: #170f49;
 	font-weight: 700;
+	color: #170f49;
 }
 
 .tag {
-	font-size: 14px;
-	color: #221f20;
+	width: fit-content;
+	padding: 2px 6px;
 	margin-right: 8px;
 	margin-bottom: 2px;
-	padding: 2px 6px;
+	font-size: 14px;
+	color: #221f20;
 	background: #f3fafa;
 	border-radius: 4px;
-	width: fit-content;
 }
 
 .notification {
+	margin-top: 15px;
 	font-size: 18px;
 	font-weight: 600;
 	color: #ee3425;
-	margin-top: 15px;
 }

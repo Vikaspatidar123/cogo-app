@@ -54,10 +54,10 @@ function CreatePlanModal({
 	const useCount = containersLeft || weightLeft || volumeLeft;
 	const check = compareAsc(toDate(validity_start), new Date());
 	const [error, setError] = useState(false);
-	const days =		differenceInDays(
-		toDate(validity_end).setUTCHours(23, 59, 59, 999),
+	const days = differenceInDays(
+		toDate(new Date(validity_end)).setUTCHours(23, 59, 59, 999),
 		check === 1
-			? toDate(validity_start).setUTCHours(0, 0, 0, 0)
+			? toDate(new Date(validity_start)).setUTCHours(0, 0, 0, 0)
 			: new Date().setUTCHours(0, 0, 0, 0),
 	) + 1;
 
@@ -172,6 +172,7 @@ function CreatePlanModal({
 			})));
 		}
 	}, [frequency, schedule, freqCount, plan_data]);
+
 	return (
 		<Modal
 			show={showModal}
@@ -181,7 +182,7 @@ function CreatePlanModal({
 			<div className={styles.container}>
 				<div className={styles.title}>Shipment Plan</div>
 
-				<div style={{ margin: '20px 0 15px 0' }}>
+				<div style={{ margin: '20px 0 15px' }}>
 					<Route
 						originPort={origin_port}
 						destinationPort={destination_port}
@@ -210,63 +211,61 @@ function CreatePlanModal({
 					</div>
 				</div>
 
-				{days < 1 && !isEditPlan ? (
+				{/* {days < 1 && !isEditPlan ? (
 					<div className={styles.notification}>
 						Contract Validity is expired, hence you cannot create plan.
 					</div>
+				) : ( */}
+				<Frequency
+					disableOptions={disableOptions}
+					frequency={frequency}
+					setFrequency={setFrequency}
+					setFreqCount={setFreqCount}
+					freqCount={freqCount}
+				/>
+
+				<Schedule
+					schedule={schedule}
+					setSchedule={setSchedule}
+					disableOptions={disableOptions}
+				/>
+
+				{error ? (
+					<div className={styles.error_text}>
+						Shipment Frequency days must be less than plan validity days
+						{' '}
+						<span>
+							(
+							{Number(days)}
+							)
+						</span>
+					</div>
 				) : (
 					<>
-						<Frequency
-							disableOptions={disableOptions}
-							frequency={frequency}
-							setFrequency={setFrequency}
-							setFreqCount={setFreqCount}
-							freqCount={freqCount}
-						/>
-
-						<Schedule
+						<ShipmentDetails
+							controls={newControls}
+							control={control}
+							errors={errors}
 							schedule={schedule}
-							setSchedule={setSchedule}
-							disableOptions={disableOptions}
+							frequency={frequency}
+							getValues={getValues}
+							handleSubmit={handleSubmit}
+							contractServiceId={serviceId}
+							serviceType={serviceType}
+							freqCount={freqCount}
+							isEditPlan={isEditPlan}
 						/>
 
-						{error ? (
-							<div className={styles.error_text}>
-								Shipment Frequency days must be less than plan validity days
-								{' '}
-								<span>
-									(
-									{Number(days)}
-									)
-								</span>
-							</div>
-						) : (
-							<>
-								<ShipmentDetails
-									controls={newControls}
-									control={control}
-									errors={errors}
-									schedule={schedule}
-									frequency={frequency}
-									getValues={getValues}
-									handleSubmit={handleSubmit}
-									contractServiceId={serviceId}
-									serviceType={serviceType}
-									freqCount={freqCount}
-									isEditPlan={isEditPlan}
-								/>
-
-								<Footer
-									loading={loading}
-									schedule={schedule}
-									setShowModal={setShowModal}
-									handleSubmit={handleSubmit}
-									handleFormSubmit={handleFormSubmit}
-								/>
-							</>
-						)}
+						<Footer
+							loading={loading}
+							schedule={schedule}
+							setShowModal={setShowModal}
+							handleSubmit={handleSubmit}
+							handleFormSubmit={handleFormSubmit}
+						/>
 					</>
 				)}
+				{/* )} */}
 			</div>
 		</Modal>
 	);

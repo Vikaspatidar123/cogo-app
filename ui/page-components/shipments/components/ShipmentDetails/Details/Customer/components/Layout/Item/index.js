@@ -53,7 +53,10 @@ function Item(props) {
 		control,
 	} = props || {};
 	console.log(control, '123control');
-	const Element = getField(type);
+	// if (type === 'pills') {
+	// 	type = 'chips';
+	// }
+	const Element = getField(type === 'pills' ? 'chips' : type);
 	const errorClass = error ? 'error' : null;
 	console.log(label, 'label');
 	const newProps = {};

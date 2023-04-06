@@ -78,6 +78,29 @@ function asyncFieldsPinCodeLocations(labelKey = 'name', valueKey = 'id') {
 		},
 	};
 }
+function asyncFieldsShippingLines() {
+	return {
+		valueKey    : 'id',
+		labelKey    : 'short_name',
+		endpoint    : 'list_operators',
+		initialCall : true,
+		params      : {
+			filters    : { operator_type: 'shipping_line', status: 'active' },
+			page_limit : 100,
+			sort_by    : 'short_name',
+			sort_type  : 'asc',
+		},
+	};
+}
+function asyncFieldsHScode() {
+	return {
+		valueKey    : 'id',
+		labelKey    : 'name',
+		endpoint    : 'list_hs_codes',
+		initialCall : true,
+		params      : { page_limit: 20 },
+	};
+}
 export {
 	asyncFieldsLocations,
 	asyncFieldsLocations2,
@@ -85,4 +108,6 @@ export {
 	asyncFieldsPartnerRoles,
 	asyncFieldsHsCodeCountries,
 	asyncFieldsPinCodeLocations,
+	asyncFieldsShippingLines,
+	asyncFieldsHScode,
 };

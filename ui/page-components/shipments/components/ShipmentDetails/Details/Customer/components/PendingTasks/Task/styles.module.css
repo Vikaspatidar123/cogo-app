@@ -1,0 +1,15 @@
+.placeholder{
+    width: 100%;
+}
+.task_container{
+    margin-left: 8px;
+}
+.form{
+    overflow-y: auto;
+	max-height: calc(100vh - 39.5vh);
+}
+.button_wrap{
+    margin: 20px 0px;
+	display: flex;
+	justify-content: flex-end;
+}

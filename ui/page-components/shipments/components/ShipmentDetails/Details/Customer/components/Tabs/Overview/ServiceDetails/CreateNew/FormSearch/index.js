@@ -59,12 +59,6 @@ function FormSearch({ extraParams, service, onClose, shipment_data, services }) 
 							|| startCase(service?.service_type)
 					}`}
 					/>
-					{/* <div className={styles.heading}>
-						{`Add ${startCase(service?.type)} ${
-							serviceCustomNames[service?.service_type]
-							|| startCase(service?.service_type)
-						}`}
-					</div> */}
 					<Modal.Body>
 						<div className={styles.content}>
 							{rednerForm}

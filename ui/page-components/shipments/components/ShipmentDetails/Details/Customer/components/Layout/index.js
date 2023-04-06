@@ -36,7 +36,7 @@ function Layout({
 	return (
 		<div>
 			<div className={styles.row}>
-				{controls.map((controlItem) => {
+				{controls?.map((controlItem) => {
 					const { type, span = 6, subType } = controlItem;
 					console.log(type, 'type12');
 					const show = !(controlItem.name in showElements)

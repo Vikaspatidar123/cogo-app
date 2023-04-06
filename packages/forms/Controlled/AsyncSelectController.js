@@ -6,7 +6,6 @@ function AsyncSelectController(props) {
 	const {
 		name, control, value, rules, ...rest
 	} = props;
-
 	return (
 		<Controller
 			key={rest.id}

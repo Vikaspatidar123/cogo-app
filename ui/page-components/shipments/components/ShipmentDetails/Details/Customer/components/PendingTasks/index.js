@@ -8,6 +8,7 @@ import EmptyState from '../EmptyState';
 import Card from './Card';
 import Footer from './Footer';
 import styles from './styles.module.css';
+import Task from './Task';
 
 function PendingTasks() {
 	const [contextValues] = useContext(ShipmentDetailContext);
@@ -56,7 +57,7 @@ function PendingTasks() {
 						</div>
 					)}
 
-					{/* {showModal ? (
+					{showModal ? (
 						<Modal
 							show={showModal}
 							onClose={() => setShowModal(false)}
@@ -70,7 +71,7 @@ function PendingTasks() {
 								task={tasks[index]}
 							/>
 						</Modal>
-					) : null} */}
+					) : null}
 				</div>
 			)}
 		</div>

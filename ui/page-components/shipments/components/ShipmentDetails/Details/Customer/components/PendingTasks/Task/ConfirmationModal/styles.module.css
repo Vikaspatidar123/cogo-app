@@ -1,0 +1,14 @@
+.description{
+    font-weight: 400;
+	font-size: 14px;
+	text-align: center;
+	margin-bottom: 10px;
+	margin-top: 20px;
+	color: #828282;
+	align-self: center;
+}
+.button_container{
+	background: #fff;
+	display: flex;
+	justify-content: space-evenly;
+}

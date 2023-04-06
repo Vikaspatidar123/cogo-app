@@ -1,5 +1,6 @@
 import { Button } from '@cogoport/components';
 import { IcMPlusInCircle } from '@cogoport/icons-react';
+import { isEmpty } from '@cogoport/utils';
 import React, { useState, useEffect } from 'react';
 
 import getControls from '../controls';
@@ -24,8 +25,8 @@ function PerPackageCargoDetails({
 	const controls = getControls({
 		selectedWeightType,
 		setSelectedWeightType,
-		showFilledValues,
 	});
+
 	const {
 		formState,
 		handleSubmit,
@@ -34,7 +35,19 @@ function PerPackageCargoDetails({
 		getValues,
 		control,
 		register,
-	} = useForm();
+	} = useForm({
+		defaultValues: {
+			packages: !isEmpty(showFilledValues?.perPackagedata?.packages)
+				? showFilledValues?.perPackagedata?.packages
+				: [
+					{
+						dimensions_unit : 'cm',
+						weight_unit     : 'kg_unit',
+						handling_type   : 'stackable',
+					},
+				],
+		},
+	});
 
 	const { errors } = formState;
 
@@ -61,7 +74,7 @@ function PerPackageCargoDetails({
 	});
 
 	useEffect(() => {
-		const weightUnit =			selectedWeightType === 'weight_by_unit' ? 'kg_unit' : 'kg_total';
+		const weightUnit =	selectedWeightType === 'weight_by_unit' ? 'kg_unit' : 'kg_total';
 		const packages = getValues('packages');
 		const prefilledPackages = showFilledValues?.perPackagedata?.packages;
 		packages.forEach((item, index) => {
@@ -99,8 +112,9 @@ function PerPackageCargoDetails({
 
 	return (
 		<div className={styles.container}>
-			<from onSubmit={handleSubmit(onSubmit)}>
+			<form onSubmit={handleSubmit(onSubmit)}>
 				<div style={{ maxHeight: 200, overflowY: 'auto', overflowX: 'hidden' }}>
+
 					{(fields || []).map((item, index) => (
 						<div style={{ marginBottom: 2 }}>
 							<FormComponent
@@ -160,7 +174,7 @@ function PerPackageCargoDetails({
 						</Button>
 					</div>
 				</div>
-			</from>
+			</form>
 		</div>
 	);
 }

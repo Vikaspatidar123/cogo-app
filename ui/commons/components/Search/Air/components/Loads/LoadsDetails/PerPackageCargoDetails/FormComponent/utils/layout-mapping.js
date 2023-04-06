@@ -12,22 +12,22 @@ const LAYOUT = {
 		controlNames: {
 			length: {
 				name  : 'length',
-				span  : 3,
+				span  : 2.76,
 				style : { paddingRight: 0 },
 			},
 			width: {
 				name  : 'width',
-				span  : 3,
+				span  : 2.76,
 				style : { padding: 0 },
 			},
 			height: {
 				name  : 'height',
-				span  : 3,
+				span  : 2.76,
 				style : { padding: 0 },
 			},
 			dimensions_unit: {
 				name  : 'dimensions_unit',
-				span  : 3,
+				span  : 3.6,
 				style : { paddingLeft: 0 },
 			},
 		},
@@ -46,7 +46,7 @@ const LAYOUT = {
 				style : { paddingLeft: 0 },
 			},
 		},
-		span: 2,
+		span: 2.3,
 	},
 	3: {
 		controlNames: {

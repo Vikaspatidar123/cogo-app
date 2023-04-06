@@ -1,5 +1,6 @@
 import AsyncSelectController from './AsyncSelectController';
 import CheckboxController from './CheckboxController';
+import CheckboxGroupController from './CheckboxGroupController';
 import ChipsController from './ChipController';
 import ControlledCommodityCon from './ControlledCommodityCon';
 import DatepickerController from './DatepickerController';
@@ -32,6 +33,7 @@ const MAPPING = {
 	'container_type-commodity' : ControlledCommodityCon,
 	'input-group'              : InputGroupController,
 	'inco-terms-select'        : IncoTermSelectController,
+	checkboxGroup              : CheckboxGroupController,
 
 };
 

@@ -1,6 +1,5 @@
 import { Tooltip } from '@cogoport/components';
 import { IcMInfo } from '@cogoport/icons-react';
-import { isEmpty } from '@cogoport/utils';
 
 import styles from './styles.module.css';
 
@@ -74,9 +73,7 @@ function GetWeightUnitLabel({
 				</text>
 				<text style={{ marginRight: '2px', marginLeft: '2px' }}>|</text>
 				<text
-					{...(selectedWeightType === 'weight_by_total'
-          	? SELECTED_STYLE
-          	: null)}
+					{...(selectedWeightType === 'weight_by_total' ? SELECTED_STYLE : null)}
 					onClick={() => setSelectedWeightType('weight_by_total')}
 				>
 					Total)
@@ -110,7 +107,6 @@ const getDimensionsUnitLabel = () => (
 const getControls = ({
 	selectedWeightType = '',
 	setSelectedWeightType = () => {},
-	showFilledValues = {},
 }) => {
 	const arr = [
 		{
@@ -137,8 +133,8 @@ const getControls = ({
 				},
 			],
 			style: {
-				width : '100px',
-				menu  : {
+				// width : '100px',
+				menu: {
 					left   : 0,
 					zIndex : 999999999999999,
 				},
@@ -153,7 +149,7 @@ const getControls = ({
 			type        : 'number',
 			value       : 1,
 			placeholder : '...',
-			style       : { width: '90px' },
+			// style       : { width: '90px' },
 			rules       : {
 				min      : 1,
 				required : 'required',
@@ -164,7 +160,7 @@ const getControls = ({
 			label       : 'Length',
 			type        : 'number',
 			value       : 1,
-			style       : { width: '80px' },
+			// style       : { width: '80px' },
 			placeholder : '...',
 			rules       : {
 				min      : 0.01,
@@ -176,7 +172,7 @@ const getControls = ({
 			label       : 'Width',
 			type        : 'number',
 			value       : 1,
-			style       : { width: '80px' },
+			// style       : { width: '80px' },
 			placeholder : '...',
 			rules       : {
 				min      : 0.01,
@@ -188,7 +184,7 @@ const getControls = ({
 			label       : 'Height',
 			type        : 'number',
 			value       : 1,
-			style       : { width: '80px' },
+			// style       : { width: '80px' },
 			placeholder : '...',
 			rules       : {
 				min      : 0.01,
@@ -200,7 +196,7 @@ const getControls = ({
 			label   : getDimensionsUnitLabel(),
 			type    : 'select',
 			value   : 'cm',
-			style   : { width: '80px' },
+			// style   : { width: '80px' },
 			options : [
 				{
 					label : 'CM',
@@ -220,7 +216,7 @@ const getControls = ({
 			label       : getWeightLabel(),
 			type        : 'number',
 			value       : 1,
-			style       : { width: '80px' },
+			// style       : { width: '80px' },
 			placeholder : '...',
 			rules       : {
 				min      : 0.001,
@@ -229,7 +225,7 @@ const getControls = ({
 		},
 		{
 			name  : 'weight_unit',
-			style : { width: '130px' },
+			// style : { width: '130px' },
 			label : (
 				<GetWeightUnitLabel
 					selectedWeightType={selectedWeightType}
@@ -245,7 +241,7 @@ const getControls = ({
 		{
 			name    : 'handling_type',
 			label   : '',
-			type    : 'checkbox',
+			type    : 'checkboxGroup',
 			options : [{ value: 'stackable', label: 'Stackable' }],
 		},
 	];
@@ -256,17 +252,8 @@ const getControls = ({
 			type        : 'fieldArray',
 			showButtons : true,
 			buttonText  : 'Add Package',
-			value       : !isEmpty(showFilledValues?.perPackagedata?.packages)
-				? showFilledValues?.perPackagedata?.packages
-				: [
-					{
-						dimensions_unit : 'cm',
-						weight_unit     : 'kg_unit',
-						handling_type   : 'stackable',
-					},
-				],
-			controls : arr,
-			rules    : {
+			controls    : arr,
+			rules       : {
 				required: 'required',
 			},
 		},

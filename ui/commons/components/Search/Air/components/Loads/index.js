@@ -16,7 +16,8 @@ function Loads(props, ref) {
 
 	const [showPopover, setShowPopover] = useState(false);
 
-	const airFreightArr = Object.values(serviceDetails || {}).filter((element) => ['air_freight'].includes(element.service_type));
+	const airFreightArr = Object.values(serviceDetails || {}).filter((element) => (
+		['air_freight'].includes(element.service_type)));
 
 	const {
 		packages_count,
@@ -97,14 +98,13 @@ function Loads(props, ref) {
 					/>
 				)}
 				interactive
-        // animation="shift-away"
 				visible={showPopover}
 				onClickOutside={() => setShowPopover(true)}
 			>
 				<div
 					className={styles.load_container}
 					role="presentation"
-          // showPopover={showPopover}
+					// showPopover={showPopover}
 					onClick={handlePopoverBtn}
 				>
 					{isEmpty(showFilledValues) ? (

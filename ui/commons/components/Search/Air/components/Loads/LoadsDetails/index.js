@@ -24,10 +24,6 @@ function LoadsDetails({
 	showFilledValues = {},
 	setShowFilledValues = () => {},
 }) {
-	if (!showPopover) {
-		return null;
-	}
-
 	const [currentTab, setCurrentTab] = useState(
 		!isEmpty(showFilledValues?.gross) ? 'gross' : 'per_package',
 	);

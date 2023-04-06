@@ -33,4 +33,12 @@
 }
 .row {
   display: flex;
+  flex-flow: row wrap;
+  flex-shrink: 0;
+  align-items: normal;
+  justify-content: flex-start;
+}
+
+.col{
+  padding: 0 8px;
 }

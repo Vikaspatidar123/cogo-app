@@ -30,7 +30,6 @@ function TagSingle({
 	showTagOptionsValue,
 	value,
 }) {
-	console.log(options, 'optionsoptions', showTagOptionsValue);
 	const isAnyOptionSelected = () => {
 		const selectedValue = (item.options || []).filter(
 			(option) => option.value === selected,
@@ -67,7 +66,7 @@ function TagSingle({
 			key={item.value}
 			role="presentation"
 			onClick={() => {
-      	onClick(item.value);
+				onClick(item.value);
 			}}
 			className={cl`${styles.container}${styles[id]} ${styles[className]}`}
 			id={id}
@@ -79,7 +78,7 @@ function TagSingle({
 					className={cl`${styles[id]} ${item.value === selected && styles.active}`}
 				>
 					<div className={cl`${styles.container_label} ${styles[className]}`}>
-						<Icon style={{ width: 20, height: 20 }} />
+						<Icon style={{ width: 17, height: 17 }} />
 
 						<div style={{ marginLeft: 8 }}>
 							{item?.options ? selectedOptionLabel || item.label : item.label}

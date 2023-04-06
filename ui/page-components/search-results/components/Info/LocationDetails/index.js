@@ -1,4 +1,4 @@
-import { Tooltip } from '@cogoport/components';
+import { cl, Tooltip } from '@cogoport/components';
 import { IcMPortArrow } from '@cogoport/icons-react';
 import React from 'react';
 
@@ -17,7 +17,7 @@ function LocationDetails({ data = {} }) {
 	const className = singleLocation.includes(data?.search_type) ? 'single' : '';
 
 	return (
-		<div className={`${styles.flex_row} ${className}`}>
+		<div className={cl`${styles.flex_row} ${className}`}>
 			<div className={styles.flex_column}>
 				<Tooltip placement="top" theme="light" content={origin?.name}>
 					<div
@@ -28,7 +28,7 @@ function LocationDetails({ data = {} }) {
 					</div>
 				</Tooltip>
 
-				<div className={`${styles.port} ${destination ? 'full-name' : 'full-detail'}`}>
+				<div className={cl`${styles.port} ${destination ? styles.full_name : styles.full_detail}`}>
 					{`${origin?.port_code ? `${origin?.port_code},` : ''} ${
 						origin_country?.pop() || ''
 					}`}

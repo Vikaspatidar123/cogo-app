@@ -2,7 +2,6 @@
 	margin-bottom: 0px;
 	display: flex;
 	flex-wrap: wrap;
-	justify-content: space-between;
 
 
 	.custom-select-input-chipcontainer {
@@ -32,8 +31,8 @@
 }
 
 .lable {
-	margin: 5px 0 5px 0;
-	font-weight: 500;
+	margin: 18px 0 12px 0;
+	font-weight: 600;
 	font-size: 14px;
 	color: #393f70;
 }
@@ -44,4 +43,7 @@
 	font-size: 12px;
 	line-height: 16px;
 	color: #cb6464;
+}
+.field{
+	padding: 0 8px;
 }

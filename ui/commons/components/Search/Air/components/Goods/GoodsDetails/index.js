@@ -6,6 +6,7 @@ import React, { useState, useEffect, useMemo } from 'react';
 import COMMODITY_TYPE_MAPPING from '../../../utils/CommodityMapping';
 
 import getControls from './controls';
+import IncotermController from './IncotermController';
 import styles from './styles.module.css';
 
 import { useForm } from '@/packages/forms';
@@ -37,12 +38,9 @@ function GoodsDetails({
 	toggleState,
 	options,
 	data = {},
+	loading = false,
 }) {
-	if (!showPopover) {
-		return null;
-	}
-
-	const { international_freight = {}, domestic_transport = {} } =		COMMODITY_TYPE_MAPPING || {};
+	const { international_freight = {}, domestic_transport = {} } =	COMMODITY_TYPE_MAPPING || {};
 
 	const [commoditySubtypeOptions, setCommoditySubTypeOptions] = useState([]);
 	const controls = getControls({
@@ -63,10 +61,22 @@ function GoodsDetails({
 		watch,
 		handleSubmit,
 		control,
-	} = useForm();
+	} = useForm({
+		defaultValues: {
+			cargo_date        : cargo_clearance_date || tomorrow,
+			incoterms         : goodsDetail?.incoterms,
+			service_name      : goodsDetail.service_name,
+			commodity_type    : goodsDetail?.commodity_type || goodsDetail?.values?.commodity_type,
+			commodity_subtype : goodsDetail?.values?.commodity_subtype
+			|| (serviceType === 'air_international' ? 'all' : 'others'),
+			dry_ice_required: goodsDetail?.dry_ice_required,
+		},
+	});
+
 	const { errors = {} } = formState || {};
 
 	const watchCommodity = watch('commodity_type');
+
 	useEffect(() => {
 		if (data.length > 0) {
 			if (goodsDetail?.incoterms && data.includes(goodsDetail?.incoterms)) {
@@ -85,16 +95,28 @@ function GoodsDetails({
 		}
 	}, [JSON.stringify(data)]);
 
+	const getOption = (serviceTypeGooods) => {
+		if (watchCommodity === 'general' || watchCommodity === 'other_special') {
+			return serviceTypeGooods[watchCommodity];
+		}
+		const optArr = serviceTypeGooods[watchCommodity];
+
+		const option = optArr.map((opt) => (
+			[...opt.options]
+		));
+
+		return option.flat();
+	};
+
 	const handleCommoditySubtype = () => {
-		const serviceTypeGooods =			serviceType === 'air_domestic'
-			? domestic_transport
-			: international_freight;
+		const serviceTypeGooods = serviceType === 'air_domestic' ? domestic_transport : international_freight;
 		if (
 			['general', 'dangerous', 'temp_controlled', 'other_special'].includes(
 				watchCommodity,
 			)
 		) {
-			setCommoditySubTypeOptions(serviceTypeGooods[watchCommodity]);
+			const option = getOption(serviceTypeGooods);
+			setCommoditySubTypeOptions(option);
 
 			if (
 				[
@@ -103,10 +125,10 @@ function GoodsDetails({
 				].includes(watchCommodity)
 			) {
 				if (goodsDetail?.values?.commodity_subtype) {
-					setValue('commodity_subtype', goodsDetail?.values?.commodity_subtype);
+					setValue('commodity_subtype', goodsDetail?.values?.commodity_subtype || '');
 				}
 			} else {
-				setValue('commodity_subtype', MAPPING[watchCommodity]);
+				setValue('commodity_subtype', MAPPING[watchCommodity] || '');
 			}
 		}
 	};
@@ -116,24 +138,19 @@ function GoodsDetails({
 	}, [watchCommodity, serviceType]);
 
 	const onSubmit = (values) => {
+		const goodsCommodity = values.commodity_type === 'general' ? 'general' : 'special_consideration';
 		console.log(values, 'values');
-		const goodsCommodity =			values.commodity_type === 'general' ? 'general' : 'special_consideration';
-
-		const getCargoReadyDate = getValues('cargo_date');
-
-		const formValues = {
-			cargoDate: getCargoReadyDate,
-		};
 
 		const {
 			dry_ice_required = false,
 			incoterms = '',
 			service_name = '',
+			cargo_date = '',
 			...rest
 		} = values || {};
 
 		setGoodsDetail({
-			...formValues,
+			cargoDate    : cargo_date,
 			dry_ice_required,
 			commodity    : goodsCommodity,
 			values       : { ...rest },
@@ -173,6 +190,21 @@ function GoodsDetails({
 		<div className={styles.container}>
 			<div className={styles.header_container}>
 				{controls.map((item) => {
+					if (item?.name === 'incoterms') {
+						return (
+							<div className={styles.field} key={item.name}>
+								<IncotermController
+									item={item}
+									toggleState={toggleState}
+									setToggleState={setToggleState}
+									options={options}
+									setValue={setValue}
+									getValues={getValues}
+									loading={loading}
+								/>
+							</div>
+						);
+					}
 					const Element = getField(item.type);
 					const show = showElements[item.name];
 					return (
@@ -180,9 +212,10 @@ function GoodsDetails({
 							<div className={styles.field} key={item.name}>
 								<div className={styles.lable}>{item.label}</div>
 								<Element {...item} control={control} />
-								{errors && (
+								{errors[item?.name] && (
 									<div className={styles.errors}>
-										{errors[item?.name]?.message}
+										{errors[item?.name]?.type}
+										*
 									</div>
 								)}
 							</div>
@@ -203,7 +236,7 @@ function GoodsDetails({
 				>
 					CANCEL
 				</Button>
-				<Button size="md" onClick={handleSubmit(onSubmit)}>
+				<Button size="md" themeType="accent" onClick={handleSubmit(onSubmit)}>
 					CONFIRM
 				</Button>
 			</div>

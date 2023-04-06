@@ -38,59 +38,57 @@ function Tags({
 	return (
 		<div
 			ref={cRef}
-			className={cl`${styles.with_mobile} ${styles.without_mobile} ${
-      	styles.search_type || ''
-			}`}
+			className={cl`${styles.with_mobile} ${styles.without_mobile} ${styles.search_type || ''}`}
 		>
 			{prefix ? (
 				<div className={cl`${styles.text} ${styles.web}`}>{prefix}</div>
 			) : null}
 
 			{list.map((item) => {
-      	const { value } = item || {};
+				const { value } = item || {};
 
-      	if (search_type === 'forecast') {
-      		const flag = ['domestic', 'container_transportation'].includes(value);
+				if (search_type === 'forecast') {
+					const flag = ['domestic', 'container_transportation'].includes(value);
 
-      		if (flag) {
-      			return null;
-      		}
-      	}
+					if (flag) {
+						return null;
+					}
+				}
 
-      	// Removed Rail Domestic from App Side
+				// Removed Rail Domestic from App Side
 
-      	let newOptions = item?.options;
+				let newOptions = item?.options;
 
-      	if (value === 'container_transportation') {
-      		newOptions = [{ value: 'haulage', label: 'Haulage' }];
-      	}
+				if (value === 'container_transportation') {
+					newOptions = [{ value: 'haulage', label: 'Haulage' }];
+				}
 
-      	if (!isEmpty(item.options)) {
-      		const valueShowPropMapping = {
-      			domestic                 : showDomestic,
-      			container_transportation : showContainerTransportation,
-      		};
+				if (!isEmpty(item.options)) {
+					const valueShowPropMapping = {
+						domestic                 : showDomestic,
+						container_transportation : showContainerTransportation,
+					};
 
-      		if (valueShowPropMapping[value]) {
-      			return (
-	<Tag
-		item={item}
-		selected={selected}
-		options={newOptions}
-		className={styles[className]}
-		id={`search_form_mode_${value}`}
-		onClick={() => {
-                	setShowTagOptionsValue(value);
-		}}
-		onChange={onChange}
-		showTagOptionsValue={showTagOptionsValue}
-		value={value}
-	/>
-      			);
-      		}
-      	}
-      	{
-      		/* <SelectController
+					if (valueShowPropMapping[value]) {
+						return (
+							<Tag
+								item={item}
+								selected={selected}
+								options={newOptions}
+								className={styles[className]}
+								id={`search_form_mode_${value}`}
+								onClick={() => {
+									setShowTagOptionsValue(value);
+								}}
+								onChange={onChange}
+								showTagOptionsValue={showTagOptionsValue}
+								value={value}
+							/>
+						);
+					}
+				}
+
+				/* <SelectController
 		key={value}
 		name={`search-${value}-tags`}
 		options={newOptions}
@@ -117,17 +115,17 @@ function Tags({
 			/>
 		)}
 	/> */
-      	}
-      	return (
-	<Tag
-		key={value}
-		item={item}
-		selected={selected}
-		onClick={onChange}
-		className={className}
-		id={`search_form_mode_${value}`}
-	/>
-      	);
+
+				return (
+					<Tag
+						key={value}
+						item={item}
+						selected={selected}
+						onClick={onChange}
+						className={className}
+						id={`search_form_mode_${value}`}
+					/>
+				);
 			})}
 		</div>
 	);

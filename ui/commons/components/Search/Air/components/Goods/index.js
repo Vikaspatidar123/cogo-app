@@ -1,5 +1,5 @@
 import { Popover } from '@cogoport/components';
-import { startCase, upperCase, isEmpty } from '@cogoport/utils';
+import { startCase, upperCase, isEmpty, format } from '@cogoport/utils';
 import React, {
 	useState,
 	forwardRef,
@@ -14,7 +14,6 @@ import styles from './styles.module.css';
 import usePaymentType from './usePaymentsType';
 
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
-// import formatDate from '@/ui/commons/utils/formatDate';
 
 const showFilledPaymentDetails = ({ goodsDetail = {}, toggleState }) => {
 	let displayGoodsType = '';
@@ -28,41 +27,33 @@ const showFilledPaymentDetails = ({ goodsDetail = {}, toggleState }) => {
 	return (
 		<div className={styles.details_container}>
 			<div className={styles.details}>
-				{/* {formatDate({
-					date       : goodsDetail?.cargoDate,
-					dateFormat : GLOBAL_CONSTANTS.formats.date['dd MMM yyyy'],
-					formatType : 'date',
-				})} */}
+				{format(goodsDetail?.cargoDate, GLOBAL_CONSTANTS.formats.date['dd MMM yyyy'])}
 			</div>
 
-			{(displayGoodsType
-        && goodsDetail?.values?.commodity_type === 'dangerous')
-      || goodsDetail?.commodity_type === 'dangerous' ? (
-	<div className={styles.details}>
-		{startCase(
-			goodsDetail?.values?.commodity_type || goodsDetail?.commodity_type,
-		)}
-	</div>
+			{(displayGoodsType && goodsDetail?.values?.commodity_type === 'dangerous')
+			|| goodsDetail?.commodity_type === 'dangerous' ? (
+				<div className={styles.details}>
+					{startCase(
+						goodsDetail?.values?.commodity_type || goodsDetail?.commodity_type,
+					)}
+				</div>
 				) : null}
 
-			{(displayGoodsType
-        && goodsDetail?.values?.commodity_type === 'temp_controlled')
-      || goodsDetail?.commodity_type === 'temp_controlled' ? (
-	<div className={styles.details}>
-		{startCase(goodsDetail.values?.commodity_type)
-            || startCase(goodsDetail?.commodity_type)}
-	</div>
-      	) : null}
+			{(displayGoodsType && goodsDetail?.values?.commodity_type === 'temp_controlled')
+			|| goodsDetail?.commodity_type === 'temp_controlled' ? (
+				<div className={styles.details}>
+					{startCase(goodsDetail.values?.commodity_type) || startCase(goodsDetail?.commodity_type)}
+				</div>
+				) : null}
 
-			{(displayGoodsType
-        && goodsDetail?.values?.commodity_type === 'other_special')
-      || goodsDetail?.commodity_type === 'other_special' ? (
-	<div className={styles.details}>
-		{startCase(
-          	goodsDetail?.values?.commodity_type || goodsDetail?.commodity_type,
-		)}
-	</div>
-      	) : null}
+			{(displayGoodsType && goodsDetail?.values?.commodity_type === 'other_special')
+			|| goodsDetail?.commodity_type === 'other_special' ? (
+				<div className={styles.details}>
+					{startCase(
+						goodsDetail?.values?.commodity_type || goodsDetail?.commodity_type,
+					)}
+				</div>
+				) : null}
 
 			{displayGoodsType && goodsDetail?.commodity === 'general' ? (
 				<div className={styles.details}>
@@ -213,7 +204,7 @@ function Goods(props, ref) {
 
 	useImperativeHandle(ref, imperativeHandle, [imperativeHandle]);
 
-	const { options, data } = usePaymentType({
+	const { options, data, loading } = usePaymentType({
 		inco_term,
 		toggleState,
 		location,
@@ -242,6 +233,7 @@ function Goods(props, ref) {
 						setToggleState={setToggleState}
 						detail={detail}
 						options={options}
+						loading={loading}
 						data={data}
 					/>
 				)}
@@ -253,13 +245,13 @@ function Goods(props, ref) {
 				<div
 					role="presentation"
 					className={styles.payment_terms_container}
-          // showPopover={showPopover}
+					// showPopover={showPopover}
 					onClick={() => setShowPopover(!showPopover)}
 				>
 					{!goodsDetail?.commodity ? (
 						<div className="text">Tell us about your goods</div>
 					) : (
-          	showFilledPaymentDetails({ goodsDetail, toggleState })
+						showFilledPaymentDetails({ goodsDetail, toggleState })
 					)}
 				</div>
 			</Popover>

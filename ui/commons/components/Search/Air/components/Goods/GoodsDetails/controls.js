@@ -32,7 +32,7 @@ const controls = ({
 	commoditySubtypeOptions,
 	setToggleState,
 	toggleState,
-	options,
+	options = [],
 	goodsDetail,
 	serviceType,
 }) => [
@@ -41,9 +41,8 @@ const controls = ({
 		label                 : 'Cargo Ready Date',
 		type                  : 'datepicker',
 		style                 : { width: '200px' },
-		span                  : 6,
 		isPreviousDaysAllowed : false,
-		value                 : cargo_clearance_date || tomorrow,
+		// value                 : cargo_clearance_date || tomorrow,
 		rules                 : { required: 'This is required' },
 	},
 	{
@@ -52,7 +51,6 @@ const controls = ({
 		type        : 'select',
 		style       : { width: '200px' },
 		placeholder : 'Add Incoterms',
-		span        : 6,
 		disabled    : isEmpty(options),
 		options     : [
 			{
@@ -60,8 +58,8 @@ const controls = ({
 			},
 			...options,
 		],
-		value : goodsDetail?.incoterms,
-		style : {
+		// value : goodsDetail?.incoterms,
+		style: {
 			menu: {
 				right        : 0,
 				background   : 'white',
@@ -77,10 +75,9 @@ const controls = ({
 	{
 		name    : 'service_name',
 		label   : 'Service Name',
-		value   : goodsDetail.service_name,
+		// value   : goodsDetail.service_name,
 		style   : { width: '200px' },
 		type    : 'select',
-		span    : 6,
 		options : SERVICE_OPTIONS,
 		rules   : { required: true },
 	},
@@ -89,20 +86,18 @@ const controls = ({
 		name    : 'commodity_type',
 		label   : 'Commodity Type',
 		style   : { width: '200px' },
-		value   : goodsDetail?.commodity_type || goodsDetail?.values?.commodity_type,
+		// value   : goodsDetail?.commodity_type || goodsDetail?.values?.commodity_type,
 		type    : 'select',
-		span    : 6,
 		options : OPTIONS,
 		rules   : { required: true },
 	},
 	{
-		name  : 'commodity_subtype',
-		label : 'Commodity Subtype',
-		value:
-      goodsDetail?.values?.commodity_subtype
-      || (serviceType === 'air_international' ? 'all' : 'others'),
+		name    : 'commodity_subtype',
+		label   : 'Commodity Subtype',
+		// 	value:
+		//   goodsDetail?.values?.commodity_subtype
+		//   || (serviceType === 'air_international' ? 'all' : 'others'),
 		type    : 'select',
-		span    : 6,
 		options : commoditySubtypeOptions,
 		style   : {
 			width : '200px',
@@ -120,7 +115,6 @@ const controls = ({
 		name     : 'dry_ice_required',
 		type     : 'checkbox',
 		style    : { width: '200px' },
-		span     : 12,
 		label    : 'Dry Ice required',
 		// options  : [{ value: true }],
 		value    : goodsDetail?.dry_ice_required,

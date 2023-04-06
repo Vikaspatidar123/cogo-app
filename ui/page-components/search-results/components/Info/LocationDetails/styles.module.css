@@ -13,7 +13,7 @@
 		max-width: 140px;
 	}
 
-	.full_name {
+	&.full_name {
 		max-width: 150px;
 		font-size: 10px;
 		font-weight: 400;
@@ -27,7 +27,7 @@
 		margin: auto;
 	}
 
-	.full-detail {
+	&.full-detail {
 		max-width: 100%;
 		font-size: 10px;
 		font-weight: 400;

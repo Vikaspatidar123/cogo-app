@@ -30,7 +30,7 @@ function Info({
 	rates = [],
 	possible_additional_services = [],
 }) {
-	const { scope, query } = useSelector(({ general }) => general);
+	const { query } = useSelector(({ general }) => general);
 
 	const [editSearch, setEditSearch] = useState(false);
 

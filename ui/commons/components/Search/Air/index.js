@@ -72,7 +72,7 @@ function Air({
 							extraParams={extraParams}
 							setToggleState={setToggleState}
 							ref={(r) => {
-              	spotRef.current.route = r;
+								spotRef.current.route = r;
 							}}
 						/>
 					</div>
@@ -83,7 +83,7 @@ function Air({
 							serviceType={serviceType}
 							airFreightData={airFreightData}
 							ref={(r) => {
-              	airFormRef.current.goods = r;
+								airFormRef.current.goods = r;
 							}}
 							formError={formError}
 							location={location}
@@ -94,7 +94,7 @@ function Air({
 							airFreightData={airFreightData}
 							formError={formError}
 							ref={(r) => {
-              	airFormRef.current.load = r;
+								airFormRef.current.load = r;
 							}}
 							serviceDetails={serviceDetails}
 						/>
@@ -106,8 +106,8 @@ function Air({
 				<Button
 					className="primary md"
 					onClick={() => {
-          	onClickSearchRates();
-          	onSubmit();
+						onClickSearchRates();
+						onSubmit();
 					}}
 					disabled={loading}
 				>

@@ -8,6 +8,7 @@ import styles from './styles.module.css';
 
 import { useForm } from '@/packages/forms';
 import getField from '@/packages/forms/Controlled';
+import getWidth from '@/ui/page-components/discover_rates/common/SearchForm/utils/getWidth';
 
 function Route({
 	isOriginPincodeChecked = false,
@@ -200,7 +201,7 @@ function Route({
 				const show = showElements[item.name];
 				return (
 					show && (
-						<div className={styles.field}>
+						<div className={styles.field} style={{ width: getWidth(item?.span) }}>
 							<div className={styles.lable}>{item.labelShow}</div>
 							<Element {...item} control={control} />
 							{errors && (

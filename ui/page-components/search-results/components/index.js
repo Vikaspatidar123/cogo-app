@@ -319,14 +319,13 @@ function Results({
 							scheduleList={scheduleList}
 						/>
 
-						{(marketplaceRates === 1 ? i === 0 : i % 10 === 1)
-            && swb_with_rates ? (
-	<AddRate
-		type="rates-found"
-		setAddRate={setAddRate}
-		show={false}
-	/>
-            	) : null}
+						{(marketplaceRates === 1 ? i === 0 : i % 10 === 1) && swb_with_rates ? (
+							<AddRate
+								type="rates-found"
+								setAddRate={setAddRate}
+								show={false}
+							/>
+						) : null}
 					</>
 				))}
 			</>

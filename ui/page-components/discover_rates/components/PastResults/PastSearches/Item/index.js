@@ -12,9 +12,7 @@ function ReceivedRevert({ data, mobile }) {
 
 	return (
 		<div
-			className={cl`${styles.container} ${
-      	data.expired ? styles.disabled : styles.enabled
-			}`}
+			className={cl`${styles.container} ${data.expired ? styles.disabled : styles.enabled}`}
 		>
 			<div className={styles.section}>
 				<div className={cl`${styles[className]} ${styles.icon_section}`}>
@@ -28,9 +26,7 @@ function ReceivedRevert({ data, mobile }) {
 					<div className={cl`${styles[className]} ${styles.section}`}>
 						<PortDetails data={data} mobile={mobile} />
 						<div
-							style={{
-              	maxWidth: !mobile ? 180 : '',
-							}}
+							style={{ maxWidth: !mobile ? 180 : '' }}
 						>
 							<ContainerInfo detail={data} />
 						</div>

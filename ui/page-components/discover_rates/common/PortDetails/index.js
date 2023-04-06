@@ -56,7 +56,7 @@ function PortDetails({ data, mobile }) {
 			<Item location={origin} search_type={search_type} />
 
 			{!isSingleLocation && (
-				<IcMPortArrow style={{ marginRight: '7px' }} />
+				<IcMPortArrow style={{ flex: 1 }} />
 			)}
 
 			{!isSingleLocation && (

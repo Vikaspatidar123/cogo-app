@@ -71,7 +71,7 @@ function PastSearches({ mobile = false, setPastSearchCount = () => {} }) {
 		<div className={cl`${styles[className]} ${styles.container}`}>
 			{loading && <Loader mobile={mobile} />}
 
-			{	(list || [])?.map((item) => (
+			{(list || [])?.map((item) => (
 				<Item
 					key={item.created_at}
 					data={{
@@ -81,7 +81,7 @@ function PastSearches({ mobile = false, setPastSearchCount = () => {} }) {
 					}}
 					mobile={mobile}
 				/>
-	  ))}
+			))}
 
 		</div>
 	);

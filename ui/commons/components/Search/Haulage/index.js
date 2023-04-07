@@ -27,13 +27,10 @@ function Haulage({ extraParams }) {
 		},
 	};
 
-	const SERVICE_TYPE_COMPONENT_MAPPING = useMemo(
-		() => ({
-			[TRAILER_FREIGHT] : SearchForm,
-			[HAULAGE_FREIGHT] : SearchForm,
-		}),
-		[],
-	);
+	const SERVICE_TYPE_COMPONENT_MAPPING = useMemo(() => ({
+		[TRAILER_FREIGHT] : SearchForm,
+		[HAULAGE_FREIGHT] : SearchForm,
+	}), []);
 
 	const ActiveSearchComponent = SERVICE_TYPE_COMPONENT_MAPPING[serviceType] || null;
 

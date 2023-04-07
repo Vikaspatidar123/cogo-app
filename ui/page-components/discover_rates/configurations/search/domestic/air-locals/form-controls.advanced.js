@@ -21,7 +21,7 @@ const formControlsAdvanced = (isChannelPartner = false) => [
 		params         : { filters: { type: ['pincode', 'city'] } },
 		condition      : { services: ['export_transportation'] },
 		rules          : { required: 'Origin Pincode is required' },
-		style          : { width: '200px' },
+		// style          : { width: '200px' },
 	},
 	{
 		name      : 'export_transportation_truck_type',

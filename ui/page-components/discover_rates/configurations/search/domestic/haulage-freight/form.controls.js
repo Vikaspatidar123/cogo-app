@@ -11,7 +11,7 @@ const controls = [
 		grouped           : ['city', 'country'],
 		params            : { filters: { type: ['seaport', 'country', 'city'] } },
 		rules             : { required: 'Origin Port is required' },
-		style             : { width: '280px' },
+		// style             : { width: '280px' },
 	},
 	{
 		label             : 'Destination Location',
@@ -23,7 +23,7 @@ const controls = [
 		grouped           : ['city', 'country'],
 		params            : { filters: { type: ['seaport', 'country', 'city'] } },
 		rules             : { required: 'Destination Port is required' },
-		style             : { width: '280px' },
+		// style             : { width: '280px' },
 	},
 	{
 		name        : 'containers',

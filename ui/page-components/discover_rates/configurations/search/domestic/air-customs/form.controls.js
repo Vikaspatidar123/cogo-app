@@ -9,7 +9,7 @@ const formControls = () => [
 		grouped           : ['city'],
 		params            : { filters: { type: ['airport', 'city'] } },
 		rules             : { required: 'AirPort is required' },
-		style             : { width: '350px' },
+		// style             : { width: '350px' },
 	},
 	{
 		label             : 'CUSTOMS TYPE',
@@ -22,8 +22,8 @@ const formControls = () => [
 			{ label: 'Origin', value: 'export' },
 			{ label: 'Destination', value: 'import' },
 		],
-		rules : { required: 'Customs Type is required' },
-		style : { width: '350px' },
+		rules: { required: 'Customs Type is required' },
+		// style : { width: '350px' },
 	},
 	{
 		label         : 'Commodity',

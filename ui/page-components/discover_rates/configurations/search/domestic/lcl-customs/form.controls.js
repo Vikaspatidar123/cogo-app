@@ -8,7 +8,7 @@ const formControls = () => [
 		optionsListKey    : 'locations',
 		params            : { filters: { type: ['city', 'seaport'] } },
 		rules             : { required: 'Port is required' },
-		style             : { width: '350px' },
+		// style             : { width: '350px' },
 	},
 	{
 		label             : 'CUSTOMS TYPE',
@@ -21,8 +21,8 @@ const formControls = () => [
 			{ label: 'Origin', value: 'export' },
 			{ label: 'Destination', value: 'import' },
 		],
-		rules : { required: 'Customs Type is required' },
-		style : { width: '350px' },
+		rules: { required: 'Customs Type is required' },
+		// style : { width: '350px' },
 	},
 	{
 		label         : 'Commodity',

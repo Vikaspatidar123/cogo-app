@@ -14,6 +14,7 @@ import Options from './Options';
 import Route from './Route';
 import styles from './styles.module.css';
 import getControls from './utils/getControls';
+import getWidth from './utils/getWidth';
 
 import { useForm } from '@/packages/forms';
 import FTL from '@/ui/commons/components/Search//FTL';
@@ -31,7 +32,10 @@ const containerDetailsModes = [
 	'fcl_customs',
 ];
 
-const getRFQControls = (optControls, index) => optControls.form.map((item) => ({ ...item, name: `${index}-${item.name}` }));
+const getRFQControls = (optControls, index) => optControls.form.map((item) => ({
+	...item,
+	name: `${index}-${item.name}`,
+}));
 
 function Form(
 	{
@@ -189,6 +193,7 @@ function Form(
 		form_id,
 		date,
 	}));
+
 	let cargoDetailsSpan = 3;
 	if (
 		(isSmall && !['rfq', 'contract'].includes(search_type))
@@ -304,7 +309,10 @@ function Form(
 				<div>
 					<form onSubmit={handleSubmit(submitData, onError)}>
 						<div className={styles.row}>
-							<div className={styles.search_form_route_container_col}>
+							<div
+								className={styles.search_form_route_container_col}
+								// style={{ width: getWidth(locationsSpan) }}
+							>
 								<Route
 									origin={allControls.find((x) => x.name === origin?.name)}
 									setLocation={setLocation}
@@ -325,7 +333,10 @@ function Form(
 								/>
 							</div>
 
-							<div className={styles.search_form_options_container_col}>
+							<div
+								className={styles.search_form_options_container_col}
+								// style={{ width: getWidth(cargoDetailsSpan) }}
+							>
 								{index === 0 && search_type !== 'rfq' ? (
 									<div
 										className={cl`${styles.label}

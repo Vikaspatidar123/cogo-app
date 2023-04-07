@@ -11,7 +11,7 @@ const formControlsAdvanced = (setOperatorName, is_org_pass_through) => [
 		grouped           : ['city'],
 		params            : { filters: { type: ['seaport', 'city'] } },
 		rules             : { required: 'Port is required' },
-		style             : { width: '350px' },
+		// style             : { width: '350px' },
 	},
 	{
 		label             : 'LOCALS TYPE (HANDLING TYPE)',
@@ -24,8 +24,8 @@ const formControlsAdvanced = (setOperatorName, is_org_pass_through) => [
 			{ label: 'Origin', value: 'export' },
 			{ label: 'Destination', value: 'import' },
 		],
-		rules : { required: 'Locals Type is required' },
-		style : { width: '350px' },
+		rules: { required: 'Locals Type is required' },
+		// style : { width: '350px' },
 	},
 	...(is_org_pass_through
 		? [
@@ -39,7 +39,7 @@ const formControlsAdvanced = (setOperatorName, is_org_pass_through) => [
 					},
 				],
 			},
-		  ]
+		]
 		: []),
 	{
 		name         : 'shipping_line_id',

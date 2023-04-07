@@ -10,7 +10,7 @@ const controls = [
 		asyncKey          : 'locations',
 		params            : { filters: { type: ['pincode', 'seaport', 'airport', 'city'] } },
 		rules             : { required: 'Origin Location is required' },
-		style             : { width: '280px' },
+		// style             : { width: '280px' },
 	},
 	{
 		label             : 'Destination Location',
@@ -21,7 +21,7 @@ const controls = [
 		asyncKey          : 'locations',
 		params            : { filters: { type: ['pincode', 'seaport', 'airport', 'city'] } },
 		rules             : { required: 'Destination Location is required' },
-		style             : { width: '280px' },
+		// style             : { width: '280px' },
 	},
 	{
 		name        : 'containers',

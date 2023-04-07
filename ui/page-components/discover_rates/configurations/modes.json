@@ -7,8 +7,7 @@
 		"label": "Container Transportation", 
 		"icon": "ic-surface", 
 		"options": [
-			{ "value": "haulage", "label": "Haulage" },
-			{ "value": "rail_domestic_freight", "label": "Rail Domestic" }
+			{ "value": "haulage", "label": "Haulage" }
 		] 
 	},
 	{

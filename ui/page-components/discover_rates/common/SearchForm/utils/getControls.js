@@ -39,7 +39,7 @@ const getControls = (
 		mode,
 		isChannelPartner,
 	);
-
+	console.log(mode, 'modessss');
 	const optionsControls = controls.filter(
 		({ includedInOptions = true }) => includedInOptions,
 	);

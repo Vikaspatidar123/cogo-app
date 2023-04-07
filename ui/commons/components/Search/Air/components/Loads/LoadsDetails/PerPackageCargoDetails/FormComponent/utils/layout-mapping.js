@@ -55,7 +55,7 @@ const LAYOUT = {
 				span : 12,
 			},
 		},
-		span: 1.2,
+		span: 1.32,
 	},
 	4: {
 		controlNames: {
@@ -65,7 +65,7 @@ const LAYOUT = {
 				style : { marginTop: 6 },
 			},
 		},
-		span: 1.5,
+		span: 1.38,
 	},
 	5: {
 		controlNames: {

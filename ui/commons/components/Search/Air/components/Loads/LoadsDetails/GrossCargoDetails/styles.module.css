@@ -13,7 +13,7 @@
 .label {
   margin-bottom: 2px;
   font-size: 12px;
-  font-weight: 500;
+  font-weight: 600;
   color: #393f70;
   height: 16px;
 }
@@ -29,11 +29,11 @@
     .ui_upload_droparea_container {
       flex-direction: row;
       min-height: 20px;
-      padding: 0;
-      width: 40%;
+      padding: 20px;
       svg {
         width: 40px;
         height: 40px;
+        margin-right:10px;
       }
     }
     .core-ui-input-root {
@@ -73,8 +73,12 @@
 }
 .modal_title {
   font-size: 20px;
-  font-weight: 500;
+  font-weight: 600;
   color: #1444a1;
+}
+
+.modal_desc{
+  margin: 12px 0;
 }
 
 .modal {

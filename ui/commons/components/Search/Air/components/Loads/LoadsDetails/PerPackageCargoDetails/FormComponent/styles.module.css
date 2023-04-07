@@ -30,6 +30,19 @@
 .flex {
   display: flex;
   flex-direction: column;
+
+  :global{
+    .ui_checkbox_group_container, .ui_checkbox_container{
+      padding: 0;
+    }
+    .ui_checkbox_label{
+      font-size:12px;
+    }
+    .ui_checkbox_style{
+      width: 14px;
+      height: 14px;
+    }
+  }
 }
 .row {
   display: flex;

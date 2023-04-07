@@ -1,4 +1,4 @@
-import { CheckboxGroup, Button, Modal, Tooltip } from '@cogoport/components';
+import { CheckboxGroup, Button, Modal, Tooltip, Checkbox } from '@cogoport/components';
 import { IcMInfo } from '@cogoport/icons-react';
 import React, { useState } from 'react';
 
@@ -20,7 +20,7 @@ function GrossCargoDetails({
 	showFilledValues = {},
 	setCurrentTab = () => {},
 }) {
-	const Checkbox = withControl(CheckboxGroup);
+	const CheckboxController = withControl(CheckboxGroup);
 
 	const [weightInfo, setWeightInfo] = useState(true);
 	const [dimensionsInfo, setDimensionsInfo] = useState(true);
@@ -33,7 +33,19 @@ function GrossCargoDetails({
 		handleSubmit,
 		formState: { errors },
 		control,
-	} = useForm();
+	} = useForm({
+		defaultValues: {
+			total_quantity : showFilledValues?.gross?.total_quantity,
+			gross_volume   : showFilledValues?.gross?.gross_volume,
+			volume_unit    : showFilledValues?.gross?.volume_unit || 'cbm',
+			total_weight   : showFilledValues?.gross?.total_weight,
+			weight_unit    : showFilledValues?.gross?.weight_unit || 'kg',
+			package_type   : showFilledValues?.gross?.package_type || 'box',
+			stackability   : ['non_stackable', ''].includes(showFilledValues?.gross?.stackability) ? false
+				: 'stackable',
+			packing_list: showFilledValues?.gross?.packing_list,
+		},
+	});
 
 	const onSubmit = (data, e) => {
 		e.preventDefault();
@@ -60,6 +72,7 @@ function GrossCargoDetails({
 		<div className={styles.container}>
 			<div className={styles.form_container}>
 				<div className={styles.layout_container}>
+
 					<div className={styles.single_control} style={{ marginRight: 12 }}>
 						<div className={styles.label}>Total Units</div>
 						<InputNumberController {...controls[0]} control={control} />
@@ -67,15 +80,14 @@ function GrossCargoDetails({
 							<div className={styles.error_message}>Units is required</div>
 						)}
 					</div>
+
 					<div
 						className={styles.single_control}
-						style={{ minWidth: 80, marginRight: 12 }}
 					>
 						<div className={styles.label}>
 							{tooltipMessage({
-              	label: 'Total Volume',
-              	message:
-                  'For rate calculation, volume will be converted to CBM',
+								label   : 'Total Volume',
+								message : 'For rate calculation, volume will be converted to CBM',
 							})}
 						</div>
 						<InputController {...controls[1]} control={control} />
@@ -83,6 +95,7 @@ function GrossCargoDetails({
 							<div className={styles.error_message}>Volume is required</div>
 						)}
 					</div>
+
 					<div
 						className={styles.single_control}
 						style={{ minWidth: 80, marginRight: 12 }}
@@ -94,14 +107,15 @@ function GrossCargoDetails({
 							<div className={styles.error_message}>Unit is required</div>
 						)}
 					</div>
+
 					<div
 						className={styles.single_control}
-						style={{ minWidth: 80, marginRight: 12 }}
+						// style={{ minWidth: 80, marginRight: 12 }}
 					>
 						<div className={styles.label}>
 							{tooltipMessage({
-              	label   : 'Total Weight',
-              	message : 'For rate calculation, weight will be converted to KG',
+								label   : 'Total Weight',
+								message : 'For rate calculation, weight will be converted to KG',
 							})}
 						</div>
 						<InputController {...controls[3]} control={control} />
@@ -109,6 +123,7 @@ function GrossCargoDetails({
 							<div className={styles.error_message}>Weight is required</div>
 						)}
 					</div>
+
 					<div
 						className={styles.single_control}
 						style={{ minWidth: 80, marginRight: 12 }}
@@ -120,6 +135,7 @@ function GrossCargoDetails({
 							<div className={styles.error_message}>Unit is required</div>
 						)}
 					</div>
+
 					<div className={styles.single_control}>
 						<div className={styles.label}>Total package Type</div>
 						<SelectController {...controls[5]} control={control} />
@@ -127,9 +143,9 @@ function GrossCargoDetails({
 							<div className={styles.error_message}>Type is required</div>
 						)}
 					</div>
+
 					<div className={styles.single_control} style={{ marginLeft: 12 }}>
-						<div className={styles.label} />
-						<Checkbox
+						<CheckboxController
 							{...controls[6]}
 							control={control}
 							style={{ marginTop: 6, marginBottom: 10 }}
@@ -149,30 +165,22 @@ function GrossCargoDetails({
 				</div>
 
 				<div className={styles.info_container}>
-					<CheckboxGroup
-						options={[
-            	{
-            		label : 'Each unit weighs less than 150 kg (330lbs)',
-            		value : true,
-            	},
-						]}
-            // value={weightInfo}
-						onChange={(item) => {
-            	setInfoModal(true);
-            	setWeightInfo(item);
+					<Checkbox
+						label="Each unit weighs less than 150 kg (330lbs)"
+						value={weightInfo}
+						checked={weightInfo}
+						onChange={(e) => {
+							setInfoModal(true);
+							setWeightInfo(e.target.checked);
 						}}
 					/>
-					<CheckboxGroup
-						options={[
-            	{
-            		label : 'Each unit dimensions is less than 110 x 65 x 65 cm',
-            		value : true,
-            	},
-						]}
-            // value={dimensionsInfo}
-						onChange={(item) => {
-            	setInfoModal(true);
-            	setDimensionsInfo(item);
+					<Checkbox
+						label="Each unit dimensions is less than 110 x 65 x 65 cm"
+						value={dimensionsInfo}
+						checked={dimensionsInfo}
+						onChange={(e) => {
+							setInfoModal(true);
+							setDimensionsInfo(e.target.checked);
 						}}
 					/>
 				</div>
@@ -200,14 +208,14 @@ function GrossCargoDetails({
 				show={showInfoModal}
 				placement="top"
 				onClose={() => {
-        	setInfoModal(false);
-        	setWeightInfo(true);
-        	setDimensionsInfo(true);
+					setInfoModal(false);
+					setWeightInfo(true);
+					setDimensionsInfo(true);
 				}}
 				onOuterClick={() => {
-        	setInfoModal(false);
-        	setWeightInfo(true);
-        	setDimensionsInfo(true);
+					setInfoModal(false);
+					setWeightInfo(true);
+					setDimensionsInfo(true);
 				}}
 				style={{ zIndex: 9999 }}
 			>
@@ -216,7 +224,7 @@ function GrossCargoDetails({
 						<IcMInfo height={15} width={15} style={{ marginRight: 8 }} />
 						In this case, use &#8220;By Packing Type&#8221; option instead
 					</div>
-					<p>
+					<p className={styles.modal_desc}>
 						If any unit is heavier than 150 kg or bigger than 110x65x65 cm, you
 						should use &#8220;By Packing Type&#8221; option to calculate your
 						shipment details
@@ -242,7 +250,7 @@ function GrossCargoDetails({
 								setInfoModal(false);
 							}}
 						>
-							OK, take me there
+							OK, Take me there
 						</Button>
 					</div>
 				</div>

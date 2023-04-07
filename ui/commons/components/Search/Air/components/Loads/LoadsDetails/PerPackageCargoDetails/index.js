@@ -163,13 +163,14 @@ function PerPackageCargoDetails({
 					<div style={{ display: 'flex' }}>
 						<Button
 							themeType="secondary"
+							size="sm"
 							onClick={() => setShowPopover(false)}
 							style={{ marginRight: 8 }}
 						>
 							CANCEL
 						</Button>
 
-						<Button type="submit">
+						<Button type="submit" themeType="accent" size="sm">
 							CONFIRM
 						</Button>
 					</div>

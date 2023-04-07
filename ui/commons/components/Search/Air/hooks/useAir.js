@@ -1,6 +1,3 @@
-// import getGeoConstants from '@cogo/globalization/constants/geo';
-
-// import showErrorsInToast from '@cogo/utils/showErrorsInToast';
 import { Toast } from '@cogoport/components';
 import { isEmpty } from '@cogoport/utils';
 import { useState, useEffect, useRef } from 'react';
@@ -12,7 +9,7 @@ import getLtlPayload from './useGetLtlPayload';
 
 import { useRouter } from '@/packages/next';
 import { useRequest } from '@/packages/request';
-import { useSelector } from '@/packages/store';
+// import { useSelector } from '@/packages/store';
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 import getCountryDetails from '@/ui/commons/utils/getCountryDetails';
 
@@ -39,20 +36,19 @@ const useAir = ({
 	detail = {},
 	onPush = () => {},
 }) => {
-	const {
-		scope = '',
-		query = {},
-		userRoleIDs = [],
-	} = useSelector(({ general, profile }) => ({
-		scope       : general?.scope,
-		query       : general?.query,
-		userRoleIDs : profile?.partner?.user_role_ids,
-	}));
+	// const {
+	// 	query = {},
+	// 	userRoleIDs = [],
+	// } = useSelector(({ general, profile }) => ({
+	// 	query       : general?.query,
+	// 	userRoleIDs : profile?.partner?.user_role_ids,
+	// }));
 
 	const router = useRouter();
 
 	const { destination_airport = {}, origin_airport = {} } = airFreightData || {};
-	const filterArray = Object.values(serviceDetails || {}).filter((element) => ['ltl_freight', 'ftl_freight'].includes(element.service_type));
+	const filterArray = Object.values(serviceDetails || {}).filter((element) => (
+		['ltl_freight', 'ftl_freight'].includes(element.service_type)));
 
 	let isOriginPincodeChecked = false;
 	let isDestinationPincodeChecked = false;
@@ -270,19 +266,17 @@ const useAir = ({
 				},
 			];
 		} else if (
-			(goods?.values?.commodity_type || goods?.commodity_type)
-      === 'temp_controlled'
+			(goods?.values?.commodity_type || goods?.commodity_type) === 'temp_controlled'
 		) {
 			const commoditySubTypeArray = goods?.values?.commodity_subtype.split('-');
 			const [temp_controlled_type, temp_controlled_range] = commoditySubTypeArray || [];
 
 			commodity_details = [
 				{
-					commodity_type:
-            goods?.values?.commodity_type || goods?.commodity_type,
+					commodity_type : goods?.values?.commodity_type || goods?.commodity_type,
 					temp_controlled_type,
 					temp_controlled_range,
-					packing_list: gross?.packing_list || undefined,
+					packing_list   : gross?.packing_list || undefined,
 				},
 			];
 		} else if (
@@ -290,26 +284,22 @@ const useAir = ({
 		) {
 			commodity_details = [
 				{
-					commodity_type:
-            goods?.values?.commodity_type || goods?.commodity_type,
-					commodity_class: {
+					commodity_type  : goods?.values?.commodity_type || goods?.commodity_type,
+					commodity_class : {
 						class_id,
 						class_description,
 						subclass_id,
-						subclass_codes:
-              subclass_codes.length > 0 ? subclass_codes : undefined,
+						subclass_codes: subclass_codes.length > 0 ? subclass_codes : undefined,
 					},
 					packing_list: gross?.packing_list || undefined,
 				},
 			];
 		} else if (
-			(goods?.values?.commodity_type || goods?.commodity_type)
-      === 'other_special'
+			(goods?.values?.commodity_type || goods?.commodity_type) === 'other_special'
 		) {
 			commodity_details = [
 				{
-					commodity_type:
-            goods?.values?.commodity_type || goods?.commodity_type,
+					commodity_type    : goods?.values?.commodity_type || goods?.commodity_type,
 					commodity_subtype : goods?.values?.commodity_subtype,
 					packing_list      : gross?.packing_list || undefined,
 				},
@@ -352,12 +342,12 @@ const useAir = ({
 			user_id,
 			air_freight_services_attributes : [airPayload],
 			ltl_freight_services_attributes,
-			tags:
-        scope === 'partner'
-        && query?.source === 'communication'
-        // ||  isCogoVerseMember
-        	? ['cogoverse']
-        	: undefined,
+			tags                            : undefined,
+			// scope === 'partner'
+			// && query?.source === 'communication'
+			// // ||  isCogoVerseMember
+			// 	? ['cogoverse']
+			// 	: undefined,
 		};
 	};
 
@@ -403,7 +393,7 @@ const useAir = ({
 		if (location.origin_pincode_checkbox) {
 			if (
 				location.origin.country_id !== location.origin_pincode.country_id
-        && !isEmpty(location.origin_pincode.country_id)
+				&& !isEmpty(location.origin_pincode.country_id)
 			) {
 				Toast('origin and pickup location should be in same country');
 				return;
@@ -411,22 +401,18 @@ const useAir = ({
 		}
 		if (location.destination_pincode_checkbox) {
 			if (
-				location.destination.country_id
-          !== location.destination_pincode.country_id
-        && !isEmpty(location.destination_pincode.country_id)
+				location.destination.country_id !== location.destination_pincode.country_id
+				&& !isEmpty(location.destination_pincode.country_id)
 			) {
 				Toast('destination and delivery location should be in same country');
 				return;
 			}
 		}
-		if (
-			location.origin.country_code !== INDIA_COUNTRY_CODE
-      && location.destination.country_code !== INDIA_COUNTRY_CODE
+		if (location.origin.country_code !== INDIA_COUNTRY_CODE
+			&& location.destination.country_code !== INDIA_COUNTRY_CODE
 		) {
-			if (
-				isEmpty(location.origin)
-        && isEmpty(location.destination)
-        && location.origin.country_code === location.destination.country_code
+			if (isEmpty(location.origin) && isEmpty(location.destination)
+			&& location.origin.country_code === location.destination.country_code
 			) {
 				Toast(
 					'destination airport cannot be in the same country as origin airport',
@@ -452,26 +438,7 @@ const useAir = ({
 			const response = await trigger({ data: payload });
 			const { data = {} } = response || {};
 
-			let partneras = `/book/${data?.id}/${extraParams?.importer_exporter_id}`;
-			let partnerHref = '/book/[search_id]/[importer_exporter_id]';
-
-			if (query?.source) {
-				partneras += `?source=${query?.source}`;
-				partnerHref += `?source=${query?.source}`;
-			}
-
-			const ROUTE_MAPPING = {
-				app: {
-					href : '/book/[search_id]',
-					as   : `/book/${(data || {}).id}`,
-				},
-				partner: {
-					href : partnerHref,
-					as   : partneras,
-				},
-			};
-			const { href, as } = ROUTE_MAPPING[scope];
-			router.push(href, as);
+			router.push('/book/[search_id]', `/book/${(data || {}).id}`);
 
 			onPush();
 		} catch (error) {

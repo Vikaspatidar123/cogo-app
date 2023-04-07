@@ -2,7 +2,7 @@
 // import formatMainServiceData from '@cogo/app-search/utils/format-main-service-data';
 
 import { Button, Tooltip, Modal } from '@cogoport/components';
-import { IcCFhaulage, IcMFtrailorFull } from '@cogoport/icons-react';
+import { IcCFhaulage, IcMFtrailorFull, IcMEdit } from '@cogoport/icons-react';
 import { getByKey, startCase } from '@cogoport/utils';
 import React, { useState, useEffect } from 'react';
 
@@ -91,7 +91,7 @@ function TrailerFreightInfo({
 
 			<Button
 				service_type={service_type}
-				type="button"
+				themeType="secondary"
 				onClick={() => setEditSearch(false)}
 			>
 				X
@@ -104,11 +104,12 @@ function TrailerFreightInfo({
 			<>
 				<div className={styles.freight_details_text} type={type}>Cargo Ready Date</div>
 				<div className={styles.freight_details}>
-					{formatDate({
+					{/* {formatDate({
 						date       : cargo_readiness_date,
 						dateFormat : GLOBAL_CONSTANTS.formats.date['dd MMM yyyy'],
 						formatType : 'date',
-					})}
+					})} */}
+					{formatDate(cargo_readiness_date, GLOBAL_CONSTANTS.formats.date['dd MMM yyyy'])}
 				</div>
 			</>
 		);
@@ -191,7 +192,9 @@ function TrailerFreightInfo({
 				{!NON_STANDALONE_SERVICES.includes(data?.search_type)
 				&& !query?.shipment_id
 				&& results_type !== 'rfq' ? (
-					<Button
+					<div
+						role="presentation"
+						className={styles.btn_container}
 						onClick={() => {
 							if (scope === 'app') {
 								trackEvent(APP_EVENT.search_clicked_on_edit_search, {});
@@ -201,8 +204,9 @@ function TrailerFreightInfo({
 					>
 						<div className={styles.button_border}>
 							{/* <EditButton /> */}
+							<IcMEdit className={styles.edit_icon} />
 						</div>
-					</Button>
+					</div>
 					) : null}
 			</div>
 		</div>

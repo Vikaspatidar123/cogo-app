@@ -17,9 +17,9 @@ function LocationDetails({ data }) {
 
 			<div className={styles.trip_type}>
 				<div className={styles.icon_wrap}>
-					<div className={styles.Circle} />
+					<div className={styles.circle} />
 					<div className={styles.dotted_line} />
-					<div className={styles.Circle} />
+					<div className={styles.circle} />
 				</div>
 			</div>
 

@@ -18,7 +18,7 @@ const formControlsAdvanced = (isChannelPartner = false) => [
 		type        : 'async_select',
 		asyncKey    : 'locations',
 		grouped     : ['city'],
-		style       : { width: '200px' },
+		// style       : { width: '200px' },
 		params      : { filters: { type: ['pincode', 'city'] } },
 		condition   : { services: ['export_transportation'] },
 		rules       : { required: 'Pickup Pincode is required' },

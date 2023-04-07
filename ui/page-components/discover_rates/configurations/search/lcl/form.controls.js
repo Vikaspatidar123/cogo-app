@@ -9,7 +9,7 @@ const controls = [
 		grouped           : ['city', 'country'],
 		params            : { filters: { type: ['seaport', 'country', 'city'] } },
 		rules             : { required: 'Origin port is required' },
-		style             : { width: '300px' },
+		// style             : { width: '300px' },
 	},
 	{
 		label             : 'Destination Port',
@@ -21,7 +21,7 @@ const controls = [
 		grouped           : ['city', 'country'],
 		params            : { filters: { type: ['seaport', 'country', 'city'] } },
 		rules             : { required: 'Destination port is required' },
-		style             : { width: '300px' },
+		// style             : { width: '300px' },
 	},
 	{
 		label         : 'Commodity',

@@ -311,7 +311,7 @@ function Form(
 						<div className={styles.row}>
 							<div
 								className={styles.search_form_route_container_col}
-								// style={{ width: getWidth(locationsSpan) }}
+								style={{ width: getWidth(locationsSpan) }}
 							>
 								<Route
 									origin={allControls.find((x) => x.name === origin?.name)}
@@ -335,7 +335,7 @@ function Form(
 
 							<div
 								className={styles.search_form_options_container_col}
-								// style={{ width: getWidth(cargoDetailsSpan) }}
+								style={{ width: getWidth(cargoDetailsSpan) }}
 							>
 								{index === 0 && search_type !== 'rfq' ? (
 									<div
@@ -378,7 +378,10 @@ function Form(
 							</div>
 
 							{mode === 'trailer_freight' && (
-								<div style={{ margin: 'auto' }}>
+								<div
+									className={styles.checkbox_container}
+									style={{ width: getWidth(1.32) }}
+								>
 									<div
 										className={styles.row}
 										style={{

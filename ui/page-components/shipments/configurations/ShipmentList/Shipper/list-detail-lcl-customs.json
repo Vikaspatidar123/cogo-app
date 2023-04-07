@@ -5,8 +5,8 @@
 		{
 			"name": "port_id",
 			"label": "Origin Location",
-			"type": "location-select",
-			"optionsListKey": "locations",
+			"type": "async_select",
+			"asyncKey":"locations",
 			"params": {
 				"filters": {
 					"type": ["seaport"]
@@ -16,13 +16,13 @@
 		{
 			"name": "commodity",
 			"label": "Commodity",
-			"type": "select-2",
+			"type": "select",
 			"commodityType": "lcl_freight"
 		},
 		{
 			"name": "state",
 			"label": "State",
-			"type": "select-2",
+			"type": "select",
 			"options": [
 				{ "label": "Customs cleared", "value": "customs_cleared" }
 			]

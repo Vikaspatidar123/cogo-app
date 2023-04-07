@@ -1,11 +1,12 @@
 import { Popover, Button } from '@cogoport/components';
+import { IcMFilter } from '@cogoport/icons-react';
 import { isEmpty } from '@cogoport/utils';
 import { useState } from 'react';
 
+import Filters from './Filters';
 import styles from './styles.module.css';
 
 import { useSelector } from '@/packages/store';
-import { IcMFilter } from '@cogoport/icons-react';
 
 function FilterButton({
 	setFilters,

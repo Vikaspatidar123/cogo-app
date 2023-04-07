@@ -1,0 +1,17 @@
+.container{
+    background: #9befa8;
+	border-radius: 4px;
+	padding: 6px;
+	display: flex;
+	flex-direction: row;
+	align-items: flex-start;
+}
+.icon_container{
+	background: #cdf7d4;
+	border-radius: 50%;
+	height: 16px;
+	width: 16px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}

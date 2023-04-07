@@ -5,8 +5,8 @@
 		{
 			"name": "port_id",
 			"label": "Location",
-			"type": "location-select",
-			"optionsListKey": "locations",
+			"type": "async_select",
+			"asyncKey":"locations",
 			"params": {
 				"filters": {
 					"type": ["seaport", "airport", "pincode", "city"]
@@ -16,26 +16,25 @@
 		{
 			"name": "container_size",
 			"label": "Container Size",
-			"type": "select-2",
-			"optionsListKey": "container-sizes",
-			"selectType": "pills"
+			"type": "chips",
+			"optionKey": "container-sizes"
 		},
 		{
 			"name": "container_type",
 			"label": "Container Type",
-			"type": "select-2",
-			"optionsListKey": "container-types"
+			"type": "select",
+			"optionKey": "container-types"
 		},
 		{
 			"name": "commodity",
 			"label": "Commodity",
-			"type": "select-2",
+			"type": "select",
 			"commodityType": "freight"
 		},
 		{
 			"name": "state",
 			"label": "State",
-			"type": "select-2",
+			"type": "select",
 			"options": [
 				{ "label": "Customs cleared", "value": "customs_cleared" }
 			]

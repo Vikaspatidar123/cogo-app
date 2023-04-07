@@ -34,7 +34,7 @@ function Status({ data, viewAs, isBookingDesk = false }) {
 
 	const stateData = getText(data, [], viewAs, true);
 
-	const buttonText =		stateData?.text === 'Added to Cart' ? 'Book' : 'VIEW DETAILS';
+	const buttonText = stateData?.text === 'Added to Cart' ? 'Show' : 'VIEW DETAILS';
 
 	return (
 		<div className={`${styles.container} ${isBookingDesk ? styles.booking_desk : ''}`}>
@@ -44,7 +44,7 @@ function Status({ data, viewAs, isBookingDesk = false }) {
 					{data?.serial_id || data?.shipment_serial_id}
 				</span>
 			</div>
-			{/* <div className={`${styles.alert} ${styles.stateData.color || styles.yellow}`}>{stateData.text}</div> */}
+			<div className={`${styles?.[alert]} ${styles?.[stateData.color] || styles.yellow}`}>{stateData.text}</div>
 			<Link href={href} as={as} passHref>
 				<div className={styles.action}>{buttonText}</div>
 			</Link>

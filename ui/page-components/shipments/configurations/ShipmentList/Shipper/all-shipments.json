@@ -5,17 +5,16 @@
 		{
 			"label": "Shipment Type",
 			"name": "shipment_type",
-			"type": "select-2",
-			"selectType": "pills",
+			"type": "chips",
 			"multiple": false,
 			"options": [
-				{ "label": "FCL", "value": "fcl_freight" },
-				{ "label": "LCL", "value": "lcl_freight" },
-				{ "label": "Air", "value": "air_freight" },
-				{ "label": "LTL", "value": "ltl_freight" },
-				{ "label": "FTL", "value": "ftl_freight" },
-				{ "label": "Trailer", "value": "trailer_freight" },
-				{ "label": "FCL Haulage", "value": "haulage_freight" }
+				{ "children": "FCL", "key": "fcl_freight" },
+				{ "children": "LCL", "key": "lcl_freight" },
+				{ "children": "Air", "key": "air_freight" },
+				{ "children": "LTL", "key": "ltl_freight" },
+				{ "children": "FTL", "key": "ftl_freight" },
+				{ "children": "Trailer", "key": "trailer_freight" },
+				{ "children": "FCL Haulage", "key": "haulage_freight" }
 			]
 		}
 	],

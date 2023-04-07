@@ -6,8 +6,8 @@
 			"name": "airport_id",
 			"label": "Origin Airport",
 			"multiple": false,
-			"type": "location-select",
-			"optionsListKey": "locations",
+			"type": "async_select",
+			"asyncKey":"locations",
 			"params": {
 				"filters": {
 					"type": ["airport"]
@@ -18,20 +18,20 @@
 			"name": "destination_country_id",
 			"label": "Destination Country",
 			"sort": true,
-			"type": "select-2",
-			"optionsListKey": "countries",
+			"type": "async_select",
+			"asyncKey":"country_list_with_flag",
 			"multiple": false
 		},
 		{
 			"name": "commodity",
 			"label": "Commodity",
-			"type": "select-2",
+			"type": "select",
 			"commodityType": "air_freight"
 		},
 		{
 			"name": "state",
 			"label": "State",
-			"type": "select-2",
+			"type": "select",
 			"options": [
 				{ "label": "Customs cleared", "value": "customs_cleared" }
 			]

@@ -101,6 +101,38 @@ function asyncFieldsHScode() {
 		params      : { page_limit: 20 },
 	};
 }
+function asyncCountrySelect() {
+	return {
+		valueKey : 'id',
+		labelKey : 'display_name',
+		endpoint : 'list_locations',
+		params   : {
+			filters  : { type: 'country' },
+			includes : {
+				default_params_required: true,
+				// flag_icon_url: true,
+				// country_code: true,
+			},
+			page_limit : 20,
+			sort_by    : 'name',
+			sort_type  : 'asc',
+		},
+	};
+}
+function asyncAirLinesSelect() {
+	return {
+		valueKey    : 'id',
+		labelKey    : 'short_name',
+		endpoint    : 'list_operators',
+		initialCall : true,
+		params      : {
+			filters    : { operator_type: 'airline', status: 'active' },
+			page_limit : 100,
+			sort_by    : 'short_name',
+			sort_type  : 'asc',
+		},
+	};
+}
 export {
 	asyncFieldsLocations,
 	asyncFieldsLocations2,
@@ -110,4 +142,6 @@ export {
 	asyncFieldsPinCodeLocations,
 	asyncFieldsShippingLines,
 	asyncFieldsHScode,
+	asyncCountrySelect,
+	asyncAirLinesSelect,
 };

@@ -1,11 +1,5 @@
-// import { useForm } from '@cogo/deprecated_legacy/forms';
-// import { useSelector } from '@cogo/store';
-// import { func, arrayOf, shape, string, bool } from 'prop-types';
-// import React from 'react';
-
-// import Form from './FormElement';
-// import Header from './Header';
-// import { Container, Main } from './styles';
+import Form from './FormElement';
+import Header from './Header';
 import styles from './styles.module.css';
 
 import { useForm } from '@/packages/forms';
@@ -32,22 +26,26 @@ function Filters({
 			return true;
 		})
 		.map((control) => ({ ...control, value: filters[control.name] }));
-	const { control, getValues, setValues } = useForm();
+	const { control, getValues, setValue } = useForm(controls);
 
-	// const fields = {};
-	// Object.keys(fieldsProp).forEach((key) => {
-	// 	if (dynamicKey && key === dynamicKey) {
-	// 		fields[key] = {
-	// 			...fieldsProp[key],
-	// 			onChange: (val, obj) => {
-	// 				fieldsProp[key].onChange(val, obj);
-	// 				setFilters({ ...filters, [key]: val });
-	// 			},
-	// 		};
-	// 	} else {
-	// 		fields[key] = fieldsProp[key];
-	// 	}
-	// });
+	const fieldsProp = {};
+	controls.forEach((item) => fieldsProp[item.name] = { ...item, control });
+
+	const fields = {};
+	Object.keys(fieldsProp).forEach((key) => {
+		if (dynamicKey && key === dynamicKey) {
+			fields[key] = {
+				...fieldsProp[key],
+				onChange: (val, obj) => {
+					fieldsProp[key].onChange(val, obj);
+					setFilters({ ...filters, [key]: val });
+				},
+			};
+		} else {
+			fields[key] = fieldsProp[key];
+		}
+	});
+	console.log(fields, 'fields');
 
 	const onSubmit = async () => {
 		const values = await getValues();
@@ -74,7 +72,7 @@ function Filters({
 	const handleReset = () => {
 		setFilters({});
 		onClose();
-		setValues({});
+		setValue({});
 	};
 
 	return (
@@ -88,7 +86,7 @@ function Filters({
 			<div className={`${styles.main} ${isScrollable ? styles.scroll : ''}`}>
 				<Form
 					controls={controls}
-					control={control}
+					fields={fields}
 					id_prefix={`${id_prefix}_filters`}
 				/>
 			</div>

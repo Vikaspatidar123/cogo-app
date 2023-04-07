@@ -5,8 +5,8 @@
 		{
 			"name": "origin_location_id",
 			"label": "Origin Location",
-			"type": "location-select",
-			"optionsListKey": "locations",
+			"type": "async_select",
+			"asyncKey":"locations",
 			"params": {
 				"filters": {
 					"type": ["seaport", "airport", "pincode", "city"]
@@ -16,8 +16,8 @@
 		{
 			"name": "destination_location_id",
 			"label": "Destination Location",
-			"type": "location-select",
-			"optionsListKey": "locations",
+			"type": "async_select",
+			"asyncKey":"locations",
 			"params": {
 				"filters": {
 					"type": ["seaport", "airport", "pincode", "city"]
@@ -27,13 +27,13 @@
 		{
 			"name": "commodity",
 			"label": "Commodity",
-			"type": "select-2",
+			"type": "select",
 			"commodityType": "hazardous"
 		},
 		{
 			"name": "state",
 			"label": "State",
-			"type": "select-2",
+			"type": "select",
 			"options": [
 				{ "label": "Cargo carted in", "value": "cargo_carted_in" },
 				{ "label": "Cargo Stuffed", "value": "cargo_stuffed" },

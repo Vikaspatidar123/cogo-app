@@ -1,0 +1,27 @@
+.col{
+    padding-left: 8px;
+    padding-right: 8px;
+}
+.container{
+    margin-bottom: 24px;
+	:global {
+		.ui_DGW4z {
+			flex-wrap: wrap;
+		}
+	}
+}
+.label{
+    font-size: 12px !important;
+	font-weight: bold;
+	line-height: 14px;
+	color: #4f4f4f;
+	margin-bottom: 5px;
+
+	display: flex;
+	align-items: center;
+
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+
+}

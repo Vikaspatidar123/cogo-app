@@ -11,6 +11,8 @@ import {
 	asyncFieldsPinCodeLocations,
 	asyncFieldsShippingLines,
 	asyncFieldsHScode,
+	asyncCountrySelect,
+	asyncAirLinesSelect,
 } from '../../utils/getAsyncFields';
 
 /**
@@ -32,14 +34,16 @@ import {
  * getModifiedOptions
  */
 const keyAsyncFieldsParamsMapping = {
-	locations         : asyncFieldsLocations,
-	locations2        : asyncFieldsLocations2,
-	partners          : asyncFieldsPartner,
-	partner_roles     : asyncFieldsPartnerRoles,
-	hs_code_countries : asyncFieldsHsCodeCountries,
-	pin_code          : asyncFieldsPinCodeLocations,
-	shipping_lines    : asyncFieldsShippingLines,
-	hs_code           : asyncFieldsHScode,
+	locations              : asyncFieldsLocations,
+	locations2             : asyncFieldsLocations2,
+	partners               : asyncFieldsPartner,
+	partner_roles          : asyncFieldsPartnerRoles,
+	hs_code_countries      : asyncFieldsHsCodeCountries,
+	pin_code               : asyncFieldsPinCodeLocations,
+	shipping_lines         : asyncFieldsShippingLines,
+	hs_code                : asyncFieldsHScode,
+	country_list_with_flag : asyncCountrySelect,
+	air_lines              : asyncAirLinesSelect,
 };
 
 function AsyncSelect(props) {

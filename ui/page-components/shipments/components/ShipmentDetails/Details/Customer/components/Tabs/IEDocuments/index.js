@@ -33,17 +33,11 @@ function IEDocuments() {
 		pendingTaskTotal,
 		pendingTaskLoading,
 		pendingTaskHookSetter,
-		// pendingTaskFilters,
 		refetch,
 	} = useGetpendingTasks({ shipment_type });
 
 	return (
 		<div className={styles.container}>
-			{/* <Header>
-				{activeTab === 'uploaded_documents'
-					? `${shipmentDocumentsTotal} Download/s`
-					: `${pendingTaskTotal} Pending Upload/s`}{' '}
-			</Header> */}
 
 			<Tabs
 				activeTab={activeTab}

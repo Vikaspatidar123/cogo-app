@@ -389,12 +389,12 @@ const formatDataForSingleService = ({
 	if (mode === 'trailer_freight') {
 		const allAttributes = [];
 		if (type) {
-			const origin_location_id =				type === 'export'
+			const origin_location_id = type === 'export'
 				? values?.export_transportation_location_id || values?.port_id
 				: values?.destination_port_id
 					|| values?.port_id
 					|| values?.destination_location_id;
-			const destination_location_id =				type === 'export'
+			const destination_location_id =	type === 'export'
 				? values?.origin_port_id
 					|| values?.port_id
 					|| values?.origin_location_id
@@ -870,11 +870,13 @@ const formatValuesForSearch = (rawParams) => {
 };
 
 const formatCreateSearch = (
+
 	rawParams,
 	mode,
-	checked,
 	services = {},
 	is_service = false,
+	checked,
+
 ) => {
 	const payload = formatValuesForSearch(rawParams);
 	const { source, source_id } = payload;
@@ -909,7 +911,6 @@ const formatCreateSearch = (
 			checked,
 		});
 	}
-
 	Object.keys(services).forEach((service) => {
 		const getNewService = getSearchNames(payload, service, mode);
 
@@ -928,7 +929,7 @@ const formatCreateSearch = (
 				];
 			} else if (is_service && is_service !== 'hybrid' && getNewService?.mode) {
 				newPayload.service = getNewService?.mode;
-				newPayload[`${getNewService?.mode}_services`] =					formatDataForSingleService({
+				newPayload[`${getNewService?.mode}_services`] =	formatDataForSingleService({
 					rawParams,
 					mode   : getNewService?.mode,
 					values : payload,

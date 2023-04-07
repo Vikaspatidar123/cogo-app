@@ -33,10 +33,9 @@ const injectValues = (
 	) {
 		(controls || []).forEach((control, index) => {
 			if (control.type === 'fieldArray') {
-				controls[index].value = (getApisData?.list_shipment_bl_details || [])
-					?.filter(
-						(blDetailObj) => blDetailObj?.bl_document_type === control.document_type,
-					)
+				controls[index].value = (getApisData?.list_shipment_bl_details || [])?.filter(
+					(blDetailObj) => blDetailObj?.bl_document_type === control.document_type,
+				)
 					?.map((item) => {
 						const bl_selected =							(selectedMail?.formatted || []).find(
 							(bl) => bl.document_number === item.bl_number,

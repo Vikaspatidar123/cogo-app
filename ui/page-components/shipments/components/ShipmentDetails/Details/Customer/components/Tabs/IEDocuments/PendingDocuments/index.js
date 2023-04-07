@@ -1,12 +1,10 @@
-// import { startCase } from '@cogoport/front/utils';
-// import { IcMPlus } from '@cogoport/icons-react';
-import { Placeholder } from '@cogoport/components';
-import { Modal } from '@cogoport/components';
+import { Placeholder, Modal } from '@cogoport/components';
 import { IcMPlus } from '@cogoport/icons-react';
 import { startCase } from '@cogoport/utils';
 import { useState, useContext } from 'react';
 
 import EmptyState from '../../../EmptyState';
+import Task from '../../../PendingTasks/Task';
 
 import styles from './styles.module.css';
 
@@ -19,7 +17,6 @@ function PendingDocuments({
 }) {
 	const [show, setShow] = useState(false);
 	const [pendingTask, setPendingTask] = useState({});
-	//	const [query, setQuery] = useState('');
 
 	const handleClick = (pendingItem) => {
 		setShow(!show);
@@ -64,14 +61,14 @@ function PendingDocuments({
 											<IcMPlus className="ie_side_svg" />
 										</div>
 
-										{/* {pendingTask?.[pendingItem?.id] ? (
+										{pendingTask?.[pendingItem?.id] ? (
 											<Modal
 												show={show}
 												onClose={() => handleClick(pendingItem)}
 												onOuterClick={() => handleClick(pendingItem)}
 												className="primary lg"
 											>
-												<TaskCard
+												<Task
 													task={pendingItem}
 													onCancel={() => handleClick(pendingItem)}
 													refetch={refetch}
@@ -81,9 +78,9 @@ function PendingDocuments({
 													type="modal"
 												/>
 											</Modal>
-										) : null} */}
+										) : null}
 									</>
-								  ))
+								))
 								: null}
 						</div>
 					</div>

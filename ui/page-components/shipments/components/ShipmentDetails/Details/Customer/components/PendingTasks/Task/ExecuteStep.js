@@ -33,6 +33,7 @@ function ExecuteStep({
 		isLoading,
 		setIsLoading,
 		onError,
+		formValues,
 	} = useStepExecuton({
 		task,
 		stepConfig,
@@ -41,24 +42,42 @@ function ExecuteStep({
 		selectedMail,
 		services,
 	});
+	const { handleSubmit: handleSubmitTask } = useHandleSubmit({
+		finalConfig,
+		task,
+		onCancel,
+		refetch,
+		shipment_data,
+		setIsLoading,
+		serviceIdMapping,
+		currentStep,
+		isLastStep,
+		getApisData,
+		timeLineRefetch,
+		showElements,
+		services,
+	});
 	const fields = controls?.map((item) => {
 		if (item.type === 'pills') {
+			const { value, ...rest } = item || {};
 			return {
-				...item,
+				...rest,
 				type    : 'chips',
 				options : item.options.map((x) => ({ key: x.value, children: x.label })),
 			};
 		}
 		if (item.name === 'preferred_shipping_line_id') {
+			const { value, ...rest } = item || {};
 			return {
-				...item,
+				...rest,
 				type     : 'async_select',
 				asyncKey : 'shipping_lines',
 			};
 		}
 		if (item.name === 'hs_code') {
+			const { value, ...rest } = item || {};
 			return {
-				...item,
+				...rest,
 				type               : 'async_select',
 				asyncKey           : 'hs_code',
 				getModifiedOptions : (list) => (
@@ -71,20 +90,25 @@ function ExecuteStep({
 			};
 		}
 		if (item.name === 'preferred_container_pickup_location_id') {
+			const { value, ...rest } = item || {};
 			return {
-				...item,
+				...rest,
 				type     : 'async_select',
 				asyncKey : 'locations',
 			};
 		}
 		if (item.name === 'preferred_container_handover_location_id') {
+			const { value, ...rest } = item || {};
 			return {
-				...item,
+				...rest,
 				type     : 'async_select',
 				asyncKey : 'locations',
 			};
 		}
-		return { ...item };
+		const { value, ...rest } = item || {};
+		return {
+			...rest,
+		};
 	});
 
 	const requiresConfirmationModal = uiConfig.confirmation?.required;
@@ -102,7 +126,7 @@ function ExecuteStep({
 			handleSubmitClick();
 		}
 	};
-	console.log(fields, 'controls');
+
 	return (
 		<div>
 			<div className={styles.form}>
@@ -111,6 +135,7 @@ function ExecuteStep({
 					control={control}
 					errors={error}
 					showElements={showElements}
+					formValues={formValues}
 				/>
 			</div>
 			<div className={styles.button_wrap}>

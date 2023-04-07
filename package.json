@@ -25,6 +25,7 @@
     "@cogoport/utils": "^1.2.4",
     "axios": "^1.3.4",
     "axios-hooks": "^4.0.0",
+    "file-saver": "^2.0.5",
     "i18next": "^22.4.10",
     "next": "13.2.3",
     "next-i18next": "^13.1.6",

@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 
 import getServiceValues from '../../../helpers/get-service-values';
 import formatMainServiceData from '../../../utils/format-main-service-data';
+import { ShipmentDetailContext } from '../common/Context';
 import serviceWiseControls from '../configurations/upsell/service-wise-controls';
 
 import useCreateSearch from './useCreateSearch';
@@ -36,10 +37,10 @@ const useUpsell = ({ service, services, extraParams, shipment_data }) => {
 	const [loading, setLoading] = useState(false);
 
 	const { push } = useRouter();
-
+	const [{ primary_service }] = useContext(ShipmentDetailContext);
 	const shipment_type = shipment_data?.shipment_type;
 	const search_type = service?.service;
-
+	console.log(services, 'shipment_data');
 	const newServices = services.map((item) => ({
 		...item,
 		service_type: item?.service_type.split('_service')[0],
@@ -117,15 +118,17 @@ const useUpsell = ({ service, services, extraParams, shipment_data }) => {
 			trade_type = 'destination';
 		}
 
-		const origin_country_id =			mainServiceData?.origin_port?.country?.id
+		const origin_country_id = mainServiceData?.origin_port?.country?.id
 			|| mainServiceData?.origin_airport?.country?.id
 			|| mainServiceData?.origin_location?.country?.id
-			|| mainServiceData?.origin_country_id;
+			|| mainServiceData?.origin_country_id
+			|| primary_service?.origin_country_id;
 
-		const destination_country_id =			mainServiceData?.destination_port?.country?.id
+		const destination_country_id = mainServiceData?.destination_port?.country?.id
 			|| mainServiceData?.destination_airport?.country?.id
 			|| mainServiceData?.destination_location?.country?.id
-			|| mainServiceData?.destination_country_id;
+			|| mainServiceData?.destination_country_id
+			|| primary_service?.destination_country_id;
 
 		const rawParams = {
 			trade_type,
@@ -138,7 +141,7 @@ const useUpsell = ({ service, services, extraParams, shipment_data }) => {
 			source    : 'upsell',
 			source_id : shipment_data?.id,
 		};
-
+		console.log(rawParams, 'rawParams');
 		const postData = await createNewSearch(
 			rawParams,
 			search_type,

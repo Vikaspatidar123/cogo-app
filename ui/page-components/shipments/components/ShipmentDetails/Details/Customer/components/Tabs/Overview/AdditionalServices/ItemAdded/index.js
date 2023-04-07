@@ -1,21 +1,9 @@
-// import CancelAdditionalService from '@cogo/bookings/AdditionalServices/components/CancelAdditionalService';
-// import { Popover, Button } from '@cogoport/front/components/admin';
-// import { startCase } from '@cogoport/front/utils';
-// import { IcMOverflowDot } from '@cogoport/icons-react';
-import { Popover, Button } from '@cogoport/components';
+import { Popover } from '@cogoport/components';
 import { IcMOverflowDot } from '@cogoport/icons-react';
 import { startCase } from '@cogoport/utils';
 import { useState } from 'react';
 
-// import {
-// 	Container,
-// 	Heading,
-// 	Tag,
-// 	Row,
-// 	NameType,
-// 	SubContainer,
-// 	ButtonText,
-// } from './styles';
+import CancelAdditionalService from './CancelAdditionalService';
 import styles from './styles.module.css';
 
 const serviceCancelAllowed = [
@@ -28,7 +16,7 @@ const serviceCancelAllowed = [
 function ItemAdded({ item, actionButton, status, refetch = () => {} }) {
 	const [show, setShow] = useState(false);
 	const [showCancel, setShowCancel] = useState(false);
-
+	const statusClass = status?.status;
 	const showMoreInfo = !!serviceCancelAllowed.includes(item?.state);
 
 	return (
@@ -40,46 +28,39 @@ function ItemAdded({ item, actionButton, status, refetch = () => {} }) {
 							{startCase(item.name)}
 						</div>
 					</div>
-
-					<Button
-						className="secondary text xl"
-						style={{ marginLeft: 24, fontWeight: 'normal', fontSize: '24px' }}
-					>
-						{showMoreInfo ? (
-							<Popover
-								show={show}
-								theme="light"
-								interactive
-								render={(
-									<div
-										role="presentation"
-										className={styles.button_text}
-										onClick={() => {
-											setShow(false);
-											setShowCancel(true);
-										}}
-									>
-										Cancel
-									</div>
-								)}
-							>
-								<div>
-									<IcMOverflowDot
-										style={{ width: '10px', height: '10px', cursor: 'pointer' }}
-										onClick={() => setShow(!show)}
-									/>
+					{showMoreInfo ? (
+						<Popover
+							show={show}
+							theme="light"
+							interactive
+							render={(
+								<div
+									role="presentation"
+									className={styles.button_text}
+									onClick={() => {
+										setShow(false);
+										setShowCancel(true);
+									}}
+								>
+									Cancel
 								</div>
-							</Popover>
-						) : null}
-					</Button>
+							)}
+						>
+							<div>
+								<IcMOverflowDot
+									style={{ width: '10px', height: '10px', cursor: 'pointer' }}
+									onClick={() => setShow(!show)}
+								/>
+							</div>
+						</Popover>
+					) : null}
 				</div>
-
-				<div className={`${styles.row} ${styles.status}`}>
-					<div className={`${styles.tag} ${styles.status.status}`}>{status.statusName}</div>
+				<div className={`${styles.row} ${styles?.[status]}`}>
+					<div className={`${styles.tag} ${styles?.[statusClass]}`}>{status.statusName}</div>
 					{actionButton}
 				</div>
 
-				{/* {showCancel ? (
+				{showCancel ? (
 					<CancelAdditionalService
 						id={item?.id}
 						showCancel={showCancel}
@@ -87,7 +68,7 @@ function ItemAdded({ item, actionButton, status, refetch = () => {} }) {
 						setShow={setShow}
 						refetch={refetch}
 					/>
-				) : null} */}
+				) : null}
 			</div>
 		</div>
 	);

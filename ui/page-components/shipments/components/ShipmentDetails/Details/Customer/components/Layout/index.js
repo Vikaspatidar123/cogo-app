@@ -9,7 +9,6 @@
 // import SupplierSelect from './SupplierSelect';
 
 // const { Row, Col } = Grid;
-import { Pill } from '@cogoport/components';
 
 import ChildFormat from './ChildFormat';
 import EditLineItems from './EditLineItems';
@@ -17,8 +16,7 @@ import Item from './Item';
 import ServiceChargeEdit from './ServiceChargeEdit';
 import styles from './styles.module.css';
 import SupplierSelect from './SupplierSelect';
-
-import IN from '@/ui/commons/constants/geo/IN';
+import TruckTypeFormat from './TruckTypeFormat';
 
 function Layout({
 	controls,
@@ -30,15 +28,14 @@ function Layout({
 	id_prefix = null,
 	customValues = {},
 	disabledProps = false,
+	formValues,
 }) {
-	const openTruck = IN.options.open_truck;
-	console.log(openTruck, 'openTruck');
 	return (
 		<div>
 			<div className={styles.row}>
 				{controls?.map((controlItem) => {
-					const { type, span = 6, subType } = controlItem;
-					console.log(type, 'type12');
+					const { name, type, span = 6, subType } = controlItem;
+
 					const show = !(controlItem.name in showElements)
 						|| showElements[controlItem.name];
 
@@ -110,7 +107,22 @@ function Layout({
 							</div>
 						);
 					}
-
+					if (name === 'truck_type') {
+						return (
+							<div className={styles.col_truck}>
+								<TruckTypeFormat
+									controlItem={controlItem}
+									control={control}
+									// {...fields[controlItem.name]}
+									error={errors[controlItem.name]}
+									showElements={showElements[controlItem.name]}
+									id_prefix={id_prefix}
+									customValues={customValues[controlItem.name]}
+									themeType={themeType}
+								/>
+							</div>
+						);
+					}
 					return show ? (
 						<div className={styles.col}>
 							<Item
@@ -120,6 +132,7 @@ function Layout({
 								value={controlItem.value}
 								id_prefix={id_prefix}
 								themeType={themeType}
+								formValues={formValues}
 							/>
 						</div>
 					) : null;

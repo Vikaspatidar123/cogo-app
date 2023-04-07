@@ -1,24 +1,10 @@
 // import { Popover, Button } from '@cogoport/front/components/admin';
-import { Popover } from '@cogoport/components';
-import { Button } from '@cogoport/components';
+import { Popover, Button } from '@cogoport/components';
 import { useState } from 'react';
 
 import useDeleteTag from '../../../../hooks/useDeleteTag';
 
 import styles from './styles.module.css';
-// import useDeleteTag from '../../../../hooks/useDeleteTag';
-
-// import {
-// 	Container,
-// 	Tag,
-// 	ViewAll,
-// 	CustomTag,
-// 	DeleteTag,
-// 	TagContainer,
-// 	AllTags,
-// 	ButtonWrap,
-// 	TagDisplay,
-// } from './styles';
 
 function Tags({ tags = [], setOpen = () => {}, setTags, shipment_data }) {
 	const [show, setShow] = useState(false);

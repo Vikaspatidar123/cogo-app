@@ -40,7 +40,7 @@ function Header({ filters, hookSetters, config, setParams, viewAs }) {
 					onChange={(e) => {
 						hookSetters.setFilters({
 							...filters,
-							serial_id: e.target.value,
+							serial_id: e,
 						});
 					}}
 					value={serial_id}

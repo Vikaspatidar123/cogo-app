@@ -933,10 +933,12 @@ const useHandleSubmit = ({
 	}, { manual: true });
 
 	const { submitShipmentMapping } = useCreateShipmentMapping();
+
 	const [{ loading: bulkapiloading }, updateBulkShipmentServicesTrigger] = useRequest({
 		url    : '/bulk_update_shipment_services',
 		method : 'post',
 	}, { manual: true });
+
 	const [{ loading: createInventoryapiloading }, createAwbInventoryTrigger] = useRequest({
 		url    : '/create_awb_inventory',
 		method : 'post',

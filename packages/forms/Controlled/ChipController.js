@@ -13,6 +13,7 @@ function ChipsController(props) {
 		{ ...rest },
 	);
 	const optionDate = data?.options?.map((item) => ({ ...item, key: item.value, children: item.label })) || options;
+
 	return (
 		<Controller
 			key={rest.id}

@@ -1,0 +1,25 @@
+.empty_container{
+    display: flex;
+	justify-content: center;
+}
+.container{
+    display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+}
+.button_div{
+	padding-top: 8px;
+	padding-bottom: 8px;
+	display: flex;
+}
+.file_container{
+	display: flex;
+	margin-bottom: 4px;
+	width: 830px;
+	margin-left: auto;
+	margin-right: auto;
+}
+.btn_div{
+	display: flex;
+	justify-content: flex-end;
+}

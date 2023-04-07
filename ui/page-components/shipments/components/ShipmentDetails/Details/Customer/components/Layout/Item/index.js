@@ -51,19 +51,20 @@ function Item(props) {
 		id_prefix = null,
 		themeType = 'admin',
 		control,
+		formValues,
+		className,
 	} = props || {};
-	console.log(control, '123control');
 	// if (type === 'pills') {
 	// 	type = 'chips';
 	// }
-	const Element = getField(type === 'pills' ? 'chips' : type);
+	console.log(props, 'props');
+	const Element = getField(type);
 	const errorClass = error ? 'error' : null;
-	console.log(label, 'label');
-	const newProps = {};
 
+	const newProps = {};
 	if (id_prefix) {
 		// eslint-disable-next-line react/destructuring-assignment
-		newProps.id = `${id_prefix}_${props.name}`;
+		newProps[props.name] = `${props.name}`;
 	}
 
 	const errorOriginal = getErrorMessage({
@@ -80,13 +81,13 @@ function Item(props) {
 	}
 
 	return (
-		<div className={`${styles.container} ${styles.form_item_container} ${styles.errorClass || ''}`}>
+		<div className={`${styles.container} ${styles?.[className]} ${styles.errorClass || ''}`}>
 			{label ? (
 				<div className={styles.label}>{label || lowerlabel}</div>
 			) : null}
 
 			<div>
-				<Element {...newProps} {...props} control={control} />
+				<Element key={JSON.stringify(formValues)} {...newProps} {...props} control={control} />
 
 				{lowerlabel && (
 					<div className={styles.lower_label}>{lowerlabel}</div>

@@ -20,7 +20,7 @@ function FilterService({ setFilters, filters, uniqueServices }) {
 				value={filters.name}
 				style={{ width: '300px' }}
 				placeholder="Search service by name"
-				onChange={(e) => setFilters({ name: e.target.value })}
+				onChange={(e) => setFilters({ name: e })}
 				suffix={<IcMSearchlight />}
 			/>
 		</div>

@@ -1,34 +1,9 @@
-// import UpdateFreightCertificate from '@cogo/bookings/PerformPendingTasks/components/Task/CustomPendingTask/UpdateFreightCertificate';
-// import GLOBAL_CONSTANTS from '@cogo/globalization/constants/globals.json';
-// import formatDate from '@cogo/globalization/utils/formatDate';
-// import { useSelector } from '@cogo/store';
-// import { Button, ToolTip } from '@cogoport/front/components/admin';
-// import { startCase } from '@cogoport/front/utils';
-// import { saveAs } from 'file-saver';
-import { Tooltip } from '@cogoport/components';
+import { Tooltip, Button } from '@cogoport/components';
 import { format, startCase } from '@cogoport/utils';
+import { saveAs } from 'file-saver';
 import { useState } from 'react';
 
 import styles from './styles.module.css';
-
-import { useSelector } from '@/packages/store';
-import { Button } from '@cogoport/components';
-// import GenerateDoc from '../../../../../PerformPendingTasks/components/Task/CustomPendingTask/GenerateMawb/GenerateDoc';
-// import PrintDoc from '../PrintDoc';
-
-// import {
-// 	Container,
-// 	ServiceName,
-// 	SourceDetails,
-// 	ActionContainer,
-// 	DocumentName,
-// 	Heading,
-// 	FileStatus,
-// 	SourceName,
-// 	StyledModal,
-// 	DocStatus,
-// } from './styles';
-// import UpdateAirwayBill from './UpdateAirwayBill';
 
 const printableDocs = ['draft_house_bill_of_lading'];
 
@@ -40,10 +15,6 @@ function DocumentCard({
 	primary_service = {},
 }) {
 	const [showPrintDoc, setShowPrintDoc] = useState(false);
-	const [updateFreightCertificate, setUpdateFreightCertificate] =		useState(false);
-	const {
-		general: { scope = '' },
-	} = useSelector((state) => state);
 	const [showHbl, setShowHbl] = useState(null);
 
 	const handleDownload = (url) => {
@@ -53,12 +24,10 @@ function DocumentCard({
 	const handleView = (url) => {
 		window.open(url, '_blank');
 	};
-
-	const [updateAirwayBill, setUpdateAirwayBill] = useState(false);
 	const showUpdateAWBStakeholders = ['superadmin', 'service_ops2'];
 	const allowedStakeHolder = shipment_data?.stakeholder_types?.some((e) => showUpdateAWBStakeholders.includes(e));
 
-	const airActions =		details?.document_type === 'draft_airway_bill'
+	const airActions =	details?.document_type === 'draft_airway_bill'
 		&& document_data?.status === 'generated';
 
 	const isBlReleased = [
@@ -136,7 +105,6 @@ function DocumentCard({
 						&& allowedStakeHolder && (
 							<Button
 								className="primary md text"
-								onClick={() => setUpdateAirwayBill(true)}
 							>
 								Update
 							</Button>
@@ -184,7 +152,6 @@ function DocumentCard({
 					{containsFreightCertificate
 						&& details?.document_type === 'freight_certificate' && (
 							<Button
-								onClick={() => setUpdateFreightCertificate(true)}
 								className="primary md text"
 								disabled={details?.state === 'document_rejected'}
 							>
@@ -192,19 +159,6 @@ function DocumentCard({
 							</Button>
 					)}
 				</div>
-
-				{updateFreightCertificate && scope === 'partner' && (
-					<StyledModal
-						show={updateFreightCertificate}
-						onClose={() => setUpdateFreightCertificate(false)}
-						className="primary lg"
-					>
-						<UpdateFreightCertificate
-							setUpdateFreightCertificate={setUpdateFreightCertificate}
-							refetch={refetch}
-						/>
-					</StyledModal>
-				)}
 			</div>
 			<div>
 				{showPrintDoc && (
@@ -216,14 +170,6 @@ function DocumentCard({
 					/>
 				)}
 			</div>
-			{updateAirwayBill ? (
-				<UpdateAirwayBill
-					updateAirwayBill={updateAirwayBill}
-					setUpdateAirwayBill={setUpdateAirwayBill}
-					refetch={refetch}
-					details={details}
-				/>
-			) : null}
 		</>
 	);
 }

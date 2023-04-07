@@ -149,7 +149,6 @@ export const useStepExecuton = ({
 		stepConfig,
 		services,
 	);
-
 	const valueInjectedControls = injectValues(
 		selectedMail,
 		populatedControls,
@@ -170,7 +169,7 @@ export const useStepExecuton = ({
 		shipment_data,
 		formValues,
 	);
-
+	console.log(formValues, 'formValues');
 	const groupSubHeadings = {};
 	if (task.task === 'mark_confirmed') {
 		(controls || []).forEach((obj) => {
@@ -204,5 +203,6 @@ export const useStepExecuton = ({
 		setIsLoading,
 		onError,
 		groupSubHeadings,
+		formValues,
 	};
 };

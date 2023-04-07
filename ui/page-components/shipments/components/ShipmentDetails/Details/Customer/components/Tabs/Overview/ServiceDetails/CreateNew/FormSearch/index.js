@@ -28,7 +28,6 @@ function FormSearch({ extraParams, service, onClose, shipment_data, services }) 
 		extraParams,
 		services,
 	});
-
 	const { control, formValues, handleSubmit } = formProps;
 
 	let rednerForm = (

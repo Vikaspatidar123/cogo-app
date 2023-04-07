@@ -78,7 +78,7 @@ const useCreateSearch = ({
 		is_service = false,
 	) => {
 		const spotSearchParams = { ...rawParams, search_type: serviceMode };
-		const checkIsCogoVerse =			scope === 'partner'
+		const checkIsCogoVerse = scope === 'partner'
 			&& (query?.source === 'communication' || isCogoVerseMember);
 
 		const formattedSpotSearchParams = formatCreateSearch(
@@ -93,9 +93,8 @@ const useCreateSearch = ({
 			let formattedPayload = rawParams.spot_search_params
 				? spotSearchParams
 				: formattedSpotSearchParams;
-			if (scope === 'app') {
-				formattedPayload = { ...formattedPayload, schedules_required: false };
-			}
+
+			formattedPayload = { ...formattedPayload, schedules_required: false };
 
 			const apiToTrigger = rawParams.is_pass_through_selected === 'pass_through'
 				? trigger2
@@ -104,7 +103,7 @@ const useCreateSearch = ({
 			if (checkIsCogoVerse) {
 				formattedPayload = { ...formattedPayload, tags: ['cogoverse'] };
 			}
-
+			console.log(formattedPayload, 'formattedPayload');
 			const { data, hasError, messages } = await apiToTrigger({
 				data: formattedPayload,
 			});
@@ -118,13 +117,6 @@ const useCreateSearch = ({
 				const as = `/book/${(data || {}).id}`;
 				const href = '/book/[search_id]';
 
-				let partneras = `${as}/${(rawParams || {}).importer_exporter_id}`;
-				let partnerHref = '/book/[search_id]/[importer_exporter_id]';
-
-				if (query?.source) {
-					partneras += `?source=${query?.source}`;
-					partnerHref += `?source=${query?.source}`;
-				}
 				const userId = (formattedPayload || {}).user_id;
 
 				return {
@@ -132,8 +124,8 @@ const useCreateSearch = ({
 					searchId : (data || {}).id,
 					messages,
 					error    : hasError,
-					as       : scope === 'partner' ? partneras : as,
-					href     : scope === 'partner' ? partnerHref : href,
+					as,
+					href,
 				};
 			}
 			return {

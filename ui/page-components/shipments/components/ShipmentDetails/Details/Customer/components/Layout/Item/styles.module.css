@@ -1,6 +1,13 @@
 .container{
     display: flex;
 	flex-direction: column;
+	:global {
+		.ui_chips_container{
+			display: flex;
+		gap: 8px;
+		flex-wrap: wrap;
+		}
+	}
 }
 .label{
     font-weight: bold;
@@ -19,4 +26,7 @@
 	color: #adadad;
 	line-height: 20px;
 	margin-bottom: 6px;
+}
+.truck{
+	width: 50%;
 }

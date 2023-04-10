@@ -20,3 +20,11 @@
 	padding: 20px;
 	margin-bottom: 100px;
 }
+
+.input {
+	@media screen and (max-width: 767px) {
+		position: fixed;
+		left: 5%;
+		width: 88%;
+	}
+}

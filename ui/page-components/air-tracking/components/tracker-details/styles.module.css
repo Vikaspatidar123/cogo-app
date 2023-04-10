@@ -20,6 +20,8 @@
 	}
 
 	@media (max-width: 760px) {
+		display: block;
+
 		h1 {
 			margin-bottom: 2px;
 			font-size: 18px;

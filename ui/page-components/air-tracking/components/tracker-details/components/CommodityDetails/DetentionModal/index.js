@@ -50,6 +50,7 @@ function AddCommodityDetail({ isOpen, handleModal, trackerDetails, setTrackerDet
 				</div>
 				<div className={styles.list}>
 					<Select
+						className={styles.input}
 						value={value?.value}
 						onChange={(e, v) => {
 							setValue(v);

@@ -1,10 +1,11 @@
 .cargo_details {
 	width: 30%;
-	margin-left: 10px;
+	margin-left: 30px;
 	cursor: pointer;
 
 	@media screen and (max-width: 767px) {
 		width: 100%;
+		margin-left: 0;
 	}
 }
 
@@ -21,8 +22,8 @@
 	}
 
 	.heading {
-		font-weight: 600;
 		margin-bottom: 10px;
+		font-weight: 600;
 	}
 
 	@media screen and (max-width: 767px) {
@@ -32,17 +33,10 @@
 		box-sizing: border-box;
 		flex: 0 0 100%;
 		flex-direction: column;
-		width: 96%;
-		max-width: 100%;
-		min-height: 1px;
 		padding: 16px;
-		padding-right: 8px;
-		padding-left: 8px;
 		margin-top: -18px;
 		margin-bottom: 16px;
 		margin-left: 0%;
-		border: 1px dashed black;
-		box-shadow: none;
 	}
 }
 

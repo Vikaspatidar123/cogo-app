@@ -23,10 +23,10 @@ function DetentionDetails({ disabled, trackerDetails, loading, setTrackerDetails
 			value = `${commodity_details?.commodity}`;
 		}
 		return (
-			<div role="presentation" className={styles.card} onClick={handleModal}>
+			<div role="presentation" className={styles.commodity_details} onClick={handleModal}>
 				{!hideCommodity && (
-					<div className={styles.info}>
-						<div className={styles.label}>COMMODITY DETAILS</div>
+					<div className={styles.dash_button}>
+						<div className={styles.heading}>COMMODITY DETAILS</div>
 						<div className={styles.value}>{value}</div>
 					</div>
 				)}

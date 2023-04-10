@@ -35,9 +35,9 @@ const filter_controls = (filter_options) => [
 		multiple    : true,
 	},
 	{
-		type           : 'select',
-		optionsListKey : 'locations',
-		params         : {
+		type     : 'async_select',
+		asyncKey : 'locations',
+		params   : {
 			filters: {
 				type: ['city'],
 			},

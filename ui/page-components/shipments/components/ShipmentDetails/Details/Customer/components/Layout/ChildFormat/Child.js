@@ -27,7 +27,7 @@ function Child({
 				{index !== 0 ? <div className={`${styles.Line_row} ${styles.line}`} /> : null}
 
 				{controls.map((controlItem) => {
-					const { span = 6, watch = true, show = true } = controlItem;
+					const { span = 6, watch = true, show = true, name: itemName } = controlItem;
 					const elemShow = (!(controlItem.name in showElements)
 						|| showElements[controlItem.name])
 					&& show;
@@ -37,10 +37,10 @@ function Child({
 							<div className={styles.col}>
 								<Item
 									{...controlItem}
-									key={`${name}.${index}.${controlItem.name}`}
-									itemKey={`${name}.${index}.${controlItem.name}`}
 									control={control}
-									name={`${name}.${index}.${controlItem.name}`}
+									key={`${name}.${index}.${itemName}`}
+									itemKey={`${name}.${index}.${itemName}`}
+									name={`${name}.${index}.${itemName}`}
 									value={field[controlItem.name]}
 									error={error?.[controlItem.name]}
 									id_prefix={id_prefix}
@@ -56,7 +56,7 @@ function Child({
 						<div className={styles.col}>
 							<Item
 								{...controlItem}
-								key={`${name}.${index}.${controlItem.name}`}
+								key={`${name}.${index}.${controlItem.name}}`}
 								{...register(`${name}.${index}.${controlItem.name}`, {
 									...(controlItem.rules || {}),
 								})}

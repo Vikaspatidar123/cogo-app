@@ -36,7 +36,6 @@ function DocumentCard({
 		'surrendered',
 		'delivered',
 	].includes(details?.bl_detail_status);
-
 	const watermark = !isBlReleased ? 'draft' : ' ';
 
 	return (
@@ -56,7 +55,7 @@ function DocumentCard({
 				<p className={styles.file_status}>
 					Upload On :
 					{' '}
-					{format((details?.uploaded_at, 'dd MMM yyyy'))}
+					{format(details?.uploaded_at, 'dd MMM yyyy')}
 				</p>
 
 				<Tooltip
@@ -138,7 +137,7 @@ function DocumentCard({
 						</>
 						) : null}
 
-					{showHbl ? (
+					{/* {showHbl ? (
 						<PrintDoc
 							summary={shipment_data}
 							services={shipment_data?.all_services || []}
@@ -147,7 +146,7 @@ function DocumentCard({
 							watermark={watermark}
 							hblData={document_data}
 						/>
-					) : null}
+					) : null} */}
 
 					{containsFreightCertificate
 						&& details?.document_type === 'freight_certificate' && (
@@ -161,14 +160,14 @@ function DocumentCard({
 				</div>
 			</div>
 			<div>
-				{showPrintDoc && (
+				{/* {showPrintDoc && (
 					<GenerateDoc
 						shipment_data={shipment_data}
 						viewDoc={showPrintDoc}
 						details={details}
 						primary_service={primary_service}
 					/>
-				)}
+				)} */}
 			</div>
 		</>
 	);

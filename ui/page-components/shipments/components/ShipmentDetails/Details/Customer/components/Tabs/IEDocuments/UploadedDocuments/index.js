@@ -15,6 +15,7 @@ import { Pagination, Placeholder } from '@cogoport/components';
 
 import EmptyState from '../../../EmptyState';
 
+import DocumentCard from './DocumentCard';
 import styles from './styles.module.css';
 
 function UploadedDocuments({
@@ -73,7 +74,7 @@ function UploadedDocuments({
 				</div>
 			) : null}
 
-			{/* {shipmentDocuments?.map((item) => (
+			{shipmentDocuments?.map((item) => (
 				<div className={styles.document_container}>
 					<DocumentCard
 						details={item}
@@ -83,7 +84,7 @@ function UploadedDocuments({
 						primary_service={primary_service}
 					/>
 				</div>
-			))} */}
+			))}
 		</div>
 	);
 }

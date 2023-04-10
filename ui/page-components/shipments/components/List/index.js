@@ -47,9 +47,11 @@ function ShipmentList() {
 					<div className={styles.page_container}>
 						<Pagination
 							className="md"
-							total={total}
-							pagination={page}
-							setPagination={(val) => hookSetters.setFilters({
+							type="number"
+							totalItems={total}
+							pageSize={10}
+							currentPage={page}
+							onPageChange={(val) => hookSetters.setFilters({
 								...filters,
 								page: val,
 							})}

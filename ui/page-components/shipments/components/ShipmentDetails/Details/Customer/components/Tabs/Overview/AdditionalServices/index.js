@@ -1,31 +1,3 @@
-// import AddRate from '@cogo/bookings/AdditionalServices/components/AddRate';
-// import { ShipmentDetailContext } from '@cogo/bookings/commons/Context';
-// import EmptyState from '@cogo/bookings/commons/EmptyState';
-// import { useSelector } from '@cogo/store';
-// import { Button, Modal } from '@cogoport/front/components/admin';
-// import { isEmpty } from '@cogoport/front/utils';
-// import { IcMPlus } from '@cogoport/icons-react';
-// import Loader from '../../Loader';
-
-// import AddService from './AddService';
-// import useRequestRate from './AddService/ChooseService/useRequestRate';
-// import useList from './AddService/useList';
-// import ItemAdded from './ItemAdded';
-// import actions from './ItemAdded/actions';
-// import getStaus from './ItemAdded/get_status';
-// import ServicesLoader from './ItemAdded/ServicesLoader';
-// import {
-// 	Container,
-// 	Added,
-// 	AddedServices,
-// 	Heading,
-// 	SuggestedServices,
-// 	ServiceContainer,
-// 	ServiceName,
-// 	BtnWrap,
-// 	SuggestedContainer,
-// } from './styles';
-// import useAddedList from './useAddedList';
 import { Button, Placeholder, Modal } from '@cogoport/components';
 import { IcMPlus } from '@cogoport/icons-react';
 import { isEmpty } from '@cogoport/utils';

@@ -1,14 +1,6 @@
-// import useGetFiniteList from '@cogo/commons/hooks/useGetFiniteList';
-// import { useSelector } from '@cogo/store';
-// import { useState } from 'react';
-
-// import getShipmentList from '../apis/get-shipment-list';
-// import getListShipmentServices from '../apis/get-shipment-list-services';
-import { list } from 'postcss';
 import { useState } from 'react';
 
 import getShipmentList from '../apis/useShipmentList';
-import getListShipmentServices from '../apis/useShipmentlistServices';
 import getConfigsShipper from '../configurations/ShipmentList/Shipper/get-config';
 import getConfigsSupplier from '../configurations/ShipmentList/Supplier/get-configs';
 
@@ -18,7 +10,7 @@ import { useSelector } from '@/packages/store';
 
 const useGetShipmentList = (viewAs = 'importer_exporter', allParams = { isBookingDesk: false }) => {
 	const { isBookingDesk, ...params } = allParams || {};
-	const { branch_id, scope } = useSelector(({ general }) => ({
+	const { branch_id } = useSelector(({ general }) => ({
 		branch_id : general?.query?.branch_id,
 		scope     : general?.scope,
 	}));
@@ -45,23 +37,7 @@ const useGetShipmentList = (viewAs = 'importer_exporter', allParams = { isBookin
 		},
 		{ page: currentPage, ...params },
 	);
-	// const { getshipment } = useListShipmentServices(
-	// 	{
-	// 		...restFilters,
-	// 		global_state: config.list_states[currentTab],
-	// 	},
-	// 	{ page: currentPage, ...params },
-	// );
-	const supplierApiFunc = (restFilters, currentPage) => getListShipmentServices(
-		{
-			...restFilters,
-			global_state: config.list_states[currentTab],
-		},
-		{ page: currentPage, ...params },
-	);
 	const listApiFunc =	 shipperApiFunc;
-
-	console.log(listApiFunc, 'listApiFunc');
 
 	const {
 		loading,
@@ -70,25 +46,24 @@ const useGetShipmentList = (viewAs = 'importer_exporter', allParams = { isBookin
 		list: { data, total, total_page },
 		hookSetters,
 	} = useGetFiniteList(listApiFunc, { params });
-
 	const service_or_shipment = filters?.shipment_type;
 
 	const restFilterControls = service_or_shipment
 		? configFunc(service_or_shipment)?.filter_controls || []
 		: [];
 
-	const defaultControls = (configFunc(null)?.filter_controls || []).map(
+	const defaultControls = (configFunc(null)?.filter_controls || [])?.map(
 		(control) => {
 			if (control.name === 'shipment_type' && isBookingDesk) {
 				return {
 					...control,
-					options: control?.options?.filter((option) => ['fcl_freight', 'lcl_freight'].includes(option.value)),
+					options: control?.options
+						?.filter((option) => ['fcl_freight', 'lcl_freight'].includes(option.value)),
 				};
 			}
 			return control;
 		},
 	);
-	console.log(defaultControls, 'config', restFilterControls);
 	return {
 		loading,
 		page,

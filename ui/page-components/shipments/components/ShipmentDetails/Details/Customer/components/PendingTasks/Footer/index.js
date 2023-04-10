@@ -1,7 +1,3 @@
-// import { IcMArrowNext } from '@cogoport/icons-react';
-// import React from 'react';
-
-// import { Container, Steps } from './styles';
 import { IcMArrowNext } from '@cogoport/icons-react';
 
 import styles from './styles.module.css';

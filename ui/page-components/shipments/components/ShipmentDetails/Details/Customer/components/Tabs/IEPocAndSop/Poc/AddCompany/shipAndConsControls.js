@@ -156,7 +156,7 @@ const company_controls = (roleCheck) => [
 		type            : 'file',
 		drag            : true,
 		onlyURLOnChange : true,
-		uploadIcon      : 'ic-upload',
+		uploadIcon      : '',
 		span            : 6,
 		height          : 50,
 		className       : 'primary md',

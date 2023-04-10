@@ -12,7 +12,7 @@ const reallocateControl = (isReallocates) => (isReallocates
 			placeholder : 'Type here...',
 			validations : [{ type: 'required', message: 'Reason is required' }],
 		},
-		  ]
+	]
 	: []);
 const extraControls = (shipment_data, isDisabled) => {
 	const isReallocate =		shipment_data.state === 'cancelled'
@@ -52,7 +52,6 @@ const extraControls = (shipment_data, isDisabled) => {
 				themeType       : 'secondary',
 				drag            : true,
 				onlyURLOnChange : true,
-				uploadIcon      : 'ic-upload',
 				accept:
                          'image/*,.pdf,.doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document',
 				uploadType: 'aws',
@@ -90,7 +89,6 @@ const extraControls = (shipment_data, isDisabled) => {
 				themeType       : 'secondary',
 				drag            : true,
 				onlyURLOnChange : true,
-				uploadIcon      : 'ic-upload',
 				accept:
 					'image/*,.pdf,.doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document',
 				uploadType: 'aws',
@@ -110,7 +108,6 @@ const extraControls = (shipment_data, isDisabled) => {
 				themeType       : 'secondary',
 				drag            : true,
 				onlyURLOnChange : true,
-				uploadIcon      : 'ic-upload',
 				accept:
 					'image/*,.pdf,.doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document',
 				uploadType: 'aws',
@@ -140,8 +137,6 @@ const extraControls = (shipment_data, isDisabled) => {
 			},
 		],
 	};
-	// if (shipment_data?.can_change_booking_params_status === 'accepted' || shipment_data?.state !== 'init') {
-	// } return [];
 	let service = shipment_data?.service_type;
 	if (
 		shipment_data?.service_type === 'haulage_freight_service'

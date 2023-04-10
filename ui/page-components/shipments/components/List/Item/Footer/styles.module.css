@@ -43,3 +43,11 @@
     font-weight: bold;
     color: #cb6464;
 }
+.icon_container{
+	width: 30px;
+	height: 30px;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}

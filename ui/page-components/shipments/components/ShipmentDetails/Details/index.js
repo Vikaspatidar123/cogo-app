@@ -1,9 +1,3 @@
-// import dynamic from 'next/dynamic';
-// import React from 'react';
-
-// import { ShipmentDetailContext } from '../../commons/Context';
-// import useGetShipment from '../hooks/useGetShipment';
-// import useServiceList from '../hooks/useServiceList';
 import dynamic from 'next/dynamic';
 
 import { ShipmentDetailContext } from '../common/Context';

@@ -5,11 +5,11 @@ import { IcMArrowRight } from '@cogoport/icons-react';
 import { startCase } from '@cogoport/utils';
 import React from 'react';
 
-// import IconElement from '../../../../../common/Icons';
-// import iconsJson from '../../../../../configurations/common/icons';
-// import Agents from '../../../../BookingDesk/Item/Agents';
+import IconElement from './IconElement';
 import servicesSort from './services.json';
 import styles from './styles.module.css';
+
+import iconsJson from '@/ui/page-components/product-catalouge/configurations/icons';
 
 function Footer({ data, viewAs, isBookingDesk = false }) {
 	const services =		viewAs === 'importer_exporter' ? data.services || [] : [data.service_type];
@@ -60,9 +60,9 @@ function Footer({ data, viewAs, isBookingDesk = false }) {
 						{idx !== 0 && (
 							<IcMArrowRight />
 						)}
-						{/* <IconContainer>
+						<div className={styles.icon_container}>
 							<IconElement {...iconsJson[item]?.new} />
-						</IconContainer> */}
+						</div>
 					</li>
 				))}
 			</ul>

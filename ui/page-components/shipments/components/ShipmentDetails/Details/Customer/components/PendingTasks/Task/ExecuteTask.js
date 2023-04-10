@@ -44,8 +44,9 @@ function ExecuteTask({
 
 	const { data, loading: getTaskLoading } = useGetTask({
 		task,
-		onCancel,
+		// onCancel,
 	});
+	console.log(data, 'stepConfig');
 
 	const {
 		steps = [],

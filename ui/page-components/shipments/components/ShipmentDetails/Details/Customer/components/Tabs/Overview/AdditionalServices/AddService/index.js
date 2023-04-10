@@ -1,17 +1,9 @@
-// import AddRate from '@cogo/bookings/AdditionalServices/components/AddRate';
-// import EmptyState from '@cogo/bookings/commons/EmptyState';
-// import getGeoConstants from '@cogo/globalization/constants/geo';
-
-// import ChooseService from './ChooseService';
-// import Header from './Header';
-// import { Container } from './styles';
-// import useList from './useList';
+import { Modal } from '@cogoport/components';
 import { useState } from 'react';
 
 import EmptyState from '../../../../EmptyState';
 
 import ChooseService from './ChooseService';
-import Header from './Header';
 import useList from './hooks/useList';
 import styles from './styles.module.css';
 
@@ -40,7 +32,8 @@ function AddService({
 
 	return (
 		<div className={styles.container}>
-			<Header />
+
+			<Modal.Header title="ADD NEW SERVICE" />
 
 			{!showAddRate ? (
 				<ChooseService

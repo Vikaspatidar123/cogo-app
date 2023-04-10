@@ -57,6 +57,7 @@ function ExecuteStep({
 		showElements,
 		services,
 	});
+
 	const fields = controls?.map((item) => {
 		if (item.type === 'pills') {
 			const { value, ...rest } = item || {};
@@ -105,6 +106,15 @@ function ExecuteStep({
 				asyncKey : 'locations',
 			};
 		}
+
+		if (item.name === 'documentss') {
+			const { controls, ...rest } = item;
+			// const [] = controls;
+			return {
+				...rest,
+				// controls: [],
+			};
+		}
 		const { value, ...rest } = item || {};
 		return {
 			...rest,
@@ -126,6 +136,7 @@ function ExecuteStep({
 			handleSubmitClick();
 		}
 	};
+	console.log(fields, '5432');
 
 	return (
 		<div>
@@ -140,9 +151,9 @@ function ExecuteStep({
 			</div>
 			<div className={styles.button_wrap}>
 				<Button
-					className="secondary md"
 					onClick={() => onCancel()}
 					disabled={isLoading}
+					themeType="secondary"
 				>
 					cancel
 				</Button>

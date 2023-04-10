@@ -19,6 +19,7 @@ const injectValues = (
 	stepConfig,
 ) => {
 	const controls = populatedControls;
+	console.log(controls, 'controlpop');
 	if (task.task === 'upload_si') {
 		controls[0].value = [
 			{

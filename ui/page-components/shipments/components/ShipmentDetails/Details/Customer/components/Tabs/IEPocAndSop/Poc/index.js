@@ -56,7 +56,6 @@ function Poc() {
 		scope,
 		shipment_id,
 	});
-	console.log(final_stakeholders, 'final_stakeholders');
 
 	const stakeHolderDetails = () => (!tradePartyLoading ? (
 		(final_stakeholders || [])?.map((stakeholder) => (

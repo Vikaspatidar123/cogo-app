@@ -34,6 +34,9 @@
 	line-height: 12px;
 	color: #828282;
 	margin-bottom: 1px;
+	@media (max-width: 768px) {
+		max-width: 80%;
+	}
 }
 .name{
     text-overflow: ellipsis;

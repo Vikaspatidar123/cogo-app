@@ -67,7 +67,7 @@ function ChildFormat({
 			{showAddButton && showButtons && !disabled ? (
 				<div className={styles.button_wrap}>
 					<Button onClick={() => append(childEmptyValues)}>
-						<div className={styles.add_icon}>+</div>
+						<div>+</div>
 						{buttonText || 'ADD'}
 					</Button>
 				</div>

@@ -4,17 +4,17 @@ import { useEffect } from 'react';
 
 import { useRequest } from '@/packages/request';
 
-const useGetTask = ({ task = {}, onCancel = () => {} }) => {
+const useGetTask = ({ task = {} }) => {
 	const [{ loading, data }, trigger] = useRequest({
-		url    : 'get_task_config',
+		url    : '/get_task_config',
 		method : 'get',
-	}, { manual: true });
+	}, { manual: false });
 
 	const getTask = async () => {
 		const task_id = task?.id;
 
 		try {
-			const res = await trigger({
+			await trigger({
 				params: { pending_task_id: task_id },
 			});
 		} catch (err) {
@@ -23,9 +23,7 @@ const useGetTask = ({ task = {}, onCancel = () => {} }) => {
 	};
 
 	useEffect(() => {
-		if (task?.id) {
-			getTask();
-		}
+		getTask();
 	}, [JSON.stringify(task?.id)]);
 
 	return {

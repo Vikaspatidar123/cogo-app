@@ -7,8 +7,7 @@ function LocationDetails({ data }) {
 	return (
 		<div className={styles.location_details_div}>
 			<Tooltip
-				theme="light"
-				animation="shift-away"
+				placement="bottom"
 				interactive
 				content={origin_location?.port_code || origin_location?.name}
 			>
@@ -24,8 +23,7 @@ function LocationDetails({ data }) {
 			</div>
 
 			<Tooltip
-				theme="light"
-				animation="shift-away"
+				placement="bottom"
 				interactive
 				content={destination_location?.port_code || destination_location?.name}
 			>

@@ -9,9 +9,9 @@ function ChipsController(props) {
 	const data = getOptionsFromKey(optionKey, { ...rest });
 
 	const optionDate = data?.options.map((item) => ({
-    	...item,
-    	key      : item.value,
-    	children : item.label,
+		...item,
+		key      : item.value,
+		children : item.label,
 	})) || options;
 	return (
 		<Controller

@@ -161,6 +161,7 @@ function DeleteConfirmation({
 			<div className={styles.button_wrap}>
 				<Button
 					id="search_results_additional_service_delete_cancel_btn"
+					themeType="accent"
 					onClick={() => {
 						setShow(false);
 						setDeleteService('');
@@ -171,11 +172,7 @@ function DeleteConfirmation({
 				</Button>
 
 				<Button
-					style={{
-						background : '#ffffff',
-						color      : '#000000',
-						border     : '1px solid #000000',
-					}}
+					themeType="secondary"
 					onClick={() => handleDeleteService()}
 					disabled={loading || apiLoading}
 					id="search_results_additional_service_delete_save_btn"

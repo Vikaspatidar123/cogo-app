@@ -15,6 +15,7 @@ function FormElement({
 	control,
 	showButtons = false,
 }) {
+	console.log(controls, 'controls');
 	return (
 		<div className={styles.container}>
 			<div className={styles.row}>

@@ -110,9 +110,12 @@
 .service_type_text {
 	font-size: 10px;
 	font-weight: 500;
-	/* color: ${(props) =>
-		props.search_type === 'trailer_freight' ? '#8fbdb1' : 'rgb(180, 226, 162)'}; */
 	margin-top: 2px;
+	color:rgb(180, 226, 162);
+
+	&.trailer_color{
+		color: #8fbdb1;
+	}
 }
 
 .flex_row {
@@ -209,7 +212,7 @@
 }
 
 .container_div {
-	width: 100%;
+	width: 88%;
 }
 
 .multi_container_values {
@@ -222,6 +225,11 @@
 
 .btn_container{
 	cursor: pointer;
+	border-left: 2px solid #f2f2f2;
+	padding-left: 12px;
+	font-size: 14px;
+	display: flex;
+	align-items: center;
 }
 
 .button_border {

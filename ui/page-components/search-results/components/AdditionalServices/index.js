@@ -1,5 +1,5 @@
 import { Modal, Button, Select, Input, cl } from '@cogoport/components';
-import { IcCTick, IcACarriageInsurancePaidTo, IcMPlus } from '@cogoport/icons-react';
+import { IcCTick, IcMPlus } from '@cogoport/icons-react';
 import { startCase } from '@cogoport/utils';
 import React, { useState } from 'react';
 
@@ -71,8 +71,7 @@ function AdditionalServices({
 		const serviceName = service.split(':');
 
 		if (
-			data?.service_type !== 'air_freight'
-      && data?.service_type !== 'ftl_freight'
+			data?.service_type !== 'air_freight' && data?.service_type !== 'ftl_freight'
 		) {
 			if (
 				(nonRemovableServices || []).includes(
@@ -101,8 +100,8 @@ function AdditionalServices({
 		return (
 			<Button
 				onClick={() => {
-        	setShow(true);
-        	setDeleteService(service);
+					setShow(true);
+					setDeleteService(service);
 				}}
 				disabled={loading}
 				size="xs"
@@ -142,9 +141,9 @@ function AdditionalServices({
 						<div className={styles.pill}>
 							<div
 								style={{
-                	display    : 'flex',
-                	maxWidth   : '94%',
-                	alignItems : 'center',
+									display    : 'flex',
+									maxWidth   : '94%',
+									alignItems : 'center',
 								}}
 							>
 								<div className={styles.active_service}>
@@ -165,51 +164,50 @@ function AdditionalServices({
 					))}
 				</div>
 
-				{(remainingServicesToAdd || []).length > 0
-        && data?.source !== 'upsell' ? (
-	<>
-		<div className={styles.line} style={{ margin: '8px 0px' }} />
-		<div style={{ marginBottom: 10 }}>Add more</div>
+				{(remainingServicesToAdd || []).length > 0 && data?.source !== 'upsell' ? (
+					<>
+						<div className={styles.line} style={{ margin: '8px 0px' }} />
+						<div style={{ marginBottom: 10 }}>Add more</div>
 
-		<div
-			style={{
-              	overflow  : 'auto',
-              	maxHeight : '350px',
-			}}
-		>
-			<Input
-				type="text"
-				placeholder="Search...."
-				onChange={(e) => handleSearch(e)}
-				name="service"
-				value={query}
-			/>
-			<div className={styles.add_service}>
-				{(remainingServicesToAdd || []).map((service) => (
-					<div
-						role="presentation"
-						className={cl`${styles.pills} ${styles.inactive}`}
-						onClick={() => handleAdd(service)}
-						id={`search_results_additional_service_${service}`}
-					>
-						<div style={{ maxWidth: '90%', display: 'flex' }}>
-							<img
-								src="https://cdn.cogoport.io/cms-prod/cogo_admin/vault/original/Hangar.svg"
-								alt="hangar"
-								style={{ width: 14, height: 14 }}
+						<div
+							style={{
+								overflow  : 'auto',
+								maxHeight : '350px',
+							}}
+						>
+							<Input
+								type="text"
+								placeholder="Search...."
+								onChange={(e) => handleSearch(e)}
+								name="service"
+								value={query}
 							/>
-							<div className={styles.services}>
-								{detail?.[service]?.title}
+							<div className={styles.add_service}>
+								{(remainingServicesToAdd || []).map((service) => (
+									<div
+										role="presentation"
+										className={cl`${styles.pills} ${styles.inactive}`}
+										onClick={() => handleAdd(service)}
+										id={`search_results_additional_service_${service}`}
+									>
+										<div style={{ maxWidth: '90%', display: 'flex' }}>
+											<img
+												src="https://cdn.cogoport.io/cms-prod/cogo_admin/vault/original/Hangar.svg"
+												alt="hangar"
+												style={{ width: 14, height: 14 }}
+											/>
+											<div className={styles.services}>
+												{detail?.[service]?.title}
+											</div>
+										</div>
+
+										<IcMPlus className={styles.services_icon} />
+									</div>
+								))}
 							</div>
 						</div>
-
-						<IcMPlus className={styles.services_icon} />
-					</div>
-				))}
-			</div>
-		</div>
-	</>
-        	) : null}
+					</>
+				) : null}
 
 				<div className={styles.line} />
 				<div>Subsidiary services</div>

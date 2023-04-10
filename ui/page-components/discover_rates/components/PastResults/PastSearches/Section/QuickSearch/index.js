@@ -288,15 +288,15 @@ function QuickSearch({ data, extraParams = {}, mobile, type, refresh }) {
 					placement="left"
 					render={renderPopover()}
 					onOuterClick={() => {
-                    	setShow(false);
+						setShow(false);
 					}}
 					onClickOutside={() => {
-                 	setShow(false);
+						setShow(false);
 					}}
 				>
 					<Button
 						onClick={() => {
-                 	setShow(true);
+							setShow(true);
 						}}
 						size="md"
 						themeType="tertiary"

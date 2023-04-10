@@ -27,7 +27,7 @@ function Item({ formValue, ...rest }) {
 		...restProps
 	} = rest;
 	const props = { placeholder };
-
+	if (type === 'truck-type-select') return;
 	const Element = getField(type);
 
 	if (
@@ -101,8 +101,7 @@ function Item({ formValue, ...rest }) {
 								className={className}
 								id={`search_form_${rest.name}`}
 							/>
-						))
-					|| null}
+						)) || null}
 
 						{lowerlabel && (
 							<div className={styles.lower_label}>{lowerlabel}</div>

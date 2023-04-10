@@ -87,8 +87,7 @@ function ConatinerDetails({
 			<div className={styles.div}>
 				<div style={{ display: 'flex' }}>
 					<Tooltip
-						theme="light"
-						animation="shift-away"
+						placement="bottom"
 						interactive
 						content={(
 							<div>

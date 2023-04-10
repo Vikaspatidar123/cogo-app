@@ -1,7 +1,7 @@
 // import SearchForm from '@cogo/app-search/common/SearchForm';
 // import formatMainServiceData from '@cogo/app-search/utils/format-main-service-data';
 
-import { Button, Tooltip, Modal } from '@cogoport/components';
+import { cl, Button, Tooltip, Modal } from '@cogoport/components';
 import { IcCFhaulage, IcMFtrailorFull, IcMEdit } from '@cogoport/icons-react';
 import { getByKey, startCase } from '@cogoport/utils';
 import React, { useState, useEffect } from 'react';
@@ -132,7 +132,9 @@ function TrailerFreightInfo({
 			<div className={styles.service_wrap}>
 				{getByKey(SEARCH_TYPE_DETAILS_MAPPING, `[${data.search_type}].icon`)}
 
-				<div className={styles.service_type_text} search_type={data.search_type}>
+				<div className={cl`${styles.service_type_text} 
+				${data.search_type === 'trailer_freight' ? styles.trailer_color : ''}`}
+				>
 					{SEARCH_TYPE_DETAILS_MAPPING[data?.search_type].label}
 				</div>
 
@@ -143,8 +145,7 @@ function TrailerFreightInfo({
 
 			<div className={styles.freight_details_div}>
 				<Tooltip
-					theme="light"
-					animation="shift-away"
+					placement="bottom"
 					interactive
 					content={<CargoDate type="tool_tip" />}
 				>
@@ -157,9 +158,8 @@ function TrailerFreightInfo({
 			{service_type === 'rail_domestic_freight' && (
 				<div className={styles.freight_details_div}>
 					<Tooltip
-						theme="light"
+						placement="bottom"
 						interactive
-						animation="shift-away"
 						content={<ShipmentType type="tool_tip" />}
 					>
 						<div>

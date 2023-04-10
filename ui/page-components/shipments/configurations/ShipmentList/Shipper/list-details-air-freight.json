@@ -51,7 +51,8 @@
 			"name": "commodity",
 			"label": "Commodity",
 			"type": "select",
-			"commodityType": "air_freight"
+			"commodityType": "air_freight",
+			"optionKey": "true"
 		},
 		{
 			"type": "async_select",

@@ -25,8 +25,8 @@ const useGetShipmentList = (viewAs = 'importer_exporter', allParams = { isBookin
 	const [currentTab, setCurrentTab] = useState('ongoing');
 	const { getshipment } = getShipmentList();
 
-	const config =		viewAs === 'importer_exporter' ? getConfigsShipper() : getConfigsSupplier();
-	const configFunc =		viewAs === 'importer_exporter' ? getConfigsShipper : getConfigsSupplier;
+	const config =	viewAs === 'importer_exporter' ? getConfigsShipper() : getConfigsSupplier();
+	const configFunc =	viewAs === 'importer_exporter' ? getConfigsShipper : getConfigsSupplier;
 
 	const shipperApiFunc = (restFilters, currentPage) => getshipment(
 		{
@@ -38,9 +38,8 @@ const useGetShipmentList = (viewAs = 'importer_exporter', allParams = { isBookin
 				pending_task: isBookingDesk
 					? 'upload_booking_note'
 					: restFilters?.task,
-				pending_task_status: isBookingDesk ? 'pending' : undefined,
-				importer_exporter_branch_id:
-					viewAs === 'importer_exporter' ? branch_id : undefined,
+				pending_task_status         : isBookingDesk ? 'pending' : undefined,
+				importer_exporter_branch_id : branch_id,
 			},
 			global_state: config.list_states[currentTab],
 		},
@@ -60,7 +59,7 @@ const useGetShipmentList = (viewAs = 'importer_exporter', allParams = { isBookin
 		},
 		{ page: currentPage, ...params },
 	);
-	const listApiFunc =	viewAs === 'importer_exporter' ? shipperApiFunc : supplierApiFunc;
+	const listApiFunc =	 shipperApiFunc;
 
 	console.log(listApiFunc, 'listApiFunc');
 
@@ -71,11 +70,8 @@ const useGetShipmentList = (viewAs = 'importer_exporter', allParams = { isBookin
 		list: { data, total, total_page },
 		hookSetters,
 	} = useGetFiniteList(listApiFunc, { params });
-	console.log(list, 'data');
 
-	const service_or_shipment =		viewAs === 'importer_exporter'
-		? filters?.shipment_type
-		: filters?.service_type;
+	const service_or_shipment = filters?.shipment_type;
 
 	const restFilterControls = service_or_shipment
 		? configFunc(service_or_shipment)?.filter_controls || []
@@ -92,7 +88,7 @@ const useGetShipmentList = (viewAs = 'importer_exporter', allParams = { isBookin
 			return control;
 		},
 	);
-
+	console.log(defaultControls, 'config', restFilterControls);
 	return {
 		loading,
 		page,

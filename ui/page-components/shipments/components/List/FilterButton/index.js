@@ -6,8 +6,6 @@ import { useState } from 'react';
 import Filters from './Filters';
 import styles from './styles.module.css';
 
-import { useSelector } from '@/packages/store';
-
 function FilterButton({
 	setFilters,
 	filters,
@@ -15,11 +13,9 @@ function FilterButton({
 	filterBody,
 	dynamicKey,
 	isScrollable,
-	filterButtonLabel,
 	id_prefix = '',
 }) {
 	const [show, setShow] = useState(false);
-	const isMobile = useSelector((state) => state?.general?.isMobile);
 
 	const onClose = () => {
 		setShow(false);
@@ -28,7 +24,6 @@ function FilterButton({
 	const onShow = () => {
 		setShow(true);
 	};
-
 	const renderFilters = () => (
 		<Filters
 			onClose={onClose}
@@ -56,15 +51,15 @@ function FilterButton({
 					filterBody(onShow, show, id_prefix)
 				) : (
 					<Button
-						size="sm"
+						size="md"
 						ghost
 						onClick={onShow}
 						id={`${id_prefix}_filter_btn`}
+
 					>
 						<div className={styles.main}>
-							{!isMobile && filterButtonLabel}
 							<div className={styles.icon_container}>
-								<IcMFilter style={{ width: 12, height: 12 }} />
+								<IcMFilter style={{ width: 20, height: 20 }} />
 								{isEmpty(filters) ? null : <div className={styles.circle} />}
 							</div>
 						</div>

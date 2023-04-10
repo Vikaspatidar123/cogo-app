@@ -5,8 +5,9 @@ import ValueChip from './ValueChip';
 
 import getField from '@/packages/forms/Controlled';
 
-function Item({ name, fields, id = '' }) {
+function Item({ name, fields, id, val }) {
 	const controls = fields[name];
+
 	const Element = getField(controls?.type);
 	const {
 		className = '',
@@ -91,7 +92,8 @@ function Item({ name, fields, id = '' }) {
 						{...rest}
 						{...props}
 						className={className}
-						id={id || name}
+						key={val || id || name}
+						id={id}
 					/>
 				))
 					|| null}

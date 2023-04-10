@@ -28,7 +28,8 @@
 			"name": "commodity",
 			"label": "Commodity",
 			"type": "select",
-			"commodityType": "hazardous"
+			"commodityType": "hazardous",
+			"optionKey": "true"
 		},
 		{
 			"name": "state",

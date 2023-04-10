@@ -3,7 +3,6 @@ import Header from './Header';
 import styles from './styles.module.css';
 
 import { useForm } from '@/packages/forms';
-import { useSelector } from '@/packages/store';
 
 function Filters({
 	onClose,
@@ -14,30 +13,32 @@ function Filters({
 	isScrollable,
 	id_prefix = 'page',
 }) {
-	const scope = useSelector(({ general }) => general?.scope);
 	const controls = propControls
 		.filter((control) => {
 			if (
 				Array.isArray(control.showForScope)
-				&& !control.showForScope.includes(scope)
+				&& !control.showForScope.includes()
 			) {
 				return false;
 			}
 			return true;
 		})
 		.map((control) => ({ ...control, value: filters[control.name] }));
-	const { control, getValues, setValue } = useForm(controls);
+
+	const { control, getValues, setValue, watch } = useForm();
 
 	const fieldsProp = {};
-	controls.forEach((item) => fieldsProp[item.name] = { ...item, control });
+
+	controls.forEach((item) => {
+		fieldsProp[item.name] = { ...item, control };
+	});
 
 	const fields = {};
 	Object.keys(fieldsProp).forEach((key) => {
 		if (dynamicKey && key === dynamicKey) {
 			fields[key] = {
 				...fieldsProp[key],
-				onChange: (val, obj) => {
-					fieldsProp[key].onChange(val, obj);
+				onChange: (val) => {
 					setFilters({ ...filters, [key]: val });
 				},
 			};
@@ -45,7 +46,6 @@ function Filters({
 			fields[key] = fieldsProp[key];
 		}
 	});
-	console.log(fields, 'fields');
 
 	const onSubmit = async () => {
 		const values = await getValues();
@@ -72,7 +72,7 @@ function Filters({
 	const handleReset = () => {
 		setFilters({});
 		onClose();
-		setValue({});
+		// setValue({});
 	};
 
 	return (
@@ -88,6 +88,7 @@ function Filters({
 					controls={controls}
 					fields={fields}
 					id_prefix={`${id_prefix}_filters`}
+					watch={watch}
 				/>
 			</div>
 		</div>

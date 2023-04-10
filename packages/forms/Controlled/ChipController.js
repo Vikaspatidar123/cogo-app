@@ -25,7 +25,12 @@ function ChipsController(props) {
 					{...rest}
 					key={rest.id}
 					items={optionDate}
-					onItemChange={onChange}
+					onItemChange={(val) => {
+						onChange(val);
+						if (rest?.onChange) {
+							rest.onChange(val);
+						}
+					}}
 					selectedItems={value}
 					onBlur={onBlur}
 					data-test-value={value}

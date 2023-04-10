@@ -1,10 +1,5 @@
-// import { Btn } from '@cogo/deprecated_legacy/ui';
-// import { func } from 'prop-types';
-// import React from 'react';
-
-// import Icon from './ic-refresh.svg';
-// import { Container, Title, Right } from './styles';
 import { Button } from '@cogoport/components';
+import { IcMRefresh } from '@cogoport/icons-react';
 
 import styles from './styles.module.css';
 
@@ -13,19 +8,33 @@ function Header({ onClose, onSubmit, onReset, id_prefix = '' }) {
 		<div className={styles.container}>
 			<div className={styles.title}>Filters</div>
 			<div className={styles.right}>
-				<Button
-					className="outline small"
+				<div
+					role="presentation"
 					onClick={onReset}
+					className={styles.reset}
 					style={{ border: 'none', color: '#4F4F4F', fontSize: 12 }}
 					id={`${id_prefix}_reset_btn`}
 				>
+					<IcMRefresh />
 					{/* <Icon style={{ width: 12, height: 12, marginRight: 3 }} /> */}
 					Reset
-				</Button>
-				<Button id={`${id_prefix}_cancel_btn`} className="outline small" onClick={onClose} style={{ marginLeft: 10 }}>
+				</div>
+				<Button
+					themeType="secondary"
+					id={`${id_prefix}_cancel_btn`}
+					size="sm"
+					onClick={onClose}
+					style={{ marginLeft: 10 }}
+				>
 					CANCEL
 				</Button>
-				<Button type="submit" id={`${id_prefix}_cancel_btn`} className="small" onClick={onSubmit} style={{ marginLeft: 10 }}>
+				<Button
+					type="submit"
+					size="sm"
+					id={`${id_prefix}_cancel_btn`}
+					onClick={onSubmit}
+					style={{ marginLeft: 10 }}
+				>
 					APPLY
 				</Button>
 			</div>

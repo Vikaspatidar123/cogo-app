@@ -1,16 +1,15 @@
 import Item from './Item';
 import styles from './styles.module.css';
 
-function Options({ fields, controls, id_prefix }) {
+function Options({ fields, controls }) {
 	return (
 		<div>
 			<div className={styles.row}>
 				{controls.map((item) => (
 					<Item
-						key={item.name}
 						name={item.name}
 						fields={fields}
-						id={`${id_prefix}_${item.name}`}
+						id={`${item.name}`}
 					/>
 				))}
 			</div>

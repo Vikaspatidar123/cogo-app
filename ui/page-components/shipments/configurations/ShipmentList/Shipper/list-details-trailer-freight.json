@@ -41,7 +41,8 @@
 			"name": "commodity",
 			"label": "Commodity",
 			"type": "select",
-			"commodityType": "freight"
+			"commodityType": "freight",
+			"optionKey": "true"
 		},
 		{
 			"name": "state",

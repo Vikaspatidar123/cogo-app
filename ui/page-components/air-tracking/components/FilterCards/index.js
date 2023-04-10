@@ -1,3 +1,5 @@
+import { cl } from '@cogoport/components';
+
 import {
 	FILTER_KEY_TO_LABEL,
 	FILTER_WIDTH,
@@ -31,7 +33,9 @@ function FilterCards({ id, onClick, activeKey, stats, ...props }) {
 				{wide === 2 ? (
 					<div
 						role="presentation"
-						className={`${styles.header_container1} ${isDisabled && styles.disabled_card}`}
+						className={`${styles.header_container1} ${
+							isDisabled && styles.disabled_card
+						} ${id === activeKey && styles.active}`}
 						disabled={isDisabled}
 						onClick={() => !isDisabled && onClick(headingKey)}
 					>
@@ -51,7 +55,9 @@ function FilterCards({ id, onClick, activeKey, stats, ...props }) {
 				) : (
 					<div
 						role="presentation"
-						className={`${styles.header_container} ${isDisabled && styles.disabled_card}`}
+						className={`${styles.header_container} ${
+							isDisabled && styles.disabled_card
+						} ${id === activeKey && styles.active}`}
 						disabled={isDisabled}
 						onClick={() => !isDisabled && onClick(headingKey)}
 					>
@@ -63,7 +69,9 @@ function FilterCards({ id, onClick, activeKey, stats, ...props }) {
 				<div className={styles.flex}>
 					<div
 						role="presentation"
-						className={`${styles.sub_heading} ${isSubheading1Disabled && styles.disabled_card}`}
+						className={`${styles.sub_heading} ${
+                        	isSubheading1Disabled && styles.disabled_card
+						} ${id === activeKey && styles.active}`}
 						disabled={isSubheading1Disabled}
 						onClick={() => !isSubheading1Disabled && onClick(subheading1Key)}
 					>
@@ -73,7 +81,9 @@ function FilterCards({ id, onClick, activeKey, stats, ...props }) {
 					<div className={styles.vertical_line} />
 					<div
 						role="presentation"
-						className={`${styles.sub_heading} ${isSubheading2Disabled && styles.disabled_card}`}
+						className={`${styles.sub_heading} ${
+							isSubheading2Disabled && styles.disabled_card
+						} ${id === activeKey && styles.active}`}
 						disabled={isSubheading2Disabled}
 						onClick={() => !isSubheading2Disabled && onClick(subheading2Key)}
 					>
@@ -81,9 +91,7 @@ function FilterCards({ id, onClick, activeKey, stats, ...props }) {
 						<p className={styles.value}>{subheading2Value}</p>
 					</div>
 				</div>
-
 			</div>
-
 		);
 	}
 	const label = FILTER_KEY_TO_LABEL[id];
@@ -92,7 +100,9 @@ function FilterCards({ id, onClick, activeKey, stats, ...props }) {
 	return (
 		<div
 			role="presentation"
-			className={`${styles.tab_container} ${isDisabled && styles.disabled_card}`}
+			className={cl`${styles.tab_container} ${
+				isDisabled && styles.disabled_card
+			} ${id === activeKey && styles.active}`}
 			{...props}
 			disabled={isDisabled}
 			onClick={() => !isDisabled && onClick(id)}

@@ -15,7 +15,14 @@ import styles from './styles.module.css';
 
 function Tab({ archived, setArchived }) {
 	const {
-		loading, trackers, setTrackers, pagination, setPagination, filters, setFilters, refetch,
+		loading,
+		trackers,
+		setTrackers,
+		pagination,
+		setPagination,
+		filters,
+		setFilters,
+		refetch,
 	} = useFetchTrackers();
 	const {
 		trackers: trackersArchived,
@@ -48,7 +55,9 @@ function Tab({ archived, setArchived }) {
 			setFilters(newFilters);
 		}
 	};
-	const selectedCardLabel = FILTER_KEY_TO_LABEL[FILTER_CARDS_LIST.filter((key) => key === activeKey)[0]] ?? '';
+	const selectedCardLabel = FILTER_KEY_TO_LABEL[
+    	FILTER_CARDS_LIST.filter((key) => key === activeKey)[0]
+	] ?? '';
 
 	return (
 		<div>

@@ -5,6 +5,7 @@ import CheckboxController from './CheckboxController';
 import ChipsController from './ChipController';
 import DatepickerController from './DatepickerController';
 import InputController from './InputController';
+import InputGroupController from './InputGroupController';
 import MobileNumberSelectController from './MobileNumberSelectController';
 import PriceController from './PriceController';
 import RadioController from './RadioController';
@@ -28,6 +29,7 @@ const MAPPING = {
 	chips              : ChipsController,
 	email              : InputController,
 	'creatable-select' : SelectController,
+	'input-group'      : InputGroupController,
 };
 
 const getField = (type = 'text') => {

@@ -8,6 +8,8 @@ import Card from './Card';
 import FilterComponent from './FIlterComponent';
 import styles from './styles.module.css';
 
+import { TrendCardSkeleton } from '@/ui/page-components/freight-rate-trend/components/trend-card';
+
 function TrackerCard({
 	archived, setArchived,
 	loading, trackers, setTrackers, pagination, setPagination, filters, setFilters, selectedCardLabel, refetch,
@@ -152,10 +154,11 @@ function TrackerCard({
 										tracker={tracker}
 										setTrackers={setTrackers}
 										refetch={refetch}
+										loading={loading}
 									/>
 								))}
 							</div>
-						) : (<Placeholder height="182px" />)}
+						) : (<TrendCardSkeleton />)}
 				</div>
 			)}
 			{isMapView && (

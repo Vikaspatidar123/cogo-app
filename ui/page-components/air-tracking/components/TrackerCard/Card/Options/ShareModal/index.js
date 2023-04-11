@@ -113,7 +113,7 @@ function ShareModal({
 			</Modal.Body>
 			<Modal.Footer>
 				<div className={styles.footer}>
-					<Button onClick={() => setShow(!show)}>Cancel</Button>
+					<Button themeType="secondary" onClick={() => setShow(!show)}>Cancel</Button>
 				</div>
 			</Modal.Footer>
 

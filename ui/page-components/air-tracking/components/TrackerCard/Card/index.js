@@ -57,49 +57,56 @@ function Card({ tracker, setTrackers, refetch }) {
 	};
 
 	return (
-		<FluidContainer className={styles.container}>
-			<div className={styles.child_container}>
-				<div className={styles.stepper} role="presentation" onClick={() => handleTrackingDetails(tracker.id)}>
-					<div className={styles.booking_no}>
-						{`Airway bill no: ${tracker.input}`}
+		<div>
+
+			<FluidContainer className={styles.container}>
+				<div className={styles.child_container}>
+					<div
+						className={styles.stepper}
+						role="presentation"
+						onClick={() => handleTrackingDetails(tracker.id)}
+					>
+						<div className={styles.booking_no}>
+							{`Airway bill no: ${tracker.input}`}
+						</div>
+						<Stepper
+							logo_url={logo_url}
+							containerStatus={containerStatus}
+							air_line_name={air_line_name}
+							locationTracking={locationTracking}
+						/>
 					</div>
-					<Stepper
-						logo_url={logo_url}
-						containerStatus={containerStatus}
-						air_line_name={air_line_name}
-						locationTracking={locationTracking}
+					<div className={styles.dashed_line} />
+					<FluidContainer className={styles.details_list}>
+						<div className={styles.icon_style}>
+							<Popover
+								placement="bottom"
+								visible={showPopover}
+								render={onRender()}
+								onClickOutside={() => setShowPopover(false)}
+							>
+								<IcMOverflowDot onClick={() => setShowPopover(true)} />
+							</Popover>
+						</div>
+						<DetailsList
+							commodityDetails={commodityDetails}
+							containersList={containersList}
+							activeCarouselIndex={activeCarouselIndex}
+							setActiveCarouselIndex={setActiveCarouselIndex}
+							type={tracker.type}
+						/>
+					</FluidContainer>
+				</div>
+				<div className={styles.bottom_container}>
+					<BottomContainer
+						type={SEVERITY_TO_ALERT_TYPE[action?.severity]}
+						heading={SEVERITY_TO_HEADING[action?.severity]}
+						milestones={milestoneList || {}}
 					/>
 				</div>
-				<div className={styles.dashed_line} />
-				<FluidContainer className={styles.details_list}>
-					<div className={styles.icon_style}>
-						<Popover
-							placement="bottom"
-							visible={showPopover}
-							render={onRender()}
-							onClickOutside={() => setShowPopover(false)}
+			</FluidContainer>
 
-						>
-							<IcMOverflowDot onClick={() => setShowPopover(true)} />
-						</Popover>
-					</div>
-					<DetailsList
-						commodityDetails={commodityDetails}
-						containersList={containersList}
-						activeCarouselIndex={activeCarouselIndex}
-						setActiveCarouselIndex={setActiveCarouselIndex}
-						type={tracker.type}
-					/>
-				</FluidContainer>
-			</div>
-			<div className={styles.bottom_container}>
-				<BottomContainer
-					type={SEVERITY_TO_ALERT_TYPE[action?.severity]}
-					heading={SEVERITY_TO_HEADING[action?.severity]}
-					milestones={milestoneList || {}}
-				/>
-			</div>
-		</FluidContainer>
+		</div>
 	);
 }
 export default Card;

@@ -16,7 +16,7 @@ const tooltipContent = ({ documentStatus, quotationId, setShowDeleteModal, setQu
 			{(tooltipContentConfig || []).map((item, index) => (
 				item?.condition && (
 					<div
-						style={{ borderTop: `${index > 0 && "1px solid #d3d3d3"}` }}
+						style={{ borderTop: `${index > 0 && '1px solid #d3d3d3'}` }}
 						className={cl`${styles.info} ${styles[item?.className]}`}
 					>
 						{item?.icon}

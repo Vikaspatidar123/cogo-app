@@ -9,11 +9,11 @@ import { useRouter } from '@/packages/next';
 
 function PendingModal({ showPendingModal, setShowPendingModal, stop }) {
 	const { query } = useRouter();
-	const { org_id = '', branch_id = '', account_type = '' } = query || {};
+	const { org_id = '', branch_id = '' } = query || {};
 
 	const closeModalHandler = () => {
 		// eslint-disable-next-line max-len
-		const redirectUrl = `${process.env.APP_URL}app/${org_id}/${branch_id}/${account_type}/saas/premium-services/import-export-doc`;
+		const redirectUrl = `${process.env.NEXT_PUBLIC_APP_URL}app/${org_id}/${branch_id}/saas/premium-services/import-export-doc`;
 		window.open(redirectUrl, '_self');
 		setShowPendingModal(false);
 	};

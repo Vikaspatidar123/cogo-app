@@ -1,3 +1,4 @@
+import { cl } from '@cogoport/components';
 import React, { useRef } from 'react';
 
 import DeleteIcon from '../../../../icons/delete-icon.svg';
@@ -26,20 +27,20 @@ function List({ onDeleteTouchPoint, touchPoints, setTouchPoints }) {
 		<div>
 			{(touchPoints || []).map((touchPoint, index) => (
 				<div
-					className={`${styles.draggable}${styles.list_wrapper}`}
+					className={cl`${styles.draggable} ${styles.list_wrapper}`}
 					draggable="true"
 					onDragStart={() => {
-          	dragItem.current = index;
+						dragItem.current = index;
 					}}
 					onDragEnter={() => {
-          	dragOverItem.current = index;
+						dragOverItem.current = index;
 					}}
 					onDragEnd={handleSort}
 					onDragOver={(e) => e.preventDefault()}
 				>
 					<div className={styles.title}>
-						{' '}
 						Touch Point
+						{' '}
 						{index + 1}
 					</div>
 

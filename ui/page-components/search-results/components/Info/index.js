@@ -44,7 +44,7 @@ function Info({
 		return <Loading />;
 	}
 
-	const paddingXButton = data?.search_type === 'air_freight' ? 10 : 4;
+	const paddingXButton = data?.search_type === 'air_freight' ? 10 : 14;
 
 	const searchForm = (
 		<div className={styles.edit_container}>
@@ -69,14 +69,10 @@ function Info({
 
 			<Button
 				style={{
-					marginBottom : isMobile ? 0 : paddingXButton,
-					background   : 'white',
-					color        : 'black',
-					fontSize     : 18,
-					padding      : '6px 10px',
-					height       : 36,
-					marginLeft   : 8,
+					marginBottom: isMobile ? 0 : paddingXButton,
 				}}
+				className={styles.cancel}
+				themeType="secondary"
 				onClick={() => setEditSearch(false)}
 			>
 				X

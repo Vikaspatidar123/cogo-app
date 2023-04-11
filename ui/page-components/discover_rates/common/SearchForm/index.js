@@ -166,6 +166,7 @@ function Form(
 	const [origin, destination] = allControls;
 
 	const isSmall = className.includes('small');
+	const isResult = className.includes('result');
 
 	useEffect(() => {
 		if (!isEdit) {
@@ -300,7 +301,7 @@ function Form(
 	return (
 		<div
 			className={cl`${styles.search_form_container} ${styles.container} ${styles[className]
-			} ${styles[search_type] || ''}`}
+			} ${styles[search_type] || ''} ${isSmall ? styles.small : ''} ${isResult ? styles.result : ''}`}
 			style={{
 				background: search_type === 'dashboard' ? '#f9f9f9' : '#ffffff',
 			}}

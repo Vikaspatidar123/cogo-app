@@ -1,4 +1,4 @@
-import { Input } from '@cogoport/components';
+import { Input, InputGroup as IpGroup } from '@cogoport/components';
 import React, { useState } from 'react';
 
 import Select from '../Select';
@@ -28,28 +28,28 @@ function InputGroup({
 
 	return (
 		<div className={styles.container}>
-			<div className={styles.row} style={style}>
+			<IpGroup style={style}>
 				{newControls.map((control) => {
-        	if (control.type === 'select') {
-        		return (
-	<Select
-		{...control}
-		onChange={(val, obj) => handleChange(control.name, val, obj)}
-		inputId={`${id || control.name}_${control.name}`}
-	/>
-        		);
-        	}
-        	return (
-	<Input
-		{...control}
-		id={`${id || control.name}_${control.name}`}
-		onChange={(e) => {
-              	handleChange(control.name, e, {});
-		}}
-	/>
-        	);
+					if (control.type === 'select') {
+						return (
+							<Select
+								{...control}
+								onChange={(val, obj) => handleChange(control.name, val, obj)}
+								inputId={`${id || control.name}_${control.name}`}
+							/>
+						);
+					}
+					return (
+						<Input
+							{...control}
+							id={`${id || control.name}_${control.name}`}
+							onChange={(e) => {
+								handleChange(control.name, e, {});
+							}}
+						/>
+					);
 				})}
-			</div>
+			</IpGroup>
 		</div>
 	);
 }

@@ -79,7 +79,7 @@ function FTL({
 			<SearchForm
 				mode="ftl_freight"
 				ref={(r) => {
-        	ftlRef.current.searchForm = r;
+					ftlRef.current.searchForm = r;
 				}}
 				typeOfJourney={typeOfJourney}
 				setTypeOfJourney={setTypeOfJourney}

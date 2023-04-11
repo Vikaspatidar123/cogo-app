@@ -1,3 +1,4 @@
+import { cl } from '@cogoport/components';
 import React from 'react';
 
 import getWidth from '../SearchForm/utils/getWidth';
@@ -6,6 +7,7 @@ import CBMCalculator from './CBMCalculator';
 import ChildFormat from './ChildFormat';
 import Item from './Item';
 import styles from './styles.module.css';
+import TruckTypeFormat from './TruckTypeFormat';
 
 function FormElement({
 	controls,
@@ -14,10 +16,10 @@ function FormElement({
 	formValues = {},
 	control,
 	showButtons = false,
+	noScroll = false,
 }) {
-	console.log(controls, 'controls');
 	return (
-		<div className={styles.container}>
+		<div className={cl`${styles.container} ${!noScroll ? styles.scroll : ''}`}>
 			<div className={styles.row}>
 				{controls.map((item) => {
 					const show = !(item.name in showElements) || showElements[item.name];
@@ -51,6 +53,23 @@ function FormElement({
 									error={errors[item.name]}
 									showElements={showElements[item.name]}
 									control={control}
+								/>
+							</div>
+						) : null;
+					}
+
+					if (item?.name === 'truck_type') {
+						return show ? (
+							<div
+								className={styles.col}
+								style={{ width: item?.span ? getWidth(item?.span) : '100%' }}
+							>
+								<TruckTypeFormat
+									controlItem={item}
+									control={control}
+									error={errors[item.name]}
+									formValue={formValues[item.name]}
+									value={item.value}
 								/>
 							</div>
 						) : null;

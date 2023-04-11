@@ -1,6 +1,7 @@
 import { IcMDelete } from '@cogoport/icons-react';
 import React from 'react';
 
+import getWidth from '../../SearchForm/utils/getWidth';
 import Item from '../Item';
 
 import styles from './styles.module.css';
@@ -28,12 +29,12 @@ function Child({
 		<IcMDelete
 			onClick={() => remove(index, 1)}
 			style={{
-				display      : 'flex',
-				marginLeft   : 'auto',
-				marginBottom : '10px',
-				width        : '1.5em',
-				height       : '1.5em',
-				cursor       : 'pointer',
+				display    : 'flex',
+				marginLeft : 'auto',
+				marginTop  : '5px',
+				width      : '1.5em',
+				height     : '1.5em',
+				cursor     : 'pointer',
 			}}
 		/>
 	);
@@ -43,9 +44,12 @@ function Child({
 				{(deletePosition === 'front' && renderDelete()) || null}
 				{controls.map((controlItem) => {
 					const { span = 6, watch = true } = controlItem;
+
 					const show = !(controlItem.name in showElements)
 						|| showElements[controlItem.name];
+
 					const extraProps = {};
+
 					if (controlItem.options) {
 						if (Array.isArray(controlItem.options)) {
 							extraProps.options = controlItem.options;
@@ -61,7 +65,7 @@ function Child({
 
 					if (watch) {
 						return show ? (
-							<div className={styles.col} style={{ padding: '0px 6px' }}>
+							<div className={styles.col} style={{ padding: '0px 6px', width: getWidth(span) }}>
 								<Item
 									{...controlItem}
 									{...extraProps}
@@ -79,7 +83,7 @@ function Child({
 					}
 
 					return show ? (
-						<div className={styles.col} style={{ padding: '0px 6px' }}>
+						<div className={styles.col} style={{ padding: '0px 6px', width: getWidth(span) }}>
 							<Item
 								{...controlItem}
 								{...extraProps}
@@ -95,10 +99,7 @@ function Child({
 						</div>
 					) : null;
 				})}
-				{showDeleteAlways
-        || (index >= noDeleteButtonTill
-          && index !== 0
-          && deletePosition !== 'front')
+				{showDeleteAlways || (index >= noDeleteButtonTill && index !== 0 && deletePosition !== 'front')
 					? renderDelete()
 					: null}
 			</div>

@@ -54,10 +54,9 @@ function TouchPoint(
 			{touchPointItems.map((touchPoint, idx) => (
 				<div className={styles.touch_point_container}>
 					<div className={styles.circle} />
-					{idx < touchPointItems.length - 1 && <div className="line" />}
+					{idx < touchPointItems.length - 1 && <div className={styles.line} />}
 
 					<div>
-						{' '}
 						Touch Point
 						{idx + 1}
 					</div>
@@ -84,10 +83,10 @@ function TouchPoint(
 	return (
 		<div className={styles.container}>
 			<Button
-				size="md"
+				size="sm"
 				themeType="secondary"
 				onClick={() => {
-        	    onClick();
+					onClick();
 				}}
 				style={{ textTransform: 'none' }}
 				disabled={typeOfJourney === 'round'}
@@ -102,13 +101,12 @@ function TouchPoint(
 						content={(
 							<div style={{ fontSize: '10px', width: '150px' }}>
 								{touchPointItems[0].name?.split(',', 1)
-                  || touchPointItems[0].display_name?.split('-', 1)}
+								|| touchPointItems[0].display_name?.split('-', 1)}
 							</div>
 						)}
 					>
 						<div className={styles.touch_point_name}>
-							{touchPointItems[0].name?.split(',', 1)
-                || touchPointItems[0].display_name?.split('-', 1)}
+							{touchPointItems[0].name?.split(',', 1) || touchPointItems[0].display_name?.split('-', 1)}
 						</div>
 					</Tooltip>
 

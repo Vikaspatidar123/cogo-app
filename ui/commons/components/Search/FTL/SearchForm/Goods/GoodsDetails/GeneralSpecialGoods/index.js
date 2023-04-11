@@ -28,12 +28,12 @@ function GeneralSpecialConsideration(
 	const controls = getControls(cargoType);
 
 	const {
-		fields,
 		formState = {},
 		handleSubmit = () => {},
 		setValue,
 		control,
 	} = useForm();
+
 	const { errors = {} } = formState || {};
 
 	const imperativeHandle = useCallback(() => {
@@ -52,6 +52,12 @@ function GeneralSpecialConsideration(
 			setValue('commodity', goodsDetail?.commodity);
 		}
 	}, [goodsDetail]);
+
+	useEffect(() => {
+		if (cargoType) {
+			setValue('commodity', '');
+		}
+	}, [cargoType]);
 
 	useImperativeHandle(ref, imperativeHandle, [imperativeHandle]);
 
@@ -83,14 +89,15 @@ function GeneralSpecialConsideration(
 				controls={controls}
 				showButtons
 				errors={errors}
+				noScroll
 			/>
 
 			<div className={styles.button_container}>
-				<Button onClick={onCancel} style={{ marginRight: '8px' }}>
+				<Button themeType="secondary" onClick={onCancel} style={{ marginRight: '8px' }}>
 					CANCEL
 				</Button>
 
-				<Button onClick={handleSubmit(onSubmit)}>CONFIRM</Button>
+				<Button themeType="accent" onClick={handleSubmit(onSubmit)}>CONFIRM</Button>
 			</div>
 		</div>
 	);

@@ -11,6 +11,9 @@
     .ui_ps_size_sm{
       min-width: 67px;
     }
+    .ui_input_number_suffix{
+      width: 24%;
+    }
   }
 }
 

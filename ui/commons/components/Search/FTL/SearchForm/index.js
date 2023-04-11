@@ -107,15 +107,15 @@ function SearchForm(
 							<div className={styles.section}>
 								<Route
 									ref={(r) => {
-                  	searchFormRef.current.route = r;
+										searchFormRef.current.route = r;
 									}}
 									origin={controls.find((x) => x.name === originControl.name)}
 									setLocation={setLocation}
 									location={location}
 									destination={controls.find(
-                  	(x) => x.name === destinationControl.name,
+										(x) => x.name === destinationControl.name,
 									)}
-                  // keywords={keywords}
+									// keywords={keywords}
 									error={error?.route?.errorMsg}
 									index={index}
 									mobile={mobile}
@@ -134,7 +134,7 @@ function SearchForm(
 				<div className={styles.options}>
 					<Goods
 						ref={(r) => {
-            	searchFormRef.current.good = r;
+							searchFormRef.current.good = r;
 						}}
 						searchData={searchData}
 						error={error?.good?.errorMsg}
@@ -142,7 +142,7 @@ function SearchForm(
 					/>
 					<Load
 						ref={(r) => {
-            	searchFormRef.current.load = r;
+							searchFormRef.current.load = r;
 						}}
 						searchData={searchData}
 						error={error?.load?.errorMsg}
@@ -155,7 +155,7 @@ function SearchForm(
 			{typeOfJourney === 'round' ? (
 				<ReturnJourney
 					ref={(r) => {
-          	searchFormRef.current.haltTime = r;
+						searchFormRef.current.haltTime = r;
 					}}
 					location={location}
 					searchData={searchData}

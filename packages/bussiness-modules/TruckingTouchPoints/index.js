@@ -57,7 +57,7 @@ function TruckingTouchPoints({ touchPoints = [] }) {
 			</div>
 
 			<div className={styles.details_div}>
-				<Tooltip theme="light" content={content()}>
+				<Tooltip content={content()}>
 					<div className={styles.more_btn}> View Details</div>
 				</Tooltip>
 			</div>

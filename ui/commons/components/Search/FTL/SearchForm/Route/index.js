@@ -105,7 +105,7 @@ function Route(
 					disabled={index !== 0}
 					value={location.origin?.id}
 					params={{
-          	        ...(origin.params || {}),
+						...(origin.params || {}),
 						filters     : origin?.params?.filters,
 						preferences : {
 							organization_id : org_id,
@@ -113,15 +113,15 @@ function Route(
 						},
 					}}
 					handleChange={(obj) => {
-          	setLocation({
-          		...location,
-          		origin: { ...(obj || {}), formName: origin.display_name },
-          	});
+						setLocation({
+							...location,
+							origin: { ...(obj || {}), formName: origin.display_name },
+						});
 					}}
 					searchParams={{
-          	intent          : 'rate_search',
-          	organization_id : org_id,
-          	service_type    : mode,
+						intent          : 'rate_search',
+						organization_id : org_id,
+						service_type    : mode,
 					}}
 				/>
 				{errorMsg?.origin ? (
@@ -140,7 +140,7 @@ function Route(
 					searchData={searchData}
 					validate={validate}
 					ref={(r) => {
-          	ftlRef.current.TouchPointsRef = r;
+						ftlRef.current.TouchPointsRef = r;
 					}}
 					typeOfJourney={typeOfJourney}
 					location={location}
@@ -175,9 +175,9 @@ function Route(
 						},
 					}}
 					searchParams={{
-          	intent          : 'rate_search',
-          	organization_id : org_id,
-          	service_type    : mode,
+						intent          : 'rate_search',
+						organization_id : org_id,
+						service_type    : mode,
 					}}
 				/>
 				{errorMsg?.destination ? (

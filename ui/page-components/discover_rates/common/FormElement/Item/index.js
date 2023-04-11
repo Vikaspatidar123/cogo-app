@@ -27,7 +27,7 @@ function Item({ formValue, ...rest }) {
 		...restProps
 	} = rest;
 	const props = { placeholder };
-	if (type === 'truck-type-select') return;
+
 	const Element = getField(type);
 
 	if (

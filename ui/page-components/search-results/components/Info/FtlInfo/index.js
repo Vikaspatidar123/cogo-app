@@ -83,7 +83,7 @@ function FtlInfo({
 					padding    : 10,
 					height     : 34,
 					marginLeft : 8,
-					display    : 'Flex',
+					display    : 'flex',
 					alignItems : 'center',
 				}}
 				onClick={() => setEditSearch(false)}
@@ -112,11 +112,12 @@ function FtlInfo({
 
 			{data?.search_type === 'ftl_freight' && enroute.length ? (
 				<>
-					<div className={styles.Line} />
+					<div className={styles.line} />
 					<TruckingTouchPoints touchPoints={enroute} />
 				</>
 			) : null}
-			<div className={styles.Line} />
+
+			<div className={styles.line} />
 			<div className={styles.date}>
 				<div>
 					(
@@ -147,7 +148,9 @@ function FtlInfo({
 				{!NON_STANDALONE_SEERVICES.includes(data?.search_type)
 				&& !query?.shipment_id
 				&& results_type !== 'rfq' ? (
-					<Button
+					<div
+						role="presentation"
+						className={styles.btn_container}
 						onClick={() => {
 							trackEvent(APP_EVENT.search_clicked_on_edit_search, {});
 
@@ -159,7 +162,7 @@ function FtlInfo({
 							alt="edit"
 							style={{ width: '2em', height: '2em', margin: 'auto' }}
 						/>
-					</Button>
+					</div>
 					) : null}
 			</div>
 		</div>

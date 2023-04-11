@@ -23,7 +23,7 @@ const getControls = (location = {}) => {
 					name  : 'truck_type',
 					label : 'Truck Type',
 					type  : 'select',
-					span  : 7,
+					span  : 6,
 					rules : {
 						required: true,
 					},
@@ -38,14 +38,16 @@ const getControls = (location = {}) => {
 						},
 					},
 					options: [
-						{
-							label   : 'Open Body',
-							options : geo.options.open_truck || [],
-						},
-						{
-							label   : 'Closed Body',
-							options : geo.options.closed_truck || [],
-						},
+						// {
+						// 	label   : 'Open Body',
+						// 	options : geo.options.open_truck || [],
+						// },
+						// {
+						// 	label   : 'Closed Body',
+						// 	options : geo.options.closed_truck || [],
+						// },
+						...geo.options.open_truck,
+						...geo.options.closed_truck,
 					],
 				},
 				{

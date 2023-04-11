@@ -23,7 +23,9 @@ function Multitruck({ setLoadData, loadData, setShowPopover, location }, ref) {
 		setValue,
 		control,
 	} = useForm();
+
 	console.log(controls, 'controlscontrolscontrols');
+
 	useEffect(() => {
 		if (loadData.active_tab === 'truck' && loadData.truck_details?.length) {
 			setValue('trucks', loadData.truck_details);
@@ -62,10 +64,10 @@ function Multitruck({ setLoadData, loadData, setShowPopover, location }, ref) {
 			</div>
 
 			<div className={styles.button_container}>
-				<Button onClick={onCancel} style={{ marginRight: '8px' }}>
+				<Button themeType="secondary" onClick={onCancel} style={{ marginRight: '8px' }}>
 					CANCEL
 				</Button>
-				<Button onClick={handleSubmit(handleData)}>Confirm</Button>
+				<Button themeType="accent" onClick={handleSubmit(handleData)}>Confirm</Button>
 			</div>
 		</div>
 	);

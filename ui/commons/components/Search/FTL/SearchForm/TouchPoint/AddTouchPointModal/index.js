@@ -1,5 +1,5 @@
-import { Button, Toast } from '@cogoport/components';
-import { React, useState, useEffect, forwardRef } from 'react';
+import { cl, Button, Toast } from '@cogoport/components';
+import { useState, useEffect, forwardRef } from 'react';
 
 import List from './List';
 import styles from './styles.module.css';
@@ -27,8 +27,7 @@ const location_control = [
 				country_id : [INDIA_COUNTRY_ID],
 			},
 		},
-		theme : 'admin',
-		size  : 'lg',
+		size  : 'md',
 		rules : { required: 'Required' },
 	},
 ];
@@ -71,6 +70,14 @@ function AddTouchPointModal({
 		});
 	};
 
+	const {
+		setValue: setLocationValue = () => {},
+		formState,
+		handleSubmit,
+		control,
+		reset,
+	} = useForm();
+
 	const onSubmit = () => {
 		if (value?.error) {
 			return;
@@ -85,6 +92,7 @@ function AddTouchPointModal({
 		}
 
 		setTouchPoints((previousState) => [...previousState, value]);
+		reset({});
 	};
 
 	const onDeleteTouchPoint = (index) => {
@@ -93,12 +101,6 @@ function AddTouchPointModal({
 			...touchPoints.slice(index + 1, touchPoints.length),
 		]);
 	};
-	const {
-		setValue: setLocationValue = () => {},
-		formState,
-		handleSubmit,
-		control,
-	} = useForm();
 
 	const { errors } = formState;
 
@@ -125,17 +127,16 @@ function AddTouchPointModal({
 			<div className={styles.content}>
 				<div className={styles.input_field}>
 					<div className={styles.input_container}>
+
 						<div className={styles.wrapper}>
 							<Location
-								{...location_control.find(
-                	(x) => x.name === 'touch_point_location_id',
-								)}
+								{...location_control[0]}
 								handleChange={(obj) => handleObj(obj)}
 								control={control}
 							/>
 							{value?.error ? (
 								<div
-									className={`${styles.touchpoint_error}${styles.error_message}`}
+									className={cl`${styles.touchpoint_error} ${styles.error_message}`}
 								>
 									Touchpoint must be diffrent from origin and destination!!
 								</div>
@@ -143,7 +144,7 @@ function AddTouchPointModal({
 						</div>
 
 						<div className={styles.add_icon_container}>
-							<Button size="md" onClick={handleSubmit(onSubmit)}>Add</Button>
+							<Button size="md" themeType="tertiary" onClick={handleSubmit(onSubmit)}>Add</Button>
 						</div>
 					</div>
 
@@ -161,16 +162,15 @@ function AddTouchPointModal({
 				<div className={styles.btn_wrapper}>
 					<Button
 						className={styles.button}
-						size="md"
 						themeType="secondary"
 						onClick={() => {
-            	onCancel();
+							onCancel();
 						}}
 					>
 						Cancel
 					</Button>
 
-					<Button size="md" onClick={handleSave}>
+					<Button size="md" themeType="accent" onClick={handleSave}>
 						Save
 					</Button>
 				</div>

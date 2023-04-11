@@ -20,7 +20,7 @@ function RenderTouchPointDetails({ isRoundTrip, title, touchPoints }) {
 			{(touchPoints || []).map((touchPoint, idx) => (
 				<div className={styles.touch_point_container}>
 					<div className={styles.circle} />
-					{idx < touchPoints.length - 1 && <div className="line" />}
+					{idx < touchPoints.length - 1 && <div className={styles.line} />}
 
 					<div>
 						{' '}

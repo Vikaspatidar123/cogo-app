@@ -1,6 +1,6 @@
 .container {
   width: 100%;
-  padding: 0px 8px;
+  /* padding: 0px 8px; */
   display: flex;
   flex-direction: column;
 }
@@ -73,8 +73,6 @@
     margin-bottom: 12px;
   }
 }
-.row {
-}
 
 .col {
   padding: 0 8px;
@@ -84,6 +82,6 @@
   flex-flow: row wrap;
   flex-grow: 0;
   flex-shrink: 0;
-  align-items: normal;
+  align-items: center;
   justify-content: flex-start;
 }

@@ -3,7 +3,7 @@ export const controls = [
 		name    : 'packing_type',
 		type    : 'select',
 		label   : 'Package Type',
-		style   : { width: '100px' },
+		span    : 4,
 		rules   : { required: 'Package Type is required' },
 		options : [
 			{
@@ -29,16 +29,16 @@ export const controls = [
 		name  : 'packages_count',
 		label : 'Total Quantity',
 		type  : 'number',
-		style : { width: '100px' },
+		span  : 4,
 		rules : { required: true },
 	},
 
 	{
 		name   : 'package_weight',
 		label  : 'Total Weight',
-		suffix : 'kgs',
+		suffix : <span style={{ fontSize: '10px' }}>kgs</span>,
 		type   : 'number',
-		style  : { width: '100px' },
+		span   : 4,
 		rules  : { required: true },
 	},
 	{
@@ -46,14 +46,14 @@ export const controls = [
 		label  : 'Gross Volume',
 		type   : 'number',
 		suffix : 'cc',
-		style  : { width: '200px' },
+		span   : 6,
 		rules  : { required: true },
 	},
 	{
 		name    : 'handling_type',
 		label   : 'Handling',
 		type    : 'select',
-		style   : { width: '200px' },
+		span    : 6,
 		rules   : { required: 'Handling Type is required' },
 		options : [
 			{
@@ -71,8 +71,8 @@ export const controls = [
 		label         : 'Max Dimensions (in cm)',
 		type          : 'input-group',
 		className     : 'small-input medium-input',
-		subLabel      : 'CM',
-		style         : { width: '200px' },
+		// subLabel      : 'CM',
+		span          : 6,
 		showMessage   : true,
 		inputControls : [
 			{

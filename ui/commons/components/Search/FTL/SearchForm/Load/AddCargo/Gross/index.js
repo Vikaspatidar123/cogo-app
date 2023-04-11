@@ -27,6 +27,11 @@ function Gross({ setLoadData, loadData, setShowPopover }, ref) {
 			&& loadData.sub_active_tab === 'gross'
 			&& !isEmpty(loadData?.gross_details)
 		) {
+			const grossFormatKey = Object.keys(grossFormattedData);
+
+			grossFormatKey.forEach((name) => {
+				setValue(name, grossFormattedData?.[name]);
+			});
 			// setValue({ ...grossFormattedData });
 		}
 	}, [loadData]);
@@ -76,10 +81,11 @@ function Gross({ setLoadData, loadData, setShowPopover }, ref) {
 				<Button
 					onClick={onCancel}
 					style={{ marginRight: '8px' }}
+					themeType="secondary"
 				>
 					CANCEL
 				</Button>
-				<Button onClick={handleSubmit(handleData)}>
+				<Button themeType="accent" onClick={handleSubmit(handleData)}>
 					Confirm
 				</Button>
 			</div>

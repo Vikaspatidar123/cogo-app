@@ -34,7 +34,6 @@ const TabContent = forwardRef(
 					name="truck"
 					title="Add Truck"
 					id="Add Truck"
-					className="horizontal two"
 					setLoadData={setLoadData}
 				>
 					<AddTruck
@@ -50,7 +49,6 @@ const TabContent = forwardRef(
 					name="cargo"
 					title="Add Cargo Details"
 					id="Add Cargo Details"
-					className="horizontal two"
 				>
 					<AddCargo
 						setLoadData={setLoadData}

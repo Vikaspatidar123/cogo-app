@@ -106,7 +106,7 @@ function Options({
 	};
 
 	const handleApply = (values) => {
-		submit(values);
+		// submit(values);
 		if (values) {
 			const {
 				container_type_commodity,

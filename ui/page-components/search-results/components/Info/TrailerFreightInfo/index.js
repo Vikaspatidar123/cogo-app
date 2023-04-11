@@ -67,6 +67,7 @@ function TrailerFreightInfo({
 	if (loading) {
 		return <Loading isMobile={isMobile} scope={scope} />;
 	}
+	const paddingXButton = data?.search_type === 'air_freight' ? 10 : 4;
 
 	const searchForm = (
 		<div className={styles.edit_container}>

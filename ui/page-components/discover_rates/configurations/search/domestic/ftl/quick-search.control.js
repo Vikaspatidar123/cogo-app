@@ -1,10 +1,9 @@
 const controls = [
 	{
-		name       : 'truck_type',
-		label      : '',
-		type       : 'truck-type-select',
-		selectType : 'chips',
-		rules      : { required: 'Truck Type is required' },
+		name  : 'truck_type',
+		label : '',
+		type  : 'chips',
+		rules : { required: 'Truck Type is required' },
 	},
 	{
 		name  : 'trucks_count',

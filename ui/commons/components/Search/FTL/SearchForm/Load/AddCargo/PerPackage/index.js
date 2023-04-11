@@ -17,7 +17,18 @@ import { useForm } from '@/packages/forms';
 import FormElement from '@/ui/page-components/discover_rates/common/FormElement';
 
 function PerPackage({ setLoadData, loadData, setShowPopover }, ref) {
-	const { handleSubmit, formState, setValues, control } = useForm();
+	const { handleSubmit, formState, setValues, control } = useForm({
+		defaultValues: {
+			packages: [
+				{
+					package_type   : '',
+					packages_count : '',
+					package_weight : '',
+					handling_type  : '',
+				},
+			],
+		},
+	});
 
 	const formattedPackageData = getFormattedData(loadData);
 
@@ -63,15 +74,12 @@ function PerPackage({ setLoadData, loadData, setShowPopover }, ref) {
 	return (
 		<div className={styles.container}>
 			<div className={styles.wrapper}>
-
 				<FormElement controls={controls} control={control} showButtons errors={formState.errors} />
 			</div>
 
 			<div className={styles.button_container}>
-				<Button onClick={onCancel} style={{ marginRight: '8px' }}>
-					CANCEL
-				</Button>
-				<Button onClick={handleSubmit(handleData)}>Confirm</Button>
+				<Button themeType="secondary" onClick={onCancel} style={{ marginRight: '8px' }}>Cancel</Button>
+				<Button themeType="accent" onClick={handleSubmit(handleData)}>Confirm</Button>
 			</div>
 		</div>
 	);

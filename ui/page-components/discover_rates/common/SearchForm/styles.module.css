@@ -3,7 +3,7 @@
 	background: #fff;
 	border-radius: 10px;
 
-	.small {
+	&.small {
 		display: flex;
 		width: 100%;
 		padding: 0;
@@ -11,7 +11,7 @@
 		border-radius: 0;
 	}
 
-	.result {
+	&.result {
 		width: 95%;
 
 		@media (max-width: 768px) {
@@ -19,11 +19,11 @@
 		}
 	}
 
-	.contract {
+	&.contract {
 		background: #fff;
 	}
 
-	.mobile {
+	&.mobile {
 		padding: 0;
 	}
 

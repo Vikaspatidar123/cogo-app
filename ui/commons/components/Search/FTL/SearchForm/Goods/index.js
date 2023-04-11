@@ -65,7 +65,6 @@ function Goods({ searchData = {}, error, typeOfJourney = '' }, ref) {
 			<Popover
 				render={content()}
 				interactive
-				animation="shift-away"
 				visible={showPopover}
 				placement="bottom"
 			>

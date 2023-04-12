@@ -1,4 +1,4 @@
-export const shipperOptions = (source) => {
+export const shipperOptions = (source = '') => {
 	const options = [
 		{
 			value : 'same_as_booking_party',

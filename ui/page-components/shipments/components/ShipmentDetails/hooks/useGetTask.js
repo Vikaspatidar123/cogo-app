@@ -1,5 +1,3 @@
-// import { useRequest } from '@cogo/commons/hooks';
-// import { useSelector } from '@cogo/store';
 import { useEffect } from 'react';
 
 import { useRequest } from '@/packages/request';

@@ -79,6 +79,7 @@ const useGetExistingCompanies = ({ role, servProvId, compType }) => {
 		existingCompanyOptions,
 		existingAddresses,
 		companyArr,
+		loading,
 	};
 };
 

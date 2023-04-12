@@ -2,6 +2,7 @@ import { MultiselectController } from '..';
 
 import AsyncSelectController from './AsyncSelectController';
 import CheckboxController from './CheckboxController';
+import CheckboxGroupController from './CheckboxGroupController';
 import ChipsController from './ChipController';
 import DatepickerController from './DatepickerController';
 import InputController from './InputController';
@@ -30,6 +31,7 @@ const MAPPING = {
 	email              : InputController,
 	'creatable-select' : SelectController,
 	'input-group'      : InputGroupController,
+	checkboxGroup      : CheckboxGroupController,
 };
 
 const getField = (type = 'text') => {

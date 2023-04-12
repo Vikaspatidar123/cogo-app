@@ -1,8 +1,3 @@
-// import CargoDetailPills from '@cogo/business-modules/components/cargo-details';
-// import ServiceDetails from '@cogo/business-modules/components/MultiServiceDetails';
-// import React from 'react';
-
-// import { Container } from './styles';
 import CargoDetailPills from './CargoDetailPills';
 import MultiServiceDetails from './MultiserviceDetails';
 import styles from './styles.module.css';

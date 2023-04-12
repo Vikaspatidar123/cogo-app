@@ -1,6 +1,3 @@
-// import IcAir from '@cogo/deprecated_legacy/icons/ic-air.svg';
-// import React from 'react';
-
 import { IcMCustoms, IcMFair, IcMHaulage, IcMShip, IcMTrailorFull } from '@cogoport/icons-react';
 
 import styles from './styles.module.css';

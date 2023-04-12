@@ -27,11 +27,11 @@ const useCreatePoc = ({
 		? export_process_options
 		: import_process_options;
 
-	const controlPoc =		utilities?.roleCheck === 'external_poc'
+	const controlPoc =	utilities?.roleCheck === 'external_poc'
 		? controls(process_options, designation_options)
 		: controls(designation_options);
 
-	const { control, handleSubmit, watch } = useForm(controlPoc);
+	const { control, handleSubmit, watch } = useForm();
 
 	const formProps = watch();
 

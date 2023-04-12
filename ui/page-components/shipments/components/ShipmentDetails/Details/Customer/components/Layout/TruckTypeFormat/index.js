@@ -1,18 +1,12 @@
-// import { Select2 } from '@cogo/deprecated_legacy/ui';
-// import startCase from '@cogo/utils/startCase';
-// import { string, oneOfType, arrayOf } from 'prop-types';
 import { Toggle } from '@cogoport/components';
-import { startCase } from '@cogoport/utils';
 import { useState } from 'react';
 
-// import TRUCK_TYPES from '../../constants/truck-types.json';
-// import SwitchSelect from '../SwitchSelect';
 import TRUCK_TYPES from '../../../../../../../constants/truck-types.json';
 import Item from '../Item';
 
 function TruckTypeFormat({
-	controlItem, control, value, error, id_prefix, themeType, formValues,
-	country_code = 'IN', ...rest
+	controlItem, control, value, id_prefix, themeType, formValues,
+	country_code = 'IN',
 }) {
 	let truckTypes = TRUCK_TYPES.filter(
 		(truck) => truck.country_codes.includes(country_code)

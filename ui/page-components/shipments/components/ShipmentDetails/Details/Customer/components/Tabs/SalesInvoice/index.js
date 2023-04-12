@@ -16,18 +16,21 @@ function SalesInvoice() {
 
 	if (invoiceLoading) {
 		return (
-			<div>
-				<Placeholder />
-				<Placeholder />
-				<Placeholder />
-			</div>
+			[1, 2, 3].map(() => (
+				<div className={styles.loader}>
+					<Placeholder height="30px" width="200px" />
+					<Placeholder height="30px" width="200px" />
+					<Placeholder height="30px" width="200px" />
+					<Placeholder height="30px" width="200px" />
+				</div>
+			))
 		);
 	}
 
 	if (!invoiceLoading && invoiceData?.length === 0) {
 		return (
 			<div className={styles.empty_container}>
-				No Data:
+				No Data!
 			</div>
 		);
 	}

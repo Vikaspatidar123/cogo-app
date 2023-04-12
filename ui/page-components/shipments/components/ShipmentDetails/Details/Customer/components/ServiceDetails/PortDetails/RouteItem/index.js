@@ -1,4 +1,4 @@
-import { Popover } from '@cogoport/components';
+import { Tooltip } from '@cogoport/components';
 
 import styles from './styles.module.css';
 
@@ -19,13 +19,13 @@ function RouteItem({ location }) {
 		<div className={styles.container}>
 			<div className={styles.code}>{getInfo(location)}</div>
 
-			<Popover
+			<Tooltip
 				placement="bottom-start"
 				theme="light"
-				render={<div style={{ fontSize: '10px' }}>{location?.name}</div>}
+				content={<div className={styles.location}>{location?.name}</div>}
 			>
 				<div>{location?.name}</div>
-			</Popover>
+			</Tooltip>
 		</div>
 	);
 }

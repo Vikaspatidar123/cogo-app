@@ -20,7 +20,7 @@ function ShipmentList() {
 		setCurrentTab,
 		currentTab,
 		config,
-	} = useGetShipmentList(viewAs, params);
+	} = useGetShipmentList(params);
 
 	const handleTabChange = (val) => {
 		if (currentTab !== val) {
@@ -38,6 +38,7 @@ function ShipmentList() {
 		if (loading) {
 			return <Placeholder height="150px" width="100%" margin="30px 0px 20px 0px" />;
 		}
+
 		if (!loading && data.length === 0) {
 			return <EmptyState viewAs={viewAs} />;
 		}

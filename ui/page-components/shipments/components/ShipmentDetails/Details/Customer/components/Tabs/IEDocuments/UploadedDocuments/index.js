@@ -1,16 +1,3 @@
-// import { Pagination } from '@cogoport/front/components/admin';
-// import React from 'react';
-
-// import EmptyState from '../../../../commons/EmptyState';
-// import Loader from '../Loader';
-
-// import DocumentCard from './DocumentCard';
-// import {
-// 	Header,
-// 	PaginationContainer,
-// 	DocumentCardContainer,
-// 	Container,
-// } from './styles';
 import { Pagination, Placeholder } from '@cogoport/components';
 
 import EmptyState from '../../../EmptyState';
@@ -42,7 +29,7 @@ function UploadedDocuments({
 	}
 
 	if (shipmentDocumentsLoading) {
-		return <Placeholder />;
+		return [1, 2, 3, 4].map(() => <Placeholder height="30px" margin="0px 0px 20px 0px" />);
 	}
 
 	const handlePageChange = (val) => {

@@ -1,6 +1,3 @@
-// import Icon from '@cogo/deprecated_legacy/icons/Icon';
-// import startCase from '@cogo/utils/startCase';
-// import { shape, string } from 'prop-types';
 import { IcMArrowRight } from '@cogoport/icons-react';
 import { startCase } from '@cogoport/utils';
 import React from 'react';
@@ -50,7 +47,6 @@ function Footer({ data, viewAs, isBookingDesk = false }) {
 	];
 
 	return isBookingDesk ? (
-	// <Agents item={data} />
 		<div>agents</div>//
 	) : (
 		<div className={styles.top_container}>

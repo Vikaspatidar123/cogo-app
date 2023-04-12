@@ -26,7 +26,6 @@ const controls = ({ primary_service, trade_partners_details }) => [
 				name            : 'file',
 				multiple        : true,
 				onlyURLOnChange : true,
-				uploadIcon      : 'upload-attach',
 				placeholder     : '',
 				uploadText      : 'Attach',
 				accept:

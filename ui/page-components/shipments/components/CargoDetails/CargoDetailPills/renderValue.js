@@ -1,10 +1,3 @@
-// import GLOBAL_CONSTANTS from '@cogo/globalization/constants/globals.json';
-// import formatDate from '@cogo/globalization/utils/formatDate';
-// import { ToolTip } from '@cogoport/front/components';
-// import { startCase, upperCase } from '@cogoport/front/utils';
-// import { IcMOpenlink } from '@cogoport/icons-react';
-
-// import { CertificateContainer } from './styles';
 import { Popover } from '@cogoport/components';
 import { IcMOpenlink } from '@cogoport/icons-react';
 import { format, startCase, upperCase } from '@cogoport/utils';

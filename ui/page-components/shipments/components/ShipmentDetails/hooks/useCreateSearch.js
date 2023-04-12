@@ -63,13 +63,6 @@ const useCreateSearch = ({
 		url    : 'create_checkout',
 		method : 'post',
 	}, { manual: true });
-	// const createSpotSearch = useRequest(
-	// 	'post',
-	// 	false,
-	// 	scope,
-	// )('/create_spot_search');
-
-	// const createCheckout = useRequest('post', false, scope)('/create_checkout');
 
 	const createNewSearch = async (
 		rawParams,

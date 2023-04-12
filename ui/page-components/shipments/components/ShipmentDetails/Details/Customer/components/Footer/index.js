@@ -1,10 +1,6 @@
-// import Button from '@cogoport/front/components/admin/Button';
-// import React from 'react';
-
 import { Button } from '@cogoport/components';
 
 import styles from './styles.module.css';
-// import { Container } from './styles';
 
 function Footer({
 	onClose = () => {},

@@ -17,6 +17,13 @@ const useCreateAddCompany = ({
 	shipmentServiceProviderId = '',
 	trade_party_id = '',
 }) => {
+	const [errors, setErrors] = useState({});
+	const [compType, setCompType] = useState(
+		['shipper', 'booking_party'].includes(roleCheck)
+			? 'booking_party'
+			: 'trade_partner',
+	);
+
 	const finalServProvId = shipmentServiceProviderId || trade_party_id;
 	const [{ shipment_data }] = useContext(ShipmentDetailContext);
 
@@ -27,13 +34,7 @@ const useCreateAddCompany = ({
 		}
 	});
 
-	const { control, handleSubmit, watch, setValues } = useForm(controls);
-	const [errors, setErrors] = useState({});
-	const [compType, setCompType] = useState(
-		['shipper', 'booking_party'].includes(roleCheck)
-			? 'booking_party'
-			: 'trade_partner',
-	);
+	const { control, handleSubmit, watch, setValue } = useForm();
 
 	const firstFormProps = watch();
 
@@ -59,21 +60,24 @@ const useCreateAddCompany = ({
 		}
 		if (
 			field.name === 'not_reg_under_gst'
-			&& firstFormProps?.not_reg_under_gst === true
+			&& firstFormProps?.not_reg_under_gst
 		) {
-			setValues({ tax_number_document_url: '', tax_number: '' });
+			// setValue('tax_number_document_url', '');
+			// setValue('tax_number', '');
 		}
 	});
 
 	useEffect(() => {
 		if (firstFormProps?.not_reg_under_gst) {
-			setValues({ tax_number_document_url: '', tax_number: '' });
+			setValue('tax_number_document_url', '');
+			setValue('tax_number', '');
 		}
 	}, [firstFormProps?.not_reg_under_gst]);
 
 	const onError = (error) => {
 		setErrors(error);
 	};
+
 	const [{ loading }, trigger] = useRequest({
 		url    : 'create_shipment_trade_partner',
 		method : 'post',

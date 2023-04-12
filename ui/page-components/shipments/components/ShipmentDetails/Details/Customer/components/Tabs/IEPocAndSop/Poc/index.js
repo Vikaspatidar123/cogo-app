@@ -11,14 +11,12 @@ import PocServProvDetails from './PocServProvDetails';
 import StakeHolderPocDetails from './StakeHolderPocDetails';
 import styles from './styles.module.css';
 
-import { useSelector } from '@/packages/store';
 import { ShipmentDetailContext } from '@/ui/page-components/shipments/components/ShipmentDetails/common/Context';
 import useGetPocData from '@/ui/page-components/shipments/components/ShipmentDetails/hooks/useGetPocData';
 import useListShipTradePartners from
 	'@/ui/page-components/shipments/components/ShipmentDetails/hooks/useListShipTradePartners';
 
 function Poc() {
-	const { scope } = useSelector(({ general }) => ({ scope: general?.scope }));
 	const [{ shipment_data }] = useContext(ShipmentDetailContext);
 	const shipment_id = shipment_data?.id;
 
@@ -53,7 +51,6 @@ function Poc() {
 	} = useGetPocData({
 		tradeParties,
 		shipment_data,
-		scope,
 		shipment_id,
 	});
 
@@ -68,7 +65,7 @@ function Poc() {
 			/>
 		))
 	) : (
-		<Placeholder />
+		[1, 2, 3, 4, 5].map(() => <Placeholder height="30px" margin="0px 0px 20px 0px" />)
 	));
 
 	const stakeHolderPOCDetails = () => (
@@ -134,20 +131,6 @@ function Poc() {
 			return (
 				<div className={styles.scope}>
 					{stakeHolderDetails()}
-
-					{scope === 'partner' ? (
-						<InternalExternalPocs
-							shipment_id={shipment_id}
-							shipment_data={shipment_data}
-							tradePartyFilters={tradePartyFilters}
-							tradePartnerData={tradePartnerData}
-							isOkam={isOkam}
-							setUtilities={setUtilities}
-							utilities={utilities}
-							listShipmentTradePartners={listShipmentTradePartners}
-						/>
-					) : null}
-
 					{!tradePartyLoading ? stakeHolderPOCDetails() : <Placeholder />}
 				</div>
 			);
@@ -195,7 +178,7 @@ function Poc() {
 			{utilities?.addCompanyModal ? (
 				<Modal
 					theme="admin"
-					className="primary xl"
+					size="lg"
 					show={utilities?.addCompanyModal}
 					onClose={onClose}
 					onOuterClick={onClose}

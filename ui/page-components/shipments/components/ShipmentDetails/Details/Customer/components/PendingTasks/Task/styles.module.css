@@ -12,4 +12,6 @@
     margin: 20px 0px;
 	display: flex;
 	justify-content: flex-end;
+    gap: 7px;
+    margin-right: 10px;
 }

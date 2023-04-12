@@ -76,7 +76,7 @@ const statusMappings = {
 const getText = (
 	shipment_data,
 	services,
-	viewAs,
+	viewAs = 'importer_exporter',
 	isList = false,
 	margin_approval_status,
 ) => {

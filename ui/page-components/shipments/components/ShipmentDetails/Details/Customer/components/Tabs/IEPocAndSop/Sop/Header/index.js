@@ -1,14 +1,10 @@
-// import { Button } from '@cogoport/front/components/admin';
 import { Button } from '@cogoport/components';
 import { useState } from 'react';
-import AddSop from '../Add';
 
+import AddSop from '../Add';
 import SopFilters from '../SopFilters';
 
 import styles from './styles.module.css';
-// import AddSop from '../Add';
-// import SopFilters from '../Filters';
-// import { ButtonsContainer, Line } from '../styles';
 
 function Header({
 	setFilters = () => {},

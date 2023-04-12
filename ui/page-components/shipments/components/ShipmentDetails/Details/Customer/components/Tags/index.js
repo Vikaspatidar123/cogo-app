@@ -1,4 +1,3 @@
-// import { Popover, Button } from '@cogoport/front/components/admin';
 import { Popover, Button } from '@cogoport/components';
 import { useState } from 'react';
 

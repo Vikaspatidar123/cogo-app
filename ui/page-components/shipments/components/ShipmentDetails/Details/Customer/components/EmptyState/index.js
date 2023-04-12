@@ -1,6 +1,3 @@
-// import React from 'react';
-
-// import { Container, Heading, Content, Wrapper } from './styles';
 import styles from './styles.module.css';
 
 function EmptyState({

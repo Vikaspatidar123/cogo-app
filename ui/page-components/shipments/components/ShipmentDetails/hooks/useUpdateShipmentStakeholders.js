@@ -1,8 +1,3 @@
-// import { useRequest } from '@cogo/commons/hooks';
-// import getGeoConstants from '@cogo/globalization/constants/geo';
-// import { useSelector } from '@cogo/store';
-// import { toast } from '@cogoport/front/components';
-// import { useFormCogo } from '@cogoport/front/hooks';
 import { Toast } from '@cogoport/components';
 import { useState, useContext } from 'react';
 
@@ -11,16 +6,6 @@ import { ShipmentDetailContext } from '../common/Context';
 
 import { useForm } from '@/packages/forms';
 import { useRequest } from '@/packages/request';
-import getGeoConstants from '@/ui/commons/constants/geo';
-
-// import { ShipmentDetailContext } from '../../../commons/Context';
-// import useResetErrors from '../../../hooks/useResetErrors';
-// import partner_controls, {
-// 	possibleStakeholders,
-// 	controlsForAddingStakeholder,
-// } from '../utils/partner-controls';
-
-const geo = getGeoConstants();
 
 const useUpdateShipmentStakeholders = ({
 	stakeholder_type: oldStakeholderType,
@@ -31,18 +16,6 @@ const useUpdateShipmentStakeholders = ({
 	const [{ shipment_data }] = useContext(ShipmentDetailContext);
 	const [errors, setErrors] = useState({});
 	const { service_id = '', service_type = '', user = '' } = data;
-
-	const agentIdMapping = {
-		supply_agent: [
-			...geo.uuid.supply_role_ids,
-			...geo.uuid.procurement_and_fullfillment_ids,
-			...geo.uuid.logistics_agent_ids,
-		],
-		booking_agent : geo.uuid.kam_ids,
-		service_ops1  : geo.uuid.service_ops1_role_ids,
-		service_ops2  : geo.uuid.service_ops2_role_id,
-		service_ops3  : geo.uuid.service_ops3_role_ids,
-	};
 
 	const addControls = controlsForAddingStakeholder(shipment_data);
 
@@ -60,7 +33,6 @@ const useUpdateShipmentStakeholders = ({
 		handleSubmit,
 		setValue,
 		reset,
-		formState: { errors: errorVal },
 	} = useForm(finalControls);
 
 	const formValues = watch();
@@ -127,6 +99,7 @@ const useUpdateShipmentStakeholders = ({
 		user,
 		reset,
 		showElements,
+		loading,
 	};
 };
 

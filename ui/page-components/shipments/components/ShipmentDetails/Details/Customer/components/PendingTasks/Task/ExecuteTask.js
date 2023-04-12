@@ -46,7 +46,6 @@ function ExecuteTask({
 		task,
 		// onCancel,
 	});
-	console.log(data, 'stepConfig');
 
 	const {
 		steps = [],

@@ -1,6 +1,5 @@
 import { useContext } from 'react';
 
-// import { ShipmentDetailContext } from '../../commons/Context';
 import useGetFiniteList from '../../../hooks/useGetFiniteList';
 import { ShipmentDetailContext } from '../common/Context';
 

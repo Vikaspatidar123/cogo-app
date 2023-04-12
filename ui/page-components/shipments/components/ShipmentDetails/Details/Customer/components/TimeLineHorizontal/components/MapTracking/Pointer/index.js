@@ -1,7 +1,6 @@
 import { L, FeatureGroup, Marker } from '@cogoport/maps';
 
 function Pointer({ lat = '', lng = '', iconSvg = 'location', map }) {
-	console.log(iconSvg, 'iconSvg');
 	const icon = L.icon({
 		iconUrl    : `https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/${iconSvg}.svg`,
 		iconSize   : [24, 24],

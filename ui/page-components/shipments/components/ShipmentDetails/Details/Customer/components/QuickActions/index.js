@@ -1,6 +1,5 @@
 import React from 'react';
 
-// import { Container, FlexRow, Header, CustomBtn } from './styles';
 import styles from './styles.module.css';
 
 function QuickActions({

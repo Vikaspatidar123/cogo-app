@@ -44,7 +44,7 @@ function PocDetails({
 
 	const collection_party_check = isOkam
 		? stakeholder?.trade_party_type !== 'collection_party'
-		  && stakeholders_display_check
+		&& stakeholders_display_check
 		: stakeholder?.trade_party_type === 'collection_party';
 
 	const condition =		showAll || collection_party_check || stakeholders_display_check;

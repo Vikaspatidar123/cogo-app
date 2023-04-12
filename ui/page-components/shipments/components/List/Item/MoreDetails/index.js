@@ -1,14 +1,6 @@
-// import GLOBAL_CONSTANTS from '@cogo/globalization/constants/globals.json';
-// import formatDate from '@cogo/globalization/utils/formatDate';
-// import React from 'react';
-
-// import { Container, List, Label, Value, Item, Tasks, Dot } from './styles';
-// import format from 'date-fns/format';
 import { format } from '@cogoport/utils';
 
 import styles from './styles.module.css';
-
-import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
 function MoreDetails({ data }) {
 	const handleDate = (item) => format(item, 'dd MMM yyyy');
@@ -32,7 +24,7 @@ function MoreDetails({ data }) {
 				|| data?.state !== 'completed'
 					? handleDate(
 						data?.selected_schedule_arrival || data?.schedule_departure,
-					  )
+					)
 					: null,
 		},
 		{

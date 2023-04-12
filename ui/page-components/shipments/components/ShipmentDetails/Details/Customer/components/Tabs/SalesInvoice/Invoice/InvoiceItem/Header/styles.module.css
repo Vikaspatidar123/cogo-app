@@ -88,7 +88,6 @@
 	font-weight: 400;
 	font-size: 12px;
 	line-height: 24px;
-	margin: 0;
 	color: #828282;
 	margin-left: 8px;
 	text-overflow: ellipsis;
@@ -96,6 +95,9 @@
 	overflow: hidden;
 	width: 25%;
 	cursor: pointer;
+	@media (max-width: 768px) {
+		width: 160px;
+	}
 }
 .invoice_value_container{
 	display: flex;
@@ -105,7 +107,7 @@
 	font-size: 14px;
 	line-height: 16px;
 	@media (max-width: 768px) {
-		width: 65%;
+		width: 100%;
 	}
 }
 .invoice_value_title{
@@ -121,6 +123,9 @@
 	width: 35%;
 	justify-content: flex-end;
 	padding: 0px 12px;
+	@media (max-width: 768px) {
+		width: 100%;
+	}
 }
 .icon_wrapper{
 	width: 5%;

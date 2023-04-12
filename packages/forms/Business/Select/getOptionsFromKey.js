@@ -6,6 +6,8 @@ import currencies from '../../constants/currencies';
 import TruckTypes from '../../constants/truck-types.json';
 import getCommodityList from '../../utils/getCommodityList';
 
+import countries from '@/.data-store/constants/countries.json';
+
 const getOptionsFromKey = (
 	key,
 	{ commodityType, containerType, country_code = 'IN' },
@@ -35,6 +37,10 @@ const getOptionsFromKey = (
 		data.options = getCommodityList(commodityType, containerType);
 	} else if (key === 'commodities') {
 		data.options = getCommodityList('freight');
+	} else if (key === 'countries') {
+		data.options = countries;
+		data.valueKey = 'id';
+		data.labelKey = 'name';
 	}
 
 	return data;

@@ -1,10 +1,4 @@
-// import { Link } from '@cogo/next';
-// import { shape, string } from 'prop-types';
-// import React from 'react';
-
 import getText from '../../../../utils/get-text';
-
-// import { Container, Alert, Action, Message } from './styles';
 
 import styles from './styles.module.css';
 
@@ -51,11 +45,6 @@ function Status({ data, viewAs, isBookingDesk = false }) {
 		</div>
 	);
 }
-
-// Status.propTypes = {
-// 	data   : shape({}),
-// 	viewAs : string.isRequired,
-// };
 
 Status.defaultProps = { data: {} };
 

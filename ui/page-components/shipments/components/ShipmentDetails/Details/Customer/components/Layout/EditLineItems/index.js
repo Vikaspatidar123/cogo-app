@@ -1,10 +1,3 @@
-// import CargoDetailPills from '@cogo/business-modules/components/cargo-details';
-// import { Button } from '@cogoport/front/components';
-// import { useFieldArray } from '@cogoport/front/hooks';
-// import styled from '@cogoport/front/styled';
-// import { isEmpty } from '@cogoport/front/utils';
-// import React from 'react';
-// // import incoTermMapping from '@cogo/shipments/configurations/common/inco-term-mapping.json';
 import { Button } from '@cogoport/components';
 import { isEmpty } from '@cogoport/utils';
 import { useFieldArray } from 'react-hook-form';
@@ -14,8 +7,6 @@ import CargoDetailPills from '../../../../../../CargoDetails/CargoDetailPills';
 import Child from './child';
 import Header from './Header';
 import styles from './styles.module.css';
-// import Child from './child';
-// import Header from './Header';
 
 function EditLineItems({
 	name,
@@ -30,11 +21,9 @@ function EditLineItems({
 	disabled = false,
 	customValues,
 	isMobile,
-	// disabledProps = false,
 	cargoDetails = {},
 	value = [],
 	service_name = '',
-	// incoTerm = '',
 	...rest
 }) {
 	const { fields, append, remove } = useFieldArray({
@@ -50,7 +39,6 @@ function EditLineItems({
 	controls.forEach((controlItem) => {
 		childEmptyValues[controlItem.name] = controlItem.value || '';
 	});
-	console.log(childEmptyValues, controls, 'vansh', name, fields, control);
 	const className = `form_fieldArray_${name}`;
 	return (
 		<div

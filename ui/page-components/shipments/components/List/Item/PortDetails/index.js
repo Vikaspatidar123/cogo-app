@@ -1,15 +1,8 @@
-// import Icon from '@cogo/deprecated_legacy/icons/arrow-search.svg';
-// import { Flex } from '@cogoport/front/components';
-// import React from 'react';
-
 import { IcMPortArrow } from '@cogoport/icons-react';
 
 import singleLocationServices from '../../../../configurations/common/single-location-services.json';
 
 import Item from './Item';
-
-// import Item from './Item';
-// import { Container, Text } from './styles';
 import styles from './styles.module.css';
 
 function PortDetails({ data = {}, routeInfo = {} }) {
@@ -39,7 +32,6 @@ function PortDetails({ data = {}, routeInfo = {} }) {
 
 			{!isSingleLocation && (
 				<div className={styles.icon}>
-					{/* <Icon size={1.1} /> */}
 					<IcMPortArrow />
 				</div>
 			)}

@@ -1,12 +1,3 @@
-// import { ShipmentDetailContext } from '@cogo/bookings/commons/Context';
-// import { useRouter } from '@cogo/next';
-// import BreadCrumb from '@cogoport/front/components/admin/Breadcrumbs';
-// import { IcMPin } from '@cogoport/icons-react';
-// import React, { useContext, useState } from 'react';
-
-// import updatePin from '../../../../hooks/useUpdatePin';
-
-// import { Container } from './styles';
 import { Breadcrumb } from '@cogoport/components';
 import { IcMPin } from '@cogoport/icons-react';
 import { useContext, useState } from 'react';
@@ -28,40 +19,12 @@ function BreadCrumbs({ servicesForMap = false }) {
 
 	const { onPinShipment } = useUpDatePin(pinned, refetch);
 
-	const breadcrumbs = {
-		activeColor     : '#333333',
-		descendentColor : '#034AFD',
-		array           : [
-			{
-				key   : 'shipments',
-				title : 'Shipments',
-				href  : '/shipments',
-			},
-			{
-				key   : 'serial_id',
-				title : `#${shipment_data?.serial_id}`,
-				href  : '',
-			},
-		],
-		style: {
-			fontWeight : 400,
-			fontSize   : '12px',
-		},
-	};
-
 	const handleClick = (detail) => {
 		router.push(detail.href);
 	};
 
 	return (
 		<div className={`${styles.container} ${servicesForMap ? styles.shipment_bread_crumb : ''}`}>
-			{/* <Breadcrumb
-				breadCrumbs={breadcrumbs.array}
-				activeColor={breadcrumbs.activeColor}
-				descendentColor={breadcrumbs.descendentColor}
-				style={breadcrumbs.style}
-				onClick={(details) => handleClick(details)}
-			/> */}
 			<Breadcrumb>
 				<Breadcrumb.Item
 					label={<a href="/shipments">Shipments</a>}

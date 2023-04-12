@@ -47,7 +47,6 @@ function Header({ filters, hookSetters, config, viewAs }) {
 					onChange={(e) => {
 						debounceQuery(e);
 					}}
-					// value={serial_id}
 					placeholder="Shipment ID"
 					className={styles.input}
 				/>

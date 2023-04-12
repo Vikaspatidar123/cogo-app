@@ -9,7 +9,6 @@ function EmptyState() {
 				style={{ width: 150, height: 'auto', marginBottom: 10 }}
 			/>
 
-
 			<div className={styles.text}>Locating your cargo</div>
 
 			<div className={`${styles.text} ${styles.detail}`}>

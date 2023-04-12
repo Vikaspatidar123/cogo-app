@@ -5,6 +5,8 @@
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
+	padding-left: 10px;
+	padding-right: 10px;
 }
 .select_layout{
 	display: flex;

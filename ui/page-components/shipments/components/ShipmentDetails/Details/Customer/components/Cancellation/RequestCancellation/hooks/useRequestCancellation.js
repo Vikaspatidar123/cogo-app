@@ -1,10 +1,5 @@
-// import { useRequest } from '@cogo/commons/hooks';
-// import { useSelector } from '@cogo/store';
-// import { toast } from '@cogoport/front/components/admin';
 import { Toast } from '@cogoport/components';
 import { useContext } from 'react';
-
-// import { ShipmentDetailContext } from '../../../../commons/Context';
 
 import { useRequest } from '@/packages/request';
 import { ShipmentDetailContext } from '@/ui/page-components/shipments/components/ShipmentDetails/common/Context';

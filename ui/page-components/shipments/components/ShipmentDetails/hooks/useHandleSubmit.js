@@ -913,20 +913,12 @@ const useHandleSubmit = ({
 	shipment_data = {},
 	services = [],
 }) => {
-	// const scope = useSelector(({ general }) => general?.scope);
-
 	const [contextValues] = useContext(ShipmentDetailContext);
 	const { refetch: getShipmentRefetch } = contextValues || {};
 	const [{ loading }, trigger] = useRequest({
-		url    : finalConfig.end_point || 'update_shipment_pending_task',
+		url    : finalConfig.end_point || '/update_shipment_pending_task',
 		method : 'post',
 	}, { manual: true });
-
-	// const postApi = useRequest(
-	// 	'post',
-	// 	false,
-	// 	scope,
-	// )(finalConfig.end_point || 'update_shipment_pending_task');
 	const [{ loading: apiloading }, updateTaskTrigger] = useRequest({
 		url    : '/update_shipment_pending_task',
 		method : 'post',
@@ -1087,7 +1079,6 @@ const useHandleSubmit = ({
 					}
 					onCancel();
 				}
-				// feedbacks to cogolens starts
 				try {
 					const rpaMappings = getRpaMappings(task, shipment_data, rawValues);
 					if (rpaMappings) {

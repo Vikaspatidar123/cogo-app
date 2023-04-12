@@ -42,6 +42,8 @@
 	font-size: 10px;
 	text-transform: capitalize;
 	margin-top: 18px;
+	display: flex;
+	justify-content: center;
 }
 .sop {
     margin-top: 10px;

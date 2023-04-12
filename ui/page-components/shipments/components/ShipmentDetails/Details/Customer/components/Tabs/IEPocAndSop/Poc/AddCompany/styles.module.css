@@ -2,6 +2,13 @@
     flex-grow: 1;
 	overflow: hidden;
 	position: relative;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+.company{
+	flex-grow: 1;
+	overflow: hidden;
+	position: relative;
 }
 .footer{
 	margin: 16px 0;
@@ -30,12 +37,13 @@
 	font-weight: 500;
 	font-size: 18px;
 	color: #393f70;
+	padding: 13px;
 }
 .role_container{
 	display: flex;
 	align-items: center;
 	padding-bottom: 10px;
-	padding-top: 10px;
+	padding-left: 10px;
 }
 .label{
 	font-weight: 500;

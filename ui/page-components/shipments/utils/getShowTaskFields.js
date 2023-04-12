@@ -74,7 +74,7 @@ const getShowElement = (field, formValues) => {
 
 	const { show_conditions: condition } = field;
 	Object.keys(condition || {}).forEach((conditionName) => {
-		flag =			flag && (getFunction[conditionName] || (() => true))(field, formValues);
+		flag = flag && (getFunction[conditionName] || (() => true))(field, formValues);
 	});
 
 	return flag;

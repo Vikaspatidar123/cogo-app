@@ -35,7 +35,7 @@ function AddCompany({
 	let OPTIONS = options || [];
 
 	if (roleCheck === 'shipper') {
-		OPTIONS = shipperOptions;
+		OPTIONS = shipperOptions();
 	} else if (roleCheck === 'consignee') {
 		OPTIONS = consigneeOptions;
 	} else if (roleCheck === 'booking_party') {
@@ -69,7 +69,7 @@ function AddCompany({
 	const renderAddCompany = () => {
 		if (compType === 'same_as_booking_party') {
 			return (
-				<div className={styles.company_details}>
+				<div className={styles.company}>
 					<SameAsBP
 						role={roleCheck}
 						bookingPartyData={bookingPartyData}
@@ -83,7 +83,7 @@ function AddCompany({
 		}
 		if (['booking_party', 'trade_partner', 'historical'].includes(compType)) {
 			return (
-				<div className={styles.company_details}>
+				<div className={styles.company}>
 					<ExistingCompany
 						role={roleCheck}
 						compType={compType}
@@ -125,9 +125,9 @@ function AddCompany({
 
 	return (
 		<div className={styles.container}>
+
 			<div className={styles.header_container}>
 				<div className={styles.heading}>ADD COMPANY</div>
-
 				<div className={styles.role_container}>
 					<div className={styles.label}>Role</div>
 

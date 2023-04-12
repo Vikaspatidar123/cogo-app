@@ -11,7 +11,8 @@ const useListShipmentList = () => {
 		url    : 'list_shipments',
 		method : 'get',
 	}, { manual: true });
-	const getshipment = async (filterValues, otherParams = {}) => {
+
+	const getPayloadData = (filterValues, otherParams) => {
 		const {
 			invoice_type,
 			serial_id,
@@ -28,43 +29,46 @@ const useListShipmentList = () => {
 			agent_id,
 			...rest
 		} = filterValues || {};
-		console.log(filterValues, 'filterValues', otherParams);
+
+		const filters = {
+			filters: {
+				q,
+				container_number,
+				[filterServiceMapping[shipment_type]]: shipment_type
+					? { ...rest }
+					: undefined,
+				serial_id,
+				state     : global_state,
+				importer_exporter_id,
+				partner_id,
+				shipment_type,
+				color_code,
+				is_all_services_allocated,
+				agent_id,
+				...outSideServiceFilters,
+				bl_detail : { bl_number },
+			},
+			...otherParams,
+		};
+		if (invoice_type === 'proforma_invoice') {
+			filters.filters.proforma_invoice = true;
+		}
+		if (invoice_type === 'sales_invoice') {
+			filters.filters.sales_invoice = true;
+		}
+
+		return filters;
+	};
+
+	const getshipment = async (filterValues, otherParams = {}) => {
+		const filters = getPayloadData(filterValues, otherParams);
 
 		try {
-			const filters = {
-				filters: {
-					q,
-					container_number,
-					[filterServiceMapping[shipment_type]]: shipment_type
-						? { ...rest }
-						: undefined,
-					serial_id,
-					state     : global_state,
-					importer_exporter_id,
-					partner_id,
-					shipment_type,
-					color_code,
-					is_all_services_allocated,
-					agent_id,
-					...outSideServiceFilters,
-					bl_detail : { bl_number },
-				},
-				...otherParams,
-			};
-			if (invoice_type === 'proforma_invoice') {
-				filters.filters.proforma_invoice = true;
-			}
-			if (invoice_type === 'sales_invoice') {
-				filters.filters.sales_invoice = true;
-			}
 			const response = await trigger({
 				params: filters,
 			});
-			// if (response?.hasError) return;
-			console.log(response, 'response');
 			return response;
 		} catch (error) {
-			console.log(error);
 			return null;
 		}
 	};

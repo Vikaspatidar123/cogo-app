@@ -1,12 +1,9 @@
-// import CargoDetails from '@cogo/business-modules/components/cargo-details';
-// import ServiceDetails from '@cogo/business-modules/components/MultiServiceDetails';
 import React from 'react';
 
 import CargoDetails from '../../../CargoDetails/CargoDetailPills';
 import MultiServiceDetails from '../../../CargoDetails/MultiserviceDetails';
 
 import styles from './styles.module.css';
-// import { CargoDetailsWrap, MultiService } from './styles';
 
 function ContainerInfo({ detail }) {
 	return (
@@ -23,7 +20,6 @@ function ContainerInfo({ detail }) {
 				</div>
 				) : (
 					<CargoDetails detail={detail || {}} />
-					// <CargoDetails detail={detail || {}} />
 				)}
 		</div>
 	);

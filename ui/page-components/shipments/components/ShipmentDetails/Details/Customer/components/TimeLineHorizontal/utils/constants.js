@@ -1,5 +1,3 @@
-// import { formatDateToString, isSameDay } from '@cogoport/front/date';
-// import { isEmpty } from '@cogoport/front/utils';
 import { format, isEmpty, isSameDay } from '@cogoport/utils';
 
 import { UNSHADED_MILESTONES } from './milestone';

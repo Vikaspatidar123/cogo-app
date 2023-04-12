@@ -22,18 +22,7 @@ export const useStepExecuton = ({
 	stepConfig,
 	shipment_data,
 }) => {
-	const formProps = useForm({
-		defaultValues: {
-			documents: [
-				{
-					description : '',
-					si_filed_at : '',
-					url         : '',
-				},
-
-			],
-		},
-	});
+	const formProps = useForm();
 
 	const formValues = formProps.watch();
 

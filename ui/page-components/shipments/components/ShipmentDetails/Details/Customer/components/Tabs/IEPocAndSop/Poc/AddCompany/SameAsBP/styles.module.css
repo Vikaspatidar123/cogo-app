@@ -4,6 +4,8 @@
 	position: absolute;
 	display: flex;
 	flex-direction: column;
+	padding-left: 10px;
+	padding-right: 10px;
 }
 .checkout_box_container{
 	margin: 12px 16px;

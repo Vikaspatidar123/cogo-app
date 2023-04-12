@@ -1,15 +1,3 @@
-// import Grid from '@cogoport/front/components/Grid';
-// import React from 'react';
-
-// import ChildFormat from './ChildFormat';
-// import EditLineItems from './EditLineItems';
-// import Item from './Item';
-// import ServiceChargeEdit from './ServiceChargeEdit';
-// import { Container } from './styles';
-// import SupplierSelect from './SupplierSelect';
-
-// const { Row, Col } = Grid;
-
 import ChildFormat from './ChildFormat';
 import EditLineItems from './EditLineItems';
 import Item from './Item';
@@ -17,6 +5,8 @@ import ServiceChargeEdit from './ServiceChargeEdit';
 import styles from './styles.module.css';
 import SupplierSelect from './SupplierSelect';
 import TruckTypeFormat from './TruckTypeFormat';
+
+import getWidth from '@/ui/page-components/shipments/utils/getWidth';
 
 function Layout({
 	controls,
@@ -45,7 +35,6 @@ function Layout({
 								<SupplierSelect
 									{...controlItem}
 									control={control}
-									// {...fields[controlItem.name]}
 									label={
 										customValues[controlItem.name]?.label
 										|| fields[controlItem.name]?.label
@@ -64,7 +53,6 @@ function Layout({
 								<ServiceChargeEdit
 									{...controlItem}
 									control={control}
-									// {...fields[controlItem.name]}
 									error={errors[controlItem.name]}
 									showElements={showElements[controlItem.name]}
 									id_prefix={id_prefix}
@@ -81,7 +69,6 @@ function Layout({
 								<EditLineItems
 									{...controlItem}
 									control={control}
-									// {...fields[controlItem.name]}
 									error={errors[controlItem.name]}
 									showElements={showElements[controlItem.name]}
 									id_prefix={id_prefix}
@@ -97,7 +84,6 @@ function Layout({
 								<ChildFormat
 									{...controlItem}
 									control={control}
-									// {...fields[controlItem.name]}
 									error={errors[controlItem.name]}
 									showElements={showElements[controlItem.name]}
 									id_prefix={id_prefix}
@@ -113,7 +99,6 @@ function Layout({
 								<TruckTypeFormat
 									controlItem={controlItem}
 									control={control}
-									// {...fields[controlItem.name]}
 									error={errors[controlItem.name]}
 									showElements={showElements[controlItem.name]}
 									id_prefix={id_prefix}
@@ -124,7 +109,7 @@ function Layout({
 						);
 					}
 					return show ? (
-						<div className={styles.col}>
+						<div className={styles.col} style={{ width: getWidth(span) }}>
 							<Item
 								{...controlItem}
 								control={control}

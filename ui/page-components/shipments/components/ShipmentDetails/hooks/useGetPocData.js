@@ -11,7 +11,7 @@ const geo = getGeoConstants();
 
 const showAllRoles = [geo.uuid.super_admin_id, geo.uuid.admin_id];
 
-const useGetPocData = ({ tradeParties, shipment_data, scope, shipment_id }) => {
+const useGetPocData = ({ tradeParties, shipment_data, shipment_id }) => {
 	const { partner } = useSelector(({ profile }) => ({
 		partner: profile?.partner,
 	}));

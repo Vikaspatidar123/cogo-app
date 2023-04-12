@@ -40,7 +40,6 @@ const useUpsell = ({ service, services, extraParams, shipment_data }) => {
 	const [{ primary_service }] = useContext(ShipmentDetailContext);
 	const shipment_type = shipment_data?.shipment_type;
 	const search_type = service?.service;
-	console.log(services, 'shipment_data');
 	const newServices = services.map((item) => ({
 		...item,
 		service_type: item?.service_type.split('_service')[0],
@@ -141,7 +140,6 @@ const useUpsell = ({ service, services, extraParams, shipment_data }) => {
 			source    : 'upsell',
 			source_id : shipment_data?.id,
 		};
-		console.log(rawParams, 'rawParams');
 		const postData = await createNewSearch(
 			rawParams,
 			search_type,

@@ -1,7 +1,6 @@
 import { Toast } from '@cogoport/components';
 
 import { useRequest } from '@/packages/request';
-import { useSelector } from '@/packages/store';
 import useGetSopPayload from '@/ui/page-components/shipments/helpers/format-sop-payload';
 
 const useAddSopData = ({
@@ -15,11 +14,6 @@ const useAddSopData = ({
 	trade_partners_details,
 	dataFromOtherSource,
 }) => {
-	const { scope } = useSelector(({ general }) => ({
-		query : general?.query,
-		scope : general?.scope,
-	}));
-
 	let create_payload = {};
 	const apitoCall =		api === 'create'
 		? '/create_shipment_operating_procedure'
@@ -29,8 +23,6 @@ const useAddSopData = ({
 		url    : apitoCall,
 		method : 'post',
 	}, { manual: true });
-
-	// const { loading, trigger } = useRequest('post', false, scope)(apitoCall);
 	const { shipment_payload, booking_party_payload, status } = useGetSopPayload(
 		formValues,
 		trade_partners_details,

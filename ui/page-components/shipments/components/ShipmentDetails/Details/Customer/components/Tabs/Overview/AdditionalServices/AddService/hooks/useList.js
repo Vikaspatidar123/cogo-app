@@ -1,15 +1,9 @@
-// import { useRequest } from '@cogo/commons/hooks';
-// import { useSelector } from '@cogo/store';
-// import { startCase } from '@cogoport/front/utils';
 import { startCase } from '@cogoport/utils';
 import { useEffect, useState } from 'react';
 
 import { useRequest } from '@/packages/request';
-// import { useSelector } from '@/packages/store';
 
 const useList = ({ shipment_id, services, isSeller = false, show }) => {
-	// const { scope } = useSelector(({ general }) => ({ scope: general?.scope }));
-
 	const [filters, setFilters] = useState({
 		name         : undefined,
 		service_type : undefined,
@@ -18,11 +12,6 @@ const useList = ({ shipment_id, services, isSeller = false, show }) => {
 		url    : 'get_shipment_additional_service_codes',
 		method : 'get',
 	}, { manual: true });
-	// const { trigger, loading, data } = useRequest(
-	// 	'get',
-	// 	false,
-	// 	scope,
-	// )('get_shipment_additional_service_codes');
 
 	const getListApi = async () => {
 		await trigger({

@@ -48,7 +48,6 @@ const useGetFiniteList = (hook, params = {}) => {
 			return null;
 		}
 	};
-	console.log(list, 'list');
 	useEffect(() => {
 		if (initialPath === pathname) {
 			setLoading(true);

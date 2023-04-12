@@ -235,7 +235,7 @@ function TrackerMap({
 					onClick={() => setTrackerMapModal(!isTrackerMapModalOpen)}
 				/>
 			)}
-			<div className={points?.length === 0 ? 'blur_screen' : ''}>
+			<div className={points?.length === 0 ? styles.blur_screen : ''}>
 				<CogoMaps
 					completedPoints={completedPoints}
 					remainingPoints={remainingPoints}
@@ -250,7 +250,7 @@ function TrackerMap({
 				/>
 			</div>
 			{points.length === 0 && (
-				<div className="loading_screen">
+				<div className={styles.loading_screen}>
 					<div className={styles.map_unable}>Unable to load map for this shipment</div>
 
 					<div className={styles.text_card}>

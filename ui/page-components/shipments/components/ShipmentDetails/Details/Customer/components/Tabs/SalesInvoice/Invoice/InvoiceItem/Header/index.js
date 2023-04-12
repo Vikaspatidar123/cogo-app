@@ -1,4 +1,4 @@
-import { Popover } from '@cogoport/components';
+import { Tooltip } from '@cogoport/components';
 import { IcMArrowRotateDown, IcMArrowRotateUp } from '@cogoport/icons-react';
 import { isEmpty, startCase } from '@cogoport/utils';
 import { useState } from 'react';
@@ -96,23 +96,23 @@ function Header({
 								}`}
 							</div>
 
-							<Popover
+							<Tooltip
 								placement="bottom"
 								theme="light"
-								render={(service_names || [])?.map((service) => (
+								content={(service_names || [])?.map((service) => (
 									<div style={{ fontSize: '10px', whiteSpace: 'nowrap' }}>
 										{startCase(service)}
 									</div>
 								))}
 							>
-								<p className={styles.service_name}>
+								<div className={styles.service_name}>
 									(
 									{(service_names || [])
 										?.map((service) => startCase(service))
 										.join(', ')}
 									)
-								</p>
-							</Popover>
+								</div>
+							</Tooltip>
 						</div>
 					</div>
 

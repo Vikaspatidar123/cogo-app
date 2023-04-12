@@ -107,12 +107,10 @@ function ExecuteStep({
 			};
 		}
 
-		if (item.name === 'documentss') {
-			const { controls, ...rest } = item;
-			// const [] = controls;
+		if (item.name === 'documents') {
+			const { ...rest } = item;
 			return {
 				...rest,
-				// controls: [],
 			};
 		}
 		const { value, ...rest } = item || {};
@@ -136,7 +134,6 @@ function ExecuteStep({
 			handleSubmitClick();
 		}
 	};
-	console.log(fields, '5432');
 
 	return (
 		<div>

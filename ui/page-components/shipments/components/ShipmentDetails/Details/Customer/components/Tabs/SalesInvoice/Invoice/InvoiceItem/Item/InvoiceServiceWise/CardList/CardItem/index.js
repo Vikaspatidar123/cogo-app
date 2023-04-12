@@ -26,15 +26,13 @@ function CardItem({
 				if (singleItem?.show === false) {
 					return null;
 				}
-				const width = getWidth(singleItem?.span);
-				console.log(width, 'width');
 				return (
-					<div className={styles.col} style={{ width: width }}>
+					<div style={{ width: getWidth(singleItem?.span) }} className={styles.col}>
 						{loading ? <Placeholder width="100%" height="20px" /> : null}
 
 						<div className={styles.label}>{singleItem.label}</div>
 
-						{singleItem.render && !loading ? singleItem.render(item) : null}
+						<div>{singleItem.render && !loading ? singleItem.render(item) : null}</div>
 
 						{!loading && !singleItem.render ? (
 							<div className={styles.title_black}>

@@ -51,13 +51,9 @@ function Item(props) {
 		id_prefix = null,
 		themeType = 'admin',
 		control,
-		formValues,
 		className,
 	} = props || {};
-	// if (type === 'pills') {
-	// 	type = 'chips';
-	// }
-	console.log(props, 'props');
+
 	const Element = getField(type);
 	const errorClass = error ? 'error' : null;
 
@@ -87,7 +83,7 @@ function Item(props) {
 			) : null}
 
 			<div>
-				<Element key={JSON.stringify(formValues)} {...newProps} {...props} control={control} />
+				<Element {...newProps} {...props} control={control} />
 
 				{lowerlabel && (
 					<div className={styles.lower_label}>{lowerlabel}</div>

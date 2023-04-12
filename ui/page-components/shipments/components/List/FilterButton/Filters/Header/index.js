@@ -16,7 +16,6 @@ function Header({ onClose, onSubmit, onReset, id_prefix = '' }) {
 					id={`${id_prefix}_reset_btn`}
 				>
 					<IcMRefresh />
-					{/* <Icon style={{ width: 12, height: 12, marginRight: 3 }} /> */}
 					Reset
 				</div>
 				<Button

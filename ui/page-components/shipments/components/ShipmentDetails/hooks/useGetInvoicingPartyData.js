@@ -19,8 +19,6 @@ const groupByRegistrationNum = (invoices) => {
 };
 
 const useGetInvoicingPartyData = () => {
-	// const { scope } = useSelector(({ general }) => ({ scope: general.scope }));
-
 	const [contextValues] = useContext(ShipmentDetailContext);
 	const { shipment_data } = contextValues || {};
 	const [{ loading: invoiceLoading, data:invoiceData }, trigger] = useRequest({

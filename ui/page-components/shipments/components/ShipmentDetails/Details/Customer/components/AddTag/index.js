@@ -1,14 +1,8 @@
-// import Layout from '@cogo/bookings/commons/Layout';
-// import useAddTag from '@cogo/bookings/ShipmentDetails/hooks/useAddTag';
-// import { Button } from '@cogoport/front/components/admin';
-// import { useFormCogo } from '@cogoport/front/hooks';
 import { Button } from '@cogoport/components';
 import { useState } from 'react';
 
 import useAddTag from '../../../../hooks/useAddtag';
 
-// import { controls } from './controls';
-// import { Container, Heading, ButtonWrap } from './styles';
 import styles from './styles.module.css';
 
 import { InputController, useForm } from '@/packages/forms';
@@ -19,7 +13,6 @@ function AddTag({
 	shipment_data = {},
 	tags = [],
 }) {
-	const [errors, setErrors] = useState({});
 	const { loading, onCreate } = useAddTag({
 		shipment_data,
 		setOpen,
@@ -40,10 +33,6 @@ function AddTag({
 
 	const { handleSubmit, control } = useForm();
 
-	const onError = (err) => {
-		setErrors(err);
-	};
-
 	return (
 		<div>
 			<p className={styles.heading}>ADD TAG</p>
@@ -60,7 +49,7 @@ function AddTag({
 					<Button
 						className="primary md"
 						disabled={loading}
-						onClick={handleSubmit(onCreate, onError)}
+						onClick={handleSubmit(onCreate)}
 					>
 						{loading ? 'Submiting...' : 'Submit'}
 					</Button>

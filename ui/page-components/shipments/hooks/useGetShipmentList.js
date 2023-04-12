@@ -2,23 +2,23 @@ import { useState } from 'react';
 
 import getShipmentList from '../apis/useShipmentList';
 import getConfigsShipper from '../configurations/ShipmentList/Shipper/get-config';
-import getConfigsSupplier from '../configurations/ShipmentList/Supplier/get-configs';
 
 import useGetFiniteList from './useGetFiniteList';
 
 import { useSelector } from '@/packages/store';
 
-const useGetShipmentList = (viewAs = 'importer_exporter', allParams = { isBookingDesk: false }) => {
+const useGetShipmentList = (allParams = { isBookingDesk: false }) => {
 	const { isBookingDesk, ...params } = allParams || {};
 	const { branch_id } = useSelector(({ general }) => ({
 		branch_id : general?.query?.branch_id,
 		scope     : general?.scope,
 	}));
 	const [currentTab, setCurrentTab] = useState('ongoing');
+
 	const { getshipment } = getShipmentList();
 
-	const config =	viewAs === 'importer_exporter' ? getConfigsShipper() : getConfigsSupplier();
-	const configFunc =	viewAs === 'importer_exporter' ? getConfigsShipper : getConfigsSupplier;
+	const config =	 getConfigsShipper();
+	const configFunc = getConfigsShipper;
 
 	const shipperApiFunc = (restFilters, currentPage) => getshipment(
 		{
@@ -37,7 +37,6 @@ const useGetShipmentList = (viewAs = 'importer_exporter', allParams = { isBookin
 		},
 		{ page: currentPage, ...params },
 	);
-	const listApiFunc =	 shipperApiFunc;
 
 	const {
 		loading,
@@ -45,7 +44,7 @@ const useGetShipmentList = (viewAs = 'importer_exporter', allParams = { isBookin
 		filters,
 		list: { data, total, total_page },
 		hookSetters,
-	} = useGetFiniteList(listApiFunc, { params });
+	} = useGetFiniteList(shipperApiFunc, { params });
 	const service_or_shipment = filters?.shipment_type;
 
 	const restFilterControls = service_or_shipment

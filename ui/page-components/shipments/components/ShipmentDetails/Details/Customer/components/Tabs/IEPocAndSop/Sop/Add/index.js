@@ -33,7 +33,14 @@ function AddSop({
 		trade_partners_details,
 	});
 
-	const { control, watch, handleSubmit } = useForm();
+	const { control, watch, handleSubmit } = useForm(
+		{
+			defaultValues: {
+				instruction_items:
+					[{ instruction: '', file: null }],
+			},
+		},
+	);
 	const formValues = watch();
 	const { handleAddSop, loading } = useAddSopData({
 		formValues,

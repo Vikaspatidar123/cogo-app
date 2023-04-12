@@ -12,11 +12,10 @@ function Field({ field = {}, showCode = false }) {
 		}
 		return field.label;
 	};
-	const width = getWidth(field?.span);
 	return (
 		<div
 			className={styles.col}
-			style={{ width: width }}
+			style={{ width: getWidth(field?.span) }}
 			key={field?.key || field?.label}
 		>
 			<div className={styles.card_title}>

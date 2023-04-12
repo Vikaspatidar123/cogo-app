@@ -1,7 +1,6 @@
 import { Modal, Button } from '@cogoport/components';
 import { startCase } from '@cogoport/utils';
 
-import Footer from '../../../../../Footer';
 import Layout from '../../../../../Layout';
 
 import styles from './styles.module.css';

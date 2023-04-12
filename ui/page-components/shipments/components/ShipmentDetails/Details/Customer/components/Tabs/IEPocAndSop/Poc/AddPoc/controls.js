@@ -56,7 +56,7 @@ export const controls = (designation_options) => [
 	{
 		name        : 'mobile_number',
 		label       : 'Mobile Number',
-		type        : 'mobile-number-select',
+		type        : 'mobile_number',
 		className   : 'primary md',
 		span        : 6,
 		placeholder : 'Enter your POC mobile',
@@ -68,7 +68,7 @@ export const controls = (designation_options) => [
 	{
 		name        : 'alternate_mobile_number',
 		label       : 'Alternate Mobile Number (optional)',
-		type        : 'mobile-number-select',
+		type        : 'mobile_number',
 		className   : 'primary md',
 		span        : 6,
 		placeholder : 'Enter your Alternate POC mobile',

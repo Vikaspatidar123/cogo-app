@@ -4,6 +4,8 @@ import Item from '../Item';
 
 import styles from './styles.module.css';
 
+import getWidth from '@/ui/page-components/shipments/utils/getWidth';
+
 function Child({
 	controls,
 	control,
@@ -34,7 +36,7 @@ function Child({
 
 					if (watch) {
 						return elemShow ? (
-							<div className={styles.col}>
+							<div className={styles.col} style={{ width: getWidth(span) }}>
 								<Item
 									{...controlItem}
 									control={control}
@@ -53,7 +55,7 @@ function Child({
 					}
 
 					return elemShow ? (
-						<div className={styles.col}>
+						<div className={styles.col} style={{ width: getWidth(span) }}>
 							<Item
 								{...controlItem}
 								key={`${name}.${index}.${controlItem.name}}`}

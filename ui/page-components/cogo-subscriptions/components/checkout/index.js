@@ -1,7 +1,6 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import { Toast } from '@cogoport/components';
 import { IcMArrowBack } from '@cogoport/icons-react';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 import useCompleteOrder from '../../hooks/useCompleteOrder';
 import useCreateBillingAddres from '../../hooks/useCreateBillingAddress';
@@ -40,16 +39,18 @@ function Checkout() {
 	});
 	const { createCheckout, checkoutLoading } = useCreateCheckout();
 
+	const apicall = useCallback(async () => {
+		await getPlan({
+			setPlan,
+			query,
+			createCheckout,
+			setCheckoutResponse,
+		});
+	}, [createCheckout, getPlan, query]);
+
 	useEffect(() => {
-		(async () => {
-			await getPlan({
-				setPlan,
-				query,
-				createCheckout,
-				setCheckoutResponse,
-			});
-		})();
-	}, []);
+		apicall();
+	}, [apicall]);
 
 	useEffect(() => {
 		if (checkoutResponse?.errors) {

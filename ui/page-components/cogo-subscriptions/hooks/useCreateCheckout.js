@@ -1,4 +1,5 @@
 import { Toast } from '@cogoport/components';
+import { useCallback } from 'react';
 
 import { useRequest } from '@/packages/request';
 
@@ -8,7 +9,7 @@ const useCreateCheckout = () => {
 		method : 'post',
 	}, { manual: true });
 
-	const createCheckout = async ({
+	const createCheckout = useCallback(async ({
 		setCheckoutResponse,
 		query,
 		resp,
@@ -60,7 +61,7 @@ const useCreateCheckout = () => {
 		} catch (error) {
 			Toast.error(error?.message || 'Something went wrong. Please try after sometime');
 		}
-	};
+	}, [trigger]);
 	return { createCheckout, checkoutLoading: loading };
 };
 

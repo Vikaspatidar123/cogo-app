@@ -13,11 +13,11 @@ function CheckoutFooterHowItWorks() {
 			<div className={styles.list}>
 				<li>
 					We will send you email confirmation to your registered email ID:
-					<span className="light-color">{email}</span>
+					<span className={styles.light_color}>{email}</span>
 				</li>
 				<li>
 					{'You will receive call from our '}
-					<span className="bold-color">Key Account Manager (KAM)</span>
+					<span className={styles.bold_color}>Key Account Manager (KAM)</span>
 					, to
 					confirm your booking & get more details
 				</li>

@@ -57,4 +57,24 @@
 		height: 8px;
 		transition: transform 0.5s;
 	}
+
+	.rotate{
+		transform: rotate(180deg)
+	}
+	.no_rotate{
+		transform: rotate(0deg)
+	}
+}
+
+.fade_in{
+	transition: 0.5s;
+	overflow: hidden;
+
+	&.expand{
+		max-height: 400px;
+	}
+
+	&.compress{
+		max-height: 0;
+	}
 }

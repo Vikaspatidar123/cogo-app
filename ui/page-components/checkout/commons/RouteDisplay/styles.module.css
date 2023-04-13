@@ -10,7 +10,7 @@
 	color: #333;
 	border-bottom: 1px dashed rgb(0 0 0 / 20%);
 
-	&.cogo-assured {
+	&.cogo_assured {
 		color: #404e65;
 	}
 
@@ -18,7 +18,7 @@
 		width: 70%;
 	}
 
-	&.single-location {
+	&.single_location {
 		justify-content: space-between;
 	}
 
@@ -78,6 +78,7 @@
 .service_type {
 	font-size: 12px;
 	background-color: #cad4ef;
+	font-weight: 600;;
 
 	@media (max-width: 768px) {
 		align-self: flex-start;

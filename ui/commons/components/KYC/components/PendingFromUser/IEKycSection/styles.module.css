@@ -34,7 +34,33 @@
     justify-content: center;
   }
 }
+.layout{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
 
+  :global{
+    .ui_upload_droparea_container{
+      flex-direction: row;
+      margin-bottom: 6px;
+    }
+
+    .ui_upload_droparea_subheading{
+      text-align: center;
+    }
+
+    .ui_upload_droparea_icon{
+      svg{
+        width:50px;
+        height: 50px;
+      }
+    }
+  }
+}
+
+.field{
+  padding: 8px;
+}
 .button_container {
   display: flex;
   justify-content: flex-end;
@@ -42,6 +68,11 @@
 .lable {
   font-size: 12px;
   color: rgb(57, 63, 112);
-  margin: 32px 0px 12px;
+  margin: 12px 0px ;
   font-weight: 500;
+}
+
+.errors{
+  color: red;
+  font-size: 11px;
 }

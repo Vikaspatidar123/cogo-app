@@ -1,3 +1,4 @@
+import { Pill, cl } from '@cogoport/components';
 import { IcMPortArrow } from '@cogoport/icons-react';
 import { startCase } from '@cogoport/utils';
 
@@ -59,15 +60,15 @@ function RouteDisplay({
 
 	if (isSingleLocationService) {
 		return (
-			<div className={`${styles.container} ${type} ${source} single-location`}>
+			<div className={cl`${styles.container} ${type} ${source} ${styles.single_location}`}>
 				{renderLocation(port)}
-				<div className={styles.service_type}>
+				<Pill className={styles.service_type}>
 					{startCase(mode)}
 					{' '}
 					At
 					{' '}
 					{TRADE_TYPE_MAPPING[trade_type]}
-				</div>
+				</Pill>
 			</div>
 		);
 	}

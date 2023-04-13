@@ -303,7 +303,6 @@ function Form(
 			className={cl`${styles.search_form_container} ${styles.container} ${styles[className]
 			} ${styles[search_type] || ''} ${isSmall ? styles.small : ''} ${isResult ? styles.result : ''}`}
 			style={{
-				background: search_type === 'dashboard' ? '#f9f9f9' : '#ffffff',
 			}}
 		>
 			<div className={cl`${styles.main} ${styles.search_type} ` || ''}>

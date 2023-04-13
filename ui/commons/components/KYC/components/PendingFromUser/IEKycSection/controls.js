@@ -1,12 +1,9 @@
-import { IcMCloudUpload } from '@cogoport/icons-react';
-
-const uploadIcon = () => <IcMCloudUpload size={3.0} />;
-
 const controls = [
 	{
 		name        : 'country_id',
 		type        : 'async_select',
 		asyncKey    : 'countries',
+		span        : 4,
 		label       : 'Organization’s registration country',
 		placeholder : 'Select country',
 		rules       : { required: 'Required' },
@@ -14,6 +11,7 @@ const controls = [
 	{
 		name        : 'registration_number',
 		type        : 'text',
+		span        : 4,
 		label       : 'Organization’s PAN/Registration Number',
 		placeholder : 'Type your organization’s PAN number?',
 		rules       : { required: 'Required' },
@@ -23,6 +21,7 @@ const controls = [
 		label         : 'Preferred Languages',
 		multiple      : true,
 		type          : 'select',
+		span          : 4,
 		autoCloseMenu : false,
 		optionkey     : 'languages',
 		placeholder   : 'Select preferred language(s)',
@@ -31,10 +30,10 @@ const controls = [
 	{
 		name            : 'utility_bill_document_url',
 		type            : 'file',
+		span            : 8,
 		drag            : true,
 		showProgress    : true,
 		onlyURLOnChange : true,
-		uploadIcon,
 		docName         : 'Business Address proof',
 		lowerlabel      : `You can upload any of the following documents - 
 					Electricity Bill, Water Bill, Telephone Landline Bill, Property 

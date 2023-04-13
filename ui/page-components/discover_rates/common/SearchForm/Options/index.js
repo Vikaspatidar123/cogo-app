@@ -207,6 +207,7 @@ function Options({
 			onSubmit={handleSubmit(handleApply, onError)}
 			mobile={mobile}
 			showElements={{}}
+			setValue={setValue}
 			formValues={formValues}
 			search_type={search_type}
 			index={index}

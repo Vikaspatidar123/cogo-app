@@ -4,20 +4,12 @@ const controls = [
 		type               : 'fieldArray',
 		className          : 'primary md',
 		buttonText         : 'Add More Packages',
-		style              : { width: '100px' },
+		// style              : { width: '100px' },
 		noDeleteButtonTill : 1,
-		value              : [
-			{
-				package_type   : '',
-				packages_count : '',
-				package_weight : '',
-				handling_type  : '',
-			},
-		],
-		controls: [
+		controls           : [
 			{
 				name      : 'packing_type',
-				style     : { width: '100px' },
+				span      : 4,
 				type      : 'select',
 				label     : 'Package Type',
 				className : 'primary md',
@@ -47,17 +39,17 @@ const controls = [
 				label     : 'Quantity',
 				type      : 'number',
 				className : 'primary md',
-				style     : { width: '100px' },
+				span      : 4,
 				rules     : { required: true },
 			},
 
 			{
 				name      : 'package_weight',
 				label     : 'Weight per package',
-				suffix    : 'kgs',
+				suffix    : <span style={{ fontSize: '11px' }}>kgs</span>,
 				className : 'primary md',
 				type      : 'number',
-				style     : { width: '150px' },
+				span      : 4,
 				rules     : { required: true },
 			},
 
@@ -65,10 +57,10 @@ const controls = [
 				name          : 'dimensions',
 				label         : 'Dimensions (in cm)',
 				type          : 'input-group',
-				subLabel      : 'CM',
+				// subLabel      : 'CM',
 				className     : 'primary md',
-				style         : { width: '220px' },
-				// style         : { marginLeft: '1px', marginRight: '1px' },
+				span          : 8,
+				style         : { marginLeft: '1px', marginRight: '1px' },
 				inputControls : [
 					{
 						name        : 'length',
@@ -103,7 +95,7 @@ const controls = [
 				label     : 'Handling',
 				type      : 'select',
 				className : 'primary md',
-				style     : { width: '150px' },
+				span      : 4,
 				rules     : { required: 'Handling Type is required' },
 				options   : [
 					{

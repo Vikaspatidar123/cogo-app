@@ -53,9 +53,9 @@ function Goods({ searchData = {}, error }, ref) {
 		<div className={styles.details_container}>
 			<div className={styles.details}>
 				{formatDate({
-        	date       : goodsDetail?.cargoDate,
-        	dateFormat : GLOBAL_CONSTANTS.formats.date['dd MMM yyyy'],
-        	formatType : 'date',
+					date       : goodsDetail?.cargoDate,
+					dateFormat : GLOBAL_CONSTANTS.formats.date['dd MMM yyyy'],
+					formatType : 'date',
 				})}
 			</div>
 
@@ -78,13 +78,14 @@ function Goods({ searchData = {}, error }, ref) {
 			>
 				<div>
 					<div
+						role="presentation"
 						className={styles.terms_container}
 						onClick={() => setShowPopover(!showPopover)}
 					>
 						{isEmpty(goodsDetail) ? (
 							<div className="text">Select</div>
 						) : (
-            	showFilledDetails()
+							showFilledDetails()
 						)}
 					</div>
 					{error ? (

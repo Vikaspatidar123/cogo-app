@@ -1,4 +1,4 @@
-import { Button } from '@cogoport/components';
+import { cl, Button } from '@cogoport/components';
 import { IcMArrowBack } from '@cogoport/icons-react';
 import React, { useEffect, useRef } from 'react';
 
@@ -35,10 +35,10 @@ const calculateWeight = (packages) => {
 	}
 	return 0;
 };
-console.log(controls, 'controls');
-function Calculator({ onChange = () => {}, onBack, value }) {
+
+function Calculator({ onChange = () => {}, onBack, value, setValue }) {
 	const ref = useRef({});
-	const { fields, watch, control } = useForm({
+	const { watch, control } = useForm({
 		defaultValues: {
 			selected_unit : '100',
 			packages      : [
@@ -75,6 +75,8 @@ function Calculator({ onChange = () => {}, onBack, value }) {
 				volume : !volume ? 1 : volume,
 				packages,
 			});
+			setValue('weight', !weight ? 1 : weight);
+			setValue('volume', !volume ? 1 : volume);
 		});
 		return () => subscription.unsubscribe();
 	}, [watch]);
@@ -108,26 +110,30 @@ function Calculator({ onChange = () => {}, onBack, value }) {
 					style={style}
 				/>
 			</div>
+
 			<div className={styles.row}>
 				<div
-					className={styles.col}
+					className={cl`${styles.col} ${styles.package}`}
 					style={{ paddingLeft: 8, paddingRight: 0, marginBottom: 4 }}
 				>
 					<div className={styles.calc_label}>No. of packages</div>
 				</div>
+
 				<div
-					className={styles.col}
+					className={cl`${styles.col} ${styles.dimension}`}
 					style={{ paddingLeft: 0, paddingRight: 0, marginBottom: 4 }}
 				>
 					<div className={styles.calc_label}>Dimensions</div>
 				</div>
+
 				<div
-					className={styles.col}
+					className={cl`${styles.col} ${styles.weight}`}
 					style={{ paddingLeft: 0, paddingRight: 0, marginBottom: 4 }}
 				>
 					<div className={styles.calc_label}>Weight(per pkg)</div>
 				</div>
-				<div className={styles.col}>
+
+				<div className={styles.col} style={{ width: '100%' }}>
 					<ChildFormat
 						name="packages"
 						{...controls[1]}
@@ -141,26 +147,29 @@ function Calculator({ onChange = () => {}, onBack, value }) {
 						}}
 					/>
 				</div>
+
 				<div
-					className={styles.col}
+					className={cl`${styles.col}`}
 					style={{ paddingLeft: 8, paddingRight: 4, marginTop: 8 }}
 				>
-					<Button themeType="accent" size="sm" onClick={() => ref.current.handleAppendChild()}>
+					<Button themeType="secondary" size="sm" onClick={() => ref.current.handleAppendChild()}>
 						+ ADD MORE
 					</Button>
 				</div>
+
 				<div
 					className={styles.col}
-					style={{ paddingLeft: 4, paddingRight: 4, marginTop: 8 }}
+					style={{ paddingLeft: 4, paddingRight: 4, marginTop: 8, width: '100%' }}
 				>
 					<div className={styles.chip}>
 						{`= ${value?.volume?.toFixed(9)} m`}
 						<sup>3</sup>
 					</div>
 				</div>
+
 				<div
 					className={styles.col}
-					style={{ paddingLeft: 4, paddingRight: 4, marginTop: 8 }}
+					style={{ paddingLeft: 4, paddingRight: 4, marginTop: 8, width: '100%' }}
 				>
 					<div className={styles.chip}>
 						{`= ${value?.weight?.toFixed(

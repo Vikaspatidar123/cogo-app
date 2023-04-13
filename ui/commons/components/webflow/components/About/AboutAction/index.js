@@ -24,7 +24,7 @@ function AboutAction({ children, slug, defaultData }) {
 		return cloneElement(child, { ...newProps });
 	});
 
-	return <>{modifiedChildren || children}</>;
+	return modifiedChildren || children;
 }
 
 export default AboutAction;

@@ -81,7 +81,6 @@ function AddInvoicingParty({
 
 			<div className={styles.radio_wrapper}>
 				<RadioGroup
-					className="primary lg"
 					options={RADIO_GROUP_OPTIONS}
 					value={activeComponentKey}
 					onChange={setActiveComponentKey}
@@ -99,14 +98,14 @@ function AddInvoicingParty({
 	return (
 		<div>
 			<Button
-				className={`primary md ${
-					type === 'change' ? 'text' : 'add-invoicing-text'
-				} ie_invoice_party_btn `}
 				onClick={onClickingAddInvoicingParty}
+				className={styles.btn}
 				id="checkout_add_invoicing_parties"
 				style={{
 					marginLeft: '8px',
 				}}
+				themeType="secondary"
+				size="lg"
 				disabled={disabledAddInvoicingPartyButton}
 			>
 				{type === 'change' ? 'Change' : '+ Add Invoicing Party'}

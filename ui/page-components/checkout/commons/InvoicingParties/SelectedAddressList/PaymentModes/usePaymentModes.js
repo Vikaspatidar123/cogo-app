@@ -1,6 +1,7 @@
 import { Tooltip } from '@cogoport/components';
 import { IcMInfo } from '@cogoport/icons-react';
 import { startCase, upperCase } from '@cogoport/utils';
+import { useCallback, useEffect, useMemo } from 'react';
 
 import styles from './styles.module.css';
 
@@ -33,9 +34,6 @@ const getCreditLabel = ({ credit_data = {}, payment_term = '' }) => {
 
 	return (
 		<Tooltip
-			className="secondary sm"
-			animation="shift-away"
-			theme="light-border"
 			content={available_credit && (
 				<>
 					All the decisions related to credit/cash invoices will be taken at
@@ -76,9 +74,6 @@ const getPaymentTermsLabel = ({ payment_term, detail }) => {
 
 	return (
 		<Tooltip
-			className="secondary sm"
-			animation="shift-away"
-			theme="light-border"
 			content={
 				detail?.trade_type === 'domestic'
 					? domestic_mapping[payment_term]
@@ -104,6 +99,7 @@ const usePaymentModes = ({
 	detail = {},
 	paymentModes = {},
 	setPaymentModes = () => {},
+	showHiddenContent,
 }) => {
 	const {
 		paymentMode = 'cash',
@@ -130,7 +126,7 @@ const usePaymentModes = ({
 
 	const { rate_id = '' } = rate;
 
-	const params = {
+	const params = useMemo(() => ({
 		origin_country_id      : origin_country_id || country_id,
 		destination_country_id : destination_country_id || country_id,
 		trade_party_ids        : [invoicingParty?.organization_trade_party_id],
@@ -139,13 +135,31 @@ const usePaymentModes = ({
 		cogo_entity_id,
 		rate_id,
 		existing_shipment_id   : existing_shipment_id || undefined,
-	};
+	}
+	), [cogo_entity_id, country_id, destination_country_id,
+		existing_shipment_id, invoicingParty?.organization_trade_party_id,
+		origin_country_id, primary_service, rate_id, trade_type]);
 
-	const [{ loading, data }] = useRequest({
-		url    : 'get_organization_trade_party_payment_modes',
+	const [{ loading, data }, trigger] = useRequest({
 		method : 'get',
-		params,
+		url    : 'get_organization_trade_party_payment_modes',
 	}, { manual: true });
+
+	const getTradePartyPaymentMode = useCallback(async () => {
+		try {
+			await trigger({
+				params: { ...params },
+			});
+		} catch (err) {
+			console.log(err);
+		}
+	}, [params, trigger]);
+
+	useEffect(() => {
+		if (showHiddenContent) {
+			getTradePartyPaymentMode();
+		}
+	}, [getTradePartyPaymentMode, showHiddenContent]);
 
 	const orgTradePartyId = invoicingParty?.organization_trade_party_id;
 

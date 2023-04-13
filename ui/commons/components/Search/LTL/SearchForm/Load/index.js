@@ -79,7 +79,6 @@ function Load(props, ref) {
 			<div className={styles.label}>Load</div>
 
 			<Popover
-				animation="shift-away"
 				render={content()}
 				onClickOutside={() => setShowPopover(false)}
 				interactive

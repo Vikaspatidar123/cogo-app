@@ -29,6 +29,7 @@ function ChildFormat(
 		control,
 		name,
 	});
+
 	const childEmptyValues = {};
 	controls.forEach((controlItem) => {
 		childEmptyValues[controlItem.name] = controlItem.value || '';
@@ -78,12 +79,12 @@ function ChildFormat(
 			{showButtons && (
 				<>
 					<div
-						className={cl`${styles.child_format_add_btn}${styles.button_div}`}
+						className={cl`${styles.child_format_add_btn} ${styles.button_div}`}
 					>
 						<Button
 							style={{
 								color        : '#3879da',
-								padding      : '0px 4px',
+								padding      : '0 4px',
 								opacity      : disableButtons ? 0.6 : 1,
 								fontSize     : 10,
 								background   : 'transparent',

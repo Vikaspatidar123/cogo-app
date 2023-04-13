@@ -5,7 +5,7 @@ import Calculator from '../../PackageWeightCalculator';
 
 import styles from './styles.module.css';
 
-function CBMCalculator({ onChange, formValues, item }) {
+function CBMCalculator({ onChange, formValues, item, setValue }) {
 	const [showCalculator, setShowCalculator] = useState(false);
 
 	if (!showCalculator) {
@@ -25,6 +25,7 @@ function CBMCalculator({ onChange, formValues, item }) {
 					weight : Number(formValues?.weight) || 0,
 					volume : Number(formValues.volume) || 0,
 				}}
+				setValue={setValue}
 				onChange={onChange}
 				onBack={() => {
 					setShowCalculator(false);

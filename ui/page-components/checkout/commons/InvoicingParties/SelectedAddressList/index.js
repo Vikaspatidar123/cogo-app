@@ -1,3 +1,4 @@
+import { cl } from '@cogoport/components';
 import { IcMArrowDown } from '@cogoport/icons-react';
 import { getByKey, startCase } from '@cogoport/utils';
 
@@ -84,7 +85,7 @@ function SelectedAddressList({
 				</div>
 			</div>
 
-			<div className={styles.fade_in} type={showHiddenContent ? 'enter' : 'exit'}>
+			<div className={cl`${styles.fade_in} ${showHiddenContent ? styles.expand : styles.compress}`}>
 				<div className={styles.content_hidden}>
 					<SelectServicesInvoiceToAndCurrencyForm
 						key={id}
@@ -102,6 +103,7 @@ function SelectedAddressList({
 						invoice={invoice}
 						paymentModes={paymentModes}
 						setPaymentModes={setPaymentModes}
+						showHiddenContent={showHiddenContent}
 					/>
 				</div>
 			</div>
@@ -109,10 +111,9 @@ function SelectedAddressList({
 			<div
 				role="presentation"
 				className={styles.hidden_content_toggler_container}
-				showHiddenContent={showHiddenContent}
 				onClick={() => setShowHiddenContent('toggle')}
 			>
-				<IcMArrowDown />
+				<IcMArrowDown className={showHiddenContent ? styles.rotate : styles.no_rotate} />
 			</div>
 		</div>
 	);

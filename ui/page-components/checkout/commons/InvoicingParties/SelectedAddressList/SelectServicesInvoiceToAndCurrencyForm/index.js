@@ -1,4 +1,4 @@
-import { Checkbox, Button, Select } from '@cogoport/components';
+import { cl, Checkbox, Button, Select } from '@cogoport/components';
 
 import PaymentModes from '../PaymentModes';
 
@@ -30,18 +30,19 @@ function SelectServicesInvoiceToAndCurrencyForm({
 	invoice,
 	paymentModes,
 	setPaymentModes = () => {},
+	showHiddenContent = false,
 }) {
 	return (
 		<>
 			<div className={styles.form_content}>
 				<div className={styles.header}>
 					<div className={styles.description}>
-						<div style={{ fontSize: '14px', color: '#4F4F4F', fontWeight: '500' }}>
+						<div style={{ fontSize: '14px', color: '#4F4F4F', fontWeight: '600' }}>
 							Please select all the services you would want to invoice to this
 							invoicing party.
 						</div>
 
-						<div style={{ fontSize: '12px', color: '#828282', fontWeight: '400' }}>
+						<div style={{ fontSize: '12px', color: '#828282' }}>
 							If you want to add other services to this invoicing party please
 							uncheck from the invoicing party that it has been invoiced to.
 						</div>
@@ -49,7 +50,7 @@ function SelectServicesInvoiceToAndCurrencyForm({
 
 					<div className={styles.currency_select}>
 						<Select
-							className="primary sm"
+							size="sm"
 							placeholder=""
 							value={invoiceCurrency}
 							onChange={onChangeInvoicingPartyCurrency}
@@ -66,15 +67,15 @@ function SelectServicesInvoiceToAndCurrencyForm({
 						const isChecked = services.some((service) => service.service_id === service_id);
 
 						return (
-							<div className={styles.service_invoice_to_option_label}>
+							<div className={styles.service_invoice_to_option}>
 								<Checkbox
 									checked={isChecked}
 									onChange={() => onChangeService(service_id)}
 									disabled={loading || invoicingParties.length <= 1}
 								/>
 								<div
-									className={`${styles.service_invoice_to_optionLabel} 
-								    ${invoicingParties.length <= 1 ? 'disabled' : ''}`}
+									className={cl`${styles.service_invoice_to_option_label} 
+								    ${invoicingParties.length <= 1 ? styles.disabled : ''}`}
 									role="presentation"
 									onClick={() => {
 										if (loading || invoicingParties.length <= 1) {
@@ -97,24 +98,23 @@ function SelectServicesInvoiceToAndCurrencyForm({
 				invoicingParty={invoicingParty}
 				detail={detail}
 				invoice={invoice}
+				showHiddenContent={showHiddenContent}
 			/>
 
 			<div className={styles.button_container}>
 				<Button
-					className="secondary"
+					themeType="secondary"
 					onClick={onClickCancelButton}
 					disabled={loading}
-					size="md"
-					ghost
 				>
 					Cancel
 				</Button>
 
 				<Button
-					className="primary"
+					themeType="accent"
 					onClick={saveInvoicingParty}
 					disabled={loading || services.length === 0}
-					size="md"
+					className={styles.submit_btn}
 				>
 					{loading ? 'Submitting' : 'Submit'}
 				</Button>

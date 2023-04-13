@@ -1,3 +1,4 @@
+import { cl } from '@cogoport/components';
 import { IcMArrowBack } from '@cogoport/icons-react';
 import React, { useState, useEffect } from 'react';
 
@@ -43,7 +44,7 @@ function CommodityType({
 					type="button"
 					id={`${id}_back`}
 					onClick={() => {
-          	         setView('type');
+						setView('type');
 					}}
 				>
 					<IcMArrowBack size={1.4} />
@@ -54,14 +55,12 @@ function CommodityType({
 						<CommodityChip
 							id={`${id}_clear`}
 							onCancel={() => onChange({ ...(value || {}), commodity: '' })}
-							value={
-                commodityOptions.find((comm) => comm.value === value.commodity)
-                	?.label || 'All Commodities'
-              }
+							value={commodityOptions.find((comm) => (
+								comm.value === value.commodity))?.label || 'All Commodities'}
 						/>
 					</span>
 				) : (
-					<span className="sub-label">/ Select Commodity</span>
+					<span className={styles.sub_label}>/ Select Commodity</span>
 				)}
 			</>
 		);
@@ -107,11 +106,8 @@ function CommodityType({
 				>
 					<div>
 						<div
-							className={
-                view === 'type'
-                	? `${styles.active}${styles.section}`
-                	: `${styles.section}`
-              }
+							className={cl`${styles.section} ${view === 'type' ? styles.active : ''}`}
+
 						>
 							<Chips
 								{...controlFields.container_type}
@@ -128,11 +124,8 @@ function CommodityType({
 				>
 					<div>
 						<div
-							className={
-                view === 'commodity'
-                	? `${styles.active}${styles.section}`
-                	: `${styles.section}`
-              }
+							className={cl`${styles.section} ${view === 'commodity' ? styles.active : ''}`}
+
 						>
 							<Chips
 								key="commodity"

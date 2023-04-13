@@ -1,5 +1,6 @@
+import { Pill } from '@cogoport/components';
 import { IcMDelete } from '@cogoport/icons-react';
-import { startCase } from '@cogoport/utils';
+import { startCase, upperCase } from '@cogoport/utils';
 
 import styles from './styles.module.css';
 
@@ -115,13 +116,13 @@ function Heading({
 				{' '}
 				-
 				{' '}
-				<div style={{ color: '#9AB7FE' }}>
+				<span style={{ color: '#9AB7FE' }}>
 					{tradeParty}
-				</div>
+				</span>
 			</div>
 
 			<div className={styles.currency_container}>
-				<div className={styles.tag}>{creditMode}</div>
+				<Pill color="green" className={styles.tag}>{upperCase(creditMode)}</Pill>
 
 				<div className={styles.text1}>
 					Currency :

@@ -42,7 +42,6 @@ const getConfiguration = (
 	if (type === 'modes') {
 		return Modes;
 	}
-
 	const configs = {
 		fcl_freight_controls                    : FCLControls(),
 		fcl_freight_services                    : FCLServices,

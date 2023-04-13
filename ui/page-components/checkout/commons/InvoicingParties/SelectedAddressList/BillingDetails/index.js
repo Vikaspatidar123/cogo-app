@@ -1,4 +1,5 @@
 import { IcAWarehouse } from '@cogoport/icons-react';
+import { startCase } from '@cogoport/utils';
 
 import styles from './styles.module.css';
 
@@ -11,7 +12,7 @@ function BillingDetails({
 			<div className={styles.billing_address_container}>
 				<div className={styles.billing_address}>
 					<IcAWarehouse className="house-icon" />
-					{address}
+					{startCase(address)}
 				</div>
 			</div>
 

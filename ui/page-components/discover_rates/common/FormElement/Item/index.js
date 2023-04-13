@@ -86,7 +86,7 @@ function Item({ formValue, ...rest }) {
 										style={{ maxWidth: '208px', marginLeft: 4 }}
 										value={startCase(value || '')}
 										name={rest.name}
-										onCancel={restProps.onChange ? () => restProps.onChange(rest.name, '') : null}
+										onCancel={restProps.setValue ? () => restProps.setValue(rest.name, '') : null}
 									/>
 								) : null}
 							</div>

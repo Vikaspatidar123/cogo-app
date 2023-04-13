@@ -42,14 +42,14 @@ function CostBreakdownServiceLineItem({ lineItem }) {
 	return (
 		<div className={styles.container}>
 			<div className={styles.row}>
-				<div className={styles.col}>
+				<div className={styles.col} style={{ width: '41.6%' }}>
 					<div className={styles.title}>{`${lineItem.name} (${lineItem.code})`}</div>
 				</div>
-				<div className={styles.col}>
+				<div className={styles.col} style={{ width: '25%' }}>
 					<div className={styles.hidden}>{renderPrice()}</div>
 					<div className={styles.visible}>{renderDetails()}</div>
 				</div>
-				<div className={styles.col}>
+				<div className={styles.col} style={{ width: '33.3%' }}>
 					<div className={styles.hidden}>{renderDetails()}</div>
 					<div className={cl`${styles.visible} ${styles.price}`}>{renderPrice()}</div>
 				</div>

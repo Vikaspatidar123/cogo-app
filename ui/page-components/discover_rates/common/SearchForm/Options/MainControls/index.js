@@ -19,6 +19,7 @@ function MainControls(
 		errors = {},
 		showElements = {},
 		formValues,
+		setValue,
 		search_type = '',
 		index = 0,
 		clearPreviousValues = () => {},
@@ -28,7 +29,7 @@ function MainControls(
 	ref,
 ) {
 	const advancedService = advancedServices.includes(mode);
-	console.log(controls, 'controls');
+
 	return (
 		<div
 			className={cl`${styles.container} ${styles.search_form_cargo_details_popover} ${mobile ? 'mobile ' : ''}`}
@@ -51,6 +52,7 @@ function MainControls(
 				errors={errors}
 				showElements={showElements}
 				formValues={formValues}
+				setValue={setValue}
 			/>
 
 			{onShowAdvanced

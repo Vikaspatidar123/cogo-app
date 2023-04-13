@@ -52,6 +52,12 @@ function GeneralSpecialConsideration(
 		}
 	}, [goodsDetail]);
 
+	useEffect(() => {
+		if (cargoType) {
+			setValue('commodity', '');
+		}
+	}, [cargoType]);
+
 	useImperativeHandle(ref, imperativeHandle, [imperativeHandle]);
 
 	const onSubmit = (values) => {
@@ -76,8 +82,8 @@ function GeneralSpecialConsideration(
 	};
 
 	return (
-		<div className={styles.containe} r>
-			<FormElement controls={controls} control={control} errors={errors} />
+		<div className={styles.container}>
+			<FormElement controls={controls} control={control} errors={errors} noScroll />
 			<div style={{ display: 'flex' }}>
 				<div className={styles.button_container}>
 					<Button
@@ -89,7 +95,7 @@ function GeneralSpecialConsideration(
 						CANCEL
 					</Button>
 
-					<Button size="md" onClick={handleSubmit(onSubmit)}>
+					<Button size="md" themeType="accent" onClick={handleSubmit(onSubmit)}>
 						CONFIRM
 					</Button>
 				</div>

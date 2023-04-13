@@ -52,6 +52,7 @@ function KYC({
 	return (
 		<Modal
 			show={show}
+			size="lg"
 			onClose={() => setShow(false)}
 			closable={source !== 'booking_confirmation'}
 		>

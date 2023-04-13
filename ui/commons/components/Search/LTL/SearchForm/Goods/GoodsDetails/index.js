@@ -41,10 +41,9 @@ function GoodsDetails({ setGoodsDetail, goodsDetail, setShowPopover }, ref) {
 			<div className={styles.header_container}>
 				<div className={styles.date_picker_container}>
 					<div className={styles.header_text}>Cargo Ready Date:</div>
-
 					<Datepicker
-						renderBody={renderBody}
 						onChange={setCargoDate}
+						dateFormat="dd MMM yyyy"
 						value={cargoDate}
 						minDate={new Date()}
 					/>
@@ -59,34 +58,20 @@ function GoodsDetails({ setGoodsDetail, goodsDetail, setShowPopover }, ref) {
 
 			<div style={{ width: 'fit-content', marginBottom: 20 }}>
 
-				<Tabs activeTab={cargoType} onChange={setCargoType} themeType="primary">
-					<TabPanel
-						name="general_cargo"
-						title="GENERAL CARGO"
-					>
-						<GeneralSpecialGoods
-							cargoDate={cargoDate}
-							setErrorMessage={setErrorMessage}
-							setGoodsDetail={setGoodsDetail}
-							goodsDetail={goodsDetail}
-							setShowPopover={setShowPopover}
-							ref={ref}
-							cargoType={cargoType}
-						/>
-					</TabPanel>
-					<TabPanel name="special_consideration" title="SPECIAL CONSIDERATION">
-						<GeneralSpecialGoods
-							cargoDate={cargoDate}
-							setErrorMessage={setErrorMessage}
-							setGoodsDetail={setGoodsDetail}
-							goodsDetail={goodsDetail}
-							setShowPopover={setShowPopover}
-							ref={ref}
-							cargoType={cargoType}
-						/>
-					</TabPanel>
+				<Tabs activeTab={cargoType} onChange={setCargoType} themeType="tertiary">
+					<TabPanel name="general_cargo" title="GENERAL CARGO" />
+					<TabPanel name="special_consideration" title="SPECIAL CONSIDERATION" />
 				</Tabs>
 			</div>
+			<GeneralSpecialGoods
+				cargoDate={cargoDate}
+				setErrorMessage={setErrorMessage}
+				setGoodsDetail={setGoodsDetail}
+				goodsDetail={goodsDetail}
+				setShowPopover={setShowPopover}
+				ref={ref}
+				cargoType={cargoType}
+			/>
 		</div>
 	);
 }

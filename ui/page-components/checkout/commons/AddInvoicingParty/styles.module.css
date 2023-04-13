@@ -1,40 +1,5 @@
 .radio_wrapper {
-	.ie {
-		.core-ui-radio-radio-container.primary {
-			border: 1.5px solid black;
-		}
-		.core-ui-radio-radio-container.primary.checked {
-			border: 1.5px solid #034afd;
-		}
-
-		.core-ui-radio-icon.primary.checked {
-			background-color: #034afd;
-		}
-	}
-	.core-ui-radio-root {
-		margin-bottom: 14px;
-		width: 100%;
-	}
-	.core-ui-radiogroup-container {
-		display: flex;
-		flex-direction: column;
-		width: 100%;
-		margin-bottom: 16px;
-		justify-content: flex-start;
-
-		@media (min-width: 768px) {
-			flex-direction: row;
-		}
-	}
-	.core-ui-radio-label {
-		font-weight: 400;
-		font-size: 14px;
-		line-height: 16px;
-		letter-spacing: 0.04em;
-		color: #393f70;
-		opacity: 1;
-		margin-left: 10px;
-	}
+	
 }
 
 .div {
@@ -63,4 +28,13 @@
 
 .flex {
 	display: flex;
+}
+
+.btn{
+	width: 100%;
+
+
+	&:hover{
+		box-shadow: 0px 8px 16px rgba(57, 63, 112, 0.25);
+	}
 }

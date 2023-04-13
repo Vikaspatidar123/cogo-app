@@ -154,9 +154,9 @@ function AirCustoms(props) {
 							</div>
 						</div>
 
-						<div className="details">
+						<div className={styles.details}>
 							<div
-								className="details-title"
+								className={styles.details_title}
 								onClick={changeToggle}
 								role="presentation"
 							>

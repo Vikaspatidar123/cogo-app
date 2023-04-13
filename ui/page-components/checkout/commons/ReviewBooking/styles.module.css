@@ -9,7 +9,6 @@
 
 .tnc {
   font-size: 14px;
-  font-weight: 400;
   line-height: 16px;
   color: #000;
   display: flex;
@@ -17,10 +16,13 @@
 
 .a {
   font-size: 14px;
-  font-weight: 400;
   line-height: 16px;
-  color: #5936f0;
+  color: #5936f0 !important;
+
+  &:hover{
+    text-decoration: underline;
+
+  }
 }
-.a:hover {
-  text-decoration: underline;
-}
+
+

@@ -28,6 +28,9 @@
 	align-items: center;
 	padding: 4px 0;
 
+	.tag{
+		font-weight: 600;
+	}
 	@media (max-width: 480px) {
 		flex-direction: column;
 		align-items: flex-start;
@@ -35,15 +38,18 @@
 }
 
 .text {
-	margin-right: 8px;
-	font-size: 16px;
-	font-weight: 500;
-	color: #333;
+	color: #333333;
+    text-align: left;
+    font-size: 16px;
+    line-height: 1.4;
+    font-weight: 600;
+    margin: 0px;
+    margin-right: 8px;
 }
 
 .text1 {
 	margin-right: 4px;
 	font-size: 16px;
-	font-weight: 400;
+	font-weight: 600;
 	color: #9ab7fe;
 }

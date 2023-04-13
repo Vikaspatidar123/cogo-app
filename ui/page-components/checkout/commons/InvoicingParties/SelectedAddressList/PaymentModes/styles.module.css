@@ -11,27 +11,8 @@
 .radio_container {
 	margin-top: 8px;
 
-	.core-ui-radiogroup-container {
-		display: flex;
-		flex-flow: column wrap;
-		justify-content: flex-start;
-	}
-
-	.core-ui-radio-root {
-		margin-top: 4px;
-	}
-
-	.core-ui-radio-label {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		width: fit-content;
-		padding: 4px 8px;
-		font-size: 12px;
-		color: #393f70;
-		background: #f2f6ff;
-		border-radius: 4px;
-		opacity: 1;
+	.radio_grp{
+		padding: 0;
 	}
 }
 

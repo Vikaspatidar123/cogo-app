@@ -76,7 +76,7 @@ function Gross({ setLoadData, loadData, setShowPopover }, ref) {
 					CANCEL
 				</Button>
 
-				<Button size="md" onClick={handleSubmit(handleData)}>
+				<Button size="md" themeType="accent" onClick={handleSubmit(handleData)}>
 					Confirm
 				</Button>
 			</div>

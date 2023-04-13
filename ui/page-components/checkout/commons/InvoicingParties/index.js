@@ -17,7 +17,7 @@ function InvoicingParties(props) {
 		invoice = {},
 		source = '',
 	} = props;
-
+	// console.log(organization, 'organization');
 	if (isEmpty(organization)) {
 		return null;
 	}

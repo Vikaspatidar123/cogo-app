@@ -15,6 +15,18 @@
       width: 24%;
     }
   }
+
+  &.nomargin {
+		margin-bottom: 0px;
+	}
+  
+  &.error {
+		background: #fef9f9;
+		border: 1px solid #cb6464;
+		box-sizing: border-box;
+		border-radius: 4px;
+		padding: 10px 8px;
+	}
 }
 
 .small_input {

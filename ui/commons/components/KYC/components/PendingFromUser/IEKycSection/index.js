@@ -10,6 +10,7 @@ import getApiErrorString from '@/packages/forms/utils/getApiError';
 import { useRequest } from '@/packages/request';
 import { useSelector } from '@/packages/store';
 import patterns from '@/ui/commons/configurations/patterns';
+import getWidth from '@/ui/page-components/discover_rates/common/SearchForm/utils/getWidth';
 
 const { INDIA_COUNTRY_ID } = global;
 
@@ -101,7 +102,7 @@ function IEKycSection({ organizationData, onClose, source }) {
 					{controls.map((item) => {
 						const Element = getField(item.type);
 						return (
-							<div className={styles.field}>
+							<div className={styles.field} style={{ width: getWidth(item.span) }}>
 								<div className={styles.lable}>{item.label}</div>
 								<Element {...item} control={control} />
 								{errors && (

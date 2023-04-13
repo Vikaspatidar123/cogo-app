@@ -35,15 +35,12 @@ const useGetCheckout = () => {
 		}));
 	};
 
-	const [{ loading }, trigger] = useRequest(
-		{
-			url    : '/get_checkout',
-			method : 'get',
-		},
-		{ manual: true },
-	);
+	const [{ loading }, trigger] = useRequest({
+		url    : '/get_checkout',
+		method : 'get',
+	}, { manual: true });
 
-	const getCheckout = useCallback(() => {
+	const getCheckout = () => {
 		trigger({
 			params: {
 				id                       : checkout_id,
@@ -81,8 +78,8 @@ const useGetCheckout = () => {
 					const serviceRate = rate.services[serviceId];
 
 					const serviceName = service.trade_type && service.trade_type !== 'domestic'
-            	? `${service.trade_type}_${service.service_type}`
-            	: service.service_type;
+						? `${service.trade_type}_${service.service_type}`
+						: service.service_type;
 
 					const serviceConfig = config.find(
 						(item) => item.name === serviceName,
@@ -105,9 +102,7 @@ const useGetCheckout = () => {
 					switch (service.service_type) {
 						case 'fcl_freight':
 							origin = origin || service.origin_main_port || service.origin_port;
-							destination = destination
-                || service.destination_main_port
-                || service.destination_port;
+							destination = destination || service.destination_main_port || service.destination_port;
 
 							rateObject.destination_detention = {
 								free_limit: service.free_days_destination_detention,
@@ -118,9 +113,7 @@ const useGetCheckout = () => {
 							break;
 						case 'lcl_freight':
 							origin = origin || service.origin_main_port || service.origin_port;
-							destination = destination
-                || service.destination_main_port
-                || service.destination_port;
+							destination = destination || service.destination_main_port || service.destination_port;
 
 							rateObject.destination_detention = {
 								free_limit: service.free_days_destination_detention,
@@ -283,23 +276,21 @@ const useGetCheckout = () => {
 
 							case 'fcl_freight_local':
 								summary.packages.push({
-									cargo_weight_per_container:
-                    service.cargo_weight_per_container,
-									commodity        : service.commodity,
-									container_size   : service.container_size,
-									container_type   : service.container_type,
-									containers_count : service.containers_count,
+									cargo_weight_per_container : service.cargo_weight_per_container,
+									commodity                  : service.commodity,
+									container_size             : service.container_size,
+									container_type             : service.container_type,
+									containers_count           : service.containers_count,
 								});
 
 								break;
 							case 'fcl_customs':
 								summary.packages.push({
-									cargo_weight_per_container:
-                    service.cargo_weight_per_container,
-									commodity        : service.commodity,
-									container_size   : service.container_size,
-									container_type   : service.container_type,
-									containers_count : service.containers_count,
+									cargo_weight_per_container : service.cargo_weight_per_container,
+									commodity                  : service.commodity,
+									container_size             : service.container_size,
+									container_type             : service.container_type,
+									containers_count           : service.containers_count,
 								});
 
 								break;
@@ -355,15 +346,23 @@ const useGetCheckout = () => {
 					loading: false,
 				});
 			});
-	}, [checkout_id, state, trigger]);
+	};
 
-	const refetch = useCallback((isSetLoading = false) => {
+	// const refetch = useCallback((isSetLoading = false) => {
+	// 	setState((prevState) => ({
+	// 		...prevState,
+	// 		loading: isSetLoading ? true : prevState.loading,
+	// 	}));
+	// 	getCheckout();
+	// }, []);
+
+	const refetch = (isSetLoading = false) => {
 		setState((prevState) => ({
 			...prevState,
 			loading: isSetLoading ? true : prevState.loading,
 		}));
 		getCheckout();
-	}, []);
+	};
 
 	useEffect(() => {
 		getCheckout();
@@ -371,7 +370,7 @@ const useGetCheckout = () => {
 
 	useEffect(() => {
 		refetch(true);
-	}, [checkout_id, refetch]);
+	}, [checkout_id]);
 
 	return {
 		...state,

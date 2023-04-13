@@ -64,6 +64,7 @@ const formControls = () => [
 				label         : 'Container Type',
 				name          : 'container_type_commodity',
 				type          : 'container_type-commodity',
+				span          : 12,
 				controlFields : {
 					container_type: {
 						label     : 'Container Type',

@@ -16,46 +16,41 @@ function AddCargo(
 
 	return (
 		<div className={styles.container}>
-			<div className={styles.heading}>Select Type:</div>
 			<div className={styles.wrapper}>
-
+				<div className={styles.heading}>Select Type:</div>
 				<Tabs
 					className="horizontal two"
 					activeTab={activeKey}
 					onChange={setActiveKey}
-					themeType="primary"
+					themeType="tertiary"
 				>
 					<TabPanel
 						name="per_package"
 						title="Package"
 						id="per_package"
-						className="horizontal two"
-						setLoadData={setActiveKey}
-					>
-						<PerPackage
-							setLoadData={setLoadData}
-							loadData={loadData}
-							ref={ref}
-							setShowPopover={setShowPopover}
-							setActiveKey={setActiveKey}
-						/>
-					</TabPanel>
+					/>
 					<TabPanel
 						name="gross"
 						title="Total/Gross"
 						id="gross"
-						setLoadData={setActiveKey}
-					>
-						<Gross
-							setLoadData={setLoadData}
-							loadData={loadData}
-							ref={ref}
-							setShowPopover={setShowPopover}
-							setActiveKey={setActiveKey}
-						/>
-					</TabPanel>
+					/>
 				</Tabs>
 			</div>
+			{activeKey === 'per_package' ? (
+				<PerPackage
+					setLoadData={setLoadData}
+					loadData={loadData}
+					ref={ref}
+					setShowPopover={setShowPopover}
+				/>
+			) : (
+				<Gross
+					setLoadData={setLoadData}
+					loadData={loadData}
+					ref={ref}
+					setShowPopover={setShowPopover}
+				/>
+			)}
 		</div>
 	);
 }

@@ -11,7 +11,7 @@ const useGetCheckoutPromocodes = () => {
 
 	const [{ loading, data }, trigger] = useRequest({
 		url    : '/list_checkout_applicable_promocodes',
-		method : 'post',
+		method : 'get',
 	}, { manual: true });
 
 	const getCheckoutPromocodes = useCallback(() => {

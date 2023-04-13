@@ -16,7 +16,7 @@ function OverWeightModal({
 		formState = {},
 		handleSubmit = () => {},
 	} = useForm();
-	console.log(controls, 'controls');
+
 	const { errors } = formState;
 
 	const onSubmit = (doc) => {

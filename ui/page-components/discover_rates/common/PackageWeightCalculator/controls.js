@@ -63,19 +63,23 @@ const controls = [
 					{
 						name        : 'length',
 						type        : 'number',
+						size        : 'sm',
 						placeholder : 'L',
 						style       : { padding: '0px 8px' },
 					},
 					{
-						name        : 'width',
-						type        : 'number',
-						span        : 4,
+						name : 'width',
+						type : 'number',
+						span : 4,
+						size : 'sm',
+
 						placeholder : 'W',
 						style       : { padding: '0px 8px' },
 					},
 					{
 						name        : 'height',
 						type        : 'number',
+						size        : 'sm',
 						placeholder : 'H',
 						style       : { padding: '0px 8px' },
 					},

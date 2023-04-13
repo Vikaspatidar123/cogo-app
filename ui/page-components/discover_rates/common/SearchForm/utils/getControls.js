@@ -39,7 +39,7 @@ const getControls = (
 		mode,
 		isChannelPartner,
 	);
-	console.log(mode, 'modessss');
+
 	const optionsControls = controls.filter(
 		({ includedInOptions = true }) => includedInOptions,
 	);
@@ -64,7 +64,7 @@ const getControls = (
 						? {
 							container_type : data.container_type,
 							commodity      : data.commodity,
-						  }
+						}
 						: null,
 				},
 				mobile,

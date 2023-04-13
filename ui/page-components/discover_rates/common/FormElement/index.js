@@ -17,7 +17,9 @@ function FormElement({
 	control,
 	showButtons = false,
 	noScroll = false,
+	setValue,
 }) {
+	console.log(controls, 'controls');
 	return (
 		<div className={cl`${styles.container} ${!noScroll ? styles.scroll : ''}`}>
 			<div className={styles.row}>
@@ -29,6 +31,7 @@ function FormElement({
 								key={item.name}
 								formValues={formValues}
 								// onChange={fields[item?.name].onChange}
+								setValue={setValue}
 								item={item}
 							/>
 						);
@@ -88,6 +91,7 @@ function FormElement({
 								error={errors[item.name]}
 								value={item.value}
 								control={control}
+								setValue={setValue}
 							/>
 						</div>
 					) : null;

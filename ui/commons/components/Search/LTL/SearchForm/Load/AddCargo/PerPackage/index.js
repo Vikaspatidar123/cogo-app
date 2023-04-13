@@ -17,7 +17,18 @@ import { useForm } from '@/packages/forms';
 import FormElement from '@/ui/page-components/discover_rates/common/FormElement';
 
 function PerPackage({ setLoadData, loadData, setShowPopover }, ref) {
-	const { handleSubmit, formState, setValue, control } = useForm();
+	const { handleSubmit, formState, setValue, control } = useForm({
+		defaultValues: {
+			packages: [
+				{
+					package_type   : '',
+					packages_count : '',
+					package_weight : '',
+					handling_type  : '',
+				},
+			],
+		},
+	});
 
 	const formattedPackageData = getFormattedData(loadData);
 
@@ -77,7 +88,7 @@ function PerPackage({ setLoadData, loadData, setShowPopover }, ref) {
 				>
 					CANCEL
 				</Button>
-				<Button size="md" onClick={handleSubmit(handleData)}>
+				<Button size="md" themeType="accent" onClick={handleSubmit(handleData)}>
 					Confirm
 				</Button>
 			</div>

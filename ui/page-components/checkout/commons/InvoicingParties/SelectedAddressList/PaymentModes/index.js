@@ -5,6 +5,8 @@ import { useEffect } from 'react';
 import styles from './styles.module.css';
 import usePaymentModes from './usePaymentModes';
 
+import getWidth from '@/ui/page-components/discover_rates/common/SearchForm/utils/getWidth';
+
 const STYLE = {
 	padding   : '16px 32px',
 	borderTop : '1px solid #cddbff',
@@ -18,6 +20,7 @@ function PaymentModes({
 	detail = {},
 	paymentModes,
 	setPaymentModes = () => {},
+	showHiddenContent,
 }) {
 	const {
 		loading,
@@ -31,6 +34,7 @@ function PaymentModes({
 		detail,
 		setPaymentModes,
 		paymentModes,
+		showHiddenContent,
 	});
 
 	const {
@@ -53,7 +57,7 @@ function PaymentModes({
 				paymentMode,
 			},
 		}));
-	}, [PAYMENT_TERMS, creditDetails, invoicingParty.id, paymentMode, paymentTerms, setPaymentModes]);
+	}, []);
 
 	useEffect(() => {
 		setPaymentModes((pv) => ({
@@ -90,14 +94,14 @@ function PaymentModes({
 				} = item;
 
 				return (
-					<div style={{ display: 'flex', flexDirection: 'column' }} key={item}>
+					<div style={{ display: 'flex', flexDirection: 'column', width: getWidth(span) }} key={item}>
 						{!isEmpty(paymentModeOptions) && (
 							<>
 								<div className={styles.header}>{title}</div>
 
 								<div className={styles.radio_container}>
 									<RadioGroup
-										className="primary md"
+										className={styles.radio_grp}
 										options={paymentModeOptions}
 										value={val}
 										onChange={onChange}

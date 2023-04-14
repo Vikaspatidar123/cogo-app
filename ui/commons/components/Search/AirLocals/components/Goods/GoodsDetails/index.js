@@ -41,7 +41,14 @@ function GoodsDetails({
 		tomorrow,
 		showFilledValues,
 	});
-	const { formState, watch, setValue, control } = useForm();
+
+	const { formState, watch, setValue, control } = useForm({
+		defaultValues: {
+			cargo_date     : showFilledValues.cargoDate || tomorrow,
+			commodity_type : showFilledValues.commodityType,
+			// commodity_subtype : showFilledValues?.commoditySubType,
+		},
+	});
 	const { errors = {} } = formState || {};
 
 	const watchCommodity = watch('commodity_type');
@@ -49,17 +56,22 @@ function GoodsDetails({
 	const getCommodity = watch('commodity_type');
 	const getCommoditySubtype = watch('commodity_subtype');
 
-	const handleCommoditySubtype = () => {
-		const serviceTypeGooods =			selectedTradeType === 'domestic'
-			? domestic_transport
-			: international_freight;
+	const serviceTypeGooods = selectedTradeType === 'domestic'
+		? domestic_transport
+		: international_freight;
 
+	const handleCommoditySubtype = () => {
 		if (
 			['general', 'dangerous', 'temp_controlled', 'other_special'].includes(
 				watchCommodity,
 			)
 		) {
-			setCommoditySubTypeOptions(serviceTypeGooods[watchCommodity]);
+			if (['general', 'other_special'].includes(watchCommodity)) {
+				setCommoditySubTypeOptions(serviceTypeGooods[watchCommodity]);
+			} else {
+				const opt = serviceTypeGooods[watchCommodity].map(({ options }) => options).flat();
+				setCommoditySubTypeOptions(opt);
+			}
 
 			if (showFilledValues.commodityType === watchCommodity) {
 				setValue('commodity_subtype', showFilledValues.commoditySubType);
@@ -80,8 +92,7 @@ function GoodsDetails({
 	return (
 		<div className={styles.container}>
 			<div className={styles.header_container}>
-				<FormElement control={control} controls={controls} showButtons errors={errors} />
-
+				<FormElement control={control} controls={controls} showButtons errors={errors} noScroll />
 			</div>
 
 			<div style={{ width: '100%' }}>

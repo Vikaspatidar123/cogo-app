@@ -1,4 +1,5 @@
 import { Button, Modal } from '@cogoport/components';
+import { isEmpty } from '@cogoport/utils';
 import React, { useState, useEffect } from 'react';
 
 import getControls from './controls';
@@ -21,7 +22,24 @@ function PerPackageCargoDetails({
 	const [overWeightDoc, setOverWeightDoc] = useState({});
 
 	const controls = getControls({ showFilledValues });
-	const { handleSubmit, formState, watch, control } = useForm();
+	const { handleSubmit, formState, watch, control } = useForm({
+		defaultValues: {
+			dimensions: isEmpty(showFilledValues?.perPackagedata?.dimensions)
+				? [
+					{
+						package_type : 'pallet',
+						handling     : 'stackable',
+						units        : 'cm',
+						quantity     : 1,
+						total_weight : 1,
+						length       : 1,
+						width        : 1,
+						height       : 1,
+					},
+				]
+				: showFilledValues?.perPackagedata?.dimensions,
+		},
+	});
 	const { errors } = formState;
 
 	const [totalVal, setTotalVal] = useState({});
@@ -109,17 +127,17 @@ function PerPackageCargoDetails({
 	return (
 		<>
 			<div className={styles.container}>
-				<FormElement control={control} controls={controls} showButtons errors={errors} />
+				<FormElement control={control} controls={controls} showButtons errors={errors} noScroll />
 
 				<div className={styles.button_container}>
 					<div className={styles.display_live_cal}>
-						<div className="totals">
+						<div className={styles.totals}>
 							Total Volume:
 							{totalVal.totalVol}
 							{' '}
 							cbm
 						</div>
-						<div className="totals">
+						<div className={styles.totals}>
 							Total Weight:
 							{totalVal.totalWt}
 							{' '}
@@ -127,14 +145,15 @@ function PerPackageCargoDetails({
 						</div>
 					</div>
 
-					<div>
-						<Button onClick={() => setShowPopover(false)}>
+					<div className={styles.btn}>
+						<Button onClick={() => setShowPopover(false)} themeType="secondary" size="sm">
 							Cancel
 						</Button>
 						<Button
 							onClick={handleSubmit(onSubmit)}
-							className="primary sm"
-							style={{ background: '#393F70', marginLeft: '8px' }}
+							className={styles.submit_btn}
+							themeType="accent"
+							size="sm"
 						>
 							Confirm
 						</Button>

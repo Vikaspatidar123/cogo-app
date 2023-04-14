@@ -110,7 +110,7 @@ function Item({ formValue, ...rest }) {
 				)}
 				{errorClass && (
 					<div
-						className={cl`${styles.text}error_msg search_form_item_error_msg_bottom`}
+						className={cl`${styles.text} ${styles.error_msg} search_form_item_error_msg_bottom`}
 					>
 						{handleError(rest, errorClass)}
 					</div>

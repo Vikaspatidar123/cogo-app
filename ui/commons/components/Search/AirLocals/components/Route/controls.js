@@ -18,7 +18,7 @@ const getControls = ({ setLocation = () => {}, location = {} }) => [
 		},
 		grouped : ['city', 'country'],
 		value   : location?.origin?.id,
-		style   : { width: '244px' },
+		span    : 12,
 		rules   : {
 			required: 'true',
 		},

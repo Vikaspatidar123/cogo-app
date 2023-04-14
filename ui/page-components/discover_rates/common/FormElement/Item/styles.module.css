@@ -93,7 +93,7 @@
   justify-content: flex-end;
   position: relative;
 
-  .error_msg {
+  &.error_msg {
     display: none;
   }
 }

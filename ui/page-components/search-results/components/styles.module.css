@@ -42,7 +42,7 @@
 .flex_div {
   display: flex;
   flex-direction: column;
-  width: calc(100% - 267px);
+  width: calc(100% - 300px);
   margin-right: 16px;
 
   @media (min-width: 760px) and (max-width: 1164px) {

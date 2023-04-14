@@ -1,4 +1,4 @@
-import { Button } from '@cogoport/components';
+import { cl, Button } from '@cogoport/components';
 import React from 'react';
 
 import Airline from './components/Airline';
@@ -8,6 +8,8 @@ import TerminalHandling from './components/TerminalHandling';
 import TradeType from './components/TradeType';
 import styles from './styles.module.css';
 import useAirLocal from './useAirLocal';
+
+import getWidth from '@/ui/page-components/discover_rates/common/SearchForm/utils/getWidth';
 
 function AirLocals({
 	extraParams = {},
@@ -35,7 +37,7 @@ function AirLocals({
 		<div className={styles.container}>
 			<div className={styles.search_form_components}>
 				<div className={styles.row}>
-					<div>
+					<div className={styles.col} style={{ width: getWidth(3) }}>
 						<Route
 							setLocation={setLocation}
 							location={location}
@@ -44,7 +46,7 @@ function AirLocals({
 						/>
 					</div>
 
-					<div>
+					<div className={styles.col} style={{ width: getWidth(2.2) }}>
 						<TradeType
 							formError={formError}
 							airFreightLocalsData={airFreightLocalsData}
@@ -57,7 +59,7 @@ function AirLocals({
 						/>
 					</div>
 
-					<div>
+					<div className={styles.col} style={{ width: getWidth(2.2) }}>
 						<TerminalHandling
 							formError={formError}
 							airFreightLocalsData={airFreightLocalsData}
@@ -69,7 +71,7 @@ function AirLocals({
 						/>
 					</div>
 
-					<div>
+					<div className={styles.col} style={{ width: getWidth(2.2) }}>
 						<Goods
 							airFreightLocalsData={airFreightLocalsData}
 							airFormRef={airFormRef}
@@ -82,7 +84,7 @@ function AirLocals({
 						/>
 					</div>
 
-					<div style={{ paddingRight: 0 }}>
+					<div className={cl`${styles.col} ${styles.air_line}`} style={{ width: getWidth(2.2) }}>
 						<Airline
 							airFreightLocalsData={airFreightLocalsData}
 							formError={formError}
@@ -97,7 +99,6 @@ function AirLocals({
 
 			<div className={styles.button_container}>
 				<Button
-					className="primary md"
 					onClick={onClickSearchRates}
 					disabled={loading}
 				>

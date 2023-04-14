@@ -25,7 +25,7 @@ const getControls = (
 	is_org_pass_through,
 ) => {
 	const [operatorName, setOperatorName] = useState({});
-
+	console.log(mode, 'mode');
 	const controls = getConfiguration(
 		'controls',
 		mode,

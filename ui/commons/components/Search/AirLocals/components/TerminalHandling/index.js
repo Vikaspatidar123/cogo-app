@@ -76,14 +76,9 @@ function TerminalHandlingType(props, ref) {
 				type="select"
 				placeholder="Select"
 				options={OPTIONS}
-				value={
-          selectedTradeType === 'domestic'
-          	? selectedHandlingType
-          	: getHandlingType()
-        }
+				value={selectedTradeType === 'domestic' ? selectedHandlingType : getHandlingType()}
 				onChange={setSelectedHandlingType}
 				disabled={selectedTradeType !== 'domestic'}
-				style={{ width: '244px' }}
 			/>
 			{formError?.terminalHandlingType ? (
 				<div className={styles.error_message_container}>

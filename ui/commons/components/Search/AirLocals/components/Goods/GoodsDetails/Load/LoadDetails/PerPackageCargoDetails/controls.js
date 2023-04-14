@@ -1,7 +1,3 @@
-import { isEmpty } from '@cogoport/utils';
-
-import styles from './styles.module.css';
-
 const getControls = ({ showFilledValues }) => [
 	{
 		name               : 'dimensions',
@@ -10,21 +6,7 @@ const getControls = ({ showFilledValues }) => [
 		showButtons        : true,
 		buttonText         : 'Add More Packages',
 		noDeleteButtonTill : 1,
-		value              : isEmpty(showFilledValues?.perPackagedata?.dimensions)
-			? [
-				{
-					package_type : 'pallet',
-					handling     : 'stackable',
-					units        : 'cm',
-					quantity     : 1,
-					total_weight : 1,
-					length       : 1,
-					width        : 1,
-					height       : 1,
-				},
-			]
-			: showFilledValues?.perPackagedata?.dimensions,
-		controls: [
+		controls           : [
 			{
 				name        : 'package_type',
 				type        : 'select',
@@ -71,7 +53,7 @@ const getControls = ({ showFilledValues }) => [
 				type   : 'number',
 				value  : showFilledValues?.perPackagedata?.total_weight,
 				label  : 'Weight per pkg',
-				suffix : <div className={styles.suffix}>kgs</div>,
+				suffix : <span style={{ fontSize: '11px' }}>Kgs</span>,
 				span   : 4,
 				rules  : {
 					min      : 1,

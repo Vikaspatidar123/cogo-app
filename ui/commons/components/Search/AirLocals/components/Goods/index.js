@@ -1,5 +1,5 @@
 import { Popover } from '@cogoport/components';
-import { startCase, isEmpty, format } from '@cogoport/utils';
+import { startCase, isEmpty } from '@cogoport/utils';
 import React, {
 	useState,
 	useEffect,
@@ -14,6 +14,7 @@ import GoodsDetails from './GoodsDetails';
 import styles from './styles.module.css';
 
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
+import formatDate from '@/ui/commons/utils/formatDate';
 
 const showFilledPaymentDetails = ({ goodsLoadsData = {} }) => {
 	let displayGoodsType = '';
@@ -27,11 +28,12 @@ const showFilledPaymentDetails = ({ goodsLoadsData = {} }) => {
 	return (
 		<div className={styles.details_container}>
 			<div className={styles.details}>
-				{/* {format({
-        	date       : goodsLoadsData?.cargoDate,
-        	dateFormat : GLOBAL_CONSTANTS.formats.date['dd MMM yyyy'],
-        	formatType : 'date',
-				})} */}
+				{formatDate({
+					date       : goodsLoadsData?.cargoDate,
+					dateFormat : GLOBAL_CONSTANTS.formats.date['dd MMM yyyy'],
+					formatType : 'date',
+				})}
+
 			</div>
 
 			<div className={styles.details}>{startCase(displayGoodsType)}</div>
@@ -50,7 +52,9 @@ function Goods(props, ref) {
 		serviceDetails,
 		selectedTradeType = '',
 	} = props;
-	const airFreightArr = Object.values(serviceDetails || {}).filter((element) => ['air_freight_local'].includes(element.service_type));
+
+	const airFreightArr = Object.values(serviceDetails || {}).filter((element) => (
+		['air_freight_local'].includes(element.service_type)));
 
 	const packages = [];
 
@@ -59,6 +63,7 @@ function Goods(props, ref) {
 	});
 
 	const packageDetails = [];
+
 	const packagehandle = () => {
 		if (packages.length > 0) {
 			(packages || []).forEach((element) => {
@@ -174,8 +179,8 @@ function Goods(props, ref) {
 	const [showPopover, setShowPopover] = useState(false);
 
 	const goodsCommodity = showFilledValues.commodityType === 'general'
-    	? 'general'
-    	: 'special_consideration';
+		? 'general'
+		: 'special_consideration';
 
 	const {
 		cargoDate = '',
@@ -213,9 +218,9 @@ function Goods(props, ref) {
 			let commodity_subtype_data = '';
 			if (
 				selectedTradeType === 'domestic'
-        && commodity_type_data === 'general'
-        && commodityData === 'general'
-        && trade_type === selectedTradeType
+				&& commodity_type_data === 'general'
+				&& commodityData === 'general'
+				&& trade_type === selectedTradeType
 			) {
 				commodity_subtype_data = subCommodityData;
 			} else if (
@@ -275,27 +280,22 @@ function Goods(props, ref) {
 			<div className={styles.title}>GOODS</div>
 
 			<Popover
-				theme="light"
 				placement="bottom"
-				render={(
-					<>
-						{showPopover ? (
-							<GoodsDetails
-								commodity={commodity}
-								setShowPopover={setShowPopover}
-								tomorrow={tomorrow}
-								selectedTradeType={selectedTradeType}
-								airFreightLocalsData={airFreightLocalsData}
-								airFormRef={airFormRef}
-								formError={formError}
-								showFilledValues={showFilledValues}
-								setShowFilledValues={setShowFilledValues}
-							/>
-						) : null}
-					</>
-				)}
+				caret={false}
+				render={(showPopover ? (
+					<GoodsDetails
+						commodity={commodity}
+						setShowPopover={setShowPopover}
+						tomorrow={tomorrow}
+						selectedTradeType={selectedTradeType}
+						airFreightLocalsData={airFreightLocalsData}
+						airFormRef={airFormRef}
+						formError={formError}
+						showFilledValues={showFilledValues}
+						setShowFilledValues={setShowFilledValues}
+					/>
+				) : null)}
 				interactive
-				animation="shift-away"
 				visible={showPopover}
 				onClickOutside={() => setShowPopover(showPopover)}
 			>
@@ -307,7 +307,7 @@ function Goods(props, ref) {
 					{isEmpty(goodsLoadsData) ? (
 						<div className="text">Tell us about your goods</div>
 					) : (
-          	showFilledPaymentDetails({ goodsLoadsData })
+						showFilledPaymentDetails({ goodsLoadsData })
 					)}
 				</div>
 			</Popover>

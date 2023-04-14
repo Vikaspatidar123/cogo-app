@@ -172,7 +172,7 @@ function NoResultFound({
 
 	const renderJobButton = () => (
 		<div>
-			<Button onClick={handleCreateJob} disabled={rateTaskLoad}>
+			<Button themeType="accent" onClick={handleCreateJob} disabled={rateTaskLoad}>
 				Request Rate
 			</Button>
 		</div>
@@ -234,8 +234,10 @@ function NoResultFound({
 								</>
 							))}
 							<Button
-								className="blue"
+								className={styles.blue}
+								size="sm"
 								onClick={newSearch}
+								themeType="accent"
 								style={{ display: 'inline-block' }}
 							>
 								Try a new search

@@ -14,7 +14,7 @@ const useAirLocal = ({
 	onPush = () => {},
 }) => {
 	const {
-		scope = '',
+		scope = 'app',
 		query = {},
 		userRoleIDs = [],
 	} = useSelector(({ general, profile }) => ({
@@ -269,19 +269,6 @@ const useAirLocal = ({
 	};
 
 	const onClickSearchRates = async () => {
-		if (scope === 'partner' && !extraParams.importer_exporter_id) {
-			showErrorsInToast(['Please select importer exporter']);
-			return;
-		}
-		if (scope === 'partner' && !extraParams.importer_exporter_branch_id) {
-			showErrorsInToast(['Please select organization branch ']);
-			return;
-		}
-		if (scope === 'partner' && !extraParams.user_id) {
-			showErrorsInToast(['Please select organization user ']);
-			return;
-		}
-
 		try {
 			const isValid = isPayloadValid();
 			if (!isValid) {
@@ -295,29 +282,19 @@ const useAirLocal = ({
 			const response = await trigger({ data: payload });
 			const { data = {} } = response || {};
 
-			let partneras = `/book/${data?.id}/${extraParams?.importer_exporter_id}`;
-			let partnerHref = '/book/[search_id]/[importer_exporter_id]';
-
-			if (query?.source) {
-				partneras += `?source=${query?.source}`;
-				partnerHref += `?source=${query?.source}`;
-			}
-
 			const ROUTE_MAPPING = {
 				app: {
 					href : '/book/[search_id]',
 					as   : `/book/${(data || {}).id}`,
 				},
-				partner: {
-					href : partnerHref,
-					as   : partneras,
-				},
 			};
+			console.log(scope, 'scope');
 			const { href, as } = ROUTE_MAPPING[scope];
 			router.push(href, as);
 
 			onPush();
 		} catch (error) {
+			console.log(error, 'error?.data');
 			showErrorsInToast(error?.data);
 		}
 	};

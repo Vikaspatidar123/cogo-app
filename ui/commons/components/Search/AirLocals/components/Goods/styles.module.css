@@ -1,15 +1,5 @@
 .container {
   margin-top: 22px;
-  width: 244px;
-  :global {
-    .tippy-box .tippy-arrow {
-      display: none !important;
-    }
-
-    .core-ui-popover-root {
-      margin-top: -9px;
-    }
-  }
 }
 .title {
   margin-bottom: 10px;

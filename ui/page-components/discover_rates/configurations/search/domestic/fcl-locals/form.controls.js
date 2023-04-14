@@ -44,7 +44,7 @@ const formControlsAdvanced = (setOperatorName, is_org_pass_through) => [
 	{
 		name         : 'shipping_line_id',
 		label        : 'Shipping Line',
-		type         : 'select',
+		type         : 'async_select',
 		placeholder  : 'Select Shipping Line',
 		asyncKey     : 'shipping-lines',
 		caret        : true,
@@ -91,6 +91,7 @@ const formControlsAdvanced = (setOperatorName, is_org_pass_through) => [
 				type    : 'chips',
 				span    : 12,
 				options : CONTAINER_SIZES,
+				rules   : { required: 'Container Quantity is required' },
 			},
 			{
 				label       : 'Cargo Weight per Container',
@@ -108,10 +109,10 @@ const formControlsAdvanced = (setOperatorName, is_org_pass_through) => [
 				span          : 12,
 				controlFields : {
 					container_type: {
-						label          : 'Container Type',
-						name           : 'container_type',
-						type           : 'chips',
-						optionsListKey : 'container-types',
+						label     : 'Container Type',
+						name      : 'container_type',
+						type      : 'chips',
+						optionKey : 'container-types',
 					},
 					commodity: {
 						label : 'Select Commodity',

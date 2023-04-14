@@ -23,3 +23,11 @@
 .row {
   display: flex;
 }
+
+.col{
+  padding: 0 8px;
+
+  &.air_line{
+    padding-right: 0px;
+  }
+}

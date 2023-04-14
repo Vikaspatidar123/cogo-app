@@ -38,9 +38,6 @@ function AirlineType(props, ref) {
 				value={selectedAirline}
 				onChange={setSelectedAirline}
 				multiple={false}
-				style={{
-        	width: '244px',
-				}}
 			/>
 			{formError?.airline ? (
 				<div className={styles.error_message_container}>

@@ -11,13 +11,13 @@ const controls = ({
 		type                  : 'datepicker',
 		span                  : 12,
 		isPreviousDaysAllowed : false,
-		value                 : showFilledValues.cargoDate || tomorrow,
+		// value                 : showFilledValues.cargoDate || tomorrow,
 		rules                 : { required: 'This is required' },
 	},
 	{
 		name    : 'commodity_type',
 		label   : 'Commodity Type',
-		value   : showFilledValues.commodityType,
+		// value   : showFilledValues.commodityType,
 		type    : 'select',
 		span    : 6,
 		options : OPTIONS,
@@ -26,20 +26,11 @@ const controls = ({
 	{
 		name    : 'commodity_subtype',
 		label   : 'Commodity Subtype',
-		value   : showFilledValues?.commoditySubType,
+		// value   : showFilledValues?.commoditySubType,
 		type    : 'select',
 		span    : 6,
 		options : commoditySubtypeOptions,
-		style   : {
-			menu: {
-				right        : 0,
-				background   : 'white',
-				boxShadow    : '0 4px 80px rgba(0, 0, 0, 0.15)',
-				borderRadius : 10,
-				zIndex       : 99999,
-			},
-		},
-		rules: { required: true },
+		rules   : { required: true },
 	},
 ];
 

@@ -19,7 +19,6 @@ function FormElement({
 	noScroll = false,
 	setValue,
 }) {
-	console.log(controls, 'controls');
 	return (
 		<div className={cl`${styles.container} ${!noScroll ? styles.scroll : ''}`}>
 			<div className={styles.row}>

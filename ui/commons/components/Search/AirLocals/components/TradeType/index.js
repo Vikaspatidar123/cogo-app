@@ -73,16 +73,9 @@ function TradeType(props, ref) {
 			<Select
 				type="select"
 				placeholder="Select"
-				options={
-          country_code === INDIA_COUNTRY_CODE
-          	? DOMESTIC_OPTIONS
-          	: INTERNATIONAL_OPTIONS
-        }
+				options={country_code === INDIA_COUNTRY_CODE ? DOMESTIC_OPTIONS : INTERNATIONAL_OPTIONS}
 				value={selectedTradeType}
 				onChange={setSelected}
-				style={{
-					width: '244px',
-				}}
 			/>
 			{formError?.TradeType ? (
 				<div className={styles.error_message_container}>

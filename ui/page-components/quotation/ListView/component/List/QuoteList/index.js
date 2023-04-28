@@ -10,23 +10,33 @@ import EmptyState from './EmptyState';
 import MobileCard from './MobileCard';
 import styles from './styles.module.css';
 
-function QuoteList({ data, loading, pagination, setPagination, setSortObj, deleteQuote, deleteLoading }) {
+function QuoteList({
+	data, loading, deleteQuote, deleteLoading, setGlobalFilter,
+}) {
 	const [created, setCreated] = useState(false);
 	const [expiry, setExpiry] = useState(false);
 	const [amount, setAmount] = useState(false);
+
 	const [showDeleteModal, setShowDeleteModal] = useState(false);
 	const [quoteId, setQuoteId] = useState();
 
 	const sendConfig = sendListConfig({ created, setCreated, expiry, setExpiry, amount, setAmount });
 
-	const { list = [], totalRecords, pageSize } = data || {};
+	const { list = [], totalRecords, pageSize = 0, pageNo } = data || {};
 	const dataList = loading ? [1, 2, 3, 4, 5] : list;
+
+	const pageChangeHandler = (page) => {
+		setGlobalFilter((prev) => ({
+			...prev,
+			page,
+		}));
+	};
 	return (
 		<div className={styles.table_container}>
 			{dataList.length > 0 && (
 				<>
 					<div className={styles.desktop_view}>
-						<CardHeader config={sendConfig} setSortObj={setSortObj} />
+						<CardHeader config={sendConfig} setGlobalFilter={setGlobalFilter} />
 
 						{(dataList || []).map((listItem) => (
 							<CardRow
@@ -52,10 +62,10 @@ function QuoteList({ data, loading, pagination, setPagination, setSortObj, delet
 						<div className={styles.pagination_container}>
 							<Pagination
 								type="table"
-								currentPage={pagination}
+								currentPage={pageNo}
 								totalItems={totalRecords}
 								pageSize={pageSize}
-								onPageChange={setPagination}
+								onPageChange={pageChangeHandler}
 							/>
 						</div>
 					)}

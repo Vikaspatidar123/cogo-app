@@ -17,7 +17,9 @@ const filterTab = [
 	},
 ];
 
-function FilterContent({ filters = {}, setFilters }) {
+function FilterContent({ setGlobalFilter, globalFilter = {} }) {
+	const { filters = {} } = globalFilter;
+
 	const calculateLength = () => {
 		let n = 0;
 		Object.keys(filters).forEach((ele) => {
@@ -29,44 +31,55 @@ function FilterContent({ filters = {}, setFilters }) {
 	};
 	const filterLength = calculateLength();
 
-	const updateStatusHandler = (value) => {
-		setFilters((prev) => ({
-			...prev,
-			status: value,
-		}));
-	};
-
 	const checkboxHandler = async (e) => {
 		if (!e.target.checked) {
-			setFilters((prev) => {
-				const { showExpired, ...rest } = prev;
-				return { ...rest, empty: true };
+			setGlobalFilter((prev) => {
+				const { filters: prevFilter } = prev;
+				const { showExpired, ...rest } = prevFilter;
+				return { ...prev, filters: { ...rest } };
 			});
 		} else {
-			setFilters((prev) => ({
+			setGlobalFilter((prev) => ({
 				...prev,
-				showExpired: true,
+				filters: {
+					...prev.filters,
+					showExpired: true,
+				},
 			}));
 		}
 	};
 
 	const clearFilterHandler = (key) => {
 		if (key === 'all') {
-			setFilters({
-				empty: true,
-			});
+			setGlobalFilter((prev) => ({
+				...prev,
+				page    : 1,
+				filters : {},
+			}));
 		} else if (key === 'status') {
-			setFilters((prev) => {
-				const { status, ...other } = prev;
-
-				return {
-					...other,
-					empty: true,
-				};
+			setGlobalFilter((prev) => {
+				const { filters: prevFilter } = prev;
+				const { status, ...rest } = prevFilter;
+				return { ...prev, page: 1, filters: { ...rest } };
 			});
 		}
 	};
 
+	const changeHandler = (key, value) => {
+		setGlobalFilter((prev) => ({
+			...prev,
+			page    : 1,
+			filters : { ...prev.filters, [key]: value },
+		}));
+	};
+
+	const inputChangeHandler = (val) => {
+		if (val === '') {
+			changeHandler('expiresIn', undefined);
+		} else {
+			changeHandler('expiresIn', val);
+		}
+	};
 	return (
 		<div className={styles.container}>
 			<div className={styles.heading}>
@@ -98,7 +111,7 @@ function FilterContent({ filters = {}, setFilters }) {
 								<div
 									role="presentation"
 									className={cl`${styles.flex_box} ${styles.filter_tab}`}
-									onClick={() => updateStatusHandler(condition)}
+									onClick={() => changeHandler('status', condition)}
 								>
 									<Icon
 										width={15}
@@ -125,10 +138,7 @@ function FilterContent({ filters = {}, setFilters }) {
 						value={filters?.date_range}
 						maxDate={new Date()}
 						isPreviousDaysAllowed
-						onChange={(e) => setFilters((prev) => ({
-							...prev,
-							date_range: e,
-						}))}
+						onChange={(v) => changeHandler('date_range', v)}
 					/>
 				</div>
 				<div className={styles.section}>
@@ -147,9 +157,7 @@ function FilterContent({ filters = {}, setFilters }) {
 							type="number"
 							min={0}
 							max={10}
-							onChange={(e) => setFilters((prev) => ({
-								...prev, expiresIn: e,
-							}))}
+							onChange={inputChangeHandler}
 						/>
 					</div>
 					<div>days</div>

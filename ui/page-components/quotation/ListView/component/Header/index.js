@@ -11,10 +11,10 @@ import styles from './styles.module.css';
 import { useRouter } from '@/packages/next';
 
 function Header({
-	filters, setFilters, summaryLoading = false,
-	summaryData = {},
+	summaryLoading = false,
+	summaryData = {}, setGlobalFilter, globalFilter = {},
 }) {
-	const [showFilters, setshowFilters] = useState(false);
+	const [showFilters, setShowFilters] = useState(false);
 	const { push } = useRouter();
 	const summaryControl = getSummary({ summaryResp: summaryData });
 	return (
@@ -23,13 +23,13 @@ function Header({
 				<div className={styles.quote}>Quick Quotations</div>
 				<Popover
 					placement="bottom"
-					interactive={showFilters}
+					interactive
 					visible={showFilters}
-					onClickOutside={() => setshowFilters(false)}
+					// onClickOutside={() => setShowFilters(false)}
 					content={(
 						<FilterContent
-							filters={filters}
-							setFilters={setFilters}
+							globalFilter={globalFilter}
+							setGlobalFilter={setGlobalFilter}
 						/>
 					)}
 					maxWidth={350}
@@ -37,7 +37,7 @@ function Header({
 					<div
 						className={styles.filter_icon}
 						role="presentation"
-						onClick={() => setshowFilters((prev) => !prev)}
+						onClick={() => setShowFilters(!showFilters)}
 					>
 						<IcMFilter />
 					</div>
@@ -53,13 +53,14 @@ function Header({
 				<div className={cl`${styles.filter_section} ${styles.flex_container}`}>
 					<Popover
 						placement="bottom"
-						interactive={showFilters}
+						interactive
 						visible={showFilters}
-						onClickOutside={() => setshowFilters(false)}
+						// onClickOutside={() => setShowFilters(false)}
 						content={(
 							<FilterContent
-								filters={filters}
-								setFilters={setFilters}
+								globalFilter={globalFilter}
+								setGlobalFilter={setGlobalFilter}
+
 							/>
 						)}
 						maxWidth={350}
@@ -68,7 +69,7 @@ function Header({
 							<Button
 								size="lg"
 								themeType="accent"
-								onClick={() => setshowFilters((prev) => !prev)}
+								onClick={() => setShowFilters(!showFilters)}
 							>
 								<div className={styles.btn_text}>Filter By</div>
 								<IcMFilter />

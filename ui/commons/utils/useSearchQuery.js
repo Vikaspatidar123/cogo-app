@@ -8,7 +8,7 @@ const useSearchQuery = () => {
 		setQuery(value);
 	}, 600);
 
-	const debounceQuery = useCallback((value) => request(value), []);
+	const debounceQuery = useCallback((value) => request(value), [request]);
 	return { debounceQuery, query };
 };
 

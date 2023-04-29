@@ -1,4 +1,4 @@
-import { Tooltip, Pill } from '@cogoport/components';
+import { cl, Tooltip, Pill } from '@cogoport/components';
 import { IcCFtick } from '@cogoport/icons-react';
 import { startCase, upperCase } from '@cogoport/utils';
 
@@ -119,46 +119,38 @@ function ContainerInfo({ data = {} }) {
 		});
 		return value;
 	};
-	let numberBox = 0;
-	let mobileBox = 0;
+
 	return (
 		<>
 			<div className={styles.desktop_view}>
 				<Tooltip content={renderBox()} placement="bottom" className={styles.tool_content}>
-					<div>
+					<div className={styles.info_box}>
 						{labels.map((label) => {
 							const chipValue = data[label] ? renderValue(label) : null;
-							if (chipValue && numberBox < 3) {
-								numberBox += 1;
+							if (chipValue) {
 								return <Pill key={label} size="sm">{chipValue}</Pill>;
 							}
 
 							return null;
 						})}
-						<Pill size="sm">...</Pill>
 					</div>
 				</Tooltip>
 			</div>
 
 			<div className={styles.mobile_view}>
 				<Tooltip content={renderBox()} placement="bottom" className={styles.tool_content}>
-					<div className={styles.tool}>
+					<div className={cl`${styles.asd} ${styles.info_box}`}>
 						{labels.map((label) => {
 							const chipValue = data[label] ? renderValue(label) : null;
-							if (chipValue && mobileBox < 3) {
-								mobileBox += 1;
+							if (chipValue) {
 								return (
-									<>
-										<div className={styles.container_info}>
-											{ chipValue }
-										</div>
-										<div className={styles.some} />
-									</>
+									<span className={styles.container_info}>
+										{ chipValue }
+									</span>
 								);
 							}
 							return null;
 						})}
-						<div className={styles.container_info}>...</div>
 					</div>
 				</Tooltip>
 			</div>

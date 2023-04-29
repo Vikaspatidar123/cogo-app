@@ -1,7 +1,3 @@
-.tool_content {
-	padding: 0;
-}
-
 .mobile_view {
 	display: none;
 
@@ -18,10 +14,14 @@
 	}
 }
 
+.tool_content {
+	padding: 0;
+}
+
 .container_info {
-	display: inline;
-	padding: 0 3.5px;
+	padding: 0 4.5px;
 	font-size: 11px;
+	border-right: 1px solid #333;
 }
 
 .tool {
@@ -31,7 +31,12 @@
 	color: rgb(51 51 51);
 }
 
-.some {
-	margin: 2px;
-	border-right: 1px solid rgb(51 51 51);
+.info_box {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+
+	@media screen and (max-width: 767px) {
+		max-width: 92%;
+	}
 }

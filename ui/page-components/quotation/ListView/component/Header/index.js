@@ -15,6 +15,8 @@ function Header({
 	summaryData = {}, setGlobalFilter, globalFilter = {},
 }) {
 	const [showFilters, setShowFilters] = useState(false);
+	const [mobileFilters, setMobileFilters] = useState(false);
+
 	const { push } = useRouter();
 	const summaryControl = getSummary({ summaryResp: summaryData });
 	return (
@@ -24,8 +26,8 @@ function Header({
 				<Popover
 					placement="bottom"
 					interactive
-					visible={showFilters}
-					// onClickOutside={() => setShowFilters(false)}
+					visible={mobileFilters}
+					onClickOutside={() => setMobileFilters(false)}
 					content={(
 						<FilterContent
 							globalFilter={globalFilter}
@@ -37,7 +39,7 @@ function Header({
 					<div
 						className={styles.filter_icon}
 						role="presentation"
-						onClick={() => setShowFilters(!showFilters)}
+						onClick={() => setMobileFilters(!mobileFilters)}
 					>
 						<IcMFilter />
 					</div>
@@ -55,26 +57,25 @@ function Header({
 						placement="bottom"
 						interactive
 						visible={showFilters}
-						// onClickOutside={() => setShowFilters(false)}
+						onClickOutside={() => setShowFilters(false)}
 						content={(
 							<FilterContent
 								globalFilter={globalFilter}
 								setGlobalFilter={setGlobalFilter}
-
 							/>
 						)}
 						maxWidth={350}
 					>
-						<div>
-							<Button
-								size="lg"
-								themeType="accent"
-								onClick={() => setShowFilters(!showFilters)}
-							>
-								<div className={styles.btn_text}>Filter By</div>
-								<IcMFilter />
-							</Button>
-						</div>
+
+						<Button
+							size="lg"
+							themeType="accent"
+							onClick={() => setShowFilters(!showFilters)}
+						>
+							<div className={styles.btn_text}>Filter By</div>
+							<IcMFilter />
+						</Button>
+
 					</Popover>
 					<Button size="lg" className={styles.create_btn}>
 						<IcMPlus />
@@ -90,7 +91,6 @@ function Header({
 						</div>
 					</Button>
 				</div>
-
 			</div>
 		</>
 	);

@@ -22,12 +22,6 @@ const useListQuote = () => {
 		authKey : 'get_saas_quote_list',
 	}, { manual: true });
 
-	// const [{ loading: receivedLoading }, receivedListtrigger] = useRequestBf({
-	// 	method  : 'get',
-	// 	url     : '/saas/quote/received/list',
-	// 	authKey : 'get_saas_quote_received_list',
-	// }, { manual: true });
-
 	const [{ loading: summaryLoading, data: summaryData }, summarytrigger] = useRequestBf({
 		method  : 'get',
 		url     : 'saas/quote/summary',
@@ -67,15 +61,17 @@ const useListQuote = () => {
 
 	const refetchSummary = useCallback(async () => {
 		const { filters, q } = globalFilter;
-		const { status, date_range, showExpired, expiresIn } = filters || {};
+		const { status, date_range = {}, showExpired, expiresIn } = filters || {};
+		const { startDate, endDate } = date_range;
+
 		try {
 			await summarytrigger({
 				params: {
 					organizationId : organization.id,
 					searchTerm     : q,
 					status,
-					startDate      : date_range?.startDate,
-					endDate        : date_range?.endDate,
+					startDate      : startDate ? format(startDate, 'dd MMM yyyy') : undefined,
+					endDate        : endDate ? format(endDate, 'dd MMM yyyy') : undefined,
 					showExpired    : showExpired || undefined,
 					expiresIn      : expiresIn || undefined,
 				},

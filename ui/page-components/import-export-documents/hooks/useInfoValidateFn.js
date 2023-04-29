@@ -1,14 +1,14 @@
 import { Toast, Tooltip } from '@cogoport/components';
 import { IcMInfo } from '@cogoport/icons-react';
 import { isEmpty } from '@cogoport/utils';
-import { useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 
 const MAPPING = {
 	ocean : 'SEA',
 	air   : 'AIR',
 };
 // eslint-disable-next-line max-len
-const TOOLTIP_CONTENT =	'HS codes can provide greater transparencyand clarity on the required documentation for the combination of your cargo and destination countries';
+const TOOLTIP_CONTENT =	'HS codes can provide greater transparency and clarity on the required documentation for the combination of your cargo and destination countries';
 
 const useInfoValidateFn = ({
 	verifySixDigitHs,
@@ -21,7 +21,6 @@ const useInfoValidateFn = ({
 	isUserSubscribed = false,
 	setPaymentOptionsModal,
 	checkPaymentStatus,
-	setValues,
 	setValue,
 	billId = '',
 	push,
@@ -29,9 +28,16 @@ const useInfoValidateFn = ({
 	selectedData,
 	watchExport = '',
 	watchImport = '',
+	setShowPendingModal,
 	styles,
 }) => {
 	const { hsCode = '', name: productName = '', description = '' } = selectedData || {};
+
+	const setValues = useCallback((valObject = {}) => {
+		Object.keys(valObject).forEach((key) => {
+			setValue(key, valObject?.[key]);
+		});
+	}, [setValue]);
 
 	useEffect(() => {
 		if (!isEmpty(hsCode)) {
@@ -54,29 +60,39 @@ const useInfoValidateFn = ({
 		}
 	}, [watchExport, watchImport]);
 
+	const prefillData = useCallback(() => {
+		if (typeof window === 'undefined') return;
+		const localStorageFormData = JSON.parse(localStorage.getItem('transportDetails'));
+		if (localStorageFormData) {
+			const {
+				exportCountry = {},
+				importCountry = {},
+				transportMode,
+				hsCode: localStorageHscode,
+				manufacturingCountry = {},
+				productName: localStorageName = '',
+			} = localStorageFormData || {};
+
+			const obj = {
+				exportCountry        : exportCountry?.id,
+				importCountry        : importCountry?.id,
+				transportMode,
+				hsCode               : localStorageHscode,
+				manufacturingCountry : manufacturingCountry?.id || '',
+				productName          : localStorageName,
+			};
+			setValues(obj);
+			setTransportDetails(localStorageFormData);
+			localStorage.removeItem('transportDetails');
+		}
+	}, [setTransportDetails, setValues]);
+
+	useEffect(() => {
+		prefillData();
+	}, [prefillData]);
+
 	useEffect(() => {
 		if (billId) {
-			const localStorageFormData = JSON.parse(localStorage.getItem('transportDetails'));
-
-			if (localStorageFormData) {
-				const {
-					exportCountry = {},
-					importCountry = {},
-					transportMode,
-					hsCode: localStorageHscode,
-					manufacturingCountry = {},
-				} = localStorageFormData || {};
-
-				const obj = {
-					exportCountry        : exportCountry?.id,
-					importCountry        : importCountry?.id,
-					transportMode,
-					hsCode               : localStorageHscode,
-					manufacturingCountry : manufacturingCountry?.id || '',
-				};
-				setValues(obj);
-				setTransportDetails(localStorageFormData);
-			}
 			checkPaymentStatus();
 		}
 	}, [billId]);
@@ -86,6 +102,7 @@ const useInfoValidateFn = ({
 			originCountryCode      : transportDetails?.exportCountry?.country_code,
 			destinationCountryCode : transportDetails?.importCountry?.country_code,
 			modeOfTransport        : MAPPING?.[data?.transportMode],
+			tradeEngineInputId     : transportDetails?.tradeEngineInputId,
 		};
 		const lineItem = [
 			{
@@ -121,13 +138,12 @@ const useInfoValidateFn = ({
 				</div>
 			);
 		}
-		return <p className="label">{label}</p>;
+		return <p>{label}</p>;
 	};
 
 	const getKey = (name) => {
-		if (name === 'exportCountry') return getValues(name);
-		if (name === 'importCountry') return getValues(name);
-		if (name === 'manufacturingCountry') return getValues(name);
+		if (['exportCountry', 'importCountry', 'manufacturingCountry'].includes(name)) { return getValues(name); }
+
 		return name;
 	};
 
@@ -178,17 +194,15 @@ const useInfoValidateFn = ({
 
 		if (resp) {
 			if (!billId) {
-				const localStorageData = buildData();
+				const localStorageData = buildData({ name: data?.productName, id: resp });
+				console.log(localStorageData, 'localStorageData');
 				localStorage.setItem('transportDetails', JSON.stringify({ ...localStorageData }));
 				push(
 					'/saas/premium-services/import-export-doc/[trade_engine_id]',
 					`/saas/premium-services/import-export-doc/${resp}`,
 				);
 			} else {
-				push(
-					'/saas/premium-services/import-export-doc/[trade_engine_id]/result',
-					`/saas/premium-services/import-export-doc/${resp}/result?billId=${billId}`,
-				);
+				push(`/saas/premium-services/import-export-doc/${resp}/result?billId=${billId}`);
 			}
 		}
 	};
@@ -207,6 +221,14 @@ const useInfoValidateFn = ({
 		}
 	};
 
+	const withHsHandler = (data) => {
+		if (isQuotaLeft && isUserSubscribed) {
+			validateSubmitHandler(data);
+		} else {
+			setPaymentOptionsModal(true);
+		}
+	};
+
 	const submitHandler = async (data) => {
 		const { hsCode: formHsCode } = data || {};
 
@@ -219,11 +241,13 @@ const useInfoValidateFn = ({
 					setPaymentOptionsModal(true);
 				}
 			}
-		} else if (isQuotaLeft && isUserSubscribed) {
-			validateSubmitHandler(data);
 		} else {
-			setPaymentOptionsModal(true);
+			setShowPendingModal(true);
 		}
+	};
+
+	const errorHandler = () => {
+		Toast.error('Fill all mandatory details');
 	};
 
 	return {
@@ -232,6 +256,8 @@ const useInfoValidateFn = ({
 		validateSubmitHandler,
 		renderLabel,
 		getKey,
+		withHsHandler,
+		errorHandler,
 	};
 };
 

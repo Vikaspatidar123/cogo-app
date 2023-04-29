@@ -4,6 +4,7 @@
 	align-items: center;
 	justify-content: center;
 	text-align: center;
+	padding: 20px;
 
 	.loading_banner {
 		width: 300;
@@ -13,7 +14,18 @@
 	.loading {
 		width: 40px;
 		height: auto;
-		margin-bottom: 32px;
+	}
+
+	.btn_container {
+		display: flex;
+		justify-content: center;
+		margin-top: 17px;
+
+		.submit_btn {
+			margin-left: 10px;
+			border: none;
+			text-transform: capitalize;
+		}
 	}
 }
 
@@ -25,6 +37,10 @@
 
 .text {
 	margin: 10px 0;
-	font-size: 16px;
+	font-size: 13px;
 	color: #535075;
+}
+
+.error{
+	font-size: 16px;
 }

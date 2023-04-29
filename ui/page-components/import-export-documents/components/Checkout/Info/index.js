@@ -15,7 +15,7 @@ function Info({ MAPPING, prefillData, localStorageData }) {
 	} = localStorageData || {};
 
 	const renderDetails = (name) => {
-		if (name === 'hsCode' || name === 'transportMode') return prefillData?.[name];
+		if (['hsCode', 'transportMode'].includes(name)) return prefillData?.[name];
 
 		return (
 			<div className={styles.country_info}>

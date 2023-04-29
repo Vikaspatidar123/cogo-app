@@ -47,7 +47,6 @@ function InfoContainer({
 		control,
 		watch,
 		setValue,
-		setValues,
 		formState: { errors },
 		getValues,
 	} = formProps;
@@ -69,7 +68,15 @@ function InfoContainer({
 		billId,
 	});
 
-	const { submitHandler, changeHandler, validateSubmitHandler, getKey, renderLabel } = infoValidateFn({
+	const {
+		submitHandler,
+		changeHandler,
+		validateSubmitHandler,
+		getKey,
+		renderLabel,
+		withHsHandler,
+		errorHandler,
+	} = infoValidateFn({
 		verifySixDigitHs,
 		watchHsCode,
 		setShowValidate,
@@ -80,7 +87,6 @@ function InfoContainer({
 		isQuotaLeft,
 		setPaymentOptionsModal,
 		checkPaymentStatus,
-		setValues,
 		setValue,
 		billId,
 		getValues,
@@ -88,6 +94,7 @@ function InfoContainer({
 		selectedData,
 		watchExport,
 		watchImport,
+		setShowPendingModal,
 		styles,
 	});
 
@@ -132,7 +139,7 @@ function InfoContainer({
 			<div className={styles.btn_container}>
 				<Button
 					className={cl`${styles.submit_btn} ${watchExport === watchImport ? styles.disable_btn : null}`}
-					onClick={handleSubmit(submitHandler)}
+					onClick={handleSubmit(submitHandler, errorHandler)}
 					loading={verifySixDigitLoading || draftLoading}
 					disabled={watchExport === watchImport}
 				>
@@ -167,6 +174,9 @@ function InfoContainer({
 				<PendingModal
 					showPendingModal={showPendingModal}
 					setShowPendingModal={setShowPendingModal}
+					watchHsCode={watchHsCode}
+					withHsHandler={withHsHandler}
+					handleSubmit={handleSubmit}
 					stop={stop}
 				/>
 			)}

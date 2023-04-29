@@ -103,6 +103,7 @@ const navigationMappings = {
 				type  : 'link',
 				href  : '/v2/saas/premium-services/import-export-doc',
 				as    : '/v2/saas/premium-services/import-export-doc',
+				icon  : <IcACrossBorder width={40} height={40} />,
 			},
 		],
 	},

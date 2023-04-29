@@ -31,7 +31,9 @@ function Checkout() {
 
 	useEffect(() => {
 		if (trade_engine_id) {
+			console.log(trade_engine_id, 'trade_engine_id');
 			const localStorageFormData = JSON.parse(localStorage.getItem('transportDetails'));
+			console.log(localStorageFormData, 'localStorageFormData');
 			if (localStorageFormData) {
 				setLocalStorageData(localStorageFormData);
 			}

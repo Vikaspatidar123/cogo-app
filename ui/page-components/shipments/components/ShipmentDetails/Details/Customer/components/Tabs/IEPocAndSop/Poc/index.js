@@ -191,6 +191,7 @@ function Poc() {
 						setUtilities={setUtilities}
 						utilities={utilities}
 						listShipmentTradePartners={listShipmentTradePartners}
+						onClose={onClose}
 					/>
 				</Modal>
 			) : null}

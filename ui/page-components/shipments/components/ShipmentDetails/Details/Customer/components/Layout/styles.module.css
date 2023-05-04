@@ -1,3 +1,7 @@
+.form_fields{
+    height: 350px;
+    overflow-y: scroll;
+}
 .row{
     display: flex;
     flex-flow: row wrap;
@@ -6,7 +10,7 @@
     align-items: normal;
     justify-content: flex-start;
     max-height: 400px;
-    overflow-y: scroll;
+    /* overflow-y: scroll; */
 }
 .col{
     display: flex;

@@ -23,6 +23,7 @@ function AddCompany({
 	bookingPartyData = {},
 	utilities = {},
 	listShipmentTradePartners = () => {},
+	onClose,
 }) {
 	const {
 		roleCheck,
@@ -77,6 +78,7 @@ function AddCompany({
 						utilities={utilities}
 						listServiceRefetch={listServiceRefetch}
 						listShipmentTradePartners={listShipmentTradePartners}
+						onClose={onClose}
 					/>
 				</div>
 			);
@@ -93,6 +95,7 @@ function AddCompany({
 						setUtilities={setUtilities}
 						utilities={utilities}
 						listShipmentTradePartners={listShipmentTradePartners}
+						onClose={onClose}
 					/>
 				</div>
 			);
@@ -110,6 +113,13 @@ function AddCompany({
 				<div className={styles.footer}>
 					<div className={styles.line} />
 					<div className={styles.button_container}>
+						<Button
+							onClick={() => onClose()}
+							themeType="secondary"
+							disabled={loading}
+						>
+							Cancel
+						</Button>
 						<Button
 							onClick={handleSubmit(onSubmit, onError)}
 							className="primary md"

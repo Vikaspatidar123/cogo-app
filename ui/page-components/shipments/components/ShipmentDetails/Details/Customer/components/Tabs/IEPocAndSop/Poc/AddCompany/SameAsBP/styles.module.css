@@ -25,4 +25,5 @@
 	margin: 10px 0px;
 	display: flex;
 	justify-content: flex-end;
+	gap: 10px;
 }

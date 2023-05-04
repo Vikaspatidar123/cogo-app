@@ -164,8 +164,8 @@ function SopCard({
 						+ Add More
 					</Button>
 
-					<div style={{ display: ' flex' }}>
-						<Button className="secondary md" onClick={cancel}>
+					<div className={styles.button_wrapper}>
+						<Button themeType="secondary" onClick={cancel}>
 							Close
 						</Button>
 						<Button onClick={update} disabled={loading}>

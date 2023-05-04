@@ -12,6 +12,7 @@ function SameAsBP({
 	bookingPartyData = {},
 	listServiceRefetch = () => {},
 	listShipmentTradePartners = () => {},
+	onClose,
 }) {
 	const [self, setSelf] = useState(false);
 	const disabled = JSON.stringify(bookingPartyData) === '{}';
@@ -38,6 +39,13 @@ function SameAsBP({
 			<div className={styles.footer}>
 				<div className={styles.line} />
 				<div className={styles.button_container}>
+					<Button
+						onClick={() => onClose()}
+						themeType="secondary"
+						disabled={loading}
+					>
+						Cancel
+					</Button>
 					<Button
 						className="primary md"
 						onClick={handleAddShipper}

@@ -21,7 +21,7 @@ function Layout({
 	formValues,
 }) {
 	return (
-		<div>
+		<div className={styles.form_fields}>
 			<div className={styles.row}>
 				{controls?.map((controlItem) => {
 					const { name, type, span = 6, subType } = controlItem;

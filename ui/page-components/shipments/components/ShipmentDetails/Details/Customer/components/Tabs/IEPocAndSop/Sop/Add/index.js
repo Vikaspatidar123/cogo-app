@@ -114,7 +114,7 @@ function AddSop({
 			<div className={styles.action_row}>
 				{sops.length >= 1 ? (
 					<Button
-						className="secondary sm"
+						themeType="secondary"
 						onClick={() => {
 							setQuickAction('');
 							setSopAddForm(false);
@@ -125,7 +125,6 @@ function AddSop({
 				) : null}
 
 				<Button
-					className="primary sm"
 					onClick={handleSubmit(handleAddSop, onError)}
 					style={{ marginLeft: '10px' }}
 					disabled={!hasData || loading}

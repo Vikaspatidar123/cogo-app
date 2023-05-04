@@ -21,7 +21,7 @@ function PendingTasks() {
 	const { tasks, total, loading, refetch } = useGetShipmentPendingTasks(
 		shipment_data?.shipment_type,
 	);
-
+	console.log('tasks:', tasks);
 	const emptyStateContent = {
 		heading     : 'No Pending Tasks for you to Perform!',
 		description : 'Looks like you dont have any task left. ',

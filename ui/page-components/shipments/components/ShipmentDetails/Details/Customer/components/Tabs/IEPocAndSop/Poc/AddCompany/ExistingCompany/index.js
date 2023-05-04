@@ -14,6 +14,7 @@ function ExistingCompany({
 	setUtilities = () => {},
 	utilities,
 	listShipmentTradePartners = () => {},
+	onClose,
 }) {
 	const {
 		handleExistingCompany,
@@ -87,6 +88,13 @@ function ExistingCompany({
 			<div className={styles.footer}>
 				<div className={styles.line} />
 				<div className={styles.button_container}>
+					<Button
+						onClick={() => onClose()}
+						themeType="secondary"
+						disabled={loading}
+					>
+						Cancel
+					</Button>
 					<Button
 						onClick={handleExistingCompany}
 						className="primary md"

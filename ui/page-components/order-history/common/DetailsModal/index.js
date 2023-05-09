@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 import useGetTradeEngine from '../../hooks/useGetTradeEngine';
 
 import DutiesTaxesModal from './DutiesTaxesModal';
+import IEDocumentsModal from './IEDocumentsModal';
 import styles from './styles.module.css';
 import TraderEligibilityModal from './TraderEligibilityModal';
 
@@ -22,6 +23,7 @@ function DetailsModal({
 		<>
 			{ itm?.requestType === 'DUTIES' && 'Duties & Taxes'}
 			{ itm?.requestType === 'SCREENING' && 'Trader Eligibility Check' }
+			{itm?.requestType === 'DOCUMENTS' && 'Import/Export Documents'}
 		</>
 	);
 
@@ -30,6 +32,7 @@ function DetailsModal({
 			show={modal}
 			showCloseIcon
 			onClose={() => setModal(false)}
+			size="lg"
 		>
 			{!tradeEngineResponseLoading && (
 				<div className={styles.container}>
@@ -47,6 +50,11 @@ function DetailsModal({
 						)}
 						{itm?.requestType === 'SCREENING' && (
 							<TraderEligibilityModal
+								tradeEngineResponse={tradeEngineResponse}
+							/>
+						)}
+						{itm?.requestType === 'DOCUMENTS' && (
+							<IEDocumentsModal
 								tradeEngineResponse={tradeEngineResponse}
 							/>
 						)}

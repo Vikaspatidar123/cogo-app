@@ -1,7 +1,9 @@
 import { Chips } from '@cogoport/components';
 import React, { forwardRef } from 'react';
 
-import getOptionsFromKey from './Select/getOptionsFromKey';
+import getOptionsFromKey from '../Select/getOptionsFromKey';
+
+import styles from './styles.module.css';
 
 function Chip(props, ref) {
 	const {
@@ -21,6 +23,7 @@ function Chip(props, ref) {
 	const optionDate = data?.options.map((item) => ({ ...item, key: item.value, children: item.label })) || options;
 	return (
 		<Chips
+			className={styles.animated_container}
 			{...rest}
 			ref={ref}
 			name={name}

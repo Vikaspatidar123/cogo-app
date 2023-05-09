@@ -22,6 +22,8 @@ function AirSchedules() {
 	const [currentPage, setCurrentPage] = useState(1);
 	const { createSchedule } = useCreateSchedule();
 	const { fetchSchedules, schedules, loading } = useFetchSchedules({ currentPage, setCurrentPage });
+	const [errorMessage, setErrorMessage] = useState(false);
+
 	const formValues = watch();
 
 	const airportOptions = useGetAsyncOptions(merge(asyncFieldsLocations(), {
@@ -29,6 +31,10 @@ function AirSchedules() {
 	}));
 
 	const handleCreateSchedule = () => {
+		if (formValues.origin_port === formValues.destination_port) {
+			setErrorMessage((prev) => !prev);
+			return;
+		}
 		createSchedule(formValues.origin_airport, formValues.destination_airport);
 	};
 
@@ -62,6 +68,7 @@ function AirSchedules() {
 						</Button>
 					</div>
 				</form>
+				{errorMessage && <div className={styles.error_message}>* origin and destination could not be same</div>}
 			</div>
 			<div className={styles.sub_heading_container}>
 				My Schedules

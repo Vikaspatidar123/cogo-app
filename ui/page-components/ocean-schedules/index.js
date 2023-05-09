@@ -22,6 +22,7 @@ function OceanSchedules() {
 	const [currentPage, setCurrentPage] = useState(1);
 	const { createSchedule } = useCreateSchedule();
 	const { refectSchedules, schedules, loading } = useFetchSchedules({ currentPage, setCurrentPage });
+	const [errorMessage, setErrorMessage] = useState(false);
 
 	const formValues = watch();
 
@@ -30,6 +31,10 @@ function OceanSchedules() {
 	}));
 
 	const handleCreateSchedule = () => {
+		if (formValues.origin_port === formValues.destination_port) {
+			setErrorMessage((prev) => !prev);
+			return;
+		}
 		createSchedule(formValues.origin_port, formValues.destination_port);
 	};
 
@@ -63,6 +68,7 @@ function OceanSchedules() {
 						</Button>
 					</div>
 				</form>
+				{errorMessage && <div className={styles.error_message}>* origin and destination could not be same</div>}
 			</div>
 			<div className={styles.sub_heading_container}>
 				My Schedules

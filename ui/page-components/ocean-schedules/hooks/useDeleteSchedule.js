@@ -8,7 +8,9 @@ const useDeleteSchedule = (refectSchedules) => {
 
 	const deleteSchedule = (scheduleId) => {
 		const response = trigger({
-			params: scheduleId,
+			params: {
+				sailing_schedule_subscription_id: scheduleId,
+			},
 		});
 
 		if (response?.status === 200) {

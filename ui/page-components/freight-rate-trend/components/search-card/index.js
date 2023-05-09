@@ -113,7 +113,7 @@ function SearchCard({ refechTrends }) {
 					</Button>
 				</div>
 			</form>
-			{errorMessage && <div className={styles.error_message}>Origin and destination could not be same</div>}
+			{errorMessage && <div className={styles.error_message}>* Origin and destination could not be same</div>}
 		</div>
 	);
 }

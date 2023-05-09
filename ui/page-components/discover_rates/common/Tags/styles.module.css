@@ -11,6 +11,7 @@
     display: flex;
     flex-wrap: wrap;
     gap: 12px;
+    width:auto;
 
     .core-ui-select-root.core-ui-select__container {
       max-width: 200px;

@@ -1,7 +1,7 @@
 import { cl } from '@cogoport/components';
 import React, { useEffect, useState } from 'react';
 
-// import EmptyState from '../../../../common/Quotations/components/EmptyState';
+import EmptyState from '../../../common/EmptyState';
 import Loader from '../../../common/Loader';
 import getRecommendedSearches from '../../../hooks/useGetRecommendedSearches';
 
@@ -26,7 +26,7 @@ function PastSearches({ mobile = false, setPastSearchCount = () => {} }) {
 			user_id    : profile?.id,
 		}),
 	);
-	const className = `${mobile ? styles.mobile : ''}`;
+
 	const SetDateInStore = async () => {
 		const resp = await getRecommendedSearches();
 		const { data = {} } = resp || {};
@@ -68,10 +68,13 @@ function PastSearches({ mobile = false, setPastSearchCount = () => {} }) {
 	};
 
 	return (
-		<div className={cl`${styles[className]} ${styles.container}`}>
+		<div className={cl`${styles.container}`}>
 			{loading && <Loader mobile={mobile} />}
-
-			{(list || [])?.map((item) => (
+			{!loading && list.length === 0 ? (
+				<EmptyState
+					{...content[kyc_status === 'pending_from_user' ? 'kyc' : 'default']}
+				/>
+			) : (list || [])?.map((item) => (
 				<Item
 					key={item.created_at}
 					data={{
@@ -79,7 +82,6 @@ function PastSearches({ mobile = false, setPastSearchCount = () => {} }) {
 						importer_exporter_branch_id: branch_id,
 						user_id,
 					}}
-					mobile={mobile}
 				/>
 			))}
 

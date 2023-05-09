@@ -2,7 +2,9 @@
 	margin-bottom: 0px;
 	display: flex;
 	flex-wrap: wrap;
-
+	@media (max-width: 760px) {
+		flex-direction: column;
+	  }
 
 	.custom-select-input-chipcontainer {
 		height: inherit;
@@ -35,6 +37,9 @@
 	font-weight: 600;
 	font-size: 14px;
 	color: #393f70;
+	@media (max-width: 760px) {
+		margin: 8px 0 5px 0;
+	  }
 }
 
 .errors {
@@ -46,4 +51,7 @@
 }
 .field{
 	padding: 0 8px;
+	@media (max-width: 760px) {
+		width: max-content !important;
+	  }
 }

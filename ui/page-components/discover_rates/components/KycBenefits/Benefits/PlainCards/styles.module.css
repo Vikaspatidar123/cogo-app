@@ -1,6 +1,8 @@
 .container {
   display: flex;
-  /* flex-wrap: wrap; */
+  @media screen and (max-width: 768px) {
+    flex-wrap: wrap; 
+	}
   .featurecard-container {
     flex-direction: row-reverse;
     box-shadow: none;

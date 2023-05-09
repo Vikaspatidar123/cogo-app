@@ -1,4 +1,4 @@
-import { Button } from '@cogoport/front/components/admin';
+import { Button } from '@cogoport/components';
 
 import CONSTANTS from './utils/constants';
 

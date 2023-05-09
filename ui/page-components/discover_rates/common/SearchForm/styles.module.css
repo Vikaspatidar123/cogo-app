@@ -66,11 +66,22 @@
 .row {
 	display: flex;
 	justify-content: space-around;
+	@media (max-width: 540px) {
+		flex-direction: column;
+	}
+	
 }
 
 .search_form_options_container_col {
 	width: 56%;
 	margin-left: 30px;
+	@media (max-width: 540px) {
+		margin: 0px;
+		width:100% !important;
+	}
+}
+.search_form_route_container_col{
+	width: 100 !important;
 }
 
 .checkbox_container{
@@ -78,5 +89,17 @@
 		.ui_checkbox_container{
 			padding: 10px 0;
 		}
+	}
+}
+.web {
+	display:block;
+	@media (max-width: 768px) {
+		display:none;
+	}
+}
+.mobile{
+	display:none;
+	@media (max-width: 768px) {
+		display:block;
 	}
 }

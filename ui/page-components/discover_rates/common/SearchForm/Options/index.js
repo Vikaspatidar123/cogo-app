@@ -405,15 +405,15 @@ function Options({
 				<div style={{ width: '100%' }}>{handlePopover()}</div>
 			)}
 
-			{/* <div
-				className={`${styles.date_select_container}search-form-optons-validity-picker`}
+			<div
+				className={`${styles.date_select_container}`}
 			>
 				<div className={styles.label}>VALIDITY DATE</div>
 				<DateRangeBox date={date} setDate={setDate} mobile={mobile} />
 				<div style={{ fontSize: '12px', color: '#CB6464' }}>{validityErr}</div>
-			</div> */}
+			</div>
 
-			{mobile ? (
+			<div className={styles.mobile_web}>
 				<Modal
 					show={show && mobile}
 					onClose={() => setShow(false)}
@@ -422,7 +422,7 @@ function Options({
 				>
 					{renderMainControls()}
 				</Modal>
-			) : null}
+			</div>
 
 			{handleServices()}
 		</div>

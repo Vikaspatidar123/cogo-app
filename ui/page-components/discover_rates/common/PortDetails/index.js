@@ -5,7 +5,7 @@ import React from 'react';
 import Item from './Item';
 import styles from './styles.module.css';
 
-function PortDetails({ data, mobile }) {
+function PortDetails({ data }) {
 	const suffix = {
 		fcl_freight                 : 'port',
 		lcl_freight                 : 'port',
@@ -52,7 +52,7 @@ function PortDetails({ data, mobile }) {
 		? data[suffix[search_type]] || {}
 		: data[`destination_${suffix[search_type]}`] || {};
 	return (
-		<div className={cl`${styles.container}${mobile && styles.mobile_view}`}>
+		<div className={cl`${styles.container} ${styles.mobile_view}`}>
 			<Item location={origin} search_type={search_type} />
 
 			{!isSingleLocation && (

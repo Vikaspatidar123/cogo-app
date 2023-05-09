@@ -13,22 +13,26 @@ function KycBenefits() {
 	const isMobile = useSelector(({ general }) => general?.isMobile);
 	return (
 		<div>
-			<p className={styles.heading}>
-				Completing your KYC takes just a few minutes, and unlocks a host of
-				other benefits too:
-			</p>
-			<Benefits />
-			<Button
-				className="lg"
-				style={{ borderRadius: 12, margin: '24px 0px' }}
-				onClick={() => setShow(true)}
-			>
-				COMPLETE KYC NOW
-			</Button>
+			<div className={styles.benefits}>
+				<p className={styles.heading}>
+					Completing your KYC takes just a few minutes, and unlocks a host of
+					other benefits too:
+				</p>
+
+				<Benefits />
+
+				<Button
+					className="lg"
+					style={{ borderRadius: 12, margin: '24px 0px' }}
+					onClick={() => setShow(true)}
+				>
+					COMPLETE KYC NOW
+				</Button>
+			</div>
 			<Modal
 				show={show}
 				onClose={() => {
-        	setShow(false);
+        	    setShow(false);
 				}}
 				closable
 				width={750}

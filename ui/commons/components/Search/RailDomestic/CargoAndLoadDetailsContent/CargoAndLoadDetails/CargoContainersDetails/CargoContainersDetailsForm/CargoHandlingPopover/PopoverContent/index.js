@@ -1,4 +1,4 @@
-import { Button } from '@cogoport/front/components/admin';
+import { Button } from '@cogoport/components';
 import { useRef } from 'react';
 
 import DoorPickupForm from '../../DoorPickupForm';

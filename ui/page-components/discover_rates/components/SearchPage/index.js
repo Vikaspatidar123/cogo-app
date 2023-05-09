@@ -12,6 +12,7 @@ import { useSelector } from '@/packages/store';
 
 function SearchPage() {
 	const [apiTries, setApiTries] = useState(0);
+	const [load, setLoad] = useState(false);
 	const { quotaLoading, quotaData = [] } = useGetUserQuota({
 		apiTries,
 		setApiTries,
@@ -43,7 +44,7 @@ function SearchPage() {
 			{kyc_status === 'pending_from_user' || kyc_status === 'rejected' ? (
 				<KycBenefits />
 			) : null}
-			{quotaLoading && blockSearch && list.length === 0 ? <NoSearch /> : <PastResults />}
+			{!quotaLoading && blockSearch ? <NoSearch /> : <PastResults />}
 		</div>
 	);
 }

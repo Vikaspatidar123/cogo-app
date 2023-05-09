@@ -16,6 +16,10 @@
   align-items: center;
   margin-bottom: 20px;
   justify-content: space-between;
+  @media (max-width: 760px) {
+    flex-direction: column;
+    gap:10px;
+  }
 }
 .tags {
   align-items: center !important;
@@ -51,6 +55,9 @@
   line-height: 33px;
   color: #333333;
   margin-right: 16px;
+  @media (max-width: 760px) {
+    display:none;
+  }
 }
 
 .tag_count {
@@ -64,16 +71,56 @@
 }
 
 .upgrade_plan {
-  background: rgb(224, 81, 85);
+  background:rgb(250, 218, 41);
   margin: 0px 8px;
   padding: 2px 8px;
   font-size: 12x;
   font-weight: 500;
   border-radius: 4px;
+  color:#fff;
   cursor: pointer;
 }
 .tracker_remaining_text {
   &.zero-trackers {
     color: #e15151;
   }
+}
+
+.flex{
+  display:flex;
+  background:rgba(255,255,255,0.8);
+	top:0;
+	left:0;
+	position:absolute;
+	width:100%;
+	height:100%;
+	justify-content:center;
+	align-items:center;
+}
+.tag_count{
+	background:rgb(250, 218, 41);
+	color: #333;
+	font-weight: bold;
+	padding: 7px 7px;
+	font-size: 12px;
+	margin: 2px 2px;
+	border-radius: 15px;
+}
+.flex_div{
+  display:flex;
+  align-items:center;
+}
+.tracker_remaining_text{
+	&.zero_trackers {
+		color: #e15151;
+	}
+}
+.upgrade_plan{
+	background: rgb(224, 81, 85);
+	margin: 0px 8px;
+	padding: 2px 8px;
+	font-size: 12x;
+	font-weight: 500;
+	border-radius: 4px;
+	cursor: pointer;
 }

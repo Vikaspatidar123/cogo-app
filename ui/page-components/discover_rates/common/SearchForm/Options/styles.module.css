@@ -21,3 +21,15 @@
   margin-top: -15px;
   display: none;
 }
+.mobile_web {
+  display:none;
+  @media (max-width: 768px) {
+    display:block;
+  }
+}
+.web{
+  display:block;
+  @media (max-width: 768px) {
+    display:none;
+  }
+}

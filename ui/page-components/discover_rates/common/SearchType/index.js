@@ -5,7 +5,7 @@ import MAPPING from '../../utils/icons';
 
 import styles from './styles.module.css';
 
-function SearchType({ search_type, theme, disabled, mobile, width }) {
+function SearchType({ search_type, theme, disabled, width }) {
 	const mapped = MAPPING[search_type];
 	if (!mapped) {
 		return null;

@@ -17,7 +17,7 @@ import { useRouter } from '@/packages/next';
 import showErrorsInToast from '@/ui/commons/utils/showErrorsInToast';
 import Form from '@/ui/page-components/discover_rates/common/FormElement';
 
-function QuickSearch({ data, extraParams = {}, mobile, type, refresh }) {
+function QuickSearch({ data, extraParams = {}, type, refresh, mobile }) {
 	const [isLoading, setIsLoading] = useState(false);
 	const [show, setShow] = useState(false);
 	const className = `${mobile ? 'mobile' : ''} ${type || ''}`;
@@ -250,7 +250,7 @@ function QuickSearch({ data, extraParams = {}, mobile, type, refresh }) {
 		setErrors(err);
 	};
 	const renderPopover = () => (
-		<div className={cl`${styles.container} ${mobile ? styles.mobile : ''}`}>
+		<div className={cl`${styles.container} ${styles.mobile}`}>
 			<form onSubmit={handleSubmit(submit, onError)}>
 				<Header onClose={() => setShow(false)} isLoading={isLoading} />
 				<Form
@@ -265,15 +265,21 @@ function QuickSearch({ data, extraParams = {}, mobile, type, refresh }) {
 
 	const buttonText = type === 'negotiation'
     	? 'REPEAT SEARCH'
-    	: (mobile && <IcMSearchlight width="20px" height="20px" fill="#fff" />)
-        || 'Show Rates';
+    	: (
+	<>
+		<div className={styles.mobile_web}>
+			<IcMSearchlight width="20px" height="20px" fill="#fff" />
+		</div>
+		<div className={styles.web}>Show Rates</div>
+	</>
+		);
 
 	return (
 		<>
 			<Button
 				size="md"
 				themeType="secondary"
-				className={cl`${style[className]} ${style.rates}`}
+				className={cl`${style.rates} ${style.mobile}`}
 				onClick={handleSubmit(submit, onError)}
 				disabled={isLoading}
 			>
@@ -300,9 +306,10 @@ function QuickSearch({ data, extraParams = {}, mobile, type, refresh }) {
 						}}
 						size="md"
 						themeType="tertiary"
-						className={cl`${style[className]} ${style.edit_options}`}
+						className={cl`${style.mobile} ${style.edit_options}`}
 					>
-						{mobile ? 'Edit' : 'Edit Options'}
+						<div className={styles.mobile_web}> Edit</div>
+						<div className={styles.web}>Edit Options</div>
 					</Button>
 				</Popover>
 			))

@@ -2,7 +2,7 @@
 import { Toast } from '@cogoport/components';
 import { useState, useEffect } from 'react';
 
-import useSearchQuery from '../utils/useSearchQuery';
+import useSearchQuery from '../../product-catalogue-modal/hooks/useSearchQuery';
 
 import { useRequestBf } from '@/packages/request';
 import { useSelector } from '@/packages/store';

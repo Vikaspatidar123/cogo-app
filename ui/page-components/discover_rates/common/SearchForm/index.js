@@ -194,11 +194,10 @@ function Form(
 		form_id,
 		date,
 	}));
-
-	let cargoDetailsSpan = 3;
+	console.log(mode, 'mode');
+	let cargoDetailsSpan = 6;
 	if (
 		(isSmall && !['rfq', 'contract'].includes(search_type))
-    || scope === 'app'
 	) {
 		cargoDetailsSpan = 3.5;
 	} else if (
@@ -210,10 +209,9 @@ function Form(
 		cargoDetailsSpan = 3.5;
 	}
 
-	let locationsSpan = 6;
+	let locationsSpan = 12;
 	if (
 		(isSmall && mode !== 'trailer_freight' && search_type !== 'rfq')
-    || scope === 'app'
 	) {
 		locationsSpan = 7.5;
 	} else if (mode === 'trailer_freight') {
@@ -288,15 +286,14 @@ function Form(
 			userId   : user_id,
 		};
 
-		return (
-		// <RailDomestic
-		// 	data={searchData}
-		// 	importerExporterDetails={importerExporterDetails}
-		// 	searchType={mode}
-		// 	onPush={onPush}
-		// />
-			<div>RailDomestic</div>
-		);
+		// return (
+		// 	<RailDomestic
+		// 		data={searchData}
+		// 		importerExporterDetails={importerExporterDetails}
+		// 		searchType={mode}
+		// 		onPush={onPush}
+		// 	/>
+		// );
 	}
 	return (
 		<div
@@ -429,12 +426,14 @@ function Form(
 										}}
 									>
 										<IcMSearchlight
+											className={styles.web}
 											style={{
 												margin : '2px 2px 0 0',
 												width  : 24,
 												height : 24,
 											}}
 										/>
+										<div className={styles.mobile}>SEARCH RATES</div>
 									</Button>
 								</div>
 							)}

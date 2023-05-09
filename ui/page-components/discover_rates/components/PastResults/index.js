@@ -12,9 +12,8 @@ import { useSelector } from '@/packages/store';
 const PastSearches = dynamic(() => import('./PastSearches'), { ssr: false });
 
 function PastResults() {
-	const { isMobile, query } = useSelector(({ general }) => ({
-		query    : general.query,
-		isMobile : general?.isMobile,
+	const { query } = useSelector(({ general }) => ({
+		query: general.query,
 	}));
 	const [activeTab, setActiveTab] = useState(
 		query?.quotation ? 'quotations' : 'past_searches',
@@ -26,13 +25,8 @@ function PastResults() {
 				<div className={styles.content}>
 					<Tabs activeTab={activeTab} onChange={setActiveTab}>
 						<TabPanel name="past_searches" title="Past searches">
-							<PastSearches mobile={isMobile} />
+							<PastSearches />
 						</TabPanel>
-
-						{/* <TabPanel name="quotations" title="Quotations">
-							<Quotations mobile={isMobile} />
-							Quotations
-						</TabPanel> */}
 					</Tabs>
 				</div>
 			</div>

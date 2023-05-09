@@ -1,5 +1,5 @@
-import { Input } from '@cogoport/components';
-import { IcMArrowDown } from '@cogoport/icons-react';
+import { Input, cl } from '@cogoport/components';
+import { IcMArrowRotateDown } from '@cogoport/icons-react';
 import { startCase } from '@cogoport/utils';
 import React, { forwardRef } from 'react';
 
@@ -61,7 +61,7 @@ const PillInput = forwardRef(
 					id="search_form_cargo_details_container"
 				>
 					<div
-						className={`${styles.sub_container
+						className={cl`${styles.sub_container
 						} search_form_cargo_details_sub_container ${styles[className]}
 						${modifiedValues.length === 0 ? styles.container_placeholder : ''} 
 						${error ? styles.container_error : ''}
@@ -82,9 +82,10 @@ const PillInput = forwardRef(
 								onBlur={onFocus}
 								id="search_form_cargo_details_input"
 							/>
-							<div className={styles.util_div}>
-								{showCaret && <IcMArrowDown size={1} color="black" />}
-							</div>
+
+						</div>
+						<div className={styles.util_div}>
+							{showCaret && <IcMArrowRotateDown />}
 						</div>
 
 					</div>

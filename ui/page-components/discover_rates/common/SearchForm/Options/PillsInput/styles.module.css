@@ -41,7 +41,7 @@
 	border-radius: 4px;
 	outline: 0 !important;
 	transition: all 100ms ease 0s;
-
+    
 	&.container_placeholder {
 		align-items: center;
 	}
@@ -88,7 +88,9 @@
 	flex-wrap: wrap;
 	align-items: center;
 	padding: 2px 8px;
-	overflow: hidden;
+	/* overflow: hidden; */
+	height:40px;
+	overflow: scroll;
 }
 
 .chip {

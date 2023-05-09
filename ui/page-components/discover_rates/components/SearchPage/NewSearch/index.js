@@ -7,6 +7,7 @@ import getConfiguration from '../../../hooks/configurations';
 
 import styles from './styles.module.css';
 
+import { useRouter } from '@/packages/next';
 import Air from '@/ui/commons/components/Search/Air';
 
 function NewSearch(
@@ -30,6 +31,7 @@ function NewSearch(
 	const setModeMemo = useCallback((modeVal) => {
 		setMode(modeVal);
 	}, []);
+	const { push } = useRouter();
 	const renderSearchForm = () => {
 		if (mode === 'air_freight') {
 			return <Air extraParams={extraParams} showHeader={showHeader} />;
@@ -46,21 +48,12 @@ function NewSearch(
 					search_type={search_type}
 				/>
 
-				{/* {blockSearch && (
-					<Flex
-						bgColor="rgba(255,255,255,0.8)"
-						top={0}
-						left={0}
-						position="absolute"
-						width="100%"
-						height="100%"
-						justifyContent="center"
-						alignItems="center"
-					/>
-				)} */}
+				{blockSearch && (
+					<div className={styles.flex} />
+				)}
 
 				{loading && (
-					<div>
+					<div className={styles.flex}>
 						<img
 							style={{ height: 30 }}
 							alt="cogo-logo"
@@ -85,6 +78,30 @@ function NewSearch(
 						showContainerTransportation
 					/>
 				</div>
+				{!listStoreQuotaAPI?.is_unlimited && (
+					<div className={styles.tag_count}>
+						<div className={styles.flex_div}>
+							<div
+								className={cl`${blockSearch && styles.tracker_remaining_text} ${styles.zero_trackers} `}
+							>
+								Searches Remaining:
+								{Number(listStoreQuotaAPI?.left_quota)
+									+ Number(listStoreQuotaAPI?.addon_quota) || 0}
+							</div>
+
+							<div
+								role="presentation"
+								className={styles.upgrade_plan}
+								onClick={() => push(
+									'/saas/cogo-subscriptions/manage-subscription',
+									'/saas/cogo-subscriptions/manage-subscription',
+								)}
+							>
+								Upgrade
+							</div>
+						</div>
+					</div>
+				)}
 			</div>
 			{renderSearchForm()}
 		</div>

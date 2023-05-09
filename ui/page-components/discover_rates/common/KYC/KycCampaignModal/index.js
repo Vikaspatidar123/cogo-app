@@ -66,12 +66,14 @@ export function KycCampaignModal({ trackAnalytics = false }) {
 
 	return (
 		<Modal
+			scroll={false}
 			show={
         (kyc_status === 'rejected' || kyc_status === 'pending_from_user')
         && show
+
       }
 			onClose={() => {
-      	setShow(false);
+         	setShow(false);
 			}}
 			closable
 			width={750}

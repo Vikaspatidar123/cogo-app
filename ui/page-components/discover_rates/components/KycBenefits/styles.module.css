@@ -6,3 +6,9 @@
   color: #333333;
   margin: 40px 0px 24px 0px;
 }
+.benefits{
+  display:block;
+  @media (max-width: 768px) {
+  display: none;
+	}
+}

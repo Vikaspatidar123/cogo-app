@@ -8,32 +8,31 @@ import Status from './Status';
 import styles from './styles.module.css';
 
 function ReceivedRevert({ data, mobile }) {
-	const className = `${mobile ? styles.mobile : ''}`;
-
 	return (
 		<div
 			className={cl`${styles.container} ${data.expired ? styles.disabled : styles.enabled}`}
 		>
 			<div className={styles.section}>
-				<div className={cl`${styles[className]} ${styles.icon_section}`}>
+				<div className={cl`${styles.icon_section} ${styles.mobile} `}>
 					<SearchType
 						search_type={data.search_type}
-						mobile={mobile}
 						width="90px"
 					/>
 				</div>
-				<div className={cl`${styles[className]} ${styles.main}`}>
-					<div className={cl`${styles[className]} ${styles.section}`}>
-						<PortDetails data={data} mobile={mobile} />
+				<div className={cl`${styles.mobile} ${styles.main}`}>
+					<div className={cl`${styles.mobile} ${styles.section}`}>
+						<PortDetails data={data} />
 						<div
 							style={{ maxWidth: !mobile ? 180 : '' }}
 						>
 							<ContainerInfo detail={data} />
 						</div>
 					</div>
-					{(mobile && <Status data={data} mobile={mobile} />) || null}
+					<div className={styles.mobile_web}><Status data={data} /></div>
 				</div>
-				{(!mobile && <Status data={data} mobile={mobile} />) || null}
+				<div className={styles.web}>
+					<Status data={data} />
+				</div>
 			</div>
 		</div>
 	);

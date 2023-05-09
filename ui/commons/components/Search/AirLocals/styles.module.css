@@ -22,11 +22,16 @@
 
 .row {
   display: flex;
+  @media (max-width: 760px) {
+		flex-direction: column;
+	  }
 }
 
 .col{
   padding: 0 8px;
-
+  @media (max-width: 760px) {
+    width:100% !important;
+  }
   &.air_line{
     padding-right: 0px;
   }

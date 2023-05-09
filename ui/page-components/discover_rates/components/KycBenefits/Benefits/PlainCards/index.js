@@ -7,7 +7,7 @@ import styles from './styles.module.css';
 
 function PlainCards({ cards, className = '' }) {
 	return (
-		<div className={cl`${styles.container}${styles[className]}`}>
+		<div className={cl`${styles.container} ${styles[className]}`}>
 			{cards.map((card) => (
 				<GeneralCard style={{ marginRight: 16 }} {...card} />
 			))}

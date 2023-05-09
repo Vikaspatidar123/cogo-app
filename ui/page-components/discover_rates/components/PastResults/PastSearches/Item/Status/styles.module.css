@@ -8,10 +8,13 @@
   justify-content: space-around;
 }
 .mobile {
-  padding-left: 0px;
-  justify-content: center;
-  flex-direction: column;
-  border-left: none;
-  width: 15%;
-  align-items: center;
+  @media (max-width: 760px) {
+    padding-left: 0px;
+    justify-content: center;
+    flex-direction: column;
+    border-left: none;
+    width: 15%;
+    align-items: center;
+  }
+
 }

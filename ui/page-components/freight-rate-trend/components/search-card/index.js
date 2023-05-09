@@ -1,6 +1,7 @@
 import { Button } from '@cogoport/components';
 import { IcMPortArrow } from '@cogoport/icons-react';
 import { merge } from '@cogoport/utils';
+import { useState } from 'react';
 
 import useCreateTrends from '../../hooks/useCreateTrends';
 
@@ -17,6 +18,7 @@ function SearchCard({ refechTrends }) {
 	const cityOptions = useGetAsyncOptions(merge(asyncFieldsLocations(), {
 		params: { filters: { type: ['seaport'], is_icd: false } },
 	}));
+	const [errorMessage, setErrorMessage] = useState(false);
 
 	const controls = [
 		{
@@ -37,7 +39,7 @@ function SearchCard({ refechTrends }) {
 			rules       : { required: 'Please enter value' },
 		},
 	];
-	const filed = controls.map((control) => {
+	const field = controls.map((control) => {
 		const { name } = control;
 		let newControl = { ...control };
 
@@ -58,6 +60,10 @@ function SearchCard({ refechTrends }) {
 
 	const submitForm = async (values) => {
 		const { origin, destination } = values;
+		if (origin === destination) {
+			setErrorMessage((prev) => !prev);
+			return;
+		}
 		const data = await createTrend(origin, destination);
 		if (data == null) return;
 		await refechTrends();
@@ -77,7 +83,7 @@ function SearchCard({ refechTrends }) {
 			<form
 				className={styles.form}
 			>
-				{filed.map((controlItem) => {
+				{field.map((controlItem) => {
 					const { type, name } = controlItem;
 					if (type === 'anchor') {
 						return <div className={styles.anchor}><IcMPortArrow height={30} width={30} /></div>;
@@ -107,6 +113,7 @@ function SearchCard({ refechTrends }) {
 					</Button>
 				</div>
 			</form>
+			{errorMessage && <div className={styles.error_message}>Origin and destination could not be same</div>}
 		</div>
 	);
 }

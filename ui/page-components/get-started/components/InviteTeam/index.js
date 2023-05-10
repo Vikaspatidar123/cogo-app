@@ -19,7 +19,7 @@ function InviteTeam({ orgId, setTimeForCall }) {
 		<div className={styles.container}>
 			<div className={styles.header_container}>
 				<span className={styles.header_container_bold}>Invite Team Members</span>
-				Invite team members to access your Cogoport Account
+				<div>Invite team members to access your Cogoport Account</div>
 			</div>
 			<div className={styles.card_container}>
 				<Card teamMembers={teamMembers} />

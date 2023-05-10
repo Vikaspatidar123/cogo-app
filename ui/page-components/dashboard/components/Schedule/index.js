@@ -51,7 +51,7 @@ function Schedule() {
 								<IcMArrowNext
 									role="presentation"
 									onClick={() => push('/saas/air-schedules')}
-									className={styles.arrow}
+									className={styles.arrow_air}
 								/>
 							</p>
 							<p

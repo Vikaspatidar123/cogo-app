@@ -1,80 +1,3 @@
-/* .image {
-	display: flex;
-	justify-content: flex-start;
-	padding: 20px;
-	background: rgb(255 255 255);
-	border-radius: 10px;
-	box-shadow: rgb(0 0 0 / 15%) 0 2px 4px;
-
-	@media screen and (max-width: 767px) {
-		display: flex;
-		flex-direction: column;
-	}
-}
-
-.inner {
-	display: flex;
-	width: 60%;
-}
-
-.display_text {
-	width: 60%;
-	margin: 5px 15px;
-	line-height: 1.4;
-}
-
-.line {
-	display: flex;
-	justify-content: space-around;
-	width: 40%;
-	border-left: 1px solid rgb(224 224 224);
-
-	@media screen and (max-width: 767px) {
-		margin-top: 15px;
-		border: none;
-	}
-}
-
-.flex {
-	display: flex;
-}
-
-.text {
-	margin: 10px;
-	color: rgb(53 110 253);
-	text-decoration: underline;
-	cursor: pointer;
-}
-
-.arrow {
-	margin: 13px 0;
-	color: rgb(53 110 253);
-	cursor: pointer;
-}
-
-.para {
-	margin: 0 0 8px;
-	font-size: 10px;
-	line-height: 1.4;
-	color: rgb(153 153 153);
-	text-align: center;
-}
-
-.standard {
-	margin-left: 5px;
-	font-weight: 600;
-}
-
-.head {
-	margin: 0;
-	font-size: 12px;
-	line-height: 1.4;
-	color: rgb(130 130 130);
-}
-
-.errors {
-	color: rgb(203 100 100);
-} */
 .image {
 	display: flex;
 	flex-flow: row wrap;
@@ -89,10 +12,6 @@
 	}
 }
 
-.image1 {
-	width: 30px;
-	height: 33px;
-}
 
 .inner {
 	position: relative;

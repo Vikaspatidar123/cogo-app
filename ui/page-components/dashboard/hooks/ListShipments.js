@@ -14,7 +14,8 @@ function ListShipments() {
 			const reqData = {
 				shipment_reciever : shipment_received,
 				confirmation      : confirmed_by_importer_exporter,
-
+				page              : 1,
+				page_limit        : 2,
 			};
 			const res = await trigger({ params: reqData });
 			const { datas } = res;

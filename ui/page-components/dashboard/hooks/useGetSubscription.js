@@ -3,41 +3,37 @@ import { useState, useEffect } from 'react';
 import { useRequest } from '@/packages/request';
 import { useSelector } from '@/packages/store';
 
-const useGetSchedules = () => {
+const useGetSubscription = () => {
 	const { profile } = useSelector((state) => state);
 
-	const [loading, setLoading] = useState(false);
-	const [schedulesData, setSchedulesData] = useState(null);
+	const [subscriptionData, setSubscriptionData] = useState(null);
 
-	const [{ data }, trigger] = useRequest({
+	const [{ loading }, trigger] = useRequest({
 		method : 'get',
-		url    : '/get_app_dashboard_schedule',
+		url    : '/get_app_dashboard_subscription',
 	}, { manual: true });
 
-	const getSchedulesData = async () => {
+	const getSubscriptionData = async () => {
 		const params = { organization_id: profile.organization.id };
 		try {
-			setLoading(true);
 			const res = await trigger({ params });
 			if (!res.hasError) {
-				setSchedulesData(res.data);
+				setSubscriptionData(res.data);
 			}
-			setLoading(false);
 			return res;
 		} catch (err) {
-			setLoading(false);
 			return false;
 		}
 	};
 
 	useEffect(() => {
-		getSchedulesData();
+		getSubscriptionData();
 	}, []);
 
 	return {
-		schedulesData,
+		subscriptionData,
 		loading,
 	};
 };
 
-export default useGetSchedules;
+export default useGetSubscription;

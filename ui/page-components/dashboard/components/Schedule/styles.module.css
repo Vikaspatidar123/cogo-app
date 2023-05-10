@@ -53,13 +53,15 @@
 	font-size: 16px;
 	line-height: 1.4;
 	text-align: left;
-	cursor: pointer;
 }
 
 .arrow {
 	margin-left: 8rem;
 	color: rgb(53 110 253);
-	cursor: pointer;
+}
+.arrow_air{
+	margin-left: 10rem;
+	color: rgb(53 110 253);
 }
 
 .plan {

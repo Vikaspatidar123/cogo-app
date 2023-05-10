@@ -22,7 +22,7 @@ function ActiveTracking({ airTracking, oceanTracking }) {
 			<div className={styles.second}>
 				<div className={styles.left}>
 					<div className={styles.left_top}>
-						<p className={styles.text}>Air Trcking</p>
+						<p className={styles.text}>Air Tracking</p>
 						<IcMArrowNext onClick={() => push('/saas/air-tracking')} className={styles.arrow} />
 					</div>
 					<div className={styles.left_bottom}>
@@ -55,7 +55,7 @@ function ActiveTracking({ airTracking, oceanTracking }) {
 				</div>
 				<div className={styles.left}>
 					<div className={styles.left_top}>
-						<p className={styles.text}>Ocean Trcking</p>
+						<p className={styles.text}>Ocean Tracking</p>
 						<IcMArrowNext onClick={() => push('/saas/ocean-tracking')} className={styles.arrow} />
 					</div>
 					<div className={styles.left_bottom}>

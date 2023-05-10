@@ -184,6 +184,7 @@
 .bottom {
 	display: flex;
 	justify-content: flex-end;
+	cursor: pointer;
 }
 
 .viewall {
@@ -197,7 +198,6 @@
 	width: 20px;
 	height: 20px;
 	color: rgb(53 110 253);
-	cursor: pointer;
 }
 
 .fouth_data {

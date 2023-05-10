@@ -20,12 +20,12 @@ function Promotion() {
 
 	const mainData = [];
 
-	imgData?.forEach((data) => {
-		mainData.push({
-			key    : data?.id,
-			render : () => (<div>{carouselData(data)}</div>),
-		});
-	});
+	// imgData?.forEach((data) => {
+	// 	mainData.push({
+	// 		key    : data?.id,
+	// 		render : () => (<div>{carouselData(data)}</div>),
+	// 	});
+	// });
 
 	return (
 		<div>

@@ -124,10 +124,15 @@
 .options {
   padding: 7px 20px;
   cursor: pointer;
-  border: 1px solid #d0d0a7;
+  border: 1px solid #eeeee35e;
   border-radius: 4px;
   margin-top: 3px;
+  :global {
+		.tippy-content{
+			padding: 0px !important;
+		}
+	}
 }
 .options:hover {
-  background: #e1d37261;
+  background: #eeeee35e;
 }

@@ -12,12 +12,11 @@ import { useSelector } from '@/packages/store';
 
 function SearchPage() {
 	const [apiTries, setApiTries] = useState(0);
-	const [load, setLoad] = useState(false);
 	const { quotaLoading, quotaData = [] } = useGetUserQuota({
 		apiTries,
 		setApiTries,
 	});
-	const { list = [], kyc_status, query } = useSelector(({ search, general, profile }) => ({
+	const { kyc_status, query } = useSelector(({ search, general, profile }) => ({
 		list       : search.past_searches || [],
 		kyc_status : profile?.organization?.kyc_status,
 		query      : general?.query,
@@ -29,6 +28,8 @@ function SearchPage() {
 	const blockSearch = !(
 		left_quota + addon_quota > 0 || listStoreQuotaAPI?.is_unlimited
 	);
+	const defaultSearchMode = query?.service_type;
+
 	return (
 		<div>
 			<Head>
@@ -37,7 +38,7 @@ function SearchPage() {
 			<NewSearch
 				loading={quotaLoading}
 				blockSearch={blockSearch}
-        // defaultSearchMode={defaultSearchMode}
+				defaultSearchMode={defaultSearchMode}
 				style={{ marginBottom: 16 }}
 				listStoreQuotaAPI={listStoreQuotaAPI}
 			/>

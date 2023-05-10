@@ -355,7 +355,6 @@ function Form(
 									options={options}
 									services={services}
 									setServices={setServices}
-									// mobile={mobile}
 									setLocation={setLocation}
 									className={className}
 									formProps={showElementsFuncProps}

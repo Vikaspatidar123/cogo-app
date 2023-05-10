@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { Popover, Modal, cl } from '@cogoport/components';
 import React, { useState, useEffect, useMemo } from 'react';
 

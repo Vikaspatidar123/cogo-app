@@ -2,7 +2,7 @@ import { Placeholder } from '@cogoport/components';
 import { IcAShipAmber, IcMShare } from '@cogoport/icons-react';
 import { useState, useEffect, useMemo } from 'react';
 
-import { INCOTERM_TO_SHIPPERS_RESPONSIBILITY } from '../../common/constant';
+// import { INCOTERM_TO_SHIPPERS_RESPONSIBILITY } from '../../common/constant';
 
 import { UNSHADED_MILESTONES } from './common/constant';
 import { processList, formatDate, formatTime, isPastOrPresentDay } from './common/utils';
@@ -15,14 +15,14 @@ function MilestonesContainer({
 }) {
 	const [selectedMilestonesList, setSelectedMilestonesList] = useState([]);
 	const [oceanPoints, setOceanPoints] = useState([]);
-	const [incotermStep, setIncotermStep] = useState(-1);
+	// const [incotermStep, setIncotermStep] = useState(-1);
 
 	const [vesselLocationLat, setVesselLocationLat] = useState();
 	const [vesselLocationLang, setVesselLocationLang] = useState();
 	const [preditiveEta, setPreditiveEta] = useState({});
 	const [vesselName, setVesselName] = useState();
 	const containersMilestonesList = useMemo(() => trackerDetails?.data ?? [], [trackerDetails?.data]);
-	const incoterm = trackerDetails?.shipment_details?.incoterm;
+	// const incoterm = trackerDetails?.shipment_details?.incoterm;
 
 	useEffect(() => {
 		const processedMilestonesList = processList(
@@ -30,20 +30,20 @@ function MilestonesContainer({
 		);
 		setSelectedMilestonesList(processedMilestonesList);
 	}, [selectedContainer, containersMilestonesList]);
-	useEffect(() => {
-		let newIncotermStep = -1;
-		const incotermMilestonesList = INCOTERM_TO_SHIPPERS_RESPONSIBILITY[incoterm] ?? [];
+	// useEffect(() => {
+	// 	let newIncotermStep = -1;
+	// 	const incotermMilestonesList = INCOTERM_TO_SHIPPERS_RESPONSIBILITY[incoterm] ?? [];
 
-		selectedMilestonesList.forEach((combinedMilestones, idx) => {
-			const containsIncoterm = combinedMilestones.filter((item) => (
-				incotermMilestonesList.includes(item.milestone)).length > 0);
-			if (containsIncoterm) {
-				newIncotermStep = idx - 1;
-			}
-		});
+	// 	selectedMilestonesList.forEach((combinedMilestones, idx) => {
+	// 		const containsIncoterm = combinedMilestones.filter((item) => (
+	// 			incotermMilestonesList.includes(item.milestone)).length > 0);
+	// 		if (containsIncoterm) {
+	// 			newIncotermStep = idx - 1;
+	// 		}
+	// 	});
 
-		setIncotermStep(newIncotermStep);
-	}, [incoterm, selectedMilestonesList]);
+	// 	setIncotermStep(newIncotermStep);
+	// }, [incoterm, selectedMilestonesList]);
 
 	useEffect(() => {
 		let mostRecentPastOrPresentMilestoneId = null;
@@ -219,7 +219,7 @@ function MilestonesContainer({
 													</div>
 												</div>
 											) : null}
-											{incotermStep >= idx ? (
+											{/* {incotermStep >= idx ? (
 												<div className={styles.incoterm_line}>
 													{idx === 0 ? (
 														<div className={styles.incoterm_label}>
@@ -228,7 +228,7 @@ function MilestonesContainer({
 														</div>
 													) : null}
 												</div>
-											) : null}
+											) : null} */}
 											<div className={styles.icon} />
 											<div
 												className={styles.content}
@@ -269,11 +269,11 @@ function MilestonesContainer({
 													</div>
 												)}
 											</div>
-											{incotermStep === idx && (
+											{/* {incotermStep === idx && (
 												<div className={styles.incoterm_handover_container}>
 													<p>Handover to consignee as per incoterm</p>
 												</div>
-											)}
+											)} */}
 										</div>
 									</div>
 								);

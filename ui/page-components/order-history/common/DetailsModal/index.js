@@ -61,7 +61,13 @@ function DetailsModal({
 					</div>
 				</div>
 			)}
-			{tradeEngineResponseLoading && <>Loading</> }
+			{tradeEngineResponseLoading && (
+				<img
+					src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/loading.svg"
+					alt="loading"
+					className={styles.loading_image}
+				/>
+			) }
 		</Modal>
 	);
 }

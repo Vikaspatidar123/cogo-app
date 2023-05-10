@@ -4,7 +4,7 @@
 import { cl, Button, Tooltip, Modal } from '@cogoport/components';
 import { IcCFhaulage, IcMFtrailorFull, IcMEdit } from '@cogoport/icons-react';
 import { getByKey, startCase } from '@cogoport/utils';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 import formatMainServiceData from '../../../utils/format-main-service-data';
 import AdditionalServices from '../../AdditionalServices';
@@ -37,10 +37,8 @@ function TrailerFreightInfo({
 	data = {},
 	setOpen = () => {},
 	open = false,
-	isMobile = false,
 	loading = false,
 	importer_exporter_details = {},
-	setShowEdit = () => {},
 	searchData = {},
 	refetch = () => {},
 	results_type = '',
@@ -60,14 +58,9 @@ function TrailerFreightInfo({
 		container_load_type = '',
 	} = detail || {};
 
-	useEffect(() => {
-		setShowEdit(editSearch);
-	}, [editSearch]);
-
 	if (loading) {
-		return <Loading isMobile={isMobile} scope={scope} />;
+		return <Loading />;
 	}
-	const paddingXButton = data?.search_type === 'air_freight' ? 10 : 4;
 
 	const searchForm = (
 		<div className={styles.edit_container}>
@@ -236,11 +229,10 @@ function TrailerFreightInfo({
 				</div>
 			) : null}
 
-			{open && isMobile ? (
+			{open ? (
 				<Modal show={open} onClose={() => setOpen(false)} width={330}>
 					<AdditionalServices
 						data={data}
-						isMobile={isMobile}
 						refetch={refetch}
 						possible_additional_services={possible_additional_services}
 					/>

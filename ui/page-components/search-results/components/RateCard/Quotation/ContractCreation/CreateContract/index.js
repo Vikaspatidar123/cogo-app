@@ -54,8 +54,7 @@ function CreateContract({
 			className="secondary md"
 		>
 			<>
-				<Modal.Header>
-					<div className="title">Request Contract</div>
+				<Modal.Header title="Request Contract">
 					<IcMCross
 						width={20}
 						height={20}
@@ -77,15 +76,18 @@ function CreateContract({
 
 				<Modal.Footer>
 					<Button
-						className="secondary md close-create-contract-modal"
+						size="md"
+						themeType="secondary"
 						onClick={() => setShowContract(false)}
 					>
 						Close
 					</Button>
 					<Button
 						disabled={loading}
-						className="primary md next-step-create-contract"
+						size="md"
+						themeType="primary"
 						onClick={handleSubmit(onSubmit)}
+						style={{ marginLeft: '10px' }}
 					>
 						Create
 					</Button>

@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { Button } from '@cogoport/components';
 import { IcMFilter } from '@cogoport/icons-react';
 import { isEmpty } from '@cogoport/utils';
@@ -9,7 +10,7 @@ import controls from './controls';
 import FilterContent from './filters';
 import styles from './styles.module.css';
 
-function Filter({ setFilters, state, isMobile }) {
+function Filter({ setFilters, state }) {
 	const [openFilter, setOpenFilter] = useState(false);
 
 	const { shippingLineOptions, priceRange, response, rates = [] } = state;
@@ -83,8 +84,7 @@ function Filter({ setFilters, state, isMobile }) {
 				control={control}
 			>
 				<Button onClick={() => setOpenFilter(!openFilter)} themeType="secondary">
-					{!isMobile ? 'FILTERS' : ''}
-					{' '}
+					<div className={styles.filter}>FILTERS</div>
 					<IcMFilter />
 					{filtersApplied > 0 && <div className={styles.filter_dot} />}
 				</Button>

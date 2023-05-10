@@ -1,4 +1,4 @@
-import { Tabs, TabPanel } from '@cogoport/components';
+// import { Tabs, TabPanel } from '@cogoport/components';
 
 import Component from './Component';
 
@@ -6,24 +6,25 @@ function AddMoreDays(props) {
 	const {
 		data: rateData,
 		activeTab = '',
-		setActiveTab = () => {},
+		// setActiveTab = () => {},
 		originDetentionFreeLimit,
-		originDemurrageFreeLimit,
-		destinationDemurrageFreeLimit,
+		// originDemurrageFreeLimit,
+		// destinationDemurrageFreeLimit,
 		destinationDetentionFreeLimit,
 		originDetentionMaxLimit,
-		originDemurrageMaxLimit,
-		destinationDemurrageMaxLimit,
+		// originDemurrageMaxLimit,
+		// destinationDemurrageMaxLimit,
 		destinationDetentionMaxLimit,
 		mainServices = [],
 		originDetentionAdditionalDays,
-		originDEmurrageAdditionalDays,
+		// originDEmurrageAdditionalDays,
 		destinationDetentionAdditionalDays,
-		destinationDemurrageAdditionalDays,
+		// destinationDemurrageAdditionalDays,
 		localServicesDetails = [],
 		localServicesRates = [],
 		spot_search_id = '',
 		refetch = () => {},
+		setShow = () => {},
 	} = props;
 
 	const COMPONENT_MAPPING = {
@@ -34,11 +35,11 @@ function AddMoreDays(props) {
 				additional_days : originDetentionAdditionalDays,
 			},
 
-			demurrage: {
-				freeLimit       : originDemurrageFreeLimit,
-				maxLimit        : originDemurrageMaxLimit,
-				additional_days : originDEmurrageAdditionalDays,
-			},
+			// demurrage: {
+			// 	freeLimit       : originDemurrageFreeLimit,
+			// 	maxLimit        : originDemurrageMaxLimit,
+			// 	additional_days : originDEmurrageAdditionalDays,
+			// },
 		},
 
 		destination: {
@@ -48,11 +49,11 @@ function AddMoreDays(props) {
 				additional_days : destinationDetentionAdditionalDays,
 			},
 
-			demurrage: {
-				freeLimit       : destinationDemurrageFreeLimit,
-				maxLimit        : destinationDemurrageMaxLimit,
-				additional_days : destinationDemurrageAdditionalDays,
-			},
+			// demurrage: {
+			// 	freeLimit       : destinationDemurrageFreeLimit,
+			// 	maxLimit        : destinationDemurrageMaxLimit,
+			// 	additional_days : destinationDemurrageAdditionalDays,
+			// },
 		},
 	};
 
@@ -60,7 +61,7 @@ function AddMoreDays(props) {
 
 	return (
 		<div style={{ padding: '12px 20px' }}>
-			<div style={{ display: 'flex' }}>
+			{/* <div style={{ display: 'flex' }}>
 				<Tabs activeTab={activeTab} themeType="primary" onChange={setActiveTab}>
 					<TabPanel name="origin" title="ORIGIN">
 						<div />
@@ -70,27 +71,28 @@ function AddMoreDays(props) {
 						<div />
 					</TabPanel>
 				</Tabs>
-			</div>
+			</div> */}
 
 			<div style={{ display: 'flex', padding: '12px 20px' }}>
 				{Object.keys(COMPONENT_MAPPING[activeTab]).map((key) => {
-        	const componentProps = COMPONENT_MAPPING[activeTab][key];
+        	        const componentProps = COMPONENT_MAPPING[activeTab][key];
 
-        	return (
-	<Component
-		key={`${activeTab}__${key}`}
-		{...componentProps}
-		activeTab={activeTab}
-		type={key}
-		mainServices={mainServices}
-		localServicesDetails={localServicesDetails}
-		localServicesRates={localServicesRates}
-		spot_search_id={spot_search_id}
-		refetch={refetch}
-		service_rates={service_rates}
-		rateData={rateData}
-	/>
-        	);
+					return (
+						<Component
+							key={`${activeTab}__${key}`}
+							{...componentProps}
+							activeTab={activeTab}
+							type={key}
+							mainServices={mainServices}
+							localServicesDetails={localServicesDetails}
+							localServicesRates={localServicesRates}
+							spot_search_id={spot_search_id}
+							refetch={refetch}
+							service_rates={service_rates}
+							rateData={rateData}
+							setShow={setShow}
+						/>
+					);
 				})}
 			</div>
 		</div>

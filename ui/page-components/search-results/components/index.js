@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { Placeholder } from '@cogoport/components';
 import { IcMArrowBack } from '@cogoport/icons-react';
 import dynamic from 'next/dynamic';
@@ -9,7 +10,6 @@ import useGetEnquiryQuota from '../hooks/useGetEnquiryQuota';
 import useGetSchedules from '../hooks/useGetSchedules';
 import isServicableCountry from '../utils/isServicableCountry';
 import swbAllowedServices from '../utils/swb-allowed-services';
-// import EnquiryCard from './EnquiryCard';
 
 import AdditionalServices from './AdditionalServices';
 import AddRate from './AddRate';
@@ -17,14 +17,12 @@ import CogoAssuredList from './CogoAssuredList';
 import ContractAd from './ContractAd';
 import ContractIntelligence from './ContractIntelligence';
 import GoBackToShipment from './GoBack';
-import Header from './Header';
 import Info from './Info';
 import CargoInsuranceInfo from './Info/CargoInsuranceInfo';
 import FtlInfo from './Info/FtlInfo';
 import TrailerFreightInfo from './Info/TrailerFreightInfo';
 import Loader from './Loader';
 import NoResultFound from './NoResultFound';
-import OrganizationDetails from './OrganizationDetails';
 import RateCards from './RateCards';
 import RequestRate from './RequestRate';
 import SellRate from './SellRate';
@@ -35,14 +33,11 @@ import { useSelector } from '@/packages/store';
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 import getCountryDetails from '@/ui/commons/utils/getCountryDetails';
 
-const SwitchUsers = dynamic(() => import('./SwitchUsers'), { ssr: false });
 const EnquriyStatus = dynamic(() => import('./AdditionalCards/EnquriyStatus'), {
 	ssr: false,
 });
-// const AlternativeRates = dynamic(() => import('./AlternativeRates'), {
-// 	ssr: false,
-// });
-// const Header = dynamic(() => import('./Header'), { ssr: false });
+
+const Header = dynamic(() => import('./Header'), { ssr: false });
 
 const REQUEST_RATE_ALLOWED_SERVICES = [
 	'fcl_freight',
@@ -66,15 +61,10 @@ function SelectedRateInfo({
 	loading,
 	searchData,
 	importer_exporter_details,
-	setShowEdit,
 	refetch,
 	possible_additional_services,
 	detail,
 }) {
-	const {
-		general: { isMobile },
-	} = useSelector((reduxState) => reduxState);
-
 	const [open, setOpen] = useState(false);
 
 	const SERVICE_TYPE_SELECTED_RATE_COMPONENT_MAPPING = useMemo(
@@ -101,13 +91,11 @@ function SelectedRateInfo({
 		<Component
 			key={service_type}
 			data={data}
-			isMobile={isMobile}
 			open={open}
 			setOpen={setOpen}
 			loading={loading}
 			searchData={searchData}
 			importer_exporter_details={importer_exporter_details}
-			setShowEdit={setShowEdit}
 			refetch={refetch}
 			possible_additional_services={possible_additional_services}
 			{...(componentKey === 'others' && { detail })}
@@ -126,17 +114,15 @@ function Results({
 	refetch = () => {},
 	...rest
 }) {
-	const { replace, back } = useRouter();
+	const { push } = useRouter();
 	const enquiryQuota = useGetEnquiryQuota();
 
 	const { detail = {}, contract_detail = {} } = searchData;
 	const { importer_exporter_id: importerExporterId = '' } = detail || {};
 	const { count = 0 } = contract_detail || {};
 
-	const { scope, isMobile, query, user_profile } = useSelector(
+	const { query, user_profile } = useSelector(
 		({ general, profile }) => ({
-			isMobile     : (general || {}).isMobile,
-			scope        : general?.scope,
 			query        : (general || {}).query || {},
 			user_profile : profile,
 		}),
@@ -154,7 +140,6 @@ function Results({
 	const [addRate, setAddRate] = useState(false);
 	const [wayToBook, setWayToBook] = useState('sell_without_buy');
 
-	const [showEdit, setShowEdit] = useState(false);
 	const [importer_exporter_details, setImporterExporterDetails] = useState({
 		id        : data?.importer_exporter_id || data?.importer_exporter?.id,
 		name      : data?.importer_exporter?.business_name,
@@ -173,7 +158,7 @@ function Results({
 				user_id   : data?.user_id,
 			});
 		}
-	}, [JSON.stringify(data), scope]);
+	}, [JSON.stringify(data)]);
 
 	useEffect(() => {
 		if (search_id) {
@@ -185,14 +170,14 @@ function Results({
 	useEffect(() => {
 		if (shipment_id_search) {
 			// Handled case when shipment is already created for this search
-			replace('/book');
+			push('/book');
 		}
 	}, [shipment_id_search]);
 
 	useEffect(() => {
 		if (expired) {
 			// Handled case when search is expired
-			replace('/book');
+			push('/book');
 		}
 	}, [expired]);
 
@@ -201,7 +186,7 @@ function Results({
       && data?.destination_country?.country_code
         === getCountryDetails({ country_id: INDIA_COUNTRY_ID }).country_code;
 		if (!loading && isHiPriority && process.env.LIVE_CHAT_CLIENT_ID) {
-			handleLiveChat(user_profile, data, scope);
+			handleLiveChat(user_profile, data);
 		}
 		return () => {
 			const LCW = window.LiveChatWidget;
@@ -223,13 +208,6 @@ function Results({
 			marketplaceRates.push(rate);
 		}
 	});
-	// const isOrgCP = ((data?.importer_exporter || {}).tags || []).includes(
-	// 	'partner',
-	// );
-
-	// const showEnquiry =
-	// 	data?.importer_exporter?.id !== COGO_DEMO_ACCOUNT_SHIPPER &&
-	// 	!isOrgCP;
 
 	const noResultsType = () => {
 		let type = '';
@@ -333,7 +311,7 @@ function Results({
 	};
 
 	const handleAdditionalServices = () => {
-		if (isMobile || loading) {
+		if (loading) {
 			return null;
 		}
 
@@ -347,20 +325,6 @@ function Results({
 				{rates_count > 0 && count < 1 && <ContractIntelligence />}
 			</div>
 		);
-
-		// if (
-		// 	['air_freight', 'lcl_freight', 'fcl_freight'].includes(data?.search_type)
-		// ) {
-		// 	return (
-		// 		<AlternativeRates
-		// 			search_type={data?.search_type}
-		// 			data={data}
-		// 			search_id={search_id}
-		// 			importer_exporter_id={data?.importer_exporter_id}
-		// 		/>
-		// 	);
-		// }
-		// return null;
 	};
 
 	const configureSellRate = () => (
@@ -385,7 +349,7 @@ function Results({
 							<div
 								role="presentation"
 								className={styles.hover_effect}
-								onClick={() => replace('/book')}
+								onClick={() => push('/book')}
 							>
 								<IcMArrowBack style={{ width: 20, height: 20 }} />
 							</div>
@@ -402,7 +366,6 @@ function Results({
 						loading={loading}
 						searchData={searchData}
 						importer_exporter_details={importer_exporter_details}
-						setShowEdit={setShowEdit}
 						refetch={refetch}
 						possible_additional_services={possible_additional_services}
 						detail={detail}
@@ -438,7 +401,6 @@ function Results({
 										setFilters={setFilters}
 										detail={data}
 										state={state}
-										isMobile={isMobile}
 									/>
 								) : null}
 							</div>

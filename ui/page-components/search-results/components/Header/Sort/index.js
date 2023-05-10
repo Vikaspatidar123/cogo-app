@@ -46,7 +46,7 @@ function Sort({ sortBy = '', search_type = '', setSort = () => {} }) {
 			style={{
 				borderColor : '#67c676',
 				background  : '#e6fbe9',
-				width       : '250px',
+				width       : '200px',
 			}}
 		/>
 	);

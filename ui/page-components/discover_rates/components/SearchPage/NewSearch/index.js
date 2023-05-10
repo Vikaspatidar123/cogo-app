@@ -84,7 +84,7 @@ function NewSearch(
 							<div
 								className={cl`${blockSearch && styles.tracker_remaining_text} ${styles.zero_trackers} `}
 							>
-								Searches Remaining:
+								Searches Remaining :
 								{Number(listStoreQuotaAPI?.left_quota)
 									+ Number(listStoreQuotaAPI?.addon_quota) || 0}
 							</div>

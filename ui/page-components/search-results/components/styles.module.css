@@ -118,6 +118,10 @@
   display: flex;
   flex-direction: column;
   width: 300px;
+  display:block;
+  @media (max-width: 768px) {
+  display: none;
+	}
 }
 .flex {
   display: flex;

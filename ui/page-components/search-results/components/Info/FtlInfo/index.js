@@ -28,10 +28,8 @@ function FtlInfo({
 	data = {},
 	setOpen = () => {},
 	open = false,
-	isMobile = false,
 	loading = false,
 	importer_exporter_details = {},
-	setShowEdit = () => {},
 	searchData = {},
 	refetch = () => {},
 	results_type = '',
@@ -46,10 +44,6 @@ function FtlInfo({
 	const [editSearch, setEditSearch] = useState(false);
 
 	const { detail = {} } = searchData || {};
-
-	useEffect(() => {
-		setShowEdit(editSearch);
-	}, [editSearch]);
 
 	if (loading) {
 		return <Loading />;
@@ -191,7 +185,6 @@ function FtlInfo({
 				<Modal show={open} onClose={() => setOpen(false)} width={330}>
 					<AdditionalServices
 						data={data}
-						isMobile={isMobile}
 						refetch={refetch}
 						possible_additional_services={possible_additional_services}
 					/>

@@ -4,7 +4,10 @@
 	cursor: pointer;
 	border: 1px solid black;
 }
-
+.flex{
+	display:flex;
+	flex-direction: column;
+}
 .error_message {
 	font-size: 12px;
 	color: red;
@@ -12,6 +15,11 @@
 
 .styled_text {
 	color: #393f70;
+	padding-bottom: 4px;
+	width: max-content;
+	@media (max-width: 768px) {
+		width: auto;
+	}
 }
 
 .container {

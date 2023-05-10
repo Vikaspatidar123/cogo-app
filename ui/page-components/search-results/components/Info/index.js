@@ -1,5 +1,5 @@
 import { Button, Modal } from '@cogoport/components';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 import formatMainServiceData from '../../utils/format-main-service-data';
 import AdditionalServices from '../AdditionalServices';
@@ -21,10 +21,8 @@ function Info({
 	detail = {},
 	setOpen = () => {},
 	open = false,
-	isMobile = false,
 	loading = false,
 	importer_exporter_details = {},
-	setShowEdit = () => {},
 	refetch = () => {},
 	results_type = '',
 	rates = [],
@@ -35,10 +33,6 @@ function Info({
 	const [editSearch, setEditSearch] = useState(false);
 
 	const service_icon_mapping = Mapping[data?.search_type];
-
-	useEffect(() => {
-		setShowEdit(editSearch);
-	}, [editSearch]);
 
 	if (loading) {
 		return <Loading />;
@@ -69,7 +63,7 @@ function Info({
 
 			<Button
 				style={{
-					marginBottom: isMobile ? 0 : paddingXButton,
+					marginBottom: paddingXButton,
 				}}
 				className={styles.cancel}
 				themeType="secondary"
@@ -152,11 +146,10 @@ function Info({
 				</div>
 			) : null}
 
-			{open && isMobile ? (
-				<Modal show={open} onClose={() => setOpen(false)} width={330}>
+			{open ? (
+				<Modal show={open} onClose={() => setOpen(false)}>
 					<AdditionalServices
 						data={data}
-						isMobile={isMobile}
 						refetch={refetch}
 						possible_additional_services={possible_additional_services}
 					/>

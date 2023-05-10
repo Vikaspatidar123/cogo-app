@@ -41,7 +41,7 @@ const detailsToShow = (data, details) => {
 		{
 			value:
         details?.chargeable_weight
-        && ['air_freight'].includes(data?.service_type)
+						&& ['air_freight'].includes(data?.service_type)
         	? `Chargeable weight - ${details?.chargeable_weight || 0}kgs`
         	: null,
 		},
@@ -82,10 +82,10 @@ const detailsToShow = (data, details) => {
 		.map((item) => (item?.value ? (
 			<div
 				style={{
-          	display    : 'flex',
-          	alignItems : 'center',
-          	width      : '40%',
-          	margin     : '4px',
+					display    : 'flex',
+					alignItems : 'center',
+					width      : '40%',
+					margin     : '4px',
 				}}
 			>
 				<IcCFtick style={{ fontSize: '16px', color: 'red' }} />
@@ -99,10 +99,10 @@ const tagsToShow = (data) => data?.tags
 	?.map((item) => (item ? (
 		<div
 			style={{
-          	display    : 'flex',
-          	alignItems : 'center',
-          	width      : '40%',
-          	margin     : '4px',
+				display    : 'flex',
+				alignItems : 'center',
+				width      : '40%',
+				margin     : '4px',
 			}}
 		>
 			<IcCFtick style={{ fontSize: '16px' }} />
@@ -150,13 +150,6 @@ function RateCard(props) {
       && service?.service_type === 'haulage_freight'
       && service?.trade_type === 'import',
 	);
-
-	let flag = false;
-	(data?.line_items || []).forEach((item) => {
-		if (item?.remarks?.length > 0) {
-			flag = true;
-		}
-	});
 
 	const showSchedules = () => {
 		if (data?.source !== 'cogo_assured_rate') {
@@ -306,29 +299,6 @@ function RateCard(props) {
 						</>
 					) : null}
 
-					{/* {flag ? (
-						<div className={styles.code_and_remarks}>
-							{(data?.line_items || []).map((item) => {
-              	if (item?.remarks?.length > 0) {
-              		return (
-	<div className={styles.cr_container}>
-		<div className={styles.code}>
-			{item?.code}
-			{' '}
-			:
-		</div>
-		<div className={`${styles.code} ${styles.remarks}`}>
-			{(item?.remarks || []).map((items) => (
-				<div>{items}</div>
-			))}
-		</div>
-	</div>
-              		);
-              	}
-              	return null;
-							})}
-						</div>
-					) : null} */}
 				</div>
 
 				<div className={styles.line_vrt} />

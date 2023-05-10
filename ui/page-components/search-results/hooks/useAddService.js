@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { Toast } from '@cogoport/components';
 import { isEmpty } from '@cogoport/utils';
 import { useState, useMemo, useImperativeHandle, useEffect } from 'react';
@@ -16,6 +17,7 @@ import formatMainServiceData from '../../discover_rates/utils/format-main-servic
 import getServiceValues from '../helpers/get-service-values';
 
 import { useForm } from '@/packages/forms';
+import getApiErrorString from '@/packages/forms/utils/getApiError';
 import { useRequest } from '@/packages/request';
 import { useSelector } from '@/packages/store';
 
@@ -67,8 +69,7 @@ const useAddService = ({
 		disabled: !!(
 			addedServiceEnquiry?.[`${service?.service}:${service?.trade_type}`]
 				?.length
-      || addedServiceEnquiry?.[`${service?.service}:${service?.trade_type}`]
-      	?.length
+      || addedServiceEnquiry?.[`${service?.service}:${service?.trade_type}`]?.length
 		),
 	}));
 
@@ -77,8 +78,7 @@ const useAddService = ({
 			obj?.name === 'import_transportation_location_id'
       || obj?.name === 'export_transportation_location_id'
 		) {
-			controls[index].value = prefillDetails?.addServiceDetails?.[
-        	`${service?.service}:${service?.trade_type}`
+			controls[index].value = prefillDetails?.addServiceDetails?.[`${service?.service}:${service?.trade_type}`
 			]?.[obj?.name];
 		}
 	});
@@ -90,7 +90,7 @@ const useAddService = ({
 		register,
 		reset,
 		unregister,
-		setValues,
+		// setValues,
 		setValue,
 		control,
 	} = useForm();
@@ -157,7 +157,6 @@ const useAddService = ({
 	}, [JSON.stringify(formValues)]);
 
 	useEffect(() => {
-		console.log('req to changes');
 		setValue(
 			prefillDetails?.addServiceDetails?.[
 				`${service?.service}:${service?.trade_type}`
@@ -206,10 +205,10 @@ const useAddService = ({
 				volume = 0;
 				weight = 0;
 				airFreightData.forEach((element) => {
-					packages = [...packages, ...element?.packages];
-					packages_count += element?.packages_count;
-					volume += element?.volume;
-					weight += element?.weight;
+					packages = [...packages, ...element?.packages || ''];
+					packages_count += element?.packages_count || 0;
+					volume += element?.volume || 0;
+					weight += element?.weight || 0;
 				});
 			}
 
@@ -243,7 +242,7 @@ const useAddService = ({
 				service_name: payload.service,
 			});
 
-			const res = await CreateAdditionalService.trigger({
+			const res = await CreateAdditionalService({
 				data: payloadToSend,
 			});
 			if (!res.hasError) {
@@ -254,7 +253,7 @@ const useAddService = ({
 			}
 			setLoading(false);
 		} catch (err) {
-			Toast.error(err?.data);
+			Toast.error(getApiErrorString(err?.response?.data));
 			setLoading(false);
 		}
 	};

@@ -39,7 +39,7 @@ function FilterContent({
 		}
 		return (
 			<div className={styles.filter_display}>
-				<div className={cl`${styles.filter_control_label}${styles.label}`}>
+				<div className={cl`${styles.filter_control_label} ${styles.label}`}>
 					{item.label}
 				</div>
 				<Element control={control} {...item} {...props} />
@@ -50,7 +50,7 @@ function FilterContent({
 	return (
 		<div>
 			<div
-				className={cl`${styles.header}${styles.bussiness_module_filter_header}`}
+				className={cl`${styles.header} ${styles.bussiness_module_filter_header}`}
 			>
 				<div className={styles.heading}>{heading}</div>
 				<div className={styles.button}>

@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { cl } from '@cogoport/components';
 import { addDays } from '@cogoport/utils';
 import React, { useRef, useEffect } from 'react';
@@ -79,7 +80,6 @@ function CreateContractModal({
 				<div className={styles.styled_col}>
 					<div className={styles.label}>
 						Validity
-						{' '}
 						<div className={styles.sub_label}>(Max 30 Days)</div>
 					</div>
 					<div className={styles.inline_label}>Start Date</div>
@@ -92,7 +92,8 @@ function CreateContractModal({
 				</div>
 
 				<div className={cl`${styles.styled_col} ${styles.end_date}`}>
-					<div className={styles.inline_label}>End Date</div>
+
+					<div className={`${styles.inline_label} ${styles.inline_date}`}>End Date</div>
 					<DatepickerController
 						{...fields.validity_end}
 						theme="admin"

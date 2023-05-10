@@ -21,18 +21,9 @@ function AdditionalServices({
 	data = {},
 	possible_additional_services = [],
 	refetch = () => {},
-	view = '',
+	// view = '',
 }) {
-	// const {
-	// 	origin_country_id = '',
-	// 	destination_country_id = '',
-	// 	trade_type = '',
-	// 	user_id = '',
-	// 	checkout_id = '',
-	// 	spot_search_id = '',
-	// 	importer_exporter_id = '',
-	// } = data || {};
-	// const className = view === 'checkout' ? '' : styles.search;
+	// const className = view === 'checkout' ? '' : 'search';
 	const [subsidiaryService, setSubsidiaryService] = useState('');
 
 	const {
@@ -133,7 +124,7 @@ function AdditionalServices({
 	};
 
 	return (
-		<div className={cl`${styles.container}`}>
+		<div className={cl`${styles.container} ${styles.className}`}>
 			<div className={styles.services_wrap}>
 				<div className={styles.text}>Additional services</div>
 				<div style={{ maxHeight: '200px', overflow: 'auto' }}>

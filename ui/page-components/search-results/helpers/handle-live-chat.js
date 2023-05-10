@@ -22,17 +22,13 @@ const openChatWidget = (TIMEOUT, user_profile, details) => {
 	}
 };
 
-const handleLiveChat = (user_profile, details, scope) => {
+const handleLiveChat = (user_profile, details) => {
 	const geo = getGeoConstants();
-	const entity_types = user_profile?.partner?.entity_types;
 	const account_type = user_profile?.organization?.account_type;
-	const isChannelPartner =		entity_types?.includes('channel_partner')
-		&& !entity_types?.includes('cogoport');
-	const showChat =		(scope === 'partner' && isChannelPartner)
-		|| (scope === 'app' && account_type === 'importer_exporter');
+	const showChat = account_type === 'importer_exporter';
 	if (showChat) {
 		insertLiveChat();
-		initializeLiveChat(user_profile, scope);
+		initializeLiveChat(user_profile);
 		if (details?.rates_count === 0) {
 			openChatWidget(0, user_profile, details);
 		} else {

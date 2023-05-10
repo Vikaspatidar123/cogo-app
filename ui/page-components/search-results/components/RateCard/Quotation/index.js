@@ -212,36 +212,36 @@ function Quotation({
 		)}
 		<Button
 			onClick={() => {
-              	let provider;
-              	let line;
-              	const additonal_serivces_names = [];
-              	Object.keys(data.service_rates).map((datas) => {
-              		if (
-              			data.service_rates[datas].service_type !== data.service_type
-              		) {
-              			additonal_serivces_names.push(
-              				data.service_rates[datas].service_type,
+				let provider;
+				let line;
+				const additonal_serivces_names = [];
+				Object.keys(data.service_rates).map((datas) => {
+					if (
+						data.service_rates[datas].service_type !== data.service_type
+					) {
+						additonal_serivces_names.push(
+							data.service_rates[datas].service_type,
 						);
-              		}
-              		return null;
-              	});
-              	if (
-              		data.service_type === 'air_freight'
-                  || data.service_type === 'air_customs'
-              	) {
-              		line = (data.airline || {}).short_name;
-              		provider = (data.airline || {}).business_name;
-              	} else {
-              		line = (data.shipping_line || {}).short_name;
-              		provider = (data.shipping_line || {}).business_name;
-              	}
+					}
+					return null;
+				});
+				if (
+					data.service_type === 'air_freight'
+								|| data.service_type === 'air_customs'
+				) {
+					line = (data.airline || {}).short_name;
+					provider = (data.airline || {}).business_name;
+				} else {
+					line = (data.shipping_line || {}).short_name;
+					provider = (data.shipping_line || {}).business_name;
+				}
               	trackEvent(APP_EVENT.search_booked_rate, {
-              		amount              : data.total_price,
-              		amount_currency     : data.total_price_currency,
-              		shipping_line       : line,
-              		service_provider    : provider,
-              		additional_services : additonal_serivces_names,
-              	});
+					amount              : data.total_price,
+					amount_currency     : data.total_price_currency,
+					shipping_line       : line,
+					service_provider    : provider,
+					additional_services : additonal_serivces_names,
+				});
 
               	handleBook();
 			}}
@@ -271,13 +271,13 @@ function Quotation({
 				{results_type === 'rfq' ? (
 					<div style={{ color: '#67C676', fontSize: '18px', fontWeight: 700 }}>
 						{`Total: ${formatAmount({
-            	amount   : data?.total_price_discounted || 0,
-            	currency : data?.total_price_currency,
-            	options  : {
-            		style                 : 'currency',
-            		currencyDisplay       : 'symbol',
-            		maximumFractionDigits : 0,
-            	},
+							amount   : data?.total_price_discounted || 0,
+							currency : data?.total_price_currency,
+							options  : {
+								style                 : 'currency',
+								currencyDisplay       : 'symbol',
+								maximumFractionDigits : 0,
+							},
 						})}`}
 					</div>
 				) : null}
@@ -296,13 +296,12 @@ function Quotation({
 						className={styles.button_styles}
 						loading={loading}
 						style={{
-            	background    : loading ? '#c2c2c2' : '#2C3E50',
-            	border        : loading ? '1px solid #c2c2c2' : '1px solid #2C3E50',
-            	fontSize      : '10px',
-            	fontWeight    : 500,
-            	padding       : '8px',
-            	textTransform : 'capitalize',
-            	marginBottom  : isMobile ? '10px' : '0px',
+							background    : loading ? '#c2c2c2' : '#2C3E50',
+							border        : loading ? '1px solid #c2c2c2' : '1px solid #2C3E50',
+							fontSize      : '10px',
+							fontWeight    : 500,
+							padding       : '8px',
+							textTransform : 'capitalize',
 						}}
 						id="rfq_customize_quote_search"
 					>
@@ -321,7 +320,7 @@ function Quotation({
 				</Button>
 			)}
 			{!['trailer_freight', 'rail_domestic_freight'].includes(
-      	data?.service_type,
+      	        data?.service_type,
 			) && (
 				<div className={styles.breakup_btn_container}>
 					<Button
@@ -401,6 +400,7 @@ function Quotation({
 						</Tooltip>
 					) : null}
 				</div>
+
 			)}
 
 			<div className={styles.coin_container}>

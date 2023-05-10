@@ -53,9 +53,13 @@ function DetentionDemurrage(props) {
 			return minDays(key);
 		}
 
-		const { free_limit = 0, additional_days = 0 } =			additionalDaysPresent?.[key] || {};
+		const { free_limit = 0, additional_days = 0 } =	additionalDaysPresent?.[key] || {};
 
-		return free_limit + additional_days;
+		if (additional_days) {
+			return `${free_limit} Free + ${additional_days} Additional `;
+		}
+
+		return `${free_limit} Free`;
 	};
 
 	const maxDays = (key) => {
@@ -191,6 +195,7 @@ function DetentionDemurrage(props) {
 
 			{show && (
 				<AddMoreDays
+					setSho={setShow}
 					activeTab={activeTab}
 					setActiveTab={setActiveTab}
 					originDetentionFreeLimit={originDetentionFreeLimit}

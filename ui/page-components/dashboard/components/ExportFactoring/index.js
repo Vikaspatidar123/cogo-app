@@ -2,7 +2,13 @@ import { Button } from '@cogoport/components';
 
 import styles from './styles.module.css';
 
+import { useRouter } from '@/packages/next';
+
 function ExportFactoring() {
+	const { push } = useRouter();
+	const handelRouting = () => {
+		push('/export-factoring-login');
+	};
 	return (
 		<div className={styles.Container}>
 			<div className={styles.IconContainer}>
@@ -33,7 +39,7 @@ function ExportFactoring() {
 			</div>
 
 			<div className={styles.ButtonContainer}>
-				<Button>Show Interest</Button>
+				<Button onClick={handelRouting}>Show Interest</Button>
 			</div>
 		</div>
 	);

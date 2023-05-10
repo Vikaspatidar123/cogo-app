@@ -20,18 +20,21 @@ function SassDashboard() {
 	const { air_track } = GetTracking();
 	const airTracking = air_track?.dashboard_products?.air_tracking || {};
 	const oceanTracking = air_track?.dashboard_products?.container_tracking	|| {};
-
-	const { query, country_id } = useSelector(({ general, profile }) => ({
+	const { query, country_id, kyc_status } = useSelector(({ general, profile }) => ({
 		query      : general?.query,
 		country_id : profile?.organization?.country_id,
+		kyc_status : profile?.organization?.kyc_status,
 	}));
+
 	return (
 		<div className={styles.main_class}>
 			<div className={styles.main_class2}>
 				<div className={styles.part1}>
-					<div className={styles.top}>
-						<KYCPage />
-					</div>
+					{kyc_status !== 'pending_verification' && (
+						<div className={styles.top}>
+							<KYCPage />
+						</div>
+					)}
 					<Shipments />
 					<div>
 						<div className={styles.child1}>

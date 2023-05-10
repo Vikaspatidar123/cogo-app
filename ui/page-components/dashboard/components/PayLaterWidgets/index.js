@@ -2,7 +2,13 @@ import { Button } from '@cogoport/components';
 
 import styles from './styles.module.css';
 
+import { useRouter } from '@/packages/next';
+
 function PayLaterWidgets() {
+	const { push } = useRouter();
+	// const handleGoToPayLater = () => {
+	// 	push('/pay-later');
+	// };
 	return (
 		<div className={styles.container}>
 			<div className={styles.IconContainer}>
@@ -25,7 +31,7 @@ function PayLaterWidgets() {
 			</div>
 
 			<div className={styles.ButtonContainer}>
-				<Button themeType="secondary">
+				<Button themeType="secondary" onClick={() => push('/pay-later')}>
 					CHECK ELIGIBILITY NOW
 				</Button>
 			</div>

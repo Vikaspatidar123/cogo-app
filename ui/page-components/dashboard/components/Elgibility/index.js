@@ -2,7 +2,11 @@ import { Button } from '@cogoport/components';
 
 import styles from './styles.module.css';
 
+import { useRouter } from '@/packages/next';
+
 function Elgibility() {
+	const { push } = useRouter();
+
 	return (
 		<div className={styles.header}>
 			<div className={styles.body}>
@@ -26,7 +30,7 @@ function Elgibility() {
 
 			</div>
 			<div className={styles.Bottom}>
-				<Button className={styles.button}>CHECK ELGIBILITY NOW</Button>
+				<Button className={styles.button} onClick={() => push('/pay-later')}>CHECK ELGIBILITY NOW</Button>
 			</div>
 		</div>
 	);

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Controller } from 'react-hook-form';
 
-import Select from '../Business/Select';
+import PriceSelect from '../Business/PriceSelect';
 
 function SelectController(props) {
 	const {
@@ -15,7 +15,7 @@ function SelectController(props) {
 			name={name}
 			rules={rules}
 			render={({ field: { onChange, onBlur, value: newValue } }) => (
-				<Select
+				<PriceSelect
 					{...rest}
 					key={rest.id}
 					onChange={(val, obj) => {

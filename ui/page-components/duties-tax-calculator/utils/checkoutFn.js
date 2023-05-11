@@ -1,4 +1,5 @@
-import { Tooltip } from '@cogoport/components';
+import { Toast, Tooltip } from '@cogoport/components';
+import { isEmpty } from '@cogoport/utils';
 
 const TRANSPORT = {
 	OCEAN : 'SEA',
@@ -17,6 +18,7 @@ const checkoutFn = ({
 	setShowPayMethodModal,
 	dutiesAndTaxes = {},
 	portDetails,
+	address,
 }) => {
 	const { countryCode = '' } = origin || {};
 	const { price, discount } = dutiesAndTaxes || {};
@@ -77,6 +79,7 @@ const checkoutFn = ({
 				amount,
 				totalAmount,
 				billRefId: resp,
+				address,
 			});
 		} else if (resp && isQuotaLeft) {
 			await postTradeEngine(resp, 'QUOTA');
@@ -87,6 +90,8 @@ const checkoutFn = ({
 	const submitHandler = () => {
 		if (isQuotaLeft) {
 			checkoutHandler();
+		} else if (isEmpty(address)) {
+			Toast.error('Please add billing address');
 		} else {
 			setShowPayMethodModal(true);
 			// eslint-disable-next-line no-undef

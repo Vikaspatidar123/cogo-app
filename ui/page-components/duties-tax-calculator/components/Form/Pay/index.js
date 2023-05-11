@@ -14,6 +14,8 @@ import PayMethodModal from './PayMethodModal';
 import ServicesCharge from './ServicesCharge';
 import styles from './styles.module.css';
 
+import SelectAddressComponent from '@/ui/commons/components/CreateOrganizationModel/Components/SelectAddressComponent';
+
 function Pay({
 	formData = {},
 	transportMode = 'OCEAN',
@@ -29,6 +31,7 @@ function Pay({
 	const [showPayMethodModal, setShowPayMethodModal] = useState(false);
 	const [paymentMode, setPaymentMode] = useState('');
 	const { origin = {}, destination = {} } = portDetails || {};
+	const [address, setAddress] = useState(false);
 
 	const { currency, services } = serviceRateData || {};
 	const { duties_and_taxes } = services || {};
@@ -53,10 +56,17 @@ function Pay({
 		isQuotaLeft,
 		setShowPayMethodModal,
 		dutiesAndTaxes: duties_and_taxes,
+		address,
 	});
 	return (
 		<div>
 			<div className={styles.route_div}>
+				{!isQuotaLeft && (
+					<div className={`${styles.text_div} ${styles.billing}`}>
+						<div className={styles.text_head}>Billing Details</div>
+						<SelectAddressComponent address={address} setAddress={setAddress} />
+					</div>
+				)}
 				<div className={styles.text_head}>Transportation Details</div>
 
 				<div className={styles.text_div}>

@@ -10,20 +10,21 @@ const useCreateBillingAddres = ({ checked, addressType }) => {
 	const [response, setResp] = useState();
 
 	const [{ loading }, apiCreateAddres] = useRequest({
-		url    : 'create_organization_billing_address',
+		url    : '/create_organization_billing_address',
 		method : 'post',
 	}, { manual: true });
 	const [{ loading:apiLoading }, apiCreateBillingAddres] = useRequest({
-		url    : 'create_organization_address',
+		url    : '/create_organization_address',
 		method : 'post',
 	}, { manual: true });
 
 	const api = checked ? apiCreateAddres : apiCreateBillingAddres;
+
 	const createSellerAddres = async (data = {}, handleCloseModal = () => {}) => {
 		const { poc_name = '', phoneNumber = '', ...rest } = data || {};
 		const { number = '', country_code = '' } = phoneNumber || {};
 		try {
-			const resp = api({
+			const resp = await api({
 				data: {
 					...rest,
 					poc_details:
@@ -40,12 +41,14 @@ const useCreateBillingAddres = ({ checked, addressType }) => {
 				},
 			});
 			setResp(resp);
-			refetch();
+			if (resp) {
+				refetch();
+				handleCloseModal();
+			}
 			Toast.success('Successfully Added Address', {
 				autoClose : 5000,
 				style     : { background: '#f2fff1' },
 			});
-			handleCloseModal();
 			return resp;
 		} catch (error) {
 			Toast.error(

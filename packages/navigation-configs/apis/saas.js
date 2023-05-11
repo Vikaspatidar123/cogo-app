@@ -71,7 +71,15 @@ const saas = {
 			access_type : 'private',
 			module      : 'dutiesTaxes',
 			feature     : 'dutiesTaxes',
-		}],
+		},
+		{
+
+			api          : 'list_organizations',
+			access_type  : 'private',
+			feature      : 'dutiesTaxes',
+			service_name : 'organization',
+		},
+	],
 	app_saas_hs_code_list: [
 		{
 			api         : 'get_saas_hs_code',

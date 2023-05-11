@@ -6,19 +6,19 @@ import { useSelector } from '@/packages/store';
 const useBillingAddress = () => {
 	const { profile = {} } = useSelector((state) => state);
 	const [addressesList, setAddressesList] = useState();
-	const { partner = {} } = profile || {};
-	const { id = '' } = partner || {};
+	const { organization } = profile || {};
+	const { id:org_id } = organization;
 
 	const [{ loading }, trigger] = useRequest({
-		url        : 'list_organizations',
+		url        : '/list_organizations',
 		method     : 'get',
-		autoCancel : false,
+		autoCancel : true,
 	}, { manual: true });
 
 	const getAddress = useCallback(async () => {
 		const resp = await trigger({
 			params: {
-				filters                    : { id },
+				filters                    : { id: org_id },
 				billing_addresses_required : true,
 				addresses_required         : true,
 			},
@@ -28,7 +28,7 @@ const useBillingAddress = () => {
 			const { addresses = [], billing_addresses = [] } = list?.[0] || {};
 			setAddressesList([...addresses, ...billing_addresses]);
 		}
-	}, [id, trigger]);
+	}, [org_id, trigger]);
 
 	useEffect(() => {
 		getAddress();

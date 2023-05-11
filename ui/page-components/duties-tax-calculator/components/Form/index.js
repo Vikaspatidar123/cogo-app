@@ -133,6 +133,7 @@ function Form({
 
 	return (
 		<div className={`${formPayDetails && 'payDetails'} ${styles.container}`}>
+
 			{formTransportDetails && (
 				<Transportation
 					transportMode={transportMode}

@@ -2,7 +2,7 @@ lockfileVersion: 5.4
 
 specifiers:
   '@cogoport/charts': ^1.0.1
-  '@cogoport/components': ^1.0.347
+  '@cogoport/components': ^1.0.415
   '@cogoport/eslint-config': ^1.1.0
   '@cogoport/icons-react': ^1.0.58
   '@cogoport/maps': ^1.0.2
@@ -34,7 +34,7 @@ specifiers:
 
 dependencies:
   '@cogoport/charts': 1.0.1_biqbaboplfbrettd7655fr4n2y
-  '@cogoport/components': 1.0.373_cyxdlkncyjzqtklzwrmvnywxma
+  '@cogoport/components': 1.0.415_cyxdlkncyjzqtklzwrmvnywxma
   '@cogoport/icons-react': 1.0.58_biqbaboplfbrettd7655fr4n2y
   '@cogoport/maps': 1.0.3_cyxdlkncyjzqtklzwrmvnywxma
   '@cogoport/utils': 1.2.4
@@ -1371,8 +1371,8 @@ packages:
       - react-dom
     dev: false
 
-  /@cogoport/components/1.0.373_cyxdlkncyjzqtklzwrmvnywxma:
-    resolution: {integrity: sha512-Yk+1xAofdk9xgdxL6986nl+9J+bCX2wGRvxPVFZSzcTG2KhcvBz6zUYqz04pWOy9CJO3s/gnigFuVWaJ58freA==}
+  /@cogoport/components/1.0.415_cyxdlkncyjzqtklzwrmvnywxma:
+    resolution: {integrity: sha512-9wEy3JfVyOHiF8Sr6R0tyzAPCXp3/pjrnfjMqXQQ21ylFQECBEyIKNNXIrpIj6x+YO99GAmmcN9Zsc5ya5q/+g==}
     peerDependencies:
       '@cogoport/icons-react': ^1.0.23
       react: ^18.2.0

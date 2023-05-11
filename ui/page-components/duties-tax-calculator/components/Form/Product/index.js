@@ -40,8 +40,6 @@ function Product({
 	const [showValidate, setShowValidate] = useState(false);
 	const [selectedData, setSelectedData] = useState();
 
-	console.log(showHsCodeModal, 'showHsCodeModal');
-
 	const NumberSelector = getField('number');
 	const CurrencySelector = getField('select');
 

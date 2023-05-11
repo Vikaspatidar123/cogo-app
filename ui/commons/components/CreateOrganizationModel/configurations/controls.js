@@ -23,14 +23,13 @@ export const useGetControls = ({ checked, setCityState }) => {
 			span: 6,
 		},
 		{
-			label          : 'Country',
-			name           : 'country_id',
-			type           : 'select',
-			placeholder    : 'Enter Country',
-			rules          : { required: 'required *' },
-			optionsListKey : 'countries',
-			valueKey       : 'id',
-			params         : {
+			label       : 'Country',
+			name        : 'country_id',
+			type        : 'country_select',
+			placeholder : 'Enter Country',
+			rules       : { required: 'required *' },
+			valueKey    : 'id',
+			params      : {
 				filters: {
 					type: 'country',
 				},
@@ -44,9 +43,10 @@ export const useGetControls = ({ checked, setCityState }) => {
 			placeholder : 'Enter Pincode',
 			rules       : { required: 'required *' },
 			span        : 6,
+			params      : { filters: { type: ['pincode'] } },
 			asyncKey    : 'locations',
 			valueKey    : 'postal_code',
-			labelKey    : 'postal_code',
+			labelKey    : 'display_name',
 		},
 		{
 			label       : 'State',
@@ -97,10 +97,11 @@ export const useGetControls = ({ checked, setCityState }) => {
 	];
 
 	return (addAddressControls || []).map((control) => {
-		if (control.name === 'country_id') {
+		if (control.name === 'country_ids') {
 			return {
 				...control,
 				handleChange: (e) => {
+					console.log(e, 'country');
 					setCountry(e);
 				},
 			};
@@ -130,7 +131,7 @@ export const useGetControls = ({ checked, setCityState }) => {
 				},
 				handleChange: (e) => {
 					setCityState({
-						city  : e?.display_name,
+						city  : e?.city?.name,
 						state : e?.region?.name,
 					});
 				},

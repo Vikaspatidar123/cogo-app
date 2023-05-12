@@ -32,9 +32,10 @@ function OceanSchedules() {
 
 	const handleCreateSchedule = () => {
 		if (formValues.origin_port === formValues.destination_port) {
-			setErrorMessage((prev) => !prev);
+			setErrorMessage(true);
 			return;
 		}
+		setErrorMessage(false);
 		createSchedule(formValues.origin_port, formValues.destination_port);
 	};
 
@@ -58,6 +59,7 @@ function OceanSchedules() {
 					<div className={styles.select_container}>
 						Port of Destination
 						<SelectController {...fields[1]} control={control} />
+
 					</div>
 					<div className={styles.button_container}>
 						<Button

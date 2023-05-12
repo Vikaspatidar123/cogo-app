@@ -100,7 +100,7 @@ function ActiveSchedules() {
 				{!loading && scheduleDetails?.schedules?.list.length === 0 && <NoSchedulesCard />}
 			</div>
 			<div className={styles.pagination_container}>
-				{scheduleDetails?.schedules?.list.length !== 0
+				{scheduleDetails?.schedules?.list.length > 0
 				&& (
 					<Pagination
 						type="number"

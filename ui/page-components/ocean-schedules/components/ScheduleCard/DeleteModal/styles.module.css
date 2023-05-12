@@ -1,0 +1,11 @@
+.button_wrapper{
+    display: flex;
+    justify-content: center;
+    padding-bottom: 10px;
+    gap: 25px;
+}
+.heading{
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+}

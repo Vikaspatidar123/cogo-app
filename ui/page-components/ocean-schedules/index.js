@@ -21,7 +21,7 @@ function OceanSchedules() {
 	} = useForm();
 	const [currentPage, setCurrentPage] = useState(1);
 	const { createSchedule } = useCreateSchedule();
-	const { refectSchedules, schedules, loading } = useFetchSchedules({ currentPage, setCurrentPage });
+	const { fetchSchedules, schedules, loading } = useFetchSchedules({ currentPage, setCurrentPage });
 	const [errorMessage, setErrorMessage] = useState(false);
 
 	const formValues = watch();
@@ -81,7 +81,7 @@ function OceanSchedules() {
 					? schedules?.list?.map((item) => (
 						<ScheduleCard
 							schedule={item}
-							refectSchedules={refectSchedules}
+							refectSchedules={fetchSchedules}
 							loading={loading}
 						/>
 					))

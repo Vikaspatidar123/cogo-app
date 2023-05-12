@@ -1,10 +1,9 @@
-import { Toast } from '@cogoport/components';
 import { useState, useEffect, useCallback } from 'react';
 
 import { useRequest } from '@/packages/request';
 import { useSelector } from '@/packages/store';
 
-const useFetchSchedules = ({ pageLimit = 10, currentPage }) => {
+const useFetchSchedules = ({ pageLimit = 4, currentPage }) => {
 	const [filters, setFilters] = useState({});
 	const [schedules, setSchedules] = useState();
 	const { general } = useSelector((state) => state);
@@ -35,7 +34,7 @@ const useFetchSchedules = ({ pageLimit = 10, currentPage }) => {
 			const { data } = res;
 			setSchedules(data);
 		} catch (err) {
-			Toast.error('Unable to fetch schedules. Please try again.');
+			console.log('Unable to fetch schedules. Please try again.');
 		}
 	}, [currentPage, filters, general?.query?.branch_id, pageLimit, schedules?.filter_data, trigger]);
 

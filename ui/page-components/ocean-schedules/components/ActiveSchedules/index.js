@@ -95,15 +95,17 @@ function ActiveSchedules() {
 					))}
 				{!filterFetchLoading && scheduleDetails?.schedules?.list.length === 0 && <NoSchedulesCard />}
 			</div>
-			<div className={styles.pagination_container}>
-				<Pagination
-					type="number"
-					currentPage={currentPage}
-					totalItems={scheduleDetails?.schedules?.total_count}
-					pageSize={6}
-					onPageChange={setCurrentPage}
-				/>
-			</div>
+			{scheduleDetails?.schedules?.list.length > 0 && (
+				<div className={styles.pagination_container}>
+					<Pagination
+						type="number"
+						currentPage={currentPage}
+						totalItems={scheduleDetails?.schedules?.total_count}
+						pageSize={6}
+						onPageChange={setCurrentPage}
+					/>
+				</div>
+			)}
 		</div>
 	);
 }

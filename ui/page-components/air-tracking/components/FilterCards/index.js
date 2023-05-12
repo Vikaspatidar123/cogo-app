@@ -1,4 +1,5 @@
 import { cl } from '@cogoport/components';
+import { IcMPin } from '@cogoport/icons-react';
 
 import {
 	FILTER_KEY_TO_LABEL,
@@ -10,7 +11,6 @@ import styles from './styles.module.css';
 
 function FilterCards({ id, onClick, activeKey, stats, ...props }) {
 	const wide = FILTER_WIDTH[id];
-
 	if (wide === 1 || wide === 2) {
 		const headingKey = id;
 		const subheading1Key = WIDE_FILTER_KEY[id].subheading1;
@@ -55,7 +55,7 @@ function FilterCards({ id, onClick, activeKey, stats, ...props }) {
 				) : (
 					<div
 						role="presentation"
-						className={`${styles.header_container} ${
+						className={cl`${styles.header_container} ${
 							isDisabled && styles.disabled_card
 						} ${id === activeKey && styles.active}`}
 						disabled={isDisabled}
@@ -69,7 +69,7 @@ function FilterCards({ id, onClick, activeKey, stats, ...props }) {
 				<div className={styles.flex}>
 					<div
 						role="presentation"
-						className={`${styles.sub_heading} ${
+						className={cl`${styles.sub_heading} ${
                         	isSubheading1Disabled && styles.disabled_card
 						} ${id === activeKey && styles.active}`}
 						disabled={isSubheading1Disabled}
@@ -81,7 +81,7 @@ function FilterCards({ id, onClick, activeKey, stats, ...props }) {
 					<div className={styles.vertical_line} />
 					<div
 						role="presentation"
-						className={`${styles.sub_heading} ${
+						className={cl`${styles.sub_heading} ${
 							isSubheading2Disabled && styles.disabled_card
 						} ${id === activeKey && styles.active}`}
 						disabled={isSubheading2Disabled}
@@ -108,6 +108,7 @@ function FilterCards({ id, onClick, activeKey, stats, ...props }) {
 			onClick={() => !isDisabled && onClick(id)}
 		>
 			<div className={styles.card_content}>
+				{id === activeKey && <div className={styles.icon}><IcMPin /></div>}
 				<h3 className={styles.text}>{label}</h3>
 				<h1 className={styles.text}>{value}</h1>
 			</div>

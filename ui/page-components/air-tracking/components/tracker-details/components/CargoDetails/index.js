@@ -31,11 +31,15 @@ function CargoDetails({ loading, trackerDetails }) {
 							</div>
 						)}
 						<div className={styles.details}>
-							weight:
-							<div>{cargoList[0]?.weight}</div>
+							<span className={styles.text_head}>weight:</span>
+							<div>
+								{cargoList[0]?.weight}
+								{' '}
+								Kg
+							</div>
 						</div>
 						<div className={styles.details}>
-							Piece:
+							<span className={styles.text_head}>Piece:</span>
 							<div>{cargoList[0]?.piece}</div>
 						</div>
 					</div>

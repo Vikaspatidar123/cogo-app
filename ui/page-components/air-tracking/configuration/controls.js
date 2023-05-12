@@ -2,7 +2,7 @@ export const Controls = [
 
 	{
 		label          : 'Air line',
-		name           : 'airline_id',
+		name           : 'air_lines',
 		type           : 'multi_select',
 		placeholder    : 'Air line',
 		value          : '',

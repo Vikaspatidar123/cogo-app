@@ -3,9 +3,8 @@ import { IcMLocation } from '@cogoport/icons-react';
 import dynamic from 'next/dynamic';
 import { useState, useEffect } from 'react';
 
-import { isPastOrPresentDay } from '../common/utils';
-
 import styles from './styles.module.css';
+import { isPastOrPresentDay } from './utils';
 
 const CogoMaps = dynamic(() => import('./MapsComp'), { ssr: false });
 
@@ -165,7 +164,7 @@ function TrackerMap({
 				setLoading(false);
 			}, 0);
 		}
-	}, [CurvePoint, RemainingPoint, points, points?.length, type]);
+	}, [points?.length]);
 
 	useEffect(() => {
 		if (type === 'ocean_schedule' && curvePoints.length > 0) {

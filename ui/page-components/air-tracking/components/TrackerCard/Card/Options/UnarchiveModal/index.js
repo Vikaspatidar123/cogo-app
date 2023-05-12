@@ -18,11 +18,12 @@ function UnarchiveModal({
 
 	return (
 		<Modal size="md" show={show} onClose={() => setShow(!show)} placement="center">
-			<Modal.Header title="Are you sure that you want to Unarchive this tracker?" />
-
-			<div className={styles.footer}>
-				<Button onClick={() => setShow(!show)}>Cancel</Button>
-				<Button onClick={() => deleteData()}>OK</Button>
+			<div>
+				<div className={styles.text}>Are you sure that you want to Unarchive this tracker?</div>
+				<div className={styles.footer}>
+					<Button size="md" themeType="secondary" onClick={() => setShow(!show)}>Cancel</Button>
+					<Button size="md" themeType="primary" onClick={() => deleteData()}>OK</Button>
+				</div>
 			</div>
 		</Modal>
 	);

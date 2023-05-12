@@ -100,7 +100,16 @@
 		padding-left: 24px;
 	}
 }
+.shipping_main{
+	width: 50%;
+	height: 80vh;
+	padding-right: 0;
+	overflow-y: auto;
 
+	@media (max-width: 760px) {
+		width: 100%;
+	}
+}
 .step {
 	position: relative;
 	> div {

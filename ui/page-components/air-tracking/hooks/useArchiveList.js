@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { Toast } from '@cogoport/components';
 import { useState, useEffect, useCallback } from 'react';
 
@@ -6,8 +7,8 @@ import { prepareFilters } from '../common/utils';
 import { useRequest } from '@/packages/request';
 import { useSelector } from '@/packages/store';
 
-const useArchiveList = () => {
-	const [trackers, setTrackers] = useState(null);
+const useArchiveList = ({ archived }) => {
+	const [airTrackers, setAirTrackers] = useState(null);
 	const [filters, setFilters] = useState({});
 	const [pagination, setPagination] = useState({ page: 1 });
 
@@ -16,15 +17,13 @@ const useArchiveList = () => {
 		url    : '/list_saas_air_subscriptions',
 		method : 'get',
 	}, { manual: true });
-
 	const fetchTrackers = useCallback(async () => {
 		try {
 			const res = await trigger({
 				params: {
 					filters: {
 						organization_branch_id : general?.query?.branch_id,
-						...prepareFilters(filters, trackers?.filter_data ?? {}),
-						...filters,
+						...prepareFilters(filters, airTrackers?.filter_data ?? {}),
 						status                 : 'completed',
 					},
 					page       : pagination.page,
@@ -34,22 +33,23 @@ const useArchiveList = () => {
 
 			const { data } = res || {};
 
-			setTrackers(data);
+			setAirTrackers(data);
 		} catch (err) {
-			Toast.error('Cannot fetch store quota. Please try again later.');
+			console.log(err);
+			// Toast.error('Cannot fetch store quota. Please try again later.');
 		}
-	}, []);
+	}, [filters, trigger]);
 
 	useEffect(() => {
 		fetchTrackers();
-	}, [filters, pagination]);
+	}, [filters, pagination, archived]);
 
 	const refetch = () => fetchTrackers(false);
 
 	return {
 		loading,
-		trackers,
-		setTrackers,
+		trackers: airTrackers,
+		setAirTrackers,
 		fetchTrackers,
 		filters,
 		pagination,

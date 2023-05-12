@@ -19,11 +19,16 @@
 
 	.details {
 		display: flex;
+		color: black;
+		margin: 0px 0px 8px;
+		font-size: 14px;
 	}
 
 	.heading {
 		margin-bottom: 10px;
-		font-weight: 600;
+		font-size: 15px;
+		color: rgb(125, 125, 125);
+        font-weight: 700;
 	}
 
 	@media screen and (max-width: 767px) {
@@ -66,4 +71,9 @@
 	-webkit-box-pack: justify;
 	justify-content: space-between;
 	text-align: left;
+}
+
+.text_head{
+	font-weight: 600;
+	padding-right:10px;
 }

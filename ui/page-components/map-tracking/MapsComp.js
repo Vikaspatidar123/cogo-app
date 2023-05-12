@@ -2,11 +2,11 @@ import { CogoMaps, L } from '@cogoport/maps';
 import dynamic from 'next/dynamic';
 import { useState, useEffect } from 'react';
 
-const Pointer = dynamic(() => import('../CogoMaps/Pointer'), {
+const Pointer = dynamic(() => import('./CogoMaps/Pointer'), {
 	ssr: false,
 });
 
-const Route = dynamic(() => import('../CogoMaps/Route'), {
+const Route = dynamic(() => import('./CogoMaps/Route'), {
 	ssr: false,
 });
 

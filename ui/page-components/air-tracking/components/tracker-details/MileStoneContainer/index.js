@@ -11,19 +11,22 @@ import {
 	isPastOrPresentDay,
 } from './common/utils';
 import styles from './styles.module.css';
-import TrackerMap from './TrackerMap';
+
+import TrackerMap from '@/ui/page-components/map-tracking';
 
 function MilestonesContainer({
 	handleShareModal,
 	trackerDetails,
 	selectedContainerId,
+	track = false,
+	renderMap = () => {},
 }) {
 	const [selectedMilestonesList, setSelectedMilestonesList] = useState([]);
 	const [incotermStep, setIncotermStep] = useState(-1);
 	const containersMilestonesList = trackerDetails?.data ?? [];
 	const incoterm = trackerDetails?.shipment_details?.incoterm;
 	const mapPoints = [];
-
+	console.log(trackerDetails, 'trackerDetails', selectedContainerId);
 	if (trackerDetails?.air_flight_info?.length > 0) {
 		trackerDetails?.data[0]?.tracking_data
 			?.sort((a, b) => (a?.actual_date > b?.actual_date ? 1 : -1))
@@ -110,51 +113,50 @@ function MilestonesContainer({
 	}, [selectedMilestonesList]);
 	const renderEmpty = () => (
 		<div className={styles.empty}>
-			{' '}
+
 			<div className={styles.empty_content}>Tracking Data Not Available</div>
-			{' '}
+
 			<div className={styles.empty_content}>
-				{' '}
+
 				Fetching data on this cargo / shipment is taking longer than usual.
 			</div>
-			{' '}
 
 		</div>
 	);
 	return (
 		<div className={styles.card}>
-			{' '}
-			<div className={styles.headers}>
-				{' '}
-				<div className={styles.header}>
-					{' '}
-					<h1>TRACKING INFORMATION </h1>
-					{' '}
-					<div
-						className={styles.share}
-						{...{ 'data-instructional-overlay-step': '8' }}
-						role="presentation"
-						onClick={() => handleShareModal()}
-					>
-						{' '}
-						<IcMShare height={24} width={24} />
-						{' '}
-						Share
+
+			{!track &&	(
+				<div className={styles.headers}>
+
+					<div className={styles.header}>
+
+						<h1>TRACKING INFORMATION </h1>
+
+						<div
+							className={styles.share}
+							{...{ 'data-instructional-overlay-step': '8' }}
+							role="presentation"
+							onClick={() => handleShareModal()}
+						>
+
+							<IcMShare height={24} width={24} />
+
+							Share
+						</div>
+
 					</div>
-					{' '}
 
 				</div>
-				{' '}
-
-			</div>
+			)}
 
 			{selectedMilestonesList?.length > 0 ? (
 				<div className={styles.tracking_details}>
-					{' '}
-					<div className={styles.shipping_line}>
-						{' '}
+
+					<div className={`${track ? styles.shipping_main : styles.shipping_line}`}>
+
 						<div className={styles.step_container}>
-							{' '}
+
 							{selectedMilestonesList.map((combinedMilestones, idx) => {
 								const currentMilestone = combinedMilestones.slice(-1)[0];
 								const isLast = idx === selectedMilestonesList.length - 1;
@@ -206,24 +208,24 @@ function MilestonesContainer({
 											className={`${styles?.[prefixClass]} 
 											${shadedClass === 'shaded' ? styles.shaded : ''}`}
 										>
-											{' '}
+
 											{!isLast ? (
 												<div className={styles.tail}>
-													{' '}
+
 													<div className={styles.tail_content}>
-														{' '}
+
 														<IcMAirport height={20} width={20} className={styles.icons} />
-														{' '}
+
 													</div>
-													{' '}
+
 												</div>
 											) : null}
 											{incotermStep >= idx ? (
 												<div className={styles.incoterm_line}>
-													{' '}
+
 													{idx === 0 ? (
 														<div className={styles.incoterm_label}>
-															{' '}
+
 															Inco:
 															{incoterm}
 														</div>
@@ -257,21 +259,20 @@ function MilestonesContainer({
 																: null;
 															return (
 																<div className={styles.text}>
-																	{' '}
+
 																	<p style={{ marginBottom: 0 }}>
-																		{' '}
+
 																		{description}
 																	</p>
-																	{' '}
+
 																	<p className={styles.description}>
-																		{' '}
+
 																		{pieces}
-																		{' '}
+
 																		{weight}
-																		{' '}
+
 																		{flight}
 																	</p>
-																	{' '}
 
 																</div>
 															);
@@ -279,55 +280,51 @@ function MilestonesContainer({
 													</>
 												) : (
 													<>
-														{' '}
+
 														<p className={styles.time}>{unshadedTimeHeading}</p>
-														{' '}
+
 														<p className={styles.description}>
-															{' '}
+
 															{unshadedLocation}
 														</p>
-														{' '}
 
 													</>
 												)}
 											</div>
-											{' '}
+
 											{incotermStep === idx && (
 												<div className={styles.incoterm_handover_container}>
-													{' '}
+
 													<p>Handover to consignee as per incoterm</p>
-													{' '}
+
 												</div>
 											)}
 										</div>
-										{' '}
 
 									</div>
 								);
 							})}
 						</div>
-						{' '}
 
 					</div>
-					{' '}
+
 					<div className={styles.tracker}>
-						{' '}
-						<TrackerMap
-							points={mapPoints.slice(0, mapPoints.length - 1)}
-							type="air"
-							height="65vh"
-							route={{
-								origin_port: trackerDetails?.airway_bill_details?.origin,
-								destination_port:
+						{track ? renderMap()
+							: (
+								<TrackerMap
+									points={mapPoints.slice(0, mapPoints.length - 1)}
+									type="air"
+									height="65vh"
+									route={{
+										origin_port: trackerDetails?.airway_bill_details?.origin,
+										destination_port:
                                 trackerDetails?.airway_bill_details?.destination,
-								tracking_no    : trackerDetails?.airway_bill_no,
-								tracking_label : 'Airway Bill No',
-							}}
-						/>
-						{' '}
-
+										tracking_no    : trackerDetails?.airway_bill_no,
+										tracking_label : 'Airway Bill No',
+									}}
+								/>
+							)}
 					</div>
-					{' '}
 
 				</div>
 			) : (

@@ -1,11 +1,3 @@
-import { useState } from 'react';
-
-import {
-	FILTER_CARDS_LIST,
-	FILTER_KEYS,
-	FILTER_KEY_TO_ID,
-	FILTER_KEY_TO_LABEL,
-} from '../../common/constants';
 import useArchiveList from '../../hooks/useArchiveList';
 import useFetchTrackers from '../../hooks/useFetchTrackers';
 import FilterCards from '../FilterCards';
@@ -23,7 +15,11 @@ function Tab({ archived, setArchived }) {
 		filters,
 		setFilters,
 		refetch,
-	} = useFetchTrackers();
+		activeKey,
+		onClick,
+		selectedCardLabel,
+		FILTER_CARDS_LIST,
+	} = useFetchTrackers({ archived });
 	const {
 		trackers: trackersArchived,
 		loading: loadingArchived,
@@ -33,32 +29,9 @@ function Tab({ archived, setArchived }) {
 		filters: filters1,
 		setFilters: setFilters1,
 		refetch: refetch1,
-	} = useArchiveList();
+	} = useArchiveList({ archived });
 
 	const { stats = {} } = trackers || {};
-	const [activeKey, setActiveKey] = useState(FILTER_KEYS.ALL_SHIPMENTS);
-	const removeActiveKeyFromFilters = () => {
-		const newFilters = { ...filters };
-		delete newFilters[activeKey];
-
-		return newFilters;
-	};
-	const onClick = (key) => {
-		if (key === activeKey) return;
-
-		const newFilters = removeActiveKeyFromFilters();
-		setActiveKey(key);
-		if (key === FILTER_KEYS.ALL_SHIPMENTS) {
-			setFilters(newFilters);
-		} else {
-			newFilters[key] = stats[FILTER_KEY_TO_ID[key]];
-			setFilters(newFilters);
-		}
-	};
-	const selectedCardLabel = FILTER_KEY_TO_LABEL[
-    	FILTER_CARDS_LIST.filter((key) => key === activeKey)[0]
-	] ?? '';
-
 	return (
 		<div>
 			{!archived && (

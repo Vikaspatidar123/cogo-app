@@ -11,8 +11,8 @@ function useUnarchive({ saasSubscriptionId }) {
 	const disableTracker = async () => {
 		let requestData = {};
 		requestData = {
-			status                         : 'active',
-			saas_container_subscription_id : saasSubscriptionId,
+			status                   : 'active',
+			saas_air_subscription_id : saasSubscriptionId,
 		};
 
 		try {

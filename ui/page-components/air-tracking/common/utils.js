@@ -2,7 +2,6 @@ import { FILTER_KEYS, FILTER_KEY_TO_ID } from './constants';
 
 const prepareFilters = (filters, filters_data) => {
 	const finalFilters = {};
-
 	Object.keys(filters).forEach((key) => {
 		if (key === FILTER_KEYS.AIR_LINES) {
 			finalFilters[FILTER_KEY_TO_ID[key]] = filters[key];
@@ -22,7 +21,6 @@ const prepareFilters = (filters, filters_data) => {
 			finalFilters.id = filters[key];
 		}
 	});
-
 	return finalFilters;
 };
 

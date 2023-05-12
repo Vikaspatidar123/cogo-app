@@ -12,7 +12,6 @@ const POC_TYPES = { CONSIGNEE: 'CONSIGNEE', SHIPPER: 'SHIPPER' };
 
 function FilterComponent({ trackers, setFilters, setShowFilters }) {
 	const { watch, setValue, control } = useForm();
-
 	const removeDuplicates = (list, key) => {
 		const obj = {};
 		(list || [])?.forEach((item) => {
@@ -52,18 +51,17 @@ function FilterComponent({ trackers, setFilters, setShowFilters }) {
 	}));
 
 	const fields = Controls;
-
+	const data = watch();
 	const handleSetFilters = () => {
-		setFilters(watch());
+		setFilters(data);
 	};
 
 	const handleClear = () => {
 		setFilters({});
-		setValue('shipping_line_id', null);
+		setValue('air_lines', []);
 		setValue('shipper', null);
 		setValue('consignee', null);
 	};
-
 	return (
 		<div className={`${styles.container} 
 		${(shippingLinesList.length === 0 && shippersList.length === 0
@@ -121,7 +119,14 @@ function FilterComponent({ trackers, setFilters, setShowFilters }) {
 						Clear All
 
 					</Button>
-					<Button size="md" themeType="accent" onClick={() => { handleSetFilters(); }}>Apply</Button>
+					<Button
+						size="md"
+						themeType="accent"
+						onClick={() => { handleSetFilters(); }}
+					>
+						Apply
+
+					</Button>
 				</div>
 			)}
 			{(shippingLinesList.length === 0 && shippersList.length === 0 && consigneesList.length === 0) && (

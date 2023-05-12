@@ -1,5 +1,11 @@
 .footer {
 	display: flex;
-	gap: 10px;
-	justify-content: flex-end;
+	gap: 6px;
+	justify-content: center;
+	margin-bottom:10px;
+}
+
+.text{
+	text-align: center;
+	padding:20px;
 }

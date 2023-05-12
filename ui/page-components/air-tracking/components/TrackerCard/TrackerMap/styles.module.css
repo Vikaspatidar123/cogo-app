@@ -1,0 +1,49 @@
+.container {
+	position: relative;
+}
+
+.blur_screen {
+	filter: blur(8px);
+}
+
+.loading_screen {
+	position: absolute;
+	top: 35%;
+	left: 5%;
+	z-index: 1000;
+	align-self: center;
+	width: 90%;
+	color: #4f4f60;
+	text-align: center;
+}
+
+.map_unable {
+	margin: 10px;
+	font-size: large;
+	font-weight: 600;
+	color: #282b2e;
+}
+
+.text_card {
+	text-align: center;
+}
+
+.route {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-evenly;
+}
+
+.flex{
+display:flex;
+justify-content:space-between; 
+}
+.text{
+	
+}
+.loading{
+	align-items: center;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+}

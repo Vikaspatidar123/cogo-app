@@ -2,11 +2,10 @@ import { Placeholder, Pagination, Popover } from '@cogoport/components';
 import { IcMListView, IcMMap, IcMFilter } from '@cogoport/icons-react';
 import { useState, useEffect } from 'react';
 
-import TrackerMap from '../tracker-details/MileStoneContainer/TrackerMap';
-
 import Card from './Card';
 import FilterComponent from './FIlterComponent';
 import styles from './styles.module.css';
+import TrackerMap from './TrackerMap';
 
 import { TrendCardSkeleton } from '@/ui/page-components/freight-rate-trend/components/trend-card';
 
@@ -84,7 +83,6 @@ function TrackerCard({
 			getAllAirRoutes(trackerList);
 		}
 	}, [trackerList, pagination]);
-
 	return (
 		<div className={styles.container}>
 			<div className={styles.head}>
@@ -151,6 +149,7 @@ function TrackerCard({
 							<div>
 								{trackerList?.map((tracker) => (
 									<Card
+										key={tracker?.id}
 										tracker={tracker}
 										setTrackers={setTrackers}
 										refetch={refetch}
@@ -166,20 +165,22 @@ function TrackerCard({
 					{!loading
 						? (
 							<div className={styles.map_container}>
-								<TrackerMap points={points} />
+								<TrackerMap points={points} type="air" />
 							</div>
 						) : (<Placeholder height="182px" width="324px" />)}
 				</div>
 			)}
-			<div className={styles.pagination}>
-				<Pagination
-					type="number"
-					currentPage={pagination.page}
-					totalItems={trackers?.total_count}
-					pageSize={10}
-					onPageChange={(e) => { setPagination({ page: e }); }}
-				/>
-			</div>
+			{(trackerList || []).length > 0 && (
+				<div className={styles.pagination}>
+					<Pagination
+						type="number"
+						currentPage={pagination.page}
+						totalItems={trackers?.total_count}
+						pageSize={10}
+						onPageChange={(e) => { setPagination({ page: e }); }}
+					/>
+				</div>
+			)}
 		</div>
 	);
 }

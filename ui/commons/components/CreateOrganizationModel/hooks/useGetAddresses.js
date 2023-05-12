@@ -25,6 +25,7 @@ const useBillingAddress = () => {
 		});
 		if (resp?.data) {
 			const { list = {} } = resp?.data || {};
+			console.log(list, 'list');
 			const { addresses = [], billing_addresses = [] } = list?.[0] || {};
 			setAddressesList([...addresses, ...billing_addresses]);
 		}

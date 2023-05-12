@@ -37,9 +37,15 @@ const usePayment = () => {
 		amount = 0,
 		totalAmount = 0,
 		billRefId = '',
+		address = '',
 	}) => {
 		try {
 			const dutiesTaxesProductId = await getServiceDataHandler();
+			console.log(address, 'address');
+			const isBillingAddress = !address?.tax_number;
+			const addressKey = isBillingAddress
+				? 'organizationBillingAddressId'
+				: 'organizationAddressId';
 			const resp = await trigger({
 				data: {
 					userId                : id,
@@ -47,6 +53,7 @@ const usePayment = () => {
 					currency,
 					billRefId,
 					userName              : name,
+					[addressKey]          : address?.id,
 					userEmail             : email,
 					userMobile            : mobile_number,
 					userMobileCountryCode : mobile_country_code,

@@ -12,7 +12,7 @@ import getField from '@/packages/forms/Controlled/index';
 import { useSelector } from '@/packages/store';
 
 function Pricing({
-	AddProductHandler,
+	addProductHandler,
 	addProductLoading,
 	productDetailsfromAPi,
 	prefiledValues,
@@ -53,7 +53,7 @@ function Pricing({
 			pricingDetails : values,
 			logoUrl        : values?.productImg,
 		};
-		AddProductHandler(allData);
+		addProductHandler(allData);
 	};
 
 	const onError = (error) => {

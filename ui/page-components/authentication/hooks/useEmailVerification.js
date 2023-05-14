@@ -4,7 +4,7 @@ import { useRequest } from '@/packages/request';
 
 const useEmailVerification = () => {
 	const [{ loading: resendEmailAPILoading }, resendEmailAPItrigger] = useRequest({
-		url    : '/lead/resend_lead_verification_email',
+		url    : 'resend_lead_verification_email',
 		method : 'post',
 	}, { manual: true });
 

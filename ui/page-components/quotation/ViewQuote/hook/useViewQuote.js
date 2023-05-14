@@ -9,10 +9,10 @@ const useViewQuote = () => {
 	const { quotation_id } = query;
 
 	const { profile } = useSelector((state) => state);
-	console.log(profile, 'profile');
+
 	const [{ loading, data: viewQuoteData }, quoteTrigger] = useRequestBf({
 		method  : 'get',
-		url     : 'saas/quote',
+		url     : '/saas/quote',
 		authKey : 'get_saas_quote',
 	}, { manual: true });
 
@@ -32,9 +32,8 @@ const useViewQuote = () => {
 		refetchQuote();
 	}, []);
 
-	console.log(viewQuoteData, 'viewQuoteData');
 	return {
-		loading, viewQuoteData,
+		loading, viewQuoteData, quoteId: quotation_id,
 	};
 };
 

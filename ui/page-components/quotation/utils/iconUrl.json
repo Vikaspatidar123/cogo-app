@@ -1,3 +1,6 @@
 {
-    "loading":"https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/loading.svg"
+    "loading":"https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/loading.svg",
+    "cogoportLogo":"https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/cogoport2.png",
+    "ship":"https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/shipIcon.jpg",
+    "air":"https://cdn.cogoport.io/cms-prod/cogo_admin/vault/original/airicon.svg"
 }

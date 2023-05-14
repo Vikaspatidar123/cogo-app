@@ -37,7 +37,7 @@ const useAddTrackerCSV = () => {
 			const airValue = 'air';
 
 			push(
-				`/saas/air-tracking/${airline_id}?
+				`/saas/air-tracking/[tracker_id]?
 				isFirstVisit=true&shippingLineId=${airline_id}&trackingType=${airValue}`,
 			);
 		} catch (err) {

@@ -12,7 +12,6 @@ function PocModal({ isOpen, handleModal, fetchTrackerDetails, trackerDetails }) 
 	const [subscriptionAlerts, setSubscriptionAlerts] = useState([]);
 	const { fetchAlertDetails } = useFetchAlerts();
 	const [determiningStep, setDeterminingStep] = useState(true);
-
 	useEffect(() => {
 		if (trackerDetails?.id) {
 			fetchAlertDetails(trackerDetails.id)
@@ -88,7 +87,7 @@ function PocModal({ isOpen, handleModal, fetchTrackerDetails, trackerDetails }) 
 					</div>
 				) : (
 					<div>
-						<Modal.Body>{handleModel()}</Modal.Body>
+						{handleModel()}
 					</div>
 				)}
 			</div>

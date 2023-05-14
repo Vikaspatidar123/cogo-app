@@ -26,7 +26,6 @@ function MilestonesContainer({
 	const containersMilestonesList = trackerDetails?.data ?? [];
 	const incoterm = trackerDetails?.shipment_details?.incoterm;
 	const mapPoints = [];
-	console.log(trackerDetails, 'trackerDetails', selectedContainerId);
 	if (trackerDetails?.air_flight_info?.length > 0) {
 		trackerDetails?.data[0]?.tracking_data
 			?.sort((a, b) => (a?.actual_date > b?.actual_date ? 1 : -1))

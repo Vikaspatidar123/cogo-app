@@ -19,15 +19,19 @@ function TrackerDetails() {
 		selectedContainerId,
 		trackerDetails,
 		maploading,
+		loadingForFirstVisit,
+		timeRemaining,
 	} = useFetchTrackerDetails();
-
 	const isArchived = trackerDetails?.status === 'completed';
 	const [isShareModalOpen, setShareModal] = useState(false);
 
 	const handleShareModal = () => {
 		setShareModal(!isShareModalOpen);
 	};
-
+	const renderWithTimer = () => <div>helklo</div>;
+	if (loadingForFirstVisit && timeRemaining > 0) {
+		return renderWithTimer();
+	}
 	return (
 		<div>
 			<div className={styles.header}>
@@ -44,7 +48,7 @@ function TrackerDetails() {
 				</div>
 			</div>
 			<div>
-				<div className={styles.row}>
+				<div className={styles.flex}>
 					<PocDetails
 						trackerDetails={trackerDetails}
 						disabled={isArchived}
@@ -52,6 +56,9 @@ function TrackerDetails() {
 					/>
 					<CommodityDetails trackerDetails={trackerDetails} fetchTrackerDetails={fetchTrackerDetails} />
 					<CargoDetails trackerDetails={trackerDetails} />
+				</div>
+				<div className={styles.row}>
+
 					<div className={styles.tracking}>
 						<div className={styles.track}>
 							<MilestonesContainer

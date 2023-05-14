@@ -62,7 +62,14 @@
 		flex-direction: column;
 	}
 }
-
+.flex{
+	display:flex;
+	justify-content: space-between;
+	@media (max-width: 760px) {
+		display: flex;
+		flex-direction: column;
+	}
+}
 .bill {
 	display: flex;
 }

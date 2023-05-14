@@ -17,7 +17,8 @@ function AddCommodityDetail({ isOpen, handleModal, trackerDetails, setTrackerDet
 		url    : 'list_hs_codes',
 		method : 'get',
 	}, { manual: true });
-
+	const { commodity_details } = trackerDetails || [];
+	const commodity_label = commodity_details?.commodity;
 	const getCommodity = useCallback(async () => {
 		try {
 			const res = await trigger({
@@ -29,14 +30,14 @@ function AddCommodityDetail({ isOpen, handleModal, trackerDetails, setTrackerDet
 		} catch (err) {
 			Toast.error(err?.message || 'No commodity found');
 		}
-	}, [data, trigger]);
+	}, [trigger]);
 
 	useEffect(() => {
 		getCommodity();
 	}, [getCommodity]);
-
+	const filterCommodity = commodity?.filter((items) => items.name === commodity_label);
+	//    useEffect(()=>{},[])
 	if (data?.length === 0) return null;
-
 	return (
 		<Modal
 			show={isOpen}
@@ -50,16 +51,17 @@ function AddCommodityDetail({ isOpen, handleModal, trackerDetails, setTrackerDet
 				</div>
 				<div className={styles.list}>
 					<Select
+						key={filterCommodity?.[0]?.id}
 						className={styles.input}
-						value={value?.value}
+						value={value?.value || filterCommodity?.[0]?.id}
 						onChange={(e, v) => {
 							setValue(v);
 						}}
 						placeholder="Select Commodity"
 						options={(commodity || []).map((item) => ({
-							label    : item.name,
-							value    : item.id,
-							hsc_code : item.hsc_code,
+							label   : item.name,
+							value   : item.id,
+							hs_code : item.hs_code,
 						}))}
 					/>
 				</div>

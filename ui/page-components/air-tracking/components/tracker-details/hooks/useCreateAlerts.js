@@ -21,12 +21,12 @@ const useCreateAlerts = () => {
 	) => {
 		try {
 			const requestData = {
-				saas_container_subscription_id : trackerId,
+				saas_air_subscription_id : trackerId,
 				shipper,
 				consignee,
-				performed_by_id                : '',
-				alert_configuration            : alerts,
-				organization_branch_id         : query?.branch_id,
+				performed_by_id          : '',
+				alert_configuration      : alerts,
+				organization_branch_id   : query?.branch_id,
 			};
 			if (containerAlertId) {
 				requestData.id = containerAlertId;

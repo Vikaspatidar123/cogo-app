@@ -12,25 +12,21 @@ function useAddCommodity({ trackerDetails, setTrackerDetails, handleModal, fetch
 			let requestData = {};
 			requestData = {
 				saas_air_subscription_id : trackerDetails?.id,
-				hsc_code                 : values?.hsc_code,
+				hs_code                  : values?.hs_code,
 				commodity                : values?.label,
 				airway_bill_no           : trackerDetails.airway_bill_no,
 			};
-
 			try {
 				const res = await trigger({ data: requestData });
-				const { hasError } = res || {};
-				if (hasError) throw new Error();
-
 				const { data } = res;
+
 				const updatedTrackerDetails = {
 					...trackerDetails,
 					shipment_info: data,
 				};
-
 				setTrackerDetails(updatedTrackerDetails);
-				handleModal();
 				fetchTrackerDetails();
+				handleModal(false);
 			} catch (err) {
 				Toast.error("Couldn't add shipment details", err);
 			}

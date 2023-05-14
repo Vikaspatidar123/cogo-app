@@ -20,6 +20,7 @@ const useFetchAlerts = () => {
 			if (hasError) throw new Error();
 
 			const { data } = res;
+			console.log(data, 'data', res);
 			return data;
 		} catch (err) {
 			console.log(err?.message);

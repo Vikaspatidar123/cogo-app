@@ -6,7 +6,7 @@ import { POC_TYPES } from '../../common/constant';
 import PocModal from './PocModal';
 import styles from './styles.module.css';
 
-function PocDetails({ disabled, fetchTrackerDetails, trackerDetails, ...props }) {
+function PocDetails({ disabled, fetchTrackerDetails, trackerDetails }) {
 	const { poc_details = [], shipment_details } = trackerDetails || {};
 	const [isModalOpen, setModal] = useState(false);
 	const handleModal = () => {
@@ -24,10 +24,13 @@ function PocDetails({ disabled, fetchTrackerDetails, trackerDetails, ...props })
 		const { trade_type } = shipment_details || {};
 		const incoterm = trackerDetails?.shipment_info?.incoterm;
 		return (
-			<div role="presentation" className={styles.card} onClick={handleModal}>
+			<div role="presentation" className={styles.card}>
+				<div className={styles.head}>
+					POC DETAILS
+				</div>
 				{shipperDetails != null && (
 					<div className={styles.info}>
-						<div className={styles.label}>Shipper:</div>
+						<div className={styles.label}>Shipper :</div>
 						<div className={styles.value}>{shipperDetails?.name}</div>
 					</div>
 				)}
@@ -54,14 +57,15 @@ function PocDetails({ disabled, fetchTrackerDetails, trackerDetails, ...props })
 	};
 
 	const renderEmpty = () => (
-		<div className={styles.commodity_details}>
+		<div
+			role="presentation"
+			className={styles.commodity_details}
+			onClick={() => handleModal()}
+			disabled={disabled}
+		>
 
 			<div
-				role="presentation"
-				className={styles.dash_button}
-				onClick={() => handleModal()}
-				disabled={disabled}
-				{...props}
+				className={styles.dash}
 			>
 				<div className={styles.icon}><IcMPlus width={30} height={30} /></div>
 

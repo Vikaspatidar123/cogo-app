@@ -16,8 +16,11 @@ function AddAlerts({
 	setTrackerPoc,
 	handleNext,
 	trackerDetails,
+	formRef,
 }) {
 	const { selected_poc_details = [] } = trackerPoc;
+	const { data } = trackerDetails;
+	const { tracking_data } = data[0];
 	const [pocDetails, setPocDetails] = useState([]);
 	const { masterList } = useFetchMasterList();
 	const { loading, createAlert } = useCreateAlerts();
@@ -26,26 +29,24 @@ function AddAlerts({
 		consignee : [],
 		dsr       : [],
 	});
-
-	const syncServerToFields = useCallback(async () => {
-		const pocDetailsFromServer = (subscriptionAlerts || []).map(
-			(u) => u?.poc_details,
-		);
+	console.log(subscriptionAlerts, 'subscriptionAlerts');
+	const syncServerToFields = async () => {
+		const pocDetailsFromServer = (subscriptionAlerts || []).map((u) => u?.poc_details);
 		setTrackerPoc((prev) => ({
 			...prev,
 			selected_poc_details: [
 				...pocDetailsFromServer,
-				...selected_poc_details.filter(
-					(u) => !pocDetailsFromServer.some((v) => u?.id === v?.id),
-				),
+				...selected_poc_details.filter((u) => !pocDetailsFromServer.some((v) => u?.id === v?.id)),
 			],
 		}));
+
 		const prefilledValues = {
 			shipper   : [],
 			consignee : [],
 			dsr       : [],
 		};
-		subscriptionAlerts?.forEach((poc) => {
+
+		subscriptionAlerts.forEach((poc) => {
 			if (poc?.poc_details?.user_type === 'SHIPPER') {
 				prefilledValues.shipper.push(poc?.poc_details?.id);
 			}
@@ -55,6 +56,7 @@ function AddAlerts({
 			if (poc?.dsr_status_report?.status === 'TRUE') {
 				prefilledValues.dsr.push(poc?.poc_details?.id);
 			}
+
 			poc.alerts_configured.forEach((pocAlert) => {
 				if (!prefilledValues?.[pocAlert?.alert_name]) {
 					prefilledValues[pocAlert?.alert_name] = [];
@@ -64,17 +66,19 @@ function AddAlerts({
 				}
 			});
 		});
-		setValue(prefilledValues);
-	}, [selected_poc_details, setTrackerPoc, subscriptionAlerts]);
+		formRef.current.setAlertValues(prefilledValues);
+	};
 
 	const isUpdate = subscriptionAlerts?.length > 0;
+
 	useEffect(() => {
 		if (isUpdate) {
 			syncServerToFields();
 		} else {
 			setPocDetails(selected_poc_details);
 		}
-	}, [isUpdate, selected_poc_details, syncServerToFields]);
+	}, []);
+
 	useEffect(() => {
 		setPocDetails(selected_poc_details);
 	}, [selected_poc_details]);
@@ -195,7 +199,7 @@ function AddAlerts({
 	return (
 		<div>
 			<Modal.Body>
-				<from style={{ width: '100%', marginTop: 32, overflowX: 'auto' }}>
+				<from style={{ width: '100%', marginTop: 32 }}>
 					<FormItem style={{ minWidth: 100 }}>
 						<div className={styles.container}>
 							<div className={styles.main} style={{ minWidth: 150 }}>

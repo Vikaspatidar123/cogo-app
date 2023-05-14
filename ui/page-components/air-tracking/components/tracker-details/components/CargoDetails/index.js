@@ -16,13 +16,10 @@ function CargoDetails({ loading, trackerDetails }) {
 	};
 	const item = cargoList[0] || {};
 	return (
-		<div className={styles.cargo_details} key={item?.container_number}>
+		<div className={styles.card} key={item?.container_number}>
 			{!loading
 				? (
-					<div
-						role="presentation"
-						className={styles.dash_button}
-					>
+					<>
 						<div className={styles.heading}>Cargo Details</div>
 						{cargoList.length > 1 && (
 							<div className="icons-container">
@@ -30,19 +27,24 @@ function CargoDetails({ loading, trackerDetails }) {
 								<IcMArrowNext size={1} onClick={handleNext} />
 							</div>
 						)}
-						<div className={styles.details}>
-							<span className={styles.text_head}>weight:</span>
-							<div>
-								{cargoList[0]?.weight}
-								{' '}
-								Kg
+						<div
+							role="presentation"
+							className={styles.dash_button}
+						>
+							<div className={styles.details}>
+								<span className={styles.text_head}>weight:</span>
+								<div>
+									{cargoList[0]?.weight}
+									{' '}
+									Kg
+								</div>
+							</div>
+							<div className={styles.details}>
+								<span className={styles.text_head}>Piece:</span>
+								<div>{cargoList[0]?.piece}</div>
 							</div>
 						</div>
-						<div className={styles.details}>
-							<span className={styles.text_head}>Piece:</span>
-							<div>{cargoList[0]?.piece}</div>
-						</div>
-					</div>
+					</>
 				) : (<Placeholder height="50px" width="324px" margin="0px 0px 20px 0px" />)}
 		</div>
 	);

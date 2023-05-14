@@ -106,20 +106,24 @@ function TrackerCard({
 						{ archived ? 'UnArchived Cargo' : 'Archived Cargo' }
 
 					</div>
-					<div
-						role="presentation"
-						className={`${isMapView ? styles.without_click : styles.on_click} ${styles.list_view}`}
-						onClick={() => { setIsMapView(false); }}
-					>
-						<IcMListView className={styles.icon} />
-					</div>
-					<div
-						role="presentation"
-						className={`${isMapView ? styles.on_click : styles.without_click} ${styles.map_view}`}
-						onClick={() => { setIsMapView(true); }}
-					>
-						<IcMMap className={styles.icon} />
-					</div>
+					{!archived &&	(
+						<>
+							<div
+								role="presentation"
+								className={`${isMapView ? styles.without_click : styles.on_click} ${styles.list_view}`}
+								onClick={() => { setIsMapView(false); }}
+							>
+								<IcMListView className={styles.icon} />
+							</div>
+							<div
+								role="presentation"
+								className={`${isMapView ? styles.on_click : styles.without_click} ${styles.map_view}`}
+								onClick={() => { setIsMapView(true); }}
+							>
+								<IcMMap className={styles.icon} />
+							</div>
+						</>
+					)}
 					<div className={styles.fillter_div}>
 						<Popover
 							placement="bottom"

@@ -10,12 +10,6 @@
 }
 
 .dash_button {
-	align-items: center;
-	padding: 24px 16px;
-	margin-left: 20px;
-	background-color: transparent;
-	border-radius: 20px;
-	box-shadow: 0 0 5px rgb(0 0 0 / 50%);
 
 	.details {
 		display: flex;
@@ -24,12 +18,7 @@
 		font-size: 14px;
 	}
 
-	.heading {
-		margin-bottom: 10px;
-		font-size: 15px;
-		color: rgb(125, 125, 125);
-        font-weight: 700;
-	}
+	
 
 	@media screen and (max-width: 767px) {
 		position: relative;
@@ -44,7 +33,12 @@
 		margin-left: 0%;
 	}
 }
-
+.heading {
+	margin-bottom: 10px;
+	font-size: 15px;
+	color: rgb(125, 125, 125);
+	font-weight: 700;
+}
 .cargo {
 	height: 100%;
 	padding: 16px;
@@ -77,3 +71,19 @@
 	font-weight: 600;
 	padding-right:10px;
 }
+.card {
+	width: 32%;
+	margin-left: 10px;
+	/* height: calc(100% - 4px); */
+	padding: 16px;
+	margin: 4px;
+	cursor: pointer;
+	background-color: white;
+	border: 1px solid rgb(196 203 218);
+	border-radius: 20px;
+	box-shadow: rgb(0 0 0 / 5%) 0 0 5px;
+
+	@media (max-width: 760px) {
+		width: 100%;
+	}
+}	

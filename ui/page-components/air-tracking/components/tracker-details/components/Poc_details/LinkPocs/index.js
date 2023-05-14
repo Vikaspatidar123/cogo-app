@@ -1,4 +1,4 @@
-import { Input, Button, Toast, Placeholder, Checkbox } from '@cogoport/components';
+import { Input, Button, Toast, Placeholder, Checkbox, Modal } from '@cogoport/components';
 import { useState, useMemo } from 'react';
 
 import useCreatePoc from '../../../hooks/useCreatePoc';
@@ -28,35 +28,37 @@ function LinkPocs({ handleNext, setTrackerPoc, trackerPoc, handleModal }) {
 	const addPocToState = (data) => {
 		setPocList((prevPocList) => [data, ...prevPocList]);
 	};
-	const { createPoc } = useCreatePoc();
-	const onSubmit = async (values) => {
-		const { data } = values;
-		const newPocList = data?.map(
-			(pocId) => filteredPocList?.filter((list) => list.id === pocId)[0],
-		);
-
-		for (let i = 0; i < newPocList?.length; i + 1) {
-			const item = newPocList[i];
-			if (item.tradeContact === true) {
-				const { name, mobile_no, email } = item;
-				try {
-					const id = createPoc(name, mobile_no, email);
-					item.id = id;
-				} catch (err) {
-					Toast.error(
-						err?.message || "Couldn't create POC. please try again later.",
-					);
-					return;
-				}
-			}
-		}
-		setTrackerPoc({ ...trackerPoc, selected_poc_details: newPocList });
-		handleNext();
-	};
 	const {
 		control,
 		handleSubmit,
 	} = useForm();
+	const { createPoc } = useCreatePoc();
+	const onSubmit = async (values) => {
+		// const { data } = check;
+
+		const newPocList = check?.map(
+			(pocId) => filteredPocList?.filter((list) => list.id === pocId)[0],
+		);
+
+		// for (let i = 0; i < newPocList?.length; i + 1) {
+		// 	const item = newPocList[i];
+		// 	if (item.tradeContact === true) {
+		// 		const { name, mobile_no, email } = item;
+		// 		try {
+		// 			const id = createPoc(name, mobile_no, email);
+		// 			item.id = id;
+		// 		} catch (err) {
+		// 			Toast.error(
+		// 				err?.message || "Couldn't create POC. please try again later.",
+		// 			);
+		// 			return;
+		// 		}
+		// 	}
+		// }
+		setTrackerPoc({ ...trackerPoc, selected_poc_details: newPocList });
+		handleNext();
+	};
+
 	const onCheck = (id) => {
 		if (check.includes(id)) {
 			setCheck(check.filter((x) => x !== id));
@@ -67,66 +69,71 @@ function LinkPocs({ handleNext, setTrackerPoc, trackerPoc, handleModal }) {
 
 	return (
 		<div>
-			<div className={styles.item}>
-				{isPocModalOpen && (
-					<AddPocs
-						isOpen={isPocModalOpen}
-						handleModal={handlePocModal}
-						type="SHIPPER"
-						addPocToState={addPocToState}
-						heading="New Contact"
-					/>
-				)}
+			<Modal.Body>
+				<div className={styles.item}>
+					{isPocModalOpen && (
+						<AddPocs
+							isOpen={isPocModalOpen}
+							handleModal={handlePocModal}
+							type="SHIPPER"
+							addPocToState={addPocToState}
+							heading="New Contact"
+						/>
+					)}
 
-				<Input
-					size="md"
-					placeholder="Enter name or email to search"
-					value={searchText}
-					onChange={(e) => setSearchText(e?.target?.value)}
-				/>
-				<div className={styles.button}>
+					<Input
+						size="md"
+						placeholder="Enter name or email to search"
+						value={searchText}
+						onChange={(e) => setSearchText(e?.target?.value)}
+					/>
+					<div className={styles.button}>
+						<Button
+							size="lg"
+							variant="outline"
+							themeType="secondary"
+							onClick={handlePocModal}
+						>
+							+ New Contact
+						</Button>
+					</div>
+				</div>
+
+				<h3 className={styles.list}>Contact List</h3>
+
+				<div>
+					{loading && [1, 2, 3].map(() => <div className={styles.loading}><Placeholder /></div>)}
+					{!loading && filteredPocList?.length > 0 ? (filteredPocList.map((item) => {
+						const label = `${item.name}(${item.email})`;
+						return (
+							<div>
+								<Checkbox
+									control={control}
+									label={label}
+									value={check.includes(item.id)}
+									onChange={() => onCheck(item.id)}
+								/>
+							</div>
+						);
+					})) : (<div>{!loading && <p> Please add new contacts</p> }</div>)}
+				</div>
+			</Modal.Body>
+			<Modal.Footer>
+				<div className={styles.footer}>
+					<Button size="lg" onClick={handleModal} themeType="secondary">
+						CANCEL
+					</Button>
 					<Button
 						size="lg"
-						variant="outline"
-						themeType="secondary"
-						onClick={handlePocModal}
+						disabled={loading}
+						hideOverflow
+						onClick={handleSubmit(onSubmit)}
 					>
-						+ New Contact
+						Customize Alerts
 					</Button>
 				</div>
-			</div>
 
-			<h3 className={styles.list}>Contact List</h3>
-
-			<div>
-				{loading && [1, 2, 3].map(() => <div className={styles.loading}><Placeholder /></div>)}
-				{!loading && filteredPocList?.length > 0 ? (filteredPocList.map((item) => {
-					const label = `${item.name}(${item.email})`;
-					return (
-						<div>
-							<Checkbox
-								control={control}
-								label={label}
-								value={check.includes(item.id)}
-								onChange={() => onCheck(item.id)}
-							/>
-						</div>
-					);
-				})) : (<div>{!loading && <p> Please add new contacts</p> }</div>)}
-			</div>
-			<div className={styles.footer}>
-				<Button size="lg" onClick={handleModal} themeType="secondary">
-					CANCEL
-				</Button>
-				<Button
-					size="lg"
-					disabled={loading}
-					hideOverflow
-					onClick={handleSubmit(onSubmit)}
-				>
-					Customize Alerts
-				</Button>
-			</div>
+			</Modal.Footer>
 		</div>
 	);
 }

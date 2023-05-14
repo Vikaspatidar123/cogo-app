@@ -5,7 +5,7 @@ import { useState } from 'react';
 import DetentionModal from './DetentionModal';
 import styles from './styles.module.css';
 
-function DetentionDetails({ disabled, trackerDetails, loading, setTrackerDetails, fetchTrackerDetails, ...props }) {
+function DetentionDetails({ disabled, trackerDetails, loading, setTrackerDetails, fetchTrackerDetails }) {
 	const [isModalOpen, setModal] = useState(false);
 	const { commodity_details } = trackerDetails || {};
 	const isEmpty = commodity_details?.commodity == null;
@@ -23,10 +23,11 @@ function DetentionDetails({ disabled, trackerDetails, loading, setTrackerDetails
 			value = `${commodity_details?.commodity}`;
 		}
 		return (
-			<div role="presentation" className={styles.commodity_details} onClick={handleModal}>
+			<div role="presentation" className={styles.card} onClick={handleModal}>
+				<div className={styles.head}>COMMODITY DETAILS</div>
 				{!hideCommodity && (
 					<div className={styles.dash_button}>
-						<div className={styles.heading}>COMMODITY DETAILS</div>
+						<div className={styles.heading}>Commodity:</div>
 						<div className={styles.value}>{value}</div>
 					</div>
 				)}
@@ -35,15 +36,16 @@ function DetentionDetails({ disabled, trackerDetails, loading, setTrackerDetails
 	};
 
 	const renderEmpty = () => (
-		<div className={styles.commodity_details}>
+		<div
+			role="presentation"
+			className={styles.commodity_details}
+			onClick={() => handleModal()}
+			disabled={disabled}
+		>
 			{!loading
 				? (
 					<div
-						role="presentation"
-						className={styles.dash_button}
-						onClick={() => handleModal()}
-						disabled={disabled}
-						{...props}
+						className={styles.dash}
 					>
 						<div className={styles.icon}><IcMPlus width={30} height={30} /></div>
 

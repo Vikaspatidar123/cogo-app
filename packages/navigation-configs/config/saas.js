@@ -23,6 +23,11 @@ const saas = {
 		isMainNav  : true,
 
 	},
+	'/saas/air-tracking/[tracker_id]': {
+		navigation : 'saas_tools-air_tracking',
+		isMainNav  : true,
+
+	},
 };
 
 module.exports = saas;

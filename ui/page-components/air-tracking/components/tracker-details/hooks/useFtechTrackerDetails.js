@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { Toast } from '@cogoport/components';
 import { useState, useEffect, useCallback } from 'react';
 
@@ -26,7 +27,7 @@ function useFetchTrackerDetails() {
 
 	const { getAllOceanRoutes, maploading, setMapPoints, mapPoints } = useGetOceanRoutes();
 	const [{ loading }, trigger] = useRequest({
-		url    : 'get_saas_air_subscription',
+		url    : '/get_saas_air_subscription',
 		method : 'get',
 	}, { manual: true });
 
@@ -66,7 +67,6 @@ function useFetchTrackerDetails() {
 		} catch (err) {
 			Toast.error("Couldn't fetch tracker's details", err);
 		}
-
 		if (isFirstVisit && containsData) {
 			setApiTries(MAX_API_TRIES);
 		} else if (isFirstVisit && !containsData) {
@@ -88,15 +88,13 @@ function useFetchTrackerDetails() {
 	}, [timeRemaining]);
 
 	useEffect(() => {
-		if (id) {
-			const isFirstVisit = general?.query?.isFirstVisit != null;
-			if (!isFirstVisit) {
-				fetchTrackerDetails();
-			} else {
-				fetchTrackerDetails(isFirstVisit);
-			}
+		const isFirstVisit = general?.query?.isFirstVisit != null;
+		if (!isFirstVisit) {
+			fetchTrackerDetails();
+		} else {
+			fetchTrackerDetails(isFirstVisit);
 		}
-	}, []);
+	}, [apiTries]);
 
 	return {
 		fetchTrackerDetails,
@@ -109,6 +107,7 @@ function useFetchTrackerDetails() {
 		mapPoints,
 		setMapPoints,
 		maploading,
+		timeRemaining,
 	};
 }
 

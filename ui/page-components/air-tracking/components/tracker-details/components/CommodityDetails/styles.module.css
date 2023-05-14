@@ -1,8 +1,12 @@
 .commodity_details {
-	width: 30%;
-	margin-right: 20px;
-	margin-left: 20px;
-	cursor: pointer;
+	width: 32%;
+	padding: 24px 16px;
+    display: flex;
+    align-items: center;
+    background-color: transparent;
+    border: 1px dashed rgb(53, 73, 93);
+    border-radius: 20px;
+    cursor: pointer;
 
 	@media screen and (max-width: 767px) {
 		width: 100%;
@@ -13,14 +17,9 @@
 
 .dash_button {
 	display: flex;
-	align-items: center;
-	justify-content: space-around;
-	height: 100%;
-	background-color: transparent;
-	border-radius: 20px;
-	box-shadow: 0 0 5px rgb(0 0 0 / 50%);
+	margin-bottom: 16px;
 
-	@media screen and (max-width: 767px) {
+	/* @media screen and (max-width: 767px) {
 		position: relative;
 		right: auto;
 		left: auto;
@@ -35,7 +34,7 @@
 		margin-right: none;
 		margin-bottom: 16px;
 		margin-left: 0%;
-	}
+	} */
 
 	.details {
 		display: flex;
@@ -43,15 +42,11 @@
 	}
 
 	.heading {
-		display: flex;
-		align-items: center;
+		margin-right: 8px;
+	    font-weight: 700;
 	}
 
-	.icon {
-		display: flex;
-		align-items: center;
-		color: red;
-	}
+
 
 	.head {
 		padding: 45px;
@@ -60,4 +55,36 @@
 			padding: 0;
 		}
 	}
+}
+.head{
+	margin-bottom: 10px;
+    font-size: 15px;
+    color: rgb(125, 125, 125);
+    font-weight: 700;
+}
+
+.card {
+	width: 32%;
+	margin-left: 10px;
+	/* height: calc(100% - 4px); */
+	padding: 16px;
+	margin: 4px;
+	cursor: pointer;
+	background-color: white;
+	border: 1px solid rgb(196 203 218);
+	border-radius: 20px;
+	box-shadow: rgb(0 0 0 / 5%) 0 0 5px;
+	@media (max-width: 760px) {
+		width: 100%;
+	}
+}
+.dash{
+	display:flex;
+	align-items: center;
+}
+.icon {
+	display: flex;
+	align-items: center;
+	color: red;
+	margin-right: 20px;
 }

@@ -36,8 +36,8 @@ const useAddTracker = () => {
 			}
 
 			push(
-
-				`/saas/tracking/${id}?isFirstVisit=true&shippingLineId=${values.option}&trackingType=air`,
+				'/saas/air-tracking/[tracker_id]',
+				`/saas/air-tracking/${id}?isFirstVisit=true&shippingLineId=${values.option}&trackingType=air`,
 			);
 		} catch (err) {
 			Toast.error("Couldn't add tracker");

@@ -8,13 +8,17 @@ import { useRequestBf } from '@/packages/request';
 import { useSelector } from '@/packages/store';
 
 const useSaveDraft = () => {
-	const { getProductCode } = useGetProductCode();
-
 	const { profile } = useSelector((s) => s);
 	const { id, organization } = profile;
 	const [draftId, setDraftId] = useState('');
 	const { push } = useRouter();
-
+	const {
+		getProductCode = () => {},
+		getProductCodeLoading = false,
+		paymentData = {},
+		modal = {},
+		setModal = () => {},
+	} = useGetProductCode();
 	const [{ loading }, trigger] = useRequestBf(
 		{
 			url     : '/saas/trade-engine/screening/draft',
@@ -28,6 +32,7 @@ const useSaveDraft = () => {
 		formDetails = {},
 		value = '',
 		services = {},
+		address = {},
 	}) => {
 		const { formValues, countryDetails } = formDetails || {};
 		try {
@@ -49,7 +54,7 @@ const useSaveDraft = () => {
 			if (res?.data) {
 				setDraftId(res?.data?.id);
 				if (value === 'directPayment') {
-					getProductCode({ draftResponse: res, services });
+					getProductCode({ draftResponse: res, services, address });
 				} else {
 					push(
 						`/saas/premium-services/trader-eligibility-check/result?draftIdFromAddon=${res?.data?.id}`,
@@ -61,7 +66,13 @@ const useSaveDraft = () => {
 		}
 	};
 
-	return { createDraft, loading };
+	return {
+		createDraft,
+		loading         : loading || getProductCodeLoading,
+		paymentData,
+		paymentModal    : modal,
+		setPaymentModal : setModal,
+	};
 };
 
 export default useSaveDraft;

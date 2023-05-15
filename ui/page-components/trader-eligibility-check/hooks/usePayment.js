@@ -30,27 +30,33 @@ const usePayment = () => {
 		{ manual: true },
 	);
 
-	const callBackUrl = `${process.env.NEXT_PUBLIC_APP_URL}/v2/${org_id}/${branch_id}/${account_type}/
-	                    saas/premium-services/trader-eligibility-check/result`;
+	const callBackUrl = `${process.env.NEXT_PUBLIC_APP_URL}/v2/${org_id}/${branch_id}/${account_type}/`
+                   + 'saas/premium-services/trader-eligibility-check/result';
 
 	const initiatePayment = async ({
 		res = {},
-		services = {},
-		productCodes = {},
+		services: serviceRates = {},		productCodes = {},
+		address = {},
 	}) => {
 		const info = res?.data || {};
-		const { buyer_eligibility_check } = services || {};
+		const { services = {}, currency = '' } = serviceRates;
+		const { buyer_eligibility_check = {} } = services || {};
 		const { price = 0, discount = 0 } = buyer_eligibility_check || {};
 		const discountAmount = (+discount * +price) / 100;
+		const isBillingAddress = !!address?.tax_number;
+		const addressKey = isBillingAddress
+			? 'organizationBillingAddressId'
+			: 'organizationAddressId';
 		try {
 			const resp = await trigger({
 				data: {
 					source                : 'SAAS',
 					userId                : id,
 					organizationId        : organization?.id,
-					currency              : 'INR',
+					currency,
 					billRefId             : info?.id,
 					billType              : 'PREMIUM_SERVICES',
+					[addressKey]          : address?.id || address?.organization_id,
 					userName              : name,
 					userEmail             : email,
 					userMobile            : mobile_number,
@@ -58,55 +64,46 @@ const usePayment = () => {
 					redirectUrl           : callBackUrl,
 					totalAmount           : +price % 1 !== 0 ? +price.toFixed(2) : +price,
 					taxAmount:
-                        ((+price % 1 !== 0 ? price.toFixed(2) : +price)
-                            - (+discountAmount % 1 !== 0
-                            	? +discountAmount.toFixed(2)
-                            	: +discountAmount))
-                        * 0.18,
+						((+price % 1 !== 0 ? price.toFixed(2) : +price)
+							- (+discountAmount % 1 !== 0
+								? +discountAmount.toFixed(2)
+								: +discountAmount))
+						* 0.18,
 					subTotalAmount:
-                        (+price % 1 !== 0 ? price.toFixed(2) : +price)
-                        - (+discountAmount % 1 !== 0
-                        	? +discountAmount.toFixed(2)
-                        	: +discountAmount),
+						(+price % 1 !== 0 ? price.toFixed(2) : +price)
+						- (+discountAmount % 1 !== 0 ? +discountAmount.toFixed(2) : +discountAmount),
 					netAmount:
-                        ((+price % 1 !== 0 ? price.toFixed(2) : +price)
-                            - (+discountAmount % 1 !== 0
-                            	? +discountAmount.toFixed(2)
-                            	: +discountAmount))
-                        * 1.18,
+						((+price % 1 !== 0 ? price.toFixed(2) : +price)
+							- (+discountAmount % 1 !== 0
+								? +discountAmount.toFixed(2)
+								: +discountAmount))
+						* 1.18,
 					discountAmount,
 					billLineItems: [
 						{
-							productCodeId:
-                                productCodes?.trader_eligibility_check?.id,
-							description : 'buyer_eligibility_check',
-							displayName : 'Buyer Eligibility Check',
-							pricePerUnit:
-                                +price % 1 !== 0 ? +price.toFixed(2) : +price,
-							quantity: 1,
-							totalAmount:
-                                +price % 1 !== 0 ? +price.toFixed(2) : +price,
+							productCodeId : productCodes?.trader_eligibility_check?.id,
+							description   : 'buyer_eligibility_check',
+							displayName   : 'Buyer Eligibility Check',
+							pricePerUnit  : +price % 1 !== 0 ? +price.toFixed(2) : +price,
+							quantity      : 1,
+							totalAmount   : +price % 1 !== 0 ? +price.toFixed(2) : +price,
 							taxAmount:
-                                ((+price % 1 !== 0
-                                	? price.toFixed(2)
-                                	: +price)
-                                    - (+discountAmount % 1 !== 0
-                                    	? +discountAmount.toFixed(2)
-                                    	: +discountAmount))
-                                * 0.18,
+								((+price % 1 !== 0 ? price.toFixed(2) : +price)
+									- (+discountAmount % 1 !== 0
+										? +discountAmount.toFixed(2)
+										: +discountAmount))
+								* 0.18,
 							subTotalAmount:
-                                (+price % 1 !== 0 ? price.toFixed(2) : +price)
-                                - (+discountAmount % 1 !== 0
-                                	? +discountAmount.toFixed(2)
-                                	: +discountAmount),
+								(+price % 1 !== 0 ? price.toFixed(2) : +price)
+								- (+discountAmount % 1 !== 0
+									? +discountAmount.toFixed(2)
+									: +discountAmount),
 							netAmount:
-                                ((+price % 1 !== 0
-                                	? price.toFixed(2)
-                                	: +price)
-                                    - (+discountAmount % 1 !== 0
-                                    	? +discountAmount.toFixed(2)
-                                    	: +discountAmount))
-                                * 1.18,
+								((+price % 1 !== 0 ? price.toFixed(2) : +price)
+									- (+discountAmount % 1 !== 0
+										? +discountAmount.toFixed(2)
+										: +discountAmount))
+								* 1.18,
 							discountAmount,
 							metadata: '',
 						},
@@ -134,6 +131,12 @@ const usePayment = () => {
 			);
 		}
 	};
-	return { initiatePayment, data, loading: buttonLoading || loading, modal, setModal };
+	return {
+		initiatePayment,
+		data,
+		loading: buttonLoading || loading,
+		modal,
+		setModal,
+	};
 };
 export default usePayment;

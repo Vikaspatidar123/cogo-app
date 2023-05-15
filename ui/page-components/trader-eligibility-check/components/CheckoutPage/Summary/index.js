@@ -1,32 +1,29 @@
 import { Button } from '@cogoport/components';
-import { useState, useEffect } from 'react';
+import { isEmpty } from '@cogoport/utils';
 
 import {
 	LoadingIcon,
 	NoDataIcon,
 } from '../../../configuration/icon-configuration';
 import redirectUrl from '../../../constants/redirectUrl';
-import { quotaAvailabilityfunction } from '../../../utils';
 import style from '../styles.module.css';
 
 import styles from './styles.module.css';
 
+import formatAmount from '@/ui/commons/utils/formatAmount';
+
 function Summary({
 	serviceRates = {},
-	quotaDetails = {},
 	createDraft = () => {},
 	loading = false,
 	formDetails,
+	quotaAvailableStats = {},
+	payment,
+	address,
+	setAddress,
 }) {
 	const { subscriptionsUrl } = redirectUrl();
-	const [quotaAvailableStats, setQuotaAvailableStats] = useState({});
 	const { left_quota = 0, addon_quota = 0 } = quotaAvailableStats;
-	const [payment, setPayment] = useState({
-		paymentThroughQuota : false,
-		paymentThroughAddon : false,
-		directPayment       : false,
-		buySubscription     : false,
-	});
 	const {
 		buySubscription = false,
 		paymentThroughAddon = false,
@@ -34,18 +31,13 @@ function Summary({
 		directPayment = false,
 	} = payment || {};
 
-	useEffect(() => {
-		if (Object.keys(quotaDetails)?.length > 0) {
-			quotaAvailabilityfunction({
-				setQuotaAvailableStats,
-				quotaDetails,
-				setPayment,
-			});
-		}
-	}, [quotaDetails]);
-	const { services } = serviceRates || {};
-	const { buyer_eligibility_check } = services || {};
-	const pricePerUnit = Number(buyer_eligibility_check?.price);
+	const { services = {}, currency = 'INR' } = serviceRates || {};
+	const { buyer_eligibility_check = {} } = services || {};
+	const { price } = buyer_eligibility_check || {};
+	const pricePerUnit = +price || 0;
+	const gstAmount = (+pricePerUnit * 0.18).toFixed(2);
+	const totalAmount = (+pricePerUnit * 1.18).toFixed(2);
+
 	const renderButton = () => {
 		if (buySubscription) {
 			return 'Buy Subscription';
@@ -66,14 +58,17 @@ function Summary({
 		}
 	};
 	const submit = () => {
-		if (directPayment) {
-			createDraft({ formDetails, value: 'directPayment', services });
-		}
-		if (paymentThroughQuota) {
+		if (!isEmpty(address) || paymentThroughQuota) {
 			createDraft({
 				formDetails,
-				value: 'paymentThroughQuota',
+				value: paymentThroughQuota
+					? 'paymentThroughQuota'
+					: 'directPayment',
+				services: directPayment ? serviceRates : null,
+				address,
 			});
+		} else {
+			setAddress(null);
 		}
 	};
 	const renderBtn = () => {
@@ -98,8 +93,13 @@ function Summary({
 			{Object.keys(serviceRates).length === 0 && (
 				<div className={styles.card}>
 					<div className={styles.flex_div}>
-						<img src={NoDataIcon} alt="" className={styles.icon_style} />
-						Sorry!! We could not fetch details.Please try again later!
+						<img
+							src={NoDataIcon}
+							alt=""
+							className={styles.icon_style}
+						/>
+						Sorry!! We could not fetch details.Please try again
+						later!
 					</div>
 				</div>
 			)}
@@ -111,7 +111,9 @@ function Summary({
 						<>
 							<div className={styles.styled_row}>
 								<div>
-									<div className={styles.text}>Left Quota</div>
+									<div className={styles.text}>
+										Left Quota
+									</div>
 								</div>
 								<div className={styles.text_column}>
 									<div className={styles.text}>
@@ -121,7 +123,9 @@ function Summary({
 							</div>
 							<div className={styles.styled_row}>
 								<div>
-									<div className={styles.text}>Quota that will be deducted</div>
+									<div className={styles.text}>
+										Quota that will be deducted
+									</div>
 								</div>
 								<div className={styles.text_column}>
 									<div className={styles.text}>1</div>
@@ -130,7 +134,9 @@ function Summary({
 							<div className={styles.line2} />
 							<div className={styles.styled_row}>
 								<div>
-									<div className={styles.total_text}>Remaining Quota</div>
+									<div className={styles.total_text}>
+										Remaining Quota
+									</div>
 								</div>
 								<div className={styles.text_column}>
 									<div className={styles.total_text}>
@@ -144,35 +150,59 @@ function Summary({
 						<>
 							<div className={styles.styled_row}>
 								<div>
-									<div className={styles.text}>Eligibility check charges</div>
+									<div className={styles.text}>
+										Eligibility check charges
+									</div>
 								</div>
 								<div className={styles.text_column}>
 									<div className={styles.text}>
-										INR
-										{+pricePerUnit}
+										{formatAmount({
+                                        	amount  : pricePerUnit,
+                                        	currency,
+                                        	options : {
+                                        		notation : 'standard',
+                                        		style    : 'currency',
+                                        	},
+										})}
 									</div>
 								</div>
 							</div>
 							<div className={styles.styled_row}>
 								<div>
-									<div className={styles.text}>Convenience fee</div>
+									<div className={styles.text}>
+										Convenience fee
+									</div>
 								</div>
 								<div className={styles.text_column}>
 									<div className={styles.text}>
-										INR
-										{(+pricePerUnit * 0.18).toFixed(2)}
+										{formatAmount({
+                                        	amount  : gstAmount,
+                                        	currency,
+                                        	options : {
+                                        		notation : 'standard',
+                                        		style    : 'currency',
+                                        	},
+										})}
 									</div>
 								</div>
 							</div>
 							<div className={styles.line2} />
 							<div className={styles.styled_row}>
 								<div>
-									<div className={styles.total_text}>Total Amount</div>
+									<div className={styles.total_text}>
+										Total Amount
+									</div>
 								</div>
 								<div className={styles.text_column}>
 									<div className={styles.total_text}>
-										INR
-										{(+pricePerUnit * 1.18).toFixed(2)}
+										{formatAmount({
+                                        	amount  : totalAmount,
+                                        	currency,
+                                        	options : {
+                                        		notation : 'standard',
+                                        		style    : 'currency',
+                                        	},
+										})}
 									</div>
 								</div>
 							</div>

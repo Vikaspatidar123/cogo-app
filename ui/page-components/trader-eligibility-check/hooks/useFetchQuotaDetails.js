@@ -1,4 +1,3 @@
-import { Toast } from '@cogoport/components';
 import { useState } from 'react';
 
 import useGetServiceRates from './useGetServiceRates';
@@ -17,10 +16,13 @@ const useFetchQuotaDetails = () => {
 	const [modal, setModal] = useState(false);
 	const [quotaDetails, setQuotaDetails] = useState();
 
-	const [{ loading }, trigger] = useRequest({
-		url    : '/saas_get_user_quota_usage',
-		method : 'get',
-	}, { manual: true });
+	const [{ loading }, trigger] = useRequest(
+		{
+			url    : '/saas_get_user_quota_usage',
+			method : 'get',
+		},
+		{ manual: true },
+	);
 
 	const fetchQuotaDetails = async () => {
 		try {
@@ -33,7 +35,7 @@ const useFetchQuotaDetails = () => {
 				setModal(true);
 			}
 		} catch (error) {
-			Toast.error(error?.error?.message);
+			console.log(error);
 		}
 	};
 

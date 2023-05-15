@@ -22,15 +22,19 @@ function ListPage() {
 	const { query, push } = useRouter();
 	const { billId = '', draftIdFromAddon = '' } = query || {};
 	const [paymentStatusModal, setPaymentStatusModal] = useState(false);
-	const { createTradeEngine, tradeEngineResponse, getTradeEngineListLoading } = usePostTradeEngine();
-	const { checkPaymentStatus, checkLoading, stop, paymentStatus } = useCheckStatus({
-		query,
-		setPaymentStatusModal,
+	const {
 		createTradeEngine,
+		tradeEngineResponse,
+		getTradeEngineListLoading,
+	} = usePostTradeEngine();
+	const { checkPaymentStatus, checkLoading, stop, paymentStatus } = useCheckStatus({
+        	query,
+        	setPaymentStatusModal,
+        	createTradeEngine,
 	});
 	const { screeningRequestResponse, screeningPartyName = '' } = tradeEngineResponse || {};
 	useEffect(() => {
-		if (billId && checkPaymentStatus && createTradeEngine && draftIdFromAddon) {
+		if (billId) {
 			checkPaymentStatus();
 		} else if (draftIdFromAddon) {
 			createTradeEngine({ draftIdFromAddon });
@@ -53,7 +57,11 @@ function ListPage() {
 				</div>
 				<div className={styles.title_style}>
 					<div className={style2.heading}>
-						<img className={style2.svg_style} src={HeadingIcon} alt="" />
+						<img
+							className={style2.svg_style}
+							src={HeadingIcon}
+							alt=""
+						/>
 						Trader Eligibilty Check
 					</div>
 				</div>
@@ -68,30 +76,39 @@ function ListPage() {
 			</div>
 			<div className={style2.content_wrapper}>
 				<div className={style1.wrapper}>
-					<div className={`${style1.list_column_mobile} ${style1.list_column}`}>
-						{!getTradeEngineListLoading
-              && !screeningRequestResponse
-              && paymentStatus === 'PAID'
-              && new Array(3).fill(1).map(() => (
+					<div
+						className={`${style1.list_column_mobile} ${style1.list_column}`}
+					>
+						{getTradeEngineListLoading
+                            && !screeningRequestResponse
+                            && paymentStatus === 'PAID'
+                            && new Array(3).fill(1).map(() => (
 	<div>
-		<Placeholder className={styles.placeholder_styles}>
+		<Placeholder
+			className={styles.placeholder_styles}
+		>
 			{Array(5).map(() => (
 				<div className={styles.line} />
 			))}
 		</Placeholder>
 	</div>
-              ))}
+                            ))}
 						{getTradeEngineListLoading
-              && new Array(3).fill(1).map(() => (
+                            && new Array(3).fill(1).map(() => (
 	<div>
-		<Placeholder className={styles.placeholder_styles}>
-			{Array(5).fill(1).map(() => (
-				<div className={styles.line} />))}
+		<Placeholder
+			className={styles.placeholder_styles}
+		>
+			{Array(5)
+                                        	.fill(1)
+                                        	.map(() => (
+	<div className={styles.line} />
+                                        	))}
 		</Placeholder>
 	</div>
-              ))}
+                            ))}
 						{!getTradeEngineListLoading
-              && screeningRequestResponse?.length > 0 && (
+                            && screeningRequestResponse?.length > 0 && (
 	<>
 		<div className={styles.title}>
 			Total Results (
@@ -99,60 +116,136 @@ function ListPage() {
 			)
 		</div>
 		<div className={styles.list_wrapper}>
-			{(screeningRequestResponse || []).map((item) => (
+			{(screeningRequestResponse || []).map(
+                                        	(item) => (
+	<div
+		className={styles.card}
+		key={`${item?.screeningName}_${item?.screeningAka}`}
+	>
+		<div
+			className={
+                                                            styles.styled_row
+                                                        }
+		>
+			<div
+				className={
+                                                                styles.new_column
+                                                            }
+			>
+				{item?.screeningName?.toUpperCase()}
+			</div>
+			<div>
 				<div
-					className={styles.card}
-					key={`${item?.screeningName}_${item?.screeningAka}`}
+					className={
+                                                                    styles.percentage
+                                                                }
 				>
-					<div className={styles.styled_row}>
-						<div className={styles.new_column}>
-							{item?.screeningName?.toUpperCase()}
-						</div>
-						<div>
-							<div className={styles.percentage}>
-								{Number(item?.screeningMatchWeight) * 100}
-								%
-							</div>
-							<div className={styles.score_text}>
-								Matching score
-							</div>
-						</div>
-					</div>
-					<div className={styles.styled_row}>
-						<div>
-							<div className={styles.heading2}>Listing Name</div>
-							<div className={styles.text2}>
-								{item?.screeningListName}
-							</div>
-						</div>
-					</div>
-					<div className={styles.styled_row}>
-						<div>
-							<div className={styles.heading2}>
-								Department Name
-							</div>
-							<div className={styles.text2}>
-								{item?.screeningDept}
-							</div>
-						</div>
-						<div>
-							<div className={styles.heading2}>
-								Registered Date
-							</div>
-							<div className={styles.text2}>
-								{item?.screeningFedRegDate}
-							</div>
-						</div>
-					</div>
+					{Number(
+                                                                	item?.screeningMatchWeight,
+					) * 100}
+					%
 				</div>
-			))}
+				<div
+					className={
+                                                                    styles.score_text
+                                                                }
+				>
+					Matching score
+				</div>
+			</div>
+		</div>
+		<div
+			className={
+                                                            styles.styled_row
+                                                        }
+		>
+			<div>
+				<div
+					className={
+                                                                    styles.heading2
+                                                                }
+				>
+					Listing Name
+				</div>
+				<div
+					className={
+                                                                    styles.text2
+                                                                }
+				>
+					{
+                                                                    item?.screeningListName
+                                                                }
+				</div>
+			</div>
+		</div>
+		<div
+			className={
+                                                            styles.styled_row
+                                                        }
+		>
+			<div>
+				<div
+					className={
+                                                                    styles.heading2
+                                                                }
+				>
+					Department Name
+				</div>
+				<div
+					className={
+                                                                    styles.text2
+                                                                }
+				>
+					{
+                                                                    item?.screeningDept
+                                                                }
+				</div>
+			</div>
+			<div>
+				<div
+					className={
+                                                                    styles.heading2
+                                                                }
+				>
+					Registered Date
+				</div>
+				<div
+					className={
+                                                                    styles.text2
+                                                                }
+				>
+					{
+                                                                    item?.screeningFedRegDate
+                                                                }
+				</div>
+			</div>
+		</div>
+	</div>
+                                        	),
+			)}
 		</div>
 	</>
 						)}
-						{getTradeEngineListLoading
-              && screeningRequestResponse?.length === 0 && (
+						{!getTradeEngineListLoading
+                            && screeningRequestResponse == null && (
 	<div className={styles.list_wrapper}>
-		<img src={SecureIcon} alt="" height={300} width={300} />
+		<div className={styles.label}>
+			<div className={styles.emptytext}>
+				Could not fetch details.
+				<div>Please try again later</div>
+			</div>
+		</div>
+	</div>
+						)}
+						{!getTradeEngineListLoading
+                            && screeningRequestResponse?.length === 0 && (
+	<div className={styles.list_wrapper}>
+		<img
+			src={SecureIcon}
+			alt=""
+			height={300}
+			width={300}
+		/>
 		<div className={styles.label}>
 			<div className={styles.bold}>
 				{screeningPartyName.toUpperCase()}
@@ -162,6 +255,7 @@ function ListPage() {
 	</div>
 						)}
 					</div>
+
 					<div className={style1.map_column}>
 						<Map />
 					</div>

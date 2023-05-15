@@ -10,28 +10,54 @@ function Details({
 	formDetails = {},
 	serviceRates = {},
 	quotaDetails = {},
+	quotaAvailableStats,
+	payment,
+	address,
+	setAddress,
 }) {
 	const { formValues = {}, countryDetails = {} } = formDetails || {};
 	return (
 		<div className={styles.container}>
 			<div className={styles.row_wrapper_formdata}>
-				{(Object.keys(formValues)?.filter((item) => item !== 'countryId') || []).map(
-					(item) => (
-						<div
-							className={`${styles.column} ${item !== 'name' && styles.element_style}`}
-							key={item}
-						>
-							{formValues[item] && <div className={styles.label}>{startCase(item)}</div>}
-							{formValues[item] && <div className={styles.value}>{startCase(formValues[item])}</div>}
-						</div>
-					),
-				)}
 				{(
-					Object.keys(countryDetails)?.filter((item) => item !== 'countryCode') || []
+					Object.keys(formValues)?.filter(
+						(item) => item !== 'countryId',
+					) || []
+				).map((item) => (
+					<div
+						className={`${styles.column} ${
+							item !== 'name' && styles.element_style
+						}`}
+						key={item}
+					>
+						{formValues[item] && (
+							<div className={styles.label}>
+								{startCase(item)}
+							</div>
+						)}
+						{formValues[item] && (
+							<div className={styles.value}>
+								{startCase(formValues[item])}
+							</div>
+						)}
+					</div>
+				))}
+				{(
+					Object.keys(countryDetails)?.filter(
+						(item) => item !== 'countryCode',
+					) || []
 				).map((item) => (
 					<div className={styles.column} key={item}>
-						{countryDetails[item] && <div className={styles.label}>{startCase(item)}</div>}
-						{countryDetails[item] && <div className={styles.value}>{countryDetails[item]}</div>}
+						{countryDetails[item] && (
+							<div className={styles.label}>
+								{startCase(item)}
+							</div>
+						)}
+						{countryDetails[item] && (
+							<div className={styles.value}>
+								{countryDetails[item]}
+							</div>
+						)}
 					</div>
 				))}
 			</div>
@@ -42,6 +68,10 @@ function Details({
 					createDraft={createDraft}
 					loading={loading}
 					formDetails={formDetails}
+					quotaAvailableStats={quotaAvailableStats}
+					payment={payment}
+					address={address}
+					setAddress={setAddress}
 				/>
 			</div>
 		</div>

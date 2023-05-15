@@ -156,3 +156,8 @@
 	border: 1px solid #e0e6e9;
 	border-radius: 6px;
 }
+
+.emptytext {
+	margin-top: 100%;
+	text-align: center;
+}

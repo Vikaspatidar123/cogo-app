@@ -7,13 +7,16 @@ import { useRequestBf } from '@/packages/request';
 const useGetProductCode = () => {
 	const { initiatePayment } = usePayment();
 
-	const [{ loading }, trigger] = useRequestBf({
-		url     : '/saas/bill/product-codes',
-		authKey : 'get_saas_bill_product_codes',
-		method  : 'get',
-	}, { manual: true });
+	const [{ loading }, trigger] = useRequestBf(
+		{
+			url     : '/saas/bill/product-codes',
+			authKey : 'get_saas_bill_product_codes',
+			method  : 'get',
+		},
+		{ manual: true },
+	);
 
-	const getProductCode = async ({ draftResponse = {}, services = {} }) => {
+	const getProductCode = async ({ draftResponse = {}, services = {}, address = {} }) => {
 		try {
 			const resp = await trigger({
 				params: {},
@@ -23,6 +26,7 @@ const useGetProductCode = () => {
 					res          : draftResponse,
 					services,
 					productCodes : resp?.data,
+					address,
 				});
 			}
 		} catch (error) {

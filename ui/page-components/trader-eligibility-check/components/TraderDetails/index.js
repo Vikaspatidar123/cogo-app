@@ -46,9 +46,9 @@ function TraderDetails({
 	const { region, city } = list?.[0] || {};
 
 	useMemo(() => {
-		if (list?.length === 0) {
-			Toast.error('Invalid Pincode');
-		}
+		// if (list?.length === 0) {
+		// 	Toast.error('Invalid Pincode');
+		// }
 		if (watchPincode === '') {
 			setValue('city', '');
 			setValue('state', '');
@@ -56,7 +56,7 @@ function TraderDetails({
 			setValue('city', city?.name);
 			setValue('state', region?.name);
 		}
-	}, [city, list?.length, region?.name, setValue, watchPincode]);
+	}, [city, region?.name, setValue, watchPincode]);
 
 	const submit = (values) => {
 		setFormDetails(() => ({

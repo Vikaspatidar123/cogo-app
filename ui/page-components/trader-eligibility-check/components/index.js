@@ -7,6 +7,8 @@ import useSaveDraft from '../hooks/useSaveDraft';
 import Content from './Content';
 import styles from './styles.module.css';
 
+import PaymentModal from '@/ui/commons/components/PaymentInitiation/component/PaymentModal';
+
 function TraderEligibilty() {
 	const [formDetails, setFormDetails] = useState({});
 	const [countryDetails, setCountryDetails] = useState();
@@ -20,7 +22,7 @@ function TraderEligibilty() {
 		quotaDetails,
 	} = useFetchQuotaDetails();
 
-	const { createDraft, loading, draftId } = useSaveDraft();
+	const { createDraft, loading, draftId, paymentData, paymentModal, setPaymentModal } = useSaveDraft();
 
 	return (
 		<div className={styles.wrapper}>
@@ -48,6 +50,11 @@ function TraderEligibilty() {
 					countryDetails={countryDetails}
 				/>
 			</div>
+			<PaymentModal
+				modal={paymentModal}
+				setModal={setPaymentModal}
+				paymentData={paymentData}
+			/>
 		</div>
 	);
 }

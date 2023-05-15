@@ -85,9 +85,7 @@ function BaseFilters({
 						className="secondary sm"
 						type="button"
 						disabled={loading}
-						onClick={() => {
-                        	clearFilterHandler();
-						}}
+						onClick={() => clearFilterHandler()}
 					>
 						Clear Filter
 					</Button>

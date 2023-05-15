@@ -2,6 +2,7 @@ import { Pagination, Button, Popover, Placeholder } from '@cogoport/components';
 import { IcMArrowBack, IcMPortArrow, IcMFilter } from '@cogoport/icons-react';
 import React, { useState } from 'react';
 
+import Loading from '../../common/Loading';
 import Map from '../../common/Map';
 import useFetchScheduleDetails from '../../hooks/useFetchScheduleDetails';
 import NoSchedulesCard from '../NoSchedulesCard';
@@ -82,7 +83,7 @@ function ActiveSchedules() {
 			</div>
 			{filterFetchLoading && 		(
 				<div className={styles.card}>
-					<Placeholder height="370px" width="1250px" margin="0px 0px 20px 0px" />
+					<Loading />
 				</div>
 			)}
 			<div className={styles.active_schedules}>

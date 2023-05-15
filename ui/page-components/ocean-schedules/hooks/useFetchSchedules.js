@@ -3,7 +3,7 @@ import { useState, useEffect, useCallback } from 'react';
 import { useRequest } from '@/packages/request';
 import { useSelector } from '@/packages/store';
 
-const useFetchSchedules = ({ pageLimit = 4, currentPage }) => {
+const useFetchSchedules = ({ pageLimit = 6, currentPage }) => {
 	const [filters, setFilters] = useState({});
 	const [schedules, setSchedules] = useState();
 	const { general } = useSelector((state) => state);

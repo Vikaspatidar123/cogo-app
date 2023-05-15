@@ -19,10 +19,9 @@ const useFetchScheduleDetails = ({
 	}, { manual: true });
 
 	const prepareFilters = () => {};
-
 	const fetchScheduleDetails = useCallback(async () => {
 		try {
-			const res = await request({
+			const res = await trigger({
 				params: {
 					filters              : { ...prepareFilters(filters, scheduleDetails?.filter_data ?? {}) },
 					page                 : currentPage,
@@ -38,7 +37,7 @@ const useFetchScheduleDetails = ({
 		} catch (err) {
 			console.log(err);
 		}
-	}, [currentPage, filters, id, pageLimit, profile.id, scheduleDetails?.filter_data, sortBy]);
+	}, [currentPage, filters, id, pageLimit, profile.id, scheduleDetails?.filter_data, sortBy, trigger]);
 
 	const fetchFilterScheduleDetails = useCallback(async () => {
 		try {

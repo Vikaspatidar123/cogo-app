@@ -90,7 +90,7 @@ function AdvFilters({
 						type="button"
 						disabled={loading}
 						onClick={() => {
-                        	clearFilterHandler();
+							clearFilterHandler();
 						}}
 					>
 						Clear Filter

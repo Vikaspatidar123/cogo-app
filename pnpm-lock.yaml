@@ -12,6 +12,7 @@ specifiers:
   axios: ^1.3.4
   axios-hooks: ^4.0.0
   eslint: 8.35.0
+  frames-react: ^1.1.0
   fs-extra: ^11.1.0
   i18next: ^22.4.10
   next: 13.2.3
@@ -40,6 +41,7 @@ dependencies:
   '@cogoport/utils': 1.2.4
   axios: 1.3.4
   axios-hooks: 4.0.0_axios@1.3.4+react@18.2.0
+  frames-react: 1.1.0_react@18.2.0
   i18next: 22.4.10
   next: 13.2.3_biqbaboplfbrettd7655fr4n2y
   next-i18next: 13.1.6_3hsgjxhlfhabtu3n4ai6yx6ufq
@@ -4351,6 +4353,15 @@ packages:
   /fraction.js/4.2.0:
     resolution: {integrity: sha512-MhLuK+2gUcnZe8ZHlaaINnQLl0xRIGRfcGk2yl8xoQAfHrSsL3rYu6FCmBdkdbhc9EPlwyGHewaRsvwRMJtAlA==}
     dev: true
+
+  /frames-react/1.1.0_react@18.2.0:
+    resolution: {integrity: sha512-4mpZsex1GL20OxCVwS7DaWXsRlJz17chy0OegFWuxrY9yhlupA8PNf7/ev/u/YBpxa3iY3f6feW6tdenGJPsLg==}
+    peerDependencies:
+      react: '>=16.8'
+    dependencies:
+      classnames: 2.3.2
+      react: 18.2.0
+    dev: false
 
   /fs-extra/11.1.0:
     resolution: {integrity: sha512-0rcTq621PD5jM/e0a3EJoGC/1TC5ZBCERW82LQuwfGnCa1V8w7dpYH1yNu+SLb6E5dkeCBzKEyLGlFrnr+dUyw==}

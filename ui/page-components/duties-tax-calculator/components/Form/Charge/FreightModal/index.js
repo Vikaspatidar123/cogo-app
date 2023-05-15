@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { Modal, Button } from '@cogoport/components';
 import { IcAFinancial } from '@cogoport/icons-react';
 import { useEffect, useState, useCallback } from 'react';
@@ -72,7 +73,7 @@ function FreightModal({
 
 	useEffect(() => {
 		spotSearchHandler();
-	}, [spotSearchHandler]);
+	}, []);
 
 	const titleRender = () => (
 		<div className={styles.title_container}>

@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { Toast } from '@cogoport/components';
 import { useState, useEffect, useCallback, useRef } from 'react';
 
@@ -63,7 +64,7 @@ const useCheckPaymentStatus = ({
 			}
 			return resp?.data;
 		} catch (err) {
-			Toast.error(err?.error?.message);
+			console.log(err);
 			return null;
 		}
 	}, [billId, paymentSuccessHandler, setShowPendingModal, trigger]);
@@ -72,7 +73,7 @@ const useCheckPaymentStatus = ({
 		if (billId) {
 			checkPaymentStatus();
 		}
-	}, [billId, checkPaymentStatus]);
+	}, [billId]);
 
 	return {
 		checkPaymentStatus,

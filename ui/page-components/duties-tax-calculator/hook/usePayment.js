@@ -1,10 +1,12 @@
 import { Toast } from '@cogoport/components';
+import { useState } from 'react';
 
 import useServiceCode from './useServiceCode';
 
 import { useRouter } from '@/packages/next';
 import { useRequestBf } from '@/packages/request';
 import { useSelector } from '@/packages/store';
+import paymentInitiation from '@/ui/commons/components/PaymentInitiation';
 
 const usePayment = () => {
 	const { profile } = useSelector((s) => s);
@@ -13,6 +15,8 @@ const usePayment = () => {
 		id, name, email, mobile_number, mobile_country_code,
 	} = profile || {};
 	const { org_id = '', branch_id = '', account_type = '' } = query || {};
+	const [buttonLoading, setButtonLoading] = useState(false);
+	const [modal, setModal] = useState({});
 
 	const { getServiceCode, serviceCodeLoading } = useServiceCode();
 
@@ -22,8 +26,7 @@ const usePayment = () => {
 		method  : 'post',
 	}, { manual: true });
 
-	const callBackUrl = `${process.env.NEXT_PUBLIC_APP_URL}/v2/${org_id}/${branch_id}/${account_type}saas
-	/premium-services/duties-taxes-calculator`;
+	const callBackUrl = `${process.env.NEXT_PUBLIC_APP_URL}/v2/${org_id}/${branch_id}/${account_type}saas/premium-services/duties-taxes-calculator`;
 
 	const getServiceDataHandler = async () => {
 		const resp = await getServiceCode();
@@ -83,13 +86,14 @@ const usePayment = () => {
 				},
 			});
 			if (resp?.data) {
-				window.open(resp?.data?.url, '_self', '');
+				setButtonLoading(true);
+				paymentInitiation({ data: resp?.data, setModal, setButtonLoading });
 			}
 		} catch (err) {
 			Toast.error('Something went wrong! Please try after sometime');
 		}
 	};
-	return { refectPayment, paymentLoading: loading || serviceCodeLoading };
+	return { refectPayment, paymentLoading: loading || serviceCodeLoading || buttonLoading, modal, setModal };
 };
 
 export default usePayment;

@@ -7,6 +7,7 @@ import { SuccessGif } from '../../configuration/icon-configuration';
 
 import styles from './styles.module.css';
 
+import { useRouter } from '@/packages/next';
 import formatAmount from '@/ui/commons/utils/formatAmount';
 
 function SuccessModal({ tradeEngineResp }) {
@@ -26,9 +27,12 @@ function SuccessModal({ tradeEngineResp }) {
 		const amount = arr.reduce((acc, curr) => +acc + +curr.value, 0);
 		return amount;
 	};
-
+	const { push } = useRouter();
 	const incotermAmmount = calculateTotalCharge(incotermArr);
-
+	const redirect = () => {
+		push('/saas/premium-services/duties-taxes-calculator', '/saas/premium-services/duties-taxes-calculator');
+		location.reload();
+	};
 	const tooltipContent = () => (
 		<div className={styles.tooltip_container}>
 			<div className={styles.tooltip_heading}>Breakdown of Total Landed Cost</div>
@@ -190,7 +194,7 @@ function SuccessModal({ tradeEngineResp }) {
 			</div>
 
 			<div className={styles.btn_container}>
-				<Button size="md" onClick={() => location.reload()}>
+				<Button size="md" onClick={() => redirect()}>
 					Calculate More
 				</Button>
 			</div>

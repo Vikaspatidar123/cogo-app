@@ -4,7 +4,6 @@ import CheckoutModal from '../CheckoutModal';
 
 function PaymentModal({ modal, setModal, paymentData }) {
 	const { checkoutModal } = modal || {};
-
 	return (
 		checkoutModal && (
 			<CheckoutModal

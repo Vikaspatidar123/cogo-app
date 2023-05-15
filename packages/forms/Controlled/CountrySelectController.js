@@ -1,3 +1,4 @@
+/* eslint-disable import/no-unresolved */
 import { Select } from '@cogoport/components';
 import { Controller } from 'react-hook-form';
 

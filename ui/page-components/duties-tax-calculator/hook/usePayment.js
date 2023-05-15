@@ -20,7 +20,7 @@ const usePayment = () => {
 
 	const { getServiceCode, serviceCodeLoading } = useServiceCode();
 
-	const [{ loading }, trigger] = useRequestBf({
+	const [{ loading, data }, trigger] = useRequestBf({
 		url     : '/saas/payment',
 		authKey : 'post_saas_payment',
 		method  : 'post',
@@ -45,7 +45,6 @@ const usePayment = () => {
 	}) => {
 		try {
 			const dutiesTaxesProductId = await getServiceDataHandler();
-			console.log(address, 'address');
 			const isBillingAddress = !address?.tax_number;
 			const addressKey = isBillingAddress
 				? 'organizationBillingAddressId'
@@ -94,7 +93,7 @@ const usePayment = () => {
 			Toast.error('Something went wrong! Please try after sometime');
 		}
 	};
-	return { refectPayment, paymentLoading: loading || serviceCodeLoading || buttonLoading, modal, setModal };
+	return { data, refectPayment, paymentLoading: loading || serviceCodeLoading || buttonLoading, modal, setModal };
 };
 
 export default usePayment;

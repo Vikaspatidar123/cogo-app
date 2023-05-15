@@ -67,14 +67,13 @@ function AddModal({ addAddressModal = false, setAddAddressModal = () => {} }) {
 	};
 
 	const onSubmit = async (data) => {
-		console.log(data, 'data');
 		await createSellerAddres(data, handleCloseModal);
 	};
 
 	useMemo(() => {
 		setValue('city', city);
 		setValue('state', state);
-	}, [city, state]);
+	}, [city, setValue, state]);
 
 	return (
 		<Modal

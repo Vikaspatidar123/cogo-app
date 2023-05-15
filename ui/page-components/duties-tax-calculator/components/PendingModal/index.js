@@ -12,9 +12,8 @@ function PendingModal({ showPendingModal, setShowPendingModal, stop }) {
 	const { org_id = '', branch_id = '', account_type = '' } = query || {};
 
 	const closeModalHandler = () => {
-		const redirectUrl = `${process.env.APP_URL}v2/${org_id}/${branch_id}/${account_type}
-		/saas/premium-services/duties-taxes-calculator`;
-		// eslint-disable-next-line no-undef
+		const redirectUrl = `${process.env.APP_URL}v2/${org_id}/${branch_id}/${account_type}`
+		+ '/saas/premium-services/duties-taxes-calculator';
 		window.open(redirectUrl, '_self');
 		setShowPendingModal(false);
 	};

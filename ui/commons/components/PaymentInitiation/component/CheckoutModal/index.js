@@ -1,4 +1,5 @@
-import { Button, Modal, Checkbox } from '@cogoport/components';
+/* eslint-disable react-hooks/exhaustive-deps */
+import { Button, Modal, Checkbox, cl } from '@cogoport/components';
 import { IcMHourglass } from '@cogoport/icons-react';
 import { Frames, CardNumber, ExpiryDate, Cvv } from 'frames-react';
 import React, { useState, useEffect } from 'react';
@@ -7,7 +8,7 @@ import framesConfig from '../../constants/framesConfig';
 import useCancelOrder from '../../hooks/useCancelOrder';
 import useCapturePayment from '../../hooks/useCapturePayment';
 
-import { CheckBoxWrapper, Container, LogoContainer, Wrapper } from './styles';
+import styles from './styles.module.css';
 
 function CheckoutModal({
 	checkoutModal = false,
@@ -80,13 +81,13 @@ function CheckoutModal({
 					cancelOrder();
 				}}
 			>
-				<LogoContainer>
+				<div className={styles.logo_container}>
 					<img
 						src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/cogo-logo.svg"
 						alt="COGOPORT"
 						height="50px"
 						width="50px"
-						className="companylogo"
+						className={styles.companylogo}
 					/>
 					<img
 						src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/chec.png"
@@ -94,53 +95,53 @@ function CheckoutModal({
 						height="50px"
 						width="50px"
 					/>
-				</LogoContainer>
+				</div>
 				<>
 					{startTimer && (
-						<Wrapper>
-							<div className="timer">
+						<div className={styles.wrapper}>
+							<div className={styles.timer}>
 								<IcMHourglass />
 								{minutes}
 								:
 								{seconds?.toString()?.padStart(2, '0')}
 							</div>
-						</Wrapper>
+						</div>
 					)}
-					<Container>
-						<div className="card-property-title">
+					<div className={styles.container}>
+						<div className={styles.card_property_title}>
 							<strong>Card Number</strong>
 							<span>Enter 16-digit card number on the card</span>
 						</div>
 						<CardNumber />
-					</Container>
-					<Container className="expiry">
-						<div className="card-property-title">
+					</div>
+					<div className={cl`${styles.container} ${styles.expiry}`}>
+						<div className={styles.card_property_title}>
 							<strong>Expiry Date</strong>
 							<ExpiryDate />
 						</div>
-						<div className="card-property-title">
+						<div className={styles.card_property_title}>
 							<strong>CVV Number</strong>
 							<Cvv />
 						</div>
-					</Container>
-					<CheckBoxWrapper>
-						<div className="checkbox">
+					</div>
+					<div className={styles.check_box_wrapper}>
+						<div className={styles.checkbox}>
 							<Checkbox
 								checked={isThreeDsEnabled}
 								onChange={() => setIsThreeDsEnabled(!isThreeDsEnabled)}
 							/>
-							<div className="checkboxText">Enable 3D security</div>
+							<div className={styles.checkboxText}>Enable 3D security</div>
 						</div>
 						<Button
 							onClick={async () => {
 								Frames.submitCard();
 							}}
-							className="button"
+							className={styles.button}
 							disabled={loading}
 						>
 							{loading ? 'Please Wait..' : 'Pay Now'}
 						</Button>
-					</CheckBoxWrapper>
+					</div>
 				</>
 			</Frames>
 		</Modal>

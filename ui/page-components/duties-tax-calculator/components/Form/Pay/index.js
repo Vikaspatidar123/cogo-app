@@ -15,6 +15,7 @@ import ServicesCharge from './ServicesCharge';
 import styles from './styles.module.css';
 
 import SelectAddressComponent from '@/ui/commons/components/CreateOrganizationModel/Components/SelectAddressComponent';
+import PaymentModal from '@/ui/commons/components/PaymentInitiation/component/PaymentModal';
 
 function Pay({
 	formData = {},
@@ -36,7 +37,11 @@ function Pay({
 	const { currency, services } = serviceRateData || {};
 	const { duties_and_taxes } = services || {};
 	const { refetchDraft, draftLoading = false } = useDraft();
-	const { refectPayment, paymentLoading = false } = usePayment();
+	const {
+		refectPayment, paymentLoading = false,	data = {},
+		modal = {},
+		setModal = () => {},
+	} = usePayment();
 	const {
 		submitHandler,
 		checkoutHandler,
@@ -143,6 +148,8 @@ function Pay({
 					checkoutHandler={checkoutHandler}
 				/>
 			)}
+			{modal && <PaymentModal paymentData={data} modal={modal} setModal={setModal} />}
+
 		</div>
 	);
 }

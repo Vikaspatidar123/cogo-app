@@ -1,7 +1,5 @@
-import styled from '@cogoport/front/styled';
-import Modal from '@cogoport/front/components/admin/Modal';
 
-export const CheckBoxWrapper = styled.div`
+.check_box_wrapper{
 	display: flex;
 	gap: 5px;
 	align-items: center;
@@ -23,9 +21,9 @@ export const CheckBoxWrapper = styled.div`
 		font-size: 15px !important;
 		font-weight: 400 !important;
 	}
-`;
+}
 
-export const Container = styled.div`
+.container{
 	display: flex;
 	flex-direction: column;
 	gap: 5px;
@@ -58,26 +56,26 @@ export const Container = styled.div`
 		display: flex;
 		justify-content: space-between;
 	}
-	.card-property-title {
+	.card_property_title {
 		display: flex;
 		flex-direction: column;
 	}
-`;
+}
 
-export const LogoContainer = styled.div`
+.logo_container{
 	display: flex;
-	.companylogo {
+	.company_logo {
 		margin-right: 5px;
 	}
-`;
+}
 
-export const StyledModal = styled(Modal)`
+.styled_modal{
 	.ui-modal-dialog {
 		width: 200px !important;
 	}
-`;
+}
 
-export const Wrapper = styled.div`
+.wrapper{
 	display: flex;
 	flex-direction: row;
 	justify-content: flex-end;
@@ -101,4 +99,4 @@ export const Wrapper = styled.div`
 			transform: rotate(180deg);
 		}
 	}
-`;
+}

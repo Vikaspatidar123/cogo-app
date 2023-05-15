@@ -1,4 +1,4 @@
-import { COUNTRY_IDS } from './countryId';
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
 const CONTROLS = [
 	{
@@ -7,7 +7,7 @@ const CONTROLS = [
 		type           : 'select',
 		placeholder    : 'Search Country',
 		optionsListKey : 'hs_codes_countries',
-		value          : COUNTRY_IDS.IN,
+		value          : GLOBAL_CONSTANTS.COUNTRY_IDS.IN,
 		valueKey       : 'id',
 		labelKey       : 'countryName',
 		defaultOptions : true,
@@ -50,9 +50,7 @@ const CONTROLS = [
 	},
 ];
 
-const getControls = ({
-	countryOptions = {},
-}) => CONTROLS.map((control) => {
+const getControls = ({ countryOptions = {} }) => CONTROLS.map((control) => {
 	const { name } = control;
 	let newControl = { ...control };
 

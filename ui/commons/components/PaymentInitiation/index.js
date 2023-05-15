@@ -32,7 +32,9 @@ async function paymentGateway(data, setButtonLoading) {
 				loadScript(
 					`https://${key}.billdesk.com/jssdk/v1/dist/billdesksdk/billdesksdk.esm.js`,
 				),
-				loadScript(`https://${key}.billdesk.com/jssdk/v1/dist/billdesksdk.js`),
+				loadScript(
+					`https://${key}.billdesk.com/jssdk/v1/dist/billdesksdk.js`,
+				),
 			])
 				.then(() => {
 					setTimeout(() => {

@@ -7,13 +7,16 @@ const useBillingAddress = () => {
 	const { profile = {} } = useSelector((state) => state);
 	const [addressesList, setAddressesList] = useState();
 	const { organization } = profile || {};
-	const { id:org_id } = organization;
+	const { id: org_id } = organization;
 
-	const [{ loading }, trigger] = useRequest({
-		url        : '/list_organizations',
-		method     : 'get',
-		autoCancel : true,
-	}, { manual: true });
+	const [{ loading }, trigger] = useRequest(
+		{
+			url        : '/list_organizations',
+			method     : 'get',
+			autoCancel : true,
+		},
+		{ manual: true },
+	);
 
 	const getAddress = useCallback(async () => {
 		const resp = await trigger({
@@ -25,7 +28,6 @@ const useBillingAddress = () => {
 		});
 		if (resp?.data) {
 			const { list = {} } = resp?.data || {};
-			console.log(list, 'list');
 			const { addresses = [], billing_addresses = [] } = list?.[0] || {};
 			setAddressesList([...addresses, ...billing_addresses]);
 		}

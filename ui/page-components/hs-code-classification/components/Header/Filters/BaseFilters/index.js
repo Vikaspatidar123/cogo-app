@@ -3,10 +3,10 @@ import { IcAIdea } from '@cogoport/icons-react';
 import { useEffect } from 'react';
 
 import getControls from '../../../../configurations/cardfilter';
-import { COUNTRY_IDS } from '../../../../configurations/countryId';
 import styles from '../styles.module.css';
 
 import { SelectController, useForm, InputController } from '@/packages/forms';
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
 function BaseFilters({
 	refetch,
@@ -36,8 +36,8 @@ function BaseFilters({
 	const clearFilterHandler = async () => {
 		reset();
 		refetch(watchCountry);
-		if (watchCountry !== COUNTRY_IDS.IN) {
-			setValue('country', COUNTRY_IDS.IN);
+		if (watchCountry !== GLOBAL_CONSTANTS.COUNTRY_IDS.IN) {
+			setValue('country', GLOBAL_CONSTANTS.COUNTRY_IDS.IN);
 		}
 		setSearchTag('');
 	};
@@ -53,8 +53,17 @@ function BaseFilters({
 		<form onSubmit={handleSubmit(onSubmit)}>
 			<div className={`${styles.filter_container}`}>
 				<div className={`${styles.fields_container}`}>
-					<SelectController key={watchCountry} {...field[0]} control={control} style={{ width: '150px' }} />
-					<SelectController {...field[1]} control={control} style={{ width: '150px' }} />
+					<SelectController
+						key={watchCountry}
+						{...field[0]}
+						control={control}
+						style={{ width: '150px' }}
+					/>
+					<SelectController
+						{...field[1]}
+						control={control}
+						style={{ width: '150px' }}
+					/>
 					<div>
 						<InputController
 							{...field[2]}
@@ -77,13 +86,19 @@ function BaseFilters({
 						type="button"
 						disabled={loading}
 						onClick={() => {
-							clearFilterHandler();
+                        	clearFilterHandler();
 						}}
 					>
 						Clear Filter
 					</Button>
 					<div>
-						<Button size="md" themeType="accent" className="primary md" type="submit" disabled={loading}>
+						<Button
+							size="md"
+							themeType="accent"
+							className="primary md"
+							type="submit"
+							disabled={loading}
+						>
 							Search
 						</Button>
 					</div>

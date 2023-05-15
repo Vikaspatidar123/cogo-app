@@ -14,11 +14,12 @@ function Chip(props, ref) {
 		onChange,
 		...rest
 	} = props;
-	const data = getOptionsFromKey(
-		optionKey,
-		{ ...rest },
-	);
-	const optionDate = data?.options.map((item) => ({ ...item, key: item.value, children: item.label })) || options;
+	const data = getOptionsFromKey(optionKey, { ...rest });
+	const optionDate = data?.options?.map((item) => ({
+		...item,
+		key      : item.value,
+		children : item.label,
+	})) || options;
 	return (
 		<Chips
 			{...rest}

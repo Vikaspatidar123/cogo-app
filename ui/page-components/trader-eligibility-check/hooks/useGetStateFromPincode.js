@@ -1,22 +1,27 @@
-import { Toast } from '@cogoport/components';
 import { useCallback, useEffect } from 'react';
 
 import useSearchQuery from './useSearchQuery';
 
 import { useRequest } from '@/packages/request';
 
-const useGetStateFromPincode = ({ watchPincode = undefined, setCityState, watchCountry }) => {
+const useGetStateFromPincode = ({
+	watchPincode = undefined,
+	setCityState,
+	watchCountry,
+}) => {
 	const { debounceQuery, query } = useSearchQuery();
 
 	useEffect(() => {
 		debounceQuery(watchPincode);
 	}, [debounceQuery, watchPincode]);
 
-	const [{ loading }, trigger] = useRequest({
-		url    : 'list_locations',
-		method : 'get',
-	}, { manual: true });
-
+	const [{ loading }, trigger] = useRequest(
+		{
+			url    : 'list_locations',
+			method : 'get',
+		},
+		{ manual: true },
+	);
 	const responseCity = useCallback(async () => {
 		try {
 			const res = await trigger({
@@ -33,16 +38,12 @@ const useGetStateFromPincode = ({ watchPincode = undefined, setCityState, watchC
 				setCityState(res?.data);
 			}
 		} catch (error) {
-			Toast.error(error?.error?.message, {
-				style: {
-					color: 'black',
-				},
-			});
+			console.log(error);
 		}
 	}, [query, setCityState, trigger, watchCountry]);
 
 	useEffect(() => {
-		if (query)responseCity();
+		if (query) responseCity();
 	}, [query, responseCity]);
 
 	return {

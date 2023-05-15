@@ -1,8 +1,10 @@
 import { Toast } from '@cogoport/components';
+import { useState } from 'react';
 
 import { useRouter } from '@/packages/next';
 import { useRequestBf } from '@/packages/request';
 import { useSelector } from '@/packages/store';
+import paymentInitiation from '@/ui/commons/components/PaymentInitiation';
 
 const usePayment = () => {
 	const { profile = {} } = useSelector((s) => s);
@@ -17,7 +19,8 @@ const usePayment = () => {
 	} = profile;
 	const { query } = useRouter();
 	const { org_id = '', branch_id = '', account_type = '' } = query || {};
-
+	const [buttonLoading, setButtonLoading] = useState(false);
+	const [modal, setModal] = useState({});
 	const [{ data, loading }, trigger] = useRequestBf(
 		{
 			url     : '/saas/payment',
@@ -55,32 +58,55 @@ const usePayment = () => {
 					redirectUrl           : callBackUrl,
 					totalAmount           : +price % 1 !== 0 ? +price.toFixed(2) : +price,
 					taxAmount:
-            ((+price % 1 !== 0 ? price.toFixed(2) : +price)
-              - (+discountAmount % 1 !== 0 ? +discountAmount.toFixed(2) : +discountAmount)) * 0.18,
+                        ((+price % 1 !== 0 ? price.toFixed(2) : +price)
+                            - (+discountAmount % 1 !== 0
+                            	? +discountAmount.toFixed(2)
+                            	: +discountAmount))
+                        * 0.18,
 					subTotalAmount:
-            (+price % 1 !== 0 ? price.toFixed(2) : +price)
-            - (+discountAmount % 1 !== 0 ? +discountAmount.toFixed(2) : +discountAmount),
+                        (+price % 1 !== 0 ? price.toFixed(2) : +price)
+                        - (+discountAmount % 1 !== 0
+                        	? +discountAmount.toFixed(2)
+                        	: +discountAmount),
 					netAmount:
-            ((+price % 1 !== 0 ? price.toFixed(2) : +price)
-              - (+discountAmount % 1 !== 0 ? +discountAmount.toFixed(2) : +discountAmount)) * 1.18,
+                        ((+price % 1 !== 0 ? price.toFixed(2) : +price)
+                            - (+discountAmount % 1 !== 0
+                            	? +discountAmount.toFixed(2)
+                            	: +discountAmount))
+                        * 1.18,
 					discountAmount,
 					billLineItems: [
 						{
-							productCodeId : productCodes?.trader_eligibility_check?.id,
-							description   : 'buyer_eligibility_check',
-							displayName   : 'Buyer Eligibility Check',
-							pricePerUnit  : +price % 1 !== 0 ? +price.toFixed(2) : +price,
-							quantity      : 1,
-							totalAmount   : +price % 1 !== 0 ? +price.toFixed(2) : +price,
+							productCodeId:
+                                productCodes?.trader_eligibility_check?.id,
+							description : 'buyer_eligibility_check',
+							displayName : 'Buyer Eligibility Check',
+							pricePerUnit:
+                                +price % 1 !== 0 ? +price.toFixed(2) : +price,
+							quantity: 1,
+							totalAmount:
+                                +price % 1 !== 0 ? +price.toFixed(2) : +price,
 							taxAmount:
-                ((+price % 1 !== 0 ? price.toFixed(2) : +price)
-                  - (+discountAmount % 1 !== 0 ? +discountAmount.toFixed(2) : +discountAmount)) * 0.18,
+                                ((+price % 1 !== 0
+                                	? price.toFixed(2)
+                                	: +price)
+                                    - (+discountAmount % 1 !== 0
+                                    	? +discountAmount.toFixed(2)
+                                    	: +discountAmount))
+                                * 0.18,
 							subTotalAmount:
-                (+price % 1 !== 0 ? price.toFixed(2) : +price)
-                - (+discountAmount % 1 !== 0 ? +discountAmount.toFixed(2) : +discountAmount),
+                                (+price % 1 !== 0 ? price.toFixed(2) : +price)
+                                - (+discountAmount % 1 !== 0
+                                	? +discountAmount.toFixed(2)
+                                	: +discountAmount),
 							netAmount:
-                ((+price % 1 !== 0 ? price.toFixed(2) : +price)
-                  - (+discountAmount % 1 !== 0 ? +discountAmount.toFixed(2) : +discountAmount)) * 1.18,
+                                ((+price % 1 !== 0
+                                	? price.toFixed(2)
+                                	: +price)
+                                    - (+discountAmount % 1 !== 0
+                                    	? +discountAmount.toFixed(2)
+                                    	: +discountAmount))
+                                * 1.18,
 							discountAmount,
 							metadata: '',
 						},
@@ -88,7 +114,12 @@ const usePayment = () => {
 				},
 			});
 			if (resp?.data) {
-				window.open(resp.data.url, '_self', '');
+				setButtonLoading(true);
+				paymentInitiation({
+					data: resp?.data,
+					setModal,
+					setButtonLoading,
+				});
 			}
 		} catch (err) {
 			Toast.error(
@@ -103,6 +134,6 @@ const usePayment = () => {
 			);
 		}
 	};
-	return { initiatePayment, data, loading };
+	return { initiatePayment, data, loading: buttonLoading || loading, modal, setModal };
 };
 export default usePayment;

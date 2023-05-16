@@ -30,3 +30,9 @@
 	background-color: #f68b21;
 	border-width: 0;
 }
+.loading_image{
+	height: 100px !important;
+	width: 100px !important;
+	display: block;
+	margin: auto;
+}

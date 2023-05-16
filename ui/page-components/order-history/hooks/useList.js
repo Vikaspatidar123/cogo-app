@@ -1,4 +1,3 @@
-import { Toast } from '@cogoport/components';
 import { useState, useEffect } from 'react';
 
 import { useRequestBf } from '@/packages/request';
@@ -41,7 +40,7 @@ const useList = ({ sort }) => {
 			});
 			setDataApi(resp?.data);
 		} catch (error) {
-			Toast.error(error?.message);
+			console.log(error);
 		}
 	};
 

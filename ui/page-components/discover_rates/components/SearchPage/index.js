@@ -1,26 +1,32 @@
 import { useState } from 'react';
 
-import NoSearch from '../../common/NoSearch';
 import useGetUserQuota from '../../hooks/useGetUserQuota';
+import useRecommendedSearches from '../../hooks/useRecommendedSearches';
 import KycBenefits from '../KycBenefits';
 import PastResults from '../PastResults';
 
 import NewSearch from './NewSearch';
 
 import { Head } from '@/packages/next';
-import { useSelector } from '@/packages/store';
+import {
+	useSelector,
+} from '@/packages/store';
 
 function SearchPage() {
 	const [apiTries, setApiTries] = useState(0);
-	const { quotaLoading, quotaData = [] } = useGetUserQuota({
+	const { quotaLoading = true, quotaData = [] } = useGetUserQuota({
 		apiTries,
 		setApiTries,
 	});
-	const { kyc_status, query } = useSelector(({ search, general, profile }) => ({
-		list       : search.past_searches || [],
-		kyc_status : profile?.organization?.kyc_status,
-		query      : general?.query,
-	}));
+	const { loading, setLoading } = useRecommendedSearches();
+
+	const { kyc_status, query } = useSelector(
+		({ search, general, profile }) => ({
+			list       : search.past_searches || [],
+			kyc_status : profile?.organization?.kyc_status,
+			query      : general?.query,
+		}),
+	);
 	const listStoreQuotaAPI = quotaData?.plan_details?.find(
 		(item) => item.product_name === 'Spot Search',
 	);
@@ -45,7 +51,12 @@ function SearchPage() {
 			{kyc_status === 'pending_from_user' || kyc_status === 'rejected' ? (
 				<KycBenefits />
 			) : null}
-			{!quotaLoading && blockSearch ? <NoSearch /> : <PastResults />}
+			<PastResults
+				loading={loading}
+				quotaLoading={quotaLoading}
+				setLoading={setLoading}
+				blockSearch={blockSearch}
+			/>
 		</div>
 	);
 }

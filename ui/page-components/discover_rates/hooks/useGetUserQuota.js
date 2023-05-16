@@ -1,4 +1,3 @@
-import { Toast } from '@cogoport/components';
 import { useEffect, useState } from 'react';
 
 import { useRequest } from '@/packages/request';
@@ -11,10 +10,13 @@ const useGetUserQuota = ({ apiTries, setApiTries }) => {
 
 	const [quotaData, setQuotaData] = useState([]);
 
-	const [{ loading }, trigger] = useRequest({
-		url    : '/saas_get_user_quota_usage',
-		method : 'get',
-	}, { manual: true });
+	const [{ loading }, trigger] = useRequest(
+		{
+			url    : '/saas_get_user_quota_usage',
+			method : 'get',
+		},
+		{ manual: true },
+	);
 	const getQuotaUsage = async () => {
 		const params = { organization_id };
 		try {
@@ -28,19 +30,23 @@ const useGetUserQuota = ({ apiTries, setApiTries }) => {
 		}
 	};
 
-	let interval = null;
+	const interval = null;
 
 	useEffect(() => {
-		if (apiTries < 6) {
-			interval = setInterval(async () => {
-				try {
-					await getQuotaUsage();
-					setApiTries((prevState) => prevState + 1);
-				} catch (err) {
-					Toast.error(err);
-				}
-			}, 2000);
-		}
+		// if (apiTries === 0) {
+		getQuotaUsage();
+		// ; }
+		// if (apiTries < 6) {
+		// 	// eslint-disable-next-line react-hooks/exhaustive-deps
+		// 	interval = setInterval(async () => {
+		// 		try {
+		// 			await getQuotaUsage();
+		// 			setApiTries((prevState) => prevState + 1);
+		// 		} catch (err) {
+		// 			Toast.error(err);
+		// 		}
+		// 	}, 2000);
+		// }
 		return () => {
 			clearInterval(interval);
 		};

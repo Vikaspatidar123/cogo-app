@@ -1,4 +1,4 @@
-import { TabPanel, Tabs } from '@cogoport/components';
+import { Modal, TabPanel, Tabs } from '@cogoport/components';
 import { useState } from 'react';
 
 import Document from './Document';
@@ -44,49 +44,51 @@ function IEDocumentsModal({ tradeEngineResponse = {} }) {
 							</div>
 						</div>
 					</div>
-					<div>
-						{activeTab === 'IMPORT' && (
-							<div>
-								{importDoc?.length > 0 ? (
-									importDoc.map((doc) => (
+					<Modal.Body>
+						<div>
+							{activeTab === 'IMPORT' && (
+								<div>
+									{importDoc?.length > 0 ? (
+										importDoc.map((doc) => (
+											<Document
+												key={doc?.docLink}
+												doc={doc}
+												hsNumber={hsNumber}
+											/>
+										))
+									) : (
+										<div>
+											<img
+												className={styles.empty_state}
+												src={img_url}
+												alt="No Data Found"
+											/>
+										</div>
+									)}
+								</div>
+							)}
+							{activeTab === 'EXPORT' && (
+								<div>
+									{exportDoc?.length > 0 ? (exportDoc.map((doc) => (
 										<Document
 											key={doc?.docLink}
 											doc={doc}
 											hsNumber={hsNumber}
 										/>
 									))
-								) : (
-									<div>
-										<img
-											className={styles.empty_state}
-											src={img_url}
-											alt="No Data Found"
-										/>
-									</div>
-								)}
-							</div>
-						)}
-						{activeTab === 'EXPORT' && (
-							<div>
-								{exportDoc?.length > 0 ? (exportDoc.map((doc) => (
-									<Document
-										key={doc?.docLink}
-										doc={doc}
-										hsNumber={hsNumber}
-									/>
-								))
-								) : (
-									<div>
-										<img
-											className={styles.empty_state}
-											src={img_url}
-											alt="No Data Found"
-										/>
-									</div>
-								)}
-							</div>
-						)}
-					</div>
+									) : (
+										<div>
+											<img
+												className={styles.empty_state}
+												src={img_url}
+												alt="No Data Found"
+											/>
+										</div>
+									)}
+								</div>
+							)}
+						</div>
+					</Modal.Body>
 				</>
 			) : (
 				<div>

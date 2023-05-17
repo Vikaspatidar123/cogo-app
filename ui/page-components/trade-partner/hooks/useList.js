@@ -36,7 +36,7 @@ const useList = ({ activeTab, archived = false, sort }) => {
 			});
 			setDataApi(resp?.data);
 		} catch (error) {
-			Toast.error(error?.message);
+			console.log(error);
 		}
 	};
 	useEffect(() => {

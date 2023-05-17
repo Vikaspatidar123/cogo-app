@@ -2,12 +2,10 @@
 	display: flex;
 	align-items: center;
 }
-
 .tabs {
 	width: 21%;
 	margin-right: 12px;
 }
-
 .tag_container {
 	display: flex;
 }
@@ -100,7 +98,7 @@
 	width: 17%;
 }
 
-.empty_state {
+.empty_states {
 	width: 350px;
 	height: 350px;
 }

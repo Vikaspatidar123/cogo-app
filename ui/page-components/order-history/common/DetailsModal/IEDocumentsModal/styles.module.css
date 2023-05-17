@@ -2,10 +2,12 @@
 	display: flex;
 	align-items: center;
 }
+
 .tabs {
 	width: 21%;
 	margin-right: 12px;
 }
+
 .tag_container {
 	display: flex;
 }

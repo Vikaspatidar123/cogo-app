@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 
-import { request, useRequest } from '@/packages/request';
+import { useRequest } from '@/packages/request';
 import { useSelector } from '@/packages/store';
 
 const useFetchScheduleDetails = ({

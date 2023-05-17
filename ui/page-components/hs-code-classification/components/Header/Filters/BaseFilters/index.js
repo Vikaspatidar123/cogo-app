@@ -83,7 +83,7 @@ function BaseFilters({
 						type="button"
 						disabled={loading}
 						onClick={() => {
-                        	clearFilterHandler();
+							clearFilterHandler();
 						}}
 					>
 						Clear Filter

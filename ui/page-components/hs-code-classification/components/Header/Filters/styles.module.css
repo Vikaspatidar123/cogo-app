@@ -49,16 +49,18 @@
 	color: #ff733b;
 }
 
-.select{
+.select {
 	width: 150px;
+
 	@media screen and (max-width: 767px) {
 		width: 100%;
 	}
 }
-.input_select{
+
+.input_select {
 	width: 250px;
+
 	@media screen and (max-width: 767px) {
 		width: 100%;
 	}
-
 }

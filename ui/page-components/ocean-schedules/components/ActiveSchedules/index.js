@@ -1,4 +1,4 @@
-import { Pagination, Button, Popover, Placeholder } from '@cogoport/components';
+import { Pagination, Button, Popover } from '@cogoport/components';
 import { IcMArrowBack, IcMPortArrow, IcMFilter } from '@cogoport/icons-react';
 import React, { useState } from 'react';
 

@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Document from './Document';
 import styles from './styles.module.css';
 
+const img_url = 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/empty_icon 1.svg';
 function IEDocumentsModal({ tradeEngineResponse = {} }) {
 	const [activeTab, setActiveTab] = useState('IMPORT');
 
@@ -29,7 +30,9 @@ function IEDocumentsModal({ tradeEngineResponse = {} }) {
 							</Tabs>
 						</div>
 						<div className={styles.tag_container}>
-							<div className={`${styles.tag} ${styles.transport_mode}`}>
+							<div
+								className={`${styles.tag} ${styles.transport_mode}`}
+							>
 								Mode of Transport:
 								{' '}
 								{modeOfTransport}
@@ -42,44 +45,53 @@ function IEDocumentsModal({ tradeEngineResponse = {} }) {
 						</div>
 					</div>
 					<div>
-						{activeTab === 'IMPORT'
-							&& (
-								<div>
-									{importDoc?.length > 0 ? (importDoc.map((doc) => (
-										<Document key={doc?.docLink} doc={doc} hsNumber={hsNumber} />
-									))) : (
-										<div>
-											<img
-												className={styles.empty_state}
-												src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/empty_icon 1.svg"
-												alt="No Data Found"
-											/>
-										</div>
-									)}
-								</div>
-							) }
-						{activeTab === 'EXPORT'
-							&& (
-								<div>
-									{exportDoc?.length > 0 ? (exportDoc.map((doc) => (
-										<Document key={doc?.docLink} doc={doc} hsNumber={hsNumber} />
-									))) : (
-										<div>
-											<img
-												className={styles.empty_state}
-												src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/empty_icon 1.svg"
-												alt="No Data Found"
-											/>
-										</div>
-									)}
-								</div>
-							) }
+						{activeTab === 'IMPORT' && (
+							<div>
+								{importDoc?.length > 0 ? (
+									importDoc.map((doc) => (
+										<Document
+											key={doc?.docLink}
+											doc={doc}
+											hsNumber={hsNumber}
+										/>
+									))
+								) : (
+									<div>
+										<img
+											className={styles.empty_state}
+											src={img_url}
+											alt="No Data Found"
+										/>
+									</div>
+								)}
+							</div>
+						)}
+						{activeTab === 'EXPORT' && (
+							<div>
+								{exportDoc?.length > 0 ? (exportDoc.map((doc) => (
+									<Document
+										key={doc?.docLink}
+										doc={doc}
+										hsNumber={hsNumber}
+									/>
+								))
+								) : (
+									<div>
+										<img
+											className={styles.empty_state}
+											src={img_url}
+											alt="No Data Found"
+										/>
+									</div>
+								)}
+							</div>
+						)}
 					</div>
 				</>
 			) : (
 				<div>
 					<img
-						src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/empty_icon 1.svg"
+						src={img_url}
 						alt="loading"
 						className={styles.empty_state}
 					/>

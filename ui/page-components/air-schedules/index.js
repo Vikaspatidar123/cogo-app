@@ -1,4 +1,4 @@
-import { Button, Pagination, Placeholder } from '@cogoport/components';
+import { Button, Pagination } from '@cogoport/components';
 import { IcMPortArrow } from '@cogoport/icons-react';
 import { merge } from '@cogoport/utils';
 import React, { useState } from 'react';
@@ -26,7 +26,7 @@ function AirSchedules() {
 		currentPage,
 		setCurrentPage,
 	});
-	// const [errorMessage, setErrorMessage] = useState(false);
+	const [errorMessage, setErrorMessage] = useState(false);
 
 	const formValues = watch();
 
@@ -37,10 +37,10 @@ function AirSchedules() {
 	);
 
 	const handleCreateSchedule = () => {
-		// if (formValues.origin_port === formValues.destination_port) {
-		// 	setErrorMessage((prev) => !prev);
-		// 	return;
-		// }
+		if (formValues.origin_port === formValues.destination_port) {
+			setErrorMessage((prev) => !prev);
+			return;
+		}
 		createSchedule(
 			formValues.origin_airport,
 			formValues.destination_airport,
@@ -77,17 +77,20 @@ function AirSchedules() {
 						<Button
 							onClick={handleCreateSchedule}
 							disabled={
-                                !(
-                                	formValues.origin_airport
-                                    && formValues.destination_airport
-                                )
+                                !(formValues.origin_airport
+                                && formValues.destination_airport)
                             }
 						>
 							Search Schedule
 						</Button>
 					</div>
 				</form>
-				{/* {errorMessage && <div className={styles.error_message}>* origin and destination could not be same</div>} */}
+				{errorMessage && (
+					<div className={styles.error_message}>
+						* origin
+						and destination could not be same
+					</div>
+				)}
 			</div>
 			<div className={styles.sub_heading_container}>My Schedules</div>
 			<div className={styles.schedules_container}>
@@ -97,13 +100,13 @@ function AirSchedules() {
 					</div>
 				)}
 				{!loading && schedules?.list.length > 0 ? (
-                	schedules?.list?.map((item) => (
-	<ScheduleCard
-		schedule={item}
-		fetchSchedules={fetchSchedules}
-		loading={loading}
-	/>
-                	))
+					schedules?.list?.map((item) => (
+						<ScheduleCard
+							schedule={item}
+							fetchSchedules={fetchSchedules}
+							loading={loading}
+						/>
+					))
 				) : (
 					<NoSchedulesCard loading={loading} />
 				)}

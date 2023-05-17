@@ -8,7 +8,6 @@ function FilterDropDownContent(props) {
 	const handleChange = (item) => {
 		events(item, value);
 	};
-	console.log(list, 'list', value);
 	return (
 		<div className={styles.container}>
 			<ul style={{ padding: '0px 10px 0px 10px' }}>

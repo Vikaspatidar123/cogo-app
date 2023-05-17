@@ -1,4 +1,3 @@
-import { Toast } from '@cogoport/components';
 import { useState, useEffect } from 'react';
 
 import { prepareFilters } from '../common/utils';
@@ -16,7 +15,6 @@ const useFetchTrackers = () => {
 		url    : 'list_saas_container_subscriptions',
 		method : 'get',
 	}, { manual: true });
-
 
 	const fetchTrackers = async () => {
 		try {
@@ -37,7 +35,7 @@ const useFetchTrackers = () => {
 
 			setTrackers(data);
 		} catch (err) {
-			Toast.error('Cannot fetch store quota. Please try again later.');
+			console.log(err);
 		}
 	};
 

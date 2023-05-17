@@ -52,8 +52,10 @@
 }
 
 .sub_element{
+    width:50%; 
     display: flex;
     font-size: 12px;
+    
 }
 
 .icon{

@@ -24,11 +24,10 @@ function DeleteModal({
 
 	return (
 		<Modal size="md" show={show} onClose={() => setShow(!show)} placement="center">
-			<Modal.Header title={text()} />
-
+			<div className={styles.text}>{text()}</div>
 			<div className={styles.footer}>
-				<Button onClick={() => setShow(!show)}>Cancel</Button>
-				<Button onClick={() => deleteData()}>OK</Button>
+				<Button size="md" themeType="secondary" onClick={() => setShow(!show)}>Cancel</Button>
+				<Button size="md" themeType="primary" onClick={() => deleteData()}>OK</Button>
 			</div>
 		</Modal>
 	);

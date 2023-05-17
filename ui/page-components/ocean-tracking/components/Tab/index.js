@@ -27,6 +27,7 @@ function Tab({ archived, setArchived }) {
 		setFilters: setFilters1,
 		refetch: refetch1,
 	} = useArchiveList();
+
 	const { stats = {} } = trackers || {};
 	const [activeKey, setActiveKey] = useState(FILTER_KEYS.ALL_SHIPMENTS);
 	const removeActiveKeyFromFilters = () => {
@@ -90,7 +91,7 @@ function Tab({ archived, setArchived }) {
 					refetch={refetch}
 				/>
 			)}
-			{ archived && (
+			{archived && (
 				<TrackerCard
 					archived={archived}
 					setArchived={setArchived}

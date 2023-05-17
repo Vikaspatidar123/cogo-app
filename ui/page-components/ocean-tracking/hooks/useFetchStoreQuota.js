@@ -1,4 +1,3 @@
-import { Toast } from '@cogoport/components';
 import { useState, useEffect } from 'react';
 
 import { useRequest } from '@/packages/request';
@@ -26,7 +25,7 @@ const useFetchStoreQuota = () => {
 
 			setStoreQuota(data?.plan_details);
 		} catch (err) {
-			Toast.error('Cannot fetch store quota. Please try again later.');
+			console.log(err);
 		}
 	};
 

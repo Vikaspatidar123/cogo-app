@@ -1,3 +1,4 @@
+import { IcMPlus } from '@cogoport/icons-react';
 import { useState } from 'react';
 
 import { POC_TYPES } from '../../common/constant';
@@ -65,7 +66,10 @@ function IncotermDetails({
 			disabled={disabled}
 			{...props}
 		>
-			<p>Add incoterms and shipper / consignee details to customize alerts</p>
+			<IcMPlus />
+			<p>
+				Add incoterms and shipper / consignee details to customize alerts
+			</p>
 		</div>
 	);
 	return (

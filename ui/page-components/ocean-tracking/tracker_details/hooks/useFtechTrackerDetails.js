@@ -104,6 +104,7 @@ function useFetchTrackerDetails() {
 		setTrackerDetails,
 		mapPoints,
 		setMapPoints,
+		timeRemaining,
 	};
 }
 

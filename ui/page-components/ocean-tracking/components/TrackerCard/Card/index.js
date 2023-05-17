@@ -54,7 +54,7 @@ function Card({ tracker, setTrackers, refetch }) {
 	const { push } = useRouter();
 	const handleTrackingDetails = (key) => {
 		if (isTrackerEmpty) return;
-		push('/saas/tracking/[tracker_id]', `/saas/tracking/${key}`);
+		push(`/saas/ocean-tracking/${key}`);
 	};
 	const [showDeleteModal, setDeleteModal] = useState(false);
 	return (

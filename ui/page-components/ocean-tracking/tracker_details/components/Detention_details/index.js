@@ -1,3 +1,4 @@
+import { IcMPlus } from '@cogoport/icons-react';
 import { useState } from 'react';
 
 import DetentionModal from './DetentionModal';
@@ -63,7 +64,10 @@ function DetentionDetails({ disabled, trackerDetails, setTrackerDetails, ...prop
 			disabled={disabled}
 			{...props}
 		>
-			<p>Add available detention / demurrage free days for proactive alerts on expiry</p>
+			<IcMPlus />
+			<p>
+				Add available detention / demurrage free days for proactive alerts on expiry
+			</p>
 		</div>
 	);
 	return (

@@ -4,10 +4,14 @@ import { useState } from 'react';
 
 import ShareModal from '../components/TrackerCard/Card/Options/ShareModal';
 
+import RenderEmpty from './common/RenderEmpty';
+import RenderSkeleton from './common/RenderSkeleton';
+import RenderWithTimer from './common/RenderWithTimer';
 import AddDetails from './components/AddDetails';
 import DetentionDetails from './components/Detention_details';
 import IncotermDetails from './components/Incoterm_details';
 import MilestonesContainer from './components/MileStoneContainer';
+import useFetchQuoteDetails from './hooks/useFetchQuoteDetails';
 import useFetchTrackerDetails from './hooks/useFtechTrackerDetails';
 import styles from './styles.module.css';
 
@@ -25,7 +29,10 @@ function TrackerDetails() {
 		setTrackerDetails,
 		mapPoints,
 		setMapPoints,
+		loadingForFirstVisit,
+		timeRemaining,
 	} = useFetchTrackerDetails();
+	const { quoteData } = useFetchQuoteDetails();
 
 	const [selectedContainer, setSelectedContainer] = useState(0);
 	const isArchived = trackerDetails?.status === 'completed';
@@ -35,6 +42,16 @@ function TrackerDetails() {
 	const handleShareModal = () => {
 		setShareModal(!isShareModalOpen);
 	};
+	const isTrackerEmpty = trackerDetails?.tracking_status !== 'Found';
+	if (timeRemaining > 0 && loadingForFirstVisit) {
+		return <RenderWithTimer quoteData={quoteData} timeRemaining={timeRemaining} />;
+	}
+	if (loading) {
+		return <RenderSkeleton />;
+	}
+	if (isTrackerEmpty) {
+		return <RenderEmpty />;
+	}
 	return (
 		<div>
 			<div className={styles.header}>
@@ -62,7 +79,9 @@ function TrackerDetails() {
 			<div>
 				<div className={styles.row}>
 					<div className={styles.col}>
-						{loading && <Placeholder height="150px" width="350px" />}
+						{loading && (
+							<Placeholder height="150px" width="350px" />
+						)}
 						{!loading && (
 							<IncotermDetails
 								trackerDetails={trackerDetails}
@@ -72,7 +91,9 @@ function TrackerDetails() {
 						)}
 					</div>
 					<div className={styles.col}>
-						{loading && <Placeholder height="150px" width="350px" />}
+						{loading && (
+							<Placeholder height="150px" width="350px" />
+						)}
 						{!loading && (
 							<DetentionDetails
 								trackerDetails={trackerDetails}
@@ -83,7 +104,9 @@ function TrackerDetails() {
 						)}
 					</div>
 					<div className={styles.col}>
-						{loading && <Placeholder height="150px" width="350px" />}
+						{loading && (
+							<Placeholder height="150px" width="350px" />
+						)}
 						{!loading && (
 							<AddDetails
 								selectedContainer={selectedContainer}

@@ -70,7 +70,7 @@
 .col{
 	display: flex;
 	flex-direction: column;
-	width: 30%;
+	width: 32%;
 	@media (max-width: 760px) {
 		width: 100%;
 	}

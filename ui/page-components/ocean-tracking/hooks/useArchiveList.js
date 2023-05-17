@@ -1,4 +1,3 @@
-import { Toast } from '@cogoport/components';
 import { useState, useEffect } from 'react';
 
 import { prepareFilters } from '../common/utils';
@@ -36,7 +35,7 @@ const useArchiveList = () => {
 
 			setTrackers(data);
 		} catch (err) {
-			Toast.error('Cannot fetch store quota. Please try again later.');
+			console.log(err);
 		}
 	};
 

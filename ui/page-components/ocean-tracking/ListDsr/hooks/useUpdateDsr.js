@@ -1,5 +1,3 @@
-import { Toast } from '@cogoport/components';
-
 import { useRequest } from '@/packages/request';
 
 const useUpdateDsr = (setDsrs) => {
@@ -27,7 +25,7 @@ const useUpdateDsr = (setDsrs) => {
 				return item;
 			}));
 		} catch (err) {
-			Toast.error(err?.message || 'Unable to update status report. Please try again.');
+			console.log(err);
 		}
 	};
 

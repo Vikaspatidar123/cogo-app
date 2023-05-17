@@ -43,10 +43,9 @@ function Header() {
 						themeType="accent"
 						size="sm"
 						loading={loading}
-						onClick={() => handelRouting}
+						onClick={() => handelRouting()}
 					>
 						Upgrade
-
 					</Button>
 				</div>
 				<div className={styles.button_container}>

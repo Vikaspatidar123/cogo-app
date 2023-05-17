@@ -32,7 +32,7 @@ const saas = {
 		navigation : 'saas_tools-ocean_tracking',
 		isMainNav  : true,
 	},
-	'/saas/tracking/[tracker_id]': {
+	'/saas/ocean-tracking/[tracker_id]': {
 		navigation : 'saas_tools-ocean_tracking',
 		isMainNav  : true,
 	},

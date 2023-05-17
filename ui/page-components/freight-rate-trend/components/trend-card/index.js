@@ -85,21 +85,23 @@ function TrendCard({ trend = {}, fetchLocations = () => {} }) {
 
 function TrendCardSkeleton() {
 	return (
-		<div className={styles.holder}>
-			<div className={styles.card}>
+		[...Array(3).keys()].map(() => (
+			<div className={styles.holder}>
+				<div className={styles.card}>
 
-				<div style={{ padding: 16 }}>
-					<Placeholder count={5} />
+					<div style={{ padding: 16 }}>
+						<Placeholder count={5} />
+					</div>
+					<div className={styles.footer}>
+						<Placeholder count={5} />
+					</div>
+					<div className={styles.footer}>
+						<Placeholder count={1} style={{ width: '300px' }} />
+					</div>
 				</div>
-				<div className={styles.footer}>
-					<Placeholder count={5} />
-				</div>
-				<div className={styles.footer}>
-					<Placeholder count={1} style={{ width: '300px' }} />
-				</div>
+
 			</div>
-
-		</div>
+		))
 
 	);
 }

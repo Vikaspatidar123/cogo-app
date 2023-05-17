@@ -28,10 +28,8 @@ function TrackerDetails() {
 		timeRemaining,
 		loading,
 	} = useFetchTrackerDetails();
-	const { quoteData, fetchQuoteDetails = () => {} } = useFetchQuoteDetails();
-	useEffect(() => {
-		fetchQuoteDetails();
-	}, []);
+	const { quoteData } = useFetchQuoteDetails();
+
 	const isArchived = trackerDetails?.status === 'completed';
 	const isTrackerEmpty = trackerDetails?.tracking_status !== 'Found';
 
@@ -43,22 +41,15 @@ function TrackerDetails() {
 	const renderWithTimer = () => (
 		<RenderWithTimer quoteData={quoteData} timeRemaining={timeRemaining} />
 	);
-	console.log(
-		trackerDetails?.data?.[0]?.tracking_data.length,
-		'trackerDetails',
-		isArchived,
-	);
+
 	if (loadingForFirstVisit && timeRemaining > 0) {
 		return renderWithTimer();
 	}
-	// if (!trackerDetails?.data?.[0]?.tracking_data.length > 0 && (!loadingForFirstVisit || !loading)) {
-	// 	return <div>{renderWithTimer()}</div>;
-	// }
+	if (loading) {
+		return <RenderSkeleton />;
+	}
 	if (isTrackerEmpty) {
 		return <RenderEmpty />;
-	}
-	if (loadingForFirstVisit || loading) {
-		return <RenderSkeleton />;
 	}
 
 	return (

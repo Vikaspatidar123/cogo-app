@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import { useRequest } from '@/packages/request';
 import { useSelector } from '@/packages/store';
@@ -40,7 +40,9 @@ const useFetchQuoteDetails = () => {
 			console.log(err);
 		}
 	};
-
+	useEffect(() => {
+		fetchQuoteDetails();
+	}, []);
 	return {
 		loading,
 		quoteData,

@@ -47,7 +47,7 @@
 		font-weight: 700;
 		text-align: center;
 		transform: translateX(100%);
-		animation: scroll-left 30s linear infinite;
+		animation: scroll-left 50s linear infinite;
 
 		span {
 			width: max-content;

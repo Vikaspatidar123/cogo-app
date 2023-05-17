@@ -56,6 +56,7 @@ function useFetchTrackerDetails() {
 					tracking_data  : trackerData?.data,
 				},
 			];
+			console.log(trackingContainersData, 'trackingContainersData');
 			setTrackerDetails({
 				...trackerData,
 				data: trackingContainersData,

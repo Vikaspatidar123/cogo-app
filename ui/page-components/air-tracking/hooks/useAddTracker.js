@@ -36,7 +36,6 @@ const useAddTracker = () => {
 			}
 
 			push(
-				'/saas/air-tracking/[tracker_id]',
 				`/saas/air-tracking/${id}?isFirstVisit=true&shippingLineId=${values.option}&trackingType=air`,
 			);
 		} catch (err) {

@@ -1,6 +1,11 @@
 import { IcMArrowBack } from '@cogoport/icons-react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
+import useFetchQuoteDetails from '../../hooks/useFetchQuoteDetails';
+
+import RenderEmpty from './common/RenderEmpty';
+import RenderSkeleton from './common/RenderSkeleton';
+import RenderWithTimer from './common/RenderWithTimer';
 import CargoDetails from './components/CargoDetails';
 import CommodityDetails from './components/CommodityDetails';
 import PocDetails from './components/Poc_details';
@@ -21,17 +26,41 @@ function TrackerDetails() {
 		maploading,
 		loadingForFirstVisit,
 		timeRemaining,
+		loading,
 	} = useFetchTrackerDetails();
+	const { quoteData, fetchQuoteDetails = () => {} } = useFetchQuoteDetails();
+	useEffect(() => {
+		fetchQuoteDetails();
+	}, []);
 	const isArchived = trackerDetails?.status === 'completed';
+	const isTrackerEmpty = trackerDetails?.tracking_status !== 'Found';
+
 	const [isShareModalOpen, setShareModal] = useState(false);
 
 	const handleShareModal = () => {
 		setShareModal(!isShareModalOpen);
 	};
-	const renderWithTimer = () => <div>helklo</div>;
+	const renderWithTimer = () => (
+		<RenderWithTimer quoteData={quoteData} timeRemaining={timeRemaining} />
+	);
+	console.log(
+		trackerDetails?.data?.[0]?.tracking_data.length,
+		'trackerDetails',
+		isArchived,
+	);
 	if (loadingForFirstVisit && timeRemaining > 0) {
 		return renderWithTimer();
 	}
+	// if (!trackerDetails?.data?.[0]?.tracking_data.length > 0 && (!loadingForFirstVisit || !loading)) {
+	// 	return <div>{renderWithTimer()}</div>;
+	// }
+	if (isTrackerEmpty) {
+		return <RenderEmpty />;
+	}
+	if (loadingForFirstVisit || loading) {
+		return <RenderSkeleton />;
+	}
+
 	return (
 		<div>
 			<div className={styles.header}>
@@ -54,11 +83,13 @@ function TrackerDetails() {
 						disabled={isArchived}
 						fetchTrackerDetails={fetchTrackerDetails}
 					/>
-					<CommodityDetails trackerDetails={trackerDetails} fetchTrackerDetails={fetchTrackerDetails} />
+					<CommodityDetails
+						trackerDetails={trackerDetails}
+						fetchTrackerDetails={fetchTrackerDetails}
+					/>
 					<CargoDetails trackerDetails={trackerDetails} />
 				</div>
 				<div className={styles.row}>
-
 					<div className={styles.tracking}>
 						<div className={styles.track}>
 							<MilestonesContainer
@@ -83,7 +114,6 @@ function TrackerDetails() {
 				</div>
 			</div>
 		</div>
-
 	);
 }
 export default TrackerDetails;

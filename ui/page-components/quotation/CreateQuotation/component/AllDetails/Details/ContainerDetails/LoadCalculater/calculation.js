@@ -9,7 +9,7 @@ const useCalculation = ({
 	setErrorMessage,
 	setNoOfContainers,
 }) => {
-	const Calculation = () => {
+	const calculation = () => {
 		const { length, width, height, quantitiy, weight } = globalValue;
 		ContainerSizeMappings.forEach((item) => {
 			if (item.label === watchContainerSize) {
@@ -64,10 +64,10 @@ const useCalculation = ({
 
 	useEffect(() => {
 		setErrorMessage({});
-		Calculation();
-	}, [JSON.stringify(globalValue)]);
+		calculation();
+	}, [globalValue]);
 
-	return { Calculation };
+	return { calculation };
 };
 
 export default useCalculation;

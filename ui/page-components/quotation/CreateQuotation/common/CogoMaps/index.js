@@ -57,20 +57,14 @@ function Map({
 
 			if (transportMode === 'AIR') {
 				(mapPoints || []).map((pt) => {
-					if (
-						![
-							pt.arrivalLatitude,
-							pt.arrivalLongitude,
-							pt.departureLatitude,
-							pt.departureLongitude,
-						].includes(null)
-						&& ![
-							pt.arrivalLatitude,
-							pt.arrivalLongitude,
-							pt.departureLatitude,
-							pt.departureLongitude,
-						].includes(undefined)
-					) {
+					const ptArr = [
+						pt?.arrival_lat,
+						pt?.arrival_long,
+						pt?.departure_lat,
+						pt?.departure_long,
+					];
+					const isValidPtArr = ptArr.every((p) => p);
+					if (isValidPtArr) {
 						const source = {
 							lat : pt.departureLatitude,
 							lng : pt.departureLongitude,
@@ -88,7 +82,7 @@ function Map({
 		} else if (mapPoints.length === 0) {
 			setCurvePoints([]);
 		}
-	}, [JSON.stringify(mapPoints)]);
+	}, [mapPoints]);
 
 	return (
 		<div>

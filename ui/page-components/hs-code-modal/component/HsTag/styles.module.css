@@ -1,20 +1,21 @@
-.tab_header {
+
+.tab_header{
 	display: flex;
 	flex-direction: row;
+	font-weight: 400;
+	font-size: 12px;
+	padding-left: 18px;
 	align-items: center;
 	justify-content: flex-start;
-	padding-left: 18px;
-	font-size: 12px;
-	font-weight: 400;
 }
 
-.sub_heading {
+.sub_heading{
 	padding-left: 5px;
-	font-size: 12px;
-	font-weight: 600;
 	color: #6b6d81;
+	font-weight: 600;
+	font-size: 12px;
 }
 
-.tooltip_style {
+.tooltip_style{
 	font-size: 12px;
 }

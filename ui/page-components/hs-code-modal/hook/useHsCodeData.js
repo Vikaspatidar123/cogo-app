@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import { Toast } from '@cogoport/components';
 import { useState, useEffect } from 'react';
 
@@ -132,7 +131,6 @@ const useHsCodeData = ({ countryforHscode = '' }) => {
 		refetchHeading,
 		hsCodeObj,
 		refetchHsCode,
-		getBySearchLoading,
 		loading        : getListDataLoading,
 		headingLoading : getHeadingDataLoading,
 		hsloading      : getHscodeLoading,

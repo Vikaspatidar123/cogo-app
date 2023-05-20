@@ -1,22 +1,22 @@
-.container {
+
+.container{
 	display: flex;
-	justify-content: center;
 	padding: 18px;
 }
 
-.div_flex {
+.div_flex{
 	display: flex;
 	align-items: center;
 }
 
-.dot {
+.dot{
 	width: 15px;
 	height: 15px;
-	background: #e67f1e;
-	background: #e0e0e0;
-	border: 2px solid #e67f1e;
-	border: 2px solid #e0e0e0;
 	border-radius: 50px;
+	background: #e67f1e;
+	border: 2px solid #e67f1e;
+	background: #e0e0e0;
+	border: 2px solid #e0e0e0;
 }
 
 .completed {
@@ -24,9 +24,9 @@
 	border: 2px solid #e67f1e;
 }
 
-.line {
+.line{
 	width: 75px;
-	height: 0;
+	height: 0px;
 	border: 1px solid #e0e0e0;
 }
 
@@ -34,10 +34,10 @@
 	border: 1px solid #e67f1e;
 }
 
-.label {
+.label{
+	color: #b7b7b8;
 	font-size: 12px;
 	font-weight: 500;
-	color: #b7b7b8;
 }
 
 .completed_label {

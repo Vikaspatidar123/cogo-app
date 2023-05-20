@@ -4,7 +4,7 @@ import { IcMArrowNext, IcMArrowBack } from '@cogoport/icons-react';
 import { useState, useEffect } from 'react';
 
 import getField from '../../../../../../packages/forms/Controlled';
-// import HsCode from '../../../../hs-code-modal/component';
+import HsCode from '../../../../hs-code-modal/component';
 import ProductCatalogue from '../../../../product-catalogue-modal';
 import { ProductCartIcon } from '../../../configuration/icon-configuration';
 import useCurrencyConversion from '../../../hook/useCurrencyConversion';
@@ -153,13 +153,13 @@ function Product({
 					setSelectedData={setSelectedData}
 				/>
 			)}
-			{/* {showHsCodeModal && (
+			{showHsCodeModal && (
 				<HsCode
 					showHsCodeModal={showHsCodeModal}
 					setShowHsCodeModal={setShowHsCodeModal}
 					setSelectedData={setSelectedData}
 				/>
-			)} */}
+			)}
 			{showValidate && (
 				<ValidateHsModal
 					show={showValidate}

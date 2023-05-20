@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-const getOperatorsConfig = ({ formValues, formType = 'rfq' }) => {
+const useGetOperatorsConfig = ({ formValues, formType = 'rfq' }) => {
 	const [prefferedCache, setPrefferedCache] = useState(false);
 	const [excludedCache, setExcludedCache] = useState(false);
 
@@ -102,4 +102,4 @@ const getOperatorsConfig = ({ formValues, formType = 'rfq' }) => {
 	};
 };
 
-export default getOperatorsConfig;
+export default useGetOperatorsConfig;

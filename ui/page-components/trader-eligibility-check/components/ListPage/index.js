@@ -28,9 +28,9 @@ function ListPage() {
 		getTradeEngineListLoading,
 	} = usePostTradeEngine();
 	const { checkPaymentStatus, checkLoading, stop, paymentStatus } = useCheckStatus({
-        	query,
-        	setPaymentStatusModal,
-        	createTradeEngine,
+		query,
+		setPaymentStatusModal,
+		createTradeEngine,
 	});
 	const { screeningRequestResponse, screeningPartyName = '' } = tradeEngineResponse || {};
 	useEffect(() => {
@@ -100,10 +100,10 @@ function ListPage() {
 			className={styles.placeholder_styles}
 		>
 			{Array(5)
-                                        	.fill(1)
-                                        	.map(() => (
-	<div className={styles.line} />
-                                        	))}
+				.fill(1)
+				.map(() => (
+					<div className={styles.line} />
+				))}
 		</Placeholder>
 	</div>
                             ))}
@@ -117,111 +117,111 @@ function ListPage() {
 		</div>
 		<div className={styles.list_wrapper}>
 			{(screeningRequestResponse || []).map(
-                                        	(item) => (
-	<div
-		className={styles.card}
-		key={`${item?.screeningName}_${item?.screeningAka}`}
-	>
-		<div
-			className={
+				(item) => (
+					<div
+						className={styles.card}
+						key={`${item?.screeningName}_${item?.screeningAka}`}
+					>
+						<div
+							className={
                                                             styles.styled_row
                                                         }
-		>
-			<div
-				className={
+						>
+							<div
+								className={
                                                                 styles.new_column
                                                             }
-			>
-				{item?.screeningName?.toUpperCase()}
-			</div>
-			<div>
-				<div
-					className={
+							>
+								{item?.screeningName?.toUpperCase()}
+							</div>
+							<div>
+								<div
+									className={
                                                                     styles.percentage
                                                                 }
-				>
-					{Number(
-                                                                	item?.screeningMatchWeight,
-					) * 100}
-					%
-				</div>
-				<div
-					className={
+								>
+									{Number(
+										item?.screeningMatchWeight,
+									) * 100}
+									%
+								</div>
+								<div
+									className={
                                                                     styles.score_text
                                                                 }
-				>
-					Matching score
-				</div>
-			</div>
-		</div>
-		<div
-			className={
+								>
+									Matching score
+								</div>
+							</div>
+						</div>
+						<div
+							className={
                                                             styles.styled_row
                                                         }
-		>
-			<div>
-				<div
-					className={
+						>
+							<div>
+								<div
+									className={
                                                                     styles.heading2
                                                                 }
-				>
-					Listing Name
-				</div>
-				<div
-					className={
+								>
+									Listing Name
+								</div>
+								<div
+									className={
                                                                     styles.text2
                                                                 }
-				>
-					{
+								>
+									{
                                                                     item?.screeningListName
                                                                 }
-				</div>
-			</div>
-		</div>
-		<div
-			className={
+								</div>
+							</div>
+						</div>
+						<div
+							className={
                                                             styles.styled_row
                                                         }
-		>
-			<div>
-				<div
-					className={
+						>
+							<div>
+								<div
+									className={
                                                                     styles.heading2
                                                                 }
-				>
-					Department Name
-				</div>
-				<div
-					className={
+								>
+									Department Name
+								</div>
+								<div
+									className={
                                                                     styles.text2
                                                                 }
-				>
-					{
+								>
+									{
                                                                     item?.screeningDept
                                                                 }
-				</div>
-			</div>
-			<div>
-				<div
-					className={
+								</div>
+							</div>
+							<div>
+								<div
+									className={
                                                                     styles.heading2
                                                                 }
-				>
-					Registered Date
-				</div>
-				<div
-					className={
+								>
+									Registered Date
+								</div>
+								<div
+									className={
                                                                     styles.text2
                                                                 }
-				>
-					{
+								>
+									{
                                                                     item?.screeningFedRegDate
                                                                 }
-				</div>
-			</div>
-		</div>
-	</div>
-                                        	),
+								</div>
+							</div>
+						</div>
+					</div>
+				),
 			)}
 		</div>
 	</>

@@ -157,12 +157,12 @@ function Summary({
 								<div className={styles.text_column}>
 									<div className={styles.text}>
 										{formatAmount({
-                                        	amount  : pricePerUnit,
-                                        	currency,
-                                        	options : {
-                                        		notation : 'standard',
-                                        		style    : 'currency',
-                                        	},
+											amount  : pricePerUnit,
+											currency,
+											options : {
+												notation : 'standard',
+												style    : 'currency',
+											},
 										})}
 									</div>
 								</div>
@@ -176,12 +176,12 @@ function Summary({
 								<div className={styles.text_column}>
 									<div className={styles.text}>
 										{formatAmount({
-                                        	amount  : gstAmount,
-                                        	currency,
-                                        	options : {
-                                        		notation : 'standard',
-                                        		style    : 'currency',
-                                        	},
+											amount  : gstAmount,
+											currency,
+											options : {
+												notation : 'standard',
+												style    : 'currency',
+											},
 										})}
 									</div>
 								</div>
@@ -196,12 +196,12 @@ function Summary({
 								<div className={styles.text_column}>
 									<div className={styles.total_text}>
 										{formatAmount({
-                                        	amount  : totalAmount,
-                                        	currency,
-                                        	options : {
-                                        		notation : 'standard',
-                                        		style    : 'currency',
-                                        	},
+											amount  : totalAmount,
+											currency,
+											options : {
+												notation : 'standard',
+												style    : 'currency',
+											},
 										})}
 									</div>
 								</div>

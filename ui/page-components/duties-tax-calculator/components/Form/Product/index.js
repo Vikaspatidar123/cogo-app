@@ -44,6 +44,7 @@ function Product({
 	const CurrencySelector = getField('select');
 
 	const { exchangeApi } = useCurrencyConversion();
+	console.log(showHsCodeModal);
 	const { hsCode = '', name = '', description = '' } = selectedData || {};
 	const {
 		currency: watchCurrency,

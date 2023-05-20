@@ -8,9 +8,7 @@
 			min-width: 0 !important;
 			max-width: 150px !important;
 		}
-	}
-
-	:global {
+		
 		.ui_select_container {
 			width: 180px;
 		}

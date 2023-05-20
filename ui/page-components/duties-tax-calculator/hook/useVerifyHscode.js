@@ -7,7 +7,7 @@ import { useSelector } from '@/packages/store';
 const useVerifyHscode = () => {
 	const [inputValue, setInputValue] = useState([]);
 	const { profile } = useSelector((s) => s);
-
+	const { organization, id } = profile || {};
 	const [{ loading }, trigger] = useRequestBf({
 		url     : 'saas/trade-engine/hs-engine',
 		authKey : 'post_saas_trade_engine_hs_engine',
@@ -47,7 +47,8 @@ const useVerifyHscode = () => {
 				data: {
 					hsCode,
 					destinationCountryCode,
-					performedBy: profile?.id,
+					performedBy    : id,
+					organizationId : organization?.id,
 				},
 			});
 

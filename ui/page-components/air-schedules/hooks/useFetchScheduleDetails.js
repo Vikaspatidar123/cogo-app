@@ -1,7 +1,6 @@
-import { Toast } from '@cogoport/components';
 import { useState, useEffect, useCallback } from 'react';
 
-import request, { useRequest } from '@/packages/request';
+import { request, useRequest } from '@/packages/request';
 import { useSelector } from '@/packages/store';
 
 const useFetchScheduleDetails = ({
@@ -38,7 +37,7 @@ const useFetchScheduleDetails = ({
 			const { data } = res;
 			setScheduleDetails(data);
 		} catch (err) {
-			Toast.error(err);
+			console.log(err);
 		}
 	}, [currentPage, filters, id, pageLimit, profile.id, scheduleDetails?.filter_data, sortBy]);
 
@@ -76,7 +75,7 @@ const useFetchScheduleDetails = ({
 			]);
 			setActiveFilter(false);
 		} catch (err) {
-			Toast.error(err);
+			console.log(err);
 		}
 	}, [currentPage, filters, id, pageLimit, profile.id, trigger]);
 

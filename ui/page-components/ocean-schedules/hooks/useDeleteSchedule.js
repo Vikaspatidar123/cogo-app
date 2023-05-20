@@ -6,11 +6,12 @@ const useDeleteSchedule = (refectSchedules) => {
 		method : 'post',
 	}, { manual: true });
 
-	const deleteSchedule = (scheduleId) => {
-		const response = trigger({
-			params: scheduleId,
+	const deleteSchedule = async (scheduleId) => {
+		const response = await trigger({
+			params: {
+				sailing_schedule_subscription_id: scheduleId,
+			},
 		});
-
 		if (response?.status === 200) {
 			refectSchedules();
 		}

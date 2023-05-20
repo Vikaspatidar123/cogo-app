@@ -1,0 +1,130 @@
+.modal_header {
+	display: flex;
+	align-items: center;
+}
+
+.tabs {
+	width: 21%;
+	margin-right: 12px;
+}
+
+.tag_container {
+	display: flex;
+}
+
+.tag {
+	padding: 4px 8px;
+	font-size: 12px;
+	background-color: #fef1df;
+	border-radius: 4px;
+}
+
+.transport_mode {
+	margin-right: 8px;
+}
+
+.doc_container {
+	padding: 14px 0;
+}
+
+.doc_title {
+	font-weight: bold;
+}
+
+.row_container {
+	border: 1px solid #e0e0e0;
+	border-radius: 10px;
+}
+
+.row {
+	display: flex;
+	justify-content: space-between;
+	padding: 12px;
+}
+
+.header {
+	background: #fdfbf6;
+	border-bottom: 1px solid #e0e0e0;
+}
+
+.name {
+	font-weight: 600;
+}
+
+.icon {
+	margin-right: 8px;
+	vertical-align: top;
+}
+
+.cta_web_view {
+	display: flex;
+}
+
+.download_btn {
+	margin-right: 12px;
+}
+
+.cta_mobile_view {
+	display: none;
+}
+
+.label {
+	font-weight: 300;
+}
+
+.desc_row {
+	display: flex;
+}
+
+.back_arrow {
+	margin-right: 12px;
+	cursor: pointer;
+}
+
+.empty_state {
+	display: block;
+	width: 400px;
+	height: 400px;
+	margin: 100px auto;
+}
+
+.info {
+	font-size: 13px;
+}
+
+.info_src {
+	width: 35%;
+}
+
+.info_party {
+	width: 17%;
+}
+
+.empty_states {
+	width: 350px;
+	height: 350px;
+}
+
+@media screen and (max-width: 767px) {
+	.cta_mobile_view {
+		display: flex;
+	}
+
+	.cta_web_view {
+		display: none;
+	}
+
+	.name,
+	.label,
+	.value {
+		font-size: 12px;
+	}
+
+	.row_mobile_view {
+		flex-direction: column;
+
+		.info {
+			margin-bottom: 11px;
+		}
+	}
+}

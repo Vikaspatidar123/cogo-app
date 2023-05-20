@@ -1,7 +1,6 @@
-import { Toast } from '@cogoport/components';
 import { useState, useEffect, useCallback } from 'react';
 
-import request, { useRequest } from '@/packages/request';
+import { useRequest } from '@/packages/request';
 import { useSelector } from '@/packages/store';
 
 const useFetchScheduleDetails = ({
@@ -20,10 +19,9 @@ const useFetchScheduleDetails = ({
 	}, { manual: true });
 
 	const prepareFilters = () => {};
-
 	const fetchScheduleDetails = useCallback(async () => {
 		try {
-			const res = await request({
+			const res = await trigger({
 				params: {
 					filters              : { ...prepareFilters(filters, scheduleDetails?.filter_data ?? {}) },
 					page                 : currentPage,
@@ -37,9 +35,9 @@ const useFetchScheduleDetails = ({
 			const { data } = res;
 			setScheduleDetails(data);
 		} catch (err) {
-			Toast.error(err);
+			console.log(err);
 		}
-	}, [currentPage, filters, id, pageLimit, profile.id, scheduleDetails?.filter_data, sortBy]);
+	}, [currentPage, filters, id, pageLimit, profile.id, scheduleDetails?.filter_data, sortBy, trigger]);
 
 	const fetchFilterScheduleDetails = useCallback(async () => {
 		try {
@@ -67,7 +65,7 @@ const useFetchScheduleDetails = ({
 			setScheduleDetails(data);
 			setActiveFilter(false);
 		} catch (err) {
-			Toast.error(err);
+			console.log(err);
 		}
 	}, [currentPage, filters, id, pageLimit, profile.id, trigger]);
 

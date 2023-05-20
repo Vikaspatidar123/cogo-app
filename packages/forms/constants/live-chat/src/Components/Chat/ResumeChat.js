@@ -1,6 +1,6 @@
-import React from 'react';
 import { Button, toast } from '@cogoport/front/components';
 import styled from '@cogoport/front/styled';
+import React from 'react';
 
 import { resumeChat } from '../../Logic';
 
@@ -27,7 +27,7 @@ const Container = styled.div`
 	}
 `;
 
-const ResumeChat = ({ chatId, handleTabChange }) => {
+function ResumeChat({ chatId, handleTabChange }) {
 	const activateChat = async () => {
 		try {
 			await resumeChat(chatId);
@@ -44,5 +44,5 @@ const ResumeChat = ({ chatId, handleTabChange }) => {
 			</Button>
 		</Container>
 	);
-};
+}
 export default ResumeChat;

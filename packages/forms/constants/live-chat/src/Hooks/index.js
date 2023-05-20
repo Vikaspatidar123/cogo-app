@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+
 import { ChatSDK } from '../Logic';
 
 /**
@@ -13,10 +14,10 @@ export function useChatMessages(chatId, activeTab) {
 
 		const handleThreads = ({ payload }) => {
 			if (
-				isMounted &&
-				payload.chat &&
-				payload.chat.id === chatId &&
-				payload.chat.threads?.length
+				isMounted
+				&& payload.chat
+				&& payload.chat.id === chatId
+				&& payload.chat.threads?.length
 			) {
 				const msgs = payload.chat.threads[0].events;
 				setMessages(msgs);

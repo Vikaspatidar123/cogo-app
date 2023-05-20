@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import styled from '@cogoport/front/styled';
 import { Button } from '@cogoport/front/components';
+import styled from '@cogoport/front/styled';
+import React, { useEffect, useState } from 'react';
+
 import Loader from '../Components/Loader';
 import { ChatSDK } from '../Logic';
 import { useAuth } from '../Logic/authorization';
@@ -29,7 +30,7 @@ const Text = styled.p`
 	margin: 5px 0px;
 `;
 
-const AgentDetails = () => {
+function AgentDetails() {
 	const { instance } = useAuth();
 	const [agentDetails, setAgentDetails] = useState(null);
 
@@ -68,21 +69,31 @@ const AgentDetails = () => {
 			<DetailsWrapper>
 				<h4>Agent details:</h4>
 				<Text>
-					<b>Name:</b> {name}
+					<b>Name:</b>
+					{' '}
+					{name}
 				</Text>
 				<Text>
-					<b>Email:</b> {email}
+					<b>Email:</b>
+					{' '}
+					{email}
 				</Text>
 				<Text>
-					<b>Role:</b> {permission}
+					<b>Role:</b>
+					{' '}
+					{permission}
 				</Text>
 
 				<h4>License:</h4>
 				<Text>
-					<b>ID:</b> {id}
+					<b>ID:</b>
+					{' '}
+					{id}
 				</Text>
 				<Text>
-					<b>Plan:</b> {plan}
+					<b>Plan:</b>
+					{' '}
+					{plan}
 				</Text>
 
 				<Button style={{ marginTop: '1rem' }} destructive onClick={signOut}>
@@ -91,6 +102,6 @@ const AgentDetails = () => {
 			</DetailsWrapper>
 		</Wrapper>
 	);
-};
+}
 
 export default AgentDetails;

@@ -1,16 +1,18 @@
+import FormLayout from '@cogo/app-common/components/FormLayoutSimple';
+import { useRequest } from '@cogo/commons/hooks';
 import { useForm } from '@cogo/deprecated_legacy/forms';
 import { Btn, cogoToast } from '@cogo/deprecated_legacy/ui';
-import FormLayout from '@cogo/app-common/components/FormLayoutSimple';
-import { useState } from 'react';
-import { useRequest } from '@cogo/commons/hooks';
 import showErrorsInToast from '@cogo/utils/showErrorsInToast';
+import { useState } from 'react';
+
+import useSubmitKyc from '../../hooks/useSubmitKyc';
+import Heading from '../Heading';
+import ProgressBar from '../ProgressBar';
+
 import { controls } from './controls.js';
 import { ButtonDiv, Container, FormWrapper } from './styles';
-import ProgressBar from '../ProgressBar';
-import Heading from '../Heading';
-import useSubmitKyc from '../../hooks/useSubmitKyc';
 
-const Form = ({ scope, agent_id, onFinalSubmit, ...rest }) => {
+function Form({ scope, agent_id, onFinalSubmit, ...rest }) {
 	const {
 		country_code,
 		preferred_languages,
@@ -27,11 +29,11 @@ const Form = ({ scope, agent_id, onFinalSubmit, ...rest }) => {
 	const [formValue, setFormValue] = useState(null);
 	const { submitKyc } = useSubmitKyc({
 		scope,
-		id: agent_id,
-		mobileNumber: mobile?.mobile_number,
-		mobileCountryCode: mobile?.mobile_country_code,
-		preferredLanguages: preferred_languages,
-		countryId: country_id,
+		id                 : agent_id,
+		mobileNumber       : mobile?.mobile_number,
+		mobileCountryCode  : mobile?.mobile_country_code,
+		preferredLanguages : preferred_languages,
+		countryId          : country_id,
 		onFinalSubmit,
 		kyc_submitted_from,
 	});
@@ -45,17 +47,17 @@ const Form = ({ scope, agent_id, onFinalSubmit, ...rest }) => {
 			const values = getValues();
 			if (values) {
 				setMobile({
-					mobile_number: values?.mobile?.mobile_number,
-					mobile_country_code: values?.mobile?.mobile_country_code,
+					mobile_number       : values?.mobile?.mobile_number,
+					mobile_country_code : values?.mobile?.mobile_country_code,
 				});
 				setFormValue(values);
 
 				try {
 					const res = await otpVarifyAPI.trigger({
 						data: {
-							id: agent_id,
-							mobile_number: values?.mobile?.mobile_number,
-							mobile_country_code: values?.mobile?.mobile_country_code,
+							id                  : agent_id,
+							mobile_number       : values?.mobile?.mobile_number,
+							mobile_country_code : values?.mobile?.mobile_country_code,
 						},
 					});
 					if (!res.hasError) {
@@ -72,10 +74,10 @@ const Form = ({ scope, agent_id, onFinalSubmit, ...rest }) => {
 	};
 	const formStyle = { marginLeft: '-8px' };
 	const buttonStyle = {
-		minWidth: '142px',
-		height: '44px',
-		borderRadius: '10px',
-		fontSize: '14px',
+		minWidth     : '142px',
+		height       : '44px',
+		borderRadius : '10px',
+		fontSize     : '14px',
 	};
 	return (
 		<Container className={show ? 'otp' : ''}>
@@ -114,5 +116,5 @@ const Form = ({ scope, agent_id, onFinalSubmit, ...rest }) => {
 			)}
 		</Container>
 	);
-};
+}
 export default Form;

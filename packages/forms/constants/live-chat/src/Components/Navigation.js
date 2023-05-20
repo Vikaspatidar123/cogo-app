@@ -1,14 +1,16 @@
-import React, { useState } from 'react';
 import { TabPanel, Tabs } from '@cogoport/front/components';
 import styled from '@cogoport/front/styled';
-import Loader from './Loader';
+import React, { useState } from 'react';
+
 import ActiveChats from '../Container/ActiveChats';
 import AgentDetails from '../Container/AgentDetails';
 import Archives from '../Container/Archives';
 
+import Loader from './Loader';
+
 const Container = styled.div``;
 
-const Navigation = ({ isReadyToRender }) => {
+function Navigation({ isReadyToRender }) {
 	const [activeTab, setActiveTab] = useState('chats');
 	return (
 		<Container>
@@ -29,6 +31,6 @@ const Navigation = ({ isReadyToRender }) => {
 			</Tabs>
 		</Container>
 	);
-};
+}
 
 export default Navigation;

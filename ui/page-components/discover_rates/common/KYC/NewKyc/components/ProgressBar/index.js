@@ -1,14 +1,15 @@
-import React, { useState } from 'react';
-import { Btn, cogoToast, Input } from '@cogo/deprecated_legacy/ui';
 import { useRequest } from '@cogo/commons/hooks';
+import { Btn, cogoToast, Input } from '@cogo/deprecated_legacy/ui';
 import showErrorsInToast from '@cogo/utils/showErrorsInToast';
-import { ButtonDiv, Container, InputDiv, ResendOtp } from './styles';
+import React, { useState } from 'react';
 
-import Timer from './Timer';
 import useSubmitKyc from '../../hooks/useSubmitKyc';
 
+import { ButtonDiv, Container, InputDiv, ResendOtp } from './styles';
+import Timer from './Timer';
+
 const buttonStyle = { width: '142px', height: '44px', borderRadius: '10px', fontSize: '14px' };
-const Bar = ({
+function Bar({
 	formValues, scope,
 	id,
 	mobileNumber,
@@ -17,7 +18,7 @@ const Bar = ({
 	countryId,
 	onFinalSubmit,
 	kyc_submitted_from,
-}) => {
+}) {
 	const [otp, setOtp] = useState('');
 	const otpVarifyAPI = useRequest('post', false, scope)('/verify_user_mobile');
 	const { submitKycWithMobile } = useSubmitKyc({
@@ -72,5 +73,5 @@ const Bar = ({
 		</Container>
 
 	);
-};
+}
 export default Bar;

@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from 'react';
 import styled from '@cogoport/front/styled';
+import React, { useEffect, useState } from 'react';
 
 // LOGIC:
+import Navigation from './Components/Navigation';
 import { ChatSDK } from './Logic';
 import { useAuth } from './Logic/authorization';
 
 // COMPONENTS:
-import Navigation from './Components/Navigation';
 
 // STYLED COMPONENTS:
 const AppWrapper = styled.div`
@@ -37,7 +37,7 @@ const Wrapper = styled.div`
 // 	secondary : '#DDE2E6',
 // };
 
-const LiveChat = () => {
+function LiveChat() {
 	const { isLoggedIn, agentData } = useAuth();
 	const [isReadyToRender, setIsReadyToRender] = useState(false);
 
@@ -70,6 +70,6 @@ const LiveChat = () => {
 			</Wrapper>
 		</AppWrapper>
 	);
-};
+}
 
 export default LiveChat;

@@ -81,7 +81,9 @@
 	}
 }
 .search_form_route_container_col{
-	width: 100 !important;
+	@media (max-width: 540px) {
+		width:100% !important;
+	}
 }
 
 .checkbox_container{

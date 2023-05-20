@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react';
 import styled from '@cogoport/front/styled';
-import { getChatThreads, ChatSDK } from '../Logic';
+import React, { useEffect, useState } from 'react';
 
 // COMPONENTS:
 import ChatsList from '../Components/Chat/List';
@@ -9,6 +8,7 @@ import Loader from '../Components/Loader';
 
 // CUSTOM HOOKS:
 import { useChatList, useChatMessages } from '../Hooks';
+import { getChatThreads, ChatSDK } from '../Logic';
 
 // STYLED COMPONENTS:
 const Wrapper = styled.div`
@@ -19,7 +19,7 @@ const Wrapper = styled.div`
 /**
  * Display currently active agent's chats
  */
-const ActiveChats = ({ activeTab }) => {
+function ActiveChats({ activeTab }) {
 	const [isReady, setIsReady] = useState(false);
 	const [chatInfo, setChatInfo] = useState({});
 	const activeChatId = (chatInfo && chatInfo.id) || null;
@@ -32,9 +32,8 @@ const ActiveChats = ({ activeTab }) => {
 			setChatInfo({});
 		} else {
 			const chatId = chatItem.id;
-			const chatLastThreadId =
-				(chatItem.thread && chatItem.thread.id) ||
-				chatItem.last_thread_summary.id;
+			const chatLastThreadId =				(chatItem.thread && chatItem.thread.id)
+				|| chatItem.last_thread_summary.id;
 
 			setChatInfo(chatItem);
 			getChatThreads(chatId, [chatLastThreadId]).then(({ threads }) => {
@@ -88,6 +87,6 @@ const ActiveChats = ({ activeTab }) => {
 			<ChatMessages chatInfo={chatInfo} chatMessages={messages} />
 		</Wrapper>
 	);
-};
+}
 
 export default ActiveChats;

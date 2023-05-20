@@ -1,5 +1,5 @@
-import React from 'react';
 import styled from '@cogoport/front/styled';
+import React from 'react';
 
 const MessageText = styled.small`
 	display: block;
@@ -9,8 +9,8 @@ const MessageText = styled.small`
 	text-align: center;
 `;
 
-const SystemMessage = ({ message }) => (
-	<MessageText>{message.text}</MessageText>
-);
+function SystemMessage({ message }) {
+	return <MessageText>{message.text}</MessageText>;
+}
 
 export default SystemMessage;

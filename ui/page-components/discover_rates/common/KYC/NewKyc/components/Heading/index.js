@@ -1,7 +1,8 @@
 import React from 'react';
+
 import { Container, Heading, SubHeading } from './styles';
 
-export const SelectedServices = ({ isOtp, mobileNumber, text = '' }) => {
+export function SelectedServices({ isOtp, mobileNumber, text = '' }) {
 	const title = !isOtp ? 'Verify Your Business' : null;
 	const subHeadingText = !isOtp ? text || `You're one step away from gaining access to premium features
 	like freight rate search, shipment booking and shipment management.
@@ -12,5 +13,5 @@ export const SelectedServices = ({ isOtp, mobileNumber, text = '' }) => {
 			<SubHeading className={isOtp ? 'otp' : null}>{subHeadingText}</SubHeading>
 		</Container>
 	);
-};
+}
 export default SelectedServices;

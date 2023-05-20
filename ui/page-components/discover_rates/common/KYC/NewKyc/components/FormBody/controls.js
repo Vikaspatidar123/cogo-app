@@ -1,4 +1,5 @@
 import { Btn, Popover } from '@cogo/deprecated_legacy/ui';
+
 import Info from './AddressInfo';
 
 export const controls = (countryCode, isOpen, setIsOpen, rest) => {
@@ -48,7 +49,8 @@ export const controls = (countryCode, isOpen, setIsOpen, rest) => {
 							onClick={handleClick}
 							className="small"
 							style={btnStyle}
-						>i
+						>
+							i
 						</Btn>
 					</Popover>
 				</div>

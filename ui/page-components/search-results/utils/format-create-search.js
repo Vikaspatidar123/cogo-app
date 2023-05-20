@@ -5,7 +5,6 @@ import getGeoConstants from '@/ui/commons/constants/geo';
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 import getFormattedValues from '@/ui/commons/utils/getFormattedValues';
 
-
 const mergeContainerDetails = (containers) => {
 	const mergedValues = {};
 	containers.forEach((container) => {

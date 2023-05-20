@@ -1,6 +1,6 @@
-import { toast } from '@cogoport/front/components';
 import { useRequest } from '@cogo/commons/hooks';
 import showErrorsInToast from '@cogo/utils/showErrorsInToast';
+import { toast } from '@cogoport/front/components';
 
 const useSubmitKyc = ({
 	scope,
@@ -24,10 +24,10 @@ const useSubmitKyc = ({
 			const resSubmit = await submitKycAPI.trigger({
 				data: {
 					id,
-					preferred_languages: preferredLanguages,
-					country_id: countryId,
-					registration_number: formValues?.registration_number,
-					utility_bill_document_url: formValues?.utility_bill_document_url,
+					preferred_languages       : preferredLanguages,
+					country_id                : countryId,
+					registration_number       : formValues?.registration_number,
+					utility_bill_document_url : formValues?.utility_bill_document_url,
 					kyc_submitted_from,
 				},
 			});
@@ -51,9 +51,9 @@ const useSubmitKyc = ({
 			const res = await otpVarifyAPI.trigger({
 				data: {
 					id,
-					mobile_number: mobileNumber,
-					mobile_country_code: mobileCountryCode,
-					mobile_otp: otp,
+					mobile_number       : mobileNumber,
+					mobile_country_code : mobileCountryCode,
+					mobile_otp          : otp,
 				},
 			});
 			if (!res.hasError) {

@@ -1,19 +1,19 @@
-import React, { useState } from 'react';
-import { Btn, cogoToast, Input } from '@cogo/deprecated_legacy/ui';
 import { useRequest } from '@cogo/commons/hooks';
+import { Btn, cogoToast, Input } from '@cogo/deprecated_legacy/ui';
 import showErrorsInToast from '@cogo/utils/showErrorsInToast';
-import { ButtonDiv, Container, InputDiv, ResendOtp } from './styles';
+import React, { useState } from 'react';
 
+import { ButtonDiv, Container, InputDiv, ResendOtp } from './styles';
 import Timer from './Timer';
 
 const buttonStyle = { width: '142px', height: '44px', borderRadius: '10px', fontSize: '14px' };
-const Bar = ({
+function Bar({
 	formValues, scope,
 	id,
 	preferredLanguages,
 	countryId,
 	onFinalSubmit,
-}) => {
+}) {
 	const [otp, setOtp] = useState('');
 	const otpVarifyAPI = useRequest('post', false, scope)('/verify_user_mobile');
 	const submitKycAPI = useRequest('post', false, scope)('/submit_organization_kyc');
@@ -88,5 +88,5 @@ const Bar = ({
 		</Container>
 
 	);
-};
+}
 export default Bar;

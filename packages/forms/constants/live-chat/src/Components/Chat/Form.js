@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
-import { Button, TextArea, toast } from '@cogoport/front/components';
 import AwsUploader from '@cogo/smart-components/components/AwsUploader';
+import { Button, TextArea, toast } from '@cogoport/front/components';
 import styled from '@cogoport/front/styled';
+import React, { useState } from 'react';
+
 import { ChatSDK } from '../../Logic';
+
 import Emojis from './Emoji';
 
 const Container = styled.div`
@@ -51,7 +53,7 @@ export const Row = styled.div`
 	align-items: center;
 `;
 
-const ChatForm = ({ chatId, userData }) => {
+function ChatForm({ chatId, userData }) {
 	const [inputValue, setInputValue] = useState('');
 	const [uploadedFile, setUploadedFile] = useState('');
 	const handleInputChange = ({ target }) => setInputValue(target.value);
@@ -120,10 +122,10 @@ const ChatForm = ({ chatId, userData }) => {
 						<Button
 							onClick={sendSearchRequirements}
 							style={{
-								background: 'transparent',
-								color: 'black',
-								border: 'none',
-								textTransform: 'initial',
+								background    : 'transparent',
+								color         : 'black',
+								border        : 'none',
+								textTransform : 'initial',
 							}}
 						>
 							Send Search
@@ -140,6 +142,6 @@ const ChatForm = ({ chatId, userData }) => {
 			</ActionsWrap>
 		</Container>
 	);
-};
+}
 
 export default ChatForm;

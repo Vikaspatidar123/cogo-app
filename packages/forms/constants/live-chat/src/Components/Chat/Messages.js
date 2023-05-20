@@ -1,15 +1,16 @@
-import React, { useRef, useEffect, useState } from 'react';
 import styled from '@cogoport/front/styled';
+import React, { useRef, useEffect, useState } from 'react';
 
 // COMPONENTS:
-import ChatForm from './Form';
+import FilledForm from '../Events/FilledForm';
 import Message from '../Events/Message';
 import SystemMessage from '../Events/SystemMessage';
-import FilledForm from '../Events/FilledForm';
+
 import ChatInstruction from './ChatInstruction';
-import ResumeChat from './ResumeChat';
-import DownloadChat from './DownloadChat';
 import CustomerInfo from './CustomerInfo';
+import DownloadChat from './DownloadChat';
+import ChatForm from './Form';
+import ResumeChat from './ResumeChat';
 
 // STYLED COMPONENTS:
 const Wrapper = styled.div`
@@ -43,12 +44,12 @@ const Buttons = styled.div`
 /**
  * Display use details
  */
-const ChatMessages = ({
+function ChatMessages({
 	chatInfo,
 	chatMessages,
 	onlyMessages = false,
 	handleTabChange = () => {},
-}) => {
+}) {
 	const ref = useRef();
 
 	const [userData, setUserData] = useState({});
@@ -114,6 +115,6 @@ const ChatMessages = ({
 			)}
 		</Wrapper>
 	);
-};
+}
 
 export default ChatMessages;

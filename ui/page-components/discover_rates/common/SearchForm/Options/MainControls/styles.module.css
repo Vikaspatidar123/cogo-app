@@ -2,6 +2,9 @@
 	width: 380px;
 	max-width: 580px;
 	padding-bottom: 14px;
+	@media (max-width: 768px) {
+		width: auto;
+	}
 }
 
 .mobile {

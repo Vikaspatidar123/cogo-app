@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react';
 import styled from '@cogoport/front/styled';
-import { getChatThreads, getArchives } from '../Logic';
+import React, { useEffect, useState } from 'react';
 
 // COMPONENTS:
 import ChatsList from '../Components/Chat/List';
 import ChatMessages from '../Components/Chat/Messages';
 import Loader from '../Components/Loader';
+import { getChatThreads, getArchives } from '../Logic';
 
 // STYLED COMPONENTS:
 const Wrapper = styled.div`
@@ -16,7 +16,7 @@ const Wrapper = styled.div`
 /**
  * Displays archived chats
  */
-const ArchivedChats = ({ handleTabChange }) => {
+function ArchivedChats({ handleTabChange }) {
 	const [chatList, setChatList] = useState(null);
 	const [chatInfo, setChatInfo] = useState(null);
 	const [chatMessages, setChatMessages] = useState([]);
@@ -69,6 +69,6 @@ const ArchivedChats = ({ handleTabChange }) => {
 			/>
 		</Wrapper>
 	);
-};
+}
 
 export default ArchivedChats;

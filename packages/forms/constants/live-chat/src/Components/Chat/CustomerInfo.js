@@ -1,6 +1,7 @@
-import React, { useEffect } from 'react';
-import styled from '@cogoport/front/styled';
 import { Popover, Button } from '@cogoport/front/components';
+import styled from '@cogoport/front/styled';
+import React, { useEffect } from 'react';
+
 import { getCustomer } from '../../Logic';
 
 const Section = styled.div`
@@ -49,7 +50,7 @@ const Value = styled.p`
 	color: #000000;
 `;
 
-const CustomerInfo = ({ users, userData, setUserData }) => {
+function CustomerInfo({ users, userData, setUserData }) {
 	const content = (
 		<div style={{ width: '400px', maxHeight: '400px', overflow: 'auto' }}>
 			<Section>
@@ -61,8 +62,12 @@ const CustomerInfo = ({ users, userData, setUserData }) => {
 				<Row>
 					<Label>Visit : </Label>
 					<Value>
-						{userData?.last_visit?.geolocation?.city},{' '}
-						{userData?.last_visit?.geolocation?.region},{' '}
+						{userData?.last_visit?.geolocation?.city}
+						,
+						{' '}
+						{userData?.last_visit?.geolocation?.region}
+						,
+						{' '}
 						{userData?.last_visit?.geolocation?.country}
 					</Value>
 				</Row>
@@ -73,7 +78,12 @@ const CustomerInfo = ({ users, userData, setUserData }) => {
 					const key = Object.keys(item)?.[0];
 					return key ? (
 						<Row>
-							<Label>{key} : </Label>
+							<Label>
+								{key}
+								{' '}
+								:
+								{' '}
+							</Label>
 							<Value>{item[key]}</Value>
 						</Row>
 					) : null;
@@ -120,19 +130,19 @@ const CustomerInfo = ({ users, userData, setUserData }) => {
 		<Popover placement="bottom" content={content} theme="light" interactive>
 			<Button
 				style={{
-					background: 'transparent',
-					color: 'black',
-					border: 'none',
-					boxShadow: 'none',
-					fontSize: 18,
-					fontWeight: 'bold',
-					marginRight: 10,
+					background  : 'transparent',
+					color       : 'black',
+					border      : 'none',
+					boxShadow   : 'none',
+					fontSize    : 18,
+					fontWeight  : 'bold',
+					marginRight : 10,
 				}}
 			>
 				...
 			</Button>
 		</Popover>
 	);
-};
+}
 
 export default CustomerInfo;

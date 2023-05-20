@@ -1,5 +1,5 @@
-import React from 'react';
 import { Button, Popover } from '@cogoport/front/components';
+import React from 'react';
 
 const emojis = [
 	'😀',
@@ -222,23 +222,23 @@ const emojis = [
 	'🛌',
 ];
 
-const Emojis = ({ onClick }) => {
+function Emojis({ onClick }) {
 	const content = (
 		<div
 			style={{
-				width: '300px',
-				maxHeight: '300px',
-				overflow: 'scroll',
+				width     : '300px',
+				maxHeight : '300px',
+				overflow  : 'scroll',
 			}}
 		>
 			{emojis.map((item) => (
 				<Button
 					style={{
-						background: 'transparent',
-						height: 'auto',
-						border: 'none',
-						boxShadow: 'none',
-						fontSize: 18,
+						background : 'transparent',
+						height     : 'auto',
+						border     : 'none',
+						boxShadow  : 'none',
+						fontSize   : 18,
 					}}
 					onClick={() => onClick(item)}
 				>
@@ -257,10 +257,10 @@ const Emojis = ({ onClick }) => {
 			>
 				<Button
 					style={{
-						background: 'transparent',
-						height: 'auto',
-						border: 'none',
-						boxShadow: 'none',
+						background : 'transparent',
+						height     : 'auto',
+						border     : 'none',
+						boxShadow  : 'none',
 					}}
 				>
 					😊
@@ -268,5 +268,5 @@ const Emojis = ({ onClick }) => {
 			</Popover>
 		</div>
 	);
-};
+}
 export default Emojis;

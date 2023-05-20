@@ -1,6 +1,6 @@
-import React from 'react';
 import { Loader } from '@cogoport/front/components';
 import styled from '@cogoport/front/styled';
+import React from 'react';
 
 const LoaderWrapper = styled.div`
 	width: 100%;
@@ -10,10 +10,12 @@ const LoaderWrapper = styled.div`
 	align-content: center;
 `;
 
-const LoaderComponent = () => (
-	<LoaderWrapper>
-		<Loader size="medium" />
-	</LoaderWrapper>
-);
+function LoaderComponent() {
+	return (
+		<LoaderWrapper>
+			<Loader size="medium" />
+		</LoaderWrapper>
+	);
+}
 
 export default LoaderComponent;

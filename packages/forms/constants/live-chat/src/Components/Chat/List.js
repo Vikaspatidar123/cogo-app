@@ -1,6 +1,6 @@
-import React from 'react';
 import { Button, Avatar } from '@cogoport/front/components';
 import styled from '@cogoport/front/styled';
+import React from 'react';
 
 const List = styled.div`
 	width: 220px;
@@ -73,33 +73,32 @@ const List = styled.div`
 	}
 `;
 
-const ChatList = ({ chatList, activeChatId, pickChat }) => {
+function ChatList({ chatList, activeChatId, pickChat }) {
 	const isChats = chatList && !!chatList.length;
 	return (
 		<List>
 			{isChats
 				? chatList.map((chatItem) => {
-						const chatId = chatItem.id;
-						const threadId = chatItem.thread && chatItem.thread.id;
-						const isActive =
-							activeChatId === threadId || activeChatId === chatId;
-						const customerName = chatItem?.users?.[0]?.name;
-						const handleClick = () => pickChat(chatItem);
-						return (
-							<Button
-								key={threadId + chatId}
-								onClick={handleClick}
-								className={isActive ? 'active' : ''}
-								fullWidth
-							>
-								<Avatar name={customerName} />
-								{customerName}
-							</Button>
-						);
+					const chatId = chatItem.id;
+					const threadId = chatItem.thread && chatItem.thread.id;
+					const isActive =							activeChatId === threadId || activeChatId === chatId;
+					const customerName = chatItem?.users?.[0]?.name;
+					const handleClick = () => pickChat(chatItem);
+					return (
+						<Button
+							key={threadId + chatId}
+							onClick={handleClick}
+							className={isActive ? 'active' : ''}
+							fullWidth
+						>
+							<Avatar name={customerName} />
+							{customerName}
+						</Button>
+					);
 				  })
 				: null}
 		</List>
 	);
-};
+}
 
 export default ChatList;

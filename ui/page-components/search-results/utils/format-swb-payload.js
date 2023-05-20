@@ -1,6 +1,5 @@
 import getGeoConstants from '@/ui/commons/constants/geo';
 
-
 const formatSwbPayload = ({
 	service_details,
 	touch_points,

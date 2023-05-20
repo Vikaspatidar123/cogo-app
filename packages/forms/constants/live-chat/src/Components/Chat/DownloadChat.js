@@ -1,8 +1,8 @@
-import React from 'react';
-import styled from '@cogoport/front/styled';
 import { formatDistanceToNow } from '@cogo/date';
 import useStateCallBack from '@cogo/utils/useStateCallBack';
 import { Button } from '@cogoport/front/components';
+import styled from '@cogoport/front/styled';
+import React from 'react';
 
 const Container = styled.div`
 	display: flex;
@@ -10,11 +10,10 @@ const Container = styled.div`
 
 const DetailsToPrint = styled.div``;
 
-const DownloadChat = ({ chatMessages, getChatUser, userData }) => {
+function DownloadChat({ chatMessages, getChatUser, userData }) {
 	const [showQuote, setShowQuote] = useStateCallBack(false, () => {
 		if (showQuote) {
-			window.frames.print_frame.document.body.innerHTML =
-				document.getElementById('chat-details').innerHTML;
+			window.frames.print_frame.document.body.innerHTML =				document.getElementById('chat-details').innerHTML;
 			window.frames.print_frame.window.focus();
 			window.frames.print_frame.window.print();
 			setShowQuote(false);
@@ -59,10 +58,10 @@ const DownloadChat = ({ chatMessages, getChatUser, userData }) => {
 							return (
 								<p
 									style={{
-										margin: 4,
-										borderBottom: '1px solid #e0e0e0',
-										paddingBottom: 4,
-										background: user?.type === 'agent' ? '#fffff' : '#e0e0e0',
+										margin        : 4,
+										borderBottom  : '1px solid #e0e0e0',
+										paddingBottom : 4,
+										background    : user?.type === 'agent' ? '#fffff' : '#e0e0e0',
 										backgroundColor:
 											user?.type === 'agent' ? '#fffff' : '#e0e0e0',
 									}}
@@ -70,21 +69,27 @@ const DownloadChat = ({ chatMessages, getChatUser, userData }) => {
 									<p style={{ margin: 0, marginBottom: 4, fontSize: 10 }}>
 										{formatDistanceToNow(item?.created_at, { addSuffix: true })}
 									</p>
-									<span>{user.name || ''}</span> : {getElement(item)}
+									<span>{user.name || ''}</span>
+									{' '}
+									:
+									{getElement(item)}
 								</p>
 							);
 						})}
 						{searchInfo ? (
 							<p
 								style={{
-									margin: 4,
-									borderBottom: '1px solid #e0e0e0',
-									paddingBottom: 4,
-									background: '#e0e0e0',
-									backgroundColor: '#e0e0e0',
+									margin          : 4,
+									borderBottom    : '1px solid #e0e0e0',
+									paddingBottom   : 4,
+									background      : '#e0e0e0',
+									backgroundColor : '#e0e0e0',
 								}}
 							>
-								<span>Search Info</span> : {searchInfo?.search_requirements}
+								<span>Search Info</span>
+								{' '}
+								:
+								{searchInfo?.search_requirements}
 							</p>
 						) : (
 							''
@@ -94,6 +99,6 @@ const DownloadChat = ({ chatMessages, getChatUser, userData }) => {
 			) : null}
 		</Container>
 	);
-};
+}
 
 export default DownloadChat;

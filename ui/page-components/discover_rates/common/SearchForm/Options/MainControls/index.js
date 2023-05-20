@@ -29,7 +29,6 @@ function MainControls(
 	ref,
 ) {
 	const advancedService = advancedServices.includes(mode);
-	console.log(controls, 'comntrols');
 	return (
 		<div
 			className={cl`${styles.container} ${styles.search_form_cargo_details_popover} ${mobile ? 'mobile ' : ''}`}

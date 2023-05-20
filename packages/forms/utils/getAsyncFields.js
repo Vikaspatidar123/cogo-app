@@ -21,7 +21,7 @@ function asyncFieldsLocations(labelKey = 'name', valueKey = 'id') {
 		initialCall : true,
 		params      : {
 			filters    : { status: 'active' },
-			page_limit : 10,
+			page_limit : 20,
 			sort_by    : 'name',
 			sort_type  : 'asc',
 			includes   : { country: null, main_ports: null },

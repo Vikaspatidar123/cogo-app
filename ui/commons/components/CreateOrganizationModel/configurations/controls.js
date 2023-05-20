@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-export const useGetControls = ({ checked, setCityState }) => {
+export const useGetControls = ({ checked, setCityState, countryOptions }) => {
 	const [country, setCountry] = useState();
 
 	const addAddressControls = [
@@ -23,18 +23,12 @@ export const useGetControls = ({ checked, setCityState }) => {
 			span: 6,
 		},
 		{
+			...countryOptions,
 			label       : 'Country',
 			name        : 'country_id',
-			type        : 'country_select',
+			type        : 'select',
 			placeholder : 'Enter Country',
 			rules       : { required: 'required *' },
-			valueKey    : 'id',
-			params      : {
-				filters: {
-					type: 'country',
-				},
-			},
-			span: 6,
 		},
 		{
 			label       : 'Pincode',
@@ -101,7 +95,6 @@ export const useGetControls = ({ checked, setCityState }) => {
 			return {
 				...control,
 				handleChange: (e) => {
-					console.log(e, 'country');
 					setCountry(e);
 				},
 			};

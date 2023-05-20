@@ -40,7 +40,6 @@ function TraderDetails({
 		watchCountry,
 		setCityState,
 	});
-	console.log(cityLoading);
 
 	const { list } = cityState || {};
 	const { region, city } = list?.[0] || {};
@@ -153,7 +152,14 @@ function TraderDetails({
 				</div>
 			</form>
 			<div className={styles.button_wrapper}>
-				<Button className={styles.submit_button} size="md" themeType="primary" onClick={handleSubmit(submit)}>
+				<Button
+					className={styles.submit_button}
+					size="md"
+					themeType="primary"
+					onClick={handleSubmit(submit)}
+					loading={cityLoading}
+					type="button"
+				>
 					{renderBtn({ serviceRatesLoading, quotaLoading })}
 				</Button>
 			</div>

@@ -1,4 +1,5 @@
 import { Modal } from '@cogoport/components';
+import { merge } from '@cogoport/utils';
 import React, { useState, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -11,7 +12,7 @@ import Form from './Form';
 import Header from './Header';
 import styles from './styles.module.css';
 
-import { useForm } from '@/packages/forms';
+import { useForm, asyncFieldsLocations, useGetAsyncOptions } from '@/packages/forms';
 import getField from '@/packages/forms/Controlled';
 import { useSelector } from '@/packages/store';
 
@@ -27,7 +28,10 @@ function AddModal({ addAddressModal = false, setAddAddressModal = () => {} }) {
 	const [addressType, setAddressType] = useState('office');
 	const [cityState, setCityState] = useState({});
 	const { city, state } = cityState || {};
-	const addAddressControls = useGetControls({ checked, setCityState });
+	const countryOptions = useGetAsyncOptions(merge(asyncFieldsLocations(), {
+		params: { filters: { type: ['country'] } },
+	}));
+	const addAddressControls = useGetControls({ checked, setCityState, countryOptions });
 
 	const {
 		control,

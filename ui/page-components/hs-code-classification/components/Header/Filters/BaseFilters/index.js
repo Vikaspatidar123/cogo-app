@@ -5,7 +5,7 @@ import { useEffect } from 'react';
 import getControls from '../../../../configurations/cardfilter';
 import styles from '../styles.module.css';
 
-import { SelectController, useForm, InputController } from '@/packages/forms';
+import { SelectController, useForm, InputController, AsyncSelectController } from '@/packages/forms';
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
 function BaseFilters({
@@ -26,7 +26,6 @@ function BaseFilters({
 	} = useForm();
 
 	const watchCountry = watch('country');
-
 	const onSubmit = (data) => {
 		refetchSearch(data);
 		resetDrillDownHandler();
@@ -48,27 +47,25 @@ function BaseFilters({
 	}, [watchCountry, refetch, resetDrillDownHandler]);
 
 	const field = getControls({ countryOptions });
-
 	return (
 		<form onSubmit={handleSubmit(onSubmit)}>
 			<div className={`${styles.filter_container}`}>
 				<div className={`${styles.fields_container}`}>
-					<SelectController
-						key={watchCountry}
+					<AsyncSelectController
 						{...field[0]}
 						control={control}
-						style={{ width: '150px' }}
+						className={styles.select}
 					/>
 					<SelectController
 						{...field[1]}
 						control={control}
-						style={{ width: '150px' }}
+						className={styles.select}
 					/>
 					<div>
 						<InputController
 							{...field[2]}
 							control={control}
-							style={{ width: '250px' }}
+							className={styles.input_select}
 							prefix={<IcAIdea width={20} height={20} />}
 						/>
 						{errors.searchTerm && (

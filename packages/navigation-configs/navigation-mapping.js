@@ -7,6 +7,7 @@
 // icon is used to show icon webside only
 // mobileIcon is used to show icon in mobile navigation only
 // isSubNavs is used to show sub navigations
+
 import {
 	IcMQuotations,
 	IcMUpwardGraph,
@@ -101,13 +102,19 @@ const navigationMappings = {
 				icon  : <IcACrossBorder width={40} height={40} />,
 			},
 			{
-				key   : 'saas_premium_services-duties_and_taxes',
-				title : 'Duties & Taxes Calculator',
-				href  : '/v2/saas/premium-services/duties-taxes-calculator',
-				as    : '/v2/saas/premium-services/duties-taxes-calculator',
-				icon  : <IcADutiesTaxes width={50} height={50} />,
-				description:
-          '',
+				key   : 'saas_premium_services-trader_eligibility_check',
+				title : 'Trader Eligibility Check',
+				href  : '/v2/saas/premium-services/trader-eligibility-check',
+				as    : '/v2/saas/premium-services/trader-eligibility-check',
+				icon  : <IcMTradeparties width={40} height={40} fill="red" />,
+			},
+			{
+				key         : 'saas_premium_services-duties_and_taxes',
+				title       : 'Duties & Taxes Calculator',
+				href        : '/v2/saas/premium-services/duties-taxes-calculator',
+				as          : '/v2/saas/premium-services/duties-taxes-calculator',
+				icon        : <IcADutiesTaxes width={50} height={50} />,
+				description : '',
 			},
 
 		],
@@ -141,6 +148,7 @@ const navigationMappings = {
 				href  : '/saas/transaction-history',
 				as    : '/saas/transaction-history',
 			},
+
 		],
 	},
 	saas_planning: {

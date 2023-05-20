@@ -63,7 +63,6 @@ function Pay({
 		dutiesAndTaxes: duties_and_taxes,
 		address,
 	});
-	console.log(address, 'log(address');
 	return (
 		<div>
 			<div className={styles.route_div}>

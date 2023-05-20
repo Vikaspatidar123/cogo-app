@@ -1,4 +1,3 @@
-import { Toast } from '@cogoport/components';
 import { useState } from 'react';
 
 import { useRequestBf } from '@/packages/request';
@@ -21,7 +20,7 @@ const useGetTradeEngine = ({ itm }) => {
 			});
 			setTradeEngineResponse(resp?.data);
 		} catch (error) {
-			Toast.error(error?.message);
+			console.log(error);
 		}
 	};
 

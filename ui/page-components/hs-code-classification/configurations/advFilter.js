@@ -2,17 +2,17 @@ import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
 const CONTROLS = [
 	{
-		label          : 'Country',
-		name           : 'country',
-		type           : 'select',
-		placeholder    : 'Search Country',
-		optionsListKey : 'hs_codes_countries',
-		value          : GLOBAL_CONSTANTS.COUNTRY_IDS.IN,
-		valueKey       : 'id',
-		labelKey       : 'countryName',
-		defaultOptions : true,
-		theme          : 'admin',
-		className      : 'primary md',
+		label       : 'Country',
+		name        : 'country',
+		type        : 'select',
+		placeholder : 'Search Country',
+		asyncKey    : 'hs_code_countries',
+		value       : GLOBAL_CONSTANTS.COUNTRY_IDS.IN,
+		valueKey    : 'id',
+		labelKey    : 'countryName',
+		initialCall : true,
+		theme       : 'admin',
+		className   : 'primary md',
 	},
 	{
 		name        : 'searchBy',
@@ -50,13 +50,12 @@ const CONTROLS = [
 	},
 ];
 
-const getControls = ({ countryOptions = {} }) => CONTROLS.map((control) => {
-	const { name } = control;
-	let newControl = { ...control };
+const getControls = () => CONTROLS.map((control) => {
+	const newControl = { ...control };
 
-	if (name === 'country') {
-		newControl = { ...newControl, ...countryOptions };
-	}
+	// if (name === 'country') {
+	// 	newControl = { ...newControl, ...countryOptions };
+	// }
 	return { ...newControl };
 });
 

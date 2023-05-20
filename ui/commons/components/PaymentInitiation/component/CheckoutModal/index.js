@@ -24,7 +24,9 @@ function CheckoutModal({
 	const minutes = String(Math.floor(countDown / 60));
 
 	const { capturePayment } = useCapturePayment();
-	const { cancelOrder = () => {} } = useCancelOrder({ paymentInitiationResponse });
+	const { cancelOrder = () => {} } = useCancelOrder({
+		paymentInitiationResponse,
+	});
 
 	const cancelOrderFunction = () => {
 		setModal(() => ({ checkoutModal: false }));
@@ -130,7 +132,9 @@ function CheckoutModal({
 								checked={isThreeDsEnabled}
 								onChange={() => setIsThreeDsEnabled(!isThreeDsEnabled)}
 							/>
-							<div className={styles.checkboxText}>Enable 3D security</div>
+							<div className={styles.checkboxText}>
+								Enable 3D security
+							</div>
 						</div>
 						<Button
 							onClick={async () => {

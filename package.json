@@ -20,7 +20,7 @@
   "dependencies": {
     "frames-react": "^1.1.0",
     "@cogoport/charts": "^1.0.1",
-    "@cogoport/components": "^1.0.415",
+    "@cogoport/components": "^1.0.416",
     "@cogoport/icons-react": "^1.0.58",
     "@cogoport/maps": "^1.0.2",
     "@cogoport/utils": "^1.2.4",

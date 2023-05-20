@@ -31,7 +31,7 @@ const useHSCode = () => {
 
 	const [{ loading: getHeadingLoading }, triggerHeading] = useRequestBf(
 		{
-			url     : 'saas/hs-code/heading',
+			url     : '/saas/hs-code/heading',
 			method  : 'get',
 			authKey : 'get_saas_hs_code_heading',
 		},
@@ -40,7 +40,7 @@ const useHSCode = () => {
 
 	const [{ loading: getHsCodeLoading }, triggerHsCode] = useRequestBf(
 		{
-			url     : 'saas/hs-code',
+			url     : '/saas/hs-code',
 			method  : 'get',
 			authKey : 'get_saas_hs_code',
 		},
@@ -49,7 +49,7 @@ const useHSCode = () => {
 
 	const [{ loading: searchLoading }, triggerSearch] = useRequestBf(
 		{
-			url     : 'get_saas_hs_code_search',
+			url     : '/saas/hs-code/search',
 			method  : 'get',
 			authKey : 'get_saas_hs_code_search',
 		},
@@ -59,7 +59,6 @@ const useHSCode = () => {
 		async (countryId = undefined) => {
 			try {
 				const response = await trigger({ params: { countryId } });
-
 				setApiData(response.data);
 				searchRef.current.searchTerm = undefined;
 				searchRef.current.searchType = undefined;

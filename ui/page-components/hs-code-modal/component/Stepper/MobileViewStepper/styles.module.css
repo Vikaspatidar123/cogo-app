@@ -1,22 +1,21 @@
-
-.container{
+.container {
 	display: flex;
 	padding: 18px;
 }
 
-.div_flex{
+.div_flex {
 	display: flex;
 	align-items: center;
 }
 
-.dot{
+.dot {
 	width: 15px;
 	height: 15px;
-	border-radius: 50px;
 	background: #e67f1e;
-	border: 2px solid #e67f1e;
 	background: #e0e0e0;
+	border: 2px solid #e67f1e;
 	border: 2px solid #e0e0e0;
+	border-radius: 50px;
 }
 
 .completed {
@@ -24,9 +23,9 @@
 	border: 2px solid #e67f1e;
 }
 
-.line{
+.line {
 	width: 75px;
-	height: 0px;
+	height: 0;
 	border: 1px solid #e0e0e0;
 }
 
@@ -34,10 +33,10 @@
 	border: 1px solid #e67f1e;
 }
 
-.label{
-	color: #b7b7b8;
+.label {
 	font-size: 12px;
 	font-weight: 500;
+	color: #b7b7b8;
 }
 
 .completed_label {

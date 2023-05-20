@@ -1,5 +1,3 @@
-import { Toast } from '@cogoport/components';
-
 import { useRouter } from '@/packages/next';
 import { useRequest } from '@/packages/request';
 import { useSelector } from '@/packages/store';
@@ -51,7 +49,7 @@ const useCreateSchedule = () => {
 
 			return data;
 		} catch (err) {
-			Toast.error(err?.message || 'Unable to create schedules. Please try again.');
+			console.log(err?.message || 'Unable to create schedules. Please try again.');
 			return {};
 		}
 	};

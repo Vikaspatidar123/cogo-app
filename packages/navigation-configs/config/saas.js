@@ -1,4 +1,11 @@
 const saas = {
+	'/saas/premium-services/trader-eligibility-check': {
+		navigation : 'saas_premium_services-trader_eligibility_check',
+		isMainNav  : true,
+	},
+	'/saas/premium-services/trader-eligibility-check/result': {
+		navigation: 'saas_premium_services-trader_eligibility_check',
+	},
 	'/saas/hs-classification': {
 		navigation: 'saas_tools-hs_code_classification',
 	},

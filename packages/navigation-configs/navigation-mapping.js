@@ -7,6 +7,7 @@
 // icon is used to show icon webside only
 // mobileIcon is used to show icon in mobile navigation only
 // isSubNavs is used to show sub navigations
+
 import {
 	IcMQuotations,
 	IcMUpwardGraph,
@@ -107,6 +108,13 @@ const navigationMappings = {
 				as    : '/v2/saas/order-history',
 				icon  : <IcACrossBorder width={40} height={40} />,
 			},
+			{
+				key   : 'saas_premium_services-trader_eligibility_check',
+				title : 'Trader Eligibility Check',
+				href  : '/v2/saas/premium-services/trader-eligibility-check',
+				as    : '/v2/saas/premium-services/trader-eligibility-check',
+				icon  : <IcMTradeparties width={40} height={40} fill="red" />,
+			},
 		],
 	},
 	saas_planning: {
@@ -171,7 +179,6 @@ const navigationMappings = {
 		title     : 'KYC',
 		href      : '/kyc',
 		as        : '/kyc',
-		type      : 'link',
 		showInNav : false,
 	},
 	app_settings: {
@@ -179,7 +186,6 @@ const navigationMappings = {
 		title         : 'Settings',
 		href          : '/v2/settings',
 		as            : '/v2/settings',
-		type          : 'link',
 		showMobileNav : true,
 	},
 };

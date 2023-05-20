@@ -1,3 +1,5 @@
+import { Placeholder } from '@cogoport/components';
+
 import MobileView from './MobileView';
 import itemFunctions from './renderFunctions';
 import styles from './styles.module.css';
@@ -51,7 +53,11 @@ function Item({
 							style={singleItem?.styles}
 							key={singleItem?.key}
 						>
-							{infoData(singleItem, itm)}
+							{loading ? (
+								<Placeholder width="100px" />
+							) : (
+								infoData(singleItem, itm)
+							)}
 						</div>
 					))}
 				</div>

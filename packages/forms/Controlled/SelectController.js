@@ -19,11 +19,11 @@ function SelectController(props) {
 					key={rest.id}
 					onChange={(val, obj) => {
 						onChange(val, obj);
-						if (rest?.handleChange) {
-							rest?.handleChange(obj);
+						if (rest.handleChange) {
+							rest.handleChange(obj, name);
 						}
 					}}
-					value={newValue || value}
+					value={newValue}
 					onBlur={onBlur}
 					data-test-value={value}
 				/>

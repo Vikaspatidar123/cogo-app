@@ -1,7 +1,7 @@
 import { Chips } from '@cogoport/components';
 import React, { forwardRef } from 'react';
 
-import getOptionsFromKey from './Select/getOptionsFromKey';
+import getOptionsFromKey from '../Select/getOptionsFromKey';
 
 function Chip(props, ref) {
 	const {

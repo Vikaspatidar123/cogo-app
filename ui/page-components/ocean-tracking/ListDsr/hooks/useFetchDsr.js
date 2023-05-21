@@ -28,6 +28,7 @@ const useFetchDsr = () => {
 
 	useEffect(() => {
 		fetchDsr();
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	const refetch = async () => fetchDsr(false);

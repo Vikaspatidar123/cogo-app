@@ -5,7 +5,7 @@ const prepareFilters = (filters, filters_data) => {
 	Object.keys(filters).forEach((key) => {
 		if (key === 'shipping_line_id') {
 			finalFilters[FILTER_KEY_TO_ID[key]] = filters[key];
-		} else if (key === FILTER_KEYS.SHIPPER || key === FILTER_KEYS.CONSIGNEE) {
+		} if (key === FILTER_KEYS.SHIPPER || key === FILTER_KEYS.CONSIGNEE) {
 			finalFilters[FILTER_KEY_TO_ID[key]] = [];
 			const pocKeys = filters[key];
 			const pocDetailsList = filters_data.poc_details || [];
@@ -16,7 +16,7 @@ const prepareFilters = (filters, filters_data) => {
 
 				finalFilters[FILTER_KEY_TO_ID[key]] = finalFilters[FILTER_KEY_TO_ID[key]].concat(saasSubscriptionIds);
 			});
-		} else if (key === FILTER_KEYS.BOOKED_COGOPORT) {
+		} if (key === FILTER_KEYS.BOOKED_COGOPORT) {
 			if (!filters[key]) return null;
 
 			finalFilters[FILTER_KEY_TO_ID[key]] = [];
@@ -26,9 +26,8 @@ const prepareFilters = (filters, filters_data) => {
 				.map((item) => item.saas_container_subscription_id);
 
 			finalFilters[FILTER_KEY_TO_ID[key]] = finalFilters[FILTER_KEY_TO_ID[key]].concat(saasSubscriptionIds);
-		} else {
-			finalFilters.id = filters[key];
 		}
+		finalFilters.id = filters[key];
 	});
 
 	return finalFilters;

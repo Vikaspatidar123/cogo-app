@@ -1,4 +1,4 @@
-import { Input, Button } from '@cogoport/components';
+import { Input, Button, Modal } from '@cogoport/components';
 import { useState, useMemo } from 'react';
 
 import useCreateDsr from '../../../../hooks/useCreateDsr';
@@ -11,7 +11,7 @@ import AddPocs from '@/ui/page-components/ocean-tracking/tracker_details/compone
 import useFetchPoc from '@/ui/page-components/ocean-tracking/tracker_details/hooks/useFetchPoc';
 
 function SelectPoc({ setStep, setSelectedPoc, setDsrId }) {
-	const { loading, pocList, setPocList } = useFetchPoc();
+	const { pocList, setPocList } = useFetchPoc();
 	const [submitLoading, createDsr] = useCreateDsr();
 	const [searchText, setSearchText] = useState('');
 	const [isPocModalOpen, setPocModal] = useState(false);
@@ -82,34 +82,40 @@ function SelectPoc({ setStep, setSelectedPoc, setDsrId }) {
 				</div>
 
 			</div>
-			<h3 className={styles.list}>
-				Contact List
-			</h3>
+
 			<form>
-				{ filteredPocList?.length > 0 ? (
-					filteredPocList.map((item) => {
-						const Element = getField('checkbox');
-						const label = `${item.name}(${item.email})`;
-						return (
-							<div>
-								<Element {...item} control={control} label={label} />
-							</div>
-						);
-					})
-				) : (
-					<p> Please add new contacts</p>
-				)}
-				<div className={styles.button_bottom}>
-					<Button
-						size="lg"
-						variant="secondary"
-						disabled={submitLoading}
-						onClick={handleSubmit(onSubmit)}
-					>
-						Next
-					</Button>
-				</div>
+				<Modal.Body>
+					<h3 className={styles.list}>
+						Contact List
+					</h3>
+					{ filteredPocList?.length > 0 ? (
+						filteredPocList.map((item) => {
+							const Element = getField('checkbox');
+							const label = `${item.name}(${item.email})`;
+							return (
+								<div>
+									<Element {...item} control={control} label={label} />
+								</div>
+							);
+						})
+					) : (
+						<p> Please add new contacts</p>
+					)}
+				</Modal.Body>
+				<Modal.Footer>
+					<div className={styles.button_bottom}>
+						<Button
+							size="lg"
+							variant="secondary"
+							disabled={submitLoading}
+							onClick={handleSubmit(onSubmit)}
+						>
+							Next
+						</Button>
+					</div>
+				</Modal.Footer>
 			</form>
+
 		</div>
 	);
 }

@@ -1,83 +1,87 @@
-.card{
-    cursor: pointer;
-
-    padding: 24px 16px;
-    background-color: white;
-    border-radius: 20px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;  
+.card {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	height: 100%;
+	padding: 24px 16px;
+	cursor: pointer;
+	background-color: white;
+	border-radius: 20px;
+	box-shadow: 0 0 10px rgb(0 0 0 / 10%);
 }
+
 .info:last-child {
-    margin-bottom: 0;
-  }
- 
+	margin-bottom: 0;
+}
+
 .info {
-    margin-bottom: 16px;
-    display: flex;
-    font-size: 14px;
-  }
+	display: flex;
+	margin-bottom: 16px;
+	font-size: 14px;
+}
+
 .label {
-    margin: 0;
-    margin-right: 8px;
-    font-weight: 700;
-    font-size: 12px;
-  }
+	margin: 0;
+	margin-right: 8px;
+	font-size: 12px;
+	font-weight: 700;
+}
+
 .value {
-    margin: 0;
-    font-weight: 400;
-    word-break: 'break-all';
+	margin: 0;
+	font-weight: 400;
+	word-break: "break-all";
 }
-.incoterm{
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    margin-bottom: 16px;
-  
-    :before {
-      content: "";
-      flex: 1;
-      border-top: 1px dashed #66acf7;
-    }
-  
-    p {
-      color: white;
-      padding: 8px 16px;
-      font-size: 12px;
-      background-color: #66acf7;
-      border-radius: 20px;
-      margin: 0;
-      flex-grow: 0;
-      flex-shrink: 0;
-    }
+
+.incoterm {
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	margin-bottom: 16px;
+
+	::before {
+		flex: 1;
+		content: "";
+		border-top: 1px dashed #66acf7;
+	}
+
+	p {
+		flex-grow: 0;
+		flex-shrink: 0;
+		padding: 8px 16px;
+		margin: 0;
+		font-size: 12px;
+		color: white;
+		background-color: #66acf7;
+		border-radius: 20px;
+	}
 }
-.dash_button{
-  padding: 24px 16px;
-  display: flex;
-  align-items: center;
-  background-color: transparent;
-  border: 1px dashed #35495d;
-  border-radius: 20px;
-  height: 100%;
 
-  svg {
-    margin-right: 32px;
-    height: 20px;
-    width: 20px;
-    fill: red;
-  }
+.dash_button {
+	display: flex;
+	align-items: center;
+	height: 100%;
+	padding: 24px 16px;
+	background-color: transparent;
+	border: 1px dashed #35495d;
+	border-radius: 20px;
 
-  p {
-    color: #35495d;
-    font-size: 14px;
-    margin: 0;
-  }
+	svg {
+		width: 20px;
+		height: 20px;
+		margin-right: 32px;
+		fill: red;
+	}
 
-  @media (max-width: 760px) {
-    padding: 16px;
-    flex-direction: column;
-    border-color: #657a8e;
-  }
+	p {
+		margin: 0;
+		font-size: 14px;
+		color: #35495d;
+	}
+
+	@media (max-width: 760px) {
+		flex-direction: column;
+		padding: 16px;
+		border-color: #657a8e;
+	}
 }

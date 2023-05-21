@@ -1,44 +1,49 @@
-.content{
-    display: flex;
-    margin-bottom: 24px;
+.content {
+	display: flex;
+	margin-bottom: 24px;
 }
-.steps{
-    position: relative;
-    margin-right: 20px;
-    margin-left: 20px;
-    line-height: 40px;
-    padding-left: 8px;
-    padding-right: 8px;
-    background-color: gray;
-    color: white;
-    flex: 1;
+
+.steps {
+	position: relative;
+	flex: 1;
+	padding-right: 8px;
+	padding-left: 8px;
+	margin-right: 20px;
+	margin-left: 20px;
+	line-height: 40px;
+	color: white;
+	background-color: gray;
 }
+
 .heading {
-    margin: 0;
-    font-size: 14px;
-    text-align: center;
-    font-weight: 700;
-  }
-.prev_arrow .next_arrow {
-  position: absolute;
-  height: 0;
-  width: 0;
+	margin: 0;
+	font-size: 14px;
+	font-weight: 700;
+	text-align: center;
 }
+
+.prev_arrow .next_arrow {
+	position: absolute;
+	width: 0;
+	height: 0;
+}
+
 .next_arrow {
-    left: 100%;
-    top: 0;
-    border-color: transparent;
-    border-width: 20px 10px;
-    border-style: solid;
-  }
-   
-  .prev_arrow {
-    border-left-color: transparent;
-    border-style: solid;
-    border-width: 20px 10px;
-    left: -20px;
-  }
-  .active{
-    background-color: blue;
-  }
- 
+	top: 0;
+	left: 100%;
+	border-color: transparent;
+	border-style: solid;
+	border-width: 20px 10px;
+}
+
+.prev_arrow {
+	left: -20px;
+	border-style: solid;
+	border-width: 20px 10px;
+	border-left-color: transparent;
+}
+
+.active {
+	background-color: blue;
+}
+

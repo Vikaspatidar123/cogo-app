@@ -1,19 +1,22 @@
-.icon{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.icon {
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
-.detail{
-    color: #7d7d7d;
-	font-size: 14px;
+
+.detail {
 	margin-top: 16px;
+	font-size: 14px;
+	color: #7d7d7d;
 }
-.button{
-    display: flex;
-    justify-content: flex-end;
-    gap: 10px;
+
+.button {
+	display: flex;
+	gap: 10px;
+	justify-content: flex-end;
 }
-.list{
-    padding: 20px;
-    margin-bottom: 100px;
+
+.list {
+	padding: 20px;
+	margin-bottom: 100px;
 }

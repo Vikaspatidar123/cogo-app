@@ -25,7 +25,7 @@ function DsrModal({ isOpen, handleModal, type = 'new', initialStep = 0, dsrs, se
 			placement="center"
 		>
 			<Modal.Header title={heading} />
-			<Modal.Body>
+			<div>
 				{step > 0 && (
 					<Steps
 						stepList={[{ heading: 'SELECT SHIPMENT' }, { heading: 'SELECT SCHEDULE' }]}
@@ -61,7 +61,7 @@ function DsrModal({ isOpen, handleModal, type = 'new', initialStep = 0, dsrs, se
 						setDsrs={setDsrs}
 					/>
 				) : null}
-			</Modal.Body>
+			</div>
 		</Modal>
 	);
 }

@@ -1,17 +1,21 @@
 .item {
-  display: flex;
-  align-items: center;
-  gap: 10px;
+	display: flex;
+	gap: 10px;
+	align-items: center;
 }
+
 .button {
-  width: 50%;
+	width: 50%;
 }
+
 .list {
-  margin-top: 20px;
+	margin-top: 20px;
 }
-.list{
-    margin-top: 20px;
+
+.list {
+	margin-top: 20px;
 }
-.loading{
-    margin-bottom: 10px;
+
+.loading {
+	margin-bottom: 10px;
 }

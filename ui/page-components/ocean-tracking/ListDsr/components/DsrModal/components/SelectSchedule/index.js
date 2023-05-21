@@ -1,4 +1,4 @@
-import { Radio, Select, Button } from '@cogoport/components';
+import { Radio, Select, Button, Modal } from '@cogoport/components';
 import { useEffect, useState } from 'react';
 
 import useCreateSchedule from '../../../../hooks/useCreateSchedule';
@@ -31,9 +31,6 @@ function SelectSchedule({
 }) {
 	const { submitLoading, createSchedule } = useCreateSchedule({ dsrs, setDsrs, dsrId });
 
-	useEffect(() => {
-		setHeading(`Status report for ${pocName}`);
-	}, []);
 	const [frequency, setFrequency] = useState();
 	const [day, setDay] = useState('');
 	const [dailytime, setTime] = useState();
@@ -55,65 +52,73 @@ function SelectSchedule({
 		label : item,
 		value : item,
 	}));
+	useEffect(() => {
+		setHeading(`Status report for ${pocName}`);
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
 	return (
 		<form>
-			<div className={styles.select}>
-				{options.map((item) => (
-					<div>
-						<Radio
-							name="frequency"
-							value={item.value}
-							label={item.label}
-							onChange={() => setFrequency(item.name)}
-						/>
-					</div>
-				))}
-			</div>
-			{frequency === 'Weekly' && (
-				<div className={styles.weekly}>
-					{DAYS.map((item) => (
+			<Modal.Body>
+				<div className={styles.select}>
+					{options.map((item) => (
 						<div>
 							<Radio
-								name="day"
-								value={item}
-								label={item}
-								onChange={() => setDay(item)}
+								name="frequency"
+								value={item.value}
+								label={item.label}
+								onChange={() => setFrequency(item.name)}
 							/>
 						</div>
 					))}
 				</div>
-			)}
-			<div>
-				At:
-				<Select
-					value={timeOptions.filter((item) => item.value === dailytime)[0]?.value}
-					placeholder="Select Time"
-					defaultValue={dailytime}
-					onChange={(option) => {
-						setTime(option);
-					}}
-					options={timeOptions}
-				/>
-				{alert && <div className={styles.alert}>Time is required</div>}
-			</div>
-			<div className={styles.button}>
-				<Button
-					size="lg"
-					variant="ghost"
-					onClick={() => setStep((step) => step - 1)}
-					themeType="secondary"
-				>
-					Back
-				</Button>
-				<Button
-					size="lg"
-					variant="secondary"
-					disabled={submitLoading}
-					onClick={() => onSubmit()}
-				>
-					Next
-				</Button>
-			</div>
+				{frequency === 'Weekly' && (
+					<div className={styles.weekly}>
+						{DAYS.map((item) => (
+							<div>
+								<Radio
+									name="day"
+									value={item}
+									label={item}
+									onChange={() => setDay(item)}
+								/>
+							</div>
+						))}
+					</div>
+				)}
+				<div>
+					At:
+					<Select
+						value={timeOptions.filter((item) => item.value === dailytime)[0]?.value}
+						placeholder="Select Time"
+						defaultValue={dailytime}
+						onChange={(option) => {
+							setTime(option);
+						}}
+						options={timeOptions}
+					/>
+					{alert && <div className={styles.alert}>Time is required</div>}
+				</div>
+			</Modal.Body>
+			<Modal.Footer>
+				<div className={styles.button}>
+					<Button
+						size="lg"
+						variant="ghost"
+						onClick={() => setStep((step) => step - 1)}
+						themeType="secondary"
+					>
+						Back
+					</Button>
+					<Button
+						size="lg"
+						variant="secondary"
+						disabled={submitLoading}
+						onClick={() => onSubmit()}
+					>
+						Next
+					</Button>
+				</div>
+			</Modal.Footer>
 
 		</form>
 	);

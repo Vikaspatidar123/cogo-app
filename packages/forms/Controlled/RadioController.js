@@ -17,7 +17,12 @@ function RadioController(props) {
 				<Radio
 					{...rest}
 					key={rest.id}
-					onChange={onChange}
+					onChange={(val, obj) => {
+						onChange(val, obj);
+						if (rest.handleChange) {
+							rest.handleChange(val, obj);
+						}
+					}}
 					value={newValue || value}
 					onBlur={onBlur}
 					data-test-value={value}

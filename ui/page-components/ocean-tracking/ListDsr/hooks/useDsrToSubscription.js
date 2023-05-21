@@ -1,22 +1,19 @@
 import { Toast } from '@cogoport/components';
-import { useState } from 'react';
 
 import { useRequest } from '@/packages/request';
 
 const useDsrToSubscription = () => {
-	const [loading, setLoading] = useState(false);
-	const [{ loading:apiloading1 }, trigger1] = useRequest({
+	const [{ loading }, trigger1] = useRequest({
 		url    : 'create_dsr_to_subscription_mapping',
 		method : 'post',
 	}, { manual: true });
-	const [{ loading:apiloading2 }, trigger2] = useRequest({
+	const [{ loading:apiloading }, trigger2] = useRequest({
 		url    : 'update_dsr_to_subscription_mapping',
 		method : 'post',
 	}, { manual: true });
 
 	const dsrToSubscription = async (value, dsrId, subList = []) => {
 		try {
-			setLoading(true);
 			let type = 'new';
 			if (subList?.length > 0) {
 				type = 'update';
@@ -62,19 +59,16 @@ const useDsrToSubscription = () => {
 			if (hasError1) throw new Error();
 			if (message1) throw new Error(message);
 
-			setLoading(false);
-
 			return true;
 		} catch (err) {
 			Toast.error(
 				err?.message || 'Unable to create status report. Please try again.',
 			);
-			setLoading(false);
 			return false;
 		}
 	};
 
-	return { loading, dsrToSubscription };
+	return { lsubmitLoading: loading || apiloading, dsrToSubscription };
 };
 
 export default useDsrToSubscription;

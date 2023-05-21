@@ -4,7 +4,7 @@ const parseScheduleString = (str = '') => {
 	let day = '';
 	const time = strSplit.slice(-1)[0] || '';
 	if (frequency === 'Weekly') {
-		day = strSplit[2];
+		day = strSplit?.[2];
 	}
 	return [frequency, day, time];
 };

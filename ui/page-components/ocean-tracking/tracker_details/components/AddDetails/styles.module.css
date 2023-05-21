@@ -1,72 +1,73 @@
-.container{
-    width: 90%;
-    display: flex;
-    flex-direction: column;
-    margin-left: 10px;
-    padding: 20px;
-    background: #FFFFFF;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    border-radius: 20px;
-    @media (max-width: 760px) {
-       width: 100%;
-       margin: 0px;
-      }
+.container {
+	display: flex;
+	flex-direction: column;
+	width: 90%;
+	padding: 20px;
+	margin-left: 10px;
+	background: #fff;
+	border-radius: 20px;
+	box-shadow: 0 0 10px rgb(0 0 0 / 10%);
+
+	@media (max-width: 760px) {
+		width: 100%;
+		margin: 0;
+	}
 }
 
-.header_title{
-    font-size: 14px;
-    font-weight: 600;
-    display: flex;
-    justify-content: space-between;
-}
- 
-.line{
-    border-bottom: 2px solid #FBD1A6;
-    width:70px;
+.header_title {
+	display: flex;
+	justify-content: space-between;
+	font-size: 14px;
+	font-weight: 600;
 }
 
-.title_div{
-    display: flex;
-    padding-top: 10px;
+.line {
+	width: 70px;
+	border-bottom: 2px solid #fbd1a6;
 }
 
-.title{
-    font-size: 12px;
-    font-weight: 600;
+.title_div {
+	display: flex;
+	padding-top: 10px;
 }
 
-.arrow_div{
-    width: 35%;
+.title {
+	font-size: 12px;
+	font-weight: 600;
 }
 
-.list_container{
-    display: flex;
-    flex-direction: column;
+.arrow_div {
+	width: 35%;
 }
 
-.element1{
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
-    padding-top: 10px;
+.list_container {
+	display: flex;
+	flex-direction: column;
 }
 
-.sub_element{
-    width:50%; 
-    display: flex;
-    font-size: 12px;
-    
+.element1 {
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+	padding-top: 10px;
 }
 
-.icon{
-    fill:#EE3425;
-    width:50px; 
-    height:25px;
-    cursor: pointer;
+.sub_element {
+	display: flex;
+	width: 50%;
+	font-size: 12px;
 }
-.add{
-    margin-left: 3px;
-    color: blue;
-    text-decoration: underline;
-    cursor: pointer;
+
+.icon {
+	width: 50px;
+	height: 25px;
+	cursor: pointer;
+	fill: #ee3425;
+}
+
+.add {
+	margin-left: 3px;
+	color: blue;
+	text-decoration: underline;
+	cursor: pointer;
 }

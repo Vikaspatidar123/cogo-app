@@ -1,15 +1,15 @@
-.table_card{
-    padding: 12px;
-    padding-top: 0;
-    border: 1px solid #eaeaea;
-    border-radius: 5px;
-    max-height: 150px;
-    overflow: auto;
+.table_card {
+	max-height: 150px;
+	padding: 12px;
+	padding-top: 0;
+	overflow: auto;
+	border: 1px solid #eaeaea;
+	border-radius: 5px;
 }
-.footer{
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    margin-top: 20px;
-    gap: 10px;
+
+.footer {
+	display: flex;
+	gap: 10px;
+	align-items: center;
+	justify-content: flex-end;
 }

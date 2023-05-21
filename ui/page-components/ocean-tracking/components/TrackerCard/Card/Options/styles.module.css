@@ -1,6 +1,6 @@
-.content{
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    cursor: pointer;
+.content {
+	display: flex;
+	gap: 5px;
+	align-items: center;
+	cursor: pointer;
 }

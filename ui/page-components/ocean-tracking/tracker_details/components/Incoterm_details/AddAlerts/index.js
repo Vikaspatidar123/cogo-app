@@ -11,7 +11,7 @@ import FormItem from '@/ui/commons/components/FormItem';
 
 function AddAlerts({
 	handlePrevious,
-	setLoading,
+	// setLoading,
 	trackerPoc,
 	subscriptionAlerts,
 	setTrackerPoc,
@@ -76,6 +76,7 @@ function AddAlerts({
 		} else {
 			setPocDetails(selected_poc_details);
 		}
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 	useEffect(() => {
 		setPocDetails(selected_poc_details);

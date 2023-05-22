@@ -5,14 +5,13 @@ import styles from './styles.module.css';
 
 import { useForm } from '@/packages/forms';
 import getField from '@/packages/forms/Controlled';
+import pattern from '@/ui/commons/configurations/patterns';
 import useShareOption from '@/ui/page-components/ocean-tracking/hooks/useShareOption';
 
 function ShareModal({
 	show, setShow, tracker,
 }) {
 	const saasSubscriptionId = tracker?.id;
-
-	const emailValidator = /^[^<>()[\]\\,;:%#^\s@"$&!@]+@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z0-9]+\.)+[a-zA-Z]{2,}))$/;
 	const controls = [
 		{
 			name  : 'email',
@@ -22,7 +21,7 @@ function ShareModal({
 			rules : {
 				required : 'Please enter email',
 				pattern  : {
-					value   : emailValidator,
+					value   : pattern.EMAIL,
 					message : 'Invalid email address',
 				},
 			},
@@ -88,7 +87,7 @@ function ShareModal({
 								{shareDetailsList
 									.slice(0)
 									.reverse()
-									.map((item, idx) => {
+									.map((item) => {
 										const bgColor = item.email[0];
 										return (
 											<div className={styles.list}>
@@ -113,7 +112,7 @@ function ShareModal({
 			</Modal.Body>
 			<Modal.Footer>
 				<div className={styles.footer}>
-					<Button themeType="secondary" onClick={() => setShow(!show)}>Cancel</Button>
+					<Button themeType="secondary" onClick={() => setShow(!show)} loading={loading}>Cancel</Button>
 				</div>
 			</Modal.Footer>
 

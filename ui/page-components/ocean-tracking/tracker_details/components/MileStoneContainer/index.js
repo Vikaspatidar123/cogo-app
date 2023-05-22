@@ -111,6 +111,7 @@ function MilestonesContainer({
 				}
 			}
 		}
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [selectedContainer, selectedMilestonesList]);
 
 	const renderEmpty = () => (

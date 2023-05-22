@@ -5,6 +5,7 @@ import { WarnIcon } from '../../../../configuration/icon-configuration';
 import styles from './styles.module.css';
 
 function DetailsList({ containersList, shipmentInfo, activeCarouselIndex, setActiveCarouselIndex }) {
+	const length = containersList?.length;
 	const handlePrevious = () => {
 		if (activeCarouselIndex > 0) {
 			setActiveCarouselIndex(
@@ -13,7 +14,7 @@ function DetailsList({ containersList, shipmentInfo, activeCarouselIndex, setAct
 		}
 	};
 	const handleNext = () => {
-		if (activeCarouselIndex < containersList?.length - 1) {
+		if (activeCarouselIndex < length - 1) {
 			setActiveCarouselIndex(
 				(previousActiveCarouselIndex) => previousActiveCarouselIndex + 1,
 			);

@@ -1,4 +1,4 @@
-import { useCallback, useEffect } from 'react';
+import { useCallback } from 'react';
 
 import { useRequest } from '@/packages/request';
 
@@ -30,9 +30,6 @@ const useFetchAlerts = ({ setSubscriptionAlerts, setStep, setDeterminingStep }) 
 			return false;
 		}
 	}, [setDeterminingStep, setStep, setSubscriptionAlerts, trigger]);
-	useEffect(() => {
-		fetchAlertDetails();
-	}, []);
 
 	return { loading, fetchAlertDetails };
 };

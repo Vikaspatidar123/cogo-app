@@ -38,6 +38,7 @@ function useFetchPoc() {
 	};
 	useEffect(() => {
 		fetchPoc();
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	return {

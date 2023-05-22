@@ -7,11 +7,10 @@ import { useForm } from '@/packages/forms';
 import getField from '@/packages/forms/Controlled';
 import { useRequest } from '@/packages/request';
 import { useSelector } from '@/packages/store';
+import pattern from '@/ui/commons/configurations/patterns';
 
 function AddPocs({ isOpen, handleModal, addPocToState }) {
 	const { general, profile } = useSelector((s) => s);
-	const emailValidator =		/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-	const mobileValidator = /^[0-9]{10}$/;
 	const [{ loading }, trigger] = useRequest({
 		url    : 'create_saas_shipment_poc',
 		method : 'post',
@@ -36,7 +35,7 @@ function AddPocs({ isOpen, handleModal, addPocToState }) {
 			rules : {
 				required : 'Please enter mobile no',
 				pattern  : {
-					value   : mobileValidator,
+					value   : pattern.MOBILE,
 					message : 'Invalid mobile number',
 				},
 			},
@@ -49,7 +48,7 @@ function AddPocs({ isOpen, handleModal, addPocToState }) {
 			rules : {
 				required : 'Please enter email',
 				pattern  : {
-					value   : emailValidator,
+					value   : pattern.EMAIL,
 					message : 'Invalid email address',
 				},
 			},

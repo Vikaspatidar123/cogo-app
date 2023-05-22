@@ -53,6 +53,7 @@ function IncotermModal({
 					handleModal={handleModal}
 					setTrackerPoc={setTrackerPoc}
 					trackerPoc={trackerPoc}
+					loading={loading}
 				/>
 			);
 		}
@@ -88,7 +89,6 @@ function IncotermModal({
 				) : (
 					<div>
 						{handleModel()}
-
 					</div>
 				)}
 			</div>

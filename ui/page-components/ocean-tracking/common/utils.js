@@ -5,7 +5,10 @@ const prepareFilters = (filters, filters_data) => {
 	Object.keys(filters).forEach((key) => {
 		if (key === 'shipping_line_id') {
 			finalFilters[FILTER_KEY_TO_ID[key]] = filters[key];
-		} if (key === FILTER_KEYS.SHIPPER || key === FILTER_KEYS.CONSIGNEE) {
+		} else if (
+			key === FILTER_KEYS.SHIPPER
+            || key === FILTER_KEYS.CONSIGNEE
+		) {
 			finalFilters[FILTER_KEY_TO_ID[key]] = [];
 			const pocKeys = filters[key];
 			const pocDetailsList = filters_data.poc_details || [];
@@ -14,19 +17,23 @@ const prepareFilters = (filters, filters_data) => {
 					.filter((item) => item.saas_shipment_poc_id === pocKey)
 					.map((item) => item.saas_container_subscription_id);
 
-				finalFilters[FILTER_KEY_TO_ID[key]] = finalFilters[FILTER_KEY_TO_ID[key]].concat(saasSubscriptionIds);
+				finalFilters[FILTER_KEY_TO_ID[key]] = finalFilters[FILTER_KEY_TO_ID[key]].concat(
+					saasSubscriptionIds,
+				);
 			});
-		} if (key === FILTER_KEYS.BOOKED_COGOPORT) {
-			if (!filters[key]) return null;
+		} else if (key === FILTER_KEYS.BOOKED_COGOPORT) {
+			if (!filters[key]) return;
 
 			finalFilters[FILTER_KEY_TO_ID[key]] = [];
 
 			const pocDetailsList = filters_data.booked_with_cogoport || [];
-			const saasSubscriptionIds = pocDetailsList
-				.map((item) => item.saas_container_subscription_id);
+			const saasSubscriptionIds = pocDetailsList.map(
+				(item) => item.saas_container_subscription_id,
+			);
 
 			finalFilters[FILTER_KEY_TO_ID[key]] = finalFilters[FILTER_KEY_TO_ID[key]].concat(saasSubscriptionIds);
 		}
+
 		finalFilters.id = filters[key];
 	});
 

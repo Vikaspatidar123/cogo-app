@@ -33,7 +33,7 @@ const useCreateTracker = ({ query }) => {
 			const { data } = res;
 			if (data?.result?.shipping_line_id) {
 				const valueId = data.result.shipping_line_id;
-				const label = shippingLines?.filter?.((item) => item.id === value)[0]?.short_name;
+				// const label = shippingLines?.filter?.((item) => item.id === value)[0]?.short_name;
 				setValue((prv) => ({ ...prv, shipping_line_id: valueId }));
 			} else setValue((prv) => ({ ...prv, shipping_line_id: '' }));
 		} catch (err) {

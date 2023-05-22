@@ -51,6 +51,7 @@ function MapComp({
 				| <a href="https://leafletjs.com/" target="_blank" >Leaflet</a>`,
 			);
 		}
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [map]);
 
 	const getLatLng = ({ route, src }) => {

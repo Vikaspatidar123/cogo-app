@@ -13,9 +13,9 @@ const POC_TYPES = { CONSIGNEE: 'CONSIGNEE', SHIPPER: 'SHIPPER' };
 function FilterComponent({ trackers, setFilters, setShowFilters }) {
 	const { watch, setValue, control } = useForm();
 
-	const removeDuplicates = (list = [], key) => {
+	const removeDuplicates = (list, key) => {
 		const obj = {};
-		list.forEach((item) => {
+		(list || []).forEach((item) => {
 			obj[item[key]] = item;
 		});
 		return Object.values(obj);
@@ -25,7 +25,7 @@ function FilterComponent({ trackers, setFilters, setShowFilters }) {
 	const {
 		shipping_lines = {},
 		poc_details = [],
-		booked_with_cogoport = [],
+		// booked_with_cogoport = [],
 	} = filter_data;
 
 	const shippingLinesList = Object.keys(shipping_lines).map((key) => ({

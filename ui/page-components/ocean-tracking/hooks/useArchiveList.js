@@ -41,6 +41,7 @@ const useArchiveList = () => {
 
 	useEffect(() => {
 		fetchTrackers();
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [filters, pagination]);
 
 	const refetch = () => fetchTrackers(false);

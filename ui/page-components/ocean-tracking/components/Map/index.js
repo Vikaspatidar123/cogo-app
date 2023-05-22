@@ -122,6 +122,7 @@ function Map({ points, height = '80vh' }) {
 		setTimeout(() => {
 			setLoading(false);
 		}, 0);
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [filter_points]);
 
 	useEffect(() => {

@@ -7,8 +7,8 @@ import { Button, Toggle } from '@cogoport/components';
 
 const { Modal } = require('@cogoport/components');
 
-const sample = 'https://cogoport-production.sgp1.digitaloceanspaces.com/abc08dbaa530705b07065bb93914cea0/container_number_for_csv.csv';
-
+const sample = 'https://cogoport-production.sgp1.digitaloceanspaces.com/'
+  + 'abc08dbaa530705b07065bb93914cea0/container_number_for_csv.csv';
 function AddTrackerModal({ show, setShow }) {
 	const [labeledValue, setLabeledValue] = useState(false);
 	const onchange = () => {

@@ -1,35 +1,16 @@
-import { Modal, Toast, Select, Button } from '@cogoport/components';
-import { useState, useEffect } from 'react';
+import { Modal, Select, Button } from '@cogoport/components';
+import { useState } from 'react';
 
 import useAddCommodity from '../../../hooks/useAddCommodity';
+import useHsCode from '../../../hooks/useHsCode';
 
 import styles from './styles.module.css';
 
-import { useRequest } from '@/packages/request';
-
 function AddCommodityDetail({ isOpen, handleModal, trackerDetails, setTrackerDetails }) {
-	const [commodity, setCommodity] = useState([]);
 	const { onSubmit } = useAddCommodity({ trackerDetails, setTrackerDetails, handleModal });
 	const [value, setValue] = useState();
+	const { commodity } = useHsCode();
 
-	const [{ loading }, trigger] = useRequest({
-		url    : 'list_hs_codes',
-		method : 'get',
-	}, { manual: true });
-
-	const getCommodity = async () => {
-		try {
-			const res = await trigger({
-				params: { page_limit: 2000 },
-			});
-			setCommodity(res?.data?.list);
-		} catch (err) {
-			Toast.error(err?.message || 'No commodity found');
-		}
-	};
-	useEffect(() => {
-		getCommodity();
-	}, []);
 	return (
 		<Modal
 			show={isOpen}

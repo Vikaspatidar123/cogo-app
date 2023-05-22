@@ -33,6 +33,7 @@ const useFetchShipments = () => {
 	};
 	useEffect(() => {
 		fetchShipments();
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	return { loading, shipments };

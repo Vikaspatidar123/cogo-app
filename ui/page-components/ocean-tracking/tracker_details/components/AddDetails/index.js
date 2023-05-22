@@ -14,11 +14,12 @@ function AddDetails({
 	selectedContainer,
 	setSelectedContainer,
 }) {
+	const containerLength = containersList?.length;
 	const handlePrevious = () => {
 		if (selectedContainer > 0) setSelectedContainer(selectedContainer - 1);
 	};
 	const handleNext = () => {
-		if (selectedContainer < containersList?.length - 1) { setSelectedContainer(selectedContainer + 1); }
+		if (selectedContainer < containerLength - 1) { setSelectedContainer(selectedContainer + 1); }
 	};
 
 	const commodity = shipmentInfo?.commodity;

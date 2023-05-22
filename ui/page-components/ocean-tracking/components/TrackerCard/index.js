@@ -34,6 +34,7 @@ function TrackerCard({
 		if (trackers?.list) {
 			getAllOceanRoutes(trackers?.list);
 		}
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [trackers, pagination]);
 	return (
 		<div className={styles.container}>
@@ -72,12 +73,12 @@ function TrackerCard({
 							<div
 								role="presentation"
 								className={`${
-                                	isMapView
-                                		? styles.on_click
-                                		: styles.without_click
+									isMapView
+										? styles.on_click
+										: styles.without_click
 								} ${styles.map_view}`}
 								onClick={() => {
-                                	setIsMapView(true);
+									setIsMapView(true);
 								}}
 							>
 								<IcMMap className={styles.icon} />

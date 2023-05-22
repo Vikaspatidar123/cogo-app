@@ -17,7 +17,8 @@ const fields = [{
 			'warehouse',
 		],
 	},
-	rules: { required: 'Country is required' },
+	asyncKey : 'locations',
+	rules    : { required: 'Country is required' },
 }];
 const getControls = ({
 	cityOptions = {},

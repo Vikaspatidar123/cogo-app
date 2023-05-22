@@ -6,12 +6,17 @@ import AddressModal from './AddressModal';
 import styles from './styles.module.css';
 
 function BillingDetails({
-	billingAddress,
-	setAddresses,
-	addresses,
-	checked,
-	setChecked,
+	billingAddress = () => {},
+	addressApi = () => {},
+	setAddresses = () => {},
+	addresses = [],
+	checked = false,
+	setChecked = () => {},
+	addressWithoutGst = [],
+	setisBillingAddress = () => {},
 }) {
+	const addressList = addresses.concat(addressWithoutGst) || [];
+
 	const [addAddressModal, setAddAddressModal] = useState(false);
 
 	useEffect(() => {
@@ -42,11 +47,11 @@ function BillingDetails({
 					Add New
 				</Button>
 			</div>
-			{addresses?.length > 0 ? (
+			{addressList?.length > 0 ? (
 				<div className={styles.div}>
 					<div className={styles.heading}>Select Address</div>
 					<div className={styles.scroll_content}>
-						{(addresses || []).map(
+						{(addressList || []).map(
 							({
 								id = '',
 								name = '',
@@ -59,7 +64,10 @@ function BillingDetails({
 									<div className={styles.col_style}>
 										<Radio
 											checked={checked?.includes(id)}
-											onChange={() => setChecked([id])}
+											onChange={() => {
+												setChecked([id]);
+												setisBillingAddress(!!tax_number);
+											}}
 										/>
 									</div>
 									<div
@@ -81,6 +89,12 @@ function BillingDetails({
 											{tax_number}
 										</div>
 									</div>
+									{/* {address_type && (
+										<div className={`${styles.row}`}>
+											<div className="icons">{Icons?.[address_type]}</div>
+											<StyledTag className="primary">{address_type}</StyledTag>
+										</div>
+									)} */}
 								</div>
 							),
 						)}
@@ -98,6 +112,7 @@ function BillingDetails({
 					addAddressModal={addAddressModal}
 					setAddAddressModal={setAddAddressModal}
 					billingAddress={billingAddress}
+					addressApi={addressApi}
 					setAddresses={setAddresses}
 				/>
 			)}

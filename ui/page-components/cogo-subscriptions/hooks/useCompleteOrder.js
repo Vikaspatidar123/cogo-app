@@ -43,7 +43,7 @@ const useCompleteOrder = ({
 				setStripeModal(true);
 				if (!completeOrderResponse?.hasError && !addons) {
 					await loadScript(CHARGEBEE_JS_URL);
-					const chargebeeInstance = window.Chargebee.init({ site: process.env.CHARGEBEE_SITE });
+					const chargebeeInstance = window.Chargebee.init({ site: process.env.NEXT_PUBLIC_CHARGEBEE_SITE });
 					chargebeeInstance.openCheckout({
 						hostedPage: () => new Promise((res) => {
 							res(completeOrderResponse?.data);

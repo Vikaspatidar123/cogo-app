@@ -1,13 +1,18 @@
 import { Toast } from '@cogoport/components';
 import { IcMArrowBack } from '@cogoport/icons-react';
+import { isEmpty } from '@cogoport/utils';
+import { Elements } from '@stripe/react-stripe-js';
+import { loadStripe } from '@stripe/stripe-js';
 import { useCallback, useEffect, useState } from 'react';
 
+import CheckoutModal from '../../common/CheckoutModal';
 import useCompleteOrder from '../../hooks/useCompleteOrder';
 import useCreateBillingAddres from '../../hooks/useCreateBillingAddress';
 import useCreateCheckout from '../../hooks/useCreateCheckout';
 import useFetchBillingAddress from '../../hooks/useFetchBillingddress';
 import useGetPlanDetails from '../../hooks/useGetPlanDetails';
 import redirectUrl from '../../utils/redirectUrl';
+import StripePaymentModal from '../balance-history/component/Usage/StripePaymentModal';
 
 import BillingDetails from './BillingDetails';
 import Charges from './Charges';
@@ -23,22 +28,49 @@ function Checkout() {
 	const [datePickerValue, setDatePickerValue] = useState();
 	const [addresses, setAddresses] = useState();
 	const [checkoutResponse, setCheckoutResponse] = useState();
+	const [addressWithoutGst, setAddressWithoutGst] = useState();
+	const [isBillingAddress, setisBillingAddress] = useState();
+	const [stripePromiseSet, setstripePromiseSet] = useState();
+
 	const { query } = useRouter();
-	const { billingAddress } = useFetchBillingAddress({ profile });
+	const { billingAddress, addressApi } = useFetchBillingAddress({
+		profile,
+		setAddressWithoutGst,
+	});
 	const [checked, setChecked] = useState([]);
 	const { getPlan, planDataLoading } = useGetPlanDetails({ profile });
 	const { redirectManageSubscription } = redirectUrl();
-	const { createSellerAddres, createAddressLoading } = useCreateBillingAddres({
-		profile,
-	});
-	const { completeOrder, completeOrderLoading } = useCompleteOrder({
+	const { createSellerAddres, createAddressLoading } = useCreateBillingAddres(
+		{
+			profile,
+		},
+	);
+	const {
+		completeOrder,
+		completeOrderLoading,
+		completeOrderResponse,
+		stripeModal,
+		setStripeModal,
+		checkoutModal,
+		responseForCheckout,
+		setCheckoutModal,
+	} = useCompleteOrder({
 		checked,
 		profile,
 		checkoutResponse,
 		datePickerValue,
+		isBillingAddress,
 	});
 	const { createCheckout, checkoutLoading } = useCreateCheckout();
 
+	let stripePromise;
+	const { gateway_key = '' } = completeOrderResponse || {};
+	const stripefunc = async () => {
+		if (gateway_key) {
+			stripePromise = await loadStripe(gateway_key);
+			setstripePromiseSet(stripePromise);
+		}
+	};
 	const apicall = useCallback(async () => {
 		await getPlan({
 			setPlan,
@@ -49,12 +81,18 @@ function Checkout() {
 	}, [createCheckout, getPlan, query]);
 
 	useEffect(() => {
+		stripefunc();
+	}, [gateway_key]);
+
+	useEffect(() => {
 		apicall();
 	}, [apicall]);
 
 	useEffect(() => {
 		if (checkoutResponse?.errors) {
-			Toast.error('Something went wrong. Please try again after sometime');
+			Toast.error(
+				'Something went wrong. Please try again after sometime',
+			);
 		}
 	}, [checkoutResponse]);
 
@@ -81,10 +119,13 @@ function Checkout() {
 							createSellerAddres={createSellerAddres}
 							createAddressLoading={createAddressLoading}
 							billingAddress={billingAddress}
+							addressApi={addressApi}
 							setAddresses={setAddresses}
 							addresses={addresses}
+							addressWithoutGst={addressWithoutGst}
 							checked={checked}
 							setChecked={setChecked}
+							setisBillingAddress={setisBillingAddress}
 						/>
 					</div>
 					<div className={`${styles.wrapper} ${styles.wd_29}`}>
@@ -100,6 +141,26 @@ function Checkout() {
 						/>
 					</div>
 				</div>
+			)}
+			{checkoutModal && (
+				<CheckoutModal
+					checkoutModal={checkoutModal}
+					responseForCheckout={responseForCheckout}
+					checkoutResponse={checkoutResponse}
+					setCheckoutModal={setCheckoutModal}
+				/>
+			)}
+			{stripeModal && !isEmpty(stripePromiseSet) && (
+				<Elements stripe={stripePromiseSet}>
+					<StripePaymentModal
+						flag={stripeModal}
+						checkoutResponse={checkoutResponse}
+						setStripeModal={setStripeModal}
+						completeOrderResponse={completeOrderResponse}
+						stripeObj={stripePromiseSet}
+						query={query}
+					/>
+				</Elements>
 			)}
 		</div>
 	);

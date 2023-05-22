@@ -1,5 +1,5 @@
 import { IcMArrowBack } from '@cogoport/icons-react';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 import useFetchQuoteDetails from '../../hooks/useFetchQuoteDetails';
 

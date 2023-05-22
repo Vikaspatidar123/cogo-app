@@ -1,7 +1,7 @@
-import { Input, Button, Toast, Placeholder, Checkbox, Modal } from '@cogoport/components';
+import { Input, Button, Placeholder, Checkbox, Modal } from '@cogoport/components';
 import { useState, useMemo } from 'react';
 
-import useCreatePoc from '../../../hooks/useCreatePoc';
+// import useCreatePoc from '../../../hooks/useCreatePoc';
 import useFetchPoc from '../../../hooks/useFetchPoc';
 import AddPocs from '../AddPoc';
 
@@ -32,8 +32,8 @@ function LinkPocs({ handleNext, setTrackerPoc, trackerPoc, handleModal }) {
 		control,
 		handleSubmit,
 	} = useForm();
-	const { createPoc } = useCreatePoc();
-	const onSubmit = async (values) => {
+	// const { createPoc } = useCreatePoc();
+	const onSubmit = async () => {
 		// const { data } = check;
 
 		const newPocList = check?.map(

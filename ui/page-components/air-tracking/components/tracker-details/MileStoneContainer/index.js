@@ -81,6 +81,7 @@ function MilestonesContainer({
 			containersMilestonesList?.[selectedIndex]?.tracking_data ?? [],
 		);
 		setSelectedMilestonesList(processedMilestonesList);
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [selectedContainerId]);
 
 	useEffect(() => {

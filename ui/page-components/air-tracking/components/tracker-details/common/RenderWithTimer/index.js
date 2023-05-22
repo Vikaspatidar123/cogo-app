@@ -37,8 +37,9 @@ function RenderWithTimer({ quoteData, timeRemaining }) {
 
 			<text style={{ maxWidth: 500 }}>
 				{timeRemaining > 0
-                	? 'Usually takes around 10 seconds'
-                	: "Fetching data on this cargo / shipment is taking longer than usual. We will inform you as soon as it's available."}
+					? 'Usually takes around 10 seconds'
+					: 'Fetching data on this cargo / shipment is taking'
+								+ "longer than usual. We will inform you as soon as it's available."}
 			</text>
 			{timeRemaining > 0 ? (
 				<div className={styles.progress_container}>

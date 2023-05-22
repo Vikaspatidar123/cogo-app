@@ -13,15 +13,10 @@ function CsvForm() {
 		airlineId    : '',
 		airwayBillNo : '',
 	});
-	const { addTrackerCSV } = useAddTrackerCSV();
+	const { addTrackerCSV, loading } = useAddTrackerCSV();
 
 	const [airLinesData, setAirLineData] = useState(null);
 	const [fileValue, setFileValue] = useState();
-
-	const [{ loading:setLoading }, trigger] = useRequest({
-		url    : '/create_saas_air_tracker_via_csv',
-		method : 'post',
-	}, { manual: false });
 
 	const [{ loading:apiloading }, airLines] = useRequest({
 		url    : '/list_operators',
@@ -44,6 +39,7 @@ function CsvForm() {
 
 	useEffect(() => {
 		getShippingLines();
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	return (
@@ -64,7 +60,12 @@ function CsvForm() {
 			</div>
 
 			<div className={styles.button}>
-				<Button onClick={() => addTrackerCSV(newvalue?.option, fileValue)}> Track Cargo</Button>
+				<Button
+					onClick={() => addTrackerCSV(newvalue?.option, fileValue)}
+					loading={loading || apiloading}
+				>
+					Track Cargo
+				</Button>
 			</div>
 		</div>
 	);

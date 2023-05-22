@@ -70,7 +70,7 @@ function FilterCards({ id, onClick, activeKey, stats, ...props }) {
 					<div
 						role="presentation"
 						className={cl`${styles.sub_heading} ${
-                        	isSubheading1Disabled && styles.disabled_card
+							isSubheading1Disabled && styles.disabled_card
 						} ${id === activeKey && styles.active}`}
 						disabled={isSubheading1Disabled}
 						onClick={() => !isSubheading1Disabled && onClick(subheading1Key)}

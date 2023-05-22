@@ -1,6 +1,6 @@
 import { Modal, Button, Tooltip, Checkbox, Toast } from '@cogoport/components';
 import { IcMInfo } from '@cogoport/icons-react';
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect } from 'react';
 
 import useCreateAlerts from '../../../hooks/useCreateAlerts';
 import useFetchMasterList from '../../../hooks/useFetchMasterList';
@@ -29,7 +29,6 @@ function AddAlerts({
 		consignee : [],
 		dsr       : [],
 	});
-	console.log(subscriptionAlerts, 'subscriptionAlerts');
 	const syncServerToFields = async () => {
 		const pocDetailsFromServer = (subscriptionAlerts || []).map((u) => u?.poc_details);
 		setTrackerPoc((prev) => ({
@@ -77,8 +76,9 @@ function AddAlerts({
 		} else {
 			setPocDetails(selected_poc_details);
 		}
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
-
+	console.log(tracking_data);
 	useEffect(() => {
 		setPocDetails(selected_poc_details);
 	}, [selected_poc_details]);

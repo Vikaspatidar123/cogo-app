@@ -1,5 +1,4 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { Toast } from '@cogoport/components';
 import { useState, useEffect, useCallback } from 'react';
 
 import { prepareFilters } from '../common/utils';

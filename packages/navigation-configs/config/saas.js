@@ -1,4 +1,9 @@
 const saas = {
+	'/saas/premium-services/duties-taxes-calculator': {
+		navigation : 'saas_premium_services-duties_and_taxes',
+		isMainNav  : true,
+	},
+
 	'/saas/premium-services/trader-eligibility-check': {
 		navigation : 'saas_premium_services-trader_eligibility_check',
 		isMainNav  : true,

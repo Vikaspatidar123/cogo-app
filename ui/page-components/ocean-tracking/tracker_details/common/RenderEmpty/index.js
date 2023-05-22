@@ -37,13 +37,13 @@ function RenderEmpty() {
 				GO BACK &amp; KEEP TRACKING
 			</Button>
 
-			<Button
+			{/* <Button
 				variant="link"
 				style={{ marginTop: 16 }}
 				icon={<IcMDelete style={{ height: 24, width: 24 }} />}
 			>
 				Delete tracker &amp; restore balance
-			</Button>
+			</Button> */}
 		</div>
 	);
 }

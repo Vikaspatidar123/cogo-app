@@ -1,12 +1,12 @@
-import { Radio } from '@cogoport/components';
+import { Radio, RadioGroup } from '@cogoport/components';
 import React from 'react';
 import { Controller } from 'react-hook-form';
 
 function RadioController(props) {
 	const {
-		name, control, rules, value, ...rest
+		name, control, rules, value, radioGroup = false, ...rest
 	} = props;
-
+	const Element = radioGroup ? RadioGroup : Radio;
 	return (
 		<Controller
 			key={rest.id}
@@ -14,7 +14,7 @@ function RadioController(props) {
 			name={name}
 			rules={rules}
 			render={({ field: { onChange, onBlur, value: newValue } }) => (
-				<Radio
+				<Element
 					{...rest}
 					key={rest.id}
 					onChange={(val, obj) => {

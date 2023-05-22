@@ -1,5 +1,5 @@
 import { Button } from '@cogoport/components';
-import { IcMDelete } from '@cogoport/icons-react';
+// import { IcMDelete } from '@cogoport/icons-react';
 
 import styles from './styles.module.css';
 

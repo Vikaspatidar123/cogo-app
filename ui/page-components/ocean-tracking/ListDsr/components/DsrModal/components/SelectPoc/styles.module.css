@@ -3,18 +3,18 @@
 	gap: 10px;
 	align-items: center;
 	padding: 10px;
-  }
-  
-  .button {
+}
+
+.button {
 	width: 50%;
-  }
-  
-  .list {
+}
+
+.list {
 	margin-top: 20px;
-  }
-  
-  .button_bottom {
+}
+
+.button_bottom {
 	display: flex;
 	align-items: center;
 	justify-content: flex-end;
-  }
+}

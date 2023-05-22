@@ -9,6 +9,7 @@ import InputController from './InputController';
 import MobileNumberSelectController from './MobileNumberSelectController';
 import PriceController from './PriceController';
 import RadioController from './RadioController';
+import RadioGroupController from './RadioGroupController';
 import SelectController from './SelectController';
 import TextAreaController from './TextAreaController';
 import UploadController from './UploadController';
@@ -25,6 +26,7 @@ const MAPPING = {
 	multi_select   : MultiselectController,
 	async_select   : AsyncSelectController,
 	radio          : RadioController,
+	radiogroup     : RadioGroupController,
 	price_select   : PriceController,
 	chips          : ChipsController,
 	country_select : CountrySelectController,

@@ -10,15 +10,15 @@
 	box-shadow: 0 0 10px rgb(0 0 0 / 10%);
 }
 
-.info:last-child {
-	margin-bottom: 0;
-}
-
 .info {
 	display: flex;
 	margin-bottom: 16px;
 	font-size: 14px;
-}
+  }
+  
+.info:last-child {
+	margin-bottom: 0;
+  }
 
 .label {
 	margin: 0;

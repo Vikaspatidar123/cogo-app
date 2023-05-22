@@ -276,7 +276,7 @@ function RateCard(props) {
 					{detailsToShow(data, details)?.length > 0 ? (
 						<>
 							<div
-								className={cl`${styles.line_vrt} ${styles.styles.horizontal}`}
+								className={cl`${styles.line_vrt} ${styles.horizontal}`}
 							/>
 
 							<div

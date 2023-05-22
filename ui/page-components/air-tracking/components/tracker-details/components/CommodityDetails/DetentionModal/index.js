@@ -1,43 +1,25 @@
-import { Modal, Toast, Select, Button } from '@cogoport/components';
-import { useState, useEffect, useCallback } from 'react';
+import { Modal, Select, Button } from '@cogoport/components';
+import { useState } from 'react';
 
 import useAddCommodity from '../../../hooks/useAddCommodity';
+import useHsCode from '../../../hooks/useHsCode';
 
 import styles from './styles.module.css';
 
-import { useRequest } from '@/packages/request';
-
 function AddCommodityDetail({ isOpen, handleModal, trackerDetails, setTrackerDetails, fetchTrackerDetails }) {
-	const [commodity, setCommodity] = useState([]);
-	const { onSubmit } = useAddCommodity({ trackerDetails, setTrackerDetails, handleModal, fetchTrackerDetails });
-
+	const { onSubmit, loading } = useAddCommodity({
+		trackerDetails,
+		setTrackerDetails,
+		handleModal,
+		fetchTrackerDetails,
+	});
 	const [value, setValue] = useState();
+	const { commodity } = useHsCode();
 
-	const [{ data }, trigger] = useRequest({
-		url    : 'list_hs_codes',
-		method : 'get',
-	}, { manual: true });
 	const { commodity_details } = trackerDetails || [];
 	const commodity_label = commodity_details?.commodity;
-	const getCommodity = useCallback(async () => {
-		try {
-			const res = await trigger({
-				params: { page_limit: 2000 },
-			});
-			if (data) {
-				setCommodity(res?.data?.list);
-			}
-		} catch (err) {
-			Toast.error(err?.message || 'No commodity found');
-		}
-	}, [trigger]);
 
-	useEffect(() => {
-		getCommodity();
-	}, [getCommodity]);
 	const filterCommodity = commodity?.filter((items) => items.name === commodity_label);
-	//    useEffect(()=>{},[])
-	if (data?.length === 0) return null;
 	return (
 		<Modal
 			show={isOpen}
@@ -69,7 +51,7 @@ function AddCommodityDetail({ isOpen, handleModal, trackerDetails, setTrackerDet
 			<Modal.Footer>
 				<div className={styles.button}>
 					<Button themeType="secondary" onClick={handleModal}>Cancel</Button>
-					<Button onClick={() => onSubmit(value)}>Save</Button>
+					<Button onClick={() => onSubmit(value)} loading={loading}>Save</Button>
 				</div>
 			</Modal.Footer>
 		</Modal>

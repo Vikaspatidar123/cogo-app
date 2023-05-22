@@ -100,7 +100,8 @@
 		padding-left: 24px;
 	}
 }
-.shipping_main{
+
+.shipping_main {
 	width: 50%;
 	height: 80vh;
 	padding-right: 0;
@@ -110,8 +111,10 @@
 		width: 100%;
 	}
 }
+
 .step {
 	position: relative;
+
 	> div {
 		display: inline-block;
 		width: 100%;
@@ -130,7 +133,6 @@
 	width: 4px;
 	height: 100%;
 	background-color: #e8eff5;
-	
 }
 
 .finish .tail {
@@ -148,7 +150,6 @@
 	width: 4px;
 	height: 100%;
 	background-color: #8dc2f9;
-	
 }
 
 .incoterm_label {

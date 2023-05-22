@@ -97,6 +97,7 @@ function FilterCards({ id, onClick, activeKey, stats, ...props }) {
 	const label = FILTER_KEY_TO_LABEL[id];
 	const value = stats[id] || 0;
 	const isDisabled = value === 0;
+	console.log(label, 'label', stats[id], stats);
 	return (
 		<div
 			role="presentation"

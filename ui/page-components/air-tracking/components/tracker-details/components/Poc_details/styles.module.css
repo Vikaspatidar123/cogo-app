@@ -1,17 +1,18 @@
 .card {
 	width: 32%;
-	margin-left: 10px;
+
 	/* height: calc(100% - 4px); */
 	padding: 16px;
 	margin: 4px;
+	margin-left: 10px;
 	background-color: white;
 	border: 1px solid rgb(196 203 218);
 	border-radius: 20px;
 	box-shadow: rgb(0 0 0 / 5%) 0 0 5px;
+
 	@media (max-width: 760px) {
 		width: 100%;
 	}
-
 }
 
 .info {
@@ -92,14 +93,14 @@
 }
 
 .commodity_details {
+	display: flex;
+	align-items: center;
 	width: 30%;
 	padding: 20px 16px;
-    display: flex;
-    align-items: center;
-    background-color: transparent;
-    border: 1px dashed rgb(53, 73, 93);
-    border-radius: 20px;
-    cursor: pointer;
+	cursor: pointer;
+	background-color: transparent;
+	border: 1px dashed rgb(53 73 93);
+	border-radius: 20px;
 
 	@media screen and (max-width: 767px) {
 		width: 100%;
@@ -119,19 +120,21 @@
 	color: red;
 }
 
-.head{
+.head {
 	margin-bottom: 10px;
-    font-size: 15px;
-    color: rgb(125, 125, 125);
-    font-weight: 700;
+	font-size: 15px;
+	font-weight: 700;
+	color: rgb(125 125 125);
 }
-.dash{
-	display:flex;
+
+.dash {
+	display: flex;
 	align-items: center;
 }
+
 .icon {
 	display: flex;
 	align-items: center;
-	color: red;
 	margin-right: 20px;
+	color: red;
 }

@@ -1,6 +1,9 @@
 import { Placeholder, Pagination, Popover } from '@cogoport/components';
 import { IcMListView, IcMMap, IcMFilter } from '@cogoport/icons-react';
+import { isEmpty } from '@cogoport/utils';
 import { useState, useEffect } from 'react';
+
+import EmptyState from '../../common/Emptystate';
 
 import Card from './Card';
 import FilterComponent from './FIlterComponent';
@@ -17,6 +20,7 @@ function TrackerCard({
 	const [showFilters, setShowFilters] = useState(false);
 	const [points, setPoints] = useState([]);
 	const trackerList = trackers?.list;
+	const empty = isEmpty(trackerList);
 
 	const getAllAirRoutes = (allAirTrackerDetails) => {
 		allAirTrackerDetails.map((airTrackerDetails) => {
@@ -98,14 +102,16 @@ function TrackerCard({
 				</div>
 				<div className={styles.head2}>
 
-					<div
-						role="presentation"
-						className={styles.status}
-						onClick={() => { setArchived(!archived); }}
-					>
-						{ archived ? 'UnArchived Cargo' : 'Archived Cargo' }
+					{!isMapView &&	(
+						<div
+							role="presentation"
+							className={styles.status}
+							onClick={() => { setArchived(!archived); }}
+						>
+							{ archived ? 'UnArchived Cargo' : 'Archived Cargo' }
 
-					</div>
+						</div>
+					)}
 					{!archived &&	(
 						<>
 							<div
@@ -146,6 +152,11 @@ function TrackerCard({
 
 				</div>
 			</div>
+			{!loading && empty && (
+				<div>
+					<EmptyState />
+				</div>
+			)}
 			{!isMapView && (
 				<div>
 					{!loading
@@ -174,7 +185,7 @@ function TrackerCard({
 						) : (<Placeholder height="182px" width="324px" />)}
 				</div>
 			)}
-			{(trackerList || []).length > 0 && (
+			{!empty && !loading && (
 				<div className={styles.pagination}>
 					<Pagination
 						type="number"

@@ -1,5 +1,4 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { Toast } from '@cogoport/components';
 import { useState, useEffect, useCallback } from 'react';
 
 import useGetOceanRoutes from './useGetOceanRoutes';
@@ -56,7 +55,6 @@ function useFetchTrackerDetails() {
 					tracking_data  : trackerData?.data,
 				},
 			];
-			console.log(trackingContainersData, 'trackingContainersData');
 			setTrackerDetails({
 				...trackerData,
 				data: trackingContainersData,
@@ -66,7 +64,7 @@ function useFetchTrackerDetails() {
 			containsData = trackerData?.tracking_status === 'Found';
 			setSelectedContainerId(trackerData?.airway_bill_no);
 		} catch (err) {
-			Toast.error("Couldn't fetch tracker's details", err);
+			console.log(err);
 		}
 		if (isFirstVisit && containsData) {
 			setApiTries(MAX_API_TRIES);

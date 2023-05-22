@@ -38,7 +38,6 @@ function Card({ tracker, setTrackers, refetch }) {
 
 	const containerStatus =	tracker?.milestones?.[activeCarouselIndex]?.container_status?.bool_status
 	|| [false, false, false, false];
-
 	const milestoneList = tracker?.milestones;
 
 	const [showPopover, setShowPopover] = useState(false);

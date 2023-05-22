@@ -27,6 +27,7 @@ function TrackerDetails() {
 		loadingForFirstVisit,
 		timeRemaining,
 		loading,
+		setTrackerDetails,
 	} = useFetchTrackerDetails();
 	const { quoteData } = useFetchQuoteDetails();
 
@@ -77,6 +78,7 @@ function TrackerDetails() {
 					<CommodityDetails
 						trackerDetails={trackerDetails}
 						fetchTrackerDetails={fetchTrackerDetails}
+						setTrackerDetails={setTrackerDetails}
 					/>
 					<CargoDetails trackerDetails={trackerDetails} />
 				</div>

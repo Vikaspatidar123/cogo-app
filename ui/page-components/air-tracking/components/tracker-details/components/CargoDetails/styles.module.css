@@ -10,15 +10,14 @@
 }
 
 .dash_button {
-
 	.details {
 		display: flex;
-		color: black;
-		margin: 0px 0px 8px;
+		margin: 0 0 8px;
 		font-size: 14px;
+		color: black;
 	}
 
-	
+
 
 	@media screen and (max-width: 767px) {
 		position: relative;
@@ -33,12 +32,14 @@
 		margin-left: 0%;
 	}
 }
+
 .heading {
 	margin-bottom: 10px;
 	font-size: 15px;
-	color: rgb(125, 125, 125);
 	font-weight: 700;
+	color: rgb(125 125 125);
 }
+
 .cargo {
 	height: 100%;
 	padding: 16px;
@@ -67,16 +68,18 @@
 	text-align: left;
 }
 
-.text_head{
+.text_head {
+	padding-right: 10px;
 	font-weight: 600;
-	padding-right:10px;
 }
+
 .card {
 	width: 32%;
-	margin-left: 10px;
+
 	/* height: calc(100% - 4px); */
 	padding: 16px;
 	margin: 4px;
+	margin-left: 10px;
 	cursor: pointer;
 	background-color: white;
 	border: 1px solid rgb(196 203 218);
@@ -86,4 +89,4 @@
 	@media (max-width: 760px) {
 		width: 100%;
 	}
-}	
+}

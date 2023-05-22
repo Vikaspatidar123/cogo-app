@@ -3,7 +3,7 @@ import { useState } from 'react';
 
 import ShareModal from '../../../TrackerCard/Card/Options/ShareModal';
 
-function ShareAirModal({ setTrackers, refetch, tracker, handleModal }) {
+function ShareAirModal({ setTrackers, refetch, tracker, handleModal, saasSubscriptionId }) {
 	const [showShareModal, setShareModal] = useState(true);
 	const handleShare = () => {
 		setShareModal(!showShareModal);
@@ -18,6 +18,7 @@ function ShareAirModal({ setTrackers, refetch, tracker, handleModal }) {
 					refetch={refetch}
 					show={showShareModal}
 					setShow={setShareModal}
+					saasSubscription={saasSubscriptionId}
 				/>
 			)}
 

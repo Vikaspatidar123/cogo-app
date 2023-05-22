@@ -11,7 +11,8 @@
 .list {
 	margin-top: 20px;
 }
-.footer{
+
+.footer {
 	display: flex;
 	gap: 10px;
 }

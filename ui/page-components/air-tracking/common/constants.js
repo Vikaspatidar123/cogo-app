@@ -1,5 +1,5 @@
 const FILTER_KEYS = {
-	ALL_CARGO                 : 'total_subscriptions',
+	ALL_CARGO                 : 'all_cargo',
 	ON_TRACK                  : 'on_track_air_cargos',
 	CONTAINERS_AT_ORIGIN      : 'at_origin',
 	CONTAINERS_AT_DESTINATION : 'at_destination',

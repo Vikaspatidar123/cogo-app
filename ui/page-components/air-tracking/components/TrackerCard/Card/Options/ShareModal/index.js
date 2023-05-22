@@ -9,10 +9,9 @@ import patterns from '@/ui/commons/configurations/patterns';
 import useShareOption from '@/ui/page-components/air-tracking/hooks/useShareOption';
 
 function ShareModal({
-	show, setShow, tracker,
+	show, setShow, tracker, saasSubscription,
 }) {
-	const saasSubscriptionId = tracker?.id;
-
+	const saasSubscriptionId = saasSubscription || tracker?.id;
 	const controls = [
 		{
 			name  : 'email',

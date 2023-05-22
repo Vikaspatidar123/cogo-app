@@ -83,7 +83,6 @@
 
 .sub_heading:hover {
 	background-color: #fffce6;
-	
 }
 
 .label {
@@ -137,10 +136,11 @@
 	margin: 0 20px 0 10px;
 }
 
-.active{
+.active {
 	background-color: #fffce6;
-	box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 5px;
+	box-shadow: rgb(0 0 0 / 50%) 0 0 5px;
 }
-.icon{
+
+.icon {
 	margin: -12px;
 }

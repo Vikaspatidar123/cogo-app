@@ -1,5 +1,3 @@
-import { Toast } from '@cogoport/components';
-
 import { useRequest } from '@/packages/request';
 
 function useAddCommodity({ trackerDetails, setTrackerDetails, handleModal, fetchTrackerDetails }) {
@@ -19,7 +17,6 @@ function useAddCommodity({ trackerDetails, setTrackerDetails, handleModal, fetch
 			try {
 				const res = await trigger({ data: requestData });
 				const { data } = res;
-
 				const updatedTrackerDetails = {
 					...trackerDetails,
 					shipment_info: data,
@@ -28,7 +25,7 @@ function useAddCommodity({ trackerDetails, setTrackerDetails, handleModal, fetch
 				fetchTrackerDetails();
 				handleModal(false);
 			} catch (err) {
-				Toast.error("Couldn't add shipment details", err);
+				console.log(err, "Couldn't add shipment details");
 			}
 		}
 	};

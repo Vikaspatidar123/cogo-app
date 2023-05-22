@@ -1,5 +1,4 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { Toast } from '@cogoport/components';
 import { useState, useEffect } from 'react';
 
 import useGetOceanRoutes from './useGetOceanRoutes';
@@ -61,7 +60,7 @@ function useFetchTrackerDetails() {
 
 			setSelectedContainerId(trackerData?.container_number);
 		} catch (err) {
-			Toast.error("Couldn't fetch tracker's details", err);
+			console.log(err);
 		}
 
 		if (isFirstVisit && containsData) {

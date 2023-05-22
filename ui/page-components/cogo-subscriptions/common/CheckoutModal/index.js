@@ -1,14 +1,16 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { cl, Button, Modal, CheckBox } from '@cogoport/components';
 import { IcMHourglass } from '@cogoport/icons-react';
 import { Frames, CardNumber, ExpiryDate, Cvv } from 'frames-react';
 import { useState, useEffect } from 'react';
 
-// import framesConfig from '../../../../common/components/payment-initiation/constants/framesConfig';
 import useCancelOrder from '../../hooks/useCancelOrder';
 import useCapturePayment from '../../hooks/useCapturePayment';
 import { shortFormatNumber } from '../../utils/getShortFormatNumber';
 
 import styles from './styles.module.css';
+
+import framesConfig from '@/ui/commons/components/PaymentInitiation/constants/framesConfig';
 
 function CheckoutModal({
 	checkoutModal,
@@ -75,7 +77,7 @@ function CheckoutModal({
 			onClose={cancelOrderFunction}
 		>
 			<Frames
-				// config={framesConfig}
+				config={framesConfig}
 				cardSubmitted={() => setLoading(true)}
 				cardTokenized={(e) => setTokenGeneratedResponse(e)}
 				ready={() => setStartTimer(true)}

@@ -30,11 +30,13 @@ const useCapturePayment = () => {
 				},
 			});
 			if (resp?.data) {
+				// eslint-disable-next-line no-underscore-dangle
+				const check = resp?.data?.checkoutPaymentResponse?._links;
 				if (
-					resp?.data?.checkoutPaymentResponse?._links?.redirect?.href
+					check?.redirect?.href
 				) {
 					window.open(
-						resp?.data?.checkoutPaymentResponse?._links?.redirect
+						check?.redirect
 							?.href,
 						'_self',
 					);

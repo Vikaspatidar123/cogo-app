@@ -1,4 +1,16 @@
 const saas = {
+	'/saas/premium-services/duties-taxes-calculator': {
+		navigation : 'saas_premium_services-duties_and_taxes',
+		isMainNav  : true,
+	},
+
+	'/saas/premium-services/trader-eligibility-check': {
+		navigation : 'saas_premium_services-trader_eligibility_check',
+		isMainNav  : true,
+	},
+	'/saas/premium-services/trader-eligibility-check/result': {
+		navigation: 'saas_premium_services-trader_eligibility_check',
+	},
 	'/saas/hs-classification': {
 		navigation: 'saas_tools-hs_code_classification',
 	},
@@ -34,6 +46,22 @@ const saas = {
 		isMainNav  : true,
 
 	},
+	'/saas/ocean-tracking': {
+		navigation : 'saas_tools-ocean_tracking',
+		isMainNav  : true,
+	},
+	'/saas/ocean-tracking/archive': {
+		navigation : 'saas_tools-ocean_tracking',
+		isMainNav  : true,
+	},
+	'/saas/ocean-tracking/[tracker_id]': {
+		navigation : 'saas_tools-ocean_tracking',
+		isMainNav  : true,
+	},
+	'/saas/dsr': {
+		navigation: 'saas_tracking',
+	},
+
 };
 
 module.exports = saas;

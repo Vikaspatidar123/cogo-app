@@ -20,9 +20,10 @@
   "dependencies": {
     "@cogoport/maps": "^1.0.2",
     "@cogoport/charts": "^1.0.1",
-    "@cogoport/components": "^1.0.347",
+    "@cogoport/components": "^1.0.416",
     "@cogoport/icons-react": "^1.0.58",
     "@cogoport/utils": "^1.2.4",
+    "frames-react": "^1.1.0",
     "axios": "^1.3.4",
     "axios-hooks": "^4.0.0",
     "i18next": "^22.4.10",

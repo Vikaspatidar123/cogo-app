@@ -5,8 +5,8 @@ import React, { useEffect } from 'react';
 import getControls from '../../../../configurations/advFilter';
 import styles from '../styles.module.css';
 
-import { SelectController, useForm, InputController } from '@/packages/forms';
-import COUNTRY_IDS from '@/ui/commons/constants/globals';
+import { AsyncSelectController, SelectController, useForm, InputController } from '@/packages/forms';
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
 function AdvFilters({
 	refetch,
@@ -33,8 +33,8 @@ function AdvFilters({
 
 	const clearFilterHandler = async () => {
 		refetch(country);
-		if (country !== COUNTRY_IDS.IN) {
-			setValue('country', COUNTRY_IDS.IN);
+		if (country !== GLOBAL_CONSTANTS.COUNTRY_IDS.IN) {
+			setValue('country', GLOBAL_CONSTANTS.COUNTRY_IDS.IN);
 			setValue('searchTerm', '');
 			setValue('filterBy', '');
 			setValue('searchBy', '');
@@ -53,12 +53,12 @@ function AdvFilters({
 		<form onSubmit={handleSubmit(onSubmit)}>
 			<div className={styles.filter_container}>
 				<div className={styles.fields_container}>
-					<SelectController {...field[0]} control={control} style={{ width: '150px' }} />
-					<SelectController {...field[1]} control={control} style={{ width: '150px' }} />
+					<AsyncSelectController {...field[0]} control={control} className={styles.select} />
+					<SelectController {...field[1]} control={control} className={styles.select} />
 					<div>
 						<InputController
 							{...field[2]}
-							style={{ width: '250px' }}
+							className={styles.input_select}
 							control={control}
 							prefix={<IcAIdea width={20} height={20} />}
 						/>
@@ -68,7 +68,7 @@ function AdvFilters({
 							</div>
 						)}
 					</div>
-					<SelectController {...field[3]} control={control} style={{ width: '150px' }} />
+					<SelectController {...field[3]} control={control} className={styles.select} />
 				</div>
 				<div className={styles.button_container}>
 					<Button
@@ -84,7 +84,13 @@ function AdvFilters({
 						Clear Filter
 					</Button>
 					<div>
-						<Button size="md" themeType="accent" className="primary md" type="submit" disabled={loading}>
+						<Button
+							size="md"
+							themeType="accent"
+							className="primary md"
+							type="submit"
+							disabled={loading}
+						>
 							Search
 						</Button>
 					</div>

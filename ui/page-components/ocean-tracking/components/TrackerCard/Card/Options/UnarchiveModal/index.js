@@ -9,7 +9,7 @@ function UnarchiveModal({
 }) {
 	const saasSubscriptionId = tracker?.id;
 
-	const { disableTracker } = useUnarchive({ saasSubscriptionId });
+	const { disableTracker, loading } = useUnarchive({ saasSubscriptionId });
 	const deleteData = async () => {
 		await disableTracker();
 		setShow(!show);
@@ -18,11 +18,10 @@ function UnarchiveModal({
 
 	return (
 		<Modal size="md" show={show} onClose={() => setShow(!show)} placement="center">
-			<Modal.Header title="Are you sure that you want to Unarchive this tracker?" />
-
+			<div className={styles.text}>Are you sure that you want to Unarchive this tracker?</div>
 			<div className={styles.footer}>
-				<Button onClick={() => setShow(!show)}>Cancel</Button>
-				<Button onClick={() => deleteData()}>OK</Button>
+				<Button size="md" themeType="secondary" onClick={() => setShow(!show)} loading={loading}>Cancel</Button>
+				<Button size="md" themeType="primary" onClick={() => deleteData()} loading={loading}>OK</Button>
 			</div>
 		</Modal>
 	);

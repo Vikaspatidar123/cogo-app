@@ -150,17 +150,19 @@ function TrackerCard({
 					)}
 				</div>
 			)}
-			<div className={styles.pagination}>
-				<Pagination
-					type="number"
-					currentPage={pagination.page}
-					totalItems={trackers?.total_count}
-					pageSize={10}
-					onPageChange={(e) => {
-						setPagination({ page: e });
-					}}
-				/>
-			</div>
+			{!loading && !empty && (
+				<div className={styles.pagination}>
+					<Pagination
+						type="number"
+						currentPage={pagination.page}
+						totalItems={trackers?.total_count}
+						pageSize={10}
+						onPageChange={(e) => {
+							setPagination({ page: e });
+						}}
+					/>
+				</div>
+			)}
 		</div>
 	);
 }

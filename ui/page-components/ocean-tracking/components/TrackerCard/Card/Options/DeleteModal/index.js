@@ -9,7 +9,7 @@ function DeleteModal({
 }) {
 	const saasSubscriptionId = tracker?.id;
 
-	const { disableTracker } = useDeleteTracker({ saasSubscriptionId, type, setTrackers });
+	const { disableTracker, loading } = useDeleteTracker({ saasSubscriptionId, type, setTrackers });
 	const deleteData = async () => {
 		await disableTracker();
 		setShow(!show);
@@ -26,8 +26,8 @@ function DeleteModal({
 		<Modal size="md" show={show} onClose={() => setShow(!show)} placement="center">
 			<div className={styles.text}>{text()}</div>
 			<div className={styles.footer}>
-				<Button size="md" themeType="secondary" onClick={() => setShow(!show)}>Cancel</Button>
-				<Button size="md" themeType="primary" onClick={() => deleteData()}>OK</Button>
+				<Button loading={loading} size="md" themeType="secondary" onClick={() => setShow(!show)}>Cancel</Button>
+				<Button loading={loading} size="md" themeType="primary" onClick={() => deleteData()}>OK</Button>
 			</div>
 		</Modal>
 	);

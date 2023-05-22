@@ -2,12 +2,14 @@ import { Radio, Button } from '@cogoport/components';
 import { IcMPlusInCircle } from '@cogoport/icons-react';
 import { useState, useEffect } from 'react';
 
-import AddressModal from './AddressModal';
+// import AddressModal from './AddressModal';
 import styles from './styles.module.css';
+
+import AddModal from '@/ui/commons/components/CreateOrganizationModel/Components/AddAddressModal';
 
 function BillingDetails({
 	billingAddress = () => {},
-	addressApi = () => {},
+	// addressApi = () => {},
 	setAddresses = () => {},
 	addresses = [],
 	checked = false,
@@ -108,12 +110,9 @@ function BillingDetails({
 				</div>
 			)}
 			{addAddressModal && (
-				<AddressModal
+				<AddModal
 					addAddressModal={addAddressModal}
 					setAddAddressModal={setAddAddressModal}
-					billingAddress={billingAddress}
-					addressApi={addressApi}
-					setAddresses={setAddresses}
 				/>
 			)}
 		</div>

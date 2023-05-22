@@ -103,20 +103,13 @@
 	width: 100%;
 }
 
-.prev_btn {
+.prevBtn {
 	gap: 5px;
 	margin-right: 10px;
 	color: #333 !important;
 	text-decoration: none !important;
 }
 
-.disable_btn {
+.disableBtn {
 	background-color: #e8afa8 !important;
-}
-
-@media screen and (max-width: 767px) {
-	.hs_tag_web {
-		display: block;
-		display: none;
-	}
 }

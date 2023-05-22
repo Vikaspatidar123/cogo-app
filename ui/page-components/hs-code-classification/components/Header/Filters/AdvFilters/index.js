@@ -84,7 +84,13 @@ function AdvFilters({
 						Clear Filter
 					</Button>
 					<div>
-						<Button size="md" themeType="accent" className="primary md" type="submit" disabled={loading}>
+						<Button
+							size="md"
+							themeType="accent"
+							className="primary md"
+							type="submit"
+							disabled={loading}
+						>
 							Search
 						</Button>
 					</div>

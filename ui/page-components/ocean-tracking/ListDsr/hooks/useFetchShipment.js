@@ -1,4 +1,3 @@
-import { Toast } from '@cogoport/components';
 import { useState, useEffect } from 'react';
 
 import { useRequest } from '@/packages/request';
@@ -28,7 +27,7 @@ const useFetchShipments = () => {
 			const { data } = res;
 			setShipments(data?.list || []);
 		} catch (err) {
-			Toast.error('Unable to fetch shipments. Please try again.');
+			console.log(err);
 		}
 	};
 	useEffect(() => {

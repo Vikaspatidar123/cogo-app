@@ -20,7 +20,7 @@
 .item {
 	display: flex;
 	padding: 10px;
-
+	align-items: center;
 	@media (max-width: 767px) {
 		width: max-content;
 	}

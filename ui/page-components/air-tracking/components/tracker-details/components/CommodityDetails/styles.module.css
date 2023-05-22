@@ -18,41 +18,16 @@
 .dash_button {
 	display: flex;
 	margin-bottom: 16px;
+}
 
-	/* @media screen and (max-width: 767px) {
-		position: relative;
-		right: auto;
-		left: auto;
-		box-sizing: border-box;
-		display: flex;
-		flex: 0 0 100%;
-		flex-direction: column;
-		min-height: 1px;
-		padding: 16px;
-		padding-right: 8px;
-		padding-left: 8px;
-		margin-right: none;
-		margin-bottom: 16px;
-		margin-left: 0%;
-	} */
+.details {
+	display: flex;
+	justify-content: space-around;
+}
 
-	.details {
-		display: flex;
-		justify-content: space-around;
-	}
-
-	.heading {
-		margin-right: 8px;
-		font-weight: 700;
-	}
-
-	.head {
-		padding: 45px;
-
-		@media screen and (max-width: 767px) {
-			padding: 0;
-		}
-	}
+.heading {
+	margin-right: 8px;
+	font-weight: 700;
 }
 
 .head {
@@ -62,10 +37,16 @@
 	color: rgb(125 125 125);
 }
 
+.head.padding {
+	padding: 45px;
+
+	@media screen and (max-width: 767px) {
+		padding: 0;
+	}
+}
+
 .card {
 	width: 32%;
-
-	/* height: calc(100% - 4px); */
 	padding: 16px;
 	margin: 4px;
 	margin-left: 10px;

@@ -78,8 +78,6 @@
 		display: flex;
 		flex: 0 0 100%;
 		flex-direction: column;
-
-		/* width: 96%; */
 		max-width: 100%;
 		min-height: 1px;
 		padding: 16px;
@@ -87,8 +85,6 @@
 		padding-left: 8px;
 		margin-right: none;
 		margin-bottom: 16px;
-
-		/* margin-left: 0%; */
 	}
 }
 
@@ -112,12 +108,6 @@
 .heading {
 	display: flex;
 	align-items: center;
-}
-
-.icon {
-	display: flex;
-	align-items: center;
-	color: red;
 }
 
 .head {

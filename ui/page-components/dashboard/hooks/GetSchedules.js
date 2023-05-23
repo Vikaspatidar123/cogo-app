@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 
 import { useRequest } from '@/packages/request';
 
-function getSchedules() {
+function useGetSchedules() {
 	const [{ loading, data: air_data }, trigger] = useRequest({
 		url    : '/get_app_dashboard_schedule',
 		method : 'get',
@@ -31,4 +31,4 @@ function getSchedules() {
 	}, []);
 	return { loading, schedulesData, air_data };
 }
-export default getSchedules;
+export default useGetSchedules;

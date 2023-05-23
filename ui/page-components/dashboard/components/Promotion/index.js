@@ -10,22 +10,21 @@ function Promotion() {
 	const { push } = useRouter();
 
 	const { loading = false, promotionData = {} } = useGetPromotion();
-	const imgData = promotionData?.promotion;
-
+	const { promotion = [] } = promotionData || [];
 	const carouselData = (data) => (
-		<div onClick={() => push(data.route_url)} role="presentation">
-			<img className={styles.image} src={data.image_url} alt="img" />
+		<div onClick={() => push(data?.route_url)} role="presentation">
+			<img className={styles.image} src={data?.image_url} alt="img" />
 		</div>
 	);
 
 	const mainData = [];
 
-	// imgData?.forEach((data) => {
-	// 	mainData.push({
-	// 		key    : data?.id,
-	// 		render : () => (<div>{carouselData(data)}</div>),
-	// 	});
-	// });
+	(promotion || []).forEach((data) => {
+		mainData.push({
+			key    : data?.id,
+			render : () => <div>{carouselData(data)}</div>,
+		});
+	});
 
 	return (
 		<div>
@@ -37,6 +36,7 @@ function Promotion() {
 					size="md"
 					slides={mainData}
 					isInfinite
+					autoScroll
 				/>
 			)}
 		</div>

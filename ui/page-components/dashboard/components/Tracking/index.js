@@ -7,8 +7,7 @@ import styles from './styles.module.css';
 import { useRouter } from '@/packages/next';
 
 function Tracking() {
-	// const { loading, schedulesData, air_track } = GetTracking();
-	// console.log(air_track, 'air_track');
+	const { loading, schedulesData, air_track } = GetTracking();
 	const { push } = useRouter();
 	return (
 		<div className={styles.header}>
@@ -48,11 +47,11 @@ function Tracking() {
 				<div>
 					<p className={styles.containerTracking}>
 						Container Tracking
-						{/* <img
+						<img
 							className={styles.arrow}
 							src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/another.svg"
 							alt="img"
-						/> */}
+						/>
 						<IcMArrowNext className={styles.arrow} />
 					</p>
 					<p

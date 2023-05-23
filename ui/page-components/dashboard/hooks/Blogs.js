@@ -1,15 +1,15 @@
 import { Toast } from '@cogoport/components';
-import { useState, useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 
 import { useRequest } from '@/packages/request';
 
 function Blogs() {
 	const [{ loading, data: blogs_data }, trigger] = useRequest({
-		url    : '{process.env.APP_URL}/api/get-blogs}',
+		url    : `${process.env.NEXT_PUBLIC_APP_URL}/api/get-blogs}`,
 		method : 'get',
 	}, { manual: true });
 
-	const blogsData = async () => {
+	const blogsData = useCallback(async () => {
 		try {
 			const res = await trigger();
 			const { datas } = res;
@@ -20,12 +20,11 @@ function Blogs() {
 			);
 			return null;
 		}
-	};
+	}, [trigger]);
 
 	useEffect(() => {
 		blogsData();
-	}, []);
-	console.log(blogs_data, 'blog');
+	}, [blogsData]);
 	return { loading, blogsData, blogs_data };
 }
 export default Blogs;

@@ -12,19 +12,10 @@ import styles from './styles.module.css';
 import Tracking from './Tracking';
 import ActiveTracking from './Tracking/ActiveTracking';
 
-import { useSelector } from '@/packages/store';
-
-const INDIA_COUNTRY_ID = '541d1232-58ce-4d64-83d6-556a42209eb7';
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
 function SassDashboard() {
-	const { air_track } = GetTracking();
-	const airTracking = air_track?.dashboard_products?.air_tracking || {};
-	const oceanTracking = air_track?.dashboard_products?.container_tracking	|| {};
-	const { query, country_id, kyc_status } = useSelector(({ general, profile }) => ({
-		query      : general?.query,
-		country_id : profile?.organization?.country_id,
-		kyc_status : profile?.organization?.kyc_status,
-	}));
+	const { airTracking, oceanTracking, query, country_id, kyc_status } = GetTracking();
 
 	return (
 		<div className={styles.main_class}>
@@ -57,11 +48,10 @@ function SassDashboard() {
 				</div>
 				<div className={styles.part2}>
 					<div className={styles.child2}>
-						{country_id === INDIA_COUNTRY_ID
+						{country_id === GLOBAL_CONSTANTS.COUNTRY_IDS.IN
 						&& query?.account_type === 'importer-exporter' && <PayLaterWidgets />}
 						<Elgibility />
 						<ExportFactoring />
-
 						<Promotion />
 					</div>
 				</div>

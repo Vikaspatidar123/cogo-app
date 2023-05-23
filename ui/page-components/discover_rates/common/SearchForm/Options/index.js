@@ -192,7 +192,6 @@ function Options({
 		...(formValues1?.weight_and_volume || {}),
 		...formValues1?.container_type_commodity,
 	};
-
 	const renderMainControls = () => (
 		<MainControls
 			mode={mode}

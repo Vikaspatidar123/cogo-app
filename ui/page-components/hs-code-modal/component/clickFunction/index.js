@@ -1,4 +1,4 @@
-function useClickFunction({
+const clickFunction = ({
 	setChaptersData,
 	setHeadingData,
 	setActiveSection,
@@ -11,8 +11,7 @@ function useClickFunction({
 	refetchHsCode,
 	setHeadingCode,
 	searchTerm,
-	setPrefiledValues,
-}) {
+}) => {
 	const categoryFunction = (row) => {
 		setChaptersData(row?.chapters);
 		setActiveSection(row?.sectionDescription);
@@ -22,12 +21,6 @@ function useClickFunction({
 			showCategoryTable : false,
 			showChapterTable  : true,
 		}));
-		if (setPrefiledValues) {
-			setPrefiledValues((prev) => ({
-				...prev,
-				category: row?.sectionDescription,
-			}));
-		}
 	};
 
 	const chapterFunction = async (row) => {
@@ -43,12 +36,6 @@ function useClickFunction({
 			showChapterTable : false,
 			showHeadingTable : true,
 		}));
-		if (setPrefiledValues) {
-			setPrefiledValues((prev) => ({
-				...prev,
-				subCategory: row?.chapterDescription,
-			}));
-		}
 	};
 
 	const headingFunction = async (row) => {
@@ -74,6 +61,6 @@ function useClickFunction({
 		headingFunction,
 		hsFunction,
 	};
-}
+};
 
-export default useClickFunction;
+export default clickFunction;

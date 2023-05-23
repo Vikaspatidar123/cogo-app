@@ -1,4 +1,3 @@
-import { Toast } from '@cogoport/components';
 import { useState, useEffect } from 'react';
 
 import { useRequest } from '@/packages/request';
@@ -38,7 +37,7 @@ const useFetchActiveTrend = () => {
 			const { data } = res;
 			setTrackers(data);
 		} catch (err) {
-			Toast.error('Unable to fetch shipments. Please try again.');
+			console.log(err);
 		}
 	};
 

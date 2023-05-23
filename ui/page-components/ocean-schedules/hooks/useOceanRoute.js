@@ -1,4 +1,3 @@
-import { Toast } from '@cogoport/components';
 import { useState, useCallback } from 'react';
 
 import { useRequest } from '@/packages/request';
@@ -22,7 +21,7 @@ const useOceanRoute = () => {
 			setMapPoints(respData);
 			setRouteDataLength(respData?.length === 0);
 		} catch (err) {
-			Toast.error(err?.error?.message);
+			console.log(err?.error?.message);
 		}
 	}, [oceanRouteTrigger]);
 

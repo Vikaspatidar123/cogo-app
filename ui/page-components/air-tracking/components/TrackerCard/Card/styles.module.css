@@ -1,0 +1,65 @@
+.container {
+	padding: 0;
+	margin-bottom: 20px;
+	cursor: pointer;
+	background: #fff;
+	border-radius: 8px;
+	box-shadow: 0 0 16px rgb(98 127 172 / 20%);
+}
+
+.head {
+	display: flex;
+	justify-content: space-between;
+}
+
+.booking_no {
+	float: right;
+	width: 275px;
+	height: 32px;
+	padding: 7px 30px;
+	font-size: 12px;
+	font-weight: 500;
+	background: #fffce6;
+	border-radius: 8px 0;
+}
+
+.icon_style {
+	float: right;
+}
+
+.child_container {
+	display: flex;
+
+	@media (max-width: 760px) {
+		flex-direction: column;
+	}
+}
+
+.stepper {
+	width: 65%;
+}
+
+.dashed_line {
+	margin: 30px;
+	border: 0.5px dashed #e0e0e0;
+}
+
+.details_list {
+	width: 30%;
+	padding: 20px;
+	background-image: url("https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/Mask group.svg");
+	background-repeat: no-repeat;
+	background-position: top left;
+	background-size: auto;
+
+	@media (max-width: 760px) {
+		width: 100%;
+	}
+}
+
+.bottom_container {
+	display: flex;
+	width: 100%;
+	background: #fdfbf6;
+	border-radius: 0 0 8px 8px;
+}

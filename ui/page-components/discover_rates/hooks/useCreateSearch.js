@@ -1,12 +1,12 @@
 import { APP_EVENT } from '../common/analytics/constants';
 import trackEvent from '../common/analytics/trackEvent';
 import getFinalServices from '../common/SearchForm/utils/getFinalServices';
-import { UNDEFINED_ATTRIBUTES } from '../undefined_attributes';
 import formatCreateSearch from '../utils/format-create-search';
 
 import { useRouter } from '@/packages/next';
 import { useRequest } from '@/packages/request';
 import { useSelector } from '@/packages/store';
+import { UNDEFINED_ATTRIBUTES } from '@/ui/commons/constants/undefined_attributes';
 import showErrorsInToast from '@/ui/commons/utils/showErrorsInToast';
 
 const useCreateSearch = ({

@@ -1,3 +1,4 @@
+/* eslint-disable default-param-last */
 import { isEmpty } from '@cogoport/utils';
 
 import {
@@ -8,8 +9,6 @@ import getGeoConstants from '@/ui/commons/constants/geo';
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 import getFormattedValues from '@/ui/commons/utils/getFormattedValues';
 
-// const geo = getGeoConstants();
-
 const mergeContainerDetails = (containers) => {
 	const mergedValues = {};
 	containers.forEach((container) => {
@@ -19,12 +18,12 @@ const mergeContainerDetails = (containers) => {
 		mergedValues[key] = {
 			...container,
 			containers_count:
-        (mergedValues[key]?.containers_count || 0)
-        + (container.containers_count || 0),
+                (mergedValues[key]?.containers_count || 0)
+                + (container.containers_count || 0),
 			cargo_weight_per_container: isCargoWeight
 				? Math.max(
 					mergedValues[key]?.cargo_weight_per_container
-              || container?.cargo_weight_per_container,
+                          || container?.cargo_weight_per_container,
 					container.cargo_weight_per_container,
 				)
 				: undefined,
@@ -41,6 +40,7 @@ const formatDataForSingleService = ({
 	service = '',
 	checked = true,
 }) => {
+	const geo = getGeoConstants();
 	if (mode === 'fcl_freight') {
 		const newValues = (values.containers || []).map((item) => ({
 			origin_port_id      : values.origin_port_id,
@@ -48,14 +48,14 @@ const formatDataForSingleService = ({
 			container_size      : item.container_size || '20',
 			container_type      : item.container_type || 1,
 			commodity:
-        item?.commodity && item?.commodity !== 'all_commodity'
-        	? item?.commodity
-        	: 'general',
+                item?.commodity && item?.commodity !== 'all_commodity'
+                	? item?.commodity
+                	: 'general',
 			containers_count : Number(item.containers_count),
 			bls_count        : Number(values.bls_count || 1),
 			inco_term        : values?.inco_term || 'cif',
 			cargo_weight_per_container:
-        Number(item?.cargo_weight_per_container) || null,
+                Number(item?.cargo_weight_per_container) || null,
 			status: 'active',
 		}));
 
@@ -68,9 +68,7 @@ const formatDataForSingleService = ({
 				origin_port_id      : values.origin_port_id,
 				destination_port_id : values.destination_port_id,
 				commodity:
-          values?.commodity && values?.commodity !== 'all_commodity'
-          	? values?.commodity
-          	: 'general',
+                    values?.commodity && values?.commodity !== 'all_commodity' ? values?.commodity : 'general',
 				inco_term      : values.inco_term || 'cif',
 				bls_count      : Number(values.bls_count || 1),
 				packages_count : Number(values.packages_count || 1),
@@ -91,9 +89,7 @@ const formatDataForSingleService = ({
 				origin_airport_id      : values.origin_airport_id,
 				destination_airport_id : values.destination_airport_id,
 				commodity:
-          values?.commodity && values?.commodity !== 'all_commodity'
-          	? values?.commodity
-          	: 'general',
+                    values?.commodity && values?.commodity !== 'all_commodity' ? values?.commodity : 'general',
 				commodity_details   : values?.commodity_details,
 				inco_term           : values.inco_term || 'cif',
 				packages_count      : Number(values.packages_count || 1),
@@ -110,15 +106,14 @@ const formatDataForSingleService = ({
 	if (mode === 'fcl_freight_local') {
 		const newValues = (values.containers || []).map((item) => ({
 			port_id:
-        type === 'export'
-        	? values.origin_port_id || values.port_id
-        	: values.destination_port_id || values.port_id,
+                type === 'export' ? values.origin_port_id || values.port_id
+                	: values.destination_port_id || values.port_id,
 			container_size : item.container_size || '20',
 			container_type : item.container_type || 1,
 			commodity:
-        item?.commodity && item?.commodity !== 'all_commodity'
-        	? item?.commodity
-        	: 'general',
+                item?.commodity && item?.commodity !== 'all_commodity'
+                	? item?.commodity
+                	: 'general',
 			shipping_line_id : values.shipping_line_id,
 			containers_count : Number(item.containers_count),
 			bls_count        : Number(values.bls_count || 1),
@@ -129,11 +124,10 @@ const formatDataForSingleService = ({
 					margins    : [],
 				},
 
-				service_provider_id: '536abfe7-eab8-4a43-a4c3-6ff318ce01b5',
-				//  geo.uuid.cogoxpress_id,
+				service_provider_id: geo.uuid.cogoxpress_id,
 			}),
 			cargo_weight_per_container:
-        Number(item?.cargo_weight_per_container) || null,
+                Number(item?.cargo_weight_per_container) || null,
 			status: 'active',
 		}));
 
@@ -144,13 +138,13 @@ const formatDataForSingleService = ({
 		return [
 			{
 				port_id:
-          type === 'export'
-          	? values.origin_port_id || values.location_id
-          	: values.destination_port_id || values.location_id,
+                    type === 'export'
+                    	? values.origin_port_id || values.location_id
+                    	: values.destination_port_id || values.location_id,
 				commodity:
-          values?.commodity && values?.commodity !== 'all_commodity'
-          	? values?.commodity
-          	: 'general',
+                    values?.commodity && values?.commodity !== 'all_commodity'
+                    	? values?.commodity
+                    	: 'general',
 				shipping_line_id : values.shipping_line_id,
 				trade_type       : type || values.trade_type,
 				bls_count        : Number(values.bls_count || 1),
@@ -166,24 +160,26 @@ const formatDataForSingleService = ({
 		return [
 			{
 				airport_id:
-          type === 'export'
-          	? values.origin_airport_id || values.airport_id
-          	: values.destination_airport_id || values.airport_id,
-				trade_type             : type || values.trade_type,
-				terminal_charge_type   : values?.terminal_charge_type || undefined,
-				logistics_service_type : rawParams?.logistics_service_type || undefined,
-				payment_type           : values?.payment_type || undefined,
-				cargo_value            : rawParams?.cargo_value || undefined,
-				cargo_value_currency   : rawParams?.cargo_value_currency || undefined,
-				dry_ice_required       : rawParams?.dry_ice_required,
-				packages_count         : Number(values.packages_count || 1),
-				weight                 : Number(values.weight || 1),
-				volume                 : Number(values.volume || 1),
-				status                 : 'active',
+                    type === 'export'
+                    	? values.origin_airport_id || values.airport_id
+                    	: values.destination_airport_id || values.airport_id,
+				trade_type           : type || values.trade_type,
+				terminal_charge_type : values?.terminal_charge_type || undefined,
+				logistics_service_type:
+                    rawParams?.logistics_service_type || undefined,
+				payment_type : values?.payment_type || undefined,
+				cargo_value  : rawParams?.cargo_value || undefined,
+				cargo_value_currency:
+                    rawParams?.cargo_value_currency || undefined,
+				dry_ice_required : rawParams?.dry_ice_required,
+				packages_count   : Number(values.packages_count || 1),
+				weight           : Number(values.weight || 1),
+				volume           : Number(values.volume || 1),
+				status           : 'active',
 				commodity:
-          values?.commodity && values?.commodity !== 'all_commodity'
-          	? values?.commodity
-          	: 'general',
+                    values?.commodity && values?.commodity !== 'all_commodity'
+                    	? values?.commodity
+                    	: 'general',
 				commodity_details : values?.commodity_details,
 				packages          : values?.packages,
 				airline_id        : values.airline_id,
@@ -200,76 +196,80 @@ const formatDataForSingleService = ({
 		let ad_code = null;
 		if (values?.trade_type === 'export' || type === 'export') {
 			if (
-				rawParams?.origin_country_id === GLOBAL_CONSTANTS.country_ids.VN
-        && rawParams?.origin_port?.is_icd === true
+				rawParams?.origin_country_id
+                    === GLOBAL_CONSTANTS.country_ids.VN
+                && rawParams?.origin_port?.is_icd === true
 			) {
 				value.country_id = rawParams?.origin_port?.country_id;
 			} else {
 				value.port_id = rawParams?.source === 'upsell'
-          && rawParams?.origin_country_id === GLOBAL_CONSTANTS.country_ids.VN
-          && rawParams?.origin_main_port_id
-          	? rawParams?.origin_main_port_id
-          	: values?.port_id || values?.origin_port_id;
+                    && rawParams?.origin_country_id
+                        === GLOBAL_CONSTANTS.country_ids.VN
+                    && rawParams?.origin_main_port_id
+                    	? rawParams?.origin_main_port_id
+                    	: values?.port_id || values?.origin_port_id;
 			}
 
 			cargo_handling_type = mode === 'fcl_cfs'
-        	? values?.export_fcl_cfs_cargo_handling_type
-            || values?.cargo_handling_type
-        	: values?.export_transportation_cargo_handling_type
-            || values?.cargo_handling_type;
+                	? values?.export_fcl_cfs_cargo_handling_type
+                      || values?.cargo_handling_type
+                	: values?.export_transportation_cargo_handling_type
+                      || values?.cargo_handling_type;
 			cargo_value = mode === 'fcl_cfs'
-        	? values?.export_fcl_cfs_cargo_value
-        	: values?.export_transportation_cargo_value;
+                	? values?.export_fcl_cfs_cargo_value
+                	: values?.export_transportation_cargo_value;
 			cargo_value_currency = mode === 'fcl_cfs'
-        	? values?.export_fcl_cfs_cargo_value_currency
-        	: values?.export_transportation_cargo_value_currency;
+                	? values?.export_fcl_cfs_cargo_value_currency
+                	: values?.export_transportation_cargo_value_currency;
 			address = mode === 'fcl_cfs'
-        	? values?.export_fcl_cfs_address
-        	: values?.export_fcl_customs;
+                	? values?.export_fcl_cfs_address
+                	: values?.export_fcl_customs;
 			ad_code = values?.export_fcl_customs_have_add_code || undefined;
 		} else if (values?.trade_type === 'import' || type === 'import') {
 			if (
-				rawParams?.destination_country_id === GLOBAL_CONSTANTS.country_ids.VN
-        && rawParams?.destination_port?.is_icd === true
+				rawParams?.destination_country_id
+                    === GLOBAL_CONSTANTS.country_ids.VN
+                && rawParams?.destination_port?.is_icd === true
 			) {
 				value.country_id = rawParams?.destination_port?.country_id;
 			} else {
 				value.port_id = rawParams?.source === 'upsell'
-          && rawParams?.destination_country_id
-            === GLOBAL_CONSTANTS.country_ids.VN
-          && rawParams?.destination_main_port_id
-          	? rawParams?.destination_main_port_id
-          	: values?.port_id || values?.destination_port_id;
+                    && rawParams?.destination_country_id
+                        === GLOBAL_CONSTANTS.country_ids.VN
+                    && rawParams?.destination_main_port_id
+                    	? rawParams?.destination_main_port_id
+                    	: values?.port_id || values?.destination_port_id;
 			}
 
 			cargo_handling_type = mode === 'fcl_cfs'
-        	? values?.import_fcl_cfs_cargo_handling_type
-            || values?.cargo_handling_type
-        	: values?.import_transportation_cargo_handling_type
-            || values?.cargo_handling_type;
+				? values?.import_fcl_cfs_cargo_handling_type
+																		|| values?.cargo_handling_type
+				: values?.import_transportation_cargo_handling_type
+																		|| values?.cargo_handling_type;
 			cargo_value = mode === 'fcl_cfs'
-        	? values?.import_fcl_cfs_cargo_value
-        	: values?.import_transportation_cargo_value;
+				? values?.import_fcl_cfs_cargo_value
+				: values?.import_transportation_cargo_value;
 			cargo_value_currency = mode === 'fcl_cfs'
-        	? values?.import_fcl_cfs_cargo_value_currency
-        	: values?.import_transportation_cargo_value_currency;
+				? values?.import_fcl_cfs_cargo_value_currency
+				: values?.import_transportation_cargo_value_currency;
 			address = mode === 'fcl_cfs'
-        	? values?.import_fcl_cfs_address
-        	: values?.import_fcl_customs;
+				? values?.import_fcl_cfs_address
+				: values?.import_fcl_customs;
 			ad_code = values?.import_fcl_cfs_have_ad_code || undefined;
 		}
 
 		const newValues = (values.containers || []).map((item) => {
-			const commodities = FCL_CUSTOMS_CONTAINER_COMMODITY_MAPPING[item.container_type] || [];
+			const commodities = FCL_CUSTOMS_CONTAINER_COMMODITY_MAPPING[item.container_type]
+																	|| [];
 			return {
 				...value,
 				container_size : item.container_size || '20',
 				container_type : item.container_type || 1,
 				commodity:
-          item?.commodity !== 'all_commodity'
-          && commodities.includes(item.commodity)
-          	? item.commodity
-          	: null,
+																		item?.commodity !== 'all_commodity'
+																		&& commodities.includes(item.commodity)
+																			? item.commodity
+																			: null,
 				containers_count     : Number(item.containers_count),
 				bls_count            : Number(values.bls_count || 1),
 				status               : 'active',
@@ -294,50 +294,51 @@ const formatDataForSingleService = ({
 		if (values?.trade_type === 'export' || type === 'export') {
 			port_id = values?.port_id || values?.origin_port_id;
 			cargo_handling_type = mode === 'fcl_cfs'
-        	? values?.export_fcl_cfs_cargo_handling_type
-            || values?.cargo_handling_type
-        	: values?.export_transportation_cargo_handling_type
-            || values?.cargo_handling_type;
+				? values?.export_fcl_cfs_cargo_handling_type
+																		|| values?.cargo_handling_type
+				: values?.export_transportation_cargo_handling_type
+																		|| values?.cargo_handling_type;
 			cargo_value = mode === 'fcl_cfs'
-        	? values?.export_fcl_cfs_cargo_value
-        	: values?.export_transportation_cargo_value;
+				? values?.export_fcl_cfs_cargo_value
+				: values?.export_transportation_cargo_value;
 			cargo_value_currency = mode === 'fcl_cfs'
-        	? values?.export_fcl_cfs_cargo_value_currency
-        	: values?.export_transportation_cargo_value_currency;
+				? values?.export_fcl_cfs_cargo_value_currency
+				: values?.export_transportation_cargo_value_currency;
 			address = mode === 'fcl_cfs'
-        	? values?.export_fcl_cfs_address
-        	: values?.export_fcl_customs;
+				? values?.export_fcl_cfs_address
+				: values?.export_fcl_customs;
 			ad_code = values?.export_fcl_customs_have_add_code || undefined;
 		} else if (values?.trade_type === 'import' || type === 'import') {
 			port_id = values?.port_id || values?.destination_port_id;
 			cargo_handling_type = mode === 'fcl_cfs'
-        	? values?.import_fcl_cfs_cargo_handling_type
-            || values?.cargo_handling_type
-        	: values?.import_transportation_cargo_handling_type
-            || values?.cargo_handling_type;
+				? values?.import_fcl_cfs_cargo_handling_type
+																						|| values?.cargo_handling_type
+				: values?.import_transportation_cargo_handling_type
+																						|| values?.cargo_handling_type;
 			cargo_value = mode === 'fcl_cfs'
-        	? values?.import_fcl_cfs_cargo_value
-        	: values?.import_transportation_cargo_value;
+				? values?.import_fcl_cfs_cargo_value
+				: values?.import_transportation_cargo_value;
 			cargo_value_currency = mode === 'fcl_cfs'
-        	? values?.import_fcl_cfs_cargo_value_currency
-        	: values?.import_transportation_cargo_value_currency;
+				? values?.import_fcl_cfs_cargo_value_currency
+				: values?.import_transportation_cargo_value_currency;
 			address = mode === 'fcl_cfs'
-        	? values?.import_fcl_cfs_address
-        	: values?.import_fcl_customs;
+				? values?.import_fcl_cfs_address
+				: values?.import_fcl_customs;
 			ad_code = values?.import_fcl_cfs_have_ad_code || undefined;
 		}
 
 		const newValues = (values.containers || []).map((item) => {
-			const commodities = FCL_CUSTOMS_CONTAINER_COMMODITY_MAPPING[item.container_type] || [];
+			const commodities = FCL_CUSTOMS_CONTAINER_COMMODITY_MAPPING[item.container_type]
+                || [];
 			return {
 				port_id,
 				container_size : item.container_size || '20',
 				container_type : item.container_type || 1,
 				commodity:
-          item?.commodity !== 'all_commodity'
-          && commodities.includes(item.commodity)
-          	? item.commodity
-          	: null,
+                    item?.commodity !== 'all_commodity'
+                    && commodities.includes(item.commodity)
+                    	? item.commodity
+                    	: null,
 				containers_count     : Number(item.containers_count),
 				bls_count            : Number(values.bls_count || 1),
 				status               : 'active',
@@ -357,20 +358,20 @@ const formatDataForSingleService = ({
 
 		if (values?.trade_type === 'export' || type === 'export') {
 			port_id = values?.location_id
-        || values?.airport_id
-        || values?.origin_port_id
-        || values?.origin_airport_id;
+                || values?.airport_id
+                || values?.origin_port_id
+                || values?.origin_airport_id;
 		} else if (values?.trade_type === 'import' || type === 'import') {
 			port_id = values?.location_id
-        || values?.airport_id
-        || values?.destination_port_id
-        || values?.destination_airport_id;
+                || values?.airport_id
+                || values?.destination_port_id
+                || values?.destination_airport_id;
 		}
 		const airport_id = mode === 'air_customs' ? port_id : undefined;
 		const location_id = mode === 'lcl_customs' ? port_id : undefined;
 		const lcl_commodity = values?.commodity && values?.commodity !== 'all_commodity'
-      	? values?.commodity
-      	: 'general';
+			? values?.commodity
+			: 'general';
 		const air_commodity = values.commodity === 'hazardous' ? 'hazardous' : 'all_commodities';
 		const commodity = mode === 'air_customs' ? air_commodity : lcl_commodity;
 		return [
@@ -379,7 +380,9 @@ const formatDataForSingleService = ({
 				airport_id,
 				commodity,
 				bls_count:
-          mode === 'lcl_customs' ? Number(values.bls_count || 1) : undefined,
+                    mode === 'lcl_customs'
+                    	? Number(values.bls_count || 1)
+                    	: undefined,
 				packages_count : Number(values.packages_count || 1),
 				weight         : Number(values.weight || 1),
 				volume         : Number(values.volume || 1),
@@ -393,18 +396,20 @@ const formatDataForSingleService = ({
 		const allAttributes = [];
 		if (type) {
 			const origin_location_id = type === 'export'
-        	? values?.export_transportation_location_id || values?.port_id
-        	: values?.destination_port_id
-            || values?.port_id
-            || values?.destination_location_id;
+				? values?.export_transportation_location_id
+																					|| values?.port_id
+				: values?.destination_port_id
+																					|| values?.port_id
+																					|| values?.destination_location_id;
 			const destination_location_id = type === 'export'
-        	? values?.origin_port_id
-            || values?.port_id
-            || values?.origin_location_id
-        	: values?.import_transportation_location_id || values?.port_id;
+				? values?.origin_port_id
+																				|| values?.port_id
+																				|| values?.origin_location_id
+				: values?.import_transportation_location_id
+																				|| values?.port_id;
 			const address = type === 'export'
-        	? values?.export_transportation_address
-        	: values?.import_transportation_address;
+				? values?.export_transportation_address
+				: values?.import_transportation_address;
 			const newVals = (values.containers || []).map((container) => ({
 				origin_location_id,
 				destination_location_id,
@@ -412,14 +417,15 @@ const formatDataForSingleService = ({
 				container_size : container?.container_size || '20',
 				container_type : container?.container_type,
 				commodity:
-          container?.commodity && HAZ_CLASSES.includes(container.commodity)
-          	? container.commodity
-          	: null,
+                    container?.commodity
+                    && HAZ_CLASSES.includes(container.commodity)
+                    	? container.commodity
+                    	: null,
 				haulage_type     : undefined,
 				shipping_line_id : undefined,
 				containers_count : Number(container?.containers_count),
 				cargo_weight_per_container:
-          Number(container?.cargo_weight_per_container) || undefined,
+                    Number(container?.cargo_weight_per_container) || undefined,
 				trade_type     : type,
 				transport_mode : undefined,
 				status         : 'active',
@@ -435,14 +441,15 @@ const formatDataForSingleService = ({
 			container_size          : container?.container_size || '20',
 			container_type          : container?.container_type,
 			commodity:
-        container?.commodity && HAZ_CLASSES.includes(container.commodity)
-        	? container.commodity
-        	: null,
+                container?.commodity
+																		&& HAZ_CLASSES.includes(container.commodity)
+                	? container.commodity
+                	: null,
 			haulage_type     : values?.haulage_type || undefined,
 			shipping_line_id : values?.shipping_line_id || undefined,
 			containers_count : Number(container?.containers_count),
 			cargo_weight_per_container:
-        Number(container?.cargo_weight_per_container) || undefined,
+                Number(container?.cargo_weight_per_container) || undefined,
 			trade_type     : 'domestic',
 			transport_mode : 'trailer',
 			status         : 'active',
@@ -455,45 +462,44 @@ const formatDataForSingleService = ({
 		const allAttributes = [];
 		if (type) {
 			const origin_location_id = type === 'export'
-        	? values?.export_transportation_location_id
-            || values?.export_transportation_origin_location_id
-            || values?.port_id
-            || values?.location_id
-            || values?.airport_id
-        	: values?.destination_port_id
-            || values.destination_airport_id
-            || values?.port_id
-            || values?.location_id
-            || values?.airport_id
-            || values?.destination_location_id;
+				? values?.export_transportation_location_id
+																	|| values?.export_transportation_origin_location_id
+																	|| values?.port_id
+																	|| values?.location_id
+																	|| values?.airport_id
+				: values?.destination_port_id
+																	|| values.destination_airport_id
+																	|| values?.port_id
+																	|| values?.location_id
+																	|| values?.airport_id
+																	|| values?.destination_location_id;
 			const destination_location_id = type === 'export'
-        	? values?.origin_port_id
-            || values?.origin_airport_id
-            || values?.port_id
-            || values?.location_id
-            || values?.airport_id
-            || values?.origin_location_id
-        	: values?.import_transportation_location_id
-            || values?.port_id
-            || values?.location_id
-            || values?.airport_id;
+				? values?.origin_port_id
+																	|| values?.origin_airport_id
+																	|| values?.port_id
+																	|| values?.location_id
+																	|| values?.airport_id
+																	|| values?.origin_location_id
+				: values?.import_transportation_location_id
+                      || values?.port_id
+                      || values?.location_id
+                      || values?.airport_id;
 			const trucks_count = type === 'export'
-        	? Number(values?.export_transportation_trucks_count || 1)
-        	: Number(values?.import_transportation_trucks_count);
+				? Number(values?.export_transportation_trucks_count || 1)
+				: Number(values?.import_transportation_trucks_count);
 			const truck_type = type === 'export'
-        	? values?.export_transportation_truck_type
-        	: values?.import_transportation_truck_type;
+				? values?.export_transportation_truck_type
+				: values?.import_transportation_truck_type;
 			const address = type === 'export'
-        	? values?.export_transportation_address
-        	: values?.import_transportation_address;
+				? values?.export_transportation_address
+				: values?.import_transportation_address;
 			allAttributes.push({
 				origin_location_id,
 				destination_location_id,
-				address: address || undefined,
-				commodity:
-          values?.commodity && HAZ_CLASSES.includes(values.commodity)
-          	? values.commodity
-          	: null,
+				address   : address || undefined,
+				commodity : values?.commodity && HAZ_CLASSES.includes(values.commodity)
+					? values.commodity
+					: null,
 				truck_type           : truck_type || undefined,
 				trucks_count         : trucks_count || undefined,
 				cargo_readiness_date : values?.cargo_clearance_date,
@@ -512,9 +518,7 @@ const formatDataForSingleService = ({
 				origin_location_id      : values?.origin_location_id,
 				destination_location_id : values?.destination_location_id,
 				commodity:
-          values?.commodity && HAZ_CLASSES.includes(values.commodity)
-          	? values.commodity
-          	: null,
+                    values?.commodity && HAZ_CLASSES.includes(values.commodity) ? values.commodity : null,
 				trucks_count : Number(values?.trucks_count || 1),
 				truck_type   : values?.truck_type || undefined,
 				trade_type   : 'domestic',
@@ -537,8 +541,8 @@ const formatDataForSingleService = ({
 
 			(
 				values?.export_transportation_packages
-        || values?.import_transportation_packages
-        || []
+                || values?.import_transportation_packages
+                || []
 			).forEach((packageObj) => {
 				const newPackageObj = {};
 				Object.keys(packageObj).forEach((key) => {
@@ -553,34 +557,34 @@ const formatDataForSingleService = ({
 			const dest = values?.origin_airport_id || undefined;
 			const origin = values?.destination_airport_id || undefined;
 			const origin_location_id = type === 'export'
-        	? values?.export_transportation_location_id
-            || values?.export_transportation_origin_location_id
-            || values?.location_id
-        	: origin;
+				? values?.export_transportation_location_id
+																	|| values?.export_transportation_origin_location_id
+																	|| values?.location_id
+				: origin;
 			const destination_location_id = type === 'export'
-        	? dest
-        	: values?.import_transportation_location_id
-            || values?.import_transportation_destination_location_id
-            || values?.location_id;
+				? dest
+				: values?.import_transportation_location_id || values?.import_transportation_destination_location_id
+				|| values?.location_id;
 			const origin_country_id = type === 'import'
-        && (values?.service_type === 'lcl_freight' || !origin_location_id)
-        	? values.destination_country_id
-            || values?.destination?.country_id
-            || values?.country_id
-        	: undefined;
+			&& (values?.service_type === 'lcl_freight' || !origin_location_id)
+				? values.destination_country_id
+																	|| values?.destination?.country_id
+																	|| values?.country_id
+				: undefined;
 			const destination_country_id = type === 'export'
-        && (values?.service_type === 'lcl_freight' || !destination_location_id)
-        	? values.origin_country_id
-            || values?.origin?.country_id
-            || values?.country_id
-        	: undefined;
+																&& (values?.service_type === 'lcl_freight'
+																	|| !destination_location_id)
+				? values.origin_country_id
+																	|| values?.origin?.country_id
+																	|| values?.country_id
+				: undefined;
 			const packages = formattedPackages;
 
 			let packagesArr = !isEmpty(packages) ? packages : values?.packages;
 
 			if (
 				values?.service_type === 'air_freight'
-        && values?.load_selection_type === 'cargo_gross'
+                && values?.load_selection_type === 'cargo_gross'
 			) {
 				packagesArr = (packagesArr || []).map((item) => ({
 					...item,
@@ -591,7 +595,11 @@ const formatDataForSingleService = ({
 				}));
 			}
 
-			if ([values?.service_type, values?.search_type].includes('lcl_freight')) {
+			if (
+				[values?.service_type, values?.search_type].includes(
+					'lcl_freight',
+				)
+			) {
 				packagesArr = [
 					{
 						height         : 1,
@@ -611,9 +619,9 @@ const formatDataForSingleService = ({
 				origin_country_id,
 				destination_country_id,
 				commodity:
-          values?.commodity && HAZ_CLASSES.includes(values.commodity)
-          	? values.commodity
-          	: null,
+                    values?.commodity && HAZ_CLASSES.includes(values.commodity)
+                    	? values.commodity
+                    	: null,
 				cargo_readiness_date : values?.cargo_clearance_date,
 				packages             : packagesArr,
 				weight               : Number(values?.weight || 1),
@@ -631,9 +639,7 @@ const formatDataForSingleService = ({
 				origin_location_id      : values?.origin_location_id,
 				destination_location_id : values?.destination_location_id,
 				commodity:
-          values?.commodity && HAZ_CLASSES.includes(values.commodity)
-          	? values.commodity
-          	: null,
+                    values?.commodity && HAZ_CLASSES.includes(values.commodity) ? values.commodity : null,
 				weight     : Number(values?.weight || 1),
 				packages   : values?.packages,
 				trade_type : 'domestic',
@@ -647,7 +653,7 @@ const formatDataForSingleService = ({
 
 		if (
 			service === 'export_haulage_freight'
-      || (mode === 'haulage_freight' && !values?.checkout_id)
+            || (mode === 'haulage_freight' && !values?.checkout_id)
 		) {
 			service_type = 'haulage_freight';
 		} else {
@@ -655,63 +661,66 @@ const formatDataForSingleService = ({
 		}
 
 		const import_freight_location = values?.search_type === 'fcl_freight'
-      	? values?.origin_port_id
-      	: values?.destination_port_id;
+			? values?.origin_port_id
+			: values?.destination_port_id;
 
 		const export_freight_location = values?.search_type === 'fcl_freight'
-      	? values?.destination_port_id
-      	: values?.origin_port_id;
+			? values?.destination_port_id
+			: values?.origin_port_id;
 
 		const fcl_customs_haulage_import_origin = values?.service_type === 'fcl_customs'
-      	? values?.origin_port_id
-      	: undefined;
+			? values?.origin_port_id
+			: undefined;
 
 		const fcl_customs_haulage_export_destination = values?.service_type === 'fcl_customs'
-      	? values?.destination_port_id
-      	: undefined;
+			? values?.destination_port_id
+			: undefined;
 
 		const location_import_haulage = service_type === 'haulage_freight' && type === 'import'
-      	? fcl_customs_haulage_import_origin
-      	: import_freight_location;
+			? fcl_customs_haulage_import_origin
+			: import_freight_location;
 
 		const location_export_haulage = service_type === 'haulage_freight' && type === 'export'
-      	? fcl_customs_haulage_export_destination
-      	: export_freight_location;
+			? fcl_customs_haulage_export_destination
+			: export_freight_location;
 
 		const allAttributes = [];
 
 		if (type) {
 			const origin_location_id = type === 'export'
-        	? values?.export_transportation_location_id
-            || values?.origin_port_id
-            || values?.port_id
-        	: location_import_haulage || values?.destination_main_port_id;
+				? values?.export_transportation_location_id
+															|| values?.origin_port_id
+															|| values?.port_id
+				: location_import_haulage
+															|| values?.destination_main_port_id;
 			const destination_location_id = type === 'export'
-        	? location_export_haulage || values?.origin_main_port_id
-        	: values?.import_transportation_location_id
-            || values?.destination_port_id
-            || values?.port_id;
+				? location_export_haulage || values?.origin_main_port_id
+				: values?.import_transportation_location_id
+															|| values?.destination_port_id
+                      || values?.port_id;
 			const newVals = (values.containers || []).map((container) => ({
 				origin_location_id,
 				destination_location_id,
 				container_size : container?.container_size || '20',
 				container_type : container?.container_type,
 				commodity:
-          container?.commodity && HAZ_CLASSES.includes(container.commodity)
-          	? container.commodity
-          	: null,
+                    container?.commodity
+                    && HAZ_CLASSES.includes(container.commodity)
+                    	? container.commodity
+                    	: null,
 				haulage_type:
-          values?.search_type === 'fcl_customs'
-          	? 'merchant'
-          	: values?.haulage_type || 'carrier',
+                    values?.search_type === 'fcl_customs'
+                    	? 'merchant'
+                    	: values?.haulage_type || 'carrier',
 				shipping_line_id : undefined,
 				containers_count : Number(container?.containers_count),
 				cargo_weight_per_container:
-          Number(container?.cargo_weight_per_container) || undefined,
-				trade_type     : type,
-				service_type   : service ? service_type : undefined,
-				transport_mode : service_type === 'trailer_freight' ? 'trailer' : 'rail',
-				status         : 'active',
+                    Number(container?.cargo_weight_per_container) || undefined,
+				trade_type   : type,
+				service_type : service ? service_type : undefined,
+				transport_mode:
+                    service_type === 'trailer_freight' ? 'trailer' : 'rail',
+				status: 'active',
 			}));
 			allAttributes.push(...newVals);
 		}
@@ -724,14 +733,13 @@ const formatDataForSingleService = ({
 			container_size          : container?.container_size || '20',
 			container_type          : container?.container_type,
 			commodity:
-        container?.commodity && HAZ_CLASSES.includes(container.commodity)
-        	? container.commodity
-        	: null,
+                container?.commodity
+                && HAZ_CLASSES.includes(container.commodity) ? container.commodity : null,
 			haulage_type     : values?.haulage_type || undefined,
 			shipping_line_id : values?.shipping_line_id || undefined,
 			containers_count : Number(container?.containers_count),
 			cargo_weight_per_container:
-        Number(container?.cargo_weight_per_container) || undefined,
+                Number(container?.cargo_weight_per_container) || undefined,
 			trade_type     : 'domestic',
 			transport_mode : values?.transport_mode || 'rail',
 			status         : 'active',
@@ -748,10 +756,10 @@ const getSearchNames = (payload, service, mode) => {
 		if (params[1] === 'transportation') {
 			if (
 				(payload?.checkout_id
-          && payload?.import_transportation_cargo_handling_type
-            !== 'destuffing_at_dock'
-          && payload?.service_type === 'fcl_freight')
-        || (mode === 'trailer_freight' && payload?.checkout_id)
+                    && payload?.import_transportation_cargo_handling_type
+                        !== 'destuffing_at_dock'
+                    && payload?.service_type === 'fcl_freight')
+                || (mode === 'trailer_freight' && payload?.checkout_id)
 			) {
 				return {
 					type : 'import',
@@ -761,9 +769,9 @@ const getSearchNames = (payload, service, mode) => {
 
 			if (
 				(payload?.import_transportation_cargo_handling_type
-          && payload?.import_transportation_cargo_handling_type
-            !== 'destuffing_at_dock')
-        || mode === 'trailer_freight'
+                    && payload?.import_transportation_cargo_handling_type
+                        !== 'destuffing_at_dock')
+                || mode === 'trailer_freight'
 			) {
 				return {
 					type : 'import',
@@ -773,7 +781,7 @@ const getSearchNames = (payload, service, mode) => {
 
 			if (
 				payload.import_transportation_pickup_type === 'ltl'
-        || mode === 'ltl_freight'
+                || mode === 'ltl_freight'
 			) {
 				return {
 					type : 'import',
@@ -798,10 +806,10 @@ const getSearchNames = (payload, service, mode) => {
 		if (params[1] === 'transportation') {
 			if (
 				(payload?.checkout_id
-          && payload?.export_transportation_cargo_handling_type
-            === 'stuffing_at_factory'
-          && payload?.service_type === 'fcl_freight')
-        || (mode === 'trailer_freight' && payload?.checkout_id)
+                    && payload?.export_transportation_cargo_handling_type
+                        === 'stuffing_at_factory'
+                    && payload?.service_type === 'fcl_freight')
+                || (mode === 'trailer_freight' && payload?.checkout_id)
 			) {
 				return {
 					type : 'export',
@@ -811,8 +819,8 @@ const getSearchNames = (payload, service, mode) => {
 
 			if (
 				payload?.export_transportation_cargo_handling_type
-          === 'stuffing_at_factory'
-        || mode === 'trailer_freight'
+                    === 'stuffing_at_factory'
+                || mode === 'trailer_freight'
 			) {
 				return {
 					type : 'export',
@@ -822,7 +830,7 @@ const getSearchNames = (payload, service, mode) => {
 
 			if (
 				payload.export_transportation_pickup_type === 'ltl'
-        || mode === 'ltl_freight'
+                || mode === 'ltl_freight'
 			) {
 				return {
 					type : 'export',
@@ -853,9 +861,9 @@ const formatValuesForSearch = (rawParams) => {
 	Object.keys(rawParams).forEach((param) => {
 		if (
 			(param === 'packages'
-        || param === 'import_transportation_packages'
-        || params === 'export_transportation_packages')
-      && (rawParams[param] || []).length > 0
+                || param === 'import_transportation_packages'
+                || params === 'export_transportation_packages')
+            && (rawParams[param] || []).length > 0
 		) {
 			params = {
 				...params,
@@ -895,7 +903,7 @@ const formatCreateSearch = (
 
 	if (
 		mode === 'fcl_freight_local'
-    && payload.is_pass_through_selected === 'pass_through'
+        && payload.is_pass_through_selected === 'pass_through'
 	) {
 		newPayload = {
 			...newPayload,
@@ -919,7 +927,9 @@ const formatCreateSearch = (
 			if (rawParams?.checkout_id) {
 				newPayload.service = getNewService?.mode;
 				newPayload[`${getNewService?.mode}_services_attributes`] = [
-					...(newPayload[`${getNewService?.mode}_services_attributes`] || []),
+					...(newPayload[
+						`${getNewService?.mode}_services_attributes`
+					] || []),
 					...formatDataForSingleService({
 						rawParams,
 						mode   : getNewService?.mode,
@@ -928,17 +938,23 @@ const formatCreateSearch = (
 						service,
 					}),
 				];
-			} else if (is_service && is_service !== 'hybrid' && getNewService?.mode) {
+			} else if (
+				is_service
+                && is_service !== 'hybrid'
+                && getNewService?.mode
+			) {
 				newPayload.service = getNewService?.mode;
 				newPayload[`${getNewService?.mode}_services`] = formatDataForSingleService({
-          	rawParams,
-          	mode   : getNewService?.mode,
-          	values : payload,
-          	type   : getNewService.type,
+					rawParams,
+					mode   : getNewService?.mode,
+					values : payload,
+					type   : getNewService.type,
 				});
 			} else if (getNewService?.mode) {
 				newPayload[`${getNewService?.mode}_services_attributes`] = [
-					...(newPayload[`${getNewService?.mode}_services_attributes`] || []),
+					...(newPayload[
+						`${getNewService?.mode}_services_attributes`
+					] || []),
 					...formatDataForSingleService({
 						rawParams,
 						mode   : getNewService?.mode,

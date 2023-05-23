@@ -10,6 +10,7 @@ const formControlsAdvanced = (isChannelPartner = false) => [
 		],
 		condition : { services: ['export_transportation'] },
 		rules     : { required: 'Pickup Type is required' },
+		style     : { width: '350px' },
 	},
 	{
 		label       : 'Pickup Pincode',
@@ -18,7 +19,7 @@ const formControlsAdvanced = (isChannelPartner = false) => [
 		type        : 'async_select',
 		asyncKey    : 'locations',
 		grouped     : ['city'],
-		// style       : { width: '200px' },
+		style       : { width: '350px' },
 		params      : { filters: { type: ['pincode', 'city'] } },
 		condition   : { services: ['export_transportation'] },
 		rules       : { required: 'Pickup Pincode is required' },
@@ -27,8 +28,8 @@ const formControlsAdvanced = (isChannelPartner = false) => [
 		name      : 'export_transportation_truck_type',
 		label     : 'Pickup Truck Type',
 		type      : 'select',
-		asyncKey  : 'truck_types',
-		span      : 8,
+		optionkey : 'truck_types',
+		style     : { width: '350px' },
 		condition : {
 			services                          : ['export_transportation'],
 			export_transportation_pickup_type : 'ftl',
@@ -39,7 +40,7 @@ const formControlsAdvanced = (isChannelPartner = false) => [
 		name      : 'export_transportation_trucks_count',
 		label     : 'Truck Count',
 		type      : 'number',
-		span      : 4,
+		style     : { width: '350px' },
 		condition : {
 			services                          : ['export_transportation'],
 			export_transportation_pickup_type : 'ftl',
@@ -50,8 +51,10 @@ const formControlsAdvanced = (isChannelPartner = false) => [
 		label       : 'Address',
 		name        : 'export_transportation_address',
 		placeholder : 'Enter address',
+		style       : { width: '350px' },
 		type        : 'text',
 		condition   : { services: ['export_transportation'] },
+
 	},
 	// {
 	// 	name: 'export_transportation_packages',
@@ -136,6 +139,7 @@ const formControlsAdvanced = (isChannelPartner = false) => [
 		],
 		condition : { services: ['import_transportation'] },
 		rules     : { required: 'Drop Type is required' },
+		style     : { width: '350px' },
 	},
 	{
 		label       : 'Drop Pincode',
@@ -147,13 +151,14 @@ const formControlsAdvanced = (isChannelPartner = false) => [
 		params      : { filters: { type: ['pincode', 'city'] } },
 		condition   : { services: ['import_transportation'] },
 		rules       : { required: 'Destination Pincode is required' },
+		style       : { width: '350px' },
 	},
 	{
 		name      : 'import_transportation_truck_type',
 		label     : 'Drop Truck Type',
 		type      : 'select',
-		asyncKey  : 'truck_types',
-		span      : 8,
+		optionkey : 'truck_types',
+		style     : { width: '350px' },
 		condition : {
 			services                          : ['import_transportation'],
 			import_transportation_pickup_type : 'ftl',
@@ -164,7 +169,7 @@ const formControlsAdvanced = (isChannelPartner = false) => [
 		name      : 'import_transportation_trucks_count',
 		label     : 'Drop Trucks Count',
 		type      : 'number',
-		span      : 4,
+		style     : { width: '350px' },
 		condition : {
 			services                          : ['import_transportation'],
 			import_transportation_pickup_type : 'ftl',

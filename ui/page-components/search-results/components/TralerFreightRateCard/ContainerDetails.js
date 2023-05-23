@@ -4,6 +4,8 @@ import React from 'react';
 
 import styles from './styles.module.css';
 
+import convertHourToDate from '@/ui/commons/utils/converHourToDay';
+
 const SERVICE_TYPE_MAPPING = {
 	T2T : 'Terminal 2 Terminal',
 	T2D : 'Terminal 2 Door',

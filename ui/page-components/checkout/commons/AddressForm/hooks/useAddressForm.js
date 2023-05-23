@@ -251,7 +251,7 @@ const useSaveAddressForm = (props) => {
 		);
 	}
 
-	const { formProps, control } = useForm();
+	const { control, ...formProps } = useForm();
 	const { watch, getValues, setValues, fields } = formProps;
 
 	const watchIsSez = watch('is_sez');
@@ -333,9 +333,9 @@ const useSaveAddressForm = (props) => {
 		gstinOptions,
 		isAddressRegisteredUnderGstChecked,
 	});
-
+	console.log(newControls, 'newControls', layouts);
 	const newFields = {};
-	Object.entries(formProps.fields).forEach(([controlName, field]) => {
+	Object.entries(newControls).forEach(([controlName, field]) => {
 		let newField = { ...field };
 		if (controlName === 'tax_number') {
 			newField = {

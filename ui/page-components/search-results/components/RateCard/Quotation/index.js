@@ -255,13 +255,13 @@ function Quotation({
 			Book at
 			<span style={{ marginLeft: '6px' }}>
 				{`${formatAmount({
-                	amount   : data?.total_price_discounted || 0,
-                	currency : data?.total_price_currency,
-                	options  : {
-                		style                 : 'currency',
-                		currencyDisplay       : 'symbol',
-                		maximumFractionDigits : 0,
-                	},
+					amount   : data?.total_price_discounted || 0,
+					currency : data?.total_price_currency,
+					options  : {
+						style                 : 'currency',
+						currencyDisplay       : 'symbol',
+						maximumFractionDigits : 0,
+					},
 				})}`}
 			</span>
 		</Button>
@@ -325,24 +325,24 @@ function Quotation({
 				<div className={styles.breakup_btn_container}>
 					<Button
 						onClick={() => {
-            	let line;
-            	let provider;
-            	if (
-            		data.service_type === 'air_freight'
-                || data.service_type === 'air_customs'
-            	) {
-            		line = (data.airline || {}).short_name;
-            		provider = (data.airline || {}).business_name;
-            	} else {
-            		line = (data.shipping_line || {}).short_name;
-            		provider = (data.shipping_line || {}).business_name;
-            	}
-            	trackEvent(APP_EVENT.search_viewed_rate_breakup, {
-            		amount           : data.total_price,
-            		amount_currency  : data.total_price_currency,
-            		shipping_line    : line,
-            		service_provider : provider,
-            	});
+							let line;
+							let provider;
+							if (
+								data.service_type === 'air_freight'
+							|| data.service_type === 'air_customs'
+							) {
+								line = (data.airline || {}).short_name;
+								provider = (data.airline || {}).business_name;
+							} else {
+								line = (data.shipping_line || {}).short_name;
+								provider = (data.shipping_line || {}).business_name;
+							}
+							trackEvent(APP_EVENT.search_viewed_rate_breakup, {
+								amount           : data.total_price,
+								amount_currency  : data.total_price_currency,
+								shipping_line    : line,
+								service_provider : provider,
+							});
 
             	setOpen(!open);
 						}}

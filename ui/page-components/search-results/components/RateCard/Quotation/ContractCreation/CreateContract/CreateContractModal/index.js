@@ -8,7 +8,7 @@ import { getUnit } from '../../../../../../utils/get-unit';
 import PortSelect from './PortSelect';
 import styles from './styles.module.css';
 
-import { DatepickerController, InputController, SelectController, AsyncSelectController } from '@/packages/forms';
+import { DatepickerController, InputController, AsyncSelectController } from '@/packages/forms';
 import getOperatorsConfig from '@/ui/page-components/search-results/utils/getOperatorsConfig';
 
 function CreateContractModal({
@@ -135,7 +135,7 @@ function CreateContractModal({
 							}}
 							{...params('preferred_shipping_line_ids')}
 							cacheOptions={getCacheOptions('preferred_shipping_line_ids')}
-							optionsListKey={optionsListKey}
+							asyncKey={optionsListKey}
 						/>
 						<div className={styles.error_text}>
 							{errors?.preferred_shipping_line_ids?.message}
@@ -161,7 +161,7 @@ function CreateContractModal({
 							}}
 							{...params('exclude_shipping_line_ids')}
 							cacheOptions={getCacheOptions('exclude_shipping_line_ids')}
-							optionsListKey={optionsListKey}
+							asyncKey={optionsListKey}
 						/>
 						<div className={styles.error_text}>{errors?.exclude_shipping_line_ids?.message}</div>
 					</div>

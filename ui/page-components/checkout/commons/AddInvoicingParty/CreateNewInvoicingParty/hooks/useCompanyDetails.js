@@ -16,11 +16,11 @@ const useCompanyDetails = ({
 }) => {
 	const { company_details = {} } = filledDetails;
 
-	const orgControls =		getOrgControls({
-		values: company_details,
+	const orgControls = getOrgControls({
+        	values: company_details,
 	}) || [];
 
-	const additionalOrgControls =		getAdditionalOrgControls({ values: company_details }) || [];
+	const additionalOrgControls = getAdditionalOrgControls({ values: company_details }) || [];
 
 	const companyDetailsControls = [...orgControls, ...additionalOrgControls];
 
@@ -39,11 +39,11 @@ const useCompanyDetails = ({
 
 	const isCountryIndia = watchCountryId === INDIA_COUNTRY_ID;
 
-	const { getBusinessApi = {}, onBlurTaxPanGstinControl = () => {} } =		useGetBusiness({
-		watchTaxNumber         : watchPan.toUpperCase(),
-		watchBusinessName,
-		setValues,
-		registrationNumberType : isCountryIndia ? 'registration' : '',
+	const { getBusinessApi = {}, onBlurTaxPanGstinControl = () => {} } = useGetBusiness({
+        	watchTaxNumber         : watchPan?.toUpperCase(),
+        	watchBusinessName,
+        	setValues,
+        	registrationNumberType : isCountryIndia ? 'registration' : '',
 	});
 
 	const onSubmit = (values = {}) => {
@@ -64,9 +64,7 @@ const useCompanyDetails = ({
 				...newField,
 				onBlur: () => onBlurTaxPanGstinControl(),
 				...(businessApiLoading && {
-					suffix: (
-						<Loader themeType="primary" />
-					),
+					suffix: <Loader themeType="primary" />,
 				}),
 				...(isCountryIndia && { maxLength: 10 }),
 				label : isCountryIndia ? 'PAN' : 'Registration Number',

@@ -56,7 +56,6 @@ const createContracts = () => [
 		label     : 'Maximum Weight',
 		type      : 'number',
 		className : 'primary lg',
-		theme     : 'admin',
 		rules     : { required: 'Maximum weight is required', min: 50 },
 		span      : 6,
 	},
@@ -70,7 +69,6 @@ const createContracts = () => [
 		span           : 6,
 		caret          : false,
 		multiple       : true,
-		theme          : 'admin',
 	},
 	{
 		name           : 'exclude_shipping_line_ids',

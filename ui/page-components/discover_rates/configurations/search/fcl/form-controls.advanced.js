@@ -5,7 +5,7 @@ const controls = () => [
 		type      : 'number',
 		condition : { services: ['fcl_freight'] },
 		rules     : { min: 1, max: 10000 },
-		// style     : { width: '300px' },
+		style     : { width: '350px' },
 	},
 	{
 		label   : 'Bill of lading (B/L) type',
@@ -26,7 +26,8 @@ const controls = () => [
 				children : 'Seaway (Original) Bill',
 			},
 		],
-		condition: { services: ['fcl_freight'] },
+		condition : { services: ['fcl_freight'] },
+		style     : { width: '350px' },
 	},
 	{
 		name    : 'export_transportation_cargo_handling_type',
@@ -45,6 +46,7 @@ const controls = () => [
 		],
 		condition : { services: ['export_fcl_customs', 'export_transportation'] },
 		rules     : { required: 'This is required' },
+		style     : { width: '350px' },
 	},
 	{
 		label       : 'Pickup Pincode',
@@ -53,7 +55,7 @@ const controls = () => [
 		type        : 'async_select',
 		caret       : true,
 		asyncKey    : 'locations',
-		// style       : { width: '200px' },
+		style       : { width: '350px' },
 		grouped     : ['city'],
 		params      : { filters: { type: ['pincode', 'city'] } },
 		condition   : { services: ['export_transportation'] },
@@ -65,14 +67,15 @@ const controls = () => [
 		placeholder : 'Enter address',
 		type        : 'textarea',
 		condition   : { services: ['export_transportation'] },
+		style       : { width: '350px' },
 	},
 	{
 		name      : 'export_transportation_truck_type',
 		label     : 'Truck Type',
 		type      : 'select',
 		caret     : true,
-		asyncKey  : 'truck_types',
-		span      : 8,
+		optionkey : 'truck_types',
+		style     : { width: '350px' },
 		condition : {
 			export_transportation_cargo_handling_type : ['stuffing_at_dock'],
 			services                                  : ['export_transportation'],
@@ -83,7 +86,7 @@ const controls = () => [
 		name      : 'export_transportation_trucks_count',
 		label     : 'Trucks count',
 		type      : 'number',
-		span      : 4,
+		style     : { width: '350px' },
 		condition : {
 			export_transportation_cargo_handling_type : ['stuffing_at_dock'],
 			services                                  : ['export_transportation'],
@@ -95,7 +98,7 @@ const controls = () => [
 		label   : 'Destination Cargo Handling',
 		type    : 'chips',
 		caret   : true,
-		span    : 12,
+		style   : { width: '350px' },
 		options : [
 			{
 				children : 'Direct Port Delivery',
@@ -147,7 +150,7 @@ const controls = () => [
 		placeholder : 'Search via pincode',
 		type        : 'async_select',
 		caret       : true,
-		// style       : { width: '300px' },
+		style       : { width: '350px' },
 		asyncKey    : 'locations',
 		grouped     : ['city'],
 		params      : { filters: { type: ['pincode', 'city'] } },
@@ -159,7 +162,7 @@ const controls = () => [
 		name        : 'import_transportation_address',
 		placeholder : 'Enter address',
 		type        : 'text',
-		span        : 12,
+		style       : { width: '350px' },
 		condition   : { services: ['import_transportation'] },
 	},
 	{
@@ -167,8 +170,8 @@ const controls = () => [
 		label     : 'Truck Type',
 		type      : 'select',
 		caret     : true,
-		asyncKey  : 'truck_types',
-		span      : 8,
+		optionkey : 'truck_types',
+		style     : { width: '350px' },
 		condition : {
 			import_transportation_cargo_handling_type : ['destuffing_at_dock'],
 			services                                  : ['import_transportation'],
@@ -179,7 +182,7 @@ const controls = () => [
 		name      : 'import_transportation_trucks_count',
 		label     : 'Trucks count',
 		type      : 'number',
-		span      : 4,
+		style     : { width: '350px' },
 		value     : 1,
 		condition : {
 			import_transportation_cargo_handling_type : ['destuffing_at_dock'],
@@ -191,7 +194,7 @@ const controls = () => [
 		name    : 'export_fcl_cfs_have_ad_code',
 		label   : 'Have AD Code?',
 		type    : 'chips',
-		span    : 6,
+		style   : { width: '350px' },
 		options : [
 			{ children: 'Yes', key: 'yes' },
 			{ children: 'No', key: 'no' },
@@ -204,7 +207,7 @@ const controls = () => [
 		label   : 'Do you want AD Code Registration?',
 		type    : 'chips',
 		caret   : true,
-		span    : 6,
+		style   : { width: '350px' },
 		options : [
 			{ children: 'Yes', key: 'yes' },
 			{ children: 'No', key: 'no' },
@@ -217,7 +220,7 @@ const controls = () => [
 		label   : 'Origin CFS Cargo Stuffing',
 		type    : 'chips',
 		caret   : true,
-		span    : 12,
+		style   : { width: '350px' },
 		options : [
 			{
 				key      : 'stuffing_at_factory',
@@ -236,7 +239,7 @@ const controls = () => [
 		label     : 'Cargo currency',
 		optionkey : 'currencies',
 		type      : 'select',
-		// style     : { width: '200px' },
+		style     : { width: '350px' },
 		condition : { services: ['export_fcl_cfs'] },
 		rules     : { required: 'This is required' },
 	},
@@ -244,7 +247,7 @@ const controls = () => [
 		name      : 'export_fcl_cfs_cargo_value',
 		label     : 'Cargo value',
 		type      : 'number',
-		span      : 8,
+		style     : { width: '350px' },
 		condition : { services: ['export_fcl_cfs'] },
 		rules     : { required: 'This is required' },
 	},
@@ -252,7 +255,7 @@ const controls = () => [
 		name    : 'import_fcl_cfs_cargo_handling_type',
 		label   : 'Select type of stuffing',
 		type    : 'chips',
-		span    : 12,
+		style   : { width: '350px' },
 		options : [
 			{
 				children : 'DPD without cfs',
@@ -291,7 +294,7 @@ const controls = () => [
 		label     : 'Cargo currency',
 		optionkey : 'currencies',
 		type      : 'select',
-		// style     : { width: '200px' },
+		style     : { width: '350px' },
 		condition : { services: ['import_fcl_cfs'] },
 		rules     : { required: 'This is required' },
 	},
@@ -299,7 +302,7 @@ const controls = () => [
 		name      : 'import_fcl_cfs_cargo_value',
 		label     : 'Cargo value',
 		type      : 'number',
-		span      : 8,
+		style     : { width: '350px' },
 		condition : { services: ['import_fcl_cfs'] },
 		rules     : { required: 'This is required' },
 	},

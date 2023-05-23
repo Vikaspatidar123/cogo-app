@@ -37,7 +37,6 @@ function Forms({
 		data,
 	});
 	const { handleSubmit } = formProps || {};
-
 	return (
 		<div className={styles.container}>
 			<Modal.Header title={`Add ${detail[service]?.title}`} />
@@ -47,6 +46,9 @@ function Forms({
 						{controls.map((item) => {
 							const Element = getField(item.type);
 							const show = showElements[item.name];
+							if (item?.lowerlabel) {
+								return <div className={styles.lower_label} style={item.style}>{item.lowerlabel}</div>;
+							}
 							return (
 								show && (
 									<div className={styles.field} key={item.name}>

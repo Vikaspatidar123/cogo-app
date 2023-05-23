@@ -70,9 +70,9 @@ function AddInvoicingParty({
 
 	const ActiveComponent = COMPONENTS_MAPPING[activeComponentKey].component;
 	const activeComponentProps = componentProps[activeComponentKey];
-
-	const renderModalContent = () => (
-		<div>
+	const title = () => (
+		<>
+			{' '}
 			<div
 				className={styles.text}
 			>
@@ -86,6 +86,12 @@ function AddInvoicingParty({
 					onChange={setActiveComponentKey}
 				/>
 			</div>
+
+		</>
+	);
+	const renderModalContent = () => (
+		<div>
+			<Modal.Header title={title()} />
 
 			<ActiveComponent key={activeComponentKey} {...activeComponentProps} />
 		</div>

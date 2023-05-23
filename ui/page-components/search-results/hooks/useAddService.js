@@ -61,7 +61,6 @@ const useAddService = ({
 		query: (general || {}).query || {},
 	}));
 	const { search_id, checkout_id } = query;
-
 	const controls = (controlsMapping[search_type] || []).map((control) => ({
 		...control,
 		value:

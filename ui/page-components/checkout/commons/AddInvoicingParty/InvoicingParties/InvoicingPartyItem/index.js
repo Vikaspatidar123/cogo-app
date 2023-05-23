@@ -1,4 +1,4 @@
-import { RadioGroup, Tooltip } from '@cogoport/components';
+import { CheckboxGroup, Tooltip } from '@cogoport/components';
 import { IcMInfo } from '@cogoport/icons-react';
 import React, { useMemo } from 'react';
 
@@ -61,7 +61,6 @@ function InvoicingPartyItem({
 			registrationNumber : registration_number,
 		}));
 	};
-
 	return (
 		<div className={`${styles.container} ${isIE ? 'ie' : ''}`}>
 			<div className={styles.label}>
@@ -97,7 +96,7 @@ function InvoicingPartyItem({
 			</div>
 
 			<div className={styles.radio_wrapper}>
-				<RadioGroup
+				<CheckboxGroup
 					className="primary lg"
 					options={options}
 					value={value}

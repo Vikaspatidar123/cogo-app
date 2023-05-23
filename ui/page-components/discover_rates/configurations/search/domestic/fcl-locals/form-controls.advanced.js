@@ -70,7 +70,7 @@ const controls = () => [
 		label     : 'Truck Type',
 		type      : 'select',
 		caret     : true,
-		asyncKey  : 'truck_types',
+		optionkey  : 'truck_types',
 		span      : 8,
 		condition : {
 			export_transportation_cargo_handling_type : ['stuffing_at_dock'],
@@ -166,7 +166,7 @@ const controls = () => [
 		label     : 'Truck Type',
 		type      : 'select',
 		caret     : true,
-		asyncKey  : 'truck_types',
+		optionkey  : 'truck_types',
 		span      : 8,
 		condition : {
 			import_transportation_cargo_handling_type : ['destuffing_at_dock'],

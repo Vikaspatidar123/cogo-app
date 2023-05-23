@@ -27,6 +27,13 @@
   }
 }
 
+.lower_label{
+  margin-top: 4px;
+  display: inline-block;
+  font-size: 10px;
+  color: rgb(173, 173, 173);
+  line-height: 20px;
+}
 .btn_wrap {
   display: flex;
   justify-content: center;

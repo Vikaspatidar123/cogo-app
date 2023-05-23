@@ -6,17 +6,17 @@ import { useRequest } from '@/packages/request';
 import getGeoConstants from '@/ui/commons/constants/geo';
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
-const formatSavedServicesInvoiceTo = ({ services }) => {
+const formatSavedServicesInvoiceTo = ({ services = [] }) => {
 	const TRADE_TYPE_MAPPING = {
 		export : 'origin',
 		import : 'destination',
 	};
-
 	return (services || []).map((service) => {
 		const id = getByKey(service, 'id');
 		const tradeType = getByKey(service, 'trade_type');
 
-		let serviceName =	getByKey(service, 'service_name') || getByKey(service, 'service_type');
+		let serviceName = getByKey(service, 'service_name')
+            || getByKey(service, 'service_type');
 		if (tradeType in TRADE_TYPE_MAPPING) {
 			serviceName = `${TRADE_TYPE_MAPPING[tradeType]}_${serviceName}`;
 		}
@@ -64,7 +64,9 @@ const updateServicesInInvoicingParty = ({
 	if (action === 'filter') {
 		return {
 			...invoicingParty,
-			services: invoicingParty.services.filter((service) => service.service_id !== serviceId),
+			services: invoicingParty.services.filter(
+				(service) => service.service_id !== serviceId,
+			),
 		};
 	}
 
@@ -79,7 +81,6 @@ const useInvoicingParties = (props) => {
 	const savedInvoicingParties = getByKey(invoice, 'billing_addresses') || [];
 
 	const services = getByKey(detail, 'services') || {};
-
 	const savedServicesInvoiceTo = formatSavedServicesInvoiceTo({
 		services: Object.values(services),
 	});
@@ -93,7 +94,8 @@ const useInvoicingParties = (props) => {
 		...savedInvoicingParty,
 		services: formatServices({
 			savedServicesInvoiceTo,
-			invoicingPartyServices: getByKey(savedInvoicingParty, 'services') || [],
+			invoicingPartyServices:
+                    getByKey(savedInvoicingParty, 'services') || [],
 		}),
 		state: {
 			isSaved           : true,
@@ -102,7 +104,7 @@ const useInvoicingParties = (props) => {
 		},
 	})));
 
-	const [showAddInvoicingPartyModal, setShowAddInvoicingPartyModal] =		useState(false);
+	const [showAddInvoicingPartyModal, setShowAddInvoicingPartyModal] = useState(false);
 
 	const [paymentModes, setPaymentModes] = useState(() => {
 		let mode = {};
@@ -129,10 +131,13 @@ const useInvoicingParties = (props) => {
 		return mode;
 	});
 
-	const [{ loading }, trigger] = useRequest({
-		url    : '/update_checkout',
-		method : 'post',
-	}, { manual: true });
+	const [{ loading }, trigger] = useRequest(
+		{
+			url    : '/update_checkout',
+			method : 'post',
+		},
+		{ manual: true },
+	);
 
 	const getPayload = ({ newInvoicingPartiesState }) => {
 		const invoicingPartiesPayload = [];
@@ -196,7 +201,9 @@ const useInvoicingParties = (props) => {
 				payment_mode     : paymentMode,
 				invoice_currency : invoiceCurrency,
 				is_deleted:
-					toDelete || (isSaved && isEmpty(formattedServices)) || false,
+                    toDelete
+                    || (isSaved && isEmpty(formattedServices))
+                    || false,
 				payment_mode_details: {
 					payment_mode   : paymentMode,
 					payment_term   : paymentTerms,
@@ -219,8 +226,8 @@ const useInvoicingParties = (props) => {
 				const invoicingParty = {
 					...selectedInvoicingParty,
 					invoice_currency:
-						selectedInvoicingParty.invoice_currency
-						|| geo.country.currency.code,
+                        selectedInvoicingParty.invoice_currency
+                        || geo.country.currency.code,
 					services : savedServicesInvoiceTo,
 					state    : {
 						isSaved           : false,
@@ -240,7 +247,7 @@ const useInvoicingParties = (props) => {
 			prevInvoicingParties.forEach((invoicingParty) => {
 				let newInvoicingParty = invoicingParty;
 
-				isInvoicingPartyAlreadyPresent =					invoicingParty.id === selectedInvoicingParty.id;
+				isInvoicingPartyAlreadyPresent = invoicingParty.id === selectedInvoicingParty.id;
 
 				if (isInvoicingPartyAlreadyPresent) {
 					alreadyPresentInvoicingParty = newInvoicingParty;
@@ -265,7 +272,7 @@ const useInvoicingParties = (props) => {
 				state            : {
 					isSaved: false,
 					...(isInvoicingPartyAlreadyPresent
-						&& alreadyPresentInvoicingParty.state),
+                        && alreadyPresentInvoicingParty.state),
 					toDelete          : false,
 					showHiddenContent : true,
 				},
@@ -293,14 +300,18 @@ const useInvoicingParties = (props) => {
 			const showHiddenContentActionMapping = {
 				true   : true,
 				false  : false,
-				toggle : !(getByKey(invoicingParty, 'state.showHiddenContent') || false),
+				toggle : !(
+					getByKey(invoicingParty, 'state.showHiddenContent')
+                        || false
+				),
 			};
 
 			const updatedInvoicingParty = {
 				...invoicingParty,
 				state: {
 					...invoicingParty.state,
-					showHiddenContent: showHiddenContentActionMapping[action] || false,
+					showHiddenContent:
+                            showHiddenContentActionMapping[action] || false,
 				},
 			};
 
@@ -319,13 +330,14 @@ const useInvoicingParties = (props) => {
 			Toast.success('Invoicing Party saved successfully');
 
 			(invoicingParties || []).forEach((invoicingParty) => {
-				setShowHiddenContent({ id: invoicingParty?.id, action: 'false' });
+				setShowHiddenContent({
+					id     : invoicingParty?.id,
+					action : 'false',
+				});
 			});
 
 			refetchGetCheckout?.();
 		} catch (error) {
-			console.log('error :: ', error);
-
 			if (error?.data?.credit) {
 				Toast.error(error?.data?.credit, {
 					autoClose       : 7000,
@@ -361,13 +373,15 @@ const useInvoicingParties = (props) => {
 	}) => {
 		setInvoicingParties((prevInvoicingParties) => {
 			const isServicePresentInChangedInvoicingParty = changedInvoicingParty;
-			services.some((service) => service.service_id === serviceId);
+			(Object.values(services) || []).some(
+				(service) => service.service_id === serviceId,
+			);
 
 			const changedInvoicingPartyIndex = prevInvoicingParties.findIndex(
 				(invoicingParty) => invoicingParty.id === changedInvoicingParty.id,
 			);
 
-			const updateInvoicingPartyIndex =				changedInvoicingPartyIndex === 0 ? 1 : 0;
+			const updateInvoicingPartyIndex = changedInvoicingPartyIndex === 0 ? 1 : 0;
 
 			return prevInvoicingParties.map((invoicingParty, index) => {
 				let newInvoicingParty = updateServicesInInvoicingParty({
@@ -379,9 +393,9 @@ const useInvoicingParties = (props) => {
 
 				if (
 					(index === changedInvoicingPartyIndex
-						&& !isServicePresentInChangedInvoicingParty)
-					|| (index === updateInvoicingPartyIndex
-						&& isServicePresentInChangedInvoicingParty)
+                        && !isServicePresentInChangedInvoicingParty)
+                    || (index === updateInvoicingPartyIndex
+                        && isServicePresentInChangedInvoicingParty)
 				) {
 					newInvoicingParty = updateServicesInInvoicingParty({
 						savedServicesInvoiceToHash,
@@ -396,14 +410,16 @@ const useInvoicingParties = (props) => {
 		});
 	};
 
-	const deleteInvoicingParty = ({ invoicingParty: invoicingPartyToDelete }) => {
+	const deleteInvoicingParty = ({
+		invoicingParty: invoicingPartyToDelete,
+	}) => {
 		const invoicingPartyToDeleteServices = invoicingPartyToDelete.services;
 
 		let updatedInvoicingPartyToDelete = invoicingPartyToDelete;
 		let updatedInvoicingParties = [];
 
 		invoicingParties.forEach((invoicingParty) => {
-			const isDeletedInvoicingParty =				invoicingParty.id === invoicingPartyToDelete.id;
+			const isDeletedInvoicingParty = invoicingParty.id === invoicingPartyToDelete.id;
 
 			if (isDeletedInvoicingParty) {
 				updatedInvoicingPartyToDelete = {
@@ -418,7 +434,10 @@ const useInvoicingParties = (props) => {
 				return;
 			}
 
-			updatedInvoicingParties = [...updatedInvoicingParties, invoicingParty];
+			updatedInvoicingParties = [
+				...updatedInvoicingParties,
+				invoicingParty,
+			];
 		});
 
 		updatedInvoicingParties[0] = {
@@ -455,7 +474,9 @@ const useInvoicingParties = (props) => {
 		});
 	};
 
-	const filteredInvoicingParties = invoicingParties.filter((invoicingParty) => !invoicingParty.state.toDelete);
+	const filteredInvoicingParties = invoicingParties.filter(
+		(invoicingParty) => !invoicingParty.state.toDelete,
+	);
 
 	return {
 		savedServicesInvoiceTo,

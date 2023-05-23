@@ -4,6 +4,7 @@ import styles from './styles.module.css';
 
 import { useRouter } from '@/packages/next';
 
+const trackUrl = 'https://cdn.cogoport.io/cms-prod/cogo_admin/vault/original/delayClock.svg';
 function ActiveTracking({ airTracking, oceanTracking }) {
 	const { push } = useRouter();
 	return (
@@ -42,7 +43,7 @@ function ActiveTracking({ airTracking, oceanTracking }) {
 									<p className={styles.new}>On Track Shipments</p>
 									<div className={styles.down}>
 										<img
-											src="https://cdn.cogoport.io/cms-prod/cogo_admin/vault/original/delayClock.svg"
+											src={trackUrl}
 											alt="img"
 										/>
 										<p className={styles.side}>{airTracking?.data?.on_track_air_cargos}</p>
@@ -75,7 +76,7 @@ function ActiveTracking({ airTracking, oceanTracking }) {
 									<p className={styles.new}>On Track Shipments</p>
 									<div className={styles.down}>
 										<img
-											src="https://cdn.cogoport.io/cms-prod/cogo_admin/vault/original/delayClock.svg"
+											src={trackUrl}
 											alt="img"
 										/>
 										<p className={styles.side}>{oceanTracking?.data?.on_track_shipments}</p>

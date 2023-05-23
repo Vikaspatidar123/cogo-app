@@ -60,7 +60,7 @@ function ModalPage({ open, setOpen }) {
 			});
 			Toast?.success('OTP sent');
 		} catch (err) {
-			Toast.errors(err?.data);
+			console.log(err);
 		}
 	};
 	const head = () => (

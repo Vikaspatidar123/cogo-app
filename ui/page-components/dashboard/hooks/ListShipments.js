@@ -30,6 +30,7 @@ function ListShipments() {
 
 	useEffect(() => {
 		shipmentsData();
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 	return { loading, shipmentsData, data };
 }

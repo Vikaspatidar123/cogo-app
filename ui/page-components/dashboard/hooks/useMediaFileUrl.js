@@ -1,5 +1,5 @@
 import { Toast } from '@cogoport/components';
-import { useState, useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 
 import { useRequest } from '@/packages/request';
 
@@ -9,7 +9,7 @@ function useGetMediaFileUrl() {
 		method : 'get',
 	}, { manual: true });
 
-	const getPromotionData = async (file_name) => {
+	const getPromotionData = useCallback(async (file_name) => {
 		try {
 			await trigger({ params: file_name });
 		} catch (err) {
@@ -17,11 +17,11 @@ function useGetMediaFileUrl() {
 				err?.message || ' Please try again.',
 			);
 		}
-	};
+	}, [trigger]);
 
 	useEffect(() => {
 		getPromotionData();
-	}, []);
+	}, [getPromotionData]);
 	return { loading, promotionData };
 }
 export default useGetMediaFileUrl;

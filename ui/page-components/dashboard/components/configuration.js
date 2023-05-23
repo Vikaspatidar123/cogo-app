@@ -27,8 +27,8 @@ export const getControls = (initialValues) => [
 		rules       : {
 			required:
 			initialValues?.country_code === 'IN'
-        	? 'Pan number is Required'
-        	: 'Registration Number is Required',
+				? 'Pan number is Required'
+				: 'Registration Number is Required',
 		},
 	},
 	{

@@ -1,5 +1,5 @@
 import { Toast } from '@cogoport/components';
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 
 import { useRequest } from '@/packages/request';
 
@@ -28,6 +28,7 @@ function useGetSchedules() {
 
 	useEffect(() => {
 		schedulesData();
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 	return { loading, schedulesData, air_data };
 }

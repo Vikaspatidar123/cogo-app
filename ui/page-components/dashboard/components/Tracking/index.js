@@ -1,13 +1,13 @@
 import { IcMArrowNext } from '@cogoport/icons-react';
 
-import GetTracking from '../../hooks/GetTracking';
+// import GetTracking from '../../hooks/GetTracking';
 
 import styles from './styles.module.css';
 
 import { useRouter } from '@/packages/next';
 
 function Tracking() {
-	const { loading, schedulesData, air_track } = GetTracking();
+	// const { loading, schedulesData, air_track } = GetTracking();
 	const { push } = useRouter();
 	return (
 		<div className={styles.header}>

@@ -210,6 +210,15 @@ const navigationMappings = {
 				as          : '/v2/saas/product-inventory',
 				module_type : 'dashboards',
 			},
+			{
+				key   : 'saas_planning-quotation',
+				title : 'Quick Quotations',
+				icon  : <IcMQuotations width={30} height={30} />,
+				type  : 'link',
+				href  : '/v2/saas/quickquotation/viewlist',
+				as    : '/v2/saas/quickquotation/viewlist',
+			},
+
 		],
 	},
 
@@ -227,5 +236,6 @@ const navigationMappings = {
 		as            : '/v2/settings',
 		showMobileNav : true,
 	},
+
 };
 export default navigationMappings;

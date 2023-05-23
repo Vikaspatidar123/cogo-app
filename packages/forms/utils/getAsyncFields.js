@@ -65,10 +65,22 @@ function asyncFieldsHsCodeCountries() {
 		defaultParams : { page_limit: 20 },
 	};
 }
+
+function asyncFieldsPartnerQuotation() {
+	return {
+		labelKey    : 'displayName',
+		valueKey    : 'id',
+		endpoint    : 'saas/organization/partner/list',
+		authKey     : 'get_saas_organization_partner_list',
+		initialCall : false,
+
+	};
+}
 export {
 	asyncFieldsLocations,
 	asyncFieldsLocations2,
 	asyncFieldsPartner,
 	asyncFieldsPartnerRoles,
 	asyncFieldsHsCodeCountries,
+	asyncFieldsPartnerQuotation,
 };

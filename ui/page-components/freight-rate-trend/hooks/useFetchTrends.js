@@ -69,7 +69,6 @@ const useFetchTrends = ({ pageLimit = 10 }) => {
 	};
 	const refectTrends = () => fetchTrends(false);
 	return {
-		load,
 		filters,
 		setFilters,
 		refectTrends,
@@ -78,6 +77,7 @@ const useFetchTrends = ({ pageLimit = 10 }) => {
 		tredList,
 		freightTrends,
 		listloading,
+		loading: load,
 	};
 };
 

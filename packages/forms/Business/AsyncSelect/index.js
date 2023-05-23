@@ -1,5 +1,5 @@
 import { MultiSelect, Select } from '@cogoport/components';
-import { isEmpty } from '@cogoport/utils';
+import { isEmpty, merge } from '@cogoport/utils';
 
 import useGetAsyncOptions from '../../hooks/useGetAsyncOptions';
 import useGetAsyncOptionsBf from '../../hooks/useGetAsyncOptionsBf';
@@ -41,29 +41,36 @@ const keyAsyncFieldsParamsMapping = {
 
 function AsyncSelect(props) {
 	const {
-		params,
+		params = {},
 		multiple,
 		asyncKey,
 		initialCall,
 		getModifiedOptions,
-		getSelectedOption,
+		getSelectedOption = () => {},
 		...rest
 	} = props;
-
 	const defaultParams = keyAsyncFieldsParamsMapping[asyncKey]?.() || {};
 
-	const getOptionFn = defaultParams?.authKey ? useGetAsyncOptionsBf : useGetAsyncOptions;
+	const callFunction = defaultParams.authKey
+		? useGetAsyncOptionsBf
+		: useGetAsyncOptions;
 
-	const getAsyncOptionsProps = getOptionFn({
+	const getAsyncOptionsProps = callFunction({
 		...defaultParams,
 		initialCall,
-		params   : params || defaultParams.params,
+		params   : merge(params, defaultParams.params),
 		labelKey : rest.labelKey || defaultParams.labelKey,
 		valueKey : rest.valueKey || defaultParams.valueKey,
+		getModifiedOptions,
 	});
 
-	if (typeof getModifiedOptions === 'function' && !isEmpty(getAsyncOptionsProps.options)) {
-		getAsyncOptionsProps.options = getModifiedOptions({ options: getAsyncOptionsProps.options });
+	if (
+		typeof getModifiedOptions === 'function'
+        && !isEmpty(getAsyncOptionsProps.options)
+	) {
+		getAsyncOptionsProps.options = getModifiedOptions(
+			getAsyncOptionsProps.options,
+		);
 	}
 
 	if (typeof getSelectedOption === 'function' && !isEmpty(rest.value)) {
@@ -74,17 +81,19 @@ function AsyncSelect(props) {
 			selectedValue = rest.value;
 		}
 
-		const selectedOption = getAsyncOptionsProps.options.filter((option) => option.id === selectedValue);
-
+		const selectedOption = getAsyncOptionsProps.options.filter(
+			(option) => option.id === selectedValue,
+		);
 		getSelectedOption(selectedOption[0]);
 	}
 
 	const Element = multiple ? MultiSelect : Select;
+	const { onHydrateValue, ...optionRest } = getAsyncOptionsProps || [];
 
 	return (
 		<Element
 			{...rest}
-			{...getAsyncOptionsProps}
+			{...optionRest}
 		/>
 	);
 }

@@ -1,0 +1,66 @@
+.row {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 10px 20px;
+	background: #fafbfb;
+}
+
+.section {
+	width: 88%;
+	padding: 0;
+
+	@media screen and (max-width: 767px) {
+		display: block;
+		padding-left: 13px;
+		margin-left: 22px;
+		text-align: center;
+		border-left: 1px solid #cddbff;
+	}
+}
+
+.col {
+	text-align: center;
+}
+
+.transport {
+	font-size: 11px;
+}
+
+.port_detail {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 55%;
+	padding: 10px;
+	border-right: 1px solid #cddbff;
+	border-left: 1px solid #cddbff;
+
+	@media screen and (max-width: 767px) {
+		justify-content: space-between;
+		padding: 0;
+		margin-bottom: 12px;
+		border: none;
+	}
+}
+
+.port_name {
+	width: 100px;
+	text-align: center;
+}
+
+.tag {
+	display: inline;
+	margin: 0 7px;
+	font-size: 12px;
+}
+
+.tooltip_name {
+	cursor: pointer;
+}
+
+.transport_details {
+	@media screen and (max-width: 767px) {
+		width: 13%;
+	}
+}

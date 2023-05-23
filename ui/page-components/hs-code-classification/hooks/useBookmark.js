@@ -9,29 +9,39 @@ const useBookmark = ({ setAddBookmark, setRemoveBookmark, refetchHsCode }) => {
 	const [bookmarkData, setBookmarkData] = useState([]);
 	const { id, organization } = profile || {};
 
-	const [{ loading: getBookmarkLoading }, trigger] = useRequestBf({
-		url     : '/saas/hs-code/favourites',
-		authKey : 'get_saas_hs_code_favourites',
-		method  : 'get',
-	}, { manual: true });
+	const [{ loading: getBookmarkLoading }, trigger] = useRequestBf(
+		{
+			url     : '/saas/hs-code/favourites',
+			authKey : 'get_saas_hs_code_favourites',
+			method  : 'get',
+		},
+		{ manual: true },
+	);
 
-	const [{ loading: postHsCodeFav }, triggerAdd] = useRequestBf({
-		url     : '/saas/hs-code/favourites',
-		authKey : 'post_saas_hs_code_favourites',
-		method  : 'post',
-	}, { manual: true });
+	const [{ loading: postHsCodeFav }, triggerAdd] = useRequestBf(
+		{
+			url     : '/saas/hs-code/favourites',
+			authKey : 'post_saas_hs_code_favourites',
+			method  : 'post',
+		},
+		{ manual: true },
+	);
 
-	const [{ loading: removeBookmarkLoading }, triggerDelete] = useRequestBf({
-		url     : '/saas/hs-code/favourites',
-		authKey : 'delete_saas_hs_code_favourites',
-		method  : 'delete',
-	}, { manual: true });
+	const [{ loading: removeBookmarkLoading }, triggerDelete] = useRequestBf(
+		{
+			url     : '/saas/hs-code/favourites',
+			authKey : 'delete_saas_hs_code_favourites',
+			method  : 'delete',
+		},
+		{ manual: true },
+	);
 
 	const refetchGetBookmark = async () => {
 		try {
 			const response = await trigger({
 				params: {
-					userId: id,
+					userId         : id,
+					organizationId : organization.id,
 				},
 			});
 			setBookmarkData(response.data);
@@ -69,8 +79,10 @@ const useBookmark = ({ setAddBookmark, setRemoveBookmark, refetchHsCode }) => {
 		try {
 			const response = await triggerDelete({
 				data: {
-					userId   : id,
-					hsCodeId : hsCode_ID,
+					userId         : id,
+					hsCodeId       : hsCode_ID,
+					organizationId : organization?.id,
+
 				},
 			});
 			if (response.data === 'Success' && flag) {

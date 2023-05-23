@@ -45,40 +45,61 @@ const navigationMappings = {
 				description : 'keep track of freight rates',
 			},
 			{
+				key   : 'saas_tools-air_tracking',
+				title : 'Air Tracking',
+				href  : '/v2/saas/air-tracking',
+				as    : '/v2/saas/air-tracking',
+				icon  : (
+					<img
+						src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/air-tracking.svg"
+						alt="cogo"
+					/>
+				),
+				description: 'Track your shipment on the map in real time',
+			},
+			{
 				key   : 'saas_tools-ocean_tracking',
 				title : 'Ocean Tracking',
 				href  : '/v2/saas/ocean-tracking',
 				as    : '/v2/saas/ocean-tracking',
-				icon  : <img
-					src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/ocean-tracking.svg"
-					alt="cogo"
-				/>,
-				description: 'Seamlessly keep track of your shipments and deviations',
+				icon  : (
+					<img
+						src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/ocean-tracking.svg"
+						alt="cogo"
+					/>
+				),
+				description:
+                    'Seamlessly keep track of your shipments and deviations',
 			},
 			{
 				key   : 'saas_tools-air_schedules',
 				title : 'Air Schedules',
 				href  : '/v2/saas/air-schedules',
 				as    : '/v2/saas/air-schedules',
-				icon  : <img
-					src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/air-schedule.svg"
-					alt="cogo"
-				/>,
-				description: 'Seamlessly keep track of your shipment schedule and deviations',
+				icon  : (
+					<img
+						src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/air-schedule.svg"
+						alt="cogo"
+					/>
+				),
+				description:
+                    'Seamlessly keep track of your shipment schedule and deviations',
 			},
 			{
 				key   : 'saas_tools-ocean_schedules',
 				title : 'Ocean Schedules',
 				href  : '/v2/saas/ocean-schedules',
 				as    : '/v2/saas/ocean-schedules',
-				icon  : <img
-					src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/ocean-schedule.svg"
-					alt="cogo"
-				/>,
-				description: 'Seamlessly keep track of your shipment schedules and deviations',
+				icon  : (
+					<img
+						src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/ocean-schedule.svg"
+						alt="cogo"
+					/>
+				),
+				description:
+                    'Seamlessly keep track of your shipment schedules and deviations',
 			},
 			{
-
 				key   : 'saas_tools-hs_code_classification',
 				title : 'Product Classification',
 				href  : '/v2/saas/hs-classification',
@@ -127,7 +148,6 @@ const navigationMappings = {
 				icon        : <IcADutiesTaxes width={50} height={50} />,
 				description : '',
 			},
-
 		],
 	},
 	app_accept_terms_and_conditions: {
@@ -155,13 +175,19 @@ const navigationMappings = {
 			{
 				key   : 'saas_finance-transaction_history',
 				title : 'Transaction History',
-				icon  : <IcMFfreferigeratedCargoType width={40} height={40} fill="red" />,
-				href  : '/saas/transaction-history',
-				as    : '/saas/transaction-history',
+				icon  : (
+					<IcMFfreferigeratedCargoType
+						width={40}
+						height={40}
+						fill="red"
+					/>
+				),
+				href : '/saas/transaction-history',
+				as   : '/saas/transaction-history',
 			},
-
 		],
 	},
+
 	saas_planning: {
 		key       : 'saas_planning',
 		title     : 'Planning',

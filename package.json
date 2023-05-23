@@ -19,6 +19,7 @@
   },
   "dependencies": {
     "@cogoport/charts": "^1.0.1",
+    "@cogoport/maps": "^1.0.3",
     "@cogoport/components": "^1.0.416",
     "@cogoport/icons-react": "^1.0.58",
     "@cogoport/maps": "^1.0.2",

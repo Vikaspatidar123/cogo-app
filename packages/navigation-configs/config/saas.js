@@ -36,6 +36,16 @@ const saas = {
 		navigation : 'saas_tools-trade_partner',
 		isMainNav  : true,
 	},
+	'/saas/air-tracking': {
+		navigation : 'saas_tools-air_tracking',
+		isMainNav  : true,
+
+	},
+	'/saas/air-tracking/[tracker_id]': {
+		navigation : 'saas_tools-air_tracking',
+		isMainNav  : true,
+
+	},
 	'/saas/ocean-tracking': {
 		navigation : 'saas_tools-ocean_tracking',
 		isMainNav  : true,

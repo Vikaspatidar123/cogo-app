@@ -1,4 +1,4 @@
-import { Popover } from '@cogoport/components';
+import { Popover, cl } from '@cogoport/components';
 import { isEmpty } from '@cogoport/utils';
 import React, {
 	useState,
@@ -12,7 +12,7 @@ import LoadsDetails from './LoadsDetails';
 import styles from './styles.module.css';
 
 function Loads(props, ref) {
-	const { formError = {}, serviceDetails = {}, airFreightData = {} } = props;
+	const { formError = {}, serviceDetails = {}, airFreightData = {}, isEdit = false } = props;
 
 	const [showPopover, setShowPopover] = useState(false);
 
@@ -102,7 +102,7 @@ function Loads(props, ref) {
 				onClickOutside={() => setShowPopover(true)}
 			>
 				<div
-					className={styles.load_container}
+					className={cl`${styles.load_container} ${isEdit && styles.is_edit}`}
 					role="presentation"
 					// showPopover={showPopover}
 					onClick={handlePopoverBtn}

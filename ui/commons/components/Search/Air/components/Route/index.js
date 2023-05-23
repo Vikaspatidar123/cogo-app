@@ -20,6 +20,7 @@ function Route({
 	formError = {},
 	extraParams,
 	setToggleState = () => {},
+	isEdit,
 }, ref) {
 	const { route = {} } = formError || {};
 
@@ -201,7 +202,10 @@ function Route({
 				const show = showElements[item.name];
 				return (
 					show && (
-						<div className={styles.field} style={{ width: getWidth(item?.span) }}>
+						<div
+							className={`${styles.field} ${isEdit && styles.edit}`}
+							style={{ width: getWidth(item?.span) }}
+						>
 							<div className={styles.lable}>{item.labelShow}</div>
 							<Element {...item} control={control} />
 							{errors && (

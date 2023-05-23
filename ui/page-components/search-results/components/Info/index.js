@@ -38,7 +38,7 @@ function Info({
 		return <Loading />;
 	}
 
-	const paddingXButton = data?.search_type === 'air_freight' ? 10 : 14;
+	const paddingXButton = data?.search_type === 'air_freight' ? 0 : 14;
 
 	const searchForm = (
 		<div className={styles.edit_container}>

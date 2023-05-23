@@ -15,6 +15,7 @@ function Air({
 	serviceDetails = {},
 	onPush = () => {},
 	detail = {},
+	isEdit = false,
 }) {
 	const spotRef = useRef({});
 	const {
@@ -74,6 +75,7 @@ function Air({
 							ref={(r) => {
 								spotRef.current.route = r;
 							}}
+							isEdit={isEdit}
 						/>
 					</div>
 					<div className={styles.goods_loads}>
@@ -88,6 +90,7 @@ function Air({
 							formError={formError}
 							location={location}
 							detail={detail}
+							isEdit={isEdit}
 						/>
 
 						<Loads
@@ -97,6 +100,7 @@ function Air({
 								airFormRef.current.load = r;
 							}}
 							serviceDetails={serviceDetails}
+							isEdit={isEdit}
 						/>
 					</div>
 				</div>

@@ -1,4 +1,4 @@
-import { Popover } from '@cogoport/components';
+import { Popover, cl } from '@cogoport/components';
 import { startCase, upperCase, isEmpty, format } from '@cogoport/utils';
 import React, {
 	useState,
@@ -82,6 +82,7 @@ function Goods(props, ref) {
 		detail = {},
 		toggleState = '',
 		setToggleState = () => {},
+		isEdit = false,
 	} = props;
 	const {
 		cargo_clearance_date,
@@ -216,7 +217,6 @@ function Goods(props, ref) {
 			<div className={styles.title}>GOODS</div>
 
 			<Popover
-				// theme="light"
 				trigger="mouseenter"
 				placement="bottom"
 				className={styles.popover_class}
@@ -244,7 +244,7 @@ function Goods(props, ref) {
 			>
 				<div
 					role="presentation"
-					className={styles.payment_terms_container}
+					className={cl`${styles.payment_terms_container} ${isEdit && styles.is_edit}`}
 					// showPopover={showPopover}
 					onClick={() => setShowPopover(!showPopover)}
 				>

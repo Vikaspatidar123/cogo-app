@@ -50,7 +50,6 @@ function Form(
 		disabledFields = {},
 		form_id = '',
 		validityErr = '',
-		scope,
 		searchData = {},
 		importer_exporter_details = {},
 		serviceDetails = {},
@@ -246,6 +245,7 @@ function Form(
 				serviceDetails={serviceDetails}
 				onPush={onPush}
 				detail={detail}
+				isEdit={isEdit}
 			/>
 		);
 	}

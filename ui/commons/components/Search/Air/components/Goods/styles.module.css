@@ -35,11 +35,9 @@
   width: 280px;
   overflow-x: auto;
   overflow: hidden;
-
   background: #ffffff;
   border: 1px solid #e0e0e0;
   border-radius: 6px;
-
   cursor: pointer;
 
   .text {
@@ -75,4 +73,8 @@
 .error_message_container {
   color: #cb6464;
   font-size: 12px;
+}
+
+.is_edit{
+  width: 230px !important;
 }

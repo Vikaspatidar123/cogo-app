@@ -139,8 +139,6 @@ function GoodsDetails({
 
 	const onSubmit = (values) => {
 		const goodsCommodity = values.commodity_type === 'general' ? 'general' : 'special_consideration';
-		console.log(values, 'values');
-
 		const {
 			dry_ice_required = false,
 			incoterms = '',

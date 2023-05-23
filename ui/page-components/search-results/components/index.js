@@ -80,8 +80,8 @@ function SelectedRateInfo({
 	);
 
 	const { service_type } = data || {};
-
 	const componentKey = service_type in SERVICE_TYPE_SELECTED_RATE_COMPONENT_MAPPING ? service_type : 'others';
+
 	const Component = SERVICE_TYPE_SELECTED_RATE_COMPONENT_MAPPING[componentKey] || null;
 
 	if (!Component) {
@@ -121,12 +121,10 @@ function Results({
 	const { importer_exporter_id: importerExporterId = '' } = detail || {};
 	const { count = 0 } = contract_detail || {};
 
-	const { query, user_profile } = useSelector(
-		({ general, profile }) => ({
-			query        : (general || {}).query || {},
-			user_profile : profile,
-		}),
-	);
+	const { query, user_profile } = useSelector(({ general, profile }) => ({
+		query        : (general || {}).query || {},
+		user_profile : profile,
+	}));
 	const { search_id, shipment_id } = query;
 
 	const { setSort, sort, filters, setFilters } = rest || {};
@@ -183,8 +181,9 @@ function Results({
 
 	useEffect(() => {
 		const isHiPriority = data?.origin_country?.country_code === 'CN'
-      && data?.destination_country?.country_code
-        === getCountryDetails({ country_id: INDIA_COUNTRY_ID }).country_code;
+            && data?.destination_country?.country_code
+                === getCountryDetails({ country_id: INDIA_COUNTRY_ID })
+                	.country_code;
 		if (!loading && isHiPriority && process.env.LIVE_CHAT_CLIENT_ID) {
 			handleLiveChat(user_profile, data);
 		}
@@ -254,11 +253,15 @@ function Results({
 		if (!loading && rates_count.length === 0 && !isAwaitingResponse) {
 			return (
 				<>
-					{swb_without_rates ? <AddRate setAddRate={setAddRate} /> : null}
-
-					{REQUEST_RATE_ALLOWED_SERVICES.includes(data?.search_type) ? (
-						<RequestRate headerData={data} />
+					{swb_without_rates ? (
+						<AddRate setAddRate={setAddRate} />
 					) : null}
+
+					{REQUEST_RATE_ALLOWED_SERVICES.includes(
+                    	data?.search_type,
+					) ? (
+						<RequestRate headerData={data} />
+                    	) : null}
 				</>
 			);
 		}
@@ -297,13 +300,14 @@ function Results({
 							scheduleList={scheduleList}
 						/>
 
-						{(marketplaceRates === 1 ? i === 0 : i % 10 === 1) && swb_with_rates ? (
-							<AddRate
-								type="rates-found"
-								setAddRate={setAddRate}
-								show={false}
-							/>
-						) : null}
+						{(marketplaceRates === 1 ? i === 0 : i % 10 === 1)
+                        && swb_with_rates ? (
+	<AddRate
+		type="rates-found"
+		setAddRate={setAddRate}
+		show={false}
+	/>
+                        	) : null}
 					</>
 				))}
 			</>
@@ -351,9 +355,13 @@ function Results({
 								className={styles.hover_effect}
 								onClick={() => push('/book')}
 							>
-								<IcMArrowBack style={{ width: 20, height: 20 }} />
+								<IcMArrowBack
+									style={{ width: 20, height: 20 }}
+								/>
 							</div>
-							<text className={styles.link}>Back to Discover Rates</text>
+							<text className={styles.link}>
+								Back to Discover Rates
+							</text>
 						</>
 					)}
 				</div>
@@ -367,7 +375,9 @@ function Results({
 						searchData={searchData}
 						importer_exporter_details={importer_exporter_details}
 						refetch={refetch}
-						possible_additional_services={possible_additional_services}
+						possible_additional_services={
+						possible_additional_services
+                        }
 						detail={detail}
 					/>
 
@@ -384,7 +394,9 @@ function Results({
 								{!loading ? (
 									<div className={styles.text_bold}>
 										{`${(rates || []).length} ${
-											(rates || []).length === 1 ? 'rate' : 'rates'
+                                        	(rates || []).length === 1
+                                        		? 'rate'
+                                        		: 'rates'
 										} found`}
 									</div>
 								) : (
@@ -407,7 +419,9 @@ function Results({
 
 							{handleRateCards()}
 						</>
-					) : (configureSellRate())}
+					) : (
+                    	configureSellRate()
+					)}
 				</div>
 
 				{handleAdditionalServices()}

@@ -55,3 +55,10 @@
 		width: max-content !important;
 	  }
 }
+.edit{
+	:global{
+		.ui_select_container{
+			width:210px !important;
+		}
+	}
+}

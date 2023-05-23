@@ -52,10 +52,12 @@ function Shipments() {
 									<div className={styles.third_data}>
 										<IcCFlcl className={styles.new} />
 										<p className={styles.black}>{val?.commodity}</p>
-										<p className={styles.pink}>
-											Inco-
-											{val?.inco_term}
-										</p>
+										{val?.inco_term && (
+											<p className={styles.pink}>
+												Inco-
+												{val?.inco_term}
+											</p>
+										)}
 										<p className={styles.black}>{val?.trade_type}</p>
 										<p className={styles.black}>
 											Vol. -

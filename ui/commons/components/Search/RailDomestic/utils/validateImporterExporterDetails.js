@@ -1,4 +1,4 @@
-import { toast } from '@cogoport/front/components';
+import { Toast } from '@cogoport/components';
 
 const validateImporterExporterDetails = ({ importerExporterDetails }) => {
 	const {
@@ -8,7 +8,7 @@ const validateImporterExporterDetails = ({ importerExporterDetails }) => {
 	} = importerExporterDetails || {};
 
 	if (!importer_exporter_id) {
-		toast.warn('Please select shipper name', {
+		Toast.warn('Please select shipper name', {
 			autoClose : 1000,
 			style     : { background: '#ffffff' },
 		});
@@ -17,7 +17,7 @@ const validateImporterExporterDetails = ({ importerExporterDetails }) => {
 	}
 
 	if (!importer_exporter_user_id) {
-		toast.warn('Please select User', {
+		Toast.warn('Please select User', {
 			autoClose : 1000,
 			style     : { background: '#ffffff' },
 		});

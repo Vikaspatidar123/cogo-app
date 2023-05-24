@@ -1,8 +1,9 @@
-import Layout from '@cogo/business-modules/form/Layout';
 import { forwardRef } from 'react';
 
 import { Container } from './styles';
 import useCargoDetails from './useCargoDetails';
+
+import FormElement from '@/ui/page-components/discover_rates/common/FormElement';
 
 function CargoDetails(props, ref) {
 	const { controls, formProps } = useCargoDetails(props, ref);
@@ -16,7 +17,7 @@ function CargoDetails(props, ref) {
 
 	return (
 		<Container>
-			<Layout
+			<FormElement
 				controls={controls}
 				fields={fields}
 				errors={errors}

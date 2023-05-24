@@ -1,5 +1,5 @@
-import { toast } from '@cogoport/front/components/admin';
-import { isEmpty } from '@cogoport/front/utils';
+import { Toast } from '@cogoport/components';
+import { isEmpty } from '@cogoport/utils';
 import { useState, useImperativeHandle, useRef, useEffect } from 'react';
 
 import CONSTANTS from './utils/constants';
@@ -73,7 +73,7 @@ const useCargoContainersDetails = (props, ref) => {
 
 			const newList = previousState.filter((item) => item.id !== id);
 
-			toast.success('Deleted Successfully');
+			Toast.success('Deleted Successfully');
 
 			if (newList.length === 0) {
 				setShowForm(true);
@@ -105,14 +105,14 @@ const useCargoContainersDetails = (props, ref) => {
 
 		if (containerLoadSubType !== 'full_rake') {
 			if (totalContainerCounts > MAXIMUM_PIECE_MILE_CONTAINER_COUNT) {
-				toast.error('Total containers count should not  be greater than 1000');
+				Toast.error('Total containers count should not  be greater than 1000');
 			}
 
 			return totalContainerCounts <= MAXIMUM_PIECE_MILE_CONTAINER_COUNT;
 		}
 
 		if (!MAXIMUM_FULL_RAKE_CONTAINER_COUNT.includes(totalContainerCounts)) {
-			toast.error('Total containers count should be equal to 80 or 90');
+			Toast.error('Total containers count should be equal to 80 or 90');
 		}
 
 		return MAXIMUM_FULL_RAKE_CONTAINER_COUNT.includes(totalContainerCounts);

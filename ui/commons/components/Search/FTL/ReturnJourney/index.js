@@ -9,7 +9,6 @@ import {
 	useEffect,
 } from 'react';
 
-import Icon from '../icons/ic-arrow-right.svg';
 import TouchPoint from '../SearchForm/TouchPoint';
 
 import controls from './controls';

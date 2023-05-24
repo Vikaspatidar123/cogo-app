@@ -1,4 +1,4 @@
-import { isEmpty } from '@cogoport/front/utils';
+import { isEmpty } from '@cogoport/utils';
 
 const getImperativeHandleValues = async ({ imperativeHandleRef }) => {
 	const promises = [];

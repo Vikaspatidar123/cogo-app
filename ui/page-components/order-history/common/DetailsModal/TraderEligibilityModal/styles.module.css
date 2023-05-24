@@ -135,8 +135,4 @@
 	margin: 4px;
 	font-size: 13px;
 	font-weight: 500;
-
-	&.core-ui-tag-root {
-		background-color: #d9eafd;
-	}
 }

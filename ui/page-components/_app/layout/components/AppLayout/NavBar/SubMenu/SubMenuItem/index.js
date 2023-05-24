@@ -12,6 +12,7 @@ function SubMenuItem({ item, unPrefixedPath, getFindUrl }) {
 	const {
 		href = '', title = '', description = '', icon = '', as = '',
 	} = item || {};
+
 	const url = getFindUrl(href);
 	const { profile } = useSelector((s) => s);
 	const { organization, branch } = profile || {};
@@ -23,6 +24,13 @@ function SubMenuItem({ item, unPrefixedPath, getFindUrl }) {
 		} else {
 			window.location.href = `/app/${organization?.id}/${branch?.id}/importer-exporter/${href || as}`;
 		}
+	};
+
+	const renderDescription = (desc) => {
+		if (desc.length > 45) {
+			return `${desc.substring(0, 45)}...`;
+		}
+		return desc;
 	};
 
 	return (
@@ -38,7 +46,7 @@ function SubMenuItem({ item, unPrefixedPath, getFindUrl }) {
 			{!icon && <div style={{ width: 45, height: 45 }} />}
 			<div className={styles.main}>
 				<div className={styles.title}>{title}</div>
-				<div className={styles.description}>{description}</div>
+				<div className={styles.description}>{renderDescription(description)}</div>
 			</div>
 		</div>
 	);

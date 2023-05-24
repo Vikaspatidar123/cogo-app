@@ -32,10 +32,9 @@
 	{
 		"name": "truck_type",
 		"label": "Truck Type",
-		"type": "async_select",
+		"type": "select",
 		"caret": true,
-		"asyncKey": "truck-types",
-		"span": 8,
+		"optionKey": "truck_types",
 		"condition": {
 			"cargo_handling_type": ["stuffing_at_dock"],
 			"services": ["export_transportation"]

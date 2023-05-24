@@ -13,11 +13,11 @@ const controls = [
 		span  : 12,
 	},
 	{
-		name           : 'location',
-		label          : 'Pickup Zipcode',
-		type           : 'location-select',
-		optionsListKey : 'locations',
-		params         : {
+		name     : 'location',
+		label    : 'Pickup Zipcode',
+		type     : 'async_select',
+		asyncKey : 'locations',
+		params   : {
 			filters: {
 				type: ['airport', 'seaport', 'pincode', 'cfs'],
 			},
@@ -34,13 +34,13 @@ const controls = [
 		span  : 12,
 	},
 	{
-		name           : 'truck_type',
-		label          : 'Truck Type',
-		type           : 'select',
-		optionsListKey : 'truck-types',
-		multiple       : false,
-		rules          : { required: true },
-		span           : 12,
+		name      : 'truck_type',
+		label     : 'Truck Type',
+		type      : 'select',
+		optionKey : 'truck_types',
+		multiple  : false,
+		rules     : { required: true },
+		span      : 12,
 	},
 	{
 		name  : 'trucks_count',

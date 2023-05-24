@@ -71,7 +71,7 @@
 		"label": "Truck Type",
 		"type": "select",
 		"caret": true,
-		"optionsListKey": "truck-types",
+		"optionKey": "truck_types",
 		"span": 8,
 		"condition": {
             "cargo_handling_type": ["stuffing_at_dock"],

@@ -5,7 +5,7 @@ import getOptionsFromKey from './getOptionsFromKey';
 function SelectController(props) {
 	const {
 		options = [],
-		optionkey = '',
+		optionKey = '',
 		multiple = false,
 		valueKey,
 		labelKey,
@@ -16,23 +16,15 @@ function SelectController(props) {
 	let finalValueKey = valueKey || 'value';
 	let finalLabelKey = labelKey || 'label';
 
-	if (optionkey) {
-		const data = getOptionsFromKey(optionkey, { ...rest });
+	if (optionKey) {
+		const data = getOptionsFromKey(optionKey, { ...rest });
 		finalOptions = data.options;
 		finalValueKey = valueKey || data.valueKey;
 		finalLabelKey = labelKey || data.labelKey;
 	}
-	// const customComponentsAll = {};
-	// if (rest.ControlComponent) {
-	// 	customComponentsAll.Control = rest.ControlComponent;
-	// }
+
 	return (
-		<Element
-			{...rest}
-			valueKey={finalValueKey}
-			labelKey={finalLabelKey}
-			options={finalOptions}
-		/>
+		<Element {...rest} valueKey={finalValueKey} labelKey={finalLabelKey} options={finalOptions} />
 	);
 }
 

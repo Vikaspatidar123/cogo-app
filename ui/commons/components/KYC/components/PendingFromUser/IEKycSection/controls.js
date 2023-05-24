@@ -23,7 +23,7 @@ const controls = [
 		type          : 'select',
 		span          : 4,
 		autoCloseMenu : false,
-		optionkey     : 'languages',
+		optionKey     : 'languages',
 		placeholder   : 'Select preferred language(s)',
 		rules         : { required: 'Required' },
 	},

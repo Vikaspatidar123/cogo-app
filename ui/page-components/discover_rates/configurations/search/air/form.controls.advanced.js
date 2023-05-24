@@ -51,7 +51,7 @@ const formControlsAdvanced = (isChannelPartner = false) => [
 		name      : 'export_transportation_truck_type',
 		label     : 'Pickup Truck Type',
 		type      : 'select',
-		optionkey : 'truck_types',
+		optionKey : 'truck_types',
 		style     : { width: '350px' },
 		condition : {
 			services                          : ['export_transportation'],
@@ -176,7 +176,7 @@ const formControlsAdvanced = (isChannelPartner = false) => [
 		name      : 'import_transportation_truck_type',
 		label     : 'Drop Truck Type',
 		type      : 'select',
-		optionkey : 'truck_types',
+		optionKey : 'truck_types',
 		style     : { width: '350px' },
 		condition : {
 			services                          : ['import_transportation'],

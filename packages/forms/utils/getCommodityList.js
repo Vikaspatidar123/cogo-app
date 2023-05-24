@@ -29,11 +29,9 @@ const getCommoditiesDetails = (list = [], keepAll = false, isNullValue = true) =
 };
 
 const getCommodityList = (type, contType = 'standard') => {
-	const containerType =		contType === null || contType === undefined || contType === ''
+	const containerType = contType === null || contType === undefined || contType === ''
 		? 'standard'
 		: contType;
-
-	// console.log(type, contType);
 
 	switch (type) {
 		case 'all_fcl_freight':

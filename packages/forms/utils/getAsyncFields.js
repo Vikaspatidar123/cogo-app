@@ -17,10 +17,11 @@ function asyncFieldsLocations(labelKey = 'name', valueKey = 'id') {
 		valueKey,
 		labelKey,
 		endpoint    : 'list_locations',
+		authKey     : 'get_list_locations',
 		initialCall : true,
 		params      : {
 			filters    : { status: 'active' },
-			page_limit : 10,
+			page_limit : 20,
 			sort_by    : 'name',
 			sort_type  : 'asc',
 			includes   : { country: null, main_ports: null },
@@ -58,7 +59,7 @@ function asyncFieldsHsCodeCountries() {
 	return {
 		labelKey      : 'countryName',
 		valueKey      : 'id',
-		endpoint      : 'saas/hs-code/countries',
+		endpoint      : '/saas/hs-code/countries',
 		authKey       : 'get_saas_hs_code_countries',
 		initialCall   : true,
 		defaultParams : { page_limit: 20 },
@@ -112,6 +113,17 @@ function asyncCountrySelect() {
 		},
 	};
 }
+function asyncFieldsPartnerQuotation() {
+	return {
+		labelKey    : 'displayName',
+		valueKey    : 'id',
+		endpoint    : 'saas/organization/partner/list',
+		authKey     : 'get_saas_organization_partner_list',
+		initialCall : false,
+
+	};
+}
+
 export {
 	asyncFieldsLocations,
 	asyncFieldsLocations2,
@@ -121,4 +133,5 @@ export {
 	asyncAirLines,
 	asyncShippingLines,
 	asyncCountrySelect,
+	asyncFieldsPartnerQuotation,
 };

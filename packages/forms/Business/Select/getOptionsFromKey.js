@@ -22,7 +22,7 @@ const getOptionsFromKey = (
 	if (key === 'truck_types') {
 		const applicableTrucks = TruckTypes.filter(
 			(truck) => truck.country_codes.includes(country_code)
-				|| truck.country_codes.includes('ALL'),
+                || truck.country_codes.includes('ALL'),
 		);
 		data.options = applicableTrucks.map((truck) => ({
 			...truck,
@@ -36,7 +36,7 @@ const getOptionsFromKey = (
 		data.options = ContainerTypes;
 	} else if (commodityType) {
 		data.options = getCommodityList(commodityType, containerType);
-	    } else if (key === 'commodities') {
+	} else if (key === 'commodities') {
 		data.options = getCommodityList('freight');
 	} else if (key === 'languages') {
 		data.options = Languages;

@@ -46,7 +46,12 @@ function TradePartnerAddress({
 		formState: { errors },
 		control,
 	} = useForm();
-
+	console.log(
+		errors,
+		'errors',
+		field?.[1],
+		errors?.[field?.[1]?.name]?.message,
+	);
 	const ButtonRender = (edit) => {
 		if (edit) {
 			return 'UPDATE';
@@ -57,6 +62,7 @@ function TradePartnerAddress({
 		setShowModal(false);
 	};
 	const submitForm = (data) => {
+		console.log(data, 'data', field, errors?.[field?.[1]?.name]);
 		const userData = {
 			...data,
 			performedBy             : id,
@@ -87,14 +93,12 @@ function TradePartnerAddress({
 	const TextController = getField('text');
 
 	return (
-		<Modal
-			show={showmodal}
-			onClose={() => setShowModal(false)}
-			size="md"
-		>
+		<Modal show={showmodal} onClose={() => setShowModal(false)} size="md">
 			<form>
 				<div className={styles.container}>
-					<Modal.Header title={`${isEdit ? 'Update' : 'Add New'} Trade Partner`} />
+					<Modal.Header
+						title={`${isEdit ? 'Update' : 'Add New'} Trade Partner`}
+					/>
 					<Modal.Body>
 						<div className={styles.section}>
 							<div className={styles.section_title}>
@@ -108,15 +112,27 @@ function TradePartnerAddress({
 									<div className={styles.label}>
 										{field[0]?.label}
 									</div>
-									<TextController {...field[0]} control={control} />
+									<TextController
+										{...field[0]}
+										control={control}
+									/>
 								</div>
 
 								<div className={styles.col}>
 									<div className={styles.label}>
 										{field[1]?.label}
 									</div>
-									<TextController {...field[1]} control={control} />
-									{errors[1] && <p className={styles.error_text}>{`${errors[1]?.type}*`}</p>}
+									<TextController
+										{...field[1]}
+										control={control}
+									/>
+									{errors?.[field?.[1]?.name] && (
+										<p className={styles.error_text}>
+											{`${
+												errors?.[field?.[1]?.name]?.type
+											}*`}
+										</p>
+									)}
 								</div>
 							</div>
 							<div className={styles.row}>
@@ -124,11 +140,16 @@ function TradePartnerAddress({
 									<div className={styles.label}>
 										{field[2].label}
 									</div>
-									<InputController {...field[2]} control={control} />
-									{errors[2] && (
+									<InputController
+										{...field[2]}
+										control={control}
+									/>
+									{errors?.[field?.[2]?.name] && (
 										<p className={styles.error_text}>
 											{`${
-												errors[2]?.message || errors[2].type
+												errors?.[field?.[2]?.name]
+													?.message
+                                                || errors?.[field?.[2]?.name]?.type
 											}*`}
 										</p>
 									)}
@@ -138,12 +159,18 @@ function TradePartnerAddress({
 									<div className={styles.label}>
 										{field[3].label}
 									</div>
-									<TextController {...field[3]} control={control} />
-									{errors[3] && (
-										<p className={styles.error_text}>{`${errors[3].type}*`}</p>
+									<TextController
+										{...field[3]}
+										control={control}
+									/>
+									{errors?.[field?.[3]?.name] && (
+										<p className={styles.error_text}>
+											{`${
+												errors?.[field?.[3]?.name]?.type
+											}*`}
+										</p>
 									)}
 								</div>
-
 							</div>
 							<div className={styles.row}>
 								<div className={styles.col}>
@@ -154,10 +181,12 @@ function TradePartnerAddress({
 										{...field[4]}
 										control={control}
 									/>
-									{errors[4] && (
+									{errors?.[field?.[4]?.name] && (
 										<p className={styles.error_text}>
 											{`${
-												errors[4].message || errors[4].type
+												errors?.[field?.[4]?.name]
+													?.message
+                                                || errors?.[field?.[4]?.name]?.type
 											}*`}
 										</p>
 									)}
@@ -170,14 +199,21 @@ function TradePartnerAddress({
 										{...field[5]}
 										control={control}
 									/>
-									{errors[5] && <p className={styles.error_text}>{`${errors[5].type}*`}</p>}
+									{errors?.[field?.[5]?.name] && (
+										<p className={styles.error_text}>
+											{`${
+												errors?.[field?.[5]?.name]?.type
+											}*`}
+										</p>
+									)}
 								</div>
-
 							</div>
 						</div>
 						<div className={styles.section}>
 							<div className={styles.section_title}>
-								<div className={styles.title}>Address Details</div>
+								<div className={styles.title}>
+									Address Details
+								</div>
 								<div className={styles.design}>
 									<Line />
 								</div>
@@ -187,16 +223,27 @@ function TradePartnerAddress({
 									<div className={styles.label}>
 										{field[6].label}
 									</div>
-									<TextController {...field[6]} control={control} />
-									{errors[6] && <p className={styles.error_text}>{`${errors[6].type}*`}</p>}
+									<TextController
+										{...field[6]}
+										control={control}
+									/>
+									{errors?.[field?.[6]?.name] && (
+										<p className={styles.error_text}>
+											{`${
+												errors?.[field?.[6]?.name]?.type
+											}*`}
+										</p>
+									)}
 								</div>
 								<div className={styles.col}>
 									<div className={styles.label}>
 										{field[7].label}
 									</div>
-									<TextController {...field[7]} control={control} />
+									<TextController
+										{...field[7]}
+										control={control}
+									/>
 								</div>
-
 							</div>
 							<div className={styles.row}>
 								<div className={styles.col}>
@@ -209,7 +256,13 @@ function TradePartnerAddress({
 										control={control}
 										handleChange={(e) => setStateInfo(e)}
 									/>
-									{errors[8] && <p className={styles.error_text}>{`${errors[8].type}*`}</p>}
+									{errors?.[field?.[8]?.name] && (
+										<p className={styles.error_text}>
+											{`${
+												errors?.[field?.[8]?.name].type
+											}*`}
+										</p>
+									)}
 								</div>
 
 								<div className={styles.col}>
@@ -222,7 +275,13 @@ function TradePartnerAddress({
 										control={control}
 										handleChange={(data) => setCityInfo(data)}
 									/>
-									{errors[9] && <p className={styles.error_text}>{`${errors[9].type}*`}</p>}
+									{errors?.[field?.[9]?.name] && (
+										<p className={styles.error_text}>
+											{`${
+												errors?.[field?.[9]?.name].type
+											}*`}
+										</p>
+									)}
 								</div>
 							</div>
 						</div>
@@ -235,7 +294,11 @@ function TradePartnerAddress({
 						disabled={loading}
 						onClick={handleSubmit(submitForm)}
 					>
-						{loading ? <Loader themeType="secondary" /> : ButtonRender(isEdit)}
+						{loading ? (
+							<Loader themeType="secondary" />
+						) : (
+							ButtonRender(isEdit)
+						)}
 					</Button>
 				</div>
 			</form>

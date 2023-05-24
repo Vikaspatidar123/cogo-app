@@ -4,7 +4,6 @@ import AsyncSelect from '../Business/AsyncSelect';
 
 function AsyncSelectController(props) {
 	const { name, control, value, rules, ...rest } = props;
-
 	return (
 		<Controller
 			key={rest.id}
@@ -17,10 +16,10 @@ function AsyncSelectController(props) {
 					{...rest}
 					key={rest.id}
 					onChange={(val, obj) => {
-          	onChange(val, obj);
-          	if (rest?.handleChange) {
-          		rest?.handleChange(obj);
-          	}
+						onChange(val, obj);
+						if (rest?.handleChange) {
+							rest?.handleChange(obj);
+						}
 					}}
 					value={newValue}
 					onBlur={onBlur}

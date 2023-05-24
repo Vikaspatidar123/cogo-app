@@ -1,0 +1,72 @@
+.container {
+	width: 100%;
+}
+
+.tabs {
+	display: flex;
+	gap: 10px;
+	justify-content: space-between;
+}
+
+.with_mobile {
+	gap: 0 10px;
+	justify-content: space-around;
+}
+
+.card {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 150px;
+	padding: 12px;
+	cursor: pointer;
+	border: 1px solid #cdd9ed;
+	border-radius: 8px;
+}
+
+.dot {
+	position: absolute;
+	top: 10px;
+	left: 10px;
+	width: 8px;
+	height: 8px;
+	background: #db4634;
+	border-radius: 100%;
+	box-shadow: 0 0 7px #fff, 0 0 0 #fff, 0 0 4px #f00, 0 0 12px #f00;
+}
+
+.image {
+	width: 88px;
+	height: 60px;
+	margin-bottom: 10px;
+}
+
+.txt {
+	color: #828282;
+}
+
+.form_div {
+	margin-top: 25px;
+}
+
+.inter_change_container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.icn {
+	width: 30px;
+	height: 30px;
+	padding: 4px;
+	cursor: pointer;
+	background: #fef3e9;
+	border: 1px solid #fbd1a6;
+	border-radius: 100px;
+	transition: 0.2s ease-in;
+}
+
+.rotate_icn {
+	transform: rotate(180deg);
+}

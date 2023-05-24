@@ -1,7 +1,8 @@
 import { MultiSelect, Select } from '@cogoport/components';
-import { isEmpty } from '@cogoport/utils';
+import { isEmpty, merge } from '@cogoport/utils';
 
 import useGetAsyncOptions from '../../hooks/useGetAsyncOptions';
+import useGetAsyncOptionsBf from '../../hooks/useGetAsyncOptionsBf';
 import {
 	asyncFieldsLocations,
 	asyncFieldsLocations2,
@@ -11,6 +12,7 @@ import {
 	asyncAirLines,
 	asyncShippingLines,
 	asyncCountrySelect,
+	asyncFieldsPartnerQuotation,
 } from '../../utils/getAsyncFields';
 
 /**
@@ -32,19 +34,20 @@ import {
  * getModifiedOptions
  */
 const keyAsyncFieldsParamsMapping = {
-	locations         : asyncFieldsLocations,
-	locations2        : asyncFieldsLocations2,
-	partners          : asyncFieldsPartner,
-	partner_roles     : asyncFieldsPartnerRoles,
-	hs_code_countries : asyncFieldsHsCodeCountries,
-	'air-lines'       : asyncAirLines,
-	'shipping-lines'  : asyncShippingLines,
-	countries         : asyncCountrySelect,
+	locations              : asyncFieldsLocations,
+	locations2             : asyncFieldsLocations2,
+	partners               : asyncFieldsPartner,
+	partner_roles          : asyncFieldsPartnerRoles,
+	hs_code_countries      : asyncFieldsHsCodeCountries,
+	'air-lines'            : asyncAirLines,
+	'shipping-lines'       : asyncShippingLines,
+	countries              : asyncCountrySelect,
+	list_partner_quotation : asyncFieldsPartnerQuotation,
 };
 
 function AsyncSelect(props) {
 	const {
-		params,
+		params = {},
 		multiple,
 		asyncKey,
 		initialCall,
@@ -52,24 +55,28 @@ function AsyncSelect(props) {
 		getSelectedOption = () => {},
 		...rest
 	} = props;
-
 	const defaultParams = keyAsyncFieldsParamsMapping[asyncKey]?.() || {};
 
-	const getAsyncOptionsProps = useGetAsyncOptions({
+	const callFunction = defaultParams.authKey
+		? useGetAsyncOptionsBf
+		: useGetAsyncOptions;
+
+	const getAsyncOptionsProps = callFunction({
 		...defaultParams,
 		initialCall,
-		params   : params || defaultParams.params,
+		params   : merge(params, defaultParams.params),
 		labelKey : rest.labelKey || defaultParams.labelKey,
 		valueKey : rest.valueKey || defaultParams.valueKey,
+		getModifiedOptions,
 	});
 
 	if (
 		typeof getModifiedOptions === 'function'
-    && !isEmpty(getAsyncOptionsProps.options)
+        && !isEmpty(getAsyncOptionsProps.options)
 	) {
-		getAsyncOptionsProps.options = getModifiedOptions({
-			options: getAsyncOptionsProps.options,
-		});
+		getAsyncOptionsProps.options = getModifiedOptions(
+			getAsyncOptionsProps.options,
+		);
 	}
 
 	if (typeof getSelectedOption === 'function' && !isEmpty(rest.value)) {
@@ -88,8 +95,14 @@ function AsyncSelect(props) {
 	}
 
 	const Element = multiple ? MultiSelect : Select;
+	const { onHydrateValue, ...optionRest } = getAsyncOptionsProps || [];
 
-	return <Element {...rest} {...getAsyncOptionsProps} />;
+	return (
+		<Element
+			{...rest}
+			{...optionRest}
+		/>
+	);
 }
 
 export default AsyncSelect;

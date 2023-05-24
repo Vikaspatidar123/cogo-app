@@ -3,6 +3,7 @@ import CheckboxController from './CheckboxController';
 import CheckboxGroupController from './CheckboxGroupController';
 import ChipsController from './ChipController';
 import ControlledCommodityCon from './ControlledCommodityCon';
+import CountrySelectController from './CountrySelectController';
 import DatepickerController from './DatepickerController';
 import IncoTermSelectController from './IncoTermSelect';
 import InputController from './InputController';
@@ -10,7 +11,9 @@ import InputGroupController from './InputGroupController';
 import InputNumberController from './InputNumberController';
 import MobileNumberSelectController from './MobileNumberSelectController';
 import MultiselectController from './MultiSelectController';
+import PriceController from './PriceController';
 import RadioController from './RadioController';
+import RadioGroupController from './RadioGroupController';
 import SelectController from './SelectController';
 import SliderController from './SliderController';
 import TextAreaController from './TextAreaController';
@@ -34,7 +37,9 @@ const MAPPING = {
 	'input-group'              : InputGroupController,
 	'inco-terms-select'        : IncoTermSelectController,
 	checkboxGroup              : CheckboxGroupController,
-
+	radiogroup                 : RadioGroupController,
+	price_select               : PriceController,
+	country_select             : CountrySelectController,
 };
 
 const getField = (type = 'text') => {

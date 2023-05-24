@@ -71,7 +71,7 @@ const controls = () => [
 		label     : 'Truck Type',
 		type      : 'select',
 		caret     : true,
-		optionkey  : 'truck_types',
+		optionKey : 'truck_types',
 		span      : 8,
 		condition : {
 			export_transportation_cargo_handling_type : ['stuffing_at_dock'],
@@ -167,7 +167,7 @@ const controls = () => [
 		label     : 'Truck Type',
 		type      : 'select',
 		caret     : true,
-		optionkey  : 'truck_types',
+		optionKey : 'truck_types',
 		span      : 8,
 		condition : {
 			import_transportation_cargo_handling_type : ['destuffing_at_dock'],
@@ -234,7 +234,7 @@ const controls = () => [
 	{
 		name      : 'export_fcl_cfs_cargo_value_currency',
 		label     : 'Cargo currency',
-		optionkey : 'currencies',
+		optionKey : 'currencies',
 		type      : 'select',
 		span      : 4,
 		condition : { services: ['export_fcl_cfs'] },
@@ -289,7 +289,7 @@ const controls = () => [
 	{
 		name      : 'import_fcl_cfs_cargo_value_currency',
 		label     : 'Cargo currency',
-		optionkey : 'currencies',
+		optionKey : 'currencies',
 		type      : 'select',
 		// style     : { width: '200px' },
 		condition : { services: ['import_fcl_cfs'] },

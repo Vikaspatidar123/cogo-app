@@ -16,6 +16,26 @@
 	color: #6b6d81;
 }
 
+.section {
+	margin: 25px 0;
+
+	:global {
+		.ui_checkbox_container {
+			padding: 0;
+		}
+	}
+
+	&.expiring {
+		display: flex;
+		align-items: center;
+
+		.input_box {
+			width: 20%;
+			margin: 0 10px;
+		}
+	}
+}
+
 .clear_btn {
 	display: flex;
 	align-items: center;
@@ -39,26 +59,6 @@
 .filter_section {
 	width: 85%;
 	padding: 0 10px;
-}
-
-.section {
-	margin: 25px 0;
-
-	:global {
-		.ui_checkbox_container {
-			padding: 0;
-		}
-	}
-
-	&.expiring {
-		display: flex;
-		align-items: center;
-
-		.input_box {
-			width: 20%;
-			margin: 0 10px;
-		}
-	}
 }
 
 .flex_box {

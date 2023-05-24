@@ -1,0 +1,24 @@
+.form {
+	display: flex;
+	flex-direction: row;
+	margin-bottom: 20px;
+}
+
+.radio {
+	margin: 10px;
+	background-color: #f2f2f2;
+}
+
+.select {
+	margin-top: 10px;
+}
+
+.button {
+	display: flex;
+	align-content: center;
+	margin-top: 15px;
+}
+
+.error {
+	color: red;
+}

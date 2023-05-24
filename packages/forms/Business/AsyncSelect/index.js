@@ -43,18 +43,19 @@ const keyAsyncFieldsParamsMapping = {
 
 function AsyncSelect(props) {
 	const {
-		params,
+		params = {},
 		multiple,
 		asyncKey,
 		initialCall,
 		getModifiedOptions,
-		getSelectedOption,
+		getSelectedOption = () => {},
 		...rest
 	} = props;
-
 	const defaultParams = keyAsyncFieldsParamsMapping[asyncKey]?.() || {};
 
-	const callFunction = defaultParams.authKey ? useGetAsyncOptionsBf : useGetAsyncOptions;
+	const callFunction = defaultParams.authKey
+		? useGetAsyncOptionsBf
+		: useGetAsyncOptions;
 
 	const getAsyncOptionsProps = callFunction({
 		...defaultParams,
@@ -65,6 +66,15 @@ function AsyncSelect(props) {
 		getModifiedOptions,
 	});
 
+	if (
+		typeof getModifiedOptions === 'function'
+        && !isEmpty(getAsyncOptionsProps.options)
+	) {
+		getAsyncOptionsProps.options = getModifiedOptions(
+			getAsyncOptionsProps.options,
+		);
+	}
+
 	if (typeof getSelectedOption === 'function' && !isEmpty(rest.value)) {
 		let selectedValue;
 		if (multiple) {
@@ -73,17 +83,19 @@ function AsyncSelect(props) {
 			selectedValue = rest.value;
 		}
 
-		const selectedOption = getAsyncOptionsProps.options.filter((option) => option.id === selectedValue);
-
+		const selectedOption = getAsyncOptionsProps.options.filter(
+			(option) => option.id === selectedValue,
+		);
 		getSelectedOption(selectedOption[0]);
 	}
 
 	const Element = multiple ? MultiSelect : Select;
+	const { onHydrateValue, ...optionRest } = getAsyncOptionsProps || [];
 
 	return (
 		<Element
 			{...rest}
-			{...getAsyncOptionsProps}
+			{...optionRest}
 		/>
 	);
 }

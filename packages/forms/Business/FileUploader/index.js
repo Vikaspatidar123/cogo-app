@@ -79,7 +79,6 @@ function FileUploader(props) {
 				const promises = values.map((value, index) => uploadFile(index)(value));
 
 				const allUrls = await Promise.all(promises);
-
 				setUrlStore(allUrls);
 				setFileName(values);
 			}

@@ -1,4 +1,3 @@
-import { Toast } from '@cogoport/components';
 import { useState, useEffect, useCallback } from 'react';
 
 import { useRequest } from '@/packages/request';
@@ -34,7 +33,7 @@ const useFetchSchedules = ({ currentPage }) => {
 			const { data } = res;
 			setSchedules(data);
 		} catch (err) {
-			Toast.error('Unable to fetch schedules. Please try again.');
+			console.log('Unable to fetch schedules. Please try again.');
 		}
 	}, [currentPage, filters, general?.query?.branch_id, schedules?.filter_data, trigger]);
 

@@ -1,0 +1,42 @@
+.title {
+	@media screen  and (max-width: 767px) {
+		display: none;
+	}
+}
+
+.row_desktop {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	margin-top: 14px;
+}
+
+.tab_container {
+	@media screen  and (max-width: 767px) {
+		display: block;
+		margin: auto;
+	}
+}
+
+.tab_panel {
+	.text {
+		margin-left: 3px;
+	}
+
+	svg {
+		vertical-align: top;
+	}
+}
+
+.input_box {
+	width: 15%;
+
+	svg {
+		margin-right: 8px;
+	}
+
+	@media screen and (max-width: 767px) {
+		width: 100%;
+		margin-top: 18px;
+	}
+}

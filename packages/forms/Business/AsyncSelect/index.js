@@ -9,6 +9,7 @@ import {
 	asyncFieldsPartner,
 	asyncFieldsPartnerRoles,
 	asyncFieldsHsCodeCountries,
+	asyncFieldsPartnerQuotation,
 } from '../../utils/getAsyncFields';
 
 /**
@@ -30,11 +31,12 @@ import {
  * getModifiedOptions
  */
 const keyAsyncFieldsParamsMapping = {
-	locations         : asyncFieldsLocations,
-	locations2        : asyncFieldsLocations2,
-	partners          : asyncFieldsPartner,
-	partner_roles     : asyncFieldsPartnerRoles,
-	hs_code_countries : asyncFieldsHsCodeCountries,
+	locations              : asyncFieldsLocations,
+	locations2             : asyncFieldsLocations2,
+	partners               : asyncFieldsPartner,
+	partner_roles          : asyncFieldsPartnerRoles,
+	hs_code_countries      : asyncFieldsHsCodeCountries,
+	list_partner_quotation : asyncFieldsPartnerQuotation,
 };
 
 function AsyncSelect(props) {

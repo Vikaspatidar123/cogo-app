@@ -38,6 +38,10 @@ const saas = {
 	'/saas/premium-services/trader-eligibility-check/result': {
 		navigation: 'saas_premium_services-trader_eligibility_check',
 	},
+	'/saas/quickquotation/viewlist': {
+		navigation : 'saas_planning-quotation',
+		isMainBav  : true,
+	},
 	'/saas/hs-classification': {
 		navigation: 'saas_tools-hs_code_classification',
 	},

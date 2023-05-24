@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 
 import CONTAINER_TYPES from '../../constants/container-types.json';
 import getCommodityList from '../../utils/getCommodityList';
-import Chips from '../Chip';
+import Chips from '../Chip/chip';
 
 import styles from './styles.module.css';
 import CommodityChip from './ValueChip';

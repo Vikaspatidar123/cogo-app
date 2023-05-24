@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 import IncoTerms from '../../constants/inco-terms.json';
-import Chip from '../Chip';
+import Chip from '../Chip/chip';
 import Select from '../Select';
 import SwitchSelect from '../SwitchSelect';
 

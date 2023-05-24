@@ -14,7 +14,7 @@ function Route(
 		destination = {},
 		location = {},
 		setLocation = () => {},
-		keywords = [],
+		// keywords = [],
 		index = 0,
 		mobile = false,
 		mode = '',
@@ -93,23 +93,23 @@ function Route(
 					value={location?.origin?.id}
 					control={control}
 					params={{
-          	...(origin.params || {}),
-          	filters     : origin?.params?.filters,
-          	preferences : {
-          		organization_id : org_id,
-          		service_type    : mode,
-          	},
+						...(origin.params || {}),
+						filters     : origin?.params?.filters,
+						preferences : {
+							organization_id : org_id,
+							service_type    : mode,
+						},
 					}}
 					handleChange={(obj) => {
-          	setLocation({
-          		...location,
-          		origin: { ...(obj || {}), formName: origin.display_name },
-          	});
+						setLocation({
+							...location,
+							origin: { ...(obj || {}), formName: origin.display_name },
+						});
 					}}
 					searchParams={{
-          	intent          : 'rate_search',
-          	organization_id : org_id,
-          	service_type    : mode,
+						intent          : 'rate_search',
+						organization_id : org_id,
+						service_type    : mode,
 					}}
 				/>
 				{errorMsg?.origin ? (
@@ -138,26 +138,26 @@ function Route(
 					value={location?.destination?.id}
 					placeholder={destination.placeholder || ''}
 					handleChange={(obj) => {
-          	setLocation({
-          		...location,
-          		destination: {
-          			...(obj || {}),
-          			formName: destination.display_name,
-          		},
-          	});
+						setLocation({
+							...location,
+							destination: {
+								...(obj || {}),
+								formName: destination.display_name,
+							},
+						});
 					}}
 					params={{
-          	...(destination.params || {}),
-          	filters     : destination?.params?.filters,
-          	preferences : {
-          		organization_id : org_id,
-          		service_type    : mode,
-          	},
+						...(destination.params || {}),
+						filters     : destination?.params?.filters,
+						preferences : {
+							organization_id : org_id,
+							service_type    : mode,
+						},
 					}}
 					searchParams={{
-          	intent          : 'rate_search',
-          	organization_id : org_id,
-          	service_type    : mode,
+						intent          : 'rate_search',
+						organization_id : org_id,
+						service_type    : mode,
 					}}
 				/>
 				{errorMsg?.destination ? (

@@ -63,7 +63,7 @@ function SearchForm(
 	const controls = getControls();
 
 	const useFormProps = useForm();
-	const { fields, reset, control } = useFormProps;
+	const { reset, control } = useFormProps;
 
 	const [originControl, destinationControl] = controls;
 
@@ -79,6 +79,7 @@ function SearchForm(
 		} else {
 			setLocation({});
 		}
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [mode]);
 
 	useImperativeHandle(ref, () => ({

@@ -17,7 +17,7 @@ function Route(
 		destination = {},
 		location = {},
 		setLocation = () => {},
-		keywords = [],
+		// keywords = [],
 		index = 0,
 		mobile = false,
 		mode = '',

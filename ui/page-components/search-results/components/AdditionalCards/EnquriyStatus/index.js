@@ -1,5 +1,4 @@
-// import QuickSearch from '@cogo/app-search/components/SearchPage/PastResults/PastSearches/Section/QuickSearch';
-import { IcCWaitForSometime, IcMRefresh } from '@cogoport/icons-react';
+import { IcCWaitForSometime } from '@cogoport/icons-react';
 import React from 'react';
 
 import AwaitingResponse from './AwaitingResponse';

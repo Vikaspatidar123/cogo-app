@@ -42,6 +42,7 @@ function GoodsDetails({ setGoodsDetail, goodsDetail, setShowPopover }, ref) {
 				<div className={styles.date_picker_container}>
 					<div className={styles.header_text}>Cargo Ready Date:</div>
 					<Datepicker
+						renderBody={renderBody}
 						onChange={setCargoDate}
 						dateFormat="dd MMM yyyy"
 						value={cargoDate}

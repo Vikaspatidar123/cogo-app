@@ -3,7 +3,8 @@ import styles from './styles.module.css';
 function PromocodeThumbnail({ promotion = {}, promotion_discount = [] }) {
 	return (
 		<div className={styles.container}>
-			<div className={styles.banner_image} img={promotion.thumbnail_image}>
+			<img className={styles.banner_image} src={promotion.thumbnail_image} alt="" />
+			<div>
 				<div className={styles.promo_code_name}>{promotion.promocodes[0]?.promocode}</div>
 			</div>
 

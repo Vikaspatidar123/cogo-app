@@ -12,7 +12,6 @@ import { useRequest } from '@/packages/request';
 import { useSelector } from '@/packages/store';
 import EmptyState from '@/ui/commons/components/EmptyState';
 import { APP_EVENT, trackEvent } from '@/ui/commons/constants/analytics';
-import { PARTNER_EVENT } from '@/ui/commons/constants/analytics/constants';
 
 const tradePartyType = {
 	key   : 'paying_party',
@@ -139,7 +138,7 @@ function InvoicingParties({
 			(address) => address.id === newSelectedAddressId,
 		);
 
-		const EVENT = scope === 'app' ? APP_EVENT : PARTNER_EVENT;
+		const EVENT = APP_EVENT;
 		trackEvent(EVENT.checkout_changed_invoicing_parties, {
 			checkout_id,
 			invoicing_parties: [

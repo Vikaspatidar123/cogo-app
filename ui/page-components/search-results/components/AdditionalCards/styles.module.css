@@ -1,22 +1,8 @@
-const DEFAULT_THEME = 'blue';
-
-const CARD_THEME = {
-	blue: {
-		bg   : '#d9e5fc',
-		text : '#1a4696',
-	},
-	offer: {
-		text : 'white',
-		bg   : '#5143aa',
-	},
-};
 
 .container {
 	padding: 16px;
 	border-radius: 4px;
 	margin-bottom: 16px;
-	/* background-color: ${({ theme = DEFAULT_THEME }) => CARD_THEME[theme].bg}; */
-	/* ${({ bg }) => (bg ? `background-image: url(${bg})` : '')}; */
 	background-repeat: no-repeat;
 	background-size: cover;
 }
@@ -25,14 +11,12 @@ const CARD_THEME = {
 	font-size: 14px;
 	font-weight: bold;
 	line-height: 18px;
-	/* color: ${({ theme = DEFAULT_THEME }) => CARD_THEME[theme].text}; */
 	margin: 0 0 8px;
 }
 
 .description {
 	font-size: 12px;
 	line-height: 16px;
-	/* color: ${({ theme = DEFAULT_THEME }) => CARD_THEME[theme].text}; */
 	margin: 0 0 16px;
 }
 
@@ -44,7 +28,6 @@ const CARD_THEME = {
 	font-weight: 600;
 	line-height: 18px;
 	text-align: right;
-	/* color: ${({ theme = DEFAULT_THEME }) => CARD_THEME[theme].text}; */
 	margin-left: auto;
 	display: block;
 	cursor: pointer;

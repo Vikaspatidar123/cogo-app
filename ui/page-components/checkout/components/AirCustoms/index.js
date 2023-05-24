@@ -1,3 +1,4 @@
+import { cl } from '@cogoport/components';
 import { IcMArrowDown, IcMArrowUp, IcMCustoms } from '@cogoport/icons-react';
 import { startCase } from '@cogoport/utils';
 
@@ -138,15 +139,15 @@ function AirCustoms(props) {
 				<div className={styles.service_details_container}>
 
 					<div className={styles.footer}>
-						<div className={`${styles.additional_services}`}>
+						<div className={cl`${styles.additional_services}`}>
 							Additional Services:
 							<div className={styles.service_logo}>
 								{allServices.map((service) => (
 									<div
 										className={`${styles.service_icon_container} 
 											${service?.isSelected
-											? 'additional-services-logo '
-											: 'temp'}`}
+											? styles.additional_services_logo
+											: styles.temp}`}
 									>
 										<ServiceIcon service={service.service_type} />
 									</div>

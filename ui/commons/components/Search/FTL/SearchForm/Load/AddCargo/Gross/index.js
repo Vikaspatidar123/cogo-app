@@ -1,4 +1,3 @@
-// import Layout from '@cogo/business-modules/form/Layout';
 import { Button } from '@cogoport/components';
 import { isEmpty } from '@cogoport/utils';
 import React, {
@@ -34,6 +33,7 @@ function Gross({ setLoadData, loadData, setShowPopover }, ref) {
 			});
 			// setValue({ ...grossFormattedData });
 		}
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [loadData]);
 
 	const imperativeHandle = useCallback(() => {

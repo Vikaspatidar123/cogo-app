@@ -1,6 +1,6 @@
 import { useRequestBf } from '@/packages/request';
 
-const getCommodityOptions = () => {
+const useGetCommodityOptions = () => {
 	const [{ data:Data }] = useRequestBf(
 		{
 			url     : 'saas_insurance_list_commodities',
@@ -15,4 +15,4 @@ const getCommodityOptions = () => {
 	return { list };
 };
 
-export default getCommodityOptions;
+export default useGetCommodityOptions;

@@ -1,4 +1,3 @@
-// import Layout from '@cogo/business-modules/form/Layout';
 import { Button } from '@cogoport/components';
 import { isEmpty } from '@cogoport/utils';
 import React, {
@@ -12,7 +11,6 @@ import getControls from './controls';
 import styles from './styles.module.css';
 
 import { useForm } from '@/packages/forms';
-import getField from '@/packages/forms/Controlled';
 import FormElement from '@/ui/page-components/discover_rates/common/FormElement';
 
 function Multitruck({ setLoadData, loadData, setShowPopover, location }, ref) {
@@ -24,12 +22,11 @@ function Multitruck({ setLoadData, loadData, setShowPopover, location }, ref) {
 		control,
 	} = useForm();
 
-	console.log(controls, 'controlscontrolscontrols');
-
 	useEffect(() => {
 		if (loadData.active_tab === 'truck' && loadData.truck_details?.length) {
 			setValue('trucks', loadData.truck_details);
 		}
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [loadData]);
 
 	const imperativeHandle = useCallback(() => {
@@ -60,7 +57,7 @@ function Multitruck({ setLoadData, loadData, setShowPopover, location }, ref) {
 	return (
 		<div className={styles.container}>
 			<div className={styles.wrapper}>
-				<FormElement control={control} controls={controls} showButtons />
+				<FormElement control={control} controls={controls} showButtons errors={errors} />
 			</div>
 
 			<div className={styles.button_container}>

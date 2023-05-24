@@ -40,6 +40,7 @@ function TouchPoint(
 
 	useEffect(() => {
 		setTouchPointsToggle(touchPointItems);
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [touchPointItems]);
 
 	const onClick = () => {

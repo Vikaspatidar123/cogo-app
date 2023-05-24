@@ -1,3 +1,4 @@
+import { cl } from '@cogoport/components';
 import { IcMArrowDown, IcMArrowUp, IcMFcl } from '@cogoport/icons-react';
 
 import AssistanceFooter from '../../commons/AssistanceFooter';
@@ -56,11 +57,11 @@ function LCL(props) {
 
 		return packages.map((packageInfo) => (
 			<div className={styles.packages_info}>
-				<div>
+				<div className={styles.row}>
 					Commodity -
 					{packageInfo.commodity || 'All'}
 				</div>
-				<div>
+				<div className={styles.row}>
 					Weight -
 					{packageInfo?.weight}
 					{' '}
@@ -98,7 +99,7 @@ function LCL(props) {
 					/>
 					<div className={styles.data}>
 						<div className={styles.information}>
-							<div className="transit">
+							<div className={styles.transit}>
 								<IcMFcl height={40} width={40} style={{ marginRight: 8 }} />
 								{transit_time ? (
 									<div>
@@ -113,9 +114,9 @@ function LCL(props) {
 							</div>
 
 							<AboutAction slug="cancellation-terms">
-								<div className={styles.button_link}>
+								<button className={styles.button_link}>
 									Cancellation Policy
-								</div>
+								</button>
 							</AboutAction>
 						</div>
 					</div>
@@ -123,23 +124,23 @@ function LCL(props) {
 				</div>
 				<div className={styles.service_details_container}>
 					<div className={styles.footer}>
-						<div className="additional-services">
+						<div className={styles.additional_services}>
 							Additional Services:
 							<div className={styles.service_logo}>
 								{allServices.map((service) => (
 									<div
-										className={`${styles.service_icon_container} ${service?.isSelected
-											? 'additional-services-logo '
-											: 'temp'}`}
+										className={cl`${styles.service_icon_container} ${service?.isSelected
+											? styles.additional_services_logo
+											: styles.temp}`}
 									>
 										<ServiceIcon service={service.service_type} />
 									</div>
 								))}
 							</div>
 						</div>
-						<div className="details">
+						<div className={styles.details}>
 							<div
-								className="details-title"
+								className={styles.details_title}
 								onClick={changeToggle}
 								role="presentation"
 							>

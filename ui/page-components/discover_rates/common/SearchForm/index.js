@@ -22,7 +22,6 @@ import FTL from '@/ui/commons/components/Search//FTL';
 // eslint-disable-next-line import/no-cycle
 import Haulage from '@/ui/commons/components/Search//Haulage';
 import LTL from '@/ui/commons/components/Search//LTL';
-// import RailDomestic from '@/ui/commons/components/Search//RailDomestic';
 import Air from '@/ui/commons/components/Search/Air';
 import AirLocals from '@/ui/commons/components/Search/AirLocals';
 

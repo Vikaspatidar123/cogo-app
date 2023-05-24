@@ -16,17 +16,19 @@ import { useForm } from '@/packages/forms';
 import FormElement from '@/ui/page-components/discover_rates/common/FormElement';
 
 function Gross({ setLoadData, loadData, setShowPopover }, ref) {
-	const { fields, handleSubmit, formState, setValue, control } = useForm();
+	const { handleSubmit, formState, setValue, control } = useForm();
 
 	const grossFormattedData = getGrossFormattedData(loadData);
-
 	useEffect(() => {
 		if (
 			loadData.sub_active_tab === 'gross'
       && !isEmpty(loadData.gross_details)
 		) {
-			// setValues({ ...grossFormattedData });
+			Object.keys(grossFormattedData)?.forEach((item) => {
+				setValue(item, grossFormattedData?.[item]);
+			});
 		}
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [loadData]);
 
 	const imperativeHandle = useCallback(() => {

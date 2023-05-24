@@ -5,7 +5,7 @@ import styles from './styles.module.css';
 
 import { useRouter } from '@/packages/next';
 
-function ContractAd({ contractDetail, loading, importerExporterId }) {
+function ContractAd({ contractDetail, loading }) {
 	const { push } = useRouter();
 
 	const { count = 0 } = contractDetail || {};

@@ -11,16 +11,16 @@ function List({ onDeleteTouchPoint, touchPoints, setTouchPoints }) {
 	const dragOverItem = useRef();
 
 	const handleSort = () => {
-		const _touchPoints = [...touchPoints];
+		const allTouchPoints = [...touchPoints];
 
-		const draggedItemContent = _touchPoints.splice(dragItem.current, 1)[0];
+		const draggedItemContent = allTouchPoints.splice(dragItem.current, 1)[0];
 
-		_touchPoints.splice(dragOverItem.current, 0, draggedItemContent);
+		allTouchPoints.splice(dragOverItem.current, 0, draggedItemContent);
 
 		dragItem.current = null;
 		dragOverItem.current = null;
 
-		setTouchPoints(_touchPoints);
+		setTouchPoints(allTouchPoints);
 	};
 
 	return (

@@ -28,9 +28,9 @@ function ShowPackageInfo({
 			{item?.package_weight}
 			{' '}
 			kgs || VOL -
-			{item?.dimensions?.length
-						* item?.dimensions?.width
-						* item?.dimensions.height}
+			{(item?.dimensions?.length || 0)
+			* (item?.dimensions?.width || 1)
+			* (item?.dimensions.height || 1)}
 		</div>
 	));
 

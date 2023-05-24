@@ -1,6 +1,6 @@
 import { Select } from '@cogoport/components';
 
-import SELECT_CUSTOM_THEME from '../select-custom-theme';
+import styles from './styles.module.css';
 
 import usePartnerEntityType from '@/packages/forms/hooks/usePartnerEntityType';
 import {
@@ -42,12 +42,7 @@ function Sort({ sortBy = '', search_type = '', setSort = () => {} }) {
 		<Select
 			{...controls}
 			onChange={handleChange}
-      // style={SELECT_CUSTOM_THEME('sort')}
-			style={{
-				borderColor : '#67c676',
-				background  : '#e6fbe9',
-				width       : '200px',
-			}}
+			className={styles.card_select}
 		/>
 	);
 }

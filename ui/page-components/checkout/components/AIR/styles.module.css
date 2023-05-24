@@ -49,17 +49,17 @@
 	cursor: pointer;
 }
 
-.details-title {
+.details_title {
 	margin-right: 13px;
 }
 
-.additional-services {
+.additional_services {
 	display: flex;
 	align-items: center;
 	width: 100%;
 }
 
-.additional-services-title {
+.additional_services_title {
 	margin-right: 2%;
 }
 
@@ -95,7 +95,7 @@
 	padding: 10px 3px;
 	border-bottom: 4px solid #f4b746;
 
-	&.additional-services-logo {
+	&.additional_services_logo {
 		padding: 10px 3px;
 		border-bottom: 4px solid #67c676;
 	}

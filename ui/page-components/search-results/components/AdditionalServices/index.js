@@ -17,15 +17,33 @@ import renderServices from './renderServices';
 import { getServiceName } from './services';
 import styles from './styles.module.css';
 
+// import { getCountryCode } from '@/ui/commons/utils/getCountryDetails';
+
 function AdditionalServices({
 	data = {},
 	possible_additional_services = [],
 	refetch = () => {},
+	// allowCargoInsurance = true,
+	// setOpenAddServiceModal = () => {},
+	// setShowCargoInsuranceIP = () => {},
 	// view = '',
 }) {
 	// const className = view === 'checkout' ? '' : 'search';
+	const {
+		origin_country_id = '',
+		destination_country_id = '',
+		trade_type = '',
+		user_id = '',
+		checkout_id = '',
+		spot_search_id = '',
+		importer_exporter_id = '',
+		// importer_exporter = {},
+	} = data || {};
 	const [subsidiaryService, setSubsidiaryService] = useState('');
-
+	// const importer_exporter_country_code = getCountryCode({
+	// 	country_id:
+	//         importer_exporter?.country_id || importer_exporter?.country?.id,
+	// });
 	const {
 		handleAdd,
 		handleClose,
@@ -62,7 +80,8 @@ function AdditionalServices({
 		const serviceName = service.split(':');
 
 		if (
-			data?.service_type !== 'air_freight' && data?.service_type !== 'ftl_freight'
+			data?.service_type !== 'air_freight'
+            && data?.service_type !== 'ftl_freight'
 		) {
 			if (
 				(nonRemovableServices || []).includes(
@@ -147,7 +166,13 @@ function AdditionalServices({
 								<div className={styles.services}>
 									{handleServiceName(service)}
 								</div>
-								<IcCTick style={{ marginTop: '2px', width: 20, height: 20 }} />
+								<IcCTick
+									style={{
+										marginTop : '2px',
+										width     : 20,
+										height    : 20,
+									}}
+								/>
 							</div>
 
 							{handleServiceDelete(service)}
@@ -155,50 +180,68 @@ function AdditionalServices({
 					))}
 				</div>
 
-				{(remainingServicesToAdd || []).length > 0 && data?.source !== 'upsell' ? (
-					<>
-						<div className={styles.line} style={{ margin: '8px 0px' }} />
-						<div style={{ marginBottom: 10 }}>Add more</div>
+				{(remainingServicesToAdd || []).length > 0
+                && data?.source !== 'upsell' ? (
+	<>
+		<div
+			className={styles.line}
+			style={{ margin: '8px 0px' }}
+		/>
+		<div style={{ marginBottom: 10 }}>Add more</div>
 
+		<div
+			style={{
+				overflow  : 'auto',
+				maxHeight : '350px',
+			}}
+		>
+			<Input
+				type="text"
+				placeholder="Search...."
+				onChange={(e) => handleSearch(e)}
+				name="service"
+				value={query}
+			/>
+			<div className={styles.add_service}>
+				{(remainingServicesToAdd || []).map(
+					(service) => (
 						<div
-							style={{
-								overflow  : 'auto',
-								maxHeight : '350px',
-							}}
+							role="presentation"
+							className={cl`${styles.pills} ${styles.inactive}`}
+							onClick={() => handleAdd(service)}
+							id={`search_results_additional_service_${service}`}
 						>
-							<Input
-								type="text"
-								placeholder="Search...."
-								onChange={(e) => handleSearch(e)}
-								name="service"
-								value={query}
-							/>
-							<div className={styles.add_service}>
-								{(remainingServicesToAdd || []).map((service) => (
-									<div
-										role="presentation"
-										className={cl`${styles.pills} ${styles.inactive}`}
-										onClick={() => handleAdd(service)}
-										id={`search_results_additional_service_${service}`}
-									>
-										<div style={{ maxWidth: '90%', display: 'flex' }}>
-											<img
-												src="https://cdn.cogoport.io/cms-prod/cogo_admin/vault/original/Hangar.svg"
-												alt="hangar"
-												style={{ width: 14, height: 14 }}
-											/>
-											<div className={styles.services}>
-												{detail?.[service]?.title}
-											</div>
-										</div>
-
-										<IcMPlus className={styles.services_icon} />
-									</div>
-								))}
+							<div
+								style={{
+									maxWidth : '90%',
+									display  : 'flex',
+								}}
+							>
+								<img
+									src="https://cdn.cogoport.io/cms-prod/cogo_admin/vault/original/Hangar.svg"
+									alt="hangar"
+									style={{
+										width  : 14,
+										height : 14,
+									}}
+								/>
+								<div
+									className={styles.services}
+								>
+									{detail?.[service]?.title}
+								</div>
 							</div>
+
+							<IcMPlus
+								className={styles.services_icon}
+							/>
 						</div>
-					</>
-				) : null}
+					),
+				)}
+			</div>
+		</div>
+	</>
+					) : null}
 
 				<div className={styles.line} />
 				<div>Subsidiary services</div>
@@ -221,35 +264,31 @@ function AdditionalServices({
 					{loading ? 'Adding...' : 'Add'}
 				</Button>
 
-				{/* {!uniq_services_list.includes('cargo_insurance')
-        && [
-        	'fcl_freight',
-        	'lcl_freight',
-        	'air_freight',
-        	'ftl_freight',
-        	'ltl_freight',
-        	'air_domestic',
-        ].includes(search_type) ? (
-	<>
-		<div className={styles.line} style={{ marginTop: '8px' }} />
-
-		<div style={{ marginBottom: '8px' }}>Cargo Insurance</div>
-
-		<div
-			role="presentation"
-			className={`${styles.pill} ${styles.inactive}`}
-			onClick={() => setAddCargoInsurance(true)}
-			id="search_results_additional_service_cargo_insurance"
-		>
-			<div style={{ display: 'flex', maxWidth: '90%' }}>
-				<IcACarriageInsurancePaidTo />
-				<div className={styles.services}>Cargo Insurance</div>
-			</div>
-
-			<div className={`${styles.services_icon} ${styles.add}`}> + </div>
-		</div>
-	</>
-        	) : null} */}
+				{/* <CargoInsurancePillContainer
+					uniq_services_list={uniq_services_list}
+					importer_exporter_country_code={
+					importer_exporter_country_code
+                    }
+					search_type={search_type}
+					addCargoInsurance={addCargoInsurance}
+					setAddCargoInsurance={setAddCargoInsurance}
+					allowCargoInsurance={allowCargoInsurance}
+					data={data}
+					refetch={refetch}
+					origin_country_id={origin_country_id}
+					destination_country_id={destination_country_id}
+					trade_type={trade_type}
+					user_id={user_id}
+					service_type={service_type}
+					checkout_id={checkout_id}
+					spot_search_id={spot_search_id}
+					importer_exporter_id={
+                        importer_exporter_id || importer_exporter?.id
+                    }
+					importer_exporter={importer_exporter}
+					setOpenAddServiceModal={setOpenAddServiceModal}
+					setShowCargoInsuranceIP={setShowCargoInsuranceIP}
+				/> */}
 			</div>
 
 			{addService ? (
@@ -293,7 +332,7 @@ function AdditionalServices({
 				</Modal>
 			) : null}
 
-			{/* {addCargoInsurance ? (
+			{addCargoInsurance ? (
 				<Modal
 					show={addCargoInsurance}
 					onClose={() => setAddCargoInsurance(false)}
@@ -314,7 +353,7 @@ function AdditionalServices({
 						importer_exporter_id={importer_exporter_id}
 					/>
 				</Modal>
-			) : null} */}
+			) : null}
 		</div>
 	);
 }

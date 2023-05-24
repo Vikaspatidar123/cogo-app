@@ -1,7 +1,5 @@
 import { useState, useEffect } from 'react';
 
-import getRecommendedSearches from './useGetRecommendedSearches';
-
 import { useRequest } from '@/packages/request';
 import {
 	setPastSearchesState,
@@ -65,6 +63,7 @@ const useRecommendedSearches = () => {
 		}
 		// setLoading(true);
 		SetDateInStore();
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 	return { loading, pastSearchCount };
 };

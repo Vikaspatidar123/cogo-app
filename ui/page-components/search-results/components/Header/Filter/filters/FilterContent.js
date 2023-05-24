@@ -1,5 +1,5 @@
-import { Button, cl, Slider } from '@cogoport/components';
-import React, { useState } from 'react';
+import { Button, cl } from '@cogoport/components';
+import React from 'react';
 
 import styles from './styles.module.css';
 
@@ -7,7 +7,6 @@ import getField from '@/packages/forms/Controlled';
 
 function FilterContent({
 	controls = [],
-	fields = {},
 	reset = () => {},
 	applyFilters = () => {},
 	setOpen = () => {},

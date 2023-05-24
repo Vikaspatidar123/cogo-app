@@ -1,6 +1,0 @@
-.container {
-	&.flex {
-		/* layout: flex row flex-start center; */
-		flex-wrap: wrap;
-	}
-}

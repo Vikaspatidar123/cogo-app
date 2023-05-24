@@ -22,8 +22,8 @@ function AddRate({ type, show = false, setAddRate = () => {} }) {
 						style={{ margin: '8px 0px 5px 0px' }}
 					>
 						{type !== 'rates-found'
-            	? 'No Rates Found!'
-            	: 'Not happy with the Rates Found ?'}
+							? 'No Rates Found!'
+							: 'Not happy with the Rates Found ?'}
 					</div>
 
 					<div className={`${styles.detail_text} ${styles.lead_text}`}>
@@ -37,7 +37,7 @@ function AddRate({ type, show = false, setAddRate = () => {} }) {
 			<div className={cl`${styles.detail_con} ${styles.btn}`}>
 				<Button
 					onClick={() => {
-          	setAddRate(true);
+						setAddRate(true);
 					}}
 				>
 					Proceed With Booking

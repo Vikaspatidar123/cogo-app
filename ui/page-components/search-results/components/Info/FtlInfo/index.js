@@ -1,6 +1,6 @@
 import { Modal, Button } from '@cogoport/components';
 import { IcMFtrailorFull } from '@cogoport/icons-react';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 import AdditionalServices from '../../AdditionalServices';
 import Loading from '../loading';

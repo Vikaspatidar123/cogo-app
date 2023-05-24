@@ -1,6 +1,7 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import { IcCFtick } from '@cogoport/icons-react';
 import { startCase } from '@cogoport/utils';
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 import ContractRateCard from '../ContractRateCard';
 import HaulageText from '../RateCard/HaulageText';
@@ -14,6 +15,7 @@ import styles from './styles.module.css';
 
 import TruckingTouchPoints from '@/packages/bussiness-modules/TruckingTouchPoints';
 
+const approveUrl = 'https://cdn.cogoport.io/cms-prod/cogo_admin/vault/original/ic-verifiedmark.svg';
 const RATE_SOURCE_MAPPING = {
 	spot_rates            : 'System Rate',
 	spot_negotiation_rate : 'Enquiry Reverted Rate',
@@ -133,7 +135,7 @@ function FtlRateCard({
 							{data?.source === 'cogo_assured_rate' && (
 								<div style={{ display: 'flex' }}>
 									<img
-										src="https://cdn.cogoport.io/cms-prod/cogo_admin/vault/original/ic-verifiedmark.svg"
+										src={approveUrl}
 										alt="approve"
 									/>
 									<div className={styles.cogoport_text}>Cogoport</div>

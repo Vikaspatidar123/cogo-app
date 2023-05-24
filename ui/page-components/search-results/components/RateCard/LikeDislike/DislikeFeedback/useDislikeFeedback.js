@@ -52,7 +52,7 @@ const useDislikeFeedback = ({ reset, details, rate, updateRate, onClose }) => {
 
 		try {
 			if (preferred_freight_rate && !preferred_freight_rate_currency) {
-				toast.error('Please add currency');
+				Toast.error('Please add currency');
 			} else {
 				const body = {
 					id                    : search_id,

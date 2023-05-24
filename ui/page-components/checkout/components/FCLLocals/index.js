@@ -1,3 +1,4 @@
+import { cl } from '@cogoport/components';
 import {
 	IcMLocalCharges,
 	IcMArrowDown,
@@ -67,7 +68,7 @@ function FCLLocals(props) {
 
 		return packages.map((container) => (
 			<div className={styles.multi_container}>
-				<div className="bold">
+				<div className={styles.bold}>
 					{container?.container_size}
 					Ft. Container (
 					{startCase(container?.container_type)}
@@ -141,15 +142,15 @@ function FCLLocals(props) {
 
 				<div className={styles.service_details_container}>
 					<div className={styles.footer}>
-						<div className="additional-services">
+						<div className={styles.additional_services}>
 							Additional Services:
 							<div className={styles.service_logo}>
 								{allServices.map((service) => (
 									<div
-										className={`${styles.service_icon_container} 
+										className={cl`${styles.service_icon_container} 
 										${service?.isSelected
-											? 'additional-services-logo '
-											: 'temp'}`}
+											? styles.additional_services_logo
+											: styles.temp}`}
 									>
 										<ServiceIcon service={service.service_type} />
 									</div>

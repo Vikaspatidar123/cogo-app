@@ -1,10 +1,9 @@
-// import { usePartnerEntityType } from '@cogo/commons/hooks';
-
 // import useUpdateSearch from '../../../hooks/useUpdateSearch';
 import { Button } from '@cogoport/components';
 import dynamic from 'next/dynamic';
 import React, { useState } from 'react';
 
+// eslint-disable-next-line import/order
 import useCreateRateTask from '../../hooks/useCreateRateTask';
 
 // import BasicPlan from './BasicPlan';
@@ -45,14 +44,12 @@ function NoResultFound({
 }) {
 	const geo = getGeoConstants();
 	const [showCreateEnquiry, setShowCreateEnquiry] = useState(false);
-	const { scope, organization, unPrefixedPath, skippable_checks } = useSelector(
-		({ general, profile }) => ({
-			scope            : general.scope,
-			unPrefixedPath   : general?.unPrefixedPath,
-			organization     : profile?.organization || {},
-			skippable_checks : profile?.organization?.skippable_checks || [],
-		}),
-	);
+	const { scope, organization, unPrefixedPath, skippable_checks } = useSelector(({ general, profile }) => ({
+		scope            : general.scope,
+		unPrefixedPath   : general?.unPrefixedPath,
+		organization     : profile?.organization || {},
+		skippable_checks : profile?.organization?.skippable_checks || [],
+	}));
 	const create_enquiry_check = !CREATE_JOB_SERVICES.includes(
 		headerData?.search_type,
 	);
@@ -72,7 +69,6 @@ function NoResultFound({
 	const { search_type } = headerData;
 
 	const origin = getLocationDetails({}, headerData, 'origin');
-	// const { isChannelPartner } = usePartnerEntityType();
 	const destination = !isSingleLocation(search_type)
 		? getLocationDetails({}, headerData, 'destination')
 		: null;
@@ -89,17 +85,19 @@ function NoResultFound({
 		}
 	};
 
-	const showAgent =		organization?.agent?.id
-		&& type === 'no_result_found'
-		&& !skippable_checks?.includes('hide_rm_detail');
+	const showAgent = organization?.agent?.id
+        && type === 'no_result_found'
+        && !skippable_checks?.includes('hide_rm_detail');
 	let description = '';
 
 	if (showAgent) {
 		description = 'Don’t worry, our team is here to help.';
 	} else if (type === 'no_result_found' && headerData?.expired) {
-		description = 'Please search again to proceed. You can do this quickly by clicking on the lens icon on the search form above and click on search rates again';
+		description = 'Please search again to proceed. You can do this quickly'
+		+ 'by clicking on the lens icon on the search form above and click on search rates again';
 	} else if (type === 'no_servicable_country') {
-		description = ' We continue to add new countries to our network every month. If you would like to be informed when we launch in these countries, tap below.';
+		description = ' We continue to add new countries to our network every month.'
+		+ ' If you would like to be informed when we launch in these countries, tap below.';
 	}
 
 	const title = () => {
@@ -119,29 +117,31 @@ function NoResultFound({
 				Presently, we do not offer services between
 				<div className={styles.country}>{origin?.country}</div>
 				{destination && (
-					<div className={styles.country}>{` and ${destination.country || ''}`}</div>
+					<div className={styles.country}>
+						{` and ${destination.country || ''}`}
+					</div>
 				)}
 				.
 			</div>
 		);
 	};
 
-	const showButton =		scope === 'partner'
-		&& !data?.tags?.includes('partner')
-		&& !headerData.negotiation_status
-		&& type === 'no_result_found';
+	const showButton = scope === 'partner'
+        && !data?.tags?.includes('partner')
+        && !headerData.negotiation_status
+        && type === 'no_result_found';
 
 	const showEnq = data?.id !== geo.uuid.cogo_demo_account_shipper;
 
 	const handleButtonClick = () => {
-		// if (!isChannelPartner || enquiryQuota?.left_limit > 0) {
-		// 	setShowCreateEnquiry(true);
-		// } else {
-		// 	push(
-		// 		`/pricing/[service_type]?afterPaymentUrl=${unPrefixedPath}`,
-		// 		`/pricing/spot-negotiation?afterPaymentUrl=${unPrefixedPath}`,
-		// 	);
-		// }
+		if (enquiryQuota?.left_limit > 0) {
+			setShowCreateEnquiry(true);
+		} else {
+			push(
+				`/pricing/[service_type]?afterPaymentUrl=${unPrefixedPath}`,
+				`/pricing/spot-negotiation?afterPaymentUrl=${unPrefixedPath}`,
+			);
+		}
 	};
 
 	const handleFeedback = () => {
@@ -152,19 +152,20 @@ function NoResultFound({
 
 	const renderButtons = () => (
 		<div>
-			{requestRateServices.includes(headerData?.search_type)
-				? showButton && (
-					<Button onClick={handleFeedback} disabled={headerData?.expired}>
-						{enquiryQuota?.left_limit > 0 || !isChannelPartner
-							? 'REQUEST FOR RATE'
-							: 'BUY NOW'}
-					</Button>
-				)
+			{requestRateServices.includes(headerData?.search_type) ? showButton && (
+				<Button
+					onClick={handleFeedback}
+					disabled={headerData?.expired}
+				>
+					{enquiryQuota?.left_limit > 0 ? 'REQUEST FOR RATE' : 'BUY NOW'}
+				</Button>
+			)
 				: showButton && (
-					<Button onClick={handleButtonClick} disabled={headerData?.expired}>
-						{enquiryQuota?.left_limit > 0 || !isChannelPartner
-							? 'CREATE ENQUIRY'
-							: 'BUY NOW'}
+					<Button
+						onClick={handleButtonClick}
+						disabled={headerData?.expired}
+					>
+						{enquiryQuota?.left_limit > 0 ? 'CREATE ENQUIRY' : 'BUY NOW'}
 					</Button>
 				)}
 		</div>
@@ -172,7 +173,11 @@ function NoResultFound({
 
 	const renderJobButton = () => (
 		<div>
-			<Button themeType="accent" onClick={handleCreateJob} disabled={rateTaskLoad}>
+			<Button
+				themeType="accent"
+				onClick={handleCreateJob}
+				disabled={rateTaskLoad}
+			>
 				Request Rate
 			</Button>
 		</div>
@@ -180,12 +185,17 @@ function NoResultFound({
 
 	return (
 		<div className={styles.main_container}>
-			<div className={`${styles.main} ${type === 'no_result_found' && 'no_result_found'}`}>
+			<div
+				className={`${styles.main} ${type === styles.no_result_found && styles.no_result_found
+				}`}
+			>
 				{renderTitle()}
 				<div className={styles.description}>{description}</div>
 				{showAgent && (
 					<>
-						<div className={styles.title_rm}>Contact Your Key Account Manager Now</div>
+						<div className={styles.title_rm}>
+							Contact Your Key Account Manager Now
+						</div>
 						<div className={styles.action_container}>
 							<Button
 								onClick={() => goTo(`mailto:${organization?.agent?.email}`)}
@@ -207,7 +217,9 @@ function NoResultFound({
 
 							{organization?.agent?.mobile_number && (
 								<Button
-									onClick={() => goTo(`tel:${organization?.agent?.mobile_number}`)}
+									onClick={() => goTo(
+										`tel:${organization?.agent?.mobile_number}`,
+									)}
 									style={{ display: 'inline' }}
 									size="md"
 									themeType="linkUi"
@@ -227,7 +239,10 @@ function NoResultFound({
 							{'Meanwhile, you can book shipments to and from '}
 							{serviceableCountries.map((country) => (
 								<>
-									<span role="img" aria-label={`flag ${country.name}`}>
+									<span
+										role="img"
+										aria-label={`flag ${country.name}`}
+									>
 										{country.flag}
 									</span>
 									<b>{country.name}</b>

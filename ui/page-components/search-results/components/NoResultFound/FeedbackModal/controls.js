@@ -365,7 +365,7 @@ const controls = ({ airlineOptions = [] }) => ({
 			caret        : true,
 			options      : CURRENCY_CODE_OPTIONS,
 			showOptional : false,
-	  style        : { width: '150px' },
+			style        : { width: '150px' },
 
 		},
 		{
@@ -373,7 +373,7 @@ const controls = ({ airlineOptions = [] }) => ({
 			labelShow    : 'Indicative Rate',
 			type         : 'number',
 			showOptional : false,
-	  style        : { width: '150px' },
+			style        : { width: '150px' },
 
 		},
 
@@ -382,7 +382,7 @@ const controls = ({ airlineOptions = [] }) => ({
 			type         : 'text',
 			labelShow    : 'Remarks',
 			showOptional : false,
-	  style        : { width: '550px' },
+			style        : { width: '550px' },
 
 			rules: { required: 'Required' },
 			placeholder:
@@ -397,7 +397,7 @@ const controls = ({ airlineOptions = [] }) => ({
 			caret        : true,
 			options      : CURRENCY_CODE_OPTIONS,
 			showOptional : false,
-	  style        : { width: '150px' },
+			style        : { width: '150px' },
 
 		},
 		{

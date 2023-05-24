@@ -1,15 +1,10 @@
-import { useSelector } from '@cogo/store';
+import { cl } from '@cogoport/components';
 import { IcCSendWhatsapp, IcMEmail } from '@cogoport/icons-react';
 import React from 'react';
 
-import {
-	Container,
-	UserName,
-	Line,
-	Description,
-	SpaceBetween,
-	IconsContainer,
-} from './styles';
+import styles from './styles.module.css';
+
+import { useSelector } from '@/packages/store';
 
 function RM() {
 	const { agent, kyc_status } = useSelector(({ profile }) => ({
@@ -30,45 +25,53 @@ function RM() {
 	}
 
 	return (
-		<Container>
+		<div className={styles.container}>
 			<div style={{ padding: '0px 12px' }}>
-				<UserName className="assistance">
+				<div className={cl`${styles.user_name} ${styles.assistance}`}>
 					Do you need some personal assistance?
-				</UserName>
+				</div>
 			</div>
 
-			<Line />
+			<div className={styles.line} />
 
 			<div style={{ padding: '0px 12px' }}>
-				<UserName className="rm-name">{agent?.name}</UserName>
+				<div className={`${styles.user_name} ${styles.rm_name}`}>{agent?.name}</div>
 
-				<UserName className="rm-designation">Key Relationship Manager</UserName>
+				<div className={`${styles.user_name} ${styles.rm_designation}`}>Key Relationship Manager</div>
 
 				{agent?.mobile_country_code ? (
-					<SpaceBetween onClick={() => goTo(`mailto:${agent?.email}`)}>
-						<Description className="link">{agent?.email}</Description>
+					<div
+						role="presentation"
+						className={styles.space_between}
+						onClick={() => goTo(`mailto:${agent?.email}`)}
+					>
+						<div className={cl`${styles.link} ${styles.description}`}>{agent?.email}</div>
 
-						<IconsContainer>
+						<div className={styles.icons_container}>
 							<IcMEmail />
-						</IconsContainer>
-					</SpaceBetween>
+						</div>
+					</div>
 				) : null}
 
 				{agent?.mobile_country_code ? (
-					<SpaceBetween onClick={() => goTo(`tel:${agent?.mobile_number}`)}>
-						<Description className="link">
+					<div
+						role="presentation"
+						className={styles.space_between}
+						onClick={() => goTo(`tel:${agent?.mobile_number}`)}
+					>
+						<div className={cl`${styles.link}  ${styles.description}`}>
 							{agent?.mobile_country_code}
 							{' '}
 							{agent?.mobile_number}
-						</Description>
+						</div>
 
-						<IconsContainer>
+						<div className={styles.icons_container}>
 							<IcCSendWhatsapp />
-						</IconsContainer>
-					</SpaceBetween>
+						</div>
+					</div>
 				) : null}
 			</div>
-		</Container>
+		</div>
 	);
 }
 

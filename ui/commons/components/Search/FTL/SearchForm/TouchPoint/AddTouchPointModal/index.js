@@ -107,6 +107,7 @@ function AddTouchPointModal({
 	useEffect(() => {
 		setLocationValue('touch_point_location_id', '');
 		setValue('');
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [touchPoints]);
 
 	const handleSave = () => {

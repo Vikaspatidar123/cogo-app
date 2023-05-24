@@ -53,6 +53,7 @@ function Load(props, ref) {
 				});
 			}
 		}
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [searchData]);
 
 	const content = () => (

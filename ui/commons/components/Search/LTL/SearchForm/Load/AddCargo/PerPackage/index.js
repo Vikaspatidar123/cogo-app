@@ -1,4 +1,3 @@
-// import Layout from '@cogo/business-modules/form/Layout';
 import { Button } from '@cogoport/components';
 import { isEmpty } from '@cogoport/utils';
 import React, {
@@ -31,7 +30,6 @@ function PerPackage({ setLoadData, loadData, setShowPopover }, ref) {
 	});
 
 	const formattedPackageData = getFormattedData(loadData);
-
 	useEffect(() => {
 		if (
 			loadData.sub_active_tab === 'per_package'
@@ -39,6 +37,7 @@ function PerPackage({ setLoadData, loadData, setShowPopover }, ref) {
 		) {
 			setValue('packages', formattedPackageData);
 		}
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	const imperativeHandle = useCallback(() => {

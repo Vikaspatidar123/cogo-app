@@ -31,7 +31,7 @@ const useUpdateEnquiryParams = ({
 		true,
 	);
 
-	let _controls = getConfiguration(
+	let allControls = getConfiguration(
 		'enquiry-create-controls',
 		service?.similar_service_details?.length
 			? service?.service
@@ -42,7 +42,7 @@ const useUpdateEnquiryParams = ({
 		service?.similar_service_details?.[index]?.container_type === 'refer'
 		&& service?.service === 'fcl_freight'
 	) {
-		_controls = [..._controls, ...referControls()];
+		allControls = [...allControls, ...referControls()];
 	}
 
 	let count = 0;
@@ -57,7 +57,7 @@ const useUpdateEnquiryParams = ({
 		]?.[index];
 	}
 
-	(_controls || []).forEach((obj) => {
+	(allControls || []).forEach((obj) => {
 		if (
 			[
 				'preferred_shipping_line_ids',
@@ -65,7 +65,7 @@ const useUpdateEnquiryParams = ({
 				'preferred_airline_ids',
 			].includes(obj?.name)
 		) {
-			_controls[count].value = prefillData?.[obj?.name];
+			allControls[count].value = prefillData?.[obj?.name];
 		}
 		count += 1;
 	});
@@ -84,7 +84,7 @@ const useUpdateEnquiryParams = ({
 
 	const showElements = useMemo(
 		() => showElementFunc({
-			advancedControls : _controls,
+			advancedControls : allControls,
 			formValues       : service,
 			mode             : service?.similar_service_details?.length
 				? service?.service
@@ -107,7 +107,7 @@ const useUpdateEnquiryParams = ({
 		setShowElementExtra(showElements);
 	}, [showElements]);
 
-	const controls = _controls
+	const controls = allControls
 		.filter((obj) => showElements?.[obj?.name])
 		.map((item) => {
 			if (

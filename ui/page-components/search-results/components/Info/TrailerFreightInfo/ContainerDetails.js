@@ -18,7 +18,7 @@ const handleCommodity = (commodity) => {
 
 function GetMultiContainerDetails({ service_details }) {
 	return (
-		<Flex direction="column" style={{ margin: '4px' }}>
+		<div className={styles.flex} style={{ margin: '4px' }}>
 			{Object.values(service_details).map((item) => {
 				const {
 					id = '',
@@ -40,7 +40,7 @@ function GetMultiContainerDetails({ service_details }) {
 					</div>
 				);
 			})}
-		</Flex>
+		</div>
 	);
 }
 

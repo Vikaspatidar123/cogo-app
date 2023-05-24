@@ -1,4 +1,3 @@
-// import usei18n from '@cogo/i18n';
 import { isEmpty } from '@cogoport/utils';
 import React, {
 	useEffect,
@@ -52,10 +51,9 @@ function SearchForm(
 	const controls = getControls();
 	const useFormProps = useForm();
 
-	const { fields, reset, control } = useFormProps;
+	const { reset, control } = useFormProps;
 
 	const [origin, destination] = controls;
-	console.log(controls, 'controls', controls.find((x) => x.name === origin?.name));
 	useEffect(() => {
 		if (!isEdit) {
 			reset();
@@ -68,6 +66,7 @@ function SearchForm(
 		} else {
 			setLocation({});
 		}
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [mode]);
 
 	useImperativeHandle(ref, () => ({

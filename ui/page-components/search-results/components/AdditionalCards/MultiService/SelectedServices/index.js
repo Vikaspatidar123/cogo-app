@@ -2,7 +2,7 @@ import React from 'react';
 
 import styles from './styles.module.css';
 
-function SelectedServices({ detail = {} }) {
+function SelectedServices({ }) {
 	return (
 		<div className={styles.container}>
 			<div className={styles.heading}>Select Your Services</div>

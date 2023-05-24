@@ -1,7 +1,7 @@
 import { useRequest } from '@/packages/request';
 import { useSelector } from '@/packages/store';
 
-const updateLikeRate = ({ details, updateRate, rate }) => {
+const useUpdateLikeRate = ({ details, updateRate, rate }) => {
 	const {
 		general: { query = {} },
 	} = useSelector((state) => state);
@@ -49,4 +49,4 @@ const updateLikeRate = ({ details, updateRate, rate }) => {
 	};
 };
 
-export default updateLikeRate;
+export default useUpdateLikeRate;

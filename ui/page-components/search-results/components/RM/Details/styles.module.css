@@ -1,14 +1,13 @@
-import styled from '@cogoport/front/styled';
 
-export const Container = styled.div`
+.container{
 	box-sizing: border-box;
 	border-radius: 10px;
 	padding: 12px 0px;
 	height: fit-content;
 	width: 300px;
-`;
+}
 
-export const UserName = styled.p`
+.user_name{
 	margin: 0px;
 	font-weight: 500;
 	font-size: 14px;
@@ -29,15 +28,15 @@ export const UserName = styled.p`
 		font-weight: normal;
 		margin-bottom: 20px;
 	}
-`;
+}
 
-export const Line = styled.div`
+.line{
 	height: 1px;
 	background-color: #C4C4C4;
 	margin: 16px 0px;
-`;
+}
 
-export const Description = styled.p`
+.description{
 	margin: 0px;
 	font-size: 12px;
 	line-height: 14px;
@@ -51,16 +50,16 @@ export const Description = styled.p`
 		color: #000000;
 		margin-bottom: 0px
 	}
-`;
+}
 
-export const SpaceBetween = styled.div`
+.space_between{
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
 	margin-bottom: 12px;
-`;
+}
 
-export const IconsContainer = styled.div`
+.icons_container{
 	background: #FFFFFF;
 	border: 1px solid #E0E0E0;
 	box-sizing: border-box;
@@ -71,4 +70,4 @@ export const IconsContainer = styled.div`
 	align-items: center;
 	justify-content: center;
 	cursor: pointer;
-`;
+}

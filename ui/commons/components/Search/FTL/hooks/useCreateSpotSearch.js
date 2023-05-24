@@ -3,7 +3,6 @@ import { isEmpty } from '@cogoport/utils';
 
 import { useRouter } from '@/packages/next';
 import { useRequest } from '@/packages/request';
-import { useSelector } from '@/packages/store';
 import getApiErrorString from '@/ui/commons/utils/getApiErrorString';
 
 const useCreateSpotSearch = ({ extraParams, onPush }) => {

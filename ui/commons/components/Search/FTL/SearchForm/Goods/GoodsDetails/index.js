@@ -1,4 +1,4 @@
-import { SingleDateRange, Datepicker, Tabs, TabPanel } from '@cogoport/components';
+import { SingleDateRange, Tabs, TabPanel } from '@cogoport/components';
 import React, { useState, forwardRef } from 'react';
 
 import Calendar from '../../../icons/calender.svg';
@@ -40,7 +40,8 @@ function GoodsDetails({ setGoodsDetail, goodsDetail, setShowPopover }, ref) {
 			<div className={styles.header_container}>
 				<div className={styles.date_picker_container}>
 					<div className={styles.header_text}>Cargo Ready Date:</div>
-					<Datepicker
+					<SingleDateRange
+						renderBody={renderBody}
 						value={cargoDate}
 						onChange={setCargoDate}
 						dateFormat="dd MMM yyyy"

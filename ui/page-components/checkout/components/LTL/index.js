@@ -1,3 +1,4 @@
+import { cl } from '@cogoport/components';
 import { IcMArrowDown, IcMArrowUp, IcMFtl } from '@cogoport/icons-react';
 
 import AssistanceFooter from '../../commons/AssistanceFooter';
@@ -104,7 +105,7 @@ function LTL(props) {
 					/>
 					<div className={styles.data}>
 						<div className={styles.information}>
-							<div className="transit">
+							<div className={styles.transit}>
 								<IcMFtl height={40} width={40} style={{ marginRight: 8 }} />
 								{transit_time ? (
 									<div>
@@ -125,15 +126,15 @@ function LTL(props) {
 				</div>
 				<div className={styles.service_details_container}>
 					<div className={styles.footer}>
-						<div className="additional-services">
+						<div className={styles.additional_services}>
 							Additional Services:
 							<div className={styles.service_logo}>
 								{allServices.map((service) => (
 									<div
-										className={`${styles.service_icon_container}
+										className={cl`${styles.service_icon_container}
 										${service?.isSelected
-											? 'additional-services-logo '
-											: 'temp'}
+											? styles.additional_services_logo
+											: styles.temp}
 										`}
 
 									>
@@ -142,9 +143,9 @@ function LTL(props) {
 								))}
 							</div>
 						</div>
-						<div className="details">
+						<div className={styles.details}>
 							<div
-								className="details-title"
+								className={styles.details_title}
 								onClick={changeToggle}
 								role="presentation"
 							>

@@ -15,8 +15,8 @@ function ShowPackageInfo({
 
 	const ToolTipDisplay = () => (cargo || []).map((item, index) => (
 		<div
-			className={cl`${styles.tool_tip_content}${
-        	index === (cargo || []).length - 1 ? 'no-margin' : ''
+			className={cl`${styles.tool_tip_content}
+			${index === (cargo || []).length - 1 ? 'no-margin' : ''
 			}`}
 		>
 			{index + 1}
@@ -32,9 +32,9 @@ function ShowPackageInfo({
 			{item.package_weight}
 			{' '}
 			kgs VOL -
-			{item.dimensions?.length
-          * item.dimensions?.width
-          * item.dimensions?.height}
+			{(item.dimensions?.length || 0)
+          * (item.dimensions?.width || 1)
+          * (item.dimensions?.height || 1)}
 			cc
 		</div>
 	));
@@ -42,6 +42,7 @@ function ShowPackageInfo({
 	return (
 		<Tooltip content={ToolTipDisplay()} placement="top" animation="shift-away">
 			<div
+				role="presentation"
 				className={styles.container}
 				onClick={() => setShowPopover(!showPopover)}
 			>

@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { Popover, Tabs, TabPanel } from '@cogoport/components';
 import React, { useState, forwardRef, useEffect } from 'react';
 

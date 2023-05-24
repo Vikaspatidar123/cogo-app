@@ -4,6 +4,8 @@ import React from 'react';
 
 import styles from './styles.module.css';
 
+import convertHourToDay from '@/packages/forms/utils/converHourToDay';
+
 function ContainerDetails({ searchData = {}, data = {} }) {
 	const { service_rates = {} } = data || {};
 

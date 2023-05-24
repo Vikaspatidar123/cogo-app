@@ -114,6 +114,7 @@ function DislikeFeedbackModal({ details, rate, updateRate, show, onClose }) {
 		});
 
 		return () => subscription.unsubscribe();
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [watch]);
 
 	return (

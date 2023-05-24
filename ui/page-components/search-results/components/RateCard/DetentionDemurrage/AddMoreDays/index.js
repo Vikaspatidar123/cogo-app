@@ -75,7 +75,7 @@ function AddMoreDays(props) {
 
 			<div style={{ display: 'flex', padding: '12px 20px' }}>
 				{Object.keys(COMPONENT_MAPPING[activeTab]).map((key) => {
-        	        const componentProps = COMPONENT_MAPPING[activeTab][key];
+					const componentProps = COMPONENT_MAPPING[activeTab][key];
 
 					return (
 						<Component

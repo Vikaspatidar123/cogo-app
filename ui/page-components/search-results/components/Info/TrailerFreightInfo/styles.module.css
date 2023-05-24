@@ -252,3 +252,8 @@
 	border-radius: 50%;
 	color: rgb(53, 110, 253);
 }
+
+.flex{
+	display:flex;
+	direction:column;
+}

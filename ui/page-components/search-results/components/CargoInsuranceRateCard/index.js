@@ -1,4 +1,5 @@
-import { startCase } from '@cogoport/utils';
+import { cl } from '@cogoport/components';
+import { startCase, isEmpty } from '@cogoport/utils';
 import { useState } from 'react';
 
 import Quotation from '../RateCard/Quotation';
@@ -38,11 +39,11 @@ function CargoInsuranceRateCard(props) {
 						<div style={{ width: '100%', display: 'flex' }}>
 							<div style={{ width: '100%', display: 'flex' }}>
 								<div
-									className={`${styles.circle} ${!isEmpty(origin_country) ? 'inactive' : null}`}
+									className={`${styles.circle} ${!isEmpty(origin_country) ? styles.inactive : null}`}
 								/>
 
 								<div
-									className={`${styles.Line} ${!isEmpty(origin_country) ? 'inactive' : null}`}
+									className={cl`${styles.Line} ${!isEmpty(origin_country) ? styles.inactive : null}`}
 									style={{ width: '100%' }}
 								/>
 							</div>
@@ -51,14 +52,14 @@ function CargoInsuranceRateCard(props) {
 						<div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
 							<div style={{ display: 'flex' }}>
 								<div
-									className={`${styles.Line} ${!isEmpty(origin_country) ? 'inactive' : null}`}
+									className={`${styles.Line} ${!isEmpty(origin_country) ? styles.inactive : null}`}
 									style={{ width: '30px' }}
 								/>
 
 								<div className={`${styles.circle} ${styles.main}`} />
 
 								<div
-									className={`${styles.Line} ${!isEmpty(origin_country) ? 'main' : null}`}
+									className={`${styles.Line} ${!isEmpty(origin_country) ? styles.main : null}`}
 									style={{ width: '30px' }}
 								/>
 							</div>
@@ -70,19 +71,19 @@ function CargoInsuranceRateCard(props) {
 
 						<div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
 							<div style={{ display: 'flex' }}>
-								<Line
-									className={!isEmpty(origin_country) ? 'main' : null}
+								<div
+									className={cl`${styles.line} ${!isEmpty(origin_country) ? styles.main : null}`}
 									style={{ width: '30px' }}
 								/>
-								<div className={`${styles.circle} ${styles.main}`} />
+								<div className={cl`${styles.circle} ${styles.main}`} />
 
-								<Line
-									className={!isEmpty(origin_country) ? 'inactive' : null}
+								<div
+									className={cl`${styles.line} ${!isEmpty(origin_country) ? styles.inactive : null}`}
 									style={{ width: '30px' }}
 								/>
 							</div>
 
-							<div className={`${styles.location} ${styles.main}`}>
+							<div className={cl`${styles.location} ${styles.main}`}>
 								{destination_country?.display_name
 									|| destination_country?.name
 									|| '-'}
@@ -91,11 +92,11 @@ function CargoInsuranceRateCard(props) {
 
 						<div style={{ width: '100%', display: 'flex' }}>
 							<div
-								className={`${styles.line} ${!isEmpty(origin_country) ? 'inactive' : null}`}
+								className={cl`${styles.line} ${!isEmpty(origin_country) ? styles.inactive : null}`}
 								style={{ width: '100%' }}
 							/>
 							<div
-								className={`${styles.circle} ${!isEmpty(origin_country) ? 'inactive' : null}`}
+								className={cl`${styles.circle} ${!isEmpty(origin_country) ? styles.inactive : null}`}
 							/>
 						</div>
 					</div>

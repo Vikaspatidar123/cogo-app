@@ -40,6 +40,7 @@ function FeedBackModal({
 			origin_airport_id      : details.origin_airport_id,
 			destination_airport_id : details.origin_airport_id,
 		});
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	return (

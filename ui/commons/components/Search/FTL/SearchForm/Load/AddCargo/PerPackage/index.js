@@ -1,4 +1,3 @@
-// import Layout from '@cogo/business-modules/form/Layout';
 import { Button } from '@cogoport/components';
 import { isEmpty } from '@cogoport/utils';
 import React, {
@@ -42,6 +41,7 @@ function PerPackage({ setLoadData, loadData, setShowPopover }, ref) {
 				packages: formattedPackageData,
 			});
 		}
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	const imperativeHandle = useCallback(() => {

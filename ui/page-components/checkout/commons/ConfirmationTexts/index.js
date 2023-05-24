@@ -92,8 +92,8 @@ function ConfirmationTexts({
 					<IcCFtick width={20} height={20} />
 					<div className={styles.text}>
 						{trade_type === 'export'
-            	? 'B/L release in 24hrs of ETD'
-            	: 'B/L release in 24hrs of ETA.'}
+							? 'B/L release in 24hrs of ETD'
+							: 'B/L release in 24hrs of ETA.'}
 						<div className={styles.inner_text}>Subject to Payment Received</div>
 					</div>
 				</div>
@@ -163,9 +163,9 @@ function ConfirmationTexts({
 							Terminal Deadline
 							<div className={styles.inner_text}>
 								{format({
-                	date       : primaryServiceData.terminal_cutoff,
-                	dateFormat : GLOBAL_CONSTANTS.formats.date['dd MMM yyyy'],
-                	formatType : 'date',
+									date       : primaryServiceData.terminal_cutoff,
+									dateFormat : GLOBAL_CONSTANTS.formats.date['dd MMM yyyy'],
+									formatType : 'date',
 								})}
 							</div>
 						</div>

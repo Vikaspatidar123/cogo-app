@@ -101,7 +101,7 @@ export const renderItem = (servicesObjectArr, service_type) => {
 								>
 									<div style={{ fontSize: '10px' }}>
 										{`  (+ ${
-											joinArr?.length - 1
+											(joinArr?.length || 0) - 1
 										} More)`}
 									</div>
 								</Tooltip>
@@ -133,7 +133,7 @@ export const renderItem = (servicesObjectArr, service_type) => {
 									>
 										<div style={{ fontSize: '10px' }}>
 											{`  (+ ${
-												operatorArr?.length - 1
+												(operatorArr?.length || 0) - 1
 											} More)`}
 										</div>
 									</Tooltip>

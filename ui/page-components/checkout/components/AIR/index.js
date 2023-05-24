@@ -1,3 +1,4 @@
+import { cl } from '@cogoport/components';
 import { IcMAirport, IcMArrowDown, IcMArrowUp } from '@cogoport/icons-react';
 
 import AssistanceFooter from '../../commons/AssistanceFooter';
@@ -93,7 +94,7 @@ function AIR(props) {
 										<div>
 											Transit time:
 											{' '}
-											<span className="bold">
+											<span className={styles.bold}>
 												{transit_time}
 												{' '}
 												Hr
@@ -112,17 +113,17 @@ function AIR(props) {
 				</div>
 				<div className={styles.service_details_container}>
 					<div className={styles.footer}>
-						<div className="additional-services">
+						<div className={styles.additional_services}>
 							Additional Services:
 							<div className={styles.service_logo}>
 								{allServices.map((service) => (
 									<div
 										className={
-											`${styles.service_icon_container}
+											cl`${styles.service_icon_container}
 											 ${
 												service?.isSelected
-													? 'additional-services-logo '
-													: 'temp'
+													? styles.additional_services_logo
+													: styles.temp
 										}`
 }
 									>
@@ -131,9 +132,9 @@ function AIR(props) {
 								))}
 							</div>
 						</div>
-						<div className="details">
+						<div className={styles.details}>
 							<div
-								className="details-title"
+								className={styles.details_title}
 								onClick={changeToggle}
 								role="presentation"
 								style={{ cursor: 'pointer' }}

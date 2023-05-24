@@ -1,3 +1,4 @@
+import { cl } from '@cogoport/components';
 import { IcMFtl, IcMArrowDown, IcMArrowUp } from '@cogoport/icons-react';
 import { startCase } from '@cogoport/utils';
 
@@ -61,17 +62,17 @@ function FTL(props) {
 			</div>
 			<div className={styles.content}>
 				<div className={styles.first_row}>
-					<div className="row">
+					<div className={styles.row}>
 						{startCase(trip_type)}
 						{' '}
 						Trip
 					</div>
-					<div className="row">
+					<div className={styles.row}>
 						{truck.trucks_count}
 						{' '}
 						Truck
 					</div>
-					<div className="row">{startCase(truck?.truck_type)}</div>
+					<div className={styles.row}>{startCase(truck?.truck_type)}</div>
 				</div>
 				<div className={styles.transit_time}>
 					{transit_time ? (
@@ -134,15 +135,15 @@ function FTL(props) {
 				<div className={styles.service_details_container}>
 
 					<div className={styles.footer}>
-						<div className="additional-services">
+						<div className={styles.additional_services}>
 							Additional Services:
 							<div className={styles.service_logo}>
 								{allServices.map((service) => (
 									<div
-										className={`${styles.service_icon_container} 
+										className={cl`${styles.service_icon_container} 
 										${service?.isSelected
-											? 'additional-services-logo '
-											: 'temp'}`}
+											? styles.additional_services_logo
+											: styles.temp}`}
 									>
 
 										<ServiceIcon service={service.service_type} />
@@ -150,9 +151,9 @@ function FTL(props) {
 								))}
 							</div>
 						</div>
-						<div className="details">
+						<div className={styles.details}>
 							<div
-								className="details-title"
+								className={styles.details_title}
 								onClick={changeToggle}
 								role="presentation"
 							>

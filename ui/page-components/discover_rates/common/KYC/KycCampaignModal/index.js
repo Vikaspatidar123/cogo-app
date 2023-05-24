@@ -73,7 +73,7 @@ export function KycCampaignModal({ trackAnalytics = false }) {
 
       }
 			onClose={() => {
-         	setShow(false);
+				setShow(false);
 			}}
 			closable
 			width={750}

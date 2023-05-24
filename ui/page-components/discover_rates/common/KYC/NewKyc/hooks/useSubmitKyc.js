@@ -1,6 +1,7 @@
-import { useRequest } from '@cogo/commons/hooks';
-import showErrorsInToast from '@cogo/utils/showErrorsInToast';
-import { toast } from '@cogoport/front/components';
+import { Toast } from '@cogoport/components';
+
+import { useRequest } from '@/packages/request';
+import showErrorsInToast from '@/ui/commons/utils/showErrorsInToast';
 
 const useSubmitKyc = ({
 	scope,
@@ -13,15 +14,15 @@ const useSubmitKyc = ({
 	kyc_submitted_from,
 }) => {
 	const otpVarifyAPI = useRequest('post', false, scope)('/verify_user_mobile');
-	const submitKycAPI = useRequest(
-		'post',
-		false,
-		scope,
-	)('/submit_organization_kyc');
+
+	const [{ loading }, trigger] = useRequest({
+		url    : '/verify_user_mobile',
+		method : 'post',
+	}, { manual: true });
 
 	const submitKyc = async (formValues) => {
 		try {
-			const resSubmit = await submitKycAPI.trigger({
+			const resSubmit = await trigger({
 				data: {
 					id,
 					preferred_languages       : preferredLanguages,
@@ -32,7 +33,7 @@ const useSubmitKyc = ({
 				},
 			});
 			if (!resSubmit.hasError) {
-				toast.success('KYC submitted successfully');
+				Toast.success('KYC submitted successfully');
 
 				window.location.reload();
 
@@ -65,6 +66,6 @@ const useSubmitKyc = ({
 			showErrorsInToast(err?.data);
 		}
 	};
-	return { submitKyc, submitKycWithMobile };
+	return { submitKyc, submitKycWithMobile, loading };
 };
 export default useSubmitKyc;

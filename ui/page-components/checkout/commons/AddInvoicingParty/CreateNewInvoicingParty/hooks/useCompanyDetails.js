@@ -17,7 +17,7 @@ const useCompanyDetails = ({
 	const { company_details = {} } = filledDetails;
 
 	const orgControls = getOrgControls({
-        	values: company_details,
+		values: company_details,
 	}) || [];
 
 	const additionalOrgControls = getAdditionalOrgControls({ values: company_details }) || [];
@@ -40,10 +40,10 @@ const useCompanyDetails = ({
 	const isCountryIndia = watchCountryId === INDIA_COUNTRY_ID;
 
 	const { getBusinessApi = {}, onBlurTaxPanGstinControl = () => {} } = useGetBusiness({
-        	watchTaxNumber         : watchPan?.toUpperCase(),
-        	watchBusinessName,
-        	setValues,
-        	registrationNumberType : isCountryIndia ? 'registration' : '',
+		watchTaxNumber         : watchPan?.toUpperCase(),
+		watchBusinessName,
+		setValues,
+		registrationNumberType : isCountryIndia ? 'registration' : '',
 	});
 
 	const onSubmit = (values = {}) => {

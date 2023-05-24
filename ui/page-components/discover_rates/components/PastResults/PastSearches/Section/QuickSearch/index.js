@@ -17,10 +17,10 @@ import { useRouter } from '@/packages/next';
 import showErrorsInToast from '@/ui/commons/utils/showErrorsInToast';
 import Form from '@/ui/page-components/discover_rates/common/FormElement';
 
-function QuickSearch({ data, extraParams = {}, type, refresh, mobile }) {
+function QuickSearch({ data, extraParams = {}, type, refresh }) {
 	const [isLoading, setIsLoading] = useState(false);
 	const [show, setShow] = useState(false);
-	const className = `${mobile ? 'mobile' : ''} ${type || ''}`;
+	// const className = `${mobile ? 'mobile' : ''} ${type || ''}`;
 	const { search_type } = data;
 	const [errors, setErrors] = useState({});
 	const { createNewSearch } = useCreateSearch({});

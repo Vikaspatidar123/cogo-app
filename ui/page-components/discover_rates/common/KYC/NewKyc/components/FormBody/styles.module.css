@@ -1,0 +1,41 @@
+
+.button_div{
+	display: flex;
+	justify-content: flex-end;
+	margin-top: 26px;
+	@media (max-width: 768px) {
+		width: 100%;
+	}
+}
+.form_data{
+	margin-left: -8px;
+}
+.container{
+	&.otp {
+		display: flex;
+		align-items: center;
+		flex-direction: column;
+		justify-content: center;
+	}
+}
+
+.form_wrapper{
+	max-width: 100%;
+	@media (max-width: 768px) {
+		max-width: 100%;
+	}
+}
+
+.label {
+	font-style: normal;
+	font-weight: bold;
+	font-size: 14px;
+	line-height: 16px;
+	letter-spacing: 0.04em;
+	margin-top: 10px;
+	margin-bottom: 16px;
+	color: rgb(51, 51, 51);
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+  }

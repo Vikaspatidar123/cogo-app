@@ -19,7 +19,8 @@ const CARDS = [
 	{
 		title: 'Operations Support',
 		description:
-			'Let our team handle your entire shipment, including coordination between trucker, customs, shipping line etc.',
+			'Let our team handle your entire shipment,'
+			+ 'including coordination between trucker, customs, shipping line etc.',
 		icon  : 'ic-settings',
 		basis : '28%',
 	},

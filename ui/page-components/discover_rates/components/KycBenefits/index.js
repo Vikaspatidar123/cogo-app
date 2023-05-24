@@ -32,7 +32,7 @@ function KycBenefits() {
 			<Modal
 				show={show}
 				onClose={() => {
-        	    setShow(false);
+					setShow(false);
 				}}
 				closable
 				width={750}

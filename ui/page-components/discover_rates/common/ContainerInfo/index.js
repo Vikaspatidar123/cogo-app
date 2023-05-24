@@ -29,7 +29,7 @@ function ContainerInfo({ detail }) {
 		? `${valueForInput?.packages_count} Pkg, ${valueForInput?.packing_type}`
 		: '';
 	const packageDetails = `Package: ${inputValue} ${
-		packages?.length > 1 ? `+ ${packages?.length - 1} more` : ''
+		packages?.length > 1 ? `+ ${(packages?.length || 0) - 1} more` : ''
 	}`;
 
 	const renderValue = (label) => {
@@ -105,16 +105,16 @@ function ContainerInfo({ detail }) {
 	return (
 		<div className={styles.flex} style={{ flexWrap: 'wrap' }}>
 			{labels.map((label) => {
-      	const chipValue = detail[label] ? renderValue(label) : null;
-      	if (chipValue) {
-      		return (
-	<div className={styles.box} key={label}>
-		{chipValue}
-	</div>
-      		);
-      	}
+				const chipValue = detail[label] ? renderValue(label) : null;
+				if (chipValue) {
+					return (
+						<div className={styles.box} key={label}>
+							{chipValue}
+						</div>
+					);
+				}
 
-      	return null;
+				return null;
 			})}
 		</div>
 	);

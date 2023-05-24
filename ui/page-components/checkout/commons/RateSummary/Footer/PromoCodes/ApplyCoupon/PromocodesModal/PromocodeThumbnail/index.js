@@ -7,7 +7,6 @@ function PromocodeThumbnail({
 	setShowCoupons,
 	setCouponApplied,
 	refetch,
-	dashedColor,
 }) {
 	const { updateCheckoutPromotion } = useUpdateCheckoutPromotion();
 

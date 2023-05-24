@@ -22,7 +22,6 @@ function AdvancedOptions({
 	optionsFields = {},
 	services = {},
 	setServices = () => {},
-	mobile = false,
 	setLocation = () => {},
 	showElements = {},
 	formValues = {},

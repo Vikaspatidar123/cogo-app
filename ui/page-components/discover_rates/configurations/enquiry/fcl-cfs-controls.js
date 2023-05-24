@@ -35,8 +35,9 @@ const fclCfcControls = () => (
 			uploadIcon      : 'ic-upload',
 			condition       : { have_dpd_code: 'dpd' },
 			label           : 'DPD license',
-			accept          : 'image/*,.pdf,.doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document',
-			uploadType      : 'aws',
+			accept          : 'image/*,.pdf,.doc,.docx,application/msword,'
+			+ 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+			uploadType: 'aws',
 		},
 		{
 			name            : 'factory_clearance_license',
@@ -47,8 +48,9 @@ const fclCfcControls = () => (
 			drag            : true,
 			uploadIcon      : 'ic-upload',
 			label           : 'Factory clearance license',
-			accept          : 'image/*,.pdf,.doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document',
-			uploadType      : 'aws',
+			accept          : 'image/*,.pdf,.doc,.docx,application/msword,'
+			+ 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+			uploadType: 'aws',
 		},
 		{
 			label : 'Preferred CFS',

@@ -187,7 +187,8 @@ const fclControls = () => [
 		uploadIcon      : 'ic-upload',
 		label           : 'Upload MSDS certificate',
 		accept:
-			'image/*,.pdf,.doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+			'image/*,.pdf,.doc,.docx,application/msword,'
+			+ 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
 		uploadType : 'aws',
 		condition  : { is_haz: true },
 		rules      : { required: 'Document is required' },

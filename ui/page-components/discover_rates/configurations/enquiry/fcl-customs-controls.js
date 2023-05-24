@@ -29,9 +29,10 @@ const fclCustomsControls = () => (
 			drag            : true,
 			uploadIcon      : 'ic-upload',
 			label           : 'DPD license',
-			accept          : 'image/*,.pdf,.doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document',
-			uploadType      : 'aws',
-			condition       : {
+			accept          : 'image/*,.pdf,.doc,.docx,application/msword,'
+			+ 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+			uploadType : 'aws',
+			condition  : {
 				services            : ['fcl_customs'],
 				cargo_handling_type : ['direct_port_delivery'],
 				trade_type          : ['import'],
@@ -47,9 +48,13 @@ const fclCustomsControls = () => (
 			drag            : true,
 			uploadIcon      : 'ic-upload',
 			label           : 'Factory clearance license for destination',
-			accept          : 'image/*,.pdf,.doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document',
-			uploadType      : 'aws',
-			condition       : { cargo_handling_type: ['stuffing_at_factory', 'destuffing_at_dock', 'delivery_from_dock'] },
+			accept          : 'image/*,.pdf,.doc,.docx,application/msword,'
+			+ 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+			uploadType : 'aws',
+			condition  : {
+				cargo_handling_type: ['stuffing_at_factory',
+					'destuffing_at_dock', 'delivery_from_dock'],
+			},
 		},
 
 	]

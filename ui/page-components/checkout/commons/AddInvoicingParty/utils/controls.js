@@ -1,6 +1,6 @@
 import { Tooltip } from '@cogoport/components';
-import { IcMFileUploader, IcMInfo } from '@cogoport/icons-react';
-import { startCase } from '@cogoport/utils';
+import { IcMFileUploader, IcMInfo, IcMCloudUpload } from '@cogoport/icons-react';
+import { startCase, isEmpty } from '@cogoport/utils';
 
 import styles from '../styles.module.css';
 
@@ -562,7 +562,7 @@ const docControlsForTp = ({
 			label      : 'Upload Document',
 			type       : 'file',
 			drag       : true,
-			uploadIcon : () => <UploadIconSvg size={2} />,
+			uploadIcon : () => <IcMCloudUpload size={2} />,
 			span       : 12,
 			uploadType : 'aws',
 			height     : 45,
@@ -597,8 +597,10 @@ export const getOrgControls = ({ values = {} }) => orgControls.map((control) => 
 	return { ...control, value: values[name] || '' };
 });
 
-export const getAdditionalOrgControls = ({ values = {} }) => additionalOrgControls.map((control) => ({ ...control, value: values[control.name] || '' }));
-
+export const getAdditionalOrgControls = ({ values = {} }) => additionalOrgControls.map((control) => {
+	const value = values[control.name] || '';
+	return { ...control, value };
+});
 const getPocControlsValues = ({ values: valuesProps }) => {
 	const values = valuesProps || {};
 
@@ -672,10 +674,14 @@ export const getBankAccountControls = ({ values = {} }) => bankAccountControls.m
 	return { ...control, value: data[name] || values[name] || '' };
 });
 
-export const getDocumentControls = ({ values = {} }) => documentsControls.map((control) => ({ ...control, value: values[control.name] || '' }));
-
-export const getOtherAddressControls = ({ values = {} }) => otherAddressesControls.map((control) => ({ ...control, value: values[control.name] || '' }));
-
+export const getDocumentControls = ({ values = {} }) => documentsControls.map((control) => {
+	const value = values[control.name] || '';
+	return { ...control, value };
+});
+export const getOtherAddressControls = ({ values = {} }) => otherAddressesControls.map((control) => {
+	const value = values[control.name] || '';
+	return { ...control, value };
+});
 export const getControlsForAddingTpDetails = ({
 	editAdditionalTpDetails = {},
 	activeTabFromList = 'billing_address',

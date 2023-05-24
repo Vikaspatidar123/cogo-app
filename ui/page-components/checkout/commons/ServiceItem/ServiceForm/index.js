@@ -64,27 +64,27 @@ function SearchResultsServiceItemForm({
 				<Modal.Body>
 					<div>
 						{(service.controls || []).map((item) => {
-          	let flag = true;
+							let flag = true;
 
-          	Object.keys(item.condition).forEach((condItem) => {
-          		if (watchMap[condItem] !== undefined) {
-          			if (!item.condition[condItem].includes(watchMap[condItem])) {
-          				flag = false;
-          			}
-          		}
-          	});
+							Object.keys(item.condition).forEach((condItem) => {
+								if (watchMap[condItem] !== undefined) {
+									if (!item.condition[condItem].includes(watchMap[condItem])) {
+										flag = false;
+									}
+								}
+							});
 
-          	if (!flag) {
-          		return null;
-          	}
+							if (!flag) {
+								return null;
+							}
 
-          	return (
-	<FormElement
-		key={control.name}
-		errors={errors}
-		field={fields[item.name]}
-	/>
-          	);
+							return (
+								<FormElement
+									key={control.name}
+									errors={errors}
+									field={fields[item.name]}
+								/>
+							);
 						})}
 					</div>
 				</Modal.Body>

@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { upperCase } from '@cogoport/utils';
 import { useEffect, useMemo } from 'react';
 

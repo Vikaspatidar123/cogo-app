@@ -1,3 +1,4 @@
+/* eslint-disable default-param-last */
 const setDefaultValues = (controls, data, mobile = false, location = {}, index) => {
 	const finalControls = controls.map((item) => {
 		const obj = { ...item, mobileSelect: mobile };

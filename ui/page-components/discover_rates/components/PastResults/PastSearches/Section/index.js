@@ -1,9 +1,9 @@
 import { cl } from '@cogoport/components';
 import React from 'react';
 
-import ContainerInfo from '../../../../../common/ContainerInfo';
-import PortDetails from '../../../../../common/PortDetails';
-import SearchType from '../../../../../common/SearchType';
+// import ContainerInfo from '../../../../../common/ContainerInfo';
+// import PortDetails from '../../../../../common/PortDetails';
+// import SearchType from '../../../../../common/SearchType';
 
 import QuickSearch from './QuickSearch';
 import styles from './styles.module.css';
@@ -13,16 +13,16 @@ function Section({ data, mobile }) {
 
 	return (
 		<div className={styles.container}>
-			<div className={cl`${styles[className]}${styles.icon_cection}`}>
+			{/* <div className={cl`${styles[className]}${styles.icon_cection}`}>
 				<SearchType search_type={data.search_type} mobile={mobile} />
-			</div>
+			</div> */}
 			<div className={cl`${styles[className]}${styles.content}`}>
-				<div className={cl`${styles[className]}${styles.cox}`}>
+				{/* <div className={cl`${styles[className]}${styles.cox}`}>
 					<PortDetails data={data} />
 					<div style={{ maxWidth: !mobile ? 180 : '' }}>
 						<ContainerInfo detail={data} />
 					</div>
-				</div>
+				</div> */}
 				<div className={cl`${styles.column}${styles.box}`}>
 					<QuickSearch
 						data={data}

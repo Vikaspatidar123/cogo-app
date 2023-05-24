@@ -94,6 +94,7 @@ function CommodityType({
 				) || []).map((item) => ({ ...item, key: item.value, children: item.label })),
 			);
 		}
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [typeValue]);
 
 	return (

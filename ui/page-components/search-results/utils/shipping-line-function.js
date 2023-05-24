@@ -68,7 +68,8 @@ export const airControls = (scope, trade_type, airlineOptions) => {
 			label           : 'Upload MSDS certificate',
 			className       : 'primary sm',
 			accept:
-				'image/*,.pdf,.doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+                'image/*,.pdf,.doc,.docx,application/msword'
+                + ',application/vnd.openxmlformats-officedocument.wordprocessingml.document',
 			uploadType : 'aws',
 			condition  : { is_haz: true },
 			rules      : { required: 'Document is required' },
@@ -85,7 +86,8 @@ export const airControls = (scope, trade_type, airlineOptions) => {
 			className       : 'primary sm',
 			label           : 'Upload Packing List',
 			accept:
-				'image/*,.pdf,.doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+                'image/*,.pdf,.doc,.docx,application/msword'
+                + ',application/vnd.openxmlformats-officedocument.wordprocessingml.document',
 			uploadType : 'aws',
 			condition  : { is_haz: true },
 			rules      : { required: 'Document is required' },
@@ -181,9 +183,7 @@ export const fclControls = (
 			placeholder : 'Departure',
 			className   : 'primary sm',
 			minDate:
-				wayToBook === 'spot_booking'
-					? addDays(new Date(), 4)
-					: addDays(new Date(), 1),
+                wayToBook === 'spot_booking' ? addDays(new Date(), 4) : addDays(new Date(), 1),
 			span  : 6,
 			rules : { required: 'Required' },
 		},
@@ -192,9 +192,7 @@ export const fclControls = (
 			label       : 'Arrival',
 			placeholder : 'Arrival',
 			minDate:
-				wayToBook === 'spot_booking'
-					? addDays(new Date(), 4)
-					: addDays(new Date(), 1),
+                wayToBook === 'spot_booking' ? addDays(new Date(), 4) : addDays(new Date(), 1),
 			type      : 'datepicker',
 			className : 'primary sm',
 			span      : 6,
@@ -399,7 +397,11 @@ export const getShowElements = (
 		let nonMandatoryElements = [];
 		if (scheduleList.isApiCalled) {
 			if (scheduleList.list.length !== 0 && !manualSelect) {
-				nonMandatoryElements = ['arrival', 'departure', 'number_of_stops'];
+				nonMandatoryElements = [
+					'arrival',
+					'departure',
+					'number_of_stops',
+				];
 			} else if (scheduleList.list.length === 0) {
 				nonMandatoryElements = ['suitable_schedule'];
 			} else {
@@ -416,7 +418,7 @@ export const getShowElements = (
 		(controls || []).forEach((control) => {
 			if (
 				nonMandatoryElements.includes(control.name)
-				&& wayToBook === 'sell_without_buy'
+                && wayToBook === 'sell_without_buy'
 			) {
 				showElements[control.name] = false;
 			} else {

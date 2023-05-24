@@ -1,8 +1,7 @@
-// import { KycCampaign as KYC } from '@cogo/business-modules/components/kyc';
-// import { Flex, Text, Button } from '@cogo/commons/components';
-
 import { Modal, Button, cl } from '@cogoport/components';
 import { useState } from 'react';
+
+import { KycCampaign as KYC } from '../KYC';
 
 import styles from './styles.module.css';
 
@@ -16,22 +15,22 @@ function KYCDialog() {
 		kyc_status : profile?.organization?.kyc_status,
 	}));
 	const [show, setShow] = useState(false);
-	const text = 'You have exhausted your balance of available searches. Buy more searches and discover rates across FCL, LCL, Air and Haulage in one place.';
+	const text = 'You have exhausted your balance of available searches.'
+	+ 'Buy more searches and discover rates across FCL, LCL, Air and Haulage in one place.';
 	return (
 		<div className={cl`${styles.flex} ${styles.card}`}>
 			<Modal
 				show={show}
 				onClose={() => {
-        	setShow(false);
+					setShow(false);
 				}}
 				closable
 				width={750}
 			>
-				{/* <KYC onFinalSubmit={() => setShow(false)} /> */}
+				<KYC onFinalSubmit={() => setShow(false)} />
 			</Modal>
 			<div
 				className={styles.text_card}
-				// direction={!isMobile ? 'row' : 'column-reverse'}
 			>
 				<div width={!isMobile ? 480 : '100%'}>
 					<text className={styles.text}>{text}</text>
@@ -39,8 +38,8 @@ function KYCDialog() {
 					<div className={styles.button}>
 						<Button
 							onClick={() => push(
-              		'/saas/cogo-subscriptions/manage-subscription',
-              		'/saas/cogo-subscriptions/manage-subscription',
+								'/saas/cogo-subscriptions/manage-subscription',
+								'/saas/cogo-subscriptions/manage-subscription',
 							)}
 						>
 							BUY MORE SEARCHES

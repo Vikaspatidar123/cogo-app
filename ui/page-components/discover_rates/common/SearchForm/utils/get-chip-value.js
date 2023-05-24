@@ -18,10 +18,10 @@ const getChipValue = (value, operatorName = {}) => {
 						container_details = container_details
 							? `${container_details}, ${item?.containers_count} ${
 								item?.containers_count === 1 ? 'Container' : 'Containers'
-							  }`
+							}`
 							: `${item?.containers_count} ${
 								item?.containers_count === 1 ? 'Container' : 'Containers'
-							  }`;
+							}`;
 					}
 					if (item?.container_size) {
 						container_details = container_details
@@ -33,10 +33,10 @@ const getChipValue = (value, operatorName = {}) => {
 							container_details = container_details
 								? `${container_details}, ${
 									container_type && startCase(container_type)
-								  }, ${commodity && startCase(commodity)}`
+								}, ${commodity && startCase(commodity)}`
 								: `${container_type && startCase(container_type)}, ${
 									commodity && startCase(commodity)
-								  }`;
+								}`;
 						}
 					}
 					if (item?.cargo_weight_per_container) {
@@ -61,10 +61,12 @@ const getChipValue = (value, operatorName = {}) => {
 			const valueForInput = getFormattedValues(keyValue[0] || {});
 
 			const inputValue = valueForInput
-				? `${valueForInput?.packages_count} Pkg, ${valueForInput?.length} X ${valueForInput?.width} X ${valueForInput?.height}, ${valueForInput?.packing_type}`
+				? `${valueForInput?.packages_count} Pkg,
+				${valueForInput?.length} X ${valueForInput?.width} X 
+				${valueForInput?.height}, ${valueForInput?.packing_type}`
 				: '';
 			const packageDetails = `Package: ${inputValue} ${
-				keyValue?.length > 1 ? `+ ${keyValue?.length - 1} more` : ''
+				keyValue?.length > 1 ? `+ ${(keyValue?.length || 0) - 1} more` : ''
 			}`;
 			modifiedValues.push(packageDetails);
 		}

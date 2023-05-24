@@ -2,18 +2,21 @@
 
 // const geo = getGeoConstants();
 
+const Text = (
+	<div style={{
+		fontSize : '12px',
+		color    : '#828282',
+	}}
+	>
+		days
+	</div>
+);
 const ftlControls = () => [
 	{
 		name   : 'free_detention_hours',
 		label  : 'Detention free time',
 		type   : 'number',
-		suffix : <div style={{
-			fontSize : '12px',
-			color    : '#828282',
-		}}
-		>
-			days
-           </div>,
+		suffix : Text,
 	},
 	{
 		name        : 'address',
@@ -162,7 +165,8 @@ const ftlControls = () => [
 	// 	uploadIcon: 'ic-upload',
 	// 	label: 'Upload Packaging list',
 	// 	accept:
-	// 		'image/*,.pdf,.doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+	// 		'image/*,.pdf,.doc,.docx,application/msword,
+	// application/vnd.openxmlformats-officedocument.wordprocessingml.document',
 	// 	uploadType: 'aws',
 	// 	rules: { required: 'document is required' },
 	// },

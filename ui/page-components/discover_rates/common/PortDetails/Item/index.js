@@ -6,7 +6,7 @@ function Item({ location, search_type }) {
 	const splitDisplayName = (location.display_name || '').split(',');
 
 	let info = (location.country || {}).name
-    || splitDisplayName[splitDisplayName?.length - 1]
+    || splitDisplayName[(splitDisplayName?.length || 0) - 1]
     || '';
 
 	if (

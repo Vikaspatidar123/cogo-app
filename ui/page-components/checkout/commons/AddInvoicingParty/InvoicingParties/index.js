@@ -74,7 +74,7 @@ function InvoicingParties({
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [bookingType]);
 
-	const list = (data || {}).list || [];
+	const { list = [] } = data || {};
 
 	const address_to_use = is_tax_applicable
 		? 'billing_addresses'
@@ -197,13 +197,13 @@ function InvoicingParties({
 					<>
 						<Button
 							onClick={() => {
-                            	setShowComponent('create_billing_address');
-                            	setInvoiceToTradePartyDetails(
-                            		(previousState) => ({
-                            			...previousState,
-                            			tradePartyId:
-                                            organization.organization_trade_party_id,
-                            		}),
+								setShowComponent('create_billing_address');
+								setInvoiceToTradePartyDetails(
+									(previousState) => ({
+										...previousState,
+										tradePartyId:
+																organization.organization_trade_party_id,
+									}),
 								);
 							}}
 							style={{ marginBottom: 16 }}

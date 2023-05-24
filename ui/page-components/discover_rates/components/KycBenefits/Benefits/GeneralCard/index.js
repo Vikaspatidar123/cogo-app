@@ -18,24 +18,19 @@ function FeatureCard({
 		<div
 			style={style}
 			className={cl`${styles.container}${styles.featurecard_container} ${
-      	!icon ? styles.no_icon : ''
+				!icon ? styles.no_icon : ''
 			}`}
-			basis={rest.basis || '18%'}
-			grow={rest.grow || 0}
 			role="presentation"
-			onClick={
-        rest.href && rest.as
-        	? () => {
-        		Router.push(rest?.href, rest?.as);
-        	}
-        	: undefined
-      }
+			onClick={rest.href && rest.as
+				? () => {
+					Router.push(rest?.href, rest?.as);
+				}
+				: undefined}
 		>
 			<div className={styles.flex}>
 				{icon ? <Icons icon={icon} /> : null}
 				<div
-					className={cl`${styles.content}${styles.featurecard_container} ${
-          	!icon ? styles.no_icon : ''
+					className={cl`${styles.content}${styles.featurecard_container} ${!icon ? styles.no_icon : ''
 					}`}
 				>
 					<p className={cl`${styles.heading}${styles.featurecard_container}`}>

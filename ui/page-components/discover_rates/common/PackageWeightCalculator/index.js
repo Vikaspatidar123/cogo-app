@@ -79,6 +79,7 @@ function Calculator({ onChange = () => {}, onBack, value, setValue }) {
 			setValue('volume', !volume ? 1 : volume);
 		});
 		return () => subscription.unsubscribe();
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [watch]);
 
 	const style = {

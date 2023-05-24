@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import { isEmpty } from '@cogoport/utils';
 import { useEffect, useCallback } from 'react';
 

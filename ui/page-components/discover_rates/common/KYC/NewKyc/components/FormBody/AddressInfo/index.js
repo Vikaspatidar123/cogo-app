@@ -1,15 +1,15 @@
 import React from 'react';
 
-import { Heading, Container, PointsBody, InfoContainer } from './styles';
+import styles from './styles.module.css';
 
 function AddressInfo() {
 	return (
-		<Container>
-			<InfoContainer>
-				<Heading>
+		<div className={styles.container}>
+			<p className={styles.info_container}>
+				<p className={styles.heading}>
 					Please upload one of the following. Documents should not be older than 6 months.
-				</Heading>
-				<PointsBody>
+				</p>
+				<div className={styles.points_body}>
 					<ul>
 						<li>Electricity Bill</li>
 						<li>Water Bill</li>
@@ -19,9 +19,9 @@ function AddressInfo() {
 						<li>Gas Connection Bill</li>
 						<li>Credit Card Statement</li>
 					</ul>
-				</PointsBody>
-			</InfoContainer>
-		</Container>
+				</div>
+			</p>
+		</div>
 	);
 }
 

@@ -5,11 +5,15 @@ const getFunction = {
 		const servicesSelected = Object.keys(services).filter(
 			(key) => services[key],
 		);
-		const intersection = (control.condition.services || []).filter((value) => servicesSelected.includes(value));
+		const intersection = (control.condition.services || []).filter(
+			(value) => servicesSelected.includes(value),
+		);
 		return intersection.length > 0;
 	},
 	haulage: (control, formValues, mode, location) => !!(
-		location[control.name.includes('export') ? 'origin' : 'destination'] || {}
+		location[
+			control.name.includes('export') ? 'origin' : 'destination'
+		] || {}
 	).is_icd,
 	export_transportation_cargo_handling_type: (control, formValues) => control.condition?.export_transportation_cargo_handling_type?.includes(
 		formValues.export_transportation_cargo_handling_type,
@@ -18,9 +22,9 @@ const getFunction = {
 		formValues.export_cfs_cargo_handling_type,
 	),
 	export_transportation_pickup_type: (control, formValues) => formValues.export_transportation_pickup_type
-		=== control.condition?.export_transportation_pickup_type,
+        === control.condition?.export_transportation_pickup_type,
 	import_transportation_pickup_type: (control, formValues) => formValues.import_transportation_pickup_type
-		=== control.condition?.import_transportation_pickup_type,
+        === control.condition?.import_transportation_pickup_type,
 	import_transportation_cargo_handling_type: (control, formValues) => control.condition?.import_transportation_cargo_handling_type?.includes(
 		formValues.import_transportation_cargo_handling_type,
 	),
@@ -43,14 +47,14 @@ const getShowElement = (control, formValues, mode, location, services = {}) => {
 	let flag = true;
 	const { condition } = control || {};
 	Object.keys(condition || {}).forEach((conditionName) => {
-		flag =			flag
-			&& (getFunction[conditionName] || (() => true))(
-				control,
-				formValues,
-				mode,
-				location,
-				services,
-			);
+		flag = flag
+            && (getFunction[conditionName] || (() => true))(
+            	control,
+            	formValues,
+            	mode,
+            	location,
+            	services,
+            );
 	});
 
 	return flag;

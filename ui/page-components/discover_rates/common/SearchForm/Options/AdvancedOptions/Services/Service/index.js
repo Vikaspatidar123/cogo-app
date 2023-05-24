@@ -1,4 +1,3 @@
-// import Icon from '@cogo/deprecated_legacy/icons/Icon';
 import { Checkbox, cl } from '@cogoport/components';
 import {
 	IcCAirCustoms,
@@ -47,9 +46,7 @@ function Service({
 	return (
 		<div
 			className={
-        selected
-        	? cl`${styles.selected} ${styles.container}`
-        	: cl`${styles.container}`
+        selected ? cl`${styles.selected} ${styles.container}` : cl`${styles.container}`
       }
       // service={service}
 			role="presentation"

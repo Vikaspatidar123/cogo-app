@@ -1,6 +1,5 @@
-import styled from '@cogo/styled';
 
-export const Container = styled.div`
+.container{
 	display: flex;
 	flex-direction: column;
 	padding: 16px;
@@ -8,4 +7,4 @@ export const Container = styled.div`
 	@media (max-width: _md) {
 		width: 100%;
 	}
-`;
+}

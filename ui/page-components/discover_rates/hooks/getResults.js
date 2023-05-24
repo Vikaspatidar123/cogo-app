@@ -124,10 +124,10 @@ const useResultsState = (id, extraParams = {}) => {
 		return [
 			...sorted_list?.filter(
 				(item) => item?.source === 'spot_negotiation_rate',
-			),
+			) || [],
 			...sorted_list?.filter(
 				(item) => item?.source !== 'spot_negotiation_rate',
-			),
+			) || [],
 		];
 	};
 
@@ -150,10 +150,10 @@ const useResultsState = (id, extraParams = {}) => {
 		return [
 			...sorted_list?.filter(
 				(item) => item?.source === 'spot_negotiation_rate',
-			),
+			) || [],
 			...sorted_list?.filter(
 				(item) => item?.source !== 'spot_negotiation_rate',
-			),
+			) || [],
 		];
 	};
 
@@ -223,6 +223,7 @@ const useResultsState = (id, extraParams = {}) => {
 
 	useEffect(() => {
 		getResults();
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	const refetch = (isSetLoading = false) => {

@@ -24,7 +24,7 @@ function Route({
 	destination = {},
 	location = {},
 	setLocation = () => {},
-	keywords = [],
+	// keywords = [],
 	className = '',
 	errors,
 	search_type = '',

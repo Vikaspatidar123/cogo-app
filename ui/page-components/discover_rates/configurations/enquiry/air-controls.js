@@ -207,7 +207,8 @@ const airControls = () => [
 	// 	uploadIcon: 'ic-upload',
 	// 	label: 'Upload MSDS certificate',
 	// 	accept:
-	// 		'image/*,.pdf,.doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+	// 		'image/*,.pdf,.doc,.docx,application/msword,application/
+	// vnd.openxmlformats-officedocument.wordprocessingml.document',
 	// 	uploadType: 'aws',
 	// 	// condition: { is_hazardous: true },
 	// },
@@ -221,7 +222,8 @@ const airControls = () => [
 	// 	uploadIcon: 'ic-upload',
 	// 	label: 'Upload Packaging list',
 	// 	accept:
-	// 		'image/*,.pdf,.doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+	// 		'image/*,.pdf,.doc,.docx,application/msword,
+	// application/vnd.openxmlformats-officedocument.wordprocessingml.document',
 	// 	uploadType: 'aws',
 	// },
 ];

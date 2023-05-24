@@ -8,7 +8,6 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  /* flex: ${({ grow, basis }) => `${grow || 0} 0 ${basis}`}; */
   margin-bottom: 16px;
   position: relative;
   @media (max-width: 767px) {

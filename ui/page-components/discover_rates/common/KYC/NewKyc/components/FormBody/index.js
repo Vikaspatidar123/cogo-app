@@ -1,16 +1,17 @@
-import FormLayout from '@cogo/app-common/components/FormLayoutSimple';
-import { useRequest } from '@cogo/commons/hooks';
-import { useForm } from '@cogo/deprecated_legacy/forms';
-import { Btn, cogoToast } from '@cogo/deprecated_legacy/ui';
-import showErrorsInToast from '@cogo/utils/showErrorsInToast';
+import { Button, cl, Toast } from '@cogoport/components';
 import { useState } from 'react';
 
+import ProgressBar from '../../../KycCampaignModal/ProgressBar';
 import useSubmitKyc from '../../hooks/useSubmitKyc';
 import Heading from '../Heading';
-import ProgressBar from '../ProgressBar';
 
-import { controls } from './controls.js';
-import { ButtonDiv, Container, FormWrapper } from './styles';
+import { controls } from './controls';
+import styles from './styles.module.css';
+
+import { useForm } from '@/packages/forms';
+import getField from '@/packages/forms/Controlled';
+import { useRequest } from '@/packages/request';
+import showErrorsInToast from '@/ui/commons/utils/showErrorsInToast';
 
 function Form({ scope, agent_id, onFinalSubmit, ...rest }) {
 	const {
@@ -22,7 +23,11 @@ function Form({ scope, agent_id, onFinalSubmit, ...rest }) {
 	} = rest || {};
 	const [isOpen, setIsOpen] = useState(false);
 	const newControls = controls(country_code, isOpen, setIsOpen, rest);
-	const { fields, getValues } = useForm(newControls);
+	const {
+		getValues,
+		control,
+		formState: { errors },
+	} = useForm();
 	const [show, setShow] = useState(false);
 	const [mobile, setMobile] = useState({});
 	const otpVarifyAPI = useRequest('post', false, scope)('/verify_user_mobile');
@@ -62,7 +67,7 @@ function Form({ scope, agent_id, onFinalSubmit, ...rest }) {
 					});
 					if (!res.hasError) {
 						setShow(true);
-						cogoToast.success('OTP sent');
+						Toast.success('OTP sent');
 					} else {
 						showErrorsInToast(res?.messages);
 					}
@@ -80,7 +85,7 @@ function Form({ scope, agent_id, onFinalSubmit, ...rest }) {
 		fontSize     : '14px',
 	};
 	return (
-		<Container className={show ? 'otp' : ''}>
+		<div className={cl`${styles.container} ${show ? styles.otp : ''}`}>
 			<Heading
 				isOtp={show}
 				mobileNumber={mobile?.mobile_number}
@@ -100,21 +105,28 @@ function Form({ scope, agent_id, onFinalSubmit, ...rest }) {
 				/>
 			) : (
 				<form onSubmit={onSubmit} style={formStyle}>
-					<FormWrapper>
-						<FormLayout
-							controls={newControls}
-							fields={fields}
-							themeType="new big"
-						/>
-					</FormWrapper>
-					<ButtonDiv>
-						<Btn type="submit" style={buttonStyle} className="small">
+					<div className={styles.form_wrapper}>
+						<div className={styles.form_wrapper}>
+							{newControls.map((item) => {
+								const Element = getField(item.type);
+								return (
+									<div>
+										<div className={styles.label}>{item.label}</div>
+										<Element {...item} control={control} />
+										<div>{errors?.[item.name]}</div>
+									</div>
+								);
+							})}
+						</div>
+					</div>
+					<div className={styles.button_div}>
+						<Button type="submit" style={buttonStyle} className={styles.small}>
 							{showMobile ? 'PROCEED' : 'SUBMIT BUSINESS VERIFICATION'}
-						</Btn>
-					</ButtonDiv>
+						</Button>
+					</div>
 				</form>
 			)}
-		</Container>
+		</div>
 	);
 }
 export default Form;

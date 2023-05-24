@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import { isEmpty } from '@cogoport/utils';
 
 import AddInvoicingPartyModal from './AddInvoicingPartyModal';
@@ -17,7 +18,6 @@ function InvoicingParties(props) {
 		invoice = {},
 		source = '',
 	} = props;
-	// console.log(organization, 'organization');
 	if (isEmpty(organization)) {
 		return null;
 	}

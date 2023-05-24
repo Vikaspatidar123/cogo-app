@@ -4,7 +4,7 @@ const mutateFields = ({
 	location,
 	services,
 	data,
-	type = null,
+	// type = null,
 }) => {
 	const newFields = fields;
 	newFields.forEach((key, index) => {

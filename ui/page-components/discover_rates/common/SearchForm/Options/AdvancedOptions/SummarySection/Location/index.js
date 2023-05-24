@@ -1,5 +1,4 @@
 import {
-	IcMTransaction,
 	IcMPortArrow,
 	IcAFreeOnBoard,
 	IcATransporters,
@@ -46,12 +45,11 @@ function Location({
 				<div className={styles.title}>{`${startCase(type)} of Shipment`}</div>
 			</div>
 			<div className={styles.main}>
-				<IcAFreeOnBoard />
+				{icon[`${type}_${mode}`]}
 				<div style={{ marginLeft: 10, flexGrow: 1 }}>
 					<AsyncSelectController
 						{...fields.find((x) => x.name === value.formName)}
 						handleChange={handleChange}
-						style={{}}
 						control={control}
 						style={{
 							width: '250px',

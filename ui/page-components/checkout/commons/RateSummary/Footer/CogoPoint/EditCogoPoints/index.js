@@ -53,6 +53,7 @@ function EditCogoPoints({ cogopoint_data = {}, refetch }) {
 
 	useEffect(() => {
 		if (checked) {
+			// eslint-disable-next-line react-hooks/rules-of-hooks
 			useCogopPoint();
 		} else {
 			removeCogopPoint();

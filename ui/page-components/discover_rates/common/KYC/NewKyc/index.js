@@ -1,7 +1,7 @@
 import React from 'react';
 
 import FormBody from './components/FormBody';
-import { Container } from './styles';
+import styles from './styles.module.css';
 
 import { useSelector } from '@/packages/store';
 
@@ -26,7 +26,7 @@ function NewKyc({ onFinalSubmit, showMobile = true, text, ...rest }) {
 	};
 
 	return (
-		<Container>
+		<div className={styles.container}>
 			<FormBody
 				{...rest}
 				{...initialValues}
@@ -36,7 +36,7 @@ function NewKyc({ onFinalSubmit, showMobile = true, text, ...rest }) {
 				showMobile={showMobile}
 				text={text}
 			/>
-		</Container>
+		</div>
 	);
 }
 export default NewKyc;

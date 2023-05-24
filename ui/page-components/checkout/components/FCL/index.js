@@ -141,9 +141,9 @@ function FCL(props) {
 									</div>
 
 									<AboutAction slug="cancellation-terms">
-										<a className={styles.button_link}>
+										<p className={styles.button_link}>
 											Cancellation Charges & Policy
-										</a>
+										</p>
 									</AboutAction>
 								</div>
 							</div>
@@ -161,7 +161,7 @@ function FCL(props) {
 								{allServices.map((service) => (
 									<div
 										className={cl`${styles.service_icon_container} ${
-                    	service?.isSelected ? styles.additional_services_logo : styles.temp
+											service?.isSelected ? styles.additional_services_logo : styles.temp
 										}`}
 									>
 										<ServiceIcon service={service.service_type} />

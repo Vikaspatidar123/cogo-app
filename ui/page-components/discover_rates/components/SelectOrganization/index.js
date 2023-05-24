@@ -1,5 +1,5 @@
 import { Select, Checkbox } from '@cogoport/components';
-import { isEmpty } from '@cogoport/utils';
+// import { isEmpty } from '@cogoport/utils';
 import React, { useEffect, useState } from 'react';
 // import EmailContent from '@cogo/checkout/components/QuotationDetail/SearchLock/QuotationEmail/EmailContent';
 import { useSelector } from 'react-redux';
@@ -37,9 +37,9 @@ function SelectOrganization({
 		'channel_partner',
 	);
 
-	const classNames = [className, search_type]
-		.filter((item) => !isEmpty(item))
-		.join(' ');
+	// const classNames = [className, search_type]
+	// 	.filter((item) => !isEmpty(item))
+	// 	.join(' ');
 
 	const selectStyle = {
 		control: {
@@ -73,7 +73,7 @@ function SelectOrganization({
 		url    : '/list_organizations',
 		method : 'get',
 	}, { manual: true });
-
+	console.log(loading);
 	const handleChange = (val, obj) => {
 		setIsSettingPriorDetails(true);
 
@@ -171,7 +171,7 @@ function SelectOrganization({
 						account_type : 'importer_exporter',
 					},
 				};
-				const res = await defaultOrganizationAPI.trigger({ params });
+				const res = await defaultOrganizationAPI({ params });
 				const org = res?.data?.list?.[0] || {};
 				setImpExpDetails({ ...org });
 				setImporterExporterDetails({
@@ -182,6 +182,7 @@ function SelectOrganization({
 				});
 			}
 		})();
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	return (

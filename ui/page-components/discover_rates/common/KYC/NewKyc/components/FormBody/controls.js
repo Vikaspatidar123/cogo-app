@@ -1,4 +1,4 @@
-import { Btn, Popover } from '@cogo/deprecated_legacy/ui';
+import { Button, Popover } from '@cogoport/components';
 
 import Info from './AddressInfo';
 
@@ -45,13 +45,13 @@ export const controls = (countryCode, isOpen, setIsOpen, rest) => {
 						renderBody={() => <Info />}
 						onOuterClick={() => setIsOpen(false)}
 					>
-						<Btn
+						<Button
 							onClick={handleClick}
 							className="small"
 							style={btnStyle}
 						>
 							i
-						</Btn>
+						</Button>
 					</Popover>
 				</div>
 			</div>
@@ -84,7 +84,11 @@ export const controls = (countryCode, isOpen, setIsOpen, rest) => {
 				type        : 'text',
 				span        : 6,
 				value       : rest?.registration_number,
-				validations : [{ type: 'required', message: countryCode === 'IN' ? 'Pan number is Required' : 'Registration Number is Required' }],
+				validations : [{
+					type    : 'required',
+					message : countryCode === 'IN'
+						? 'Pan number is Required' : 'Registration Number is Required',
+				}],
 			},
 			{
 				name            : 'utility_bill_document_url',
@@ -98,7 +102,11 @@ export const controls = (countryCode, isOpen, setIsOpen, rest) => {
 				themeType       : 'black',
 				onlyURLOnChange : true,
 				value           : rest?.utility_bill_document_url,
-				validations     : [{ type: 'required', message: countryCode === 'IN' ? 'Address is Required' : 'Registration Extract is Required' }],
+				validations     : [{
+					type    : 'required',
+					message : countryCode === 'IN'
+						? 'Address is Required' : 'Registration Extract is Required',
+				}],
 
 			},
 			...mobileSection,

@@ -85,6 +85,7 @@ function Services({
 			}
 		});
 		setServices(newServices);
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [incoTerm]);
 
 	const isIncludedInPlace = (conditionService, placeService) => {

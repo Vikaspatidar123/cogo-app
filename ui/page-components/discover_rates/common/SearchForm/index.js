@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 // import usei18n from '@cogo/i18n';
 import { Checkbox, Toast, cl, Button } from '@cogoport/components';
 import { IcMSearchlight } from '@cogoport/icons-react';
@@ -272,19 +273,19 @@ function Form(
 		);
 	}
 	if (mode === 'rail_domestic_freight') {
-		const {
-			importer_exporter_id,
-			importer_exporter_name,
-			importer_exporter_branch_id,
-			user_id,
-		} = extraParams || {};
+		// const {
+		// 	importer_exporter_id,
+		// 	importer_exporter_name,
+		// 	importer_exporter_branch_id,
+		// 	user_id,
+		// } = extraParams || {};
 
-		const importerExporterDetails = {
-			id       : importer_exporter_id,
-			name     : importer_exporter_name,
-			branchId : importer_exporter_branch_id,
-			userId   : user_id,
-		};
+		// const importerExporterDetails = {
+		// 	id       : importer_exporter_id,
+		// 	name     : importer_exporter_name,
+		// 	branchId : importer_exporter_branch_id,
+		// 	userId   : user_id,
+		// };
 
 		// return (
 		// 	<RailDomestic

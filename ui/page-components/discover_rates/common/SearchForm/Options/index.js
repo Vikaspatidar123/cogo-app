@@ -56,7 +56,6 @@ function Options({
 	const [errors, setErrors] = useState({});
 	const [showAdvance, setShowAdvance] = useState(false);
 	const [packageInformation, setPackageInformation] = useState({});
-
 	const optionFormControls = getControls(
 		optionsControls.form,
 		{},
@@ -161,7 +160,10 @@ function Options({
 				valuesToRefresh = { ...valuesToRefresh, [item.name]: '' };
 			}
 			if (item.value) {
-				valuesToRefresh = { ...valuesToRefresh, [item.name]: item.value };
+				valuesToRefresh = {
+					...valuesToRefresh,
+					[item.name]: item.value,
+				};
 			}
 		});
 		Object.keys(valuesToRefresh).forEach((key) => {
@@ -339,37 +341,35 @@ function Options({
 		return renderPillsInput('disable');
 	};
 
-	const additionalServices = () => (
-		showAdvance && (
-			<AdditionalServices
-				{...rest}
-				show={showAdvance}
-				location={location}
-				mode={mode}
-				controls={optionFormControls}
-				optionsFields={optionFormControls}
-				advancedControls={advancedControls}
-				fields={mainFields}
-				submit={submit}
-				services={services}
-				setServices={setServices}
-				mobile={mobile}
-				setLocation={setLocation}
-				showElements={showElements}
-				formValues={formValues}
-				errors={allErrors}
-				loading={loading}
-				onClose={() => {
-					setServices({});
-					setShowAdvance(false);
-				}}
-				search_type={search_type}
-				className={className}
-				index={index}
-				disabledFields={disabledFields}
-				control={control}
-			/>
-		)
+	const additionalServices = () => showAdvance && (
+		<AdditionalServices
+			{...rest}
+			show={showAdvance}
+			location={location}
+			mode={mode}
+			controls={optionFormControls}
+			optionsFields={optionFormControls}
+			advancedControls={advancedControls}
+			fields={mainFields}
+			submit={submit}
+			services={services}
+			setServices={setServices}
+			mobile={mobile}
+			setLocation={setLocation}
+			showElements={showElements}
+			formValues={formValues}
+			errors={allErrors}
+			loading={loading}
+			onClose={() => {
+				setServices({});
+				setShowAdvance(false);
+			}}
+			search_type={search_type}
+			className={className}
+			index={index}
+			disabledFields={disabledFields}
+			control={control}
+		/>
 	);
 
 	const handleServices = () => {
@@ -378,7 +378,9 @@ function Options({
 				return (
 					<div style={{ width: '100%', marginLeft: '16px' }}>
 						{index === 0 ? (
-							<div className={styles.label}>ADDITIONAL SERVICES</div>
+							<div className={styles.label}>
+								ADDITIONAL SERVICES
+							</div>
 						) : null}
 						{additionalServices()}
 					</div>
@@ -391,7 +393,9 @@ function Options({
 	return (
 		<div className={cl`${styles.container} ${styles[search_type]}`}>
 			{search_type === 'rfq' ? (
-				<div style={{ width: mainservices.includes(mode) ? '100%' : '50%' }}>
+				<div
+					style={{ width: mainServices.includes(mode) ? '100%' : '50%' }}
+				>
 					{index === 0 ? (
 						<div
 							className={cl`${styles.label} ${styles.search_form_options_container_col__label}`}
@@ -405,12 +409,12 @@ function Options({
 				<div style={{ width: '100%' }}>{handlePopover()}</div>
 			)}
 
-			<div
-				className={`${styles.date_select_container}`}
-			>
+			<div className={`${styles.date_select_container}`}>
 				<div className={styles.label}>VALIDITY DATE</div>
 				<DateRangeBox date={date} setDate={setDate} mobile={mobile} />
-				<div style={{ fontSize: '12px', color: '#CB6464' }}>{validityErr}</div>
+				<div style={{ fontSize: '12px', color: '#CB6464' }}>
+					{validityErr}
+				</div>
 			</div>
 
 			<div className={styles.mobile_web}>

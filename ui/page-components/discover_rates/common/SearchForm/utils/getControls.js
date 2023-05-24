@@ -1,3 +1,4 @@
+/* eslint-disable default-param-last */
 import { useState } from 'react';
 
 import getConfiguration from '../../../hooks/configurations';
@@ -15,17 +16,16 @@ import setDefaultValues from './setDefaultValues';
  * @returns
  */
 
-const getControls = (
+const useGetControls = (
 	mode,
 	data,
-	mobile = false,
 	location = {},
 	isChannelPartner = false,
 	index,
 	is_org_pass_through,
 ) => {
+	const mobile = false;
 	const [operatorName, setOperatorName] = useState({});
-	console.log(mode, 'mode');
 	const controls = getConfiguration(
 		'controls',
 		mode,
@@ -82,4 +82,4 @@ const getControls = (
 	};
 };
 
-export default getControls;
+export default useGetControls;

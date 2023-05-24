@@ -1,5 +1,6 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { startCase } from '@cogoport/utils';
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect } from 'react';
 
 import getServiceConfig from '../utils/getServiceConfig';
 import persistSearchObject from '../utils/persistSearchObject';

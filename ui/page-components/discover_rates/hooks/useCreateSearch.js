@@ -27,9 +27,8 @@ const useCreateSearch = ({
 	const {
 		importer_exporter_branch_id,
 		user_id,
-
-		query = {},
-		userRoleIDs = [],
+		// query = {},
+		// userRoleIDs = [],
 	} = useSelector(({ general, profile }) => ({
 		query                       : general?.query,
 		userRoleIDs                 : profile?.partner?.user_role_ids,
@@ -73,8 +72,8 @@ const useCreateSearch = ({
 				? spotSearchParams
 				: formattedSpotSearchParams;
 			const apiToTrigger = rawParams.is_pass_through_selected === 'pass_through'
-        	? createCheckout
-        	: createSpotSearch;
+				? createCheckout
+				: createSpotSearch;
 
 			const { data, hasError, messages } = await apiToTrigger({
 				data: { ...formattedPayload, schedules_required: false },
@@ -233,7 +232,6 @@ const useCreateSearch = ({
 
 	const submitData = async (values, e) => {
 		e.preventDefault();
-		console.log(values, 'values', e);
 		if (optionsControls.display.length > 0) {
 			options.handleSubmit(
 				(optionVals) => {
@@ -247,7 +245,7 @@ const useCreateSearch = ({
 		}
 	};
 
-	return { submitRfq_Contract, submitData, createNewSearch };
+	return { submitRfq_Contract, submitData, createNewSearch, loading, createCheckoutLoading };
 };
 
 export default useCreateSearch;

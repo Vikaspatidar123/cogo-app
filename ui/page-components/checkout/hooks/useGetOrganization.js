@@ -1,4 +1,4 @@
-import { useEffect, useCallback } from 'react';
+import { useEffect } from 'react';
 
 import { useRequest } from '@/packages/request';
 
@@ -14,6 +14,7 @@ const useGetOrganization = ({ organizationId }) => {
 
 	useEffect(() => {
 		getOrganization();
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [organizationId]);
 
 	return {

@@ -50,6 +50,7 @@ const useGetUserQuota = ({ apiTries, setApiTries }) => {
 		return () => {
 			clearInterval(interval);
 		};
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [apiTries]);
 
 	return {

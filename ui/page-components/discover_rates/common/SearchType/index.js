@@ -12,8 +12,7 @@ function SearchType({ search_type, theme, disabled, width }) {
 	}
 	return (
 		<div
-			className={cl`${styles.container} ${styles[theme]} ${
-      	disabled ? styles.disabled : ''
+			className={cl`${styles.container} ${styles[theme]} ${disabled ? styles.disabled : ''
 			}`}
 			width={width}
 		>

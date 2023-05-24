@@ -2,7 +2,14 @@ import { cl } from '@cogoport/components';
 
 import styles from './styles.module.css';
 
-import { shortFormatNumber } from '@/ui/commons/utils/getShortFormatNumber';
+import formatAmount from '@/ui/commons/utils/formatAmount';
+
+const formatAmountOptions = {
+	style                 : 'currency',
+	currencyDisplay       : 'symbol',
+	notation              : 'standard',
+	maximumFractionDigits : 2,
+};
 
 function Summary({ isQuotaLeft = false, quotaValue, productInfoArr = [], chargeData = {}, serviceData = {} }) {
 	const { currency } = serviceData;
@@ -24,20 +31,29 @@ function Summary({ isQuotaLeft = false, quotaValue, productInfoArr = [], chargeD
 					<div className={styles.flex_box}>
 						<p>Services</p>
 						<div className="price">
-							{shortFormatNumber(subTotalAmount, currency, true)}
-
+							{formatAmount({
+								amount: subTotalAmount, currency, options: formatAmountOptions,
+							})}
 						</div>
 					</div>
 
 					<div className={styles.flex_box}>
 						<p>Convenience Fee</p>
-						<div className="price">{shortFormatNumber(taxAmount, currency, true)}</div>
+						<div className="price">
+							{formatAmount({
+								amount: taxAmount, currency, options: formatAmountOptions,
+							})}
+						</div>
 
 					</div>
 
 					<div className={cl`${styles.flex_box} ${styles.total_row}`}>
 						<p className={styles.total}>Total Amount:</p>
-						<div className="price">{shortFormatNumber(netAmount, currency, true)}</div>
+						<div className="price">
+							{formatAmount({
+								amount: netAmount, currency, options: formatAmountOptions,
+							})}
+						</div>
 
 					</div>
 				</div>

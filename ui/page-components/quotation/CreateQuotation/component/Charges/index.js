@@ -11,7 +11,7 @@ import styles from './styles.module.css';
 
 import { useForm } from '@/packages/forms';
 import getField from '@/packages/forms/Controlled';
-import { shortFormatNumber } from '@/ui/commons/utils/getShortFormatNumber';
+import formatAmount from '@/ui/commons/utils/formatAmount';
 
 function Charges(props, ref) {
 	const {
@@ -85,6 +85,8 @@ function Charges(props, ref) {
 		}
 	}, [watchCurrency]);
 
+	console.log(consignmentValue, 'consignmentValue');
+
 	useEffect(() => {
 		if (
 			basicFreightCharges > 0
@@ -111,7 +113,7 @@ function Charges(props, ref) {
 					+ +incotermCharge,
 			);
 		}
-	}, [JSON.stringify(watchCharges), consignmentValue]);
+	}, [watchCharges, consignmentValue]);
 
 	useImperativeHandle(ref, () => ({
 		handleSubmit: () => {
@@ -181,7 +183,16 @@ function Charges(props, ref) {
 			<div className={styles.footer_section}>
 				<div className={cl`${styles.total_quotation} ${styles.flex_box}`}>
 					<span>Quotation Total:</span>
-					{shortFormatNumber(totalQuotation, 'INR', true)}
+					{formatAmount({
+						amount   : totalQuotation,
+						currency : 'INR',
+						options  : {
+							style                 : 'currency',
+							currencyDisplay       : 'symbol',
+							notation              : 'standard',
+							maximumFractionDigits : 2,
+						},
+					})}
 				</div>
 
 				<div className={styles.comment}>

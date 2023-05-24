@@ -18,7 +18,7 @@ import styles from './styles.module.css';
 import { useForm, useFieldArray } from '@/packages/forms';
 import { useRouter } from '@/packages/next';
 import { useSelector } from '@/packages/store';
-import { shortFormatNumber } from '@/ui/commons/utils/getShortFormatNumber';
+import formatAmount from '@/ui/commons/utils/formatAmount';
 
 const addProductFromCatalogue = ({ selectedData = [], watchCurrency, append, getExchangeRate }) => {
 	selectedData.forEach(async (product) => {
@@ -171,7 +171,16 @@ function List(props, ref) {
 			<div className={cl`${styles.row} ${styles.total_value}`}>
 				<h3>
 					Consignment Total :
-					{shortFormatNumber(calTotalPrice(), watchCurrency) || 0}
+					{formatAmount({
+						amount   : calTotalPrice(),
+						currency : watchCurrency,
+						options  : {
+							style                 : 'currency',
+							currencyDisplay       : 'symbol',
+							notation              : 'standard',
+							maximumFractionDigits : 2,
+						},
+					})}
 				</h3>
 			</div>
 		</>

@@ -3,7 +3,7 @@ import { IcMLocation, IcMShip, IcMAirport } from '@cogoport/icons-react';
 
 import styles from './styles.module.css';
 
-import { shortFormatNumber } from '@/ui/commons/utils/getShortFormatNumber';
+import formatAmount from '@/ui/commons/utils/formatAmount';
 
 function Transport({ transportMode = 'OCEAN', consignmentValue }) {
 	return (
@@ -37,7 +37,16 @@ function Transport({ transportMode = 'OCEAN', consignmentValue }) {
 			</div>
 			<div className={styles.total_amount}>
 				<div className={styles.value}>
-					{shortFormatNumber(consignmentValue, 'INR', true)}
+					{formatAmount({
+						amount   : consignmentValue,
+						currency : 'IMR',
+						options  : {
+							style                 : 'currency',
+							currencyDisplay       : 'symbol',
+							notation              : 'standard',
+							maximumFractionDigits : 2,
+						},
+					})}
 				</div>
 				<div className={styles.border} />
 			</div>

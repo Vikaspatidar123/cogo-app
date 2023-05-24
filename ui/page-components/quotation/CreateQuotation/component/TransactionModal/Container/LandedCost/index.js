@@ -4,7 +4,7 @@ import iconUrl from '../../../../../utils/iconUrl.json';
 
 import styles from './styles.module.css';
 
-import { shortFormatNumber } from '@/ui/commons/utils/getShortFormatNumber';
+import formatAmount from '@/ui/commons/utils/formatAmount';
 
 function LandedCost({ landedCost, resultCurrency = 'INR' }) {
 	const { taxSet } = landedCost?.[0] || {};
@@ -37,7 +37,16 @@ function LandedCost({ landedCost, resultCurrency = 'INR' }) {
 												{x.name}
 											</div>
 											<div className={cl`${styles.text} ${styles.sub} ${styles.auto}`}>
-												{shortFormatNumber(x.value, resultCurrency)}
+												{formatAmount({
+													amount   : x.value,
+													currency : resultCurrency,
+													options  : {
+														style                 : 'currency',
+														currencyDisplay       : 'symbol',
+														compactDisplay        : 'short',
+														maximumFractionDigits : 2,
+													},
+												})}
 											</div>
 										</div>
 									</div>

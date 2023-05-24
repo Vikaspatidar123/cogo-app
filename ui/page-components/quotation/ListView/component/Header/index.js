@@ -2,13 +2,12 @@ import { cl, Button, Popover } from '@cogoport/components';
 import { IcMFilter, IcMPlus } from '@cogoport/icons-react';
 import { useState, memo } from 'react';
 
+import redirectUrl from '../../../utils/redirectUrl';
 import getSummary from '../../configurations/summary';
 
 import Card from './Card';
 import FilterContent from './FilterContent';
 import styles from './styles.module.css';
-
-import { useRouter } from '@/packages/next';
 
 function Header({
 	summaryLoading = false,
@@ -17,7 +16,7 @@ function Header({
 	const [showFilters, setShowFilters] = useState(false);
 	const [mobileFilters, setMobileFilters] = useState(false);
 
-	const { push } = useRouter();
+	const { redirectQuotation } = redirectUrl();
 	const summaryControl = getSummary({ summaryResp: summaryData });
 	return (
 		<>
@@ -82,10 +81,7 @@ function Header({
 						<div
 							className={styles.btn_text}
 							role="presentation"
-							onClick={() => push(
-								'/saas/planning/quickquotation/createQuotation',
-								'/saas/planning/quickquotation/createQuotation',
-							)}
+							onClick={redirectQuotation}
 						>
 							Create New
 						</div>

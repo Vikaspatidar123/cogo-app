@@ -3,7 +3,7 @@ import { IcAFinancial } from '@cogoport/icons-react';
 import { useEffect, useState } from 'react';
 
 import useFreightCharges from '../../../../hooks/useFreightCharges';
-import FreightChargesPayload from '../../../../utils/freightChargePayload';
+import freightChargesPayload from '../../../../utils/freightChargePayload';
 
 import Info from './Info';
 import ListRow from './List';
@@ -25,7 +25,7 @@ function FreightCharges({
 	const allData = Object.assign({}, ...infoData);
 	const { createSpotSearch, loading, apiResponse } = useFreightCharges();
 	const cargo_value = {};
-	const data = FreightChargesPayload({
+	const data = freightChargesPayload({
 		id,
 		branch,
 		allData,
@@ -36,7 +36,7 @@ function FreightCharges({
 
 	useEffect(() => {
 		createSpotSearch(data);
-	}, []);
+	}, [createSpotSearch, data]);
 
 	const checkboxHandler = (item) => {
 		if (checked !== item?.card) {

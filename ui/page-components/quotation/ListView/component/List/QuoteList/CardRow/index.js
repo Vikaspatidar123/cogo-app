@@ -5,8 +5,6 @@ import tooltipConfig from '../../../../configurations/tooltipConfig';
 import itemFunction from '../../../../utils/itemFunction';
 import styles from '../styles.module.css';
 
-import redirectUrl from '@/ui/page-components/quotation/utils/redirectUrl';
-
 const tooltipContent = ({ documentStatus, quotationId, setShowDeleteModal, setQuoteId }) => {
 	const redirectData = redirectUrl();
 

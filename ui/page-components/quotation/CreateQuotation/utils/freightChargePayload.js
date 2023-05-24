@@ -12,7 +12,7 @@ const cargoHandler = (type) => {
 	}
 	return 'stuffing_at_factory';
 };
-const FreightChargesPayload = ({ id, branch, allData, activeTab, cargo_value }) => {
+const freightChargesPayload = ({ id, branch, allData, activeTab, cargo_value }) => {
 	const formData = allData || {};
 	const {
 		serviceType,
@@ -188,4 +188,4 @@ const FreightChargesPayload = ({ id, branch, allData, activeTab, cargo_value }) 
 	return createPayload();
 };
 
-export default FreightChargesPayload;
+export default freightChargesPayload;

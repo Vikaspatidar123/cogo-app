@@ -5,7 +5,7 @@ import servicesConfiguration from '../../../../../configuration/serviceConfigura
 
 import styles from './styles.module.css';
 
-import { shortFormatNumber } from '@/ui/commons/utils/getShortFormatNumber';
+import formatAmount from '@/ui/commons/utils/formatAmount';
 
 function ServiceCharge({
 	serviceProduct = {}, serviceData, isQuotaLeft, traderCheck,
@@ -34,7 +34,15 @@ function ServiceCharge({
 		const discountPrice = (+price * (100 - +discount)) / 100;
 
 		const finalAmount = discountPrice * quantity;
-		return shortFormatNumber(finalAmount, currency);
+		return formatAmount({
+			amount  : finalAmount,
+			currency,
+			options : {
+				style                 : 'currency',
+				currencyDisplay       : 'symbol',
+				maximumFractionDigits : 2,
+			},
+		});
 	};
 
 	return (

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 
 import { useRequest } from '@/packages/request';
 
@@ -12,7 +12,7 @@ const useGetShipments = () => {
 		},
 		{ manual: true },
 	);
-	const getShipmentsData = async () => {
+	const getShipmentsData = useCallback(async () => {
 		const params = {
 			filters: {
 				state: [
@@ -34,11 +34,11 @@ const useGetShipments = () => {
 		} catch (err) {
 			return false;
 		}
-	};
+	}, [getShipments]);
 
 	useEffect(() => {
 		getShipmentsData();
-	}, []);
+	}, [getShipmentsData]);
 
 	return {
 		shipmentsData,

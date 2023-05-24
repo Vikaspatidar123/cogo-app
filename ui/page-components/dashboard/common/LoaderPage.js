@@ -5,7 +5,7 @@ import styles from '../components/styles.module.css';
 
 function LoaderPage({ skeletonCount = 2 }) {
 	return (
-		<div className={styles.top}>
+		<div className={styles.top_card}>
 			{[...Array(skeletonCount)].map(() => (
 				<div className={styles.cart}>
 					{[...Array(4)].map(() => (

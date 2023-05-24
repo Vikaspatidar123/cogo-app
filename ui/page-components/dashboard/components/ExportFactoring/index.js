@@ -10,22 +10,22 @@ function ExportFactoring() {
 		push('/export-factoring-login');
 	};
 	return (
-		<div className={styles.Container}>
-			<div className={styles.IconContainer}>
+		<div className={styles.container}>
+			<div className={styles.icon_container}>
 				<img
 					src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/comingSoonIcon.svg"
 					alt="coming-soon"
 					size={10.0}
 				/>
 			</div>
-			<div className={styles.Header}>
+			<div className={styles.header}>
 				<span className={styles.yellow}>Export factoring </span>
 				is right around the corner.
 				<div> Easily apply online in just a few minutes</div>
 			</div>
 
-			<div className={styles.InfoContainer}>
-				<div className={styles.SvgContainer}>
+			<div className={styles.info_container}>
+				<div className={styles.svg_container}>
 					<img
 						src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/document2Icon.svg"
 						alt="document-icon"
@@ -38,7 +38,7 @@ function ExportFactoring() {
 				</div>
 			</div>
 
-			<div className={styles.ButtonContainer}>
+			<div className={styles.button_container}>
 				<Button onClick={handelRouting}>Show Interest</Button>
 			</div>
 		</div>

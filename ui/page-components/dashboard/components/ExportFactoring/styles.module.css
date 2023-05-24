@@ -1,4 +1,4 @@
-.Container {
+.container {
 	position: relative;
 	padding: 36px 22px 22px 24px;
 	background: #1e1e1e;
@@ -6,13 +6,13 @@
 	box-shadow: 0 2px 20px rgb(0 0 0 / 15%);
 }
 
-.IconContainer {
+.icon_container {
 	position: absolute;
 	top: -11px;
 	right: -12px;
 }
 
-.Header {
+.header {
 	margin-top: 24px;
 	font-size: 24px;
 	line-height: 30px;
@@ -35,7 +35,7 @@
 	}
 }
 
-.InfoContainer {
+.info_container {
 	display: flex;
 	align-items: center;
 	padding: 17px 11px;
@@ -45,7 +45,7 @@
 	border-radius: 10px;
 }
 
-.SvgContainer {
+.svg_container {
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -55,7 +55,7 @@
 	border-radius: 10px;
 }
 
-.ButtonContainer {
+.button_container {
 	display: flex;
 	align-items: center;
 	justify-content: center;

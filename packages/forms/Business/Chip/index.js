@@ -3,6 +3,8 @@ import React, { forwardRef } from 'react';
 
 import getOptionsFromKey from '../Select/getOptionsFromKey';
 
+import styles from './styles.module.css';
+
 function Chip(props, ref) {
 	const {
 		options = [],
@@ -21,15 +23,17 @@ function Chip(props, ref) {
 		children : item.label,
 	})) || options;
 	return (
-		<Chips
-			{...rest}
-			ref={ref}
-			name={name}
-			onItemChange={onChange}
-			selectedItems={valueProp}
-			items={optionDate}
-			multiple={multiple}
-		/>
+		<div className={styles.animated_container}>
+			<Chips
+				{...rest}
+				ref={ref}
+				name={name}
+				onItemChange={onChange}
+				selectedItems={valueProp}
+				items={optionDate}
+				multiple={multiple}
+			/>
+		</div>
 	);
 }
 

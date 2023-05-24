@@ -19,14 +19,13 @@
 	color: #fff;
 	letter-spacing: 0.02em;
 
-	& .yellow {
+	&.yellow {
 		font-weight: bold;
 		color: #f5a80e;
 	}
 
 	div {
 		margin: 12px 0 0;
-		font-family: Roboto;
 		font-size: 14px;
 		font-style: normal;
 		font-weight: 400;

@@ -18,7 +18,7 @@ import getInvoicingComponentKey from '../../utils/invoicingKey';
 import styles from './styles.module.css';
 import useLclCustoms from './useLclCustoms';
 
-import { AboutAction } from '@/ui/commons/components/webflow';
+// import { AboutAction } from '@/ui/commons/components/webflow';
 
 function LclCustoms(props) {
 	const {
@@ -37,9 +37,9 @@ function LclCustoms(props) {
 
 	const { credit_details, credit_terms_amd_condition } = detail || {};
 
-	const showCreditApprovalCard =		credit_details?.is_any_invoice_on_credit
-		&& !credit_terms_amd_condition?.is_tnc_accepted
-		&& credit_details?.credit_source === 'pre_approved_clean_credit';
+	const showCreditApprovalCard = credit_details?.is_any_invoice_on_credit
+        && !credit_terms_amd_condition?.is_tnc_accepted
+        && credit_details?.credit_source === 'pre_approved_clean_credit';
 
 	const {
 		shipping_line,
@@ -111,20 +111,26 @@ function LclCustoms(props) {
 					<div>
 						<div className={styles.middle_content}>
 							{shipping_line?.logo_url ? (
-								<div className={styles.logo} src={shipping_line?.logo_url} alt="logo" />
+								<div
+									className={styles.logo}
+									src={shipping_line?.logo_url}
+									alt="logo"
+								/>
 							) : (
 								<IcMCustoms width={40} height={40} />
 							)}
 
 							<div className={styles.data}>
 								<div className={styles.title}>
-									{shipping_line?.short_name || startCase(primary_service)}
+									{shipping_line?.short_name
+                                        || startCase(primary_service)}
 								</div>
 								<div className={styles.information}>
-
-									<AboutAction slug="cancellation-terms">
-										<div className={styles.button_link}>Cancellation Charges & Policy</div>
-									</AboutAction>
+									{/* <AboutAction slug="cancellation-terms"> */}
+									<div className={styles.button_link}>
+										Cancellation Charges & Policy
+									</div>
+									{/* </AboutAction> */}
 								</div>
 							</div>
 						</div>
@@ -139,12 +145,18 @@ function LclCustoms(props) {
 							Additional Services:
 							<div className={styles.service_logo}>
 								{allServices.map((service) => (
-									<div className={cl`${styles.service_icon_container} ${service?.isSelected
-										? styles.additional_services_logo
-										: styles.temp}`}
-
+									<div
+										className={cl`${
+                                        	styles.service_icon_container
+			} ${
+                                        	service?.isSelected
+                                        		? styles.additional_services_logo
+                                        		: styles.temp
+			}`}
 									>
-										<ServiceIcon service={service.service_type} />
+										<ServiceIcon
+				service={service.service_type}
+			/>
 									</div>
 								))}
 							</div>
@@ -199,7 +211,11 @@ function LclCustoms(props) {
 					<AssistanceFooter />
 				</div>
 
-				<TermsAndConditions summary={summary} rate={rate} source="checkout" />
+				<TermsAndConditions
+					summary={summary}
+					rate={rate}
+					source="checkout"
+				/>
 			</div>
 
 			<div className={styles.right_component}>

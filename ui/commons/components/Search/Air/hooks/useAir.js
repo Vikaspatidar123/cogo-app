@@ -9,17 +9,8 @@ import getLtlPayload from './useGetLtlPayload';
 
 import { useRouter } from '@/packages/next';
 import { useRequest } from '@/packages/request';
-// import { useSelector } from '@/packages/store';
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 import getCountryDetails from '@/ui/commons/utils/getCountryDetails';
-
-// const geo = getGeoConstants();
-
-// const cogoVerseTeamIDS = [
-// 	geo.uuid.cogoverse_admin_id,
-// 	geo.uuid.cogoverse_executive_id,
-// 	geo.uuid.cogoverse_kam_id,
-// ];
 
 const { IN: INDIA_COUNTRY_ID } = GLOBAL_CONSTANTS.country_ids;
 
@@ -36,14 +27,6 @@ const useAir = ({
 	detail = {},
 	onPush = () => {},
 }) => {
-	// const {
-	// 	query = {},
-	// 	userRoleIDs = [],
-	// } = useSelector(({ general, profile }) => ({
-	// 	query       : general?.query,
-	// 	userRoleIDs : profile?.partner?.user_role_ids,
-	// }));
-
 	const router = useRouter();
 
 	const { destination_airport = {}, origin_airport = {} } = airFreightData || {};
@@ -332,8 +315,6 @@ const useAir = ({
 				: 'cargo_gross',
 		};
 
-		// const isCogoVerseMember = userRoleIDs.some((elem) => cogoVerseTeamIDS.includes(elem));
-
 		return {
 			search_type                     : 'air_freight',
 			source                          : 'platform',
@@ -342,12 +323,6 @@ const useAir = ({
 			user_id,
 			air_freight_services_attributes : [airPayload],
 			ltl_freight_services_attributes,
-			tags                            : undefined,
-			// scope === 'partner'
-			// && query?.source === 'communication'
-			// // ||  isCogoVerseMember
-			// 	? ['cogoverse']
-			// 	: undefined,
 		};
 	};
 

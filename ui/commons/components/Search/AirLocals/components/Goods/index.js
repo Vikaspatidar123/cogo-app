@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { Popover } from '@cogoport/components';
 import { startCase, isEmpty } from '@cogoport/utils';
 import React, {

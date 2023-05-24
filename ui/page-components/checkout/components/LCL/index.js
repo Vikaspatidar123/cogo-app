@@ -17,7 +17,7 @@ import getInvoicingComponentKey from '../../utils/invoicingKey';
 import styles from './styles.module.css';
 import useLcl from './useLcl';
 
-import { AboutAction } from '@/ui/commons/components/webflow';
+// import { AboutAction } from '@/ui/commons/components/webflow';
 
 function LCL(props) {
 	const {
@@ -113,11 +113,11 @@ function LCL(props) {
 								)}
 							</div>
 
-							<AboutAction slug="cancellation-terms">
-								<button className={styles.button_link}>
-									Cancellation Policy
-								</button>
-							</AboutAction>
+							{/* <AboutAction slug="cancellation-terms"> */}
+							<button className={styles.button_link}>
+								Cancellation Policy
+							</button>
+							{/* </AboutAction> */}
 						</div>
 					</div>
 					<Packages />

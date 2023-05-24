@@ -91,6 +91,7 @@ function PerPackageCargoDetails({
 		});
 
 		setTotalVal({ totalWt, totalVol: totalVolume });
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [JSON.stringify(watchDimensions)]);
 
 	const onSubmit = (data, e) => {
@@ -163,9 +164,7 @@ function PerPackageCargoDetails({
 			<Modal
 				show={showOWModal}
 				onClose={() => setShowOWModal(false)}
-				className="primary sm"
-				style={{ zIndex: 99999 }}
-				// position="top-right"
+				style={{ zIndex: 9999999 }}
 			>
 				<OverWeightModal
 					setShowOWModal={setShowOWModal}

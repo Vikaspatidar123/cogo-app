@@ -5,7 +5,6 @@ import CLASS_MAPPING from './utils/classMapping';
 
 import { useRouter } from '@/packages/next';
 import { useRequest } from '@/packages/request';
-import { useSelector } from '@/packages/store';
 import showErrorsInToast from '@/ui/commons/utils/showErrorsInToast';
 
 const useAirLocal = ({
@@ -13,16 +12,6 @@ const useAirLocal = ({
 	airFreightLocalsData = {},
 	onPush = () => {},
 }) => {
-	const {
-		scope = 'app',
-		query = {},
-		userRoleIDs = [],
-	} = useSelector(({ general, profile }) => ({
-		scope       : general?.scope,
-		query       : general?.query,
-		userRoleIDs : profile?.partner?.user_role_ids,
-	}));
-
 	const { airport = {}, trade_type = '' } = airFreightLocalsData || {};
 
 	const [location, setLocation] = useState(() => ({
@@ -288,8 +277,7 @@ const useAirLocal = ({
 					as   : `/book/${(data || {}).id}`,
 				},
 			};
-			console.log(scope, 'scope');
-			const { href, as } = ROUTE_MAPPING[scope];
+			const { href, as } = ROUTE_MAPPING.app;
 			router.push(href, as);
 
 			onPush();

@@ -18,7 +18,7 @@ import getInvoicingComponentKey from '../../utils/invoicingKey';
 import styles from './styles.module.css';
 import useFtl from './useFtl';
 
-import { AboutAction } from '@/ui/commons/components/webflow';
+// import { AboutAction } from '@/ui/commons/components/webflow';
 
 function FTL(props) {
 	const {
@@ -89,9 +89,9 @@ function FTL(props) {
 				>
 					{free_detention_hours && <div>24 Hours Free Detention</div>}
 
-					<AboutAction slug="cancellation-terms">
-						<div className={styles.button_link}>Cancellation Charges & Policy</div>
-					</AboutAction>
+					{/* <AboutAction slug="cancellation-terms"> */}
+					<div className={styles.button_link}>Cancellation Charges & Policy</div>
+					{/* </AboutAction> */}
 				</div>
 			</div>
 		</div>

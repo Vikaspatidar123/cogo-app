@@ -5,7 +5,7 @@ import RouteDisplay from '../../../../commons/RouteDisplay';
 import CheckoutServices from '../../../../commons/Services';
 import styles from '../../styles.module.css';
 
-import { AboutAction } from '@/ui/commons/components/webflow';
+// import { AboutAction } from '@/ui/commons/components/webflow';
 
 function Details({
 	rate,
@@ -73,9 +73,9 @@ function Details({
 							)}
 						</div>
 
-						<AboutAction slug="cancellation-terms">
-							<div className={styles.button_link}>Cancellation Policy</div>
-						</AboutAction>
+						{/* <AboutAction slug="cancellation-terms"> */}
+						<div className={styles.button_link}>Cancellation Policy</div>
+						{/* </AboutAction> */}
 					</div>
 				</div>
 				<Packages />

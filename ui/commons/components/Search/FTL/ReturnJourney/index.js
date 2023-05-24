@@ -1,4 +1,4 @@
-// import Layout from '@cogo/business-modules/form/Layout';
+/* eslint-disable react-hooks/exhaustive-deps */
 import { IcMPortArrow } from '@cogoport/icons-react';
 import { getByKey } from '@cogoport/utils';
 import {
@@ -39,18 +39,16 @@ function ReturnJourney(
 	} = useForm();
 
 	const formValues = watch();
-
+	const haltTime = {
+		halt_time_value : formValues.halt_time_value || '',
+		halt_time_unit  : formValues.halt_time_unit || '',
+	};
 	useEffect(() => {
 		if (Object.keys(haltData).length) {
 			setValue('halt_time_value', haltData.halt_time_value);
 			setValue('halt_time_unit', haltData.halt_time_unit);
 		}
 	}, [haltData]);
-
-	const haltTime = {
-		halt_time_value : formValues.halt_time_value || '',
-		halt_time_unit  : formValues.halt_time_unit || '',
-	};
 
 	const validate = async () => {
 		const validateData = await ftlRef.current.TouchPointsRef.handleSubmit();
@@ -111,7 +109,7 @@ function ReturnJourney(
 							touchPointsToggle={touchPointsToggle}
 							validate={validate}
 							ref={(r) => {
-              	ftlRef.current.TouchPointsRef = r;
+								ftlRef.current.TouchPointsRef = r;
 							}}
 							setTouchPointsToggle={setTouchPointsToggle}
 							location={location}

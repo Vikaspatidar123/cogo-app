@@ -2,8 +2,8 @@ import getLocationInfo from '../AdditionalCards/MultiService/Service/locations-s
 
 const tp = ['ftl_freight', 'ltl_freight', 'trailer_freight'];
 
+// eslint-disable-next-line default-param-last
 const renderServices = (addedServices = [], servicesToAdd = [], data) => {
-	console.log(addedServices, 'addedServices', servicesToAdd, data.checkout_id);
 	const service_key = data?.checkout_id ? 'service_type' : 'search_type';
 	const { origin, destination } = getLocationInfo(service_key, data);
 

@@ -56,6 +56,7 @@ function IncotermController({
 		if (inputValue) {
 			setValue('incoterms', inputValue);
 		}
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [inputValue]);
 
 	return (

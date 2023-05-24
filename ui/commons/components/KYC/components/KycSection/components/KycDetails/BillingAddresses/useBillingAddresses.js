@@ -59,6 +59,7 @@ const useBillingAddresses = (props) => {
 
 	const gstinList = ((data || {}).data || {}).gsts || [];
 
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	const gstinOptions = useMemo(() => gstinList.map((gstin) => ({ label: gstin, value: gstin })), [gstinList.length]);
 
 	return {

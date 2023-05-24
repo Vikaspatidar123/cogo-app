@@ -1,7 +1,9 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { addDays } from '@cogoport/utils';
 import { useState, useEffect, useImperativeHandle, useMemo } from 'react';
 
 import getConfiguration from '../../discover_rates/common/SearchForm/utils/getConfiguration';
+import showElementFunc from '../../discover_rates/common/SearchForm/utils/show-elements';
 import referControls from '../../discover_rates/configurations/enquiry/refer.controls';
 import formatCreateSearch from '../utils/format-create-search';
 

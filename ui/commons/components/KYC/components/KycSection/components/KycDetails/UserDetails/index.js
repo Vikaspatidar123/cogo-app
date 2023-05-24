@@ -179,14 +179,15 @@ function UserDetails({
 
 							{!selectedUser.email_verified && (
 								<div className={styles.text_icon_container}>
-									<div
-										role="presentation"
+									<Button
 										className={styles.verification_text}
-										showLoading={loadingResendEmail}
+										loading={loadingResendEmail}
 										onClick={() => verifyEmailId()}
+										size="md"
+										themeType="tertiary"
 									>
 										Verify
-									</div>
+									</Button>
 								</div>
 							)}
 						</div>

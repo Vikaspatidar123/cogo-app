@@ -42,14 +42,13 @@ const controls = ({
 		type                  : 'datepicker',
 		style                 : { width: '200px' },
 		isPreviousDaysAllowed : false,
-		// value                 : cargo_clearance_date || tomorrow,
+		value                 : cargo_clearance_date || tomorrow,
 		rules                 : { required: 'This is required' },
 	},
 	{
 		name        : 'incoterms',
 		label       : 'Incoterm (Import/Export)',
 		type        : 'select',
-		style       : { width: '200px' },
 		placeholder : 'Add Incoterms',
 		disabled    : isEmpty(options),
 		options     : [
@@ -58,9 +57,10 @@ const controls = ({
 			},
 			...options,
 		],
-		// value : goodsDetail?.incoterms,
-		style: {
-			menu: {
+		value : goodsDetail?.incoterms,
+		style : {
+			width : '200px',
+			menu  : {
 				right        : 0,
 				background   : 'white',
 				boxShadow    : '0 4px 80px rgba(0, 0, 0, 0.15)',
@@ -75,7 +75,7 @@ const controls = ({
 	{
 		name    : 'service_name',
 		label   : 'Service Name',
-		// value   : goodsDetail.service_name,
+		value   : goodsDetail.service_name,
 		style   : { width: '200px' },
 		type    : 'select',
 		options : SERVICE_OPTIONS,
@@ -86,17 +86,17 @@ const controls = ({
 		name    : 'commodity_type',
 		label   : 'Commodity Type',
 		style   : { width: '200px' },
-		// value   : goodsDetail?.commodity_type || goodsDetail?.values?.commodity_type,
+		value   : goodsDetail?.commodity_type || goodsDetail?.values?.commodity_type,
 		type    : 'select',
 		options : OPTIONS,
 		rules   : { required: true },
 	},
 	{
-		name    : 'commodity_subtype',
-		label   : 'Commodity Subtype',
-		// 	value:
-		//   goodsDetail?.values?.commodity_subtype
-		//   || (serviceType === 'air_international' ? 'all' : 'others'),
+		name  : 'commodity_subtype',
+		label : 'Commodity Subtype',
+		value:
+				goodsDetail?.values?.commodity_subtype
+				|| (serviceType === 'air_international' ? 'all' : 'others'),
 		type    : 'select',
 		options : commoditySubtypeOptions,
 		style   : {
@@ -116,7 +116,7 @@ const controls = ({
 		type     : 'checkbox',
 		style    : { width: '200px' },
 		label    : 'Dry Ice required',
-		// options  : [{ value: true }],
+		options  : [{ value: true }],
 		value    : goodsDetail?.dry_ice_required,
 		multiple : true,
 	},

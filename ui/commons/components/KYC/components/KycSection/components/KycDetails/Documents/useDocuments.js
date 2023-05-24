@@ -42,6 +42,7 @@ const useDocuments = ({
 
 	useEffect(() => {
 		setValue('business_address_proof', data?.[0]?.image_url);
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [data]);
 
 	const onSubmit = async (values = {}) => {

@@ -1,9 +1,6 @@
 import { format } from '@cogoport/utils';
 
-import getGeoConstants from '@/ui/commons/constants/geo';
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
-
-// const geoConstants = getGeoConstants();
 
 const formatTypeFunMapping = {
 	date({ date, dateFormat }) {

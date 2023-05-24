@@ -1,4 +1,3 @@
-// import Layout from '@cogo/business-modules/form/Layout';
 import { Button } from '@cogoport/components';
 import React from 'react';
 
@@ -6,31 +5,30 @@ import controls from './controls';
 import styles from './styles.module.css';
 
 import { useForm } from '@/packages/forms';
+import FormElement from '@/ui/page-components/discover_rates/common/FormElement';
 
 function OverWeightModal({
 	setShowOWModal = () => {},
 	setOverWeightDoc = () => {},
 }) {
 	const {
-		fields = {},
 		formState = {},
 		handleSubmit = () => {},
+		control,
 	} = useForm();
 
 	const { errors } = formState;
 
 	const onSubmit = (doc) => {
-		setShowOWModal(false);
-
 		setOverWeightDoc(doc);
+		setShowOWModal(false);
 	};
 
 	return (
 		<div className={styles.container}>
 			<div className={styles.title}>Upload details</div>
 
-			{/* <Layout controls={controls} fields={fields} errors={errors} /> */}
-			Form ok
+			<FormElement control={control} controls={controls} errors={errors} noScroll />
 
 			<div className={styles.button_container}>
 				<Button className="primary sm" onClick={handleSubmit(onSubmit)}>

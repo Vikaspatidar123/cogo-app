@@ -19,7 +19,7 @@ import getInvoicingComponentKey from '../../utils/invoicingKey';
 import styles from './styles.module.css';
 import useFcl from './useFcl';
 
-import { AboutAction } from '@/ui/commons/components/webflow';
+// import { AboutAction } from '@/ui/commons/components/webflow';
 import InvoicingParties from '@/ui/page-components/checkout/commons/InvoicingParties';
 
 function FCL(props) {
@@ -140,11 +140,11 @@ function FCL(props) {
 										)}
 									</div>
 
-									<AboutAction slug="cancellation-terms">
-										<p className={styles.button_link}>
-											Cancellation Charges & Policy
-										</p>
-									</AboutAction>
+									{/* <AboutAction slug="cancellation-terms"> */}
+									<p className={styles.button_link}>
+										Cancellation Charges & Policy
+									</p>
+									{/* </AboutAction> */}
 								</div>
 							</div>
 						</div>

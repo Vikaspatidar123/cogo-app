@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { isEmpty } from '@cogoport/utils';
 import { useState, useEffect } from 'react';
 

@@ -6,7 +6,8 @@ const controls = [
 		showProgress    : true,
 		onlyURLOnChange : true,
 		accept:
-			'image/*,.pdf,.doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+			'image/*,.pdf,.doc,.docx,application/msword,'
+			+ 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
 		uploadType  : 'aws',
 		themeType   : 'secondary',
 		// uploadIcon: () => <CloudUpload size={4} />,

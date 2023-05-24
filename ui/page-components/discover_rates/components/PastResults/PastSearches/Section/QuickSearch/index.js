@@ -263,16 +263,14 @@ function QuickSearch({ data, extraParams = {}, type, refresh }) {
 		</div>
 	);
 
-	const buttonText = type === 'negotiation'
-    	? 'REPEAT SEARCH'
-    	: (
-	<>
-		<div className={styles.mobile_web}>
-			<IcMSearchlight width="20px" height="20px" fill="#fff" />
-		</div>
-		<div className={styles.web}>Show Rates</div>
-	</>
-		);
+	const buttonText = type === 'negotiation' ? 'REPEAT SEARCH' : (
+		<>
+			<div className={styles.mobile_web}>
+				<IcMSearchlight width="20px" height="20px" fill="#fff" />
+			</div>
+			<div className={styles.web}>Show Rates</div>
+		</>
+	);
 
 	return (
 		<>

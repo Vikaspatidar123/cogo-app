@@ -17,14 +17,14 @@ const PACKAGE_TYPE_OPTIONS = [
 	},
 ];
 
-const getControls = () => [
+const getControls = ({ showFilledValues = {} }) => [
 	{
 		name        : 'total_quantity',
 		type        : 'number',
 		label       : ' Total Quantity',
 		span        : 4,
 		size        : 'sm',
-		// value       : showFilledValues?.gross?.total_quantity,
+		value       : showFilledValues?.gross?.total_quantity,
 		style       : { width: '100px' },
 		placeholder : '0',
 		rules       : {
@@ -38,7 +38,7 @@ const getControls = () => [
 		label       : 'Gross Volume',
 		span        : 4,
 		size        : 'sm',
-		// value       : showFilledValues?.gross?.gross_volume,
+		value       : showFilledValues?.gross?.gross_volume,
 		style       : { width: '100px' },
 		placeholder : '0',
 		rules       : {
@@ -67,8 +67,8 @@ const getControls = () => [
 				value : 'cft',
 			},
 		],
-		// value : showFilledValues?.gross?.volume_unit || 'cbm',
-		rules: {
+		value : showFilledValues?.gross?.volume_unit || 'cbm',
+		rules : {
 			required: true,
 		},
 	},
@@ -79,7 +79,7 @@ const getControls = () => [
 		span        : 4,
 		size        : 'sm',
 		placeholder : '0',
-		// value       : showFilledValues?.gross?.total_weight,
+		value       : showFilledValues?.gross?.total_weight,
 		style       : { width: '100px' },
 		rules       : {
 			min      : 1,
@@ -103,8 +103,8 @@ const getControls = () => [
 				value : 'lb',
 			},
 		],
-		// value : showFilledValues?.gross?.weight_unit || 'kg',
-		rules: {
+		value : showFilledValues?.gross?.weight_unit || 'kg',
+		rules : {
 			required: true,
 		},
 	},
@@ -115,7 +115,7 @@ const getControls = () => [
 		size        : 'sm',
 		style       : { width: '120px' },
 		options     : PACKAGE_TYPE_OPTIONS,
-		// value       : showFilledValues?.gross?.package_type || 'box',
+		value       : showFilledValues?.gross?.package_type || 'box',
 		placeholder : 'Select',
 		rules       : {
 			required: true,
@@ -127,24 +127,22 @@ const getControls = () => [
 		size    : 'sm',
 		label   : 'Stackable',
 		options : [{ value: 'stackable', label: 'Stackable' }],
-		// value   : ['non_stackable', ''].includes(showFilledValues?.gross?.stackability)
-		// 	? false
-		// 	: 'stackable',
+		value   : ['non_stackable', ''].includes(
+			showFilledValues?.gross?.stackability,
+		)
+			? false
+			: 'stackable',
 	},
 	{
 		name            : 'packing_list',
 		showProgress    : true,
 		onlyURLOnChange : true,
-		// accept:
-		// 	'image/*,.pdf,.csv,.xlsx,.doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document',
-
-		accept       : 'image, pdf, docx, csv',
-		label        : 'Upload Documents',
-		drag         : true,
-		height       : 50,
-		showOptional : true,
-		// style        : { width: '150px', height: '20px' },
-		// value        : showFilledValues?.gross?.packing_list,
+		accept          : 'image, pdf, docx, csv',
+		label           : 'Upload Documents',
+		drag            : true,
+		height          : 50,
+		showOptional    : true,
+		value           : showFilledValues?.gross?.packing_list,
 	},
 ];
 

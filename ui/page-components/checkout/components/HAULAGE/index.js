@@ -23,7 +23,7 @@ import getInvoicingComponentKey from '../../utils/invoicingKey';
 import styles from './styles.module.css';
 import useHaulage from './useHaulage';
 
-import { AboutAction } from '@/ui/commons/components/webflow';
+// import { AboutAction } from '@/ui/commons/components/webflow';
 
 function HAULAGE(props) {
 	const {
@@ -130,11 +130,11 @@ function HAULAGE(props) {
 										)}
 									</div>
 
-									<AboutAction slug="cancellation-terms">
-										<div className={styles.button_link}>
-											Cancellation Charges & Policy [second] = first
-										</div>
-									</AboutAction>
+									{/* <AboutAction slug="cancellation-terms"> */}
+									<div className={styles.button_link}>
+										Cancellation Charges & Policy [second] = first
+									</div>
+									{/* </AboutAction> */}
 								</div>
 							</div>
 						</div>

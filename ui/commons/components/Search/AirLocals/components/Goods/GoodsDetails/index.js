@@ -87,6 +87,7 @@ function GoodsDetails({
 
 	useEffect(() => {
 		handleCommoditySubtype();
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [watchCommodity, selectedTradeType]);
 
 	return (

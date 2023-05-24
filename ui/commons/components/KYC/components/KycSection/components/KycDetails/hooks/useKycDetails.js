@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { getByKey, isEmpty } from '@cogoport/utils';
 import { useEffect, useRef, useState } from 'react';
 
@@ -94,13 +95,6 @@ const useKycDetails = ({
 
 	const componentsRef = useRef({});
 
-	useEffect(() => {
-		focusNextIncompleteComponent();
-	}, [
-		JSON.stringify(channelPartnerState),
-		JSON.stringify(verification_progress),
-	]);
-
 	const focusNextIncompleteComponent = () => {
 		setShowHiddenComponentContents((previousState) => {
 			let componentKey = 'declaration';
@@ -128,7 +122,12 @@ const useKycDetails = ({
 			};
 		});
 	};
-
+	useEffect(() => {
+		focusNextIncompleteComponent();
+	}, [
+		JSON.stringify(channelPartnerState),
+		JSON.stringify(verification_progress),
+	]);
 	const showComponents = {};
 	Object.keys(COMPONENTS_MAPPING).forEach((componentKey) => {
 		let showComponent = true;

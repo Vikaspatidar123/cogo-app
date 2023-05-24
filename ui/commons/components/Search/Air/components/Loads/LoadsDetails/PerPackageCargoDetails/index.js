@@ -91,6 +91,7 @@ function PerPackageCargoDetails({
 				setValue(`packages.${index}.weight_unit`, weightUnit);
 			}
 		});
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [selectedWeightType]);
 
 	const onSubmit = (data) => {

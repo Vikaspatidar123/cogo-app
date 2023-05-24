@@ -95,21 +95,21 @@ function BillingAddressForm(props) {
 
 					<div className={styles.layout}>
 						{userControls.map((item) => {
-            	const Element = getField(item.type);
-            	const show = showElements[item.name];
-            	return (
-            		show && (
-	<div className={styles.field}>
-		<div className={styles.lable}>{item.label}</div>
-		<Element {...item} control={control} />
-		{errors && (
-			<div className={styles.errors}>
-				{errors[item?.name]?.message}
-			</div>
-		)}
-	</div>
-            		)
-            	);
+							const Element = getField(item.type);
+							const show = showElements[item.name];
+							return (
+								show && (
+									<div className={styles.field}>
+										<div className={styles.lable}>{item.label}</div>
+										<Element {...item} control={control} />
+										{errors && (
+											<div className={styles.errors}>
+												{errors[item?.name]?.message}
+											</div>
+										)}
+									</div>
+								)
+							);
 						})}
 					</div>
 

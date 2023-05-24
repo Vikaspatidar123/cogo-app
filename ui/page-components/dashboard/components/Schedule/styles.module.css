@@ -32,7 +32,7 @@
 	position: relative;
 	padding: 1.4rem;
 	margin-right: 1.5rem;
-	background: #88aaff;
+	background: #8af;
 	border-radius: 50%;
 }
 
@@ -59,7 +59,8 @@
 	margin-left: 8rem;
 	color: rgb(53 110 253);
 }
-.arrow_air{
+
+.arrow_air {
 	margin-left: 10rem;
 	color: rgb(53 110 253);
 }
@@ -73,11 +74,11 @@
 }
 
 .circle {
-	margin-left: 10%;
 	width: 100px;
 	height: 100px;
+	margin-left: 10%;
 
 	@media screen and (max-width: 767px) {
-		 display: none;
+		display: none;
 	}
 }

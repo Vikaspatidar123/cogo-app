@@ -83,8 +83,6 @@
 }
 
 .second_data {
-	display: flex;
-	justify-content: space-between;
 	padding-left: 15px;
 	margin-top: 10px;
 }
@@ -136,6 +134,7 @@
 	position: relative;
 	display: flex;
 	align-items: center;
+	margin-top: 4px;
 	margin-right: 0.5rem;
 }
 
@@ -173,11 +172,12 @@
 }
 
 .tasks {
-	margin: 0 0 0 5px;
-	margin-left: 2px;
+	margin: 0;
+	margin-left: 5px;
 	font-size: 12px;
+	font-weight: 700;
 	line-height: 1.4;
-	color: rgb(203 100 100);
+	color: #cb6464;
 	text-align: left;
 }
 
@@ -262,4 +262,39 @@
 	margin-top: 0.5rem;
 	margin-right: 0.8rem;
 	color: none;
+}
+
+.location_span {
+	margin-left: 1px;
+	font-size: 12px;
+	color: #828282;
+}
+
+.icon_wrapper {
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 1.4rem;
+	margin-right: 1.5rem;
+	border-radius: 50%;
+
+	svg {
+		position: absolute;
+		top: 50%;
+		right: 50%;
+		transform: translate(50%, -50%);
+	}
+}
+
+.container_details_text {
+	padding: 1px 3.5px;
+	margin-top: 0.5rem;
+	margin-right: 0.5rem;
+	font-size: 10px;
+	border-radius: 4px;
+}
+
+.pending {
+	margin-left: 5px;
 }

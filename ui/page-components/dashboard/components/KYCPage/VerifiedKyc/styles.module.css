@@ -12,7 +12,6 @@
 	}
 }
 
-
 .inner {
 	position: relative;
 	right: auto;
@@ -136,6 +135,7 @@
 .errors {
 	color: rgb(203 100 100);
 }
-.status_text{
-    margin-left: 15px;
+
+.status_text {
+	margin-left: 15px;
 }

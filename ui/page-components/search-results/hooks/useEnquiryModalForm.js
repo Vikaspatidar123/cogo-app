@@ -2,6 +2,7 @@ import { Toast } from '@cogoport/components';
 import { useRef, useState } from 'react';
 
 import formatCreateSearch from '../utils/format-create-search';
+import formatMainServiceData from '../utils/format-main-service-data';
 
 import getFormattedValues from '@/ui/commons/utils/getFormattedValues';
 
@@ -226,7 +227,7 @@ const useEnquiryModalForm = ({
 		let allValues = {};
 		Object.keys(serviceRef?.current || {}).forEach((key) => {
 			if (serviceRef?.current?.[key]) {
-				const { handleSubmit, onError } = serviceRef?.current?.[key];
+				const { handleSubmit, onError } = serviceRef?.current?.[key] || {};
 				promisesArr.push(
 					handleSubmit(
 						(values) => {

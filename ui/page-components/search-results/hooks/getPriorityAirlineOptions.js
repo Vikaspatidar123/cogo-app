@@ -4,7 +4,7 @@ import { Flex, OptionText } from '../components/styles.module.css';
 
 import { useRequest } from '@/packages/request';
 
-const getPriorityAirlineOptions = () => {
+const useGetPriorityAirlineOptions = () => {
 	const [{ loading, data }, trigger] = useRequest(
 		{
 			url    : 'list_priority_airlines',
@@ -56,4 +56,4 @@ const getPriorityAirlineOptions = () => {
 	}
 	return { priorityAirlineOptions, airlineOptions };
 };
-export default getPriorityAirlineOptions;
+export default useGetPriorityAirlineOptions;

@@ -220,6 +220,7 @@ const useGetShippingLine = ({
 			origin_airport_id      : data?.origin_airport_id,
 			destination_airport_id : data?.destination_airport_id,
 		});
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [data?.destination_airport_id, data?.origin_airport_id]);
 
 	useEffect(() => {

@@ -26,6 +26,7 @@ const useListOperators = () => {
 
 	useEffect(() => {
 		listApi();
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	return {

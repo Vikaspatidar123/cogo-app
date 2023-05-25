@@ -134,7 +134,7 @@ function TrailerFreightRateCard({
 							<div className={styles.freight_details_div}>
 								<div className={styles.freight_details_text}>Avg. Cost/Container :</div>
 								<div className={styles.freight_details}>
-									{Number(data?.total_price / totalContainerCount).toFixed(4)
+									{Number((data?.total_price || 0) / totalContainerCount).toFixed(4)
 										|| ' '}
 									{' '}
 									{data?.total_price_currency}
@@ -144,7 +144,7 @@ function TrailerFreightRateCard({
 								<div className={styles.freight_details_text}>Avg. Cost/Tonne :</div>
 								<div className={styles.freight_details}>
 									{Number(
-										data?.total_price / totalCargoWeightPerContainerCount,
+										(data?.total_price || 0) / totalCargoWeightPerContainerCount,
 									).toFixed(4) || ''}
 									{' '}
 									{data?.total_price_currency}

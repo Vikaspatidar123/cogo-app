@@ -29,6 +29,7 @@ const useGetSchedules = () => {
 	};
 	useEffect(() => {
 		getSchedules();
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	return { scheduleList, getSchedules, loading };

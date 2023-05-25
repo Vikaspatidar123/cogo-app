@@ -277,6 +277,7 @@ const useEnquiry = ({
 		if (!isEmpty(mainServices)) {
 			setSelectedService((mainServices || [])[0] || {});
 		}
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	const [notSelectedServices, setNotSelectedServices] = useState([
@@ -489,6 +490,8 @@ const useEnquiry = ({
 		clubbingSimilarNegoServices,
 		handleDeletion,
 		negoServicesArr,
+		loading,
+		createLoading,
 	};
 };
 

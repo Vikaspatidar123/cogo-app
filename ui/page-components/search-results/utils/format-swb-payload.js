@@ -365,6 +365,7 @@ const formatSwbPayload = ({
 				},
 				status: 'active',
 			});
+		// eslint-disable-next-line no-dupe-else-if
 		} else if (service?.service_type === 'trailer_freight') {
 			haulage_freight_params.push({});
 		} else if (service?.service_type === 'ftl_freight') {

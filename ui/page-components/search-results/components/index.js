@@ -29,7 +29,6 @@ import styles from './styles.module.css';
 
 import { useRouter } from '@/packages/next';
 import { useSelector } from '@/packages/store';
-import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
 const EnquriyStatus = dynamic(() => import('./AdditionalCards/EnquriyStatus'), {
 	ssr: false,

@@ -75,6 +75,7 @@ const useCreateAdditionalService = ({
 
 	useEffect(() => {
 		setRemainingServicesToAdd(finalServicesToAdd);
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [added_services_count]);
 
 	const handleAdd = (service) => {

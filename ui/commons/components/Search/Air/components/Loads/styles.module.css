@@ -1,81 +1,80 @@
 .container {
-  margin-top: 16px ;
-  .title {
-    margin-bottom: 12px;
-    font-weight: 600;
-    font-size: 14px;
-    color: #393f70;
-  }
+	margin-top: 16px;
 
-  .tippy-box .tippy-arrow {
-    display: none !important;
-  }
+	.title {
+		margin-bottom: 12px;
+		font-size: 14px;
+		font-weight: 600;
+		color: #393f70;
+	}
 
-  .core-ui-popover-root {
-    margin-top: -9px;
-  }
+	.tippy-box .tippy-arrow {
+		display: none !important;
+	}
+
+	.core-ui-popover-root {
+		margin-top: -9px;
+	}
 }
 
 .load_container {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  padding: 12px 12px 10px 12px;
-  height: 40px;
-  width: 280px;
-  overflow-y: auto;
-  cursor: pointer;
-
-  background: #ffffff;
-  border: 1px solid #e0e0e0;
-  border-radius: 6px;
-
-  cursor: pointer;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	width: 280px;
+	height: 40px;
+	padding: 12px 12px 10px;
+	overflow-y: auto;
+	cursor: pointer;
+	background: #fff;
+	border: 1px solid #e0e0e0;
+	border-radius: 6px;
 }
+
 .load_container:hover {
-  border: 1px solid var(--color-tertiary-blue-3);
+	border: 1px solid var(--color-tertiary-blue-3);
 }
-.text {
-  font-weight: 400;
-  font-size: 14px;
-  color: #cbcff5;
 
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
+.text {
+	overflow: hidden;
+	font-size: 14px;
+	font-weight: 400;
+	color: #cbcff5;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }
+
 .load_value_container {
-  display: flex;
-  flex-wrap: wrap;
+	display: flex;
+	flex-wrap: wrap;
 }
 
 .filled_value_container {
-  margin-left: 2px;
-  margin-top: 2px;
-  font-size: 8px;
-  background: #f1efff;
-  border-radius: 4px;
-  padding: 2px 4px;
-  width: fit-content;
-  height: fit-content;
+	width: fit-content;
+	height: fit-content;
+	padding: 2px 4px;
+	margin-top: 2px;
+	margin-left: 2px;
+	font-size: 8px;
+	background: #f1efff;
+	border-radius: 4px;
 }
 
 .tool_tip_container {
-  font-weight: 400;
-  font-size: 12px;
-
-  color: #393f70;
+	font-size: 12px;
+	font-weight: 400;
+	color: #393f70;
 }
 
 .error_message_container {
-  color: #cb6464;
-  font-size: 12px;
+	font-size: 12px;
+	color: #cb6464;
 }
+
 .popover {
-  max-width: 1000px !important;
-
+	max-width: 1000px !important;
 }
 
-.is_edit{
-  width: 230px !important;
+.is_edit {
+	width: 230px !important;
 }

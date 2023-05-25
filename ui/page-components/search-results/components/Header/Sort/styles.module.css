@@ -1,9 +1,10 @@
-.card_select{
-    border-color : #67c676;
-    background  : #e6fbe9;
-    width       : 220px;
-    z-index      : 3;
-    @media (max-width: 768px) {
-		 width       : 160px;
+.card_select {
+	z-index: 3;
+	width: 220px;
+	background: #e6fbe9;
+	border-color: #67c676;
+
+	@media (max-width: 768px) {
+		width: 160px;
 	}
 }

@@ -1,5 +1,5 @@
 .main_container {
-	margin: -24px 24px 16px 24px;
+	margin: -24px 24px 16px;
 
 	.core-ui-input-suffix {
 		display: flex;
@@ -10,14 +10,14 @@
 		background: #e0e0e0;
 
 		&:hover {
-			border-color: #333333 !important;
+			border-color: #333 !important;
 		}
 	}
 
 	.active .core-ui-tag-root {
+		cursor: default;
 		background: #b4f3be !important;
 		border-color: #b4f3be !important;
-		cursor: default;
 	}
 
 	.form-item-label {
@@ -30,13 +30,13 @@
 	}
 }
 
-.button_div { 
+.button_div {
 	display: flex;
-	justify-content: flex-end;
 	align-items: center;
+	justify-content: flex-end;
+	padding: 16px 24px;
 	background: #fcedbf;
 	border-radius: 0 0 8px 8px;
-	padding: 16px 24px;
 }
 
 .right {
@@ -47,20 +47,20 @@
 }
 
 .container {
-	margin-bottom: 0;
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-between;
+	margin-bottom: 0;
 
 	.custom-select-input-chipcontainer {
 		height: inherit;
 	}
 
 	.custom-select-input-select-placeholder {
-		font-weight: 400;
-		font-size: 14px;
 		display: flex;
 		align-items: center;
+		font-size: 14px;
+		font-weight: 400;
 		color: #cbcff5;
 	}
 
@@ -79,9 +79,9 @@
 }
 
 .lable {
-	margin: 5px 0 5px 0;
-	font-weight: 500;
+	margin: 5px 0;
 	font-size: 14px;
+	font-weight: 500;
 	color: #393f70;
 }
 
@@ -94,8 +94,8 @@
 }
 
 .header_container {
-	margin-bottom: 0;
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-between;
+	margin-bottom: 0;
 }

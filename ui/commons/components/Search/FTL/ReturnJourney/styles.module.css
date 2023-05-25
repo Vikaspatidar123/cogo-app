@@ -1,109 +1,111 @@
 .container {
-  padding: 16px 0;
-  border-top: 1px solid #ded7fc;
-  display: flex;
-  align-items: flex-start;
-  flex-direction: column;
-  margin: 24px 8px;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	padding: 16px 0;
+	margin: 24px 8px;
+	border-top: 1px solid #ded7fc;
 }
 
 .location_container {
-  width: 50%;
-  display: flex;
-  flex-direction: column;
-  cursor: not-allowed;
+	display: flex;
+	flex-direction: column;
+	width: 50%;
+	cursor: not-allowed;
 
-  @media (max-width: 768px) {
-    width: 100%;
-    padding-bottom: 10px;
-  }
+	@media (max-width: 768px) {
+		width: 100%;
+		padding-bottom: 10px;
+	}
 }
 
 .location_text {
-  margin: 0;
-  padding: 9px;
-  background: #dfe1ef;
-  border: 1px solid #cbcff5;
-  border-radius: 4px;
-  font-size: 14px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  color: #a8acce;
+	padding: 9px;
+	margin: 0;
+	overflow: hidden;
+	font-size: 14px;
+	color: #a8acce;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	background: #dfe1ef;
+	border: 1px solid #cbcff5;
+	border-radius: 4px;
 }
 
 .touch_point_container {
-  margin: 10px 0;
-  display: flex;
-  flex-direction: column;
-  width: auto;
+	display: flex;
+	flex-direction: column;
+	width: auto;
+	margin: 10px 0;
 }
 
 .label {
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 16px;
-  color: #393f70;
-  display: flex;
-  margin-bottom: 8px;
+	display: flex;
+	margin-bottom: 8px;
+	font-size: 14px;
+	font-weight: 500;
+	line-height: 16px;
+	color: #393f70;
 }
 
 .arrow {
-  text-align: center;
+	text-align: center;
 
-  @media (max-width: 540px) {
-    display: none;
-  }
+	@media (max-width: 540px) {
+		display: none;
+	}
 }
 
 .heading {
-  font-size: 20px;
-  margin: 0;
-  color: #393f70;
-  margin-bottom: 16px;
+	margin: 0;
+	margin-bottom: 16px;
+	font-size: 20px;
+	color: #393f70;
 }
 
 .halt_time_container {
-  margin-left: 16px;
-  width: 15%;
-  :global {
-    .form-layout-root-col {
-      padding-right: 0;
-    }
+	width: 15%;
+	margin-left: 16px;
 
-    .core-ui-select__value-container {
-      padding: 0 8px;
-    }
+	:global {
+		.form-layout-root-col {
+			padding-right: 0;
+		}
 
-    .core-ui-select__control {
-      border: 1px solid #cbcff5;
-      min-height: 40px !important;
-    }
+		.core-ui-select__value-container {
+			padding: 0 8px;
+		}
 
-    .core-ui-input-root {
-      min-height: 40px !important;
-      border: 1px solid #cbcff5 !important;
-    }
-  }
-  @media (max-width: 768px) {
-    margin-left: 0px;
-  }
+		.core-ui-select__control {
+			min-height: 40px !important;
+			border: 1px solid #cbcff5;
+		}
+
+		.core-ui-input-root {
+			min-height: 40px !important;
+			border: 1px solid #cbcff5 !important;
+		}
+	}
+
+	@media (max-width: 768px) {
+		margin-left: 0;
+	}
 }
 
 .error_msg {
-  margin: 0px;
-  font-weight: normal;
-  font-size: 12px;
-  line-height: 16px;
-  color: rgb(203, 100, 100);
+	margin: 0;
+	font-size: 12px;
+	font-weight: normal;
+	line-height: 16px;
+	color: rgb(203 100 100);
 }
 
 .route_touch_point_container {
-  /* width: 55%; */
-  display: flex;
-  justify-content: space-between;
+	/* width: 55%; */
+	display: flex;
+	justify-content: space-between;
 }
 
 .flex {
-  display: flex;
+	display: flex;
 }

@@ -1,7 +1,7 @@
 .container {
+	background-color: #fff;
 	border: 1px solid #cddbff;
 	border-radius: 4px;
-	background-color: #ffffff;
 
 	/* margin-bottom: ${(props) => props.marginBottom}; */
 }
@@ -9,7 +9,6 @@
 .content_visible {
 	display: flex;
 	flex-direction: column;
-
 	padding: 16px;
 }
 
@@ -41,16 +40,14 @@
 }
 
 .hidden_content_toggler_container {
-	cursor: pointer;
-
-	background-color: #f2f6ff;
-	border-radius: 0 0 4px 4px;
-	padding: 4px;
-
 	display: flex;
 	flex-direction: row;
-	justify-content: center;
 	align-items: center;
+	justify-content: center;
+	padding: 4px;
+	cursor: pointer;
+	background-color: #f2f6ff;
+	border-radius: 0 0 4px 4px;
 
 	svg {
 		width: 16px;
@@ -58,23 +55,24 @@
 		transition: transform 0.5s;
 	}
 
-	.rotate{
-		transform: rotate(180deg)
+	.rotate {
+		transform: rotate(180deg);
 	}
-	.no_rotate{
-		transform: rotate(0deg)
+
+	.no_rotate {
+		transform: rotate(0deg);
 	}
 }
 
-.fade_in{
-	transition: 0.5s;
+.fade_in {
 	overflow: hidden;
+	transition: 0.5s;
 
-	&.expand{
+	&.expand {
 		max-height: 400px;
 	}
 
-	&.compress{
+	&.compress {
 		max-height: 0;
 	}
 }

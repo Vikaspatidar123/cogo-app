@@ -1,40 +1,40 @@
 .container {
-  .form-item-label {
-    margin: 12px 0 8px;
-    font-size: 12px;
-    font-weight: 500;
-    color: #393f70;
-  }
+	.form-item-label {
+		margin: 12px 0 8px;
+		font-size: 12px;
+		font-weight: 500;
+		color: #393f70;
+	}
 
-  .core-ui-button-root div {
-    background-color: #7a5ef3;
-  }
+	.core-ui-button-root div {
+		background-color: #7a5ef3;
+	}
 }
 
 .wrapper {
-  .core-ui-input-root {
-    border: 1px solid #cddbff !important;
-  }
+	.core-ui-input-root {
+		border: 1px solid #cddbff !important;
+	}
 
-  .core-ui-select__control {
-    border: 1px solid #cddbff;
-  }
+	.core-ui-select__control {
+		border: 1px solid #cddbff;
+	}
 
-  .core-ui-input-suffix {
-    display: flex;
-    align-items: center;
-    font-size: 14px;
-    color: #828282;
-  }
+	.core-ui-input-suffix {
+		display: flex;
+		align-items: center;
+		font-size: 14px;
+		color: #828282;
+	}
 }
 
 .button_container {
-  display: flex;
-  justify-content: flex-end;
-  width: 100%;
-  margin-top: 10px;
+	display: flex;
+	justify-content: flex-end;
+	width: 100%;
+	margin-top: 10px;
 
-  .core-ui-button-root {
-    border: 1px solid #393f70 !important;
-  }
+	.core-ui-button-root {
+		border: 1px solid #393f70 !important;
+	}
 }

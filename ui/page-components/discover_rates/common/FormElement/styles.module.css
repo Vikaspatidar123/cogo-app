@@ -1,8 +1,8 @@
 .container {
 	/* width: 50%; */
-	
 
-	&.scroll{
+
+	&.scroll {
 		max-height: 450px;
 		overflow-y: scroll;
 	}
@@ -61,6 +61,6 @@
 }
 
 .col {
-	padding: 0 8px;
 	width: 100%;
+	padding: 0 8px;
 }

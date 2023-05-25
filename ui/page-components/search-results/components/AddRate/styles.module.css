@@ -1,13 +1,12 @@
 .container {
-	width: 100%;
-	background: linear-gradient(99.65deg, #d2f8f2 14.21%, #a3d4ec 117.03%);
-	margin-top: 15px;
-	border-radius: 4px;
-	padding: 15px;
-
 	display: flex;
-	justify-content: space-between;
 	align-items: center;
+	justify-content: space-between;
+	width: 100%;
+	padding: 15px;
+	margin-top: 15px;
+	background: linear-gradient(99.65deg, #d2f8f2 14.21%, #a3d4ec 117.03%);
+	border-radius: 4px;
 }
 
 .detail_con {
@@ -19,15 +18,15 @@
 	}
 }
 
-.detail_text { 
-	font-weight: 700;
+.detail_text {
 	font-size: 16px;
+	font-weight: 700;
 	line-height: 19px;
 	color: #393f70;
 
 	.lead_text {
-		font-weight: 400;
 		font-size: 12px;
+		font-weight: 400;
 		color: #393f70;
 	}
 }

@@ -1,31 +1,33 @@
 .container {
-  width: 66vw;
-  padding-top: 4px;
+	width: 66vw;
+	padding-top: 4px;
 }
 
 .segmented_control_container {
-  width: fit-content;
-  display: flex;
-  justify-content: flex-start;
-  padding: 4px;
+	display: flex;
+	justify-content: flex-start;
+	width: fit-content;
+	padding: 4px;
 }
 
 .selected_weight_type {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	cursor: pointer;
 }
+
 .selected {
-  color: #0000ff;
-  text-decoration: underline;
+	color: #00f;
+	text-decoration: underline;
 }
 
 .unSelected {
-  cursor: pointer;
+	cursor: pointer;
 }
+
 .flex {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
 }

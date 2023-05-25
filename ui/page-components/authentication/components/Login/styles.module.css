@@ -1,82 +1,82 @@
 .left_container {
-  width: 50vw;
-  height: 100vh;
-  background-color: #ffde01;
-  background-size: cover;
+	width: 50vw;
+	height: 100vh;
+	background-color: #ffde01;
+	background-size: cover;
 }
 
 .container {
-  display: flex;
-  flex-direction: row;
-  padding: 0;
-  overflow: hidden;
+	display: flex;
+	flex-direction: row;
+	padding: 0;
+	overflow: hidden;
 }
 
 .right_container {
-  width: 50vw;
-  height: 100vh;
-  background-color: #fafafa;
-  background-size: cover;
+	width: 50vw;
+	height: 100vh;
+	background-color: #fafafa;
+	background-size: cover;
 }
 
 .right_signup_text {
-  position: relative;
-  float: right;
-  padding: 8px;
-  margin: 10px 20px 0 0;
-  color: #000;
+	position: relative;
+	float: right;
+	padding: 8px;
+	margin: 10px 20px 0 0;
+	color: #000;
 }
 
 .right_signup_text_link {
-  margin-left: 8px;
-  font-weight: 500;
-  color: #356efd !important;
-  cursor: pointer;
+	margin-left: 8px;
+	font-weight: 500;
+	color: #356efd !important;
+	cursor: pointer;
 }
 
 .main_container {
-  width: 100%;
-  height: calc(100% - 70px);
-  overflow: auto;
+	width: 100%;
+	height: calc(100% - 70px);
+	overflow: auto;
 }
 
 .right_login_text {
-  margin-top: 64px;
-  font-size: 24px;
-  font-weight: 300;
-  line-height: 1.4;
-  color: #000;
-  text-align: center;
+	margin-top: 64px;
+	font-size: 24px;
+	font-weight: 300;
+	line-height: 1.4;
+	color: #000;
+	text-align: center;
 }
 
 @media (max-width: 768px) {
-  .left_container {
-    align-items: flex-start;
-    width: 0%;
-    height: 0%;
-  }
+	.left_container {
+		align-items: flex-start;
+		width: 0%;
+		height: 0%;
+	}
 
-  .right_container {
-    width: 100vw;
-  }
+	.right_container {
+		width: 100vw;
+	}
 
-  .form_container {
-    display: flex;
-    align-items: center;
-    padding: 0;
-  }
+	.form_container {
+		display: flex;
+		align-items: center;
+		padding: 0;
+	}
 
-  .input_container {
-    width: 88%;
-    margin-bottom: 20px;
-  }
+	.input_container {
+		width: 88%;
+		margin-bottom: 20px;
+	}
 
-  .right_login_text {
-    padding: 0;
-    margin: 40px 4px;
-  }
+	.right_login_text {
+		padding: 0;
+		margin: 40px 4px;
+	}
 
-  .right_footer_text {
-    padding: 8px;
-  }
+	.right_footer_text {
+		padding: 8px;
+	}
 }

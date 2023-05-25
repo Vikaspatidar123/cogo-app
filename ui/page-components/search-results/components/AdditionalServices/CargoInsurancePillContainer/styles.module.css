@@ -1,67 +1,63 @@
 .line {
-    border: 1px solid #eceef1;
-    margin-bottom: 10px;
-  }
+	margin-bottom: 10px;
+	border: 1px solid #eceef1;
+}
 
-  .text {
-    font-style: normal;
-    font-weight: 500;
-    font-size: 14px;
-    line-height: 16px;
-  
-    color: #2c3e50;
-    margin-bottom: 4px;
-  }
+.text {
+	margin-bottom: 4px;
+	font-size: 14px;
+	font-style: normal;
+	font-weight: 500;
+	line-height: 16px;
+	color: #2c3e50;
+}
 
-.pill{
-	background: #e6fbe9;
-	border: 1px solid #c0ffc9;
-	padding: 4px 10px;
-	margin-bottom: 8px;
+.pill {
 	box-sizing: border-box;
-	border-radius: 4px;
-
 	display: flex;
 	justify-content: space-between;
+	padding: 4px 10px;
+	margin-bottom: 8px;
+	background: #e6fbe9;
+	border: 1px solid #c0ffc9;
+	border-radius: 4px;
 
 	&.inactive {
+		padding: 6px 10px;
+		cursor: pointer;
 		background: #f4f4f4;
 		border: 1px solid #cdcdcd;
-		cursor: pointer;
-		padding: 6px 10px;
 	}
 }
 
-.flex{
-    display:flex;
+.flex {
+	display: flex;
 }
 
 .services {
-    font-size: 10px;
-    font-weight: bold;
-    line-height: 16px;
-    text-align: center;
-    letter-spacing: 0.02em;
-    text-transform: uppercase;
-  
-    color: #000000;
-    margin: auto 6px;
-  
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
+	margin: auto 6px;
+	overflow: hidden;
+	font-size: 10px;
+	font-weight: bold;
+	line-height: 16px;
+	color: #000;
+	text-align: center;
+	text-overflow: ellipsis;
+	text-transform: uppercase;
+	letter-spacing: 0.02em;
+	white-space: nowrap;
+}
 
 .services_icon {
 	width: 10px;
-	height: 0px;
-	font-size: 40px;
-	cursor: pointer;
+	height: 0;
 	margin-top: -20px;
 	margin-left: 4px;
+	font-size: 40px;
+	cursor: pointer;
 
 	&.add {
-		font-size: 20px;
 		margin-top: -7px;
+		font-size: 20px;
 	}
 }

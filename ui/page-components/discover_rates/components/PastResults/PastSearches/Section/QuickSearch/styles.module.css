@@ -1,22 +1,26 @@
 .container {
-  max-width: 280px;
-  padding: 14px 0;
-  &.mobile {
-    @media (max-width: 760px) {
-      max-width: none;
-    }
-   
-  }
+	max-width: 280px;
+	padding: 14px 0;
+
+	&.mobile {
+		@media (max-width: 760px) {
+			max-width: none;
+		}
+	}
 }
-.web{
-  display:block;
-  @media (max-width: 760px) {
-    display:none;
-  }
+
+.web {
+	display: block;
+
+	@media (max-width: 760px) {
+		display: none;
+	}
 }
-.mobile_web{
-  display:none;
-  @media (max-width: 760px) {
-    display:block;
-  }
+
+.mobile_web {
+	display: none;
+
+	@media (max-width: 760px) {
+		display: block;
+	}
 }

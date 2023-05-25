@@ -1,21 +1,21 @@
 .animated_container {
-
 	animation: fade_right 0.9s ease-in-out;
 
 	@keyframes fade_right {
 		0% {
 			opacity: 0;
+			transform: translateX(-10px);
+		}
 
-			transform: translatex(-10px);
-		}
 		80% {
-			transform: translatex(0px);
 			opacity: 0.8;
+			transform: translateX(0);
 		}
+
 		100% {
 			opacity: 1;
 			transform: translate(400px));
-			duration: 400,
+			duration: 400,;
 		}
 	}
 }

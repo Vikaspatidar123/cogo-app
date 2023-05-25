@@ -182,11 +182,10 @@
 	}
 }
 
-
-.first_row{
+.first_row {
 	display: flex;
-    padding: 10px 20px;
-    border-top: 1px dashed rgba(0, 0, 0, 0.2);
-    margin-top: 10px;
-    justify-content: space-between;
+	justify-content: space-between;
+	padding: 10px 20px;
+	margin-top: 10px;
+	border-top: 1px dashed rgb(0 0 0 / 20%);
 }

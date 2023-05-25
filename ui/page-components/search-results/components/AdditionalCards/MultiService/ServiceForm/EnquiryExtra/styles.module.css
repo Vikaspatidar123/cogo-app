@@ -1,17 +1,17 @@
 .container {
-	margin-bottom: 0;
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-between;
+	margin-bottom: 0;
 
 	.custom-select-input-chipcontainer {
 		height: inherit;
 	}
 
 	.custom-select-input-select-placeholder {
-		font-size: 14px;
 		display: flex;
 		align-items: center;
+		font-size: 14px;
 		color: #cbcff5;
 	}
 
@@ -30,9 +30,9 @@
 }
 
 .lable {
-	margin: 5px 0 5px 0;
-	font-weight: 500;
+	margin: 5px 0;
 	font-size: 14px;
+	font-weight: 500;
 	color: #393f70;
 }
 
@@ -45,17 +45,18 @@
 }
 
 .header_container {
-	margin-bottom: 0;
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-between;
-	:global{
-	  .ui_select_container{
-		width:200px;
-	  }
-	  .ui_toggle_container{
-		padding:0;
-	  }
+	margin-bottom: 0;
+
+	:global {
+		.ui_select_container {
+			width: 200px;
+		}
+
+		.ui_toggle_container {
+			padding: 0;
+		}
 	}
-  }
-  
+}

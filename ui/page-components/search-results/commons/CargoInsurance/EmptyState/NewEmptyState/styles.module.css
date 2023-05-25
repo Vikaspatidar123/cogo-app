@@ -1,21 +1,21 @@
-
-.main_div{
+.main_div {
 	padding: 20px;
 }
 
-.info_text{
-	font-weight: 600;
+.info_text {
 	margin: 10px;
+	font-weight: 600;
 }
 
-.info_container{
-	background: #ffffff;
-	box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.15);
-	border-radius: 4px;
+.info_container {
 	width: 100%;
 	padding: 4px 0;
+	background: #fff;
+	border-radius: 4px;
+	box-shadow: 0 0 6px rgb(0 0 0 / 15%);
 }
+
 .steps_text {
-	font-weight: 600;
 	margin: 10px;
+	font-weight: 600;
 }

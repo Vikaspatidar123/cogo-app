@@ -1,57 +1,55 @@
 .container {
-  margin-bottom: 18px;
+	margin-bottom: 18px;
 }
 
 .header {
-  display: flex;
-  align-items: center;
-  margin-bottom: 10px;
+	display: flex;
+	align-items: center;
+	margin-bottom: 10px;
 }
 
 .title {
-  font-weight: bold;
-  font-size: 12px;
-  line-height: 14px;
-  color: #4f4f4f;
-  margin-left: 4px;
+	margin-left: 4px;
+	font-size: 12px;
+	font-weight: bold;
+	line-height: 14px;
+	color: #4f4f4f;
 }
 
 .main {
-  background: white;
-  border-radius: 4px;
-  padding: 15px 13px;
-  display: flex;
-  align-items: center;
+	display: flex;
+	align-items: center;
+	padding: 15px 13px;
+	background: white;
+	border-radius: 4px;
 }
 
 .value {
-  font-weight: bold;
-  font-size: 14px;
-  line-height: 16px;
-  color: #333333;
-  margin-bottom: 3px;
-
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
+	margin-bottom: 3px;
+	overflow: hidden;
+	font-size: 14px;
+	font-weight: bold;
+	line-height: 16px;
+	color: #333;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }
 
 .sub {
-  font-size: 12px;
-  line-height: 14px;
-  color: #828282;
-
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
+	overflow: hidden;
+	font-size: 12px;
+	line-height: 14px;
+	color: #828282;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }
 
 .error {
-  margin: 0;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 12px;
-  line-height: 16px;
-  letter-spacing: 0.02em;
-  color: #cb6464;
+	margin: 0;
+	font-size: 12px;
+	font-style: normal;
+	font-weight: normal;
+	line-height: 16px;
+	color: #cb6464;
+	letter-spacing: 0.02em;
 }

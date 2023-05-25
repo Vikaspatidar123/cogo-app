@@ -3,12 +3,15 @@
 		.ie_booking_text {
 			color: #9ab7fe;
 		}
+
 		.core-ui-radio-radio-container.primary {
 			border: 1.5px solid black;
 		}
+
 		.core-ui-radio-radio-container.primary.checked {
 			border: 1.5px solid #034afd;
 		}
+
 		.core-ui-radio-icon.primary.checked {
 			background-color: #034afd;
 		}
@@ -16,17 +19,17 @@
 }
 
 .business_name {
-	font-size: 14px;
 	margin: 0;
-	color: #333333;
+	font-size: 14px;
 	font-weight: 500;
+	color: #333;
 }
 
 .radio_wrapper {
 	.core-ui-radio-root {
 		width: 100%;
-		border-bottom: 1px solid #eceff8;
 		padding: 12px 8px;
+		border-bottom: 1px solid #eceff8;
 
 		&:hover {
 			background: #f6f5fe;
@@ -37,43 +40,45 @@
 			width: 100%;
 		}
 	}
+
 	.core-ui-radiogroup-container {
+		justify-content: flex-start;
 		width: 100%;
 		margin-bottom: 16px;
-		justify-content: flex-start;
 	}
+
 	.core-ui-radio-label {
-		font-weight: 400;
-		font-size: 14px;
-		line-height: 16px;
-		letter-spacing: 0.04em;
-		color: #393f70;
-		opacity: 1;
 		margin-left: 10px;
+		font-size: 14px;
+		font-weight: 400;
+		line-height: 16px;
+		color: #393f70;
+		letter-spacing: 0.04em;
+		opacity: 1;
 	}
 }
 
 .icon_wrapper {
 	display: flex;
-	justify-content: center;
 	align-items: center;
+	justify-content: center;
 	margin-right: 8px;
 }
 
 .address_text {
-	font-weight: 400;
+	margin: 0;
 	font-size: 12px;
+	font-weight: 400;
 	line-height: 16px;
 	color: #a8acce;
-	margin: 0;
 }
 
 .gst_number {
-	font-weight: 400;
+	margin: 0;
 	font-size: 10px;
+	font-weight: 400;
 	line-height: 16px;
 	color: #393f70;
-	margin: 0;
 }
 
 .label_container {
@@ -82,30 +87,30 @@
 	justify-content: center;
 }
 
-.address_align { 
+.address_align {
 	display: flex;
 	flex-direction: row;
 }
 
 .add_address {
-	color: #034afd;
 	font-size: 12px;
-	cursor: pointer;
+	color: #034afd;
 	text-decoration: underline;
+	cursor: pointer;
 }
 
-.label { 
+.label {
 	display: flex;
 	align-items: center;
-	margin: 0 8px 2px 8px;
 	align-self: center;
 	padding: 4px;
+	margin: 0 8px 2px;
 }
 
 .tag_container {
-	font-size: 8px;
-    display: flex;
+	display: flex;
 	align-items: center;
+	font-size: 8px;
 
 	.core-ui-tag-root {
 		.core-ui-tag-text {

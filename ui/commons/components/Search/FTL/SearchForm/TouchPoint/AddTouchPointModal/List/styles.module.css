@@ -1,24 +1,25 @@
 .list_wrapper {
-  margin: 8px;
+	margin: 8px;
 }
+
 .title {
-  margin-left: 20px;
+	margin-left: 20px;
 }
 
 .box {
-  border: 1px solid #cbcff5;
-  width: 100%;
-  padding: 12px;
-  margin: 4px;
-  border-radius: 4px;
+	width: 100%;
+	padding: 12px;
+	margin: 4px;
+	border: 1px solid #cbcff5;
+	border-radius: 4px;
 }
-.wrapper {
-  display: flex;
 
-  align-items: center;
+.wrapper {
+	display: flex;
+	align-items: center;
 }
 
 .single_list {
-  list-style-type: none;
-  cursor: move;
+	list-style-type: none;
+	cursor: move;
 }

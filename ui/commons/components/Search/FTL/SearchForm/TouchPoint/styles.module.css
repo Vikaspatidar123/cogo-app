@@ -1,70 +1,70 @@
 .container {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  justify-content: center;
-  margin: 0 12px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	margin: 0 12px;
 }
 
 .more_btn {
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 16px;
-  text-decoration-line: underline;
-  border: none;
-  background: transparent;
-  margin: 0 auto;
-  color: #5936f0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin: 0 auto;
+	font-size: 14px;
+	font-weight: 500;
+	line-height: 16px;
+	color: #5936f0;
+	text-decoration-line: underline;
+	background: transparent;
+	border: none;
 }
 
 .touch_point_name {
-  background-color: #e8e2ff;
-  border-radius: 4px;
-  font-size: 10px;
-  color: #333333;
-  padding: 4px;
-  margin: 8px 0;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
+	padding: 4px;
+	margin: 8px 0;
+	overflow: hidden;
+	font-size: 10px;
+	color: #333;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	background-color: #e8e2ff;
+	border-radius: 4px;
 }
 
 .name {
-  color: #5936f0;
+	color: #5936f0;
 }
 
 .touch_point_container {
-  padding: 8px 8px 8px 16px;
-  position: relative;
+	position: relative;
+	padding: 8px 8px 8px 16px;
 
-  .circle {
-    position: absolute;
-    top: 12px;
-    left: 4px;
-    width: 8px;
-    height: 8px;
-    background: #5936f0;
-    border-radius: 50%;
-    z-index: 1;
-  }
+	.circle {
+		position: absolute;
+		top: 12px;
+		left: 4px;
+		z-index: 1;
+		width: 8px;
+		height: 8px;
+		background: #5936f0;
+		border-radius: 50%;
+	}
 
-  .line {
-    position: absolute;
-    top: 12px;
-    left: 7.5px;
-    height: 100%;
-    border: 0.5px dashed #5936f0;
-    z-index: 0;
-  }
+	.line {
+		position: absolute;
+		top: 12px;
+		left: 7.5px;
+		z-index: 0;
+		height: 100%;
+		border: 0.5px dashed #5936f0;
+	}
 }
 
 .wrapper {
-  margin-top: 0px;
+	margin-top: 0;
 
-  .round {
-    color: #a8acce;
-  }
+	.round {
+		color: #a8acce;
+	}
 }

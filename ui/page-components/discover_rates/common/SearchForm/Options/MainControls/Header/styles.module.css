@@ -1,65 +1,64 @@
 .container {
-  padding-bottom: 8px;
-  margin-bottom: 16px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 1px solid #e0e0e0;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding-bottom: 8px;
+	margin-bottom: 16px;
+	border-bottom: 1px solid #e0e0e0;
 }
 
 .title {
-  font-weight: bold;
-  font-size: 14px;
-  line-height: 16px;
-  color: black;
+	font-size: 14px;
+	font-weight: bold;
+	line-height: 16px;
+	color: black;
 }
 
 .right {
-  display: flex;
-  align-items: center;
+	display: flex;
+	align-items: center;
 }
 
 .button {
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  outline: none;
-  box-shadow: none;
+	padding: 3px 5px;
+	margin-left: 16px;
+	font-size: 10px;
+	line-height: 14px;
+	cursor: pointer;
+	background: transparent;
+	border: none;
+	border: 1px solid black;
+	border-radius: 4px;
+	outline: none;
+	box-shadow: none;
 
-  font-size: 10px;
-  line-height: 14px;
-  border-radius: 4px;
+	.close {
+		color: black;
+		background: white;
+	}
 
-  margin-left: 16px;
-  border: 1px solid black;
-  padding: 3px 5px;
-
-  .close {
-    color: black;
-    background: white;
-  }
-
-  .submit {
-    color: white;
-    background: black;
-  }
+	.submit {
+		color: white;
+		background: black;
+	}
 }
 
 .text {
-  margin: 0px;
-  font-size: 10px;
-  color: #034afd;
-  text-decoration-line: underline;
-  text-transform: uppercase;
-  margin-bottom: 12px;
-  cursor: pointer;
+	margin: 0;
+	margin-bottom: 12px;
+	font-size: 10px;
+	color: #034afd;
+	text-decoration-line: underline;
+	text-transform: uppercase;
+	cursor: pointer;
 
-  .disabled {
-    cursor: not-allowed;
-    color: #bdbdbd;
-  }
+	.disabled {
+		color: #bdbdbd;
+		cursor: not-allowed;
+	}
 }
+
 .line {
-  border-bottom: 1px solid #e0e0e0;
-  margin-bottom: 12px;
+	margin-bottom: 12px;
+	border-bottom: 1px solid #e0e0e0;
 }

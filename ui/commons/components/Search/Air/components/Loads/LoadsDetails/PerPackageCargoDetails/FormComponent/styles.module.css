@@ -1,57 +1,61 @@
 .container {
-  :global {
-    .core-ui-input-root {
-      border: 1px solid #cbcff5;
-    }
+	:global {
+		.core-ui-input-root {
+			border: 1px solid #cbcff5;
+		}
 
-    .core-ui-select__control {
-      border: 1px solid #cbcff5;
-    }
+		.core-ui-select__control {
+			border: 1px solid #cbcff5;
+		}
 
-    .business-checkbox-label {
-      color: #393f70;
-    }
-  }
+		.business-checkbox-label {
+			color: #393f70;
+		}
+	}
 }
 
 .label {
-  margin-bottom: 2px;
-  font-size: 12px;
-  font-weight: 500;
-  color: #393f70;
+	margin-bottom: 2px;
+	font-size: 12px;
+	font-weight: 500;
+	color: #393f70;
 }
 
 .error_message {
-  font-size: 10px;
-  color: #ff0000;
-  position: relative;
+	position: relative;
+	font-size: 10px;
+	color: #f00;
 }
 
 .flex {
-  display: flex;
-  flex-direction: column;
+	display: flex;
+	flex-direction: column;
 
-  :global{
-    .ui_checkbox_group_container, .ui_checkbox_container{
-      padding: 0;
-    }
-    .ui_checkbox_label{
-      font-size:12px;
-    }
-    .ui_checkbox_style{
-      width: 14px;
-      height: 14px;
-    }
-  }
+	:global {
+		.ui_checkbox_group_container,
+		.ui_checkbox_container {
+			padding: 0;
+		}
+
+		.ui_checkbox_label {
+			font-size: 12px;
+		}
+
+		.ui_checkbox_style {
+			width: 14px;
+			height: 14px;
+		}
+	}
 }
+
 .row {
-  display: flex;
-  flex-flow: row wrap;
-  flex-shrink: 0;
-  align-items: normal;
-  justify-content: flex-start;
+	display: flex;
+	flex-flow: row wrap;
+	flex-shrink: 0;
+	align-items: normal;
+	justify-content: flex-start;
 }
 
-.col{
-  padding: 0 8px;
+.col {
+	padding: 0 8px;
 }

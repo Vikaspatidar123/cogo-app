@@ -4,30 +4,30 @@
 	padding: 12px;
 }
 
-.location_div { 
+.location_div {
 	position: relative;
 	margin-bottom: 16px;
 }
 
-.dot { 
+.dot {
+	position: absolute;
+	top: 10px;
+	left: -10px;
+	z-index: 1;
 	width: 14px;
 	height: 14px;
 	background-color: #5936f0;
 	border-radius: 50%;
-	position: absolute;
-	left: -10px;
-	top: 10px;
 	transform: translateY(-50%);
-	z-index: 1;
 }
 
-.horizontal_line { 
+.horizontal_line {
 	position: absolute;
-	height: 100%;
-	width: 2px;
-	left: -5px;
 	top: 18px;
+	left: -5px;
 	display: flex;
+	width: 2px;
+	height: 100%;
 	border: 2px dashed #5936f0;
 }
 
@@ -37,6 +37,6 @@
 	}
 }
 
-.location { 
+.location {
 	margin-left: 16px;
 }

@@ -1,8 +1,8 @@
 .container {
 	.core-ui-radio-root {
-		margin-top: 16px;
 		display: flex;
 		align-items: flex-start;
+		margin-top: 16px;
 	}
 
 	.core-ui-radio-label {
@@ -29,22 +29,22 @@
 
 .btn_wrap {
 	display: flex;
+	gap: 5px;
 	justify-content: center;
-	gap:5px;
 }
 
 .cancel_btn_wrap {
 	.core-ui-button-root {
 		margin-right: 20px;
-		background: #ffffff;
-		color: #000000;
+		color: #000;
+		background: #fff;
 	}
 }
 
 .text {
+	margin-bottom: 10px;
 	font-size: 20px;
 	font-weight: 700;
-	margin-bottom: 10px;
 }
 
 .rate {
@@ -58,43 +58,46 @@
 
 .tool_tip_container {
 	max-width: 250px;
-	font-weight: 300;
 	font-size: 12px;
+	font-weight: 300;
 }
 
 .info_icon {
-	margin-left: 5px;
+	align-items: center;
 	width: 10px;
 	height: 10px;
-	align-items: center;
+	margin-left: 5px;
 	cursor: pointer;
 }
 
 .lable {
-	margin: 5px 0 5px 0;
-	font-weight: 500;
+	margin: 5px 0;
 	font-size: 14px;
+	font-weight: 500;
 	color: #393f70;
-  }
-  .errors {
+}
+
+.errors {
 	min-height: 16px;
 	margin-top: 4px;
 	font-size: 12px;
 	line-height: 16px;
 	color: #cb6464;
-  }
-  .header_container {
-	margin-bottom: 0;
+}
+
+.header_container {
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-between;
-	:global{
-	  .ui_select_container{
-		width:200px;
-	  }
-	  .ui_toggle_container{
-		padding:0;
-	  }
+	margin-bottom: 0;
+
+	:global {
+		.ui_select_container {
+			width: 200px;
+		}
+
+		.ui_toggle_container {
+			padding: 0;
+		}
 	}
-  }
-  
+}

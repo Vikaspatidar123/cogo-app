@@ -1,73 +1,72 @@
-
-.container{
+.container {
 	box-sizing: border-box;
-	border-radius: 10px;
-	padding: 12px 0px;
-	height: fit-content;
 	width: 300px;
+	height: fit-content;
+	padding: 12px 0;
+	border-radius: 10px;
 }
 
-.user_name{
-	margin: 0px;
-	font-weight: 500;
+.user_name {
+	margin: 0;
 	font-size: 14px;
+	font-weight: 500;
 	line-height: 18px;
+	color: #000;
 	letter-spacing: 0.02em;
-	color: #000000;
-	
+
 	&.assistance {
 		font-weight: 400;
 	}
-	
+
 	&.rm-name {
 		font-weight: bold;
 	}
-	
+
 	&.rm-designation {
+		margin-bottom: 20px;
 		font-style: italic;
 		font-weight: normal;
-		margin-bottom: 20px;
 	}
 }
 
-.line{
+.line {
 	height: 1px;
-	background-color: #C4C4C4;
-	margin: 16px 0px;
+	margin: 16px 0;
+	background-color: #c4c4c4;
 }
 
-.description{
-	margin: 0px;
+.description {
+	margin: 0;
+	margin-bottom: 20px;
 	font-size: 12px;
 	line-height: 14px;
+	color: #333;
 	letter-spacing: 0.02em;
 	cursor: pointer;
-	color: #333333;
-	margin-bottom: 20px;
 
 	&.link {
+		margin-bottom: 0;
+		color: #000;
 		text-decoration-line: underline;
-		color: #000000;
-		margin-bottom: 0px
 	}
 }
 
-.space_between{
+.space_between {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
 	margin-bottom: 12px;
 }
 
-.icons_container{
-	background: #FFFFFF;
-	border: 1px solid #E0E0E0;
+.icons_container {
 	box-sizing: border-box;
-	box-shadow: 0px 0px 25px rgba(59, 65, 78, 0.05);
-	padding: 8px;
-	border-radius: 50%;
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	padding: 8px;
 	cursor: pointer;
+	background: #fff;
+	border: 1px solid #e0e0e0;
+	border-radius: 50%;
+	box-shadow: 0 0 25px rgb(59 65 78 / 5%);
 }

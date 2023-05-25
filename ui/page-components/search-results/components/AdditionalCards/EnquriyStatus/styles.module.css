@@ -1,11 +1,11 @@
 .container {
+	display: flex;
+	align-items: center;
+	padding: 7px 16px;
+	margin-bottom: 20px;
 	background: #fef9f9;
 	border: 1px solid #cb6464;
 	border-radius: 4px;
-	padding: 7px 16px;
-	margin-bottom: 20px;
-	display: flex;
-	align-items: center;
 }
 
 .main {
@@ -13,7 +13,7 @@
 	margin-right: auto;
 }
 
-.description { 
+.description {
 	font-size: 14px;
 	line-height: 16px;
 	color: black;

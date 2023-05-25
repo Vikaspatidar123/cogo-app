@@ -77,8 +77,8 @@
 
 .service_type {
 	font-size: 12px;
+	font-weight: 600;
 	background-color: #cad4ef;
-	font-weight: 600;;
 
 	@media (max-width: 768px) {
 		align-self: flex-start;

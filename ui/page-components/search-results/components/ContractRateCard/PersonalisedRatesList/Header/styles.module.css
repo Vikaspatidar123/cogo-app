@@ -1,23 +1,24 @@
 .container {
-	width: 100%;
-	padding: 10px;
-	left: 0;
 	position: absolute;
-	background: #ffffff;
-	box-shadow: 0px 1px 6px rgba(169, 188, 218, 0.65);
+	left: 0;
 	display: flex;
 	align-items: center;
+	width: 100%;
+	padding: 10px;
+	background: #fff;
+	box-shadow: 0 1px 6px rgb(169 188 218 / 65%);
+
 	.space-top {
 		display: flex;
 		align-items: center;
 	}
 }
 
-.service_name { 
-	text-transform: uppercase;
-	color: #393f70;
-	font-weight: 500;
+.service_name {
 	font-size: 14px;
+	font-weight: 500;
+	color: #393f70;
+	text-transform: uppercase;
 }
 
 .icon_div {
@@ -27,7 +28,7 @@
 }
 
 .styled_col {
-	border-right: 1px solid #f2f2f2;
 	display: flex;
 	align-items: center;
+	border-right: 1px solid #f2f2f2;
 }

@@ -1,19 +1,17 @@
-
-
 /* .section = styled(Col)``; */
 
 .container {
-	border-radius: 10px;
-	padding: 8px 0px 8px 8px;
-	width: 100%;
 	display: flex;
+	width: 100%;
+	padding: 8px 0 8px 8px;
+	border-radius: 10px;
 
 	&.small {
 		display: flex;
 		width: 100%;
+		padding: 0;
 		background: #f9f9f9;
-		padding: 0px;
-		border-radius: 0px;
+		border-radius: 0;
 	}
 
 	&.result {
@@ -25,16 +23,17 @@
 	}
 
 	&.contract {
-		background: #ffffff;
+		background: #fff;
 	}
+
 	&.mobile {
-		padding: 0px;
+		padding: 0;
 	}
 
 	@media (max-width: 768px) {
-		padding: 0px 8px 12px;
-		background: #ffffff;
 		flex-direction: column;
+		padding: 0 8px 12px;
+		background: #fff;
 	}
 }
 
@@ -55,21 +54,21 @@
 }
 
 .options {
-	width: 45%;
 	display: flex;
 	align-items: flex-start;
+	width: 45%;
 	padding-left: 12px;
 
 	@media (max-width: 768px) {
-		width: 100%;
 		flex-direction: column;
-		padding-left: 0px;
+		width: 100%;
+		padding-left: 0;
 	}
 }
 
-.heading{
-	font-size: 20px;
+.heading {
 	margin: 0 0 12px 8px;
+	font-size: 20px;
 	color: #393f70;
 }
 
@@ -79,8 +78,8 @@
 }
 
 .icon {
-	font-weight: 500;
 	font-size: 14px;
+	font-weight: 500;
 	color: #5936f0;
 	text-decoration-line: underline;
 	cursor: pointer;

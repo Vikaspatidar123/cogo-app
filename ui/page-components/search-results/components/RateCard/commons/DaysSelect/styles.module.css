@@ -1,15 +1,15 @@
 .container {
 	display: flex;
-	border: 1px solid #bdaff9;
-	border-radius: 4px;
 	align-items: center;
 	max-width: 92px;
+	border: 1px solid #bdaff9;
+	border-radius: 4px;
 
 	.core-ui-input-root {
-		border: none;
 		width: 28px;
-		margin: 4px;
 		padding: 0;
+		margin: 4px;
+		border: none;
 	}
 
 	.core-ui-input-control {
@@ -24,12 +24,12 @@
 
 .v_line {
 	height: 24px;
-	border: 1px solid #bdaff9;
 	margin: 4px auto;
+	border: 1px solid #bdaff9;
 }
 
-.styled_text { 
+.styled_text {
+	margin-top: 4px;
 	font-size: 12px;
 	color: #393f70;
-	margin-top: 4px;
 }

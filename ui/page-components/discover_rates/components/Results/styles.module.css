@@ -1,69 +1,73 @@
 .main {
-  margin: 0 16px 24px;
+	margin: 0 16px 24px;
 }
 
 .back {
-  font-size: 16px;
-  font-weight: bold;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: 1.2;
-  letter-spacing: normal;
-  cursor: pointer;
-  color: #333;
+	font-size: 16px;
+	font-style: normal;
+	font-weight: bold;
+	font-stretch: normal;
+	line-height: 1.2;
+	color: #333;
+	letter-spacing: normal;
+	cursor: pointer;
 }
+
 .back:hover {
-  transform: translateY(-1px);
+	transform: translateY(-1px);
 }
 
 .row_back {
-  layout: flex row;
-  align-item: center;
-  margin-bottom: 16px;
-  width: max-content;
-  &.shipment {
-    margin-bottom: 0px;
-  }
+	width: max-content;
+	margin-bottom: 16px;
+	layout: flex row;
+	align-item: center;
+
+	&.shipment {
+		margin-bottom: 0;
+	}
 }
 
 .header_and_services {
-  display: block;
+	display: block;
 
-  @media (max-width: _md) {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-  }
+	@media (max-width: _md) {
+		display: flex;
+		align-items: baseline;
+		justify-content: space-between;
+	}
 }
 
 .edit_services {
-  @media (min-width: _md) {
-    display: none;
-  }
+	@media (min-width: _md) {
+		display: none;
+	}
 }
 
 .edit_search_container {
-  margin: 16px;
-  @media (max-width: _md) {
-    display: none;
-  }
+	margin: 16px;
+
+	@media (max-width: _md) {
+		display: none;
+	}
 }
 
 .name_heading {
-  font-size: 18px;
+	font-size: 18px;
 }
 
 .search_message {
-  font-size: 15px;
-  margin: 16px;
-  text-align: center;
+	margin: 16px;
+	font-size: 15px;
+	text-align: center;
 }
 
 .list_container {
-  min-height: 120vh;
+	min-height: 120vh;
 }
+
 .org_details {
-  display: flex;
-  align-items: center;
-  margin: 0 16px;
+	display: flex;
+	align-items: center;
+	margin: 0 16px;
 }

@@ -1,75 +1,77 @@
 .container {
-  :global {
-    .core-ui-button-root {
-      padding: 5px !important;
-    }
+	:global {
+		.core-ui-button-root {
+			padding: 5px !important;
+		}
 
-    .core-ui-button-root div {
-      background-color: #7a5ef3;
-    }
+		.core-ui-button-root div {
+			background-color: #7a5ef3;
+		}
 
-    .core-ui-input-root {
-      border: 1px solid #cddbff !important;
-    }
-  }
+		.core-ui-input-root {
+			border: 1px solid #cddbff !important;
+		}
+	}
 }
 
 .wrapper {
-  height: 220px;
-  overflow-y: auto;
-  :global {
-    .form-item-label {
-      font-weight: 500;
-      font-size: 12px;
-      color: #393f70;
-      margin: 12px 0 8px 0;
-    }
+	height: 220px;
+	overflow-y: auto;
 
-    .core-ui-button-root {
-      font-weight: 400;
-      font-size: 12px;
-      color: #393f70;
-      border: none !important;
-      text-transform: none;
-    }
+	:global {
+		.form-item-label {
+			margin: 12px 0 8px;
+			font-size: 12px;
+			font-weight: 500;
+			color: #393f70;
+		}
 
-    .form-field-array-add-btn {
-      font-size: 18px;
-      height: 20px;
-      width: 20px;
-      font-weight: 500;
-    }
+		.core-ui-button-root {
+			font-size: 12px;
+			font-weight: 400;
+			color: #393f70;
+			text-transform: none;
+			border: none !important;
+		}
 
-    .form-fieldArray-cargos {
-      padding-left: 0px;
-      padding-right: 0px;
-    }
+		.form-field-array-add-btn {
+			width: 20px;
+			height: 20px;
+			font-size: 18px;
+			font-weight: 500;
+		}
 
-    .core-ui-select__control {
-      border: 1px solid #cddbff;
-    }
+		.form-fieldArray-cargos {
+			padding-right: 0;
+			padding-left: 0;
+		}
 
-    .form-layout-root-row {
-      margin: 0 -16px !important;
-    }
+		.core-ui-select__control {
+			border: 1px solid #cddbff;
+		}
 
-    .core-ui-input-suffix {
-      display: flex;
-      align-items: center;
-      color: #828282;
-      font-size: 14px;
-    }
-  }
+		.form-layout-root-row {
+			margin: 0 -16px !important;
+		}
+
+		.core-ui-input-suffix {
+			display: flex;
+			align-items: center;
+			font-size: 14px;
+			color: #828282;
+		}
+	}
 }
 
 .button_container {
-  width: 100%;
-  margin-top: 10px;
-  display: flex;
-  justify-content: flex-end;
-  :global {
-    .core-ui-button-root {
-      border: 1px solid #393f70 !important;
-    }
-  }
+	display: flex;
+	justify-content: flex-end;
+	width: 100%;
+	margin-top: 10px;
+
+	:global {
+		.core-ui-button-root {
+			border: 1px solid #393f70 !important;
+		}
+	}
 }

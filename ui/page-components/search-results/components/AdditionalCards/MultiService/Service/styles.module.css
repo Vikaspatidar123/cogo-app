@@ -1,17 +1,17 @@
 .container {
-	background: #ffffff;
-	border-radius: 4px;
 	display: flex;
 	flex-direction: column;
-	padding: 10px 16px;
 	justify-content: space-between;
-	cursor: pointer;
-	margin: auto;
-	box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 	width: 96%;
+	padding: 10px 16px;
+	margin: auto;
+	cursor: pointer;
+	background: #fff;
+	border-radius: 4px;
+	box-shadow: 0 4px 15px rgb(0 0 0 / 10%);
 
 	&:hover {
-		box-shadow: 0 2px 55px rgba(56, 59, 68, 0.1);
+		box-shadow: 0 2px 55px rgb(56 59 68 / 10%);
 	}
 
 	&.notAdded {
@@ -26,6 +26,7 @@
 			padding: 8px;
 		}
 	}
+
 	.cargo-detail-box {
 		background: #fcedbf;
 	}
@@ -45,43 +46,43 @@
 }
 
 .div {
- 	.hover {
-		box-shadow: 11px 11px rgba(33, 33, 33, 33);
+	.hover {
+		box-shadow: 11px 11px rgb(33 33 33 / 3300%);
 	}
 }
 
 .service_type {
-	font-weight: 700;
-	font-size: 12px;
-	line-height: 12px;
-	letter-spacing: 0.04em;
-	color: #333333;
 	margin-bottom: 6px;
+	font-size: 12px;
+	font-weight: 700;
+	line-height: 12px;
+	color: #333;
+	letter-spacing: 0.04em;
 
 	@media (max-width: 760px) {
 		margin-right: 8px;
 	}
 }
 
-.button  {
-	border-radius: 50%;
-	border: none;
-	cursor: pointer;
-	font-style: normal;
-	font-weight: bold;
-	font-size: 16px;
-	line-height: 160%;
-	margin-bottom: 0px;
+.button {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	letter-spacing: 0.02em;
-	height: 30px;
 	width: 30px;
-	outline: none;
+	height: 30px;
+	margin-bottom: 0;
+	font-size: 16px;
+	font-style: normal;
+	font-weight: bold;
+	line-height: 160%;
+	color: #fff;
+	letter-spacing: 0.02em;
+	cursor: pointer;
 	background: #356efd;
-	color: #ffffff;
-	box-shadow: 0px 2px 25px rgba(60, 67, 83, 0.1);
+	border: none;
+	border-radius: 50%;
+	outline: none;
+	box-shadow: 0 2px 25px rgb(60 67 83 / 10%);
 
 	&:focus-visible {
 		outline: auto blue;
@@ -89,17 +90,17 @@
 }
 
 .enquiry_status {
-	margin: 0px;
-	background: #b4f3be;
-	border: 1px solid #67c676;
 	padding: 2px 6px;
+	margin: 0;
 	font-size: 8px;
 	line-height: 12px;
-	letter-spacing: 0.04em;
+	color: #000;
 	text-transform: uppercase;
-	color: #000000;
-	opacity: 0.9;
+	letter-spacing: 0.04em;
+	background: #b4f3be;
+	border: 1px solid #67c676;
 	border-radius: 4px;
+	opacity: 0.9;
 }
 
 .port_wrapper {
@@ -116,46 +117,47 @@
 
 .check_box_container {
 	display: flex;
-	margin-left: 12px;
 	margin-bottom: 10px;
+	margin-left: 12px;
+
 	.ui-core-checkbox-root {
-		border: 1px solid #333333;
+		border: 1px solid #333;
 	}
 }
 
 .port_pairs {
 	display: flex;
 	justify-content: space-between;
-	margin-bottom: 8px;
 	width: fit-content;
+	margin-bottom: 8px;
 }
 
 .port {
-	white-space: nowrap;
 	width: 150px;
 	overflow: hidden;
-	text-overflow: ellipsis;
 	font-size: 12px;
 	font-weight: 500;
 	color: #4f4f4f;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }
 
 .service_details {
-	margin-top: 5px;
-	margin-left: 58px;
 	display: flex;
 	flex-wrap: wrap;
+	margin-top: 5px;
+	margin-left: 58px;
 }
 
 .value {
 	width: 47%;
-	color: #333333;
 	font-size: 10px;
 	font-weight: 700;
+	color: #333;
 
 	&.heading {
-		color: #828282;
 		font-weight: 400;
+		color: #828282;
 	}
 }
 

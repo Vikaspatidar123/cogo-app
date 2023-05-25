@@ -1,77 +1,72 @@
 .container {
-  border-radius: 4px;
-  padding: 14px 16px;
-  text-align: center;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 14px 16px;
+	text-align: center;
+	background: #f2f2f2;
+	border-radius: 4px;
 
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+	/* ${({ width }) => (width ? `width: ${width};` : '')} */
 
-  background: #f2f2f2;
+	@media (max-width: _sm) {
+		width: 100%;
+		padding: 4px 8px;
+		border-radius: 4px;
+	}
+	@media (min-width: _sm) and (max-width: _md) {
+		width: 100%;
+		padding: 8px 12px;
+		border-radius: 4px;
+	}
 
-  /* ${({ width }) => (width ? `width: ${width};` : '')} */
+	svg {
+		* {
+			fill: black;
+		}
+	}
 
-  @media (max-width: _sm) {
-    border-radius: 4px;
-    padding: 4px 8px;
-    width: 100%;
-  }
+	&.disabled {
+		opacity: 0.7;
+	}
 
-  @media (min-width: _sm) and (max-width: _md) {
-    border-radius: 4px;
-    padding: 8px 12px;
-    width: 100%;
-  }
+	&.grey {
+		background: #f2f2f2;
+	}
 
-  svg {
-    * {
-      fill: black;
-    }
-  }
+	&.green {
+		background: #b4f3be;
+	}
 
-  &.disabled {
-    opacity: 0.7;
-  }
+	&.yellow {
+		background: #fbd69f;
+	}
 
-  &.grey {
-    background: #f2f2f2;
-  }
-
-  &.green {
-    background: #b4f3be;
-  }
-
-  &.yellow {
-    background: #fbd69f;
-  }
-
-  &.red {
-    background: #f7cdcd;
-  }
+	&.red {
+		background: #f7cdcd;
+	}
 }
 
 .tag {
-  margin-top: 8px;
+	display: block;
+	max-width: 85px;
+	margin-top: 8px;
+	overflow: hidden;
+	font-size: 18px;
+	font-weight: bold;
+	line-height: 21px;
+	color: black;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 
-  font-weight: bold;
-  font-size: 18px;
-  line-height: 21px;
-  color: black;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
-  display: block;
-  max-width: 85px;
-
-  @media (max-width: _sm) {
-    font-size: 14px;
-    line-height: 16px;
-    max-width: 36px;
-  }
-
-  @media (min-width: _sm) and (max-width: _md) {
-    font-size: 16px;
-    line-height: 18px;
-    max-width: 36px;
-  }
+	@media (max-width: _sm) {
+		max-width: 36px;
+		font-size: 14px;
+		line-height: 16px;
+	}
+	@media (min-width: _sm) and (max-width: _md) {
+		max-width: 36px;
+		font-size: 16px;
+		line-height: 18px;
+	}
 }

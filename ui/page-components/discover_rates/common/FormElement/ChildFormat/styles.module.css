@@ -1,89 +1,91 @@
 .container {
-  width: 100%;
-  /* padding: 0px 8px; */
-  display: flex;
-  flex-direction: column;
+	/* padding: 0px 8px; */
+	display: flex;
+	flex-direction: column;
+	width: 100%;
 }
 
 .item_container {
-  width: 100%;
+	width: 100%;
 }
 
 .group {
-  width: 100%;
-  padding: _s4;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	width: 100%;
+	padding: _s4;
 }
 
 .divider {
-  height: 1px;
-  margin-bottom: 8px;
-  background-color: _grey.divider;
+	height: 1px;
+	margin-bottom: 8px;
+	background-color: _grey.divider;
 }
 
 .button_div {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
 }
 
 .label {
-  margin-bottom: _s2;
-  display: inline-block;
-  font-size: 14px;
-  color: #333;
-  line-height: 20px;
-  font-weight: normal;
+	display: inline-block;
+	margin-bottom: _s2;
+	font-size: 14px;
+	font-weight: normal;
+	line-height: 20px;
+	color: #333;
 }
-.search {
-  font-size: 12px !important;
-  font-weight: bold;
-  line-height: 14px;
-  color: #4f4f4f;
-  margin-bottom: 5px;
 
-  display: flex;
-  align-items: center;
+.search {
+	display: flex;
+	align-items: center;
+	margin-bottom: 5px;
+	font-size: 12px !important;
+	font-weight: bold;
+	line-height: 14px;
+	color: #4f4f4f;
 }
+
 .lower_label {
-  margin-top: _s2;
-  display: inline-block;
-  font-size: 14px;
-  color: #adadad;
-  line-height: 20px;
-  font-weight: normal;
+	display: inline-block;
+	margin-top: _s2;
+	font-size: 14px;
+	font-weight: normal;
+	line-height: 20px;
+	color: #adadad;
 }
 
 .heading {
-  font-size: 14px;
-  font-weight: bold;
-  line-height: 1.43;
-  color: #333;
-  margin-bottom: 16px;
+	margin-bottom: 16px;
+	font-size: 14px;
+	font-weight: bold;
+	line-height: 1.43;
+	color: #333;
 }
 
 .line {
-  border-bottom: 1px solid #000000;
-  width: 100%;
-  margin-bottom: 16px;
+	width: 100%;
+	margin-bottom: 16px;
+	border-bottom: 1px solid #000;
 
-  .margin {
-    margin-bottom: 12px;
-  }
+	.margin {
+		margin-bottom: 12px;
+	}
 }
 
 .col {
-  padding: 0 8px;
+	padding: 0 8px;
 }
-.row {
-  display: flex;
-  flex-flow: row wrap;
-  flex-grow: 0;
-  flex-shrink: 0;
-  align-items: center;
-  justify-content: flex-start;
-  /* margin-bottom: 24px; */
 
+.row {
+	display: flex;
+	flex-flow: row wrap;
+	flex-grow: 0;
+	flex-shrink: 0;
+	align-items: center;
+	justify-content: flex-start;
+
+	/* margin-bottom: 24px; */
 }

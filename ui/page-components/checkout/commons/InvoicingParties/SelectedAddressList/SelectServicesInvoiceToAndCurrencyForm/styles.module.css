@@ -18,10 +18,10 @@
 .description {
 
 }
+
 .currency_select {
 	width: 100px;
 }
-
 
 .services_invoice_to {
 	display: flex;
@@ -42,9 +42,9 @@
 	align-items: center;
 	padding: 4px;
 
-	:global{
-		.ui_checkbox_container{
-			padding:0;
+	:global {
+		.ui_checkbox_container {
+			padding: 0;
 		}
 	}
 }
@@ -71,7 +71,7 @@
 	padding: 16px;
 	border-top: 1px solid #cddbff;
 
-	.submit_btn{
-		margin-left:12px
+	.submit_btn {
+		margin-left: 12px;
 	}
 }

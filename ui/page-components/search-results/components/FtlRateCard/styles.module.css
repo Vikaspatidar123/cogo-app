@@ -1,14 +1,13 @@
-
 .container {
-	margin-bottom: 16px;
-	margin-top: 16px;
-	background: #ffffff;
-	border: 1px solid #e0e0e0;
 	box-sizing: border-box;
+	margin-top: 16px;
+	margin-bottom: 16px;
+	background: #fff;
+	border: 1px solid #e0e0e0;
 	border-radius: 10px;
 
 	@media (max-width: 760px) {
-		border: 1px solid rgb(224, 224, 224);
+		border: 1px solid rgb(224 224 224);
 	}
 
 	.css-7rtwp5 {
@@ -16,7 +15,7 @@
 	}
 }
 
-.card { 
+.card {
 	display: flex;
 
 	@media (max-width: 760px) {
@@ -28,90 +27,92 @@
 	font-size: 10px;
 	font-style: normal;
 	font-weight: normal;
-	font-size: 10px;
 	line-height: 12px;
+	color: #333;
 	letter-spacing: 0.02em;
-	color: #333333;
+
 	&.spot_negotiation_rate {
 		background: #e6fbe9;
 	}
+
 	&.cogo_assured_rate {
+		margin-top: 4px;
 		margin-left: 40px;
 		font-size: 12px;
-		margin-top: 4px;
 		font-weight: 400;
 	}
 }
 
-.cogo_assured { 
-	background: #d9eafd;
-	border-radius: 9px 0px 4px 0px;
-	width: fit-content;
+.cogo_assured {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	width: fit-content;
 	padding: 4px 12px;
+	background: #d9eafd;
+	border-radius: 9px 0 4px;
+
 	&.cogo_assured_rate {
 		height: 48px;
-		border-radius: 9px 0px 8px 0px;
+		border-radius: 9px 0 8px;
 	}
+
 	svg {
-		font-size: 20px;
 		margin-right: 8px;
+		font-size: 20px;
 	}
 }
 
 .cogoport_text {
 	font-size: 14px;
 	font-weight: 500;
-	color: #333333;
+	color: #333;
 }
 
-.line_vrt { 
+.line_vrt {
+	width: 1px;
+	height: auto;
 	margin-top: 60px;
 	margin-bottom: 60px;
 	background-color: #e7e7e7;
-	height: auto;
-	width: 1px;
 
 	.horizontal {
-		height: 1px;
 		width: 100%;
+		height: 1px;
 		margin-top: 14px;
 	}
 }
 
-.trip_type_div { 
+.trip_type_div {
 	display: flex;
 	flex-direction: column;
 	margin-top: 4px;
 	margin-bottom: 24px;
 }
 
-.trip_type_tag { 
-	text-align: center;
+.trip_type_tag {
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	padding: 2px 5px;
 	margin: auto;
+	margin-bottom: 4px;
+	font-size: 10px;
+	color: #333;
+	text-align: center;
 	background: #ded7fc;
 	border-radius: 4px;
-	padding: 2px 5px;
-	font-size: 10px;
-	color: #333333;
-
-	margin-bottom: 4px;
 }
 
 .extra_details {
-	margin: 0px;
+	margin: 0;
+	margin-left: 8px;
+	font-size: 12px;
 	font-style: normal;
 	font-weight: normal;
-	font-size: 12px;
 	line-height: 16px;
+	color: #000;
 	letter-spacing: 0.02em;
-	color: #000000;
-	margin-left: 8px;
 }
 
 /* .animated_container { animated({
@@ -129,69 +130,65 @@
 })
 }; */
 
-.details { 
-	display: Flex;
+.details {
+	display: flex;
 }
 
 .flex_col {
 	display: flex;
-	font-size: 10px;
-	align-items: center;
-	flex-wrap: wrap;
 	flex: 1;
+	flex-wrap: wrap;
+	align-items: center;
 	padding: 5px 8px 6px 12px;
+	font-size: 10px;
 
 	@media (max-width: 1350px) {
 		padding-left: 10px;
 	}
-
 	@media (max-width: 500px) {
 		padding-left: 10px;
 	}
 }
 
 .container_values {
-	color: #000000;
-	margin-left: 10px;
 	max-width: 200px;
-	white-space: nowrap;
+	margin-left: 10px;
 	overflow: hidden;
+	color: #000;
 	text-overflow: ellipsis;
+	white-space: nowrap;
 
 	@media (min-width: 1371px) and (max-width: 1416px) {
 		max-width: 150px;
 	}
-
 	@media (min-width: 1290px) and (max-width: 1370px) {
 		max-width: 85px;
 	}
-
 	@media (min-width: 1164px) and (max-width: 1291px) {
 		max-width: 80px;
 	}
-
 	@media (min-width: 760px) and (max-width: 1163px) {
 		max-width: 180px;
 	}
-
 	@media (max-width: 760px) {
 		max-width: 150px;
 	}
 }
 
-.div { 
+.div {
 	display: flex;
-	font-size: 10px;
+	flex-wrap: wrap;
 	align-items: center;
+	padding: 4px;
+	margin: 5px;
+	font-size: 10px;
 	background: #dfe1ef;
 	border-radius: 4px;
-	margin: 5px;
-	padding: 4px;
-	flex-wrap: wrap;
+
 	.moreTruck {
+		margin-left: 4px;
 		color: #5936f0;
 		text-decoration: underline;
-		margin-left: 4px;
 	}
 
 	.truckCount {
@@ -200,28 +197,28 @@
 }
 
 .line_horizontal {
-	height: auto;
 	width: 1px;
+	height: auto;
 }
 
-.route_div { 
+.route_div {
 	display: flex;
 	width: 80%;
 	border-bottom: 1px dashed #aab9d6;
 }
 
-.transit_time_div { 
-	font-size: 12px;
-	margin: 32px;
+.transit_time_div {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
+	margin: 32px;
+	font-size: 12px;
 }
 
-.wrapper { 
+.wrapper {
 	display: flex;
-	align-items: center;
 	flex-wrap: wrap;
+	align-items: center;
 	width: 100%;
 }
 
@@ -230,10 +227,11 @@
 	flex-wrap: wrap;
 }
 
-.tool_tip_content { 
-	font-size: 12px;
+.tool_tip_content {
 	padding: 5px;
+	font-size: 12px;
 	border-bottom: 1px solid black;
+
 	span {
 		margin: 4px;
 	}

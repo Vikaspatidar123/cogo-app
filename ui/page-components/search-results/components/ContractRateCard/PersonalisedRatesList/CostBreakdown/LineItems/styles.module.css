@@ -3,8 +3,8 @@
 	margin: 16px 0;
 
 	.line-item {
-		border-bottom: 1px dashed #aab9d6;
 		padding: 5px;
+		border-bottom: 1px dashed #aab9d6;
 	}
 
 	.line-item:last-child {
@@ -12,20 +12,20 @@
 	}
 }
 
-.charge_name { 
+.charge_name {
 	font-size: 12px;
 	color: #363e6e;
 }
 
-.total_price { 
-	font-weight: 500;
+.total_price {
 	font-size: 12px;
+	font-weight: 500;
 	color: #393f70;
 }
 
-.unit { 
-	font-weight: 400;
+.unit {
 	font-size: 12px;
+	font-weight: 400;
 	color: #a8acce;
 }
 
@@ -35,23 +35,23 @@
 	justify-content: center;
 }
 
-.quantity { 
-	font-weight: 600;
-	font-size: 12px;
-	color: #393f70;
+.quantity {
 	margin-right: 6px;
+	font-size: 12px;
+	font-weight: 600;
+	color: #393f70;
 }
 
-.price { 
-	font-weight: 400;
-	font-size: 12px;
-	color: #393f70;
+.price {
 	margin-right: 6px;
+	font-size: 12px;
+	font-weight: 400;
+	color: #393f70;
 }
 
 .cross {
-	font-weight: 400;
-	font-size: 12px;
-	color: #393f70;
 	margin-right: 6px;
+	font-size: 12px;
+	font-weight: 400;
+	color: #393f70;
 }

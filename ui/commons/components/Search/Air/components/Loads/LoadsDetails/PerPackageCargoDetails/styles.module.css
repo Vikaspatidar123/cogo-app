@@ -1,46 +1,40 @@
-
-.container{
+.container {
 	width: 100%;
 	padding: 4px;
 }
 
-
-.button_container{
+.button_container {
 	display: flex;
-	justify-content: flex-start;
 	align-items: center;
-	margin: 8px 0px;
+	justify-content: flex-start;
+	margin: 8px 0;
 
 	:global {
 		.core-ui-button-root {
-			background: #ffffff;
 			color: #7a5ef3;
+			background: #fff;
 			border: none;
 		}
-	}	
+	}
 }
 
-.package_details{
+.package_details {
 	display: flex;
-	justify-content: flex-start;
 	align-items: center;
-
+	justify-content: flex-start;
 	height: 24px;
-	margin-right: 8px;
 	padding: 0 5px;
-
-	background-color: aliceblue;
-
-	font-weight: 500;
+	margin-right: 8px;
 	font-size: 12px;
+	font-weight: 500;
+	background-color: aliceblue;
 	border-radius: 4px;
 }
 
-.confirm_button{
+.confirm_button {
+	position: sticky;
 	display: flex;
 	flex-direction: row;
-	justify-content: space-between;
 	align-items: center;
-
-	position: sticky;
+	justify-content: space-between;
 }

@@ -1,17 +1,16 @@
-.container  {
-	background: #fff1cf;
-	border: 1px solid #e0e0e0;
-	box-shadow: 0 2px 55px rgba(60, 67, 83, 0.1);
-	border-radius: 10px;
-
+.container {
 	display: flex;
 	justify-content: space-between;
 	padding-right: 25px;
+	background: #fff1cf;
+	border: 1px solid #e0e0e0;
+	border-radius: 10px;
+	box-shadow: 0 2px 55px rgb(60 67 83 / 10%);
 
 	@media (max-width: 760px) {
 		flex-direction: column;
-		padding-bottom: 25px;
 		padding-right: 0;
+		padding-bottom: 25px;
 	}
 
 	.rfqMargin {

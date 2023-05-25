@@ -1,15 +1,15 @@
 .title {
-  padding-bottom: 12px;
-  margin-bottom: 12px;
-  font-size: 14px;
-  font-weight: 500;
-  line-height: 15px;
-  color: #4f4f4f;
-  border-bottom: 1px solid #bdbdbd;
+	padding-bottom: 12px;
+	margin-bottom: 12px;
+	font-size: 14px;
+	font-weight: 500;
+	line-height: 15px;
+	color: #4f4f4f;
+	border-bottom: 1px solid #bdbdbd;
 }
 
 .footer {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
 }

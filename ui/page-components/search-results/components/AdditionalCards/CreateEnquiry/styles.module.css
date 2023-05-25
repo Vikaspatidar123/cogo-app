@@ -1,8 +1,8 @@
 .message {
+	display: none;
 	padding: 12px 8px;
 	font-size: 14px;
 	color: #333;
-	display: none;
 
 	.active {
 		display: block;

@@ -3,15 +3,15 @@
 }
 
 .alert_message {
-	border-radius: 0 0 0 4px;
-	font-size: 10px;
 	padding: 4px 12px;
+	font-size: 10px;
+	border-radius: 0 0 0 4px;
 }
 
 .rate_type {
-	border-radius: 0 0 0 4px;
-	font-size: 10px;
 	padding: 4px 12px;
 	margin-right: 8px;
+	font-size: 10px;
 	background-color: #d9eafd;
+	border-radius: 0 0 0 4px;
 }

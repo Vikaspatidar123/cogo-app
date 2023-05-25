@@ -1,142 +1,132 @@
 .container {
-  border: 1px solid #e0e0e0;
-  box-sizing: border-box;
-  border-radius: 5px;
-  margin-bottom: 24px;
-  display: flex;
-  padding: 10px;
-  background: white;
+	box-sizing: border-box;
+	display: flex;
+	padding: 10px;
+	margin-bottom: 24px;
+	background: white;
+	border: 1px solid #e0e0e0;
+	border-radius: 5px;
 }
+
 .container:hover {
-  box-shadow: rgba(0, 0, 0, 0.14) 0px 0px 12px 0px;
+	box-shadow: rgb(0 0 0 / 14%) 0 0 12px 0;
 }
 
 .icon_section {
-  margin-right: 36px;
-  &.mobile {
-    @media (max-width: 760px) {
-    margin-right: 16px;
-    }
-  }
+	margin-right: 36px;
+
+	&.mobile {
+		@media (max-width: 760px) {
+			margin-right: 16px;
+		}
+	}
 }
 
 .content {
-  display: flex;
-  justify-content: space-between;
-  flex-grow: 1;
-  align-items: center;
-  &.mobile {
-    @media (max-width: 760px) {
-    width: 80%;
-    }
-  }
+	display: flex;
+	flex-grow: 1;
+	align-items: center;
+	justify-content: space-between;
+
+	&.mobile {
+		@media (max-width: 760px) {
+			width: 80%;
+		}
+	}
 }
 
 .box {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  &.column {
-    flex-direction: column;
-    align-items: flex-end;
-    margin-top: 6px;
-  }
+	display: flex;
+	flex-direction: row;
+	align-items: center;
 
-  &.mobile {
-    @media (max-width: 760px) {
-    flex-direction: column;
-    align-items: flex-start;
-    width: 80%;
-  }
-  }
+	&.column {
+		flex-direction: column;
+		align-items: flex-end;
+		margin-top: 6px;
+	}
+
+	&.mobile {
+		@media (max-width: 760px) {
+			flex-direction: column;
+			align-items: flex-start;
+			width: 80%;
+		}
+	}
 }
 
 .rates {
-  padding: 9px 12px;
-  margin: 0;
-  border: none;
-  cursor: pointer;
+	padding: 9px 12px;
+	margin: 0;
+	font-size: 12px;
+	font-weight: 500;
+	line-height: 14px;
+	color: white;
+	text-transform: uppercase;
+	cursor: pointer;
+	background: #034afd;
+	border: none;
+	border-radius: 4px;
 
-  background: #034afd;
-  border-radius: 4px;
+	&.mobile {
+		@media (max-width: 760px) {
+			box-sizing: border-box;
+			padding: 4px 6px;
+			margin: 0;
+			margin-bottom: 4px;
+			font-size: 10px;
+			font-style: normal;
+			font-weight: normal;
+			line-height: 140%;
+			color: #000;
+			text-align: center;
+			text-transform: none;
+			letter-spacing: 0.02em;
+			cursor: pointer;
+			background: #475876;
+			border-radius: 6px;
+		}
+	}
 
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 14px;
+	&.negotiation {
+		display: flex;
+		align-items: center;
+		padding: 0 12px;
+		margin: 12px 0 0;
+		font-size: 12px;
+		font-weight: 500;
+		line-height: 14px;
+		color: white;
+		text-decoration: none;
+		text-transform: uppercase;
+		cursor: pointer;
+		background: black;
+		border: none;
+		border-radius: 4px;
 
-  text-transform: uppercase;
-
-  color: white;
-
-  &.mobile {
-    @media (max-width: 760px) {
-      padding: 4px 6px;
-      margin: 0;
-  
-      box-sizing: border-box;
-      border-radius: 6px;
-      cursor: pointer;
-      margin-bottom: 4px;
-  
-      background: #475876;
-  
-      text-transform: none;
-      font-style: normal;
-      font-weight: normal;
-      font-size: 10px;
-      line-height: 140%;
-  
-      text-align: center;
-      letter-spacing: 0.02em;
-  
-      color: #000000;
-    }
-  
-  }
-
-  &.negotiation {
-    padding: 0 12px;
-    margin: 12px 0 0;
-    border: none;
-    cursor: pointer;
-    text-decoration: none;
-
-    background: black;
-    border-radius: 4px;
-
-    font-weight: 500;
-    font-size: 12px;
-    line-height: 14px;
-
-    display: flex;
-    align-items: center;
-
-    text-transform: uppercase;
-
-    color: white;
-
-    &:hover {
-      opacity: 0.7;
-    }
-  }
+		&:hover {
+			opacity: 0.7;
+		}
+	}
 }
+
 .rates:hover {
-  opacity: 0.7;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+	box-shadow: 0 4px 10px rgb(0 0 0 / 25%);
+	opacity: 0.7;
 }
 
 .edit_options {
-  font-style: normal;
-  font-weight: normal;
-  font-size: 12px;
-  line-height: 14px;
-  border: none;
-  background: transparent;
-  cursor: pointer;
-  outline: none;
-
-  letter-spacing: 0.02em;
+	font-size: 12px;
+	font-style: normal;
+	font-weight: normal;
+	line-height: 14px;
+	letter-spacing: 0.02em;
+	cursor: pointer;
+	background: transparent;
+	border: none;
+	outline: none;
 }
+
 .edit_options:hover {
-  text-decoration-line: underline;
+	text-decoration-line: underline;
 }

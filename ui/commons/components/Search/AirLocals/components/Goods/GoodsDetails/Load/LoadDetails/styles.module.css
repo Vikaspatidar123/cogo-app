@@ -1,21 +1,22 @@
 .container {
-  flex: 1;
-  padding: 4px 4px 0 4px;
-  max-height: 400px;
-  overflow-y: auto;
-  :global {
-    .tippy-box .tippy-arrow {
-      display: none !important;
-    }
+	flex: 1;
+	max-height: 400px;
+	padding: 4px 4px 0;
+	overflow-y: auto;
 
-    .core-ui-popover-root {
-      margin-top: -9px;
-    }
-  }
+	:global {
+		.tippy-box .tippy-arrow {
+			display: none !important;
+		}
+
+		.core-ui-popover-root {
+			margin-top: -9px;
+		}
+	}
 }
 
 .title {
-  font-weight: 500;
-  font-size: 14px;
-  color: #393f70;
+	font-size: 14px;
+	font-weight: 500;
+	color: #393f70;
 }

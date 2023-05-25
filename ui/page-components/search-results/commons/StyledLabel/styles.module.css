@@ -1,17 +1,17 @@
-.schedules { 
+.schedules {
 	display: flex;
 	flex-direction: column;
 }
 
-.schedule_date { 
-	text-align: center;
+.schedule_date {
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	margin: auto;
+	text-align: center;
 }
 
-.transit_time { 
+.transit_time {
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -26,25 +26,25 @@
 	}
 }
 
-.dates { 
-	font-weight: normal;
-	font-size: 12px;
+.dates {
 	display: flex;
 	align-items: center;
-	letter-spacing: 0.02em;
-	text-transform: uppercase;
-	color: #333333;
-	padding-left: 12px;
 	padding-right: 12px;
+	padding-left: 12px;
+	font-size: 12px;
+	font-weight: normal;
+	color: #333;
+	text-transform: uppercase;
+	letter-spacing: 0.02em;
 }
 
-.line { 
-	border: 0.5px dashed #bdbdbd;
+.line {
 	width: 108px;
 	height: 1px;
-	margin: 0px 2px;
+	margin: 0 2px;
+	border: 0.5px dashed #bdbdbd;
 }
 
-.text { 
+.text {
 	font-size: 12px;
 }

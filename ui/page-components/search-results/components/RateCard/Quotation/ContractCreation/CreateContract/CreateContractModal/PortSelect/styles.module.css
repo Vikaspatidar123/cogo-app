@@ -1,49 +1,49 @@
 .port_arrow {
-	height: 30px;
 	width: 40px;
-	margin: 0px 30px;
+	height: 30px;
+	margin: 0 30px;
 }
 
-.port_name { 
-	font-weight: 700;
-	font-size: 12px;
+.port_name {
 	width: 200px;
+	font-size: 12px;
+	font-weight: 700;
 }
 
-.top_section { 
+.top_section {
 	display: flex;
 	flex-direction: row;
 	margin-bottom: 10px;
 }
 
-.tag  {
-	background: #dfe1ef;
-	font-size: 12px;
+.tag {
 	padding: 4px 6px;
-	border-radius: 4px;
 	margin-right: 5px;
 	margin-bottom: 5px;
+	font-size: 12px;
+	background: #dfe1ef;
+	border-radius: 4px;
 }
 
-.card { 
+.card {
 	width: 450px;
 	padding: 1px 10px 10px 0;
-	border-radius: 4px;
 	margin-right: 20px;
+	border-radius: 4px;
 }
 
-.card_row { 
-	width: 510px;
+.card_row {
 	display: flex;
 	flex-direction: row;
+	width: 510px;
+	margin: 0 30px 10px;
 	overflow-x: scroll;
-	margin: 0px 30px 10px 30px;
+	-ms-overflow-style: none;
+	scrollbar-width: none;
 
 	::-webkit-scrollbar {
 		display: none;
 	}
-	-ms-overflow-style: none;
-	scrollbar-width: none;
 }
 
 .bottom_section {

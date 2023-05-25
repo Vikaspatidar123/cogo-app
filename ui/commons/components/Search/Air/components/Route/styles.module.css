@@ -1,20 +1,21 @@
-.container{
-	margin-bottom: 0px;
+.container {
 	display: flex;
 	flex-wrap: wrap;
+	margin-bottom: 0;
+
 	@media (max-width: 760px) {
 		flex-direction: column;
-	  }
+	}
 
 	.custom-select-input-chipcontainer {
 		height: inherit;
 	}
 
 	.custom-select-input-select-placeholder {
-		font-weight: 400;
-		font-size: 14px;
 		display: flex;
 		align-items: center;
+		font-size: 14px;
+		font-weight: 400;
 		color: #cbcff5;
 	}
 
@@ -33,13 +34,14 @@
 }
 
 .lable {
-	margin: 18px 0 12px 0;
-	font-weight: 600;
+	margin: 18px 0 12px;
 	font-size: 14px;
+	font-weight: 600;
 	color: #393f70;
+
 	@media (max-width: 760px) {
-		margin: 8px 0 5px 0;
-	  }
+		margin: 8px 0 5px;
+	}
 }
 
 .errors {
@@ -49,16 +51,19 @@
 	line-height: 16px;
 	color: #cb6464;
 }
-.field{
+
+.field {
 	padding: 0 8px;
+
 	@media (max-width: 760px) {
 		width: max-content !important;
-	  }
+	}
 }
-.edit{
-	:global{
-		.ui_select_container{
-			width:210px !important;
+
+.edit {
+	:global {
+		.ui_select_container {
+			width: 210px !important;
 		}
 	}
 }

@@ -1,23 +1,23 @@
 .back {
 	font-size: 16px;
+	font-style: normal;
 	font-weight: bold;
 	font-stretch: normal;
-	font-style: normal;
 	line-height: 1.2;
+	color: #333;
 	letter-spacing: normal;
 	cursor: pointer;
-	color: #333;
 
 	&:hover {
 		transform: translateY(-1px);
 	}
 }
 
-.row_back { 
+.row_back {
 	display: flex;
 	align-items: center;
-	margin-bottom: 16px;
 	width: max-content;
+	margin-bottom: 16px;
 
 	&.shipment {
 		margin-bottom: 0;

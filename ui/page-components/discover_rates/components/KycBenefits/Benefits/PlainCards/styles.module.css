@@ -1,30 +1,36 @@
 .container {
-  display: flex;
-  @media screen and (max-width: 768px) {
-    flex-wrap: wrap; 
+	display: flex;
+
+	@media screen and (max-width: 768px) {
+		flex-wrap: wrap;
 	}
-  .featurecard-container {
-    flex-direction: row-reverse;
-    box-shadow: none;
-    background: #ffffff;
-    border: 1px solid #bdbdbd;
-    box-sizing: border-box;
-    border-radius: 10px;
-  }
-  .featurecard-content {
-    margin-left: 20px;
-  }
-  &.blue {
-    margin-top: 20px;
-    .featurecard-container {
-      background: #f5fafe;
-      border: 1px solid #b3d5fb;
-      box-sizing: border-box;
-      border-radius: 10px;
-      padding: 16px 10px;
-    }
-    .featurecard-content {
-      margin-left: 0px;
-    }
-  }
+
+	.featurecard-container {
+		box-sizing: border-box;
+		flex-direction: row-reverse;
+		background: #fff;
+		border: 1px solid #bdbdbd;
+		border-radius: 10px;
+		box-shadow: none;
+	}
+
+	.featurecard-content {
+		margin-left: 20px;
+	}
+
+	&.blue {
+		margin-top: 20px;
+
+		.featurecard-container {
+			box-sizing: border-box;
+			padding: 16px 10px;
+			background: #f5fafe;
+			border: 1px solid #b3d5fb;
+			border-radius: 10px;
+		}
+
+		.featurecard-content {
+			margin-left: 0;
+		}
+	}
 }

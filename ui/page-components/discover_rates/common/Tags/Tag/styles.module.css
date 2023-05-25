@@ -1,138 +1,143 @@
 .container {
-  background: transparent;
-  outline: none;
-  padding: 2px 12px;
+	position: relative;
+	box-sizing: border-box;
+	display: flex !important;
+	flex-direction: column !important;
+	align-items: center !important;
+	padding: 2px 12px;
+	font-size: 12px;
+	font-weight: bold;
+	line-height: 21px;
+	color: #bdbdbd;
+	cursor: pointer;
+	background: transparent;
+	border: none;
+	border-radius: 2px;
+	outline: none;
+	box-shadow: 0 0 10px rgb(0 0 0 / 5%);
 
-  @media (max-width: 768px) {
-    padding-left: 6px;
-    padding-right: 6px;
-  }
+	@media (max-width: 768px) {
+		padding-right: 6px;
+		padding-left: 6px;
+	}
 
-  font-weight: bold;
-  font-size: 12px;
-  line-height: 21px;
-  color: #bdbdbd;
+	&.selected {
+		background-color: white;
 
-  border: none;
-  box-sizing: border-box;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
-  border-radius: 2px;
-
-  cursor: pointer;
-  position: relative;
-
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
-
-  &.selected {
-    background-color: white;
-
-    svg {
-      * {
-        fill: white;
-      }
-    }
-  }
-}
-
-.badge {
-  padding: 2px 6px;
-  position: absolute;
-  top: -12px;
-  left: 12px;
-
-  font-weight: bold;
-  font-size: 10px;
-  line-height: 14px;
-
-  background: #9befa8;
-  border-radius: 4px;
-  color: rgb(0 0 0 / 0.9);
-}
-.sub {
-  margin: auto 0 -20px;
-  margin-right: auto;
-
-  font-weight: 500;
-  font-size: 10px;
-  line-height: 12px;
-  text-transform: uppercase;
-}
-
-.container_label {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-
-  cursor: pointer;
-
-  margin-top: auto;
-  &.small {
-    height: unset;
-    margin-top: unset;
-  }
-}
-
-.small {
-  background-color: #fff;
-}
-.active {
-  background-color: #fcdc0061 !important;
-}
-.search_form_mode_fcl_freight {
-  color: #356efd !important;
-}
-.search_form_mode_lcl_freight {
-  /* color: #fff !important; */
-  color: #66acf7 !important;
-}
-.search_form_mode_air_freight {
-  /* color: #fff !important; */
-  color: #ef9b9b !important;
-}
-.search_form_mode_container_transportation {
-  /* color: #fff !important; */
-  color: rgb(150, 226, 162) !important;
-}
-.search_form_mode_domestic {
-  /* color: #81c0af !important; */
-  color: #81c0af !important;
-}
-
-.search_form_mode_fcl_freight {
-  background-color: #356efd;
-  color: #fff;
-}
-.search_form_mode_lcl_freight {
-  color: red;
-  color: #fff;
-}
-.search_form_mode_air_freight {
-  color: #ef9b9b;
-  color: #fff;
-}
-.search_form_mode_container_transportation {
-  background-color: rgb(150, 226, 162);
-  color: #fff;
-}
-.search_form_mode_domestic {
-  background-color: #81c0af;
-  color: #fff;
-}
-
-.options {
-  padding: 7px 20px;
-  cursor: pointer;
-  border: 1px solid #eeeee35e;
-  border-radius: 4px;
-  margin-top: 3px;
-  :global {
-		.tippy-content{
-			padding: 0px !important;
+		svg {
+			* {
+				fill: white;
+			}
 		}
 	}
 }
+
+.badge {
+	position: absolute;
+	top: -12px;
+	left: 12px;
+	padding: 2px 6px;
+	font-size: 10px;
+	font-weight: bold;
+	line-height: 14px;
+	color: rgb(0 0 0 / 90%);
+	background: #9befa8;
+	border-radius: 4px;
+}
+
+.sub {
+	margin: auto 0 -20px;
+	margin-right: auto;
+	font-size: 10px;
+	font-weight: 500;
+	line-height: 12px;
+	text-transform: uppercase;
+}
+
+.container_label {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	margin-top: auto;
+	cursor: pointer;
+
+	&.small {
+		height: unset;
+		margin-top: unset;
+	}
+}
+
+.small {
+	background-color: #fff;
+}
+
+.active {
+	background-color: #fcdc0061 !important;
+}
+
+.search_form_mode_fcl_freight {
+	color: #356efd !important;
+}
+
+.search_form_mode_lcl_freight {
+	/* color: #fff !important; */
+	color: #66acf7 !important;
+}
+
+.search_form_mode_air_freight {
+	/* color: #fff !important; */
+	color: #ef9b9b !important;
+}
+
+.search_form_mode_container_transportation {
+	/* color: #fff !important; */
+	color: rgb(150 226 162) !important;
+}
+
+.search_form_mode_domestic {
+	/* color: #81c0af !important; */
+	color: #81c0af !important;
+}
+
+.search_form_mode_fcl_freight {
+	color: #fff;
+	background-color: #356efd;
+}
+
+.search_form_mode_lcl_freight {
+	color: red;
+	color: #fff;
+}
+
+.search_form_mode_air_freight {
+	color: #ef9b9b;
+	color: #fff;
+}
+
+.search_form_mode_container_transportation {
+	color: #fff;
+	background-color: rgb(150 226 162);
+}
+
+.search_form_mode_domestic {
+	color: #fff;
+	background-color: #81c0af;
+}
+
+.options {
+	padding: 7px 20px;
+	margin-top: 3px;
+	cursor: pointer;
+	border: 1px solid #eeeee35e;
+	border-radius: 4px;
+
+	:global {
+		.tippy-content {
+			padding: 0 !important;
+		}
+	}
+}
+
 .options:hover {
-  background: #eeeee35e;
+	background: #eeeee35e;
 }

@@ -1,99 +1,102 @@
 .container {
-  margin-bottom: 24px;
-  width: 100%;
-  /* max-height: 400px;
+	width: 100%;
+	margin-bottom: 24px;
+
+	/* max-height: 400px;
   overflow-y: scroll; */
 
-  :global {
-    .ui_chips_container {
-      flex-wrap: wrap;
-    }
-    .ui_ps_size_sm{
-      min-width: 67px;
-    }
-    .ui_input_number_suffix{
-      width: 24%;
-    }
-  }
+	:global {
+		.ui_chips_container {
+			flex-wrap: wrap;
+		}
 
-  &.nomargin {
-		margin-bottom: 0px;
+		.ui_ps_size_sm {
+			min-width: 67px;
+		}
+
+		.ui_input_number_suffix {
+			width: 24%;
+		}
 	}
-  
-  &.error {
+
+	&.nomargin {
+		margin-bottom: 0;
+	}
+
+	&.error {
+		box-sizing: border-box;
+		padding: 10px 8px;
 		background: #fef9f9;
 		border: 1px solid #cb6464;
-		box-sizing: border-box;
 		border-radius: 4px;
-		padding: 10px 8px;
 	}
 }
 
 .small_input {
-  input {
-    height: 18px !important;
-  }
+	input {
+		height: 18px !important;
+	}
 }
+
 .medium_input {
-  input {
-    height: 22px !important;
-  }
+	input {
+		height: 22px !important;
+	}
 }
+
 .no_margin {
-  margin-bottom: 0px;
+	margin-bottom: 0;
 }
+
 .error {
-  background: #fef9f9;
-  border: 1px solid #cb6464;
-  box-sizing: border-box;
-  border-radius: 4px;
-  padding: 10px 8px;
+	box-sizing: border-box;
+	padding: 10px 8px;
+	background: #fef9f9;
+	border: 1px solid #cb6464;
+	border-radius: 4px;
 }
 
 .lower_label {
-  margin-top: _s2;
-  display: inline-block;
-  font-size: 10px;
-  color: #adadad;
-  line-height: 20px;
+	display: inline-block;
+	margin-top: _s2;
+	font-size: 10px;
+	line-height: 20px;
+	color: #adadad;
 }
 
 .label {
-  font-size: 12px !important;
-  line-height: 14px;
-  color: #4f4f4f;
-  margin-bottom: 5px;
+	display: flex;
+	align-items: center;
+	margin: 12px 0 8px;
+	margin-bottom: 5px;
+	overflow: hidden;
+	font-size: 12px;
+	font-weight: 500;
+	line-height: 14px;
+	color: #4f4f4f;
+	color: #393f70;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 
-  display: flex;
-  align-items: center;
-
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
-  font-weight: 500;
-  font-size: 12px;
-  color: #393f70;
-  margin: 12px 0 8px 0;
-
-  .sub_label {
-    font-weight: normal;
-    margin-left: 4px;
-  }
+	.sub_label {
+		margin-left: 4px;
+		font-weight: normal;
+	}
 }
 
 .text {
-  margin: 0px;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 10px;
-  line-height: 140%;
-  text-align: right;
-  letter-spacing: 0.02em;
-  color: #cb6464;
-  justify-content: flex-end;
-  position: relative;
+	position: relative;
+	justify-content: flex-end;
+	margin: 0;
+	font-size: 10px;
+	font-style: normal;
+	font-weight: normal;
+	line-height: 140%;
+	color: #cb6464;
+	text-align: right;
+	letter-spacing: 0.02em;
 
-  &.error_msg {
-    display: none;
-  }
+	&.error_msg {
+		display: none;
+	}
 }

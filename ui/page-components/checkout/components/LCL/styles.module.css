@@ -52,10 +52,10 @@
 }
 
 .information {
-	padding: 8px 20px 8px 0px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 8px 20px 8px 0;
 
 	.charges {
 		margin-right: 10px;
@@ -67,11 +67,13 @@
 		font-weight: 500;
 	}
 }
-.transit{
+
+.transit {
 	display: flex;
-    align-items: center;
-    font-weight: 500;
+	align-items: center;
+	font-weight: 500;
 }
+
 .benefits {
 	display: flex;
 }
@@ -188,10 +190,10 @@
 	}
 }
 
-.packages_info{
+.packages_info {
 	display: flex;
-    padding: 10px 20px;
-    border-top: 1px dashed rgba(0, 0, 0, 0.2);
-    margin-top: 10px;
-    justify-content: space-between;
+	justify-content: space-between;
+	padding: 10px 20px;
+	margin-top: 10px;
+	border-top: 1px dashed rgb(0 0 0 / 20%);
 }

@@ -1,36 +1,35 @@
-
 .container {
 	padding: 16px;
-	border-radius: 4px;
 	margin-bottom: 16px;
 	background-repeat: no-repeat;
 	background-size: cover;
+	border-radius: 4px;
 }
 
 .title {
+	margin: 0 0 8px;
 	font-size: 14px;
 	font-weight: bold;
 	line-height: 18px;
-	margin: 0 0 8px;
 }
 
 .description {
+	margin: 0 0 16px;
 	font-size: 12px;
 	line-height: 16px;
-	margin: 0 0 16px;
 }
 
 .action {
-	border: none;
+	display: block;
 	padding: none;
-	background: transparent;
+	margin-left: auto;
 	font-size: 14px;
 	font-weight: 600;
 	line-height: 18px;
 	text-align: right;
-	margin-left: auto;
-	display: block;
 	cursor: pointer;
+	background: transparent;
+	border: none;
 	outline: none;
 
 	&:hover {

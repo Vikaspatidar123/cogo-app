@@ -5,7 +5,8 @@
 .rate {
 	display: flex;
 	justify-content: space-between;
-	padding: 4px 0px;
+	padding: 4px 0;
+
 	&.final {
 		border-bottom: 1px solid rgb(242 226 195);
 	}
@@ -13,18 +14,19 @@
 
 .tool_tip_container {
 	max-width: 250px;
-	font-weight: 300;
 	font-size: 12px;
+	font-weight: 300;
 }
 
 .info_icon {
-	margin-left: 5px;
+	align-items: center;
 	width: 10px;
 	height: 10px;
-	align-items: center;
+	margin-left: 5px;
 	cursor: pointer;
 }
-.red{
-	color: #f00;
+
+.red {
 	font-weight: 500;
+	color: #f00;
 }

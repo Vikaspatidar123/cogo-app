@@ -1,14 +1,15 @@
 .radio_wrapper {
-	
+
 }
 
 .div {
 	display: flex;
-	color: #393f70;
+	margin: 16px 16px 8px 0;
 	font-size: 14px;
 	font-weight: 500;
 	line-height: 16px;
-	margin: 16px 16px 8px 0px;
+	color: #393f70;
+
 	.image {
 		margin-left: 10px;
 	}
@@ -19,22 +20,21 @@
 }
 
 .text {
-	color : #393f70;
-	font-size:16px;
-	font-weight: 500;
-	text-transform: uppercase;
 	margin-bottom: 16px;
+	font-size: 16px;
+	font-weight: 500;
+	color: #393f70;
+	text-transform: uppercase;
 }
 
 .flex {
 	display: flex;
 }
 
-.btn{
+.btn {
 	width: 100%;
 
-
-	&:hover{
-		box-shadow: 0px 8px 16px rgba(57, 63, 112, 0.25);
+	&:hover {
+		box-shadow: 0 8px 16px rgb(57 63 112 / 25%);
 	}
 }

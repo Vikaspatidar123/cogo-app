@@ -1,93 +1,94 @@
 .main {
-  width: 450px;
-  max-height: 416px;
-  overflow-y: scroll;
+	width: 450px;
+	max-height: 416px;
+	overflow-y: scroll;
 
-  @media (max-width: 768px) {
-    width: 320px;
-  }
-  :global {
-    .ui-tabs-list {
-      flex-direction: row;
-      justify-content: center;
-      margin-bottom: 12px;
-    }
+	@media (max-width: 768px) {
+		width: 320px;
+	}
 
-    .ui-tabs-list.horizontal.two {
-      width: fit-content !important;
-      margin: 0px !important;
-      border: none !important;
-      box-shadow: none !important;
-    }
+	:global {
+		.ui-tabs-list {
+			flex-direction: row;
+			justify-content: center;
+			margin-bottom: 12px;
+		}
 
-    .ui-tabs-list-container.horizontal.two.active {
-      box-shadow: none;
-      padding: 8px 32px !important;
-    }
+		.ui-tabs-list.horizontal.two {
+			width: fit-content !important;
+			margin: 0 !important;
+			border: none !important;
+			box-shadow: none !important;
+		}
 
-    .ui-tabs-list-container.horizontal.two {
-      box-shadow: none !important;
-      border-right: none !important;
-      border-bottom: none;
-      padding: 8px 32px !important;
-    }
+		.ui-tabs-list-container.horizontal.two.active {
+			padding: 8px 32px !important;
+			box-shadow: none;
+		}
 
-    .ui-tabs-list-title.horizontal.two {
-      font-weight: 400 !important;
-      font-size: 12px !important;
-      color: #2c3e50 !important;
-      padding: 4px !important;
-    }
+		.ui-tabs-list-container.horizontal.two {
+			padding: 8px 32px !important;
+			border-right: none !important;
+			border-bottom: none;
+			box-shadow: none !important;
+		}
 
-    .ui-tabs-list-title.horizontal.two.active {
-      font-weight: 500 !important;
-      font-size: 12px !important;
-      color: #2c3e50 !important;
-    }
+		.ui-tabs-list-title.horizontal.two {
+			padding: 4px !important;
+			font-size: 12px !important;
+			font-weight: 400 !important;
+			color: #2c3e50 !important;
+		}
 
-    .segmented-control {
-      padding-left: 10px;
-    }
+		.ui-tabs-list-title.horizontal.two.active {
+			font-size: 12px !important;
+			font-weight: 500 !important;
+			color: #2c3e50 !important;
+		}
 
-    .ui-tabs-list-container {
-      margin-bottom: 16px;
-    }
+		.segmented-control {
+			padding-left: 10px;
+		}
 
-    .core-ui-input-root {
-      height: 40px;
-    }
-  }
+		.ui-tabs-list-container {
+			margin-bottom: 16px;
+		}
+
+		.core-ui-input-root {
+			height: 40px;
+		}
+	}
 }
 
 .container {
-  margin-left: 12px;
-  width: 50%;
-  display: flex;
-  flex-direction: column;
+	display: flex;
+	flex-direction: column;
+	width: 50%;
+	margin-left: 12px;
 
-  .tippy-box .tippy-arrow {
-    display: none !important;
-  }
+	.tippy-box .tippy-arrow {
+		display: none !important;
+	}
 
-  @media (max-width: 768px) {
-    width: 100%;
-    margin-left: 0px;
-    padding-top: 10px;
-  }
+	@media (max-width: 768px) {
+		width: 100%;
+		padding-top: 10px;
+		margin-left: 0;
+	}
 }
 
 .label {
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 16px;
-  color: #393f70;
-  margin-bottom: 8px;
+	margin-bottom: 8px;
+	font-size: 14px;
+	font-weight: 500;
+	line-height: 16px;
+	color: #393f70;
 }
 
 .error_msg {
-  margin: 0px;
-  font-weight: normal;
-  font-size: 12px;
-  line-height: 16px;
-  color: rgb(203, 100, 100);
+	margin: 0;
+	font-size: 12px;
+	font-weight: normal;
+	line-height: 16px;
+	color: rgb(203 100 100);
 }

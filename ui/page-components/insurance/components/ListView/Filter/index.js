@@ -25,7 +25,7 @@ function FilterContent({ filters, setFilters }) {
 						}}
 					>
 						<p>Clear Filters </p>
-						<IcMCrossInCircle />
+						<IcMCrossInCircle className={styles.icon} />
 					</div>
 				)}
 			</div>
@@ -43,6 +43,7 @@ function FilterContent({ filters, setFilters }) {
 							page      : 1,
 							pageLimit : 10,
 						}))}
+						size="xs"
 					/>
 				</div>
 				<div className={styles.section}>

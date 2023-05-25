@@ -13,15 +13,19 @@
 
 .text {
 	display: flex;
-	gap: 5px;
 	align-items: center;
 	text-decoration: underline;
 	cursor: pointer;
 	align-content: center;
 	font-size: 12px;
+	margin: 2px;
 }
 
 .image {
 	display: flex;
 	align-items: flex-start;
+}
+
+.icon {
+	margin-right: 5px;
 }

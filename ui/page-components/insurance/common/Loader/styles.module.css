@@ -1,0 +1,8 @@
+.skeleton_wrapper {
+    display: flex;
+	margin: 10px;
+}
+
+.skeleton_div {
+    margin: 10px;
+}

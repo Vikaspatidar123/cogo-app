@@ -8,7 +8,7 @@ function Addres({
 	checked = [],
 	setChecked = () => {},
 	loading = false,
-	setOrganizationAddressId = () => {},
+	setOrganizationAddress = () => {},
 	setshowFilters = () => {},
 	insuranceType = [],
 	setAddAddressModal = () => {},
@@ -75,7 +75,7 @@ function Addres({
 									role="presentation"
 									onClick={() => {
 										setChecked([data?.id]);
-										setOrganizationAddressId(data?.id);
+										setOrganizationAddress(data?.id);
 										setProsporerAddress(data);
 										setisBillingAddress(!!data?.tax_number);
 									}}
@@ -86,7 +86,7 @@ function Addres({
 											checked={checked.includes(data?.id)}
 											onChange={() => {
 												setChecked([data?.id]);
-												setOrganizationAddressId(data?.id);
+												setOrganizationAddress(data?.id);
 												setProsporerAddress(data);
 												setisBillingAddress(!!data?.tax_number);
 											}}

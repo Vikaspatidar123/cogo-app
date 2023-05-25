@@ -3,28 +3,31 @@ import { Tooltip } from '@cogoport/components';
 import styles from './styles.module.css';
 
 function Item({ location = {} }) {
-	const splitDisplayName = (location.display_name || '').split(',');
+	const { display_name = '', name = '' } = location || {};
+	console.log("🚀 ~ file: index.js:8 ~ Item ~  display_name = '', name = '':", display_name, name);
 
-	const info =		(location.country || {}).name
-		|| splitDisplayName[(splitDisplayName || []).length - 1]
-		|| '';
+	// const splitDisplayName = (location.display_name || '').split(',');
+
+	// const info =		(location.country || {}).name
+	// 	|| splitDisplayName[(splitDisplayName || []).length - 1]
+	// 	|| '';
 
 	return (
 		<div className={styles.container}>
-			{info?.length > 12 ?	(
-				<Tooltip content={<div style={{ color: 'grey' }}>{info}</div>} theme="light">
-					<div className={styles.info}>{info}</div>
+			{display_name.length > 5 ?	(
+				<Tooltip content={display_name} theme="light">
+					<div className={styles.info}>{display_name}</div>
 				</Tooltip>
-			) : <div className={styles.info}>{info}</div>}
+			) : <div className={styles.text}>{display_name}</div>}
 			<div className={styles.code_div}>
-				{location?.name?.length > 10	? 	(
+				{name.length > 3	? 	(
 					<Tooltip
-						content={<div style={{ color: 'grey' }}>{location.name || ''}</div>}
+						content={name}
 						theme="light"
 					>
-						<div className={styles.code}>{location.name || ''}</div>
+						<div className={styles.code}>{name || ''}</div>
 					</Tooltip>
-				) : <div className={styles.code_val}>{location.name || ''}</div> }
+				) : <div className={styles.code_val}>{name || ''}</div> }
 			</div>
 		</div>
 	);

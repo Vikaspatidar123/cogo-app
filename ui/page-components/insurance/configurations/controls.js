@@ -129,11 +129,6 @@ const controls = [
 			},
 		},
 	},
-	{
-		name        : 'proposersAddress',
-		placeholder : 'Add/Change Proposer\'s Address',
-		popover     : true,
-	},
 ];
 
 const getControls = (formDetails = {}, profile = {}) => controls.map((control) => ({

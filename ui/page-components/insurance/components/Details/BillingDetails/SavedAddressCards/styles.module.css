@@ -1,0 +1,118 @@
+.section_2 {
+    display: flex;
+	align-items: flex-start;
+	gap: 10px;
+	min-width: 320px;
+	max-width: 400px;
+	padding: 5px;
+	border-radius: 10px;
+	border: 1px solid #fffef9;
+	box-shadow: 0px 2px 12px rgba(71, 111, 211, 0.2);
+	height: 100px;
+	overflow: scroll;
+	cursor: pointer;
+}
+
+#selected {
+    display: flex;
+	align-items: flex-start;
+	gap: 10px;
+	min-width: 320px;
+	max-width: 400px;
+	padding: 5px;
+	border-radius: 10px;
+	border: 1px solid #fffef9;
+	box-shadow: 0px 2px 12px rgba(71, 111, 211, 0.2);
+	height: 100px;
+	overflow: scroll;
+	cursor: pointer;
+    padding: 10px;
+}
+
+.card_text {
+    font-size: 12px;
+	margin: 3px 0;
+}
+
+.container {
+    display: flex;
+	width: 100%;
+	overflow: scroll;
+	gap: 10px;
+	padding: 10px;
+}
+
+.container_empty {
+    display: flex;
+	width: 100%;
+	overflow: scroll;
+	gap: 10px;
+	padding: 10px;
+    flex-direction: column;
+    align-items: center;
+}
+
+.address_section {
+    display: flex;
+	flex-direction: column;
+	gap: 4px;
+}
+
+.radio_wrapper {
+    display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	height: 100%;
+	padding: 5px;
+}
+
+.name {
+	font-size: 15px;
+	font-weight: 500;
+}
+
+.address {
+	display: flex;
+}
+
+.heading {
+    padding: 5px;
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	color: #f1690c;
+}
+
+.add_address {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    text-decoration: underline;
+    cursor: pointer;
+}
+.or_tag {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 8px;
+}
+.line {
+    height: 0;
+    width: 14px;
+    border-top: 1.7px solid #bdbdbd;
+}
+.text {
+    font-weight: 500;
+    font-size: 13px;
+    color: #bdbdbd;
+}
+
+.heading_empty {
+    display: flex;
+	align-items: center;
+	justify-content: flex-start;
+    font-weight: 500;
+    font-size: 16px;
+    color: royalblue;
+}

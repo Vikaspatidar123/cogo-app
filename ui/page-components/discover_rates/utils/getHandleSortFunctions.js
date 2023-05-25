@@ -1,3 +1,4 @@
+/* eslint-disable no-unsafe-optional-chaining */
 export const basicFreightLowToHigh = ({ list }) => {
 	const sorted_list = (list || []).sort((a, b) => {
 		const a_total_price_discounted = a.freight_price_discounted;

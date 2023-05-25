@@ -1,5 +1,6 @@
 const react = require('react');
 
+// eslint-disable-next-line default-param-last
 const getBoundedClick = (options = {}, myRef) => {
 	const { onOuterClick = () => {}, onInnerClick = () => {} } = options;
 

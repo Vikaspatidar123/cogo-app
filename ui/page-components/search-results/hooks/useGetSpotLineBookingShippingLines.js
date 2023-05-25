@@ -1,4 +1,4 @@
-import { useEffect, useCallback } from 'react';
+import { useEffect } from 'react';
 
 import { useRequest } from '@/packages/request';
 import getGeoConstants from '@/ui/commons/constants/geo';
@@ -13,7 +13,7 @@ const useGetSpotLineBookingShippingLines = () => {
 	);
 	const geo = getGeoConstants();
 
-	const listApi = useCallback(async () => {
+	const listApi = () => {
 		try {
 			const payload = {
 				filters: {
@@ -22,7 +22,7 @@ const useGetSpotLineBookingShippingLines = () => {
 				operator : 'shipping_line',
 				status   : 'active',
 			};
-			const res = await listOperators.trigger({ params: payload });
+			const res = listOperators({ params: payload });
 
 			if (!res.hasError) {
 				return;
@@ -30,7 +30,7 @@ const useGetSpotLineBookingShippingLines = () => {
 		} catch (error) {
 			console.log(error);
 		}
-	}, [listOperators]);
+	};
 
 	const { list = [] } = listOperators?.data || {};
 
@@ -38,7 +38,8 @@ const useGetSpotLineBookingShippingLines = () => {
 
 	useEffect(() => {
 		listApi();
-	}, [listApi]);
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
 
 	return { spotBookingDefaultShippingLines, loading };
 };

@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import { HAZ_CLASSES } from '@/ui/commons/constants/commodities';
 
 const getFunction = {
@@ -48,13 +49,7 @@ const getShowElement = (control, formValues, mode, location, services = {}) => {
 	const { condition } = control || {};
 	Object.keys(condition || {}).forEach((conditionName) => {
 		flag = flag
-            && (getFunction[conditionName] || (() => true))(
-            	control,
-            	formValues,
-            	mode,
-            	location,
-            	services,
-            );
+            && (getFunction[conditionName] || (() => true))(control, formValues, mode, location, services);
 	});
 
 	return flag;

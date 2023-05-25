@@ -2,7 +2,6 @@ import { Button, cl } from '@cogoport/components';
 import { IcMArrowRotateDown, IcMArrowRotateUp } from '@cogoport/icons-react';
 import { startCase } from '@cogoport/utils';
 import React, { useState, forwardRef } from 'react';
-import { useSelector } from 'react-redux';
 
 import formatSwbPayload from '../../../utils/format-swb-payload';
 import FeedBackModal from '../../NoResultFound/FeedbackModal';
@@ -12,7 +11,6 @@ import styles from './styles.module.css';
 
 import { useRouter } from '@/packages/next';
 import { useRequest } from '@/packages/request';
-import getGeoConstants from '@/ui/commons/constants/geo';
 import formatAmount from '@/ui/commons/utils/formatAmount';
 
 const LOCALS = [
@@ -28,28 +26,10 @@ function QuotationDetails(
 	{ data = {}, details = {}, isConfirmed = false, searchData = {} },
 	ref,
 ) {
-	const geo = getGeoConstants();
-
-	const cogoVerseTeamIDS = [
-		geo.uuid.cogoverse_admin_id,
-		geo.uuid.cogoverse_executive_id,
-		geo.uuid.cogoverse_kam_id,
-	];
 	const { service_details = {} } = details || {};
 	const { touch_points = {} } = searchData || {};
 	const router = useRouter();
-
-	const {
-		isMobile,
-		scope,
-		query = {},
-		userRoleIDs = [],
-	} = useSelector(({ general, profile }) => ({
-		isMobile    : general.isMobile,
-		scope       : general.scope,
-		query       : general?.query,
-		userRoleIDs : profile?.partner?.user_role_ids,
-	}));
+	const scope = 'app';
 
 	const [{ loading }, createCheckoutApi] = useRequest(
 		{
@@ -249,7 +229,7 @@ function QuotationDetails(
 					? (item?.line_items || []).map((lineItem, index) => (
 						<>
 							{index !== 0 ? <div className={styles.line} /> : null}
-							<LineItems item={lineItem} isMobile={isMobile} />
+							<LineItems item={lineItem} />
 						</>
 					))
 					: null}
@@ -296,8 +276,6 @@ function QuotationDetails(
 				? 'haulage_freight'
 				: details?.search_type;
 
-			const isCogoVerseMember = userRoleIDs.some((elem) => cogoVerseTeamIDS.includes(elem));
-
 			const payload = {
 				source                      : 'spot_search',
 				source_id                   : details?.id,
@@ -309,14 +287,10 @@ function QuotationDetails(
 				existing_shipment_id:
 					details?.source === 'upsell' ? details?.source_id : undefined,
 				...service_payload_final,
-				tags:
-					scope === 'partner'
-					&& (query?.source === 'communication' || isCogoVerseMember)
-						? ['cogoverse']
-						: undefined,
+
 			};
 
-			const res = await createCheckoutApi.trigger({ data: payload });
+			const res = await createCheckoutApi({ data: payload });
 
 			if (!res.hasError) {
 				router.push(
@@ -355,7 +329,7 @@ function QuotationDetails(
 				onClick={() => {
 					handleAddRate(service);
 				}}
-				disabled={service === openService && createCheckoutApi.loading}
+				disabled={service === openService && loading}
 				type="button"
 			>
 				Add Rate
@@ -404,8 +378,7 @@ function QuotationDetails(
 										{handleIcon(service)}
 									</div>
 								) : (
-									/* handleShowButtons(service) */
-									null
+									handleShowButtons(service)
 								)}
 						</div>
 					</div>

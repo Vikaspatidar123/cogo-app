@@ -30,7 +30,7 @@ function InvoicingParties({
 	source,
 }) {
 	const {
-		general: { query, scope },
+		general: { query },
 	} = useSelector((state) => state);
 	const { checkout_id } = query || {};
 

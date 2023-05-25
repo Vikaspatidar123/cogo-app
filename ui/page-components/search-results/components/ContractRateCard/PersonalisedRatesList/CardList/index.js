@@ -10,6 +10,7 @@ import styles from './styles.module.css';
 
 import formatAmount from '@/ui/commons/utils/formatAmount';
 
+const postUrl = 'https://cdn.cogoport.io/cms-prod/cogo_admin/vault/original/union-2.svg';
 function CardList({ data = {}, details }) {
 	const {
 		origin_location = {},
@@ -57,7 +58,7 @@ function CardList({ data = {}, details }) {
 										trip={trip_type}
 										separator={(
 											<img
-												src="https://cdn.cogoport.io/cms-prod/cogo_admin/vault/original/union-2.svg"
+												src={postUrl}
 												alt="union-icon"
 												className="ports-direction-svg"
 											/>

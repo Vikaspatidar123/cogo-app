@@ -36,7 +36,7 @@ function LineItems({ item = {} }) {
 	}
 	if (isConditionMatches(CC.SEE_ALL_MARGINS, 'or')) {
 		(margins || []).forEach((margin) => {
-			totalMarginValue += margin?.total_margin_value;
+			totalMarginValue += (margin?.total_margin_value || 0);
 		});
 	}
 
@@ -55,7 +55,7 @@ function LineItems({ item = {} }) {
 					<div className={styles.total_price}>
 						<span style={{ fontWeight: 500 }}>
 							{formatAmount({
-								amount  : total_price_discounted,
+								amount  : priceWithoutMargin,
 								currency,
 								options : {
 									style                 : 'currency',

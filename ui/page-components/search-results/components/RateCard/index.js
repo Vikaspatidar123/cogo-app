@@ -30,51 +30,51 @@ const detailsToShow = (data, details) => {
 	const detailsData = [
 		{
 			value:
-        data?.transit_time
-        && ['air_freight', 'lcl_freight'].includes(data?.service_type)
-        	? `Transit Time - ${data?.transit_time || 0} ${
-        		['lcl_freight'].includes(data?.service_type) ? 'Days' : 'Hours'
-        	}  `
-        	: null,
+			data?.transit_time
+			&& ['air_freight', 'lcl_freight'].includes(data?.service_type)
+				? `Transit Time - ${data?.transit_time || 0} ${
+					['lcl_freight'].includes(data?.service_type) ? 'Days' : 'Hours'
+				}  `
+				: null,
 		},
 
 		{
 			value:
-        details?.chargeable_weight
-						&& ['air_freight'].includes(data?.service_type)
-        	? `Chargeable weight - ${details?.chargeable_weight || 0}kgs`
-        	: null,
+				details?.chargeable_weight
+				&& ['air_freight'].includes(data?.service_type)
+					? `Chargeable weight - ${details?.chargeable_weight || 0}kgs`
+					: null,
 		},
 
 		{
 			value:
-        (data?.origin_storage?.free_limit
-          || data?.origin_storage?.free_limit === 0)
-        && ['air_freight', 'lcl_freight'].includes(data?.service_type)
-        	? `${
-        		data?.origin_storage?.free_limit || 0
-        	} free origin storage hours `
-        	: null,
+				(data?.origin_storage?.free_limit
+				|| data?.origin_storage?.free_limit === 0)
+				&& ['air_freight', 'lcl_freight'].includes(data?.service_type)
+					? `${
+						data?.origin_storage?.free_limit || 0
+					} free origin storage hours `
+					: null,
 		},
 
 		{
 			value:
-        (data?.destination_storage?.free_limit
-          || data?.destination_storage?.free_limit === 0)
-        && ['air_freight', 'lcl_freight'].includes(data?.service_type)
-        	? `${
-        		data?.destination_storage?.free_limit || 0
-        	} free destination storage ${
-        		data?.service_type === 'air_freight' ? 'hours' : 'days'
-        	}`
-        	: null,
+			(data?.destination_storage?.free_limit
+			|| data?.destination_storage?.free_limit === 0)
+			&& ['air_freight', 'lcl_freight'].includes(data?.service_type)
+				? `${
+					data?.destination_storage?.free_limit || 0
+				} free destination storage ${
+					data?.service_type === 'air_freight' ? 'hours' : 'days'
+				}`
+				: null,
 		},
 
 		{
 			value:
-        data?.operation_type && ['air_freight'].includes(data?.service_type)
-        	? `Operation Type - ${data?.operation_type || ''}`
-        	: null,
+				data?.operation_type && ['air_freight'].includes(data?.service_type)
+					? `Operation Type - ${data?.operation_type || ''}`
+					: null,
 		},
 	];
 

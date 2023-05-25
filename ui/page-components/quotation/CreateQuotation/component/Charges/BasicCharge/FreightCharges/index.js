@@ -17,26 +17,30 @@ function FreightCharges({
 	setValue,
 	infoData,
 	transportMode,
+	consignmentValue,
 }) {
 	const [checked, setChecked] = useState('');
 	const { profile } = useSelector((item) => item);
 	const [selectedData, setSelectedData] = useState({});
 	const { id = '', branch = {} } = profile || {};
+
 	const allData = Object.assign({}, ...infoData);
+
 	const { createSpotSearch, loading, apiResponse } = useFreightCharges();
-	const cargo_value = {};
+
 	const data = freightChargesPayload({
 		id,
 		branch,
 		allData,
-		activeTab: transportMode,
-		cargo_value,
+		activeTab   : transportMode,
+		cargo_value : consignmentValue,
 	});
+
 	const { detail, rates = {} } = apiResponse || {};
 
 	useEffect(() => {
 		createSpotSearch(data);
-	}, [createSpotSearch, data]);
+	}, []);
 
 	const checkboxHandler = (item) => {
 		if (checked !== item?.card) {

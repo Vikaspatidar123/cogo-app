@@ -82,6 +82,7 @@ function Map({
 		} else if (mapPoints.length === 0) {
 			setCurvePoints([]);
 		}
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [mapPoints]);
 
 	return (

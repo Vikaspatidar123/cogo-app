@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { cl } from '@cogoport/components';
 import {
 	useCallback,

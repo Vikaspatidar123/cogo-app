@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect } from 'react';
 
 import useUpdateHsCode from './useUpdateHsCode';
@@ -10,10 +11,10 @@ const useProductField = ({
 	const { productId = '', hsCode } = productInfo;
 	const productLength = productInfoArr?.length;
 
+	const lineItemLength = productLineItemDetails.length;
+
 	const disableValidateBtn = (!isUserSubscribed && lineItemLength === 0
         && !isQuotaLeft) || verifyLoading || !status;
-
-	const lineItemLength = productLineItemDetails.length;
 
 	const { updateHsDataFn } = useUpdateHsCode();
 

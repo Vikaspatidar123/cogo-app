@@ -24,11 +24,6 @@ const CREATE_JOB_SERVICES = [
 	'air_freight_local',
 ];
 
-const CreateRfqEnquiry = dynamic(
-	() => import('../AdditionalCards/MultiService/RfqEnquiry'),
-	{ ssr: false },
-);
-
 const CreateEnquiry = dynamic(() => import('../AdditionalCards/MultiService'), {
 	ssr: false,
 });
@@ -94,10 +89,10 @@ function NoResultFound({
 		description = 'Don’t worry, our team is here to help.';
 	} else if (type === 'no_result_found' && headerData?.expired) {
 		description = 'Please search again to proceed. You can do this quickly'
-		+ 'by clicking on the lens icon on the search form above and click on search rates again';
+            + 'by clicking on the lens icon on the search form above and click on search rates again';
 	} else if (type === 'no_servicable_country') {
 		description = ' We continue to add new countries to our network every month.'
-		+ ' If you would like to be informed when we launch in these countries, tap below.';
+            + ' If you would like to be informed when we launch in these countries, tap below.';
 	}
 
 	const title = () => {
@@ -152,20 +147,25 @@ function NoResultFound({
 
 	const renderButtons = () => (
 		<div>
-			{requestRateServices.includes(headerData?.search_type) ? showButton && (
-				<Button
-					onClick={handleFeedback}
-					disabled={headerData?.expired}
-				>
-					{enquiryQuota?.left_limit > 0 ? 'REQUEST FOR RATE' : 'BUY NOW'}
-				</Button>
-			)
+			{requestRateServices.includes(headerData?.search_type)
+				? showButton && (
+					<Button
+						onClick={handleFeedback}
+						disabled={headerData?.expired}
+					>
+						{enquiryQuota?.left_limit > 0
+							? 'REQUEST FOR RATE'
+							: 'BUY NOW'}
+					</Button>
+				)
 				: showButton && (
 					<Button
 						onClick={handleButtonClick}
 						disabled={headerData?.expired}
 					>
-						{enquiryQuota?.left_limit > 0 ? 'CREATE ENQUIRY' : 'BUY NOW'}
+						{enquiryQuota?.left_limit > 0
+							? 'CREATE ENQUIRY'
+							: 'BUY NOW'}
 					</Button>
 				)}
 		</div>
@@ -186,7 +186,8 @@ function NoResultFound({
 	return (
 		<div className={styles.main_container}>
 			<div
-				className={`${styles.main} ${type === styles.no_result_found && styles.no_result_found
+				className={`${styles.main} ${
+					type === styles.no_result_found && styles.no_result_found
 				}`}
 			>
 				{renderTitle()}
@@ -263,7 +264,9 @@ function NoResultFound({
 			</div>
 
 			<div className={styles.container_info}>
-				{showEnq && create_enquiry_check ? renderButtons() : renderJobButton()}
+				{showEnq && create_enquiry_check
+					? renderButtons()
+					: renderJobButton()}
 				<img
 					className={styles.bg}
 					src="https://cdn.cogoport.io/cms-prod/cogo_admin/vault/original/ic-noresults.svg"
@@ -272,33 +275,22 @@ function NoResultFound({
 				/>
 			</div>
 
-			{results_type === 'rfq' ? (
-				<CreateRfqEnquiry
-					detail={headerData}
-					show={showCreateEnquiry}
-					refetch={refetch}
-					onClose={() => setShowCreateEnquiry(false)}
-					enquiryQuota={enquiryQuota}
-					results_type={results_type}
-				/>
-			) : (
-				<CreateEnquiry
-					detail={headerData}
-					show={showCreateEnquiry}
-					refetch={refetch}
-					onClose={() => setShowCreateEnquiry(false)}
-					enquiryQuota={enquiryQuota}
-					results_type={results_type}
-					formData={formData}
-					setFormData={setFormData}
-					setPrefillDetails={setPrefillDetails}
-					prefillDetails={prefillDetails}
-					apiData={apiData}
-					setApiData={setApiData}
-					addedServiceEnquiry={addedServiceEnquiry}
-					setAddedServiceEnquiry={setAddedServiceEnquiry}
-				/>
-			)}
+			<CreateEnquiry
+				detail={headerData}
+				show={showCreateEnquiry}
+				refetch={refetch}
+				onClose={() => setShowCreateEnquiry(false)}
+				enquiryQuota={enquiryQuota}
+				results_type={results_type}
+				formData={formData}
+				setFormData={setFormData}
+				setPrefillDetails={setPrefillDetails}
+				prefillDetails={prefillDetails}
+				apiData={apiData}
+				setApiData={setApiData}
+				addedServiceEnquiry={addedServiceEnquiry}
+				setAddedServiceEnquiry={setAddedServiceEnquiry}
+			/>
 			{showFeedbackModal ? (
 				<FeedBackModal
 					onClose={() => {

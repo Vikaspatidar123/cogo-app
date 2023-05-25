@@ -59,7 +59,7 @@ const useAddCargoInsurance = ({
 		};
 
 		try {
-			const res = await AddCargoInsuranceApi.trigger({
+			const res = await AddCargoInsuranceApi({
 				data: payload,
 			});
 

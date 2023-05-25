@@ -15,11 +15,12 @@ const controls = ({ freightCurrency = 'USD' }) => [
 		],
 		type: 'chips',
 	},
-	{
-		name  : 'price_range',
-		label : `Price Range(Basic Freight in ${freightCurrency})`,
-		type  : 'slider',
-	},
+	// {
+	// 	name      : 'price_range',
+	// 	label     : `Price Range(Basic Freight in ${freightCurrency})`,
+	// 	type      : 'custom_slider',
+	// 	classname : 'custom_slider',
+	// },
 	{
 		label      : 'Departure Date',
 		name       : 'departure',

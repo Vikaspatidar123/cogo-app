@@ -3,6 +3,7 @@ import { IcMArrowDown, IcMArrowUp, IcMFcl } from '@cogoport/icons-react';
 import { startCase } from '@cogoport/utils';
 
 import AssistanceFooter from '../../commons/AssistanceFooter';
+import CargoInsuranceApp from '../../commons/CargoInsuranceApp';
 import CargoValue from '../../commons/CargoValue';
 import ConfirmationTexts from '../../commons/ConfirmationTexts';
 import CreditApprovalCard from '../../commons/CreditApprovalCard';
@@ -45,6 +46,8 @@ function FCL(props) {
 		cargo_value,
 		cargo_value_currency,
 		importer_exporter,
+		showInsurance,
+		onClickInsurance,
 	} = useFcl({
 		detail,
 		rate,
@@ -54,12 +57,18 @@ function FCL(props) {
 	const primaryServiceData = Object.values(summary.services).filter(
 		(service) => service.service_type === summary.mode,
 	)[0];
-
+	const { services = {} } = detail || {};
+	const primaryServiceDetailsData = Object.values(services || {}).find(
+		(item) => item.service_type === detail?.primary_service,
+	);
+	const insuranceData = Object.values(services || {}).find(
+		(item) => item.service_type === 'cargo_insurance',
+	);
 	const { credit_details, credit_terms_amd_condition } = detail || {};
 
 	const showCreditApprovalCard = credit_details?.is_any_invoice_on_credit
-    && !credit_terms_amd_condition?.is_tnc_accepted
-    && credit_details?.credit_source === 'pre_approved_clean_credit';
+        && !credit_terms_amd_condition?.is_tnc_accepted
+        && credit_details?.credit_source === 'pre_approved_clean_credit';
 
 	// if (isMobile) {
 	// 	return <FclMobile {...props} />;
@@ -119,12 +128,22 @@ function FCL(props) {
 					<div>
 						<div className={styles.middle_content}>
 							{shipping_line?.logo_url ? (
-								<img className={styles.logo} src={shipping_line?.logo_url} alt="logo" />
+								<img
+									className={styles.logo}
+									src={shipping_line?.logo_url}
+									alt="logo"
+								/>
 							) : (
-								<IcMFcl height={40} width={40} style={{ marginRight: 8 }} />
+								<IcMFcl
+									height={40}
+									width={40}
+									style={{ marginRight: 8 }}
+								/>
 							)}
 							<div className={styles.data}>
-								<div className={styles.title}>{shipping_line?.short_name}</div>
+								<div className={styles.title}>
+									{shipping_line?.short_name}
+								</div>
 								<div className={styles.information}>
 									<div className={styles.transit_time}>
 										{transit_time ? (
@@ -136,7 +155,10 @@ function FCL(props) {
 												</span>
 											</div>
 										) : (
-											<div>Transit Time will be confirmed post booking</div>
+											<div>
+												Transit Time will be confirmed
+												post booking
+											</div>
 										)}
 									</div>
 
@@ -154,17 +176,22 @@ function FCL(props) {
 
 				<div className={styles.service_details_container}>
 					<div className={styles.footer}>
-
 						<div className={styles.additional_services}>
 							Additional Services
 							<div className={styles.service_logo}>
 								{allServices.map((service) => (
 									<div
-										className={cl`${styles.service_icon_container} ${
-											service?.isSelected ? styles.additional_services_logo : styles.temp
+										className={cl`${
+											styles.service_icon_container
+										} ${
+											service?.isSelected
+												? styles.additional_services_logo
+												: styles.temp
 										}`}
 									>
-										<ServiceIcon service={service.service_type} />
+										<ServiceIcon
+											service={service.service_type}
+										/>
 									</div>
 								))}
 							</div>
@@ -189,6 +216,39 @@ function FCL(props) {
 							allServices={allServices}
 							rate={rate}
 							summary={summary}
+							refetch={refetch}
+						/>
+					) : null}
+				</div>
+				<div className={styles.service_details_container}>
+					<div className={styles.footer}>
+						<div className={styles.additional_services}>
+							Cargo Insurance
+						</div>
+
+						<div className={styles.details}>
+							<div
+								className={styles.details_title}
+								onClick={onClickInsurance}
+								role="presentation"
+							>
+								Details
+							</div>
+							{!showInsurance ? (
+								<IcMArrowDown onClick={onClickInsurance} />
+							) : (
+								<IcMArrowUp onClick={onClickInsurance} />
+							)}
+						</div>
+
+					</div>
+					{showInsurance ? (
+						<CargoInsuranceApp
+							primaryServiceDetailsData={
+							primaryServiceDetailsData
+                                }
+							detail={detail}
+							insuranceData={insuranceData}
 							refetch={refetch}
 						/>
 					) : null}
@@ -229,7 +289,11 @@ function FCL(props) {
 					<AssistanceFooter />
 				</div>
 
-				<TermsAndConditions summary={summary} rate={rate} source="checkout" />
+				<TermsAndConditions
+					summary={summary}
+					rate={rate}
+					source="checkout"
+				/>
 			</div>
 
 			<div className={styles.right_component}>

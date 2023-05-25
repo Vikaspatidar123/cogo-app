@@ -7,10 +7,15 @@ const useFcl = ({ detail, rate, summary }) => {
 	const { primary_service = '', importer_exporter = {} } = detail;
 
 	const [toggleArrow, setToggleArrow] = useState(false);
+	const [showInsurance, setShowInsurance] = useState(false);
 
 	const changeToggle = () => {
 		setToggleArrow(!toggleArrow);
 	};
+	const onClickInsurance = () => {
+		setShowInsurance((prev) => !prev);
+	};
+
 	const allServices = [];
 	if (!isEmpty(summary)) {
 		const config = getSearchFormConfig(summary.primary_service);
@@ -141,6 +146,9 @@ const useFcl = ({ detail, rate, summary }) => {
 		cargo_value,
 		importer_exporter,
 		cargo_value_currency,
+		showInsurance,
+		setShowInsurance,
+		onClickInsurance,
 	};
 };
 

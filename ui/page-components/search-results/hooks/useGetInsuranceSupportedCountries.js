@@ -1,13 +1,6 @@
 import { useRequestBf } from '@/packages/request';
 
 const useGetCargoInsuranceSupportedCountries = (country_id) => {
-	// const apiData = useRequest('get', true, 'saas', {
-
-	// })('saas/insurance/country-supported', {
-	// 	params: {
-	// 		policyCountryId: country_id,
-	// 	},
-	// });
 	const [{ loading, data }] = useRequestBf(
 		{
 			url     : 'saas/insurance/country-supported',

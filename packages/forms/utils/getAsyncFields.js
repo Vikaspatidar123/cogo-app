@@ -124,6 +124,20 @@ function asyncFieldsPartnerQuotation() {
 	};
 }
 
+function asyncInsuranceCommodities() {
+	return {
+		valueKey       : 'id',
+		labelKey       : 'commodity',
+		authKey        : 'get_saas_insurance_list_commodities',
+		endpoint       : '/saas/insurance/list-commodities',
+		defaultParams  : {},
+		defaultOptions : true,
+		isSearchable   : true,
+		initialCall    : false,
+
+	};
+}
+
 export {
 	asyncFieldsLocations,
 	asyncFieldsLocations2,
@@ -134,4 +148,5 @@ export {
 	asyncShippingLines,
 	asyncCountrySelect,
 	asyncFieldsPartnerQuotation,
+	asyncInsuranceCommodities,
 };

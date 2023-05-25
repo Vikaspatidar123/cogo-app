@@ -35,8 +35,10 @@
 }
 
 .text_bold {
-  font-weight: 700;
-  margin-bottom: -6px;
+  margin-right: 20px;
+	font-weight: 700;
+	margin-bottom: -6px;
+	width: 20%;
 }
 
 .flex_div {

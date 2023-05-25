@@ -5,8 +5,8 @@
 .rate {
 	display: flex;
 	justify-content: space-between;
-
-	.final {
+	padding: 4px 0px;
+	&.final {
 		border-bottom: 1px solid rgb(242 226 195);
 	}
 }
@@ -23,4 +23,8 @@
 	height: 10px;
 	align-items: center;
 	cursor: pointer;
+}
+.red{
+	color: #f00;
+	font-weight: 500;
 }

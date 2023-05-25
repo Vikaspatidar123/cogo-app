@@ -1,37 +1,62 @@
+import { Tooltip } from '@cogoport/components';
+import { IcMInfo } from '@cogoport/icons-react';
+
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
-const controls = () => [
+function ConsignmentValueInfo() {
+	return (
+		<div style={{ marginLeft: '4px' }}>
+			<Tooltip
+				animation="shift-away"
+				interactive
+				content={
+					<div>Consignment Value should not be greater than 5 Crores INR.</div>
+				}
+			>
+				<div>
+					<IcMInfo />
+				</div>
+			</Tooltip>
+		</div>
+	);
+}
+const controls = [
 	{
-		label          : 'Commodity',
-		name           : 'cargo_insurance_commodity',
-		type           : 'select',
-		span           : 12,
-		optionsListKey : 'insurance-commodities',
-		defaultOptions : true,
-		rules          : { required: true },
+		label       : 'Commodity',
+		name        : 'cargo_insurance_commodity',
+		type        : 'async_select',
+		asyncKey    : 'insurance_commodities',
+		initialCall : true,
+		rules       : { required: true },
+		style       : { width: '270px' },
 	},
 	{
 		name  : 'cargo_insurance_commodity_description',
 		label : 'Commodity Description',
 		type  : 'text',
-		span  : 12,
 		rules : { required: true },
+		style : { width: '270px' },
 	},
 	{
-		name           : 'cargo_value_currency',
-		label          : 'Currency',
-		type           : 'select',
-		span           : 4,
-		optionsListKey : 'currencies',
-		value          : `${GLOBAL_CONSTANTS.currency_code.USD}`,
-		validations    : [{ type: 'required', message: 'Currency is required' }],
+		name        : 'cargo_value_currency',
+		label       : 'Currency',
+		type        : 'select',
+		optionKey   : 'currencies',
+		value       : `${GLOBAL_CONSTANTS.currency_code.USD}`,
+		validations : [{ type: 'required', message: 'Currency is required' }],
+		style       : { width: '270px' },
 	},
 	{
 		name  : 'cargo_value',
-		label : 'Consignment Value',
+		label : (
+			<div style={{ display: 'flex' }}>
+				<div>Consignment Value </div>
+				<ConsignmentValueInfo />
+			</div>
+		),
 		type  : 'number',
-		span  : 8,
 		rules : { required: true },
+		style : { width: '270px' },
 	},
 ];
 export default controls;

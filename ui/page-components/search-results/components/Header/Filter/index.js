@@ -72,7 +72,7 @@ function Filter({ setFilters, state }) {
 	});
 
 	return (
-		<div>
+		<div className={styles.container}>
 			<FilterContent
 				fields={newFields}
 				applyFilters={applyFilters}

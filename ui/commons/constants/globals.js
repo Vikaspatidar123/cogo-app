@@ -22,6 +22,9 @@ const GLOBAL_CONSTANTS = {
 		USD : 'en-US',
 		VND : 'vi-VN',
 	},
+	cargo_insurance: {
+		IN: ['fcl_freight'],
+	},
 	formats: {
 		date: {
 			'dd/MM/yyyy'  : 'dd/MM/yyyy',

@@ -1,12 +1,11 @@
-import styled from '@cogoport/front/styled';
 
-export const Container = styled.div`
+.container{
 	position: fixed;
 	right: 10px;
 	z-index: 100;
-`;
+}
 
-export const AssistanceIcon = styled.div`
+.assistance_icon{
 	width: 28px;
 	height: 28px;
 	border-radius: 100%;
@@ -18,4 +17,4 @@ export const AssistanceIcon = styled.div`
 	margin-top: 4px;
 	margin-right: 5px;
 	cursor: pointer;
-`;
+}

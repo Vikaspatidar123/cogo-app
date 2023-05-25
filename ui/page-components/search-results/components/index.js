@@ -4,7 +4,7 @@ import { IcMArrowBack } from '@cogoport/icons-react';
 import dynamic from 'next/dynamic';
 import React, { useState, useEffect, useMemo } from 'react';
 
-import handleLiveChat from '../helpers/handle-live-chat';
+// import handleLiveChat from '../helpers/handle-live-chat';
 import triggerAnalytics from '../helpers/triggerAnalytics';
 import useGetEnquiryQuota from '../hooks/useGetEnquiryQuota';
 import useGetSchedules from '../hooks/useGetSchedules';
@@ -25,13 +25,11 @@ import Loader from './Loader';
 import NoResultFound from './NoResultFound';
 import RateCards from './RateCards';
 import RequestRate from './RequestRate';
-import SellRate from './SellRate';
 import styles from './styles.module.css';
 
 import { useRouter } from '@/packages/next';
 import { useSelector } from '@/packages/store';
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
-import getCountryDetails from '@/ui/commons/utils/getCountryDetails';
 
 const EnquriyStatus = dynamic(() => import('./AdditionalCards/EnquriyStatus'), {
 	ssr: false,
@@ -53,8 +51,6 @@ const REQUEST_RATE_ALLOWED_SERVICES = [
 	'rail_domestic_freight',
 	'trailer_freight',
 ];
-
-const INDIA_COUNTRY_ID = GLOBAL_CONSTANTS.country_ids.IN;
 
 function SelectedRateInfo({
 	data,
@@ -121,9 +117,8 @@ function Results({
 	const { importer_exporter_id: importerExporterId = '' } = detail || {};
 	const { count = 0 } = contract_detail || {};
 
-	const { query, user_profile } = useSelector(({ general, profile }) => ({
-		query        : (general || {}).query || {},
-		user_profile : profile,
+	const { query } = useSelector(({ general }) => ({
+		query: (general || {}).query || {},
 	}));
 	const { search_id, shipment_id } = query;
 
@@ -136,7 +131,6 @@ function Results({
 	} = data || {};
 
 	const [addRate, setAddRate] = useState(false);
-	const [wayToBook, setWayToBook] = useState('sell_without_buy');
 
 	const [importer_exporter_details, setImporterExporterDetails] = useState({
 		id        : data?.importer_exporter_id || data?.importer_exporter?.id,
@@ -178,22 +172,6 @@ function Results({
 			push('/book');
 		}
 	}, [expired]);
-
-	useEffect(() => {
-		const isHiPriority = data?.origin_country?.country_code === 'CN'
-            && data?.destination_country?.country_code
-                === getCountryDetails({ country_id: INDIA_COUNTRY_ID })
-                	.country_code;
-		if (!loading && isHiPriority && process.env.LIVE_CHAT_CLIENT_ID) {
-			handleLiveChat(user_profile, data);
-		}
-		return () => {
-			const LCW = window.LiveChatWidget;
-			if (LCW) {
-				LCW.call('destroy');
-			}
-		};
-	}, [loading]);
 
 	const isAwaitingResponse = negotiation_status === 'awaiting_responses';
 	const isCompletedResponse = negotiation_status === 'completed';
@@ -258,10 +236,10 @@ function Results({
 					) : null}
 
 					{REQUEST_RATE_ALLOWED_SERVICES.includes(
-                    	data?.search_type,
+						data?.search_type,
 					) ? (
 						<RequestRate headerData={data} />
-                    	) : null}
+						) : null}
 				</>
 			);
 		}
@@ -307,7 +285,7 @@ function Results({
 		setAddRate={setAddRate}
 		show={false}
 	/>
-                        	) : null}
+							) : null}
 					</>
 				))}
 			</>
@@ -330,17 +308,6 @@ function Results({
 			</div>
 		);
 	};
-
-	const configureSellRate = () => (
-		<SellRate
-			rates={rates}
-			setWayToBook={setWayToBook}
-			wayToBook={wayToBook}
-			data={data}
-			searchData={searchData}
-			setAddRate={setAddRate}
-		/>
-	);
 
 	return (
 		<div className={styles.container}>
@@ -388,15 +355,14 @@ function Results({
 							importerExporterId={importerExporterId}
 						/>
 					)}
-					{!addRate ? (
+					{!addRate && (
 						<>
 							<div className={styles.results_header}>
 								{!loading ? (
 									<div className={styles.text_bold}>
 										{`${(rates || []).length} ${
-                                        	(rates || []).length === 1
-                                        		? 'rate'
-                                        		: 'rates'
+											(rates || []).length === 1 ? 'rate'
+												: 'rates'
 										} found`}
 									</div>
 								) : (
@@ -406,6 +372,7 @@ function Results({
 								{!loading ? (
 									<Header
 										search_type={data?.search_type}
+										rates_count={rates.length}
 										refetch={refetch}
 										setSort={setSort}
 										sortBy={sort}
@@ -419,9 +386,7 @@ function Results({
 
 							{handleRateCards()}
 						</>
-					) : (
-                    	configureSellRate()
-					)}
+					) }
 				</div>
 
 				{handleAdditionalServices()}

@@ -1,4 +1,4 @@
-import { Tooltip } from '@cogoport/components';
+import { Tooltip, cl } from '@cogoport/components';
 import { IcMInfo } from '@cogoport/icons-react';
 
 import styles from './styles.module.css';
@@ -62,7 +62,7 @@ function PremiumRate(props) {
 				</div>
 			</div>
 
-			<div className={`${styles.rate} ${styles.final}`}>
+			<div className={cl`${styles.rate} ${styles.final}`}>
 				<div>Convenience Fee:</div>
 				<div>
 					{formatAmount({
@@ -77,9 +77,9 @@ function PremiumRate(props) {
 				</div>
 			</div>
 
-			<div className={styles.rate}>
-				<div>Amount Payable:</div>
-				<div>
+			<div className={cl`${styles.rate} ${styles.final}`}>
+				<div className={styles.red}>Amount Payable:</div>
+				<div className={styles.red}>
 					{formatAmount({
 						amount   : totalApplicableCharges,
 						currency : GLOBAL_CONSTANTS.currency_code.INR,

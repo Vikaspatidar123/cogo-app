@@ -1,3 +1,5 @@
+import Slider from '../Business/Slider';
+
 import AsyncSelectController from './AsyncSelectController';
 import CheckboxController from './CheckboxController';
 import CheckboxGroupController from './CheckboxGroupController';
@@ -40,6 +42,7 @@ const MAPPING = {
 	radiogroup                 : RadioGroupController,
 	price_select               : PriceController,
 	country_select             : CountrySelectController,
+	custom_slider              : Slider,
 };
 
 const getField = (type = 'text') => {

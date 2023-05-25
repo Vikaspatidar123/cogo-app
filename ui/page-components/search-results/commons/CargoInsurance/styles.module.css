@@ -30,7 +30,7 @@
 .btn_wrap {
 	display: flex;
 	justify-content: center;
-	/* margin-top: ${(props) => (props.secondary ? '20px' : '40px')}; */
+	gap:5px;
 }
 
 .cancel_btn_wrap {

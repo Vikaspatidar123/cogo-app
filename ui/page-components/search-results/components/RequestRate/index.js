@@ -16,7 +16,9 @@ function RequestRate({ headerData }) {
 			)
 		) {
 			addedAdditionalService.push(
-				`${headerData?.service_details?.[service]?.trade_type}_${headerData?.service_details?.[service]?.service_type}`,
+				`${headerData?.service_details?.[service]?.trade_type}_${
+					headerData?.service_details?.[service]?.service_type
+				}`,
 			);
 		}
 	});

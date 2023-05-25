@@ -5,7 +5,7 @@ import getApiErrorString from '@/packages/forms/utils/getApiError';
 import { useRequest } from '@/packages/request';
 import { useSelector } from '@/packages/store';
 
-const useUpdateCheckout = (serviceId) => {
+const useUpdateCheckout = ({ serviceId, refetch, type = '' }) => {
 	const {
 		query: { checkout_id },
 	} = useSelector(({ general }) => ({
@@ -21,24 +21,37 @@ const useUpdateCheckout = (serviceId) => {
 		if (isEmpty(data) || loading) {
 			return;
 		}
-
 		try {
 			const params = {
-				id                              : checkout_id,
-				fcl_freight_services_attributes : [
-					{
-						id: serviceId,
-						...(data || {}),
-					},
-				],
-				service: 'fcl_freight',
-			};
+				id: checkout_id,
+				...(type === 'cargo_insurance'
+					? {
+						cargo_insurance_services_attributes: [
+							{ id: serviceId, ...(data || {}) },
+						],
+					}
+					: {
+						fcl_freight_services_attributes: [
+							{
+								id: serviceId,
+								...(data || {}),
+							},
+						],
+					}),
 
+				service: type === 'cargo_insurance' ? 'cargo_insurance' : 'fcl_freight',
+			};
 			await trigger({
 				data: params,
 			});
 
-			Toast.success('Added Successfully');
+			Toast.success(
+				type === 'cargo_insurance'
+					? 'Cargo Insurance Deleted Successfully'
+					: 'Added Successfully',
+			);
+
+			refetch();
 		} catch (err) {
 			Toast.error(getApiErrorString(err.data));
 		}

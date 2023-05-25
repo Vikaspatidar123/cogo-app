@@ -1,15 +1,14 @@
 import { useRequestBf } from '@/packages/request';
 
 const useGetCommodityOptions = () => {
-	const [{ data:Data }] = useRequestBf(
+	const [{ data }] = useRequestBf(
 		{
-			url     : 'saas_insurance_list_commodities',
-			authkey : 'saas/insurance/list-commodities',
+			authKey : 'saas_insurance_list_commodities',
+			url     : 'saas/insurance/list-commodities',
 			method  : 'get',
 		},
 		{ manual: false },
 	);
-	const { data = {} } = Data || {};
 	const { list = [] } = data || {};
 
 	return { list };

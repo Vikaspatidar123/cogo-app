@@ -27,8 +27,8 @@ function FilterContent({
 		const Element = getField(item.type);
 		if (
 			item?.show === false
-        || (Object.keys(showElements || {}).length > 0
-          && showElements?.[item?.name] === false)
+                || (Object.keys(showElements || {}).length > 0
+                    && showElements?.[item?.name] === false)
 		) {
 			return null;
 		}
@@ -38,7 +38,9 @@ function FilterContent({
 		}
 		return (
 			<div className={styles.filter_display}>
-				<div className={cl`${styles.filter_control_label} ${styles.label}`}>
+				<div
+					className={cl`${styles.filter_control_label} ${styles.label}`}
+				>
 					{item.label}
 				</div>
 				<Element control={control} {...item} {...props} />
@@ -53,7 +55,11 @@ function FilterContent({
 			>
 				<div className={styles.heading}>{heading}</div>
 				<div className={styles.button}>
-					<Button onClick={() => handleReset()} size="sm" themeType="secondary">
+					<Button
+						onClick={() => handleReset()}
+						size="sm"
+						themeType="secondary"
+					>
 						RESET FORM
 					</Button>
 
@@ -66,7 +72,6 @@ function FilterContent({
 						SHOW RESULTS
 					</Button>
 				</div>
-
 			</div>
 
 			{renderElement()}

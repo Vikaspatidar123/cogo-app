@@ -1,9 +1,10 @@
-import { useSelector } from '@cogo/store';
-import { Popover } from '@cogoport/front/components';
+import { Popover } from '@cogoport/components';
 import React, { useState } from 'react';
 
 import Details from './Details';
-import { AssistanceIcon } from './styles';
+import styles from './styles.module.css';
+
+import { useSelector } from '@/packages/store';
 
 function RM() {
 	const { skippable_checks, agent } = useSelector(({ profile }) => ({
@@ -12,10 +13,10 @@ function RM() {
 	}));
 	const [show, setShow] = useState(false);
 
-	const showRmDetails =		Object.keys(agent || {}).length
-		&& !skippable_checks?.includes('hide_rm_detail');
+	const showRmDetails = Object.keys(agent || {}).length
+        && !skippable_checks?.includes('hide_rm_detail');
 	return (
-		<>
+		<div>
 			{showRmDetails ? (
 				<Popover
 					theme="light"
@@ -24,12 +25,18 @@ function RM() {
 					maxWidth={300}
 					position="left"
 					onOuterClick={() => setShow(false)}
-					content={<Details />}
+					render={<Details />}
 				>
-					<AssistanceIcon onClick={() => setShow(true)}>?</AssistanceIcon>
+					<div
+						role="presentation"
+						className={styles.assistance_icon}
+						onClick={() => setShow(true)}
+					>
+						?
+					</div>
 				</Popover>
 			) : null}
-		</>
+		</div>
 	);
 }
 

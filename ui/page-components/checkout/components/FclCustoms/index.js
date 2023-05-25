@@ -17,7 +17,7 @@ import getInvoicingComponentKey from '../../utils/invoicingKey';
 import styles from './styles.module.css';
 import useFclCustoms from './useFclCustoms';
 
-import { AboutAction } from '@/ui/commons/components/webflow';
+// import { AboutAction } from '@/ui/commons/components/webflow';
 import InvoicingParties from '@/ui/page-components/checkout/commons/InvoicingParties';
 
 function FclCustoms(props) {
@@ -118,9 +118,9 @@ function FclCustoms(props) {
 							</div>
 
 							<div className={styles.information}>
-								<AboutAction slug="cancellation-terms">
-									<div className={styles.button_link}>Cancellation Charges & Policy</div>
-								</AboutAction>
+								{/* <AboutAction slug="cancellation-terms"> */}
+								<div className={styles.button_link}>Cancellation Charges & Policy</div>
+								{/* </AboutAction> */}
 							</div>
 						</div>
 					</div>

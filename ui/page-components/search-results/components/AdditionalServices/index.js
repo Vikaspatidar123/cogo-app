@@ -3,9 +3,9 @@ import { IcCTick, IcMPlus } from '@cogoport/icons-react';
 import { startCase } from '@cogoport/utils';
 import React, { useState } from 'react';
 
-import CargoInsurance from '../../commons/CargoInsurance';
 import useCreateAdditionalService from '../../hooks/useCreateAdditionalService';
 
+import CargoInsurancePillContainer from './CargoInsurancePillContainer';
 import DeleteConfirmation from './DeleteConfirmation';
 import Forms from './Forms';
 import {
@@ -17,16 +17,16 @@ import renderServices from './renderServices';
 import { getServiceName } from './services';
 import styles from './styles.module.css';
 
-// import { getCountryCode } from '@/ui/commons/utils/getCountryDetails';
+import { getCountryCode } from '@/ui/commons/utils/getCountryDetails';
 
 function AdditionalServices({
 	data = {},
 	possible_additional_services = [],
 	refetch = () => {},
-	// allowCargoInsurance = true,
-	// setOpenAddServiceModal = () => {},
-	// setShowCargoInsuranceIP = () => {},
-	// view = '',
+	allowCargoInsurance = true,
+	setOpenAddServiceModal = () => {},
+	setShowCargoInsuranceIP = () => {},
+	view = '',
 }) {
 	// const className = view === 'checkout' ? '' : 'search';
 	const {
@@ -37,13 +37,13 @@ function AdditionalServices({
 		checkout_id = '',
 		spot_search_id = '',
 		importer_exporter_id = '',
-		// importer_exporter = {},
+		importer_exporter = {},
 	} = data || {};
 	const [subsidiaryService, setSubsidiaryService] = useState('');
-	// const importer_exporter_country_code = getCountryCode({
-	// 	country_id:
-	//         importer_exporter?.country_id || importer_exporter?.country?.id,
-	// });
+	const importer_exporter_country_code = getCountryCode({
+		country_id:
+            importer_exporter?.country_id || importer_exporter?.country?.id,
+	});
 	const {
 		handleAdd,
 		handleClose,
@@ -151,9 +151,9 @@ function AdditionalServices({
 						<div className={styles.pill}>
 							<div
 								style={{
-									display    : 'flex',
-									maxWidth   : '94%',
-									alignItems : 'center',
+                                	display    : 'flex',
+                                	maxWidth   : '94%',
+                                	alignItems : 'center',
 								}}
 							>
 								<div className={styles.active_service}>
@@ -168,9 +168,9 @@ function AdditionalServices({
 								</div>
 								<IcCTick
 									style={{
-										marginTop : '2px',
-										width     : 20,
-										height    : 20,
+                                    	marginTop : '2px',
+                                    	width     : 20,
+                                    	height    : 20,
 									}}
 								/>
 							</div>
@@ -264,7 +264,7 @@ function AdditionalServices({
 					{loading ? 'Adding...' : 'Add'}
 				</Button>
 
-				{/* <CargoInsurancePillContainer
+				<CargoInsurancePillContainer
 					uniq_services_list={uniq_services_list}
 					importer_exporter_country_code={
 					importer_exporter_country_code
@@ -288,7 +288,7 @@ function AdditionalServices({
 					importer_exporter={importer_exporter}
 					setOpenAddServiceModal={setOpenAddServiceModal}
 					setShowCargoInsuranceIP={setShowCargoInsuranceIP}
-				/> */}
+				/>
 			</div>
 
 			{addService ? (
@@ -329,29 +329,6 @@ function AdditionalServices({
 							refetch={refetch}
 						/>
 					</Modal.Body>
-				</Modal>
-			) : null}
-
-			{addCargoInsurance ? (
-				<Modal
-					show={addCargoInsurance}
-					onClose={() => setAddCargoInsurance(false)}
-					position="top-right"
-					width={350}
-				>
-					<CargoInsurance
-						setAddCargoInsurance={setAddCargoInsurance}
-						data={data}
-						refetch={refetch}
-						origin_country_id={origin_country_id}
-						destination_country_id={destination_country_id}
-						trade_type={trade_type}
-						user_id={user_id}
-						service_type={service_type}
-						checkout_id={checkout_id}
-						spot_search_id={spot_search_id}
-						importer_exporter_id={importer_exporter_id}
-					/>
 				</Modal>
 			) : null}
 		</div>

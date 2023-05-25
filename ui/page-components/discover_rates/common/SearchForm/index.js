@@ -193,7 +193,6 @@ function Form(
 		form_id,
 		date,
 	}));
-	console.log(mode, 'mode');
 	let cargoDetailsSpan = 6;
 	if (
 		(isSmall && !['rfq', 'contract'].includes(search_type))
@@ -317,12 +316,10 @@ function Form(
 									destination={allControls.find(
 										(x) => x.name === destination?.name,
 									)}
-									// keywords={keywords}
 									className={className}
 									errors={errors}
 									search_type={search_type}
 									index={index}
-									// mobile={mobile}
 									mode={mode}
 									extraParams={extraParams}
 									disabledFields={disabledFields}

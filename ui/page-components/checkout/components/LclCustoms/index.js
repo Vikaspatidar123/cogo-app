@@ -148,15 +148,15 @@ function LclCustoms(props) {
 									<div
 										className={cl`${
                                         	styles.service_icon_container
-			} ${
+										} ${
                                         	service?.isSelected
                                         		? styles.additional_services_logo
                                         		: styles.temp
-			}`}
+										}`}
 									>
 										<ServiceIcon
-				service={service.service_type}
-			/>
+											service={service.service_type}
+										/>
 									</div>
 								))}
 							</div>

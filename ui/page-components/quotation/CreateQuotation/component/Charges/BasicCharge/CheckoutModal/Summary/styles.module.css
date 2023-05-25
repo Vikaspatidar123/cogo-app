@@ -1,23 +1,23 @@
-.flex_box{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 16px;
-    border-bottom: 2px dashed #e5e5e5;
+.flex_box {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 10px 16px;
+	border-bottom: 2px dashed #e5e5e5;
 }
 
-.container{
-    background: #fafbfb;
-    padding: 16px;
+.container {
+	padding: 16px;
+	background: #fafbfb;
 }
 
-.title{
-    font-weight: 600;
-    font-size: 18px;
+.title {
+	font-size: 18px;
+	font-weight: 600;
 }
 
-.total_row{
-    border: none;   
-    font-weight: 600;
-    font-size: 16px;
+.total_row {
+	font-size: 16px;
+	font-weight: 600;
+	border: none;
 }

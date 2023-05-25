@@ -160,6 +160,7 @@ function ValidateProductModal(props) {
 						postTradeEngine={postTradeEngine}
 						setTransactionModal={setTransactionModal}
 						locationLoading={locationLoading}
+						quoteRes={quoteRes}
 					/>
 				)}
 

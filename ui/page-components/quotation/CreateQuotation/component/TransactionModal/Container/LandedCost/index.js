@@ -6,6 +6,13 @@ import styles from './styles.module.css';
 
 import formatAmount from '@/ui/commons/utils/formatAmount';
 
+const CURRENY_OPT = {
+	style                 : 'currency',
+	currencyDisplay       : 'symbol',
+	compactDisplay        : 'short',
+	maximumFractionDigits : 2,
+};
+
 function LandedCost({ landedCost, resultCurrency = 'INR' }) {
 	const { taxSet } = landedCost?.[0] || {};
 	let totalone = 0;
@@ -40,12 +47,7 @@ function LandedCost({ landedCost, resultCurrency = 'INR' }) {
 												{formatAmount({
 													amount   : x.value,
 													currency : resultCurrency,
-													options  : {
-														style                 : 'currency',
-														currencyDisplay       : 'symbol',
-														compactDisplay        : 'short',
-														maximumFractionDigits : 2,
-													},
+													options  : CURRENY_OPT,
 												})}
 											</div>
 										</div>
@@ -72,7 +74,11 @@ function LandedCost({ landedCost, resultCurrency = 'INR' }) {
 					</div>
 					<div>
 						<div className={`${styles.text_total} ${styles.auto}`}>
-							{taxSet?.length > 0 ? shortFormatNumber(totalone, resultCurrency) : ''}
+							{taxSet?.length > 0 ? formatAmount({
+								amount   : totalone,
+								currency : resultCurrency,
+								options  : CURRENY_OPT,
+							}) : ''}
 						</div>
 					</div>
 				</div>

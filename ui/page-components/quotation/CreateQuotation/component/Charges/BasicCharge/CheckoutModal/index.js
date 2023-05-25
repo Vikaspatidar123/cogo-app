@@ -30,6 +30,7 @@ function CheckoutModal({
 	postTradeEngine,
 	setTransactionModal,
 	locationLoading,
+	quoteRes = {},
 }) {
 	const [traderCheck, setTrackerCheck] = useState(false);
 	const [chargeData, setChargeData] = useState({});
@@ -76,7 +77,7 @@ function CheckoutModal({
 			/>
 			<Modal.Body>
 				<div className={styles.container}>
-					<Transport consignmentValue={consignmentValue} />
+					<Transport consignmentValue={consignmentValue} quoteRes={quoteRes} />
 					<ServiceCharge
 						serviceProduct={serviceProduct}
 						serviceData={serviceData}

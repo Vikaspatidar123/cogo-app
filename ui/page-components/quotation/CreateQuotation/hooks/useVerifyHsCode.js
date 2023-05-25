@@ -4,8 +4,9 @@ import { useState } from 'react';
 import { useRequestBf } from '@/packages/request';
 import { useSelector } from '@/packages/store';
 
-const useVerifyHsCode = () => {
-	const { id: userId } = useSelector((state) => state.profile);
+const useVerifyHsCode = ({ isQuotaLeft = false }) => {
+	const { id: userId, organization = {} } = useSelector((state) => state.profile);
+	const { id: orgId } = organization || {};
 
 	const [hsRecommendation, setHsRecommendations] = useState([]);
 	const [status, setStatus] = useState(true);
@@ -24,6 +25,8 @@ const useVerifyHsCode = () => {
 					hsCode                 : hsCode || selectedHscode,
 					destinationCountryCode : destinationPortDetails?.country_code,
 					performedBy            : userId,
+					organizationId         : orgId,
+					paymentType            : isQuotaLeft ? 'QUOTA' : 'PAYMENT',
 					productId,
 				},
 			});

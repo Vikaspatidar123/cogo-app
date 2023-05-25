@@ -65,7 +65,7 @@ function ProductField({
 	const {
 		hsRecommendation, status, setStatus,
 		checkButton, setCheckButton, verifyLoading, verifyHsCode,
-	} = useVerifyHsCode();
+	} = useVerifyHsCode({ isQuotaLeft });
 
 	const { productLength, disableValidateBtn, lineItemLength } = useProductField({
 		selectedData,

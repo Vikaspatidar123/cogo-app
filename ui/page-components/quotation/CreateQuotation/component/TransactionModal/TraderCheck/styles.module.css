@@ -17,6 +17,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+	margin-bottom: 10px;
 }
 
 .card{
@@ -25,11 +26,11 @@
 	height: 250px ;
 	padding: 10px ;
 	margin-bottom: 10px ;
-	width: 100% ;
-	margin-left: 5px ;
+	width: 45% ;
+	margin-left: 25px ;
 }
 
-.row {
+.card_container {
 	display: flex;
 	flex-wrap: wrap;
 	width: 100%;
@@ -60,16 +61,15 @@
 }
 
 .heading_2 {
-	font-weight: 500;
+	font-weight: 600;
 	font-size: 12px;
-	color: #65677a;
 	padding: 2px;
 }
 
 .text_2 {
 	font-size: 12px;
 	color: #65677a;
-	width: 100% !important;
+	width: 100%;
 	padding: 2px;
 }
 

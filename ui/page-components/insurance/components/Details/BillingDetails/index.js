@@ -93,16 +93,14 @@ const useBillingDetails = ({
 		if (!isEmpty(prosporerAddress)) {
 			setValue('proposersAddress', `${name},${pincode},${tax_number}`);
 		}
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [name, pincode, prosporerAddress, tax_number]);
+	}, [name, pincode, prosporerAddress, setValue, tax_number]);
 
 	useEffect(() => {
 		if (!isEmpty(cityState) && !cityLoading) {
 			setValue('billingCity', cityState?.city?.name);
 			setValue('billingState', cityState?.region?.name);
 		}
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [cityState, cityLoading]);
+	}, [cityState, cityLoading, setValue]);
 
 	const submit = (values) => {
 		let checkEmptyFlag = 0;

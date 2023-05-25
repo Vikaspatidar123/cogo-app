@@ -11,7 +11,7 @@ const useGetSummaryDetails = ({ activeTab, filters, sort }) => {
 		method  : 'get',
 		authkey : 'get_saas_insurance_list_summary',
 		url     : 'saas/insurance/list/summary',
-	});
+	}, { autoCancel: false });
 
 	const summary = useCallback(async () => {
 		const { sortBy = undefined, sortType = undefined } = sort || {};

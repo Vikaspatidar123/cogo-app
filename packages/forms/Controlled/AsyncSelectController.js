@@ -17,13 +17,8 @@ function AsyncSelectController(props) {
 					key={rest.id}
 					onChange={(val, obj) => {
 						onChange(val, obj);
-<<<<<<< HEAD
-						if (rest.onChange) {
-							rest.onChange(obj, name);
-=======
 						if (rest?.handleChange) {
 							rest?.handleChange(obj);
->>>>>>> 625f986b193667d84e6a95c61aa89593a2b53fd2
 						}
 					}}
 					value={newValue}

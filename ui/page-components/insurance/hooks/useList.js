@@ -14,7 +14,7 @@ const useList = ({ activeTab }) => {
 		method  : 'get',
 		authkey : 'get_saas_insurance_list',
 		url     : '/saas/insurance/list',
-	}, { manual: true });
+	}, { manual: true, autoCancel: false });
 
 	const transitModeMapping = (item) => {
 		const mapping = {
@@ -40,11 +40,11 @@ const useList = ({ activeTab }) => {
 		} catch (err) {
 			Toast.error(getApiErrorString(err));
 		}
-	}, [activeTab, filters, organization, sort, trigger]);
+	}, [activeTab, filters, organization?.id, sort, trigger]);
 
 	useEffect(() => {
 		list();
-	}, [activeTab, filters, sort, list]);
+	}, [list]);
 
 	return {
 		data,

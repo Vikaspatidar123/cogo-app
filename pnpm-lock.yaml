@@ -5,7 +5,7 @@ specifiers:
   '@cogoport/components': ^1.0.416
   '@cogoport/eslint-config': ^1.1.0
   '@cogoport/icons-react': ^1.0.58
-  '@cogoport/maps': ^1.0.2
+  '@cogoport/maps': ^1.0.3
   '@cogoport/stylelint-config': ^1.0.3
   '@cogoport/utils': ^1.2.6
   '@svgr/webpack': ^6.5.1
@@ -38,7 +38,7 @@ dependencies:
   '@cogoport/charts': 1.0.1_biqbaboplfbrettd7655fr4n2y
   '@cogoport/components': 1.0.419_cyxdlkncyjzqtklzwrmvnywxma
   '@cogoport/icons-react': 1.0.58_biqbaboplfbrettd7655fr4n2y
-  '@cogoport/maps': 1.0.2_cyxdlkncyjzqtklzwrmvnywxma
+  '@cogoport/maps': 1.0.3_cyxdlkncyjzqtklzwrmvnywxma
   '@cogoport/utils': 1.2.6
   axios: 1.3.4
   axios-hooks: 4.0.0_axios@1.3.4+react@18.2.0
@@ -1451,8 +1451,8 @@ packages:
     resolution: {integrity: sha512-8ort8jOyO9P8mK3gy7i+wdqqUkKRjkeTVT61beqUzcUCxk/V+4LaVtg+GQg8pK8dTy9ePGThduB860WHzw7Vkw==}
     dev: false
 
-  /@cogoport/maps/1.0.2_cyxdlkncyjzqtklzwrmvnywxma:
-    resolution: {integrity: sha512-p4mMyDcF61LT+RW2CMjs/mU93nMifJY2CaO4N4/YQYXppAn+ACsUx1JG4pQyN9YMPJ5V8EnQ9OQCfp4BeptqLQ==}
+  /@cogoport/maps/1.0.3_cyxdlkncyjzqtklzwrmvnywxma:
+    resolution: {integrity: sha512-nWNhGesbEQNqBGy1KO9O85eU04zcVaIVvuHXcq7CKa+pij74yU3BKB4PTBvoSrbLHAgIctxe8KOQVzBVgTLl/w==}
     peerDependencies:
       '@cogoport/icons-react': ^1.0.23
       react: ^18.2.0

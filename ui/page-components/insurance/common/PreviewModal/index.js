@@ -14,7 +14,6 @@ function PreviewModal({
 	showPreviewModal = false,
 	setShowPreviewModal = () => {},
 	countryDetails = {},
-	type = '',
 	commodityName = '',
 	watcher = [],
 	insuranceLoading,
@@ -74,35 +73,32 @@ function PreviewModal({
 			onClose={() => setShowPreviewModal(false)}
 			size="lg"
 			scroll
-			showCloseIcon
 		>
 			<Modal.Body>
 				<div className={styles.heading}>
 					<IcMFsea width={20} height={20} />
 					<div className={styles.heading_text}>
-						{type || transitMode}
+						{transitMode}
 						{' '}
-						Insurance
+						INSURANCE
 					</div>
 				</div>
 				<div className={styles.name_div}>
 					<div className={styles.left_line} />
-					<div>
-						<div className={styles.content}>
-							<Avatar personName={name} size="55px" />
-							<div className={styles.avatar_name}>{name}</div>
-						</div>
-						{cogoPolicyNo && (
-							<div className={styles.policy}>
-								Policy No.
-								{' '}
-								{cogoPolicyNo}
-							</div>
-						)}
+					<div className={styles.content}>
+						<Avatar personName={name} size="35px" />
+						<div className={styles.avatar_name}>{name}</div>
 					</div>
 					<div className={styles.right_line} />
 				</div>
 				<div className={styles.address_div}>
+					{cogoPolicyNo && (
+						<div>
+							<div className={styles.label}>	Policy No.</div>
+							{' '}
+							<div className={styles.email_value}>{cogoPolicyNo}</div>
+						</div>
+					)}
 					<div className={styles.label}>Contact Address</div>
 					<div className={styles.email_value}>
 						{email}
@@ -128,9 +124,11 @@ function PreviewModal({
 							</div>
 							<div className={styles.address}>
 								<div className={styles.label}>Address</div>
-								<Tooltip content={billingAddress} placement="top">
-									<div className={styles.value}>{billingAddress}</div>
-								</Tooltip>
+								{billingAddress?.length > 50 ?	(
+									<Tooltip content={billingAddress} placement="top">
+										<div className={styles.value}>{billingAddress}</div>
+									</Tooltip>
+								) : <div className={styles.value}>{billingAddress}</div>}
 							</div>
 							<div className={styles.panOrAadhar}>
 								{panNumber && (
@@ -179,7 +177,9 @@ function PreviewModal({
 						<div className={styles.row}>
 							<div className={styles.commodity}>
 								<div className={styles.label}>Commodity</div>
-								<div className={styles.value}>{commodityName || subCommodity}</div>
+								<Tooltip content={commodityName || subCommodity}>
+									<div className={styles.value}>{commodityName || subCommodity}</div>
+								</Tooltip>
 							</div>
 							<div className={styles.commodity}>
 								<div className={styles.label}>Destination Country</div>
@@ -216,15 +216,20 @@ function PreviewModal({
 						<div className={styles.row}>
 							<div className={styles.commodity}>
 								<div className={styles.label}>Coverage from</div>
-								<Tooltip content={locationFrom || coverageFrom} placement="top">
-									<div className={styles.value}>{locationFrom || coverageFrom}</div>
-								</Tooltip>
+								{(locationFrom || coverageFrom)?.length > 30 ? (
+									<Tooltip content={locationFrom || coverageFrom} placement="top">
+										<div className={styles.value}>{locationFrom || coverageFrom}</div>
+									</Tooltip>
+								)
+									: <div className={styles.value}>{locationFrom || coverageFrom}</div>}
 							</div>
 							<div className={styles.commodity}>
 								<div className={styles.label}>Coverage to</div>
-								<Tooltip content={locationTo || coverageTo} placement="top">
-									<div className={styles.value}>{locationTo || coverageTo}</div>
-								</Tooltip>
+								{(locationTo || coverageTo)?.length > 30 ? 	(
+									<Tooltip content={locationTo || coverageTo} placement="top">
+										<div className={styles.value}>{locationTo || coverageTo}</div>
+									</Tooltip>
+								) :	<div className={styles.value}>{locationTo || coverageTo}</div>}
 							</div>
 							<div className={styles.commodity}>
 								<div className={styles.label}>Coverage</div>

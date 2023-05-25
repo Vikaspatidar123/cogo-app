@@ -11,16 +11,20 @@ function Item({ location = {} }) {
 
 	return (
 		<div className={styles.container}>
-			<Tooltip content={<div style={{ color: 'grey' }}>{info}</div>} theme="light">
-				<div className={styles.info}>{info}</div>
-			</Tooltip>
-			<div className={styles.code_div}>
-				<Tooltip
-					content={<div style={{ color: 'grey' }}>{location.name || ''}</div>}
-					theme="light"
-				>
-					<div className={styles.code}>{location.name || ''}</div>
+			{info?.length > 12 ?	(
+				<Tooltip content={<div style={{ color: 'grey' }}>{info}</div>} theme="light">
+					<div className={styles.info}>{info}</div>
 				</Tooltip>
+			) : <div className={styles.info}>{info}</div>}
+			<div className={styles.code_div}>
+				{location?.name?.length > 10	? 	(
+					<Tooltip
+						content={<div style={{ color: 'grey' }}>{location.name || ''}</div>}
+						theme="light"
+					>
+						<div className={styles.code}>{location.name || ''}</div>
+					</Tooltip>
+				) : <div className={styles.code_val}>{location.name || ''}</div> }
 			</div>
 		</div>
 	);

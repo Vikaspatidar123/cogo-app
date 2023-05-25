@@ -45,6 +45,24 @@
 	display: flex;
 	justify-content: space-between;
 	margin-top: 20px;
+	:global {
+		.ui_chip_container{
+			height: 35px;
+			min-width: 120px;
+			border-radius:0px;
+			border-right: none;
+		}
+		.ui_chip_container:first-child {
+			border-radius: 10px 0px 0px 10px;
+		}
+		.ui_chip_container:last-child {
+			border-radius: 0px 10px 10px 0px;
+			border-right:1px solid #e0e0e0;
+		}
+		svg {
+			display: none ;
+		}
+	}
 }
 
 .list_container {
@@ -64,8 +82,28 @@
 .status_div {
 	display: flex;
 	align-items: center;
+	gap: 5px;
 }
 
 .chips {
 	gap: 0 !important;
+}
+
+.table {
+	padding: 0;
+	border-radius: 8px;
+	border-collapse: separate;
+	:global {
+		.ui_table_head_container {
+			height: 60px;
+		}
+		.ui_table_body_row {
+			height: 70px;
+		}
+	}
+}
+
+.pagination_div{
+	display: flex;
+	justify-content: flex-end;
 }

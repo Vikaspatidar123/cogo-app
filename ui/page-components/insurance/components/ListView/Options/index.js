@@ -58,7 +58,7 @@ const segementedOpt = (summaryData, activeTab, summaryLoading) => [
 	{
 		suffix: (
 			<div className={styles.code_div}>
-				<div>AIR</div>
+				<div>Air</div>
 				{activeTab === 'AIR' && !summaryLoading ? (
 					<div className={styles.count}>{summaryData?.airTransitPolicies}</div>
 				) : (
@@ -81,7 +81,7 @@ const segementedOpt = (summaryData, activeTab, summaryLoading) => [
 	{
 		suffix: (
 			<div className={styles.code_div}>
-				<div>SURFACE</div>
+				<div>Surface</div>
 				{activeTab === 'ROAD' && !summaryLoading ? (
 					<div className={styles.count}>{summaryData?.surfaceTransitPolicies}</div>
 				) : (

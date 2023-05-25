@@ -3,7 +3,7 @@ import { IcMPortArrow } from '@cogoport/icons-react';
 import Item from './Item';
 import styles from './styles.module.css';
 
-function Coverage({ itemData }) {
+function Coverage({ itemData = {} }) {
 	const {
 		coverageTo = '',
 		coverageFrom = '',

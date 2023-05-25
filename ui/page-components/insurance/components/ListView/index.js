@@ -1,11 +1,10 @@
-import { Input, Chips, Button } from '@cogoport/components';
+import { Input, Chips, Button, Table, Pagination } from '@cogoport/components';
 import { IcMPlus, IcMSearchlight, IcMPlusInCircle } from '@cogoport/icons-react';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 
 import CancellationAndConfirmModal from '../../common/CancellationModal';
 import FAQComponent from '../../common/FAQComponent';
-import List from '../../common/List';
 import PreviewModal from '../../common/PreviewModal';
 import redirectUrl from '../../common/redirectUrl';
 import renderFunctions from '../../common/renderFunctions';
@@ -24,7 +23,6 @@ function ListView() {
 	const [cancelModal, setCancelModal] = useState(false);
 	const [showFaq, setFaq] = useState('none');
 	const [showPreviewModal, setShowPreviewModal] = useState(false);
-	const [click, setClick] = useState('');
 	const [cancellationPolicyDetails, setcancellationPolicyDetails] = useState('');
 	const [rotateIcon, setRotateIcon] = useState(false);
 
@@ -32,15 +30,17 @@ function ListView() {
 
 	const { summaryData, summaryLoading } = userSummary({ activeTab, filters, sort });
 
-	const { redirectHome, redirectBuy } = redirectUrl();
-
 	const { respData, refetchPreview, previewloading = false } = usePreviewModal();
+
+	const { list, pageNo = 0, totalRecords = 0 } = data || {};
+
+	const { redirectHome, redirectBuy } = redirectUrl();
 
 	const downloadFunction = ({ itemData }) => {
 		const { policyId } = itemData || {};
 		// eslint-disable-next-line no-undef
 		window.open(
-			`${process.env.BUSINESS_FINANCE_BASE_URL}/saas/insurance/pdf/${policyId}`,
+			`${process.env.NEXT_PUBLIC_BUSINESS_FINANCE_BASE_URL}/saas/insurance/pdf/${policyId}`,
 		);
 	};
 
@@ -62,8 +62,7 @@ function ListView() {
 		setCancelModal(true);
 	};
 
-	const { functions } = renderFunctions({
-		setClick,
+	const { Content } = renderFunctions({
 		redirectBuy,
 		downloadFunction,
 		refetchPreview,
@@ -73,6 +72,8 @@ function ListView() {
 		previewloading,
 		cancellationFunction,
 	});
+
+	const fields = listConfig({ setSort, sort, Content });
 
 	return (
 		<>
@@ -126,19 +127,27 @@ function ListView() {
 					/>
 				)}
 			</div>
-			<div className={styles.list_container}>
-				<List
-					config={listConfig}
-					data={data || []}
-					loading={loading}
-					setGlobalFilters={setFilters}
-					showPagination="true"
-					functions={functions}
-					sort={sort}
-					setSort={setSort}
-					isMobile={isMobile}
-				/>
-			</div>
+			<Table
+				columns={fields || []}
+				data={list || []}
+				loading={loading}
+				loadingRowsCount={10}
+				className={styles.table}
+			/>
+			{data?.list?.length > 0 && (
+				<div className={styles.pagination_div}>
+					<Pagination
+						type="table"
+						pageSize={10}
+						pageLimit={10}
+						totalItems={totalRecords}
+						currentPage={pageNo}
+						onPageChange={(val) => {
+							setFilters((prev) => ({ ...prev, page: val }));
+						}}
+					/>
+				</div>
+			)}
 			{!previewloading && showPreviewModal && (
 				<PreviewModal
 					showPreviewModal={showPreviewModal}
@@ -165,7 +174,6 @@ function ListView() {
 					cancelModal={cancelModal}
 					cancellationPolicyDetails={cancellationPolicyDetails}
 					setCancelModal={setCancelModal}
-					click={click}
 				/>
 			)}
 		</>

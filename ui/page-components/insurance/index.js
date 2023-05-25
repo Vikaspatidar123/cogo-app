@@ -1,3 +1,5 @@
+import React from 'react';
+
 import CreateInsurance from './components/index';
 
 function Insurance() {

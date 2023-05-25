@@ -12,7 +12,7 @@ function CancellationAndConfirmModal({
 	cancelModal = false,
 	cancellationPolicyDetails = {},
 	setCancelModal = () => {},
-	click = '',
+	click = 'cancel',
 }) {
 	const { cogoPolicyNo = '', policyId = '' } = cancellationPolicyDetails;
 	const [cancellationReason, setCancellationReason] = useState();

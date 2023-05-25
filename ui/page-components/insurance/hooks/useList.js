@@ -48,7 +48,6 @@ const useList = ({ activeTab }) => {
 
 	return {
 		data,
-		list,
 		setFilters,
 		filters,
 		loading,

@@ -1,16 +1,10 @@
-import { ButtonIcon, Pill, Popover } from '@cogoport/components';
 import {
-	IcMOverflowDot,
 	IcMPreview,
 	IcMDownload,
 	IcMEdit,
-	// IcMError,
+	IcMError,
 	// IcMFtaskCompleted,
 } from '@cogoport/icons-react';
-import { format } from '@cogoport/utils';
-
-import Coverage from '../components/ListView/Coverage';
-import paymentStatus from '../components/ListView/status';
 
 import styles from './styles.module.css';
 
@@ -19,17 +13,16 @@ const renderFunctions = ({
 	redirectBuy = () => {},
 	downloadFunction = () => {},
 	refetchPreview = () => {},
-	isMobile = false,
 	// showPreviewModal = false,
 	setShowPreviewModal = () => {},
 	previewloading = false,
 	// cancellationFunction = () => {},
 }) => {
-	const ColorCode = {
-		IMPORT : '#FFF7DF',
-		EXPORT : '#FFE3E3',
-		INLAND : '#B5F1CC',
-	};
+	// const ColorCode = {
+	// 	IMPORT : '#FFF7DF',
+	// 	EXPORT : '#FFE3E3',
+	// 	INLAND : '#B5F1CC',
+	// };
 	function Content({ itemData = {} }) {
 		return (
 			<div>
@@ -41,7 +34,7 @@ const renderFunctions = ({
 						refetchPreview(itemData);
 					}}
 				>
-					<IcMPreview width={12} height={12} />
+					<IcMPreview width={10} height={10} />
 					{previewloading ? (
 						<img
 							src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/loading.svg"
@@ -59,21 +52,20 @@ const renderFunctions = ({
 								downloadFunction({ itemData });
 							}}
 						>
-							<IcMDownload width={15} height={15} />
+							<IcMDownload width={10} height={10} />
 							<p>Download</p>
 						</div>
-						{/* <div
-							className="text"
+						<div
+							className={styles.text}
 							role="presentation"
 							onClick={() => {
-								setClick('cancel');
-								cancellationFunction({ itemData });
+								// cancellationFunction({ itemData });
 							}}
 						>
-							<IcMError width={11} height={11} />
-							<ListClick>Cancel</ListClick>
+							<IcMError width={10} height={10} />
+							<div>Cancel</div>
 						</div>
-						<div
+						{/* <div
 							className="text"
 							role="presentation"
 							onClick={() => {
@@ -106,39 +98,6 @@ const renderFunctions = ({
 		);
 	}
 
-	const functions = {
-		renderPort   : (itemData) => <Coverage isMobile={isMobile} itemData={itemData} />,
-		renderStatus : (itemData) => paymentStatus[itemData?.status],
-		renderIcon   : (itemData) => (
-			<Popover
-				theme="light"
-				interactive
-				trigger="click"
-				content={(
-					<Content
-						itemData={itemData}
-					/>
-				)}
-			>
-				<ButtonIcon icon={<IcMOverflowDot />} themeType="primary" />
-			</Popover>
-		),
-		renderPolicy: (itemData) => (
-			<div>
-				<Pill
-					className={styles.tag}
-					color={ColorCode[itemData?.policyType]}
-				>
-					{itemData?.policyType}
-				</Pill>
-				<div>{itemData?.cogoPolicyNo}</div>
-				<div className={styles.text}>{itemData?.policyNo}</div>
-			</div>
-		),
-		renderFormat  : (itemData) => format(itemData?.transitDate, 'dd MMM yy'),
-		renderFormat2 : (itemData) => format(itemData?.createdAt, 'dd MMM yy'),
-		renderRisk    : (itemData) => <div>{itemData?.riskCoverage?.split('_')?.join(' ')}</div>,
-	};
-	return { functions };
+	return { Content };
 };
 export default renderFunctions;

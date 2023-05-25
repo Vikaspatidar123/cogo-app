@@ -1,8 +1,5 @@
 import { merge } from '@cogoport/utils';
-import {
-	useEffect, useState,
-	// useMemo
-} from 'react';
+import { useEffect, useState } from 'react';
 
 import { useRequestBf } from '../../request';
 
@@ -20,38 +17,41 @@ function useGetAsyncOptionsBf({
 	const { query, debounceQuery } = useDebounceQuery();
 	const [storeOptions, setStoreOptions] = useState([]);
 
-	const [{ data, loading }] = useRequestBf({
-		url    : endpoint,
-		method : 'GET',
-		authKey,
-		params : merge(params, { query }),
-	}, { manual: !(initialCall || query) });
-	// const options = useMemo(() => getModifiedOptions(data?.list || []), [data, getModifiedOptions]);
-	const options = data?.list || [];
-	const optionValues = options.map((item) => item[valueKey]);
-
-	// useEffect(() => {
-	// 	if (options.length > 0) { setStoreOptions([...options]); }
-	// }, [dependency, options]);
+	const [{ data, loading }] = useRequestBf(
+		{
+			url    : endpoint,
+			method : 'GET',
+			authKey,
+			params : merge(params, { query }),
+		},
+		{ manual: !(initialCall || query) },
+	);
+	const options = getModifiedOptions(data?.list || []);
+	const dependency = (data?.list || []).map(({ id }) => id).join('');
 
 	useEffect(() => {
-		storeOptions.push(...options);
-		setStoreOptions(storeOptions);
-	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [JSON.stringify(optionValues)]);
+		if (options.length > 0) {
+			setStoreOptions([...options]);
+		}
+	}, [dependency, options]);
 
-	const [{ loading: loadingSingle }, triggerSingle] = useRequestBf({
-		url    : endpoint,
-		method : 'GET',
-		authKey,
-	}, { manual: true });
+	const [{ loading: loadingSingle }, triggerSingle] = useRequestBf(
+		{
+			url    : endpoint,
+			method : 'GET',
+			authKey,
+		},
+		{ manual: true },
+	);
 
 	const onSearch = (inputValue) => {
 		debounceQuery(inputValue);
 	};
 
 	const onHydrateValue = async (value) => {
-		const checkOptionsExist = options.filter((item) => item[valueKey] === value);
+		const checkOptionsExist = options.filter(
+			(item) => item[valueKey] === value,
+		);
 		if (checkOptionsExist.length > 0) return checkOptionsExist[0];
 		try {
 			const res = await triggerSingle({

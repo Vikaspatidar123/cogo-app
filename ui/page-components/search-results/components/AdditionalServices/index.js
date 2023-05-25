@@ -26,7 +26,7 @@ function AdditionalServices({
 	allowCargoInsurance = true,
 	setOpenAddServiceModal = () => {},
 	setShowCargoInsuranceIP = () => {},
-	view = '',
+	// view = '',
 }) {
 	// const className = view === 'checkout' ? '' : 'search';
 	const {
@@ -151,9 +151,9 @@ function AdditionalServices({
 						<div className={styles.pill}>
 							<div
 								style={{
-                                	display    : 'flex',
-                                	maxWidth   : '94%',
-                                	alignItems : 'center',
+									display    : 'flex',
+									maxWidth   : '94%',
+									alignItems : 'center',
 								}}
 							>
 								<div className={styles.active_service}>
@@ -168,9 +168,9 @@ function AdditionalServices({
 								</div>
 								<IcCTick
 									style={{
-                                    	marginTop : '2px',
-                                    	width     : 20,
-                                    	height    : 20,
+										marginTop : '2px',
+										width     : 20,
+										height    : 20,
 									}}
 								/>
 							</div>

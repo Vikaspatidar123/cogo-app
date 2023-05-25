@@ -147,11 +147,11 @@ function LclCustoms(props) {
 								{allServices.map((service) => (
 									<div
 										className={cl`${
-                                        	styles.service_icon_container
+											styles.service_icon_container
 										} ${
-                                        	service?.isSelected
-                                        		? styles.additional_services_logo
-                                        		: styles.temp
+											service?.isSelected
+												? styles.additional_services_logo
+												: styles.temp
 										}`}
 									>
 										<ServiceIcon

@@ -412,7 +412,7 @@ const saas = {
 			app_saas_load_container: [],
 
 		}],
-	app_saas_tracking       : [
+	app_saas_tracking: [
 		{
 			api          : 'get_saas_container_subscription',
 			access_type  : 'private',

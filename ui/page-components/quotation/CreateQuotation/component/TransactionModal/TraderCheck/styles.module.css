@@ -1,33 +1,35 @@
-.title{
-    font-weight: 600;
-	font-size: 16px;
+.title {
 	padding: 5px;
+	font-size: 16px;
+	font-weight: 600;
 	color: #221f20;
 }
-.flex_box{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+
+.flex_box {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
 }
 
-.container{
+.container {
 	margin: 20px 0;
 }
-.row{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+
+.row {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
 	margin-bottom: 10px;
 }
 
-.card{
+.card {
+	width: 45%;
+	height: 250px;
+	padding: 10px;
+	margin-bottom: 10px;
+	margin-left: 25px;
 	border: 1px solid #e0e6e9;
-	border-radius: 6px ;
-	height: 250px ;
-	padding: 10px ;
-	margin-bottom: 10px ;
-	width: 45% ;
-	margin-left: 25px ;
+	border-radius: 6px;
 }
 
 .card_container {
@@ -38,39 +40,39 @@
 
 .name_column {
 	width: 80%;
-	font-weight: 500;
 	font-size: 14px;
+	font-weight: 500;
 	color: #221f20;
 }
 
 .percentage_red {
-	font-weight: 600;
 	font-size: 24px;
+	font-weight: 600;
 	color: #db4634;
 }
 
 .percentage_green {
-	font-weight: 600;
 	font-size: 24px;
+	font-weight: 600;
 	color: #849e4c;
 }
 
-.score_text{
+.score_text {
 	font-size: 10px;
 	color: #65677a;
 }
 
 .heading_2 {
-	font-weight: 600;
-	font-size: 12px;
 	padding: 2px;
+	font-size: 12px;
+	font-weight: 600;
 }
 
 .text_2 {
-	font-size: 12px;
-	color: #65677a;
 	width: 100%;
 	padding: 2px;
+	font-size: 12px;
+	color: #65677a;
 }
 
 .verified_user {
@@ -85,18 +87,18 @@
 }
 
 .label {
-	text-align: center;
 	display: flex;
-	font-weight: 500;
 	font-size: 18px;
+	font-weight: 500;
 	color: #849e4c;
+	text-align: center;
 }
 
 .bold {
-	text-align: center;
 	display: flex;
-	font-weight: 500;
+	margin: 0 5px;
 	font-size: 18px;
+	font-weight: 500;
 	color: #849e4c;
-	margin: 0px 5px;
+	text-align: center;
 }

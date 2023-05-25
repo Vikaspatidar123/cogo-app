@@ -1,47 +1,49 @@
-.title_container{
-    display: flex;
+.title_container {
+	display: flex;
 	align-items: center;
-    padding: 10px 16px;
-    .title{
-        margin:0;
-        margin-left: 8px;
-    }
+	padding: 10px 16px;
+
+	.title {
+		margin: 0;
+		margin-left: 8px;
+	}
 }
 
-.heading{
-    text-align: center;
-	font-size: 17px;
+.heading {
 	margin: 45px 0;
+	font-size: 17px;
 	color: #4b5c6d;
+	text-align: center;
 }
 
-.card_container{
-    display: flex;
+.card_container {
+	display: flex;
 	justify-content: space-evenly;
 	margin-top: 55px;
 	margin-bottom: 70px;
 }
 
-.card{
-    position: relative;
+.card {
+	position: relative;
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
 	align-items: center;
+	justify-content: center;
 	width: 150px;
 	height: 150px;
+	cursor: pointer;
 	border: 1px solid #dee7f1;
 	border-radius: 8px;
-	cursor: pointer;
 
-    &:hover{
-        box-shadow: 0px 12px 32px 1px #dfe8fa99;
+	&:hover {
+		box-shadow: 0 12px 32px 1px #dfe8fa99;
+
 		.text {
 			font-weight: 500;
 		}
-    }
+	}
 
-    &.selectedCard {
+	&.selectedCard {
 		background: #fef8f7;
 		border: 1px solid #ee3425;
 
@@ -51,21 +53,21 @@
 	}
 }
 
-.dot{
-    position: absolute;
+.dot {
+	position: absolute;
 	top: 10px;
 	left: 10px;
 	width: 6px;
 	height: 6px;
-	border-radius: 50%;
 	background: #db4634;
-	box-shadow: 0 0 7px #fff, 0 0 0px #fff, 0 0 4px #f00, 0 0 12px #f00;
+	border-radius: 50%;
+	box-shadow: 0 0 7px #fff, 0 0 0 #fff, 0 0 4px #f00, 0 0 12px #f00;
 }
 
-.text{
-    margin-top: 10px;
-	color: #4b5c6d;
+.text {
 	width: 55%;
-	text-align: center;
+	margin-top: 10px;
 	font-weight: 300;
+	color: #4b5c6d;
+	text-align: center;
 }

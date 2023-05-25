@@ -7,7 +7,10 @@ const useProductField = ({
 	selectedData = {}, productInfo = {}, productInfoArr = [], isUserSubscribed = false, productLineItemDetails = [],
 	isQuotaLeft = false, verifyLoading = false, status, verifiedData = {}, verifyHandler, checkButton,
 }) => {
-	const { id: hsCodeId, hsCode: selectedHsCode } = selectedData;
+	const {
+		id: hsCodeId,
+		// hsCode: selectedHsCode
+	} = selectedData;
 	const { productId = '', hsCode } = productInfo;
 	const productLength = productInfoArr?.length;
 

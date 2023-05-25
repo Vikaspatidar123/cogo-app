@@ -8,17 +8,12 @@ import { useForm } from '@/packages/forms';
 import getField from '@/packages/forms/Controlled';
 import getApiErrorString from '@/packages/forms/utils/getApiError';
 import { useRequest } from '@/packages/request';
-import { useSelector } from '@/packages/store';
 import patterns from '@/ui/commons/configurations/patterns';
 import getWidth from '@/ui/page-components/discover_rates/common/SearchForm/utils/getWidth';
 
 const { INDIA_COUNTRY_ID } = global;
 
 function IEKycSection({ organizationData, onClose, source }) {
-	const {
-		general: { scope = '' },
-	} = useSelector((state) => state);
-
 	const { country_id, registration_number, preferred_languages } = organizationData;
 
 	const [{ loading }, submitKycAPI] = useRequest(
@@ -37,6 +32,7 @@ function IEKycSection({ organizationData, onClose, source }) {
 		setValue('country_id', country_id);
 		setValue('registration_number', registration_number);
 		setValue('preferred_languages', preferred_languages);
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [country_id, preferred_languages, registration_number]);
 
 	const countryId = watch('country_id');

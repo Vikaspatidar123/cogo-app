@@ -1,9 +1,6 @@
 import { Modal } from '@cogoport/components';
-import { getByKey } from '@cogoport/utils';
 
 import IEKycSection from './IEKycSection';
-
-import { useRequest } from '@/packages/request';
 
 const KYC_ACCOUNT_TYPE_COMPONENT_MAPPING = {
 	importer_exporter: IEKycSection,

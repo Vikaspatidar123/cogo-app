@@ -14,8 +14,6 @@ function PriceSelect({
 	select2,
 	width,
 	id = 'select_phone',
-	disable_country_code = false,
-	codeKeyPlaceholder = 'Select',
 	...rest
 }) {
 	const { [codeKey]: currency = '', [numberKey]: price = '' } = value || {};

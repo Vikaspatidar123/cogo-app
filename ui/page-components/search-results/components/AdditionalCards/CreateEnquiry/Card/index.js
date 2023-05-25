@@ -4,7 +4,6 @@ import EnquiryPlan from '../../MultiService/EnquiryPlan';
 
 import styles from './styles.module.css';
 
-import usePartnerEntityType from '@/packages/forms/hooks/usePartnerEntityType';
 import { useSelector } from '@/packages/store';
 
 function Card({ onClick = () => {}, enquiryQuota = {} }) {
@@ -14,7 +13,8 @@ function Card({ onClick = () => {}, enquiryQuota = {} }) {
 		skippable_checks : profile?.organization?.skippable_checks,
 		agent            : profile?.organization?.agent,
 	}));
-	const { isChannelPartner } = usePartnerEntityType();
+
+	const isChannelPartner = false;
 
 	const handleClick = () => {
 		onClick();

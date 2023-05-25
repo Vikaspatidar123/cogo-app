@@ -2,7 +2,6 @@ import { Select } from '@cogoport/components';
 
 import styles from './styles.module.css';
 
-import usePartnerEntityType from '@/packages/forms/hooks/usePartnerEntityType';
 import {
 	APP_EVENT,
 	trackEvent,
@@ -10,7 +9,7 @@ import {
 import getConfiguration from '@/ui/page-components/discover_rates/hooks/configurations';
 
 function Sort({ sortBy = '', search_type = '', setSort = () => {} }) {
-	const { isChannelPartner = false } = usePartnerEntityType();
+	const isChannelPartner = false;
 	const sortList = getConfiguration('sort', search_type, isChannelPartner);
 
 	if ((sortList || []).length < 2) {

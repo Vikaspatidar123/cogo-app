@@ -1,11 +1,11 @@
 /* eslint-disable import/no-unresolved */
 import { startCase } from '@cogoport/utils';
 
+import currencies from '../../constants/currencies';
 import getCommodityList from '../../utils/getCommodityList';
 
 import ContainerSizes from '@/packages/forms/constants/container-size.json';
 import ContainerTypes from '@/packages/forms/constants/container-types.json';
-import currencies from '@/packages/forms/constants/currencies';
 import Languages from '@/packages/forms/constants/languages.json';
 import TruckTypes from '@/packages/forms/constants/truck-types.json';
 

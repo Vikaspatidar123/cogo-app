@@ -112,6 +112,7 @@ const useAir = ({
 			object = { ...object, origin_pincode: {} };
 		}
 		setLocation({ ...object });
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [JSON.stringify(location)]);
 
 	const getPayload = (airFormData) => {

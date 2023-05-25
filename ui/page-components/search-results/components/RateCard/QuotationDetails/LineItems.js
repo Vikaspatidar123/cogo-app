@@ -24,19 +24,21 @@ function LineItems({ item = {} }) {
 	let totalMarginValue = 0;
 	if (isConditionMatches(CC.SEE_SALES_MARGIN, 'or')) {
 		totalMarginValue = !isEmpty(margins)
-			? (margins || []).filter((margin) => margin?.margin_type === 'demand')[0]
-				?.total_margin_value
+			? (margins || []).filter(
+				(margin) => margin?.margin_type === 'demand',
+			)[0]?.total_margin_value
 			: 0;
 	}
 	if (isConditionMatches(CC.SEE_SUPPLY_MARGIN, 'or')) {
 		totalMarginValue = !isEmpty(margins)
-			? (margins || []).filter((margin) => margin?.margin_type === 'supply')[0]
-				?.total_margin_value
+			? (margins || []).filter(
+				(margin) => margin?.margin_type === 'supply',
+			)[0]?.total_margin_value
 			: 0;
 	}
 	if (isConditionMatches(CC.SEE_ALL_MARGINS, 'or')) {
 		(margins || []).forEach((margin) => {
-			totalMarginValue += (margin?.total_margin_value || 0);
+			totalMarginValue += margin?.total_margin_value || 0;
 		});
 	}
 
@@ -55,19 +57,19 @@ function LineItems({ item = {} }) {
 					<div className={styles.total_price}>
 						<span style={{ fontWeight: 500 }}>
 							{formatAmount({
-								amount  : priceWithoutMargin,
-								currency,
-								options : {
-									style                 : 'currency',
-									currencyDisplay       : 'code',
-									maximumFractionDigits : 0,
-								},
+                            	amount  : priceWithoutMargin,
+                            	currency,
+                            	options : {
+                            		style                 : 'currency',
+                            		currencyDisplay       : 'code',
+                            		maximumFractionDigits : 0,
+                            	},
 							})}
 						</span>
 
 						{isConditionMatches(
-							[...CC.SEE_SALES_MARGIN, ...CC.SEE_SUPPLY_MARGIN],
-							'or',
+                        	[...CC.SEE_SALES_MARGIN, ...CC.SEE_SUPPLY_MARGIN],
+                        	'or',
 						) ? (
 							<div className={styles.space}>
 								{price_discounted}
@@ -76,7 +78,7 @@ function LineItems({ item = {} }) {
 								) x
 								{quantity}
 							</div>
-							) : null}
+                        	) : null}
 					</div>
 				</div>
 			</div>

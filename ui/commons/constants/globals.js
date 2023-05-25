@@ -68,6 +68,34 @@ const GLOBAL_CONSTANTS = {
 			ft : 'FT',
 		},
 	},
+	country_specific_data: {
+		IN: {
+			registration_number: {
+				label: 'GST',
+				pattern:
+					/\d{2}[A-Za-z]{5}\d{4}[A-Za-z]{1}[A-Za-z\d]{1}[Zz]{1}[A-Za-z\d]{1}/g,
+				max_length: 15,
+			},
+			economic_zone: {
+				label: 'SEZ',
+			},
+		},
+		VN: {
+			registration_number: {
+				label      : 'VAT',
+				pattern    : /^[0-9]{1}[0-9]{9}$|^[0-3]{1}[0-9]{9}-?[0-9]{3}$/,
+				max_length : 15,
+			},
+			economic_zone: {
+				label: 'Non-Tariff Zone',
+			},
+		},
+	},
+	cogoport_gst_numbers: {
+		GURUGRAM : '06AAICC8838P1ZV',
+		MUMBAI   : '27AAICC8838P1ZR',
+	},
+
 	servicable_country_list: [
 		'IN',
 		'NL',

@@ -19,14 +19,16 @@
 }
 
 .business_name {
-	margin: 0;
-	font-size: 14px;
-	font-weight: 500;
-	color: #333;
+	font-size: 15px;
+    margin: 0px;
+    color: rgb(51, 51, 51);
+    font-weight: 600;
 }
 
 .radio_wrapper {
-	.core-ui-radio-root {
+	:global{
+	.ui_checkbox_group_container {
+		display: block;
 		width: 100%;
 		padding: 12px 8px;
 		border-bottom: 1px solid #eceff8;
@@ -40,7 +42,7 @@
 			width: 100%;
 		}
 	}
-
+	}
 	.core-ui-radiogroup-container {
 		justify-content: flex-start;
 		width: 100%;
@@ -110,8 +112,23 @@
 .tag_container {
 	display: flex;
 	align-items: center;
-	font-size: 8px;
+	font-size: 10px;
+    .tag{
+		margin-left: 10px;
+		padding: 2px 5px;
+		border-radius: 2px;
+	}
+	.rejected {
+		background: #ed9d8e;
+	}
 
+	.pending {
+		background: #f0dc29;
+	}
+
+	.verified {
+		background: #a9e88b;
+	}
 	.core-ui-tag-root {
 		.core-ui-tag-text {
 			&.rejected {
@@ -119,16 +136,10 @@
 			}
 		}
 
-		.rejected {
-			background: #ed9d8e;
-		}
-
-		.pending {
-			background: #f0dc29;
-		}
-
-		.verified {
-			background: #a9e88b;
-		}
+		
 	}
+}
+
+.tag_div{
+	display: flex;
 }

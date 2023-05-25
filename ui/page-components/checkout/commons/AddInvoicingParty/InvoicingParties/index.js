@@ -12,6 +12,7 @@ import { useRequest } from '@/packages/request';
 import { useSelector } from '@/packages/store';
 import EmptyState from '@/ui/commons/components/EmptyState';
 import { APP_EVENT, trackEvent } from '@/ui/commons/constants/analytics';
+import isCargoInsuranceApplicable from '@/ui/commons/utils/getCargoInsuranceApplicability';
 
 const tradePartyType = {
 	key   : 'paying_party',
@@ -19,6 +20,36 @@ const tradePartyType = {
 	value : 'paying_party',
 };
 
+const getOrgCountryOtherAddresses = ({ newList = [] }) => {
+	const filteredNewList = [];
+
+	newList.forEach((addressItem) => {
+		const otherAddresses = (addressItem.other_addresses || []).filter(
+			(address) => isCargoInsuranceApplicable({
+				country_id: address?.country_id,
+			}),
+		);
+
+		if (isEmpty(otherAddresses)) {
+			return;
+		}
+
+		filteredNewList.push({
+			...addressItem,
+			other_addresses: otherAddresses,
+		});
+	});
+
+	return filteredNewList;
+};
+
+const getOrgCountryBillingAddresses = ({ newList = [] }) => {
+	const filteredNewList = newList.filter((item) => isCargoInsuranceApplicable({
+		country_id: item?.country_id,
+	}));
+
+	return filteredNewList;
+};
 function InvoicingParties({
 	organization = {},
 	primary_service,
@@ -28,6 +59,7 @@ function InvoicingParties({
 	onClose = () => {},
 	isIE,
 	source,
+	isOrgCountryInvoicesRequired,
 }) {
 	const {
 		general: { query },
@@ -74,6 +106,7 @@ function InvoicingParties({
 	}, [bookingType]);
 
 	const { list = [] } = data || {};
+	const reorderedList = list || [];
 
 	const address_to_use = is_tax_applicable
 		? 'billing_addresses'
@@ -88,18 +121,46 @@ function InvoicingParties({
 		const optionsDisabled = {}; // optionsDisabled only for billing_addresses
 		const igstValues = {};
 
-		list.forEach((item) => {
+		list.forEach((item, index) => {
+			const billingAddresses = [];
 			(item.billing_addresses || []).forEach((billingAddress) => {
-				const { id = '', tax_number = '' } = billingAddress;
+				const {
+					id = '',
+					tax_number = '',
+					is_sez = false,
+					verification_status = 'pending_from_approval',
+				} = billingAddress;
 
 				const isTaxNumberSelected = disabledParties.includes(tax_number);
 
-				if (isTaxNumberSelected) {
+				if (
+					isTaxNumberSelected
+					&& ['verified', 'pending'].includes(verification_status)
+				) {
 					values.push(id);
+					billingAddresses.push(billingAddress);
 				}
 
 				optionsDisabled[id] = isTaxNumberSelected;
+
+				if (
+					is_sez
+					&& ['rejected', 'pending_from_approval'].includes(verification_status)
+				) {
+					optionsDisabled[id] = true;
+				}
 			});
+
+			const billingAddressesIds = billingAddresses.map(
+				(billingAddress) => billingAddress.id,
+			);
+
+			reorderedList[index].billing_addresses = [
+				...billingAddresses,
+				...(item.billing_addresses || []).filter(
+					(billingAddress) => !billingAddressesIds.includes(billingAddress.id),
+				),
+			];
 
 			igstValues.cogo_entity_id = item?.cogo_entity_id;
 			igstValues.country_id = item?.country_id;
@@ -107,10 +168,9 @@ function InvoicingParties({
 
 		setValuesState(values);
 		setOptionsDisabledState(optionsDisabled);
-	}, [disabledParties, list, loading]);
+	}, [disabledParties, list, loading, reorderedList]);
 
 	const handleChange = (newValue = []) => {
-		console.log(newValue, 'newValue');
 		setValuesState(newValue);
 
 		const newSelectedAddressId = newValue[newValue.length - 1];
@@ -134,7 +194,7 @@ function InvoicingParties({
 			},
 		);
 
-		const selectedAddress = (invoicingParty[address_to_use] || []).find(
+		const selectedAddress = (invoicingParty?.[address_to_use] || []).find(
 			(address) => address.id === newSelectedAddressId,
 		);
 
@@ -156,24 +216,48 @@ function InvoicingParties({
 			tax_number = '',
 			pincode = '',
 			is_sez,
+			id,
+			organization_pocs = [],
 			// poc_details = [],
 			organization_trade_party_id,
-		} = selectedAddress;
+			country_id,
+		} = selectedAddress || {};
+
+		const defaultPoc = organization_pocs?.[0] || {};
+		let primary_poc;
+		if (!isEmpty(defaultPoc)) {
+			const {
+				email,
+				mobile_number,
+				name: pocName,
+				id: pocId,
+				mobile_country_code,
+			} = defaultPoc;
+			primary_poc = {
+				name : pocName,
+				id   : pocId,
+				email,
+				mobile_number,
+				mobile_country_code,
+			};
+		}
 
 		const obj = {
+			country_id              : country_id || invoicingParty?.country_id,
 			name,
-			business_name           : invoicingParty.business_name,
+			business_name           : invoicingParty?.business_name,
 			organization_id,
-			organization_country_id : invoicingParty.country_id,
+			organization_country_id : invoicingParty?.country_id,
 			tax_number,
 			tax_mechanism           : tax_mechanism?.[0]?.mechanism_type,
 			address,
 			pincode,
+			billing_address_id      : id,
 			is_sez                  : !!is_sez,
-			poc                     : null, // poc_details,
-			trade_party_type        : invoicingParty.trade_party_type,
+			poc                     : primary_poc, // poc_details,
+			trade_party_type        : invoicingParty?.trade_party_type,
 			organization_trade_party_id,
-			registration_number     : invoicingParty.registration_number,
+			registration_number     : invoicingParty?.registration_number,
 		};
 
 		updateInvoicingParty({ ...obj });
@@ -186,11 +270,17 @@ function InvoicingParties({
 			return <Loader themeType="primary" />;
 		}
 
-		const newList = list.filter(
+		const newList = reorderedList.filter(
 			(item) => !isEmpty(item[address_to_use] || []),
 		);
+		let filteredNewList = newList;
+		if (isOrgCountryInvoicesRequired) {
+			filteredNewList = address_to_use === 'other_addresses'
+				? getOrgCountryOtherAddresses({ newList })
+				: getOrgCountryBillingAddresses({ newList });
+		}
 
-		if (isEmpty(newList)) {
+		if (isEmpty(filteredNewList)) {
 			if (bookingType === 'self') {
 				return (
 					<>
@@ -218,7 +308,7 @@ function InvoicingParties({
 			return <EmptyState heading="address" />;
 		}
 
-		return newList.map((item) => (
+		return filteredNewList.map((item) => (
 			<InvoicingPartyItem
 				key={item.id}
 				item={item}

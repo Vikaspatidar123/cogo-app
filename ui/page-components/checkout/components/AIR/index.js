@@ -71,7 +71,7 @@ function AIR(props) {
 
 				<div className={styles.main_content}>
 					<div className={styles.route}>
-						<IcMAirport width={40} height={40} className="icon" />
+						<IcMAirport width={40} height={40} className={styles.icon} />
 						<RouteDisplay
 							mode={summary.mode}
 							port={rate.port}

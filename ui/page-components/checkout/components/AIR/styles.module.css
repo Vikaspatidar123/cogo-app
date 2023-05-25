@@ -25,6 +25,8 @@
 
 .main_content {
 	box-sizing: border-box;
+	padding: 4px 16px 16px;
+	margin-top: 20px;
 	border: 1px solid #cedcea;
 }
 
@@ -37,41 +39,54 @@
 }
 
 .footer {
+	display: flex;
+	justify-content: space-between;
+	height: 40px;
 	padding: 0 20px;
 	background-color: #cedcea;
 	border-radius: 0 0 4px 4px;
+
+	.additional_services_title {
+		margin-right: 2%;
+	}
+
+	.additional_services {
+		display: flex;
+		align-items: center;
+		width: 100%;
+	}
+	.details {
+		display: flex;
+		align-items: center;
+		margin-right: 16px;
+		cursor: pointer;
+	}
+	.details_title {
+		margin-right: 13px;
+	}
+	.additional_services_title {
+		margin-right: 2%;
+	}
+	
+	
 }
 
-.details {
-	display: flex;
-	align-items: center;
-	margin-right: 16px;
-	cursor: pointer;
-}
 
-.details_title {
-	margin-right: 13px;
-}
-
-.additional_services {
-	display: flex;
-	align-items: center;
-	width: 100%;
-}
-
-.additional_services_title {
-	margin-right: 2%;
-}
 
 .service_details_container {
-	margin-bottom: 16px;
+	margin-bottom: 12px;
+
+	@media (max-width: 768px) {
+		margin-top: 16px;
+		margin-bottom: 70px;
+	}
 }
 
 .service_details_containermargin-bottommargin-bottom {
-	/* @media (max-wid	th: 768px) {
+	@media (max-wid	th: 768px) {
 		margin-top: 16px;
 		margin-bottom: 70px;
-	} */
+	}
 }
 
 .button_link {
@@ -87,7 +102,9 @@
 
 .service_logo {
 	display: flex;
-	justify-content: space-around;
+	align-items: center;
+	justify-content: space-evenly;
+	width: 65%;
 	height: 100%;
 }
 

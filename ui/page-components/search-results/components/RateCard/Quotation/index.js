@@ -66,7 +66,38 @@ function Quotation({
 		noRatesServices,
 		handleSave,
 	} = useCreateCheckout({ data, spot_search_id, id });
+	const onSubmit = () => {
+		let provider;
+		let line;
+		const additonal_serivces_names = [];
+		Object.keys(data.service_rates).map((datas) => {
+			if (data.service_rates[datas].service_type !== data.service_type) {
+				additonal_serivces_names.push(
+					data.service_rates[datas].service_type,
+				);
+			}
+			return null;
+		});
+		if (
+			data.service_type === 'air_freight'
+            || data.service_type === 'air_customs'
+		) {
+			line = (data.airline || {}).short_name;
+			provider = (data.airline || {}).business_name;
+		} else {
+			line = (data.shipping_line || {}).short_name;
+			provider = (data.shipping_line || {}).business_name;
+		}
+		trackEvent(APP_EVENT.search_booked_rate, {
+			amount              : data.total_price,
+			amount_currency     : data.total_price_currency,
+			shipping_line       : line,
+			service_provider    : provider,
+			additional_services : additonal_serivces_names,
+		});
 
+		handleBook();
+	};
 	const { service_rates = {}, service_type = '', source = '' } = data || {};
 	const unavailableRatesCount = Object.values(service_rates).reduce(
 		(acc, curr) => {
@@ -227,46 +258,7 @@ function Quotation({
 			</div>
 		)}
 		<Button
-			onClick={() => {
-                            	let provider;
-                            	let line;
-                            	const additonal_serivces_names = [];
-                            	Object.keys(data.service_rates).map((datas) => {
-                            		if (
-                            			data.service_rates[datas]
-                            				.service_type !== data.service_type
-                            		) {
-                            			additonal_serivces_names.push(
-                            				data.service_rates[datas]
-                            					.service_type,
-						);
-                            		}
-                            		return null;
-                            	});
-                            	if (
-                            		data.service_type === 'air_freight'
-                                    || data.service_type === 'air_customs'
-                            	) {
-                            		line = (data.airline || {}).short_name;
-                            		provider = (data.airline || {})
-                            			.business_name;
-                            	} else {
-                            		line = (data.shipping_line || {})
-                            			.short_name;
-                            		provider = (data.shipping_line || {})
-                            			.business_name;
-                            	}
-                            	trackEvent(APP_EVENT.search_booked_rate, {
-                            		amount           : data.total_price,
-                            		amount_currency  : data.total_price_currency,
-                            		shipping_line    : line,
-                            		service_provider : provider,
-                            		additional_services:
-                                        additonal_serivces_names,
-                            	});
-
-                            	handleBook();
-			}}
+			onClick={() => onSubmit()}
 			disabled={loading}
 			id={`${id}_book_btn`}
 			style={buttonStyles}
@@ -374,7 +366,6 @@ function Quotation({
                         		shipping_line    : line,
                         		service_provider : provider,
                         	});
-
                         	setOpen(!open);
 						}}
 						id={`${id}_view_breakup`}

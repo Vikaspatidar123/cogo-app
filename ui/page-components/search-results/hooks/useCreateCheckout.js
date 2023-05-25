@@ -5,7 +5,6 @@ import { useState } from 'react';
 import { useRouter } from '@/packages/next';
 import { useRequest } from '@/packages/request';
 import { useSelector } from '@/packages/store';
-import getGeoConstants from '@/ui/commons/constants/geo';
 
 const useCreateCheckout = ({
 	data = {},
@@ -13,23 +12,13 @@ const useCreateCheckout = ({
 	id = '',
 	source = '',
 }) => {
-	const geo = getGeoConstants();
-
-	const cogoVerseTeamIDS = [
-		geo.uuid.cogoverse_admin_id,
-		geo.uuid.cogoverse_executive_id,
-		geo.uuid.cogoverse_kam_id,
-	];
 	const router = useRouter();
 	const [confirmation, setConfirmation] = useState(false);
 	const [noRatesServices, setNoRatesServices] = useState([]);
-
 	const {
 		query = {},
-		userRoleIDs = [],
-	} = useSelector(({ general, profile }) => ({
-		query       : general?.query,
-		userRoleIDs : profile?.partner?.user_role_ids,
+	} = useSelector(({ general }) => ({
+		query: general?.query,
 	}));
 
 	const [{ loading }, trigger] = useRequest(
@@ -49,15 +38,11 @@ const useCreateCheckout = ({
 	);
 
 	const handleCreateCheckout = async () => {
-		const isCogoVerseMember = userRoleIDs.some((elem) => cogoVerseTeamIDS.includes(elem));
-
 		const params = {
 			id            : query?.search_id,
 			source        : source || null,
 			selected_card : data?.card,
-			tags          : (query?.source === 'communication' || isCogoVerseMember)
-				? ['cogoverse']
-				: undefined,
+
 		};
 
 		try {
@@ -95,7 +80,6 @@ const useCreateCheckout = ({
 		const rates = Object.keys(service_rates).map(
 			(service) => service_rates[service],
 		);
-
 		const no_rates_services = [];
 		(rates || []).forEach((rate) => {
 			if (rate?.is_rate_available === false) {

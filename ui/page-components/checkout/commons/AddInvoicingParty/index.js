@@ -31,7 +31,9 @@ function AddInvoicingParty({
 	setIgstValues = () => {},
 	source,
 }) {
-	const [activeComponentKey, setActiveComponentKey] = useState(() => RADIO_GROUP_OPTIONS[0].value);
+	const [activeComponentKey, setActiveComponentKey] = useState(
+		() => RADIO_GROUP_OPTIONS[0].value,
+	);
 	const [isAddInvoice, setIsAddInvoice] = useState(false);
 
 	const onClose = () => {
@@ -72,12 +74,7 @@ function AddInvoicingParty({
 	const activeComponentProps = componentProps[activeComponentKey];
 	const title = () => (
 		<>
-			{' '}
-			<div
-				className={styles.text}
-			>
-				New Invoicing Party
-			</div>
+			<div className={styles.text}>New Invoicing Party</div>
 
 			<div className={styles.radio_wrapper}>
 				<RadioGroup
@@ -86,14 +83,16 @@ function AddInvoicingParty({
 					onChange={setActiveComponentKey}
 				/>
 			</div>
-
 		</>
 	);
 	const renderModalContent = () => (
 		<div>
 			<Modal.Header title={title()} />
 
-			<ActiveComponent key={activeComponentKey} {...activeComponentProps} />
+			<ActiveComponent
+				key={activeComponentKey}
+				{...activeComponentProps}
+			/>
 		</div>
 	);
 
@@ -108,7 +107,7 @@ function AddInvoicingParty({
 				className={styles.btn}
 				id="checkout_add_invoicing_parties"
 				style={{
-					marginLeft: '8px',
+                	marginLeft: '8px',
 				}}
 				themeType="secondary"
 				size="lg"

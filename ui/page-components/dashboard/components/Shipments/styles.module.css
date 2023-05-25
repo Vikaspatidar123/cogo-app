@@ -85,6 +85,7 @@
 .second_data {
 	padding-left: 15px;
 	margin-top: 10px;
+	display:flex
 }
 
 .origin {

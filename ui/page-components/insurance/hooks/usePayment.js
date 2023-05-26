@@ -9,8 +9,7 @@ import { loadScript } from '@/ui/commons/utils/loadScript';
 
 const usePayment = ({
 	ratesResponse = {},
-	isBillingAddress = false,
-	checked = [],
+	organizationAddress = false,
 }) => {
 	const { profile = {} } = useSelector((state) => state);
 	const {
@@ -38,6 +37,9 @@ const usePayment = ({
 		serviceChargeList = [],
 		totalCharges = 0,
 	} = ratesResponse || {};
+
+	const { organizationAddressId = '', isBillingAddress = false } =	organizationAddress || {};
+
 	const callBackUrl = `${process.env.NEXT_PUBLIC_APP_URL}v2/${org_id}/${branch_id}/saas/insurance/${type}`;
 
 	const addressKey = isBillingAddress
@@ -81,7 +83,7 @@ const usePayment = ({
 						source                : 'SAAS',
 						userId                : id,
 						organizationId        : organization?.id,
-						[addressKey]          : checked?.[0],
+						[addressKey]          : organizationAddressId,
 						currency              : 'INR',
 						billRefId             : info?.id,
 						billType              : 'INSURANCE',
@@ -118,22 +120,10 @@ const usePayment = ({
 				);
 			}
 		},
-		[
-			addressKey,
-			callBackUrl,
-			checked,
-			email,
-			id,
-			mobile_country_code,
-			mobile_number,
-			modifiedServiceChargesList,
-			name,
-			organization?.id,
-			taxAmount,
-			totalApplicableCharges,
-			totalCharges,
-			trigger,
-		],
+		[addressKey, callBackUrl, email,
+			id, mobile_country_code, mobile_number,
+			modifiedServiceChargesList, name, organization?.id,
+			organizationAddressId, taxAmount, totalApplicableCharges, totalCharges, trigger],
 	);
 
 	return { payment, data, loading };

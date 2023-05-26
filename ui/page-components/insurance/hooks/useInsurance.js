@@ -9,7 +9,7 @@ const useInsurance = ({
 	type = '',
 	uploadType = '',
 	activeTab = '',
-	organizationAddressId = '',
+	organizationAddress = '',
 	policyIdDraft = '',
 	policyId = '',
 	ratesResponse = {},
@@ -20,6 +20,8 @@ const useInsurance = ({
 	const billingtype = uploadType;
 	const { profile } = useSelector((state) => state);
 	const { id, organization } = profile;
+
+	const { isBillingAddress = false, organizationAddressId = '' } = organizationAddress || {};
 
 	const [{ loading }, trigger] = useRequestBf(
 		{
@@ -39,6 +41,10 @@ const useInsurance = ({
 		premium = 0,
 		sumInsured = 0,
 	} = ratesResponse || {};
+
+	const addressKey = isBillingAddress
+		? 'organizationBillingAddressId'
+		: 'organizationAddressId';
 
 	const resp = useCallback(
 		async (item) => {
@@ -60,7 +66,7 @@ const useInsurance = ({
 						policyId       : policyIdDraft || policyId || policyIdPost,
 						gstAmount      : taxAmount,
 						netPremium,
-						organizationAddressId,
+						[addressKey]   : organizationAddressId,
 						platformCharges,
 						convenienceFee,
 						sumInsured,
@@ -76,29 +82,10 @@ const useInsurance = ({
 				Toast.error(error?.error?.message);
 			}
 		},
-		[
-			activeTab,
-			billingtype,
-			convenienceFee,
-			countryCode,
-			id,
-			insuranceType,
-			netPremium,
-			organization?.id,
-			organizationAddressId,
-			payment,
-			platformCharges,
-			policyId,
-			policyIdDraft,
-			policyIdPost,
-			premium,
-			profile?.email,
-			sumInsured,
-			taxAmount,
-			totalApplicableCharges,
-			trigger,
-			type,
-		],
+		[activeTab, addressKey, billingtype, convenienceFee,
+			countryCode, id, insuranceType, netPremium, organization?.id,
+			organizationAddressId, payment, platformCharges, policyId, policyIdDraft,
+			policyIdPost, premium, profile?.email, sumInsured, taxAmount, totalApplicableCharges, trigger, type],
 	);
 
 	return { resp, insuranceLoading: loading };

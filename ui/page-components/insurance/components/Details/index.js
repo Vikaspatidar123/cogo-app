@@ -1,9 +1,7 @@
-import { Placeholder } from '@cogoport/components';
 import { isEmpty } from '@cogoport/utils';
 import { useState, useMemo } from 'react';
 
 import DraftModal from '../../common/DraftModal/index';
-import useBillingAddress from '../../hooks/useBillingAddress';
 import useCheckStatus from '../../hooks/useCheckStatus';
 import useCreateInsurance from '../../hooks/useCreateInsurance';
 import useCheckoutInsurance from '../../hooks/useInsurance';
@@ -28,37 +26,38 @@ function Details({
 	draftDetailsPrefilling = {},
 	policyId = '',
 }) {
-	const iff = () => {
-		if (!isEmpty(formDetails)) {
-			if (formDetails?.policyForSelf) {
-				return 'SELF';
-			}
-			return 'OTHER';
-		}
-		return 'SELF';
-	};
+	const {
+		billingType = '',
+		organizationAddressId: draftorganizationAddressId = '',
+		organizationBillingAddressId = '',
+		policyForSelf = true,
+	} = draftDetailsPrefilling || {};
+
 	const [countryDetails, setCountryDetails] = useState({});
 	const [modal, setModal] = useState({
 		pendingModal     : false,
 		showSuccessModal : false,
 	});
 	const [uploadType, setUploadType] = useState(
-		draftDetailsPrefilling?.billingType || 'CORPORATE',
+		billingType || 'CORPORATE',
 	);
 	const [draftModal, setDraftModal] = useState(false);
 	const [ratesResponse, setRatesResponse] = useState();
-	const [organizationAddressId, setOrganizationAddressId] = useState();
+	const [organizationAddress, setOrganizationAddress] = useState({
+		isBillingAddress: !isEmpty(draftDetailsPrefilling)
+			? !organizationBillingAddressId
+			: false,
+		organizationAddressId:
+		draftorganizationAddressId || organizationBillingAddressId || '',
+	});
 	const [commodityName, setCommodityName] = useState('');
 	const [countryCode, setCountryCode] = useState(
 		formDetails?.policyCountryCode || '',
 	);
-	const [insuranceType, setInsuranceType] = useState([iff()]);
-	const [isBillingAddress, setisBillingAddress] = useState();
+	const [insuranceType, setInsuranceType] = useState([!policyForSelf ? 'OTHER' : 'SELF']);
 	const { query } = useRouter();
 
-	const { addressdata = [], addressLoading = false } = useBillingAddress();
-
-	const [checked, setChecked] = useState();
+	const [checked, setChecked] = useState([organizationBillingAddressId || draftorganizationAddressId]);
 
 	const {
 		insurance = () => {},
@@ -68,7 +67,7 @@ function Details({
 
 	const { payment = () => {}, loading = false } = usePayment({
 		ratesResponse,
-		isBillingAddress,
+		organizationAddress,
 		checked,
 	});
 
@@ -78,7 +77,7 @@ function Details({
 		policyId,
 		activeTab,
 		uploadType,
-		organizationAddressId,
+		organizationAddress,
 		countryCode,
 		insuranceType,
 	});
@@ -88,7 +87,7 @@ function Details({
 		type,
 		uploadType,
 		activeTab,
-		organizationAddressId,
+		organizationAddress,
 		policyIdDraft,
 		policyId,
 		ratesResponse,
@@ -118,31 +117,24 @@ function Details({
 		<div className={isMobile ? styles.main_mobile : styles.main}>
 			{activeStepper?.[1] === 'pro' && (
 				<div>
-					{!addressLoading && (
-						<BillingDetails
-							formDetails={formDetails}
-							setActiveStepper={setActiveStepper}
-							setFormDetails={setFormDetails}
-							insuranceType={insuranceType}
-							setInsuranceType={setInsuranceType}
-							addressdata={addressdata}
-							setChecked={setChecked}
-							checked={checked}
-							addressLoading={addressLoading}
-							setOrganizationAddressId={setOrganizationAddressId}
-							isMobile={isMobile}
-							draftResponse={draftResponse}
-							draftLoading={draftLoading}
-							policyid={policyIdDraft}
-							policyIdCreated={policyId}
-							uploadType={uploadType}
-							setUploadType={setUploadType}
-							setisBillingAddress={setisBillingAddress}
-						/>
-					)}
-					{
-						addressLoading && <Placeholder />
-					}
+					<BillingDetails
+						formDetails={formDetails}
+						setActiveStepper={setActiveStepper}
+						setFormDetails={setFormDetails}
+						insuranceType={insuranceType}
+						setInsuranceType={setInsuranceType}
+						setChecked={setChecked}
+						checked={checked}
+						setOrganizationAddress={setOrganizationAddress}
+						organizationAddress={organizationAddress}
+						isMobile={isMobile}
+						draftResponse={draftResponse}
+						draftLoading={draftLoading}
+						policyid={policyIdDraft}
+						policyIdCreated={policyId}
+						uploadType={uploadType}
+						setUploadType={setUploadType}
+					/>
 				</div>
 			)}
 			{activeStepper?.[2] === 'pro' && (

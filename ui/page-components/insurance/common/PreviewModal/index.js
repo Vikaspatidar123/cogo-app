@@ -58,6 +58,7 @@ function PreviewModal({
 		aadharNumber = '',
 		panNumber = '',
 	} = formDetails || {};
+	console.log('🚀 ~ file: index.js:61 ~ formDetails:', formDetails);
 
 	const fullName = `${insuredFirstName} ${insuredLastName}`;
 	const name = institutionName !== '' ? institutionName : fullName;
@@ -192,7 +193,6 @@ function PreviewModal({
 							<div className={styles.commodity}>
 								<div className={styles.label}>Origin Country</div>
 								<div className={styles.value}>
-									{' '}
 									{policyType === 'IMPORT' ? originCountry || '' : 'INDIA'}
 								</div>
 							</div>

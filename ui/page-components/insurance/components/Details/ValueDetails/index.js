@@ -4,7 +4,6 @@ import PendingModal from '../../../common/PendingModal';
 import PreviewModal from '../../../common/PreviewModal';
 import SuccessModal from '../../../common/SuccessModal';
 import getControls from '../../../configurations/valueControls';
-import useCurrencyConversion from '../../../hooks/useCurrencyConversion';
 import useGetRates from '../../../hooks/useGetRates';
 
 import ChargeDetails from './ChargeDetails';
@@ -70,14 +69,13 @@ function ValueDetails({
 		debounceQuery(watchInvoiceAmount);
 	}, [debounceQuery, watchInvoiceAmount]);
 
-	const { data } = useCurrencyConversion({ watchPolicyCurrency: watcher[0], query });
-
 	const { ratesLoading } = useGetRates({
 		activeTab,
 		formDetails,
 		countryCode,
-		responseFromCurrencyExchange: data,
 		setRatesResponse,
+		query          : query || watcher[1],
+		policyCurrency : watcher?.[0],
 	});
 
 	const submit = (values) => {

@@ -8,8 +8,9 @@ const useGetRates = ({
 	activeTab = '',
 	formDetails = {},
 	countryCode = '',
-	responseFromCurrencyExchange = {},
 	setRatesResponse = () => {},
+	query = '',
+	policyCurrency = '',
 }) => {
 	const { profile } = useSelector((state) => state);
 	const [{ loading }, trigger] = useRequestBf(
@@ -28,34 +29,25 @@ const useGetRates = ({
 				policyCountryId = '',
 				policyCommodityId = '',
 			} = formDetails || {};
-			if (responseFromCurrencyExchange?.price) {
-				const res = await trigger({
-					params: {
-						performedBy        : profile?.id,
-						policyType         : countryCode === 'IN' ? 'INLAND' : activeTab,
-						descriptionOfCargo : cargoDescription,
-						policyCountryId,
-						policyCommodityId,
-						invoiceValue       : responseFromCurrencyExchange?.price,
-					},
-				});
-				setRatesResponse(res?.data);
-			}
+			const res = await trigger({
+				params: {
+					performedBy        : profile?.id,
+					policyType         : countryCode === 'IN' ? 'INLAND' : activeTab,
+					descriptionOfCargo : cargoDescription,
+					policyCountryId,
+					policyCommodityId,
+					invoiceValue       : query,
+					policyCurrency,
+				},
+			});
+			setRatesResponse(res?.data);
 		} catch (error) {
 			if (error?.message !== 'canceled') {
 				Toast?.error(error?.message);
 			}
 			setRatesResponse({});
 		}
-	}, [
-		activeTab,
-		countryCode,
-		formDetails,
-		profile?.id,
-		responseFromCurrencyExchange?.price,
-		setRatesResponse,
-		trigger,
-	]);
+	}, [activeTab, countryCode, formDetails, policyCurrency, profile?.id, query, setRatesResponse, trigger]);
 
 	useEffect(() => {
 		response();

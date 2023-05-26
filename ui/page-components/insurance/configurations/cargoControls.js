@@ -95,6 +95,10 @@ const controls = [
 		name        : 'riskCoverage',
 		placeholder : 'Coverage',
 		type        : 'select',
+		value       : 'CIF',
+		options     : [{
+			label: 'CIF', value: 'CIF',
+		}],
 	},
 ];
 
@@ -122,6 +126,7 @@ const getControls = ({
 			...control,
 			placeholder : activeTab === 'IMPORT' ? 'Origin Country' : 'Destination Country',
 			onChange    : (e) => {
+				console.log(e, 'jhgftdrsdfgh');
 				setCountryDetails({
 					checkSantion      : e?.countryType,
 					sanctionedCountry : e?.countryName,

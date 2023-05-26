@@ -8,12 +8,12 @@ import { useRequest } from '@/packages/request';
 const useGetAddresses = ({ uploadType = '' }) => {
 	const { profile } = useSelector((state) => state);
 
-	const { trigger, loading, data } = useRequest(
+	const [{ loading, data }, trigger] = useRequest(
 		{
 			method : 'get',
 			url    : 'list_address_for_insurance',
 		},
-
+		{ autoCancel: false },
 	);
 
 	const fetchAddresses = useCallback(async () => {
@@ -27,13 +27,13 @@ const useGetAddresses = ({ uploadType = '' }) => {
 		} catch (error) {
 			Toast.error(getApiErrorString(error));
 		}
-	}, [profile?.organization?.id, trigger, uploadType]);
+	}, [profile, trigger, uploadType]);
 
 	useEffect(() => {
-		if (uploadType) {
+		if (uploadType && profile) {
 			fetchAddresses();
 		}
-	}, [fetchAddresses, uploadType]);
+	}, [fetchAddresses, profile, uploadType]);
 
 	return { data, loading, refetch: fetchAddresses };
 };

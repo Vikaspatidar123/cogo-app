@@ -91,17 +91,20 @@
     text-decoration: underline;
     cursor: pointer;
 }
-.or_tag {
+
+.org_tag {
     display: flex;
     justify-content: center;
     align-items: center;
     margin: 8px;
 }
+
 .line {
     height: 0;
     width: 14px;
     border-top: 1.7px solid #bdbdbd;
 }
+
 .text {
     font-weight: 500;
     font-size: 13px;

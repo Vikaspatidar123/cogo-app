@@ -66,5 +66,5 @@
 
 .card:hover .text,
 .card.selectedCard .text {
-	font-weight: 500; 
+	font-weight: 500;
 }

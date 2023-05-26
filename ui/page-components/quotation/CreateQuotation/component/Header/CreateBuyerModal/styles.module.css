@@ -31,6 +31,8 @@
 		}
 
 		.ui_upload_droparea_container {
+			flex-direction: row;
+			min-height: 60px;
 			padding: 10px 0;
 
 			svg {
@@ -45,9 +47,6 @@
 			.ui_upload_droparea_subheading {
 				font-size: 8px;
 			}
-
-			flex-direction: row;
-			min-height: 60px;
 		}
 	}
 }

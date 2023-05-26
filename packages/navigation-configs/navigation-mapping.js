@@ -16,6 +16,7 @@ import {
 	IcMProductCodeMapping,
 	IcMFfreferigeratedCargoType,
 	IcADutiesTaxes,
+	IcAFormsAndCertificates,
 } from '@cogoport/icons-react';
 
 const navigationMappings = {
@@ -146,6 +147,14 @@ const navigationMappings = {
 				href        : '/v2/saas/premium-services/duties-taxes-calculator',
 				as          : '/v2/saas/premium-services/duties-taxes-calculator',
 				icon        : <IcADutiesTaxes width={50} height={50} />,
+				description : '',
+			},
+			{
+				key         : 'saas_premium_services-import_export_controls',
+				title       : 'Import Export Controls',
+				href        : '/v2/saas/premium-services/import-export-controls',
+				as          : '/v2/saas/premium-services/import-export-controls',
+				icon        : <IcAFormsAndCertificates width={50} height={50} />,
 				description : '',
 			},
 		],

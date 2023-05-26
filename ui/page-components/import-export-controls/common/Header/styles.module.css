@@ -1,0 +1,44 @@
+.container{
+    padding: 20px;
+	background: #fcdc00;
+	position: relative;
+
+	.flex_box {
+		display: flex;
+		align-items: center;
+
+		.title {
+			font-size: 24px;
+			font-weight: 500;
+			margin-left: 6px;
+		}
+	}
+
+	.logo {
+		height: 115px;
+		position: absolute;
+		overflow-y: hidden;
+		right: 0;
+		top: -40px;
+
+		img {
+			width: 144px;
+		}
+	}
+	.back_icon {
+		cursor: pointer;
+	}
+
+	@media screen and (max-width: 767px) {
+		.flex_box {
+			justify-content: center;
+		}
+
+		.back_container {
+			justify-content: flex-start;
+		}
+		.logo {
+			display: none;
+		}
+	}
+}

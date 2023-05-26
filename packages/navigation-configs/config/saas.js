@@ -65,6 +65,18 @@ const saas = {
 	'/saas/dsr': {
 		navigation: 'saas_tracking',
 	},
+	'/saas/premium-services/import-export-controls': {
+		navigation : 'saas_premium_services-import_export_controls',
+		isMainNav  : true,
+	},
+	'/saas/premium-services/import-export-controls/[trade_engine_id]': {
+		navigation : 'saas_premium_services-import_export_controls',
+		isMainNav  : true,
+	},
+	'/saas/premium-services/import-export-controls/[trade_engine_id]/result': {
+		navigation : 'saas_premium_services-import_export_controls',
+		isMainNav  : true,
+	},
 
 };
 

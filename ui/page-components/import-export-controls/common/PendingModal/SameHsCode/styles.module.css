@@ -1,0 +1,26 @@
+.title{
+    font-size: 22px;
+	color: #170f49;
+	font-weight: 600;
+}
+
+.container{
+    display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	text-align: center;
+
+	.btn_container {
+		display: flex;
+		justify-content: center;
+		margin-top: 17px;
+
+		.submit_btn {
+			margin-left: 10px;
+			background: #ee3425 !important;
+			border: none;
+			text-transform: capitalize;
+		}
+	}
+}

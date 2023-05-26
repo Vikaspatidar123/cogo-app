@@ -25,10 +25,6 @@ const saas = {
 		navigation : 'saas_tools-freight_rate_trend',
 		isMainNav  : true,
 	},
-	'/saas/quickquotation/viewlist': {
-		navigation : 'saas_planning-quotation',
-		isMainBav  : true,
-	},
 	'/saas/quickquotation/createquotation': {
 		navigation : 'saas_planning-quotation',
 		isMainBav  : true,

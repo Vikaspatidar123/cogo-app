@@ -224,37 +224,10 @@ const navigationMappings = {
 		],
 	},
 
-	app_accept_terms_and_conditions: {
-		key       : 'app_accept_terms_and_conditions',
-		title     : 'Terms and Conditions',
-		href      : '/accept-terms-and-conditions',
-		type      : 'link',
-		showInNav : false,
-	},
-
 	app_get_started: {
 		key   : 'app_get_started',
 		title : 'Get Started',
 		theme : 'green',
-	},
-
-	saas_finance: {
-		key       : 'saas_finance',
-		title     : 'Finance',
-		icon      : 'nav-finance',
-		isSubNavs : true,
-		isNew     : true,
-		options   : [
-			{
-				key   : 'saas_planning-quotation',
-				title : 'Quick Quotations',
-				icon  : <IcMQuotations width={30} height={30} />,
-				type  : 'link',
-				href  : '/v2/saas/quickquotation/viewlist',
-				as    : '/v2/saas/quickquotation/viewlist',
-			},
-
-		],
 	},
 
 	app_kyc: {

@@ -4,7 +4,7 @@ import {
 	incotermMaping,
 	containerTypeMaping,
 	containerSizeMaping,
-} from '../constants/Mapping';
+} from '../constants/mapping';
 
 const cargoHandler = (type) => {
 	if (type === 'import') {

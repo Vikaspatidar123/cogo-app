@@ -5,7 +5,7 @@ import {
 	containerTypeMaping,
 	incotermMaping,
 	serviceTypeMaping,
-} from '../constants/Mapping';
+} from '../constants/mapping';
 
 import { useSelector } from '@/packages/store';
 

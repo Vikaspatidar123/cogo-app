@@ -1,5 +1,6 @@
+import work_scopes from '../../../../configurations/work-scopes';
+
 import languages from '@/ui/commons/configurations/languages';
-import work_scopes from '@/ui/commons/constants/work-scope.json';
 
 const getProfileControls = ({ userDetails = {} }) => [
 	{

@@ -41,8 +41,8 @@ const airFeedBackControls = [
 	},
 	{
 		name           : 'preferred_airline_ids',
-		type           : 'select',
-		optionsListKey : 'air-lines',
+		type           : 'async_select',
+		asyncKey       : 'air-lines',
 		defaultOptions : true,
 		caret          : true,
 		label          : 'Preferred Air lines',

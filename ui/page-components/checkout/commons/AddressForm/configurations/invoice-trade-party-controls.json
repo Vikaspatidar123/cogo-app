@@ -1,7 +1,7 @@
 [
 	{
-		"type": "select",
-		"optionsListKey": "trade-parties",
+		"type": "async_select",
+		"optionKey": "trade_parties",
 		"name": "organization_trade_party_id",
 		"label": "Invoicing Party",
 		"caret": true,

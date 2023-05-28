@@ -3,10 +3,10 @@ const fclCustomsControls = () => (
 		{
 			label          : 'HS Code for the commodity',
 			name           : 'hs_code',
-			type           : 'select',
+			type           : 'async_select',
 			caret          : true,
 			defaultOptions : true,
-			optionsListKey : 'hs_codes',
+			asyncKey       : 'hs_codes',
 			valueKey       : 'label',
 			span           : 6,
 		},

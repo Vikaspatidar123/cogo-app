@@ -104,8 +104,8 @@ const airControls = () => [
 	// 	rules: { required: 'Required' },
 	// },
 	{
-		type           : 'select',
-		optionsListKey : 'air-lines',
+		type           : 'async_select',
+		asyncKey       : 'air-lines',
 		defaultOptions : true,
 		caret          : true,
 		name           : 'preferred_airline_ids',

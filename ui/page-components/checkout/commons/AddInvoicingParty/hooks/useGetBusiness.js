@@ -29,7 +29,7 @@ const useGetBusiness = (props) => {
 	const {
 		watchTaxNumber = '',
 		watchBusinessName = '',
-		setValues = () => {},
+		setValue = () => {},
 		registrationNumberType = '',
 	} = props;
 
@@ -56,31 +56,25 @@ const useGetBusiness = (props) => {
 				: business_type || '';
 
 			if (watchTaxNumber.length === 10) {
-				setValues({
-					business_name : business_name || watchBusinessName || '',
-					company_type  : companyBasedOnPanNumber,
-				});
+				setValue('business_name', business_name || watchBusinessName || '');
+				setValue('business_name', business_name || watchBusinessName || '');
 			} else if (watchTaxNumber.length === 15) {
-				setValues({
-					tax_number : watchTaxNumber,
-					pincode    : (!isEmpty(addresses) && (addresses[0] || {}).pincode) || '',
-					address    : (!isEmpty(addresses) && (addresses[0] || {}).address) || '',
-					name       : trade_name || business_name || '',
-				});
+				setValue('tax_number', watchTaxNumber);
+				setValue('pincode', (!isEmpty(addresses) && (addresses[0] || {}).pincode) || '');
+				setValue('address', (!isEmpty(addresses) && (addresses[0] || {}).address) || '');
+				setValue('name', trade_name || business_name || '');
 			} else {
-				setValues({
-					tax_number    : '',
-					pincode       : '',
-					address       : '',
-					name          : '',
-					business_name : '',
-					company_type  : '',
-				});
+				setValue('tax_number', '');
+				setValue('pincode', '');
+				setValue('address', '');
+				setValue('name', '');
+				setValue('business_name', '');
+				setValue('company_type', '');
 			}
 		} catch (error) {
 			console.log('error :: ', error);
 		}
-	}, [getBusinessApi, registrationNumberType, setValues, watchBusinessName, watchTaxNumber]);
+	}, [getBusinessApi, registrationNumberType, setValue, watchBusinessName, watchTaxNumber]);
 
 	const onBlurTaxPanGstinControl = useCallback(() => {
 		if (

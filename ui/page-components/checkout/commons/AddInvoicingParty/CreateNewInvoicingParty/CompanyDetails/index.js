@@ -1,4 +1,4 @@
-import { Button } from '@cogoport/components';
+import { Button, Modal } from '@cogoport/components';
 
 import useCompanyDetails from '../hooks/useCompanyDetails';
 import styles from '../styles.module.css';
@@ -36,45 +36,48 @@ function CompanyDetails({
 
 	return (
 		<div className={styles.container}>
-			<div className={styles.title}>Company Details</div>
+			<Modal.Body>
+				<div className={styles.title}>Company Details</div>
 
-			<div className={styles.layout}>
-				{orgControls.map((item) => {
-					const Element = getField(item.type);
-					return (
-						<div className={styles.field}>
-							<div className={styles.lable}>{item.label}</div>
-							<Element {...item} control={control} />
-							{errors && (
-								<div className={styles.errors}>
-									{errors[item?.name]?.message}
-								</div>
-							)}
-						</div>
-					);
-				})}
-			</div>
-
-			<div className={styles.btn_grp}>
-				{showBackButton && (
+				<div className={styles.layout}>
+					{orgControls.map((item) => {
+						const Element = getField(item.type);
+						return (
+							<div className={styles.field}>
+								<div className={styles.lable}>{item.label}</div>
+								<Element {...item} control={control} />
+								{errors && (
+									<div className={styles.errors}>
+										{errors[item?.name]?.message}
+									</div>
+								)}
+							</div>
+						);
+					})}
+				</div>
+			</Modal.Body>
+			<Modal.Footer>
+				<div className={styles.btn_grp}>
+					{showBackButton && (
+						<Button
+							className="secondary md"
+							onClick={() => onClickBack()}
+							style={{
+								marginRight: '8px',
+							}}
+						>
+							Back
+						</Button>
+					)}
 					<Button
-						className="secondary md"
-						onClick={() => onClickBack()}
-						style={{
-							marginRight: '8px',
-						}}
+						className="primary md"
+						disabled={loading}
+						onClick={handleSubmit(onSubmitOfCompanyDetails)}
 					>
-						Back
+						Proceed
 					</Button>
-				)}
-				<Button
-					className="primary md"
-					disabled={loading}
-					onClick={handleSubmit(onSubmitOfCompanyDetails)}
-				>
-					Proceed
-				</Button>
-			</div>
+				</div>
+			</Modal.Footer>
 		</div>
 	);
 }

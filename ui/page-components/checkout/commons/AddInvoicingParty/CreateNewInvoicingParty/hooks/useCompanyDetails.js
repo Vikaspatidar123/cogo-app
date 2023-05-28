@@ -110,6 +110,7 @@ const useCompanyDetails = ({
 		additionalOrgControls,
 		companyDetailsControls,
 		companyDetailsFormProps  : { ...companyDetailsFormProps },
+		control,
 	};
 };
 

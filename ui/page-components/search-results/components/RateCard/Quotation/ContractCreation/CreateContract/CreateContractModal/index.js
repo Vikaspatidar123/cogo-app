@@ -32,7 +32,7 @@ function CreateContractModal({
 	let input;
 	let error;
 	let shippingLabel = 'Shipping';
-	let optionsListKey = 'shipping-lines';
+	let asyncKey = 'shipping-lines';
 	switch (search_type) {
 		case 'fcl_freight':
 			label = fields.max_containers_count.label;
@@ -49,7 +49,7 @@ function CreateContractModal({
 			label = fields.max_weight.label;
 			input = fields.max_weight;
 			error = errors?.max_weight?.message || errors?.max_weight?.type === 'min';
-			optionsListKey = 'air-lines';
+			asyncKey = 'air-lines';
 			shippingLabel = 'Air';
 			break;
 		default:
@@ -135,7 +135,7 @@ function CreateContractModal({
 							}}
 							{...params('preferred_shipping_line_ids')}
 							cacheOptions={getCacheOptions('preferred_shipping_line_ids')}
-							asyncKey={optionsListKey}
+							asyncKey={asyncKey}
 						/>
 						<div className={styles.error_text}>
 							{errors?.preferred_shipping_line_ids?.message}
@@ -161,7 +161,7 @@ function CreateContractModal({
 							}}
 							{...params('exclude_shipping_line_ids')}
 							cacheOptions={getCacheOptions('exclude_shipping_line_ids')}
-							asyncKey={optionsListKey}
+							asyncKey={asyncKey}
 						/>
 						<div className={styles.error_text}>{errors?.exclude_shipping_line_ids?.message}</div>
 					</div>

@@ -7,7 +7,7 @@ const setDefaultValues = (controls, data, mobile = false, location = {}, index) 
 			if (data[obj.name] || data[`${index}-${obj.name}`] || obj.value) {
 				obj.value = data[obj.name] || data[`${index}-${obj.name}`] || obj.value;
 
-				if (obj.optionsListKey === 'locations') {
+				if (obj.asyncKey === 'locations') {
 					const locationKeyName = obj.name.replace('_id', '');
 					const locationObj = data[locationKeyName];
 

@@ -5,7 +5,7 @@ import { useEffect, useMemo } from 'react';
 import { useRequest } from '@/packages/request';
 
 const useGetGstInListByPan = ({ registrationNumber = '', action }) => {
-	const [{ loading }, getCogoScoreTaxNumApi] = useRequest({
+	const [{ loading, data }, getCogoScoreTaxNumApi] = useRequest({
 		url    : 'get_cogoscore_tax_numbers',
 		method : 'get',
 	}, { manual: true });
@@ -19,12 +19,12 @@ const useGetGstInListByPan = ({ registrationNumber = '', action }) => {
 			return;
 		}
 
-		getCogoScoreTaxNumApi.trigger({ params });
+		getCogoScoreTaxNumApi({ params });
 	}, [registrationNumber]);
 
 	const defaultSelectOption = 'gst_not_found';
 
-	const gstinList = ((getCogoScoreTaxNumApi.data || {}).data || {}).gsts || [];
+	const gstinList = ((data || {}).data || {}).gsts || [];
 
 	if (!gstinList.includes(defaultSelectOption)) {
 		gstinList.push(defaultSelectOption);

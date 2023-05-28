@@ -143,3 +143,6 @@
 .tag_div{
 	display: flex;
 }
+.disabled{
+	pointer-events:none;
+}

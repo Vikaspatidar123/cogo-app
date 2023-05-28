@@ -13,7 +13,7 @@ const formControls = (setOperatorName) => [
 	{
 		label             : 'LOCALS TYPE (HANDLING TYPE)',
 		name              : 'trade_type',
-		type              : 'location-select',
+		type              : 'async_select',
 		placeholder       : 'Select locals Type',
 		showArrow         : false,
 		includedInOptions : false,

@@ -85,7 +85,6 @@ function CreateNewInvoicingParty({
 			setCurrentStep('bank_details');
 		}
 	};
-
 	let renderCurrentStepControls = null;
 	if (currentStep === 'company_details') {
 		const showCompanyDetailsBackButton = ['from_checkout'].includes(viewType);

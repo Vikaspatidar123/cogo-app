@@ -253,7 +253,7 @@ const useSaveAddressForm = (props) => {
 	}
 
 	const { control, ...formProps } = useForm();
-	const { watch, getValues, setValues, fields } = formProps;
+	const { watch, getValues, setValue, fields } = formProps;
 
 	const watchIsSez = watch('is_sez');
 	const watchGstList = watch('gst_list') || '';
@@ -262,7 +262,7 @@ const useSaveAddressForm = (props) => {
 
 	const { getBusinessApi = {} } = useGetBusiness({
 		watchTaxNumber         : watchGstList.toUpperCase(),
-		setValues,
+		setValue,
 		registrationNumberType : 'tax',
 		addressData,
 		source                 : 'addressPage',
@@ -371,16 +371,12 @@ const useSaveAddressForm = (props) => {
 	});
 
 	useEffect(() => {
-		setValues({
-			gst_list   : addressData?.tax_number,
-			tax_number : addressData?.tax_number,
-		});
+		setValue('gst_list', addressData?.tax_number);
+		setValue('tax_number', addressData?.tax_number);
 	}, [addressData.tax_number]);
 
 	useEffect(() => {
-		setValues({
-			gst_list: gstinOptions?.length > 1 ? null : 'gst_not_found',
-		});
+		setValue('gst_list', gstinOptions?.length > 1 ? null : 'gst_not_found');
 	}, [JSON.stringify(gstinOptions)]);
 
 	return {

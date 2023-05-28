@@ -3,9 +3,9 @@
 		"label": "Pickup Pincode",
 		"name": "location_id",
 		"placeholder": "Search via pincode",
-		"type": "location-select",
+		"type": "async_select",
 		"caret": true,
-		"optionsListKey": "locations",
+		"asyncKey": "locations",
 		"grouped": ["city"],
 		"params": { "filters": { "type": ["pincode", "city"] } },
 		"condition": { "services": ["export_transportation"] },
@@ -16,7 +16,7 @@
 		"label": "Truck Type",
 		"type": "select",
 		"caret": true,
-		"optionsListKey": "truck-types",
+		"optionKey": "truck_types",
 		"span": 8,
 		"condition": {
 			"services": ["export_transportation"]
@@ -37,10 +37,10 @@
 		"label": "Pickup Pincode",
 		"name": "location_id",
 		"placeholder": "Search via pincode",
-		"type": "location-select",
+		"type": "async_select",
 		"caret": true,
 		"span": 12,
-		"optionsListKey": "locations",
+		"asyncKey": "locations",
 		"grouped": ["city"],
 		"params": { "filters": { "type": ["pincode", "city"] } },
 		"condition": { "services": ["import_transportation"] },
@@ -51,7 +51,7 @@
 		"label": "Truck Type",
 		"type": "select",
 		"caret": true,
-		"optionsListKey": "truck-types",
+		"optionKey": "truck_types",
 		"span": 8,
 		"condition": {
 			"services": ["import_transportation"]

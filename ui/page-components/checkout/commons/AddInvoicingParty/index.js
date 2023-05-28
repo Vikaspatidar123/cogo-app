@@ -107,7 +107,7 @@ function AddInvoicingParty({
 				className={styles.btn}
 				id="checkout_add_invoicing_parties"
 				style={{
-                	marginLeft: '8px',
+					marginLeft: '8px',
 				}}
 				themeType="secondary"
 				size="lg"
@@ -130,6 +130,7 @@ function AddInvoicingParty({
 								position      : 'relative',
 							},
 						}}
+
 					>
 						{renderModalContent()}
 					</Modal>

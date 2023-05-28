@@ -51,10 +51,10 @@
 		]
 	},
 	{
-		"type": "location-select",
+		"type": "async_select",
 		"name": "country_id",
 		"label": "Country of Registration",
-		"optionsListKey": "locations",
+		"asyncKey": "locations",
 		"params": {
 			"filters": {
 				"type": [
@@ -86,10 +86,10 @@
 		]
 	},
 	{
-		"type": "location-select",
+		"type": "async_select",
 		"name": "pincode",
 		"label": "Pincode",
-		"optionsListKey": "locations",
+		"asyncKey": "locations",
 		"labelKey": "postal_code",
 		"valueKey": "postal_code",
 		"params": {
@@ -130,7 +130,7 @@
 		"placeholder": "Select organization Branch",
 		"type": "select",
 		"value": "",
-		"optionsListKey": "organization-branches",
+		"asyncKey": "organization-branches",
 		"caret": true,
 		"isClearable": true,
 		"defaultOptions": true,

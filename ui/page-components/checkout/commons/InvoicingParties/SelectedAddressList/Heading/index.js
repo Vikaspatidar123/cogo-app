@@ -65,33 +65,33 @@ function Heading({
 			}
 
 			let extraCharges = 0;
-			if (detail?.primary_service === serviceRates[serviceRate].service_name) {
+			if (detail?.primary_service === serviceRates[serviceRate]?.service_name) {
 				(Object.keys(rate.booking_charges) || []).forEach((charge) => {
 					const lineItem = rate.booking_charges[charge].line_items;
 
-					if (invoicingPartyCurrency === lineItem[0].currency) {
+					if (invoicingPartyCurrency === lineItem?.[0]?.currency) {
 						const price = lineItem[0].total_price_discounted;
 						let tax = price * (lineItem[0].tax_percent / 100 + 1);
 
 						if (
-							serviceRates[serviceRate].tax_total_price_currency
-							!== lineItem[0].currency
+							serviceRates[serviceRate]?.tax_total_price_currency
+							!== lineItem[0]?.currency
 						) {
 							tax *= currency_conversion_delta + 1;
 						}
 
 						extraCharges += tax;
 					} else {
-						const toBaseCurrency = lineItem[0].total_price_discounted
-							* currencies[lineItem?.[0].currency];
+						const toBaseCurrency = (lineItem?.[0]?.total_price_discounted || 0)
+							* currencies[lineItem?.[0]?.currency];
 
 						const toInvoiceCurrency = toBaseCurrency / currencies[invoicingPartyCurrency];
 
-						let tax = toInvoiceCurrency * (lineItem[0].tax_percent / 100 + 1);
+						let tax = toInvoiceCurrency * ((lineItem[0]?.tax_percent || 0) / 100 + 1);
 
 						if (
-							serviceRates[serviceRate].tax_total_price_currency
-							!== lineItem[0].currency
+							serviceRates[serviceRate]?.tax_total_price_currency
+							!== lineItem[0]?.currency
 						) {
 							tax *= currency_conversion_delta + 1;
 						}

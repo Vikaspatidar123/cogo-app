@@ -50,7 +50,7 @@ const controls = () => [
 		label       : 'Pickup Pincode',
 		name        : 'export_transportation_location_id',
 		placeholder : 'Search via pincode',
-		type        : 'location-select',
+		type        : 'async_select',
 		caret       : true,
 		asyncKey    : 'locations',
 		grouped     : ['city'],

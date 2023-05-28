@@ -1,14 +1,14 @@
 const fclCfcControls = () => (
 	[
 		{
-			label          : 'HS Code for the commodity',
-			name           : 'hs_code',
-			type           : 'select',
-			caret          : true,
-			defautOptions  : true,
-			valueKey       : 'label',
-			optionsListKey : 'hs_codes',
-			span           : 6,
+			label         : 'HS Code for the commodity',
+			name          : 'hs_code',
+			type          : 'select',
+			caret         : true,
+			defautOptions : true,
+			valueKey      : 'label',
+			asyncKey      : 'hs_codes',
+			span          : 6,
 		},
 		{
 			label : 'Commodity detail',

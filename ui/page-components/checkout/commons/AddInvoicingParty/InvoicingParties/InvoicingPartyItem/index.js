@@ -129,7 +129,9 @@ function InvoicingPartyItem({
 					)}
 				</div>
 
-				<div className={styles.radio_wrapper}>
+				<div className={cl`${styles.radio_wrapper}
+				 ${['rejected', 'pending'].includes(verification_status) && styles.disabled}`}
+				>
 					<CheckboxGroup
 						options={options}
 						value={value}
@@ -141,7 +143,7 @@ function InvoicingPartyItem({
 					/>
 				</div>
 			</Modal.Body>
-			<Modal.Body>
+			<Modal.Footer>
 				<div
 					className={styles.add_address}
 					role="presentation"
@@ -149,7 +151,7 @@ function InvoicingPartyItem({
 				>
 					+ Add Address
 				</div>
-			</Modal.Body>
+			</Modal.Footer>
 		</div>
 	);
 }

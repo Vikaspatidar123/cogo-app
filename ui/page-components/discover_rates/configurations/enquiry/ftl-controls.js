@@ -28,10 +28,10 @@ const ftlControls = () => [
 		},
 	},
 	{
-		name           : 'preferred_freight_rate_currency',
-		label          : 'Currency',
-		type           : 'select',
-		optionsListKey : 'currencies',
+		name      : 'preferred_freight_rate_currency',
+		label     : 'Currency',
+		type      : 'select',
+		optionKey : 'currencies',
 		// value: geo.country.currency.code,
 	},
 	{

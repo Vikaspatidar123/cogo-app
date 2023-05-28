@@ -133,7 +133,7 @@ function Route(
 					{...destination}
 					caret={false}
 					control={control}
-					optionsListKey="locations_v2"
+					asyncKey="locations_v2"
 					noOptionsMessage="Type to search..."
 					value={location?.destination?.id}
 					placeholder={destination.placeholder || ''}

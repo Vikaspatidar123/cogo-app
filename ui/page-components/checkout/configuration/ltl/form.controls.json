@@ -4,8 +4,8 @@
 		"name": "origin_location_id",
 		"placeholder": "Search via name/pincode",
 		"includedInOptions": false,
-		"type": "location-select",
-		"optionsListKey": "locations",
+		"type": "async_select",
+		"asyncKey": "locations",
 		"params": { "filters": { "type": ["pincode", "city"] } },
 		"rules": { "required": "Origin City is required" }
 	},
@@ -14,8 +14,8 @@
 		"name": "destination_location_id",
 		"placeholder": "Search via name/pincode",
 		"includedInOptions": false,
-		"type": "location-select",
-		"optionsListKey": "locations",
+		"type": "async_select",
+		"asyncKey": "locations",
 		"params": { "filters": { "type": ["pincode", "city"] } },
 		"rules": { "required": "Destination City is required" }
 	},

@@ -109,9 +109,9 @@ const fclControls = () => [
 	{
 		name           : 'non_preferred_shipping_line_ids',
 		label          : 'Non Preferred Shipping lines',
-		type           : 'select',
+		type           : 'async_select',
 		caret          : true,
-		optionsListKey : 'shipping-lines',
+		asyncKey       : 'shipping-lines',
 		defaultOptions : true,
 		multiple       : true,
 		placeholder    : 'Search via name...',

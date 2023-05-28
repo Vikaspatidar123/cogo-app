@@ -50,7 +50,6 @@ function AddressForm(props) {
 			</div>
 		);
 	}
-
 	return (
 		<div className={styles.container} key={`${watchPincode}_${watchGstList}`}>
 			<form onSubmit={handleSubmit(onSubmit)}>
@@ -61,7 +60,6 @@ function AddressForm(props) {
 						if (isEmpty(controls)) {
 							return null;
 						}
-						console.log(controls, 'controls');
 						return (
 							<div style={{ display: 'flex', flexDirection: 'column' }} key={key}>
 								{title && (
@@ -74,7 +72,7 @@ function AddressForm(props) {
 									<div className={styles.layout}>
 										{controls.map((item) => {
 											const Controller = getField(item.type);
-											const show = showElements[item?.name];
+											const show = showElements?.[item?.name];
 											return (
 												show && (
 													<div className={styles.field}>

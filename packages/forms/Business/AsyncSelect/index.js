@@ -14,6 +14,10 @@ import {
 	asyncCountrySelect,
 	asyncFieldsPartnerQuotation,
 	asyncInsuranceCommodities,
+	asyncTradeParties,
+	asyncOrganizationUsers,
+	asyncHsCodes,
+	asyncHsCodesCountries,
 } from '../../utils/getAsyncFields';
 
 /**
@@ -45,6 +49,10 @@ const keyAsyncFieldsParamsMapping = {
 	countries              : asyncCountrySelect,
 	list_partner_quotation : asyncFieldsPartnerQuotation,
 	insurance_commodities  : asyncInsuranceCommodities,
+	trade_parties          : asyncTradeParties,
+	'organization-users'   : asyncOrganizationUsers,
+	hs_codes               : asyncHsCodes,
+	hs_codes_countries     : asyncHsCodesCountries,
 };
 
 function AsyncSelect(props) {

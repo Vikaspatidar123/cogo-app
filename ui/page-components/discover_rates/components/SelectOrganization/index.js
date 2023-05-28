@@ -198,7 +198,7 @@ function SelectOrganization({
 					<Select
 						placeholder="Choose Shipper name"
 						type="select"
-						optionsListKey="organizations"
+						asyncKey="organizations"
 						themeType="new"
 						onChange={(val, obj) => handleChange(val, obj)}
 						value={importer_exporter_details?.id}
@@ -238,7 +238,7 @@ function SelectOrganization({
 						placeholder="Choose User name"
 						type="select"
 						options={importer_exporter_details?.user_options}
-						optionsListKey={
+						asyncKey={
 							(importer_exporter_details?.user_options || []).length
 								? null
 								: 'organization-users'

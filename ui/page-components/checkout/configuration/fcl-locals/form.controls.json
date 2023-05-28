@@ -4,7 +4,7 @@
 		"name": "port_id",
 		"placeholder": "Search via port name/code",
 		"includedInOptions": false,
-		"type": "location-select",
+		"type": "async_select",
 		"asyncKey": "locations",
 		"grouped": ["city"],
 		"params": { "filters": { "type": ["seaport", "city"] } },
@@ -81,9 +81,9 @@
         }, {
             "name": "commodity",
             "label": "Commodity",
-            "type": "select",
+            "type": "async_select",
             "placeholder": "Commodity",
-            "optionsListKey": "commodities",
+            "asyncKey": "commodities",
             "rules": { "required": "Commodity is required" }
         }, {
             "label": "Cargo Weight per Container",

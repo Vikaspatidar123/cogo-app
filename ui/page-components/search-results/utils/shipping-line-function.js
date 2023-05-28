@@ -7,8 +7,8 @@ export const airControls = (scope, trade_type, airlineOptions) => {
 		{
 			name           : 'airline_id',
 			label          : 'Choose an Airline',
-			type           : 'select',
-			optionsListKey : 'air-lines',
+			type           : 'async_select',
+			asyncKey       : 'air-lines',
 			defaultOptions : airlineOptions,
 			className      : 'primary sm',
 			placeholder    : 'Choose an Airline',
@@ -131,12 +131,12 @@ export const fclControls = (
 			rules          : { required: 'Required' },
 		},
 		{
-			name           : 'origin_main_port_id',
-			label          : 'Via Origin Main Port',
-			type           : 'location-select',
-			optionsListKey : 'locations',
-			className      : 'primary sm',
-			params         : {
+			name      : 'origin_main_port_id',
+			label     : 'Via Origin Main Port',
+			type      : 'async_select',
+			asyncKey  : 'locations',
+			className : 'primary sm',
+			params    : {
 				filters: {
 					type       : ['seaport'],
 					country_id : origin_country_id,
@@ -148,12 +148,12 @@ export const fclControls = (
 			rules    : { required: 'Required' },
 		},
 		{
-			name           : 'destination_main_port_id',
-			label          : 'Via Destination Main Port',
-			type           : 'location-select',
-			optionsListKey : 'locations',
-			className      : 'primary sm',
-			params         : {
+			name      : 'destination_main_port_id',
+			label     : 'Via Destination Main Port',
+			type      : 'async_select',
+			asyncKey  : 'locations',
+			className : 'primary sm',
+			params    : {
 				filters: {
 					type       : ['seaport'],
 					country_id : destination_country_id,
@@ -350,15 +350,15 @@ export const ftlControls = () => {
 			],
 			controls: [
 				{
-					name           : 'truck_type',
-					label          : 'Truck Type',
-					type           : 'select',
-					caret          : true,
-					placeholder    : 'Truck Type',
-					className      : 'primary sm',
-					optionsListKey : 'truck-types',
-					span           : 4,
-					rules          : { required: 'Required' },
+					name        : 'truck_type',
+					label       : 'Truck Type',
+					type        : 'select',
+					caret       : true,
+					placeholder : 'Truck Type',
+					className   : 'primary sm',
+					optionKey   : 'truck-types',
+					span        : 4,
+					rules       : { required: 'Required' },
 				},
 				{
 					name        : 'trucks_count',

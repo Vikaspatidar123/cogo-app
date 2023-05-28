@@ -8,6 +8,7 @@ import ContainerSizes from '@/packages/forms/constants/container-size.json';
 import ContainerTypes from '@/packages/forms/constants/container-types.json';
 import Languages from '@/packages/forms/constants/languages.json';
 import TruckTypes from '@/packages/forms/constants/truck-types.json';
+import WorkScope from '@/packages/forms/constants/work-scope.json';
 
 const getOptionsFromKey = (
 	key,
@@ -40,6 +41,8 @@ const getOptionsFromKey = (
 		data.options = getCommodityList('freight');
 	} else if (key === 'languages') {
 		data.options = Languages;
+	} else if (key === 'work-scopes') {
+		data.options = WorkScope;
 	}
 	return data.options ? data : null;
 };

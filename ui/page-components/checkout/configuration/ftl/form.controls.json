@@ -4,8 +4,8 @@
 		"name": "origin_location_id",
 		"placeholder": "Port/Airport/Pincode",
 		"includedInOptions": false,
-		"type": "location-select",
-		"optionsListKey": "locations",
+		"type": "async_select",
+		"asyncKey": "locations",
 		"params": { "filters": { "type": ["pincode", "seaport", "airport"] } },
 		"rules": { "required": "Origin Location is required" }
 	},
@@ -14,8 +14,8 @@
 		"name": "destination_location_id",
 		"placeholder": "Port/Airport/Pincode",
 		"includedInOptions": false,
-		"type": "location-select",
-		"optionsListKey": "locations",
+		"type": "async_select",
+		"asyncKey": "locations",
 		"params": { "filters": { "type": ["pincode", "seaport", "airport"] } },
 		"rules": { "required": "Destination Location is required" }
 	},
@@ -104,7 +104,7 @@
 				"name": "truck_type",
 				"label": "Truck Type",
 				"type": "select",
-				"optionsListKey": "truck-types",
+				"optionKey": "truck_types",
 				"rules": { "required": "Truck Type is required" }
 			},
 			{

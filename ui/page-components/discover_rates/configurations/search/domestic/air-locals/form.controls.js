@@ -35,8 +35,8 @@ const formControls = (setOperatorName) => [
 	},
 	{
 		name           : 'airline_id',
-		type           : 'select',
-		optionsListKey : 'air-lines',
+		type           : 'async_select',
+		asyncKey       : 'air-lines',
 		defaultOptions : true,
 		caret          : true,
 		handleChange   : (obj) => {

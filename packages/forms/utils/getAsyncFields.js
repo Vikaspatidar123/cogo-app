@@ -138,6 +138,48 @@ function asyncInsuranceCommodities() {
 	};
 }
 
+function asyncTradeParties() {
+	return {
+		valueKey       : 'organization_id',
+		labelKey       : 'display_name',
+		endpoint       : 'list_organization_trade_parties',
+		defaultOptions : true,
+		defaultParams  : {
+			filters    : { status: 'active' },
+			page_limit : 10,
+		},
+
+	};
+}
+function asyncOrganizationUsers() {
+	return {
+		valueKey       : 'id',
+		labelKey       : 'name',
+		endpoint       : 'list_organization_users',
+		defaultParams  : {},
+		defaultOptions : true,
+		isSearchable   : true,
+	};
+}
+function asyncHsCodes() {
+	return {
+		valueKey       : 'id',
+		labelKey       : 'label',
+		endpoint       : 'list_hs_codes',
+		defaultParams  : { page_limit: 20 },
+		defaultOptions : true,
+	};
+}
+function asyncHsCodesCountries() {
+	return {
+		valueKey       : 'id',
+		labelKey       : 'countryName',
+		authKey        : 'get_saas_hs_code_countries',
+		endpoint       : 'saas/hs-code/countries',
+		defaultParams  : { page_limit: 20 },
+		defaultOptions : true,
+	};
+}
 export {
 	asyncFieldsLocations,
 	asyncFieldsLocations2,
@@ -149,4 +191,8 @@ export {
 	asyncCountrySelect,
 	asyncFieldsPartnerQuotation,
 	asyncInsuranceCommodities,
+	asyncTradeParties,
+	asyncOrganizationUsers,
+	asyncHsCodes,
+	asyncHsCodesCountries,
 };

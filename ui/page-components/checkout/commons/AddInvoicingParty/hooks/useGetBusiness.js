@@ -51,13 +51,13 @@ const useGetBusiness = (props) => {
 				business_type = '',
 			} = response.data || {};
 
-			const companyBasedOnPanNumber =				registrationNumberType === 'registration'
+			const companyBasedOnPanNumber =	registrationNumberType === 'registration'
 				? getPanHolderStatus(watchTaxNumber)
 				: business_type || '';
 
 			if (watchTaxNumber.length === 10) {
 				setValue('business_name', business_name || watchBusinessName || '');
-				setValue('business_name', business_name || watchBusinessName || '');
+				setValue('company_type', companyBasedOnPanNumber);
 			} else if (watchTaxNumber.length === 15) {
 				setValue('tax_number', watchTaxNumber);
 				setValue('pincode', (!isEmpty(addresses) && (addresses[0] || {}).pincode) || '');

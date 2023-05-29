@@ -14,7 +14,6 @@ function GetStarted() {
 	const [timeForCall, setTimeForCall] = useState(false);
 	const [orgId, setOrgId] = useState('');
 	const [orgBranchId, setOrgBranchId] = useState('');
-	console.log(orgId, 'orgId');
 	return (
 		<div className={styles.container}>
 			<div className={styles.left_container}>

@@ -1,5 +1,5 @@
 import { cl } from '@cogoport/components';
-import React, { forwardRef, useEffect, useRef } from 'react';
+import React, { forwardRef } from 'react';
 
 import getWidth from '../SearchForm/utils/getWidth';
 

@@ -165,6 +165,15 @@ const navigationMappings = {
 		showInNav : true,
 	},
 
+	app_documents: {
+		key       : 'app_documents',
+		title     : 'Documents Wallet',
+		href      : '/v2/documents',
+		as        : '/v2/documents',
+		icon      : 'nav-booking',
+		showInNav : true,
+	},
+
 	saas_finance: {
 		key       : 'saas_finance',
 		title     : 'Finance',

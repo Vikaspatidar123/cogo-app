@@ -9,15 +9,9 @@ import {
 	asyncFieldsPartner,
 	asyncFieldsPartnerRoles,
 	asyncFieldsHsCodeCountries,
-	asyncAirLines,
-	asyncShippingLines,
-	asyncCountrySelect,
 	asyncFieldsPartnerQuotation,
-	asyncInsuranceCommodities,
-	asyncTradeParties,
-	asyncOrganizationUsers,
-	asyncHsCodes,
-	asyncHsCodesCountries,
+	// asyncProductList,
+	asyncCountrySelect,
 } from '../../utils/getAsyncFields';
 
 /**
@@ -44,15 +38,9 @@ const keyAsyncFieldsParamsMapping = {
 	partners               : asyncFieldsPartner,
 	partner_roles          : asyncFieldsPartnerRoles,
 	hs_code_countries      : asyncFieldsHsCodeCountries,
-	'air-lines'            : asyncAirLines,
-	'shipping-lines'       : asyncShippingLines,
-	countries              : asyncCountrySelect,
 	list_partner_quotation : asyncFieldsPartnerQuotation,
-	insurance_commodities  : asyncInsuranceCommodities,
-	trade_parties          : asyncTradeParties,
-	'organization-users'   : asyncOrganizationUsers,
-	hs_codes               : asyncHsCodes,
-	hs_codes_countries     : asyncHsCodesCountries,
+	// list_products          : asyncProductList,
+	country_list_with_flag : asyncCountrySelect,
 };
 
 function AsyncSelect(props) {
@@ -80,15 +68,6 @@ function AsyncSelect(props) {
 		getModifiedOptions,
 	});
 
-	if (
-		typeof getModifiedOptions === 'function'
-        && !isEmpty(getAsyncOptionsProps.options)
-	) {
-		getAsyncOptionsProps.options = getModifiedOptions(
-			getAsyncOptionsProps.options,
-		);
-	}
-
 	if (typeof getSelectedOption === 'function' && !isEmpty(rest.value)) {
 		let selectedValue;
 		if (multiple) {
@@ -100,17 +79,15 @@ function AsyncSelect(props) {
 		const selectedOption = getAsyncOptionsProps.options.filter(
 			(option) => option.id === selectedValue,
 		);
-
 		getSelectedOption(selectedOption[0]);
 	}
 
 	const Element = multiple ? MultiSelect : Select;
-	const { onHydrateValue, ...optionRest } = getAsyncOptionsProps || [];
 
 	return (
 		<Element
 			{...rest}
-			{...optionRest}
+			{...getAsyncOptionsProps}
 		/>
 	);
 }

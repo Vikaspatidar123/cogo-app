@@ -1,7 +1,7 @@
 // import { replace } from '@cogo/i18n';
 import { cl } from '@cogoport/components';
 import { IcMPortArrow } from '@cogoport/icons-react';
-import React, { useEffect } from 'react';
+import React from 'react';
 
 // import CUSTOM_THEME from './custom-theme';
 
@@ -34,7 +34,6 @@ function Route({
 	extraParams,
 	disabledFields = {},
 	control,
-	setValue,
 }) {
 	const { showArrow = true } = destination || {};
 	const { org_id } = useSelector(({ profile, general }) => ({
@@ -73,10 +72,7 @@ function Route({
 		}
 		return null;
 	};
-	useEffect(() => {
-		setValue('origin_port_id', location?.origin?.id);
-		setValue('destination_port_id', location?.destination?.id);
-	}, [location, setValue]);
+
 	return (
 		<div className={styles.container} id="search_form_route_container">
 			<div className={cl`${styles.section} ${styles[className]}`}>
@@ -85,9 +81,9 @@ function Route({
 				<AsyncSelectController
 					id={`search_${origin.name}` || `${location?.origin?.id}`}
 					key={`search_${origin.name}`}
-					value={location?.origin?.id}
 					{...origin}
 					control={control}
+					initialCall
 					caret
 					placeholder={origin.placeholder || ''}
 					noOptionsMessage="Type to search..."
@@ -140,6 +136,7 @@ function Route({
 						control={control}
 						noOptionsMessage="Type to search..."
 						placeholder={destination.placeholder || ''}
+						initialCall
 						disabled={
               disabledFields?.destination
               && index !== 0
@@ -161,7 +158,6 @@ function Route({
 						asyncKey="locations2"
 						noOptionsMessage="Type to search..."
 						placeholder={destination.placeholder || ''}
-						value={location?.destination?.id}
 						disabled={
 							disabledFields?.destination
 							&& index !== 0

@@ -4,6 +4,7 @@ import AsyncSelect from '../Business/AsyncSelect';
 
 function AsyncSelectController(props) {
 	const { name, control, value, rules, ...rest } = props;
+	console.log(value, 'value');
 	return (
 		<Controller
 			key={rest.id}
@@ -21,7 +22,7 @@ function AsyncSelectController(props) {
 							rest?.handleChange(obj);
 						}
 					}}
-					value={newValue}
+					value={newValue || value}
 					onBlur={onBlur}
 					data-test-value={value}
 				/>

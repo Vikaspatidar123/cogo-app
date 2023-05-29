@@ -108,7 +108,7 @@ const useSaveAddress = (props) => {
 		try {
 			const payload = getPayload({ values });
 
-			const response = await api.trigger({ data: payload });
+			const response = await api({ data: payload });
 
 			onSuccessCallback({ response: response.data });
 		} catch (error) {

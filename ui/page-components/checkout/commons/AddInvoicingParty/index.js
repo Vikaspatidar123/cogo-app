@@ -122,14 +122,7 @@ function AddInvoicingParty({
 						show={isAddInvoice}
 						onOuterClick={onClose}
 						onClose={onClose}
-						styles={{
-							dialog: {
-								height        : '80vh',
-								paddingTop    : 40,
-								paddingBottom : 0,
-								position      : 'relative',
-							},
-						}}
+						size="lg"
 
 					>
 						{renderModalContent()}

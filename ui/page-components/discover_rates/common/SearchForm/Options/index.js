@@ -369,6 +369,7 @@ function Options({
 			index={index}
 			disabledFields={disabledFields}
 			control={control}
+			setValue={setValue}
 		/>
 	);
 

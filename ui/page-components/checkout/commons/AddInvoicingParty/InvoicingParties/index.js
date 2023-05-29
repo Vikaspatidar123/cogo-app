@@ -290,8 +290,7 @@ function InvoicingParties({
 								setInvoiceToTradePartyDetails(
 									(previousState) => ({
 										...previousState,
-										tradePartyId:
-																organization.organization_trade_party_id,
+										tradePartyId: organization.organization_trade_party_id,
 									}),
 								);
 							}}

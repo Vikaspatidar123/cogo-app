@@ -44,7 +44,6 @@ const handleCommodity = ({ mode = '', commodity = '' }) => {
 const formatMainServiceData = (mode, services) => {
 	const mainServices =		services.filter((service) => service?.service_type === mode) || [];
 	const singleService = mainServices[0] || {};
-
 	const data = {};
 	if (containerModes.includes(mode)) {
 		const controls = {

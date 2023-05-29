@@ -6,7 +6,9 @@ function asyncFieldsLocations2() {
 		initialCall : true,
 		params      : {
 			filters    : { status: 'active' },
-			page_limit : 20,
+			page_limit : 50,
+			sort_by    : 'name',
+			sort_type  : 'asc',
 			includes   : { country: null, main_ports: null },
 		},
 	};
@@ -17,7 +19,6 @@ function asyncFieldsLocations(labelKey = 'name', valueKey = 'id') {
 		valueKey,
 		labelKey,
 		endpoint    : 'list_locations',
-		authKey     : 'get_list_locations',
 		initialCall : true,
 		params      : {
 			filters    : { status: 'active' },

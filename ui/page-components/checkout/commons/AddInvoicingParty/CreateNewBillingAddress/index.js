@@ -24,7 +24,6 @@ function CreateNewBillingAddress({
 		countryId = '',
 		tradePartyId = '',
 	} = invoiceToTradePartyDetails;
-
 	const countryIdForAddressForm = countryId || organizationCountryId;
 
 	return (

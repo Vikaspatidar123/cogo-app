@@ -1,11 +1,13 @@
-import { Button, Loader } from '@cogoport/components';
+import { Button, Loader, Modal } from '@cogoport/components';
 import { isEmpty } from '@cogoport/utils';
+
+import getWidth from '../../utils/getWidth';
+import FieldArray from '../FieldArray';
 
 import useAddressForm from './hooks/useAddressForm';
 import styles from './styles.module.css';
 
 import getField from '@/packages/forms/Controlled';
-
 /**
  * @typedef  {Object} 		[props]
  * @property {string} 		[organizationId]
@@ -31,6 +33,7 @@ function AddressForm(props) {
 		loading: apiLoading,
 		layouts,
 		formProps,
+		errors,
 		onSubmit,
 		control,
 		getFormattedValues,
@@ -53,40 +56,59 @@ function AddressForm(props) {
 	return (
 		<div className={styles.container} key={`${watchPincode}_${watchGstList}`}>
 			<form onSubmit={handleSubmit(onSubmit)}>
-				<div style={{ minHeight: '48vh', display: 'flex', flexDirection: 'column', marginBottom: '8px' }}>
-					{Object.entries(layouts).map(([key, layout]) => {
-						const { title, controls, showElements } = layout;
+				<Modal.Body>
+					<div style={{ minHeight: '48vh', display: 'flex', flexDirection: 'column', marginBottom: '8px' }}>
+						{Object.entries(layouts).map(([key, layout]) => {
+							const { title, controls, showElements } = layout;
 
-						if (isEmpty(controls)) {
-							return null;
-						}
-						return (
-							<div style={{ display: 'flex', flexDirection: 'column' }} key={key}>
-								{title && (
-									<div style={{ color: '#393f70', fontWeight: 500, marginTop: '16px' }}>
-										{title}
+							if (isEmpty(controls)) {
+								return null;
+							}
+							return (
+								<div style={{ display: 'flex', flexDirection: 'column' }} key={key}>
+									{title && (
+										<div style={{ color: '#393f70', fontWeight: 500, marginTop: '16px' }}>
+											{title}
+										</div>
+									)}
+
+									<div className={styles.layout_container}>
+										<div className={styles.layout}>
+											{controls.map((item) => {
+												if (item?.type === 'fieldArray') {
+													return (
+														<FieldArray
+															{...item}
+															name={item.name}
+															control={control}
+															showElements={showElements}
+															error={errors.controlItem}
+														/>
+													);
+												}
+												const Controller = getField(item.type);
+												const show = showElements?.[item?.name];
+												const { span, name } = item || {};
+												return (
+													show && (
+														<div className={styles.field} style={{ width: getWidth(span) }}>
+															<div className={styles.lable}>{item.label}</div>
+															<Controller
+																{...item}
+																control={control}
+															/>
+															<div className={styles.errors}>
+																{errors?.[name]?.type}
+															</div>
+														</div>
+													)
+												);
+											})}
+										</div>
+
 									</div>
-								)}
 
-								<div className={styles.layout_container}>
-									<div className={styles.layout}>
-										{controls.map((item) => {
-											const Controller = getField(item.type);
-											const show = showElements?.[item?.name];
-											return (
-												show && (
-													<div className={styles.field}>
-														<div className={styles.lable}>{item.label}</div>
-														<Controller {...item} control={control} />
-													</div>
-												)
-											);
-										})}
-									</div>
-
-								</div>
-
-								{key === 'registeredUnderGst'
+									{key === 'registeredUnderGst'
 									&& isAddressRegisteredUnderGstChecked && (
 										<div style={{ color: '#cb6464', fontSize: '12px', margin: '10px 0 0' }}>
 											Addresses not registered under GST will be added in
@@ -95,42 +117,46 @@ function AddressForm(props) {
 											<b>will not be available for GST Invoicing</b>
 											.
 										</div>
-								)}
-							</div>
-						);
-					})}
-				</div>
+									)}
+								</div>
+							);
+						})}
+					</div>
+				</Modal.Body>
+				<Modal.Footer>
+					<div className={styles.btn_grp}>
+						{(optionalButtons || []).map((optionButton) => {
+							const { className, label, onClick } = optionButton;
 
-				<div className={styles.btn_grp}>
-					{(optionalButtons || []).map((optionButton) => {
-						const { className, label, onClick } = optionButton;
+							return (
+								<Button
+									type="button"
+									size="md"
+									themeType="secondary"
+									className={` ${styles[className]} md`}
+									disabled={loading || apiLoading}
+									onClick={(event) => {
+										onClick?.({
+											event,
+											values: getFormattedValues(),
+										});
+									}}
+									style={{ marginRight: '16px' }}
+								>
+									{label}
+								</Button>
+							);
+						})}
 
-						return (
-							<Button
-								type="button"
-								className={`secondary ${className} md`}
-								disabled={loading || apiLoading}
-								onClick={(event) => {
-									onClick?.({
-										event,
-										values: getFormattedValues(),
-									});
-								}}
-								style={{ marginRight: '16px' }}
-							>
-								{label}
-							</Button>
-						);
-					})}
-
-					<Button
-						type="submit"
-						className="primary md"
-						disabled={loading || apiLoading}
-					>
-						{submitButtonLabel || 'Submit'}
-					</Button>
-				</div>
+						<Button
+							type="submit"
+							className="primary md"
+							disabled={loading || apiLoading}
+						>
+							{submitButtonLabel || 'Submit'}
+						</Button>
+					</div>
+				</Modal.Footer>
 			</form>
 		</div>
 	);

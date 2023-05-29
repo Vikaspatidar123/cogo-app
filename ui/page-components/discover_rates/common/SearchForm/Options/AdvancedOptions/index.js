@@ -28,6 +28,7 @@ function AdvancedOptions({
 	errors = {},
 	loading = false,
 	control,
+	setValue,
 }) {
 	const containerDetailsModes = [
 		'fcl_freight',
@@ -58,6 +59,7 @@ function AdvancedOptions({
 										fields={[...optionsFields, ...fields]}
 										errors={errors}
 										control={control}
+										setValue={setValue}
 									/>
 								)}
 								<Form

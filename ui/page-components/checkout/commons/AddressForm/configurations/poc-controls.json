@@ -7,14 +7,14 @@
 		"span": 3
 	},
 	{
-		"type": "email",
+		"type": "text",
 		"name": "email",
 		"label": "POC Email",
 		"rules": { "required": true },
 		"span": 3
 	},
 	{
-		"type": "mobile-number-select",
+		"type": "mobile_number",
 		"name": "mobile_number",
 		"label": "POC Mobile Number",
 		"codeKey": "mobile_country_code",

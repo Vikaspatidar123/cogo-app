@@ -20,10 +20,12 @@ function Location({
 	control,
 	mode,
 	errors,
+	setValue,
 }) {
 	if (!value) {
 		return null;
 	}
+
 	const icon = {
 		origin_fcl_freight      : IcAFreeOnBoard,
 		destination_fcl_freight : IcATransporters,
@@ -37,7 +39,6 @@ function Location({
 	const handleChange = (obj) => {
 		setLocation({ ...location, [type]: { ...obj, formName: value.formName } });
 	};
-
 	return (
 		<div className={styles.container}>
 			<div className={styles.header}>
@@ -51,6 +52,7 @@ function Location({
 						{...fields.find((x) => x.name === value.formName)}
 						handleChange={handleChange}
 						control={control}
+						value={value}
 						style={{
 							width: '250px',
 						}}

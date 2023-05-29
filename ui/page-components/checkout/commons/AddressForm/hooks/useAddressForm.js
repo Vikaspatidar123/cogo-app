@@ -55,11 +55,12 @@ const getAddressShowElements = ({
 	isGstNumberSelected,
 	isAddressRegisteredUnderGstChecked,
 }) => {
+	console.log(isSez, 'isSez');
 	const hash = {};
 	controls.forEach((control) => {
 		const { name, showIn } = control;
 
-		let showElement = showIn.includes(addressType);
+		let showElement = showIn?.includes(addressType);
 
 		if (showElement) {
 			if (name === 'sez_proof' && !isSez) {
@@ -311,7 +312,6 @@ const useSaveAddressForm = (props) => {
 			addressControls,
 			addressType: updatedAddressType,
 		});
-
 		if (!saveAddressData) {
 			onSuccess({
 				values: newValues,
@@ -322,19 +322,17 @@ const useSaveAddressForm = (props) => {
 
 		saveAddress({ values: newValues });
 	};
-
 	const layouts = getLayouts({
 		invoiceTradePartyControls,
 		isRegisteredUnderGstControls,
 		addressControls,
 		pocFieldArrayControls,
 		addressType         : updatedAddressType,
-		isSez               : !isEmpty(watchIsSez),
-		isGstNumberSelected : !isEmpty(watchGstList),
+		isSez               : watchIsSez,
+		isGstNumberSelected : watchGstList,
 		gstinOptions,
 		isAddressRegisteredUnderGstChecked,
 	});
-	console.log(newControls, 'newControls', layouts);
 	const newFields = {};
 	Object.entries(newControls).forEach(([controlName, field]) => {
 		let newField = { ...field };

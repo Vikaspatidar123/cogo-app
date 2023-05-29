@@ -1,7 +1,7 @@
 // import { replace } from '@cogo/i18n';
 import { cl } from '@cogoport/components';
 import { IcMPortArrow } from '@cogoport/icons-react';
-import React from 'react';
+import React, { useEffect } from 'react';
 
 // import CUSTOM_THEME from './custom-theme';
 
@@ -34,6 +34,7 @@ function Route({
 	extraParams,
 	disabledFields = {},
 	control,
+	setValue,
 }) {
 	const { showArrow = true } = destination || {};
 	const { org_id } = useSelector(({ profile, general }) => ({
@@ -72,21 +73,25 @@ function Route({
 		}
 		return null;
 	};
+	useEffect(() => {
+		setValue('origin_port_id', location?.origin?.id);
+		setValue('destination_port_id', location?.destination?.id);
+	}, [location, setValue]);
 	return (
 		<div className={styles.container} id="search_form_route_container">
 			<div className={cl`${styles.section} ${styles[className]}`}>
 				{handleLabel('origin')}
 
 				<AsyncSelectController
-					id={`search_${origin.name}`}
+					id={`search_${origin.name}` || `${location?.origin?.id}`}
 					key={`search_${origin.name}`}
+					value={location?.origin?.id}
 					{...origin}
 					control={control}
 					caret
 					placeholder={origin.placeholder || ''}
 					noOptionsMessage="Type to search..."
 					asyncKey="locations2"
-					// value={location?.origin?.id}
 					disabled={
 							disabledFields?.origin
 							&& index !== 0
@@ -111,6 +116,7 @@ function Route({
 						organization_id : extraParams?.id || org_id,
 						service_type    : mode,
 					}}
+
 				/>
 				{errors[origin.name] ? (
 					<div className={styles.error}>{errors[origin.name]?.message}</div>
@@ -155,12 +161,12 @@ function Route({
 						asyncKey="locations2"
 						noOptionsMessage="Type to search..."
 						placeholder={destination.placeholder || ''}
-						// value={location?.destination?.id}
+						value={location?.destination?.id}
 						disabled={
-              disabledFields?.destination
-              && index !== 0
-              && !singleLocationServices.includes(mode)
-            }
+							disabledFields?.destination
+							&& index !== 0
+							&& !singleLocationServices.includes(mode)
+							}
 						handleChange={(obj) => {
 							setLocation({
 								...location,

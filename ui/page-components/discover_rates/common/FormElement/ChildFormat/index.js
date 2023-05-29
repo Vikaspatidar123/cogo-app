@@ -29,12 +29,10 @@ function ChildFormat(
 		control,
 		name,
 	});
-
 	const childEmptyValues = {};
 	controls.forEach((controlItem) => {
 		childEmptyValues[controlItem.name] = controlItem.value || '';
 	});
-
 	const handleAppendChild = () => {
 		append(childEmptyValues);
 	};

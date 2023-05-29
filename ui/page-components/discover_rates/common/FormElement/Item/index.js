@@ -50,7 +50,6 @@ function Item({ formValue, ...rest }) {
 	}
 
 	const errorClass = restProps.error ? 'error' : null;
-
 	return (
 		<div>
 			{errorClass && (

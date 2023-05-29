@@ -112,7 +112,7 @@
 	{
 		"type": "file",
 		"name": "tax_number_document_url",
-		"label": "TAX Proof",
+		"label": "GST Proof",
 		"uploadType": "aws",
 		"drag": true,
 		"height": 45,
@@ -124,24 +124,7 @@
 			"billingAddress"
 		]
 	},
-	{
-		"name": "organization_branch_id",
-		"label": "Organization Branch",
-		"placeholder": "Select organization Branch",
-		"type": "select",
-		"value": "",
-		"asyncKey": "organization-branches",
-		"caret": true,
-		"isClearable": true,
-		"defaultOptions": true,
-		"rules": {
-			"required": "Name is required"
-		},
-		"className": "primary sm",
-		"showIn": [
-			"billingAddress"
-		]
-	},
+
 	{
 		"type": "textarea",
 		"name": "address",
@@ -179,7 +162,6 @@
 		"name": "sez_proof",
 		"label": "SEZ Proof",
 		"uploadType": "aws",
-		"drag": true,
 		"height": 45,
 		"rules": {
 			"required": true

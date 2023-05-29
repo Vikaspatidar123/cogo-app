@@ -35,16 +35,6 @@
 
 .btn_grp {
 	display: flex;
-	align-items: flex-end;
-	justify-content: flex-end;
-	padding: 16px 0;
-	background: #fff;
-	border-top: 1px solid #cbcff5;
-
-	@media (min-width: 768px) {
-		position: sticky;
-		bottom: 0;
-	}
 }
 
 .spinner_container {
@@ -90,6 +80,7 @@
 			flex-direction: row;
 			min-height: 20px;
 			padding: 0;
+			
 
 			svg {
 				width: 40px;
@@ -97,4 +88,8 @@
 			}
 		}
 	}
+}
+
+.errors{
+	color: rgb(203, 100, 100);
 }

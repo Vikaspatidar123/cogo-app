@@ -1,5 +1,5 @@
 import { cl } from '@cogoport/components';
-import React from 'react';
+import React, { forwardRef, useEffect, useRef } from 'react';
 
 import getWidth from '../SearchForm/utils/getWidth';
 
@@ -18,7 +18,7 @@ function FormElement({
 	showButtons = false,
 	noScroll = false,
 	setValue,
-}) {
+}, ref) {
 	return (
 		<div className={cl`${styles.container} ${!noScroll ? styles.scroll : ''}`}>
 			<div className={styles.row}>
@@ -29,7 +29,7 @@ function FormElement({
 							<CBMCalculator
 								key={item.name}
 								formValues={formValues}
-								// onChange={fields[item?.name].onChange}
+								// onChange={controls[item?.name].onChange}
 								setValue={setValue}
 								item={item}
 							/>
@@ -55,6 +55,8 @@ function FormElement({
 									error={errors[item.name]}
 									showElements={showElements[item.name]}
 									control={control}
+									ref={ref}
+
 								/>
 							</div>
 						) : null;
@@ -100,4 +102,4 @@ function FormElement({
 	);
 }
 
-export default FormElement;
+export default forwardRef(FormElement);

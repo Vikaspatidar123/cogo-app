@@ -33,7 +33,6 @@ function CompanyDetails({
 	if (tradePartyType.value !== 'paying_party') {
 		showElements.verification_document = false;
 	}
-
 	return (
 		<div className={styles.container}>
 			<Modal.Body>
@@ -42,13 +41,14 @@ function CompanyDetails({
 				<div className={styles.layout}>
 					{orgControls.map((item) => {
 						const Element = getField(item.type);
+
 						return (
 							<div className={styles.field}>
 								<div className={styles.lable}>{item.label}</div>
 								<Element {...item} control={control} />
-								{errors && (
+								{errors?.[item?.name] && (
 									<div className={styles.errors}>
-										{errors[item?.name]?.message}
+										{errors?.[item?.name]?.type || errors?.[item?.name]?.message}
 									</div>
 								)}
 							</div>

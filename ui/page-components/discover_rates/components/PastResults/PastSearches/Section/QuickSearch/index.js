@@ -1,6 +1,6 @@
 import { Popover, cl, Button } from '@cogoport/components';
 import { IcMSearchlight } from '@cogoport/icons-react';
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 import { trackEvent } from '../../../../../common/analytics';
 import { APP_EVENT } from '../../../../../common/analytics/constants';
@@ -20,6 +20,8 @@ import Form from '@/ui/page-components/discover_rates/common/FormElement';
 function QuickSearch({ data, extraParams = {}, type, refresh }) {
 	const [isLoading, setIsLoading] = useState(false);
 	const [show, setShow] = useState(false);
+	const ref = useRef({});
+
 	// const className = `${mobile ? 'mobile' : ''} ${type || ''}`;
 	const { search_type } = data;
 	const [errors, setErrors] = useState({});
@@ -36,9 +38,19 @@ function QuickSearch({ data, extraParams = {}, type, refresh }) {
 	const formattedData = formatMainServiceData(search_type, [
 		{ ...(data || {}), service_type: search_type },
 	]);
+	const ArrayValue = (item) => {
+		if (item.type === 'fieldArray') {
+			const controls = item?.controls.map((info) => ({
+				...info,
+				value: formattedData?.containers?.[0]?.[info.name],
+			}));
+			return { ...item, controls };
+		}
+		return item;
+	};
 	const controls = tempControls.map((item) => ({
-		...item,
-		value: formattedData[item.name],
+		...ArrayValue(item),
+		value: item.type === 'fieldArray' ? ArrayValue(item) : formattedData[item.name],
 	}));
 
 	const { handleSubmit, control } = useForm();
@@ -249,15 +261,22 @@ function QuickSearch({ data, extraParams = {}, type, refresh }) {
 	const onError = (err) => {
 		setErrors(err);
 	};
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	useEffect(() => { if (show && search_type === 'fcl_freight')ref.current?.handleAppendChild(); }, [show]);
+
 	const renderPopover = () => (
 		<div className={cl`${styles.container} ${styles.mobile}`}>
 			<form onSubmit={handleSubmit(submit, onError)}>
 				<Header onClose={() => setShow(false)} isLoading={isLoading} />
 				<Form
+					key={search_type}
 					controls={controls}
 					mode={search_type}
 					errors={errors}
 					control={control}
+					ref={(r) => {
+						ref.current = r;
+					}}
 				/>
 			</form>
 		</div>
@@ -286,10 +305,11 @@ function QuickSearch({ data, extraParams = {}, type, refresh }) {
 			</Button>
 			{(type !== 'negotiation' && (
 				<Popover
-					show={show}
+					visible={show}
 					withArrow
 					usePortal
 					placement="left"
+					trigger="click"
 					render={renderPopover()}
 					onOuterClick={() => {
 						setShow(false);

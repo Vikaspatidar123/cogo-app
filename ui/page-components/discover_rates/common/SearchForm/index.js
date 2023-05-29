@@ -324,6 +324,8 @@ function Form(
 									extraParams={extraParams}
 									disabledFields={disabledFields}
 									control={control}
+									setValue={setValue}
+
 								/>
 							</div>
 

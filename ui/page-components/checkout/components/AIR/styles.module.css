@@ -55,23 +55,22 @@
 		align-items: center;
 		width: 100%;
 	}
+
 	.details {
 		display: flex;
 		align-items: center;
 		margin-right: 16px;
 		cursor: pointer;
 	}
+
 	.details_title {
 		margin-right: 13px;
 	}
+
 	.additional_services_title {
 		margin-right: 2%;
 	}
-	
-	
 }
-
-
 
 .service_details_container {
 	margin-bottom: 12px;

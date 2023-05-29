@@ -19,30 +19,31 @@
 }
 
 .business_name {
+	margin: 0;
 	font-size: 15px;
-    margin: 0px;
-    color: rgb(51, 51, 51);
-    font-weight: 600;
+	font-weight: 600;
+	color: rgb(51 51 51);
 }
 
 .radio_wrapper {
-	:global{
-	.ui_checkbox_group_container {
-		display: block;
-		width: 100%;
-		padding: 12px 8px;
-		border-bottom: 1px solid #eceff8;
-
-		&:hover {
-			background: #f6f5fe;
-			border-radius: 4px;
-		}
-
-		@media (max-width: 768px) {
+	:global {
+		.ui_checkbox_group_container {
+			display: block;
 			width: 100%;
+			padding: 12px 8px;
+			border-bottom: 1px solid #eceff8;
+
+			&:hover {
+				background: #f6f5fe;
+				border-radius: 4px;
+			}
+
+			@media (max-width: 768px) {
+				width: 100%;
+			}
 		}
 	}
-	}
+
 	.core-ui-radiogroup-container {
 		justify-content: flex-start;
 		width: 100%;
@@ -113,11 +114,13 @@
 	display: flex;
 	align-items: center;
 	font-size: 10px;
-    .tag{
-		margin-left: 10px;
+
+	.tag {
 		padding: 2px 5px;
+		margin-left: 10px;
 		border-radius: 2px;
 	}
+
 	.rejected {
 		background: #ed9d8e;
 	}
@@ -129,20 +132,20 @@
 	.verified {
 		background: #a9e88b;
 	}
+
 	.core-ui-tag-root {
 		.core-ui-tag-text {
 			&.rejected {
 				color: white;
 			}
 		}
-
-		
 	}
 }
 
-.tag_div{
+.tag_div {
 	display: flex;
 }
-.disabled{
-	pointer-events:none;
+
+.disabled {
+	pointer-events: none;
 }

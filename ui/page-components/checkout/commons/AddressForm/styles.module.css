@@ -80,7 +80,6 @@
 			flex-direction: row;
 			min-height: 20px;
 			padding: 0;
-			
 
 			svg {
 				width: 40px;
@@ -90,6 +89,6 @@
 	}
 }
 
-.errors{
-	color: rgb(203, 100, 100);
+.errors {
+	color: rgb(203 100 100);
 }

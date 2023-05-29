@@ -1,7 +1,6 @@
 .container {
 	/* width: 50%; */
 
-
 	&.scroll {
 		max-height: 450px;
 		overflow-y: scroll;

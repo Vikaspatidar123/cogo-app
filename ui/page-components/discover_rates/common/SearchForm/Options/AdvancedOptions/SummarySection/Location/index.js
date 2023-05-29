@@ -20,7 +20,6 @@ function Location({
 	control,
 	mode,
 	errors,
-	setValue,
 }) {
 	if (!value) {
 		return null;

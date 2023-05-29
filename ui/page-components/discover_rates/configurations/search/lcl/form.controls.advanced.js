@@ -19,7 +19,6 @@ const formControlsAdvanced = (isChannelPartner = false) => [
 		type        : 'async_select',
 		asyncKey    : 'locations',
 		grouped     : ['city'],
-		style       : { width: '350px' },
 		params      : { filters: { type: ['pincode', 'city'] } },
 		condition   : { services: ['export_transportation'] },
 		rules       : { required: 'Pickup Pincode is required' },
@@ -51,7 +50,6 @@ const formControlsAdvanced = (isChannelPartner = false) => [
 		label       : 'Address',
 		name        : 'export_transportation_address',
 		placeholder : 'Enter address',
-		style       : { width: '350px' },
 		type        : 'text',
 		condition   : { services: ['export_transportation'] },
 
@@ -151,7 +149,6 @@ const formControlsAdvanced = (isChannelPartner = false) => [
 		params      : { filters: { type: ['pincode', 'city'] } },
 		condition   : { services: ['import_transportation'] },
 		rules       : { required: 'Destination Pincode is required' },
-		style       : { width: '350px' },
 	},
 	{
 		name      : 'import_transportation_truck_type',

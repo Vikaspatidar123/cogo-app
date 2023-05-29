@@ -66,6 +66,11 @@ const saas = {
 		navigation: 'saas_tracking',
 	},
 
+	'/saas/tools/air-ocean-tracking': {
+		navigation : 'saas_tools-air_ocean_tracking_v2',
+		isMainNav  : true,
+	},
+
 };
 
 module.exports = saas;

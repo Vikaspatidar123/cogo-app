@@ -1,0 +1,12 @@
+.container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-weight: 600;
+}
+
+.line{
+    width: 14px;
+	height: 0;
+	border-top: 1.7px solid #000;
+}

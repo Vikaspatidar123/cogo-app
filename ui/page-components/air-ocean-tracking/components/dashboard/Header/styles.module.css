@@ -1,0 +1,42 @@
+.container{
+    padding: 20px;
+    background-color: #FCDC00;
+    background-image: url('https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/tracking_bg.png');
+    background-blend-mode: overlay;
+    background-size: cover;
+
+    :global{
+        .ui_toggle_offlabel,.ui_toggle_onlabel{
+            color: #333;
+        }
+    }
+
+    h2{
+        text-align: center;
+    }
+}
+
+.form_container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.row{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.col{
+    padding: 0 8px;
+
+    &.form_col{
+        width: 20%;
+    }
+    &.or_tag{
+        width: 7%;
+    }
+    /* width: 30%; */
+}

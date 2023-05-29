@@ -16,6 +16,7 @@ import {
 	IcMProductCodeMapping,
 	IcMFfreferigeratedCargoType,
 	IcADutiesTaxes,
+	IcAShipAmber,
 } from '@cogoport/icons-react';
 
 const navigationMappings = {
@@ -111,6 +112,12 @@ const navigationMappings = {
 					/>
 				),
 				description: 'Find HS Codes with detailed description',
+			},	{
+				key   : 'saas_tools-air_ocean_tracking_v2',
+				title : 'Air Ocean Tracking',
+				href  : '/v2/saas/tools/air-ocean-tracking',
+				as    : '/v2/saas/tools/air-ocean-tracking',
+				icon  : <IcAShipAmber width={40} height={40} />,
 			},
 		],
 	},

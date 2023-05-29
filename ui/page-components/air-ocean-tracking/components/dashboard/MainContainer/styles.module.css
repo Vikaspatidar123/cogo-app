@@ -1,0 +1,31 @@
+.container {
+	padding: 20px 20px 20px 10px;
+}
+
+.title {
+	margin-right: 20px;
+	font-size: 18px;
+	font-weight: 600;
+}
+
+.flex_box {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.header {
+	margin-bottom: 30px;
+}
+
+.filter_section {
+	.select_field {
+		width: 150px;
+		margin: 0 15px;
+	}
+}
+
+.tracking_info {
+	border: 1px solid #daf9ff;
+	border-radius: 4px;
+}

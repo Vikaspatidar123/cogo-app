@@ -1,0 +1,9 @@
+.container {
+	width: 100%;
+
+	:global {
+		.leaflet-tile {
+			filter: hue-rotate(45deg) !important;
+		}
+	}
+}

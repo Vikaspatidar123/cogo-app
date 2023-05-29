@@ -1,0 +1,14 @@
+.container{
+    display:flex;
+    align-items: flex-start;
+    padding: 10px;
+}
+
+.main_section{
+    flex: 2;
+}
+
+.info_section{
+    padding: 20px 0;
+    flex: 1
+}

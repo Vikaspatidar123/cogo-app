@@ -31,7 +31,6 @@ const useCreateOrganization = ({ setBillingAddressDetails, setOrgId, setOrgBranc
 			const response = await createOrganizationtrigger({
 				data: payload,
 			});
-
 			if (response?.hasError) return;
 			if (response?.status === 200) {
 				setBillingAddressDetails(true);

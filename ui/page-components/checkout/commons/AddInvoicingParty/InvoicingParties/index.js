@@ -1,6 +1,6 @@
 import { Button, Loader } from '@cogoport/components';
 import { isEmpty } from '@cogoport/utils';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 
 import CreateNewBillingAddress from '../CreateNewBillingAddress';
 import CreateNewInvoicingParty from '../CreateNewInvoicingParty';
@@ -107,7 +107,7 @@ function InvoicingParties({
 
 	const { list = [] } = data || {};
 
-	const reorderedList = list || [];
+	const reorderedList = useMemo(() => list || [], [list]);
 
 	const address_to_use = is_tax_applicable
 		? 'billing_addresses'

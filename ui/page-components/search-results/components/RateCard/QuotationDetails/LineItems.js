@@ -57,19 +57,19 @@ function LineItems({ item = {} }) {
 					<div className={styles.total_price}>
 						<span style={{ fontWeight: 500 }}>
 							{formatAmount({
-                            	amount  : priceWithoutMargin,
-                            	currency,
-                            	options : {
-                            		style                 : 'currency',
-                            		currencyDisplay       : 'code',
-                            		maximumFractionDigits : 0,
-                            	},
+								amount  : priceWithoutMargin,
+								currency,
+								options : {
+									style                 : 'currency',
+									currencyDisplay       : 'code',
+									maximumFractionDigits : 0,
+								},
 							})}
 						</span>
 
 						{isConditionMatches(
-                        	[...CC.SEE_SALES_MARGIN, ...CC.SEE_SUPPLY_MARGIN],
-                        	'or',
+							[...CC.SEE_SALES_MARGIN, ...CC.SEE_SUPPLY_MARGIN],
+							'or',
 						) ? (
 							<div className={styles.space}>
 								{price_discounted}
@@ -78,7 +78,7 @@ function LineItems({ item = {} }) {
 								) x
 								{quantity}
 							</div>
-                        	) : null}
+							) : null}
 					</div>
 				</div>
 			</div>

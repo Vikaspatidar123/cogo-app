@@ -21,12 +21,6 @@ function Route({
 
 	return (
 		<div className={styles.container}>
-			{/* <FormElement
-				control={control}
-				controls={controls}
-				// showButtons
-				errors={errors}
-			/> */}
 			<div className={styles.lable}>AIRPORT</div>
 			<AsyncSelectController
 				control={control}

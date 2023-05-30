@@ -93,8 +93,6 @@ function FTL({
 			<div className={styles.btn_container}>
 				<div className={styles.toggle_container}>
 					<Toggle
-            // offLabel={{ label: 'One-way', value: 'one_way' }}
-            // onLabel={{ label: 'Round Trip', value: 'round' }}
 						offLabel="One-way"
 						onLabel="Round Trip"
 						value={typeOfJourney}

@@ -1,6 +1,5 @@
 .container {
-	/* margin-bottom: 20px; */
-	margin-top: 10%;
+	margin-top: 7%;
 
 	.form-item-label {
 		margin: 24px 0 12px;
@@ -35,5 +34,5 @@
 }
 
 .lable {
-	padding-bottom: 5px;
+	padding-bottom: 10px;
 }

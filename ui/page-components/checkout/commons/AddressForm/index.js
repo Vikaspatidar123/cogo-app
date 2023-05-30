@@ -28,7 +28,7 @@ import getField from '@/packages/forms/Controlled';
  * @property {boolean}		[validateGst]
  */
 function AddressForm(props) {
-	const { submitButtonLabel, optionalButtons, loading, ...restProps } = props;
+	const { submitButtonLabel, optionalButtons, loading, organizationCountryId, ...restProps } = props;
 	const {
 		loading: apiLoading,
 		layouts,
@@ -41,7 +41,7 @@ function AddressForm(props) {
 		watchPincode,
 		watchGstList,
 		isAddressRegisteredUnderGstChecked,
-	} = useAddressForm(restProps);
+	} = useAddressForm({ ...restProps, organizationCountryId });
 
 	const { handleSubmit } = formProps;
 
@@ -60,7 +60,6 @@ function AddressForm(props) {
 					<div style={{ minHeight: '48vh', display: 'flex', flexDirection: 'column', marginBottom: '8px' }}>
 						{Object.entries(layouts).map(([key, layout]) => {
 							const { title, controls, showElements } = layout;
-
 							if (isEmpty(controls)) {
 								return null;
 							}
@@ -87,7 +86,7 @@ function AddressForm(props) {
 													);
 												}
 												const Controller = getField(item.type);
-												const show = showElements?.[item?.name];
+												const show = showElements?.[item?.name] || true;
 												const { span, name } = item || {};
 												return (
 													show && (

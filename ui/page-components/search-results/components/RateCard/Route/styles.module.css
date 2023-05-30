@@ -120,3 +120,31 @@
 		box-shadow: 0 2px 20px rgb(0 0 0 / 10%);
 	}
 }
+
+.cogo_assured{
+	margin: 0;
+	font-weight: 700;
+	font-size: 12px;
+	margin-left: 2px;
+	color: #000000;
+	text-transform: uppercase;
+}
+
+.is_nvocc{
+	display: flex;
+	width: 100%;
+	text-align: center;
+	align-items: center;
+	justify-content: center;
+}
+
+
+.is_nvocc_text{
+	color: #333333;
+	background: #ded7fc;
+	padding: 2px 4px;
+	border-radius: 4px;
+	font-size: 10px;
+	margin-left: 14px;
+	margin-right: 8px;
+}

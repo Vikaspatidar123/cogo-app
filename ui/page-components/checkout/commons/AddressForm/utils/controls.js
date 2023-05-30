@@ -1,43 +1,49 @@
 import { IcMCloudUpload } from '@cogoport/icons-react';
 import { getByKey, isEmpty } from '@cogoport/utils';
 
-import configAddressControls from '../configurations/address-controls.json';
+import getAddressMappingControls from '../configurations/address-controls';
 import configInvoiceTradePartyControls from '../configurations/invoice-trade-party-controls.json';
-import configIsRegisteredUnderGstControls from '../configurations/is-registered-under-gst-controls.json';
+import getAddressRegisteredUnderGst from '../configurations/is-registered-under-gst-controls';
 import configPocControls from '../configurations/poc-controls.json';
 
 import getValue from './getValue';
 
 import patterns from '@/ui/commons/configurations/patterns';
+import { CountrySpecificData } from '@/ui/commons/constants/CountrySpecificDetail';
 
-const addressControls = configAddressControls.map((control) => {
-	let newControl = { ...control };
+const getAddressNewControls = ({ organizationCountryId }) => {
+	const configAddressControls = getAddressMappingControls({
+		organizationCountryId,
+	});
 
-	const { name, type } = newControl;
+	return configAddressControls.map((control) => {
+		let newControl = { ...control };
 
-	if (type === 'file') {
-		newControl = {
-			...newControl,
-			uploadIcon: () => <IcMCloudUpload size={2} />,
-		};
-	}
+		const { name, type } = newControl;
 
-	if (name === 'tax_number') {
-		newControl = {
-			...newControl,
-			rules: {
-				...getValue(newControl, 'rules', {}),
-				// pattern: {
-				// 	value: patterns.GST_NUMBER,
-				// 	message: 'GST is invalid',
-				// },
-			},
-		};
-	}
+		if (type === 'file') {
+			newControl = {
+				...newControl,
+				uploadIcon: () => <IcMCloudUpload size={2} />,
+			};
+		}
 
-	return newControl;
-});
+		if (name === 'tax_number') {
+			newControl = {
+				...newControl,
+				rules: {
+					...getValue(newControl, 'rules', {}),
+					// pattern: {
+					// 	value: patterns.GST_NUMBER,
+					// 	message: 'GST is invalid',
+					// },
+				},
+			};
+		}
 
+		return newControl;
+	});
+};
 const pocControls = configPocControls.map((control) => {
 	let newControl = { ...control };
 
@@ -104,8 +110,11 @@ const getInvoiceTradePartyControls = ({
 	});
 };
 
-const getIsAddressRegisteredUnderGstControls = ({ values, formState = {} }) => {
+const getIsAddressRegisteredUnderGstControls = ({ values, formState = {}, organizationCountryId }) => {
 	let newValues = formState;
+	const configIsRegisteredUnderGstControls = getAddressRegisteredUnderGst({
+		organizationCountryId,
+	});
 	if (!isEmpty(values)) {
 		newValues = values;
 	}
@@ -123,11 +132,12 @@ const getIsAddressRegisteredUnderGstControls = ({ values, formState = {} }) => {
 	});
 };
 
-const getAddressControls = ({ values, formState = {}, gstinOptions }) => {
+const getAddressControls = ({ values, formState = {}, gstinOptions, organizationCountryId }) => {
 	let newValues = formState;
 	if (!isEmpty(values)) {
 		newValues = values;
 	}
+	const addressControls = getAddressNewControls({ organizationCountryId });
 
 	return addressControls.map((control) => {
 		const { name, type } = control;
@@ -138,8 +148,20 @@ const getAddressControls = ({ values, formState = {}, gstinOptions }) => {
 		if (name === 'gst_list') {
 			newControl = {
 				...newControl,
-				label   : isEmpty(gstinOptions) ? '' : 'Select GST',
-				options : gstinOptions,
+				label: isEmpty(gstinOptions) ? (
+					''
+				) : (
+					<>
+						Select
+						{' '}
+						<CountrySpecificData
+							country_id={organizationCountryId}
+							accessorType="registration_number"
+							accessor="label"
+						/>
+					</>
+				),
+				options: gstinOptions,
 			};
 		}
 
@@ -223,6 +245,7 @@ export const getControls = ({
 	showSavedPOC,
 	formState,
 	gstinOptions = [],
+	organizationCountryId,
 }) => {
 	const {
 		organization_trade_party_id: formStateTradePartyId,
@@ -258,11 +281,13 @@ export const getControls = ({
 			formState: {
 				isAddressRegisteredUnderGst: formStateIsAddressRegisteredUnderGst,
 			},
+			organizationCountryId,
 		}),
 		addressControls: getAddressControls({
 			gstinOptions,
 			values    : addressData,
 			formState : formStateAddressData || {},
+			organizationCountryId,
 		}),
 		pocFieldArrayControls: getPocFieldArray({
 			action,

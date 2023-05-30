@@ -6,19 +6,12 @@ import styles from './styles.module.css';
 
 import { useSelector } from '@/packages/store';
 
-function Card({ onClick = () => {}, enquiryQuota = {} }) {
-	const { scope, organization, skippable_checks, agent } = useSelector(({ general, profile }) => ({
-		scope            : general.scope,
+function Card({ enquiryQuota = {} }) {
+	const { organization, skippable_checks, agent } = useSelector(({ profile }) => ({
 		organization     : profile?.organization || {},
 		skippable_checks : profile?.organization?.skippable_checks,
 		agent            : profile?.organization?.agent,
 	}));
-
-	const isChannelPartner = false;
-
-	const handleClick = () => {
-		onClick();
-	};
 
 	const goTo = (href) => {
 		if (typeof window !== 'undefined') {
@@ -26,11 +19,9 @@ function Card({ onClick = () => {}, enquiryQuota = {} }) {
 		}
 	};
 
-	if (scope === 'app' && !organization?.agent_id) {
+	if (!organization?.agent_id) {
 		return null;
 	}
-
-	const showEnquiryBtn = (!isChannelPartner || enquiryQuota?.left_limit > 0);
 
 	const showRmDetails = Object.keys(agent || {}).length && !(skippable_checks || []).includes('hide_rm_detail');
 
@@ -43,26 +34,16 @@ function Card({ onClick = () => {}, enquiryQuota = {} }) {
 						<span style={{ fontWeight: 'normal' }}>
 							Can’t find the right fit?
 						</span>
-						{scope === 'app' ? 'Contact Your Key Account Manager Now.' : ''}
+						Contact Your Key Account Manager Now.
 					</div>
 
 					<div className={styles.description}>
 						For extra destination free days, specific carrier, or a better rate.
 					</div>
 
-					{(scope === 'partner' && (
-						showEnquiryBtn
-							? (
-								<div
-									role="presentation"
-									className={styles.action}
-									onClick={handleClick}
-								>
-									+ Place Enquiry
-								</div>
-							)
-							: <EnquiryPlan enquiryQuota={enquiryQuota} />
-					)) || (
+					{
+						<EnquiryPlan enquiryQuota={enquiryQuota} />
+					|| (
 						<div className={styles.action_container}>
 							<div
 								role="presentation"
@@ -87,7 +68,8 @@ function Card({ onClick = () => {}, enquiryQuota = {} }) {
 								</div>
 							)}
 						</div>
-					)}
+					)
+}
 				</div>
 			) : null}
 		</>

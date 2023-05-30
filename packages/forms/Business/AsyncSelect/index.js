@@ -12,6 +12,7 @@ import {
 	asyncFieldsPartnerQuotation,
 	// asyncProductList,
 	asyncCountrySelect,
+	asyncOrganizationBranches,
 } from '../../utils/getAsyncFields';
 
 /**
@@ -33,14 +34,15 @@ import {
  * getModifiedOptions
  */
 const keyAsyncFieldsParamsMapping = {
-	locations              : asyncFieldsLocations,
-	locations2             : asyncFieldsLocations2,
-	partners               : asyncFieldsPartner,
-	partner_roles          : asyncFieldsPartnerRoles,
-	hs_code_countries      : asyncFieldsHsCodeCountries,
-	list_partner_quotation : asyncFieldsPartnerQuotation,
+	locations               : asyncFieldsLocations,
+	locations2              : asyncFieldsLocations2,
+	partners                : asyncFieldsPartner,
+	partner_roles           : asyncFieldsPartnerRoles,
+	hs_code_countries       : asyncFieldsHsCodeCountries,
+	list_partner_quotation  : asyncFieldsPartnerQuotation,
 	// list_products          : asyncProductList,
-	country_list_with_flag : asyncCountrySelect,
+	country_list_with_flag  : asyncCountrySelect,
+	'organization-branches' : asyncOrganizationBranches,
 };
 
 function AsyncSelect(props) {

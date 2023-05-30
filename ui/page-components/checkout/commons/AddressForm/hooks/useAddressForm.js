@@ -22,6 +22,7 @@ const getControls = ({
 	values,
 	showSavedPOC,
 	formState,
+	organizationCountryId,
 }) => {
 	const {
 		invoiceTradePartyControls,
@@ -35,6 +36,7 @@ const getControls = ({
 		values,
 		showSavedPOC,
 		formState,
+		organizationCountryId,
 	});
 
 	return {
@@ -54,16 +56,19 @@ const getAddressShowElements = ({
 	isSez,
 	isGstNumberSelected,
 	isAddressRegisteredUnderGstChecked,
+	action,
 }) => {
-	console.log(isSez, 'isSez');
 	const hash = {};
 	controls.forEach((control) => {
 		const { name, showIn } = control;
 
-		let showElement = showIn?.includes(addressType);
+		let showElement = showIn.includes(addressType);
 
 		if (showElement) {
-			if (name === 'sez_proof' && !isSez) {
+			if (
+				(name === 'sez_proof' && !isSez)
+				|| (action === 'edit' && name === 'gst_list')
+			) {
 				showElement = false;
 			}
 		}
@@ -96,6 +101,7 @@ const getLayouts = ({
 	isGstNumberSelected,
 	gstinOptions,
 	isAddressRegisteredUnderGstChecked,
+	action,
 }) => ({
 	tradeParty: {
 		controls: invoiceTradePartyControls,
@@ -113,6 +119,7 @@ const getLayouts = ({
 			isGstNumberSelected,
 			gstinOptions,
 			isAddressRegisteredUnderGstChecked,
+			action,
 		}),
 	},
 	poc: {
@@ -164,7 +171,7 @@ const formatValues = ({ values, addressControls, addressType }) => {
 			values,
 			'organization_trade_party_id',
 		),
-		isAddressRegisteredUnderGst: !isEmpty(isAddressRegisteredUnderGst),
+		isAddressRegisteredUnderGst,
 		...getAddressValues({
 			data     : values,
 			controls : addressControls,
@@ -207,6 +214,8 @@ const useSaveAddressForm = (props) => {
 		formState,
 		registrationNumber = '',
 		validateGst = true,
+		organizationCountryId,
+		source = '',
 	} = props;
 
 	const action = isEmpty(addressData) ? 'create' : 'edit';
@@ -233,6 +242,7 @@ const useSaveAddressForm = (props) => {
 		},
 		showSavedPOC,
 		formState,
+		organizationCountryId,
 	});
 
 	const controls = [
@@ -260,7 +270,6 @@ const useSaveAddressForm = (props) => {
 	const watchGstList = watch('gst_list') || '';
 	const watchPincode = watch('pincode');
 	const watchIsAddressRegisteredUnderGst = watch('isAddressRegisteredUnderGst');
-
 	const { getBusinessApi = {} } = useGetBusiness({
 		watchTaxNumber         : watchGstList.toUpperCase(),
 		setValue,
@@ -268,10 +277,7 @@ const useSaveAddressForm = (props) => {
 		addressData,
 		source                 : 'addressPage',
 	});
-
-	const isAddressRegisteredUnderGstChecked = !isEmpty(
-		watchIsAddressRegisteredUnderGst,
-	);
+	const isAddressRegisteredUnderGstChecked = 	watchIsAddressRegisteredUnderGst;
 
 	let updatedAddressType = addressType;
 	if (action === 'create') {
@@ -289,6 +295,7 @@ const useSaveAddressForm = (props) => {
 		onSuccess,
 		onFailure,
 		showSavedPOC,
+		source,
 	});
 	if (fields?.organization_branch_id) {
 		fields.organization_branch_id.params = {

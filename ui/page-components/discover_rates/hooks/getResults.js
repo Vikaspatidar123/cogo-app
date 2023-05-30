@@ -170,10 +170,18 @@ const useResultsState = (id, extraParams = {}) => {
 	const setFilters = (filters) => {
 		const ratesOriginalList = [...state.ratesOriginalList];
 
+		const filterObj = { ...state.filters, ...filters };
+
+		Object.keys(filterObj).forEach((key) => {
+			if (!filterObj[key]) {
+				delete filterObj[key];
+			}
+		});
+
 		setState({
 			...state,
-			filters,
-			rates: handleFilter(ratesOriginalList, filters),
+			filters : filterObj,
+			rates   : handleFilter(ratesOriginalList, filterObj),
 		});
 	};
 
@@ -195,7 +203,7 @@ const useResultsState = (id, extraParams = {}) => {
 					rates             : !isEmpty(packages) ? packages : ratesObject,
 					ratesOriginalList : ratesObject,
 					possible_subsidiary_services:
-            response?.data?.possible_subsidiary_services || [],
+                    response?.data?.possible_subsidiary_services || [],
 					views               : data.views_count,
 					services            : (data.detail || {}).services || [],
 					lowestRate          : ratesObject.lowest_rate || {},

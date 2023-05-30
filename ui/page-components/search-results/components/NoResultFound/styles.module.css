@@ -55,6 +55,14 @@
 	font-size: 14px;
 	line-height: 18px;
 	color: #000;
+	:global{
+		.ui_button_container{
+			padding: 7px 4px;
+			background: transparent;
+			font-size: 14px;
+			line-height: 18px;
+		}
+	}
 }
 
 .title_rm {

@@ -30,7 +30,7 @@ function InvoicingPartyItem({
 
 	const { is_tax_applicable = false } = organization || {};
 	const options = useMemo(() => (
-		(!is_tax_applicable ? billing_addresses : other_addresses) || []
+		(is_tax_applicable ? billing_addresses : other_addresses) || []
 	).map((billingAddress, index) => {
 		const {
 			id, address = '', is_sez = false,

@@ -31,7 +31,6 @@ function Card() {
 				<div className={styles.container}>
 					<div className={styles.title}>
 						<span style={{ fontWeight: 'normal' }}>Can’t find the right fit?</span>
-						{' '}
 						Contact Your Key Account Manager Now.
 					</div>
 

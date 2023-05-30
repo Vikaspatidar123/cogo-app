@@ -63,6 +63,7 @@ function CargoInsurancePillContainer({
 					onClose={() => setAddCargoInsurance(false)}
 					placement={!allowCargoInsurance ? '' : 'top-right'}
 					width={!allowCargoInsurance ? 500 : 350}
+					scroll={false}
 				>
 					<CargoInsurance
 						setAddCargoInsurance={setAddCargoInsurance}

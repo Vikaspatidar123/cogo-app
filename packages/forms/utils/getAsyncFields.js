@@ -181,6 +181,18 @@ function asyncHsCodesCountries() {
 		defaultOptions : true,
 	};
 }
+function asyncOrganizationBranches() {
+	return {
+		valueKey       : 'id',
+		labelKey       : 'branch_name',
+		endpoint       : 'list_organization_branches',
+		defaultOptions : true,
+		defaultParams  : {
+			filters    : { status: 'active' },
+			page_limit : 10,
+		},
+	};
+}
 export {
 	asyncFieldsLocations,
 	asyncFieldsLocations2,
@@ -196,4 +208,5 @@ export {
 	asyncOrganizationUsers,
 	asyncHsCodes,
 	asyncHsCodesCountries,
+	asyncOrganizationBranches,
 };

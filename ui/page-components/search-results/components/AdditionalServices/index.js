@@ -1,6 +1,6 @@
 import { Modal, Button, Select, Input, cl } from '@cogoport/components';
 import { IcCTick, IcMPlus } from '@cogoport/icons-react';
-import { startCase } from '@cogoport/utils';
+import { startCase, isEmpty } from '@cogoport/utils';
 import React, { useState } from 'react';
 
 import useCreateAdditionalService from '../../hooks/useCreateAdditionalService';
@@ -256,7 +256,7 @@ function AdditionalServices({
 				<div className={styles.add_button}>
 					<Button
 						onClick={handleSubsidiaryService}
-						disabled={loading}
+						disabled={loading || isEmpty(subsidiaryService)}
 						size="sm"
 						themeType="accent"
 						id="search_results_subsidiary_service_add"
@@ -297,6 +297,7 @@ function AdditionalServices({
 					onClose={() => handleClose()}
 					placement="top-right"
 					size="sm"
+					scroll={false}
 				>
 					<Forms
 						onClose={() => handleClose()}

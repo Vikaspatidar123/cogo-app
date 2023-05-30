@@ -1,4 +1,4 @@
-import { Tooltip } from '@cogoport/components';
+import { Tooltip, Placeholder } from '@cogoport/components';
 import { IcMInfo } from '@cogoport/icons-react';
 
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
@@ -29,13 +29,16 @@ const controls = [
 		initialCall : true,
 		rules       : { required: true },
 		style       : { width: '270px' },
+		placeholder : 'Select Commodity',
 	},
 	{
-		name  : 'cargo_insurance_commodity_description',
-		label : 'Commodity Description',
-		type  : 'text',
-		rules : { required: true },
-		style : { width: '270px' },
+		name        : 'cargo_insurance_commodity_description',
+		label       : 'Commodity Description',
+		type        : 'text',
+		rules       : { required: true },
+		style       : { width: '270px' },
+		placeholder : 'Enter Commodity Description',
+
 	},
 	{
 		name        : 'cargo_value_currency',
@@ -45,6 +48,8 @@ const controls = [
 		value       : `${GLOBAL_CONSTANTS.currency_code.USD}`,
 		validations : [{ type: 'required', message: 'Currency is required' }],
 		style       : { width: '270px' },
+		placeholder : 'Select Currency',
+
 	},
 	{
 		name  : 'cargo_value',
@@ -54,9 +59,11 @@ const controls = [
 				<ConsignmentValueInfo />
 			</div>
 		),
-		type  : 'number',
-		rules : { required: true },
-		style : { width: '270px' },
+		type        : 'number',
+		rules       : { required: true },
+		style       : { width: '270px' },
+		placeholder : 'Enter Consignment Value',
+
 	},
 ];
 export default controls;

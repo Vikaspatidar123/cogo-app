@@ -152,7 +152,7 @@ const useCreateAdditionalService = ({
 				refetch();
 			}
 		} catch (err) {
-			Toast.error(err?.data);
+			console.log(err);
 		}
 	};
 

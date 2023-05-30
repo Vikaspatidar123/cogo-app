@@ -1,4 +1,27 @@
 .container {
     margin: 5px;
-    width: 30%;
+    width: 300px;
+}
+
+.wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+
+.select_container{
+    width: 200px;
+    margin: 5px;
+}
+
+.upload_container {
+    height: 50px;
+    width: 200px;
+   :global {
+        .ui_upload_droparea_container{
+            height: 20px;
+            padding: 0px;
+        }
+    }
 }

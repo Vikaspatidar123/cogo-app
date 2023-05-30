@@ -3,7 +3,7 @@ import { useCallback, useEffect } from 'react';
 import { useRequest } from '@/packages/request';
 
 const useGetDocumentsList = ({ filters = {} }) => {
-	const { query } = filters || {};
+	const { query = '', documentTypeFilter = '' } = filters || {};
 	const [{ loading, data }, trigger] = useRequest({
 		method : 'get',
 		url    : 'list_organization_documents',
@@ -14,15 +14,16 @@ const useGetDocumentsList = ({ filters = {} }) => {
 			await trigger({
 				params: {
 					filters: {
-						status: 'active',
+						status        : 'active',
 						query,
+						document_type : documentTypeFilter,
 					},
 				},
 			});
 		} catch (e) {
 			console.log(e);
 		}
-	}, [query, trigger]);
+	}, [documentTypeFilter, query, trigger]);
 
 	useEffect(() => {
 		fetchDocuments();

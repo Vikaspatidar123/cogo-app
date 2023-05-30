@@ -7,3 +7,8 @@
 .input {
     width: 20%;
 }
+
+.select_container {
+    width: 300px;
+    margin: 0 5px;
+}

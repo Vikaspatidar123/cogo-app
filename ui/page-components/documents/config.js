@@ -1,23 +1,31 @@
-import { IcMPreview } from '@cogoport/icons-react';
+import { IcMDownload, IcMPreview } from '@cogoport/icons-react';
 
-const { startCase } = require('@cogoport/utils');
+const { startCase, format } = require('@cogoport/utils');
 
 const columns = [
 	{
-		Header   : 'Document Name',
+		Header   : 'File Name',
 		accessor : 'name',
 		Cell     : ({ row }) => startCase(row?.original?.name),
 	},
 	{
-		Header   : 'Verification Status',
-		accessor : 'verification_status',
-		Cell     : ({ row }) => startCase(row?.original?.verification_status),
+		Header   : 'Document Type',
+		accessor : 'document_type',
+		Cell     : ({ row }) => startCase(row?.original?.document_type),
 	},
 	{
-		Header   : 'View',
+		Header   : 'Date Uploaded',
+		accessor : 'updated_at',
+		Cell     : ({ row }) => format(row?.original?.updated_at, 'dd LLL yyyy'),
+	},
+	{
+		Header   : 'Action',
 		accessor : 'image_url',
 		Cell     : ({ row }) => (
-			<IcMPreview onClick={() => window.open(row?.original?.image_url, '_blank')} />
+			<>
+				<IcMPreview onClick={() => window.open(row?.original?.image_url, '_blank')} />
+				<IcMDownload />
+			</>
 		),
 	},
 ];

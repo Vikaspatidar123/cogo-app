@@ -1,11 +1,11 @@
-import { Table, Input } from '@cogoport/components';
-import { IcMSearchlight } from '@cogoport/icons-react';
+import { Table } from '@cogoport/components';
 import { useState } from 'react';
 
 import columns from '../config';
 import useGetDocumentsList from '../hooks/useGetDocumentsList';
 
-import styles from './styles.module.css';
+import Filters from './Filters';
+import Heading from './Heading';
 
 function Documents() {
 	const [filters, setFilters] = useState({});
@@ -13,18 +13,8 @@ function Documents() {
 
 	return (
 		<div>
-			<div className={styles.search}>
-				<div className={styles.input}>
-					<Input
-						placeholder="Search by document name"
-						size="sm"
-						prefix={<IcMSearchlight />}
-						onChange={(e) => setFilters({
-							query: e?.target.value,
-						})}
-					/>
-				</div>
-			</div>
+			<Heading />
+			<Filters setFilters={setFilters} filters={filters} />
 			<Table
 				columns={columns}
 				data={!loading ? data?.list : []}

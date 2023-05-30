@@ -72,22 +72,22 @@ function Route({
 		}
 		return null;
 	};
-
+	console.log(origin, 'origin', location);
 	return (
 		<div className={styles.container} id="search_form_route_container">
 			<div className={cl`${styles.section} ${styles[className]}`}>
 				{handleLabel('origin')}
 
 				<AsyncSelectController
-					id={`search_${origin.name}` || `${location?.origin?.id}`}
-					key={`search_${origin.name}`}
 					{...origin}
+					id={`search_${origin.name}` || `${location?.origin?.id}`}
+					key={`search_${origin.name}_${location?.origin?.id}`}
 					control={control}
 					initialCall
 					caret
 					placeholder={origin.placeholder || ''}
 					noOptionsMessage="Type to search..."
-					asyncKey="locations2"
+					value={location?.origin?.id || location?.origin?.value}
 					disabled={
 							disabledFields?.origin
 							&& index !== 0
@@ -131,11 +131,11 @@ function Route({
 				{singleLocationServices.includes(mode) ? (
 					<SelectController
 						id={`search_${destination.name}`}
-						value={location?.destination?.id}
 						{...destination}
 						control={control}
 						noOptionsMessage="Type to search..."
 						placeholder={destination.placeholder || ''}
+						value={location?.destination?.id}
 						initialCall
 						disabled={
               disabledFields?.destination
@@ -151,24 +151,21 @@ function Route({
 					/>
 				) : (
 					<AsyncSelectController
-						id={`search_${destination.name}`}
+						id={`search_${destination.name}` || `${location?.destination?.id}`}
+						key={`search_${destination.name}` || `${location?.destination?.id}`}
 						{...destination}
 						control={control}
+						initialCall
 						caret
-						asyncKey="locations2"
-						noOptionsMessage="Type to search..."
 						placeholder={destination.placeholder || ''}
+						noOptionsMessage="Type to search..."
+						asyncKey="locations2"
+						value={location?.destination?.id || location?.destination?.value}
 						disabled={
 							disabledFields?.destination
 							&& index !== 0
 							&& !singleLocationServices.includes(mode)
 							}
-						handleChange={(obj) => {
-							setLocation({
-								...location,
-								destination: { ...(obj || {}), formName: destination.name },
-							});
-						}}
 						params={{
 							...(destination.params || {}),
 							filters     : destination?.params?.filters,
@@ -176,6 +173,12 @@ function Route({
 								organization_id : extraParams?.id || org_id,
 								service_type    : mode,
 							},
+						}}
+						handleChange={(obj) => {
+							setLocation({
+								...location,
+								destination: { ...(obj || {}), formName: destination.name },
+							});
 						}}
 						searchParams={{
 							intent          : 'rate_search',

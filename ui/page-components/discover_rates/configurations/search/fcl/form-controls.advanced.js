@@ -155,6 +155,8 @@ const controls = () => [
 		params      : { filters: { type: ['pincode', 'city'] } },
 		condition   : { services: ['import_transportation'] },
 		rules       : { required: 'This is required' },
+		style       : { width: '350px' },
+
 	},
 	{
 		label       : 'Address',
@@ -162,6 +164,7 @@ const controls = () => [
 		placeholder : 'Enter address',
 		type        : 'text',
 		condition   : { services: ['import_transportation'] },
+		style       : { width: '350px' },
 	},
 	{
 		name      : 'import_transportation_truck_type',
@@ -237,7 +240,7 @@ const controls = () => [
 		label     : 'Cargo currency',
 		optionKey : 'currencies',
 		type      : 'select',
-		// style     : { width: '350px' },
+		style     : { width: '100px' },
 		condition : { services: ['export_fcl_cfs'] },
 		rules     : { required: 'This is required' },
 	},
@@ -245,7 +248,7 @@ const controls = () => [
 		name      : 'export_fcl_cfs_cargo_value',
 		label     : 'Cargo value',
 		type      : 'number',
-		style     : { width: '350px' },
+		style     : { width: '240px' },
 		condition : { services: ['export_fcl_cfs'] },
 		rules     : { required: 'This is required' },
 	},
@@ -294,6 +297,7 @@ const controls = () => [
 		type      : 'select',
 		condition : { services: ['import_fcl_cfs'] },
 		rules     : { required: 'This is required' },
+		style     : { width: '100px' },
 	},
 	{
 		name      : 'import_fcl_cfs_cargo_value',
@@ -301,6 +305,7 @@ const controls = () => [
 		type      : 'number',
 		condition : { services: ['import_fcl_cfs'] },
 		rules     : { required: 'This is required' },
+		style     : { width: '240px' },
 	},
 	{
 		name    : 'haulage_type',

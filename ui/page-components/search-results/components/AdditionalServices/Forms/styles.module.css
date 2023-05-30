@@ -5,15 +5,6 @@
 		margin-top: 16px;
 	}
 
-	.core-ui-radio-label {
-		color: #000;
-	}
-
-	.core-ui-radio-radio-container {
-		flex-shrink: 0;
-		margin-top: 4px;
-	}
-
 	.core-ui-input-root {
 		padding: 2px 8px;
 
@@ -102,4 +93,12 @@
 	flex-wrap: wrap;
 	justify-content: space-between;
 	margin-bottom: 0;
+}
+
+.field {
+	:global {
+		.ui_chips_container {
+			flex-wrap: wrap;
+		}
+	}
 }

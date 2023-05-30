@@ -41,6 +41,7 @@ function useGetAsyncOptions({
 					toBeFetched.push(v);
 				}
 			});
+
 			const res = await triggerSingle({
 				params: merge(params, { filters: { [valueKey]: toBeFetched } }),
 			});
@@ -58,10 +59,15 @@ function useGetAsyncOptions({
 
 		if (checkOptionsExist.length > 0) return checkOptionsExist[0];
 
-		const res = await triggerSingle({
-			params: merge(params, { filters: { [valueKey]: value } }),
-		});
-		return res?.data?.list?.[0] || null;
+		try {
+			const res = await triggerSingle({
+				params: merge(params, { filters: { [valueKey]: value } }),
+			});
+			return res?.data?.list?.[0] || null;
+		} catch (err) {
+			console.log(err);
+			return {};
+		}
 	};
 
 	return {

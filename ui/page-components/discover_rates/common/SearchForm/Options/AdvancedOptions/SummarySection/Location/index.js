@@ -38,6 +38,7 @@ function Location({
 	const handleChange = (obj) => {
 		setLocation({ ...location, [type]: { ...obj, formName: value.formName } });
 	};
+	console.log(value, 'value1');
 	return (
 		<div className={styles.container}>
 			<div className={styles.header}>
@@ -48,10 +49,12 @@ function Location({
 				{icon[`${type}_${mode}`]}
 				<div style={{ marginLeft: 10, flexGrow: 1 }}>
 					<AsyncSelectController
+						key={value.id}
 						{...fields.find((x) => x.name === value.formName)}
+						value={value.id}
 						handleChange={handleChange}
 						control={control}
-						value={value}
+						initialCall
 						style={{
 							width: '250px',
 						}}

@@ -1,9 +1,16 @@
 import { Button } from '@cogoport/components';
 import { IcMBldo, IcMArrowNext } from '@cogoport/icons-react';
+import { isEmpty } from '@cogoport/utils';
 
 import styles from '../styles.module.css';
 
-function Footer({ handleSubmit = () => {}, draftLoading = false, saveDraft = () => {}, submit = () => {} }) {
+function Footer({ handleSubmit = () => {}, draftLoading = false, saveDraft = () => {}, handleNextClick = () => {} }) {
+	const onErrors = (error) => {
+		if (isEmpty(error)) {
+			handleNextClick();
+		}
+	};
+
 	return (
 		<div className={styles.wrapper_2}>
 			<Button
@@ -20,7 +27,7 @@ function Footer({ handleSubmit = () => {}, draftLoading = false, saveDraft = () 
 			<Button
 				className="primary md"
 				type="button"
-				onClick={handleSubmit(submit)}
+				onClick={handleSubmit(handleNextClick, onErrors)}
 			>
 				<div className={styles.align_div}>
 					Next step

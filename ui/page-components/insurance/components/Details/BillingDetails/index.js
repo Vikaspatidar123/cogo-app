@@ -1,9 +1,10 @@
 import { isEmpty } from '@cogoport/utils';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useSelector } from 'react-redux';
 
 import getControls from '../../../configurations/controls';
 import useGetStateFromPincode from '../../../hooks/useGetStateFromPincode';
+import useSetErrorFunction from '../../../utils/useSetErrorFunction';
 
 import SelectType from './Address';
 import Component from './Component';
@@ -18,12 +19,10 @@ const useBillingDetails = ({
 	formDetails = {},
 	setActiveStepper = () => {},
 	setFormDetails = () => {},
-	insuranceType = [],
+	insuranceType = '',
 	setInsuranceType = () => {},
-	addressdata = [],
-	checked = '',
+	checked = [],
 	setChecked = () => {},
-	// addressLoading = false,
 	setOrganizationAddress = () => {},
 	organizationAddress = {},
 	isMobile = false,
@@ -48,6 +47,7 @@ const useBillingDetails = ({
 		setError,
 		formState: { errors },
 		watch,
+		getValues,
 	} = useForm({
 		defaultValues: {
 			insuredFirstName: !isEmpty(formDetails)
@@ -62,17 +62,17 @@ const useBillingDetails = ({
 				: profile?.mobile_number,
 			gstin: !isEmpty(formDetails)
 				? formDetails.gstin
-				: addressdata?.[0]?.tax_number,
+				: '',
 			partyName: !isEmpty(formDetails)
 				? formDetails.partyName
-				: addressdata?.[0]?.name,
+				: '',
 			aadharNumber   : !isEmpty(formDetails) ? formDetails.aadharNumber : '',
 			billingAddress : !isEmpty(formDetails)
 				? formDetails.billingAddress
-				: addressdata?.[0]?.address,
+				: '',
 			billingPincode: !isEmpty(formDetails)
 				? formDetails.billingPincode
-				: addressdata?.[0]?.pincode,
+				: '',
 			billingState     : !isEmpty(formDetails) ? formDetails?.billingState : '',
 			billingCity      : !isEmpty(formDetails) ? formDetails?.billingCity : '',
 			panNumber        : !isEmpty(formDetails) ? formDetails?.panNumber : '',
@@ -89,50 +89,24 @@ const useBillingDetails = ({
 	});
 
 	useEffect(() => {
-		if (!isEmpty(prosporerAddress)) {
-			setValue('proposersAddress', `${name},${pincode},${tax_number}`);
-		}
-	}, [name, pincode, prosporerAddress, setValue, tax_number]);
-
-	useEffect(() => {
 		if (!isEmpty(cityState) && !cityLoading) {
 			setValue('billingCity', cityState?.city?.name);
 			setValue('billingState', cityState?.region?.name);
 		}
 	}, [cityState, cityLoading, setValue]);
 
-	const submit = (values) => {
-		let checkEmptyFlag = 0;
-		let requiredValueFields = [];
-		if (insuranceType?.[0] === 'SELF') {
-			requiredValueFields = Object.keys(values).filter((item) => (uploadType === 'CORPORATE'
-				? !['aadharNumber', 'proposersAddress'].includes(item)
-				: !['gstin', 'proposersAddress'].includes(item)));
-		} else if (insuranceType?.[0] === 'OTHER') {
-			requiredValueFields = Object.keys(values)
-				.filter((item) => (uploadType === 'CORPORATE' ? item !== 'aadharNumber' : item !== 'gstin'));
-		}
-		requiredValueFields.forEach((itm) => {
-			if (!values[itm]) {
-				checkEmptyFlag += 1;
-				setError(itm, { type: 'required', message: 'required' });
-			}
-		});
-		if (checkEmptyFlag === 0) {
-			setFormDetails((prev) => ({
-				...prev,
-				...values,
-			}));
-			setActiveStepper(() => ({
-				1   : true,
-				2   : 'pro',
-				3   : false,
-				svg : 1,
-			}));
-		}
-	};
+	const { handleNextClick = () => {} } = useSetErrorFunction({
+		getValues,
+		setError,
+		uploadType,
+		prosporerAddress,
+		insuranceType,
+		checked,
+		setFormDetails,
+		setActiveStepper,
+	});
 
-	useEffect(() => {
+	const resetCallback = useCallback(() => {
 		if (insuranceType[0] === 'OTHER') {
 			reset({
 				billingAddress : '',
@@ -143,30 +117,12 @@ const useBillingDetails = ({
 				gstin          : '',
 				panNumber      : '',
 			});
-		} else {
-			reset({
-				gstin: !isEmpty(formDetails)
-					? formDetails.gstin
-					: addressdata?.[0]?.tax_number,
-				partyName: !isEmpty(formDetails)
-					? formDetails.partyName
-					: addressdata?.[0]?.name,
-				aadharNumber   : !isEmpty(formDetails) ? formDetails.aadharNumber : '',
-				billingAddress : !isEmpty(formDetails)
-					? formDetails.billingAddress
-					: addressdata?.[0]?.address,
-				billingPincode: !isEmpty(formDetails)
-					? formDetails.billingPincode
-					: addressdata?.[0]?.pincode,
-				billingState     : !isEmpty(formDetails) ? formDetails?.billingState : '',
-				billingCity      : !isEmpty(formDetails) ? formDetails?.billingCity : '',
-				panNumber        : !isEmpty(formDetails) ? formDetails?.panNumber : '',
-				proposersAddress : !isEmpty(formDetails)
-					? formDetails?.proposersAddress
-					: '',
-			});
 		}
-	}, [addressdata, formDetails, insuranceType, reset]);
+	}, [insuranceType, reset]);
+
+	useEffect(() => {
+		resetCallback();
+	}, [resetCallback]);
 
 	const returnField = ({ item }) => {
 		const Element = getField(item.type);
@@ -249,9 +205,9 @@ const useBillingDetails = ({
 
 							<Footer
 								handleSubmit={handleSubmit}
-								submit={submit}
 								saveDraft={saveDraft}
 								draftLoading={draftLoading}
+								handleNextClick={handleNextClick}
 							/>
 						</form>
 					</div>

@@ -7,6 +7,8 @@ import { useRequest } from '@/packages/request';
 
 const useGetAddresses = ({ uploadType = '' }) => {
 	const { profile } = useSelector((state) => state);
+	const { organization = '' } = profile || {};
+	const { id = '' } = organization || {};
 
 	const [{ loading, data }, trigger] = useRequest(
 		{
@@ -20,20 +22,20 @@ const useGetAddresses = ({ uploadType = '' }) => {
 		try {
 			await trigger({
 				params: {
-					organization_id : profile?.organization?.id,
+					organization_id : id,
 					billing_type    : uploadType,
 				},
 			});
 		} catch (error) {
 			Toast.error(getApiErrorString(error));
 		}
-	}, [profile, trigger, uploadType]);
+	}, [id, trigger, uploadType]);
 
 	useEffect(() => {
-		if (uploadType && profile) {
+		if (uploadType && id) {
 			fetchAddresses();
 		}
-	}, [fetchAddresses, profile, uploadType]);
+	}, [fetchAddresses, id, profile, uploadType]);
 
 	return { data, loading, refetch: fetchAddresses };
 };

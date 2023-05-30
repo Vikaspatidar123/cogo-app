@@ -68,7 +68,6 @@ function Details({
 	const { payment = () => {}, loading = false } = usePayment({
 		ratesResponse,
 		organizationAddress,
-		checked,
 	});
 
 	const { draftResponse, draftLoading, policyIdDraft } = useSaveDraft({

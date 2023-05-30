@@ -13,11 +13,13 @@ function useGetAsyncOptions({
 	params = {},
 	getModifiedOptions = (options) => options,
 }) {
+	console.log('🚀 ~ file: useGetAsyncOptions.js:16 ~ endpoint:', endpoint);
 	const { query, debounceQuery } = useDebounceQuery();
 	const [storeOptions, setStoreOptions] = useState([]);
 
 	const [{ data, loading }] = useRequest({
 		url    : endpoint,
+		// === 'list_locations' ? 'api.cogoport.com/location/list_locations' : endpoint,
 		method : 'GET',
 		params : merge(params, { filters: { q: query } }),
 	}, { manual: !(initialCall || query) });

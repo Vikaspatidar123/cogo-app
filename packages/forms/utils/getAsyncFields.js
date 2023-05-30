@@ -17,7 +17,7 @@ function asyncFieldsLocations(labelKey = 'name', valueKey = 'id') {
 		valueKey,
 		labelKey,
 		endpoint    : 'list_locations',
-		authKey     : 'get_list_locations',
+		// authKey     : 'get_list_locations',
 		initialCall : true,
 		params      : {
 			filters    : { status: 'active' },

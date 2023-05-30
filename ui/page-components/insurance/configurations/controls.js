@@ -1,3 +1,5 @@
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
+
 const get = (formObject = {}, key = '') => formObject[key] || null;
 
 const patterns = {
@@ -93,13 +95,29 @@ const controls = [
 	{
 		name        : 'billingPincode',
 		placeholder : 'Pincode',
-		type        : 'number',
+		type        : 'async_select',
+		asyncKey    : 'locations',
 		stepper     : false,
 		span        : 4,
 		rules       : {
 			pattern: {
 				value   : pinCodeValidator,
 				message : 'Invalid pincode ',
+			},
+		},
+		valueKey : 'postal_code',
+		labelKey : 'postal_code',
+		params   : {
+			filters: {
+				type       : 'pincode',
+				country_id : GLOBAL_CONSTANTS.COUNTRY_IDS.IN,
+			},
+			includes: {
+				country                 : '',
+				region                  : '',
+				city                    : '',
+				district                : '',
+				default_params_required : true,
 			},
 		},
 	},

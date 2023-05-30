@@ -1,4 +1,4 @@
-import { Button, Toast, cl, Modal } from '@cogoport/components';
+import { Button, Toast, cl } from '@cogoport/components';
 import { useState } from 'react';
 
 import ProgressBar from '../ProgressBar';
@@ -15,7 +15,6 @@ import showErrorsInToast from '@/ui/commons/utils/showErrorsInToast';
 
 function Form({
 	trackAnalytics = false,
-	scope,
 	agent_id,
 	onFinalSubmit,
 	...rest
@@ -24,9 +23,9 @@ function Form({
 	const [isOpen, setIsOpen] = useState(false);
 	const newControls = controls(country_code, isOpen, setIsOpen, rest);
 	const {
-		getValues,
 		control,
 		formState: { errors },
+		handleSubmit,
 	} = useForm();
 
 	const [show, setShow] = useState(false);
@@ -41,48 +40,42 @@ function Form({
 	const [formValue, setFormValue] = useState(null);
 	const { organization } = useSelector((state) => state?.profile);
 
-	const onSubmit = async (e) => {
-		e.preventDefault();
-		const values = getValues();
-		if (values) {
-			setMobile({
-				mobile_number       : values?.mobile?.mobile_number,
-				mobile_country_code : values?.mobile?.mobile_country_code,
+	const onSubmit = async (values) => {
+		setMobile({
+			mobile_number       : values?.mobile?.mobile_number,
+			mobile_country_code : values?.mobile?.mobile_country_code,
+		});
+		setFormValue(values);
+		try {
+			trackEvent(APP_EVENT.kyc_requested_verfication, {
+				company_name : organization.business_name,
+				company_type : organization.account_type,
 			});
-			setFormValue(values);
-			try {
-				trackEvent(APP_EVENT.kyc_requested_verfication, {
-					company_name : organization.business_name,
-					company_type : organization.account_type,
-				});
 
-				const res = await otpVerifyAPI({
-					data: {
-						id                  : agent_id,
-						mobile_number       : values?.mobile?.mobile_number,
-						mobile_country_code : values?.mobile?.mobile_country_code,
-					},
-				});
+			const res = await otpVerifyAPI({
+				data: {
+					id                  : agent_id,
+					mobile_number       : values?.mobile?.mobile_number,
+					mobile_country_code : values?.mobile?.mobile_country_code,
+				},
+			});
 
-				if (!res.hasError) {
-					setShow(true);
-					Toast.success('OTP sent');
-				} else {
-					showErrorsInToast(res?.messages);
-				}
-			} catch (err) {
-				showErrorsInToast(err?.data);
+			if (!res.hasError) {
+				setShow(true);
+				Toast.success('OTP sent');
+			} else {
+				showErrorsInToast(res?.messages);
 			}
+		} catch (err) {
+			showErrorsInToast(err?.data);
 		}
 	};
-	const formStyle = { marginLeft: '-8px' };
 
 	return (
-		<div className={cl`${show ? styles.otp : ''}`}>
+		<div className={cl`${styles.main} ${show ? styles.otp : ''}`}>
 			{show ? (
 				<ProgressBar
 					formValues={formValue}
-					scope={scope}
 					id={agent_id}
 					mobileNumber={mobile?.mobile_number}
 					mobileCountryCode={mobile?.mobile_country_code}
@@ -92,30 +85,32 @@ function Form({
 					trackAnalytics={trackAnalytics}
 				/>
 			) : (
-				<form onSubmit={onSubmit} style={formStyle}>
-					<Modal.Body>
-						<div className={styles.form_wrapper}>
-							{newControls.map((item) => {
-								const Element = getField(item.type);
-								return (
-									<div>
-										<div className={styles.label}>{item.label}</div>
-										<Element {...item} control={control} />
-										<div>{errors?.[item.name]}</div>
+				<form style={{ marginLeft: '-8px' }}>
+					<div className={styles.form_wrapper}>
+						{newControls.map((item) => {
+							const Element = getField(item.type);
+							return (
+								<div key={item.name}>
+									<div className={styles.label}>{item.label}</div>
+									<Element {...item} control={control} />
+									<div className={styles.error}>
+										{errors?.[item.name]?.message}
 									</div>
-								);
-							})}
+								</div>
+							);
+						})}
+					</div>
+					<div className={styles.wrapper_container}>
+						<div className={styles.wrapper}>
+							<text>
+								We attach great importance to protecting your private data, which
+								is only used to verify your business and complete transactions
+							</text>
 						</div>
-					</Modal.Body>
-					<Modal.Footer>
-						<text className={styles.form_wrapper}>
-							We attach great importance to protecting your private data, which
-							is only used to verify your business and complete transactions
-						</text>
-						<Button disabled={loading} size="md" type="submit">
+						<Button disabled={loading} size="md" type="button" onClick={handleSubmit(onSubmit)}>
 							Avail your free Searches
 						</Button>
-					</Modal.Footer>
+					</div>
 				</form>
 			)}
 		</div>

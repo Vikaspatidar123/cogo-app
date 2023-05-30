@@ -16,3 +16,19 @@
 	border-radius: 10px;
 	box-shadow: 0 0 12px 0 rgb(0 0 0 / 14%);
 }
+
+.set_width_1 {
+	width: 800px;
+
+	@media (max-width: 768px) {
+		width: 200px;
+	}
+}
+
+.set_width_2 {
+	width: 400px;
+
+	@media (max-width: 768px) {
+		width: 200px;
+	}
+}

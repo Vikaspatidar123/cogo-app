@@ -7,7 +7,7 @@ import styles from './styles.module.css';
 
 function Status({ data }) {
 	return (
-		<div className={cl`${styles.container} ${styles.mobile}`}>
+		<div className={cl`${styles.container}`}>
 			<QuickSearch
 				data={data}
 				extraParams={{

@@ -7,14 +7,12 @@
 	background: #f2f2f2;
 	border-radius: 4px;
 
-	/* ${({ width }) => (width ? `width: ${width};` : '')} */
-
-	@media (max-width: _sm) {
+	@media (max-width: 768px) {
 		width: 100%;
 		padding: 4px 8px;
 		border-radius: 4px;
 	}
-	@media (min-width: _sm) and (max-width: _md) {
+	@media (min-width: 768px) and (max-width: 576px) {
 		width: 100%;
 		padding: 8px 12px;
 		border-radius: 4px;

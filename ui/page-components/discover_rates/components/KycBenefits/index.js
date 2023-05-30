@@ -22,7 +22,8 @@ function KycBenefits() {
 				<Benefits />
 
 				<Button
-					className="lg"
+					size="md"
+					themeType="primary"
 					style={{ borderRadius: 12, margin: '24px 0px' }}
 					onClick={() => setShow(true)}
 				>
@@ -36,7 +37,7 @@ function KycBenefits() {
 				}}
 				closable
 				width={750}
-				fullscreen={isMobile}
+				// scroll={false}
 			>
 				<KYC onFinalSubmit={() => setShow(false)} />
 			</Modal>

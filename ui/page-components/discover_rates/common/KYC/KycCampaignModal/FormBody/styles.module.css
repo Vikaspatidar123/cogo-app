@@ -60,3 +60,24 @@
 .error {
 	color: rgb(203 100 100);
 }
+
+.main {
+	padding: 20px;
+}
+
+.wrapper {
+	margin: 0;
+	margin-bottom: 8px;
+	font-size: 10px;
+	line-height: 1.4;
+	color: #999;
+	text-align: center;
+}
+
+.wrapper_container {
+	display: flex;
+	flex-direction: column;
+	align-self: center;
+	justify-content: center;
+	margin-top: 24px;
+}

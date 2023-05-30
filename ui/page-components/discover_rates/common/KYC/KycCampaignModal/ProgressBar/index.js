@@ -1,10 +1,10 @@
-import { Button, Toast } from '@cogoport/components';
+import { Button, Toast, Input } from '@cogoport/components';
 import React, { useState } from 'react';
 
 import styles from './styles.module.css';
 import Timer from './Timer';
 
-import OtpInput from '@/packages/forms/Business/OTPLayout/components/OtpInput';
+// import OtpInput from '@/packages/forms/Business/OTPLayout/components/OtpInput';
 import { useRequest } from '@/packages/request';
 import showErrorsInToast from '@/ui/commons/utils/showErrorsInToast';
 
@@ -40,7 +40,7 @@ function Bar({
 	};
 	const handleResendOtp = async () => {
 		try {
-			const res = await otpVarifyAPI.trigger({
+			const res = await otpVarifyAPI({
 				data: {
 					id,
 					mobile_number       : mobileNumber,
@@ -98,9 +98,13 @@ function Bar({
 	};
 	return (
 		<div className={styles.container}>
-			<Timer initialMinute={2} initialSecond={120} />
+			<Timer initialMinute={0} initialSecond={10} />
 			<div className={styles.input_div}>
-				<OtpInput value={otp} onChange={handleChange} />
+				<Input
+					value={otp}
+					onChange={handleChange}
+					placeholder="Enter OTP"
+				/>
 			</div>
 			<div
 				className={styles.resend_otp}
@@ -109,7 +113,6 @@ function Bar({
 			>
 				RESEND OTP?
 			</div>
-			{/* {otpTime ? <a} */}
 			<div className={styles.button_div}>
 				<Button
 					style={buttonStyle}

@@ -10,9 +10,8 @@ export function KycCampaign({
 	onFinalSubmit = () => {},
 	trackAnalytics = false,
 }) {
-	const { scope, agent_id, organization, user_profile } = useSelector(
-		({ general, profile }) => ({
-			scope        : general?.scope,
+	const { agent_id, organization, user_profile } = useSelector(
+		({ profile }) => ({
 			agent_id     : profile?.id,
 			organization : profile?.organization,
 			countryId:
@@ -48,7 +47,6 @@ export function KycCampaign({
 			</div>
 			<FormBody
 				{...initialValues}
-				scope={scope}
 				agent_id={agent_id}
 				onFinalSubmit={onFinalSubmit}
 				trackAnalytics={trackAnalytics}

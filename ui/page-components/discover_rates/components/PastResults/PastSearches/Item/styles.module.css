@@ -50,10 +50,8 @@
 }
 
 .icon_section {
-	&.mobile {
-		@media (max-width: 760px) {
-			width: 10%;
-		}
+	@media (max-width: 760px) {
+		width: 10%;
 	}
 }
 

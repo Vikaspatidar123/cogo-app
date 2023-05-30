@@ -294,7 +294,7 @@ function QuickSearch({ data, extraParams = {}, type, refresh }) {
 	return (
 		<>
 			<Button
-				size="md"
+				size="sm"
 				themeType="secondary"
 				className={cl`${style.rates} ${style.mobile}`}
 				onClick={handleSubmit(submit, onError)}
@@ -322,7 +322,7 @@ function QuickSearch({ data, extraParams = {}, type, refresh }) {
 						onClick={() => {
 							setShow(true);
 						}}
-						size="md"
+						size="sm"
 						themeType="tertiary"
 						className={cl`${style.mobile} ${style.edit_options}`}
 					>

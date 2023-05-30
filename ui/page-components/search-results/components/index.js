@@ -275,6 +275,7 @@ function Results({
 							searchData={searchData}
 							index={i}
 							scheduleList={scheduleList}
+							rates={rates}
 						/>
 
 						{(marketplaceRates === 1 ? i === 0 : i % 10 === 1)

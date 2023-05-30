@@ -107,7 +107,7 @@ function Route({
 			/>
 
 			<div className={styles.route_container}>
-				<div style={{ width: '100%', display: 'flex' }}>
+				<div style={{ width: '100%', display: 'block' }}>
 					<div style={{ width: '100%', display: 'flex' }}>
 						<div
 							className={cl`${styles.circle} ${!isEmpty(originPickup) ? null : styles.inactive

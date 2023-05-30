@@ -137,3 +137,9 @@
 .add_service {
 	margin-top: 6px;
 }
+
+.add_button{
+	margin-top: 10px;
+	display: flex;
+    justify-content: flex-end;
+}

@@ -1,0 +1,12 @@
+.container{
+	padding: 12px 20px;
+}
+
+.days_card {
+	display: flex;
+}
+
+.days_content{
+	display: flex;
+	justify-content: flex-end;
+}

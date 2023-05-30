@@ -364,3 +364,8 @@
 		}
 	}
 }
+
+.cogo_assured_tags{
+	display: flex;
+	margin: 12px 0 4px 16px;
+}

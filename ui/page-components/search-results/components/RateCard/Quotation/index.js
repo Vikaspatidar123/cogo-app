@@ -1,4 +1,4 @@
-import { Button, Modal, Tooltip } from '@cogoport/components';
+import { Button, Modal, Tooltip, cl } from '@cogoport/components';
 import {
 	IcMArrowRotateDown,
 	IcMArrowRotateUp,
@@ -140,9 +140,7 @@ function Quotation({
 			background : loading
 				? '#c2c2c2'
 				: 'linear-gradient(102.8deg, #EEAB30 4.45%, #FFCE74 35.29%, #F5B02E 65.49%)',
-			boxShadow: loading
-				? 'none'
-				: '0px 4px 10px rgba(34, 34, 34, 0.2)',
+			boxShadow    : loading ? 'none' : '0px 4px 10px rgba(34, 34, 34, 0.2)',
 			borderRadius : 10,
 			marginBottom : '8px 0px 16px 0px',
 			color        : '#51390c',
@@ -226,7 +224,7 @@ function Quotation({
 				basicFreight
 			)}
 			<div
-				className={`${styles.ButtonPriceContainer} ${
+				className={cl`${styles.button_price_container} ${
 					isConfirmed ? 'confirmed' : ''
 				}`}
 			>
@@ -339,9 +337,7 @@ function Quotation({
 					Lock Freight Price
 				</Button>
 			)}
-			{!['trailer_freight', 'rail_domestic_freight'].includes(
-				data?.service_type,
-			) && (
+			{!['trailer_freight', 'rail_domestic_freight'].includes(data?.service_type) && (
 				<div className={styles.breakup_btn_container}>
 					<Button
 						onClick={() => {
@@ -368,7 +364,7 @@ function Quotation({
 						}}
 						id={`${id}_view_breakup`}
 						className={styles.button}
-						size="md"
+						size="sm"
 						themeType="tertiary"
 						loading={loading}
 					>
@@ -394,7 +390,7 @@ function Quotation({
 								setScheduleId(data.shipping_line?.id);
 							}}
 							className={styles.button}
-							size="md"
+							size="sm"
 							themeType="tertiary"
 						>
 							View Schedules
@@ -429,7 +425,7 @@ function Quotation({
 		)}
 	>
 		<div>
-			<IcMInfo />
+			<IcMInfo fill="red" />
 		</div>
 	</Tooltip>
 						) : null}

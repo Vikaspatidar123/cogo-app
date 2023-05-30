@@ -13,14 +13,10 @@ function Component({
 	additional_days,
 	type,
 	activeTab,
-	// mainServices,
-	// localServicesDetails,
-	// spot_search_id,
 	refetch = () => {},
-	// service_rates,
 	rateData,
-	setShow,
 	rates = [],
+	setShow,
 }) {
 	// const { fetchApi, loading } = useAddMoreDays({ refetch, setShow });
 	const { onSubmit, loading } = useUpdateDestinationDemurrageDays({
@@ -32,10 +28,17 @@ function Component({
 	const [days, setDays] = useState(
 		additional_days > 0 ? additional_days + freeLimit : freeLimit,
 	);
+	const padding = type === 'detention' ? '12px 20px 8px 4px' : '12px 4px 8px 20px';
+	const borderRight = type === 'detention' && type === 'rail_domestic_freight'
+		? '1px solid #bdaff9'
+		: null;
+	const borderLeft = type === 'detention' && type !== 'rail_domestic_freight'
+		? '1px solid #bdaff9'
+		: null;
 	return (
 		<div>
 			{maxLimit ? (
-				<div className={styles.container} type={type}>
+				<div className={styles.container} type={type} style={{ padding, borderRight, borderLeft }}>
 					<div className={styles.flex}>
 						<div className={styles.styled_text}>
 							{freeLimit}
@@ -72,7 +75,8 @@ function Component({
 						</div>
 
 						<Button
-							className="secondary sm"
+							size="md"
+							themeType="secondary"
 							onClick={() => {
 								onSubmit({ destination_detention_days: days });
 							}}

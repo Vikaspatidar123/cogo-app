@@ -14,6 +14,7 @@ function RateCards({
 	searchData,
 	index,
 	scheduleList,
+	rates,
 }) {
 	const SEARCH_TYPE_SELECTED_RATE_CARD_COMPONENT_MAPPING = useMemo(
 		() => ({
@@ -42,6 +43,7 @@ function RateCards({
 			data={data}
 			details={details}
 			refetch={refetch}
+			rates={rates}
 			searchData={searchData}
 			scheduleList={scheduleList}
 		/>

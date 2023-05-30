@@ -21,6 +21,7 @@ function DetentionDemurrage(props) {
 		setActiveTab = () => {},
 		activeTab = '',
 		details = {},
+		rates,
 	} = props;
 	const { service_details = {}, spot_search_id = '' } = details;
 
@@ -98,7 +99,6 @@ function DetentionDemurrage(props) {
 			setActiveTab(value);
 		}
 	};
-
 	return (
 		<>
 			<div className={styles.container}>
@@ -127,7 +127,7 @@ function DetentionDemurrage(props) {
 						) : null}
 					</div>
 
-					{(originDemurrageMaxLimit || originDetentionMaxLimit)
+					{/* {(originDemurrageMaxLimit || originDetentionMaxLimit)
 					&& rateData?.source !== 'cogo_assured_rate' ? (
 						<Button
 							onClick={() => handleChange('origin')}
@@ -144,7 +144,7 @@ function DetentionDemurrage(props) {
 								)}
 							</div>
 						</Button>
-						) : null}
+						) : null} */}
 				</div>
 
 				<div style={{ display: 'flex', alignItems: 'center' }}>
@@ -172,40 +172,33 @@ function DetentionDemurrage(props) {
 						) : null}
 					</div>
 
-					{(destinationDemurrageMaxLimit || destinationDetentionMaxLimit)
-					&& rateData?.source !== 'cogo_assured_rate' ? (
-						<Button
-							onClick={() => handleChange('destination')}
-							size="md"
-							themeType="secondary"
-							className={styles.styled_button}
-						>
-							<div style={{ display: 'flex', alignItems: 'center' }}>
-								<div style={{ marginRight: '6px' }}>+ Add More</div>
-								{show && activeTab === 'destination' ? (
-									<IcMArrowRotateUp width={18} height={18} />
-								) : (
-									<IcMArrowRotateDown width={18} height={18} />
-								)}
-							</div>
-						</Button>
-						) : null}
+					<Button
+						onClick={() => handleChange('destination')}
+						size="sm"
+						themeType="secondary"
+						className={styles.styled_button}
+					>
+						<div style={{ display: 'flex', alignItems: 'center' }}>
+							<div style={{ marginRight: '6px' }}>+ Add More</div>
+							{show && activeTab === 'destination' ? (
+								<IcMArrowRotateUp width={18} height={18} />
+							) : (
+								<IcMArrowRotateDown width={18} height={18} />
+							)}
+						</div>
+					</Button>
+
 				</div>
 			</div>
 
 			{show && (
 				<AddMoreDays
-					setSho={setShow}
 					activeTab={activeTab}
 					setActiveTab={setActiveTab}
 					originDetentionFreeLimit={originDetentionFreeLimit}
 					originDemurrageFreeLimit={originDemurrageFreeLimit}
 					destinationDemurrageFreeLimit={destinationDemurrageFreeLimit}
 					destinationDetentionFreeLimit={destinationDetentionFreeLimit}
-					originDetentionMaxLimit={originDetentionMaxLimit}
-					originDemurrageMaxLimit={originDemurrageMaxLimit}
-					destinationDemurrageMaxLimit={destinationDemurrageMaxLimit}
-					destinationDetentionMaxLimit={destinationDetentionMaxLimit}
 					mainServices={mainServices}
 					localServicesDetails={localServicesDetails}
 					spot_search_id={spot_search_id}
@@ -213,10 +206,13 @@ function DetentionDemurrage(props) {
 					originDEmurrageAdditionalDays={originDEmurrageAdditionalDays}
 					destinationDetentionAdditionalDays={
 					destinationDetentionAdditionalDays
-					}
+				}
 					destinationDemurrageAdditionalDays={
 					destinationDemurrageAdditionalDays
-					}
+				}
+					rateData={rateData}
+					rates={rates}
+					setShow={setShow}
 					{...props}
 				/>
 			)}

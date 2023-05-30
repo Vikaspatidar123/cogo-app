@@ -1,66 +1,76 @@
 // import { Tabs, TabPanel } from '@cogoport/components';
 
 import Component from './Component';
+import styles from './styles.module.css';
 
 function AddMoreDays(props) {
 	const {
 		data: rateData,
 		activeTab = '',
-		// setActiveTab = () => {},
+		setActiveTab = () => {},
 		originDetentionFreeLimit,
-		// originDemurrageFreeLimit,
-		// destinationDemurrageFreeLimit,
+		originDemurrageFreeLimit,
+		destinationDemurrageFreeLimit,
 		destinationDetentionFreeLimit,
-		originDetentionMaxLimit,
-		// originDemurrageMaxLimit,
-		// destinationDemurrageMaxLimit,
-		destinationDetentionMaxLimit,
 		mainServices = [],
 		originDetentionAdditionalDays,
-		// originDEmurrageAdditionalDays,
+		originDEmurrageAdditionalDays,
 		destinationDetentionAdditionalDays,
-		// destinationDemurrageAdditionalDays,
+		destinationDemurrageAdditionalDays,
 		localServicesDetails = [],
 		localServicesRates = [],
 		spot_search_id = '',
 		refetch = () => {},
-		setShow = () => {},
+		rates = [],
+		setShow,
 	} = props;
 
 	const COMPONENT_MAPPING = {
 		origin: {
 			detention: {
 				freeLimit       : originDetentionFreeLimit,
-				maxLimit        : originDetentionMaxLimit,
+				maxLimit        : rateData?.source === 'cogo_assured_rate' ? 14 : 21,
 				additional_days : originDetentionAdditionalDays,
+				rates,
 			},
 
-			// demurrage: {
-			// 	freeLimit       : originDemurrageFreeLimit,
-			// 	maxLimit        : originDemurrageMaxLimit,
-			// 	additional_days : originDEmurrageAdditionalDays,
-			// },
+			demurrage: {
+				freeLimit       : originDemurrageFreeLimit,
+				maxLimit        : 21,
+				additional_days : originDEmurrageAdditionalDays,
+			},
 		},
 
 		destination: {
 			detention: {
 				freeLimit       : destinationDetentionFreeLimit,
-				maxLimit        : destinationDetentionMaxLimit,
+				maxLimit        : rateData?.source === 'cogo_assured_rate' ? 14 : 21,
 				additional_days : destinationDetentionAdditionalDays,
+				rates,
 			},
 
-			// demurrage: {
-			// 	freeLimit       : destinationDemurrageFreeLimit,
-			// 	maxLimit        : destinationDemurrageMaxLimit,
-			// 	additional_days : destinationDemurrageAdditionalDays,
-			// },
+			demurrage: {
+				freeLimit       : destinationDemurrageFreeLimit,
+				maxLimit        : 21,
+				additional_days : destinationDemurrageAdditionalDays,
+			},
 		},
 	};
 
 	const { service_rates = {} } = rateData;
-
+	const params = {
+		activeTab,
+		mainServices,
+		localServicesDetails,
+		localServicesRates,
+		spot_search_id,
+		refetch,
+		service_rates,
+		rateData,
+		setShow,
+	};
 	return (
-		<div style={{ padding: '12px 20px' }}>
+		<div className={styles.container}>
 			{/* <div style={{ display: 'flex' }}>
 				<Tabs activeTab={activeTab} themeType="primary" onChange={setActiveTab}>
 					<TabPanel name="origin" title="ORIGIN">
@@ -73,27 +83,25 @@ function AddMoreDays(props) {
 				</Tabs>
 			</div> */}
 
-			<div style={{ display: 'flex', padding: '12px 20px' }}>
-				{Object.keys(COMPONENT_MAPPING[activeTab]).map((key) => {
-					const componentProps = COMPONENT_MAPPING[activeTab][key];
+			<div className={styles.days_content}>
+				{Object.keys(COMPONENT_MAPPING[activeTab])
+					.filter((key) => (
+						(rateData?.service_type === 'fcl_freight'
+								&& activeTab === 'destination'
+								&& key === 'detention')
+							|| rateData?.service_type === 'rail_domestic_freight'
+					)).map((key) => {
+						const componentProps = COMPONENT_MAPPING[activeTab][key];
 
-					return (
-						<Component
-							key={`${activeTab}__${key}`}
-							{...componentProps}
-							activeTab={activeTab}
-							type={key}
-							mainServices={mainServices}
-							localServicesDetails={localServicesDetails}
-							localServicesRates={localServicesRates}
-							spot_search_id={spot_search_id}
-							refetch={refetch}
-							service_rates={service_rates}
-							rateData={rateData}
-							setShow={setShow}
-						/>
-					);
-				})}
+						return (
+							<Component
+								key={`${activeTab}__${key}`}
+								{...componentProps}
+								type={key}
+								{...params}
+							/>
+						);
+					})}
 			</div>
 		</div>
 	);

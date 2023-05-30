@@ -1,5 +1,5 @@
 import { Tooltip } from '@cogoport/components';
-import { IcCLike, IcMDislike } from '@cogoport/icons-react';
+import { IcCLike, IcCDislike } from '@cogoport/icons-react';
 import { useState } from 'react';
 
 import DislikeFeedback from './DislikeFeedback';
@@ -44,7 +44,7 @@ function LikeDislike({ details, updateRate, rate }) {
 					role="presentation"
 					onClick={onClickDislike}
 				>
-					<IcMDislike width={20} height={16} fill="#828282" />
+					<IcCDislike width={20} height={16} fill="#828282" />
 				</div>
 			</Tooltip>
 

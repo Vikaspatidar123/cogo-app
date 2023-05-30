@@ -251,19 +251,19 @@ function AdditionalServices({
 					placeholder="Select..."
 					value={subsidiaryService}
 					options={subsidiaryServicesList}
-					style={{ width: '250px' }}
+					style={{ wadd_serviceidth: '250px' }}
 				/>
-
-				<Button
-					style={{ marginTop: '10px' }}
-					onClick={handleSubsidiaryService}
-					themeType="link"
-					disabled={loading}
-					id="search_results_subsidiary_service_add"
-				>
-					{loading ? 'Adding...' : 'Add'}
-				</Button>
-
+				<div className={styles.add_button}>
+					<Button
+						onClick={handleSubsidiaryService}
+						disabled={loading}
+						size="sm"
+						themeType="accent"
+						id="search_results_subsidiary_service_add"
+					>
+						{loading ? 'Adding...' : 'Add'}
+					</Button>
+				</div>
 				<CargoInsurancePillContainer
 					uniq_services_list={uniq_services_list}
 					importer_exporter_country_code={

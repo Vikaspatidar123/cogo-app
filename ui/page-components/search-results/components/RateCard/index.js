@@ -150,7 +150,6 @@ function RateCard(props) {
       && service?.service_type === 'haulage_freight'
       && service?.trade_type === 'import',
 	);
-
 	const showSchedules = () => {
 		if (data?.source !== 'cogo_assured_rate') {
 			if (!data?.departure && !data?.arrival) {
@@ -195,10 +194,13 @@ function RateCard(props) {
 			);
 		}
 		return (
-			<CogoAssuredSchedule
-				rate={data}
-				selectAssuredSchedule={selectAssuredSchedule}
-			/>
+			<>
+				<CogoAssuredSchedule
+					rate={data}
+					selectAssuredSchedule={selectAssuredSchedule}
+				/>
+				<div className={styles.cogo_assured_tags}>{tagsToShow(data)}</div>
+			</>
 		);
 	};
 

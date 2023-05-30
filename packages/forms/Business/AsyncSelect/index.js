@@ -10,6 +10,7 @@ import {
 	asyncFieldsPartnerRoles,
 	asyncFieldsHsCodeCountries,
 	asyncFieldsPartnerQuotation,
+	asyncProductList,
 } from '../../utils/getAsyncFields';
 
 /**
@@ -37,6 +38,7 @@ const keyAsyncFieldsParamsMapping = {
 	partner_roles          : asyncFieldsPartnerRoles,
 	hs_code_countries      : asyncFieldsHsCodeCountries,
 	list_partner_quotation : asyncFieldsPartnerQuotation,
+	list_products          : asyncProductList,
 };
 
 function AsyncSelect(props) {

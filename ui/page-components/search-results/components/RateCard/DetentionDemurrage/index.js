@@ -63,25 +63,10 @@ function DetentionDemurrage(props) {
 		return `${free_limit} Free`;
 	};
 
-	const maxDays = (key) => {
-		const min_max = mainServices.map((item) => {
-			const { slabs = [] } = item?.[key] || {};
-			const length = slabs.length || 0;
-			return slabs[length - 1]?.upper_limit || 0;
-		});
-		return Math.min(...min_max);
-	};
-
 	const originDetentionFreeLimit = minDays('origin_detention');
 	const originDemurrageFreeLimit = minDays('origin_demurrage');
 	const destinationDetentionFreeLimit = minDays('destination_detention');
 	const destinationDemurrageFreeLimit = minDays('destination_demurrage');
-
-	const originDetentionMaxLimit = maxDays('origin_detention');
-	const originDemurrageMaxLimit = maxDays('origin_demurrage');
-	const destinationDetentionMaxLimit = maxDays('destination_detention');
-	const destinationDemurrageMaxLimit = maxDays('destination_demurrage');
-
 	const originDetentionAdditionalDays = selectedDays('origin_detention');
 	const originDEmurrageAdditionalDays = selectedDays('origin_demurrage');
 	const destinationDetentionAdditionalDays = selectedDays(

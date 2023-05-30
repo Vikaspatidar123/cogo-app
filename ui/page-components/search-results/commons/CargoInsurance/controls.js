@@ -1,4 +1,4 @@
-import { Tooltip, Placeholder } from '@cogoport/components';
+import { Tooltip } from '@cogoport/components';
 import { IcMInfo } from '@cogoport/icons-react';
 
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';

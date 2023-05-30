@@ -7,7 +7,7 @@ function AddMoreDays(props) {
 	const {
 		data: rateData,
 		activeTab = '',
-		setActiveTab = () => {},
+		// setActiveTab = () => {},
 		originDetentionFreeLimit,
 		originDemurrageFreeLimit,
 		destinationDemurrageFreeLimit,

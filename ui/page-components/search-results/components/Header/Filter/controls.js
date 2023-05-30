@@ -1,4 +1,4 @@
-const controls = ({ freightCurrency = 'USD' }) => [
+const controls = () => [
 	{
 		name        : 'shipping_line_id',
 		label       : 'Shipping Line',

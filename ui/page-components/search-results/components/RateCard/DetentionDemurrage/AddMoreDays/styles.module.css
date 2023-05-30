@@ -1,4 +1,4 @@
-.container{
+.container {
 	padding: 12px 20px;
 }
 
@@ -6,7 +6,7 @@
 	display: flex;
 }
 
-.days_content{
+.days_content {
 	display: flex;
 	justify-content: flex-end;
 }

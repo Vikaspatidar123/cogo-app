@@ -30,10 +30,6 @@
 	}
 }
 
-.contract {
-	background: #fff;
-}
-
 .mobile {
 	padding: 0;
 }
@@ -52,6 +48,7 @@
 
 .contract {
 	max-width: 100%;
+	background: #fff;
 }
 
 .options {

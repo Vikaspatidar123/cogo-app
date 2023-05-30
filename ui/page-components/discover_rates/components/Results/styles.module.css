@@ -18,10 +18,11 @@
 }
 
 .row_back {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
 	width: max-content;
 	margin-bottom: 16px;
-	layout: flex row;
-	align-item: center;
 
 	&.shipment {
 		margin-bottom: 0;

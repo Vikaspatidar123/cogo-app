@@ -99,31 +99,6 @@
 	color: #81c0af !important;
 }
 
-.search_form_mode_fcl_freight {
-	color: #fff;
-	background-color: #356efd;
-}
-
-.search_form_mode_lcl_freight {
-	color: red;
-	color: #fff;
-}
-
-.search_form_mode_air_freight {
-	color: #ef9b9b;
-	color: #fff;
-}
-
-.search_form_mode_container_transportation {
-	color: #fff;
-	background-color: rgb(150 226 162);
-}
-
-.search_form_mode_domestic {
-	color: #fff;
-	background-color: #81c0af;
-}
-
 .options {
 	padding: 7px 20px;
 	margin-top: 3px;

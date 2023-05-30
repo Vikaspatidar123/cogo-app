@@ -59,7 +59,7 @@
 	}
 }
 
-.cogo_assured_rate {
+.cogo_assured_rates {
 	height: 48px;
 	border-radius: 9px 0 8px;
 }
@@ -328,21 +328,6 @@
 	left: -2px;
 }
 
-.cogo_assured {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	width: fit-content;
-	padding: 4px 12px;
-	background: #d9eafd;
-	border-radius: 9px 0 4px;
-
-	svg {
-		margin-right: 8px;
-		font-size: 20px;
-	}
-}
-
 .animated_container {
 	animation: fade_right 0.9s ease-in-out;
 
@@ -359,13 +344,12 @@
 
 		100% {
 			opacity: 1;
-			transform: translate(500px));
-			duration: 200,;
+			transform: (translate(500px));
 		}
 	}
 }
 
-.cogo_assured_tags{
+.cogo_assured_tags {
 	display: flex;
 	margin: 12px 0 4px 16px;
 }

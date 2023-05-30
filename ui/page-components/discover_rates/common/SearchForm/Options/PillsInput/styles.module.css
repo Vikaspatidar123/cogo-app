@@ -87,10 +87,12 @@
 	flex: 1 0%;
 	flex-wrap: wrap;
 	align-items: center;
+
 	/* overflow: hidden; */
 	height: 40px;
 	padding: 2px 8px;
 	overflow: scroll;
+
 	&::-webkit-scrollbar {
 		display: none;
 	}

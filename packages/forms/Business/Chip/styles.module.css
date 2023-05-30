@@ -15,7 +15,6 @@
 		100% {
 			opacity: 1;
 			transform: (translate(400px));
-			duration: 400,;
 		}
 	}
 }

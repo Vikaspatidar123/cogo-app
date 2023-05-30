@@ -69,27 +69,6 @@
 	}
 }
 
-.tag_count {
-	padding: 7px;
-	margin: 2px;
-	font-size: 12px;
-	font-weight: bold;
-	color: #fff;
-	background: #3b526b;
-	border-radius: 15px;
-}
-
-.upgrade_plan {
-	padding: 2px 8px;
-	margin: 0 8px;
-	font-size: 12x;
-	font-weight: 500;
-	color: #fff;
-	cursor: pointer;
-	background: rgb(250 218 41);
-	border-radius: 4px;
-}
-
 .tracker_remaining_text {
 	&.zero-trackers {
 		color: #e15151;
@@ -123,16 +102,10 @@
 	align-items: center;
 }
 
-.tracker_remaining_text {
-	&.zero_trackers {
-		color: #e15151;
-	}
-}
-
 .upgrade_plan {
 	padding: 2px 8px;
 	margin: 0 8px;
-	font-size: 12x;
+	font-size: 12px;
 	font-weight: 500;
 	cursor: pointer;
 	background: rgb(224 81 85);

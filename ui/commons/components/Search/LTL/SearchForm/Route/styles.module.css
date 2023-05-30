@@ -38,19 +38,15 @@
 	}
 
 	.custom-select-input-container {
-		.custom-select-input-subcontainer {
-			border: 1px solid #cbcff5;
-
-			.core-ui-input-root {
-				border: unset !important;
-			}
+		.core-ui-input-root {
+			border: unset !important;
 		}
 	}
 
 	.custom-select-input-subcontainer {
 		height: 40px;
 		cursor: text;
-		border: solid 1px #e0e0e0;
+		border: 1px solid #cbcff5;
 		box-shadow: none;
 
 		:focus {

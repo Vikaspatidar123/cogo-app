@@ -22,10 +22,6 @@
 	align-items: flex-start;
 
 	:global {
-		.business-checkbox-label {
-			margin-bottom: 4px;
-		}
-
 		.ui_upload_droparea_container {
 			flex-direction: row;
 			min-height: 20px;
@@ -45,10 +41,6 @@
 		.core-ui-select__control {
 			border: 1px solid #cbcff5;
 		}
-
-		.business-checkbox-label {
-			color: #393f70;
-		}
 	}
 }
 
@@ -59,7 +51,6 @@
 }
 
 .info_container {
-	/* margin-top: 12px; */
 	:global {
 		.business-checkbox-label {
 			color: #393f70;

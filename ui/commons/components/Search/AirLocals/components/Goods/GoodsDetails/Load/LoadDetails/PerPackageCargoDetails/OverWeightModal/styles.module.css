@@ -5,6 +5,7 @@
 	:global {
 		.form-item-label {
 			margin: 12px 0;
+			margin-top: 20px;
 			font-size: 12px;
 			font-weight: 500;
 			color: #393f70;
@@ -18,10 +19,6 @@
 
 		.core-ui-select-root {
 			max-height: 32px;
-		}
-
-		.form-item-label {
-			margin-top: 20px;
 		}
 	}
 }

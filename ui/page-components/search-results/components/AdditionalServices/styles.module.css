@@ -138,8 +138,8 @@
 	margin-top: 6px;
 }
 
-.add_button{
-	margin-top: 10px;
+.add_button {
 	display: flex;
-    justify-content: flex-end;
+	justify-content: flex-end;
+	margin-top: 10px;
 }

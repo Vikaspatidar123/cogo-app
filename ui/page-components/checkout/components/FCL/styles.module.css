@@ -84,13 +84,6 @@
 	background-color: #cedcea;
 	border-radius: 0 0 4px 4px;
 
-	.details {
-		display: flex;
-		align-items: center;
-		margin-right: 16px;
-		cursor: pointer;
-	}
-
 	.additional_services {
 		display: flex;
 		align-items: center;

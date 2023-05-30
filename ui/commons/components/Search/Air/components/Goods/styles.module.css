@@ -1,13 +1,6 @@
 .container {
 	margin-top: 16px;
 
-	.title {
-		margin-bottom: 12px;
-		font-size: 14px;
-		font-weight: 600;
-		color: #393f70;
-	}
-
 	:global {
 		.tippy-box .tippy-arrow {
 			display: none !important;
@@ -20,9 +13,9 @@
 }
 
 .title {
-	margin-bottom: 10px;
+	margin-bottom: 12px;
 	font-size: 14px;
-	font-weight: 500;
+	font-weight: 600;
 	color: #393f70;
 }
 

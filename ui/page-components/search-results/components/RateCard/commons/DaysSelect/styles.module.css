@@ -5,19 +5,17 @@
 	border: 1px solid #bdaff9;
 	border-radius: 4px;
 
-	
-
-    :global{
+	:global {
 		.ui_input_control {
-		padding: 0;
-		
+			padding: 0;
 		}
-		.ui_input_container{
-		text-align: center;
-		margin:0px 4px;
-		border: none;
+
+		.ui_input_container {
+			margin: 0 4px;
+			text-align: center;
+			border: none;
+		}
 	}
-}
 }
 
 .method_container {
@@ -32,7 +30,7 @@
 }
 
 .styled_text {
+	margin-top: 4px;
 	font-size: 12px;
 	color: #393f70;
-	margin-top: 4px;
 }

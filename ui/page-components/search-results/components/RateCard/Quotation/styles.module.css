@@ -1,14 +1,13 @@
 .container {
 	display: flex;
-	padding: 8px 60px 0px 60px;
-	text-align: center;
-	justify-content: space-between;
 	flex-direction: column;
+	justify-content: space-between;
+	padding: 8px 60px 0;
+	text-align: center;
 
 	@media (max-width: 768px) {
 		align-self: center;
 	}
-
 }
 
 .dislike_container {
@@ -20,13 +19,12 @@
 
 .text {
 	display: flex;
+	align-self: center;
 	margin-bottom: 6px;
 	font-size: 12px;
 	font-weight: 400;
 	line-height: 12px;
 	color: #828282;
-	align-self: center;
-
 
 	.confirmed {
 		margin-top: 16px;
@@ -37,10 +35,9 @@
 
 .breakup_btn_container {
 	display: flex;
+	gap: 2px;
 	align-items: center;
 	justify-content: center;
-	gap:2px;
-	align-items: center;
 }
 
 .coin_container {
@@ -73,39 +70,34 @@
 }
 
 .limited_offer_deal {
-	background: #fbd69f;
-	border-radius: 0px 0px 8px 8px;
-	font-weight: bold;
-	font-size: 14px;
-	line-height: 16px;
-	text-align: center;
-	color: #000000;
 	padding: 6px 12px;
 	margin-top: -9px;
-	margin-bottom: 22px
+	margin-bottom: 22px;
+	font-size: 14px;
+	font-weight: bold;
+	line-height: 16px;
+	color: #000;
+	text-align: center;
+	background: #fbd69f;
+	border-radius: 0 0 8px 8px;
 }
 
 .button_price_container {
 	align-self: center;
+
 	&.confirmed {
 		margin-top: 26px;
 	}
 }
 
 .button_styles {
-	margin-bottom: 15px;
 	align-self: center;
 	width: 100%;
+	margin-bottom: 15px;
 }
 
 .button {
 	color: rgb(130 130 130);
 	cursor: pointer;
 	background: rgb(236 245 255) !important;
-}
-
-.button_price_container{
-	&.confirmed {
-		margin-top: 26px;
-	}
 }

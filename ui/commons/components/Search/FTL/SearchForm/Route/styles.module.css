@@ -53,12 +53,8 @@
 		}
 
 		.custom-select-input-container {
-			.custom-select-input-subcontainer {
-				border: 1px solid #cbcff5;
-
-				.core-ui-input-root {
-					border: unset !important;
-				}
+			.core-ui-input-root {
+				border: unset !important;
 			}
 		}
 

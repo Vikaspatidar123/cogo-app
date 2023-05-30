@@ -66,10 +66,6 @@
 	.details_title {
 		margin-right: 13px;
 	}
-
-	.additional_services_title {
-		margin-right: 2%;
-	}
 }
 
 .service_details_container {
@@ -82,7 +78,7 @@
 }
 
 .service_details_containermargin-bottommargin-bottom {
-	@media (max-wid	th: 768px) {
+	@media (max-width: 768px) {
 		margin-top: 16px;
 		margin-bottom: 70px;
 	}

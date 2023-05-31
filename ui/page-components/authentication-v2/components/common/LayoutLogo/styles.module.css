@@ -1,0 +1,23 @@
+.header {
+    margin-top: 12px;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    z-index: 10;
+
+    a.home,
+    img.logo {
+        width: 140px;
+        height: 70px;
+    }
+}
+
+.help_mobile {
+    display: none;
+
+    @media (max-width: 768px) {
+        display: block;
+        margin-top: 8px;
+    }
+}

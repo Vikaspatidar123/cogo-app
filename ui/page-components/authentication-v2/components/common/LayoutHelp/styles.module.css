@@ -1,0 +1,8 @@
+.help {
+    height: 70px;
+    margin-top: 12px;
+
+    @media (max-width: 768px) {
+        display: none;
+    }
+}

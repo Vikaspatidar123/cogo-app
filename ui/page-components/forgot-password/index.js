@@ -6,7 +6,7 @@ import styles from './styles.module.css';
 
 import LeftPanel from '@/ui/commons/components/LeftPanel';
 
-function ForgotPassowrd() {
+function ForgotPassword() {
 	const [sentMail, setSentMail] = useState(false);
 	const [emailId, setEmailId] = useState('');
 
@@ -23,4 +23,4 @@ function ForgotPassowrd() {
 	);
 }
 
-export default ForgotPassowrd;
+export default ForgotPassword;

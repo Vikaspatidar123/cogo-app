@@ -1,0 +1,58 @@
+.form_container {
+    display: flex;
+    flex-direction: column;
+}
+
+.label {
+    margin: 8px 0px;
+    color: var(--color-secondary-greyscale-1);
+}
+
+.errors {
+    font-size: 12px;
+    font-weight: 300;
+    text-align: right;
+    height: 12px;
+    color: var(--color-primary-error-red-2);
+}
+
+.checkbox_container {
+    display: flex;
+    align-items: center;
+
+    margin-bottom: 12px;
+
+    .checkbox {
+        padding: 0;
+    }
+}
+
+.recaptcha {
+    display: flex;
+    justify-content: center;
+    margin-top: 12px;
+}
+
+.tnc_link {
+    font-size: 10px;
+    text-align: center;
+    padding: 12px 0px;
+
+    a {
+        font-weight: 700;
+    }
+}
+
+.submit_button {
+    margin-top: 20px;
+}
+
+.links {
+    padding-top: 16px;
+    text-align: center;
+
+    font-size: 12px;
+    text-decoration-line: underline;
+
+    color: var(--color-secondary-greyscale-2);
+}

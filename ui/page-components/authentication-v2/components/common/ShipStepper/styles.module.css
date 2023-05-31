@@ -1,0 +1,17 @@
+.ship_background {
+    width: 100vw;
+    height: 100vh;
+
+    img {
+        height: 100%;
+        width: 100%;
+    }
+
+    @media (max-width: 768px) {
+        background-color: #fef199;
+
+        img {
+            display: none;
+        }
+    }
+}

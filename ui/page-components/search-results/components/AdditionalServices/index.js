@@ -266,9 +266,7 @@ function AdditionalServices({
 				</div>
 				<CargoInsurancePillContainer
 					uniq_services_list={uniq_services_list}
-					importer_exporter_country_code={
-					importer_exporter_country_code
-                    }
+					importer_exporter_country_code={importer_exporter_country_code}
 					search_type={search_type}
 					addCargoInsurance={addCargoInsurance}
 					setAddCargoInsurance={setAddCargoInsurance}
@@ -282,9 +280,7 @@ function AdditionalServices({
 					service_type={service_type}
 					checkout_id={checkout_id}
 					spot_search_id={spot_search_id}
-					importer_exporter_id={
-                        importer_exporter_id || importer_exporter?.id
-                    }
+					importer_exporter_id={importer_exporter_id || importer_exporter?.id}
 					importer_exporter={importer_exporter}
 					setOpenAddServiceModal={setOpenAddServiceModal}
 					setShowCargoInsuranceIP={setShowCargoInsuranceIP}

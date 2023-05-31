@@ -12,9 +12,6 @@
 }
 
 .modal {
-	:global {
-		/* .ui_modal_body_container {
-      max-height: 410px;
-    } */
-	}
+	width: 1255px !important;
+	height: 540px !important;
 }

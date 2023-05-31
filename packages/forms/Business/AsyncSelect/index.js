@@ -13,6 +13,7 @@ import {
 	// asyncProductList,
 	asyncCountrySelect,
 	asyncOrganizationBranches,
+	asyncInsuranceCommodities,
 } from '../../utils/getAsyncFields';
 
 /**
@@ -43,6 +44,7 @@ const keyAsyncFieldsParamsMapping = {
 	// list_products          : asyncProductList,
 	country_list_with_flag  : asyncCountrySelect,
 	'organization-branches' : asyncOrganizationBranches,
+	insurance_commodities   : asyncInsuranceCommodities,
 };
 
 function AsyncSelect(props) {

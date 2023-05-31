@@ -1,6 +1,12 @@
 .container {
-	width: 300px;
+	max-width: 400px;
+	max-height: 430px;
 	margin-top: 15px;
+	overflow-y: scroll;
+
+	&::-webkit-scrollbar {
+		display: none;
+	}
 
 	@media (max-width: 768px) {
 		width: auto;

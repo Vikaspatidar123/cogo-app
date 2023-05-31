@@ -1,9 +1,11 @@
 .table {
-    border-collapse: separate;
+	border-collapse: separate;
+
 	:global {
 		.ui_table_head_container {
 			height: 40px;
 		}
+
 		.ui_table_body_row {
 			height: 40px;
 		}

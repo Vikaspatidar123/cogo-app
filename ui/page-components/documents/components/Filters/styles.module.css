@@ -1,28 +1,28 @@
 .search {
-    display: flex;
-    justify-content: flex-end;
-    margin: 7px 0px;
+	display: flex;
+	justify-content: flex-end;
+	margin: 7px 0;
 }
 
 .input {
-    width: 300px;
+	width: 300px;
 }
 
 .select_container {
-    width: 300px;
-    margin: 0 5px;
+	width: 300px;
+	margin: 0 5px;
 }
 
 .filters_wrapper {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 8px 0
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin: 8px 0;
 }
 
-.table_title{
-    width: 70px;
-    font-weight: 600;
-    font-size: 16px;
-    color: #4F4F4F;
+.table_title {
+	width: 70px;
+	font-size: 16px;
+	font-weight: 600;
+	color: #4f4f4f;
 }

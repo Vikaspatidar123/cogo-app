@@ -1,38 +1,39 @@
 .container {
-    margin: 5px;
-    width: 300px;
+	width: 300px;
+	margin: 5px;
 }
 
 .wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    align-content: center;
-    width: 100%;
+	display: flex;
+	align-content: center;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
 }
 
-.select_container{
-    width: 300px;
-    margin: 5px;
+.select_container {
+	width: 300px;
+	margin: 5px;
 }
 
 .upload_container {
-    width: 400px;
-   :global {
-        .ui_upload_droparea_container{
-            height: 20px;
-            padding: 0px;
-        }
-    }
+	width: 400px;
+
+	:global {
+		.ui_upload_droparea_container {
+			height: 20px;
+			padding: 0;
+		}
+	}
 }
 
 .upload_link {
-    margin: 0px 8px;
-    font-weight: 500;
-    font-size: 12px;
-    cursor: pointer;
+	margin: 0 8px;
+	font-size: 12px;
+	font-weight: 500;
+	cursor: pointer;
 }
 
 .button {
-    margin: 0px 7px
+	margin: 0 7px;
 }

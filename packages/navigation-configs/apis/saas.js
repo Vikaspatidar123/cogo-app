@@ -353,6 +353,8 @@ const saas = {
 		},
 	],
 
+	app_saas_load_container: [],
+
 	app_saas_transaction_history: [
 		{
 			api         : 'get_saas_payment_details',
@@ -387,8 +389,7 @@ const saas = {
 		},
 	],
 
-	app_saas_load_container : [],
-	app_saas_tracking       : [
+	app_saas_tracking: [
 		{
 			api          : 'get_saas_container_subscription',
 			access_type  : 'private',

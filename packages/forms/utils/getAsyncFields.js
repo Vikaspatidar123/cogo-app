@@ -17,7 +17,6 @@ function asyncFieldsLocations(labelKey = 'name', valueKey = 'id') {
 		valueKey,
 		labelKey,
 		endpoint    : 'list_locations',
-		authKey     : 'get_list_locations',
 		initialCall : true,
 		params      : {
 			filters    : { status: 'active' },
@@ -76,6 +75,17 @@ function asyncFieldsPartnerQuotation() {
 
 	};
 }
+
+function asyncProductList() {
+	return {
+		labelKey    : 'name',
+		valueKey    : 'name',
+		authKey     : 'get_saas_product_list',
+		endpoint    : 'saas/product/list',
+		initialCall : false,
+	};
+}
+
 export {
 	asyncFieldsLocations,
 	asyncFieldsLocations2,
@@ -83,4 +93,5 @@ export {
 	asyncFieldsPartnerRoles,
 	asyncFieldsHsCodeCountries,
 	asyncFieldsPartnerQuotation,
+	asyncProductList,
 };

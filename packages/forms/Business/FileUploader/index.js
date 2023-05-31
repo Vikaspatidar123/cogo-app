@@ -11,8 +11,9 @@ function FileUploader(props) {
 	const {
 		onChange = () => {},
 		showProgress,
-		multiple,
+		multiple = false,
 		docName,
+		accept,
 		...rest
 	} = props;
 
@@ -99,6 +100,7 @@ function FileUploader(props) {
 				multipleUploadDesc="Upload files"
 				fileData={urlStore}
 				className={styles.upload}
+				accept={accept}
 			/>
 
 			{loading

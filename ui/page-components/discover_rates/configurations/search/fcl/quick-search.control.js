@@ -53,8 +53,9 @@ const controls = [
 				name        : 'cargo_weight_per_container',
 				placeholder : 'between 0 to 30 metric tonnes',
 				type        : 'number',
-				// style       : { width: '80%' },
+				style       : { width: '160px' },
 				rules       : { min: 0.1, max: 30, required: 'Cargo Weight is required' },
+				span        : 12,
 			},
 		],
 
@@ -64,7 +65,6 @@ const controls = [
 		name       : 'inco_term',
 		type       : 'inco-terms-select',
 		selectType : 'chips',
-		// style      : { control: { width: '200px' } },
 		rules      : { required: 'Incoterm is required' },
 	},
 ];

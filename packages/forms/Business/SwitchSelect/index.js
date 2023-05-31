@@ -7,8 +7,8 @@ import styles from './styles.module.css';
 
 function SwitchSelect({ children, switchProps, label }) {
 	return (
-		<div className={cl`${styles.container} switch-select-container`}>
-			<div className={`switch-select-seperator ${styles.space_between}`}>
+		<div className={cl`${styles.container}`} id="switch-select-container">
+			<div className={`${styles.space_between}`}>
 				<div className={styles.label}>{label}</div>
 				<Switch {...switchProps} />
 			</div>

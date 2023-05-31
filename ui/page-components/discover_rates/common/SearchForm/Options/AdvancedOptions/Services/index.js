@@ -81,7 +81,7 @@ function Services({
 					[service]: data?.services?.[service] || services[service] || false,
 				};
 			} else {
-				newServices = { ...newServices, [service]: true };
+				newServices = { ...newServices, [service]: false };
 			}
 		});
 		setServices(newServices);
@@ -97,7 +97,6 @@ function Services({
 		});
 		return isIncluded;
 	};
-
 	const renderServices = (place) => {
 		const placeService = placeServices[place];
 		return (

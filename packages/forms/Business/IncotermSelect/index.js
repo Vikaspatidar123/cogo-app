@@ -7,7 +7,7 @@ import Select from '../Select';
 import SwitchSelect from '../SwitchSelect';
 
 function IncoTermSelect({
-	tradeType,
+	tradeType:tradeMode,
 	incoTermType,
 	selectType,
 	value,
@@ -15,12 +15,10 @@ function IncoTermSelect({
 	id,
 	...rest
 }) {
-	// eslint-disable-next-line no-param-reassign
-	tradeType = tradeType
-    || (IncoTerms || []).filter((item) => item?.value === value)[0]?.tradeType;
+	const tradeType = (IncoTerms || []).filter((item) => item?.key === value)[0]?.tradeType || tradeMode;
 
 	let list = IncoTerms;
-	const currentObj = list.find((inco) => inco.value === value) || {
+	const currentObj = list.find((inco) => inco.key === value) || {
 		tradeType: tradeType || activeTradeType,
 	};
 	const [tradeTypeToggle, setTradeType] = useState(

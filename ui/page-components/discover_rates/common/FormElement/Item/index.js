@@ -29,7 +29,6 @@ function Item({ formValue, ...rest }) {
 	const props = { placeholder };
 
 	const Element = getField(type);
-
 	if (
 		(restProps.type === 'select' || restProps.type === 'creatable-select')
     && !restProps.style

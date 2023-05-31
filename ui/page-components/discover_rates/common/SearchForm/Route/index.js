@@ -1,9 +1,6 @@
-// import { replace } from '@cogo/i18n';
 import { cl } from '@cogoport/components';
 import { IcMPortArrow } from '@cogoport/icons-react';
-import React from 'react';
-
-// import CUSTOM_THEME from './custom-theme';
+import React, { useEffect } from 'react';
 
 import styles from './styles.module.css';
 
@@ -34,6 +31,8 @@ function Route({
 	extraParams,
 	disabledFields = {},
 	control,
+	isEdit,
+	setValue,
 }) {
 	const { showArrow = true } = destination || {};
 	const { org_id } = useSelector(({ profile, general }) => ({
@@ -72,7 +71,12 @@ function Route({
 		}
 		return null;
 	};
-	console.log(origin, 'origin', location);
+	useEffect(() => {
+		if (isEdit) {
+			setValue('origin_port_id', location?.origin?.id || location?.origin?.value);
+			setValue('destination_port_id', location?.destination?.id || location?.destination?.value);
+		}
+	}, [isEdit, location, setValue]);
 	return (
 		<div className={styles.container} id="search_form_route_container">
 			<div className={cl`${styles.section} ${styles[className]}`}>
@@ -87,7 +91,6 @@ function Route({
 					caret
 					placeholder={origin.placeholder || ''}
 					noOptionsMessage="Type to search..."
-					value={location?.origin?.id || location?.origin?.value}
 					disabled={
 							disabledFields?.origin
 							&& index !== 0
@@ -160,7 +163,6 @@ function Route({
 						placeholder={destination.placeholder || ''}
 						noOptionsMessage="Type to search..."
 						asyncKey="locations2"
-						value={location?.destination?.id || location?.destination?.value}
 						disabled={
 							disabledFields?.destination
 							&& index !== 0

@@ -36,7 +36,6 @@ function Service({
 	const isMainService = mainServices.includes(service);
 	const isHaulage = service === 'import_haulage_freight'
     || service === 'export_haulage_freight';
-
 	const handleChange = () => {
 		if (!isMainService) {
 			onChange(service);
@@ -48,7 +47,7 @@ function Service({
 			className={
         selected ? cl`${styles.selected} ${styles.container}` : cl`${styles.container}`
       }
-      // service={service}
+			// service={service}
 			role="presentation"
 			onClick={handleChange}
 		>

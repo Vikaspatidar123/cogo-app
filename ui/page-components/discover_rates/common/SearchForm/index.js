@@ -61,7 +61,6 @@ function Form(
 	const { is_org_pass_through } = extraParams;
 
 	// const { keywords } = usei18n();
-
 	const [loading, setLoading] = useState(false);
 	const [show, setShow] = useState(false);
 	const [location, setLocation] = useState({});
@@ -91,7 +90,6 @@ function Form(
 	} = getControls(
 		mode,
 		data,
-		// mobile,
 		location,
 		isChannelPartner,
 		index,
@@ -104,6 +102,7 @@ function Form(
 
 	const allControls = [...restControls, ...advancedControls];
 	const useFormProps = useForm();
+
 	const {
 		watch,
 		setValue,
@@ -310,12 +309,18 @@ function Form(
 								style={{ width: getWidth(locationsSpan) }}
 							>
 								<Route
-									origin={allControls.find((x) => x.name === origin?.name)}
+									origin={{
+										...allControls.find((x) => x.name === origin?.name),
+										value: location?.origin?.id || location?.origin?.value,
+									}}
 									setLocation={setLocation}
 									location={location}
-									destination={allControls.find(
-										(x) => x.name === destination?.name,
-									)}
+									destination={{
+										...allControls.find(
+											(x) => x.name === destination?.name,
+										),
+										value: location?.destination?.id || location?.destination?.value,
+									}}
 									className={className}
 									errors={errors}
 									search_type={search_type}
@@ -325,6 +330,7 @@ function Form(
 									disabledFields={disabledFields}
 									control={control}
 									setValue={setValue}
+									isEdit={isEdit}
 
 								/>
 							</div>

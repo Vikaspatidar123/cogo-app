@@ -74,7 +74,6 @@ function Options({
 	const formValues1 = options.values || {};
 	const formValues = { ...(formProps.formValues || {}), ...formValues1 };
 	const allErrors = { ...(errors || {}), ...(formProps?.errors || {}) };
-
 	const showElements = useMemo(
 		() => showElementsFunc({
 			...formProps,

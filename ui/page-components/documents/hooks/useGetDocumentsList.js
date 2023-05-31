@@ -4,6 +4,7 @@ import { useRequest } from '@/packages/request';
 
 const useGetDocumentsList = ({ filters = {} }) => {
 	const { query = '', documentTypeFilter = '' } = filters || {};
+
 	const [{ loading, data }, trigger] = useRequest({
 		method : 'get',
 		url    : 'list_organization_documents',
@@ -29,7 +30,7 @@ const useGetDocumentsList = ({ filters = {} }) => {
 		fetchDocuments();
 	}, [fetchDocuments]);
 
-	return { loading, data };
+	return { loading, data, refetch: fetchDocuments };
 };
 
 export default useGetDocumentsList;

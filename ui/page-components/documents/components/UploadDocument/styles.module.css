@@ -8,20 +8,31 @@
     justify-content: center;
     align-items: center;
     align-content: center;
+    width: 100%;
 }
 
 .select_container{
-    width: 200px;
+    width: 300px;
     margin: 5px;
 }
 
 .upload_container {
-    height: 50px;
-    width: 200px;
+    width: 400px;
    :global {
         .ui_upload_droparea_container{
             height: 20px;
             padding: 0px;
         }
     }
+}
+
+.upload_link {
+    margin: 0px 8px;
+    font-weight: 500;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.button {
+    margin: 0px 7px
 }

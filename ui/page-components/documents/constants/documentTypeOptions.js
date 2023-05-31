@@ -1,4 +1,4 @@
-export const options = [
+export const OPTIONS = [
 	{ label: 'PAN', value: 'pan' },
 	{ label: 'IEC', value: 'iec' },
 	{ label: 'Business Address Proof', value: 'business_address_proof' },

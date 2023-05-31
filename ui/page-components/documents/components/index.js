@@ -1,6 +1,5 @@
 import { Table, Pagination } from '@cogoport/components';
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
 
 import columns from '../config';
 import useAddDocuments from '../hooks/useAddDocuments';
@@ -15,8 +14,6 @@ function Documents() {
 	const [filters, setFilters] = useState({});
 	const [show, setShow] = useState(false);
 	const [documentDetails, setDocumentDetails] = useState({});
-
-	const { general:{ isMobile } } = useSelector((state) => state);
 
 	const { page = 1 } = filters || {};
 
@@ -38,9 +35,8 @@ function Documents() {
 				addDocument={addDocument}
 				loading={addDocumentLoading}
 				setDocumentDetails={setDocumentDetails}
-				isMobile={isMobile}
 			/>
-			<Filters setFilters={setFilters} filters={filters} isMobile={isMobile} />
+			<Filters setFilters={setFilters} filters={filters} />
 			<Table
 				columns={columns || []}
 				data={list}

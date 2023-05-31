@@ -170,7 +170,6 @@ const navigationMappings = {
 		title     : 'Documents Wallet',
 		href      : '/v2/documents',
 		as        : '/v2/documents',
-		icon      : 'nav-booking',
 		showInNav : true,
 	},
 

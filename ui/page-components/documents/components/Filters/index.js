@@ -1,14 +1,12 @@
 import { Input, Select } from '@cogoport/components';
 import { IcMCross, IcMFilter, IcMSearchlight } from '@cogoport/icons-react';
 
-import { options } from '../../constants/documentTypeOptions';
+import { OPTIONS } from '../../constants/documentTypeOptions';
 
 import styles from './styles.module.css';
 
-function Filters({ setFilters = () => {}, filters = {}, isMobile = false }) {
+function Filters({ setFilters = () => {}, filters = {} }) {
 	const { documentTypeFilter = '' } = filters || {};
-
-	const wrapperClassName = isMobile ? 'mobile_filters_wrapper' : 'filters_wrapper';
 
 	const clearFilters = () => {
 		setFilters((prev) => ({
@@ -18,7 +16,7 @@ function Filters({ setFilters = () => {}, filters = {}, isMobile = false }) {
 	};
 
 	return (
-		<div className={styles[wrapperClassName]}>
+		<div className={styles.filters_wrapper}>
 			<div className={styles.table_title}>
 				All Files
 			</div>
@@ -26,7 +24,7 @@ function Filters({ setFilters = () => {}, filters = {}, isMobile = false }) {
 			<div className={styles.search}>
 				<div className={styles.select_container}>
 					<Select
-						options={options}
+						options={OPTIONS}
 						size="sm"
 						onChange={(e) => {
 							setFilters((prev) => ({

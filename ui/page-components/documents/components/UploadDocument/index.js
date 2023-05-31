@@ -2,7 +2,7 @@ import { Input, Select, Button } from '@cogoport/components';
 import { IcMCloudUpload } from '@cogoport/icons-react';
 import { isEmpty } from '@cogoport/utils';
 
-import { options } from '../../constants/documentTypeOptions';
+import { OPTIONS } from '../../constants/documentTypeOptions';
 
 import styles from './styles.module.css';
 
@@ -12,10 +12,7 @@ function UploadDocument({
 	addDocument = () => {},
 	loading = false,
 	setDocumentDetails = () => {},
-	isMobile = false,
 }) {
-	const className = isMobile ? 'mobile_wrapper' : 'wrapper';
-
 	const { image_url = '' } = documentDetails || {};
 
 	const fileName = image_url?.split('/')?.slice(-1)?.join('');
@@ -25,7 +22,7 @@ function UploadDocument({
 	}
 
 	return (
-		<div className={styles[className]}>
+		<div className={styles.wrapper}>
 			<div className={styles.container}>
 				<Input
 					placeholder="Document Name"
@@ -40,7 +37,7 @@ function UploadDocument({
 			<div className={styles.select_container}>
 				<Select
 					placeholder="Document Type"
-					options={options}
+					options={OPTIONS}
 					onChange={(val) => setDocumentDetails((prev) => ({
 						...prev,
 						document_type: val,

@@ -12,7 +12,10 @@ function UploadDocument({
 	addDocument = () => {},
 	loading = false,
 	setDocumentDetails = () => {},
+	isMobile = false,
 }) {
+	const className = isMobile ? 'mobile_wrapper' : 'wrapper';
+
 	const { image_url = '' } = documentDetails || {};
 
 	const fileName = image_url?.split('/')?.slice(-1)?.join('');
@@ -22,7 +25,7 @@ function UploadDocument({
 	}
 
 	return (
-		<div className={styles.wrapper}>
+		<div className={styles[className]}>
 			<div className={styles.container}>
 				<Input
 					placeholder="Document Name"

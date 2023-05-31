@@ -3,7 +3,7 @@ import { useCallback, useEffect } from 'react';
 import { useRequest } from '@/packages/request';
 
 const useGetDocumentsList = ({ filters = {} }) => {
-	const { query = '', documentTypeFilter = '' } = filters || {};
+	const { query = '', documentTypeFilter = '', page = 1 } = filters || {};
 
 	const [{ loading, data }, trigger] = useRequest({
 		method : 'get',
@@ -19,12 +19,13 @@ const useGetDocumentsList = ({ filters = {} }) => {
 						query,
 						document_type : documentTypeFilter,
 					},
+					page,
 				},
 			});
 		} catch (e) {
 			console.log(e);
 		}
-	}, [documentTypeFilter, query, trigger]);
+	}, [documentTypeFilter, page, query, trigger]);
 
 	useEffect(() => {
 		fetchDocuments();

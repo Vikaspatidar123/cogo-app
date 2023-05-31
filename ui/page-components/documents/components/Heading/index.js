@@ -5,6 +5,7 @@ import styles from './styles.module.css';
 function Heading({
 	setShow = () => {}, documentDetails = {}, addDocument = () => {},
 	loading = false, setDocumentDetails = () => {},
+	isMobile = false,
 }) {
 	return (
 		<div className={styles.header}>
@@ -15,6 +16,7 @@ function Heading({
 				addDocument={addDocument}
 				loading={loading}
 				setDocumentDetails={setDocumentDetails}
+				isMobile={isMobile}
 			/>
 		</div>
 	);

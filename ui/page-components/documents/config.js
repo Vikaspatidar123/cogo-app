@@ -6,22 +6,22 @@ const { startCase, format } = require('@cogoport/utils');
 
 const columns = [
 	{
-		Header   : 'File Name',
+		Header   : 'FILE NAME',
 		accessor : 'name',
-		Cell     : ({ row }) => startCase(row?.original?.name),
+		Cell     : ({ row }) => <div className={styles.file_name}>{startCase(row?.original?.name)}</div>,
 	},
 	{
-		Header   : 'Document Type',
+		Header   : 'DOCUMENT TYPE',
 		accessor : 'document_type',
 		Cell     : ({ row }) => startCase(row?.original?.document_type),
 	},
 	{
-		Header   : 'Date Uploaded',
+		Header   : 'DATE UPLOADED',
 		accessor : 'updated_at',
 		Cell     : ({ row }) => format(row?.original?.updated_at, 'dd LLL yyyy'),
 	},
 	{
-		Header   : 'Action',
+		Header   : 'ACTION',
 		accessor : 'image_url',
 		Cell     : ({ row }) => (
 			<>

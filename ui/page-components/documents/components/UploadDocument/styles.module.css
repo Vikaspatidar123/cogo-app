@@ -11,6 +11,15 @@
 	width: 100%;
 }
 
+.mobile_wrapper {
+	display: flex;
+	flex-direction: column;
+	align-content: center;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+}
+
 .select_container {
 	width: 300px;
 	margin: 5px;

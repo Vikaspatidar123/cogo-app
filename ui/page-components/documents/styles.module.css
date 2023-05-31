@@ -2,3 +2,8 @@
 	margin: 0 3px;
 	cursor: pointer;
 }
+
+.file_name {
+	text-decoration: underline;
+	color: #034AFD;
+}

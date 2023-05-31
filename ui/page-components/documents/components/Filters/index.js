@@ -5,8 +5,10 @@ import { options } from '../../constants/documentTypeOptions';
 
 import styles from './styles.module.css';
 
-function Filters({ setFilters = () => {}, filters = {} }) {
+function Filters({ setFilters = () => {}, filters = {}, isMobile = false }) {
 	const { documentTypeFilter = '' } = filters || {};
+
+	const wrapperClassName = isMobile ? 'mobile_filters_wrapper' : 'filters_wrapper';
 
 	const clearFilters = () => {
 		setFilters((prev) => ({
@@ -16,7 +18,7 @@ function Filters({ setFilters = () => {}, filters = {} }) {
 	};
 
 	return (
-		<div className={styles.filters_wrapper}>
+		<div className={styles[wrapperClassName]}>
 			<div className={styles.table_title}>
 				All Files
 			</div>

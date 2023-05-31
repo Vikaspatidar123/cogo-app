@@ -3,7 +3,7 @@ import { Toast } from '@cogoport/components';
 import { useRequest } from '@/packages/request';
 
 const useSignupAuthentication = ({
-	setshowOtpForm, setUserDetails, captchaResponse, hasWhatsApp, userInfo,
+	setMode, setUserDetails, captchaResponse, hasWhatsApp,
 }) => {
 	const [{ loading: signupLoading }, trigger] = useRequest({
 		url    : 'saas_tools/update_saas_converted_user_mobile',
@@ -38,7 +38,7 @@ const useSignupAuthentication = ({
 
 			// 	setUserDetails(userDetails);
 			// }
-			setshowOtpForm(true);
+			setMode('otp_form');
 		} catch (e) {
 			if (e?.response?.data?.email?.length > 0) {
 				Toast.error('Email id is already registered. Please Login');

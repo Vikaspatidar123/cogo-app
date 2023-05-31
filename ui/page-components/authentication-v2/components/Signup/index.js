@@ -4,14 +4,39 @@ import LayoutHelp from '../common/LayoutHelp';
 import LayoutLogo from '../common/LayoutLogo';
 import LoadingPrompts from '../common/LoadingPrompts';
 import ShipStepper from '../common/ShipStepper';
-import OTPForm from '../Login/OTPLoginForm';
 
+import OTPSignupForm from './OTPSignupForm';
 import SignupForm from './SignupForm';
 import styles from './styles.module.css';
 
+const SIGNUP_FLOW_MAPPING = {
+	signup_form     : SignupForm,
+	otp_form        : OTPSignupForm,
+	loading_prompts : LoadingPrompts,
+};
+
 function Signup() {
-	const [showOtpForm, setshowOtpForm] = useState(false);
+	const [mode, setMode] = useState('signup_form');
 	const [formData, setFormData] = useState({});
+	const [userDetails, setUserDetails] = useState({});
+
+	const componentProps = {
+		signup_form: {
+			setMode,
+			setFormData,
+			setUserDetails,
+		},
+		otp_form: {
+			setMode,
+			formData,
+			userDetails,
+		},
+		loading_prompts: {
+			type: 'signup',
+		},
+	};
+
+	const Component = SIGNUP_FLOW_MAPPING[mode] || null;
 
 	return (
 		<>
@@ -22,22 +47,14 @@ function Signup() {
 
 				<div className={styles.card_container}>
 					<div className={styles.card}>
-						<LoadingPrompts />
+						{Component && (
+							<Component
+								key={mode}
+								{...(componentProps[mode] || {})}
+							/>
+						)}
 					</div>
 				</div>
-
-				{/* <div className={styles.card_container}>
-					{showOtpForm ? (
-						<div className={styles.card}>
-							<OTPForm mobileNumber={formData} setshowOtpForm={setshowOtpForm} />
-						</div>
-					) : (
-						<div className={styles.card}>
-							<div className={styles.card_heading}>Welcome to Cogoport </div>
-							<SignupForm setshowOtpForm={setshowOtpForm} setFormData={setFormData} />
-						</div>
-					)}
-				</div> */}
 
 				<LayoutHelp />
 			</div>

@@ -3,29 +3,32 @@ import { IcMArrowBack } from '@cogoport/icons-react';
 import { isEmpty } from '@cogoport/utils';
 import { useState } from 'react';
 
-import useLoginOtpAuthentication from '../../../hooks/useLoginOtpAuthentication';
+import useEmailVerification from '../../../hooks/useEmailVerification';
+import useSignupOtpAuthentication from '../../../hooks/useSignupOtpAuthentication';
 
 import styles from './styles.module.css';
 
 import OTPLayout from '@/packages/forms/Business/OTPLayout';
 
-function OTPLoginForm({ otpId = '', mobileNumber = {}, setshowOtpForm = () => {}, resendOtp = () => {} }) {
+function OTPSignupForm({ otpId = '', formData = {}, setMode = () => {}, resendOtp = () => {}, id = '' }) {
+	const { mobile_number: mobileNumber = {}, email = '' } = formData;
 	const [otpValue, setOtpValue] = useState('');
 
-	const email = 'test@cogoport.com';
-
 	const {
-		onLoginWithOtp,
-		loginLoading = false,
-	} = useLoginOtpAuthentication({
+		onSignupWithOtp,
+		signupLoading = false,
+	} = useSignupOtpAuthentication({
+		setMode,
 		mobileNumber,
 		otpId,
 		otpValue,
 	});
 
+	const { onClickResendEmail } = useEmailVerification();
+
 	return (
 		<div className={styles.otp_container}>
-			<span onClick={() => setshowOtpForm(false)} role="presentation">
+			<span onClick={() => setMode('signup_form')} role="presentation">
 				<IcMArrowBack
 					width="1.2rem"
 					height="1.2rem"
@@ -40,7 +43,6 @@ function OTPLoginForm({ otpId = '', mobileNumber = {}, setshowOtpForm = () => {}
 					<>
 						{' '}
 						the mobile number.
-
 					</>
 				) : (
 					<>
@@ -50,22 +52,21 @@ function OTPLoginForm({ otpId = '', mobileNumber = {}, setshowOtpForm = () => {}
 						{mobileNumber?.number}
 					</>
 				)}
-
 			</div>
 
 			<OTPLayout
 				otpLength={6}
 				setOtpValue={setOtpValue}
-				loading={loginLoading}
+				loading={signupLoading}
 				sendOtp={resendOtp}
 			/>
 
 			<Button
-				loading={loginLoading}
+				loading={signupLoading}
 				size="lg"
 				className={styles.submit_button}
-				onClick={onLoginWithOtp}
-				// disabled={!otpValue}
+				onClick={onSignupWithOtp}
+				disabled={otpValue.length !== 6}
 			>
 				Verify
 			</Button>
@@ -96,7 +97,7 @@ function OTPLoginForm({ otpId = '', mobileNumber = {}, setshowOtpForm = () => {}
 				<span
 					className={styles.resend_mail_button}
 					role="presentation"
-					// onClick={() => onClickResendEmail(id)}
+					onClick={() => onClickResendEmail(id)}
 				>
 					resend email.
 				</span>
@@ -105,4 +106,4 @@ function OTPLoginForm({ otpId = '', mobileNumber = {}, setshowOtpForm = () => {}
 	);
 }
 
-export default OTPLoginForm;
+export default OTPSignupForm;

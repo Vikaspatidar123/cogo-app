@@ -6,5 +6,4 @@ export const checkMobileInput = (obj) => (
 		&& 'number' in obj.mobile_number
 		&& obj.mobile_number.number !== ''
 		&& 'country_code' in obj.mobile_number
-		&& obj.mobile_number.country_code !== ''
-);
+		&& obj.mobile_number.country_code !== '');

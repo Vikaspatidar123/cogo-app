@@ -39,7 +39,6 @@ function OTPLoginForm({ setMode = () => {}, otpId = '', mobileNumber = {}, resen
 					<>
 						{' '}
 						the mobile number.
-
 					</>
 				) : (
 					<>

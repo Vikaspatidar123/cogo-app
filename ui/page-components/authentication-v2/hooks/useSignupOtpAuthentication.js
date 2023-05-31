@@ -5,7 +5,7 @@ import { useRouter } from '@/packages/next';
 import { useRequest } from '@/packages/request/index';
 import setCookieAndRedirect from '@/ui/commons/utils/setCookieAndRedirect';
 
-const useMobileOtpAuthentication = ({ mobileNumber = {}, otpValue = '' }) => {
+const useSignupOtpAuthentication = ({ mobileNumber = {}, otpValue = '', setMode = () => {} }) => {
 	const { query } = useRouter();
 	const [{ loading: verifyLeadUserMobileApiLoading }, verifyLeadUserMobileApitrigger] = useRequest({
 		url    : '/verify_user_mobile',
@@ -18,29 +18,31 @@ const useMobileOtpAuthentication = ({ mobileNumber = {}, otpValue = '' }) => {
 	}, { manual: true });
 	const { lead_organization_id, source } = query;
 
-	const onClickVerifyLeadUserMobileNo = async () => {
+	const onSignupWithOtp = async () => {
 		try {
-			const payload = {
-				mobile_number       : mobileNumber?.number,
-				mobile_country_code : mobileNumber?.country_code,
-				mobile_otp          : otpValue,
-			};
+			setMode('loading_prompts');
+			// const payload = {
+			// 	mobile_number       : mobileNumber?.number,
+			// 	mobile_country_code : mobileNumber?.country_code,
+			// 	mobile_otp          : otpValue,
+			// };
 
-			const response = await verifyLeadUserMobileApitrigger({
-				data: payload,
-			});
+			// const response = await verifyLeadUserMobileApitrigger({
+			// 	data: payload,
+			// });
 
-			Toast?.success('Verification Successful!');
+			// Toast?.success('Verification Successful!');
 
-			const redirectUrl = `/v2/get-started?saastheme&lead_organization_id=${lead_organization_id}&source=${
-				source || 'subscriptions'
-			}`;
+			// const redirectUrl = `/v2/get-started?saastheme&lead_organization_id=${lead_organization_id}&source=${
+			// 	source || 'subscriptions'
+			// }`;
 
-			const { user_session } = userDetails || {};
-			const { token } = user_session || {};
-			if (response) {
-				setCookieAndRedirect(token, {}, redirectUrl);
-			}
+			// const { user_session } = userDetails || {};
+			// const { token } = user_session || {};
+			// if (response) {
+			// 	setCookieAndRedirect(token, {}, redirectUrl);
+			// 	setMode('loading_prompts');
+			// }
 		} catch (error) {
 			Toast.error(error?.data);
 		}
@@ -67,10 +69,10 @@ const useMobileOtpAuthentication = ({ mobileNumber = {}, otpValue = '' }) => {
 
 	return {
 		loading          : verifyLeadUserMobileApiLoading,
-		onClickVerifyLeadUserMobileNo,
+		onSignupWithOtp,
 		resendOtpLoading : resendLeadVerificationOtpApiLoading,
 		resendOtp,
 	};
 };
 
-export default useMobileOtpAuthentication;
+export default useSignupOtpAuthentication;

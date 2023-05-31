@@ -68,10 +68,3 @@
         border-radius: 16px;
     }
 }
-
-.card_heading {
-    font-weight: 800;
-    font-size: 24px;
-    color: var(--color-secondary-greyscale-2);
-    padding-bottom: 12px;
-}

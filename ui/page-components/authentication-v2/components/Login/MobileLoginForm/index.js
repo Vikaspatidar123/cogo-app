@@ -17,7 +17,9 @@ function MobileLoginForm({ onSendOtp = () => {}, otpLoading = false }) {
 	useEffect(() => {
 		const hasValues = checkMobileInput(formValues);
 
-		if (hasValues) { setCustomError(''); }
+		if (hasValues) {
+			setCustomError('');
+		}
 	}, [formValues]);
 
 	const onOtpApiCall = (values, e) => {

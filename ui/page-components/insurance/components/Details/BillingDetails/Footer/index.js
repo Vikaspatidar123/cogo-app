@@ -26,7 +26,7 @@ function Footer({ handleSubmit = () => {}, draftLoading = false, saveDraft = () 
 			</Button>
 			<Button
 				className="primary md"
-				type="button"
+				type="submit"
 				onClick={handleSubmit(handleNextClick, onErrors)}
 			>
 				<div className={styles.align_div}>

@@ -25,7 +25,7 @@ function DocumentsRequired({
 							onChange={(val) => {
 								setUploadedFiles((prev) => ({
 									...prev,
-									[renderingField.name]: val,
+									[renderingField.name]: { name: renderingField.name, success: true, url: val },
 								}));
 							}}
 						/>

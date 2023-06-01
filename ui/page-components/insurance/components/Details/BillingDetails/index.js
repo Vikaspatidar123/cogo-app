@@ -37,7 +37,6 @@ const useBillingDetails = ({
 	const fields = getControls(formDetails, profile, uploadType);
 	const [prosporerAddress, setProsporerAddress] = useState({});
 	const [addAddressModal, setAddAddressModal] = useState(false);
-	const { name, pincode, tax_number } = prosporerAddress || {};
 
 	const {
 		handleSubmit,
@@ -73,12 +72,9 @@ const useBillingDetails = ({
 			billingPincode: !isEmpty(formDetails)
 				? formDetails.billingPincode
 				: '',
-			billingState     : !isEmpty(formDetails) ? formDetails?.billingState : '',
-			billingCity      : !isEmpty(formDetails) ? formDetails?.billingCity : '',
-			panNumber        : !isEmpty(formDetails) ? formDetails?.panNumber : '',
-			proposersAddress : !isEmpty(formDetails)
-				? formDetails?.proposersAddress
-				: '',
+			billingState : !isEmpty(formDetails) ? formDetails?.billingState : '',
+			billingCity  : !isEmpty(formDetails) ? formDetails?.billingCity : '',
+			panNumber    : !isEmpty(formDetails) ? formDetails?.panNumber : '',
 		},
 	});
 
@@ -198,7 +194,7 @@ const useBillingDetails = ({
 								setOrganizationAddress={setOrganizationAddress}
 								checked={checked}
 								setChecked={setChecked}
-								// setValues={setValues}
+								setValue={setValue}
 								control={fields}
 								formDetails={formDetails}
 							/>

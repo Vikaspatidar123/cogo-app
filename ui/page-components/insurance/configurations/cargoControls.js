@@ -2,6 +2,7 @@ import { Pill } from '@cogoport/components';
 import { IcCCompleteJourney } from '@cogoport/icons-react';
 
 import styles from '../components/Details/CargoDetails/styles.module.css';
+import { INCOTERMOPTIONS } from '../constants/incotermOptions';
 
 const get = (formObject = {}, key = '') => formObject[key] || null;
 
@@ -95,10 +96,13 @@ const controls = [
 		name        : 'riskCoverage',
 		placeholder : 'Coverage',
 		type        : 'select',
-		value       : 'CIF',
-		options     : [{
-			label: 'CIF', value: 'CIF',
-		}],
+		value       : 'ALL_RISK',
+		options     : [
+			{
+				label : 'All Risk',
+				value : 'ALL_RISK',
+			},
+		],
 	},
 ];
 
@@ -126,7 +130,6 @@ const getControls = ({
 			...control,
 			placeholder : activeTab === 'IMPORT' ? 'Origin Country' : 'Destination Country',
 			onChange    : (e) => {
-				console.log(e, 'jhgftdrsdfgh');
 				setCountryDetails({
 					checkSantion      : e?.countryType,
 					sanctionedCountry : e?.countryName,
@@ -136,6 +139,14 @@ const getControls = ({
 			params: {
 				transitMode: transitType === 'Ocean' ? 'SEA' : transitType?.toUpperCase() || '',
 			},
+		};
+	}
+	if (control.name === 'incoterm') {
+		return {
+			...control,
+			options: activeTab === 'IMPORT'
+				? INCOTERMOPTIONS.filter((option) => option.label !== 'CIF')
+				: INCOTERMOPTIONS,
 		};
 	}
 

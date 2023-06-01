@@ -10,7 +10,7 @@ function SavedAddressCards({
 	setChecked = () => {},
 	checked = [],
 	setOrganizationAddress = () => {},
-	setValues = () => {},
+	setValue = () => {},
 	setAddAddressModal = () => {},
 }) {
 	const handleSelectAddress = ({ item }) => {
@@ -29,14 +29,12 @@ function SavedAddressCards({
 			organizationAddressId : id,
 		});
 		setChecked([id]);
-		setValues({
-			partyName      : name,
-			billingAddress : address,
-			gstin          : tax_number,
-			billingPincode : pincode,
-			billingState   : state,
-			billingCity    : city,
-		});
+		setValue('partyName', name);
+		setValue('billingAddress', address);
+		setValue('gstin', tax_number);
+		setValue('billingPincode', pincode);
+		setValue('billingState', state);
+		setValue('billingCity', city);
 	};
 
 	useEffect(() => {

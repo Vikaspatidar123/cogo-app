@@ -22,7 +22,7 @@ function Component({
 	organizationAddress = {},
 	checked = [],
 	setChecked = () => {},
-	setValues = () => {},
+	setValue = () => {},
 	control = [],
 	formDetails = {},
 }) {
@@ -48,7 +48,7 @@ function Component({
 						setChecked={setChecked}
 						checked={checked}
 						setOrganizationAddress={setOrganizationAddress}
-						setValues={setValues}
+						setValue={setValue}
 						setAddAddressModal={setAddAddressModal}
 					/>
 					<div className={styles.row}>
@@ -83,7 +83,6 @@ function Component({
 					</div>
 					<Popover
 						animation="scale"
-						theme="light-border"
 						placement="top"
 						interactive
 						visible={showFilters && !addAddressModal}
@@ -114,14 +113,12 @@ function Component({
 						</div>
 					</Popover>
 					{Object.keys(prosporerAddress || {})?.length > 0 && (
-						<div className={styles.section_2}>
-							<div className={styles.selected}>
-								<div className={styles.org_name}>{prosporerAddress?.name}</div>
-								<div className={styles.card_text}>
-									{`${prosporerAddress?.address} - ${prosporerAddress?.pincode}`}
-								</div>
-								<div className={styles.card_text}>{prosporerAddress?.tax_number}</div>
+						<div className={styles.selected}>
+							<div className={styles.org_name}>{prosporerAddress?.name}</div>
+							<div className={styles.card_text}>
+								{`${prosporerAddress?.address} - ${prosporerAddress?.pincode}`}
 							</div>
+							<div className={styles.card_text}>{prosporerAddress?.tax_number}</div>
 						</div>
 					)}
 				</>

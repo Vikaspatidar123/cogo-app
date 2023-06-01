@@ -50,8 +50,8 @@ const useGetRates = ({
 	}, [activeTab, countryCode, formDetails, policyCurrency, profile?.id, query, setRatesResponse, trigger]);
 
 	useEffect(() => {
-		response();
-	}, [response]);
+		if (query && policyCurrency) { response(); }
+	}, [policyCurrency, query, response]);
 
 	return {
 		ratesLoading: loading,

@@ -353,6 +353,8 @@ const saas = {
 		},
 	],
 
+	app_saas_load_container: [],
+
 	app_saas_transaction_history: [
 		{
 			api         : 'get_saas_payment_details',
@@ -795,6 +797,18 @@ const saas = {
 		{
 			api         : 'delete_saas_quote',
 			access_type : 'private',
+		},
+	],
+	app_documents: [
+		{
+			api          : 'list_organization_documents',
+			access_type  : 'private',
+			service_name : 'organization',
+		},
+		{
+			api          : 'create_organization_document',
+			access_type  : 'private',
+			service_name : 'organization',
 		},
 	],
 };

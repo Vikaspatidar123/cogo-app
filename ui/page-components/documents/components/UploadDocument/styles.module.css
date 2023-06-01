@@ -1,0 +1,48 @@
+.container {
+	width: 300px;
+	margin: 5px;
+}
+
+.wrapper {
+	display: flex;
+	align-content: center;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+
+	@media (max-width: 768px) {
+		display: flex;
+		flex-direction: column;
+		align-content: center;
+		align-items: center;
+		justify-content: center;
+		width: 100%;
+	}
+}
+
+.select_container {
+	width: 300px;
+	margin: 5px;
+}
+
+.upload_container {
+	width: 400px;
+
+	:global {
+		.ui_upload_droparea_container {
+			height: 20px;
+			padding: 0;
+		}
+	}
+}
+
+.upload_link {
+	margin: 0 8px;
+	font-size: 12px;
+	font-weight: 500;
+	cursor: pointer;
+}
+
+.button {
+	margin: 0 7px;
+}

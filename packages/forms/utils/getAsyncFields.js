@@ -193,6 +193,15 @@ function asyncOrganizationBranches() {
 		},
 	};
 }
+function asyncProductList() {
+	return {
+		labelKey    : 'name',
+		valueKey    : 'name',
+		authKey     : 'get_saas_product_list',
+		endpoint    : 'saas/product/list',
+		initialCall : false,
+	};
+}
 
 export {
 	asyncFieldsLocations,
@@ -210,4 +219,5 @@ export {
 	asyncHsCodes,
 	asyncHsCodesCountries,
 	asyncOrganizationBranches,
+	asyncProductList,
 };

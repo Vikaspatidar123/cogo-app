@@ -1,0 +1,34 @@
+.container {
+	display: flex;
+	margin: 14px 0;
+	background: #fff;
+	border-radius: 28px;
+	box-shadow: 0 2.2px 18.6px 0 #476fd30e, 0 17.8px 60px 0 #476fd31c;
+
+	@media screen and (max-width: 767px) {
+		flex-direction: column;
+	}
+}
+
+.map {
+	width: 20%;
+
+	@media screen and (max-width: 767px) {
+		display: none;
+	}
+}
+
+.transport {
+	width: 35%;
+}
+
+.details {
+	width: 45%;
+}
+
+@media screen and (max-width: 767px) {
+	.transport,
+	.details {
+		width: 100%;
+	}
+}

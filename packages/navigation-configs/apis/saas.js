@@ -787,5 +787,17 @@ const saas = {
 			access_type : 'private',
 		},
 	],
+	app_documents: [
+		{
+			api          : 'list_organization_documents',
+			access_type  : 'private',
+			service_name : 'organization',
+		},
+		{
+			api          : 'create_organization_document',
+			access_type  : 'private',
+			service_name : 'organization',
+		},
+	],
 };
 export default saas;

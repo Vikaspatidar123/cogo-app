@@ -20,19 +20,22 @@
 .segmented_container {
 	display: flex;
 	justify-content: space-between;
+
 	:global {
-		.ui_chip_container{
-			height: 35px;
+		.ui_chip_container {
 			min-width: 120px;
-			border-radius:0px;
+			height: 35px;
 			border-right: none;
+			border-radius: 0;
 		}
+
 		.ui_chip_container:first-child {
-			border-radius: 10px 0px 0px 10px;
+			border-radius: 10px 0 0 10px;
 		}
+
 		.ui_chip_container:last-child {
-			border-radius: 0px 10px 10px 0px;
-			border-right:1px solid #e0e0e0;
+			border-right: 1px solid #e0e0e0;
+			border-radius: 0 10px 10px 0;
 		}
 	}
 }

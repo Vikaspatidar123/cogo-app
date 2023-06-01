@@ -1,70 +1,70 @@
 .section_2 {
-    display: flex;
-	align-items: flex-start;
+	display: flex;
 	gap: 10px;
+	align-items: flex-start;
 	min-width: 320px;
 	max-width: 400px;
-	padding: 5px;
-	border-radius: 10px;
-	border: 1px solid #fffef9;
-	box-shadow: 0px 2px 12px rgba(71, 111, 211, 0.2);
 	height: 100px;
+	padding: 5px;
 	overflow: scroll;
 	cursor: pointer;
+	border: 1px solid #fffef9;
+	border-radius: 10px;
+	box-shadow: 0 2px 12px rgb(71 111 211 / 20%);
 }
 
 #selected {
-    display: flex;
-	align-items: flex-start;
+	display: flex;
 	gap: 10px;
+	align-items: flex-start;
 	min-width: 320px;
 	max-width: 400px;
-	padding: 5px;
-	border-radius: 10px;
-	border: 1px solid #fffef9;
-	box-shadow: 0px 2px 12px rgba(71, 111, 211, 0.2);
 	height: 100px;
+	padding: 5px;
 	overflow: scroll;
 	cursor: pointer;
+	border: 1px solid #fffef9;
+	border-radius: 10px;
+	box-shadow: 0 2px 12px rgb(71 111 211 / 20%);
 }
 
 .card_text {
-    font-size: 12px;
 	margin: 3px 0;
+	font-size: 12px;
 }
 
 .container {
-    display: flex;
-	width: 100%;
-	overflow: scroll;
+	display: flex;
 	gap: 10px;
+	width: 100%;
 	padding: 10px;
+	overflow: scroll;
 }
 
 .container_empty {
-    display: flex;
-	width: 100%;
-	overflow: scroll;
+	display: flex;
+	flex-direction: column;
 	gap: 10px;
+	align-items: center;
+	width: 100%;
 	padding: 10px;
-    flex-direction: column;
-    align-items: center;
+	overflow: scroll;
 }
 
 .address_section {
-    display: flex;
+	display: flex;
 	flex-direction: column;
 	gap: 4px;
 }
 
 .radio_wrapper {
-    display: flex;
+	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
+	width: 40px;
 	height: 30px;
 	padding: 5px;
-	width: 40px;
 }
 
 .name {
@@ -77,46 +77,46 @@
 }
 
 .heading {
-    padding: 5px;
 	display: flex;
 	align-items: center;
 	justify-content: flex-start;
+	padding: 5px;
 	color: #f1690c;
 }
 
 .add_address {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 5px;
-    text-decoration: underline;
-    cursor: pointer;
+	display: flex;
+	gap: 5px;
+	align-items: center;
+	justify-content: center;
+	text-decoration: underline;
+	cursor: pointer;
 }
 
 .org_tag {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 8px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin: 8px;
 }
 
 .line {
-    height: 0;
-    width: 14px;
-    border-top: 1.7px solid #bdbdbd;
+	width: 14px;
+	height: 0;
+	border-top: 1.7px solid #bdbdbd;
 }
 
 .text {
-    font-weight: 500;
-    font-size: 13px;
-    color: #bdbdbd;
+	font-size: 13px;
+	font-weight: 500;
+	color: #bdbdbd;
 }
 
 .heading_empty {
-    display: flex;
+	display: flex;
 	align-items: center;
 	justify-content: flex-start;
-    font-weight: 500;
-    font-size: 16px;
-    color: royalblue;
+	font-size: 16px;
+	font-weight: 500;
+	color: royalblue;
 }

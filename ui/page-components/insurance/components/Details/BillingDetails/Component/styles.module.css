@@ -1,45 +1,45 @@
 .row {
-    display: flex;
-    align-items: center;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
 	padding: 10px;
-    flex-wrap: wrap;
 }
 
 .align_div {
-    display: flex;
+	display: flex;
 	align-items: center;
+	justify-content: flex-start;
+	width: 30%;
 	font-size: 15px;
-    width: 30%;
-    justify-content: flex-start;
-    text-decoration: underline;
+	text-decoration: underline;
 }
 
 .section_2 {
-    margin: 10px;
 	max-width: 30%;
-	border-radius: 10px;
+	margin: 10px;
 	background: #fffef9;
 	border: 1px solid #d6483a;
-	box-shadow: 0px 2px 12px rgba(71, 111, 211, 0.2);
+	border-radius: 10px;
+	box-shadow: 0 2px 12px rgb(71 111 211 / 20%);
 }
 
 .selected {
-    margin: 10px;
 	max-width: 30%;
-	border-radius: 10px;
+	padding: 10px;
+	margin: 10px;
 	background: #fffef9;
 	border: 1px solid #d6483a;
-	box-shadow: 0px 2px 12px rgba(71, 111, 211, 0.2);
-	padding: 10px;
+	border-radius: 10px;
+	box-shadow: 0 2px 12px rgb(71 111 211 / 20%);
 }
 
 .card_text {
-    margin: 0;
-	font-size: 12px;
+	margin: 0;
 	margin: 3px 0;
+	font-size: 12px;
 }
 
 .org_name {
-    margin: 0;
-    font-weight: 500;
+	margin: 0;
+	font-weight: 500;
 }

@@ -206,6 +206,14 @@ const navigationMappings = {
 		showInNav : true,
 	},
 
+	app_documents: {
+		key       : 'app_documents',
+		title     : 'Documents Wallet',
+		href      : '/v2/documents',
+		as        : '/v2/documents',
+		showInNav : true,
+	},
+
 	saas_finance: {
 		key       : 'saas_finance',
 		title     : 'Finance',
@@ -254,13 +262,21 @@ const navigationMappings = {
 			{
 				key   : 'saas_planning-quotation',
 				title : 'Quick Quotations',
-				icon  : <IcMQuotations width={30} height={30} />,
-				type  : 'link',
-				href  : '/v2/saas/quickquotation/viewlist',
-				as    : '/v2/saas/quickquotation/viewlist',
+				// eslint-disable-next-line max-len
+				description:
+          'The meaning of QUOTATION is something that is quoted; especially : a passage ',
+				icon : <IcMQuotations width={30} height={30} />,
+				type : 'link',
+				href : '/v2/saas/quickquotation/viewlist',
+				as   : '/v2/saas/quickquotation/viewlist',
 			},
-
 		],
+	},
+
+	app_get_started: {
+		key   : 'app_get_started',
+		title : 'Get Started',
+		theme : 'green',
 	},
 
 	app_kyc: {

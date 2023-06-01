@@ -1,4 +1,5 @@
 import dashboard from './config/dashboard';
+import documents from './config/documents';
 import route from './config/public-paths';
 import rolesAndPermissions from './config/roles-n-permission';
 import saas from './config/saas';
@@ -11,6 +12,7 @@ const routeConfig = withPrefix({
 	...saas,
 	...settings,
 	...dashboard,
+	...documents,
 });
 
 const routes = {

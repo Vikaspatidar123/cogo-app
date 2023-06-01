@@ -13,33 +13,42 @@ function useGetAsyncOptions({
 	params = {},
 	getModifiedOptions = (options) => options,
 }) {
-	console.log('🚀 ~ file: useGetAsyncOptions.js:16 ~ endpoint:', endpoint);
 	const { query, debounceQuery } = useDebounceQuery();
 	const [storeOptions, setStoreOptions] = useState([]);
 
-	const [{ data, loading }] = useRequest({
-		url    : endpoint,
-		// === 'list_locations' ? 'api.cogoport.com/location/list_locations' : endpoint,
-		method : 'GET',
-		params : merge(params, { filters: { q: query } }),
-	}, { manual: !(initialCall || query) });
+	const [{ data, loading }] = useRequest(
+		{
+			url    : endpoint,
+			method : 'GET',
+			params : merge(params, { filters: { q: query } }),
+		},
+		{ manual: !(initialCall || query) },
+	);
 	const options = getModifiedOptions(data?.list || []);
 	const dependency = (data?.list || []).map(({ id }) => id).join('');
 	useEffect(() => {
-		if (options.length > 0) { setStoreOptions([...options]); }
-	}, [dependency, options]);
+		if (options.length > 0) {
+			setStoreOptions([...options]);
+		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [dependency]);
 
-	const [{ loading: loadingSingle }, triggerSingle] = useRequest({
-		url    : endpoint,
-		method : 'GET',
-	}, { manual: true });
+	const [{ loading: loadingSingle }, triggerSingle] = useRequest(
+		{
+			url    : endpoint,
+			method : 'GET',
+		},
+		{ manual: true },
+	);
 
 	const onSearch = (inputValue) => {
 		debounceQuery(inputValue);
 	};
 
 	const onHydrateValue = async (value) => {
-		const checkOptionsExist = options.filter((item) => item[valueKey] === value);
+		const checkOptionsExist = options.filter(
+			(item) => item[valueKey] === value,
+		);
 		if (checkOptionsExist.length > 0) return checkOptionsExist[0];
 		try {
 			const res = await triggerSingle({

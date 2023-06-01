@@ -12,6 +12,7 @@ import {
 	asyncFieldsCommoditiesList,
 	asyncInsuranceCountryList,
 	asyncFieldsPartnerQuotation,
+	asyncProductList,
 } from '../../utils/getAsyncFields';
 
 const keyAsyncFieldsParamsMapping = {
@@ -23,6 +24,7 @@ const keyAsyncFieldsParamsMapping = {
 	commodities_list_insurance : asyncFieldsCommoditiesList,
 	insurance_country_list     : asyncInsuranceCountryList,
 	list_partner_quotation     : asyncFieldsPartnerQuotation,
+	list_products              : asyncProductList,
 };
 
 function AsyncSelect(props) {

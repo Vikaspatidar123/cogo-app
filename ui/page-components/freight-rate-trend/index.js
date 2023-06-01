@@ -1,12 +1,13 @@
 import { Pagination } from '@cogoport/components';
 import React, { useEffect } from 'react';
-import { useSelector } from 'react-redux';
 
 import Loading from './common/Loading';
 import SearchCard from './components/search-card';
 import TrendCard, { EmptyTrendCard } from './components/trend-card';
 import useFetchTrends from './hooks/useFetchTrends';
 import styles from './styles.module.css';
+
+import { useSelector } from '@/packages/store';
 
 const trendLayout = ({
 	list = [],

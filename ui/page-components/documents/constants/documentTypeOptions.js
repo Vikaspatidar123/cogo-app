@@ -1,0 +1,15 @@
+export const OPTIONS = [
+	{ label: 'PAN', value: 'pan' },
+	{ label: 'IEC', value: 'iec' },
+	{ label: 'Business Address Proof', value: 'business_address_proof' },
+	{ label: 'Bank Account Details', value: 'bank_account_details' },
+	{ label: 'Authority Letter', value: 'authority_letter' },
+	{ label: 'IATA', value: 'iata' },
+	{ label: 'WCA', value: 'wca' },
+	{ label: 'Registration Document', value: 'registration_document' },
+	{ label: 'Utility Bill Document Url', value: 'utility_bill_document_url' },
+	{ label: 'IIP certificate', value: 'iip_certificate' },
+	{ label: 'MSDS Certificate', value: 'msds_certificate' },
+	{ label: 'Phyto', value: 'phyto' },
+	{ label: 'Port Registration', value: 'port_registration' },
+];

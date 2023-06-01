@@ -1,5 +1,6 @@
 import { IcMDownload, IcMPreview } from '@cogoport/icons-react';
 
+import downloadFile from './common/downloadFile';
 import styles from './styles.module.css';
 
 const { startCase, format } = require('@cogoport/utils');
@@ -26,7 +27,7 @@ const columns = [
 		Cell     : ({ row }) => (
 			<>
 				<IcMPreview onClick={() => window.open(row?.original?.image_url, '_blank')} className={styles.icon} />
-				<IcMDownload className={styles.icon} />
+				<IcMDownload className={styles.icon} onClick={() => downloadFile(row?.original?.image_url)} />
 			</>
 		),
 	},

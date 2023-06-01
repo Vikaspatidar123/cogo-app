@@ -1,5 +1,7 @@
 function downloadFile(fileUrl) {
 	const xhttp = new XMLHttpRequest();
+	xhttp.open('GET', fileUrl, true);
+	xhttp.responseType = 'blob';
 	xhttp.onreadystatechange = () => {
 		// eslint-disable-next-line eqeqeq
 		if (xhttp.readyState == 4 && xhttp.status == 200) {
@@ -12,8 +14,6 @@ function downloadFile(fileUrl) {
 			a.click();
 		}
 	};
-	xhttp.open('GET', fileUrl, true);
-	xhttp.responseType = 'blob';
 	xhttp.send();
 }
 

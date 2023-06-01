@@ -1,4 +1,3 @@
-/* eslint-disable no-mixed-spaces-and-tabs */
 const getShortFormatNumber = (price, currency, options = {}, locale = 'en-IN') => (currency
 	? Intl.NumberFormat(locale, {
 		style                 : 'currency',
@@ -7,7 +6,7 @@ const getShortFormatNumber = (price, currency, options = {}, locale = 'en-IN') =
 		compactDisplay        : 'short',
 		minimumFractionDigits : 2,
 		...options,
-		  }).format(Number(price || 0))
+	}).format(Number(price || 0))
 	: null);
 
 export default getShortFormatNumber;

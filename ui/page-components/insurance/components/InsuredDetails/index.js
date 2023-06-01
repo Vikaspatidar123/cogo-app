@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import FillOptions from '../../common/FillOptions';
+import SideStepper from '../../common/FillOptions';
 import Details from '../Details/index';
 
 import styles from './styles.module.css';
@@ -18,7 +18,7 @@ function InsuredDetails({
 
 	return (
 		<div className={isMobile ? styles.container_mobile : styles.container}>
-			<FillOptions
+			<SideStepper
 				activeStepper={activeStepper}
 				setActiveStepper={setActiveStepper}
 				isMobile={isMobile}

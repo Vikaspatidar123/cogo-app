@@ -2,141 +2,29 @@ import { Button } from '@cogoport/components';
 import { startCase } from '@cogoport/utils';
 import { useState } from 'react';
 
-import { PlaneGif, ShipGif, TruckGif } from '../../common/constants';
-
+import AirTab from './AirTab';
+import OceanTab from './OceanTab';
 import styles from './styles.module.css';
+import SurfaceTab from './SurfaceTab';
 
 import { useRouter } from '@/packages/next';
 
 function TabsSection({ isMobile }) {
-	const { push } = useRouter();
 	const [css, setCss] = useState('');
+
+	const { push } = useRouter();
+
 	const clickHandler = (val) => {
 		setCss(val);
 	};
+
 	return (
 		<div className={styles.wrapper}>
 			<div className={styles.heading}>Select Type of Insurance: </div>
 			<div className={isMobile ? styles.button_wrapper_mobile : styles.button_wrapper}>
-				<div
-					className={css === 'ocean'
-						? `${isMobile ? styles.button_mobile_active : styles.button_active}`
-						: `${isMobile ? styles.button_mobile : styles.button}`}
-					id="ocean"
-					onClick={() => clickHandler('ocean')}
-					role="presentation"
-				>
-					{!isMobile && (
-						<div className={styles.dot_wrapper}>
-							<div className={css === 'ocean' ? styles.dot_active : styles.dot} />
-						</div>
-					)}
-					{css === 'ocean' ? (
-						<img className={styles.gif} src={ShipGif} alt="" />
-					) : (
-						<img
-							src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/ocean.svg"
-							alt=""
-							className={isMobile && styles.image_mobile}
-							width={80}
-							height={80}
-						/>
-					)}
-					<div className={isMobile ? styles.label_container_mobile : styles.label_containe}>
-						<div
-							className={css === 'ocean'
-								? `${isMobile ? styles.label_active_mobile : styles.label_active}`
-								: `${isMobile ? styles.label_mobile : styles.label}`}
-						>
-							Ocean
-						</div>
-						<div
-							className={css === 'ocean'
-								? `${isMobile ? styles.label_active_mobile : styles.label_active}`
-								: `${isMobile ? styles.label_mobile : styles.label}`}
-						>
-							Insurance
-						</div>
-					</div>
-				</div>
-				<div
-					id="air"
-					onClick={() => clickHandler('air')}
-					className={css === 'air'
-						? `${isMobile ? styles.button_mobile_active : styles.button_active}`
-						: `${isMobile ? styles.button_mobile : styles.button}`}
-					role="presentation"
-				>
-					{!isMobile && (
-						<div className={styles.dot_wrapper}>
-							<div className={css === 'air' ? styles.dot_active : styles.dot} />
-						</div>
-					)}
-					{css === 'air' ? <img src={PlaneGif} alt="" className={styles.gif} /> : (
-						<img
-							src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/plane.svg"
-							alt=""
-							width={80}
-							height={80}
-							className={isMobile && styles.image_mobile}
-						/>
-					)}
-					<div className={isMobile ? styles.label_container_mobile : styles.label_containe}>
-						<div
-							className={css === 'air'
-								? `${isMobile ? styles.label_active_mobile : styles.label_active}`
-								: `${isMobile ? styles.label_mobile : styles.label}`}
-						>
-							Air
-						</div>
-						<div
-							className={css === 'air'
-								? `${isMobile ? styles.label_active_mobile : styles.label_active}`
-								: `${isMobile ? styles.label_mobile : styles.label}`}
-						>
-							Insurance
-						</div>
-					</div>
-				</div>
-				<div
-					id="road"
-					className={css === 'road'
-						? `${isMobile ? styles.button_mobile_active : styles.button_active}`
-						: `${isMobile ? styles.button_mobile : styles.button}`}
-					onClick={() => clickHandler('road')}
-					role="presentation"
-				>
-					{!isMobile && (
-						<div className={styles.dot_wrapper}>
-							<div className={css === 'road' ? styles.dot_active : styles.dot} />
-						</div>
-					)}
-					{css === 'road' ? <img src={TruckGif} className={styles.gif} alt="" /> : (
-						<img
-							src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/truck_new.svg"
-							alt=""
-							width={80}
-							height={80}
-							className={isMobile && styles.image_mobile}
-						/>
-					)}
-					<div className={isMobile ? styles.label_container_mobile : styles.label_containe}>
-						<div
-							className={css === 'road'
-								? `${isMobile ? styles.label_active_mobile : styles.label_active}`
-								: `${isMobile ? styles.label_mobile : styles.label}`}
-						>
-							Surface
-						</div>
-						<div
-							className={css === 'road'
-								? `${isMobile ? styles.label_active_mobile : styles.label_active}`
-								: `${isMobile ? styles.label_mobile : styles.label}`}
-						>
-							Insurance
-						</div>
-					</div>
-				</div>
+				<OceanTab isMobile={isMobile} clickHandler={clickHandler} css={css} />
+				<AirTab isMobile={isMobile} clickHandler={clickHandler} css={css} />
+				<SurfaceTab isMobile={isMobile} clickHandler={clickHandler} css={css} />
 			</div>
 			<div className={styles.wrapper_2}>
 				<Button

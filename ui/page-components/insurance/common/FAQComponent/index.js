@@ -1,3 +1,4 @@
+import { Loader } from '@cogoport/components';
 import { IcMCross } from '@cogoport/icons-react';
 
 import Card from './Card';
@@ -8,7 +9,11 @@ function FAQComponent({
 	showFaq = false,
 	setFaq = () => {},
 	isMobile = false,
+	faqsLoading = false,
 }) {
+	if (faqsLoading) {
+		return <Loader />;
+	}
 	return (
 		<div className={showFaq === 'block' ? styles.wrapper : styles.wrapper_hidden}>
 			<div
@@ -23,7 +28,7 @@ function FAQComponent({
 					</div>
 				</div>
 
-				{faqDetails?.length > 0 ? (
+				{!faqsLoading && faqDetails?.length > 0 ? (
 					(faqDetails || []).map((item) => (
 						<Card item={item || []} key={item.question || ''} />
 					))

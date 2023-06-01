@@ -41,7 +41,7 @@ function Component({
 	}
 	return (
 		<>
-			{insuranceType?.[0] === 'SELF' && (
+			{insuranceType?.[0] === 'SELF' ? (
 				<>
 					<SavedAddressCards
 						addressdata={data}
@@ -65,64 +65,64 @@ function Component({
 						})}
 					</div>
 				</>
-			)}
-			{insuranceType?.[0] === 'OTHER' && (
-				<>
-					<div className={styles.row}>
-						{control.map((item, index) => {
-							if (
-								index > 3
+			)
+				: (
+					<>
+						<div className={styles.row}>
+							{control.map((item, index) => {
+								if (
+									index > 3
 								&& (!['aadharNumber', 'gstin'].includes(item.name)
 									|| (item.name === 'aadharNumber' && uploadType === 'INDIVIDUAL')
 									|| (item.name === 'gstin' && uploadType === 'CORPORATE'))
-							) {
-								return returnField({ item });
-							}
-							return null;
-						})}
-					</div>
-					<Popover
-						animation="scale"
-						placement="top"
-						interactive
-						visible={showFilters && !addAddressModal}
-						onClickOutside={() => setShowFilters(false)}
-						content={addres({
-							addressdata: data,
-							loading,
-							setOrganizationAddress,
-							insuranceType,
-							addAddressModal,
-							setAddAddressModal,
-							prosporerAddress,
-							setProsporerAddress,
-							organizationAddress,
-							setChecked,
-							setShowFilters,
-						})}
-					>
-						<div
-							className={styles.align_div}
-							role="presentation"
-							onClick={() => {
-								setShowFilters(!showFilters);
-							}}
+								) {
+									return returnField({ item });
+								}
+								return null;
+							})}
+						</div>
+						<Popover
+							animation="scale"
+							placement="top"
+							interactive
+							visible={showFilters && !addAddressModal}
+							onClickOutside={() => setShowFilters(false)}
+							content={addres({
+								addressdata: data,
+								loading,
+								setOrganizationAddress,
+								insuranceType,
+								addAddressModal,
+								setAddAddressModal,
+								prosporerAddress,
+								setProsporerAddress,
+								organizationAddress,
+								setChecked,
+								setShowFilters,
+							})}
 						>
-							<IcMPlus />
-							Add/Change proposer address
-						</div>
-					</Popover>
-					{Object.keys(prosporerAddress || {})?.length > 0 && (
-						<div className={styles.selected}>
-							<div className={styles.org_name}>{prosporerAddress?.name}</div>
-							<div className={styles.card_text}>
-								{`${prosporerAddress?.address} - ${prosporerAddress?.pincode}`}
+							<div
+								className={styles.align_div}
+								role="presentation"
+								onClick={() => {
+									setShowFilters(!showFilters);
+								}}
+							>
+								<IcMPlus />
+								Add/Change proposer address
 							</div>
-							<div className={styles.card_text}>{prosporerAddress?.tax_number}</div>
-						</div>
-					)}
-				</>
-			)}
+						</Popover>
+						{Object.keys(prosporerAddress || {})?.length > 0 && (
+							<div className={styles.selected}>
+								<div className={styles.org_name}>{prosporerAddress?.name}</div>
+								<div className={styles.card_text}>
+									{`${prosporerAddress?.address} - ${prosporerAddress?.pincode}`}
+								</div>
+								<div className={styles.card_text}>{prosporerAddress?.tax_number}</div>
+							</div>
+						)}
+					</>
+				)}
 			{addAddressModal && (
 				<AddModal
 					addAddressModal={addAddressModal}

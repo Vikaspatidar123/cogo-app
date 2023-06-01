@@ -157,6 +157,7 @@ const useBillingDetails = ({
 
 					<div className={styles.content_wrapper}>
 						<form type="submit">
+
 							<div className={styles.div_as_row}>
 								{fields
 									.filter((items, index) => index < 4)

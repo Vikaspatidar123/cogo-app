@@ -5,7 +5,7 @@ import { RightIcon, Right, Maping, Config } from '../constants';
 
 import styles from './styles.module.css';
 
-function FillOptaions({ activeStepper, isMobile }) {
+function SideStepper({ activeStepper, isMobile }) {
 	const [url, setUrl] = useState();
 	useEffect(() => {
 		setTimeout(
@@ -67,4 +67,4 @@ function FillOptaions({ activeStepper, isMobile }) {
 		</div>
 	);
 }
-export default FillOptaions;
+export default SideStepper;

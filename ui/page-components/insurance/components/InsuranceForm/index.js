@@ -15,24 +15,28 @@ import styles from './styles.module.css';
 import { useRouter } from '@/packages/next';
 
 function InsuranceFrom() {
-	const { isMobile } = useSelector((state) => state);
-	const { query } = useRouter();
-	const { type, policyType = '', policyId = '' } = query || {};
-	const [activeTab, setActiveTab] = useState(policyType || 'IMPORT');
-	const [showFaq, setFaq] = useState('none');
-	const { redirectHome } = redirectUrl();
-	const { draftDetailsPrefilling } = useGetDraftDetails({
-		policyId,
-		type,
-	});
-
-	const { faqDetails = [] } = useGetFaq({ showFaq });
 	const [activeStepper, setActiveStepper] = useState({
 		1   : 'pro',
 		2   : false,
 		3   : false,
 		svg : 0,
 	});
+	const [showFaq, setFaq] = useState('none');
+
+	const { isMobile } = useSelector((state) => state);
+	const { query } = useRouter();
+	const { type, policyType = '', policyId = '' } = query || {};
+
+	const [activeTab, setActiveTab] = useState(policyType || 'IMPORT');
+
+	const { redirectHome } = redirectUrl();
+
+	const { draftDetailsPrefilling } = useGetDraftDetails({
+		policyId,
+		type,
+	});
+
+	const { faqDetails = [], faqsLoading = false } = useGetFaq({ showFaq });
 
 	return (
 		<div>
@@ -41,6 +45,7 @@ function InsuranceFrom() {
 				showFaq={showFaq}
 				setFaq={setFaq}
 				isMobile={isMobile}
+				faqsLoading={faqsLoading}
 			/>
 			<div>
 				<div className={styles.heading}>
@@ -61,6 +66,7 @@ function InsuranceFrom() {
 						selectedItems={activeTab}
 						onItemChange={setActiveTab}
 						className={styles.chips}
+						size="lg"
 					/>
 					<img
 						src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/faq.svg"

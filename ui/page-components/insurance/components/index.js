@@ -10,7 +10,9 @@ import TabsSection from './Tabs';
 
 function CreateInsurance() {
 	const { isMobile } = useSelector((state) => state);
+
 	const { redirectList } = redirectUrl();
+
 	return (
 		<div className={styles.wrapper}>
 			<div className={isMobile ? styles.heading_mobile : styles.heading}>
@@ -23,7 +25,7 @@ function CreateInsurance() {
 			</div>
 
 			<div className={styles.container_wrapper}>
-				{!isMobile && (
+				{!isMobile ? (
 					<div className={styles.container}>
 						<div className={styles.row}>
 							<div className={styles.column_1}>
@@ -34,17 +36,17 @@ function CreateInsurance() {
 							</div>
 						</div>
 					</div>
-				)}
-				{isMobile && (
-					<div className={styles.container}>
-						<div className={styles.row_wrapper}>
-							<Description isMobile={isMobile} />
+				)
+					: (
+						<div className={styles.container}>
+							<div className={styles.row_wrapper}>
+								<Description isMobile={isMobile} />
+							</div>
+							<div className={styles.row_wrapper}>
+								<TabsSection isMobile={isMobile} />
+							</div>
 						</div>
-						<div className={styles.row_wrapper}>
-							<TabsSection isMobile={isMobile} />
-						</div>
-					</div>
-				)}
+					)}
 			</div>
 		</div>
 	);

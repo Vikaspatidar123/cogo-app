@@ -26,6 +26,22 @@ function Details({
 	draftDetailsPrefilling = {},
 	policyId = '',
 }) {
+	const { query } = useRouter();
+
+	const [countryDetails, setCountryDetails] = useState({});
+	const [draftModal, setDraftModal] = useState(false);
+	const [ratesResponse, setRatesResponse] = useState();
+	const [commodityName, setCommodityName] = useState('');
+
+	const [modal, setModal] = useState({
+		pendingModal     : false,
+		showSuccessModal : false,
+	});
+
+	const [countryCode, setCountryCode] = useState(
+		formDetails?.policyCountryCode || '',
+	);
+
 	const {
 		billingType = '',
 		organizationAddressId: draftorganizationAddressId = '',
@@ -33,16 +49,6 @@ function Details({
 		policyForSelf = true,
 	} = draftDetailsPrefilling || {};
 
-	const [countryDetails, setCountryDetails] = useState({});
-	const [modal, setModal] = useState({
-		pendingModal     : false,
-		showSuccessModal : false,
-	});
-	const [uploadType, setUploadType] = useState(
-		billingType || 'CORPORATE',
-	);
-	const [draftModal, setDraftModal] = useState(false);
-	const [ratesResponse, setRatesResponse] = useState();
 	const [organizationAddress, setOrganizationAddress] = useState({
 		isBillingAddress: !isEmpty(draftDetailsPrefilling)
 			? !organizationBillingAddressId
@@ -50,12 +56,12 @@ function Details({
 		organizationAddressId:
 		draftorganizationAddressId || organizationBillingAddressId || '',
 	});
-	const [commodityName, setCommodityName] = useState('');
-	const [countryCode, setCountryCode] = useState(
-		formDetails?.policyCountryCode || '',
+
+	const [uploadType, setUploadType] = useState(
+		billingType || 'CORPORATE',
 	);
+
 	const [insuranceType, setInsuranceType] = useState([!policyForSelf ? 'OTHER' : 'SELF']);
-	const { query } = useRouter();
 
 	const [checked, setChecked] = useState([organizationBillingAddressId || draftorganizationAddressId]);
 

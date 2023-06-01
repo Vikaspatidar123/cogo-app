@@ -77,7 +77,7 @@ const controls = [
 		name        : 'transitDate',
 		placeholder : 'Transit Start Date',
 		type        : 'datepicker',
-		minDate     : new Date().setDate(new Date().getDate() + 1),
+		minDate     : new Date(Date.now() + 24 * 60 * 60 * 1000),
 		maxDate     : new Date().setDate(new Date().getDate() + 31),
 	},
 	{
@@ -118,7 +118,7 @@ const getControls = ({
 	if (control.name === 'policyCommodityId') {
 		return {
 			...control,
-			onChange: (e) => {
+			handleChange: (e) => {
 				setDescription(e);
 				setCommodityName(e?.commodity);
 			},
@@ -128,8 +128,8 @@ const getControls = ({
 	if (control.name === 'policyCountryId') {
 		return {
 			...control,
-			placeholder : activeTab === 'IMPORT' ? 'Origin Country' : 'Destination Country',
-			onChange    : (e) => {
+			placeholder  : activeTab === 'IMPORT' ? 'Origin Country' : 'Destination Country',
+			handleChange : (e) => {
 				setCountryDetails({
 					checkSantion      : e?.countryType,
 					sanctionedCountry : e?.countryName,
@@ -145,7 +145,7 @@ const getControls = ({
 		return {
 			...control,
 			options: activeTab === 'IMPORT'
-				? INCOTERMOPTIONS.filter((option) => option.label !== 'CIF')
+				? INCOTERMOPTIONS.filter((option) => option.value !== 'CIF')
 				: INCOTERMOPTIONS,
 		};
 	}

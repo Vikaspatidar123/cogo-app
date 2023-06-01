@@ -29,7 +29,7 @@ function MobileLoginForm({ onSendOtp = () => {}, otpLoading = false }) {
 			setCustomError('');
 			onSendOtp(values, e);
 		} else {
-			setCustomError('Details are required.');
+			setCustomError('Mobile Details are required.');
 		}
 	};
 

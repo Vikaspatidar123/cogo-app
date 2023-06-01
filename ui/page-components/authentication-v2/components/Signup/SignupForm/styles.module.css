@@ -1,17 +1,30 @@
+.form_container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
 .card_heading {
     font-weight: 800;
     font-size: 24px;
     color: var(--color-secondary-greyscale-2);
-    padding-bottom: 12px;
 }
 
-.form_container {
+.form_fields {
+    height: 75%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.field {
     display: flex;
     flex-direction: column;
 }
 
 .label {
-    margin: 8px 0px;
+    margin: 4px 0px;
     color: var(--color-secondary-greyscale-1);
 }
 
@@ -28,7 +41,6 @@
     align-items: center;
 
     margin-bottom: 12px;
-    margin-top: 8px;
 
     .checkbox {
         padding: 0;
@@ -40,7 +52,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 12px;
+    /* margin-top: 12px; */
 }
 
 .recaptcha_error {
@@ -54,7 +66,7 @@
 .tnc_link {
     font-size: 10px;
     text-align: center;
-    padding: 12px 0px;
+    /* padding: 12px 0px; */
 
     a {
         font-weight: 700;
@@ -62,11 +74,11 @@
 }
 
 .submit_button {
-    margin-top: 20px;
+    /* margin-top: 20px; */
 }
 
 .links {
-    padding-top: 16px;
+    /* padding-top: 16px; */
     text-align: center;
 
     font-size: 12px;

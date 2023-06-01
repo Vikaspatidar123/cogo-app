@@ -14,6 +14,7 @@ function SelectCountryCode(props) {
 				<span style={{ marginTop: -4 }}>
 					{code.mobile_country_code}
 					:
+					{'  '}
 					{code.name}
 				</span>
 			</div>

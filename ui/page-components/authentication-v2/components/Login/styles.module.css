@@ -11,6 +11,7 @@
     :global {
         .ui_select_options_container {
             width: 200px;
+            padding: 8px 8px;
         }
 
         .ui_input_control,
@@ -20,6 +21,12 @@
 
         .ui_input_control::placeholder {
             color: var(--color-secondary-greyscale-4) !important;
+        }
+        .ui_tab_container {
+            border: none;
+        }
+        .ui_input_suffix {
+            margin-right: 4px;
         }
     }
 
@@ -57,6 +64,7 @@
     overflow-y: scroll;
 
     @media (max-width: 768px) {
+        width: 95vw;
         height: auto;
         padding: 64px 32px;
         background: #ffffff;

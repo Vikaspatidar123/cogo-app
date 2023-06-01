@@ -8,7 +8,7 @@ import styles from './styles.module.css';
 function LayoutHelp() {
 	return (
 		<div className={styles.help}>
-			<Popover placement="bottom" render={(<HelpCard />)}>
+			<Popover placement="bottom" trigger="mouseenter" render={(<HelpCard />)}>
 				<Button size="md" themeType="accent">
 					<IcMAgentManagement
 						style={{ marginRight: '4px' }}

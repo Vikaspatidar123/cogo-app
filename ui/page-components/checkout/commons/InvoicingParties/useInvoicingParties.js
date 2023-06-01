@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { useRequest } from '@/packages/request';
 import getGeoConstants from '@/ui/commons/constants/geo';
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
+import showErrorsInToast from '@/ui/commons/utils/showErrorsInToast';
 
 const formatSavedServicesInvoiceTo = ({ services = [] }) => {
 	const TRADE_TYPE_MAPPING = {
@@ -338,22 +339,20 @@ const useInvoicingParties = (props) => {
 
 			refetchGetCheckout?.();
 		} catch (error) {
-			if (error?.data?.credit) {
-				Toast.error(error?.data?.credit, {
+			if (error?.response?.data?.credit) {
+				showErrorsInToast(error?.data?.credit, {
 					autoClose       : 7000,
 					hideProgressBar : false,
 					closeOnClick    : true,
 					pauseOnHover    : true,
 				});
-			} else if (error?.data?.payment_mode) {
-				Toast.error(error?.data?.payment_mode, {
+			} else if (error?.response?.data?.payment_mode) {
+				showErrorsInToast(error?.data?.payment_mode, {
 					autoClose       : 7000,
 					hideProgressBar : false,
 					closeOnClick    : true,
 					pauseOnHover    : true,
 				});
-			} else {
-				Toast.error(error?.data?.base);
 			}
 		}
 	};
@@ -372,17 +371,13 @@ const useInvoicingParties = (props) => {
 		serviceId,
 	}) => {
 		setInvoicingParties((prevInvoicingParties) => {
-			const isServicePresentInChangedInvoicingParty = changedInvoicingParty;
-			(Object.values(services) || []).some(
+			const isServicePresentInChangedInvoicingParty = changedInvoicingParty.services.some(
 				(service) => service.service_id === serviceId,
 			);
-
 			const changedInvoicingPartyIndex = prevInvoicingParties.findIndex(
 				(invoicingParty) => invoicingParty.id === changedInvoicingParty.id,
 			);
-
 			const updateInvoicingPartyIndex = changedInvoicingPartyIndex === 0 ? 1 : 0;
-
 			return prevInvoicingParties.map((invoicingParty, index) => {
 				let newInvoicingParty = updateServicesInInvoicingParty({
 					savedServicesInvoiceToHash,

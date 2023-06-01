@@ -19,7 +19,7 @@ const useGetOrganization = ({ organizationId }) => {
 
 	return {
 		loading,
-		data,
+		data: (data || {}).data || {},
 		getOrganization,
 	};
 };

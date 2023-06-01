@@ -45,7 +45,9 @@
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-between;
+	max-height: 350px;
 	margin-bottom: 0;
+	overflow-y: scroll;
 
 	.custom-select-input-chipcontainer {
 		height: inherit;

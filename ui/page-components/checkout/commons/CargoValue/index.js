@@ -15,6 +15,7 @@ function CargoValue({
 	cargo_value_currency,
 	serviceId,
 	primary_service,
+	refetch,
 }) {
 	const {
 		handleSubmit,
@@ -32,10 +33,12 @@ function CargoValue({
 	}, [cargo_value, cargo_value_currency, setValue]);
 
 	const { updateCheckout, loading } = useUpdateCheckout(
-		serviceId,
-		primary_service,
+		{
+			serviceId,
+			primary_service,
+			refetch,
+		},
 	);
-
 	const onSubmit = async (values) => {
 		const obj = {
 			cargo_value_currency : values.cargo_value_currency.currency,
@@ -49,7 +52,7 @@ function CargoValue({
 		<div className={styles.container}>
 			<div className={styles.header}>Cargo Value</div>
 			<div className={styles.sub}>
-				(We will be giving you a suitable payment option basis this information)
+				(We will be giving you a suitable payment option basis on this information)
 			</div>
 
 			<div className={styles.section}>

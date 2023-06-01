@@ -16,7 +16,6 @@ function IncoTermSelect({
 	...rest
 }) {
 	const tradeType = (IncoTerms || []).filter((item) => item?.key === value)[0]?.tradeType || tradeMode;
-
 	let list = IncoTerms;
 	const currentObj = list.find((inco) => inco.key === value) || {
 		tradeType: tradeType || activeTradeType,
@@ -41,7 +40,6 @@ function IncoTermSelect({
 	useEffect(() => {
 		setTradeType(currentObj?.tradeType || activeTradeType);
 	}, [activeTradeType]);
-
 	const switchProps = {
 		right: {
 			title : 'Export',

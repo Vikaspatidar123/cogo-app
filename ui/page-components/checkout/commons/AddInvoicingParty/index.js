@@ -1,5 +1,5 @@
 import { RadioGroup, Button, Modal } from '@cogoport/components';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import InvoicingParties from './InvoicingParties';
 import styles from './styles.module.css';
@@ -30,6 +30,9 @@ function AddInvoicingParty({
 	disabledAddInvoicingPartyButton = false,
 	setIgstValues = () => {},
 	source,
+	isOrgCountryInvoicesRequired,
+	showCargoInsuranceIP = false,
+	setShowCargoInsuranceIP = () => {},
 }) {
 	const [activeComponentKey, setActiveComponentKey] = useState(
 		() => RADIO_GROUP_OPTIONS[0].value,
@@ -38,6 +41,7 @@ function AddInvoicingParty({
 
 	const onClose = () => {
 		setIsAddInvoice(false);
+		setShowCargoInsuranceIP(false);
 	};
 
 	const onClickingAddInvoicingParty = () => {
@@ -45,6 +49,11 @@ function AddInvoicingParty({
 			setIsAddInvoice(true);
 		}
 	};
+	useEffect(() => {
+		if (showCargoInsuranceIP) {
+			setIsAddInvoice(true);
+		}
+	}, [showCargoInsuranceIP]);
 
 	const componentProps = {
 		invoice_to_self: {
@@ -57,6 +66,7 @@ function AddInvoicingParty({
 			isIE,
 			setIgstValues,
 			source,
+			isOrgCountryInvoicesRequired,
 		},
 		invoice_to_trade_partner: {
 			organization : organizationDetails,
@@ -67,9 +77,9 @@ function AddInvoicingParty({
 			onClose,
 			setIgstValues,
 			source,
+			isOrgCountryInvoicesRequired,
 		},
 	};
-
 	const ActiveComponent = COMPONENTS_MAPPING[activeComponentKey].component;
 	const activeComponentProps = componentProps[activeComponentKey];
 	const title = () => (
@@ -88,7 +98,6 @@ function AddInvoicingParty({
 	const renderModalContent = () => (
 		<div>
 			<Modal.Header title={title()} />
-
 			<ActiveComponent
 				key={activeComponentKey}
 				{...activeComponentProps}

@@ -16,6 +16,7 @@ function Child({
 	disabled = false,
 	showLabelOnce = false,
 	length = 0,
+	error,
 }) {
 	return (
 		<div className={styles.form_container} style={{ width: '100%' }}>
@@ -58,6 +59,9 @@ function Child({
 									{...finalProps}
 									name={`${name}[${index}].${controlItem.name}`}
 								/>
+								<div className={styles.errors}>
+									{error?.[controlItem.name]?.message}
+								</div>
 							</div>
 						</div>
 					);

@@ -58,7 +58,6 @@ function SearchResultsServiceItemForm({
 	return (
 		<div className={styles.container}>
 			<Modal.Header title={`Add ${service.title}`} />
-			{/* <div className={styles.title}>{`Add ${service.title}`}</div> */}
 
 			<form onSubmit={handleSubmit(onSubmit)}>
 				<Modal.Body>

@@ -22,14 +22,14 @@ const billingAddressControls = [
 		name  : 'billing_party_name',
 		label : 'Billing Party Name ',
 		type  : 'text',
-		span  : 6,
+		span  : 5.8,
 		rules : { required: true },
 	},
 	{
 		name    : 'address_type',
 		label   : 'Address Type',
 		type    : 'select',
-		span    : 6,
+		span    : 5.8,
 		options : [
 			{
 				label : 'Office',
@@ -47,15 +47,15 @@ const billingAddressControls = [
 		rules: { required: true },
 	},
 	{
-		label          : 'Country of Registration',
-		name           : 'country_id',
-		type           : 'async_select',
-		asyncKey       : 'locations',
-		params         : { filters: { type: ['country'] } },
-		defaultOptions : true,
-		span           : 6,
-		rules          : {
-			required: true,
+		label       : 'Country of Registration',
+		name        : 'country_id',
+		type        : 'async_select',
+		asyncKey    : 'locations',
+		params      : { filters: { type: ['country'] } },
+		initialCall : true,
+		span        : 5.8,
+		rules       : {
+			required: 'Country of Registration is Required',
 		},
 	},
 	{
@@ -67,14 +67,14 @@ const billingAddressControls = [
 		asyncKey : 'locations',
 		params   : { filters: { type: ['pincode'] } },
 		caret    : true,
-		span     : 6,
+		span     : 5.8,
 		rules    : { required: true },
 	},
 	{
 		name      : 'tax_number',
 		label     : 'GST Number',
 		type      : 'text',
-		span      : 6,
+		span      : 5.8,
 		maxLength : 15,
 
 		rules: {
@@ -91,7 +91,7 @@ const billingAddressControls = [
 		type       : 'file',
 		drag       : true,
 		uploadIcon : () => <IcMFileUploader />,
-		span       : 6,
+		span       : 5.8,
 		uploadType : 'aws',
 		height     : 45,
 		rules      : { required: true },
@@ -100,7 +100,7 @@ const billingAddressControls = [
 		name  : 'address',
 		label : 'Billing Address',
 		type  : 'textarea',
-		span  : 6,
+		span  : 5.8,
 		rules : { required: true },
 	},
 	{
@@ -128,7 +128,7 @@ const pocControls = [
 		name  : 'name',
 		label : 'POC Name',
 		type  : 'text',
-		span  : 6,
+		span  : 5.8,
 		rules : { required: true },
 	},
 	// {
@@ -150,7 +150,7 @@ const pocControls = [
 		type      : 'mobile_number',
 		codeKey   : 'mobile_country_code',
 		numberKey : 'mobile_number',
-		span      : 6,
+		span      : 5.8,
 		rules     : {
 			required : true,
 			validate : (value) => (value.mobile_country_code && value.mobile_number
@@ -164,7 +164,7 @@ const pocControls = [
 		type      : 'mobile-number-select',
 		codeKey   : 'mobile_country_code',
 		numberKey : 'mobile_number',
-		span      : 6,
+		span      : 5.8,
 	},
 ];
 
@@ -173,6 +173,7 @@ const pocControlsFieldArray = [
 		name  : 'poc_details',
 		type  : 'fieldArray',
 		label : 'POC Details',
+		span  : 12,
 		value : [
 			{
 				name                    : '',
@@ -194,26 +195,27 @@ const orgControls = [
 		params      : { filters: { type: ['country'] } },
 		initialCall : true,
 		rules       : {
-			required: true,
+			required: 'Country of Registration is Required',
 		},
+		span: 5.8,
 	},
 	{
 		label     : 'PAN/Registration Number',
 		name      : 'registration_number',
 		type      : 'text',
 		className : 'uppercase',
-		span      : 6,
+		span      : 5.8,
 		rules     : {
-			required: true,
+			required: 'Registration Number is Required',
 		},
 	},
 	{
 		name  : 'business_name',
 		label : 'Business name',
 		type  : 'text',
-		span  : 6,
+		span  : 5.8,
 		rules : {
-			required: true,
+			required: 'Business name is Required',
 		},
 	},
 	{
@@ -223,7 +225,8 @@ const orgControls = [
 		caret       : true,
 		isClearable : true,
 		options     : getPanHolderStatusOptions(),
-		rules       : { required: true },
+		rules       : { required: 'Type of Company is Required' },
+		span        : 5.8,
 	},
 	{
 		name  : 'verification_document',
@@ -244,10 +247,10 @@ const orgControls = [
 		type       : 'file',
 		drag       : true,
 		uploadIcon : () => <IcMFileUploader height={30} width={30} />,
-		span       : 6,
+		span       : 5.8,
 		uploadType : 'aws',
 		height     : 45,
-		rules      : { required: true },
+		rules      : { required: 'Trade Party documen is Required' },
 	},
 ];
 

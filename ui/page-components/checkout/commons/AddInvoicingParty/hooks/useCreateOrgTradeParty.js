@@ -1,6 +1,7 @@
 import { Toast } from '@cogoport/components';
 
 import { useRequest } from '@/packages/request';
+import showErrorsInToast from '@/ui/commons/utils/showErrorsInToast';
 
 const formatPocDetails = ({ data }) => data.map((poc) => {
 	const {
@@ -164,7 +165,7 @@ const useCreateOrgTradeParty = ({
 						: orgTradePartyDocs,
 			};
 
-			await createOrgTradePartyApi?.trigger({
+			await createOrgTradePartyApi({
 				data: payload,
 			});
 
@@ -176,7 +177,7 @@ const useCreateOrgTradeParty = ({
 				setShowModal(false);
 			}
 		} catch (err) {
-			Toast.error(err?.error);
+			showErrorsInToast(err?.response?.data);
 		}
 	};
 

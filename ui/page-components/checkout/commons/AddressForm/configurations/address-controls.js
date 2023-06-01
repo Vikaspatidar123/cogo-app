@@ -16,7 +16,7 @@ const getAddressMappingControls = ({ organizationCountryId }) => [
 		name  : 'name',
 		label : 'Billing Party Name',
 		rules : {
-			required: true,
+			required: 'Billing Party Required',
 		},
 		span   : 5.8,
 		showIn : ['billingAddress', 'otherAddress'],
@@ -40,7 +40,7 @@ const getAddressMappingControls = ({ organizationCountryId }) => [
 			},
 		],
 		rules: {
-			required: true,
+			required: 'Address Required',
 		},
 		span   : 5.8,
 		showIn : ['otherAddress'],
@@ -57,7 +57,7 @@ const getAddressMappingControls = ({ organizationCountryId }) => [
 		},
 		defaultOptions : true,
 		rules          : {
-			required: true,
+			required: 'Country Required',
 		},
 		span   : 5.8,
 		showIn : ['otherAddress'],
@@ -79,7 +79,7 @@ const getAddressMappingControls = ({ organizationCountryId }) => [
 		className : 'uppercase',
 		maxLength : 15,
 		rules     : {
-			required: true,
+			required: 'GST Number Required',
 		},
 		span   : 5.8,
 		showIn : ['billingAddress'],
@@ -98,7 +98,7 @@ const getAddressMappingControls = ({ organizationCountryId }) => [
 		},
 		caret : true,
 		rules : {
-			required: true,
+			required: 'Pincode Required',
 		},
 		span   : 5.8,
 		showIn : ['billingAddress', 'otherAddress'],
@@ -111,7 +111,7 @@ const getAddressMappingControls = ({ organizationCountryId }) => [
 		drag       : true,
 		height     : 45,
 		rules      : {
-			required: true,
+			required: 'TAX Proof Required',
 		},
 		span   : 5.8,
 		showIn : ['billingAddress'],
@@ -200,7 +200,7 @@ const getAddressMappingControls = ({ organizationCountryId }) => [
 		drag       : true,
 		height     : 45,
 		rules      : {
-			required: true,
+			required: 'Sez proof is required',
 		},
 		span   : 5.8,
 		showIn : ['billingAddress'],

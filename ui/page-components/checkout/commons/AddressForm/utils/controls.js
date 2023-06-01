@@ -33,10 +33,10 @@ const getAddressNewControls = ({ organizationCountryId }) => {
 				...newControl,
 				rules: {
 					...getValue(newControl, 'rules', {}),
-					// pattern: {
-					// 	value: patterns.GST_NUMBER,
-					// 	message: 'GST is invalid',
-					// },
+					pattern: {
+						value   : patterns.GST_NUMBER,
+						message : 'GST is invalid',
+					},
 				},
 			};
 		}

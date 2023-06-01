@@ -35,7 +35,6 @@ function SelectedAddressList({
 	const address = getByKey(invoicingParty, 'address');
 	const taxNumber = getByKey(invoicingParty, 'tax_number');
 	const services = getByKey(invoicingParty, 'services') || [];
-
 	const showHiddenContent = getByKey(
 		invoicingParty,
 		'state.showHiddenContent',

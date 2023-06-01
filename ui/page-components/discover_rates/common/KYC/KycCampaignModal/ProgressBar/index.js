@@ -98,7 +98,7 @@ function Bar({
 	};
 	return (
 		<div className={styles.container}>
-			<Timer initialMinute={0} initialSecond={10} />
+			<Timer initialMinute={2} initialSecond={120} />
 			<div className={styles.input_div}>
 				<Input
 					value={otp}

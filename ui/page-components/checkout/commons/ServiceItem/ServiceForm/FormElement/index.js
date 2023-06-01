@@ -9,7 +9,7 @@ function SearchResultsServiceItemFormElement({ field, errors }) {
 	return (
 		<div className={styles.container}>
 			<div className={styles.label}>{field.label}</div>
-			<div>
+			<div className={styles.main}>
 				{field.type === 'chips' && <ChipsController {...field} />}
 				{field.type === 'async_select' && <AsyncSelectController {...field} />}
 				{field.type === 'select' && <SelectController {...field} />}

@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import { isEmpty } from '@cogoport/utils';
+import { useEffect } from 'react';
 
 import AddInvoicingPartyModal from './AddInvoicingPartyModal';
 import SelectedAddressList from './SelectedAddressList';
@@ -7,6 +8,7 @@ import styles from './styles.module.css';
 import useInvoicingParties from './useInvoicingParties';
 
 import EmptyState from '@/ui/commons/components/EmptyState';
+import isCargoInsuranceApplicable from '@/ui/commons/utils/getCargoInsuranceApplicability';
 
 function InvoicingParties(props) {
 	const {
@@ -16,7 +18,10 @@ function InvoicingParties(props) {
 		conversions,
 		detail = {},
 		invoice = {},
-		source = '',
+		source = 'app',
+		showCargoInsuranceIP,
+		setShowCargoInsuranceIP = () => {},
+		setNoIpCargoInsurance = () => {},
 	} = props;
 	if (isEmpty(organization)) {
 		return null;
@@ -37,6 +42,37 @@ function InvoicingParties(props) {
 		setPaymentModes,
 	} = useInvoicingParties(props);
 
+	const allServices = invoicingParties.flatMap((invoicingParty) => (
+		invoicingParty.services.map((item) => item.service)));
+
+	const newInvoicingParties = invoicingParties.map((invoicingParty) => {
+		const {
+			services,
+			country_id: invoicing_party_country_id,
+			organization_country_id,
+		} = invoicingParty;
+
+		const is_cargo_insurance_applicable = isCargoInsuranceApplicable({
+			country_id: invoicing_party_country_id || organization_country_id,
+		});
+
+		let filteredServices = services.filter((item) => item.service !== 'cargo_insurance');
+
+		if (is_cargo_insurance_applicable) {
+			filteredServices = services;
+		}
+
+		return { ...invoicingParty, ...{ services: filteredServices } };
+	});
+	const newAllServices = newInvoicingParties.flatMap((invoicingParty) => (
+		invoicingParty.services.map((item) => item.service)));
+
+	const showCargoInsuranceInfo =		!newAllServices.includes('cargo_insurance')
+		&& allServices.includes('cargo_insurance');
+
+	useEffect(() => {
+		setNoIpCargoInsurance(showCargoInsuranceInfo);
+	}, [setNoIpCargoInsurance, showCargoInsuranceInfo]);
 	return (
 		<div className={styles.container}>
 			<div className={styles.header}>
@@ -92,9 +128,11 @@ function InvoicingParties(props) {
 				setShow={setShowAddInvoicingPartyModal}
 				primary_service={primary_service}
 				organization={organization}
-				invoicingParties={invoicingParties}
+				invoicingParties={newInvoicingParties}
 				onSelectInvoicingParty={onSelectInvoicingParty}
 				source={source}
+				showCargoInsuranceIP={showCargoInsuranceIP}
+				setShowCargoInsuranceIP={setShowCargoInsuranceIP}
 			/>
 		</div>
 	);

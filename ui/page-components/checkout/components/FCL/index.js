@@ -102,7 +102,6 @@ function FCL(props) {
 			</div>
 		));
 	};
-
 	return (
 		<div className={styles.container}>
 			<div className={styles.left_component}>
@@ -265,6 +264,7 @@ function FCL(props) {
 					cargo_value={cargo_value}
 					cargo_value_currency={cargo_value_currency}
 					serviceId={detail.primary_service_id}
+					refetch={refetch}
 				/>
 
 				<InvoicingParties

@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { Button, Loader } from '@cogoport/components';
 import { isEmpty } from '@cogoport/utils';
 import { useState, useEffect, useMemo } from 'react';
@@ -121,7 +122,6 @@ function InvoicingParties({
 		const values = [];
 		const optionsDisabled = {}; // optionsDisabled only for billing_addresses
 		const igstValues = {};
-
 		list.forEach((item, index) => {
 			const billingAddresses = [];
 			(item.billing_addresses || []).forEach((billingAddress) => {
@@ -169,7 +169,7 @@ function InvoicingParties({
 
 		setValuesState(values);
 		setOptionsDisabledState(optionsDisabled);
-	}, [disabledParties, list, loading, reorderedList]);
+	}, [loading]);
 
 	const handleChange = (newValue = []) => {
 		setValuesState(newValue);
@@ -268,7 +268,14 @@ function InvoicingParties({
 
 	const renderList = () => {
 		if (loading) {
-			return <Loader themeType="primary" />;
+			return (
+				<div className={styles.loading}>
+					<div>
+						<Loader themeType="primary" style={{ width: '80%' }} />
+						<div>loading...</div>
+					</div>
+				</div>
+			);
 		}
 
 		const newList = reorderedList.filter(
@@ -276,8 +283,10 @@ function InvoicingParties({
 		);
 		let filteredNewList = newList;
 		if (isOrgCountryInvoicesRequired) {
-			filteredNewList = address_to_use === 'other_addresses'
-				? getOrgCountryOtherAddresses({ newList })
+			filteredNewList =				address_to_use === 'other_addresses'
+				? getOrgCountryOtherAddresses({
+					newList,
+				})
 				: getOrgCountryBillingAddresses({ newList });
 		}
 
@@ -288,14 +297,12 @@ function InvoicingParties({
 						<Button
 							onClick={() => {
 								setShowComponent('create_billing_address');
-								setInvoiceToTradePartyDetails(
-									(previousState) => ({
-										...previousState,
-										tradePartyId: organization.organization_trade_party_id,
-									}),
-								);
+								setInvoiceToTradePartyDetails((previousState) => ({
+									...previousState,
+									tradePartyId: organization.organization_trade_party_id,
+								}));
 							}}
-							style={{ marginBottom: 16 }}
+							style={{ margin: 16 }}
 						>
 							Add Address
 						</Button>
@@ -305,7 +312,13 @@ function InvoicingParties({
 				);
 			}
 
-			return <EmptyState heading="address" />;
+			return (
+				<EmptyState
+					heading="address"
+					message="No address found
+			"
+				/>
+			);
 		}
 
 		return filteredNewList.map((item) => (
@@ -324,10 +337,7 @@ function InvoicingParties({
 	};
 
 	const renderAdditionalItems = () => {
-		if (
-			bookingType === 'self'
-            || showComponent !== 'view_billing_addresses'
-		) {
+		if (bookingType === 'self' || showComponent !== 'view_billing_addresses') {
 			return null;
 		}
 

@@ -1,5 +1,5 @@
 .container {
-	.ie {
+	&.ie {
 		.ie_booking_text {
 			color: #9ab7fe;
 		}
@@ -31,34 +31,26 @@
 			display: block;
 			width: 100%;
 			padding: 12px 8px;
-			border-bottom: 1px solid #eceff8;
-
-			&:hover {
-				background: #f6f5fe;
-				border-radius: 4px;
-			}
 
 			@media (max-width: 768px) {
 				width: 100%;
 			}
 		}
-	}
 
-	.core-ui-radiogroup-container {
-		justify-content: flex-start;
-		width: 100%;
-		margin-bottom: 16px;
-	}
+		.ui_checkbox_container {
+			border-bottom: 1px solid #eceff8;
+		}
 
-	.core-ui-radio-label {
-		margin-left: 10px;
-		font-size: 14px;
-		font-weight: 400;
-		line-height: 16px;
-		color: #393f70;
-		letter-spacing: 0.04em;
-		opacity: 1;
+		.ui_checkbox_container:hover {
+			background: #f6f5fe;
+			border-radius: 4px;
+		}
 	}
+}
+
+.radio_wrapper:hover {
+	background: #f6f5fe;
+	border-radius: 4px;
 }
 
 .icon_wrapper {
@@ -112,6 +104,7 @@
 
 .tag_container {
 	display: flex;
+	gap: 5px;
 	align-items: center;
 	font-size: 10px;
 
@@ -148,4 +141,5 @@
 
 .disabled {
 	pointer-events: none;
+	opacity: 0.6;
 }

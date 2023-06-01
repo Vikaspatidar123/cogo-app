@@ -2,11 +2,13 @@ const controls = [
 	{
 		name        : 'country_id',
 		type        : 'async_select',
-		asyncKey    : 'countries',
+		asyncKey    : 'locations',
 		span        : 4,
 		label       : 'Organization’s registration country',
+		params      : { filters: { type: ['country'] } },
 		placeholder : 'Select country',
 		rules       : { required: 'Required' },
+		initialCall : true,
 	},
 	{
 		name        : 'registration_number',
@@ -39,9 +41,9 @@ const controls = [
 					Electricity Bill, Water Bill, Telephone Landline Bill, Property 
 					tax receipt, Current registered sale/lease/rent agreement, Gas connection bill, 
 					Credit card statement ( not older than 6 months )`,
-		label  : 'Business Address Proof',
-		accept : 'image/*,.pdf,.doc,.docx,application/msword,'
-		+ 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+		label      : 'Business Address Proof',
+		// accept : 'image/*,.pdf,.doc,.docx,application/msword,'
+		// + 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
 		uploadType : 'aws',
 		rules      : { required: 'Required' },
 	},

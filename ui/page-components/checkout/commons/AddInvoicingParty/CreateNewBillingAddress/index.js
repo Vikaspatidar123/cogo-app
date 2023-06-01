@@ -1,8 +1,7 @@
-import { Toast } from '@cogoport/components';
-
 import AddressForm from '../../AddressForm';
 
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
+import showErrorsInToast from '@/ui/commons/utils/showErrorsInToast';
 
 const { IN: INDIA_COUNTRY_ID } = GLOBAL_CONSTANTS.country_ids;
 
@@ -41,7 +40,7 @@ function CreateNewBillingAddress({
 					setInvoiceToTradePartyDetails({});
 				}}
 				onFailure={({ error }) => {
-					Toast.error(error.data);
+					showErrorsInToast(error.data);
 				}}
 				saveAddressData
 				showSavedPOC={false}
@@ -62,6 +61,7 @@ function CreateNewBillingAddress({
 				registrationNumber={
 					registrationNumber || organizationRegistrationNumber
 				}
+				organizationCountryId={organizationCountryId}
 			/>
 		</div>
 	);

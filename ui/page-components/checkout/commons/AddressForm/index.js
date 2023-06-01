@@ -53,13 +53,14 @@ function AddressForm(props) {
 			</div>
 		);
 	}
+
 	return (
 		<div className={styles.container} key={`${watchPincode}_${watchGstList}`}>
 			<form onSubmit={handleSubmit(onSubmit)}>
 				<Modal.Body>
 					<div style={{ minHeight: '48vh', display: 'flex', flexDirection: 'column', marginBottom: '8px' }}>
 						{Object.entries(layouts).map(([key, layout]) => {
-							const { title, controls, showElements } = layout;
+							const { title, controls, showElements = {} } = layout;
 							if (isEmpty(controls)) {
 								return null;
 							}
@@ -81,12 +82,13 @@ function AddressForm(props) {
 															name={item.name}
 															control={control}
 															showElements={showElements}
-															error={errors.controlItem}
+															error={errors?.[item.name]}
 														/>
 													);
 												}
 												const Controller = getField(item.type);
-												const show = showElements?.[item?.name] || true;
+												const show = !(item?.name in showElements)
+												|| showElements?.[item?.name];
 												const { span, name } = item || {};
 												return (
 													show && (
@@ -97,7 +99,7 @@ function AddressForm(props) {
 																control={control}
 															/>
 															<div className={styles.errors}>
-																{errors?.[name]?.type}
+																{errors?.[name]?.message}
 															</div>
 														</div>
 													)

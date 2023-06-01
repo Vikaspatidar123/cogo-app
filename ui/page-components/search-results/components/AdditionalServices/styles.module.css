@@ -52,9 +52,7 @@
 	}
 
 	@media (min-width: 760px) {
-		max-height: 600px;
-
-		/* max-width: ${({ scope }) => (scope === 'app' ? '300px' : '250px')}; */
+		max-height: 700px;
 	}
 }
 

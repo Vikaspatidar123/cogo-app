@@ -116,7 +116,7 @@ function SearchResultsServiceItem({
 				</div>
 			</div>
 
-			<Modal placement="top-left" show={show} onClose={handleClose} width={300}>
+			<Modal placement="top-left" show={show} onClose={handleClose}>
 				<ServiceForm
 					show={show}
 					handleClose={setShow}

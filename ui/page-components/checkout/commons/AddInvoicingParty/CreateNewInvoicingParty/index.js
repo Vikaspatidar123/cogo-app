@@ -1,4 +1,4 @@
-import { Toast } from '@cogoport/components';
+import { Toast, Stepper } from '@cogoport/components';
 import { useState } from 'react';
 
 import AddressForm from '../../AddressForm';
@@ -7,7 +7,6 @@ import useCreateOrgTradeParty from '../hooks/useCreateOrgTradeParty';
 import AdditionalDocuments from './AdditionalDocument';
 import BankAccount from './BankAccount';
 import CompanyDetails from './CompanyDetails';
-import ProgressStrip from './ProgressStrip';
 import styles from './styles.module.css';
 
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
@@ -18,29 +17,29 @@ const stepperContent = {
 	paying_party: {
 		company_details: {
 			key   : 'company_details',
-			label : 'COMPANY DETAILS',
+			title : 'COMPANY DETAILS',
 		},
 		billing_address: {
 			key   : 'billing_address',
-			label : 'BILLING ADDRESS',
+			title : 'BILLING ADDRESS',
 		},
 	},
 	collection_party: {
 		company_details: {
 			key   : 'company_details',
-			label : 'COMPANY DETAILS',
+			title : 'COMPANY DETAILS',
 		},
 		billing_address: {
 			key   : 'billing_address',
-			label : 'BILLING ADDRESS',
+			title : 'BILLING ADDRESS',
 		},
 		bank_details: {
 			key   : 'bank_details',
-			label : 'BANK DETAILS',
+			title : 'BANK DETAILS',
 		},
 		documents: {
 			key   : 'documents',
-			label : 'DOCUMENTS',
+			title : 'DOCUMENTS',
 		},
 	},
 };
@@ -56,7 +55,6 @@ function CreateNewInvoicingParty({
 }) {
 	const [filledDetails, setFilledDetails] = useState({});
 	const [currentStep, setCurrentStep] = useState('company_details');
-
 	const { onSubmit = () => {}, loading = false } = useCreateOrgTradeParty({
 		orgResponse,
 		setShowComponent,
@@ -186,11 +184,13 @@ function CreateNewInvoicingParty({
 	return (
 		<div>
 			<div className={styles.stepper_container}>
-				<ProgressStrip
-					progressSteps={Object.values(
+				<Stepper
+					active={currentStep}
+					setActive={setCurrentStep}
+					items={Object.values(
 						stepperContent[tradePartyType.value] || [],
 					)}
-					currentStep={currentStep}
+					shadowed
 				/>
 			</div>
 

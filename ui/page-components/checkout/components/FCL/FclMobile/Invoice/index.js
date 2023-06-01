@@ -45,6 +45,7 @@ function Invoice({
 				cargo_value={cargo_value}
 				cargo_value_currency={cargo_value_currency}
 				serviceId={detail.primary_service_id}
+				refetch={refetch}
 			/>
 
 			<InvoicingParties

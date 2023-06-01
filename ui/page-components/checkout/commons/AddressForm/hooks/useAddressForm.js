@@ -87,7 +87,6 @@ const getAddressShowElements = ({
 
 		hash[name] = showElement;
 	});
-
 	return hash;
 };
 
@@ -154,17 +153,16 @@ const getAddressValues = ({ data, controls, addressType }) => {
 		}
 
 		if (type === 'file') {
-			value = getValue(data, `${name}.url`);
+			value = getValue(data, `${name}`);
 		}
 
 		valuesHash[name] = value;
 	});
-
 	return valuesHash;
 };
 
 const formatValues = ({ values, addressControls, addressType }) => {
-	const { isAddressRegisteredUnderGst } = values;
+	const { isAddressRegisteredUnderGst } = values || {};
 
 	return {
 		organization_trade_party_id: getValue(
@@ -257,7 +255,7 @@ const useSaveAddressForm = (props) => {
 	} = useSelector((ReduxState) => ReduxState);
 	const crm = unPrefixedPath.split('/')[2];
 	let newControls = controls;
-	if (crm !== 'supply') {
+	if (crm !== 'supply' || action === 'edit') {
 		newControls = controls.filter(
 			(ctrl) => ctrl.name !== 'organization_branch_id',
 		);
@@ -304,7 +302,13 @@ const useSaveAddressForm = (props) => {
 	}
 
 	const onSubmit = (values) => {
-		const pocDetails = getValue(values, 'poc_details', []);
+		const { poc_details = [], ...rest } = values;
+		const poc = poc_details.map((item) => ({ ...item, ...item?.mobile_number }));
+		const value = {
+			...rest,
+			poc_details: poc,
+		};
+		const pocDetails = getValue(value, 'poc_details', []);
 
 		if (action === 'create') {
 			if (isEmpty(pocDetails)) {
@@ -314,20 +318,23 @@ const useSaveAddressForm = (props) => {
 			}
 		}
 
-		const newValues = formatValues({
-			values,
+		const newValue = formatValues({
+			values      : value,
 			addressControls,
-			addressType: updatedAddressType,
+			addressType : updatedAddressType,
 		});
+
 		if (!saveAddressData) {
 			onSuccess({
-				values: newValues,
+				values: { ...newValue, is_sez: watchIsSez },
 			});
 
 			return;
 		}
 
-		saveAddress({ values: newValues });
+		saveAddress({
+			values: { ...newValue, is_sez: watchIsSez },
+		});
 	};
 	const layouts = getLayouts({
 		invoiceTradePartyControls,

@@ -9,3 +9,13 @@
 	line-height: 14px;
 	color: #4f4f4f;
 }
+
+.main {
+	:global {
+		.ui_chips_container {
+			flex-wrap: wrap;
+			width: 600px;
+			max-width: 600px;
+		}
+	}
+}

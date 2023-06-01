@@ -16,7 +16,7 @@
 	display: flex;
 	flex-direction: column;
 
-	& .form-item-label {
+	&.form-item-label {
 		margin-top: 16px;
 		margin-bottom: 4px;
 		font-size: 12px;
@@ -68,6 +68,9 @@
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-between;
+	height: 223px;
+	max-height: 250px;
+	margin-bottom: 30px;
 }
 
 .field {

@@ -67,7 +67,7 @@ function SelectServicesInvoiceToAndCurrencyForm({
 						const isChecked = services.some((service) => service.service_id === service_id);
 
 						return (
-							<div className={styles.service_invoice_to_option}>
+							<div className={styles.service_invoice_to_option} key={option?.service_id}>
 								<Checkbox
 									checked={isChecked}
 									onChange={() => onChangeService(service_id)}

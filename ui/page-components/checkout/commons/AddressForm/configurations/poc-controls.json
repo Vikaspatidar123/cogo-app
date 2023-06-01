@@ -3,14 +3,14 @@
 		"type": "text",
 		"name": "name",
 		"label": "POC Name",
-		"rules": { "required": true },
+		"rules": { "required": "Poc name is required" },
 		"span": 3
 	},
 	{
 		"type": "text",
 		"name": "email",
 		"label": "POC Email",
-		"rules": { "required": true },
+		"rules": { "required":  "Poc email is required" },
 		"span": 3
 	},
 	{

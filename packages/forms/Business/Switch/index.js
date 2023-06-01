@@ -11,7 +11,6 @@ function IncoTermSelect({ right, left, active, onChange, style, id }) {
 			onChange(left.value);
 		}
 	};
-
 	return (
 		<div className={styles.row} style={style}>
 			<div

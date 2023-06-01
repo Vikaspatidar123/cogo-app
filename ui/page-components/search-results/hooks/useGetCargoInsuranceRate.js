@@ -1,6 +1,3 @@
-import { Toast } from '@cogoport/components';
-
-import getApiErrorString from '@/packages/forms/utils/getApiError';
 import { useRequestBf } from '@/packages/request';
 
 const useGetCargoInsuranceRate = (props) => {
@@ -21,7 +18,7 @@ const useGetCargoInsuranceRate = (props) => {
 			});
 			props.setRateData(res?.data);
 		} catch (err) {
-			Toast.error(getApiErrorString(err));
+			console.log(err);
 		}
 	};
 

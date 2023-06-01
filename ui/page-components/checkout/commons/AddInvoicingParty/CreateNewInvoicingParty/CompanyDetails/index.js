@@ -4,6 +4,7 @@ import useCompanyDetails from '../hooks/useCompanyDetails';
 import styles from '../styles.module.css';
 
 import getField from '@/packages/forms/Controlled';
+import getWidth from '@/ui/page-components/checkout/utils/getWidth';
 
 function CompanyDetails({
 	filledDetails = {},
@@ -43,12 +44,12 @@ function CompanyDetails({
 						const Element = getField(item.type);
 
 						return (
-							<div className={styles.field}>
+							<div className={styles.field} style={{ width: getWidth(item?.span) }}>
 								<div className={styles.lable}>{item.label}</div>
 								<Element {...item} control={control} />
 								{errors?.[item?.name] && (
 									<div className={styles.errors}>
-										{errors?.[item?.name]?.type || errors?.[item?.name]?.message}
+										{errors?.[item?.name]?.message || errors?.[item?.name]?.type }
 									</div>
 								)}
 							</div>
@@ -60,7 +61,8 @@ function CompanyDetails({
 				<div className={styles.btn_grp}>
 					{showBackButton && (
 						<Button
-							className="secondary md"
+							size="md"
+							themeType="secondary"
 							onClick={() => onClickBack()}
 							style={{
 								marginRight: '8px',
@@ -70,7 +72,7 @@ function CompanyDetails({
 						</Button>
 					)}
 					<Button
-						className="primary md"
+						size="md"
 						disabled={loading}
 						onClick={handleSubmit(onSubmitOfCompanyDetails)}
 					>

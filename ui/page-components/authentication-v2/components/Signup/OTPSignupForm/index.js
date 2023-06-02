@@ -10,8 +10,8 @@ import styles from './styles.module.css';
 
 import OTPLayout from '@/packages/forms/Business/OTPLayout';
 
-function OTPSignupForm({ otpId = '', formData = {}, setMode = () => {}, resendOtp = () => {}, id = '' }) {
-	const { mobile_number: mobileNumber = {}, email = '' } = formData;
+function OTPSignupForm({ otpId = '', userDetails = {}, setMode = () => {}, resendOtp = () => {}, id = '' }) {
+	const { mobile_number: mobileNumber = {}, email = '' } = userDetails;
 	const [otpValue, setOtpValue] = useState('');
 
 	const {

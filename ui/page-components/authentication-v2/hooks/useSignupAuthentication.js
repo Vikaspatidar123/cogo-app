@@ -3,44 +3,43 @@ import { Toast } from '@cogoport/components';
 import { useRequest } from '@/packages/request';
 
 const useSignupAuthentication = ({
-	setMode, setUserDetails, captchaResponse, hasWhatsApp,
+	setMode, setUserDetails, captchaResponse, hasWhatsApp, profileId,
 }) => {
 	const [{ loading: signupLoading }, trigger] = useRequest({
-		url    : 'saas_tools/update_saas_converted_user_mobile',
+		url    : 'create_saas_sign_up_lead_user',
 		method : 'post',
 	}, { manual: true });
 
-	const signupAuthentication = async (val) => {
-		const payload = {
-			email                     : val.email,
-			name                      : val.name,
-			mobile_number             : val.mobile_number.number,
-			mobile_country_code       : val.mobile_number.country_code,
-			google_recaptcha_response : captchaResponse,
-			is_whatsapp_number        : hasWhatsApp,
-		};
-		console.log('payload:: ', payload);
+	const signupAuthentication = async (val, e) => {
+		e.preventDefault();
 		try {
-			// const res = await trigger({
-			// 	data: {
-			// 		...payload,
-			// 	},
-			// });
+			const payload = {
+				profile_id                : profileId || undefined,
+				name                      : val.name,
+				email                     : val.email,
+				mobile_country_code       : val.mobile_number.country_code,
+				mobile_number             : val.mobile_number.number,
+				business_name             : val.business_name,
+				country_id                : val.country_id,
+				google_recaptcha_response : captchaResponse,
+				is_whatsapp_number        : hasWhatsApp,
+			};
+			const res = await trigger({
+				data: {
+					...payload,
+				},
+			});
 
-			// if (res?.status === 200) {
-			// 	const { data } = res || {};
-			// 	setshowOtpForm(true);
-			// 	const userDetails = {
-			// 		...payload,
-			// 		...data,
-			// 		...userInfo,
-			// 	};
-
-			// 	setUserDetails(userDetails);
-			// }
-			setMode('otp_form');
-		} catch (e) {
-			if (e?.response?.data?.email?.length > 0) {
+			if (res?.status === 200) {
+				const { data } = res || {};
+				setMode('otp_form');
+				setUserDetails((prev) => ({
+					...prev,
+					...data,
+				}));
+			}
+		} catch (err) {
+			if (err?.response?.data?.email?.length > 0) {
 				Toast.error('Email id is already registered. Please Login');
 			} else {
 				Toast.error('Something went wrong');

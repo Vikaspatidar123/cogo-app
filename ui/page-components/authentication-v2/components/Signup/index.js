@@ -17,18 +17,24 @@ const SIGNUP_FLOW_MAPPING = {
 
 function Signup() {
 	const [mode, setMode] = useState('signup_form');
-	const [formData, setFormData] = useState({});
-	const [userDetails, setUserDetails] = useState({});
+	const [userDetails, setUserDetails] = useState({
+
+		name               : '',
+		email              : '',
+		mobile_number      : { country_code: '', number: '' },
+		business_name      : '',
+		country_id         : '',
+		is_whatsapp_number : false,
+	});
 
 	const componentProps = {
 		signup_form: {
+			userDetails,
 			setMode,
-			setFormData,
 			setUserDetails,
 		},
 		otp_form: {
 			setMode,
-			formData,
 			userDetails,
 		},
 		loading_prompts: {

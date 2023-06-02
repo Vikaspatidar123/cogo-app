@@ -52,7 +52,6 @@ const useUpdateCheckout = ({ serviceId, refetch, type = '' }) => {
 
 			refetch();
 		} catch (err) {
-			console.log(err, 'err');
 			Toast.error(getApiErrorString(err?.response?.data));
 		}
 	};

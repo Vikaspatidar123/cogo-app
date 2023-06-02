@@ -51,16 +51,16 @@
     {
 		"name": "cargo_handling_type",
 		"label": "Origin Cargo Stuffing",
-		"type": "pills",
+		"type": "chips",
 		"caret": true,
 		"options": [
 			{
-				"value": "stuffing_at_factory",
-				"label": "Factory Stuffing"
+				"key": "stuffing_at_factory",
+				"children": "Factory Stuffing"
 			},
 			{
-				"value": "stuffing_at_dock",
-				"label": "Dock Stuffing"
+				"key": "stuffing_at_dock",
+				"children": "Dock Stuffing"
 			}
 		],
 		"condition": { "services": ["export_fcl_customs", "export_transportation"] },

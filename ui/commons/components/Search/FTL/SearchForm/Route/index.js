@@ -26,6 +26,7 @@ function Route(
 		typeOfJourney = '',
 		extraParams,
 		control,
+		isEdit,
 	},
 	ref,
 ) {
@@ -41,7 +42,6 @@ function Route(
 
 		return validateData;
 	};
-
 	const handleLabel = (locationKey) => {
 		const originLabel = (
 			<label className={styles.label}>
@@ -123,6 +123,7 @@ function Route(
 						organization_id : org_id,
 						service_type    : mode,
 					}}
+					className={`${isEdit && styles.edit}`}
 				/>
 				{errorMsg?.origin ? (
 					<div className={styles.error_msg}>Origin Port is required</div>
@@ -179,6 +180,8 @@ function Route(
 						organization_id : org_id,
 						service_type    : mode,
 					}}
+					className={`${isEdit && styles.edit}`}
+
 				/>
 				{errorMsg?.destination ? (
 					<div className={styles.error_msg}>Destination Port is required</div>

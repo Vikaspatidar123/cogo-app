@@ -80,6 +80,7 @@ const formControlsAdvanced = (isChannelPartner = false) => [
 				],
 				rules : { required: 'Required' },
 				span  : 3,
+				style : { width: '350px' },
 			},
 			{
 				name          : 'dimensions',
@@ -137,6 +138,7 @@ const formControlsAdvanced = (isChannelPartner = false) => [
 		],
 		condition : { services: ['import_transportation'] },
 		rules     : { require: 'Drop Type is required' },
+		style     : { width: '350px' },
 	},
 	{
 		label       : 'Drop Pincode',
@@ -148,6 +150,7 @@ const formControlsAdvanced = (isChannelPartner = false) => [
 		params      : { filters: { type: ['pincode', 'city'] } },
 		condition   : { services: ['import_transportation'] },
 		rules       : { required: 'Destination Pincode is required' },
+		style       : { width: '350px' },
 	},
 	{
 		name      : 'import_transportation_truck_type',
@@ -170,7 +173,7 @@ const formControlsAdvanced = (isChannelPartner = false) => [
 			services                          : ['import_transportation'],
 			import_transportation_pickup_type : 'ftl',
 		},
-		rules: { required: 'Trucks is required', min: 0 },
+		rules: { required: 'Trucks is required', min: 1 },
 	},
 	{
 		label       : 'Address',

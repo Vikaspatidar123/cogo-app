@@ -254,7 +254,7 @@ function NoResultFound({
 								size="sm"
 								onClick={newSearch}
 								themeType="accent"
-								style={{ display: 'inline-block' }}
+								style={{ display: 'inline-block', marginLeft: '10px' }}
 							>
 								Try a new search
 							</Button>

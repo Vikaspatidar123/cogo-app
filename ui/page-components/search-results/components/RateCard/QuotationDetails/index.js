@@ -1,50 +1,26 @@
-import { Button, cl } from '@cogoport/components';
+import { cl } from '@cogoport/components';
 import { IcMArrowRotateDown, IcMArrowRotateUp } from '@cogoport/icons-react';
 import { startCase } from '@cogoport/utils';
 import React, { useState, forwardRef } from 'react';
 
-import formatSwbPayload from '../../../utils/format-swb-payload';
 import FeedBackModal from '../../NoResultFound/FeedbackModal';
 
 import LineItems from './LineItems';
 import styles from './styles.module.css';
 
-import { useRouter } from '@/packages/next';
-import { useRequest } from '@/packages/request';
 import formatAmount from '@/ui/commons/utils/formatAmount';
 
-const LOCALS = [
-	'origin_air_freight_local',
-	'destination_air_freight_local',
-	'origin_lcl_freight_local',
-	'destination_lcl_freight_local',
-];
-
-const CUSTOMS = ['fcl_customs', 'lcl_customs', 'air_customs'];
-
 function QuotationDetails(
-	{ data = {}, details = {}, isConfirmed = false, searchData = {} },
+	{ data = {}, details = {}, isConfirmed = false },
 	ref,
 ) {
-	const { service_details = {} } = details || {};
-	const { touch_points = {} } = searchData || {};
-	const router = useRouter();
-	const scope = 'app';
-
-	const [{ loading }, createCheckoutApi] = useRequest(
-		{
-			url    : 'create_checkout',
-			method : 'post',
-		},
-		{ manual: true },
-	);
-
 	const [open, setOpen] = useState(false);
 	const [openService, setOpenService] = useState('');
 	const [requestService, setRequestService] = useState({
 		service_id    : undefined,
 		service_type  : undefined,
 		selected_card : undefined,
+		service_data  : undefined,
 	});
 	const [showFeedbackModal, setShowFeedBackModal] = useState(false);
 	const services_ids = Object.keys(data?.service_rates || {});
@@ -107,7 +83,7 @@ function QuotationDetails(
 
 	const handleLineItemsBreakup = (item) => {
 		const service = details?.service_details[item?.id];
-		const { is_rate_available = false, service_type: serviceType = '' } =			item || {};
+		const { is_rate_available = false, service_type: serviceType = '' } = item || {};
 
 		const {
 			container_size,
@@ -223,6 +199,7 @@ function QuotationDetails(
 							},
 						})
 						: fclLocals}
+
 				</div>
 
 				{is_rate_available
@@ -252,105 +229,6 @@ function QuotationDetails(
 		return `${tradeType} ${service} (${startCase(serviceType)})`;
 	};
 
-	const handleAddRate = async (service_name) => {
-		try {
-			const tab_source = service_name.includes('subsidiary')
-				? 'subsidiary_services'
-				: 'services';
-
-			setOpenService(service_name);
-			const service_payload = formatSwbPayload({
-				service_details,
-				touch_points,
-				values: data,
-			});
-
-			const service_payload_final = {};
-			Object.keys(service_payload).forEach((service) => {
-				if (service_payload[service].length !== 0) {
-					service_payload_final[service] = service_payload?.[service];
-				}
-			});
-
-			const primary_service =				details?.search_type === 'trailer_freight'
-				? 'haulage_freight'
-				: details?.search_type;
-
-			const payload = {
-				source                      : 'spot_search',
-				source_id                   : details?.id,
-				primary_service,
-				importer_exporter_id        : details?.importer_exporter_id,
-				importer_exporter_branch_id : details?.importer_exporter_branch_id,
-				user_id                     : details?.user?.id,
-				quotation_type              : 'customize',
-				existing_shipment_id:
-					details?.source === 'upsell' ? details?.source_id : undefined,
-				...service_payload_final,
-
-			};
-
-			const res = await createCheckoutApi({ data: payload });
-
-			if (!res.hasError) {
-				router.push(
-					`/customize-checkout/[checkout_id]?tab=${tab_source}`,
-					`/customize-checkout/${res?.data?.id}?tab=${tab_source}`,
-				);
-			}
-		} catch (error) {
-			console.log(error);
-		}
-	};
-
-	const checkIfRateAvailable = (groupedService) => {
-		if (scope === 'app') {
-			return true;
-		}
-
-		const check = (groupedService || []).every((serv) => serv?.is_rate_available);
-
-		return check;
-	};
-
-	const handleRateFeedback = (service) => {
-		setShowFeedBackModal(true);
-		setRequestService({
-			service_id    : groupedServices[service][0]?.id,
-			service_type  : groupedServices[service][0]?.service_type,
-			selected_card : data?.card || null,
-		});
-	};
-
-	const handleShowButtons = (service) => (
-		<div className={styles.btn_container}>
-			{/* {!CUSTOMS.includes(details?.search_type) ? ( */}
-			<Button
-				onClick={() => {
-					handleAddRate(service);
-				}}
-				disabled={service === openService && loading}
-				type="button"
-			>
-				Add Rate
-			</Button>
-			{/* // ) : null} */}
-			{!LOCALS.includes(service) && !service.includes('subsidiary') ? (
-				<Button
-					onClick={() => {
-						handleRateFeedback(service);
-					}}
-					style={{ marginLeft: '10px' }}
-					className="secondary sm"
-					type="button"
-					disabled={service.includes('cargo_insurance')}
-				>
-					{!service.includes('cargo_insurance') ? 'REQUEST RATE' : 'No Rates'}
-				</Button>
-			) : null}
-		</div>
-	);
-
 	return (
 		<div className={cl`${styles.container} ${isConfirmed ? styles.confirmed : ''}`} ref={ref}>
 			{(Object.keys(groupedServices || {}) || []).map((service) => (
@@ -365,21 +243,13 @@ function QuotationDetails(
 								<div className={styles.service_text}>{startCase(service)}</div>
 							)}
 
-							{checkIfRateAvailable(groupedServices[service])
-							|| service.includes('fcl_freight_local')
-							|| service.includes('air_freight_local')
-							|| (CUSTOMS.includes(details?.search_type)
-								&& !service.includes('subsidiary')) ? (
-									<div
-										role="presentation"
-										style={{ display: 'flex', cursor: 'pointer' }}
-										onClick={() => handleOpen(service)}
-									>
-										{handleIcon(service)}
-									</div>
-								) : (
-									handleShowButtons(service)
-								)}
+							<div
+								role="presentation"
+								style={{ display: 'flex', cursor: 'pointer' }}
+								onClick={() => handleOpen(service)}
+							>
+								{handleIcon(service)}
+							</div>
 						</div>
 					</div>
 

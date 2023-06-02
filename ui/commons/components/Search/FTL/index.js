@@ -14,6 +14,7 @@ function FTL({
 	data: searchData = {},
 	onPush,
 	extraParams = {},
+	isEdit,
 }) {
 	const { createSpotSearch, loading } = useCreateSpotSearch({
 		extraParams,
@@ -88,6 +89,7 @@ function FTL({
 				touchPointsToggle={touchPointsToggle}
 				setTouchPointsToggle={setTouchPointsToggle}
 				extraParams={extraParams}
+				isEdit={isEdit}
 			/>
 
 			<div className={styles.btn_container}>

@@ -52,12 +52,6 @@
 			color: #000;
 		}
 
-		.custom-select-input-container {
-			.core-ui-input-root {
-				border: unset !important;
-			}
-		}
-
 		.custom-select-input-subcontainer {
 			height: 40px;
 			cursor: text;
@@ -118,4 +112,8 @@
 	font-size: 12px;
 	line-height: 16px;
 	color: rgb(203 100 100);
+}
+
+.edit {
+	width: 210px !important;
 }

@@ -149,6 +149,7 @@ const formControlsAdvanced = (isChannelPartner = false) => [
 		params      : { filters: { type: ['pincode', 'city'] } },
 		condition   : { services: ['import_transportation'] },
 		rules       : { required: 'Destination Pincode is required' },
+		style       : { width: '350px' },
 	},
 	{
 		name      : 'import_transportation_truck_type',
@@ -179,6 +180,7 @@ const formControlsAdvanced = (isChannelPartner = false) => [
 		placeholder : 'Enter address',
 		type        : 'text',
 		condition   : { services: ['import_transportation'] },
+		style       : { width: '350px' },
 	},
 	// {
 	// 	name: 'import_transportation_packages',

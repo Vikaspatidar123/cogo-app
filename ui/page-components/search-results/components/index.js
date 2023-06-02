@@ -76,9 +76,7 @@ function SelectedRateInfo({
 
 	const { service_type } = data || {};
 	const componentKey = service_type in SERVICE_TYPE_SELECTED_RATE_COMPONENT_MAPPING ? service_type : 'others';
-
 	const Component = SERVICE_TYPE_SELECTED_RATE_COMPONENT_MAPPING[componentKey] || null;
-
 	if (!Component) {
 		return null;
 	}

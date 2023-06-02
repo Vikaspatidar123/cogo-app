@@ -31,9 +31,7 @@ function RateCards({
 	const { search_type } = details;
 
 	const componentKey = search_type in SEARCH_TYPE_SELECTED_RATE_CARD_COMPONENT_MAPPING ? search_type : 'others';
-
 	const Component = SEARCH_TYPE_SELECTED_RATE_CARD_COMPONENT_MAPPING[componentKey] || null;
-
 	return (
 		<Component
 			key={search_type}

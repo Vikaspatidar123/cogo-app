@@ -50,11 +50,10 @@ function Quotation({
 	isConfirmed = false,
 	viewSchedules = false,
 	setViewSchedules = () => {},
-	setScheduleId,
+	setScheduleId = () => {},
 }) {
-	const { query, scope } = useSelector(({ general }) => ({
-		scope : general.scope,
-		query : general.query,
+	const { query } = useSelector(({ general }) => ({
+		query: general.query,
 	}));
 	const [showContract, setShowContract] = useState(false);
 
@@ -115,23 +114,24 @@ function Quotation({
 		: price || 0;
 
 	const basicFreight = data?.freight_price_discounted >= 0
-        && details?.trade_type !== 'domestic' ? (
-	<div className={`${styles.text}`}>
-		{`Freight ${
-			data.service_type === 'air_freight' ? 'per kg' : ''
-		} `}
-		<span style={{ fontWeight: 700, marginLeft: '4px' }}>
-			{formatAmount({
-				amount   : freight_price,
-				currency : data?.freight_price_currency,
-				options  : {
-					style                 : 'currency',
-					currencyDisplay       : 'symbol',
-					maximumFractionDigits : 0,
-				},
-			})}
-		</span>
-	</div>
+        && details?.trade_type !== 'domestic'
+		&& details?.service_type !== 'cargo_insurance' ? (
+			<div className={`${styles.text}`}>
+				{`Freight ${
+					data.service_type === 'air_freight' ? 'per kg' : ''
+				} `}
+				<span style={{ fontWeight: 700, marginLeft: '4px' }}>
+					{formatAmount({
+						amount   : freight_price,
+						currency : data?.freight_price_currency,
+						options  : {
+							style                 : 'currency',
+							currencyDisplay       : 'symbol',
+							maximumFractionDigits : 0,
+						},
+					})}
+				</span>
+			</div>
 		) : null;
 
 	const buttonStyles = isConfirmed

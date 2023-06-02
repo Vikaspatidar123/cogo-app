@@ -6,6 +6,7 @@ const controls = () => [
 		// style     : { width: '300px' },
 		condition : { services: ['fcl_freight'] },
 		rules     : { min: 1, max: 10000 },
+		style     : { width: '350px' },
 	},
 	{
 		label   : 'Bill of lading (B/L) type',
@@ -26,7 +27,8 @@ const controls = () => [
 				children : 'Seaway (Original) Bill',
 			},
 		],
-		condition: { services: ['fcl_freight'] },
+		condition : { services: ['fcl_freight'] },
+		style     : { width: '350px' },
 	},
 	{
 		name    : 'export_transportation_cargo_handling_type',
@@ -35,16 +37,17 @@ const controls = () => [
 		caret   : true,
 		options : [
 			{
-				children : 'stuffing_at_factory',
-				key      : 'Factory Stuffing',
+				key      : 'stuffing_at_factory',
+				children : 'Factory Stuffing',
 			},
 			{
-				children : 'stuffing_at_dock',
-				key      : 'Dock Stuffing',
+				key      : 'stuffing_at_dock',
+				children : 'Dock Stuffing',
 			},
 		],
 		condition : { services: ['export_fcl_customs', 'export_transportation'] },
 		rules     : { required: 'This is required' },
+		style     : { width: '350px' },
 	},
 	{
 		label       : 'Pickup Pincode',
@@ -57,7 +60,7 @@ const controls = () => [
 		params      : { filters: { type: ['pincode', 'city'] } },
 		condition   : { services: ['export_transportation'] },
 		rules       : { required: 'This is required' },
-		// style       : { width: '200px' },
+		style       : { width: '350px' },
 	},
 	{
 		label       : 'Address',
@@ -65,6 +68,7 @@ const controls = () => [
 		placeholder : 'Enter address',
 		type        : 'textarea',
 		condition   : { services: ['export_transportation'] },
+		style       : { width: '350px' },
 	},
 	{
 		name      : 'export_transportation_truck_type',
@@ -77,7 +81,8 @@ const controls = () => [
 			export_transportation_cargo_handling_type : ['stuffing_at_dock'],
 			services                                  : ['export_transportation'],
 		},
-		rules: { required: 'Required' },
+		rules : { required: 'Required' },
+		style : { width: '350px' },
 	},
 	{
 		name      : 'export_transportation_trucks_count',
@@ -88,7 +93,8 @@ const controls = () => [
 			export_transportation_cargo_handling_type : ['stuffing_at_dock'],
 			services                                  : ['export_transportation'],
 		},
-		rules: { required: 'Required', min: 0 },
+		rules : { required: 'Required', min: 0 },
+		style : { width: '350px' },
 	},
 	{
 		name    : 'import_transportation_cargo_handling_type',
@@ -140,6 +146,7 @@ const controls = () => [
 		],
 		condition : { services: ['import_fcl_customs', 'import_transportation'] },
 		rules     : { required: 'This is required' },
+		style     : { width: '350px' },
 	},
 	{
 		label       : 'Pickup Pincode',
@@ -153,6 +160,7 @@ const controls = () => [
 		params      : { filters: { type: ['pincode', 'city'] } },
 		condition   : { services: ['import_transportation'] },
 		rules       : { required: 'This is required' },
+		style       : { width: '350px' },
 	},
 	{
 		label       : 'Address',
@@ -161,6 +169,7 @@ const controls = () => [
 		type        : 'text',
 		span        : 12,
 		condition   : { services: ['import_transportation'] },
+		style       : { width: '350px' },
 	},
 	{
 		name      : 'import_transportation_truck_type',
@@ -173,7 +182,8 @@ const controls = () => [
 			import_transportation_cargo_handling_type : ['destuffing_at_dock'],
 			services                                  : ['import_transportation'],
 		},
-		rules: { required: 'Required' },
+		rules : { required: 'Required' },
+		style : { width: '350px' },
 	},
 	{
 		name      : 'import_transportation_trucks_count',
@@ -185,7 +195,8 @@ const controls = () => [
 			import_transportation_cargo_handling_type : ['destuffing_at_dock'],
 			services                                  : ['import_transportation'],
 		},
-		rules: { required: 'Required', min: 0 },
+		rules : { required: 'Required', min: 0 },
+		style : { width: '350px' },
 	},
 	{
 		name    : 'export_fcl_cfs_have_ad_code',
@@ -198,6 +209,7 @@ const controls = () => [
 		],
 		condition : { services: ['export_fcl_cfs'] },
 		rules     : { required: 'This is required' },
+		style     : { width: '350px' },
 	},
 	{
 		name    : 'export_fcl_cfs_ad_code_reg',
@@ -211,6 +223,7 @@ const controls = () => [
 		],
 		condition : { have_ad_code: 'no', services: ['export_fcl_cfs'] },
 		rules     : { required: 'This is required' },
+		style     : { width: '350px' },
 	},
 	{
 		name    : 'export_fcl_cfs_cargo_handling_type',
@@ -230,6 +243,7 @@ const controls = () => [
 		],
 		condition : { services: ['export_fcl_cfs'] },
 		rules     : { required: 'This is required' },
+		style     : { width: '350px' },
 	},
 	{
 		name      : 'export_fcl_cfs_cargo_value_currency',
@@ -239,6 +253,7 @@ const controls = () => [
 		span      : 4,
 		condition : { services: ['export_fcl_cfs'] },
 		rules     : { required: 'This is required' },
+		style     : { width: '350px' },
 	},
 	{
 		name      : 'export_fcl_cfs_cargo_value',
@@ -247,6 +262,7 @@ const controls = () => [
 		span      : 8,
 		condition : { services: ['export_fcl_cfs'] },
 		rules     : { required: 'This is required' },
+		style     : { width: '350px' },
 	},
 	{
 		name    : 'import_fcl_cfs_cargo_handling_type',
@@ -285,6 +301,7 @@ const controls = () => [
 		],
 		condition : { services: ['import_fcl_cfs'] },
 		rules     : { required: 'Type of stuffing at destinationn is required' },
+		style     : { width: '350px' },
 	},
 	{
 		name      : 'import_fcl_cfs_cargo_value_currency',
@@ -294,6 +311,7 @@ const controls = () => [
 		// style     : { width: '200px' },
 		condition : { services: ['import_fcl_cfs'] },
 		rules     : { required: 'This is required' },
+		style     : { width: '350px' },
 	},
 	{
 		name      : 'import_fcl_cfs_cargo_value',
@@ -302,6 +320,7 @@ const controls = () => [
 		span      : 8,
 		condition : { services: ['import_fcl_cfs'] },
 		rules     : { required: 'This is required' },
+		style     : { width: '350px' },
 	},
 	{
 		label             : 'Destination Port',
@@ -314,7 +333,9 @@ const controls = () => [
 		params            : { filters: { type: ['seaport', 'country', 'city'] } },
 		condition         : { services: ['export_haulage_freight'] },
 		rules             : { required: 'Destination Port is required' },
+		style             : { width: '350px' },
 	},
+
 	{
 		label             : 'Origin Port',
 		name              : 'origin_port_id',
@@ -326,6 +347,7 @@ const controls = () => [
 		params            : { filters: { type: ['seaport', 'country', 'city'] } },
 		condition         : { services: ['import_haulage_freight'] },
 		rules             : { required: 'Destination Port is required' },
+		style             : { width: '350px' },
 	},
 ];
 

@@ -126,6 +126,7 @@ function SearchForm(
 									touchPointsToggle={touchPointsToggle}
 									extraParams={extraParams}
 									control={control}
+									isEdit={isEdit}
 								/>
 							</div>
 						</div>

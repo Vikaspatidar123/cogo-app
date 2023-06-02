@@ -1,3 +1,4 @@
+import { cl } from '@cogoport/components';
 import { IcCFtick } from '@cogoport/icons-react';
 import React, { useState } from 'react';
 
@@ -66,7 +67,7 @@ function TrailerFreightRateCard({
 		>
 			<div style={{ display: 'flex', flexDirection: 'column' }}>
 				<div className={styles.card}>
-					<div className={styles.flex}>
+					<div style={{ display: 'block', flex: 1 }}>
 						<div className={`${styles.cogo_assured} ${data?.source}`}>
 							{data?.source === 'cogo_assured_rate' && (
 								<div style={{ display: 'flex' }}>
@@ -74,12 +75,13 @@ function TrailerFreightRateCard({
 									<div className={styles.cogoportText}>Cogoport</div>
 								</div>
 							)}
-							<div className={`${styles.text} ${data?.source}`}>
+							<div className={cl`${styles.text} ${data?.source}`}>
 								{RATE_SOURCE_MAPPING[data?.source] || 'System Rate'}
 							</div>
 						</div>
 
 						<div className={styles.info_div}>
+
 							<LocationDetails data={details} />
 
 							<div className={styles.flex} style={{ padding: '16px' }}>

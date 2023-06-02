@@ -34,28 +34,28 @@ const formControlsAdvanced = () => [
 		placeholder : 'Select type of stuffing',
 		options     : [
 			{
-				label      : 'Direct Port Delivery',
-				value      : 'direct_port_delivery',
+				children   : 'Direct Port Delivery',
+				key        : 'direct_port_delivery',
 				trade_type : 'import',
 			},
 			{
-				label      : 'Destuffing at Factory',
-				value      : 'delivery_from_dock',
+				children   : 'Destuffing at Factory',
+				key        : 'delivery_from_dock',
 				trade_type : 'import',
 			},
 			{
-				label      : 'Destuffing at CFS',
-				value      : 'destuffing_at_dock',
+				children   : 'Destuffing at CFS',
+				key        : 'destuffing_at_dock',
 				trade_type : 'import',
 			},
 			{
-				label      : 'Dock Stuffing',
-				value      : 'stuffing_at_dock',
+				children   : 'Dock Stuffing',
+				key        : 'stuffing_at_dock',
 				trade_type : 'export',
 			},
 			{
-				label      : 'Factory Stuffing',
-				value      : 'stuffing_at_factory',
+				children   : 'Factory Stuffing',
+				key        : 'stuffing_at_factory',
 				trade_type : 'export',
 			},
 		],

@@ -68,5 +68,6 @@
 		"type": "number",
 		"rules": { "min": 0.1, "max": 40, "required": "Weight is required" },
 		"value": 26
-	}]
+	}
+]
 }]

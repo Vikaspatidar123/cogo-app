@@ -5,7 +5,7 @@ import { Controller } from 'react-hook-form';
 import getOptionsFromKey from '../Business/Select/getOptionsFromKey';
 
 function ChipsController(props) {
-	const { name, control, rules, optionKey, options, ...rest } = props;
+	const { name, control, rules, optionKey, options, value, ...rest } = props;
 	const data = getOptionsFromKey(optionKey, { ...rest });
 
 	const optionDate = data?.options.map((item) => ({
@@ -19,13 +19,14 @@ function ChipsController(props) {
 			control={control}
 			name={name}
 			rules={rules}
-			render={({ field: { onChange, onBlur, value } }) => (
+			defaultValue={value}
+			render={({ field: { onChange, onBlur, value:newValue } }) => (
 				<Chips
 					{...rest}
 					key={rest.id}
 					items={optionDate}
 					onItemChange={onChange}
-					selectedItems={value}
+					selectedItems={newValue}
 					onBlur={onBlur}
 					data-test-value={value}
 				/>

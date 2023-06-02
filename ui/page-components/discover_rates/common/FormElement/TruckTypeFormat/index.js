@@ -24,7 +24,6 @@ function TruckTypeFormat({
 		children : truck.label,
 		key      : truck.value,
 	}));
-
 	return (
 		<>
 			<Toggle

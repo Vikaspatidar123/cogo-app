@@ -221,6 +221,7 @@ function Form(
 				data={searchData}
 				search_type="ftl_freight"
 				onPush={onPush}
+				isEdit={isEdit}
 			/>
 		);
 	}

@@ -1,4 +1,5 @@
 /* eslint-disable react-hooks/rules-of-hooks */
+import { cl } from '@cogoport/components';
 import { IcCFtick } from '@cogoport/icons-react';
 import { startCase } from '@cogoport/utils';
 import { useState } from 'react';
@@ -13,7 +14,7 @@ import Route from '../RateCard/Route';
 import ContainerDetails from './ContainerDetails';
 import styles from './styles.module.css';
 
-import TruckingTouchPoints from '@/packages/bussiness-modules/TruckingTouchPoints';
+import TruckingTouchPoints from '@/packages/forms/Business/TruckingTouchPoints';
 
 const approveUrl = 'https://cdn.cogoport.io/cms-prod/cogo_admin/vault/original/ic-verifiedmark.svg';
 const RATE_SOURCE_MAPPING = {
@@ -130,8 +131,8 @@ function FtlRateCard({
 		>
 			<div className={styles.card}>
 				<div className={styles.route_div}>
-					<div style={{ display: 'flex', flex: 1 }} display="block">
-						<div className={`${styles.cogo_assured} ${data?.source}`}>
+					<div style={{ display: 'block', flex: 1 }}>
+						<div className={cl`${styles.cogo_assured} ${data?.source}`}>
 							{data?.source === 'cogo_assured_rate' && (
 								<div style={{ display: 'flex' }}>
 									<img
@@ -211,14 +212,16 @@ function FtlRateCard({
 				<ContainerDetails searchData={searchData} data={data} />
 			</div>
 
-			<div className={styles.animted_container} type={open ? 'enter' : 'exit'}>
-				<QuotationDetails
-					details={details}
-					data={data}
-					id={id}
-					isConfirmed={false}
-				/>
-			</div>
+			{open && (
+				<div className={styles.animted_container} type={open ? styles.enter : styles.exit}>
+					<QuotationDetails
+						details={details}
+						data={data}
+						id={id}
+						isConfirmed={false}
+					/>
+				</div>
+			)}
 		</div>
 	);
 }

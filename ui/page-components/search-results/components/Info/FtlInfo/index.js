@@ -9,7 +9,7 @@ import LocationDetails from '../LocationDetails';
 import ContainerDetails from './ContainerDetails';
 import styles from './styles.module.css';
 
-import TruckingTouchPoints from '@/packages/bussiness-modules/TruckingTouchPoints';
+import TruckingTouchPoints from '@/packages/forms/Business/TruckingTouchPoints';
 import { useSelector } from '@/packages/store';
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 import formatDate from '@/ui/commons/utils/formatDate';

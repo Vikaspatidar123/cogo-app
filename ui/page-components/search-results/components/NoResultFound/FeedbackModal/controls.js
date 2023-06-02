@@ -88,7 +88,7 @@ const controls = ({ airlineOptions = [] }) => ({
 		},
 		{
 			name          : 'preferred_airline_ids',
-			type          : 'select',
+			type          : 'async_select',
 			asyncKey      : 'air-lines',
 			initialCall   : airlineOptions,
 			caret         : true,

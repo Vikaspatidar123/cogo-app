@@ -8,11 +8,10 @@ import styles from './styles.module.css';
 function LayoutLogo() {
 	return (
 		<div className={styles.header}>
-			<a href="https://www.cogoport.com" className={styles.home}>
+			<a href="https://www.cogoport.com">
 				<img
 					src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/cogoport.svg"
 					alt="Cogoport"
-					className={styles.logo}
 				/>
 			</a>
 

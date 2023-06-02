@@ -1,6 +1,12 @@
 .help {
-    height: 70px;
-    margin-top: 12px;
+    margin: 12px 24px;
+
+    height: fit-content;
+
+    display: flex;
+    justify-content: center;
+
+    flex: 1;
 
     @media (max-width: 768px) {
         display: none;

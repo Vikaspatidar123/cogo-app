@@ -1,7 +1,6 @@
 import { useState } from 'react';
 
 import useLoginMobileAuthentication from '../../hooks/useLoginMobileAuthentication';
-import getUserLocationData from '../../utils/getUserLocationData';
 import LayoutHelp from '../common/LayoutHelp';
 import LayoutLogo from '../common/LayoutLogo';
 import LoadingPrompts from '../common/LoadingPrompts';
@@ -28,10 +27,6 @@ function Login() {
 		resendOtp = () => {},
 	} = useLoginMobileAuthentication({ setMode, setMobileNumber, setOtpId, mobileNumber });
 
-	const { countryCode } = getUserLocationData({});
-
-	console.log('countryCode:: ', countryCode);
-
 	const componentProps = {
 		login_tabs: {
 			onSendOtp,
@@ -50,6 +45,7 @@ function Login() {
 	};
 
 	const Component = LOGIN_FLOW_MAPPING[mode] || null;
+
 	return (
 		<>
 			<ShipStepper mode={mode} />

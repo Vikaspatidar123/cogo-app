@@ -39,6 +39,7 @@ function ShipStepper({ mode = '' }) {
 
 	return (
 		<div className={styles.ship_background}>
+			<img src="https://i.ibb.co/0GKcQsm/background.png" alt="bg" />
 			<div
 				className={styles.ship_container}
 				style={{

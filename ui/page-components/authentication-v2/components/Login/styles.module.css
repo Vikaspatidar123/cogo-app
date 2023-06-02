@@ -70,10 +70,10 @@
     @media (max-width: 768px) {
         min-width: 0px;
         width: 90vw;
-        margin: 0px 24px;
+        margin: 24px;
         min-height: 50vh;
         height: auto;
-        padding: 64px 32px;
+        padding: 32px;
         background: #ffffff;
         border-radius: 16px;
     }

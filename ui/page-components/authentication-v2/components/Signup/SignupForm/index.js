@@ -28,7 +28,12 @@ function SignupForm({ userDetails = {}, setMode = () => {}, setUserDetails = () 
 	const [profileId, setProfileId] = useState('');
 
 	const {
-		handleSubmit, formState: { errors }, trigger, control, watch, setValue,
+		handleSubmit,
+		formState: { errors },
+		trigger,
+		control,
+		watch,
+		setValue,
 	} = useForm({
 		defaultValues: {
 			...userDetails,
@@ -43,25 +48,21 @@ function SignupForm({ userDetails = {}, setMode = () => {}, setUserDetails = () 
 
 	useEffect(() => {
 		if (mobileCodeValue?.country_code) {
-			setValue(
-				'country_id',
-				getIdByMobileCountryCode({ mobile_country_code: mobileCodeValue?.country_code }),
-			);
+			const countryId = getIdByMobileCountryCode({
+				mobile_country_code: mobileCodeValue.country_code,
+			});
+			setValue('country_id', countryId);
 		}
-	}, [setValue, mobileCodeValue]);
 
-	useEffect(() => {
 		if (countryValue) {
-			setValue(
-				'mobile_number.country_code',
-				getMobileCodeByCountryId({ country_id: countryValue }),
-			);
+			const mobileCountryCode = getMobileCodeByCountryId({
+				country_id: countryValue,
+			});
+			setValue('mobile_number.country_code', mobileCountryCode);
 		}
-	}, [setValue, countryValue]);
+	}, [setValue, mobileCodeValue?.country_code, countryValue]);
 
-	const {
-		onLeadUserDetails,
-	} = useLeadUserDetails({ setProfileId });
+	const { onLeadUserDetails } = useLeadUserDetails({ setProfileId });
 
 	const {
 		signupAuthentication,

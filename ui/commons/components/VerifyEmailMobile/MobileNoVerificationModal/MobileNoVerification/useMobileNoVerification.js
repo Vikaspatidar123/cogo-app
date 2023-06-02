@@ -69,6 +69,7 @@ const useMobileNoVerification = () => {
 
 	useEffect(() => {
 		if (showEnterOtpComponent) setShowEnterOtpComponent(false);
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [watchMobileNumberControl]);
 
 	const verifyMobileNumber = async ({ actionType = {}, ...restProps }) => {

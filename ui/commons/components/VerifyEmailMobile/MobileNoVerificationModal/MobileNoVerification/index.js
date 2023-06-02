@@ -10,9 +10,9 @@ const OTP_LENGTH = 4;
 
 function MobileNoVerification() {
 	const {
-		controls = [],
+		// controls = [],
 		formProps = {},
-		errors = {},
+		// errors = {},
 		onSubmit = () => {},
 		onErrors = () => {},
 		showEnterOtpComponent = false,
@@ -22,7 +22,7 @@ function MobileNoVerification() {
 		sendOtpNumber = () => {},
 		verifyOtpNumber = () => {},
 	} = useMobileNoVerification();
-	const { fields = {}, handleSubmit = () => {} } = formProps;
+	const { handleSubmit = () => {} } = formProps;
 
 	return (
 		<div className={styles.container}>

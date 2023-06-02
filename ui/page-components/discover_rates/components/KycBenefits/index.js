@@ -6,11 +6,8 @@ import { KycCampaign as KYC } from '../../common/KYC';
 import Benefits from './Benefits';
 import styles from './styles.module.css';
 
-import { useSelector } from '@/packages/store';
-
 function KycBenefits() {
 	const [show, setShow] = useState(false);
-	const isMobile = useSelector(({ general }) => general?.isMobile);
 	return (
 		<div>
 			<div className={styles.benefits}>
@@ -37,7 +34,6 @@ function KycBenefits() {
 				}}
 				closable
 				width={750}
-				// scroll={false}
 			>
 				<KYC onFinalSubmit={() => setShow(false)} />
 			</Modal>

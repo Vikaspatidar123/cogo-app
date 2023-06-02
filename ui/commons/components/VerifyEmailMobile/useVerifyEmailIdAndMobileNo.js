@@ -15,7 +15,7 @@ const useVerifyEmailIdAndMobileNo = () => {
 
 	const apiName = 'resend_user_verification_email';
 
-	const resendEmailVerificationMailApi = useRequest({
+	const [{ loading }, resendEmailVerificationMailApi] = useRequest({
 		url    : `/${apiName}`,
 		method : 'post',
 	}, { manual: true });
@@ -24,7 +24,7 @@ const useVerifyEmailIdAndMobileNo = () => {
 		try {
 			const payload = { id: userId, platform: 'app' };
 
-			const response = await resendEmailVerificationMailApi?.trigger({
+			const response = await resendEmailVerificationMailApi({
 				data: payload,
 			});
 
@@ -48,6 +48,7 @@ const useVerifyEmailIdAndMobileNo = () => {
 		resendEmailVerificationMailApi,
 		onClickVerifyEmailIdButton,
 		onClickVerifyMobileNoButton,
+		loading,
 	};
 };
 

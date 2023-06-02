@@ -33,6 +33,8 @@ const VerifyEmailMobile = () => {
 
 				<Button
 					type="button"
+					size="sm"
+					themeType="tertiary"
 					onClick={onClickVerifyEmailIdButton}
 					disabled={resendEmailVerificationMailApi?.loading}
 				>

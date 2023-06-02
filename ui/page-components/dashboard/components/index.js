@@ -22,7 +22,6 @@ function SassDashboard() {
 		<div className={styles.main_class}>
 			<div className={styles.main_class2}>
 				<div className={styles.part1}>
-					{' '}
 					{/* <VerifyEmailMobile /> */}
 
 					{kyc_status !== 'pending_verification' && (

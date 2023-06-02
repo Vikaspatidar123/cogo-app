@@ -18,8 +18,6 @@ import getInvoicingComponentKey from '../../utils/invoicingKey';
 import styles from './styles.module.css';
 import useLclCustoms from './useLclCustoms';
 
-// import { AboutAction } from '@/ui/commons/components/webflow';
-
 function LclCustoms(props) {
 	const {
 		rate,
@@ -126,11 +124,14 @@ function LclCustoms(props) {
                                         || startCase(primary_service)}
 								</div>
 								<div className={styles.information}>
-									{/* <AboutAction slug="cancellation-terms"> */}
-									<div className={styles.button_link}>
+									<a
+										className={styles.button_link}
+										href="https://www.cogoport.com/privacy-policy"
+										target="_blank"
+										rel="noreferrer"
+									>
 										Cancellation Charges & Policy
-									</div>
-									{/* </AboutAction> */}
+									</a>
 								</div>
 							</div>
 						</div>

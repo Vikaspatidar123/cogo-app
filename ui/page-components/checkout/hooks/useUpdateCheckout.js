@@ -16,7 +16,6 @@ const useUpdateCheckout = ({ serviceId, refetch, type = '' }) => {
 		url    : '/update_checkout_service',
 		method : 'post',
 	}, { manual: true });
-	console.log(serviceId, 'serviceId');
 	const updateCheckout = async (data) => {
 		if (isEmpty(data) || loading) {
 			return;

@@ -349,14 +349,6 @@ const useGetCheckout = () => {
 			});
 	};
 
-	// const refetch = useCallback((isSetLoading = false) => {
-	// 	setState((prevState) => ({
-	// 		...prevState,
-	// 		loading: isSetLoading ? true : prevState.loading,
-	// 	}));
-	// 	getCheckout();
-	// }, []);
-
 	const refetch = (isSetLoading = false) => {
 		setState((prevState) => ({
 			...prevState,

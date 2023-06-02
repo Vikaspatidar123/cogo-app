@@ -20,7 +20,6 @@ import getInvoicingComponentKey from '../../utils/invoicingKey';
 import styles from './styles.module.css';
 import useFcl from './useFcl';
 
-// import { AboutAction } from '@/ui/commons/components/webflow';
 import InvoicingParties from '@/ui/page-components/checkout/commons/InvoicingParties';
 
 function FCL(props) {
@@ -75,7 +74,12 @@ function FCL(props) {
 	// }
 
 	const key = getInvoicingComponentKey({ invoice });
-
+	const info = {
+		detail,
+		services   : rate?.services,
+		primaryServiceData,
+		trade_type : detail?.trade_type,
+	};
 	const ContainersDisplay = () => {
 		const { containers } = summary;
 
@@ -161,11 +165,14 @@ function FCL(props) {
 										)}
 									</div>
 
-									{/* <AboutAction slug="cancellation-terms"> */}
-									<p className={styles.button_link}>
+									<a
+										className={styles.button_link}
+										href="https://www.cogoport.com/privacy-policy"
+										target="_blank"
+										rel="noreferrer"
+									>
 										Cancellation Charges & Policy
-									</p>
-									{/* </AboutAction> */}
+									</a>
 								</div>
 							</div>
 						</div>
@@ -299,6 +306,7 @@ function FCL(props) {
 			<div className={styles.right_component}>
 				<RateSummary
 					detail={detail}
+					info={info}
 					allServices={allServices}
 					rate={rate}
 					summary={summary}

@@ -7,6 +7,7 @@ function PromocodeThumbnail({
 	setShowCoupons,
 	setCouponApplied,
 	refetch,
+	bgColor,
 }) {
 	const { updateCheckoutPromotion } = useUpdateCheckoutPromotion();
 
@@ -18,21 +19,29 @@ function PromocodeThumbnail({
 			setCouponApplied(true);
 		}
 	};
-
+	const styleCode = {
+		position             : 'relative',
+		width                : '100%',
+		height               : '130px',
+		backgroundRepeat     : 'no-repeat',
+		backgroundSize       : 'cover',
+		borderTopLeftRadius  : '4px',
+		borderTopRightRadius : ' 4px',
+		backgroundImage      : promotion.thumbnail_image,
+	};
 	return (
 		<div
 			role="presentation"
 			className={styles.container}
 			onClick={applyPromocode}
+			style={{ background: bgColor }}
 		>
-			<div className={`${styles.banner_image}`} />
-			{/* img={promotion.thumbnail_image} */}
+			<img style={styleCode} src={promotion.thumbnail_image} alt="" />
 			{promotion.promotion_discounts[0].unit === 'percentage' ? (
-				<div className={styles.circle_iCon}>
+				<div className={styles.circle_icon}>
 					<div className={styles.discount}>
 						{Math.round(promotion.promotion_discounts[0].value)}
 						%
-						{' '}
 						<br />
 						<div className={styles.off_text}>Off</div>
 					</div>
@@ -59,7 +68,6 @@ function PromocodeThumbnail({
 			</div>
 			<div
 				className={styles.holes_lower}
-				// dashedColor={dashedColor}
 			/>
 			<div className={styles.promo_code}>
 				<div className={styles.promo_code_name}>

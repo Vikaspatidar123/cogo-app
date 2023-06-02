@@ -52,6 +52,7 @@ function PromocodeDetails({
 			onClose={() => setShowCoupons(false)}
 			onOuterClick={() => setShowCoupons(false)}
 			show={showCoupons}
+			size="lg"
 		>
 			<div className={styles.modal_container}>
 				<Modal.Header className={styles.header_text} title="Promo codes" />
@@ -95,7 +96,7 @@ function PromocodeDetails({
 							</div>
 							<div className={styles.row}>
 								{(list || []).map((promotion, index) => (
-									<div className={styles.col} key={promotion?.id}>
+									<div className={styles.col1} key={promotion?.id}>
 										<PromocodeThumbnail
 											key={promotion}
 											promotion={promotion}
@@ -117,7 +118,7 @@ function PromocodeDetails({
 					!loading
 					&& list.length > 0 && (
 						<div className={styles.styled_row}>
-							<div className={styles.Col}>
+							<div className={styles.col1}>
 								<PromocodeThumbnail
 									promotion={list[0]}
 									setShowCoupons={setShowCoupons}
@@ -128,7 +129,7 @@ function PromocodeDetails({
 									dashedColor={promoCodesBgColors[0]}
 								/>
 							</div>
-							<div className={styles.Col}>
+							<div className={styles.col}>
 								<div className={styles.styled_text}>Terms & Conditions</div>
 								<ol className="ml-16">
 									{list[0].terms_and_conditions.map((val) => (

@@ -18,8 +18,6 @@ import getInvoicingComponentKey from '../../utils/invoicingKey';
 import styles from './styles.module.css';
 import useAirCustoms from './useAirCustoms';
 
-// import { AboutAction } from '@/ui/commons/components/webflow';
-
 function AirCustoms(props) {
 	const {
 		rate,
@@ -126,9 +124,15 @@ function AirCustoms(props) {
 								{shipping_line?.short_name || startCase(primary_service)}
 							</div>
 							<div className={styles.information}>
-								{/* <AboutAction slug="cancellation-terms"> */}
-								<div className={styles.button_link}>Cancellation Charges & Policy</div>
-								{/* </AboutAction> */}
+								<a
+									className={styles.button_link}
+									href="https://www.cogoport.com/privacy-policy"
+									target="_blank"
+									rel="noreferrer"
+								>
+									Cancellation Charges & Policy
+
+								</a>
 							</div>
 						</div>
 					</div>

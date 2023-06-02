@@ -1,6 +1,5 @@
 import { Toast } from '@cogoport/components';
 
-import getApiErrorString from '@/packages/forms/utils/getApiError';
 import { useRequest } from '@/packages/request';
 import { useSelector } from '@/packages/store';
 
@@ -32,7 +31,7 @@ const useBookShipment = () => {
 
 			return null;
 		} catch (e) {
-			Toast.error(getApiErrorString(e.data));
+			Toast.error(e.response?.data?.message);
 			return null;
 		}
 	};

@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { useRouter } from '@/packages/next';
 import { useRequest } from '@/packages/request';
 import { useSelector } from '@/packages/store';
+import showErrorsInToast from '@/ui/commons/utils/showErrorsInToast';
 
 const useCreateCheckout = ({
 	data = {},
@@ -70,7 +71,7 @@ const useCreateCheckout = ({
 				Toast.error(res?.messages);
 			}
 		} catch (e) {
-			Toast.error(e?.messages);
+			showErrorsInToast(e?.response?.data);
 			setConfirmation(false);
 		}
 	};

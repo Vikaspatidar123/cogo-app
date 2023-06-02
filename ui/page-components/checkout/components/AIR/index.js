@@ -107,7 +107,15 @@ function AIR(props) {
 							</div>
 						</div>
 						{/* <AboutAction slug="cancellation-terms"> */}
-						<div className={styles.button_link}>Cancellation Charges & Policy</div>
+						<a
+							className={styles.button_link}
+							href="https://www.cogoport.com/privacy-policy"
+							target="_blank"
+							rel="noreferrer"
+						>
+							Cancellation Charges & Policy
+
+						</a>
 						{/* </AboutAction> */}
 					</div>
 				</div>

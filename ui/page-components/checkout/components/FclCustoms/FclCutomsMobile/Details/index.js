@@ -76,9 +76,15 @@ function Details({
 						</div>
 
 						<div className={styles.information}>
-							{/* <AboutAction slug="cancellation-terms"> */}
-							<div className={styles.button_link}>Cancellation Charges & Policy</div>
-							{/* </AboutAction> */}
+							<a
+								className={styles.button_link}
+								href="https://www.cogoport.com/privacy-policy"
+								target="_blank"
+								rel="noreferrer"
+							>
+								Cancellation Charges & Policy
+
+							</a>
 						</div>
 					</div>
 				</div>

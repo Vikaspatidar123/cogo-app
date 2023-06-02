@@ -6,6 +6,7 @@ import styles from './styles.module.css';
 
 function RateSummary({
 	detail,
+	info,
 	rate,
 	summary,
 	cogopoint_data,
@@ -33,6 +34,7 @@ function RateSummary({
 			<Footer
 				rate={rate}
 				detail={detail}
+				info={info}
 				summary={summary}
 				refetch={refetch}
 				cogopoint_data={cogopoint_data}

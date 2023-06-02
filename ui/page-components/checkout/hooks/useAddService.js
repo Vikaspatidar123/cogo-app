@@ -286,7 +286,7 @@ const useAddService = (service, summary, source) => {
 
 			return res;
 		} catch (e) {
-			Toast.error(getApiErrorString(e.data));
+			Toast.error(getApiErrorString(e?.response?.data));
 		}
 
 		return null;

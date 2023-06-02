@@ -18,8 +18,6 @@ import getInvoicingComponentKey from '../../utils/invoicingKey';
 import styles from './styles.module.css';
 import useFtl from './useFtl';
 
-// import { AboutAction } from '@/ui/commons/components/webflow';
-
 function FTL(props) {
 	const {
 		summary,
@@ -89,9 +87,15 @@ function FTL(props) {
 				>
 					{free_detention_hours && <div>24 Hours Free Detention</div>}
 
-					{/* <AboutAction slug="cancellation-terms"> */}
-					<div className={styles.button_link}>Cancellation Charges & Policy</div>
-					{/* </AboutAction> */}
+					<a
+						className={styles.button_link}
+						href="https://www.cogoport.com/privacy-policy"
+						target="_blank"
+						rel="noreferrer"
+					>
+						Cancellation Charges & Policy
+
+					</a>
 				</div>
 			</div>
 		</div>

@@ -4,6 +4,7 @@ import { useState } from 'react';
 import useBookShipment from '../../../hooks/useBookShipment';
 
 import CogoPoint from './CogoPoint';
+import EmailConfirmation from './EmailConfirmation';
 import NewCogoPoint from './NewCogoPoint';
 import PromoCodes from './PromoCodes';
 import styles from './styles.module.css';
@@ -12,6 +13,8 @@ import Total from './Total';
 
 function RateSummaryFooter({
 	detail,
+	info,
+	isApp,
 	rate,
 	summary,
 	cogopoint_data,
@@ -22,7 +25,7 @@ function RateSummaryFooter({
 		show : false,
 		id   : null,
 	});
-
+	const [confirmation, setConfirmation] = useState(false);
 	const { bookShipment, loading } = useBookShipment(rate);
 
 	const { credit_details, credit_terms_amd_condition } = detail || {};
@@ -42,7 +45,9 @@ function RateSummaryFooter({
 			id,
 		});
 	};
-
+	const handleClick = () => (detail?.primary_service === 'fcl_freight'
+		? setConfirmation(true)
+		: onSubmit());
 	const isKycPending =		detail.importer_exporter.kyc_status !== 'verified'
 		&& !detail.importer_exporter.skippable_checks?.includes('kyc');
 
@@ -58,7 +63,7 @@ function RateSummaryFooter({
 					<Total rate={rate} />
 					<Button
 						type="button"
-						onClick={onSubmit}
+						onClick={handleClick}
 						size="md"
 						themeType="accent"
 						className={styles.submit}
@@ -74,6 +79,15 @@ function RateSummaryFooter({
 					</Button>
 				</div>
 			</div>
+			{confirmation ? (
+				<EmailConfirmation
+					info={info}
+					isApp={isApp}
+					handleSendEmail={onSubmit}
+					confirmation={confirmation}
+					setConfirmation={setConfirmation}
+				/>
+			) : null}
 			<Modal
 				className="primary lg"
 				closable={false}

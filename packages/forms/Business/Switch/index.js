@@ -22,7 +22,7 @@ function IncoTermSelect({ right, left, active, onChange, style, id }) {
 			<Toggle
 				className={styles.styled_toggle}
 				onChange={onToggle}
-				value={active === right.value}
+				checked={active === right.value}
 				id={`${id || 'switch'}_toggle`}
 			/>
 			<div

@@ -23,8 +23,6 @@ import getInvoicingComponentKey from '../../utils/invoicingKey';
 import styles from './styles.module.css';
 import useHaulage from './useHaulage';
 
-// import { AboutAction } from '@/ui/commons/components/webflow';
-
 function HAULAGE(props) {
 	const {
 		rate,
@@ -130,11 +128,14 @@ function HAULAGE(props) {
 										)}
 									</div>
 
-									{/* <AboutAction slug="cancellation-terms"> */}
-									<div className={styles.button_link}>
+									<a
+										className={styles.button_link}
+										href="https://www.cogoport.com/privacy-policy"
+										target="_blank"
+										rel="noreferrer"
+									>
 										Cancellation Charges & Policy [second] = first
-									</div>
-									{/* </AboutAction> */}
+									</a>
 								</div>
 							</div>
 						</div>

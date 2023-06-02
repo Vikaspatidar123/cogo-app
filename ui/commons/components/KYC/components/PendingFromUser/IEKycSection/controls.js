@@ -41,9 +41,9 @@ const controls = [
 					Electricity Bill, Water Bill, Telephone Landline Bill, Property 
 					tax receipt, Current registered sale/lease/rent agreement, Gas connection bill, 
 					Credit card statement ( not older than 6 months )`,
-		label      : 'Business Address Proof',
-		// accept : 'image/*,.pdf,.doc,.docx,application/msword,'
-		// + 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+		label  : 'Business Address Proof',
+		accept : 'image/*,.pdf,.doc,.docx,application/msword,'
+		+ 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
 		uploadType : 'aws',
 		rules      : { required: 'Required' },
 	},

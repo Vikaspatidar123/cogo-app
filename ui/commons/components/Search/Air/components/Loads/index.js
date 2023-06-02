@@ -104,7 +104,6 @@ function Loads(props, ref) {
 				<div
 					className={cl`${styles.load_container} ${isEdit && styles.is_edit}`}
 					role="presentation"
-					// showPopover={showPopover}
 					onClick={handlePopoverBtn}
 				>
 					{isEmpty(showFilledValues) ? (

@@ -1,7 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-// import Layout from '@cogo/business-modules/form/Layout';
 import { Button } from '@cogoport/components';
-// import { useFormCogo } from '@cogoport/front/hooks';
 import React, { useState, useEffect, useMemo } from 'react';
 
 import COMMODITY_TYPE_MAPPING from '../../../utils/CommodityMapping';

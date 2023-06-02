@@ -1,4 +1,3 @@
-// import SegmentedControl from '@cogoport/front/components/SegmentedControl';
 import { Chips } from '@cogoport/components';
 import { isEmpty } from '@cogoport/utils';
 import React, { useState } from 'react';

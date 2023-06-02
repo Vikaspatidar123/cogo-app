@@ -1,5 +1,3 @@
-// import CloudUpload from '../../../../Goods/GoodsDetails/SpecialConsideration/cloudUpload.svg';
-
 const controls = [
 	{
 		name            : 'certificates',
@@ -10,7 +8,6 @@ const controls = [
 			+ 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
 		uploadType  : 'aws',
 		themeType   : 'secondary',
-		// uploadIcon: () => <CloudUpload size={4} />,
 		validations : [{ type: 'required', message: 'Mandatory' }],
 		type        : 'file',
 		drag        : true,

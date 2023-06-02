@@ -13,6 +13,7 @@ import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 import getCountryDetails from '@/ui/commons/utils/getCountryDetails';
 
 const { IN: INDIA_COUNTRY_ID } = GLOBAL_CONSTANTS.country_ids;
+const INCHCUBE_TO_CBM = 61020;
 
 const INDIA_COUNTRY_DETAILS = getCountryDetails({
 	country_id: INDIA_COUNTRY_ID,
@@ -182,7 +183,7 @@ const useAir = ({
               * Number(item.width)
               * Number(item.height)
               * Number(item.quantity))
-            / 61020;
+            / INCHCUBE_TO_CBM;
 
 					length *= 2.54;
 					width *= 2.54;

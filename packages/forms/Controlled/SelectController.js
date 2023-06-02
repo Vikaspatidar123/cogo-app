@@ -11,6 +11,7 @@ function SelectController(props) {
 			control={control}
 			name={name}
 			rules={rules}
+			defaultValue={value}
 			render={({ field: { onChange, onBlur, value: newValue } }) => (
 				<Select
 					{...rest}

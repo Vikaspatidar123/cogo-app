@@ -445,7 +445,6 @@ function Quotation({
 						noRatesArr={noRatesServices}
 						setConfirmation={setConfirmation}
 						data={data}
-						scope={scope}
 						search_id={query?.search_id}
 						refetch={refetch}
 					/>

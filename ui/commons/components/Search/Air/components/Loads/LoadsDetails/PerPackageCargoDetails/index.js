@@ -51,13 +51,6 @@ function PerPackageCargoDetails({
 
 	const { errors } = formState;
 
-	// const {
-	// 	name,
-	// 	register,
-	// 	control:fieldControl,
-	// 	controls: newControls,
-	// } = field.packages || {};
-
 	const { fields, append, remove } = useFieldArray({ control, name: 'packages' });
 
 	const childEmptyValues = {};

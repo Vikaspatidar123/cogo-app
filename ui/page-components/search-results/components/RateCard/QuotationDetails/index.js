@@ -269,6 +269,7 @@ function QuotationDetails(
 							show={showFeedbackModal}
 							details={details}
 							requestService={requestService}
+							setRequestService={setRequestService}
 						/>
 					) : null}
 				</>

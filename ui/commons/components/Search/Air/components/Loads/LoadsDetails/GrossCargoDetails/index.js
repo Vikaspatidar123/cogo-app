@@ -110,7 +110,6 @@ function GrossCargoDetails({
 
 					<div
 						className={styles.single_control}
-						// style={{ minWidth: 80, marginRight: 12 }}
 					>
 						<div className={styles.label}>
 							{tooltipMessage({

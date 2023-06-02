@@ -116,11 +116,7 @@ const getControls = ({
 			required: true,
 		},
 	},
-	// {
-	// 	name  : 'origin_empty',
-	// 	label : '',
-	// 	span  : 6,
-	// },
+
 	{
 		name           : 'origin_address',
 		labelShow      : 'ORIGIN PINCODE',
@@ -144,11 +140,7 @@ const getControls = ({
 			required: true,
 		},
 	},
-	// {
-	// 	name  : 'destination_empty',
-	// 	label : '',
-	// 	span  : 6,
-	// },
+
 	{
 		name           : 'destination_address',
 		labelShow      : 'DESTINATION PINCODE',

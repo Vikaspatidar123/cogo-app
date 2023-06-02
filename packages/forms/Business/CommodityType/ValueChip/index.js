@@ -1,7 +1,7 @@
 import { Button } from '@cogoport/components';
+import { IcMCrossInCircle } from '@cogoport/icons-react';
 import React from 'react';
 
-import IcClear from './ic-clear.svg';
 import styles from './styles.module.css';
 
 function ValueChip({ value, onCancel, style, id }) {
@@ -21,7 +21,7 @@ function ValueChip({ value, onCancel, style, id }) {
 					border     : 'none',
 				}}
 			>
-				<IcClear style={{ width: 24, height: 24 }} />
+				<IcMCrossInCircle style={{ width: 20, height: 20 }} fill="#000" />
 			</Button>
 		</div>
 	);

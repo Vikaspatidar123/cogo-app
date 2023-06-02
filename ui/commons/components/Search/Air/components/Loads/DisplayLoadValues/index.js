@@ -3,6 +3,8 @@ import { isEmpty } from '@cogoport/utils';
 
 import styles from '../styles.module.css';
 
+const INCHCUBE_TO_CBM = 61020;
+
 function DisplayLoadValues({ showFilledValues }) {
 	if (!isEmpty(showFilledValues.gross || {})) {
 		const { gross = {} } = showFilledValues || {};
@@ -91,7 +93,7 @@ function DisplayLoadValues({ showFilledValues }) {
           * Number(item.width)
           * Number(item.height)
           * Number(item.quantity))
-        / 61020;
+        / INCHCUBE_TO_CBM;
 		}
 	});
 

@@ -21,7 +21,7 @@ function Form({
 }) {
 	const { country_code, preferred_languages, country_id } = rest || {};
 	const [isOpen, setIsOpen] = useState(false);
-	const newControls = controls(country_code, isOpen, setIsOpen, rest);
+	const newControls = controls({ country_code, isOpen, setIsOpen, rest });
 	const {
 		control,
 		formState: { errors },

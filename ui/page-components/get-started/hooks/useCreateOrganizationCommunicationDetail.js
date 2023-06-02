@@ -44,7 +44,7 @@ const useCreateOrganizationCommunicationDetail = ({ orgId, orgBranchId }) => {
 
 			if (response?.hasError) return;
 			if (response?.status === 200) {
-				push(`/${orgId}/${orgBranchId}/importer-exporter/dashboard`);
+				push(`/${orgId}/${orgBranchId}/dashboard`);
 			}
 		} catch (error) {
 			Toast.error('Something Went Wrong');

@@ -2,6 +2,7 @@ import { Toast } from '@cogoport/components';
 
 import { useRequest } from '@/packages/request';
 import { useSelector } from '@/packages/store';
+import showErrorsInToast from '@/ui/commons/utils/showErrorsInToast';
 
 const useCreateOrganization = ({ setBillingAddressDetails, setOrgId, setOrgBranchId, lead_organization_id }) => {
 	const {
@@ -40,7 +41,7 @@ const useCreateOrganization = ({ setBillingAddressDetails, setOrgId, setOrgBranc
 
 			Toast.success('Organization created successfully');
 		} catch (error) {
-			Toast.error(error?.error);
+			showErrorsInToast(error?.response?.data);
 		}
 	};
 

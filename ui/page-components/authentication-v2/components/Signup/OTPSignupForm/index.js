@@ -10,13 +10,14 @@ import styles from './styles.module.css';
 
 import OTPLayout from '@/packages/forms/Business/OTPLayout';
 
-function OTPSignupForm({ otpId = '', userDetails = {}, setMode = () => {}, id = '' }) {
+function OTPSignupForm({ otpId = '', userDetails = {}, setMode = () => {} }) {
 	const { mobile_number = {}, email = '' } = userDetails;
 	const [otpValue, setOtpValue] = useState('');
 
 	const {
 		onSignupWithOtp = () => {},
 		signupLoading = false,
+		resendLoading = false,
 		resendOtp = () => {},
 	} = useSignupOtpAuthentication({
 		setMode,
@@ -58,7 +59,7 @@ function OTPSignupForm({ otpId = '', userDetails = {}, setMode = () => {}, id = 
 			<OTPLayout
 				otpLength={6}
 				setOtpValue={setOtpValue}
-				loading={signupLoading}
+				loading={resendLoading}
 				sendOtp={resendOtp}
 			/>
 
@@ -99,7 +100,7 @@ function OTPSignupForm({ otpId = '', userDetails = {}, setMode = () => {}, id = 
 				<span
 					className={styles.resend_mail_button}
 					role="presentation"
-					onClick={() => onClickResendEmail(id)}
+					onClick={() => onClickResendEmail(userDetails?.lead_user_id)}
 				>
 					resend email.
 				</span>

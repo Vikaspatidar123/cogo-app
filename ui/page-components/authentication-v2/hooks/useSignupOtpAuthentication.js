@@ -1,48 +1,42 @@
 import { Toast } from '@cogoport/components';
 
-import getApiErrorString from '@/packages/forms/utils/getApiError';
-import { useRouter } from '@/packages/next';
 import { useRequest } from '@/packages/request/index';
 import setCookieAndRedirect from '@/ui/commons/utils/setCookieAndRedirect';
 
 const useSignupOtpAuthentication = ({ otpValue = '', setMode = () => {}, userDetails = {} }) => {
-	const { query } = useRouter();
-	const [{ loading: verifyLeadUserMobileApiLoading }, verifyLeadUserMobileApitrigger] = useRequest({
+	const [{ loading: signupLoading }, verifyOtpTrigger] = useRequest({
 		url    : '/verify_user_mobile',
 		method : 'post',
 	}, { manual: true });
 
-	const [{ loading: resendLeadVerificationOtpApiLoading }, resendLeadVerificationOtpApitrigger] = useRequest({
+	const [{ loading: resendLoading }, resendOtpTrigger] = useRequest({
 		url    : '/verify_user_mobile',
 		method : 'post',
 	}, { manual: true });
-	const { lead_organization_id, source } = query;
 
 	const onSignupWithOtp = async () => {
 		try {
-			setMode('loading_prompts');
-			// const payload = {
-			// 	mobile_number       : mobileNumber?.number,
-			// 	mobile_country_code : mobileNumber?.country_code,
-			// 	mobile_otp          : otpValue,
-			// };
+			const payload = {
+				mobile_number       : userDetails?.mobile_number?.number,
+				mobile_country_code : userDetails?.mobile_number?.country_code,
+				mobile_otp          : otpValue,
+			};
 
-			// const response = await verifyLeadUserMobileApitrigger({
-			// 	data: payload,
-			// });
+			const response = await verifyOtpTrigger({
+				data: payload,
+			});
 
-			// Toast?.success('Verification Successful!');
+			Toast?.success('Verification Successful!');
 
-			// const redirectUrl = `/v2/get-started?saastheme&lead_organization_id=${lead_organization_id}&source=${
-			// 	source || 'subscriptions'
-			// }`;
+			const redirectUrl = '/v2/dashboard';
 
-			// const { user_session } = userDetails || {};
-			// const { token } = user_session || {};
-			// if (response) {
-			// 	setCookieAndRedirect(token, {}, redirectUrl);
-			// 	setMode('loading_prompts');
-			// }
+			const { user_session } = userDetails || {};
+			const { token } = user_session || {};
+
+			if (response) {
+				setMode('loading_prompts');
+				setCookieAndRedirect(token, {}, redirectUrl);
+			}
 		} catch (error) {
 			Toast.error(error?.data);
 		}
@@ -55,11 +49,11 @@ const useSignupOtpAuthentication = ({ otpValue = '', setMode = () => {}, userDet
 				mobile_country_code : userDetails?.mobile_country_code,
 			};
 
-			await resendLeadVerificationOtpApitrigger({
+			await resendOtpTrigger({
 				data: payload,
 			});
 
-			Toast.success('OTP resent successfully');
+			Toast.success('OTP Resent Successfully');
 
 			timer?.restart?.();
 		} catch (error) {
@@ -68,9 +62,9 @@ const useSignupOtpAuthentication = ({ otpValue = '', setMode = () => {}, userDet
 	};
 
 	return {
-		loading          : verifyLeadUserMobileApiLoading,
+		signupLoading,
 		onSignupWithOtp,
-		resendOtpLoading : resendLeadVerificationOtpApiLoading,
+		resendLoading,
 		resendOtp,
 	};
 };

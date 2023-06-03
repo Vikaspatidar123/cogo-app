@@ -46,6 +46,28 @@ function Login() {
 
 	const Component = LOGIN_FLOW_MAPPING[mode] || null;
 
+	// const [location, setLocation] = useState(null);
+
+	// useEffect(() => {
+	// 	if (navigator.geolocation) {
+	// 		navigator.geolocation.getCurrentPosition(
+	// 			(position) => {
+	// 				setLocation({
+	// 					latitude  : position.coords.latitude,
+	// 					longitude : position.coords.longitude,
+	// 				});
+	// 			},
+	// 			(error) => {
+	// 				console.log(error.message);
+	// 			},
+	// 		);
+	// 	} else {
+	// 		console.log('Geolocation is not supported by this browser.');
+	// 	}
+	// }, []);
+
+	// console.log('Location Details:: ', location);
+
 	return (
 		<>
 			<ShipStepper mode={mode} />

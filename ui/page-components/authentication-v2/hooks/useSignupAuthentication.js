@@ -3,7 +3,7 @@ import { Toast } from '@cogoport/components';
 import { useRequest } from '@/packages/request';
 
 const useSignupAuthentication = ({
-	setMode, setUserDetails, captchaResponse, hasWhatsApp, profileId,
+	setMode, setUserDetails, captchaResponse, leadUserId,
 }) => {
 	const [{ loading: signupLoading }, trigger] = useRequest({
 		url    : 'create_sign_up_lead_user',
@@ -14,12 +14,12 @@ const useSignupAuthentication = ({
 		e.preventDefault();
 		try {
 			const payload = {
-				lead_user_id              : profileId || undefined,
+				lead_user_id              : leadUserId || undefined,
 				name                      : val.name,
 				email                     : val.email,
 				mobile_country_code       : val.mobile_number.country_code,
 				mobile_number             : val.mobile_number.number,
-				is_whatsapp_number        : hasWhatsApp,
+				is_whatsapp_number        : val.is_whatsapp_number,
 				business_name             : val.business_name,
 				country_id                : val.country_id,
 				google_recaptcha_response : captchaResponse,

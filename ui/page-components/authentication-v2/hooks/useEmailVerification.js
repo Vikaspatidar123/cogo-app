@@ -11,7 +11,7 @@ const useEmailVerification = () => {
 	const onClickResendEmail = async (id) => {
 		try {
 			const payload = {
-				lead_user_id : id,
+				lead_user_id : id || undefined,
 				platform     : 'app',
 			};
 

@@ -25,7 +25,7 @@ function SignupForm({ userDetails = {}, setMode = () => {}, setUserDetails = () 
 	const recaptchaRef = useRef({});
 	const [customError, setCustomError] = useState('');
 	const [captchaError, setCaptchaError] = useState('');
-	const [profileId, setProfileId] = useState('');
+	const [leadUserId, setLeadUserId] = useState('');
 
 	const {
 		handleSubmit,
@@ -44,7 +44,6 @@ function SignupForm({ userDetails = {}, setMode = () => {}, setUserDetails = () 
 	const formValues = watch();
 
 	const mobileCodeValue = watch('mobile_number');
-	const countryValue = watch('country_id');
 
 	useEffect(() => {
 		if (mobileCodeValue?.country_code) {
@@ -53,21 +52,14 @@ function SignupForm({ userDetails = {}, setMode = () => {}, setUserDetails = () 
 			});
 			setValue('country_id', countryId);
 		}
+	}, [setValue, mobileCodeValue?.country_code]);
 
-		if (countryValue) {
-			const mobileCountryCode = getMobileCodeByCountryId({
-				country_id: countryValue,
-			});
-			setValue('mobile_number.country_code', mobileCountryCode);
-		}
-	}, [setValue, mobileCodeValue?.country_code, countryValue]);
-
-	const { onLeadUserDetails } = useLeadUserDetails({ setProfileId });
+	const { onLeadUserDetails } = useLeadUserDetails({ setLeadUserId });
 
 	const {
 		signupAuthentication,
 		signupLoading,
-	} = useSignupAuthentication({ setMode, setUserDetails, captchaResponse });
+	} = useSignupAuthentication({ setMode, setUserDetails, captchaResponse, leadUserId });
 
 	useEffect(() => {
 		const hasMobileValues = checkMobileInput(formValues);
@@ -102,7 +94,7 @@ function SignupForm({ userDetails = {}, setMode = () => {}, setUserDetails = () 
 		await trigger('email');
 		const { email } = formValues;
 		if (email && errors.email === undefined) {
-			onLeadUserDetails({ profileId, formValues });
+			onLeadUserDetails({ leadUserId, formValues });
 		}
 	};
 
@@ -110,7 +102,7 @@ function SignupForm({ userDetails = {}, setMode = () => {}, setUserDetails = () 
 		const hasMobileValues = checkMobileDetails(formValues);
 		const { mobile_number } = formValues;
 		if (hasMobileValues && mobile_number) {
-			onLeadUserDetails({ profileId, formValues });
+			onLeadUserDetails({ leadUserId, formValues });
 		}
 	};
 

@@ -4,7 +4,6 @@ import { IcMArrowBack } from '@cogoport/icons-react';
 import dynamic from 'next/dynamic';
 import React, { useState, useEffect, useMemo } from 'react';
 
-// import handleLiveChat from '../helpers/handle-live-chat';
 import triggerAnalytics from '../helpers/triggerAnalytics';
 import useGetEnquiryQuota from '../hooks/useGetEnquiryQuota';
 import useGetSchedules from '../hooks/useGetSchedules';

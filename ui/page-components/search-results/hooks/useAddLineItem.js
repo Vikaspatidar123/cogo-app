@@ -50,7 +50,7 @@ const useAddLineItem = ({ service, spotBookingDetails, getCheckout }) => {
 		};
 
 		try {
-			const res = await updateCheckoutCustomizeQuotation.trigger({
+			const res = await updateCheckoutCustomizeQuotation({
 				data: body,
 			});
 			if (!res.hasError) {
@@ -79,7 +79,7 @@ const useAddLineItem = ({ service, spotBookingDetails, getCheckout }) => {
 		};
 
 		try {
-			const res = await updateCheckoutCustomizeQuotation.trigger({
+			const res = await updateCheckoutCustomizeQuotation({
 				data: body,
 			});
 			if (!res.hasError) {

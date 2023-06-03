@@ -2,7 +2,7 @@ import { addDays } from '@cogoport/utils';
 
 const SPECIAL_CONSIDERATION = ['dangerous', 'temp_controlled', 'other_special'];
 
-export const airControls = (scope, trade_type, airlineOptions) => {
+export const airControls = (trade_type, airlineOptions) => {
 	const controls = [
 		{
 			name           : 'airline_id',
@@ -10,7 +10,6 @@ export const airControls = (scope, trade_type, airlineOptions) => {
 			type           : 'async_select',
 			asyncKey       : 'air-lines',
 			defaultOptions : airlineOptions,
-			className      : 'primary sm',
 			placeholder    : 'Choose an Airline',
 			caret          : true,
 			span           : 6,
@@ -21,7 +20,6 @@ export const airControls = (scope, trade_type, airlineOptions) => {
 			name        : 'departure',
 			type        : 'datepicker',
 			placeholder : 'Departure',
-			className   : 'primary sm',
 			minDate     : addDays(new Date(), 1),
 			span        : 6,
 			rules       : { required: 'Required' },
@@ -31,7 +29,6 @@ export const airControls = (scope, trade_type, airlineOptions) => {
 			label       : 'Arrival',
 			placeholder : 'Arrival',
 			minDate     : addDays(new Date(), 1),
-			className   : 'primary sm',
 			type        : 'datepicker',
 			span        : 6,
 			rules       : { required: 'Required' },
@@ -41,18 +38,16 @@ export const airControls = (scope, trade_type, airlineOptions) => {
 			label       : 'Number of Stops',
 			type        : 'number',
 			placeholder : 'Enter number of stops',
-			className   : 'primary sm',
 			span        : 6,
 			rules       : { required: 'Required', min: 0 },
 		},
 		{
-			label     : 'Select Suitable Schedules',
-			name      : 'suitable_schedule',
-			type      : 'pills',
-			className : 'primary sm',
-			span      : 12,
-			options   : [],
-			rules     : { required: 'Required' },
+			label   : 'Select Suitable Schedules',
+			name    : 'suitable_schedule',
+			type    : 'pills',
+			span    : 12,
+			options : [],
+			rules   : { required: 'Required' },
 		},
 	];
 
@@ -66,7 +61,6 @@ export const airControls = (scope, trade_type, airlineOptions) => {
 			drag            : true,
 			uploadIcon      : 'ic-upload',
 			label           : 'Upload MSDS certificate',
-			className       : 'primary sm',
 			accept:
                 'image/*,.pdf,.doc,.docx,application/msword'
                 + ',application/vnd.openxmlformats-officedocument.wordprocessingml.document',
@@ -82,8 +76,6 @@ export const airControls = (scope, trade_type, airlineOptions) => {
 			themeType       : 'secondary',
 			onlyURLOnChange : true,
 			drag            : true,
-			uploadIcon      : 'ic-upload',
-			className       : 'primary sm',
 			label           : 'Upload Packing List',
 			accept:
                 'image/*,.pdf,.doc,.docx,application/msword'
@@ -94,23 +86,20 @@ export const airControls = (scope, trade_type, airlineOptions) => {
 		});
 	}
 
-	if (scope === 'app') {
-		controls.push({
-			label       : 'Cargo Readiness Date',
-			name        : 'cargo_readiness_date',
-			type        : 'datepicker',
-			className   : 'primary sm',
-			placeholder : 'Date',
-			span        : 6,
-			rules       : { required: 'Required' },
-		});
-	}
+	controls.push({
+		label       : 'Cargo Readiness Date',
+		name        : 'cargo_readiness_date',
+		type        : 'datepicker',
+		placeholder : 'Date',
+		span        : 6,
+		rules       : { required: 'Required' },
+	});
+
 	return controls;
 };
 
 export const fclControls = (
 	wayToBook,
-	scope,
 	data = {},
 	spotBookingDefaultShippingLines = [],
 	manualSelect = false,
@@ -121,7 +110,6 @@ export const fclControls = (
 		{
 			name           : 'shipping_line_id',
 			label          : 'Shipping Line',
-			className      : 'primary sm',
 			placeholder    : 'Select Shipping Line',
 			type           : 'async_select',
 			asyncKey       : 'shipping-lines',
@@ -131,12 +119,11 @@ export const fclControls = (
 			rules          : { required: 'Required' },
 		},
 		{
-			name      : 'origin_main_port_id',
-			label     : 'Via Origin Main Port',
-			type      : 'async_select',
-			asyncKey  : 'locations',
-			className : 'primary sm',
-			params    : {
+			name     : 'origin_main_port_id',
+			label    : 'Via Origin Main Port',
+			type     : 'async_select',
+			asyncKey : 'locations',
+			params   : {
 				filters: {
 					type       : ['seaport'],
 					country_id : origin_country_id,
@@ -148,12 +135,11 @@ export const fclControls = (
 			rules    : { required: 'Required' },
 		},
 		{
-			name      : 'destination_main_port_id',
-			label     : 'Via Destination Main Port',
-			type      : 'async_select',
-			asyncKey  : 'locations',
-			className : 'primary sm',
-			params    : {
+			name     : 'destination_main_port_id',
+			label    : 'Via Destination Main Port',
+			type     : 'async_select',
+			asyncKey : 'locations',
+			params   : {
 				filters: {
 					type       : ['seaport'],
 					country_id : destination_country_id,
@@ -168,7 +154,6 @@ export const fclControls = (
 			label        : 'Select Suitable Schedule',
 			name         : 'suitable_schedule',
 			type         : 'select',
-			className    : 'primary sm',
 			placeholder  : 'Select Suitable Schedules',
 			span         : 6,
 			disabled     : manualSelect,
@@ -181,7 +166,6 @@ export const fclControls = (
 			name        : 'departure',
 			type        : 'datepicker',
 			placeholder : 'Departure',
-			className   : 'primary sm',
 			minDate:
                 wayToBook === 'spot_booking' ? addDays(new Date(), 4) : addDays(new Date(), 1),
 			span  : 6,
@@ -193,28 +177,25 @@ export const fclControls = (
 			placeholder : 'Arrival',
 			minDate:
                 wayToBook === 'spot_booking' ? addDays(new Date(), 4) : addDays(new Date(), 1),
-			type      : 'datepicker',
-			className : 'primary sm',
-			span      : 6,
-			rules     : { required: 'Required' },
+			type  : 'datepicker',
+			span  : 6,
+			rules : { required: 'Required' },
 		},
 		{
 			name        : 'number_of_stops',
 			label       : 'Number of Stops',
 			type        : 'number',
 			placeholder : 'Enter number of stops',
-			className   : 'primary sm',
 			span        : 6,
 			rules       : { required: 'Required', min: 0 },
 		},
 		{
-			label     : 'Detention free days at origin',
-			name      : 'free_days_detention_origin',
-			type      : 'number',
-			span      : 6,
-			value     : 4,
-			className : 'primary sm',
-			rules     : {
+			label : 'Detention free days at origin',
+			name  : 'free_days_detention_origin',
+			type  : 'number',
+			span  : 6,
+			value : 4,
+			rules : {
 				required : 'Min Price is required',
 				validate : (value) => (value < 0 || value > 21
 					? 'Cannot be more than 21 and less than 0'
@@ -222,13 +203,12 @@ export const fclControls = (
 			},
 		},
 		{
-			label     : 'Detention free days at destination',
-			name      : 'free_days_detention_destination',
-			type      : 'number',
-			span      : 6,
-			value     : 4,
-			className : 'primary sm',
-			rules     : {
+			label : 'Detention free days at destination',
+			name  : 'free_days_detention_destination',
+			type  : 'number',
+			span  : 6,
+			value : 4,
+			rules : {
 				required : 'Min Price is required',
 				validate : (value) => (value < 0 || value > 21
 					? 'Cannot be more than 21 and less than 0'
@@ -236,13 +216,12 @@ export const fclControls = (
 			},
 		},
 		{
-			label     : 'Demurrage free days at origin',
-			name      : 'free_days_demurrage_origin',
-			type      : 'number',
-			span      : 6,
-			value     : 4,
-			className : 'primary sm',
-			rules     : {
+			label : 'Demurrage free days at origin',
+			name  : 'free_days_demurrage_origin',
+			type  : 'number',
+			span  : 6,
+			value : 4,
+			rules : {
 				required : 'Min Price is required',
 				validate : (value) => (value < 0 || value > 21
 					? 'Cannot be more than 21 and less than 0'
@@ -250,13 +229,12 @@ export const fclControls = (
 			},
 		},
 		{
-			label     : 'Demurrage free days at destination',
-			name      : 'free_days_demurrage_destination',
-			type      : 'number',
-			span      : 6,
-			value     : 4,
-			className : 'primary sm',
-			rules     : {
+			label : 'Demurrage free days at destination',
+			name  : 'free_days_demurrage_destination',
+			type  : 'number',
+			span  : 6,
+			value : 4,
+			rules : {
 				required : 'Min Price is required',
 				validate : (value) => (value < 0 || value > 21
 					? 'Cannot be more than 21 and less than 0'
@@ -265,17 +243,14 @@ export const fclControls = (
 		},
 	];
 
-	if (scope === 'app') {
-		controls.push({
-			label       : 'Cargo Readiness Date',
-			name        : 'cargo_readiness_date',
-			type        : 'datepicker',
-			placeholder : 'Date',
-			className   : 'primary sm',
-			span        : 6,
-			rules       : { required: 'Required' },
-		});
-	}
+	controls.push({
+		label       : 'Cargo Readiness Date',
+		name        : 'cargo_readiness_date',
+		type        : 'datepicker',
+		placeholder : 'Date',
+		span        : 6,
+		rules       : { required: 'Required' },
+	});
 
 	if (manualSelect) {
 		controls.splice(7, 0, { label: ' ', span: 6, showOptional: false });
@@ -284,7 +259,7 @@ export const fclControls = (
 	return controls;
 };
 
-export const lclControls = (scope) => {
+export const lclControls = () => {
 	const controls = [
 		{
 			label       : 'Departure',
@@ -300,7 +275,6 @@ export const lclControls = (scope) => {
 			name        : 'arrival',
 			label       : 'Arrival',
 			placeholder : 'Arrival',
-			className   : 'primary sm',
 			minDate     : addDays(new Date(), 1),
 			type        : 'datepicker',
 			span        : 6,
@@ -310,23 +284,19 @@ export const lclControls = (scope) => {
 			name        : 'number_of_stops',
 			label       : 'Number of Stops',
 			type        : 'number',
-			className   : 'primary sm',
 			placeholder : 'Enter number of stops',
 			span        : 6,
 			rules       : { required: 'Required', min: 0 },
 		},
 	];
-	if (scope === 'app') {
-		controls.push({
-			label       : 'Cargo Readiness Date',
-			name        : 'cargo_readiness_date',
-			type        : 'datepicker',
-			className   : 'primary sm',
-			placeholder : 'Date',
-			span        : 6,
-			rules       : { required: 'Required' },
-		});
-	}
+	controls.push({
+		label       : 'Cargo Readiness Date',
+		name        : 'cargo_readiness_date',
+		type        : 'datepicker',
+		placeholder : 'Date',
+		span        : 6,
+		rules       : { required: 'Required' },
+	});
 	return controls;
 };
 
@@ -338,7 +308,6 @@ export const ftlControls = () => {
 			showButtons : true,
 			showDivider : false,
 			lineColor   : '#f2f2f2',
-			className   : 'primary sm',
 			value       : [
 				{
 					code     : '',
@@ -355,7 +324,6 @@ export const ftlControls = () => {
 					type        : 'select',
 					caret       : true,
 					placeholder : 'Truck Type',
-					className   : 'primary sm',
 					optionKey   : 'truck-types',
 					span        : 4,
 					rules       : { required: 'Required' },
@@ -364,7 +332,6 @@ export const ftlControls = () => {
 					name        : 'trucks_count',
 					label       : 'Trucks count',
 					placeholder : 'Truck Count',
-					className   : 'primary sm',
 					type        : 'number',
 					span        : 3,
 					rules       : { required: 'Required', min: 0 },
@@ -380,7 +347,6 @@ export const getShowElements = (
 	service_type,
 	controls,
 	scheduleList,
-	scope,
 	data,
 	wayToBook,
 	manualSelect,
@@ -426,7 +392,7 @@ export const getShowElements = (
 			}
 		});
 	}
-	if (scope === 'app' && service_type !== 'lcl_freight') {
+	if (service_type !== 'lcl_freight') {
 		showElements.arrival = false;
 		showElements.departure = false;
 		showElements.number_of_stops = false;

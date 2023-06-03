@@ -14,7 +14,7 @@ const useGetEnquiryQuota = () => {
 		|| {};
 
 	const onPayment = () => {
-		trigger();
+		trigger({});
 	};
 
 	return { loading, ...object, onPayment };

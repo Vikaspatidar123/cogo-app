@@ -3,16 +3,16 @@ import { useSelector } from '@/packages/store';
 const useGetPermission = () => {
 	const {
 		authorizationparameters,
-		scope,
+
 		permissions_navigations,
 		entity_types,
-	} = useSelector(({ general, profile }) => ({
+	} = useSelector(({ profile }) => ({
 		authorizationparameters : profile?.authorizationparameters,
-		scope                   : general?.scope,
 		permissions_navigations : profile?.permissions_navigations,
 		entity_types            : profile?.partner?.entity_types,
 	}));
-	const isChannelPartner =		entity_types?.includes('channel_partner')
+	const scope = 'app';
+	const isChannelPartner = entity_types?.includes('channel_partner')
 		&& !entity_types?.includes('cogoport');
 
 	const isApiAllowed = (condition) => {

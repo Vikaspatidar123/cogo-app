@@ -58,7 +58,7 @@ function EmailLoginForm({ setMode = () => {} }) {
 
 			<div className={styles.links}>
 				<a href="/v2/forgot-password">Forgot Password?</a>
-				<a href="/v2/signup">Don&#39;t have an Account?</a>
+				<a href="/v2/signup">Create a New Account</a>
 			</div>
 		</form>
 	);

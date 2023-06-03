@@ -4,7 +4,6 @@ import React, { useState } from 'react';
 import styles from './styles.module.css';
 import Timer from './Timer';
 
-// import OtpInput from '@/packages/forms/Business/OTPLayout/components/OtpInput';
 import { useRequest } from '@/packages/request';
 import showErrorsInToast from '@/ui/commons/utils/showErrorsInToast';
 

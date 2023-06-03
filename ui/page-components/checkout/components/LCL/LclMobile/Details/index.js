@@ -5,8 +5,6 @@ import RouteDisplay from '../../../../commons/RouteDisplay';
 import CheckoutServices from '../../../../commons/Services';
 import styles from '../../styles.module.css';
 
-// import { AboutAction } from '@/ui/commons/components/webflow';
-
 function Details({
 	rate,
 	summary,

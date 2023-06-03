@@ -17,8 +17,6 @@ import getInvoicingComponentKey from '../../utils/invoicingKey';
 import styles from './styles.module.css';
 import useLcl from './useLcl';
 
-// import { AboutAction } from '@/ui/commons/components/webflow';
-
 function LCL(props) {
 	const {
 		summary,
@@ -114,11 +112,14 @@ function LCL(props) {
 								)}
 							</div>
 
-							{/* <AboutAction slug="cancellation-terms"> */}
-							<button className={styles.button_link}>
+							<a
+								className={styles.button_link}
+								href="https://www.cogoport.com/privacy-policy"
+								target="_blank"
+								rel="noreferrer"
+							>
 								Cancellation Policy
-							</button>
-							{/* </AboutAction> */}
+							</a>
 						</div>
 					</div>
 					<Packages />

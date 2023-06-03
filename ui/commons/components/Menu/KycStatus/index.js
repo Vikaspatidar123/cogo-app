@@ -1,6 +1,5 @@
-import CrossIcon from './crossIcon.svg';
-import KycVerified from './kyc-verified.svg';
-import PendingIcon from './pending-icon.svg';
+import { IcCFtick, IcCFcrossInCircle } from '@cogoport/icons-react';
+
 import styles from './styles.module.css';
 
 function KycStatus({ kyc_status }) {
@@ -9,21 +8,25 @@ function KycStatus({ kyc_status }) {
 			{kyc_status === 'verified' && (
 				<>
 					<div className={styles.kyc_verified}>Verified</div>
-					<KycVerified width="11px" height="11px" />
+					<IcCFtick width={15} height={15} />
 				</>
 			)}
 
 			{kyc_status === 'rejected' && (
 				<>
 					<div className={styles.label}>KYC Rejected</div>
-					<CrossIcon width="11px" height="11px" />
+					<IcCFcrossInCircle width={15} height={15} />
 				</>
 			)}
 
 			{['pending_from_user', 'pending_verification'].includes(kyc_status) && (
 				<>
 					<div className={styles.kyc_pending}>KYC Pending</div>
-					<PendingIcon width="14px" height="14px" />
+					<img
+						className={styles.image1}
+						src="	https://cdn.cogoport.io/cms-prod/cogo_admin/vault/original/tds-doc-icon.svg"
+						alt="img"
+					/>
 				</>
 			)}
 		</div>

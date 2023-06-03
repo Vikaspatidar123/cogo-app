@@ -1,8 +1,6 @@
 import { cl } from '@cogoport/components';
+import { IcMDelete, IcMDrag } from '@cogoport/icons-react';
 import React, { useRef } from 'react';
-
-import DeleteIcon from '../../../../icons/delete-icon.svg';
-import DragIcon from '../../../../icons/drag-icon.svg';
 
 import styles from './styles.module.css';
 
@@ -46,11 +44,11 @@ function List({ onDeleteTouchPoint, touchPoints, setTouchPoints }) {
 
 					<li className={styles.single_list}>
 						<div className={styles.wrapper}>
-							<DragIcon size={1.5} />
+							<IcMDrag size={1.5} />
 
 							<div className={styles.box}>{touchPoint?.display_name}</div>
 
-							<DeleteIcon
+							<IcMDelete
 								size={1.5}
 								style={{ cursor: 'pointer' }}
 								onClick={() => onDeleteTouchPoint(index)}

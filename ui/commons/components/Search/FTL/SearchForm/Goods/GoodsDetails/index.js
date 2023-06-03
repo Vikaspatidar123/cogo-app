@@ -1,7 +1,6 @@
-import { SingleDateRange, Tabs, TabPanel } from '@cogoport/components';
+import { Datepicker, Tabs, TabPanel } from '@cogoport/components';
+import { IcMCalendar } from '@cogoport/icons-react';
 import React, { useState, forwardRef } from 'react';
-
-import Calendar from '../../../icons/calender.svg';
 
 import GeneralSpecialGoods from './GeneralSpecialGoods';
 import styles from './styles.module.css';
@@ -16,10 +15,9 @@ function GoodsDetails({ setGoodsDetail, goodsDetail, setShowPopover }, ref) {
 
 	const [cargoType, setCargoType] = useState(goodsDetail?.cargoType);
 	const [errorMessge, setErrorMessage] = useState(false);
-
 	const renderBody = () => (
 		<div className={styles.date_container}>
-			<Calendar size={1.5} />
+			<IcMCalendar size={1.5} />
 
 			<div className={styles.date_div}>
 				<div className={styles.select_date}>Select a day</div>
@@ -40,9 +38,10 @@ function GoodsDetails({ setGoodsDetail, goodsDetail, setShowPopover }, ref) {
 			<div className={styles.header_container}>
 				<div className={styles.date_picker_container}>
 					<div className={styles.header_text}>Cargo Ready Date:</div>
-					<SingleDateRange
+					<Datepicker
 						renderBody={renderBody}
 						value={cargoDate}
+						showTimeSelect
 						onChange={setCargoDate}
 						dateFormat="dd MMM yyyy"
 						minDate={new Date()}

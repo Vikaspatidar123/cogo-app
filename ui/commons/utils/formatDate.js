@@ -3,21 +3,20 @@ import { format } from '@cogoport/utils';
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
 const formatTypeFunMapping = {
-	date({ date, dateFormat }) {
+	date({ date, dateFormat, utcInput }) {
 		let formatDate = 'dd/MM/yyyy';
 		if (dateFormat in GLOBAL_CONSTANTS.formats.date) {
 			formatDate = dateFormat;
 		}
-
-		return format(date, formatDate);
+		return format(date, formatDate, null, utcInput);
 	},
-	time({ date, timeFormat }) {
+	time({ date, timeFormat, utcInput }) {
 		let formatTime = 'hh:mm aaa';
 		if (timeFormat in GLOBAL_CONSTANTS.formats.time) {
 			formatTime = timeFormat;
 		}
 
-		return format(date, formatTime);
+		return format(date, formatTime, null, utcInput);
 	},
 	dateTime({ date, timeFormat, dateFormat, separator = ' | ' }) {
 		const formattedDate = this.date({ date, dateFormat });

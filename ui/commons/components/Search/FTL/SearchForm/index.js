@@ -1,4 +1,4 @@
-// import usei18n from '@cogo/i18n';
+import { IcMEdit } from '@cogoport/icons-react';
 import { isEmpty } from '@cogoport/utils';
 import React, {
 	useEffect,
@@ -8,7 +8,6 @@ import React, {
 	forwardRef,
 } from 'react';
 
-import EditIcon from '../icons/edit-icon.svg';
 import ReturnJourney from '../ReturnJourney';
 import getHandleSubmitDetails from '../utils/getHandleSubmitDetails';
 
@@ -96,7 +95,7 @@ function SearchForm(
 						className={styles.icon}
 						onClick={() => setTypeOfJourney('one_way')}
 					>
-						<EditIcon />
+						<IcMEdit />
 						Edit
 					</div>
 				</div>

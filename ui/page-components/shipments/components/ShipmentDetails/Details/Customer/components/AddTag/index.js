@@ -1,5 +1,4 @@
-import { Button } from '@cogoport/components';
-import { useState } from 'react';
+import { Button, Modal } from '@cogoport/components';
 
 import useAddTag from '../../../../hooks/useAddtag';
 
@@ -35,25 +34,30 @@ function AddTag({
 
 	return (
 		<div>
-			<p className={styles.heading}>ADD TAG</p>
+			<Modal.Header title="ADD TAG" />
 			<form>
-				<InputController {...controls[0]} control={control} />
-				<div className={styles.wrapper}>
-					<Button
-						className="secondary md"
-						style={{ marginRight: '12pxjhg' }}
-						onClick={() => setOpen(false)}
-					>
-						Cancel
-					</Button>
-					<Button
-						className="primary md"
-						disabled={loading}
-						onClick={handleSubmit(onCreate)}
-					>
-						{loading ? 'Submiting...' : 'Submit'}
-					</Button>
-				</div>
+				<Modal.Body>
+					<InputController {...controls[0]} control={control} />
+				</Modal.Body>
+				<Modal.Footer>
+					<div className={styles.wrapper}>
+						<Button
+							style={{ marginRight: '12px' }}
+							onClick={() => setOpen(false)}
+							size="md"
+							themeType="secondary"
+						>
+							Cancel
+						</Button>
+						<Button
+							size="md"
+							disabled={loading}
+							onClick={handleSubmit(onCreate)}
+						>
+							{loading ? 'Submiting...' : 'Submit'}
+						</Button>
+					</div>
+				</Modal.Footer>
 			</form>
 		</div>
 	);

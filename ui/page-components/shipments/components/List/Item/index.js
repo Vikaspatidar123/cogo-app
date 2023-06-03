@@ -1,3 +1,5 @@
+import { cl } from '@cogoport/components';
+
 import getConfigsShipper from '../../../configurations/ShipmentList/Shipper/get-config';
 import getConfigsSupplier from '../../../configurations/ShipmentList/Supplier/get-configs';
 import getText from '../../../utils/get-text';
@@ -19,7 +21,7 @@ function Item({ data, viewAs, className: propClassName = '' }) {
 
 	return (
 		<div
-			className={`${styles.container} ${data.state === 'cancelled' ? styles.disabled : styles.enabled} 
+			className={cl`${styles.container} ${data.state === 'cancelled' ? styles.disabled : styles.enabled} 
             ${styles?.[propClassName]}`}
 		>
 			<div className={styles.section}>
@@ -37,12 +39,12 @@ function Item({ data, viewAs, className: propClassName = '' }) {
 							<ContainerInfo detail={data} />
 						</div>
 					</div>
-					<div className={`${styles.line} ${styles.propClassName}`} />
+					<div className={cl`${styles.line} ${styles.propClassName}`} />
 					<Footer data={data} viewAs={viewAs} isBookingDesk={isBookingDesk} />
 				</div>
 				<Status data={data} viewAs={viewAs} isBookingDesk={isBookingDesk} />
 			</div>
-			<hr className={`${styles.line} ${styles.ropClassName}`} />
+			<hr className={cl`${styles.line} ${styles.ropClassName}`} />
 			<MoreDetails data={data} viewAs={viewAs} />
 		</div>
 	);

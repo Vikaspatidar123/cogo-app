@@ -1,3 +1,4 @@
+import { cl } from '@cogoport/components';
 import React from 'react';
 
 import displayNameMapping from '../../../../configurations/common/short-display-names.json';
@@ -16,7 +17,7 @@ function SearchType({
 	});
 	return (
 		<div
-			className={`${styles.container} ${styles?.[theme]} ${disabled ? styles.disabled : ''}`}
+			className={cl`${styles.container} ${styles?.[theme]} ${disabled ? styles.disabled : ''}`}
 		>
 			<div className={styles.icon_service}>{serviceIcon}</div>
 

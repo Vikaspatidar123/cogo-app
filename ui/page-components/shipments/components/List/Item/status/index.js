@@ -1,3 +1,5 @@
+import { cl } from '@cogoport/components';
+
 import getText from '../../../../utils/get-text';
 
 import styles from './styles.module.css';
@@ -31,21 +33,19 @@ function Status({ data, viewAs, isBookingDesk = false }) {
 	const buttonText = stateData?.text === 'Added to Cart' ? 'Show' : 'VIEW DETAILS';
 
 	return (
-		<div className={`${styles.container} ${isBookingDesk ? styles.booking_desk : ''}`}>
+		<div className={cl`${styles.container} ${isBookingDesk ? styles.booking_desk : ''}`}>
 			<div className={styles.message}>
 				{'Shipment ID: '}
-				<span className="value">
+				<span className={styles.value}>
 					{data?.serial_id || data?.shipment_serial_id}
 				</span>
 			</div>
-			<div className={`${styles?.[alert]} ${styles?.[stateData.color] || styles.yellow}`}>{stateData.text}</div>
+			<div className={cl`${styles?.alert} ${styles?.[stateData.color] || styles.yellow}`}>{stateData.text}</div>
 			<Link href={href} as={as} passHref>
 				<div className={styles.action}>{buttonText}</div>
 			</Link>
 		</div>
 	);
 }
-
-Status.defaultProps = { data: {} };
 
 export default Status;

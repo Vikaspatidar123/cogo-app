@@ -14,7 +14,7 @@ import CheckoutServices from '../../commons/Services';
 import TermsAndConditions from '../../commons/TermsConditions';
 import getInvoicingComponentKey from '../../utils/invoicingKey';
 
-// import FltMobile from './FtlMobile';
+import FltMobile from './FtlMobile';
 import styles from './styles.module.css';
 import useFtl from './useFtl';
 
@@ -102,123 +102,128 @@ function FTL(props) {
 	));
 
 	return (
-		<div className={styles.container}>
-			<div className={styles.left_component}>
-				{importer_exporter.kyc_status !== 'verified' ? (
-					<KycMessage
-						organization={importer_exporter}
-						refetchCheckout={refetch}
-						importer_exporter_id={importer_exporter.id}
-						status={organization?.kyc_status}
-					/>
-				) : null}
-				<ReviewBooking />
-
-				<div className={styles.main_content}>
-					<RouteDisplay
-						port={rate.port}
-						mode={summary.mode}
-						origin={rate.origin}
-						destination={rate.destination}
-					/>
-					{touchPointsToShow.length > 0 ? (
-						<div className={styles.touch_points}>
-							<div>Touch Point(s): </div>
-							{touchPointsToShow.map((touchPoint) => (
-								<div className={styles.touch_point_name}>
-									{touchPoint.name}
-									{' '}
-									|
-								</div>
-							))}
-						</div>
+		<>
+			<div className={styles.mobile}>
+				<FltMobile {...props} />
+			</div>
+			<div className={styles.container}>
+				<div className={styles.left_component}>
+					{importer_exporter.kyc_status !== 'verified' ? (
+						<KycMessage
+							organization={importer_exporter}
+							refetchCheckout={refetch}
+							importer_exporter_id={importer_exporter.id}
+							status={organization?.kyc_status}
+						/>
 					) : null}
+					<ReviewBooking />
 
-					<Truck />
-				</div>
-				<div className={styles.service_details_container}>
-
-					<div className={styles.footer}>
-						<div className={styles.additional_services}>
-							Additional Services:
-							<div className={styles.service_logo}>
-								{allServices.map((service) => (
-									<div
-										className={cl`${styles.service_icon_container} 
-										${service?.isSelected
-											? styles.additional_services_logo
-											: styles.temp}`}
-									>
-
-										<ServiceIcon service={service.service_type} />
+					<div className={styles.main_content}>
+						<RouteDisplay
+							port={rate.port}
+							mode={summary.mode}
+							origin={rate.origin}
+							destination={rate.destination}
+						/>
+						{touchPointsToShow.length > 0 ? (
+							<div className={styles.touch_points}>
+								<div>Touch Point(s): </div>
+								{touchPointsToShow.map((touchPoint) => (
+									<div className={styles.touch_point_name}>
+										{touchPoint.name}
+										{' '}
+										|
 									</div>
 								))}
 							</div>
-						</div>
-						<div className={styles.details}>
-							<div
-								className={styles.details_title}
-								onClick={changeToggle}
-								role="presentation"
-							>
-								Details
-							</div>
-							{!toggleArrow ? (
-								<IcMArrowUp onClick={changeToggle} />
-							) : (
-								<IcMArrowDown onClick={changeToggle} />
-							)}
-						</div>
+						) : null}
+
+						<Truck />
 					</div>
-					{toggleArrow ? (
-						<CheckoutServices
-							allServices={allServices}
-							rate={rate}
-							summary={summary}
-							refetch={refetch}
-						/>
-					) : null}
-				</div>
+					<div className={styles.service_details_container}>
 
-				<InvoicingParties
-					key={key}
-					organization={organization}
-					invoice={invoice}
-					detail={detail}
-					primary_service={primary_service}
-					refetchGetCheckout={refetch}
-					rate={rate}
-					conversions={currencyConversions}
-				/>
+						<div className={styles.footer}>
+							<div className={styles.additional_services}>
+								Additional Services:
+								<div className={styles.service_logo}>
+									{allServices.map((service) => (
+										<div
+											className={cl`${styles.service_icon_container} 
+										${service?.isSelected
+												? styles.additional_services_logo
+												: styles.temp}`}
+										>
 
-				{credit_details?.is_any_invoice_on_credit
+											<ServiceIcon service={service.service_type} />
+										</div>
+									))}
+								</div>
+							</div>
+							<div className={styles.details}>
+								<div
+									className={styles.details_title}
+									onClick={changeToggle}
+									role="presentation"
+								>
+									Details
+								</div>
+								{!toggleArrow ? (
+									<IcMArrowUp onClick={changeToggle} />
+								) : (
+									<IcMArrowDown onClick={changeToggle} />
+								)}
+							</div>
+						</div>
+						{toggleArrow ? (
+							<CheckoutServices
+								allServices={allServices}
+								rate={rate}
+								summary={summary}
+								refetch={refetch}
+							/>
+						) : null}
+					</div>
+
+					<InvoicingParties
+						key={key}
+						organization={organization}
+						invoice={invoice}
+						detail={detail}
+						primary_service={primary_service}
+						refetchGetCheckout={refetch}
+						rate={rate}
+						conversions={currencyConversions}
+					/>
+
+					{credit_details?.is_any_invoice_on_credit
 				&& !credit_terms_amd_condition?.is_tnc_accepted ? (
 					<CreditApprovalCard
 						refetchCheckout={refetch}
 						getCheckoutLoading={getCheckoutLoading}
 					/>
-					) : null}
+						) : null}
 
-				<div className={styles.container_border}>
-					<AssistanceFooter />
+					<div className={styles.container_border}>
+						<AssistanceFooter />
+					</div>
+
+					<TermsAndConditions summary={summary} rate={rate} source="checkout" />
 				</div>
 
-				<TermsAndConditions summary={summary} rate={rate} source="checkout" />
+				<div className={styles.right_component}>
+					<RateSummary
+						detail={detail}
+						allServices={allServices}
+						rate={rate}
+						summary={summary}
+						cogopoint_data={cogopoint_data}
+						refetch={refetch}
+						getCheckoutLoading={getCheckoutLoading}
+						conversions={currencyConversions}
+					/>
+				</div>
 			</div>
-
-			<div className={styles.right_component}>
-				<RateSummary
-					detail={detail}
-					allServices={allServices}
-					rate={rate}
-					summary={summary}
-					cogopoint_data={cogopoint_data}
-					refetch={refetch}
-					getCheckoutLoading={getCheckoutLoading}
-					conversions={currencyConversions}
-				/>
-			</div>
-		</div>
+		</>
 	);
 }
 export default FTL;

@@ -3,7 +3,7 @@ import { useRequest } from '@/packages/request';
 const useLeadUserDetails = ({ setProfileId = () => {} }) => {
 	const [{ loading }, trigger] = useRequest(
 		{
-			url    : 'create_saas_sign_up_lead_user_profile',
+			url    : 'create_saas_sign_up_lead_user',
 			method : 'post',
 		},
 		{ manual: true },
@@ -13,7 +13,7 @@ const useLeadUserDetails = ({ setProfileId = () => {} }) => {
 		try {
 			const response = await trigger({
 				data: {
-					profile_id          : profileId || undefined,
+					lead_user_id        : profileId || undefined,
 					name                : formValues?.name || undefined,
 					email               : formValues?.email || undefined,
 					mobile_country_code : formValues?.mobile_number?.country_code || undefined,
@@ -22,7 +22,7 @@ const useLeadUserDetails = ({ setProfileId = () => {} }) => {
 			});
 
 			const res = response.data || {};
-			setProfileId(res?.profile_id);
+			setProfileId(res?.lead_user_id);
 		} catch (err) {
 			console.log(err);
 		}

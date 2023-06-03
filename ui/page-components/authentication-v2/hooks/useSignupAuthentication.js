@@ -6,7 +6,7 @@ const useSignupAuthentication = ({
 	setMode, setUserDetails, captchaResponse, hasWhatsApp, profileId,
 }) => {
 	const [{ loading: signupLoading }, trigger] = useRequest({
-		url    : 'create_saas_sign_up_lead_user',
+		url    : 'create_sign_up_lead_user',
 		method : 'post',
 	}, { manual: true });
 
@@ -14,16 +14,17 @@ const useSignupAuthentication = ({
 		e.preventDefault();
 		try {
 			const payload = {
-				profile_id                : profileId || undefined,
+				lead_user_id              : profileId || undefined,
 				name                      : val.name,
 				email                     : val.email,
 				mobile_country_code       : val.mobile_number.country_code,
 				mobile_number             : val.mobile_number.number,
+				is_whatsapp_number        : hasWhatsApp,
 				business_name             : val.business_name,
 				country_id                : val.country_id,
 				google_recaptcha_response : captchaResponse,
-				is_whatsapp_number        : hasWhatsApp,
 			};
+
 			const res = await trigger({
 				data: {
 					...payload,

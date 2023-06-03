@@ -1,1 +1,1 @@
-export { default } from '@/ui/page-components/get-started';
+export { GetStarted as default } from '@/ui/page-components/authentication-v2';

@@ -9,7 +9,7 @@
     :global {
         .ui_select_options_container {
             width: 200px;
-            padding: 8px 8px;
+            padding: 8px;
         }
 
         .ui_input_control,

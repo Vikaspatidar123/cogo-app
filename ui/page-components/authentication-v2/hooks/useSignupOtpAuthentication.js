@@ -5,7 +5,7 @@ import { useRouter } from '@/packages/next';
 import { useRequest } from '@/packages/request/index';
 import setCookieAndRedirect from '@/ui/commons/utils/setCookieAndRedirect';
 
-const useSignupOtpAuthentication = ({ mobileNumber = {}, otpValue = '', setMode = () => {} }) => {
+const useSignupOtpAuthentication = ({ otpValue = '', setMode = () => {}, userDetails = {} }) => {
 	const { query } = useRouter();
 	const [{ loading: verifyLeadUserMobileApiLoading }, verifyLeadUserMobileApitrigger] = useRequest({
 		url    : '/verify_user_mobile',

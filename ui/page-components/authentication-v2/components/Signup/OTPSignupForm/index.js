@@ -10,18 +10,19 @@ import styles from './styles.module.css';
 
 import OTPLayout from '@/packages/forms/Business/OTPLayout';
 
-function OTPSignupForm({ otpId = '', userDetails = {}, setMode = () => {}, resendOtp = () => {}, id = '' }) {
-	const { mobile_number: mobileNumber = {}, email = '' } = userDetails;
+function OTPSignupForm({ otpId = '', userDetails = {}, setMode = () => {}, id = '' }) {
+	const { mobile_number = {}, email = '' } = userDetails;
 	const [otpValue, setOtpValue] = useState('');
 
 	const {
-		onSignupWithOtp,
+		onSignupWithOtp = () => {},
 		signupLoading = false,
+		resendOtp = () => {},
 	} = useSignupOtpAuthentication({
 		setMode,
-		mobileNumber,
 		otpId,
 		otpValue,
+		userDetails,
 	});
 
 	const { onClickResendEmail } = useEmailVerification();
@@ -39,7 +40,7 @@ function OTPSignupForm({ otpId = '', userDetails = {}, setMode = () => {}, resen
 			<div className={styles.card_heading}>Verify your mobile</div>
 			<div className={styles.card_subheading}>
 				Verification code is sent to
-				{isEmpty(mobileNumber?.number) ? (
+				{isEmpty(mobile_number?.number) ? (
 					<>
 						{' '}
 						the mobile number.
@@ -47,9 +48,9 @@ function OTPSignupForm({ otpId = '', userDetails = {}, setMode = () => {}, resen
 				) : (
 					<>
 						{' '}
-						{mobileNumber?.country_code}
+						{mobile_number?.country_code}
 						{' '}
-						{mobileNumber?.number}
+						{mobile_number?.number}
 					</>
 				)}
 			</div>
@@ -85,11 +86,12 @@ function OTPSignupForm({ otpId = '', userDetails = {}, setMode = () => {}, resen
 				{' '}
 				<b>verify</b>
 				{' '}
-				and
+				{/* and
 				{' '}
 				<b>create password</b>
 				{' '}
-				for your account.
+				for  */}
+				your account.
 				<br />
 				<br />
 				If you haven&#39;t received the email within a few minutes, please check your spam folder or

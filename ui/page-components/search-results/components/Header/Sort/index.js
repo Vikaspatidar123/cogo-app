@@ -5,7 +5,7 @@ import styles from './styles.module.css';
 import {
 	APP_EVENT,
 	trackEvent,
-} from '@/ui/page-components/discover_rates/common/analytics';
+} from '@/ui/commons/constants/analytics';
 import getConfiguration from '@/ui/page-components/discover_rates/hooks/configurations';
 
 function Sort({ sortBy = '', search_type = '', setSort = () => {} }) {

@@ -11,7 +11,7 @@ import LocationDetails from './LocationDetails';
 import styles from './styles.module.css';
 
 import { useSelector } from '@/packages/store';
-import { APP_EVENT, trackEvent } from '@/ui/page-components/discover_rates/common/analytics';
+import { APP_EVENT, trackEvent } from '@/ui/commons/constants/analytics';
 import SearchForm from '@/ui/page-components/discover_rates/common/SearchForm';
 
 const NON_STANDALONE_SEERVICES = ['fcl_cfs'];

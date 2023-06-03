@@ -1,4 +1,4 @@
-// import getGeoConstants from '@cogo/globalization/constants/geo';
+// import getGeoConstants from '@/ui/commons/constants/geo';
 
 // const geo = getGeoConstants();
 
@@ -32,7 +32,7 @@ const ftlControls = () => [
 		label     : 'Currency',
 		type      : 'select',
 		optionKey : 'currencies',
-		// value: geo.country.currency.code,
+		// value     : geo.country.currency.code,
 	},
 	{
 		name  : 'preferred_freight_rate',

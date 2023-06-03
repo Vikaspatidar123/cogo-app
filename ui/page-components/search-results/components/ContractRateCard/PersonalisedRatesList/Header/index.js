@@ -1,5 +1,3 @@
-// import IconsMapping from '@cogo/product/contract-rates/common/IconsMapping';
-
 import ContainerInfo from '../ContainerInfo';
 import PortsInfo from '../PortsInfo';
 

@@ -1,5 +1,5 @@
-import { APP_EVENT } from '../common/analytics/constants';
-import trackEvent from '../common/analytics/trackEvent';
+import { APP_EVENT } from '../../../commons/constants/analytics/constants';
+import trackEvent from '../../../commons/constants/analytics/trackEvent';
 import getFinalServices from '../common/SearchForm/utils/getFinalServices';
 import formatCreateSearch from '../utils/format-create-search';
 

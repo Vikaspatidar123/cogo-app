@@ -41,6 +41,7 @@ const useRecommendedSearches = () => {
 			console.log(err, 'err');
 		}
 		// const resp = await trigger({});
+		// Do Not Remove
 		// const { data = {} } = resp || {};
 		// if (!resp.hasError) {
 		// 	dispatch(

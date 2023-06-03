@@ -1,7 +1,5 @@
 import { Select, Checkbox } from '@cogoport/components';
-// import { isEmpty } from '@cogoport/utils';
 import React, { useEffect, useState } from 'react';
-// import EmailContent from '@cogo/checkout/components/QuotationDetail/SearchLock/QuotationEmail/EmailContent';
 import { useSelector } from 'react-redux';
 
 import styles from './styles.module.css';

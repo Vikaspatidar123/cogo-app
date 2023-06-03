@@ -16,11 +16,11 @@ import NoRatesServicesConfirmation from './NoRatesServicesConfirmation';
 import styles from './styles.module.css';
 
 import { useSelector } from '@/packages/store';
-import formatAmount from '@/ui/commons/utils/formatAmount';
 import {
 	APP_EVENT,
 	trackEvent,
-} from '@/ui/page-components/discover_rates/common/analytics';
+} from '@/ui/commons/constants/analytics';
+import formatAmount from '@/ui/commons/utils/formatAmount';
 
 const LIKE_DISLIKE_ALLOWED = [
 	'fcl_freight',

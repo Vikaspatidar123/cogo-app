@@ -1,12 +1,8 @@
-// import useUpdateSearch from '../../../hooks/useUpdateSearch';
 import { Button } from '@cogoport/components';
 import dynamic from 'next/dynamic';
 import React, { useState } from 'react';
 
-// eslint-disable-next-line import/order
 import useCreateRateTask from '../../hooks/useCreateRateTask';
-
-// import BasicPlan from './BasicPlan';
 import getLocationDetails from '../../utils/getLocationDetails';
 import isSingleLocation from '../../utils/isSingleLocation';
 

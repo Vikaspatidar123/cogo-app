@@ -109,7 +109,6 @@
 	position: relative;
 	margin: 12px 20px;
 
-	/* border: ${({ dashedColor }) => dashedColor || '1px solid #8cc1f9'}; */
 	&::before,
 	&::after {
 		position: absolute;

@@ -3,7 +3,7 @@ import { Toast } from '@cogoport/components';
 import { isEmpty } from '@cogoport/utils';
 import { useState, useMemo, useImperativeHandle, useEffect } from 'react';
 
-import { APP_EVENT, trackEvent } from '../../discover_rates/common/analytics';
+import { APP_EVENT, trackEvent } from '../../../commons/constants/analytics';
 import showElementsFunc from '../../discover_rates/common/SearchForm/utils/show-elements';
 import airControls from '../../discover_rates/configurations/search/air/form.controls.advanced';
 import airLocalsControls from '../../discover_rates/configurations/search/domestic/air-locals/form-controls.advanced';

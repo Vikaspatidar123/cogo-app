@@ -2,8 +2,6 @@ import { Toast } from '@cogoport/components';
 import { isEmpty, startCase } from '@cogoport/utils';
 import { useState, useEffect } from 'react';
 
-import { trackEvent } from '../../discover_rates/common/analytics';
-import { PARTNER_EVENT } from '../../discover_rates/common/analytics/constants';
 import getConfiguration from '../../discover_rates/common/SearchForm/utils/getConfiguration';
 import domesticServiceDetails from '../../discover_rates/configurations/domestic-services.json';
 import MAPPING from '../components/Info/icons-services-mapping';
@@ -11,36 +9,36 @@ import isServiceTaken from '../helpers/isServiceTaken';
 
 import { useRequest } from '@/packages/request';
 
-const track = ({
-	search_type,
-	requiredPayload,
-	detail,
-	additional_services = [],
-} = {}) => {
-	try {
-		const search_parameter = `${search_type}_services_attributes`;
+// const track = ({
+// 	search_type,
+// 	requiredPayload,
+// 	detail,
+// 	additional_services = [],
+// } = {}) => {
+// 	try {
+// 		const search_parameter = `${search_type}_services_attributes`;
 
-		const shipment = requiredPayload[search_parameter];
-		trackEvent(PARTNER_EVENT.enquiry_created_enquiry, {
-			search_id            : detail?.id,
-			search_type,
-			search_origin        : detail?.origin_port?.name,
-			search_destination   : detail?.destination_port?.name,
-			company_name         : detail?.importer_exporter?.business_name,
-			user_name            : detail?.user?.name,
-			user_email           : detail?.user?.email,
-			main_service_details : {
-				service_name: detail?.service_type,
-				indicative_amount_currency:
-					shipment?.[0]?.preferred_freight_rate_currency,
-				indicative_amount: shipment?.[0]?.preferred_freight_rate,
-			},
-			additional_services,
-		});
-	} catch (err) {
-		console.log(`Errored Event : ${err.toString()}`);
-	}
-};
+// 		const shipment = requiredPayload[search_parameter];
+// 		trackEvent(PARTNER_EVENT.enquiry_created_enquiry, {
+// 			search_id            : detail?.id,
+// 			search_type,
+// 			search_origin        : detail?.origin_port?.name,
+// 			search_destination   : detail?.destination_port?.name,
+// 			company_name         : detail?.importer_exporter?.business_name,
+// 			user_name            : detail?.user?.name,
+// 			user_email           : detail?.user?.email,
+// 			main_service_details : {
+// 				service_name: detail?.service_type,
+// 				indicative_amount_currency:
+// 					shipment?.[0]?.preferred_freight_rate_currency,
+// 				indicative_amount: shipment?.[0]?.preferred_freight_rate,
+// 			},
+// 			additional_services,
+// 		});
+// 	} catch (err) {
+// 		console.log(`Errored Event : ${err.toString()}`);
+// 	}
+// };
 
 const notToCreateEnquiry = [
 	'fcl_freight_local',
@@ -405,12 +403,12 @@ const useEnquiry = ({
 			};
 		}
 
-		track({
-			search_type,
-			requiredPayload,
-			detail,
-			additional_services: array,
-		});
+		// track({
+		// 	search_type,
+		// 	requiredPayload,
+		// 	detail,
+		// 	additional_services: array,
+		// });
 		try {
 			const res = await createEnquiries.trigger({ data: requiredPayload });
 			if (!res?.hasError) {

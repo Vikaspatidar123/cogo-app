@@ -1,6 +1,6 @@
 import { startCase } from '@cogoport/utils';
 
-import { APP_EVENT, trackEvent } from '../../discover_rates/common/analytics';
+import { APP_EVENT, trackEvent } from '../../../commons/constants/analytics';
 
 import COMMODITY_MAPPING from '@/packages/forms/constants/COMMODITY_MAPPING';
 import CONTAINER_SIZE_MAPPING from '@/packages/forms/constants/CONTAINER_SIZE_MAPPING';

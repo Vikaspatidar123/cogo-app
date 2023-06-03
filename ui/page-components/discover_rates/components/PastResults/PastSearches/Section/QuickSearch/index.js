@@ -2,8 +2,8 @@ import { Popover, cl, Button } from '@cogoport/components';
 import { IcMSearchlight } from '@cogoport/icons-react';
 import React, { useState, useEffect, useRef } from 'react';
 
-import { trackEvent } from '../../../../../common/analytics';
-import { APP_EVENT } from '../../../../../common/analytics/constants';
+import { trackEvent } from '../../../../../../../commons/constants/analytics';
+import { APP_EVENT } from '../../../../../../../commons/constants/analytics/constants';
 import getConfiguration from '../../../../../hooks/configurations';
 import useCreateSearch from '../../../../../hooks/useCreateSearch';
 import formatMainServiceData from '../../../../../utils/format-main-service-data';
@@ -22,7 +22,6 @@ function QuickSearch({ data, extraParams = {}, type, refresh }) {
 	const [show, setShow] = useState(false);
 	const ref = useRef({});
 
-	// const className = `${mobile ? 'mobile' : ''} ${type || ''}`;
 	const { search_type } = data;
 	const [errors, setErrors] = useState({});
 	const { createNewSearch } = useCreateSearch({});

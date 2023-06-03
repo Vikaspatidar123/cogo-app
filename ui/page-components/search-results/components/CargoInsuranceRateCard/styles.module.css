@@ -20,21 +20,6 @@
 	}
 }
 
-/* .animated_container { animated({
-	enter: {
-		translateY: [-10, 0],
-		opacity: [0, 1],
-		easing: 'easeInOutQuad',
-		duration: 500,
-	},
-	exit: {
-		translateY: [0, 10],
-		opacity: [1, 0],
-		duration: 300,
-	},
-})
-} */
-
 .line_vrt {
 	width: 1px;
 	height: auto;

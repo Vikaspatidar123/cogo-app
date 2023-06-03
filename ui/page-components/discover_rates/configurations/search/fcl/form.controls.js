@@ -9,8 +9,6 @@ const formControls = () => [
 		type              : 'async_select',
 		asyncKey          : 'locations',
 		grouped           : ['country'],
-		// labelKey          : 'name',
-		// valueKey          : 'id',
 		params            : { filters: { type: ['seaport', 'country'] } },
 		rules             : { required: 'Origin Port is required' },
 		// style             : { width: '350px' },

@@ -4,7 +4,7 @@ import React from 'react';
 
 import styles from './styles.module.css';
 
-function ValueChip({ value, onCancel, style, name }) {
+function ValueChip({ value, onCancel = () => {}, style, name }) {
 	return (
 		<div className={styles.container} style={style}>
 			<div className={styles.text}>{value}</div>

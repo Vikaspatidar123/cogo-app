@@ -1,5 +1,4 @@
 import { Button } from '@cogoport/components';
-// import { isEmpty } from '@cogoport/utils';
 import { useState } from 'react';
 
 import useUpdateDestinationDemurrageDays from '../../../../../hooks/useUpdateDestinationDemurrageDays';
@@ -18,7 +17,6 @@ function Component({
 	rates = [],
 	setShow,
 }) {
-	// const { fetchApi, loading } = useAddMoreDays({ refetch, setShow });
 	const { onSubmit, loading } = useUpdateDestinationDemurrageDays({
 		data: rateData,
 		rates,

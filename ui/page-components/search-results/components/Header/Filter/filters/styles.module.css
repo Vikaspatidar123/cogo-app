@@ -1,8 +1,6 @@
 .filter_box {
-	.tippy-content {
+	.tippy_content {
 		box-sizing: border-box;
-
-		/* width: ${({ width }) => width || '382px'}; */
 		max-height: 380px;
 		padding: 16px 16px 16px 13px;
 		background: #fff;
@@ -18,7 +16,7 @@
 		border-radius: 10px;
 	}
 
-	&.scroll .tippy-content {
+	&.scroll .tippy_content {
 		overflow-y: auto;
 	}
 

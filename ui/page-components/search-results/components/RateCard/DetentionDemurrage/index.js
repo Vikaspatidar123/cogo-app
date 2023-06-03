@@ -112,7 +112,9 @@ function DetentionDemurrage(props) {
 						) : null}
 					</div>
 
-					{/* {(originDemurrageMaxLimit || originDetentionMaxLimit)
+					{/*
+					//Donot remove comments //
+					 {(originDemurrageMaxLimit || originDetentionMaxLimit)
 					&& rateData?.source !== 'cogo_assured_rate' ? (
 						<Button
 							onClick={() => handleChange('origin')}

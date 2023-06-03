@@ -1,0 +1,18 @@
+.container {
+	display: flex;
+	align-items: flex-start;
+	justify-content: space-between;
+	width: 1000px;
+}
+
+.tab_panel {
+	width: 22%;
+}
+
+.content {
+	width: 76%;
+	padding: 10px 10px 10px 22px;
+	border-left: 1px solid #f8f2e7;
+
+	/* box-shadow: 0 0 8px rgb(44 62 80 / 20%); */
+}

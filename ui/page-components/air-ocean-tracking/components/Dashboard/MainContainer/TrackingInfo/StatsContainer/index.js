@@ -1,26 +1,9 @@
 import { cl, Button } from '@cogoport/components';
-import { IcMAlert, IcMFdetention, IcMFhighCubeContainer } from '@cogoport/icons-react';
 import { useState } from 'react';
 
-import styles from './styles.module.css';
+import STATS_MAPPING from '../../../../../constant/statsMapping';
 
-const STATS_MAPPING = [
-	{
-		key   : 'on_track',
-		title : 'On Track',
-		icon  : <IcMFhighCubeContainer width={25} height={25} />,
-	},
-	{
-		key   : 'delay',
-		title : 'Delay',
-		icon  : <IcMFdetention width={25} height={25} />,
-	},
-	{
-		key   : 'action_required',
-		title : 'Action Required',
-		icon  : <IcMAlert width={20} height={20} fill="#F9AE64" />,
-	},
-];
+import styles from './styles.module.css';
 
 const data = {
 	on_track        : 40,
@@ -39,19 +22,19 @@ function StatsContainer() {
 		<div className={styles.container}>
 			{STATS_MAPPING.map((stats) => (
 				<div
-					key={stats?.key}
-					className={cl`${styles.card} ${styles?.[stats.key]}
-					${selectedCard === stats.key ? styles.selected : ''}`}
+					key={stats?.value}
+					className={cl`${styles.card} ${styles?.[stats.value]}
+					${selectedCard === stats.value ? styles.selected : ''}`}
 					role="presentation"
-					onClick={() => clickHandler(stats?.key)}
+					onClick={() => clickHandler(stats.value)}
 				>
 					<div className={styles.icon_container}>
 						{stats.icon}
 					</div>
 					<div className={styles.info_container}>
-						<p className={styles.text}>{stats.title}</p>
+						<p className={styles.text}>{stats.label}</p>
 						<div className={styles.footer}>
-							<p className={styles.num}>{data?.[stats.key]}</p>
+							<p className={styles.num}>{data?.[stats.value]}</p>
 							<Button themeType="linkUi">View</Button>
 						</div>
 					</div>

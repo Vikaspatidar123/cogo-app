@@ -1,0 +1,18 @@
+.header {
+	margin-bottom: 20px;
+}
+
+.notif {
+	display: flex;
+	align-items: center;
+	padding: 14px;
+	background-color: #fef3e9;
+	border: 1px solid #f9ae64;
+	border-radius: 6px;
+	box-shadow: 0 0 16px 0 #627fac33;
+
+	.notif_text {
+		margin-left: 6px;
+		font-size: 13px;
+	}
+}

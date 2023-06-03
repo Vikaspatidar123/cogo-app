@@ -1,0 +1,32 @@
+.container {
+	margin-bottom: 30px;
+	border-radius: 8px;
+	box-shadow: 0 0 16px rgb(98 127 172 / 20%);
+}
+
+.main_body {
+	display: flex;
+	justify-content: space-between;
+
+	.stepper_container {
+		width: 65%;
+	}
+
+	.dashed_line {
+		margin: 25px;
+		border-left: 1.5px dashed #e0e0e0;
+	}
+
+	.container_details {
+		width: 32%;
+		padding: 20px;
+	}
+}
+
+.header {
+	display: inline-block;
+	padding: 10px 20px;
+	font-weight: 600;
+	background-color: #fffce6;
+	border-bottom-right-radius: 8px;
+}

@@ -70,6 +70,10 @@ const saas = {
 		navigation : 'saas_tools-air_ocean_tracking_v2',
 		isMainNav  : true,
 	},
+	'/saas/tools/air-ocean-tracking/list': {
+		navigation : 'saas_tools-air_ocean_tracking_v2',
+		isMainNav  : true,
+	},
 
 };
 

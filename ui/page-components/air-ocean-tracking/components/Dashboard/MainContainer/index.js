@@ -2,6 +2,8 @@ import { cl, Tabs, TabPanel, ButtonGroup, Select, Button } from '@cogoport/compo
 import { IcMDownload, IcMListView, IcMMap } from '@cogoport/icons-react';
 import { useState } from 'react';
 
+import TAB_MAPPING from '../../../constant/tabMapping';
+
 import styles from './styles.module.css';
 import TrackingInfo from './TrackingInfo';
 
@@ -27,12 +29,6 @@ const selectOpt = [
 	{ label: 'This Week', value: 'week' },
 	{ label: 'This Year', value: 'year' },
 ];
-
-const TAB_MAPPING = {
-	all   : 'ALL',
-	ocean : 'Ocean',
-	air   : 'Air',
-};
 
 function MainContainer() {
 	const [globalFilter, setGlobalFilter] = useState({

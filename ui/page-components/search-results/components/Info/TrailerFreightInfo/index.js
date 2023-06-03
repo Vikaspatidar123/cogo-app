@@ -12,9 +12,9 @@ import LocationDetails from './LocationDetails';
 import styles from './styles.module.css';
 
 import { useSelector } from '@/packages/store';
+import { APP_EVENT, trackEvent } from '@/ui/commons/constants/analytics';
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 import formatDate from '@/ui/commons/utils/formatDate';
-import { APP_EVENT, trackEvent } from '@/ui/commons/constants/analytics';
 import SearchForm from '@/ui/page-components/discover_rates/common/SearchForm';
 
 const NON_STANDALONE_SERVICES = ['fcl_cfs'];

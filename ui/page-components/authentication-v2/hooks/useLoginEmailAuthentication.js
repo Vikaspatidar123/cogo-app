@@ -34,7 +34,7 @@ const useLoginEmailAuthentication = ({ setMode = () => {} }) => {
 			setCookieAndRedirect(token, {}, redirectPath);
 		} catch (err) {
 			Toast.error(
-				getApiErrorString(err?.response?.data) || 'Failed to Login, Please Try Again',
+				getApiErrorString(err?.response?.data) || 'Failed to Login, Please try again',
 			);
 		}
 	};

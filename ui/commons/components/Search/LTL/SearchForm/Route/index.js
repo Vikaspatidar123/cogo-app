@@ -1,4 +1,3 @@
-// import { replace } from '@cogo/i18n';
 import { IcMPortArrow } from '@cogoport/icons-react';
 import { isEmpty } from '@cogoport/utils';
 import React, { forwardRef, useImperativeHandle } from 'react';
@@ -21,6 +20,7 @@ function Route(
 		error: errorMsg,
 		extraParams,
 		control,
+		isEdit,
 	},
 	ref,
 ) {
@@ -111,6 +111,7 @@ function Route(
 						organization_id : org_id,
 						service_type    : mode,
 					}}
+					className={`${isEdit && styles.edit}`}
 				/>
 				{errorMsg?.origin ? (
 					<div className={styles.error_msg}>Origin Port is required</div>
@@ -133,7 +134,7 @@ function Route(
 					{...destination}
 					caret={false}
 					control={control}
-					asyncKey="locations_v2"
+					asyncKey="locations"
 					noOptionsMessage="Type to search..."
 					value={location?.destination?.id}
 					placeholder={destination.placeholder || ''}
@@ -159,6 +160,7 @@ function Route(
 						organization_id : org_id,
 						service_type    : mode,
 					}}
+					className={`${isEdit && styles.edit}`}
 				/>
 				{errorMsg?.destination ? (
 					<div className={styles.error_msg}>Destination Port is required</div>

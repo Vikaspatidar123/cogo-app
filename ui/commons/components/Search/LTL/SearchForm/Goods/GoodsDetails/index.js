@@ -1,8 +1,7 @@
 import { Datepicker, Tabs, TabPanel } from '@cogoport/components';
 // import SegmentedControl from '@cogoport/front/components/SegmentedControl';
+import { IcMCalendar } from '@cogoport/icons-react';
 import React, { useState, forwardRef } from 'react';
-
-import Calendar from '../../../icons/calender.svg';
 
 import GeneralSpecialGoods from './GeneralSpecialGoods';
 import styles from './styles.module.css';
@@ -20,7 +19,7 @@ function GoodsDetails({ setGoodsDetail, goodsDetail, setShowPopover }, ref) {
 
 	const renderBody = () => (
 		<div className={styles.date_container}>
-			<Calendar size={1.5} />
+			<IcMCalendar size={1.5} />
 
 			<div className={styles.date_div}>
 				<div className={styles.select_date}>Select a day</div>
@@ -47,6 +46,7 @@ function GoodsDetails({ setGoodsDetail, goodsDetail, setShowPopover }, ref) {
 						dateFormat="dd MMM yyyy"
 						value={cargoDate}
 						minDate={new Date()}
+						showTimeSelect
 					/>
 				</div>
 

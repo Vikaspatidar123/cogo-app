@@ -3,15 +3,6 @@ import { isEmpty, startCase } from '@cogoport/utils';
 import React, { useState, forwardRef } from 'react';
 
 import GoodsDetails from './GoodsDetails';
-// import {
-// 	Container,
-// 	Label,
-// 	GoodsContent,
-// 	TermsContainer,
-// 	DetailsContainer,
-// 	Details,
-// 	ErrorMsg,
-// } from './styles';
 import styles from './styles.module.css';
 
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';

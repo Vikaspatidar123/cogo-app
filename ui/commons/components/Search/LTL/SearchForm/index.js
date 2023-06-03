@@ -95,6 +95,7 @@ function SearchForm(
 								mode={mode}
 								searchData={searchData}
 								extraParams={extraParams}
+								isEdit={isEdit}
 							/>
 						</div>
 					</div>

@@ -233,6 +233,7 @@ function Form(
 				search_type={search_type}
 				extraParams={extraParams}
 				onPush={onPush}
+				isEdit={isEdit}
 			/>
 		);
 	}

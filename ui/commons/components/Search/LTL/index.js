@@ -11,6 +11,7 @@ function LTL({
 	data: searchData,
 	onPush,
 	extraParams = {},
+	isEdit,
 }) {
 	const { createSpotSearch, loading } = useCreateSpotSearch({
 		extraParams,
@@ -46,6 +47,7 @@ function LTL({
 				searchData={searchData}
 				error={error}
 				extraParams={extraParams}
+				isEdit={isEdit}
 			/>
 
 			<div className={styles.btn_container}>

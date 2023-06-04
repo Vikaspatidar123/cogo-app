@@ -4,8 +4,9 @@
 	padding: 8px;
 	padding: 5px 9px;
 	margin-left: 16px;
-	border: 1px solid;
-	border-radius: 8px;
+	background: #fff;
+	border-radius: 4px;
+	box-shadow: 0 1px 4px rgb(169 188 218 / 65%);
 }
 
 .tippy_box {
@@ -18,7 +19,7 @@
 }
 
 .container:hover {
-	background: #fcdc001a;
+	box-shadow: 0 1px 6px rgb(169 188 218 / 65%);
 }
 
 .container_flex {

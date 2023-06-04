@@ -37,7 +37,6 @@ function MenuProfileHeader({ setShow }) {
 				{business_name && (
 					<div className={styles.footer}>
 						<div className={styles.business_name}>{business_name}</div>
-
 						<KycStatus kyc_status={kyc_status} account_type={account_type} />
 					</div>
 				)}

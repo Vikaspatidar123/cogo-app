@@ -60,9 +60,6 @@
 
 .primary.text {
 	color: gray !important;
-}
-
-.primary.text {
 	border: 1px solid gray;
 
 	:hover {

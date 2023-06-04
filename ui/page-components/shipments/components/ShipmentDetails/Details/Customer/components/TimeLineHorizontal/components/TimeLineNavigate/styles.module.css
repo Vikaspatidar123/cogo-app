@@ -185,7 +185,7 @@
 
 .time {
 	margin: 0;
-	margin-bottom: 4px;
+	margin-bottom: 16px;
 	font-size: 10px;
 	font-weight: 700;
 	color: #b4b4b4;
@@ -228,10 +228,6 @@
 	margin-bottom: 16px;
 	font-weight: 400;
 	color: #7d7d7d;
-}
-
-.time {
-	margin-bottom: 16px;
 }
 
 .vessel {

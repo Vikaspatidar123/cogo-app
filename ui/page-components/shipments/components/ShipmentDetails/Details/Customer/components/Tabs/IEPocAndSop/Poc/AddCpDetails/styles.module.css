@@ -8,12 +8,6 @@
 	color: #bdbdbd;
 	border: 1px dashed #bdbdbd;
 	border-radius: 4px;
-
-	&:hover {
-		color: #393f70;
-		cursor: pointer;
-		border-color: #393f70;
-	}
 }
 
 .detail_container:hover {

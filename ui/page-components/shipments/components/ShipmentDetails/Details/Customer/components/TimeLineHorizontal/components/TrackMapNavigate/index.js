@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { startCase } from '@cogoport/utils';
 import dynamic from 'next/dynamic';
 import { useState, useEffect } from 'react';

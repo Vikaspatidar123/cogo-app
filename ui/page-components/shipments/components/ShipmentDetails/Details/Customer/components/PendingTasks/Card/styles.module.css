@@ -8,9 +8,6 @@
 .item_head {
 	display: flex;
 	margin-left: 4px;
-
-	@media (max-width: 768px) {
-	}
 }
 
 .heading {

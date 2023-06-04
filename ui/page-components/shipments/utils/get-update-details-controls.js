@@ -1,15 +1,13 @@
 import allControls from '../configurations/common/update-shipment-details.json';
+
 import blTypeOptions from './blTypeOptions';
 
 const isDocPresent = (documents, names) => {
-	const docObj = documents.find((document) =>
-		names.includes(document.document_type),
-	);
+	const docObj = documents.find((document) => names.includes(document.document_type));
 	return !!docObj && names.includes(docObj.document_type);
 };
 
-const isContainerTypeIncluded = (container_types, condition) =>
-	container_types.filter((item) => condition.includes(item)).length > 0;
+const isContainerTypeIncluded = (container_types, condition) => container_types.filter((item) => condition.includes(item)).length > 0;
 
 const pushItem = (data, control) => {
 	const {
@@ -37,8 +35,8 @@ const pushItem = (data, control) => {
 			pushControl = false;
 		}
 		if (
-			condition === 'container_type' &&
-			!isContainerTypeIncluded(container_types, conditionObj[condition])
+			condition === 'container_type'
+			&& !isContainerTypeIncluded(container_types, conditionObj[condition])
 		) {
 			pushControl = false;
 		}

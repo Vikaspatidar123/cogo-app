@@ -5,6 +5,7 @@ import {
 	subtractDays,
 	differenceInDays,
 } from '@cogo/date';
+
 import incoTermMapping from '../configurations/common/inco-term-mapping.json';
 
 const cut_off_dates_keys = [
@@ -40,8 +41,8 @@ const mutateFields = ({
 
 	Object.keys(fields).forEach((key) => {
 		if (
-			shipment_data?.shipment_type === 'fcl_freight' &&
-			key === 'shipper_contact_status'
+			shipment_data?.shipment_type === 'fcl_freight'
+			&& key === 'shipper_contact_status'
 		) {
 			if (shipment_data?.shipper_contact_status === 'pending') {
 				fields[key].options = [
@@ -61,16 +62,14 @@ const mutateFields = ({
 				];
 			}
 
-			fields[key].value =
-				fields[key].value || shipment_data?.shipper_contact_status;
+			fields[key].value =				fields[key].value || shipment_data?.shipper_contact_status;
 		}
 
 		if (key === 'bl_category' && data?.task === 'update_bl_type') {
 			const { onChange } = fields.bl_category;
 			fields.bl_category.onChange = (val) => {
-				const showModal =
-					(val === 'hbl' && trade_type === 'export') ||
-					(val === 'mbl' && trade_type === 'import');
+				const showModal =					(val === 'hbl' && trade_type === 'export')
+					|| (val === 'mbl' && trade_type === 'import');
 
 				if (showModal) {
 					setBlChangeShow(true);
@@ -84,9 +83,8 @@ const mutateFields = ({
 		if (key === 'payment_term' && data?.task === 'update_payment_term') {
 			const { onChange } = fields.payment_term;
 			fields.payment_term.onChange = (val) => {
-				const showModal =
-					(val === 'prepaid' && trade_type === 'import') ||
-					(val === 'collect' && trade_type === 'export');
+				const showModal =					(val === 'prepaid' && trade_type === 'import')
+					|| (val === 'collect' && trade_type === 'export');
 
 				if (showModal) {
 					setPaymentTermChange(true);
@@ -135,24 +133,21 @@ const mutateFields = ({
 			if (length > 1) {
 				(fields?.movement_details?.childFormat || []).forEach((child, i) => {
 					const maxDate = fields?.schedule_arrival?.value;
-					const minDate =
-						fields?.movement_details.childFormat[i]?.fields?.schedule_departure
-							?.value || fields?.schedule_departure?.value;
+					const minDate =						fields?.movement_details.childFormat[i]?.fields?.schedule_departure
+						?.value || fields?.schedule_departure?.value;
 
 					child.fields.schedule_arrival.maxDate = formatDateToString(maxDate);
 					child.fields.schedule_arrival.minDate = formatDateToString(minDate);
 
 					if (i !== 0) {
 						const index = i - 1;
-						const last_schedule_arrival_date =
-							fields?.movement_details.childFormat[index]?.fields
-								?.schedule_arrival?.value;
+						const last_schedule_arrival_date =							fields?.movement_details.childFormat[index]?.fields
+							?.schedule_arrival?.value;
 
 						child.fields.schedule_departure.minDate = formatDateToString(
 							last_schedule_arrival_date,
 						);
-						child.fields.schedule_departure.maxDate =
-							formatDateToString(maxDate);
+						child.fields.schedule_departure.maxDate =							formatDateToString(maxDate);
 					}
 				});
 			}

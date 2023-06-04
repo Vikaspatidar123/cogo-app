@@ -35,7 +35,7 @@ function MapComp({
 	const bounds = L.latLngBounds(corner1, corner2);
 	const curvePointLength = curvePoints.length;
 	const heightVariable = isMobile ? '300px' : height;
-	
+
 	useEffect(() => {
 		const timeout = setTimeout(() => {
 			if (map) map.invalidateSize(true);

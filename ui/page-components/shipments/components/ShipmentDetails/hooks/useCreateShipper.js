@@ -22,7 +22,6 @@ const useCreateShipper = ({
 		method : 'post',
 	}, { manual: true });
 
-
 	const handleAddShipper = async () => {
 		try {
 			const params = {

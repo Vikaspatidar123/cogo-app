@@ -5,17 +5,15 @@ const getFilterdJourney = (journey, filters) => {
 			filteredJourney = (filteredJourney || []).map((mileStone) => ({
 				...mileStone,
 				tasks: (mileStone.tasks || []).filter(
-					(task) =>
-						filters[key] === 'all' ||
-						(task.mandatory && filters[key] === 'mandatory') ||
-						(!task.mandatory && filters[key] === 'non-mandatory'),
+					(task) => filters[key] === 'all'
+						|| (task.mandatory && filters[key] === 'mandatory')
+						|| (!task.mandatory && filters[key] === 'non-mandatory'),
 				),
 			}));
 		}
 		if (key === 'performed_by') {
 			filteredJourney = filteredJourney.filter(
-				(mileStone) =>
-					filters[key] === 'all' || mileStone.service_type === filters[key],
+				(mileStone) => filters[key] === 'all' || mileStone.service_type === filters[key],
 			);
 		}
 	});

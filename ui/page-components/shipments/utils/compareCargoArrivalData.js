@@ -17,8 +17,8 @@ const compareCargoArrivalData = (obj1, obj2) => {
 				}
 			});
 		} else if (
-			obj1[key] !== obj2[key] &&
-			!['containers', 'shipment_details'].includes(key)
+			obj1[key] !== obj2[key]
+			&& !['containers', 'shipment_details'].includes(key)
 		) {
 			check = false;
 		}

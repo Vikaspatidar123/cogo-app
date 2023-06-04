@@ -1,6 +1,8 @@
-import showErrorsInToast from '@cogo/utils/showErrorsInToast';
 import { cogoToast } from '@cogo/deprecated_legacy/ui';
+import showErrorsInToast from '@cogo/utils/showErrorsInToast';
+
 import { postData } from '../apis';
+
 import formatValues from './format-values';
 
 const handleDirectComplete = ({
@@ -15,17 +17,17 @@ const handleDirectComplete = ({
 	setIsLoading(true);
 	const config = configs?.steps[0];
 	const state = type === 'cancel' ? config.button.cancel : config.button.value;
-	const finalEndPoint =
-		type === 'cancel' ? config.button?.cancelEndPoint : config.endPoint;
+	const finalEndPoint =		type === 'cancel' ? config.button?.cancelEndPoint : config.endPoint;
 	let dataFromApi = {};
 	(config.dataFromApi || []).forEach((item) => {
 		if (!data[item.key] && item.alt === 'undefined') {
 			dataFromApi = { ...dataFromApi, [item.value]: undefined };
-		} else
+		} else {
 			dataFromApi = {
 				...dataFromApi,
 				[item.value]: data[item.key] || item.key,
 			};
+		}
 	});
 	let payload = null;
 	if (config.payLoadVariable) {

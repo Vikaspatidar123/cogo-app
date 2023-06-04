@@ -1,11 +1,12 @@
-.text{
-    font-weight: normal;
-	font-size: 12px;
-	line-height: 16px;
+.text {
 	padding-left: 4px;
-	margin: 0px;
+	margin: 0;
+	font-size: 12px;
+	font-weight: normal;
+	line-height: 16px;
 	color: #da9a3b;
 }
+
 .err_msz {
-    color: red;
+	color: red;
 }

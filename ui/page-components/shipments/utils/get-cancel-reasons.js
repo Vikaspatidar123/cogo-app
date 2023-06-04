@@ -1,4 +1,5 @@
 import cancelReasons from '../configurations/common/shipment-cancel-reasons.json';
+
 import isDocPresent from './is-doc-present';
 
 const checkCondition = (reason, service, shipment_data, services = []) => {

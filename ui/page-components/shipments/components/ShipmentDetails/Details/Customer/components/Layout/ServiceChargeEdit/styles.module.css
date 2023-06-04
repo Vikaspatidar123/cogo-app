@@ -1,11 +1,12 @@
-.option{
-    color: #0000;
-    font-size: 12px;
-    margin-right: 20px;
-    font-weight: 400;
+.option {
+	margin-right: 20px;
+	font-size: 12px;
+	font-weight: 400;
+	color: #0000;
 }
-.sac_code{
-    color: #808080;
-    font-size: 10px;
-    font-weight: 400;
+
+.sac_code {
+	font-size: 10px;
+	font-weight: 400;
+	color: #808080;
 }

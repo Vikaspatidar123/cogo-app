@@ -1,28 +1,27 @@
 import shipmentJourneyStates from '../configurations/common/shipment-journey.json';
+
 import CC from './condition-constants';
 
-const actionableTasks = (stateTasks = [], pendingTasks = []) =>
-	stateTasks
-		.map((task) => {
-			if (task?.status === 'pending') {
-				// handles Case when task is there in timeline as pending but not in pending tasks
-				const taskInOrginal = pendingTasks.find(
-					(pendingTask) => pendingTask?.id === task?.id,
-				);
-				if (!taskInOrginal) {
-					return { ...task, _deleted: true };
-				}
-				return { ...task, ...taskInOrginal };
+const actionableTasks = (stateTasks = [], pendingTasks = []) => stateTasks
+	.map((task) => {
+		if (task?.status === 'pending') {
+			// handles Case when task is there in timeline as pending but not in pending tasks
+			const taskInOrginal = pendingTasks.find(
+				(pendingTask) => pendingTask?.id === task?.id,
+			);
+			if (!taskInOrginal) {
+				return { ...task, _deleted: true };
 			}
-			if (task?.status !== 'completed') {
-				const taskInOrginal =
-					pendingTasks.find((pendingTask) => pendingTask?.id === task?.id) ||
-					{};
-				return { ...task, ...taskInOrginal };
-			}
-			return task;
-		})
-		.filter((task) => !task?._deleted);
+			return { ...task, ...taskInOrginal };
+		}
+		if (task?.status !== 'completed') {
+			const taskInOrginal =					pendingTasks.find((pendingTask) => pendingTask?.id === task?.id)
+					|| {};
+			return { ...task, ...taskInOrginal };
+		}
+		return task;
+	})
+	.filter((task) => !task?._deleted);
 
 const getMileStoneStats = (
 	tasks = [],
@@ -40,9 +39,9 @@ const getMileStoneStats = (
 	const filteredTasks = (tasks || []).filter(({ task = '' }) => {
 		if (task === 'approve_booking_proof') {
 			if (
-				(scope === 'partner' &&
-					isConditionMatches(CC.BOOKING_AGENT_VIEW, 'or')) ||
-				scope === 'app'
+				(scope === 'partner'
+					&& isConditionMatches(CC.BOOKING_AGENT_VIEW, 'or'))
+				|| scope === 'app'
 			) {
 				return true;
 			}
@@ -110,11 +109,10 @@ const getStats = (shipmentJourney) => {
 	};
 };
 
-const getJourneyStates = (shipment_data = {}) =>
-	(shipment_data?.all_states || []).map((state) => ({
-		state,
-		service_type: shipment_data?.service_type,
-	}));
+const getJourneyStates = (shipment_data = {}) => (shipment_data?.all_states || []).map((state) => ({
+	state,
+	service_type: shipment_data?.service_type,
+}));
 
 const getShipmentJourney = (
 	tasks = [],
@@ -126,10 +124,9 @@ const getShipmentJourney = (
 	isConditionMatches,
 	services,
 ) => {
-	const journeyStates =
-		viewAs === 'importer_exporter'
-			? shipmentJourneyStates[shipment_data?.shipment_type] || []
-			: getJourneyStates(shipment_data);
+	const journeyStates =		viewAs === 'importer_exporter'
+		? shipmentJourneyStates[shipment_data?.shipment_type] || []
+		: getJourneyStates(shipment_data);
 	const shipmentJourney = [];
 	journeyStates.forEach((state) => {
 		const stateTasks = timeLine[state?.state]?.tasks || [];
@@ -145,11 +142,10 @@ const getShipmentJourney = (
 					];
 				});
 
-				const serviceTasksOfState =
-					isBookingAgent && viewAs !== 'service_provider'
-						? allServiceTasksOfState
-						: {
-								[state?.service_type]:
+				const serviceTasksOfState =					isBookingAgent && viewAs !== 'service_provider'
+					? allServiceTasksOfState
+					: {
+						[state?.service_type]:
 									allServiceTasksOfState[state.service_type] || [],
 						  };
 
@@ -164,9 +160,9 @@ const getShipmentJourney = (
 								state?.state,
 								services,
 							),
-							tasks: newTasks,
+							tasks        : newTasks,
 							...state,
-							service_type: key,
+							service_type : key,
 						});
 					}
 				});
@@ -181,9 +177,9 @@ const getShipmentJourney = (
 					state?.state,
 					services,
 				),
-				tasks: newTasks,
+				tasks        : newTasks,
 				...state,
-				service_type: shipment_data?.shipment_type,
+				service_type : shipment_data?.shipment_type,
 			});
 		}
 	});

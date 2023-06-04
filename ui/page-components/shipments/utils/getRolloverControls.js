@@ -14,8 +14,8 @@ const rollOverControls = (configs, list) => {
 			return {
 				...control,
 				options: list.map((item, i) => ({
-					label: item.container_number || `Container ${i + 1}`,
-					value: item.id,
+					label : item.container_number || `Container ${i + 1}`,
+					value : item.id,
 				})),
 			};
 		}

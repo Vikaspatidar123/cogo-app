@@ -10,8 +10,8 @@ const preUpdateData = async ({
 	setMessage,
 }) => {
 	if (
-		payload?.document_type === 'invoice' &&
-		payload?.documents?.[0]?.data?.cargo_value
+		payload?.document_type === 'invoice'
+		&& payload?.documents?.[0]?.data?.cargo_value
 	) {
 		const { cargo_value, cargo_currency } = payload?.documents?.[0]?.data || {};
 		const cargo_value_payload = {

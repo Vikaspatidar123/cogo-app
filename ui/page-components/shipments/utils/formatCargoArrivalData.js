@@ -46,8 +46,8 @@ const formatCargoArrivalData = (values) => {
 		if (shipmentDetailsKey.includes(key)) {
 			shipmentDetailObj[key] = values[key] || '';
 		} else if (
-			!shipmentDetailsKey.includes(key) &&
-			!containerKey.includes(key)
+			!shipmentDetailsKey.includes(key)
+			&& !containerKey.includes(key)
 		) {
 			formattedValues[key] = values[key] || '';
 		}

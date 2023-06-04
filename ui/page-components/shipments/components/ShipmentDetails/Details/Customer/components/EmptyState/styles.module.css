@@ -1,25 +1,30 @@
-.container{
-    display: flex;
-	justify-content: space-between;
+.container {
+	display: flex;
 	align-items: center;
-	background: #ffffff;
-	border-radius: 10px;
+	justify-content: space-between;
 	padding: 30px 60px;
+	background: #fff;
+	border-radius: 10px;
 }
+
 .empty_state_icon {
-    @media (max-width: 768px) {
-        display: none;
-    }
+	@media (max-width: 768px) {
+		display: none;
+	}
 }
-.heading{
-	font-weight: 500;
+
+.heading {
 	font-size: 24px;
+	font-weight: 500;
+
 	@media (max-width: 768px) {
 		font-size: 16px;
 	}
 }
-.content{
+
+.content {
 	font-size: 16px;
+
 	@media (max-width: 768px) {
 		font-size: 12px;
 	}

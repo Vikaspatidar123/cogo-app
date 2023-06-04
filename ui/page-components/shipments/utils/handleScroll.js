@@ -1,6 +1,6 @@
 const handleScroll = () => {
 	if (history.pushState) {
-		history.pushState({}, '', `#shipment-tabs`);
+		history.pushState({}, '', '#shipment-tabs');
 	}
 	document
 		.getElementById('shipment-tabs')

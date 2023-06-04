@@ -1,52 +1,60 @@
-.container{
-    width: 100%;
-	padding: 0px 8px;
+.container {
+	width: 100%;
+	padding: 0 8px;
 }
-.heading{
-    font-size: 18px;
+
+.heading {
+	margin-top: 25px;
+	font-size: 18px;
 	font-weight: 600;
 	color: #393f70;
-	margin-top: 25px;
 }
-.button_wrap{
+
+.button_wrap {
 	display: flex;
 	margin-top: 20px;
 }
-.add_icon{
+
+.add_icon {
 	width: 30px;
 	height: 30px;
-	background: #ffffff;
-	color: #393f70;
-	border-radius: 100%;
-	font-size: 28px;
 	padding-left: 1px;
 	margin-right: 10px;
+	font-size: 28px;
 	font-weight: 300;
+	color: #393f70;
+	background: #fff;
+	border-radius: 100%;
 }
-.child{
+
+.child {
 	display: flex;
 	margin-bottom: 14px;
 }
-.row{
+
+.row {
 	display: flex;
-    flex-flow: row wrap;
-    flex-grow: 0;
+	flex-flow: row wrap;
+	flex-grow: 0;
 	flex-shrink: 0;
 	align-items: normal;
-    justify-content: flex-start;
+	justify-content: flex-start;
 }
-.line{
-	border-bottom: 1px solid #000000;
+
+.line {
 	width: 100%;
 	margin-top: 20px;
+	border-bottom: 1px solid #000;
 }
-.col{
+
+.col {
 	display: flex;
 	flex-direction: column;
-	padding-left: 8px;
 	padding-right: 8px;
+	padding-left: 8px;
 }
-.remove_icon{
+
+.remove_icon {
 	margin-left: 20px;
 	cursor: pointer;
 }

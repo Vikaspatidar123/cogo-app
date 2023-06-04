@@ -11,9 +11,9 @@ const checkConditionForTask = (serviceData) => {
 
 		if (serviceData?.service_type === 'fcl_freight_service') {
 			return (
-				(hbl_details?.length || mbl_details?.length) &&
-				movement_details?.length &&
-				container_details?.length
+				(hbl_details?.length || mbl_details?.length)
+				&& movement_details?.length
+				&& container_details?.length
 			);
 		}
 		return mbl_details?.length || hbl_details?.length;

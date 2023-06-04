@@ -1,19 +1,22 @@
-.container{
-    width: 100%;
-	border-radius: 4px;
-	background: #fff0f0;
-	padding: 16px;
+.container {
 	display: flex;
+	width: 100%;
+	padding: 16px;
 	margin-bottom: 16px;
+	background: #fff0f0;
+	border-radius: 4px;
 }
-.row{
-    display: flex;
+
+.row {
+	display: flex;
 }
-.col{
-    display: flex;
-    flex-direction: column;
+
+.col {
+	display: flex;
+	flex-direction: column;
 }
-.icon_wrapper{
-    margin-right: 12px;
+
+.icon_wrapper {
 	margin-top: 4px;
+	margin-right: 12px;
 }

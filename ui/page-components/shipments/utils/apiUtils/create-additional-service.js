@@ -1,8 +1,10 @@
-import showErrorsInToast from '@cogo/utils/showErrorsInToast';
-import { cogoToast } from '@cogo/deprecated_legacy/ui';
 import { getFormattedValues } from '@cogo/app-common';
+import { cogoToast } from '@cogo/deprecated_legacy/ui';
+import showErrorsInToast from '@cogo/utils/showErrorsInToast';
 
-const addService = async ({ performed_by_org_id, trigger, obj, values, idVal, refetch, handleClose, service_id }) => {
+const addService = async ({
+	performed_by_org_id, trigger, obj, values, idVal, refetch, handleClose, service_id,
+}) => {
 	const payload = {
 		performed_by_org_id,
 		name         : obj.name,
@@ -82,7 +84,9 @@ const createAdditionalService = ({
 			if (servicesToAddIn.length > 1) {
 				const promises = [];
 				servicesToAddIn.forEach((service) => {
-					promises.push(addService({ performed_by_org_id, trigger, obj, values, idVal, refetch, handleClose, service_id: service?.id }));
+					promises.push(addService({
+						performed_by_org_id, trigger, obj, values, idVal, refetch, handleClose, service_id: service?.id,
+					}));
 				});
 				Promise.all(promises).then((res) => {
 					let allResolved = true;

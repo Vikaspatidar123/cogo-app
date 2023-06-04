@@ -1,32 +1,36 @@
-.container{
-    display: flex;
+.container {
+	display: flex;
 	flex-direction: column;
+
 	:global {
-		.ui_chips_container{
+		.ui_chips_container {
 			display: flex;
-		gap: 8px;
-		flex-wrap: wrap;
+			flex-wrap: wrap;
+			gap: 8px;
 		}
 	}
 }
-.label{
-    font-weight: bold;
-	font-size: 14px;
-	line-height: 16px;
+
+.label {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
 	margin-top: 32px;
 	margin-bottom: 16px;
+	font-size: 14px;
+	font-weight: bold;
+	line-height: 16px;
 	color: #393f70;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
 }
-.lower_label{
+
+.lower_label {
 	display: inline-block;
-	font-size: 10px;
-	color: #adadad;
-	line-height: 20px;
 	margin-bottom: 6px;
+	font-size: 10px;
+	line-height: 20px;
+	color: #adadad;
 }
-.truck{
+
+.truck {
 	width: 50%;
 }

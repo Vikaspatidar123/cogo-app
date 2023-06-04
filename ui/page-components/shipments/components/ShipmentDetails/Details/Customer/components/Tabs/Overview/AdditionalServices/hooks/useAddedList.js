@@ -25,6 +25,7 @@ const useAddedList = ({ shipment_id, shipment_data, filters = {} }) => {
 		if (shipment_id) {
 			getListApi();
 		}
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [shipment_id]);
 
 	return {

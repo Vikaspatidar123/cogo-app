@@ -32,7 +32,9 @@ const addService = async ({
 		} else if (!service_id) {
 			showErrorsInToast(
 				res.messages || [
-					'The application has encountered an unknown error. Our team is looking into this with the utmost urgency. Please try again after some time. If the issue persists, please contact us via chat.',
+					'The application has encountered an unknown error.'
+					+ 'Our team is looking into this with the utmost urgency. Please try again after some time.'
+					+ 'If the issue persists, please contact us via chat.',
 				],
 			);
 			handleClose();

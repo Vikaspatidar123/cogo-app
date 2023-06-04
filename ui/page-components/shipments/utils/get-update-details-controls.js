@@ -7,7 +7,9 @@ const isDocPresent = (documents, names) => {
 	return !!docObj && names.includes(docObj.document_type);
 };
 
-const isContainerTypeIncluded = (container_types, condition) => container_types.filter((item) => condition.includes(item)).length > 0;
+const isContainerTypeIncluded = (container_types, condition) => container_types.filter(
+	(item) => condition.includes(item),
+).length > 0;
 
 const pushItem = (data, control) => {
 	const {

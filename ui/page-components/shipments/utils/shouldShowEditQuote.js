@@ -22,7 +22,8 @@ const shouldShowEditQuote = (shipment_data, shippingDetails, service_charges) =>
 	return {
 		paramsToSee,
 		setQuotationView,
-		shouldDirectGetQuotation: shipment_data?.booking_params && showEditQuote && shipment_data?.can_change_booking_params_status === 'accepted',
+		shouldDirectGetQuotation: shipment_data?.booking_params && showEditQuote
+		&& shipment_data?.can_change_booking_params_status === 'accepted',
 	};
 };
 export default shouldShowEditQuote;

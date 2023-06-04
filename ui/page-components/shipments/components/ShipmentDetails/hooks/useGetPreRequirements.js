@@ -14,6 +14,7 @@ const useGetPreRequirements = (getEndPoint, params) => {
 
 	useEffect(() => {
 		getList();
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	const doc_data = data?.list?.[0] || {};

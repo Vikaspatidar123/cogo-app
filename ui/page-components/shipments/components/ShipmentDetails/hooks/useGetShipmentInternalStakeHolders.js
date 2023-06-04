@@ -23,6 +23,7 @@ const useGetShipmentInternalStakeHolders = ({ shipment_id }) => {
 
 	useEffect(() => {
 		getList();
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [shipment_id]);
 
 	const notToShowStakeholders = ['service_ops', 'user'];

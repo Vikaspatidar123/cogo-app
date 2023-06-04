@@ -128,6 +128,7 @@ const useGetSopList = ({
 		if ((shipment_id_prop || query?.id) && tdata) {
 			getList();
 		}
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [filters, reload, tdata]);
 
 	return {

@@ -31,7 +31,7 @@ function CargoDetails({ primary_service, shipment_data }) {
 			{isMultiService ? (
 				<MultiServiceDetails mainServices={mainServices}>
 					+
-					{mainServices?.length - 1}
+					{(mainServices?.length || 0) - 1}
 
 					Details
 				</MultiServiceDetails>

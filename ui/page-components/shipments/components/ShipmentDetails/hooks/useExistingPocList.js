@@ -82,6 +82,7 @@ const useExistingPocList = ({ utilities = {} }) => {
 				console.log(err);
 			}
 		})();
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [JSON.stringify(shipment_data?.importer_exporter_id)]);
 
 	return {

@@ -35,6 +35,7 @@ function Header({ filters, hookSetters, config, viewAs }) {
 				serial_id: query,
 			}));
 		}
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [query]);
 
 	return (

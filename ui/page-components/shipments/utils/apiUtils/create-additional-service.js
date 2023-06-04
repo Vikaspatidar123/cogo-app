@@ -1,6 +1,7 @@
-import { getFormattedValues } from '@cogo/app-common';
-import { cogoToast } from '@cogo/deprecated_legacy/ui';
-import showErrorsInToast from '@cogo/utils/showErrorsInToast';
+import { Toast } from '@cogoport/components';
+
+import getFormattedValues from '@/ui/commons/utils/getFormattedValues';
+import showErrorsInToast from '@/ui/commons/utils/showErrorsInToast';
 
 const addService = async ({
 	performed_by_org_id, trigger, obj, values, idVal, refetch, handleClose, service_id,
@@ -24,7 +25,7 @@ const addService = async ({
 			if (!service_id) {
 				refetch();
 				handleClose();
-				cogoToast.success('Additional service added successfully!');
+				Toast.success('Additional service added successfully!');
 			} else {
 				funcRes = { success: true, res };
 			}
@@ -65,7 +66,7 @@ const createAdditionalService = ({
 }) => {
 	const performed_by_org_id = scope === 'partner' ? user_id : undefined;
 	if (!selectedService) {
-		cogoToast.error('Please selcet a service');
+		Toast.error('Please selcet a service');
 	} else {
 		const idVal = service_id ? { service_id, shipment_id: id } : { shipment_id: id };
 		const obj = services.find((item) => item.value === selectedService);
@@ -75,7 +76,8 @@ const createAdditionalService = ({
 				if (
 					service?.service_type === obj.service_type
 					&& !service?.main_service_id
-					&& (!service?.trade_type || !obj.trade_types || (obj.trade_types || []).includes(service?.trade_type))) {
+					&& (!service?.trade_type || !obj.trade_types || (obj.trade_types
+						|| []).includes(service?.trade_type))) {
 					servicesToAddIn.push(service);
 				}
 			});
@@ -98,7 +100,7 @@ const createAdditionalService = ({
 					if (allResolved) {
 						refetch();
 						handleClose();
-						cogoToast.success('Additional service added successfully!');
+						Toast.success('Additional service added successfully!');
 					} else {
 						const errors = [];
 						res.forEach((newErr) => {
@@ -108,7 +110,7 @@ const createAdditionalService = ({
 					}
 				}).catch((err) => {
 					console.log(err);
-					cogoToast.error('Something went wrong please try again');
+					Toast.error('Something went wrong please try again');
 				});
 			} else if (viewAs === 'importer_exporter' && servicesToAddIn.length === 1) {
 				idVal.service_id = servicesToAddIn[0]?.id;

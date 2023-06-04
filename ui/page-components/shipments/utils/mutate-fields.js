@@ -133,7 +133,7 @@ const mutateFields = ({
 			if (length > 1) {
 				(fields?.movement_details?.childFormat || []).forEach((child, i) => {
 					const maxDate = fields?.schedule_arrival?.value;
-					const minDate =						fields?.movement_details.childFormat[i]?.fields?.schedule_departure
+					const minDate = fields?.movement_details.childFormat[i]?.fields?.schedule_departure
 						?.value || fields?.schedule_departure?.value;
 
 					child.fields.schedule_arrival.maxDate = formatDateToString(maxDate);
@@ -141,7 +141,7 @@ const mutateFields = ({
 
 					if (i !== 0) {
 						const index = i - 1;
-						const last_schedule_arrival_date =							fields?.movement_details.childFormat[index]?.fields
+						const last_schedule_arrival_date = fields?.movement_details.childFormat[index]?.fields
 							?.schedule_arrival?.value;
 
 						child.fields.schedule_departure.minDate = formatDateToString(

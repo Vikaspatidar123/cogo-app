@@ -30,6 +30,7 @@ const useGetpendingTasks = ({ status = '', shipment_type = '' }) => {
 
 	useEffect(() => {
 		if (status === 'pending_documents') getPendingTask();
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [status]);
 
 	const {

@@ -25,6 +25,7 @@ const useGetShipmentServiceList = (allParams) => {
 
 	useEffect(() => {
 		getList();
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [params?.shipment_id]);
 
 	return {

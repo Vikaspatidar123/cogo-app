@@ -41,6 +41,7 @@ const useServiceList = (
 		if (shipment_data?.id) {
 			getList();
 		}
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [shipment_data?.id]);
 
 	return {

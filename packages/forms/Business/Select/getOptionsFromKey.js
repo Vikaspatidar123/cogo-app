@@ -6,6 +6,7 @@ import currencies from '../../constants/currencies';
 import TruckTypes from '../../constants/truck-types.json';
 import getCommodityList from '../../utils/getCommodityList';
 
+// eslint-disable-next-line import/no-unresolved
 import countries from '@/.data-store/constants/countries.json';
 
 const getOptionsFromKey = (

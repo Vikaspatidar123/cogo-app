@@ -1,9 +1,10 @@
-import { cogoToast } from '@cogo/deprecated_legacy/ui';
-import showErrorsInToast from '@cogo/utils/showErrorsInToast';
+import { Toast } from '@cogoport/components';
 
 import { postData } from '../apis';
 
 import formatValues from './format-values';
+
+import showErrorsInToast from '@/ui/commons/utils/showErrorsInToast';
 
 const handleDirectComplete = ({
 	data,
@@ -47,7 +48,7 @@ const handleDirectComplete = ({
 			if (res.hasError) {
 				showErrorsInToast(res.messages);
 			} else {
-				cogoToast.success('Task updated');
+				Toast.success('Task updated');
 
 				handleActions();
 			}

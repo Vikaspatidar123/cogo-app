@@ -925,7 +925,7 @@ const useCreateSearch = ({
 		}
 	};
 
-	return { submitRfq_Contract, submitData, createNewSearch };
+	return { submitRfq_Contract, submitData, createNewSearch, loading: apiloading || loading };
 };
 
 export default useCreateSearch;

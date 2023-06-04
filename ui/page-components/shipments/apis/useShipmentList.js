@@ -1,9 +1,5 @@
-import { Toast } from '@cogoport/components';
-import { useEffect } from 'react';
-
 import filterServiceMapping from '../configurations/common/filter-service-mapping.json';
 
-// import { getRequest } from '.';
 import { useRequest } from '@/packages/request';
 
 const useListShipmentList = () => {

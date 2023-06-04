@@ -1,3 +1,4 @@
+/* eslint-disable default-param-last */
 import { isEmpty } from '@cogoport/utils';
 
 import getFormattedValues from '../../freight-rate-trend/active-freight-rate-trend/components/add-rates/common/utility';

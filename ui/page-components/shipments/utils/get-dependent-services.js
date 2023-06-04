@@ -16,8 +16,9 @@ const dependentServices = {
 	],
 };
 
-const uniqueServices = (filteredServices, currentService) => filteredServices.filter((service) => currentService.container_size === service.container_size
-	&& currentService.container_type === service.container_type);
+const uniqueServices = (filteredServices, currentService) => (
+	filteredServices.filter((service) => currentService.container_size === service.container_size
+	&& currentService.container_type === service.container_type));
 
 const getDependentServices = (currentService, services) => {
 	const dependentServicesArr = dependentServices[currentService?.service_type];

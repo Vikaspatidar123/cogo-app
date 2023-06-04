@@ -73,6 +73,7 @@ const useGetExistingCompanies = ({ role, servProvId, compType }) => {
 
 	useEffect(() => {
 		fetch();
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [compType]);
 
 	return {

@@ -1,9 +1,6 @@
-import { Toast } from '@cogoport/components';
-
 import filterServiceMapping from '../configurations/common/filter-service-mapping.json';
 import serviceMappings from '../configurations/common/service-mappings.json';
 
-// import { getRequest } from '.';
 import { useRequest } from '@/packages/request';
 
 const useListShipmentServices = ({ filterValues, otherParams = {} }) => {
@@ -45,6 +42,7 @@ const useListShipmentServices = ({ filterValues, otherParams = {} }) => {
 			return response;
 		} catch (error) {
 			console.log(error);
+			return null;
 		}
 	};
 

@@ -14,7 +14,7 @@ function ContainerInfo({ detail }) {
 					<CargoDetails detail={detail || {}} />
 					<MultiServiceDetails mainServices={detail?.fcl_freight_services}>
 						+
-						{detail?.fcl_freight_services?.length - 1}
+						{(detail?.fcl_freight_services?.length || 0) - 1}
 						Details
 					</MultiServiceDetails>
 				</div>

@@ -43,6 +43,7 @@ const useGetInvoicingPartyData = () => {
 		if (!isEmpty(shipment_data) && shipment_data?.importer_exporter_id) {
 			getData();
 		}
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [JSON.stringify(shipment_data)]);
 
 	return {

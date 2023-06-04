@@ -2,8 +2,9 @@
 // import isEmpty from '@cogo/utils/isEmpty';
 // import merge from '@cogo/utils/merge';
 
-// import { postData } from '../apis';
 import { isEmpty, merge } from '@cogoport/utils';
+
+import { postData } from '../apis';
 
 import checkRequirement from './checkRequirement';
 import formatValues from './format-values';

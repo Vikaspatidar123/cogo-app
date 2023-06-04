@@ -22,6 +22,7 @@ const useGetTask = ({ task = {} }) => {
 
 	useEffect(() => {
 		getTask();
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [JSON.stringify(task?.id)]);
 
 	return {

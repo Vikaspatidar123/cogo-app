@@ -17,7 +17,7 @@ export const renderValue = (label, detail) => {
 
 	const chargableWeight = isLTL
 		? detail?.chargable_weight || detail?.weight
-		: Math.max(detail?.volume * 166.67, detail?.weight);
+		: Math.max((detail?.volume || 0) * 166.67, detail?.weight);
 
 	const dimension = valueForInput?.length
 		? `${valueForInput?.length}cm X ${valueForInput?.width}cm X ${valueForInput?.height}cm,`
@@ -55,7 +55,7 @@ export const renderValue = (label, detail) => {
 				>
 					<div className="cargo-details-info">
 						{`Package: ${inputValue} + ${
-							packages?.length - 1
+							(packages?.length || 0) - 1
 						} more`}
 
 					</div>

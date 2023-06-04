@@ -1,4 +1,4 @@
-import { differenceInDays } from '@cogo/date';
+import differenceInDays from 'date-fns/differenceInDays';
 
 const getTaskTag = (task) => {
 	const { deadline, task: taskName } = task;

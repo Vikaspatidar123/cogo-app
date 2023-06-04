@@ -1,5 +1,3 @@
-import { MultiselectController } from '..';
-
 import AsyncSelectController from './AsyncSelectController';
 import CheckboxController from './CheckboxController';
 import CheckboxGroupController from './CheckboxGroupController';
@@ -9,6 +7,7 @@ import DatepickerController from './DatepickerController';
 import InputController from './InputController';
 import InputGroupController from './InputGroupController';
 import MobileNumberSelectController from './MobileNumberSelectController';
+import MultiselectController from './MultiSelectController';
 import PriceController from './PriceController';
 import RadioController from './RadioController';
 import RadioGroupController from './RadioGroupController';
@@ -34,6 +33,8 @@ const MAPPING = {
 	'creatable-select' : SelectController,
 	'input-group'      : InputGroupController,
 	checkboxGroup      : CheckboxGroupController,
+	radiogroup         : RadioGroupController,
+	country_select     : CountrySelectController,
 };
 
 const getField = (type = 'text') => {

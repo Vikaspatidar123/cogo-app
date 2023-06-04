@@ -1,4 +1,4 @@
-import isEmpty from '@cogo/utils/isEmpty';
+import { isEmpty } from '@cogoport/utils';
 
 import { getData } from '../apis';
 
@@ -23,7 +23,10 @@ const getInitialTaskRequirments = async ({
 	let is_house_doc_uploaded = false;
 	const categories = ['hbl', 'hawb'];
 	if (viewAs === 'service_provider' && documentType && categories.includes(shipment_data?.bl_category)) {
-		const { response: doc } = await getData('/list_shipment_documents', { filters: { document_type: documentType, shipment_id: shipment_data?.shipment_id } }, scope);
+		const { response: doc } = await getData('/list_shipment_documents', {
+			filters:
+			{ document_type: documentType, shipment_id: shipment_data?.shipment_id },
+		}, scope);
 		is_house_doc_uploaded = doc?.list?.length > 0;
 	}
 	const invoiceData = (apiResponse?.data || [])[0] || {};
@@ -50,7 +53,9 @@ const getInitialTaskRequirments = async ({
 		setIsLoading(false);
 	} else if (configs.getEndPoint === 'get_sailing_schedules') {
 		const allSailingSchedules = apiResponse?.list || [];
-		const mainSailingSchedule = allSailingSchedules.find((item) => item?.shipping_line_id === shipment_data?.shipping_line_id);
+		const mainSailingSchedule = allSailingSchedules.find(
+			(item) => item?.shipping_line_id === shipment_data?.shipping_line_id,
+		);
 		setConfigs(getProperConfigs({ ...data, mainSailingSchedule, pending_task_id: data.id, user_id }));
 		setIsLoading(false);
 	} else {

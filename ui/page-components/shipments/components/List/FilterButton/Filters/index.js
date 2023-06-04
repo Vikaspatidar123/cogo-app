@@ -25,7 +25,7 @@ function Filters({
 		})
 		.map((control) => ({ ...control, value: filters[control.name] }));
 
-	const { control, getValues, setValue, watch } = useForm();
+	const { control, getValues, watch } = useForm();
 
 	const fieldsProp = {};
 

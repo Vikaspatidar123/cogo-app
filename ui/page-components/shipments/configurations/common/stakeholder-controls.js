@@ -1,4 +1,4 @@
-import patterns from '@cogoport/front/constants/pattterns';
+import patterns from '@/ui/commons/configurations/patterns';
 
 export const controls = [
 	{

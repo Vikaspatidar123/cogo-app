@@ -45,6 +45,7 @@ const useGetTradePartnersDetails = ({ shipment_id = '' }) => {
 		if (shipment_id || query?.id) {
 			getList();
 		}
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	return {

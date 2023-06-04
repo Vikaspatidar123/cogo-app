@@ -1,4 +1,4 @@
-import startCase from '@cogo/utils/startCase';
+import { startCase } from '@cogoport/utils';
 
 const rollOverControls = (configs, list) => {
 	const { controls: controlObj, rollover_reasons } = configs;

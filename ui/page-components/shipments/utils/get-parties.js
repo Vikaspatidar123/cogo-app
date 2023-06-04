@@ -44,5 +44,6 @@ const getIdAdded = (item, shipment_data) => {
 	return !!shipment_data[item?.key];
 };
 
-const getPossibleParties = (shipment_data = {}) => possibleParties.map((item) => ({ ...item, isAdded: getIdAdded(item, shipment_data), data: shipment_data[item?.key] }));
+const getPossibleParties = (shipment_data = {}) => possibleParties.map((item) => (
+	{ ...item, isAdded: getIdAdded(item, shipment_data), data: shipment_data[item?.key] }));
 export default getPossibleParties;

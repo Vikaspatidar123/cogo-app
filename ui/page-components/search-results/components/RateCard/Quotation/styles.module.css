@@ -96,6 +96,16 @@
 	margin-bottom: 15px;
 }
 
+.book_button_styles {
+	align-self: center;
+	width: 100%;
+	margin-bottom: 15px;
+}
+
+.book_button_styles:hover {
+	background-color: red !important;
+}
+
 .button {
 	color: rgb(130 130 130);
 	cursor: pointer;

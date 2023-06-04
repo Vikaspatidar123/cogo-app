@@ -9,7 +9,6 @@ function CheckoutRMDetails() {
 	const { agent } = useSelector(({ profile }) => ({
 		agent: profile.organization.agent,
 	}));
-
 	return (
 		<div className={styles.container}>
 			<div className={styles.label}>

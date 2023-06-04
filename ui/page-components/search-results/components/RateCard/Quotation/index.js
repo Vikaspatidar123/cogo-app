@@ -260,7 +260,7 @@ function Quotation({
 			style={buttonStyles}
 			loading={loading}
 			themeType="accent"
-			className={styles.button_styles}
+			className={styles.book_button_styles}
 		>
 			Book at
 			<span style={{ marginLeft: '6px' }}>

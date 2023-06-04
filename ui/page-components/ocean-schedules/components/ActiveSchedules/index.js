@@ -1,7 +1,8 @@
-import { Pagination, Button, Popover, Placeholder } from '@cogoport/components';
+import { Pagination, Button, Popover } from '@cogoport/components';
 import { IcMArrowBack, IcMPortArrow, IcMFilter } from '@cogoport/icons-react';
 import React, { useState } from 'react';
 
+import Loading from '../../common/Loading';
 import Map from '../../common/Map';
 import useFetchScheduleDetails from '../../hooks/useFetchScheduleDetails';
 import NoSchedulesCard from '../NoSchedulesCard';
@@ -82,7 +83,7 @@ function ActiveSchedules() {
 			</div>
 			{filterFetchLoading && 		(
 				<div className={styles.card}>
-					<Placeholder height="370px" width="1250px" margin="0px 0px 20px 0px" />
+					<Loading />
 				</div>
 			)}
 			<div className={styles.active_schedules}>
@@ -95,15 +96,17 @@ function ActiveSchedules() {
 					))}
 				{!filterFetchLoading && scheduleDetails?.schedules?.list.length === 0 && <NoSchedulesCard />}
 			</div>
-			<div className={styles.pagination_container}>
-				<Pagination
-					type="number"
-					currentPage={currentPage}
-					totalItems={scheduleDetails?.schedules?.total_count}
-					pageSize={6}
-					onPageChange={setCurrentPage}
-				/>
-			</div>
+			{scheduleDetails?.schedules?.list.length > 0 && (
+				<div className={styles.pagination_container}>
+					<Pagination
+						type="number"
+						currentPage={currentPage}
+						totalItems={scheduleDetails?.schedules?.total_count}
+						pageSize={6}
+						onPageChange={setCurrentPage}
+					/>
+				</div>
+			)}
 		</div>
 	);
 }

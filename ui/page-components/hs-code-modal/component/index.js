@@ -8,11 +8,11 @@ import {
 } from '@cogoport/icons-react';
 import { useState } from 'react';
 
+import { Loading } from '../configuration/icon-configuration';
 import useHsCodeData from '../hook/useHsCodeData';
 
-import useClickFunction from './clickFunction';
+import clickFunction from './clickFunction';
 import hsColumn from './Column';
-import { Loading } from './Configuration/icon-configuration';
 import HsTable from './HsTable';
 import HsTag from './HsTag';
 import Stepper from './Stepper';
@@ -22,8 +22,7 @@ function HsCode({
 	showHsCodeModal,
 	setShowHsCodeModal,
 	setSelectedData,
-	setShowProduct,
-	setPrefiledValues,
+	isMobile = false,
 }) {
 	const [chaptersData, setChaptersData] = useState([]);
 	const [headingData, setHeadingData] = useState();
@@ -77,26 +76,12 @@ function HsCode({
 		selectedCountry,
 		setSelectedCountry,
 		setCountryforHsCode,
+		isMobile,
 	});
-
-	const handleClick = () => {
-		if (setShowProduct) {
-			setShowProduct(true);
-		}
-		if (setPrefiledValues) {
-			setPrefiledValues((prev) => ({
-				...prev,
-				hscode   : hsCodeRow?.hsCode,
-				hsCodeId : hsCodeRow?.id,
-			}));
-		}
-		setSelectedData(hsCodeRow);
-		setShowHsCodeModal(false);
-	};
 
 	const {
 		categoryFunction, chapterFunction, headingFunction, hsFunction,
-	} =	useClickFunction({
+	} =		clickFunction({
 		setChaptersData,
 		setHeadingData,
 		setActiveSection,
@@ -110,7 +95,6 @@ function HsCode({
 		previousStepper,
 		setHeadingCode,
 		searchTerm,
-		setPrefiledValues,
 	});
 
 	const previousFunction = () => {
@@ -157,9 +141,8 @@ function HsCode({
 		<Modal
 			className="primary"
 			show={showHsCodeModal}
-			size="xl"
+			size={!isMobile ? 'xl' : 'sm'}
 			onClose={() => setShowHsCodeModal(false)}
-			scroll
 		>
 			<Modal.Header title={headerFn()} />
 			<Modal.Body>
@@ -178,15 +161,15 @@ function HsCode({
 						setActiveChapter={setActiveChapter}
 						setActiveHeading={setActiveHeading}
 						activeStepper={activeStepper}
+						isMobile={isMobile}
 					/>
-					<div className={styles.hs_tag_web}>
+					{!isMobile && (
 						<HsTag
 							activeSection={activeSection}
 							activeChapter={activeChapter}
 							activeHeading={activeHeading}
 						/>
-					</div>
-
+					)}
 					{showCategoryTable && (
 						<div className={styles.table_wrapper}>
 							{loading && <img src={Loading} alt="" className={styles.loading_style} />}
@@ -253,25 +236,29 @@ function HsCode({
 			{showCategoryTable === false && (
 				<Modal.Footer>
 					<div className={styles.add_button_wrapper}>
-
-						<Button
-							className={styles.prev_btn}
-							size="md"
-							themeType="secondary"
-							onClick={() => {
-								previousFunction();
-							}}
-						>
-							<IcMArrowBack />
-							{' '}
-							Previous
-						</Button>
-						{showhscode && (
+						{isMobile && (
 							<Button
-								className={`${hsRowLength && styles.disable_btn} md`}
+								className={styles.prevBtn}
 								size="md"
 								themeType="primary"
-								onClick={handleClick}
+								onClick={() => {
+									previousFunction();
+								}}
+							>
+								<IcMArrowBack />
+								{' '}
+								Previous
+							</Button>
+						)}
+						{showhscode && (
+							<Button
+								className={`${hsRowLength && styles.disableBtn} md`}
+								size="md"
+								themeType="primary"
+								onClick={() => {
+									setSelectedData(hsCodeRow);
+									setShowHsCodeModal(false);
+								}}
 								disabled={hsRowLength}
 							>
 								Add

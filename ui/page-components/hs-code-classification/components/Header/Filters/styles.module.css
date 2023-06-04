@@ -48,3 +48,19 @@
 	margin: 0;
 	color: #ff733b;
 }
+
+.select {
+	width: 150px;
+
+	@media screen and (max-width: 767px) {
+		width: 100%;
+	}
+}
+
+.input_select {
+	width: 250px;
+
+	@media screen and (max-width: 767px) {
+		width: 100%;
+	}
+}

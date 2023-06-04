@@ -110,6 +110,7 @@ function Filter({
 					value={departureDate}
 					onChange={setDepartureDate}
 					id="active_oc_sc_departure_date"
+					isPreviousDaysAllowed
 				/>
 			</div>
 			<div className={styles.filter_item}>
@@ -118,6 +119,7 @@ function Filter({
 					value={arrivalDate}
 					onChange={setArrivalDate}
 					id="active_oc_sc_arrival_date"
+					isPreviousDaysAllowed
 				/>
 			</div>
 		</div>

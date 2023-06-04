@@ -10,14 +10,7 @@ function SelectCountryCode(props) {
 		value : code.mobile_country_code,
 		label : (
 			<div style={{ display: 'flex', alignItems: 'center' }}>
-				<span style={{ marginRight: '10px' }}>
-					<img
-						src={
-              code.flag_icon_url ? code.flag_icon_url : 'https://via.placeholder.com/24x20'
-            }
-						alt={code.name}
-					/>
-				</span>
+
 				<span style={{ marginTop: -4 }}>
 					{code.mobile_country_code}
 					:

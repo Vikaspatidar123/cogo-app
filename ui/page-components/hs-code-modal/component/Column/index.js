@@ -5,6 +5,7 @@ import GetCountriesFilter from '../Countries';
 import styles from './styles.module.css';
 
 const hsColumn = ({
+	isMobile = false,
 	selectedCountry,
 	setSelectedCountry,
 	setCountryforHsCode,
@@ -14,12 +15,21 @@ const hsColumn = ({
 			id     : 'sectionDescription',
 			Header : (
 				<div className={styles.select_row}>
-					<div className={styles.mobile_view}>
-						<GetCountriesFilter
-							setCountryforHsCode={setCountryforHsCode}
-							setSelectedCountry={setSelectedCountry}
-						/>
-					</div>
+					{!isMobile ? (
+						<div>
+							<GetCountriesFilter
+								setCountryforHsCode={setCountryforHsCode}
+								setSelectedCountry={setSelectedCountry}
+							/>
+						</div>
+					) : (
+						<div>
+							<GetCountriesFilter
+								setCountryforHsCode={setCountryforHsCode}
+								setSelectedCountry={setSelectedCountry}
+							/>
+						</div>
+					)}
 				</div>
 			),
 			key      : 'sectionDescription',
@@ -73,12 +83,12 @@ const hsColumn = ({
 			accessor : (record) => (
 				<div className={cl`${styles.div_hs_code} ${styles.rowcss}`}>
 					<div className={cl`${styles.code} 
-					${styles.hs_code_mobile} ${styles.hs_code}`}
+					${isMobile ? styles.hs_code_mobile : styles.hs_code}`}
 					>
 						{record?.displayHsCode}
 
 					</div>
-					<div className={cl`${styles.hs_desc_mobile} ${styles.hs_desc}`}>
+					<div className={`${isMobile ? styles.hs_desc_mobile : styles.hs_desc}`}>
 						{record?.description}
 
 					</div>

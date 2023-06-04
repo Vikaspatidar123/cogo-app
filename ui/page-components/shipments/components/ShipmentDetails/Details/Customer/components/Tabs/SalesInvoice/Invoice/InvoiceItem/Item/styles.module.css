@@ -1,10 +1,11 @@
-.container{
-    padding: 16px;
+.container {
+	padding: 16px;
 	margin-bottom: 16px;
 	background: #f5fafe;
 	border: 1px solid #cddbff;
 	border-radius: 4px;
 }
-.service_info{
-    margin-bottom: 20px;
+
+.service_info {
+	margin-bottom: 20px;
 }

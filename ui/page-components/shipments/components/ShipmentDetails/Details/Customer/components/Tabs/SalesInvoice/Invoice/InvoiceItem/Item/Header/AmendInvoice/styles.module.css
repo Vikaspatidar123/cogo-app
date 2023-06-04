@@ -1,24 +1,27 @@
-.container{
-    padding-bottom: 0px;
+.container {
+	padding-bottom: 0;
 }
-.heading{
-	font-weight: 500;
+
+.heading {
+	margin-bottom: 40px;
 	font-size: 18px;
+	font-weight: 500;
 	line-height: 15px;
 	color: #393f70;
-	margin-bottom: 40px;
 	text-transform: uppercase;
 }
-.button_container{
+
+.button_container {
 	display: flex;
-	width: 100%;
-	justify-content: flex-end;
 	align-items: center;
-	border-top: 1px solid #cddbff;
+	justify-content: flex-end;
+	width: 100%;
 	padding-top: 20px;
 	margin-top: 40px;
+	border-top: 1px solid #cddbff;
+
 	.core-ui-button-root {
+		padding: 12px 12px 22px;
 		background: #2c3e50;
-		padding: 12px 12px 22px 12px;
 	}
 }

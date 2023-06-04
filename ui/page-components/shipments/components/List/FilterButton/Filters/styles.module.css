@@ -1,12 +1,14 @@
-.container{
-    max-width: 315px;
+.container {
 	width: 315px;
+	max-width: 315px;
 }
-.main{
-    max-height: 70vh;
+
+.main {
+	max-height: 70vh;
 	padding: 14px 0;
 }
+
 .scroll {
-    overflow-x: hidden;
-    overflow-y: auto;
+	overflow-x: hidden;
+	overflow-y: auto;
 }

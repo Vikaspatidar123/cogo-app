@@ -1,7 +1,8 @@
-.container{
-    display: flex;
+.container {
+	display: flex;
 	align-items: center;
 }
+
 .shipment_bread_crumb {
-    margin-bottom: 20px;
+	margin-bottom: 20px;
 }

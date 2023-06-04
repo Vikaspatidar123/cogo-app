@@ -1,10 +1,11 @@
-.multiservice{
-    display: flex;
+.multiservice {
+	display: flex;
 	flex-wrap: wrap;
 	white-space: nowrap;
 }
-.cargo_wrap{
-    flex-wrap: wrap;
+
+.cargo_wrap {
 	display: flex;
+	flex-wrap: wrap;
 	white-space: nowrap;
 }

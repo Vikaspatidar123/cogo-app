@@ -1,16 +1,18 @@
-.container{
-    display: flex;
+.container {
+	display: flex;
 	align-items: flex-end;
 	justify-content: space-between;
-    margin-bottom: 40px;
-    margin-left: 15px;
+	margin-bottom: 40px;
+	margin-left: 15px;
 }
-.right{
-    display: flex;
+
+.right {
+	display: flex;
+	flex-grow: 1;
 	align-items: flex-end;
 	justify-content: flex-end;
-	flex-grow: 1;
 }
-.input{
+
+.input {
 	width: 30%;
 }

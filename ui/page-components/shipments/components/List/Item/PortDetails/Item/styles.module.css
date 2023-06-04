@@ -1,5 +1,5 @@
-.container{
-    display: flex;
+.container {
+	display: flex;
 	align-items: center;
 	width: 90%;
 
@@ -9,41 +9,46 @@
 		margin-bottom: 8px;
 	}
 }
-.flag{
-    width: 12px;
-	height: 12px;
-	border-radius: 100%;
-	flex-shrink: 0;
-	margin: 0 8px;
-	background-size: cover;
-	background-position: center;
-	background-repeat: no-repeat;
-}
-.port_details{
-    width: 100%;
-}
-.info{
-    text-overflow: ellipsis;
-	white-space: nowrap;
-	overflow: hidden;
-	max-width: 98%;
 
+.flag {
+	flex-shrink: 0;
+	width: 12px;
+	height: 12px;
+	margin: 0 8px;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+	border-radius: 100%;
+}
+
+.port_details {
+	width: 100%;
+}
+
+.info {
+	max-width: 98%;
+	margin-bottom: 1px;
+	overflow: hidden;
 	font-size: 10px;
 	line-height: 12px;
 	color: #828282;
-	margin-bottom: 1px;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+
 	@media (max-width: 768px) {
 		max-width: 80%;
 	}
 }
-.name{
-    text-overflow: ellipsis;
-	white-space: nowrap;
-	overflow: hidden;
+
+.name {
 	width: 75%;
+	overflow: hidden;
 	font-size: 14px;
 	line-height: 16px;
 	color: black;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+
 	@media (max-width: 768px) {
 		width: 15%;
 	}

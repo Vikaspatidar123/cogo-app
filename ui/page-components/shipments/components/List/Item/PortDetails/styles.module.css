@@ -1,18 +1,20 @@
-.container{
+.container {
 	display: flex;
 	align-items: center;
 	width: 100%;
 }
-.text{
-    display: flex;
+
+.text {
+	display: flex;
 	width: 20%;
-	margin: 0px;
+	margin: 0;
 	font-size: 12px;
 	font-weight: 400;
-	color: rgb(130, 130, 130);
+	color: rgb(130 130 130);
 }
-.icon{
-    display: flex;
-    align-items: center;
-    margin: 0px 16px;
+
+.icon {
+	display: flex;
+	align-items: center;
+	margin: 0 16px;
 }

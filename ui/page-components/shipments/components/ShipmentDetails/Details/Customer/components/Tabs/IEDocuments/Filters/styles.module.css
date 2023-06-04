@@ -1,18 +1,16 @@
-.container{
-    width: 100%;
+.container {
 	display: flex;
 	justify-content: space-between;
-	margin: 28px 0px;
+	width: 100%;
+	margin: 28px 0;
+
 	@media (max-width: 768px) {
 		flex-direction: column;
 		align-items: flex-start;
 	}
 }
 
-.flex_div{
-    display: flex;
+.flex_div {
+	display: flex;
 	width: 50%;
 }
-
-
-

@@ -1,25 +1,29 @@
-.empty_container{
-    display: flex;
+.empty_container {
+	display: flex;
 	justify-content: center;
 }
-.container{
-    display: flex;
+
+.container {
+	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
 }
-.button_div{
+
+.button_div {
+	display: flex;
 	padding-top: 8px;
 	padding-bottom: 8px;
-	display: flex;
 }
-.file_container{
+
+.file_container {
 	display: flex;
-	margin-bottom: 4px;
 	width: 830px;
-	margin-left: auto;
 	margin-right: auto;
+	margin-bottom: 4px;
+	margin-left: auto;
 }
-.btn_div{
+
+.btn_div {
 	display: flex;
 	justify-content: flex-end;
 }

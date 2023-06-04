@@ -1,16 +1,17 @@
-.detail_container{
-    display: flex;
-	justify-content: space-between;
+.detail_container {
+	display: flex;
 	align-items: center;
+	justify-content: space-between;
 	padding: 16px 16px 16px 24px;
+	margin-bottom: 10px;
+	line-height: 16px;
+	color: #bdbdbd;
 	border: 1px dashed #bdbdbd;
 	border-radius: 4px;
-	color: #bdbdbd;
-	line-height: 16px;
-	margin-bottom: 10px;
 }
+
 .detail_container:hover {
-    border-color: #393f70;
-    color: #393f70;
-    cursor: pointer;
+	color: #393f70;
+	cursor: pointer;
+	border-color: #393f70;
 }

@@ -1,21 +1,23 @@
-.container{
-    background: #f9f9f9;
-	border-radius: 4px;
+.container {
+	background: #f9f9f9;
 	border-bottom: 1px solid #e0e0e0;
+	border-radius: 4px;
 
 	@media (max-width: 768px) {
 		display: none;
 	}
 }
-.cargo{
+
+.cargo {
 	margin: 6px 0 0 8px;
 }
-.row{
+
+.row {
 	display: flex;
 	flex-direction: row;
-	border-bottom: none;
-	justify-content: space-between;
 	align-items: flex-start;
-	margin: 0;
+	justify-content: space-between;
 	padding: 8px 16px;
+	margin: 0;
+	border-bottom: none;
 }

@@ -1,59 +1,69 @@
-.details_container{
-    border: 2px solid #eceff8;
-	border-radius: 4px;
+.details_container {
 	margin-bottom: 20px;
+	border: 2px solid #eceff8;
+	border-radius: 4px;
 }
-.poc_header{
-	background: #eceff8;
+
+.poc_header {
 	display: flex;
-	justify-content: space-between;
 	align-items: center;
+	justify-content: space-between;
+	min-height: 40px;
 	padding: 6px 12px;
 	margin-bottom: 16px;
 	font-weight: 600;
-	min-height: 40px;
+	background: #eceff8;
 }
-.poc_details_container{
-	margin: 16px;
+
+.poc_details_container {
 	display: flex;
 	flex-direction: column;
+	margin: 16px;
 }
+
 .poc_details_header {
 	display: flex;
 	justify-content: flex-end;
-	padding-bottom: 10px;
 	height: 35px;
+	padding-bottom: 10px;
 }
-.company_details{
+
+.company_details {
 	display: flex;
 	justify-content: space-between;
 	padding: 8px;
 }
+
 .details {
-	color: #5c6186;
+	width: 80%;
 	font-size: 16px;
 	font-weight: 600;
 	line-height: 24px;
-	width: 80%;
+	color: #5c6186;
 }
-.wrapper{
+
+.wrapper {
 	display: flex;
 	align-items: center;
 	justify-content: flex-end;
 	cursor: pointer;
 	border-top-right-radius: 4px;
 }
-.icon_container{
+
+.icon_container {
 	padding: 12px;
 	cursor: pointer;
+
 	@media (max-width: 768px) {
 		padding: 4px;
 	}
 }
-.poc_list_container{
+
+.poc_list_container {
 	margin-top: 8px;
 }
-.poc_detail{
+
+.poc_detail {
 	max-height: 300px;
 	overflow: auto;
 }

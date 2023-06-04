@@ -1,8 +1,9 @@
-.container{
-    display: flex;
-	justify-content: space-between;
+.container {
+	display: flex;
 	align-items: center;
+	justify-content: space-between;
 	margin-bottom: 40px;
+
 	.core-ui-select__control {
 		width: 200px;
 	}

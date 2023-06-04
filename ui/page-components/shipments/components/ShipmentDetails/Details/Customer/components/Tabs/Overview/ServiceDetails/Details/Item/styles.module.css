@@ -1,25 +1,28 @@
-.container{
-    display: flex;
+.container {
+	display: flex;
 	align-items: center;
-
 	border-bottom: 1px solid #f2f2f2;
 }
+
 .container:last-child {
-    border: none;
+	border: none;
 }
-.key{
-    margin: 10px;
+
+.key {
+	margin: 10px;
+	font-size: 14px;
 	font-weight: 400;
-	font-size: 14px;
-	color: #333333;
+	color: #333;
 }
-.value{
-    margin: 8px 24px 4px 8px;
-	font-weight: 500;
+
+.value {
+	margin: 8px 24px 4px 8px;
 	font-size: 14px;
-	color: #333333;
+	font-weight: 500;
+	color: #333;
 	text-transform: capitalize;
 }
+
 .cancelled {
-    color: #bdbdbd;
+	color: #bdbdbd;
 }

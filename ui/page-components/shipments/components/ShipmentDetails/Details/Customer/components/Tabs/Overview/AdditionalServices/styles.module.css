@@ -1,91 +1,106 @@
-.container{
-    width: 100%;
+.container {
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
-	padding: 16px 4px 16px 16px;
-	background: #ffffff;
-	border-radius: 4px;
+	width: 100%;
 	max-height: 500px;
+	padding: 16px 4px 16px 16px;
 	overflow: auto;
+	background: #fff;
+	border-radius: 4px;
+
 	@media (max-width: 768px) {
 		width: 100%;
 		margin-top: 20px;
-		margin-left: 0px;
+		margin-left: 0;
 	}
 }
-.added{
-    width: 100%;
+
+.added {
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start;
 	justify-content: space-between;
+	width: 100%;
 	margin-bottom: 8px;
 }
-.heading{
-	font-weight: 600;
-	font-size: 16px;
-	color: #2c3e50;
+
+.heading {
 	margin-bottom: 20px;
+	font-size: 16px;
+	font-weight: 600;
+	color: #2c3e50;
 }
-.button_wrap{
+
+.button_wrap {
 	display: flex;
 	justify-content: flex-end;
 	margin: 8px;
 }
+
 .core-ui-button-root.primary.md {
-	text-transform: capitalize;
-	text-decoration: underline;
 	color: #034afd !important;
+	text-decoration: underline;
+	text-transform: capitalize;
 }
+
 .core-ui-button-root {
-	background: #2c3e50;
-	font-size: 12px;
 	padding: 8px 12px;
+	font-size: 12px;
+	background: #2c3e50;
 }
+
 .first {
 	justify-content: flex-end;
 }
-.suggested_container{
-	border-top: 1px solid #d9eafd;
+
+.suggested_container {
 	padding-top: 20px;
+	border-top: 1px solid #d9eafd;
 }
-.suggested_services{
+
+.suggested_services {
 	display: flex;
 	flex-wrap: wrap;
 }
-.service_container{
-	background: #ffffff;
-	border: 1px dashed #bdbdbd;
-	border-radius: 4px;
-	width: 156px;
+
+.service_container {
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	width: 156px;
 	padding: 16px 8px;
 	margin: 12px;
 	cursor: pointer;
+	background: #fff;
+	border: 1px dashed #bdbdbd;
+	border-radius: 4px;
 }
-.service_name{
-	font-weight: 500;
+
+.service_name {
 	font-size: 12px;
+	font-weight: 500;
 	color: #bdbdbd;
 }
-.button_wrap{
+
+.button_wrap {
 	display: flex;
 	justify-content: flex-end;
 	margin: 8px;
+
 	.core-ui-button-root {
-		background: #2c3e50;
-		font-size: 12px;
 		padding: 8px 12px;
+		font-size: 12px;
+		background: #2c3e50;
 	}
+
 	.core-ui-button-root.primary.md {
-		text-transform: capitalize;
-		text-decoration: underline;
 		color: #034afd !important;
+		text-decoration: underline;
+		text-transform: capitalize;
 	}
 }
+
 .first {
 	justify-content: flex-end;
 }

@@ -1,45 +1,54 @@
-.container{
-    background: #ffffff;
-	padding: 16px 0px;
+.container {
+	padding: 16px 0;
+	background: #fff;
+
 	@media (max-width: 768px) {
 		display: flex;
 		flex-direction: column;
 	}
 }
-.content{
-    margin-top: -47px;
+
+.content {
+	margin-top: -47px;
+
 	@media (max-width: 768px) {
 		margin-top: 8px;
-        :global {
-            .ui_zThRS{
-             padding: 4px 11px !important;
-             font-size: 12px;
-            }
-         }
+
+		:global {
+			.ui_zThRS {
+				padding: 4px 11px !important;
+				font-size: 12px;
+			}
+		}
 	}
-   
 }
-.invoice_div{
-    background: #f8f9fa;
+
+.invoice_div {
 	margin-top: 16px;
+	background: #f8f9fa;
 }
+
 .invoice_header {
-    border-bottom: none;
+	border-bottom: none;
 }
+
 .edit_sales_invoice {
-    justify-content: flex-end;
+	justify-content: flex-end;
 }
+
 .sales_invoicing_parties {
-    margin-top: 0px;
-    background: #ffffff;
-    box-shadow: 0px 1px 6px rgba(169, 188, 218, 0.65);
-    border-radius: 4px;
+	margin-top: 0;
+	background: #fff;
+	border-radius: 4px;
+	box-shadow: 0 1px 6px rgb(169 188 218 / 65%);
 }
+
 .sales_invoice_party {
-    background: #ffffff;
-    border-radius: 4px;
+	background: #fff;
+	border-radius: 4px;
 }
+
 .sales_invoice_root {
-    box-shadow: none;
-    background: #f8f9fa;
+	background: #f8f9fa;
+	box-shadow: none;
 }

@@ -1,19 +1,21 @@
-.empty_state{
-    display: flex;
-	justify-content: center;
+.empty_state {
+	display: flex;
 	align-items: center;
+	justify-content: center;
 }
-.container{
-    padding: 22px;
+
+.container {
 	display: flex;
 	flex-direction: column;
+	height: 700px;
+	padding: 22px;
 	margin-top: 20px;
 	margin-right: 22px;
-	background: #ffffff;
-	box-shadow: 0px 1px 6px rgba(169, 188, 218, 0.65);
-	border-radius: 4px;
-	height: 700px;
 	overflow-y: auto;
+	background: #fff;
+	border-radius: 4px;
+	box-shadow: 0 1px 6px rgb(169 188 218 / 65%);
+
 	@media (max-width: 768px) {
 		width: 100%;
 		margin-right: 0;

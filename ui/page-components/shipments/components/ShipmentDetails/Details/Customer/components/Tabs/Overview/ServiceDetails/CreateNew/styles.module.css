@@ -1,24 +1,25 @@
-.text{
-    margin-right: 8px;
-	padding: 0px 4px 0px 4px;
+.text {
+	padding: 0 4px;
+	margin-right: 8px;
 	color: #828282;
 }
-.container{
-	height: 100px;
+
+.container {
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	height: 100px;
+	margin: 22px 22px 0 0;
+	cursor: pointer;
+	background: #fff;
 	border: 1px dashed #bdbdbd;
 	border-radius: 4px;
-	background: #ffffff;
-	margin: 22px 22px 0px 0px;
-	border-radius: 4px;
-	cursor: pointer;
 
 	@media (max-width: 768px) {
 		width: 100%;
-		margin: 22px 0px 0px 0px;
+		margin: 22px 0 0;
 	}
+
 	:hover {
 		border: 1px solid #5936f0;
 	}

@@ -1,31 +1,33 @@
-.container{
-    padding-bottom: 8px;
-	margin-bottom: 16px;
-
+.container {
 	display: flex;
-	justify-content: space-between;
 	align-items: flex-end;
-
+	justify-content: space-between;
+	padding-bottom: 8px;
+	margin-bottom: 16px;
 	border-bottom: 1px solid #e0e0e0;
 }
-.title{
-	font-weight: bold;
+
+.title {
 	font-size: 14px;
+	font-weight: bold;
 	line-height: 16px;
 	color: black;
 }
-.right{
+
+.right {
 	display: flex;
 	align-items: center;
 }
-.reset{
+
+.reset {
 	display: flex;
-	align-items: center;
 	gap: 4px;
-	cursor: pointer;
+	align-items: center;
 	padding: 3px;
+	cursor: pointer;
 }
-.reset:hover{
+
+.reset:hover {
 	border-radius: 5px;
 	box-shadow:
 		rgb(50 50 93 / 25%) 0 2px 5px -1px,

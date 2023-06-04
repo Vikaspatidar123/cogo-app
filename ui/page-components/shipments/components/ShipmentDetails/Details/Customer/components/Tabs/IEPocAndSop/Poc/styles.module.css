@@ -1,9 +1,10 @@
-.container{
-    display: flex;
+.container {
+	display: flex;
 	flex-direction: column;
 	gap: 16px;
 	padding-bottom: 50px;
 }
-.line{
+
+.line {
 	border-bottom: 1px solid #ded7fc;
 }

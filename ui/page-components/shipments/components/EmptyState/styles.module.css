@@ -1,20 +1,24 @@
-.container{
-    display: flex;
-	justify-content: space-between;
+.container {
+	display: flex;
 	align-items: flex-start;
-	background: #ffffff;
+	justify-content: space-between;
+	padding: 60px 30px 36px;
+	background: #fff;
 	border-radius: 10px;
-	padding: 60px 30px 36px 30px;
 }
-.wrapper{
+
+.wrapper {
 	max-width: 45%;
+
 	@media (max-width: 760px) {
 		max-width: 100%;
 	}
 }
-.icon_container{
-	max-width: 17%;
+
+.icon_container {
 	min-width: 10%;
+	max-width: 17%;
+
 	@media (max-width: 760px) {
 		display: none;
 	}

@@ -1,9 +1,10 @@
-.button_container{
-    display: flex;
-	width: 100%;
+.button_container {
+	display: flex;
 	justify-content: space-between;
+	width: 100%;
 }
-.line{
+
+.line {
+	margin: 16px 0 32px;
 	border-bottom: 1px solid #ded7fc;
-	margin: 16px 0px 32px 0px;
 }

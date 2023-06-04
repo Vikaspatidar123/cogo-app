@@ -1,17 +1,20 @@
-.container{
-    width: 100%;
+.container {
+	width: 100%;
 }
-.header{
-    font-size: 16px;
+
+.header {
+	font-size: 16px;
 	font-weight: 600;
 	color: #393f70;
 }
-.pagination_container{
-    display: flex;
-	width: 100%;
+
+.pagination_container {
+	display: flex;
 	justify-content: flex-end;
-}
-.document_container{
-	margin: 8px 0px;
 	width: 100%;
+}
+
+.document_container {
+	width: 100%;
+	margin: 8px 0;
 }

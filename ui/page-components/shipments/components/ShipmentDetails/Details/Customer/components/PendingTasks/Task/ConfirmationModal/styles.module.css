@@ -1,14 +1,15 @@
-.description{
-    font-weight: 400;
-	font-size: 14px;
-	text-align: center;
-	margin-bottom: 10px;
-	margin-top: 20px;
-	color: #828282;
+.description {
 	align-self: center;
+	margin-top: 20px;
+	margin-bottom: 10px;
+	font-size: 14px;
+	font-weight: 400;
+	color: #828282;
+	text-align: center;
 }
-.button_container{
-	background: #fff;
+
+.button_container {
 	display: flex;
 	justify-content: space-evenly;
+	background: #fff;
 }

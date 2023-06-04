@@ -1,33 +1,39 @@
-.label_container{
-    display: flex;
-	width: 100%;
+.label_container {
+	display: flex;
 	justify-content: space-evenly;
+	width: 100%;
 	padding: 8px;
 }
-.poc_name{
+
+.poc_name {
 	width: 175px;
 	max-width: 250px;
 	text-overflow: ellipsis;
 }
-.poc_email{
+
+.poc_email {
 	width: 225px;
 	max-width: 250px;
 	text-overflow: ellipsis;
 }
-.poc_contact{
+
+.poc_contact {
 	width: 140px;
 	text-overflow: ellipsis;
 }
-.load_container{
+
+.load_container {
 	display: flex;
 	flex-direction: column;
 }
-.container{
+
+.container {
 	margin-left: 8px;
 }
-.button_container{
-	margin: 16px 0px;
+
+.button_container {
 	display: flex;
-	justify-content: flex-end;
 	gap: 16px;
+	justify-content: flex-end;
+	margin: 16px 0;
 }

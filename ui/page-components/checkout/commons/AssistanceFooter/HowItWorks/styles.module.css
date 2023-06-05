@@ -1,0 +1,29 @@
+.container {
+	margin-bottom: 16px;
+	font-size: 12px;
+	line-height: 14px;
+	color: #333;
+}
+
+.title {
+	margin-bottom: 12px;
+	font-weight: 600;
+}
+
+.list {
+	padding-left: 20px;
+	margin: 0;
+
+	li {
+		margin-top: 12px;
+
+		.light_color {
+			margin-left: 2px;
+			color: grey;
+		}
+
+		.bold_color {
+			font-weight: 600;
+		}
+	}
+}

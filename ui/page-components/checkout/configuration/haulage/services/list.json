@@ -1,0 +1,8 @@
+[
+	{
+		"name": "haulage_freight",
+		"title": "Haulage Freight",
+		"service_type": "haulage_freight",
+		"inco_terms": ["cif", "cfr", "cpt", "cip", "dat", "dap", "ddp", "exw", "fca", "fob", "fas"]
+	}
+]

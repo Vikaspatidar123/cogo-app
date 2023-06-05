@@ -27,7 +27,13 @@ const navigationMappings = {
 		showInNav  : true,
 		mobileIcon : <IcMQuotations width={20} height={20} />,
 	},
-
+	app_discover_rates: {
+		key       : 'app_discover_rates',
+		title     : 'Discover Rates',
+		href      : '/v2/book',
+		as        : '/v2/book',
+		showInNav : true,
+	},
 	saas_tools: {
 		key       : 'saas_tools',
 		title     : 'Tools',

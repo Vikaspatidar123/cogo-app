@@ -1,0 +1,21 @@
+.container {
+	width: 100%;
+	max-width: 376px;
+	padding: 24px 20px;
+	margin: 0 auto;
+	text-align: center;
+}
+
+.title {
+	margin: 12px 0 24px;
+	font-size: 24px;
+	font-weight: 500;
+	color: #333;
+}
+
+.description {
+	margin-bottom: 32px;
+	font-size: 16px;
+	font-weight: 400;
+	color: #9ec4d6;
+}

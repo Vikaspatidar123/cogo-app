@@ -1,4 +1,4 @@
-import { Input } from '@cogoport/components';
+import { Input, InputGroup as IpGroup } from '@cogoport/components';
 import React, { useState } from 'react';
 
 import Select from '../Select';
@@ -28,7 +28,7 @@ function InputGroup({
 
 	return (
 		<div className={styles.container}>
-			<div className={styles.row} style={style}>
+			<IpGroup style={style}>
 				{newControls.map((control) => {
 					if (control.type === 'select') {
 						return (
@@ -49,7 +49,7 @@ function InputGroup({
 						/>
 					);
 				})}
-			</div>
+			</IpGroup>
 		</div>
 	);
 }

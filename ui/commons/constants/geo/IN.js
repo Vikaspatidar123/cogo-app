@@ -1,10 +1,11 @@
 export default {
-	country: {
+	parent_entity_id : '6fd98605-9d5d-479d-9fac-cf905d292b88',
+	country          : {
 		id   : '541d1232-58ce-4d64-83d6-556a42209eb7',
 		name : 'India',
 		code : 'IN',
 		flag_icon_url:
-			'https://prod-cogoport.s3.ap-south-1.amazonaws.com/India_24.png',
+      'https://prod-cogoport.s3.ap-south-1.amazonaws.com/India_24.png',
 		currency: {
 			code   : 'INR',
 			symbol : '₹',
@@ -31,11 +32,12 @@ export default {
 	},
 	regex: {
 		PAN           : /^([A-Z]{3}[PCHFATBLJG]{1}[A-Z]{1}[0-9]{4}[A-Z]{1})+$/g,
+		// eslint-disable-next-line max-len
 		GST           : /^([0]{1}[1-9]{1}|[1-2]{1}[0-9]{1}|[3]{1}[0-7]{1})([A-Z]{3}[PCHFATBLJG]{1}[A-Z]{1}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}[Z]{1}[0-9A-Z]{1})+$/g,
 		MOBILE_NUMBER : /^[+][0-9]{1,3}[0-9]{10}$/,
 		EMAIL         : /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,})+$/,
 		password_pattern:
-			/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/gm,
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/gm,
 	},
 	notification_polling_interval : 300000,
 	lcw_timer                     : 10000,
@@ -69,7 +71,7 @@ export default {
 		],
 		cogo_demo_account_shipper_user: '7f6f97fd-c17b-4760-a09f-d70b6ad963e8',
 		cogo_demo_account_shipper_user_branch:
-			'2c72817c-c663-48ea-b8ef-cd92397842a1',
+      '2c72817c-c663-48ea-b8ef-cd92397842a1',
 		business_owner_ids : ['0f9ddc9b-e2d7-4fee-83f6-08fb8bed6d11'],
 		supply_role_ids    : [
 			'eb292d80-a05f-4a56-a0f7-ef51255583aa',

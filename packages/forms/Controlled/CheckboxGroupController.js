@@ -3,19 +3,17 @@ import React from 'react';
 import { Controller } from 'react-hook-form';
 
 function CheckboxGroupController(props) {
-	const { name, control, rules, ...rest } = props;
+	const {
+		name, control, rules, ...rest
+	} = props;
+
 	return (
 		<Controller
 			key={name}
 			control={control}
 			name={name}
 			rules={rules}
-			render={({
-				field: {
-					onChange,
-					onBlur, value,
-				},
-			}) => (
+			render={({ field: { onChange, onBlur, value } }) => (
 				<CheckboxGroup
 					{...rest}
 					key={name}
@@ -28,4 +26,5 @@ function CheckboxGroupController(props) {
 			)}
 		/>
 	);
-} export default CheckboxGroupController;
+}
+export default CheckboxGroupController;

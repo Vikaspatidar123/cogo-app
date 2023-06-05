@@ -78,13 +78,19 @@ function ModalPage({ open, setOpen }) {
 			onClose={() => setOpen(false)}
 			placement="center"
 		>
-			<Modal.Header title={head()} />
-			<Modal.Body>
-				<div>
+
+			<div style={{ padding: '8px' }}>
+				<Modal.Header title={head()} />
+				<div className={styles.main}>
 					{controls.map((itm) => {
 						const Element = getField(itm?.type);
 						return (
-							<FormItem label={itm?.label} className={itm?.name} key={itm.id}>
+							<FormItem
+								label={itm?.label}
+								className={itm?.name}
+								key={itm.id}
+								style={{ marginBottom: '12px' }}
+							>
 								<Element {...itm} control={control} />
 								{errors[itm.name] && (
 									<p className={styles.errors}>{errors[itm.name].message}</p>
@@ -93,16 +99,18 @@ function ModalPage({ open, setOpen }) {
 						);
 					})}
 				</div>
-			</Modal.Body>
-			<Modal.Footer>
-				<p className={styles.para}>
-					We attach great importance to protecting your private data, which is
-					only used to verify your business and complete transactions
-				</p>
-				<Button onClick={handleSubmit(onSubmit)} loading={loading}>
-					Avail Your Free Searches
-				</Button>
-			</Modal.Footer>
+				<div className={styles.wrapper_container}>
+					<div className={styles.wrapper}>
+						<p className={styles.para}>
+							We attach great importance to protecting your private data, which is
+							only used to verify your business and complete transactions
+						</p>
+					</div>
+					<Button disabled={loading} type="button" onClick={handleSubmit(onSubmit)} loading={loading}>
+						Avail Your Free Searches
+					</Button>
+				</div>
+			</div>
 		</Modal>
 	);
 }

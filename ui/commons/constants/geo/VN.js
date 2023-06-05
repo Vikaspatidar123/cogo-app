@@ -1,10 +1,11 @@
 export default {
-	country: {
+	parent_entity_id : 'b67d40b1-616c-4471-b77b-de52b4c9f2ff',
+	country          : {
 		id   : '177fcbad-8ef7-4324-871c-6c31745f4411',
 		name : 'Vietnam',
 		code : 'VN',
 		flag_icon_url:
-			'https://prod-cogoport.s3.ap-south-1.amazonaws.com/Vietnam_24.png',
+      'https://prod-cogoport.s3.ap-south-1.amazonaws.com/Vietnam_24.png',
 		currency: {
 			code   : 'VND',
 			symbol : '₫',
@@ -34,7 +35,7 @@ export default {
 		MOBILE_NUMBER : /^[+][0-9]{1,3}[0-9]{10}$/,
 		EMAIL         : /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,})+$/,
 		password_pattern:
-			/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/gm,
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/gm,
 	},
 	notification_polling_interval : 300000,
 	lcw_timer                     : 10000,
@@ -68,7 +69,7 @@ export default {
 		],
 		cogo_demo_account_shipper_user: '7f6f97fd-c17b-4760-a09f-d70b6ad963e8',
 		cogo_demo_account_shipper_user_branch:
-			'2c72817c-c663-48ea-b8ef-cd92397842a1',
+      '2c72817c-c663-48ea-b8ef-cd92397842a1',
 		business_owner_ids : ['0f9ddc9b-e2d7-4fee-83f6-08fb8bed6d11'],
 		supply_role_ids    : [
 			'eb292d80-a05f-4a56-a0f7-ef51255583aa',
@@ -98,6 +99,7 @@ export default {
 			'a5c83696-0248-4846-a558-1a054360f130', // Overseas CP KAM Manager
 			'650e1fe4-2e34-43c1-abfe-ce0a443aa4a6', // Prod_KAM Trasnport Sales
 			'f041b303-3239-42c5-a386-03e787900bcd', // Cogoverse KAM
+			'6bd7a08c-974c-4dd0-b163-d4c31e794fba', // Vietnam KAM
 		],
 		cogo_freight_pvt_ltd_pr_supplier : '6cc6b696-60f6-480b-bcbe-92cc8e642531',
 		shipping_line_supply_agents      : [

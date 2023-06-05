@@ -1,0 +1,22 @@
+.container {
+	flex: 1;
+	max-height: 400px;
+	padding: 4px 4px 0;
+	overflow-y: auto;
+
+	:global {
+		.tippy-box .tippy-arrow {
+			display: none !important;
+		}
+
+		.core-ui-popover-root {
+			margin-top: -9px;
+		}
+	}
+}
+
+.title {
+	font-size: 14px;
+	font-weight: 500;
+	color: #393f70;
+}

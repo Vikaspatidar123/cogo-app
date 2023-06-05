@@ -1,0 +1,28 @@
+.container {
+	padding: 4px;
+
+	.slider {
+		width: 100%;
+	}
+}
+
+.title {
+	font-size: 14px;
+	font-style: normal;
+	font-weight: 500;
+	color: #333;
+}
+
+.values {
+	padding: 4px;
+	font-size: 12px;
+}
+
+.range {
+	display: flex;
+	justify-content: space-between;
+}
+
+.flex {
+	display: flex;
+}

@@ -23,7 +23,6 @@ function Details({
 	type = '',
 	activeTab = '',
 	isMobile = false,
-	draftDetailsPrefilling = {},
 	policyId = '',
 }) {
 	const { query } = useRouter();
@@ -38,37 +37,32 @@ function Details({
 		showSuccessModal : false,
 	});
 
-	const [countryCode, setCountryCode] = useState(
-		formDetails?.policyCountryCode || '',
-	);
-
 	const {
 		billingType = '',
 		organizationAddressId: draftorganizationAddressId = '',
 		organizationBillingAddressId = '',
 		policyForSelf = true,
-	} = draftDetailsPrefilling || {};
+		policyCountryCode = '',
+	} = formDetails || {};
 
 	const [organizationAddress, setOrganizationAddress] = useState({
-		isBillingAddress: !isEmpty(draftDetailsPrefilling)
+		isBillingAddress: !isEmpty(formDetails)
 			? !organizationBillingAddressId
 			: false,
 		organizationAddressId:
 		draftorganizationAddressId || organizationBillingAddressId || '',
 	});
 
-	const [uploadType, setUploadType] = useState(
-		billingType || 'CORPORATE',
-	);
-
+	const [countryCode, setCountryCode] = useState(policyCountryCode || '');
+	const [uploadType, setUploadType] = useState(billingType || 'CORPORATE');
 	const [insuranceType, setInsuranceType] = useState([!policyForSelf ? 'OTHER' : 'SELF']);
-
 	const [checked, setChecked] = useState([organizationBillingAddressId || draftorganizationAddressId]);
 
 	const {
 		insurance = () => {},
 		createInsuranceLoading = false,
 		policyIdDownload = '',
+		postInsuranceResponse = {},
 	} = useCreateInsurance();
 
 	const { payment = () => {}, loading = false } = usePayment({
@@ -76,7 +70,7 @@ function Details({
 		organizationAddress,
 	});
 
-	const { draftResponse, draftLoading, policyIdDraft } = useSaveDraft({
+	const { draftResponse = () => {}, draftLoading = false, policyIdDraft = '' } = useSaveDraft({
 		setDraftModal,
 		type,
 		policyId,
@@ -87,7 +81,7 @@ function Details({
 		insuranceType,
 	});
 
-	const { resp, insuranceLoading } = useCheckoutInsurance({
+	const { resp = () => {}, insuranceLoading = false } = useCheckoutInsurance({
 		payment,
 		type,
 		uploadType,
@@ -100,7 +94,7 @@ function Details({
 		insuranceType,
 	});
 
-	const { checkLoading, stop, paymentStatus } = useCheckStatus({
+	const { checkLoading = false, stop = '', paymentStatus = '' } = useCheckStatus({
 		query,
 		insurance,
 		setModal,
@@ -136,7 +130,6 @@ function Details({
 						draftResponse={draftResponse}
 						draftLoading={draftLoading}
 						policyid={policyIdDraft}
-						policyIdCreated={policyId}
 						uploadType={uploadType}
 						setUploadType={setUploadType}
 					/>
@@ -146,7 +139,6 @@ function Details({
 				<CargoDetails
 					formDetails={formDetails}
 					setActiveStepper={setActiveStepper}
-					activeStepper={activeStepper}
 					setFormDetails={setFormDetails}
 					activeTab={activeTab}
 					setCommodityName={setCommodityName}
@@ -188,6 +180,7 @@ function Details({
 					uploadType={uploadType}
 					setModal={setModal}
 					showModal={modal}
+					postInsuranceResponse={postInsuranceResponse}
 				/>
 			)}
 			{draftModal && (

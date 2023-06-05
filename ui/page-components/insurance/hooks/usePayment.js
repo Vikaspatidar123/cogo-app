@@ -9,7 +9,7 @@ import { loadScript } from '@/ui/commons/utils/loadScript';
 
 const usePayment = ({
 	ratesResponse = {},
-	organizationAddress = false,
+	organizationAddress = {},
 }) => {
 	const { profile = {} } = useSelector((state) => state);
 	const {

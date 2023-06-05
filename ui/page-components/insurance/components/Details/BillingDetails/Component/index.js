@@ -92,7 +92,6 @@ function Component({
 								loading,
 								setOrganizationAddress,
 								insuranceType,
-								addAddressModal,
 								setAddAddressModal,
 								prosporerAddress,
 								setProsporerAddress,

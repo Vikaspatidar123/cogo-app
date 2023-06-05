@@ -2,10 +2,8 @@ import { Button } from '@cogoport/components';
 import { startCase } from '@cogoport/utils';
 import { useState } from 'react';
 
-import AirTab from './AirTab';
-import OceanTab from './OceanTab';
 import styles from './styles.module.css';
-import SurfaceTab from './SurfaceTab';
+import Tab from './Tab';
 
 import { useRouter } from '@/packages/next';
 
@@ -22,9 +20,14 @@ function TabsSection({ isMobile }) {
 		<div className={styles.wrapper}>
 			<div className={styles.heading}>Select Type of Insurance: </div>
 			<div className={isMobile ? styles.button_wrapper_mobile : styles.button_wrapper}>
-				<OceanTab isMobile={isMobile} clickHandler={clickHandler} css={css} />
-				<AirTab isMobile={isMobile} clickHandler={clickHandler} css={css} />
-				<SurfaceTab isMobile={isMobile} clickHandler={clickHandler} css={css} />
+				{['ocean', 'air', 'road'].map((tab) => (
+					<Tab
+						isMobile={isMobile}
+						clickHandler={clickHandler}
+						css={css}
+						tab={tab}
+					/>
+				))}
 			</div>
 			<div className={styles.wrapper_2}>
 				<Button

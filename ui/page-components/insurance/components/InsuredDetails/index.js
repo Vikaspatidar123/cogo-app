@@ -17,8 +17,10 @@ function InsuredDetails({
 }) {
 	const initialState = isEmpty(draftDetailsPrefilling) ? {} : {
 		...draftDetailsPrefilling,
-		transitDate : draftDetailsPrefilling ? new Date(draftDetailsPrefilling?.transitDate?.toString()) : null,
-		invoiceDate : draftDetailsPrefilling ? new Date(draftDetailsPrefilling?.invoiceDate?.toString()) : null,
+		transitDate: draftDetailsPrefilling.transitDate
+			? new Date(draftDetailsPrefilling?.transitDate?.toString()) : '',
+		invoiceDate: draftDetailsPrefilling.invoiceDate
+			? new Date(draftDetailsPrefilling?.invoiceDate?.toString()) : '',
 	};
 
 	const [formDetails, setFormDetails] = useState(initialState);

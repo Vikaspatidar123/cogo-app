@@ -12,12 +12,18 @@ function CancellationAndConfirmModal({
 	cancelModal = false,
 	cancellationPolicyDetails = {},
 	setCancelModal = () => {},
-	click = 'cancel',
+	refetch = () => {},
 }) {
-	const { cogoPolicyNo = '', policyId = '' } = cancellationPolicyDetails;
-	const [cancellationReason, setCancellationReason] = useState();
-	const { requestCancellation = () => {}, cancellationLoading = false } =	useGetCancellation({ setCancelModal });
 	const [cancelConfirmModal, setCancelConfirmModal] = useState(false);
+	const [cancellationReason, setCancellationReason] = useState();
+
+	const { click = '', policyDetails = {} } = cancellationPolicyDetails || {};
+	const { cogoPolicyNo = '', policyId = '' } = policyDetails || {};
+
+	const { requestCancellation = () => {}, cancellationLoading = false } = useGetCancellation(
+		{ setCancelModal, click, refetch },
+	);
+
 	const handleCancellation = () => {
 		if (click === 'cancel') {
 			requestCancellation({ policyId, cancellationReason });
@@ -107,7 +113,7 @@ function CancellationAndConfirmModal({
 							Cancel
 						</Button>
 						<Button
-							onClick={() => handleCancellation()}
+							onClick={handleCancellation}
 							disabled={!cancellationReason}
 							loading={cancellationLoading}
 						>

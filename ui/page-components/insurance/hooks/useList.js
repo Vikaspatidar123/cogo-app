@@ -53,6 +53,7 @@ const useList = ({ activeTab }) => {
 		loading,
 		setSort,
 		sort,
+		refetch: list,
 	};
 };
 export default useList;

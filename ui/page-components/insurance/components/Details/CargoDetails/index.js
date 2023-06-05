@@ -27,6 +27,7 @@ const useCargoDetails = ({
 	countryDetails = {},
 }) => {
 	const [descriptionPrefilled, setDescription] = useState();
+
 	const fields = getControls({
 		setCommodityName,
 		activeTab,
@@ -37,6 +38,7 @@ const useCargoDetails = ({
 		setCountryCode,
 		setCountryDetails,
 	});
+
 	const {
 		control,
 		handleSubmit,
@@ -58,6 +60,7 @@ const useCargoDetails = ({
 			locationTo        : formDetails?.locationTo || '',
 		},
 	});
+
 	const [watchCountry, watchCoverageFrom, watchCoverageTo] = watch([
 		'policyCountryId',
 		'locationFrom',
@@ -112,14 +115,8 @@ const useCargoDetails = ({
 	}, [watchCoverageFrom, watchCoverageTo]);
 
 	useEffect(() => {
-		setValue(
-			'cargoDescription',
-			descriptionPrefilled?.cargoDescription || formDetails?.cargoDescription || '',
-		);
-		setValue(
-			'packaging',
-			descriptionPrefilled?.packaging || formDetails?.packaging || '',
-		);
+		setValue('cargoDescription', descriptionPrefilled?.cargoDescription || formDetails?.cargoDescription || '');
+		setValue('packaging', descriptionPrefilled?.packaging || formDetails?.packaging || '');
 	}, [descriptionPrefilled, formDetails, setValue]);
 
 	return (

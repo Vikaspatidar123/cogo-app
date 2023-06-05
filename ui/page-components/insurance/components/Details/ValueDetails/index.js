@@ -44,25 +44,42 @@ function ValueDetails({
 	uploadType = '',
 	setModal = () => {},
 	showModal = {},
+	postInsuranceResponse = {},
 }) {
-	const { showSuccessModal = false, pendingModal = false } = showModal || {};
 	const [checked, setChecked] = useState(false);
 	const [termsconditionshow, setTermsConditionsShow] = useState(false);
 	const [showPreviewModal, setShowPreviewModal] = useState(false);
-	const fields = getControls({ formDetails, uploadType });
 	const [agree, setAgree] = useState(false);
 	const [finalData, setFinalData] = useState();
 	const [uploadedFiles, setUploadedFiles] = useState({});
+
+	const fields = getControls({ formDetails, uploadType });
+
+	const { showSuccessModal = false, pendingModal = false } = showModal || {};
+
 	const { query, debounceQuery } = useSearchQuery();
+
 	const {
 		control,
 		handleSubmit,
 		watch,
 		setError,
 		formState: { errors },
-	} = useForm();
+	} = useForm({
+		defaultValues: {
+			policyCurrency : formDetails?.policyCurrency || '',
+			cargoAmount    : formDetails?.cargoAmount || '',
+			invoiceNo      : formDetails?.invoiceNo || '',
+			invoiceDate    : formDetails?.invoiceDate || '',
+			invoiceDoc     : formDetails?.verificationDoc?.invoiceDoc?.url,
+			panDoc         : formDetails?.verificationDoc?.panDoc?.url,
+			gstDoc         : formDetails?.verificationDoc?.gstDoc?.url,
+			aadharDoc      : formDetails?.verificationDoc?.aadharDoc?.url,
+		},
+	});
 
 	const watcher = watch(['policyCurrency', 'cargoAmount', 'invoiceNo', 'invoiceDate']);
+
 	const watchInvoiceAmount = watch('cargoAmount');
 
 	useEffect(() => {
@@ -97,12 +114,29 @@ function ValueDetails({
 		setFormDetails((prev) => ({
 			...prev,
 			...values,
+			verificationDoc: {
+				aadharDoc: {
+					name    : 'Aadhar',
+					url     : uploadedFiles.aadharDoc || null,
+					success : true,
+				},
+				invoiceDoc : { name: 'Invoice', url: uploadedFiles.invoiceDoc || null, success: true },
+				gstDoc     : { name: 'GstDoc', url: uploadedFiles.gstDoc || null, success: true },
+				panDoc     : { name: 'Invoice', url: uploadedFiles.panDoc || null, success: true },
+			},
 		}));
 
 		const draftPayload = {
 			...formDetails,
 			verificationDoc: {
-				...uploadedFiles,
+				aadharDoc: {
+					name    : 'Aadhar',
+					url     : uploadedFiles.aadharDoc || null,
+					success : true,
+				},
+				invoiceDoc : { name: 'Invoice', url: uploadedFiles.invoiceDoc || null, success: true },
+				gstDoc     : { name: 'GstDoc', url: uploadedFiles.gstDoc || null, success: true },
+				panDoc     : { name: 'Invoice', url: uploadedFiles.panDoc || null, success: true },
 			},
 			...values,
 			...ratesResponse,
@@ -202,6 +236,7 @@ function ValueDetails({
 							setModal={setModal}
 							createInsuranceLoading={createInsuranceLoading}
 							policyIdDownload={policyIdDownload}
+							postInsuranceResponse={postInsuranceResponse}
 						/>
 					)}
 					{showPreviewModal && (

@@ -11,9 +11,17 @@ const useSaveDraft = ({
 	uploadType = '',
 	countryCode = '',
 	insuranceType = [],
+	organizationAddress = {},
 }) => {
 	const { profile } = useSelector((state) => state);
 	const { id, organization } = profile;
+
+	const { organizationAddressId = '', isBillingAddress = false } = organizationAddress || {};
+
+	const addressKey = isBillingAddress
+		? 'organizationBillingAddressId'
+		: 'organizationAddressId';
+
 	const [{ data, loading }, trigger] = useRequestBf(
 		{
 			method  : 'post',
@@ -22,6 +30,7 @@ const useSaveDraft = ({
 		},
 		{ manual: true },
 	);
+
 	const response = async (draftPayload, policyid) => {
 		const {
 			aadharNumber = '',
@@ -44,6 +53,7 @@ const useSaveDraft = ({
 					gstin          : gstin === '' ? undefined : gstin,
 					panNumber      : panNumber === '' ? undefined : panNumber,
 					policyForSelf  : insuranceType[0] === 'SELF',
+					[addressKey]   : organizationAddressId,
 				},
 			});
 

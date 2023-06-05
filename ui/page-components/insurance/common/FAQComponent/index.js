@@ -1,16 +1,18 @@
 import { Loader } from '@cogoport/components';
 import { IcMCross } from '@cogoport/icons-react';
 
+import useGetFaq from '../../hooks/useGetFaq';
+
 import Card from './Card';
 import styles from './styles.module.css';
 
 function FAQComponent({
-	faqDetails = [],
 	showFaq = false,
 	setFaq = () => {},
 	isMobile = false,
-	faqsLoading = false,
 }) {
+	const { faqDetails = [], faqsLoading = false } = useGetFaq({ showFaq });
+
 	if (faqsLoading) {
 		return <Loader />;
 	}
@@ -30,7 +32,7 @@ function FAQComponent({
 
 				{!faqsLoading && faqDetails?.length > 0 ? (
 					(faqDetails || []).map((item) => (
-						<Card item={item || []} key={item.question || ''} />
+						<Card item={item || []} key={item.question} />
 					))
 				) : (
 					<div className={styles.image_wrapper}>

@@ -3,7 +3,6 @@ import { useState, useEffect, useCallback } from 'react';
 import { useSelector } from 'react-redux';
 
 import getControls from '../../../configurations/controls';
-import useGetStateFromPincode from '../../../hooks/useGetStateFromPincode';
 import useSetErrorFunction from '../../../utils/useSetErrorFunction';
 
 import SelectType from './Address';
@@ -32,11 +31,15 @@ const useBillingDetails = ({
 	uploadType = '',
 	setUploadType = () => {},
 }) => {
-	const { profile } = useSelector((state) => state);
-	const names = profile?.name?.split(' ');
-	const fields = getControls(formDetails, profile, uploadType);
+	const [cityState, setCityState] = useState({});
 	const [prosporerAddress, setProsporerAddress] = useState({});
 	const [addAddressModal, setAddAddressModal] = useState(false);
+
+	const { city = '', state:region = '' } = cityState || {};
+
+	const { profile } = useSelector((state) => state);
+	const names = profile?.name?.split(' ') || [];
+	const fields = getControls(formDetails, profile, setCityState);
 
 	const {
 		handleSubmit,
@@ -45,7 +48,6 @@ const useBillingDetails = ({
 		reset,
 		setError,
 		formState: { errors },
-		watch,
 		getValues,
 	} = useForm({
 		defaultValues: {
@@ -78,19 +80,6 @@ const useBillingDetails = ({
 		},
 	});
 
-	const watchPincode = watch('billingPincode');
-
-	const { cityLoading, cityState } = useGetStateFromPincode({
-		watchPincode,
-	});
-
-	useEffect(() => {
-		if (!isEmpty(cityState) && !cityLoading) {
-			setValue('billingCity', cityState?.city?.name);
-			setValue('billingState', cityState?.region?.name);
-		}
-	}, [cityState, cityLoading, setValue]);
-
 	const { handleNextClick = () => {} } = useSetErrorFunction({
 		getValues,
 		setError,
@@ -103,7 +92,7 @@ const useBillingDetails = ({
 	});
 
 	const resetCallback = useCallback(() => {
-		if (insuranceType[0] === 'OTHER') {
+		if (insuranceType[0] === 'OTHER' && formDetails?.policyForSelf) {
 			reset({
 				billingAddress : '',
 				billingCity    : '',
@@ -114,11 +103,18 @@ const useBillingDetails = ({
 				panNumber      : '',
 			});
 		}
-	}, [insuranceType, reset]);
+	}, [formDetails?.policyForSelf, insuranceType, reset]);
 
 	useEffect(() => {
 		resetCallback();
 	}, [resetCallback]);
+
+	useEffect(() => {
+		if (!isEmpty(cityState)) {
+			setValue('billingCity', city);
+			setValue('billingState', region);
+		}
+	}, [city, cityState, region, setValue]);
 
 	const returnField = ({ item }) => {
 		const Element = getField(item.type);

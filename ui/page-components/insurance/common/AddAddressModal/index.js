@@ -4,7 +4,6 @@ import { useState, useMemo } from 'react';
 
 import getControls from '../../configurations/addAddressControls';
 import useCreateBillingAddres from '../../hooks/useCreateBillingAddress';
-import useGetStateFromPincode from '../../hooks/useGetStateFromPincode';
 
 import styles from './styles.module.css';
 
@@ -41,14 +40,13 @@ function AddModal({
 		watch,
 	} = useForm();
 
-	const watcher = watch(['pincode', 'country_id']);
+	// const watcher = watch(['pincode', 'country_id']);
 	const { createSellerAddres, createAddressLoading } = useCreateBillingAddres({
 		checked,
 		addressType,
 	});
-	const { cityState } = useGetStateFromPincode({ watcher });
-	const { list } = cityState || {};
-	const { region, city } = list?.[0] || {};
+	// const { list } = cityState || {};
+	// const { region, city } = list?.[0] || {};
 
 	const returnFeildFunction = ({ item, index }) => {
 		const Element = item.type === 'text' ? InputController : SelectController;
@@ -71,17 +69,17 @@ function AddModal({
 		);
 	};
 
-	useMemo(() => {
-		if (list?.length === 0) {
-			Toast.error('Invalid Pincode');
-		}
-		if (city || region?.name) {
-			setValues({
-				city  : city?.name,
-				state : region?.name,
-			});
-		}
-	}, [city, region, list, setValues]);
+	// useMemo(() => {
+	// 	if (list?.length === 0) {
+	// 		Toast.error('Invalid Pincode');
+	// 	}
+	// 	if (city || region?.name) {
+	// 		setValues({
+	// 			city  : city?.name,
+	// 			state : region?.name,
+	// 		});
+	// 	}
+	// }, [city, region, list, setValues]);
 
 	const handleCloseModal = () => {
 		setAddAddressModal(false);

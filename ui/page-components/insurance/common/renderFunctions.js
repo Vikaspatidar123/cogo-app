@@ -10,14 +10,12 @@ import {
 import styles from './styles.module.css';
 
 const renderFunctions = ({
-	// setClick = () => {},
 	redirectBuy = () => {},
 	downloadFunction = () => {},
 	refetchPreview = () => {},
-	// showPreviewModal = false,
 	setShowPreviewModal = () => {},
 	previewloading = false,
-	// cancellationFunction = () => {},
+	cancellationFunction = () => {},
 }) => {
 	function Content({ itemData = {} }) {
 		const { status = '', policyId = '', policyType = '', transitMode = '' } = itemData || {};
@@ -64,10 +62,8 @@ const renderFunctions = ({
 						<span>Cancel</span>
 					</div>
 				),
-				onClick: () => {
-					// downloadFunction({ itemData });
-				},
-				show: status === 'POLICY_GENERATED',
+				onClick : () => { cancellationFunction({ itemData, click: 'cancel' }); },
+				show    : status === 'POLICY_GENERATED',
 			},
 			{
 				children: (
@@ -76,10 +72,8 @@ const renderFunctions = ({
 						<span>Claim</span>
 					</div>
 				),
-				onClick: () => {
-					// downloadFunction({ itemData });
-				},
-				show: status === 'POLICY_GENERATED',
+				onClick : () => { cancellationFunction({ itemData, click: 'claim' }); },
+				show    : status === 'POLICY_GENERATED',
 			},
 			{
 				children: (

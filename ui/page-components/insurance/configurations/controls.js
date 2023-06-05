@@ -149,9 +149,22 @@ const controls = [
 	},
 ];
 
-const getControls = (formDetails = {}, profile = {}) => controls.map((control) => ({
-	...control,
-	value: get(formDetails, control.name) || profile[control?.profileKey],
-}));
+const getControls = (formDetails = {}, profile = {}, setCityState = () => {}) => controls.map((control) => {
+	if (control.name === 'billingPincode') {
+		return {
+			...control,
+			handleChange: (e) => {
+				setCityState({
+					city  : e?.display_name || e?.district?.name,
+					state : e?.region?.name,
+				});
+			},
+		};
+	}
+	return {
+		...control,
+		value: get(formDetails, control.name) || profile[control?.profileKey],
+	};
+});
 
 export default getControls;

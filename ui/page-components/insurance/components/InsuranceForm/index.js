@@ -1,18 +1,17 @@
 import { Tooltip, Chips } from '@cogoport/components';
 import { IcMArrowBack } from '@cogoport/icons-react';
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
 
 import FAQComponent from '../../common/FAQComponent';
 import redirectUrl from '../../common/redirectUrl';
 import { options } from '../../configurations/segmentOptions';
 import useGetDraftDetails from '../../hooks/useGetDraftDetails';
-import useGetFaq from '../../hooks/useGetFaq';
 import InsuredDetails from '../InsuredDetails';
 
 import styles from './styles.module.css';
 
 import { useRouter } from '@/packages/next';
+import { useSelector } from '@/packages/store';
 
 function InsuranceFrom() {
 	const [activeStepper, setActiveStepper] = useState({
@@ -23,30 +22,22 @@ function InsuranceFrom() {
 	});
 	const [showFaq, setFaq] = useState('none');
 
-	const { isMobile } = useSelector((state) => state);
+	const { isMobile = false } = useSelector((state) => state);
+
 	const { query } = useRouter();
-	const { type, policyType = '', policyId = '' } = query || {};
+	const { type = '', policyType = '', policyId = '' } = query || {};
 
 	const [activeTab, setActiveTab] = useState(policyType || 'IMPORT');
 
 	const { redirectHome } = redirectUrl();
 
-	const { draftDetailsPrefilling } = useGetDraftDetails({
+	const { draftDetailsPrefilling = {} } = useGetDraftDetails({
 		policyId,
 		type,
 	});
 
-	const { faqDetails = [], faqsLoading = false } = useGetFaq({ showFaq });
-
 	return (
 		<div>
-			<FAQComponent
-				faqDetails={faqDetails}
-				showFaq={showFaq}
-				setFaq={setFaq}
-				isMobile={isMobile}
-				faqsLoading={faqsLoading}
-			/>
 			<div>
 				<div className={styles.heading}>
 					<Tooltip content="Back" animation="shift-toward">
@@ -74,8 +65,13 @@ function InsuranceFrom() {
 							setFaq('block');
 						}}
 						role="presentation"
-						alt=""
+						alt="faq_button"
 						className={showFaq === 'block' ? styles.faq_hidden : styles.faq}
+					/>
+					<FAQComponent
+						showFaq={showFaq}
+						setFaq={setFaq}
+						isMobile={isMobile}
 					/>
 				</div>
 

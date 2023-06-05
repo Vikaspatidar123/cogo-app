@@ -27,6 +27,7 @@ const useGetDraftDetails = ({ policyId }) => {
 			response();
 		}
 	}, [policyId, response]);
+
 	return {
 		draftDetails           : response,
 		draftDetailsLoading    : loading,

@@ -6,18 +6,17 @@ import redirectUrl from '../redirectUrl';
 
 import styles from './styles.module.css';
 
-const URL = `${process.env.BUSINESS_FINANCE_BASE_URL}/saas/insurance/pdf/`;
-
 function SuccessModal({
 	showSuccessModal,
 	setModal,
 	createInsuranceLoading,
 	policyIdDownload,
+	postInsuranceResponse = {},
 }) {
 	const { redirectList } = redirectUrl();
 	const downloadFunction = () => {
 		// eslint-disable-next-line no-undef
-		window.open(`${URL}${policyIdDownload}`);
+		window.open(postInsuranceResponse?.policyPdfFile);
 	};
 	return (
 		<Modal
@@ -29,6 +28,7 @@ function SuccessModal({
 				}));
 				redirectList();
 			}}
+			size="lg"
 		>
 			<Modal.Body>
 				{createInsuranceLoading && (
@@ -42,7 +42,7 @@ function SuccessModal({
 				{!createInsuranceLoading && policyIdDownload && (
 					<>
 						<div className={styles.image_container}>
-							<img src={SuccessGIF} alt="" />
+							<img src={SuccessGIF} alt="" width={100} height={100} />
 						</div>
 						<div className={styles.title}>Congratulations!!!!</div>
 						<div className={styles.text}>
@@ -79,8 +79,6 @@ function SuccessModal({
 							get back to you in 24-28hrs
 						</div>
 						<div className={styles.button_div}>
-							{/* <Button
-							themeType="accent" onClick={() => setTicketInputBox(true)}>Raise a Ticket</Button> */}
 							<Button onClick={() => redirectList()}>Go to Home Screen</Button>
 						</div>
 					</>

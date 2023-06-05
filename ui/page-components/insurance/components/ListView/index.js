@@ -26,7 +26,7 @@ function ListView() {
 	const [cancellationPolicyDetails, setcancellationPolicyDetails] = useState('');
 	const [rotateIcon, setRotateIcon] = useState(false);
 
-	const { loading, data, setFilters, filters, setSort, sort } = useList({ activeTab });
+	const { loading, data, setFilters, filters, setSort, sort, refetch } = useList({ activeTab });
 
 	const { summaryData, summaryLoading } = userSummary({ activeTab, filters, sort });
 
@@ -37,11 +37,9 @@ function ListView() {
 	const { redirectHome, redirectBuy } = redirectUrl();
 
 	const downloadFunction = ({ itemData }) => {
-		const { policyId } = itemData || {};
+		const { coiFile } = itemData || {};
 		// eslint-disable-next-line no-undef
-		window.open(
-			`${process.env.NEXT_PUBLIC_BUSINESS_FINANCE_BASE_URL}/saas/insurance/pdf/${policyId}`,
-		);
+		window.open(coiFile, '_self');
 	};
 
 	const handleTabChange = (value) => {
@@ -57,8 +55,8 @@ function ListView() {
 		redirectHome();
 	};
 
-	const cancellationFunction = ({ itemData }) => {
-		setcancellationPolicyDetails(itemData);
+	const cancellationFunction = ({ itemData, click }) => {
+		setcancellationPolicyDetails({ policyDetails: itemData, click });
 		setCancelModal(true);
 	};
 
@@ -77,7 +75,7 @@ function ListView() {
 
 	return (
 		<>
-			<FAQComponent showFaq={showFaq} setFaq={setFaq} />
+			<FAQComponent showFaq={showFaq} setFaq={setFaq} isMobile={isMobile} />
 			<div className={isMobile ? styles.header_mobile : styles.header}>
 				<div className={styles.title}>My Policies</div>
 				<div className={isMobile ? styles.button_div_mobile : styles.button_div}>
@@ -174,6 +172,7 @@ function ListView() {
 					cancelModal={cancelModal}
 					cancellationPolicyDetails={cancellationPolicyDetails}
 					setCancelModal={setCancelModal}
+					refetch={refetch}
 				/>
 			)}
 		</>

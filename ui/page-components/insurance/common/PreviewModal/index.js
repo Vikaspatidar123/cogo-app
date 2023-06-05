@@ -58,7 +58,6 @@ function PreviewModal({
 		aadharNumber = '',
 		panNumber = '',
 	} = formDetails || {};
-	console.log('🚀 ~ file: index.js:61 ~ formDetails:', formDetails);
 
 	const fullName = `${insuredFirstName} ${insuredLastName}`;
 	const name = institutionName !== '' ? institutionName : fullName;

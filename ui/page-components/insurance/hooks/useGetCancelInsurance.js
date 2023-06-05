@@ -1,14 +1,14 @@
 import { Toast } from '@cogoport/components';
-import { useSelector } from 'react-redux';
 
 import { useRequestBf } from '@/packages/request';
+import { useSelector } from '@/packages/store';
 
-const useGetCancellation = ({ setCancelModal }) => {
+const useGetCancellation = ({ setCancelModal = () => {}, click = 'claim', refetch = () => {} }) => {
 	const { profile } = useSelector((state) => state);
 	const [{ loading }, trigger] = useRequestBf({
-		method  : 'get',
-		authkey : 'get_saas_insurance_cancel',
-		url     : '/saas/insurance/cancel',
+		method  : 'post',
+		authkey : `post_saas_insurance_${click}`,
+		url     : `saas/insurance/${click}`,
 	});
 
 	const requestCancellation = async ({
@@ -17,7 +17,7 @@ const useGetCancellation = ({ setCancelModal }) => {
 	}) => {
 		try {
 			const res = await trigger({
-				params: {
+				data: {
 					policyId,
 					performedBy: profile?.id,
 					cancellationReason,
@@ -27,6 +27,7 @@ const useGetCancellation = ({ setCancelModal }) => {
 				setCancelModal(false);
 				Toast.success('Cancelled successfully!!!');
 			}
+			refetch({});
 		} catch (error) {
 			Toast.error(
 				'We could not initiate cancellation process right now. Please try again after some time',

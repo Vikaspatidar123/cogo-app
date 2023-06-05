@@ -38,7 +38,6 @@ const keyAsyncFieldsParamsMapping = {
 };
 
 function AsyncSelect(props) {
-	console.log('🚀 ~ file: index.js:41 ~ AsyncSelect ~ props:', props);
 	const {
 		params = {},
 		multiple,

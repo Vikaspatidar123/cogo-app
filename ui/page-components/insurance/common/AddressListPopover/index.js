@@ -5,16 +5,28 @@ import styles from './styles.module.css';
 
 function Addres({
 	addressdata,
-	checked = [],
 	setChecked = () => {},
 	loading = false,
 	setOrganizationAddress = () => {},
-	setshowFilters = () => {},
+	setShowFilters = () => {},
 	insuranceType = [],
 	setAddAddressModal = () => {},
 	setProsporerAddress = () => {},
-	setisBillingAddress = () => {},
+	organizationAddress = {},
 }) {
+	const { organizationAddressId = '' } = organizationAddress || {};
+
+	const selectAddressHandler = (data) => {
+		const { id = '', address_type = '' } = data || {};
+		setOrganizationAddress({
+			isBillingAddress      : address_type === 'billing',
+			organizationAddressId : id,
+		});
+		setProsporerAddress(data);
+		setChecked([id]);
+		setShowFilters(false);
+	};
+
 	return (
 		<div className={styles.container}>
 			<div className={styles.heading}>
@@ -22,7 +34,7 @@ function Addres({
 				{insuranceType[0] === 'SELF' && (
 					<Button
 						onClick={() => {
-							setshowFilters(false);
+							setShowFilters(false);
 						}}
 					>
 						<IcMCrossInCircle />
@@ -73,23 +85,13 @@ function Addres({
 								<div
 									key={data?.id}
 									role="presentation"
-									onClick={() => {
-										setChecked([data?.id]);
-										setOrganizationAddress(data?.id);
-										setProsporerAddress(data);
-										setisBillingAddress(!!data?.tax_number);
-									}}
+									onClick={() => selectAddressHandler(data)}
 									className={styles.card}
 								>
 									<div className={styles.section}>
 										<Checkbox
-											checked={checked.includes(data?.id)}
-											onChange={() => {
-												setChecked([data?.id]);
-												setOrganizationAddress(data?.id);
-												setProsporerAddress(data);
-												setisBillingAddress(!!data?.tax_number);
-											}}
+											checked={organizationAddressId === data?.id}
+											onChange={() => selectAddressHandler(data)}
 											multiple={false}
 										/>
 									</div>

@@ -12,7 +12,6 @@ const useSetErrorFunction = ({
 	setActiveStepper,
 }) => {
 	const values = getValues();
-	console.log('🚀 ~ file: useSetErrorFunction.js:15 ~ values:', values);
 	const setErrorFunction = () => {
 		const isCorporate = uploadType === 'CORPORATE';
 		let hasError = false;
@@ -44,7 +43,6 @@ const useSetErrorFunction = ({
 
 	const handleNextClick = () => {
 		const hasError = setErrorFunction();
-		console.log('🚀 ~ file: useSetErrorFunction.js:46 ~ handleNextClick ~ hasError:', hasError);
 		if (!hasError) {
 			setFormDetails((prev) => ({
 				...prev,

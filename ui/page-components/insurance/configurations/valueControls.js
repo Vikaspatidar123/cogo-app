@@ -1,5 +1,3 @@
-const get = (formObject = {}, key = '') => formObject[key] || null;
-
 const invoiceNumberValidator = /^[^~!@#$%^&*()+=}:;"'<>?{]+$/;
 
 const controls = [
@@ -73,21 +71,10 @@ const controls = [
 	},
 ];
 
-const getControls = ({ formDetails, uploadType }) => {
+const getControls = ({ uploadType }) => {
 	const modifiedControls = controls.filter((item) => (uploadType === 'CORPORATE'
 		? item.name !== 'aadharDoc' : item.name !== 'gstDoc'));
-	return modifiedControls.map((control) => {
-		if (['panDoc', 'gstDoc', 'aadharDoc', 'invoiceDoc'].includes(control.name)) {
-			return {
-				...control,
-				value: formDetails?.verificationDoc?.[control.name]?.url,
-			};
-		}
-		return {
-			...control,
-			value: get(formDetails, control.name) || '',
-		};
-	});
+	return modifiedControls;
 };
 
 export default getControls;

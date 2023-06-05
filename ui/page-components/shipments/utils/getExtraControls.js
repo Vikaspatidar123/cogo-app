@@ -138,8 +138,8 @@ const getExtraControls = {
 		{
 			label          : 'Yard Details',
 			name           : 'yard_details',
-			type           : 'location-select',
-			optionsListKey : 'locations',
+			type           : 'async_select',
+			asyncKey       : 'locations',
 			params         : { filters: { type: ['yard'] } },
 			caret          : true,
 			popoverWidth   : '500px',
@@ -251,12 +251,12 @@ const getExtraControls = {
 	],
 	invoice: [
 		{
-			name           : 'cargo_currency',
-			label          : 'Cargo Currency',
-			optionsListKey : 'currencies',
-			type           : 'select',
-			span           : 6,
-			validations    : [{ type: 'required', message: 'Currency is required' }],
+			name        : 'cargo_currency',
+			label       : 'Cargo currency',
+			optionKey   : 'currencies',
+			type        : 'select',
+			span        : 6,
+			validations : [{ type: 'required', message: 'Currency is required' }],
 		},
 		{
 			label       : 'Cargo Value',

@@ -67,15 +67,15 @@ export const controlsForAddingStakeholder = (shipment_data) => [
 
 const controls = (user) => [
 	{
-		label          : 'Stakeholder name',
-		name           : 'stakeholder_id',
-		type           : 'select',
-		optionsListKey : 'partner-users',
-		value          : user?.id,
-		valueKey       : 'user_id',
-		span           : 4,
-		placeholder    : 'Search Stakeholders...',
-		rules          : { required: true },
+		label       : 'Stakeholder name',
+		name        : 'stakeholder_id',
+		type        : 'async_select',
+		asyncKey    : 'partner-users',
+		value       : user?.id,
+		valueKey    : 'user_id',
+		span        : 4,
+		placeholder : 'Search Stakeholders...',
+		rules       : { required: true },
 	},
 ];
 

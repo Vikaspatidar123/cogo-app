@@ -12,8 +12,8 @@
 			"name": "origin_port_id",
 			"label": "Origin Port",
 			"multiple": false,
-			"type": "location-select",
-			"optionsListKey": "locations",
+			"type": "async_select",
+			"asyncKey": "locations",
 			"params": {
 				"filters": {
 					"type": ["seaport"]
@@ -25,14 +25,14 @@
 			"label": "Origin Country ",
 			"multiple": false,
 			"sort": true,
-			"type": "select-2",
-			"optionsListKey": "countries"
+			"type": "select",
+			"optionKey": "countries"
 		},
 		{
 			"name": "destination_port_id",
 			"label": "Destination Location",
-			"type": "location-select",
-			"optionsListKey": "locations",
+			"type": "async_select",
+			"asyncKey": "locations",
 			"params": {
 				"filters": {
 					"type": ["seaport"]
@@ -42,42 +42,42 @@
 		{
 			"name": "destination_country_id",
 			"label": "Destination Country",
-			"type": "select-2",
-			"optionsListKey": "countries",
+			"type": "select",
+			"optionKey": "countries",
 			"sort": true,
 			"multiple": false
 		},
 		{
 			"name": "container_size",
 			"label": "Container Size",
-			"type": "select-2",
-			"optionsListKey": "container-sizes",
+			"type": "select",
+			"optionKey": "container-sizes",
 			"selectType": "pills"
 		},
 		{
 			"name": "container_type",
 			"label": "Container Type",
-			"type": "select-2",
-			"optionsListKey": "container-types"
+			"type": "select",
+			"optionKey": "container-types"
 		},
 		{
 			"name": "commodity",
 			"label": "Commodity",
-			"type": "select-2",
+			"type": "select",
 			"commodityType": "freight"
 		},
 		{
 			"name": "shipping_line_id",
 			"label": "Shipping line",
-			"type": "select-2",
-			"optionsListKey": "shipping-lines",
+			"type": "async_select",
+			"asyncKey": "shipping-lines",
 			"defaultOptions": true,
 			"multiple": false
 		},
 		{
 			"name": "state",
 			"label": "State",
-			"type": "select-2",
+			"type": "select",
 			"options": [
 				{ "label": "Vessel arrived", "value": "vessel_arrived" },
 				{ "label": "Containers gated out", "value": "containers_gated_out" },

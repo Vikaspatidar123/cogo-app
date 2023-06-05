@@ -141,14 +141,14 @@ const mawbControls = () => [
 		rules        : { required: true },
 	},
 	{
-		name           : 'currency',
-		placeholder    : 'Select Currency',
-		type           : 'select',
-		span           : 6,
-		label          : 'Currency',
-		optionsListKey : 'currencies',
-		className      : 'primary lg width',
-		rules          : {
+		name        : 'currency',
+		placeholder : 'Select Currency',
+		type        : 'select',
+		span        : 6,
+		label       : 'Currency',
+		optionKey   : 'currencies',
+		className   : 'primary lg width',
+		rules       : {
 			required: true,
 		},
 	},

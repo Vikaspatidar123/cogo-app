@@ -239,6 +239,15 @@ function asyncProductList() {
 		initialCall : false,
 	};
 }
+function asyncTradeContacts() {
+	return {
+		valueKey       : 'id',
+		labelKey       : 'company_name',
+		endpoint       : 'list_trade_contacts',
+		defaultParams  : { page_limit: 20 },
+		defaultOptions : true,
+	};
+}
 
 export {
 	asyncFieldsLocations,
@@ -260,4 +269,5 @@ export {
 	asyncHsCodesCountries,
 	asyncOrganizationBranches,
 	asyncProductList,
+	asyncTradeContacts,
 };

@@ -11,8 +11,8 @@
 			"name": "origin_location_id",
 			"label": "Origin Location",
 			"multiple": false,
-			"type": "location-select",
-			"optionsListKey": "locations",
+			"type": "async_select",
+			"asyncKey": "locations",
 			"params": {
 				"filters": {
 					"type": ["pincode", "seaport", "airport"]
@@ -22,8 +22,8 @@
 		{
 			"name": "destination_location_id",
 			"label": "Destination location",
-			"type": "location-select",
-			"optionsListKey": "locations",
+			"type": "async_select",
+			"asyncKey": "locations",
 			"params": {
 				"filters": {
 					"type": ["pincode", "seaport", "airport"]
@@ -34,15 +34,15 @@
 		{
 			"name": "container_size",
 			"label": "Container Size",
-			"type": "select-2",
-			"optionsListKey": "container-sizes",
-			"selectType": "pills"
+			"type": "select",
+			"optionKey": "container-sizes",
+			"selectType": "chips"
 		},
 		{
 			"name": "container_type",
 			"label": "Container Type",
-			"type": "select-2",
-			"optionsListKey": "container-types"
+			"type": "select",
+			"optionKey": "container-types"
 		},
 		{
 			"name": "commodity",
@@ -53,15 +53,15 @@
 		{
 			"name": "trade_type",
 			"label": "Trade type",
-			"type": "select-2",
-			"selectType": "pills",
-			"optionsListKey": "trade-types",
+			"type": "select",
+			"selectType": "chips",
+			"optionKey": "trade-types",
 			"multiple": false
 		},
 		{
 			"name": "state",
 			"label": "State",
-			"type": "select-2",
+			"type": "select",
 			"options": [
 				{ "label": "Containers dropped", "value": "containers_dropped" },
 				{ "label": "Containers picked up", "value": "containers_picked_up" },

@@ -4,12 +4,8 @@ import Poc from './Poc';
 import Sop from './Sop';
 import styles from './styles.module.css';
 
-import { useSelector } from '@/packages/store';
-
 function IEPocAndSop({ quickAction, setQuickAction = () => {} }) {
 	const [sopTotal, setSopTotal] = useState(0);
-
-	const scope = useSelector(({ general }) => general?.scope);
 
 	return (
 		<div className={styles.container}>
@@ -31,7 +27,7 @@ function IEPocAndSop({ quickAction, setQuickAction = () => {} }) {
 				<div>POCs</div>
 
 				<div className={styles.poc_container}>
-					<Poc scope={scope} />
+					<Poc />
 				</div>
 			</div>
 		</div>

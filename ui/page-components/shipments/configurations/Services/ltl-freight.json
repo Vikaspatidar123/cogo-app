@@ -6,8 +6,8 @@
 			"name": "origin_location_id",
 			"label": "Origin Location",
 			"multiple": false,
-			"type": "location-select",
-			"optionsListKey": "locations",
+			"type": "async_select",
+			"asyncKey": "locations",
 			"params": {
 				"filters": {
 					"type": ["pincode", "seaport", "airport"]
@@ -17,8 +17,8 @@
 		{
 			"name": "destination_location_id",
 			"label": "Destination location",
-			"type": "location-select",
-			"optionsListKey": "locations",
+			"type": "async_select",
+			"asyncKey": "locations",
 			"params": {
 				"filters": {
 					"type": ["pincode", "seaport", "airport"]
@@ -35,8 +35,8 @@
 		{
 			"name": "trade_type",
 			"label": "Trade type",
-			"type": "select-2",
-			"optionsListKey": "trade-types",
+			"type": "select",
+			"optionKey": "trade-types",
 			"selectType": "pills",
 			"multiple": false
 		},

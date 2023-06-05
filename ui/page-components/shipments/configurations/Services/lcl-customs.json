@@ -12,8 +12,8 @@
 			"name": "port_id",
 			"label": "Location",
 			"multiple": false,
-			"type": "location-select",
-			"optionsListKey": "locations",
+			"type": "async_select",
+			"asyncKey": "locations",
 			"params": {
 				"filters": {
 					"type": ["seaport"]
@@ -25,19 +25,19 @@
 			"label": "Country",
 			"multiple": false,
 			"sort": true,
-			"type": "select-2",
-			"optionsListKey": "countries"
+			"type": "select",
+			"optionKey": "countries"
 		},
 		{
 			"name": "commodity",
 			"label": "Commodity",
-			"type": "select-2",
+			"type": "select",
 			"commodityType": "local"
 		},
 		{
 			"name": "state",
 			"label": "State",
-			"type": "select-2",
+			"type": "select",
 			"options": [
 				{ "label": "Customs cleared", "value": "customs_cleared" },
 				{ "label": "Confirmed by service provider", "value": "confirmed_by_service_provider" },

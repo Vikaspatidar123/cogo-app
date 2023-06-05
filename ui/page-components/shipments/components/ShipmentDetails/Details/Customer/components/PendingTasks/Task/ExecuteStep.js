@@ -106,6 +106,13 @@ function ExecuteStep({
 				asyncKey : 'locations',
 			};
 		}
+		if (item.name === 'cargo_value_currency') {
+			const { optionsListKey, ...rest } = item || {};
+			return {
+				...rest,
+				optionKey: optionsListKey,
+			};
+		}
 
 		if (item.name === 'documents') {
 			const { ...rest } = item;

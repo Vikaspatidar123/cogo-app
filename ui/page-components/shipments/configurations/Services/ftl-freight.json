@@ -7,8 +7,8 @@
 			"name": "origin_location_id",
 			"label": "Origin Location",
 			"multiple": false,
-			"type": "location-select",
-			"optionsListKey": "locations",
+			"type": "async_select",
+			"asyncKey": "locations",
 			"params": {
 				"filters": {
 					"type": ["pincode", "seaport", "airport"]
@@ -18,8 +18,8 @@
 		{
 			"name": "destination_location_id",
 			"label": "Destination location",
-			"type": "location-select",
-			"optionsListKey": "locations",
+			"type": "async_select",
+			"asyncKey": "locations",
 			"params": {
 				"filters": {
 					"type": ["pincode", "seaport", "airport"]
@@ -30,27 +30,27 @@
 		{
 			"name": "commodity",
 			"label": "Commodity",
-			"type": "select-2",
+			"type": "select",
 			"commodityType": "freight"
 		},
 		{
 			"name": "trade_type",
 			"label": "Trade type",
-			"type": "select-2",
-			"optionsListKey": "trade-types",
+			"type": "select",
+			"optionKey": "trade-types",
 			"multiple": false
 		},
 		{
 			"name": "truck_type",
 			"label": "Truck Type",
-			"type": "select-2",
-			"optionsListKey": "truck-types",
+			"type": "select",
+			"optionKey": "truck-types",
 			"multiple": false
 		},
 		{
 			"name": "state",
 			"label": "State",
-			"type": "select-2",
+			"type": "select",
 			"options": [
 				{ "label": "Cargo dropped", "value": "cargo_dropped" },
 				{ "label": "Cargo picked up", "value": "cargo_picked_up" },

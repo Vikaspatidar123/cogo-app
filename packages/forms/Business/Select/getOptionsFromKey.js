@@ -9,6 +9,7 @@ import countries from '@/.data-store/constants/countries.json';
 import ContainerSizes from '@/packages/forms/constants/container-size.json';
 import ContainerTypes from '@/packages/forms/constants/container-types.json';
 import Languages from '@/packages/forms/constants/languages.json';
+import TradeTypes from '@/packages/forms/constants/trade-types.json';
 import TruckTypes from '@/packages/forms/constants/truck-types.json';
 import WorkScope from '@/packages/forms/constants/work-scope.json';
 
@@ -21,7 +22,6 @@ const getOptionsFromKey = (
 		valueKey : 'value',
 		labelKey : 'label',
 	};
-
 	if (key === 'truck_types') {
 		const applicableTrucks = TruckTypes.filter(
 			(truck) => truck.country_codes.includes(country_code)
@@ -33,6 +33,8 @@ const getOptionsFromKey = (
 		}));
 	} else if (key === 'currencies') {
 		data.options = currencies;
+	} else if (key === 'trade-types') {
+		data.options = TradeTypes;
 	} else if (key === 'container-sizes') {
 		data.options = ContainerSizes;
 	} else if (key === 'container-types') {

@@ -11,8 +11,8 @@
 			"name": "origin_port_id",
 			"label": "Origin Port",
 			"multiple": false,
-			"type": "location-select",
-			"optionsListKey": "locations",
+			"type": "async_select",
+			"asyncKey": "locations",
 			"params": {
 				"filters": {
 					"type": ["seaport"]
@@ -24,14 +24,14 @@
 			"label": "Origin Country ",
 			"multiple": false,
 			"sort": true,
-			"type": "select-2",
-			"optionsListKey": "countries"
+			"type": "select",
+			"optionKey": "countries"
 		},
 		{
 			"name": "destination_port_id",
 			"label": "Destination Location",
-			"type": "location-select",
-			"optionsListKey": "locations",
+			"type": "async_select",
+			"asyncKey": "locations",
 			"params": {
 				"filters": {
 					"type": ["seaport"]
@@ -41,15 +41,15 @@
 		{
 			"name": "destination_country_id",
 			"label": "Destination Country",
-			"type": "select-2",
-			"optionsListKey": "countries",
+			"type": "select",
+			"optionKey": "countries",
 			"sort": true,
 			"multiple": false
 		},
 		{
 			"name": "commodity",
 			"label": "Commodity",
-			"type": "select-2",
+			"type": "select",
 			"commodityType": "lcl_freight",
 			"multiple": false
 		},

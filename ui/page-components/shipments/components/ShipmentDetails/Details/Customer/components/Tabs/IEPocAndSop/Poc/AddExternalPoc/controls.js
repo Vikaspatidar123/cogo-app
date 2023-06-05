@@ -79,9 +79,9 @@ export const controls = (process_options, designation_options) => [
 		select2     : 'new small',
 	},
 	{
-		type           : 'select',
-		optionsListKey : 'locations',
-		params         : {
+		type     : 'async_select',
+		asyncKey : 'locations',
+		params   : {
 			filters: {
 				type: ['city'],
 			},

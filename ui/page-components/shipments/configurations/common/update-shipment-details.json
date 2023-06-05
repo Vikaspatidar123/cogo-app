@@ -19,8 +19,8 @@
 	{
 		"label": " HS Code",
 		"name": "hs_code",
-		"type": "select",
-		"optionsListKey": "hs_codes",
+		"type": "async_select",
+		"asyncKey": "hs_codes",
 		"span": 6,
 		"condition": {
 			"viewAs": "importer_exporter",

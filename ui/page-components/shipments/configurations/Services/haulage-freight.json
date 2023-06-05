@@ -11,8 +11,8 @@
 			"name": "origin_location_id",
 			"label": "Origin Port",
 			"multiple": false,
-			"type": "location-select",
-			"optionsListKey": "locations",
+			"type": "async_select",
+			"asyncKey": "locations",
 			"params": {
 				"filters": {
 					"type": ["seaport", "pincode", "city", "country"]
@@ -22,8 +22,8 @@
 		{
 			"name": "destination_location_id",
 			"label": "Destination Location",
-			"type": "location-select",
-			"optionsListKey": "locations",
+			"type": "async_select",
+			"asyncKey": "locations",
 			"params": {
 				"filters": {
 					"type": ["seaport", "pincode", "city", "country"]
@@ -33,39 +33,39 @@
 		{
 			"name": "container_size",
 			"label": "Container Size",
-			"type": "select-2",
-			"optionsListKey": "container-sizes",
-			"selectType": "pills"
+			"type": "select",
+			"optionKey": "container-sizes",
+			"selectType": "chips"
 		},
 		{
 			"name": "container_type",
 			"label": "Container Type",
-			"type": "select-2",
-			"optionsListKey": "container-types"
+			"type": "select-",
+			"optionKey": "container-types"
 		},
 		{
 			"name": "commodity",
 			"label": "Commodity",
-			"type": "select-2",
+			"type": "select",
 			"commodityType": "freight"
 		},
 		{
 			"name": "transport_mode",
 			"label": "Transportation mode",
-			"type": "select-2",
-			"selectType": "pills",
+			"type": "select",
+			"selectType": "chips",
 			"options": [
 				{
-					"label": "Rail",
-					"value": "rail"
+					"children": "Rail",
+					"key": "rail"
 				},
 				{
-					"label": "Barge",
-					"value": "barge"
+					"children": "Barge",
+					"key": "barge"
 				},
 				{
-					"label": "Trailer",
-					"value": "trailer"
+					"children": "Trailer",
+					"key": "trailer"
 				}
 			],
 			"multiple": false
@@ -73,7 +73,7 @@
 		{
 			"name": "state",
 			"label": "State",
-			"type": "select-2",
+			"type": "select",
 			"options": [
 				{ "label": "Container arrived", "value": "container_arrived" },
 				{ "label": "Container departed", "value": "container_departed" },

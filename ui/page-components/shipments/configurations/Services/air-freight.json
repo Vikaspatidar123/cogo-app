@@ -12,8 +12,8 @@
 			"name": "origin_airport_id",
 			"label": "Origin Airport",
 			"multiple": false,
-			"type": "location-select",
-			"optionsListKey": "locations",
+			"type": "async_select",
+			"asyncKey": "locations",
 			"params": {
 				"filters": {
 					"type": ["airport"]
@@ -25,14 +25,14 @@
 			"label": "Origin Country ",
 			"multiple": false,
 			"sort": true,
-			"type": "select-2",
-			"optionsListKey": "countries"
+			"type": "select",
+			"optionKey": "countries"
 		},
 		{
 			"name": "destination_airport_id",
 			"label": "Destination Airport",
-			"type": "location-select",
-			"optionsListKey": "locations",
+			"type": "async_select",
+			"asyncKey": "locations",
 			"params": {
 				"filters": {
 					"type": ["airport"]
@@ -44,19 +44,19 @@
 			"name": "destination_country_id",
 			"label": "Destination Country",
 			"sort": true,
-			"type": "select-2",
-			"optionsListKey": "countries",
+			"type": "select",
+			"optionKey": "countries",
 			"multiple": false
 		},
 		{
 			"name": "commodity",
 			"label": "Commodity",
-			"type": "select-2",
+			"type": "select",
 			"commodityType": "air_freight"
 		},
 		{
-			"type": "select-2",
-			"optionsListKey": "air-lines",
+			"type": "async_select",
+			"asyncKey": "air-lines",
 			"types": ["seller"],
 			"name": "airline_id",
 			"label": "Airline",
@@ -66,7 +66,7 @@
 		{
 			"name": "state",
 			"label": "State",
-			"type": "select-2",
+			"type": "select",
 			"options": [
 				{ "label": "Cargo handed over at origin", "value": "cargo_handed_over_at_origin" },
 				{ "label": "Flight departed", "value": "flight_departed" },

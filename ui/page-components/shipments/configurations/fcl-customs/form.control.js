@@ -23,8 +23,8 @@ const formControlsAdvanced = () => [
 		name              : 'port_id',
 		placeholder       : 'Search via port name/code',
 		includedInOptions : false,
-		type              : 'location-select',
-		optionsListKey    : 'locations',
+		type              : 'async_select',
+		asyncKey          : 'locations',
 		grouped           : ['city'],
 		params            : { filters: { type: ['seaport', 'city'] } },
 		rules             : { required: 'Port is required' },
@@ -118,10 +118,10 @@ const formControlsAdvanced = () => [
 				span          : 12,
 				controlFields : {
 					container_type: {
-						label          : 'Container Type',
-						name           : 'container_type',
-						type           : 'pills',
-						optionsListKey : 'container-types',
+						label     : 'Container Type',
+						name      : 'container_type',
+						type      : 'pills',
+						optionKey : 'container-types',
 					},
 					commodity: {
 						label          : 'Select Commodity',

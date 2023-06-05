@@ -7,7 +7,7 @@ import useDebounceQuery from './useDebounceQuery';
 
 function useGetAsyncOptions({
 	endpoint = '',
-	initialCall = false,
+	// initialCall = false,
 	valueKey = '',
 	labelKey = '',
 	params = {},
@@ -22,7 +22,7 @@ function useGetAsyncOptions({
 			method : 'GET',
 			params : merge(params, { filters: { q: query } }),
 		},
-		{ manual: !(initialCall || query) },
+		// { manual: !(initialCall || query) },
 	);
 	const options = getModifiedOptions(data?.list || []);
 	const dependency = (data?.list || []).map(({ id }) => id).join('');
@@ -46,6 +46,7 @@ function useGetAsyncOptions({
 	};
 
 	const onHydrateValue = async (value) => {
+		console.log('🚀 ~ file: useGetAsyncOptions.js:49 ~ onHydrateValue ~ value:', value);
 		const checkOptionsExist = options.filter(
 			(item) => item[valueKey] === value,
 		);

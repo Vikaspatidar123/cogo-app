@@ -1,5 +1,5 @@
 import { merge } from '@cogoport/utils';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 
 import { useRequestBf } from '../../request';
 
@@ -7,7 +7,7 @@ import useDebounceQuery from './useDebounceQuery';
 
 function useGetAsyncOptionsBf({
 	endpoint = '',
-	initialCall = false,
+	// initialCall = false,
 	valueKey = '',
 	labelKey = '',
 	params = {},
@@ -24,16 +24,16 @@ function useGetAsyncOptionsBf({
 			authKey,
 			params : merge(params, { query }),
 		},
-		{ manual: !(initialCall || query) },
+		// { manual: !(initialCall || query) },
 	);
-	const options = getModifiedOptions(data?.list || []);
-	const dependency = (data?.list || []).map(({ id }) => id).join('');
+
+	const options = useMemo(() => getModifiedOptions(data?.list || []), [data?.list, getModifiedOptions]);
 
 	useEffect(() => {
 		if (options.length > 0) {
 			setStoreOptions([...options]);
 		}
-	}, [dependency, options]);
+	}, [options]);
 
 	const [{ loading: loadingSingle }, triggerSingle] = useRequestBf(
 		{
@@ -49,6 +49,7 @@ function useGetAsyncOptionsBf({
 	};
 
 	const onHydrateValue = async (value) => {
+		console.log(options, 'options');
 		const checkOptionsExist = options.filter(
 			(item) => item[valueKey] === value,
 		);

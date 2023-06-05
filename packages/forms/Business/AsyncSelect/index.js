@@ -76,12 +76,13 @@ function AsyncSelect(props) {
 	}
 
 	const Element = multiple ? MultiSelect : Select;
-	const { onHydrateValue, ...optionRest } = getAsyncOptionsProps || [];
+	// const { onHydrateValue, ...optionRest } = getAsyncOptionsProps || [];
 
 	return (
 		<Element
 			{...rest}
-			{...optionRest}
+			{...getAsyncOptionsProps}
+			// onHydrateValue={onHydrateValue}
 		/>
 	);
 }

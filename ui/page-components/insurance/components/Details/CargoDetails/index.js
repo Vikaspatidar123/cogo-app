@@ -58,7 +58,6 @@ const useCargoDetails = ({
 			locationTo        : formDetails?.locationTo || '',
 		},
 	});
-
 	const [watchCountry, watchCoverageFrom, watchCoverageTo] = watch([
 		'policyCountryId',
 		'locationFrom',
@@ -143,23 +142,23 @@ const useCargoDetails = ({
 									.filter((items, index) => index < 3)
 									.map((item) => {
 										const Element = getField(item?.type);
-										const renderingField = fields.find((ele) => ele.name === item.name);
+
 										return (
 											<div
 												className={styles.col}
 												key={item.name}
 											>
-												<div>{renderingField.placeholder}</div>
+												<div>{item.placeholder}</div>
 												<Element
 													key={item.name}
-													{...renderingField}
+													{...item}
 													control={control}
 												/>
-												{errors[renderingField?.name]?.type === 'required'
-												|| errors[renderingField?.name]?.type === 'pattern'
-												|| errors[renderingField?.name]?.type === 'minLength' ? (
+												{errors[item?.name]?.type === 'required'
+												|| errors[item?.name]?.type === 'pattern'
+												|| errors[item?.name]?.type === 'minLength' ? (
 													<div className={styles.error_text}>
-														{errors[renderingField?.name]?.message}
+														{errors[item?.name]?.message}
 													</div>
 													) : null}
 											</div>

@@ -80,7 +80,7 @@ const getControls = ({ formDetails, uploadType }) => {
 		if (['panDoc', 'gstDoc', 'aadharDoc', 'invoiceDoc'].includes(control.name)) {
 			return {
 				...control,
-				value: get(formDetails?.verificationDoc, control.name) || '',
+				value: formDetails?.verificationDoc?.[control.name]?.url,
 			};
 		}
 		return {

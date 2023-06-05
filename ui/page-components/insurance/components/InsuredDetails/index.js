@@ -14,7 +14,11 @@ function InsuredDetails({
 	draftDetailsPrefilling = {},
 	policyId = '',
 }) {
-	const [formDetails, setFormDetails] = useState(draftDetailsPrefilling);
+	const [formDetails, setFormDetails] = useState({
+		...draftDetailsPrefilling,
+		transitDate : new Date(draftDetailsPrefilling?.transitDate?.toString()),
+		invoiceDate : new Date(draftDetailsPrefilling?.invoiceDate?.toString()),
+	});
 
 	return (
 		<div className={isMobile ? styles.container_mobile : styles.container}>

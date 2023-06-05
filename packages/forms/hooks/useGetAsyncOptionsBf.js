@@ -49,9 +49,7 @@ function useGetAsyncOptionsBf({
 	};
 
 	const onHydrateValue = async (value) => {
-		const modifiedOptions = await getModifiedOptions(data?.list);
-
-		const checkOptionsExist = (options || modifiedOptions).filter(
+		const checkOptionsExist = (options).filter(
 			(item) => item[valueKey] === value,
 		);
 		if (checkOptionsExist.length > 0) return checkOptionsExist[0];
@@ -60,10 +58,13 @@ function useGetAsyncOptionsBf({
 				params: merge(params, { filters: { [valueKey]: value } }),
 			});
 			const list = res?.data?.list || [];
-			if (list.length > 0) {
+			const listData = (list).filter(
+				(item) => item[valueKey] === value,
+			);
+			if (listData.length > 0) {
 				setStoreOptions([...storeOptions, ...getModifiedOptions(list)]);
 			}
-			return getModifiedOptions(list)?.[0] || null;
+			return getModifiedOptions(listData)?.[0] || null;
 		} catch (err) {
 			return {};
 		}

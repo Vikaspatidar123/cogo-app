@@ -31,7 +31,7 @@ function AppLayoutFooterItem({ item }) {
 			className={styles.container}
 			role="presentation"
 		>
-			<div className={isActive && styles.active}>
+			<div className={isActive ? styles.active : ''}>
 				{item.mobileIcon || <IcMListView width={20} height={20} />}
 				<div>{item.title}</div>
 			</div>

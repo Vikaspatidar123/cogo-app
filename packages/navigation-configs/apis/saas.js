@@ -624,6 +624,9 @@ const saas = {
 		},
 	],
 
+	saas_cogo_insurance  : [],
+	saas_tools_insurance : [],
+
 	app_saas_map_tracking: [
 		{
 			api          : 'list_all_subscriptions',

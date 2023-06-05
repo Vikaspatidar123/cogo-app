@@ -1,6 +1,7 @@
 import { Toast } from '@cogoport/components';
 
 import { useRequest } from '@/packages/request';
+import showErrorsInToast from '@/ui/commons/utils/showErrorsInToast';
 
 const useCreateOrganizationUserInvitation = ({ orgId, setTimeForCall }) => {
 	const [{ loading: createOrganizationUserInvitationLoading }, createOrganizationUserInvitationtrigger] = useRequest({
@@ -25,7 +26,7 @@ const useCreateOrganizationUserInvitation = ({ orgId, setTimeForCall }) => {
 
 			Toast.success('An invite has been sent to your contacts.');
 		} catch (error) {
-			Toast.error(error?.error);
+			showErrorsInToast(error?.response?.data);
 		}
 	};
 

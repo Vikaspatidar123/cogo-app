@@ -28,36 +28,43 @@ const navigationMappings = {
 		mobileIcon : <IcMQuotations width={20} height={20} />,
 	},
 
-	app_documents: {
-		key     : 'app_documents',
-		title   : 'Documents',
-		icon    : 'nav-documents',
-		as      : '/documents/org_documents',
-		href    : '/documents/[doc_type]',
-		options : [
-			{
-				title : 'Documents',
-				icon  : 'nav-MySchedules',
-				as    : '/documents/org_documents',
-				href  : '/documents/[doc_type]',
-			},
-			{
-				title : 'Draft Templates',
-				icon  : 'nav-quotes',
-				as    : '/documents/trade_documents',
-				href  : '/documents/[doc_type]',
-			},
-		],
-	},
-	app_bookings: {
-		key       : 'app_bookings',
-		title     : 'Shipments',
-		href      : '/shipments',
-		as        : '/shipments',
-		icon      : 'nav-booking',
+	// app_documents: {
+	// 	key     : 'app_documents',
+	// 	title   : 'Documents',
+	// 	icon    : 'nav-documents',
+	// 	as      : '/documents/org_documents',
+	// 	href    : '/documents/[doc_type]',
+	// 	options : [
+	// 		{
+	// 			title : 'Documents',
+	// 			icon  : 'nav-MySchedules',
+	// 			as    : '/documents/org_documents',
+	// 			href  : '/documents/[doc_type]',
+	// 		},
+	// 		{
+	// 			title : 'Draft Templates',
+	// 			icon  : 'nav-quotes',
+	// 			as    : '/documents/trade_documents',
+	// 			href  : '/documents/[doc_type]',
+	// 		},
+	// 	],
+	// },
+	// app_bookings: {
+	// 	key       : 'app_bookings',
+	// 	title     : 'Shipments',
+	// 	href      : '/shipments',
+	// 	as        : '/shipments',
+	// 	icon      : 'nav-booking',
+	// 	showInNav : true,
+	// },
+
+	app_discover_rates: {
+		key       : 'app_discover_rates',
+		title     : 'Discover Rates',
+		href      : '/v2/book',
+		as        : '/v2/book',
 		showInNav : true,
 	},
-
 	saas_tools: {
 		key       : 'saas_tools',
 		title     : 'Tools',

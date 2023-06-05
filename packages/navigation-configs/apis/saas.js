@@ -389,6 +389,18 @@ const saas = {
 		},
 	],
 
+	checkout_promotions: [
+		{
+			api          : 'list_checkout_applicable_promocodes',
+			access_type  : 'private',
+			service_name : 'checkout',
+		},
+		{
+			api          : 'update_checkout_promotion',
+			access_type  : 'private',
+			service_name : 'checkout',
+		},
+	],
 	app_saas_tracking: [
 		{
 			api          : 'get_saas_container_subscription',

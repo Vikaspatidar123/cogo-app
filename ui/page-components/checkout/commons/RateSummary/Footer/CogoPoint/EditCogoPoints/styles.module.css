@@ -1,0 +1,138 @@
+.flex {
+	display: flex;
+	align-items: center;
+	width: 100%;
+}
+
+.container {
+	display: flex;
+	flex-direction: column;
+	min-height: 60px;
+	padding: 10px;
+}
+
+.balance_container {
+	display: flex;
+	flex-direction: column;
+
+	.active {
+		position: relative;
+		animation: move 900ms linear;
+	}
+
+	@keyframes move {
+		0% {
+			transform: rotateY(0deg);
+		}
+
+		50% {
+			transform: rotateY(400deg);
+		}
+
+		100% {
+			transform: rotateY(0deg);
+		}
+	}
+	@keyframes move {
+		0% {
+			transform: rotateY(0deg);
+		}
+
+		50% {
+			transform: rotateY(400deg);
+		}
+
+		100% {
+			transform: rotateY(0deg);
+		}
+	}
+}
+
+.wrapper {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: fit-content;
+	margin-right: 8px;
+}
+
+.error {
+	font-size: 10px;
+	color: red;
+}
+
+.use_cogo_points {
+	display: flex;
+	align-items: center;
+	min-height: 40px;
+	margin-top: 10px;
+
+	.ui-core-checkbox-root.checked {
+		background-color: #356fed;
+		border: 1px solid #356fed;
+	}
+}
+
+.apply_container {
+	display: flex;
+	flex: 1;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.input_container {
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	margin-left: 5px;
+
+	.core-ui-input-root {
+		width: 50px;
+		height: 24px;
+		padding-inline: 2px;
+		background: #fff;
+		border: 0;
+		border-radius: 4px;
+	}
+}
+
+.conversion {
+	max-width: 75px;
+	margin: 10px;
+	overflow: hidden;
+	font-size: 10px;
+	color: #828282;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.apply_button {
+	font-size: 14px;
+	color: #034afd;
+	text-decoration-line: underline;
+	cursor: pointer;
+}
+
+.text {
+	margin-left: 5px;
+	font-size: 14px;
+	line-height: 16px;
+	color: #333;
+}
+
+.balance {
+	display: flex;
+	align-items: center;
+	margin: 8px 0;
+	margin-right: 8px;
+	margin-right: 4px;
+	font-size: 14px;
+	font-weight: 400;
+	color: #f4b746;
+}
+
+.points {
+	margin: 8px 0;
+	font-weight: 700;
+	color: #f4b746;
+}

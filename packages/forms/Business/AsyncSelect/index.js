@@ -13,6 +13,11 @@ import {
 	asyncInsuranceCountryList,
 	asyncFieldsPartnerQuotation,
 	asyncProductList,
+	asyncCountrySelect,
+	asyncOrganizationBranches,
+	asyncInsuranceCommodities,
+	asyncAirLines,
+	asyncShippingLines,
 } from '../../utils/getAsyncFields';
 
 const keyAsyncFieldsParamsMapping = {
@@ -25,6 +30,11 @@ const keyAsyncFieldsParamsMapping = {
 	insurance_country_list     : asyncInsuranceCountryList,
 	list_partner_quotation     : asyncFieldsPartnerQuotation,
 	list_products              : asyncProductList,
+	country_list_with_flag     : asyncCountrySelect,
+	'organization-branches'    : asyncOrganizationBranches,
+	insurance_commodities      : asyncInsuranceCommodities,
+	'air-lines'                : asyncAirLines,
+	'shipping-lines'           : asyncShippingLines,
 };
 
 function AsyncSelect(props) {
@@ -52,15 +62,6 @@ function AsyncSelect(props) {
 		getModifiedOptions,
 	});
 
-	if (
-		typeof getModifiedOptions === 'function'
-        && !isEmpty(getAsyncOptionsProps.options)
-	) {
-		getAsyncOptionsProps.options = getModifiedOptions(
-			getAsyncOptionsProps.options,
-		);
-	}
-
 	if (typeof getSelectedOption === 'function' && !isEmpty(rest.value)) {
 		let selectedValue;
 		if (multiple) {
@@ -76,13 +77,10 @@ function AsyncSelect(props) {
 	}
 
 	const Element = multiple ? MultiSelect : Select;
-	// const { onHydrateValue, ...optionRest } = getAsyncOptionsProps || [];
-
 	return (
 		<Element
 			{...rest}
 			{...getAsyncOptionsProps}
-			// onHydrateValue={onHydrateValue}
 		/>
 	);
 }

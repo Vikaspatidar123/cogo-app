@@ -1,0 +1,35 @@
+.footer {
+	display: flex;
+	justify-content: flex-end;
+	background-color: #fff;
+}
+
+.container {
+	padding: 4px;
+
+	.business-checkbox-item {
+		margin-bottom: 8px;
+
+		.business-checkbox-label {
+			font-size: 12px;
+		}
+	}
+
+	.form-item-label {
+		margin: 12px 0 8px;
+		font-size: 12px;
+	}
+
+	.form-lower-label {
+		margin-bottom: 0;
+	}
+}
+
+.header_text {
+	padding-bottom: 16px;
+	margin-bottom: 24px;
+	font-size: 14px;
+	font-weight: 500;
+	color: #2c3e50;
+	border-bottom: 1px solid #bdbdbd;
+}

@@ -122,7 +122,8 @@ function AdditionalServicesList({ services, isSeller, quickAction, setQuickActio
 								<div className={`${styles.first} ${styles.button_wrap}`}>
 									{listAdded.length > 5 && (
 										<Button
-											className="primary md text"
+											size="md"
+											themeType="link"
 											onClick={() => handleClick()}
 										>
 											View All services
@@ -157,7 +158,7 @@ function AdditionalServicesList({ services, isSeller, quickAction, setQuickActio
 
 					{list?.length > 4 ? (
 						<div className={styles.button_wrap}>
-							<Button className="primary sm" onClick={() => setShow(true)}>
+							<Button size="md" themeType="accent" onClick={() => setShow(true)}>
 								+ Add Additional Services
 							</Button>
 						</div>

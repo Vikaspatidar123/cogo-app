@@ -14,3 +14,12 @@
 		}
 	}
 }
+
+.container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-bottom: 20px;
+	border: 1px solid #fbd69f;
+	border-radius: 4px;
+}

@@ -1,3 +1,5 @@
+import { cl } from '@cogoport/components';
+
 import CreateNew from './CreateNew';
 import Header from './Header';
 import styles from './styles.module.css';
@@ -18,7 +20,7 @@ function ServiceDetails({
 	const state = cancellation_reason ? 'cancelled' : serviceData?.state;
 
 	return state ? (
-		<div className={`${styles.state} ${styles.container}`}>
+		<div className={cl`${styles.state} ${styles.container}`}>
 			<Header
 				state={state}
 				heading={similarServices?.routeLeg?.display || routeLeg?.display}

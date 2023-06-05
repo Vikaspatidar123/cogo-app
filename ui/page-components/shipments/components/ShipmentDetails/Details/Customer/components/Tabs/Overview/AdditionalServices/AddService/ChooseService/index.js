@@ -1,3 +1,4 @@
+import { Loader } from '@cogoport/components';
 import { startCase } from '@cogoport/utils';
 
 import FilterService from './FilterService';
@@ -7,7 +8,7 @@ import styles from './styles.module.css';
 import tableFields from './tableFields';
 
 function ChooseService({
-	setAddRate,
+	setAddRate = () => {},
 	isSeller,
 	list,
 	loading,
@@ -45,10 +46,7 @@ function ChooseService({
 
 			{loading ? (
 				<div className={styles.loading}>
-					Loading
-					<span>.</span>
-					<span>.</span>
-					<span>.</span>
+					<Loader themeType="primary" style={{ width: '80px' }} />
 				</div>
 			) : (
 				<ServicesList fields={fields} data={list} loading={loading} />

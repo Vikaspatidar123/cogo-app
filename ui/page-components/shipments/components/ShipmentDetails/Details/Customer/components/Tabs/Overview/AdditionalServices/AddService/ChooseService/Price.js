@@ -20,7 +20,8 @@ function Price({ item, isSeller, setAddRate, setShow, refetch = () => {} }) {
 	return (
 		<div className={styles.price_div}>
 			<Button
-				className="secondary sm"
+				size="sm"
+				themeType="secondary"
 				onClick={(e) => handleClick(e)}
 				disabled={loading}
 			>

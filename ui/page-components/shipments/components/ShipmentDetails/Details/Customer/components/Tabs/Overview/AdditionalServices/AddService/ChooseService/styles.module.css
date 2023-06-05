@@ -5,9 +5,7 @@
 
 .loading {
 	display: flex;
-	margin: auto;
-	font-size: 22px;
-	font-weight: 600;
+	justify-content: center;
 
 	@keyframes fadeIn {
 		0% {

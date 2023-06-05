@@ -1,5 +1,4 @@
 import { Modal } from '@cogoport/components';
-import { useState } from 'react';
 
 import EmptyState from '../../../../EmptyState';
 
@@ -15,8 +14,6 @@ function AddService({
 	show = false,
 	setShow = () => {},
 }) {
-	const [showAddRate, setAddRate] = useState(null);
-
 	const shipment_id = shipment_data?.id;
 
 	const { list, loading, setFilters, filters, serviceCountTotal } = useList({
@@ -34,31 +31,19 @@ function AddService({
 		<div className={styles.container}>
 
 			<Modal.Header title="ADD NEW SERVICE" />
+			<ChooseService
+				isSeller={isSeller}
+				list={list}
+				loading={loading}
+				setFilters={setFilters}
+				filters={filters}
+				setShow={setShow}
+				serviceCountTotal={serviceCountTotal}
+				services={services}
+				shipment_data={shipment_data}
+				refetch={refetch}
+			/>
 
-			{!showAddRate ? (
-				<ChooseService
-					setAddRate={setAddRate}
-					isSeller={isSeller}
-					list={list}
-					loading={loading}
-					setFilters={setFilters}
-					filters={filters}
-					setShow={setShow}
-					serviceCountTotal={serviceCountTotal}
-					services={services}
-					shipment_data={shipment_data}
-					refetch={refetch}
-				/>
-			) : (
-			// <AddRate
-			// 	isSeller={isSeller}
-			// 	item={showAddRate}
-			// 	setAddRate={setAddRate}
-			// 	setShow={setShow}
-			// 	refetch={refetch}
-			// />
-				<div>addrate</div>
-			)}
 		</div>
 	);
 }

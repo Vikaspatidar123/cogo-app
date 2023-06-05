@@ -1,0 +1,14 @@
+.tool_tip_content {
+	display: flex;
+	align-items: center;
+	font-size: 12px;
+	font-weight: 450;
+	color: #4f4f4f;
+}
+
+.amount {
+	margin-left: 4px;
+	font-size: 12px;
+	font-weight: 600;
+	color: #356efd;
+}

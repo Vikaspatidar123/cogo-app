@@ -1,0 +1,68 @@
+const formControls = () => [
+	{
+		label             : 'CUSTOMS LOCATION',
+		name              : 'location_id',
+		placeholder       : 'Search via name',
+		includedInOptions : false,
+		type              : 'async_select',
+		asyncKey          : 'locations',
+		params            : { filters: { type: ['city', 'seaport'] } },
+		rules             : { required: 'Port is required' },
+		// style             : { width: '350px' },
+	},
+	{
+		label             : 'CUSTOMS TYPE',
+		name              : 'trade_type',
+		type              : 'async_select',
+		placeholder       : 'Select Customs Type',
+		showArrow         : false,
+		includedInOptions : false,
+		options           : [
+			{ label: 'Origin', value: 'export' },
+			{ label: 'Destination', value: 'import' },
+		],
+		rules: { required: 'Customs Type is required' },
+		// style : { width: '350px' },
+	},
+	{
+		label         : 'Commodity',
+		name          : 'commodity',
+		type          : 'chips',
+		commodityType : 'lcl_freight',
+		collapse      : true,
+		rules         : { required: 'Commodity is required' },
+	},
+	{
+		label : 'Packages count',
+		name  : 'packages_count',
+		value : 1,
+		rules : { min: 1, max: 10000 },
+		type  : 'number',
+	},
+	{
+		label    : 'Weight',
+		name     : 'weight',
+		subLabel : '(kgs)',
+		span     : 4,
+		type     : 'number',
+		value    : 1,
+		rules    : { required: 'Weight is required', min: 0.000000001 },
+	},
+	{
+		label    : 'Volume',
+		name     : 'volume',
+		span     : 4,
+		subLabel : '(cbm)',
+		type     : 'number',
+		value    : 1,
+		rules    : { required: 'Required', min: 0.0000000001 },
+	},
+	{
+		label : '',
+		name  : 'cbm_calculator',
+		span  : 4,
+		type  : 'cbm_calculator',
+	},
+];
+
+export default formControls;

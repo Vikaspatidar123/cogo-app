@@ -21,9 +21,8 @@ function AsyncSelectController(props) {
 							rest.handleChange(obj);
 						}
 					}}
-					value={newValue}
+					value={value || newValue}
 					onBlur={onBlur}
-					data-test-value={value}
 				/>
 			)}
 		/>

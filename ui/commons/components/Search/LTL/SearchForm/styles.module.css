@@ -1,0 +1,92 @@
+/* .section = styled(Col)``; */
+
+.container {
+	display: flex;
+	width: 100%;
+	padding: 8px 0 8px 8px;
+	border-radius: 10px;
+
+	&.small {
+		display: flex;
+		width: 100%;
+		padding: 0;
+		background: #f9f9f9;
+		border-radius: 0;
+	}
+
+	&.result {
+		width: 95%;
+
+		@media (max-width: 768px) {
+			width: 85%;
+		}
+	}
+
+	&.contract {
+		background: #fff;
+	}
+
+	&.mobile {
+		padding: 0;
+	}
+
+	@media (max-width: 768px) {
+		flex-direction: column;
+		padding: 0 8px 12px;
+		background: #fff;
+	}
+}
+
+.main {
+	width: 55%;
+
+	@media (max-width: 768px) {
+		width: 100%;
+	}
+
+	&.rfq {
+		max-width: 100%;
+	}
+
+	&.contract {
+		max-width: 100%;
+	}
+}
+
+.options {
+	display: flex;
+	align-items: flex-start;
+	width: 45%;
+	padding-left: 12px;
+
+	@media (max-width: 768px) {
+		flex-direction: column;
+		width: 100%;
+		padding-left: 0;
+	}
+}
+
+.heading {
+	margin: 0 0 12px 8px;
+	font-size: 20px;
+	color: #393f70;
+}
+
+.header {
+	display: flex;
+	justify-content: space-between;
+}
+
+.icon {
+	font-size: 14px;
+	font-weight: 500;
+	color: #5936f0;
+	text-decoration-line: underline;
+	cursor: pointer;
+
+	& svg {
+		width: 10px;
+		height: 10px;
+		margin-right: 4px;
+	}
+}

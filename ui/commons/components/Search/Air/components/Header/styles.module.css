@@ -1,0 +1,9 @@
+.container {
+	padding-bottom: 20px;
+	margin-top: 4px;
+	border-bottom: 1px solid #ded7fc;
+}
+
+.service_type {
+	width: fit-content;
+}

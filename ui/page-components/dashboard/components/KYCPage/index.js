@@ -1,15 +1,15 @@
-import { Button, Placeholder } from '@cogoport/components';
+import { Button, Placeholder, Modal } from '@cogoport/components';
 import { IcCFcrossInCircle, IcMArrowNext } from '@cogoport/icons-react';
 import { useState } from 'react';
 
 import useGetSubscription from '../../hooks/useGetSubscription';
 
-import ModalPage from './ModalPage';
 import styles from './styles.module.css';
 import VerifiedKyc from './VerifiedKyc';
 
 import { useRouter } from '@/packages/next';
 import { useSelector } from '@/packages/store';
+import { KycCampaign as KYC } from '@/ui/page-components/discover_rates/common/KYC';
 
 function KYCPage() {
 	const [open, setOpen] = useState(false);
@@ -61,12 +61,7 @@ function KYCPage() {
 								SUBMIT KYC
 
 							</Button>
-							{open && (
-								<ModalPage
-									open={open}
-									setOpen={setOpen}
-								/>
-							)}
+
 						</div>
 					</div>
 					<div className={styles.line}>
@@ -97,9 +92,19 @@ function KYCPage() {
 								<IcMArrowNext className={styles.arrow} />
 							</div>
 						</div>
-
 					</div>
-
+					{open && (
+						<Modal
+							show={open}
+							onClose={() => {
+								setOpen(false);
+							}}
+							closable
+							width={750}
+						>
+							<KYC onFinalSubmit={() => setOpen(false)} />
+						</Modal>
+					)}
 				</div>
 			)}
 		</div>

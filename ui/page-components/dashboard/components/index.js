@@ -12,6 +12,7 @@ import styles from './styles.module.css';
 import Tracking from './Tracking';
 import ActiveTracking from './Tracking/ActiveTracking';
 
+// import VerifyEmailMobile from '@/ui/commons/components/VerifyEmailMobile';
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
 function SassDashboard() {
@@ -21,6 +22,8 @@ function SassDashboard() {
 		<div className={styles.main_class}>
 			<div className={styles.main_class2}>
 				<div className={styles.part1}>
+					{/* <VerifyEmailMobile /> */}
+
 					{kyc_status !== 'pending_verification' && (
 						<div className={styles.top}>
 							<KYCPage />

@@ -14,14 +14,19 @@ function LeftPanel() {
 					alt="Cogo"
 				/>
 			</div>
+
 			<div className={styles.left_text_container}>
 				<span className={styles.span}>Login to the</span>
 				Cogoport App Platform!
-				<div className={styles.left_text_subheader}>Deliver value to your customers</div>
+				<div className={styles.left_text_subheader}>
+					Deliver value to your customers
+				</div>
 			</div>
 			<div className={styles.left_link_footer}>
 				Need any help?
-				<a href="mailto:support@cogoport.com" className={styles.link_mail_text}>support@cogoport.com</a>
+				<a href="mailto:support@cogoport.com" className={styles.link_mail_text}>
+					support@cogoport.com
+				</a>
 			</div>
 		</div>
 	);

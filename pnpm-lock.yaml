@@ -38,7 +38,7 @@ specifiers:
 
 dependencies:
   '@cogoport/charts': 1.0.1_biqbaboplfbrettd7655fr4n2y
-  '@cogoport/components': 1.0.423_cyxdlkncyjzqtklzwrmvnywxma
+  '@cogoport/components': 1.0.423_na3lqxecnrwrcmlndgmfs3aawi
   '@cogoport/icons-react': 1.0.58_biqbaboplfbrettd7655fr4n2y
   '@cogoport/maps': 1.0.3_cyxdlkncyjzqtklzwrmvnywxma
   '@cogoport/utils': 1.2.6
@@ -1379,11 +1379,10 @@ packages:
       - react-dom
     dev: false
 
-  /@cogoport/components/1.0.423_cyxdlkncyjzqtklzwrmvnywxma:
+  /@cogoport/components/1.0.423_na3lqxecnrwrcmlndgmfs3aawi:
     resolution: {integrity: sha512-GlXVeGU/lg8/O1lDkL+AYUu9PW7A6S3JpobcNnT1py1ak9vZ2+6T3Y39TG6YLrUPRyh6mRkkWUpJV52HgDOshA==}
     peerDependencies:
       '@cogoport/icons-react': ^1.0.23
-      react: ^18.2.0
       react-dom: ^18.2.0
     dependencies:
       '@cogoport/icons-react': 1.0.58_biqbaboplfbrettd7655fr4n2y

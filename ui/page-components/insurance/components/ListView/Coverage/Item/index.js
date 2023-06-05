@@ -4,7 +4,6 @@ import styles from './styles.module.css';
 
 function Item({ location = {} }) {
 	const { display_name = '', name = '' } = location || {};
-	console.log("🚀 ~ file: index.js:8 ~ Item ~  display_name = '', name = '':", display_name, name);
 
 	// const splitDisplayName = (location.display_name || '').split(',');
 

@@ -3,7 +3,7 @@ import { Controller } from 'react-hook-form';
 import AsyncSelect from '../Business/AsyncSelect';
 
 function AsyncSelectController(props) {
-	const { name, control, rules, ...rest } = props;
+	const { name, control, rules, value, ...rest } = props;
 
 	return (
 		<Controller
@@ -11,7 +11,7 @@ function AsyncSelectController(props) {
 			control={control}
 			name={name}
 			rules={rules}
-			defaultValue={rest.value}
+			defaultValue={value}
 			render={({ field: { onChange, onBlur, value: newValue } }) => (
 				<AsyncSelect
 					{...rest}
@@ -22,7 +22,7 @@ function AsyncSelectController(props) {
 							rest.handleChange(obj);
 						}
 					}}
-					value={value || newValue}
+					value={newValue}
 					onBlur={onBlur}
 				/>
 			)}

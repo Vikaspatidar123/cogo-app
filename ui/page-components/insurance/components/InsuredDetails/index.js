@@ -1,3 +1,4 @@
+import { isEmpty } from '@cogoport/utils';
 import { useState } from 'react';
 
 import SideStepper from '../../common/FillOptions';
@@ -14,11 +15,13 @@ function InsuredDetails({
 	draftDetailsPrefilling = {},
 	policyId = '',
 }) {
-	const [formDetails, setFormDetails] = useState({
+	const initialState = isEmpty(draftDetailsPrefilling) ? {} : {
 		...draftDetailsPrefilling,
-		transitDate : new Date(draftDetailsPrefilling?.transitDate?.toString()),
-		invoiceDate : new Date(draftDetailsPrefilling?.invoiceDate?.toString()),
-	});
+		transitDate : draftDetailsPrefilling ? new Date(draftDetailsPrefilling?.transitDate?.toString()) : null,
+		invoiceDate : draftDetailsPrefilling ? new Date(draftDetailsPrefilling?.invoiceDate?.toString()) : null,
+	};
+
+	const [formDetails, setFormDetails] = useState(initialState);
 
 	return (
 		<div className={isMobile ? styles.container_mobile : styles.container}>

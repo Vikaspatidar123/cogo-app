@@ -38,6 +38,7 @@ const keyAsyncFieldsParamsMapping = {
 };
 
 function AsyncSelect(props) {
+	console.log('🚀 ~ file: index.js:41 ~ AsyncSelect ~ props:', props);
 	const {
 		params = {},
 		multiple,
@@ -60,6 +61,7 @@ function AsyncSelect(props) {
 		labelKey : rest.labelKey || defaultParams.labelKey,
 		valueKey : rest.valueKey || defaultParams.valueKey,
 		getModifiedOptions,
+		value    : rest.value,
 	});
 
 	if (typeof getSelectedOption === 'function' && !isEmpty(rest.value)) {

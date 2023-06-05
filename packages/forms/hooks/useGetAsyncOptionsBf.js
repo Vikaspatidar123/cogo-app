@@ -7,7 +7,7 @@ import useDebounceQuery from './useDebounceQuery';
 
 function useGetAsyncOptionsBf({
 	endpoint = '',
-	// initialCall = false,
+	initialCall = false,
 	valueKey = '',
 	labelKey = '',
 	params = {},
@@ -24,10 +24,10 @@ function useGetAsyncOptionsBf({
 			authKey,
 			params : merge(params, { query }),
 		},
-		// { manual: !(initialCall || query) },
+		{ manual: !(initialCall || query) },
 	);
 
-	const options = useMemo(() => getModifiedOptions(data?.list || []), [data?.list, getModifiedOptions]);
+	const options = useMemo(() => getModifiedOptions(data?.list || []), [data, getModifiedOptions]);
 
 	useEffect(() => {
 		if (options.length > 0) {
@@ -49,8 +49,9 @@ function useGetAsyncOptionsBf({
 	};
 
 	const onHydrateValue = async (value) => {
-		console.log(options, 'options');
-		const checkOptionsExist = options.filter(
+		const modifiedOptions = await getModifiedOptions(data?.list);
+
+		const checkOptionsExist = (options || modifiedOptions).filter(
 			(item) => item[valueKey] === value,
 		);
 		if (checkOptionsExist.length > 0) return checkOptionsExist[0];

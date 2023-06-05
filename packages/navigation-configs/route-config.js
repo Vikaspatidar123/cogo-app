@@ -1,3 +1,4 @@
+import book from './config/book';
 import dashboard from './config/dashboard';
 import documents from './config/documents';
 import route from './config/public-paths';
@@ -12,6 +13,7 @@ const routeConfig = withPrefix({
 	...saas,
 	...settings,
 	...dashboard,
+	...book,
 	...documents,
 });
 

@@ -1,6 +1,7 @@
 import { Toast } from '@cogoport/components';
 
 import { useRequest } from '@/packages/request';
+import showErrorsInToast from '@/ui/commons/utils/showErrorsInToast';
 
 const useCreateBillingAddress = ({ isSez, orgId, setInviteTeam }) => {
 	const [{ loading: createBillingAddressLoading }, createBillingAddresstrigger] = useRequest({
@@ -32,7 +33,7 @@ const useCreateBillingAddress = ({ isSez, orgId, setInviteTeam }) => {
 
 			Toast.success('Organization Billing Address Added successfully');
 		} catch (error) {
-			Toast.error('Something Went Wrong');
+			showErrorsInToast(error?.response?.data);
 		}
 	};
 

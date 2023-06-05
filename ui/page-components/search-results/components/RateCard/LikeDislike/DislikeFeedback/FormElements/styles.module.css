@@ -1,0 +1,37 @@
+.container {
+	height: 360px;
+	overflow-y: scroll;
+
+	:global {
+		.ui_checkbox_group_container {
+			display: block;
+			border: none;
+		}
+
+		.ui_checkbox_label {
+			font-size: 12px;
+			font-weight: 500;
+			color: #828282;
+		}
+	}
+}
+
+.group {
+	margin-bottom: 12px;
+}
+
+.label {
+	margin-bottom: 4px;
+	font-size: 12px;
+	font-weight: 500;
+	line-height: 14px;
+}
+
+.price {
+	display: flex;
+
+	.core-ui-select-root.core-ui-select__container.size-md {
+		max-width: 100px;
+		margin-right: 12px;
+	}
+}

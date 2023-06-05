@@ -1,0 +1,113 @@
+.container {
+	padding: 26px 12px 30px;
+	background: #fff;
+	border-radius: 10px;
+
+	&.small {
+		display: flex;
+		width: 100%;
+		padding: 0;
+		background: #f9f9f9;
+		border-radius: 0;
+	}
+
+	&.result {
+		width: 95%;
+
+		@media (max-width: 768px) {
+			width: 85%;
+		}
+	}
+
+	&.contract {
+		background: #fff;
+	}
+
+	&.mobile {
+		padding: 0;
+	}
+
+	@media (max-width: 540px) {
+		padding: 0 8px 12px;
+		background: #fff;
+	}
+}
+
+.main {
+	width: 100%;
+	max-width: 100%;
+	margin: 0 auto;
+
+	.rfq {
+		max-width: 100%;
+	}
+
+	.contract {
+		max-width: 100%;
+	}
+}
+
+.label {
+	display: block;
+	overflow: hidden;
+	font-size: 12px;
+	font-weight: bold;
+	line-height: 14px;
+	color: #828282;
+	text-overflow: ellipsis;
+	text-transform: uppercase;
+	white-space: nowrap;
+
+	.margin_below {
+		margin-bottom: 10px;
+	}
+}
+
+.row {
+	display: flex;
+	justify-content: space-around;
+
+	@media (max-width: 540px) {
+		flex-direction: column;
+	}
+}
+
+.search_form_options_container_col {
+	width: 56%;
+	margin-left: 30px;
+
+	@media (max-width: 540px) {
+		width: 100% !important;
+		margin: 0;
+	}
+}
+
+.search_form_route_container_col {
+	@media (max-width: 540px) {
+		width: 100% !important;
+	}
+}
+
+.checkbox_container {
+	:global {
+		.ui_checkbox_container {
+			padding: 10px 0;
+		}
+	}
+}
+
+.web {
+	display: block;
+
+	@media (max-width: 768px) {
+		display: none;
+	}
+}
+
+.mobile {
+	display: none;
+
+	@media (max-width: 768px) {
+		display: block;
+	}
+}

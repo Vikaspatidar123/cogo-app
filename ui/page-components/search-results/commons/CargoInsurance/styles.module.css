@@ -1,0 +1,103 @@
+.container {
+	.core-ui-radio-root {
+		display: flex;
+		align-items: flex-start;
+		margin-top: 16px;
+	}
+
+	.core-ui-radio-label {
+		color: #000;
+	}
+
+	.core-ui-radio-radio-container {
+		flex-shrink: 0;
+		margin-top: 4px;
+	}
+
+	.core-ui-input-root {
+		padding: 2px 8px;
+
+		&:focus-within {
+			box-shadow: 0 0 0 1px #333;
+		}
+	}
+
+	.size-md {
+		height: 32px !important;
+	}
+}
+
+.btn_wrap {
+	display: flex;
+	gap: 5px;
+	justify-content: center;
+}
+
+.cancel_btn_wrap {
+	.core-ui-button-root {
+		margin-right: 20px;
+		color: #000;
+		background: #fff;
+	}
+}
+
+.text {
+	margin-bottom: 10px;
+	font-size: 20px;
+	font-weight: 700;
+}
+
+.rate {
+	display: flex;
+	justify-content: space-between;
+
+	&.final {
+		border-bottom: 1px solid rgb(242 226 195);
+	}
+}
+
+.tool_tip_container {
+	max-width: 250px;
+	font-size: 12px;
+	font-weight: 300;
+}
+
+.info_icon {
+	align-items: center;
+	width: 10px;
+	height: 10px;
+	margin-left: 5px;
+	cursor: pointer;
+}
+
+.lable {
+	margin: 5px 0;
+	font-size: 14px;
+	font-weight: 500;
+	color: #393f70;
+}
+
+.errors {
+	min-height: 16px;
+	margin-top: 4px;
+	font-size: 12px;
+	line-height: 16px;
+	color: #cb6464;
+}
+
+.header_container {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	margin-bottom: 0;
+
+	:global {
+		.ui_select_container {
+			width: 200px;
+		}
+
+		.ui_toggle_container {
+			padding: 0;
+		}
+	}
+}

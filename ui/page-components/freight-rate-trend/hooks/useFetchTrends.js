@@ -64,7 +64,7 @@ const useFetchTrends = ({ pageLimit = 10 }) => {
 
 			callback(data);
 		} catch (err) {
-			Toast.error("Couldn't fetch locations. Please try again later.");
+			console.log(err);
 		}
 	};
 	const refectTrends = () => fetchTrends(false);

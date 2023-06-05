@@ -1,5 +1,5 @@
 .left_container {
-	width: 45vw;
+	width: 50vw;
 	height: 100vh;
 	background-color: #ffde01;
 	background-size: cover;
@@ -13,7 +13,7 @@
 }
 
 .right_container {
-	width: 55vw;
+	width: 50vw;
 	height: 100vh;
 	background-color: #fafafa;
 	background-size: cover;
@@ -41,13 +41,12 @@
 }
 
 .right_login_text {
-	padding: 40px 80px 20px;
 	margin-top: 64px;
 	font-size: 24px;
 	font-weight: 300;
 	line-height: 1.4;
 	color: #000;
-	text-align: left;
+	text-align: center;
 }
 
 @media (max-width: 768px) {

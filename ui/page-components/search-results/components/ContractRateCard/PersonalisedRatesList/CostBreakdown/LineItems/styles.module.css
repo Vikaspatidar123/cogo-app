@@ -1,0 +1,57 @@
+.row_container {
+	padding: 0 30px;
+	margin: 16px 0;
+
+	.line-item {
+		padding: 5px;
+		border-bottom: 1px dashed #aab9d6;
+	}
+
+	.line-item:last-child {
+		border-bottom: unset;
+	}
+}
+
+.charge_name {
+	font-size: 12px;
+	color: #363e6e;
+}
+
+.total_price {
+	font-size: 12px;
+	font-weight: 500;
+	color: #393f70;
+}
+
+.unit {
+	font-size: 12px;
+	font-weight: 400;
+	color: #a8acce;
+}
+
+.cost_calculation {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.quantity {
+	margin-right: 6px;
+	font-size: 12px;
+	font-weight: 600;
+	color: #393f70;
+}
+
+.price {
+	margin-right: 6px;
+	font-size: 12px;
+	font-weight: 400;
+	color: #393f70;
+}
+
+.cross {
+	margin-right: 6px;
+	font-size: 12px;
+	font-weight: 400;
+	color: #393f70;
+}

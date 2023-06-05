@@ -7,7 +7,7 @@ import BuyModal from '../BuyModal';
 
 import styles from './styles.module.css';
 
-import shortFormatNumber from '@/ui/commons/utils/getShortFromatNumber';
+import formatAmount from '@/ui/commons/utils/formatAmount';
 
 function PreviewModal({
 	formDetails = {},
@@ -283,7 +283,14 @@ function PreviewModal({
 						<div className={styles.textforpreview}>
 							Premium:
 							{' '}
-							{shortFormatNumber(netPremium, 'INR')}
+							{formatAmount({
+								amount   : netPremium,
+								currency : 'INR',
+								options  : {
+									notation : 'standard',
+									style    : 'currency',
+								},
+							})}
 							<div className={styles.inclusive}>(inclusive of taxes)</div>
 						</div>
 					)}
@@ -292,7 +299,14 @@ function PreviewModal({
 							<div className={styles.text}>
 								Amount Payable:
 								{' '}
-								{shortFormatNumber(totalApplicableCharges, 'INR')}
+								{formatAmount({
+									amount   : totalApplicableCharges,
+									currency : 'INR',
+									options  : {
+										notation : 'standard',
+										style    : 'currency',
+									},
+								})}
 							</div>
 							<Button
 								loading={insuranceLoading}

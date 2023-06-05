@@ -1,8 +1,8 @@
 import { Toast } from '@cogoport/components';
 import { useState, useCallback } from 'react';
-import { useSelector } from 'react-redux';
 
 import { useRequestBf } from '@/packages/request';
+import { useSelector } from '@/packages/store';
 
 const useInsurance = ({
 	payment = () => {},

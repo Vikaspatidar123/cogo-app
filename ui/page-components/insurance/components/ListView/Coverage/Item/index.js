@@ -5,12 +5,6 @@ import styles from './styles.module.css';
 function Item({ location = {} }) {
 	const { display_name = '', name = '' } = location || {};
 
-	// const splitDisplayName = (location.display_name || '').split(',');
-
-	// const info =		(location.country || {}).name
-	// 	|| splitDisplayName[(splitDisplayName || []).length - 1]
-	// 	|| '';
-
 	return (
 		<div className={styles.container}>
 			{display_name.length > 5 ?	(

@@ -2,14 +2,6 @@ import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
 const get = (formObject = {}, key = '') => formObject[key] || null;
 
-const patterns = {
-	PAN_NUMBER : /[A-Za-z]{5}\d{4}[A-Za-z]{1}/g,
-	EMAIL      : /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,})+$/,
-
-};
-const pinCodeValidator = /^([0-9]{6})$/;
-const phoneNumberValidator = /^([0-9]{10})$/;
-
 const controls = [
 	{
 		name        : 'insuredFirstName',
@@ -29,13 +21,7 @@ const controls = [
 		placeholder : 'Email',
 		type        : 'text',
 		span        : 4,
-		rules       : {
-			pattern: {
-				value   : patterns.EMAIL,
-				message : 'Invalid email',
-			},
-		},
-		profileKey: 'email',
+		profileKey  : 'email',
 	},
 	{
 		name        : 'phoneNo',
@@ -43,10 +29,6 @@ const controls = [
 		type        : 'text',
 		span        : 4,
 		rules       : {
-			pattern: {
-				value   : phoneNumberValidator,
-				message : 'Invalid phone number',
-			},
 			length: {
 				value   : 10,
 				message : 'Phone Number should be of 10 digits',
@@ -61,8 +43,8 @@ const controls = [
 		span        : 4,
 		rules       : {
 			pattern: {
-				value   : patterns.GST_NUMBER,
-				message : 'Invalid GST Number',
+				value   : GLOBAL_CONSTANTS.country_specific_data.IN.registration_number.pattern,
+				message : 'Invalid GST',
 			},
 		},
 	},
@@ -71,26 +53,18 @@ const controls = [
 		placeholder : 'Aadhar No.',
 		type        : 'number',
 		span        : 4,
-		rules       : {
-			pattern: {
-				value   : /^[1-9]{1}[0-9]{11}$/g,
-				message : 'Invalid Aadhar Number',
-			},
-		},
 	},
 	{
 		name        : 'partyName',
 		placeholder : 'Billing Name',
 		type        : 'text',
 		span        : 4,
-		rules       : {},
 	},
 	{
 		name        : 'billingAddress',
 		placeholder : 'Address',
 		type        : 'text',
 		span        : 4,
-		rules       : {},
 	},
 	{
 		name        : 'billingPincode',
@@ -99,15 +73,9 @@ const controls = [
 		asyncKey    : 'locations',
 		stepper     : false,
 		span        : 4,
-		rules       : {
-			pattern: {
-				value   : pinCodeValidator,
-				message : 'Invalid pincode ',
-			},
-		},
-		valueKey : 'postal_code',
-		labelKey : 'postal_code',
-		params   : {
+		valueKey    : 'postal_code',
+		labelKey    : 'postal_code',
+		params      : {
 			filters: {
 				type       : 'pincode',
 				country_id : GLOBAL_CONSTANTS.COUNTRY_IDS.IN,

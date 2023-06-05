@@ -1,9 +1,9 @@
 import { Toast } from '@cogoport/components';
 import { useEffect, useState, useCallback } from 'react';
-import { useSelector } from 'react-redux';
 
 import getApiErrorString from '@/packages/forms/utils/getApiError';
 import { useRequestBf } from '@/packages/request';
+import { useSelector } from '@/packages/store';
 
 const useList = ({ activeTab }) => {
 	const { profile } = useSelector((state) => state);

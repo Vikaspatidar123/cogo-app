@@ -1,7 +1,7 @@
 import { Toast } from '@cogoport/components';
-import { useSelector } from 'react-redux';
 
 import { useRequestBf } from '@/packages/request';
+import { useSelector } from '@/packages/store';
 
 const useSaveDraft = ({
 	setDraftModal = () => {},

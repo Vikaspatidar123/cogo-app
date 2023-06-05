@@ -3,7 +3,7 @@ import { IcMInfo } from '@cogoport/icons-react';
 
 import styles from './styles.module.css';
 
-import shortFormatNumber from '@/ui/commons/utils/getShortFromatNumber';
+import formatAmount from '@/ui/commons/utils/formatAmount';
 
 function PricingSummary({ ratesResponse = {}, formDetails = {}, ratesLoading = false }) {
 	const {
@@ -47,28 +47,68 @@ function PricingSummary({ ratesResponse = {}, formDetails = {}, ratesLoading = f
 						<div>
 							<hr className={styles.line} />
 						</div>
-						<div>{shortFormatNumber(netPremium, 'INR')}</div>
+						<div>
+							{formatAmount({
+								amount   : netPremium,
+								currency : 'INR',
+								options  : {
+									notation : 'standard',
+									style    : 'currency',
+								},
+							})}
+
+						</div>
 					</div>
 					<div className={styles.rowed}>
 						<div>Platform Charges</div>
 						<div>
 							<hr className={styles.line} />
 						</div>
-						<div>{shortFormatNumber(platformCharges, 'INR')}</div>
+						<div>
+							{formatAmount({
+								amount   : platformCharges,
+								currency : 'INR',
+								options  : {
+									notation : 'standard',
+									style    : 'currency',
+								},
+							})}
+
+						</div>
 					</div>
 					<div className={styles.rowed_2}>
 						<div>Convenience Fee</div>
 						<div>
 							<hr className={styles.line} />
 						</div>
-						<div>{shortFormatNumber(convenienceFee, 'INR')}</div>
+						<div>
+							{formatAmount({
+								amount   : convenienceFee,
+								currency : 'INR',
+								options  : {
+									notation : 'standard',
+									style    : 'currency',
+								},
+							})}
+
+						</div>
 					</div>
 					<div className={styles.rowed}>
 						<div>Amount Payable</div>
 						<div>
 							<hr className={styles.line} />
 						</div>
-						<div>{shortFormatNumber(totalApplicableCharges, 'INR')}</div>
+						<div>
+							{formatAmount({
+								amount   : totalApplicableCharges,
+								currency : 'INR',
+								options  : {
+									notation : 'standard',
+									style    : 'currency',
+								},
+							})}
+
+						</div>
 					</div>
 				</div>
 			)}

@@ -1,8 +1,8 @@
 import { Toast } from '@cogoport/components';
 import { useEffect, useCallback } from 'react';
-import { useSelector } from 'react-redux';
 
 import { useRequestBf } from '@/packages/request';
+import { useSelector } from '@/packages/store';
 
 const useGetSummaryDetails = ({ activeTab, filters, sort }) => {
 	const { profile } = useSelector((state) => state);

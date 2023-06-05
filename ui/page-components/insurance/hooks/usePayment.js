@@ -1,10 +1,10 @@
 /* eslint-disable no-undef */
 import { Toast } from '@cogoport/components';
 import { useCallback } from 'react';
-import { useSelector } from 'react-redux';
 
 import { useRouter } from '@/packages/next';
 import { useRequestBf } from '@/packages/request';
+import { useSelector } from '@/packages/store';
 import { loadScript } from '@/ui/commons/utils/loadScript';
 
 const usePayment = ({

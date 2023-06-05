@@ -11,7 +11,7 @@ function DocumentsRequired({
 	return (fields || []
 	).filter((items, index) => index > 3)
 		.map((item) => (
-			<div className={styles.docs_container}>
+			<div className={styles.docs_container} key={item.name}>
 				<div className={styles.docs}>
 					<div className={styles.column}>{item.placeholder}</div>
 					<FileUploader

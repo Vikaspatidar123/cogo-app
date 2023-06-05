@@ -1,10 +1,10 @@
 import { Button } from '@cogoport/components';
 import { IcMArrowBack } from '@cogoport/icons-react';
-import { useRouter } from 'next/router';
 
 import styles from './styles.module.css';
 
 import { InputController, useForm } from '@/packages/forms';
+import { useRouter } from '@/packages/next';
 
 function EmailForm({ resetUserPassword = () => {}, resetPasswordLoading = false }) {
 	const { handleSubmit, formState: { errors }, control } = useForm();

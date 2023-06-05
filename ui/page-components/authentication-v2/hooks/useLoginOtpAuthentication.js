@@ -1,7 +1,7 @@
 import { Toast } from '@cogoport/components';
-import { useRouter } from 'next/router';
 
 import getApiErrorString from '@/packages/forms/utils/getApiError';
+import { useRouter } from '@/packages/next';
 import { useRequest } from '@/packages/request/index';
 import setCookieAndRedirect from '@/ui/commons/utils/setCookieAndRedirect';
 

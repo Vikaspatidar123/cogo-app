@@ -41,7 +41,9 @@ const useUpdateShipment = ({
 	let pincodeValue = null;
 
 	if (address) {
-		[addressValue, pincodeValue] = address?.split('::');
+		const addressParts = address.split('::');
+		addressValue = addressParts[0] || null;
+		pincodeValue = addressParts[1] || null;
 	}
 	const [{ loading }, trigger] = useRequest({
 		url    : 'create_shipment_trade_partner',

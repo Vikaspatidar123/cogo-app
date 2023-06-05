@@ -18,6 +18,7 @@ const useGetShipmentPendingTasks = (shipment_type = '') => {
 
 	const listAPi = () => trigger({
 		params: {
+			// eslint-disable-next-line no-use-before-define
 			page,
 			page_limit : 100,
 			sort_type  : 'asc',

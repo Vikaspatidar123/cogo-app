@@ -136,11 +136,10 @@ export function Form({
 			</div>
 			{!approvalState ? (
 				<div className={styles.file_view}>
-					<object
+					<iframe
 						title="review_file"
-						data={doc_data.document_url}
-						width="100%"
-						type="application/pdf"
+						src={doc_data.document_url}
+						style={{ width: '100%', height: '100vh' }}
 						allowFullScreen
 					/>
 				</div>

@@ -44,36 +44,36 @@ function Task({
 	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [shipment_data]);
 	const services = isChildShipment ? childShipmentservices : data?.list || [];
-	if (task.task_type === 'approve_document') {
-		return (
-			<ReviewDoc
-				task={task}
-				shipment_data={shipment_data}
-				primary_service={primary_service}
-				onClose={onCancel}
-				refetch={refetch}
-			/>
-		);
-	}
+	// if (task.task_type === 'approve_document') {
+	// 	return (
+	// 		<ReviewDoc
+	// 			task={task}
+	// 			shipment_data={shipment_data}
+	// 			primary_service={primary_service}
+	// 			onClose={onCancel}
+	// 			refetch={refetch}
+	// 		/>
+	// 	);
+	// }
 
-	if (
-		[
-			'add_quote_additional_service',
-			'approve_quote_additional_service',
-			'approve_amended_quote',
-			'amend_quote_additional_service',
-		].includes(task?.task_type)
-	) {
-		return (
-			<AdditionsService
-				onCancel={onCancel}
-				task={task}
-				shipment_data={shipment_data}
-				Loader={Loader}
-				refetch={refetch}
-			/>
-		);
-	}
+	// if (
+	// 	[
+	// 		'add_quote_additional_service',
+	// 		'approve_quote_additional_service',
+	// 		'approve_amended_quote',
+	// 		'amend_quote_additional_service',
+	// 	].includes(task?.task_type)
+	// ) {
+	// 	return (
+	// 		<AdditionsService
+	// 			onCancel={onCancel}
+	// 			task={task}
+	// 			shipment_data={shipment_data}
+	// 			Loader={Loader}
+	// 			refetch={refetch}
+	// 		/>
+	// 	);
+	// }
 	return (
 		<div>
 			{tasksLoading || loading ? (

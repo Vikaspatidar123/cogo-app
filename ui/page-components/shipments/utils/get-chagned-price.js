@@ -9,7 +9,7 @@ const getChangedPrice = (margins, line_item) => {
 			const { quantity, price_discounted, total_price_discounted } = line_item || {};
 			const oldMargin = oldMarginItem?.total_margin_value || 0;
 			const actualBuyPrice = price_discounted + ((oldMargin) / (quantity || 1));
-			const perUnitMargin = marginItem?.value / (quantity || 1);
+			const perUnitMargin = (marginItem?.value || 1) / (quantity || 1);
 			const price = actualBuyPrice - perUnitMargin;
 			const totalPriceCalculated = price * quantity;
 			const totalPriceMin = total_price_discounted - (marginItem?.value || 0) + oldMargin;

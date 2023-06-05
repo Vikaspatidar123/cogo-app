@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-constructed-context-values */
 import dynamic from 'next/dynamic';
 
 import { ShipmentDetailContext } from '../common/Context';

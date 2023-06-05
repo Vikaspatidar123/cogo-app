@@ -19,7 +19,7 @@ function GenerateDoc({
 	viewDoc = false,
 	details = {},
 	isAmended = false,
-	setIsAmended = () => {},
+	// setIsAmended = () => {},
 	primary_service = {},
 }) {
 	const {
@@ -41,7 +41,7 @@ function GenerateDoc({
 	const {
 		control,
 		handleSubmit,
-		watch,
+		// watch,
 		setValue,
 		setValues,
 		formState: { errors },
@@ -79,14 +79,14 @@ function GenerateDoc({
 		keys.map((item) => setValue(`${item}`, data[item]));
 	}, []);
 
-	const formValues = watch();
+	// const formValues = watch();
 
-	const form_data = {
-		agent_name: primary_service
-			? `${primary_service?.service_provider?.business_name}`
-			: null,
-		...formValues,
-	};
+	// const form_data = {
+	// 	agent_name: primary_service
+	// 		? `${primary_service?.service_provider?.business_name}`
+	// 		: null,
+	// 	...formValues,
+	// };
 
 	useEffect(() => {
 		if (certificateData?.id) {

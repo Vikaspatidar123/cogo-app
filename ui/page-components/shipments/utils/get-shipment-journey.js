@@ -16,7 +16,7 @@ const actionableTasks = (stateTasks = [], pendingTasks = []) => stateTasks
 			return { ...task, ...taskInOrginal };
 		}
 		if (task?.status !== 'completed') {
-			const taskInOrginal =					pendingTasks.find((pendingTask) => pendingTask?.id === task?.id)
+			const taskInOrginal = pendingTasks.find((pendingTask) => pendingTask?.id === task?.id)
 					|| {};
 			return { ...task, ...taskInOrginal };
 		}
@@ -149,7 +149,7 @@ const getShipmentJourney = (
 					: {
 						[state?.service_type]:
 									allServiceTasksOfState[state.service_type] || [],
-						  };
+					};
 
 				Object.keys(serviceTasksOfState).forEach((key) => {
 					if (serviceTasksOfState[key]?.length) {

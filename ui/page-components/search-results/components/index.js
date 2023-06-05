@@ -340,7 +340,7 @@ function Results({
 						refetch={refetch}
 						possible_additional_services={
 						possible_additional_services
-	                    }
+}
 						detail={detail}
 					/>
 

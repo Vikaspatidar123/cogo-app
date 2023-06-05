@@ -1,6 +1,7 @@
-import { Checkbox, Chips, Toast, Modal, Button } from '@cogoport/components';
+import { Checkbox, Chips, Modal, Button } from '@cogoport/components';
 import { IcMPlus } from '@cogoport/icons-react';
-import { useState, useMemo } from 'react';
+import { isEmpty } from '@cogoport/utils';
+import { useState, useEffect } from 'react';
 
 import getControls from '../../configurations/addAddressControls';
 import useCreateBillingAddres from '../../hooks/useCreateBillingAddress';
@@ -30,23 +31,22 @@ function AddModal({
 }) {
 	const [checked, setChecked] = useState(false);
 	const [showPoc, setShowPoc] = useState(false);
+	const [cityState, setCityState] = useState({});
 	const [addressType, setAddressType] = useState('office');
-	const fields = getControls({ checked });
+	const fields = getControls({ checked, setCityState });
 	const {
 		control,
 		handleSubmit,
 		formState: { errors },
-		setValues,
-		watch,
+		setValue,
 	} = useForm();
 
-	// const watcher = watch(['pincode', 'country_id']);
+	const { city = '', state:region = '' } = cityState || {};
+
 	const { createSellerAddres, createAddressLoading } = useCreateBillingAddres({
 		checked,
 		addressType,
 	});
-	// const { list } = cityState || {};
-	// const { region, city } = list?.[0] || {};
 
 	const returnFeildFunction = ({ item, index }) => {
 		const Element = item.type === 'text' ? InputController : SelectController;
@@ -69,17 +69,12 @@ function AddModal({
 		);
 	};
 
-	// useMemo(() => {
-	// 	if (list?.length === 0) {
-	// 		Toast.error('Invalid Pincode');
-	// 	}
-	// 	if (city || region?.name) {
-	// 		setValues({
-	// 			city  : city?.name,
-	// 			state : region?.name,
-	// 		});
-	// 	}
-	// }, [city, region, list, setValues]);
+	useEffect(() => {
+		if (!isEmpty(cityState)) {
+			setValue('billingCity', city);
+			setValue('billingState', region);
+		}
+	}, [city, cityState, region, setValue]);
 
 	const handleCloseModal = () => {
 		setAddAddressModal(false);

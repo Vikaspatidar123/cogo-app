@@ -1,5 +1,7 @@
 import { useState } from 'react';
 
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
+
 const COUNTRY_INDIA_ID = '541d1232-58ce-4d64-83d6-556a42209eb7';
 
 // eslint-disable-next-line max-len
@@ -30,10 +32,27 @@ export const addAddressControls = [
 	{
 		label       : 'Pincode',
 		name        : 'pincode',
-		type        : 'text',
+		type        : 'async_select',
+		asyncKey    : 'locations',
+		stepper     : false,
 		placeholder : 'Enter Pincode',
 		rules       : { required: 'required *' },
 		span        : 6,
+		valueKey    : 'postal_code',
+		labelKey    : 'postal_code',
+		params      : {
+			filters: {
+				type       : 'pincode',
+				country_id : GLOBAL_CONSTANTS.COUNTRY_IDS.IN,
+			},
+			includes: {
+				country                 : '',
+				region                  : '',
+				city                    : '',
+				district                : '',
+				default_params_required : true,
+			},
+		},
 	},
 	{
 		label       : 'Country',
@@ -116,7 +135,7 @@ export const addAddressControls = [
 	},
 ];
 
-const useGetControls = ({ checked }) => {
+const useGetControls = ({ checked = false, setCityState = () => {} }) => {
 	const [country, setCountry] = useState();
 
 	return (addAddressControls || []).map((control) => {
@@ -137,6 +156,17 @@ const useGetControls = ({ checked }) => {
 						value   : country?.id === COUNTRY_INDIA_ID ? GstValidator : '',
 						message : 'Invalid Tax number',
 					},
+				},
+			};
+		}
+		if (control.name === 'pincode') {
+			return {
+				...control,
+				handleChange: (e) => {
+					setCityState({
+						city  : e?.display_name || e?.district?.name,
+						state : e?.region?.name,
+					});
 				},
 			};
 		}

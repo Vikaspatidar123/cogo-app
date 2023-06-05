@@ -41,9 +41,9 @@ function Task({
 	};
 	useEffect(() => {
 		trigger({ params });
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [shipment_data]);
 	const services = isChildShipment ? childShipmentservices : data?.list || [];
-	console.log(task, 'tasks');
 	if (task.task_type === 'approve_document') {
 		return (
 			<ReviewDoc

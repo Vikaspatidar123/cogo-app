@@ -29,19 +29,20 @@ function RequestCancellation({
 
 			{showCancel ? (
 				<Modal
-					className="primary md"
 					show={showCancel}
 					onClose={() => setShowCancel(false)}
 				>
-					<Modal.Header title="Request for Cancellation" />
+					<div className={styles.modal_container}>
+						<div className={styles.text}>Request for Cancellation</div>
 
-					<Modal.Body>Are you sure you want to request for Cancellation?</Modal.Body>
-
-					<Modal.Footer>
-						<Button disabled={loading} onClick={onRequest}>
-							Request
-						</Button>
-					</Modal.Footer>
+						<div className={styles.dec}>Are you sure you want to request for Cancellation?</div>
+						<div className={styles.button_box}>
+							<Button themeType="secondary" onClick={() => setShowCancel(false)}>Cancel</Button>
+							<Button disabled={loading} onClick={onRequest}>
+								Request
+							</Button>
+						</div>
+					</div>
 				</Modal>
 			) : null}
 		</div>

@@ -82,7 +82,7 @@ function ExecuteStep({
 				type               : 'async_select',
 				asyncKey           : 'hs_code',
 				getModifiedOptions : (list) => (
-					list?.options.map((ele) => ({
+					(list?.options || []).map((ele) => ({
 						...ele,
 						value: ele.id,
 
@@ -134,7 +134,6 @@ function ExecuteStep({
 			handleSubmitClick();
 		}
 	};
-
 	return (
 		<div>
 			<div className={styles.form}>

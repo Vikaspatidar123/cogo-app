@@ -9,3 +9,24 @@
 .button_text:hover {
 	color: #356efd;
 }
+
+.modal_container {
+	padding: 10px 20px;
+}
+
+.text {
+	font-size: 20px;
+	font-weight: 600;
+}
+
+.dec {
+	margin: 20px 0;
+	font-size: 14px;
+	font-weight: 500;
+}
+
+.button_box {
+	display: flex;
+	gap: 5px;
+	justify-content: end;
+}

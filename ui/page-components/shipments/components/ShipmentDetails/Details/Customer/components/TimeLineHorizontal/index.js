@@ -15,6 +15,7 @@ function TimeLineHorizontal({
 
 	useEffect(() => {
 		setCurrentSubscription(container_data?.[0]);
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [container_data?.length]);
 
 	return (

@@ -13,7 +13,7 @@ export const renderValue = (label, detail) => {
 	const isLTL =		detail?.service_type === 'ltl_freight_service'
 		|| detail?.services?.includes('ltl_freight_service');
 
-	const valueForInput =		Array.isArray(packages) && packages?.length > 0 ? packages[0] : null;
+	const valueForInput = Array.isArray(packages) && packages?.length > 0 ? packages[0] : null;
 
 	const chargableWeight = isLTL
 		? detail?.chargable_weight || detail?.weight

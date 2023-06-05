@@ -1,4 +1,4 @@
-import { Placeholder } from '@cogoport/components';
+import { Placeholder, cl } from '@cogoport/components';
 
 import PendingTasks from '../../../PendingTasks';
 import QuickActions from '../../../QuickActions';
@@ -33,7 +33,7 @@ function MapAndDetails({
 		) : null;
 	};
 	return (
-		<div className={`${styles.left_panel} ${servicesForMap ? styles.show_tracking : ''}`}>
+		<div className={cl`${styles.left_panel} ${servicesForMap ? styles.show_tracking : ''}`}>
 			<BreadCrumbs servicesForMap={servicesForMap} />
 
 			{!isTrackEmpty && !mapLoading && servicesForMap ? (
@@ -51,7 +51,7 @@ function MapAndDetails({
 			)}
 			<ServicDetails servicesForMap={servicesForMap} />
 
-			<div className={`${styles.panels} ${styles.actions}`}>
+			<div className={cl`${styles.panels} ${styles.actions}`}>
 				<PendingTasks />
 
 				<QuickActions

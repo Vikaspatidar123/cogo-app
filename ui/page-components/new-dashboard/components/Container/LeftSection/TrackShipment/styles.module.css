@@ -1,0 +1,42 @@
+.container {
+	height: 100%;
+	padding: 20px;
+	margin-right: 10px;
+	background-image: url("https://cdn.cogoport.io/cms-prod/cogo_public/vault/original/tracking_headers.png");
+	background-repeat: no-repeat;
+	background-position: bottom;
+	background-size: auto;
+	border: 1px solid #e0e0e0;
+	border-radius: 4px;
+	box-shadow: 0 0 8px rgb(98 127 172 / 20%);
+	object-fit: contain;
+}
+
+.text {
+	font-size: 18px;
+	font-weight: 600;
+	color: #fff;
+}
+
+.line {
+	width: 99px;
+	height: 2px;
+	margin-bottom: 5%;
+	background: #fcdc00;
+	border-radius: 40px;
+}
+
+.input_box {
+	display: flex;
+	justify-content: end;
+}
+
+.input_container {
+	width: 250px;
+	margin: 20px;
+}
+
+.button_container {
+	display: flex;
+	margin: 0% 0% 15% 45%;
+}

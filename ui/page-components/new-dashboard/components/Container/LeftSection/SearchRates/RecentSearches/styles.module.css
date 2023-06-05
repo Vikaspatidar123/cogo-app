@@ -1,0 +1,18 @@
+.container {
+
+}
+
+.head {
+	display: flex;
+	justify-content: space-between;
+}
+
+.text {
+	font-size: 18px;
+	font-weight: 600;
+}
+
+.view_all {
+	color: #034afd !important;
+	text-decoration-line: underline;
+}

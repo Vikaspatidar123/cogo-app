@@ -1,0 +1,33 @@
+.container {
+	box-sizing: border-box;
+	padding: 20px;
+	margin-left: 10px;
+	background: #fff;
+	border: 1px solid #e0e0e0;
+	border-radius: 4px;
+	box-shadow: 0 0 8px rgb(98 127 172 / 20%);
+}
+
+.text {
+	font-size: 18px;
+	font-weight: 600;
+}
+
+.des {
+	font-size: 10px;
+	font-weight: 400;
+	color: #828282;
+}
+
+.input_box {
+	width: 220px;
+	margin: 20px;
+}
+
+.button {
+	margin-left: 20px;
+}
+
+.seaction {
+	display: flex;
+}

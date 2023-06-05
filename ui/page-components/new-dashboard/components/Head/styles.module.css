@@ -1,0 +1,32 @@
+.container {
+	display: flex;
+	justify-content: space-between;
+	padding: 20px;
+	margin: 0 -35px;
+	background: linear-gradient(180deg, #faf6ef 0%, #fff1d5 100%);
+}
+
+.premium {
+	margin: 0 5px;
+	color: #ee3425;
+}
+
+.text_container {
+	display: flex;
+	gap: 5px;
+	align-items: center;
+}
+
+.icon {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 6px 8px;
+	background: #ffd5cc;
+	border-radius: 6px;
+}
+
+.message {
+	font-size: 18px;
+	font-weight: 600;
+}

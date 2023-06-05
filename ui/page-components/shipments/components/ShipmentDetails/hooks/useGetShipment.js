@@ -131,6 +131,7 @@ const useGetShipment = () => {
 		if (id) {
 			getShipment();
 		}
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [id]);
 
 	return {

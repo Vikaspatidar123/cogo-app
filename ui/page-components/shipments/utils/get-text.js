@@ -1,3 +1,4 @@
+/* eslint-disable default-param-last */
 import { startCase } from '@cogoport/utils';
 
 import isDocPresent from './is-doc-present';
@@ -28,7 +29,8 @@ const statusMappings = {
 	confirmed: {
 		icon : 'tick',
 		main : 'Your booking is confirmed.',
-		sub  : 'Booking Note yet to be procured from the carrier, subject to availability with the carrier.You should receive your Booking Note by',
+		sub  : 'Booking Note yet to be procured from the carrier,'
+		+ 'subject to availability with the carrier.You should receive your Booking Note by',
 	},
 	service_confirmed: {
 		main : 'Your booking is confirmed.',
@@ -49,7 +51,8 @@ const statusMappings = {
 	in_cart: {
 		icon : 'thumb',
 		main : 'Booking Successfully Placed! ',
-		info : 'We need some information for faster SI generation and BL release. So please provide us with contacts who we can approach for further liaisoning.',
+		info : 'We need some information for faster SI generation and BL release.'
+		+ ' So please provide us with contacts who we can approach for further liaisoning.',
 	},
 	service_in_cart: {
 		icon : 'thumb',

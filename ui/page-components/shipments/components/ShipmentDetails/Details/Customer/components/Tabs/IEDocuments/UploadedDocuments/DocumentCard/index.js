@@ -11,11 +11,10 @@ function DocumentCard({
 	details = {},
 	shipment_data = {},
 	containsFreightCertificate,
-	refetch = () => {},
-	primary_service = {},
+	// primary_service = {},
 }) {
 	const [showPrintDoc, setShowPrintDoc] = useState(false);
-	const [showHbl, setShowHbl] = useState(null);
+	// const [showHbl, setShowHbl] = useState(null);
 
 	const handleDownload = (url) => {
 		saveAs(url);
@@ -36,7 +35,6 @@ function DocumentCard({
 		'surrendered',
 		'delivered',
 	].includes(details?.bl_detail_status);
-	const watermark = !isBlReleased ? 'draft' : ' ';
 
 	return (
 		<>
@@ -92,8 +90,10 @@ function DocumentCard({
 				<div className={styles.action_container}>
 					{printableDocs.includes(details?.document_type) && (
 						<Button
-							onClick={() => setShowHbl(true)}
-							className="primary md text"
+							// onClick={() => setShowHbl(true)}
+							size="md"
+							className={styles.text}
+							themeType="linkUi"
 						>
 							Print
 						</Button>
@@ -103,7 +103,9 @@ function DocumentCard({
 						&& shipment_data?.shipment_type === 'air_freight'
 						&& allowedStakeHolder && (
 							<Button
-								className="primary md text"
+								size="md"
+								className={styles.text}
+								themeType="linkUi"
 							>
 								Update
 							</Button>
@@ -111,7 +113,9 @@ function DocumentCard({
 
 					{airActions ? (
 						<Button
-							className="primary md text"
+							size="md"
+							className={styles.text}
+							themeType="linkUi"
 							onClick={() => setShowPrintDoc(!showPrintDoc)}
 						>
 							View
@@ -123,30 +127,23 @@ function DocumentCard({
 					&& !airActions ? (
 						<>
 							<Button
-								className="primary md text"
+								size="md"
+								themeType="linkUi"
+								className={styles.text}
 								onClick={() => handleView(details?.document_url)}
 							>
 								View
 							</Button>
 							<Button
-								className="primary md text"
+								size="md"
+								themeType="linkUi"
+								className={styles.text}
 								onClick={() => handleDownload(details?.document_url)}
 							>
 								Download
 							</Button>
 						</>
 						) : null}
-
-					{/* {showHbl ? (
-						<PrintDoc
-							summary={shipment_data}
-							services={shipment_data?.all_services || []}
-							show={showHbl}
-							setShow={setShowHbl}
-							watermark={watermark}
-							hblData={document_data}
-						/>
-					) : null} */}
 
 					{containsFreightCertificate
 						&& details?.document_type === 'freight_certificate' && (

@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { Modal } from '@cogoport/components';
 import { IcMFitView } from '@cogoport/icons-react';
 import dynamic from 'next/dynamic';

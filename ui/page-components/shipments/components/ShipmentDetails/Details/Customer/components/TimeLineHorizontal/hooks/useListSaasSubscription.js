@@ -27,6 +27,7 @@ const ListSaasSubscriptions = () => {
 		if (query?.id) {
 			getList();
 		}
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [query?.id]);
 
 	return {

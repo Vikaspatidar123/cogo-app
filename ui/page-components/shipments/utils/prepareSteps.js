@@ -1,7 +1,7 @@
 import { subtractDays } from '@cogoport/utils';
 
 const dataExtractionFunc = (obj, index, arr) => {
-	if (index === arr?.length - 1) {
+	if (index === (arr?.length || 0) - 1) {
 		if (obj === undefined) {
 			return undefined;
 		}

@@ -1,6 +1,6 @@
-import incoTerms from '@cogo/smart-components/constants/inco-terms.json';
-
 import mainServices from '../configurations/common/main-services.json';
+
+import incoTerms from '@/packages/forms/constants/inco-terms.json';
 
 const getInvoiceNotGeneratonReasons = (type, services) => {
 	const service = services.find((serviceObj) => mainServices.includes(serviceObj?.service_type));

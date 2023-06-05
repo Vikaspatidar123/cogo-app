@@ -109,6 +109,7 @@ function TrackerInfomation({
 		if (id && servicesForMap) {
 			fetchTrackerDetails();
 		}
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [id]);
 
 	return (
@@ -129,6 +130,7 @@ function TrackerInfomation({
 				setVesselName={setVesselName}
 				servicesList={servicesList}
 				servicesForMap={servicesForMap}
+				apiloading={apiloading}
 			/>
 
 			<TimelineNavigate

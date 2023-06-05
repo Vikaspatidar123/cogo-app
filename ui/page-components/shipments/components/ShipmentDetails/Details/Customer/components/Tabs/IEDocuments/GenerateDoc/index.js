@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { Button, Placeholder } from '@cogoport/components';
 import { useEffect, useState } from 'react';
 

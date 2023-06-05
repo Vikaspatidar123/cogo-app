@@ -49,6 +49,7 @@ function TimelineNavigate({
 				setCurrentSubscription(allContainers[0]);
 			}
 		}
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [currentSubscription, allContainers]);
 
 	const handleSubscription = (event) => {

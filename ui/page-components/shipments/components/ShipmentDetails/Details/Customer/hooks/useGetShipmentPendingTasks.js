@@ -5,9 +5,8 @@ import { useSelector } from '@/packages/store';
 import useGetFiniteList from '@/ui/page-components/shipments/hooks/useGetFiniteList';
 
 const useGetShipmentPendingTasks = (shipment_type = '') => {
-	const { scope, authorizationparameters, query } = useSelector(
+	const { authorizationparameters, query } = useSelector(
 		({ general, profile }) => ({
-			scope                   : general.scope,
 			authorizationparameters : profile?.authorizationparameters,
 			query                   : general.query,
 		}),
@@ -31,9 +30,8 @@ const useGetShipmentPendingTasks = (shipment_type = '') => {
 	});
 
 	useEffect(() => {
-		if (scope === 'app') {
-			listAPi();
-		}
+		listAPi();
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [query?.id]);
 
 	const {

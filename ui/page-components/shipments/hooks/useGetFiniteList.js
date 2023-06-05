@@ -35,6 +35,7 @@ const useGetFiniteList = (hook, params = {}) => {
 				reverted     : data?.stats?.reverted,
 			}));
 			setLoading(false);
+			return data?.list || [];
 		} catch (err) {
 			if (err.constructor.name === 'Cancel') return null;
 			setList(() => ({

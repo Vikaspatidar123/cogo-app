@@ -52,8 +52,8 @@ const extraControls = (shipment_data, isDisabled) => {
 				themeType       : 'secondary',
 				drag            : true,
 				onlyURLOnChange : true,
-				accept:
-                         'image/*,.pdf,.doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+				accept          : 'image/*,.pdf,.doc,.docx,application/msword,'
+				+ 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
 				uploadType: 'aws',
 			},
 		],
@@ -90,7 +90,8 @@ const extraControls = (shipment_data, isDisabled) => {
 				drag            : true,
 				onlyURLOnChange : true,
 				accept:
-					'image/*,.pdf,.doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+					'image/*,.pdf,.doc,.docx,application/msword,'
+					+ 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
 				uploadType: 'aws',
 			},
 		],
@@ -109,7 +110,8 @@ const extraControls = (shipment_data, isDisabled) => {
 				drag            : true,
 				onlyURLOnChange : true,
 				accept:
-					'image/*,.pdf,.doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+					'image/*,.pdf,.doc,.docx,application/msword,'
+					+ 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
 				uploadType: 'aws',
 			},
 		],

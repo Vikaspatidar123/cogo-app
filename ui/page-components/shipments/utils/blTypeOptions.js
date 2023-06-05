@@ -1,4 +1,4 @@
-import incotermsArray from '@cogo/smart-components/constants/inco-terms.json';
+import incotermsArray from '@/packages/forms/constants/inco-terms.json';
 
 const blTypeOptions = (services = []) => {
 	let rfs = true;

@@ -67,6 +67,7 @@ function AddSop({
 		} else {
 			sethasData(false);
 		}
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [JSON.stringify(formValues)]);
 
 	const onError = (errs, e) => {

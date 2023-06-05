@@ -1,6 +1,7 @@
 const findValue = (name, trade_type, detail) => {
 	let value = null;
 	const services = Object.values(detail?.service_details || {});
+	// eslint-disable-next-line no-plusplus
 	for (let i = 0; i < services.length; i++) {
 		const item = services[i];
 		if (value) {

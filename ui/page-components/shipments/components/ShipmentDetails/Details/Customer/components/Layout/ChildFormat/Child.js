@@ -28,7 +28,7 @@ function Child({
 			<div className={styles.row} style={{ width: '102%' }}>
 				{index !== 0 ? <div className={`${styles.Line_row} ${styles.line}`} /> : null}
 
-				{controls.map((controlItem) => {
+				{(controls || []).map((controlItem) => {
 					const { span = 6, watch = true, show = true, name: itemName } = controlItem;
 					const elemShow = (!(controlItem.name in showElements)
 						|| showElements[controlItem.name])

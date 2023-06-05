@@ -1,31 +1,12 @@
-/* eslint-disable react/no-unknown-property */
-// import GLOBAL_CONSTANTS from '@cogo/globalization/constants/globals.js';
-// import formatDate from '@cogo/globalization/utils/formatDate';
-// import { Button, TextArea, toast } from '@cogoport/front/components/admin';
-// import { startCase } from '@cogoport/front/utils';
-// import React, { useState } from 'react';
-
 import { Button, Textarea, Toast } from '@cogoport/components';
 import { format, startCase } from '@cogoport/utils';
 import { useState } from 'react';
 
+import useGetPreRequirements from '../../../hooks/useGetPreRequirements';
+import updateShipmentDocument from '../../../hooks/useUpdateShipmentDocument';
+
+import ConfirmationModal from './ConfirmationModal';
 import styles from './styles.module.css';
-
-// import useGetPreRequirements from '../../../hooks/useGetPreRequirements';
-// import updateShipmentDocument from '../../../hooks/useUpdateShipmentDocument';
-
-// import ConfirmationModal from './ConfirmationModal';
-// import {
-// 	Container,
-// 	DisplayDetails,
-// 	SubHeading,
-// 	SubDetail,
-// 	SubHalfDetail,
-// 	FileView,
-// 	ActionButtons,
-// 	Remark,
-// 	Row,
-// } from './styles';
 
 const incoTermMapping = {
 	cif : 'export',

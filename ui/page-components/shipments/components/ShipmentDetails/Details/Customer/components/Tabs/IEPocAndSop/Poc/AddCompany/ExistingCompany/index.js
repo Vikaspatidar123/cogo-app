@@ -40,6 +40,7 @@ function ExistingCompany({
 		if (utilities?.trade_party_id) {
 			setExistingCompany(utilities?.trade_party_id);
 		}
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	return (

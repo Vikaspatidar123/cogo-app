@@ -1,5 +1,6 @@
 import { Button } from '@cogoport/components';
 import { startCase } from '@cogoport/utils';
+import { useMemo } from 'react';
 import { useFieldArray } from 'react-hook-form';
 
 import Child from './Child';
@@ -25,11 +26,17 @@ function ChildFormat({
 		control,
 		name,
 	});
-
 	const childEmptyValues = {};
 	controls.forEach((controlItem) => {
 		childEmptyValues[controlItem.name] = controlItem.value || '';
 	});
+	useMemo(
+		() => {
+			append(childEmptyValues);
+		},
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+		[],
+	);
 
 	let displayHeading = showHeading;
 	if (!showButtons) {

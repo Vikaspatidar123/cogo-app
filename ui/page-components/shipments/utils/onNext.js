@@ -1,7 +1,3 @@
-// import { getFormattedValues } from '@cogo/app-common';
-// import isEmpty from '@cogo/utils/isEmpty';
-// import merge from '@cogo/utils/merge';
-
 import { isEmpty, merge } from '@cogoport/utils';
 
 import { postData } from '../apis';

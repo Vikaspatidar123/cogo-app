@@ -1,10 +1,6 @@
 /* eslint-disable no-param-reassign */
-import {
-	addDays,
-	formatDateToString,
-	subtractDays,
-	differenceInDays,
-} from '@cogo/date';
+
+import { addDays, format, subtractDays, differenceInDays } from '@cogoport/utils';
 
 import incoTermMapping from '../configurations/common/inco-term-mapping.json';
 
@@ -97,13 +93,13 @@ const mutateFields = ({
 
 		if (key === 'schedule_departure' && data?.task === 'upload_booking_note') {
 			const minDeparture = new Date();
-			fields[key].minDate = formatDateToString(minDeparture);
+			fields[key].minDate = format(minDeparture);
 			const daysDifference = differenceInDays(
 				new Date(fields?.schedule_departure?.value),
 				minDeparture,
 			);
 			if (daysDifference < 0) {
-				fields?.schedule_departure.onChange(formatDateToString(minDeparture));
+				fields?.schedule_departure.onChange(format(minDeparture));
 			}
 		}
 		if (key === 'schedule_arrival' && data?.task === 'upload_booking_note') {
@@ -113,7 +109,7 @@ const mutateFields = ({
 				minArrival,
 			);
 			if (daysDifference < 0) {
-				fields?.schedule_arrival.onChange(formatDateToString(minArrival));
+				fields?.schedule_arrival.onChange(format(minArrival));
 			}
 			fields[key].minDate = minArrival;
 		}
@@ -123,10 +119,10 @@ const mutateFields = ({
 			(fields?.movement_details?.value || []).forEach((value) => {
 				value.service_type = 'fcl_freight_service';
 				value.schedule_arrival = value?.schedule_arrival
-					? formatDateToString(value?.schedule_arrival)
+					? format(value?.schedule_arrival)
 					: '';
 				value.schedule_departure = value?.schedule_departure
-					? formatDateToString(value?.schedule_departure)
+					? format(value?.schedule_departure)
 					: '';
 			});
 
@@ -136,18 +132,18 @@ const mutateFields = ({
 					const minDate = fields?.movement_details.childFormat[i]?.fields?.schedule_departure
 						?.value || fields?.schedule_departure?.value;
 
-					child.fields.schedule_arrival.maxDate = formatDateToString(maxDate);
-					child.fields.schedule_arrival.minDate = formatDateToString(minDate);
+					child.fields.schedule_arrival.maxDate = format(maxDate);
+					child.fields.schedule_arrival.minDate = format(minDate);
 
 					if (i !== 0) {
 						const index = i - 1;
 						const last_schedule_arrival_date = fields?.movement_details.childFormat[index]?.fields
 							?.schedule_arrival?.value;
 
-						child.fields.schedule_departure.minDate = formatDateToString(
+						child.fields.schedule_departure.minDate = format(
 							last_schedule_arrival_date,
 						);
-						child.fields.schedule_departure.maxDate =							formatDateToString(maxDate);
+						child.fields.schedule_departure.maxDate = format(maxDate);
 					}
 				});
 			}

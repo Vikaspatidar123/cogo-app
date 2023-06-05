@@ -17,6 +17,7 @@ function Header({ invoiceData = {} }) {
 	let time = null;
 	useEffect(() => {
 		const interval = setInterval(() => {
+			// eslint-disable-next-line react-hooks/exhaustive-deps
 			time = handleTimer(invoice_trigger_date);
 
 			if (time) {

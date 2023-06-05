@@ -10,7 +10,6 @@ import getWidth from '@/ui/page-components/shipments/utils/getWidth';
 
 function Layout({
 	controls,
-	fields,
 	control,
 	errors,
 	themeType = 'admin',
@@ -37,7 +36,7 @@ function Layout({
 									control={control}
 									label={
 										customValues[controlItem.name]?.label
-										|| fields[controlItem.name]?.label
+										|| controls[controlItem.name]?.label
 									}
 									error={errors[controlItem.name]}
 									value={controlItem.value}
@@ -78,7 +77,7 @@ function Layout({
 							</div>
 						);
 					}
-					if (type === 'fieldArray' && show) {
+					if (type === 'fieldArray') {
 						return (
 							<div className={styles.col}>
 								<ChildFormat

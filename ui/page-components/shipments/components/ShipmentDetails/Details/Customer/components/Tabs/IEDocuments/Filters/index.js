@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { startCase } from '@cogoport/utils';
 import { useEffect, useContext } from 'react';
 
@@ -52,9 +53,9 @@ function Filters({ hookSetters, shipmentFilters, isShow = true, page = 1 }) {
 	return (
 		<div className={styles.container}>
 			<div className={styles.flex_div}>
-				{isShow ? <Select {...controls[1]} control={control} /> : null}
+				{isShow ? <Select {...controls[1]} control={control} loading={loading} /> : null}
 
-				<Select {...controls[2]} control={control} />
+				<Select {...controls[2]} control={control} loading={loading} />
 			</div>
 
 			<Input {...controls[0]} control={control} />

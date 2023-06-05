@@ -99,6 +99,7 @@ function IconWithText({ icon, text = '' }) {
 
 			if (fillAttribute) setFillColor(fillAttribute);
 		}
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	return (

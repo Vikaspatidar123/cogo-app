@@ -64,7 +64,6 @@ function ExecuteTask({
 	const stepConfigValue = steps.length
 		? steps[currentStep] || steps[steps.length - 1]
 		: {};
-
 	return (
 		<div className={styles.task_container}>
 			{getTaskLoading ? (

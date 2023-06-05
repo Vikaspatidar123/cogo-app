@@ -1,3 +1,4 @@
+/* eslint-disable default-param-last */
 import shipmentJourneyStates from '../configurations/common/shipment-journey.json';
 
 import CC from './condition-constants';
@@ -21,6 +22,7 @@ const actionableTasks = (stateTasks = [], pendingTasks = []) => stateTasks
 		}
 		return task;
 	})
+	// eslint-disable-next-line no-underscore-dangle
 	.filter((task) => !task?._deleted);
 
 const getMileStoneStats = (

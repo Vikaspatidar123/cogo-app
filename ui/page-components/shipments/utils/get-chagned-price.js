@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 const getChangedPrice = (margins, line_item) => {
 	const marginItem = (margins || []).find((margin) => margin.code === line_item?.code);
 	const oldMargins = marginItem?._meta?.lineItem?.margins || [];

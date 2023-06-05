@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 
 import { useRequest } from '@/packages/request';
-import { useSelector } from '@/packages/store';
 
 const chargeCodes = {
 	fcl_freight_service       : ['fcl_freight_charges', 'fcl_freight_seasonal_charges'],
@@ -25,11 +24,6 @@ const chargeCodes = {
 };
 
 const useGetServiceCharges = ({ service_name, shipment_id }) => {
-	const { scope } = useSelector((state) => ({
-		scope : state.general.scope,
-		query : state.general.query,
-	}));
-
 	const serviceName = chargeCodes[service_name];
 	const [{ loading, data }, trigger] = useRequest({
 		url    : 'list_rate_charge_codes',
@@ -60,6 +54,7 @@ const useGetServiceCharges = ({ service_name, shipment_id }) => {
 		if (service_name) {
 			getList();
 		}
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [service_name]);
 
 	return {

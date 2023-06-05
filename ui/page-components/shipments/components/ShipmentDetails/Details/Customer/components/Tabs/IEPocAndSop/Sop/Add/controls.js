@@ -29,7 +29,8 @@ const controls = ({ primary_service, trade_partners_details }) => [
 				placeholder     : '',
 				uploadText      : 'Attach',
 				accept:
-					'image/*,.pdf,.doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+					'image/*,.pdf,.doc,.docx,application/msword,'
+					+ 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
 				uploadType : 'aws',
 				span       : 3,
 			},

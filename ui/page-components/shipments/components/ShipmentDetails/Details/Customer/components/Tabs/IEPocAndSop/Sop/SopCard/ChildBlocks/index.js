@@ -40,6 +40,7 @@ function ChildBlocks({ id, mainData, blocks, setBlocks }, ref) {
 		const textarea = document.getElementById(`textarea${id}`);
 		const scHeight = textarea.scrollHeight;
 		textarea.style.height = `${scHeight}px`;
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	const handleTextArea = (e) => {

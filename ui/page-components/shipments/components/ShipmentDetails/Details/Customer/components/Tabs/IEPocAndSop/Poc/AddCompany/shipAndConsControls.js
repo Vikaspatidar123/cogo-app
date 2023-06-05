@@ -78,7 +78,8 @@ const company_controls = (roleCheck) => [
 		height          : 50,
 		className       : 'primary md',
 		accept:
-			'image/*,.pdf,.doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+			'image/*,.pdf,.doc,.docx,application/msword,'
+			+ 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
 		uploadType : 'aws',
 		disabled   : false,
 		rules      : { required: { value: true, message: 'GST Proof is required' } },

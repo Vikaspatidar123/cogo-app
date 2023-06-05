@@ -24,6 +24,7 @@ const useGetSupplier = ({ service_id, service_type }) => {
 		if (query.id) {
 			getList(query.id);
 		}
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [query.id]);
 
 	return {

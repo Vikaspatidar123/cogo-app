@@ -1,7 +1,11 @@
 const bnTime = (services) => {
-	const fcl_freight_service =		(services || []).find((service) => service.service_type === 'fcl_freight_service') || {};
+	const fcl_freight_service =		(services || []).find(
+		(service) => service.service_type === 'fcl_freight_service',
+	) || {};
 	const { possible_service_pending_tasks } = fcl_freight_service;
-	const booking_note_task =		(possible_service_pending_tasks || []).find((task) => task?.task === 'upload_booking_note')
+	const booking_note_task =		(possible_service_pending_tasks || []).find(
+		(task) => task?.task === 'upload_booking_note',
+	)
 		|| {};
 	const deadline = booking_note_task?.deadline;
 

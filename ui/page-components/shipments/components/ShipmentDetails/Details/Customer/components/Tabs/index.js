@@ -25,6 +25,7 @@ function TabSections({
 		if (quickAction) {
 			setActiveTab(quickAction);
 		}
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [quickAction]);
 
 	return (

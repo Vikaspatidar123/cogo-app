@@ -45,6 +45,7 @@ const useList = ({ shipment_id, services, isSeller = false, show }) => {
 		if (shipment_id) {
 			getListApi();
 		}
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [shipment_id, show]);
 
 	return {

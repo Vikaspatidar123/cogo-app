@@ -1,7 +1,7 @@
 import { cl } from '@cogoport/components';
 import Image from 'next/image';
 
-import { DEFAULT_STATUS, MILESTONE_MAPPING } from '../../../../constant/stepperMapping';
+import { DEFAULT_STATUS, MILESTONE_MAPPING } from '../../../../constant/card';
 
 import styles from './styles.module.css';
 

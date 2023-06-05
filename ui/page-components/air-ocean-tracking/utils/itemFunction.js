@@ -2,12 +2,14 @@ import { Checkbox, Toggle } from '@cogoport/components';
 import { IcMEdit } from '@cogoport/icons-react';
 import { format } from '@cogoport/utils';
 
+import formatDateTime from './formatDateTime';
+
 const style = {
 	cursor     : 'pointer',
 	marginLeft : '6px',
 };
 
-const itemFunction = ({ status, statusChangeHandler, loading }) => ({
+const itemFunction = ({ status = '', statusChangeHandler = () => {}, loading = false }) => ({
 	renderName: (itemData) => {
 		const { poc_details = {} } = itemData || {};
 		return <span>{poc_details?.name}</span>;
@@ -26,6 +28,15 @@ const itemFunction = ({ status, statusChangeHandler, loading }) => ({
 	),
 	renderCheckbox: () => (
 		<Checkbox checked={status} />
+	),
+	renderDataTime: (itemData, config) => (
+		<span>
+			{formatDateTime({
+				date       : itemData?.[config.key],
+				formatDate : 'dd MMM yyyy',
+				formatTime : 'hh:mm aaa',
+			})}
+		</span>
 	),
 });
 

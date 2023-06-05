@@ -40,3 +40,8 @@
 .pagination_container {
 	padding: 10px;
 }
+
+.scroll_container {
+	max-height: 30vh;
+	overflow-y: scroll;
+}

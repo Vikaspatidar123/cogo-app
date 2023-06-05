@@ -1,3 +1,7 @@
+.container {
+	width: 1000px;
+}
+
 .flex_box {
 	display: flex;
 	align-items: center;

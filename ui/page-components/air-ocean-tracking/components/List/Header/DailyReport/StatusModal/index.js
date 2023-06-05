@@ -21,7 +21,7 @@ function StatusModal({ statusModal, setStatusModal }) {
 	const [selectedContact, setSelectedContact] = useState('');
 	const [isSingleReport, setIsSingleReport] = useState(false);
 	const [activeStepper, setActiveStepper] = useState('shipment');
-	console.log(selectedContact, 'selectedContact');
+
 	return (
 		<Modal show={statusModal} onClose={() => setStatusModal(false)}>
 			<div className={styles.header}>

@@ -1,8 +1,8 @@
 import { Toast } from '@cogoport/components';
 import { useState } from 'react';
 
-import dailyStatusConfig from '../../../../../../configuration/dailyStatusConfig';
-import itemFunction from '../../../../../../utils/itemFunction';
+import dailyStatusConfig from '../../../../../configuration/dailyStatusConfig';
+import itemFunction from '../../../../../utils/itemFunction';
 
 import styles from './styles.module.css';
 

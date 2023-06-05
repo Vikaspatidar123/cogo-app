@@ -1,12 +1,18 @@
 import { cl, Placeholder, Pagination } from '@cogoport/components';
 import { isEmpty } from '@cogoport/utils';
 
+import itemFunction from '../../utils/itemFunction';
+
 import styles from './styles.module.css';
+
+import getValue from '@/ui/commons/utils/getValue';
 
 function Table({
 	title = '', configs = [], filteredList = [], data = {}, loading = false,
-	showPagination = true, setPage = () => {}, selectedContact = '', setSelectedContact = () => {},
+	showPagination = true, setPage = () => {}, selectedContact = '', setSelectedContact = () => {}, isClickable = true,
+	isScroll = false,
 }) {
+	const newFunction = itemFunction({});
 	const { list: dataList = [], page = 0, page_limit = 0, total_count = 0 } = data || {};
 	const list = isEmpty(filteredList) ? dataList : filteredList;
 	const newList = loading ? [...Array(5).keys()] : list;
@@ -27,26 +33,30 @@ function Table({
 						</div>
 					))}
 				</div>
-				{newList.map((item) => (
-					<div
-						key={item?.id || item}
-						className={`${styles.flex_box} ${styles.item_row}
-						${selectedContact?.id === item?.id ? styles.selected : ''}`}
-						onClick={() => setSelectedContact(item)}
-						role="presentation"
-					>
-						{configs.map((config) => (
-							<div
-								key={config.key}
-								style={{ width: config?.width }}
-								className={styles.col}
-							>
-								{loading ? <Placeholder margin="0px 0px 20px 0px" /> : item?.[config.key]}
-							</div>
-						))}
-					</div>
+				<div className={`${isScroll ? styles.scroll_container : ''}`}>
+					{newList.map((item) => (
+						<div
+							key={item?.id || item}
+							className={`${styles.flex_box} ${styles.item_row}
+						${(selectedContact?.id === item?.id && isClickable) ? styles.selected : ''}`}
+							onClick={() => setSelectedContact(item)}
+							role="presentation"
+						>
+							{configs.map((config) => (
+								<div
+									key={config.key}
+									style={{ width: config?.width }}
+									className={styles.col}
+								>
+									{loading ? <Placeholder margin="0px 0px 20px 0px" />
+										: getValue(item, config, newFunction)}
+								</div>
+							))}
+						</div>
 
-				))}
+					))}
+				</div>
+
 				{!loading && showPagination && total_count > page_limit && (
 					<div className={styles.pagination_container}>
 						<Pagination

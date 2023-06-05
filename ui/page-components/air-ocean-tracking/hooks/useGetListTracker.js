@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 import { useDebounceQuery } from '@/packages/forms';
 import { useRouter } from '@/packages/next';
@@ -21,7 +21,7 @@ const useGetListTracker = () => {
 		url    : '/list_saas_container_subscriptions',
 	}, { manual: true });
 
-	const refetchTrackerList = async () => {
+	const refetchTrackerList = useCallback(async () => {
 		try {
 			await trigger({
 				params: {
@@ -38,13 +38,15 @@ const useGetListTracker = () => {
 		} catch (err) {
 			console.log(err);
 		}
-	};
+	}, [globalFilter, routerQuery, trigger]);
 
 	useEffect(() => {
-		if (inputValue !== null) {
+		if (inputValue !== null && inputValue !== undefined) {
 			debounceQuery(inputValue);
 		}
 	}, [debounceQuery, inputValue]);
+
+	console.log(globalFilter, 'globalFilter', inputValue);
 
 	useEffect(() => {
 		if (query !== null) {
@@ -64,7 +66,7 @@ const useGetListTracker = () => {
 
 	useEffect(() => {
 		refetchTrackerList();
-	}, [globalFilter]);
+	}, [globalFilter, refetchTrackerList]);
 
 	return {
 		data,

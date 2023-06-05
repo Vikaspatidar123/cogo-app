@@ -76,6 +76,16 @@ function asyncFieldsPartnerQuotation() {
 
 	};
 }
+
+// function asyncFieldsSixDigitHsCode() {
+// 	return {
+// 		labelKey    : 'displayName',
+// 		valueKey    : 'id',
+// 		endpoint    : 'saas/organization/partner/list',
+// 		authKey     : 'get_saas_organization_partner_list',
+// 		initialCall : false,
+// 	};
+// }
 export {
 	asyncFieldsLocations,
 	asyncFieldsLocations2,

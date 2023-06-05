@@ -8,7 +8,7 @@ import { useState } from 'react';
 import STATS_MAPPING from '../../../constant/statsMapping';
 import TAB_MAPPING from '../../../constant/tabMapping';
 
-import Configure from './Configure';
+import DailyReport from './DailyReport';
 import styles from './styles.module.css';
 
 function Header({ globalFilter, filterChangeHandler, inputValue, setInputValue }) {
@@ -17,8 +17,10 @@ function Header({ globalFilter, filterChangeHandler, inputValue, setInputValue }
 	return (
 		<div className={styles.container}>
 			<div className={cl`${styles.flex_box} ${styles.first_row}`}>
+
 				<ButtonIcon size="lg" icon={<IcMArrowBack />} themeType="primary" onClick={back} />
 				<h2>Shipment List</h2>
+
 				<div>
 					<Tabs
 						themeType="tertiary"
@@ -31,6 +33,7 @@ function Header({ globalFilter, filterChangeHandler, inputValue, setInputValue }
 					</Tabs>
 				</div>
 			</div>
+
 			<div className={cl`${styles.flex_box} ${styles.second_row}`}>
 				<div className={cl`${styles.flex_box} ${styles.filter_section}`}>
 					<Input
@@ -51,8 +54,8 @@ function Header({ globalFilter, filterChangeHandler, inputValue, setInputValue }
 					<Popover
 						caret={false}
 						visible={showConfigure}
-						content={<Configure />}
-						// onClickOutside={() => setShowConfigure(false)}
+						content={<DailyReport />}
+						onClickOutside={() => setShowConfigure(false)}
 						placement="bottom-end"
 					>
 						<Button
@@ -60,7 +63,7 @@ function Header({ globalFilter, filterChangeHandler, inputValue, setInputValue }
 							type="button"
 							onClick={() => setShowConfigure((prev) => !prev)}
 						>
-							Configure
+							Daily Status Report
 						</Button>
 					</Popover>
 				</div>

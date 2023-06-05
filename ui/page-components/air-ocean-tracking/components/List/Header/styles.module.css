@@ -6,11 +6,9 @@
 			max-width: 1100px !important;
 		}
 
-		div[data-tippy-root]{
+		div[data-tippy-root] {
 			z-index: 1000 !important;
 		}
-		/* #tippy-1 {
-		} */
 	}
 }
 
@@ -34,10 +32,10 @@
 }
 
 .filter_section {
-	width: 40%;
+	width: 42%;
 
 	.search_field {
-		width: 40%;
+		width: 35%;
 	}
 
 	.select_field {

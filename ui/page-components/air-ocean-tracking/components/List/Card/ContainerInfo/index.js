@@ -1,17 +1,15 @@
-import { cl } from '@cogoport/components';
-import { IcMAlert, IcMArrowLeft, IcMArrowRight } from '@cogoport/icons-react';
+import { cl, Placeholder } from '@cogoport/components';
+import { IcMAlert, IcMArrowLeft, IcMArrowRight, IcMFcl } from '@cogoport/icons-react';
 import { useMemo } from 'react';
 
-import styles from './styles.module.css';
+import { SHIPMENT_INFO_MAPPING } from '../../../../constant/card';
 
-const config = {
-	container_no : 'Container no',
-	commodity    : 'Commodity',
-};
+import styles from './styles.module.css';
 
 function ContainerInfo({
 	currentContainer = {}, shipmentInfo = {}, activeContainerIndex,
 	setActiveContainerIndex, containerDetailsLength = 0,
+	loading = true,
 }) {
 	const { container_length = 0, container_description = '' } = currentContainer || {};
 
@@ -27,11 +25,22 @@ function ContainerInfo({
 		setActiveContainerIndex((prev) => (value ? prev + 1 : prev - 1));
 	};
 
+	if (loading) {
+		return (
+			<div className={styles.skeleton_loader}>
+				<Placeholder height="182px">
+					<IcMFcl width={150} height={150} fill="#d3d3d3" />
+				</Placeholder>
+			</div>
+		);
+	}
+
 	return (
 		<div className={styles.container}>
 
 			<div className={styles.flex_box}>
 				<h3>Container Details</h3>
+
 				{containerDetailsLength > 1 && (
 					<div className={styles.pagination_container}>
 						<IcMArrowLeft onClick={() => incrementHandler(false)} />
@@ -53,14 +62,17 @@ function ContainerInfo({
 				</p>
 
 				<div className={styles.info_table}>
-					{Object.keys(config).map((item) => (
-						<div className={cl`${styles.flex_box} ${styles.row}`}>
+					{Object.keys(SHIPMENT_INFO_MAPPING).map((item) => (
+						<div key={item} className={cl`${styles.flex_box} ${styles.row}`}>
+
 							<div className={cl`${styles.label} ${styles.col}`}>
-								{config[item]}
+								{SHIPMENT_INFO_MAPPING[item]}
 							</div>
+
 							<div className={styles.col}>
 								:
 							</div>
+
 							<div className={cl`${styles.value} ${styles.col}`}>
 								{tableData?.[item]}
 							</div>

@@ -1,23 +1,53 @@
 import { cl } from '@cogoport/components';
-import { IcMError, IcMFtick } from '@cogoport/icons-react';
+
+import { SEVERITY_MAPPING } from '../../../../constant/card';
+import formatDateTime from '../../../../utils/formatDateTime';
 
 import styles from './styles.module.css';
 
-const ICONS = {
-	error   : IcMError,
-	success : IcMFtick,
-};
-function Footer() {
+function Footer({ lastUpdated = '', currentMilestone = {}, currentContainerAction = {} }) {
+	const { current_status } = currentMilestone || {};
+	const { current_milestone = '', next_milestone = '', last_milestone = '' } = current_status || {};
+	const { severity = '' } = currentContainerAction || {};
+
+	const milestone = next_milestone || current_milestone || last_milestone;
+
+	const renderTitle = () => {
+		if (next_milestone) return 'Next Milestone';
+		if (current_milestone) return 'Current Milestone';
+		return 'Last Milestone';
+	};
 	return (
 		<div className={cl`${styles.flex_box} ${styles.footer_container}`}>
 			<div className={cl`${styles.flex_box} ${styles.first_section}`}>
-				<div>
-					<IcMFtick />
-					On Track
+
+				<div className={styles.severity_section}>
+					{SEVERITY_MAPPING?.[severity]?.icon}
+					<span className={`${styles?.[SEVERITY_MAPPING?.[severity]?.class]}`}>
+						{SEVERITY_MAPPING?.[severity]?.title}
+					</span>
 				</div>
-				<div className={styles.next_milestone}>Next Milestone: Loaded vessel</div>
+
+				{milestone && (
+					<div className={styles.next_milestone}>
+						{renderTitle()}
+						{' '}
+						:
+						{' '}
+						{milestone}
+					</div>
+				)}
 			</div>
-			<div>Last updated at: 28 Jan 2023  | 07:32 pm</div>
+
+			<div>
+				Last updated at:
+				{' '}
+				{formatDateTime({
+					date       : lastUpdated,
+					formatDate : 'dd MMM yyyy',
+					formatTime : 'hh:mm aa',
+				})}
+			</div>
 
 		</div>
 	);

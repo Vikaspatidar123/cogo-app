@@ -1,8 +1,8 @@
 import { cl, Button, Pagination } from '@cogoport/components';
 import { useState } from 'react';
 
-import dailyStatusConfig from '../../../../../configuration/dailyStatusConfig';
-import useGetDsrList from '../../../../../hooks/useGetDsrList';
+import dailyStatusConfig from '../../../../configuration/dailyStatusConfig';
+import useGetDsrList from '../../../../hooks/useGetDsrList';
 
 import Item from './Item';
 import StatusModal from './StatusModal';

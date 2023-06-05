@@ -10,7 +10,7 @@ import { useForm, InputController } from '@/packages/forms';
 
 function EmailLoginForm({ setMode = () => {} }) {
 	const [showPassword, setShowPassword] = useState(false);
-	const { onSubmit = () => {}, loading = false } = useLoginEmailAuthentication({ setMode });
+	const { onSubmit = () => {}, loginLoading = false } = useLoginEmailAuthentication({ setMode });
 	const { handleSubmit, formState: { errors }, control } = useForm();
 
 	const renderSuffix = () => {
@@ -48,7 +48,7 @@ function EmailLoginForm({ setMode = () => {} }) {
 			</span>
 
 			<Button
-				loading={loading}
+				loading={loginLoading}
 				className={styles.submit_button}
 				type="submit"
 				size="lg"

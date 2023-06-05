@@ -9,7 +9,6 @@ import countryCode from '@/.data-store/constants/countries.json';
 function CountrySelectController({ name, itemKey, value, control, ...rest }) {
 	const formattedList = countryCode.map((code) => ({
 		id    : code.id,
-		// value : code.mobile_country_code,
 		value : code.id,
 		label : code.name,
 		// label : (

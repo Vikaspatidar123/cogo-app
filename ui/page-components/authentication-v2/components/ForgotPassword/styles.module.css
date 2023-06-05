@@ -6,11 +6,6 @@
 	height: 100%;
 
 	:global {
-		.ui_select_options_container {
-			width: 200px;
-			padding: 8px;
-		}
-
 		.ui_input_control,
 		.ui_select_input_control {
 			font-size: 14px !important;

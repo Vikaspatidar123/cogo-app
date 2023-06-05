@@ -11,7 +11,7 @@ import styles from './styles.module.css';
 import OTPLayout from '@/packages/forms/Business/OTPLayout';
 
 function OTPSignupForm({ otpId = '', userDetails = {}, setMode = () => {} }) {
-	const { mobile_number = {}, email = '' } = userDetails;
+	const { id = '', mobile_number = {}, email = '' } = userDetails;
 	const [otpValue, setOtpValue] = useState('');
 
 	const {
@@ -100,7 +100,7 @@ function OTPSignupForm({ otpId = '', userDetails = {}, setMode = () => {} }) {
 				<span
 					className={styles.resend_mail_button}
 					role="presentation"
-					onClick={() => onClickResendEmail(userDetails?.lead_user_id)}
+					onClick={() => onClickResendEmail(id)}
 				>
 					resend email.
 				</span>

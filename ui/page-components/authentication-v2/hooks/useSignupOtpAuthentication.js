@@ -3,23 +3,22 @@ import { Toast } from '@cogoport/components';
 import { useRequest } from '@/packages/request/index';
 import setCookieAndRedirect from '@/ui/commons/utils/setCookieAndRedirect';
 
-const useSignupOtpAuthentication = ({ otpValue = '', setMode = () => {}, userDetails = {} }) => {
+const useSignupOtpAuthentication = ({ otpValue = '', setMode = () => { }, userDetails = {} }) => {
 	const [{ loading: signupLoading }, verifyOtpTrigger] = useRequest({
 		url    : '/verify_test_lead_user',
 		method : 'post',
 	}, { manual: true });
 
 	const [{ loading: resendLoading }, resendOtpTrigger] = useRequest({
-		url    : '/verify_test_lead_user',
+		url    : '/resend_lead_verification_otp',
 		method : 'post',
 	}, { manual: true });
 
 	const onSignupWithOtp = async () => {
 		try {
 			const payload = {
-				mobile_number       : userDetails?.mobile_number?.number,
-				mobile_country_code : userDetails?.mobile_number?.country_code,
-				mobile_otp          : otpValue,
+				id  : userDetails?.id,
+				otp : otpValue,
 			};
 
 			const response = await verifyOtpTrigger({
@@ -45,8 +44,7 @@ const useSignupOtpAuthentication = ({ otpValue = '', setMode = () => {}, userDet
 	const resendOtp = async ({ timer = {} }) => {
 		try {
 			const payload = {
-				mobile_number       : userDetails?.mobile_number,
-				mobile_country_code : userDetails?.mobile_country_code,
+				lead_user_id: userDetails?.id,
 			};
 
 			await resendOtpTrigger({

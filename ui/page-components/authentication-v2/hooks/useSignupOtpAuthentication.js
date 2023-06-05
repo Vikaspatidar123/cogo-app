@@ -5,12 +5,12 @@ import setCookieAndRedirect from '@/ui/commons/utils/setCookieAndRedirect';
 
 const useSignupOtpAuthentication = ({ otpValue = '', setMode = () => {}, userDetails = {} }) => {
 	const [{ loading: signupLoading }, verifyOtpTrigger] = useRequest({
-		url    : '/verify_user_mobile',
+		url    : '/verify_test_lead_user',
 		method : 'post',
 	}, { manual: true });
 
 	const [{ loading: resendLoading }, resendOtpTrigger] = useRequest({
-		url    : '/verify_user_mobile',
+		url    : '/verify_test_lead_user',
 		method : 'post',
 	}, { manual: true });
 

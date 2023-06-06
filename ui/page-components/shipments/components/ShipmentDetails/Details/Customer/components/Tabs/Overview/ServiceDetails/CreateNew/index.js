@@ -5,16 +5,12 @@ import { useState } from 'react';
 import FormSearch from './FormSearch';
 import styles from './styles.module.css';
 
-import { useSelector } from '@/packages/store';
-
 function CreateNew({
 	routeLeg,
 	serviceList = [],
 	shipment_data = {},
 	isIE = false,
 }) {
-	const isMobile = useSelector((state) => (state.general || {}).isMobile);
-
 	const [form, setShowForm] = useState({
 		service      : null,
 		isAdditional : false,

@@ -133,6 +133,7 @@ const useGetExistingCompanies = ({ role, servProvId, compType, existing_company_
 		errors,
 		onError,
 		control,
+		existingCompanyOptions,
 	};
 };
 

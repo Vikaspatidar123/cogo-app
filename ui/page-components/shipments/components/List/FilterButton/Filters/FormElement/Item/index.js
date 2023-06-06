@@ -1,3 +1,4 @@
+import { cl } from '@cogoport/components';
 import { startCase } from '@cogoport/utils';
 
 import styles from './styles.module.css';
@@ -68,14 +69,14 @@ function Item({ name, fields, id, val }) {
 				</div>
 			)}
 			<div
-				className={`${styles.container} ${styles?.[className]} ${errorClass || ''} ${
+				className={cl`${styles.container} ${styles?.[className]} ${errorClass || ''} ${
 					(!showMargin && 'no-margin') || ''
 				}`}
 			>
 				{label && showLabel && (
 					<div className={styles.label}>
 						{label}
-						{subLabel && <span className="sub-label">{subLabel}</span>}
+						{subLabel && <span className={styles.sub_label}>{subLabel}</span>}
 						{(controls.collapse && controls?.value && (
 							<ValueChip
 								style={{ maxWidth: '208px', marginLeft: 4 }}

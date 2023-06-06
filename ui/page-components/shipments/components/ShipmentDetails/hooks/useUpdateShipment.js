@@ -105,6 +105,8 @@ const useUpdateShipment = ({
 		onError,
 		errors,
 		control,
+		formProps,
+		companyDetails,
 	};
 };
 

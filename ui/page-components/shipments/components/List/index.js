@@ -47,7 +47,6 @@ function ShipmentList() {
 				{total > 10 ? (
 					<div className={styles.page_container}>
 						<Pagination
-							className="md"
 							type="number"
 							totalItems={total}
 							pageSize={10}

@@ -136,6 +136,7 @@ const mutateFields = ({
 					child.fields.schedule_arrival.minDate = format(minDate);
 
 					if (i !== 0) {
+						// eslint-disable-next-line no-shadow
 						const index = i - 1;
 						const last_schedule_arrival_date = fields?.movement_details.childFormat[index]?.fields
 							?.schedule_arrival?.value;

@@ -1,3 +1,5 @@
+import { cl } from '@cogoport/components';
+
 import Form from './FormElement';
 import Header from './Header';
 import styles from './styles.module.css';
@@ -83,7 +85,7 @@ function Filters({
 				onReset={handleReset}
 				id_prefix={`${id_prefix}_filters`}
 			/>
-			<div className={`${styles.main} ${isScrollable ? styles.scroll : ''}`}>
+			<div className={cl`${styles.main} ${isScrollable ? styles.scroll : ''}`}>
 				<Form
 					controls={controls}
 					fields={fields}

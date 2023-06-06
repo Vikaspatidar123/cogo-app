@@ -46,20 +46,12 @@
 	}
 }
 
-.text {
-	font-weight: 500;
-}
 
 &.selected_card {
 	cursor: not-allowed;
 	background: #fef8f7;
 	border: 1px solid #ee3425;
 }
-
-.text {
-	font-weight: 500;
-}
-
 
 .row {
 	display: flex;

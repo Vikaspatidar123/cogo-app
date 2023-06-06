@@ -1,4 +1,4 @@
-import { Button } from '@cogoport/components';
+import { Button, cl } from '@cogoport/components';
 import { IcMArrowRotateDown, IcMArrowRotateUp, IcMEdit } from '@cogoport/icons-react';
 import { startCase } from '@cogoport/utils';
 import { forwardRef, useState } from 'react';
@@ -21,10 +21,10 @@ function PocDetails({
 	listShipmentTradePartners = () => {},
 	tradePartyFilters,
 	not_added_final_stakeholders,
+	shipment_data,
 }) {
 	const [open, setOpen] = useState(false);
 	const { roleCheck, businessName, addPocModal } = utilities;
-
 	const { handleEdit, handleAddPoc } = useGetPocList({
 		get,
 		formRef,
@@ -47,20 +47,34 @@ function PocDetails({
 		&& stakeholders_display_check
 		: stakeholder?.trade_party_type === 'collection_party';
 
-	const condition =		showAll || collection_party_check || stakeholders_display_check;
+	const condition = showAll || collection_party_check || stakeholders_display_check;
+	const showButtons =	shipment_data?.shipment_type === 'ftl_freight'
+		? !['consignee'].includes(stakeholder?.trade_party_type)
+		: !['shipper', 'consignee'].includes(stakeholder?.trade_party_type);
+	const renderAddPocModal = () => {
+		if (showButtons) {
+			return (
+				<Button className="primary sm" onClick={handleAddPoc}>
+					+ Add POC
+				</Button>
+			);
+		}
+		return null;
+	};
 
 	return (
 		<>
 			{condition ? (
-				<div className={`${styles.detail_container} ${styles.poc_detail_blocks}`}>
-					<div className={`${styles.poc_header} ${styles.poc_details_header}`}>
+				<div className={cl`${styles.detail_container} ${styles.poc_detail_blocks}`}>
+					<div className={cl`${styles.poc_header} ${styles.poc_details_header}`}>
 						<div>
 							{stakeholder?.trade_party_type === 'self'
 								? 'Booking Party'
 								: startCase(stakeholder?.trade_party_type)}
 						</div>
-
-						<IcMEdit onClick={handleEdit} style={{ cursor: 'pointer' }} />
+						{showButtons ? (
+							<IcMEdit onClick={handleEdit} style={{ cursor: 'pointer' }} />
+						) : null}
 					</div>
 
 					<div className={styles.poc_details_container}>
@@ -78,9 +92,7 @@ function PocDetails({
 										{open ? <IcMArrowRotateUp /> : <IcMArrowRotateDown />}
 									</div>
 								) : (
-									<Button className="primary sm" onClick={handleAddPoc}>
-										+ Add POC
-									</Button>
+									renderAddPocModal()
 								)}
 							</div>
 						</div>

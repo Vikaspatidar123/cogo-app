@@ -66,6 +66,7 @@ function AddCompany({
 	const onSubmit = () => {
 		handleAddCompany();
 	};
+	console.log(controls, 'controls', compType);
 
 	const renderAddCompany = () => {
 		if (compType === 'same_as_booking_party') {
@@ -100,11 +101,9 @@ function AddCompany({
 				</div>
 			);
 		}
-
 		return (
 			<div className={styles.company_details}>
 				<Layout
-					theme="admin"
 					controls={controls}
 					control={control}
 					errors={errors}
@@ -149,15 +148,14 @@ function AddCompany({
 							roleCheck: e.target?.value,
 						})}
 						options={stakeholderOptions}
-						className="primary md"
+						style={{ width: '250px' }}
 					/>
 				</div>
 
 				<RadioGroup
-					className="primary lg"
 					options={OPTIONS}
 					value={compType}
-					onChange={(item) => setCompType(item)}
+					onChange={(item) => { setCompType(item); }}
 				/>
 			</div>
 

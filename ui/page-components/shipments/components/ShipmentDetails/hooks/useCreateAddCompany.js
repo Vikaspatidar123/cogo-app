@@ -25,7 +25,6 @@ const useCreateAddCompany = ({
 			? 'booking_party'
 			: 'trade_partner',
 	);
-
 	const finalServProvId = shipmentServiceProviderId || trade_party_id;
 	const [{ shipment_data }] = useContext(ShipmentDetailContext);
 

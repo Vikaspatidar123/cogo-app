@@ -53,11 +53,9 @@ function PocFilters({
 	return (
 		<div className={styles.filter_container}>
 			<Popover
-				animation="scale"
 				content={content()}
 				placement="bottom"
 				interactive
-				theme="light"
 				visible={showFilter}
 				onClickOutside={() => setShowFilters(false)}
 			>

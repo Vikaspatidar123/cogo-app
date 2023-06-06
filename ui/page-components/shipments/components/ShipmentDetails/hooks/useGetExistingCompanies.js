@@ -1,14 +1,30 @@
 import { startCase } from '@cogoport/utils';
 import { useState, useEffect, useContext } from 'react';
 
+import mutateFields from '../../../utils/mutate-fields';
 import { ShipmentDetailContext } from '../common/Context';
 
+import { useForm } from '@/packages/forms';
 import { useRequest } from '@/packages/request';
 
-const useGetExistingCompanies = ({ role, servProvId, compType }) => {
+const useGetExistingCompanies = ({ role, servProvId, compType, existing_company_controls }) => {
 	const [{ shipment_data }] = useContext(ShipmentDetailContext);
-
 	const [companyName, setCompanyName] = useState();
+	const [companyDetails, setCompanyDetails] = useState({});
+	const { handleSubmit, watch, setValue, control } = useForm();
+	const formProps = watch();
+
+	const [errors, setErrors] = useState({});
+	const onError = (error) => {
+		setErrors(error);
+	};
+	const { newFields } = mutateFields({
+		fields: existing_company_controls(role, compType),
+		companyDetails,
+		setValue,
+		setCompanyDetails,
+		compType,
+	});
 	const [{ loading }, trigger] = useRequest({
 		url    : 'list_organization_trade_parties',
 		method : 'get',
@@ -77,10 +93,18 @@ const useGetExistingCompanies = ({ role, servProvId, compType }) => {
 	}, [compType]);
 
 	return {
+		newFields,
 		existingCompanyOptions,
 		existingAddresses,
 		companyArr,
 		loading,
+		handleSubmit,
+		watch,
+		setValue,
+		formProps,
+		errors,
+		onError,
+		control,
 	};
 };
 

@@ -45,14 +45,14 @@ function ExistingPocs({
 	return (
 		<div className={styles.container}>
 			<RadioGroup
-				className="primary lg"
 				options={customOptions}
 				value={poc}
 				onChange={(item) => setPoc(item)}
 			/>
 			<div className={styles.button_container}>
 				<Button
-					className="secondary md"
+					size="md"
+					themeType="secondary"
 					onClick={handleClose}
 					disabled={loading}
 				>
@@ -61,7 +61,6 @@ function ExistingPocs({
 				<Button
 					disabled={loading}
 					onClick={() => handleAddPoc(poc, pocList)}
-					className="primary md"
 				>
 					Submit
 				</Button>

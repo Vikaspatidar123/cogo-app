@@ -22,7 +22,6 @@ const filter_controls = (filter_options) => [
 		span        : 12,
 		options     : filter_options,
 		isClearable : true,
-		className   : 'primary md',
 		placeholder : 'Trade Partner',
 	},
 	{
@@ -30,7 +29,6 @@ const filter_controls = (filter_options) => [
 		type        : 'select',
 		span        : 12,
 		placeholder : 'Choose a designation',
-		className   : 'primary md',
 		options     : work_scope_options,
 		multiple    : true,
 	},

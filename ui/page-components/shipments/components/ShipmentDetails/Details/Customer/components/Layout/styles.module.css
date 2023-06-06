@@ -1,5 +1,5 @@
 .form_fields {
-	height: 350px;
+	max-height: 350px;
 	overflow-y: scroll;
 }
 
@@ -8,6 +8,7 @@
 	flex-flow: row wrap;
 	flex-grow: 0;
 	flex-shrink: 0;
+	gap: 5px;
 	align-items: normal;
 	justify-content: flex-start;
 	max-height: 400px;

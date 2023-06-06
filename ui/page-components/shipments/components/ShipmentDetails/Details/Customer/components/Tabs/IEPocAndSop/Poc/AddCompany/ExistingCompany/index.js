@@ -1,6 +1,8 @@
-import { Button, Select } from '@cogoport/components';
-import { useEffect } from 'react';
+import { Button } from '@cogoport/components';
 
+import Layout from '../../../../../Layout';
+
+import existing_company_controls from './controls';
 import styles from './styles.module.css';
 
 import useUpdateShipment from '@/ui/page-components/shipments/components/ShipmentDetails/hooks/useUpdateShipment';
@@ -15,16 +17,19 @@ function ExistingCompany({
 	utilities,
 	listShipmentTradePartners = () => {},
 	onClose,
+	source = '',
+	task = {},
+	taskRefetch = () => {},
+	onCancel = () => {},
 }) {
 	const {
 		handleExistingCompany,
-		existingCompany,
-		setExistingCompany,
-		existingCompanyOptions,
 		loading,
-		existingAddresses,
-		address,
-		setAddress,
+		errors,
+		onError,
+		handleSubmit,
+		control,
+		newFields,
 	} = useUpdateShipment({
 		role,
 		servProvId,
@@ -34,18 +39,22 @@ function ExistingCompany({
 		utilities,
 		listShipmentTradePartners,
 		compType,
+		existing_company_controls,
+		source,
+		task,
+		taskRefetch,
+		onCancel,
 	});
 
-	useEffect(() => {
-		if (utilities?.trade_party_id) {
-			setExistingCompany(utilities?.trade_party_id);
-		}
-	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
-
+	// useEffect(() => {
+	// 	if (utilities?.trade_party_id) {
+	// 		setExistingCompany(utilities?.trade_party_id);
+	// 	}
+	// // eslint-disable-next-line react-hooks/exhaustive-deps
+	// }, []);
 	return (
 		<div className={styles.element}>
-			<div className={styles.select_layout}>
+			{/* <div className={styles.select_layout}>
 				<div>
 					<div className={styles.label}>Select Company</div>
 					<Select
@@ -55,8 +64,6 @@ function ExistingCompany({
 						value={existingCompany}
 						onChange={setExistingCompany}
 						options={existingCompanyOptions}
-						className="primary md"
-						theme="admin"
 					/>
 				</div>
 
@@ -84,7 +91,12 @@ function ExistingCompany({
 						<div className={styles.pincode_container}>{address?.split('::')?.[1]}</div>
 					</div>
 				) : null}
-			</div>
+			</div> */}
+			<Layout
+				control={control}
+				controls={newFields}
+				errors={errors}
+			/>
 
 			<div className={styles.footer}>
 				<div className={styles.line} />
@@ -97,7 +109,7 @@ function ExistingCompany({
 						Cancel
 					</Button>
 					<Button
-						onClick={handleExistingCompany}
+						onClick={handleSubmit(handleExistingCompany, onError)}
 						className="primary md"
 						disabled={loading}
 					>

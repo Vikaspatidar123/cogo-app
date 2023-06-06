@@ -34,34 +34,34 @@ const mutateFields = ({
 	setPaymentTermVal = () => {},
 }) => {
 	const trade_type = incoTermMapping[shipment_data?.inco_term];
-
-	Object.keys(fields).forEach((key) => {
+	const newFields = [...fields];
+	fields.forEach((key, index) => {
 		if (
 			shipment_data?.shipment_type === 'fcl_freight'
-			&& key === 'shipper_contact_status'
+			&& key.name === 'shipper_contact_status'
 		) {
 			if (shipment_data?.shipper_contact_status === 'pending') {
-				fields[key].options = [
+				fields[index].options = [
 					{ label: 'Confirmed', value: 'confirmed' },
 					{ label: 'Not Contacted', value: 'pending' },
 					{ label: 'Retry', value: 'retry' },
 				];
 			} else if (shipment_data?.shipper_contact_status === 'retry') {
-				fields[key].options = [
+				fields[index].options = [
 					{ label: 'Confirmed', value: 'confirmed' },
 					{ label: 'Retry', value: 'retry' },
 				];
 			} else {
-				fields[key].options = [
+				fields[index].options = [
 					{ label: 'Confirmed', value: 'confirmed' },
 					{ label: 'Not Contacted', value: 'pending' },
 				];
 			}
 
-			fields[key].value =				fields[key].value || shipment_data?.shipper_contact_status;
+			fields[index].value =				fields[key].value || shipment_data?.shipper_contact_status;
 		}
 
-		if (key === 'bl_category' && data?.task === 'update_bl_type') {
+		if (key.name === 'bl_category' && data?.task === 'update_bl_type') {
 			const { onChange } = fields.bl_category;
 			fields.bl_category.onChange = (val) => {
 				const showModal =					(val === 'hbl' && trade_type === 'export')
@@ -76,7 +76,7 @@ const mutateFields = ({
 			};
 		}
 
-		if (key === 'payment_term' && data?.task === 'update_payment_term') {
+		if (key.name === 'payment_term' && data?.task === 'update_payment_term') {
 			const { onChange } = fields.payment_term;
 			fields.payment_term.onChange = (val) => {
 				const showModal =					(val === 'prepaid' && trade_type === 'import')
@@ -91,9 +91,9 @@ const mutateFields = ({
 			};
 		}
 
-		if (key === 'schedule_departure' && data?.task === 'upload_booking_note') {
+		if (key.name === 'schedule_departure' && data?.task === 'upload_booking_note') {
 			const minDeparture = new Date();
-			fields[key].minDate = format(minDeparture);
+			fields[index].minDate = format(minDeparture);
 			const daysDifference = differenceInDays(
 				new Date(fields?.schedule_departure?.value),
 				minDeparture,
@@ -102,7 +102,7 @@ const mutateFields = ({
 				fields?.schedule_departure.onChange(format(minDeparture));
 			}
 		}
-		if (key === 'schedule_arrival' && data?.task === 'upload_booking_note') {
+		if (key.name === 'schedule_arrival' && data?.task === 'upload_booking_note') {
 			const minArrival = addDays(fields?.schedule_departure?.value, 1);
 			const daysDifference = differenceInDays(
 				new Date(fields?.schedule_arrival?.value),
@@ -111,9 +111,9 @@ const mutateFields = ({
 			if (daysDifference < 0) {
 				fields?.schedule_arrival.onChange(format(minArrival));
 			}
-			fields[key].minDate = minArrival;
+			fields[index].minDate = minArrival;
 		}
-		if (key === 'movement_details' && data?.task === 'upload_booking_note') {
+		if (key.name === 'movement_details' && data?.task === 'upload_booking_note') {
 			const length = fields?.movement_details?.childFormat?.length;
 
 			(fields?.movement_details?.value || []).forEach((value) => {
@@ -148,32 +148,31 @@ const mutateFields = ({
 				});
 			}
 		}
-		if (cut_off_dates_keys.includes(key)) {
+		if (cut_off_dates_keys.includes(key.name)) {
 			const minCutOff = addDays(new Date(), 1);
 			const maxCutoff = subtractDays(fields?.schedule_departure?.value, 1);
-			fields[key].minDate = minCutOff;
-			fields[key].maxDate = maxCutoff;
+			fields[index].minDate = minCutOff;
+			fields[index].maxDate = maxCutoff;
 		}
 
-		if (limitedDateRangeKeys.includes(key)) {
-			fields[key].minDate = subtractDays(new Date(), 2);
-			fields[key].maxDate = new Date();
+		if (limitedDateRangeKeys.includes(key.name)) {
+			fields[index].minDate = subtractDays(new Date(), 2);
+			fields[index].maxDate = new Date();
 		}
 
-		if (key === 'vessel_departed_at') {
-			fields[key].minDate = new Date(
+		if (key.name === 'vessel_departed_at') {
+			fields[index].minDate = new Date(
 				shipment_data?.container_details[0]?.gated_in_at,
 			);
-			fields[key].maxDate = new Date();
+			fields[index].maxDate = new Date();
 		}
 
-		if (key === 'gated_out_at') {
-			fields[key].minDate = new Date();
-			fields[key].maxDate = new Date();
+		if (key.name === 'gated_out_at') {
+			fields[index].minDate = new Date();
+			fields[index].maxDate = new Date();
 		}
 	});
-
-	return fields;
+	return { newFields };
 };
 
 export default mutateFields;

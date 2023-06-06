@@ -16,16 +16,22 @@ const useUpdateShipment = ({
 	utilities,
 	listShipmentTradePartners = () => {},
 	compType,
+	existing_company_controls,
 }) => {
 	const [{ shipment_data }] = useContext(ShipmentDetailContext);
-	const { existingCompanyOptions, existingAddresses } = useGetExistingCompanies(
+	const {
+		existingCompanyOptions, existingAddresses, newFields,
+		handleSubmit,
+		onError, errors, formProps, companyDetails,
+		control,
+	} = useGetExistingCompanies(
 		{
 			role,
 			servProvId,
 			compType,
+			existing_company_controls,
 		},
 	);
-
 	const [existingCompany, setExistingCompany] = useState('');
 	const [address, setAddress] = useState('');
 
@@ -94,6 +100,11 @@ const useUpdateShipment = ({
 		shipment_data,
 		loading,
 		pincodeValue,
+		handleSubmit,
+		newFields,
+		onError,
+		errors,
+		control,
 	};
 };
 

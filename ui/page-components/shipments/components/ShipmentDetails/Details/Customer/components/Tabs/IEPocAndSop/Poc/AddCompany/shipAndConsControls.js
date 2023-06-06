@@ -5,7 +5,7 @@ const company_controls = (roleCheck) => [
 		name        : 'country',
 		label       : 'Country of Registration',
 		type        : 'select',
-		span        : 6,
+		span        : 5.8,
 		optionKey   : 'countries',
 		placeholder : 'Enter or Select Country',
 		rules       : {
@@ -16,7 +16,7 @@ const company_controls = (roleCheck) => [
 		name        : 'company_name',
 		label       : 'Company Name',
 		type        : 'text',
-		span        : 6,
+		span        : 5.8,
 		placeholder : 'Enter Company Name',
 		className   : 'primary md',
 		rules       : {
@@ -30,7 +30,7 @@ const company_controls = (roleCheck) => [
 				? 'PAN Number'
 				: 'PAN Number (optional)',
 		type        : 'text',
-		span        : 6,
+		span        : 5.8,
 		placeholder : 'Enter Registration Number',
 		className   : 'primary md',
 		rules       : {
@@ -47,7 +47,7 @@ const company_controls = (roleCheck) => [
 		name      : 'not_reg_under_gst',
 		label     : 'Not registered under GST',
 		type      : 'checkbox',
-		span      : 12,
+		span      : 5.8,
 		className : 'primary md',
 		value     : 'true',
 	},
@@ -57,7 +57,7 @@ const company_controls = (roleCheck) => [
 		type        : 'text',
 		placeholder : 'Enter GST Number',
 		showLabel   : false,
-		span        : 6,
+		span        : 5.8,
 		className   : 'primary md',
 		disabled    : false,
 		rules       : {
@@ -74,7 +74,7 @@ const company_controls = (roleCheck) => [
 		type            : 'file',
 		drag            : true,
 		onlyURLOnChange : true,
-		span            : 12,
+		span            : 5.8,
 		height          : 50,
 		className       : 'primary md',
 		accept:
@@ -89,7 +89,7 @@ const company_controls = (roleCheck) => [
 		name   : 'address',
 		label  : 'Address',
 		rules  : { required: { value: true, message: 'Address is required' } },
-		span   : 6,
+		span   : 5.8,
 		height : 25,
 		style  : {
 			resize: 'vertical',
@@ -103,7 +103,7 @@ const company_controls = (roleCheck) => [
 		label       : 'Pincode / Zip Code',
 		labelKey    : 'postal_code',
 		valueKey    : 'postal_code',
-		span        : 6,
+		span        : 5.8,
 		placeholder : 'Enter pincode',
 		rules       : { required: { value: true, message: 'Pincode is required' } },
 	},

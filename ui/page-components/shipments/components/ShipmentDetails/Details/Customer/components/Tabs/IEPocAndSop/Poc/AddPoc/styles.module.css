@@ -1,5 +1,5 @@
 .container {
-	height: 550px;
+	height: 540px;
 }
 
 .heading {
@@ -14,7 +14,7 @@
 .company_details {
 	display: flex;
 	width: 100%;
-	margin: 16px 0;
+	margin: 6px 0;
 }
 
 .company_name {
@@ -26,13 +26,15 @@
 }
 
 .line {
-	margin: 8px 0;
+	margin: 2px 0;
 	border: 1px solid #ded7fc;
 }
 
 .button_container {
 	display: flex;
-	gap: 16px;
-	justify-content: flex-end;
-	margin: 16px 0;
+	gap: 5px;
+}
+
+.head {
+	padding: 10px;
 }

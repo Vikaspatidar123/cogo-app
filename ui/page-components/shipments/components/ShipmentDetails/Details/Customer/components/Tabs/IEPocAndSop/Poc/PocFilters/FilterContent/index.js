@@ -48,7 +48,6 @@ function FilterContent(
 	return (
 		<div className={styles.container}>
 			<Layout
-				className="primary sm"
 				control={control}
 				controls={filter_control}
 				errors={errors}
@@ -56,7 +55,6 @@ function FilterContent(
 			<div className={styles.apply_btn}>
 				<Button
 					onClick={handleSubmit(() => handleFilters(), onError)}
-					className="primary sm"
 				>
 					Apply
 				</Button>

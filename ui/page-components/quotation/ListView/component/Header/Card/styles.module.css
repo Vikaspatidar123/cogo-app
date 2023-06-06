@@ -6,6 +6,13 @@
 	margin-right: 20px;
 	background-color: #e5eef8;
 	border-radius: 8px;
+
+	@media screen and (max-width: 767px) {
+		width: fit-content;
+		height: 90px;
+		background: rgb(246 245 251);
+		border-radius: 15px;
+	}
 }
 
 .icon_container {
@@ -16,19 +23,40 @@
 	svg {
 		vertical-align: top;
 	}
+
+	@media screen and (max-width: 767px) {
+		display: none;
+	}
 }
 
 .info {
 	margin-left: 20px;
 	font-weight: 600;
+
+	@media screen and (max-width: 767px) {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		height: 100%;
+		margin-left: 0;
+	}
 }
 
 .text {
 	margin: 0;
+	font-weight: bold;
+
+	@media screen and (max-width: 767px) {
+		color: rgb(97 89 139);
+	}
 }
 
 .value {
-	font-size: 20px;
+	font-size: 22px;
+
+	@media screen and (max-width: 767px) {
+		color: rgb(64 53 114);
+	}
 }
 
 .loading {

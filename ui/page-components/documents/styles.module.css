@@ -1,0 +1,9 @@
+.icon {
+	margin: 0 3px;
+	cursor: pointer;
+}
+
+.file_name {
+	color: #034afd;
+	text-decoration: underline;
+}

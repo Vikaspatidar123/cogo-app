@@ -1,5 +1,5 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-import { useState, useEffect } from 'react';
+import { format } from '@cogoport/utils';
+import { useState, useEffect, useCallback } from 'react';
 
 import { useRequestBf } from '@/packages/request';
 import { useSelector } from '@/packages/store';
@@ -8,24 +8,19 @@ import useSearchQuery from '@/ui/commons/utils/useSearchQuery';
 const useListQuote = () => {
 	const { organization = {}, id = '' } = useSelector(((state) => state.profile));
 
-	const [pagination, setPagination] = useState(1);
-	const [sortObj, setSortObj] = useState();
-	const [filters, setFilters] = useState({});
-	const [searchTerm, setSearchTerm] = useState();
+	const [globalFilter, setGlobalFilter] = useState({
+		page      : 1,
+		pageLimit : 10,
+		query     : '',
+	});
+
 	const { debounceQuery, query } = useSearchQuery();
-	const filterLength = Object.keys(filters).length;
 
 	const [{ loading: sendListLoading, data: sentListData }, sentlistTrigger] = useRequestBf({
 		method  : 'get',
 		url     : '/saas/quote/list',
 		authKey : 'get_saas_quote_list',
 	}, { manual: true });
-
-	// const [{ loading: receivedLoading }, receivedListtrigger] = useRequestBf({
-	// 	method  : 'get',
-	// 	url     : '/saas/quote/received/list',
-	// 	authKey : 'get_saas_quote_received_list',
-	// }, { manual: true });
 
 	const [{ loading: summaryLoading, data: summaryData }, summarytrigger] = useRequestBf({
 		method  : 'get',
@@ -39,45 +34,52 @@ const useListQuote = () => {
 		authKey : 'delete_saas_quote',
 	}, { manual: true });
 
-	const refetchList = async () => {
+	const refetchList = useCallback(async () => {
+		const { sortBy, sortType, page, filters: gloFilter = {}, q } = globalFilter;
+		const { status = '', showExpired = false, date_range = {}, expiresIn = '' } = gloFilter;
+		const { startDate, endDate } = date_range;
 		try {
 			await sentlistTrigger({
 				params: {
 					organizationId : organization?.id,
-					page           : pagination,
+					page,
 					pageLimit      : 10,
-					status         : filters?.status,
-					startDate      : filters?.date_range?.startDate,
-					endDate        : filters?.date_range?.endDate,
-					searchTerm     : query,
-					sortType       : sortObj?.sortType ? 'ASC' : 'DESC',
-					sortBy         : sortObj?.sortBy,
-					showExpired    : filters?.showExpired || undefined,
-					expiresIn      : filters?.expiresIn || undefined,
+					status,
+					startDate      : startDate ? format(startDate, 'dd MMM yyyy') : undefined,
+					endDate        : endDate ? format(endDate, 'dd MMM yyyy') : undefined,
+					searchTerm     : q,
+					sortType       : sortType ? 'ASC' : 'DESC',
+					sortBy,
+					showExpired    : showExpired || undefined,
+					expiresIn      : expiresIn || undefined,
 				},
 			});
 		} catch (err) {
-			console.log(err);
+			console.log(err, 'er');
 		}
-	};
+	}, [globalFilter, organization, sentlistTrigger]);
 
-	const refetchSummary = async () => {
+	const refetchSummary = useCallback(async () => {
+		const { filters, q } = globalFilter;
+		const { status, date_range = {}, showExpired, expiresIn } = filters || {};
+		const { startDate, endDate } = date_range;
+
 		try {
 			await summarytrigger({
 				params: {
 					organizationId : organization.id,
-					searchTerm     : query,
-					status         : filters?.status,
-					startDate      : filters?.date_range?.startDate,
-					endDate        : filters?.date_range?.endDate,
-					showExpired    : filters?.showExpired || undefined,
-					expiresIn      : filters?.expiresIn || undefined,
+					searchTerm     : q,
+					status,
+					startDate      : startDate ? format(startDate, 'dd MMM yyyy') : undefined,
+					endDate        : endDate ? format(endDate, 'dd MMM yyyy') : undefined,
+					showExpired    : showExpired || undefined,
+					expiresIn      : expiresIn || undefined,
 				},
 			});
 		} catch (err) {
 			console.log(err);
 		}
-	};
+	}, [globalFilter, organization, summarytrigger]);
 
 	const deleteQuote = async (quoteId) => {
 		try {
@@ -99,45 +101,34 @@ const useListQuote = () => {
 
 	useEffect(() => {
 		refetchSummary();
-	}, []);
+	}, [refetchSummary]);
 
 	useEffect(() => {
-		refetchList();
-	}, [pagination]);
+		if (query !== undefined) {
+			setGlobalFilter((prev) => ({
+				...prev,
+				q    : query,
+				page : 1,
+			}));
+		}
+	}, [query]);
 
 	useEffect(() => {
-		if (sortObj || filterLength > 0 || (query !== undefined && query !== null)) {
-			if (pagination > 1) {
-				setPagination(1);
-			} else {
-				refetchList();
-			}
+		if (globalFilter) {
+			refetchList();
 		}
-		if (filterLength > 0 || (query !== undefined && query !== null)) {
-			refetchSummary();
-		}
-	}, [JSON.stringify(sortObj), JSON.stringify(filters), query]);
-
-	useEffect(() => {
-		if (searchTerm !== undefined && searchTerm !== null) {
-			debounceQuery(searchTerm);
-		}
-	}, [searchTerm]);
+	}, [globalFilter, refetchList]);
 
 	return {
-		pagination,
-		setPagination,
-		setSortObj,
-		setFilters,
-		filters,
 		sentListData,
 		sendListLoading,
-		searchTerm,
-		setSearchTerm,
 		summaryLoading,
 		summaryData,
 		deleteQuote,
 		deleteLoading,
+		setGlobalFilter,
+		globalFilter,
+		debounceQuery,
 	};
 };
 

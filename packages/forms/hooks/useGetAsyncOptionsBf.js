@@ -1,5 +1,5 @@
 import { merge } from '@cogoport/utils';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 
 import { useRequestBf } from '../../request';
 
@@ -26,15 +26,14 @@ function useGetAsyncOptionsBf({
 		},
 		{ manual: !(initialCall || query) },
 	);
-	const options = getModifiedOptions(data?.list || []);
-	const dependency = (data?.list || []).map(({ id }) => id).join('');
+
+	const options = useMemo(() => getModifiedOptions(data?.list || []), [data, getModifiedOptions]);
 
 	useEffect(() => {
 		if (options.length > 0) {
 			setStoreOptions([...options]);
 		}
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [dependency]);
+	}, [options]);
 
 	const [{ loading: loadingSingle }, triggerSingle] = useRequestBf(
 		{
@@ -50,7 +49,7 @@ function useGetAsyncOptionsBf({
 	};
 
 	const onHydrateValue = async (value) => {
-		const checkOptionsExist = options.filter(
+		const checkOptionsExist = (options).filter(
 			(item) => item[valueKey] === value,
 		);
 		if (checkOptionsExist.length > 0) return checkOptionsExist[0];
@@ -59,10 +58,13 @@ function useGetAsyncOptionsBf({
 				params: merge(params, { filters: { [valueKey]: value } }),
 			});
 			const list = res?.data?.list || [];
-			if (list.length > 0) {
+			const listData = (list).filter(
+				(item) => item[valueKey] === value,
+			);
+			if (listData.length > 0) {
 				setStoreOptions([...storeOptions, ...getModifiedOptions(list)]);
 			}
-			return getModifiedOptions(list)?.[0] || null;
+			return getModifiedOptions(listData)?.[0] || null;
 		} catch (err) {
 			return {};
 		}

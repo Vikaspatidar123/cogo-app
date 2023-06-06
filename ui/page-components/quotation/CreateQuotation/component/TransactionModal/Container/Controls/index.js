@@ -18,7 +18,7 @@ function Controls({ controls }) {
 
 	useEffect(() => {
 		if (doc) setMapDoc(doc);
-	}, [labeledValue]);
+	}, [doc, labeledValue]);
 
 	return (
 		<>

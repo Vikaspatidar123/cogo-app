@@ -1,0 +1,58 @@
+[
+	{
+		"children": "CIF",
+		"key": "cif",
+		"tradeType": "export",
+		"description": "Cost, Insurance, Freight"
+	},
+	{
+		"children": "CFR",
+		"key": "cfr",
+		"tradeType": "export",
+		"description": "Cost and Freight"
+	},
+	{
+		"children": "CPT",
+		"key": "cpt",
+		"tradeType": "export",
+		"description": "Carriage Paid To"
+	},
+	{
+		"children": "CIP",
+		"key": "cip",
+		"tradeType": "export",
+		"description": "Carriage and Insurance Paid"
+	},
+	{
+		"children": "DAT",
+		"key": "dat",
+		"tradeType": "export",
+		"description": "Delivered at Terminal (named terminal at port or place of destination)"
+	},
+	{
+		"children": "DAP",
+		"key": "dap",
+		"tradeType": "export",
+		"description": "Delivered At Place (named place of destination)"
+	},
+	{
+		"children": "DDP",
+		"key": "ddp",
+		"tradeType": "export",
+		"description": "Delivered Duty Paid"
+	},
+	{
+		"children": "FOB",
+		"key": "fob",
+		"tradeType": "import",
+		"description": "Free On Board"
+	},
+	{ "children": "EXW", "key": "exw", "tradeType": "import", "description": "ExWorks" },
+	{ "children": "FCA", "key": "fca", "tradeType": "import", "description": "Free Carrier" },
+	{
+		"children": "FAS",
+		"key": "fas",
+		"tradeType": "import",
+		"description": "Free Alongside Ship"
+	}
+]

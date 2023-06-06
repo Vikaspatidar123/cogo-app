@@ -1,93 +1,99 @@
-.container{
-    border-bottom: 1.5px dashed #cedcea;
-    padding: 5px 10px;
+.container {
+	padding: 5px 10px;
+	border-bottom: 1.5px dashed #cedcea;
 
-    &.remove_line{
-        border:  none;
-    }
+	&.remove_line {
+		border: none;
+	}
 }
 
-.input_box_container{
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    padding:  12px;
+.input_box_container {
+	display: flex;
+	align-items: flex-end;
+	justify-content: space-between;
+	padding: 12px;
 
-    :global{
-        .ui_buttonicon_container{
-            width: 30px;
-            height: 30px;
-        }
-    }
+	:global {
+		.ui_buttonicon_container {
+			width: 30px;
+			height: 30px;
+		}
+	}
 }
 
-.col{
-    input{
-        background-color: #f3f3f3;
-    }
-}
-.label{
-    font-size: 12px;
+.col {
+	input {
+		background-color: #f3f3f3;
+	}
 }
 
-.card{
-    display: flex;
+.label {
+	font-size: 12px;
+}
+
+.card {
+	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-between;
 	width: 69%;
 	margin-left: 1%;
+
 	.hrborder {
 		border: 1px dashed #f68b21;
 	}
+
 	.cursor {
 		cursor: pointer;
 	}
 }
 
-.service_container{
-    display: flex;
+.service_container {
+	display: flex;
 	align-items: flex-start;
 	margin-bottom: 3%;
 
-    :global{
-        .ui_checkbox_container{
-            padding: 0px;
-        }
-    }
+	:global {
+		.ui_checkbox_container {
+			padding: 0;
+		}
+	}
 }
-.service_name{
+
+.service_name {
 	font-size: 12px;
 }
 
-.validate_icon{
-    display: flex;
-    padding: 4px;
-    align-items: center;
+.validate_icon {
+	display: flex;
+	align-items: center;
+	padding: 4px;
 
-    .validate_text{
-        margin-left: 5px;
+	.validate_text {
+		margin-left: 5px;
 		font-size: 12px;
-        font-weight: 600;
-    }
+		font-weight: 600;
+	}
 }
-.recommend_container{
-    max-height: 250px;
-	overflow-y: auto;
+
+.recommend_container {
 	width: 200px;
+	max-height: 250px;
+	overflow-y: auto;
+
 	::-webkit-scrollbar {
 		display: none;
 	}
 
-    .content{
-        margin-bottom: 6px;
-        border-radius: 8px;
-        cursor: pointer;
-        text-align: center;
-        padding: 8px;
-        border: 1px solid #d3d3d3;
-    }
+	.content {
+		padding: 8px;
+		margin-bottom: 6px;
+		text-align: center;
+		cursor: pointer;
+		border: 1px solid #d3d3d3;
+		border-radius: 8px;
+	}
 }
 
-.delete_icon{
-    cursor: not-allowed;
+.delete_icon {
+	cursor: not-allowed;
 }

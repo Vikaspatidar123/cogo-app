@@ -1,4 +1,3 @@
-import { Toast } from '@cogoport/components';
 import { useState, useEffect } from 'react';
 
 import { useRequest } from '@/packages/request';
@@ -47,7 +46,7 @@ const useFetchTrendDetails = ({ id }) => {
 			const { data } = res;
 			setTrendDetails(data);
 		} catch (err) {
-			Toast.error(err?.message || 'Something went wrong');
+			console.log(err?.message || 'Something went wrong');
 		}
 	};
 

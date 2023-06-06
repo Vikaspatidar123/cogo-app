@@ -9,45 +9,51 @@ import styles from './styles.module.css';
 function List({
 	data = {},
 	loading = false,
-	pagination,
-	setPagination,
-	setSortObj,
-	searchTerm,
-	setSearchTerm,
 	deleteQuote,
 	deleteLoading = false,
+	setGlobalFilter,
+	debounceQuery,
 }) {
 	const [activeTab, setActiveTab] = useState('SENT');
+	const [searchTerm, setSearchTerm] = useState();
+
+	const searchChangeHandler = (val) => {
+		setSearchTerm(val);
+		debounceQuery(val);
+	};
 	return (
 		<div>
-			<h2>Lists of Quotation</h2>
-			<div className={styles.row}>
-				<Tabs themeType="tertiary" activeTab={activeTab} onChange={setActiveTab}>
-					<TabPanel
-						name="SENT"
-						title={(
-							<div className={styles.tab_panel}>
-								<IcMDocument />
-								<span className={styles.text}>Send</span>
-							</div>
-						)}
-					/>
-					<TabPanel
-						name="RECEIVED"
-						title={(
-							<div className={styles.tab_panel}>
-								<IcMEnquiriesReceived />
-								<span className={styles.text}>Received</span>
-							</div>
-						)}
-					/>
-				</Tabs>
+			<h2 className={styles.title}>Lists of Quotation</h2>
+			<div className={styles.row_desktop}>
+				<div className={styles.tab_container}>
+					<Tabs themeType="tertiary" activeTab={activeTab} onChange={setActiveTab}>
+						<TabPanel
+							name="SENT"
+							title={(
+								<div className={styles.tab_panel}>
+									<IcMDocument />
+									<span className={styles.text}>Send</span>
+								</div>
+							)}
+						/>
+						<TabPanel
+							name="RECEIVED"
+							title={(
+								<div className={styles.tab_panel}>
+									<IcMEnquiriesReceived />
+									<span className={styles.text}>Received</span>
+								</div>
+							)}
+						/>
+					</Tabs>
+				</div>
+
 				<div className={styles.input_box}>
 					<Input
 						size="sm"
 						placeholder="Quotation Id"
 						value={searchTerm}
-						onChange={setSearchTerm}
+						onChange={searchChangeHandler}
 						suffix={<IcMSearchlight />}
 						disabled={activeTab === 'RECEIVED'}
 					/>
@@ -57,11 +63,9 @@ function List({
 				<QuoteList
 					data={data}
 					loading={loading}
-					pagination={pagination}
-					setPagination={setPagination}
-					setSortObj={setSortObj}
 					deleteQuote={deleteQuote}
 					deleteLoading={deleteLoading}
+					setGlobalFilter={setGlobalFilter}
 				/>
 			)}
 			{activeTab === 'RECEIVED' && (

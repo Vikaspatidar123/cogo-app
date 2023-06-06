@@ -3,9 +3,16 @@ import { IcMLocation, IcMShip, IcMAirport } from '@cogoport/icons-react';
 
 import styles from './styles.module.css';
 
-import { shortFormatNumber } from '@/ui/commons/utils/getShortFormatNumber';
+import formatAmount from '@/ui/commons/utils/formatAmount';
 
-function Transport({ transportMode = 'OCEAN', consignmentValue }) {
+function Transport({ consignmentValue, quoteRes = {} }) {
+	const {
+		originPortDetails = {}, destinationPortDetails = {}, header = {},
+		transportMode = 'OCEAN', incoterm = '',
+	} = quoteRes || {};
+	const { name: originName = '' } = originPortDetails || {};
+	const { name: destinationName = '' } = destinationPortDetails || {};
+	const { currency = 'INR' } = header || {};
 	return (
 		<div className={styles.container}>
 			<h3 className={styles.title}>Transportation Details</h3>
@@ -30,14 +37,27 @@ function Transport({ transportMode = 'OCEAN', consignmentValue }) {
 					<div className={styles.dot} />
 				</div>
 				<div className={styles.flex_box}>
-					<p className={styles.port_name}>Mundra</p>
-					<Pill color="orange" size="sm">Incoterm: FOB</Pill>
-					<p className={styles.port_name}>Jebel Ali</p>
+					<p className={styles.port_name}>{originName}</p>
+					<Pill color="orange" size="sm">
+						Incoterm:
+						{' '}
+						{incoterm}
+					</Pill>
+					<p className={styles.port_name}>{destinationName}</p>
 				</div>
 			</div>
 			<div className={styles.total_amount}>
 				<div className={styles.value}>
-					{shortFormatNumber(consignmentValue, 'INR', true)}
+					{formatAmount({
+						amount  : consignmentValue,
+						currency,
+						options : {
+							style                 : 'currency',
+							currencyDisplay       : 'symbol',
+							notation              : 'standard',
+							maximumFractionDigits : 2,
+						},
+					})}
 				</div>
 				<div className={styles.border} />
 			</div>

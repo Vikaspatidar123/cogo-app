@@ -1,83 +1,90 @@
-.header{
-    display: flex;
+.header {
+	display: flex;
 	align-items: center;
 
 	@media screen and (max-width: 767px) {
 		justify-content: center;
 	}
 
-    .title{
-        margin: 0;
-        margin-left:5px
-    }
-}
-
-.row{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    padding: 6px 0;
-}
-
-.col{
-    width: 42%;
-    margin: 0 16px 14px;
-
-    :global{
-        .ui_ps_size_md, .ui_select_display_container{
-            height: 37px;
-        }
-
-        .ui_upload_droparea_container{
-            padding: 10px 0;
-            svg{
-                width: 35px;
-                height: 35px;
-            }
-            .ui_upload_droparea_heading{
-                font-size: 12px;
-            }
-
-            .ui_upload_droparea_subheading{
-                font-size: 8px;
-            }
-        }
-        .ui_upload_droparea_container{
-            flex-direction: row;
-            min-height: 60px;
-        }
-    }
-}
-
-.label_container{
-    display: flex;
-    justify-content: space-between;
-    p{
-        display: inline;
-    }
-    .label{
-        font-size: 12px;
-    }
-    .error_text{
-        color: red;
-        font-size: 11px;
-
-    }
-    @media screen and (max-width: 767px) {
-		color: #697989;
-		font-size: 13px;
+	.title {
+		margin: 0;
+		margin-left: 5px;
 	}
 }
 
-.error{
-    :global{
-        .ui_input_container,.ui_select_display_container, .ui_text_area_container{
-            border: 1px solid red
-        }
+.row {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: space-between;
+	padding: 6px 0;
+}
 
-        .ui_input_container:hover, .ui_select_display_container:hover{
-            border-color: red;
-        }
-    }
+.col {
+	width: 42%;
+	margin: 0 16px 14px;
+
+	:global {
+		.ui_ps_size_md,
+		.ui_select_display_container {
+			height: 37px;
+		}
+
+		.ui_upload_droparea_container {
+			flex-direction: row;
+			min-height: 60px;
+			padding: 10px 0;
+
+			svg {
+				width: 35px;
+				height: 35px;
+			}
+
+			.ui_upload_droparea_heading {
+				font-size: 12px;
+			}
+
+			.ui_upload_droparea_subheading {
+				font-size: 8px;
+			}
+		}
+	}
+}
+
+.label_container {
+	display: flex;
+	justify-content: space-between;
+
+	p {
+		display: inline;
+	}
+
+	.label {
+		font-size: 12px;
+	}
+
+	.error_text {
+		font-size: 11px;
+		color: red;
+	}
+
+	@media screen and (max-width: 767px) {
+		font-size: 13px;
+		color: #697989;
+	}
+}
+
+.error {
+	:global {
+		.ui_input_container,
+		.ui_select_display_container,
+		.ui_text_area_container {
+			border: 1px solid red;
+		}
+
+		.ui_input_container:hover,
+		.ui_select_display_container:hover {
+			border-color: red;
+		}
+	}
 }

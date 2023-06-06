@@ -1,50 +1,57 @@
-.container{
-    padding:0 26px;
-    margin: 22px 0 ;
-    border-left:1px solid #cedcea;
-
+.container {
+	padding: 0 26px;
+	margin: 22px 0;
+	border-left: 1px solid #cedcea;
 }
 
-.header{
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-    .title{
-        margin: 0;
-        margin-left:4px;
-    }
-}
-.row{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-}
-.col{
-    margin-bottom: 12px;
-    width: 45%;
-    &.service_type{
-        width: 30%;
-    }
-    &.type{
-        width: 100%;
-    }
+.header {
+	display: flex;
+	align-items: center;
+	margin-bottom: 10px;
+
+	.title {
+		margin: 0;
+		margin-left: 4px;
+	}
 }
 
-.label{
-    font-size: 13px;
+.row {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: space-between;
 }
 
-.error{
-    :global {
-        .ui_select_display_container, .ui_input_control{
-            border:1px solid red
-        }
-        .ui_select_display_container:hover{
-            border-color:red
-        } 
-    }
-    &:hover{
-        border-color: transparent
-    }
+.col {
+	width: 45%;
+	margin-bottom: 12px;
+
+	&.service_type {
+		width: 30%;
+	}
+
+	&.type {
+		width: 100%;
+	}
+}
+
+.label {
+	font-size: 13px;
+}
+
+.error {
+	:global {
+		.ui_select_display_container,
+		.ui_input_control {
+			border: 1px solid red;
+		}
+
+		.ui_select_display_container:hover {
+			border-color: red;
+		}
+	}
+
+	&:hover {
+		border-color: transparent;
+	}
 }

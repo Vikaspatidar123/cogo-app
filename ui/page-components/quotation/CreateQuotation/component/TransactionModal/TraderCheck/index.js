@@ -17,7 +17,7 @@ function TraderCheck({ tradeEngineResponse = {} }) {
 						{screeningRequestResponse?.length}
 						)
 					</div>
-					<div className={styles.row}>
+					<div className={styles.card_container}>
 						{screeningRequestResponse.map(({
 							screeningAka = '',
 							screeningListName = '',

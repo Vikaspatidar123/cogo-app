@@ -1,58 +1,58 @@
-.header_container{
-    display: flex;
+.header_container {
+	display: flex;
 	align-items: center;
 
-	.header{
+	.header {
 		margin: 0;
 		margin-left: 8px;
 	}
 }
 
-.title_container{
+.title_container {
 	display: flex;
 	margin-bottom: 7px;
 
-	.title{
-		line-height: 14px;
+	.title {
 		padding-right: 5px;
+		line-height: 14px;
 	}
 
-	.line{
+	.line {
 		width: 78px;
 		height: 2px;
+		margin-top: 2%;
 		background: #f9ae64;
 		border-radius: 30px;
-		margin-top: 2%;
 	}
 }
 
-.successMsg{
+.successMsg {
+	padding: 6px 12px;
 	margin: 30px;
 	margin-bottom: 10px;
-	padding: 6px 12px;
 	font-size: 15px;
 	color: #589c52;
-	background: #e8ffe6;
 	text-align: center;
+	background: #e8ffe6;
 }
 
-.loading_container{
+.loading_container {
 	.modal {
 		position: fixed;
+		top: 0;
+		left: 0;
 		z-index: 100;
 		width: 100%;
 		height: 100%;
-		top: 0;
-		left: 0;
-		background: rgba(255, 255, 255, 0.5);
+		background: rgb(255 255 255 / 50%);
 		backdrop-filter: blur(6px);
 	}
 
 	.cogoloader {
 		position: fixed;
-		z-index: 10000;
-		left: 45%;
 		top: 40%;
+		left: 45%;
+		z-index: 10000;
 		width: 100px !important;
 		height: 100px !important;
 	}

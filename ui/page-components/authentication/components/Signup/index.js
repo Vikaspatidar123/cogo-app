@@ -9,7 +9,7 @@ import LeftPanel from '@/ui/commons/components/LeftPanel';
 function Signup() {
 	const [hasSignedup, setHasSignedup] = useState(false);
 	const [formData, setFormData] = useState({});
-	const [userId, setUserId] = useState();
+	const [userDetails, setUserDetails] = useState();
 
 	return (
 		<div className={styles.container}>
@@ -29,11 +29,11 @@ function Signup() {
 							<SignupForm
 								setHasSignedup={setHasSignedup}
 								setFormData={setFormData}
-								setUserId={setUserId}
+								setUserDetails={setUserDetails}
 							/>
 						</>
 					)
-						: <VerifictaionForm formData={formData} userId={userId} />}
+						: <VerifictaionForm formData={formData} userDetails={userDetails} />}
 
 				</div>
 			</div>

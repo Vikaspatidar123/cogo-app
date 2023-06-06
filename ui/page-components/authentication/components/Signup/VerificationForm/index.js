@@ -10,11 +10,11 @@ import styles from './styles.module.css';
 import OTPLayout from '@/packages/forms/Business/OTPLayout';
 import OrSeparator from '@/ui/commons/components/OrSeparator';
 
-function VerifictaionForm({ formData, userId }) {
+function VerifictaionForm({ formData, userDetails }) {
 	const OTP_LENGTH = 4;
 	const [otpValue, setOtpValue] = useState('');
 
-	const { id } = userId || {};
+	const { id } = userDetails || {};
 
 	const { onClickResendEmail } = useEmailVerification();
 
@@ -26,7 +26,7 @@ function VerifictaionForm({ formData, userId }) {
 	} = useOtpVerification({
 		formData,
 		otpValue,
-		id,
+		userDetails,
 	});
 
 	return (

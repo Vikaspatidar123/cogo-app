@@ -50,9 +50,7 @@ const getSuffix = (name, getDutiesSubmitHandler, getRatesModalHandler) => {
 };
 
 function BasicCharge(
-	{
-		fields, control, errors, submitForm, watch, setValue, transportMode, createQuoteHook = {},
-	},
+	{ fields, formHook, consignmentValue, rest = {} },
 	ref,
 ) {
 	const [paymentModal, setPaymentModal] = useState(false);
@@ -65,6 +63,8 @@ function BasicCharge(
 	const [showSuccessModal, setShowSuccessModal] = useState(false);
 
 	const { current } = ref || {};
+	const { submitForm, transportMode, createQuoteHook = {} } = rest || {};
+	const { control, setValue, watch, formState:{ errors } } = formHook;
 	const { getRatesModalHandler, data } = getRatesModal({
 		current,
 		setCalculateCharge,
@@ -160,6 +160,7 @@ function BasicCharge(
 					setValue={setValue}
 					infoData={data}
 					transportMode={transportMode}
+					consignmentValue={consignmentValue}
 				/>
 			)}
 			<PendingModal pendingModal={pendingModal} setPendingModal={setPaymentModal} pendingStatus={pendingStatus} />

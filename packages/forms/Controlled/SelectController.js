@@ -4,27 +4,25 @@ import { Controller } from 'react-hook-form';
 import Select from '../Business/Select';
 
 function SelectController(props) {
-	const {
-		name, control, rules, value, ...rest
-	} = props;
-
+	const { name, control, rules, value, ...rest } = props;
 	return (
 		<Controller
 			key={rest.id}
 			control={control}
 			name={name}
 			rules={rules}
+			defaultValue={value}
 			render={({ field: { onChange, onBlur, value: newValue } }) => (
 				<Select
 					{...rest}
 					key={rest.id}
 					onChange={(val, obj) => {
 						onChange(val, obj);
-						if (rest?.handleChange) {
-							rest?.handleChange(obj);
+						if (rest.handleChange) {
+							rest.handleChange(obj, name);
 						}
 					}}
-					value={newValue || value}
+					value={newValue}
 					onBlur={onBlur}
 					data-test-value={value}
 				/>

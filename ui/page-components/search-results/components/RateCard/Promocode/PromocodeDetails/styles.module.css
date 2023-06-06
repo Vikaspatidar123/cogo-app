@@ -1,0 +1,52 @@
+.container {
+	margin-top: 10px;
+}
+
+.header_text {
+	font-size: 18px;
+	font-weight: 500;
+	color: #2c3e50;
+	text-transform: uppercase;
+	letter-spacing: 0.04em;
+}
+
+.row {
+	display: flex;
+}
+
+.details {
+	margin-left: 25px;
+}
+
+.details_title {
+	font-size: 22px;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 0.02em;
+}
+
+.details_description {
+	font-size: 14px;
+	line-height: 19px;
+	color: #4f4f4f;
+	letter-spacing: 0.02em;
+}
+
+.terms {
+	margin-top: 30px;
+}
+
+.terms_title {
+	font-size: 12px;
+	font-weight: 600;
+	color: #828282;
+	letter-spacing: 0.02em;
+}
+
+.terms_content {
+	margin-top: 15px;
+	font-size: 10px;
+	font-weight: 400;
+	color: #828282;
+	letter-spacing: 0.02em;
+}

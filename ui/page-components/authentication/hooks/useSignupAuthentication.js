@@ -6,7 +6,7 @@ const useSignupAuthentication = ({
 	setHasSignedup, setUserDetails, captchaResponse, hasWhatsApp, userInfo,
 }) => {
 	const [{ loading: signupLoading }, trigger] = useRequest({
-		url    : 'saas_tools/update_saas_converted_user_mobile',
+		url    : '/lead/create_sign_up_lead_user',
 		method : 'post',
 	}, { manual: true });
 

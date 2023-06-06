@@ -1,0 +1,86 @@
+.container {
+	width: 100%;
+	padding: 50px 30px 10px 55px;
+}
+
+.combined_div {
+	display: flex;
+	width: 100%;
+
+	@media (max-width: 760px) {
+		width: 220px;
+	}
+}
+
+.dot_line_style {
+	display: flex;
+	align-items: center;
+	width: 100%;
+}
+
+.dot {
+	width: 15px;
+	height: 15px;
+	background: #7894b0;
+	border: 1.5px solid #fff;
+	border-radius: 50%;
+}
+
+.active_dot {
+	width: 15px;
+	height: 15px;
+	background: #108ee9;
+	border: 1.5px solid white;
+	border-radius: 50%;
+}
+
+.active_line {
+	width: 98%;
+	height: 0;
+	border: 2px solid #8cc1f9;
+}
+
+.line {
+	width: 98%;
+	height: 0;
+	border: 1px solid #7894b0;
+}
+
+.last_element {
+	width: 5%;
+}
+
+.legend_ctn {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 100%;
+}
+
+.legend_name {
+	padding: 10px;
+	font-size: 10px;
+}
+
+.template {
+	display: flex;
+	justify-content: center;
+}
+
+.sticker {
+	display: flex;
+	gap: 8px;
+	align-items: center;
+	width: max-content;
+	padding: 0 5px;
+	font-size: 12px;
+	font-weight: bold;
+	background: #fff;
+	border-radius: 6px;
+	box-shadow: 0 0 16px rgb(98 127 172 / 20%);
+}
+
+.icon_image {
+	width: 60px;
+	height: 32px;
+}

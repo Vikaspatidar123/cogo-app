@@ -25,8 +25,8 @@ const STATIONS_COORDS = [path[0], [80.83090675124562, 309.111328125]];
 const shipIcon = () => getMapDivIcon(
 	<IcShip className="ship-icon" />,
 	'',
-	[110, 110],
-	[45, 28],
+	[150, 150],
+	[95, 55],
 );
 
 function Maps() {

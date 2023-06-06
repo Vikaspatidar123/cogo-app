@@ -41,11 +41,11 @@
 		height: 100px;
 		margin-bottom: 30px;
 	}
+
 	:hover {
 		box-shadow: 0 12px 32px 1px #dfe8fa99;
 	}
 }
-
 
 &.selected_card {
 	cursor: not-allowed;

@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import { Toast } from '@cogoport/components';
 import { useEffect } from 'react';
 
@@ -35,6 +34,7 @@ const useGetServiceRates = (prioritySequence = 0) => {
 		if (prioritySequence >= 0) {
 			fetchServiceRates();
 		}
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [prioritySequence]);
 
 	return {

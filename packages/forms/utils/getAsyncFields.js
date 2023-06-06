@@ -127,8 +127,7 @@ function asyncCountrySelect() {
 			filters  : { type: 'country' },
 			includes : {
 				default_params_required: true,
-				// flag_icon_url: true,
-				// country_code: true,
+				// flag_icon_url: true, // country_code: true,
 			},
 			page_limit : 20,
 			sort_by    : 'name',
@@ -148,6 +147,27 @@ function asyncAirLinesSelect() {
 			sort_by    : 'short_name',
 			sort_type  : 'asc',
 		},
+	};
+}
+function asyncFieldsCommoditiesList() {
+	return {
+		labelKey      : 'label',
+		valueKey      : 'id',
+		endpoint      : 'saas/insurance/list-commodities',
+		authKey       : 'get_saas_insurance_list_commodities',
+		initialCall   : true,
+		defaultParams : {},
+	};
+}
+
+function asyncInsuranceCountryList() {
+	return {
+		labelKey      : 'label',
+		valueKey      : 'locationId',
+		endpoint      : 'saas/insurance/list/countries',
+		authKey       : 'get_saas_insurance_list_countries',
+		initialCall   : true,
+		defaultParams : {},
 	};
 }
 
@@ -259,6 +279,8 @@ export {
 	asyncFieldsHScode,
 	asyncCountrySelect,
 	asyncAirLinesSelect,
+	asyncFieldsCommoditiesList,
+	asyncInsuranceCountryList,
 	asyncAirLines,
 	asyncShippingLines,
 	asyncFieldsPartnerQuotation,

@@ -68,6 +68,14 @@ const saas = {
 	'/saas/dsr': {
 		navigation: 'saas_tracking',
 	},
+	'/saas/insurance/[type]': {
+		navigation : 'saas_cogo_insurance',
+		isMainNav  : true,
+	},
+	'/saas/insurance': {
+		navigation : 'saas_cogo_insurance',
+		isMainNav  : true,
+	},
 
 };
 

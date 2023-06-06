@@ -22,16 +22,16 @@ const controls = [
 	{
 		label         : 'Commodity',
 		name          : 'commodity',
-		type          : 'pills',
+		type          : 'chips',
 		collapse      : true,
 		commodityType : 'ftl_freight',
 	},
 	{
-		name       : 'truck_type',
-		label      : '',
-		type       : 'truck-type-select',
-		selectType : 'pills',
-		rules      : { required: 'Truck Type is required' },
+		name      : 'truck_type',
+		label     : '',
+		type      : 'chips',
+		optionKey : 'truck_types',
+		rules     : { required: 'Truck Type is required' },
 	},
 	{
 		name  : 'trucks_count',

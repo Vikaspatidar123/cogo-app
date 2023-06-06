@@ -1,19 +1,19 @@
 const CONTAINER_SIZES = [
 	{
-		label : '20ft',
-		value : '20',
+		children : '20ft',
+		key      : '20',
 	},
 	{
-		label : '40ft',
-		value : '40',
+		children : '40ft',
+		key      : '40',
 	},
 	{
-		label : '40ft HC',
-		value : '40HC',
+		children : '40ft HC',
+		key      : '40HC',
 	},
 	{
-		label : '45ft HC',
-		value : '45HC',
+		children : '45ft HC',
+		key      : '45HC',
 	},
 ];
 
@@ -103,7 +103,7 @@ const formControlsAdvanced = (setOperatorName, is_org_pass_through) => [
 			{
 				label   : 'Container Size',
 				name    : 'container_size',
-				type    : 'pills',
+				type    : 'chips',
 				span    : 12,
 				options : CONTAINER_SIZES,
 			},
@@ -131,7 +131,7 @@ const formControlsAdvanced = (setOperatorName, is_org_pass_through) => [
 					commodity: {
 						label : 'Select Commodity',
 						name  : 'commodity',
-						type  : 'pills',
+						type  : 'chips',
 					},
 				},
 				rules: {

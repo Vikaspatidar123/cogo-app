@@ -29,12 +29,6 @@ const useGetShipmentPendingTasks = (shipment_type = '') => {
 			},
 		},
 	});
-
-	useEffect(() => {
-		listAPi();
-	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [query?.id]);
-
 	const {
 		loading,
 		page,
@@ -45,6 +39,10 @@ const useGetShipmentPendingTasks = (shipment_type = '') => {
 	} = useGetFiniteList(listAPi, {
 		authorizationparameters,
 	});
+	useEffect(() => {
+		listAPi();
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [query?.id]);
 
 	return {
 		tasks   : data || [],

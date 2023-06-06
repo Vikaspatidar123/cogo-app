@@ -1,19 +1,19 @@
 const CONTAINER_SIZES = [
 	{
-		label : '20ft',
-		value : '20',
+		children : '20ft',
+		key      : '20',
 	},
 	{
-		label : '40ft',
-		value : '40',
+		children : '40ft',
+		key      : '40',
 	},
 	{
-		label : '40ft HC',
-		value : '40HC',
+		children : '40ft HC',
+		key      : '40HC',
 	},
 	{
-		label : '45ft HC',
-		value : '45HC',
+		children : '45ft HC',
+		key      : '45HC',
 	},
 ];
 
@@ -45,32 +45,32 @@ const formControlsAdvanced = () => [
 	{
 		name        : 'cargo_handling_type',
 		label       : 'Type of Stuffing',
-		type        : 'pills',
+		type        : 'chips',
 		placeholder : 'Select type of stuffing',
 		options     : [
 			{
-				label      : 'Direct Port Delivery',
-				value      : 'direct_port_delivery',
+				children   : 'Direct Port Delivery',
+				key        : 'direct_port_delivery',
 				trade_type : 'import',
 			},
 			{
-				label      : 'Destuffing at Factory',
-				value      : 'delivery_from_dock',
+				children   : 'Destuffing at Factory',
+				key        : 'delivery_from_dock',
 				trade_type : 'import',
 			},
 			{
-				label      : 'Destuffing at CFS',
-				value      : 'destuffing_at_dock',
+				children   : 'Destuffing at CFS',
+				key        : 'destuffing_at_dock',
 				trade_type : 'import',
 			},
 			{
-				label      : 'Dock Stuffing',
-				value      : 'stuffing_at_dock',
+				children   : 'Dock Stuffing',
+				key        : 'stuffing_at_dock',
 				trade_type : 'export',
 			},
 			{
-				label      : 'Factory Stuffing',
-				value      : 'stuffing_at_factory',
+				children   : 'Factory Stuffing',
+				key        : 'stuffing_at_factory',
 				trade_type : 'export',
 			},
 		],
@@ -107,7 +107,7 @@ const formControlsAdvanced = () => [
 			{
 				label   : 'Container Size',
 				name    : 'container_size',
-				type    : 'pills',
+				type    : 'chips',
 				span    : 12,
 				options : CONTAINER_SIZES,
 			},
@@ -120,13 +120,13 @@ const formControlsAdvanced = () => [
 					container_type: {
 						label     : 'Container Type',
 						name      : 'container_type',
-						type      : 'pills',
+						type      : 'chips',
 						optionKey : 'container-types',
 					},
 					commodity: {
 						label          : 'Select Commodity',
 						name           : 'commodity',
-						type           : 'pills',
+						type           : 'chips',
 						commodity_type : 'fcl_customs',
 					},
 				},

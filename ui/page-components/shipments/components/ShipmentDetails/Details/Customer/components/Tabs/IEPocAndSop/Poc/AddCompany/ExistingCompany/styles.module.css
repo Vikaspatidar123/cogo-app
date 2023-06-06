@@ -1,14 +1,3 @@
-.element {
-	position: absolute;
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-	width: 100%;
-	height: 100%;
-	padding-right: 10px;
-	padding-left: 10px;
-}
-
 .select_layout {
 	display: flex;
 }
@@ -27,17 +16,6 @@
 	justify-content: center;
 	min-height: 40px;
 	margin-left: 8px;
-}
-
-.footer {
-	display: flex;
-	flex-direction: column;
-	margin: auto 0 16px;
-}
-
-.line {
-	margin: 20px 0 0;
-	border: 1px solid #ded7fc;
 }
 
 .button_container {

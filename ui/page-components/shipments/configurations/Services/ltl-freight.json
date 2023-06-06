@@ -29,21 +29,20 @@
 		{
 			"name": "commodity",
 			"label": "Commodity",
-			"type": "select-2",
+			"type": "select",
 			"commodityType": "hazardous"
 		},
 		{
 			"name": "trade_type",
 			"label": "Trade type",
-			"type": "select",
 			"optionKey": "trade-types",
-			"selectType": "pills",
+			"type": "chips",
 			"multiple": false
 		},
 		{
 			"name": "state",
 			"label": "State",
-			"type": "select-2",
+			"type": "select",
 			"options": [
 				{ "label": "Cargo dropped", "value": "cargo_dropped" },
 				{ "label": "Cargo picked up", "value": "cargo_picked_up" },

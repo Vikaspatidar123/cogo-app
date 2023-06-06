@@ -6,9 +6,9 @@
 		{
 			"label": "Service Type",
 			"name": "service_type",
-			"type": "select-2",
+			"type": "select",
 			"multiple": false,
-			"selectType": "pills",
+			"selectType": "chips",
 			"options": [
 				{ "label": "FCL Freight", "value": "fcl_freight" },
 				{ "label": "LCL Freight", "value": "lcl_freight" },

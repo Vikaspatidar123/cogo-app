@@ -1,21 +1,40 @@
-/* eslint-disable no-param-reassign */
 /* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable no-param-reassign */
 import { Toast } from '@cogoport/components';
 import { isEmpty } from '@cogoport/utils';
 import { useState, useContext, useEffect } from 'react';
 
+import { setFormatedTradeParties } from '../../../utils/formatTradeParty';
+import { mutateShipConsFields } from '../../../utils/mutateFields';
 import { ShipmentDetailContext } from '../common/Context';
 
-import { useForm } from '@/packages/forms';
+import { useDebounceQuery, useForm } from '@/packages/forms';
 import getApiErrorString from '@/packages/forms/utils/getApiError';
 import { useRequest } from '@/packages/request';
 
+const emptyValue = {
+	country_id              : '',
+	business_name           : '',
+	registration_number     : '',
+	address                 : '',
+	pincode                 : '',
+	name                    : '',
+	work_scopes             : '',
+	email                   : '',
+	mobile_number           : '',
+	alternate_mobile_number : '',
+	not_reg_under_gst       : '',
+	tax_number              : '',
+	tax_number_document_url : '',
+};
 const FTL_FREIGHT = 'ftl_freight';
 const SHIPPER = 'shipper';
 const useCreateAddCompany = ({
 	roleCheck = '',
 	controls = [],
+	tradeParties = [],
 	setUtilities = () => {},
+	setTradeParties = () => {},
 	utilities = {},
 	listShipmentTradePartners = () => {},
 	service_prov_ids = [],
@@ -25,6 +44,8 @@ const useCreateAddCompany = ({
 	task = {},
 }) => {
 	const [errors, setErrors] = useState({});
+	const { query, debounceQuery } = useDebounceQuery();
+
 	const [compType, setCompType] = useState(
 		['shipper', 'booking_party'].includes(roleCheck)
 			? 'booking_party'
@@ -40,7 +61,7 @@ const useCreateAddCompany = ({
 		}
 	});
 
-	const { control, handleSubmit, watch, setValue } = useForm();
+	const { control, handleSubmit, watch, setValue, reset } = useForm();
 
 	const firstFormProps = watch();
 
@@ -72,13 +93,61 @@ const useCreateAddCompany = ({
 			// setValue('tax_number', '');
 		}
 	});
-
+	const { newFields } = mutateShipConsFields({
+		fields: controls,
+		firstFormProps,
+		setValue,
+		tradeParties,
+		setTradeParties,
+	});
+	const [{ loading:load }, listOrganizationTradeParties] = useRequest({
+		url    : '/list_organization_trade_parties',
+		method : 'get',
+	}, { manual: true });
+	const listTradeParties = async () => {
+		try {
+			const res = await listOrganizationTradeParties({
+				params: {
+					filters                         : { registration_number: firstFormProps.registration_number },
+					billing_addresses_data_required : true,
+					other_addresses_data_required   : true,
+					poc_data_required               : true,
+				},
+			});
+			if (!res.hasError) {
+				const list = res?.data?.list || [];
+				setFormatedTradeParties({ list, setTradeParties, compType });
+			}
+		} catch (error) {
+			Toast.error(getApiErrorString(error));
+		}
+	};
 	useEffect(() => {
 		if (firstFormProps?.not_reg_under_gst) {
 			setValue('tax_number_document_url', '');
 			setValue('tax_number', '');
 		}
 	}, [firstFormProps?.not_reg_under_gst]);
+
+	useEffect(() => {
+		debounceQuery(firstFormProps?.registration_number);
+
+		if (!firstFormProps?.registration_number?.length) {
+			reset({ ...emptyValue, country_id: firstFormProps?.country_id });
+		}
+	}, [firstFormProps?.registration_number]);
+
+	useEffect(() => {
+		if (query) {
+			reset({
+				...emptyValue,
+				country_id          : firstFormProps?.country_id,
+				registration_number : query,
+			});
+
+			listTradeParties();
+		}
+	}, [query]);
 
 	const onError = (error) => {
 		setErrors(error);
@@ -166,6 +235,7 @@ const useCreateAddCompany = ({
 	};
 
 	return {
+		newFields,
 		control,
 		handleSubmit,
 		watch,
@@ -176,6 +246,7 @@ const useCreateAddCompany = ({
 		compType,
 		firstFormProps,
 		loading,
+		load,
 	};
 };
 

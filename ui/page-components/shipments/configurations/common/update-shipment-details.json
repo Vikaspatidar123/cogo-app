@@ -101,7 +101,7 @@
 		"name": "refer_vent_setting",
 		"label": "Reefer vent Settings",
 		"type": "select",
-		"selectType": "pills",
+		"selectType": "chips",
 		"options": [
 			{ "value": "open", "label": "Open", "description": "Open" },
 			{ "value": "close", "label": "Close", "description": "Close" }

@@ -72,7 +72,7 @@ const controls = [
 			{
 				label   : 'Container Size',
 				name    : 'container_size',
-				type    : 'pills',
+				type    : 'chips',
 				span    : 12,
 				options : CONTAINER_SIZES,
 			},

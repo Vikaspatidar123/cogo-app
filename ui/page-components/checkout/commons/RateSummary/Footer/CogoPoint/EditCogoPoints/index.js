@@ -1,6 +1,7 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { Button, Input, Checkbox } from '@cogoport/components';
 import { IcCCogoCoin } from '@cogoport/icons-react';
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState } from 'react';
 
 import useUpdateCheckoutCogoPoint from '../../../../../hooks/useUpdateCheckoutCogoPoint';
 
@@ -35,21 +36,21 @@ function EditCogoPoints({ cogopoint_data = {}, refetch }) {
 		}
 	};
 
-	const useCogopPoint = useCallback(async () => {
+	const useCogopPoint = async () => {
 		const res = await updateCheckoutCogoPoint(
 			cogopoint_data.max_redeemable_cogopoints?.cogopoints,
 		);
 		if (res) {
 			await refetch();
 		}
-	}, [cogopoint_data.max_redeemable_cogopoints?.cogopoints, refetch, updateCheckoutCogoPoint]);
+	};
 
-	const removeCogopPoint = useCallback(async () => {
+	const removeCogopPoint = async () => {
 		const res = await updateCheckoutCogoPoint(0);
 		if (res) {
 			await refetch();
 		}
-	}, [refetch, updateCheckoutCogoPoint]);
+	};
 
 	useEffect(() => {
 		if (checked) {
@@ -58,7 +59,7 @@ function EditCogoPoints({ cogopoint_data = {}, refetch }) {
 		} else {
 			removeCogopPoint();
 		}
-	}, [checked, removeCogopPoint, useCogopPoint]);
+	}, [checked]);
 
 	const usePoints = async (flag) => {
 		setChecked(flag);

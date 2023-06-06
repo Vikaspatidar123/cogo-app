@@ -70,7 +70,6 @@ function Item(props) {
 		errorName,
 		label,
 	});
-
 	return (
 		<div className={`${styles.container} ${styles?.[className]} ${styles.errorClass || ''}`}>
 			{label ? (
@@ -91,6 +90,7 @@ function Item(props) {
 					'number',
 					'email',
 					'creatable-select',
+					'async_select',
 				].includes(type) ? (
 					<Message className="err_msz" text={errorOriginal} />
 					) : null}

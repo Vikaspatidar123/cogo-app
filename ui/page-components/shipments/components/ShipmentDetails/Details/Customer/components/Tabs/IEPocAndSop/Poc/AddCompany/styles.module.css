@@ -1,26 +1,7 @@
-.company_details {
-	position: relative;
-	flex-grow: 1;
-	padding-right: 10px;
-	padding-left: 10px;
-	overflow: hidden;
-}
-
 .company {
 	position: relative;
 	flex-grow: 1;
 	overflow: hidden;
-}
-
-.footer {
-	display: flex;
-	flex-direction: column;
-	margin: 16px 0;
-}
-
-.line {
-	margin: auto 0 10px;
-	border: 1px solid #ded7fc;
 }
 
 .button_container {
@@ -36,12 +17,8 @@
 	min-height: 500px;
 }
 
-.header_container {
-	height: 30%;
-}
-
 .heading {
-	padding: 13px;
+	padding: 0 13px 10px;
 	font-size: 18px;
 	font-weight: 500;
 	color: #393f70;
@@ -50,7 +27,6 @@
 .role_container {
 	display: flex;
 	align-items: center;
-	padding-bottom: 10px;
 	padding-left: 10px;
 }
 
@@ -59,4 +35,9 @@
 	font-size: 12px;
 	font-weight: 500;
 	color: #4f4f4f;
+}
+
+.search_container {
+	display: flex;
+	justify-content: flex-end;
 }

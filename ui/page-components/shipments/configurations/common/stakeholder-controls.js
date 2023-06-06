@@ -84,6 +84,18 @@ export const controls = [
 		rules       : { required: 'Address is Required' },
 	},
 	{
+<<<<<<< HEAD
+		name           : 'pincode',
+		type           : 'location-select',
+		optionsListKey : 'locations',
+		params         : { filters: { type: ['pincode'] } },
+		label          : 'Pincode / Zip Code',
+		labelKey       : 'postal_code',
+		valueKey       : 'postal_code',
+		span           : 4,
+		placeholder    : 'Enter pincode',
+		rules          : { required: 'Please provide the asked information' },
+=======
 		name        : 'pincode',
 		type        : 'async_select',
 		asyncKey    : 'locations',
@@ -94,13 +106,18 @@ export const controls = [
 		span        : 4,
 		placeholder : 'Enter pincode',
 		rules       : { required: 'Please provide the asked information' },
+>>>>>>> 2e0d284014605794e2b73e4fde898b876c6d79be
 	},
 	{
 		name           : 'country_id',
 		type           : 'select',
 		label          : 'Country',
 		span           : 4,
+<<<<<<< HEAD
+		optionsListKey : 'countries',
+=======
 		optionKey      : 'countries',
+>>>>>>> 2e0d284014605794e2b73e4fde898b876c6d79be
 		params         : { filters: { type: ['country'] } },
 		defaultOptions : true,
 		placeholder    : 'Select Country',

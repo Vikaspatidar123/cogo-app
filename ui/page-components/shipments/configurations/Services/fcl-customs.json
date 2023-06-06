@@ -30,9 +30,8 @@
 		{
 			"name": "container_size",
 			"label": "Container Size",
-			"type": "select",
 			"optionKey": "container-sizes",
-			"selectType": "pills"
+			"type": "type"
 		},
 		{
 			"name": "container_type",

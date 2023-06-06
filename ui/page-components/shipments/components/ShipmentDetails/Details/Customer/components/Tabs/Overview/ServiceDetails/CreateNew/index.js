@@ -63,14 +63,12 @@ function CreateNew({
 			<Modal
 				show={upsellModal}
 				onClose={() => setUpsellModal(false)}
-				className="primary md"
-				styles={{ dialog: { width: isMobile ? 360 : 700 } }}
 			>
 				<FormSearch
 					extraParams={{
 						importer_exporter_id: user_id,
 						importer_exporter_branch_id:
-							shipment_data?.importer_exporter_branch_id,
+						shipment_data?.importer_exporter_branch_id,
 						user_id: shipment_data?.user_id,
 					}}
 					service={form.service}

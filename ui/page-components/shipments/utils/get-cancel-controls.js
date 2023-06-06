@@ -10,8 +10,7 @@ const getCancelControls = (selectedReason, reasons, serviceProviderCancelled) =>
 		const control = {
 			name        : 'cancellation_subreason',
 			label       : 'Select sub reason',
-			type        : 'select-2',
-			selectType  : 'pills',
+			type        : 'chips',
 			span        : 12,
 			options     : subreasons || [],
 			placeholder : 'Select',

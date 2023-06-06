@@ -1,4 +1,4 @@
-import { Button } from '@cogoport/components';
+import { Button, Modal } from '@cogoport/components';
 
 import Layout from '../../../../../Layout';
 
@@ -47,33 +47,34 @@ function ExistingCompany({
 	});
 
 	return (
-		<div className={styles.element}>
-
-			<Layout
-				control={control}
-				controls={newFields}
-				errors={errors}
-			/>
-
-			<div className={styles.footer}>
-				<div className={styles.line} />
-				<div className={styles.button_container}>
-					<Button
-						onClick={() => onClose()}
-						themeType="secondary"
-						disabled={loading}
-					>
-						Cancel
-					</Button>
-					<Button
-						onClick={handleSubmit(handleExistingCompany, onError)}
-						className="primary md"
-						disabled={loading}
-					>
-						Submit
-					</Button>
+		<div>
+			<Modal.Body>
+				<Layout
+					control={control}
+					controls={newFields}
+					errors={errors}
+				/>
+			</Modal.Body>
+			<Modal.Footer>
+				<div>
+					<div className={styles.button_container}>
+						<Button
+							onClick={() => onClose()}
+							themeType="secondary"
+							disabled={loading}
+						>
+							Cancel
+						</Button>
+						<Button
+							onClick={handleSubmit(handleExistingCompany, onError)}
+							className="primary md"
+							disabled={loading}
+						>
+							Submit
+						</Button>
+					</div>
 				</div>
-			</div>
+			</Modal.Footer>
 		</div>
 	);
 }

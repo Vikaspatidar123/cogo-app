@@ -1,19 +1,19 @@
 const CONTAINER_SIZES = [
 	{
-		label : '20ft',
-		value : '20',
+		children : '20ft',
+		key      : '20',
 	},
 	{
-		label : '40ft',
-		value : '40',
+		children : '40ft',
+		key      : '40',
 	},
 	{
-		label : '40ft HC',
-		value : '40HC',
+		children : '40ft HC',
+		key      : '40HC',
 	},
 	{
-		label : '45ft HC',
-		value : '45HC',
+		children : '45ft HC',
+		key      : '45HC',
 	},
 ];
 const formControls = () => [
@@ -67,7 +67,7 @@ const formControls = () => [
 			{
 				label   : 'Container Size',
 				name    : 'container_size',
-				type    : 'pills',
+				type    : 'chips',
 				span    : 12,
 				options : CONTAINER_SIZES,
 				rules   : { required: 'Containers size is required' },
@@ -87,7 +87,7 @@ const formControls = () => [
 					commodity: {
 						label : 'Select Commodity',
 						name  : 'commodity',
-						type  : 'pills',
+						type  : 'chips',
 					},
 				},
 				rules: { required: 'Containers type & commodity is required' },
@@ -108,7 +108,7 @@ const formControls = () => [
 		label      : '',
 		name       : 'inco_term',
 		type       : 'inco-terms-select',
-		selectType : 'pills',
+		selectType : 'chips',
 		style      : { control: { width: '200px' } },
 		rules      : { required: 'Inco-term is required' },
 	},

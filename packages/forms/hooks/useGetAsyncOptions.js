@@ -32,7 +32,6 @@ function useGetAsyncOptions({
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [dependency]);
-
 	const [{ loading: loadingSingle }, triggerSingle] = useRequest(
 		{
 			url    : endpoint,

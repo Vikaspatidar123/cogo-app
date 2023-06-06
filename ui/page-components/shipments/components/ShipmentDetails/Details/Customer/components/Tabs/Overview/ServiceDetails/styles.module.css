@@ -1,25 +1,12 @@
 .create_container {
-	.ie_create_new_service {
-		height: 0;
-		padding: 44px 8px;
-		margin: 0 0 18px 4px;
-		cursor: pointer;
-
-		@media (max-width: 768px) {
-			width: 100%;
-		}
-
-		:hover {
-			border: 1px solid #4097f5;
-		}
-	}
+	width: 100%;
 }
 
 .container {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	margin-bottom: 20px;
+	margin: 20px 0;
 	border: 1px solid #fbd69f;
 	border-radius: 4px;
 }

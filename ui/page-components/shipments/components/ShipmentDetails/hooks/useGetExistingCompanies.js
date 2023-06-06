@@ -1,7 +1,7 @@
 import { startCase } from '@cogoport/utils';
 import { useState, useEffect, useContext } from 'react';
 
-import mutateFields from '../../../utils/mutate-fields';
+import { mutateFields } from '../../../utils/mutateFields';
 import { ShipmentDetailContext } from '../common/Context';
 
 import { useForm } from '@/packages/forms';
@@ -9,7 +9,6 @@ import { useRequest } from '@/packages/request';
 
 const useGetExistingCompanies = ({ role, servProvId, compType, existing_company_controls }) => {
 	const [{ shipment_data }] = useContext(ShipmentDetailContext);
-	const [companyName, setCompanyName] = useState();
 	const [companyDetails, setCompanyDetails] = useState({});
 	const { handleSubmit, watch, setValue, control } = useForm();
 	const formProps = watch();
@@ -63,10 +62,41 @@ const useGetExistingCompanies = ({ role, servProvId, compType, existing_company_
 				other_addresses_data_required   : true,
 			},
 		});
-		setCompanyName(res?.data);
+		if (!res.hasError) {
+			if (compType === 'booking_party') {
+				const tradeParty = (res?.data?.list || [])[0] || {};
+				setValue('business_name', tradeParty.legal_business_name);
+				setValue('registration_number', tradeParty.registration_number);
+				const address_list = [
+					...tradeParty.billing_addresses,
+					...tradeParty.other_addresses,
+				];
+				const address_details = address_list.map((item) => ({
+					label : item.address,
+					value : item.address,
+				}));
+				setCompanyDetails({
+					...companyDetails,
+					trade_party_id: tradeParty.id,
+					address_list,
+					address_details,
+				});
+			} else {
+				const business_name_list = (res?.data?.list || []).map((item) => ({
+					label : item?.legal_business_name,
+					value : item?.id,
+				}));
+				setCompanyDetails({
+					...companyDetails,
+					details       : res?.data?.list,
+					business_list : business_name_list,
+				});
+			}
+		}
+		// setCompanyName(res?.data);
 	};
 
-	const companyArr = companyName?.list;
+	const companyArr = companyDetails?.list;
 
 	const existingCompanyOptions = (companyArr || []).map((item) => ({
 		label : startCase(item?.business_name),
@@ -94,9 +124,7 @@ const useGetExistingCompanies = ({ role, servProvId, compType, existing_company_
 
 	return {
 		newFields,
-		existingCompanyOptions,
-		existingAddresses,
-		companyArr,
+		companyDetails,
 		loading,
 		handleSubmit,
 		watch,

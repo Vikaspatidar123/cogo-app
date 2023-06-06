@@ -17,10 +17,12 @@ const useUpdateShipment = ({
 	listShipmentTradePartners = () => {},
 	compType,
 	existing_company_controls,
+	source = '',
+	task = {},
 }) => {
 	const [{ shipment_data }] = useContext(ShipmentDetailContext);
 	const {
-		existingCompanyOptions, existingAddresses, newFields,
+		newFields,
 		handleSubmit,
 		onError, errors, formProps, companyDetails,
 		control,
@@ -32,8 +34,6 @@ const useUpdateShipment = ({
 			existing_company_controls,
 		},
 	);
-	const [existingCompany, setExistingCompany] = useState('');
-	const [address, setAddress] = useState('');
 
 	const service_ids = [];
 	(service_prov_ids || []).forEach((item) => {
@@ -43,34 +43,50 @@ const useUpdateShipment = ({
 		return false;
 	});
 
-	let addressValue = null;
-	let pincodeValue = null;
+	const addressValue = null;
+	const pincodeValue = null;
 
-	if (address) {
-		const addressParts = address.split('::');
-		addressValue = addressParts[0] || null;
-		pincodeValue = addressParts[1] || null;
-	}
+	// if (address) {
+	// 	const addressParts = address.split('::');
+	// 	addressValue = addressParts[0] || null;
+	// 	pincodeValue = addressParts[1] || null;
+	// }
 	const [{ loading }, trigger] = useRequest({
 		url    : 'create_shipment_trade_partner',
 		method : 'post',
 	}, { manual: true });
 
 	const handleExistingCompany = async () => {
-		if (!address) {
-			Toast.error('Please fill all the fields');
-			return;
-		}
+		// if (!address) {
+		// 	Toast.error('Please fill all the fields');
+		// 	return;
+		// }
 		try {
+			const {
+				check_pan_number,
+				mobile_number,
+				alternate_mobile_number,
+				...formProp
+			} = formProps;
 			const params = {
 				service_provider_id:
 					role === 'collection_party' ? servProvId : undefined,
 				service_ids      : service_ids || undefined,
 				shipment_id      : shipment_data?.id,
 				trade_party_type : role === 'booking_party' ? 'self' : role,
-				trade_party_id   : existingCompany,
-				address          : addressValue,
-				pincode          : pincodeValue,
+				trade_party_id:
+					compType === 'booking_party'
+						? companyDetails?.trade_party_id
+						: formProp?.business_name,
+				address                       : formProp?.address,
+				pincode                       : formProp?.pincode,
+				name                          : formProp?.name,
+				email                         : formProp?.email,
+				mobile_country_code           : mobile_number?.country_code,
+				mobile_number                 : mobile_number?.number,
+				alternate_mobile_country_code : alternate_mobile_number?.country_code,
+				alternate_mobile_number       : alternate_mobile_number?.number,
+				pending_task_id               : source === 'task' ? task?.id : undefined,
 			};
 
 			const res = await trigger({ params });
@@ -81,6 +97,9 @@ const useUpdateShipment = ({
 					...utilities,
 					addCompanyModal: false,
 				});
+
+				Toast.success('Task Completed!!');
+
 				listServiceRefetch();
 				listShipmentTradePartners();
 			}
@@ -91,12 +110,10 @@ const useUpdateShipment = ({
 
 	return {
 		handleExistingCompany,
-		existingCompany,
-		setExistingCompany,
-		existingCompanyOptions,
-		existingAddresses,
-		address,
-		setAddress,
+		// existingCompany,
+		// setExistingCompany,
+		// address,
+		// setAddress,
 		shipment_data,
 		loading,
 		pincodeValue,

@@ -182,6 +182,7 @@ function Poc() {
 					show={utilities?.addCompanyModal}
 					onClose={onClose}
 					onOuterClick={onClose}
+					scroll
 				>
 					<AddCompany
 						stakeholderOptions={not_added_final_stakeholders}

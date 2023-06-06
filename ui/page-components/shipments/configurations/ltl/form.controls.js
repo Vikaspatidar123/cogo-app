@@ -22,7 +22,7 @@ const controls = [
 	{
 		label         : 'Commodity',
 		name          : 'commodity',
-		type          : 'pills',
+		type          : 'chips',
 		collapse      : true,
 		commodityType : 'hazardous',
 		rules         : { required: 'Commodity is required' },

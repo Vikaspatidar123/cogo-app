@@ -1,6 +1,7 @@
 .form_fields {
 	max-height: 350px;
-	overflow-y: scroll;
+
+	/* overflow-y: scroll; */
 }
 
 .row {

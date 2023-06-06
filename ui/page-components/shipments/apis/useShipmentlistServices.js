@@ -38,7 +38,6 @@ const useListShipmentServices = ({ filterValues, otherParams = {} }) => {
 			const response = await trigger({
 				params: filters,
 			});
-			// if (response?.hasError) return;
 			return response;
 		} catch (error) {
 			console.log(error);

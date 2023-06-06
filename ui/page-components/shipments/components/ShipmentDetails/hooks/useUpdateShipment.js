@@ -1,5 +1,5 @@
 import { Toast } from '@cogoport/components';
-import { useState, useContext } from 'react';
+import { useContext } from 'react';
 
 import { ShipmentDetailContext } from '../common/Context';
 
@@ -43,7 +43,7 @@ const useUpdateShipment = ({
 		return false;
 	});
 
-	const addressValue = null;
+	// const addressValue = null;
 	const pincodeValue = null;
 
 	// if (address) {

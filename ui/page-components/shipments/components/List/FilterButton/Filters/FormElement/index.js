@@ -7,6 +7,7 @@ function Options({ fields, controls }) {
 			<div className={styles.row}>
 				{controls.map((item) => (
 					<Item
+						key={item.name}
 						name={item.name}
 						fields={fields}
 						id={`${item.name}`}

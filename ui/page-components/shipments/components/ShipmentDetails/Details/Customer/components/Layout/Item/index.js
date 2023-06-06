@@ -49,7 +49,6 @@ function Item(props) {
 		error,
 		errorName = '',
 		id_prefix = null,
-		themeType = 'admin',
 		control,
 		className,
 	} = props || {};

@@ -7,6 +7,7 @@ import useLeadUserDetails from '../../../hooks/useLeadUserDetails';
 import useSignupAuthentication from '../../../hooks/useSignupAuthentication';
 import { checkMobileInput } from '../../../utils/checkMobileInput';
 import { getIdByMobileCountryCode } from '../../../utils/getIdByMobileCountryCode';
+import { getlocationData } from '../../../utils/getLocationData';
 
 import styles from './styles.module.css';
 
@@ -25,6 +26,7 @@ function SignupForm({ userDetails = {}, setMode = () => {}, setUserDetails = () 
 	const [customError, setCustomError] = useState('');
 	const [captchaError, setCaptchaError] = useState('');
 	const [leadUserId, setLeadUserId] = useState('');
+	const [locationData, setLocationData] = useState({});
 
 	const {
 		signupAuthentication,
@@ -49,7 +51,18 @@ function SignupForm({ userDetails = {}, setMode = () => {}, setUserDetails = () 
 
 	const formValues = watch();
 
+	console.log(formValues);
+
 	const mobileCodeValue = watch('mobile_number');
+
+	useEffect(() => {
+		const fetchData = async () => {
+			const data = await getlocationData();
+			setLocationData(data);
+		};
+
+		fetchData();
+	}, []);
 
 	useEffect(() => {
 		if (mobileCodeValue?.country_code) {
@@ -173,6 +186,9 @@ function SignupForm({ userDetails = {}, setMode = () => {}, setUserDetails = () 
 					}}
 					mode="onBlur"
 					onBlur={makeApiCallForMobile}
+					value={{
+						country_code: locationData?.mobile_country_code || '+91',
+					}}
 				/>
 				<span className={styles.errors}>
 					{customError || ''}

@@ -66,7 +66,7 @@ function MobileLoginForm({
 				placeholder="Enter your Number"
 				rules={{ required: 'Mobile Number is required.' }}
 				value={{
-					country_code: locationData?.mobile_country_code || '',
+					country_code: locationData?.mobile_country_code || '+91',
 				}}
 			/>
 			<div className={styles.errors}>

@@ -21,7 +21,7 @@ function Item({ name, fields, id, val }) {
 
 	const props = {};
 
-	if (rest.type === 'select-2' && !rest.style) {
+	if (rest.type === 'select' && !rest.style) {
 		props.style = {
 			control: {
 				fontSize   : '12px',

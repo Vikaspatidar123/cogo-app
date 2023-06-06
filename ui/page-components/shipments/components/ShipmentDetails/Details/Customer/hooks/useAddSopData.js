@@ -74,7 +74,7 @@ const useAddSopData = ({
 		});
 	}
 
-	const payload =		api === 'create'
+	const payload = api === 'create'
 		? create_payload
 		: { sop_instructions: update_payload, procedure_id: sopID };
 

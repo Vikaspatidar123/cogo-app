@@ -176,7 +176,7 @@ const controls = (
 	return [
 		{
 			name           : 'service_provider_id',
-			type           : 'select-2',
+			type           : 'select',
 			label          : 'Service Provider',
 			optionsListKey : 'verified-service-providers',
 			placeholder    : 'Select Service Provider',

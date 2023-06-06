@@ -48,7 +48,7 @@
 		{
 			"name": "state",
 			"label": "State",
-			"type": "select-2",
+			"type": "select",
 			"options": [
 				{ "label": "Customs cleared", "value": "customs_cleared" },
 				{ "label": "Confirmed by service provider", "value": "confirmed_by_service_provider" },

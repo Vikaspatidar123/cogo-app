@@ -23,7 +23,7 @@ function Card({ item, priority }) {
 			</div>
 			<div className={styles.body}>
 				{(dataArr || []).map((dataObj) => (
-					<div className={styles.space_between}>
+					<div className={styles.space_between} key={dataObj?.service_provider?.business_name}>
 						<div>
 							<div className={styles.heading}>Supplier Name</div>
 							<p className={styles.sub_heading}>

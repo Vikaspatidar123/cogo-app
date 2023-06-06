@@ -85,17 +85,7 @@ function Cancellation({
 			);
 		}
 
-		return (
-		// <CancelShipment
-		// 	id={shipment_data?.id}
-		// 	showCancel={showCancel}
-		// 	setShowCancel={setShowCancel}
-		// 	onClose={() => setShow(false)}
-		// 	isIE={isIE}
-		// 	showRequest={showRequest}
-		// />
-			<div>Cancelrequest</div>
-		);
+		return null;
 	};
 	return (
 		<div className={styles.container}>

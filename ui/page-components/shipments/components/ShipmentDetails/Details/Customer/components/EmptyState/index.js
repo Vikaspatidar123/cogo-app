@@ -1,7 +1,6 @@
 import styles from './styles.module.css';
 
 function EmptyState({
-	isMobile = false,
 	showContent = {
 		heading     : 'No Results Found!',
 		description : 'Looks like you do not have any records for this section',
@@ -15,18 +14,16 @@ function EmptyState({
 				<div className={styles.content}>{showContent.description}</div>
 			</div>
 
-			{!isMobile ? (
-				<div
-					className="empty-state-icon"
-					style={{ marginLeft: '20px', width: '100', height: '100' }}
-				>
-					<img
-						src="https://cdn.cogoport.io/cms-prod/cogo_admin/vault/original/ic-empty-nonfunded.svg"
-						alt="empty-state"
-						style={{ width: '120px', height: '120px' }}
-					/>
-				</div>
-			) : null}
+			<div
+				className={styles.empty_state_icon}
+				style={{ marginLeft: '20px', width: '100', height: '100' }}
+			>
+				<img
+					src="https://cdn.cogoport.io/cms-prod/cogo_admin/vault/original/ic-empty-nonfunded.svg"
+					alt="empty-state"
+					style={{ width: '120px', height: '120px' }}
+				/>
+			</div>
 		</div>
 	);
 }

@@ -27,6 +27,7 @@ const navigationMappings = {
 		showInNav  : true,
 		mobileIcon : <IcMQuotations width={20} height={20} />,
 	},
+
 	app_discover_rates: {
 		key       : 'app_discover_rates',
 		title     : 'Discover Rates',
@@ -119,6 +120,17 @@ const navigationMappings = {
 				description: 'Find HS Codes with detailed description',
 			},
 		],
+	},
+
+	saas_cogo_insurance: {
+		key         : 'saas_tools_insurance',
+		title       : 'Insurance',
+		href        : '/v2/saas/insurance/list',
+		as          : '/v2/saas/insurance/list',
+		type        : 'link',
+		icon        : <IcMFfreferigeratedCargoType width={40} height={40} fill="red" />,
+		description : 'Buy insurance for your cargo here',
+		showInNav   : true,
 	},
 
 	saas_premium_services: {

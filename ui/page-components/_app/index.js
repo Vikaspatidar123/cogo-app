@@ -36,7 +36,9 @@ function MyApp({ Component, pageProps, store }) {
 }
 
 MyApp.getInitialProps = async ({ Component, ctx }) => {
-	const { store, req, pathname, asPath, query = {}, locale } = ctx;
+	const {
+		store, req, pathname, asPath, query = {}, locale,
+	} = ctx;
 	const isServer = typeof req !== 'undefined';
 	// const isToken = isServer ? req.headers.cookie : false;
 	const pathPrefix = '/[org_id]/[branch_id]';

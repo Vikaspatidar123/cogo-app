@@ -1,0 +1,94 @@
+.container {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	height: 100%;
+	padding: 5px 0;
+	background-color: white;
+	border-radius: 16px;
+	box-shadow:
+		0 17.8337px 60.0918px rgb(71 111 211 / 11%),
+		0 2.2331px 18.612px rgb(71 111 211 / 5.5%);
+}
+
+.yellow_line {
+	position: absolute;
+	top: 32%;
+	height: 35%;
+	background-color: #fcdc00;
+	border: 3.5px solid #fcdc00;
+	border-radius: 0 40px 40px 0;
+}
+
+.padded_div {
+	padding-left: 15px;
+}
+
+.heading_wrapper {
+	display: flex;
+	flex-direction: column;
+	width: 35%;
+	padding: 8px;
+}
+
+.invoice_details_mobile {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	padding: 8px;
+}
+
+.heading_wrapper_mobile {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	padding: 8px;
+}
+
+.invoice_details {
+	display: flex;
+	flex-direction: column;
+	width: 85%;
+	padding: 8px;
+}
+
+.flex_2 {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 100%;
+}
+
+.heading {
+	font-size: 18px;
+	font-weight: 500;
+}
+
+.line_wrapper {
+	display: flex;
+	width: 30%;
+}
+
+.line {
+	flex-grow: 1;
+	height: 3px;
+	background-color: #f68b21;
+	border-width: 0;
+}
+
+.content_wrapper {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
+.row {
+	display: flex;
+	align-items: center;
+	padding: 10px;
+}
+
+.error_message {
+	font-size: 14px;
+	color: #cb6464;
+}

@@ -37,20 +37,18 @@
 
 	&:hover {
 		box-shadow: 0 12px 32px 1px #dfe8fa99;
-
-		.text {
-			font-weight: 500;
-		}
 	}
-
+	.text {
+		font-weight: 500;
+	}
 	&.selected_card {
 		cursor: not-allowed;
 		background: #fef8f7;
 		border: 1px solid #ee3425;
+	}
 
-		.text {
-			font-weight: 500;
-		}
+	.text {
+		font-weight: 500;
 	}
 
 	@media screen and (max-width: 767px) {

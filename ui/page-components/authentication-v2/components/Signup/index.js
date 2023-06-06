@@ -18,7 +18,6 @@ const SIGNUP_FLOW_MAPPING = {
 function Signup() {
 	const [mode, setMode] = useState('signup_form');
 	const [userDetails, setUserDetails] = useState({
-
 		name               : '',
 		email              : '',
 		mobile_number      : { country_code: '', number: '' },
@@ -34,8 +33,8 @@ function Signup() {
 			setUserDetails,
 		},
 		otp_form: {
-			setMode,
 			userDetails,
+			setMode,
 		},
 		loading_prompts: {
 			type: 'signup',
@@ -49,6 +48,7 @@ function Signup() {
 			<ShipStepper />
 
 			<div className={styles.authentication_layout}>
+
 				<LayoutLogo />
 
 				<div className={styles.card_container}>
@@ -63,6 +63,7 @@ function Signup() {
 				</div>
 
 				<LayoutHelp />
+
 			</div>
 		</>
 	);

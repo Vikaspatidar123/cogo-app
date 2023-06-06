@@ -31,11 +31,15 @@ const useLoginOtpAuthentication = (
 			});
 
 			const { token } = response.data || {};
+
 			let redirectPath;
+
 			if (query.redirectPath) {
 				redirectPath = `/v2/${query.redirectPath}`;
 			}
+
 			setMode('loading_prompts');
+
 			setCookieAndRedirect(token, {}, redirectPath);
 		} catch (err) {
 			Toast.error(

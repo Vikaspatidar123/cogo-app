@@ -7,7 +7,6 @@ import useLeadUserDetails from '../../../hooks/useLeadUserDetails';
 import useSignupAuthentication from '../../../hooks/useSignupAuthentication';
 import { checkMobileInput } from '../../../utils/checkMobileInput';
 import { getIdByMobileCountryCode } from '../../../utils/getIdByMobileCountryCode';
-import { getMobileCodeByCountryId } from '../../../utils/getMobileCodeByCountryId';
 
 import styles from './styles.module.css';
 
@@ -26,6 +25,13 @@ function SignupForm({ userDetails = {}, setMode = () => {}, setUserDetails = () 
 	const [customError, setCustomError] = useState('');
 	const [captchaError, setCaptchaError] = useState('');
 	const [leadUserId, setLeadUserId] = useState('');
+
+	const {
+		signupAuthentication,
+		signupLoading,
+	} = useSignupAuthentication({ setMode, setUserDetails, captchaResponse, leadUserId });
+
+	const { onLeadUserDetails } = useLeadUserDetails({ setLeadUserId });
 
 	const {
 		handleSubmit,
@@ -53,13 +59,6 @@ function SignupForm({ userDetails = {}, setMode = () => {}, setUserDetails = () 
 			setValue('country_id', countryId);
 		}
 	}, [setValue, mobileCodeValue?.country_code]);
-
-	const { onLeadUserDetails } = useLeadUserDetails({ setLeadUserId });
-
-	const {
-		signupAuthentication,
-		signupLoading,
-	} = useSignupAuthentication({ setMode, setUserDetails, captchaResponse, leadUserId });
 
 	useEffect(() => {
 		const hasMobileValues = checkMobileInput(formValues);
@@ -118,6 +117,7 @@ function SignupForm({ userDetails = {}, setMode = () => {}, setUserDetails = () 
 
 	return (
 		<form className={styles.form_container} onSubmit={handleSubmit(onSignupApiCall)}>
+
 			<div className={styles.card_heading}>Welcome to Cogoport </div>
 
 			<div className={styles.field}>

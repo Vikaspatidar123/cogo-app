@@ -12,6 +12,7 @@ const useSignupAuthentication = ({
 
 	const signupAuthentication = async (val, e) => {
 		e.preventDefault();
+
 		try {
 			const payload = {
 				lead_user_id              : leadUserId || undefined,
@@ -31,14 +32,14 @@ const useSignupAuthentication = ({
 				},
 			});
 
-			if (res?.status === 200) {
-				const { data } = res || {};
-				setMode('otp_form');
-				setUserDetails((prev) => ({
-					...prev,
-					...data,
-				}));
-			}
+			const { data } = res || {};
+
+			setMode('otp_form');
+
+			setUserDetails((prev) => ({
+				...prev,
+				...data,
+			}));
 		} catch (err) {
 			if (err?.response?.data?.email?.length > 0) {
 				Toast.error('Email id is already registered. Please Login');

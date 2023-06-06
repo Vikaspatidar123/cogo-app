@@ -23,6 +23,7 @@ const useResetUserPassword = (setMode, setEmailId) => {
 
 			if (res.status === 200 && val.email) {
 				setMode('success');
+
 				setEmailId(val.email);
 			}
 		} catch (err) {

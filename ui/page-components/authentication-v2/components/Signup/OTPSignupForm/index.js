@@ -10,7 +10,7 @@ import styles from './styles.module.css';
 
 import OTPLayout from '@/packages/forms/Business/OTPLayout';
 
-function OTPSignupForm({ otpId = '', userDetails = {}, setMode = () => {} }) {
+function OTPSignupForm({ userDetails = {}, setMode = () => {} }) {
 	const { id = '', mobile_number = {}, email = '' } = userDetails;
 	const [otpValue, setOtpValue] = useState('');
 
@@ -20,9 +20,8 @@ function OTPSignupForm({ otpId = '', userDetails = {}, setMode = () => {} }) {
 		resendLoading = false,
 		resendOtp = () => {},
 	} = useSignupOtpAuthentication({
-		setMode,
-		otpId,
 		otpValue,
+		setMode,
 		userDetails,
 	});
 
@@ -30,6 +29,7 @@ function OTPSignupForm({ otpId = '', userDetails = {}, setMode = () => {} }) {
 
 	return (
 		<div className={styles.otp_container}>
+
 			<span onClick={() => setMode('signup_form')} role="presentation">
 				<IcMArrowBack
 					width="1.2rem"
@@ -39,6 +39,7 @@ function OTPSignupForm({ otpId = '', userDetails = {}, setMode = () => {} }) {
 			</span>
 
 			<div className={styles.card_heading}>Verify your mobile</div>
+
 			<div className={styles.card_subheading}>
 				Verification code is sent to
 				{isEmpty(mobile_number?.number) ? (
@@ -72,9 +73,11 @@ function OTPSignupForm({ otpId = '', userDetails = {}, setMode = () => {} }) {
 			>
 				Verify
 			</Button>
+
 			<div className={styles.footer_container}>
 				Please check your email
 				{'  '}
+
 				{email ? (
 					<>
 						at
@@ -82,21 +85,18 @@ function OTPSignupForm({ otpId = '', userDetails = {}, setMode = () => {} }) {
 						<b>{email}</b>
 					</>
 				) : ('')}
+
 				{'  '}
 				and follow the instructions to
 				{' '}
 				<b>verify</b>
 				{' '}
-				{/* and
-				{' '}
-				<b>create password</b>
-				{' '}
-				for  */}
 				your account.
 				<br />
 				<br />
 				If you haven&#39;t received the email within a few minutes, please check your spam folder or
 				{'  '}
+
 				<span
 					className={styles.resend_mail_button}
 					role="presentation"

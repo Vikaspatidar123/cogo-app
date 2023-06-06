@@ -26,11 +26,13 @@ const useSignupOtpAuthentication = ({ otpValue = '', setMode = () => { }, userDe
 			});
 
 			Toast?.success('Verification Successful!');
+
 			setMode('loading_prompts');
 
 			const redirectUrl = '/v2/dashboard';
 
 			const { user_session } = response || {};
+
 			const { token } = user_session || {};
 
 			setCookieAndRedirect(token, {}, redirectUrl);

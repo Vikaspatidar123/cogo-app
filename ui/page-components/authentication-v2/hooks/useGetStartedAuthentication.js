@@ -26,6 +26,7 @@ const useGetStartedAuthentication = ({ setMode = () => { } }) => {
 			});
 
 			setMode('loading_prompts');
+
 			window.location.href = '/';
 		} catch (err) {
 			if (err?.response?.data?.email?.length > 0) {

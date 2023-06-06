@@ -3,14 +3,12 @@ import { Toast } from '@cogoport/components';
 import getApiErrorString from '@/packages/forms/utils/getApiError';
 import { useRequest } from '@/packages/request/index';
 
-const useLoginMobileAuthentication = (
-	{
-		setMode = () => {},
-		setMobileNumber = () => {},
-		setOtpId = () => {},
-		mobileNumber = {},
-	},
-) => {
+const useLoginMobileAuthentication = ({
+	setMode = () => {},
+	setMobileNumber = () => {},
+	setOtpId = () => {},
+	mobileNumber = {},
+}) => {
 	const [{ loading: otpLoading }, trigger] = useRequest(
 		{
 			url    : 'send_login_otp',
@@ -28,8 +26,11 @@ const useLoginMobileAuthentication = (
 					mobile_country_code : values?.mobile_number?.country_code,
 				},
 			});
+
 			setOtpId(response?.data?.id);
+
 			setMobileNumber(values?.mobile_number);
+
 			setMode('otp_form');
 		} catch (err) {
 			Toast.error(
@@ -48,7 +49,9 @@ const useLoginMobileAuthentication = (
 			});
 
 			setOtpId(response?.data?.id);
+
 			Toast.success('OTP resent successfully');
+
 			timer?.restart?.();
 		} catch (err) {
 			Toast.error(

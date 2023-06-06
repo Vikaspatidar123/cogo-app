@@ -51,8 +51,6 @@ function SignupForm({ userDetails = {}, setMode = () => {}, setUserDetails = () 
 
 	const formValues = watch();
 
-	console.log(formValues);
-
 	const mobileCodeValue = watch('mobile_number');
 
 	useEffect(() => {

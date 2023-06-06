@@ -45,12 +45,14 @@ function Result() {
 		if (razorpay_payment_id) {
 			checkPaymentStatus();
 		}
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [razorpay_payment_id]);
 
 	useEffect(() => {
 		if (!razorpay_payment_id && trade_engine_id) {
 			postTradeEngine(trade_engine_id);
 		}
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [trade_engine_id, razorpay_payment_id]);
 
 	return (

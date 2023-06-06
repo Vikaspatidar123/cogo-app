@@ -35,24 +35,6 @@
 	border: 1px solid #dee7f1;
 	border-radius: 8px;
 
-	&:hover {
-		box-shadow: 0 12px 32px 1px #dfe8fa99;
-	}
-
-	.text {
-		font-weight: 500;
-	}
-
-	&.selected_card {
-		cursor: not-allowed;
-		background: #fef8f7;
-		border: 1px solid #ee3425;
-	}
-
-	.text {
-		font-weight: 500;
-	}
-
 	@media screen and (max-width: 767px) {
 		flex-direction: row;
 		width: 250px;
@@ -60,6 +42,26 @@
 		margin-bottom: 30px;
 	}
 }
+
+
+&card:hover {
+	box-shadow: 0 12px 32px 1px #dfe8fa99;
+}
+
+.text {
+	font-weight: 500;
+}
+
+&.selected_card {
+	cursor: not-allowed;
+	background: #fef8f7;
+	border: 1px solid #ee3425;
+}
+
+.text {
+	font-weight: 500;
+}
+
 
 .row {
 	display: flex;

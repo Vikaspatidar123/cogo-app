@@ -355,27 +355,6 @@ const saas = {
 
 	app_saas_load_container: [],
 
-	app_saas_transaction_history: [
-		{
-			api         : 'get_saas_payment_details',
-			access_type : 'private',
-			module      : 'transactionHistory',
-			feature     : 'transactionHistory',
-		},
-		{
-			api         : 'get_saas_payment_history',
-			access_type : 'private',
-			module      : 'transactionHistory',
-			feature     : 'transactionHistory',
-		},
-		{
-			api         : 'get_saas_trade_engine',
-			access_type : 'private',
-			module      : 'transactionHistory',
-			feature     : 'transactionHistory',
-		},
-	],
-
 	app_saas_order_history: [
 		{
 			api          : 'get_saas_trade_engine_order_history',
@@ -829,18 +808,6 @@ const saas = {
 		},
 	],
 
-	app_saas_order_history: [
-		{
-			api          : 'get_saas_trade_engine_order_history',
-			access_type  : 'private',
-			service_name : 'order_history',
-		},
-		{
-			api          : 'get_saas_trade_engine',
-			access_type  : 'private',
-			service_name : 'order_history',
-		},
-	],
 	app_saas_import_export_doc: [
 		{
 			api          : 'saas_get_user_quota_usage',
@@ -901,10 +868,12 @@ const saas = {
 			feature     : 'import-export-documents',
 		},
 		{
-			api          : 'get_saas_trade_engine_pdf',
-			access_type  : 'private',
-			module       : 'import-export-documents',
-			feature      : 'import-export-documents',
+			api         : 'get_saas_trade_engine_pdf',
+			access_type : 'private',
+			module      : 'import-export-documents',
+			feature     : 'import-export-documents',
+		},
+		{
 			api          : 'list_organization_documents',
 			access_type  : 'private',
 			service_name : 'organization',

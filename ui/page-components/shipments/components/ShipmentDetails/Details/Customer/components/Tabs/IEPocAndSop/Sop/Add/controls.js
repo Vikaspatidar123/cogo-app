@@ -13,7 +13,7 @@ const controls = ({ primary_service, trade_partners_details }) => [
 				type        : 'textarea',
 				name        : 'instruction',
 				label       : 'Instruction',
-				span        : 6,
+				span        : 8,
 				errorName   : 'Instruction',
 				placeholder : 'Start typing to add SOP ',
 				className   : 'primary sm',
@@ -32,7 +32,7 @@ const controls = ({ primary_service, trade_partners_details }) => [
 					'image/*,.pdf,.doc,.docx,application/msword,'
 					+ 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
 				uploadType : 'aws',
-				span       : 3,
+				span       : 4,
 			},
 		],
 	},

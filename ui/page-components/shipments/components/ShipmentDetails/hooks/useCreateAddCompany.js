@@ -1,6 +1,7 @@
 /* eslint-disable no-param-reassign */
 /* eslint-disable react-hooks/exhaustive-deps */
 import { Toast } from '@cogoport/components';
+import { isEmpty } from '@cogoport/utils';
 import { useState, useContext, useEffect } from 'react';
 
 import { ShipmentDetailContext } from '../common/Context';
@@ -9,6 +10,8 @@ import { useForm } from '@/packages/forms';
 import getApiErrorString from '@/packages/forms/utils/getApiError';
 import { useRequest } from '@/packages/request';
 
+const FTL_FREIGHT = 'ftl_freight';
+const SHIPPER = 'shipper';
 const useCreateAddCompany = ({
 	roleCheck = '',
 	controls = [],
@@ -18,6 +21,8 @@ const useCreateAddCompany = ({
 	service_prov_ids = [],
 	shipmentServiceProviderId = '',
 	trade_party_id = '',
+	source = '',
+	task = {},
 }) => {
 	const [errors, setErrors] = useState({});
 	const [compType, setCompType] = useState(
@@ -94,38 +99,53 @@ const useCreateAddCompany = ({
 					dependent_trade_party_type : [...dependentTradePartner],
 				};
 			} else {
-				const organization_params = {
-					business_name : firstFormProps?.company_name,
-					country_id    : firstFormProps?.country,
+				const {
+					check_pan_number,
+					registration_number,
+					name,
+					email,
+					mobile_number,
+					alternate_mobile_number,
+					tax_number,
+					tax_number_document_url,
+					work_scopes,
+					...formProps
+				} = firstFormProps;
+				params = {
+					shipment_id: shipment_data?.id,
+					service_ids:
+						roleCheck === 'collection_party' ? service_ids : undefined,
+					service_provider_id:
+						roleCheck === 'collection_party' ? finalServProvId : undefined,
 					organization_id:
 						roleCheck !== 'collection_party'
 							? shipment_data?.importer_exporter_id
 							: finalServProvId,
 					trade_party_type    : roleCheck === 'booking_party' ? 'self' : roleCheck,
-					registration_number : firstFormProps?.registration_number,
-				};
-
-				params = {
-					shipment_id          : shipment_data?.id,
-					org_trade_party_data : organization_params,
-					service_ids:
-						roleCheck === 'collection_party' ? service_ids : undefined,
-					service_provider_id:
-						roleCheck === 'collection_party' ? finalServProvId : undefined,
-					is_tax_applicable : firstFormProps?.not_reg_under_gst === true,
-					address           : firstFormProps?.address || undefined,
-					pincode           : firstFormProps?.pincode || undefined,
-					tax_number:
-						firstFormProps?.not_reg_under_gst === true
-							? undefined
-							: firstFormProps?.tax_number,
-					tax_number_document_url:
-						firstFormProps?.not_reg_under_gst === true
-							? undefined
-							: firstFormProps?.tax_number_document_url,
+					...formProps,
+					registration_number : isEmpty(registration_number)
+						? undefined
+						: registration_number,
+					name                    : isEmpty(name) ? undefined : name,
+					email                   : isEmpty(email) ? undefined : email,
+					tax_number              : isEmpty(tax_number) ? undefined : tax_number,
+					tax_number_document_url : isEmpty(tax_number_document_url)
+						? undefined
+						: tax_number_document_url,
+					work_scopes                   : work_scopes.length ? [...work_scopes] : undefined,
+					mobile_country_code           : mobile_number?.country_code,
+					mobile_number                 : mobile_number?.number,
+					alternate_mobile_country_code : alternate_mobile_number?.country_code,
+					alternate_mobile_number       : alternate_mobile_number?.number,
+					is_tax_applicable:
+						!isEmpty(tax_number)
+						&& shipment_data?.shipment_type === FTL_FREIGHT
+						&& roleCheck === SHIPPER
+							? true
+							: undefined,
+					pending_task_id: source === 'task' ? task?.id : undefined,
 				};
 			}
-
 			const res = await trigger({ params });
 
 			if (!res.hasError) {

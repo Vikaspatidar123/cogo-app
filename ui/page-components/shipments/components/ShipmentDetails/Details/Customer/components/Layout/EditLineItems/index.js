@@ -1,4 +1,4 @@
-import { Button } from '@cogoport/components';
+import { Button, cl } from '@cogoport/components';
 import { isEmpty } from '@cogoport/utils';
 import { useFieldArray } from 'react-hook-form';
 
@@ -42,7 +42,7 @@ function EditLineItems({
 	const className = `form_fieldArray_${name}`;
 	return (
 		<div
-			className={`${styles.container} ${styles.form_edit_line_items_root} ${styles[className]}`}
+			className={cl`${styles.container} ${styles.form_edit_line_items_root} ${styles[className]}`}
 		>
 			{!isEmpty(cargoDetails) ? (
 				<div className="cargo_details">

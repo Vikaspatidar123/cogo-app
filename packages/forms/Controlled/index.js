@@ -6,6 +6,7 @@ import CheckboxGroupController from './CheckboxGroupController';
 import ChipsController from './ChipController';
 import ControlledCommodityCon from './ControlledCommodityCon';
 import CountrySelectController from './CountrySelectController';
+import CreatableSelectController from './CreatableSelectController';
 import DatepickerController from './DatepickerController';
 import IncoTermSelectController from './IncoTermSelect';
 import InputController from './InputController';
@@ -42,9 +43,9 @@ const MAPPING = {
 	country_select             : CountrySelectController,
 	checkboxGroup              : CheckboxGroupController,
 	email                      : InputController,
-	'creatable-select'         : SelectController,
 	number                     : InputNumberController,
 	custom_slider              : Slider,
+	'creatable-select'         : CreatableSelectController,
 };
 
 const getField = (type = 'text') => {

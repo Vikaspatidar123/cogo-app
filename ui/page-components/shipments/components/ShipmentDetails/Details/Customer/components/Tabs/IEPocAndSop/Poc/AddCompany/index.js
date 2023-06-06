@@ -10,7 +10,7 @@ import {
 	bookingPartyOptions,
 } from './options';
 import SameAsBP from './SameAsBP';
-import addControls from './shipAndConsControls';
+import getCompanyControls from './shipAndConsControls';
 import styles from './styles.module.css';
 
 import useCreateAddCompany from '@/ui/page-components/shipments/components/ShipmentDetails/hooks/useCreateAddCompany';
@@ -24,6 +24,8 @@ function AddCompany({
 	utilities = {},
 	listShipmentTradePartners = () => {},
 	onClose,
+	task = {},
+	source = '',
 }) {
 	const {
 		roleCheck,
@@ -31,7 +33,7 @@ function AddCompany({
 		servProvId: shipmentServiceProviderId,
 	} = utilities;
 
-	const controls = addControls(roleCheck);
+	const controls = getCompanyControls(roleCheck);
 
 	let OPTIONS = options || [];
 
@@ -61,12 +63,13 @@ function AddCompany({
 		shipmentServiceProviderId,
 		trade_party_id,
 		listShipmentTradePartners,
+		source,
+		task,
 	});
 
 	const onSubmit = () => {
 		handleAddCompany();
 	};
-	console.log(controls, 'controls', compType);
 
 	const renderAddCompany = () => {
 		if (compType === 'same_as_booking_party') {

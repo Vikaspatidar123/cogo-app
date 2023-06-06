@@ -30,7 +30,7 @@ function Header({
 				</div>
 
 				{!isSopAddOpen ? (
-					<Button className="primary sm" onClick={() => setSopAddForm(true)}>
+					<Button size="sm" onClick={() => setSopAddForm(true)}>
 						+ Add SOP
 					</Button>
 				) : null}

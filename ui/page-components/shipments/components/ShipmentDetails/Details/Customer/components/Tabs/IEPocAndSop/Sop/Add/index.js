@@ -105,7 +105,6 @@ function AddSop({
 			</div>
 			<div className={styles.detail_upload}>
 				<Layout
-					themeType="admin"
 					controls={[fieldControls[0]]}
 					control={control}
 					errors={errors}
@@ -116,6 +115,7 @@ function AddSop({
 				{sops.length >= 1 ? (
 					<Button
 						themeType="secondary"
+						size="sm"
 						onClick={() => {
 							setQuickAction('');
 							setSopAddForm(false);
@@ -129,6 +129,7 @@ function AddSop({
 					onClick={handleSubmit(handleAddSop, onError)}
 					style={{ marginLeft: '10px' }}
 					disabled={!hasData || loading}
+					size="sm"
 				>
 					Submit
 				</Button>

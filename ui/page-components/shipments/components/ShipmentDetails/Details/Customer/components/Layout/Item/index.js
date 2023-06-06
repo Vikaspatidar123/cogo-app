@@ -71,11 +71,6 @@ function Item(props) {
 		label,
 	});
 
-	let theme = null;
-	if (themeType === 'admin') {
-		theme = 'admin';
-	}
-
 	return (
 		<div className={`${styles.container} ${styles?.[className]} ${styles.errorClass || ''}`}>
 			{label ? (
@@ -89,8 +84,7 @@ function Item(props) {
 					<div className={styles.lower_label}>{lowerlabel}</div>
 				)}
 
-				{theme !== 'admin'
-				|| ![
+				{[
 					'select',
 					'text',
 					'input',

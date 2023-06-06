@@ -46,52 +46,9 @@ function ExistingCompany({
 		onCancel,
 	});
 
-	// useEffect(() => {
-	// 	if (utilities?.trade_party_id) {
-	// 		setExistingCompany(utilities?.trade_party_id);
-	// 	}
-	// // eslint-disable-next-line react-hooks/exhaustive-deps
-	// }, []);
 	return (
 		<div className={styles.element}>
-			{/* <div className={styles.select_layout}>
-				<div>
-					<div className={styles.label}>Select Company</div>
-					<Select
-						isClearable
-						placeholder="Choose Existing Company"
-						style={{ marginBottom: 8 }}
-						value={existingCompany}
-						onChange={setExistingCompany}
-						options={existingCompanyOptions}
-					/>
-				</div>
 
-				{existingCompany?.length ? (
-					<div style={{ marginLeft: '20px' }}>
-						<div className={styles.label}>Select Address</div>
-
-						<Select
-							caret
-							isClearable
-							placeholder="Choose Address"
-							style={{ marginBottom: 8 }}
-							value={address}
-							options={existingAddresses[existingCompany] || []}
-							onChange={setAddress}
-							className="primary md"
-							theme="admin"
-						/>
-					</div>
-				) : null}
-
-				{existingCompany?.length && address?.length ? (
-					<div style={{ marginLeft: '20px' }}>
-						<div className={styles.label}>Pincode</div>
-						<div className={styles.pincode_container}>{address?.split('::')?.[1]}</div>
-					</div>
-				) : null}
-			</div> */}
 			<Layout
 				control={control}
 				controls={newFields}

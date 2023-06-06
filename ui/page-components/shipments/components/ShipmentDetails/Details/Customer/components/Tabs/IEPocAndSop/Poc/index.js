@@ -192,6 +192,7 @@ function Poc() {
 						utilities={utilities}
 						listShipmentTradePartners={listShipmentTradePartners}
 						onClose={onClose}
+						shipment_data={shipment_data}
 					/>
 				</Modal>
 			) : null}

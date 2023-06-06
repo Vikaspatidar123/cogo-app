@@ -3,13 +3,14 @@ import { IcMArrowBack } from '@cogoport/icons-react';
 import { isEmpty } from '@cogoport/utils';
 import { useState } from 'react';
 
+import useLoginMobileAuthentication from '../../../hooks/useLoginMobileAuthentication';
 import useLoginOtpAuthentication from '../../../hooks/useLoginOtpAuthentication';
 
 import styles from './styles.module.css';
 
 import OTPLayout from '@/packages/forms/Business/OTPLayout';
 
-function OTPLoginForm({ setMode = () => {}, otpId = '', mobileNumber = {}, resendOtp = () => {} }) {
+function OTPLoginForm({ setMode = () => {}, otpId = '', mobileNumber = {} }) {
 	const [otpValue, setOtpValue] = useState('');
 
 	const {
@@ -21,6 +22,10 @@ function OTPLoginForm({ setMode = () => {}, otpId = '', mobileNumber = {}, resen
 		otpValue,
 		setMode,
 	});
+
+	const {
+		resendOtp = () => {},
+	} = useLoginMobileAuthentication({ mobileNumber });
 
 	return (
 		<div className={styles.otp_container}>

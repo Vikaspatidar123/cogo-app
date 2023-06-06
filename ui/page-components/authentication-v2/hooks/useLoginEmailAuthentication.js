@@ -39,7 +39,7 @@ const useLoginEmailAuthentication = ({ setMode = () => {} }) => {
 		}
 	};
 
-	return { onSubmit, loading: loginLoading };
+	return { onSubmit, loginLoading };
 };
 
 export default useLoginEmailAuthentication;

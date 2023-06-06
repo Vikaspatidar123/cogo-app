@@ -8,7 +8,9 @@ import { useRouter } from '@/packages/next';
 
 function EmailForm({ resetUserPassword = () => {}, resetPasswordLoading = false }) {
 	const { handleSubmit, formState: { errors }, control } = useForm();
+
 	const router = useRouter();
+
 	return (
 		<>
 			<span onClick={() => { router.back(); }} role="presentation">
@@ -18,11 +20,14 @@ function EmailForm({ resetUserPassword = () => {}, resetPasswordLoading = false 
 					style={{ cursor: 'pointer' }}
 				/>
 			</span>
+
 			<div className={styles.card_heading}>Forgot your Password?</div>
 			<div className={styles.card_sub_heading}>
 				We will send you a link to Reset your Password
 			</div>
+
 			<form className={styles.form_container} onSubmit={handleSubmit(resetUserPassword)}>
+
 				<div className={styles.label}>Email address</div>
 				<InputController
 					control={control}
@@ -43,6 +48,7 @@ function EmailForm({ resetUserPassword = () => {}, resetPasswordLoading = false 
 				>
 					Reset Password
 				</Button>
+
 			</form>
 		</>
 	);

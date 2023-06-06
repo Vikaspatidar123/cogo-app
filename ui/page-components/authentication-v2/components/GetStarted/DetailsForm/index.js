@@ -8,7 +8,9 @@ import styles from './styles.module.css';
 import { InputController, useForm } from '@/packages/forms';
 import CountrySelectController from '@/packages/forms/Controlled/CountrySelectController';
 
-function DetailsForm({ setMode = () => {} }) {
+function DetailsForm({ setMode = () => { } }) {
+	const { onGetStartedApi = () => {}, getStartedLoading } = useGetStartedAuthentication({ setMode });
+
 	const { handleSubmit, formState: { errors }, control } = useForm({
 		defaultValues: {
 			business_name : '',
@@ -16,11 +18,11 @@ function DetailsForm({ setMode = () => {} }) {
 		},
 	});
 
-	const { onGetStartedApi = () => {}, getStartedLoading } = useGetStartedAuthentication({ setMode });
-
 	return (
 		<form className={styles.form_container} onSubmit={handleSubmit(onGetStartedApi)}>
+
 			<div className={styles.card_heading}>Get Started</div>
+
 			<div className={styles.field}>
 				<div className={styles.label}>Company Name</div>
 				<InputController

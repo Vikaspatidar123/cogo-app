@@ -7,7 +7,9 @@ import styles from './styles.module.css';
 
 function LoadingPrompts({ type = '' }) {
 	const [currentPromptIndex, setCurrentPromptIndex] = useState(0);
+
 	const modifiedPrompts = prompts[type] || [];
+
 	const { length } = modifiedPrompts;
 
 	useEffect(() => {
@@ -23,8 +25,11 @@ function LoadingPrompts({ type = '' }) {
 	const currentPrompt = modifiedPrompts[currentPromptIndex] || '';
 	return (
 		<div className={styles.loading_container}>
+
 			<Loader className={styles.loading_circle} />
+
 			<p className={styles.loading_prompts}>{currentPrompt}</p>
+
 		</div>
 	);
 }

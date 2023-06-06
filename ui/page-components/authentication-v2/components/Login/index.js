@@ -1,6 +1,5 @@
 import { useState } from 'react';
 
-import useLoginMobileAuthentication from '../../hooks/useLoginMobileAuthentication';
 import LayoutHelp from '../common/LayoutHelp';
 import LayoutLogo from '../common/LayoutLogo';
 import LoadingPrompts from '../common/LoadingPrompts';
@@ -21,23 +20,17 @@ function Login() {
 	const [mobileNumber, setMobileNumber] = useState({});
 	const [otpId, setOtpId] = useState('');
 
-	const {
-		onSendOtp = () => {},
-		otpLoading = false,
-		resendOtp = () => {},
-	} = useLoginMobileAuthentication({ setMode, setMobileNumber, setOtpId, mobileNumber });
-
 	const componentProps = {
 		login_tabs: {
-			onSendOtp,
-			otpLoading,
 			setMode,
+			setMobileNumber,
+			setOtpId,
+			mobileNumber,
 		},
 		otp_form: {
 			otpId,
 			mobileNumber,
 			setMode,
-			resendOtp,
 		},
 		loading_prompts: {
 			type: 'login',
@@ -45,28 +38,6 @@ function Login() {
 	};
 
 	const Component = LOGIN_FLOW_MAPPING[mode] || null;
-
-	// const [location, setLocation] = useState(null);
-
-	// useEffect(() => {
-	// 	if (navigator.geolocation) {
-	// 		navigator.geolocation.getCurrentPosition(
-	// 			(position) => {
-	// 				setLocation({
-	// 					latitude  : position.coords.latitude,
-	// 					longitude : position.coords.longitude,
-	// 				});
-	// 			},
-	// 			(error) => {
-	// 				console.log(error.message);
-	// 			},
-	// 		);
-	// 	} else {
-	// 		console.log('Geolocation is not supported by this browser.');
-	// 	}
-	// }, []);
-
-	// console.log('Location Details:: ', location);
 
 	return (
 		<>

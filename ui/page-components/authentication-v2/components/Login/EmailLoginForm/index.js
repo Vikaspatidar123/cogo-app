@@ -10,8 +10,15 @@ import { useForm, InputController } from '@/packages/forms';
 
 function EmailLoginForm({ setMode = () => {} }) {
 	const [showPassword, setShowPassword] = useState(false);
-	const { onSubmit = () => {}, loginLoading = false } = useLoginEmailAuthentication({ setMode });
-	const { handleSubmit, formState: { errors }, control } = useForm();
+
+	const { onSubmit = () => { }, loginLoading = false } = useLoginEmailAuthentication({ setMode });
+
+	const { handleSubmit, formState: { errors }, control } = useForm({
+		defaultValues: {
+			email    : '',
+			password : '',
+		},
+	});
 
 	const renderSuffix = () => {
 		if (!showPassword) {
@@ -21,7 +28,8 @@ function EmailLoginForm({ setMode = () => {} }) {
 	};
 
 	return (
-		<form className={styles.form_container} onSubmit={handleSubmit((data, e) => onSubmit(data, e))}>
+		<form className={styles.form_container} onSubmit={handleSubmit(onSubmit)}>
+
 			<div className={styles.label}>Email address</div>
 			<InputController
 				control={control}
@@ -60,6 +68,7 @@ function EmailLoginForm({ setMode = () => {} }) {
 				<a href="/v2/forgot-password">Forgot Password?</a>
 				<a href="/v2/signup">Create a New Account</a>
 			</div>
+
 		</form>
 	);
 }

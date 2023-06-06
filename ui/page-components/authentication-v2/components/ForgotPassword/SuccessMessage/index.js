@@ -4,6 +4,7 @@ function SuccessMessage({ resetUserPassword = () => {}, emailId = '' }) {
 	return (
 		<>
 			<div className={styles.card_heading}>Password Reset Link Sent</div>
+
 			<div className={styles.card_body}>
 				Check your email
 				{' '}
@@ -16,6 +17,7 @@ function SuccessMessage({ resetUserPassword = () => {}, emailId = '' }) {
 				<br />
 				Simply click on the link to proceed with resetting your password.
 			</div>
+
 			<div className={styles.info}>
 				Please Note:
 				<ul>
@@ -30,6 +32,7 @@ function SuccessMessage({ resetUserPassword = () => {}, emailId = '' }) {
 					</li>
 				</ul>
 			</div>
+
 			<div className={styles.links}>
 				Didn&#39;t receive the password reset link?
 				{' '}

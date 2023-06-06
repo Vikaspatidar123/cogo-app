@@ -1,18 +1,40 @@
 import { Button } from '@cogoport/components';
 import { useEffect, useState } from 'react';
 
+import useLoginMobileAuthentication from '../../../hooks/useLoginMobileAuthentication';
 import { checkMobileInput } from '../../../utils/checkMobileInput';
+import { getlocationData } from '../../../utils/getLocationData';
 
 import styles from './styles.module.css';
 
 import { useForm, MobileNumberSelectController } from '@/packages/forms';
 
-function MobileLoginForm({ onSendOtp = () => {}, otpLoading = false }) {
+function MobileLoginForm({
+	setMode = () => {},
+	setMobileNumber = () => {},
+	setOtpId = () => {},
+	mobileNumber = {},
+}) {
+	const [customError, setCustomError] = useState('');
+	const [locationData, setLocationData] = useState({});
+
+	const {
+		onSendOtp = () => {},
+		otpLoading = false,
+	} = useLoginMobileAuthentication({ setMode, setMobileNumber, setOtpId, mobileNumber });
+
 	const { handleSubmit, control, watch } = useForm();
 
-	const [customError, setCustomError] = useState('');
-
 	const formValues = watch();
+
+	useEffect(() => {
+		const fetchData = async () => {
+			const data = await getlocationData();
+			setLocationData(data);
+		};
+
+		fetchData();
+	}, []);
 
 	useEffect(() => {
 		const hasValues = checkMobileInput(formValues);
@@ -35,18 +57,20 @@ function MobileLoginForm({ onSendOtp = () => {}, otpLoading = false }) {
 
 	return (
 		<form className={styles.form_container} onSubmit={handleSubmit(onOtpApiCall)}>
+
 			<div className={styles.label}>Mobile Number</div>
-			<div>
-				<MobileNumberSelectController
-					control={control}
-					name="mobile_number"
-					type="mobile-number-select"
-					placeholder="Enter your Number"
-					rules={{ required: 'Mobile Number is required.' }}
-				/>
-				<div className={styles.errors}>
-					{customError || ''}
-				</div>
+			<MobileNumberSelectController
+				control={control}
+				name="mobile_number"
+				type="mobile-number-select"
+				placeholder="Enter your Number"
+				rules={{ required: 'Mobile Number is required.' }}
+				value={{
+					country_code: locationData?.mobile_country_code || '',
+				}}
+			/>
+			<div className={styles.errors}>
+				{customError || ''}
 			</div>
 
 			<Button

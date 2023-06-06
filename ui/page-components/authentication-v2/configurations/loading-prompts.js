@@ -6,6 +6,7 @@ export const prompts = {
 		"Sit tight! We're preparing your account for a seamless experience.",
 		'Your login is being processed. Thank you for your patience.',
 	],
+
 	signup: [
 		'Creating your account, please wait...',
 		'Preparing everything just for you...',

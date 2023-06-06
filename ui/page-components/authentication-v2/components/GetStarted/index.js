@@ -29,7 +29,9 @@ function GetStarted() {
 	return (
 		<>
 			<ShipStepper />
+
 			<div className={styles.authentication_layout}>
+
 				<LayoutLogo />
 
 				<div className={styles.card_container}>
@@ -44,9 +46,9 @@ function GetStarted() {
 				</div>
 
 				<LayoutHelp />
+
 			</div>
 		</>
-
 	);
 }
 

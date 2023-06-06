@@ -8,6 +8,7 @@ import styles from './styles.module.css';
 function LayoutLogo() {
 	return (
 		<div className={styles.header}>
+
 			<a href="https://www.cogoport.com">
 				<img
 					src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/cogoport.svg"
@@ -25,6 +26,7 @@ function LayoutLogo() {
 					</Button>
 				</Popover>
 			</div>
+
 		</div>
 	);
 }

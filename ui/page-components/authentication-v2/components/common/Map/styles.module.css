@@ -1,0 +1,8 @@
+.transition {
+	transition: all 0.5s ease;
+}
+
+.location_icon {
+	fill: #D6B300;
+	scale: 3;
+}

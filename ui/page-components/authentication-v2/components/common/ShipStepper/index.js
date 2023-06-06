@@ -1,6 +1,12 @@
 // import { useEffect, useState } from 'react';
 
+import dynamic from 'next/dynamic';
+
 import styles from './styles.module.css';
+
+const Map = dynamic(() => import('../Map'), {
+	ssr: false,
+});
 
 function ShipStepper({ mode = '' }) {
 	// const [shipPosition, setShipPosition] = useState({ x: '10%', y: '35%', rotation: 42 });
@@ -32,23 +38,11 @@ function ShipStepper({ mode = '' }) {
 	// 	}
 	// }, [mode]);
 	return (
-		<div className={styles.ship_background} />
-		// <div className={styles.ship_background}>
-		// 	<img src="https://i.ibb.co/W30wHpL/background.png" alt="bg" />
-		// 	<div
-		// 		className={styles.ship_container}
-		// 		style={{
-		// 			transform : `translate(-50%, -50%) rotate(${shipPosition.rotation}deg)`,
-		// 			top       : shipPosition.y,
-		// 			left      : shipPosition.x,
-		// 		}}
-		// 	>
-		// 		<img
-		// 			src="https://i.ibb.co/vxDd651/ship.png"
-		// 			alt="Ship"
-		// 		/>
-		// 	</div>
-		// </div>
+		<div className={styles.container}>
+			<div className={styles.bg} />
+			<Map />
+		</div>
+
 	);
 }
 

@@ -1,5 +1,5 @@
-import styled from '@cogoport/front/styled';
 import Modal from '@cogoport/front/components/admin/Modal';
+import styled from '@cogoport/front/styled';
 
 export const StyledModal = styled(Modal)`
 	.ui-modal-dialog {

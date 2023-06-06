@@ -21,14 +21,14 @@ import {
 } from '../../utils/getAsyncFields';
 
 const keyAsyncFieldsParamsMapping = {
-	locations              : asyncFieldsLocations,
-	locations2             : asyncFieldsLocations2,
-	partners               : asyncFieldsPartner,
-	partner_roles          : asyncFieldsPartnerRoles,
-	hs_code_countries      : asyncFieldsHsCodeCountries,
-	list_partner_quotation : asyncFieldsPartnerQuotation,
-	list_products          : asyncProductList,
-	country_list_with_flag : asyncCountrySelect,
+	locations                  : asyncFieldsLocations,
+	locations2                 : asyncFieldsLocations2,
+	partners                   : asyncFieldsPartner,
+	partner_roles              : asyncFieldsPartnerRoles,
+	hs_code_countries          : asyncFieldsHsCodeCountries,
+	list_partner_quotation     : asyncFieldsPartnerQuotation,
+	list_products              : asyncProductList,
+	country_list_with_flag     : asyncCountrySelect,
 	commodities_list_insurance : asyncFieldsCommoditiesList,
 	insurance_country_list     : asyncInsuranceCountryList,
 	'organization-branches'    : asyncOrganizationBranches,

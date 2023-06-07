@@ -44,7 +44,7 @@ export const airControls = (trade_type, airlineOptions) => {
 		{
 			label   : 'Select Suitable Schedules',
 			name    : 'suitable_schedule',
-			type    : 'pills',
+			type    : 'chips',
 			span    : 12,
 			options : [],
 			rules   : { required: 'Required' },

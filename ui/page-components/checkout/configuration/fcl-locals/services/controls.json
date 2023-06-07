@@ -2,11 +2,11 @@
     {
 		"name": "have_ad_code",
 		"label": "Have AD Code?",
-		"type": "pills",
+		"type": "chips",
 		"span": 6,
 		"options": [
-			{ "label": "Yes", "value": "yes" },
-			{ "label": "No", "value": "no" }
+			{ "children": "Yes", "key": "yes" },
+			{ "children": "No", "key": "no" }
 		],
 		"condition": { "services": ["export_fcl_cfs"] },
 		"rules": { "required": "This is required" }
@@ -14,12 +14,12 @@
 	{
 		"name": "ad_code_reg",
 		"label": "Do you want AD Code Registration?",
-		"type": "pills",
+		"type": "chips",
 		"caret": true,
 		"span": 6,
 		"options": [
-			{ "label": "Yes", "value": "yes" },
-			{ "label": "No", "value": "no" }
+			{ "children": "Yes", "key": "yes" },
+			{ "children": "No", "key": "no" }
 		],
 		"condition": { "have_ad_code": "no", "services": ["export_fcl_cfs"] },
 		"rules": { "required": "This is required" }
@@ -118,49 +118,49 @@
     {
         "name": "cargo_handling_type",
 		"label": "Destination Cargo Handling",
-		"type": "pills",
+		"type": "chips",
 		"caret": true,
 		"span": 12,
 		"options": [
 			{
-                "label": "Direct Port Delivery",
-				"value": "direct_port_delivery"
+                "children": "Direct Port Delivery",
+				"key": "direct_port_delivery"
 			},
 			{
-                "label": "Destuffing at Factory",
-				"value": "delivery_from_dock"
+                "children": "Destuffing at Factory",
+				"key": "delivery_from_dock"
 			},
 			{
-                "label": "Destuffing at CFS",
-				"value": "destuffing_at_dock"
+                "children": "Destuffing at CFS",
+				"key": "destuffing_at_dock"
 			},
 			{
-                "label": "DPD Without CFS",
-				"value": "dpd_without_cfs"
+                "children": "DPD Without CFS",
+				"key": "dpd_without_cfs"
 			},
 			{
-				"label": "DPD CFS Dock Destuffing",
-				"value": "dpd_cfs_dock_destuffing"
+				"children": "DPD CFS Dock Destuffing",
+				"key": "dpd_cfs_dock_destuffing"
 			},
 			{
-                "label": "DPD CFS Factory Destuffing",
-				"value": "dpd_cfs_factory_destuffing"
+                "children": "DPD CFS Factory Destuffing",
+				"key": "dpd_cfs_factory_destuffing"
 			},
 			{
-                "label": "Empanelled CFS Dock Destuffing",
-				"value": "enpanelled_cfs_dock_destuffing"
+                "children": "Empanelled CFS Dock Destuffing",
+				"key": "enpanelled_cfs_dock_destuffing"
 			},
 			{
-                "label": "Empanelled CFS Factory Destuffing",
-				"value": "enpanelled_cfs_factory_destuffing"
+                "children": "Empanelled CFS Factory Destuffing",
+				"key": "enpanelled_cfs_factory_destuffing"
 			},
 			{
-				"label": " Non-Empanelled CFS Factory Destuffing",
-				"value": "non_enpanelled_cfs_factory_destuffing"
+				"children": " Non-Empanelled CFS Factory Destuffing",
+				"key": "non_enpanelled_cfs_factory_destuffing"
 			},
 			{
-                "label": "Non-Empanelled CFS Dock Destuffing",
-				"value": "non_enpanelled_cfs_dock_destuffing"
+                "children": "Non-Empanelled CFS Dock Destuffing",
+				"key": "non_enpanelled_cfs_dock_destuffing"
 			}
 		],
 		"condition": { "services": ["import_fcl_customs", "import_transportation"] },
@@ -169,36 +169,36 @@
     {
 		"name": "cargo_handling_type",
 		"label": "Select type of stuffing",
-		"type": "pills",
+		"type": "chips",
 		"span": 12,
 		"options": [
             {
-				"label": "DPD without cfs",
-				"value": "dpd_without_cfs"
+				"children": "DPD without cfs",
+				"key": "dpd_without_cfs"
 			},
 			{
-                "label": "DPD cfs dock destuffing",
-				"value": "dpd_cfs_dock_destuffing"
+                "children": "DPD cfs dock destuffing",
+				"key": "dpd_cfs_dock_destuffing"
 			},
 			{
-                "label": "DPD cfs factory destuffing",
-				"value": "dpd_cfs_factory_destuffing"
+                "children": "DPD cfs factory destuffing",
+				"key": "dpd_cfs_factory_destuffing"
 			},
 			{
-				"label": "Empanelled cfs dock destuffing",
-				"value": "enpanelled_cfs_dock_destuffing"			
+				"children": "Empanelled cfs dock destuffing",
+				"key": "enpanelled_cfs_dock_destuffing"			
 			},
 			{
-                "label": "Empanelled cfs factory destuffing",
-				"value": "enpanelled_cfs_factory_destuffing"
+                "children": "Empanelled cfs factory destuffing",
+				"key": "enpanelled_cfs_factory_destuffing"
 			},
 			{
-                "label": "Non-empanelled cfs dock destuffing",
-				"value": "non_enpanelled_cfs_dock_destuffing"
+                "children": "Non-empanelled cfs dock destuffing",
+				"key": "non_enpanelled_cfs_dock_destuffing"
 			},
 			{
-                "label": "Non-empanelled cfs factory destuffing",
-				"value": "non_enpanelled_cfs_factory_destuffing"
+                "children": "Non-empanelled cfs factory destuffing",
+				"key": "non_enpanelled_cfs_factory_destuffing"
 			}
 		],
 		"condition": { "services": ["import_fcl_cfs"] },
@@ -207,16 +207,16 @@
     {
         "name": "cargo_handling_type",
 		"label": "Select type of stuffing",
-		"type": "pills",
+		"type": "chips",
 		"span": 12,
 		"options": [
             {
-                "label": "Factory Stuffing",
-				"value": "stuffing_at_factory"
+                "children": "Factory Stuffing",
+				"key": "stuffing_at_factory"
 			},
 			{
-                "label": "Dock Stuffing",
-				"value": "stuffing_at_dock"
+                "children": "Dock Stuffing",
+				"vakeylue": "stuffing_at_dock"
 			}
 		],
 		"condition": { "services": ["export_fcl_cfs"] },

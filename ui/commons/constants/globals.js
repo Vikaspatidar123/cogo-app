@@ -35,6 +35,9 @@ const GLOBAL_CONSTANTS = {
 			'hh:mm aaa' : 'hh:mm aaa',
 			'HH:mm'     : 'HH:mm',
 		},
+		date_time: {
+			'dd MMM yyyy hh:mm aa': 'dd MMM yyyy hh:mm aa',
+		},
 	},
 
 	container_type_size: {

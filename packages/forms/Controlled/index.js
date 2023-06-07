@@ -6,6 +6,7 @@ import CheckboxGroupController from './CheckboxGroupController';
 import ChipsController from './ChipController';
 import ControlledCommodityCon from './ControlledCommodityCon';
 import CountrySelectController from './CountrySelectController';
+import CreatableSelectController from './CreatableSelectController';
 import DatepickerController from './DatepickerController';
 import IncoTermSelectController from './IncoTermSelect';
 import InputController from './InputController';
@@ -24,7 +25,6 @@ import UploadController from './UploadController';
 const MAPPING = {
 	select                     : SelectController,
 	text                       : InputController,
-	number                     : InputNumberController,
 	textarea                   : TextAreaController,
 	file                       : UploadController,
 	checkbox                   : CheckboxController,
@@ -32,17 +32,20 @@ const MAPPING = {
 	datepicker                 : DatepickerController,
 	multi_select               : MultiselectController,
 	async_select               : AsyncSelectController,
-	chips                      : ChipsController,
 	radio                      : RadioController,
+	radiogroup                 : RadioGroupController,
+	price_select               : PriceController,
+	chips                      : ChipsController,
 	slider                     : SliderController,
 	'container_type-commodity' : ControlledCommodityCon,
 	'input-group'              : InputGroupController,
 	'inco-terms-select'        : IncoTermSelectController,
-	checkboxGroup              : CheckboxGroupController,
-	radiogroup                 : RadioGroupController,
-	price_select               : PriceController,
 	country_select             : CountrySelectController,
+	checkboxGroup              : CheckboxGroupController,
+	email                      : InputController,
+	number                     : InputNumberController,
 	custom_slider              : Slider,
+	'creatable-select'         : CreatableSelectController,
 };
 
 const getField = (type = 'text') => {

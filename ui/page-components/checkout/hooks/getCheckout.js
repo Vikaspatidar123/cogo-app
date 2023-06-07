@@ -360,7 +360,6 @@ const useGetCheckout = () => {
 	useEffect(() => {
 		getCheckout();
 	}, []);
-
 	useEffect(() => {
 		refetch(true);
 	}, [checkout_id]);

@@ -109,7 +109,7 @@ const airControls = () => [
 		defaultOptions : true,
 		caret          : true,
 		name           : 'preferred_airline_ids',
-		subType        : 'select-2',
+		subType        : 'select',
 		label          : 'Preferred Air lines',
 		multiple       : true,
 		placeholder    : 'Search airline...',

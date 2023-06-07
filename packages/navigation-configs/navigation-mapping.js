@@ -177,8 +177,8 @@ const navigationMappings = {
 	app_bookings: {
 		key       : 'app_bookings',
 		title     : 'Shipments',
-		href      : '/shipments',
-		as        : '/shipments',
+		href      : '/v2/shipments',
+		as        : '/v2/shipments',
 		icon      : 'nav-booking',
 		showInNav : true,
 	},

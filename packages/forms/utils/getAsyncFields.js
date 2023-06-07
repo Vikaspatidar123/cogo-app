@@ -29,6 +29,7 @@ function asyncFieldsLocations(labelKey = 'name', valueKey = 'id') {
 		},
 	};
 }
+
 function asyncFieldsPartner() {
 	return {
 		labelKey    : 'business_name',
@@ -66,6 +67,20 @@ function asyncFieldsHsCodeCountries() {
 		defaultParams : { page_limit: 20 },
 	};
 }
+function asyncFieldsPinCodeLocations(labelKey = 'name', valueKey = 'id') {
+	return {
+		valueKey,
+		labelKey,
+		endpoint    : 'list_locations',
+		initialCall : true,
+		params      : {
+			filters    : { status: 'active' },
+			page_limit : 20,
+			includes   : { country: true, default_params_required: true },
+		},
+	};
+}
+
 function asyncAirLines() {
 	return {
 		valueKey      : 'id',
@@ -94,6 +109,15 @@ function asyncShippingLines() {
 		},
 	};
 }
+function asyncFieldsHScode() {
+	return {
+		valueKey    : 'id',
+		labelKey    : 'name',
+		endpoint    : 'list_hs_codes',
+		initialCall : true,
+		params      : { page_limit: 20 },
+	};
+}
 function asyncCountrySelect() {
 	return {
 		valueKey : 'id',
@@ -102,18 +126,29 @@ function asyncCountrySelect() {
 		params   : {
 			filters  : { type: 'country' },
 			includes : {
-				default_params_required: true, // flag_icon_url: true, // country_code: true,
+				default_params_required: true,
+				// flag_icon_url: true, // country_code: true,
 			},
-
-			page_limit: 20,
-
-			sort_by: 'name',
-
-			sort_type: 'asc',
+			page_limit : 20,
+			sort_by    : 'name',
+			sort_type  : 'asc',
 		},
 	};
 }
-
+function asyncAirLinesSelect() {
+	return {
+		valueKey    : 'id',
+		labelKey    : 'short_name',
+		endpoint    : 'list_operators',
+		initialCall : true,
+		params      : {
+			filters    : { operator_type: 'airline', status: 'active' },
+			page_limit : 100,
+			sort_by    : 'short_name',
+			sort_type  : 'asc',
+		},
+	};
+}
 function asyncFieldsCommoditiesList() {
 	return {
 		labelKey      : 'label',
@@ -224,6 +259,15 @@ function asyncProductList() {
 		initialCall : false,
 	};
 }
+function asyncTradeContacts() {
+	return {
+		valueKey       : 'id',
+		labelKey       : 'company_name',
+		endpoint       : 'list_trade_contacts',
+		defaultParams  : { page_limit: 20 },
+		defaultOptions : true,
+	};
+}
 
 export {
 	asyncFieldsLocations,
@@ -231,11 +275,14 @@ export {
 	asyncFieldsPartner,
 	asyncFieldsPartnerRoles,
 	asyncFieldsHsCodeCountries,
+	asyncFieldsPinCodeLocations,
+	asyncFieldsHScode,
+	asyncCountrySelect,
+	asyncAirLinesSelect,
 	asyncFieldsCommoditiesList,
 	asyncInsuranceCountryList,
 	asyncAirLines,
 	asyncShippingLines,
-	asyncCountrySelect,
 	asyncFieldsPartnerQuotation,
 	asyncInsuranceCommodities,
 	asyncTradeParties,
@@ -244,4 +291,5 @@ export {
 	asyncHsCodesCountries,
 	asyncOrganizationBranches,
 	asyncProductList,
+	asyncTradeContacts,
 };

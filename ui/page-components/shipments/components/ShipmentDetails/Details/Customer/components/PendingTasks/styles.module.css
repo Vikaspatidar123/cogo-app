@@ -1,0 +1,24 @@
+.container {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	width: 100%;
+	background: #fef6df;
+	border: 1px solid #fbe39f;
+	border-radius: 4px;
+	box-shadow: 0 1px 6px rgb(169 188 218 / 65%);
+
+	@media (max-width: 768px) {
+		width: 100%;
+		margin-bottom: 8px;
+	}
+}
+
+.empty_container {
+	padding: 68px 12px;
+	border-radius: 4px;
+}
+
+.card_component {
+	width: 100%;
+}

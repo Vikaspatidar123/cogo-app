@@ -25,7 +25,7 @@ import UploadController from './UploadController';
 const MAPPING = {
 	select                     : SelectController,
 	text                       : InputController,
-	number                     : InputController,
+	number                     : InputNumberController,
 	textarea                   : TextAreaController,
 	file                       : UploadController,
 	checkbox                   : CheckboxController,

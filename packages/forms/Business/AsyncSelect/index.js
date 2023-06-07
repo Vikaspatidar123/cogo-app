@@ -37,13 +37,13 @@ const keyAsyncFieldsParamsMapping = {
 	shipping_lines             : asyncShippingLines,
 	hs_code                    : asyncFieldsHScode,
 	air_lines                  : asyncAirLinesSelect,
+	commodities_list_insurance : asyncFieldsCommoditiesList,
+	insurance_country_list     : asyncInsuranceCountryList,
 	'organization-branches'    : asyncOrganizationBranches,
 	insurance_commodities      : asyncInsuranceCommodities,
 	'air-lines'                : asyncAirLines,
 	'shipping-lines'           : asyncShippingLines,
 	trade_contacts             : asyncTradeContacts,
-	commodities_list_insurance : asyncFieldsCommoditiesList,
-	insurance_country_list     : asyncInsuranceCountryList,
 };
 
 function AsyncSelect(props) {

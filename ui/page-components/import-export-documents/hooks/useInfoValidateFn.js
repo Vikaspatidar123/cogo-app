@@ -52,6 +52,7 @@ const useInfoValidateFn = ({
 		} else if (!isEmpty(description)) {
 			setValue('productName', description);
 		}
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [selectedData]);
 
 	useEffect(() => {
@@ -95,7 +96,7 @@ const useInfoValidateFn = ({
 		if (billId) {
 			checkPaymentStatus();
 		}
-	}, [billId]);
+	}, [billId, checkPaymentStatus]);
 
 	const getPayloadData = (data) => {
 		const header = {

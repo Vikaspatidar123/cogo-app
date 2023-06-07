@@ -1,5 +1,5 @@
 import { Toast } from '@cogoport/components';
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo, useCallback } from 'react';
 
 import { useRequest } from '@/packages/request';
 import { useSelector } from '@/packages/store';
@@ -26,7 +26,7 @@ const useGetQuota = () => {
 		priority_sequence: prioritySequence = 0,
 	} = data || {};
 
-	const getQuota = async () => {
+	const getQuota = useCallback(async () => {
 		try {
 			await trigger({
 				params: { organization_id: organization?.id },
@@ -34,10 +34,10 @@ const useGetQuota = () => {
 		} catch (err) {
 			Toast.error(err?.message);
 		}
-	};
+	}, [organization?.id, trigger]);
 	useEffect(() => {
 		getQuota();
-	}, []);
+	}, [getQuota]);
 
 	useMemo(() => {
 		if (data) {
@@ -68,6 +68,7 @@ const useGetQuota = () => {
 				);
 			}
 		}
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [data]);
 
 	return {

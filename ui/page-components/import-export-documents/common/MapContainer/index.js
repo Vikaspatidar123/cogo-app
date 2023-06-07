@@ -72,6 +72,7 @@ function MapContainer({
 				]);
 			}
 		}
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [exportCountry?.id, originId, destinationId, transportMode]);
 
 	useEffect(() => {

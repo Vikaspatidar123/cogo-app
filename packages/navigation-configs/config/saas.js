@@ -54,7 +54,8 @@ const saas = {
 		isMainNav  : true,
 	},
 	'/saas/premium-services/import-export-doc/[trade_engine_id]/result': {
-		navigation: 'saas_premium_services-import_export_docs',
+		navigation : 'saas_premium_services-import_export_docs',
+		isMainNav  : true,
 	},
 	'/saas/air-tracking': {
 		navigation : 'saas_tools-air_tracking',
@@ -89,7 +90,6 @@ const saas = {
 		navigation : 'saas_cogo_insurance',
 		isMainNav  : true,
 	},
-
 };
 
 module.exports = saas;

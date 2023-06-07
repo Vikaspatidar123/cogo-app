@@ -73,6 +73,7 @@ function ValidateHsModal({
 		if (status && inputValue.length === 0) {
 			setPrevHs(hsCode);
 		}
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [inputValue, status]);
 
 	useEffect(() => {
@@ -83,6 +84,7 @@ function ValidateHsModal({
 				setIsValidated(false);
 			}
 		}
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 	return (
 		<Modal

@@ -355,27 +355,6 @@ const saas = {
 
 	app_saas_load_container: [],
 
-	app_saas_transaction_history: [
-		{
-			api         : 'get_saas_payment_details',
-			access_type : 'private',
-			module      : 'transactionHistory',
-			feature     : 'transactionHistory',
-		},
-		{
-			api         : 'get_saas_payment_history',
-			access_type : 'private',
-			module      : 'transactionHistory',
-			feature     : 'transactionHistory',
-		},
-		{
-			api         : 'get_saas_trade_engine',
-			access_type : 'private',
-			module      : 'transactionHistory',
-			feature     : 'transactionHistory',
-		},
-	],
-
 	app_saas_order_history: [
 		{
 			api          : 'get_saas_trade_engine_order_history',
@@ -881,6 +860,38 @@ const saas = {
 			feature     : 'import-export-documents',
 		},
 
+	],
+	app_saas_transaction_history: [
+		{
+			api         : 'get_saas_payment_details',
+			access_type : 'private',
+			module      : 'transactionHistory',
+			feature     : 'transactionHistory',
+		},
+		{
+			api         : 'get_saas_payment_history',
+			access_type : 'private',
+			module      : 'transactionHistory',
+			feature     : 'transactionHistory',
+		},
+		{
+			api         : 'get_saas_pdf_bill',
+			access_type : 'private',
+			module      : 'transactionHistory',
+			feature     : 'transactionHistory',
+		},
+		{
+			api         : 'get_saas_trade_engine',
+			access_type : 'private',
+			module      : 'transactionHistory',
+			feature     : 'transactionHistory',
+		},
+		{
+			api         : 'get_saas_trade_engine_pdf',
+			access_type : 'private',
+			module      : 'transactionHistory',
+			feature     : 'transactionHistory',
+		},
 	],
 
 };

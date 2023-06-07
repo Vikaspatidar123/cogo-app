@@ -1,13 +1,15 @@
 import { Toast } from '@cogoport/components';
 import { useState } from 'react';
 
+import { useRouter } from '@/packages/next';
 import { useRequestBf } from '@/packages/request';
 import { useSelector } from '@/packages/store';
 
 const useVerifyHscode = () => {
 	const [inputValue, setInputValue] = useState([]);
 	const { profile } = useSelector((state) => state);
-
+	const { query } = useRouter();
+	const paymentType = query?.billId ? 'PAYMENT' : 'QUOTA';
 	const [{ loading }, trigger] = useRequestBf({
 		method  : 'post',
 		url     : 'saas/trade-engine/hs-engine',
@@ -47,7 +49,9 @@ const useVerifyHscode = () => {
 				data: {
 					hsCode,
 					destinationCountryCode,
-					performedBy: profile?.id,
+					organizationId : profile?.organization?.id,
+					performedBy    : profile?.id,
+					paymentType,
 				},
 			});
 

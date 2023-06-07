@@ -1,8 +1,10 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { cl } from '@cogoport/components';
 import { IcMMoney } from '@cogoport/icons-react';
 import { useEffect, forwardRef, useImperativeHandle, useState } from 'react';
 
 import chargesControls from '../../configuration/chargesControls';
+import { EXTRA_CHARGES_MAPPING } from '../../constant/charges';
 import useCurrencyConversion from '../../hooks/useCurrencyConversion';
 
 import BasicCharge from './BasicCharge';
@@ -11,12 +13,14 @@ import styles from './styles.module.css';
 
 import { useForm } from '@/packages/forms';
 import getField from '@/packages/forms/Controlled';
-import { shortFormatNumber } from '@/ui/commons/utils/getShortFormatNumber';
+import formatAmount from '@/ui/commons/utils/formatAmount';
+
+const SelectController = getField('select');
+const TextAreaController = getField('textarea');
 
 function Charges(props, ref) {
 	const {
-		submitForm, quoteRef, transportMode, editData = {}, createQuoteHook = {}, consignmentValue = 0,
-		watchCurrency = 'INR',
+		quoteRef, editData = {}, consignmentValue = 0, watchCurrency = 'INR', ...rest
 	} = props;
 
 	const [totalQuotation, setTotalQuotation] = useState(0);
@@ -28,10 +32,9 @@ function Charges(props, ref) {
 
 	const { prevCurrency, currCurrency } = storeCurrency;
 	const { getExchangeRate } = useCurrencyConversion({});
-	const { control, watch, setValue, handleSubmit, formState:{ errors } } = useForm();
+	const formHook = useForm();
+	const { control, watch, setValue, handleSubmit } = formHook;
 
-	const SelectController = getField('select');
-	const TextAreaController = getField('textarea');
 	const watchCharges = watch();
 
 	const {
@@ -111,7 +114,7 @@ function Charges(props, ref) {
 					+ +incotermCharge,
 			);
 		}
-	}, [JSON.stringify(watchCharges), consignmentValue]);
+	}, [watchCharges, consignmentValue]);
 
 	useImperativeHandle(ref, () => ({
 		handleSubmit: () => {
@@ -145,43 +148,38 @@ function Charges(props, ref) {
 
 			<BasicCharge
 				fields={chargesControls}
-				control={control}
-				errors={errors}
-				submitForm={submitForm}
+				formHook={formHook}
 				ref={quoteRef}
-				setValue={setValue}
-				watch={watch}
-				transportMode={transportMode}
-				createQuoteHook={createQuoteHook}
+				consignmentValue={consignmentValue}
+				rest={rest}
 			/>
 
 			<div className={styles.hr} />
 
-			<IncoTermCharge
-				watch={watch}
-				control={control}
-				chargeFields={chargesControls}
-				exchangeRate={exchangeRate}
-				setValue={setValue}
-				errors={errors}
-				name="incotermCharges"
-				index="4"
-			/>
-			<IncoTermCharge
-				watch={watch}
-				chargeFields={chargesControls}
-				exchangeRate={exchangeRate}
-				control={control}
-				setValue={setValue}
-				errors={errors}
-				name="additionalCharges"
-				index="5"
-			/>
+			{EXTRA_CHARGES_MAPPING.map(({ name = '', sequence = '' }) => (
+				<IncoTermCharge
+					key={name}
+					chargeFields={chargesControls}
+					exchangeRate={exchangeRate}
+					formHook={formHook}
+					name={name}
+					index={sequence}
+				/>
+			))}
 
 			<div className={styles.footer_section}>
 				<div className={cl`${styles.total_quotation} ${styles.flex_box}`}>
 					<span>Quotation Total:</span>
-					{shortFormatNumber(totalQuotation, 'INR', true)}
+					{formatAmount({
+						amount   : totalQuotation,
+						currency : 'INR',
+						options  : {
+							style                 : 'currency',
+							currencyDisplay       : 'symbol',
+							notation              : 'standard',
+							maximumFractionDigits : 2,
+						},
+					})}
 				</div>
 
 				<div className={styles.comment}>

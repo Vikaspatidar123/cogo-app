@@ -5,15 +5,18 @@
 		overflow: auto;
 	}
 }
-.flex_box{
+
+.flex_box {
 	display: flex;
-	justify-content: space-between;
-	align-items: center;
 	flex-wrap: wrap;
-	@media screen and (max-width: 767px){
+	align-items: center;
+	justify-content: space-between;
+
+	@media screen and (max-width: 767px) {
 		flex-direction: column;
 	}
 }
+
 .container {
 	@media (max-width: 768px) {
 		width: 100%;
@@ -43,8 +46,9 @@
 
 .form_col {
 	width: 45%;
-	font-size: 13px;
 	margin: 12px 0;
+	font-size: 13px;
+
 	@media (max-width: 768px) {
 		width: 100%;
 	}
@@ -71,9 +75,9 @@
 }
 
 .form_label {
-	margin-bottom: 3px;
 	display: flex;
 	justify-content: space-between;
+	margin-bottom: 3px;
 }
 
 .error_text {
@@ -196,7 +200,6 @@
 	height: 20px;
 }
 
-
-.disabled{
+.disabled {
 	background-color: #f3f3f3;
 }

@@ -66,7 +66,6 @@ function ContainerDetails(props, ref) {
 			});
 		},
 	}));
-	// useImperativeHandle(ref, imperativeHandle);
 
 	return (
 		<div className={styles.container}>

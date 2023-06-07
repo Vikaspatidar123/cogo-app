@@ -11,7 +11,7 @@ import useVerifyHsCode from '../../../../../hooks/useVerifyHsCode';
 
 import styles from './styles.module.css';
 
-import { shortFormatNumber } from '@/ui/commons/utils/getShortFormatNumber';
+import formatAmount from '@/ui/commons/utils/formatAmount';
 import HsCodeModal from '@/ui/page-components/hs-code-modal';
 
 const content = ({ hsRecommendation = [], setStatus, setCheckButton, setVerifiedData }) => (
@@ -65,7 +65,7 @@ function ProductField({
 	const {
 		hsRecommendation, status, setStatus,
 		checkButton, setCheckButton, verifyLoading, verifyHsCode,
-	} = useVerifyHsCode();
+	} = useVerifyHsCode({ isQuotaLeft });
 
 	const { productLength, disableValidateBtn, lineItemLength } = useProductField({
 		selectedData,
@@ -174,7 +174,16 @@ function ProductField({
 							</Tooltip>
 							{!isQuotaLeft && (
 								<Pill color="#FEF0DF">
-									{shortFormatNumber(services[service?.name]?.price, serviceCurrency, true)}
+									{formatAmount({
+										amount   : services[service?.name]?.price,
+										currency : serviceCurrency,
+										options  : {
+											style                 : 'currency',
+											currencyDisplay       : 'symbol',
+											notation              : 'standard',
+											maximumFractionDigits : 2,
+										},
+									})}
 									/-
 								</Pill>
 							)}

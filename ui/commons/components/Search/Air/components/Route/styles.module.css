@@ -1,0 +1,69 @@
+.container {
+	display: flex;
+	flex-wrap: wrap;
+	margin-bottom: 0;
+
+	@media (max-width: 760px) {
+		flex-direction: column;
+	}
+
+	.custom-select-input-chipcontainer {
+		height: inherit;
+	}
+
+	.custom-select-input-select-placeholder {
+		display: flex;
+		align-items: center;
+		font-size: 14px;
+		font-weight: 400;
+		color: #cbcff5;
+	}
+
+	.custom-select-input-subcontainer {
+		border: 1px solid #cbcff5 !important;
+		border-radius: 4px;
+	}
+
+	.business-checkbox-item {
+		margin-top: 15px;
+	}
+
+	.business-checkbox-label {
+		color: #393f70;
+	}
+}
+
+.lable {
+	margin: 18px 0 12px;
+	font-size: 14px;
+	font-weight: 600;
+	color: #393f70;
+
+	@media (max-width: 760px) {
+		margin: 8px 0 5px;
+	}
+}
+
+.errors {
+	min-height: 16px;
+	margin-top: 4px;
+	font-size: 12px;
+	line-height: 16px;
+	color: #cb6464;
+}
+
+.field {
+	padding: 0 8px;
+
+	@media (max-width: 760px) {
+		width: max-content !important;
+	}
+}
+
+.edit {
+	:global {
+		.ui_select_container {
+			width: 210px !important;
+		}
+	}
+}

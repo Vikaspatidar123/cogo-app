@@ -2,65 +2,93 @@ import { cl, Button, Popover } from '@cogoport/components';
 import { IcMFilter, IcMPlus } from '@cogoport/icons-react';
 import { useState, memo } from 'react';
 
+import redirectUrl from '../../../utils/redirectUrl';
 import getSummary from '../../configurations/summary';
 
 import Card from './Card';
 import FilterContent from './FilterContent';
 import styles from './styles.module.css';
 
-import { useRouter } from '@/packages/next';
-
 function Header({
-	filters, setFilters, summaryLoading = false,
-	summaryData = {},
+	summaryLoading = false,
+	summaryData = {}, setGlobalFilter, globalFilter = {},
 }) {
-	const [showFilters, setshowFilters] = useState(false);
-	const { push } = useRouter();
+	const [showFilters, setShowFilters] = useState(false);
+	const [mobileFilters, setMobileFilters] = useState(false);
+
+	const { redirectQuotation } = redirectUrl();
 	const summaryControl = getSummary({ summaryResp: summaryData });
 	return (
-		<div className={styles.container}>
-			<div className={cl`${styles.summary} ${styles.flex_container}`}>
-				{(summaryControl || []).map((summary) => (
-					<Card key={summary?.name} summary={summary} loading={summaryLoading} />
-				))}
-			</div>
-			<div className={cl`${styles.filter_section} ${styles.flex_container}`}>
+		<>
+			<div className={styles.main_quote}>
+				<div className={styles.quote}>Quick Quotations</div>
 				<Popover
 					placement="bottom"
-					interactive={showFilters}
-					visible={showFilters}
-					onClickOutside={() => setshowFilters(false)}
+					interactive
+					visible={mobileFilters}
+					onClickOutside={() => setMobileFilters(false)}
 					content={(
 						<FilterContent
-							filters={filters}
-							setFilters={setFilters}
+							globalFilter={globalFilter}
+							setGlobalFilter={setGlobalFilter}
 						/>
 					)}
 					maxWidth={350}
 				>
-					<Button size="lg" themeType="accent" onClick={() => setshowFilters(!showFilters)}>
-						<div className={styles.btn_text}>Filter By</div>
-						<IcMFilter />
-					</Button>
-				</Popover>
-				<Button
-					size="lg"
-					className={styles.create_btn}
-					onClick={() => push(
-						'/saas/quickquotation/createquotation',
-						'/saas/quickquotation/createquotation',
-					)}
-				>
-					<IcMPlus />
 					<div
-						className={styles.btn_text}
+						className={styles.filter_icon}
+						role="presentation"
+						onClick={() => setMobileFilters(!mobileFilters)}
 					>
-						Create New
+						<IcMFilter />
 					</div>
-				</Button>
-			</div>
+				</Popover>
 
-		</div>
+			</div>
+			<div className={styles.container}>
+				<div className={cl`${styles.summary} ${styles.flex_container}`}>
+					{(summaryControl || []).map((summary) => (
+						<Card key={summary?.name} summary={summary} loading={summaryLoading} />
+					))}
+				</div>
+				<div className={cl`${styles.filter_section} ${styles.flex_container}`}>
+					<Popover
+						placement="bottom"
+						interactive
+						visible={showFilters}
+						onClickOutside={() => setShowFilters(false)}
+						content={(
+							<FilterContent
+								globalFilter={globalFilter}
+								setGlobalFilter={setGlobalFilter}
+							/>
+						)}
+						maxWidth={350}
+					>
+
+						<Button
+							size="lg"
+							themeType="accent"
+							onClick={() => setShowFilters(!showFilters)}
+						>
+							<div className={styles.btn_text}>Filter By</div>
+							<IcMFilter />
+						</Button>
+
+					</Popover>
+					<Button size="lg" className={styles.create_btn}>
+						<IcMPlus />
+						<div
+							className={styles.btn_text}
+							role="presentation"
+							onClick={redirectQuotation}
+						>
+							Create New
+						</div>
+					</Button>
+				</div>
+			</div>
+		</>
 	);
 }
 

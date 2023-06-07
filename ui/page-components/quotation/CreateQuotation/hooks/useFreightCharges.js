@@ -1,4 +1,5 @@
 import { Toast } from '@cogoport/components';
+import { useCallback } from 'react';
 
 import { useRequest } from '@/packages/request';
 
@@ -13,7 +14,7 @@ const useFreightCharges = () => {
 		url    : '/get_spot_search',
 	}, { manual: true });
 
-	const getSpotSearchfn = async (id) => {
+	const getSpotSearchfn = useCallback(async (id) => {
 		try {
 			await getSpotSearch({
 				params: {
@@ -24,8 +25,9 @@ const useFreightCharges = () => {
 		} catch (err) {
 			Toast.error(err?.message);
 		}
-	};
-	const createSpotSearch = async (payload) => {
+	}, [getSpotSearch]);
+
+	const createSpotSearch = useCallback(async (payload) => {
 		try {
 			const resp = await trigger({
 				data: {
@@ -36,7 +38,8 @@ const useFreightCharges = () => {
 		} catch (err) {
 			Toast.error(err?.error?.search_type?.[0]);
 		}
-	};
+	}, [getSpotSearchfn, trigger]);
+
 	return {
 		getSpotSearchfn,
 		createSpotSearch,

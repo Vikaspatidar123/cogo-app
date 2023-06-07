@@ -16,10 +16,12 @@
 		}
 	}
 }
-.scroll{
-	overflow-y: scroll;
+
+.scroll {
 	max-height: 280px;
+	overflow-y: scroll;
 }
+
 .row {
 	display: flex;
 	align-items: center;

@@ -12,6 +12,8 @@ import Summary from './Summary';
 import { useRouter } from '@/packages/next';
 
 function Checkout() {
+	const [address, setAddress] = useState();
+
 	const { query } = useRouter();
 	const [localStorageData, setLocalStorageData] = useState({});
 	const { trade_engine_id } = query || {};
@@ -20,6 +22,7 @@ function Checkout() {
 	const { serviceRatesLoading, serviceRateData } = useGetServiceRates(prioritySequence);
 	const { initiatePayment, paymentLoading } = usePayment({
 		hsCode: localStorageData?.hsCode,
+		address,
 	});
 
 	const {
@@ -57,6 +60,8 @@ function Checkout() {
 					getPrice={getPrice}
 					paymentHandler={paymentHandler}
 					loading={serviceRatesLoading || paymentLoading}
+					setAddress={setAddress}
+					address={address}
 				/>
 			</div>
 		</div>

@@ -24,6 +24,7 @@ function SubNavigation({ setIsOpen, setShowPopover, subscriptionNav }) {
 					className={`${styles.a_container}`}
 					onClick={() => handleClick(href, as)}
 					role="presentation"
+					key={title}
 				>
 					{title}
 				</div>

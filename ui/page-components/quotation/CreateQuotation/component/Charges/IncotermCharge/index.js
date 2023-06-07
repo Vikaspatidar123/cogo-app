@@ -9,9 +9,9 @@ import styles from '../styles.module.css';
 import { useFieldArray } from '@/packages/forms';
 
 function IncoTermCharge(props) {
-	const {
-		control, chargeFields, errors, watch, name, index: i, setValue, exchangeRate,
-	} = props || {};
+	const { formHook, chargeFields, name, index: i, exchangeRate } = props || {};
+
+	const { control, setValue, watch, formState:{ errors } } = formHook;
 
 	const { fields, append, remove } = useFieldArray({
 		control,

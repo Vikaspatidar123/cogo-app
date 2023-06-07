@@ -45,6 +45,7 @@ function ValidateProductModal(props) {
 	const { product = {}, destinationPortDetails = {}, header } = quoteRes;
 	const productInfoArr = product?.products || [];
 	const currency = header?.currency;
+	console.log(quoteRes, 'quoteRes');
 
 	const { services = {}, currency:serviceCurrency = 'INR' } = serviceData || {};
 	const { headerResponse = {}, lineItem: productLineItemDetails = [] } = getDraftData;
@@ -98,6 +99,7 @@ function ValidateProductModal(props) {
 				}));
 			});
 		}
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [product]);
 
 	return (
@@ -159,6 +161,7 @@ function ValidateProductModal(props) {
 						postTradeEngine={postTradeEngine}
 						setTransactionModal={setTransactionModal}
 						locationLoading={locationLoading}
+						quoteRes={quoteRes}
 					/>
 				)}
 

@@ -1,12 +1,18 @@
 import { Popover } from '@cogoport/components';
 import { IcCGreenCircle, IcCYelloCircle, IcMOverflowDot } from '@cogoport/icons-react';
 
-import { shortFormatNumber } from '@/ui/commons/utils/getShortFormatNumber';
+import formatAmount from '@/ui/commons/utils/formatAmount';
 
 const itemFunction = () => {
 	const renderFunction = {
-		renderAmount : (item, data) => shortFormatNumber(item, data?.currency || 'INR'),
-		renderStatus : (status) => (
+		renderAmount: (item, data) => formatAmount({
+			amount   : item,
+			currency : data?.currency,
+			options  : {
+				style: 'currency',
+			},
+		}),
+		renderStatus: (status) => (
 			<span>
 				{status === 'SENT' && <IcCGreenCircle width={9} height={9} />}
 				{status === 'DRAFTED' && <IcCYelloCircle width={9} height={9} />}
@@ -24,6 +30,9 @@ const itemFunction = () => {
 
 				</div>
 			</Popover>
+		),
+		renderHyperLink: (item, data, redirectPreview) => (
+			<div onClick={() => redirectPreview(data?.quotationId)} role="presentation">{data[item?.key]}</div>
 		),
 	};
 	return renderFunction;

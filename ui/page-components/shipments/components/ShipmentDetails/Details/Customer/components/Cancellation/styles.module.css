@@ -1,0 +1,25 @@
+.container {
+	@media (max-width: 768px) {
+		display: flex;
+		justify-content: flex-end;
+		width: fit-content;
+	}
+}
+
+.icon_container {
+	cursor: pointer;
+	border-radius: 10px;
+
+	[data-tippy-root] {
+		z-index: 999 !important;
+	}
+
+	@media (max-width: 768px) {
+		display: flex;
+		justify-content: flex-end;
+	}
+}
+
+.icon_container:hover {
+	box-shadow: 0 3px 4px rgb(0 0 0 / 15%);
+}

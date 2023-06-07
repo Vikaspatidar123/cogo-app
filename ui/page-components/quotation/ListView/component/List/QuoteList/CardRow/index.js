@@ -1,10 +1,9 @@
 import { Placeholder, cl } from '@cogoport/components';
 
+import redirectUrl from '../../../../../utils/redirectUrl';
 import tooltipConfig from '../../../../configurations/tooltipConfig';
 import itemFunction from '../../../../utils/itemFunction';
 import styles from '../styles.module.css';
-
-import redirectUrl from '@/ui/page-components/quotation/utils/redirectUrl';
 
 const tooltipContent = ({ documentStatus, quotationId, setShowDeleteModal, setQuoteId }) => {
 	const redirectData = redirectUrl();
@@ -38,12 +37,15 @@ const tooltipContent = ({ documentStatus, quotationId, setShowDeleteModal, setQu
 		</div>
 	);
 };
-const getData = ({ item, data, renderFunction, loading = true, setShowDeleteModal, setQuoteId }) => {
+const getData = ({ item, data, renderFunction, loading = true, setShowDeleteModal, setQuoteId, redirectPreview }) => {
 	if (loading) {
 		return <Placeholder />;
 	}
 	if (item?.renderFunc === 'renderToolTip') {
 		return renderFunction[item?.renderFunc](data, tooltipContent, item, setShowDeleteModal, setQuoteId);
+	}
+	if (item?.renderFunc === 'renderHyperLink') {
+		return renderFunction[item?.renderFunc](item, data, redirectPreview);
 	}
 	if (item?.renderFunc) {
 		return renderFunction[item?.renderFunc](data[item?.key], data);
@@ -53,11 +55,16 @@ const getData = ({ item, data, renderFunction, loading = true, setShowDeleteModa
 
 function CardRow({ data, config, loading, setShowDeleteModal, setQuoteId }) {
 	const renderFunction = itemFunction();
+	const { redirectPreview } = redirectUrl();
+
 	return (
 		<div className={cl`${styles.card_row} ${styles.row_item}`}>
 			{config.map((item) => (
-				<div className={cl`${styles.col} ${styles[item?.className]}`} style={{ width: `${item?.width}` }}>
-					{getData({ item, data, renderFunction, loading, setShowDeleteModal, setQuoteId })}
+				<div
+					className={cl`${styles.col} ${styles[item?.className]}`}
+					style={{ width: `${item?.width}` }}
+				>
+					{getData({ item, data, renderFunction, loading, setShowDeleteModal, setQuoteId, redirectPreview })}
 				</div>
 			))}
 

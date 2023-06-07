@@ -1,0 +1,10 @@
+[
+	{
+		"label": "Cheapest",
+		"value": "total_price_discounted"
+	},
+	{
+		"label": "Dest. Storage",
+		"value": "destination_storage_free_limit"
+	}
+]

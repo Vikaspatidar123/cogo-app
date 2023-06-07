@@ -1,16 +1,18 @@
-.row{
-    display: flex;
-	padding: 12px;
-	justify-content: space-between;
+.row {
+	display: flex;
 	align-items: flex-end;
-}
-.line{
-	border-bottom: 1px dashed #c3d1df;
-}
-.container{
-	margin-bottom: 20px ;
+	justify-content: space-between;
+	padding: 12px;
 }
 
-.disabled{
+.line {
+	border-bottom: 1px dashed #c3d1df;
+}
+
+.container {
+	margin-bottom: 20px;
+}
+
+.disabled {
 	background-color: #f3f3f3;
 }

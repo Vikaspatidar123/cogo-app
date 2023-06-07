@@ -11,10 +11,41 @@
 	justify-content: space-between;
 }
 
+.filter_section {
+	@media screen and (max-width: 767px) {
+		display: none;
+	}
+}
+
 .create_btn {
 	margin-left: 12px;
 }
 
 .btn_text {
 	margin: 0 4px;
+}
+
+.main_quote {
+	display: none;
+
+	@media screen and (max-width: 767px) {
+		display: flex;
+		justify-content: space-between;
+		margin-bottom: 25px;
+	}
+}
+
+.quote {
+	margin-left: 3px;
+	font-size: 18px;
+	font-weight: 600;
+	color: rgb(89 80 133);
+}
+
+.filter_icon {
+	display: flex;
+	justify-content: center;
+	padding: 6px 11px;
+	border: 1px solid rgb(209 209 225);
+	border-radius: 4px;
 }

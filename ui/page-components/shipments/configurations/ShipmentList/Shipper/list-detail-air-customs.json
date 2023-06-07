@@ -1,0 +1,56 @@
+{
+	"name": "shipment",
+	"title": "Shipments",
+	"filter_controls": [
+		{
+			"name": "airport_id",
+			"label": "Origin Airport",
+			"multiple": false,
+			"type": "async_select",
+			"asyncKey":"locations",
+			"params": {
+				"filters": {
+					"type": ["airport"]
+				}
+			}
+		},
+		{
+			"name": "destination_country_id",
+			"label": "Destination Country",
+			"sort": true,
+			"type": "async_select",
+			"asyncKey":"country_list_with_flag",
+			"multiple": false
+		},
+		{
+			"name": "commodity",
+			"label": "Commodity",
+			"type": "select",
+			"commodityType": "air_freight",
+			"optionKey": "true"
+		},
+		{
+			"name": "state",
+			"label": "State",
+			"type": "select",
+			"options": [
+				{ "label": "Customs cleared", "value": "customs_cleared" }
+			]
+		}
+	],
+	"list_states": {
+		"ongoing": ["shipment_received", "confirmed_by_importer_exporter", "in_progress"],
+		"past": ["completed", "cancelled", "aborted"]
+	},
+	"routeInfo": {
+		"origin_pickup": "",
+		"origin_drop": "",
+		"origin_port": "airport",
+		"origin_main_port": "",
+		"destination_main_port": "",
+		"destination_port": "",
+		"destination_pickup": "",
+		"destination_drop": ""
+	},
+	"pending_tasks": {}
+}

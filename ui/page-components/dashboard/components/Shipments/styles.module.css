@@ -1,0 +1,301 @@
+.header {
+	padding: 20px;
+	margin-top: 20px;
+	background: rgb(255 255 255);
+	border-radius: 10px;
+	box-shadow: rgb(0 0 0 / 15%) 0 2px 4px;
+}
+
+.second {
+	margin: 20px 0;
+	background: rgb(255 255 255);
+	border: 1px solid rgb(224 224 224);
+	border-radius: 10px;
+	box-shadow: rgb(0 0 0 / 10%) 0 2px 15px;
+}
+
+.inner {
+	display: flex;
+	align-items: normal;
+	justify-content: flex-start;
+	margin-left: -8px;
+
+	@media screen and (max-width: 767px) {
+		flex-direction: column;
+	}
+}
+
+.data {
+	flex: 0 0 75%;
+	padding-left: 8px;
+}
+
+.details {
+	position: relative;
+	right: auto;
+	left: auto;
+	box-sizing: border-box;
+	display: flex;
+	flex: 0 0 25%;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-around;
+	min-height: 1px;
+	padding-right: 1.2rem !important;
+	padding-left: 8px;
+	margin-top: 10px;
+	margin-bottom: 15px;
+	margin-left: 0%;
+	border-left: 1px solid rgb(224 224 224);
+	-webkit-box-align: center;
+
+	@media screen and (max-width: 767px) {
+		display: flex;
+		flex-direction: row;
+	}
+}
+
+.first_data {
+	display: flex;
+	justify-content: space-between;
+}
+
+.id {
+	display: flex;
+	align-items: center;
+	width: 100px;
+	height: 25px;
+	padding: 4px 14px;
+	font-size: 10px;
+	background: rgb(217 234 253);
+	border-radius: 0 0 10px;
+}
+
+.sub_id {
+	margin: 0;
+	font-size: 10px;
+	line-height: 1.4;
+	text-align: center;
+}
+
+.sub {
+	margin-left: 3px;
+}
+
+.second_data {
+	display: flex;
+	padding-left: 15px;
+	margin-top: 10px;
+}
+
+.origin {
+	width: 40%;
+}
+
+.origin_sub {
+	margin: 0;
+	font-size: 12px;
+	line-height: 1.4;
+	text-align: left;
+}
+
+.third_data {
+	display: flex;
+	align-items: center;
+	padding: 0.3rem 0.8rem 1.2rem 1.5rem;
+	margin-top: 0.8rem;
+}
+
+.black {
+	padding: 1px 3.5px;
+	margin: 0.5rem 0.5rem 0 0;
+	font-size: 10px;
+	line-height: 1.4;
+	text-align: left;
+	background: rgb(242 242 242);
+	border-radius: 4px;
+}
+
+.pink {
+	padding: 1px 3.5px;
+	margin: 0.5rem 0.5rem 0 0;
+	font-size: 10px;
+	line-height: 1.4;
+	text-align: left;
+	background: rgb(251 230 230);
+	border-radius: 4px;
+}
+
+.img {
+	margin-top: 0.5rem;
+	margin-right: 0.8rem;
+}
+
+.sub_lcl {
+	position: relative;
+	display: flex;
+	align-items: center;
+	margin-top: 4px;
+	margin-right: 0.5rem;
+}
+
+.new_img {
+	margin-top: 4px;
+}
+
+.new_lcl {
+	padding-top: 7px;
+	margin-left: 3px;
+	font-weight: 700;
+}
+
+.cart {
+	padding: 1px 5px;
+	margin: 0;
+	font-size: 12px;
+	font-weight: 500;
+	line-height: 1.4;
+	text-align: center;
+	background-color: rgb(251 214 159);
+	border-radius: 4px;
+}
+
+.dot {
+	display: flex;
+	align-items: baseline;
+}
+
+.dot2 {
+	width: 6px;
+	height: 6px;
+	background: rgb(203 100 100);
+	border-radius: 50%;
+}
+
+.tasks {
+	margin: 0;
+	margin-left: 5px;
+	font-size: 12px;
+	font-weight: 700;
+	line-height: 1.4;
+	color: #cb6464;
+	text-align: left;
+}
+
+.bottom {
+	display: flex;
+	justify-content: flex-end;
+	cursor: pointer;
+}
+
+.viewall {
+	padding-right: 10px;
+	line-height: 1.4;
+	color: rgb(53 110 253);
+	text-decoration: underline;
+}
+
+.arrow {
+	width: 20px;
+	height: 20px;
+	color: rgb(53 110 253);
+}
+
+.fouth_data {
+	display: flex;
+	flex-wrap: wrap;
+	margin: 0 1rem 1rem 1.5rem;
+	border-top: 1px solid rgb(224 224 224);
+}
+
+.first_row {
+	display: flex;
+	align-items: center;
+	padding-left: 0;
+	margin: 10px 0 0;
+}
+
+.image {
+	width: 20px;
+	height: 20px;
+	margin-right: 10px;
+}
+
+.arrive {
+	padding-right: 10px;
+	margin: 0;
+	font-size: 12px;
+	line-height: 1.4;
+	text-align: left;
+	border-right: 1px solid rgb(224 224 224);
+}
+
+.span {
+	color: rgb(130 130 130);
+}
+
+.dept {
+	padding-right: 10px;
+	margin: 10px 10px 0;
+	font-size: 12px;
+	line-height: 1.4;
+	text-align: left;
+	border-right: 1px solid rgb(224 224 224);
+}
+
+.update {
+	margin: 10px 0 0;
+	font-size: 12px;
+	line-height: 1.4;
+	text-align: left;
+}
+
+.poending {
+	margin-left: 4px;
+}
+
+.new_imgs {
+	width: 25px;
+	height: 25px;
+}
+
+.new {
+	margin-top: 0.5rem;
+	margin-right: 0.8rem;
+	color: none;
+}
+
+.location_span {
+	margin-left: 1px;
+	font-size: 12px;
+	color: #828282;
+}
+
+.icon_wrapper {
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 1.4rem;
+	margin-right: 1.5rem;
+	border-radius: 50%;
+
+	svg {
+		position: absolute;
+		top: 50%;
+		right: 50%;
+		transform: translate(50%, -50%);
+	}
+}
+
+.container_details_text {
+	padding: 1px 3.5px;
+	margin-top: 0.5rem;
+	margin-right: 0.5rem;
+	font-size: 10px;
+	border-radius: 4px;
+}
+
+.pending {
+	margin-left: 5px;
+}

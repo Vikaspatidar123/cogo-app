@@ -1,0 +1,96 @@
+.container {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	width: 100%;
+	max-height: 500px;
+	padding: 16px 4px 16px 16px;
+	overflow: auto;
+	background: #fff;
+	border-radius: 4px;
+
+	@media (max-width: 768px) {
+		width: 100%;
+		margin-top: 20px;
+		margin-left: 0;
+	}
+}
+
+.added {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	justify-content: space-between;
+	width: 100%;
+	margin-bottom: 8px;
+}
+
+.heading {
+	margin-bottom: 20px;
+	font-size: 16px;
+	font-weight: 600;
+	color: #2c3e50;
+}
+
+.core-ui-button-root.primary.md {
+	color: #034afd !important;
+	text-decoration: underline;
+	text-transform: capitalize;
+}
+
+.core-ui-button-root {
+	padding: 8px 12px;
+	font-size: 12px;
+	background: #2c3e50;
+}
+
+.first {
+	justify-content: flex-end;
+}
+
+.suggested_container {
+	padding-top: 20px;
+	border-top: 1px solid #d9eafd;
+}
+
+.suggested_services {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.service_container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 156px;
+	padding: 16px 8px;
+	margin: 12px;
+	cursor: pointer;
+	background: #fff;
+	border: 1px dashed #bdbdbd;
+	border-radius: 4px;
+}
+
+.service_name {
+	font-size: 12px;
+	font-weight: 500;
+	color: #bdbdbd;
+}
+
+.button_wrap {
+	display: flex;
+	justify-content: flex-end;
+	margin: 8px;
+
+	.core-ui-button-root {
+		padding: 8px 12px;
+		font-size: 12px;
+		background: #2c3e50;
+	}
+
+	.core-ui-button-root.primary.md {
+		color: #034afd !important;
+		text-decoration: underline;
+		text-transform: capitalize;
+	}
+}

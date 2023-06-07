@@ -29,7 +29,7 @@ function AddProductModal({
 		prefiledValues,
 		refetchProduct,
 	});
-	const AddProductHandler = async (data) => {
+	const addProductHandler = async (data) => {
 		await addProduct(data, setShowProduct, pdId);
 	};
 	return (
@@ -48,7 +48,7 @@ function AddProductModal({
 			</div>
 
 			<Pricing
-				AddProductHandler={AddProductHandler}
+				addProductHandler={addProductHandler}
 				addProductLoading={addProductLoading || loading}
 				productDetailsfromAPi={productDetailsfromAPi}
 				prefiledValues={prefiledValues}

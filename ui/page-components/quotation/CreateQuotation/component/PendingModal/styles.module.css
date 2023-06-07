@@ -1,30 +1,30 @@
-.container{
-    display: flex;
-	justify-content: center;
-	align-items: center;
+.container {
+	display: flex;
 	flex-direction: column;
+	align-items: center;
+	justify-content: center;
 	text-align: center;
 }
 
-
-.icon_tridot{
-    width: 40px;
-    height: auto;
-    margin-bottom: 32px
-}
-.loading_banner{
-    width: 300px;
-    height: auto;
+.icon_tridot {
+	width: 40px;
+	height: auto;
+	margin-bottom: 32px;
 }
 
-.title{
-    font-size: 22px;
-	color: #170f49;
+.loading_banner {
+	width: 300px;
+	height: auto;
+}
+
+.title {
+	font-size: 22px;
 	font-weight: 500;
+	color: #170f49;
 }
 
-.text{
-    color: #535075;
+.text {
 	margin: 10px 0;
 	font-size: 16px;
+	color: #535075;
 }

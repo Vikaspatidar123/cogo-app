@@ -1,4 +1,4 @@
-import { Tooltip, Pill } from '@cogoport/components';
+import { cl, Tooltip, Pill } from '@cogoport/components';
 import { IcCFtick } from '@cogoport/icons-react';
 import { startCase, upperCase } from '@cogoport/utils';
 
@@ -104,28 +104,58 @@ function ContainerInfo({ data = {} }) {
 		const value = labels.map((label) => {
 			const chipValue = data[label] ? renderValue(label) : null;
 			if (chipValue) {
-				return <Pill key={label} size="sm">{chipValue}</Pill>;
+				return (
+					<>
+						<div className={styles.mobile_view}>
+							<p>{chipValue}</p>
+						</div>
+						<div className={styles.desktop_view}>
+							<Pill key={label} size="sm">{chipValue}</Pill>
+						</div>
+					</>
+				);
 			}
 			return false;
 		});
 		return value;
 	};
-	let numberBox = 0;
-	return (
-		<Tooltip content={renderBox()} placement="bottom" className={styles.tool_content}>
-			<div>
-				{labels.map((label) => {
-					const chipValue = data[label] ? renderValue(label) : null;
-					if (chipValue && numberBox < 3) {
-						numberBox += 1;
-						return <Pill key={label} size="sm">{chipValue}</Pill>;
-					}
 
-					return null;
-				})}
-				<Pill size="sm">...</Pill>
+	return (
+		<>
+			<div className={styles.desktop_view}>
+				<Tooltip content={renderBox()} placement="bottom" className={styles.tool_content}>
+					<div className={styles.info_box}>
+						{labels.map((label) => {
+							const chipValue = data[label] ? renderValue(label) : null;
+							if (chipValue) {
+								return <Pill key={label} size="sm">{chipValue}</Pill>;
+							}
+
+							return null;
+						})}
+					</div>
+				</Tooltip>
 			</div>
-		</Tooltip>
+
+			<div className={styles.mobile_view}>
+				<Tooltip content={renderBox()} placement="bottom" className={styles.tool_content}>
+					<div className={cl`${styles.asd} ${styles.info_box}`}>
+						{labels.map((label) => {
+							const chipValue = data[label] ? renderValue(label) : null;
+							if (chipValue) {
+								return (
+									<span className={styles.container_info}>
+										{ chipValue }
+									</span>
+								);
+							}
+							return null;
+						})}
+					</div>
+				</Tooltip>
+			</div>
+
+		</>
 	);
 }
 

@@ -1,12 +1,14 @@
 import { Toast } from '@cogoport/components';
+import { useState } from 'react';
 
 import useGetProductCode from './useGetProductCodes';
 
 import { useRouter } from '@/packages/next';
 import { useRequestBf } from '@/packages/request';
 import { useSelector } from '@/packages/store';
+import paymentInitiation from '@/ui/commons/components/PaymentInitiation';
 
-const usePayment = ({ hsCode = '' }) => {
+const usePayment = ({ hsCode = '', address = {} }) => {
 	const { profile } = useSelector((state) => state);
 	const { query } = useRouter();
 	const { id, name, email, mobile_number, mobile_country_code } = profile || {};
@@ -15,6 +17,8 @@ const usePayment = ({ hsCode = '' }) => {
 	const callBackUrl1 = `${process.env.NEXT_PUBLIC_APP_URL}/v2/${org_id}/${branch_id}/saas/premium-services/import-export-doc`;
 	// eslint-disable-next-line max-len
 	const callBackUrl2 = `${process.env.NEXT_PUBLIC_APP_URL}/v2/${org_id}/${branch_id}/saas/premium-services/import-export-doc/${trade_engine_id}/result`;
+	const [buttonLoading, setButtonLoading] = useState(false);
+	const [modal, setModal] = useState({});
 
 	const { getProductCode, getProductCodeLoading } = useGetProductCode();
 
@@ -36,6 +40,10 @@ const usePayment = ({ hsCode = '' }) => {
 		amount = 0,
 		totalAmount = 0,
 	}) => {
+		const isBillingAddress = !!address?.tax_number;
+		const addressKey = isBillingAddress
+			? 'organizationBillingAddressId'
+			: 'organizationAddressId';
 		try {
 			const importExportId = await getServiceDataHandler();
 			const resp = await trigger({
@@ -50,6 +58,7 @@ const usePayment = ({ hsCode = '' }) => {
 					userMobileCountryCode : mobile_country_code,
 					redirectUrl           : hsCode ? callBackUrl1 : callBackUrl2,
 					billType              : 'PREMIUM_SERVICES',
+					[addressKey]          : address?.id || address?.organization_id,
 					source                : 'SAAS',
 					billLineItems         : [
 						{
@@ -74,7 +83,12 @@ const usePayment = ({ hsCode = '' }) => {
 				},
 			});
 			if (resp?.data) {
-				window.open(resp?.data?.url, '_self', '');
+				setButtonLoading(true);
+				paymentInitiation({
+					data: resp?.data,
+					setModal,
+					setButtonLoading,
+				});
 			}
 		} catch (err) {
 			Toast.error('Something went wrong! Please try after sometime', {
@@ -84,7 +98,12 @@ const usePayment = ({ hsCode = '' }) => {
 		}
 	};
 
-	return { initiatePayment, paymentLoading: loading || getProductCodeLoading };
+	return {
+		initiatePayment,
+		paymentLoading: loading || getProductCodeLoading || buttonLoading,
+		modal,
+		setModal,
+	};
 };
 
 export default usePayment;

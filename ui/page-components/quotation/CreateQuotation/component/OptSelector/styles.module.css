@@ -1,41 +1,45 @@
-.flex_box{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.flex_box {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
 }
 
-.container{
-    :global{
-        .ui_tab_container{
-            line-height: 21px;
-            border: none;
-            padding: 6px 16px;
-        }
-    }
+.container {
+	:global {
+		.ui_tab_container {
+			padding: 6px 16px;
+			line-height: 21px;
+			border: none;
+		}
+	}
 
-    @media screen and (max-width: 767px){
-        flex-direction: column;
-    }
-}
-.row{
-    width: 36%;
-    @media screen and (max-width: 767px){
-        width: 90%;
-        margin-top: 12px;
-    }
+	@media screen and (max-width: 767px) {
+		flex-direction: column;
+	}
 }
 
-.error{
-    :global{
-        .ui_select_display_container{
-            border: 1px solid red
-        }
-        .ui_select_display_container:hover{
-            border-color:red
-        } 
-    }
-    input[type='text'],  input[type='text']:hover{
-        border: 1px solid red
+.row {
+	width: 36%;
 
-    }
+	@media screen and (max-width: 767px) {
+		width: 90%;
+		margin-top: 12px;
+	}
+}
+
+.error {
+	:global {
+		.ui_select_display_container {
+			border: 1px solid red;
+		}
+
+		.ui_select_display_container:hover {
+			border-color: red;
+		}
+	}
+
+	input[type="text"],
+	input[type="text"]:hover {
+		border: 1px solid red;
+	}
 }

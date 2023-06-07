@@ -6,7 +6,6 @@ const useRecentSearch = ({ query, setTransportMode }) => {
 	const [spotSearchData, setSpotSearchData] = useState({});
 
 	const getRecentSearchData = useCallback(() => {
-		// eslint-disable-next-line no-undef
 		const preFillData = typeof window !== 'undefined' && JSON.parse(localStorage.getItem('spotSearchResult'));
 
 		setTransportMode(

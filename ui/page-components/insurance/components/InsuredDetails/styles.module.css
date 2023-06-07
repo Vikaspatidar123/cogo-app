@@ -1,0 +1,17 @@
+.container {
+	display: flex;
+	flex-direction: row;
+	width: 100%;
+	padding: 20px;
+	margin-top: 28px;
+	background: #fafbfe;
+}
+
+.container_mobile {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	padding: 20px;
+	margin-top: 28px;
+	background: #fafbfe;
+}

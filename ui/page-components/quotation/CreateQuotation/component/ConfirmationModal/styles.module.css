@@ -1,47 +1,48 @@
-.flex_box{
+.flex_box {
 	display: flex;
-	justify-content: center;
 	align-items: center;
+	justify-content: center;
 }
 
-.title{
+.title {
+	margin: 0;
 	text-align: center;
-	margin: 0px;
 }
 
-.success_img{
+.success_img {
 	width: 100px;
 	height: 100px;
 }
 
-.footer{
+.footer {
 	padding: 22px;
 }
 
-.send_btn{
+.send_btn {
 	margin-left: 12px;
 }
 
-.container{
+.container {
 	flex-direction: column;
 	padding: 20px 20px 0;
 }
 
-.info{
-	text-align: left;
+.info {
 	margin-top: 15px;
+	text-align: left;
 
-	p{
+	p {
 		margin: 0;
-		margin-left:4px
+		margin-left: 4px;
 	}
 }
-.loading{
+
+.loading {
 	width: 150px;
 	height: 150px;
 }
 
-.send_img{
+.send_img {
 	width: 100px;
 	height: 100px;
 }

@@ -1,70 +1,75 @@
-.title{
-    font-weight: 700;
-	font-size: 18px;
-	padding: 18px;
+.title {
 	display: flex;
 	align-items: center;
+	padding: 18px;
+	font-size: 18px;
+	font-weight: 700;
 	border: 1px solid #e0e0e0;
 }
-.container{
-	height: 270px;
-	background: #f9fafd;
-	padding: 15px;
 
-	.container_height{
+.container {
+	height: 270px;
+	padding: 15px;
+	background: #f9fafd;
+
+	.container_height {
 		max-height: 180px;
 	}
 
-	.scroll{
+	.scroll {
 		overflow: scroll;
-
 	}
 }
 
-.card{
+.card {
 	align-items: baseline;
+
 	.auto {
 		width: auto;
 	}
+
 	.dot {
 		flex: 1;
 		border-bottom: 2px dotted #697989;
 	}
 
 	.sub {
-		font-weight: 400;
 		font-size: 14px;
+		font-weight: 400;
 	}
+
 	.dotFlex {
 		display: flex;
+		align-items: center;
 		justify-content: space-between;
-		align-items: center ;
-		padding: 10px ;
+		padding: 10px;
 	}
 }
 
-.text{
+.text {
 	font-weight: 600;
 	line-height: 16px;
 	text-transform: capitalize !important;
+
 	&.sub {
 		color: #828282;
 	}
 }
 
-.card_total{
+.card_total {
 	display: flex;
-	padding: 10px 3px;
-	justify-content: space-between;
 	align-items: center;
+	justify-content: space-between;
+	padding: 10px 3px;
 	border-top: 1px dashed #e5e5e5;
+
 	.sorry {
+		padding: 0;
 		color: #f68b21;
-		padding: 0px 0px;
 	}
 }
 
-.text_total{
-	color: #4f4f4f;
+.text_total {
 	font-weight: 600;
+	color: #4f4f4f;
 }

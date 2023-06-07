@@ -3,7 +3,7 @@ import { IcAFinancial } from '@cogoport/icons-react';
 import { useEffect, useState } from 'react';
 
 import useFreightCharges from '../../../../hooks/useFreightCharges';
-import FreightChargesPayload from '../../../../utils/freightChargePayload';
+import freightChargesPayload from '../../../../utils/freightChargePayload';
 
 import Info from './Info';
 import ListRow from './List';
@@ -17,25 +17,30 @@ function FreightCharges({
 	setValue,
 	infoData,
 	transportMode,
+	consignmentValue,
 }) {
 	const [checked, setChecked] = useState('');
 	const { profile } = useSelector((item) => item);
 	const [selectedData, setSelectedData] = useState({});
 	const { id = '', branch = {} } = profile || {};
+
 	const allData = Object.assign({}, ...infoData);
+
 	const { createSpotSearch, loading, apiResponse } = useFreightCharges();
-	const cargo_value = {};
-	const data = FreightChargesPayload({
+
+	const data = freightChargesPayload({
 		id,
 		branch,
 		allData,
-		activeTab: transportMode,
-		cargo_value,
+		activeTab   : transportMode,
+		cargo_value : consignmentValue,
 	});
+
 	const { detail, rates = {} } = apiResponse || {};
 
 	useEffect(() => {
 		createSpotSearch(data);
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	const checkboxHandler = (item) => {

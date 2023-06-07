@@ -1,0 +1,33 @@
+.transport_container {
+	padding: 20px;
+}
+
+.header {
+	display: flex;
+	align-items: center;
+	margin-bottom: 10px;
+
+	.title {
+		margin: 0;
+	}
+}
+
+.col {
+	margin-bottom: 12px;
+}
+
+.label {
+	font-size: 13px;
+}
+
+.error {
+	:global {
+		.ui_select_display_container {
+			border: 1px solid red;
+		}
+
+		.ui_select_display_container:hover {
+			border-color: red;
+		}
+	}
+}

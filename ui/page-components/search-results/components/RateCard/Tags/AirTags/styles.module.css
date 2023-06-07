@@ -1,0 +1,18 @@
+.container {
+	display: flex;
+}
+
+.alert_message {
+	padding: 4px 12px;
+	font-size: 10px;
+	background-color: rgb(192 255 201);
+	border-radius: 0 0 0 4px;
+}
+
+.rate_type {
+	padding: 4px 12px;
+	margin-right: 8px;
+	font-size: 10px;
+	background-color: #d9eafd;
+	border-radius: 0 0 0 4px;
+}

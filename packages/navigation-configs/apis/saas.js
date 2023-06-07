@@ -353,6 +353,8 @@ const saas = {
 		},
 	],
 
+	app_saas_load_container: [],
+
 	app_saas_transaction_history: [
 		{
 			api         : 'get_saas_payment_details',
@@ -387,8 +389,19 @@ const saas = {
 		},
 	],
 
-	app_saas_load_container : [],
-	app_saas_tracking       : [
+	checkout_promotions: [
+		{
+			api          : 'list_checkout_applicable_promocodes',
+			access_type  : 'private',
+			service_name : 'checkout',
+		},
+		{
+			api          : 'update_checkout_promotion',
+			access_type  : 'private',
+			service_name : 'checkout',
+		},
+	],
+	app_saas_tracking: [
 		{
 			api          : 'get_saas_container_subscription',
 			access_type  : 'private',
@@ -611,6 +624,9 @@ const saas = {
 		},
 	],
 
+	saas_cogo_insurance  : [],
+	saas_tools_insurance : [],
+
 	app_saas_map_tracking: [
 		{
 			api          : 'list_all_subscriptions',
@@ -784,6 +800,18 @@ const saas = {
 		{
 			api         : 'delete_saas_quote',
 			access_type : 'private',
+		},
+	],
+	app_documents: [
+		{
+			api          : 'list_organization_documents',
+			access_type  : 'private',
+			service_name : 'organization',
+		},
+		{
+			api          : 'create_organization_document',
+			access_type  : 'private',
+			service_name : 'organization',
 		},
 	],
 };

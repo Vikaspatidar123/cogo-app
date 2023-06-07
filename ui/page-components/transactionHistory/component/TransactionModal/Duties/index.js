@@ -25,7 +25,6 @@ function Duties({ transactionData }) {
 		controls.map((item) => setValue(item.name, transactionData[MAPPING[item.name]]));
 	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [transactionData]);
-
 	return (
 		<div className={styles.container}>
 			<div className={styles.styled_row}>

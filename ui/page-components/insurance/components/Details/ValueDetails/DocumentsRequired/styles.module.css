@@ -1,0 +1,30 @@
+.docs_container {
+	width: 100%;
+	padding: 5px;
+	margin-right: 42px;
+
+	@media (max-width: 767px) {
+		margin-right: 0;
+	}
+}
+
+.docs {
+	width: 100%;
+}
+
+.docs div:nth-child(2) {
+	padding: 1px !important;
+}
+
+.column {
+	display: flex;
+	align-items: center;
+	font-size: 14px;
+	font-weight: 500;
+	text-transform: uppercase;
+}
+
+.error_message {
+	font-size: 14px;
+	color: #cb6464;
+}

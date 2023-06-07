@@ -1,0 +1,58 @@
+.flex_box {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.row {
+	padding: 16px 24px;
+	border-bottom: 1px solid #e5e5e5;
+}
+
+.info {
+	justify-content: flex-start;
+	width: 30%;
+}
+
+.title {
+	font-size: 16px;
+	color: #e84855;
+}
+
+.text {
+	margin: 0 5px;
+	border-bottom: 1px dashed #f68b21;
+}
+
+.tooltip_header {
+	font-weight: 600;
+}
+
+.trader_check_container {
+	margin: 16px 0;
+}
+
+.heading {
+	font-weight: 600;
+}
+
+.trader_row {
+	padding: 16px;
+	margin: 12px;
+	background: #fbfffb;
+	border: 1px solid #cedcea;
+	border-radius: 4px;
+
+	.screen {
+		display: flex;
+		flex: 2;
+		padding: 0 20px;
+		border-left: 1px solid #b4cbb8;
+	}
+
+	.price {
+		position: relative;
+		top: -24px;
+		left: 20px;
+	}
+}

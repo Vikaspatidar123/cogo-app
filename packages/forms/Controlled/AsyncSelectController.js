@@ -3,7 +3,8 @@ import { Controller } from 'react-hook-form';
 import AsyncSelect from '../Business/AsyncSelect';
 
 function AsyncSelectController(props) {
-	const { name, control, value, rules, ...rest } = props;
+	const { name, control, rules, value, ...rest } = props;
+
 	return (
 		<Controller
 			key={rest.id}
@@ -18,12 +19,11 @@ function AsyncSelectController(props) {
 					onChange={(val, obj) => {
 						onChange(val, obj);
 						if (rest?.handleChange) {
-							rest?.handleChange(obj);
+							rest.handleChange(obj);
 						}
 					}}
 					value={newValue}
 					onBlur={onBlur}
-					data-test-value={value}
 				/>
 			)}
 		/>

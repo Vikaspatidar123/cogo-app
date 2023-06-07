@@ -1,0 +1,44 @@
+.container {
+	margin-top: 16px;
+	margin-bottom: 16px;
+	border: 1px solid #e0e0e0;
+	border-radius: 10px;
+
+	@media (max-width: 760px) {
+		border: 1px solid rgb(224 224 224);
+		border-radius: 10px;
+	}
+}
+
+.card {
+	display: flex;
+	background-color: #fff;
+	border-radius: 10px;
+
+	@media (max-width: 760px) {
+		flex-direction: column;
+	}
+}
+
+.line_vrt {
+	border: 1px solid #e7e7e7;
+}
+
+.horizontal {
+	width: 100%;
+	margin-top: 14px;
+}
+
+.flex_display {
+	display: flex;
+	flex: 1;
+
+	@media (min-width: 1164px) and (max-width: 1370px) {
+		display: none;
+	}
+}
+
+.flex {
+	display: block;
+	flex: 1;
+}

@@ -1,0 +1,60 @@
+.container {
+	width: 100%;
+	padding: 0 8px;
+}
+
+.heading {
+	margin-top: 25px;
+	font-size: 18px;
+	font-weight: 600;
+	color: #393f70;
+}
+
+.button_wrap {
+	display: flex;
+	margin-top: 20px;
+}
+
+.add_icon {
+	width: 30px;
+	height: 30px;
+	padding-left: 1px;
+	margin-right: 10px;
+	font-size: 28px;
+	font-weight: 300;
+	color: #393f70;
+	background: #fff;
+	border-radius: 100%;
+}
+
+.child {
+	display: flex;
+	margin-bottom: 14px;
+}
+
+.row {
+	display: flex;
+	flex-flow: row wrap;
+	flex-grow: 0;
+	flex-shrink: 0;
+	align-items: normal;
+	justify-content: flex-start;
+}
+
+.line {
+	width: 100%;
+	margin-top: 20px;
+	border-bottom: 1px solid #000;
+}
+
+.col {
+	display: flex;
+	flex-direction: column;
+	padding-right: 8px;
+	padding-left: 8px;
+}
+
+.remove_icon {
+	margin-left: 20px;
+	cursor: pointer;
+}

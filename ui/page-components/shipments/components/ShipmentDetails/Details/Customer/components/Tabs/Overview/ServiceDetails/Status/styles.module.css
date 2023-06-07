@@ -1,0 +1,48 @@
+.container {
+	display: flex;
+	padding: 8px;
+
+	@media (max-width: 768px) {
+		flex-direction: column;
+	}
+}
+
+.pill {
+	align-items: center;
+	width: fit-content;
+	margin: 0 8px 8px 0;
+	text-align: center;
+	background: #fbd69f;
+	border-radius: 4px;
+}
+
+.confirmed_by_importer_exporter {
+	background: #e6fbe9;
+}
+
+.confirmed_by_service_provider {
+	background: #e6fbe9;
+}
+
+.completed {
+	background: #ded7fc;
+}
+
+.cancelled {
+	color: #fff;
+	background: #4f4f4f;
+}
+
+.payment_state {
+	background: #fbd69f;
+}
+
+.text {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 2px 6px;
+	font-size: 10px;
+	font-weight: 400;
+	color: #2c3e50;
+}

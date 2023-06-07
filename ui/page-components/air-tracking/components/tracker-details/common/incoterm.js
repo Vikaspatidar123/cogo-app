@@ -72,11 +72,6 @@ const PAYMENT_CARDS = {
 	unionpay        : '',
 };
 
-const COUNTRY_IDS = {
-	IN: '5f1f94fa-25da-40de-968d-0254abd24ba6',
-};
-const COUNTRY_INDIA_ID = '541d1232-58ce-4d64-83d6-556a42209eb7';
-
 export {
 	CONTAINER_LENGTH_TO_BARS,
 	MILESTONE_TYPES,
@@ -85,6 +80,4 @@ export {
 	SEARCH_TYPES,
 	CURRENCY_TO_SYMBOL,
 	PAYMENT_CARDS,
-	COUNTRY_IDS,
-	COUNTRY_INDIA_ID,
 };

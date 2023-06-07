@@ -1,0 +1,49 @@
+.row {
+	display: flex;
+	align-items: flex-end;
+	justify-content: space-around;
+	padding: 0 8px;
+	margin-top: 8px;
+	font-size: 12px;
+}
+
+.disable_field {
+	input {
+		background: #f4f4f4;
+		border-color: #eee;
+	}
+}
+
+.add_btn {
+	display: flex;
+	margin-bottom: 5px;
+	cursor: pointer;
+
+	>span {
+		margin-left: 3px;
+	}
+}
+
+.error {
+	&:hover {
+		border: none;
+	}
+
+	input {
+		border: 1px solid red;
+	}
+
+	:global {
+		.ui_select_display_container {
+			border: 1px solid red;
+
+			input {
+				border: none;
+			}
+		}
+
+		.ui_select_display_container:hover {
+			border-color: red;
+		}
+	}
+}

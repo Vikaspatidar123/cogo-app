@@ -1,0 +1,32 @@
+.container {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 8px 0;
+
+	.ui-core-checkbox-root.checked {
+		background-color: #356efd;
+		border: 1px solid #356efd;
+	}
+
+	.ui-core-checkbox-root {
+		:hover {
+			border: 1px solid #356efd;
+		}
+	}
+}
+
+.title {
+	margin-left: 4px;
+	font-size: 12px;
+	font-weight: 500;
+	line-height: 20px;
+	color: #333;
+
+	/* cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')}; */
+}
+
+.main {
+	display: flex;
+	align-items: center;
+}

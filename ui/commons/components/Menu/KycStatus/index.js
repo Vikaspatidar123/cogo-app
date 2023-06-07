@@ -1,3 +1,5 @@
+import { IcCFtick, IcCFcrossInCircle } from '@cogoport/icons-react';
+
 import styles from './styles.module.css';
 
 function KycStatus({ kyc_status }) {
@@ -6,24 +8,14 @@ function KycStatus({ kyc_status }) {
 			{kyc_status === 'verified' && (
 				<>
 					<div className={styles.kyc_verified}>Verified</div>
-					<img
-						src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/kyc-verifie.svg"
-						alt="cogo"
-						width="11px"
-						height="11px"
-					/>
+					<IcCFtick width={15} height={15} />
 				</>
 			)}
 
 			{kyc_status === 'rejected' && (
 				<>
 					<div className={styles.label}>KYC Rejected</div>
-					<img
-						src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/crossIcon.svg"
-						alt="cogo"
-						width="11px"
-						height="11px"
-					/>
+					<IcCFcrossInCircle width={15} height={15} />
 				</>
 			)}
 
@@ -31,10 +23,9 @@ function KycStatus({ kyc_status }) {
 				<>
 					<div className={styles.kyc_pending}>KYC Pending</div>
 					<img
-						src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/pending-ico.svg"
-						alt="cogo"
-						width="14px"
-						height="14px"
+						className={styles.image1}
+						src="	https://cdn.cogoport.io/cms-prod/cogo_admin/vault/original/tds-doc-icon.svg"
+						alt="img"
 					/>
 				</>
 			)}

@@ -28,6 +28,13 @@ const navigationMappings = {
 		mobileIcon : <IcMQuotations width={20} height={20} />,
 	},
 
+	app_discover_rates: {
+		key       : 'app_discover_rates',
+		title     : 'Discover Rates',
+		href      : '/v2/book',
+		as        : '/v2/book',
+		showInNav : true,
+	},
 	saas_tools: {
 		key       : 'saas_tools',
 		title     : 'Tools',
@@ -115,6 +122,17 @@ const navigationMappings = {
 		],
 	},
 
+	saas_cogo_insurance: {
+		key         : 'saas_tools_insurance',
+		title       : 'Insurance',
+		href        : '/v2/saas/insurance/list',
+		as          : '/v2/saas/insurance/list',
+		type        : 'link',
+		icon        : <IcMFfreferigeratedCargoType width={40} height={40} fill="red" />,
+		description : 'Buy insurance for your cargo here',
+		showInNav   : true,
+	},
+
 	saas_premium_services: {
 		key         : 'saas_premium_services',
 		title       : 'Premium Services',
@@ -159,9 +177,17 @@ const navigationMappings = {
 	app_bookings: {
 		key       : 'app_bookings',
 		title     : 'Shipments',
-		href      : '/shipments',
-		as        : '/shipments',
+		href      : '/v2/shipments',
+		as        : '/v2/shipments',
 		icon      : 'nav-booking',
+		showInNav : true,
+	},
+
+	app_documents: {
+		key       : 'app_documents',
+		title     : 'Documents Wallet',
+		href      : '/v2/documents',
+		as        : '/v2/documents',
 		showInNav : true,
 	},
 
@@ -213,12 +239,14 @@ const navigationMappings = {
 			{
 				key   : 'saas_planning-quotation',
 				title : 'Quick Quotations',
-				icon  : <IcMQuotations width={30} height={30} />,
-				type  : 'link',
-				href  : '/v2/saas/quickquotation/viewlist',
-				as    : '/v2/saas/quickquotation/viewlist',
+				// eslint-disable-next-line max-len
+				description:
+          'The meaning of QUOTATION is something that is quoted; especially : a passage ',
+				icon : <IcMQuotations width={30} height={30} />,
+				type : 'link',
+				href : '/v2/saas/quickquotation/viewlist',
+				as   : '/v2/saas/quickquotation/viewlist',
 			},
-
 		],
 	},
 
@@ -226,7 +254,6 @@ const navigationMappings = {
 		key   : 'app_get_started',
 		title : 'Get Started',
 		theme : 'green',
-
 	},
 
 	app_kyc: {

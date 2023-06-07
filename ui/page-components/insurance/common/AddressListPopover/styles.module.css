@@ -1,0 +1,61 @@
+.container {
+	width: 400px;
+}
+
+.heading {
+	display: flex;
+	justify-content: space-between;
+	padding: 8px;
+	margin-bottom: 6px;
+}
+
+.card {
+	display: flex;
+	align-items: center;
+	padding: 10px 5px;
+	cursor: pointer;
+	background: #fff;
+	border-top: 0.5px solid #838383;
+}
+
+.section {
+	margin-left: 10px;
+}
+
+.info_section {
+	width: 88%;
+	margin-left: 20px;
+}
+
+.number_section {
+	display: flex;
+	justify-content: space-between;
+	margin-top: 10px;
+}
+
+.address_container {
+	max-height: 333px;
+	overflow-y: auto;
+}
+
+.empty_state {
+	padding: 20px;
+	text-align: center;
+}
+
+.text {
+	font-size: 20px;
+	font-weight: 500;
+}
+
+.card_text {
+	margin: 0;
+	margin: 3px 0;
+	font-size: 12px;
+}
+
+.org_text {
+	margin: 3px 0;
+	font-size: 14px;
+	font-weight: 500;
+}

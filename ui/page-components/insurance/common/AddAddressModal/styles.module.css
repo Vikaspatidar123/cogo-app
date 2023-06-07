@@ -1,0 +1,111 @@
+.container {
+	width: 100%;
+	padding: 16px;
+}
+
+.header {
+	display: flex;
+	align-items: center;
+}
+
+.icon_container {
+	margin-right: 10px;
+}
+
+.image {
+	vertical-align: middle;
+}
+
+.address_title {
+	margin: 0;
+	font-weight: 500;
+}
+
+.section {
+	width: 100%;
+	padding: 20px;
+	padding-bottom: 0;
+	font-size: 13px;
+}
+
+.section_title {
+	display: flex;
+	align-items: center;
+}
+
+.title {
+	padding-right: 20px;
+}
+
+.design {
+	flex: 2;
+}
+
+.row {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 5px;
+	align-items: center;
+	justify-content: space-between;
+	width: 100%;
+	margin: 10px 0;
+}
+
+.checkbox_wrapper {
+	display: flex;
+	align-items: center;
+	margin: 10px 0;
+	font-size: 14px;
+}
+
+.gst {
+	margin: 0 3px;
+}
+
+.address_type_checkbox_wrapper {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	margin: 10px 0;
+	font-size: 14px;
+}
+
+.address_save {
+	font-size: 14px;
+	font-weight: 500;
+}
+
+.button_container {
+	display: flex;
+	gap: 20px;
+	justify-content: flex-end;
+	padding: 15px 25px;
+	margin-top: 20px;
+	box-shadow: 0 -2px 4px 0 #14142b1f;
+}
+
+.error_message {
+	font-size: 14px;
+	color: #cb6464;
+}
+
+.hidden {
+	display: none;
+}
+
+.display {
+	position: absolute;
+	display: block;
+	padding-right: 4px !important;
+	padding-left: 4px !important;
+	color: #697989 !important;
+	background-color: white;
+	opacity: 1 !important;
+	transition: transform 1.4s;
+	transform: translate(10px, -52px);
+}
+
+.field {
+	width: 48%;
+	padding: 10px 0;
+}

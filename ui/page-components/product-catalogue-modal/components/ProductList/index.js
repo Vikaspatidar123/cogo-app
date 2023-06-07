@@ -14,14 +14,17 @@ function ProductList({
 	pagination,
 	setPagination,
 	refetchProduct,
+	selectedId = [],
 	item = {},
 	isCategory = false,
 	setSelectedData,
 	setShowCatalogue,
 	setSelectedId,
+	multiSelect,
+	allprductData,
 }) {
 	const loaderArr = [1, 2, 3, 4, 5];
-	const [addProductId, setAddProductId] = useState([]);
+	const [addProductId, setAddProductId] = useState(selectedId);
 	const { list = [], totalRecords } = productList || {};
 	const { productClassificationId = '' } = item || {};
 
@@ -32,14 +35,27 @@ function ProductList({
 	}, [JSON.stringify(item)]);
 
 	const addToForm = () => {
-		const arr = list.filter((product) => product?.id === addProductId[0]);
-		setSelectedData(...arr);
+		const arr = allprductData.filter((product) => addProductId.includes(product?.id));
+		if (multiSelect) {
+			const productItem = [
+				...new Map(allprductData.map((data) => [data.id, data])).values(),
+			];
+			const productToAdd = (productItem || []).filter((data) => (
+				addProductId.includes(data.id) && !selectedId.includes(data.id)));
+			setSelectedData(productToAdd);
+		} else {
+			setSelectedData(...arr);
+		}
 		setShowCatalogue(false);
 	};
 
 	useEffect(() => {
 		if (isCategory) {
-			setSelectedId(addProductId);
+			if (multiSelect) {
+				setSelectedId((prv) => [...new Set([...prv, ...addProductId])]);
+			} else {
+				setSelectedId(addProductId);
+			}
 		}
 	}, [addProductId]);
 
@@ -51,9 +67,7 @@ function ProductList({
 						className={cl`${styles.card_header} ${styles.row}
                     ${isCategory && styles.category_view} ${styles.mobile_row}`}
 					>
-						{listView.map(({
-							key, title, width, categoryWidth,
-						}) => (
+						{listView.map(({ key, title, width, categoryWidth }) => (
 							<h3
 								key={key}
 								className={styles.col}
@@ -64,8 +78,7 @@ function ProductList({
 						))}
 					</div>
 				)}
-				{loading
-				&& loaderArr.map((ele) => (
+				{loading && loaderArr.map((ele) => (
 					<div key={ele} className={`${styles.row}`}>
 						{listView.map(({ key, width, categoryWidth }) => (
 							<div
@@ -84,17 +97,23 @@ function ProductList({
 						<div>No Product in your Catalogue</div>
 					</div>
 				)}
-				{!loading
-				&& (list || [])?.map((rowItem) => (
-					<div key={rowItem?.id} className={cl`${styles.row} ${styles.mobile_row}`}>
-						<ColItem
-							rowItem={rowItem}
-							isCategory={isCategory}
-							addProductId={addProductId}
-							setAddProductId={setAddProductId}
-						/>
-					</div>
-				))}
+				<div className={isCategory && styles.scroll}>
+					{!loading
+					&& (list || [])?.map((rowItem) => (
+						<div
+							key={rowItem?.id}
+							className={cl`${styles.row} ${styles.mobile_row}`}
+						>
+							<ColItem
+								rowItem={rowItem}
+								isCategory={isCategory}
+								addProductId={addProductId}
+								setAddProductId={setAddProductId}
+								multiSelect={multiSelect}
+							/>
+						</div>
+					))}
+				</div>
 			</div>
 
 			{!isCategory && list.length > 0 && (
@@ -119,15 +138,17 @@ function ProductList({
 					>
 						Cancel
 					</Button>
-					<Button size="md" onClick={addToForm} disabled={addProductId.length === 0}>
+					<Button
+						size="md"
+						onClick={addToForm}
+						disabled={addProductId.length === 0}
+					>
 						<IcMPlus />
 						Add
 					</Button>
 				</div>
 			)}
-
 		</div>
-
 	);
 }
 

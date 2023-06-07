@@ -1,0 +1,21 @@
+.container {
+	margin-bottom: 8px;
+}
+
+.label {
+	margin-bottom: 4px;
+	font-size: 12px;
+	font-weight: 500;
+	line-height: 14px;
+	color: #4f4f4f;
+}
+
+.main {
+	:global {
+		.ui_chips_container {
+			flex-wrap: wrap;
+			width: 600px;
+			max-width: 600px;
+		}
+	}
+}

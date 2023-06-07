@@ -1,0 +1,176 @@
+.status_info {
+	width: fit-content;
+	padding: 4px 12px;
+	margin-left: 4px;
+	font-size: 10px;
+	font-weight: 400;
+	color: #2c3e50;
+	white-space: nowrap;
+	border-radius: 4px;
+}
+
+.wrapper {
+	border-radius: 4px;
+	box-shadow: 0 1px 6px rgb(169 188 218 / 65%);
+}
+
+.container {
+	display: flex;
+}
+
+.detail_container {
+	position: relative;
+	display: flex;
+	align-items: center;
+	width: 95%;
+	padding: 16px;
+	background: #fff;
+
+	@media (max-width: 768px) {
+		flex-wrap: wrap;
+	}
+}
+
+.assured_wrapper {
+	position: absolute;
+	top: 0;
+	left: 0;
+
+	svg {
+		width: 22px;
+		height: 22px;
+	}
+}
+
+.invoice_info {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	justify-content: center;
+	width: 50%;
+	margin-left: 8px;
+	line-height: 21px;
+	color: #333;
+
+	@media (max-width: 1260px) {
+		width: 36%;
+	}
+	@media (max-width: 768px) {
+		width: 60%;
+		margin-bottom: 4px;
+	}
+}
+
+.row {
+	display: flex;
+	align-items: center;
+	margin-left: 8px;
+	line-height: 21px;
+	color: #333;
+}
+
+.invoice_party {
+	margin-right: 4px;
+	font-size: 14px;
+	font-weight: 500;
+	line-height: 16px;
+	color: #4f4f4f;
+}
+
+.booking_text {
+	font-size: 14px;
+	font-weight: 400;
+	line-height: 10px;
+	color: #4097f5;
+	opacity: 0.6;
+}
+
+.total_invoice {
+	display: flex;
+	margin-right: 12px;
+	font-size: 12px;
+	font-weight: 500;
+	color: #828282;
+	white-space: nowrap;
+}
+
+.service_name {
+	width: 25%;
+	margin: 0;
+	margin-left: 8px;
+	overflow: hidden;
+	font-size: 12px;
+	font-weight: 400;
+	line-height: 24px;
+	color: #828282;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	cursor: pointer;
+
+	@media (max-width: 768px) {
+		width: 160px;
+	}
+}
+
+.invoice_value_container {
+	display: flex;
+	align-items: center;
+	width: 35%;
+	font-size: 14px;
+	font-weight: 500;
+	line-height: 16px;
+
+	@media (max-width: 768px) {
+		width: 100%;
+	}
+}
+
+.invoice_value_title {
+	color: #333;
+}
+
+.invoice_value {
+	margin-left: 4px;
+	color: #4097f5;
+}
+
+.status_container {
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	width: 35%;
+	padding: 0 12px;
+
+	@media (max-width: 768px) {
+		width: 100%;
+	}
+}
+
+.icon_wrapper {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 5%;
+	cursor: pointer;
+	background: #f5fafe;
+	border-top-right-radius: 4px;
+}
+
+.icon_container {
+	padding: 28px 25px 23px;
+	cursor: pointer;
+	background: #f5fafe;
+
+	@media (max-width: 768px) {
+		padding: 4px;
+	}
+}
+
+.line {
+	height: 1px;
+	background: #cddbff;
+}
+
+.child_container {
+	padding: 16px;
+}

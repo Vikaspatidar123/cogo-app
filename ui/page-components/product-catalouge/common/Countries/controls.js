@@ -4,9 +4,9 @@ const CARDFILTER = [
 	{
 		label          : 'Country',
 		name           : 'country',
-		type           : 'select',
+		type           : 'async_select',
 		placeholder    : 'Search Country',
-		optionsListKey : 'hs_codes_countries',
+		asyncKey       : 'hs_codes_countries',
 		value          : GLOBAL_CONSTANTS.COUNTRY_IDS.IN,
 		valueKey       : 'id',
 		labelKey       : 'countryName',

@@ -1,5 +1,6 @@
 import { Button } from '@cogoport/components';
 import { IcMArrowRight } from '@cogoport/icons-react';
+import { isEmpty } from '@cogoport/utils';
 import { useEffect, useRef, useState } from 'react';
 import ReCAPTCHA from 'react-google-recaptcha';
 
@@ -126,6 +127,12 @@ function SignupForm({ userDetails = {}, setMode = () => {}, setUserDetails = () 
 		}
 	};
 
+	useEffect(() => {
+		if (!isEmpty(locationData)) {
+			setValue('mobile_number', { country_code: locationData.mobile_country_code || '+91' });
+		}
+	}, [locationData, setValue]);
+
 	return (
 		<form className={styles.form_container} onSubmit={handleSubmit(onSignupApiCall)}>
 
@@ -184,9 +191,6 @@ function SignupForm({ userDetails = {}, setMode = () => {}, setUserDetails = () 
 					}}
 					mode="onBlur"
 					onBlur={makeApiCallForMobile}
-					value={{
-						country_code: locationData?.mobile_country_code || '+91',
-					}}
 				/>
 				<span className={styles.errors}>
 					{customError || ''}

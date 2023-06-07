@@ -1,4 +1,5 @@
 import { Button } from '@cogoport/components';
+import { isEmpty } from '@cogoport/utils';
 import { useEffect, useState } from 'react';
 
 import useLoginMobileAuthentication from '../../../hooks/useLoginMobileAuthentication';
@@ -23,7 +24,7 @@ function MobileLoginForm({
 		otpLoading = false,
 	} = useLoginMobileAuthentication({ setMode, setMobileNumber, setOtpId, mobileNumber });
 
-	const { handleSubmit, control, watch } = useForm();
+	const { handleSubmit, control, watch, setValue } = useForm();
 
 	const formValues = watch();
 
@@ -55,6 +56,12 @@ function MobileLoginForm({
 		}
 	};
 
+	useEffect(() => {
+		if (!isEmpty(locationData)) {
+			setValue('mobile_number', { country_code: locationData.mobile_country_code || '+91' });
+		}
+	}, [locationData, setValue]);
+
 	return (
 		<form className={styles.form_container} onSubmit={handleSubmit(onOtpApiCall)}>
 
@@ -63,10 +70,13 @@ function MobileLoginForm({
 				control={control}
 				name="mobile_number"
 				type="mobile-number-select"
-				placeholder="Enter your Number"
-				rules={{ required: 'Mobile Number is required.' }}
-				value={{
-					country_code: locationData?.mobile_country_code || '+91',
+				placeholder="Enter your Mobile Number"
+				rules={{
+					required : 'Number is required.',
+					pattern  : {
+						value   : /^[0-9]{10}$/,
+						message : 'Number is invalid.',
+					},
 				}}
 			/>
 			<div className={styles.errors}>

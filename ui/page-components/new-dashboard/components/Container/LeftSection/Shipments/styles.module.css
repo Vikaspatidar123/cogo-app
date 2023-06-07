@@ -1,0 +1,28 @@
+.container {
+	box-sizing: border-box;
+	padding: 5px 15px;
+	margin-top: 20px;
+	background: #fff;
+	border: 1px solid #e0e0e0;
+	border-radius: 4px;
+	box-shadow: 0 0 8px rgb(98 127 172 / 20%);
+}
+
+.heading {
+	font-size: 15px;
+	font-weight: 600;
+}
+
+.bottom {
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	margin-top: 5px;
+	cursor: pointer;
+}
+
+.viewall {
+	padding-right: 10px;
+	color: rgb(53 110 253);
+	text-decoration: underline;
+}

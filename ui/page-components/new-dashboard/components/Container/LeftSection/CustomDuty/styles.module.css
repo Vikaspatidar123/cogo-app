@@ -3,6 +3,10 @@
 	padding: 20px;
 	margin-left: 10px;
 	background: #fff;
+	background: url("https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/bubble-29 1.png");
+	background-repeat: no-repeat;
+	background-position: right;
+	background-size: auto;
 	border: 1px solid #e0e0e0;
 	border-radius: 4px;
 	box-shadow: 0 0 8px rgb(98 127 172 / 20%);
@@ -20,7 +24,7 @@
 }
 
 .input_box {
-	width: 220px;
+	width: 200px;
 	margin: 20px;
 }
 
@@ -30,4 +34,7 @@
 
 .seaction {
 	display: flex;
+}
+
+.img_container {
 }

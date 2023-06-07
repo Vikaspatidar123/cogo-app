@@ -15,11 +15,11 @@ function CustomDuty() {
 					<Select size="sm" className={styles.input_box} placeholder="Mode of Transport" />
 					<Button themeType="accent" className={styles.button}>Check Now!</Button>
 				</div>
-				<div>
+				<div className={styles.img_container}>
 					<img
 						width={200}
 						height={200}
-						src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSIs6INuRlF426AseYxSgdlJP0OxojbkKmp6A&usqp=CAU"
+						src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/Saly-13.png"
 						alt=""
 					/>
 				</div>

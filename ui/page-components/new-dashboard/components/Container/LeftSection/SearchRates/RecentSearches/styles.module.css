@@ -16,3 +16,8 @@
 	color: #034afd !important;
 	text-decoration-line: underline;
 }
+
+.card {
+	display: flex;
+	justify-content: space-between;
+}

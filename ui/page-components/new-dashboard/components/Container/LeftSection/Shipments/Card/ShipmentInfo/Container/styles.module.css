@@ -1,0 +1,19 @@
+.container {
+	margin-top: 10px;
+}
+
+.second_data {
+	display: flex;
+	align-items: center;
+	padding: 10px;
+}
+
+.location_span {
+	margin-left: 1px;
+	font-size: 12px;
+	color: #828282;
+}
+
+.icon {
+	padding: 0 5px;
+}

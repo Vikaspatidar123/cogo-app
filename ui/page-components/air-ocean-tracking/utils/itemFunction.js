@@ -1,6 +1,6 @@
 import { Checkbox, Toggle } from '@cogoport/components';
 import { IcMEdit } from '@cogoport/icons-react';
-import { format } from '@cogoport/utils';
+import { format, isEmpty, upperCase } from '@cogoport/utils';
 
 import formatDateTime from './formatDateTime';
 
@@ -9,7 +9,10 @@ const style = {
 	marginLeft : '6px',
 };
 
-const itemFunction = ({ status = '', statusChangeHandler = () => {}, loading = false }) => ({
+const itemFunction = ({
+	status = '', statusChangeHandler = () => {},
+	loading = false, selectedShipments, checkboxChangeHandler,
+}) => ({
 	renderName: (itemData) => {
 		const { poc_details = {} } = itemData || {};
 		return <span>{poc_details?.name}</span>;
@@ -26,8 +29,12 @@ const itemFunction = ({ status = '', statusChangeHandler = () => {}, loading = f
 			<IcMEdit width={12} height={12} style={style} />
 		</span>
 	),
-	renderCheckbox: () => (
-		<Checkbox checked={status} />
+	renderCheckbox: (itemData) => (
+		<Checkbox
+			checked={selectedShipments.includes(itemData?.id)}
+			onChange={(e) => checkboxChangeHandler({ id: itemData?.id, val: e.target.checked })}
+			disabled={loading}
+		/>
 	),
 	renderDataTime: (itemData, config) => (
 		<span>
@@ -38,6 +45,21 @@ const itemFunction = ({ status = '', statusChangeHandler = () => {}, loading = f
 			})}
 		</span>
 	),
+	renderShipperConsignee: (itemData, config) => {
+		const { poc_details = [] } = itemData || {};
+		if (isEmpty(poc_details)) return '--';
+
+		const filteredArr = poc_details.filter((item) => item?.user_type === upperCase(config?.key));
+		return <span>{filteredArr[0]?.name || '--'}</span>;
+	},
+	renderPortPair: (itemData) => {
+		const { itinerary = [] } = itemData || {};
+		return (
+			<span>
+				{`${itinerary?.origin || 'Origin'} > ${itinerary?.destination || 'Destination'} `}
+			</span>
+		);
+	},
 });
 
 export default itemFunction;

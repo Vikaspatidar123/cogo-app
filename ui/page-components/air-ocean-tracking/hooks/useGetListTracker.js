@@ -46,8 +46,6 @@ const useGetListTracker = () => {
 		}
 	}, [debounceQuery, inputValue]);
 
-	console.log(globalFilter, 'globalFilter', inputValue);
-
 	useEffect(() => {
 		if (query !== null) {
 			setGlobalFilter((prev) => ({

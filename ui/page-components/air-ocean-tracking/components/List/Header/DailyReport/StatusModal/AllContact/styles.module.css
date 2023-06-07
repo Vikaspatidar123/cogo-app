@@ -1,4 +1,6 @@
 .footer {
+	display: flex;
+	justify-content: flex-end;
 	padding: 10px 16px;
 	box-shadow: 0 0 8px rgb(44 62 80 / 20%);
 }

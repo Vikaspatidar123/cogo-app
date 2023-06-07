@@ -43,7 +43,7 @@ function DailyReport() {
 					onPageChange={setPage}
 				/>
 			</div>
-			<StatusModal statusModal={statusModal} setStatusModal={setStatusModal} />
+			<StatusModal statusModal={statusModal} setStatusModal={setStatusModal} dsrList={list} />
 		</div>
 	);
 }

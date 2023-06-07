@@ -10,12 +10,14 @@ import getValue from '@/ui/commons/utils/getValue';
 function Table({
 	title = '', configs = [], filteredList = [], data = {}, loading = false,
 	showPagination = true, setPage = () => {}, selectedContact = '', setSelectedContact = () => {}, isClickable = true,
-	isScroll = false,
+	isScroll = false, maxHeight, itmFunction = {},
 }) {
-	const newFunction = itemFunction({});
 	const { list: dataList = [], page = 0, page_limit = 0, total_count = 0 } = data || {};
+
 	const list = isEmpty(filteredList) ? dataList : filteredList;
 	const newList = loading ? [...Array(5).keys()] : list;
+
+	const newFunction = itemFunction({ ...itmFunction });
 
 	return (
 		<div className={styles.container}>
@@ -33,12 +35,13 @@ function Table({
 						</div>
 					))}
 				</div>
-				<div className={`${isScroll ? styles.scroll_container : ''}`}>
+
+				<div style={{ maxHeight: maxHeight ?? '' }} className={`${isScroll ? styles.scroll_container : ''}`}>
 					{newList.map((item) => (
 						<div
 							key={item?.id || item}
-							className={`${styles.flex_box} ${styles.item_row}
-						${(selectedContact?.id === item?.id && isClickable) ? styles.selected : ''}`}
+							className={`${styles.flex_box} ${styles.item_row} 
+							${(selectedContact?.id === item?.id && isClickable) ? styles.selected : ''}`}
 							onClick={() => setSelectedContact(item)}
 							role="presentation"
 						>

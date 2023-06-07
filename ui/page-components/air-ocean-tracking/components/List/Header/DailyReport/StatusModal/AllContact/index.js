@@ -3,18 +3,22 @@ import { IcMSearchlight } from '@cogoport/icons-react';
 import { isEmpty } from '@cogoport/utils';
 import { useMemo, useState } from 'react';
 
+import contactListConfig from '../../../../../../configuration/contactListConfig';
+import useCreateDsr from '../../../../../../hooks/useCreateDsr';
+import useGetContactList from '../../../../../../hooks/useGetContactList';
+
 import styles from './styles.module.css';
 
-import Table from '@/ui/page-components/air-ocean-tracking/common/Table';
-import contactListConfig from '@/ui/page-components/air-ocean-tracking/configuration/contactListConfig';
 // import Table from './Table';
-import useGetContactList from '@/ui/page-components/air-ocean-tracking/hooks/useGetContactList';
+import Table from '@/ui/page-components/air-ocean-tracking/common/Table';
 
-function AllContact({ selectedContact, setSelectedContact, setIsSingleReport }) {
+function AllContact({ selectedContact, setSelectedContact, setIsSingleReport, setDsrId }) {
 	const [inputValue, setInputValue] = useState('');
 	const { data, loading, setPage } = useGetContactList();
-	const { list = [] } = data || {};
+	const { loading: createLoading, createDsr } = useCreateDsr();
 
+	const { list = [] } = data || {};
+	console.log(list, 'list');
 	const filteredList = useMemo(() => {
 		const inputValueLowerCase = inputValue.toLowerCase();
 		return list.filter((item) => {
@@ -25,10 +29,14 @@ function AllContact({ selectedContact, setSelectedContact, setIsSingleReport }) 
 		});
 	}, [inputValue, list]);
 
-	const proceedHandler = () => {
+	const proceedHandler = async () => {
 		if (isEmpty(selectedContact)) {
 			Toast.warn('Please Select contact');
 		} else {
+			const resp = await createDsr({ contactId: selectedContact?.id });
+
+			if (resp === null) return;
+			setDsrId(resp);
 			setIsSingleReport(true);
 		}
 	};
@@ -47,7 +55,7 @@ function AllContact({ selectedContact, setSelectedContact, setIsSingleReport }) 
 							suffix={<IcMSearchlight />}
 						/>
 					</div>
-					<Button themeType="secondary">Add New</Button>
+					<Button themeType="secondary" disabled={createLoading}>Add New</Button>
 				</div>
 				{/* <Table
 					data={data}
@@ -69,7 +77,7 @@ function AllContact({ selectedContact, setSelectedContact, setIsSingleReport }) 
 				/>
 			</div>
 			<div className={styles.footer}>
-				<Button onClick={proceedHandler} themeType="accent">Next</Button>
+				<Button onClick={proceedHandler} themeType="accent" loading={createLoading}>Next</Button>
 			</div>
 		</div>
 	);

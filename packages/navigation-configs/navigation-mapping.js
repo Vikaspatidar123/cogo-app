@@ -270,6 +270,13 @@ const navigationMappings = {
 		as            : '/v2/settings',
 		showMobileNav : true,
 	},
+	pay_later: {
+		key       : 'pay_later',
+		title     : 'Pay Later',
+		href      : '/v2/pay-later',
+		as        : '/v2/pay-later',
+		showInNav : false,
 
+	},
 };
 export default navigationMappings;

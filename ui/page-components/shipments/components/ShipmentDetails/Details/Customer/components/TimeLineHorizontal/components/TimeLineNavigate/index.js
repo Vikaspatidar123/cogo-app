@@ -1,3 +1,4 @@
+import { Pagination } from '@cogoport/components';
 import { IcMTrailorFull } from '@cogoport/icons-react';
 import { useState, Fragment, useEffect } from 'react';
 
@@ -33,6 +34,7 @@ function TimelineNavigate({
 	preditiveEta = {},
 	vesselName = '',
 	servicesForMap = false,
+	rest,
 }) {
 	const { data } = ListSaasSubscriptions();
 
@@ -42,6 +44,7 @@ function TimelineNavigate({
 	const [incotermStep, setIncotermStep] = useState(-1);
 
 	const incoterm = trackerDetails?.shipment_details?.incoterm;
+	const { page = 0, pageLimit = 0, totalCount = 0, setPage } = rest || {};
 
 	useEffect(() => {
 		if (allContainers.length) {
@@ -116,6 +119,15 @@ function TimelineNavigate({
 								{item.container_details[0]?.container_no}
 							</div>
 						) : null))}
+					</div>
+					<div className={styles.pagination_container}>
+						<Pagination
+							type="compact"
+							pageSize={pageLimit}
+							totalItems={totalCount}
+							currentPage={page}
+							onPageChange={setPage}
+						/>
 					</div>
 				</div>
 			) : null}

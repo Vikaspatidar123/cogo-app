@@ -240,3 +240,8 @@
 	font-size: 15px;
 	color: #4f4f4f;
 }
+
+.pagination_container {
+	display: flex;
+	justify-content: flex-end;
+}

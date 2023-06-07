@@ -1277,6 +1277,11 @@ const apis = [
 		access_type  : 'private',
 		service_name : 'shipment',
 	},
+	{
+		api          : 'get_multiple_sea_routes',
+		access_type  : 'private',
+		service_name : 'location',
+	},
 ];
 
 export default apis;

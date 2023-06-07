@@ -2,6 +2,7 @@ import { Toast } from '@cogoport/components';
 import { useState, useEffect, useContext } from 'react';
 
 import { ShipmentDetailContext } from '../../../../../common/Context';
+import useGetAllOceanRoutes from '../hooks/useGetAllOceanRoute';
 
 import MapAndDetails from './MapAndDetails';
 import styles from './styles.module.css';
@@ -15,6 +16,7 @@ function TrackerInfomation({
 	setCurrentSubscription = () => {},
 	setQuickAction = () => {},
 	servicesList = [],
+	...rest
 }) {
 	const [{ shipment_data }] = useContext(ShipmentDetailContext);
 
@@ -31,6 +33,7 @@ function TrackerInfomation({
 	const [selectedMilestonesList, setSelectedMilestonesList] = useState([]);
 	const [preditiveEta, setPreditiveEta] = useState({});
 	const [vesselName, setVesselName] = useState('');
+	const { getRoute } = useGetAllOceanRoutes({});
 
 	const [{ loading:apiloading }, trigger1] = useRequest({
 		url        : 'get_container_sea_route',
@@ -55,19 +58,23 @@ function TrackerInfomation({
 				],
 			};
 			const res = await trigger1({ data: request_data });
-
 			const { hasError } = res || [];
 			if (hasError) throw new Error();
 			else if (res.data?.length) {
-				container_no.map((c) => {
+				container_no.map(async (c) => {
 					const container = res.data.filter((r) => r.container_no === c);
 					if (container.length > 0) {
 						const pre_points = container.map((a) => a.data).flat();
+						const coordinates = {
+							originLatLng      : pre_points?.[0],
+							destinationLatLng : pre_points?.[pre_points.length - 1],
+						};
+						const routeArr = await getRoute({ coordinates });
 						setMapPoints((prevPoints) => [
 							...prevPoints,
 							{
 								container_no : c,
-								route        : pre_points,
+								route        : routeArr || pre_points,
 							},
 						]);
 					}
@@ -135,6 +142,7 @@ function TrackerInfomation({
 
 			<TimelineNavigate
 				selectedMilestonesList={selectedMilestonesList}
+				containerSubbscription={trigger2}
 				allContainers={allContainers}
 				trackerDetails={trackerDetails}
 				currentSubscription={currentSubscription}
@@ -142,6 +150,7 @@ function TrackerInfomation({
 				preditiveEta={preditiveEta}
 				vesselName={vesselName}
 				servicesForMap={servicesForMap}
+				rest={rest}
 			/>
 		</div>
 	);

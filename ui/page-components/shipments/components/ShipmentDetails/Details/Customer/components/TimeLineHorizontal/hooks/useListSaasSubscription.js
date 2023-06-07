@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 import { useRequest } from '@/packages/request';
 import { useSelector } from '@/packages/store';
@@ -6,11 +6,12 @@ import { useSelector } from '@/packages/store';
 const ListSaasSubscriptions = () => {
 	const { general } = useSelector((state) => state);
 	const { query } = general;
+	const [page, setPage] = useState(1);
 
 	const [{ loading, data }, trigger] = useRequest({
 		url    : 'list_saas_container_subscriptions',
 		method : 'get',
-	}, { manual: true });
+	}, { manual: false });
 
 	const getList = async () => {
 		await trigger({
@@ -19,6 +20,8 @@ const ListSaasSubscriptions = () => {
 					organization_branch_id : query?.branch_id,
 					status                 : 'active',
 				},
+				page,
+				page_limit: 9,
 			},
 		});
 	};
@@ -28,11 +31,12 @@ const ListSaasSubscriptions = () => {
 			getList();
 		}
 	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [query?.id]);
+	}, [query?.id, page]);
 
 	return {
 		loading,
 		data,
+		setPage,
 	};
 };
 export default ListSaasSubscriptions;

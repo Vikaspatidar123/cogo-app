@@ -7,7 +7,7 @@ import Route from './Route';
 const LAYER = [
 	{
 		name        : 'COGO MAPS',
-		url         : 'https://api.cogoport.com/cogo-tiles/{z}/{x}/{y}.png',
+		url         : `${process.env.NEXT_PUBLIC_MAPS_BASE_URL}/cogo-tiles/{z}/{x}/{y}.png`,
 		attribution : '',
 	},
 ];

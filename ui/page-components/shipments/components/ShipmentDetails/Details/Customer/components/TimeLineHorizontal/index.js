@@ -9,10 +9,10 @@ function TimeLineHorizontal({
 }) {
 	const [currentSubscription, setCurrentSubscription] = useState(null);
 
-	const { data, loading } = ListSaasSubscriptions();
+	const { data, loading, setPage } = ListSaasSubscriptions();
 
-	const container_data =		data?.list?.filter((item) => item?.type === 'CONTAINER_NO') || [];
-
+	const { list = [], page = 0, page_limit = 0, total_count = 0 } = data || {};
+	const container_data =	list?.filter((item) => item?.type === 'CONTAINER_NO') || [];
 	useEffect(() => {
 		setCurrentSubscription(container_data?.[0]);
 	// eslint-disable-next-line react-hooks/exhaustive-deps
@@ -26,6 +26,10 @@ function TimeLineHorizontal({
 			setCurrentSubscription={setCurrentSubscription}
 			loading={loading}
 			servicesList={servicesList}
+			page={page}
+			pageLimit={page_limit}
+			totalCount={total_count}
+			setPage={setPage}
 		/>
 	);
 }

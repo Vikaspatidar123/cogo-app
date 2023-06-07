@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { Modal } from '@cogoport/components';
+import { Modal, cl } from '@cogoport/components';
 import { IcMFitView } from '@cogoport/icons-react';
 import dynamic from 'next/dynamic';
 import { useState, useEffect } from 'react';
@@ -20,6 +20,7 @@ function TrackerMap({
 	isModal = false,
 	markers = [],
 	route = {},
+	isGetSeaRoute = false,
 }) {
 	const [isTrackerMapModalOpen, setTrackerMapModal] = useState(false);
 	const [currentMilestone, setCurrentMilestone] = useState(false);
@@ -28,14 +29,14 @@ function TrackerMap({
 	const [completedPoints, setCompletedPoints] = useState([]);
 	const [remainingPoints, setRemainingPoints] = useState([]);
 	const isMobile = false;
-	const RemainingPoint = points?.map((a) => ({
-		lat : a[1],
-		lng : a[0],
+	const latIndex = isGetSeaRoute ? 0 : 1;
+	const lngIndex = isGetSeaRoute ? 1 : 0;
+
+	const curvePoint = points?.map((a) => ({
+		lat : a[latIndex],
+		lng : a[lngIndex],
 	}));
-	const CurvePoint = points?.map((a) => ({
-		lat : a[1],
-		lng : a[0],
-	}));
+
 	let center = {};
 
 	const resetPointAndMarkers = () => {
@@ -140,9 +141,9 @@ function TrackerMap({
 					}, 0);
 				}
 			} else if (type === 'ocean_schedule') {
-				setRemainingPoints(RemainingPoint);
+				setRemainingPoints(curvePoint);
 
-				setCurvePoints(CurvePoint);
+				setCurvePoints(curvePoint);
 				setTimeout(() => {
 					setLoading(false);
 				}, 0);
@@ -155,15 +156,15 @@ function TrackerMap({
 					setRemainingPoints((prevPoints) => [
 						...prevPoints,
 						{
-							lat : c[1],
-							lng : c[0],
+							lat : c[latIndex],
+							lng : c[lngIndex],
 						},
 					]);
 					setCurvePoints((prevPoints) => [
 						...prevPoints,
 						{
-							lat : c[1],
-							lng : c[0],
+							lat : c[latIndex],
+							lng : c[lngIndex],
 						},
 					]);
 					return true;
@@ -187,6 +188,7 @@ function TrackerMap({
 			}, 0);
 		}
 	}, [markers]);
+
 	if (!isLoading && curvePoints.length > 0) {
 		center = {
 			lat : curvePoints[Math.ceil(curvePoints.length / 2)].lat,
@@ -229,7 +231,7 @@ function TrackerMap({
 			className={isModal ? styles.image : ''}
 		/>
 	) : (
-		<div className={`${styles.container} ${isMobile ? styles.mobile_view : ''}`}>
+		<div className={cl`${styles.container} ${isMobile ? styles.mobile_view : ''}`}>
 			{!isModal && points?.length !== 0 && (
 				<IcMFitView
 					className={styles.icon}

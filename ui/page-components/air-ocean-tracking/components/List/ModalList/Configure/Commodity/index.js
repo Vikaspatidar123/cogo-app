@@ -1,17 +1,27 @@
 import { Button } from '@cogoport/components';
+import { useState } from 'react';
 
 import commodityControls from '../../../../../configuration/commodityControls';
+import useCreateShipment from '../../../../../hooks/useCreateShipment';
 
 import styles from './styles.module.css';
 
 import { useForm } from '@/packages/forms';
 import getField from '@/packages/forms/Controlled';
 
-function Commodity() {
+function Commodity({ closeHandler, shipmentId }) {
+	const [commodityValue, setCommodityValue] = useState('');
 	const { control, handleSubmit, formState:{ errors } } = useForm();
 
-	const onSubmit = (data) => {
-		console.log(data, 'data');
+	const { loading, updateTrackerInfo } = useCreateShipment({ closeHandler });
+
+	const onSubmit = () => {
+		const payload = {
+			commodity                      : commodityValue?.description,
+			hs_code                        : commodityValue?.hsCode,
+			saas_container_subscription_id : shipmentId,
+		};
+		updateTrackerInfo({ payload });
 	};
 
 	return (
@@ -26,15 +36,22 @@ function Commodity() {
 					return (
 						<div key={name} className={styles.col}>
 							<p>{label}</p>
-							<Element control={control} {...config} />
+							<Element control={control} {...config} handleChange={(e) => setCommodityValue(e)} />
 							<p>{errors?.[name]?.message || errors?.[name]?.type}</p>
 						</div>
 					);
 				})}
 			</div>
 			<div className={styles.footer}>
-				<Button themeType="secondary">Cancel</Button>
-				<Button className={styles.submit_btn} themeType="accent" onClick={handleSubmit(onSubmit)}>Save</Button>
+				<Button themeType="secondary" disabled={loading}>Cancel</Button>
+				<Button
+					className={styles.submit_btn}
+					themeType="accent"
+					onClick={handleSubmit(onSubmit)}
+					loading={loading}
+				>
+					Save
+				</Button>
 			</div>
 		</div>
 	);

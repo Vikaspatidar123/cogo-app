@@ -77,15 +77,15 @@ function asyncFieldsPartnerQuotation() {
 	};
 }
 
-// function asyncFieldsSixDigitHsCode() {
-// 	return {
-// 		labelKey    : 'displayName',
-// 		valueKey    : 'id',
-// 		endpoint    : 'saas/organization/partner/list',
-// 		authKey     : 'get_saas_organization_partner_list',
-// 		initialCall : false,
-// 	};
-// }
+function asyncFieldsSixDigitHsCode() {
+	return {
+		labelKey    : 'hsCode',
+		valueKey    : 'id',
+		endpoint    : 'saas/hs-code/six-digit-list',
+		authKey     : 'get_saas_hs_code_six_digit_list',
+		initialCall : false,
+	};
+}
 export {
 	asyncFieldsLocations,
 	asyncFieldsLocations2,
@@ -93,4 +93,5 @@ export {
 	asyncFieldsPartnerRoles,
 	asyncFieldsHsCodeCountries,
 	asyncFieldsPartnerQuotation,
+	asyncFieldsSixDigitHsCode,
 };

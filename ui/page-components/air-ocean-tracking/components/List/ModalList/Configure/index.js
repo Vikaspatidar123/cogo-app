@@ -17,7 +17,7 @@ const COMPONENT_MAPPING = {
 	commodity         : Commodity,
 };
 
-function Configure() {
+function Configure({ closeHandler, shipmentId }) {
 	const [configureTab, setConfigureTab] = useState('commodity');
 	const Component = COMPONENT_MAPPING?.[configureTab];
 
@@ -35,7 +35,7 @@ function Configure() {
 				</Tabs>
 			</div>
 			<div className={styles.content}>
-				<Component />
+				<Component closeHandler={closeHandler} shipmentId={shipmentId} />
 			</div>
 
 		</div>

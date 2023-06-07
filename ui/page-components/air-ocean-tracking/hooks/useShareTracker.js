@@ -5,12 +5,12 @@ const useShareTracker = ({ id }) => {
 	const { query } = useRouter();
 
 	const [{ loading }, trigger] = useRequest({
-		url    : 'create_saas_container_subscription_share',
+		url    : '/create_saas_container_subscription_share',
 		method : 'post',
 	}, { manual: true });
 
 	const [{ data, loading: getListLoading }, fetch] = useRequest({
-		url    : 'get_saas_container_subscription_shared_details',
+		url    : '/get_saas_container_subscription_shared_details',
 		method : 'get',
 		params : {
 			saas_container_subscription_id: id,

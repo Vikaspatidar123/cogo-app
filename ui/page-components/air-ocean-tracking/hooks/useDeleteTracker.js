@@ -5,7 +5,7 @@ import { useRequest } from '@/packages/request';
 const useDeleteTracker = ({ name = '', id = '', closeHandler }) => {
 	const [{ loading }, trigger] = useRequest({
 		method : 'post',
-		url    : 'deactivate_saas_container_subscription',
+		url    : '/deactivate_saas_container_subscription',
 	}, { manual: true });
 
 	const getPayload = () => {

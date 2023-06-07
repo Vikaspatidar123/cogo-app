@@ -10,6 +10,7 @@ import {
 	asyncFieldsPartnerRoles,
 	asyncFieldsHsCodeCountries,
 	asyncFieldsPartnerQuotation,
+	asyncFieldsSixDigitHsCode,
 } from '../../utils/getAsyncFields';
 
 /**
@@ -37,6 +38,7 @@ const keyAsyncFieldsParamsMapping = {
 	partner_roles          : asyncFieldsPartnerRoles,
 	hs_code_countries      : asyncFieldsHsCodeCountries,
 	list_partner_quotation : asyncFieldsPartnerQuotation,
+	six_digit_hs_code      : asyncFieldsSixDigitHsCode,
 };
 
 function AsyncSelect(props) {
@@ -65,8 +67,7 @@ function AsyncSelect(props) {
 	});
 
 	if (
-		typeof getModifiedOptions === 'function'
-        && !isEmpty(getAsyncOptionsProps.options)
+		typeof getModifiedOptions === 'function' && !isEmpty(getAsyncOptionsProps.options)
 	) {
 		getAsyncOptionsProps.options = getModifiedOptions(
 			getAsyncOptionsProps.options,

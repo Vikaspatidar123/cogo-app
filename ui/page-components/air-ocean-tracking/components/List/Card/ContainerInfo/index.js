@@ -15,8 +15,9 @@ function ContainerInfo({
 
 	const tableData = useMemo(() => {
 		const { commodity = '', hs_code = '' } = shipmentInfo || {};
+
 		return {
-			commodity    : commodity - `${(hs_code)}` || <IcMAlert />,
+			commodity    : hs_code ? `${commodity} - (${hs_code})` : <IcMAlert />,
 			container_no : currentContainer?.container_no,
 		};
 	}, [currentContainer, shipmentInfo]);

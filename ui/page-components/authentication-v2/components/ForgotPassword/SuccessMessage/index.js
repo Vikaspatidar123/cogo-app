@@ -36,7 +36,7 @@ function SuccessMessage({ resetUserPassword = () => {}, emailId = '' }) {
 			<div className={styles.links}>
 				Didn&#39;t receive the password reset link?
 				{' '}
-				<span className={styles.reset_link} onClick={resetUserPassword(emailId)} role="presentation">
+				<span className={styles.reset_link} onClick={() => resetUserPassword(emailId)} role="presentation">
 					Resend Reset Email
 				</span>
 			</div>

@@ -17,6 +17,7 @@ const SIGNUP_FLOW_MAPPING = {
 
 function Signup() {
 	const [mode, setMode] = useState('signup_form');
+
 	const [userDetails, setUserDetails] = useState({
 		name               : '',
 		email              : '',

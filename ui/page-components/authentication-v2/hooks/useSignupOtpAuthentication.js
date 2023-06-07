@@ -16,26 +16,22 @@ const useSignupOtpAuthentication = ({ otpValue = '', setMode = () => { }, userDe
 
 	const onSignupWithOtp = async () => {
 		try {
-			const payload = {
-				id  : userDetails?.id,
-				otp : otpValue,
-			};
-
 			const response = await verifyOtpTrigger({
-				data: payload,
+				data: {
+					id  : userDetails?.id,
+					otp : otpValue,
+				},
 			});
-
-			Toast?.success('Verification Successful!');
-
-			setMode('loading_prompts');
 
 			const redirectUrl = '/v2/dashboard';
 
-			const { user_session } = response || {};
+			const { token } = response.data || {};
 
-			const { token } = user_session || {};
+			setMode('loading_prompts');
 
 			setCookieAndRedirect(token, {}, redirectUrl);
+
+			Toast?.success('Verification Successful!');
 		} catch (error) {
 			Toast.error(error?.data);
 		}

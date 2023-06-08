@@ -1,5 +1,5 @@
 import { Checkbox, Button } from '@cogoport/components';
-import { IcMArrowBack, IcMBldo, IcMPreview } from '@cogoport/icons-react';
+import { IcMArrowBack, IcMBldo, IcMEyeopen } from '@cogoport/icons-react';
 
 import styles from './styles.module.css';
 
@@ -28,7 +28,7 @@ function Footer({
 
 	const renderBtn = () => (
 		<>
-			<IcMPreview width="22px" height="22px" className={styles.icon} />
+			<IcMEyeopen width="22px" height="22px" className={styles.icon} />
 			Preview & Buy
 		</>
 	);

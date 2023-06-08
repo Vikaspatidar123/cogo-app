@@ -12,10 +12,12 @@ import {
 	IcMQuotations,
 	IcMTradeparties,
 	IcACrossBorder,
-	IcMProductCodeMapping,
 	IcMFfreferigeratedCargoType,
 	IcMUpwardGraph,
 	IcADutiesTaxes,
+	IcAFinancial,
+	IcADocumentationInfo,
+	IcABookYourShipment,
 } from '@cogoport/icons-react';
 
 const navigationMappings = {
@@ -146,7 +148,7 @@ const navigationMappings = {
 				title : 'Order History',
 				href  : '/v2/saas/order-history',
 				as    : '/v2/saas/order-history',
-				icon  : <IcACrossBorder width={40} height={40} />,
+				icon  : <IcABookYourShipment width={40} height={40} />,
 			},
 			{
 				key   : 'saas_premium_services-import_export_docs',
@@ -161,14 +163,14 @@ const navigationMappings = {
 				title : 'Trader Eligibility Check',
 				href  : '/v2/saas/premium-services/trader-eligibility-check',
 				as    : '/v2/saas/premium-services/trader-eligibility-check',
-				icon  : <IcMTradeparties width={40} height={40} fill="red" />,
+				icon  : <IcMTradeparties width={42} height={42} fill="#fbd221" />,
 			},
 			{
 				key         : 'saas_premium_services-duties_and_taxes',
 				title       : 'Duties & Taxes Calculator',
 				href        : '/v2/saas/premium-services/duties-taxes-calculator',
 				as          : '/v2/saas/premium-services/duties-taxes-calculator',
-				icon        : <IcADutiesTaxes width={50} height={50} />,
+				icon        : <IcADutiesTaxes width={45} height={45} />,
 				description : '',
 			},
 		],
@@ -182,26 +184,43 @@ const navigationMappings = {
 			{
 				key   : 'saas_planning-trade_partner',
 				title : 'Trade Partner',
-				icon  : <IcMTradeparties width={40} height={40} />,
-				href  : '/v2/saas/trade-partner',
-				as    : '/v2/saas/trade-partner',
+				icon  : (<img
+					src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/nav-trade-partners.svg"
+					alt="cogo"
+					width={40}
+					height={40}
+					style={{ background: '#fbd221', padding: '5px', borderRadius: '5px' }}
+				/>),
+				href : '/v2/saas/trade-partner',
+				as   : '/v2/saas/trade-partner',
 			},
 			{
-				key         : 'saas_planning-product_inventory',
-				title       : 'Product Catalog',
-				type        : 'link',
-				icon        : <IcMProductCodeMapping width={40} height={40} />,
+				key   : 'saas_planning-product_inventory',
+				title : 'Product Catalog',
+				type  : 'link',
+				icon  : (<img
+					src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/nav-catalog.svg"
+					alt="cogo"
+					width={40}
+					height={40}
+					style={{ background: '#fbd221', padding: '5px', borderRadius: '5px' }}
+				/>),
 				href        : '/v2/saas/product-inventory',
 				as          : '/v2/saas/product-inventory',
 				module_type : 'dashboards',
 			},
 			{
-				key   : 'saas_planning-quotation',
-				title : 'Quick Quotations',
+				key         : 'saas_planning-quotation',
+				title       : 'Quick Quotations',
 				// eslint-disable-next-line max-len
-				description:
-          'The meaning of QUOTATION is something that is quoted; especially : a passage ',
-				icon : <IcMQuotations width={30} height={30} />,
+				description : 'The meaning of QUOTATION is something that is quoted; especially : a passage ',
+				icon        : (<img
+					src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/quickQuote.svg"
+					alt="cogo"
+					width={40}
+					height={40}
+					style={{ background: '#FAEFEF', padding: '5px', borderRadius: '5px' }}
+				/>),
 				type : 'link',
 				href : '/v2/saas/quickquotation/viewlist',
 				as   : '/v2/saas/quickquotation/viewlist',
@@ -227,17 +246,27 @@ const navigationMappings = {
 	},
 
 	app_documents: {
-		key       : 'app_documents',
-		title     : 'Documents Wallet',
-		href      : '/v2/documents',
-		as        : '/v2/documents',
-		showInNav : true,
+		key   : 'app_documents',
+		title : 'Documents Wallet',
+		href  : '/documents',
+		as    : '/documents',
+		icon  : (
+			<IcADocumentationInfo
+				width={20}
+				height={20}
+			/>
+		),
 	},
 
 	saas_finance: {
-		key       : 'saas_finance',
-		title     : 'Finance',
-		icon      : 'nav-finance',
+		key   : 'saas_finance',
+		title : 'Finance',
+		icon  : (
+			<IcAFinancial
+				width={20}
+				height={20}
+			/>
+		),
 		isSubNavs : true,
 		isNew     : true,
 		options   : [
@@ -279,9 +308,13 @@ const navigationMappings = {
 
 	},
 	saas_cogo_subscription: {
-		key       : 'saas_cogo_subscription',
-		title     : 'Subscriptions',
-		icon      : 'nav-subscriptions',
+		key   : 'saas_cogo_subscription',
+		title : 'Subscriptions',
+		icon  : (<img
+			src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/nav-subscriptions.svg"
+			alt="cogo"
+		/>
+		),
 		isSubNavs : true,
 		options   : [
 			{

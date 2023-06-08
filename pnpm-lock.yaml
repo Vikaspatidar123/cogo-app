@@ -5,8 +5,8 @@ dependencies:
     specifier: ^1.0.1
     version: 1.0.1(prop-types@15.8.1)(react-dom@18.2.0)(react@18.2.0)
   '@cogoport/components':
-    specifier: ^1.0.422
-    version: 1.0.422(@babel/core@7.21.8)(@cogoport/icons-react@1.0.76)(react-dom@18.2.0)(react@18.2.0)
+    specifier: ^1.0.425
+    version: 1.0.425(@babel/core@7.21.8)(@cogoport/icons-react@1.0.76)(react-dom@18.2.0)(react@18.2.0)
   '@cogoport/icons-react':
     specifier: ^1.0.76
     version: 1.0.76(react-dom@18.2.0)(react@18.2.0)
@@ -1402,8 +1402,8 @@ packages:
       - react-dom
     dev: false
 
-  /@cogoport/components@1.0.422(@babel/core@7.21.8)(@cogoport/icons-react@1.0.76)(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-61tFznMxsFkRWJntMeFwc8Czgi444zRvzyh5ZLVNoafW5uXTS5yOZjLkbjj5WiP7IGJJM6OdeZRbYWY2a/umtA==}
+  /@cogoport/components@1.0.425(@babel/core@7.21.8)(@cogoport/icons-react@1.0.76)(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-NkUfnE5qgMRK4G68rRtqZ4JuTzytMsjTL4pmi2+Y5bPVGNpUFqzvCKUUVanyFBvL49qWo8BDgNOR4aXVTxvr3w==}
     peerDependencies:
       '@cogoport/icons-react': ^1.0.23
       react: ^18.2.0

@@ -1,7 +1,6 @@
 import { Input, Chips, Button, Table, Pagination } from '@cogoport/components';
 import { IcMPlus, IcMSearchlight, IcMPlusInCircle } from '@cogoport/icons-react';
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
 
 import CancellationAndConfirmModal from '../../common/CancellationModal';
 import FAQComponent from '../../common/FAQComponent';
@@ -16,6 +15,8 @@ import useList from '../../hooks/useList';
 import FilterSection from './Filter';
 import segementedOpt from './Options/index';
 import styles from './styles.module.css';
+
+import { useSelector } from '@/packages/store';
 
 function ListView() {
 	const { isMobile } = useSelector((state) => state);

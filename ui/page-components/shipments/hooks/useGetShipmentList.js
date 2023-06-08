@@ -15,7 +15,7 @@ const useGetShipmentList = (allParams = { isBookingDesk: false }) => {
 	}));
 	const [currentTab, setCurrentTab] = useState('ongoing');
 
-	const { getshipment } = getShipmentList();
+	const { getshipment, loading } = getShipmentList();
 
 	const config =	 getConfigsShipper();
 	const configFunc = getConfigsShipper;
@@ -39,7 +39,7 @@ const useGetShipmentList = (allParams = { isBookingDesk: false }) => {
 	);
 
 	const {
-		loading,
+		loading:load,
 		page,
 		filters,
 		list: { data, total, total_page },
@@ -64,14 +64,14 @@ const useGetShipmentList = (allParams = { isBookingDesk: false }) => {
 		},
 	);
 	return {
-		loading,
+		loading : load || loading,
 		page,
 		filters,
-		list   : { data, total, total_page },
+		list    : { data, total, total_page },
 		hookSetters,
 		setCurrentTab,
 		currentTab,
-		config : {
+		config  : {
 			...config,
 			filter_controls: [...defaultControls, ...restFilterControls],
 		},

@@ -75,6 +75,7 @@ const useFetchTrends = ({ pageLimit = 10 }) => {
 	};
 	useEffect(() => {
 		fetchTrends();
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [filters, pagination]);
 	const refectTrends = () => fetchTrends(false);
 	return {

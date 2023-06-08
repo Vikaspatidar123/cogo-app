@@ -58,7 +58,6 @@ function FreightRateTrend() {
 	const {
 		list, page, page_limit, total, total_count,
 	} = tredList;
-	console.log(tredList, 'tredList');
 
 	const trendList = freightTrends?.list || [];
 

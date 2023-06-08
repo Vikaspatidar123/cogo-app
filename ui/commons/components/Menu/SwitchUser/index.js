@@ -39,7 +39,7 @@ function SwitchUser({ setShow }) {
 			<div className={styles.separator} />
 
 			<div className={styles.list}>
-				{organizations.map((item) => (
+				{(organizations || []).map((item) => (
 					<Item key={item.id} item={item} />
 				))}
 			</div>

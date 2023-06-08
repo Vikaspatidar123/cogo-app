@@ -3,6 +3,7 @@ import { IcMPlus, IcMSearchlight, IcMPlusInCircle } from '@cogoport/icons-react'
 import { useState } from 'react';
 
 import CancellationAndConfirmModal from '../../common/CancellationModal';
+import EmptyState from '../../common/EmptyState';
 import FAQComponent from '../../common/FAQComponent';
 import PreviewModal from '../../common/PreviewModal';
 import redirectUrl from '../../common/redirectUrl';
@@ -126,13 +127,17 @@ function ListView() {
 					/>
 				)}
 			</div>
-			<Table
-				columns={fields || []}
-				data={list || []}
-				loading={loading}
-				loadingRowsCount={10}
-				className={styles.table}
-			/>
+			{data?.list?.length > 0 && !previewloading && (
+				<Table
+					columns={fields || []}
+					data={list || []}
+					loading={loading}
+					loadingRowsCount={10}
+					className={styles.table}
+				/>
+			) }
+			{data?.list?.length === 0 && !previewloading
+			&& <EmptyState />}
 			{data?.list?.length > 0 && (
 				<div className={styles.pagination_div}>
 					<Pagination

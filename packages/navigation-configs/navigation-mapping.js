@@ -18,6 +18,7 @@ import {
 	IcAFinancial,
 	IcADocumentationInfo,
 	IcABookYourShipment,
+	IcMAppInsurance,
 } from '@cogoport/icons-react';
 
 const navigationMappings = {
@@ -173,6 +174,14 @@ const navigationMappings = {
 				icon        : <IcADutiesTaxes width={45} height={45} />,
 				description : '',
 			},
+			{
+				key         : 'saas_premium_services-cogo_insurance',
+				title       : 'Insurance',
+				href        : '/v2/saas/insurance/list',
+				as          : '/v2/saas/insurance/list',
+				icon        : <IcMAppInsurance width={40} height={40} fill="red" />,
+				description : 'Buy insurance for your cargo here',
+			},
 		],
 	},
 	saas_planning: {
@@ -227,16 +236,6 @@ const navigationMappings = {
 			},
 		],
 	},
-	saas_cogo_insurance: {
-		key         : 'saas_tools_insurance',
-		title       : 'Insurance',
-		href        : '/v2/saas/insurance/list',
-		as          : '/v2/saas/insurance/list',
-		type        : 'link',
-		icon        : <IcMFfreferigeratedCargoType width={40} height={40} fill="red" />,
-		description : 'Buy insurance for your cargo here',
-		showInNav   : true,
-	},
 
 	app_accept_terms_and_conditions: {
 		key       : 'app_accept_terms_and_conditions',
@@ -247,7 +246,7 @@ const navigationMappings = {
 
 	app_documents: {
 		key   : 'app_documents',
-		title : 'Documents Wallet',
+		title : 'Document Wallet',
 		href  : '/documents',
 		as    : '/documents',
 		icon  : (

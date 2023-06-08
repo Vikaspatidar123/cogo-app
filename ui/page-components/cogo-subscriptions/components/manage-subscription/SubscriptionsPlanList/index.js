@@ -29,7 +29,7 @@ function SubscriptionsPlanList({
 	const [showDetails, setShowDetails] = useState(false);
 	const featureRef = useRef('');
 	const { refetchPlanFeatures, planFeatureData } = useGetPlanFeatures({});
-
+	const check = Object.keys(planFeatureData?.plan_features || {}).length || 0;
 	const {
 		general: { isMobile = false },
 	} = useSelector((state) => state);
@@ -148,21 +148,23 @@ function SubscriptionsPlanList({
 				</div>
 			</div>
 
-			<div className={`${styles.feature_plan} ${styles.showfeature}`} ref={featureRef}>
-				{isMobile ? (
-					<MobileView
-						className="detailsDiv"
-						clickedPlan={clickedPlan}
-						planFeatureData={planFeatureData?.plan_features}
-					/>
-				) : (
-					<DetailContainer
-						className="detailsDiv"
-						clickedPlan={clickedPlan}
-						planFeatureData={planFeatureData?.plan_features}
-					/>
-				)}
-			</div>
+			{check > 0 && (
+				<div className={`${styles.feature_plan} ${styles.showfeature}`} ref={featureRef}>
+					{isMobile ? (
+						<MobileView
+							className="detailsDiv"
+							clickedPlan={clickedPlan}
+							planFeatureData={planFeatureData?.plan_features}
+						/>
+					) : (
+						<DetailContainer
+							className="detailsDiv"
+							clickedPlan={clickedPlan}
+							planFeatureData={planFeatureData?.plan_features}
+						/>
+					)}
+				</div>
+			)}
 		</div>
 	);
 }

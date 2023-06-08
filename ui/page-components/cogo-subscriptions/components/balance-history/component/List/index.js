@@ -18,14 +18,15 @@ function List({ pendingModal }) {
 
 	const {
 		fetchOrderLoading, orderDetails, orderBy, setOrderBy, fetchOrderDetails,
-	} =		useGetOrderDetails({
+	} =	useGetOrderDetails({
 		pagination,
 	});
 	const { order_history, page_limit, total_count } = orderDetails || {};
 
 	useEffect(() => {
 		if (!pendingModal) fetchOrderDetails();
-	}, [pagination, pendingModal, orderBy, fetchOrderDetails]);
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [pagination, pendingModal, orderBy]);
 
 	return (
 		<div className={styles.container}>

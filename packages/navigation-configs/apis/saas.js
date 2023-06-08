@@ -595,7 +595,7 @@ const saas = {
 		{
 			api          : 'saas_create_callback_for_plan_inquiry',
 			access_type  : 'private',
-			service_name : 'saas_traceability',
+			service_name : 'saas_subscriptions_v2',
 		},
 		{
 			api          : 'create_organization_billing_address',

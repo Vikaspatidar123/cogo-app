@@ -1,5 +1,5 @@
-import { Toast, Tabs, TabPanel } from '@cogoport/components';
-import { useCallback, useEffect, useState, useMemo } from 'react';
+import { Tabs, TabPanel } from '@cogoport/components';
+import { useEffect, useState } from 'react';
 
 import SuccessModal from '../../../common/SuccessModal';
 import useGetRequestCallback from '../../../hooks/useGetRequestCallback';
@@ -30,13 +30,6 @@ const options = [
 	},
 ];
 
-const WAIT_TIME = 3 * 1000;
-const wait = (time) => new Promise((res) => {
-	setTimeout(() => {
-		res();
-	}, time);
-});
-
 function Plan() {
 	const { profile } = useSelector((s) => s);
 	const { query } = useRouter();
@@ -44,16 +37,17 @@ function Plan() {
 	const [activeTab, setActiveTab] = useState('monthly');
 	const [modal, setShowModal] = useState(false);
 	const [clickedPlan, setClickedPlan] = useState();
-	const [paymentStatus, setPaymentStatus] = useState({});
-	const [apiTries, setApiTries] = useState(0);
 	const [subscribeTab, setSubscribeTab] = useState('monthly');
 	const { getPlan, loading } = useGetUSerActivePlan({ profile });
-	const { razorLoading, verifyRazor, setRazorLoading } = useVerifyRazor();
+	const {
+		setRazorLoading,
+		razorLoading = false,
+		paymentStatus = {},
+		apiTries,
+	} = useVerifyRazor();
 	const { requestCallback, callbackLoading } = useGetRequestCallback({ profile });
 
-	const { saas_checkout_id = '', saas_plan = '' } = query || {};
-
-	const requestData = useMemo(() => ({ saas_checkout_id, gateway: 'chargebee' }), [saas_checkout_id]);
+	const { saas_plan = '' } = query || {};
 
 	const { billing_cycle } = userplan;
 	const userActivePlan = userplan?.item_plans?.find(
@@ -68,31 +62,6 @@ function Plan() {
 	}, [getPlan]);
 
 	const { item_plans = [], saas_plan_pricing_id = '' } = userplan || {};
-	const checkPaymentStatus = useCallback(async (payload) => {
-		if (apiTries < 1) setRazorLoading(true);
-		const res = await verifyRazor(payload);
-		await wait(WAIT_TIME);
-		setApiTries(apiTries + 1);
-		setPaymentStatus(res);
-	}, [apiTries, setRazorLoading, verifyRazor]);
-
-	useEffect(() => {
-		if (query?.state === 'succeeded') {
-			checkPaymentStatus(requestData);
-		} else setRazorLoading(false);
-	}, [checkPaymentStatus, query, requestData, setRazorLoading]);
-
-	useEffect(() => {
-		(async () => {
-			if (paymentStatus?.status !== 'active' && apiTries < 10 && razorLoading) {
-				try {
-					checkPaymentStatus(requestData);
-				} catch (err) {
-					Toast.error(err?.data);
-				}
-			}
-		})();
-	}, [apiTries, checkPaymentStatus, paymentStatus?.status, razorLoading, requestData]);
 
 	useEffect(() => {
 		if (Object.keys(item_plans).length > 0) {

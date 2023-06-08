@@ -1,0 +1,81 @@
+.layout_container {
+	.form-item-label {
+		margin: 32px 0 12px;
+		font-size: 12px;
+		font-weight: 500;
+		color: #393f70;
+	}
+
+	.main_upload_container {
+		border: 1px dashed #cddbff;
+	}
+
+	.core-ui-input-root {
+		margin-bottom: 8px;
+		border: 1px solid #cddbff !important;
+	}
+
+	.form-lower-label {
+		line-height: unset;
+	}
+
+	.custom-select-input-container {
+		.custom-select-input-subcontainer {
+			border: 1px solid #cddbff;
+
+			.core-ui-input-root {
+				border: unset !important;
+			}
+		}
+	}
+
+	.upload-area {
+		display: flex;
+		justify-content: center;
+	}
+}
+
+.layout {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: flex-end;
+
+	:global {
+		.ui_upload_droparea_container {
+			flex-direction: row;
+			margin-bottom: 6px;
+		}
+
+		.ui_upload_droparea_subheading {
+			text-align: center;
+		}
+
+		.ui_upload_droparea_icon {
+			svg {
+				width: 50px;
+				height: 50px;
+			}
+		}
+	}
+}
+
+.field {
+	padding: 8px;
+}
+
+.button_container {
+	display: flex;
+	justify-content: flex-end;
+}
+
+.lable {
+	margin: 12px 0;
+	font-size: 12px;
+	font-weight: 500;
+	color: rgb(57 63 112);
+}
+
+.errors {
+	font-size: 11px;
+	color: red;
+}

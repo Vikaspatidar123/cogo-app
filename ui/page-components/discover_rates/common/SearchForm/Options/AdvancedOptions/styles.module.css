@@ -1,0 +1,17 @@
+.row {
+	display: flex;
+	flex-direction: row;
+
+	@media (max-width: 768px) {
+		flex-direction: column;
+	}
+}
+
+.card {
+	padding: 0 20px;
+}
+
+.modal {
+	width: 1255px !important;
+	height: 540px !important;
+}

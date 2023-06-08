@@ -1,0 +1,40 @@
+.container {
+	margin-top: 24px;
+
+	@media (max-width: 768px) {
+		width: 100%;
+	}
+}
+
+.ie_side {
+	border: 1px dashed #66acf7;
+
+	:hover {
+		border: 1px solid #66acf7;
+	}
+}
+
+.ie_side_text {
+	color: #66acf7;
+}
+
+.ie_side_container {
+	padding: 0 20px 20px;
+	border-radius: 4px;
+	box-shadow: 0 1px 4px rgb(169 188 218 / 65%);
+}
+
+.documentcard_container {
+	background: #f5fafe;
+	border-bottom: none;
+}
+
+.ie_side_svg {
+	path {
+		fill: #66acf7;
+	}
+}
+
+.primary.md.text {
+	color: #034afd;
+}

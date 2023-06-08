@@ -1,0 +1,43 @@
+.flex {
+	display: flex;
+	flex: 1;
+	align-items: center;
+	justify-content: space-between;
+	padding: 8px 16px;
+	margin-bottom: 20px;
+	background: #ffe3e3;
+	border-radius: 4px;
+}
+
+.flex1 {
+	display: flex;
+	width: 70%;
+	margin-right: 20px;
+	margin-left: 4px;
+}
+
+.text {
+	font-size: 18px;
+	font-weight: 700;
+	color: #393f70;
+}
+
+.text1 {
+	font-size: 14px;
+	font-weight: 600;
+	color: #5b608a;
+
+	@media (max-width: 1366px) {
+		font-size: 12px;
+	}
+}
+
+.submit_btn {
+	padding: 6px 12px;
+	font-size: 14px;
+	color: #393f70;
+	cursor: pointer;
+	background: #fff;
+	border: 1px solid #393f70;
+	border-radius: 4px;
+}

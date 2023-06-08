@@ -28,6 +28,13 @@ const navigationMappings = {
 		mobileIcon : <IcMQuotations width={20} height={20} />,
 	},
 
+	app_discover_rates: {
+		key       : 'app_discover_rates',
+		title     : 'Discover Rates',
+		href      : '/v2/book',
+		as        : '/v2/book',
+		showInNav : true,
+	},
 	saas_tools: {
 		key       : 'saas_tools',
 		title     : 'Tools',
@@ -115,6 +122,17 @@ const navigationMappings = {
 		],
 	},
 
+	saas_cogo_insurance: {
+		key         : 'saas_tools_insurance',
+		title       : 'Insurance',
+		href        : '/v2/saas/insurance/list',
+		as          : '/v2/saas/insurance/list',
+		type        : 'link',
+		icon        : <IcMFfreferigeratedCargoType width={40} height={40} fill="red" />,
+		description : 'Buy insurance for your cargo here',
+		showInNav   : true,
+	},
+
 	saas_premium_services: {
 		key         : 'saas_premium_services',
 		title       : 'Premium Services',
@@ -131,6 +149,14 @@ const navigationMappings = {
 				title : 'Order History',
 				href  : '/v2/saas/order-history',
 				as    : '/v2/saas/order-history',
+				icon  : <IcACrossBorder width={40} height={40} />,
+			},
+			{
+				key   : 'saas_premium_services-import_export_docs',
+				title : 'Import/Export Documents',
+				type  : 'link',
+				href  : '/v2/saas/premium-services/import-export-doc',
+				as    : '/v2/saas/premium-services/import-export-doc',
 				icon  : <IcACrossBorder width={40} height={40} />,
 			},
 			{
@@ -159,8 +185,8 @@ const navigationMappings = {
 	app_bookings: {
 		key       : 'app_bookings',
 		title     : 'Shipments',
-		href      : '/shipments',
-		as        : '/shipments',
+		href      : '/v2/shipments',
+		as        : '/v2/shipments',
 		icon      : 'nav-booking',
 		showInNav : true,
 	},

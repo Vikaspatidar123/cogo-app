@@ -1,0 +1,49 @@
+{
+	"name": "shipment",
+	"routeInfo": {
+		"origin_pickup": "",
+		"origin_port": "airport",
+		"origin_main_port": "",
+		"destination_main_port": "",
+		"destination_port": "",
+		"destination_drop": ""
+	},
+	"possibleFullRoute": [
+		{
+			"service_types": ["air_customs_service"],
+			"display": "Air Customs",
+			"origin": "airport",
+			"iconType": "ship",
+			"type": "land"
+		}
+	],
+	"refModal": { "action": "add_importer_exporter_reference_id" },
+	"details": [
+		{
+			"label": "Chargeable Wt.",
+			"key": "chargeable_weight"
+		},
+		{
+			"label": "Cargo Value",
+			"key": "cargo_value",
+			"specialCase":"concatCurrencyType"
+		},
+		{
+			"label": "Clearance Dt:",
+			"key": "cargo_clearance_date",
+			"type": "date"
+		},
+		{
+			"label": "No of Stop(s)",
+			"key": "number_of_stops",
+			"type": "stops"
+		},
+		{
+			"label": "Terms and Conditions",
+			"key": "terms_and_conditions",
+			"type": "terms_and_conditions",
+			"displayInColumn": true
+		}
+	],
+	"pending_tasks": {}
+}

@@ -1,0 +1,24 @@
+.code_div {
+	display: flex;
+	gap: 5px;
+}
+
+.count {
+	min-width: 40px;
+	padding: 0 3px;
+	margin-left: 4px;
+	color: #000;
+	text-align: center;
+	background: #abcd62;
+	border-radius: 20px;
+}
+
+.text {
+	margin-left: 4px;
+	color: #000;
+	text-align: center;
+}
+
+.chips {
+	gap: 0 !important;
+}

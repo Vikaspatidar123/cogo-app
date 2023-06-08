@@ -1,16 +1,16 @@
 import { IcMShip, IcCLcl, IcCAir, IcCFftl } from '@cogoport/icons-react';
 
 function FCL() {
-	return <IcMShip fill="#356EFD" height={20} width={20} />;
+	return <IcMShip fill="#356EFD" height={25} width={25} />;
 }
 function LCL() {
-	return <IcCLcl height={20} width={20} />;
+	return <IcCLcl height={25} width={25} />;
 }
 function AIR() {
 	return <IcCAir height={20} width={20} />;
 }
 function FTL() {
-	return <IcCFftl height={20} width={20} />;
+	return <IcCFftl height={25} width={25} />;
 }
 
 const SEARCH_MAPPING = {

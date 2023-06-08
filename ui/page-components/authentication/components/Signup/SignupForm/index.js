@@ -8,7 +8,7 @@ import styles from './styles.module.css';
 
 import { useForm, InputController, MobileNumberSelectController } from '@/packages/forms';
 
-function SignupForm({ setHasSignedup, setFormData, setUserId }) {
+function SignupForm({ setHasSignedup, setFormData, setUserDetails }) {
 	const {
 		handleSubmit, formState: { errors }, control, watch,
 	} = useForm();
@@ -17,7 +17,7 @@ function SignupForm({ setHasSignedup, setFormData, setUserId }) {
 	const recaptchaRef = useRef({});
 
 	const { signupAuthentication, signupLoading } = useSignupAuthentication({
-		setHasSignedup, setUserId, captchaResponse, hasWhatsApp,
+		setHasSignedup, setUserDetails, captchaResponse, hasWhatsApp,
 	});
 
 	const onChange = (value = '') => {

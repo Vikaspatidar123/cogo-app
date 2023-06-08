@@ -1,0 +1,29 @@
+.container {
+	width: 380px;
+	max-width: 580px;
+	padding-bottom: 14px;
+
+	@media (max-width: 768px) {
+		width: auto;
+	}
+}
+
+.mobile {
+	width: 100%;
+	max-width: none;
+}
+
+.button {
+	display: flex;
+	padding: 0;
+	margin-left: auto;
+	font-size: 12px;
+	font-weight: normal;
+	line-height: 14px;
+	color: #333;
+	text-decoration: underline;
+	cursor: pointer;
+	background: transparent;
+	border: none;
+	outline: none;
+}

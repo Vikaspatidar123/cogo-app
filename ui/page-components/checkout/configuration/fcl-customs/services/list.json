@@ -1,0 +1,16 @@
+[
+    {
+        "name": "import_fcl_customs",
+        "title": "Destination FCL Customs",
+        "service_type": "fcl_customs",
+		"trade_type": "import",
+        "inco_terms": ["cif", "cfr", "cpt", "cip", "dat", "dap", "ddp", "exw", "fca", "fob", "fas"]
+    },
+	{
+        "name": "export_fcl_customs",
+        "title": "Origin FCL Customs",
+        "service_type": "fcl_customs",
+		"trade_type": "export",
+        "inco_terms": ["cif", "cfr", "cpt", "cip", "dat", "dap", "ddp", "exw", "fca", "fob", "fas"]
+    }
+]

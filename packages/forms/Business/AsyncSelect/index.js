@@ -9,36 +9,41 @@ import {
 	asyncFieldsPartner,
 	asyncFieldsPartnerRoles,
 	asyncFieldsHsCodeCountries,
+	asyncFieldsPinCodeLocations,
+	asyncFieldsHScode,
+	asyncCountrySelect,
+	asyncAirLinesSelect,
+	asyncFieldsCommoditiesList,
+	asyncInsuranceCountryList,
 	asyncFieldsPartnerQuotation,
 	asyncProductList,
+	asyncOrganizationBranches,
+	asyncInsuranceCommodities,
+	asyncAirLines,
+	asyncShippingLines,
+	asyncTradeContacts,
 } from '../../utils/getAsyncFields';
 
-/**
- * to get async options, first check desired endpoint is present or not,
- * 1. if present
- * 		1. get the endpoint function "key" from "keyAsyncFieldsParamsMapping" obj
- * 		2. pass that function "key" as value in "asyncKey" property in control
- * 2. if not present
- * 		1. add function in "common/utils/getAsyncFields" file and export it,
- * 		2. import that function from "utils/getAsyncFields",
- * 		3. add a new "key" in "keyAsyncFieldsParamsMapping" obj with value as
- * 			function reference, note. do not call the function
- * 		4. then follow 1.1 and 1.2 steps
- *
- * if you want to modify the options, pass "getModifiedOptions" function in control,
- * @method
- * @param {Object} Object: { options: [] => Async Options }
- * @returns {Array} Modified Async Options
- * getModifiedOptions
- */
 const keyAsyncFieldsParamsMapping = {
-	locations              : asyncFieldsLocations,
-	locations2             : asyncFieldsLocations2,
-	partners               : asyncFieldsPartner,
-	partner_roles          : asyncFieldsPartnerRoles,
-	hs_code_countries      : asyncFieldsHsCodeCountries,
-	list_partner_quotation : asyncFieldsPartnerQuotation,
-	list_products          : asyncProductList,
+	locations                  : asyncFieldsLocations,
+	locations2                 : asyncFieldsLocations2,
+	partners                   : asyncFieldsPartner,
+	partner_roles              : asyncFieldsPartnerRoles,
+	hs_code_countries          : asyncFieldsHsCodeCountries,
+	list_partner_quotation     : asyncFieldsPartnerQuotation,
+	list_products              : asyncProductList,
+	country_list_with_flag     : asyncCountrySelect,
+	pin_code                   : asyncFieldsPinCodeLocations,
+	shipping_lines             : asyncShippingLines,
+	hs_code                    : asyncFieldsHScode,
+	air_lines                  : asyncAirLinesSelect,
+	commodities_list_insurance : asyncFieldsCommoditiesList,
+	insurance_country_list     : asyncInsuranceCountryList,
+	'organization-branches'    : asyncOrganizationBranches,
+	insurance_commodities      : asyncInsuranceCommodities,
+	'air-lines'                : asyncAirLines,
+	'shipping-lines'           : asyncShippingLines,
+	trade_contacts             : asyncTradeContacts,
 };
 
 function AsyncSelect(props) {
@@ -64,16 +69,8 @@ function AsyncSelect(props) {
 		labelKey : rest.labelKey || defaultParams.labelKey,
 		valueKey : rest.valueKey || defaultParams.valueKey,
 		getModifiedOptions,
+		value    : rest.value,
 	});
-
-	if (
-		typeof getModifiedOptions === 'function'
-        && !isEmpty(getAsyncOptionsProps.options)
-	) {
-		getAsyncOptionsProps.options = getModifiedOptions(
-			getAsyncOptionsProps.options,
-		);
-	}
 
 	if (typeof getSelectedOption === 'function' && !isEmpty(rest.value)) {
 		let selectedValue;
@@ -88,14 +85,11 @@ function AsyncSelect(props) {
 		);
 		getSelectedOption(selectedOption[0]);
 	}
-
 	const Element = multiple ? MultiSelect : Select;
-	const { onHydrateValue, ...optionRest } = getAsyncOptionsProps || [];
-
 	return (
 		<Element
 			{...rest}
-			{...optionRest}
+			{...getAsyncOptionsProps}
 		/>
 	);
 }

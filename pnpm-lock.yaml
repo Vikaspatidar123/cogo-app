@@ -5,8 +5,8 @@ dependencies:
     specifier: ^1.0.1
     version: 1.0.1(prop-types@15.8.1)(react-dom@18.2.0)(react@18.2.0)
   '@cogoport/components':
-    specifier: ^1.0.416
-    version: 1.0.416(@babel/core@7.21.8)(@cogoport/icons-react@1.0.58)(react-dom@18.2.0)(react@18.2.0)
+    specifier: ^1.0.422
+    version: 1.0.422(@babel/core@7.21.8)(@cogoport/icons-react@1.0.58)(react-dom@18.2.0)(react@18.2.0)
   '@cogoport/icons-react':
     specifier: ^1.0.58
     version: 1.0.58(react-dom@18.2.0)(react@18.2.0)
@@ -28,6 +28,9 @@ dependencies:
   axios-hooks:
     specifier: ^4.0.0
     version: 4.0.0(axios@1.3.4)(react@18.2.0)
+  file-saver:
+    specifier: ^2.0.5
+    version: 2.0.5
   frames-react:
     specifier: ^1.1.0
     version: 1.1.0(react@18.2.0)
@@ -76,6 +79,9 @@ dependencies:
   redux-thunk:
     specifier: ^2.4.2
     version: 2.4.2(redux@4.2.1)
+  uuid:
+    specifier: ^9.0.0
+    version: 9.0.0
 
 devDependencies:
   '@cogoport/eslint-config':
@@ -1399,8 +1405,8 @@ packages:
       - react-dom
     dev: false
 
-  /@cogoport/components@1.0.416(@babel/core@7.21.8)(@cogoport/icons-react@1.0.58)(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-jCjRsu5HzVf0WyX3bsx/gTaAXlUG5EujJKbA4uUF/WNqqUGEDwAQta9gr5iN8QIAtLW44/54TkaZuTaz3UouMg==}
+  /@cogoport/components@1.0.422(@babel/core@7.21.8)(@cogoport/icons-react@1.0.58)(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-61tFznMxsFkRWJntMeFwc8Czgi444zRvzyh5ZLVNoafW5uXTS5yOZjLkbjj5WiP7IGJJM6OdeZRbYWY2a/umtA==}
     peerDependencies:
       '@cogoport/icons-react': ^1.0.23
       react: ^18.2.0
@@ -4361,6 +4367,10 @@ packages:
       flat-cache: 3.0.4
     dev: true
 
+  /file-saver@2.0.5:
+    resolution: {integrity: sha512-P9bmyZ3h/PRG+Nzga+rbdI4OEpNDzAVyy74uVO9ATgzLK6VtAsYybF/+TOCvrc0MO793d6+42lLyZTw7/ArVzA==}
+    dev: false
+
   /fill-range@7.0.1:
     resolution: {integrity: sha512-qOo9F+dMUmC2Lcb4BbVvnKJxTPjCm+RRpe4gDuGrzkL7mEVl/djYSu2OdQ2Pa302N4oqkSg9ir6jaLWJ2USVpQ==}
     engines: {node: '>=8'}
@@ -6880,6 +6890,11 @@ packages:
   /util-deprecate@1.0.2:
     resolution: {integrity: sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==}
     dev: true
+
+  /uuid@9.0.0:
+    resolution: {integrity: sha512-MXcSTerfPa4uqyzStbRoTgt5XIe3x5+42+q1sDuy3R5MDk66URdLMOZe5aPX/SQd+kuYAh0FdP/pO28IkQyTeg==}
+    hasBin: true
+    dev: false
 
   /v8-compile-cache@2.3.0:
     resolution: {integrity: sha512-l8lCEmLcLYZh4nbunNZvQCJc5pv7+RCwa8q/LdUx8u7lsWvPDKmpodJAJNwkAhJC//dFY48KuIEmjtd4RViDrA==}

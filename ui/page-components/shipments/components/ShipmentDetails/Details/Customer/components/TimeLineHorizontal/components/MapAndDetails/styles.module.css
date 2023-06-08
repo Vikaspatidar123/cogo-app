@@ -1,0 +1,27 @@
+.left_panel {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+}
+
+.show_tracking {
+	width: 65%;
+
+	@media (max-width: 768px) {
+		width: 100%;
+	}
+}
+
+.panels {
+	display: flex;
+
+	@media (max-width: 768px) {
+		flex-direction: column;
+		width: 100%;
+	}
+}
+
+.actions {
+	margin-top: 10px;
+	margin-bottom: 20px;
+}

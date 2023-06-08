@@ -1,0 +1,148 @@
+[
+	{
+		"label": "Pickup Pincode",
+		"name": "location_id",
+		"placeholder": "Search via pincode",
+		"type": "async_select",
+		"caret": true,
+		"asyncKey": "locations",
+		"grouped": ["city"],
+		"params": { "filters": { "type": ["pincode", "city"] } },
+		"condition": { "services": ["export_transportation"] },
+		"rules": { "required": "Pincode is required" }
+	},
+	{
+		"name": "truck_type",
+		"label": "Truck Type",
+		"type": "select",
+		"caret": true,
+		"span": 8,
+		"options": [
+			{
+				"label": "PICKUP 1TON",
+				"value": "open_body_pickup_1ton"
+			},
+			{
+				"label": "TATA ACE 750 800KGS",
+				"value": "open_body_tata_ace_750_800kgs"
+			},
+			{
+				"label": "TATA 407 2.5TON",
+				"value": "open_body_tata_407_2.5ton"
+			},
+			{
+				"label": "LCV 14FT 4TON",
+				"value": "open_body_LCV_14ft_4ton"
+			},
+			{
+				"label": "LCV 17FT 5TON",
+				"value": "open_body_LCV_17ft_5ton"
+			},
+			{
+				"label": "LCV 19FT 7TON",
+				"value": "open_body_LCV_19ft_7ton"
+			},
+			{
+				"label": "6TYRE 19 24FT 9TON",
+				"value": "open_body_6tyre_19_24ft_9ton"
+			},
+			{
+				"label": "10TYRE TAURUS 22FT 16TON",
+				"value": "open_body_10tyre_taurus_22ft_16ton"
+			},
+			{
+				"label": "12TYRE TAURUS 22FT 22TON",
+				"value": "open_body_12tyre_taurus_22ft_22ton"
+			},
+			{
+				"label": "12TYRE TAURUS 24FT 25TON",
+				"value": "open_body_12tyre_taurus_24ft_25ton"
+			},
+			{
+				"label": "14TYRE TAURUS 22FT 26TON",
+				"value": "open_body_14tyre_taurus_22ft_26ton"
+			},
+			{
+				"label": "14TYRE TAURUS 25FT 26TON",
+				"value": "open_body_14tyre_taurus_25ft_26ton"
+			},
+			{
+				"label": "14TYRE 30TON",
+				"value": "open_body_14tyre_30ton"
+			},
+			{
+				"label": "18TYRE 28TON",
+				"value": "open_body_18tyre_28ton"
+			},
+			{
+				"label": "22TYRE 35TON",
+				"value": "open_body_22tyre_35ton"
+			},
+			{
+				"label": "40FT FLAT BED TRAILOR 20 25TON",
+				"value": "open_40ft_flat_bed_trailor_20_25ton"
+			},
+			{
+				"label": "40FT SEMI LOW BED TRAILOR 20 25TON",
+				"value": "open_40ft_semi_low_bed_trailor_20_25ton"
+			},
+			{
+				"label": "40FT LOW BED TRAILOR 20 25 30TON",
+				"value": "open_40ft_low_bed_trailor_20_25_30ton"
+			}
+		],
+		"condition": {
+			"services": ["export_transportation"]
+		},
+		"rules": { "required": "Truck Type is required" }
+	},
+	{
+		"name": "trucks_count",
+		"label": "Trucks count",
+		"type": "number",
+		"span": 4,
+		"condition": {
+			"cargo_handling_type": ["stuffing_at_dock"],
+			"services": ["export_transportation"]
+		},
+		"rules": { "required": "Trucks count is required", "min": 0 }
+	},
+	{
+		"label": "Pickup Pincode",
+		"name": "location_id",
+		"placeholder": "Search via pincode",
+		"type": "async_select",
+		"caret": true,
+		"span": 12,
+		"asyncKey": "locations",
+		"grouped": ["city"],
+		"params": { "filters": { "type": ["pincode", "city"] } },
+		"condition": { "services": ["import_transportation"] },
+		"rules": { "required": "Pincode is required" }
+	},
+	{
+		"name": "truck_type",
+		"label": "Truck Type",
+		"type": "async_select",
+		"caret": true,
+		"asyncKey": "truck-types",
+		"span": 8,
+		"condition": {
+			"cargo_handling_type": ["destuffing_at_dock"],
+			"services": ["import_transportation"]
+		},
+		"rules": { "required": "Truck Type is required" }
+	},
+	{
+		"name": "trucks_count",
+		"label": "Trucks count",
+		"type": "number",
+		"span": 4,
+		"value": 1,
+		"condition": {
+			"cargo_handling_type": ["destuffing_at_dock"],
+			"services": ["import_transportation"]
+		},
+		"rules": { "required": "Trucks count is required", "min": 0 }
+	}
+]

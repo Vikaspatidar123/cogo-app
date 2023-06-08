@@ -1,0 +1,39 @@
+.container {
+	display: flex;
+}
+
+.label {
+	display: block;
+	margin-bottom: 10px;
+	overflow: hidden;
+	font-size: 12px;
+	font-weight: bold;
+	line-height: 14px;
+	color: #828282;
+	text-overflow: ellipsis;
+	text-transform: uppercase;
+	white-space: nowrap;
+}
+
+.date_select_container {
+	display: none;
+	width: 100%;
+	margin-top: -15px;
+	margin-left: 20px;
+}
+
+.mobile_web {
+	display: none;
+
+	@media (max-width: 768px) {
+		display: block;
+	}
+}
+
+.web {
+	display: block;
+
+	@media (max-width: 768px) {
+		display: none;
+	}
+}

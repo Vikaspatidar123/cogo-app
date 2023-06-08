@@ -1,0 +1,36 @@
+.container {
+	padding: 20px;
+	background: #fff;
+	box-shadow: 0 1px 6px rgb(169 188 218 / 65%);
+}
+
+.sub_container {
+	display: flex;
+	justify-content: space-between;
+	padding-bottom: 10px;
+}
+
+.text {
+	font-size: 16px;
+	font-weight: 500;
+	color: #393f70;
+}
+
+.tag_container {
+	margin-bottom: 1px;
+	margin-left: 10px;
+	cursor: pointer;
+}
+
+.custom_tag {
+	margin-bottom: 10px;
+	font-weight: 600;
+
+	&.core-ui-tag-root {
+		background-color: #fef1df;
+	}
+
+	&.core-ui-tag-text {
+		color: #fff;
+	}
+}

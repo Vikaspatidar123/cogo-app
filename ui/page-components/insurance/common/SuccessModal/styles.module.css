@@ -1,0 +1,31 @@
+.image_container {
+	display: flex;
+	justify-content: center;
+}
+
+.title {
+	display: flex;
+	justify-content: center;
+	margin: 2px;
+	font-size: 24px;
+	font-weight: 700;
+	color: #170f49;
+	text-align: center;
+}
+
+.text {
+	display: flex;
+	justify-content: center;
+	margin-bottom: 14px;
+	font-size: 14px;
+	font-weight: 400;
+	line-height: 25px;
+	color: #6f6c90;
+	text-align: center;
+}
+
+.button_div {
+	display: flex;
+	gap: 5px;
+	justify-content: center;
+}

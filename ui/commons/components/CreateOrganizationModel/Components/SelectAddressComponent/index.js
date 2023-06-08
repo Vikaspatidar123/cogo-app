@@ -1,5 +1,6 @@
 import { Select } from '@cogoport/components';
 import { IcMPlusInCircle } from '@cogoport/icons-react';
+import { isEmpty } from '@cogoport/utils';
 import React, { useState, useRef, useEffect } from 'react';
 
 import AddModal from '../AddAddressModal';
@@ -11,16 +12,15 @@ function SelectAddressComponent({ setAddress = () => {}, address = '' }) {
 	const elementRef = useRef();
 	const [addAddressModal, setAddAddressModal] = useState(false);
 	const { options = [] } = addressOptions();
-
 	useEffect(() => {
-		if (address == null) {
+		if (isEmpty(address)) {
 			const divElement = elementRef.current;
 			divElement?.scrollIntoView({ behavior: 'smooth', block: 'center' });
 		}
 	}, [address]);
 
 	return (
-		<div className={styles.heading}>
+		<div className={styles.heading} ref={elementRef}>
 			<Select
 				className={styles.select}
 				value={address}

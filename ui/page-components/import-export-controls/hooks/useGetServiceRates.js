@@ -1,14 +1,19 @@
+import { Toast } from '@cogoport/components';
 import { useEffect } from 'react';
-import { useRequest } from '@cogo/commons/hooks';
-import toast from '@cogoport/front/components/admin/Toast';
-import { useSaasState } from '../../../common/context';
+
+import { useRequestBf } from '@/packages/request';
+import { useSelector } from '@/packages/store';
 
 const useGetServiceRates = (prioritySequence = 0) => {
-	const { profile = {} } = useSaasState();
+	const { profile } = useSelector((state) => state);
+
 	const { organization = {} } = profile || {};
-	const { data, trigger, loading } = useRequest('get', false, 'saas', {
-		authkey: 'get_saas_trade_engine_service_rates',
-	})('/saas/trade-engine/service-rates');
+
+	const [{ loading, data }, trigger] = useRequestBf({
+		method  : 'get',
+		url     : '/saas/trade-engine/service-rates',
+		authkey : 'get_saas_trade_engine_service_rates',
+	}, { manual: true });
 
 	const fetchServiceRates = async () => {
 		try {
@@ -19,7 +24,7 @@ const useGetServiceRates = (prioritySequence = 0) => {
 				},
 			});
 		} catch (error) {
-			toast.error(error?.error?.message, {
+			Toast.error(error?.error?.message, {
 				style: {
 					color: 'black',
 				},
@@ -34,8 +39,8 @@ const useGetServiceRates = (prioritySequence = 0) => {
 	}, [prioritySequence]);
 
 	return {
-		serviceRatesLoading: loading,
-		serviceRateData: data,
+		serviceRatesLoading : loading,
+		serviceRateData     : data,
 	};
 };
 export default useGetServiceRates;

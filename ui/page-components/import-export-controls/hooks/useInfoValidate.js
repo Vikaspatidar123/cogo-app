@@ -1,12 +1,16 @@
-import { useState, useEffect, useRef } from 'react';
-import { useRouter } from '@cogo/next';
-import useForm from '@cogoport/front/hooks/useFormCogo';
+/* eslint-disable react-hooks/exhaustive-deps */
 import { isEmpty } from '@cogoport/utils';
-import useVerifyHsCode from './useVerifyHsCode';
-import useDraft from './useDraft';
+import { useState, useEffect, useRef } from 'react';
+
+// import { useWindowDimensions } from '../../../common/utils/getMobileView';
 import controlsConfig from '../configurations/controlsConfig';
+
 import useCheckPaymentStatus from './useCheckPaymentStatus';
-import { useWindowDimensions } from '../../../common/utils/getMobileView';
+import useDraft from './useDraft';
+import useVerifyHsCode from './useVerifyHsCode';
+
+import { useForm } from '@/packages/forms';
+import { useRouter } from '@/packages/next';
 
 const useInfoValidate = ({
 	isQuotaLeft = false,
@@ -28,7 +32,7 @@ const useInfoValidate = ({
 	const { billId = '' } = query;
 	const initialRef = useRef({ fillExportHs: true, fillImportHs: true });
 
-	const { width = '' } = useWindowDimensions();
+	// const { width = '' } = useWindowDimensions();
 
 	const {
 		hsCode = '',
@@ -44,19 +48,20 @@ const useInfoValidate = ({
 		setShowPendingModal,
 	});
 
-	const formProps = useForm(controlsConfig);
-	const { getValues, setValues, setValue, watch } = formProps;
+	const formProps = useForm();
+	const { getValues, setValues, setValue, watch, control } = formProps;
 
-	const [watchImportHs, watchExportHs, watchImportCountry, watchExportCountry] =
-		watch(['importHsCode', 'exportHsCode', 'importCountry', 'exportCountry']);
+	const [watchImportHs, watchExportHs,
+		watchImportCountry,
+		watchExportCountry] = watch(['importHsCode', 'exportHsCode', 'importCountry', 'exportCountry']);
 
-	useEffect(() => {
-		if (width < 1154) {
-			setIsMobile(true);
-		} else {
-			setIsMobile(false);
-		}
-	}, [width]);
+	// useEffect(() => {
+	// 	if (width < 1154) {
+	// 		setIsMobile(true);
+	// 	} else {
+	// 		setIsMobile(false);
+	// 	}
+	// }, [width]);
 
 	useEffect(() => {
 		if (billId) {
@@ -105,18 +110,18 @@ const useInfoValidate = ({
 
 	useEffect(() => {
 		if (
-			watchExportHs.length >= 6 &&
-			watchImportHs === '' &&
-			initialRef.current.fillImportHs
+			watchExportHs?.length >= 6
+			&& watchImportHs === ''
+			&& initialRef.current.fillImportHs
 		) {
 			const importHs = watchExportHs.substring(0, 6);
 			setFormValue('importHsCode', importHs);
 			initialRef.current.fillImportHs = false;
 		}
 		if (
-			watchExportHs === '' &&
-			watchImportHs.length >= 6 &&
-			initialRef.current.fillExportHs
+			watchExportHs === ''
+			&& watchImportHs.length >= 6
+			&& initialRef.current.fillExportHs
 		) {
 			const exportHs = watchImportHs.substring(0, 6);
 			setFormValue('exportHsCode', exportHs);
@@ -136,9 +141,9 @@ const useInfoValidate = ({
 			} = localStorageFormData || {};
 
 			const obj = {
-				exportCountry: exportCountry?.id,
-				importCountry: importCountry?.id,
-				manufacturingCountry: manufacturingCountry?.id || '',
+				exportCountry        : exportCountry?.id,
+				importCountry        : importCountry?.id,
+				manufacturingCountry : manufacturingCountry?.id || '',
 				...rest,
 			};
 			setValues(obj);
@@ -154,8 +159,7 @@ const useInfoValidate = ({
 	const getKey = (name) => {
 		if (
 			['exportCountry', 'importCountry', 'manufacturingCountry'].includes(name)
-		)
-			return getValues(name);
+		) { return getValues(name); }
 
 		return name;
 	};
@@ -169,33 +173,33 @@ const useInfoValidate = ({
 		} = formInfo;
 
 		const exportCountryObj = {
-			id: exportCountry?.id || '',
-			name: exportCountry?.name || '',
-			country_code: exportCountry?.country_code || '',
-			flag_icon_url: exportCountry?.flag_icon_url || '',
-			latitude: exportCountry?.latitude || '',
-			longitude: exportCountry?.longitude || '',
+			id            : exportCountry?.id || '',
+			name          : exportCountry?.name || '',
+			country_code  : exportCountry?.country_code || '',
+			flag_icon_url : exportCountry?.flag_icon_url || '',
+			latitude      : exportCountry?.latitude || '',
+			longitude     : exportCountry?.longitude || '',
 		};
 		const importCountryObj = {
-			id: importCountry?.id || '',
-			name: importCountry?.name || '',
-			country_code: importCountry?.country_code || '',
-			flag_icon_url: importCountry?.flag_icon_url || '',
-			latitude: importCountry?.latitude || '',
-			longitude: importCountry?.longitude || '',
+			id            : importCountry?.id || '',
+			name          : importCountry?.name || '',
+			country_code  : importCountry?.country_code || '',
+			flag_icon_url : importCountry?.flag_icon_url || '',
+			latitude      : importCountry?.latitude || '',
+			longitude     : importCountry?.longitude || '',
 		};
 		const manufacturing = {
-			id: manufacturingCountry?.id || '',
-			name: manufacturingCountry?.name || '',
-			country_code: manufacturingCountry?.country_code || '',
-			flag_icon_url: manufacturingCountry?.flag_icon_url || '',
+			id            : manufacturingCountry?.id || '',
+			name          : manufacturingCountry?.name || '',
+			country_code  : manufacturingCountry?.country_code || '',
+			flag_icon_url : manufacturingCountry?.flag_icon_url || '',
 		};
 		return {
-			exportCountry: exportCountryObj,
-			importCountry: importCountryObj,
-			manufacturingCountry: manufacturing,
-			productName: name,
-			tradeEngineInputId: id,
+			exportCountry        : exportCountryObj,
+			importCountry        : importCountryObj,
+			manufacturingCountry : manufacturing,
+			productName          : name,
+			tradeEngineInputId   : id,
 			...rest,
 		};
 	};

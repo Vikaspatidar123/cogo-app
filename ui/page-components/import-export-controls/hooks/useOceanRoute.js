@@ -1,15 +1,15 @@
 import { useState } from 'react';
-import { useRequest } from '@cogo/commons/hooks';
-import { useSaasState } from '../../../common/context';
+
+import { useRequest } from '@/packages/request';
 
 const useOceanRoute = () => {
 	const [routeDataLength, setRouteDataLength] = useState();
-	const { setMapPoints } = useSaasState();
-	const { trigger: oceanRouteTrigger, loading } = useRequest(
-		'get',
-		false,
-		'app',
-	)('/get_sea_route');
+	// const { setMapPoints } = useSaasState();
+
+	const [{ loading }, oceanRouteTrigger] = useRequest({
+		method : 'get',
+		url    : '/get_sea_route',
+	}, { manual: true });
 
 	const getOceanRoute = async (origin_port_id, destination_port_id) => {
 		try {
@@ -21,7 +21,7 @@ const useOceanRoute = () => {
 				},
 			});
 			const respData = resp?.data?.the_geom;
-			setMapPoints(respData);
+			// setMapPoints(respData);
 			setRouteDataLength(respData?.length === 0);
 		} catch (err) {
 			console.error(err?.error?.message);

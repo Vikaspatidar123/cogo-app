@@ -1,17 +1,19 @@
-import { useRequest } from '@cogo/commons/hooks';
-import { useRouter } from '@cogo/next';
-import toast from '@cogoport/front/components/admin/Toast';
+// import getGeoConstants from '@cogo/globalization/constants/geo';
+import { Toast } from '@cogoport/components';
 import { useState } from 'react';
-import getGeoConstants from '@cogo/globalization/constants/geo';
-import useGetProductCode from './useGetProductCodes';
-import { useSaasState } from '../../../common/context';
-import paymentInitiation from '../../../common/components/payment-initiation';
 
-const geo = getGeoConstants();
-const DEFAULT_CURRENCY = geo.country.currency.code;
+import useGetProductCode from './useGetProductCodes';
+
+import { useRouter } from '@/packages/next';
+import { useRequestBf } from '@/packages/request';
+import { useSelector } from '@/packages/store';
+import paymentInititation from '@/ui/commons/components/PaymentInitiation';
+
+// const geo = getGeoConstants();
+// const DEFAULT_CURRENCY = geo.country.currency.code;
 
 const usePayment = () => {
-	const { profile } = useSaasState();
+	const { profile } = useSelector((s) => s);
 	const { query } = useRouter();
 
 	const { id, name, email, mobile_number, mobile_country_code } = profile || {};
@@ -29,14 +31,16 @@ const usePayment = () => {
 
 	const { getProductCodeLoading, productCode = {} } = useGetProductCode();
 
-	const { data, trigger, loading } = useRequest('post', false, 'saas', {
-		authkey: 'post_saas_payment',
-	})('/saas/payment');
+	const [{ data, loading }, trigger] = useRequestBf({
+		method  : 'post',
+		url     : '/saas/payment',
+		authkey : 'post_saas_payment',
+	}, { manual: true });
 
 	const { import_export_documents = {} } = productCode;
 
 	const initiatePayment = async ({
-		currency = DEFAULT_CURRENCY,
+		// currency = DEFAULT_CURRENCY,
 		price = 0,
 		gstAmount = 0,
 		amount = 0,
@@ -50,49 +54,49 @@ const usePayment = () => {
 		try {
 			const resp = await trigger({
 				data: {
-					userId: id,
-					organizationId: profile?.organization.id,
-					currency,
-					billRefId: trade_engine_id,
-					[addressKey]: address?.id,
-					organizationAddressId: '43a738be-febf-4173-82a1-69aa95a64560',
-					userName: name,
-					userEmail: email,
-					userMobile: mobile_number,
-					userMobileCountryCode: mobile_country_code,
-					redirectUrl: callBackUrl,
-					billType: 'PREMIUM_SERVICES',
-					source: 'SAAS',
-					billLineItems: [
+					userId                : id,
+					organizationId        : profile?.organization.id,
+					// currency,
+					billRefId             : trade_engine_id,
+					[addressKey]          : address?.id,
+					organizationAddressId : '43a738be-febf-4173-82a1-69aa95a64560',
+					userName              : name,
+					userEmail             : email,
+					userMobile            : mobile_number,
+					userMobileCountryCode : mobile_country_code,
+					redirectUrl           : callBackUrl,
+					billType              : 'PREMIUM_SERVICES',
+					source                : 'SAAS',
+					billLineItems         : [
 						{
-							description: 'import_export_controls',
-							displayName: 'Import Export Controls',
-							productCodeId: import_export_documents?.id,
-							pricePerUnit: price,
-							quantity: 1,
-							totalAmount: price,
-							discountAmount: (+price - +amount).toFixed(2),
-							subTotalAmount: amount.toFixed(2),
-							taxAmount: gstAmount.toFixed(2),
-							netAmount: totalAmount.toFixed(2),
-							metadata: 'null',
+							description    : 'import_export_controls',
+							displayName    : 'Import Export Controls',
+							productCodeId  : import_export_documents?.id,
+							pricePerUnit   : price,
+							quantity       : 1,
+							totalAmount    : price,
+							discountAmount : (+price - +amount).toFixed(2),
+							subTotalAmount : amount.toFixed(2),
+							taxAmount      : gstAmount.toFixed(2),
+							netAmount      : totalAmount.toFixed(2),
+							metadata       : 'null',
 						},
 					],
-					totalAmount: price.toFixed(2),
-					discountAmount: (+price - +amount).toFixed(2),
-					subTotalAmount: amount.toFixed(2),
-					taxAmount: gstAmount.toFixed(2),
-					netAmount: totalAmount.toFixed(2),
+					totalAmount    : price.toFixed(2),
+					discountAmount : (+price - +amount).toFixed(2),
+					subTotalAmount : amount.toFixed(2),
+					taxAmount      : gstAmount.toFixed(2),
+					netAmount      : totalAmount.toFixed(2),
 				},
 			});
 			if (resp?.data) {
 				setButtonLoading(true);
-				paymentInitiation({ data: resp?.data, setModal, setButtonLoading });
+				paymentInititation({ data: resp?.data, setModal, setButtonLoading });
 			}
 		} catch (err) {
-			toast.error('Something went wrong! Please try after sometime', {
-				autoClose: 3000,
-				style: { color: '#333', background: '#FFD9D4' },
+			Toast.error('Something went wrong! Please try after sometime', {
+				autoClose : 3000,
+				style     : { color: '#333', background: '#FFD9D4' },
 			});
 		}
 	};

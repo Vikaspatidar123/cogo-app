@@ -1,12 +1,12 @@
+import { Toast } from '@cogoport/components';
 import { useState, useEffect, useMemo } from 'react';
-import { useRequest } from '@cogo/commons/hooks';
-import toast from '@cogoport/front/components/admin/Toast';
-import { useSaasState } from '../../../common/context';
+
+import { useRequestBf } from '@/packages/request';
+import { useSelector } from '@/packages/store';
 
 const useGetQuota = () => {
-	const { profile, general } = useSaasState();
+	const { profile } = useSelector((s) => s);
 	const { organization } = profile || {};
-	const { scope } = general;
 
 	const [subscriptionInfo, setSubscriptionInfo] = useState({});
 	const {
@@ -15,11 +15,10 @@ const useGetQuota = () => {
 		quotaValue = 0,
 	} = subscriptionInfo;
 
-	const { data, trigger } = useRequest(
-		'get',
-		true,
-		scope,
-	)('/saas_get_user_quota_usage');
+	const [{ data }, trigger] = useRequestBf({
+		method : 'get',
+		url    : '/saas_get_user_quota_usage',
+	}, { manual: true });
 
 	const {
 		is_free_plan = false,
@@ -33,7 +32,7 @@ const useGetQuota = () => {
 				params: { organization_id: organization?.id },
 			});
 		} catch (err) {
-			toast.error(err?.message);
+			Toast.error(err?.message);
 		}
 	};
 	useEffect(() => {
@@ -63,8 +62,8 @@ const useGetQuota = () => {
 
 				setSubscriptionInfo((prev) => ({
 					...prev,
-					isQuotaLeft: quotaAvaliable,
-					quotaValue: count,
+					isQuotaLeft : quotaAvaliable,
+					quotaValue  : count,
 				}));
 			}
 		}

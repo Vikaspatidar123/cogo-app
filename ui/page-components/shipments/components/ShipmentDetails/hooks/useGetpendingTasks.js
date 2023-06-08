@@ -5,7 +5,7 @@ import useGetFiniteList from '../../../hooks/useGetFiniteList';
 import { useRequest } from '@/packages/request';
 import { useSelector } from '@/packages/store';
 
-const useGetpendingTasks = ({ status = '', shipment_type = '' }) => {
+const useGetpendingTasks = ({ activeTab, status = '', shipment_type = '' }) => {
 	const { query } = useSelector(({ general }) => ({
 		query: general?.query,
 	}));
@@ -29,10 +29,9 @@ const useGetpendingTasks = ({ status = '', shipment_type = '' }) => {
 	});
 
 	useEffect(() => {
-		if (status === 'pending_documents') getPendingTask();
+		if (activeTab === 'pending_documents') getPendingTask();
 	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [status]);
-
+	}, [status, activeTab]);
 	const {
 		filters,
 		page,

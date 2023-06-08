@@ -152,6 +152,14 @@ const navigationMappings = {
 				icon  : <IcACrossBorder width={40} height={40} />,
 			},
 			{
+				key   : 'saas_premium_services-import_export_docs',
+				title : 'Import/Export Documents',
+				type  : 'link',
+				href  : '/v2/saas/premium-services/import-export-doc',
+				as    : '/v2/saas/premium-services/import-export-doc',
+				icon  : <IcACrossBorder width={40} height={40} />,
+			},
+			{
 				key   : 'saas_premium_services-trader_eligibility_check',
 				title : 'Trader Eligibility Check',
 				href  : '/v2/saas/premium-services/trader-eligibility-check',

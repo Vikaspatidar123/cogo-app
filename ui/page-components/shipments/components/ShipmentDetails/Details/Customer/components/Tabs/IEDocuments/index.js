@@ -34,7 +34,7 @@ function IEDocuments() {
 		pendingTaskLoading,
 		pendingTaskHookSetter,
 		refetch,
-	} = useGetpendingTasks({ shipment_type });
+	} = useGetpendingTasks({ activeTab, shipment_type });
 
 	return (
 		<div className={styles.container}>

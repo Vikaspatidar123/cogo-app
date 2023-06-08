@@ -10,9 +10,9 @@ const useGetListTracker = () => {
 
 	const [globalFilter, setGlobalFilter] = useState({
 		page        : 1,
-		activeTab   : 'all',
+		activeTab   : 'ocean',
 		selectValue : '',
-		query       : '',
+		q           : '',
 	});
 	const [inputValue, setInputValue] = useState();
 
@@ -50,7 +50,7 @@ const useGetListTracker = () => {
 		if (query !== null) {
 			setGlobalFilter((prev) => ({
 				...prev,
-				query,
+				q: query,
 			}));
 		}
 	}, [query]);

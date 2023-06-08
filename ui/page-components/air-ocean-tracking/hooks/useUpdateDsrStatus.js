@@ -16,7 +16,7 @@ const useUpdateDsrStatus = () => {
 					status,
 				},
 			});
-			return resp?.id;
+			return resp.data?.id;
 		} catch (err) {
 			return null;
 		}

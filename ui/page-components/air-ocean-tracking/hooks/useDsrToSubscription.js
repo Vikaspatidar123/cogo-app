@@ -35,7 +35,7 @@ const useDsrToSubscription = ({ dsrId = '', setActiveStepper, selectedShipments,
 			}
 
 			const shipmentsToRemove = prevDsrToSubData.filter((prevDsrSub) => (
-				selectedShipmentList.includes(prevDsrSub?.id)
+				!selectedShipmentList.includes(prevDsrSub?.id)
 			)).map((prevDsr) => prevDsr?.id);
 
 			const shipmentsToAdd = selectedShipmentList.filter((item) => (

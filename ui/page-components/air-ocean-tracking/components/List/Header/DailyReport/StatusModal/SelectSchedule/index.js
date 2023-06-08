@@ -10,17 +10,17 @@ import { useForm } from '@/packages/forms';
 import getField from '@/packages/forms/Controlled';
 
 function SelectSchedule({
-	dsrId = '',
 	dsrList = [],
 	selectedContact = {},
 	setActiveStepper,
 	closeModalHandler,
+	getDsrList,
 }) {
 	const { loading, createUpdateSchedule, prevSchedule = '' } = useDsrSchedule({
-		dsrId,
 		dsrList,
 		selectedContact,
 		closeModalHandler,
+		getDsrList,
 	});
 
 	const { prevFrequency = '', prevDay = '', prevTime = '' } = parseScheduleString(prevSchedule);
@@ -64,7 +64,7 @@ function SelectSchedule({
 				<Button
 					themeType="secondary"
 					disabled={loading}
-					onClick={() => setActiveStepper('shipment')}
+					onClick={() => setActiveStepper('shipments')}
 				>
 					Back
 				</Button>

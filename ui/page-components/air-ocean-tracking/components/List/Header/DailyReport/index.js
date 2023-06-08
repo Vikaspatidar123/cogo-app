@@ -1,25 +1,42 @@
-import { cl, Button, Pagination } from '@cogoport/components';
+import { cl, Button, Pagination, ButtonIcon } from '@cogoport/components';
+import { IcMCross } from '@cogoport/icons-react';
+import Image from 'next/image';
 import { useState } from 'react';
 
 import dailyStatusConfig from '../../../../configuration/dailyStatusConfig';
-import useGetDsrList from '../../../../hooks/useGetDsrList';
+import iconUrl from '../../../../utils/iconUrl.json';
 
 import Item from './Item';
 import StatusModal from './StatusModal';
 import styles from './styles.module.css';
 
-function DailyReport() {
-	const [statusModal, setStatusModal] = useState(false);
-	const { data, loading, setPage } = useGetDsrList();
+import getLoadingArr from '@/ui/page-components/air-ocean-tracking/utils/getLoadingArr';
+
+const LOADING_ARR = getLoadingArr(5);
+
+function DailyReport({ dsrListValue = {}, setShowConfigure }) {
+	const [statusModal, setStatusModal] = useState({ isOpen: false });
+
+	const { data = {}, loading, setPage, getDsrList } = dsrListValue || {};
+
 	const { list = [], page = 0, total_count = 0, page_limit = 0 } = data || {};
-	const newList = loading ? [...Array(5).keys()] : list;
+	const newList = loading ? LOADING_ARR : list || [];
 
 	return (
 		<div className={styles.container}>
 			<div className={cl`${styles.flex_box} ${styles.header}`}>
 				<h3>Schedule Status Reports to Contacts</h3>
-				<Button themeType="accent" onClick={() => setStatusModal(true)}>Create New</Button>
+
+				<div className={styles.cta_container}>
+					<Button themeType="accent" onClick={() => setStatusModal({ isOpen: true })}>Create New</Button>
+					<ButtonIcon
+						icon={<IcMCross />}
+						className={styles.cross_icon}
+						onClick={() => setShowConfigure(false)}
+					/>
+				</div>
 			</div>
+
 			<div className={styles.table}>
 				<div className={cl`${styles.flex_box} ${styles.card_header}`}>
 					{dailyStatusConfig.map((config) => (
@@ -28,12 +45,20 @@ function DailyReport() {
 						</div>
 					))}
 				</div>
-				{newList.map((item) => (
+
+				{newList.length > 0 ? newList.map((item) => (
 					<div key={item?.id || item} className={styles.flex_box}>
-						<Item data={item} loading={loading} />
+						<Item data={item} loading={loading} setStatusModal={setStatusModal} />
 					</div>
-				))}
+				))
+					: (
+						<div className={styles.empty_state}>
+							<Image src={iconUrl.emptyState} width={200} height={200} alt="empty" />
+							<h3>No Daily Status Report Found</h3>
+						</div>
+					)}
 			</div>
+
 			<div className={styles.pagination_container}>
 				<Pagination
 					type="table"
@@ -43,7 +68,16 @@ function DailyReport() {
 					onPageChange={setPage}
 				/>
 			</div>
-			<StatusModal statusModal={statusModal} setStatusModal={setStatusModal} dsrList={list} />
+
+			{statusModal.isOpen
+			&& (
+				<StatusModal
+					statusModal={statusModal}
+					setStatusModal={setStatusModal}
+					dsrList={list}
+					getDsrList={getDsrList}
+				/>
+			)}
 		</div>
 	);
 }

@@ -12,6 +12,7 @@ import RadioController from './RadioController';
 import RadioGroupController from './RadioGroupController';
 import SelectController from './SelectController';
 import TextAreaController from './TextAreaController';
+import TimepickerController from './TimepickerController';
 import UploadController from './UploadController';
 
 const MAPPING = {
@@ -30,6 +31,7 @@ const MAPPING = {
 	price_select   : PriceController,
 	chips          : ChipsController,
 	country_select : CountrySelectController,
+	time_picker    : TimepickerController,
 };
 
 const getField = (type = 'text') => {

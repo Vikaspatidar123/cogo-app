@@ -43,7 +43,7 @@ const scheduleControls = ({ watchFrequency }) => [
 	{
 		name       : 'time',
 		label      : 'At',
-		type       : 'select',
+		type       : 'time_picker',
 		radioGroup : true,
 		options    : TIME_OPTIONS,
 		rules      : { required: 'Please select time' },

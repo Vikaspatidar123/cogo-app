@@ -14,13 +14,14 @@ const useGetContactList = () => {
 		url    : 'list_saas_subscription_poc_details',
 	}, { manual: true });
 
-	const fetchContactList = useCallback((pageNo) => {
+	const fetchContactList = useCallback((pageNo = 1) => {
 		try {
 			trigger({
 				params: {
 					organization_branch_id: branch_id,
 				},
-				page: pageNo,
+				page       : pageNo,
+				page_limit : 7,
 			});
 		} catch (err) {
 			console.log(err);
@@ -32,7 +33,7 @@ const useGetContactList = () => {
 	}, [fetchContactList, page]);
 
 	return {
-		loading, data, setPage,
+		loading, data, setPage, fetchContactList,
 	};
 };
 export default useGetContactList;

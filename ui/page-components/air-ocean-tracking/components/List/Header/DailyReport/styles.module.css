@@ -1,4 +1,5 @@
 .container {
+	position: relative;
 	width: 1000px;
 }
 
@@ -14,6 +15,15 @@
 	border: none;
 }
 
+.cta_container {
+	display: flex;
+	align-items: center;
+
+	.cross_icon {
+		margin-left: 10px;
+	}
+}
+
 .table {
 	border: 1px solid #f8f2e7;
 	border-radius: 4px;
@@ -25,6 +35,11 @@
 
 .col {
 	padding: 8px;
+}
+
+.empty_state {
+	width: fit-content;
+	margin: 10px auto;
 }
 
 .pagination_container {

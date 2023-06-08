@@ -7,18 +7,21 @@ import contactListConfig from '../../../../../../configuration/contactListConfig
 import useCreateDsr from '../../../../../../hooks/useCreateDsr';
 import useGetContactList from '../../../../../../hooks/useGetContactList';
 
+import AddContactModal from './AddContactModal';
 import styles from './styles.module.css';
 
 // import Table from './Table';
 import Table from '@/ui/page-components/air-ocean-tracking/common/Table';
 
-function AllContact({ selectedContact, setSelectedContact, setIsSingleReport, setDsrId }) {
+function AllContact({ selectedContact, setSelectedContact, setIsSingleReport }) {
 	const [inputValue, setInputValue] = useState('');
-	const { data, loading, setPage } = useGetContactList();
+	const [addContact, setAddContact] = useState(false);
+
+	const { data, loading, setPage, fetchContactList } = useGetContactList({ addContact });
 	const { loading: createLoading, createDsr } = useCreateDsr();
 
 	const { list = [] } = data || {};
-	console.log(list, 'list');
+
 	const filteredList = useMemo(() => {
 		const inputValueLowerCase = inputValue.toLowerCase();
 		return list.filter((item) => {
@@ -32,13 +35,14 @@ function AllContact({ selectedContact, setSelectedContact, setIsSingleReport, se
 	const proceedHandler = async () => {
 		if (isEmpty(selectedContact)) {
 			Toast.warn('Please Select contact');
-		} else {
-			const resp = await createDsr({ contactId: selectedContact?.id });
-
-			if (resp === null) return;
-			setDsrId(resp);
-			setIsSingleReport(true);
+			return;
 		}
+
+		const resp = await createDsr({ contactId: selectedContact?.id });
+		if (resp === null) return;
+
+		setSelectedContact((prev) => ({ ...prev, dsrId: resp }));
+		setIsSingleReport(true);
 	};
 
 	return (
@@ -55,7 +59,13 @@ function AllContact({ selectedContact, setSelectedContact, setIsSingleReport, se
 							suffix={<IcMSearchlight />}
 						/>
 					</div>
-					<Button themeType="secondary" disabled={createLoading}>Add New</Button>
+					<Button
+						themeType="secondary"
+						disabled={createLoading}
+						onClick={() => setAddContact(true)}
+					>
+						Add New
+					</Button>
 				</div>
 				{/* <Table
 					data={data}
@@ -65,20 +75,29 @@ function AllContact({ selectedContact, setSelectedContact, setIsSingleReport, se
 					selectedContact={selectedContact}
 					setSelectedContact={setSelectedContact}
 				/> */}
-				<Table
-					title="Contacts"
-					configs={contactListConfig}
-					filteredList={filteredList}
-					data={data}
-					loading={loading}
-					setPage={setPage}
-					selectedContact={selectedContact}
-					setSelectedContact={setSelectedContact}
-				/>
+				{list.length > 0 &&	(
+					<Table
+						title="Contacts"
+						configs={contactListConfig}
+						filteredList={filteredList}
+						data={data}
+						loading={loading}
+						setPage={setPage}
+						selectedContact={selectedContact}
+						setSelectedContact={setSelectedContact}
+					/>
+				)}
 			</div>
 			<div className={styles.footer}>
 				<Button onClick={proceedHandler} themeType="accent" loading={createLoading}>Next</Button>
 			</div>
+			{addContact &&	(
+				<AddContactModal
+					addContact={addContact}
+					setAddContact={setAddContact}
+					fetchContactList={fetchContactList}
+				/>
+			)}
 		</div>
 	);
 }

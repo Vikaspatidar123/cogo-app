@@ -11,7 +11,7 @@ const style = {
 
 const itemFunction = ({
 	status = '', statusChangeHandler = () => {},
-	loading = false, selectedShipments, checkboxChangeHandler,
+	loading = false, selectedShipments, checkboxChangeHandler, editHandler,
 }) => ({
 	renderName: (itemData) => {
 		const { poc_details = {} } = itemData || {};
@@ -26,7 +26,7 @@ const itemFunction = ({
 	renderEdit: (itemData, config) => (
 		<span>
 			{itemData?.[config.key]}
-			<IcMEdit width={12} height={12} style={style} />
+			<IcMEdit width={12} height={12} style={style} onClick={() => editHandler({ itemData, key: config.key })} />
 		</span>
 	),
 	renderCheckbox: (itemData) => (

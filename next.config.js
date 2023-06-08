@@ -14,6 +14,14 @@ module.exports = {
 				protocol : 'https',
 				hostname : 'cdn.cogoport.io',
 			},
+			{
+				protocol : 'https',
+				hostname : 'prod-cogoport.s3.ap-south-1.amazonaws.com',
+			},
+			{
+				protocol : 'https',
+				hostname : 'via.placeholder.com',
+			},
 		],
 	},
 	webpack(config) {

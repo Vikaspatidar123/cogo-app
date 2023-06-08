@@ -7,6 +7,7 @@ import { useState } from 'react';
 
 import STATS_MAPPING from '../../../constant/statsMapping';
 import TAB_MAPPING from '../../../constant/tabMapping';
+import useGetDsrList from '../../../hooks/useGetDsrList';
 
 import DailyReport from './DailyReport';
 import styles from './styles.module.css';
@@ -14,6 +15,9 @@ import styles from './styles.module.css';
 function Header({ globalFilter, filterChangeHandler, inputValue, setInputValue }) {
 	const { back } = useRouter();
 	const [showConfigure, setShowConfigure] = useState(false);
+
+	const dsrListValue = useGetDsrList({ showConfigure });
+
 	return (
 		<div className={styles.container}>
 			<div className={cl`${styles.flex_box} ${styles.first_row}`}>
@@ -54,8 +58,7 @@ function Header({ globalFilter, filterChangeHandler, inputValue, setInputValue }
 					<Popover
 						caret={false}
 						visible={showConfigure}
-						content={<DailyReport />}
-						onClickOutside={() => setShowConfigure(false)}
+						content={<DailyReport dsrListValue={dsrListValue} setShowConfigure={setShowConfigure} />}
 						placement="bottom-end"
 					>
 						<Button

@@ -1,7 +1,7 @@
 import { Modal, ButtonIcon, Stepper } from '@cogoport/components';
 import { IcMCross } from '@cogoport/icons-react';
 import { startCase } from '@cogoport/utils';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import AllContact from './AllContact';
 import SelectSchedule from './SelectSchedule';
@@ -9,7 +9,7 @@ import Shipments from './SelectShipment';
 import styles from './styles.module.css';
 
 const items = [
-	{ title: 'Select Shipment', key: 'shipment' },
+	{ title: 'Select Shipment', key: 'shipments' },
 	{ title: 'Select Schedule', key: 'schedule' },
 ];
 
@@ -18,16 +18,26 @@ const renderTitle = ({ isSingleReport, name }) => {
 	return 'Create New Schedule Status';
 };
 
-function StatusModal({ statusModal, setStatusModal, dsrList = [] }) {
+function StatusModal({ statusModal, setStatusModal, dsrList = [], getDsrList }) {
 	const [selectedContact, setSelectedContact] = useState('');
 	const [isSingleReport, setIsSingleReport] = useState(false);
-	const [dsrId, setDsrId] = useState('');
-	const [activeStepper, setActiveStepper] = useState('shipment');
+	const [activeStepper, setActiveStepper] = useState('shipments');
 
-	const closeModalHandler = () => setStatusModal(false);
+	const { isOpen, stepper = '', info = {} } = statusModal;
+
+	const closeModalHandler = () => setStatusModal({ isOpen: false });
+
+	useEffect(() => {
+		if (stepper && info) {
+			const { poc_details = {}, id } = info || {};
+			setIsSingleReport(true);
+			setSelectedContact({ ...poc_details, dsrId: id });
+			setActiveStepper(stepper);
+		}
+	}, [stepper, info]);
 
 	return (
-		<Modal show={statusModal} onClose={closeModalHandler} size={isSingleReport ? 'lg' : 'md'}>
+		<Modal show={isOpen} onClose={closeModalHandler} size={isSingleReport ? 'lg' : 'md'}>
 			<div className={styles.header}>
 				<div className={styles.title}>{renderTitle({ isSingleReport, name: selectedContact?.name })}</div>
 				<ButtonIcon size="lg" icon={<IcMCross />} themeType="primary" onClick={closeModalHandler} />
@@ -38,7 +48,6 @@ function StatusModal({ statusModal, setStatusModal, dsrList = [] }) {
 					selectedContact={selectedContact}
 					setSelectedContact={setSelectedContact}
 					setIsSingleReport={setIsSingleReport}
-					setDsrId={setDsrId}
 				/>
 			)}
 
@@ -48,11 +57,10 @@ function StatusModal({ statusModal, setStatusModal, dsrList = [] }) {
 						<Stepper active={activeStepper} setActive={setActiveStepper} items={items} arrowed />
 					</div>
 
-					{activeStepper === 'shipment' && (
+					{activeStepper === 'shipments' && (
 						<div>
 							<Shipments
 								selectedContact={selectedContact}
-								dsrId={dsrId}
 								setIsSingleReport={setIsSingleReport}
 								setActiveStepper={setActiveStepper}
 							/>
@@ -62,11 +70,11 @@ function StatusModal({ statusModal, setStatusModal, dsrList = [] }) {
 					{activeStepper === 'schedule' && (
 						<div>
 							<SelectSchedule
-								dsrId={dsrId}
 								dsrList={dsrList}
 								setActiveStepper={setActiveStepper}
 								selectedContact={selectedContact}
 								closeModalHandler={closeModalHandler}
+								getDsrList={getDsrList}
 							/>
 						</div>
 					)}

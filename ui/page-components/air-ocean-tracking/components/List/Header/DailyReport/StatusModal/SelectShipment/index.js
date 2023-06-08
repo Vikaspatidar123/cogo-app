@@ -13,10 +13,10 @@ import Table from '@/ui/page-components/air-ocean-tracking/common/Table';
 
 const LOADING_ARR = getLoadingArr(4);
 
-function SelectShipment({ selectedContact = {}, dsrId, setIsSingleReport, setActiveStepper }) {
+function SelectShipment({ selectedContact = {}, setIsSingleReport, setActiveStepper }) {
 	const [selectedShipments, setSelectedShipments] = useState([]);
 
-	const { id: contactId } = selectedContact || {};
+	const { id: contactId, dsrId } = selectedContact || {};
 
 	const { loading: listLoading, associatedShipments = [], otherShipments = [] } = useGetShipment({ contactId });
 
@@ -36,6 +36,8 @@ function SelectShipment({ selectedContact = {}, dsrId, setIsSingleReport, setAct
 		const filteredArr = selectedShipments.filter((ele) => ele !== id);
 		setSelectedShipments(filteredArr);
 	};
+
+	console.log(selectedShipments, 'selectedShipments');
 
 	return (
 		<div className={styles.container}>

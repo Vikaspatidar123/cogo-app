@@ -3,10 +3,21 @@ import { useMemo } from 'react';
 
 import { useRequest } from '@/packages/request';
 
-const useDsrSchedule = ({ dsrId = '', dsrList = [], selectedContact = {}, closeModalHandler }) => {
+const getTimePayload = (time) => {
+	const date = new Date(time);
+
+	const hours = date.getHours();
+	const minutes = date.getMinutes().toString().padStart(2, '0');
+
+	return `${hours}:${minutes}`;
+};
+
+const useDsrSchedule = ({ dsrList = [], selectedContact = {}, closeModalHandler, getDsrList }) => {
+	const { id, dsrId } = selectedContact || {};
+
 	const selectedContactDsr = useMemo(() => dsrList.filter((dsr) => (
-		dsr?.poc_details?.id === selectedContact?.id
-	))?.[0], [dsrList, selectedContact]);
+		dsr?.poc_details?.id === id
+	))?.[0], [dsrList, id]);
 
 	const { schedule: prevSchedule = '' } = selectedContactDsr || {};
 
@@ -21,16 +32,18 @@ const useDsrSchedule = ({ dsrId = '', dsrList = [], selectedContact = {}, closeM
 
 	const createUpdateSchedule = async ({ data }) => {
 		const { frequency, day = '', time } = data || {};
+		const newTime = getTimePayload(time);
 		const dsrKey = prevSchedule ? 'id' : 'saas_dsr_id';
 		try {
 			await trigger({
 				data: {
 					schedule_type  : startCase(frequency),
 					schedule_value : startCase(day),
-					schedule_time  : time,
+					schedule_time  : newTime,
 					[dsrKey]       : dsrId,
 				},
 			});
+			await getDsrList();
 			closeModalHandler();
 		} catch (err) {
 			console.log(err);

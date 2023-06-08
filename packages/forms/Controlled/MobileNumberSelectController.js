@@ -1,6 +1,7 @@
 import { Controller } from 'react-hook-form';
 
 import MobileNumberSelect from '../Business/SelectMobileNumber';
+import MobileNumberSelect2 from '../Business/SelectMobileNumber2';
 
 function MobileNumberSelectController({
 	itemKey,
@@ -8,8 +9,10 @@ function MobileNumberSelectController({
 	value,
 	control,
 	mobileSelectRef,
+	isInputGroup = false,
 	...rest
 }) {
+	const Element = isInputGroup ? MobileNumberSelect2 : MobileNumberSelect;
 	return (
 		<Controller
 			key={itemKey}
@@ -19,7 +22,7 @@ function MobileNumberSelectController({
 			rules={rest.rules}
 			shouldUnregister={rest.shouldUnregister}
 			render={({ field: { onChange, onBlur, value: newValue } }) => (
-				<MobileNumberSelect
+				<Element
 					mobileSelectRef={mobileSelectRef}
 					{...rest}
 					key={itemKey}

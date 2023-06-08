@@ -71,7 +71,9 @@ const useCompleteOrder = ({
 								site: process.env.CHARGEBEE_SITE,
 							});
 							chargebeeInstance.openCheckout({
-								hostedPage: () => new Promise((res) => res(completeOrderResponse?.data)),
+								hostedPage: () => new Promise((resolve) => {
+									resolve(completeOrderResponse?.data);
+								}),
 							});
 						}
 						break;

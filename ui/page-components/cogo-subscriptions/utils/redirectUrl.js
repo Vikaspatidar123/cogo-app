@@ -26,7 +26,9 @@ const useRedirectUrl = () => {
 	};
 	const getCallBackUrl = (checkout_id) => {
 		const callback_url = addons
+			// eslint-disable-next-line max-len
 			? `${process.env.NEXT_PUBLIC_APP_URL}v2/${organization?.id}/${branch?.id}/${account_type}/saas/cogo-subscriptions/balance-history?checkout_id=${checkout_id}`
+			// eslint-disable-next-line max-len
 			: `${process.env.NEXT_PUBLIC_APP_URL}v2/${organization?.id}/${branch?.id}/${account_type}/saas/cogo-subscriptions/manage-subscription?checkout_id=${checkout_id}`;
 		return callback_url;
 	};

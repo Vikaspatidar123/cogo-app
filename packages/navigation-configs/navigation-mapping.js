@@ -35,6 +35,14 @@ const navigationMappings = {
 		as        : '/v2/book',
 		showInNav : true,
 	},
+	app_bookings: {
+		key       : 'app_bookings',
+		title     : 'Shipments',
+		href      : '/v2/shipments',
+		as        : '/v2/shipments',
+		icon      : 'nav-booking',
+		showInNav : true,
+	},
 	saas_tools: {
 		key       : 'saas_tools',
 		title     : 'Tools',
@@ -122,17 +130,6 @@ const navigationMappings = {
 		],
 	},
 
-	saas_cogo_insurance: {
-		key         : 'saas_tools_insurance',
-		title       : 'Insurance',
-		href        : '/v2/saas/insurance/list',
-		as          : '/v2/saas/insurance/list',
-		type        : 'link',
-		icon        : <IcMFfreferigeratedCargoType width={40} height={40} fill="red" />,
-		description : 'Buy insurance for your cargo here',
-		showInNav   : true,
-	},
-
 	saas_premium_services: {
 		key         : 'saas_premium_services',
 		title       : 'Premium Services',
@@ -176,52 +173,6 @@ const navigationMappings = {
 			},
 		],
 	},
-	app_accept_terms_and_conditions: {
-		key       : 'app_accept_terms_and_conditions',
-		title     : 'Terms and Conditions',
-		href      : '/accept-terms-and-conditions',
-		showInNav : false,
-	},
-	app_bookings: {
-		key       : 'app_bookings',
-		title     : 'Shipments',
-		href      : '/v2/shipments',
-		as        : '/v2/shipments',
-		icon      : 'nav-booking',
-		showInNav : true,
-	},
-
-	app_documents: {
-		key       : 'app_documents',
-		title     : 'Documents Wallet',
-		href      : '/v2/documents',
-		as        : '/v2/documents',
-		showInNav : true,
-	},
-
-	saas_finance: {
-		key       : 'saas_finance',
-		title     : 'Finance',
-		icon      : 'nav-finance',
-		isSubNavs : true,
-		isNew     : true,
-		options   : [
-			{
-				key   : 'saas_finance-transaction_history',
-				title : 'Transaction History',
-				icon  : (
-					<IcMFfreferigeratedCargoType
-						width={40}
-						height={40}
-						fill="red"
-					/>
-				),
-				href : '/saas/transaction-history',
-				as   : '/saas/transaction-history',
-			},
-		],
-	},
-
 	saas_planning: {
 		key       : 'saas_planning',
 		title     : 'Planning',
@@ -254,6 +205,54 @@ const navigationMappings = {
 				type : 'link',
 				href : '/v2/saas/quickquotation/viewlist',
 				as   : '/v2/saas/quickquotation/viewlist',
+			},
+		],
+	},
+	saas_cogo_insurance: {
+		key         : 'saas_tools_insurance',
+		title       : 'Insurance',
+		href        : '/v2/saas/insurance/list',
+		as          : '/v2/saas/insurance/list',
+		type        : 'link',
+		icon        : <IcMFfreferigeratedCargoType width={40} height={40} fill="red" />,
+		description : 'Buy insurance for your cargo here',
+		showInNav   : true,
+	},
+
+	app_accept_terms_and_conditions: {
+		key       : 'app_accept_terms_and_conditions',
+		title     : 'Terms and Conditions',
+		href      : '/accept-terms-and-conditions',
+		showInNav : false,
+	},
+
+	app_documents: {
+		key       : 'app_documents',
+		title     : 'Documents Wallet',
+		href      : '/v2/documents',
+		as        : '/v2/documents',
+		showInNav : true,
+	},
+
+	saas_finance: {
+		key       : 'saas_finance',
+		title     : 'Finance',
+		icon      : 'nav-finance',
+		isSubNavs : true,
+		isNew     : true,
+		options   : [
+			{
+				key   : 'saas_finance-transaction_history',
+				title : 'Transaction History',
+				icon  : (
+					<IcMFfreferigeratedCargoType
+						width={40}
+						height={40}
+						fill="red"
+					/>
+				),
+				href : '/saas/transaction-history',
+				as   : '/saas/transaction-history',
 			},
 		],
 	},

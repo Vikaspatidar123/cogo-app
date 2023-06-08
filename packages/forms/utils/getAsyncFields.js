@@ -224,6 +224,14 @@ function asyncProductList() {
 		initialCall : false,
 	};
 }
+function asyncTaxNumbers() {
+	return {
+		labelKey    : 'name',
+		valueKey    : 'id',
+		endpoint    : 'get_tax_numbers_data',
+		initialCall : false,
+	};
+}
 
 export {
 	asyncFieldsLocations,
@@ -244,4 +252,5 @@ export {
 	asyncHsCodesCountries,
 	asyncOrganizationBranches,
 	asyncProductList,
+	asyncTaxNumbers,
 };

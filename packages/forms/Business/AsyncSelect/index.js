@@ -18,6 +18,7 @@ import {
 	asyncInsuranceCommodities,
 	asyncAirLines,
 	asyncShippingLines,
+	asyncTaxNumbers,
 } from '../../utils/getAsyncFields';
 
 const keyAsyncFieldsParamsMapping = {
@@ -35,6 +36,7 @@ const keyAsyncFieldsParamsMapping = {
 	insurance_commodities      : asyncInsuranceCommodities,
 	'air-lines'                : asyncAirLines,
 	'shipping-lines'           : asyncShippingLines,
+	tax_numbers                : asyncTaxNumbers,
 };
 
 function AsyncSelect(props) {

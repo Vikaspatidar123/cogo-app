@@ -814,5 +814,22 @@ const saas = {
 			service_name : 'organization',
 		},
 	],
+	pay_later: [
+		{
+			api          : 'get_organization_credit_request',
+			access_type  : 'private',
+			service_name : 'credit',
+		},
+		{
+			api          : 'create_organization_credit_request',
+			access_type  : 'private',
+			service_name : 'credit',
+		},
+		{
+			api          : 'get_tax_numbers_data',
+			access_type  : 'private',
+			service_name : 'credit',
+		},
+	],
 };
 export default saas;

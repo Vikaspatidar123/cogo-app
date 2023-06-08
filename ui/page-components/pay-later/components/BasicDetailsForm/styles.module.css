@@ -1,0 +1,33 @@
+.wrapper {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #E0E0E0;
+}
+
+.form_description {
+    padding: 10px 0px 10px 50px;
+    width: 48%;
+}
+
+.form {
+    padding: 10px 50px 10px 0px;
+    width: 48%;
+}
+
+.field {
+    margin: 0px 0px 15px 0px;
+}
+
+.field_name {
+    font-weight: 500;
+    font-size: 16px;
+    color: #4F4F4F;
+    margin: 0px 0px 4px 0px; 
+}
+.button_wrapper {
+    margin: 5px 0px;
+    display: flex;
+    justify-content: flex-end;
+}

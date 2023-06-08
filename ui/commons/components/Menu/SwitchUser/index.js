@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 import { Button } from '@cogoport/components';
+import { BackIcon } from '@cogoport/icons-react';
 
-import BackIcon from './icons/backIcon.svg';
 import Item from './Item';
 import styles from './styles.module.css';
 
@@ -44,7 +44,6 @@ function SwitchUser({ setShow }) {
 				))}
 			</div>
 		</div>
-
 	);
 }
 

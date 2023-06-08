@@ -10,11 +10,11 @@
 
 import {
 	IcMQuotations,
-	IcMUpwardGraph,
 	IcMTradeparties,
 	IcACrossBorder,
 	IcMProductCodeMapping,
 	IcMFfreferigeratedCargoType,
+	IcMUpwardGraph,
 	IcADutiesTaxes,
 } from '@cogoport/icons-react';
 
@@ -33,6 +33,14 @@ const navigationMappings = {
 		title     : 'Discover Rates',
 		href      : '/v2/book',
 		as        : '/v2/book',
+		showInNav : true,
+	},
+	app_bookings: {
+		key       : 'app_bookings',
+		title     : 'Shipments',
+		href      : '/v2/shipments',
+		as        : '/v2/shipments',
+		icon      : 'nav-booking',
 		showInNav : true,
 	},
 	saas_tools: {
@@ -122,17 +130,6 @@ const navigationMappings = {
 		],
 	},
 
-	saas_cogo_insurance: {
-		key         : 'saas_tools_insurance',
-		title       : 'Insurance',
-		href        : '/v2/saas/insurance/list',
-		as          : '/v2/saas/insurance/list',
-		type        : 'link',
-		icon        : <IcMFfreferigeratedCargoType width={40} height={40} fill="red" />,
-		description : 'Buy insurance for your cargo here',
-		showInNav   : true,
-	},
-
 	saas_premium_services: {
 		key         : 'saas_premium_services',
 		title       : 'Premium Services',
@@ -176,52 +173,6 @@ const navigationMappings = {
 			},
 		],
 	},
-	app_accept_terms_and_conditions: {
-		key       : 'app_accept_terms_and_conditions',
-		title     : 'Terms and Conditions',
-		href      : '/accept-terms-and-conditions',
-		showInNav : false,
-	},
-	app_bookings: {
-		key       : 'app_bookings',
-		title     : 'Shipments',
-		href      : '/v2/shipments',
-		as        : '/v2/shipments',
-		icon      : 'nav-booking',
-		showInNav : true,
-	},
-
-	app_documents: {
-		key       : 'app_documents',
-		title     : 'Documents Wallet',
-		href      : '/v2/documents',
-		as        : '/v2/documents',
-		showInNav : true,
-	},
-
-	saas_finance: {
-		key       : 'saas_finance',
-		title     : 'Finance',
-		icon      : 'nav-finance',
-		isSubNavs : true,
-		isNew     : true,
-		options   : [
-			{
-				key   : 'saas_finance-transaction_history',
-				title : 'Transaction History',
-				icon  : (
-					<IcMFfreferigeratedCargoType
-						width={40}
-						height={40}
-						fill="red"
-					/>
-				),
-				href : '/saas/transaction-history',
-				as   : '/saas/transaction-history',
-			},
-		],
-	},
-
 	saas_planning: {
 		key       : 'saas_planning',
 		title     : 'Planning',
@@ -257,6 +208,54 @@ const navigationMappings = {
 			},
 		],
 	},
+	saas_cogo_insurance: {
+		key         : 'saas_tools_insurance',
+		title       : 'Insurance',
+		href        : '/v2/saas/insurance/list',
+		as          : '/v2/saas/insurance/list',
+		type        : 'link',
+		icon        : <IcMFfreferigeratedCargoType width={40} height={40} fill="red" />,
+		description : 'Buy insurance for your cargo here',
+		showInNav   : true,
+	},
+
+	app_accept_terms_and_conditions: {
+		key       : 'app_accept_terms_and_conditions',
+		title     : 'Terms and Conditions',
+		href      : '/accept-terms-and-conditions',
+		showInNav : false,
+	},
+
+	app_documents: {
+		key       : 'app_documents',
+		title     : 'Documents Wallet',
+		href      : '/v2/documents',
+		as        : '/v2/documents',
+		showInNav : true,
+	},
+
+	saas_finance: {
+		key       : 'saas_finance',
+		title     : 'Finance',
+		icon      : 'nav-finance',
+		isSubNavs : true,
+		isNew     : true,
+		options   : [
+			{
+				key   : 'saas_finance-transaction_history',
+				title : 'Transaction History',
+				icon  : (
+					<IcMFfreferigeratedCargoType
+						width={40}
+						height={40}
+						fill="red"
+					/>
+				),
+				href : '/saas/transaction-history',
+				as   : '/saas/transaction-history',
+			},
+		],
+	},
 
 	app_get_started: {
 		key   : 'app_get_started',
@@ -277,6 +276,31 @@ const navigationMappings = {
 		href          : '/v2/settings',
 		as            : '/v2/settings',
 		showMobileNav : true,
+
+	},
+	saas_cogo_subscription: {
+		key       : 'saas_cogo_subscription',
+		title     : 'Subscriptions',
+		icon      : 'nav-subscriptions',
+		isSubNavs : true,
+		options   : [
+			{
+				key   : 'saas_cogo_subscription-manage',
+				title : 'Manage Subscription',
+				type  : 'link',
+				icon  : 'nav-documents',
+				href  : '/saas/cogo-subscriptions/manage-subscription',
+				as    : '/saas/cogo-subscriptions/manage-subscription',
+			},
+			{
+				key   : 'saas_cogo_subscription-balance_history',
+				title : 'Balance And History',
+				type  : 'link',
+				icon  : 'nav-payments',
+				href  : '/saas/cogo-subscriptions/balance-history',
+				as    : '/saas/cogo-subscriptions/balance-history',
+			},
+		],
 	},
 
 };

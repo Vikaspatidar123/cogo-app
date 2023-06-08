@@ -14,6 +14,7 @@ const trendLayout = ({
 	page,
 	total_count,
 	fetchLocations = () => {},
+	setPagination,
 }) => (list?.length > 0 ? (
 	<>
 		<div className={styles.card_view}>
@@ -31,6 +32,7 @@ const trendLayout = ({
 					currentPage={page}
 					totalItems={total_count}
 					pageSize={10}
+					onPageChange={setPagination}
 				/>
 			</div>
 		)}
@@ -56,6 +58,7 @@ function FreightRateTrend() {
 	const {
 		list, page, page_limit, total, total_count,
 	} = tredList;
+	console.log(tredList, 'tredList');
 
 	const trendList = freightTrends?.list || [];
 

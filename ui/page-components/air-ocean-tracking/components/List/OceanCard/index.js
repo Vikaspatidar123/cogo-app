@@ -1,23 +1,28 @@
-import { Placeholder, Popover } from '@cogoport/components';
-import { IcMOverflowDot } from '@cogoport/icons-react';
+import { Placeholder } from '@cogoport/components';
 import { useMemo, useState } from 'react';
 
-import { LOADING_ARR, TITLE_MAPPING } from '../../../constant/card';
+import CardInfo from '../../../common/CardInfo';
+import CardPopover from '../../../common/CardPopover';
+import EmptyCard from '../../../common/EmptyCard';
+import getLoadingArr from '../../../utils/getLoadingArr';
 
 import ContainerInfo from './ContainerInfo';
-import Content from './Content';
 import Footer from './Footer';
 import Stepper from './Stepper';
 import styles from './styles.module.css';
 
-function Card({ listItem = {}, loading = false, setModalInfo }) {
+const LOADING_ARR = getLoadingArr(3);
+
+function Card({ listItem = {}, loading = false, activeTab, setModalInfo }) {
 	const [activeContainerIndex, setActiveContainerIndex] = useState(1);
 	const [showPopover, setShowPopover] = useState(false);
 
 	const {
 		id = '',	type = '', input = '', container_details = [], milestones = [], shipping_line = {},
-		shipment_info = {}, updated_at = '', action = {},
+		shipment_info = {}, updated_at = '', action = {}, tracking_status = '',
 	} = listItem || {};
+
+	const isTrackerEmpty = tracking_status !== 'Found';
 
 	const { currentMilestone, currentContainer, currentContainerAction, containerDetailsLength } = useMemo(() => ({
 		currentMilestone       : milestones?.[activeContainerIndex - 1],
@@ -25,6 +30,12 @@ function Card({ listItem = {}, loading = false, setModalInfo }) {
 		currentContainerAction : action?.[activeContainerIndex - 1],
 		containerDetailsLength : container_details.length,
 	}), [action, activeContainerIndex, container_details, milestones]);
+
+	if (isTrackerEmpty && !loading) {
+		return (
+			<EmptyCard type={type} input={input} activeTab={activeTab} shipmentId={id} />
+		);
+	}
 
 	return (
 		<div className={styles.container}>
@@ -39,14 +50,12 @@ function Card({ listItem = {}, loading = false, setModalInfo }) {
 						</div>
 					) : (
 						<>
-							<div className={styles.header}>
-								{TITLE_MAPPING?.[type]}
-								{' '}
-								:
-								{' '}
-								{input}
-							</div>
-							<Stepper currentMilestone={currentMilestone} shippingLine={shipping_line} />
+							<CardInfo activeTab={activeTab} type={type} input={input} />
+							<Stepper
+								currentMilestone={currentMilestone}
+								lineInfo={shipping_line}
+								activeTab={activeTab}
+							/>
 						</>
 					)}
 				</div>
@@ -61,25 +70,17 @@ function Card({ listItem = {}, loading = false, setModalInfo }) {
 							activeContainerIndex={activeContainerIndex}
 							setActiveContainerIndex={setActiveContainerIndex}
 							containerDetailsLength={containerDetailsLength}
+							activeTab={activeTab}
 							loading={loading}
 						/>
 					</div>
 					<div className={styles.setting}>
-						<Popover
-							placement="bottom"
-							caret={false}
-							visible={showPopover}
-							onClickOutside={() => setShowPopover(false)}
-							content={(
-								<Content
-									setModalInfo={setModalInfo}
-									setShowPopover={setShowPopover}
-									id={id}
-								/>
-							)}
-						>
-							<IcMOverflowDot onClick={() => setShowPopover(true)} />
-						</Popover>
+						<CardPopover
+							showPopover={showPopover}
+							setShowPopover={setShowPopover}
+							setModalInfo={setModalInfo}
+							id={id}
+						/>
 					</div>
 				</div>
 

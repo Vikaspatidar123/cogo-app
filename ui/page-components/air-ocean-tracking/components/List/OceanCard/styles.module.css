@@ -27,6 +27,19 @@
 			flex: 2;
 		}
 	}
+
+	@media screen and (max-width: 767px) {
+		flex-direction: column;
+
+		.dashed_line {
+			display: none;
+		}
+
+		.stepper_container,
+		.container_details {
+			width: 100%;
+		}
+	}
 }
 
 .header {
@@ -34,6 +47,7 @@
 	padding: 10px 20px;
 	font-weight: 600;
 	background-color: #fffce6;
+	border-top-left-radius: 8px;
 	border-bottom-right-radius: 8px;
 }
 

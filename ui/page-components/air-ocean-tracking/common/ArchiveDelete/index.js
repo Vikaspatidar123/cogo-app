@@ -1,6 +1,6 @@
 import { cl, Button } from '@cogoport/components';
 
-import useDeleteTracker from '../../../../hooks/useDeleteTracker';
+import useDeleteTracker from '../../hooks/useDeleteTracker';
 
 import styles from './styles.module.css';
 
@@ -9,8 +9,8 @@ const TITLE_MAPPING = {
 	delete  : 'delete',
 };
 
-function ArchiveDelete({ name = '', shipmentId = '', closeHandler }) {
-	const { loading, deleteArchiveHandler } = useDeleteTracker({ name, id: shipmentId, closeHandler });
+function ArchiveDelete({ name = 'delete', shipmentId = '', closeHandler, activeTab = 'ocean' }) {
+	const { loading, deleteArchiveHandler } = useDeleteTracker({ name, id: shipmentId, closeHandler, activeTab });
 
 	return (
 		<div className={styles.container}>

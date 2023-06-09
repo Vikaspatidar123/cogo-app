@@ -1,7 +1,9 @@
 import { Modal, ButtonIcon } from '@cogoport/components';
 import { IcMCross } from '@cogoport/icons-react';
 
-import ArchiveDelete from './ArchiveDelete';
+import ArchiveDelete from '../../../common/ArchiveDelete';
+import { SIZE_MAPPING, TITLE_MAPPING } from '../../../constant/modalList';
+
 import Configure from './Configure';
 import Share from './Share';
 import styles from './styles.module.css';
@@ -13,19 +15,7 @@ const COMPONENT_MAPPING = {
 	configure : Configure,
 };
 
-const SIZE_MAPPING = {
-	share     : 'lg',
-	configure : 'xl',
-};
-
-const TITLE_MAPPING = {
-	archive   : 'Archive Tracker',
-	delete    : 'Delete Tracker',
-	share     : 'Share via Email',
-	configure : 'Configure',
-};
-
-function ModalList({ modalInfo, setModalInfo }) {
+function ModalList({ modalInfo, setModalInfo, activeTab }) {
 	const { show, name = 'archive', shipmentId = '' } = modalInfo || {};
 
 	const Component = name ? COMPONENT_MAPPING?.[name] : <div />;
@@ -38,7 +28,7 @@ function ModalList({ modalInfo, setModalInfo }) {
 				<h3>{TITLE_MAPPING?.[name]}</h3>
 				<ButtonIcon size="lg" icon={<IcMCross />} themeType="primary" onClick={closeHandler} />
 			</div>
-			<Component name={name} closeHandler={closeHandler} shipmentId={shipmentId} />
+			<Component name={name} closeHandler={closeHandler} shipmentId={shipmentId} activeTab={activeTab} />
 		</Modal>
 	);
 }

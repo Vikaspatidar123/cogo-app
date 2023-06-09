@@ -3,10 +3,16 @@ import { useState } from 'react';
 
 import useGetListTracker from '../../hooks/useGetListTracker';
 
-import Card from './Card';
+import AirCard from './AirCard';
 import Header from './Header';
 import ModalList from './ModalList';
+import OceanCard from './OceanCard';
 import styles from './styles.module.css';
+
+const CARD_COMPONENT = {
+	air   : AirCard,
+	ocean : OceanCard,
+};
 
 function List() {
 	const [modalInfo, setModalInfo] = useState({
@@ -17,9 +23,12 @@ function List() {
 		loading, globalFilter, inputValue, setInputValue, filterChangeHandler,
 	} = useGetListTracker();
 
+	const { activeTab = '' } = globalFilter;
+
 	const { list = [], filter_data = {}, page, page_limit, total_count } = data || {};
 
 	const newList = loading ? [...Array(5).keys()] : list;
+	const Card = CARD_COMPONENT?.[activeTab];
 
 	return (
 		<div className={styles.container}>
@@ -35,6 +44,7 @@ function List() {
 					listItem={listItem}
 					loading={loading}
 					setModalInfo={setModalInfo}
+					activeTab={activeTab}
 				/>
 			))}
 			<div className={styles.pagination_container}>
@@ -46,7 +56,7 @@ function List() {
 					onPageChange={(e) => filterChangeHandler('page', e)}
 				/>
 			</div>
-			<ModalList modalInfo={modalInfo} setModalInfo={setModalInfo} />
+			<ModalList modalInfo={modalInfo} setModalInfo={setModalInfo} activeTab={activeTab} />
 		</div>
 	);
 }

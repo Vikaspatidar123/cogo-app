@@ -40,8 +40,8 @@ const itemFunction = ({
 		<span>
 			{formatDateTime({
 				date       : itemData?.[config.key],
-				formatDate : 'dd MMM yyyy',
-				formatTime : 'hh:mm aaa',
+				dateFormat : 'dd MMM yyyy',
+				timeFormat : 'hh:mm aaa',
 			})}
 		</span>
 	),

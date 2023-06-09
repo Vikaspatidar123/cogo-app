@@ -15,6 +15,7 @@ import styles from './styles.module.css';
 function Header({ globalFilter, filterChangeHandler, inputValue, setInputValue }) {
 	const { back } = useRouter();
 	const [showConfigure, setShowConfigure] = useState(false);
+	const { activeTab = '', selectValue = '' } = globalFilter;
 
 	const dsrListValue = useGetDsrList({ showConfigure });
 
@@ -28,7 +29,7 @@ function Header({ globalFilter, filterChangeHandler, inputValue, setInputValue }
 				<div>
 					<Tabs
 						themeType="tertiary"
-						activeTab={globalFilter.activeTab}
+						activeTab={activeTab}
 						onChange={(e) => filterChangeHandler('activeTab', e)}
 					>
 						{Object.keys(TAB_MAPPING).map((tab) => (
@@ -52,23 +53,25 @@ function Header({ globalFilter, filterChangeHandler, inputValue, setInputValue }
 						size="sm"
 						className={styles.select_field}
 						options={STATS_MAPPING}
-						value={globalFilter.selectValue}
+						value={selectValue}
 						onChange={(e) => filterChangeHandler('selectValue', e)}
 					/>
-					<Popover
-						caret={false}
-						visible={showConfigure}
-						content={<DailyReport dsrListValue={dsrListValue} setShowConfigure={setShowConfigure} />}
-						placement="bottom-end"
-					>
-						<Button
-							themeType="secondary"
-							type="button"
-							onClick={() => setShowConfigure((prev) => !prev)}
+					{activeTab === 'ocean' && (
+						<Popover
+							caret={false}
+							visible={showConfigure}
+							content={<DailyReport dsrListValue={dsrListValue} setShowConfigure={setShowConfigure} />}
+							placement="bottom-end"
 						>
-							Daily Status Report
-						</Button>
-					</Popover>
+							<Button
+								themeType="secondary"
+								type="button"
+								onClick={() => setShowConfigure((prev) => !prev)}
+							>
+								Daily Status Report
+							</Button>
+						</Popover>
+					)}
 				</div>
 
 			</div>

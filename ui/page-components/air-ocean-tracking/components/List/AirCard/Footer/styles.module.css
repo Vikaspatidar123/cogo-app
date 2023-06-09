@@ -8,10 +8,12 @@
 	padding: 8px 20px;
 	font-size: 11px;
 	background-color: #fdfbf6;
+	border-bottom-right-radius: 8px;
+	border-bottom-left-radius: 8px;
 }
 
 .first_section {
-	width: 30%;
+	width: 50%;
 }
 
 .severity_section {

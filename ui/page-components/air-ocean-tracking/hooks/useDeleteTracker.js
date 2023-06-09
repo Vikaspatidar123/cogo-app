@@ -2,24 +2,36 @@ import { Toast } from '@cogoport/components';
 
 import { useRequest } from '@/packages/request';
 
-const useDeleteTracker = ({ name = '', id = '', closeHandler }) => {
+const MAPPING = {
+	ocean: {
+		URL                 : '/deactivate_saas_container_subscription',
+		SUBSCRIPTION_ID_KEY : 'saas_container_subscription_id',
+	},
+	air: {
+		URL                 : '/deactivate_saas_air_subscription',
+		SUBSCRIPTION_ID_KEY : 'saas_air_subscription_id',
+	},
+};
+
+const useDeleteTracker = ({ name = '', id = '', closeHandler, activeTab }) => {
+	const { URL, SUBSCRIPTION_ID_KEY } = MAPPING?.[activeTab] || {};
 	const [{ loading }, trigger] = useRequest({
 		method : 'post',
-		url    : '/deactivate_saas_container_subscription',
+		url    : URL,
 	}, { manual: true });
 
 	const getPayload = () => {
 		if (name === 'delete') {
 			return {
-				status                         : 'canceled',
-				saas_container_subscription_id : id,
-				cancellation_reason            : 'user_cancelled',
+				status                : 'canceled',
+				[SUBSCRIPTION_ID_KEY] : id,
+				cancellation_reason   : 'user_cancelled',
 			};
 		}
 		return {
-			status                         : 'completed',
-			saas_container_subscription_id : id,
-			cancellation_reason            : 'shipment_is_completed',
+			status                : 'completed',
+			[SUBSCRIPTION_ID_KEY] : id,
+			cancellation_reason   : 'shipment_is_completed',
 		};
 	};
 

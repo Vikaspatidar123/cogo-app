@@ -1,10 +1,17 @@
 const { format } = require('@cogoport/utils');
 
-const formatDateTime = ({ date, formatDate, formatTime, separator = '|' }) => {
-	const formattedDate = format(date, formatDate);
-	const formattedTime = format(date, formatTime);
+const formatDateTime = ({ date, dateFormat, timeFormat, separator = '|' }) => {
+	const formattedDate = format(date, dateFormat);
+	const formattedTime = format(date, timeFormat);
 
 	return `${formattedDate} ${separator} ${formattedTime}`;
 };
 
-export default formatDateTime;
+const formatDate = ({ date, dateFormat }) => {
+	if (!date) {
+		return null;
+	}
+	return format(date, dateFormat);
+};
+
+export { formatDateTime, formatDate };

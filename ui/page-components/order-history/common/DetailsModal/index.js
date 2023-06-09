@@ -1,12 +1,21 @@
 import { Modal } from '@cogoport/components';
 import { useEffect } from 'react';
 
+import TITLE_MAPPING from '../../configurations/titleMapping';
 import useGetTradeEngine from '../../hooks/useGetTradeEngine';
+import IEControlsModal from '../IEControlsModal';
 
 import DutiesTaxesModal from './DutiesTaxesModal';
 import IEDocumentsModal from './IEDocumentsModal';
 import styles from './styles.module.css';
 import TraderEligibilityModal from './TraderEligibilityModal';
+
+const COMPONENT_MAPPING = {
+	DUTIES    : DutiesTaxesModal,
+	SCREENING : TraderEligibilityModal,
+	DOCUMENTS : IEDocumentsModal,
+	CONTROLS  : IEControlsModal,
+};
 
 function DetailsModal({
 	itm = {},
@@ -18,14 +27,9 @@ function DetailsModal({
 		TradeEngineResponseFunc();
 	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
+	const { requestType = '' } = itm || {};
 
-	const heading = () => (
-		<>
-			{ itm?.requestType === 'DUTIES' && 'Duties & Taxes'}
-			{ itm?.requestType === 'SCREENING' && 'Trader Eligibility Check' }
-			{itm?.requestType === 'DOCUMENTS' && 'Import/Export Documents'}
-		</>
-	);
+	const Component = COMPONENT_MAPPING?.[requestType];
 
 	return (
 		<Modal
@@ -37,27 +41,16 @@ function DetailsModal({
 			{!tradeEngineResponseLoading && (
 				<div className={styles.container}>
 					<div>
-						<Modal.Header title={heading()} />
+						<Modal.Header className={styles.heading} title={TITLE_MAPPING?.[requestType]} />
 						<div className={styles.line_wrapper}>
 							<div className={styles.line} />
 						</div>
 					</div>
 					<div>
-						{itm?.requestType === 'DUTIES' && (
-							<DutiesTaxesModal
-								tradeEngineResp={tradeEngineResponse}
-							/>
-						)}
-						{itm?.requestType === 'SCREENING' && (
-							<TraderEligibilityModal
-								tradeEngineResponse={tradeEngineResponse}
-							/>
-						)}
-						{itm?.requestType === 'DOCUMENTS' && (
-							<IEDocumentsModal
-								tradeEngineResponse={tradeEngineResponse}
-							/>
-						)}
+
+						<Component
+							tradeEngineResponse={tradeEngineResponse}
+						/>
 					</div>
 				</div>
 			)}

@@ -9,13 +9,12 @@ import { useSelector } from '@/packages/store';
 import paymentInititation from '@/ui/commons/components/PaymentInitiation';
 import getGeoConstants from '@/ui/commons/constants/geo';
 
-const geo = getGeoConstants();
-const DEFAULT_CURRENCY = geo.country.currency.code;
-
 const usePayment = () => {
 	const { profile } = useSelector((s) => s);
 	const { query } = useRouter();
 
+	const geo = getGeoConstants();
+	const DEFAULT_CURRENCY = geo.country.currency.code;
 	const { id, name, email, mobile_number, mobile_country_code } = profile || {};
 	const {
 		org_id = '',

@@ -5,17 +5,16 @@ import styles from './styles.module.css';
 import getGeoConstants from '@/ui/commons/constants/geo';
 import formatAmount from '@/ui/commons/utils/formatAmount';
 
-const geo = getGeoConstants();
-const DEFAULT_CURRENCY = geo.country.currency.code;
-
-const CURRENCY_OPTIONS = {
-	notation              : 'standard',
-	style                 : 'currency',
-	currencyDisplay       : 'symbol',
-	maximumFractionDigits : 2,
-};
-
 function Charges({ quotaValue = 0, isQuotaLeft = false, getPrice }) {
+	const geo = getGeoConstants();
+	const DEFAULT_CURRENCY = geo.country.currency.code;
+
+	const CURRENCY_OPTIONS = {
+		notation              : 'standard',
+		style                 : 'currency',
+		currencyDisplay       : 'symbol',
+		maximumFractionDigits : 2,
+	};
 	const {
 		amount = 0,
 		gstAmount = 0,

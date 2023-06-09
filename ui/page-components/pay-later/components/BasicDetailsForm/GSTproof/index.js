@@ -1,25 +1,34 @@
 import { Button } from '@cogoport/components';
 import { IcMFtick, IcMTick } from '@cogoport/icons-react';
+import { startCase } from '@cogoport/utils';
 
 import useCreateOrganizationCreditRequest from '../../../hooks/useCreateOrganizationCreditRequest';
 
 import styles from './styles.module.css';
 
-function GSTproof({ item = {}, documentDetails = '', clearDocumentDetails = () => {}, handleSubmit = () => {} }) {
-	const { image_url = '' } = documentDetails || {};
-
+function GSTproof({
+	proofUrl = '',
+	handleSubmit = () => {},
+	setProofUrl = () => {},
+	hasRequestedForCredit = false,
+	getCreditRequestResponse = {},
+}) {
+	const { business_name = '', tax_number = '', address = [] } = getCreditRequestResponse || {};
 	const { createOrganizationCreditRequest = () => {} } = useCreateOrganizationCreditRequest();
 
 	const submit = (values) => {
-		createOrganizationCreditRequest({ image_url, values });
+		createOrganizationCreditRequest({ proofUrl, values });
 	};
 
-	if (item.name === 'gst_proof' && image_url) {
-		return 	(
+	return (
+		<>
+			<div>
+				{hasRequestedForCredit && <div>GST Proof</div>}
+			</div>
 			<div className={styles.file_container}>
 				<div className={styles.file}>
 					<img
-						src={image_url}
+						src={proofUrl}
 						height="100%"
 						width="100%"
 						alt="proof"
@@ -27,43 +36,49 @@ function GSTproof({ item = {}, documentDetails = '', clearDocumentDetails = () =
 				</div>
 				<div className={styles.details}>
 					<div>
-						<div className={styles.detail}>
-							<IcMFtick fill="#849E4C" width={14} height={14} />
-							{' '}
-							name
-						</div>
-						<div className={styles.detail}>
-							<IcMFtick fill="#849E4C" width={14} height={14} />
-							{' '}
-							gst number
-						</div>
-						<div className={styles.detail}>
-							<IcMFtick fill="#849E4C" width={14} height={14} />
-							{' '}
-							addresss
-						</div>
+						{business_name &&						(
+							<div className={styles.detail}>
+								<IcMFtick fill="#849E4C" width={14} height={14} />
+								{' '}
+								{startCase(business_name)}
+							</div>
+						)}
+						{tax_number &&						(
+							<div className={styles.detail}>
+								<IcMFtick fill="#849E4C" width={14} height={14} />
+								{' '}
+								{startCase(tax_number)}
+							</div>
+						)}
+						{address.length > 0 &&						(
+							<div className={styles.detail}>
+								<IcMFtick fill="#849E4C" width={14} height={14} />
+								{' '}
+								{address}
+							</div>
+						)}
 					</div>
 
-					<div className={styles.button_wrapper}>
-						<Button
-							className={styles.cancel}
-							themeType="secondary"
-							size="sm"
-							onClick={clearDocumentDetails}
-						>
-							Upload New
-						</Button>
-						<Button themeType="accent" size="sm" onClick={handleSubmit(submit)}>
-							<IcMTick />
-							Confirm
-						</Button>
-					</div>
+					{!hasRequestedForCredit &&	(
+						<div className={styles.button_wrapper}>
+							<Button
+								className={styles.cancel}
+								themeType="secondary"
+								size="sm"
+								onClick={() => setProofUrl('')}
+							>
+								Upload New
+							</Button>
+							<Button themeType="accent" size="sm" onClick={handleSubmit(submit)}>
+								<IcMTick />
+								Confirm
+							</Button>
+						</div>
+					)}
 				</div>
 			</div>
-
-		);
-	}
-	return null;
+		</>
+	);
 }
 
 export default GSTproof;

@@ -33,8 +33,6 @@ const FormFields = ({
 		updatePOCDetails({ poc, pocDetails });
 	};
 
-	console.log('🚀 ~ file: index.js:28 ~ pocDetails:', pocDetails);
-
 	const basicDetailsControls = getControls({ profile, setGSTDetails, gstDetails, setShow, setPOCDetails });
 
 	return (

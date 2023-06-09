@@ -3,16 +3,16 @@ import BasicDetailsForm from '../BasicDetailsForm';
 import styles from './styles.module.css';
 
 const RENDERING_FORM = {
-	basic_details : BasicDetailsForm,
-	default       : BasicDetailsForm,
+	awaiting_user_inputs : BasicDetailsForm,
+	default              : BasicDetailsForm,
 };
 
-function Form({ active = {} }) {
+function Form({ active = {}, getCreditRequestResponse = {} }) {
 	const Component = RENDERING_FORM[active] || RENDERING_FORM.default;
 
 	return (
 		<div className={styles.form}>
-			<Component />
+			<Component getCreditRequestResponse={getCreditRequestResponse} />
 		</div>
 	);
 }

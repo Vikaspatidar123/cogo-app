@@ -32,6 +32,7 @@ const useGetOrganizationCreditRequest = () => {
 	return {
 		loading,
 		data,
+		getOrganizationCreditRequest,
 	};
 };
 

@@ -4,14 +4,9 @@ import styles from './styles.module.css';
 
 import FileUploader from '@/packages/forms/Business/FileUploader';
 
-function Uploader({ documentDetails = '', setDocumentDetails = () => {}, show = false, setShow = () => {} }) {
-	const { image_url = '' } = documentDetails || {};
-
+function Uploader({ proofUrl = '', setProofUrl = () => {}, show = false, setShow = () => {} }) {
 	const cancelUpload = () => {
-		setDocumentDetails((prev) => ({
-			...prev,
-			image_url: '',
-		}));
+		setProofUrl('');
 		setShow(false);
 	};
 
@@ -22,11 +17,8 @@ function Uploader({ documentDetails = '', setDocumentDetails = () => {}, show = 
 				<div className={styles.wrapper}>
 					<div className={styles.heading}>Upload documents</div>
 					<FileUploader
-						value={image_url}
-						onChange={(e) => setDocumentDetails((prev) => ({
-							...prev,
-							image_url: e,
-						}))}
+						value={proofUrl}
+						onChange={(e) => setProofUrl(e)}
 						showProgress
 						accept=".pdf,.png,.pkg,.jpg"
 						className={styles.uploader}

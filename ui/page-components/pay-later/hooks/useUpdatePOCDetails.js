@@ -1,6 +1,10 @@
+import { Toast } from '@cogoport/components';
+import { useState } from 'react';
+
 import { useRequest } from '@/packages/request';
 
 const useUpdatePOCDetails = () => {
+	const [updated, setUpdated] = useState({});
 	const [{ data, loading }, trigger] = useRequest(
 		{
 			method : 'post',
@@ -9,22 +13,30 @@ const useUpdatePOCDetails = () => {
 		{ manual: true },
 	);
 
-	const updatePOCDetails = async ({ poc = '', pocDetails = '' }) => {
+	const updatePOCDetails = async ({ poc = '', pocDetails = '', id = '', setValue = () => {} }) => {
+		const details = pocDetails?.[poc];
 		try {
 			await trigger({
 				data: {
 					poc_details: {
-						...pocDetails[poc],
+						name                : details?.name || details?.poc_name,
+						email               : details?.email,
+						mobile_number       : details?.mobile_number?.number || details?.mobile_number,
+						mobile_country_code : details?.mobile_number?.country_code
+						|| details?.mobile_country_code,
 						work_scope: poc,
 					},
+					credit_request_id: id,
 				},
 			});
+			setUpdated((prev) => ({ ...prev, [poc]: true }));
+			setValue(poc, details?.id);
 		} catch (e) {
-			console.log(e, 'error');
+			Toast.error('Please try selecting or adding another POC');
 		}
 	};
 
-	return { updatePOCDetails, loading, data };
+	return { updatePOCDetails, loading, data, updated };
 };
 
 export default useUpdatePOCDetails;

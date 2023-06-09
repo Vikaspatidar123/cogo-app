@@ -7,12 +7,25 @@ import styles from './styles.module.css';
 import { useForm } from '@/packages/forms';
 import getField from '@/packages/forms/Controlled';
 
-function AddPOC({ setAddNewPoc = () => {}, renderingField = {} }) {
-	const { control } = useForm();
+function AddPOC({
+	setAddNewPoc = () => {},
+	renderingField = {},
+	setPOCDetails = () => {},
+	callUpdatePOCdetails = () => {},
+}) {
+	const { control, handleSubmit } = useForm();
+
+	const submit = (values) => {
+		setPOCDetails((prev) => ({
+			...prev,
+			[renderingField?.name]: values,
+		}));
+		callUpdatePOCdetails({ poc: renderingField?.name });
+	};
 
 	return (
 		<div>
-			<div>
+			<form type="submit">
 				{ADDPOCCONTROLS.map((item) => {
 					const Element = getField(item.type);
 					return (
@@ -21,7 +34,7 @@ function AddPOC({ setAddNewPoc = () => {}, renderingField = {} }) {
 						</div>
 					);
 				})}
-			</div>
+			</form>
 			<div className={styles.button_wrapper}>
 				<Button
 					themeType="secondary"
@@ -30,7 +43,7 @@ function AddPOC({ setAddNewPoc = () => {}, renderingField = {} }) {
 				>
 					Cancel
 				</Button>
-				<Button themeType="accent">
+				<Button themeType="accent" onClick={handleSubmit(submit)}>
 					Confirm
 				</Button>
 			</div>

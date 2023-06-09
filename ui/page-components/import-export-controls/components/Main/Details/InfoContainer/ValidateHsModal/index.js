@@ -54,6 +54,7 @@ function ValidateHsModal({
 		if (billId) {
 			getDraftFn(tradeEngineInputId);
 		}
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [billId]);
 
 	return (
@@ -77,7 +78,7 @@ function ValidateHsModal({
 							setPrevHs={setPrevHs}
 							setIsDisable={setIsDisable}
 						/>
-						{index === 0 && <div className="line" />}
+						{index === 0 && <div className={styles.line} />}
 					</div>
 				))}
 			</div>

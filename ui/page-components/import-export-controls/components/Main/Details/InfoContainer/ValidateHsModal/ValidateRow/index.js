@@ -1,4 +1,5 @@
-import { Button, Popover } from '@cogoport/components';
+/* eslint-disable react-hooks/exhaustive-deps */
+import { Button, Popover, Input } from '@cogoport/components';
 import { useState, useEffect } from 'react';
 
 // import LegendInput from '../../../../../../../../common/form/business/LegendInput';
@@ -111,16 +112,15 @@ function ValidateRow({
 				})}
 				interactive
 				placement="bottom"
-				theme="light-border"
 				visible={validateInProgress && inputValue.length > 0}
 			>
-				<div className="inputContainer">
-					{/* <LegendInput
-						label={label}
+				<div className={styles.inputContainer}>
+					<Input
+						label="HS Code"
 						value={hsCode}
-						className="hsInput"
+						className={styles.hs_input}
 						disabled
-					/> */}
+					/>
 				</div>
 			</Popover>
 			<div className={styles.btn_container}>
@@ -130,18 +130,18 @@ function ValidateRow({
 						onClick={validateHSCode}
 						loading={checkLoading}
 						disabled={validateInProgress}
-						className="primary md btn_color"
+						className={styles.btn_color}
 					>
 						Validate
 					</Button>
 				) : (
-					<div className="valid">
+					<div className={styles.valid}>
 						<img
 							src={iconUrl.validate}
 							alt="validated"
-							className="validate_svg"
+							className={styles.validate_svg}
 						/>
-						<div className="validate"> Validated</div>
+						<div className={styles.validate}> Validated</div>
 					</div>
 				)}
 			</div>

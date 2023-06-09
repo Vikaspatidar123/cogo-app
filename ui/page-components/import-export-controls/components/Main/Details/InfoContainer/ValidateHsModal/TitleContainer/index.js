@@ -33,7 +33,6 @@ function TitleContainer({ billId }) {
 						)}
 						interactive
 						placement="top"
-						theme="light-border"
 					>
 						<div>
 							<IcMInfo height={13} width={13} fill="#F68B21" />

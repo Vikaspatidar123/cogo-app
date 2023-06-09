@@ -2,7 +2,6 @@
 import { isEmpty } from '@cogoport/utils';
 import { useState, useEffect, useRef } from 'react';
 
-// import { useWindowDimensions } from '../../../common/utils/getMobileView';
 import controlsConfig from '../configurations/controlsConfig';
 
 import useCheckPaymentStatus from './useCheckPaymentStatus';
@@ -27,7 +26,6 @@ const useInfoValidate = ({
 	prevHs,
 }) => {
 	const { query, push } = useRouter();
-	const [isMobile, setIsMobile] = useState(false);
 
 	const { billId = '' } = query;
 	const initialRef = useRef({ fillExportHs: true, fillImportHs: true });
@@ -141,12 +139,10 @@ const useInfoValidate = ({
 			} = localStorageFormData || {};
 
 			const obj = {
-				exportCountry        : exportCountry?.id,
-				importCountry        : importCountry?.id,
-				manufacturingCountry : manufacturingCountry?.id || '',
 				...rest,
 			};
-			console.log(rest, 'rest');
+			const setKeys = Object.keys(obj || {});
+			setKeys.map((item) => setValue(item, obj?.[item]));
 			setValue('exportCountry', exportCountry?.id);
 			setValue('importCountry', importCountry?.id);
 			setValue('manufacturingCountry', manufacturingCountry?.id);
@@ -267,7 +263,6 @@ const useInfoValidate = ({
 		stop,
 		btnSubtmitHandler,
 		getDraftFn,
-		isMobile,
 		watchImportCountry,
 		watchExportCountry,
 	};

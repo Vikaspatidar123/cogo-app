@@ -69,29 +69,27 @@ function Result() {
 			{!tradeEngineLoading && <Header title="Transaction Results" redirect />}
 			{!tradeEngineLoading && controls.length > 0 && (
 				<div className={styles.importer_exporter}>
-					<div className={styles.segmented_container}>
-						<Tabs
-							activeTab={activeTab}
-							themeType="primary"
-							onChange={setActiveTab}
-						>
-							<TabPanel name="EXPORT" title="Export Controls">
-								{(exportControls?.length > 0 ? (
-									<ResultDetails activeTab={activeTab} controls={exportControls} />
-								) : (
-									<EmptyState />
-								))}
-							</TabPanel>
+					<Tabs
+						activeTab={activeTab}
+						themeType="primary"
+						onChange={setActiveTab}
+					>
+						<TabPanel name="EXPORT" title="Export Controls">
+							{(exportControls?.length > 0 ? (
+								<ResultDetails activeTab={activeTab} controls={exportControls} />
+							) : (
+								<EmptyState />
+							))}
+						</TabPanel>
 
-							<TabPanel name="IMPORT" title="Import Controls">
-								{(importControls?.length > 0 ? (
-									<ResultDetails activeTab={activeTab} controls={importControls} />
-								) : (
-									<EmptyState />
-								))}
-							</TabPanel>
-						</Tabs>
-					</div>
+						<TabPanel name="IMPORT" title="Import Controls">
+							{(importControls?.length > 0 ? (
+								<ResultDetails activeTab={activeTab} controls={importControls} />
+							) : (
+								<EmptyState />
+							))}
+						</TabPanel>
+					</Tabs>
 
 				</div>
 			)}

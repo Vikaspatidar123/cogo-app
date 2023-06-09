@@ -30,10 +30,10 @@ const textMapping = {
 function ResultDetails({ activeTab, controls = [] }) {
 	return (
 		<div className={styles.container}>
-			{activeTab === 'export_controls' ? (
+			{activeTab === 'EXPORT' ? (
 				<div className={cl`${styles.result_heading} ${styles.text}`}>Export Control Summary</div>
 			) : (
-				<div>Import Control Summary</div>
+				<div className={cl`${styles.result_heading} ${styles.text}`}>Import Control Summary</div>
 			)}
 			<div className={styles.table_heading}>
 				<div className={cl`${styles.header} ${styles.text}`}>Control Type</div>

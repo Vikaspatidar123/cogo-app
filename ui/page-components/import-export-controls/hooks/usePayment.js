@@ -59,7 +59,6 @@ const usePayment = () => {
 					currency,
 					billRefId             : trade_engine_id,
 					[addressKey]          : address?.id,
-					organizationAddressId : '43a738be-febf-4173-82a1-69aa95a64560',
 					userName              : name,
 					userEmail             : email,
 					userMobile            : mobile_number,

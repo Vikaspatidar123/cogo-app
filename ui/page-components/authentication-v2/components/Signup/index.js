@@ -46,7 +46,7 @@ function Signup() {
 
 	return (
 		<>
-			<ShipStepper />
+			<ShipStepper mode="signup_form" />
 
 			<div className={styles.authentication_layout}>
 

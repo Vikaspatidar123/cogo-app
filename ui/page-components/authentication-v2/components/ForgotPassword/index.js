@@ -35,7 +35,7 @@ function ForgotPassword() {
 
 	return (
 		<>
-			<ShipStepper />
+			<ShipStepper mode="email_form" />
 
 			<div className={styles.authentication_layout}>
 

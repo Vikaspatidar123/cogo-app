@@ -19,6 +19,7 @@ import {
 	asyncAirLines,
 	asyncShippingLines,
 	asyncTaxNumbers,
+	asyncOrganizationUsers,
 } from '../../utils/getAsyncFields';
 
 const keyAsyncFieldsParamsMapping = {
@@ -37,6 +38,7 @@ const keyAsyncFieldsParamsMapping = {
 	'air-lines'                : asyncAirLines,
 	'shipping-lines'           : asyncShippingLines,
 	tax_numbers                : asyncTaxNumbers,
+	organization_users         : asyncOrganizationUsers,
 };
 
 function AsyncSelect(props) {

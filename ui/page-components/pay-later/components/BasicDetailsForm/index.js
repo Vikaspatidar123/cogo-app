@@ -1,30 +1,49 @@
-import { Accordion, Button } from '@cogoport/components';
-import { IcMPlus } from '@cogoport/icons-react';
+import { useEffect, useState } from 'react';
 
 import FormTitleAndDescription from '../../common/FormTitleAndDescription';
-import { getControls } from '../../configurations/basicDetailsControls';
+import Uploader from '../Uploader';
 
+import FormFields from './FormFields';
 import styles from './styles.module.css';
 
 import { useForm } from '@/packages/forms';
-import getField from '@/packages/forms/Controlled';
 import { useSelector } from '@/packages/store';
 
 const DETAILS_ARRAY = ['company_details', 'poc', 'requirements'];
 
 function BasicDetailsForm() {
 	const { profile } = useSelector((state) => state);
+	const [show, setShow] = useState(false);
 
-	const basicDetailsControls = getControls({ profile });
+	const [gstDetails, setGSTDetails] = useState({});
+
+	const [documentDetails, setDocumentDetails] = useState({});
+
+	const { image_url = '' } = documentDetails || {};
+
+	const fileName = image_url?.split('/')?.slice(-1)?.join('');
+
 	const {
-		// handleSubmit,
+		handleSubmit,
 		control,
-		// setValue,
+		setValue,
 		// reset,
 		// setError,
 		// formState: { errors },
 		// getValues,
-	} = useForm();
+	} = useForm({
+		defaultValues: {
+			pan: profile?.organization?.registration_number,
+		},
+	});
+
+	const clearDocumentDetails = () => {
+		setDocumentDetails({});
+	};
+
+	useEffect(() => {
+		setValue('gst_proof', fileName);
+	}, [fileName, setValue]);
 
 	return (
 		DETAILS_ARRAY.map((details) => (
@@ -34,38 +53,26 @@ function BasicDetailsForm() {
 				</div>
 				<div className={styles.form}>
 					<form type="submit">
-						{basicDetailsControls.map((item) => {
-							const Element = getField(item.type);
-							if (item.section === details) {
-								return (
-									<div className={styles.field} key={item.key}>
-										<div className={styles.field_name}>{item.name}</div>
-										{!item.isAccordian
-											? <Element {...item} control={control} />
-											: (
-												<Accordion
-													title={item.placeholder}
-													type="form"
-												>
-													<Element
-														{...item}
-														control={control}
-													/>
-													<div className={styles.button_wrapper}>
-														<Button themeType="secondary">
-															<IcMPlus />
-															Add New
-														</Button>
-													</div>
-												</Accordion>
-											)}
-									</div>
-								);
-							}
-							return null;
-						})}
+						<FormFields
+							control={control}
+							details={details}
+							setShow={setShow}
+							documentDetails={documentDetails}
+							gstDetails={gstDetails}
+							setGSTDetails={setGSTDetails}
+							clearDocumentDetails={clearDocumentDetails}
+							handleSubmit={handleSubmit}
+						/>
 					</form>
 				</div>
+				{show && (
+					<Uploader
+						show={show}
+						setShow={setShow}
+						documentDetails={documentDetails}
+						setDocumentDetails={setDocumentDetails}
+					/>
+				)}
 			</div>
 		))
 

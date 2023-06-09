@@ -830,6 +830,11 @@ const saas = {
 			access_type  : 'private',
 			service_name : 'credit',
 		},
+		{
+			api          : 'list_organization_users',
+			access_type  : 'private',
+			service_name : 'organization',
+		},
 	],
 };
 export default saas;

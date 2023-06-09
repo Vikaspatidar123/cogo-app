@@ -1,0 +1,13 @@
+.field {
+    margin: 0px 0px 15px 0px;
+}
+
+.button_wrapper {
+    margin: 5px 0px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.cancel_button {
+    margin: 0 4px 0 0;
+}

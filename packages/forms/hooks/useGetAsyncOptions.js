@@ -1,5 +1,5 @@
 import { merge } from '@cogoport/utils';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 
 import { useRequest } from '../../request';
 
@@ -24,14 +24,15 @@ function useGetAsyncOptions({
 		},
 		{ manual: !(initialCall || query) },
 	);
-	const options = getModifiedOptions(data?.list || []);
+	const options = useMemo(() => getModifiedOptions(data?.list || data || []), [data, getModifiedOptions]);
+
 	const dependency = (data?.list || []).map(({ id }) => id).join('');
+
 	useEffect(() => {
 		if (options.length > 0) {
 			setStoreOptions([...options]);
 		}
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [dependency]);
+	}, [dependency, options]);
 
 	const [{ loading: loadingSingle }, triggerSingle] = useRequest(
 		{

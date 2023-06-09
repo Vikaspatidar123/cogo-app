@@ -226,10 +226,10 @@ function asyncProductList() {
 }
 function asyncTaxNumbers() {
 	return {
-		labelKey    : 'name',
-		valueKey    : 'id',
+		labelKey    : 'label',
+		valueKey    : 'tax_number',
 		endpoint    : 'get_tax_numbers_data',
-		initialCall : false,
+		initialCall : true,
 	};
 }
 

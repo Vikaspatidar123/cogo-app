@@ -1,4 +1,4 @@
-import { IcCFtick, IcCFcrossInCircle } from '@cogoport/icons-react';
+import { IcCFtick, IcCFcrossInCircle, IcCError } from '@cogoport/icons-react';
 
 import styles from './styles.module.css';
 
@@ -22,11 +22,7 @@ function KycStatus({ kyc_status }) {
 			{['pending_from_user', 'pending_verification'].includes(kyc_status) && (
 				<>
 					<div className={styles.kyc_pending}>KYC Pending</div>
-					<img
-						className={styles.image1}
-						src="	https://cdn.cogoport.io/cms-prod/cogo_admin/vault/original/tds-doc-icon.svg"
-						alt="img"
-					/>
+					<IcCError width={15} height={15} />
 				</>
 			)}
 		</div>

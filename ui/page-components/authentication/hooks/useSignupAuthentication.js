@@ -1,6 +1,7 @@
 import { Toast } from '@cogoport/components';
 
 import { useRequest } from '@/packages/request';
+import showErrorsInToast from '@/ui/commons/utils/showErrorsInToast';
 
 const useSignupAuthentication = ({
 	setHasSignedup, setUserDetails, captchaResponse, hasWhatsApp, userInfo,
@@ -41,7 +42,7 @@ const useSignupAuthentication = ({
 			if (e?.response?.data?.email?.length > 0) {
 				Toast.error('Email id is already registered. Please Login');
 			} else {
-				Toast.error('Something went wrong');
+				showErrorsInToast(e?.response?.data);
 			}
 		}
 	};

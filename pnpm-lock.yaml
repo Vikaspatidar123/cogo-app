@@ -5,14 +5,14 @@ dependencies:
     specifier: ^1.0.1
     version: 1.0.1(prop-types@15.8.1)(react-dom@18.2.0)(react@18.2.0)
   '@cogoport/components':
-    specifier: ^1.0.422
-    version: 1.0.422(@babel/core@7.21.8)(@cogoport/icons-react@1.0.58)(react-dom@18.2.0)(react@18.2.0)
+    specifier: ^1.0.425
+    version: 1.0.425(@babel/core@7.21.8)(@cogoport/icons-react@1.0.76)(react-dom@18.2.0)(react@18.2.0)
   '@cogoport/icons-react':
-    specifier: ^1.0.58
-    version: 1.0.58(react-dom@18.2.0)(react@18.2.0)
+    specifier: ^1.0.76
+    version: 1.0.76(react-dom@18.2.0)(react@18.2.0)
   '@cogoport/maps':
     specifier: ^1.0.3
-    version: 1.0.3(@cogoport/icons-react@1.0.58)(react-dom@18.2.0)(react@18.2.0)
+    version: 1.0.3(@cogoport/icons-react@1.0.76)(react-dom@18.2.0)(react@18.2.0)
   '@cogoport/utils':
     specifier: ^1.2.6
     version: 1.2.6
@@ -1402,14 +1402,14 @@ packages:
       - react-dom
     dev: false
 
-  /@cogoport/components@1.0.422(@babel/core@7.21.8)(@cogoport/icons-react@1.0.58)(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-61tFznMxsFkRWJntMeFwc8Czgi444zRvzyh5ZLVNoafW5uXTS5yOZjLkbjj5WiP7IGJJM6OdeZRbYWY2a/umtA==}
+  /@cogoport/components@1.0.425(@babel/core@7.21.8)(@cogoport/icons-react@1.0.76)(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-NkUfnE5qgMRK4G68rRtqZ4JuTzytMsjTL4pmi2+Y5bPVGNpUFqzvCKUUVanyFBvL49qWo8BDgNOR4aXVTxvr3w==}
     peerDependencies:
       '@cogoport/icons-react': ^1.0.23
       react: ^18.2.0
       react-dom: ^18.2.0
     dependencies:
-      '@cogoport/icons-react': 1.0.58(react-dom@18.2.0)(react@18.2.0)
+      '@cogoport/icons-react': 1.0.76(react-dom@18.2.0)(react@18.2.0)
       '@tippyjs/react': 4.2.6(react-dom@18.2.0)(react@18.2.0)
       '@types/quill': 2.0.10
       '@types/react-rte': 0.16.5
@@ -1463,29 +1463,29 @@ packages:
       - supports-color
     dev: true
 
-  /@cogoport/icons-react@1.0.58(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-3iJkbIwTt+8pOXIvefZRYbVmxYJE9Z78XFE2PhIc1nOUNoPOQFRGGaq8C4B+f1jOUxhR/JZsvJtv0e2v+IzI9Q==}
+  /@cogoport/icons-react@1.0.76(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-rdrORP+ixIRnxA4G3JRIgAk+zcx9hyho0YkrUYG+VKHZZG5Z9Hp1Onpz35mGUNKhGNlPIZvxIG3vN0Gir9u6CQ==}
     peerDependencies:
       react: 18.2.0
       react-dom: 18.2.0
     dependencies:
-      '@cogoport/icons': 1.0.58
+      '@cogoport/icons': 1.0.76
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
     dev: false
 
-  /@cogoport/icons@1.0.58:
-    resolution: {integrity: sha512-8ort8jOyO9P8mK3gy7i+wdqqUkKRjkeTVT61beqUzcUCxk/V+4LaVtg+GQg8pK8dTy9ePGThduB860WHzw7Vkw==}
+  /@cogoport/icons@1.0.76:
+    resolution: {integrity: sha512-MpDg5quwGBeLXV2p0pwbmyIDt1aGtl8SPKHX+CzMJawFjZGKrymwnHn6gcypwQIWtxE8BZ+9SJWMAndLGXyOCQ==}
     dev: false
 
-  /@cogoport/maps@1.0.3(@cogoport/icons-react@1.0.58)(react-dom@18.2.0)(react@18.2.0):
+  /@cogoport/maps@1.0.3(@cogoport/icons-react@1.0.76)(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-nWNhGesbEQNqBGy1KO9O85eU04zcVaIVvuHXcq7CKa+pij74yU3BKB4PTBvoSrbLHAgIctxe8KOQVzBVgTLl/w==}
     peerDependencies:
       '@cogoport/icons-react': ^1.0.23
       react: ^18.2.0
       react-dom: ^18.2.0
     dependencies:
-      '@cogoport/icons-react': 1.0.58(react-dom@18.2.0)(react@18.2.0)
+      '@cogoport/icons-react': 1.0.76(react-dom@18.2.0)(react@18.2.0)
       leaflet: 1.9.4
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)

@@ -42,11 +42,11 @@ function ResultDetails({ activeTab, controls = [] }) {
 			</div>
 
 			<div className={styles.list}>
-				{(controls || [])?.map((control, index) => {
+				{(controls || [])?.map((control) => {
 					const { description = '', status = '' } = control || {};
 					return (
 						<div
-							key={`${description}_${status}_${index}`}
+							key={`${description}_${status}`}
 							className={styles.table_col}
 						>
 							<div className={styles.header}>{description}</div>

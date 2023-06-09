@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { isEmpty } from '@cogoport/utils';
-import { useState, useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 
 import controlsConfig from '../configurations/controlsConfig';
 
@@ -30,8 +30,6 @@ const useInfoValidate = ({
 	const { billId = '' } = query;
 	const initialRef = useRef({ fillExportHs: true, fillImportHs: true });
 
-	// const { width = '' } = useWindowDimensions();
-
 	const {
 		hsCode = '',
 		name: productName = '',
@@ -52,14 +50,6 @@ const useInfoValidate = ({
 	const [watchImportHs, watchExportHs,
 		watchImportCountry,
 		watchExportCountry] = watch(['importHsCode', 'exportHsCode', 'importCountry', 'exportCountry']);
-
-	// useEffect(() => {
-	// 	if (width < 1154) {
-	// 		setIsMobile(true);
-	// 	} else {
-	// 		setIsMobile(false);
-	// 	}
-	// }, [width]);
 
 	useEffect(() => {
 		if (billId) {

@@ -2,7 +2,6 @@
 import { Button, Popover, Input } from '@cogoport/components';
 import { useState, useEffect } from 'react';
 
-// import LegendInput from '../../../../../../../../common/form/business/LegendInput';
 import useVerifyHscode from '../../../../../../hooks/useVerifyHsCode';
 import iconUrl from '../../../../../../utils/iconUrl.json';
 import styles from '../styles.module.css';
@@ -71,7 +70,7 @@ function ValidateRow({
 	const [status, setStatus] = useState(false);
 	const [validateInProgress, setValidateInProgress] = useState(false);
 
-	const { hsCode, label, isImport, prevHs, countryCode } = item || {};
+	const { hsCode, isImport, prevHs, countryCode } = item || {};
 	const { verifyHsCode, checkLoading, inputValue } = useVerifyHscode();
 
 	const validateHSCode = () => {

@@ -63,7 +63,6 @@ function InfoContainer({ formInfo, setFormInfo }) {
 	});
 
 	const {
-		fields,
 		handleSubmit,
 		setValues,
 		getValues,

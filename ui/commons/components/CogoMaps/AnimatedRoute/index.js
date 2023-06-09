@@ -1,16 +1,12 @@
-import { IcMFship, IcMAirport } from '@cogoport/icons-react';
+import { cl } from '@cogoport/components';
 import { L } from '@cogoport/maps';
 import { useEffect } from 'react';
 import ReactDOMServer from 'react-dom/server';
 
+import { getIcon, getLatLng } from '../../../utils/getMapFn';
+
 import '../../../libs/motion';
 import styles from './styles.module.css';
-
-// const calculateRotation = (startPoint, endPoint) => {
-// 	const dx = endPoint.lng - startPoint.lng;
-// 	const dy = endPoint.lat - startPoint.lat;
-// 	return -2.5 * Math.atan2(dy, dx) * (180 / Math.PI);
-// };
 
 const getAnimationOptions = ({ path = [], icon }) => [
 	path,
@@ -44,20 +40,22 @@ const getMapDivIcon = (
 	className,
 	...rest,
 });
-const ICON_MAPING = {
-	ocean : IcMFship,
-	air   : IcMAirport,
-};
+
 function AnimatedRoute({ map, path, transportMode }) {
-	// const rotation = calculateRotation(path[0], path[path.length - 1]);
-	const Icon = ICON_MAPING[transportMode];
-	// style={{ transform: `rotate(${rotation}deg)` }}
+	const { origin, dest } = getLatLng({
+		route : path,
+		src   : 'icon',
+	});
+	const rotate = origin > dest && transportMode === 'air';
+
+	const Icon = getIcon({ type: transportMode, origin, dest });
+
 	const sequence = L.motion.polyline(...getAnimationOptions(
 		{
 			path,
 			icon: getMapDivIcon(
 				<div className={styles.container}>
-					<Icon className={styles[`${transportMode}_icon`]} />
+					<Icon className={cl`${styles[`${transportMode}_icon`]} ${rotate && styles.rotate_icon}`} />
 				</div>,
 			),
 		},

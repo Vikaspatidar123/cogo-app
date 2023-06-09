@@ -17,3 +17,7 @@
 	padding: 2px;
 	fill: #f7aba3 !important;
 }
+
+.rotate_icon {
+	transform: scaleX(-1);
+}

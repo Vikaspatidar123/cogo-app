@@ -1,0 +1,297 @@
+[
+    {
+		"name": "have_ad_code",
+		"label": "Have AD Code?",
+		"type": "chips",
+		"span": 6,
+		"options": [
+			{ "children": "Yes", "key": "yes" },
+			{ "children": "No", "key": "no" }
+		],
+		"condition": { "services": ["export_fcl_cfs"] },
+		"rules": { "required": "This is required" }
+	},
+	{
+		"name": "ad_code_reg",
+		"label": "Do you want AD Code Registration?",
+		"type": "chips",
+		"caret": true,
+		"span": 6,
+		"options": [
+			{ "children": "Yes", "key": "yes" },
+			{ "children": "No", "key": "no" }
+		],
+		"condition": { "have_ad_code": "no", "services": ["export_fcl_cfs"] },
+		"rules": { "required": "This is required" }
+	},
+    {
+		"label": "Destination Port",
+		"name": "destination_port_id",
+		"placeholder": "Search via port name/code",
+		"includedInOptions": false,
+		"type": "async_select",
+		"asyncKey": "locations",
+		"grouped": ["city", "country"],
+		"params": { "filters": { "type": ["seaport", "country", "city"] } },
+		"condition": { "services": ["export_haulage_freight"] },
+		"rules": { "required": "Destination Port is required" }
+	},
+	{
+		"label": "Origin Port",
+		"name": "origin_port_id",
+		"placeholder": "Search via port name/code",
+		"includedInOptions": false,
+		"type": "async_select",
+		"asyncKey": "locations",
+		"grouped": ["city", "country"],
+		"params": { "filters": { "type": ["seaport", "country", "city"] } },
+		"condition": { "services": ["import_haulage_freight"] },
+		"rules": { "required": "Destination Port is required" }
+	},
+    {
+		"name": "cargo_handling_type",
+		"label": "Origin Cargo Stuffing",
+		"type": "chips",
+		"caret": true,
+		"options": [
+			{
+				"key": "stuffing_at_factory",
+				"children": "Factory Stuffing"
+			},
+			{
+				"key": "stuffing_at_dock",
+				"children": "Dock Stuffing"
+			}
+		],
+		"condition": { "services": ["export_fcl_customs", "export_transportation"] },
+		"rules": { "required": "Cargo Stuffing is required" }
+	},
+    {
+        "name": "truck_type",
+		"label": "Truck Type",
+		"type": "select",
+		"caret": true,
+		"optionKey": "truck_types",
+		"span": 8,
+		"condition": {
+            "cargo_handling_type": ["stuffing_at_dock"],
+			"services": ["export_transportation", "import_transportation"]
+		},
+		"rules": { "required": "Truck Type is required" }
+	},
+	{
+        "name": "trucks_count",
+		"label": "Trucks count",
+		"type": "number",
+		"span": 4,
+		"condition": {
+            "cargo_handling_type": ["stuffing_at_dock"],
+			"services": ["export_transportation"]
+		},
+		"rules": { "required": "Trucks count is required", "min": 0 }
+	},
+    {
+        "name": "truck_type",
+		"label": "Truck Type",
+		"type": "select",
+		"caret": true,
+		"asyncKey": "truck-types",
+		"span": 8,
+		"condition": {
+			"cargo_handling_type": ["destuffing_at_dock"],
+			"services": ["import_transportation"]
+		},
+		"rules": { "required": "Truck Type is required" }
+	},
+	{
+        "name": "trucks_count",
+		"label": "Trucks count",
+		"type": "number",
+		"span": 4,
+		"value": 1,
+		"condition": {
+            "cargo_handling_type": ["destuffing_at_dock"],
+			"services": ["import_transportation"]
+		},
+		"rules": { "required": "Trucks count is required", "min": 0 }
+	},
+    {
+        "name": "cargo_handling_type",
+		"label": "Destination Cargo Handling",
+		"type": "chips",
+		"caret": true,
+		"span": 12,
+		"options": [
+			{
+                "children": "Direct Port Delivery",
+				"key": "direct_port_delivery"
+			},
+			{
+                "children": "Destuffing at Factory",
+				"key": "delivery_from_dock"
+			},
+			{
+                "children": "Destuffing at CFS",
+				"key": "destuffing_at_dock"
+			},
+			{
+                "children": "DPD Without CFS",
+				"key": "dpd_without_cfs"
+			},
+			{
+				"children": "DPD CFS Dock Destuffing",
+				"key": "dpd_cfs_dock_destuffing"
+			},
+			{
+                "children": "DPD CFS Factory Destuffing",
+				"key": "dpd_cfs_factory_destuffing"
+			},
+			{
+                "children": "Empanelled CFS Dock Destuffing",
+				"key": "enpanelled_cfs_dock_destuffing"
+			},
+			{
+                "children": "Empanelled CFS Factory Destuffing",
+				"key": "enpanelled_cfs_factory_destuffing"
+			},
+			{
+				"children": " Non-Empanelled CFS Factory Destuffing",
+				"key": "non_enpanelled_cfs_factory_destuffing"
+			},
+			{
+                "children": "Non-Empanelled CFS Dock Destuffing",
+				"key": "non_enpanelled_cfs_dock_destuffing"
+			}
+		],
+		"condition": { "services": ["import_fcl_customs", "import_transportation"] },
+		"rules": { "required": "Cargo Handling is required" }
+	},
+    {
+		"name": "cargo_handling_type",
+		"label": "Select type of stuffing",
+		"type": "chips",
+		"span": 12,
+		"options": [
+            {
+				"children": "DPD without cfs",
+				"key": "dpd_without_cfs"
+			},
+			{
+                "children": "DPD cfs dock destuffing",
+				"key": "dpd_cfs_dock_destuffing"
+			},
+			{
+                "children": "DPD cfs factory destuffing",
+				"key": "dpd_cfs_factory_destuffing"
+			},
+			{
+				"children": "Empanelled cfs dock destuffing",
+				"key": "enpanelled_cfs_dock_destuffing"			
+			},
+			{
+                "children": "Empanelled cfs factory destuffing",
+				"key": "enpanelled_cfs_factory_destuffing"
+			},
+			{
+                "children": "Non-empanelled cfs dock destuffing",
+				"key": "non_enpanelled_cfs_dock_destuffing"
+			},
+			{
+                "children": "Non-empanelled cfs factory destuffing",
+				"key": "non_enpanelled_cfs_factory_destuffing"
+			}
+		],
+		"condition": { "services": ["import_fcl_cfs"] },
+		"rules": { "required": "Stuffing is required" }
+	},
+    {
+        "name": "cargo_handling_type",
+		"label": "Select type of stuffing",
+		"type": "chips",
+		"span": 12,
+		"options": [
+            {
+                "children": "Factory Stuffing",
+				"key": "stuffing_at_factory"
+			},
+			{
+                "children": "Dock Stuffing",
+				"vakeylue": "stuffing_at_dock"
+			}
+		],
+		"condition": { "services": ["export_fcl_cfs"] },
+		"rules": { "required": "Stuffing is required" }
+	},
+    {
+        "label": "Pickup Pincode",
+        "name": "location_id",
+        "placeholder": "Search via pincode",
+        "type": "async_select",
+        "caret": true,
+        "asyncKey": "locations",
+        "grouped": ["city"],
+        "params": { "filters": { "type": ["pincode", "city"] } },
+        "condition": { "services": ["export_transportation"] },
+        "rules": { "required": "Pincode is required" }
+    },
+    {
+        "label": "Pickup Pincode",
+        "name": "location_id",
+        "placeholder": "Search via pincode",
+        "type": "async_select",
+        "caret": true,
+        "asyncKey": "locations",
+        "grouped": ["city"],
+        "params": { "filters": { "type": ["pincode", "city"] } },
+        "condition": { "services": ["import_transportation"] },
+        "rules": { "required": "Pincode is required" }
+    },
+    {
+        "label": "Address",
+        "name": "address",
+        "placeholder": "Enter address",
+        "type": "textarea",
+        "condition": { "services": ["export_transportation"] }
+    },
+    {
+        "label": "Address",
+        "name": "address",
+        "placeholder": "Enter address",
+        "type": "textarea",
+        "condition": { "services": ["import_transportation"] }
+    },
+    {
+		"name": "cargo_value_currency",
+		"label": "Cargo currency",
+		"asyncKey": "currencies",
+		"type": "select",
+		"span": 4,
+		"condition": { "services": ["export_fcl_cfs"] },
+		"rules": { "required": "This is required" }
+	},
+	{
+		"name": "cargo_value",
+		"label": "Cargo value",
+		"type": "number",
+		"span": 8,
+		"condition": { "services": ["export_fcl_cfs"] },
+		"rules": { "required": "This is required" }
+	},
+	{
+		"name": "cargo_value_currency",
+		"label": "Cargo currency",
+		"asyncKey": "currencies",
+		"type": "select",
+		"span": 4,
+		"condition": { "services": ["import_fcl_cfs"] },
+		"rules": { "required": "This is required" }
+	},
+	{
+		"name": "cargo_value",
+		"label": "Cargo value",
+		"type": "number",
+		"span": 8,
+		"condition": { "services": ["import_fcl_cfs"] },
+		"rules": { "required": "This is required" }
+	}
+]

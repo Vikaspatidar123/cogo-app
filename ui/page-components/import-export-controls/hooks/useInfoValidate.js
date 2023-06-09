@@ -49,7 +49,7 @@ const useInfoValidate = ({
 	});
 
 	const formProps = useForm();
-	const { getValues, setValues, setValue, watch, control } = formProps;
+	const { getValues, setValue, watch } = formProps;
 
 	const [watchImportHs, watchExportHs,
 		watchImportCountry,
@@ -146,7 +146,10 @@ const useInfoValidate = ({
 				manufacturingCountry : manufacturingCountry?.id || '',
 				...rest,
 			};
-			setValues(obj);
+			console.log(rest, 'rest');
+			setValue('exportCountry', exportCountry?.id);
+			setValue('importCountry', importCountry?.id);
+			setValue('manufacturingCountry', manufacturingCountry?.id);
 			setFormInfo(localStorageFormData);
 			localStorage.removeItem('formInfo');
 		}

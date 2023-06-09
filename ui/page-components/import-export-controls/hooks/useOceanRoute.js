@@ -4,7 +4,7 @@ import { useRequest } from '@/packages/request';
 
 const useOceanRoute = () => {
 	const [routeDataLength, setRouteDataLength] = useState();
-	// const { setMapPoints } = useSaasState();
+	const [mapPoints, setMapPoints] = useState([]);
 
 	const [{ loading }, oceanRouteTrigger] = useRequest({
 		method : 'get',
@@ -21,7 +21,7 @@ const useOceanRoute = () => {
 				},
 			});
 			const respData = resp?.data?.the_geom;
-			// setMapPoints(respData);
+			setMapPoints(respData);
 			setRouteDataLength(respData?.length === 0);
 		} catch (err) {
 			console.error(err?.error?.message);
@@ -31,6 +31,8 @@ const useOceanRoute = () => {
 		getOceanRoute,
 		routesLoading: loading,
 		routeDataLength,
+		mapPoints,
+		setMapPoints,
 	};
 };
 

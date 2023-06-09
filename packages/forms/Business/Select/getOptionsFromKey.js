@@ -1,10 +1,17 @@
+/* eslint-disable import/no-unresolved */
 import { startCase } from '@cogoport/utils';
 
-import ContainerSizes from '../../constants/container-size.json';
-import ContainerTypes from '../../constants/container-types.json';
 import currencies from '../../constants/currencies';
-import TruckTypes from '../../constants/truck-types.json';
 import getCommodityList from '../../utils/getCommodityList';
+
+// eslint-disable-next-line import/no-unresolved
+import countries from '@/.data-store/constants/countries.json';
+import ContainerSizes from '@/packages/forms/constants/container-size.json';
+import ContainerTypes from '@/packages/forms/constants/container-types.json';
+import Languages from '@/packages/forms/constants/languages.json';
+import TradeTypes from '@/packages/forms/constants/trade-types.json';
+import TruckTypes from '@/packages/forms/constants/truck-types.json';
+import WorkScope from '@/packages/forms/constants/work-scope.json';
 
 const getOptionsFromKey = (
 	key,
@@ -15,11 +22,10 @@ const getOptionsFromKey = (
 		valueKey : 'value',
 		labelKey : 'label',
 	};
-
 	if (key === 'truck_types') {
 		const applicableTrucks = TruckTypes.filter(
 			(truck) => truck.country_codes.includes(country_code)
-				|| truck.country_codes.includes('ALL'),
+                || truck.country_codes.includes('ALL'),
 		);
 		data.options = applicableTrucks.map((truck) => ({
 			...truck,
@@ -27,6 +33,8 @@ const getOptionsFromKey = (
 		}));
 	} else if (key === 'currencies') {
 		data.options = currencies;
+	} else if (key === 'trade-types') {
+		data.options = TradeTypes;
 	} else if (key === 'container-sizes') {
 		data.options = ContainerSizes;
 	} else if (key === 'container-types') {
@@ -35,9 +43,16 @@ const getOptionsFromKey = (
 		data.options = getCommodityList(commodityType, containerType);
 	} else if (key === 'commodities') {
 		data.options = getCommodityList('freight');
+	} else if (key === 'countries') {
+		data.options = countries;
+		data.valueKey = 'id';
+		data.labelKey = 'name';
+	} else if (key === 'languages') {
+		data.options = Languages;
+	} else if (key === 'work-scopes') {
+		data.options = WorkScope;
 	}
-
-	return data;
+	return data.options ? data : null;
 };
 
 export default getOptionsFromKey;

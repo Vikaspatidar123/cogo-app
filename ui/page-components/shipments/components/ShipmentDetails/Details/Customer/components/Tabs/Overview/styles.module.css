@@ -1,0 +1,86 @@
+.container {
+	margin-top: 36px;
+
+	.cogo-term-conditions {
+		width: 100%;
+	}
+
+	@media (max-width: 768px) {
+		margin-top: 36px;
+	}
+}
+
+.services {
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 16px;
+
+	@media (max-width: 768px) {
+		flex-direction: column;
+	}
+}
+
+.service_container {
+	display: flex;
+	width: 70%;
+	max-height: 1000px;
+	padding: 12px;
+	margin-right: 20px;
+	overflow: auto;
+	background: #fff;
+	border-radius: 4px;
+	box-shadow: 0 1px 6px rgb(169 188 218 / 65%);
+
+	@media (max-width: 768px) {
+		flex-direction: column;
+		width: 100%;
+		margin-bottom: 16px;
+	}
+}
+
+.card_block {
+	display: block;
+	flex: 30%;
+}
+
+.heading {
+	margin: 12px 0 20px 20px;
+	font-size: 16px;
+	font-weight: 500;
+	color: #2c3e50;
+}
+
+.line {
+	margin: 0 16px;
+	border: 1px solid #d9eafd;
+}
+
+.right_panel {
+	width: 30%;
+	background: #fff;
+	border-radius: 4px;
+	box-shadow: 0 1px 6px rgb(169 188 218 / 65%);
+
+	@media (max-width: 768px) {
+		width: 100%;
+	}
+}
+
+.additional_services_title {
+	font-size: 16px;
+	font-weight: 600;
+	color: #2c3e50;
+}
+
+.additional_services_btn {
+	.core-ui-button-root {
+		padding: 8px 14px;
+		text-transform: capitalize;
+		background: #2c3e50;
+	}
+}
+
+.predicted_services {
+	display: flex;
+	flex-wrap: wrap;
+}

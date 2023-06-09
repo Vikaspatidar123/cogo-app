@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-// import MapContainer from '../../../common/MapContainer';
+import MapContainer from '../../../common/MapContainer';
 
 import InfoContainer from './InfoContainer';
 import styles from './styles.module.css';
@@ -15,7 +15,7 @@ function Details() {
 					<InfoContainer formInfo={formInfo} setFormInfo={setFormInfo} />
 				</div>
 				<div className={styles.map}>
-					{/* <MapContainer formInfo={formInfo} /> */}
+					<MapContainer formInfo={formInfo} />
 				</div>
 			</div>
 		</div>

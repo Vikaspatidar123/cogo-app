@@ -1,4 +1,5 @@
 import { merge } from '@cogoport/utils';
+import { useEffect, useState } from 'react';
 
 import { useRequest } from '../../request';
 
@@ -10,20 +11,34 @@ function useGetAsyncOptions({
 	valueKey = '',
 	labelKey = '',
 	params = {},
+	getModifiedOptions = (options) => options,
 }) {
 	const { query, debounceQuery } = useDebounceQuery();
+	const [storeOptions, setStoreOptions] = useState([]);
 
-	const [{ data, loading }] = useRequest({
-		url    : endpoint,
-		method : 'GET',
-		params : merge(params, { filters: { q: query } }),
-	}, { manual: !(initialCall || query) });
-	const options = data?.list || [];
-
-	const [{ loading: loadingSingle }, triggerSingle] = useRequest({
-		url    : endpoint,
-		method : 'GET',
-	}, { manual: true });
+	const [{ data, loading }] = useRequest(
+		{
+			url    : endpoint,
+			method : 'GET',
+			params : merge(params, { filters: { q: query } }),
+		},
+		{ manual: !(initialCall || query) },
+	);
+	const options = getModifiedOptions(data?.list || []);
+	const dependency = (data?.list || []).map(({ id }) => id).join('');
+	useEffect(() => {
+		if (options.length > 0) {
+			setStoreOptions([...options]);
+		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [dependency]);
+	const [{ loading: loadingSingle }, triggerSingle] = useRequest(
+		{
+			url    : endpoint,
+			method : 'GET',
+		},
+		{ manual: true },
+	);
 
 	const onSearch = (inputValue) => {
 		debounceQuery(inputValue);
@@ -41,6 +56,7 @@ function useGetAsyncOptions({
 					toBeFetched.push(v);
 				}
 			});
+
 			const res = await triggerSingle({
 				params: merge(params, { filters: { [valueKey]: toBeFetched } }),
 			});
@@ -58,16 +74,21 @@ function useGetAsyncOptions({
 
 		if (checkOptionsExist.length > 0) return checkOptionsExist[0];
 
-		const res = await triggerSingle({
-			params: merge(params, { filters: { [valueKey]: value } }),
-		});
-		return res?.data?.list?.[0] || null;
+		try {
+			const res = await triggerSingle({
+				params: merge(params, { filters: { [valueKey]: value } }),
+			});
+			return res?.data?.list?.[0] || null;
+		} catch (err) {
+			console.log(err);
+			return {};
+		}
 	};
 
 	return {
-		loading: loading || loadingSingle,
+		loading : loading || loadingSingle,
 		onSearch,
-		options,
+		options : storeOptions,
 		labelKey,
 		valueKey,
 		onHydrateValue,

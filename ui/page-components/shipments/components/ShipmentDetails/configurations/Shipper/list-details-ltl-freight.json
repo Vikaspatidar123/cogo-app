@@ -1,0 +1,47 @@
+{
+	"name": "shipment",
+	"routeInfo": {
+		"origin_pickup": "pickup",
+		"origin_drop": "drop",
+		"origin_port": "origin_port",
+		"origin_main_port": "origin_main_port",
+		"destination_main_port": "destination_main_port",
+		"destination_port": "destination_port",
+		"destination_pickup": "destination_pickup",
+		"destination_drop": "destination_drop",
+		"address": {
+			"origin_port": "origin_pudo",
+			"origin_main_port": "console_point",
+			"destination_port": "destination_pudo",
+			"destination_main_port": "deconsole_point"
+		}
+	},
+	"possibleFullRoute": [
+		{
+			"service_types": ["ltl_freight_service"],
+			"display": "LTL Freight",
+			"origin": "origin_location",
+			"destination": "destination_location",
+			"iconType": "truck",
+			"type": "land"
+		}
+	],
+	"refModal": { "action": "add_importer_exporter_reference_id" },
+	"details": [
+		{
+			"label": "Cargo Value",
+			"key": "cargo_value"
+		},
+		{
+			"label": "Trade type",
+			"key": "trade_type"
+		},
+		{
+			"label": "Terms and Conditions",
+			"key": "terms_and_conditions",
+			"type": "terms_and_conditions",
+			"displayInColumn": true
+		}
+	],
+	"pending_tasks": {}
+}

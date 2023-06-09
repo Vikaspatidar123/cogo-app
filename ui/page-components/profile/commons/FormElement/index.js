@@ -44,7 +44,7 @@ function SearchResultsServiceItemFormElement({
 					...(!isEmpty(options) && { options }),
 				};
 
-				if (type === 'location-select') {
+				if (type === 'async_select') {
 					delete finalProps.style;
 				}
 				if (type === 'file' && controlStyle) {

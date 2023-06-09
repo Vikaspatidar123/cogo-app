@@ -2,7 +2,6 @@ import { Button, Popover, Placeholder } from '@cogoport/components';
 import { IcMArrowBack, IcMPortArrow } from '@cogoport/icons-react';
 import { format } from '@cogoport/utils';
 import { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
 
 import FilterForm from './components/filter';
 import TrendChart from './components/trend-chart';
@@ -11,6 +10,7 @@ import useFetchTrendDetails from './hooks/useFetchTrendDetails';
 import styles from './styles.module.css';
 
 import { useRouter } from '@/packages/next';
+import { useSelector } from '@/packages/store';
 import countriesHash from '@/ui/commons/utils/getCountryDetails';
 
 function ActiveFreightRateTrend() {

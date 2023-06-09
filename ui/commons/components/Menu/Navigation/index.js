@@ -24,7 +24,7 @@ function Navigation({
 			content={renderBody()}
 			onClickOutside={() => setIsOpen(!isOpen)}
 			interactive
-			trigger="mouseenter"
+			trigger="click"
 		>
 			<div className={styles.subscription_container}>
 				<IcMServices style={{ marginRight: '12px' }} />

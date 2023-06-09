@@ -1,7 +1,6 @@
 /* eslint-disable no-undef */
 import { deleteCookie } from '@cogoport/utils';
 
-import LogoutIcon from '../icons/logoutIcon.svg';
 import styles from '../styles.module.css';
 
 function Logout() {
@@ -15,7 +14,11 @@ function Logout() {
 
 	return (
 		<div className={styles.logout_container}>
-			<LogoutIcon style={{ marginRight: 12 }} />
+			<img
+				src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/logoutIcon.svg"
+				alt="cogo"
+				style={{ marginRight: 12 }}
+			/>
 
 			<div
 				className={styles.a_container}

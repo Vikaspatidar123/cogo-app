@@ -10,11 +10,11 @@
 
 import {
 	IcMQuotations,
-	IcMUpwardGraph,
 	IcMTradeparties,
 	IcACrossBorder,
 	IcMProductCodeMapping,
 	IcMFfreferigeratedCargoType,
+	IcMUpwardGraph,
 	IcADutiesTaxes,
 	IcAFormsAndCertificates,
 } from '@cogoport/icons-react';
@@ -29,6 +29,21 @@ const navigationMappings = {
 		mobileIcon : <IcMQuotations width={20} height={20} />,
 	},
 
+	app_discover_rates: {
+		key       : 'app_discover_rates',
+		title     : 'Discover Rates',
+		href      : '/v2/book',
+		as        : '/v2/book',
+		showInNav : true,
+	},
+	app_bookings: {
+		key       : 'app_bookings',
+		title     : 'Shipments',
+		href      : '/v2/shipments',
+		as        : '/v2/shipments',
+		icon      : 'nav-booking',
+		showInNav : true,
+	},
 	saas_tools: {
 		key       : 'saas_tools',
 		title     : 'Tools',
@@ -135,6 +150,14 @@ const navigationMappings = {
 				icon  : <IcACrossBorder width={40} height={40} />,
 			},
 			{
+				key   : 'saas_premium_services-import_export_docs',
+				title : 'Import/Export Documents',
+				type  : 'link',
+				href  : '/v2/saas/premium-services/import-export-doc',
+				as    : '/v2/saas/premium-services/import-export-doc',
+				icon  : <IcACrossBorder width={40} height={40} />,
+			},
+			{
 				key   : 'saas_premium_services-trader_eligibility_check',
 				title : 'Trader Eligibility Check',
 				href  : '/v2/saas/premium-services/trader-eligibility-check',
@@ -159,18 +182,64 @@ const navigationMappings = {
 			},
 		],
 	},
+	saas_planning: {
+		key       : 'saas_planning',
+		title     : 'Planning',
+		isSubNavs : true,
+		showInNav : true,
+		options   : [
+			{
+				key   : 'saas_planning-trade_partner',
+				title : 'Trade Partner',
+				icon  : <IcMTradeparties width={40} height={40} />,
+				href  : '/v2/saas/trade-partner',
+				as    : '/v2/saas/trade-partner',
+			},
+			{
+				key         : 'saas_planning-product_inventory',
+				title       : 'Product Catalog',
+				type        : 'link',
+				icon        : <IcMProductCodeMapping width={40} height={40} />,
+				href        : '/v2/saas/product-inventory',
+				as          : '/v2/saas/product-inventory',
+				module_type : 'dashboards',
+			},
+			{
+				key   : 'saas_planning-quotation',
+				title : 'Quick Quotations',
+				// eslint-disable-next-line max-len
+				description:
+          'The meaning of QUOTATION is something that is quoted; especially : a passage ',
+				icon : <IcMQuotations width={30} height={30} />,
+				type : 'link',
+				href : '/v2/saas/quickquotation/viewlist',
+				as   : '/v2/saas/quickquotation/viewlist',
+			},
+		],
+	},
+	saas_cogo_insurance: {
+		key         : 'saas_tools_insurance',
+		title       : 'Insurance',
+		href        : '/v2/saas/insurance/list',
+		as          : '/v2/saas/insurance/list',
+		type        : 'link',
+		icon        : <IcMFfreferigeratedCargoType width={40} height={40} fill="red" />,
+		description : 'Buy insurance for your cargo here',
+		showInNav   : true,
+	},
+
 	app_accept_terms_and_conditions: {
 		key       : 'app_accept_terms_and_conditions',
 		title     : 'Terms and Conditions',
 		href      : '/accept-terms-and-conditions',
 		showInNav : false,
 	},
-	app_bookings: {
-		key       : 'app_bookings',
-		title     : 'Shipments',
-		href      : '/shipments',
-		as        : '/shipments',
-		icon      : 'nav-booking',
+
+	app_documents: {
+		key       : 'app_documents',
+		title     : 'Documents Wallet',
+		href      : '/v2/documents',
+		as        : '/v2/documents',
 		showInNav : true,
 	},
 
@@ -197,38 +266,10 @@ const navigationMappings = {
 		],
 	},
 
-	saas_planning: {
-		key       : 'saas_planning',
-		title     : 'Planning',
-		isSubNavs : true,
-		showInNav : true,
-		options   : [
-			{
-				key   : 'saas_planning-trade_partner',
-				title : 'Trade Partner',
-				icon  : <IcMTradeparties width={40} height={40} />,
-				href  : '/v2/saas/trade-partner',
-				as    : '/v2/saas/trade-partner',
-			},
-			{
-				key         : 'saas_planning-product_inventory',
-				title       : 'Product Catalog',
-				type        : 'link',
-				icon        : <IcMProductCodeMapping width={40} height={40} />,
-				href        : '/v2/saas/product-inventory',
-				as          : '/v2/saas/product-inventory',
-				module_type : 'dashboards',
-			},
-			{
-				key   : 'saas_planning-quotation',
-				title : 'Quick Quotations',
-				icon  : <IcMQuotations width={30} height={30} />,
-				type  : 'link',
-				href  : '/v2/saas/quickquotation/viewlist',
-				as    : '/v2/saas/quickquotation/viewlist',
-			},
-
-		],
+	app_get_started: {
+		key   : 'app_get_started',
+		title : 'Get Started',
+		theme : 'green',
 	},
 
 	app_kyc: {
@@ -244,6 +285,31 @@ const navigationMappings = {
 		href          : '/v2/settings',
 		as            : '/v2/settings',
 		showMobileNav : true,
+
+	},
+	saas_cogo_subscription: {
+		key       : 'saas_cogo_subscription',
+		title     : 'Subscriptions',
+		icon      : 'nav-subscriptions',
+		isSubNavs : true,
+		options   : [
+			{
+				key   : 'saas_cogo_subscription-manage',
+				title : 'Manage Subscription',
+				type  : 'link',
+				icon  : 'nav-documents',
+				href  : '/saas/cogo-subscriptions/manage-subscription',
+				as    : '/saas/cogo-subscriptions/manage-subscription',
+			},
+			{
+				key   : 'saas_cogo_subscription-balance_history',
+				title : 'Balance And History',
+				type  : 'link',
+				icon  : 'nav-payments',
+				href  : '/saas/cogo-subscriptions/balance-history',
+				as    : '/saas/cogo-subscriptions/balance-history',
+			},
+		],
 	},
 
 };

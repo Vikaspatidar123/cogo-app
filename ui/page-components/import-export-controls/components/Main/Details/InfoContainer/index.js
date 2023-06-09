@@ -73,24 +73,24 @@ function InfoContainer({ formInfo, setFormInfo }) {
 
 	return (
 		<div className={styles.container}>
-			<div className="row">
+			<div className={styles.row}>
 				{controlsConfig.map((config) => {
 					const { label, sublabel, type, name } = config || {};
 					if (type === 'hidden') return null;
 					const Element = getField(type);
 
 					return (
-						<div className="col" key={name}>
-							<div className="label_container">
-								<p className="label">{label}</p>
+						<div className={styles.col} key={name}>
+							<div className={styles.label_container}>
+								<p className={styles.label}>{label}</p>
 								{sublabel && (
-									<p className="sub_label">
+									<p className={styles.sub_label}>
 										(
 										{sublabel}
 										)
 									</p>
 								)}
-								{errors?.[name] && <p className="error">required *</p>}
+								{errors?.[name] && <p className={styles.error}>required *</p>}
 							</div>
 							<Element
 								{...config}
@@ -111,10 +111,10 @@ function InfoContainer({ formInfo, setFormInfo }) {
 					);
 				})}
 			</div>
-			<div className="btn_container">
+			<div className={styles.btn_container}>
 				<Button
-					className={`primary md submit_btn ${
-						watchExportCountry === watchImportCountry ? 'disable_btn' : ''
+					className={` ${styles.submit_btn} ${
+						watchExportCountry === watchImportCountry ? styles.disable_btn : ''
 					}`}
 					loading={loading}
 					onClick={handleSubmit(submitHandler)}

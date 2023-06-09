@@ -1,9 +1,35 @@
 const saas = {
+	'/saas/subscriptions': {
+		navigation : 'saas_subscription',
+		isMainNav  : true,
+	},
+	'/saas/subscriptions/plans': {
+
+		navigation: 'saas_subscription',
+	},
+	'/saas/subscriptions/checkout': {
+
+		navigation: 'saas_subscription',
+	},
+	'/saas/subscriptions/confirmation': {
+
+		navigation: 'saas_subscription',
+	},
+	'/saas/cogo-subscriptions/manage-subscription': {
+		navigation : 'saas_cogo_subscription-manage',
+		isMainNav  : true,
+	},
+	'/saas/cogo-subscriptions/checkout': {
+		navigation : 'saas_cogo_subscription-manage',
+		isMainNav  : true,
+	},
+	'/saas/cogo-subscriptions/balance-history': {
+		navigation: 'saas_cogo_subscription-manage',
+	},
 	'/saas/premium-services/duties-taxes-calculator': {
 		navigation : 'saas_premium_services-duties_and_taxes',
 		isMainNav  : true,
 	},
-
 	'/saas/premium-services/trader-eligibility-check': {
 		navigation : 'saas_premium_services-trader_eligibility_check',
 		isMainNav  : true,
@@ -32,12 +58,30 @@ const saas = {
 	'/saas/ocean-schedules': {
 		navigation: 'saas_tools-ocean_schedules',
 	},
+
+	'/saas/quickquotation/createquotation': {
+		navigation : 'saas_planning-quotation',
+		isMainBav  : true,
+	},
+
 	'/saas/trade-partner': {
 		navigation : 'saas_tools-trade_partner',
 		isMainNav  : true,
 	},
 	'/saas/trade-partner/[trade_id]': {
 		navigation : 'saas_tools-trade_partner',
+		isMainNav  : true,
+	},
+	'/saas/premium-services/import-export-doc': {
+		navigation : 'saas_premium_services-import_export_docs',
+		isMainNav  : true,
+	},
+	'/saas/premium-services/import-export-doc/[trade_engine_id]': {
+		navigation : 'saas_premium_services-import_export_docs',
+		isMainNav  : true,
+	},
+	'/saas/premium-services/import-export-doc/[trade_engine_id]/result': {
+		navigation : 'saas_premium_services-import_export_docs',
 		isMainNav  : true,
 	},
 	'/saas/air-tracking': {
@@ -78,6 +122,14 @@ const saas = {
 		isMainNav  : true,
 	},
 
+	'/saas/insurance/[type]': {
+		navigation : 'saas_cogo_insurance',
+		isMainNav  : true,
+	},
+	'/saas/insurance': {
+		navigation : 'saas_cogo_insurance',
+		isMainNav  : true,
+	},
 };
 
 module.exports = saas;

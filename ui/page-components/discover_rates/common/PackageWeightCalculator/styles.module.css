@@ -1,0 +1,139 @@
+.container {
+	margin-bottom: 8px;
+
+	:global {
+		.core-ui-select-root {
+			width: auto;
+		}
+
+		input::-webkit-outer-spin-button,
+		input::-webkit-inner-spin-button {
+			appearance: none;
+			margin: 0;
+		}
+
+		/* Firefox */
+		input[type="number"] {
+			appearance: textfield;
+		}
+	}
+}
+
+.wrapper {
+	margin-top: 8px;
+}
+
+.chip {
+	box-sizing: border-box;
+	display: flex;
+	align-items: center;
+	min-width: 0;
+	padding: 8px 4px;
+	font-size: 12px;
+	font-weight: normal;
+	line-height: 12px;
+	color: #000;
+	background: #9befa8;
+	border-radius: 4px;
+}
+
+.button {
+	/* identical to box height, or 14px */
+
+	display: flex;
+	align-items: center;
+	padding: 6px;
+	font-size: 10px;
+	font-weight: normal;
+	line-height: 140%;
+
+	/* Gray 3 */
+
+	color: #828282;
+	letter-spacing: 0.02em;
+	background: #f2f2f2;
+	border: 0.5px dashed #bdbdbd;
+	border-radius: 2px;
+	outline: none;
+}
+
+.back {
+	display: flex;
+	width: 16px;
+	height: 16px;
+	padding: 0;
+	margin-right: 5px;
+	cursor: pointer;
+	background: transparent;
+	border: none;
+	outline: none;
+}
+
+.space_between {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+	margin-bottom: 10px;
+}
+
+.label {
+	display: flex;
+	align-items: center;
+	overflow: hidden;
+	font-size: 12px !important;
+	font-weight: bold;
+	line-height: 14px;
+	color: #4f4f4f;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+
+	.sub_label {
+		margin-left: 4px;
+		font-weight: normal;
+	}
+}
+
+.calc_label {
+	/* identical to box height */
+
+	display: flex;
+	align-items: center;
+	font-size: 10px;
+	line-height: 12px;
+
+	/* Gray 3 */
+
+	color: #828282;
+	letter-spacing: 0.02em;
+}
+
+.row {
+	display: flex;
+	flex-flow: row wrap;
+	align-items: normal;
+	justify-content: flex-start;
+}
+
+.col {
+	padding: 0 8px;
+
+	&.package {
+		width: 28.3%;
+	}
+
+	&.dimension {
+		width: 44.6%;
+	}
+
+	&.weight {
+		width: 25%;
+	}
+
+	:global {
+		.ui_input_number_container.ui_ps_size_sm,
+		.ui_input_container.ui_ps_size_sm {
+			min-width: auto;
+		}
+	}
+}

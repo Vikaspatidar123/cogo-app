@@ -23,6 +23,14 @@
 	}
 }
 
+.text {
+	width: 55%;
+	margin-top: 10px;
+	font-weight: 300;
+	color: #4b5c6d;
+	text-align: center;
+}
+
 .card {
 	position: relative;
 	display: flex;
@@ -74,12 +82,4 @@
 	background: #db4634;
 	border-radius: 50%;
 	box-shadow: 0 0 7px #fff, 0 0 0 #fff, 0 0 4px #f00, 0 0 12px #f00;
-}
-
-.text {
-	width: 55%;
-	margin-top: 10px;
-	font-weight: 300;
-	color: #4b5c6d;
-	text-align: center;
 }

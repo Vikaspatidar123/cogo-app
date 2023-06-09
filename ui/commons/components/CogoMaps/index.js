@@ -1,10 +1,12 @@
 import { CogoMaps, L } from '@cogoport/maps';
+import { isEmpty } from '@cogoport/utils';
 import dynamic from 'next/dynamic';
 import { useState, useEffect } from 'react';
 
+import AnimatedRoute from './AnimatedRoute';
+
 const Pointer = dynamic(() => import('./Pointer'), { ssr: false });
 const Route = dynamic(() => import('./Route'), { ssr: false });
-
 const LAYER = [
 	{
 		name        : 'Cogo Maps',
@@ -21,6 +23,7 @@ function MapComp({
 	height = '600px',
 	zoom = '3.6',
 	style,
+	transportMode,
 }) {
 	const [map, setMap] = useState();
 	const corner1 = L.latLng(-90, -200);
@@ -63,14 +66,15 @@ function MapComp({
 			maxZoom={12}
 		>
 			{pointLength > 0 && (
-				<Pointer lat={plotPoints[0]?.lat} lng={plotPoints[0]?.lng} iconSvg="source" />
+				<Pointer lat={plotPoints[0]?.lat} lng={plotPoints[0]?.lng} iconSvg="map_origin" />
 			)}
-			<Route positions={plotPoints} map={map} />
+			<Route positions={plotPoints} map={map} transportMode={transportMode} />
+			{!isEmpty(plotPoints) && <AnimatedRoute map={map} path={plotPoints} transportMode={transportMode} />}
 			{pointLength > 0 && (
 				<Pointer
 					lat={plotPoints[pointLength - 1]?.lat}
 					lng={plotPoints[pointLength - 1]?.lng}
-					iconSvg="destination-icon"
+					iconSvg="map_destination"
 				/>
 			)}
 		</CogoMaps>

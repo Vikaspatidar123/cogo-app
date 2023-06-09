@@ -15,10 +15,12 @@ import {
 	IcMFfreferigeratedCargoType,
 	IcMUpwardGraph,
 	IcADutiesTaxes,
+	IcAFormsAndCertificates,
 	IcAFinancial,
 	IcADocumentationInfo,
 	IcABookYourShipment,
 	IcMAppInsurance,
+	IcAShipAmber,
 } from '@cogoport/icons-react';
 
 const navigationMappings = {
@@ -80,12 +82,7 @@ const navigationMappings = {
 				title : 'Ocean Tracking',
 				href  : '/v2/saas/ocean-tracking',
 				as    : '/v2/saas/ocean-tracking',
-				icon  : (
-					<img
-						src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/ocean-tracking.svg"
-						alt="cogo"
-					/>
-				),
+				icon  : <IcAShipAmber width={45} height={45} />,
 				description:
                     'Seamlessly keep track of your shipments and deviations',
 			},
@@ -172,6 +169,14 @@ const navigationMappings = {
 				href        : '/v2/saas/premium-services/duties-taxes-calculator',
 				as          : '/v2/saas/premium-services/duties-taxes-calculator',
 				icon        : <IcADutiesTaxes width={45} height={45} />,
+				description : '',
+			},
+			{
+				key         : 'saas_premium_services-import_export_controls',
+				title       : 'Import Export Controls',
+				href        : '/v2/saas/premium-services/import-export-controls',
+				as          : '/v2/saas/premium-services/import-export-controls',
+				icon        : <IcAFormsAndCertificates width={50} height={50} />,
 				description : '',
 			},
 			{

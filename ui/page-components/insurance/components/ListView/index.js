@@ -91,7 +91,7 @@ function ListView() {
 								page       : 1,
 							}))}
 							placeholder="Search by Country or Policy Id"
-							suffix={<IcMSearchlight height={30} />}
+							suffix={<IcMSearchlight height={30} style={{ marginRight: '10px' }} />}
 						/>
 					</div>
 					<FilterSection

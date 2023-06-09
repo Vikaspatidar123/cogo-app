@@ -1,7 +1,7 @@
 import { Toast } from '@cogoport/components';
 import { useState } from 'react';
 
-import useform from '@/packages/forms';
+import { useForm } from '@/packages/forms';
 import getApiErrorString from '@/packages/forms/utils/getApiError';
 import { useRequest } from '@/packages/request';
 
@@ -29,7 +29,7 @@ const controls = [
 const useReviewInvoice = ({ invoice, onClose }) => {
 	const [errors, setErrors] = useState({});
 
-	const { control, handleSubmit } = useform(controls);
+	const { control, handleSubmit } = useForm();
 	const [{ loading }, trigger] = useRequest({
 		url    : 'update_shipment_invoice_status',
 		method : 'post',

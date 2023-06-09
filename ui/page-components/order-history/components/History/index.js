@@ -44,7 +44,7 @@ function OrderHistory() {
 									page       : 1,
 								}));
 							}}
-							suffix={<IcMSearchlight height={30} />}
+							suffix={<IcMSearchlight height={30} style={{ marginRight: '10px' }} />}
 						/>
 					</div>
 				</div>

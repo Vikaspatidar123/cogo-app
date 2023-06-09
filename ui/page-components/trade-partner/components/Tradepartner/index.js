@@ -1,5 +1,5 @@
 import { Input, Button, Tooltip } from '@cogoport/components';
-import { IcMPaste, IcMPlusInCircle } from '@cogoport/icons-react';
+import { IcMPaste, IcMPlusInCircle, IcMSearchlight } from '@cogoport/icons-react';
 import { useState } from 'react';
 
 import TRADEPARTNERLIST from '../../configuration/tradePartnerList';
@@ -47,6 +47,8 @@ function TradePartner() {
 									page       : 1,
 								}));
 							}}
+							suffix={<IcMSearchlight height={30} style={{ marginRight: '10px' }} />}
+
 						/>
 					</div>
 

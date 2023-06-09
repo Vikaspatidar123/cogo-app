@@ -33,7 +33,6 @@ function ShipmentList() {
 			});
 		}
 	};
-
 	const renderTabPanel = () => {
 		if (loading) {
 			return <Placeholder height="150px" width="100%" margin="30px 0px 20px 0px" />;

@@ -1,4 +1,4 @@
-import { Avatar, Badge } from '@cogoport/components';
+import { Avatar, Badge, Tooltip } from '@cogoport/components';
 
 import KycStatus from '../../KycStatus';
 
@@ -39,7 +39,11 @@ function SwitchPartnerItem({ item }) {
 				)}
 
 				<div className={styles.partner_details}>
-					<div className={styles.partner_name}>{item.business_name}</div>
+					<Tooltip
+						content={<div style={{ color: 'grey' }}>{item.business_name}</div>}
+					>
+						<div className={styles.partner_name}>{item.business_name.substring(0, 13)}</div>
+					</Tooltip>
 					<div className={styles.type}>{MAPPING[account_type]}</div>
 				</div>
 			</div>

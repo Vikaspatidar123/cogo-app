@@ -1,9 +1,9 @@
 import { Input, Chips, Button, Table, Pagination } from '@cogoport/components';
 import { IcMPlus, IcMSearchlight, IcMPlusInCircle } from '@cogoport/icons-react';
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
 
 import CancellationAndConfirmModal from '../../common/CancellationModal';
+import EmptyState from '../../common/EmptyState';
 import FAQComponent from '../../common/FAQComponent';
 import PreviewModal from '../../common/PreviewModal';
 import redirectUrl from '../../common/redirectUrl';
@@ -16,6 +16,8 @@ import useList from '../../hooks/useList';
 import FilterSection from './Filter';
 import segementedOpt from './Options/index';
 import styles from './styles.module.css';
+
+import { useSelector } from '@/packages/store';
 
 function ListView() {
 	const { isMobile } = useSelector((state) => state);
@@ -89,7 +91,7 @@ function ListView() {
 								page       : 1,
 							}))}
 							placeholder="Search by Country or Policy Id"
-							suffix={<IcMSearchlight height={30} />}
+							suffix={<IcMSearchlight height={30} style={{ marginRight: '10px' }} />}
 						/>
 					</div>
 					<FilterSection
@@ -125,13 +127,17 @@ function ListView() {
 					/>
 				)}
 			</div>
-			<Table
-				columns={fields || []}
-				data={list || []}
-				loading={loading}
-				loadingRowsCount={10}
-				className={styles.table}
-			/>
+			{data?.list?.length > 0 && !previewloading && (
+				<Table
+					columns={fields || []}
+					data={list || []}
+					loading={loading}
+					loadingRowsCount={10}
+					className={styles.table}
+				/>
+			) }
+			{data?.list?.length === 0 && !previewloading
+			&& <EmptyState />}
 			{data?.list?.length > 0 && (
 				<div className={styles.pagination_div}>
 					<Pagination

@@ -1,4 +1,5 @@
 import { Pagination } from '@cogoport/components';
+import { isEmpty } from '@cogoport/utils';
 import React from 'react';
 
 import CardHeader from './CardHeader';
@@ -67,7 +68,7 @@ function List({
 					/>
 				</div>
 			)}
-			{!loading && !listNew?.length && <EmptyState heading={heading} />}
+			{!loading && isEmpty(listNew) && <EmptyState heading={heading} />}
 		</div>
 	);
 }

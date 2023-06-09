@@ -26,7 +26,7 @@ function SwitchUser({ setShow }) {
 					width="24px"
 					height="24px"
 					style={{ cursor: 'pointer' }}
-					onClick={onBack}
+					onClick={() => onBack()}
 				/>
 
 				{pathname === '/get-started' ? null : (
@@ -39,7 +39,7 @@ function SwitchUser({ setShow }) {
 			<div className={styles.separator} />
 
 			<div className={styles.list}>
-				{organizations.map((item) => (
+				{(organizations || []).map((item) => (
 					<Item key={item.id} item={item} />
 				))}
 			</div>

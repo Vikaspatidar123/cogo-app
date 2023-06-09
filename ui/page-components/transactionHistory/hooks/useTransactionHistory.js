@@ -1,4 +1,3 @@
-import { Toast } from '@cogoport/components';
 import { useState, useEffect } from 'react';
 
 import { useRequestBf } from '@/packages/request';
@@ -35,7 +34,7 @@ const useTransactionHistory = ({ filters, sort }) => {
 			});
 			setApiResponse(response?.data);
 		} catch (err) {
-			Toast.error(err.message);
+			console.log(err);
 		}
 	};
 

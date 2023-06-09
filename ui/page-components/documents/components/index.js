@@ -26,7 +26,6 @@ function Documents() {
 		refetch,
 		setDocumentDetails,
 	});
-
 	return (
 		<div>
 			<Heading
@@ -39,7 +38,7 @@ function Documents() {
 			<Filters setFilters={setFilters} filters={filters} />
 			<Table
 				columns={columns || []}
-				data={list}
+				data={list || []}
 				loading={loading}
 				loadingRowsCount={6}
 				className={styles.table}

@@ -1,4 +1,3 @@
-// import getGeoConstants from '@cogo/globalization/constants/geo';
 import { Toast } from '@cogoport/components';
 import { useState } from 'react';
 
@@ -8,9 +7,10 @@ import { useRouter } from '@/packages/next';
 import { useRequestBf } from '@/packages/request';
 import { useSelector } from '@/packages/store';
 import paymentInititation from '@/ui/commons/components/PaymentInitiation';
+import getGeoConstants from '@/ui/commons/constants/geo';
 
-// const geo = getGeoConstants();
-// const DEFAULT_CURRENCY = geo.country.currency.code;
+const geo = getGeoConstants();
+const DEFAULT_CURRENCY = geo.country.currency.code;
 
 const usePayment = () => {
 	const { profile } = useSelector((s) => s);
@@ -27,8 +27,8 @@ const usePayment = () => {
 	const [butttonLoading, setButtonLoading] = useState(false);
 	const [modal, setModal] = useState({});
 
-	const callBackUrl = `${process.env.APP_URL}app/${org_id}/${branch_id}/${account_type}/saas/premium-services/import-export-controls`;
-
+	const callBackUrl = `${process.env.NEXT_PUBLIC_APP_BASE_URL}v2/${org_id}/${branch_id}/${account_type}/`
+	+ 'saas/premium-services/import-export-controls';
 	const { getProductCodeLoading, productCode = {} } = useGetProductCode();
 
 	const [{ data, loading }, trigger] = useRequestBf({
@@ -40,7 +40,7 @@ const usePayment = () => {
 	const { import_export_documents = {} } = productCode;
 
 	const initiatePayment = async ({
-		// currency = DEFAULT_CURRENCY,
+		currency = DEFAULT_CURRENCY,
 		price = 0,
 		gstAmount = 0,
 		amount = 0,
@@ -56,7 +56,7 @@ const usePayment = () => {
 				data: {
 					userId                : id,
 					organizationId        : profile?.organization.id,
-					// currency,
+					currency,
 					billRefId             : trade_engine_id,
 					[addressKey]          : address?.id,
 					organizationAddressId : '43a738be-febf-4173-82a1-69aa95a64560',

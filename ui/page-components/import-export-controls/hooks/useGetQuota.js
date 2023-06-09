@@ -1,7 +1,7 @@
 import { Toast } from '@cogoport/components';
 import { useState, useEffect, useMemo } from 'react';
 
-import { useRequestBf } from '@/packages/request';
+import { useRequest } from '@/packages/request';
 import { useSelector } from '@/packages/store';
 
 const useGetQuota = () => {
@@ -15,7 +15,7 @@ const useGetQuota = () => {
 		quotaValue = 0,
 	} = subscriptionInfo;
 
-	const [{ data }, trigger] = useRequestBf({
+	const [{ data }, trigger] = useRequest({
 		method : 'get',
 		url    : '/saas_get_user_quota_usage',
 	}, { manual: true });
@@ -37,6 +37,7 @@ const useGetQuota = () => {
 	};
 	useEffect(() => {
 		getQuota();
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	useMemo(() => {

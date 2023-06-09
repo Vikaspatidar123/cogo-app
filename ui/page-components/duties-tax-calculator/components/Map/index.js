@@ -3,8 +3,12 @@ import { useState, useEffect } from 'react';
 
 import styles from './styles.module.css';
 
-const CogoMaps = dynamic(() => import('./MapsComp'), { ssr: false });
-
+const CogoMaps = dynamic(
+	() => import('@/ui/commons/components/CogoMaps'),
+	{
+		ssr: false,
+	},
+);
 function Map({
 	portDetails = {},
 	transportMode,
@@ -14,9 +18,9 @@ function Map({
 	routeDataLength = false,
 	setMapPoints,
 	mapPoints,
+	mapZoom = 2.7,
 }) {
 	const [curvePoints, setCurvePoints] = useState([]);
-
 	const { origin = {}, destination = {} } = portDetails || {};
 
 	const originLength = Object.keys(origin).length;
@@ -128,9 +132,12 @@ function Map({
 		<div className={`${styles.without_mobile} ${styles.with_mobile}`}>
 			<CogoMaps
 				plotPoints={curvePoints}
-				tradeEngineRespLength={tradeEngineRespLength}
+				lengthDependency={tradeEngineRespLength}
 				origin={origin}
 				destination={destination}
+				transportMode={transportMode.toLowerCase()}
+				zoom={mapZoom}
+
 			/>
 			{routeDataLength && curvePoints.length === 0 && (
 				<div className={styles.loader}>

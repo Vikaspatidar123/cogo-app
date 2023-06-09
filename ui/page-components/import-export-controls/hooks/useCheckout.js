@@ -4,16 +4,6 @@ import useGetQuota from './useGetQuota';
 import useGetServiceRates from './useGetServiceRates';
 import usePayment from './usePayment';
 
-// const MAPPING = {
-// 	exportCountry        : 'Country of Export',
-// 	importCountry        : 'Country of Import',
-// 	manufacturingCountry : 'Country of Manufacturing',
-// 	transportMode        : 'Mode of Tranport',
-// 	exportHsCode         : 'Export Hs Code',
-// 	importHsCode         : 'Import Hs Code',
-// 	productUse           : 'Product End Use',
-// };
-
 const useCheckout = ({ localStorageData = {}, address = {} }) => {
 	const {
 		exportCountry = {},
@@ -64,7 +54,6 @@ const useCheckout = ({ localStorageData = {}, address = {} }) => {
 
 	return {
 		prefillData,
-		// MAPPING,
 		getPrice,
 		paymentHandler,
 		loading: paymentLoading || serviceRatesLoading,

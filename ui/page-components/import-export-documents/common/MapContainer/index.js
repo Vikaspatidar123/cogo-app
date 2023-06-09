@@ -135,6 +135,7 @@ function MapContainer({
 				zoom={mapZoom}
 				height="400px"
 				style={style}
+				transportMode={transportMode}
 			/>
 		</div>
 	);

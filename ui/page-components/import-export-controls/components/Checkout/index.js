@@ -19,7 +19,6 @@ function Checkout() {
 
 	const {
 		prefillData = {},
-		MAPPING,
 		getPrice,
 		paymentHandler,
 		isQuotaLeft = false,
@@ -48,7 +47,6 @@ function Checkout() {
 				<Header title="Control Details" back />
 				<Info
 					prefillData={prefillData}
-					MAPPING={MAPPING}
 					localStorageData={localStorageData}
 				/>
 			</div>

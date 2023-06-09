@@ -8,7 +8,7 @@ const useOceanRoute = () => {
 
 	const [{ loading }, oceanRouteTrigger] = useRequest({
 		method : 'get',
-		url    : '/get_sea_route',
+		url    : 'https://api.cogoport.com/location/get_sea_route',
 	}, { manual: true });
 
 	const getOceanRoute = async (origin_port_id, destination_port_id) => {

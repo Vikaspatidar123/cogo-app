@@ -6,7 +6,7 @@ import useOceanRoute from '../../hooks/useOceanRoute';
 
 import styles from './styles.module.css';
 
-const Cogomaps = dynamic(
+const CogoMaps = dynamic(
 	() => import('@/ui/commons/components/CogoMaps'),
 	{
 		ssr: false,
@@ -112,12 +112,13 @@ function MapContainer({ formInfo = {}, mapZoom = 2.7, height = '480px' }) {
 
 	return (
 		<div className={styles.container}>
-			<Cogomaps
+			<CogoMaps
 				plotPoints={curvePoints}
 				isMobile={false}
 				zoom={mapZoom}
 				height={height}
 				style={style}
+				transportMode={transportMode}
 			/>
 		</div>
 	);

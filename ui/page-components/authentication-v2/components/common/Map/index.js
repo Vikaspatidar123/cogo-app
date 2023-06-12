@@ -36,7 +36,7 @@ function Maps() {
 
 	const bezierCurve = generateSmoothCurve(path);
 
-	const endPos = path[path.length - 1];
+	// const endPos = path[path.length - 1];
 
 	useEffect(() => {
 		if (map) {

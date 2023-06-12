@@ -20,11 +20,14 @@ function POCForm({ getCreditRequestResponse = {} }) {
 	const {
 		control,
 		setValue,
+		watch,
 	} = useForm({
 		defaultValues: {
 			owner: getCreditRequestResponse?.poc_details?.[0]?.name,
 		},
 	});
+
+	console.log(watch('owner'), 'dhishuhusgusgs');
 
 	const { updatePOCDetails = () => {}, loading = false, updated = {} } = useUpdatePOCDetails({ setValue });
 

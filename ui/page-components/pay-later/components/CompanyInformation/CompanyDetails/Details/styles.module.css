@@ -1,0 +1,62 @@
+.container {
+    border: 1px solid #E0E0E0;
+    border-radius: 6px;
+    margin-top: 20px;
+    padding: 12px 0px 24px 0px;
+}
+
+.company_name {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #E0E0E0;
+    padding:0px 16px 12px 16px;
+}
+
+.company_details {
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+}
+
+.name {
+    font-weight: 500;
+    font-size: 16px;
+}
+
+.type {
+    color: #4F4F4F;
+}
+
+.company {
+    display: flex;
+}
+
+.details {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0px 16px;
+}
+
+.description {
+    margin: 10px;
+    width: 18%;
+}
+
+.title {
+    color: #9E9E9E;
+    margin: 0 0 3px 0;
+}
+
+.value {
+    font-weight: 500;
+    font-size: 16px;
+}
+
+.address {
+    margin: 10px;
+}
+
+.button_edit {
+    margin-left: 10px;
+}

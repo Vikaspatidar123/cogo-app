@@ -1,8 +1,7 @@
-import { IcM1 } from '@cogoport/icons-react';
-
 import FormTitleAndDescription from '../../common/FormTitleAndDescription';
 
 import CompanyDetailsForm from './CompanyDetailsForm';
+import PaymentRequirements from './PaymentRequirements';
 import POCForm from './POCForm';
 import styles from './styles.module.css';
 
@@ -11,7 +10,7 @@ const DETAILS_ARRAY = ['company_details', 'poc', 'requirements'];
 const formMapping = {
 	company_details : CompanyDetailsForm,
 	poc             : POCForm,
-	requirements    : IcM1,
+	requirements    : PaymentRequirements,
 };
 
 function BasicDetailsForm({ getCreditRequestResponse = {} }) {

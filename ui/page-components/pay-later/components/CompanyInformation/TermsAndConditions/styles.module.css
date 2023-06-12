@@ -1,0 +1,10 @@
+.flex_end {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin: 5px 0px;
+}
+
+.button {
+    margin-left: 10px
+}

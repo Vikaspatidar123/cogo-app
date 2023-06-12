@@ -1,0 +1,28 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 0 17% ;
+}
+
+.rejected {
+    font-weight: 600;   
+    font-size: 24px;
+    color: #BF291E;
+    margin: 8px 0;
+}
+
+.regret {
+    color:#828282;
+    margin: 2px 0;
+}
+
+ 
+.reapply {
+    display: flex;
+    align-items: center;
+    font-weight: 500;
+    font-size: 18px;
+    margin: 2px 0;
+}

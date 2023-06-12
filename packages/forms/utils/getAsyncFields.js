@@ -176,7 +176,7 @@ function asyncTradeParties() {
 }
 function asyncOrganizationUsers() {
 	return {
-		valueKey       : 'id',
+		valueKey       : 'name',
 		labelKey       : 'name',
 		endpoint       : 'list_organization_users',
 		defaultParams  : {},

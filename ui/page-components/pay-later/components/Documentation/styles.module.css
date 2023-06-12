@@ -1,0 +1,20 @@
+.container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 0 17% ;
+}
+
+.context {
+    display: flex;
+    flex-direction: column;
+}
+
+.heading {
+    font-weight: 400;
+    font-size: 24px;
+}
+
+.sub {
+    color: #828282;
+}

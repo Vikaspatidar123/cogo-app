@@ -835,6 +835,16 @@ const saas = {
 			access_type  : 'private',
 			service_name : 'organization',
 		},
+		{
+			api          : 'get_company_finance_data',
+			access_type  : 'private',
+			service_name : 'credit',
+		},
+		{
+			api          : 'update_organization_credit_request',
+			access_type  : 'private',
+			service_name : 'credit',
+		},
 	],
 };
 export default saas;

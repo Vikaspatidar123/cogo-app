@@ -1,9 +1,13 @@
 import BasicDetailsForm from '../BasicDetailsForm';
+// import CompanyInformation from '../CompanyInformation';
+import Documentation from '../Documentation';
 
 import styles from './styles.module.css';
 
 const RENDERING_FORM = {
 	awaiting_user_inputs : BasicDetailsForm,
+	// payment_success      : CompanyInformation,
+	payment_success      : Documentation,
 	default              : BasicDetailsForm,
 };
 

@@ -168,12 +168,12 @@ const handleAuthentication = async ({
 	if (isEmpty(current_organization) || asPath.includes('/select-account')) {
 		const newPath = `/${org?.id}/${orgBranchId}`;
 		findurl({
-			item   : user_data,
+			item      : user_data,
 			asPrefix,
 			isServer,
 			res,
-			org_id : org?.id,
-			orgBranchId,
+			org_id    : org?.id,
+			branch_id : orgBranchId,
 		});
 		return {
 			asPrefix : newPath,

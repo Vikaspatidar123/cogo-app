@@ -35,17 +35,18 @@
 
 .title {
 	margin-top: 1px;
-	font-size: 18px;
-	line-height: 20px;
+	font-size: 16px;
+	font-weight: 600;
 	color: #333;
 }
 
 .description {
-	margin-top: 2px;
+	display: block;
+	margin: 3px 0 0;
 	font-size: 12px;
-	font-weight: 400;
-	line-height: 12px;
-	color: #ababab;
+	font-weight: 500;
+	line-height: 14px;
+	color: #6e7e92;
 }
 
 .active {

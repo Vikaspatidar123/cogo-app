@@ -3,6 +3,7 @@ import { useState } from 'react';
 
 import Commodity from './Commodity';
 import DetentionDemurrage from './DetentionDemurrage';
+import RefNumber from './RefNumber';
 import styles from './styles.module.css';
 
 const configTab = {
@@ -15,9 +16,10 @@ const configTab = {
 const COMPONENT_MAPPING = {
 	detentionDemurage : DetentionDemurrage,
 	commodity         : Commodity,
+	referenceNo       : RefNumber,
 };
 
-function Configure({ closeHandler, shipmentId }) {
+function Configure({ closeHandler, shipmentId, refetchTrackerList }) {
 	const [configureTab, setConfigureTab] = useState('commodity');
 	const Component = COMPONENT_MAPPING?.[configureTab];
 
@@ -35,7 +37,11 @@ function Configure({ closeHandler, shipmentId }) {
 				</Tabs>
 			</div>
 			<div className={styles.content}>
-				<Component closeHandler={closeHandler} shipmentId={shipmentId} />
+				<Component
+					closeHandler={closeHandler}
+					shipmentId={shipmentId}
+					refetchTrackerList={refetchTrackerList}
+				/>
 			</div>
 
 		</div>

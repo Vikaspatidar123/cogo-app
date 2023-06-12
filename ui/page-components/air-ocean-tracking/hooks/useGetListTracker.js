@@ -8,6 +8,8 @@ const useGetListTracker = () => {
 	const { query: routerQuery } = useRouter();
 	const { debounceQuery, query } = useDebounceQuery();
 
+	const { branch_id, isArchived = false } = routerQuery || {};
+
 	const [globalFilter, setGlobalFilter] = useState({
 		page        : 1,
 		selectValue : '',
@@ -30,10 +32,10 @@ const useGetListTracker = () => {
 			await trigger({
 				params: {
 					filters: {
-						organization_branch_id : routerQuery?.branch_id,
+						organization_branch_id : branch_id,
 						// ...prepareFilters(filters, trackers?.filter_data ?? {}),
 						...globalFilter,
-						status                 : 'active',
+						status                 : isArchived ? 'completed' : 'active',
 					},
 					page       : globalFilter.page,
 					page_limit : 10,
@@ -42,7 +44,7 @@ const useGetListTracker = () => {
 		} catch (err) {
 			console.log(err);
 		}
-	}, [globalFilter, routerQuery, trigger]);
+	}, [globalFilter, branch_id, trigger, isArchived]);
 
 	useEffect(() => {
 		if (inputValue !== null && inputValue !== undefined) {

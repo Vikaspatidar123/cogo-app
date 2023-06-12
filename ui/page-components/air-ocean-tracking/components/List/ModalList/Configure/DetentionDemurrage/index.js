@@ -8,8 +8,8 @@ import getField from '@/packages/forms/Controlled';
 import detDemControls from '@/ui/page-components/air-ocean-tracking/configuration/detDemControls';
 import useCreateShipment from '@/ui/page-components/air-ocean-tracking/hooks/useCreateShipment';
 
-function DetentionDemurrage({ closeHandler, shipmentId }) {
-	const { loading, updateTrackerInfo } = useCreateShipment({ closeHandler });
+function DetentionDemurrage({ closeHandler, shipmentId, refetchTrackerList }) {
+	const { loading, updateTrackerInfo } = useCreateShipment({ closeHandler, refetchTrackerList });
 
 	const { control, formState:{ errors }, handleSubmit } = useForm({
 		defaultValues: {
@@ -56,7 +56,7 @@ function DetentionDemurrage({ closeHandler, shipmentId }) {
 				</div>
 			</div>
 			<div className={styles.footer}>
-				<Button themeType="secondary" disabled={loading}>Cancel</Button>
+				<Button themeType="secondary" disabled={loading} onClick={closeHandler}>Cancel</Button>
 				<Button
 					className={styles.submit_btn}
 					themeType="accent"

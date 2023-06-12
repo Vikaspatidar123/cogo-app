@@ -20,7 +20,7 @@ function List() {
 	});
 	const {
 		data,
-		loading, globalFilter, inputValue, setInputValue, filterChangeHandler,
+		loading, globalFilter, inputValue, setInputValue, filterChangeHandler, setGlobalFilter, refetchTrackerList,
 	} = useGetListTracker();
 
 	const { activeTab = '' } = globalFilter;
@@ -35,8 +35,10 @@ function List() {
 			<Header
 				globalFilter={globalFilter}
 				filterChangeHandler={filterChangeHandler}
+				setGlobalFilter={setGlobalFilter}
 				inputValue={inputValue}
 				setInputValue={setInputValue}
+				filterData={filter_data}
 			/>
 			{(newList || []).map((listItem) => (
 				<Card
@@ -56,7 +58,12 @@ function List() {
 					onPageChange={(e) => filterChangeHandler('page', e)}
 				/>
 			</div>
-			<ModalList modalInfo={modalInfo} setModalInfo={setModalInfo} activeTab={activeTab} />
+			<ModalList
+				modalInfo={modalInfo}
+				setModalInfo={setModalInfo}
+				activeTab={activeTab}
+				refetchTrackerList={refetchTrackerList}
+			/>
 		</div>
 	);
 }

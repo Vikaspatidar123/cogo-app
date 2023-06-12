@@ -18,6 +18,9 @@
 }
 
 .first_row {
+	justify-content: space-between;
+	margin-bottom: 20px;
+
 	h2 {
 		margin: 0 20px 0 0;
 	}

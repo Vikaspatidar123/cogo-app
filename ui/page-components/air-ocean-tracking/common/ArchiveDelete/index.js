@@ -9,8 +9,14 @@ const TITLE_MAPPING = {
 	delete  : 'delete',
 };
 
-function ArchiveDelete({ name = 'delete', shipmentId = '', closeHandler, activeTab = 'ocean' }) {
-	const { loading, deleteArchiveHandler } = useDeleteTracker({ name, id: shipmentId, closeHandler, activeTab });
+function ArchiveDelete({ name = 'delete', shipmentId = '', closeHandler, activeTab = 'ocean', refetchTrackerList }) {
+	const { loading, deleteArchiveHandler } = useDeleteTracker({
+		name,
+		id: shipmentId,
+		closeHandler,
+		activeTab,
+		refetchTrackerList,
+	});
 
 	return (
 		<div className={styles.container}>

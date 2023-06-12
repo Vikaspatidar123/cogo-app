@@ -8,14 +8,19 @@ import { useState } from 'react';
 import STATS_MAPPING from '../../../constant/statsMapping';
 import TAB_MAPPING from '../../../constant/tabMapping';
 import useGetDsrList from '../../../hooks/useGetDsrList';
+import useRedirectFn from '../../../hooks/useRedirectFn';
 
 import DailyReport from './DailyReport';
+import FilterContent from './FilterContent';
 import styles from './styles.module.css';
 
-function Header({ globalFilter, filterChangeHandler, inputValue, setInputValue }) {
-	const { back } = useRouter();
+function Header({ globalFilter, filterChangeHandler, inputValue, setInputValue, filterData = {}, setGlobalFilter }) {
+	const { back, query } = useRouter();
 	const [showConfigure, setShowConfigure] = useState(false);
+	const { isArchived = false } = query || {};
 	const { activeTab = '', selectValue = '' } = globalFilter;
+
+	const { redirectArchivedList } = useRedirectFn();
 
 	const dsrListValue = useGetDsrList({ showConfigure });
 
@@ -23,20 +28,56 @@ function Header({ globalFilter, filterChangeHandler, inputValue, setInputValue }
 		<div className={styles.container}>
 			<div className={cl`${styles.flex_box} ${styles.first_row}`}>
 
-				<ButtonIcon size="lg" icon={<IcMArrowBack />} themeType="primary" onClick={back} />
-				<h2>Shipment List</h2>
-
-				<div>
-					<Tabs
-						themeType="tertiary"
-						activeTab={activeTab}
-						onChange={(e) => filterChangeHandler('activeTab', e)}
-					>
-						{Object.keys(TAB_MAPPING).map((tab) => (
-							<TabPanel name={tab} title={TAB_MAPPING?.[tab]} badge={3} />
-						))}
-					</Tabs>
+				<div className={styles.flex_box}>
+					<ButtonIcon size="lg" icon={<IcMArrowBack />} themeType="primary" onClick={back} />
+					<h2>{isArchived ? 'Archive List' : 'Shipment List'}</h2>
+					<div>
+						<Tabs
+							themeType="tertiary"
+							activeTab={activeTab}
+							onChange={(e) => filterChangeHandler('activeTab', e)}
+						>
+							{Object.keys(TAB_MAPPING).map((tab) => (
+								<TabPanel name={tab} title={TAB_MAPPING?.[tab]} />
+							))}
+						</Tabs>
+					</div>
 				</div>
+
+				<div className={styles.flex_box}>
+					{!isArchived && (
+						<>
+							<Button
+								themeType="linkUi"
+								onClick={() => redirectArchivedList(activeTab)}
+							>
+								Archived List
+							</Button>
+							{activeTab === 'ocean' && (
+								<Popover
+									caret={false}
+									visible={showConfigure}
+									content={(
+										<DailyReport
+											dsrListValue={dsrListValue}
+											setShowConfigure={setShowConfigure}
+										/>
+									)}
+									placement="bottom-end"
+								>
+									<Button
+										themeType="secondary"
+										type="button"
+										onClick={() => setShowConfigure((prev) => !prev)}
+									>
+										Daily Status Report
+									</Button>
+								</Popover>
+							)}
+						</>
+					)}
+				</div>
+
 			</div>
 
 			<div className={cl`${styles.flex_box} ${styles.second_row}`}>
@@ -52,26 +93,28 @@ function Header({ globalFilter, filterChangeHandler, inputValue, setInputValue }
 					<Select
 						size="sm"
 						className={styles.select_field}
+						placeholder="Select Status"
 						options={STATS_MAPPING}
 						value={selectValue}
 						onChange={(e) => filterChangeHandler('selectValue', e)}
+						isClearable
 					/>
-					{activeTab === 'ocean' && (
-						<Popover
-							caret={false}
-							visible={showConfigure}
-							content={<DailyReport dsrListValue={dsrListValue} setShowConfigure={setShowConfigure} />}
-							placement="bottom-end"
-						>
-							<Button
-								themeType="secondary"
-								type="button"
-								onClick={() => setShowConfigure((prev) => !prev)}
-							>
-								Daily Status Report
-							</Button>
-						</Popover>
-					)}
+					<Popover
+						caret={false}
+						placement="bottom-end"
+						content={(
+							<FilterContent
+								filterData={filterData}
+								activeTab={activeTab}
+								setGlobalFilter={setGlobalFilter}
+							/>
+
+						)}
+					>
+						<Button themeType="accent" type="button">
+							Filters
+						</Button>
+					</Popover>
 				</div>
 
 			</div>

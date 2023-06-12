@@ -29,6 +29,10 @@
 	width: 45%;
 }
 
+.errors {
+	color: #f33;
+}
+
 .footer {
 	display: flex;
 	justify-content: flex-end;

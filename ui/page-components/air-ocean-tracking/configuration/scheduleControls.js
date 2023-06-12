@@ -41,12 +41,13 @@ const scheduleControls = ({ watchFrequency }) => [
 		rules      : { required: 'Please select a day' },
 	},
 	{
-		name       : 'time',
-		label      : 'At',
-		type       : 'time_picker',
-		radioGroup : true,
-		options    : TIME_OPTIONS,
-		rules      : { required: 'Please select time' },
+		name            : 'time',
+		label           : 'At',
+		type            : 'time_picker',
+		radioGroup      : true,
+		use12hourformat : true,
+		options         : TIME_OPTIONS,
+		rules           : { required: 'Please select time' },
 	},
 ];
 

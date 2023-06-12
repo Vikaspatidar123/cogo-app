@@ -22,6 +22,10 @@ module.exports = {
 				protocol : 'https',
 				hostname : 'via.placeholder.com',
 			},
+			{
+				protocol : 'https',
+				hostname : 'airline-images-cogoport.s3.ap-south-1.amazonaws.com',
+			},
 		],
 	},
 	webpack(config) {

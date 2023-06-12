@@ -53,7 +53,7 @@ function SelectSchedule({
 							<div key={name} className={cl`${styles.col} ${styles?.[name]}`}>
 								<p className={styles.label}>{label}</p>
 								<Element {...config} control={control} />
-								<p>{errors?.[name]?.message || errors?.[name]?.type}</p>
+								<p className={styles.errors}>{errors?.[name]?.message || errors?.[name]?.type}</p>
 							</div>
 						)
 					);

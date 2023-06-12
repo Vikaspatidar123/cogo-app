@@ -13,7 +13,7 @@ const MAPPING = {
 	},
 };
 
-const useDeleteTracker = ({ name = '', id = '', closeHandler, activeTab }) => {
+const useDeleteTracker = ({ name = '', id = '', closeHandler, activeTab = '', refetchTrackerList }) => {
 	const { URL, SUBSCRIPTION_ID_KEY } = MAPPING?.[activeTab] || {};
 	const [{ loading }, trigger] = useRequest({
 		method : 'post',
@@ -44,6 +44,7 @@ const useDeleteTracker = ({ name = '', id = '', closeHandler, activeTab }) => {
 
 			if (resp.data?.result) {
 				Toast.success(`Successfully ${name} tracker`);
+				refetchTrackerList();
 				closeHandler();
 			}
 		} catch (err) {

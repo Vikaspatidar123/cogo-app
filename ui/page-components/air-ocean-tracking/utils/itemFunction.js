@@ -5,8 +5,9 @@ import { format, isEmpty, upperCase } from '@cogoport/utils';
 import formatDateTime from './formatDateTime';
 
 const style = {
-	cursor     : 'pointer',
-	marginLeft : '6px',
+	cursor        : 'pointer',
+	marginLeft    : '6px',
+	verticalAlign : 'middle',
 };
 
 const itemFunction = ({

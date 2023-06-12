@@ -15,7 +15,7 @@ const COMPONENT_MAPPING = {
 	configure : Configure,
 };
 
-function ModalList({ modalInfo, setModalInfo, activeTab }) {
+function ModalList({ modalInfo = {}, setModalInfo, activeTab, refetchTrackerList }) {
 	const { show, name = 'archive', shipmentId = '' } = modalInfo || {};
 
 	const Component = name ? COMPONENT_MAPPING?.[name] : <div />;
@@ -28,7 +28,13 @@ function ModalList({ modalInfo, setModalInfo, activeTab }) {
 				<h3>{TITLE_MAPPING?.[name]}</h3>
 				<ButtonIcon size="lg" icon={<IcMCross />} themeType="primary" onClick={closeHandler} />
 			</div>
-			<Component name={name} closeHandler={closeHandler} shipmentId={shipmentId} activeTab={activeTab} />
+			<Component
+				name={name}
+				closeHandler={closeHandler}
+				shipmentId={shipmentId}
+				activeTab={activeTab}
+				refetchTrackerList={refetchTrackerList}
+			/>
 		</Modal>
 	);
 }

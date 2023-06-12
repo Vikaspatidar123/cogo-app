@@ -9,11 +9,11 @@ import styles from './styles.module.css';
 import { useForm } from '@/packages/forms';
 import getField from '@/packages/forms/Controlled';
 
-function Commodity({ closeHandler, shipmentId }) {
+function Commodity({ closeHandler, shipmentId = '', refetchTrackerList }) {
 	const [commodityValue, setCommodityValue] = useState('');
 	const { control, handleSubmit, formState:{ errors } } = useForm();
 
-	const { loading, updateTrackerInfo } = useCreateShipment({ closeHandler });
+	const { loading, updateTrackerInfo } = useCreateShipment({ closeHandler, refetchTrackerList });
 
 	const onSubmit = () => {
 		const payload = {
@@ -43,7 +43,7 @@ function Commodity({ closeHandler, shipmentId }) {
 				})}
 			</div>
 			<div className={styles.footer}>
-				<Button themeType="secondary" disabled={loading}>Cancel</Button>
+				<Button themeType="secondary" disabled={loading} onClick={closeHandler}>Cancel</Button>
 				<Button
 					className={styles.submit_btn}
 					themeType="accent"

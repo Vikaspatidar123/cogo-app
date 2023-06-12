@@ -1,4 +1,6 @@
 const formatTime = (time) => {
+	if (!time) return null;
+
 	const currentDate = new Date();
 
 	const timeParts = time.split(':');

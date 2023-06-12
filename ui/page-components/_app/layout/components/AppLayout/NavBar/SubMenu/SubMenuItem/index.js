@@ -5,7 +5,6 @@ import { IcMAirSchedules } from '@cogoport/icons-react';
 import styles from './styles.module.css';
 
 import { useRouter } from '@/packages/next';
-import { useSelector } from '@/packages/store';
 
 function SubMenuItem({ item, unPrefixedPath, getFindUrl }) {
 	const { push } = useRouter();
@@ -14,16 +13,8 @@ function SubMenuItem({ item, unPrefixedPath, getFindUrl }) {
 	} = item || {};
 
 	const url = getFindUrl(href);
-	const { profile } = useSelector((s) => s);
-	const { organization, branch } = profile || {};
 	const onSubmit = () => {
-		if (href?.includes('/v2')) {
-			const newHref = href?.replace('/v2', '');
-			const newAs = as?.replace('/v2', '');
-			push(newHref, newAs);
-		} else {
-			window.location.href = `/app/${organization?.id}/${branch?.id}/importer-exporter/${href || as}`;
-		}
+		push(href, as);
 	};
 
 	const renderDescription = (desc) => {

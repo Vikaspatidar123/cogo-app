@@ -20,7 +20,6 @@ function MobileMenu() {
 	} = useSelector(({ profile }) => ({
 		user_data: profile || {},
 	}));
-	const { organization:org, branch } = user_data || {};
 	const [show, setShow] = useState(false);
 
 	if (show) {
@@ -36,13 +35,7 @@ function MobileMenu() {
 	});
 
 	const getRedirectUrl = (href, as) => {
-		if (href?.includes('/v2')) {
-			const newHref = href?.replace('/v2', '');
-			const newAs = as?.replace('/v2', '');
-			push(newHref, newAs);
-		} else {
-			window.location.href = `/app/${org?.id}/${branch?.id}/importer-exporter/${href}`;
-		}
+		push(href, as);
 	};
 	return (
 		<div className={styles.container}>

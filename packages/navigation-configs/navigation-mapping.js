@@ -27,8 +27,8 @@ const navigationMappings = {
 	app_dashboard: {
 		key        : 'app_dashboard',
 		title      : 'Dashboard',
-		href       : '/v2/dashboard',
-		as         : '/v2/dashboard',
+		href       : '/dashboard',
+		as         : '/dashboard',
 		showInNav  : true,
 		mobileIcon : <IcMQuotations width={20} height={20} />,
 	},
@@ -36,15 +36,15 @@ const navigationMappings = {
 	app_discover_rates: {
 		key       : 'app_discover_rates',
 		title     : 'Discover Rates',
-		href      : '/v2/book',
-		as        : '/v2/book',
+		href      : '/book',
+		as        : '/book',
 		showInNav : true,
 	},
 	app_bookings: {
 		key       : 'app_bookings',
 		title     : 'Shipments',
-		href      : '/v2/shipments',
-		as        : '/v2/shipments',
+		href      : '/shipments',
+		as        : '/shipments',
 		icon      : 'nav-booking',
 		showInNav : true,
 	},
@@ -59,16 +59,16 @@ const navigationMappings = {
 			{
 				key         : 'saas_tools-freight_rate_trend',
 				title       : 'Freight Rate Trend',
-				href        : '/v2/saas/freight-rate-trend',
-				as          : '/v2/saas/freight-rate-trend',
+				href        : '/saas/freight-rate-trend',
+				as          : '/saas/freight-rate-trend',
 				icon        : <IcMUpwardGraph width={40} height={40} fill="red" />,
 				description : 'keep track of freight rates',
 			},
 			{
 				key   : 'saas_tools-air_tracking',
 				title : 'Air Tracking',
-				href  : '/v2/saas/air-tracking',
-				as    : '/v2/saas/air-tracking',
+				href  : '/saas/air-tracking',
+				as    : '/saas/air-tracking',
 				icon  : (
 					<img
 						src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/air-tracking.svg"
@@ -80,8 +80,8 @@ const navigationMappings = {
 			{
 				key   : 'saas_tools-ocean_tracking',
 				title : 'Ocean Tracking',
-				href  : '/v2/saas/ocean-tracking',
-				as    : '/v2/saas/ocean-tracking',
+				href  : '/saas/ocean-tracking',
+				as    : '/saas/ocean-tracking',
 				icon  : <IcAShipAmber width={45} height={45} />,
 				description:
                     'Seamlessly keep track of your shipments and deviations',
@@ -89,8 +89,8 @@ const navigationMappings = {
 			{
 				key   : 'saas_tools-air_schedules',
 				title : 'Air Schedules',
-				href  : '/v2/saas/air-schedules',
-				as    : '/v2/saas/air-schedules',
+				href  : '/saas/air-schedules',
+				as    : '/saas/air-schedules',
 				icon  : (
 					<img
 						src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/air-schedule.svg"
@@ -103,8 +103,8 @@ const navigationMappings = {
 			{
 				key   : 'saas_tools-ocean_schedules',
 				title : 'Ocean Schedules',
-				href  : '/v2/saas/ocean-schedules',
-				as    : '/v2/saas/ocean-schedules',
+				href  : '/saas/ocean-schedules',
+				as    : '/saas/ocean-schedules',
 				icon  : (
 					<img
 						src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/ocean-schedule.svg"
@@ -117,8 +117,8 @@ const navigationMappings = {
 			{
 				key   : 'saas_tools-hs_code_classification',
 				title : 'Product Classification',
-				href  : '/v2/saas/hs-classification',
-				as    : '/v2/saas/hs-classification',
+				href  : '/saas/hs-classification',
+				as    : '/saas/hs-classification',
 				icon  : (
 					<img
 						src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/product-classification.svg"
@@ -144,46 +144,46 @@ const navigationMappings = {
 			{
 				key   : 'saas_premium_services-order_history',
 				title : 'Order History',
-				href  : '/v2/saas/order-history',
-				as    : '/v2/saas/order-history',
+				href  : '/saas/order-history',
+				as    : '/saas/order-history',
 				icon  : <IcABookYourShipment width={40} height={40} />,
 			},
 			{
 				key   : 'saas_premium_services-import_export_docs',
 				title : 'Import/Export Documents',
 				type  : 'link',
-				href  : '/v2/saas/premium-services/import-export-doc',
-				as    : '/v2/saas/premium-services/import-export-doc',
+				href  : '/saas/premium-services/import-export-doc',
+				as    : '/saas/premium-services/import-export-doc',
 				icon  : <IcACrossBorder width={40} height={40} />,
 			},
 			{
 				key   : 'saas_premium_services-trader_eligibility_check',
 				title : 'Trader Eligibility Check',
-				href  : '/v2/saas/premium-services/trader-eligibility-check',
-				as    : '/v2/saas/premium-services/trader-eligibility-check',
+				href  : '/saas/premium-services/trader-eligibility-check',
+				as    : '/saas/premium-services/trader-eligibility-check',
 				icon  : <IcMTradeparties width={42} height={42} fill="#fbd221" />,
 			},
 			{
 				key         : 'saas_premium_services-duties_and_taxes',
 				title       : 'Duties & Taxes Calculator',
-				href        : '/v2/saas/premium-services/duties-taxes-calculator',
-				as          : '/v2/saas/premium-services/duties-taxes-calculator',
+				href        : '/saas/premium-services/duties-taxes-calculator',
+				as          : '/saas/premium-services/duties-taxes-calculator',
 				icon        : <IcADutiesTaxes width={45} height={45} />,
 				description : '',
 			},
 			{
 				key         : 'saas_premium_services-import_export_controls',
 				title       : 'Import Export Controls',
-				href        : '/v2/saas/premium-services/import-export-controls',
-				as          : '/v2/saas/premium-services/import-export-controls',
+				href        : '/saas/premium-services/import-export-controls',
+				as          : '/saas/premium-services/import-export-controls',
 				icon        : <IcAFormsAndCertificates width={50} height={50} />,
 				description : '',
 			},
 			{
 				key         : 'saas_premium_services-cogo_insurance',
 				title       : 'Insurance',
-				href        : '/v2/saas/insurance/list',
-				as          : '/v2/saas/insurance/list',
+				href        : '/saas/insurance/list',
+				as          : '/saas/insurance/list',
 				icon        : <IcMAppInsurance width={40} height={40} fill="red" />,
 				description : 'Buy insurance for your cargo here',
 			},
@@ -205,8 +205,8 @@ const navigationMappings = {
 					height={40}
 					style={{ background: '#fbd221', padding: '5px', borderRadius: '5px' }}
 				/>),
-				href : '/v2/saas/trade-partner',
-				as   : '/v2/saas/trade-partner',
+				href : '/saas/trade-partner',
+				as   : '/saas/trade-partner',
 			},
 			{
 				key   : 'saas_planning-product_inventory',
@@ -219,8 +219,8 @@ const navigationMappings = {
 					height={40}
 					style={{ background: '#fbd221', padding: '5px', borderRadius: '5px' }}
 				/>),
-				href        : '/v2/saas/product-inventory',
-				as          : '/v2/saas/product-inventory',
+				href        : '/saas/product-inventory',
+				as          : '/saas/product-inventory',
 				module_type : 'dashboards',
 			},
 			{
@@ -236,8 +236,8 @@ const navigationMappings = {
 					style={{ background: '#FAEFEF', padding: '5px', borderRadius: '5px' }}
 				/>),
 				type : 'link',
-				href : '/v2/saas/quickquotation/viewlist',
-				as   : '/v2/saas/quickquotation/viewlist',
+				href : '/saas/quickquotation/viewlist',
+				as   : '/saas/quickquotation/viewlist',
 			},
 		],
 	},
@@ -306,8 +306,8 @@ const navigationMappings = {
 	app_settings: {
 		key           : 'app_settings',
 		title         : 'Settings',
-		href          : '/v2/settings',
-		as            : '/v2/settings',
+		href          : '/settings',
+		as            : '/settings',
 		showMobileNav : true,
 
 	},

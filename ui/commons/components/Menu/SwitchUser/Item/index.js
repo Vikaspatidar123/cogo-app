@@ -15,7 +15,7 @@ function SwitchPartnerItem({ item }) {
 	const { account_type = '', id } = organization || {};
 	const activeUser = organization.id === item.id;
 	const onSwitch = () => {
-		window.location.href = `/v2/${item.id}/${branch?.id}/dashboard`;
+		window.location.href = `/${item.id}/${branch?.id}/dashboard`;
 	};
 	return (
 		<div

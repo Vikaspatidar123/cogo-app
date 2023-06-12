@@ -26,7 +26,7 @@ function AppLayoutFooter() {
 				)
 			))}
 
-			<FooterItem item={{ title: 'More', href: '/v2/menu', as: '/v2/menu' }} />
+			<FooterItem item={{ title: 'More', href: '/menu', as: '/menu' }} />
 		</div>
 	);
 }

@@ -16,7 +16,7 @@ function Login() {
 			<div className={styles.right_container}>
 				<div className={styles.right_signup_text}>
 					Not registered yet?
-					<a href="/v2/signup" className={styles.right_signup_text_link}>SignUp</a>
+					<a href="/signup" className={styles.right_signup_text_link}>SignUp</a>
 				</div>
 				<div className={styles.main_container}>
 					<p className={styles.right_login_text}>

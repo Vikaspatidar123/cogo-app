@@ -4,22 +4,13 @@ import { IcMListView } from '@cogoport/icons-react';
 import styles from './styles.module.css';
 
 import { useRouter } from '@/packages/next';
-import { useSelector } from '@/packages/store';
 
 function AppLayoutFooterItem({ item }) {
 	const { pathname, push } = useRouter();
-	const { profile } = useSelector((s) => s);
-	const { organization, branch } = profile || {};
 	const { href = '', as = '' } = item || {};
 
 	const getRedirectUrl = () => {
-		if (href?.includes('/v2')) {
-			const newHref = href?.replace('/v2', '');
-			const newAs = as?.replace('/v2', '');
-			push(newHref, newAs);
-		} else {
-			window.location.href = `/app/${organization?.id}/${branch?.id}/importer-exporter/${href}`;
-		}
+		push(href, as);
 	};
 	const urlArray = item.href?.split('v2');
 	const url = urlArray?.length > 1 ? urlArray[1] : urlArray?.[0];

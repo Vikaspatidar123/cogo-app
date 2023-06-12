@@ -76,7 +76,7 @@ function SignupForm({ setHasSignedup, setFormData, setUserDetails }) {
 				setValue('name', name);
 				setValue('email', email);
 			}
-			const redirectUrl = `/v2/get-started?saastheme&lead_organization_id=${lead_organization_id}&source=${
+			const redirectUrl = `/get-started?saastheme&lead_organization_id=${lead_organization_id}&source=${
 				source || 'subscriptions'
 			}`;
 			const { user_session, skip_mobile_verification } = data || {};

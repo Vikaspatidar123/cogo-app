@@ -39,9 +39,9 @@ function SubMenuItem({ item, unPrefixedPath, getFindUrl }) {
 			className={unPrefixedPath === url ? styles.active : styles.container}
 			role="presentation"
 		>
-			{/* {icon && (
+			{icon && (
 				icon || <IcMAirSchedules width={50} height={50} fill="red" />
-			)} */}
+			)}
 
 			{!icon && <div style={{ width: 45, height: 45 }} />}
 			<div className={styles.main}>

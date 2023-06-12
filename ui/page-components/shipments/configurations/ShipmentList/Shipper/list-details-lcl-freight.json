@@ -1,0 +1,73 @@
+{
+	"name": "shipment",
+	"title": "Shipments",
+	"filter_controls": [
+		{
+			"label": "BL Number",
+			"name": "bl_number",
+			"type": "text"
+		},
+		{
+			"name": "origin_port_id",
+			"label": "Origin Location",
+			"type": "async_select",
+			"asyncKey":"locations",
+			"params": {
+				"filters": {
+					"type": ["seaport"]
+				}
+			}
+		},
+		{
+			"name": "destination_port_id",
+			"label": "Destination Location",
+			"type": "async_select",
+			"asyncKey":"locations",
+			"params": {
+				"filters": {
+					"type": ["seaport"]
+				}
+			}
+		},
+		{
+			"name": "commodity",
+			"label": "Commodity",
+			"type": "select",
+			"commodityType": "lcl_freight",
+			"optionKey": "true"
+		},
+		{
+			"name": "state",
+			"label": "State",
+			"type": "select",
+			"options": [
+				{ "label": "Cargo carted in", "value": "cargo_carted_in" },
+				{ "label": "Cargo Stuffed", "value": "cargo_stuffed" },
+				{ "label": "Vessel departed", "value": "vessel_departed" },
+				{ "label": "Vessel arrived", "value": "vessel_arrived" },
+				{ "label": "Cargo handed over", "value": "cargo_handed_over" }
+			]
+		}
+	],
+	"list_states": {
+		"ongoing": ["shipment_received", "confirmed_by_importer_exporter", "in_progress"],
+		"past": ["completed", "cancelled", "aborted"]
+	},
+	"routeInfo": {
+		"origin_pickup": "origin_pickup",
+		"origin_drop": "origin_drop",
+		"origin_port": "origin_port",
+		"origin_main_port": "origin_main_port",
+		"destination_main_port": "destination_main_port",
+		"destination_port": "destination_port",
+		"destination_pickup": "destination_pickup",
+		"destination_drop": "destination_drop",
+		"address": {
+			"origin_port": "origin_pudo",
+			"origin_main_port": "console_point",
+			"destination_port": "destination_pudo",
+			"destination_main_port": "deconsole_point"
+		}
+	},
+	"pending_tasks": {}
+}

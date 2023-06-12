@@ -2,6 +2,8 @@
 	width: 100%;
 	height: 100vh;
 	background-color: #ffde01;
+	background-image: url("https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/discover-rates-bg.svg");
+	background-repeat: no-repeat;
 	background-size: cover;
 }
 

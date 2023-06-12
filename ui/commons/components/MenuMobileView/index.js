@@ -18,7 +18,6 @@ function MobileMenu() {
 	const { user_data } = useSelector(({ profile }) => ({
 		user_data: profile || {},
 	}));
-
 	const [show, setShow] = useState(false);
 
 	if (show) {

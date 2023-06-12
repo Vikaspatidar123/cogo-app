@@ -1,0 +1,37 @@
+.scroll_content {
+	max-height: 270px;
+	overflow-y: scroll;
+}
+
+.container {
+	padding: 20px 30px;
+	background: #fafbfb;
+}
+
+.heading {
+	font-size: 17px;
+	font-weight: 500;
+	color: #e84855;
+}
+
+.service {
+	display: flex;
+	justify-content: space-between;
+	padding: 16px 0;
+	border-bottom: 2px dashed #e5e5e5;
+}
+
+.total {
+	font-weight: 500;
+	border: none;
+}
+
+.text {
+	font-size: 14px;
+	color: #2d3047;
+}
+
+.price {
+	font-weight: 500;
+	color: #2c3e50;
+}

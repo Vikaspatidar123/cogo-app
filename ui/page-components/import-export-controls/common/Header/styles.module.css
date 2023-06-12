@@ -1,0 +1,46 @@
+.container {
+	position: relative;
+	padding: 20px;
+	background: #fcdc00;
+}
+
+.flex_box {
+	display: flex;
+	align-items: center;
+
+	@media screen and (max-width: 767px) {
+		justify-content: center;
+	}
+}
+
+.title {
+	margin-left: 6px;
+	font-size: 24px;
+	font-weight: 500;
+}
+
+.logo {
+	position: absolute;
+	top: -40px;
+	right: 0;
+	height: 115px;
+	overflow-y: hidden;
+
+	img {
+		width: 144px;
+	}
+
+	@media screen and (max-width: 767px) {
+		display: none;
+	}
+}
+
+.back_icon {
+	cursor: pointer;
+}
+
+.back_container {
+	@media screen and (max-width: 767px) {
+		justify-content: flex-start;
+	}
+}

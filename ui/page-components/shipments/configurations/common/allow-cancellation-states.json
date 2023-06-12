@@ -1,0 +1,74 @@
+{
+	"shipment": ["shipment_received", "confirmed_by_importer_exporter", "init"],
+	"fcl_freight_service": [
+		"init",
+		"awaiting_service_provider_confirmation",
+		"confirmed_by_service_provider",
+		"containers_gated_in"
+	],
+	"fcl_freight_local_service": [
+		"init",
+		"awaiting_service_provider_confirmation",
+		"confirmed_by_service_provider"
+	],
+	"lcl_freight_local_service": [
+		"init",
+		"awaiting_service_provider_confirmation",
+		"confirmed_by_service_provider"
+	],
+	"air_freight_local_service": [
+		"init",
+		"awaiting_service_provider_confirmation",
+		"confirmed_by_service_provider"
+	],
+	"haulage_freight_service": [
+		"init",
+		"awaiting_service_provider_confirmation",
+		"confirmed_by_service_provider"
+	],
+	"lcl_freight_service": [
+		"init",
+		"awaiting_service_provider_confirmation",
+		"confirmed_by_service_provider"
+	],
+	"air_freight_service": [
+		"init",
+		"awaiting_service_provider_confirmation",
+		"confirmed_by_service_provider"
+	],
+	"ftl_freight_service": [
+		"init",
+		"awaiting_service_provider_confirmation",
+		"confirmed_by_service_provider"
+	],
+	"trailer_freight_service": [
+		"init",
+		"awaiting_service_provider_confirmation",
+		"confirmed_by_service_provider"
+	],
+	"ltl_freight_service": [
+		"init",
+		"awaiting_service_provider_confirmation",
+		"confirmed_by_service_provider"
+	],
+	"fcl_cfs_service": [
+		"init",
+		"awaiting_service_provider_confirmation",
+		"confirmed_by_service_provider"
+	],
+	"fcl_customs_service": [
+		"init",
+		"awaiting_service_provider_confirmation",
+		"confirmed_by_service_provider"
+	],
+	"lcl_customs_service": [
+		"init",
+		"awaiting_service_provider_confirmation",
+		"confirmed_by_service_provider"
+	],
+	"air_customs_service": [
+		"init",
+		"awaiting_service_provider_confirmation",
+		"confirmed_by_service_provider"
+	]
+}

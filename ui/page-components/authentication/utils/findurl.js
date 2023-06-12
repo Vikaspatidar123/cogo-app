@@ -7,7 +7,8 @@ const findurl = async ({ item, isServer, res, org_id, branch_id }) => {
 	const configs = redirections(item);
 
 	const path = `/${org_id}/${branch_id}${configs?.href || configs?.as}`;
-	redirect({
+
+	await redirect({
 		isServer,
 		res,
 		path,

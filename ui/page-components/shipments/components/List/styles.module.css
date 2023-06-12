@@ -1,0 +1,22 @@
+.container {
+	padding: 20px;
+	margin: 20px;
+	background: #f9f9f9;
+	border-radius: 10px;
+
+	@media (max-width: 760px) {
+		padding: 16px 4px;
+		margin: 0;
+	}
+}
+
+.main {
+	width: 100%;
+	margin: 0 auto;
+}
+
+.page_container {
+	display: flex;
+	justify-content: flex-end;
+	width: 100%;
+}

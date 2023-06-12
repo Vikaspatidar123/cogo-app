@@ -1,0 +1,84 @@
+.container {
+	display: flex;
+	align-items: center;
+}
+
+.filter {
+	margin-right: 20px;
+}
+
+.select_component {
+	@media (max-width: 768px) {
+		display: none;
+	}
+
+	width: 126px !important;
+
+	:global {
+		.ui_select_display_container {
+			height: 31px !important;
+		}
+	}
+}
+
+.slider_component {
+	display: flex;
+	align-items: center;
+	width: 40%;
+
+	@media (max-width: 768px) {
+		display: none;
+	}
+}
+
+.slider_wrapper {
+	width: 100%;
+}
+
+.freight_rate_search {
+	.ui_select_container {
+		width: 192px;
+	}
+}
+
+.main {
+	display: flex;
+	align-items: flex-end;
+	justify-content: space-between;
+	width: 100%;
+
+	@media (max-width: _md) {
+		flex-direction: column;
+		width: 100%;
+	}
+
+	.core-ui-select__control {
+		width: 125px;
+		margin-right: 8px;
+	}
+}
+
+.section {
+	display: flex;
+	flex-direction: row;
+	gap: 4px;
+	align-items: center;
+	justify-content: flex-end;
+	width: 100%;
+
+	.core-ui-select__menu {
+		min-width: 0;
+		max-width: 200px;
+	}
+
+	&.mobile {
+		.core-ui-select__control {
+			width: 183px;
+		}
+	}
+
+	@media (max-width: _md) {
+		margin-right: auto;
+		margin-bottom: 16px;
+	}
+}

@@ -1,0 +1,37 @@
+.card {
+	display: flex;
+	flex-direction: column;
+	width: fit-content;
+	padding: 12px 6px;
+	margin-top: 10px;
+	background: rgb(255 255 255);
+	border: 1px solid rgb(224 224 224);
+	border-radius: 4px;
+}
+
+.title {
+	padding-left: 30px;
+	margin-bottom: 10px;
+	font-size: 20px;
+	font-weight: 600;
+	color: rgb(79 79 79);
+}
+
+.item {
+	display: flex;
+	flex: 4;
+	margin-bottom: 12px;
+}
+
+.dot {
+	width: 10px;
+	height: 10px;
+	margin: 5px 10px 0;
+	border-radius: 100%;
+}
+
+.label {
+	flex: 3 1 0%;
+	font-size: 14px;
+	color: rgb(79 79 79);
+}

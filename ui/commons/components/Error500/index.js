@@ -5,11 +5,7 @@ import styles from './styles.module.css';
 import { useRouter } from '@/packages/next';
 
 function Error500() {
-	const { push } = useRouter();
-
-	const handleBack = () => {
-		push('/dashboard', '/dashboard');
-	};
+	const router = useRouter();
 
 	return (
 		<div className={styles.component}>
@@ -18,7 +14,7 @@ function Error500() {
 				<div className={styles.title}>Something went wrong</div>
 				<div className={styles.description}>500 Internal Server Error</div>
 				<div className={styles.button_container}>
-					<Button onClick={handleBack} themeType="accent">
+					<Button onClick={() => router.back()} themeType="accent">
 						Get back to base
 					</Button>
 				</div>

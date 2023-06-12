@@ -42,7 +42,7 @@ function CompanyDetailsForm({ getCreditRequestResponse = {} }) {
 		setValue,
 	} = useForm({
 		defaultValues: {
-			pan        : organization?.registration_number,
+			pan        : getCreditRequestResponse?.org_registration_number || organization?.registration_number,
 			tax_number : getCreditRequestResponse?.tax_number,
 		},
 	});

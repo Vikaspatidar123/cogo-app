@@ -3,16 +3,13 @@ import { useState, useEffect } from 'react';
 
 import styles from './styles.module.css';
 
-const CogoMaps = dynamic(() => import('./MapsComp'), { ssr: false });
+const CogoMaps = dynamic(() => import('@/ui/commons/components/CogoMaps'), { ssr: false });
 
 function Map({
-	portDetails = {},
 	transportMode,
 	mapPoints,
 }) {
 	const [curvePoints, setCurvePoints] = useState([]);
-
-	const { origin_port = {}, destination_port = {} } = portDetails || {};
 
 	const createBezier = (inputPoints, step) => {
 		let t = 0;
@@ -47,36 +44,34 @@ function Map({
 
 	useEffect(() => {
 		if (mapPoints?.length > 0) {
-			if (transportMode === 'AIR') {
-				(mapPoints || []).map((pt) => {
-					if (
-						![
-							pt.arrival_lat,
-							pt.arrival_long,
-							pt.departure_lat,
-							pt.departure_long,
-						].includes(null)
+			(mapPoints || []).map((pt) => {
+				if (
+					![
+						pt.arrival_lat,
+						pt.arrival_long,
+						pt.departure_lat,
+						pt.departure_long,
+					].includes(null)
 						&& ![
 							pt.arrival_lat,
 							pt.arrival_long,
 							pt.departure_lat,
 							pt.departure_long,
 						].includes(undefined)
-					) {
-						const source = {
-							lat : pt.departure_lat,
-							lng : pt.departure_long,
-						};
-						const dest = {
-							lat : pt.arrival_lat,
-							lng : pt.arrival_long,
-						};
-						createBezier([source, dest], 0.001);
-						return true;
-					}
-					return false;
-				});
-			}
+				) {
+					const source = {
+						lat : pt.departure_lat,
+						lng : pt.departure_long,
+					};
+					const dest = {
+						lat : pt.arrival_lat,
+						lng : pt.arrival_long,
+					};
+					createBezier([source, dest], 0.001);
+					return true;
+				}
+				return false;
+			});
 		} else if (mapPoints?.length === 0) {
 			setCurvePoints([]);
 		}
@@ -86,8 +81,9 @@ function Map({
 		<div>
 			<CogoMaps
 				plotPoints={curvePoints}
-				origin={origin_port}
-				destination={destination_port}
+				transportMode="air"
+				height="46vh"
+				zoom={3.6}
 			/>
 			{curvePoints.length === 0 && (
 				<div className={styles.loader}>

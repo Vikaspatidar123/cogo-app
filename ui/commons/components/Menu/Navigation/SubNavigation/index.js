@@ -4,13 +4,8 @@ import styles from '../../styles.module.css';
 
 import { useRouter } from '@/packages/next';
 
-// const options = [
-// 	{ label: 'Manage Subscriptions', suffix: 'manage-subscriptions' },
-// 	{ label: 'Balance History', suffix: 'balance-history' },
-// ];
-
-function SubNavigation({ setIsOpen, setShowPopover, subscriptionNav }) {
-	const { options } = subscriptionNav || {};
+function SubNavigation({ setIsOpen, setShowPopover, item }) {
+	const { options = [] } = item || {};
 	const { push } = useRouter();
 	const handleClick = async (href, as) => {
 		push(href, as, true);

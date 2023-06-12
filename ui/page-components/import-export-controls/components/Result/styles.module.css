@@ -1,0 +1,30 @@
+.importer_exporter {
+	padding: 30px;
+}
+
+.loader {
+	display: block;
+	width: 200px;
+	height: 200px;
+	margin: 150px auto;
+}
+
+.empty_state {
+	display: block;
+	width: 400px;
+	height: 400px;
+	margin: 100px auto;
+
+	@media screen and (max-width: 767px) {
+		width: 270px;
+		height: 270px;
+	}
+}
+
+.segmented_container {
+	display: flex;
+
+	@media screen and (max-width: 767px) {
+		justify-content: center;
+	}
+}

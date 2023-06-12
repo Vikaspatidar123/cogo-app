@@ -50,7 +50,7 @@ const useProductCatalogue = ({ archive = false, fetch = () => {}, setActiveTab }
 			if (sub) fetch();
 			return response.data?.list;
 		} catch (error) {
-			Toast.error(error.message || 'Something Went Wrong');
+			console.log(error);
 			return null;
 		}
 	};

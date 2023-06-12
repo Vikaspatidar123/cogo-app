@@ -105,10 +105,10 @@
 	font-weight: 500;
 	color: #849e4c;
 	text-align: center;
+}
 
-	.bold {
-		margin: 0 5px;
-	}
+.bold {
+	margin: 0 5px;
 }
 
 .styled_skeleton {
@@ -121,18 +121,22 @@
 	display: flex;
 	align-items: center;
 	cursor: pointer;
+}
 
-	.text {
-		margin-left: 5px;
-		font-size: 14px;
-		font-weight: 500;
-		color: #034afd;
-		text-decoration: underline;
-	}
+.text {
+	margin-left: 5px;
+	font-size: 14px;
+	font-weight: 500;
+	color: #034afd;
+	text-decoration: underline;
 }
 
 .styled_tag {
+	width: fit-content;
+	padding: 5px 9px;
 	margin: 4px;
 	font-size: 13px;
-	font-weight: 500;
+	font-weight: 600;
+	background-color: rgb(217 234 253);
+	border-radius: 5px;
 }

@@ -1,0 +1,488 @@
+{
+	"fcl_freight": [
+		{
+			"state": "shipment_received",
+			"isMultiService": false
+		},
+		{
+			"state": "confirmed_by_importer_exporter",
+			"isMultiService": false
+		},
+		{
+			"state": "awaiting_service_provider_confirmation"
+		},
+		{
+			"state": "confirmed_by_service_provider"
+		},
+		{
+			"state": "cargo_picked_up",
+			"service_type": "ftl_freight_service"
+		},
+		{
+			"state": "cargo_dropped",
+			"service_type": "ftl_freight_service"
+		},
+		{
+			"state": "container_picked_up",
+			"service_type": "trailer_freight_service"
+		},
+		{
+			"state": "container_dropped",
+			"service_type": "trailer_freight_service"
+		},
+		{
+			"state": "container_departed",
+			"service_type": "haulage_freight_service"
+		},
+		{
+			"state": "container_arrived",
+			"service_type": "haulage_freight_service"
+		},
+		{
+			"state": "customs_cleared",
+			"service_type": "fcl_customs_service"
+		},
+		{
+			"state": "containers_gated_in",
+			"service_type": "fcl_freight_service"
+		},
+		{
+			"state": "vessel_departed",
+			"service_type": "fcl_freight_service"
+		},
+		{
+			"state": "vessel_arrived",
+			"service_type": "fcl_freight_service"
+		},
+		{
+			"state": "containers_gated_out",
+			"service_type": "fcl_freight_service"
+		},
+		{
+			"state": "customs_cleared",
+			"service_type": "fcl_customs_service"
+		},
+		{
+			"state": "container_departed",
+			"service_type": "haulage_freight_service"
+		},
+		{
+			"state": "container_arrived",
+			"service_type": "haulage_freight_service"
+		},
+		{
+			"state": "cargo_picked_up",
+			"service_type": "ftl_freight_service"
+		},
+		{
+			"state": "cargo_dropped",
+			"service_type": "ftl_freight_service"
+		},
+		{
+			"state": "container_picked_up",
+			"service_type": "trailer_freight_service"
+		},
+		{
+			"state": "container_dropped",
+			"service_type": "trailer_freight_service"
+		},
+		{
+			"state": "in_progress",
+			"isMultiService": false
+		},
+		{
+			"state": "completed",
+			"isMultiService": false
+		}
+	],
+	"lcl_freight": [
+		{
+			"state": "shipment_received",
+			"isMultiService": false
+		},
+		{
+			"state": "confirmed_by_importer_exporter",
+			"isMultiService": false
+		},
+		{
+			"state": "awaiting_service_provider_confirmation"
+		},
+		{
+			"state": "confirmed_by_service_provider"
+		},
+		{
+			"state": "cargo_picked_up",
+			"service_type": "ftl_freight_service"
+		},
+		{
+			"state": "cargo_dropped",
+			"service_type": "ftl_freight_service"
+		},
+		{
+			"state": "cargo_picked_up",
+			"service_type": "ltl_freight_service"
+		},
+		{
+			"state": "cargo_dropped",
+			"service_type": "ltl_freight_service"
+		},
+		{
+			"state": "customs_cleared",
+			"service_type": "lcl_customs_service"
+		},
+		{
+			"state": "cargo_carted_in",
+			"service_type": "lcl_freight_service"
+		},
+		{
+			"state": "cargo_stuffed",
+			"service_type": "lcl_freight_service"
+		},
+		{
+			"state": "vessel_departed",
+			"service_type": "lcl_freight_service"
+		},
+		{
+			"state": "vessel_arrived",
+			"service_type": "lcl_freight_service"
+		},
+		{
+			"state": "cargo_handed_over",
+			"service_type": "lcl_freight_service"
+		},
+		{
+			"state": "customs_cleared",
+			"service_type": "lcl_customs_service"
+		},
+		{
+			"state": "cargo_picked_up",
+			"service_type": "ftl_freight_service"
+		},
+		{
+			"state": "cargo_dropped",
+			"service_type": "ftl_freight_service"
+		},
+		{
+			"state": "cargo_picked_up",
+			"service_type": "ltl_freight_service"
+		},
+		{
+			"state": "cargo_dropped",
+			"service_type": "ltl_freight_service"
+		},
+		{
+			"state": "in_progress",
+			"isMultiService": false
+		},
+		{
+			"state": "completed",
+			"isMultiService": false
+		}
+	],
+	"air_freight": [
+		{
+			"state": "shipment_received",
+			"isMultiService": false
+		},
+		{
+			"state": "confirmed_by_importer_exporter",
+			"isMultiService": false
+		},
+		{
+			"state": "awaiting_service_provider_confirmation"
+		},
+		{
+			"state": "confirmed_by_service_provider"
+		},
+		{
+			"state": "cargo_picked_up",
+			"service_type": "ftl_freight_service"
+		},
+		{
+			"state": "cargo_dropped",
+			"service_type": "ftl_freight_service"
+		},
+		{
+			"state": "cargo_picked_up",
+			"service_type": "ltl_freight_service"
+		},
+		{
+			"state": "cargo_dropped",
+			"service_type": "ltl_freight_service"
+		},
+		{
+			"state": "customs_cleared",
+			"service_type": "air_customs_service"
+		},
+		{
+			"state": "cargo_handed_over_at_origin",
+			"service_type": "air_freight_service"
+		},
+		{
+			"state": "flight_departed",
+			"service_type": "air_freight_service"
+		},
+		{
+			"state": "flight_arrived",
+			"service_type": "air_freight_service"
+		},
+		{
+			"state": "cargo_handed_over_at_destination",
+			"service_type": "air_freight_service"
+		},
+		{
+			"state": "customs_cleared",
+			"service_type": "air_customs_service"
+		},
+		{
+			"state": "cargo_picked_up",
+			"service_type": "ftl_freight_service"
+		},
+		{
+			"state": "cargo_dropped",
+			"service_type": "ftl_freight_service"
+		},
+		{
+			"state": "cargo_picked_up",
+			"service_type": "ltl_freight_service"
+		},
+		{
+			"state": "cargo_dropped",
+			"service_type": "ltl_freight_service"
+		},
+		{
+			"state": "in_progress",
+			"isMultiService": false
+		},
+		{
+			"state": "completed",
+			"isMultiService": false
+		}
+	],
+	"ftl_freight": [
+		{
+			"state": "shipment_received",
+			"isMultiService": false
+		},
+		{
+			"state": "confirmed_by_importer_exporter",
+			"isMultiService": false
+		},
+		{
+			"state": "awaiting_service_provider_confirmation",
+			"service_type": "trailer_freight_service"
+		},
+		{
+			"state": "confirmed_by_service_provider",
+			"service_type": "trailer_freight_service"
+		},
+		{
+			"state": "cargo_picked_up",
+			"service_type": "ftl_freight_service"
+		},
+		{
+			"state": "cargo_dropped",
+			"service_type": "ftl_freight_service"
+		},
+		{
+			"state": "in_progress",
+			"isMultiService": false
+		},
+		{
+			"state": "completed",
+			"isMultiService": false
+		}
+	],
+	"ltl_freight": [
+		{
+			"state": "shipment_received",
+			"isMultiService": false
+		},
+		{
+			"state": "confirmed_by_importer_exporter",
+			"isMultiService": false
+		},
+		{
+			"state": "awaiting_service_provider_confirmation",
+			"service_type": "trailer_freight_service"
+		},
+		{
+			"state": "confirmed_by_service_provider",
+			"service_type": "trailer_freight_service"
+		},
+		{
+			"state": "cargo_picked_up",
+			"service_type": "ltl_freight_service"
+		},
+		{
+			"state": "cargo_dropped",
+			"service_type": "ltl_freight_service"
+		},
+		{
+			"state": "in_progress",
+			"isMultiService": false
+		},
+		{
+			"state": "completed",
+			"isMultiService": false
+		}
+	],
+	"trailer_freight": [
+		{
+			"state": "shipment_received",
+			"isMultiService": false
+		},
+		{
+			"state": "confirmed_by_importer_exporter",
+			"isMultiService": false
+		},
+		{
+			"state": "awaiting_service_provider_confirmation",
+			"service_type": "trailer_freight_service"
+		},
+		{
+			"state": "confirmed_by_service_provider",
+			"service_type": "trailer_freight_service"
+		},
+		{
+			"state": "container_picked_up",
+			"service_type": "trailer_freight_service"
+		},
+		{
+			"state": "container_dropped",
+			"service_type": "trailer_freight_service"
+		},
+		{
+			"state": "in_progress",
+			"isMultiService": false
+		},
+		{
+			"state": "completed",
+			"isMultiService": false
+		}
+	],
+	"haulage_freight": [
+		{
+			"state": "shipment_received",
+			"isMultiService": false
+		},
+		{
+			"state": "confirmed_by_importer_exporter",
+			"isMultiService": false
+		},
+		{
+			"state": "awaiting_service_provider_confirmation",
+			"service_type": "trailer_freight_service"
+		},
+		{
+			"state": "confirmed_by_service_provider",
+			"service_type": "trailer_freight_service"
+		},
+		{
+			"state": "container_departed",
+			"service_type": "haulage_freight_service"
+		},
+		{
+			"state": "container_arrived",
+			"service_type": "haulage_freight_service"
+		},
+		{
+			"state": "in_progress",
+			"isMultiService": false
+		},
+		{
+			"state": "completed",
+			"isMultiService": false
+		}
+	],
+	"fcl_customs": [
+		{
+			"state": "shipment_received",
+			"isMultiService": false
+		},
+		{
+			"state": "confirmed_by_importer_exporter",
+			"isMultiService": false
+		},
+		{
+			"state": "awaiting_service_provider_confirmation",
+			"service_type": "fcl_customs_service"
+		},
+		{
+			"state": "confirmed_by_service_provider",
+			"service_type": "fcl_customs_service"
+		},
+		{
+			"state": "customs_cleared",
+			"service_type": "fcl_customs_service"
+		},
+		{
+			"state": "in_progress",
+			"isMultiService": false
+		},
+		{
+			"state": "completed",
+			"isMultiService": false
+		}
+	],
+	"lcl_customs": [
+		{
+			"state": "shipment_received",
+			"isMultiService": false
+		},
+		{
+			"state": "confirmed_by_importer_exporter",
+			"isMultiService": false
+		},
+		{
+			"state": "awaiting_service_provider_confirmation",
+			"service_type": "lcl_customs_service"
+		},
+		{
+			"state": "confirmed_by_service_provider",
+			"service_type": "lcl_customs_service"
+		},
+		{
+			"state": "customs_cleared",
+			"service_type": "lcl_customs_service"
+		},
+		{
+			"state": "in_progress",
+			"isMultiService": false
+		},
+		{
+			"state": "completed",
+			"isMultiService": false
+		}
+	],
+	"air_customs": [
+		{
+			"state": "shipment_received",
+			"isMultiService": false
+		},
+		{
+			"state": "confirmed_by_importer_exporter",
+			"isMultiService": false
+		},
+		{
+			"state": "awaiting_service_provider_confirmation",
+			"service_type": "air_customs_service"
+		},
+		{
+			"state": "confirmed_by_service_provider",
+			"service_type": "air_customs_service"
+		},
+		{
+			"state": "customs_cleared",
+			"service_type": "air_customs_service"
+		},
+		{
+			"state": "in_progress",
+			"isMultiService": false
+		},
+		{
+			"state": "completed",
+			"isMultiService": false
+		}
+	]
+}

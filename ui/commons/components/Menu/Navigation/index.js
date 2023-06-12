@@ -1,38 +1,57 @@
 import { Popover } from '@cogoport/components';
-import { IcMServices } from '@cogoport/icons-react';
 
 import styles from '../styles.module.css';
 
 import SubNavigation from './SubNavigation';
 
+import { useRouter } from '@/packages/next';
+
 function Navigation({
 	setShowPopover = () => {},
-	subscriptionNav,
+	item,
 	setIsOpen,
 	isOpen,
 }) {
+	const { push } = useRouter();
+
+	const handleClick = async (href, as) => {
+		push(href, as, true);
+	};
 	const renderBody = () => (
 		<SubNavigation
 			setShowPopover={setShowPopover}
 			setIsOpen={setIsOpen}
-			subscriptionNav={subscriptionNav}
+			item={item}
 		/>
 	);
 	return (
-		<Popover
-			placement="left"
-			content={renderBody()}
-			onClickOutside={() => setIsOpen(!isOpen)}
-			interactive
-			trigger="mouseenter"
-		>
+		item?.options ? (
+			<Popover
+				placement="left"
+				content={renderBody()}
+				onClickOutside={() => setIsOpen(!isOpen)}
+				interactive
+				trigger="click"
+			>
+				<div className={styles.subscription_container}>
+					{item.icon && <div style={{ marginRight: '12px' }}>{item.icon}</div>}
+					<div className={styles.a_container} onClick={() => setIsOpen(!isOpen)} role="presentation">
+						{item?.title}
+					</div>
+				</div>
+			</Popover>
+		) : (
 			<div className={styles.subscription_container}>
-				<IcMServices style={{ marginRight: '12px' }} />
-				<div className={styles.a_container} onClick={() => setIsOpen(!isOpen)} role="presentation">
-					{subscriptionNav?.title}
+				{item.icon && <div style={{ marginRight: '12px' }}>{item.icon}</div>}
+				<div
+					className={styles.a_container}
+					onClick={() => handleClick(item?.href, item?.as)}
+					role="presentation"
+				>
+					{item?.title}
 				</div>
 			</div>
-		</Popover>
+		)
 	);
 }
 

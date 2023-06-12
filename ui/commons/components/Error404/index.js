@@ -6,6 +6,7 @@ import { useRouter } from '@/packages/next';
 
 function Error404() {
 	const router = useRouter();
+
 	const handleBack = () => {
 		router.back();
 	};

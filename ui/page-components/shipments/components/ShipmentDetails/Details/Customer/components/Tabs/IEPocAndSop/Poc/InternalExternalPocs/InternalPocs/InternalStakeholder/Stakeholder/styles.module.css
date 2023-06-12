@@ -1,0 +1,40 @@
+.poc_infocontainer {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 100%;
+	height: fit-content;
+	padding: 10px 18px;
+	border-bottom: 1px solid #eceff8;
+}
+
+.poc_infocontainer:hover {
+	background: #f6f5fe;
+	border-radius: 4px;
+}
+
+.last {
+	border: none;
+}
+
+.gray {
+	color: #828282;
+}
+
+.small {
+	font-size: 12px;
+	font-weight: 400;
+	line-height: 20px;
+}
+
+.service_text {
+	width: 16%;
+	white-space: nowrap;
+}
+
+.icons {
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	width: 20%;
+}

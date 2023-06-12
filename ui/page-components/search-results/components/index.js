@@ -275,14 +275,13 @@ function Results({
 							rates={rates}
 						/>
 
-						{(marketplaceRates === 1 ? i === 0 : i % 10 === 1)
-                        && swb_with_rates ? (
-	<AddRate
-		type="rates-found"
-		setAddRate={setAddRate}
-		show={false}
-	/>
-							) : null}
+						{(marketplaceRates === 1 ? i === 0 : i % 10 === 1) && swb_with_rates ? (
+							<AddRate
+								type="rates-found"
+								setAddRate={setAddRate}
+								show={false}
+							/>
+						) : null}
 					</>
 				))}
 			</>
@@ -341,7 +340,7 @@ function Results({
 						refetch={refetch}
 						possible_additional_services={
 						possible_additional_services
-                        }
+}
 						detail={detail}
 					/>
 

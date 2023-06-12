@@ -127,7 +127,6 @@ const handleAuthentication = async ({
 	// For 404 and error pages - pathname is _error
 	if (pathname.includes('/404')) {
 		const asPathArr = asPath.split('/') || [];
-		// const reqPath = asPathArr.filter((item, i) => i < 5).join('/');
 		const errOrgId = asPathArr.length > 2 ? asPathArr[2] : null;
 		const current_organization = user_data.organizations.find(
 			(org) => org.id === errOrgId,
@@ -211,7 +210,6 @@ const handleAuthentication = async ({
 
 	await store.dispatch(
 		setProfileStoreState({
-			// pathPrefix,
 			asPrefix,
 			defaultRoute,
 			organization_set        : !isEmpty(current_organization),

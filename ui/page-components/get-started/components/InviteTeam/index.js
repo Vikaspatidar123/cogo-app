@@ -8,7 +8,7 @@ import {
 	useForm,
 } from '@/packages/forms';
 
-function InviteTeam({ orgId, setTimeForCall }) {
+function InviteTeam({ org, setTimeForCall }) {
 	const [teamMembers, setTeamMembers] = useState([]);
 	const [showForm, setShowForm] = useState(true);
 	const {
@@ -34,7 +34,7 @@ function InviteTeam({ orgId, setTimeForCall }) {
 					setShowForm={setShowForm}
 					showForm={showForm}
 					reset={reset}
-					orgId={orgId}
+					org={org}
 					setTimeForCall={setTimeForCall}
 				/>
 			</div>

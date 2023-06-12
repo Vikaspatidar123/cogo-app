@@ -142,26 +142,12 @@ const navigationMappings = {
 		isSubNavs   : true,
 		options     : [
 			{
-				key   : 'saas_premium_services-order_history',
-				title : 'Order History',
-				href  : '/saas/order-history',
-				as    : '/saas/order-history',
-				icon  : <IcABookYourShipment width={40} height={40} />,
-			},
-			{
-				key   : 'saas_premium_services-import_export_docs',
-				title : 'Import/Export Documents',
-				type  : 'link',
-				href  : '/saas/premium-services/import-export-doc',
-				as    : '/saas/premium-services/import-export-doc',
-				icon  : <IcACrossBorder width={40} height={40} />,
-			},
-			{
-				key   : 'saas_premium_services-trader_eligibility_check',
-				title : 'Trader Eligibility Check',
-				href  : '/saas/premium-services/trader-eligibility-check',
-				as    : '/saas/premium-services/trader-eligibility-check',
-				icon  : <IcMTradeparties width={42} height={42} fill="#fbd221" />,
+				key         : 'saas_premium_services-cogo_insurance',
+				title       : 'Insurance',
+				href        : '/saas/insurance/list',
+				as          : '/saas/insurance/list',
+				icon        : <IcMAppInsurance width={40} height={40} fill="red" />,
+				description : 'Secure your cargo and avoid high unwanted costs',
 			},
 			{
 				key         : 'saas_premium_services-duties_and_taxes',
@@ -169,8 +155,36 @@ const navigationMappings = {
 				href        : '/saas/premium-services/duties-taxes-calculator',
 				as          : '/saas/premium-services/duties-taxes-calculator',
 				icon        : <IcADutiesTaxes width={45} height={45} />,
-				description : '',
+				description : 'Know the total amount you will have to pay to plan better',
 			},
+			{
+				key         : 'saas_premium_services-trader_eligibility_check',
+				title       : 'Trader Eligibility Check',
+				href        : '/saas/premium-services/trader-eligibility-check',
+				as          : '/saas/premium-services/trader-eligibility-check',
+				icon        : <IcMTradeparties width={42} height={42} fill="#fbd221" />,
+				description : 'Check the legal legitimacy of your trade parter',
+
+			}, {
+				key         : 'saas_premium_services-import_export_docs',
+				title       : 'Import/Export Documents',
+				type        : 'link',
+				href        : '/saas/premium-services/import-export-doc',
+				as          : '/saas/premium-services/import-export-doc',
+				icon        : <IcACrossBorder width={40} height={40} />,
+				description : 'Know the documents you would need to avoid delays Import Export Controls - Know the'
+				+ ' laws to avoid non compliance penalties',
+			},
+			{
+				key         : 'saas_premium_services-order_history',
+				title       : 'Order History',
+				href        : '/saas/order-history',
+				as          : '/saas/order-history',
+				icon        : <IcABookYourShipment width={40} height={40} />,
+				description : 'View when and which premium services you used previously ',
+
+			},
+
 			{
 				key         : 'saas_premium_services-import_export_controls',
 				title       : 'Import Export Controls',
@@ -179,14 +193,7 @@ const navigationMappings = {
 				icon        : <IcAFormsAndCertificates width={50} height={50} />,
 				description : '',
 			},
-			{
-				key         : 'saas_premium_services-cogo_insurance',
-				title       : 'Insurance',
-				href        : '/saas/insurance/list',
-				as          : '/saas/insurance/list',
-				icon        : <IcMAppInsurance width={40} height={40} fill="red" />,
-				description : 'Buy insurance for your cargo here',
-			},
+
 		],
 	},
 	saas_planning: {
@@ -309,7 +316,6 @@ const navigationMappings = {
 		href          : '/settings',
 		as            : '/settings',
 		showMobileNav : true,
-
 	},
 	saas_cogo_subscription: {
 		key   : 'saas_cogo_subscription',

@@ -15,9 +15,7 @@ import { useSelector } from '@/packages/store';
 
 function MobileMenu() {
 	const { push } = useRouter();
-	const {
-		user_data,
-	} = useSelector(({ profile }) => ({
+	const { user_data } = useSelector(({ profile }) => ({
 		user_data: profile || {},
 	}));
 	const [show, setShow] = useState(false);
@@ -58,11 +56,14 @@ function MobileMenu() {
 								<div className={styles.arrow_icon_container}>
 									<IcMArrowNext />
 								</div>
-
 							</div>
-						) : <Subnavigation menuItem={menuItem} getRedirectUrl={getRedirectUrl} />}
+						) : (
+							<Subnavigation
+								menuItem={menuItem}
+								getRedirectUrl={getRedirectUrl}
+							/>
+						)}
 						<div className={styles.line} />
-						<div />
 					</div>
 				)
 			))}

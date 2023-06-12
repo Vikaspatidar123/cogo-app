@@ -18,6 +18,7 @@
     "preinstall": "npx only-allow pnpm"
   },
   "dependencies": {
+    "accept-language": "^3.0.18",
     "@cogoport/charts": "^1.0.1",
     "@cogoport/maps": "^1.0.3",
     "@cogoport/components": "^1.0.425",

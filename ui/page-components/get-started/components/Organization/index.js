@@ -6,7 +6,7 @@ import styles from './styles.module.css';
 
 import { useSelector } from '@/packages/store';
 
-function Organization({ setBillingAddressDetails, setOrgId, setOrgBranchId }) {
+function Organization({ setBillingAddressDetails, setOrg, setOrgBranchId }) {
 	const handleBack = () => {
 		window.location.href = '/';
 	};
@@ -45,7 +45,7 @@ function Organization({ setBillingAddressDetails, setOrgId, setOrgBranchId }) {
 			<div className={styles.organization_form_container}>
 				<OrganizationForm
 					setBillingAddressDetails={setBillingAddressDetails}
-					setOrgId={setOrgId}
+					setOrg={setOrg}
 					setOrgBranchId={setOrgBranchId}
 				/>
 			</div>

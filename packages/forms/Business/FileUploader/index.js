@@ -29,7 +29,7 @@ function FileUploader(props) {
 			onChange(urlStore[0]);
 		}
 	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [urlStore]);
+	}, [multiple, urlStore]);
 
 	const onUploadProgress = (index) => (file) => {
 		setProgress((previousProgress) => ({

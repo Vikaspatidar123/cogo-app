@@ -15,7 +15,6 @@ function SelectController(props) {
 	let finalOptions = options || [];
 	let finalValueKey = valueKey || 'value';
 	let finalLabelKey = labelKey || 'label';
-
 	if (optionKey) {
 		const data = getOptionsFromKey(optionKey, { ...rest });
 		finalOptions = data.options;

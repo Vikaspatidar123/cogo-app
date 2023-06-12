@@ -36,6 +36,7 @@ function CountrySelectController({ name, itemKey, value, control, ...rest }) {
 					options={formattedList}
 					onChange={(val, obj) => {
 						onChange(val, obj);
+
 						if (rest?.handleChange) {
 							rest?.handleChange(obj);
 						}

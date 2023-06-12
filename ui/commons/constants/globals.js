@@ -35,6 +35,9 @@ const GLOBAL_CONSTANTS = {
 			'hh:mm aaa' : 'hh:mm aaa',
 			'HH:mm'     : 'HH:mm',
 		},
+		date_time: {
+			'dd MMM yyyy hh:mm aa': 'dd MMM yyyy hh:mm aa',
+		},
 	},
 
 	container_type_size: {
@@ -141,6 +144,14 @@ const GLOBAL_CONSTANTS = {
 		'LU',
 		'VN',
 	],
+	image_url: {
+		iec_red_flag:
+		'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/redFlag.svg',
+		iec_green_flag:
+		'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/greenflag.svg',
+		iec_yellow_flag:
+		'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/yellwflag.svg',
+	},
 };
 
 export default GLOBAL_CONSTANTS;

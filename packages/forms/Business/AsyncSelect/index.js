@@ -9,15 +9,19 @@ import {
 	asyncFieldsPartner,
 	asyncFieldsPartnerRoles,
 	asyncFieldsHsCodeCountries,
+	asyncFieldsPinCodeLocations,
+	asyncFieldsHScode,
+	asyncCountrySelect,
+	asyncAirLinesSelect,
 	asyncFieldsCommoditiesList,
 	asyncInsuranceCountryList,
 	asyncFieldsPartnerQuotation,
 	asyncProductList,
-	asyncCountrySelect,
 	asyncOrganizationBranches,
 	asyncInsuranceCommodities,
 	asyncAirLines,
 	asyncShippingLines,
+	asyncTradeContacts,
 } from '../../utils/getAsyncFields';
 
 const keyAsyncFieldsParamsMapping = {
@@ -26,15 +30,20 @@ const keyAsyncFieldsParamsMapping = {
 	partners                   : asyncFieldsPartner,
 	partner_roles              : asyncFieldsPartnerRoles,
 	hs_code_countries          : asyncFieldsHsCodeCountries,
-	commodities_list_insurance : asyncFieldsCommoditiesList,
-	insurance_country_list     : asyncInsuranceCountryList,
 	list_partner_quotation     : asyncFieldsPartnerQuotation,
 	list_products              : asyncProductList,
 	country_list_with_flag     : asyncCountrySelect,
+	pin_code                   : asyncFieldsPinCodeLocations,
+	shipping_lines             : asyncShippingLines,
+	hs_code                    : asyncFieldsHScode,
+	air_lines                  : asyncAirLinesSelect,
+	commodities_list_insurance : asyncFieldsCommoditiesList,
+	insurance_country_list     : asyncInsuranceCountryList,
 	'organization-branches'    : asyncOrganizationBranches,
 	insurance_commodities      : asyncInsuranceCommodities,
 	'air-lines'                : asyncAirLines,
 	'shipping-lines'           : asyncShippingLines,
+	trade_contacts             : asyncTradeContacts,
 };
 
 function AsyncSelect(props) {
@@ -76,7 +85,6 @@ function AsyncSelect(props) {
 		);
 		getSelectedOption(selectedOption[0]);
 	}
-
 	const Element = multiple ? MultiSelect : Select;
 	return (
 		<Element

@@ -1,0 +1,19 @@
+.container {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.core_ui_button_root {
+	letter-spacing: 0;
+	white-space: nowrap;
+
+	:hover {
+		box-shadow: none;
+	}
+}
+
+.cargo_detail_pill {
+	font-weight: 500;
+	color: #4f4f4f;
+	text-transform: capitalize;
+}

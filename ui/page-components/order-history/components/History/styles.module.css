@@ -5,6 +5,12 @@
 
 	.input {
 		width: 220px;
+
+		:global {
+			.ui_input_container {
+				height: 36px !important;
+			}
+		}
 	}
 
 	@media screen and (max-width: 768px) {

@@ -1,0 +1,114 @@
+.sop_line_item {
+	display: flex;
+	justify-content: space-between;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+.input_container {
+	display: flex;
+	flex: 1;
+	flex-direction: column;
+}
+
+.text_area {
+	align-items: center;
+	padding: 8px;
+	font-size: 14px;
+	color: #828282;
+	resize: none;
+	border: none;
+
+	:focus-within {
+		outline: none !important;
+	}
+}
+
+.heading_edit_child {
+	margin-left: 8px;
+	font-size: 10px;
+	font-weight: 400;
+	color: #bdbdbd;
+}
+
+.remove_icon_container {
+	height: 10px;
+	margin-right: 16px;
+	margin-left: 18px;
+	font-size: 16px;
+	cursor: pointer;
+}
+
+.attach {
+	display: flex;
+	justify-content: center;
+	width: 20%;
+	cursor: pointer;
+}
+
+.main_upload_container {
+	padding: 4px;
+	border: 1px solid #bdbdbd;
+	border-radius: 6px;
+}
+
+.secondary.mid.drag {
+	width: 196px !important;
+	height: 2px !important;
+	padding: 16px !important;
+}
+
+.primary.text {
+	color: gray !important;
+	border: 1px solid gray;
+
+	:hover {
+		background-color: #f5fafe !important;
+	}
+}
+
+.icon .before {
+	border: none !important;
+}
+
+.icon .before .primary .text .flat .react_rounded {
+	margin-right: 2px !important;
+}
+
+.links_container {
+	width: 80%;
+	margin-top: 4px;
+}
+
+.link {
+	display: flex;
+	flex-wrap: wrap;
+	margin: 8px 0 8px 8px;
+}
+
+.file_name {
+	font-size: 12px;
+	font-weight: 400;
+	color: #828282;
+}
+
+.view_file {
+	margin-left: 8px;
+	font-size: 12px;
+	font-weight: 400;
+	color: #5936f0;
+	text-decoration-line: underline;
+	text-transform: capitalize;
+	cursor: pointer;
+}
+
+.download_file {
+	margin-left: 8px;
+	font-size: 12px;
+	font-weight: 400;
+	line-height: 14px;
+	color: #5936f0;
+	text-decoration-line: underline;
+	text-transform: capitalize;
+	cursor: pointer;
+}

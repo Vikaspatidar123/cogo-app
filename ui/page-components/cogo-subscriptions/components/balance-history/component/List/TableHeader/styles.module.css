@@ -1,0 +1,67 @@
+.row {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 20px 30px;
+	color: #575f6e;
+}
+
+.row.table_head {
+	background: #f3f5fa;
+	border-top-left-radius: 8px;
+	border-top-right-radius: 8px;
+}
+
+.flex svg {
+	vertical-align: middle;
+}
+
+.row.table_head svg {
+	cursor: pointer;
+}
+
+@media screen and (max-width: 767px) {
+	.row {
+		width: fit-content;
+	}
+}
+
+.wd_150 {
+	width: 150px;
+}
+
+.wd_100 {
+	width: 100px;
+}
+
+.flex {
+	display: flex;
+	gap: 4px;
+}
+
+.asc {
+	transition: 0.2s linear;
+	transform: rotate(0deg);
+}
+
+.desc {
+	transition: 0.2s linear;
+	transform: rotate(-180deg);
+}
+
+.credit {
+	transform: rotate(-90deg);
+}
+
+.debit {
+	transform: rotate(+90deg);
+}
+
+.grey_dot {
+	display: inline-block;
+	width: 5px;
+	height: 5px;
+	margin-right: 5px;
+	background: #b5b5b5;
+	border-radius: 100%;
+}

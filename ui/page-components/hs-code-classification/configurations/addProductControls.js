@@ -75,7 +75,6 @@ const addProductControls = [
 		name            : 'productImg',
 		label           : 'Product Image',
 		type            : 'file',
-		uploadIcon      : 'ic-upload',
 		onlyURLOnChange : true,
 		accept          : '.png, .jpg, .jpeg, .svg',
 		format          : '(png, jpg, jpeg, svg)',

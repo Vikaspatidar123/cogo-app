@@ -1,0 +1,31 @@
+.container {
+	.flex_box {
+		display: flex;
+		justify-content: space-between;
+
+		.info {
+			flex-shrink: 0;
+			width: 60%;
+		}
+
+		.map {
+			flex-shrink: 0;
+			width: 37%;
+			border: 1px solid #e79600;
+			border-radius: 16px;
+		}
+
+		@media screen and (max-width: 767px) {
+			flex-direction: column-reverse;
+
+			.info,
+			.map {
+				width: 100%;
+			}
+
+			.info {
+				margin-top: 20px;
+			}
+		}
+	}
+}

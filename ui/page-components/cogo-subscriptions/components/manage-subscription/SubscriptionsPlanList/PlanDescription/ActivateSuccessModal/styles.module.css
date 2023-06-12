@@ -1,0 +1,33 @@
+.flex_div {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+.label {
+	font-size: 34px;
+	font-weight: 700;
+	color: #170f49;
+}
+
+.side_label {
+	padding: 20px;
+	font-size: 18px;
+	font-weight: 400;
+	color: #6f6c90;
+	text-align: center;
+}
+
+.click {
+	font-size: 14px;
+	font-weight: 400;
+	color: #f68b21;
+	cursor: pointer;
+}
+
+.styled_div {
+	padding: 20px;
+	font-size: 14px;
+	color: #6f6c90;
+}

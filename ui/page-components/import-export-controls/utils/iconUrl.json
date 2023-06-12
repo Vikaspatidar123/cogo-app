@@ -1,0 +1,11 @@
+{
+	"loading": "https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/loading.svg",
+	"loadingBanner":"https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/loading-ban.svg",
+	"cogoLogo":"https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/transparent_logo.png",
+	"validate": "https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/validate.svg",
+	"emptyState": "https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/empty_icon 1.svg",
+	"redFlag":"https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/redFlag.svg",
+	"greenFlag": "https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/greenflag.svg",
+	"yellowFlag": "https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/yellwflag.svg"
+
+}

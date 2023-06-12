@@ -5,7 +5,7 @@ import { useRequestBf } from '@/packages/request';
 const useGetTradeEngine = ({ itm }) => {
 	const [tradeEngineResponse, setTradeEngineResponse] = useState({});
 
-	const [{ tradeEngineResponseLoading }, tradeApitrigger] = useRequestBf({
+	const [{ loading: tradeEngineResponseLoading }, tradeApitrigger] = useRequestBf({
 		url     : '/saas/trade-engine',
 		authKey : 'get_saas_trade_engine',
 		method  : 'get',

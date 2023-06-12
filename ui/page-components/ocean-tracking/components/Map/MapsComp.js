@@ -14,8 +14,8 @@ const LAYER = [
 ];
 
 const center = { lat: '28.679079', lng: '77.069710' };
-const airPathOptions = { color: 'green' };
-const oceanPathOptions = { color: '#00008B' };
+const airPathOptions = { color: '#f37166', weight: 2 };
+const oceanPathOptions = { color: '#1867D2', weight: 2 };
 
 function MapComp({
 	isMobile = false,
@@ -115,8 +115,10 @@ function MapComp({
 				);
 			})}
 			{plotPoints.map((point) => {
-				const { lat, lng } = getLatLng({ route: point?.route, src: 'dest' });
-				return (
+				const { lat, lng } = getLatLng({
+					route : point?.route,
+					src   : 'destination',
+				});				return (
 					<Pointer
 						point={point}
 						lat={lat}
@@ -128,14 +130,16 @@ function MapComp({
 				);
 			})}
 			{plotPoints.map((point) => {
-				const { src, dest, lat, lng } = getLatLng({ route: point?.route, src: '' });
-
+				const { origin, dest, lat, lng } = getLatLng({
+					route : point?.route,
+					src   : 'icon',
+				});
 				return (
 					<Pointer
 						point={point}
 						lat={lat}
 						lng={lng}
-						iconSvg={getIcon({ src, dest })}
+						iconSvg={getIcon({ type, origin, dest })}
 						showTrack={showTrack}
 					/>
 				);

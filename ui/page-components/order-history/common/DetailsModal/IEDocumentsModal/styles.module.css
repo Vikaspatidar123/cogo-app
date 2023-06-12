@@ -62,6 +62,7 @@
 
 .download_btn {
 	margin-right: 12px;
+	cursor: pointer;
 }
 
 .cta_mobile_view {

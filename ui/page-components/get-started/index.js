@@ -12,7 +12,7 @@ function GetStarted() {
 	const [billingAddressDetails, setBillingAddressDetails] = useState(false);
 	const [inviteTeam, setInviteTeam] = useState(false);
 	const [timeForCall, setTimeForCall] = useState(false);
-	const [orgId, setOrgId] = useState('');
+	const [org, setOrg] = useState('');
 	const [orgBranchId, setOrgBranchId] = useState('');
 	return (
 		<div className={styles.container}>
@@ -23,14 +23,14 @@ function GetStarted() {
 				{!billingAddressDetails && !inviteTeam && !timeForCall && (
 					<Organization
 						setBillingAddressDetails={setBillingAddressDetails}
-						setOrgId={setOrgId}
+						setOrg={setOrg}
 						setOrgBranchId={setOrgBranchId}
 					/>
 				)}
 				{billingAddressDetails && !inviteTeam
-					&& !timeForCall && <BillingAddress orgId={orgId} setInviteTeam={setInviteTeam} />}
-				{inviteTeam && !timeForCall && <InviteTeam orgId={orgId} setTimeForCall={setTimeForCall} />}
-				{timeForCall && <SetTimeForCall orgBranchId={orgBranchId} orgId={orgId} />}
+					&& !timeForCall && <BillingAddress orgId={org?.id} setInviteTeam={setInviteTeam} />}
+				{inviteTeam && !timeForCall && <InviteTeam org={org} setTimeForCall={setTimeForCall} />}
+				{timeForCall && <SetTimeForCall orgBranchId={orgBranchId} orgId={org?.id} />}
 			</div>
 		</div>
 	);

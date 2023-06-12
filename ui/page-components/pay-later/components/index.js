@@ -17,6 +17,7 @@ function PayLater() {
 	useEffect(() => {
 		setActive(status);
 	}, [status]);
+
 	if (loading) {
 		return <Loader />;
 	}

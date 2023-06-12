@@ -40,9 +40,9 @@ function Document({ doc = {}, hsNumber = '' }) {
 						<span>{docName}</span>
 					</div>
 					<div className={styles.cta_web_view}>
-						<Button className={styles.download_btn} size="md" onClick={downloadHandler}>
+						<IcMDownload className={styles.download_btn} size="md" onClick={downloadHandler}>
 							Download
-						</Button>
+						</IcMDownload>
 					</div>
 					<div className={styles.cta_mobile_view}>
 						<Button className={styles.download_btn} size="md" onClick={downloadHandler}>

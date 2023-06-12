@@ -50,7 +50,6 @@ function NewCheckout() {
 	const { primary_service = '' } = detail;
 
 	const ServiceComponent = COMPONENT_MAPPING[primary_service];
-
 	const common_component_props = {
 		summary,
 		rate,

@@ -99,7 +99,7 @@ function TransactionModal({
 									name="trader_eligibility"
 									title="Trader Eligibility Check"
 									badge={screeningRequestResponse?.length > 0
-                            && screeningRequestResponse?.length}
+                                    && screeningRequestResponse?.length}
 								>
 									<TraderCheck tradeEngineResponse={transactionData} />
 								</TabPanel>

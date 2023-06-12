@@ -6,11 +6,10 @@ import { useState, useEffect } from 'react';
 import EmptyState from '../../common/Emptystate';
 
 import Card from './Card';
+import CardPlaceholder from './CardPlaceholder';
 import FilterComponent from './FIlterComponent';
 import styles from './styles.module.css';
 import TrackerMap from './TrackerMap';
-
-import { TrendCardSkeleton } from '@/ui/page-components/freight-rate-trend/components/trend-card';
 
 function TrackerCard({
 	archived, setArchived,
@@ -172,7 +171,9 @@ function TrackerCard({
 									/>
 								))}
 							</div>
-						) : (<TrendCardSkeleton />)}
+						) : ([1, 2, 3, 4].map(() => (
+							<CardPlaceholder height="182px" />
+						)))}
 				</div>
 			)}
 			{isMapView && (

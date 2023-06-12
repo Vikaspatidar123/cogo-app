@@ -38,7 +38,6 @@ const formatTypeFunMapping = {
  */
 const formatDate = (params) => {
 	const { date, formatType } = params;
-
 	if (!date) {
 		return null;
 	}

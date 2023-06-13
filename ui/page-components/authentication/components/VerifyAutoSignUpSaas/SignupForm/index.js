@@ -183,13 +183,13 @@ function SignupForm({ setHasSignedup, setFormData, setUserDetails }) {
 				SignUp
 			</Button>
 			<a
-				href="mailto:cp.onboarding@cogoport.com"
+				href="mailto:kanira.patel@cogoport.com"
 				className={styles.right_footer_text}
 			>
 				If you have any trouble logging in, email here -
 				<span className={styles.right_footer_text_span}>
 					{' '}
-					cp.onboarding@cogoport.com
+					kanira.patel@cogoport.com
 				</span>
 			</a>
 		</form>

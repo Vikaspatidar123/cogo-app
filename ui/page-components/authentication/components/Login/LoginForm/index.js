@@ -76,9 +76,9 @@ function LoginForm() {
 							<p className={styles.micro}>CONTINUE WITH MICROSOFT</p>
 						</Button> */}
 			</div>
-			<a href="mailto:cp.onboarding@cogoport.com" className={styles.right_footer_text}>
+			<a href="mailto:kanira.patel@cogoport.com" className={styles.right_footer_text}>
 				If you have any trouble logging in, email here -
-				<span className={styles.right_footer_text_span}> cp.onboarding@cogoport.com</span>
+				<span className={styles.right_footer_text_span}>kanira.patel@cogoport.com</span>
 			</a>
 		</form>
 	);

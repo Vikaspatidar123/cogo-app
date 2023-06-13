@@ -13,10 +13,18 @@ const MAPPING = {
 		heading     : 'Pay Later Requirements',
 		description : 'Fill in the required details',
 	},
+	method: {
+		heading     : 'Method',
+		description : 'Select method of signature',
+	},
+	signatory: {
+		heading     : 'Signatory',
+		description : 'Select the authorised signatory',
+	},
 };
 
 function FormTitleAndDescription({ details = '' }) {
-	const { description, heading } = MAPPING[details];
+	const { description = '', heading = '' } = MAPPING[details];
 	return (
 		<div className={styles.details_wrapper}>
 			<div className={styles.heading}>

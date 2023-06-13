@@ -32,6 +32,7 @@ export const COMPANYDETAILSCONTROLS = [
 		showField          : true,
 		valueKey           : 'tax_number',
 		labelKey           : 'label',
+		initialCall        : true,
 	},
 	{
 		label       : 'Upload GST Proof',

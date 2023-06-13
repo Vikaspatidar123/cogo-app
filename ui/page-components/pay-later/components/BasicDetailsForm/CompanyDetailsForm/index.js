@@ -18,10 +18,7 @@ function CompanyDetailsForm({ getCreditRequestResponse = {} }) {
 
 	const [selectedGstDetails, setSelectedGstDetails] = useState({});
 
-	const [proofUrl, setProofUrl] = useState(
-		getCreditRequestResponse?.documents?.gst_certificate?.active?.document_url
-		|| selectedGstDetails?.tax_number_document_url,
-	);
+	const [proofUrl, setProofUrl] = useState();
 
 	const hasRequestedForCredit = !isEmpty(getCreditRequestResponse);
 
@@ -33,6 +30,12 @@ function CompanyDetailsForm({ getCreditRequestResponse = {} }) {
 		setShow,
 		hasRequestedForCredit,
 	});
+
+	useEffect(() => {
+		setProofUrl(getCreditRequestResponse?.documents?.gst_certificate?.active?.document_url
+		|| selectedGstDetails?.tax_number_document_url);
+	}, [getCreditRequestResponse?.documents?.gst_certificate?.active?.document_url,
+		selectedGstDetails?.tax_number_document_url]);
 
 	const { organization = '' } = { ...profile, ...getCreditRequestResponse };
 
@@ -49,7 +52,8 @@ function CompanyDetailsForm({ getCreditRequestResponse = {} }) {
 
 	useEffect(() => {
 		setValue('gst_proof', fileName);
-	}, [fileName, setValue]);
+		setValue('tax_number', getCreditRequestResponse?.tax_number);
+	}, [fileName, getCreditRequestResponse?.tax_number, setValue]);
 
 	return (
 		<form type="submit">
@@ -60,7 +64,7 @@ function CompanyDetailsForm({ getCreditRequestResponse = {} }) {
 							item.name !== 'gst_proof' ? (
 								<div>
 									<div className={styles.field_name}>{item?.label}</div>
-									<Element {...item} control={control} />
+									<Element {...item} control={control} key={item?.label} />
 								</div>
 							)
 								: (

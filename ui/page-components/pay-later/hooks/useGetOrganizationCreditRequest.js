@@ -10,7 +10,10 @@ const useGetOrganizationCreditRequest = () => {
 			method : 'get',
 			url    : 'get_organization_credit_request',
 		},
-		{ manual: true },
+		{
+			manual     : true,
+			autoCancel : false,
+		},
 	);
 
 	const getOrganizationCreditRequest = useCallback(() => {

@@ -1,10 +1,12 @@
 import { Toast } from '@cogoport/components';
-import { useState } from 'react';
+
+import useGetOrganizationCreditRequest from './useGetOrganizationCreditRequest';
 
 import { useRequest } from '@/packages/request';
 
 const useUpdatePOCDetails = () => {
-	const [updated, setUpdated] = useState({});
+	const { getOrganizationCreditRequest = () => {} } = useGetOrganizationCreditRequest();
+
 	const [{ data, loading }, trigger] = useRequest(
 		{
 			method : 'post',
@@ -29,14 +31,14 @@ const useUpdatePOCDetails = () => {
 					credit_request_id: id,
 				},
 			});
-			setUpdated((prev) => ({ ...prev, [poc]: true }));
+			getOrganizationCreditRequest();
 			setValue(poc, details?.id);
 		} catch (e) {
 			Toast.error('Please try selecting or adding another POC');
 		}
 	};
 
-	return { updatePOCDetails, loading, data, updated };
+	return { updatePOCDetails, loading, data };
 };
 
 export default useUpdatePOCDetails;

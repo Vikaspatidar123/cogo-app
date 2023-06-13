@@ -1,12 +1,15 @@
 import ApplicationStatus from './ApplicationStatus';
 import Query from './Query';
-import RejectedApplication from './RejectedApplication';
 import styles from './styles.module.css';
 
-function Documentation() {
+function Documentation({ getCreditRequestResponse = {} }) {
+	const { cogoscore_application_status = '' } = getCreditRequestResponse || {};
+
+	const show = ['awaiting_cogoscore', 'pending_approval', 'assigned'].includes(cogoscore_application_status);
+
 	return (
 		<div>
-			{true &&	(
+			{show && (
 				<div>
 					<div className={styles.container}>
 						<div>
@@ -27,10 +30,9 @@ function Documentation() {
 							</div>
 						</div>
 					</div>
-					<ApplicationStatus />
+					<ApplicationStatus getCreditRequestResponse={getCreditRequestResponse} />
 				</div>
 			)}
-			{false && <RejectedApplication />}
 			<Query />
 		</div>
 	);

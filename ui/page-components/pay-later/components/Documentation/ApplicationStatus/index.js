@@ -4,11 +4,15 @@ import styles from './styles.module.css';
 
 import formatAmount from '@/ui/commons/utils/formatAmount';
 
-function ApplicationStatus() {
+function ApplicationStatus({ getCreditRequestResponse = {} }) {
+	const { approved_credit_details = {}, cogoscore_application_status = '' } = getCreditRequestResponse || {};
+
+	const { amount = '', currency = '', tenure_days = 0 } = approved_credit_details || {};
+
 	return (
 		<div className={styles.wrapper}>
-			{false &&			(
-				<div>
+			{cogoscore_application_status === 'awaiting_cogoscore' && (
+				<div className={styles.wrapper}>
 					{STATUS.map((item) => (
 						<div className={styles.container}>
 							<div>
@@ -24,7 +28,7 @@ function ApplicationStatus() {
 					))}
 				</div>
 			)}
-			{true && (
+			{cogoscore_application_status === 'pending_approval' && (
 				<div className={styles.tentative_status}>
 					<div className={styles.tentative}>
 						<div className={styles.name}>
@@ -32,9 +36,9 @@ function ApplicationStatus() {
 						</div>
 						<div className={styles.value}>
 							{formatAmount({
-								amount   : 1000,
-								currency : 'USD',
-								options  : {
+								amount,
+								currency,
+								options: {
 									minimumFractionDigits : 0,
 									maximumFractionDigits : 0,
 									style                 : 'currency',
@@ -48,7 +52,9 @@ function ApplicationStatus() {
 							Tentative Tenure
 						</div>
 						<div className={styles.value}>
-							300 days
+							{tenure_days}
+							{' '}
+							days
 						</div>
 					</div>
 				</div>

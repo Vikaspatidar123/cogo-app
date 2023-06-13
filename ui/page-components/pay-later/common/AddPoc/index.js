@@ -1,6 +1,6 @@
 import { Button } from '@cogoport/components';
 
-import { ADDPOCCONTROLS } from '../../../../configurations/addPocControls';
+import { ADDPOCCONTROLS } from '../../configurations/addPocControls';
 
 import styles from './styles.module.css';
 

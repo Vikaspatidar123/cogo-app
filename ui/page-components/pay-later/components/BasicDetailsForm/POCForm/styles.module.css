@@ -22,3 +22,10 @@
 .save_button {
     margin: 0 0 0 4px;
 }
+
+.pill_container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-width: 400px
+}

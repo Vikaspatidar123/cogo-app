@@ -5,9 +5,11 @@ import { STEPPER_OPTIONS } from '../../constants/steppers';
 import styles from './styles.module.css';
 
 function Stepper({ setActive = () => {}, active = '' }) {
+	const activeStep = ['awating_user_inputs', 'payment_success'].includes(active) ? active : 'locked';
+
 	return (
 		<div className={styles.wrapper}>
-			<ArrowStepper active={active} setActive={setActive} items={STEPPER_OPTIONS} arrowed shadowed />
+			<ArrowStepper active={activeStep} setActive={setActive} items={STEPPER_OPTIONS} arrowed shadowed />
 		</div>
 	);
 }

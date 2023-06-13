@@ -24,7 +24,11 @@ function useGetAsyncOptions({
 		},
 		{ manual: !(initialCall || query) },
 	);
-	const options = useMemo(() => getModifiedOptions(data?.list || data || []), [data, getModifiedOptions]);
+
+	console.log('🚀 ~ file: useGetAsyncOptions.js:20 ~ data:', data);
+
+	const options = getModifiedOptions(data?.list || data || []);
+	console.log('🚀 ~ file: useGetAsyncOptions.js:28 ~ options:', options);
 
 	const dependency = (data?.list || []).map(({ id }) => id).join('');
 
@@ -32,7 +36,8 @@ function useGetAsyncOptions({
 		if (options.length > 0) {
 			setStoreOptions([...options]);
 		}
-	}, [dependency, options]);
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [dependency]);
 
 	const [{ loading: loadingSingle }, triggerSingle] = useRequest(
 		{
@@ -47,8 +52,10 @@ function useGetAsyncOptions({
 	};
 
 	const onHydrateValue = async (value) => {
+		console.log('🚀 ~ file: useGetAsyncOptions.js:54 ~ onHydrateValue ~ value:', value);
 		if (Array.isArray(value)) {
 			let unorderedHydratedValue = [];
+
 			const toBeFetched = [];
 			value.forEach((v) => {
 				const singleHydratedValue = options.find((o) => o?.[valueKey] === v);
@@ -62,7 +69,7 @@ function useGetAsyncOptions({
 			const res = await triggerSingle({
 				params: merge(params, { filters: { [valueKey]: toBeFetched } }),
 			});
-			unorderedHydratedValue = unorderedHydratedValue.concat(res?.data?.list || []);
+			unorderedHydratedValue = unorderedHydratedValue.concat(res?.data?.list || res?.data || []);
 
 			const hydratedValue = value.map((v) => {
 				const singleHydratedValue = unorderedHydratedValue.find((uv) => uv?.[valueKey] === v);
@@ -73,14 +80,21 @@ function useGetAsyncOptions({
 		}
 
 		const checkOptionsExist = options.filter((item) => item[valueKey] === value);
+		console.log(
+			'🚀 ~ file: useGetAsyncOptions.js:82 ~ onHydrateValue ~ checkOptionsExist:',
+			checkOptionsExist,
 
+			valueKey,
+
+			options,
+		);
 		if (checkOptionsExist.length > 0) return checkOptionsExist[0];
 
 		try {
 			const res = await triggerSingle({
 				params: merge(params, { filters: { [valueKey]: value } }),
 			});
-			return res?.data?.list?.[0] || null;
+			return res?.data?.list?.[0] || res?.data?.[0] || null;
 		} catch (err) {
 			console.log(err);
 			return {};

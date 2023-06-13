@@ -89,6 +89,7 @@ function AsyncSelect(props) {
 		);
 		getSelectedOption(selectedOption[0]);
 	}
+	console.log(getAsyncOptionsProps, 'getAsyncOptionsProps');
 	const Element = multiple ? MultiSelect : Select;
 	return (
 		<Element

@@ -154,7 +154,7 @@ const useHSCode = () => {
 	);
 
 	useEffect(() => {
-		refetch(GLOBAL_CONSTANTS.COUNTRY_IDS.IN);
+		refetch(GLOBAL_CONSTANTS.hs_code_country_ids.IN);
 	}, [refetch]);
 
 	return {

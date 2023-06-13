@@ -124,7 +124,7 @@ function TrackerInfomation({
 		<div className={styles.container}>
 			<MapAndDetails
 				setQuickAction={setQuickAction}
-				mapLoading={loading2 || loading}
+				mapLoading={loading2 || loading || apiloading}
 				isTrackerEmpty={isTrackerEmpty}
 				mapPoints={mapPoints}
 				trackerDetails={trackerDetails}
@@ -138,7 +138,6 @@ function TrackerInfomation({
 				setVesselName={setVesselName}
 				servicesList={servicesList}
 				servicesForMap={servicesForMap}
-				apiloading={apiloading}
 			/>
 
 			<TimelineNavigate

@@ -1,0 +1,13 @@
+.container {
+	padding: 15px 0;
+}
+
+.title_container {
+	display: flex;
+	align-items: baseline;
+
+	svg {
+		margin-right: 10px;
+		cursor: pointer;
+	}
+}

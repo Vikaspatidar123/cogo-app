@@ -41,7 +41,7 @@ function DetentionDemurrage({ closeHandler, shipmentId, refetchTrackerList }) {
 				</div>
 			</div>
 			<div className={styles.form_container}>
-				<div className={styles.row}>
+				<div className={cl`${styles.row}`}>
 					{detDemControls.map((config, index) => {
 						const { name, label = '', type } = config || {};
 						const Element = getField(type);
@@ -49,7 +49,7 @@ function DetentionDemurrage({ closeHandler, shipmentId, refetchTrackerList }) {
 							<div key={name} className={cl`${styles.col} ${index === 0 ? styles.first_col : ''}`}>
 								<p className={styles.label}>{label}</p>
 								<Element control={control} {...config} />
-								<p>{errors?.[name]?.message || errors?.[name]?.type}</p>
+								<p className={styles.errors}>{errors?.[name]?.message || errors?.[name]?.type}</p>
 							</div>
 						);
 					})}

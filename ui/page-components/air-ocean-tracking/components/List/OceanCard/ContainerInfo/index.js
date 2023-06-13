@@ -9,7 +9,7 @@ import styles from './styles.module.css';
 function ContainerInfo({
 	currentContainer = {}, shipmentInfo = {}, activeContainerIndex,
 	setActiveContainerIndex, containerDetailsLength = 0,
-	loading = true, activeTab, airCargoDetails = {},
+	loading = true, activeTab,
 }) {
 	const { container_length = 0, container_description = '' } = currentContainer || {};
 
@@ -21,10 +21,8 @@ function ContainerInfo({
 		return {
 			commodity    : hs_code ? `${commodity} - (${hs_code})` : <IcMAlert />,
 			container_no : currentContainer?.container_no,
-			weight       : airCargoDetails?.weight,
-			piece        : airCargoDetails?.piece,
 		};
-	}, [currentContainer, shipmentInfo, airCargoDetails]);
+	}, [currentContainer, shipmentInfo]);
 
 	const incrementHandler = (value) => {
 		setActiveContainerIndex((prev) => (value ? prev + 1 : prev - 1));

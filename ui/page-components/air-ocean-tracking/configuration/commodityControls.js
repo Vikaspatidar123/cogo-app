@@ -5,7 +5,7 @@ const commodityControls = [
 		type        : 'async_select',
 		asyncKey    : 'six_digit_hs_code',
 		placeholder : 'Enter HS Code or Commodity',
-		rules       : { required: true },
+		rules       : { required: 'Please Select Commodity' },
 		// getModifiedOptions : (data) => data.map((info) => ({
 		// 	value : info?.id,
 		// 	label : (

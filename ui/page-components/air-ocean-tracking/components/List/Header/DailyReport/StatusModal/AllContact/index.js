@@ -7,17 +7,16 @@ import contactListConfig from '../../../../../../configuration/contactListConfig
 import useCreateDsr from '../../../../../../hooks/useCreateDsr';
 import useGetContactList from '../../../../../../hooks/useGetContactList';
 
-import AddContactModal from './AddContactModal';
 import styles from './styles.module.css';
 
-// import Table from './Table';
+import AddContactModal from '@/ui/page-components/air-ocean-tracking/common/AddContactModal';
 import Table from '@/ui/page-components/air-ocean-tracking/common/Table';
 
 function AllContact({ selectedContact, setSelectedContact, setIsSingleReport }) {
 	const [inputValue, setInputValue] = useState('');
 	const [addContact, setAddContact] = useState(false);
 
-	const { data, loading, setPage, fetchContactList } = useGetContactList({ addContact });
+	const { data, loading, setPage, fetchContactList } = useGetContactList();
 	const { loading: createLoading, createDsr } = useCreateDsr();
 
 	const { list = [] } = data || {};

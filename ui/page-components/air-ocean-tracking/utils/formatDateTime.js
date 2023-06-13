@@ -14,4 +14,11 @@ const formatDate = ({ date, dateFormat }) => {
 	return format(date, dateFormat);
 };
 
-export { formatDateTime, formatDate };
+const formatTime = ({ date, timeFormat }) => {
+	if (!date) {
+		return null;
+	}
+	return format(date, timeFormat);
+};
+
+export { formatDateTime, formatDate, formatTime };

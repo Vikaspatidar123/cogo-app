@@ -11,6 +11,7 @@ import {
 	asyncFieldsHsCodeCountries,
 	asyncFieldsPartnerQuotation,
 	asyncFieldsSixDigitHsCode,
+	asyncFieldsPocDetails,
 } from '../../utils/getAsyncFields';
 
 /**
@@ -39,6 +40,7 @@ const keyAsyncFieldsParamsMapping = {
 	hs_code_countries      : asyncFieldsHsCodeCountries,
 	list_partner_quotation : asyncFieldsPartnerQuotation,
 	six_digit_hs_code      : asyncFieldsSixDigitHsCode,
+	list_poc_details       : asyncFieldsPocDetails,
 };
 
 function AsyncSelect(props) {

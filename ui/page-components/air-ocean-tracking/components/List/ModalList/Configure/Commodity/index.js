@@ -37,7 +37,7 @@ function Commodity({ closeHandler, shipmentId = '', refetchTrackerList }) {
 						<div key={name} className={styles.col}>
 							<p>{label}</p>
 							<Element control={control} {...config} handleChange={(e) => setCommodityValue(e)} />
-							<p>{errors?.[name]?.message || errors?.[name]?.type}</p>
+							<p className={styles.errors}>{errors?.[name]?.message || errors?.[name]?.type}</p>
 						</div>
 					);
 				})}

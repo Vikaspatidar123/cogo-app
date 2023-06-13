@@ -2,6 +2,7 @@ import { Tabs, TabPanel } from '@cogoport/components';
 import { useState } from 'react';
 
 import Commodity from './Commodity';
+import CustomizeAlert from './CustomizeAlert';
 import DetentionDemurrage from './DetentionDemurrage';
 import RefNumber from './RefNumber';
 import styles from './styles.module.css';
@@ -17,6 +18,7 @@ const COMPONENT_MAPPING = {
 	detentionDemurage : DetentionDemurrage,
 	commodity         : Commodity,
 	referenceNo       : RefNumber,
+	CustomizedAlerts  : CustomizeAlert,
 };
 
 function Configure({ closeHandler, shipmentId, refetchTrackerList }) {

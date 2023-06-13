@@ -4,6 +4,7 @@ import { useState } from 'react';
 import CardInfo from '../../../common/CardInfo';
 import CardPopover from '../../../common/CardPopover';
 import EmptyCard from '../../../common/EmptyCard';
+import useRedirectFn from '../../../hooks/useRedirectFn';
 import getLoadingArr from '../../../utils/getLoadingArr';
 
 import Footer from './Footer';
@@ -15,6 +16,7 @@ const LOADING_ARR = getLoadingArr(3);
 
 function AirCard({ listItem = {}, loading = false, activeTab, setModalInfo }) {
 	const [showPopover, setShowPopover] = useState(false);
+	const { redirectToTracker } = useRedirectFn();
 
 	const {
 		id = '', input = '', air_cargo_details = {}, airline = {}, last_updated_at = '',
@@ -30,7 +32,11 @@ function AirCard({ listItem = {}, loading = false, activeTab, setModalInfo }) {
 	return (
 		<div className={styles.container}>
 			<div className={styles.main_body}>
-				<div className={styles.stepper_container}>
+				<div
+					className={styles.stepper_container}
+					onClick={() => redirectToTracker({ type: activeTab, id })}
+					role="presentation"
+				>
 					{loading ? (
 						<div className={styles.skeleton_loader}>
 							{LOADING_ARR.map((ele) => (

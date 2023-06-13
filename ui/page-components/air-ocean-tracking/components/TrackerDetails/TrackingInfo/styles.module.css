@@ -1,0 +1,22 @@
+.container {
+	display: flex;
+	align-items: flex-start;
+	justify-content: space-between;
+
+	/* height: 80vh; */
+	margin-top: 20px;
+
+	/* overflow-y: scroll; */
+}
+
+.milestone_container {
+	width: 35%;
+}
+
+.section {
+	width: 60%;
+}
+
+.map_container {
+	margin-top: 20px;
+}

@@ -86,6 +86,15 @@ function asyncFieldsSixDigitHsCode() {
 		initialCall : false,
 	};
 }
+
+function asyncFieldsPocDetails() {
+	return {
+		labelKey    : 'name',
+		valueKey    : 'id',
+		endpoint    : 'list_saas_subscription_poc_details',
+		initialCall : true,
+	};
+}
 export {
 	asyncFieldsLocations,
 	asyncFieldsLocations2,
@@ -94,4 +103,5 @@ export {
 	asyncFieldsHsCodeCountries,
 	asyncFieldsPartnerQuotation,
 	asyncFieldsSixDigitHsCode,
+	asyncFieldsPocDetails,
 };

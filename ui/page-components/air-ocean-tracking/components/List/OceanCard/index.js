@@ -4,6 +4,7 @@ import { useMemo, useState } from 'react';
 import CardInfo from '../../../common/CardInfo';
 import CardPopover from '../../../common/CardPopover';
 import EmptyCard from '../../../common/EmptyCard';
+import useRedirectFn from '../../../hooks/useRedirectFn';
 import getLoadingArr from '../../../utils/getLoadingArr';
 
 import ContainerInfo from './ContainerInfo';
@@ -17,9 +18,11 @@ function Card({ listItem = {}, loading = false, activeTab, setModalInfo }) {
 	const [activeContainerIndex, setActiveContainerIndex] = useState(1);
 	const [showPopover, setShowPopover] = useState(false);
 
+	const { redirectToTracker } = useRedirectFn();
+
 	const {
 		id = '',	type = '', input = '', container_details = [], milestones = [], shipping_line = {},
-		shipment_info = {}, updated_at = '', action = {}, tracking_status = '',
+		shipment_info = {}, updated_at = '', action = {}, tracking_status = '', serial_id = '',
 	} = listItem || {};
 
 	const isTrackerEmpty = tracking_status !== 'Found';
@@ -41,7 +44,11 @@ function Card({ listItem = {}, loading = false, activeTab, setModalInfo }) {
 		<div className={styles.container}>
 			<div className={styles.main_body}>
 
-				<div className={styles.stepper_container}>
+				<div
+					className={styles.stepper_container}
+					onClick={() => redirectToTracker({ type: activeTab, id })}
+					role="presentation"
+				>
 					{loading ? (
 						<div className={styles.skeleton_loader}>
 							{LOADING_ARR.map((ele) => (
@@ -50,7 +57,12 @@ function Card({ listItem = {}, loading = false, activeTab, setModalInfo }) {
 						</div>
 					) : (
 						<>
-							<CardInfo activeTab={activeTab} type={type} input={input} />
+							<CardInfo
+								activeTab={activeTab}
+								type={type}
+								input={input}
+								serialId={serial_id}
+							/>
 							<Stepper
 								currentMilestone={currentMilestone}
 								lineInfo={shipping_line}

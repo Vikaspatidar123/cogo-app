@@ -1,14 +1,14 @@
 import { Modal, ButtonIcon, Button, cl } from '@cogoport/components';
 import { IcMCross } from '@cogoport/icons-react';
 
-import addContactControls from '../../../../../../../configuration/addContactControls';
-import useCreateContact from '../../../../../../../hooks/useCreateContact';
+import addContactControls from '../../configuration/addContactControls';
+import useCreateContact from '../../hooks/useCreateContact';
 
 import styles from './styles.module.css';
 
 import getField from '@/packages/forms/Controlled';
 
-function AddContactModal({ addContact, setAddContact, fetchContactList }) {
+function AddContactModal({ addContact = false, setAddContact = () => {}, fetchContactList = () => {} }) {
 	const { formHook, loading, createContact, closeHandler } = useCreateContact({ setAddContact, fetchContactList });
 	const { control, formState: { errors }, handleSubmit } = formHook || {};
 

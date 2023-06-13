@@ -16,6 +16,7 @@ function TrackerInfomation({
 	setCurrentSubscription = () => {},
 	setQuickAction = () => {},
 	servicesList = [],
+	loading = false,
 	...rest
 }) {
 	const [{ shipment_data }] = useContext(ShipmentDetailContext);
@@ -86,7 +87,7 @@ function TrackerInfomation({
 			return [];
 		}
 	};
-	const [{ loading }, trigger2] = useRequest({
+	const [{ loading:loading2 }, trigger2] = useRequest({
 		url    : `get_saas_container_subscription?id=${id}`,
 		method : 'get',
 	}, { manual: true });
@@ -123,7 +124,7 @@ function TrackerInfomation({
 		<div className={styles.container}>
 			<MapAndDetails
 				setQuickAction={setQuickAction}
-				mapLoading={loading}
+				mapLoading={loading2 || loading}
 				isTrackerEmpty={isTrackerEmpty}
 				mapPoints={mapPoints}
 				trackerDetails={trackerDetails}
@@ -151,6 +152,7 @@ function TrackerInfomation({
 				vesselName={vesselName}
 				servicesForMap={servicesForMap}
 				rest={rest}
+				loading={loading}
 			/>
 		</div>
 	);

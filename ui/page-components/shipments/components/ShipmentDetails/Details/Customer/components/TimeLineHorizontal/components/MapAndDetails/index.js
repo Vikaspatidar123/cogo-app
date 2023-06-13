@@ -22,7 +22,16 @@ function MapAndDetails({
 	servicesForMap = false,
 }) {
 	const renderEmpty = () => {
-		if (mapLoading) return <Placeholder />;
+		if (mapLoading) {
+			return (
+				<img
+					src="https://cogoport-maps.s3.ap-south-1.amazonaws.com/world+(2).svg"
+					alt=""
+					width={800}
+					height={300}
+				/>
+			);
+		}
 
 		return servicesForMap ? (
 			<div style={{ height: '400px', width: '100%', alignItems: 'center' }}>

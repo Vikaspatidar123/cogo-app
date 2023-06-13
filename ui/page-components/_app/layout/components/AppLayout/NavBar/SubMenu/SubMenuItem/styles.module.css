@@ -47,6 +47,8 @@
 	font-weight: 500;
 	line-height: 14px;
 	color: #6e7e92;
+	word-break: break-word;
+	white-space: pre-wrap;
 }
 
 .active {

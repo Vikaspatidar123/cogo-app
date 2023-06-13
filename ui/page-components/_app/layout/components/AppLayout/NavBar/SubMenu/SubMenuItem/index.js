@@ -15,8 +15,8 @@ function SubMenuItem({ item, unPrefixedPath }) {
 	} = item || {};
 
 	const renderDescription = (desc) => {
-		if (desc.length > 45) {
-			return `${desc.substring(0, 45)}...`;
+		if (desc.length > 65) {
+			return `${desc.substring(0, 65)}...`;
 		}
 		return desc;
 	};

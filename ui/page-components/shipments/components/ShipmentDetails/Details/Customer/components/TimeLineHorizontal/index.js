@@ -9,7 +9,7 @@ function TimeLineHorizontal({
 }) {
 	const [currentSubscription, setCurrentSubscription] = useState(null);
 
-	const { data, loading, setPage } = ListSaasSubscriptions();
+	const { data = {}, loading, setPage } = ListSaasSubscriptions();
 
 	const { list = [], page = 0, page_limit = 0, total_count = 0 } = data || {};
 	const container_data =	list?.filter((item) => item?.type === 'CONTAINER_NO') || [];

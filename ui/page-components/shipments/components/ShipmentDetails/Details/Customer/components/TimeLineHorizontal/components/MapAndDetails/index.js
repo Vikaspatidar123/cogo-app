@@ -1,4 +1,4 @@
-import { Placeholder, cl } from '@cogoport/components';
+import { cl } from '@cogoport/components';
 
 import PendingTasks from '../../../PendingTasks';
 import QuickActions from '../../../QuickActions';

@@ -34,7 +34,7 @@ function TrackerInfomation({
 	const [selectedMilestonesList, setSelectedMilestonesList] = useState([]);
 	const [preditiveEta, setPreditiveEta] = useState({});
 	const [vesselName, setVesselName] = useState('');
-	const { getRoute } = useGetAllOceanRoutes({});
+	const { getRoute, routeLoading } = useGetAllOceanRoutes({});
 
 	const [{ loading:apiloading }, trigger1] = useRequest({
 		url        : 'get_container_sea_route',
@@ -43,7 +43,6 @@ function TrackerInfomation({
 	}, { manual: true });
 
 	const isTrackerEmpty = trackerDetails?.tracking_status !== 'Found';
-
 	const getAllOceanRoutes = async (ocean_data) => {
 		try {
 			const container_no = ocean_data.container_details
@@ -124,7 +123,7 @@ function TrackerInfomation({
 		<div className={styles.container}>
 			<MapAndDetails
 				setQuickAction={setQuickAction}
-				mapLoading={loading2 || loading || apiloading}
+				mapLoading={loading2 || loading || apiloading || routeLoading}
 				isTrackerEmpty={isTrackerEmpty}
 				mapPoints={mapPoints}
 				trackerDetails={trackerDetails}

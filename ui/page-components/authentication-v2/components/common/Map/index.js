@@ -21,8 +21,6 @@ const generateSmoothCurve = (routePath) => {
 	return smoothPath;
 };
 
-const STATIONS_COORDS = [path[0], [80.83090675124562, 309.19921875000006]];
-
 const shipIcon = () => getMapDivIcon(
 	<IcShip className="ship-icon" />,
 	'',
@@ -30,13 +28,14 @@ const shipIcon = () => getMapDivIcon(
 	[95, 55],
 );
 
-function Maps() {
+function Maps({ curIdx, prevIdx = 0, station_count }) {
 	const [map, setMap] = useState(null);
 	const shipRef = useRef(null);
 
 	const bezierCurve = generateSmoothCurve(path);
-
-	// const endPos = path[path.length - 1];
+	const curPath = bezierCurve.slice(prevIdx, curIdx);
+	const station_coords = [...Array(station_count).keys()]
+		.map((i, idx) => bezierCurve[Math.floor(bezierCurve.length / station_count) * idx]);
 
 	useEffect(() => {
 		if (map) {
@@ -49,12 +48,12 @@ function Maps() {
 		let curStep = 0;
 
 		if (map) {
-			const totalSteps = bezierCurve.length - 50;
+			const totalSteps = curPath.length - 50;
 			// eslint-disable-next-line no-underscore-dangle
 			shipRef.current._icon.classList.add(styles.transition);
 			const moveShip = () => {
-				const startPoint = bezierCurve[curStep];
-				const endPoint = bezierCurve[curStep + 1];
+				const startPoint = curPath[curStep];
+				const endPoint = curPath[curStep + 1];
 
 				if (!endPoint) {
 					curStep = 0;
@@ -94,9 +93,9 @@ function Maps() {
 		>
 			<Marker icon={shipIcon()} position={path[0]} ref={shipRef} />
 
-			{STATIONS_COORDS.map((center) => (
+			{station_coords.map((pos) => (
 				<CircleMarker
-					center={center}
+					center={pos}
 					pane="markerPane"
 					color="#D6B300"
 					fillColor="#D6B300"
@@ -110,7 +109,7 @@ function Maps() {
 				pathOptions={{ color: '#CFBC93', dashArray: '12 12 12', weight: '3' }}
 			/>
 			{/* <Polyline
-				positions={bezierCurve}
+				positions={bezierCurve.slice(0, curIdx)}
 				pane="markerPane"
 				pathOptions={{ color: '#D6B300' }}
 			/> */}

@@ -1,6 +1,5 @@
 import { Placeholder, Button } from "@cogoport/components";
 import { isEmpty } from "@cogoport/utils";
-import { useRouter } from "next/router";
 import React from "react";
 
 import useGetCogopointsStats from "../../../../hooks/useGetCogopointsStats";
@@ -9,6 +8,8 @@ import Cards from "../Cards";
 import ListCards from "../ListCard";
 
 import styles from "./styles.module.css";
+
+import { useRouter } from "@/packages/next";
 
 function Points() {
   const { push } = useRouter();

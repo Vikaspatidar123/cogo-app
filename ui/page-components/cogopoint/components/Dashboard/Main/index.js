@@ -1,11 +1,7 @@
-import Points from './Points';
+import Points from "./Points";
 
 function Main() {
-	return (
-		<div>
-			<Points />
-		</div>
-	);
+  return <Points />;
 }
 
 export default Main;

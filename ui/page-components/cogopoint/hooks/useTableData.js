@@ -1,8 +1,8 @@
 import { Toast } from "@cogoport/components";
 import { useCallback, useEffect, useState } from "react";
-import { useSelector } from "react-redux";
 
 import { useRequest } from "@/packages/request";
+import { useSelector } from "@/packages/store";
 
 function useTableData({ activeTab }) {
   const { profile } = useSelector((state) => state);

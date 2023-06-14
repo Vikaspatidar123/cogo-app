@@ -1,7 +1,7 @@
 import { useEffect, useCallback } from "react";
-import { useSelector } from "react-redux";
 
 import { useRequest } from "@/packages/request";
+import { useSelector } from "@/packages/store";
 
 const useGetCogopointsStats = () => {
   const { profile } = useSelector((state) => state);

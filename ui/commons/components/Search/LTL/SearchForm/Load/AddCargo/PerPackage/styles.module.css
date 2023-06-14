@@ -1,0 +1,71 @@
+.container {
+	.core-ui-button-root {
+		padding: 5px !important;
+	}
+
+	.core-ui-button-root div {
+		background-color: #7a5ef3;
+	}
+
+	.core-ui-input-root {
+		border: 1px solid #cddbff !important;
+	}
+}
+
+.wrapper {
+	height: 220px;
+	overflow-y: auto;
+
+	.form-item-label {
+		margin: 12px 0 8px;
+		font-size: 12px;
+		font-weight: 500;
+		color: #393f70;
+	}
+
+	.core-ui-button-root {
+		font-size: 12px;
+		font-weight: 400;
+		color: #393f70;
+		text-transform: none;
+		border: none !important;
+	}
+
+	.form-field-array-add-btn {
+		width: 20px;
+		height: 20px;
+		font-size: 18px;
+		font-weight: 500;
+	}
+
+	.form-fieldArray-cargos {
+		padding-right: 0;
+		padding-left: 0;
+	}
+
+	.core-ui-select__control {
+		border: 1px solid #cddbff;
+	}
+
+	.form-layout-root-row {
+		margin: 0 -16px !important;
+	}
+
+	.core-ui-input-suffix {
+		display: flex;
+		align-items: center;
+		font-size: 14px;
+		color: #828282;
+	}
+}
+
+.button_container {
+	display: flex;
+	justify-content: flex-end;
+	width: 100%;
+	margin-top: 10px;
+
+	.core-ui-button-root {
+		border: 1px solid #393f70 !important;
+	}
+}

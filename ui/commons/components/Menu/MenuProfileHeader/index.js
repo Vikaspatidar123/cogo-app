@@ -1,6 +1,7 @@
+import { Avatar } from '@cogoport/components';
+
 import KycStatus from '../KycStatus';
 
-import Avatar from './avatar.svg';
 import styles from './styles.module.css';
 
 import { useSelector } from '@/packages/store';
@@ -26,7 +27,9 @@ function MenuProfileHeader({ setShow }) {
 					{organizations?.length ? (
 						<div
 							className={styles.switch_account}
-							onClick={() => { setShow(true); }}
+							onClick={() => {
+								setShow(true);
+							}}
 							role="presentation"
 						>
 							Switch Account

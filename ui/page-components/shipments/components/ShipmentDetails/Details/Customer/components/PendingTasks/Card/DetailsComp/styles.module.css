@@ -1,0 +1,23 @@
+.row {
+	display: flex;
+	align-items: center;
+	padding: 4px 0;
+}
+
+.label {
+	width: 40%;
+	margin: 0;
+	font-size: 14px;
+	font-weight: 600;
+	line-height: 16px;
+	color: #4f4f4f;
+}
+
+.value {
+	width: 60%;
+	margin: 0;
+	font-size: 14px;
+	font-weight: 400;
+	line-height: 16px;
+	color: #393f70;
+}

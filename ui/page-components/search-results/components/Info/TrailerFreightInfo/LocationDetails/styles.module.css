@@ -1,0 +1,52 @@
+.port {
+	align-items: center;
+	max-width: 120px;
+	overflow: hidden;
+	font-size: 16px;
+	font-weight: 700;
+	line-height: 26px;
+	color: #393f70;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.icon_wrap {
+	display: flex;
+	margin-right: 20px;
+	margin-left: 20px;
+
+	/* margin-top: 10px; */
+
+	@media (max-width: 768px) {
+		margin-top: 6px;
+		margin-right: 0;
+		margin-left: 0;
+	}
+}
+
+.trip_type {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.location_details_div {
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	padding: 0 16px;
+}
+
+.circle {
+	width: 6px;
+	height: 6px;
+	background: #b3d5fb;
+	border: 1px solid #4097f5;
+	border-radius: 50%;
+}
+
+.dotted_line {
+	width: 60px;
+	margin: 2px 4px 0;
+	border-top: 2px dotted #7e87c1;
+}

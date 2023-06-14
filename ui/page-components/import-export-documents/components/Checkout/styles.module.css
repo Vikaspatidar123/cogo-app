@@ -1,0 +1,22 @@
+.container {
+	display: flex;
+	justify-content: space-between;
+
+	.details {
+		width: 65%;
+	}
+
+	.summary {
+		width: 33%;
+	}
+
+	@media screen and (max-width: 767px) {
+		flex-direction: column;
+		padding: 10px;
+
+		.details,
+		.summary {
+			width: 100%;
+		}
+	}
+}

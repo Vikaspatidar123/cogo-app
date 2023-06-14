@@ -27,6 +27,7 @@ const useProductCategory = ({ labeledValue }) => {
 			Toast.error(error?.message);
 		}
 	};
+
 	useEffect(() => {
 		if (labeledValue === 'category') {
 			refetchProductCategory();

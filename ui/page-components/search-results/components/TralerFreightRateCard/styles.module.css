@@ -1,0 +1,158 @@
+.container {
+	box-sizing: border-box;
+	margin: 16px 0;
+	background: #fff;
+	border: 1px solid #e0e0e0;
+	border-radius: 10px;
+
+	@media (max-width: 768px) {
+		border: 1px solid rgb(224 224 224);
+	}
+
+	.service_dropdown {
+		background-color: #ded7fc;
+	}
+}
+
+.container:hover {
+	box-shadow: 0 1px 6px rgb(169 188 218 / 65%);
+}
+
+.card {
+	display: flex;
+
+	@media (max-width: 768px) {
+		flex-direction: column;
+	}
+
+	.breakup_button {
+		display: none;
+	}
+
+	.trip_type {
+		visibility: hidden;
+	}
+
+	@media (min-width: 768px) and (max-width: 1096px) {
+		flex-direction: column;
+	}
+}
+
+.quotation_button {
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 16px;
+}
+
+.text {
+	font-size: 10px;
+	color: #333;
+
+	.spot_negotiation_rate {
+		background: #e6fbe9;
+	}
+
+	.cogo_assured_rate {
+		margin-top: 4px;
+		margin-left: 40px;
+		font-size: 12px;
+		font-weight: 400;
+	}
+}
+
+.cogo_assured {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: fit-content;
+	padding: 4px 12px;
+	background: #d9eafd;
+	border-radius: 9px 0 4px;
+
+	&.cogo_assured_rate {
+		height: 48px;
+		border-radius: 9px 0 8px;
+	}
+
+	svg {
+		margin-right: 8px;
+		font-size: 20px;
+	}
+}
+
+.cogoport_text {
+	font-size: 14px;
+	font-weight: 500;
+	color: #333;
+}
+
+.details {
+	display: flex;
+	padding: 16px;
+}
+
+.line_horizontal {
+	width: auto;
+	height: 1px;
+	margin: 0;
+	background-color: #e7e7e7;
+}
+
+.line_vertical {
+	width: 1px;
+	height: auto;
+	margin: 0;
+	background-color: #e7e7e7;
+}
+
+.div {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	padding: 4px;
+	margin: 5px;
+	font-size: 10px;
+	background: #dfe1ef;
+	border-radius: 4px;
+}
+
+.container_values {
+	max-width: 280px;
+	margin-left: 5px;
+	color: #000;
+}
+
+.freight_details_div {
+	display: flex;
+	padding-right: 16px;
+}
+
+.freight_details_text {
+	font-weight: 500;
+}
+
+.freight_details {
+	padding: 0 8px;
+	font-weight: 350;
+}
+
+.info_div {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	padding: 16px;
+	margin-left: -14px;
+
+	@media (max-width: 968px) {
+		flex-direction: column;
+	}
+}
+
+.styled_flex {
+	display: flex;
+	flex-direction: column;
+}
+
+.flex {
+	display: flex;
+}

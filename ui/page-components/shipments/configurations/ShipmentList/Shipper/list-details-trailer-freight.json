@@ -1,0 +1,74 @@
+{
+	"name": "shipment",
+	"title": "Shipments",
+	"description": "Manage all your Shipments at a single place by viewing all your new bookings, completing pending tasks for each shipment, communicating with right stakeholders through comments and submitting invoices",
+	"filter_controls": [
+		{
+			"name": "origin_location_id",
+			"label": "Origin Location",
+			"type": "async_select",
+			"asyncKey":"locations",
+			"params": {
+				"filters": {
+					"type": ["seaport", "airport", "pincode", "city"]
+				}
+			}
+		},
+		{
+			"name": "destination_location_id",
+			"label": "Destination Location",
+			"type": "async_select",
+			"asyncKey":"locations",
+			"params": {
+				"filters": {
+					"type": ["seaport", "airport", "pincode", "city"]
+				}
+			}
+		},
+		{
+			"name": "container_size",
+			"label": "Container Size",
+			"type": "chips",
+			"optionKey": "container-sizes"
+		},
+		{
+			"name": "container_type",
+			"label": "Container Type",
+			"type": "select",
+			"optionKey": "container-types"
+		},
+		{
+			"name": "commodity",
+			"label": "Commodity",
+			"type": "select",
+			"commodityType": "freight",
+			"optionKey": "true"
+		},
+		{
+			"name": "state",
+			"label": "State",
+			"type": "select",
+			"options": [
+				{ "label": "Containers gated in", "value": "containers_gated_in" },
+				{ "label": "Vessel departed", "value": "vessel_departed" },
+				{ "label": "Vessel arrived", "value": "vessel_arrived" },
+				{ "label": "Containers gated out", "value": "containers_gated_out" }
+			]
+		}
+	],
+	"list_states": {
+		"ongoing": ["shipment_received", "confirmed_by_importer_exporter", "in_progress"],
+		"past": ["completed", "cancelled", "aborted"]
+	},
+	"routeInfo": {
+		"origin_pickup": "pickup",
+		"origin_drop": "drop",
+		"origin_port": "origin_port",
+		"origin_main_port": "origin_main_port",
+		"destination_main_port": "destination_main_port",
+		"destination_port": "destination_port",
+		"destination_pickup": "destination_pickup",
+		"destination_drop": "drop"
+	},
+	"pending_tasks": {}
+}

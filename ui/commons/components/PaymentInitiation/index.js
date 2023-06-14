@@ -5,7 +5,7 @@ const CHARGEBEE_JS_URL = 'https://js.chargebee.com/v2/chargebee.js';
 
 async function paymentGateway(data, setButtonLoading) {
 	const { gateway = '' } = data || {};
-	const environment = process.env.REST_BASE_API_URL !== 'https://api.cogoport.com';
+	const environment = process.env.NEXT_PUBLIC_APP_URL !== 'https://api.cogoport.com';
 	const key = environment ? 'uat' : 'pay';
 	switch (gateway) {
 		case 'RAZORPAY':

@@ -1,0 +1,38 @@
+.row {
+	display: flex;
+	align-items: center;
+	margin-bottom: 5px;
+}
+
+.trade_type {
+	margin: 0 4px;
+	font-size: 12px;
+	font-style: normal;
+	font-weight: normal;
+	line-height: 14px;
+	color: #828282;
+}
+
+.active {
+	font-weight: bold;
+	color: #000;
+}
+
+.styled_toggle {
+	:global {
+		.core-ui-toggle-control-container {
+			:focus-within {
+				border: 1px solid #2684ff;
+				box-shadow: 0 0 0 1px #2684ff;
+			}
+
+			:hover {
+				border: 1px solid #2684ff;
+			}
+
+			::before {
+				background-color: #2684ff;
+			}
+		}
+	}
+}

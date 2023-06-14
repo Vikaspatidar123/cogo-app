@@ -1,12 +1,17 @@
 import { Toast } from '@cogoport/components';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import { useRequest } from '@/packages/request';
 import { useSelector } from '@/packages/store';
 
+const prepareFilters = () => {
+	const finalFilters = {};
+
+	return finalFilters;
+};
 const useFetchTrends = ({ pageLimit = 10 }) => {
 	const [filters, setFilters] = useState({});
-	const [pagination, setPagination] = useState({ page: 1 });
+	const [pagination, setPagination] = useState(1);
 	const { freightTrends, setFreightTrends } = useSelector((state) => state);
 
 	const [{ loading:load, data: tredList = [] }, trendTrigger] = useRequest({
@@ -21,9 +26,10 @@ const useFetchTrends = ({ pageLimit = 10 }) => {
 
 	const fetchTrends = async () => {
 		try {
-			const res = await trigger({
+			const res = await trendTrigger({
 				params: {
-					page       : pagination.page,
+					filters    : { ...prepareFilters(filters, freightTrends?.filter_data ?? {}) },
+					page       : pagination,
 					page_limit : pageLimit,
 				},
 			});
@@ -40,7 +46,7 @@ const useFetchTrends = ({ pageLimit = 10 }) => {
 	};
 	const fetchLocations = async (inputValue, callback = () => {}) => {
 		try {
-			const res = await trendTrigger({
+			const res = await trigger({
 				params: {
 					filters: {
 						status : 'active',
@@ -64,9 +70,13 @@ const useFetchTrends = ({ pageLimit = 10 }) => {
 
 			callback(data);
 		} catch (err) {
-			Toast.error("Couldn't fetch locations. Please try again later.");
+			console.log(err);
 		}
 	};
+	useEffect(() => {
+		fetchTrends();
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [filters, pagination]);
 	const refectTrends = () => fetchTrends(false);
 	return {
 		filters,

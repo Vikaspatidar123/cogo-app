@@ -1,0 +1,13 @@
+.flex_box {
+	display: flex;
+	align-items: center;
+}
+
+.header {
+	margin: 0;
+	margin-left: 8px;
+}
+
+.container {
+	padding: 10px 16px;
+}

@@ -1,0 +1,48 @@
+/* stylelint-disable */
+.item_container {
+	display: flex;
+	padding: 20px;
+	border-bottom: 1px solid rgb(217 234 253);
+}
+
+.icon {
+	display: flex;
+
+	svg {
+		margin: 3px;
+	}
+}
+
+.back_ground {
+	&.credit {
+		.core-ui-tag-root {
+			width: 100%;
+			text-transform: capitalize;
+			background: #d4edd8;
+			border-radius: 7px;
+		}
+	}
+
+	&.debit {
+		.core-ui-tag-root {
+			width: 100%;
+			text-transform: capitalize;
+			background: #f4b6b6;
+			border-radius: 7px;
+		}
+	}
+
+	.core-ui-tag-text {
+		padding: 3px !important;
+		font-size: 12px !important;
+		color: #2c3333 !important;
+	}
+}
+
+.point {
+	display: flex;
+
+	.value {
+		color: rgb(224 186 74);
+	}
+}

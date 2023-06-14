@@ -1,3 +1,1 @@
-import CogoPoints from "./components/Dashboard";
-
-export default CogoPoints;
+export { default as CogoPoints } from './components/Dashboard';

@@ -2,6 +2,7 @@ import ApplicationProcessed from '../ApplicationProcessed';
 import BasicDetailsForm from '../BasicDetailsForm';
 import CompanyInformation from '../CompanyInformation';
 import Documentation from '../Documentation';
+import FinancialAssessment from '../FinancialAssessment';
 import RejectedApplication from '../RejectedApplication';
 
 import styles from './styles.module.css';
@@ -12,6 +13,7 @@ const RENDERING_FORM = {
 	locked               : Documentation,
 	rejected             : RejectedApplication,
 	processing           : ApplicationProcessed,
+	finance_assessment   : FinancialAssessment,
 	default              : BasicDetailsForm,
 };
 

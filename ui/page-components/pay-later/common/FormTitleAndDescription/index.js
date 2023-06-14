@@ -21,6 +21,14 @@ const MAPPING = {
 		heading     : 'Signatory',
 		description : 'Select the authorised signatory',
 	},
+	preview_and_upload: {
+		heading     : 'Document Preview',
+		description : 'Go through the preview documents carefully and request E-sign Link',
+	},
+	upload_signed_copy: {
+		heading     : 'Upload Signed Copy',
+		description : 'Upload the signed copy of abovedocuments',
+	},
 };
 
 function FormTitleAndDescription({ details = '' }) {

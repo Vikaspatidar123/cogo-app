@@ -3,7 +3,7 @@ import { IcMEmail, IcMCall } from '@cogoport/icons-react';
 
 import styles from './styles.module.css';
 
-function SignatoryDetails() {
+function SignatoryDetails({ setSignatoriesUpdated = () => {} }) {
 	return (
 		<div>
 			<div className={styles.container}>
@@ -22,7 +22,7 @@ function SignatoryDetails() {
 				</div>
 			</div>
 			<div className={styles.button_wrapper}>
-				<Button themeType="secondary">
+				<Button themeType="secondary" onClick={() => setSignatoriesUpdated(false)}>
 					Change Signatory
 				</Button>
 			</div>

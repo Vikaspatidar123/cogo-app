@@ -11,7 +11,7 @@ import styles from './styles.module.css';
 import { useForm } from '@/packages/forms';
 import getField from '@/packages/forms/Controlled';
 
-function Signatory({ getCreditRequestResponse = {} }) {
+function Signatory({ getCreditRequestResponse = {}, method = '' }) {
 	const [addSignatory, setAddSignatory] = useState(false);
 	const { control, watch } = useForm();
 
@@ -50,14 +50,16 @@ function Signatory({ getCreditRequestResponse = {} }) {
 						})}
 					</form>
 					<div className={styles.button_wrapper}>
-						<div
-							className={styles.button}
-							role="presentation"
-							onClick={() => setAddSignatory((prev) => !prev)}
-						>
-							<IcMPlus />
-							Add New
-						</div>
+						{method === 'physical' &&						(
+							<div
+								className={styles.button}
+								role="presentation"
+								onClick={() => setAddSignatory((prev) => !prev)}
+							>
+								<IcMPlus />
+								Add New
+							</div>
+						)}
 						{signatoryValue &&	(
 							<Button
 								themeType="secondary"

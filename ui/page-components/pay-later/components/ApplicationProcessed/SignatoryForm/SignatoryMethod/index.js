@@ -1,9 +1,13 @@
 import styles from './styles.module.css';
 
-function SignatoryMethod() {
+function SignatoryMethod({ setMethod = () => {}, method = '' }) {
 	return (
 		<div>
-			<div className={styles.button}>
+			<div
+				className={method === 'online' ? styles.selected_button : styles.button}
+				role="presentation"
+				onClick={() => setMethod('online')}
+			>
 				<div>
 					<img
 						src="https://cdn.cogoport.io/cms-prod/cogo_partner/vault/original/Vector.png"
@@ -21,7 +25,11 @@ function SignatoryMethod() {
 					</div>
 				</div>
 			</div>
-			<div className={styles.button}>
+			<div
+				className={method === 'physical' ? styles.selected_button : styles.button}
+				role="presentation"
+				onClick={() => setMethod('physical')}
+			>
 				<div>
 					<img
 						src="https://cdn.cogoport.io/cms-prod/cogo_partner/vault/original/Vector_(1).png"

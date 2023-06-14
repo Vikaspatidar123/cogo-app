@@ -11,7 +11,7 @@ function ApplicationStatus({ getCreditRequestResponse = {} }) {
 
 	return (
 		<div className={styles.wrapper}>
-			{cogoscore_application_status === 'awaiting_cogoscore' && (
+			{['awaiting_cogoscore', 'assigned'].includes(cogoscore_application_status) && (
 				<div className={styles.wrapper}>
 					{STATUS.map((item) => (
 						<div className={styles.container}>

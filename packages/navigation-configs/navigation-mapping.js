@@ -146,7 +146,7 @@ const navigationMappings = {
 				href        : '/saas/premium-services/trader-eligibility-check',
 				as          : '/saas/premium-services/trader-eligibility-check',
 				icon        : <IcAEligibilityCheck width={55} height={55} />,
-				description : 'Check the legal legitimacy of your trade parter',
+				description : 'Check that your parter is legally permitted to trade',
 
 			}, {
 				key         : 'saas_premium_services-import_export_docs',
@@ -155,8 +155,15 @@ const navigationMappings = {
 				href        : '/saas/premium-services/import-export-doc',
 				as          : '/saas/premium-services/import-export-doc',
 				icon        : <IcADocumentTemplates width={55} height={55} />,
-				description : 'Know the documents you would need to avoid delays Import Export Controls - Know the'
-				+ ' laws to avoid non compliance penalties',
+				description : 'Know the documents you would need to avoid delays',
+			},
+			{
+				key         : 'saas_premium_services-import_export_controls',
+				title       : 'Import Export Controls',
+				href        : '/saas/premium-services/import-export-controls',
+				as          : '/saas/premium-services/import-export-controls',
+				icon        : <IcAFormsAndCertificates width={45} height={45} />,
+				description : 'Know the laws to avoid non compliance penalties',
 			},
 			{
 				key         : 'saas_premium_services-order_history',
@@ -166,15 +173,6 @@ const navigationMappings = {
 				icon        : <IcABookYourShipment width={55} height={55} />,
 				description : 'View when and which premium services you used previously ',
 
-			},
-
-			{
-				key         : 'saas_premium_services-import_export_controls',
-				title       : 'Import Export Controls',
-				href        : '/saas/premium-services/import-export-controls',
-				as          : '/saas/premium-services/import-export-controls',
-				icon        : <IcAFormsAndCertificates width={45} height={45} />,
-				description : '',
 			},
 
 		],

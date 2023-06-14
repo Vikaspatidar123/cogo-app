@@ -43,7 +43,6 @@ function AddContactModal({ addContact = false, setAddContact = () => {}, fetchCo
 					loading={loading}
 				>
 					Add
-
 				</Button>
 			</div>
 		</Modal>

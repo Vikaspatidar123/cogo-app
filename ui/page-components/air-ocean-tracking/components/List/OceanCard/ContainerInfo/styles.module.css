@@ -46,12 +46,12 @@
 
 .col {
 	&.label {
-		width: 45%;
+		width: 35%;
 		font-weight: 300;
 	}
 
 	&.value {
-		width: 45%;
+		width: 55%;
 		text-align: right;
 	}
 }

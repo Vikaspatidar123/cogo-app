@@ -28,7 +28,7 @@ function DetentionDemurrage({ closeHandler, shipmentId, refetchTrackerList }) {
 		};
 		updateTrackerInfo({ payload });
 	};
-
+	// use align self when error
 	return (
 		<div className={styles.container}>
 			<div className={styles.header}>

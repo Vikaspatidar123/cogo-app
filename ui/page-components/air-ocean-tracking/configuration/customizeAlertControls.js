@@ -10,6 +10,15 @@ const customizeAlertControls = ({ branch_id }) => [
 		params      : {
 			organization_branch_id: branch_id,
 		},
+		getModifiedOptions: (data) => (data || []).map((item) => ({
+			...item,
+			value : item?.id,
+			label : (
+				<div>
+					{`${item?.name} - ${item?.email}`}
+				</div>
+			),
+		})),
 		rules: { required: 'Please Select Contact' },
 	},
 ];

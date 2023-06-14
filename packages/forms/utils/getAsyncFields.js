@@ -270,7 +270,7 @@ function asyncTradeContacts() {
 }
 function asyncFieldsSixDigitHsCode() {
 	return {
-		labelKey    : 'hsCode',
+		labelKey    : 'label',
 		valueKey    : 'id',
 		endpoint    : 'saas/hs-code/six-digit-list',
 		authKey     : 'get_saas_hs_code_six_digit_list',
@@ -280,7 +280,7 @@ function asyncFieldsSixDigitHsCode() {
 
 function asyncFieldsPocDetails() {
 	return {
-		labelKey    : 'name',
+		labelKey    : 'label',
 		valueKey    : 'id',
 		endpoint    : 'list_saas_subscription_poc_details',
 		initialCall : true,

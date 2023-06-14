@@ -1,10 +1,23 @@
-import { cl, Placeholder } from '@cogoport/components';
+import { cl, Placeholder, Tooltip } from '@cogoport/components';
 import { IcMAlert, IcMArrowLeft, IcMArrowRight } from '@cogoport/icons-react';
 import { useMemo } from 'react';
 
 import GET_MAPPING from '../../../../constant/card';
 
 import styles from './styles.module.css';
+
+const renderValue = (value = '') => {
+	if (typeof value === 'object' || value.length < 40) return value;
+
+	return (
+		<Tooltip content={value} placement="bottom">
+			<div>
+				{value.substring(0, 40)}
+				...
+			</div>
+		</Tooltip>
+	);
+};
 
 function ContainerInfo({
 	currentContainer = {}, shipmentInfo = {}, activeContainerIndex,
@@ -19,7 +32,7 @@ function ContainerInfo({
 	const tableData = useMemo(() => {
 		const { commodity = '', hs_code = '' } = shipmentInfo || {};
 		return {
-			commodity    : hs_code ? `${commodity} - (${hs_code})` : <IcMAlert />,
+			commodity    : hs_code ? `${commodity || ''} - (${hs_code})` : <IcMAlert />,
 			container_no : currentContainer?.container_no,
 		};
 	}, [currentContainer, shipmentInfo]);
@@ -77,7 +90,7 @@ function ContainerInfo({
 							</div>
 
 							<div className={cl`${styles.value} ${styles.col}`}>
-								{tableData?.[item]}
+								{renderValue(tableData?.[item])}
 							</div>
 
 						</div>

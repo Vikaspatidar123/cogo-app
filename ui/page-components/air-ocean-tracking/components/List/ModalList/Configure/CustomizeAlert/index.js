@@ -1,54 +1,48 @@
-import { Button } from '@cogoport/components';
+import { isEmpty } from '@cogoport/utils';
+import { useEffect, useState } from 'react';
 
-import customizeAlertControls from '../../../../../configuration/customizeAlertControls';
+import useGetAlertInfo from '../../../../../hooks/useGetAlertInfo';
 
+import AddAlert from './AddAlert';
+import SelectContact from './SelectContact';
 import styles from './styles.module.css';
 
-import { useForm } from '@/packages/forms';
-import getField from '@/packages/forms/Controlled';
-import { useRouter } from '@/packages/next';
+function CustomizeAlert({ closeHandler, shipmentId }) {
+	const [step, setStep] = useState('select_contact');
+	const [selectContactList, setSelectContactList] = useState([]);
+	const {
+		loading, data = [], alertList = [], alertListLoading,
+	} = useGetAlertInfo({ shipmentId, step });
 
-function CustomizeAlert({ closeHandler }) {
-	const { query } = useRouter();
-	const { branch_id = '' } = query || {};
-	const { control, formState: { errors }, handleSubmit } = useForm();
+	useEffect(() => {
+		if (!isEmpty(data)) {
+			setStep('add_alert');
+		}
+	}, [data]);
 
-	const onSubmit = (data) => {
-		console.log(data);
-	};
-
-	const controls = customizeAlertControls({ branch_id });
+	const nextStepHandler = () => setStep('add_alert');
+	const prevStepHandler = () => setStep('select_contact');
 
 	return (
 		<div className={styles.container}>
-			<div className={styles.header}>
-				<h3>Select Contact</h3>
-			</div>
-			<div className={styles.form_container}>
-				<div className={styles.row}>
-					{controls.map((config) => {
-						const { name, type } = config || {};
-						const Element = getField(type);
-						return (
-							<div key={name} className={styles.col}>
-								<Element control={control} {...config} />
-								<p className={styles.errors}>{errors?.[name]?.message || errors?.[name]?.type}</p>
-							</div>
-						);
-					})}
-				</div>
+			{step === 'select_contact' && (
+				<SelectContact
+					closeHandler={closeHandler}
+					nextStepHandler={nextStepHandler}
+					setSelectContactList={setSelectContactList}
+				/>
+			)}
 
-			</div>
-			<div className={styles.footer}>
-				<Button themeType="secondary" onClick={closeHandler}>Cancel</Button>
-				<Button
-					className={styles.submit_btn}
-					themeType="accent"
-					onClick={handleSubmit(onSubmit)}
-				>
-					Next
-				</Button>
-			</div>
+			{step === 'add_alert' && (
+				<AddAlert
+					prevStepHandler={prevStepHandler}
+					selectContactList={selectContactList}
+					prevAlertData={data}
+					alertList={alertList}
+					alertListLoading={alertListLoading}
+					shipmentId={shipmentId}
+				/>
+			)}
 		</div>
 	);
 }

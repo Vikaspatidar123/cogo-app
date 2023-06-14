@@ -4,7 +4,7 @@ import { useForm } from '@/packages/forms';
 import { useRequest } from '@/packages/request';
 import { useSelector } from '@/packages/store';
 
-const useCreateContact = ({ setAddContact, fetchContactList }) => {
+const useCreateContact = ({ setAddContact, fetchContactList = () => {} }) => {
 	const { orgId, branchId } = useSelector((state) => ({
 		orgId    : state.profile.organization.id,
 		branchId : state.general.query.branch_id,
@@ -33,7 +33,7 @@ const useCreateContact = ({ setAddContact, fetchContactList }) => {
 				},
 			});
 			Toast.success('Successfully Created Contact');
-			await fetchContactList();
+			fetchContactList();
 			closeHandler();
 		} catch (err) {
 			console.log(err);

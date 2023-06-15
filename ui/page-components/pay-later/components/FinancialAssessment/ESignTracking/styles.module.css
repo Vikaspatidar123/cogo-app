@@ -1,0 +1,39 @@
+.container {
+    display: flex;
+    align-items: center;
+    margin: 100px;
+}
+
+.image {
+    margin-right: 10px ;
+}
+
+
+.signed_by {
+    display: flex;
+    padding: 3px;
+    border-bottom: 1px solid #BDBDBD;
+    margin: 5px 0;
+}
+
+.link {
+    display: flex;
+    font-size: 20px;
+    align-items: center;
+}
+
+.resend {
+    color:#2962FF;
+    margin-left: 5px;
+    font-size: 12px;
+    text-decoration: underline;
+}
+
+.description {
+    color: #4F4F4F;
+    margin: 10px 0;
+}
+
+.preview {
+    width: 60%
+}

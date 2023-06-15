@@ -1,23 +1,26 @@
 import { Button } from '@cogoport/components';
 import { IcMEmail, IcMCall } from '@cogoport/icons-react';
+import { startCase } from '@cogoport/utils';
 
 import styles from './styles.module.css';
 
-function SignatoryDetails({ setSignatoriesUpdated = () => {} }) {
+function SignatoryDetails({ setSignatoriesUpdated = () => {}, getCreditRequestResponse = {} }) {
+	const { signatories = {} } = getCreditRequestResponse || {};
+	const { name = '', email = '', mobile_number = '' } = signatories?.[0] || {};
 	return (
 		<div>
 			<div className={styles.container}>
 				<div className={styles.name}>
-					Name
+					{startCase(name)}
 				</div>
 				<div className={styles.details}>
 					<div className={styles.email}>
 						<IcMEmail fill="#4F4F4F" />
-						abc@gmail.com
+						{email}
 					</div>
 					<div className={styles.mobile}>
 						<IcMCall fill="#4F4F4F" />
-						910002982787
+						{mobile_number}
 					</div>
 				</div>
 			</div>

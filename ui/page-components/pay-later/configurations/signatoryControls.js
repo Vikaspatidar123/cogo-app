@@ -20,11 +20,13 @@ const SIGNATORYCONTROLS = [
 export const getControls = ({
 	getOptionsForSignatories = () => {},
 	watch = () => {},
+	setSelectedSignatory = () => {},
 }) => SIGNATORYCONTROLS.map((control) => {
 	if (control.name === 'signatory') {
 		return {
 			...control,
-			options: getOptionsForSignatories(),
+			options      : getOptionsForSignatories(),
+			handleChange : (e) => setSelectedSignatory(e),
 		};
 	}
 	if (['signatory_mobile_number', 'signatory_email'].includes(control.name)) {

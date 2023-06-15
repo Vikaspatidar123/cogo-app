@@ -4,32 +4,39 @@ import { useState } from 'react';
 
 import AddSignatory from '../../../../common/AddSignatory';
 import { getControls } from '../../../../configurations/signatoryControls';
-import useUpdateOrganizationCreditApplication from '../../../../hooks/useUpdateOrganizationCreditApplication';
 
 import styles from './styles.module.css';
 
 import { useForm } from '@/packages/forms';
 import getField from '@/packages/forms/Controlled';
 
-function Signatory({ getCreditRequestResponse = {}, method = '' }) {
+function Signatory({
+	getCreditRequestResponse = {},
+	method = '',
+	updateOrganizationCreditApplication = () => {},
+	loading = false,
+}) {
 	const [addSignatory, setAddSignatory] = useState(false);
-	const { control, watch } = useForm();
+	const [selectedSignatory, setSelectedSignatory] = useState({});
+	console.log('🚀 ~ file: index.js:21 ~ selectedSignatory:', selectedSignatory);
+	const { control, watch, handleSubmit } = useForm();
 
 	const { directors = [] } = getCreditRequestResponse || {};
 
 	const getOptionsForSignatories = () => directors.map((item) => ({
+		...item,
 		label : item.name,
 		value : item.name,
+		id    : item.id,
 	}));
 
-	const fields = getControls({ getOptionsForSignatories, watch });
+	const submitSignatoryDetails = (values) => {
+		updateOrganizationCreditApplication({ values, selectedSignatory });
+	};
+
+	const fields = getControls({ getOptionsForSignatories, watch, setSelectedSignatory });
 
 	const signatoryValue = !!watch('signatory');
-
-	const {
-		updateOrganizationCreditApplication = () => {},
-		loading = false,
-	} = useUpdateOrganizationCreditApplication();
 
 	return (
 		<>
@@ -64,7 +71,7 @@ function Signatory({ getCreditRequestResponse = {}, method = '' }) {
 							<Button
 								themeType="secondary"
 								className={styles.save_button}
-								onClick={updateOrganizationCreditApplication}
+								onClick={handleSubmit(submitSignatoryDetails)}
 								loading={loading}
 							>
 								<IcMTick />

@@ -4,9 +4,9 @@ function SignatoryMethod({ setMethod = () => {}, method = '' }) {
 	return (
 		<div>
 			<div
-				className={method === 'online' ? styles.selected_button : styles.button}
+				className={method === 'digital' ? styles.selected_button : styles.button}
 				role="presentation"
-				onClick={() => setMethod('online')}
+				onClick={() => setMethod('digital')}
 			>
 				<div>
 					<img
@@ -33,7 +33,7 @@ function SignatoryMethod({ setMethod = () => {}, method = '' }) {
 				<div>
 					<img
 						src="https://cdn.cogoport.io/cms-prod/cogo_partner/vault/original/Vector_(1).png"
-						alt="online"
+						alt="physical"
 						width={19}
 						height={18}
 					/>

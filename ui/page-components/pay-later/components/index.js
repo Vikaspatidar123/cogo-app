@@ -12,7 +12,7 @@ function PayLater() {
 		loading = false,
 		active = '',
 		setActive = () => {},
-		getOrganizationCreditRequest:refetch,
+		getOrganizationCreditRequest,
 	} = useGetOrganizationCreditRequest();
 
 	if (loading) {
@@ -26,7 +26,11 @@ function PayLater() {
 		active && (
 			<div className={styles.wrapper} key={active}>
 				<Stepper active={active} setActive={setActive} />
-				<Form active={active} getCreditRequestResponse={getCreditRequestResponse} refetch={refetch} />
+				<Form
+					active={active}
+					getCreditRequestResponse={getCreditRequestResponse}
+					refetch={getOrganizationCreditRequest}
+				/>
 			</div>
 		)
 	);

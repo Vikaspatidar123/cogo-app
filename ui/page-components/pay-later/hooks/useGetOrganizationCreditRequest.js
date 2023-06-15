@@ -4,7 +4,7 @@ import { useRequest } from '@/packages/request';
 import { useSelector } from '@/packages/store';
 
 const useGetOrganizationCreditRequest = () => {
-	const [active, setActive] = useState('awaiting_user_inputs');
+	const [active, setActive] = useState('');
 
 	const { profile:{ organization } } = useSelector((state) => state);
 	const [{ loading, data }, trigger] = useRequest(

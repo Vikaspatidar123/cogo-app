@@ -20,11 +20,11 @@ const formMapping = {
 
 function BasicDetailsForm({ getCreditRequestResponse = {}, refetch = () => {} }) {
 	const { proceedToPay, loading } = useApplyCreditRequestCouponCode({ getCreditRequestResponse, refetch });
-
 	return (
 		<div>
 			{DETAILS_ARRAY.map((details) => {
 				const FormFields = formMapping[details];
+
 				return (
 					<div className={styles.wrapper}>
 						<div className={styles.form_description}>

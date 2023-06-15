@@ -2,6 +2,7 @@ import { Button, Toast } from '@cogoport/components';
 import { useEffect, useState } from 'react';
 
 import FormTitleAndDescription from '../../../common/FormTitleAndDescription';
+import useSubmitCreditApplication from '../../../hooks/useSubmitCreditApplication';
 import useUpdateOrganizationCreditApplication from '../../../hooks/useUpdateOrganizationCreditApplication';
 
 import PreviewAndUpload from './PreviewAndUpload';
@@ -13,10 +14,10 @@ import UploadSignedCopy from './UploadSignedCopy';
 
 const DETAILS_ARRAY = ['method', 'signatory', 'preview_and_upload', 'upload_signed_copy'];
 
-function SignatoryForm({ getCreditRequestResponse }) {
+function SignatoryForm({ getCreditRequestResponse = {}, refetch = () => {} }) {
 	const [method, setMethod] = useState('');
 	const [showPreviewAndUpload, setPreviewAndUpload] = useState(false);
-	const { signatories = [] } = getCreditRequestResponse || {};
+	const { signatories = [], is_sign_mode_digital = '' } = getCreditRequestResponse || {};
 
 	const [signatoriesUpdated, setSignatoriesUpdated] = useState(false);
 
@@ -28,17 +29,22 @@ function SignatoryForm({ getCreditRequestResponse }) {
 		upload_signed_copy : showPreviewAndUpload && method === 'physical' && UploadSignedCopy,
 	};
 
-	const { updateOrganizationCreditApplication = () => {} } = useUpdateOrganizationCreditApplication();
+	const {
+		updateOrganizationCreditApplication = () => {},
+		loading = false,
+	} = useUpdateOrganizationCreditApplication({ refetch, getCreditRequestResponse, method });
+
+	const { submitCreditApplication = () => {} } = useSubmitCreditApplication({ getCreditRequestResponse });
 
 	const handleClick = () => {
-		// first update_organization_credit_application
-		// then submit submit_credit_application_for_agreement_flow
+		submitCreditApplication();
 		// get_credit_application_logs?credit_request_id=14def529-4a40-499f-a775-c23dc367504c
 	};
 
 	useEffect(() => {
+		setMethod(is_sign_mode_digital ? 'digital' : 'physical');
 		setSignatoriesUpdated(signatories?.length > 0);
-	}, [signatories?.length]);
+	}, [signatories?.length, is_sign_mode_digital]);
 
 	return (
 		<div>
@@ -58,6 +64,7 @@ function SignatoryForm({ getCreditRequestResponse }) {
 										method={method}
 										setSignatoriesUpdated={setSignatoriesUpdated}
 										updateOrganizationCreditApplication={updateOrganizationCreditApplication}
+										loading={loading}
 									/>
 								</div>
 							</div>
@@ -81,7 +88,6 @@ function SignatoryForm({ getCreditRequestResponse }) {
 				)}
 			</div>
 		</div>
-
 	);
 }
 

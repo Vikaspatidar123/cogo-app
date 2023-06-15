@@ -3,7 +3,16 @@ import { IcAAdd, IcMEdit } from '@cogoport/icons-react';
 
 import styles from './styles.module.css';
 
-function Details() {
+function Details({ data = {} }) {
+	const {
+		pan = '',
+		name = '',
+		address = '',
+		gst_number = '',
+		date_of_incorporation = '',
+		constitution_of_business = '',
+	} = data || {};
+
 	return (
 		<div className={styles.container}>
 			<div className={styles.company_name}>
@@ -11,10 +20,10 @@ function Details() {
 					<IcAAdd width={44} height={44} />
 					<div className={styles.company_details}>
 						<div className={styles.name}>
-							Company Name
+							{name}
 						</div>
 						<div className={styles.type}>
-							Partnership
+							{constitution_of_business}
 						</div>
 					</div>
 				</div>
@@ -29,7 +38,7 @@ function Details() {
 						PAN
 					</div>
 					<div className={styles.value}>
-						KJEPS1369M
+						{pan}
 					</div>
 				</div>
 				<div className={styles.description}>
@@ -37,7 +46,7 @@ function Details() {
 						IEC
 					</div>
 					<div className={styles.value}>
-						SC120984736
+						-
 					</div>
 				</div>
 				<div className={styles.description}>
@@ -45,7 +54,7 @@ function Details() {
 						CIN/LLPIN
 					</div>
 					<div className={styles.value}>
-						SC120984736
+						-
 					</div>
 				</div>
 				<div className={styles.description}>
@@ -53,7 +62,7 @@ function Details() {
 						GST
 					</div>
 					<div className={styles.value}>
-						SC120984736
+						{gst_number}
 					</div>
 				</div>
 				<div className={styles.description}>
@@ -61,7 +70,7 @@ function Details() {
 						Date of Incorporation
 					</div>
 					<div className={styles.value}>
-						02 Jan 1985
+						{date_of_incorporation}
 					</div>
 				</div>
 				<div className={styles.address}>
@@ -69,7 +78,7 @@ function Details() {
 						GST Registered Address
 					</div>
 					<div className={styles.value}>
-						Technopolis corporate park, 7A, Bldg no 17, Area 51, Andheri (w), Mumbai 400076
+						{address}
 					</div>
 				</div>
 			</div>

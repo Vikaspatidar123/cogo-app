@@ -2,7 +2,7 @@ import { useEffect, useCallback } from 'react';
 
 import { useRequest } from '@/packages/request';
 
-const useGetCompanyFinanceData = ({ id }) => {
+const useGetCompanyFinanceData = ({ id = '' }) => {
 	const [{ loading, data }, trigger] = useRequest({
 		method : 'get',
 		url    : 'get_company_finance_data',

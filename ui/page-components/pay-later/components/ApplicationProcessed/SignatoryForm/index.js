@@ -22,8 +22,8 @@ function SignatoryForm({ getCreditRequestResponse }) {
 
 	const formMapping = {
 		method             : !showPreviewAndUpload && SignatoryMethod,
-		// signatory          : signatoriesUpdated ? SignatoryDetails : Signatory, correct one
-		signatory          : signatoriesUpdated ? Signatory : SignatoryDetails,
+		signatory          : signatoriesUpdated ? SignatoryDetails : Signatory,
+		// signatory          : signatoriesUpdated ? Signatory : SignatoryDetails,
 		preview_and_upload : showPreviewAndUpload && PreviewAndUpload,
 		upload_signed_copy : showPreviewAndUpload && method === 'physical' && UploadSignedCopy,
 	};

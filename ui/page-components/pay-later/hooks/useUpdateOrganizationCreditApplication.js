@@ -1,6 +1,6 @@
 import { useRequest } from '@/packages/request';
 
-const useUpdateOrganizationCreditApplication = () => {
+const useUpdateOrganizationCreditApplication = ({ refetch = () => {} }) => {
 	const [{ loading, data }, trigger] = useRequest(
 		{
 			method : 'post',
@@ -14,6 +14,7 @@ const useUpdateOrganizationCreditApplication = () => {
 			await trigger({
 				data: {},
 			});
+			refetch();
 		} catch (e) {
 			console.log(e);
 		}

@@ -12,9 +12,10 @@ function GSTproof({
 	setProofUrl = () => {},
 	hasRequestedForCredit = false,
 	getCreditRequestResponse = {},
+	refetch = () => {},
 }) {
 	const { business_name = '', tax_number = '', address = [] } = getCreditRequestResponse || {};
-	const { createOrganizationCreditRequest = () => {} } = useCreateOrganizationCreditRequest();
+	const { createOrganizationCreditRequest = () => {} } = useCreateOrganizationCreditRequest({ refetch });
 
 	const submit = (values) => {
 		createOrganizationCreditRequest({ proofUrl, values });
@@ -59,7 +60,7 @@ function GSTproof({
 						)}
 					</div>
 
-					{!hasRequestedForCredit &&	(
+					{(!hasRequestedForCredit) &&	(
 						<div className={styles.button_wrapper}>
 							<Button
 								className={styles.cancel}

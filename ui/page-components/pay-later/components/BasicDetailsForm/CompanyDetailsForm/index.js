@@ -11,7 +11,7 @@ import { useForm } from '@/packages/forms';
 import getField from '@/packages/forms/Controlled';
 import { useSelector } from '@/packages/store';
 
-function CompanyDetailsForm({ getCreditRequestResponse = {} }) {
+function CompanyDetailsForm({ getCreditRequestResponse = {}, refetch = () => {} }) {
 	const { profile } = useSelector((state) => state);
 
 	const [show, setShow] = useState(false);
@@ -52,7 +52,7 @@ function CompanyDetailsForm({ getCreditRequestResponse = {} }) {
 
 	useEffect(() => {
 		setValue('gst_proof', fileName);
-		setValue('tax_number', getCreditRequestResponse?.tax_number);
+		// setValue('tax_number', getCreditRequestResponse?.tax_number);
 	}, [fileName, getCreditRequestResponse?.tax_number, setValue]);
 
 	return (
@@ -78,6 +78,7 @@ function CompanyDetailsForm({ getCreditRequestResponse = {} }) {
 												setProofUrl={setProofUrl}
 												hasRequestedForCredit={hasRequestedForCredit}
 												getCreditRequestResponse={getCreditRequestResponse}
+												refetch={refetch}
 											/>
 										)}
 									</>

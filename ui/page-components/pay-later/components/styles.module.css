@@ -1,3 +1,11 @@
 .wrapper {
     width: 100%;
 }
+
+.loader {
+    width: 100w;
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    height: 100vh;
+}

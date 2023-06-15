@@ -1,5 +1,4 @@
 import { Loader } from '@cogoport/components';
-import { useEffect, useState } from 'react';
 
 import useGetOrganizationCreditRequest from '../hooks/useGetOrganizationCreditRequest';
 
@@ -8,24 +7,29 @@ import Stepper from './Stepper';
 import styles from './styles.module.css';
 
 function PayLater() {
-	const { data:getCreditRequestResponse, loading = false } = useGetOrganizationCreditRequest();
-
-	const { status = '' } = getCreditRequestResponse || {};
-
-	const [active, setActive] = useState();
-
-	useEffect(() => {
-		setActive(status);
-	}, [status]);
+	const {
+		data:getCreditRequestResponse,
+		loading = false,
+		active = '',
+		setActive = () => {},
+		getOrganizationCreditRequest:refetch,
+	} = useGetOrganizationCreditRequest();
 
 	if (loading) {
-		return <Loader />;
+		return (
+			<div className={styles.loader}>
+				<Loader />
+			</div>
+		);
 	}
 	return (
-		<div className={styles.wrapper}>
-			<Stepper active={active} setActive={setActive} />
-			<Form active={active} getCreditRequestResponse={getCreditRequestResponse} />
-		</div>
+		active && (
+			<div className={styles.wrapper} key={active}>
+				<Stepper active={active} setActive={setActive} />
+				<Form active={active} getCreditRequestResponse={getCreditRequestResponse} refetch={refetch} />
+			</div>
+		)
 	);
 }
+
 export default PayLater;

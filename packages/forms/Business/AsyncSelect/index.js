@@ -75,7 +75,6 @@ function AsyncSelect(props) {
 		getModifiedOptions,
 		value    : rest.value,
 	});
-
 	if (typeof getSelectedOption === 'function' && !isEmpty(rest.value)) {
 		let selectedValue;
 		if (multiple) {
@@ -89,10 +88,11 @@ function AsyncSelect(props) {
 		);
 		getSelectedOption(selectedOption[0]);
 	}
-	console.log(getAsyncOptionsProps, 'getAsyncOptionsProps');
 	const Element = multiple ? MultiSelect : Select;
+	console.log(getAsyncOptionsProps, 'getAsyncOptionsProps');
 	return (
 		<Element
+			key={rest || getAsyncOptionsProps}
 			{...rest}
 			{...getAsyncOptionsProps}
 		/>

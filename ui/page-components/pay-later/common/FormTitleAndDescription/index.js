@@ -29,6 +29,10 @@ const MAPPING = {
 		heading     : 'Upload Signed Copy',
 		description : 'Upload the signed copy of abovedocuments',
 	},
+	coupons: {
+		heading     : 'Coupons',
+		description : '',
+	},
 };
 
 function FormTitleAndDescription({ details = '' }) {

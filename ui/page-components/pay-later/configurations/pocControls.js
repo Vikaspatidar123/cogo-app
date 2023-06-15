@@ -7,13 +7,13 @@ const getUserWork = (workscope) => {
 
 const getModifiedOptionsForOrgUsers = (options) => (options || []).map((x) => ({
 	...x,
-	value: x.id,
+	value: x?.id,
 	label:
 	<div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
 		<div>
-			{x.name}
+			{x?.name}
 			-
-			{x.work_scopes.map((work) => `${getUserWork(work)}/`)}
+			{(x?.work_scopes || []).map((work) => `${getUserWork(work)}/`)}
 		</div>
 	</div>,
 }));

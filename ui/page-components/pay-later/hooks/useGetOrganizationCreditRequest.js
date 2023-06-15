@@ -1,9 +1,11 @@
-import { useEffect, useCallback } from 'react';
-import { useSelector } from 'react-redux';
+import { useEffect, useCallback, useState } from 'react';
 
 import { useRequest } from '@/packages/request';
+import { useSelector } from '@/packages/store';
 
 const useGetOrganizationCreditRequest = () => {
+	const [active, setActive] = useState('awaiting_user_inputs');
+
 	const { profile:{ organization } } = useSelector((state) => state);
 	const [{ loading, data }, trigger] = useRequest(
 		{
@@ -16,17 +18,18 @@ const useGetOrganizationCreditRequest = () => {
 		},
 	);
 
-	const getOrganizationCreditRequest = useCallback(() => {
+	const getOrganizationCreditRequest = useCallback(async () => {
 		try {
-			trigger({
+			await trigger({
 				params: {
 					organization_id: organization?.id,
 				},
 			});
+			setActive(data?.status);
 		} catch (e) {
-			console.log(e);
+			setActive('awaiting_user_inputs');
 		}
-	}, [organization?.id, trigger]);
+	}, [data?.status, organization?.id, trigger]);
 
 	useEffect(() => {
 		getOrganizationCreditRequest();
@@ -36,6 +39,7 @@ const useGetOrganizationCreditRequest = () => {
 		loading,
 		data,
 		getOrganizationCreditRequest,
+		active,
 	};
 };
 

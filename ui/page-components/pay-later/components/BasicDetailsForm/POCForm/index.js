@@ -20,7 +20,7 @@ const getAccordianTitle = ({ placeholder, pocStatus }) => (
 	</div>
 );
 
-function POCForm({ getCreditRequestResponse = {} }) {
+function POCForm({ getCreditRequestResponse = {}, refetch = () => {} }) {
 	const [addNewPoc, setAddNewPoc] = useState([]);
 	const [pocDetails, setPOCDetails] = useState({});
 
@@ -31,7 +31,7 @@ function POCForm({ getCreditRequestResponse = {} }) {
 
 	const {
 		control,
-		setValue,
+		// setValue,
 		// watch,
 	} = useForm({
 		defaultValues: {
@@ -39,7 +39,7 @@ function POCForm({ getCreditRequestResponse = {} }) {
 		},
 	});
 
-	const { updatePOCDetails = () => {}, loading = false } = useUpdatePOCDetails({ setValue });
+	const { updatePOCDetails = () => {}, loading = false } = useUpdatePOCDetails({ refetch });
 
 	const callUpdatePOCdetails = ({ poc }) => {
 		updatePOCDetails({ poc, pocDetails, id: getCreditRequestResponse?.id });
@@ -62,7 +62,7 @@ function POCForm({ getCreditRequestResponse = {} }) {
 							{!addNewPoc.includes(item.name) ? (
 								<>
 									<Element {...item} control={control} />
-									{pocStatus === 'incomplete' &&					(
+									{pocStatus !== 'completed' &&					(
 										<div className={styles.button_wrapper}>
 											<Button
 												themeType="secondary"

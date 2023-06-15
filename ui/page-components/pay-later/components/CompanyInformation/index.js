@@ -1,15 +1,25 @@
+import { Loader } from '@cogoport/components';
+
 import useGetCompanyFinanceData from '../../hooks/useGetCompanyFinanceData';
 
 import CompanyDetails from './CompanyDetails';
 import DirectorDetails from './DirectorDetails';
+import styles from './styles.module.css';
 
-function CompanyInformation({ getCreditRequestResponse = {} }) {
-	const { data } = useGetCompanyFinanceData({ id: getCreditRequestResponse?.id });
-	console.log('🚀 ~ file: index.js:8 ~ CompanyInformation ~ data:', data);
+function CompanyInformation({ getCreditRequestResponse = {}, refetch = () => {} }) {
+	const { data, loading } = useGetCompanyFinanceData({ id: getCreditRequestResponse?.id });
+
+	if (loading) {
+		return (
+			<div className={styles.loader}>
+				<Loader />
+			</div>
+		);
+	}
 	return (
 		<div>
-			<CompanyDetails />
-			<DirectorDetails />
+			<CompanyDetails data={data} />
+			<DirectorDetails data={data} getCreditRequestResponse={getCreditRequestResponse} refetch={refetch} />
 		</div>
 	);
 }

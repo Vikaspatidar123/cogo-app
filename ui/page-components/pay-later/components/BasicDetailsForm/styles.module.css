@@ -16,3 +16,8 @@
     width: 48%;
 }
 
+.button_wrapper {
+    display: flex;
+    justify-content: flex-end;
+    margin: 10px 0;
+}

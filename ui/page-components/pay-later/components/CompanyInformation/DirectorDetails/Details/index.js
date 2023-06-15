@@ -4,7 +4,8 @@ import { useState } from 'react';
 
 import styles from './styles.module.css';
 
-function Details() {
+function Details({ director = {} }) {
+	const { name = '', registration_number = '', gender = '', date_of_birth = '', address = '' } = director || {};
 	const [show, setShow] = useState(false);
 	return (
 		<div className={styles.container}>
@@ -13,7 +14,7 @@ function Details() {
 					<IcMActivePlans width={44} height={44} fill="#7278AD" />
 					<div className={styles.company_details}>
 						<div className={styles.name}>
-							Director Name
+							{name}
 						</div>
 					</div>
 				</div>
@@ -32,7 +33,7 @@ function Details() {
 							PAN
 						</div>
 						<div className={styles.value}>
-							KJEPS1369M
+							{registration_number}
 						</div>
 					</div>
 					<div className={styles.description}>
@@ -48,7 +49,7 @@ function Details() {
 							Gender
 						</div>
 						<div className={styles.value}>
-							Male
+							{gender === 'M' ? 'Male' : 'Female'}
 						</div>
 					</div>
 					<div className={styles.description}>
@@ -56,7 +57,7 @@ function Details() {
 							DOB
 						</div>
 						<div className={styles.value}>
-							28/03/2000
+							{date_of_birth}
 						</div>
 					</div>
 					<div className={styles.address}>
@@ -64,7 +65,7 @@ function Details() {
 							Address
 						</div>
 						<div className={styles.value}>
-							Technopolis corporate park, 7A, Bldg no 17, Area 51, Andheri (w), Mumbai 400076
+							{address}
 						</div>
 					</div>
 				</div>

@@ -5,10 +5,20 @@ import useUpdateCreditOrganizationRequest from '../../../hooks/useUpdateCreditOr
 
 import styles from './styles.module.css';
 
-function TermsAndConditions() {
+function TermsAndConditions({
+	getCreditRequestResponse = {},
+	companyAddress = {},
+	directors = [],
+	refetch = () => {},
+}) {
 	const [checked, setChecked] = useState(false);
 
-	const { updateRequest } = useUpdateCreditOrganizationRequest();
+	const { updateRequest = () => {} } = useUpdateCreditOrganizationRequest({
+		getCreditRequestResponse,
+		companyAddress,
+		directors,
+		refetch,
+	});
 
 	const handleButtonClick = () => {
 		if (!checked) {

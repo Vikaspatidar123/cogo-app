@@ -17,12 +17,12 @@ const RENDERING_FORM = {
 	default              : BasicDetailsForm,
 };
 
-function Form({ active = {}, getCreditRequestResponse = {} }) {
+function Form({ active = {}, getCreditRequestResponse = {}, refetch = () => {} }) {
 	const Component = RENDERING_FORM[active] || RENDERING_FORM.default;
 
 	return (
 		<div className={styles.form}>
-			<Component getCreditRequestResponse={getCreditRequestResponse} />
+			<Component getCreditRequestResponse={getCreditRequestResponse} refetch={refetch} />
 		</div>
 	);
 }

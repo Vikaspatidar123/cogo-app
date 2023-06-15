@@ -1,15 +1,12 @@
 import { useCallback } from 'react';
 import { useSelector } from 'react-redux';
 
-import useGetOrganizationCreditRequest from './useGetOrganizationCreditRequest';
-
 import { useRequest } from '@/packages/request';
 
-const useCreateOrganizationCreditRequest = () => {
+const useCreateOrganizationCreditRequest = ({ refetch = () => {} }) => {
 	const { profile } = useSelector((state) => state);
 	const { organization } = profile || {};
 
-	const { getOrganizationCreditRequest = () => {} } = useGetOrganizationCreditRequest();
 	const [{ loading, data }, trigger] = useRequest(
 		{
 			method : 'post',
@@ -18,10 +15,10 @@ const useCreateOrganizationCreditRequest = () => {
 		{ manual: true },
 	);
 
-	const createOrganizationCreditRequest = useCallback(({ proofUrl, values }) => {
+	const createOrganizationCreditRequest = useCallback(async ({ proofUrl, values }) => {
 		const { tax_number = '', gst_proof = '' } = values || {};
 		try {
-			trigger({
+			await trigger({
 				data: {
 					organization_id : organization?.id,
 					business_name   : profile?.name,
@@ -35,11 +32,11 @@ const useCreateOrganizationCreditRequest = () => {
 					source : 'app',
 				},
 			});
-			getOrganizationCreditRequest();
+			refetch();
 		} catch (e) {
 			console.log(e);
 		}
-	}, [getOrganizationCreditRequest, organization?.id, profile?.name, trigger]);
+	}, [organization?.id, profile?.name, refetch, trigger]);
 
 	return {
 		loading,

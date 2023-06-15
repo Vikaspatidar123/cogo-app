@@ -8,3 +8,8 @@
     color: #4F4F4F;
     margin: 0px 0px 4px 0px; 
 }
+
+.button_wrapper {
+    display: flex;
+    justify-content: flex-end;
+}

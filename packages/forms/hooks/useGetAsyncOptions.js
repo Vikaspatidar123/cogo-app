@@ -25,19 +25,14 @@ function useGetAsyncOptions({
 		{ manual: !(initialCall || query) },
 	);
 
-	console.log('🚀 ~ file: useGetAsyncOptions.js:20 ~ data:', data);
-
-	const options = getModifiedOptions(data?.list || data || []);
-	console.log('🚀 ~ file: useGetAsyncOptions.js:28 ~ options:', options);
-
+	const options = useMemo(() => getModifiedOptions(data?.list || data || []), [data, getModifiedOptions]);
 	const dependency = (data?.list || []).map(({ id }) => id).join('');
 
 	useEffect(() => {
-		if (options.length > 0) {
+		if (options?.length > 0) {
 			setStoreOptions([...options]);
 		}
-	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [dependency]);
+	}, [dependency, options]);
 
 	const [{ loading: loadingSingle }, triggerSingle] = useRequest(
 		{
@@ -52,7 +47,6 @@ function useGetAsyncOptions({
 	};
 
 	const onHydrateValue = async (value) => {
-		console.log('🚀 ~ file: useGetAsyncOptions.js:54 ~ onHydrateValue ~ value:', value);
 		if (Array.isArray(value)) {
 			let unorderedHydratedValue = [];
 
@@ -78,16 +72,8 @@ function useGetAsyncOptions({
 
 			return hydratedValue;
 		}
-
 		const checkOptionsExist = options.filter((item) => item[valueKey] === value);
-		console.log(
-			'🚀 ~ file: useGetAsyncOptions.js:82 ~ onHydrateValue ~ checkOptionsExist:',
-			checkOptionsExist,
 
-			valueKey,
-
-			options,
-		);
 		if (checkOptionsExist.length > 0) return checkOptionsExist[0];
 
 		try {

@@ -7,8 +7,9 @@ const GLOBAL_CONSTANTS = {
 		VN : '177fcbad-8ef7-4324-871c-6c31745f4411',
 		GB : '222d4b9d-56a8-4580-b761-a71c653263fb',
 	},
-	COUNTRY_IDS: {
-		IN: '541d1232-58ce-4d64-83d6-556a42209eb7',
+
+	hs_code_country_ids: {
+		IN: '5f1f94fa-25da-40de-968d-0254abd24ba6',
 	},
 	currency_code: {
 		INR : 'INR',

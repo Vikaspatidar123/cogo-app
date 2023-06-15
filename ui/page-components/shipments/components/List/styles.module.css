@@ -20,3 +20,7 @@
 	justify-content: flex-end;
 	width: 100%;
 }
+
+.loading {
+	border-radius: 10px;
+}

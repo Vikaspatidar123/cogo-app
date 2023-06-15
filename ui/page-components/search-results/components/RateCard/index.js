@@ -356,6 +356,7 @@ function RateCard(props) {
 					setShow={setShow}
 					activeTab={activeTab}
 					setActiveTab={setActiveTab}
+					refetch={refetch}
 					{...props}
 				/>
 			) : null}

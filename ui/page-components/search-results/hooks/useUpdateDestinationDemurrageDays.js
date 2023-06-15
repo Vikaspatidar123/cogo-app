@@ -52,7 +52,8 @@ const useUpdateDestinationDemurrageDays = ({
 			refetch();
 			setShow(false);
 		} catch (error) {
-			Toast.error(getApiErrorString(error.data));
+			Toast.error(error?.response?.data?.message
+				? error?.response?.data?.message : getApiErrorString(error?.response?.data));
 		}
 	};
 

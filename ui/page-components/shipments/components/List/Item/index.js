@@ -13,7 +13,7 @@ import Status from './status';
 import styles from './styles.module.css';
 
 function Item({ data, viewAs, className: propClassName = '' }) {
-	const config =		viewAs === 'importer_exporter'
+	const config = viewAs === 'importer_exporter'
 		? getConfigsShipper(data.shipment_type)
 		: getConfigsSupplier(data.service_type);
 

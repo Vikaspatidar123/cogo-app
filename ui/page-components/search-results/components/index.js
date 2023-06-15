@@ -259,6 +259,7 @@ function Results({
 						list={cogoAssuredRates}
 						searchData={searchData}
 						details={data}
+						refetch={refetch}
 					/>
 				) : null}
 				{(marketplaceRates || []).map((item, i) => (

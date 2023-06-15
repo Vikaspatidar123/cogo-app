@@ -61,6 +61,7 @@ const useOtpVerification = ({ formData = {}, otpValue = '', userDetails }) => {
 			const payload = {
 				mobile_number       : userDetails?.mobile_number,
 				mobile_country_code : userDetails?.mobile_country_code,
+				lead_user_id        : userDetails?.id,
 			};
 
 			await resendLeadVerificationOtpApitrigger({

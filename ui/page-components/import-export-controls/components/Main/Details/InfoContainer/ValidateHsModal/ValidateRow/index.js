@@ -10,7 +10,7 @@ const sugestionContent = ({
 	inputValue,
 	setStatus,
 	setValidateInProgress,
-	setValues,
+	setValue,
 	isImport,
 	setFormInfo,
 	setPrevHs,
@@ -20,7 +20,8 @@ const sugestionContent = ({
 
 		if (isImport) {
 			const obj = { importHsCode: hsCode, productName: description };
-			setValues(obj);
+			setValue('importHsCode', hsCode);
+			setValue('productName', description);
 			setFormInfo((prev) => ({
 				...prev,
 				...obj,
@@ -28,7 +29,7 @@ const sugestionContent = ({
 			setPrevHs((prev) => ({ ...prev, importHs: hsCode }));
 		} else {
 			const obj = { exportHsCode: hsCode };
-			setValues(obj);
+			setValue('exportHsCode', hsCode);
 			setFormInfo((prev) => ({
 				...prev,
 				...obj,
@@ -62,7 +63,7 @@ const sugestionContent = ({
 
 function ValidateRow({
 	item = {},
-	setValues,
+	setValue,
 	setFormInfo,
 	setIsDisable,
 	setPrevHs,
@@ -104,7 +105,7 @@ function ValidateRow({
 					inputValue,
 					setStatus,
 					setValidateInProgress,
-					setValues,
+					setValue,
 					isImport,
 					setFormInfo,
 					setPrevHs,

@@ -1,0 +1,27 @@
+.container {
+	background: rgb(255 255 255);
+	border: 1px solid rgb(217 234 253);
+	border-radius: 4px;
+}
+
+.card {
+	.earning {
+		display: flex;
+		padding: 7px 8px;
+	}
+
+	.type {
+		width: 50%;
+		margin-right: 6px;
+		font-size: 10px;
+		font-weight: 500;
+		color: rgb(79 79 79);
+		text-transform: capitalize;
+	}
+
+	.key {
+		align-items: center;
+		font-size: 12px;
+		text-align: center;
+	}
+}

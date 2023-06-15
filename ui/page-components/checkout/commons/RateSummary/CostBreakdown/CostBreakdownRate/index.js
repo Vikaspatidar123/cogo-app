@@ -1,3 +1,5 @@
+import { cl } from '@cogoport/components';
+
 import ServiceIcon from '../../../ServiceIcon';
 
 import styles from './styles.module.css';
@@ -34,11 +36,10 @@ function RateSummaryCostBreakdownRate({
 		if (!otherDetails) {
 			return null;
 		}
-
 		return (
 			<div className={styles.other_details}>
 				(
-				{otherDetails}
+				{otherDetails.replace(/_/g, ' ')}
 				)
 			</div>
 		);
@@ -55,13 +56,13 @@ function RateSummaryCostBreakdownRate({
 		<div className={styles.container}>
 			<div className={styles.row}>
 				<ServiceIcon service={service_type} />
-				<div className={`${styles.title} ${freightClass}`}>
+				<div className={cl`${styles.title} ${freightClass}`}>
 					{title}
 					{getOtherDetails()}
 				</div>
 			</div>
 
-			<div className={`${styles.price} ${freightClass}`}>
+			<div className={cl`${styles.price} ${freightClass}`}>
 				{is_rate_available ? (
 					<>
 						{isDiscounted

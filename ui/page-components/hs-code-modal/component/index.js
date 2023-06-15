@@ -23,6 +23,7 @@ function HsCode({
 	setShowHsCodeModal,
 	setSelectedData,
 	isMobile = false,
+	onClick = () => {},
 }) {
 	const [chaptersData, setChaptersData] = useState([]);
 	const [headingData, setHeadingData] = useState();
@@ -81,7 +82,7 @@ function HsCode({
 
 	const {
 		categoryFunction, chapterFunction, headingFunction, hsFunction,
-	} =		clickFunction({
+	} =	clickFunction({
 		setChaptersData,
 		setHeadingData,
 		setActiveSection,
@@ -96,7 +97,11 @@ function HsCode({
 		setHeadingCode,
 		searchTerm,
 	});
-
+	const onAdd = () => {
+		onClick();
+		setSelectedData(hsCodeRow);
+		setShowHsCodeModal(false);
+	};
 	const previousFunction = () => {
 		values.forEach((x, index) => {
 			if (x) {
@@ -255,10 +260,7 @@ function HsCode({
 								className={`${hsRowLength && styles.disableBtn} md`}
 								size="md"
 								themeType="primary"
-								onClick={() => {
-									setSelectedData(hsCodeRow);
-									setShowHsCodeModal(false);
-								}}
+								onClick={() => onAdd()}
 								disabled={hsRowLength}
 							>
 								Add

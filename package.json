@@ -18,10 +18,11 @@
     "preinstall": "npx only-allow pnpm"
   },
   "dependencies": {
+    "accept-language": "^3.0.18",
     "@cogoport/charts": "^1.0.1",
     "@cogoport/components": "^1.0.425",
-    "@cogoport/icons-react": "^1.0.76",
     "@cogoport/maps": "^1.0.3",
+    "@cogoport/icons-react": "^1.0.79",
     "@cogoport/utils": "^1.2.6",
     "@stripe/react-stripe-js": "^1.6.0",
     "@stripe/stripe-js": "^1.21.2",

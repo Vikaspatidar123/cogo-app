@@ -65,8 +65,8 @@ function EmailLoginForm({ setMode = () => {} }) {
 			</Button>
 
 			<div className={styles.links}>
-				<a href="/v2/forgot-password">Forgot Password?</a>
-				<a href="/v2/signup">Create a New Account</a>
+				<a href="/forgot-password">Forgot Password?</a>
+				<a href="/signup">Create a New Account</a>
 			</div>
 
 		</form>

@@ -3,10 +3,11 @@
 	z-index: 301 !important;
 	width: 100vw;
 	height: 100vh;
-	background-image: url("https://cogoport-production.sgp1.digitaloceanspaces.com/13d19ecd97ec53e54df1b86e2b2e0176/top-left.svg"), 
-    url("https://cogoport-production.sgp1.digitaloceanspaces.com/30e5f81a0d3473b7f2b9e56f183f04c3/top-right.svg"), 
-    url("https://cogoport-production.sgp1.digitaloceanspaces.com/301ef4dca79fa2630f657ccc6f845af8/right-center.svg"), 
-    url("https://cogoport-production.sgp1.digitaloceanspaces.com/4de96b3bfcff8a01c17ef83d56939531/left-bottom.svg");
+	background-image:
+		url("https://cogoport-production.sgp1.digitaloceanspaces.com/13d19ecd97ec53e54df1b86e2b2e0176/top-left.svg"),
+		url("https://cogoport-production.sgp1.digitaloceanspaces.com/30e5f81a0d3473b7f2b9e56f183f04c3/top-right.svg"),
+		url("https://cogoport-production.sgp1.digitaloceanspaces.com/301ef4dca79fa2630f657ccc6f845af8/right-center.svg"),
+		url("https://cogoport-production.sgp1.digitaloceanspaces.com/4de96b3bfcff8a01c17ef83d56939531/left-bottom.svg");
 	background-repeat: no-repeat;
 	background-position: top right 742px, top right, top right, left bottom;
 }
@@ -15,7 +16,6 @@
 	position: relative;
 
 	:global {
-
 		.leaflet-container {
 			background-color: #fff !important;
 		}

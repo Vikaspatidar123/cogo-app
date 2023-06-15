@@ -291,7 +291,7 @@ function SignupForm({ userDetails = {}, setMode = () => {}, setUserDetails = () 
 			</Button>
 
 			<div className={styles.links}>
-				<a href="/v2/login">Already have an Account?</a>
+				<a href="/login">Already have an Account?</a>
 			</div>
 		</form>
 	);

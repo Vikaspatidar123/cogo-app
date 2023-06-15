@@ -93,7 +93,7 @@ function MobileLoginForm({
 			</Button>
 
 			<div className={styles.links}>
-				<a href="/v2/signup">Create a New Account</a>
+				<a href="/signup">Create a New Account</a>
 			</div>
 		</form>
 	);

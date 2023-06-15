@@ -30,11 +30,10 @@ function OTPSignupForm({ userDetails = {}, setMode = () => {} }) {
 	return (
 		<div className={styles.otp_container}>
 
-			<span onClick={() => setMode('signup_form')} role="presentation">
+			<span onClick={() => setMode('signup_form')} role="presentation" className={styles.back_button}>
 				<IcMArrowBack
 					width="1.2rem"
 					height="1.2rem"
-					style={{ cursor: 'pointer' }}
 				/>
 			</span>
 

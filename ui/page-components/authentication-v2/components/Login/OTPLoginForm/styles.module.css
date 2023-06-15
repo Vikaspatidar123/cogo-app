@@ -4,6 +4,11 @@
 	justify-content: space-between;
 }
 
+.back_button {
+	width: fit-content;
+	cursor: pointer;
+}
+
 .card_heading {
 	padding-top: 20px;
 	font-size: 24px;

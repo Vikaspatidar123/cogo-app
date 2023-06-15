@@ -1,3 +1,8 @@
+.back_button {
+	width: fit-content;
+	cursor: pointer;
+}
+
 .card_heading {
 	padding-top: 20px;
 	padding-bottom: 16px;

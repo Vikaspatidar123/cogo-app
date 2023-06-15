@@ -10,47 +10,35 @@ const Map = dynamic(() => import('../Map'), {
 });
 
 const STATION_COUNT_MAPPING = {
-	signup_form : 4,
-	login_tabs  : 2,
-	email_form  : 3,
-	otp_form    : 2,
-
+	login  : 2,
+	signup : 3,
 };
 
-function ShipStepper({ mode = '' }) {
-	const [curIdx, setCurIdx] = useState(0);
-	const [prevIdx, setPrevIdx] = useState(0);
-
-	// console.log('Current mode:', mode, STATION_COUNT_MAPPING[mode]);
-	// console.log('Current index:', curIdx);
-	// console.log('Previous index:', prevIdx);
+function ShipStepper({ mode = '', type = '' }) {
+	// type - login or signup
+	const [nextStop, setNextStop] = useState(0);
 
 	useEffect(() => {
 		if (mode === 'login_tabs') {
-			setPrevIdx(curIdx);
-			setCurIdx(0);
-		}
-
-		if (mode === 'signup_form') {
-			setPrevIdx(curIdx);
-			setCurIdx(0);
+			// nothing will happen
+			setNextStop(0);
 		}
 
 		if (mode === 'otp_form') {
-			setPrevIdx(curIdx);
-			setCurIdx(1);
+			// start to Next Stop
+			setNextStop(1);
 		}
 
-		// if (mode === 'loading_prompts') {
-		//     setPrevIdx(curIdx);
-		//     setCurIdx(3);
-		// }
+		if (mode === 'loading_prompts') {
+			// current stop to end
+			setNextStop(2);
+		}
 	}, [mode]);
 
 	return (
 		<div className={styles.container}>
 			<div className={styles.bg} />
-			<Map curIdx={curIdx} prevIdx={prevIdx} station_count={STATION_COUNT_MAPPING[mode]} />
+			<Map station_count={STATION_COUNT_MAPPING[type]} nextStop={nextStop} />
 		</div>
 
 	);

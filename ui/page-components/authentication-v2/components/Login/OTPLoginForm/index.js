@@ -29,11 +29,10 @@ function OTPLoginForm({ setMode = () => {}, otpId = '', mobileNumber = {} }) {
 
 	return (
 		<div className={styles.otp_container}>
-			<span onClick={() => setMode('login_tabs')} role="presentation">
+			<span onClick={() => setMode('login_tabs')} role="presentation" className={styles.back_button}>
 				<IcMArrowBack
 					width="1.2rem"
 					height="1.2rem"
-					style={{ cursor: 'pointer' }}
 				/>
 			</span>
 

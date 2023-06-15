@@ -41,7 +41,7 @@ function Login() {
 
 	return (
 		<>
-			<ShipStepper mode={mode} />
+			<ShipStepper mode={mode} type="login" />
 
 			<div className={styles.authentication_layout}>
 				<LayoutLogo />

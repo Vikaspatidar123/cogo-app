@@ -28,14 +28,23 @@ const shipIcon = () => getMapDivIcon(
 	[95, 55],
 );
 
-function Maps({ curIdx, prevIdx = 0, station_count }) {
+function Maps({ station_count = 0, nextStop = 0 }) {
 	const [map, setMap] = useState(null);
+
 	const shipRef = useRef(null);
 
+	const bezierIndexes = [];
+
 	const bezierCurve = generateSmoothCurve(path);
-	const curPath = bezierCurve.slice(prevIdx, curIdx);
+
 	const station_coords = [...Array(station_count).keys()]
-		.map((i, idx) => bezierCurve[Math.floor(bezierCurve.length / station_count) * idx]);
+		.map((i, idx) => {
+			const bezierIndex = Math.floor(bezierCurve.length / station_count) * idx;
+			bezierIndexes.push(bezierIndex);
+			return bezierCurve[bezierIndex];
+		});
+
+	bezierIndexes.push(bezierCurve.length - 1);
 
 	useEffect(() => {
 		if (map) {
@@ -45,15 +54,20 @@ function Maps({ curIdx, prevIdx = 0, station_count }) {
 	}, [map]);
 
 	useEffect(() => {
+		const curveTillNextStop = (nextStop === 0) ? []
+			: bezierCurve.slice(bezierIndexes[nextStop - 1], bezierIndexes[nextStop]);
+
+		// console.log('curveTillNextStop:: ', curveTillNextStop);
+
 		let curStep = 0;
 
 		if (map) {
-			const totalSteps = curPath.length - 50;
+			const totalSteps = curveTillNextStop.length;
 			// eslint-disable-next-line no-underscore-dangle
 			shipRef.current._icon.classList.add(styles.transition);
 			const moveShip = () => {
-				const startPoint = curPath[curStep];
-				const endPoint = curPath[curStep + 1];
+				const startPoint = curveTillNextStop[curStep];
+				const endPoint = curveTillNextStop[curStep + 1];
 
 				if (!endPoint) {
 					curStep = 0;
@@ -75,7 +89,7 @@ function Maps({ curIdx, prevIdx = 0, station_count }) {
 
 			moveShip();
 		}
-	}, [map]);
+	}, [map, nextStop]);
 
 	return (
 		<CogoMaps

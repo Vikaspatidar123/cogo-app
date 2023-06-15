@@ -25,7 +25,7 @@ function Points() {
 				<Button
 					size="md"
 					themeType="accent"
-					onClick={() => push('/cogo-store-home')}
+					onClick={() => push('/saas/cogo-store')}
 				>
 					<img
 						src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/store_3.png"

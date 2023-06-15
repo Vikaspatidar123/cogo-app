@@ -2,6 +2,7 @@
 	display: flex;
 	gap: 15px;
 	padding: 8px;
+	overflow-x: scroll;
 
 	@media (max-width: 760px) {
 		flex-direction: column;
@@ -21,6 +22,10 @@
 	@media (max-width: 760px) {
 		width: 100%;
 	}
+}
+
+.content:hover {
+	box-shadow: 1px 3px 10px #e4e9ff;
 }
 
 .heading {

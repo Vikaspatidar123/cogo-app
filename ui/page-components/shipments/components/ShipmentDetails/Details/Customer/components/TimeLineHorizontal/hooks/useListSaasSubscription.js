@@ -32,10 +32,9 @@ const ListSaasSubscriptions = () => {
 		}
 	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [query?.id, page]);
-
 	return {
 		loading,
-		data,
+		data: data || {},
 		setPage,
 	};
 };

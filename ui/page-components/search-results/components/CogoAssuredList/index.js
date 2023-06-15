@@ -3,7 +3,7 @@ import { useState } from 'react';
 
 import SearchResultsRatesRateCard from '../RateCard';
 
-function CogoAssuredList({ list, details, searchData }) {
+function CogoAssuredList({ list, details, searchData, refetch }) {
 	const [selectedCard, setSelectedCard] = useState(list[0].validity_id);
 
 	const mainCard = list.find((item) => item.validity_id === selectedCard);
@@ -22,6 +22,7 @@ function CogoAssuredList({ list, details, searchData }) {
 				searchData={searchData}
 				type="cogo-assured"
 				selectAssuredSchedule={setSelectedCard}
+				refetch={refetch}
 			/>
 		</div>
 	);

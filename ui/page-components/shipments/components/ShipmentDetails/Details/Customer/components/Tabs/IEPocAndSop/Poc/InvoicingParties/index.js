@@ -1,3 +1,4 @@
+import { cl } from '@cogoport/components';
 import { IcMArrowRotateDown, IcMArrowRotateUp } from '@cogoport/icons-react';
 import { startCase } from '@cogoport/utils';
 import { useState } from 'react';
@@ -17,8 +18,8 @@ function InvoicingParties({
 		<div>
 			{(invoicing_parties_details || []).map((item, index) => (
 				<div className={styles.detail_container}>
-					<div className={`${styles.poc_header} ${styles.poc_details_header}`}>
-						<div className="details">
+					<div className={cl`${styles.poc_header} ${styles.poc_details_header}`}>
+						<div className={styles.details}>
 							Invoicing Party
 							{' '}
 							{invoicing_parties_details?.length === 1 ? '' : index + 1}

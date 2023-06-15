@@ -6,13 +6,13 @@ dependencies:
     version: 1.0.1(prop-types@15.8.1)(react-dom@18.2.0)(react@18.2.0)
   '@cogoport/components':
     specifier: ^1.0.425
-    version: 1.0.425(@babel/core@7.21.8)(@cogoport/icons-react@1.0.76)(react-dom@18.2.0)(react@18.2.0)
+    version: 1.0.425(@babel/core@7.21.8)(@cogoport/icons-react@1.0.79)(react-dom@18.2.0)(react@18.2.0)
   '@cogoport/icons-react':
-    specifier: ^1.0.76
-    version: 1.0.76(react-dom@18.2.0)(react@18.2.0)
+    specifier: ^1.0.79
+    version: 1.0.79(react-dom@18.2.0)(react@18.2.0)
   '@cogoport/maps':
     specifier: ^1.0.3
-    version: 1.0.3(@cogoport/icons-react@1.0.76)(react-dom@18.2.0)(react@18.2.0)
+    version: 1.0.3(@cogoport/icons-react@1.0.79)(react-dom@18.2.0)(react@18.2.0)
   '@cogoport/utils':
     specifier: ^1.2.6
     version: 1.2.6
@@ -22,6 +22,9 @@ dependencies:
   '@stripe/stripe-js':
     specifier: ^1.21.2
     version: 1.21.2
+  accept-language:
+    specifier: ^3.0.18
+    version: 3.0.18
   axios:
     specifier: ^1.3.4
     version: 1.3.4
@@ -1402,14 +1405,14 @@ packages:
       - react-dom
     dev: false
 
-  /@cogoport/components@1.0.425(@babel/core@7.21.8)(@cogoport/icons-react@1.0.76)(react-dom@18.2.0)(react@18.2.0):
+  /@cogoport/components@1.0.425(@babel/core@7.21.8)(@cogoport/icons-react@1.0.79)(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-NkUfnE5qgMRK4G68rRtqZ4JuTzytMsjTL4pmi2+Y5bPVGNpUFqzvCKUUVanyFBvL49qWo8BDgNOR4aXVTxvr3w==}
     peerDependencies:
       '@cogoport/icons-react': ^1.0.23
       react: ^18.2.0
       react-dom: ^18.2.0
     dependencies:
-      '@cogoport/icons-react': 1.0.76(react-dom@18.2.0)(react@18.2.0)
+      '@cogoport/icons-react': 1.0.79(react-dom@18.2.0)(react@18.2.0)
       '@tippyjs/react': 4.2.6(react-dom@18.2.0)(react@18.2.0)
       '@types/quill': 2.0.10
       '@types/react-rte': 0.16.5
@@ -1463,29 +1466,29 @@ packages:
       - supports-color
     dev: true
 
-  /@cogoport/icons-react@1.0.76(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-rdrORP+ixIRnxA4G3JRIgAk+zcx9hyho0YkrUYG+VKHZZG5Z9Hp1Onpz35mGUNKhGNlPIZvxIG3vN0Gir9u6CQ==}
+  /@cogoport/icons-react@1.0.79(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-uY7LZKsDxATmvCg+KyenAAWMCYlpWh6qNCaVzh0RS7H/emhbt0lB2FMcjoliKWYQl+/9ln3rGhwPcBtZnuBh6g==}
     peerDependencies:
       react: 18.2.0
       react-dom: 18.2.0
     dependencies:
-      '@cogoport/icons': 1.0.76
+      '@cogoport/icons': 1.0.79
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
     dev: false
 
-  /@cogoport/icons@1.0.76:
-    resolution: {integrity: sha512-MpDg5quwGBeLXV2p0pwbmyIDt1aGtl8SPKHX+CzMJawFjZGKrymwnHn6gcypwQIWtxE8BZ+9SJWMAndLGXyOCQ==}
+  /@cogoport/icons@1.0.79:
+    resolution: {integrity: sha512-H09ulr+sVqqwHCjY49o5P/ksMLcSQrsICJId6mfwGw3nqWKA0I9d8qsk5IU5GzW6/sUmhRnI4IsW5w0bGRtSuw==}
     dev: false
 
-  /@cogoport/maps@1.0.3(@cogoport/icons-react@1.0.76)(react-dom@18.2.0)(react@18.2.0):
+  /@cogoport/maps@1.0.3(@cogoport/icons-react@1.0.79)(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-nWNhGesbEQNqBGy1KO9O85eU04zcVaIVvuHXcq7CKa+pij74yU3BKB4PTBvoSrbLHAgIctxe8KOQVzBVgTLl/w==}
     peerDependencies:
       '@cogoport/icons-react': ^1.0.23
       react: ^18.2.0
       react-dom: ^18.2.0
     dependencies:
-      '@cogoport/icons-react': 1.0.76(react-dom@18.2.0)(react@18.2.0)
+      '@cogoport/icons-react': 1.0.79(react-dom@18.2.0)(react@18.2.0)
       leaflet: 1.9.4
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
@@ -2998,6 +3001,13 @@ packages:
       eslint-visitor-keys: 3.4.1
     dev: true
 
+  /accept-language@3.0.18:
+    resolution: {integrity: sha512-sUofgqBPzgfcF20sPoBYGQ1IhQLt2LSkxTnlQSuLF3n5gPEqd5AimbvOvHEi0T1kLMiGVqPWzI5a9OteBRth3A==}
+    dependencies:
+      bcp47: 1.1.2
+      stable: 0.1.8
+    dev: false
+
   /acorn-jsx@5.3.2(acorn@8.8.2):
     resolution: {integrity: sha512-rq9s+JNhf0IChjtDXxllJ7g41oZk5SlXtp0LHwyA5cejwn7vKmKp4pPri6YEePv2PU65sAsegbXtIinmDFDXgQ==}
     peerDependencies:
@@ -3238,6 +3248,11 @@ packages:
   /balanced-match@2.0.0:
     resolution: {integrity: sha512-1ugUSr8BHXRnK23KfuYS+gVMC3LB8QGH9W1iGtDPsNWoQbgtXSExkBu2aDR4epiGWZOjZsj6lDl/N/AqqTC3UA==}
     dev: true
+
+  /bcp47@1.1.2:
+    resolution: {integrity: sha512-JnkkL4GUpOvvanH9AZPX38CxhiLsXMBicBY2IAtqiVN8YulGDQybUydWA4W6yAMtw6iShtw+8HEF6cfrTHU+UQ==}
+    engines: {node: '>=0.10'}
+    dev: false
 
   /boolbase@1.0.0:
     resolution: {integrity: sha512-JZOSA7Mo9sNGB8+UjSgzdLtokWAky1zbztM3WRLCbZ70/3cTANmQmOdR7y2g+J0e2WXywy1yS468tY+IruqEww==}
@@ -6438,7 +6453,6 @@ packages:
   /stable@0.1.8:
     resolution: {integrity: sha512-ji9qxRnOVfcuLDySj9qzhGSEFVobyt1kIOSkj1qZzYLzq7Tos/oUUWvotUPQLlrsidqsK6tBH89Bc9kL5zHA6w==}
     deprecated: 'Modern JS already guarantees Array#sort() is a stable sort, so this library is deprecated. See the compatibility table on MDN: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort#browser_compatibility'
-    dev: true
 
   /stop-iteration-iterator@1.0.0:
     resolution: {integrity: sha512-iCGQj+0l0HOdZ2AEeBADlsRC+vsnDsZsbdSiH1yNSjcfKM7fdpCMfqAL/dwF5BLiw/XhRft/Wax6zQbhq2BcjQ==}

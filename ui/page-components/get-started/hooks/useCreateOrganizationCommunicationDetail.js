@@ -1,10 +1,10 @@
 import { Toast } from '@cogoport/components';
-import { useRouter } from 'next/router';
 
+import { useRouter } from '@/packages/next';
 import { useRequest } from '@/packages/request';
 import { useSelector } from '@/packages/store';
 
-const useCreateOrganizationCommunicationDetail = ({ orgId, orgBranchId }) => {
+const useCreateOrganizationCommunicationDetail = ({ orgId }) => {
 	const {
 		profile: {
 			name = '',
@@ -44,7 +44,7 @@ const useCreateOrganizationCommunicationDetail = ({ orgId, orgBranchId }) => {
 
 			if (response?.hasError) return;
 			if (response?.status === 200) {
-				push(`/${orgId}/${orgBranchId}/dashboard`);
+				push('/dashboard');
 			}
 		} catch (error) {
 			Toast.error('Something Went Wrong');

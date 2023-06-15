@@ -723,7 +723,7 @@ const apis = [
 	{
 		api          : 'list_organization_invoicing_parties',
 		access_type  : 'private',
-		service_name : 'shipment',
+		service_name : 'organization',
 	},
 	{
 		api          : 'list_organization_billing_addresses',

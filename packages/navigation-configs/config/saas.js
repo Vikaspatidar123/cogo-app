@@ -4,15 +4,12 @@ const saas = {
 		isMainNav  : true,
 	},
 	'/saas/subscriptions/plans': {
-
 		navigation: 'saas_subscription',
 	},
 	'/saas/subscriptions/checkout': {
-
 		navigation: 'saas_subscription',
 	},
 	'/saas/subscriptions/confirmation': {
-
 		navigation: 'saas_subscription',
 	},
 	'/saas/cogo-subscriptions/manage-subscription': {
@@ -87,12 +84,10 @@ const saas = {
 	'/saas/air-tracking': {
 		navigation : 'saas_tools-air_tracking',
 		isMainNav  : true,
-
 	},
 	'/saas/air-tracking/[tracker_id]': {
 		navigation : 'saas_tools-air_tracking',
 		isMainNav  : true,
-
 	},
 	'/saas/ocean-tracking': {
 		navigation : 'saas_tools-ocean_tracking',
@@ -128,6 +123,10 @@ const saas = {
 	},
 	'/saas/insurance': {
 		navigation : 'saas_cogo_insurance',
+		isMainNav  : true,
+	},
+	'/saas/cogopoint': {
+		navigation : 'saas_cogopoint',
 		isMainNav  : true,
 	},
 };

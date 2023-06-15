@@ -133,12 +133,13 @@ const navigationMappings = {
 				description : 'Secure your cargo and avoid high unwanted costs',
 			},
 			{
-				key         : 'saas_premium_services-duties_and_taxes',
-				title       : 'Duties & Taxes Calculator',
-				href        : '/saas/premium-services/duties-taxes-calculator',
-				as          : '/saas/premium-services/duties-taxes-calculator',
-				icon        : <IcADutiesTaxes width={55} height={55} />,
-				description : 'Know the total amount you will have to pay to plan better',
+				key   : 'saas_premium_services-duties_and_taxes',
+				title : 'Duties & Taxes Calculator',
+				href  : '/saas/premium-services/duties-taxes-calculator',
+				as    : '/saas/premium-services/duties-taxes-calculator',
+				icon  : <IcADutiesTaxes width={55} height={55} />,
+				description:
+          'Know the total amount you will have to pay to plan better',
 			},
 			{
 				key         : 'saas_premium_services-trader_eligibility_check',
@@ -147,8 +148,8 @@ const navigationMappings = {
 				as          : '/saas/premium-services/trader-eligibility-check',
 				icon        : <IcAEligibilityCheck width={55} height={55} />,
 				description : 'Check that your parter is legally permitted to trade',
-
-			}, {
+			},
+			{
 				key         : 'saas_premium_services-import_export_docs',
 				title       : 'Import/Export Documents',
 				type        : 'link',
@@ -166,15 +167,14 @@ const navigationMappings = {
 				description : 'Know the laws to avoid non compliance penalties',
 			},
 			{
-				key         : 'saas_premium_services-order_history',
-				title       : 'Order History',
-				href        : '/saas/order-history',
-				as          : '/saas/order-history',
-				icon        : <IcABookYourShipment width={55} height={55} />,
-				description : 'View when and which premium services you used previously ',
-
+				key   : 'saas_premium_services-order_history',
+				title : 'Order History',
+				href  : '/saas/order-history',
+				as    : '/saas/order-history',
+				icon  : <IcABookYourShipment width={55} height={55} />,
+				description:
+          'View when and which premium services you used previously ',
 			},
-
 		],
 	},
 	saas_planning: {
@@ -225,38 +225,22 @@ const navigationMappings = {
 		title : 'Document Wallet',
 		href  : '/documents',
 		as    : '/documents',
-		icon  : (
-			<IcADocumentationInfo
-				width={20}
-				height={20}
-			/>
-		),
+		icon  : <IcADocumentationInfo width={20} height={20} />,
 	},
 
 	saas_finance: {
-		key   : 'saas_finance',
-		title : 'Finance',
-		icon  : (
-			<IcAFinancial
-				width={20}
-				height={20}
-			/>
-		),
+		key       : 'saas_finance',
+		title     : 'Finance',
+		icon      : <IcAFinancial width={20} height={20} />,
 		isSubNavs : true,
 		isNew     : true,
 		options   : [
 			{
 				key   : 'saas_finance-transaction_history',
 				title : 'Transaction History',
-				icon  : (
-					<IcMFfreferigeratedCargoType
-						width={40}
-						height={40}
-						fill="red"
-					/>
-				),
-				href : '/saas/transaction-history',
-				as   : '/saas/transaction-history',
+				icon  : <IcMFfreferigeratedCargoType width={40} height={40} fill="red" />,
+				href  : '/saas/transaction-history',
+				as    : '/saas/transaction-history',
 			},
 		],
 	},
@@ -284,10 +268,11 @@ const navigationMappings = {
 	saas_cogo_subscription: {
 		key   : 'saas_cogo_subscription',
 		title : 'Subscriptions',
-		icon  : (<img
-			src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/nav-subscriptions.svg"
-			alt="cogo"
-		/>
+		icon  : (
+			<img
+				src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/nav-subscriptions.svg"
+				alt="cogo"
+			/>
 		),
 		isSubNavs : true,
 		options   : [
@@ -309,6 +294,13 @@ const navigationMappings = {
 			},
 		],
 	},
+	saas_cogopoint: {
+		key       : 'saas_cogopoint',
+		title     : 'Cogopoint',
+		href      : '/saas/cogopoint',
+		as        : '/saas/cogopoint',
+		showInNav : false,
 
+	},
 };
 export default navigationMappings;

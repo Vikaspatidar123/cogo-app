@@ -8,7 +8,7 @@ function ChipsController(props) {
 	const { name, control, rules, optionKey, options, value, ...rest } = props;
 	const data = getOptionsFromKey(optionKey, { ...rest });
 
-	const optionDate = data?.options.map((item) => ({
+	const optionData = data?.options.map((item) => ({
 		...item,
 		key      : item.value,
 		children : item.label,
@@ -24,7 +24,7 @@ function ChipsController(props) {
 				<Chips
 					{...rest}
 					key={rest.id}
-					items={optionDate}
+					items={optionData}
 					onItemChange={(val) => {
 						onChange(val);
 						if (rest?.onChange) {

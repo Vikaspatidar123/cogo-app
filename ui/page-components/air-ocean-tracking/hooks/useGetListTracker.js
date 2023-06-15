@@ -1,8 +1,13 @@
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 import { useDebounceQuery } from '@/packages/forms';
 import { useRouter } from '@/packages/next';
 import { useRequest } from '@/packages/request';
+
+const TRACKING_LIST_URL = {
+	ocean : '/list_saas_container_subscriptions',
+	air   : '/list_saas_air_subscriptions',
+};
 
 const useGetListTracker = () => {
 	const { query: routerQuery } = useRouter();
@@ -18,13 +23,9 @@ const useGetListTracker = () => {
 	});
 	const [inputValue, setInputValue] = useState();
 
-	const url = useMemo(() => (globalFilter.activeTab === 'ocean'
-		? '/list_saas_container_subscriptions' : '/list_saas_air_subscriptions'
-	), [globalFilter]);
-
 	const [{ data, loading }, trigger] = useRequest({
-		method: 'get',
-		url,
+		method : 'get',
+		url    : TRACKING_LIST_URL[globalFilter.activeTab],
 	}, { manual: true });
 
 	const refetchTrackerList = useCallback(async () => {

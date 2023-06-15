@@ -17,6 +17,8 @@ import styles from './styles.module.css';
 function Header({ globalFilter, filterChangeHandler, inputValue, setInputValue, filterData = {}, setGlobalFilter }) {
 	const { back, query } = useRouter();
 	const [showConfigure, setShowConfigure] = useState(false);
+	const [viewTab, setViewTab] = useState('all');
+
 	const { isArchived = false } = query || {};
 	const { activeTab = '', selectValue = '' } = globalFilter;
 
@@ -82,6 +84,17 @@ function Header({ globalFilter, filterChangeHandler, inputValue, setInputValue, 
 			</div>
 
 			<div className={cl`${styles.flex_box} ${styles.second_row}`}>
+				<div>
+					<Tabs
+						activeTab={viewTab}
+						onChange={setViewTab}
+						themeType="secondary"
+					>
+						<TabPanel name="all" title="All" />
+						<TabPanel name="blView" title="BL View" />
+						<TabPanel name="containerView" title="Container View" />
+					</Tabs>
+				</div>
 				<div className={cl`${styles.flex_box} ${styles.filter_section}`}>
 					<Input
 						size="sm"
@@ -107,6 +120,7 @@ function Header({ globalFilter, filterChangeHandler, inputValue, setInputValue, 
 							<FilterContent
 								filterData={filterData}
 								activeTab={activeTab}
+								globalFilter={globalFilter}
 								setGlobalFilter={setGlobalFilter}
 							/>
 

@@ -18,19 +18,10 @@
 }
 
 .title {
-	margin-bottom: 12px;
 	font-weight: 600;
 	color: #636363;
 }
 
 .filter_section {
-	margin: 12px 0;
-}
-
-.chips_container {
-	:global {
-		.ui_chips_container {
-			flex-wrap: wrap;
-		}
-	}
+	margin: 20px 0;
 }

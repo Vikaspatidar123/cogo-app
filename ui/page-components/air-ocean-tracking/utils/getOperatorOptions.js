@@ -1,10 +1,22 @@
+import { startCase } from '@cogoport/utils';
+
 const getOperatorOptions = ({ operatorHash = {} }) => {
-	const operatorList = Object.keys(operatorHash).map((operator) => ({
-		id: operator,
-		...operatorHash[operator],
+	const operatorList = Object.keys(operatorHash).map((operatorId) => ({
+		label : operatorHash[operatorId]?.short_name,
+		value : operatorId,
+		...operatorHash[operatorId],
 	}));
 
 	return operatorList;
 };
 
-export default getOperatorOptions;
+const getOptions = (list = []) => {
+	const options = list.map((ele) => ({
+		label : startCase(ele?.name),
+		value : ele?.saas_shipment_poc_id,
+	}));
+
+	return options;
+};
+
+export { getOptions, getOperatorOptions };

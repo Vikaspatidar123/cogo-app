@@ -1060,6 +1060,41 @@ const saas = {
 			access_type  : 'private',
 			service_name : 'credit',
 		},
+		{
+			api          : 'update_organization_credit_requirement_details',
+			access_type  : 'private',
+			service_name : 'credit',
+		},
+		{
+			api          : 'apply_credit_request_coupon_code',
+			access_type  : 'private',
+			service_name : 'credit',
+		},
+		{
+			api          : 'list_coupons',
+			access_type  : 'private',
+			service_name : 'organization',
+		},
+		{
+			api          : 'submit_credit_application',
+			access_type  : 'private',
+			service_name : 'credit',
+		},
+		{
+			api          : 'update_credit_request_promotion',
+			access_type  : 'private',
+			service_name : 'credit',
+		},
+		{
+			api          : 'update_organization_credit_application',
+			access_type  : 'private',
+			service_name : 'credit',
+		},
+		{
+			api          : 'update_organization_credit_request_poc_details',
+			access_type  : 'private',
+			service_name : 'credit',
+		},
 	],
 
 };

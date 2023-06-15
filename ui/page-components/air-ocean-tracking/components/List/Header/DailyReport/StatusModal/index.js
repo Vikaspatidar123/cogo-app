@@ -18,7 +18,7 @@ const renderTitle = ({ isSingleReport, name }) => {
 	return 'Create New Schedule Status';
 };
 
-function StatusModal({ statusModal, setStatusModal, dsrList = [], getDsrList }) {
+function StatusModal({ statusModal, setStatusModal, dsrList = [], getDsrList, activeTab = 'ocean' }) {
 	const [selectedContact, setSelectedContact] = useState('');
 	const [isSingleReport, setIsSingleReport] = useState(false);
 	const [activeStepper, setActiveStepper] = useState('shipments');
@@ -48,6 +48,7 @@ function StatusModal({ statusModal, setStatusModal, dsrList = [], getDsrList }) 
 					selectedContact={selectedContact}
 					setSelectedContact={setSelectedContact}
 					setIsSingleReport={setIsSingleReport}
+					activeTab={activeTab}
 				/>
 			)}
 

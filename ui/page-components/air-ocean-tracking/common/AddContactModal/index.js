@@ -8,9 +8,20 @@ import styles from './styles.module.css';
 
 import getField from '@/packages/forms/Controlled';
 
-function AddContactModal({ addContact = false, setAddContact = () => {}, fetchContactList = () => {} }) {
-	const { formHook, loading, createContact, closeHandler } = useCreateContact({ setAddContact, fetchContactList });
+function AddContactModal({
+	addContact = false, setAddContact = () => {}, fetchContactList = () => {},
+	activeTab = 'ocean',
+}) {
+	const { formHook, loading, createContact, closeHandler } = useCreateContact({
+		setAddContact,
+		fetchContactList,
+		activeTab,
+	});
 	const { control, formState: { errors }, handleSubmit } = formHook || {};
+
+	const onSubmit = (data) => {
+		createContact({ data, src: 'contactModal' });
+	};
 
 	return (
 		<Modal show={addContact} onClose={closeHandler} closeOnOuterClick>
@@ -39,7 +50,7 @@ function AddContactModal({ addContact = false, setAddContact = () => {}, fetchCo
 				<Button
 					themeType="primary"
 					className={styles.submit_btn}
-					onClick={handleSubmit(createContact)}
+					onClick={handleSubmit(onSubmit)}
 					loading={loading}
 				>
 					Add

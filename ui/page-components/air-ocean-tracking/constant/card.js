@@ -16,6 +16,17 @@ const AIR_INFO_MAPPING = {
 	commodity : 'Commodity',
 };
 
+const OCEAN_POC = {
+	shipper   : 'Is Shipper?',
+	consignee : 'Is Consignee?',
+	dsr       : 'Include Shipment in Status Report',
+};
+
+const AIR_POC = {
+	shipper   : 'Is Shipper?',
+	consignee : 'Is Consignee?',
+};
+
 export const DEFAULT_STATUS = {
 	ocean : [false, false, false, false],
 	air   : [true, true, true, true],
@@ -44,6 +55,8 @@ const GET_MAPPING = {
 		DEFAULT_STATUS   : [false, false, false, false],
 		CARD_TITLE       : OCEAN_TITLE_MAPPING,
 		EMPTY_STATE_INFO : 'container / shipment',
+		POC_MAPPING      : OCEAN_POC,
+		TRACKER_ID_KEY   : 'saas_container_subscription_id',
 
 	},
 	air: {
@@ -53,6 +66,8 @@ const GET_MAPPING = {
 		DEFAULT_STATUS   : [true, true, true, true],
 		CARD_TITLE       : AIR_TITLE_MAPPING,
 		EMPTY_STATE_INFO : 'cargo / shipment',
+		POC_MAPPING      : AIR_POC,
+		TRACKER_ID_KEY   : 'saas_air_subscription_id',
 
 	},
 };

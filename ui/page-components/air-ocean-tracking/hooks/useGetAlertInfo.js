@@ -1,16 +1,21 @@
 import { useRequest } from '@/packages/request';
 
-const useGetAlertInfo = ({ shipmentId }) => {
+const MANUAL_CALL = {
+	ocean : false,
+	air   : true,
+};
+
+const useGetAlertInfo = ({ shipmentId = '', activeTab = 'ocean' }) => {
 	const [{ data, loading }] = useRequest({
 		method : 'get',
 		url    : '/get_saas_container_alert',
 		params : { saas_container_subscription_id: shipmentId },
-	}, { manual: false });
+	}, { manual: MANUAL_CALL[activeTab] });
 
 	const [{ data: alertList, loading: alertListLoading }] = useRequest({
 		method : 'get',
 		url    : '/get_list_of_master_alerts',
-	}, { manual: false });
+	}, { manual: MANUAL_CALL[activeTab] });
 
 	return {
 		loading, data, alertList, alertListLoading,

@@ -8,10 +8,17 @@ import RefNumber from './RefNumber';
 import styles from './styles.module.css';
 
 const configTab = {
-	commodity         : 'Commodity',
-	detentionDemurage : 'Detention & Demurage',
-	referenceNo       : 'Reference Number',
-	CustomizedAlerts  : 'Customized Alert',
+	ocean: {
+		commodity         : 'Commodity',
+		detentionDemurage : 'Detention & Demurage',
+		referenceNo       : 'Reference Number',
+		CustomizedAlerts  : 'Customized Alert & Poc Details',
+	},
+	air: {
+		commodity        : 'Commodity',
+		referenceNo      : 'Reference Number',
+		CustomizedAlerts : 'Poc Details',
+	},
 };
 
 const COMPONENT_MAPPING = {
@@ -21,9 +28,11 @@ const COMPONENT_MAPPING = {
 	CustomizedAlerts  : CustomizeAlert,
 };
 
-function Configure({ closeHandler, shipmentId, refetchTrackerList }) {
+function Configure({ closeHandler, shipmentId, refetchTrackerList, activeTab = 'ocean' }) {
 	const [configureTab, setConfigureTab] = useState('commodity');
 	const Component = COMPONENT_MAPPING?.[configureTab];
+
+	const configTabList = configTab[activeTab];
 
 	return (
 		<div className={styles.container}>
@@ -33,8 +42,8 @@ function Configure({ closeHandler, shipmentId, refetchTrackerList }) {
 					themeType="primary-vertical"
 					onChange={setConfigureTab}
 				>
-					{Object.keys(configTab).map((config) => (
-						<TabPanel name={config} title={configTab?.[config]} />
+					{Object.keys(configTabList).map((config) => (
+						<TabPanel key={config} name={config} title={configTabList?.[config]} />
 					))}
 				</Tabs>
 			</div>
@@ -43,6 +52,7 @@ function Configure({ closeHandler, shipmentId, refetchTrackerList }) {
 					closeHandler={closeHandler}
 					shipmentId={shipmentId}
 					refetchTrackerList={refetchTrackerList}
+					activeTab={activeTab}
 				/>
 			</div>
 

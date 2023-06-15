@@ -1,26 +1,76 @@
 import { Toast } from '@cogoport/components';
 import { isEmpty } from '@cogoport/utils';
-import { useMemo } from 'react';
+import { useEffect, useMemo } from 'react';
 
 import { useRouter } from '@/packages/next';
 import { useRequest } from '@/packages/request';
-import { useSelector } from '@/packages/store';
+
+const USER_TYPE_MAPPING = {
+	SHIPPER   : 'shipper',
+	CONSIGNEE : 'consignee',
+	DEFAULT   : 'default',
+
+};
+
+const CREATE_ALERT_URL = {
+	ocean : '/create_update_saas_container_alert',
+	air   : '/create_update_saas_air_alert',
+};
+const TRACKER_ID_MAPPING = {
+	ocean : 'saas_container_subscription_id',
+	air   : 'saas_air_subscription_id',
+};
+
+const preFilledFn = ({ prevAlertData }) => {
+	const prefilValue = {
+		shipper   : [],
+		consignee : [],
+		dsr       : [],
+	};
+	const pocDetails = [];
+
+	prevAlertData.forEach((value) => {
+		const { dsr } = prefilValue;
+		const { poc_details = {}, dsr_status_report = {}, alerts_configured = [] } = value || {};
+
+		const pocId = poc_details?.id;
+
+		pocDetails.push(poc_details);
+
+		const usertType = USER_TYPE_MAPPING[poc_details?.user_type ?? 'DEFAULT'];
+		prefilValue[usertType] = [...(prefilValue[usertType] || []), pocId];
+
+		if (dsr_status_report?.status === 'TRUE') {
+			prefilValue.dsr = [...dsr, pocId];
+		}
+
+		alerts_configured.forEach((alerts) => {
+			const { is_active = false, alert_name = '' } = alerts || {};
+
+			if (is_active) {
+				const prevAlert = prefilValue?.[alert_name] || [];
+				prefilValue[alert_name] = [...prevAlert, pocId];
+			}
+		});
+	});
+
+	return { prefilValue, pocDetails };
+};
 
 const useCreateAlert = ({
 	tableValue, setTableValue, prevAlertData = [], selectContactList, alertList = [],
-	shipmentId = '',
+	shipmentId = '', closeHandler, setSelectContactList, activeTab = 'ocean',
 }) => {
-	const { userId } = useSelector((state) => ({
-		userId: state.profile?.id,
-	}));
 	const { query } = useRouter();
+
 	const [{ loading }, trigger] = useRequest({
 		method : 'post',
-		url    : '/create_update_saas_container_alert',
+		url    : CREATE_ALERT_URL[activeTab],
 	}, { manual: true });
 
 	const contactList = useMemo(() => {
 		const prevSelectedContact = (prevAlertData || []).map((item) => item?.poc_details);
+
 		const uniqueContactList = selectContactList.filter((item) => (
 			!prevSelectedContact.some((ele) => ele?.id === item?.id)
 		));
@@ -28,10 +78,18 @@ const useCreateAlert = ({
 		return [...prevSelectedContact, ...uniqueContactList];
 	}, [prevAlertData, selectContactList]);
 
+	useEffect(() => {
+		if (!isEmpty(prevAlertData)) {
+			const { prefilValue, pocDetails } = preFilledFn({ prevAlertData });
+			setTableValue(prefilValue);
+			setSelectContactList(pocDetails);
+		}
+	}, [prevAlertData, setTableValue, setSelectContactList]);
+
 	const createPayload = () => {
 		const { shipper = [], consignee = [], dsr = [], ...alertKey } = tableValue || {};
 
-		const alert_configuration = contactList.map((contact) => {
+		const alert_configuration = activeTab === 'ocean' ? contactList.map((contact) => {
 			const pocId = contact?.id;
 
 			const eventList = alertList.map((alert) => {
@@ -66,24 +124,25 @@ const useCreateAlert = ({
 				dsr_report : dsr.includes(pocId),
 				event      : eventList,
 			};
-		});
+		}) : [];
 
 		return {
-			shipper                        : shipper[0],
-			consignee                      : consignee[0],
+			shipper                         : shipper[0],
+			consignee                       : consignee[0],
 			alert_configuration,
-			saas_container_subscription_id : shipmentId,
-			performed_by_id                : userId,
-			organization_branch_id         : query?.branch_id,
+			[TRACKER_ID_MAPPING[activeTab]] : shipmentId,
+			organization_branch_id          : query?.branch_id,
 		};
 	};
 
-	const createAlertHandler = () => {
+	const createAlertHandler = async () => {
 		const payloadData = createPayload();
 		try {
-			trigger({
+			await trigger({
 				data: payloadData,
 			});
+			Toast.success('Alerts Created Successfully');
+			closeHandler();
 		} catch (err) {
 			console.log(err);
 		}

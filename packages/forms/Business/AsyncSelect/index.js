@@ -17,13 +17,14 @@ import {
 	asyncInsuranceCountryList,
 	asyncFieldsPartnerQuotation,
 	asyncFieldsSixDigitHsCode,
-	asyncFieldsPocDetails,
+	asyncFieldsOceanPocDetails,
 	asyncProductList,
 	asyncOrganizationBranches,
 	asyncInsuranceCommodities,
 	asyncAirLines,
 	asyncShippingLines,
 	asyncTradeContacts,
+	asyncFieldsAirPocDetails,
 } from '../../utils/getAsyncFields';
 
 const keyAsyncFieldsParamsMapping = {
@@ -47,7 +48,8 @@ const keyAsyncFieldsParamsMapping = {
 	'shipping-lines'           : asyncShippingLines,
 	trade_contacts             : asyncTradeContacts,
 	six_digit_hs_code          : asyncFieldsSixDigitHsCode,
-	list_poc_details           : asyncFieldsPocDetails,
+	list_ocean_poc_details     : asyncFieldsOceanPocDetails,
+	list_air_poc_details       : asyncFieldsAirPocDetails,
 };
 
 function AsyncSelect(props) {

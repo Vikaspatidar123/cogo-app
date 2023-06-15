@@ -2,6 +2,7 @@ import { Button, cl } from '@cogoport/components';
 import { useState } from 'react';
 
 import customizeAlertControls from '../../../../../../configuration/customizeAlertControls';
+import useCreateContact from '../../../../../../hooks/useCreateContact';
 
 import styles from './styles.module.css';
 
@@ -10,19 +11,43 @@ import getField from '@/packages/forms/Controlled';
 import { useRouter } from '@/packages/next';
 import AddContactModal from '@/ui/page-components/air-ocean-tracking/common/AddContactModal';
 
-function SelectContact({ closeHandler, nextStepHandler, setSelectContactList }) {
+function SelectContact({
+	closeHandler, nextStepHandler, selectContactList, setSelectContactList,
+	activeTab = 'ocean',
+}) {
 	const { query } = useRouter();
 	const [addContact, setAddContact] = useState(false);
 
+	const { loading, createContact } = useCreateContact({ activeTab });
+
 	const { branch_id = '' } = query || {};
-	const { control, formState: { errors }, handleSubmit } = useForm();
 
-	const onSubmit = (data) => {
-		console.log(data, 'data');
-		nextStepHandler();
+	const { control, formState: { errors }, handleSubmit } = useForm({
+		defaultValues: {
+			contactName: selectContactList || [],
+		},
+	});
+
+	const controls = customizeAlertControls({ branch_id, activeTab });
+
+	const onSubmit = async () => {
+		const promiseArr = selectContactList.map((contact) => {
+			if (contact.tradeContact) {
+				const { name = '', mobile_no, email } = contact || {};
+				const payloadData = {
+					name,
+					mobileNo: mobile_no,
+					email,
+				};
+				return createContact({ data: payloadData, src: 'alert' });
+			}
+			return null;
+		});
+
+		await Promise.all(promiseArr)
+			.then(() => nextStepHandler())
+			.catch((err) => console.log(err));
 	};
-
-	const controls = customizeAlertControls({ branch_id });
 
 	return (
 		<div className={styles.container}>
@@ -55,16 +80,23 @@ function SelectContact({ closeHandler, nextStepHandler, setSelectContactList }) 
 
 			</div>
 			<div className={styles.footer}>
-				<Button themeType="secondary" onClick={closeHandler}>Cancel</Button>
+				<Button themeType="secondary" onClick={closeHandler} disabled={loading}>Cancel</Button>
 				<Button
 					className={styles.submit_btn}
 					themeType="accent"
 					onClick={handleSubmit(onSubmit)}
+					loading={loading}
 				>
 					Next
 				</Button>
 			</div>
-			{addContact && <AddContactModal addContact={addContact} setAddContact={setAddContact} />}
+			{addContact && (
+				<AddContactModal
+					addContact={addContact}
+					setAddContact={setAddContact}
+					activeTab={activeTab}
+				/>
+			)}
 		</div>
 	);
 }

@@ -1,4 +1,9 @@
-const customizeAlertControls = ({ branch_id }) => [
+const ASYNC_KEY_MAPPING = {
+	ocean : 'list_ocean_poc_details',
+	air   : 'list_air_poc_details',
+};
+
+const customizeAlertControls = ({ branch_id = '', activeTab = 'ocean' }) => [
 	{
 		name        : 'contactName',
 		type        : 'async_select',
@@ -6,7 +11,7 @@ const customizeAlertControls = ({ branch_id }) => [
 		multiple    : true,
 		isClearable : true,
 		initialCall : true,
-		asyncKey    : 'list_poc_details',
+		asyncKey    : ASYNC_KEY_MAPPING[activeTab],
 		params      : {
 			organization_branch_id: branch_id,
 		},

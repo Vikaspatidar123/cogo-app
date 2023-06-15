@@ -278,12 +278,20 @@ function asyncFieldsSixDigitHsCode() {
 	};
 }
 
-function asyncFieldsPocDetails() {
+function asyncFieldsOceanPocDetails() {
 	return {
-		labelKey    : 'label',
-		valueKey    : 'id',
-		endpoint    : 'list_saas_subscription_poc_details',
-		initialCall : true,
+		labelKey : 'label',
+		valueKey : 'id',
+		endpoint : 'list_saas_subscription_poc_details',
+
+	};
+}
+
+function asyncFieldsAirPocDetails() {
+	return {
+		labelKey : 'label',
+		valueKey : 'id',
+		endpoint : 'list_saas_air_subscription_poc_details',
 	};
 }
 
@@ -311,5 +319,6 @@ export {
 	asyncProductList,
 	asyncTradeContacts,
 	asyncFieldsSixDigitHsCode,
-	asyncFieldsPocDetails,
+	asyncFieldsOceanPocDetails,
+	asyncFieldsAirPocDetails,
 };

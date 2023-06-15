@@ -12,7 +12,7 @@ import styles from './styles.module.css';
 import AddContactModal from '@/ui/page-components/air-ocean-tracking/common/AddContactModal';
 import Table from '@/ui/page-components/air-ocean-tracking/common/Table';
 
-function AllContact({ selectedContact, setSelectedContact, setIsSingleReport }) {
+function AllContact({ selectedContact, setSelectedContact, setIsSingleReport, activeTab }) {
 	const [inputValue, setInputValue] = useState('');
 	const [addContact, setAddContact] = useState(false);
 
@@ -95,6 +95,7 @@ function AllContact({ selectedContact, setSelectedContact, setIsSingleReport }) 
 					addContact={addContact}
 					setAddContact={setAddContact}
 					fetchContactList={fetchContactList}
+					activeTab={activeTab}
 				/>
 			)}
 		</div>

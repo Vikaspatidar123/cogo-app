@@ -59,6 +59,7 @@ function Header({ globalFilter, filterChangeHandler, inputValue, setInputValue, 
 									visible={showConfigure}
 									content={(
 										<DailyReport
+											activeTab={activeTab}
 											dsrListValue={dsrListValue}
 											setShowConfigure={setShowConfigure}
 										/>

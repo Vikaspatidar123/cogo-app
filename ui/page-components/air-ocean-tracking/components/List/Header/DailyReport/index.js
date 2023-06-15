@@ -14,7 +14,7 @@ import getLoadingArr from '@/ui/page-components/air-ocean-tracking/utils/getLoad
 
 const LOADING_ARR = getLoadingArr(5);
 
-function DailyReport({ dsrListValue = {}, setShowConfigure }) {
+function DailyReport({ dsrListValue = {}, setShowConfigure, activeTab = 'ocean' }) {
 	const [statusModal, setStatusModal] = useState({ isOpen: false });
 
 	const { data = {}, loading, setPage, getDsrList } = dsrListValue || {};
@@ -75,6 +75,7 @@ function DailyReport({ dsrListValue = {}, setShowConfigure }) {
 					statusModal={statusModal}
 					setStatusModal={setStatusModal}
 					dsrList={list}
+					activeTab={activeTab}
 					getDsrList={getDsrList}
 				/>
 			)}

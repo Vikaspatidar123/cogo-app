@@ -1,12 +1,12 @@
 import { DateRangepicker, Button } from '@cogoport/components';
-import { format } from '@cogoport/utils';
+import { format, isEmpty } from '@cogoport/utils';
 import React, { useEffect, useState } from 'react';
 
 import FilterDropDownContent from './FilterDropDownContent';
 import styles from './styles.module.css';
 
 function Filter({
-	setCarrierList, carrierList, setFilters,
+	setCarrierList, carrierList, setFilters, setVisible,
 }) {
 	const [durationValue, onChange] = useState(0);
 	const [departureDate, setDepartureDate] = useState({});
@@ -63,14 +63,16 @@ function Filter({
 			? { ...value, status: !value.status } : value)));
 		setDepartureDate({});
 		setArrivalDate({});
+		setFilterCarrier({});
 		onChange(0);
 		setFilters({});
+		setVisible(false);
 	};
 
 	return (
 		<div className={styles.col_container}>
 			<div className={styles.button_container}>
-				<Button onClick={clearAllHandler} themeType="accent"> Clear All</Button>
+				<Button onClick={() => clearAllHandler()} themeType="accent"> Clear All</Button>
 			</div>
 			<div className={styles.filter_item}>
 				Transit Duration :

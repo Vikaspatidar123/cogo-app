@@ -6,9 +6,9 @@ import styles from './styles.module.css';
 function LegsItem({ legItem = {} }) {
 	const locationsList = legItem?.display_details || [];
 	const originSchedule =	 locationsList.filter((item) => item.id
-    === legItem.origin_port_id)[0]?.display_name || 'Origin';
+    === legItem.origin_airport_id)[0]?.display_name || 'Origin';
 
-	const destinationSchedule =	locationsList.filter((item) => item.id === legItem.destination_port_id)[0]
+	const destinationSchedule =	locationsList.filter((item) => item.id === legItem.destination_airport_id)[0]
 		?.display_name || 'Destination';
 	return (
 		<div className={styles.container}>

@@ -6,7 +6,6 @@ const getModifiedOptionsForGST = (options) => (options || []).map((x) => ({
 	value: x?.tax_number,
 	label:
 	<div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-		{console.log(options, 'options')}
 		<div>{x?.tax_number}</div>
 		<div>
 			{x?.tax_number_document_url ? <Pill color="green">Proof exists</Pill> : ''}
@@ -22,6 +21,7 @@ export const COMPANYDETAILSCONTROLS = [
 		placeholder : 'PAN',
 		showField   : true,
 		disabled    : true,
+		rules       : { required: true },
 	},
 	{
 		label              : 'GST',
@@ -34,6 +34,7 @@ export const COMPANYDETAILSCONTROLS = [
 		valueKey           : 'tax_number',
 		labelKey           : 'label',
 		initialCall        : true,
+		rules              : { required: true },
 	},
 	{
 		label       : 'Upload GST Proof',
@@ -44,6 +45,7 @@ export const COMPANYDETAILSCONTROLS = [
 		suffix      : <div style={{ margin: '0 8px' }}>Upload</div>,
 		readonly    : true,
 		showField   : true,
+		rules       : { required: true },
 	},
 ];
 

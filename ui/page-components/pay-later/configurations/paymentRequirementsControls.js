@@ -5,6 +5,7 @@ export const paymentRequirementsControl = [
 		type        : 'text',
 		placeholder : 'Type here...',
 		section     : 'requirements',
+		rules       : { required: true },
 	},
 	{
 		label       : 'Payment Requirements',
@@ -12,5 +13,6 @@ export const paymentRequirementsControl = [
 		type        : 'text',
 		placeholder : 'Type here...',
 		section     : 'requirements',
+		rules       : { required: true },
 	},
 ];

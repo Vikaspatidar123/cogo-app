@@ -1,39 +1,39 @@
 .back_button {
-    width: fit-content;
-    cursor: pointer;
+	width: fit-content;
+	cursor: pointer;
 }
 
 .card_heading {
-    margin: 0;
-    padding-top: 20px;
-    padding-bottom: 16px;
-    color: var(--color-secondary-greyscale-2);
+	padding-top: 20px;
+	padding-bottom: 16px;
+	margin: 0;
+	color: var(--color-secondary-greyscale-2);
 }
 
 .card_sub_heading {
-    margin: 0;
-    color: var(--color-secondary-greyscale-1);
+	margin: 0;
+	color: var(--color-secondary-greyscale-1);
 }
 
 .form_container {
-    display: flex;
-    flex-direction: column;
-    padding-top: 20px;
+	display: flex;
+	flex-direction: column;
+	padding-top: 20px;
 }
 
 .label {
-    margin: 8px 0;
-    color: var(--color-secondary-greyscale-1);
+	margin: 8px 0;
+	color: var(--color-secondary-greyscale-1);
 }
 
 .errors {
-    height: 12px;
-    font-size: 12px;
-    font-weight: 300;
-    color: var(--color-primary-error-red-2);
-    text-align: right;
+	height: 12px;
+	font-size: 12px;
+	font-weight: 300;
+	color: var(--color-primary-error-red-2);
+	text-align: right;
 }
 
 .submit_button {
-    margin-top: 24px;
+	margin-top: 24px;
 }

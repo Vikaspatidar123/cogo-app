@@ -5,7 +5,9 @@ const useUpdateCreditOrganizationRequest = ({
 	companyAddress = {},
 	directors = [],
 	refetch = () => {},
+	updatedValues = {},
 }) => {
+	const { values = {} } = updatedValues || {};
 	const [{ data, loading }, trigger] = useRequest({
 		method : 'post',
 		url    : '/update_organization_credit_request',
@@ -21,6 +23,7 @@ const useUpdateCreditOrganizationRequest = ({
 					address           : {
 						...companyAddress,
 						company_address : companyAddress?.address,
+						...values,
 						country         : 'India',
 					},
 					directors,

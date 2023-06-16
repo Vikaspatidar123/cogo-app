@@ -10,6 +10,7 @@ function TermsAndConditions({
 	companyAddress = {},
 	directors = [],
 	refetch = () => {},
+	updatedValues = {},
 }) {
 	const [checked, setChecked] = useState(false);
 
@@ -18,6 +19,7 @@ function TermsAndConditions({
 		companyAddress,
 		directors,
 		refetch,
+		updatedValues,
 	});
 
 	const handleButtonClick = () => {

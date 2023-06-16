@@ -4,7 +4,7 @@ import { useState } from 'react';
 
 import styles from './styles.module.css';
 
-function Details({ director = {} }) {
+function Details({ director = {}, setShowEdit = () => {} }) {
 	const { name = '', registration_number = '', gender = '', date_of_birth = '', address = '' } = director || {};
 	const [show, setShow] = useState(false);
 	return (
@@ -19,7 +19,13 @@ function Details({ director = {} }) {
 					</div>
 				</div>
 				<div className={styles.company}>
-					<Button themeType="secondary">
+					<Button
+						themeType="secondary"
+						onClick={() => setShowEdit({
+							type : 'director',
+							show : true,
+						})}
+					>
 						<IcMEdit />
 						<div className="button_edit">Edit</div>
 					</Button>

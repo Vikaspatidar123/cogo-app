@@ -2,7 +2,7 @@ import { Toast } from '@cogoport/components';
 
 import { useRequest } from '@/packages/request';
 
-const useUpdatePOCDetails = ({ refetch = () => {}, id = '', pocDetails = {} }) => {
+const useUpdatePOCDetails = ({ refetch = () => {}, id = '' }) => {
 	const [{ data, loading }, trigger] = useRequest(
 		{
 			method : 'post',
@@ -13,6 +13,7 @@ const useUpdatePOCDetails = ({ refetch = () => {}, id = '', pocDetails = {} }) =
 
 	const updatePOCDetails = async ({
 		poc = '',
+		pocDetails = {},
 	}) => {
 		const details = pocDetails?.[poc];
 		try {

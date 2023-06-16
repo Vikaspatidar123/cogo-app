@@ -43,7 +43,7 @@ function POCForm({ getCreditRequestResponse = {}, refetch = () => {} }) {
 	const {
 		updatePOCDetails = () => {},
 		loading = false,
-	} = useUpdatePOCDetails({ refetch, id: getCreditRequestResponse?.id, pocDetails });
+	} = useUpdatePOCDetails({ refetch, id: getCreditRequestResponse?.id });
 
 	return (
 		<form type="submit">
@@ -78,7 +78,7 @@ function POCForm({ getCreditRequestResponse = {}, refetch = () => {} }) {
 												themeType="accent"
 												className={styles.save_button}
 												onClick={() => (getCreditRequestResponse.id
-													? updatePOCDetails({ poc: item.name })
+													? updatePOCDetails({ poc: item.name, pocDetails })
 													: Toast.error('Please Confirm Uploaded Documents'))}
 												loading={loading}
 											>

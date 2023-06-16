@@ -20,7 +20,7 @@ function AddPOC({
 			...prev,
 			[renderingField?.name]: values,
 		}));
-		updatePOCDetails({ poc: renderingField?.name });
+		updatePOCDetails({ poc: renderingField?.name, pocDetails: { [renderingField?.name]: values } });
 	};
 
 	return (

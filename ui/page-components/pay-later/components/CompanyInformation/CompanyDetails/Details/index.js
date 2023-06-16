@@ -3,7 +3,7 @@ import { IcAAdd, IcMEdit } from '@cogoport/icons-react';
 
 import styles from './styles.module.css';
 
-function Details({ data = {} }) {
+function Details({ data = {}, setShowEdit = () => {} }) {
 	const {
 		pan = '',
 		name = '',
@@ -27,7 +27,7 @@ function Details({ data = {} }) {
 						</div>
 					</div>
 				</div>
-				<Button themeType="secondary">
+				<Button themeType="secondary" onClick={() => setShowEdit({ show: true, type: 'company' })}>
 					<IcMEdit />
 					<div className="button_edit">Edit</div>
 				</Button>

@@ -52,13 +52,6 @@ function SignupForm({ userDetails = {}, setMode = () => {}, setUserDetails = () 
 
 	const formValues = watch();
 
-	const filledCount = Object.values(formValues).reduce((acc, val) => acc + !isEmpty(val), 0);
-	const totalCount = Object.values(formValues).length;
-
-	const filledCountPer = (filledCount / totalCount) * 100;
-
-	console.log('filledCount::', filledCountPer);
-
 	const mobileCodeValue = watch('mobile_number');
 
 	useEffect(() => {

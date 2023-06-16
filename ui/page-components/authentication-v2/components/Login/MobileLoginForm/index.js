@@ -71,13 +71,7 @@ function MobileLoginForm({
 				name="mobile_number"
 				type="mobile-number-select"
 				placeholder="Enter your Mobile Number"
-				rules={{
-					required : 'Number is required.',
-					pattern  : {
-						value   : /^[0-9]{10}$/,
-						message : 'Number is invalid.',
-					},
-				}}
+				rules={{ required: 'Mobile Number is required.' }}
 			/>
 			<div className={styles.errors}>
 				{customError || ''}

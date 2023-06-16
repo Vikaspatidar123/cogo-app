@@ -35,7 +35,7 @@ const useLoginOtpAuthentication = (
 			let redirectPath;
 
 			if (query.redirectPath) {
-				redirectPath = `/v2/${query.redirectPath}`;
+				redirectPath = `${query.redirectPath}`;
 			}
 
 			setMode('loading_prompts');

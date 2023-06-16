@@ -12,7 +12,7 @@ function AddSignatory({
 	updateOrganizationCreditApplication = () => { },
 	loading = false,
 }) {
-	const { control, handleSubmit } = useForm();
+	const { control, handleSubmit, formState:{ errors } } = useForm();
 
 	const submit = (values) => {
 		updateOrganizationCreditApplication({ values });
@@ -27,6 +27,10 @@ function AddSignatory({
 						<div className={styles.field}>
 							<div className={styles.field_name}>{item.placeholder}</div>
 							<Element control={control} {...item} />
+							<div className={styles.error_text}>
+								{errors?.[item.name]?.message
+							|| errors?.[item.name]?.type }
+							</div>
 						</div>
 					);
 				})}

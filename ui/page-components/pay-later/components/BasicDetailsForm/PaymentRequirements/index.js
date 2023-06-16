@@ -44,7 +44,6 @@ function PaymentRequirements({ getCreditRequestResponse = {}, refetch = () => {}
 							<div className={styles.error_text}>
 								{errors?.[item.name]?.message
 							|| errors?.[item.name]?.type }
-
 							</div>
 						</div>
 					);

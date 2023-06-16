@@ -1,4 +1,3 @@
-import { Toast } from '@cogoport/components';
 import { useEffect, useCallback } from 'react';
 
 import { useRequest } from '@/packages/request';
@@ -26,7 +25,7 @@ function GetTracking() {
 			const { datas } = res;
 			return datas;
 		} catch (err) {
-			Toast.error(
+			console.log(
 				err?.message || ' Please try again.',
 			);
 			return null;

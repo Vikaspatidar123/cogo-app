@@ -15,12 +15,11 @@ const RENDERING_FORM = {
 	rejected             : RejectedApplication,
 	processing           : ApplicationProcessed,
 	finance_assessment   : FinancialAssessment,
-	live                 : PayLaterLive,
-	default              : null,
+	approved             : PayLaterLive,
 };
 
 function Form({ active = {}, getCreditRequestResponse = {}, refetch = () => {} }) {
-	const Component = RENDERING_FORM[active] || RENDERING_FORM.default;
+	const Component = RENDERING_FORM[active];
 	return (
 		<div className={styles.form}>
 			<Component getCreditRequestResponse={getCreditRequestResponse} refetch={refetch} />

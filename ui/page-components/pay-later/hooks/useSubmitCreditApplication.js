@@ -1,6 +1,6 @@
 import { useRequest } from '@/packages/request';
 
-const useSubmitCreditApplication = ({ getCreditRequestResponse = {} }) => {
+const useSubmitCreditApplication = ({ getCreditRequestResponse = {}, refetch = () => {} }) => {
 	const [{ loading, data }, trigger] = useRequest({
 		method : 'post',
 		url    : '/submit_credit_application_for_agreement_flow',
@@ -13,6 +13,7 @@ const useSubmitCreditApplication = ({ getCreditRequestResponse = {} }) => {
 					credit_request_id: getCreditRequestResponse?.id,
 				},
 			});
+			refetch();
 		} catch (e) {
 			console.log(e);
 		}

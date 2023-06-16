@@ -11,16 +11,16 @@ function AddPOC({
 	setAddNewPoc = () => {},
 	renderingField = {},
 	setPOCDetails = () => {},
-	callUpdatePOCdetails = () => {},
+	updatePOCDetails = () => {},
 }) {
 	const { control, handleSubmit } = useForm();
 
-	const submit = (values) => {
-		setPOCDetails((prev) => ({
+	const submit = async (values) => {
+		await setPOCDetails((prev) => ({
 			...prev,
 			[renderingField?.name]: values,
 		}));
-		callUpdatePOCdetails({ poc: renderingField?.name });
+		updatePOCDetails({ poc: renderingField?.name });
 	};
 
 	return (

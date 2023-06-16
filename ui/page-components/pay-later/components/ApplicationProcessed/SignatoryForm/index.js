@@ -1,5 +1,4 @@
 import { Button, Toast } from '@cogoport/components';
-import { isEmpty } from '@cogoport/utils';
 import { useEffect, useState } from 'react';
 
 import FormTitleAndDescription from '../../../common/FormTitleAndDescription';
@@ -19,17 +18,16 @@ const DETAILS_ARRAY = ['method', 'signatory', 'preview_and_upload', 'upload_sign
 
 function SignatoryForm({ getCreditRequestResponse = {}, refetch = () => {} }) {
 	const {
+		documents,
 		documents:{ paylater_agreement },
 		signatories = [],
 		is_sign_mode_digital = '',
 		sample_paylater_agreement = '',
 	} = getCreditRequestResponse || {};
 
-	const [method, setMethod] = useState('');
+	const [method, setMethod] = useState(is_sign_mode_digital ? 'digital' : 'physical');
 
-	const [showPreviewAndUpload, setPreviewAndUpload] = useState(!isEmpty(paylater_agreement));
-
-	const [signatoriesUpdated, setSignatoriesUpdated] = useState(false);
+	const [changeSignatory, setChangeSignatory] = useState(false);
 
 	const [show, setShow] = useState({});
 
@@ -42,7 +40,7 @@ function SignatoryForm({ getCreditRequestResponse = {}, refetch = () => {} }) {
 		upload_signed_copy : showUpload && UploadSignedCopy,
 	};
 
-	const { control, handleSubmit } = useForm({
+	const { control, handleSubmit, watch } = useForm({
 		defaultValues: {
 			signature_proof: paylater_agreement?.active?.document_url,
 		},
@@ -53,28 +51,25 @@ function SignatoryForm({ getCreditRequestResponse = {}, refetch = () => {} }) {
 		loading = false,
 	} = useUpdateOrganizationCreditApplication({ refetch, getCreditRequestResponse, method });
 
-	const { submitCreditApplication = () => {} } = useSubmitCreditApplication({ getCreditRequestResponse });
-
-	const handleClick = () => {
-		submitCreditApplication();
-	};
+	const {
+		submitCreditApplication = () => {},
+		loading:submitApplicationLoading = false,
+	} = useSubmitCreditApplication({ getCreditRequestResponse, refetch });
 
 	const submit = async (values) => {
-		await updateOrganizationCreditApplication({ physicalVerificationValues: values });
-		submitCreditApplication();
-		return null;
+		await updateOrganizationCreditApplication({ physicalVerificationValues: values, submitCreditApplication });
 	};
 
 	useEffect(() => {
 		setShow({
-			showMethod    : !(sample_paylater_agreement && is_sign_mode_digital),
+			showMethod: signatories.length === 0 || is_sign_mode_digital === (method === 'physical')
+			|| method === 'physical' || changeSignatory,
 			showPreview   : sample_paylater_agreement && is_sign_mode_digital,
-			showSignatory : !(signatories.length > 0),
-			showUpload    : !is_sign_mode_digital,
+			showSignatory : !(signatories.length > 0)
+			|| is_sign_mode_digital === (method === 'physical') || changeSignatory,
+			showUpload: method === 'physical' && signatories.length > 0 && !changeSignatory,
 		});
-		setMethod(is_sign_mode_digital ? 'digital' : 'physical');
-		setSignatoriesUpdated(signatories?.length > 0);
-	}, [signatories?.length, is_sign_mode_digital]);
+	}, [changeSignatory, documents, is_sign_mode_digital, method, sample_paylater_agreement, signatories.length]);
 
 	return (
 		<div>
@@ -92,7 +87,7 @@ function SignatoryForm({ getCreditRequestResponse = {}, refetch = () => {} }) {
 										getCreditRequestResponse={getCreditRequestResponse}
 										setMethod={setMethod}
 										method={method}
-										setSignatoriesUpdated={setSignatoriesUpdated}
+										setChangeSignatory={setChangeSignatory}
 										updateOrganizationCreditApplication={updateOrganizationCreditApplication}
 										loading={loading}
 										control={control}
@@ -106,15 +101,29 @@ function SignatoryForm({ getCreditRequestResponse = {}, refetch = () => {} }) {
 				return null;
 			})}
 			<div className={styles.button_wrapper}>
-				{!showPreviewAndUpload 	? (
+				{sample_paylater_agreement && method === 'physical' && !watch('signature_proof')
+					&& (
+						<Button
+							onClick={() => !method && Toast.error('Please Select a method')}
+						>
+							Next
+						</Button>
+					)}
+				{sample_paylater_agreement && method === 'digital' && (
 					<Button
-						onClick={() => (!method ? Toast.error('Please Select a method') : setPreviewAndUpload(true))}
+						onClick={submitCreditApplication}
+						loading={submitApplicationLoading}
 					>
-						Next
+						Proceed to E-sign
 					</Button>
-				) : (
-					<Button onClick={method === 'physical' ? handleSubmit(submit) : handleClick}>
-						{method === 'physical' ? 'Submit Agreement' : 'Proceed to E-sign' }
+				)}
+
+				{sample_paylater_agreement && method === 'physical' && watch('signature_proof') && (
+					<Button
+						onClick={handleSubmit(submit)}
+						loading={loading}
+					>
+						{is_sign_mode_digital ? 'Proceed to E-sign' : 'Submit Agreement' }
 					</Button>
 				)}
 			</div>

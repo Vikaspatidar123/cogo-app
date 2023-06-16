@@ -28,12 +28,9 @@ function GSTproof({
 			</div>
 			<div className={styles.file_container}>
 				<div className={styles.file}>
-					<img
-						src={proofUrl}
-						height="100%"
-						width="100%"
-						alt="proof"
-					/>
+					<object data={proofUrl} type="application/pdf" height="100%" width="100%">
+						<a href={proofUrl}>Business Address Proof</a>
+					</object>
 				</div>
 				<div className={styles.details}>
 					<div>

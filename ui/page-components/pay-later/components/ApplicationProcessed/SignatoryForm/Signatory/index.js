@@ -18,7 +18,7 @@ function Signatory({
 }) {
 	const [addSignatory, setAddSignatory] = useState(false);
 	const [selectedSignatory, setSelectedSignatory] = useState({});
-	const { control, watch, handleSubmit } = useForm();
+	const { control, watch, handleSubmit, formState:{ errors } } = useForm();
 
 	const { directors = [] } = getCreditRequestResponse || {};
 
@@ -49,6 +49,10 @@ function Signatory({
 									<div className={styles.field}>
 										<div className={styles.field_name}>{item.placeholder}</div>
 										<Element control={control} {...item} />
+										<div className={styles.error_text}>
+											{errors?.[item.name]?.message
+												|| errors?.[item.name]?.type }
+										</div>
 									</div>
 								);
 							}

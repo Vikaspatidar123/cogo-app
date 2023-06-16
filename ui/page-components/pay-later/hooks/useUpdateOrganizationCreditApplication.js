@@ -42,6 +42,7 @@ const useUpdateOrganizationCreditApplication = ({ refetch = () => {}, getCreditR
 		values = {},
 		selectedSignatory = {},
 		physicalVerificationValues = {},
+		submitCreditApplication = () => {},
 	}) => {
 		try {
 			await trigger({
@@ -55,7 +56,7 @@ const useUpdateOrganizationCreditApplication = ({ refetch = () => {}, getCreditR
 				},
 			});
 			if (physicalVerificationValues?.signature_proof) {
-				// submitCreditApplication();
+				submitCreditApplication();
 			}
 			refetch();
 		} catch (e) {

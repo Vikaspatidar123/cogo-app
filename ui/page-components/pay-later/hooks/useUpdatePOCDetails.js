@@ -2,7 +2,7 @@ import { Toast } from '@cogoport/components';
 
 import { useRequest } from '@/packages/request';
 
-const useUpdatePOCDetails = ({ refetch = () => {} }) => {
+const useUpdatePOCDetails = ({ refetch = () => {}, id = '', pocDetails = {} }) => {
 	const [{ data, loading }, trigger] = useRequest(
 		{
 			method : 'post',
@@ -11,7 +11,9 @@ const useUpdatePOCDetails = ({ refetch = () => {} }) => {
 		{ manual: true },
 	);
 
-	const updatePOCDetails = async ({ poc = '', pocDetails = '', id = '', setValue = () => {} }) => {
+	const updatePOCDetails = async ({
+		poc = '',
+	}) => {
 		const details = pocDetails?.[poc];
 		try {
 			await trigger({
@@ -28,7 +30,6 @@ const useUpdatePOCDetails = ({ refetch = () => {} }) => {
 				},
 			});
 			refetch();
-			setValue(poc, details?.id);
 		} catch (e) {
 			Toast.error('Please try selecting or adding another POC');
 		}

@@ -9,7 +9,7 @@ import styles from './styles.module.css';
 function CompanyInformation({ getCreditRequestResponse = {}, refetch = () => {} }) {
 	const { data, loading } = useGetCompanyFinanceData({ id: getCreditRequestResponse?.id });
 
-	if (loading) {
+	if (loading || !data) {
 		return (
 			<div className={styles.loader}>
 				<Loader />

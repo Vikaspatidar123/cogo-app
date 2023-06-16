@@ -1,4 +1,4 @@
-import { Accordion, Button, Pill } from '@cogoport/components';
+import { Toast, Accordion, Button, Pill } from '@cogoport/components';
 import { IcMPlus } from '@cogoport/icons-react';
 import { useState } from 'react';
 
@@ -29,21 +29,16 @@ function POCForm({ getCreditRequestResponse = {}, refetch = () => {} }) {
 
 	const POCControls = getControls({ setPOCDetails });
 
-	const {
-		control,
-		// setValue,
-		// watch,
-	} = useForm({
+	const { control } = useForm({
 		defaultValues: {
 			owner: getCreditRequestResponse?.poc_details?.[0]?.name,
 		},
 	});
 
-	const { updatePOCDetails = () => {}, loading = false } = useUpdatePOCDetails({ refetch });
-
-	const callUpdatePOCdetails = ({ poc }) => {
-		updatePOCDetails({ poc, pocDetails, id: getCreditRequestResponse?.id });
-	};
+	const {
+		updatePOCDetails = () => {},
+		loading = false,
+	} = useUpdatePOCDetails({ refetch, id: getCreditRequestResponse?.id, pocDetails });
 
 	return (
 		<form type="submit">
@@ -77,7 +72,9 @@ function POCForm({ getCreditRequestResponse = {}, refetch = () => {} }) {
 											<Button
 												themeType="accent"
 												className={styles.save_button}
-												onClick={() => callUpdatePOCdetails({ poc: item.name })}
+												onClick={() => (getCreditRequestResponse.id
+													? updatePOCDetails({ poc: item.name })
+													: Toast.error('Please Confirm Uploaded Documents'))}
 												loading={loading}
 											>
 												Save
@@ -90,7 +87,8 @@ function POCForm({ getCreditRequestResponse = {}, refetch = () => {} }) {
 									setPOCDetails={setPOCDetails}
 									setAddNewPoc={setAddNewPoc}
 									renderingField={item}
-									callUpdatePOCdetails={callUpdatePOCdetails}
+									updatePOCDetails={updatePOCDetails}
+									pocDetails={pocDetails}
 								/>
 							)}
 						</Accordion>

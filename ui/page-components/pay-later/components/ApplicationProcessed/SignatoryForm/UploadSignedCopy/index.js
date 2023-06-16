@@ -8,9 +8,7 @@ const fields = {
 	type        : 'file',
 };
 
-function UploadSignedCopy({ control, getCreditRequestResponse = {} }) {
-	const { documents:{ paylater_agreement } } = getCreditRequestResponse || {};
-
+function UploadSignedCopy({ control }) {
 	const Element = getField(fields?.type);
 	return (
 		<form>

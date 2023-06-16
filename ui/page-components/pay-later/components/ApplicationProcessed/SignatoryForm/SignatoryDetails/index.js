@@ -1,18 +1,15 @@
 import { Button } from '@cogoport/components';
 import { IcMEmail, IcMCall } from '@cogoport/icons-react';
-import { startCase, isEmpty } from '@cogoport/utils';
+import { startCase } from '@cogoport/utils';
 
 import styles from './styles.module.css';
 
-function SignatoryDetails({ setSignatoriesUpdated = () => {}, getCreditRequestResponse = {} }) {
-	const {
-		signatories = {},
-		documents:{ paylater_agreement },
-		sample_paylater_agreement,
-		is_sign_mode_digital,
-	} = getCreditRequestResponse || {};
-
-	const showChangeSignatory = isEmpty(paylater_agreement);
+function SignatoryDetails({
+	method = '',
+	setChangeSignatory = () => {},
+	getCreditRequestResponse = {},
+}) {
+	const { signatories = {} } = getCreditRequestResponse || {};
 
 	const { name = '', email = '', mobile_number = '' } = signatories?.[0] || {};
 	return (
@@ -32,9 +29,12 @@ function SignatoryDetails({ setSignatoriesUpdated = () => {}, getCreditRequestRe
 					</div>
 				</div>
 			</div>
-			{!(sample_paylater_agreement && is_sign_mode_digital) && (
+			{method === 'physical' && (
 				<div className={styles.button_wrapper}>
-					<Button themeType="secondary" onClick={() => setSignatoriesUpdated(false)}>
+					<Button
+						themeType="secondary"
+						onClick={() => setChangeSignatory(true)}
+					>
 						Change Signatory
 					</Button>
 				</div>

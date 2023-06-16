@@ -18,11 +18,6 @@ function ESignTracking({ getCreditRequestResponse = {} }) {
 				/>
 			</div>
 			<div>
-				{/* <div className={styles.signed_by}>
-					<Radio name="a2" label="Signed by you" disabled={false} />
-					<Radio name="a2" label="Signed by CogFin" disabled={false} />
-					<Radio name="a2" label="Final Review" disabled={false} />
-				</div> */}
 				{is_sign_mode_digital &&			(
 					<div className={styles.link}>
 						<div>
@@ -30,7 +25,6 @@ function ESignTracking({ getCreditRequestResponse = {} }) {
 							{signing_authority_email}
 							“
 						</div>
-						<span className={styles.resend}>Resend</span>
 					</div>
 				) }
 				<div className={styles.description}>

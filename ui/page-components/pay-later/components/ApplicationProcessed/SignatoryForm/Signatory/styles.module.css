@@ -24,3 +24,7 @@
 .save_button {
     margin-left: 7px;
 }
+
+.error_text {
+    color:red;
+}

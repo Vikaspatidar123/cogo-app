@@ -12,6 +12,7 @@ import getField from '@/packages/forms/Controlled';
 import { useSelector } from '@/packages/store';
 
 function CompanyDetailsForm({ getCreditRequestResponse = {}, refetch = () => {} }) {
+	console.log('🚀 ~ file: index.js:15 ~ CompanyDetailsForm ~ getCreditRequestResponse:', getCreditRequestResponse);
 	const { profile } = useSelector((state) => state);
 
 	const [show, setShow] = useState(false);
@@ -52,7 +53,6 @@ function CompanyDetailsForm({ getCreditRequestResponse = {}, refetch = () => {} 
 
 	useEffect(() => {
 		setValue('gst_proof', fileName);
-		// setValue('tax_number', getCreditRequestResponse?.tax_number);
 	}, [fileName, getCreditRequestResponse?.tax_number, setValue]);
 
 	return (

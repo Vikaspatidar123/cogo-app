@@ -2,21 +2,17 @@
 	display: flex;
 	align-items: flex-start;
 	justify-content: space-between;
-
-	/* height: 80vh; */
 	margin-top: 20px;
-
-	/* overflow-y: scroll; */
 }
 
-.milestone_container {
+.info_container {
 	width: 35%;
 }
 
-.section {
-	width: 60%;
+.milestone_container {
+	margin-top: 20px;
 }
 
-.map_container {
-	margin-top: 20px;
+.section {
+	width: 62%;
 }

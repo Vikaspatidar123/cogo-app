@@ -5,8 +5,8 @@
 .card {
 	display: flex;
 	width: 33%;
-	padding: 13px 45px;
-
+	padding: 8px 45px;
+	border-bottom: 1px solid #daf9ff;
 
 	&.delay {
 		border-right: 1px solid #f2e3c3;
@@ -14,11 +14,18 @@
 	}
 }
 
-.selected{
-	background-color: #FDFBF6;
-	border-bottom: 4px solid #EE3425;
+.text {
+	margin: 0;
+	font-size: 16px;
+	font-weight: 300;
+	color: #828282;
+}
 
-	.text{
+.selected {
+	background-color: #fdfbf6;
+	border-bottom: 4px solid #ee3425;
+
+	.text {
 		font-weight: 600;
 		color: #333;
 	}
@@ -34,13 +41,6 @@
 
 .info_container {
 	width: 85%;
-}
-
-.text {
-	margin: 0;
-	font-size: 16px;
-	font-weight: 300;
-	color: #828282;
 }
 
 .footer {

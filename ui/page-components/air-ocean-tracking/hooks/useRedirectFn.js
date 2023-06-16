@@ -16,9 +16,17 @@ const useRedirectFn = () => {
 		);
 	};
 
+	const redirectToList = () => {
+		push(
+			'/saas/tools/air-ocean-tracking/list',
+			'/saas/tools/air-ocean-tracking/list',
+		);
+	};
+
 	return {
 		redirectArchivedList,
 		redirectToTracker,
+		redirectToList,
 	};
 };
 

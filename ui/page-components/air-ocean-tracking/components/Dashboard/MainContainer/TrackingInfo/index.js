@@ -7,7 +7,7 @@ function TrackingInfo() {
 	return (
 		<div className={styles.container}>
 			<StatsContainer />
-			<MapContainer />
+			<MapContainer height="55vh" />
 		</div>
 	);
 }

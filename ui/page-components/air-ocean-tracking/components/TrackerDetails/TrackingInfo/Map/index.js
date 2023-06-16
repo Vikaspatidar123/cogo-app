@@ -13,7 +13,7 @@ function Map({
 }) {
 	return (
 		<div className={styles.container}>
-			<CogoMaps height="500px" />
+			<CogoMaps height={height} />
 		</div>
 	);
 }

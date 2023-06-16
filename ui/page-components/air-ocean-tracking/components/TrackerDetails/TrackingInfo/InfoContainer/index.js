@@ -1,4 +1,4 @@
-import { Select, cl } from '@cogoport/components';
+import { Select, cl, Pill } from '@cogoport/components';
 import { useMemo } from 'react';
 
 import styles from './styles.module.css';
@@ -11,9 +11,9 @@ const getOptions = ({ containerDetails = [] }) => containerDetails.map((item) =>
 }));
 
 const INFO = {
-	shipper   : 'Shipper',
-	consignee : 'Consignee',
-	incoterm  : 'Incoterm',
+	// shipper   : 'Shipper',
+	// consignee : 'Consignee',
+	incoterm: 'Incoterm',
 };
 
 function InfoContainer({
@@ -49,25 +49,36 @@ function InfoContainer({
 			<div className={styles.title_container}>
 				<h3 className={styles.title}>{SHIPMENT_TITLE}</h3>
 				<div className={styles.line} />
+				<div className={styles.tag}>
+					<Pill color="blue" size="sm">
+						Shipper:
+						{' '}
+						{tableData?.shipper}
+					</Pill>
+					<Pill color="orange" size="sm">
+						Consignee:
+						{' '}
+						{(tableData?.consignee || '').split(' ')[0]}
+					</Pill>
+				</div>
 			</div>
 
-			<div className={cl`${styles.flex_box} ${styles.row}`}>
+			<div className={styles.row}>
 				<div className={cl`${styles.flex_box} ${styles.section}`}>
 					<p>
 						{trackingType === 'ocean' ? CARD_TITLE.CONTAINER_NO : CARD_TITLE}
-						{' '}
 						:
-						{' '}
 					</p>
-					{containerDetails.length > 1
+					{containerDetails.length === 1
 						? (
 							<Select
+								size="sm"
 								value={currContainerDetails}
 								onChange={setCurrContainerDetails}
 								options={getOptions({ containerDetails })}
 
 							/>
-						) : <p>{container_no}</p>}
+						) : <p>{` ${container_no}`}</p>}
 				</div>
 
 				<div className={cl`${styles.section} ${styles.info_section}`}>

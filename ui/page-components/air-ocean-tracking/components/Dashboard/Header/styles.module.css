@@ -1,42 +1,57 @@
-.container{
-    padding: 20px;
-    background-color: #FCDC00;
-    background-image: url('https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/tracking_bg.png');
-    background-blend-mode: overlay;
-    background-size: cover;
+.container {
+	padding: 20px;
+	background-color: #fcdc00;
+	background-image: url("https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/tracking_bg.png");
+	background-size: cover;
+	background-blend-mode: overlay;
 
-    :global{
-        .ui_toggle_offlabel,.ui_toggle_onlabel{
-            color: #333;
-        }
-    }
+	:global {
+		.ui_toggle_offlabel,
+		.ui_toggle_onlabel {
+			color: #333;
+		}
+	}
 
-    h2{
-        text-align: center;
-    }
+	h2 {
+		text-align: center;
+	}
 }
 
-.form_container{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.form_container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }
 
-.row{
-    display: flex;
-    width: 100%;
-    justify-content: center;
-    align-items: center;
+.row {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
 }
 
-.col{
-    padding: 0 8px;
+.col {
+	padding: 0 8px;
 
-    &.form_col{
-        width: 20%;
-    }
-    &.or_tag{
-        width: 7%;
-    }
-    /* width: 30%; */
+	&.form_col {
+		width: 20%;
+	}
+
+	&.or_tag {
+		width: 7%;
+	}
+
+	/* width: 30%; */
+}
+
+.select_container {
+	width: 10%;
+}
+
+.options_container {
+	display: flex;
+
+	.option_text {
+		margin-left: 5px;
+	}
 }

@@ -1,20 +1,20 @@
-.container{
-    padding: 0 10px
+.container {
+	padding: 0 10px;
 }
 
-.card{
-    box-shadow: 0px 0px 16px 0px #627FAC33;
-    padding: 20px;
-    margin-bottom:20px;
+.card {
+	padding: 20px;
+	margin-bottom: 20px;
+	box-shadow: 0 0 16px 0 #627fac33;
 }
 
-.row{
-    display: flex;
-    border-bottom: 1px solid #CFEAED;
-    padding: 8px 0;
+.row {
+	display: flex;
+	padding: 8px 0;
+	border-bottom: 1px solid #cfeaed;
 }
 
-.text{
-    font-size: 12px;
-    width: 75%;
+.text {
+	width: 75%;
+	font-size: 12px;
 }

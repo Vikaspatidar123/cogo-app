@@ -1,6 +1,6 @@
 import { IcMArrowBack } from '@cogoport/icons-react';
 
-import Header from './Header';
+// import Header from './Header';
 import styles from './styles.module.css';
 import TrackingInfo from './TrackingInfo';
 
@@ -14,7 +14,6 @@ function TrackerDetails() {
 				<IcMArrowBack width={15} height={15} onClick={back} />
 				<h2>Track and Trace</h2>
 			</div>
-			<Header />
 			<TrackingInfo />
 		</div>
 	);

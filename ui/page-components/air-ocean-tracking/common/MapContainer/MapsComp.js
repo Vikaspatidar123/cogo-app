@@ -13,11 +13,11 @@ const LAYER = [
 ];
 
 const center = { lat: '28.679079', lng: '77.069710' };
-function MapComp() {
+function MapComp({ height = '60vh' }) {
 	const [map, setMap] = useState();
 	return (
 		<CogoMaps
-			style={{ width: '100%', height: '60vh' }}
+			style={{ width: '100%', height }}
 			baseLayer={LAYER}
 			zoom={3}
 			minZoom={2}

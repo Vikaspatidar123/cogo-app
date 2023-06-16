@@ -4,10 +4,10 @@ import styles from './styles.module.css';
 
 const CogoMaps = dynamic(() => import('./MapsComp'), { ssr: false });
 
-function MapContainer() {
+function MapContainer({ height = '60vh' }) {
 	return (
 		<div className={styles.container}>
-			<CogoMaps />
+			<CogoMaps height={height} />
 		</div>
 	);
 }

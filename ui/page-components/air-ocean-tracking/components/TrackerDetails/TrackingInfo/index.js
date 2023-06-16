@@ -19,22 +19,23 @@ function TrackingInfo() {
 
 	return (
 		<div className={styles.container}>
-			<div className={styles.milestone_container}>
-				<MilestoneStepper combineMileStoneList={combineMileStoneList} />
+			<div className={styles.info_container}>
+				<InfoContainer
+					containerDetails={container_details}
+					currContainerDetails={currContainerDetails}
+					shipmentInfo={shipment_info}
+					setCurrContainerDetails={setCurrContainerDetails}
+					trackingType={trackingType}
+					poc_details={poc_details}
+				/>
+				<div className={styles.milestone_container}>
+					<MilestoneStepper combineMileStoneList={combineMileStoneList} />
+				</div>
+
 			</div>
 			<div className={styles.section}>
-				<div>
-					<InfoContainer
-						containerDetails={container_details}
-						currContainerDetails={currContainerDetails}
-						shipmentInfo={shipment_info}
-						setCurrContainerDetails={setCurrContainerDetails}
-						trackingType={trackingType}
-						poc_details={poc_details}
-					/>
-				</div>
 				<div className={styles.map_container}>
-					<Maps currTrackingData={currTrackingData} />
+					<Maps currTrackingData={currTrackingData} height="83vh" />
 				</div>
 			</div>
 		</div>

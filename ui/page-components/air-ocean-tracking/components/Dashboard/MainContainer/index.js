@@ -1,8 +1,9 @@
 import { cl, Tabs, TabPanel, ButtonGroup, Select, Button } from '@cogoport/components';
-import { IcMDownload, IcMListView, IcMMap } from '@cogoport/icons-react';
+import { IcMListView, IcMMap } from '@cogoport/icons-react';
 import { useState } from 'react';
 
-import TAB_MAPPING from '../../../constant/tabMapping';
+import { DASHBOARD_TAB_MAPPING } from '../../../constant/tabMapping';
+import useRedirectFn from '../../../hooks/useRedirectFn';
 
 import styles from './styles.module.css';
 import TrackingInfo from './TrackingInfo';
@@ -38,6 +39,7 @@ function MainContainer() {
 		activeTab   : 'all',
 	});
 
+	const { redirectToList } = useRedirectFn();
 	const btnGrpOpt = getBtnGrpOpt({ setGlobalFilter });
 
 	return (
@@ -55,8 +57,8 @@ function MainContainer() {
 								activeTab: e,
 							}))}
 						>
-							{Object.keys(TAB_MAPPING).map((tab) => (
-								<TabPanel name={tab} title={TAB_MAPPING?.[tab]} badge={3} />
+							{Object.keys(DASHBOARD_TAB_MAPPING).map((tab) => (
+								<TabPanel name={tab} title={DASHBOARD_TAB_MAPPING?.[tab]} />
 							))}
 						</Tabs>
 					</div>
@@ -74,10 +76,8 @@ function MainContainer() {
 						options={selectOpt}
 						className={styles.select_field}
 					/>
-					<Button themeType="accent">
-						Export Data
-						{' '}
-						<IcMDownload />
+					<Button themeType="secondary" onClick={redirectToList}>
+						View All Shipments
 					</Button>
 				</div>
 			</div>

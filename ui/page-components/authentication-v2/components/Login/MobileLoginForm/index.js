@@ -69,7 +69,6 @@ function MobileLoginForm({
 			<MobileNumberSelectController
 				control={control}
 				name="mobile_number"
-				type="mobile-number-select"
 				placeholder="Enter your Mobile Number"
 				rules={{ required: 'Mobile Number is required.' }}
 			/>

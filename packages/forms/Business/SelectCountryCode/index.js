@@ -7,18 +7,9 @@ function SelectCountryCode(props) {
 	const { value } = props;
 
 	const formattedList = countryCode.map((code) => ({
+		id    : code.id,
 		value : code.mobile_country_code,
-		label : (
-			<div style={{ display: 'flex', alignItems: 'center' }}>
-
-				<span style={{ marginTop: -4 }}>
-					{code.mobile_country_code}
-					:
-					{'  '}
-					{code.name}
-				</span>
-			</div>
-		),
+		label : `${code.mobile_country_code || ''}: ${code.name || ''}`,
 	}));
 
 	return (

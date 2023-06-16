@@ -180,7 +180,6 @@ function SignupForm({ userDetails = {}, setMode = () => {}, setUserDetails = () 
 				<MobileNumberSelectController
 					control={control}
 					name="mobile_number"
-					type="mobile-number-select"
 					placeholder="Enter your Mobile Number"
 					rules={{
 						required : 'Number is required.',

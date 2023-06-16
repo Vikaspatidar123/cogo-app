@@ -22,7 +22,7 @@ function Header({
 	return (
 		<div>
 			<div className={styles.button_container}>
-				<div style={{ display: 'flex', flexDirection: 'column' }}>
+				<div className={styles.sop_filter}>
 					<SopFilters
 						setFilters={setFilters}
 						trade_partners_details={trade_partners_details}

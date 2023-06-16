@@ -37,7 +37,7 @@ function AirSchedules() {
 	);
 
 	const handleCreateSchedule = () => {
-		if (formValues.origin_port === formValues.destination_port) {
+		if (formValues?.origin_port === formValues?.destination_port) {
 			setErrorMessage((prev) => !prev);
 			return;
 		}

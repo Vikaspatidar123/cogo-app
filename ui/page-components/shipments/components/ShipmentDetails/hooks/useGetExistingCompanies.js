@@ -82,10 +82,14 @@ const useGetExistingCompanies = ({ role, servProvId, compType, existing_company_
 					address_details,
 				});
 			} else {
+				console.log(res, 'res');
 				const business_name_list = (res?.data?.list || []).map((item) => ({
 					label : item?.legal_business_name,
 					value : item?.id,
 				}));
+				const tradeParty = (res?.data?.list || [])[0] || {};
+				setValue('business_name', tradeParty.legal_business_name);
+				setValue('registration_number', tradeParty.registration_number);
 				setCompanyDetails({
 					...companyDetails,
 					details       : res?.data?.list,

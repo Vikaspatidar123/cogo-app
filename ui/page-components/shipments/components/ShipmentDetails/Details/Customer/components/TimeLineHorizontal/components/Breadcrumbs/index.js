@@ -20,18 +20,19 @@ function BreadCrumbs({ servicesForMap = false }) {
 	const { onPinShipment } = useUpDatePin(pinned, refetch);
 
 	const handleClick = (detail) => {
-		router.push(detail.href);
+		router.push('/shipments');
 	};
 
 	return (
 		<div className={`${styles.container} ${servicesForMap ? styles.shipment_bread_crumb : ''}`}>
 			<Breadcrumb>
 				<Breadcrumb.Item
-					label={<a href="/shipments">Shipments</a>}
+					label="Shipments"
 					onClick={(details) => handleClick(details)}
 					style={{ color: 'blue' }}
+					className={styles.back_to_shipment}
 				/>
-				<Breadcrumb.Item label={`#${shipment_data?.serial_id}`} onClick={(details) => handleClick(details)} />
+				<Breadcrumb.Item label={`#${shipment_data?.serial_id}`} />
 			</Breadcrumb>
 			{pinned ? (
 				<IcMPin

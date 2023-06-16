@@ -9,7 +9,7 @@ function LayoutLogo() {
 	return (
 		<div className={styles.header}>
 
-			<a href="https://www.cogoport.com">
+			<a href="/">
 				<img
 					src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/cogoport.svg"
 					alt="Cogoport"

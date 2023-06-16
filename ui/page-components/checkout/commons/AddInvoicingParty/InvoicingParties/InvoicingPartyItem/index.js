@@ -40,7 +40,7 @@ function InvoicingPartyItem({
 	};
 	return (
 
-		<div className={`${styles.container} ${isIE && styles.ie}`}>
+		<div className={cl`${styles.container} ${isIE && styles.ie}`}>
 			<Modal.Body>
 				<div className={styles.label}>
 					<div className={styles.business_name}>{business_name}</div>

@@ -17,7 +17,7 @@ function SwitchUser({ setShow }) {
 		setShow(false);
 	};
 	const getStarted = () => {
-		window.location.href = '/v2/get-started';
+		window.location.href = '/get-started';
 	};
 	return (
 		<div className={styles.container}>

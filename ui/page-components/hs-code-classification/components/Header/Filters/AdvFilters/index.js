@@ -33,8 +33,8 @@ function AdvFilters({
 
 	const clearFilterHandler = async () => {
 		refetch(country);
-		if (country !== GLOBAL_CONSTANTS.COUNTRY_IDS.IN) {
-			setValue('country', GLOBAL_CONSTANTS.COUNTRY_IDS.IN);
+		if (country !== GLOBAL_CONSTANTS.hs_code_country_ids.IN) {
+			setValue('country', GLOBAL_CONSTANTS.hs_code_country_ids.IN);
 			setValue('searchTerm', '');
 			setValue('filterBy', '');
 			setValue('searchBy', '');

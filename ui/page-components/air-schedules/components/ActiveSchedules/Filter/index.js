@@ -16,7 +16,6 @@ function Filter({
 	useEffect(() => {
 		if (carrierList.length > 0) {
 			const carriers = (carrierList || []).filter((x) => x.status);
-			console.log(carriers, 'carriers');
 			if (carriers.length > 0) {
 				const carriersList = (carriers || []).map((val) => val?.shippingLineId);
 				setFilterCarrier(carriersList);

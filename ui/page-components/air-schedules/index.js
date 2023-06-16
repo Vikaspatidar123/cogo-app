@@ -36,7 +36,7 @@ function AirSchedules() {
 		}),
 	);
 	const handleCreateSchedule = () => {
-		if (formValues.origin_airport === formValues.destination_airport) {
+		if (formValues?.origin_airport === formValues?.destination_airport) {
 			setErrorMessage((prev) => !prev);
 			return;
 		}

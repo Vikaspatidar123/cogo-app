@@ -1,5 +1,5 @@
 import { DateRangepicker, Button } from '@cogoport/components';
-import { format, isEmpty } from '@cogoport/utils';
+import { format } from '@cogoport/utils';
 import React, { useEffect, useState } from 'react';
 
 import FilterDropDownContent from './FilterDropDownContent';

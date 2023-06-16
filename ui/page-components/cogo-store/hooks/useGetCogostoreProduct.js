@@ -8,8 +8,8 @@ const useGetCogostoreProduct = () => {
 	const { cogopoint_id } = profile || {};
 
 	const [{ loading, data }, trigger] = useRequest({
-		url: '/get_cogostore_product',
-		method: 'get',
+		url    : '/get_cogostore_product',
+		method : 'get',
 	}, { manual: true });
 
 	const getCogostoreProduct = useCallback(
@@ -21,8 +21,8 @@ const useGetCogostoreProduct = () => {
 			try {
 				trigger({
 					params: {
-						id: product_id,
-						cogopoint_user_id: cogopoint_id,
+						id                : product_id,
+						cogopoint_user_id : cogopoint_id,
 					},
 				});
 			} catch (error) {

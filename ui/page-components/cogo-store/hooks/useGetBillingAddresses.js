@@ -8,17 +8,17 @@ const useGetBillingAddress = ({ setSelectAddressId = () => { } }) => {
 	const orgId = profile?.organization?.id;
 
 	const [{ loading, data }, trigger] = useRequest({
-		url: '/list_organization_billing_addresses',
-		method: 'get',
+		url    : '/list_organization_billing_addresses',
+		method : 'get',
 	}, { manual: true });
 
 	const billingAddress = useCallback(async () => {
 		try {
 			const res = await trigger({
 				params: {
-					organization_id: orgId,
-					page_limit: 100,
-					page: 1,
+					organization_id : orgId,
+					page_limit      : 100,
+					page            : 1,
 				},
 			});
 
@@ -29,7 +29,7 @@ const useGetBillingAddress = ({ setSelectAddressId = () => { } }) => {
 		} catch (error) {
 			console.log(error);
 		}
-		// eslint-disable-next-line react-hooks/exhaustive-deps
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [trigger, orgId]);
 
 	useEffect(() => {

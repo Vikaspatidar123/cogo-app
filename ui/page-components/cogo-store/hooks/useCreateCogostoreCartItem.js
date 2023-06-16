@@ -10,16 +10,16 @@ const useCreateCogostoreCartItem = ({ getCogostoreCartItems }) => {
 	const { cogopoint_id } = profile || {};
 
 	const [{ loading }, trigger] = useRequest({
-		url: '/create_cogostore_cart_item',
-		method: 'post',
+		url    : '/create_cogostore_cart_item',
+		method : 'post',
 	}, { manual: true });
 
 	const createCogostoreCartItem = useCallback(
 		async ({ product_code_id = '', quantity = 0 }) => {
 			const payload = {
-				product_id: product_code_id,
+				product_id        : product_code_id,
 				quantity,
-				cogopoint_user_id: cogopoint_id,
+				cogopoint_user_id : cogopoint_id,
 			};
 			try {
 				const res = await trigger({

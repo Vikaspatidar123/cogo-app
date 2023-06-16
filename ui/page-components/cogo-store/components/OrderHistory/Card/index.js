@@ -100,10 +100,10 @@ function Card({ data, setModalInfo }) {
 										<Button
 											themeType="secondary"
 											onClick={() => setModalInfo({
-												isView: false,
-												show: true,
-												voucherData: [],
-												orderItemId: id,
+												isView      : false,
+												show        : true,
+												voucherData : [],
+												orderItemId : id,
 											})}
 										>
 											{t('cogoStore:order_history_card_share')}
@@ -111,10 +111,10 @@ function Card({ data, setModalInfo }) {
 
 										<Button
 											onClick={() => setModalInfo({
-												isView: true,
-												show: true,
-												voucherData: order_item_addition_data?.PullVouchers,
-												orderItemId: id,
+												isView      : true,
+												show        : true,
+												voucherData : order_item_addition_data?.PullVouchers,
+												orderItemId : id,
 											})}
 										>
 											{t('cogoStore:view_details')}
@@ -127,10 +127,10 @@ function Card({ data, setModalInfo }) {
 											className={styles.view_details}
 											role="presentation"
 											onClick={() => setModalInfo({
-												isView: true,
-												show: true,
-												voucherData: order_item_addition_data?.PullVouchers,
-												orderItemId: id,
+												isView      : true,
+												show        : true,
+												voucherData : order_item_addition_data?.PullVouchers,
+												orderItemId : id,
 											})}
 										>
 											<IcMEyeopen width={20} height={20} />
@@ -139,10 +139,10 @@ function Card({ data, setModalInfo }) {
 											className={styles.view_details}
 											role="presentation"
 											onClick={() => setModalInfo({
-												isView: false,
-												show: true,
-												voucherData: [],
-												orderItemId: id,
+												isView      : false,
+												show        : true,
+												voucherData : [],
+												orderItemId : id,
 											})}
 										>
 											<IcMShare width={20} height={20} />

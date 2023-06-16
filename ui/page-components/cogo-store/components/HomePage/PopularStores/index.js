@@ -11,15 +11,15 @@ import styles from './styles.module.css';
 import { useRouter } from '@/packages/next';
 
 const CAROUSEL_SETTINGS = {
-	dots: true,
-	infinite: false,
-	speed: 1000,
-	autoplaySpeed: 5000,
-	slidesToShow: 5,
-	slidesToScroll: 5,
-	autoplay: false,
-	arrows: false,
-	pauseOnHover: true,
+	dots           : true,
+	infinite       : false,
+	speed          : 1000,
+	autoplaySpeed  : 5000,
+	slidesToShow   : 5,
+	slidesToScroll : 5,
+	autoplay       : false,
+	arrows         : false,
+	pauseOnHover   : true,
 };
 
 function PopularStores({ data = {}, loading = false }) {

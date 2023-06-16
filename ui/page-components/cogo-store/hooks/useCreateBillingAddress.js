@@ -13,8 +13,8 @@ const useCreateBillingAddress = ({
 	const orgId = profile?.partner?.twin_importer_exporter_id;
 
 	const [{ loading }, trigger] = useRequest({
-		url: '/create_organization_billing_address',
-		method: 'post',
+		url    : '/create_organization_billing_address',
+		method : 'post',
 	}, { manual: true });
 
 	const createBillingAddress = async (val) => {
@@ -36,22 +36,22 @@ const useCreateBillingAddress = ({
 		try {
 			await trigger({
 				data: {
-					organization_id: orgId,
-					source: 'app',
-					tax_number: taxNumber,
-					name: billingPartyName,
-					poc_details: [
+					organization_id : orgId,
+					source          : 'app',
+					tax_number      : taxNumber,
+					name            : billingPartyName,
+					poc_details     : [
 						{
 							name,
-							mobile_number: number,
+							mobile_number       : number,
 							email,
-							mobile_country_code: country_code,
+							mobile_country_code : country_code,
 						},
 					],
 					address,
 					city,
-					country_id: country,
-					state_id: state,
+					country_id : country,
+					state_id   : state,
 					pincode,
 					address_type,
 				},

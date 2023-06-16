@@ -2,13 +2,13 @@ import { useRequest } from '@/packages/request';
 
 const useBookCogostoreCart = () => {
 	const [{ loading }, trigger] = useRequest({
-		url: '/book_cogostore_cart',
-		method: 'post',
+		url    : '/book_cogostore_cart',
+		method : 'post',
 	}, { manual: true });
 
 	const [{ data: getOrderList }, getTrigger] = useRequest({
-		url: '/get_cogostore_order',
-		method: 'get',
+		url    : '/get_cogostore_order',
+		method : 'get',
 	}, { manual: true });
 
 	const getTriggerData = async (data) => {

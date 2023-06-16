@@ -9,13 +9,13 @@ const useGetOrderList = () => {
 	const { profile } = useSelector((state) => state);
 	const { cogopoint_id } = profile || {};
 	const [filters, setFilters] = useState({
-		page: 1,
-		search: '',
+		page   : 1,
+		search : '',
 	});
 	const { debounceQuery, query } = useDebounceQuery();
 	const [{ loading, data }, trigger] = useRequest({
-		url: '/list_cogostore_orders',
-		method: 'get',
+		url    : '/list_cogostore_orders',
+		method : 'get',
 	}, { manual: true });
 
 	const { page, search } = filters;
@@ -39,11 +39,11 @@ const useGetOrderList = () => {
 			await trigger({
 				params: {
 					filters: {
-						cogopoint_user_id: cogopoint_id,
-						q: search,
+						cogopoint_user_id : cogopoint_id,
+						q                 : search,
 					},
-					service_object_required: true,
-					user_type: 'user',
+					service_object_required : true,
+					user_type               : 'user',
 					page,
 				},
 			});

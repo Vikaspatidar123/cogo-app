@@ -1,9 +1,9 @@
 export const ICON_MAPPING = {
 	education:
 		'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/Electronics.png',
-	accessories: '',
-	gift: '',
-	grooming: '',
+	accessories : '',
+	gift        : '',
+	grooming    : '',
 	subscription:
 		'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/Ecommerce.png',
 	health:

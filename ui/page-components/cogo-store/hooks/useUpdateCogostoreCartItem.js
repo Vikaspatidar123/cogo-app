@@ -8,8 +8,8 @@ const useUpdateCogostoreCartItem = ({ getCogostoreCartItems }) => {
 	const { cogopoint_id } = profile || {};
 
 	const [{ loading, data }, trigger] = useRequest({
-		url: '/update_cogostore_cart_item',
-		method: 'post',
+		url    : '/update_cogostore_cart_item',
+		method : 'post',
 	}, { manual: true });
 
 	const updateCogostoreCartItem = async ({

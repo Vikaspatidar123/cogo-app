@@ -16,8 +16,9 @@ function Categories({
 	return (
 		<div className={styles.categories}>
 			<div
-				className={cl`${styles.category} ${activeCategory === 'All' ? styles.category_active : ''
-					}`}
+				className={cl`${styles.category} ${
+					activeCategory === 'All' ? styles.category_active : ''
+				}`}
 				onClick={() => displayCategoryProduct()}
 				role="presentation"
 			>
@@ -34,8 +35,9 @@ function Categories({
 			{categories.map(({ display_name, id, category, logo_url }) => (
 				<div
 					key={id}
-					className={cl`${styles.category} ${activeCategory === id ? styles.category_active : ''
-						}`}
+					className={cl`${styles.category} ${
+						activeCategory === id ? styles.category_active : ''
+					}`}
 					onClick={() => displayCategoryProduct(id, display_name)}
 					role="presentation"
 				>

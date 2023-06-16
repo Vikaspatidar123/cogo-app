@@ -4,8 +4,8 @@ import { useRequest } from '@/packages/request';
 
 const useFilter = ({ categoryId }) => {
 	const [{ loading, data }, trigger] = useRequest({
-		url: '/get_cogostore_filters',
-		method: 'get',
+		url    : '/get_cogostore_filters',
+		method : 'get',
 	}, { manual: true });
 
 	const getFilter = async (id = '') => {
@@ -19,7 +19,7 @@ const useFilter = ({ categoryId }) => {
 	};
 	useEffect(() => {
 		getFilter(categoryId);
-		// eslint-disable-next-line react-hooks/exhaustive-deps
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [categoryId]);
 
 	return { loading, data };

@@ -21,18 +21,18 @@ function Main() {
 	const { id = '', isCategory = false } = query || {};
 
 	const [brandFilter, setBrandFilter] = useState({
-		show: false,
-		brandList: [],
+		show      : false,
+		brandList : [],
 	});
 
 	const [rangeFilter, setRangeFilter] = useState({
-		show: false,
-		rangeList: {},
+		show      : false,
+		rangeList : {},
 	});
 
 	const [categoryInfo, setCategoryInfo] = useState({
-		categoryId: isCategory ? id : '',
-		categoryName: 'All Products',
+		categoryId   : isCategory ? id : '',
+		categoryName : 'All Products',
 	});
 
 	const { categoryId, categoryName } = categoryInfo;
@@ -76,15 +76,15 @@ function Main() {
 	const displayCategoryProduct = (category_id, display_name) => {
 		if (!isEmpty(brandList)) {
 			setBrandFilter({
-				show: false,
-				brandList: [],
+				show      : false,
+				brandList : [],
 			});
 		}
 
 		if (!isEmpty(rangeList)) {
 			setRangeFilter({
-				show: false,
-				rangeList: [],
+				show      : false,
+				rangeList : [],
 			});
 		}
 
@@ -94,8 +94,8 @@ function Main() {
 		}
 
 		setCategoryInfo({
-			categoryId: category_id,
-			categoryName: display_name || 'All Products',
+			categoryId   : category_id,
+			categoryName : display_name || 'All Products',
 		});
 	};
 

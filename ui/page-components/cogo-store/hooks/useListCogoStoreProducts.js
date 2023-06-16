@@ -19,15 +19,15 @@ const useListCogoStoreProducts = (listData = {}) => {
 	const { debounceQuery, query: debounceSearch } = useDebounceQuery();
 
 	const [{ loading, data }, trigger] = useRequest({
-		url: '/list_cogostore_products',
-		method: 'get',
+		url    : '/list_cogostore_products',
+		method : 'get',
 	}, { manual: true });
 
 	const getPayload = () => {
 		const payload = {
-			category_id: categoryId,
-			search: debounceSearch,
-			brand_id: !isEmpty(brandList) ? brandList : undefined,
+			category_id : categoryId,
+			search      : debounceSearch,
+			brand_id    : !isEmpty(brandList) ? brandList : undefined,
 			...rangeList,
 		};
 		return payload;
@@ -49,17 +49,17 @@ const useListCogoStoreProducts = (listData = {}) => {
 		...rest
 	}) => {
 		const payload = {
-			product_code_data_required: true,
-			page_limit: 12,
-			filters: {
-				q: search,
-				is_first_priority: true,
-				is_stock_available: true,
-				status: 'active',
-				id: product_id,
-				category_id: category_id || undefined,
+			product_code_data_required : true,
+			page_limit                 : 12,
+			filters                    : {
+				q                  : search,
+				is_first_priority  : true,
+				is_stock_available : true,
+				status             : 'active',
+				id                 : product_id,
+				category_id        : category_id || undefined,
 				category_label,
-				brand_id: getBrand(brand_id),
+				brand_id           : getBrand(brand_id),
 				...rest,
 			},
 			page: currentPage,

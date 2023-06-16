@@ -45,7 +45,7 @@ function SuccessModal({
 		>
 			<div
 				className={cl`${!showConfirmation ? styles.modal_container : ''} ${!showConfirmation ? styles.bg : ''
-					}`}
+				}`}
 			>
 				{confirmLoading && (
 					<div className={styles.loader_container}>
@@ -135,7 +135,7 @@ function SuccessModal({
 																onClick={() => handleCopy(voucherNumber)}
 															/>
 														</div>
-													)}
+												)}
 											</div>
 											<div
 												className={
@@ -152,7 +152,7 @@ function SuccessModal({
 										{order_items.length > 1
 											&& index !== order_items.length - 1 && (
 												<div className={styles.line} />
-											)}
+										)}
 									</div>
 								);
 							})}

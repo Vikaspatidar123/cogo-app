@@ -13,10 +13,10 @@ import styles from './styles.module.css';
 function OrderHistory() {
 	const { t } = useTranslation(['cogoStore']);
 	const [modalInfo, setModalInfo] = useState({
-		show: false,
-		voucherData: [],
-		isView: false,
-		orderItemId: '',
+		show        : false,
+		voucherData : [],
+		isView      : false,
+		orderItemId : '',
 	});
 	const { show } = modalInfo;
 	const { data, loading, handlePageHandler, handleSearch, searchValue } = useGetOrderList();

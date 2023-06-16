@@ -182,11 +182,7 @@ function SignupForm({ userDetails = {}, setMode = () => {}, setUserDetails = () 
 					name="mobile_number"
 					placeholder="Enter your Mobile Number"
 					rules={{
-						required : 'Number is required.',
-						pattern  : {
-							value   : /^[0-9]{10}$/,
-							message : 'Number is invalid.',
-						},
+						required: 'Mobile Number is required.',
 					}}
 					mode="onBlur"
 					onBlur={makeApiCallForMobile}

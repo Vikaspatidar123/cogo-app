@@ -5,7 +5,7 @@ const getModifiedOptionsForGST = (options) => (options || []).map((x) => ({
 	...x,
 	value: x?.tax_number,
 	label:
-	<div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+	<div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }} key={x?.tax_number}>
 		<div>{x?.tax_number}</div>
 		<div>
 			{x?.tax_number_document_url ? <Pill color="green">Proof exists</Pill> : ''}

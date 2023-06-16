@@ -12,6 +12,10 @@ export const paymentRequirementsControl = [
 				value   : 90,
 				message : 'Should be less than 90',
 			},
+			min: {
+				value   : 1,
+				message : 'Should be greater than 1',
+			},
 		},
 	},
 	{
@@ -26,6 +30,10 @@ export const paymentRequirementsControl = [
 			max      : {
 				value   : 30000000,
 				message : 'Should be less than 3cr',
+			},
+			min: {
+				value   : 1,
+				message : 'Should be greater than 1',
 			},
 		},
 	},

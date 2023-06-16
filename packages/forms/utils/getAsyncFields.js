@@ -263,7 +263,7 @@ function asyncTaxNumbers() {
 	return {
 		labelKey    : 'label',
 		valueKey    : 'tax_number',
-		endpoint    : 'get_tax_numbers_data',
+		endpoint    : '/get_tax_numbers_data',
 		initialCall : true,
 	};
 }

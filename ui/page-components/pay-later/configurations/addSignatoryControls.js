@@ -17,6 +17,7 @@ export const ADDSIGNATORYCONTROLS = [
 	{
 		name        : 'upload_proof',
 		placeholder : 'Upload Board of Resolution',
+		accept      : '.png,.pdf,.jpg,.jpeg',
 		type        : 'file',
 		themeType   : 'accent',
 	},

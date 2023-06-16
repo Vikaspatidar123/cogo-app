@@ -27,11 +27,16 @@ function POCForm({ getCreditRequestResponse = {}, refetch = () => {} }) {
 	const getPocStatus = (key) => getCreditRequestResponse?.credit_application_data?.section_progress_flag
 		?.poc_details_status[key];
 
-	const POCControls = getControls({ setPOCDetails });
+	const getPocValue = (key) => getCreditRequestResponse?.poc_details?.find((item) => item.work_scope === key)
+		?.name;
+
+	const POCControls = getControls({ setPOCDetails, getPocStatus });
 
 	const { control } = useForm({
 		defaultValues: {
-			owner: getCreditRequestResponse?.poc_details?.[0]?.name,
+			owner          : getPocValue('owner'),
+			financial_head : getPocValue('financial_head'),
+			logistics_head : getPocValue('logistics_head'),
 		},
 	});
 

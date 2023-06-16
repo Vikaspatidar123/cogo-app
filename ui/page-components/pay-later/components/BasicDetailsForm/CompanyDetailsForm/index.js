@@ -12,7 +12,6 @@ import getField from '@/packages/forms/Controlled';
 import { useSelector } from '@/packages/store';
 
 function CompanyDetailsForm({ getCreditRequestResponse = {}, refetch = () => {} }) {
-	console.log('🚀 ~ file: index.js:15 ~ CompanyDetailsForm ~ getCreditRequestResponse:', getCreditRequestResponse);
 	const { profile } = useSelector((state) => state);
 
 	const [show, setShow] = useState(false);

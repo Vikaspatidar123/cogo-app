@@ -12,19 +12,24 @@ const useUpdateOrganizationCreditApplication = ({ refetch = () => {}, getCreditR
 	);
 
 	const getAgreementDetails = ({ values, selectedSignatory }) => {
-		const { signatory, signatory_email, signatory_mobile_number } = values || {};
+		const {
+			signatory, signatory_email, signatory_mobile_number,
+			mobile_number, upload_proof, email, signatory_name,
+		} = values || {};
 
-		const { country_code = '', number = '' } = signatory_mobile_number || {};
+		const { country_code = '', number = '' } = signatory_mobile_number || mobile_number || {};
 
 		return !values?.signature_proof ? {
 			signing_authority_details: {
-				name                       : signatory,
+				name                       : signatory || signatory_name,
 				designation                : selectedSignatory?.designation,
 				mobile_number              : number,
-				email                      : signatory_email,
+				email                      : signatory_email || email,
 				signatory_board_resolution : '',
 				mobile_country_code        : country_code,
 				id                         : selectedSignatory?.id,
+				document_url               : upload_proof,
+				document_extension         : upload_proof?.split('.')?.slice(-1)?.[0],
 			},
 			preferred_mode: method,
 		} : {

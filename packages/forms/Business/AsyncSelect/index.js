@@ -84,16 +84,17 @@ function AsyncSelect(props) {
 		}
 
 		const selectedOption = getAsyncOptionsProps.options.filter(
-			(option) => option.id === selectedValue,
+			(option) => option?.[rest.valueKey] === selectedValue,
 		);
 		getSelectedOption(selectedOption[0]);
 	}
 	const Element = multiple ? MultiSelect : Select;
+
 	return (
 		<Element
-			key={rest || getAsyncOptionsProps}
 			{...rest}
 			{...getAsyncOptionsProps}
+			key={getAsyncOptionsProps?.id}
 		/>
 	);
 }

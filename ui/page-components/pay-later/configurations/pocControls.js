@@ -13,7 +13,7 @@ const getModifiedOptionsForOrgUsers = (options) => (options || []).map((x) => ({
 		<div>
 			{x?.name}
 			-
-			{(x?.work_scopes || []).map((work) => `${getUserWork(work)}/`)}
+			{(x?.work_scopes || []).map((work) => (work ? `${getUserWork(work)}/` : ''))}
 		</div>
 	</div>,
 }));
@@ -64,7 +64,7 @@ export const POCControls = [
 	},
 ];
 
-export const getControls = ({ setPOCDetails = () => {} }) => POCControls.map((control) => {
+export const getControls = ({ setPOCDetails = () => {}, getPocStatus = () => {} }) => POCControls.map((control) => {
 	if (['owner', 'financial_head', 'logistics_head'].includes(control.name)) {
 		return {
 			...control,
@@ -72,6 +72,7 @@ export const getControls = ({ setPOCDetails = () => {} }) => POCControls.map((co
 				...prev,
 				[control.name]: e,
 			})),
+			disabled: getPocStatus(control.name) === 'completed',
 		};
 	}
 	return control;

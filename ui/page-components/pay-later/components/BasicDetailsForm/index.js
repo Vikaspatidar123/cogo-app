@@ -1,4 +1,5 @@
-import { Button } from '@cogoport/components';
+import { Button, Toast } from '@cogoport/components';
+import { isEmpty } from '@cogoport/utils';
 
 import FormTitleAndDescription from '../../common/FormTitleAndDescription';
 import useApplyCreditRequestCouponCode from '../../hooks/useApplyCreditRequestCouponCode';
@@ -19,6 +20,8 @@ const formMapping = {
 };
 
 function BasicDetailsForm({ getCreditRequestResponse = {}, refetch = () => {} }) {
+	const { customer_credit_requirements = {}, poc_details = [] } = getCreditRequestResponse || {};
+
 	const { proceedToPay, loading } = useApplyCreditRequestCouponCode({ getCreditRequestResponse, refetch });
 
 	return (
@@ -41,7 +44,13 @@ function BasicDetailsForm({ getCreditRequestResponse = {}, refetch = () => {} })
 				);
 			})}
 			<div className={styles.button_wrapper}>
-				<Button onClick={() => proceedToPay()} loading={loading}>
+				<Button
+					onClick={() => (isEmpty(customer_credit_requirements)
+						? Toast.error('Please fill all mandatory fields')
+						: proceedToPay())}
+					loading={loading}
+					disabled={isEmpty(customer_credit_requirements) || isEmpty(poc_details)}
+				>
 					Proceed to pay
 				</Button>
 			</div>

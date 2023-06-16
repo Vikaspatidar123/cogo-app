@@ -86,7 +86,6 @@ function useGetAsyncOptions({
 			return {};
 		}
 	};
-
 	return {
 		loading : loading || loadingSingle,
 		onSearch,
@@ -94,6 +93,8 @@ function useGetAsyncOptions({
 		labelKey,
 		valueKey,
 		onHydrateValue,
+		id      : storeOptions?.[0]?.[valueKey],
+
 	};
 }
 

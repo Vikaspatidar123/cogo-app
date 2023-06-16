@@ -4,7 +4,7 @@ import {
 
 import i18nextConfig from '../../../next-i18next.config';
 
-import { GTM } from '@/ui/commons/constants/analytics';
+import { GTM, LinkedinTags } from '@/ui/commons/constants/analytics';
 
 export default function Document(props) {
 	const { __NEXT_DATA__ } = props;
@@ -41,6 +41,11 @@ export default function Document(props) {
 				<NextScript />
 				{process.env.NEXT_PUBLIC_APP_GTM_ID && (
 					<GTM.NoScript gtmId={process.env.NEXT_PUBLIC_APP_GTM_ID} />
+				)}
+				{process.env.APP_LINKEDIN_PARTNER_ID && (
+					<LinkedinTags
+						linkedInPartnerId={process.env.NEXT_PUBLIC_LINKEDIN_PARTNER_ID}
+					/>
 				)}
 			</body>
 		</Html>

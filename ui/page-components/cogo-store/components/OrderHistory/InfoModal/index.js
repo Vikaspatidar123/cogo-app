@@ -1,5 +1,6 @@
 import { Modal } from '@cogoport/components';
 import { useTranslation } from 'next-i18next';
+
 import Details from './Details';
 import Send from './Send';
 

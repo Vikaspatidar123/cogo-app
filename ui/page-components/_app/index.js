@@ -18,7 +18,7 @@ import GlobalLayout from '@/ui/page-components/_app/layout/components/GlobalLayo
 import handleAuthentication from '@/ui/page-components/authentication/utils/handleAuthentication';
 import { setCookie } from '@cogoport/utils';
 
-function MyApp({ Component, pageProps, store }) {
+function MyApp({ Component, pageProps, store, generalData }) {
 	useEffect(() => {
 		setCookie('locale', Router.locale);
 		Router.events.on('routeChangeStart', () => {
@@ -29,7 +29,8 @@ function MyApp({ Component, pageProps, store }) {
 		Router.events.on('routeChangeComplete', () => {
 			pageProgessBar.done();
 		});
-	}, []);
+		store.dispatch(setGeneralStoreState(generalData));
+	}, [generalData, store]);
 
 	return (
 		<Provider store={store}>

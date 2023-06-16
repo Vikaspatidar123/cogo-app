@@ -3,7 +3,7 @@ import { IcCCogoCoin } from '@cogoport/icons-react';
 import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
 
-import CategoryLoader from '../../common/CategoryLoader';
+import CompleteOrderLoading from '../../common/CompleteOrderLoading';
 import Header from '../../common/Header';
 import useBookCogostoreCart from '../../hooks/useBookCogostoreCart';
 import useGetCogostoreCartItems from '../../hooks/useGetCogostoreCartItems';
@@ -71,7 +71,7 @@ function Cart() {
 			);
 		}
 		if (loading && load) {
-			return <CategoryLoader />;
+			return <CompleteOrderLoading />;
 		}
 		return (
 			<div className={styles.cart_order}>

@@ -22,7 +22,7 @@ function OrderHistory() {
 	const { data, loading, handlePageHandler, handleSearch, searchValue } = useGetOrderList();
 
 	const { list = [], page, total_count, page_limit } = data || {};
-	const newList = loading ? [1, 2, 3, 4] : list;
+	const newList = loading ? [1, 2, 3, 4] : list || [];
 	return (
 		<div>
 			<Header showOrderList={false} />

@@ -29,6 +29,7 @@ const useGetBillingAddress = ({ setSelectAddressId = () => { } }) => {
 		} catch (error) {
 			console.log(error);
 		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [trigger, orgId]);
 
 	useEffect(() => {

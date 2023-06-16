@@ -33,6 +33,7 @@ const useCreateCogostoreCartItem = ({ getCogostoreCartItems }) => {
 				console.log(error);
 			}
 		},
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 		[cogopoint_id, trigger],
 	);
 

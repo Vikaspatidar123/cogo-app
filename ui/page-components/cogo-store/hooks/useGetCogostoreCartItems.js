@@ -30,6 +30,7 @@ const useGetCogostoreCartItems = ({ only_count_required = false }) => {
 		if (cogopoint_id) {
 			getCogostoreCartItems();
 		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [cogopoint_id]);
 	return {
 		data,

@@ -18,7 +18,7 @@ function Send({ orderItemId, closeModal }) {
 	const [checked, setChecked] = useState('email');
 	const [showElements, setShowElements] = useState({});
 
-	const { sendConfig, options } = getConfig();
+	const { sendConfig, options } = getConfig({ t });
 
 	const {
 		handleSubmit,

@@ -3,12 +3,10 @@ import {
 	IcCSetUserAttribute,
 	IcMEmail,
 } from '@cogoport/icons-react';
-import { useTranslation } from 'next-i18next';
 
-const emailValidator = /^[^<>()[\]\\,;:%#^\s@"$&!@]+@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z0-9]+\.)+[a-zA-Z]{2,}))$/;
-const getConfig = () => {
-	const { t } = useTranslation(['cogoStore']);
+import patterns from '@/ui/commons/configurations/patterns';
 
+const getConfig = ({ t }) => {
 	const sendConfig = [
 		{
 			name: 'receipientName',
@@ -35,7 +33,7 @@ const getConfig = () => {
 			rules: {
 				required: true,
 				pattern: {
-					value: emailValidator,
+					value: patterns.EMAIL,
 					message: t('cogoStore:send_gift_form_email_error'),
 				},
 			},
@@ -44,14 +42,14 @@ const getConfig = () => {
 			name: 'mobile_no',
 			label: t('cogoStore:send_gift_form_mobile_label'),
 			placeholder: t('cogoStore:send_gift_form_mobile_placeholder'),
-			type: 'mobile-number-select',
+			type: 'mobile_number',
 			rules: {
 				required: true,
 			},
 		},
 		{
 			name: 'giftShare',
-			type: 'checkbox-group',
+			type: 'checkbox',
 			options: [
 				{
 					name: 'gift',

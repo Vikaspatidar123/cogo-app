@@ -1,0 +1,65 @@
+.new_content {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	padding: 18px 0;
+	margin-bottom: 12px;
+	cursor: pointer;
+	border: 1px dashed #bdbdbd;
+	border-radius: 6px;
+}
+
+.name {
+	font-size: 16px;
+	font-weight: 600;
+	color: #221f20;
+	text-transform: capitalize;
+}
+
+.address {
+	margin-top: 4px;
+	font-size: 14px;
+	color: #4f4f4f;
+	text-transform: capitalize;
+}
+
+.list_container {
+	max-height: 350px;
+	padding: 12px;
+	overflow-y: auto;
+}
+
+.content {
+	display: flex;
+	align-items: center;
+	width: 100%;
+	height: fit-content;
+	padding: 12px;
+	margin-bottom: 8px;
+	cursor: pointer;
+	background: #ffff;
+	border-radius: 6px;
+	box-shadow: 0 0 8px rgba(98, 127, 172, 20%);
+}
+
+.content:hover {
+	background-color: #fdfbf6;
+}
+
+.active_card {
+	background: #fdfbf6;
+}
+
+.left_div {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 10%;
+}
+
+.right_div {
+	display: flex;
+	flex-direction: column;
+	width: 90%;
+}

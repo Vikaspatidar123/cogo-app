@@ -6,6 +6,17 @@ module.exports = {
 	swcMinify       : true,
 	i18n,
 	// basePath        : '.',
+	images          : {
+		remotePatterns: [
+			{
+				protocol : 'https',
+				hostname : 'cdn.cogoport.io',
+
+			},
+
+		],
+
+	},
 	webpack(config) {
 		const newConfig = { ...config };
 		newConfig.module.rules.push({

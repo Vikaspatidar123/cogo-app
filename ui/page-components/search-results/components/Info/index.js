@@ -19,11 +19,11 @@ const NON_STANDALONE_SEERVICES = ['fcl_cfs'];
 function Info({
 	data = {},
 	detail = {},
-	setOpen = () => {},
+	setOpen = () => { },
 	open = false,
 	loading = false,
 	importer_exporter_details = {},
-	refetch = () => {},
+	refetch = () => { },
 	results_type = '',
 	rates = [],
 	possible_additional_services = [],
@@ -47,10 +47,10 @@ function Info({
 				mode={data.search_type}
 				onPush={() => setEditSearch(false)}
 				extraParams={{
-					importer_exporter_id        : importer_exporter_details.id,
-					importer_exporter_name      : importer_exporter_details.name,
-					importer_exporter_branch_id : importer_exporter_details?.branch_id,
-					user_id                     : importer_exporter_details?.user_id,
+					importer_exporter_id: importer_exporter_details.id,
+					importer_exporter_name: importer_exporter_details.name,
+					importer_exporter_branch_id: importer_exporter_details?.branch_id,
+					user_id: importer_exporter_details?.user_id,
 				}}
 				data={formatMainServiceData(
 					data?.search_type,
@@ -103,8 +103,8 @@ function Info({
 				) : null}
 
 				{!NON_STANDALONE_SEERVICES.includes(data?.search_type)
-				&& !query?.shipment_id
-				&& results_type !== 'rfq' ? (
+					&& !query?.shipment_id
+					&& results_type !== 'rfq' ? (
 					<div
 						className={styles.button_styled}
 						role="presentation"
@@ -120,7 +120,7 @@ function Info({
 							style={{ width: '3em', height: '3em', margin: 'auto' }}
 						/>
 					</div>
-					) : null}
+				) : null}
 			</div>
 		</div>
 	);

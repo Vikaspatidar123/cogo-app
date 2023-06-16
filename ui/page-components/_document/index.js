@@ -4,9 +4,11 @@ import {
 
 import i18nextConfig from '../../../next-i18next.config';
 
+import { GTM } from '@/ui/commons/constants/analytics';
+
 export default function Document(props) {
 	const { __NEXT_DATA__ } = props;
-	const currentLocale =	__NEXT_DATA__.locale ?? i18nextConfig.i18n.defaultLocale;
+	const currentLocale = __NEXT_DATA__.locale ?? i18nextConfig.i18n.defaultLocale;
 	return (
 		<Html lang={currentLocale}>
 			<Head>
@@ -35,10 +37,16 @@ export default function Document(props) {
 				/>
 				<meta name="theme-color" content="#ffffff" /> */}
 				<link rel="manifest" href="/manifest.json" />
+				{process.env.NEXT_PUBLIC_CP_GTM_ID && (
+					<GTM gtmId={process.env.NEXT_PUBLIC_CP_GTM_ID} />
+				)}
 			</Head>
 			<body>
 				<Main />
 				<NextScript />
+				{process.env.NEXT_PUBLIC_CP_GTM_ID && (
+					<GTM.NoScript gtmId={process.env.NEXT_PUBLIC_CP_GTM_ID} />
+				)}
 			</body>
 		</Html>
 	);

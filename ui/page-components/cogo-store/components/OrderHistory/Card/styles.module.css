@@ -1,0 +1,115 @@
+.flex_box {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+}
+
+.col {
+	flex-shrink: 0;
+	padding: 0 8px;
+
+	&.created_at {
+		flex: 1;
+	}
+
+	&.cogopoints {
+		flex: 4;
+	}
+
+	&.order_no {
+		flex: 2;
+
+		div {
+			text-align: right;
+		}
+	}
+
+	&.info {
+		flex: 3;
+	}
+
+	&.details {
+		flex: 2;
+
+		svg {
+			vertical-align: middle;
+		}
+	}
+
+	&.cta_container {
+		flex: 2.7;
+	}
+
+	&.delivery {
+		div {
+			margin: 10px;
+			font-size: 20px;
+			color: #849e4c;
+		}
+	}
+}
+
+.container {
+	margin-bottom: 24px;
+	border: 1px solid #e0e0e0;
+	border-radius: 6px;
+}
+
+.section {
+	padding: 10px;
+	background-color: #fff;
+
+	&.header {
+		background-color: #f9f9f9;
+		border-bottom: 1px solid #e0e0e0;
+	}
+}
+
+.text {
+	font-size: 16px;
+	font-weight: 500;
+}
+
+.sub_text {
+	font-weight: 300;
+}
+
+.logo {
+	width: 50px;
+	height: 50px;
+	border-radius: 7px;
+}
+
+.border_btm {
+	border-bottom: 1px solid #e0e0e0;
+}
+
+.gap {
+	margin-left: 4px;
+}
+
+.view_details {
+	cursor: pointer;
+}
+
+.copy_icon {
+	vertical-align: middle;
+	cursor: pointer;
+}
+
+.share_and_view {
+	justify-content: space-around;
+
+	@media (max-width: 768px) {
+		display: none;
+	}
+}
+
+.share_and_mobile_view {
+	display: none;
+
+	@media (max-width: 768px) {
+		display: flex;
+		justify-content: space-around;
+	}
+}

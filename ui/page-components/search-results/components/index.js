@@ -63,12 +63,12 @@ function SelectedRateInfo({
 
 	const SERVICE_TYPE_SELECTED_RATE_COMPONENT_MAPPING = useMemo(
 		() => ({
-			ftl_freight           : FtlInfo,
-			ltl_freight           : FtlInfo,
-			trailer_freight       : TrailerFreightInfo,
-			rail_domestic_freight : TrailerFreightInfo,
-			cargo_insurance       : CargoInsuranceInfo,
-			others                : Info,
+			ftl_freight: FtlInfo,
+			ltl_freight: FtlInfo,
+			trailer_freight: TrailerFreightInfo,
+			rail_domestic_freight: TrailerFreightInfo,
+			cargo_insurance: CargoInsuranceInfo,
+			others: Info,
 		}),
 		[],
 	);
@@ -97,13 +97,13 @@ function SelectedRateInfo({
 
 function Results({
 	data = {},
-	setState = () => {},
+	setState = () => { },
 	state,
 	rates = [],
 	searchData = {},
 	loading = false,
 	possible_additional_services = [],
-	refetch = () => {},
+	refetch = () => { },
 	...rest
 }) {
 	const { push } = useRouter();
@@ -129,10 +129,10 @@ function Results({
 	const [addRate, setAddRate] = useState(false);
 
 	const [importer_exporter_details, setImporterExporterDetails] = useState({
-		id        : data?.importer_exporter_id || data?.importer_exporter?.id,
-		name      : data?.importer_exporter?.business_name,
-		branch_id : data?.importer_exporter_branch_id,
-		user_id   : data?.user_id,
+		id: data?.importer_exporter_id || data?.importer_exporter?.id,
+		name: data?.importer_exporter?.business_name,
+		branch_id: data?.importer_exporter_branch_id,
+		user_id: data?.user_id,
 	});
 	useEffect(() => {
 		if (data && data?.search_type) {
@@ -140,10 +140,10 @@ function Results({
 		}
 		if (data) {
 			setImporterExporterDetails({
-				id        : data?.importer_exporter_id || data?.importer_exporter?.id,
-				name      : data?.importer_exporter?.business_name,
-				branch_id : data?.importer_exporter_branch_id,
-				user_id   : data?.user_id,
+				id: data?.importer_exporter_id || data?.importer_exporter?.id,
+				name: data?.importer_exporter?.business_name,
+				branch_id: data?.importer_exporter_branch_id,
+				user_id: data?.user_id,
 			});
 		}
 	}, [JSON.stringify(data)]);
@@ -193,9 +193,9 @@ function Results({
 	};
 
 	const { swb_with_rates, swb_without_rates } = swbAllowedServices({
-		search_type : data?.search_type,
-		trade_type  : detail?.trade_type,
-		source      : detail?.source,
+		search_type: data?.search_type,
+		trade_type: detail?.trade_type,
+		source: detail?.source,
 		rates,
 	});
 
@@ -235,7 +235,7 @@ function Results({
 						data?.search_type,
 					) ? (
 						<RequestRate headerData={data} />
-						) : null}
+					) : null}
 				</>
 			);
 		}
@@ -340,8 +340,8 @@ function Results({
 						importer_exporter_details={importer_exporter_details}
 						refetch={refetch}
 						possible_additional_services={
-						possible_additional_services
-}
+							possible_additional_services
+						}
 						detail={detail}
 					/>
 
@@ -357,10 +357,9 @@ function Results({
 							<div className={styles.results_header}>
 								{!loading ? (
 									<div className={styles.text_bold}>
-										{`${(rates || []).length} ${
-											(rates || []).length === 1 ? 'rate'
-												: 'rates'
-										} found`}
+										{`${(rates || []).length} ${(rates || []).length === 1 ? 'rate'
+											: 'rates'
+											} found`}
 									</div>
 								) : (
 									<Placeholder />
@@ -383,7 +382,7 @@ function Results({
 
 							{handleRateCards()}
 						</>
-					) }
+					)}
 				</div>
 
 				{handleAdditionalServices()}

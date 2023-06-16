@@ -3,6 +3,8 @@
 }
 
 .field_name {
+    display: flex;
+    justify-content: space-between;
     font-weight: 500;
     font-size: 16px;
     color: #4F4F4F;
@@ -12,4 +14,9 @@
 .button_wrapper {
     display: flex;
     justify-content: flex-end;
+}
+
+.error_text {
+    color: red;
+    font-size: 12px;
 }

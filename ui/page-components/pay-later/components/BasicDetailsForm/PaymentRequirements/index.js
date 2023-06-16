@@ -1,4 +1,4 @@
-import { Button } from '@cogoport/components';
+import { Button, Pill } from '@cogoport/components';
 
 import { paymentRequirementsControl } from '../../../configurations/paymentRequirementsControls';
 import useUpdateOrganizationCreditRequirementDetails from
@@ -13,10 +13,10 @@ function PaymentRequirements({ getCreditRequestResponse = {}, refetch = () => {}
 	const { customer_credit_requirements = {} } = getCreditRequestResponse || {};
 	const { credit_amount = '', credit_days = '' } = customer_credit_requirements || {};
 
-	const { control, handleSubmit } = useForm({
+	const { control, handleSubmit, formState:{ errors } } = useForm({
 		defaultValues: {
-			payment_days        : credit_days,
-			payment_requirement : credit_amount,
+			credit_days,
+			credit_amount,
 		},
 	});
 
@@ -36,8 +36,16 @@ function PaymentRequirements({ getCreditRequestResponse = {}, refetch = () => {}
 					const Element = getField(item?.type);
 					return (
 						<div className={styles.field}>
-							<div className={styles.field_name}>{item.label}</div>
+							<div className={styles.field_name}>
+								{item.label}
+								{customer_credit_requirements?.[item.name] && <Pill color="green">Completed</Pill>}
+							</div>
 							<Element {...item} control={control} />
+							<div className={styles.error_text}>
+								{errors?.[item.name]?.message
+							|| errors?.[item.name]?.type }
+
+							</div>
 						</div>
 					);
 				})}

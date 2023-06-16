@@ -6,13 +6,11 @@ import SignatoryForm from './SignatoryForm';
 function ApplicationProcessed({ getCreditRequestResponse = {}, refetch = () => { } }) {
 	const {
 		cogoscore_application_status = '',
-		credit_application_flow = '',
 		signatories,
 	} = getCreditRequestResponse || {};
 
 	const [showSignatory, setShowSignatory] = useState(
-		cogoscore_application_status === 'approved'
-		&& credit_application_flow === 'agreement' && signatories?.length > 0,
+		cogoscore_application_status === 'approved' && signatories?.length > 0,
 	);
 
 	return (

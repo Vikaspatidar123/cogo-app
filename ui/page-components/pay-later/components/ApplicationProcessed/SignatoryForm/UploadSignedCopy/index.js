@@ -1,6 +1,5 @@
 import styles from './styles.module.css';
 
-import { useForm } from '@/packages/forms';
 import getField from '@/packages/forms/Controlled';
 
 const fields = {
@@ -9,8 +8,9 @@ const fields = {
 	type        : 'file',
 };
 
-function UploadSignedCopy() {
-	const { control } = useForm();
+function UploadSignedCopy({ control, getCreditRequestResponse = {} }) {
+	const { documents:{ paylater_agreement } } = getCreditRequestResponse || {};
+
 	const Element = getField(fields?.type);
 	return (
 		<form>

@@ -1071,9 +1071,9 @@ const saas = {
 			service_name : 'credit',
 		},
 		{
-			api          : 'list_coupons',
-			access_type  : 'private',
-			service_name : 'organization',
+			api         : 'list_coupons',
+			access_type : 'public',
+			// service_name : 'organization',
 		},
 		{
 			api          : 'submit_credit_application',
@@ -1092,6 +1092,11 @@ const saas = {
 		},
 		{
 			api          : 'update_organization_credit_request_poc_details',
+			access_type  : 'private',
+			service_name : 'credit',
+		},
+		{
+			api          : 'submit_credit_application_for_agreement_flow',
 			access_type  : 'private',
 			service_name : 'credit',
 		},

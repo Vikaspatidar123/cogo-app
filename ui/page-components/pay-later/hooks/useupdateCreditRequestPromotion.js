@@ -1,3 +1,5 @@
+import { useCallback } from 'react';
+
 import { useRequest } from '@/packages/request';
 
 const useUpdateCreditRequestPromotion = ({
@@ -11,7 +13,7 @@ const useUpdateCreditRequestPromotion = ({
 		autoCancel: false,
 	});
 
-	const updateCreditPromotion = async ({ type, coupon }) => {
+	const updateCreditPromotion = useCallback(async ({ type, coupon }) => {
 		try {
 			await trigger({
 				data: {
@@ -25,7 +27,7 @@ const useUpdateCreditRequestPromotion = ({
 			setAction('removed');
 			console.log(e);
 		}
-	};
+	}, [getCreditRequestResponse?.id, setAction, trigger]);
 
 	return { updateCreditPromotion, loading, data };
 };

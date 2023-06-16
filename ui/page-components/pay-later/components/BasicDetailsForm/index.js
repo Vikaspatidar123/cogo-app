@@ -20,6 +20,7 @@ const formMapping = {
 
 function BasicDetailsForm({ getCreditRequestResponse = {}, refetch = () => {} }) {
 	const { proceedToPay, loading } = useApplyCreditRequestCouponCode({ getCreditRequestResponse, refetch });
+
 	return (
 		<div>
 			{DETAILS_ARRAY.map((details) => {
@@ -31,7 +32,10 @@ function BasicDetailsForm({ getCreditRequestResponse = {}, refetch = () => {} })
 							<FormTitleAndDescription details={details} />
 						</div>
 						<div className={styles.form}>
-							<FormFields getCreditRequestResponse={getCreditRequestResponse} refetch={refetch} />
+							<FormFields
+								getCreditRequestResponse={getCreditRequestResponse}
+								refetch={refetch}
+							/>
 						</div>
 					</div>
 				);

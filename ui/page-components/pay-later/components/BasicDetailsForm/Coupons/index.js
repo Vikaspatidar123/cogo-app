@@ -7,7 +7,8 @@ import useUpdateCreditRequestPromotion from '../../../hooks/useupdateCreditReque
 import styles from './styles.module.css';
 
 function Coupons({ getCreditRequestResponse = {} }) {
-	const { data, loading } = useGetListCoupons();
+	const { data, loading } = useGetListCoupons({ getCreditRequestResponse });
+
 	const [action, setAction] = useState('');
 
 	const { list = [] } = data || {};
@@ -16,10 +17,6 @@ function Coupons({ getCreditRequestResponse = {} }) {
 		setAction,
 		getCreditRequestResponse,
 	});
-
-	const manageCoupon = ({ type, coupon }) => {
-		updateCreditPromotion({ type, coupon });
-	};
 
 	return (
 		<div className={styles.coupons}>
@@ -30,7 +27,7 @@ function Coupons({ getCreditRequestResponse = {} }) {
 					{action !== 'applied'
 						? (
 							<Button
-								onClick={() => manageCoupon({ type: 'applied', coupon })}
+								onClick={() => updateCreditPromotion({ type: 'applied', coupon })}
 								loading={loading}
 							>
 								Apply Coupon
@@ -38,7 +35,7 @@ function Coupons({ getCreditRequestResponse = {} }) {
 						)
 						: (
 							<Button
-								onClick={() => manageCoupon({ type: 'removed', coupon })}
+								onClick={() => updateCreditPromotion({ type: 'removed', coupon })}
 								loading={loading}
 								themeType="accent"
 							>

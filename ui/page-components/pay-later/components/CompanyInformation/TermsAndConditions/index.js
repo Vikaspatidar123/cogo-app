@@ -13,7 +13,7 @@ function TermsAndConditions({
 }) {
 	const [checked, setChecked] = useState(false);
 
-	const { updateRequest = () => {} } = useUpdateCreditOrganizationRequest({
+	const { updateRequest = () => {}, loading = false } = useUpdateCreditOrganizationRequest({
 		getCreditRequestResponse,
 		companyAddress,
 		directors,
@@ -38,7 +38,7 @@ function TermsAndConditions({
 					onChange={() => setChecked((prev) => !prev)}
 				/>
 			</div>
-			<Button className={styles.button} onClick={handleButtonClick}>
+			<Button className={styles.button} onClick={handleButtonClick} loading={loading}>
 				Check Eligibility
 			</Button>
 		</div>

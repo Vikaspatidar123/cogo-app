@@ -28,7 +28,8 @@ function ApplicationStatus({ getCreditRequestResponse = {} }) {
 					))}
 				</div>
 			)}
-			{cogoscore_application_status === 'pending_approval' && (
+			{['pending_approval', 'cogoscore_calculated'].includes(cogoscore_application_status)
+			&& (
 				<div className={styles.tentative_status}>
 					<div className={styles.tentative}>
 						<div className={styles.name}>

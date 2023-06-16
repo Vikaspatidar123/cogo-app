@@ -5,7 +5,10 @@ import styles from './styles.module.css';
 function Documentation({ getCreditRequestResponse = {} }) {
 	const { cogoscore_application_status = '' } = getCreditRequestResponse || {};
 
-	const show = ['awaiting_cogoscore', 'pending_approval', 'assigned'].includes(cogoscore_application_status);
+	const show = ['awaiting_cogoscore',
+		'pending_approval',
+		'assigned',
+		'cogoscore_calculated'].includes(cogoscore_application_status);
 
 	return (
 		<div>

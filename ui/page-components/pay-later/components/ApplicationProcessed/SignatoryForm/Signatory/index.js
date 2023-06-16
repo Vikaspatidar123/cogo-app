@@ -18,7 +18,6 @@ function Signatory({
 }) {
 	const [addSignatory, setAddSignatory] = useState(false);
 	const [selectedSignatory, setSelectedSignatory] = useState({});
-	console.log('🚀 ~ file: index.js:21 ~ selectedSignatory:', selectedSignatory);
 	const { control, watch, handleSubmit } = useForm();
 
 	const { directors = [] } = getCreditRequestResponse || {};

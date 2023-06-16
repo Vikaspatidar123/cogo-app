@@ -1,33 +1,52 @@
 import { Button, Toast } from '@cogoport/components';
+import { isEmpty } from '@cogoport/utils';
 import { useEffect, useState } from 'react';
 
 import FormTitleAndDescription from '../../../common/FormTitleAndDescription';
 import useSubmitCreditApplication from '../../../hooks/useSubmitCreditApplication';
 import useUpdateOrganizationCreditApplication from '../../../hooks/useUpdateOrganizationCreditApplication';
 
-import PreviewAndUpload from './PreviewAndUpload';
+import Preview from './PreviewAndUpload';
 import Signatory from './Signatory';
 import SignatoryDetails from './SignatoryDetails';
 import SignatoryMethod from './SignatoryMethod';
 import styles from './styles.module.css';
 import UploadSignedCopy from './UploadSignedCopy';
 
+import { useForm } from '@/packages/forms';
+
 const DETAILS_ARRAY = ['method', 'signatory', 'preview_and_upload', 'upload_signed_copy'];
 
 function SignatoryForm({ getCreditRequestResponse = {}, refetch = () => {} }) {
+	const {
+		documents:{ paylater_agreement },
+		signatories = [],
+		is_sign_mode_digital = '',
+		sample_paylater_agreement = '',
+	} = getCreditRequestResponse || {};
+
 	const [method, setMethod] = useState('');
-	const [showPreviewAndUpload, setPreviewAndUpload] = useState(false);
-	const { signatories = [], is_sign_mode_digital = '' } = getCreditRequestResponse || {};
+
+	const [showPreviewAndUpload, setPreviewAndUpload] = useState(!isEmpty(paylater_agreement));
 
 	const [signatoriesUpdated, setSignatoriesUpdated] = useState(false);
 
+	const [show, setShow] = useState({});
+
+	const { showMethod = '', showPreview = '', showSignatory = '', showUpload = '' } = show || {};
+
 	const formMapping = {
-		method             : !showPreviewAndUpload && SignatoryMethod,
-		signatory          : signatoriesUpdated ? SignatoryDetails : Signatory,
-		// signatory          : signatoriesUpdated ? Signatory : SignatoryDetails,
-		preview_and_upload : showPreviewAndUpload && PreviewAndUpload,
-		upload_signed_copy : showPreviewAndUpload && method === 'physical' && UploadSignedCopy,
+		method             : showMethod && SignatoryMethod,
+		signatory          : showSignatory ? Signatory : SignatoryDetails,
+		preview_and_upload : showPreview && Preview,
+		upload_signed_copy : showUpload && UploadSignedCopy,
 	};
+
+	const { control, handleSubmit } = useForm({
+		defaultValues: {
+			signature_proof: paylater_agreement?.active?.document_url,
+		},
+	});
 
 	const {
 		updateOrganizationCreditApplication = () => {},
@@ -38,10 +57,21 @@ function SignatoryForm({ getCreditRequestResponse = {}, refetch = () => {} }) {
 
 	const handleClick = () => {
 		submitCreditApplication();
-		// get_credit_application_logs?credit_request_id=14def529-4a40-499f-a775-c23dc367504c
+	};
+
+	const submit = async (values) => {
+		await updateOrganizationCreditApplication({ physicalVerificationValues: values });
+		submitCreditApplication();
+		return null;
 	};
 
 	useEffect(() => {
+		setShow({
+			showMethod    : !(sample_paylater_agreement && is_sign_mode_digital),
+			showPreview   : sample_paylater_agreement && is_sign_mode_digital,
+			showSignatory : !(signatories.length > 0),
+			showUpload    : !is_sign_mode_digital,
+		});
 		setMethod(is_sign_mode_digital ? 'digital' : 'physical');
 		setSignatoriesUpdated(signatories?.length > 0);
 	}, [signatories?.length, is_sign_mode_digital]);
@@ -65,6 +95,7 @@ function SignatoryForm({ getCreditRequestResponse = {}, refetch = () => {} }) {
 										setSignatoriesUpdated={setSignatoriesUpdated}
 										updateOrganizationCreditApplication={updateOrganizationCreditApplication}
 										loading={loading}
+										control={control}
 									/>
 								</div>
 							</div>
@@ -82,7 +113,7 @@ function SignatoryForm({ getCreditRequestResponse = {}, refetch = () => {} }) {
 						Next
 					</Button>
 				) : (
-					<Button onClick={handleClick}>
+					<Button onClick={method === 'physical' ? handleSubmit(submit) : handleClick}>
 						{method === 'physical' ? 'Submit Agreement' : 'Proceed to E-sign' }
 					</Button>
 				)}

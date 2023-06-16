@@ -3,7 +3,10 @@ import { useCallback, useEffect } from 'react';
 import { useRequest } from '@/packages/request';
 import { useSelector } from '@/packages/store';
 
-const useGetListCoupons = () => {
+const useGetListCoupons = ({ getCreditRequestResponse = {} }) => {
+	const { default_application_fees_details = {} } = getCreditRequestResponse || {};
+
+	const { application_fee = 0, application_fee_currency = '' } = default_application_fees_details || {};
 	const { profile:{ organization } } = useSelector((state) => state);
 
 	const [{ data, loading }, trigger] = useRequest({
@@ -16,15 +19,15 @@ const useGetListCoupons = () => {
 			await trigger({
 				params: {
 					organization_id : organization?.id,
-					total_amount    : 10000,
-					currency        : 'INR',
+					total_amount    : application_fee,
+					currency        : application_fee_currency,
 					category        : 'pay_later',
 				},
 			});
 		} catch (e) {
 			console.log(e);
 		}
-	}, [organization?.id, trigger]);
+	}, [application_fee, application_fee_currency, organization?.id, trigger]);
 
 	useEffect(() => { getCoupons(); }, [getCoupons]);
 

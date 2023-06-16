@@ -23,7 +23,7 @@ const useSignupOtpAuthentication = ({ otpValue = '', setMode = () => { }, userDe
 				},
 			});
 
-			const redirectUrl = '/v2/dashboard';
+			const redirectUrl = '/dashboard';
 
 			const { token } = response.data || {};
 

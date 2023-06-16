@@ -19,7 +19,8 @@ const useGetStartedAuthentication = ({ setMode = () => { } }) => {
 				user_id      : id,
 				account_type : 'importer_exporter',
 			};
-			const response = await trigger({
+
+			await trigger({
 				data: {
 					...payload,
 				},

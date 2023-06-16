@@ -1,3 +1,4 @@
+/* eslint-disable import/no-unresolved */
 import COUNTRIES from '@/.data-store/constants/countries.json';
 
 export const getIdByMobileCountryCode = ({ mobile_country_code = '' }) => {

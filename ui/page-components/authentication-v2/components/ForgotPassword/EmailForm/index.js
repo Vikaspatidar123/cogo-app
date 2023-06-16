@@ -20,14 +20,14 @@ function EmailForm({ resetUserPassword = () => {}, resetPasswordLoading = false 
 				/>
 			</span>
 
-			<div className={styles.card_heading}>Forgot your Password?</div>
-			<div className={styles.card_sub_heading}>
+			<h2 className={styles.card_heading}>Forgot your Password?</h2>
+			<p className={styles.card_sub_heading}>
 				We will send you a link to Reset your Password
-			</div>
+			</p>
 
 			<form className={styles.form_container} onSubmit={handleSubmit(resetUserPassword)}>
 
-				<div className={styles.label}>Email address</div>
+				<p className={styles.label}>Email address</p>
 				<InputController
 					control={control}
 					name="email"

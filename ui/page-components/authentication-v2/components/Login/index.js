@@ -3,7 +3,6 @@ import { useState } from 'react';
 import LayoutHelp from '../common/LayoutHelp';
 import LayoutLogo from '../common/LayoutLogo';
 import LoadingPrompts from '../common/LoadingPrompts';
-import ShipStepper from '../common/ShipStepper';
 
 import LoginTabs from './LoginTabs';
 import OTPLoginForm from './OTPLoginForm';
@@ -40,26 +39,22 @@ function Login() {
 	const Component = LOGIN_FLOW_MAPPING[mode] || null;
 
 	return (
-		<>
-			<ShipStepper mode={mode} type="login" />
+		<div className={styles.authentication_layout}>
+			<LayoutLogo />
 
-			<div className={styles.authentication_layout}>
-				<LayoutLogo />
-
-				<div className={styles.card_container}>
-					<div className={styles.card}>
-						{Component && (
-							<Component
-								key={mode}
-								{...(componentProps[mode] || {})}
-							/>
-						)}
-					</div>
+			<div className={styles.card_container}>
+				<div className={styles.card}>
+					{Component && (
+						<Component
+							key={mode}
+							{...(componentProps[mode] || {})}
+						/>
+					)}
 				</div>
-
-				<LayoutHelp />
 			</div>
-		</>
+
+			<LayoutHelp />
+		</div>
 	);
 }
 

@@ -25,7 +25,7 @@ const useLeadUserDetails = ({ setLeadUserId = () => {} }) => {
 
 			setLeadUserId(res?.id);
 		} catch (err) {
-			console.log(err);
+			// console.log(err);
 		}
 	};
 

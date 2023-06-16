@@ -21,7 +21,7 @@ function DetailsForm({ setMode = () => { } }) {
 	return (
 		<form className={styles.form_container} onSubmit={handleSubmit(onGetStartedApi)}>
 
-			<div className={styles.card_heading}>Get Started</div>
+			<h2 className={styles.card_heading}>Get Started</h2>
 
 			<div className={styles.field}>
 				<div className={styles.label}>Company Name</div>

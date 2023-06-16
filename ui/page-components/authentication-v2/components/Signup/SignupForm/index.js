@@ -143,7 +143,7 @@ function SignupForm({ userDetails = {}, setMode = () => {}, setUserDetails = () 
 	return (
 		<form className={styles.form_container} onSubmit={handleSubmit(onSignupApiCall)}>
 
-			<div className={styles.card_heading}>Welcome to Cogoport </div>
+			<h2 className={styles.card_heading}>Welcome to Cogoport </h2>
 
 			<div className={styles.field}>
 				<div className={styles.label}>Full Name</div>

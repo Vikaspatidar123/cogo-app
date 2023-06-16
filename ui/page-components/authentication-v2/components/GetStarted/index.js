@@ -3,7 +3,6 @@ import { useState } from 'react';
 import LayoutHelp from '../common/LayoutHelp';
 import LayoutLogo from '../common/LayoutLogo';
 import LoadingPrompts from '../common/LoadingPrompts';
-import ShipStepper from '../common/ShipStepper';
 
 import DetailsForm from './DetailsForm';
 import styles from './styles.module.css';
@@ -27,28 +26,24 @@ function GetStarted() {
 
 	const Component = GET_STARTED_FLOW_MAPPING[mode] || null;
 	return (
-		<>
-			<ShipStepper />
+		<div className={styles.authentication_layout}>
 
-			<div className={styles.authentication_layout}>
+			<LayoutLogo />
 
-				<LayoutLogo />
-
-				<div className={styles.card_container}>
-					<div className={styles.card}>
-						{Component && (
-							<Component
-								key={mode}
-								{...(componentProps[mode] || {})}
-							/>
-						)}
-					</div>
+			<div className={styles.card_container}>
+				<div className={styles.card}>
+					{Component && (
+						<Component
+							key={mode}
+							{...(componentProps[mode] || {})}
+						/>
+					)}
 				</div>
-
-				<LayoutHelp />
-
 			</div>
-		</>
+
+			<LayoutHelp />
+
+		</div>
 	);
 }
 

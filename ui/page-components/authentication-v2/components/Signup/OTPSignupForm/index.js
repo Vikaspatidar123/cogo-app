@@ -37,9 +37,9 @@ function OTPSignupForm({ userDetails = {}, setMode = () => {} }) {
 				/>
 			</span>
 
-			<div className={styles.card_heading}>Verify your mobile</div>
+			<h2 className={styles.card_heading}>Verify your mobile</h2>
 
-			<div className={styles.card_subheading}>
+			<h4 className={styles.card_subheading}>
 				Verification code is sent to
 				{isEmpty(mobile_number?.number) ? (
 					<>
@@ -54,7 +54,7 @@ function OTPSignupForm({ userDetails = {}, setMode = () => {} }) {
 						{mobile_number?.number}
 					</>
 				)}
-			</div>
+			</h4>
 
 			<OTPLayout
 				otpLength={6}
@@ -96,13 +96,13 @@ function OTPSignupForm({ userDetails = {}, setMode = () => {} }) {
 				If you haven&#39;t received the email within a few minutes, please check your spam folder or
 				{'  '}
 
-				<span
+				<h4
 					className={styles.resend_mail_button}
 					role="presentation"
 					onClick={() => onClickResendEmail(id)}
 				>
 					resend email.
-				</span>
+				</h4>
 			</div>
 		</div>
 	);

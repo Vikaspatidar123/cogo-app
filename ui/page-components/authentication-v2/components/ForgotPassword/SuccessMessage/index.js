@@ -3,9 +3,9 @@ import styles from './styles.module.css';
 function SuccessMessage({ resetUserPassword = () => {}, emailId = '' }) {
 	return (
 		<>
-			<div className={styles.card_heading}>Password Reset Link Sent</div>
+			<h2 className={styles.card_heading}>Password Reset Link Sent</h2>
 
-			<div className={styles.card_body}>
+			<p className={styles.card_body}>
 				Check your email
 				{' '}
 				<b>
@@ -16,9 +16,9 @@ function SuccessMessage({ resetUserPassword = () => {}, emailId = '' }) {
 				<br />
 				<br />
 				Simply click on the link to proceed with resetting your password.
-			</div>
+			</p>
 
-			<div className={styles.info}>
+			<h4 className={styles.info}>
 				Please Note:
 				<ul>
 					<li>
@@ -31,15 +31,15 @@ function SuccessMessage({ resetUserPassword = () => {}, emailId = '' }) {
 						Please check your spam inbox if you are still unable to receive the email
 					</li>
 				</ul>
-			</div>
+			</h4>
 
-			<div className={styles.links}>
+			<p className={styles.links}>
 				Didn&#39;t receive the password reset link?
 				{' '}
-				<span className={styles.reset_link} onClick={() => resetUserPassword(emailId)} role="presentation">
+				<h4 className={styles.reset_link} onClick={() => resetUserPassword(emailId)} role="presentation">
 					Resend Reset Email
-				</span>
-			</div>
+				</h4>
+			</p>
 		</>
 	);
 }

@@ -36,8 +36,8 @@ function OTPLoginForm({ setMode = () => {}, otpId = '', mobileNumber = {} }) {
 				/>
 			</span>
 
-			<div className={styles.card_heading}>Verify your mobile</div>
-			<div className={styles.card_subheading}>
+			<h2 className={styles.card_heading}>Verify your mobile</h2>
+			<h4 className={styles.card_subheading}>
 				Verification code is sent to
 				{isEmpty(mobileNumber?.number) ? (
 					<>
@@ -52,7 +52,7 @@ function OTPLoginForm({ setMode = () => {}, otpId = '', mobileNumber = {} }) {
 						{mobileNumber?.number}
 					</>
 				)}
-			</div>
+			</h4>
 
 			<OTPLayout
 				otpLength={6}

@@ -3,7 +3,6 @@ import { useState } from 'react';
 import useResetUserPassword from '../../hooks/useResetUserPassword';
 import LayoutHelp from '../common/LayoutHelp';
 import LayoutLogo from '../common/LayoutLogo';
-import ShipStepper from '../common/ShipStepper';
 
 import EmailForm from './EmailForm';
 import styles from './styles.module.css';
@@ -34,28 +33,24 @@ function ForgotPassword() {
 	const Component = FORGOT_FLOW_MAPPING[mode] || null;
 
 	return (
-		<>
-			<ShipStepper mode="email_form" />
+		<div className={styles.authentication_layout}>
 
-			<div className={styles.authentication_layout}>
+			<LayoutLogo />
 
-				<LayoutLogo />
-
-				<div className={styles.card_container}>
-					<div className={styles.card}>
-						{Component && (
-							<Component
-								key={mode}
-								{...(componentProps[mode] || {})}
-							/>
-						)}
-					</div>
+			<div className={styles.card_container}>
+				<div className={styles.card}>
+					{Component && (
+						<Component
+							key={mode}
+							{...(componentProps[mode] || {})}
+						/>
+					)}
 				</div>
-
-				<LayoutHelp />
-
 			</div>
-		</>
+
+			<LayoutHelp />
+
+		</div>
 
 	);
 }

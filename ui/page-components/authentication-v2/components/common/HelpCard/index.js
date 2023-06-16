@@ -10,7 +10,7 @@ function HelpCard() {
 
 			<hr className={styles.line} />
 
-			<span className={styles.name}>Kanira Patel</span>
+			<h4>Kanira Patel</h4>
 
 			<span className={styles.designation}>Onboarding Specialist</span>
 

@@ -12,7 +12,7 @@ import trackEvent from '@/ui/page-components/authentication/utils/trackEvent';
 const useCreateSearch = ({
 	optionsControls = {},
 	options = {},
-	setOptions = () => {},
+	setOptions = () => { },
 	extraParams = {},
 	setLoading,
 	mode,
@@ -28,20 +28,20 @@ const useCreateSearch = ({
 		importer_exporter_branch_id,
 		user_id,
 	} = useSelector(({ general, profile }) => ({
-		scope                       : general?.scope,
-		query                       : general?.query,
-		importer_exporter_branch_id : general?.query?.branch_id,
-		user_id                     : profile?.id,
+		scope: general?.scope,
+		query: general?.query,
+		importer_exporter_branch_id: general?.query?.branch_id,
+		user_id: profile?.id,
 	}));
 
 	const [{ loading }, trigger] = useRequest({
-		url    : 'create_spot_search',
-		method : 'post',
+		url: 'create_spot_search',
+		method: 'post',
 	}, { manual: true });
 
-	const [{ loading:apiloading }, trigger2] = useRequest({
-		url    : 'create_checkout',
-		method : 'post',
+	const [{ loading: apiloading }, trigger2] = useRequest({
+		url: 'create_checkout',
+		method: 'post',
 	}, { manual: true });
 
 	const createNewSearch = async (
@@ -87,24 +87,25 @@ const useCreateSearch = ({
 
 				return {
 					userId,
-					searchId : (data || {}).id,
+					searchId: (data || {}).id,
 					messages,
-					error    : hasError,
+					error: hasError,
 					as,
 					href,
 				};
 			}
 			return {
-				error    : true,
-				messages : [],
-				url      : null,
+				error: true,
+				messages: [],
+				url: null,
 			};
 		} catch (err) {
-			showErrorsInToast(err?.data);
+			const error_message = err?.response?.data;
+			showErrorsInToast(error_message?.message ? { message: error_message?.message } : error_message);
 			return {
-				error    : true,
-				messages : [],
-				url      : null,
+				error: true,
+				messages: [],
+				url: null,
 			};
 		}
 	};
@@ -134,7 +135,7 @@ const useCreateSearch = ({
 			let type;
 			let count;
 			let commodity;
-			const location_name =				rawParams.location.origin.display_name
+			const location_name = rawParams.location.origin.display_name
 				|| {}
 				|| rawParams.location.desatination.display_name;
 			const n = rawParams.containers.length;
@@ -145,17 +146,17 @@ const useCreateSearch = ({
 				commodity = rawParams.containers[i].container_type_commodity.commodity;
 				container_details.push({
 					...UNDEFINED_ATTRIBUTES,
-					container_count : count,
-					container_size  : size,
-					container_type  : type,
+					container_count: count,
+					container_size: size,
+					container_type: type,
 					commodity,
 				});
 			}
 			trackEvent(APP_EVENT.search_searched_rates, {
-				type        : search_parameter,
-				location    : location_name,
-				custom_type : rawParams.trade_type,
-				containers  : container_details,
+				type: search_parameter,
+				location: location_name,
+				custom_type: rawParams.trade_type,
+				containers: container_details,
 			});
 		} else if (search_parameter === 'fcl_freight') {
 			const container_details = [];
@@ -173,19 +174,19 @@ const useCreateSearch = ({
 				weight = rawParams.containers[i].cargo_weight_per_container;
 				container_details.push({
 					...UNDEFINED_ATTRIBUTES,
-					container_count : count,
-					container_size  : size,
-					container_type  : type,
+					container_count: count,
+					container_size: size,
+					container_type: type,
 					commodity,
 					weight,
 				});
 			}
 			trackEvent(APP_EVENT.search_searched_rates, {
-				type        : search_parameter,
-				origin      : rawParams.location.origin.display_name,
-				destination : rawParams.location.destination.display_name,
-				containers  : container_details,
-				incoterm    : rawParams.inco_term,
+				type: search_parameter,
+				origin: rawParams.location.origin.display_name,
+				destination: rawParams.location.destination.display_name,
+				containers: container_details,
+				incoterm: rawParams.inco_term,
 			});
 		}
 		const newServices = getFinalServices(services, location, mode);

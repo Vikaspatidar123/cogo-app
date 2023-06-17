@@ -7,13 +7,13 @@ import { SchedulesModal } from './SchedulesModal';
 import styles from './styles.module.css';
 
 function ActiveScheduleCard({ scheduleDetails, schedule }) {
-	const originSchedule = scheduleDetails?.origin_port?.port_code || 'Origin';
-	const destinationSchedule =	 scheduleDetails?.destination_port?.port_code || 'Destination';
+	const originSchedule = scheduleDetails?.origin_airport?.port_code || 'Origin';
+	const destinationSchedule =	 scheduleDetails?.destination_airport?.port_code || 'Destination';
 
-	const shippingLinesList = scheduleDetails?.schedules?.shipping_lines || [];
+	const airLinesList = scheduleDetails?.schedules?.airlines || [];
 
-	const shippingLine = shippingLinesList.filter(
-		(item) => item.id === schedule.shipping_line_id,
+	const shippingLine = airLinesList.filter(
+		(item) => item.id === schedule.airline_id,
 	)[0] || {};
 
 	const [openSchedulesModal, setOpenSchedulesModal] = useState(false);

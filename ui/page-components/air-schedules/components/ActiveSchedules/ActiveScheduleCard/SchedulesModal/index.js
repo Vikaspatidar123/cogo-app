@@ -12,8 +12,8 @@ export function SchedulesModal({
 		setOpenSchedulesModal(false);
 	};
 
-	const originSchedule = scheduleDetails?.origin_port?.port_code || 'Origin';
-	const destinationSchedule =	 scheduleDetails?.destination_port?.port_code || 'Destination';
+	const originSchedule = scheduleDetails?.origin_airport?.port_code || 'Origin';
+	const destinationSchedule =	 scheduleDetails?.destination_airport?.port_code || 'Destination';
 
 	const legs = schedule?.legs || [];
 
@@ -56,29 +56,25 @@ export function SchedulesModal({
 					</div>
 				</div>
 				<div>
-					<div className={styles.dates_container}>
-						<div className={styles.date_container}>
-							{format(schedule?.departure, 'dd MMM yyyy')}
-						</div>
-						<div className={styles.date_container}>
-							{format(schedule?.arrival, 'dd MMM yyyy')}
-						</div>
-					</div>
 					<div className={styles.main_pill_container}>
 						<Pill size="md" color="#FEF3E9">
 							{differenceInDays(new Date(schedule?.arrival), new Date(schedule?.departure))}
 							Days
 						</Pill>
 					</div>
-					<div className={styles.steps_container}>
-						<div className={styles.dot_circle}>
-							<div className={styles.circle1}>
-								<div className={styles.port_code}>{originSchedule}</div>
-							</div>
-							<div className={styles.line} />
-							<div className={styles.circle2}>
-								<div className={styles.port_code}>{destinationSchedule}</div>
-							</div>
+					<div className={styles.dot_circle}>
+						<div className={styles.circle1}><div className={styles.port_code}>{originSchedule}</div></div>
+						<div className={styles.line} />
+						<div className={styles.circle2}>
+							<div className={styles.port_code}>{destinationSchedule}</div>
+						</div>
+					</div>
+					<div className={styles.dates_container}>
+						<div className={styles.date_container}>
+							{format(schedule?.departure, 'dd MMM yyyy (eee)')}
+						</div>
+						<div className={styles.date_container}>
+							{format(schedule?.arrival, 'dd MMM yyyy (eee)')}
 						</div>
 					</div>
 				</div>

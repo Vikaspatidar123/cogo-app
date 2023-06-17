@@ -6,6 +6,7 @@ import { useState } from 'react';
 import styles from './styles.module.css';
 
 import { useRouter } from '@/packages/next';
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
 function SuccessModal({
 	showSuccessModal,
@@ -167,7 +168,7 @@ function SuccessModal({
 				{showFailed && (
 					<div className={cl`${styles.container} ${styles.alert_container}`}>
 						<img
-							src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/exclamation.svg"
+							src={GLOBAL_CONSTANTS.image_url.succes_image}
 							alt={t('cogoStore:cart_successmodal_image_alt_text')}
 							className={styles.alert_icon}
 						/>

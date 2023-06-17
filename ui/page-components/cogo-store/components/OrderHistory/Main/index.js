@@ -1,17 +1,20 @@
-import { useRouter } from '@/temp/next';
 import { Pagination } from '@cogoport/components';
-import { useState, useEffect } from 'react';
 import { isEmpty } from '@cogoport/utils';
 import { useTranslation } from 'next-i18next';
-import Header from '../../common/Header';
-import StoreCardLoader from '../../common/StoreCardLoader';
-import useListCogoStoreProductCategories from '../../hooks/useListCogoStoreProductCategories';
-import useListCogoStoreProducts from '../../hooks/useListCogoStoreProducts';
+import { useState, useEffect } from 'react';
+
+import Header from '../../../common/Header';
+import StoreCardLoader from '../../../common/StoreCardLoader';
+import useListCogoStoreProductCategories from '../../../hooks/useListCogoStoreProductCategories';
+import useListCogoStoreProducts from '../../../hooks/useListCogoStoreProducts';
+
 import Categories from './Categories';
+import Filter from './Filter';
 import StoreCard from './StoreCard';
 import styles from './styles.module.css';
 
-import Filter from './Filter';
+import { useRouter } from '@/packages/next';
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
 function Main() {
 	const { t } = useTranslation(['cogoStore']);
@@ -69,6 +72,7 @@ function Main() {
 				categoryName: displayName,
 			}));
 		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [isCategory, categories]);
 
 	const displayCategoryProduct = (category_id, display_name) => {
@@ -87,7 +91,6 @@ function Main() {
 		}
 
 		if (!isEmpty(searchValue)) {
-			console.log('asdasd');
 			setSearchValue('');
 		}
 
@@ -112,7 +115,10 @@ function Main() {
 			<div className={styles.main}>
 				<div className={styles.main_header}>
 					<div className={styles.title}>
-						{categoryName}({total_count})
+						{categoryName}
+						(
+						{total_count}
+						)
 					</div>
 					<Filter
 						rangeFilter={rangeFilter}
@@ -128,7 +134,7 @@ function Main() {
 				<div className={styles.cards_container}>
 					{listLoading && (
 						<div className={styles.main_cards}>
-							{newList.map((item) => (
+							{(newList || []).map((item) => (
 								<StoreCardLoader key={item} width="288px" />
 							))}
 						</div>
@@ -137,7 +143,7 @@ function Main() {
 					{!listLoading && total_count > 0 && (
 						<>
 							<div className={styles.main_cards}>
-								{newList.map((product) => (
+								{(newList || []).map((product) => (
 									<StoreCard key={product?.id} item={product} />
 								))}
 							</div>
@@ -156,7 +162,7 @@ function Main() {
 					{!listLoading && total_count === 0 && (
 						<div className={styles.empty_state}>
 							<img
-								src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/no category"
+								src={GLOBAL_CONSTANTS.image_url.empty_category_image}
 								alt={t('cogoStore:main_image_alt')}
 								height={300}
 								width={300}

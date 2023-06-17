@@ -156,6 +156,20 @@ const GLOBAL_CONSTANTS = {
 			'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/CogoBag.png',
 		cart_image:
 			'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/Cart-Outline (1).png',
+		succes_image:
+			'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/exclamation.svg',
+		empty_image:
+			'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/undraw_empty_cart_co35.svg',
+		category_image:
+			'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/cogo_logo_white_bg.svg',
+		empty_category_image:
+			'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/no category',
+		empty_details_image:
+			'https://cdn.cogoport.io/cms-prod/cogo_admin/vault/original/shipmentEmptyState.png',
+		send_gift_image:
+			'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/send.gif',
+		banner_image:
+			'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/Banner 1.png',
 	},
 };
 

@@ -37,6 +37,7 @@ function ProductDetails() {
 	useEffect(() => {
 		getCogostoreProduct({ product_id: product_code_id });
 		setAddToCard(false);
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [product_code_id, getCogostoreProduct]);
 
 	const {
@@ -56,6 +57,7 @@ function ProductDetails() {
 		if (category_id) {
 			getListProducts({ category_id });
 		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [category_id]);
 
 	const { option, tncCollapse } = getProductDetails({
@@ -107,7 +109,7 @@ function ProductDetails() {
 						{t('cogoStore:product_details_vouchers')}
 					</div>
 					<div className={styles.like_vouchers}>
-						{list.map((item) => (
+						{(list || []).map((item) => (
 							<StoreCard key={item?.id} item={item} isProductPage />
 						))}
 					</div>

@@ -1,3 +1,5 @@
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
+
 const style = {
 	backgroundSize   : ' 100% 100%',
 	backgroundRepeat : 'no-repeat',
@@ -8,13 +10,13 @@ const style = {
 	padding          : '10px 0',
 };
 
-const getCarouselData = ({ data, handelRouting }) => {
+const getCarouselData = ({ data = [], handelRouting }) => {
 	const item = data.map(({ image_url = '', filters = {}, id = '' }) => ({
 		key    : id,
 		render : () => (
 			<img
 				src={image_url}
-				alt="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/Banner 1.png"
+				alt={GLOBAL_CONSTANTS.image_url.banner_image}
 				onClick={() => handelRouting(filters?.category, filters)}
 				role="presentation"
 				style={style}

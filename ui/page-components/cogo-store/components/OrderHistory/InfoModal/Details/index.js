@@ -4,6 +4,8 @@ import { useTranslation } from 'next-i18next';
 
 import styles from './styles.module.css';
 
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
+
 function Details({ voucherInfo = [] }) {
 	const { t } = useTranslation(['cogoStore']);
 	function handleCopy(voucherNo) {
@@ -16,7 +18,7 @@ function Details({ voucherInfo = [] }) {
 			<div className={styles.container}>
 				<div className={styles.empty_state}>
 					<img
-						src="https://cdn.cogoport.io/cms-prod/cogo_admin/vault/original/shipmentEmptyState.png"
+						src={GLOBAL_CONSTANTS.image_url.empty_details_image}
 						alt={t('cogoStore:orderHistory_infoModel_details_image_alt')}
 					/>
 					<div className={styles.message}>{t('cogoStore:empty_data')}</div>
@@ -38,7 +40,7 @@ function Details({ voucherInfo = [] }) {
 				</div>
 			</div>
 			<div className={styles.table_container}>
-				{voucherInfo.map(
+				{(voucherInfo || []).map(
 					({ Voucherpin = '', EndDate = '', VoucherNo = '' }) => (
 						<div
 							key={VoucherNo}

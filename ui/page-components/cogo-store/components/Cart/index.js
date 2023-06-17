@@ -15,6 +15,8 @@ import OrderSummary from './OrderSummary';
 import styles from './styles.module.css';
 import SuccessModal from './SuccessModal';
 
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
+
 function Cart() {
 	const { t } = useTranslation(['cogoStore']);
 	const [showSuccessModal, setShowSuccessModal] = useState(false);
@@ -61,7 +63,7 @@ function Cart() {
 			return (
 				<div className={styles.empty_cart}>
 					<img
-						src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/undraw_empty_cart_co35.svg"
+						src={GLOBAL_CONSTANTS.image_url.empty_image}
 						alt={t('cogoStore:components_cart_image_alt_text')}
 						height={500}
 						width={500}
@@ -89,7 +91,7 @@ function Cart() {
 							{' '}
 							{t('cogoStore:header_cart_items')}
 						</h2>
-						{cart_products.map((cartInfo) => (
+						{(cart_products || []).map((cartInfo) => (
 							<CartItems
 								key={cartInfo?.id}
 								cartInfo={cartInfo}

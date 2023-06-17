@@ -12,7 +12,7 @@ import Categories from './Categories';
 import Filter from './Filter';
 import StoreCard from './StoreCard';
 import styles from './styles.module.css';
-
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 import { useRouter } from '@/packages/next';
 
 function Main() {
@@ -71,6 +71,7 @@ function Main() {
 				categoryName: displayName,
 			}));
 		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [isCategory, categories]);
 
 	const displayCategoryProduct = (category_id, display_name) => {
@@ -89,7 +90,6 @@ function Main() {
 		}
 
 		if (!isEmpty(searchValue)) {
-			console.log('asdasd');
 			setSearchValue('');
 		}
 
@@ -133,7 +133,7 @@ function Main() {
 				<div className={styles.cards_container}>
 					{listLoading && (
 						<div className={styles.main_cards}>
-							{newList.map((item) => (
+							{(newList||[]).map((item) => (
 								<StoreCardLoader key={item} width="288px" />
 							))}
 						</div>
@@ -142,7 +142,7 @@ function Main() {
 					{!listLoading && total_count > 0 && (
 						<>
 							<div className={styles.main_cards}>
-								{newList.map((product) => (
+								{(newList||[]).map((product) => (
 									<StoreCard key={product?.id} item={product} />
 								))}
 							</div>
@@ -161,7 +161,7 @@ function Main() {
 					{!listLoading && total_count === 0 && (
 						<div className={styles.empty_state}>
 							<img
-								src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/no category"
+								src={GLOBAL_CONSTANTS.image_url.empty_category_image}
 								alt={t('cogoStore:main_image_alt')}
 								height={300}
 								width={300}

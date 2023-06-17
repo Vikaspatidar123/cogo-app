@@ -10,6 +10,7 @@ import styles from './styles.module.css';
 import { useForm } from '@/packages/forms';
 import getField from '@/packages/forms/Controlled';
 import { useSelector } from '@/packages/store';
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 import getConfig from '@/ui/page-components/cogo-store/configurations/getConfig';
 
 function Send({ orderItemId, closeModal }) {
@@ -57,7 +58,7 @@ function Send({ orderItemId, closeModal }) {
 		return (
 			<div className={styles.send_container}>
 				<img
-					src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/send.gif"
+					src={GLOBAL_CONSTANTS.image_url.send_gift_image}
 					alt={t('cogoStore:orderHistory_infoModel_send_image_alt')}
 					width="240px"
 				/>

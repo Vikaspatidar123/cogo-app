@@ -6,7 +6,7 @@ import styles from './styles.module.css';
 function CarouselLoader() {
 	return (
 		<div className={styles.container}>
-			{[(1, 2, 3, 4)].map((item) => (
+			{[...Array(4).keys()].map((item) => (
 				<div className={styles.wrapper} key={item}>
 					<Placeholder width="100%" height="160px" />
 					<div className={styles.footer}>

@@ -48,46 +48,46 @@ function BillingAddress({ selectAddressId, setSelectAddressId = () => { } }) {
 
 	const selectedAddressData = filteredData || firstData || {};
 
-	// return (
-	// 	<>
-	// 		<div className={styles.container}>
-	// 			<div className={styles.header}>
-	// 				<div className={styles.title}>{t('cogoStore:delivery_address')}</div>
-	// 			</div>
-	// 			<div className={styles.list_container}>
-	// 				{loading ? (
-	// 					<Placeholder width="700px" height="70px" />
-	// 				) : (
-	// 					<RenderSelectedAddress
-	// 						data={selectedAddressData}
-	// 						setShowMoreAddress={setShowMoreAddress}
-	// 						setSelectAddressId={setSelectAddressId}
-	// 						selectAddressId={selectAddressId}
-	// 					/>
-	// 				)}
-	// 			</div>
-	// 		</div>
+	return (
+		<>
+			<div className={styles.container}>
+				<div className={styles.header}>
+					<div className={styles.title}>{t('cogoStore:delivery_address')}</div>
+				</div>
+				<div className={styles.list_container}>
+					{loading ? (
+						<Placeholder width="700px" height="70px" />
+					) : (
+						<RenderSelectedAddress
+							data={selectedAddressData}
+							setShowMoreAddress={setShowMoreAddress}
+							setSelectAddressId={setSelectAddressId}
+							selectAddressId={selectAddressId}
+						/>
+					)}
+				</div>
+			</div>
 
-	// 		{showMoreAddress && (
-	// 			<BillingAddressModal
-	// 				showMoreAddress={showMoreAddress}
-	// 				setShowMoreAddress={setShowMoreAddress}
-	// 				setShowAddressModal={setShowAddressModal}
-	// 				list={list}
-	// 				selectAddressId={selectAddressId}
-	// 				setSelectAddressId={setSelectAddressId}
-	// 			/>
-	// 		)}
+			{showMoreAddress && (
+				<BillingAddressModal
+					showMoreAddress={showMoreAddress}
+					setShowMoreAddress={setShowMoreAddress}
+					setShowAddressModal={setShowAddressModal}
+					list={list}
+					selectAddressId={selectAddressId}
+					setSelectAddressId={setSelectAddressId}
+				/>
+			)}
 
-	// 		{showAddressModal && (
-	// 			<ContactInfo
-	// 				showAddressModal={showAddressModal}
-	// 				setShowAddressModal={setShowAddressModal}
-	// 				billingAddress={billingAddress}
-	// 			/>
-	// 		)}
-	// 	</>
-	// );
+			{showAddressModal && (
+				<ContactInfo
+					showAddressModal={showAddressModal}
+					setShowAddressModal={setShowAddressModal}
+					billingAddress={billingAddress}
+				/>
+			)}
+		</>
+	);
 }
 
 export default BillingAddress;

@@ -40,7 +40,7 @@ function Header({ globalFilter, filterChangeHandler, inputValue, setInputValue, 
 							onChange={(e) => filterChangeHandler('activeTab', e)}
 						>
 							{Object.keys(TAB_MAPPING).map((tab) => (
-								<TabPanel name={tab} title={TAB_MAPPING?.[tab]} />
+								<TabPanel key={tab} name={tab} title={TAB_MAPPING?.[tab]} />
 							))}
 						</Tabs>
 					</div>

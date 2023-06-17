@@ -24,7 +24,7 @@ const Content = ({ setModalInfo, id = '', setShowPopover }) => {
 
 	return (
 		Object.keys(MAPPING).map((item) => (
-			<div className={styles.row} role="presentation" onClick={() => clickHandler(item)}>
+			<div key={item} className={styles.row} role="presentation" onClick={() => clickHandler(item)}>
 				<span className={styles.icon}>{MAPPING?.[item]}</span>
 				<span className={styles.text}>{startCase(item)}</span>
 			</div>

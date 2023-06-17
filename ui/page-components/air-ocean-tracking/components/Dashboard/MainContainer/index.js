@@ -58,7 +58,7 @@ function MainContainer() {
 							}))}
 						>
 							{Object.keys(DASHBOARD_TAB_MAPPING).map((tab) => (
-								<TabPanel name={tab} title={DASHBOARD_TAB_MAPPING?.[tab]} />
+								<TabPanel key={tab} name={tab} title={DASHBOARD_TAB_MAPPING?.[tab]} />
 							))}
 						</Tabs>
 					</div>

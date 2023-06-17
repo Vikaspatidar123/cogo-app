@@ -6,8 +6,7 @@ import ReCAPTCHA from 'react-google-recaptcha';
 
 import useLeadUserDetails from '../../../hooks/useLeadUserDetails';
 import useSignupAuthentication from '../../../hooks/useSignupAuthentication';
-import { checkMobileInput } from '../../../utils/checkMobileInput';
-import { getIdByMobileCountryCode } from '../../../utils/getIdByMobileCountryCode';
+import useSignupForm from '../../../hooks/useSignupForm';
 import { getLocationData } from '../../../utils/getLocationData';
 
 import styles from './styles.module.css';
@@ -20,8 +19,6 @@ import {
 import CheckboxController from '@/packages/forms/Controlled/CheckboxController';
 import CountrySelectController from '@/packages/forms/Controlled/CountrySelectController';
 import patterns from '@/ui/commons/configurations/patterns';
-
-const { RECAPTCHA_SITEKEY } = process.env;
 
 function SignupForm({ userDetails = {}, setMode = () => {}, setUserDetails = () => {} }) {
 	const [captchaResponse, setCaptchaResponse] = useState('');
@@ -56,6 +53,21 @@ function SignupForm({ userDetails = {}, setMode = () => {}, setUserDetails = () 
 
 	const mobileCodeValue = watch('mobile_number');
 
+	const { onSignupApiCall, makeApiCallForEmail, makeApiCallForMobile } = useSignupForm({
+		setCustomError,
+		setCaptchaError,
+		trigger,
+		errors,
+		setValue,
+		formValues,
+		mobileCodeValue,
+		onLeadUserDetails,
+		leadUserId,
+		captchaResponse,
+		setUserDetails,
+		signupAuthentication,
+	});
+
 	useEffect(() => {
 		const fetchData = async () => {
 			const data = await getLocationData();
@@ -64,70 +76,6 @@ function SignupForm({ userDetails = {}, setMode = () => {}, setUserDetails = () 
 
 		fetchData();
 	}, []);
-
-	useEffect(() => {
-		if (mobileCodeValue?.country_code) {
-			const countryId = getIdByMobileCountryCode({
-				mobile_country_code: mobileCodeValue.country_code,
-			});
-			setValue('country_id', countryId);
-		}
-	}, [setValue, mobileCodeValue?.country_code]);
-
-	useEffect(() => {
-		const hasMobileValues = checkMobileInput(formValues);
-
-		if (hasMobileValues) {
-			setCustomError('');
-		}
-	}, [formValues]);
-
-	const checkMobileDetails = (val) => {
-		const hasMobileValues = checkMobileInput(val);
-
-		if (hasMobileValues) {
-			setCustomError('');
-		} else {
-			setCustomError('Mobile Details are required.');
-		}
-
-		return hasMobileValues;
-	};
-
-	const checkCaptcha = (val) => {
-		if (val) {
-			setCaptchaError('');
-			return true;
-		}
-		setCaptchaError('Please complete the reCAPTCHA verification.');
-		return false;
-	};
-
-	const makeApiCallForEmail = async () => {
-		await trigger('email');
-		const { email } = formValues;
-		if (email && errors.email === undefined) {
-			onLeadUserDetails({ leadUserId, formValues });
-		}
-	};
-
-	const makeApiCallForMobile = () => {
-		const hasMobileValues = checkMobileDetails(formValues);
-		const { mobile_number } = formValues;
-		if (hasMobileValues && mobile_number) {
-			onLeadUserDetails({ leadUserId, formValues });
-		}
-	};
-
-	const onSignupApiCall = (values, e) => {
-		const hasCaptchaValue = checkCaptcha(captchaResponse);
-		const hasMobileValues = checkMobileDetails(values);
-
-		if (hasCaptchaValue && hasMobileValues) {
-			setUserDetails({ ...formValues });
-			signupAuthentication(values, e);
-		}
-	};
 
 	useEffect(() => {
 		if (!isEmpty(locationData)) {
@@ -238,7 +186,7 @@ function SignupForm({ userDetails = {}, setMode = () => {}, setUserDetails = () 
 				<div className={styles.recaptcha}>
 					<ReCAPTCHA
 						ref={recaptchaRef}
-						sitekey={RECAPTCHA_SITEKEY}
+						sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITEKEY}
 						onChange={(value = '') => { setCaptchaResponse(value); }}
 					/>
 					<div className={styles.recaptcha_error}>

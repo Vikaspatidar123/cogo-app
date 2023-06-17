@@ -106,10 +106,11 @@ function AddAlert({
 				</div>
 			</div>
 			<div className={styles.footer}>
-				<Button themeType="secondary" onClick={prevStepHandler} disabled={loading}>Back</Button>
+				<Button type="button" themeType="secondary" onClick={prevStepHandler} disabled={loading}>Back</Button>
 				<Button
 					className={styles.submit_btn}
 					themeType="accent"
+					type="button"
 					loading={loading}
 					onClick={submitHandler}
 				>

@@ -46,8 +46,9 @@ function AddContactModal({
 
 			</div>
 			<div className={styles.footer}>
-				<Button themeType="secondary" onClick={closeHandler} disabled={loading}>Cancel</Button>
+				<Button type="button" themeType="secondary" onClick={closeHandler} disabled={loading}>Cancel</Button>
 				<Button
+					type="button"
 					themeType="primary"
 					className={styles.submit_btn}
 					onClick={handleSubmit(onSubmit)}

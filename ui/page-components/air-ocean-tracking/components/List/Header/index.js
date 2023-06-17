@@ -50,6 +50,7 @@ function Header({ globalFilter, filterChangeHandler, inputValue, setInputValue, 
 					{!isArchived && (
 						<>
 							<Button
+								type="button"
 								themeType="linkUi"
 								onClick={() => redirectArchivedList(activeTab)}
 							>
@@ -79,7 +80,7 @@ function Header({ globalFilter, filterChangeHandler, inputValue, setInputValue, 
 							)}
 						</>
 					)}
-					<Button>Export Data</Button>
+					<Button type="button">Export Data</Button>
 				</div>
 
 			</div>

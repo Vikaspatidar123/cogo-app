@@ -23,8 +23,8 @@ function ImportCsvModal({ csvModal, setCsvModal }) {
 						accept=".csv"
 					/>
 
-					<Button themeType="linkUi">Download the sample file here</Button>
-					<Button themeType="accent" className={styles.footer_btn}>Import</Button>
+					<Button type="button" themeType="linkUi">Download the sample file here</Button>
+					<Button type="button" themeType="accent" className={styles.footer_btn}>Import</Button>
 				</div>
 
 			</div>

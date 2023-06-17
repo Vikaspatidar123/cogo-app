@@ -43,6 +43,7 @@ function Share({ shipmentId = '' }) {
 						})}
 						<div className={cl`${styles.col} ${styles.submit_btn}`}>
 							<Button
+								type="button"
 								themeType="accent"
 								onClick={handleSubmit(onSubmit)}
 								loading={createLoading}

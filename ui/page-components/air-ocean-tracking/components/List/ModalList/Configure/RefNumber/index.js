@@ -30,10 +30,11 @@ function RefNumber({ closeHandler, shipmentId, refetchTrackerList }) {
 				})}
 			</div>
 			<div className={styles.footer}>
-				<Button themeType="secondary" disabled={loading} onClick={closeHandler}>Cancel</Button>
+				<Button type="button" themeType="secondary" disabled={loading} onClick={closeHandler}>Cancel</Button>
 				<Button
 					className={styles.submit_btn}
 					themeType="accent"
+					type="button"
 					onClick={handleSubmit(onSubmitHandler)}
 					loading={loading}
 				>

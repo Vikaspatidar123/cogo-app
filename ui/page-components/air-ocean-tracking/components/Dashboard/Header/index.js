@@ -62,13 +62,21 @@ function Header() {
 						);
 					})}
 					<div className={styles.col}>
-						<Button size="lg">Track</Button>
+						<Button size="lg" type="button">Track</Button>
 					</div>
 					<div className={cl`${styles.col} ${styles.or_tag}`}>
 						<OrTag />
 					</div>
 					<div className={styles.col}>
-						<Button size="lg" themeType="accent" onClick={() => setCsvModal(true)}>Import .csv</Button>
+						<Button
+							size="lg"
+							type="button"
+							themeType="accent"
+							onClick={() => setCsvModal(true)}
+						>
+							Import .csv
+
+						</Button>
 					</div>
 				</div>
 

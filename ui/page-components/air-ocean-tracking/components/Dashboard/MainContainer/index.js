@@ -76,7 +76,7 @@ function MainContainer() {
 						options={selectOpt}
 						className={styles.select_field}
 					/>
-					<Button themeType="secondary" onClick={() => redirectToList({})}>
+					<Button type="button" themeType="secondary" onClick={() => redirectToList({})}>
 						View All Shipments
 					</Button>
 				</div>

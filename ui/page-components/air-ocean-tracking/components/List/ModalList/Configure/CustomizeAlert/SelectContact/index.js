@@ -74,16 +74,23 @@ function SelectContact({
 							<div className={styles.line} />
 						</div>
 
-						<Button themeType="accent" onClick={() => setAddContact(true)}>Add New Contact</Button>
+						<Button
+							type="button"
+							themeType="accent"
+							onClick={() => setAddContact(true)}
+						>
+							Add New Contact
+						</Button>
 					</div>
 				</div>
 
 			</div>
 			<div className={styles.footer}>
-				<Button themeType="secondary" onClick={closeHandler} disabled={loading}>Cancel</Button>
+				<Button themeType="secondary" type="button" onClick={closeHandler} disabled={loading}>Cancel</Button>
 				<Button
 					className={styles.submit_btn}
 					themeType="accent"
+					type="button"
 					onClick={handleSubmit(onSubmit)}
 					loading={loading}
 				>

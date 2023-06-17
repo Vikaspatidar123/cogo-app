@@ -33,8 +33,15 @@ function FilterContent({ filterData = {}, activeTab, globalFilter = {}, setGloba
 			<div className={cl`${styles.flex_box} ${styles.header}`}>
 				<h3>Filters</h3>
 				<div className={styles.flex_box}>
-					<Button themeType="linkUi" onClick={clearHandler}>Clear</Button>
-					<Button themeType="accent" size="sm" onClick={handleSubmit(submitHandler)}>Apply</Button>
+					<Button type="button" themeType="linkUi" onClick={clearHandler}>Clear</Button>
+					<Button
+						type="button"
+						themeType="accent"
+						size="sm"
+						onClick={handleSubmit(submitHandler)}
+					>
+						Apply
+					</Button>
 				</div>
 			</div>
 			<div className={styles.form_container}>

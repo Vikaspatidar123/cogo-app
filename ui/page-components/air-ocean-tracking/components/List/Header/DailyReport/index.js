@@ -28,7 +28,14 @@ function DailyReport({ dsrListValue = {}, setShowConfigure, activeTab = 'ocean' 
 				<h3>Schedule Status Reports to Contacts</h3>
 
 				<div className={styles.cta_container}>
-					<Button themeType="accent" onClick={() => setStatusModal({ isOpen: true })}>Create New</Button>
+					<Button
+						type="button"
+						themeType="accent"
+						onClick={() => setStatusModal({ isOpen: true })}
+					>
+						Create New
+
+					</Button>
 					<ButtonIcon
 						icon={<IcMCross />}
 						className={styles.cross_icon}

@@ -59,6 +59,7 @@ function AllContact({ selectedContact, setSelectedContact, setIsSingleReport, ac
 						/>
 					</div>
 					<Button
+						type="button"
 						themeType="secondary"
 						disabled={createLoading}
 						onClick={() => setAddContact(true)}
@@ -88,7 +89,7 @@ function AllContact({ selectedContact, setSelectedContact, setIsSingleReport, ac
 				)}
 			</div>
 			<div className={styles.footer}>
-				<Button onClick={proceedHandler} themeType="accent" loading={createLoading}>Next</Button>
+				<Button onClick={proceedHandler} type="button" themeType="accent" loading={createLoading}>Next</Button>
 			</div>
 			{addContact &&	(
 				<AddContactModal

@@ -35,7 +35,7 @@ function StatsContainer() {
 						<p className={styles.text}>{stats.label}</p>
 						<div className={styles.footer}>
 							<p className={styles.num}>{data?.[stats.value]}</p>
-							<Button themeType="linkUi">View</Button>
+							<Button type="button" themeType="linkUi">View</Button>
 						</div>
 					</div>
 				</div>

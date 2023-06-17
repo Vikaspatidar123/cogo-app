@@ -124,7 +124,7 @@ function Route({
 				</div>
 
 				{originIcd ? (
-					<div style={{ display: 'flex', width: '100%', marginLeft: '-4px' }}>
+					<div style={{ width: '100%', marginLeft: '-4px' }}>
 						<div style={{ width: '100%', display: 'flex' }}>
 							<div className={styles.circle} />
 							<div

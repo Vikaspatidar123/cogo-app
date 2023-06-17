@@ -146,6 +146,8 @@ const GLOBAL_CONSTANTS = {
 		'VN',
 	],
 	image_url: {
+		cogoport_logo:
+		'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/cogoport.svg',
 		iec_red_flag:
 		'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/redFlag.svg',
 		iec_green_flag:

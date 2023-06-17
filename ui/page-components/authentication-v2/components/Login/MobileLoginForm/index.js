@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 
 import useLoginMobileAuthentication from '../../../hooks/useLoginMobileAuthentication';
 import { checkMobileInput } from '../../../utils/checkMobileInput';
-import { getlocationData } from '../../../utils/getLocationData';
+import { getLocationData } from '../../../utils/getLocationData';
 
 import styles from './styles.module.css';
 
@@ -30,7 +30,7 @@ function MobileLoginForm({
 
 	useEffect(() => {
 		const fetchData = async () => {
-			const data = await getlocationData();
+			const data = await getLocationData();
 			setLocationData(data);
 		};
 

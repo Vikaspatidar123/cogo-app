@@ -1,6 +1,6 @@
 const BASE_URL = process.env.NEXT_PUBLIC_USER_LOCATION_API_URL;
 
-export const getlocationData = async () => {
+export const getLocationData = async () => {
 	const response = await fetch(BASE_URL);
 
 	const data = await response.json();

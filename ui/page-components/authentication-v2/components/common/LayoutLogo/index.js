@@ -5,13 +5,15 @@ import HelpCard from '../HelpCard';
 
 import styles from './styles.module.css';
 
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
+
 function LayoutLogo() {
 	return (
 		<div className={styles.header}>
 
 			<a href="/">
 				<img
-					src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/cogoport.svg"
+					src={GLOBAL_CONSTANTS.image_url.cogoport_logo}
 					alt="Cogoport"
 				/>
 			</a>

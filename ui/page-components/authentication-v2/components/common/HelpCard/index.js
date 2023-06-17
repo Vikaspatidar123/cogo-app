@@ -2,6 +2,9 @@ import { IcMCall, IcMEmail } from '@cogoport/icons-react';
 
 import styles from './styles.module.css';
 
+const PHONE_NUMBER = '+918976851674';
+const EMAIL_ID = 'kanira.patel@cogoport.com';
+
 function HelpCard() {
 	return (
 		<div className={styles.help_card}>
@@ -19,8 +22,8 @@ function HelpCard() {
 
 				Email:
 
-				<a href="mailto:kanira.patel@cogoport.com" className={styles.link_value}>
-					kanira.patel@cogoport.com
+				<a href={`mailto:${EMAIL_ID}`} className={styles.link_value}>
+					{EMAIL_ID}
 				</a>
 			</div>
 
@@ -29,8 +32,8 @@ function HelpCard() {
 
 				Mobile Number:
 
-				<a href="tel:+918976851674" className={styles.link_value}>
-					+91 8976851674
+				<a href={`tel:${PHONE_NUMBER}`} className={styles.link_value}>
+					{PHONE_NUMBER}
 				</a>
 			</div>
 

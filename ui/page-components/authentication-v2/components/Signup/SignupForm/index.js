@@ -8,7 +8,7 @@ import useLeadUserDetails from '../../../hooks/useLeadUserDetails';
 import useSignupAuthentication from '../../../hooks/useSignupAuthentication';
 import { checkMobileInput } from '../../../utils/checkMobileInput';
 import { getIdByMobileCountryCode } from '../../../utils/getIdByMobileCountryCode';
-import { getlocationData } from '../../../utils/getLocationData';
+import { getLocationData } from '../../../utils/getLocationData';
 
 import styles from './styles.module.css';
 
@@ -20,6 +20,8 @@ import {
 import CheckboxController from '@/packages/forms/Controlled/CheckboxController';
 import CountrySelectController from '@/packages/forms/Controlled/CountrySelectController';
 import patterns from '@/ui/commons/configurations/patterns';
+
+const { RECAPTCHA_SITEKEY } = process.env;
 
 function SignupForm({ userDetails = {}, setMode = () => {}, setUserDetails = () => {} }) {
 	const [captchaResponse, setCaptchaResponse] = useState('');
@@ -56,7 +58,7 @@ function SignupForm({ userDetails = {}, setMode = () => {}, setUserDetails = () 
 
 	useEffect(() => {
 		const fetchData = async () => {
-			const data = await getlocationData();
+			const data = await getLocationData();
 			setLocationData(data);
 		};
 
@@ -236,7 +238,7 @@ function SignupForm({ userDetails = {}, setMode = () => {}, setUserDetails = () 
 				<div className={styles.recaptcha}>
 					<ReCAPTCHA
 						ref={recaptchaRef}
-						sitekey="6Lde97IeAAAAAJS1_4x0dGDmjNGdKq1wVl1TR0eD"
+						sitekey={RECAPTCHA_SITEKEY}
 						onChange={(value = '') => { setCaptchaResponse(value); }}
 					/>
 					<div className={styles.recaptcha_error}>

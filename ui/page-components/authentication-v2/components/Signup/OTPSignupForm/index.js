@@ -32,8 +32,8 @@ function OTPSignupForm({ userDetails = {}, setMode = () => {} }) {
 
 			<span onClick={() => setMode('signup_form')} role="presentation" className={styles.back_button}>
 				<IcMArrowBack
-					width="1.2rem"
-					height="1.2rem"
+					width="20px"
+					height="20px"
 				/>
 			</span>
 

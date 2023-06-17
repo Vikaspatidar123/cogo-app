@@ -1,7 +1,7 @@
 import { Toast } from '@cogoport/components';
-import { useSelector } from 'react-redux';
 
 import { useRequest } from '@/packages/request';
+import { useSelector } from '@/packages/store';
 
 const useGetStartedAuthentication = ({ setMode = () => { } }) => {
 	const { profile: { id = '' } } = useSelector((state) => state);

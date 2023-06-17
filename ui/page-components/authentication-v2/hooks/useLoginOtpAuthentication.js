@@ -2,7 +2,7 @@ import { Toast } from '@cogoport/components';
 
 import getApiErrorString from '@/packages/forms/utils/getApiError';
 import { useRouter } from '@/packages/next';
-import { useRequest } from '@/packages/request/index';
+import { useRequest } from '@/packages/request';
 import setCookieAndRedirect from '@/ui/commons/utils/setCookieAndRedirect';
 
 const useLoginOtpAuthentication = (

@@ -1,6 +1,6 @@
 import { Toast } from '@cogoport/components';
 
-import { useRequest } from '@/packages/request/index';
+import { useRequest } from '@/packages/request';
 import setCookieAndRedirect from '@/ui/commons/utils/setCookieAndRedirect';
 
 const useSignupOtpAuthentication = ({ otpValue = '', setMode = () => { }, userDetails = {} }) => {

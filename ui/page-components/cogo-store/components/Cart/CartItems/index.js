@@ -10,7 +10,7 @@ import styles from './styles.module.css';
 function CartItems({
 	cartInfo = {},
 	setLoad,
-	updateCogostoreCartItem = () => {},
+	updateCogostoreCartItem = () => { },
 	updateLoading = false,
 	setProductStock,
 }) {
@@ -32,15 +32,15 @@ function CartItems({
 	const [productImg] = logo_urls || [];
 	const { name: brandName = '' } = brand;
 
-	const option =		user_purchase_limit === -1
+	const option = user_purchase_limit === -1
 		? OPTIONS
 		: OPTIONS.filter((ite) => +ite.value <= user_purchase_limit);
 
 	const deleteItemFromCart = () => {
 		updateCogostoreCartItem({
-			status   : 'inactive',
+			status: 'inactive',
 			id,
-			quantity : 0,
+			quantity: 0,
 		});
 	};
 	const onChangeCartNumber = (val) => {
@@ -54,6 +54,7 @@ function CartItems({
 
 	useEffect(() => {
 		setProductStock((prev) => ({ ...prev, [id]: is_stock_available }));
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [is_stock_available]);
 
 	return (

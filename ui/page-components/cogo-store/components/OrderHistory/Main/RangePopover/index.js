@@ -3,7 +3,7 @@ import { isEmpty } from '@cogoport/utils';
 import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
 
-import Slider from '../../../common/Slider';
+import Slider from '../../../../common/Slider';
 
 import styles from './styles.module.css';
 
@@ -25,20 +25,20 @@ function PopoverContent({
 			durationValue: 0,
 		}));
 		setRangeFilter({
-			show      : false,
-			rangeList : {
-				cogopoint_greater_than_equal_to : undefined,
-				cogopoint_less_than_equal_to    : undefined,
+			show: false,
+			rangeList: {
+				cogopoint_greater_than_equal_to: undefined,
+				cogopoint_less_than_equal_to: undefined,
 			},
 		});
 	};
 
 	const applyHandler = () => {
 		setRangeFilter({
-			show      : false,
-			rangeList : {
-				cogopoint_greater_than_equal_to : min,
-				cogopoint_less_than_equal_to    : value?.durationValue,
+			show: false,
+			rangeList: {
+				cogopoint_greater_than_equal_to: min,
+				cogopoint_less_than_equal_to: value?.durationValue,
 			},
 		});
 	};

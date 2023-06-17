@@ -5,7 +5,7 @@ import { useTranslation } from 'next-i18next';
 
 import styles from './styles.module.css';
 
-import { useRouter } from '@/temp/next';
+import { useRouter } from '@/packages/next';
 
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';

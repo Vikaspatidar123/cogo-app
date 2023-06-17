@@ -19,7 +19,7 @@ const useFilter = ({ categoryId }) => {
 	};
 	useEffect(() => {
 		getFilter(categoryId);
-	// eslint-disable-next-line react-hooks/exhaustive-deps
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [categoryId]);
 
 	return { loading, data };

@@ -2,7 +2,7 @@ import { Popover, Input, Badge } from '@cogoport/components';
 import { IcMSearchlight } from '@cogoport/icons-react';
 import { useTranslation } from 'next-i18next';
 
-import useFilters from '../../../hooks/useFilters';
+import useFilters from '../../../../hooks/useFilters';
 import BrandPopover from '../BrandPopover';
 import RangePopover from '../RangePopover';
 import styles from '../styles.module.css';

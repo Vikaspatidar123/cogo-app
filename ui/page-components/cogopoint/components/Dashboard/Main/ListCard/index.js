@@ -1,12 +1,13 @@
 import { Button, cl } from '@cogoport/components';
 import { IcCCogoCoin, IcMArrowRight } from '@cogoport/icons-react';
 import { isEmpty } from '@cogoport/utils';
-import { useRouter } from 'next/router';
 import React from 'react';
 
 import styles1 from '../Points/styles.module.css';
 
 import styles from './styles.module.css';
+
+import { useRouter } from '@/packages/next';
 
 function ListCards({ earnablesList = [] }) {
 	const { push } = useRouter();
@@ -45,8 +46,9 @@ function ListCards({ earnablesList = [] }) {
 											className="secondary sm button"
 											type="button"
 											onClick={() => {
-												push(`${redirect_url}`);
+												push(`/${redirect_url}`);
 											}}
+											size="sm"
 										>
 											Complete
 											{' '}

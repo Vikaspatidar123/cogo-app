@@ -4,9 +4,11 @@ import {
 
 import i18nextConfig from '../../../next-i18next.config';
 
+import { GTM, LinkedinTags } from '@/ui/commons/constants/analytics';
+
 export default function Document(props) {
 	const { __NEXT_DATA__ } = props;
-	const currentLocale =	__NEXT_DATA__.locale ?? i18nextConfig.i18n.defaultLocale;
+	const currentLocale = __NEXT_DATA__.locale ?? i18nextConfig.i18n.defaultLocale;
 	return (
 		<Html lang={currentLocale}>
 			<Head>
@@ -29,16 +31,22 @@ export default function Document(props) {
 					sizes="16x16"
 					href="/favicon-16x16.png"
 				/>
-				{/* <meta
-					name="viewport"
-					content="width=device-width, initial-scale=1.0"
-				/>
-				<meta name="theme-color" content="#ffffff" /> */}
 				<link rel="manifest" href="/manifest.json" />
+				{process.env.NEXT_PUBLIC_APP_GTM_ID && (
+					<GTM gtmId={process.env.NEXT_PUBLIC_APP_GTM_ID} />
+				)}
 			</Head>
 			<body>
 				<Main />
 				<NextScript />
+				{process.env.NEXT_PUBLIC_APP_GTM_ID && (
+					<GTM.NoScript gtmId={process.env.NEXT_PUBLIC_APP_GTM_ID} />
+				)}
+				{process.env.APP_LINKEDIN_PARTNER_ID && (
+					<LinkedinTags
+						linkedInPartnerId={process.env.NEXT_PUBLIC_LINKEDIN_PARTNER_ID}
+					/>
+				)}
 			</body>
 		</Html>
 	);

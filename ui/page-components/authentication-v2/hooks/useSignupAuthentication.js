@@ -1,5 +1,6 @@
 import { Toast } from '@cogoport/components';
 
+import getApiErrorString from '@/packages/forms/utils/getApiError';
 import { useRequest } from '@/packages/request';
 
 const useSignupAuthentication = ({
@@ -41,11 +42,7 @@ const useSignupAuthentication = ({
 				...data,
 			}));
 		} catch (err) {
-			if (err?.response?.data?.email?.length > 0) {
-				Toast.error('Email id is already registered. Please Login');
-			} else {
-				Toast.error('Something went wrong');
-			}
+			Toast.error((err?.response?.data?.message) || 'Failed to Signup, Please check your details once');
 		}
 	};
 

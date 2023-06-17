@@ -1,7 +1,8 @@
 import { Select } from '@cogoport/components';
 import { IcCCogoCoin, IcMDelete } from '@cogoport/icons-react';
-import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'next-i18next';
+import React, { useEffect, useState } from 'react';
+
 import { OPTIONS } from '../../../constant/options';
 
 import styles from './styles.module.css';
@@ -31,16 +32,15 @@ function CartItems({
 	const [productImg] = logo_urls || [];
 	const { name: brandName = '' } = brand;
 
-	const option =
-		user_purchase_limit === -1
-			? OPTIONS
-			: OPTIONS.filter((ite) => +ite.value <= user_purchase_limit);
+	const option =		user_purchase_limit === -1
+		? OPTIONS
+		: OPTIONS.filter((ite) => +ite.value <= user_purchase_limit);
 
 	const deleteItemFromCart = () => {
 		updateCogostoreCartItem({
-			status: 'inactive',
+			status   : 'inactive',
 			id,
-			quantity: 0,
+			quantity : 0,
 		});
 	};
 	const onChangeCartNumber = (val) => {

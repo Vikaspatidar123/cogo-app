@@ -32,8 +32,8 @@ function ContactInfo({
 
 	useEffect(() => {
 		setValue('mobileNumber', {
-			number: mobile_number,
-			country_code: mobile_country_code,
+			number       : mobile_number,
+			country_code : mobile_country_code,
 		});
 	}, [setValue, mobile_number, mobile_country_code]);
 

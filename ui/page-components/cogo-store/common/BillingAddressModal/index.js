@@ -63,7 +63,9 @@ function BillingAddressModal({
 									<div className={styles.right_div}>
 										<div className={styles.name}>{name}</div>
 										<div className={styles.address}>
-											{address}, <span>{pincode}</span>
+											{address}
+											,
+											<span>{pincode}</span>
 										</div>
 									</div>
 								</div>

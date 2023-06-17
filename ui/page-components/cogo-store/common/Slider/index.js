@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react';
 import { cl, Popover } from '@cogoport/components';
-
 import { IcCCogoCoin } from '@cogoport/icons-react';
+import React, { useEffect } from 'react';
+
 import styles from './styles.module.css';
 
 function Slider({

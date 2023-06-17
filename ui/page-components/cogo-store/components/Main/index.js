@@ -12,8 +12,9 @@ import Categories from './Categories';
 import Filter from './Filter';
 import StoreCard from './StoreCard';
 import styles from './styles.module.css';
-import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
+
 import { useRouter } from '@/packages/next';
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
 function Main() {
 	const { t } = useTranslation(['cogoStore']);
@@ -133,7 +134,7 @@ function Main() {
 				<div className={styles.cards_container}>
 					{listLoading && (
 						<div className={styles.main_cards}>
-							{(newList||[]).map((item) => (
+							{(newList || []).map((item) => (
 								<StoreCardLoader key={item} width="288px" />
 							))}
 						</div>
@@ -142,7 +143,7 @@ function Main() {
 					{!listLoading && total_count > 0 && (
 						<>
 							<div className={styles.main_cards}>
-								{(newList||[]).map((product) => (
+								{(newList || []).map((product) => (
 									<StoreCard key={product?.id} item={product} />
 								))}
 							</div>

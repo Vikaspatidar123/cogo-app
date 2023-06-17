@@ -85,8 +85,8 @@ function ProductInfo({
 									<Button
 										onClick={() => {
 											createCogostoreCartItem({
-												product_code_id: productCodeId,
-												quantity: productCount,
+												product_code_id : productCodeId,
+												quantity        : productCount,
 											});
 										}}
 										themeType="primary"

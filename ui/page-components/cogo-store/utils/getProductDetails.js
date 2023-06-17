@@ -3,7 +3,7 @@ import { useTranslation } from 'next-i18next';
 import { OPTIONS } from '../constant/options';
 
 const styles = { padding: '10px 24px', fontSize: '14px' };
-const getProductDetails = ({
+const useGetProductDetails = ({
 	user_purchase_limit = -1,
 	tncArray = [],
 	redeem_steps = [],
@@ -62,4 +62,4 @@ const getProductDetails = ({
 	return { option, tncCollapse };
 };
 
-export default getProductDetails;
+export default useGetProductDetails;

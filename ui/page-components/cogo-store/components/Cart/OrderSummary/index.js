@@ -11,7 +11,10 @@ function OrderSummary({ cartSummary = {} }) {
 			<div className={styles.order_name}>{name}</div>
 			<div className={styles.order_price}>
 				<IcCCogoCoin height={25} width={25} />
-				{cogopoints} X {quantity}
+				{cogopoints}
+				{' '}
+				X
+				{quantity}
 			</div>
 		</div>
 	);

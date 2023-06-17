@@ -1,5 +1,6 @@
 import { Button, cl } from '@cogoport/components';
 import { useTranslation } from 'react-i18next';
+
 import styles from './styles.module.css';
 
 function RenderSelectedAddress({
@@ -21,10 +22,14 @@ function RenderSelectedAddress({
 		>
 			<div className={styles.left_div}>
 				<div className={styles.name}>
-					{t('cogoStore:deliver_to')}: {name}
+					{t('cogoStore:deliver_to')}
+					:
+					{name}
 				</div>
 				<div className={styles.address}>
-					{address}, <span>{pincode}</span>
+					{address}
+					,
+					<span>{pincode}</span>
 				</div>
 			</div>
 			<div className={styles.right_div}>

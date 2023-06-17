@@ -1,14 +1,13 @@
 import { cl, Button, Chips, Placeholder } from '@cogoport/components';
-import { useEffect, useState } from 'react';
 import { useTranslation } from 'next-i18next';
+import { useEffect, useState } from 'react';
+
 import styles from './styles.module.css';
 
-const chipsOptions = (brand = []) => {
-	return brand.map(({ id, name }) => ({
-		key: id,
-		children: name,
-	}));
-};
+const chipsOptions = (brand = []) => brand.map(({ id, name }) => ({
+	key      : id,
+	children : name,
+}));
 
 function PopoverContent({
 	setBrandFilter,
@@ -25,15 +24,15 @@ function PopoverContent({
 	const cancelHandler = () => {
 		setChipSelect([]);
 		setBrandFilter({
-			brandList: [],
-			show: false,
+			brandList : [],
+			show      : false,
 		});
 	};
 
 	const applyHandler = () => {
 		setBrandFilter({
-			show: false,
-			brandList: chipSelect,
+			show      : false,
+			brandList : chipSelect,
 		});
 	};
 	useEffect(() => {

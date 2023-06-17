@@ -14,28 +14,28 @@ import styles from './styles.module.css';
 import { useRouter } from '@/packages/next';
 
 const CAROUSEL_SETTINGS = {
-	dots: true,
-	infinite: true,
-	speed: 1000,
-	autoplaySpeed: 5000,
-	slidesToShow: 4,
-	slidesToScroll: 4,
-	autoplay: true,
-	arrows: false,
-	pauseOnHover: true,
-	responsive: [
+	dots           : true,
+	infinite       : true,
+	speed          : 1000,
+	autoplaySpeed  : 5000,
+	slidesToShow   : 4,
+	slidesToScroll : 4,
+	autoplay       : true,
+	arrows         : false,
+	pauseOnHover   : true,
+	responsive     : [
 		{
-			breakpoint: 600,
-			settings: {
-				slidesToShow: 2,
-				slidesToScroll: 2,
+			breakpoint : 600,
+			settings   : {
+				slidesToShow   : 2,
+				slidesToScroll : 2,
 			},
 		},
 		{
-			breakpoint: 480,
-			settings: {
-				slidesToShow: 1,
-				slidesToScroll: 1,
+			breakpoint : 480,
+			settings   : {
+				slidesToShow   : 1,
+				slidesToScroll : 1,
 			},
 		},
 	],

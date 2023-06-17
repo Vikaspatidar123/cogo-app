@@ -1,9 +1,10 @@
 import { Popover, Input, Badge } from '@cogoport/components';
 import { IcMSearchlight } from '@cogoport/icons-react';
 import { useTranslation } from 'next-i18next';
-import RangePopover from '../RangePopover';
-import BrandPopover from '../BrandPopover';
+
 import useFilters from '../../../hooks/useFilters';
+import BrandPopover from '../BrandPopover';
+import RangePopover from '../RangePopover';
 import styles from '../styles.module.css';
 
 function Filter({
@@ -37,9 +38,9 @@ function Filter({
 
 	const renderPopoverLabel = (name, state, stateFn) => {
 		if (
-			(name === t('cogoStore:cogostore_components_range') && max && min >= 0) ||
-			(name === t('cogoStore:cogostore_components_brand') &&
-				brandList.length > 0)
+			(name === t('cogoStore:cogostore_components_range') && max && min >= 0)
+			|| (name === t('cogoStore:cogostore_components_brand')
+				&& brandList.length > 0)
 		) {
 			return (
 				<Badge placement="right" color="orange" size="md" text="">
@@ -72,14 +73,14 @@ function Filter({
 					caret={false}
 					visible={rangeFilter.show}
 					onClickOutside={() => handlePopover(rangeFilter, setRangeFilter)}
-					content={
+					content={(
 						<RangePopover
 							filterData={filterData}
 							setRangeFilter={setRangeFilter}
 							rangeList={rangeList}
 							loading={loading}
 						/>
-					}
+					)}
 				>
 					{renderPopoverLabel(
 						t('cogoStore:cogostore_components_range'),
@@ -92,14 +93,14 @@ function Filter({
 					caret={false}
 					visible={brandFilter.show}
 					onClickOutside={() => handlePopover(brandFilter, setBrandFilter)}
-					content={
+					content={(
 						<BrandPopover
 							setBrandFilter={setBrandFilter}
 							brandList={brandList}
 							filterData={filterData}
 							loading={loading}
 						/>
-					}
+					)}
 				>
 					{renderPopoverLabel(
 						t('cogoStore:cogostore_components_brand'),

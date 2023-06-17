@@ -147,11 +147,29 @@ const GLOBAL_CONSTANTS = {
 	],
 	image_url: {
 		iec_red_flag:
-		'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/redFlag.svg',
+			'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/redFlag.svg',
 		iec_green_flag:
-		'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/greenflag.svg',
+			'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/greenflag.svg',
 		iec_yellow_flag:
-		'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/yellwflag.svg',
+			'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/yellwflag.svg',
+		coin_bag_image:
+			'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/CogoBag.png',
+		cart_image:
+			'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/Cart-Outline (1).png',
+		succes_image:
+			'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/exclamation.svg',
+		empty_image:
+			'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/undraw_empty_cart_co35.svg',
+		category_image:
+			'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/cogo_logo_white_bg.svg',
+		empty_category_image:
+			'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/no category',
+		empty_details_image:
+			'https://cdn.cogoport.io/cms-prod/cogo_admin/vault/original/shipmentEmptyState.png',
+		send_gift_image:
+			'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/send.gif',
+		banner_image:
+			'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/Banner 1.png',
 	},
 };
 

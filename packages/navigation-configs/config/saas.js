@@ -129,6 +129,34 @@ const saas = {
 		navigation : 'saas_cogopoint',
 		isMainNav  : true,
 	},
+	'/saas/cogo-store': {
+		navigation : 'saas_cogostore',
+		isMainNav  : true,
+	},
+	'/saas/cogo-store/category': {
+		navigation : 'saas_cogostore',
+		isMainNav  : true,
+	},
+	'/saas/cogo-store/category/[id]': {
+		navigation : 'saas_cogostore',
+		isMainNav  : true,
+	},
+	'/saas/cogo-store/[product_code_id]': {
+		navigation : 'saas_cogostore',
+		isMainNav  : true,
+	},
+	'/saas/cogo-store/allcategory': {
+		navigation : 'saas_cogostore',
+		isMainNav  : true,
+	},
+	'/saas/cogo-store/cart': {
+		navigation : 'saas_cogostore',
+		isMainNav  : true,
+	},
+	'/saas/cogo-store/order': {
+		navigation : 'saas_cogostore',
+		isMainNav  : true,
+	},
 };
 
 module.exports = saas;

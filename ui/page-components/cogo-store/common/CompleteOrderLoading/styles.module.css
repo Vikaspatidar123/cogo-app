@@ -1,0 +1,17 @@
+.container {
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+}
+
+.wrapper {
+	width: 100%;
+	margin: 16px 12px;
+	margin-left: 2%;
+	border-radius: 6px;
+	box-shadow: 0 0 4px rgb(98 127 172 / 20%);
+}
+
+.load {
+	width: 100%;
+}

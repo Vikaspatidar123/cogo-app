@@ -13,12 +13,12 @@ const useGetListTracker = () => {
 	const { query: routerQuery } = useRouter();
 	const { debounceQuery, query } = useDebounceQuery();
 
-	const { branch_id, isArchived = false } = routerQuery || {};
+	const { branch_id, isArchived = false, trackingType = '' } = routerQuery || {};
 
 	const [globalFilter, setGlobalFilter] = useState({
 		page        : 1,
 		selectValue : '',
-		activeTab   : 'ocean',
+		activeTab   : trackingType || 'ocean',
 		q           : '',
 	});
 	const [inputValue, setInputValue] = useState();

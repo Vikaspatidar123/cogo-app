@@ -1,40 +1,48 @@
+import { isEmpty } from '@cogoport/utils';
 import { useEffect, useMemo, useState } from 'react';
 
-import mergeMilestone from '../utils/mergeMilestone';
+import { mergeAirMilestone, mergeOceanMilestone } from '../utils/mergeMilestone';
 
-const useGetCurrentInfo = ({ data = {} }) => {
-	const { container_details = [], data: trackingInfo = [] } = data || {};
-	const [currContainerDetails, setCurrContainerDetails] = useState('');
+const useGetCurrentInfo = ({ data = {}, trackingType }) => {
+	const [currContainerDetails, setCurrContainerDetails] = useState({});
+	const {
+		container_details = [], data: trackingInfo = [], airway_bill_details = {},
+	} = data || {};
 
 	useEffect(() => {
-		setCurrContainerDetails(container_details?.[0]);
-	}, [container_details]);
+		if (!isEmpty(container_details) || !isEmpty(airway_bill_details)) {
+			setCurrContainerDetails(container_details?.[0] || airway_bill_details);
+		}
+	}, [container_details, airway_bill_details]);
 
 	const currentInfo = useMemo(() => {
 		const currentTracking = trackingInfo.filter(
 			(item) => item?.container_no === currContainerDetails?.container_no,
 		)?.[0];
+		let combineList = [];
+		if (trackingType === 'ocean') {
+			const { tracking_data = [] } = currentTracking || {};
 
-		const { tracking_data = [] } = currentTracking || {};
-
-		const combineList = mergeMilestone(tracking_data);
+			combineList = mergeOceanMilestone(tracking_data);
+		} else {
+			combineList = mergeAirMilestone(trackingInfo);
+		}
 
 		return {
-			...currentTracking,
+			...(currentTracking || {}),
 			combineMileStoneList: combineList,
 		};
-	}, [trackingInfo, currContainerDetails]);
+	}, [trackingInfo, trackingType, currContainerDetails]);
 
 	const {
 		tracking_data: currTrackingData = [],
-		vessel_eta_details = {}, combineMileStoneList = [], currentContainerDetails = {},
+		vessel_eta_details = {}, combineMileStoneList = [],
 	} = currentInfo;
 
 	return {
 		currTrackingData,
 		vessel_eta_details,
 		combineMileStoneList,
-		currentContainerDetails,
 		currContainerDetails,
 		setCurrContainerDetails,
 	};

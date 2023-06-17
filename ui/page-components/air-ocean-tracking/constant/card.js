@@ -1,5 +1,9 @@
 import { IcMError, IcMFairport, IcMFcl, IcMFtick } from '@cogoport/icons-react';
 
+const shipIcon = 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/shipIcon.jpg';
+const truckIcon = 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/truckIcon.png';
+const airIcon = 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/airplane.png';
+
 const OCEAN_TITLE_MAPPING = {
 	CONTAINER_NO       : 'Container No.',
 	'BOOKING_NO/BL_NO' : 'BL/Booking No:',
@@ -25,6 +29,16 @@ const OCEAN_POC = {
 const AIR_POC = {
 	shipper   : 'Is Shipper?',
 	consignee : 'Is Consignee?',
+};
+
+const OCEAN_MILESTONE_ICON = {
+	VESSEL : shipIcon,
+	TRUCK  : truckIcon,
+	RAIL   : truckIcon,
+};
+
+const AIR_MILESTONE_ICON = {
+	AIR: airIcon,
 };
 
 export const DEFAULT_STATUS = {
@@ -57,6 +71,7 @@ const GET_MAPPING = {
 		EMPTY_STATE_INFO : 'container / shipment',
 		POC_MAPPING      : OCEAN_POC,
 		TRACKER_ID_KEY   : 'saas_container_subscription_id',
+		MILESTONE_ICON   : OCEAN_MILESTONE_ICON,
 
 	},
 	air: {
@@ -68,6 +83,7 @@ const GET_MAPPING = {
 		EMPTY_STATE_INFO : 'cargo / shipment',
 		POC_MAPPING      : AIR_POC,
 		TRACKER_ID_KEY   : 'saas_air_subscription_id',
+		MILESTONE_ICON   : AIR_MILESTONE_ICON,
 
 	},
 };

@@ -16,10 +16,17 @@ const useRedirectFn = () => {
 		);
 	};
 
-	const redirectToList = () => {
+	const redirectToList = ({ type = 'ocean' }) => {
 		push(
-			'/saas/tools/air-ocean-tracking/list',
-			'/saas/tools/air-ocean-tracking/list',
+			`/saas/tools/air-ocean-tracking/list?trackingType=${type}`,
+			`/saas/tools/air-ocean-tracking/list?trackingType=${type}`,
+		);
+	};
+
+	const redirectToDashboard = () => {
+		push(
+			'saas/tools/air-ocean-tracking',
+			'saas/tools/air-ocean-tracking',
 		);
 	};
 
@@ -27,6 +34,7 @@ const useRedirectFn = () => {
 		redirectArchivedList,
 		redirectToTracker,
 		redirectToList,
+		redirectToDashboard,
 	};
 };
 

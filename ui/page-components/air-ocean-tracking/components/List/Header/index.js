@@ -15,14 +15,14 @@ import FilterContent from './FilterContent';
 import styles from './styles.module.css';
 
 function Header({ globalFilter, filterChangeHandler, inputValue, setInputValue, filterData = {}, setGlobalFilter }) {
-	const { back, query } = useRouter();
+	const { query } = useRouter();
 	const [showConfigure, setShowConfigure] = useState(false);
 	const [viewTab, setViewTab] = useState('all');
 
 	const { isArchived = false } = query || {};
 	const { activeTab = '', selectValue = '' } = globalFilter;
 
-	const { redirectArchivedList } = useRedirectFn();
+	const { redirectArchivedList, redirectToDashboard } = useRedirectFn();
 
 	const dsrListValue = useGetDsrList({ showConfigure });
 
@@ -31,7 +31,7 @@ function Header({ globalFilter, filterChangeHandler, inputValue, setInputValue, 
 			<div className={cl`${styles.flex_box} ${styles.first_row}`}>
 
 				<div className={styles.flex_box}>
-					<ButtonIcon size="lg" icon={<IcMArrowBack />} themeType="primary" onClick={back} />
+					<ButtonIcon size="lg" icon={<IcMArrowBack />} themeType="primary" onClick={redirectToDashboard} />
 					<h2>{isArchived ? 'Archive List' : 'Shipment List'}</h2>
 					<div>
 						<Tabs
@@ -79,22 +79,28 @@ function Header({ globalFilter, filterChangeHandler, inputValue, setInputValue, 
 							)}
 						</>
 					)}
+					<Button>Export Data</Button>
 				</div>
 
 			</div>
 
-			<div className={cl`${styles.flex_box} ${styles.second_row}`}>
-				<div>
-					<Tabs
-						activeTab={viewTab}
-						onChange={setViewTab}
-						themeType="secondary"
-					>
-						<TabPanel name="all" title="All" />
-						<TabPanel name="blView" title="BL View" />
-						<TabPanel name="containerView" title="Container View" />
-					</Tabs>
-				</div>
+			<div className={cl`${styles.flex_box} ${styles.second_row}
+			${activeTab === 'ocean' ? styles.ocean_row : ''}`}
+			>
+				{activeTab === 'ocean'	&& (
+					<div style={{ width: '42%' }}>
+						<Tabs
+							activeTab={viewTab}
+							onChange={setViewTab}
+							themeType="secondary"
+							fullWidth
+						>
+							<TabPanel name="all" title="All" />
+							<TabPanel name="blView" title="BL View" />
+							<TabPanel name="containerView" title="Container View" />
+						</Tabs>
+					</div>
+				)}
 				<div className={cl`${styles.flex_box} ${styles.filter_section}`}>
 					<Input
 						size="sm"

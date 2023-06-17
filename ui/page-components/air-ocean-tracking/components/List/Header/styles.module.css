@@ -31,8 +31,13 @@
 }
 
 .second_row {
+	justify-content: flex-end;
+
+	/* border-bottom: 0.5px solid #333; */
+}
+
+.ocean_row {
 	justify-content: space-between;
-	border-bottom: 0.5px solid #333;
 }
 
 .filter_section {

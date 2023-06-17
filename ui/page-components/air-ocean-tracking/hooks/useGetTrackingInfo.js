@@ -1,6 +1,11 @@
 import { useRouter } from '@/packages/next';
 import { useRequest } from '@/packages/request';
 
+const SHIPMENT_DATA_URL = {
+	ocean : '/get_saas_container_subscription',
+	air   : '/get_saas_air_subscription',
+};
+
 const useGetShipmentInfo = () => {
 	const { query } = useRouter();
 
@@ -8,7 +13,7 @@ const useGetShipmentInfo = () => {
 
 	const [{ data, loading }] = useRequest({
 		method : 'get',
-		url    : '/get_saas_container_subscription',
+		url    : SHIPMENT_DATA_URL[trackingType],
 		params : {
 			id: trackingId,
 		},

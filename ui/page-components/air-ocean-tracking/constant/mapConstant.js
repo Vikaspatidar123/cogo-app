@@ -11,6 +11,11 @@ export const MAP_ATTRIBUTE = '<a href="https://www.cogoport.com/en/terms-and-con
 
 export const CENTER = { lat: '28.679079', lng: '77.069710' };
 
-export const OCEAN_OPTION = { color: '#1867D2', weight: 2 };
-export const AIR_OPTION = { color: '#f37166', weight: 2 };
-export const LAND_OPTION = { color: '#136f29', weight: 2 };
+export const PATH_OPTION = {
+	ocean : { color: '#1867D2', weight: 2 },
+	air   : { color: '#f37166', weight: 2 },
+	land  : { color: '#136f29', weight: 2 },
+};
+
+export const DEFAULT_LAT_INDEX = 0;
+export const DEFAULT_LNG_INDEX = 1;

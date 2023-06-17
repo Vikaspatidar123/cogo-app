@@ -1,10 +1,24 @@
 .container {
-	border: 1px solid  #f2e3c3;
-	border-radius: 8px;
+	position: relative;
 
 	:global {
 		.leaflet-tile {
 			filter: hue-rotate(45deg) !important;
 		}
 	}
+}
+
+.blur_screen {
+	filter: blur(5px);
+}
+
+.empty_state {
+	position: absolute;
+	top: 35%;
+	left: 5%;
+	z-index: 900;
+	align-self: center;
+	width: 90%;
+	color: #4f4f60;
+	text-align: center;
 }

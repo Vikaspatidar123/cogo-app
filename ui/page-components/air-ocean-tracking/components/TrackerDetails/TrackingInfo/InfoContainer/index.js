@@ -1,5 +1,7 @@
 import { Select, cl, Pill } from '@cogoport/components';
-import { useMemo } from 'react';
+import { isEmpty, startCase } from '@cogoport/utils';
+import Image from 'next/image';
+import React, { useMemo } from 'react';
 
 import styles from './styles.module.css';
 
@@ -10,106 +12,127 @@ const getOptions = ({ containerDetails = [] }) => containerDetails.map((item) =>
 	value : item,
 }));
 
-const INFO = {
-	// shipper   : 'Shipper',
-	// consignee : 'Consignee',
-	incoterm: 'Incoterm',
+// const INFO = {
+// 	incoterm: 'Incoterm',
+// };
+
+const COLOR = {
+	shipper   : 'blue',
+	consignee : 'orange',
 };
 
 function InfoContainer({
 	containerDetails = [], currContainerDetails = {}, setCurrContainerDetails,
-	shipmentInfo = {}, trackingType, poc_details = [],
+	shipmentInfo = {}, trackingType, poc_details = [], airwayBillNo = '',
 }) {
-	const { container_no = '', container_length, container_description } = currContainerDetails || {};
+	const { container_no = '', container_length = '', container_description = '' } = currContainerDetails || {};
 
-	const MAPPING = GET_MAPPING?.ocean;
+	const MAPPING = GET_MAPPING[trackingType];
 	const { CARD_TITLE, SHIPMENT_TITLE, SHIPMENT_INFO } = MAPPING;
 
 	const INFO_MAPPING = {
 		...SHIPMENT_INFO,
-		...INFO,
+		// ...INFO,
 	};
 
-	const tableData = useMemo(() => {
-		const { commodity = '', hs_code = '' } = shipmentInfo || {};
+	const { traderInfo, ...restInfo } = useMemo(() => {
+		const { commodity = '', hs_code = '', weight = '', piece = '' } = shipmentInfo || {};
 		const shipperDetails =	poc_details.filter((item) => item?.user_type === 'SHIPPER')[0] ?? {};
 		const consigneeDetails = poc_details.filter((item) => item?.user_type === 'CONSIGNEE')[0] ?? {};
 		const incoterm = shipmentInfo?.incoterm;
 
 		return {
-			commodity : hs_code ? `${commodity} - (${hs_code})` : '',
-			shipper   : shipperDetails?.name,
-			consignee : consigneeDetails?.name,
 			incoterm,
+			commodity: hs_code ? (
+				<span>
+					{commodity && <span>{`${commodity} - `}</span>}
+					<span>
+						(
+						{hs_code}
+						)
+					</span>
+				</span>
+			) : '',
+			traderInfo: { shipper: shipperDetails?.name, consignee: consigneeDetails?.name },
+			weight,
+			piece,
 		};
 	}, [poc_details, shipmentInfo]);
 
 	return (
 		<div className={styles.container}>
+
 			<div className={styles.title_container}>
 				<h3 className={styles.title}>{SHIPMENT_TITLE}</h3>
 				<div className={styles.line} />
-				<div className={styles.tag}>
-					<Pill color="blue" size="sm">
-						Shipper:
-						{' '}
-						{tableData?.shipper}
-					</Pill>
-					<Pill color="orange" size="sm">
-						Consignee:
-						{' '}
-						{(tableData?.consignee || '').split(' ')[0]}
-					</Pill>
-				</div>
 			</div>
 
-			<div className={styles.row}>
-				<div className={cl`${styles.flex_box} ${styles.section}`}>
-					<p>
-						{trackingType === 'ocean' ? CARD_TITLE.CONTAINER_NO : CARD_TITLE}
-						:
-					</p>
-					{containerDetails.length === 1
-						? (
-							<Select
-								size="sm"
-								value={currContainerDetails}
-								onChange={setCurrContainerDetails}
-								options={getOptions({ containerDetails })}
+			<div className={cl`${styles.info}
+				${containerDetails.length > 1 ? styles.without_info_field : styles.info_field}`}
+			>
+				<p className={styles.info_text}>
+					{trackingType === 'ocean' ? CARD_TITLE.CONTAINER_NO : CARD_TITLE}
+				</p>
 
-							/>
-						) : <p>{` ${container_no}`}</p>}
-				</div>
+				{containerDetails.length > 1
+					? (
+						<Select
+							size="sm"
+							className={styles.select_field}
+							value={currContainerDetails}
+							onChange={setCurrContainerDetails}
+							options={getOptions({ containerDetails })}
+						/>
+					) : <p className={styles.info_text}>{`${container_no || airwayBillNo}`}</p>}
+			</div>
 
-				<div className={cl`${styles.section} ${styles.info_section}`}>
-					<p className={styles.info_title}>{`${container_length}FT ${container_description}`}</p>
+			<div className={styles.data_container}>
+				{(container_length || container_description) && (
+					<div className={styles.image_row}>
+						<Image
+							src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/container2.png"
+							width={50}
+							height={40}
+						/>
 
-					<div>
-						{Object.keys(INFO_MAPPING).map((item) => {
-							if (item === 'container_no' || !tableData?.[item]) return null;
-							return (
-								<div key={item} className={cl`${styles.flex_box} ${styles.row}`}>
-
-									<div className={cl`${styles.label} ${styles.col}`}>
-										{INFO_MAPPING[item]}
-									</div>
-
-									<div className={styles.col}>
-										:
-									</div>
-
-									<div className={cl`${styles.value} ${styles.col}`}>
-										{tableData?.[item]}
-									</div>
-
-								</div>
-							);
-						})}
-
+						<div className={styles.data_text}>
+							{container_length && <span>{`${container_length} FT, `}</span>}
+							{container_description && <span>{container_description}</span>}
+						</div>
 					</div>
-				</div>
+				)}
 
+				{Object.keys(INFO_MAPPING).map((item) => {
+					const data = restInfo?.[item] || '--';
+					if (item === 'container_no') return <React.Fragment key={item} />;
+					return (
+						<div key={item} className={styles.row}>
+							<span className={styles.data_title}>{INFO_MAPPING[item]}</span>
+							<span className={styles.data_seperator}>:</span>
+							<span>{data}</span>
+						</div>
+					);
+				})}
 			</div>
+
+			{(traderInfo.shipper || traderInfo.consignee) && (
+				<div className={styles.footer}>
+
+					{Object.keys(traderInfo).map((trader) => {
+						const name = traderInfo?.[trader] || '';
+						if (isEmpty(name)) return <React.Fragment key={trader} />;
+
+						return (
+							<Pill
+								key={trader}
+								color={COLOR[trader]}
+							>
+								{`${startCase(trader)} : ${name}`}
+							</Pill>
+						);
+					})}
+				</div>
+			)}
 
 		</div>
 	);

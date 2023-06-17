@@ -98,6 +98,13 @@
 
 .web {
 	display: block;
+	height: 40px;
+
+	:global {
+		.ui_button_container {
+			height: 36px;
+		}
+	}
 
 	@media (max-width: 768px) {
 		display: none;

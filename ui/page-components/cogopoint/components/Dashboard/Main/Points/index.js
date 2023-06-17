@@ -9,7 +9,7 @@ import ListCards from '../ListCard';
 
 import styles from './styles.module.css';
 
-import { useRouter } from '@/packages/next';
+import { Image, useRouter } from '@/packages/next';
 
 function Points() {
 	const { push } = useRouter();
@@ -25,30 +25,32 @@ function Points() {
 				<Button
 					size="md"
 					themeType="accent"
-					onClick={() => push('/cogo-store-home')}
+					onClick={() => push('/saas/cogo-store')}
 				>
-					<img
+					<Image
 						src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/store_3.png"
 						alt="store"
-						width="18px"
-						height="18px"
+						width={20}
+						height={20}
 						style={{ marginRight: '6px' }}
 					/>
 					Go To Store
 				</Button>
 			</div>
 			<Cards stats={stats} loading={loading} />
-			{earnablesLoading && isEmpty(earnablesList) ? (
-				<div className={styles.flex}>
-					{new Array(4).fill(1).map(() => (
-						<Placeholder width="1000px" height="100px" className="skeleton" />
-					))}
-				</div>
-			) : (
-				<div className={styles.card_list}>
-					<ListCards earnablesList={earnablesList} />
-				</div>
-			)}
+			{
+				earnablesLoading && isEmpty(earnablesList) ? (
+					<div className={styles.flex}>
+						{new Array(4).fill(1).map(() => (
+							<Placeholder width="1000px" height="100px" className="skeleton" />
+						))}
+					</div>
+				) : (
+					<div className={styles.card_list}>
+						<ListCards earnablesList={earnablesList} />
+					</div>
+				)
+			}
 		</div>
 	);
 }

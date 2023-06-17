@@ -42,7 +42,7 @@ function Form(
 		mode = '',
 		extraParams = {},
 		data = {},
-		onPush = () => {},
+		onPush = () => { },
 		isEdit = false,
 		className = '',
 		search_type = '',
@@ -153,7 +153,7 @@ function Form(
 	const applyServices = () => {
 		if (
 			formValues?.export_transportation_packages
-      && formValues?.export_transportation_packages?.length === 0
+			&& formValues?.export_transportation_packages?.length === 0
 		) {
 			Toast.error('Packages cannot be empty');
 			return;
@@ -199,7 +199,7 @@ function Form(
 		cargoDetailsSpan = 3.5;
 	} else if (
 		mode !== 'trailer_freight'
-    && ['rfq', 'contract'].includes(search_type)
+		&& ['rfq', 'contract'].includes(search_type)
 	) {
 		cargoDetailsSpan = 6;
 	} else if (mode === 'trailer_freight') {
@@ -425,19 +425,14 @@ function Form(
 										id="search_form_sumbit_btn"
 										isLoading={loading}
 										disabled={loading}
-										style={{
-											background : '#2c3e50',
-											padding    : '4px 8px',
-											opacity    : loading ? 0.6 : 1,
-										}}
+										size="md"
+										themeType="primary"
+
 									>
 										<IcMSearchlight
 											className={styles.web}
-											style={{
-												margin : '2px 2px 0 0',
-												width  : 24,
-												height : 24,
-											}}
+											width={25}
+											height={80}
 										/>
 										<div className={styles.mobile}>SEARCH RATES</div>
 									</Button>

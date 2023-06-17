@@ -29,7 +29,7 @@ const useGetAllOceanRoutes = () => {
 		}
 	};
 
-	return { getRoute, loading };
+	return { getRoute, routeLoading: loading };
 };
 
 export default useGetAllOceanRoutes;

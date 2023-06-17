@@ -14,8 +14,7 @@ function VerifictaionForm({ formData, userDetails }) {
 	const OTP_LENGTH = 4;
 	const [otpValue, setOtpValue] = useState('');
 
-	const { id } = userDetails || {};
-
+	const { id, email = '', mobile_country_code = '', mobile_number = '' } = userDetails || {};
 	const { onClickResendEmail } = useEmailVerification();
 
 	const {
@@ -40,7 +39,11 @@ function VerifictaionForm({ formData, userDetails }) {
 			<div className={styles.verification_text_container}>
 				Verification code has been sent to
 				{' '}
-				<span className={styles.verification_text_container_bold}>+91-9987653456</span>
+				<span className={styles.verification_text_container_bold}>
+					{mobile_country_code}
+					-
+					{mobile_number}
+				</span>
 				{' '}
 				via SMS
 			</div>
@@ -68,7 +71,7 @@ function VerifictaionForm({ formData, userDetails }) {
 			<div className={styles.footer_container}>
 				An email with a verification link has been sent to
 				<br />
-				<span className={styles.footer_container_span}>testing@gmail.com.</span>
+				<span className={styles.footer_container_span}>{email}</span>
 				<br />
 				<span className={styles.footer_container_span}>Click on the link to verify.</span>
 				<br />

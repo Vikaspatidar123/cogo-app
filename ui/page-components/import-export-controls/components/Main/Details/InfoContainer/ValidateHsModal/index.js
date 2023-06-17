@@ -14,7 +14,7 @@ function ValidateHsModal({
 	isMobile = false,
 	handleSubmit,
 	loading = false,
-	setValues,
+	setValue,
 	setFormInfo,
 	prevHs,
 	setPrevHs,
@@ -73,7 +73,7 @@ function ValidateHsModal({
 					<div key={item?.hsCode}>
 						<ValidateRow
 							item={hsObj?.[item]}
-							setValues={setValues}
+							setValue={setValue}
 							setFormInfo={setFormInfo}
 							setPrevHs={setPrevHs}
 							setIsDisable={setIsDisable}

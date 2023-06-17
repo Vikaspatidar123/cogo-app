@@ -1,18 +1,26 @@
+/* eslint-disable no-undef */
+/* eslint-disable import/order */
+/* eslint-disable react-hooks/rules-of-hooks */
+
+import { Router } from '@/packages/next';
+import { appWithTranslation } from 'next-i18next';
 import pageProgessBar from 'nprogress';
 import { useEffect } from 'react';
 
 import withStore from './store';
 
 import { routeConfig } from '@/packages/navigation-configs';
-import { Router } from '@/packages/next';
+
 import 'nprogress/nprogress.css';
 import { Provider } from '@/packages/store';
 import { setGeneralStoreState } from '@/packages/store/store/general';
 import GlobalLayout from '@/ui/page-components/_app/layout/components/GlobalLayout';
 import handleAuthentication from '@/ui/page-components/authentication/utils/handleAuthentication';
+import { setCookie } from '@cogoport/utils';
 
-function MyApp({ Component, pageProps, store }) {
+function MyApp({ Component, pageProps, store, generalData }) {
 	useEffect(() => {
+		setCookie('locale', Router.locale);
 		Router.events.on('routeChangeStart', () => {
 			pageProgessBar.start();
 			pageProgessBar.set(0.4);
@@ -21,7 +29,8 @@ function MyApp({ Component, pageProps, store }) {
 		Router.events.on('routeChangeComplete', () => {
 			pageProgessBar.done();
 		});
-	}, []);
+		store.dispatch(setGeneralStoreState(generalData));
+	}, [generalData, store]);
 
 	return (
 		<Provider store={store}>
@@ -77,4 +86,4 @@ MyApp.getInitialProps = async ({ Component, ctx }) => {
 
 const AppWithStore = withStore(MyApp);
 
-export default AppWithStore;
+export default appWithTranslation(AppWithStore);

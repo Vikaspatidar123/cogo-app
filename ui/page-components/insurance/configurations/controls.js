@@ -78,7 +78,7 @@ const controls = [
 		params      : {
 			filters: {
 				type       : 'pincode',
-				country_id : GLOBAL_CONSTANTS.COUNTRY_IDS.IN,
+				country_id : GLOBAL_CONSTANTS.country_ids.IN,
 			},
 			includes: {
 				country                 : '',

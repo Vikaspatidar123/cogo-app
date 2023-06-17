@@ -29,7 +29,7 @@ function SearchForm(
 		typeOfJourney = '',
 		setTypeOfJourney,
 		touchPointsToggle = [],
-		setTouchPointsToggle = () => {},
+		setTouchPointsToggle = () => { },
 		extraParams,
 	},
 	ref,
@@ -44,13 +44,13 @@ function SearchForm(
 			destination: {
 				id: detail.destination_location?.id,
 				display_name:
-          detail.destination_location?.display_name
-          || detail.destination_location?.name,
+					detail.destination_location?.display_name
+					|| detail.destination_location?.name,
 			},
 			origin: {
 				id: detail.origin_location?.id,
 				display_name:
-          detail.origin_location?.display_name || detail.origin_location?.name,
+					detail.origin_location?.display_name || detail.origin_location?.name,
 			},
 		};
 	}
@@ -78,7 +78,7 @@ function SearchForm(
 		} else {
 			setLocation({});
 		}
-	// eslint-disable-next-line react-hooks/exhaustive-deps
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [mode]);
 
 	useImperativeHandle(ref, () => ({

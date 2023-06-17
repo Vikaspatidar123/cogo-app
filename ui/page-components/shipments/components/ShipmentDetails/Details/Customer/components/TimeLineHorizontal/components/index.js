@@ -16,6 +16,7 @@ function TrackerInfomation({
 	setCurrentSubscription = () => {},
 	setQuickAction = () => {},
 	servicesList = [],
+	loading = false,
 	...rest
 }) {
 	const [{ shipment_data }] = useContext(ShipmentDetailContext);
@@ -33,7 +34,7 @@ function TrackerInfomation({
 	const [selectedMilestonesList, setSelectedMilestonesList] = useState([]);
 	const [preditiveEta, setPreditiveEta] = useState({});
 	const [vesselName, setVesselName] = useState('');
-	const { getRoute } = useGetAllOceanRoutes({});
+	const { getRoute, routeLoading } = useGetAllOceanRoutes({});
 
 	const [{ loading:apiloading }, trigger1] = useRequest({
 		url        : 'get_container_sea_route',
@@ -42,7 +43,6 @@ function TrackerInfomation({
 	}, { manual: true });
 
 	const isTrackerEmpty = trackerDetails?.tracking_status !== 'Found';
-
 	const getAllOceanRoutes = async (ocean_data) => {
 		try {
 			const container_no = ocean_data.container_details
@@ -86,7 +86,7 @@ function TrackerInfomation({
 			return [];
 		}
 	};
-	const [{ loading }, trigger2] = useRequest({
+	const [{ loading:loading2 }, trigger2] = useRequest({
 		url    : `get_saas_container_subscription?id=${id}`,
 		method : 'get',
 	}, { manual: true });
@@ -123,7 +123,7 @@ function TrackerInfomation({
 		<div className={styles.container}>
 			<MapAndDetails
 				setQuickAction={setQuickAction}
-				mapLoading={loading}
+				mapLoading={loading2 || loading || apiloading || routeLoading}
 				isTrackerEmpty={isTrackerEmpty}
 				mapPoints={mapPoints}
 				trackerDetails={trackerDetails}
@@ -137,7 +137,6 @@ function TrackerInfomation({
 				setVesselName={setVesselName}
 				servicesList={servicesList}
 				servicesForMap={servicesForMap}
-				apiloading={apiloading}
 			/>
 
 			<TimelineNavigate
@@ -151,6 +150,7 @@ function TrackerInfomation({
 				vesselName={vesselName}
 				servicesForMap={servicesForMap}
 				rest={rest}
+				loading={loading}
 			/>
 		</div>
 	);

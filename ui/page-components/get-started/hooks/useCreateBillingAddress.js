@@ -18,8 +18,8 @@ const useCreateBillingAddress = ({ isSez, orgId, setInviteTeam }) => {
 				poc_details             : [],
 				organization_id         : orgId,
 				is_sez                  : isSez,
-				sez_proof               : val?.sez_proof?.finalUrl,
-				tax_number_document_url : val?.tax_document_proof?.finalUrl,
+				sez_proof               : val?.sez_proof,
+				tax_number_document_url : val?.tax_document_proof,
 			};
 
 			const response = await createBillingAddresstrigger({

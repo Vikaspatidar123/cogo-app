@@ -9,7 +9,7 @@ function asyncFieldsLocations2() {
 			page_limit : 50,
 			sort_by    : 'name',
 			sort_type  : 'asc',
-			includes   : { country: null, main_ports: null },
+			includes   : { country: true, main_ports: true, default_params_required: true },
 		},
 	};
 }
@@ -22,10 +22,10 @@ function asyncFieldsLocations(labelKey = 'name', valueKey = 'id') {
 		initialCall : true,
 		params      : {
 			filters    : { status: 'active' },
-			page_limit : 20,
+			page_limit : 50,
 			sort_by    : 'name',
 			sort_type  : 'asc',
-			includes   : { country: null, main_ports: null },
+			includes   : { country: true, main_ports: true, default_params_required: true },
 		},
 	};
 }

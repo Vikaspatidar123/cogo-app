@@ -82,6 +82,7 @@ function AddInvoicingParty({
 	};
 	const ActiveComponent = COMPONENTS_MAPPING[activeComponentKey].component;
 	const activeComponentProps = componentProps[activeComponentKey];
+
 	const title = () => (
 		<>
 			<div className={styles.text}>New Invoicing Party</div>

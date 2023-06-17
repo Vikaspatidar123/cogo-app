@@ -35,8 +35,8 @@ function BaseFilters({
 	const clearFilterHandler = async () => {
 		reset();
 		refetch(watchCountry);
-		if (watchCountry !== GLOBAL_CONSTANTS.COUNTRY_IDS.IN) {
-			setValue('country', GLOBAL_CONSTANTS.COUNTRY_IDS.IN);
+		if (watchCountry !== GLOBAL_CONSTANTS.hs_code_country_ids.IN) {
+			setValue('country', GLOBAL_CONSTANTS.hs_code_country_ids.IN);
 		}
 		setSearchTag('');
 	};

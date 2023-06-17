@@ -6,7 +6,7 @@ import FilterDropDownContent from './FilterDropDownContent';
 import styles from './styles.module.css';
 
 function Filter({
-	setCarrierList, carrierList, setFilters,
+	setCarrierList, carrierList, setFilters, setVisible,
 }) {
 	const [durationValue, onChange] = useState(0);
 	const [departureDate, setDepartureDate] = useState({});
@@ -32,8 +32,8 @@ function Filter({
 		) {
 			const transitFilter = durationValue !== 0 ? durationValue : '';
 			const airFilter = {
-				shipping_line_id : filterCarrier,
-				departure_start  : departureDate.endDate !== undefined
+				airline_id      : filterCarrier,
+				departure_start : departureDate.endDate !== undefined
 					? format(departureDate?.startDate, "UTC:yyyy-MM-dd'T'HH:mm:ssZZ") : null,
 				departure_end: departureDate?.endDate !== undefined
 					? format(departureDate?.endDate, "UTC:yyyy-MM-dd'T'HH:mm:ssZZ") : null,
@@ -63,8 +63,10 @@ function Filter({
 			? { ...value, status: !value.status } : value)));
 		setDepartureDate({});
 		setArrivalDate({});
+		setFilterCarrier({});
 		onChange(0);
 		setFilters({});
+		setVisible(false);
 	};
 
 	return (

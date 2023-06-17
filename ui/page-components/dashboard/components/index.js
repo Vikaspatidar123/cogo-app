@@ -51,7 +51,7 @@ function SassDashboard() {
 				</div>
 				<div className={styles.part2}>
 					<div className={styles.child2}>
-						{country_id === GLOBAL_CONSTANTS.COUNTRY_IDS.IN
+						{country_id === GLOBAL_CONSTANTS.country_ids.IN
 						&& query?.account_type === 'importer-exporter' && <PayLaterWidgets />}
 						<Elgibility />
 						<ExportFactoring />

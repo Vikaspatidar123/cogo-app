@@ -15,6 +15,7 @@ import { useRouter } from '@/packages/next';
 
 function ActiveSchedules() {
 	const { query, push } = useRouter();
+	const [visible, setVisible] = useState(false);
 
 	const id = query?.id;
 	const [currentPage, setCurrentPage] = useState(1);
@@ -66,17 +67,19 @@ function ActiveSchedules() {
 
 				<Popover
 					placement="left"
+					visible={visible}
 					render={(
 						<Filter
 							carrierList={carrierList}
 							setCarrierList={setCarrierList}
 							setFilters={setFilters}
 							scheduleDetails={scheduleDetails}
+							setVisible={setVisible}
 						/>
 					)}
 				>
 					<div>
-						<Button themeType="accent" className={styles.button}>
+						<Button themeType="accent" className={styles.button} onClick={() => setVisible(!visible)}>
 							Filter By
 							<IcMFilter />
 						</Button>

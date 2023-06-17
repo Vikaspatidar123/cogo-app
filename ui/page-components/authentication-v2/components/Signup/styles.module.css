@@ -15,10 +15,6 @@
 		.ui_select_input_control {
 			font-size: 14px !important;
 		}
-
-		.ui_input_control::placeholder {
-			color: var(--color-secondary-greyscale-4) !important;
-		}
 	}
 
 	@media (max-width: 768px) {

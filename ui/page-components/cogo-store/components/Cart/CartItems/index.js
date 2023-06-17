@@ -38,9 +38,9 @@ function CartItems({
 
 	const deleteItemFromCart = () => {
 		updateCogostoreCartItem({
-			status: 'inactive',
+			status   : 'inactive',
 			id,
-			quantity: 0,
+			quantity : 0,
 		});
 	};
 	const onChangeCartNumber = (val) => {

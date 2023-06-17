@@ -16,8 +16,8 @@ const useGetProductDetails = ({
 
 	const tncCollapse = [
 		{
-			key: '1',
-			children: (
+			key      : '1',
+			children : (
 				<div style={styles}>
 					{tncArray.map((tnc) => (
 						<li key={tnc} style={{ listStyle: 'none', marginBottom: '12px' }}>
@@ -29,8 +29,8 @@ const useGetProductDetails = ({
 			title: t('cogoStore:cogostore_options_title_tnc'),
 		},
 		{
-			key: '2',
-			children: (
+			key      : '2',
+			children : (
 				<div style={styles}>
 					{redeem_steps.map((steps) => (
 						<li
@@ -44,8 +44,8 @@ const useGetProductDetails = ({
 			title: t('cogoStore:cogostore_options_title_reedem_steps'),
 		},
 		{
-			key: '3',
-			children: (
+			key      : '3',
+			children : (
 				<div className={styles.tnc_text}>
 					{(instructions || []).map((instruction) => (
 						<li

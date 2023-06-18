@@ -13,13 +13,13 @@ import styles from './styles.module.css';
 const DETAILS_ARRAY = ['company_details', 'poc', 'requirements', 'coupons'];
 
 const formMapping = {
-	company_details : CompanyDetailsForm,
-	poc             : POCForm,
-	requirements    : PaymentRequirements,
-	coupons         : Coupons,
+	company_details: CompanyDetailsForm,
+	poc: POCForm,
+	requirements: PaymentRequirements,
+	coupons: Coupons,
 };
 
-function BasicDetailsForm({ getCreditRequestResponse = {}, refetch = () => {} }) {
+function BasicDetailsForm({ getCreditRequestResponse = {}, refetch = () => { } }) {
 	const { customer_credit_requirements = {}, poc_details = [] } = getCreditRequestResponse || {};
 
 	const { proceedToPay, loading } = useApplyCreditRequestCouponCode({ getCreditRequestResponse, refetch });
@@ -30,7 +30,7 @@ function BasicDetailsForm({ getCreditRequestResponse = {}, refetch = () => {} })
 				const FormFields = formMapping[details];
 
 				return (
-					<div className={styles.wrapper}>
+					<div className={styles.wrapper} key={details}>
 						<div className={styles.form_description}>
 							<FormTitleAndDescription details={details} />
 						</div>

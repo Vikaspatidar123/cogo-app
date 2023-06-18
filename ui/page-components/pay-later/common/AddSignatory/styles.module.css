@@ -1,11 +1,11 @@
 .field {
-    margin: 0px 0px 15px 0px;
+    margin: 0 0 15px;
 }
 
 .button_wrapper {
-    margin: 5px 0px;
     display: flex;
     justify-content: flex-end;
+    margin: 5px 0;
 }
 
 .cancel_button {
@@ -13,8 +13,7 @@
 }
 
 .field_name {
-    font-weight: 500;
+    margin: 0 0 4px;
     font-size: 16px;
-    color: #4F4F4F;
-    margin: 0px 0px 4px 0px; 
+    color: #4f4f4f;
 }

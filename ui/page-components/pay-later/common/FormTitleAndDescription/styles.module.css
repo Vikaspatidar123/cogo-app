@@ -1,12 +1,11 @@
 .heading {
-    font-weight: 500;
     font-size: 20px;
+    font-weight: 600;
 }
 
 .details_wrapper {
     display: flex;
     flex-direction: column;
-    /* padding: 0px 100px; */
 }
 
 .description {

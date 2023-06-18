@@ -1,13 +1,13 @@
 import { Modal, Button } from '@cogoport/components';
 
-import { EDITCOMPANYCONTROLS } from '../../../configurations/editCompanyControls';
+import { EDIT_COMPANY_CONTROLS } from '../../../configurations/editCompanyControls';
 
 import styles from './styles.module.css';
 
 import { useForm } from '@/packages/forms';
 import getField from '@/packages/forms/Controlled';
 
-function EditDetails({ setShowEdit = () => {}, showEdit = {}, data = {}, setUpdatedValues = () => {} }) {
+function EditDetails({ setShowEdit = () => { }, showEdit = {}, data = {}, setUpdatedValues = () => { } }) {
 	const {
 		address, city, constitution_of_business, gst_number, name, pan, pincode, state,
 	} = data || {};
@@ -35,10 +35,10 @@ function EditDetails({ setShowEdit = () => {}, showEdit = {}, data = {}, setUpda
 		<Modal show={show} onClose={() => setShowEdit({ show: false })} closable>
 			<Modal.Body>
 				<form className={styles.form}>
-					{EDITCOMPANYCONTROLS.map((item) => {
+					{EDIT_COMPANY_CONTROLS.map((item) => {
 						const Element = getField(item.type);
 						return (
-							<div className={styles.field}>
+							<div className={styles.field} key={item.name}>
 								<div className={styles.field_name}>{item.label}</div>
 								<Element control={control} {...item} />
 							</div>

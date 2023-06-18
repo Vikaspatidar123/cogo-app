@@ -4,7 +4,7 @@ import styles from './styles.module.css';
 
 import FileUploader from '@/packages/forms/Business/FileUploader';
 
-function Uploader({ proofUrl = '', setProofUrl = () => {}, show = false, setShow = () => {} }) {
+function Uploader({ proofUrl = '', setProofUrl = () => { }, show = false, setShow = () => { } }) {
 	const cancelUpload = () => {
 		setProofUrl('');
 		setShow(false);
@@ -12,7 +12,7 @@ function Uploader({ proofUrl = '', setProofUrl = () => {}, show = false, setShow
 
 	return (
 
-		<Modal show={show} setShow={setShow} onClose={() => setShow(false)} showCloseIcon closeOnOuterClick>
+		<Modal show={show} onClose={() => setShow(false)} showCloseIcon closeOnOuterClick>
 			<Modal.Body>
 				<div className={styles.wrapper}>
 					<div className={styles.heading}>Upload documents</div>

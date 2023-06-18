@@ -1,6 +1,6 @@
 import { Button } from '@cogoport/components';
 
-import { ADDPOCCONTROLS } from '../../configurations/addPocControls';
+import { ADDPOC_CONTROLS } from '../../configurations/addPocControls';
 
 import styles from './styles.module.css';
 
@@ -8,10 +8,10 @@ import { useForm } from '@/packages/forms';
 import getField from '@/packages/forms/Controlled';
 
 function AddPOC({
-	setAddNewPoc = () => {},
+	setAddNewPoc = () => { },
 	renderingField = {},
-	setPOCDetails = () => {},
-	updatePOCDetails = () => {},
+	setPOCDetails = () => { },
+	updatePOCDetails = () => { },
 }) {
 	const { control, handleSubmit } = useForm();
 
@@ -26,7 +26,7 @@ function AddPOC({
 	return (
 		<div>
 			<form type="submit">
-				{ADDPOCCONTROLS.map((item) => {
+				{ADDPOC_CONTROLS.map((item) => {
 					const Element = getField(item.type);
 					return (
 						<div className={styles.field}>
@@ -40,10 +40,15 @@ function AddPOC({
 					themeType="secondary"
 					onClick={() => setAddNewPoc((prev) => (prev.filter((x) => x !== renderingField.name)))}
 					className={styles.cancel_button}
+					type="button"
 				>
 					Cancel
 				</Button>
-				<Button themeType="accent" onClick={handleSubmit(submit)}>
+				<Button
+					themeType="accent"
+					onClick={handleSubmit(submit)}
+					type="button"
+				>
 					Confirm
 				</Button>
 			</div>

@@ -6,15 +6,17 @@ import { useSelector } from '@/packages/store';
 const useGetOrganizationCreditRequest = () => {
 	const [active, setActive] = useState('');
 
-	const { profile:{ organization } } = useSelector((state) => state);
+	const { organization } = useSelector((state) => ({
+		organization: state.profile.organization,
+	}));
 	const [{ loading, data }, trigger] = useRequest(
 		{
-			method : 'get',
-			url    : 'get_organization_credit_request',
+			method: 'get',
+			url: '/get_organization_credit_request',
 		},
 		{
-			manual     : true,
-			autoCancel : false,
+			manual: true,
+			autoCancel: false,
 		},
 	);
 

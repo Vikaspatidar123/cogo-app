@@ -9,11 +9,11 @@ import styles from './styles.module.css';
 import { useForm } from '@/packages/forms';
 import getField from '@/packages/forms/Controlled';
 
-function PaymentRequirements({ getCreditRequestResponse = {}, refetch = () => {} }) {
+function PaymentRequirements({ getCreditRequestResponse = {}, refetch = () => { } }) {
 	const { customer_credit_requirements = {} } = getCreditRequestResponse || {};
 	const { credit_amount = '', credit_days = '' } = customer_credit_requirements || {};
 
-	const { control, handleSubmit, formState:{ errors } } = useForm({
+	const { control, handleSubmit, formState: { errors } } = useForm({
 		defaultValues: {
 			credit_days,
 			credit_amount,
@@ -21,7 +21,7 @@ function PaymentRequirements({ getCreditRequestResponse = {}, refetch = () => {}
 	});
 
 	const {
-		updateCreditRequirementDetails = () => {},
+		updateCreditRequirementDetails = () => { },
 		loading = false,
 	} = useUpdateOrganizationCreditRequirementDetails({ refetch, getCreditRequestResponse });
 
@@ -32,7 +32,7 @@ function PaymentRequirements({ getCreditRequestResponse = {}, refetch = () => {}
 	return (
 		<div>
 			<form>
-				{paymentRequirementsControl.map((item) => {
+				{(paymentRequirementsControl || []).map((item) => {
 					const Element = getField(item?.type);
 					return (
 						<div className={styles.field}>
@@ -43,7 +43,7 @@ function PaymentRequirements({ getCreditRequestResponse = {}, refetch = () => {}
 							<Element {...item} control={control} />
 							<div className={styles.error_text}>
 								{errors?.[item.name]?.message
-							|| errors?.[item.name]?.type }
+									|| errors?.[item.name]?.type}
 							</div>
 						</div>
 					);

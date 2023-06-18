@@ -20,7 +20,7 @@ const getAccordianTitle = ({ placeholder, pocStatus }) => (
 	</div>
 );
 
-function POCForm({ getCreditRequestResponse = {}, refetch = () => {} }) {
+function POCForm({ getCreditRequestResponse = {}, refetch = () => { } }) {
 	const [addNewPoc, setAddNewPoc] = useState([]);
 	const [pocDetails, setPOCDetails] = useState({});
 
@@ -30,24 +30,24 @@ function POCForm({ getCreditRequestResponse = {}, refetch = () => {} }) {
 	const getPocValue = (key) => getCreditRequestResponse?.poc_details?.find((item) => item.work_scope === key)
 		?.name;
 
-	const POCControls = getControls({ setPOCDetails, getPocStatus });
+	const PocControls = getControls({ setPOCDetails, getPocStatus });
 
 	const { control } = useForm({
 		defaultValues: {
-			owner          : getPocValue('owner'),
-			financial_head : getPocValue('financial_head'),
-			logistics_head : getPocValue('logistics_head'),
+			owner: getPocValue('owner'),
+			financial_head: getPocValue('financial_head'),
+			logistics_head: getPocValue('logistics_head'),
 		},
 	});
 
 	const {
-		updatePOCDetails = () => {},
+		updatePOCDetails = () => { },
 		loading = false,
 	} = useUpdatePOCDetails({ refetch, id: getCreditRequestResponse?.id });
 
 	return (
 		<form type="submit">
-			{POCControls.map((item) => {
+			{(PocControls || []).map((item) => {
 				const Element = getField(item.type);
 				const pocStatus = getPocStatus(item.name);
 				return (
@@ -62,7 +62,7 @@ function POCForm({ getCreditRequestResponse = {}, refetch = () => {} }) {
 							{!addNewPoc.includes(item.name) ? (
 								<>
 									<Element {...item} control={control} />
-									{pocStatus !== 'completed' &&					(
+									{pocStatus !== 'completed' && (
 										<div className={styles.button_wrapper}>
 											<Button
 												themeType="secondary"

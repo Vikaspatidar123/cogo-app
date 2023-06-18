@@ -2,11 +2,11 @@ import { Toast } from '@cogoport/components';
 
 import { useRequest } from '@/packages/request';
 
-const useUpdatePOCDetails = ({ refetch = () => {}, id = '' }) => {
+const useUpdatePOCDetails = ({ refetch = () => { }, id = '' }) => {
 	const [{ data, loading }, trigger] = useRequest(
 		{
-			method : 'post',
-			url    : 'update_organization_credit_request_poc_details',
+			method: 'post',
+			url: 'update_organization_credit_request_poc_details',
 		},
 		{ manual: true },
 	);
@@ -16,15 +16,19 @@ const useUpdatePOCDetails = ({ refetch = () => {}, id = '' }) => {
 		pocDetails = {},
 	}) => {
 		const details = pocDetails?.[poc];
+		const {
+			name = '', poc_name = '', email = '',
+			mobile_number = '', mobile_country_code = '',
+		} = details || {};
 		try {
 			await trigger({
 				data: {
 					poc_details: {
-						name                : details?.name || details?.poc_name,
-						email               : details?.email,
-						mobile_number       : details?.mobile_number?.number || details?.mobile_number,
-						mobile_country_code : details?.mobile_number?.country_code
-						|| details?.mobile_country_code,
+						name: name || poc_name,
+						email,
+						mobile_number: mobile_number?.number || mobile_number,
+						mobile_country_code: mobile_number?.country_code
+							|| mobile_country_code,
 						work_scope: poc,
 					},
 					credit_request_id: id,

@@ -7,21 +7,21 @@ const useGetListCoupons = ({ getCreditRequestResponse = {} }) => {
 	const { default_application_fees_details = {} } = getCreditRequestResponse || {};
 
 	const { application_fee = 0, application_fee_currency = '' } = default_application_fees_details || {};
-	const { profile:{ organization } } = useSelector((state) => state);
+	const { profile: { organization } } = useSelector((state) => state);
 
 	const [{ data, loading }, trigger] = useRequest({
-		method : 'get',
-		url    : '/list_coupons',
+		method: 'get',
+		url: '/list_coupons',
 	}, { manual: true, autoCancel: false });
 
-	const getCoupons = useCallback(async () => {
+	const getCoupons = useCallback(() => {
 		try {
-			await trigger({
+			trigger({
 				params: {
-					organization_id : organization?.id,
-					total_amount    : application_fee,
-					currency        : application_fee_currency,
-					category        : 'pay_later',
+					organization_id: organization?.id,
+					total_amount: application_fee,
+					currency: application_fee_currency,
+					category: 'pay_later',
 				},
 			});
 		} catch (e) {

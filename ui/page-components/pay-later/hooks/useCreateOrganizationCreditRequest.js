@@ -3,14 +3,14 @@ import { useSelector } from 'react-redux';
 
 import { useRequest } from '@/packages/request';
 
-const useCreateOrganizationCreditRequest = ({ refetch = () => {} }) => {
+const useCreateOrganizationCreditRequest = ({ refetch = () => { } }) => {
 	const { profile } = useSelector((state) => state);
 	const { organization } = profile || {};
 
 	const [{ loading, data }, trigger] = useRequest(
 		{
-			method : 'post',
-			url    : 'create_organization_credit_request',
+			method: 'post',
+			url: '/create_organization_credit_request',
 		},
 		{ manual: true },
 	);
@@ -20,16 +20,16 @@ const useCreateOrganizationCreditRequest = ({ refetch = () => {} }) => {
 		try {
 			await trigger({
 				data: {
-					organization_id : organization?.id,
-					business_name   : profile?.name,
+					organization_id: organization?.id,
+					business_name: profile?.name,
 					tax_number,
-					gst_proof       : {
-						document_extension     : gst_proof?.split('.')?.[1],
-						gst_proof_url          : proofUrl,
-						org_billing_address_id : '',
+					gst_proof: {
+						document_extension: gst_proof?.split('.')?.[1],
+						gst_proof_url: proofUrl,
+						org_billing_address_id: '',
 					},
-					status : 'awaiting_user_inputs',
-					source : 'app',
+					status: 'awaiting_user_inputs',
+					source: 'app',
 				},
 			});
 			refetch();

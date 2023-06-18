@@ -31,10 +31,9 @@ function PayLaterLive({ getCreditRequestResponse = {} }) {
 							amount,
 							currency,
 							options: {
-								minimumFractionDigits : 0,
-								maximumFractionDigits : 0,
-								style                 : 'currency',
-								currencyDisplay       : 'symbol',
+								maximumFractionDigits: 0,
+								style: 'currency',
+								currencyDisplay: 'symbol',
 							},
 						})}
 					</div>

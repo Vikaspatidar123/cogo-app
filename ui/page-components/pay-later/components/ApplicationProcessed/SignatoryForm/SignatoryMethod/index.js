@@ -1,6 +1,8 @@
 import styles from './styles.module.css';
 
-function SignatoryMethod({ setMethod = () => {}, method = '' }) {
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
+
+function SignatoryMethod({ setMethod = () => { }, method = '' }) {
 	return (
 		<div>
 			<div
@@ -10,7 +12,7 @@ function SignatoryMethod({ setMethod = () => {}, method = '' }) {
 			>
 				<div>
 					<img
-						src="https://cdn.cogoport.io/cms-prod/cogo_partner/vault/original/Vector.png"
+						src={GLOBAL_CONSTANTS.image_url.signatory_image}
 						alt="online"
 						width={19}
 						height={18}

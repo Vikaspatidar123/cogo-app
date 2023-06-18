@@ -11,7 +11,7 @@ import { useForm } from '@/packages/forms';
 import getField from '@/packages/forms/Controlled';
 import { useSelector } from '@/packages/store';
 
-function CompanyDetailsForm({ getCreditRequestResponse = {}, refetch = () => {} }) {
+function CompanyDetailsForm({ getCreditRequestResponse = {}, refetch = () => { } }) {
 	const { profile } = useSelector((state) => state);
 
 	const [show, setShow] = useState(false);
@@ -24,7 +24,7 @@ function CompanyDetailsForm({ getCreditRequestResponse = {}, refetch = () => {} 
 
 	const fileName = proofUrl?.split('/')?.slice(-1)?.join('');
 
-	const companyDetailsControls =	 getCompanyControls({
+	const companyDetailsControls = getCompanyControls({
 		setSelectedGstDetails,
 		profile,
 		setShow,
@@ -33,9 +33,9 @@ function CompanyDetailsForm({ getCreditRequestResponse = {}, refetch = () => {} 
 
 	useEffect(() => {
 		setProofUrl(getCreditRequestResponse?.documents?.gst_certificate?.active?.document_url
-		|| selectedGstDetails?.tax_number_document_url);
+			|| selectedGstDetails?.tax_number_document_url);
 	}, [getCreditRequestResponse?.documents?.gst_certificate?.active?.document_url,
-		selectedGstDetails?.tax_number_document_url]);
+	selectedGstDetails?.tax_number_document_url]);
 
 	const { organization = '' } = { ...profile, ...getCreditRequestResponse };
 
@@ -45,8 +45,8 @@ function CompanyDetailsForm({ getCreditRequestResponse = {}, refetch = () => {} 
 		setValue,
 	} = useForm({
 		defaultValues: {
-			pan        : getCreditRequestResponse?.org_registration_number || organization?.registration_number,
-			tax_number : getCreditRequestResponse?.tax_number,
+			pan: getCreditRequestResponse?.org_registration_number || organization?.registration_number,
+			tax_number: getCreditRequestResponse?.tax_number,
 		},
 	});
 
@@ -56,7 +56,7 @@ function CompanyDetailsForm({ getCreditRequestResponse = {}, refetch = () => {} 
 
 	return (
 		<form type="submit">
-			{companyDetailsControls.map((item) => {
+			{(companyDetailsControls || []).map((item) => {
 				const Element = getField(item.type); return (
 					<div className={styles.field}>
 						{

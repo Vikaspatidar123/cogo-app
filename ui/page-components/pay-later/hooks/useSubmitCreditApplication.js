@@ -2,8 +2,8 @@ import { useRequest } from '@/packages/request';
 
 const useSubmitCreditApplication = ({ getCreditRequestResponse = {}, refetch = () => { } }) => {
 	const [{ loading, data }, trigger] = useRequest({
-		method: 'post',
-		url: '/submit_credit_application_for_agreement_flow',
+		method : 'post',
+		url    : '/submit_credit_application_for_agreement_flow',
 	}, { manual: true, autoCancel: false });
 
 	const submitCreditApplication = async () => {

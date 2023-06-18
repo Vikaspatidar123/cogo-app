@@ -34,9 +34,9 @@ function POCForm({ getCreditRequestResponse = {}, refetch = () => { } }) {
 
 	const { control } = useForm({
 		defaultValues: {
-			owner: getPocValue('owner'),
-			financial_head: getPocValue('financial_head'),
-			logistics_head: getPocValue('logistics_head'),
+			owner          : getPocValue('owner'),
+			financial_head : getPocValue('financial_head'),
+			logistics_head : getPocValue('logistics_head'),
 		},
 	});
 

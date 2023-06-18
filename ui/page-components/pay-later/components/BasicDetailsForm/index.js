@@ -13,10 +13,10 @@ import styles from './styles.module.css';
 const DETAILS_ARRAY = ['company_details', 'poc', 'requirements', 'coupons'];
 
 const formMapping = {
-	company_details: CompanyDetailsForm,
-	poc: POCForm,
-	requirements: PaymentRequirements,
-	coupons: Coupons,
+	company_details : CompanyDetailsForm,
+	poc             : POCForm,
+	requirements    : PaymentRequirements,
+	coupons         : Coupons,
 };
 
 function BasicDetailsForm({ getCreditRequestResponse = {}, refetch = () => { } }) {

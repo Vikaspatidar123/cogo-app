@@ -11,12 +11,12 @@ const useGetOrganizationCreditRequest = () => {
 	}));
 	const [{ loading, data }, trigger] = useRequest(
 		{
-			method: 'get',
-			url: '/get_organization_credit_request',
+			method : 'get',
+			url    : '/get_organization_credit_request',
 		},
 		{
-			manual: true,
-			autoCancel: false,
+			manual     : true,
+			autoCancel : false,
 		},
 	);
 

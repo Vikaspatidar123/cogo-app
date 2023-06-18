@@ -35,7 +35,7 @@ function CompanyDetailsForm({ getCreditRequestResponse = {}, refetch = () => { }
 		setProofUrl(getCreditRequestResponse?.documents?.gst_certificate?.active?.document_url
 			|| selectedGstDetails?.tax_number_document_url);
 	}, [getCreditRequestResponse?.documents?.gst_certificate?.active?.document_url,
-	selectedGstDetails?.tax_number_document_url]);
+		selectedGstDetails?.tax_number_document_url]);
 
 	const { organization = '' } = { ...profile, ...getCreditRequestResponse };
 
@@ -45,8 +45,8 @@ function CompanyDetailsForm({ getCreditRequestResponse = {}, refetch = () => { }
 		setValue,
 	} = useForm({
 		defaultValues: {
-			pan: getCreditRequestResponse?.org_registration_number || organization?.registration_number,
-			tax_number: getCreditRequestResponse?.tax_number,
+			pan        : getCreditRequestResponse?.org_registration_number || organization?.registration_number,
+			tax_number : getCreditRequestResponse?.tax_number,
 		},
 	});
 

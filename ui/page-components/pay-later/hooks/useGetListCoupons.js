@@ -10,18 +10,18 @@ const useGetListCoupons = ({ getCreditRequestResponse = {} }) => {
 	const { profile: { organization } } = useSelector((state) => state);
 
 	const [{ data, loading }, trigger] = useRequest({
-		method: 'get',
-		url: '/list_coupons',
+		method : 'get',
+		url    : '/list_coupons',
 	}, { manual: true, autoCancel: false });
 
 	const getCoupons = useCallback(() => {
 		try {
 			trigger({
 				params: {
-					organization_id: organization?.id,
-					total_amount: application_fee,
-					currency: application_fee_currency,
-					category: 'pay_later',
+					organization_id : organization?.id,
+					total_amount    : application_fee,
+					currency        : application_fee_currency,
+					category        : 'pay_later',
 				},
 			});
 		} catch (e) {

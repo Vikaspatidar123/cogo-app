@@ -21,10 +21,7 @@
     "@cogoport/charts": "^1.0.1",
     "@cogoport/components": "^1.0.425",
     "@cogoport/icons-react": "^1.0.79",
-<<<<<<< HEAD
-=======
     "@cogoport/maps": "^1.0.3",
->>>>>>> 201e6dd4c2bf1c066b19bc9a19bd60536c643679
     "@cogoport/utils": "^1.2.6",
     "@stripe/react-stripe-js": "^1.6.0",
     "@stripe/stripe-js": "^1.21.2",

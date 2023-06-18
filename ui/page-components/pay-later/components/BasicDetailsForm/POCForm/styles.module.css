@@ -1,31 +1,31 @@
 .field {
-    margin: 0px 0px 15px 0px;
+	margin: 0 0 15px;
 }
 
 .field_name {
-    font-weight: 500;
-    font-size: 16px;
-    color: #4F4F4F;
-    margin: 0px 0px 4px 0px; 
+	margin: 0 0 4px;
+	font-size: 16px;
+	font-weight: 500;
+	color: #4f4f4f;
 }
 
 .button_wrapper {
-    margin: 5px 0px;
-    display: flex;
-    justify-content: flex-end;
+	display: flex;
+	justify-content: flex-end;
+	margin: 5px 0;
 }
 
 .pointer {
-    cursor: pointer;
+	cursor: pointer;
 }
 
 .save_button {
-    margin: 0 0 0 4px;
+	margin: 0 0 0 4px;
 }
 
 .pill_container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    min-width: 400px
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	min-width: 400px;
 }

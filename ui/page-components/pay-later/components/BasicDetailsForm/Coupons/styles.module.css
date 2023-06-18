@@ -1,17 +1,16 @@
 .coupons {
-    display: flex;
+	display: flex;
 }
 
-
 .coupon {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 20%;
-    margin: 10px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	width: 20%;
+	margin: 10px;
 }
 
 .name {
-    margin: 5px  0;
+	margin: 5px  0;
 }

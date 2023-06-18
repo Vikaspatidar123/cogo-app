@@ -1,35 +1,35 @@
 .file_container {
-    border: 1px solid #E0E0E0;
-    border-radius: 6px;
-    padding: 3px;
-    display: flex;
-    flex-wrap: wrap;
+	display: flex;
+	flex-wrap: wrap;
+	padding: 3px;
+	border: 1px solid #e0e0e0;
+	border-radius: 6px;
 }
 
 .file {
-    width: 45%;
-    height: 250px;
+	width: 45%;
+	height: 250px;
 }
 
 .details {
-    width: 52%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    padding: 0px 15px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	width: 52%;
+	padding: 0 15px;
 }
 
 .detail {
-    display: flex;
-    align-items: center;
-    margin: 7px 0;
+	display: flex;
+	align-items: center;
+	margin: 7px 0;
 }
 
 .button_wrapper {
-    display: flex;
-    width: 100%;
+	display: flex;
+	width: 100%;
 }
 
 .cancel {
-    margin-right: 4px;
+	margin-right: 4px;
 }

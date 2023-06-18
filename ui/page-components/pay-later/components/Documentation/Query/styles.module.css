@@ -1,18 +1,18 @@
 .end {
-    display: flex;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    padding: 0 15% ;
-    margin-bottom: 50px;
+	position: fixed;
+	bottom: 0;
+	display: flex;
+	width: 100%;
+	padding: 0 15%;
+	margin-bottom: 50px;
 }
 
 .hyperlink {
-    color:#034AFD;
-    margin-left: 3px;
-    text-decoration: underline;
-    a {
-        color: inherit;
-    }
-}
+	margin-left: 3px;
+	color: #034afd;
+	text-decoration: underline;
 
+	a {
+		color: inherit;
+	}
+}

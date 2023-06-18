@@ -1,22 +1,22 @@
 .field {
-    margin: 0px 0px 15px 0px;
+	margin: 0 0 15px;
 }
 
 .field_name {
-    display: flex;
-    justify-content: space-between;
-    font-weight: 500;
-    font-size: 16px;
-    color: #4F4F4F;
-    margin: 0px 0px 4px 0px; 
+	display: flex;
+	justify-content: space-between;
+	margin: 0 0 4px;
+	font-size: 16px;
+	font-weight: 500;
+	color: #4f4f4f;
 }
 
 .button_wrapper {
-    display: flex;
-    justify-content: flex-end;
+	display: flex;
+	justify-content: flex-end;
 }
 
 .error_text {
-    color: red;
-    font-size: 12px;
+	font-size: 12px;
+	color: red;
 }

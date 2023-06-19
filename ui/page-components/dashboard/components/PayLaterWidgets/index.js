@@ -6,9 +6,7 @@ import { useRouter } from '@/packages/next';
 
 function PayLaterWidgets() {
 	const { push } = useRouter();
-	// const handleGoToPayLater = () => {
-	// 	push('/pay-later');
-	// };
+
 	return (
 		<div className={styles.container}>
 			<div className={styles.IconContainer}>

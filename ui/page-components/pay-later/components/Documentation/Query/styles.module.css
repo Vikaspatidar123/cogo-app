@@ -1,0 +1,18 @@
+.end {
+	position: fixed;
+	bottom: 0;
+	display: flex;
+	width: 100%;
+	padding: 0 15%;
+	margin-bottom: 50px;
+}
+
+.hyperlink {
+	margin-left: 3px;
+	color: #034afd;
+	text-decoration: underline;
+
+	a {
+		color: inherit;
+	}
+}

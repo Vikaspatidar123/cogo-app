@@ -25,6 +25,8 @@ import {
 	asyncShippingLines,
 	asyncTradeContacts,
 	asyncFieldsAirPocDetails,
+	asyncFieldsAirLineList,
+	asyncFieldsShippingLineList,
 } from '../../utils/getAsyncFields';
 
 const keyAsyncFieldsParamsMapping = {
@@ -50,6 +52,8 @@ const keyAsyncFieldsParamsMapping = {
 	six_digit_hs_code          : asyncFieldsSixDigitHsCode,
 	list_ocean_poc_details     : asyncFieldsOceanPocDetails,
 	list_air_poc_details       : asyncFieldsAirPocDetails,
+	airline_list               : asyncFieldsAirLineList,
+	shippingline_list          : asyncFieldsShippingLineList,
 };
 
 function AsyncSelect(props) {

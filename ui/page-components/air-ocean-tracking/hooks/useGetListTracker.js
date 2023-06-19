@@ -20,6 +20,7 @@ const useGetListTracker = () => {
 		selectValue : '',
 		activeTab   : trackingType || 'ocean',
 		q           : '',
+		search_type : 'All',
 	});
 	const [inputValue, setInputValue] = useState();
 

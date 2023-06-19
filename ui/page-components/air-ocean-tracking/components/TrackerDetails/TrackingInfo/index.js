@@ -1,16 +1,21 @@
+import { isEmpty } from '@cogoport/utils';
+
 import useGetCurrentInfo from '../../../hooks/useGetCurrentInfo';
 import useGetShipmentInfo from '../../../hooks/useGetTrackingInfo';
 
 import InfoContainer from './InfoContainer';
+import Loader from './Loader';
 import Maps from './Map';
 import MilestoneStepper from './MilestoneStepper';
 import styles from './styles.module.css';
+
+import EmptyState from '@/ui/page-components/air-ocean-tracking/common/EmptyState';
 
 function TrackingInfo() {
 	const { loading, data, trackingType } = useGetShipmentInfo();
 	const {
 		container_details = [], shipment_info, poc_details = [], data: trackingInfo = [], airway_bill_no = '',
-		commodity_details,
+		commodity_details, tracking_status = '',
 	} = data || {};
 
 	const {
@@ -20,6 +25,16 @@ function TrackingInfo() {
 		currContainerDetails,
 		setCurrContainerDetails,
 	} = useGetCurrentInfo({ data, trackingType });
+
+	if (loading) {
+		return <Loader type={trackingType} />;
+	}
+
+	if (tracking_status !== 'Found' || isEmpty(trackingInfo)) {
+		return (
+			<EmptyState />
+		);
+	}
 
 	return (
 		<div className={styles.container}>

@@ -16,7 +16,7 @@ const COMPONENT_MAPPING = {
 };
 
 function ModalList({ modalInfo = {}, setModalInfo, activeTab, refetchTrackerList }) {
-	const { show, name = 'archive', shipmentId = '' } = modalInfo || {};
+	const { show, name = 'archive', shipmentId = '', shipmentInfo = {} } = modalInfo || {};
 
 	const Component = name ? COMPONENT_MAPPING?.[name] : <div />;
 	const closeHandler = () => {
@@ -32,6 +32,7 @@ function ModalList({ modalInfo = {}, setModalInfo, activeTab, refetchTrackerList
 				name={name}
 				closeHandler={closeHandler}
 				shipmentId={shipmentId}
+				shipmentInfo={shipmentInfo}
 				activeTab={activeTab}
 				refetchTrackerList={refetchTrackerList}
 			/>

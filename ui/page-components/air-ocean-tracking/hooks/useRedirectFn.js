@@ -25,8 +25,7 @@ const useRedirectFn = () => {
 
 	const redirectToDashboard = () => {
 		push(
-			'saas/tools/air-ocean-tracking',
-			'saas/tools/air-ocean-tracking',
+			'/saas/tools/air-ocean-tracking',
 		);
 	};
 

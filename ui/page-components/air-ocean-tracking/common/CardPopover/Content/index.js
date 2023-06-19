@@ -11,13 +11,14 @@ const MAPPING = {
 
 };
 
-const Content = ({ setModalInfo, id = '', setShowPopover }) => {
+const Content = ({ setModalInfo, id = '', setShowPopover, shipment_info = {} }) => {
 	const clickHandler = (item) => {
 		setModalInfo((prev) => ({
 			...prev,
-			show       : true,
-			name       : item,
-			shipmentId : id,
+			show         : true,
+			name         : item,
+			shipmentId   : id,
+			shipmentInfo : shipment_info,
 		}));
 		setShowPopover(false);
 	};

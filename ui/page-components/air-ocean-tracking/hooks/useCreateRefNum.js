@@ -1,19 +1,32 @@
+import { Toast } from '@cogoport/components';
+
 const { useRequest } = require('@/packages/request');
 
-const useCreateRefNum = ({ shipmentId = '', refetchTrackerList, closeHandler }) => {
+const TRACKER_ID_KEY = {
+	ocean : 'saas_container_subscription_ids',
+	air   : 'saas_air_subscription_ids',
+};
+
+const useCreateRefNum = ({ shipmentId = '', refetchTrackerList, closeHandler, activeTab = 'ocean' }) => {
 	const [{ loading }, trigger] = useRequest({
 		method : 'post',
-		url    : 'create_saas_ref',
+		url    : 'update_external_reference_number',
 	}, { manual: true });
 
 	const createRefNumFn = async ({ data }) => {
 		try {
 			await trigger({
 				data: {
-					saas_container_subscription_id : shipmentId,
-					reference_no                   : data.referenceNo,
+					tracking_type             : activeTab,
+					reference_number_mappings : [
+						{
+							reference_number            : data.referenceNo,
+							[TRACKER_ID_KEY[activeTab]] : [shipmentId],
+						},
+					],
 				},
 			});
+			Toast.success('Updated Reference Number');
 			refetchTrackerList();
 			closeHandler();
 		} catch (err) {

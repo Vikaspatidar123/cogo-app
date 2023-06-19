@@ -3,6 +3,7 @@ import { IcAOceanTracking, IcAAirTracking } from '@cogoport/icons-react';
 import { useState } from 'react';
 
 import { headerFormOceanControls, headerFormAirControls } from '../../../configuration/headerFormControls';
+import useGetListOperators from '../../../hooks/useGetListOperators';
 
 import ImportCsvModal from './ImportCsvModal';
 import OrTag from './OrTag';
@@ -38,6 +39,9 @@ function Header() {
 	const { control } = useForm();
 
 	const controls = toggle === 'air' ? headerFormAirControls : headerFormOceanControls;
+
+	// const { loading, shippingLineList, airLineList } = useGetListOperators({ type: toggle });
+
 	return (
 		<div className={styles.container}>
 			<h2>Track yours shipements!</h2>

@@ -23,6 +23,7 @@ function Card({ listItem = {}, loading = false, activeTab, setModalInfo }) {
 	const {
 		id = '',	type = '', input = '', container_details = [], milestones = [], shipping_line = {},
 		shipment_info = {}, updated_at = '', action = {}, tracking_status = '', serial_id = '',
+		external_reference_number: referenceNo = '',
 	} = listItem || {};
 
 	const isTrackerEmpty = tracking_status !== 'Found';
@@ -62,6 +63,7 @@ function Card({ listItem = {}, loading = false, activeTab, setModalInfo }) {
 								type={type}
 								input={input}
 								serialId={serial_id}
+								referenceNo={referenceNo}
 							/>
 							<Stepper
 								currentMilestone={currentMilestone}
@@ -91,6 +93,7 @@ function Card({ listItem = {}, loading = false, activeTab, setModalInfo }) {
 							showPopover={showPopover}
 							setShowPopover={setShowPopover}
 							setModalInfo={setModalInfo}
+							shipment_info={shipment_info}
 							id={id}
 						/>
 					</div>

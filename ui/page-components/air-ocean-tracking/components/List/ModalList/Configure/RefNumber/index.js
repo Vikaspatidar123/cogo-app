@@ -8,9 +8,9 @@ import styles from './styles.module.css';
 import { useForm } from '@/packages/forms';
 import getField from '@/packages/forms/Controlled';
 
-function RefNumber({ closeHandler, shipmentId, refetchTrackerList }) {
+function RefNumber({ closeHandler, shipmentId, refetchTrackerList, activeTab = 'ocean' }) {
 	const { control, handleSubmit, formState:{ errors } } = useForm();
-	const { loading, onSubmitHandler } = useCreateRefNum({ shipmentId, refetchTrackerList, closeHandler });
+	const { loading, onSubmitHandler } = useCreateRefNum({ shipmentId, refetchTrackerList, closeHandler, activeTab });
 
 	return (
 		<div className={styles.container}>

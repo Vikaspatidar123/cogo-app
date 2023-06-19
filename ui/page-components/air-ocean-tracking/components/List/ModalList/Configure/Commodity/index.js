@@ -1,5 +1,6 @@
 import { Button } from '@cogoport/components';
-import { useState } from 'react';
+import { isEmpty } from '@cogoport/utils';
+import { useEffect, useState } from 'react';
 
 import commodityControls from '../../../../../configuration/commodityControls';
 import useCreateShipment from '../../../../../hooks/useCreateShipment';
@@ -9,9 +10,18 @@ import styles from './styles.module.css';
 import { useForm } from '@/packages/forms';
 import getField from '@/packages/forms/Controlled';
 
-function Commodity({ closeHandler, shipmentId = '', refetchTrackerList }) {
+function Commodity({ closeHandler, shipmentId = '', refetchTrackerList, shipmentInfo = {} }) {
 	const [commodityValue, setCommodityValue] = useState('');
-	const { control, handleSubmit, formState:{ errors } } = useForm();
+
+	const { hs_code = '' } = shipmentInfo || {};
+
+	const { control, handleSubmit, setValue, formState:{ errors } } = useForm();
+
+	useEffect(() => {
+		if (!isEmpty(hs_code)) {
+			setValue('hscode', hs_code);
+		}
+	}, [hs_code, setValue]);
 
 	const { loading, updateTrackerInfo } = useCreateShipment({ closeHandler, refetchTrackerList });
 

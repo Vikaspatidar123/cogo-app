@@ -28,7 +28,7 @@ const COMPONENT_MAPPING = {
 	CustomizedAlerts  : CustomizeAlert,
 };
 
-function Configure({ closeHandler, shipmentId, refetchTrackerList, activeTab = 'ocean' }) {
+function Configure({ closeHandler, shipmentId, refetchTrackerList, activeTab = 'ocean', shipmentInfo = {} }) {
 	const [configureTab, setConfigureTab] = useState('commodity');
 	const Component = COMPONENT_MAPPING?.[configureTab];
 
@@ -53,6 +53,7 @@ function Configure({ closeHandler, shipmentId, refetchTrackerList, activeTab = '
 					shipmentId={shipmentId}
 					refetchTrackerList={refetchTrackerList}
 					activeTab={activeTab}
+					shipmentInfo={shipmentInfo}
 				/>
 			</div>
 

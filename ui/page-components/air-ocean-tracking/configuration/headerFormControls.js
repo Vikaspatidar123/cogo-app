@@ -7,7 +7,9 @@ const headerFormOceanControls = [
 	},
 	{
 		name        : 'shippingLine',
-		type        : 'select',
+		type        : 'async_select',
+		asyncKey    : 'shippingline_list',
+		initialCall : true,
 		placeholder : 'Select Shipping Line',
 		rules       : { required: true },
 	},
@@ -22,8 +24,10 @@ const headerFormAirControls = [
 	},
 	{
 		name        : 'airLine',
-		type        : 'select',
-		placeholder : 'Select airline Line',
+		type        : 'async_select',
+		asyncKey    : 'airline_list',
+		initialCall : true,
+		placeholder : 'Select Airway Line',
 		rules       : { required: true },
 	},
 ];

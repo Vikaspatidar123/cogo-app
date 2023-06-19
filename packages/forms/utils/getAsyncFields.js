@@ -271,10 +271,10 @@ function asyncTradeContacts() {
 function asyncFieldsSixDigitHsCode() {
 	return {
 		labelKey    : 'label',
-		valueKey    : 'id',
+		valueKey    : 'hsCode',
 		endpoint    : 'saas/hs-code/six-digit-list',
 		authKey     : 'get_saas_hs_code_six_digit_list',
-		initialCall : false,
+		useQueryKey : true,
 	};
 }
 
@@ -292,6 +292,21 @@ function asyncFieldsAirPocDetails() {
 		labelKey : 'label',
 		valueKey : 'id',
 		endpoint : 'list_saas_air_subscription_poc_details',
+	};
+}
+
+function asyncFieldsAirLineList() {
+	return {
+		labelKey : 'business_name',
+		valueKey : 'id',
+		endpoint : 'list_operators',
+	};
+}
+function asyncFieldsShippingLineList() {
+	return {
+		labelKey : 'business_name',
+		valueKey : 'id',
+		endpoint : 'get_saas_container_shipping_lines',
 	};
 }
 
@@ -321,4 +336,6 @@ export {
 	asyncFieldsSixDigitHsCode,
 	asyncFieldsOceanPocDetails,
 	asyncFieldsAirPocDetails,
+	asyncFieldsAirLineList,
+	asyncFieldsShippingLineList,
 };

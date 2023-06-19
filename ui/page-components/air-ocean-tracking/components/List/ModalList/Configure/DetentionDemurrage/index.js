@@ -8,14 +8,16 @@ import getField from '@/packages/forms/Controlled';
 import detDemControls from '@/ui/page-components/air-ocean-tracking/configuration/detDemControls';
 import useCreateShipment from '@/ui/page-components/air-ocean-tracking/hooks/useCreateShipment';
 
-function DetentionDemurrage({ closeHandler, shipmentId, refetchTrackerList }) {
+function DetentionDemurrage({ closeHandler, shipmentId, refetchTrackerList, shipmentInfo = {} }) {
 	const { loading, updateTrackerInfo } = useCreateShipment({ closeHandler, refetchTrackerList });
+
+	const { origin_detention = '', destination_demurrage = '', destination_detention = '' } = shipmentInfo || {};
 
 	const { control, formState:{ errors }, handleSubmit } = useForm({
 		defaultValues: {
-			origin_detention      : 0,
-			destination_detention : 0,
-			destination_demurrage : 0,
+			origin_detention,
+			destination_detention,
+			destination_demurrage,
 		},
 	});
 

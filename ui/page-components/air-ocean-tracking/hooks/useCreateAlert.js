@@ -21,6 +21,9 @@ const TRACKER_ID_MAPPING = {
 	air   : 'saas_air_subscription_id',
 };
 
+let isShipper = false;
+let isConsignee = false;
+
 const preFilledFn = ({ prevAlertData }) => {
 	const prefilValue = {
 		shipper   : [],
@@ -28,16 +31,22 @@ const preFilledFn = ({ prevAlertData }) => {
 		dsr       : [],
 	};
 	const pocDetails = [];
+	const shipperArr = [];
+	const consigneeArr = [];
 
 	prevAlertData.forEach((value) => {
 		const { dsr } = prefilValue;
 		const { poc_details = {}, dsr_status_report = {}, alerts_configured = [] } = value || {};
+		const { id, user_type } = poc_details || {};
 
-		const pocId = poc_details?.id;
+		const pocId = id;
 
 		pocDetails.push(poc_details);
 
-		const usertType = USER_TYPE_MAPPING[poc_details?.user_type ?? 'DEFAULT'];
+		shipperArr.push(user_type === 'SHIPPER');
+		consigneeArr.push(user_type === 'CONSIGNEE');
+
+		const usertType = USER_TYPE_MAPPING[user_type ?? 'DEFAULT'];
 		prefilValue[usertType] = [...(prefilValue[usertType] || []), pocId];
 
 		if (dsr_status_report?.status === 'TRUE') {
@@ -53,6 +62,9 @@ const preFilledFn = ({ prevAlertData }) => {
 			}
 		});
 	});
+
+	isShipper = shipperArr.includes(true);
+	isConsignee = consigneeArr.includes(true);
 
 	return { prefilValue, pocDetails };
 };
@@ -163,6 +175,33 @@ const useCreateAlert = ({
 		if (e.target.checked) {
 			if ((name === 'shipper' || name === 'consignee')) {
 				values = [contactInfo?.id];
+				const consigneeArr = tableValue?.consignee || [];
+				const shipperArr = tableValue?.shipper || [];
+				const inConsignee = name === 'shipper' && consigneeArr.includes(contactInfo?.id);
+				const inShipper = name === 'consignee' && shipperArr.includes(contactInfo?.id);
+
+				if (inConsignee) {
+					setTableValue((prev) => ({
+						...prev,
+						[name]    : values,
+						consignee : [],
+					}));
+					return;
+				}
+
+				if (inShipper) {
+					setTableValue((prev) => ({
+						...prev,
+						[name]  : values,
+						shipper : [],
+					}));
+					return;
+				}
+
+				setTableValue((prev) => ({
+					...prev,
+					[name]: values,
+				}));
 			} else {
 				values.push(contactInfo?.id);
 			}
@@ -176,8 +215,22 @@ const useCreateAlert = ({
 		}));
 	};
 
+	const disableCheckboxHandler = ({ name }) => {
+		if (isEmpty(prevAlertData)) return false;
+
+		if (name === 'shipper') {
+			return isShipper;
+		}
+
+		if (name === 'consignee') {
+			return isConsignee;
+		}
+
+		return false;
+	};
+
 	return {
-		loading, submitHandler, checkboxChangeHandler, contactList,
+		loading, submitHandler, checkboxChangeHandler, contactList, disableCheckboxHandler,
 	};
 };
 

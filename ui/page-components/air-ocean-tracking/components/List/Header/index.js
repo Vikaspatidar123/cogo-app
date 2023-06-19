@@ -6,7 +6,7 @@ import { useRouter } from 'next/router';
 import { useState } from 'react';
 
 import STATS_MAPPING from '../../../constant/statsMapping';
-import TAB_MAPPING from '../../../constant/tabMapping';
+import { TAB_MAPPING, VIEW_MAPPING } from '../../../constant/tabMapping';
 import useGetDsrList from '../../../hooks/useGetDsrList';
 import useRedirectFn from '../../../hooks/useRedirectFn';
 
@@ -17,10 +17,9 @@ import styles from './styles.module.css';
 function Header({ globalFilter, filterChangeHandler, inputValue, setInputValue, filterData = {}, setGlobalFilter }) {
 	const { query } = useRouter();
 	const [showConfigure, setShowConfigure] = useState(false);
-	const [viewTab, setViewTab] = useState('all');
 
 	const { isArchived = false } = query || {};
-	const { activeTab = '', selectValue = '' } = globalFilter;
+	const { activeTab = '', search_type = '', selectValue = '' } = globalFilter;
 
 	const { redirectArchivedList, redirectToDashboard } = useRedirectFn();
 
@@ -91,14 +90,14 @@ function Header({ globalFilter, filterChangeHandler, inputValue, setInputValue, 
 				{activeTab === 'ocean'	&& (
 					<div style={{ width: '42%' }}>
 						<Tabs
-							activeTab={viewTab}
-							onChange={setViewTab}
+							activeTab={search_type}
+							onChange={(e) => filterChangeHandler('search_type', e)}
 							themeType="secondary"
 							fullWidth
 						>
-							<TabPanel name="all" title="All" />
-							<TabPanel name="blView" title="BL View" />
-							<TabPanel name="containerView" title="Container View" />
+							{Object.keys(VIEW_MAPPING).map((tab) => (
+								<TabPanel key={tab} name={tab} title={VIEW_MAPPING?.[tab]} />
+							))}
 						</Tabs>
 					</div>
 				)}

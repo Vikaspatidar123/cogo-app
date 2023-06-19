@@ -9,7 +9,7 @@ import getField from '@/packages/forms/Controlled';
 import useFilterContent from '@/ui/page-components/air-ocean-tracking/hooks/useFilterContent';
 
 function FilterContent({ filterData = {}, activeTab, globalFilter = {}, setGlobalFilter }) {
-	const { shipping_lines = {}, poc_details = [], booked_with_cogoport = [], air_lines = {} } = filterData || {};
+	const { shipping_lines, poc_details = [], booked_with_cogoport = [], air_lines } = filterData || {};
 
 	const { clearHandler, submitHandler, formHook, shippersList = [], consigneesList = [] } = useFilterContent({
 		poc_details,

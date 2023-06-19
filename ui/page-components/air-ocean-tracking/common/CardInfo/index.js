@@ -4,7 +4,7 @@ import GET_MAPPING from '../../constant/card';
 
 import styles from './styles.module.css';
 
-function CardInfo({ activeTab, type = '', input, reference_no = '', serialId = '' }) {
+function CardInfo({ activeTab, type = '', input, referenceNo = '', serialId = '' }) {
 	const { CARD_TITLE } = GET_MAPPING?.[activeTab] || {};
 
 	return (
@@ -18,11 +18,11 @@ function CardInfo({ activeTab, type = '', input, reference_no = '', serialId = '
 				{input}
 			</div>
 
-			{reference_no && (
+			{referenceNo && (
 				<div className={cl`${styles.tag} ${styles.reference_no}`}>
 					Ref No. :
 					{' '}
-					{reference_no}
+					{referenceNo}
 				</div>
 			)}
 

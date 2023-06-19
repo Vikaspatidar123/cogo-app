@@ -1,12 +1,14 @@
+import { Toast } from '@cogoport/components';
+
 import formatCreateSearch from '../../../utils/format-create-search';
 import getFinalServices from '../../../utils/getFinalServices';
 
+import getApiErrorString from '@/packages/forms/utils/getApiError';
 import { useRouter } from '@/packages/next';
 import { useRequest } from '@/packages/request';
 import { useSelector } from '@/packages/store';
 import { APP_EVENT } from '@/ui/commons/constants/analytics';
 import { UNDEFINED_ATTRIBUTES } from '@/ui/commons/constants/undefined_attributes';
-import showErrorsInToast from '@/ui/commons/utils/showErrorsInToast';
 import trackEvent from '@/ui/page-components/authentication/utils/trackEvent';
 
 const useCreateSearch = ({
@@ -69,11 +71,9 @@ const useCreateSearch = ({
 			const apiToTrigger = rawParams.is_pass_through_selected === 'pass_through'
 				? trigger2
 				: trigger;
-
 			const { data, hasError, messages } = await apiToTrigger({
 				data: formattedPayload,
 			});
-
 			if (!hasError) {
 				if (rawParams.is_pass_through_selected === 'pass_through') {
 					push('/checkout/[checkout_id]', `/checkout/${(data || {}).id}`);
@@ -100,7 +100,8 @@ const useCreateSearch = ({
 				url      : null,
 			};
 		} catch (err) {
-			showErrorsInToast(err?.data);
+			const { response } = err || {};
+			Toast.error(getApiErrorString(response?.data));
 			return {
 				error    : true,
 				messages : [],

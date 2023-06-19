@@ -28,7 +28,6 @@ function Layout({
 
 					const show = !(controlItem.name in showElements)
 						|| showElements[controlItem.name];
-					console.log(type, 'type', subType);
 					if (type === 'supplier-select') {
 						return (
 							<div className={styles.col}>

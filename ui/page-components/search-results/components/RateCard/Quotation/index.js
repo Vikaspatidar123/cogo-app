@@ -50,8 +50,9 @@ function Quotation({
 	isConfirmed = false,
 	viewSchedules = false,
 	setViewSchedules = () => {},
-	setScheduleId = () => {},
+	scheduleData,
 }) {
+	
 	const { query } = useSelector(({ general }) => ({
 		query: general.query,
 	}));
@@ -383,11 +384,10 @@ function Quotation({
 					</Button>
 					<br />
 
-					{data?.source !== 'cogo_assured_rate' && (
+					{data?.source !== 'cogo_assured_rate' && (scheduleData || []).length > 0 &&(
 						<Button
 							onClick={() => {
-								setViewSchedules(!viewSchedules);
-								setScheduleId(data.shipping_line?.id);
+								setViewSchedules((prev) => !prev);
 							}}
 							className={styles.button}
 							size="sm"
@@ -405,7 +405,7 @@ function Quotation({
 									size={1.25}
 								/>
 							)}
-						</Button>
+						</Button>,
 					)}
 
 					{unavailableRatesCount

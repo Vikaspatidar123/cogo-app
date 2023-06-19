@@ -9,7 +9,6 @@ import useCreateSearch from './useCreateSearch';
 
 import { useForm } from '@/packages/forms';
 import { useRouter } from '@/packages/next';
-import showErrorsInToast from '@/ui/commons/utils/showErrorsInToast';
 
 const getServiceMappings = (service) => {
 	const trade_type = service.type === 'origin' ? 'export' : 'import';
@@ -156,7 +155,6 @@ const useUpsell = ({ service, services, extraParams, shipment_data }) => {
 			);
 		} else {
 			setLoading(false);
-			showErrorsInToast(postData.messages);
 		}
 	};
 

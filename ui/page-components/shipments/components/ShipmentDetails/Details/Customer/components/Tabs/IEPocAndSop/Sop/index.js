@@ -3,6 +3,7 @@ import { useState } from 'react';
 
 import Header from './Header';
 import SopCard from './SopCard';
+import SopLoading from './SopLoading';
 import styles from './styles.module.css';
 
 import useGetSopList from '@/ui/page-components/shipments/components/ShipmentDetails/hooks/useGetSopList';
@@ -21,6 +22,7 @@ function Sop({ quickAction, setSopTotal, setQuickAction = () => {} }) {
 		trade_partners_details,
 		tdata,
 	});
+	const data_loading = loading || trade_partners_loading;
 
 	const sops = !trade_partners_loading ? data?.list || [] : [];
 
@@ -35,8 +37,8 @@ function Sop({ quickAction, setSopTotal, setQuickAction = () => {} }) {
 		/>
 	));
 
-	if (loading || trade_partners_loading) {
-		content = <Placeholder />;
+	if (data_loading) {
+		content = <SopLoading />;
 	}
 
 	if (!loading && !trade_partners_loading && sops.length === 0) {
@@ -63,6 +65,7 @@ function Sop({ quickAction, setSopTotal, setQuickAction = () => {} }) {
 					setQuickAction={setQuickAction}
 					trade_partners_details={trade_partners_details}
 					sops={sops}
+					data_loading={data_loading}
 				/>
 			) : null}
 

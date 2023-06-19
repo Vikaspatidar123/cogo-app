@@ -37,7 +37,6 @@ function Header({
 			</div>
 
 			<div className={styles.line} />
-
 			{isSopAddOpen ? (
 				<AddSop
 					sops={sops}

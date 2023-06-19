@@ -55,6 +55,7 @@ function FilterContent(
 			<div className={styles.apply_btn}>
 				<Button
 					onClick={handleSubmit(() => handleFilters(), onError)}
+					size="sm"
 				>
 					Apply
 				</Button>

@@ -1,0 +1,16 @@
+.coupons {
+	display: flex;
+}
+
+.coupon {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	width: 20%;
+	margin: 10px;
+}
+
+.name {
+	margin: 5px  0;
+}

@@ -1,4 +1,3 @@
-import { Toast } from '@cogoport/components';
 import { useEffect } from 'react';
 
 import { useRequest } from '@/packages/request';
@@ -21,7 +20,7 @@ function ListShipments() {
 			const { datas } = res;
 			return datas;
 		} catch (err) {
-			Toast.error(
+			console.log(
 				err?.message || ' Please try again.',
 			);
 			return null;

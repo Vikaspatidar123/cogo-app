@@ -1,0 +1,14 @@
+.heading {
+	font-size: 20px;
+	font-weight: 600;
+}
+
+.details_wrapper {
+	display: flex;
+	flex-direction: column;
+}
+
+.description {
+	width: 60%;
+	color: #828282;
+}

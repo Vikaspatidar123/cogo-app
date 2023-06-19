@@ -139,7 +139,7 @@ const navigationMappings = {
 				as    : '/saas/premium-services/duties-taxes-calculator',
 				icon  : <IcADutiesTaxes width={55} height={55} />,
 				description:
-          'Know the total amount you will have to pay to plan better',
+					'Know the total amount you will have to pay to plan better',
 			},
 			{
 				key         : 'saas_premium_services-trader_eligibility_check',
@@ -173,7 +173,7 @@ const navigationMappings = {
 				as    : '/saas/order-history',
 				icon  : <IcABookYourShipment width={55} height={55} />,
 				description:
-          'View when and which premium services you used previously ',
+					'View when and which premium services you used previously ',
 			},
 		],
 	},
@@ -293,6 +293,12 @@ const navigationMappings = {
 				as    : '/saas/cogo-subscriptions/balance-history',
 			},
 		],
+	},
+	pay_later: {
+		key   : 'pay_later',
+		title : 'Pay Later',
+		href  : '/v2/pay-later',
+		as    : '/v2/pay-later',
 	},
 	saas_cogopoint: {
 		key       : 'saas_cogopoint',

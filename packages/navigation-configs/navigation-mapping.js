@@ -110,6 +110,15 @@ const navigationMappings = {
 				icon        : <IcAProductCatalog width={50} height={50} />,
 				description : 'Find the HS code of any product or vice versa',
 			},
+			{
+				key         : 'saas_tools-vessel_tracking',
+				title       : 'Live Vessel Tracking',
+				href        : '/saas/live-vessel-tracking',
+				as          : '/saas/live-vessel-tracking',
+				type        : 'link',
+				icon        : 'nav-trade-partner',
+				description : 'Real time vessel position',
+			},
 		],
 	},
 

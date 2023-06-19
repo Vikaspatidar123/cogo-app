@@ -14,7 +14,7 @@ import trackEvent from '@/ui/page-components/authentication/utils/trackEvent';
 const useCreateSearch = ({
 	optionsControls = {},
 	options = {},
-	setOptions = () => {},
+	setOptions = () => { },
 	extraParams = {},
 	setLoading,
 	mode,
@@ -135,7 +135,7 @@ const useCreateSearch = ({
 			let type;
 			let count;
 			let commodity;
-			const location_name =				rawParams.location.origin.display_name
+			const location_name = rawParams.location.origin.display_name
 				|| {}
 				|| rawParams.location.desatination.display_name;
 			const n = rawParams.containers.length;

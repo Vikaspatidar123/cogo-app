@@ -27,27 +27,27 @@ import {
 } from '../../utils/getAsyncFields';
 
 const keyAsyncFieldsParamsMapping = {
-	locations                  : asyncFieldsLocations,
-	locations2                 : asyncFieldsLocations2,
-	partners                   : asyncFieldsPartner,
-	partner_roles              : asyncFieldsPartnerRoles,
-	hs_code_countries          : asyncFieldsHsCodeCountries,
-	list_partner_quotation     : asyncFieldsPartnerQuotation,
-	list_products              : asyncProductList,
-	country_list_with_flag     : asyncCountrySelect,
-	pin_code                   : asyncFieldsPinCodeLocations,
-	shipping_lines             : asyncShippingLines,
-	hs_code                    : asyncFieldsHScode,
-	air_lines                  : asyncAirLinesSelect,
-	commodities_list_insurance : asyncFieldsCommoditiesList,
-	insurance_country_list     : asyncInsuranceCountryList,
-	'organization-branches'    : asyncOrganizationBranches,
-	insurance_commodities      : asyncInsuranceCommodities,
-	'air-lines'                : asyncAirLines,
-	'shipping-lines'           : asyncShippingLines,
-	tax_numbers                : asyncTaxNumbers,
-	organization_users         : asyncOrganizationUsers,
-	trade_contacts             : asyncTradeContacts,
+	locations: asyncFieldsLocations,
+	locations2: asyncFieldsLocations2,
+	partners: asyncFieldsPartner,
+	partner_roles: asyncFieldsPartnerRoles,
+	hs_code_countries: asyncFieldsHsCodeCountries,
+	list_partner_quotation: asyncFieldsPartnerQuotation,
+	list_products: asyncProductList,
+	country_list_with_flag: asyncCountrySelect,
+	pin_code: asyncFieldsPinCodeLocations,
+	shipping_lines: asyncShippingLines,
+	hs_code: asyncFieldsHScode,
+	air_lines: asyncAirLinesSelect,
+	commodities_list_insurance: asyncFieldsCommoditiesList,
+	insurance_country_list: asyncInsuranceCountryList,
+	'organization-branches': asyncOrganizationBranches,
+	insurance_commodities: asyncInsuranceCommodities,
+	'air-lines': asyncAirLines,
+	'shipping-lines': asyncShippingLines,
+	tax_numbers: asyncTaxNumbers,
+	organization_users: asyncOrganizationUsers,
+	trade_contacts: asyncTradeContacts,
 };
 
 function AsyncSelect(props) {
@@ -57,7 +57,7 @@ function AsyncSelect(props) {
 		asyncKey,
 		initialCall,
 		getModifiedOptions,
-		getSelectedOption = () => {},
+		getSelectedOption = () => { },
 		...rest
 	} = props;
 	const defaultParams = keyAsyncFieldsParamsMapping[asyncKey]?.() || {};
@@ -69,11 +69,11 @@ function AsyncSelect(props) {
 	const getAsyncOptionsProps = callFunction({
 		...defaultParams,
 		initialCall,
-		params   : merge(params, defaultParams.params),
-		labelKey : rest.labelKey || defaultParams.labelKey,
-		valueKey : rest.valueKey || defaultParams.valueKey,
+		params: merge(params, defaultParams.params),
+		labelKey: rest.labelKey || defaultParams.labelKey,
+		valueKey: rest.valueKey || defaultParams.valueKey,
 		getModifiedOptions,
-		value    : rest.value,
+		value: rest.value,
 	});
 	if (typeof getSelectedOption === 'function' && !isEmpty(rest.value)) {
 		let selectedValue;
@@ -89,12 +89,11 @@ function AsyncSelect(props) {
 		getSelectedOption(selectedOption[0]);
 	}
 	const Element = multiple ? MultiSelect : Select;
-
 	return (
 		<Element
 			{...rest}
 			{...getAsyncOptionsProps}
-			key={getAsyncOptionsProps?.id}
+		// key={getAsyncOptionsProps?.id}
 		/>
 	);
 }

@@ -26,7 +26,9 @@ function HsTag({ activeSection = '', activeChapter = '', activeHeading = '' }) {
 				) : (
 					<div className={styles.sub_heading}>
 						{startCase(activeSection?.toLowerCase())}
+						{' '}
 						|
+						{' '}
 					</div>
 				))}
 			{activeChapter
@@ -48,8 +50,11 @@ function HsTag({ activeSection = '', activeChapter = '', activeHeading = '' }) {
 					</Tooltip>
 				) : (
 					<div className={styles.sub_heading}>
+						{' '}
 						{startCase(activeChapter)}
+						{' '}
 						|
+						{' '}
 					</div>
 				))}
 			{activeHeading

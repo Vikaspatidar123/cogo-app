@@ -1,4 +1,5 @@
 import { merge } from '@cogoport/utils';
+import { useEffect, useState, useMemo } from 'react';
 
 import { useRequest } from '../../request';
 
@@ -10,20 +11,36 @@ function useGetAsyncOptions({
 	valueKey = '',
 	labelKey = '',
 	params = {},
+	getModifiedOptions = (options) => options,
 }) {
 	const { query, debounceQuery } = useDebounceQuery();
+	const [storeOptions, setStoreOptions] = useState([]);
 
-	const [{ data, loading }] = useRequest({
-		url    : endpoint,
-		method : 'GET',
-		params : merge(params, { filters: { q: query } }),
-	}, { manual: !(initialCall || query) });
-	const options = data?.list || [];
+	const [{ data, loading }] = useRequest(
+		{
+			url    : endpoint,
+			method : 'GET',
+			params : merge(params, { filters: { q: query } }),
+		},
+		{ manual: !(initialCall || query) },
+	);
 
-	const [{ loading: loadingSingle }, triggerSingle] = useRequest({
-		url    : endpoint,
-		method : 'GET',
-	}, { manual: true });
+	const options = useMemo(() => getModifiedOptions(data?.list || data || []), [data, getModifiedOptions]);
+	const dependency = (data?.list || []).map(({ id }) => id).join('');
+
+	useEffect(() => {
+		if (options?.length > 0) {
+			setStoreOptions([...options]);
+		}
+	}, [dependency, options]);
+
+	const [{ loading: loadingSingle }, triggerSingle] = useRequest(
+		{
+			url    : endpoint,
+			method : 'GET',
+		},
+		{ manual: true },
+	);
 
 	const onSearch = (inputValue) => {
 		debounceQuery(inputValue);
@@ -32,6 +49,7 @@ function useGetAsyncOptions({
 	const onHydrateValue = async (value) => {
 		if (Array.isArray(value)) {
 			let unorderedHydratedValue = [];
+
 			const toBeFetched = [];
 			value.forEach((v) => {
 				const singleHydratedValue = options.find((o) => o?.[valueKey] === v);
@@ -41,10 +59,11 @@ function useGetAsyncOptions({
 					toBeFetched.push(v);
 				}
 			});
+
 			const res = await triggerSingle({
 				params: merge(params, { filters: { [valueKey]: toBeFetched } }),
 			});
-			unorderedHydratedValue = unorderedHydratedValue.concat(res?.data?.list || []);
+			unorderedHydratedValue = unorderedHydratedValue.concat(res?.data?.list || res?.data || []);
 
 			const hydratedValue = value.map((v) => {
 				const singleHydratedValue = unorderedHydratedValue.find((uv) => uv?.[valueKey] === v);
@@ -53,24 +72,29 @@ function useGetAsyncOptions({
 
 			return hydratedValue;
 		}
-
 		const checkOptionsExist = options.filter((item) => item[valueKey] === value);
 
 		if (checkOptionsExist.length > 0) return checkOptionsExist[0];
 
-		const res = await triggerSingle({
-			params: merge(params, { filters: { [valueKey]: value } }),
-		});
-		return res?.data?.list?.[0] || null;
+		try {
+			const res = await triggerSingle({
+				params: merge(params, { filters: { [valueKey]: value } }),
+			});
+			return res?.data?.list?.[0] || res?.data?.[0] || null;
+		} catch (err) {
+			console.log(err);
+			return {};
+		}
 	};
-
 	return {
-		loading: loading || loadingSingle,
+		loading : loading || loadingSingle,
 		onSearch,
-		options,
+		options : storeOptions,
 		labelKey,
 		valueKey,
 		onHydrateValue,
+		id      : storeOptions?.[0]?.[valueKey],
+
 	};
 }
 

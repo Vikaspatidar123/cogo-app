@@ -1,5 +1,5 @@
 import { Input, Tooltip } from '@cogoport/components';
-import { IcMArrowBack } from '@cogoport/icons-react';
+import { IcMArrowBack, IcMSearchlight } from '@cogoport/icons-react';
 
 import ARCHIVEDTRADEPARTNERLIST from '../../configuration/archivedTradePartnerList';
 import useList from '../../hooks/useList';
@@ -37,9 +37,9 @@ function Archived() {
 						</div>
 					</div>
 				</div>
-				<div className={styles.Input}>
+				<div className={styles.input}>
 					<Input
-						placeholder="Type to search"
+						placeholder="Type to search by name"
 						onChange={(item) => {
 							setGlobalFilters((prev) => ({
 								...prev,
@@ -48,6 +48,8 @@ function Archived() {
 								page       : 1,
 							}));
 						}}
+						suffix={<IcMSearchlight height={30} style={{ marginRight: '10px' }} />}
+
 					/>
 				</div>
 			</div>

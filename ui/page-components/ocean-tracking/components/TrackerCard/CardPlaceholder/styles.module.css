@@ -1,0 +1,11 @@
+.container {
+	padding: 0;
+	margin-bottom: 20px;
+	background: #fff;
+	border-radius: 8px;
+	box-shadow: 0 0 16px rgb(98 127 172 / 20%);
+}
+
+.loading {
+	padding: 10px;
+}

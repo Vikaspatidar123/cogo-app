@@ -1,18 +1,18 @@
-import { COUNTRY_IDS } from './countryId';
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
 const CARDFILTER = [
 	{
-		label          : 'Country',
-		name           : 'country',
-		type           : 'select',
-		placeholder    : 'Search Country',
-		optionsListKey : 'hs_codes_countries',
-		value          : COUNTRY_IDS.IN,
-		valueKey       : 'id',
-		labelKey       : 'countryName',
-		defaultOptions : true,
-		theme          : 'admin',
-		className      : 'primary md',
+		label       : 'Country',
+		name        : 'country',
+		type        : 'select',
+		placeholder : 'Search Country',
+		asyncKey    : 'hs_code_countries',
+		value       : GLOBAL_CONSTANTS.hs_code_country_ids.IN,
+		valueKey    : 'id',
+		labelKey    : 'countryName',
+		initialCall : true,
+		theme       : 'admin',
+		className   : 'primary md',
 	},
 	{
 		label       : 'Search by',
@@ -36,15 +36,12 @@ const CARDFILTER = [
 	},
 ];
 
-const getControls = ({
-	countryOptions = {},
-}) => CARDFILTER.map((control) => {
-	const { name } = control;
-	let newControl = { ...control };
+const getControls = () => CARDFILTER.map((control) => {
+	const newControl = { ...control };
 
-	if (name === 'country') {
-		newControl = { ...newControl, ...countryOptions };
-	}
+	// if (name === 'country') {
+	// 	newControl = { ...newControl, ...countryOptions };
+	// }
 	return { ...newControl };
 });
 

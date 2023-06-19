@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 import { Button } from '@cogoport/components';
+import { IcMArrowBack } from '@cogoport/icons-react';
 
-import BackIcon from './icons/backIcon.svg';
 import Item from './Item';
 import styles from './styles.module.css';
 
@@ -17,16 +17,16 @@ function SwitchUser({ setShow }) {
 		setShow(false);
 	};
 	const getStarted = () => {
-		window.location.href = '/v2/get-started';
+		window.location.href = '/get-started';
 	};
 	return (
 		<div className={styles.container}>
 			<div className={styles.header}>
-				<BackIcon
+				<IcMArrowBack
 					width="24px"
 					height="24px"
 					style={{ cursor: 'pointer' }}
-					onClick={onBack}
+					onClick={() => onBack()}
 				/>
 
 				{pathname === '/get-started' ? null : (
@@ -39,12 +39,11 @@ function SwitchUser({ setShow }) {
 			<div className={styles.separator} />
 
 			<div className={styles.list}>
-				{organizations.map((item) => (
+				{(organizations || []).map((item) => (
 					<Item key={item.id} item={item} />
 				))}
 			</div>
 		</div>
-
 	);
 }
 

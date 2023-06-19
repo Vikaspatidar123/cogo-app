@@ -1,17 +1,20 @@
 import { Pagination } from '@cogoport/components';
 import React, { useEffect } from 'react';
-import { useSelector } from 'react-redux';
 
+import Loading from './common/Loading';
 import SearchCard from './components/search-card';
-import TrendCard, { EmptyTrendCard, TrendCardSkeleton } from './components/trend-card';
+import TrendCard, { EmptyTrendCard } from './components/trend-card';
 import useFetchTrends from './hooks/useFetchTrends';
 import styles from './styles.module.css';
+
+import { useSelector } from '@/packages/store';
 
 const trendLayout = ({
 	list = [],
 	page,
 	total_count,
 	fetchLocations = () => {},
+	setPagination,
 }) => (list?.length > 0 ? (
 	<>
 		<div className={styles.card_view}>
@@ -29,6 +32,7 @@ const trendLayout = ({
 					currentPage={page}
 					totalItems={total_count}
 					pageSize={10}
+					onPageChange={setPagination}
 				/>
 			</div>
 		)}
@@ -64,13 +68,13 @@ function FreightRateTrend() {
 
 	return (
 		<>
-			<div className={styles.heading}>Ocean Schedule Tracker</div>
+			<div className={styles.heading}>Freight Rate Trends</div>
 
 			<SearchCard refechTrends={refectTrends} />
 
 			{loading ? (
 				<div className={styles.flex_container}>
-					<TrendCardSkeleton key={1} />
+					<Loading />
 				</div>
 			) : (
 				trendLayout({

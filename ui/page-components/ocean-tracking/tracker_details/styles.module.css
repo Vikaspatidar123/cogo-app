@@ -1,0 +1,96 @@
+.header {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+	margin-top: 10px;
+	margin-bottom: 16px;
+
+	h1 {
+		margin: 0;
+		font-size: 22px;
+		font-weight: 700;
+		color: #282b2e;
+	}
+
+	p {
+		margin: 0;
+		font-size: 12px;
+		color: #7d7d7d;
+	}
+
+	@media (max-width: 760px) {
+		h1 {
+			font-size: 15px;
+		}
+
+		flex-direction: column;
+		align-items: normal;
+	}
+}
+
+.left_container {
+	display: flex;
+	align-items: center;
+
+	svg {
+		display: block;
+		margin-right: 16px;
+		cursor: pointer;
+		fill: #282b2e;
+	}
+
+	@media (max-width: 760px) {
+		svg {
+			margin-right: 5px;
+		}
+	}
+}
+
+.right_container {
+	align-items: center;
+}
+
+.booking_number {
+	margin: 0;
+	font-size: 12px;
+	font-weight: 700;
+	color: #7d7d7d;
+
+	@media (max-width: 760px) {
+		display: flex;
+		justify-content: flex-end;
+		font-weight: 400;
+		color: #8dc2f9;
+		text-align: center;
+	}
+}
+
+.row {
+	display: flex;
+	flex-direction: row;
+	gap: 20px;
+
+	@media (max-width: 760px) {
+		flex-direction: column;
+	}
+}
+
+.col {
+	display: flex;
+	flex-direction: column;
+	width: 32%;
+
+	@media (max-width: 760px) {
+		width: 100%;
+	}
+}
+
+.tracking {
+	display: flex;
+	flex-direction: row;
+
+	@media (max-width: 760px) {
+		margin-top: 10px;
+	}
+}

@@ -1,4 +1,3 @@
-import { Toast } from '@cogoport/components';
 import { useState, useEffect } from 'react';
 
 import { useRequestBf } from '@/packages/request';
@@ -6,9 +5,7 @@ import { useSelector } from '@/packages/store';
 
 const useList = ({ sort }) => {
 	const { sortBy, sortType } = sort || {};
-	const {
-		profile,
-	} = useSelector((state) => state);
+	const { profile } = useSelector((state) => state);
 	const { organization } = profile || {};
 	const [apiData, setDataApi] = useState({});
 	const [filters, setGlobalFilters] = useState({
@@ -18,11 +15,15 @@ const useList = ({ sort }) => {
 	});
 	const { date_range = {}, ...rest } = filters || {};
 
-	const [{ loading:apiLoading }, tradeApitrigger] = useRequestBf({
-		url     : '/saas/trade-engine/order-history',
-		authKey : 'get_saas_trade_engine_order_history',
-		method  : 'get',
-	}, { manual: true });
+	const [{ loading: apiLoading }, tradeApitrigger] = useRequestBf(
+		{
+			url        : '/saas/trade-engine/order-history',
+			authKey    : 'get_saas_trade_engine_order_history',
+			method     : 'get',
+			autoCancel : false,
+		},
+		{ manual: true },
+	);
 	const checkList = Object?.keys(filters)?.length > 1;
 	const getList = async () => {
 		if (!checkList) {
@@ -41,13 +42,13 @@ const useList = ({ sort }) => {
 			});
 			setDataApi(resp?.data);
 		} catch (error) {
-			Toast.error(error?.message);
+			console.log(error);
 		}
 	};
 
 	useEffect(() => {
-		if (checkList || sort)getList();
-	// eslint-disable-next-line react-hooks/exhaustive-deps
+		if (checkList || sort) getList();
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [filters, sort]);
 
 	return {

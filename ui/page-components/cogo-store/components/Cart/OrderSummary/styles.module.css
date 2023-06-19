@@ -1,0 +1,14 @@
+.order_summary {
+	display: flex;
+	align-items: flex-start;
+	justify-content: space-between;
+	padding: 10px 20px;
+	font-size: 15px;
+	font-weight: 500;
+}
+
+.order_price {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}

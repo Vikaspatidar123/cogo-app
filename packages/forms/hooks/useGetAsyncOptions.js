@@ -1,5 +1,5 @@
 import { merge } from '@cogoport/utils';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 
 import { useRequest } from '../../request';
 
@@ -24,14 +24,16 @@ function useGetAsyncOptions({
 		},
 		{ manual: !(initialCall || query) },
 	);
-	const options = getModifiedOptions(data?.list || []);
+
+	const options = useMemo(() => getModifiedOptions(data?.list || data || []), [data, getModifiedOptions]);
 	const dependency = (data?.list || []).map(({ id }) => id).join('');
+
 	useEffect(() => {
-		if (options.length > 0) {
+		if (options?.length > 0) {
 			setStoreOptions([...options]);
 		}
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [dependency]);
+	}, [dependency, options]);
+
 	const [{ loading: loadingSingle }, triggerSingle] = useRequest(
 		{
 			url    : endpoint,
@@ -47,6 +49,7 @@ function useGetAsyncOptions({
 	const onHydrateValue = async (value) => {
 		if (Array.isArray(value)) {
 			let unorderedHydratedValue = [];
+
 			const toBeFetched = [];
 			value.forEach((v) => {
 				const singleHydratedValue = options.find((o) => o?.[valueKey] === v);
@@ -60,7 +63,7 @@ function useGetAsyncOptions({
 			const res = await triggerSingle({
 				params: merge(params, { filters: { [valueKey]: toBeFetched } }),
 			});
-			unorderedHydratedValue = unorderedHydratedValue.concat(res?.data?.list || []);
+			unorderedHydratedValue = unorderedHydratedValue.concat(res?.data?.list || res?.data || []);
 
 			const hydratedValue = value.map((v) => {
 				const singleHydratedValue = unorderedHydratedValue.find((uv) => uv?.[valueKey] === v);
@@ -69,7 +72,6 @@ function useGetAsyncOptions({
 
 			return hydratedValue;
 		}
-
 		const checkOptionsExist = options.filter((item) => item[valueKey] === value);
 
 		if (checkOptionsExist.length > 0) return checkOptionsExist[0];
@@ -78,13 +80,12 @@ function useGetAsyncOptions({
 			const res = await triggerSingle({
 				params: merge(params, { filters: { [valueKey]: value } }),
 			});
-			return res?.data?.list?.[0] || null;
+			return res?.data?.list?.[0] || res?.data?.[0] || null;
 		} catch (err) {
 			console.log(err);
 			return {};
 		}
 	};
-
 	return {
 		loading : loading || loadingSingle,
 		onSearch,
@@ -92,6 +93,8 @@ function useGetAsyncOptions({
 		labelKey,
 		valueKey,
 		onHydrateValue,
+		id      : storeOptions?.[0]?.[valueKey],
+
 	};
 }
 

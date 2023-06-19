@@ -18,9 +18,9 @@ function useGetAsyncOptions({
 
 	const [{ data, loading }] = useRequest(
 		{
-			url    : endpoint,
-			method : 'GET',
-			params : merge(params, { filters: { q: query } }),
+			url: endpoint,
+			method: 'GET',
+			params: merge(params, { filters: { q: query } }),
 		},
 		{ manual: !(initialCall || query) },
 	);
@@ -36,8 +36,8 @@ function useGetAsyncOptions({
 
 	const [{ loading: loadingSingle }, triggerSingle] = useRequest(
 		{
-			url    : endpoint,
-			method : 'GET',
+			url: endpoint,
+			method: 'GET',
 		},
 		{ manual: true },
 	);
@@ -87,13 +87,13 @@ function useGetAsyncOptions({
 		}
 	};
 	return {
-		loading : loading || loadingSingle,
+		loading: loading || loadingSingle,
 		onSearch,
-		options : storeOptions,
+		options: storeOptions,
 		labelKey,
 		valueKey,
 		onHydrateValue,
-		id      : storeOptions?.[0]?.[valueKey],
+		// id      : storeOptions?.[0]?.[valueKey],
 
 	};
 }

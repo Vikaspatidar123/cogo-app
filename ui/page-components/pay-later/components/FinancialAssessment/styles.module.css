@@ -50,6 +50,8 @@
 }
 
 .icon {
+	width: 10px;
+	height: 15px;
 	margin-right: 5px;
 }
 
@@ -76,10 +78,4 @@
 	font-size: 16px;
 	color: #4f4f4f;
 	text-decoration-line: underline;
-}
-
-.icon {
-	width: 10px;
-	height: 15px;
-	margin: 0 15px;
 }

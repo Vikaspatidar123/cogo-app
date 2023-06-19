@@ -2,6 +2,8 @@ import { Toast } from '@cogoport/components';
 import { isEmpty } from '@cogoport/utils';
 import { useEffect, useMemo } from 'react';
 
+import GET_MAPPING from '../constant/card';
+
 import { useRouter } from '@/packages/next';
 import { useRequest } from '@/packages/request';
 
@@ -15,10 +17,6 @@ const USER_TYPE_MAPPING = {
 const CREATE_ALERT_URL = {
 	ocean : '/create_update_saas_container_alert',
 	air   : '/create_update_saas_air_alert',
-};
-const TRACKER_ID_MAPPING = {
-	ocean : 'saas_container_subscription_id',
-	air   : 'saas_air_subscription_id',
 };
 
 let isShipper = false;
@@ -80,6 +78,8 @@ const useCreateAlert = ({
 		url    : CREATE_ALERT_URL[activeTab],
 	}, { manual: true });
 
+	const { TRACKER_ID_KEY } = GET_MAPPING[activeTab];
+
 	const contactList = useMemo(() => {
 		const prevSelectedContact = (prevAlertData || []).map((item) => item?.poc_details);
 
@@ -139,11 +139,11 @@ const useCreateAlert = ({
 		}) : [];
 
 		return {
-			shipper                         : shipper[0],
-			consignee                       : consignee[0],
+			shipper                : shipper[0],
+			consignee              : consignee[0],
 			alert_configuration,
-			[TRACKER_ID_MAPPING[activeTab]] : shipmentId,
-			organization_branch_id          : query?.branch_id,
+			[TRACKER_ID_KEY]       : shipmentId,
+			organization_branch_id : query?.branch_id,
 		};
 	};
 

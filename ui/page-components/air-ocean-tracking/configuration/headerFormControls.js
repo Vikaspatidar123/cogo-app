@@ -1,6 +1,6 @@
 const headerFormOceanControls = [
 	{
-		name        : 'containerNo',
+		name        : 'shipmentNumber',
 		type        : 'text',
 		placeholder : 'Enter Container No/ BL no',
 		rules       : { required: true },
@@ -17,7 +17,7 @@ const headerFormOceanControls = [
 
 const headerFormAirControls = [
 	{
-		name        : 'airBillNo',
+		name        : 'shipmentNumber',
 		type        : 'text',
 		placeholder : 'Enter Airway bill number',
 		rules       : { required: true },
@@ -31,4 +31,16 @@ const headerFormAirControls = [
 		rules       : { required: true },
 	},
 ];
-export { headerFormOceanControls, headerFormAirControls };
+
+const defaultValues = {
+	shipmentNumber : '',
+	shippingLine   : '',
+	airLine        : '',
+};
+
+const headerFormControls = ({ trackingType = 'ocean' }) => (
+	trackingType === 'ocean' ? headerFormOceanControls : headerFormAirControls
+);
+
+export default headerFormControls;
+export { defaultValues };

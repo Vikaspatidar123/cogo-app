@@ -1,5 +1,7 @@
 import { useRouter } from '@/packages/next';
 
+const PUBLIC_PAGE_BLOG = 'https://www.cogoport.com/en-IN/knowledge-center/news-updates';
+
 const useRedirectFn = () => {
 	const { push } = useRouter();
 	const redirectArchivedList = (activeTab) => {
@@ -29,11 +31,16 @@ const useRedirectFn = () => {
 		);
 	};
 
+	const redirectToBlogs = () => {
+		window.open(PUBLIC_PAGE_BLOG);
+	};
+
 	return {
 		redirectArchivedList,
 		redirectToTracker,
 		redirectToList,
 		redirectToDashboard,
+		redirectToBlogs,
 	};
 };
 

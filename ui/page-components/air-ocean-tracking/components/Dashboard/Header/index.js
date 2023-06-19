@@ -2,14 +2,12 @@ import { cl, Button, Select } from '@cogoport/components';
 import { IcAOceanTracking, IcAAirTracking } from '@cogoport/icons-react';
 import { useState } from 'react';
 
-import { headerFormOceanControls, headerFormAirControls } from '../../../configuration/headerFormControls';
-import useGetListOperators from '../../../hooks/useGetListOperators';
+import useCreateTracker from '../../../hooks/useCreateTracker';
 
 import ImportCsvModal from './ImportCsvModal';
 import OrTag from './OrTag';
 import styles from './styles.module.css';
 
-import { useForm } from '@/packages/forms';
 import getField from '@/packages/forms/Controlled';
 
 const options = [
@@ -34,13 +32,11 @@ const options = [
 ];
 
 function Header() {
-	const [toggle, setToggle] = useState('ocean');
 	const [csvModal, setCsvModal] = useState(false);
-	const { control } = useForm();
 
-	const controls = toggle === 'air' ? headerFormAirControls : headerFormOceanControls;
+	const { loading, formHook, trackingType, setTrackingType, controls, onSubmitHandler } = useCreateTracker();
 
-	// const { loading, shippingLineList, airLineList } = useGetListOperators({ type: toggle });
+	const { control, handleSubmit, formState:{ errors } } = formHook;
 
 	return (
 		<div className={styles.container}>
@@ -50,8 +46,8 @@ function Header() {
 				<div className={styles.row}>
 					<Select
 						className={styles.select_container}
-						value={toggle}
-						onChange={setToggle}
+						value={trackingType}
+						onChange={setTrackingType}
 						options={options}
 					/>
 
@@ -62,11 +58,19 @@ function Header() {
 						return (
 							<div key={name} className={cl`${styles.col} ${styles.form_col}`}>
 								<Element {...controlItem} control={control} />
+								<p>{errors?.[name]?.message || errors?.[name]?.type}</p>
 							</div>
 						);
 					})}
 					<div className={styles.col}>
-						<Button size="lg" type="button">Track</Button>
+						<Button
+							size="lg"
+							type="button"
+							loading={loading}
+							onClick={handleSubmit(onSubmitHandler)}
+						>
+							Track
+						</Button>
 					</div>
 					<div className={cl`${styles.col} ${styles.or_tag}`}>
 						<OrTag />
@@ -76,10 +80,10 @@ function Header() {
 							size="lg"
 							type="button"
 							themeType="accent"
+							disabled={loading}
 							onClick={() => setCsvModal(true)}
 						>
 							Import .csv
-
 						</Button>
 					</div>
 				</div>

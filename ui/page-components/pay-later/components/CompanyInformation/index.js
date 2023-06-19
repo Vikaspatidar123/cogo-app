@@ -6,7 +6,6 @@ import useGetCompanyFinanceData from '../../hooks/useGetCompanyFinanceData';
 import CompanyDetails from './CompanyDetails';
 import DirectorDetails from './DirectorDetails';
 import EditDetails from './EditDetails';
-import styles from './styles.module.css';
 
 function CompanyInformation({ getCreditRequestResponse = {}, refetch = () => { } }) {
 	const { data, loading } = useGetCompanyFinanceData({ id: getCreditRequestResponse?.id });
@@ -15,7 +14,7 @@ function CompanyInformation({ getCreditRequestResponse = {}, refetch = () => { }
 
 	if (loading || !data) {
 		return (
-			<div className={styles.loader}>
+			<div>
 				<Loader />
 			</div>
 		);

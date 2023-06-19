@@ -8,7 +8,7 @@ import DirectorDetails from './DirectorDetails';
 import EditDetails from './EditDetails';
 import styles from './styles.module.css';
 
-function CompanyInformation({ getCreditRequestResponse = {}, refetch = () => {} }) {
+function CompanyInformation({ getCreditRequestResponse = {}, refetch = () => { } }) {
 	const { data, loading } = useGetCompanyFinanceData({ id: getCreditRequestResponse?.id });
 	const [showEdit, setShowEdit] = useState({ show: false, type: '' });
 	const [updatedValues, setUpdatedValues] = useState({});

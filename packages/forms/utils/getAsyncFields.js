@@ -211,7 +211,7 @@ function asyncTradeParties() {
 }
 function asyncOrganizationUsers() {
 	return {
-		valueKey       : 'id',
+		valueKey       : 'name',
 		labelKey       : 'name',
 		endpoint       : 'list_organization_users',
 		defaultParams  : {},
@@ -259,6 +259,15 @@ function asyncProductList() {
 		initialCall : false,
 	};
 }
+function asyncTaxNumbers() {
+	return {
+		labelKey    : 'label',
+		valueKey    : 'tax_number',
+		endpoint    : '/get_tax_numbers_data',
+		initialCall : true,
+	};
+}
+
 function asyncTradeContacts() {
 	return {
 		valueKey       : 'id',
@@ -291,5 +300,6 @@ export {
 	asyncHsCodesCountries,
 	asyncOrganizationBranches,
 	asyncProductList,
+	asyncTaxNumbers,
 	asyncTradeContacts,
 };

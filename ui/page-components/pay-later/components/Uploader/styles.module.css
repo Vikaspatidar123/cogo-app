@@ -1,0 +1,13 @@
+.wrapper {
+	margin: 10px;
+}
+
+.heading {
+	margin: 10px 0;
+	font-size: 16px;
+	font-weight: 600;
+}
+
+.button {
+	margin: 0 5px;
+}

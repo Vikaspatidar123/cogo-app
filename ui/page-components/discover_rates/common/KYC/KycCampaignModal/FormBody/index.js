@@ -32,8 +32,8 @@ function Form({
 	const [mobile, setMobile] = useState({});
 	const [{ loading }, otpVerifyAPI] = useRequest(
 		{
-			url    : '/verify_user_mobile',
-			method : 'post',
+			url: '/verify_user_mobile',
+			method: 'post',
 		},
 		{ manual: true },
 	);
@@ -42,21 +42,21 @@ function Form({
 
 	const onSubmit = async (values) => {
 		setMobile({
-			mobile_number       : values?.mobile?.mobile_number,
-			mobile_country_code : values?.mobile?.mobile_country_code,
+			mobile_number: values?.mobile?.mobile_number,
+			mobile_country_code: values?.mobile?.mobile_country_code,
 		});
 		setFormValue(values);
 		try {
 			trackEvent(APP_EVENT.kyc_requested_verfication, {
-				company_name : organization.business_name,
-				company_type : organization.account_type,
+				company_name: organization.business_name,
+				company_type: organization.account_type,
 			});
 
 			const res = await otpVerifyAPI({
 				data: {
-					id                  : agent_id,
-					mobile_number       : values?.mobile?.mobile_number,
-					mobile_country_code : values?.mobile?.mobile_country_code,
+					id: agent_id,
+					mobile_number: values?.mobile?.mobile_number,
+					mobile_country_code: values?.mobile?.mobile_country_code,
 				},
 			});
 
@@ -67,7 +67,8 @@ function Form({
 				showErrorsInToast(res?.messages);
 			}
 		} catch (err) {
-			showErrorsInToast(err?.data);
+			const message = err?.response?.data;
+			showErrorsInToast(message.message ? { message: message.message } : message);
 		}
 	};
 

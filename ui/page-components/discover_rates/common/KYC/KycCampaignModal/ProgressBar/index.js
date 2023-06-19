@@ -1,17 +1,17 @@
-import { Button, Toast, Input } from '@cogoport/components';
+import { Button, Toast } from '@cogoport/components';
 import React, { useState } from 'react';
 
 import styles from './styles.module.css';
-import Timer from './Timer';
 
+import OTPLayout from '@/packages/forms/Business/OTPLayout';
 import { useRequest } from '@/packages/request';
 import showErrorsInToast from '@/ui/commons/utils/showErrorsInToast';
 
 const buttonStyle = {
-	width        : '142px',
-	height       : '44px',
-	borderRadius : '10px',
-	fontSize     : '14px',
+	width: '142px',
+	height: '44px',
+	borderRadius: '10px',
+	fontSize: '14px',
 };
 function Bar({
 	formValues,
@@ -24,26 +24,23 @@ function Bar({
 }) {
 	const [otp, setOtp] = useState('');
 
-	const [{ loading:otpLoading }, otpVarifyAPI] = useRequest({
-		url    : '/verify_user_mobile',
-		method : 'post',
+	const [{ loading: otpLoading }, otpVarifyAPI] = useRequest({
+		url: '/verify_user_mobile',
+		method: 'post',
 	}, { manual: true });
 
-	const [{ loading:kycLoading }, submitKycAPI] = useRequest({
-		url    : '/submit_organization_kyc',
-		method : 'post',
+	const [{ loading: kycLoading }, submitKycAPI] = useRequest({
+		url: '/submit_organization_kyc',
+		method: 'post',
 	}, { manual: true });
 
-	const handleChange = (e) => {
-		setOtp(e?.target?.value);
-	};
 	const handleResendOtp = async () => {
 		try {
 			const res = await otpVarifyAPI({
 				data: {
 					id,
-					mobile_number       : mobileNumber,
-					mobile_country_code : mobileCountryCode,
+					mobile_number: mobileNumber,
+					mobile_country_code: mobileCountryCode,
 				},
 			});
 			if (!res.hasError) {
@@ -60,9 +57,9 @@ function Bar({
 			const res = await otpVarifyAPI({
 				data: {
 					id,
-					mobile_number       : mobileNumber,
-					mobile_country_code : mobileCountryCode,
-					mobile_otp          : otp,
+					mobile_number: mobileNumber,
+					mobile_country_code: mobileCountryCode,
+					mobile_otp: otp,
 				},
 			});
 			if (!res.hasError) {
@@ -70,10 +67,10 @@ function Bar({
 					const resSubmit = await submitKycAPI({
 						data: {
 							id,
-							preferred_languages       : preferredLanguages,
-							country_id                : countryId,
-							registration_number       : formValues?.registration_number,
-							utility_bill_document_url : formValues?.utility_bill_document_url,
+							preferred_languages: preferredLanguages,
+							country_id: countryId,
+							registration_number: formValues?.registration_number,
+							utility_bill_document_url: formValues?.utility_bill_document_url,
 						},
 					});
 					if (!resSubmit.hasError) {
@@ -97,25 +94,18 @@ function Bar({
 	};
 	return (
 		<div className={styles.container}>
-			<Timer initialMinute={2} initialSecond={120} />
 			<div className={styles.input_div}>
-				<Input
-					value={otp}
-					onChange={handleChange}
-					placeholder="Enter OTP"
+				<OTPLayout
+					otpLength={4}
+					setOtpValue={setOtp}
+					loading={otpLoading}
+					sendOtp={handleResendOtp}
 				/>
-			</div>
-			<div
-				className={styles.resend_otp}
-				role="presentation"
-				onClick={handleResendOtp}
-			>
-				RESEND OTP?
 			</div>
 			<div className={styles.button_div}>
 				<Button
 					style={buttonStyle}
-					disabled={otpLoading || kycLoading}
+					disabled={otpLoading || kycLoading || otp.length !== 4}
 					onClick={handleSubmit}
 				>
 					SUBMIT

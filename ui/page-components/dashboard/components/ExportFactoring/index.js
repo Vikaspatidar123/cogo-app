@@ -38,9 +38,9 @@ function ExportFactoring() {
 				</div>
 			</div>
 
-			<div className={styles.button_container}>
+			{/* <div className={styles.button_container}>
 				<Button onClick={handelRouting}>Show Interest</Button>
-			</div>
+			</div> */}
 		</div>
 	);
 }

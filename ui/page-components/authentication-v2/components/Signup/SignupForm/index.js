@@ -1,13 +1,11 @@
 import { Button } from '@cogoport/components';
 import { IcMArrowRight } from '@cogoport/icons-react';
-import { isEmpty } from '@cogoport/utils';
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import ReCAPTCHA from 'react-google-recaptcha';
 
 import useLeadUserDetails from '../../../hooks/useLeadUserDetails';
 import useSignupAuthentication from '../../../hooks/useSignupAuthentication';
 import useSignupForm from '../../../hooks/useSignupForm';
-import { getLocationData } from '../../../utils/getLocationData';
 
 import styles from './styles.module.css';
 
@@ -20,13 +18,12 @@ import CheckboxController from '@/packages/forms/Controlled/CheckboxController';
 import CountrySelectController from '@/packages/forms/Controlled/CountrySelectController';
 import patterns from '@/ui/commons/configurations/patterns';
 
-function SignupForm({ userDetails = {}, setMode = () => {}, setUserDetails = () => {} }) {
+function SignupForm({ userDetails = {}, setMode = () => { }, setUserDetails = () => { } }) {
 	const [captchaResponse, setCaptchaResponse] = useState('');
 	const recaptchaRef = useRef({});
 	const [customError, setCustomError] = useState('');
 	const [captchaError, setCaptchaError] = useState('');
 	const [leadUserId, setLeadUserId] = useState('');
-	const [locationData, setLocationData] = useState({});
 
 	const {
 		signupAuthentication,
@@ -68,21 +65,6 @@ function SignupForm({ userDetails = {}, setMode = () => {}, setUserDetails = () 
 		signupAuthentication,
 	});
 
-	useEffect(() => {
-		const fetchData = async () => {
-			const data = await getLocationData();
-			setLocationData(data);
-		};
-
-		fetchData();
-	}, []);
-
-	useEffect(() => {
-		if (!isEmpty(locationData)) {
-			setValue('mobile_number', { country_code: locationData.mobile_country_code || '+91' });
-		}
-	}, [locationData, setValue]);
-
 	return (
 		<form className={styles.form_container} onSubmit={handleSubmit(onSignupApiCall)}>
 
@@ -96,7 +78,6 @@ function SignupForm({ userDetails = {}, setMode = () => {}, setUserDetails = () 
 					type="text"
 					placeholder="Enter your Full Name"
 					rules={{ required: 'Name is required.' }}
-					mode="onBlur"
 				/>
 				<span className={styles.errors}>
 					{errors?.name?.message || ' '}
@@ -161,7 +142,6 @@ function SignupForm({ userDetails = {}, setMode = () => {}, setUserDetails = () 
 					type="text"
 					placeholder="Enter your Company Name"
 					rules={{ required: 'Company Name is required.' }}
-					mode="onBlur"
 				/>
 				<span className={styles.errors}>
 					{errors?.business_name?.message || ' '}

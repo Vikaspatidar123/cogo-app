@@ -10,6 +10,8 @@ import styles from './styles.module.css';
 
 import OTPLayout from '@/packages/forms/Business/OTPLayout';
 
+const OTP_LENGTH = 6;
+
 function OTPSignupForm({ userDetails = {}, setMode = () => {} }) {
 	const { id = '', mobile_number = {}, email = '' } = userDetails;
 	const [otpValue, setOtpValue] = useState('');
@@ -57,7 +59,7 @@ function OTPSignupForm({ userDetails = {}, setMode = () => {} }) {
 			</h4>
 
 			<OTPLayout
-				otpLength={6}
+				otpLength={OTP_LENGTH}
 				setOtpValue={setOtpValue}
 				loading={resendLoading}
 				sendOtp={resendOtp}
@@ -68,7 +70,7 @@ function OTPSignupForm({ userDetails = {}, setMode = () => {} }) {
 				size="lg"
 				className={styles.submit_button}
 				onClick={onSignupWithOtp}
-				disabled={otpValue.length !== 6}
+				disabled={otpValue.length !== OTP_LENGTH}
 			>
 				Verify
 			</Button>

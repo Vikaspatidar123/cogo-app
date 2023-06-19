@@ -155,6 +155,10 @@ const GLOBAL_CONSTANTS = {
 		iec_yellow_flag:
 		'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/yellwflag.svg',
 	},
+	onboarding_specialist: {
+		phone_number : '+918976851674',
+		email_id     : 'kanira.patel@cogoport.com',
+	},
 };
 
 export default GLOBAL_CONSTANTS;

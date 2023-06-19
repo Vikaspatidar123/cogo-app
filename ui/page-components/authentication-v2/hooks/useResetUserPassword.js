@@ -10,22 +10,18 @@ const useResetUserPassword = (setMode, setEmailId) => {
 
 	const resetUserPassword = async (val) => {
 		try {
-			const res = await trigger({
+			await trigger({
 				data: {
 					email      : val.email || val,
 					auth_scope : 'organization',
 				},
 			});
 
-			if (res.status === 200 && val.email === undefined) {
-				Toast.success('A link has been sent to your email address ');
-			}
+			Toast.success('A link has been sent to your email address.');
 
-			if (res.status === 200 && val.email) {
-				setMode('success');
+			setMode('success');
 
-				setEmailId(val.email);
-			}
+			setEmailId(val.email);
 		} catch (err) {
 			Toast.error(err?.response?.data || 'Something went wrong');
 		}

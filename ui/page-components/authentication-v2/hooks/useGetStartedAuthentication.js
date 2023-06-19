@@ -3,6 +3,12 @@ import { Toast } from '@cogoport/components';
 import { useRequest } from '@/packages/request';
 import { useSelector } from '@/packages/store';
 
+const getFormattedPayload = ({ val, id }) => ({
+	...val,
+	user_id      : id,
+	account_type : 'importer_exporter',
+});
+
 const useGetStartedAuthentication = ({ setMode = () => { } }) => {
 	const { profile: { id = '' } } = useSelector((state) => state);
 
@@ -13,12 +19,9 @@ const useGetStartedAuthentication = ({ setMode = () => { } }) => {
 
 	const onGetStartedApi = async (val, e) => {
 		e.preventDefault();
+
 		try {
-			const payload = {
-				...val,
-				user_id      : id,
-				account_type : 'importer_exporter',
-			};
+			const payload = getFormattedPayload({ val, id });
 
 			await trigger({
 				data: {

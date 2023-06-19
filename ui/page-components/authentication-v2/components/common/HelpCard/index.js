@@ -2,8 +2,10 @@ import { IcMCall, IcMEmail } from '@cogoport/icons-react';
 
 import styles from './styles.module.css';
 
-const PHONE_NUMBER = '+918976851674';
-const EMAIL_ID = 'kanira.patel@cogoport.com';
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
+
+const PHONE_NUMBER = GLOBAL_CONSTANTS.onboarding_specialist.phone_number;
+const EMAIL_ID = GLOBAL_CONSTANTS.onboarding_specialist.email_id;
 
 function HelpCard() {
 	return (

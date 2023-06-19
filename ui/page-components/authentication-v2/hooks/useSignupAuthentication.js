@@ -2,6 +2,22 @@ import { Toast } from '@cogoport/components';
 
 import { useRequest } from '@/packages/request';
 
+const getFormattedPayload = ({ val, captchaResponse, leadUserId }) => {
+	const { name, email, mobile_number, is_whatsapp_number, business_name, country_id } = val;
+
+	return {
+		lead_user_id              : leadUserId || undefined,
+		name,
+		email,
+		mobile_country_code       : mobile_number.country_code,
+		mobile_number             : mobile_number.number,
+		is_whatsapp_number,
+		business_name,
+		country_id,
+		google_recaptcha_response : captchaResponse,
+	};
+};
+
 const useSignupAuthentication = ({
 	setMode, setUserDetails, captchaResponse, leadUserId,
 }) => {
@@ -14,17 +30,7 @@ const useSignupAuthentication = ({
 		e.preventDefault();
 
 		try {
-			const payload = {
-				lead_user_id              : leadUserId || undefined,
-				name                      : val.name,
-				email                     : val.email,
-				mobile_country_code       : val.mobile_number.country_code,
-				mobile_number             : val.mobile_number.number,
-				is_whatsapp_number        : val.is_whatsapp_number,
-				business_name             : val.business_name,
-				country_id                : val.country_id,
-				google_recaptcha_response : captchaResponse,
-			};
+			const payload = getFormattedPayload({ val, captchaResponse, leadUserId });
 
 			const res = await trigger({
 				data: {

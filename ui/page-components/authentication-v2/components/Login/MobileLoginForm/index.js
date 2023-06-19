@@ -1,10 +1,7 @@
 import { Button } from '@cogoport/components';
-import { isEmpty } from '@cogoport/utils';
-import { useEffect, useState } from 'react';
 
 import useLoginMobileAuthentication from '../../../hooks/useLoginMobileAuthentication';
-import { checkMobileInput } from '../../../utils/checkMobileInput';
-import { getLocationData } from '../../../utils/getLocationData';
+import useMobileLoginForm from '../../../hooks/useMobileLoginForm';
 
 import styles from './styles.module.css';
 
@@ -16,9 +13,6 @@ function MobileLoginForm({
 	setOtpId = () => {},
 	mobileNumber = {},
 }) {
-	const [customError, setCustomError] = useState('');
-	const [locationData, setLocationData] = useState({});
-
 	const {
 		onSendOtp = () => {},
 		otpLoading = false,
@@ -28,39 +22,10 @@ function MobileLoginForm({
 
 	const formValues = watch();
 
-	useEffect(() => {
-		const fetchData = async () => {
-			const data = await getLocationData();
-			setLocationData(data);
-		};
-
-		fetchData();
-	}, []);
-
-	useEffect(() => {
-		const hasValues = checkMobileInput(formValues);
-
-		if (hasValues) {
-			setCustomError('');
-		}
-	}, [formValues]);
-
-	const onOtpApiCall = (values, e) => {
-		const hasValues = checkMobileInput(values);
-
-		if (hasValues) {
-			setCustomError('');
-			onSendOtp(values, e);
-		} else {
-			setCustomError('Mobile Details are required.');
-		}
-	};
-
-	useEffect(() => {
-		if (!isEmpty(locationData)) {
-			setValue('mobile_number', { country_code: locationData.mobile_country_code || '+91' });
-		}
-	}, [locationData, setValue]);
+	const {
+		customError = '',
+		onOtpApiCall = () => {},
+	} = useMobileLoginForm({ formValues, onSendOtp, setValue });
 
 	return (
 		<form className={styles.form_container} onSubmit={handleSubmit(onOtpApiCall)}>

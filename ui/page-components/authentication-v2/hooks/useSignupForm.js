@@ -1,7 +1,11 @@
-import { useEffect } from 'react';
+import { isEmpty } from '@cogoport/utils';
+import { useEffect, useState } from 'react';
 
 import { checkMobileInput } from '../utils/checkMobileInput';
 import { getIdByMobileCountryCode } from '../utils/getIdByMobileCountryCode';
+import { getLocationData } from '../utils/getLocationData';
+
+import getGeoConstants from '@/ui/commons/constants/geo';
 
 const useSignupForm = ({
 	setCustomError,
@@ -17,6 +21,10 @@ const useSignupForm = ({
 	setUserDetails,
 	signupAuthentication,
 }) => {
+	const geo = getGeoConstants();
+
+	const [locationData, setLocationData] = useState({});
+
 	const checkMobileDetails = (val) => {
 		const hasMobileValues = checkMobileInput(val);
 
@@ -63,6 +71,24 @@ const useSignupForm = ({
 			signupAuthentication(values, e);
 		}
 	};
+
+	useEffect(() => {
+		const fetchData = async () => {
+			const data = await getLocationData();
+			setLocationData(data);
+		};
+
+		fetchData();
+	}, []);
+
+	useEffect(() => {
+		if (!isEmpty(locationData)) {
+			setValue(
+				'mobile_number',
+				{ country_code: locationData.mobile_country_code || geo.country.mobile_country_code },
+			);
+		}
+	}, [locationData, setValue, geo.country.mobile_country_code]);
 
 	useEffect(() => {
 		if (mobileCodeValue?.country_code) {

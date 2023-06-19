@@ -1,42 +1,53 @@
+import { merge } from '@cogoport/utils';
+import { useState } from 'react';
+
+import getControls from '../config';
+
+import {
+	useForm,
+	useGetAsyncOptions,
+	asyncFieldsLocations,
+} from '@/packages/forms';
 import { useRouter } from '@/packages/next';
 import { useRequest } from '@/packages/request';
 import { useSelector } from '@/packages/store';
 
 const useCreateSchedule = () => {
 	const { general, profile } = useSelector((state) => state);
-	const { scope } = general;
+
 	const { push } = useRouter();
+
+	const [errorMessage, setErrorMessage] = useState(false);
+
+	const { control, watch } = useForm();
+
+	const formValues = watch();
+
+	const airportOptions = useGetAsyncOptions(
+		merge(asyncFieldsLocations(), {
+			params: { filters: { type: ['airport'] } },
+		}),
+	);
+	const fields = getControls({ airportOptions });
+
 	const [{ loading }, trigger] = useRequest({
-		method : 'post',
-		url    : '/create_saas_air_schedule_subscription',
+		method: 'post',
+		url: '/create_saas_air_schedule_subscription',
 	}, { manual: true });
+
 	const createSchedule = async (origin, destination) => {
 		try {
-			let requestData = {};
-			if (scope === 'partner') {
-				requestData = {
-					origin_airport_id      : origin,
-					destination_airport_id : destination,
-					performed_by_user_id   : profile.id,
-					partner_id             : profile.partner.id,
-				};
-			} else {
-				requestData = {
-					origin_airport_id      : origin,
-					destination_airport_id : destination,
-					performed_by_user_id   : profile.id,
-					organization_id        : profile.organization.id,
-					organization_branch_id : general?.query?.branch_id,
-				};
-			}
+			const requestData = {
+				origin_airport_id: origin,
+				destination_airport_id: destination,
+				performed_by_user_id: profile.id,
+				organization_id: profile.organization.id,
+				organization_branch_id: general?.query?.branch_id,
+			};
 
 			const res = await trigger({
 				data: requestData,
 			});
-			const { hasError } = res || {};
-			const message = res?.data?.message;
-			if (hasError) throw new Error();
-			if (message) throw new Error(message);
 
 			const { data } = res;
 
@@ -49,12 +60,22 @@ const useCreateSchedule = () => {
 
 			return data;
 		} catch (err) {
-			console.log(err?.message || 'Unable to create schedules. Please try again.');
+			console.error(err?.message || 'Unable to create schedules. Please try again.');
 			return {};
 		}
 	};
+	const handleCreateSchedule = () => {
+		if (formValues?.origin_airport === formValues?.destination_airport) {
+			setErrorMessage((prev) => !prev);
+			return;
+		}
+		createSchedule(
+			formValues.origin_airport,
+			formValues.destination_airport,
+		);
+	};
 
-	return { loading, createSchedule };
+	return { loading, errorMessage, handleCreateSchedule, control, formValues, fields };
 };
 
 export default useCreateSchedule;

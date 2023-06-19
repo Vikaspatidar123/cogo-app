@@ -5,7 +5,6 @@ import styles from './styles.module.css';
 function NoSchedulesCard({ loading }) {
 	return (
 		<>
-			{' '}
 			{!loading && (
 				<div className={styles.card}>
 					<img

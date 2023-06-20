@@ -14,8 +14,8 @@ const useFetchScheduleDetails = ({
 	const [carrierList, setCarrierList] = useState([]);
 	const [activeFilter, setActiveFilter] = useState(false);
 	const [{ loading: filterFetchLoading }, trigger] = useRequest({
-		url: '/get_sailing_schedule_subscription',
-		method: 'get',
+		url    : '/get_sailing_schedule_subscription',
+		method : 'get',
 	}, { manual: true });
 
 	const prepareFilters = () => { };
@@ -23,10 +23,10 @@ const useFetchScheduleDetails = ({
 		try {
 			const res = await trigger({
 				params: {
-					filters: { ...prepareFilters(filters, scheduleDetails?.filter_data ?? {}) },
-					page: currentPage,
-					page_limit: pageLimit,
-					performed_by_user_id: profile.id,
+					filters              : { ...prepareFilters(filters, scheduleDetails?.filter_data ?? {}) },
+					page                 : currentPage,
+					page_limit           : pageLimit,
+					performed_by_user_id : profile.id,
 					id,
 					...(sortBy && { sort_type: 'asc', sort_by: sortBy }),
 				},
@@ -36,11 +36,11 @@ const useFetchScheduleDetails = ({
 			const carrierData = data?.schedules?.shipping_lines || [];
 
 			const arrList = carrierData.map((val, index) => ({
-				id: index,
-				name: val.short_name,
-				status: false,
-				shippingLineId: val.id,
-				logo_url: val?.logo_url,
+				id             : index,
+				name           : val.short_name,
+				status         : false,
+				shippingLineId : val.id,
+				logo_url       : val?.logo_url,
 
 			}));
 
@@ -61,9 +61,9 @@ const useFetchScheduleDetails = ({
 						transit_time: transit_time === '0' ? undefined : transit_time,
 						...rest,
 					},
-					page: currentPage,
-					page_limit: pageLimit,
-					performed_by_user_id: profile.id,
+					page                 : currentPage,
+					page_limit           : pageLimit,
+					performed_by_user_id : profile.id,
 					id,
 				},
 			});

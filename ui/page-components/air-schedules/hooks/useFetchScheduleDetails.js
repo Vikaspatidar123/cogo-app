@@ -16,8 +16,8 @@ const useFetchScheduleDetails = ({
 	const [mapPoints, setMapPoints] = useState();
 
 	const [{ loading }, trigger] = useRequest({
-		url: '/get_saas_air_schedule_subscription',
-		method: 'get',
+		url    : '/get_saas_air_schedule_subscription',
+		method : 'get',
 	}, { manual: true });
 
 	const fetchScheduleDetails = useCallback(async () => {
@@ -27,9 +27,9 @@ const useFetchScheduleDetails = ({
 					filters: {
 						...filters,
 					},
-					page: currentPage,
-					page_limit: pageLimit,
-					performed_by_user_id: profile.id,
+					page                 : currentPage,
+					page_limit           : pageLimit,
+					performed_by_user_id : profile.id,
 					id,
 					...(sortBy && { sort_type: 'asc', sort_by: sortBy }),
 				},
@@ -37,21 +37,21 @@ const useFetchScheduleDetails = ({
 			const { data } = res;
 			const carrierData = data?.schedules?.airlines || [];
 			const arrList = carrierData.map((val, index) => ({
-				id: index,
-				name: val.short_name,
-				status: false,
-				airLineId: val.id,
-				logo_url: val?.logo_url,
+				id        : index,
+				name      : val.short_name,
+				status    : false,
+				airLineId : val.id,
+				logo_url  : val?.logo_url,
 
 			}));
 			setCarrierList(arrList);
 			setScheduleDetails(data);
 			setMapPoints([
 				{
-					departure_lat: data.origin_airport?.latitude,
-					departure_long: data.origin_airport?.longitude,
-					arrival_lat: data.destination_airport?.latitude,
-					arrival_long: data.destination_airport?.longitude,
+					departure_lat  : data.origin_airport?.latitude,
+					departure_long : data.origin_airport?.longitude,
+					arrival_lat    : data.destination_airport?.latitude,
+					arrival_long   : data.destination_airport?.longitude,
 				},
 			]);
 		} catch (err) {
@@ -69,9 +69,9 @@ const useFetchScheduleDetails = ({
 						...rest,
 						transit_time: transit_time === '0' ? undefined : transit_time,
 					},
-					page: currentPage,
-					page_limit: pageLimit,
-					performed_by_user_id: profile.id,
+					page                 : currentPage,
+					page_limit           : pageLimit,
+					performed_by_user_id : profile.id,
 					id,
 				},
 			});
@@ -80,10 +80,10 @@ const useFetchScheduleDetails = ({
 			setScheduleDetails(data);
 			setMapPoints([
 				{
-					departure_lat: data.origin_airport?.latitude,
-					departure_long: data.origin_airport?.longitude,
-					arrival_lat: data.destination_airport?.latitude,
-					arrival_long: data.destination_airport?.longitude,
+					departure_lat  : data.origin_airport?.latitude,
+					departure_long : data.origin_airport?.longitude,
+					arrival_lat    : data.destination_airport?.latitude,
+					arrival_long   : data.destination_airport?.longitude,
 				},
 			]);
 			setActiveFilter(false);

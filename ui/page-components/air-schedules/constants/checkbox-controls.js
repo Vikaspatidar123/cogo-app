@@ -1,9 +1,9 @@
 const getControls = ({ options }) => [
 	{
-		label: 'transshipments',
-		name: 'transshipments',
-		type: 'checkbox',
-		span: 12,
+		label : 'transshipments',
+		name  : 'transshipments',
+		type  : 'checkbox',
+		span  : 12,
 		options,
 	},
 ];

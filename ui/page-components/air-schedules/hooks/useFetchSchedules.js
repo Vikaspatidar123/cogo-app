@@ -12,8 +12,8 @@ const useFetchSchedules = () => {
 	const prepareFilters = () => { };
 
 	const [{ loading }, trigger] = useRequest({
-		method: 'get',
-		url: '/list_saas_air_schedule_subscription',
+		method : 'get',
+		url    : '/list_saas_air_schedule_subscription',
 	}, { manual: true });
 
 	const fetchSchedules = useCallback(async () => {
@@ -21,9 +21,9 @@ const useFetchSchedules = () => {
 			const res = await trigger({
 				params: {
 					filters: {
-						organization_branch_id: general?.query?.branch_id,
+						organization_branch_id : general?.query?.branch_id,
 						...prepareFilters(filters, schedules?.filter_data ?? {}),
-						status: 'active',
+						status                 : 'active',
 					},
 					page: currentPage,
 				},

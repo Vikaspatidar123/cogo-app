@@ -1,8 +1,8 @@
 const getFilterOptions = () => {
 	const SORT_FILTERS = {
-		arrival: ['Arrival'],
-		departure: ['Departure'],
-		transit_time: [
+		arrival      : ['Arrival'],
+		departure    : ['Departure'],
+		transit_time : [
 			'Transit Time',
 		],
 	};

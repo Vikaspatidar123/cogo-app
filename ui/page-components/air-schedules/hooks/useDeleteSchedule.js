@@ -25,8 +25,8 @@ const useDeleteSchedule = ({ fetchSchedules, schedule = {} }) => {
 	const destination_airport_code = destination_airport?.name.split('-')[1];
 
 	const [{ loading }, trigger] = useRequest({
-		url: '/delete_saas_air_schedule_subscription',
-		method: 'post',
+		url    : '/delete_saas_air_schedule_subscription',
+		method : 'post',
 	}, { manual: true });
 
 	const handleDelete = async () => {

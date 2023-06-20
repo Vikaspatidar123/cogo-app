@@ -173,6 +173,10 @@ const saas = {
 		navigation : 'saas_planning-product_inventory',
 		isMainNav  : true,
 	},
+	'/saas/transaction-history': {
+		navigation : 'saas_transaction_history',
+		isMainNav  : true,
+	},
 };
 
 module.exports = saas;

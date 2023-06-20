@@ -5,7 +5,7 @@ import styles from './styles.module.css';
 
 import formatAmount from '@/ui/commons/utils/formatAmount';
 
-function DutiesTaxesModal({ tradeEngineResp }) {
+function DutiesTaxesModal({ tradeEngineResponse }) {
 	const {
 		lineItem = [],
 		resultCurrency = 'INR',
@@ -16,9 +16,8 @@ function DutiesTaxesModal({ tradeEngineResp }) {
 		additionalChargesList = {},
 		modeOfTransport = '',
 		incoterm = '',
-	} = tradeEngineResp || {};
+	} = tradeEngineResponse || {};
 	const { incotermCharges: incotermArr = [] } = additionalChargesList || {};
-
 	const calculateTotalCharge = (arr) => {
 		const amount = (arr || []).reduce((acc, curr) => +acc + +curr.value, 0);
 		return amount;

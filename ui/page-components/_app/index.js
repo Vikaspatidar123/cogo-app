@@ -19,7 +19,11 @@ import handleAuthentication from '@/ui/page-components/authentication/utils/hand
 import { setCookie } from '@cogoport/utils';
 
 function MyApp({ Component, pageProps, store, generalData }) {
+	const { profile } = store.getState() || {};
+	const { partner_id } = profile.organization || {};
+
 	useEffect(() => {
+		setCookie('parent_entity_id', partner_id);
 		setCookie('locale', Router.locale);
 		Router.events.on('routeChangeStart', () => {
 			pageProgessBar.start();
@@ -30,7 +34,7 @@ function MyApp({ Component, pageProps, store, generalData }) {
 			pageProgessBar.done();
 		});
 		store.dispatch(setGeneralStoreState(generalData));
-	}, [generalData, store]);
+	}, [generalData, store, partner_id]);
 
 	return (
 		<Provider store={store}>

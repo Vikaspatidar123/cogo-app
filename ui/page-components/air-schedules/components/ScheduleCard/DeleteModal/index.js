@@ -4,7 +4,7 @@ import React from 'react';
 
 import styles from './styles.module.css';
 
-function DeleteModal({ showDelete, setShowDelete = true, deleteSchedule, schedule }) {
+function DeleteModal({ showDelete, setShowDelete = true, deleteSchedule, schedule, loading = false }) {
 	return (
 		<Modal size="md" show={showDelete} onClose={() => setShowDelete()} placement="top">
 			<div className={styles.heading}>
@@ -16,13 +16,16 @@ function DeleteModal({ showDelete, setShowDelete = true, deleteSchedule, schedul
 					onClick={() => setShowDelete()}
 					themeType="secondary"
 					style={{ marginRight: '10px' }}
+					disabled={loading}
 				>
 					Cancel
 				</Button>
-				<Button onClick={() => {
-					deleteSchedule(schedule?.id);
-					setShowDelete(false);
-				}}
+				<Button
+					onClick={() => {
+						deleteSchedule(schedule?.id);
+						setShowDelete(false);
+					}}
+					disabled={loading}
 				>
 					Delete
 

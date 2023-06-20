@@ -9,12 +9,14 @@ const useCategory = ({ hsCode, hsCodeId, setShow }) => {
 	const { id = '', organization = {} } = profile || {};
 	const { country = {} } = organization || {};
 	const [{ loading: getproductLoading, data: productDetails }, getproductTrigger] = useRequestBf({
-		url    : '/saas/product/category',
-		method : 'get',
+		url     : '/saas/product/category',
+		method  : 'get',
+		authKey : 'get_saas_product_category',
 	}, { manual: true });
 	const [{ loading: addProductLoading }, addProductTrigger] = useRequestBf({
-		url    : '/saas/product',
-		method : 'post',
+		url     : '/saas/product',
+		method  : 'post',
+		authKey : 'post_saas_product',
 	}, { manual: true });
 	const getProduct = useCallback(async () => {
 		try {

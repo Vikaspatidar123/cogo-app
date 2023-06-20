@@ -58,20 +58,19 @@ function AsyncSelect(props) {
 		initialCall,
 		getModifiedOptions,
 		getSelectedOption = () => { },
+		valueKey = 'id',
 		...rest
 	} = props;
 	const defaultParams = keyAsyncFieldsParamsMapping[asyncKey]?.() || {};
-
 	const callFunction = defaultParams.authKey
 		? useGetAsyncOptionsBf
 		: useGetAsyncOptions;
-
 	const getAsyncOptionsProps = callFunction({
 		...defaultParams,
 		initialCall,
 		params   : merge(params, defaultParams.params),
 		labelKey : rest.labelKey || defaultParams.labelKey,
-		valueKey : rest.valueKey || defaultParams.valueKey,
+		valueKey : valueKey || defaultParams.valueKey,
 		getModifiedOptions,
 		value    : rest.value,
 	});
@@ -84,7 +83,7 @@ function AsyncSelect(props) {
 		}
 
 		const selectedOption = getAsyncOptionsProps.options.filter(
-			(option) => option?.[rest.valueKey] === selectedValue,
+			(option) => option?.[valueKey] === selectedValue,
 		);
 		getSelectedOption(selectedOption[0]);
 	}

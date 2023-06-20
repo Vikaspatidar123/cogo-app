@@ -2,21 +2,22 @@ import { Placeholder } from '@cogoport/components';
 
 import styles from './styles.module.css';
 
-function Loading() {
+function Loading({ home = false }) {
 	return [...Array(3).keys()].map(() => (
-		<div className={styles.container}>
+		<div className={home ? styles.box : styles.container}>
 			<Placeholder
 				height="165px"
-				width="669px"
-				margin="0px 0px 20px 0px"
+				width={home ? '670px' : '1000px'}
 				className={styles.card}
 			/>
-			<Placeholder
-				height="165px"
-				width="669px"
-				margin="0px 0px 20px 0px"
-				className={styles.card}
-			/>
+			{home && (
+				<Placeholder
+					height="165px"
+					width="670px"
+					className={styles.card}
+				/>
+			)}
+
 		</div>
 	));
 }

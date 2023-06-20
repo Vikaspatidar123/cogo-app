@@ -10,13 +10,13 @@ const useTradeEngine = () => {
 	const { profile = {} } = useSelector((s) => s);
 	const { organization = {} } = profile || {};
 
-	const [{ loading:getTransactionLoading }, triggerGetTransaction] = useRequestBf({
+	const [{ loading: getTransactionLoading }, triggerGetTransaction] = useRequestBf({
 		url     : '/saas/trade-engine',
 		authKey : 'get_saas_trade_engine',
 		method  : 'get',
 	}, { manual: true });
 
-	const [{ loading:postTransactionLoading }, triggerPostTransaction] = useRequestBf({
+	const [{ loading: postTransactionLoading }, triggerPostTransaction] = useRequestBf({
 		url     : '/saas/trade-engine',
 		authKey : 'post_saas_trade_engine',
 		method  : 'post',

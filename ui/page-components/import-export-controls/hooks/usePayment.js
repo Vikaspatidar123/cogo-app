@@ -27,13 +27,13 @@ const usePayment = () => {
 	const [modal, setModal] = useState({});
 
 	const callBackUrl = `${process.env.NEXT_PUBLIC_APP_BASE_URL}v2/${org_id}/${branch_id}/${account_type}/`
-	+ 'saas/premium-services/import-export-controls';
+		+ 'saas/premium-services/import-export-controls';
 	const { getProductCodeLoading, productCode = {} } = useGetProductCode();
 
 	const [{ data, loading }, trigger] = useRequestBf({
 		method  : 'post',
 		url     : '/saas/payment',
-		authkey : 'post_saas_payment',
+		authKey : 'post_saas_payment',
 	}, { manual: true });
 
 	const { import_export_documents = {} } = productCode;

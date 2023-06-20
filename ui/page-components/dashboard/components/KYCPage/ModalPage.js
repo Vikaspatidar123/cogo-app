@@ -36,7 +36,7 @@ function ModalPage({ open, setOpen }) {
 	} = user_profile || {};
 	const initialValues = {
 		preferred_languages,
-		registration_number : user_organization.registration_number,
+		registration_number : user_organization?.registration_number,
 		mobile              : {
 			country_code : mobile_country_code,
 			number       : mobile_number,

@@ -67,7 +67,8 @@ function Form({
 				showErrorsInToast(res?.messages);
 			}
 		} catch (err) {
-			showErrorsInToast(err?.data);
+			const message = err?.response?.data;
+			showErrorsInToast(message.message ? { message: message.message } : message);
 		}
 	};
 

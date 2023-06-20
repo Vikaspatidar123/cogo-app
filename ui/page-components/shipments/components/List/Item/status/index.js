@@ -1,12 +1,13 @@
-import { cl } from '@cogoport/components';
+import { cl, Button } from '@cogoport/components';
 
 import getText from '../../../../utils/get-text';
 
 import styles from './styles.module.css';
 
-import { Link } from '@/packages/next';
+import { useRouter } from '@/packages/next';
 
 function Status({ data, viewAs, isBookingDesk = false }) {
+	const router = useRouter();
 	const { id } = data || {};
 
 	let shipment_id;
@@ -31,6 +32,9 @@ function Status({ data, viewAs, isBookingDesk = false }) {
 	const stateData = getText(data, [], viewAs, true);
 
 	const buttonText = stateData?.text === 'Added to Cart' ? 'Show' : 'VIEW DETAILS';
+	const onBook = () => {
+		router.push(href, as);
+	};
 
 	return (
 		<div className={cl`${styles.container} ${isBookingDesk ? styles.booking_desk : ''}`}>
@@ -41,9 +45,9 @@ function Status({ data, viewAs, isBookingDesk = false }) {
 				</span>
 			</div>
 			<div className={cl`${styles?.alert} ${styles?.[stateData.color] || styles.yellow}`}>{stateData.text}</div>
-			<Link href={href} as={as} passHref>
+			<Button onClick={() => onBook()}>
 				<div className={styles.action}>{buttonText}</div>
-			</Link>
+			</Button>
 		</div>
 	);
 }

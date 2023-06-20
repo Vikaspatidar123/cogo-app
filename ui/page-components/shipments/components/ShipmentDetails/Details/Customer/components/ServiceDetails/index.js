@@ -1,4 +1,5 @@
 import { Placeholder, Modal } from '@cogoport/components';
+import { isEmpty } from '@cogoport/utils';
 import { useState, useContext, useEffect } from 'react';
 
 import { ShipmentDetailContext } from '../../../../common/Context';
@@ -12,7 +13,7 @@ import styles from './styles.module.css';
 
 import CargoDetails from '@/ui/page-components/shipments/components/CargoDetails';
 
-function ServicDetails({ servicesForMap = false }) {
+function ServicDetails({ servicesForMap = false, loading = false }) {
 	const [open, setOpen] = useState(false);
 
 	const [{ shipment_data, primary_service, isGettingShipment, refetch }] = useContext(ShipmentDetailContext);
@@ -39,27 +40,30 @@ function ServicDetails({ servicesForMap = false }) {
 
 			{shipment_data.state === 'cancelled' ? <CancelHeader /> : null}
 
-			<div className={styles.containerInfo}>
-				<PortDetails
-					shipment_data={shipment_data}
-					primary_service={primary_service}
-				/>
-
-				<div className={styles.service_detail}>
-					<CargoDetails
-						primary_service={primary_service}
+			{!isEmpty(primary_service) && (
+				<div className={styles.containerInfo}>
+					<PortDetails
 						shipment_data={shipment_data}
+						primary_service={primary_service}
+						loading={loading}
 					/>
 
-					{!is_cancellation_requested ? (
-						<Cancellation
-							isIE
-							refetch={refetch}
-							isRequested={is_cancellation_requested}
+					<div className={styles.service_detail}>
+						<CargoDetails
+							primary_service={primary_service}
+							shipment_data={shipment_data}
 						/>
-					) : null}
+
+						{!is_cancellation_requested ? (
+							<Cancellation
+								isIE
+								refetch={refetch}
+								isRequested={is_cancellation_requested}
+							/>
+						) : null}
+					</div>
 				</div>
-			</div>
+			)}
 
 			{open && (
 				<Modal

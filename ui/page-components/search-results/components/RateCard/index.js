@@ -1,7 +1,7 @@
 import { cl } from '@cogoport/components';
 import { IcCFtick } from '@cogoport/icons-react';
 import { startCase } from '@cogoport/utils';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import CogoAssuredSchedule from './CogoAssuredSchedule';
 import DetentionDemurrage from './DetentionDemurrage';
@@ -203,6 +203,9 @@ function RateCard(props) {
 			</>
 		);
 	};
+	useEffect(() => {
+		setScheduleId(data.shipping_line?.id);
+	}, [data]);
 
 	return (
 		<div
@@ -320,6 +323,7 @@ function RateCard(props) {
 					setViewSchedules={setViewSchedules}
 					isConfirmed={false}
 					setScheduleId={setScheduleId}
+					scheduleData={scheduleData}
 				/>
 
 			</div>

@@ -33,9 +33,7 @@ const useSignupAuthentication = ({
 			const payload = getFormattedPayload({ val, captchaResponse, leadUserId });
 
 			const res = await trigger({
-				data: {
-					...payload,
-				},
+				data: payload,
 			});
 
 			const { data } = res || {};

@@ -32,9 +32,7 @@ const useLoginOtpAuthentication = (props) => {
 			const payload = getFormattedPayload({ mobileNumber, otpId, otpValue });
 
 			const response = await trigger({
-				data: {
-					...payload,
-				},
+				data: payload,
 			});
 
 			const { token } = response.data || {};

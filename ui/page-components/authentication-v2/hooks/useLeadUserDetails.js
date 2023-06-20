@@ -24,9 +24,7 @@ const useLeadUserDetails = ({ setLeadUserId = () => {} }) => {
 		try {
 			const payload = getFormattedPayload(props);
 			const response = await trigger({
-				data: {
-					...payload,
-				},
+				data: payload,
 			});
 
 			const res = response.data || {};

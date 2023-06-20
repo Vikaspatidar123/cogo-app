@@ -3,30 +3,28 @@ import { Toast } from '@cogoport/components';
 import { useRequest } from '@/packages/request';
 import { useSelector } from '@/packages/store';
 
-const getFormattedPayload = ({ val, id }) => ({
-	...val,
-	user_id      : id,
-	account_type : 'importer_exporter',
+const getFormattedPayload = ({ formValues, user_id }) => ({
+	...(formValues || {}),
+	user_id,
+	account_type: 'importer_exporter',
 });
 
 const useGetStartedAuthentication = ({ setMode = () => { } }) => {
-	const { profile: { id = '' } } = useSelector((state) => state);
+	const { profile: { id: user_id = '' } } = useSelector((state) => state);
 
 	const [{ loading: getStartedLoading }, trigger] = useRequest({
 		url    : 'create_organization',
 		method : 'post',
 	}, { manual: true });
 
-	const onGetStartedApi = async (val, e) => {
+	const onGetStartedApi = async (formValues, e) => {
 		e.preventDefault();
 
 		try {
-			const payload = getFormattedPayload({ val, id });
+			const payload = getFormattedPayload({ formValues, user_id });
 
 			await trigger({
-				data: {
-					...payload,
-				},
+				data: payload,
 			});
 
 			setMode('loading_prompts');

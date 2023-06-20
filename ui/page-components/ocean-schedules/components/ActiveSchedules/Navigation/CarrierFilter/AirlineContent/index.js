@@ -12,10 +12,10 @@ function AirlineContent(props) {
 	return (
 		<div className={styles.flex}>
 			<ul style={{ padding: '0px 10px 0px 10px' }}>
-				{list?.map((item, i) => (
-					<div className={styles.flex} key={item.id} style={{ alignItems: 'center' }}>
+				{(list || []).map((item, i) => (
+					<div className={styles.flex} key={item?.id} style={{ alignItems: 'center' }}>
 						<Checkbox
-							checked={item.status}
+							checked={item?.status}
 							onChange={() => handleChange(item)}
 							id={`${i}_active_air_sch_filter_dp`}
 						/>
@@ -26,7 +26,7 @@ function AirlineContent(props) {
 								width={40}
 								height={15}
 							/>
-							{item.name}
+							{item?.name}
 						</div>
 					</div>
 				))}

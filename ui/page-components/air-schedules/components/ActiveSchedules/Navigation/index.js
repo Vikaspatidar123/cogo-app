@@ -19,8 +19,6 @@ function Navigation({
 	onChange,
 	clearAllHandler,
 }) {
-	// const [filterCarrier, setFilterCarrier] = useState([]);
-
 	const [isOpen, setIsOpen] = useState([]);
 
 	const arrayRemove = (arr, value) => arr.filter((ele) => ele !== value);

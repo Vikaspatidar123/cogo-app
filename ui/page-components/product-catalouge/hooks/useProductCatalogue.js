@@ -12,21 +12,21 @@ const useProductCatalogue = ({ archive = false, fetch = () => { }, setActiveTab 
 	const [apiData, setApiData] = useState({});
 	const [pagination, setPagination] = useState({ page: 1 });
 	const [{ loading: useProductLoading }, UseProducttrigger] = useRequestBf({
-		url: '/saas/product/list',
-		method: 'get',
-		authKey: 'get_saas_product_list',
+		url     : '/saas/product/list',
+		method  : 'get',
+		authKey : 'get_saas_product_list',
 	}, { manual: true });
 
 	const [{ loading: addApiLoading }] = useRequestBf({
-		url: '/saas/product',
-		method: 'delete',
-		authKey: 'delete_saas_product',
+		url     : '/saas/product',
+		method  : 'delete',
+		authKey : 'delete_saas_product',
 	}, { manual: true });
 
 	const [{ loading: deleteProductApiLoading }, deleteProductTrigger] = useRequestBf({
-		url: '/saas/product',
-		method: 'delete',
-		authKey: 'delete_saas_product',
+		url     : '/saas/product',
+		method  : 'delete',
+		authKey : 'delete_saas_product',
 	}, { manual: true });
 
 	const refetchProduct = async ({
@@ -37,13 +37,13 @@ const useProductCatalogue = ({ archive = false, fetch = () => { }, setActiveTab 
 		try {
 			const response = await UseProducttrigger({
 				params: {
-					page: page.page,
-					pageLimit: 12,
+					page            : page.page,
+					pageLimit       : 12,
 					productClassificationId,
-					organizationId: profile.organization.id,
-					originCountry: profile.organization?.country?.name,
-					originCountryId: profile.organization?.country?.country_id,
-					archived: archive,
+					organizationId  : profile.organization.id,
+					originCountry   : profile.organization?.country?.name,
+					originCountryId : profile.organization?.country?.country_id,
+					archived        : archive,
 				},
 			});
 			setApiData(response?.data);
@@ -95,9 +95,9 @@ const useProductCatalogue = ({ archive = false, fetch = () => { }, setActiveTab 
 	return {
 		apiData,
 		deleteProductApiLoading,
-		loading: useProductLoading,
+		loading           : useProductLoading,
 		refetchProduct,
-		addProductLoading: addApiLoading,
+		addProductLoading : addApiLoading,
 		deleteProduct,
 		setPagination,
 	};

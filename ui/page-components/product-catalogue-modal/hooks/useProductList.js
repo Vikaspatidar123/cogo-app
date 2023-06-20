@@ -19,9 +19,9 @@ const useProductList = ({ labeledValue }) => {
 	const { debounceQuery, query } = useSearchQuery();
 
 	const [{ loading }, productTrigger] = useRequestBf({
-		url: '/saas/product/list',
-		method: 'get',
-		authKey: 'get_saas_product_list',
+		url     : '/saas/product/list',
+		method  : 'get',
+		authKey : 'get_saas_product_list',
 	}, { manual: true });
 
 	const refetchProduct = async ({
@@ -33,11 +33,11 @@ const useProductList = ({ labeledValue }) => {
 				params: {
 					page,
 					query,
-					pageLimit: labeledValue === 'list' ? 5 : 1000,
+					pageLimit       : labeledValue === 'list' ? 5 : 1000,
 					productClassificationId,
-					organizationId: orgId,
-					originCountry: country?.name,
-					originCountryId: country?.country_id,
+					organizationId  : orgId,
+					originCountry   : country?.name,
+					originCountryId : country?.country_id,
 				},
 			});
 			setProductList(response.data);

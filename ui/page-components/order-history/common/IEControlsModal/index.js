@@ -50,7 +50,7 @@ function IEControlsModal({ tradeEngineResponse = {} }) {
 							)}
 						</TabPanel>
 
-						<TabPanel name="IMPORT" title="Import Controls" badge={5}>
+						<TabPanel name="IMPORT" title="Import Controls">
 							{TAB_MAPPING?.[activeTab]?.length > 0 ? (
 								<ResultDetails
 									activeTab={activeTab}

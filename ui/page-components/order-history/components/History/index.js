@@ -12,7 +12,7 @@ import styles from './styles.module.css';
 function OrderHistory() {
 	const [sort, setSort] = useState();
 	const {
-		setGlobalFilters = () => {},
+		setGlobalFilters = () => { },
 		filters = {},
 		apiData = {},
 		apiLoading = false,

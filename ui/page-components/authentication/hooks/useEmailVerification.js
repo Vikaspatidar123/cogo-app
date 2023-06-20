@@ -11,17 +11,15 @@ const useEmailVerification = () => {
 	const onClickResendEmail = async (id) => {
 		try {
 			const payload = {
-				lead_user_id : id,
+				lead_user_id : id || undefined,
 				platform     : 'app',
 			};
 
-			const response = await resendEmailAPItrigger({
+			await resendEmailAPItrigger({
 				data: payload,
 			});
 
-			if (response?.hasError) return;
-
-			Toast.success('Verification Email resent successfully');
+			Toast.success('Verification Email has been Resent.');
 		} catch (error) {
 			Toast.error(error?.error);
 		}

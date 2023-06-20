@@ -1,42 +1,66 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
+import LayoutHelp from '../common/LayoutHelp';
+import LayoutLogo from '../common/LayoutLogo';
+import LoadingPrompts from '../common/LoadingPrompts';
+
+import OTPSignupForm from './OTPSignupForm';
 import SignupForm from './SignupForm';
 import styles from './styles.module.css';
-import VerifictaionForm from './VerificationForm';
 
-import LeftPanel from '@/ui/commons/components/LeftPanel';
+const SIGNUP_FLOW_MAPPING = {
+	signup_form     : SignupForm,
+	otp_form        : OTPSignupForm,
+	loading_prompts : LoadingPrompts,
+};
 
 function Signup() {
-	const [hasSignedup, setHasSignedup] = useState(false);
-	const [formData, setFormData] = useState({});
-	const [userDetails, setUserDetails] = useState();
+	const [mode, setMode] = useState('signup_form');
+
+	const [userDetails, setUserDetails] = useState({
+		name               : '',
+		email              : '',
+		mobile_number      : { country_code: '', number: '' },
+		business_name      : '',
+		country_id         : '',
+		is_whatsapp_number : false,
+	});
+
+	const componentProps = {
+		signup_form: {
+			userDetails,
+			setMode,
+			setUserDetails,
+		},
+		otp_form: {
+			userDetails,
+			setMode,
+		},
+		loading_prompts: {
+			type: 'signup',
+		},
+	};
+
+	const Component = SIGNUP_FLOW_MAPPING[mode] || null;
 
 	return (
-		<div className={styles.container}>
-			<div className={styles.left_container}>
-				<LeftPanel />
-			</div>
-			<div className={styles.right_container}>
-				<div className={styles.main_container}>
-					{!hasSignedup ? (
-						<>
-							<div className={styles.right_signup_text}>
-								Welcome to Cogoport
-								<span className={styles.right_signup_text_span}>
-									Sign up to create an account with us.
-								</span>
-							</div>
-							<SignupForm
-								setHasSignedup={setHasSignedup}
-								setFormData={setFormData}
-								setUserDetails={setUserDetails}
-							/>
-						</>
-					)
-						: <VerifictaionForm formData={formData} userDetails={userDetails} />}
+		<div className={styles.authentication_layout}>
 
+			<LayoutLogo />
+
+			<div className={styles.card_container}>
+				<div className={styles.card}>
+					{Component && (
+						<Component
+							key={mode}
+							{...(componentProps[mode] || {})}
+						/>
+					)}
 				</div>
 			</div>
+
+			<LayoutHelp />
+
 		</div>
 	);
 }

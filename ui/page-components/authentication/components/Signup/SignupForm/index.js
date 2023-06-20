@@ -1,134 +1,216 @@
-import { Button, Checkbox } from '@cogoport/components';
-import React, { useState, useRef } from 'react';
+import { Button } from '@cogoport/components';
+import { IcMArrowRight } from '@cogoport/icons-react';
+import { useRef, useState } from 'react';
 import ReCAPTCHA from 'react-google-recaptcha';
 
+import useLeadUserDetails from '../../../hooks/useLeadUserDetails';
 import useSignupAuthentication from '../../../hooks/useSignupAuthentication';
+import useSignupForm from '../../../hooks/useSignupForm';
 
 import styles from './styles.module.css';
 
-import { useForm, InputController, MobileNumberSelectController } from '@/packages/forms';
+import {
+	InputController,
+	MobileNumberSelectController,
+	useForm,
+} from '@/packages/forms';
+import CheckboxController from '@/packages/forms/Controlled/CheckboxController';
+import CountrySelectController from '@/packages/forms/Controlled/CountrySelectController';
+import patterns from '@/ui/commons/configurations/patterns';
 
-function SignupForm({ setHasSignedup, setFormData, setUserDetails }) {
-	const {
-		handleSubmit, formState: { errors }, control, watch,
-	} = useForm();
+function SignupForm({ userDetails = {}, setMode = () => { }, setUserDetails = () => { } }) {
 	const [captchaResponse, setCaptchaResponse] = useState('');
-	const [hasWhatsApp, setHasWhatsApp] = useState(false);
 	const recaptchaRef = useRef({});
+	const [customError, setCustomError] = useState('');
+	const [captchaError, setCaptchaError] = useState('');
+	const [leadUserId, setLeadUserId] = useState('');
 
-	const { signupAuthentication, signupLoading } = useSignupAuthentication({
-		setHasSignedup, setUserDetails, captchaResponse, hasWhatsApp,
+	const {
+		signupAuthentication,
+		signupLoading,
+	} = useSignupAuthentication({ setMode, setUserDetails, captchaResponse, leadUserId });
+
+	const { onLeadUserDetails } = useLeadUserDetails({ setLeadUserId });
+
+	const {
+		handleSubmit,
+		formState: { errors },
+		trigger,
+		control,
+		watch,
+		setValue,
+	} = useForm({
+		defaultValues: {
+			...userDetails,
+		},
+		mode: 'onBlur',
 	});
-
-	const onChange = (value = '') => {
-		setCaptchaResponse(value);
-	};
-
-	const handleChange = () => {
-		setHasWhatsApp(!hasWhatsApp);
-	};
 
 	const formValues = watch();
 
-	const handleClick = () => {
-		setFormData(formValues);
-	};
+	const mobileCodeValue = watch('mobile_number');
+
+	const { onSignupApiCall, makeApiCallForEmail, makeApiCallForMobile } = useSignupForm({
+		setCustomError,
+		setCaptchaError,
+		trigger,
+		errors,
+		setValue,
+		formValues,
+		mobileCodeValue,
+		onLeadUserDetails,
+		leadUserId,
+		captchaResponse,
+		setUserDetails,
+		signupAuthentication,
+	});
 
 	return (
-		<form
-			className={styles.form_container}
-			onSubmit={handleSubmit(signupAuthentication)}
-		>
-			<div className={styles.input_container}>
+		<form className={styles.form_container} onSubmit={handleSubmit(onSignupApiCall)}>
+
+			<h2 className={styles.card_heading}>Welcome to Cogoport </h2>
+
+			<div className={styles.field}>
+				<div className={styles.label}>Full Name</div>
 				<InputController
 					control={control}
 					name="name"
 					type="text"
-					placeholder="Name"
+					placeholder="Enter your Full Name"
 					rules={{ required: 'Name is required.' }}
 				/>
-
-				{errors.name && (
-					<span className={styles.errors}>
-						{errors.name.message}
-					</span>
-				)}
+				<span className={styles.errors}>
+					{errors?.name?.message || ' '}
+				</span>
 			</div>
-			<div className={styles.input_container}>
+
+			<div className={styles.field}>
+				<div className={styles.label}>Email Address</div>
 				<InputController
 					control={control}
 					name="email"
 					type="email"
-					placeholder="Email"
-					rules={{ required: 'Email is required.' }}
+					placeholder="Enter your Email"
+					rules={{
+						required : 'Email is required.',
+						pattern  : {
+							value   : patterns.EMAIL,
+							message : 'Email is invalid.',
+						},
+					}}
+					mode="onBlur"
+					onBlur={makeApiCallForEmail}
 				/>
-
-				{errors.email && (
-					<span className={styles.errors}>
-						{errors.email.message}
-					</span>
-				)}
+				<span className={styles.errors}>
+					{errors?.email?.message || ' '}
+				</span>
 			</div>
 
-			<div className={styles.mobile_number_select_container}>
+			<div className={styles.field}>
+				<div className={styles.label}>Mobile Number</div>
 				<MobileNumberSelectController
 					control={control}
 					name="mobile_number"
-					type="mobile-number-select"
-					placeholder="Mobile Number"
-					rules={{ required: 'Number is required.' }}
+					placeholder="Enter your Mobile Number"
+					rules={{
+						required: 'Mobile Number is required.',
+					}}
+					mode="onBlur"
+					onBlur={makeApiCallForMobile}
 				/>
+				<span className={styles.errors}>
+					{customError || ''}
+				</span>
 			</div>
 
-			<div className={styles.checkbox_container}>
-				<Checkbox value={hasWhatsApp} onChange={handleChange} />
-				Number also available on WhatsApp
+			<div className={styles.field}>
+				<div className={styles.checkbox_container}>
+					<CheckboxController
+						control={control}
+						name="is_whatsapp_number"
+						className={styles.checkbox}
+					/>
+					Number also available on WhatsApp
+				</div>
 			</div>
 
-			<div className={styles.terms_and_conditions_text}>
-				By clicking on SUBMIT, you are accepting the
+			<div className={styles.field}>
+				<div className={styles.label}>Company Name</div>
+				<InputController
+					control={control}
+					name="business_name"
+					type="text"
+					placeholder="Enter your Company Name"
+					rules={{ required: 'Company Name is required.' }}
+				/>
+				<span className={styles.errors}>
+					{errors?.business_name?.message || ' '}
+				</span>
+
+			</div>
+
+			<div className={styles.field}>
+				<div className={styles.label}>Country of Registration</div>
+				<CountrySelectController
+					control={control}
+					name="country_id"
+					placeholder="Enter Country of Registration"
+					rules={{ required: 'Country is required.' }}
+				/>
+				<span className={styles.errors}>
+					{errors?.country_id?.message || ' '}
+				</span>
+			</div>
+
+			<div className={styles.field}>
+				<div className={styles.recaptcha}>
+					<ReCAPTCHA
+						ref={recaptchaRef}
+						sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITEKEY}
+						onChange={(value = '') => { setCaptchaResponse(value); }}
+					/>
+					<div className={styles.recaptcha_error}>
+						{captchaError}
+					</div>
+				</div>
+			</div>
+
+			<div className={styles.tnc_link}>
+				By signing up, you are accepting the
+				{'  '}
 				<a
 					href="https://www.cogoport.com/en-IN/terms-and-conditions/"
 					target="_blank"
 					rel="noreferrer"
-					className={styles.terms_and_conditions_link}
 				>
 					Terms of Use
 					{'  '}
 
 				</a>
 				&
+				{'  '}
 				<a
 					href="https://www.cogoport.com/en-IN/privacy-policy/"
 					target="_blank"
-					className={styles.terms_and_conditions_link}
 					rel="noreferrer"
 				>
 					Privacy Policy.
 				</a>
 			</div>
 
-			<div className={styles.recaptcha_container}>
-				<ReCAPTCHA
-					ref={recaptchaRef}
-					sitekey="6Lde97IeAAAAAJS1_4x0dGDmjNGdKq1wVl1TR0eD"
-					onChange={onChange}
-				/>
-			</div>
-
 			<Button
 				loading={signupLoading}
-				className={styles.submit_button}
 				type="submit"
 				size="lg"
-				onClick={handleClick}
 			>
-				SignUp
+				Get Started
+				{' '}
+				<IcMArrowRight />
 			</Button>
-			<a href="mailto:kanira.patel@cogoport.com" className={styles.right_footer_text}>
-				If you have any trouble logging in, email here -
-				<span className={styles.right_footer_text_span}>kanira.patel@cogoport.com</span>
-			</a>
+
+			<div className={styles.links}>
+				<a href="/login">Already have an Account?</a>
+			</div>
 		</form>
 	);
 }

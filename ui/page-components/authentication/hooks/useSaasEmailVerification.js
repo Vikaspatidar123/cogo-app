@@ -2,7 +2,7 @@ import { Toast } from '@cogoport/components';
 
 import { useRequest } from '@/packages/request';
 
-const useEmailVerification = () => {
+const useSaasEmailVerification = () => {
 	const [{ loading: resendEmailAPILoading }, resendEmailAPItrigger] = useRequest({
 		url    : 'resend_lead_verification_email',
 		method : 'post',
@@ -11,15 +11,17 @@ const useEmailVerification = () => {
 	const onClickResendEmail = async (id) => {
 		try {
 			const payload = {
-				lead_user_id : id || undefined,
+				lead_user_id : id,
 				platform     : 'app',
 			};
 
-			await resendEmailAPItrigger({
+			const response = await resendEmailAPItrigger({
 				data: payload,
 			});
 
-			Toast.success('Verification Email has been Resent.');
+			if (response?.hasError) return;
+
+			Toast.success('Verification Email resent successfully');
 		} catch (error) {
 			Toast.error(error?.error);
 		}
@@ -31,4 +33,4 @@ const useEmailVerification = () => {
 	};
 };
 
-export default useEmailVerification;
+export default useSaasEmailVerification;

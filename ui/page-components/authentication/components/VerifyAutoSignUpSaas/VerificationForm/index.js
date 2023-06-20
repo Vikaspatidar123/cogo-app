@@ -2,8 +2,8 @@ import { Button } from '@cogoport/components';
 import { IcCSendEmail } from '@cogoport/icons-react';
 import React, { useState } from 'react';
 
-import useEmailVerification from '../../../hooks/useEmailVerification';
 import useOtpVerification from '../../../hooks/useOtpVerification';
+import useSaasEmailVerification from '../../../hooks/useSaasEmailVerification';
 
 import styles from './styles.module.css';
 
@@ -14,7 +14,7 @@ function VerifictaionForm({ formData, userDetails }) {
 	const OTP_LENGTH = 4;
 	const [otpValue, setOtpValue] = useState('');
 
-	const { onClickResendEmail } = useEmailVerification();
+	const { onClickResendEmail } = useSaasEmailVerification();
 
 	const {
 		loading = false,

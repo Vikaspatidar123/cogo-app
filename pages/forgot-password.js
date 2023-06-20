@@ -1,1 +1,1 @@
-export { ForgotPassword as default } from '@/ui/page-components/authentication-v2';
+export { ForgotPassword as default } from '@/ui/page-components/authentication';

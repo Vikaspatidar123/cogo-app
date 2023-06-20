@@ -54,11 +54,11 @@ function ProductBox({ watch }) {
 					<div className={styles.value}>
 						{renderName(
 							formatAmount({
-								amount: consignmentValue || 0,
+								amount  : consignmentValue || 0,
 								currency,
-								options: {
-									notation: 'standard',
-									style: 'currency',
+								options : {
+									notation : 'standard',
+									style    : 'currency',
 								},
 							}),
 						)}

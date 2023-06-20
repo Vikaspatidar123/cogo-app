@@ -11,15 +11,15 @@ const useTradeEngine = () => {
 	const { organization = {} } = profile || {};
 
 	const [{ loading: getTransactionLoading }, triggerGetTransaction] = useRequestBf({
-		url: '/saas/trade-engine',
-		authKey: 'get_saas_trade_engine',
-		method: 'get',
+		url     : '/saas/trade-engine',
+		authKey : 'get_saas_trade_engine',
+		method  : 'get',
 	}, { manual: true });
 
 	const [{ loading: postTransactionLoading }, triggerPostTransaction] = useRequestBf({
-		url: '/saas/trade-engine',
-		authKey: 'post_saas_trade_engine',
-		method: 'post',
+		url     : '/saas/trade-engine',
+		authKey : 'post_saas_trade_engine',
+		method  : 'post',
 	}, { manual: true });
 
 	const getTradeEngine = async (id) => {
@@ -39,10 +39,10 @@ const useTradeEngine = () => {
 		try {
 			const resp = await triggerPostTransaction({
 				data: {
-					performedBy: profile?.id,
-					organizationId: organization?.id,
-					tradeEngineInputId: id,
-					paymentType: mode || 'QUOTA',
+					performedBy        : profile?.id,
+					organizationId     : organization?.id,
+					tradeEngineInputId : id,
+					paymentType        : mode || 'QUOTA',
 					saasBillId,
 				},
 			});

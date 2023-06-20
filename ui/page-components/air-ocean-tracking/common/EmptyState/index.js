@@ -2,17 +2,19 @@ import Image from 'next/image';
 
 import styles from './styles.module.css';
 
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
+
 function EmptyState() {
 	return (
 		<div className={styles.container}>
 			<Image
-				src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/loading-banner.svg"
+				src={GLOBAL_CONSTANTS.image_url.loading_banner}
 				width={300}
 				height={200}
 				alt="loading"
 			/>
 			<Image
-				src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/loading.svg"
+				src={GLOBAL_CONSTANTS.image_url.loading}
 				width={40}
 				height={40}
 				alt="loading"

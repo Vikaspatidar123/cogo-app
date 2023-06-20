@@ -35,12 +35,20 @@ const useRedirectFn = () => {
 		window.open(PUBLIC_PAGE_BLOG);
 	};
 
+	const redirectToListWithFilters = ({ type = 'ocean', filters }) => {
+		push(
+			`/saas/tools/air-ocean-tracking/list?trackingType=${type}&filters=${filters}`,
+			`/saas/tools/air-ocean-tracking/list?trackingType=${type}&filters=${filters}`,
+		);
+	};
+
 	return {
 		redirectArchivedList,
 		redirectToTracker,
 		redirectToList,
 		redirectToDashboard,
 		redirectToBlogs,
+		redirectToListWithFilters,
 	};
 };
 

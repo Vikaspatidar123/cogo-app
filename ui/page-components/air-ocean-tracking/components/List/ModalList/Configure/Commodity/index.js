@@ -17,12 +17,6 @@ function Commodity({ closeHandler, shipmentId = '', refetchTrackerList, shipment
 
 	const { control, handleSubmit, setValue, formState:{ errors } } = useForm();
 
-	useEffect(() => {
-		if (!isEmpty(hs_code)) {
-			setValue('hscode', hs_code);
-		}
-	}, [hs_code, setValue]);
-
 	const { loading, updateTrackerInfo } = useCreateShipment({ closeHandler, refetchTrackerList });
 
 	const onSubmit = () => {
@@ -33,6 +27,12 @@ function Commodity({ closeHandler, shipmentId = '', refetchTrackerList, shipment
 		};
 		updateTrackerInfo({ payload });
 	};
+
+	useEffect(() => {
+		if (!isEmpty(hs_code)) {
+			setValue('hscode', hs_code);
+		}
+	}, [hs_code, setValue]);
 
 	return (
 		<div className={styles.container}>

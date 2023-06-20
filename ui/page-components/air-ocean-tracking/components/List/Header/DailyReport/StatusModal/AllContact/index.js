@@ -58,6 +58,7 @@ function AllContact({ selectedContact, setSelectedContact, setIsSingleReport, ac
 							suffix={<IcMSearchlight />}
 						/>
 					</div>
+
 					<Button
 						type="button"
 						themeType="secondary"
@@ -67,15 +68,8 @@ function AllContact({ selectedContact, setSelectedContact, setIsSingleReport, ac
 						Add New
 					</Button>
 				</div>
-				{/* <Table
-					data={data}
-					loading={loading}
-					list={filteredList}
-					setPage={setPage}
-					selectedContact={selectedContact}
-					setSelectedContact={setSelectedContact}
-				/> */}
-				{list.length > 0 &&	(
+
+				{!isEmpty(list) &&	(
 					<Table
 						title="Contacts"
 						configs={contactListConfig}

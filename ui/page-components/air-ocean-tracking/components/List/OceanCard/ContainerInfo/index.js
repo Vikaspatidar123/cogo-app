@@ -6,8 +6,10 @@ import GET_MAPPING from '../../../../constant/card';
 
 import styles from './styles.module.css';
 
+const INFO_MAX_LENGTH = 40;
+
 const renderValue = (value = '') => {
-	if (typeof value === 'object' || value.length < 40) return value;
+	if (typeof value === 'object' || value.length < INFO_MAX_LENGTH) return value;
 
 	return (
 		<Tooltip content={value} placement="bottom">

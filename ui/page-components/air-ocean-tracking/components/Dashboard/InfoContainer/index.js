@@ -10,17 +10,18 @@ import styles from './styles.module.css';
 
 const LOADING_ARR = getLoadingArr(3);
 
+const newsClickHandler = ({ slugName }) => {
+	const url = `https://www.cogoport.com/blogs/${slugName}`;
+	window.open(url);
+};
+
 function InfoContainer() {
-	const { loading, data } = useGetNews();
+	const { loading, data = [] } = useGetNews();
 
 	const { redirectToBlogs } = useRedirectFn();
 
 	const newData = loading ? LOADING_ARR : data;
 
-	const newsClickHandler = ({ slugName }) => {
-		const url = `https://www.cogoport.com/blogs/${slugName}`;
-		window.open(url);
-	};
 	return (
 		<div className={styles.container}>
 
@@ -52,6 +53,7 @@ function InfoContainer() {
 								<Button
 									themeType="linkUi"
 									onClick={() => newsClickHandler({ slugName: news?.slug })}
+									type="button"
 								>
 									Click Here
 

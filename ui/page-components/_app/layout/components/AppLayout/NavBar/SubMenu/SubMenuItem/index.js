@@ -2,9 +2,11 @@ import styles from './styles.module.css';
 
 import { useRouter } from '@/packages/next';
 
+const MAX_DESC_LENGTH = 65;
+
 const renderDescription = (desc) => {
-	if (desc.length > 65) {
-		return `${desc.substring(0, 65)}...`;
+	if (desc.length > MAX_DESC_LENGTH) {
+		return `${desc.substring(0, MAX_DESC_LENGTH)}...`;
 	}
 	return desc;
 };

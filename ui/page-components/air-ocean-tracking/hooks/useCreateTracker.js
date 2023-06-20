@@ -3,7 +3,6 @@ import { useCallback, useEffect, useState } from 'react';
 
 import headerFormControls, { defaultValues } from '../configuration/headerFormControls';
 
-import useGetOperatorList from './useGetOperatorList';
 import useRedirectFn from './useRedirectFn';
 
 import { useForm } from '@/packages/forms';
@@ -12,9 +11,9 @@ import { useRequest } from '@/packages/request';
 
 const API_MAPPING = {
 	ocean: {
-		operatorApi : '/get_shipping_line_for_container_no',
+		operatorApi : '/get_shipping_line_for_search_value',
 		createApi   : '/create_saas_container_subscription',
-		payloadKey  : 'container_no',
+		payloadKey  : 'search_value',
 		operatorKey : 'shippingLine',
 		threshold   : 11,
 	},
@@ -51,7 +50,8 @@ const useCreateTracker = ({ operatorData }) => {
 	const { watch, reset, setValue } = formHook;
 	const shipmentNumber = watch('shipmentNumber');
 
-	const controls = headerFormControls({ trackingType, operatorData });
+	const { shippingLineData = [], airLineData = [] } = operatorData || {};
+	const controls = headerFormControls({ trackingType, shippingLineData, airLineData });
 
 	const getOperatorInfo = useCallback(({ shipmentNo }) => {
 		try {

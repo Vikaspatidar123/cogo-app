@@ -31,7 +31,7 @@ function AddAlert({
 	});
 
 	const { POC_MAPPING } = GET_MAPPING[activeTab];
-	console.log(prevAlertData, 'prevAlertData');
+
 	const { loading, submitHandler, checkboxChangeHandler, contactList = [], disableCheckboxHandler } = useCreateAlert({
 		tableValue,
 		setTableValue,

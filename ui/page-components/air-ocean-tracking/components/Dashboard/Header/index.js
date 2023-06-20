@@ -34,6 +34,7 @@ const options = [
 
 function Header() {
 	const [csvModal, setCsvModal] = useState(false);
+
 	const operatorData = useGetOperatorList();
 
 	const {
@@ -94,12 +95,14 @@ function Header() {
 				</div>
 
 			</div>
-			<ImportCsvModal
-				csvModal={csvModal}
-				setCsvModal={setCsvModal}
-				trackingType={trackingType}
-				operatorData={operatorData}
-			/>
+			{csvModal && (
+				<ImportCsvModal
+					csvModal={csvModal}
+					setCsvModal={setCsvModal}
+					trackingType={trackingType}
+					operatorData={operatorData}
+				/>
+			)}
 		</div>
 	);
 }

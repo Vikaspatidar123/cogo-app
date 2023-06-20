@@ -37,8 +37,6 @@ function SelectShipment({ selectedContact = {}, setIsSingleReport, setActiveStep
 		setSelectedShipments(filteredArr);
 	};
 
-	console.log(selectedShipments, 'selectedShipments');
-
 	return (
 		<div className={styles.container}>
 			{(getListLoading || listLoading) ? LOADING_ARR.map((ele) => (

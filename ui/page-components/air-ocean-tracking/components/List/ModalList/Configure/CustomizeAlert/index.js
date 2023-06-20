@@ -1,5 +1,4 @@
 import { isEmpty } from '@cogoport/utils';
-import Image from 'next/image';
 import { useEffect, useState } from 'react';
 
 import useGetAlertInfo from '../../../../../hooks/useGetAlertInfo';
@@ -7,6 +6,14 @@ import useGetAlertInfo from '../../../../../hooks/useGetAlertInfo';
 import AddAlert from './AddAlert';
 import SelectContact from './SelectContact';
 import styles from './styles.module.css';
+
+import { Image } from '@/packages/next';
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
+
+const COMPONENT_MAPPING = {
+	select_contact : SelectContact,
+	add_alert      : AddAlert,
+};
 
 function CustomizeAlert({ closeHandler, shipmentId = '', activeTab = 'ocean' }) {
 	const [step, setStep] = useState('select_contact');
@@ -24,19 +31,33 @@ function CustomizeAlert({ closeHandler, shipmentId = '', activeTab = 'ocean' }) 
 	const nextStepHandler = () => setStep('add_alert');
 	const prevStepHandler = () => setStep('select_contact');
 
+	const Component = COMPONENT_MAPPING[step];
+
 	return (
 		<div className={styles.container}>
 			{loading ? (
 				<Image
 					className={styles.loader}
-					src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/loading.svg"
+					src={GLOBAL_CONSTANTS.image_url.loading}
 					alt="loading"
 					width={100}
 					height={100}
 				/>
 			) : (
 				<>
-					{step === 'select_contact' && (
+					<Component
+						activeTab={activeTab}
+						closeHandler={closeHandler}
+						nextStepHandler={nextStepHandler}
+						selectContactList={selectContactList}
+						setSelectContactList={setSelectContactList}
+						prevStepHandler={prevStepHandler}
+						prevAlertData={data}
+						alertList={alertList}
+						alertListLoading={alertListLoading}
+						shipmentId={shipmentId}
+					/>
+					{/* {step === 'select_contact' && (
 						<SelectContact
 							activeTab={activeTab}
 							closeHandler={closeHandler}
@@ -59,7 +80,7 @@ function CustomizeAlert({ closeHandler, shipmentId = '', activeTab = 'ocean' }) 
 							setSelectContactList={setSelectContactList}
 
 						/>
-					)}
+					)} */}
 				</>
 			)}
 		</div>

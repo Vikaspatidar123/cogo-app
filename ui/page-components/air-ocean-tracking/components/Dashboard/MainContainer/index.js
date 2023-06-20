@@ -1,29 +1,13 @@
-import { cl, Tabs, TabPanel, ButtonGroup, Select, Button } from '@cogoport/components';
+import { cl, Tabs, TabPanel, Select, Button } from '@cogoport/components';
 import { IcMListView, IcMMap } from '@cogoport/icons-react';
 import { useState } from 'react';
 
-import { TAB_MAPPING } from '../../../constant/tabMapping';
+import { TAB_MAPPING, DASHBOARD_VIEW_MAPPING } from '../../../constant/tabMapping';
+import useGetListTracker from '../../../hooks/useGetListTracker';
 import useRedirectFn from '../../../hooks/useRedirectFn';
 
 import styles from './styles.module.css';
 import TrackingInfo from './TrackingInfo';
-
-const getBtnGrpOpt = ({ setGlobalFilter }) => [
-	{
-		children : (<div><IcMListView width={20} height={20} /></div>),
-		onClick  : () => setGlobalFilter((prev) => ({
-			...prev,
-			isList: true,
-		})),
-	},
-	{
-		children : (<div><IcMMap width={20} height={20} /></div>),
-		onClick  : () => setGlobalFilter((prev) => ({
-			...prev,
-			isList: false,
-		})),
-	},
-];
 
 const selectOpt = [
 	{ label: 'This Month', value: 'month' },
@@ -35,12 +19,14 @@ function MainContainer() {
 	const [globalFilter, setGlobalFilter] = useState({
 		page        : 1,
 		selectValue : 'month',
-		isList      : false,
+		view        : 'list',
 		activeTab   : 'ocean',
 	});
 
+	const { data, loading } = useGetListTracker();
+	const { list = [], filter_data = {}, stats } = data || {};
+	const { view, activeTab } = globalFilter;
 	const { redirectToList } = useRedirectFn();
-	const btnGrpOpt = getBtnGrpOpt({ setGlobalFilter });
 
 	return (
 		<div className={styles.container}>
@@ -63,8 +49,24 @@ function MainContainer() {
 						</Tabs>
 					</div>
 				</div>
+
 				<div className={cl`${styles.flex_box} ${styles.filter_section}`}>
-					<ButtonGroup size="sm" options={btnGrpOpt} />
+					<span />
+					<div className={styles.view_tab}>
+						<Tabs
+							themeType="tertiary"
+							activeTab={globalFilter.view}
+							onChange={(e) => setGlobalFilter((prev) => ({
+								...prev,
+								view: e,
+							}))}
+						>
+							{Object.keys(DASHBOARD_VIEW_MAPPING).map((tab) => (
+								<TabPanel key={tab} name={tab} icon={DASHBOARD_VIEW_MAPPING?.[tab]} />
+							))}
+						</Tabs>
+					</div>
+
 					<Select
 						size="sm"
 						value={globalFilter.selectValue}
@@ -76,6 +78,7 @@ function MainContainer() {
 						options={selectOpt}
 						className={styles.select_field}
 					/>
+
 					<Button type="button" themeType="secondary" onClick={() => redirectToList({})}>
 						View All Shipments
 					</Button>
@@ -83,7 +86,7 @@ function MainContainer() {
 			</div>
 
 			<div className={styles.tracking_info}>
-				<TrackingInfo />
+				<TrackingInfo stats={stats} view={view} activeTab={activeTab} />
 			</div>
 		</div>
 	);

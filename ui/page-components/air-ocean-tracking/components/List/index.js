@@ -20,7 +20,8 @@ function List() {
 	});
 	const {
 		data,
-		loading, globalFilter, inputValue, setInputValue, filterChangeHandler, setGlobalFilter, refetchTrackerList,
+		loading, globalFilter, filterChangeHandler, refetchTrackerList,
+		...rest
 	} = useGetListTracker();
 
 	const { activeTab = '' } = globalFilter;
@@ -35,11 +36,10 @@ function List() {
 			<Header
 				globalFilter={globalFilter}
 				filterChangeHandler={filterChangeHandler}
-				setGlobalFilter={setGlobalFilter}
-				inputValue={inputValue}
-				setInputValue={setInputValue}
 				filterData={filter_data}
+				{...rest}
 			/>
+
 			{(newList || []).map((listItem) => (
 				<Card
 					key={listItem?.id || listItem}

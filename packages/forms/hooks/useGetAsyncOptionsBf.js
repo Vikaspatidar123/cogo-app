@@ -12,7 +12,6 @@ function useGetAsyncOptionsBf({
 	labelKey = '',
 	params = {},
 	authKey = '',
-	useQueryKey = false,
 	getModifiedOptions = (a) => a,
 }) {
 	const { query, debounceQuery } = useDebounceQuery();
@@ -56,7 +55,6 @@ function useGetAsyncOptionsBf({
 		if (checkOptionsExist.length > 0) return checkOptionsExist[0];
 		try {
 			const res = await triggerSingle({
-				// params: merge(params, { filters: { [valueKey]: value } }),
 				params: merge(params, { [valueKey]: value }),
 			});
 			const list = res?.data?.list || [];

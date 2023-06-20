@@ -1,27 +1,31 @@
 import {
-	ButtonIcon, Tabs, TabPanel, cl, Select, Button, Input, Popover,
+	ButtonIcon, Tabs, TabPanel, cl, Button, Popover,
 } from '@cogoport/components';
-import { IcMArrowBack, IcMSearchlight } from '@cogoport/icons-react';
-import { useRouter } from 'next/router';
+import { IcMArrowBack } from '@cogoport/icons-react';
 import { useState } from 'react';
 
-import STATS_MAPPING from '../../../constant/statsMapping';
 import { TAB_MAPPING, VIEW_MAPPING } from '../../../constant/tabMapping';
+import useExportData from '../../../hooks/useExportData';
 import useGetDsrList from '../../../hooks/useGetDsrList';
 import useRedirectFn from '../../../hooks/useRedirectFn';
 
 import DailyReport from './DailyReport';
-import FilterContent from './FilterContent';
+import FilterSection from './FilterSection';
 import styles from './styles.module.css';
 
-function Header({ globalFilter, filterChangeHandler, inputValue, setInputValue, filterData = {}, setGlobalFilter }) {
+import { useRouter } from '@/packages/next';
+
+function Header(props) {
+	const { globalFilter, filterChangeHandler } = props;
+
 	const { query } = useRouter();
 	const [showConfigure, setShowConfigure] = useState(false);
 
 	const { isArchived = false } = query || {};
-	const { activeTab = '', search_type = '', selectValue = '' } = globalFilter;
+	const { activeTab = '', search_type = '' } = globalFilter;
 
 	const { redirectArchivedList, redirectToDashboard } = useRedirectFn();
+	const { loading, getTrackingData } = useExportData();
 
 	const dsrListValue = useGetDsrList({ showConfigure });
 
@@ -55,6 +59,7 @@ function Header({ globalFilter, filterChangeHandler, inputValue, setInputValue, 
 							>
 								Archived List
 							</Button>
+
 							{activeTab === 'ocean' && (
 								<Popover
 									caret={false}
@@ -79,13 +84,22 @@ function Header({ globalFilter, filterChangeHandler, inputValue, setInputValue, 
 							)}
 						</>
 					)}
-					<Button type="button">Export Data</Button>
+					{activeTab === 'ocean' && (
+						<Button
+							type="button"
+							loading={loading}
+							className={styles.export_btn}
+							onClick={getTrackingData}
+						>
+							Export Data
+						</Button>
+					)}
 				</div>
 
 			</div>
 
 			<div className={cl`${styles.flex_box} ${styles.second_row}
-			${activeTab === 'ocean' ? styles.ocean_row : ''}`}
+				${activeTab === 'ocean' ? styles.ocean_row : ''}`}
 			>
 				{activeTab === 'ocean'	&& (
 					<div style={{ width: '42%' }}>
@@ -101,43 +115,8 @@ function Header({ globalFilter, filterChangeHandler, inputValue, setInputValue, 
 						</Tabs>
 					</div>
 				)}
-				<div className={cl`${styles.flex_box} ${styles.filter_section}`}>
-					<Input
-						size="sm"
-						className={styles.search_field}
-						value={inputValue}
-						onChange={setInputValue}
-						placeholder="Search"
-						suffix={<IcMSearchlight />}
-					/>
-					<Select
-						size="sm"
-						className={styles.select_field}
-						placeholder="Select Status"
-						options={STATS_MAPPING}
-						value={selectValue}
-						onChange={(e) => filterChangeHandler('selectValue', e)}
-						isClearable
-					/>
-					<Popover
-						caret={false}
-						placement="bottom-end"
-						content={(
-							<FilterContent
-								filterData={filterData}
-								activeTab={activeTab}
-								globalFilter={globalFilter}
-								setGlobalFilter={setGlobalFilter}
-							/>
 
-						)}
-					>
-						<Button themeType="accent" type="button">
-							Filters
-						</Button>
-					</Popover>
-				</div>
-
+				<FilterSection {...props} />
 			</div>
 		</div>
 	);

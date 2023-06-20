@@ -1,10 +1,10 @@
 import { cl } from '@cogoport/components';
-import Image from 'next/image';
 
 import GET_MAPPING from '../../../../constant/card';
 
 import styles from './styles.module.css';
 
+import { Image } from '@/packages/next';
 import { getMilestone } from '@/ui/page-components/air-ocean-tracking/utils/getMilestone';
 
 function Stepper({ activeTab, lineInfo = {}, airCargoDetails = {} }) {

@@ -24,7 +24,7 @@ function SelectContact({
 
 	const { control, formState: { errors }, handleSubmit } = useForm({
 		defaultValues: {
-			contactName: selectContactList || [],
+			contactName: selectContactList.map((ele) => ele?.id) || [],
 		},
 	});
 

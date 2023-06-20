@@ -4,11 +4,6 @@ import useDeleteTracker from '../../hooks/useDeleteTracker';
 
 import styles from './styles.module.css';
 
-const TITLE_MAPPING = {
-	archive : 'archive',
-	delete  : 'delete',
-};
-
 function ArchiveDelete({ name = 'delete', shipmentId = '', closeHandler, activeTab = 'ocean', refetchTrackerList }) {
 	const { loading, deleteArchiveHandler } = useDeleteTracker({
 		name,
@@ -21,7 +16,7 @@ function ArchiveDelete({ name = 'delete', shipmentId = '', closeHandler, activeT
 	return (
 		<div className={styles.container}>
 			<div className={styles.main_body}>
-				{`Are you sure, you want to ${TITLE_MAPPING?.[name]} this tracker ?`}
+				{`Are you sure, you want to ${name} this tracker ?`}
 			</div>
 			<div className={cl`${styles.flex_box} ${styles.footer}`}>
 				<Button themeType="secondary" type="button" onClick={closeHandler} disabled={loading}>No</Button>

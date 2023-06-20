@@ -1,7 +1,7 @@
 import { Button, cl } from '@cogoport/components';
 import React from 'react';
 
-import getFilterControls from '../../../../configuration/filterControls';
+import getFilterControls from '../../../../../configuration/filterControls';
 
 import styles from './styles.module.css';
 

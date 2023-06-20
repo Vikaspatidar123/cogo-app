@@ -12,6 +12,10 @@
 	}
 }
 
+.col {
+	margin-bottom: 10px;
+}
+
 .header {
 	display: flex;
 	align-self: center;
@@ -27,4 +31,9 @@
 
 .footer_btn {
 	margin-top: 20px;
+}
+
+.errors {
+	font-size: 11px;
+	color: #f33;
 }

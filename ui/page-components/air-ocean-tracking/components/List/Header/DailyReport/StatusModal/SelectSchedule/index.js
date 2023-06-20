@@ -64,6 +64,7 @@ function SelectSchedule({
 				<Button
 					themeType="secondary"
 					disabled={loading}
+					type="button"
 					onClick={() => setActiveStepper('shipments')}
 				>
 					Back
@@ -74,6 +75,7 @@ function SelectSchedule({
 					className={styles.submit_btn}
 					onClick={handleSubmit(onSubmit)}
 					loading={loading}
+					type="button"
 				>
 					Save
 				</Button>

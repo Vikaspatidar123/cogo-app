@@ -1,13 +1,15 @@
 import { L, Marker, FeatureGroup, Tooltip } from '@cogoport/maps';
+import Image from 'next/image';
 import ReactDOMServer from 'react-dom/server';
 
+import {
+	ICON_ANCHOR_X, ICON_ANCHOR_Y, ICON_SIZE, TOOLTIP_MAPPING,
+	TOOLTIP_OFFSET_X, TOOLTIP_OFFSET_Y, TIME_FORMAT, DATE_FORMAT,
+} from '../../constant/pointer';
 import formatDate from '../../utils/formatDate';
 import { imageUrl } from '../../utils/imageUrl';
 
 import styles from './styles.module.css';
-
-const DATE_FORMAT = 'dd/MM/yyyy';
-const TIME_FORMAT = 'hh:mm aaa';
 
 const ICON_MAPPING = {
 	yellow : imageUrl.yellow_vessel,
@@ -15,52 +17,45 @@ const ICON_MAPPING = {
 	black  : imageUrl.black_vessel,
 };
 
-const TOOLTIP_MAPPING = {
-	vessel_name   : 'Name',
-	latitude      : 'Latitude',
-	longitude     : 'Longitude',
-	lastUpdatedAt : 'Last Update',
+const getData = ({ info, props }) => {
+	if (info === 'last_updated_at') {
+		return formatDate({
+			date       : props?.last_updated_at,
+			dateFormat : DATE_FORMAT,
+			timeFormat : TIME_FORMAT,
+		});
+	}
+	return props?.[info];
 };
 
 function Pointer(props) {
 	const {
 		latitude: lat = '',
 		longitude: lng = '',
-		lastUpdatedAt = '',
 		cog: direction,
 		arrow = 'black',
 	} = props;
 	const icon = new L.DivIcon({
 		html: ReactDOMServer.renderToString(
-			<img
+			<Image
 				src={ICON_MAPPING[arrow]}
+				width={8}
+				height={16}
 				style={{
-					transform : `rotate(${direction}deg)`,
-					height    : '16px',
-					width     : '8px',
+					transform: `rotate(${direction}deg)`,
 				}}
 				alt="ship"
 			/>,
 		),
-		iconSize   : [24, 24],
-		iconAnchor : [10, 12],
-		className  : 'divIcon',
+		iconSize   : [ICON_SIZE, ICON_SIZE],
+		iconAnchor : [ICON_ANCHOR_X, ICON_ANCHOR_Y],
+		className  : styles.divIcon,
 	});
 
-	const getData = (key) => {
-		if (key === 'lastUpdatedAt') {
-			return formatDate({
-				date       : lastUpdatedAt,
-				dateFormat : DATE_FORMAT,
-				timeFormat : TIME_FORMAT,
-			});
-		}
-		return props?.[key];
-	};
 	return (
 		<FeatureGroup key={lat}>
 			<Marker position={[lat, lng]} icon={icon}>
-				<Tooltip offset={[0, -10]}>
+				<Tooltip offset={[TOOLTIP_OFFSET_X, TOOLTIP_OFFSET_Y]}>
 					<div className={styles.container}>
 						{Object.keys(TOOLTIP_MAPPING).map((info) => (
 							<div key={info}>

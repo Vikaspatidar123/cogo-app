@@ -1,6 +1,5 @@
 /* eslint-disable no-underscore-dangle */
 import { Button, cl, Placeholder } from '@cogoport/components';
-import { getCookie } from '@cogoport/utils';
 
 import useGetNews from '../../../hooks/useGetNews';
 import useRedirectFn from '../../../hooks/useRedirectFn';
@@ -9,7 +8,6 @@ import getLoadingArr from '../../../utils/getLoadingArr';
 
 import styles from './styles.module.css';
 
-const locale = getCookie('locale');
 const LOADING_ARR = getLoadingArr(3);
 
 function InfoContainer() {
@@ -20,7 +18,7 @@ function InfoContainer() {
 	const newData = loading ? LOADING_ARR : data;
 
 	const newsClickHandler = ({ slugName }) => {
-		const url = `https://www.cogoport.com/${locale}/blogs/${slugName}`;
+		const url = `https://www.cogoport.com/blogs/${slugName}`;
 		window.open(url);
 	};
 	return (

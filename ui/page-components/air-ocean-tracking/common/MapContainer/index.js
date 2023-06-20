@@ -1,6 +1,6 @@
-import dynamic from 'next/dynamic';
-
 import styles from './styles.module.css';
+
+import { dynamic } from '@/packages/next';
 
 const CogoMaps = dynamic(() => import('./MapsComp'), { ssr: false });
 

@@ -27,7 +27,7 @@ const API_MAPPING = {
 	},
 };
 
-const useCreateTracker = () => {
+const useCreateTracker = ({ operatorData }) => {
 	const { query } = useRouter();
 	const [trackingType, setTrackingType] = useState('ocean');
 
@@ -45,14 +45,13 @@ const useCreateTracker = () => {
 		url    : createApi,
 	}, { manual: true });
 
-	const { shippingLineData = [], airLineData = [] } = useGetOperatorList();
 	const { redirectToTracker } = useRedirectFn();
 
 	const formHook = useForm();
 	const { watch, reset, setValue } = formHook;
 	const shipmentNumber = watch('shipmentNumber');
 
-	const controls = headerFormControls({ trackingType, shippingLineData, airLineData });
+	const controls = headerFormControls({ trackingType, operatorData });
 
 	const getOperatorInfo = useCallback(({ shipmentNo }) => {
 		try {

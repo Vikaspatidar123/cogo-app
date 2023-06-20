@@ -1,6 +1,6 @@
 import { useRouter } from '@/packages/next';
 
-const PUBLIC_PAGE_BLOG = 'https://www.cogoport.com/en-IN/knowledge-center/news-updates';
+const PUBLIC_PAGE_BLOG = 'https://www.cogoport.com/knowledge-center/news-updates';
 
 const useRedirectFn = () => {
 	const { push } = useRouter();

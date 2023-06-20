@@ -3,6 +3,7 @@ import { IcAOceanTracking, IcAAirTracking } from '@cogoport/icons-react';
 import { useState } from 'react';
 
 import useCreateTracker from '../../../hooks/useCreateTracker';
+import useGetOperatorList from '../../../hooks/useGetOperatorList';
 
 import ImportCsvModal from './ImportCsvModal';
 import OrTag from './OrTag';
@@ -33,8 +34,12 @@ const options = [
 
 function Header() {
 	const [csvModal, setCsvModal] = useState(false);
+	const operatorData = useGetOperatorList();
 
-	const { loading, formHook, trackingType, setTrackingType, controls, onSubmitHandler } = useCreateTracker();
+	const {
+		loading, formHook, trackingType, setTrackingType, controls,
+		onSubmitHandler,
+	} = useCreateTracker({ operatorData });
 
 	const { control, handleSubmit, formState:{ errors } } = formHook;
 
@@ -89,7 +94,12 @@ function Header() {
 				</div>
 
 			</div>
-			<ImportCsvModal csvModal={csvModal} setCsvModal={setCsvModal} trackingType={trackingType} />
+			<ImportCsvModal
+				csvModal={csvModal}
+				setCsvModal={setCsvModal}
+				trackingType={trackingType}
+				operatorData={operatorData}
+			/>
 		</div>
 	);
 }

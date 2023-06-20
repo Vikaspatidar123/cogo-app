@@ -38,7 +38,8 @@ const defaultValues = {
 	airLine        : '',
 };
 
-const headerFormControls = ({ trackingType = 'ocean',	shippingLineData = [], airLineData = [] }) => {
+const headerFormControls = ({ trackingType = 'ocean',	operatorData = {} }) => {
+	const { shippingLineData = [], airLineData = [] } = operatorData || {};
 	const OPTION_MAPPING = {
 		ocean : shippingLineData,
 		air   : airLineData,

@@ -1,6 +1,5 @@
 import { IcMArrowBack } from '@cogoport/icons-react';
 
-// import Header from './Header';
 import useRedirectFn from '../../hooks/useRedirectFn';
 
 import styles from './styles.module.css';

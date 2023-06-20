@@ -1,24 +1,34 @@
 import { Pagination, Button, Popover } from '@cogoport/components';
 import { IcMArrowBack, IcMPortArrow, IcMFilter } from '@cogoport/icons-react';
+import { isEmpty } from '@cogoport/utils';
 import React, { useState } from 'react';
 
 import Loading from '../../common/Loading';
 import Map from '../../common/Map';
+import getConstants from '../../constants/checkbox-constants';
+import getControls from '../../constants/checkbox-controls';
 import useFetchScheduleDetails from '../../hooks/useFetchScheduleDetails';
+import useGetData from '../../hooks/useGetData';
 import NoSchedulesCard from '../NoSchedulesCard';
 
 import ActiveScheduleCard from './ActiveScheduleCard';
 import Filter from './Filter';
+import Navigation from './Navigation';
 import styles from './styles.module.css';
 
 import { useRouter } from '@/packages/next';
 
 function ActiveSchedules() {
 	const { query, push } = useRouter();
-	const [visible, setVisible] = useState(false);
+	const [currentPage, setCurrentPage] = useState(1);
 
 	const id = query?.id;
-	const [currentPage, setCurrentPage] = useState(1);
+
+	const { restOptions, stopsOptions } = getConstants();
+
+	const [options, setOptions] = useState(stopsOptions);
+
+	const controls = getControls({ options });
 
 	const {
 		setFilters, scheduleDetails,
@@ -26,6 +36,27 @@ function ActiveSchedules() {
 		loading, mapPoints,
 	} = useFetchScheduleDetails({
 		pageLimit: 6, id, currentPage,
+	});
+
+	const {
+		handleCheckList,
+		clearAllHandler,
+		control,
+		departureDate,
+		onChange,
+		durationValue,
+		arrivalDate,
+		setArrivalDate,
+		setDepartureDate,
+		setVisible,
+		visible,
+	} = useGetData({
+		setCurrentPage,
+		setCarrierList,
+		setFilters,
+		carrierList,
+		setOptions,
+		restOptions,
 	});
 
 	const handleBack = () => {
@@ -72,9 +103,15 @@ function ActiveSchedules() {
 						<Filter
 							carrierList={carrierList}
 							setCarrierList={setCarrierList}
-							setFilters={setFilters}
 							scheduleDetails={scheduleDetails}
-							setVisible={setVisible}
+							clearAllHandler={clearAllHandler}
+							onChange={onChange}
+							durationValue={durationValue}
+							handleCheckList={handleCheckList}
+							departureDate={departureDate}
+							setDepartureDate={setDepartureDate}
+							arrivalDate={arrivalDate}
+							setArrivalDate={setArrivalDate}
 						/>
 					)}
 				>
@@ -87,33 +124,51 @@ function ActiveSchedules() {
 				</Popover>
 
 			</div>
+			<div className={styles.container_box}>
+				<div className={styles.filter}>
+					<Navigation
+						departureDate={departureDate}
+						setDepartureDate={setDepartureDate}
+						arrivalDate={arrivalDate}
+						setArrivalDate={setArrivalDate}
+						carrierList={carrierList}
+						handleCheckList={handleCheckList}
+						durationValue={durationValue}
+						onChange={onChange}
+						fields={controls}
+						clearAllHandler={clearAllHandler}
+						control={control}
+						setFilters={setFilters}
+					/>
 
-			<div className={styles.active_schedules}>
-				{loading && 		(
-					<div className={styles.card}>
-						<Loading />
-					</div>
-				)}
-				{!loading && scheduleDetails?.schedules?.list.length > 0
-					&& scheduleDetails?.schedules?.list.map((item) => (
-						<ActiveScheduleCard
-							schedule={item}
-							scheduleDetails={scheduleDetails}
-						/>
-					))}
-				{!loading && scheduleDetails?.schedules?.list.length === 0 && <NoSchedulesCard />}
+				</div>
+				<div className={styles.active_schedules}>
+					{loading && (
+						<div className={styles.card}>
+							<Loading />
+						</div>
+					)}
+					{!loading && scheduleDetails?.schedules?.list.length > 0
+						&& scheduleDetails?.schedules?.list.map((item) => (
+							<ActiveScheduleCard
+								schedule={item}
+								scheduleDetails={scheduleDetails}
+							/>
+						))}
+					{!loading && isEmpty(scheduleDetails?.schedules?.list) && <NoSchedulesCard />}
+				</div>
 			</div>
 			<div className={styles.pagination_container}>
 				{scheduleDetails?.schedules?.list.length > 0
-				&& (
-					<Pagination
-						type="number"
-						currentPage={currentPage}
-						totalItems={scheduleDetails?.schedules?.total_count}
-						pageSize={scheduleDetails?.schedules?.page_limit}
-						onPageChange={setCurrentPage}
-					/>
-				)}
+					&& (
+						<Pagination
+							type="number"
+							currentPage={currentPage}
+							totalItems={scheduleDetails?.schedules?.total_count}
+							pageSize={scheduleDetails?.schedules?.page_limit}
+							onPageChange={setCurrentPage}
+						/>
+					)}
 			</div>
 		</div>
 	);

@@ -44,7 +44,7 @@ function Product({
 	const CurrencySelector = getField('select');
 
 	const { exchangeApi } = useCurrencyConversion();
-	console.log(showHsCodeModal);
+
 	const { hsCode = '', name = '', description = '' } = selectedData || {};
 	const {
 		currency: watchCurrency,
@@ -55,7 +55,7 @@ function Product({
 	const { verifySixDigitHs, verifySixDigitLoading } = useVerifyHscode();
 	const {
 		submitHandler, errorHandler, convertCurrency, validateSubmitHandler,
-	} =		productFn({
+	} = productFn({
 		setFormData,
 		setFormStepper,
 		setStepper,

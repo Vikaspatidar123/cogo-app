@@ -16,13 +16,13 @@ const useVerifyHscode = () => {
 	const [{ loading }, trigger] = useRequestBf({
 		method  : 'post',
 		url     : '/saas/trade-engine/hs-engine',
-		authkey : 'post_saas_trade_engine_hs_engine',
+		authKey : 'post_saas_trade_engine_hs_engine',
 	}, { manual: true });
 
-	const [{ loading:verifySixDigitLoading }, verifySixDigit] = useRequestBf({
+	const [{ loading: verifySixDigitLoading }, verifySixDigit] = useRequestBf({
 		method  : 'get',
 		url     : '/saas/trade-engine/verify-six-digit',
-		authkey : 'get_saas_trade_engine_verify_six_digit',
+		authKey : 'get_saas_trade_engine_verify_six_digit',
 	}, { manual: true });
 
 	const verifySixDigitHs = async ({ hsCode }) => {

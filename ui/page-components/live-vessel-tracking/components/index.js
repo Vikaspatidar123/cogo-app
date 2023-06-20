@@ -1,8 +1,8 @@
-import dynamic from 'next/dynamic';
-
 import useGetVessel from '../hooks/useGetVessel';
 
 import styles from './styles.module.css';
+
+import { dynamic } from '@/packages/next';
 
 const Maps = dynamic(() => import('./Maps'), { ssr: false });
 

@@ -1,5 +1,4 @@
 import { L, Marker, FeatureGroup, Tooltip } from '@cogoport/maps';
-import Image from 'next/image';
 import ReactDOMServer from 'react-dom/server';
 
 import {
@@ -10,6 +9,8 @@ import formatDate from '../../utils/formatDate';
 import { imageUrl } from '../../utils/imageUrl';
 
 import styles from './styles.module.css';
+
+import { Image } from '@/packages/next';
 
 const ICON_MAPPING = {
 	yellow : imageUrl.yellow_vessel,

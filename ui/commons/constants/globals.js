@@ -178,6 +178,7 @@ const GLOBAL_CONSTANTS = {
 			'https://cdn.cogoport.io/cms-prod/cogo_partner/vault/original/animation_500_lhvo6uhx1.png',
 	},
 	onboarding_specialist: {
+		name         : 'Kanira Patel',
 		phone_number : '+918976851674',
 		email_id     : 'kanira.patel@cogoport.com',
 	},

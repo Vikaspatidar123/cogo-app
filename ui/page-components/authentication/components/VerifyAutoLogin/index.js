@@ -93,7 +93,7 @@ VerifyAutoLogin.getInitialProps = async (ctx) => {
 
 			const redirect_page = lead_action?.action_config?.redirect_page || '';
 
-			let uri = `/v2/${organization_id}/${organization_branch_id}/${PAGE_MAPPINGS?.[redirect_page]}`;
+			let uri = `/${organization_id}/${organization_branch_id}/${PAGE_MAPPINGS?.[redirect_page]}`;
 			if (redirect_page === 'search_results') {
 				const queryObj = {
 					importer_exporter_id        : organization_id,

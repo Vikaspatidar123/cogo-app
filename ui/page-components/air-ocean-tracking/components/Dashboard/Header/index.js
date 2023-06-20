@@ -58,7 +58,7 @@ function Header() {
 						return (
 							<div key={name} className={cl`${styles.col} ${styles.form_col}`}>
 								<Element {...controlItem} control={control} />
-								<p>{errors?.[name]?.message || errors?.[name]?.type}</p>
+								<p className={styles.errors}>{errors?.[name]?.message || errors?.[name]?.type}</p>
 							</div>
 						);
 					})}

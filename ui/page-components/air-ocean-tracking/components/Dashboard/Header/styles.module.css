@@ -32,6 +32,7 @@
 }
 
 .col {
+	position: relative;
 	padding: 0 8px;
 
 	&.form_col {
@@ -55,4 +56,10 @@
 	.option_text {
 		margin-left: 5px;
 	}
+}
+
+.errors {
+	position: absolute;
+	font-size: 12px;
+	color: #f33;
 }

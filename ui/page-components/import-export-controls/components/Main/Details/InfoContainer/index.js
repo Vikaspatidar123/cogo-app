@@ -64,7 +64,7 @@ function InfoContainer({ formInfo, setFormInfo }) {
 
 	const {
 		handleSubmit,
-		setValues,
+		setValue,
 		getValues,
 		formState: { errors },
 		control,
@@ -137,7 +137,7 @@ function InfoContainer({ formInfo, setFormInfo }) {
 					setShow={setShowValidate}
 					handleSubmit={handleSubmit}
 					formInfo={formInfo}
-					setValues={setValues}
+					setValue={setValue}
 					setFormInfo={setFormInfo}
 					loading={loading}
 					validateSubmitHandler={validateSubmitHandler}

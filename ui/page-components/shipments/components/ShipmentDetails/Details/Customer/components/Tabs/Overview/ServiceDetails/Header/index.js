@@ -74,7 +74,6 @@ function Header({
 					show={show}
 					onClose={() => setShow(false)}
 					onOuterClick={() => setShow(false)}
-					className="primary md"
 				>
 					{allServices?.services?.map((service) => (
 						<Details

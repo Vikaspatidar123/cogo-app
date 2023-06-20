@@ -16,6 +16,7 @@ function Navigation({
 
 	const handleClick = async (href, as) => {
 		push(href, as, true);
+		setShowPopover(false);
 	};
 	const renderBody = () => (
 		<SubNavigation

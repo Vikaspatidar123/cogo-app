@@ -7,7 +7,7 @@ const CONTROLS = [
 		type        : 'select',
 		placeholder : 'Search Country',
 		asyncKey    : 'hs_code_countries',
-		value       : GLOBAL_CONSTANTS.COUNTRY_IDS.IN,
+		value       : GLOBAL_CONSTANTS.hs_code_country_ids.IN,
 		valueKey    : 'id',
 		labelKey    : 'countryName',
 		initialCall : true,

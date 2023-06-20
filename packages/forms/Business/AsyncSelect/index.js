@@ -23,6 +23,8 @@ import {
 	asyncInsuranceCommodities,
 	asyncAirLines,
 	asyncShippingLines,
+	asyncTaxNumbers,
+	asyncOrganizationUsers,
 	asyncTradeContacts,
 	asyncFieldsAirPocDetails,
 	asyncFieldsAirLineList,
@@ -48,6 +50,8 @@ const keyAsyncFieldsParamsMapping = {
 	insurance_commodities      : asyncInsuranceCommodities,
 	'air-lines'                : asyncAirLines,
 	'shipping-lines'           : asyncShippingLines,
+	tax_numbers                : asyncTaxNumbers,
+	organization_users         : asyncOrganizationUsers,
 	trade_contacts             : asyncTradeContacts,
 	six_digit_hs_code          : asyncFieldsSixDigitHsCode,
 	list_ocean_poc_details     : asyncFieldsOceanPocDetails,
@@ -81,7 +85,6 @@ function AsyncSelect(props) {
 		getModifiedOptions,
 		value    : rest.value,
 	});
-
 	if (typeof getSelectedOption === 'function' && !isEmpty(rest.value)) {
 		let selectedValue;
 		if (multiple) {
@@ -91,15 +94,17 @@ function AsyncSelect(props) {
 		}
 
 		const selectedOption = getAsyncOptionsProps.options.filter(
-			(option) => option.id === selectedValue,
+			(option) => option?.[rest.valueKey] === selectedValue,
 		);
 		getSelectedOption(selectedOption[0]);
 	}
 	const Element = multiple ? MultiSelect : Select;
+
 	return (
 		<Element
 			{...rest}
 			{...getAsyncOptionsProps}
+			key={getAsyncOptionsProps?.id}
 		/>
 	);
 }

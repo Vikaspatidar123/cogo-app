@@ -1,6 +1,7 @@
+import { isEmpty } from '@cogoport/utils';
 import { useState, useEffect, useCallback } from 'react';
 
-import { request, useRequest } from '@/packages/request';
+import { useRequest } from '@/packages/request';
 import { useSelector } from '@/packages/store';
 
 const useFetchScheduleDetails = ({
@@ -24,7 +25,7 @@ const useFetchScheduleDetails = ({
 
 	const fetchScheduleDetails = useCallback(async () => {
 		try {
-			const res = await request({
+			const res = await trigger({
 				params: {
 					filters              : { ...prepareFilters(filters, scheduleDetails?.filter_data ?? {}) },
 					page                 : currentPage,
@@ -35,11 +36,28 @@ const useFetchScheduleDetails = ({
 				},
 			});
 			const { data } = res;
+			const carrierData = data?.schedules?.airlines || [];
+
+			const arrList = carrierData.map((val, index) => ({
+				id             : index,
+				name           : val.short_name,
+				status         : false,
+				shippingLineId : val.id,
+			}));
+			setCarrierList(arrList);
 			setScheduleDetails(data);
+			setMapPoints([
+				{
+					departure_lat  : data.origin_airport?.latitude,
+					departure_long : data.origin_airport?.longitude,
+					arrival_lat    : data.destination_airport?.latitude,
+					arrival_long   : data.destination_airport?.longitude,
+				},
+			]);
 		} catch (err) {
 			console.log(err);
 		}
-	}, [currentPage, filters, id, pageLimit, profile.id, scheduleDetails?.filter_data, sortBy]);
+	}, [currentPage, filters, id, pageLimit, profile.id, scheduleDetails?.filter_data, sortBy, trigger]);
 
 	const fetchFilterScheduleDetails = useCallback(async () => {
 		try {
@@ -55,15 +73,6 @@ const useFetchScheduleDetails = ({
 			});
 
 			const { data } = res;
-			const carrierData = data?.schedules?.shipping_lines || [];
-
-			const arrList = carrierData.map((val, index) => ({
-				id             : index,
-				name           : val.short_name,
-				status         : false,
-				shippingLineId : val.id,
-			}));
-			setCarrierList(arrList);
 			setScheduleDetails(data);
 			setMapPoints([
 				{
@@ -87,9 +96,8 @@ const useFetchScheduleDetails = ({
 			fetchScheduleDetails(isFirstVisit);
 		}
 	}, [sortBy, fetchScheduleDetails, general?.query?.isFirstVisit]);
-
 	useEffect(() => {
-		fetchFilterScheduleDetails();
+		if (!isEmpty(filters)) { fetchFilterScheduleDetails(); }
 	}, [filters, currentPage, fetchFilterScheduleDetails]);
 
 	return {

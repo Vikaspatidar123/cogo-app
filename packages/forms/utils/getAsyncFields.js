@@ -9,7 +9,7 @@ function asyncFieldsLocations2() {
 			page_limit : 50,
 			sort_by    : 'name',
 			sort_type  : 'asc',
-			includes   : { country: null, main_ports: null },
+			includes   : { country: true, main_ports: true, default_params_required: true },
 		},
 	};
 }
@@ -22,10 +22,10 @@ function asyncFieldsLocations(labelKey = 'name', valueKey = 'id') {
 		initialCall : true,
 		params      : {
 			filters    : { status: 'active' },
-			page_limit : 20,
+			page_limit : 50,
 			sort_by    : 'name',
 			sort_type  : 'asc',
-			includes   : { country: null, main_ports: null },
+			includes   : { country: true, main_ports: true, default_params_required: true },
 		},
 	};
 }
@@ -211,7 +211,7 @@ function asyncTradeParties() {
 }
 function asyncOrganizationUsers() {
 	return {
-		valueKey       : 'id',
+		valueKey       : 'name',
 		labelKey       : 'name',
 		endpoint       : 'list_organization_users',
 		defaultParams  : {},
@@ -259,6 +259,15 @@ function asyncProductList() {
 		initialCall : false,
 	};
 }
+function asyncTaxNumbers() {
+	return {
+		labelKey    : 'label',
+		valueKey    : 'tax_number',
+		endpoint    : '/get_tax_numbers_data',
+		initialCall : true,
+	};
+}
+
 function asyncTradeContacts() {
 	return {
 		valueKey       : 'id',
@@ -332,6 +341,7 @@ export {
 	asyncHsCodesCountries,
 	asyncOrganizationBranches,
 	asyncProductList,
+	asyncTaxNumbers,
 	asyncTradeContacts,
 	asyncFieldsSixDigitHsCode,
 	asyncFieldsOceanPocDetails,

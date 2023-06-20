@@ -283,7 +283,7 @@ function InvoicingParties({
 		);
 		let filteredNewList = newList;
 		if (isOrgCountryInvoicesRequired) {
-			filteredNewList =				address_to_use === 'other_addresses'
+			filteredNewList = address_to_use === 'other_addresses'
 				? getOrgCountryOtherAddresses({
 					newList,
 				})
@@ -320,7 +320,6 @@ function InvoicingParties({
 				/>
 			);
 		}
-
 		return filteredNewList.map((item) => (
 			<InvoicingPartyItem
 				key={item.id}

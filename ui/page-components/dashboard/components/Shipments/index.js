@@ -11,6 +11,7 @@ import ServiceTypeIcon from './ServiceTypeIcon';
 import styles from './styles.module.css';
 
 import { useRouter } from '@/packages/next';
+import getText from '@/ui/page-components/dashboard/common/getText';
 
 const onlySingleLocation = [
 	'fcl_customs',
@@ -18,6 +19,16 @@ const onlySingleLocation = [
 	'air_customs',
 	'fcl_cfs',
 ];
+
+const renderStatus = (ogShipmentData, service) => {
+	const textObj = getText(ogShipmentData, service);
+
+	return (
+		<text className={styles.text} style={{ backgroundColor: textObj.color }}>
+			{textObj.text}
+		</text>
+	);
+};
 function Shipments() {
 	const { loading, data } = ListShipments();
 
@@ -116,21 +127,15 @@ function Shipments() {
 													</div>
 													<div />
 													<div className={styles.origin}>
-														{
-																								getLocation(false, val)
-																									.location
-																							}
+														{getLocation(false, val)
+															.location}
 														<span
-															className={
-																									styles.location_span
-																								}
+															className={styles.location_span}
 														>
-															{
-																									getLocation(
-																										false,
-																										val,
-																									).country
-																								}
+															{getLocation(
+																false,
+																val,
+															).country}
 														</span>
 													</div>
 												</div>
@@ -138,11 +143,8 @@ function Shipments() {
 										<ContainerDetails
 											containerInfoData={
 											containerInfoData
-																					}
-											service_type={
-																						val?.service_type
-																						|| val?.shipment_type
-																					}
+}
+											service_type={val?.service_type || val?.shipment_type}
 										/>
 										<div className={styles.fouth_data}>
 											<div className={styles.first_row}>
@@ -151,14 +153,10 @@ function Shipments() {
 												/>
 												{val?.selected_schedule_departure && (
 													<p
-														className={
-																									styles.arrive
-																								}
+														className={styles.arrive}
 													>
 														<span
-															className={
-																										styles.span
-																									}
+															className={styles.span}
 														>
 															ETD: &nbsp;
 														</span>
@@ -200,9 +198,7 @@ function Shipments() {
 									</div>
 
 									<div className={styles.details}>
-										<p className={styles.cart}>
-											Added to cart
-										</p>
+										{renderStatus(data, val?.services)}
 										<Button
 											onClick={() => push(
 												'/shipments/[id]',
@@ -211,17 +207,19 @@ function Shipments() {
 										>
 											VIEW DETAILS
 										</Button>
-										<div className={styles.dot}>
-											<div className={styles.dot2} />
-											<p className={styles.tasks}>
-												{val?.pending_tasks_count}
-												<span
-													className={styles.pending}
-												>
-													pending tasks
-												</span>
-											</p>
-										</div>
+										{val?.pending_tasks_count ? (
+											<div className={styles.dot}>
+												<div className={styles.dot2} />
+												<p className={styles.tasks}>
+													{val?.pending_tasks_count}
+													<span
+														className={styles.pending}
+													>
+														pending tasks
+													</span>
+												</p>
+											</div>
+										) : null}
 									</div>
 								</div>
 							</div>

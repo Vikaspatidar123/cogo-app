@@ -859,7 +859,6 @@ const saas = {
 			module      : 'import-export-documents',
 			feature     : 'import-export-documents',
 		},
-
 	],
 	app_saas_transaction_history: [
 		{
@@ -1028,6 +1027,130 @@ const saas = {
 			service_name : 'location',
 		},
 	],
+	pay_later: [
+		{
+			api          : 'get_organization_credit_request',
+			access_type  : 'private',
+			service_name : 'credit',
+		},
+		{
+			api          : 'create_organization_credit_request',
+			access_type  : 'private',
+			service_name : 'credit',
+		},
+		{
+			api          : 'get_tax_numbers_data',
+			access_type  : 'private',
+			service_name : 'credit',
+		},
+		{
+			api          : 'list_organization_users',
+			access_type  : 'private',
+			service_name : 'organization',
+		},
+		{
 
+			api          : 'get_company_finance_data',
+			access_type  : 'private',
+			service_name : 'credit',
+		},
+		{
+			api          : 'update_organization_credit_request',
+			access_type  : 'private',
+			service_name : 'credit',
+		},
+		{
+			api          : 'update_organization_credit_requirement_details',
+			access_type  : 'private',
+			service_name : 'credit',
+		},
+		{
+			api          : 'apply_credit_request_coupon_code',
+			access_type  : 'private',
+			service_name : 'credit',
+		},
+		{
+			api         : 'list_coupons',
+			access_type : 'public',
+			// service_name : 'organization',
+		},
+		{
+			api          : 'submit_credit_application',
+			access_type  : 'private',
+			service_name : 'credit',
+		},
+		{
+			api          : 'update_credit_request_promotion',
+			access_type  : 'private',
+			service_name : 'credit',
+		},
+		{
+			api          : 'update_organization_credit_application',
+			access_type  : 'private',
+			service_name : 'credit',
+		},
+		{
+			api          : 'update_organization_credit_request_poc_details',
+			access_type  : 'private',
+			service_name : 'credit',
+		},
+		{
+			api          : 'submit_credit_application_for_agreement_flow',
+			access_type  : 'private',
+			service_name : 'credit',
+		},
+	],
+	app_saas_cogopoint: [
+		{
+			api          : 'get_organization_cogopoint_profile',
+			access_type  : 'private',
+			service_name : 'cogopoint',
+		},
+		{
+			api          : 'get_cogopoint_history_detail',
+			access_type  : 'private',
+			service_name : 'cogopoint',
+		},
+		{
+			api          : 'get_cogopoint_user_dashboard',
+			access_type  : 'private',
+			service_name : 'cogopoint',
+		},
+		{
+			api          : 'list_user_cogopoint_histories',
+			access_type  : 'private',
+			service_name : 'cogopoint',
+		},
+	],
+	app_saas_cogostore: [
+		{
+			api          : 'list_cogostore_voucher_brands',
+			access_type  : 'private',
+			service_name : 'cogopoint',
+		},
+
+		{
+			api          : 'create_cogostore_cart_item',
+			access_type  : 'private',
+			service_name : 'cogopoint',
+		},
+
+		{
+			api          : 'list_cogostore_products',
+			access_type  : 'private',
+			service_name : 'cogopoint',
+		},
+
+		{
+			api          : 'get_cogostore_product',
+			access_type  : 'private',
+			service_name : 'cogopoint',
+		},
+		{
+			api          : 'get_cogopoint_user_profile',
+			access_type  : 'private',
+			service_name : 'cogopoint',
+		},
+	],
 };
 export default saas;

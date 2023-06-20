@@ -1,8 +1,8 @@
 import { isEmpty } from '@cogoport/utils';
 import { useEffect, useState } from 'react';
 
-import { checkMobileInput } from '../utils/checkMobileInput';
-import { getLocationData } from '../utils/getLocationData';
+import { checkMobileInput } from '../utils/check-mobile-input';
+import { getLocationData } from '../utils/get-location-data';
 
 import getGeoConstants from '@/ui/commons/constants/geo';
 

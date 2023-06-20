@@ -62,11 +62,15 @@ const saas = {
 	},
 
 	'/saas/trade-partner': {
-		navigation : 'saas_tools-trade_partner',
+		navigation : 'saas_planning-trade_partner',
 		isMainNav  : true,
 	},
 	'/saas/trade-partner/[trade_id]': {
-		navigation : 'saas_tools-trade_partner',
+		navigation : 'saas_planning-trade_partner',
+		isMainNav  : true,
+	},
+	'/saas/trade-partner/archived': {
+		navigation : 'saas_planning-trade_partner',
 		isMainNav  : true,
 	},
 	'/saas/premium-services/import-export-doc': {
@@ -159,6 +163,14 @@ const saas = {
 	},
 	'/saas/order-history': {
 		navigation : 'saas_premium_services-order_history',
+		isMainNav  : true,
+	},
+	'/saas/product-inventory': {
+		navigation : 'saas_planning-product_inventory',
+		isMainNav  : true,
+	},
+	'/saas/product-inventory/archived': {
+		navigation : 'saas_planning-product_inventory',
 		isMainNav  : true,
 	},
 };

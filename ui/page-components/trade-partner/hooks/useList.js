@@ -10,16 +10,16 @@ const useList = ({ activeTab, archived = false, sort }) => {
 	const { organization } = profile || {};
 	const [apiData, setDataApi] = useState({});
 	const [filters, setGlobalFilters] = useState({
-		page       : 1,
-		pageLimit  : 10,
-		searchTerm : '',
-		query      : '',
+		page: 1,
+		pageLimit: 10,
+		searchTerm: '',
+		query: '',
 	});
 
 	const [{ loading }, trigger] = useRequestBf({
-		url     : '/saas/organization/partner/list',
-		authKey : 'get_saas_organization_partner_list',
-		method  : 'get',
+		url: '/saas/organization/partner/list',
+		authKey: 'get_saas_organization_partner_list',
+		method: 'get',
 	}, { manual: true });
 
 	const getList = async () => {

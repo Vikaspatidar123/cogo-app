@@ -14,7 +14,7 @@ const useProductCatalogue = ({ archive = false, fetch = () => { }, setActiveTab 
 	const [{ loading: useProductLoading }, UseProducttrigger] = useRequestBf({
 		url: '/saas/product/list',
 		method: 'get',
-		authKey: 'get_saas_product',
+		authKey: 'get_saas_product_list',
 	}, { manual: true });
 
 	const [{ loading: addApiLoading }] = useRequestBf({

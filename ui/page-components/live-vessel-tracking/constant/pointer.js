@@ -10,6 +10,3 @@ export const ICON_ANCHOR_Y = 12;
 
 export const TOOLTIP_OFFSET_X = 0;
 export const TOOLTIP_OFFSET_Y = -10;
-
-export const TIME_FORMAT = 'hh:mm aaa';
-export const DATE_FORMAT = 'dd/MM/yyyy';

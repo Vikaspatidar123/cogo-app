@@ -3,27 +3,31 @@ import ReactDOMServer from 'react-dom/server';
 
 import {
 	ICON_ANCHOR_X, ICON_ANCHOR_Y, ICON_SIZE, TOOLTIP_MAPPING,
-	TOOLTIP_OFFSET_X, TOOLTIP_OFFSET_Y, TIME_FORMAT, DATE_FORMAT,
+	TOOLTIP_OFFSET_X, TOOLTIP_OFFSET_Y,
 } from '../../constant/pointer';
-import formatDate from '../../utils/formatDate';
-import { imageUrl } from '../../utils/imageUrl';
 
 import styles from './styles.module.css';
 
 import { Image } from '@/packages/next';
+import getGeoConstants from '@/ui/commons/constants/geo';
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
+import formatDate from '@/ui/commons/utils/formatDate';
+
+const geo = getGeoConstants();
 
 const ICON_MAPPING = {
-	yellow : imageUrl.yellow_vessel,
-	red    : imageUrl.red_vessel,
-	black  : imageUrl.black_vessel,
+	yellow : GLOBAL_CONSTANTS.image_url.yellow_vessel,
+	red    : GLOBAL_CONSTANTS.image_url.red_vessel,
+	black  : GLOBAL_CONSTANTS.image_url.black_vessel,
 };
 
 const getData = ({ info, props }) => {
 	if (info === 'last_updated_at') {
 		return formatDate({
 			date       : props?.last_updated_at,
-			dateFormat : DATE_FORMAT,
-			timeFormat : TIME_FORMAT,
+			dateFormat : geo.formats.date.default,
+			timeFormat : geo.formats.time['12hrs'],
+			formatType : 'dateTime',
 		});
 	}
 	return props?.[info];

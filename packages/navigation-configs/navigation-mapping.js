@@ -27,6 +27,7 @@ import {
 	IcADocumentTemplates,
 	IcMPartnersCogoport,
 	IcAProfessionalQuotations,
+	IcAOceanFcl,
 } from '@cogoport/icons-react';
 
 const navigationMappings = {
@@ -115,8 +116,7 @@ const navigationMappings = {
 				title       : 'Live Vessel Tracking',
 				href        : '/saas/live-vessel-tracking',
 				as          : '/saas/live-vessel-tracking',
-				type        : 'link',
-				icon        : 'nav-trade-partner',
+				icon        : <IcAOceanFcl width={50} height={50} />,
 				description : 'Real time vessel position',
 			},
 		],

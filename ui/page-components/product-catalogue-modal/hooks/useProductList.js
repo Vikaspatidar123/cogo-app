@@ -18,14 +18,12 @@ const useProductList = ({ labeledValue }) => {
 
 	const { debounceQuery, query } = useSearchQuery();
 
-	const [{ loading }, productTrigger] = useRequestBf(
-		{
-			url     : '/saas/product/list',
-			authkey : 'get_saas_product_list',
-			method  : 'get',
-		},
-		{ manual: true },
-	);
+	const [{ loading }, productTrigger] = useRequestBf({
+		url     : '/saas/product/list',
+		method  : 'get',
+		authKey : 'get_saas_product_list',
+	}, { manual: true });
+
 	const refetchProduct = async ({
 		page = 1,
 		productClassificationId = null,

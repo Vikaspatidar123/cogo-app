@@ -1,52 +1,31 @@
 import { Button, Pagination } from '@cogoport/components';
 import { IcMPortArrow } from '@cogoport/icons-react';
-import { merge } from '@cogoport/utils';
-import React, { useState } from 'react';
+import { isEmpty } from '@cogoport/utils';
+import React from 'react';
 
 import Loading from './common/Loading';
 import NoSchedulesCard from './components/NoSchedulesCard';
 import ScheduleCard from './components/ScheduleCard';
-import getControls from './config';
 import useCreateSchedule from './hooks/useCreateSchedule';
 import useFetchSchedules from './hooks/useFetchSchedules';
 import styles from './styles.module.css';
 
 import {
 	SelectController,
-	asyncFieldsLocations,
-	useForm,
-	useGetAsyncOptions,
 } from '@/packages/forms';
 
 function AirSchedules() {
-	const { control, watch } = useForm();
-	const [currentPage, setCurrentPage] = useState(1);
-	const { createSchedule } = useCreateSchedule();
-	const { fetchSchedules, schedules, loading } = useFetchSchedules({
-		currentPage,
-		setCurrentPage,
-	});
-	const [errorMessage, setErrorMessage] = useState(false);
+	const {
+		handleCreateSchedule,
+		errorMessage, formValues, control, fields,
+	} = useCreateSchedule();
 
-	const formValues = watch();
+	const {
+		fetchSchedules, schedules, loading,
+		setCurrentPage, currentPage,
+	} = useFetchSchedules();
 
-	const airportOptions = useGetAsyncOptions(
-		merge(asyncFieldsLocations(), {
-			params: { filters: { type: ['airport'] } },
-		}),
-	);
-	const handleCreateSchedule = () => {
-		if (formValues?.origin_airport === formValues?.destination_airport) {
-			setErrorMessage((prev) => !prev);
-			return;
-		}
-		createSchedule(
-			formValues.origin_airport,
-			formValues.destination_airport,
-		);
-	};
-
-	const fields = getControls({ airportOptions });
+	const { list = [], total_count = 0, page_limit = 0 } = schedules || {};
 
 	return (
 		<div className={styles.container}>
@@ -76,9 +55,9 @@ function AirSchedules() {
 						<Button
 							onClick={handleCreateSchedule}
 							disabled={
-                                !(formValues.origin_airport
-                                && formValues.destination_airport)
-                            }
+								!(formValues.origin_airport
+									&& formValues.destination_airport)
+							}
 						>
 							Search Schedule
 						</Button>
@@ -95,11 +74,11 @@ function AirSchedules() {
 			<div className={styles.schedules_container}>
 				{loading && (
 					<div className={styles.card}>
-						<Loading />
+						<Loading home />
 					</div>
 				)}
-				{!loading && schedules?.list.length > 0 ? (
-					schedules?.list?.map((item) => (
+				{!loading && !isEmpty(list) ? (
+					(list || []).map((item) => (
 						<ScheduleCard
 							schedule={item}
 							fetchSchedules={fetchSchedules}
@@ -111,13 +90,13 @@ function AirSchedules() {
 				)}
 			</div>
 
-			{schedules?.list.length > 0 && (
+			{!isEmpty(list) && (
 				<div className={styles.pagination_container}>
 					<Pagination
 						type="number"
 						currentPage={currentPage}
-						totalItems={schedules?.total_count || 10}
-						pageSize={schedules?.page_limit}
+						totalItems={total_count || 10}
+						pageSize={page_limit}
 						onPageChange={setCurrentPage}
 					/>
 				</div>

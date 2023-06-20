@@ -48,7 +48,13 @@
 }
 
 .button {
+	display: none;
 	cursor: pointer;
+
+	@media (max-width: 768px) {
+		display: block;
+		margin-top: 80px;
+	}
 }
 
 .middle_text_container {
@@ -59,14 +65,39 @@
 }
 
 .active_schedules {
-	display: flex;
-	flex-flow: row wrap;
-	gap: 20px;
+	width: 77%;
 	margin-top: 20px;
+
+	@media (max-width: 768px) {
+		width: 100%;
+	}
 }
 
 .pagination_container {
 	display: flex;
 	float: right;
 	margin: 20px 0;
+}
+
+.filter {
+	position: sticky;
+	left: 25px;
+	width: 23%;
+	height: 520px;
+	margin-top: 25px;
+	margin-right: 20px;
+	overflow-y: scroll;
+	background: #fff;
+	border-radius: 2px;
+	box-shadow: 0 0 4px rgb(0 0 0 / 15%);
+
+	@media (max-width: 768px) {
+		display: none;
+		margin-top: 80px;
+	}
+}
+
+.container_box {
+	display: flex;
+	width: 100%;
 }

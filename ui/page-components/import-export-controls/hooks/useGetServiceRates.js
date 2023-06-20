@@ -12,7 +12,7 @@ const useGetServiceRates = (prioritySequence = 0) => {
 	const [{ loading, data }, trigger] = useRequestBf({
 		method  : 'get',
 		url     : '/saas/trade-engine/service-rates',
-		authkey : 'get_saas_trade_engine_service_rates',
+		authKey : 'get_saas_trade_engine_service_rates',
 	}, { manual: true });
 
 	const fetchServiceRates = async () => {
@@ -36,7 +36,7 @@ const useGetServiceRates = (prioritySequence = 0) => {
 		if (prioritySequence >= 0) {
 			fetchServiceRates();
 		}
-	// eslint-disable-next-line react-hooks/exhaustive-deps
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [prioritySequence]);
 
 	return {

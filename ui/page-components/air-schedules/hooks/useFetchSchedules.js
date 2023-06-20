@@ -3,12 +3,13 @@ import { useState, useEffect, useCallback } from 'react';
 import { useRequest } from '@/packages/request';
 import { useSelector } from '@/packages/store';
 
-const useFetchSchedules = ({ currentPage }) => {
+const useFetchSchedules = () => {
 	const [filters, setFilters] = useState({});
 	const [schedules, setSchedules] = useState();
 	const { general } = useSelector((state) => state);
+	const [currentPage, setCurrentPage] = useState(1);
 
-	const prepareFilters = () => {};
+	const prepareFilters = () => { };
 
 	const [{ loading }, trigger] = useRequest({
 		method : 'get',
@@ -47,6 +48,9 @@ const useFetchSchedules = ({ currentPage }) => {
 		setFilters,
 		fetchSchedules,
 		schedules,
+		setCurrentPage,
+		currentPage,
+
 	};
 };
 

@@ -42,6 +42,7 @@ function OceanSchedules() {
 			return;
 		}
 		setErrorMessage(false);
+		console.log(formValues, 'formValues');
 		createSchedule(formValues.origin_port, formValues.destination_port);
 	};
 
@@ -75,9 +76,9 @@ function OceanSchedules() {
 						<Button
 							onClick={handleCreateSchedule}
 							disabled={
-                                !(formValues.origin_port
-                                    && formValues.destination_port)
-                            }
+								!(formValues.origin_port
+									&& formValues.destination_port)
+							}
 						>
 							Search Schedule
 						</Button>

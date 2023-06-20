@@ -1,34 +1,25 @@
 import { IcMArrowNext, IcMCrossInCircle } from '@cogoport/icons-react';
-import React, { useState } from 'react';
+import React from 'react';
 
 import useDeleteSchedule from '../../hooks/useDeleteSchedule';
 
 import DeleteModal from './DeleteModal';
 import styles from './styles.module.css';
 
-import { useRouter } from '@/packages/next';
-
 function ScheduleCard({ schedule, fetchSchedules }) {
-	const { deleteSchedule } = useDeleteSchedule(fetchSchedules);
-
-	const [showDelete, setShowDelete] = useState(false);
-	const { push } = useRouter();
-
-	const originSchedule = schedule?.origin_airport?.port_code || 'Origin';
-	const DestinationSchedule =	 schedule?.destination_airport?.port_code || 'Destination';
-
-	const origin_airport_name = schedule?.origin_airport?.name.split('-')[0];
-	const origin_airport_code = schedule?.origin_airport?.name.split('-')[1];
-	const destination_airport_name = schedule?.destination_airport?.name.split('-')[0];
-	const destination_airport_code = schedule?.destination_airport?.name.split('-')[1];
-
-	const handleViewDetails = () => {
-		push(`/saas/air-schedules/${schedule?.id}`);
-	};
-
-	const handleDelete = async () => {
-		setShowDelete(!showDelete);
-	};
+	const {
+		deleteSchedule, loading,
+		showDelete,
+		setShowDelete,
+		originSchedule,
+		DestinationSchedule,
+		origin_airport_name,
+		origin_airport_code,
+		destination_airport_name,
+		destination_airport_code,
+		handleViewDetails,
+		handleDelete,
+	} = useDeleteSchedule({ fetchSchedules, schedule });
 
 	return (
 		<div className={styles.container}>
@@ -51,7 +42,11 @@ function ScheduleCard({ schedule, fetchSchedules }) {
 				<div className={styles.circle2}><div className={styles.port_code}>{DestinationSchedule}</div></div>
 			</div>
 			<div className={styles.steps_container} />
-			<div className={styles.footer_container} role="presentation" onClick={handleViewDetails}>
+			<div
+				className={styles.footer_container}
+				role="presentation"
+				onClick={handleViewDetails}
+			>
 				<div className={styles.value_container}>
 					<div className={styles.number_container}>
 						{schedule.schedules_count || 0}
@@ -66,16 +61,15 @@ function ScheduleCard({ schedule, fetchSchedules }) {
 					<IcMArrowNext fill="#034AFD" width="1.2rem" height="1.2rem" />
 				</div>
 			</div>
-			{
-				showDelete && (
-					<DeleteModal
-						showDelete={showDelete}
-						setShowDelete={setShowDelete}
-						schedule={schedule}
-						deleteSchedule={deleteSchedule}
-					/>
-				)
-			}
+			{showDelete && (
+				<DeleteModal
+					showDelete={showDelete}
+					setShowDelete={setShowDelete}
+					schedule={schedule}
+					deleteSchedule={deleteSchedule}
+					loading={loading}
+				/>
+			)}
 		</div>
 	);
 }

@@ -157,6 +157,10 @@ const saas = {
 		navigation : 'saas_cogostore',
 		isMainNav  : true,
 	},
+	'/saas/order-history': {
+		navigation : 'saas_premium_services-order_history',
+		isMainNav  : true,
+	},
 };
 
 module.exports = saas;

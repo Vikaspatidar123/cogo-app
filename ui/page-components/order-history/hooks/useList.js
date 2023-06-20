@@ -9,18 +9,18 @@ const useList = ({ sort }) => {
 	const { organization } = profile || {};
 	const [apiData, setDataApi] = useState({});
 	const [filters, setGlobalFilters] = useState({
-		page       : 1,
-		pageLimit  : 10,
-		searchTerm : '',
+		page: 1,
+		pageLimit: 10,
+		searchTerm: '',
 	});
 	const { date_range = {}, ...rest } = filters || {};
 
 	const [{ loading: apiLoading }, tradeApitrigger] = useRequestBf(
 		{
-			url        : '/saas/trade-engine/order-history',
-			authKey    : 'get_saas_trade_engine_order_history',
-			method     : 'get',
-			autoCancel : false,
+			url: '/saas/trade-engine/order-history',
+			authKey: 'get_saas_trade_engine_order_history',
+			method: 'get',
+			autoCancel: false,
 		},
 		{ manual: true },
 	);
@@ -32,8 +32,8 @@ const useList = ({ sort }) => {
 		try {
 			const resp = await tradeApitrigger({
 				params: {
-					source         : 'SAAS',
-					organizationId : organization?.id,
+					source: 'SAAS',
+					organizationId: organization?.id,
 					...date_range,
 					...rest,
 					sortBy,

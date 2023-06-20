@@ -34,14 +34,10 @@ const useGetCurrentInfo = ({ data = {}, trackingType }) => {
 		};
 	}, [trackingInfo, trackingType, currContainerDetails]);
 
-	const {
-		tracking_data: currTrackingData = [],
-		vessel_eta_details = {}, combineMileStoneList = [],
-	} = currentInfo;
+	const { tracking_data: currTrackingData = [], combineMileStoneList = [] } = currentInfo;
 
 	return {
 		currTrackingData,
-		vessel_eta_details,
 		combineMileStoneList,
 		currContainerDetails,
 		setCurrContainerDetails,

@@ -89,7 +89,7 @@ function Header() {
 				</div>
 
 			</div>
-			<ImportCsvModal csvModal={csvModal} setCsvModal={setCsvModal} />
+			<ImportCsvModal csvModal={csvModal} setCsvModal={setCsvModal} trackingType={trackingType} />
 		</div>
 	);
 }

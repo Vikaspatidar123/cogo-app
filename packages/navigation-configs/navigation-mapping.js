@@ -114,8 +114,8 @@ const navigationMappings = {
 			{
 				key   : 'saas_tools-air_ocean_tracking_v2',
 				title : 'Air Ocean Tracking',
-				href  : '/v2/saas/tools/air-ocean-tracking',
-				as    : '/v2/saas/tools/air-ocean-tracking',
+				href  : '/saas/tools/air-ocean-tracking',
+				as    : '/saas/tools/air-ocean-tracking',
 				icon  : <IcAShipAmber width={40} height={40} />,
 			},
 		],

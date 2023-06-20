@@ -4,7 +4,17 @@ import { useState } from 'react';
 
 import styles from './styles.module.css';
 
-function ImportCsvModal({ csvModal, setCsvModal }) {
+const DOWNLOAD_SAMPLE_FILE = {
+	ocean:
+	'https://cogoport-production.sgp1.digitaloceanspaces.com/ee7801fe47be5e56b0cb306e1ea22889/sample_import_sheet.csv',
+	air: '',
+};
+
+const downloadSampleHandler = ({ trackingType }) => {
+	window.open(DOWNLOAD_SAMPLE_FILE[trackingType]);
+};
+
+function ImportCsvModal({ csvModal, setCsvModal, trackingType = 'ocean' }) {
 	const [fileValue, setFileValue] = useState('');
 	const closeModalHandler = () => setCsvModal(false);
 	return (
@@ -23,7 +33,13 @@ function ImportCsvModal({ csvModal, setCsvModal }) {
 						accept=".csv"
 					/>
 
-					<Button type="button" themeType="linkUi">Download the sample file here</Button>
+					<Button
+						type="button"
+						themeType="linkUi"
+						onClick={() => downloadSampleHandler({ trackingType })}
+					>
+						Download the sample file here
+					</Button>
 					<Button type="button" themeType="accent" className={styles.footer_btn}>Import</Button>
 				</div>
 

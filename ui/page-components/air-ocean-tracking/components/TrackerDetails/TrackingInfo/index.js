@@ -9,9 +9,12 @@ import Maps from './Map';
 import MilestoneStepper from './MilestoneStepper';
 import styles from './styles.module.css';
 
+import { useRouter } from '@/packages/next';
 import EmptyState from '@/ui/page-components/air-ocean-tracking/common/EmptyState';
 
 function TrackingInfo() {
+	const { query } = useRouter();
+	const { isFirstVisit = false } = query;
 	const { loading, data, trackingType } = useGetShipmentInfo();
 	const {
 		container_details = [], shipment_info, poc_details = [], data: trackingInfo = [], airway_bill_no = '',
@@ -20,7 +23,6 @@ function TrackingInfo() {
 
 	const {
 		currTrackingData,
-		vessel_eta_details,
 		combineMileStoneList,
 		currContainerDetails,
 		setCurrContainerDetails,

@@ -11,10 +11,10 @@ const useRedirectFn = () => {
 		);
 	};
 
-	const redirectToTracker = ({ type, id }) => {
+	const redirectToTracker = ({ type, id, isFirst = false }) => {
 		push(
-			'/saas/tools/air-ocean-tracking/list/[trackingType]/[trackingId]',
-			`/saas/tools/air-ocean-tracking/list/${type}/${id}`,
+			`/saas/tools/air-ocean-tracking/list/[trackingType]/[trackingId]?isFirstVisit=${isFirst}`,
+			`/saas/tools/air-ocean-tracking/list/${type}/${id}?isFirstVisit=${isFirst}`,
 		);
 	};
 

@@ -2,7 +2,7 @@ import { Checkbox, Toggle } from '@cogoport/components';
 import { IcMEdit } from '@cogoport/icons-react';
 import { format, isEmpty, upperCase } from '@cogoport/utils';
 
-import formatDateTime from './formatDateTime';
+import { formatDateTime } from './formatDateTime';
 
 const style = {
 	cursor        : 'pointer',

@@ -2,7 +2,7 @@ import { cl, Tabs, TabPanel, ButtonGroup, Select, Button } from '@cogoport/compo
 import { IcMListView, IcMMap } from '@cogoport/icons-react';
 import { useState } from 'react';
 
-import { DASHBOARD_TAB_MAPPING } from '../../../constant/tabMapping';
+import { TAB_MAPPING } from '../../../constant/tabMapping';
 import useRedirectFn from '../../../hooks/useRedirectFn';
 
 import styles from './styles.module.css';
@@ -36,7 +36,7 @@ function MainContainer() {
 		page        : 1,
 		selectValue : 'month',
 		isList      : false,
-		activeTab   : 'all',
+		activeTab   : 'ocean',
 	});
 
 	const { redirectToList } = useRedirectFn();
@@ -57,8 +57,8 @@ function MainContainer() {
 								activeTab: e,
 							}))}
 						>
-							{Object.keys(DASHBOARD_TAB_MAPPING).map((tab) => (
-								<TabPanel key={tab} name={tab} title={DASHBOARD_TAB_MAPPING?.[tab]} />
+							{Object.keys(TAB_MAPPING).map((tab) => (
+								<TabPanel key={tab} name={tab} title={TAB_MAPPING?.[tab]} />
 							))}
 						</Tabs>
 					</div>

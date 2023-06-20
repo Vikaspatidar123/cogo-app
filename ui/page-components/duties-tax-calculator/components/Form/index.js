@@ -46,7 +46,7 @@ function Form({
 	const [prevHs, setPrevHs] = useState('');
 	const {
 		formTransportDetails, formProductDetails, formChargeDetails, formPayDetails,
-	} =		formStepper;
+	} = formStepper;
 	const { serviceRates, serviceRateData, serviceRatesLoading } = useServiceRates({
 		prioritySequence,
 	});
@@ -57,7 +57,7 @@ function Form({
 		reset: transportReset,
 		handleSubmit: transportHandleSubmit,
 		formState: { errors: transportError },
-		control:transportControl,
+		control: transportControl,
 	} = useForm();
 
 	const {
@@ -65,7 +65,7 @@ function Form({
 		setValue: productSetValue,
 		watch: productWatch,
 		formState: { errors: productError },
-		control:productNewControls,
+		control: productNewControls,
 	} = useForm({ defaultValues: { currency: 'INR' } });
 
 	const {
@@ -73,7 +73,7 @@ function Form({
 		formState: { errors: ChargeError },
 		watch: chargeWatch,
 		setValue: chargeSetValue,
-		control:chargeControls,
+		control: chargeControls,
 	} = useForm({ defaultValues: { incoterm: 'CIF' } });
 
 	const filter = { filters: { type: [transportMode === 'AIR' ? 'airport' : 'seaport'] } };
@@ -119,8 +119,8 @@ function Form({
 			if (ele) {
 				setFormStepper((prev) => ({
 					...prev,
-					[formStepKey[index]]     : false,
-					[formStepKey[index - 1]] : true,
+					[formStepKey[index]]: false,
+					[formStepKey[index - 1]]: true,
 				}));
 
 				setStepper((prev) => ({

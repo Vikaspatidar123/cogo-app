@@ -25,7 +25,7 @@ function Pricing({
 	pdId,
 	subCategoryCount,
 	card = false,
-	setActiveTab,
+	setActiveTab = () => {},
 }) {
 	const controls = getControls();
 	const {

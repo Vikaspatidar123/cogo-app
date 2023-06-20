@@ -13,4 +13,16 @@
 .flex_div {
 	display: flex;
 	width: 50%;
+
+	@media (max-width: 768px) {
+		margin-bottom: 10px;
+	}
+}
+
+.filter_width {
+	width: 210px;
+}
+
+.filter_search {
+	width: 250px;
 }

@@ -1,9 +1,9 @@
-import { Button, Toast, Input } from '@cogoport/components';
+import { Button, Toast } from '@cogoport/components';
 import React, { useState } from 'react';
 
 import styles from './styles.module.css';
-import Timer from './Timer';
 
+import OTPLayout from '@/packages/forms/Business/OTPLayout';
 import { useRequest } from '@/packages/request';
 import showErrorsInToast from '@/ui/commons/utils/showErrorsInToast';
 
@@ -24,19 +24,16 @@ function Bar({
 }) {
 	const [otp, setOtp] = useState('');
 
-	const [{ loading:otpLoading }, otpVarifyAPI] = useRequest({
+	const [{ loading: otpLoading }, otpVarifyAPI] = useRequest({
 		url    : '/verify_user_mobile',
 		method : 'post',
 	}, { manual: true });
 
-	const [{ loading:kycLoading }, submitKycAPI] = useRequest({
+	const [{ loading: kycLoading }, submitKycAPI] = useRequest({
 		url    : '/submit_organization_kyc',
 		method : 'post',
 	}, { manual: true });
 
-	const handleChange = (e) => {
-		setOtp(e?.target?.value);
-	};
 	const handleResendOtp = async () => {
 		try {
 			const res = await otpVarifyAPI({
@@ -97,25 +94,18 @@ function Bar({
 	};
 	return (
 		<div className={styles.container}>
-			<Timer initialMinute={2} initialSecond={120} />
 			<div className={styles.input_div}>
-				<Input
-					value={otp}
-					onChange={handleChange}
-					placeholder="Enter OTP"
+				<OTPLayout
+					otpLength={4}
+					setOtpValue={setOtp}
+					loading={otpLoading}
+					sendOtp={handleResendOtp}
 				/>
-			</div>
-			<div
-				className={styles.resend_otp}
-				role="presentation"
-				onClick={handleResendOtp}
-			>
-				RESEND OTP?
 			</div>
 			<div className={styles.button_div}>
 				<Button
 					style={buttonStyle}
-					disabled={otpLoading || kycLoading}
+					disabled={otpLoading || kycLoading || otp.length !== 4}
 					onClick={handleSubmit}
 				>
 					SUBMIT

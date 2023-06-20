@@ -13,28 +13,28 @@ import FormItem from '@/ui/commons/components/FormItem';
 function ModalPage({ open, setOpen }) {
 	const [{ loading }, otpVerifyAPI] = useRequest(
 		{
-			url: '/verify_user_mobile',
-			method: 'post',
+			url    : '/verify_user_mobile',
+			method : 'post',
 		},
 		{ manual: true },
 	);
 
 	const { agent_id, organization, user_profile } = useSelector(
 		({ general, profile }) => ({
-			scope: general?.scope,
-			agent_id: profile?.id,
-			organization: profile?.organization,
+			scope        : general?.scope,
+			agent_id     : profile?.id,
+			organization : profile?.organization,
 			countryId:
 				profile?.organization?.country_id || profile?.partner?.country_id,
 			user_profile: profile,
 		}),
 	);
 	const initialValues = {
-		preferred_languages: user_profile?.preferred_languages,
-		registration_number: user_profile?.organization?.registration_number,
-		mobile: {
-			country_code: user_profile?.mobile_country_code,
-			number: user_profile?.mobile_number,
+		preferred_languages : user_profile?.preferred_languages,
+		registration_number : user_profile?.organization?.registration_number,
+		mobile              : {
+			country_code : user_profile?.mobile_country_code,
+			number       : user_profile?.mobile_number,
 		},
 		country_id:
 			user_profile?.organization?.country_id
@@ -53,9 +53,9 @@ function ModalPage({ open, setOpen }) {
 		try {
 			await otpVerifyAPI({
 				data: {
-					id: agent_id,
-					mobile_number: values?.mobile?.number,
-					mobile_country_code: values?.mobile?.country_code,
+					id                  : agent_id,
+					mobile_number       : values?.mobile?.number,
+					mobile_country_code : values?.mobile?.country_code,
 				},
 			});
 			Toast?.success('OTP sent');

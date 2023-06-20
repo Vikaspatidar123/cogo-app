@@ -52,7 +52,6 @@ function Quotation({
 	setViewSchedules = () => {},
 	scheduleData,
 }) {
-	
 	const { query } = useSelector(({ general }) => ({
 		query: general.query,
 	}));
@@ -384,7 +383,7 @@ function Quotation({
 					</Button>
 					<br />
 
-					{data?.source !== 'cogo_assured_rate' && (scheduleData || []).length > 0 &&(
+					{data?.source !== 'cogo_assured_rate' && (scheduleData || []).length > 0 && (
 						<Button
 							onClick={() => {
 								setViewSchedules((prev) => !prev);
@@ -405,7 +404,7 @@ function Quotation({
 									size={1.25}
 								/>
 							)}
-						</Button>,
+						</Button>
 					)}
 
 					{unavailableRatesCount

@@ -12,8 +12,8 @@ export function KycCampaign({
 }) {
 	const { agent_id, organization, user_profile } = useSelector(
 		({ profile }) => ({
-			agent_id: profile?.id,
-			organization: profile?.organization,
+			agent_id     : profile?.id,
+			organization : profile?.organization,
 			countryId:
 				profile?.organization?.country_id || profile?.partner?.country_id,
 			user_profile: profile,
@@ -21,11 +21,11 @@ export function KycCampaign({
 	);
 
 	const initialValues = {
-		preferred_languages: user_profile?.preferred_languages,
-		registration_number: user_profile?.organization?.registration_number,
-		mobile: {
-			mobile_country_code: user_profile?.mobile_country_code,
-			mobile_number: user_profile?.mobile_number,
+		preferred_languages : user_profile?.preferred_languages,
+		registration_number : user_profile?.organization?.registration_number,
+		mobile              : {
+			mobile_country_code : user_profile?.mobile_country_code,
+			mobile_number       : user_profile?.mobile_number,
 		},
 		country_id:
 			user_profile?.organization?.country_id
@@ -57,8 +57,8 @@ export function KycCampaign({
 
 export function KycCampaignModal({ trackAnalytics = false }) {
 	const { isMobile, kyc_status } = useSelector(({ general, profile }) => ({
-		isMobile: general?.isMobile,
-		kyc_status: profile?.organization?.kyc_status,
+		isMobile   : general?.isMobile,
+		kyc_status : profile?.organization?.kyc_status,
 	}));
 	const [show, setShow] = useState(false);
 

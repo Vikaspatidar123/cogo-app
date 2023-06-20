@@ -1,4 +1,3 @@
-import { Placeholder } from '@cogoport/components';
 import { useState } from 'react';
 
 import Header from './Header';

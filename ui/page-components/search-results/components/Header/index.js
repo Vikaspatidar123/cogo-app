@@ -9,15 +9,16 @@ import Slider from '@/packages/forms/Business/Slider';
 
 function Header({
 	search_type = '',
-	setSort = () => {},
+	setSort = () => { },
 	sortBy = '',
 	setFilters,
 	state = {},
 	rates_count = 0,
 }) {
 	const { shippingLineOptions, priceRange, rates } = state;
-	const { max, min } = priceRange;
-	const [rateSliderValue, setRateSliderValue] = useState(max + 100);
+	const { max, min } = priceRange || {};
+	const value = (max + 100).toFixed(2);
+	const [rateSliderValue, setRateSliderValue] = useState(value);
 	const [selectShippingLineValue, setSelectShippingLineValue] = useState('');
 	const uniqueShippingLineOption = shippingLineOptions.reduce((pv, cv) => {
 		const optionExists = pv.some(
@@ -48,7 +49,7 @@ function Header({
 				<Slider
 					value={rateSliderValue}
 					min={min}
-					max={max + 100}
+					max={value}
 					suffixtext="(BAS)"
 					unit={[rates?.[0]?.freight_price_currency]}
 					onChange={(e) => {
@@ -69,7 +70,7 @@ function Header({
 				{search_type === 'fcl_freight' && rates_count ? (
 					<>
 						{max && min ? functionSlider() : null}
-						{ functionSelect()}
+						{functionSelect()}
 						<Filter setFilters={setFilters} state={state} />
 					</>
 				) : null}

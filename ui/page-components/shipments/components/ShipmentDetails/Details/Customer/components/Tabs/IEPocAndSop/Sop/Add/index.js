@@ -108,6 +108,7 @@ function AddSop({
 					controls={[fieldControls[0]]}
 					control={control}
 					errors={errors}
+					sop
 				/>
 			</div>
 

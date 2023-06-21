@@ -6,7 +6,7 @@ import { useState, useEffect } from 'react';
 import { useRequestBf } from '@/packages/request';
 import { useSelector } from '@/packages/store';
 
-const useProductCatalogue = ({ archive = false, fetch = () => {}, setActiveTab }) => {
+const useProductCatalogue = ({ archive = false, fetch = () => { }, setActiveTab }) => {
 	const { profile } = useSelector((state) => state);
 	const { id } = profile || {};
 	const [apiData, setApiData] = useState({});
@@ -14,7 +14,7 @@ const useProductCatalogue = ({ archive = false, fetch = () => {}, setActiveTab }
 	const [{ loading: useProductLoading }, UseProducttrigger] = useRequestBf({
 		url     : '/saas/product/list',
 		method  : 'get',
-		authKey : 'post_saas_product',
+		authKey : 'get_saas_product_list',
 	}, { manual: true });
 
 	const [{ loading: addApiLoading }] = useRequestBf({
@@ -75,7 +75,7 @@ const useProductCatalogue = ({ archive = false, fetch = () => {}, setActiveTab }
 					fetch();
 				} else {
 					const productClassification = (!card && subCategoryCount > 1 && productClassificationId)
-					|| undefined;
+						|| undefined;
 					refetchProduct({ productClassificationId: productClassification });
 					if (!card) setActiveTab('allProducts');
 					fetch();

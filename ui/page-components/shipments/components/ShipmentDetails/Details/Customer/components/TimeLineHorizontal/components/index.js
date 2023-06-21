@@ -137,6 +137,7 @@ function TrackerInfomation({
 				setVesselName={setVesselName}
 				servicesList={servicesList}
 				servicesForMap={servicesForMap}
+				loading={loading || loading2}
 			/>
 
 			<TimelineNavigate

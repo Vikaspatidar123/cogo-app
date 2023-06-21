@@ -11,7 +11,7 @@ const useDraft = () => {
 	const [{ loading }, trigger] = useRequestBf({
 		method  : 'post',
 		url     : 'saas/trade-engine/documents/draft',
-		authKey : 'post_saas_trade_engine_document_draft',
+		authKey : 'post_saas_trade_engine_documents_draft',
 	}, { manual: true });
 
 	const refetchDraft = async ({ header, lineItem, hsCode = '' }) => {

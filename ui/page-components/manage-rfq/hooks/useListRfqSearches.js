@@ -9,7 +9,7 @@ const useListRfqSearches = ({
 	setShowModal = () => {},
 }) => {
 	const [portPairList, setPortPairList] = useState([]);
-	const listFiltersDependency = JSON.stringify(listFilters);
+
 	const {
 		search_type = 'all',
 		rateFilter = '',
@@ -50,6 +50,7 @@ const useListRfqSearches = ({
 	useEffect(() => {
 		listRfqSearches();
 	}, [rfq_id, listFilters, listRfqSearches]);
+
 	return {
 		portPairloading : loading,
 		portPairList,

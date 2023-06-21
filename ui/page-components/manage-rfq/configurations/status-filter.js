@@ -17,7 +17,7 @@ const statusFilter = [
 	},
 	{
 		suffix : 'Expired',
-		key    : 'is_expired',
+		key    : 'expired',
 	},
 ];
 
@@ -27,6 +27,8 @@ export const getStatusFilters = ({ stats = {} }) => statusFilter.map((status) =>
 	<div>
 		{status.suffix}
 		{' '}
+		(
 		{stats?.[status.key]}
+		)
 	</div>,
 }));

@@ -24,7 +24,7 @@ function Filters({
 	return (
 		<div className={styles.container}>
 			<Chips
-				size="md"
+				size="lg"
 				items={statusFilter}
 				selectedItems={activeFilter}
 				onItemChange={(e) => {

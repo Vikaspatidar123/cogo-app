@@ -41,7 +41,7 @@ function Details({
 			cardIds,
 		});
 		setFormData(result);
-	}, [selectedData]);
+	}, [cardIds, selectedData, setFormData, spot_searches]);
 
 	return (
 		<div className={styles.container}>

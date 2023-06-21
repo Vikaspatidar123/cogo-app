@@ -29,7 +29,7 @@ function Ports({ rfqItem, handleDeleteRfq, handleDuplicateRfq }) {
 		</Button>
 	);
 
-	const viewButton = status !== 'uploaded' ? (
+	const viewButton = status !== 'uploaded' && (
 		<Button
 			themeType="secondary"
 			onClick={() => {
@@ -44,8 +44,6 @@ function Ports({ rfqItem, handleDeleteRfq, handleDuplicateRfq }) {
 			<IcMEyeopen width={14} height={14} />
 			View
 		</Button>
-	) : (
-		<div />
 	);
 
 	return (

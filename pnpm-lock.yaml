@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 lockfileVersion: '6.0'
 
 dependencies:
@@ -6831,3 +6832,5 @@ packages:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
     dev: true
+=======
+>>>>>>> cb70b2d69fec1cf156b0026163ddb8ccfa896c55

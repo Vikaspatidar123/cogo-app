@@ -1,0 +1,25 @@
+.btn_container {
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	width: 100%;
+}
+
+.container {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	width: 100%;
+}
+
+.toggle_container {
+	margin-right: 16px;
+
+	:global {
+		.core-ui-toggle-root {
+			font-size: 12px;
+			font-weight: 500;
+			color: #393f70;
+		}
+	}
+}

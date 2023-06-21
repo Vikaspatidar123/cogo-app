@@ -1,4 +1,3 @@
-import { Toast } from '@cogoport/components';
 import { useState } from 'react';
 
 import { useRequestBf } from '@/packages/request';
@@ -6,7 +5,7 @@ import { useRequestBf } from '@/packages/request';
 const useGetTradeEngine = ({ itm }) => {
 	const [tradeEngineResponse, setTradeEngineResponse] = useState({});
 
-	const [{ tradeEngineResponseLoading }, tradeApitrigger] = useRequestBf({
+	const [{ loading: tradeEngineResponseLoading }, tradeApitrigger] = useRequestBf({
 		url     : '/saas/trade-engine',
 		authKey : 'get_saas_trade_engine',
 		method  : 'get',
@@ -21,7 +20,7 @@ const useGetTradeEngine = ({ itm }) => {
 			});
 			setTradeEngineResponse(resp?.data);
 		} catch (error) {
-			Toast.error(error?.message);
+			console.log(error);
 		}
 	};
 

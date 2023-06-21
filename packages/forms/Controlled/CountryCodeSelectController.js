@@ -17,7 +17,7 @@ function CountryCodeSelectController({
 			defaultValue={value}
 			rules={rest.rules}
 			shouldUnregister={rest.shouldUnregister}
-			render={({ fields: { onChange, onBlur, value: newValue } }) => (
+			render={({ field: { onChange, onBlur, value: newValue } }) => (
 				<SelectCountryCode
 					{...rest}
 					key={itemKey}

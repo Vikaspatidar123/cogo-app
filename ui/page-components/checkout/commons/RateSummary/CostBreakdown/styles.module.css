@@ -1,0 +1,11 @@
+.container {
+	padding: 8px 16px 16px;
+	margin-bottom: 16px;
+	overflow-y: auto;
+	background: white;
+	background-color: #f3f5f8;
+
+	@media (max-width: 768px) {
+		min-height: 150px;
+	}
+}

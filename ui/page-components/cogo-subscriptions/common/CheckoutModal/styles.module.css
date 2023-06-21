@@ -1,0 +1,115 @@
+.check_box_wrapper {
+	display: flex;
+	gap: 5px;
+	align-items: center;
+	justify-content: space-between;
+
+	.checkbox {
+		display: flex;
+		align-items: center;
+	}
+
+	.button {
+		padding: 6px !important;
+		font-size: 15px !important;
+		font-weight: 400 !important;
+		color: #fff !important;
+		text-transform: none !important;
+		background: #db4634 !important;
+		border: none !important;
+		border-radius: 4px !important;
+	}
+
+	.checkbox_text {
+		margin-left: 3px;
+	}
+}
+
+.container {
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
+	height: 100px;
+	margin: 5px;
+
+	&.expiry {
+		flex-direction: row;
+	}
+
+	.flex {
+		display: flex;
+	}
+
+	.flex-center {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.flex-fill {
+		display: flex;
+		flex: 1 1;
+	}
+
+	.flex-vertical {
+		display: flex;
+		flex-direction: column;
+	}
+
+	.flex-vertical-center {
+		display: flex;
+		align-items: center;
+	}
+
+	.flex-between {
+		display: flex;
+		justify-content: space-between;
+	}
+
+	.card_property_title {
+		display: flex;
+		flex-direction: column;
+	}
+}
+
+.logo_container {
+	display: flex;
+
+	.companylogo {
+		margin-right: 5px;
+	}
+}
+
+.styled_modal {
+	.ui-modal-dialog {
+		width: 300px !important;
+	}
+}
+
+.wrapper {
+	display: flex;
+	flex-direction: row;
+	align-content: center;
+	align-items: center;
+	justify-content: flex-end;
+	font-size: 16px;
+	font-weight: 500;
+	color: #f68b21;
+
+	svg {
+		width: 15px;
+		height: 15px;
+		margin-right: 5px;
+		animation: rotate 1.2s infinite;
+	}
+
+	@keyframes rotate {
+		0% {
+			transform: rotate(0);
+		}
+
+		100% {
+			transform: rotate(180deg);
+		}
+	}
+}

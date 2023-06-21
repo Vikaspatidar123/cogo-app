@@ -1,0 +1,52 @@
+.container {
+	display: flex;
+	align-items: center;
+	height: 60px;
+	padding: 5px;
+	background: #fff;
+	border: 1px dashed #bdbdbd;
+}
+
+.promo_code_content {
+	display: flex;
+	flex-direction: column;
+	margin-left: 10px;
+}
+
+.promo_code_title {
+	font-size: 14px;
+	font-weight: 700;
+	line-height: 16px;
+	color: #da9a3b;
+	text-transform: uppercase;
+}
+
+.promo_code_caption {
+	display: flex;
+	align-items: center;
+	margin-top: 5px;
+	font-size: 10px;
+	font-weight: 300;
+	line-height: 12px;
+	color: #4f4f4f;
+	letter-spacing: 0.02em;
+}
+
+.changeLink {
+	margin-right: 10px;
+	font-size: 12px;
+	font-weight: 400;
+	color: #034afd;
+	text-decoration-line: underline;
+	cursor: pointer;
+}
+
+.card_div {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.flex_div {
+	display: flex;
+}

@@ -1,0 +1,36 @@
+.container {
+	width: 300px;
+}
+
+.flex_box {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.header_container {
+	padding-bottom: 12px;
+	border-bottom: 1px solid #d3d3d3;
+
+	.header_title {
+		font-size: 17px;
+		font-weight: 500;
+	}
+}
+
+.title {
+	margin-bottom: 12px;
+	font-size: 13px;
+}
+
+.cta {
+	button {
+		margin-left: 12px;
+	}
+
+	:global {
+		.ui_button_container.ui_disabled {
+			border: none;
+		}
+	}
+}

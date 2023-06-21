@@ -1,0 +1,12 @@
+.container {
+	max-height: 500px;
+	margin: 8px 0;
+	overflow-y: scroll;
+
+	:global {
+		.core-ui-toggle-root {
+			font-size: 12px;
+			color: #393f70;
+		}
+	}
+}

@@ -1,0 +1,36 @@
+.container {
+	height: 100%;
+	padding: 14px;
+}
+
+.border {
+	border-right: 1px solid #e0e0e0;
+	border-left: 1px solid #e0e0e0;
+}
+
+.vertical_padding {
+	padding: 14px 0;
+}
+
+.header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin: 0 0 10px;
+}
+
+.title {
+	margin: 0;
+	font-size: 12px;
+	font-weight: bold;
+	line-height: 14px;
+	color: black;
+}
+
+.sub {
+	align-self: flex-end;
+	font-size: 12px;
+	font-style: italic;
+	color: #adadad;
+	text-decoration: underline;
+}

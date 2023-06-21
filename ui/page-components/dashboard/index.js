@@ -1,9 +1,3 @@
-import React from 'react';
-
-function Dashboard() {
-	return (
-		<p>Dashboard Page</p>
-	);
-}
+import Dashboard from './components';
 
 export default Dashboard;

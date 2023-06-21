@@ -30,7 +30,7 @@ const useLoginAuthenticate = () => {
 			const { token } = response.data || {};
 			let redirectPath;
 			if (query.redirectPath) {
-				redirectPath = `/v2/${query.redirectPath}`;
+				redirectPath = `${query.redirectPath}`;
 			}
 			setCookieAndRedirect(token, {}, redirectPath);
 		} catch (err) {

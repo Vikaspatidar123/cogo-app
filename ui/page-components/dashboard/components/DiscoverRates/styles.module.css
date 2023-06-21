@@ -1,0 +1,64 @@
+.container {
+	padding: 20px;
+	margin-top: 20px;
+	border-radius: 10px;
+	box-shadow: rgb(0 0 0 / 15%) 0 2px 4px;
+}
+
+.text {
+	font-size: 18px;
+}
+
+.display_container {
+	padding: 20px;
+	margin-top: 16px;
+	background-color: rgb(244 247 254 / 60%);
+	border-radius: 10px;
+	box-shadow: 0 2px 4px rgb(0 0 0 / 15%);
+}
+
+.innerCard {
+	display: flex;
+}
+
+.icon {
+	position: relative;
+	padding: 1.6rem;
+	margin-right: 15px;
+	background: #3b536b;
+	border-radius: 50%;
+
+	@media screen and (max-width: 767px) {
+		height: 10px;
+	}
+
+	svg {
+		position: absolute;
+		top: 50%;
+		right: 50%;
+		font-size: 1.4rem;
+		transform: translate(50%, -50%);
+	}
+}
+
+.desc {
+	color: #828282;
+}
+
+.btn {
+	display: flex;
+	justify-content: flex-end;
+	margin-top: 20px;
+	cursor: pointer;
+
+	.arrow {
+		margin-top: 3px;
+		color: rgb(53 110 253);
+	}
+}
+
+.viewall {
+	padding-right: 10px;
+	color: rgb(53 110 253);
+	text-decoration: underline;
+}

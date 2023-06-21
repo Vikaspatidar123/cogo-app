@@ -100,6 +100,7 @@ function FilterContent({ filters = {}, setFilters = () => {} }) {
 								pickerType="range"
 								name="date"
 								value={filters.date_range}
+								isPreviousDaysAllowed
 								maxDate={new Date()}
 								onChange={(e) => setFilters((prev) => ({
 									...prev,

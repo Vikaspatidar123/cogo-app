@@ -1,0 +1,63 @@
+[
+	{
+		"name": "unsatisfactory_rate",
+		"type": "checkbox",
+		"label": "",
+		"options": [
+			{
+				"label": "Rate not satisfactory",
+				"value": true
+			}
+		]
+	},
+	{
+		"name": "preferred_freight_rate_currency",
+		"label": "Currency",
+		"type": "select",
+		"caret": true,
+		"size": "lg",
+		"options": [
+			{ "value": "USD", "label": "USD" },
+			{ "value": "INR", "label": "INR" },
+			{ "value": "EUR", "label": "EUR" },
+			{ "value": "GBP", "label": "GBP" }
+		],
+		"rules": { "required": "Required" }
+	},
+	{
+		"name": "preferred_freight_rate",
+		"label": "Indicative Rate",
+		"type": "number",
+		"size": "lg",
+		"rules": { "required": "Required" }
+	},
+	{
+		"name": "unsatisfactory_airline",
+		"type": "checkbox",
+		"label": "",
+		"options": [
+			{
+				"label": "Unpreferred Air Line",
+				"value": true
+			}
+		]
+	},
+	{
+		"name": "preferred_airline_ids",
+		"type": "async_select",
+		"asyncKey": "air-lines",
+		"defaultOptions": true,
+		"caret": true,
+		"size": "lg",
+		"label": "Preferred Air lines",
+		"multiple": true,
+		"autoCloseMenu": false,
+		"placeholder": "Search airline..."
+	},
+	{
+		"name": "remarks",
+		"type": "text",
+		"label": "Remarks",
+		"size": "lg"
+	}
+]

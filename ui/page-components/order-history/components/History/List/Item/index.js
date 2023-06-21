@@ -1,4 +1,4 @@
-import { Tooltip } from '@cogoport/components';
+import { Tooltip, Placeholder } from '@cogoport/components';
 
 import MobileView from './MobileView';
 import itemFunctions from './renderFunctions';
@@ -27,7 +27,9 @@ const Item = ({
 					)}
 					theme="light"
 				>
-					<div className={styles.info}>{getValue(itm, singleItem, newFunctions)}</div>
+					<div className={styles.info}>
+						{getValue(itm, singleItem, newFunctions)}
+					</div>
 				</Tooltip>
 			);
 		}
@@ -35,27 +37,31 @@ const Item = ({
 	};
 	const renderItem = (itm) => (
 		<div className={styles.container}>
-
 			<div className={styles.mobile_view}>
-				<MobileView fields={fields} infoData={infoData} itm={itm} loading={loading} />
+				<MobileView
+					fields={fields}
+					infoData={infoData}
+					itm={itm}
+					loading={loading}
+				/>
 			</div>
 
 			<div className={styles.web_view}>
-				<div className={styles.row} role="presentation" onClick={handleClick}>
+				<div
+					className={styles.row}
+					role="presentation"
+					onClick={handleClick}
+				>
 					{(fields || []).map((singleItem) => (
 						<div
 							className={styles.col}
 							style={singleItem?.styles}
 							key={singleItem?.key}
 						>
-							{!loading && (
-								<div className="main-item">
-									<div className="static-background">
-										<div className="background-masker btn-divide-left" />
-									</div>
-								</div>
+							{loading ? (
+								<Placeholder width="90px" />
+							) : (infoData(singleItem, itm)
 							)}
-							{infoData(singleItem, itm)}
 						</div>
 					))}
 				</div>

@@ -2,9 +2,9 @@ const HEADER = [
 	{
 		label          : 'Country',
 		name           : 'country',
-		type           : 'select',
+		type           : 'async_select',
 		placeholder    : 'Enter Site/Entity',
-		optionsListKey : 'locations',
+		asyncKey       : 'locations',
 		defaultOptions : true,
 		params         : {
 			filters: {

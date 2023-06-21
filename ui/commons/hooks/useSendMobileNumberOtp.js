@@ -4,11 +4,11 @@ import { useRequest } from '@/packages/request';
 // import showErrorsInToast from '@/utils/showErrorsInToast';
 
 const useSendMobileNumberOtp = () => {
-	const sendOtpApi = useRequest({
+	const [{ loading }, sendOtpApi] = useRequest({
 		url    : '/send_login_otp',
 		method : 'post',
 	}, { manual: true });
-	const resendOtpApi = useRequest({
+	const [{ loading:load }, resendOtpApi] = useRequest({
 		url    : '/resend_lead_verification_otp',
 		method : 'post',
 	}, { manual: true });
@@ -39,7 +39,7 @@ const useSendMobileNumberOtp = () => {
 		try {
 			const api = action === 'send' ? sendOtpApi : resendOtpApi;
 
-			const response = await api.trigger({
+			const response = await api({
 				data: payload,
 			});
 
@@ -54,7 +54,7 @@ const useSendMobileNumberOtp = () => {
 	};
 
 	return {
-		loading: sendOtpApi.loading || resendOtpApi.loading,
+		loading: loading || load,
 		sendOtp,
 	};
 };

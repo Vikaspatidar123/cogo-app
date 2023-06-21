@@ -2,7 +2,7 @@ import { Radio, RadioGroup } from '@cogoport/components';
 import React from 'react';
 import { Controller } from 'react-hook-form';
 
-function SelectController(props) {
+function RadioController(props) {
 	const {
 		name, control, rules, value, radioGroup = false, ...rest
 	} = props;
@@ -19,8 +19,8 @@ function SelectController(props) {
 					key={rest.id}
 					onChange={(val, obj) => {
 						onChange(val, obj);
-						if (rest?.handleChange) {
-							rest?.handleChange(obj);
+						if (rest.handleChange) {
+							rest.handleChange(val, obj);
 						}
 					}}
 					value={newValue || value}
@@ -31,4 +31,5 @@ function SelectController(props) {
 		/>
 	);
 }
-export default SelectController;
+
+export default RadioController;

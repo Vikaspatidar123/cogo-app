@@ -2,25 +2,26 @@
 	display: flex;
 
 	:global {
-	.ui_button_container {
-		margin: 0 10px;
-	}
+		.ui_button_container {
+			margin: 0 10px;
+		}
 
-	.ui_input_container {
-		height: 33px;
-		.ui_input_control {
-		font-size: 12px;
+		.ui_input_container {
+			height: 33px;
+
+			.ui_input_control {
+				font-size: 12px;
+			}
+		}
+
+		svg {
+			margin: 0 5px 0 -6px;
+		}
+
+		@media (max-width: 768px) {
+			margin-top: 10px;
 		}
 	}
-
-	svg {
-		margin: 0 5px 0 -6px;
-	}
-
-	@media (max-width: 768px) {
-		margin-top : 10px;
-	}
-}
 }
 
 .filter_container {
@@ -28,13 +29,13 @@
 	padding: 10px;
 }
 
-.filter_box  {
+.filter_box {
 	margin: 10px 0;
 }
 
 .label {
-	color: #5c6186;
 	font-weight: 500;
+	color: #5c6186;
 }
 
 .footer {
@@ -47,11 +48,11 @@
 }
 
 .active_dot {
-	height: 6px;
+	position: absolute;
+	top: 8px;
+	right: 11px;
 	width: 6px;
+	height: 6px;
 	background-color: blue;
 	border-radius: 50%;
-	position: absolute;
-	right: 11px;
-	top: 8px;
 }

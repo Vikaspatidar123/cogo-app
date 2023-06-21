@@ -3,38 +3,39 @@
 	flex-direction: row;
 	align-items: center;
 	justify-content: space-between;
-	margin: 0 15px 14px 15px;
+	margin: 0 15px 14px;
 }
 
 .styled_col {
 	display: flex;
 	flex-direction: column;
-	padding-left: 0px !important;
+	padding-left: 0 !important;
 
 	.core-ui-input-root {
 		/* width: ${({ check }) => (check ? '75%' : '100%')}; */
+
 		/* background: ${({ isReadonly }) => isReadonly && 'lightgrey'};
 		cursor: ${({ isReadonly }) => (isReadonly ? 'not-allowed' : 'pointer')}; */
 	}
 }
 
 .remove_icon {
-	margin-left: 5px;
-	cursor: pointer;
 	display: flex;
 	align-items: center;
+	margin-left: 5px;
+	cursor: pointer;
 }
 
 .addIcon {
-	margin-left: 10px;
-	cursor: pointer;
 	display: flex;
 	align-items: center;
+	margin-left: 10px;
+	cursor: pointer;
 }
 
 .shipment_no {
-	text-decoration-line: underline;
-	font-size: 14px;
 	display: flex;
 	align-items: center;
+	font-size: 14px;
+	text-decoration-line: underline;
 }

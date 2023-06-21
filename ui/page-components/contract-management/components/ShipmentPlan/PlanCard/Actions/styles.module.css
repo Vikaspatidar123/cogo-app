@@ -7,9 +7,9 @@
 .edit_btn {
 	display: flex;
 	align-items: center;
+	margin-right: 16px;
 	font-size: 14px;
 	color: #034afd;
 	text-decoration: underline;
-	margin-right: 16px;
 	cursor: pointer;
 }

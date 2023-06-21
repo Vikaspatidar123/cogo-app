@@ -5,9 +5,10 @@
 
 .select_wrapper {
 	width: 200px;
+
 	.core-ui-select__menu {
-		max-width: 50% !important;
 		min-width: 200px !important;
+		max-width: 50% !important;
 	}
 }
 
@@ -16,18 +17,18 @@
 }
 
 .tag {
-	border-radius: 4px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 	padding: 4px 8px;
 	margin-right: 10px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
 	cursor: pointer;
 	border: 1px solid #bdbdbd;
+	border-radius: 4px;
 
 	svg {
-		height: 18px;
 		width: 18px;
+		height: 18px;
 		margin-right: 4px;
 	}
 }

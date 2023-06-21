@@ -3,8 +3,8 @@
 }
 
 .title {
-	color: #170f49;
 	font-weight: 700;
+	color: #170f49;
 }
 
 .options {
@@ -24,6 +24,7 @@
 			border: 1.5px solid #000 !important;
 		}
 	}
+
 	.core-ui-radio-icon {
 		&.checked {
 			background: #000 !important;
@@ -31,20 +32,20 @@
 	}
 }
 
-.input_container{
+.input_container {
 	margin-left: 20px;
 }
 
 .label {
+	position: relative;
+	z-index: 1;
+	width: fit-content;
+	padding: 0 5px;
+	margin: 0 0 -8px 5px;
+	font-size: 11px;
 	font-weight: 500;
 	color: #697989;
-	font-size: 11px;
-	padding: 0px 5px;
-	margin: 0px 0px -8px 5px;
 	background: white;
-	z-index: 1;
-	position: relative;
-	width: fit-content;
 }
 
 .input_field {

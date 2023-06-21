@@ -6,6 +6,9 @@ import { getSerivceUnit } from '../../../../../../utils/getUnit';
 
 import styles from './styles.module.css';
 
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
+import formatDate from '@/ui/commons/utils/formatDate';
+
 function ServiceDetails({ item }) {
 	const {
 		services = '',
@@ -37,11 +40,19 @@ function ServiceDetails({ item }) {
 							Validity:
 							{' '}
 							<span>
-								{format(validity_start, 'dd MMM')}
+								{formatDate({
+									date: validity_start,
+									dateFormat: GLOBAL_CONSTANTS.formats.date['dd MMM'],
+									formatType: 'date',
+								})}
 								{' '}
 								to
 								{' '}
-								{format(validity_end, 'dd MMM')}
+								{formatDate({
+									date: validity_end,
+									dateFormat: GLOBAL_CONSTANTS.formats.date['dd MMM'],
+									formatType: 'date',
+								})}
 							</span>
 						</div>
 						<div className={styles.tag}>

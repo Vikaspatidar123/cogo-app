@@ -10,18 +10,17 @@ const useGetContractShipmentData = ({ isExistingManual = false }) => {
 		: '/get_contract_service_shipment_data';
 
 	const [{ loading, data }, trigger] = useRequest({
-		url    : { api },
-		method : 'post',
+		url: api,
+		method: 'get',
 	}, { manual: true });
-
-	const getShipmentPlans = async (id, type) => {
+	const getShipmentPlans = (id, type) => {
 		try {
-			await trigger({
+			trigger({
 				params: {
-					id           : !isExistingManual ? id : undefined,
-					service_type : !isExistingManual ? type : undefined,
-					page         : pagination,
-					filters      : isExistingManual
+					id: !isExistingManual ? id : undefined,
+					service_type: !isExistingManual ? type : undefined,
+					page: pagination,
+					filters: isExistingManual
 						? { booking_type: 'contract', source_id: id }
 						: undefined,
 				},
@@ -30,11 +29,10 @@ const useGetContractShipmentData = ({ isExistingManual = false }) => {
 			console.log(error, 'err');
 		}
 	};
-
 	return {
 		loading,
-		shipmentPlanData : data?.data || [],
-		requestData      : data?.list || [],
+		shipmentPlanData: data?.data || [],
+		requestData: data?.list || [],
 		getShipmentPlans,
 		setPagination,
 	};

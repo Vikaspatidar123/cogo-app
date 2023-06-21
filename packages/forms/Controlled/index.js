@@ -8,6 +8,7 @@ import ControlledCommodityCon from './ControlledCommodityCon';
 import CountrySelectController from './CountrySelectController';
 import CreatableSelectController from './CreatableSelectController';
 import DatepickerController from './DatepickerController';
+import DateRangepickerController from './DateRangepickerController';
 import IncoTermSelectController from './IncoTermSelect';
 import InputController from './InputController';
 import InputGroupController from './InputGroupController';
@@ -23,29 +24,30 @@ import TextAreaController from './TextAreaController';
 import UploadController from './UploadController';
 
 const MAPPING = {
-	select                     : SelectController,
-	text                       : InputController,
-	number                     : InputNumberController,
-	textarea                   : TextAreaController,
-	file                       : UploadController,
-	checkbox                   : CheckboxController,
-	mobile_number              : MobileNumberSelectController,
-	datepicker                 : DatepickerController,
-	multi_select               : MultiselectController,
-	async_select               : AsyncSelectController,
-	radio                      : RadioController,
-	price_select               : PriceController,
-	chips                      : ChipsController,
-	country_select             : CountrySelectController,
-	radiogroup                 : RadioGroupController,
-	slider                     : SliderController,
-	'container_type-commodity' : ControlledCommodityCon,
-	'input-group'              : InputGroupController,
-	'inco-terms-select'        : IncoTermSelectController,
-	checkboxGroup              : CheckboxGroupController,
-	email                      : InputController,
-	custom_slider              : Slider,
-	'creatable-select'         : CreatableSelectController,
+	select: SelectController,
+	text: InputController,
+	number: InputNumberController,
+	textarea: TextAreaController,
+	file: UploadController,
+	checkbox: CheckboxController,
+	mobile_number: MobileNumberSelectController,
+	datepicker: DatepickerController,
+	multi_select: MultiselectController,
+	async_select: AsyncSelectController,
+	radio: RadioController,
+	price_select: PriceController,
+	chips: ChipsController,
+	country_select: CountrySelectController,
+	radiogroup: RadioGroupController,
+	slider: SliderController,
+	'container_type-commodity': ControlledCommodityCon,
+	'input-group': InputGroupController,
+	'inco-terms-select': IncoTermSelectController,
+	checkboxGroup: CheckboxGroupController,
+	email: InputController,
+	custom_slider: Slider,
+	'creatable-select': CreatableSelectController,
+	daterangepicker: DateRangepickerController,
 };
 
 const getField = (type = 'text') => {

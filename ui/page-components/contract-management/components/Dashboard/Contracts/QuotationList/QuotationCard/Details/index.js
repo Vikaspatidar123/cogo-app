@@ -1,4 +1,4 @@
-import { Tooltip } from '@cogoport/components';
+import { Tooltip, cl } from '@cogoport/components';
 import { format, startCase } from '@cogoport/utils';
 
 import { STATUS, SOURCE_MAPPING } from '../../../../../../constants';
@@ -35,12 +35,12 @@ function Details({ item, activeFilter }) {
 					</Tooltip>
 				)}
 				{status && (
-					<div className={`${styles.status} ${styles.status}`}>
+					<div className={cl`${styles.status} ${styles[status]}`}>
 						{activeFilter === 'expired' ? 'Expired' : STATUS[status]}
 					</div>
 				)}
 				{source && (
-					<div className={`${styles.source} ${styles.source}`}>
+					<div className={cl`${styles.source} ${styles[source]}`}>
 						{source === 'manual' && contract_type === 'with_carrier'
 							? 'Third Party'
 							: SOURCE_MAPPING[source]}

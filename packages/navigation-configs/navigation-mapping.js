@@ -9,6 +9,7 @@
 // isSubNavs is used to show sub navigations
 
 import {
+	IcMQuotations,
 	IcMFfreferigeratedCargoType,
 	IcADutiesTaxes,
 	IcAFormsAndCertificates,
@@ -27,9 +28,6 @@ import {
 	IcMPartnersCogoport,
 	IcAProfessionalQuotations,
 	IcMUpwardGraph,
-	IcMContractRates,
-	IcMShip,
-	IcMDashboard,
 } from '@cogoport/icons-react';
 
 const navigationMappings = {
@@ -39,27 +37,23 @@ const navigationMappings = {
 		href       : '/dashboard',
 		as         : '/dashboard',
 		showInNav  : true,
-		mobileIcon : <IcMDashboard width={20} height={20} />,
+		mobileIcon : <IcMQuotations width={20} height={20} />,
 	},
 
 	app_discover_rates: {
-		key        : 'app_discover_rates',
-		title      : 'Discover Rates',
-		href       : '/book',
-		as         : '/book',
-		showInNav  : true,
-		mobileIcon : <IcMContractRates width={20} height={20} />,
-
+		key       : 'app_discover_rates',
+		title     : 'Discover Rates',
+		href      : '/book',
+		as        : '/book',
+		showInNav : true,
 	},
 	app_bookings: {
-		key        : 'app_bookings',
-		title      : 'Shipments',
-		href       : '/shipments',
-		as         : '/shipments',
-		icon       : 'nav-booking',
-		showInNav  : true,
-		mobileIcon : <IcMShip width={20} height={20} />,
-
+		key       : 'app_bookings',
+		title     : 'Shipments',
+		href      : '/shipments',
+		as        : '/shipments',
+		icon      : 'nav-booking',
+		showInNav : true,
 	},
 	saas_tools: {
 		key       : 'saas_tools',
@@ -119,6 +113,17 @@ const navigationMappings = {
 			},
 		],
 	},
+
+	app_contract_management:
+			{
+				key         : 'app_contract_management',
+				title       : 'Contract Management',
+				href        : '/contract-management',
+				as          : '/contract-management',
+				icon        : <IcMUpwardGraph width={40} height={40} fill="red" />,
+				description : 'contract management',
+				showInNav   : true,
+			},
 
 	saas_premium_services: {
 		key         : 'saas_premium_services',

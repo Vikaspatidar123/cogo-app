@@ -10,7 +10,7 @@
 .column_name {
 	display: flex;
 	flex-direction: column;
-	padding: 0 40px;
+	padding: 0 10px;
 	font-size: 12px;
 	font-weight: 500;
 	color: #828282;

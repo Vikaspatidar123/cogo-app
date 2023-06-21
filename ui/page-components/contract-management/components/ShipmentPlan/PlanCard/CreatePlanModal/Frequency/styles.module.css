@@ -10,26 +10,6 @@
 .options {
 	display: flex;
 	align-items: center;
-	margin: 20px 0;
-
-	.core-ui-radiogroup-container {
-		flex-direction: row;
-		gap: 70px;
-	}
-
-	.core-ui-radio-radio-container {
-		border: 1.5px solid #000 !important;
-
-		&.checked {
-			border: 1.5px solid #000 !important;
-		}
-	}
-
-	.core-ui-radio-icon {
-		&.checked {
-			background: #000 !important;
-		}
-	}
 }
 
 .input_container {

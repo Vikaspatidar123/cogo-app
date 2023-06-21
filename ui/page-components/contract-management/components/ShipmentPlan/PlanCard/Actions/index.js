@@ -25,7 +25,10 @@ function Actions({
 }) {
 	const { query } = useRouter();
 	const { through = '', contract_status = '' } = query || {};
-	const disabledBooking = status !== 'locked' || contractStatus !== 'active' || through === 'techops';
+	const disabledBooking = status !== 'locked'
+		|| contractStatus !== 'active'
+		|| through === 'techops'
+		|| contract_status === 'expired';
 
 	const isExistingManual = (source === 'manual'
 		&& contract_type === 'with_carrier'
@@ -44,7 +47,6 @@ function Actions({
 	const withShippingLineContract = source === 'manual'
 		&& contract_type === 'with_carrier'
 		&& contract_status !== 'expired';
-
 	return (
 		<div className={styles.container}>
 			{!isExistingManual && (
@@ -69,7 +71,7 @@ function Actions({
 							>
 								Create Plan
 							</div>
-					)}
+						)}
 					{status !== 'rejected' && (
 						<Button themeType="secondary" onClick={viewShipmentPlan}>
 							{showPlanBox ? 'Hide' : 'Shipment'}
@@ -82,7 +84,11 @@ function Actions({
 
 			{withShippingLineContract && (
 				<>
-					<Button themeType="secondary" onClick={viewShipmentPlan} style={{ marginLeft: '10px' }}>
+					<Button
+						themeType="secondary"
+						onClick={viewShipmentPlan}
+						style={{ marginRight: '20px' }}
+					>
 						{showPlanBox ? 'Hide' : 'View'}
 						Requested
 					</Button>

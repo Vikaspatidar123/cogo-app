@@ -23,19 +23,19 @@ function Ports({ item }) {
 		const serviceKey = KEYS_MAPPING?.[val?.service_type].name;
 
 		return {
-			service_id              : val.id,
-			service_type            : val?.service_type || '',
-			origin                  : val?.[serviceKey.origin] || '',
-			destination             : val?.[serviceKey.destination] || '',
-			max_containers_count    : val?.max_containers_count || 0,
-			booked_containers_count : val?.booked_containers_count || 0,
-			max_weight              : val?.max_weight || 0,
-			booked_weight           : val?.booked_weight || 0,
-			max_volume              : val?.max_volume || 0,
-			booked_volume           : val?.booked_volume || 0,
-			validity_start          : val?.validity_start || 0,
-			validity_end            : val?.validity_end || 0,
-			trade_type              : val?.trade_type,
+			service_id: val.id,
+			service_type: val?.service_type || '',
+			origin: val?.[serviceKey.origin] || '',
+			destination: val?.[serviceKey.destination] || '',
+			max_containers_count: val?.max_containers_count || 0,
+			booked_containers_count: val?.booked_containers_count || 0,
+			max_weight: val?.max_weight || 0,
+			booked_weight: val?.booked_weight || 0,
+			max_volume: val?.max_volume || 0,
+			booked_volume: val?.booked_volume || 0,
+			validity_start: val?.validity_start || 0,
+			validity_end: val?.validity_end || 0,
+			trade_type: val?.trade_type,
 		};
 	});
 

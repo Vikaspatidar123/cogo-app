@@ -1,4 +1,4 @@
-import { Button } from '@cogoport/components';
+import { Button, cl } from '@cogoport/components';
 import { format, isEmpty, startCase } from '@cogoport/utils';
 
 import { getUnit } from '../../../../utils/getUnit';
@@ -53,18 +53,18 @@ function ShipmentCard({
 
 						return (
 							<div className={styles.container}>
-								<div className={`${styles.shipment_date} ${styles.state}`}>
+								<div className={cl`${styles.shipment_date} ${styles[state]}`}>
 									{shipment_date && isActive && (
 										<div className={styles.booked_date}>
 											{format(shipment_date, 'dd MMM')}
 										</div>
 									)}
-									<div className={`${styles.Circle} ${styles.state}`}>
-										<div className={`${styles.dot} ${styles.state}`} />
+									<div className={cl`${styles.circle} ${styles[state]}`}>
+										<div className={cl`${styles.dot} ${styles[state]}`} />
 									</div>
 									{index === shipmentData.length - 1 && (
-										<div className={`${styles.Journey_start_circle} ${state}`}>
-											<div className={`${styles.journey_start_dot} ${state}`} />
+										<div className={cl`${styles.journey_start_circle} ${styles[state]}`}>
+											<div className={cl`${styles.journey_start_dot} ${styles[state]}`} />
 										</div>
 									)}
 								</div>
@@ -99,11 +99,11 @@ function ShipmentCard({
 														{plan_object?.max_count
 															&& `/${plan_object?.max_count}`}
 													</div>
-													<div className={`${styles.tag} ${styles.state}`}>
+													<div className={cl`${styles.tag} ${styles[state]}`}>
 														{startCase(state)}
 													</div>
 												</div>
-												<div className={`${styles.section} ${styles.section_two}`}>
+												<div className={cl`${styles.section} ${styles.section_two}`}>
 													<Route
 														destinationPort={destination_port}
 														originPort={origin_port}
@@ -116,16 +116,17 @@ function ShipmentCard({
 											<div className={styles.right_side}>
 												<div className={styles.freight_price}>
 													{formatAmount({
-														amount   : net_total,
-														currency : net_total_price_currency || 'INR',
-														options  : {
-															notation : 'standard',
-															style    : 'currency',
+														amount: net_total || 0,
+														currency: net_total_price_currency || 'INR',
+														options: {
+															notation: 'standard',
+															style: 'currency',
 														},
 													})}
 												</div>
 												<Button
-													className="secondary md"
+													size="md"
+													themeType="secondary"
 													onClick={() => push('/shipments/[id]', `/shipments/${shipment_id}`)}
 												>
 													View Shipment
@@ -134,7 +135,7 @@ function ShipmentCard({
 										</div>
 									</div>
 								) : (
-									<div className={`${styles.Card} ${styles.shipment_booking_pending}`}>
+									<div className={cl`${styles.card} ${styles.shipment_booking_pending}`}>
 										{validity_start && (
 											<div className={styles.tag}>
 												Booking Date :
@@ -149,7 +150,7 @@ function ShipmentCard({
 											{max_count}
 										</div>
 										{state && (
-											<div className={styles.tag}>
+											<div className={styles.tags}>
 												{startCase(state)}
 											</div>
 										)}

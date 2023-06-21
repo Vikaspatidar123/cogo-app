@@ -7,32 +7,32 @@ import { useForm } from '@/packages/forms';
 
 const organizationControls = [
 	{
-		type           : 'select',
-		name           : 'importer_exporter_branch_id',
-		label          : 'Select Branch',
-		optionsListKey : 'organization-branches',
-		defaultOptions : true,
-		span           : 6,
-		rules          : { required: true },
-		cacheOptions   : false,
+		type: 'select',
+		name: 'importer_exporter_branch_id',
+		label: 'Select Branch',
+		optionsListKey: 'organization-branches',
+		defaultOptions: true,
+		span: 6,
+		rules: { required: true },
+		cacheOptions: false,
 	},
 	{
-		type           : 'select',
-		name           : 'user_id',
-		label          : 'Select User',
-		optionsListKey : 'organization-users',
-		defaultOptions : true,
-		valueKey       : 'user_id',
-		labelKey       : 'name',
-		span           : 6,
-		rules          : { required: true },
-		cacheOptions   : false,
+		type: 'select',
+		name: 'user_id',
+		label: 'Select User',
+		optionsListKey: 'organization-users',
+		defaultOptions: true,
+		valueKey: 'user_id',
+		labelKey: 'name',
+		span: 6,
+		rules: { required: true },
+		cacheOptions: false,
 	},
 	{
-		type  : 'textarea',
-		name  : 'cargo_description',
-		label : 'Cargo Description',
-		span  : 12,
+		type: 'textarea',
+		name: 'cargo_description',
+		label: 'Cargo Description',
+		span: 12,
 	},
 ];
 
@@ -41,7 +41,7 @@ function RequestBooking({
 	service_type,
 	org_name,
 	importer_exporter_id,
-	setOpen = () => {},
+	setOpen = () => { },
 	originPortData = {},
 	destinationPortData = {},
 }) {
@@ -68,8 +68,8 @@ function RequestBooking({
 					...control,
 					params: {
 						filters: {
-							organization_id : importer_exporter_id,
-							status          : 'active',
+							organization_id: importer_exporter_id,
+							status: 'active',
 						},
 					},
 				};
@@ -89,7 +89,7 @@ function RequestBooking({
 	const formProps = useForm(newOrganizationControls);
 	const { fields, formState, watch } = formProps;
 
-	const watchImporterExporterBranchId =		watch('importer_exporter_branch_id') || '';
+	const watchImporterExporterBranchId = watch('importer_exporter_branch_id') || '';
 	const watchUserId = watch('user_id') || '';
 
 	return (

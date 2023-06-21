@@ -16,7 +16,7 @@ function Child({
 	showDeleteButton = true,
 	noDeleteButtonTill = 0,
 	disabled = false,
-	handleAppendChild = () => {},
+	handleAppendChild = () => { },
 	showButtons,
 	isEditPlan,
 }) {
@@ -34,6 +34,7 @@ function Child({
 
 			{controls.map((controlItem) => {
 				const Element = getField(controlItem.type);
+				console.log(controlItem, 'controlItem');
 				if (!Element) return null;
 				return (
 					<div className={styles.list} style={{ width: getWidth(controlItem?.span) }}>

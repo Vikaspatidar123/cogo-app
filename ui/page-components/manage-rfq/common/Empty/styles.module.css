@@ -1,17 +1,17 @@
 .shadow_container {
-    display: flex;
-	justify-content: space-between;
+	display: flex;
 	align-items: center;
-	padding: 60px 30px 36px 30px;
-	box-shadow: 0px 2px 3px rgb(16 24 40 / 10%), -2px -2px 3px rgb(16 24 40 / 10%);
+	justify-content: space-between;
+	padding: 60px 30px 36px;
 	border-radius: 4px;
+	box-shadow: 0 2px 3px rgb(16 24 40 / 10%), -2px -2px 3px rgb(16 24 40 / 10%);
 }
 
 .no_shadow_container {
-    display: flex;
-	justify-content: space-between;
+	display: flex;
 	align-items: center;
-	padding: 60px 30px 36px 30px;
+	justify-content: space-between;
+	padding: 60px 30px 36px;
 	border-radius: 4px;
 }
 
@@ -20,8 +20,8 @@
 }
 
 .heading {
-    font-weight: 500;
 	font-size: 32px;
+	font-weight: 500;
 }
 
 .content {
@@ -33,9 +33,10 @@
 }
 
 .icc_container {
-    max-width: 17%;
 	min-width: 25%;
-    @media (max-width: 768px) {
+	max-width: 17%;
+
+	@media (max-width: 768px) {
 		display: none;
 	}
 }

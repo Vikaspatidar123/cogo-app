@@ -1,29 +1,29 @@
 .container {
-    display: flex;
+	display: flex;
 	align-items: center;
 	justify-content: space-between;
 }
 
 .left_container {
-    display: flex;
-	align-items: center;
-}
-
-.id {
-    font-weight: 400;
-	font-size: 20px;
-	color: #828282;
 	display: flex;
 	align-items: center;
 }
 
+.id {
+	display: flex;
+	align-items: center;
+	font-size: 20px;
+	font-weight: 400;
+	color: #828282;
+}
+
 .name {
-    font-weight: 600;
-    font-size: 20px;
-    color: #2c3e50;
-    margin: 0 16px 0 16px;
-    display: flex;
-    align-items: center;
+	display: flex;
+	align-items: center;
+	margin: 0 16px;
+	font-size: 20px;
+	font-weight: 600;
+	color: #2c3e50;
 }
 
 .name_id {
@@ -31,22 +31,22 @@
 }
 
 .explore_tag {
-    padding: 2px 4px;
-	border-radius: 4px;
-	color: #fff;
-	font-size: 12px;
-	background-color: #849e4c;
+	padding: 2px 4px;
 	margin-left: 8px;
+	font-size: 12px;
+	color: #fff;
+	background-color: #849e4c;
+	border-radius: 4px;
 }
 
-.right_container{
-    display: flex;
-    align-items: center;
+.right_container {
+	display: flex;
+	align-items: center;
 }
 
 .date {
-    font-weight: 400;
-	font-size: 12px;
-	color: #828282;
 	margin-left: 12px;
+	font-size: 12px;
+	font-weight: 400;
+	color: #828282;
 }

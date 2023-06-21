@@ -13,8 +13,8 @@ const useGetContractList = ({ filterValue, activeFilter }) => {
 	const { query: searchQuery, debounceQuery } = useDebounceQuery();
 
 	const [{ loading, data }, trigger] = useRequest({
-		url: '/list_contracts',
-		method: 'get',
+		url    : '/list_contracts',
+		method : 'get',
 	}, { manual: true });
 
 	const {
@@ -33,16 +33,16 @@ const useGetContractList = ({ filterValue, activeFilter }) => {
 			await trigger({
 				params: {
 					filters: {
-						trade_type: trade_type || undefined,
-						source: source || undefined,
-						importer_exporter_id: org_id,
-						importer_exporter_branch_id: branch_id,
-						service_types: service_type
+						trade_type                  : trade_type || undefined,
+						source                      : source || undefined,
+						importer_exporter_id        : org_id,
+						importer_exporter_branch_id : branch_id,
+						service_types               : service_type
 							? [`${service_type}`]
 							: ['fcl_freight', 'lcl_freight', 'air_freight'],
-						movement_type: ['international'],
-						q: !Number(contract_reference_id) ? searchQuery : undefined,
-						contract_reference_id: Number(contract_reference_id)
+						movement_type         : ['international'],
+						q                     : !Number(contract_reference_id) ? searchQuery : undefined,
+						contract_reference_id : Number(contract_reference_id)
 							? searchQuery
 							: undefined,
 						validity_end_greater_than:
@@ -51,9 +51,9 @@ const useGetContractList = ({ filterValue, activeFilter }) => {
 							activeFilter === 'active' ? new Date() : undefined,
 						status: STATUS_MAPPING[activeFilter],
 					},
-					contract_utilisation_data_required: true,
-					services_data_required: true,
-					page: pagination,
+					contract_utilisation_data_required : true,
+					services_data_required             : true,
+					page                               : pagination,
 				},
 			});
 		} catch (error) {

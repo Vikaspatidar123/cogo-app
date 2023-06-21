@@ -82,8 +82,8 @@ function CommodityType({
 		setObjs(newObjs);
 		onChange(
 			{
-				container_type: value?.container_type,
-				commodity: val || 'all_commodity',
+				container_type : value?.container_type,
+				commodity      : val || 'all_commodity',
 			},
 			newObjs,
 		);

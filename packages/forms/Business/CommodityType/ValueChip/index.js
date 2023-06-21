@@ -14,12 +14,12 @@ function ValueChip({ value, onCancel, style, id, disabled = false }) {
 					id={id}
 					onClick={onCancel}
 					style={{
-						padding: 0,
-						background: 'transparent',
-						marginLeft: 1,
-						height: 24,
-						width: 24,
-						border: 'none',
+						padding    : 0,
+						background : 'transparent',
+						marginLeft : 1,
+						height     : 24,
+						width      : 24,
+						border     : 'none',
 					}}
 				>
 					<IcMCrossInCircle style={{ width: 20, height: 20 }} fill="#000" />

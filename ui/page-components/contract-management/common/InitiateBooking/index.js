@@ -77,20 +77,20 @@ function InitiateBooking({
 		(item) => item.service_type === 'fcl_freight',
 	);
 	const attributes = (fclArray || []).map((item) => ({
-		container_size: item.container_size,
-		commodity: item.commodity,
-		container_type_commodity: {
-			container_type: item.container_type,
-			commodity: item.commodity,
+		container_size           : item.container_size,
+		commodity                : item.commodity,
+		container_type_commodity : {
+			container_type : item.container_type,
+			commodity      : item.commodity,
 		},
-		container_type: item.container_type,
-		containers_count: item.containers_count,
-		cargo_weight_per_container: item.cargo_weight_per_container,
+		container_type             : item.container_type,
+		containers_count           : item.containers_count,
+		cargo_weight_per_container : item.cargo_weight_per_container,
 	}));
 	const SERVICE_CONTROLS_MAPPING = {
-		fcl_freight: fclControls({ contractValidity, departureDate, fclArray, attributes }),
-		lcl_freight: lclControls(contractValidity, departureDate),
-		air_freight: airControls(contractValidity, departureDate),
+		fcl_freight : fclControls({ contractValidity, departureDate, fclArray, attributes }),
+		lcl_freight : lclControls(contractValidity, departureDate),
+		air_freight : airControls(contractValidity, departureDate),
 	};
 
 	const controls = SERVICE_CONTROLS_MAPPING[service_type] || [];

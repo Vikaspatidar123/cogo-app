@@ -31,8 +31,8 @@ function ShipmentPlan() {
 		serviceLoading = false,
 		getServiceDetails = () => { },
 	} = useGetServiceDetails({
-		contractId: contract_id,
-		serviceType: activeTab || services[0],
+		contractId  : contract_id,
+		serviceType : activeTab || services[0],
 		techOpsServiceId,
 		activeTab,
 		isTechops,

@@ -45,15 +45,15 @@ function IncoTermSelect({
 	}, [activeTradeType]);
 	const switchProps = {
 		right: {
-			title: 'Export',
-			value: 'export',
+			title : 'Export',
+			value : 'export',
 		},
 		left: {
-			title: 'Import',
-			value: 'import',
+			title : 'Import',
+			value : 'import',
 		},
-		onChange: setTradeType,
-		active: tradeTypeToggle,
+		onChange : setTradeType,
+		active   : tradeTypeToggle,
 		id,
 	};
 	return selectType === 'normal' ? (

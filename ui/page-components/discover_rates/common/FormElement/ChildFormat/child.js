@@ -29,12 +29,12 @@ function Child({
 		<IcMDelete
 			onClick={() => remove(index, 1)}
 			style={{
-				display: 'flex',
-				marginLeft: 'auto',
-				marginTop: '5px',
-				width: '1.5em',
-				height: '1.5em',
-				cursor: 'pointer',
+				display    : 'flex',
+				marginLeft : 'auto',
+				marginTop  : '5px',
+				width      : '1.5em',
+				height     : '1.5em',
+				cursor     : 'pointer',
 			}}
 		/>
 	);

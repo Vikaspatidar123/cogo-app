@@ -17,16 +17,16 @@ function Utilisation({ itemData = {} }) {
 
 	const KEYS_MAPPING = {
 		fcl_freight: {
-			req: max_containers_count || 0,
-			booked: booked_containers_count || 0,
+			req    : max_containers_count || 0,
+			booked : booked_containers_count || 0,
 		},
 		lcl_freight: {
-			req: max_volume || 0,
-			booked: booked_volume || 0,
+			req    : max_volume || 0,
+			booked : booked_volume || 0,
 		},
 		air_freight: {
-			req: max_weight || 0,
-			booked: booked_weight || 0,
+			req    : max_weight || 0,
+			booked : booked_weight || 0,
 		},
 	};
 

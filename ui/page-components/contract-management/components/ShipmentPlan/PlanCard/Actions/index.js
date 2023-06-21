@@ -69,7 +69,7 @@ function Actions({
 							>
 								Create Plan
 							</div>
-						)}
+					)}
 					{status !== 'rejected' && (
 						<Button themeType="secondary" onClick={viewShipmentPlan}>
 							{showPlanBox ? 'Hide' : 'Shipment'}

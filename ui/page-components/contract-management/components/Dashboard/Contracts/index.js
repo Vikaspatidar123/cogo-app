@@ -33,10 +33,10 @@ function Contracts({ data }) {
 	const expiredCount = expired?.count;
 
 	const statCount = {
-		active: activeCount,
-		expired: expiredCount,
-		pending_approval: PendingCount,
-		all: activeCount + PendingCount + expiredCount,
+		active           : activeCount,
+		expired          : expiredCount,
+		pending_approval : PendingCount,
+		all              : activeCount + PendingCount + expiredCount,
 	};
 
 	return (

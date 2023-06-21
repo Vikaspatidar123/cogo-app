@@ -8,8 +8,8 @@ const useCreateContractBooking = () => {
 	const { push } = useRouter();
 
 	const [{ loading, data }, trigger] = useRequest({
-		url: '/create_contract_checkout',
-		method: 'post',
+		url    : '/create_contract_checkout',
+		method : 'post',
 	}, { manual: true });
 
 	const createBooking = async (payload) => {

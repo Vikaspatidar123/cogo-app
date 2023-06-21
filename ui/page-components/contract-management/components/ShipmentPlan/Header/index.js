@@ -105,17 +105,17 @@ function Header({ data, loading }) {
 								Validity :
 								{' '}
 								{formatDate({
-									date: validity_start_date,
-									dateFormat: GLOBAL_CONSTANTS.formats.date['dd MMM yyyy'],
-									formatType: 'date',
+									date       : validity_start_date,
+									dateFormat : GLOBAL_CONSTANTS.formats.date['dd MMM yyyy'],
+									formatType : 'date',
 								})}
 								{' '}
 								to
 								{' '}
 								{formatDate({
-									date: validity_end_date,
-									dateFormat: GLOBAL_CONSTANTS.formats.date['dd MMM yyyy'],
-									formatType: 'date',
+									date       : validity_end_date,
+									dateFormat : GLOBAL_CONSTANTS.formats.date['dd MMM yyyy'],
+									formatType : 'date',
 								})}
 								{validity_left_days && status === 'active' && (
 									<span>

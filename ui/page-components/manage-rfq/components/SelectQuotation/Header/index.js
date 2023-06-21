@@ -21,7 +21,7 @@ function Header({ isPortPairEmpty }) {
 				{!isPortPairEmpty && (
 					<>
 						<div className={styles.tag}>
-							{format(query.created_at, 'dd-MMM-yyyy')}
+							{format(new Date(query.created_at).getTime(), 'dd-MMM-yyyy')}
 						</div>
 						{query?.port && query?.port !== 'undefined' && (
 							<div className={styles.tag}>

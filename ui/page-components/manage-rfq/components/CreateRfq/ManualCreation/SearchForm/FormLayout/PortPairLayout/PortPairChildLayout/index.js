@@ -25,7 +25,7 @@ function PortPairChildLayout(props) {
 		showForm,
 		resetField,
 		editForm,
-		watchSearchRates,
+		watchSearchRates = [],
 		originDetails,
 		destinationDetails,
 		setOriginDetails = () => {},
@@ -35,7 +35,6 @@ function PortPairChildLayout(props) {
 		handleIndex,
 		draftFormData,
 	} = props;
-
 	const [count, setCount] = useState(1);
 	const [showServices, setShowServices] = useState(false);
 	const formValues = watchSearchRates?.[index] || {};
@@ -48,7 +47,7 @@ function PortPairChildLayout(props) {
 			origin      : originDetails?.[mode]?.[handleIndex] || {},
 			destination : destinationDetails?.[mode]?.[handleIndex] || {},
 		}),
-		[originDetails, destinationDetails],
+		[originDetails, mode, handleIndex, destinationDetails],
 	);
 	const handleOriginDetails = (val, key, idx, controlName) => {
 		const destinationPort = destinationDetails?.[mode]?.[idx] || {};
@@ -127,7 +126,7 @@ function PortPairChildLayout(props) {
 		if ((editForm || showForm || checkCount === 0) && incoTerm) {
 			handleServices();
 		}
-	}, [incoTerm]);
+	}, [checkCount, editForm, handleServices, incoTerm, showForm]);
 
 	const DEFAULT_OPTIONS = getCommoditySubType({
 		originPort      : originDetails?.[mode]?.[handleIndex],
@@ -357,7 +356,7 @@ function PortPairChildLayout(props) {
 									showServices={showServices}
 									mainValues={formValues}
 									handleIndex={handleIndex}
-									handleServices={handleServices}
+									// handleServices={handleServices}
 									setAdditionalServices={handleAdditionalServices}
 									additionalServiceValues={
 										formValues?.additional_services || {}

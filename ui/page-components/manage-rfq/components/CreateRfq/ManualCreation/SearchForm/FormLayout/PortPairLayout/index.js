@@ -41,6 +41,7 @@ function PortPairLayout(props) {
 		control,
 		name,
 	});
+
 	const handlePayload = (formData) => {
 		createRfqDraft(
 			formData,
@@ -50,7 +51,8 @@ function PortPairLayout(props) {
 			destinationDetails?.[serviceType]?.[handleIndex] || {},
 		);
 	};
-	const watchSearchRates = watch('search_rates');
+	const watchSearchRates = watch('search_rates') || [];
+
 	const childEmptyValues = {};
 
 	controls?.forEach((controlItem) => {
@@ -80,7 +82,7 @@ function PortPairLayout(props) {
 							mode={mode}
 							handleIndex={handleIndex}
 							totalDraftsCount={totalDraftsCount}
-							watchSearchRates={watchSearchRates}
+							watchSearchRates={watchSearchRates || []}
 						/>
 					</div>
 				</div>

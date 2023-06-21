@@ -190,7 +190,7 @@ function DraftSearchLayout({
 				);
 			}
 		})();
-	}, []);
+	}, [excludedType, getOperators, index, prefferedType, serviceType, shippingLinesDetails, shippingRemarks]);
 
 	return (
 		<div className={styles.container}>
@@ -217,7 +217,7 @@ function DraftSearchLayout({
 					<IcMEdit
 						disable={editForm || showForm}
 						className={cl`${styles.edit_icon}`}
-						onClick={() => handleClick()}
+						onClick={handleClick}
 					/>
 					<IcMDuplicate className={styles.duplicate_icon} onClick={() => handleDuplicate()} />
 					<IcMDelete className={styles.delete_icon} onClick={() => handleDelete()} />

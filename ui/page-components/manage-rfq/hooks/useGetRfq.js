@@ -1,4 +1,5 @@
 import { Toast } from '@cogoport/components';
+import { useCallback } from 'react';
 
 import getApiErrorString from '../helpers/getApiErrorString';
 import formatDraftFormValues from '../utils/formatDraftFormValues';
@@ -19,7 +20,7 @@ const useGetRfq = ({
 		url    : '/get_rfq',
 	}, { manual: 'true' });
 
-	const getRfq = async (id) => {
+	const getRfq = useCallback(async (id) => {
 		try {
 			const res = await trigger({
 				params: {
@@ -47,7 +48,8 @@ const useGetRfq = ({
 		} catch (err) {
 			Toast.error(getApiErrorString(err?.data));
 		}
-	};
+	}, [rfqId, setDestinationDetails, setDraftFormData,
+		setImporterExporterDetails, setOriginDetails, setServices, setShowForm, trigger]);
 
 	return {
 		loading,

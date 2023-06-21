@@ -15,10 +15,12 @@ const items = [
 	{ title: 'Method', key: 2 },
 	{ title: 'Request', key: 3 },
 ];
+
 function CreateRfq() {
 	const { back, query } = useRouter();
 
 	const { rfq_id, stage, type } = query;
+
 	const [currentStep, setCurrentStep] = useState(Number(stage) || 1);
 
 	const { control, setValue, watch } = useForm({
@@ -40,7 +42,13 @@ function CreateRfq() {
 			</div>
 
 			<div className={styles.content}>
-				<Stepper active={currentStep} setActive={setCurrentStep} items={items} arrowed shadowed />
+				<Stepper
+					active={currentStep}
+					setActive={setCurrentStep}
+					items={items}
+					arrowed
+					shadowed
+				/>
 
 				<div className={styles.stepper_content}>
 					<Component

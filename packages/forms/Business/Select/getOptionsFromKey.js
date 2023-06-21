@@ -18,9 +18,9 @@ const getOptionsFromKey = (
 	{ commodityType, containerType, country_code = 'IN' },
 ) => {
 	const data = {
-		options: null,
-		valueKey: 'value',
-		labelKey: 'label',
+		options  : null,
+		valueKey : 'value',
+		labelKey : 'label',
 	};
 	if (key === 'truck_types') {
 		const applicableTrucks = TruckTypes.filter(

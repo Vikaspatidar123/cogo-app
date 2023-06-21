@@ -22,8 +22,8 @@ const useMobileNoVerification = ({ type = '' }) => {
 
 	const [{ loading }, trigger] = useRequest(
 		{
-			url: '/update_user',
-			method: 'post',
+			url    : '/update_user',
+			method : 'post',
 		},
 		{ manual: false },
 	);
@@ -36,8 +36,8 @@ const useMobileNoVerification = ({ type = '' }) => {
 				return {
 					...control,
 					value: {
-						country_code: mobileCountryCode || control?.value?.country_code,
-						number: mobileNumber || control?.value?.number || '',
+						country_code : mobileCountryCode || control?.value?.country_code,
+						number       : mobileNumber || control?.value?.number || '',
 					},
 				};
 			}
@@ -60,8 +60,8 @@ const useMobileNoVerification = ({ type = '' }) => {
 			const values = formProps.getValues();
 
 			let payload = {
-				mobile_country_code: values?.mobileNumber?.country_code,
-				mobile_number: values?.mobileNumber?.number,
+				mobile_country_code : values?.mobileNumber?.country_code,
+				mobile_number       : values?.mobileNumber?.number,
 			};
 			if (actionType === 'VERIFY_OTP') {
 				payload = { ...payload, mobile_otp: otpNumber };

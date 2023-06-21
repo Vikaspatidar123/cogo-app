@@ -43,7 +43,7 @@ function ConfirmationModal({
 										setError(false);
 									}
 								}}
-								style={{ border: error && "1px solid #BF291E" }}
+								style={{ border: error && '1px solid #BF291E' }}
 							/>
 						</div>
 						<div className={styles.error_container}>

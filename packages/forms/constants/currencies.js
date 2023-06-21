@@ -10,9 +10,9 @@ const optionsAll = [];
 	) {
 		previousCurriencies.push(country.currency_code);
 		optionsAll.push({
-			label: country.currency_code,
-			value: country.currency_code,
-			key: country.currency_code,
+			label : country.currency_code,
+			value : country.currency_code,
+			key   : country.currency_code,
 		});
 	}
 });

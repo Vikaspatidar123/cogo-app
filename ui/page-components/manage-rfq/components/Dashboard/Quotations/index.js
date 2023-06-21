@@ -23,6 +23,7 @@ function Quotations({
 		setPagination,
 		getRfqList,
 		debounceQuery,
+		stats,
 	} = useGetRfqList({
 		activeFilter,
 	});
@@ -47,6 +48,7 @@ function Quotations({
 				setActiveFilter={setActiveFilter}
 				debounceQuery={debounceQuery}
 				setPagination={setPagination}
+				stats={stats}
 			/>
 
 			<QuotationList

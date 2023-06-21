@@ -21,4 +21,12 @@ const statusFilter = [
 	},
 ];
 
-export default statusFilter;
+export const getStatusFilters = ({ stats = {} }) => statusFilter.map((status) => ({
+	...status,
+	suffix:
+	<div>
+		{status.suffix}
+		{' '}
+		{stats?.[status.key]}
+	</div>,
+}));

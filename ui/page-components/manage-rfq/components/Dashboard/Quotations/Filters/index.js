@@ -2,7 +2,7 @@ import { Input, Chips } from '@cogoport/components';
 import { IcMSearchlight } from '@cogoport/icons-react';
 import React, { useState, useEffect } from 'react';
 
-import statusFilter from '../../../../configurations/status-filter';
+import { getStatusFilters } from '../../../../configurations/status-filter';
 
 import styles from './styles.module.css';
 
@@ -11,12 +11,15 @@ function Filters({
 	setActiveFilter,
 	setPagination,
 	debounceQuery,
+	stats,
 }) {
 	const [value, setValue] = useState('');
 
 	useEffect(() => {
 		debounceQuery(value);
 	}, [value, debounceQuery]);
+
+	const statusFilter = getStatusFilters({ stats });
 
 	return (
 		<div className={styles.container}>

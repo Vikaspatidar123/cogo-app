@@ -9,7 +9,7 @@ import styles from './styles.module.css';
 
 import { useRouter } from '@/packages/next';
 
-function WhyRfq({ setShowDashboard }) {
+function WhyRfq({ setShowDashboard = () => {} }) {
 	const { push } = useRouter();
 	return (
 		<div className={styles.container}>

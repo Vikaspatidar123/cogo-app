@@ -2,7 +2,7 @@ import { Button } from '@cogoport/components';
 
 import styles from './styles.module.css';
 
-function Header({ setShowDashboard }) {
+function Header({ setShowDashboard = () => {} }) {
 	return (
 		<div className={styles.container}>
 			<div className={styles.title}>Manage RFQ</div>

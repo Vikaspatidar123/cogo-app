@@ -7,7 +7,7 @@ import ArchiveDelete from '../ArchiveDelete';
 
 import styles from './styles.module.css';
 
-function EmptyCard({ activeTab = '', type = '', input = '', shipmentId = '' }) {
+function EmptyCard({ activeTab = '', type = '', input = '', shipmentId = '', refetchTrackerList }) {
 	const [openModal, setOpenModal] = useState(false);
 	const { CARD_TITLE, EMPTY_STATE_INFO } = GET_MAPPING?.[activeTab] || {};
 
@@ -37,7 +37,12 @@ function EmptyCard({ activeTab = '', type = '', input = '', shipmentId = '' }) {
 			<Modal show={openModal} onClose={closeHandler} closeOnOuterClick>
 				<Modal.Header title="Delete Tracker" />
 				<div className={styles.border} />
-				<ArchiveDelete activeTab={activeTab} closeHandler={closeHandler} shipmentId={shipmentId} />
+				<ArchiveDelete
+					activeTab={activeTab}
+					closeHandler={closeHandler}
+					shipmentId={shipmentId}
+					refetchTrackerList={refetchTrackerList}
+				/>
 			</Modal>
 		</div>
 	);

@@ -11,9 +11,11 @@ import { useRequest } from '@/packages/request';
 
 const API_MAPPING = {
 	ocean: {
-		operatorApi : '/get_shipping_line_for_search_value',
+		// operatorApi : '/get_shipping_line_for_search_value',
+		operatorApi : '/get_shipping_line_for_container_no',
 		createApi   : '/create_saas_container_subscription',
-		payloadKey  : 'search_value',
+		// payloadKey  : 'search_value',
+		payloadKey  : 'container_no',
 		operatorKey : 'shippingLine',
 		threshold   : 11,
 	},
@@ -50,8 +52,7 @@ const useCreateTracker = ({ operatorData }) => {
 	const { watch, reset, setValue } = formHook;
 	const shipmentNumber = watch('shipmentNumber');
 
-	const { shippingLineData = [], airLineData = [] } = operatorData || {};
-	const controls = headerFormControls({ trackingType, shippingLineData, airLineData });
+	const controls = headerFormControls({ trackingType, operatorData });
 
 	const getOperatorInfo = useCallback(({ shipmentNo }) => {
 		try {
@@ -89,7 +90,7 @@ const useCreateTracker = ({ operatorData }) => {
 	}, [reset, trackingType]);
 
 	useEffect(() => {
-		if (shipmentNumber?.length >= threshold) {
+		if (shipmentNumber?.length === threshold) {
 			prefillOpertorField({ shipmentNo: shipmentNumber });
 		}
 	}, [prefillOpertorField, shipmentNumber, threshold]);

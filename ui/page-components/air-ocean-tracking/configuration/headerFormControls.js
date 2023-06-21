@@ -20,7 +20,13 @@ const headerFormAirControls = [
 		name        : 'shipmentNumber',
 		type        : 'text',
 		placeholder : 'Enter Airway bill number',
-		rules       : { required: true },
+		rules       : {
+			required : true,
+			pattern  : {
+				value   : /^\d{3}-\d{8}$/,
+				message : 'Invalid AirLine Number',
+			},
+		},
 	},
 	{
 		name        : 'airLine',
@@ -28,7 +34,8 @@ const headerFormAirControls = [
 		asyncKey    : 'airline_list',
 		initialCall : true,
 		placeholder : 'Select Airway Line',
-		rules       : { required: true },
+		rules       : { required: 'required' },
+
 	},
 ];
 

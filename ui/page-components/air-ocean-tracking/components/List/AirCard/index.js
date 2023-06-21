@@ -14,7 +14,7 @@ import styles from './styles.module.css';
 
 const LOADING_ARR = getLoadingArr(3);
 
-function AirCard({ listItem = {}, loading = false, activeTab, setModalInfo }) {
+function AirCard({ listItem = {}, loading = false, activeTab, setModalInfo, refetchTrackerList }) {
 	const [showPopover, setShowPopover] = useState(false);
 	const { redirectToTracker } = useRedirectFn();
 
@@ -26,7 +26,14 @@ function AirCard({ listItem = {}, loading = false, activeTab, setModalInfo }) {
 	const isTrackerEmpty = tracking_status !== 'Found';
 
 	if (isTrackerEmpty && !loading) {
-		return <EmptyCard input={input} activeTab={activeTab} shipmentId={id} />;
+		return (
+			<EmptyCard
+				input={input}
+				activeTab={activeTab}
+				shipmentId={id}
+				refetchTrackerList={refetchTrackerList}
+			/>
+		);
 	}
 
 	return (

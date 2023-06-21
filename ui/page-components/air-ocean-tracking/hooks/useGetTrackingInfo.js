@@ -36,7 +36,10 @@ const useGetShipmentInfo = () => {
 			const isDataFound = trackerData?.tracking_status === 'Found';
 
 			if (isDataFound) setApiTries(MAX_API_TRIES);
-			else setApiTries((prev) => prev + 1);
+			else {
+				await wait(1500);
+				setApiTries((prev) => prev + 1);
+			}
 		} catch (err) {
 			console.log(err);
 		}
@@ -49,7 +52,9 @@ const useGetShipmentInfo = () => {
 	}, [apiTries, fetchTrackerDetails, isFirstVisit]);
 
 	return {
-		data, loading, trackingType,
+		data,
+		trackingType,
+		loading: !isFirstVisit ? loading : apiTries !== MAX_API_TRIES,
 	};
 };
 

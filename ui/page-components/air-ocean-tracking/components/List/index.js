@@ -1,4 +1,5 @@
 import { Pagination } from '@cogoport/components';
+import { isEmpty } from '@cogoport/utils';
 import { useState } from 'react';
 
 import useGetListTracker from '../../hooks/useGetListTracker';
@@ -8,6 +9,9 @@ import Header from './Header';
 import ModalList from './ModalList';
 import OceanCard from './OceanCard';
 import styles from './styles.module.css';
+
+import { Image } from '@/packages/next';
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
 const CARD_COMPONENT = {
 	air   : AirCard,
@@ -47,17 +51,31 @@ function List() {
 					loading={loading}
 					setModalInfo={setModalInfo}
 					activeTab={activeTab}
+					refetchTrackerList={refetchTrackerList}
 				/>
 			))}
-			<div className={styles.pagination_container}>
-				<Pagination
-					type="number"
-					currentPage={page}
-					totalItems={total_count}
-					pageSize={page_limit}
-					onPageChange={(e) => filterChangeHandler('page', e)}
-				/>
-			</div>
+			{isEmpty(newList) ? (
+				<div className={styles.empty_state}>
+					<Image
+						src={GLOBAL_CONSTANTS.image_url.air_empty_state}
+						width={450}
+						height={250}
+						alt="empty"
+					/>
+					<p>No Tracking Data Found</p>
+				</div>
+			) : (
+				<div className={styles.pagination_container}>
+					<Pagination
+						type="number"
+						currentPage={page}
+						totalItems={total_count}
+						pageSize={page_limit}
+						onPageChange={(e) => filterChangeHandler('page', e)}
+					/>
+				</div>
+			)}
+
 			<ModalList
 				modalInfo={modalInfo}
 				setModalInfo={setModalInfo}

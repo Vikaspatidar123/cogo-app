@@ -14,7 +14,7 @@ import styles from './styles.module.css';
 
 const LOADING_ARR = getLoadingArr(3);
 
-function Card({ listItem = {}, loading = false, activeTab, setModalInfo }) {
+function Card({ listItem = {}, loading = false, activeTab, setModalInfo, refetchTrackerList }) {
 	const [activeContainerIndex, setActiveContainerIndex] = useState(1);
 	const [showPopover, setShowPopover] = useState(false);
 
@@ -37,7 +37,13 @@ function Card({ listItem = {}, loading = false, activeTab, setModalInfo }) {
 
 	if (isTrackerEmpty && !loading) {
 		return (
-			<EmptyCard type={type} input={input} activeTab={activeTab} shipmentId={id} />
+			<EmptyCard
+				type={type}
+				input={input}
+				activeTab={activeTab}
+				shipmentId={id}
+				refetchTrackerList={refetchTrackerList}
+			/>
 		);
 	}
 

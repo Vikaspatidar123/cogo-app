@@ -1,5 +1,7 @@
 import { Toast } from '@cogoport/components';
 
+import useRedirectFn from './useRedirectFn';
+
 import { useRequest } from '@/packages/request';
 
 const MAPPING = {
@@ -13,8 +15,14 @@ const MAPPING = {
 	},
 };
 
-const useDeleteTracker = ({ name = '', id = '', closeHandler, activeTab = '', refetchTrackerList }) => {
+const useDeleteTracker = ({
+	name = '', id = '', closeHandler, activeTab = '', refetchTrackerList = () => {},
+	src = '',
+}) => {
 	const { URL, SUBSCRIPTION_ID_KEY } = MAPPING?.[activeTab] || {};
+
+	const { redirectToDashboard } = useRedirectFn();
+
 	const [{ loading }, trigger] = useRequest({
 		method : 'post',
 		url    : URL,
@@ -46,6 +54,9 @@ const useDeleteTracker = ({ name = '', id = '', closeHandler, activeTab = '', re
 				Toast.success(`Successfully ${name} tracker`);
 				refetchTrackerList();
 				closeHandler();
+			}
+			if (src === 'trackingDetails') {
+				redirectToDashboard();
 			}
 		} catch (err) {
 			console.log(err);

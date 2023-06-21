@@ -4,13 +4,17 @@ import useDeleteTracker from '../../hooks/useDeleteTracker';
 
 import styles from './styles.module.css';
 
-function ArchiveDelete({ name = 'delete', shipmentId = '', closeHandler, activeTab = 'ocean', refetchTrackerList }) {
+function ArchiveDelete({
+	name = 'delete', shipmentId = '', closeHandler, activeTab = 'ocean',
+	refetchTrackerList = () => {}, src = '',
+}) {
 	const { loading, deleteArchiveHandler } = useDeleteTracker({
 		name,
 		id: shipmentId,
 		closeHandler,
 		activeTab,
 		refetchTrackerList,
+		src,
 	});
 
 	return (

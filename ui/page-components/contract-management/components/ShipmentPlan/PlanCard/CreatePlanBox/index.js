@@ -6,7 +6,7 @@ import CardLoader from '../../CardLoader';
 
 import styles from './styles.module.css';
 
-function CreatePlanBox({ setShowModal = () => {}, loading = false }) {
+function CreatePlanBox({ setShowModal = () => { }, loading = false }) {
 	return (
 		<>
 			{' '}
@@ -16,13 +16,14 @@ function CreatePlanBox({ setShowModal = () => {}, loading = false }) {
 				<div className={styles.container}>
 					<div className={styles.card}>
 						<div className={styles.title}>Create a Plan</div>
-						<ButtonIcon
-							size="md"
-							icon={<IcMPlusInCircle />}
-							themeType="secondary"
+						<IcMPlusInCircle
+							className={styles.button}
 							onClick={() => {
 								setShowModal(true);
 							}}
+							width={40}
+							height={40}
+							fill="green"
 						/>
 					</div>
 					<div className={styles.empty_component} />

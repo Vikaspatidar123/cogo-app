@@ -23,17 +23,16 @@ function ShipmentPlan() {
 		id: contract_id,
 	});
 	const { services = [] } = contractData || {};
-	console.log(services, 'services');
 	const [activeTab, setActiveTab] = useState(services[0] || '');
 
 	const {
 		serviceData = {},
-		setPagination = () => {},
+		setPagination = () => { },
 		serviceLoading = false,
-		getServiceDetails = () => {},
+		getServiceDetails = () => { },
 	} = useGetServiceDetails({
-		contractId  : contract_id,
-		serviceType : activeTab || services[0],
+		contractId: contract_id,
+		serviceType: activeTab || services[0],
 		techOpsServiceId,
 		activeTab,
 		isTechops,
@@ -57,17 +56,19 @@ function ShipmentPlan() {
 			)}
 
 			{(serviceLoading || loading)
-				&& [...Array(isTechops ? 1 : 3)].map(() => <CardLoader />)}
-			<div className={styles.card_container}>
-				{(list || []).map((item) => (
-					<PlanCard
-						key={item.id}
-						itemData={item}
-						getServiceDetails={getServiceDetails}
-						contractData={contractData}
-					/>
-				))}
-			</div>
+				? [...Array(isTechops ? 1 : 3)].map(() => <CardLoader />)
+				: (
+					<div className={styles.card_container}>
+						{(list || []).map((item) => (
+							<PlanCard
+								key={item.id}
+								itemData={item}
+								getServiceDetails={getServiceDetails}
+								contractData={contractData}
+							/>
+						))}
+					</div>
+				)}
 
 			<div className={styles.pagination_wrapper}>
 				<Pagination

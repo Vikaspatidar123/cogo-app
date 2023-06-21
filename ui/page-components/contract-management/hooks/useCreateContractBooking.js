@@ -8,8 +8,8 @@ const useCreateContractBooking = () => {
 	const { push } = useRouter();
 
 	const [{ loading, data }, trigger] = useRequest({
-		url    : '/create_contract_checkout',
-		method : 'post',
+		url: '/create_contract_checkout',
+		method: 'post',
 	}, { manual: true });
 
 	const createBooking = async (payload) => {
@@ -33,10 +33,10 @@ const useCreateContractBooking = () => {
 				`/checkout/${res.data?.id}?checkoutType=contract`,
 			);
 		} catch (error) {
-			if (error?.error?.message) {
+			if (error?.response?.data?.message) {
 				Toast.error(error?.error?.message);
 			} else {
-				Toast.error(getApiErrorString(error?.data));
+				Toast.error(getApiErrorString(error?.response?.data));
 			}
 		}
 	};

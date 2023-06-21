@@ -19,7 +19,7 @@ function Quotations({ contractList, loading, activeFilter }) {
 			<Empty
 				label={`You have no ${getContractState[activeFilter]} contracts`}
 				subLabel={`Your ${getContractState[activeFilter]} contract will show up here`}
-				icon={<IcABlog />}
+				icon={<IcABlog width={280} height={280} />}
 			/>
 		);
 	}

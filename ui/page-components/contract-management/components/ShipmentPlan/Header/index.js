@@ -1,6 +1,6 @@
 // import Modal from '@cogoport/front/components/admin/Modal';
 
-import { Placeholder, Tooltip } from '@cogoport/components';
+import { Placeholder, Tooltip, cl } from '@cogoport/components';
 import { IcMArrowBack } from '@cogoport/icons-react';
 import { format, startCase, upperCase } from '@cogoport/utils';
 import React from 'react';
@@ -13,6 +13,8 @@ import { STATUS } from '../../../constants';
 import styles from './styles.module.css';
 
 import { useRouter } from '@/packages/next';
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
+import formatDate from '@/ui/commons/utils/formatDate';
 
 function Header({ data, loading }) {
 	const { back, query } = useRouter();
@@ -31,7 +33,6 @@ function Header({ data, loading }) {
 		validity_end_date = '',
 		source = '',
 	} = data || {};
-
 	return (
 		<>
 			{' '}
@@ -39,7 +40,7 @@ function Header({ data, loading }) {
 				<div className={styles.container}>
 					<div className={`${styles.section} ${styles.section_one}`}>
 						<div className={styles.left}>
-							<IcMArrowBack onClick={back} />
+							<IcMArrowBack onClick={back} className={styles.icon} />
 							{through === 'techops' && <div className={styles.custom_tag}>Tech Ops</div>}
 							<div className={styles.custom_tag}>
 								Contract ID :
@@ -58,7 +59,7 @@ function Header({ data, loading }) {
 									</div>
 								</Tooltip>
 							)}
-							{status && <div className={styles.status}>{STATUS[status]}</div>}
+							{status && <div className={cl`${styles.status} ${styles[status]}`}>{STATUS[status]}</div>}
 							{source && (
 								<div className={styles.status}>
 									Created from
@@ -103,11 +104,19 @@ function Header({ data, loading }) {
 							<div className={styles.validity}>
 								Validity :
 								{' '}
-								{format(validity_start_date, 'dd MMM yy')}
+								{formatDate({
+									date: validity_start_date,
+									dateFormat: GLOBAL_CONSTANTS.formats.date['dd MMM yyyy'],
+									formatType: 'date',
+								})}
 								{' '}
 								to
 								{' '}
-								{format(validity_end_date, 'dd MMM yy')}
+								{formatDate({
+									date: validity_end_date,
+									dateFormat: GLOBAL_CONSTANTS.formats.date['dd MMM yyyy'],
+									formatType: 'date',
+								})}
 								{validity_left_days && status === 'active' && (
 									<span>
 										{validity_left_days}

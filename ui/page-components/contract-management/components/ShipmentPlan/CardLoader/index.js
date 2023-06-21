@@ -8,7 +8,9 @@ function CardLoader() {
 		<div className={styles.container}>
 			{[...Array(4)].map(() => (
 				<div className={styles.section}>
-					{[...Array(4)].map(() => <Placeholder />)}
+					{[...Array(4)].map(() => (
+						<Placeholder width="250px" height="20px" margin="10px" />
+					))}
 				</div>
 			))}
 		</div>

@@ -48,7 +48,6 @@ function ChildFormat(
 					{heading ? (
 						<div className={styles.heading}>{`${heading} ${index + 1}`}</div>
 					) : null}
-
 					<Child
 						{...rest}
 						key={field.id}
@@ -81,14 +80,14 @@ function ChildFormat(
 					>
 						<Button
 							style={{
-								color        : '#3879da',
-								padding      : '0 4px',
-								opacity      : disableButtons ? 0.6 : 1,
-								fontSize     : 10,
-								background   : 'transparent',
-								border       : 'none',
-								fontWeight   : 'bold',
-								marginBottom : '10px',
+								color: '#3879da',
+								padding: '0 4px',
+								opacity: disableButtons ? 0.6 : 1,
+								fontSize: 10,
+								background: 'transparent',
+								border: 'none',
+								fontWeight: 'bold',
+								marginBottom: '10px',
 							}}
 							onClick={handleAppendChild}
 							disabled={disableButtons}

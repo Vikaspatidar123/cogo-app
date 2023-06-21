@@ -1,15 +1,15 @@
 .contractName {
-	font-size: 20px;
-	color: #404e65;
-	font-weight: 500;
 	margin-right: 10px;
+	font-size: 20px;
+	font-weight: 500;
+	color: #404e65;
 }
-
 
 .section {
 	display: flex;
-	justify-content: space-between;
 	align-items: center;
+	justify-content: space-between;
+
 	.section_one {
 		margin-bottom: 10px;
 	}
@@ -20,8 +20,8 @@
 	align-items: center;
 
 	svg {
-		height: 20px;
 		width: 20px;
+		height: 20px;
 	}
 
 	@media (max-width: 768px) {
@@ -29,54 +29,54 @@
 	}
 }
 
-.right { 
+.right {
 	display: flex;
 	align-items: center;
 }
 
 .service_name {
+	margin-left: 3px;
 	font-size: 16px;
 	font-weight: 500;
 	color: #828282;
-	margin-left: 3px;
 }
 
 .tag {
-	background:#fff7df;
-	padding: 2px 8px;
-	border-radius: 16px;
 	display: flex;
 	width: fit-content;
-	margin: 0px 6px;
+	padding: 2px 8px;
+	margin: 0 6px;
 	font-size: 12px;
-	color: #344054;
 	font-weight: 500;
+	color: #344054;
+	background: #f2f4f7;
+	border-radius: 16px;
 }
 
 .container {
 	padding: 16px;
-	box-shadow: 0px 15px 10px -15px rgba(98, 127, 172, 0.2);
+	margin: 0 -16px;
 	background: #fff;
-	margin: 0px -16px;
+	box-shadow: 0 15px 10px -15px rgb(98 127 172 / 20%);
 }
 
 .validity {
 	font-size: 14px;
-	color: #333333;
+	color: #333;
 
 	span {
-		color: #ed3726;
-		font-weight: 500;
 		margin-left: 10px;
+		font-weight: 500;
+		color: #ed3726;
 	}
 }
 
 .contract_info {
 	display: flex;
-	margin-right: 15px;
-	border-right: 1px solid #dfe1ef;
-	padding-right: 5px;
 	align-items: center;
+	padding-right: 5px;
+	margin: 10px 15px 0 0;
+	border-right: 1px solid #dfe1ef;
 
 	:last-child {
 		border-right: none;
@@ -84,45 +84,47 @@
 }
 
 .contract_status {
-	background: #fff7df;
-	padding: 2px 8px;
-	border-radius: 6px;
 	display: flex;
 	width: fit-content;
-	margin: 0px 6px;
+	padding: 2px 8px;
+	margin: 0 6px;
 	font-size: 12px;
-	color: #344054;
 	font-weight: 500;
+	color: #344054;
+	background: #fff7df;
+	border-radius: 6px;
 }
 
 .custom_tag {
-	font-weight: 500;
-	font-size: 20px;
-	color: #404e65;
-	margin-right: 8px;
-	border-right: 1px solid #cbcff5;
-	padding-right: 10px;
 	max-width: 400px;
-	white-space: nowrap;
+	padding-right: 10px;
+	margin-right: 8px;
 	overflow: hidden;
+	font-size: 20px;
+	font-weight: 600;
+	color: #404e65;
 	text-overflow: ellipsis;
+	white-space: nowrap;
+	border-right: 1px solid #cbcff5;
 }
 
 .status {
-	background: #f2f4f7;
 	padding: 2px 8px;
-	border-radius: 4px;
-	font-weight: 500;
-	font-size: 12px;
-	color: #2c3e50;
 	margin-left: 10px;
+	font-size: 12px;
+	font-weight: 500;
+	color: #2c3e50;
+	background: #f2f4f7;
+	border-radius: 4px;
 
 	&.contract_source {
 		background: #f2f4f7;
 	}
+
 	&.active {
 		background: #efffef;
 	}
+
 	&.pending_approval {
 		background: #fef3e9;
 	}
@@ -131,6 +133,16 @@
 .service_icon {
 	display: flex;
 	padding: 4px;
-	border-radius: 100%;
 	border: 0.5px solid #e0e0e0;
+	border-radius: 100%;
+}
+
+.icon {
+	margin-right: 10px;
+	cursor: pointer;
+}
+
+.icon:hover {
+	transition: 0.5s ease;
+	transform: scale(1.2);
 }

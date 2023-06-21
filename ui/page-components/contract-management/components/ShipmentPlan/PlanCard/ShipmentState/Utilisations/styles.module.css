@@ -8,8 +8,6 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	flex-direction: column;
-	margin-top: 15px;
 
 	:first-child {
 		margin-top: 0;
@@ -17,53 +15,52 @@
 }
 
 .contract_title {
-	color: #828282;
+	margin-right: 15px;
 	font-size: 14px;
 	font-weight: 500;
-	margin-right: 15px;
+	color: #828282;
 }
 
 .contract_date {
-	color: #333333;
 	margin-left: 20px;
+	color: #333;
 }
 
 .utilisation_count {
 	font-size: 14px;
-	color: #4f4f4f;
 	font-weight: 700;
+	color: #4f4f4f;
 
 	@media (max-width: 768px) {
-		margin-top: 0px;
+		margin-top: 0;
 	}
 }
 
 .stats {
-	width: 100%;
 	display: flex;
 	align-items: center;
+	width: 100%;
 	margin-bottom: 5px;
 }
 
 .progress {
-	background: #f2f4f7;
-	border-radius: 8px;
-	overflow: hidden;
 	width: 250px;
 	height: 10px;
+	overflow: hidden;
+	background: #f2f4f7;
+	border-radius: 8px;
 }
 
 .low_progress {
-	background: red;
-	border-radius: 8px;
-	overflow: hidden;
 	width: 250px;
 	height: 10px;
+	overflow: hidden;
+	background: red;
+	border-radius: 8px;
 }
 
-
 .percentage {
-	background: #c4dc91;
 	height: 100%;
+	background: #c4dc91;
 	border-radius: 8px;
 }

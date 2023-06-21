@@ -1,4 +1,4 @@
-import { Pagination } from '@cogoport/components';
+import { Pagination, cl } from '@cogoport/components';
 import { IcMTick } from '@cogoport/icons-react';
 import { useState } from 'react';
 
@@ -21,7 +21,7 @@ function Contracts({ data }) {
 		contractList,
 		loading,
 		pageData,
-		setPagination = () => {},
+		setPagination = () => { },
 	} = useGetListContracts({ filterValue, activeFilter });
 
 	const { total_count, page } = pageData || {};
@@ -33,10 +33,10 @@ function Contracts({ data }) {
 	const expiredCount = expired?.count;
 
 	const statCount = {
-		active           : activeCount,
-		expired          : expiredCount,
-		pending_approval : PendingCount,
-		all              : activeCount + PendingCount + expiredCount,
+		active: activeCount,
+		expired: expiredCount,
+		pending_approval: PendingCount,
+		all: activeCount + PendingCount + expiredCount,
 	};
 
 	return (
@@ -46,7 +46,7 @@ function Contracts({ data }) {
 				<div className={styles.tags}>
 					{statusFilter.map(({ label, key }) => (
 						<div
-							className={styles.tag}
+							className={cl`${styles.tag} ${key === activeFilter && styles.active}`}
 							role="presentation"
 							onClick={() => {
 								setActiveFilter(key);

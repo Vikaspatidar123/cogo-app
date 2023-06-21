@@ -14,12 +14,12 @@ import { getUnit } from '../../utils/getUnit';
 import styles from './styles.module.css';
 
 import { useForm } from '@/packages/forms';
-import getField from '@/packages/forms/Controlled';
+import FormElement from '@/ui/page-components/discover_rates/common/FormElement';
 
 function InitiateBooking({
 	data = {},
 	showBookingModal,
-	setShowBookingModal = () => {},
+	setShowBookingModal = () => { },
 	readyForBooking,
 }) {
 	const [departureDate, setDepartureDate] = useState('');
@@ -31,6 +31,7 @@ function InitiateBooking({
 		contractEndDate,
 		source,
 		contract_type,
+		service_details,
 	} = data || {};
 
 	const contractValidity = {
@@ -39,14 +40,14 @@ function InitiateBooking({
 	};
 	const { createBooking, loading } = useCreateContractBooking();
 
-	const isFtlPresentInFcl =		additionalServices.includes('ftl_freight')
+	const isFtlPresentInFcl = additionalServices.includes('ftl_freight')
 		&& service_type === 'fcl_freight';
 
 	const truckingServices = ['ftl_freight', 'ltl_freight'];
-	const isTruckingPresentInLcl =		additionalServices.every((i) => truckingServices.includes(i))
+	const isTruckingPresentInLcl = additionalServices.every((i) => truckingServices.includes(i))
 		&& service_type === 'lcl_freight';
 
-	const contractWithCogoport =		source === 'manual' && contract_type === 'with_cogoport';
+	const contractWithCogoport = source === 'manual' && contract_type === 'with_cogoport';
 
 	const showElementsFunc = (controlItems, values) => {
 		const showElements = {};
@@ -72,11 +73,24 @@ function InitiateBooking({
 		});
 		return showElements;
 	};
-
+	const fclArray = service_details?.filter(
+		(item) => item.service_type === 'fcl_freight',
+	);
+	const attributes = (fclArray || []).map((item) => ({
+		container_size: item.container_size,
+		commodity: item.commodity,
+		container_type_commodity: {
+			container_type: item.container_type,
+			commodity: item.commodity,
+		},
+		container_type: item.container_type,
+		containers_count: item.containers_count,
+		cargo_weight_per_container: item.cargo_weight_per_container,
+	}));
 	const SERVICE_CONTROLS_MAPPING = {
-		fcl_freight : fclControls(contractValidity, departureDate),
-		lcl_freight : lclControls(contractValidity, departureDate),
-		air_freight : airControls(contractValidity, departureDate),
+		fcl_freight: fclControls({ contractValidity, departureDate, fclArray, attributes }),
+		lcl_freight: lclControls(contractValidity, departureDate),
+		air_freight: airControls(contractValidity, departureDate),
 	};
 
 	const controls = SERVICE_CONTROLS_MAPPING[service_type] || [];
@@ -87,11 +101,14 @@ function InitiateBooking({
 		setValue,
 		watch,
 		control,
-	} = useForm();
+	} = useForm({
+		defaultValues: {
+			attributes,
+		},
+	});
 
 	const formValues = watch();
 	const showElements = showElementsFunc(controls, formValues);
-	console.log(showElements, 'showElements');
 	const shipmentStartDate = watch('departure');
 
 	useEffect(() => {
@@ -163,22 +180,13 @@ function InitiateBooking({
 
 				<form>
 					<div className={styles.row}>
-						{controls?.map((controlItem) => {
-							const { type, name } = controlItem;
-							const Element = getField(type);
-							return (
-								<div className={styles.styled_form_item}>
-									<p className={styles.label}>{controlItem?.label}</p>
-									<Element {...controlItem} control={control} showElements />
-									{errors[name]?.type === 'required' || 'pattern' ? (
-										<div className={styles.text1}>
-											{errors[name]?.message}
-										</div>
-									) : null}
-
-								</div>
-							);
-						})}
+						<FormElement
+							controls={controls}
+							control={control}
+							showElements={showElements}
+							errors={errors}
+							noScroll
+						/>
 					</div>
 					<Modal.Footer>
 						<Button

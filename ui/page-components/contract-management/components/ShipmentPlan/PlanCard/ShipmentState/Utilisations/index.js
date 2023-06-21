@@ -17,24 +17,24 @@ function Utilisation({ itemData = {} }) {
 
 	const KEYS_MAPPING = {
 		fcl_freight: {
-			req    : max_containers_count || 0,
-			booked : booked_containers_count || 0,
+			req: max_containers_count || 0,
+			booked: booked_containers_count || 0,
 		},
 		lcl_freight: {
-			req    : max_volume || 0,
-			booked : booked_volume || 0,
+			req: max_volume || 0,
+			booked: booked_volume || 0,
 		},
 		air_freight: {
-			req    : max_weight || 0,
-			booked : booked_weight || 0,
+			req: max_weight || 0,
+			booked: booked_weight || 0,
 		},
 	};
 
-	const utilisationCountExceed =		Number(KEYS_MAPPING[service_type]?.booked)
+	const utilisationCountExceed = Number(KEYS_MAPPING[service_type]?.booked)
 		< Number(KEYS_MAPPING[service_type]?.req);
-	const percent =		Number(KEYS_MAPPING[service_type]?.booked)
+	const percent = Number(KEYS_MAPPING[service_type]?.booked)
 		/ Number(KEYS_MAPPING[service_type]?.req);
-	const isOverflow =		Number(KEYS_MAPPING[service_type]?.booked)
+	const isOverflow = Number(KEYS_MAPPING[service_type]?.booked)
 		- Number(KEYS_MAPPING[service_type]?.req);
 
 	const isEqualAndOvered = utilisationCountExceed < percent && isOverflow !== 0;
@@ -46,7 +46,7 @@ function Utilisation({ itemData = {} }) {
 				<div className={styles.stats}>
 					<div className={styles.contract_title}>
 						{KEYS_MAPPING[service_type]?.booked
-						> KEYS_MAPPING[service_type]?.req
+							> KEYS_MAPPING[service_type]?.req
 							? 'Over'
 							: getUnit(service_type)}
 						{' '}
@@ -61,7 +61,7 @@ function Utilisation({ itemData = {} }) {
 					)}
 				</div>
 
-				{ isEqualAndOvered ? <div className={styles.low_progress} />
+				{isEqualAndOvered ? <div className={styles.low_progress} />
 					: (
 						<div className={styles.progress} overflow={isEqualAndOvered}>
 							<div className={styles.percentage} style={{ width: barWidth }} />

@@ -1,4 +1,4 @@
-import { Modal } from '@cogoport/components';
+import { cl, Modal } from '@cogoport/components';
 import { format, isEmpty } from '@cogoport/utils';
 import { useState } from 'react';
 
@@ -24,7 +24,7 @@ import { useSelector } from '@/packages/store';
 
 function PlanCard({
 	itemData = {},
-	getServiceDetails = () => {},
+	getServiceDetails = () => { },
 	contractData = {},
 }) {
 	const [showModal, setShowModal] = useState(false);
@@ -51,6 +51,8 @@ function PlanCard({
 	const {
 		destination_port = {},
 		origin_port = {},
+		destination_main_port = {},
+		origin_main_port = {},
 		destination_airport = {},
 		origin_airport = {},
 		upcoming_shipment_data = {},
@@ -65,62 +67,72 @@ function PlanCard({
 		max_volume = 0,
 		max_weight = 0,
 		booked_weight = 0,
+		commodity = [],
+		container_type,
+		container_size,
+		inco_term,
+		service_details,
 	} = itemData || {};
 
 	const bookingData = {
 		service_type,
 		upcoming_shipment_data,
 		additional_services,
-		service_id        : id,
-		contractEndDate   : validity_end_date,
-		contractStartDate : validity_start_date,
+		service_id: id,
+		contractEndDate: validity_end_date,
+		contractStartDate: validity_start_date,
 		source,
 		contract_type,
+		commodity,
+		container_type,
+		container_size,
+		inco_term,
+		service_details,
 	};
 	const readyForBooking = validity_start_date < format(new Date());
 
-	const isExistingManual =		source === 'manual' && contract_type === 'with_carrier';
+	const isExistingManual = source === 'manual' && contract_type === 'with_carrier';
 
 	const {
 		loading,
 		shipmentPlanData = [],
-		getShipmentPlans = () => {},
+		getShipmentPlans = () => { },
 		requestData = [],
 	} = useGetContractShipmentData({ isExistingManual });
 
-	const { shipment_data: shipmentData = [], plan_data = [] } =		shipmentPlanData || {};
+	const { shipment_data: shipmentData = [], plan_data = [] } = shipmentPlanData || {};
 	const isPlanAbsent = isEmpty(shipmentData);
 	const planNotAvailable = isEmpty(plan_data);
 
-	const serviceState =		scope === 'app' ? 'APPROVAL PENDING' : 'Approval Pending from RD';
-	const serviceStateWithQuery =		contract_status === 'expired' ? contract_status : RD_STATUS_MAPPING[status];
+	const serviceState = scope === 'app' ? 'APPROVAL PENDING' : 'Approval Pending from RD';
+	const serviceStateWithQuery = contract_status === 'expired' ? contract_status : RD_STATUS_MAPPING[status];
 
 	const KEYS_MAPPING = {
 		fcl_freight: {
-			req    : max_containers_count,
-			booked : booked_containers_count || 0,
+			req: max_containers_count,
+			booked: booked_containers_count || 0,
 		},
 		lcl_freight: {
-			req    : max_volume,
-			booked : booked_volume || 0,
+			req: max_volume,
+			booked: booked_volume || 0,
 		},
 		air_freight: {
-			req    : max_weight,
-			booked : booked_weight || 0,
+			req: max_weight,
+			booked: booked_weight || 0,
 		},
 	};
 
-	const utilisationCountExceed =	Number(KEYS_MAPPING[service_type]?.booked)
+	const utilisationCountExceed = Number(KEYS_MAPPING[service_type]?.booked)
 		> Number(KEYS_MAPPING[service_type]?.req);
 
 	return (
 		<div className={styles.container}>
 			{status && (
-				<div className={`${styles.status_tag} ${styles.status}_${styles.contractStatus}`}>
+				<div className={cl`${styles.status_tag} ${styles[`${status}_${contractStatus}`]}`}>
 					{contractStatus === 'active' ? serviceStateWithQuery : serviceState}
 				</div>
 			)}
-			<div className={`${styles.section} ${styles.section_one}`}>
+			<div className={cl`${styles.section} ${styles.section_one}`}>
 				<div className={styles.port_pairs}>
 					<Route
 						destinationPort={destination_port}
@@ -128,6 +140,8 @@ function PlanCard({
 						destinationAirport={destination_airport}
 						originAirport={origin_airport}
 						serviceType={service_type}
+						destination_main_port={destination_main_port}
+						origin_main_port={origin_main_port}
 					/>
 				</div>
 				<Freight
@@ -146,7 +160,7 @@ function PlanCard({
 					/>
 				)}
 			</div>
-			<div className={`${styles.section} ${styles.section_three}`}>
+			<div className={cl`${styles.section} ${styles.section_three}`}>
 				<ShipmentState itemData={itemData} />
 				<Actions
 					serviceId={id}

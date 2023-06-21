@@ -8,7 +8,7 @@ import styles from './styles.module.css';
 
 function PriceBreakup({
 	details = {},
-	setShowBreakup = () => {},
+	setShowBreakup = () => { },
 	source = '',
 }) {
 	const containerCount = details.containers_count || 1;
@@ -58,7 +58,8 @@ function PriceBreakup({
 				service: (groupedServices[service] || [])[0]?.service
 					? handleServicesNames(service)
 					: startCase(service),
-				properties: (groupedServices[service] || []).map((item) => handleLineItemsBreakup(item, details, containerCount, source))[0],
+				properties: (groupedServices[service] || []).map((item) => (
+					handleLineItemsBreakup(item, details, containerCount, source)))[0],
 			},
 		];
 	});
@@ -69,11 +70,11 @@ function PriceBreakup({
 				<div className={styles.title_text}>Detailed Breakup</div>
 				<IcMCross cursor="pointer" onClick={() => setShowBreakup(false)} />
 			</div>
-			{(newData || []).map((item) => {
+			{(newData || []).map((item, itmIndex) => {
 				const { price } = item.properties.pop();
 				return (
 					<>
-						<div className={styles.price_title}>
+						<div className={styles.price_title} key={item[itmIndex]?.features}>
 							<div className={styles.basic_title}>{item.service}</div>
 							<div className={styles.basic_price}>{price}</div>
 						</div>

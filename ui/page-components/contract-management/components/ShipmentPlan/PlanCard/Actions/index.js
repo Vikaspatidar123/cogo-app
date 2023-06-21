@@ -15,21 +15,21 @@ function Actions({
 	contractStatus = '',
 	source = '',
 	contract_type = '',
-	setOpen = () => {},
-	setShowPlanBox = () => {},
-	setShowModal = () => {},
-	setShowBookingModal = () => {},
-	getShipmentPlans = () => {},
-	setShowBreakup = () => {},
+	setOpen = () => { },
+	setShowPlanBox = () => { },
+	setShowModal = () => { },
+	setShowBookingModal = () => { },
+	getShipmentPlans = () => { },
+	setShowBreakup = () => { },
 	utilisationCountExceed,
 }) {
 	const { query } = useRouter();
 	const { through = '', contract_status = '' } = query || {};
-	const disabledBooking =		status !== 'locked' || contractStatus !== 'active' || through === 'techops';
+	const disabledBooking = status !== 'locked' || contractStatus !== 'active' || through === 'techops';
 
-	const isExistingManual =		(source === 'manual'
-			&& contract_type === 'with_carrier'
-			&& serviceType === 'fcl_freight')
+	const isExistingManual = (source === 'manual'
+		&& contract_type === 'with_carrier'
+		&& serviceType === 'fcl_freight')
 		|| (source === 'manual' && contract_type === 'with_cogoport');
 
 	const viewShipmentPlan = () => {
@@ -39,9 +39,9 @@ function Actions({
 			getShipmentPlans(serviceId, serviceType);
 		}
 	};
-	const showCreateUpdateBtn =	!isPlanAbsent && showPlanBox && contract_status !== 'expired';
+	const showCreateUpdateBtn = !isPlanAbsent && showPlanBox && contract_status !== 'expired';
 
-	const withShippingLineContract =		source === 'manual'
+	const withShippingLineContract = source === 'manual'
 		&& contract_type === 'with_carrier'
 		&& contract_status !== 'expired';
 
@@ -69,7 +69,7 @@ function Actions({
 							>
 								Create Plan
 							</div>
-					)}
+						)}
 					{status !== 'rejected' && (
 						<Button themeType="secondary" onClick={viewShipmentPlan}>
 							{showPlanBox ? 'Hide' : 'Shipment'}
@@ -87,7 +87,6 @@ function Actions({
 						Requested
 					</Button>
 					<Button
-						className="primary sm"
 						onClick={() => {
 							setOpen(true);
 						}}
@@ -103,6 +102,7 @@ function Actions({
 					onClick={() => setShowBookingModal(true)}
 					disabled={disabledBooking}
 					style={{ marginLeft: '10px' }}
+					themeType="accent"
 				>
 					Initiate Booking
 				</Button>

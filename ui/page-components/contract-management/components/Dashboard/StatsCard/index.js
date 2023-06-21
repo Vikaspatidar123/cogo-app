@@ -12,7 +12,7 @@ function StatsCard({ data, loading }) {
 				const isLoss = data?.[item.count]?.percentage > 0;
 				return (
 					<div className={styles.styled_col}>
-						<div className={styles.card}>
+						<div className={styles.card} style={{ background: `${item.backgroundColor}` }}>
 							<div className={styles.title}>{item.title}</div>
 							<div className={styles.count}>
 								{loading ? (
@@ -21,7 +21,7 @@ function StatsCard({ data, loading }) {
 									<>
 										{' '}
 										{data?.[item.count]?.count < 9
-										&& data?.[item.count]?.count !== 0
+											&& data?.[item.count]?.count !== 0
 											? `0${data?.[item.count]?.count}`
 											: data?.[item.count]?.count || 0}
 									</>

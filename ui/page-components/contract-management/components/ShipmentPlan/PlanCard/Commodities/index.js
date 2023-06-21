@@ -23,7 +23,7 @@ function Commodities({ itemData }) {
 		trade_type = '',
 		additional_services = [],
 	} = itemData || {};
-
+	const checkLength = additional_services?.length || 0;
 	const count = max_containers_count || max_volume || max_weight;
 
 	let commo;
@@ -90,13 +90,14 @@ function Commodities({ itemData }) {
 						placement="right"
 						content={(
 							<div className={styles.addl_service}>
-								{(additional_services.slice(1) || []).map((v) => <div className={styles.service_tag}>{startCase(v)}</div>)}
+								{(additional_services.slice(1) || []).map((v) => (
+									<div className={styles.service_tag}>{startCase(v)}</div>))}
 							</div>
 						)}
 					>
-						<div className={styles.service_tag}>
+						<div className={styles.service_tag_more}>
 							+
-							{additional_services?.length - 1}
+							{checkLength - 1}
 							{' '}
 							More
 						</div>

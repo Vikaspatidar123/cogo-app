@@ -11,11 +11,13 @@ function Route({
 	destinationAirport = {},
 	originAirport = {},
 	serviceType = '',
+	origin_main_port = {},
+	destination_main_port = {},
 }) {
 	const countryName = (val) => val?.split(',').slice(-1)[0];
 
 	const origin = serviceType === 'air_freight' ? originAirport : originPort;
-	const destination =		serviceType === 'air_freight' ? destinationAirport : destinationPort;
+	const destination = serviceType === 'air_freight' ? destinationAirport : destinationPort;
 
 	const {
 		display_name = '',
@@ -28,6 +30,8 @@ function Route({
 		port_code: destinationCode = '',
 		name: destinationName = '',
 	} = destination || {};
+	const { name: originMainPortName = '' } = origin_main_port || {};
+	const { name: destinationMainPortName = '' } = destination_main_port || {};
 	return (
 		<div className={styles.container}>
 			<div className={styles.location}>
@@ -37,6 +41,13 @@ function Route({
 					portCode={port_code}
 				/>
 				<div className={styles.country}>{startCase(countryName(display_name || ''))}</div>
+				{originMainPortName ? (
+					<div className={styles.country}>
+						via
+						{' '}
+						{originMainPortName}
+					</div>
+				) : null}
 			</div>
 			<div className={styles.icon}>
 				<IcMPortArrow />
@@ -50,6 +61,13 @@ function Route({
 				<div className={styles.country}>
 					{startCase(countryName(destinationDisplayName || ''))}
 				</div>
+				{destinationMainPortName ? (
+					<div className={styles.country}>
+						via
+						{' '}
+						{destinationMainPortName}
+					</div>
+				) : null}
 			</div>
 		</div>
 	);

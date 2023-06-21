@@ -5,8 +5,8 @@
 
 .card {
 	display: flex;
-	flex-direction: column;
 	flex: 1;
+	flex-direction: column;
 }
 
 .utilization {
@@ -15,13 +15,13 @@
 }
 
 .label {
-	color: #828282;
 	font-size: 14px;
 	font-weight: 500;
+	color: #828282;
 }
 
 .sub_label {
-	color: #221f20;
 	font-size: 16px;
-	font-weight: 500;
+	font-weight: 600;
+	color: #221f20;
 }

@@ -70,12 +70,12 @@ function BillingAddresses({
 
 						<div className={styles.flex}>
 							<div
+								role="presentation"
 								className={styles.link_text}
 								onClick={() => {
 									setShowEditBillingAddress(true);
 									setMobalType(false);
 								}}
-								role="presentation"
 							>
 								+ Add Address
 							</div>
@@ -83,9 +83,10 @@ function BillingAddresses({
 					</div>
 
 					<div
+						role="presentation"
 						className={styles.icon_container}
 						onClick={() => setShowData(!showData)}
-						role="presentation"
+
 					>
 						{showData ? (
 							<IcMArrowRotateDown width={20} height={15} style={{ transform: 'rotate(180deg)' }} />
@@ -112,6 +113,7 @@ function BillingAddresses({
 					<EditBillingAddress
 						handleCloseModal={handleCloseModal}
 						organizationBillingAddressesList={organizationBillingAddressesList}
+            // getOrganizationBillingAddress={getOrganizationBillingAddress}
 						addressIdxToUpdate={addressIdxToUpdate}
 						organizationType={organizationType}
 						mobalType={mobalType}

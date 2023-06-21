@@ -11,8 +11,9 @@ function FileUploader(props) {
 	const {
 		onChange = () => {},
 		showProgress,
-		multiple,
+		multiple = false,
 		docName,
+		accept,
 		...rest
 	} = props;
 
@@ -27,7 +28,8 @@ function FileUploader(props) {
 		} else {
 			onChange(urlStore[0]);
 		}
-	}, [multiple, urlStore, onChange]);
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [multiple, urlStore]);
 
 	const onUploadProgress = (index) => (file) => {
 		setProgress((previousProgress) => ({
@@ -78,7 +80,6 @@ function FileUploader(props) {
 				const promises = values.map((value, index) => uploadFile(index)(value));
 
 				const allUrls = await Promise.all(promises);
-
 				setUrlStore(allUrls);
 				setFileName(values);
 			}
@@ -100,6 +101,7 @@ function FileUploader(props) {
 				multipleUploadDesc="Upload files"
 				fileData={urlStore}
 				className={styles.upload}
+				accept={accept}
 			/>
 
 			{loading

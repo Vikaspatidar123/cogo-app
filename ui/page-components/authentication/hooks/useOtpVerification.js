@@ -10,22 +10,20 @@ import setCookieAndRedirect from '@/ui/commons/utils/setCookieAndRedirect';
 
 const useOtpVerification = ({ formData = {}, otpValue = '', userDetails }) => {
 	const { query } = useRouter();
-	const { id } = userDetails || {};
 	const [{ loading: verifyLeadUserMobileApiLoading }, verifyLeadUserMobileApitrigger] = useRequest({
-		url    : '/verify_user_mobile',
+		url    : '/lead/verify_lead_user_mobile',
 		method : 'post',
 	}, { manual: true });
 
 	const [{ loading: resendLeadVerificationOtpApiLoading }, resendLeadVerificationOtpApitrigger] = useRequest({
-		url    : '/verify_user_mobile',
+		url    : '/lead/resend_lead_verification_otp',
 		method : 'post',
 	}, { manual: true });
-	const { lead_organization_id, source } = query;
 
 	const onClickVerifyLeadUserMobileNo = async () => {
 		try {
 			const payload = {
-				id,
+				id                  : userDetails?.id,
 				mobile_number       : formData?.mobile_number.number,
 				mobile_country_code : formData?.mobile_number.country_code,
 				mobile_otp          : otpValue,
@@ -41,13 +39,15 @@ const useOtpVerification = ({ formData = {}, otpValue = '', userDetails }) => {
 			});
 
 			Toast?.success('Verification Successful!');
+			let redirectUrl = null;
+			if (query?.redirectPath) {
+				redirectUrl = query?.redirectPath;
+			} else if (query?.redirectAfterSwitch) {
+				redirectUrl = `/redirect?url=${query?.redirectAfterSwitch}`;
+			}
 
-			const redirectUrl = `/v2/get-started?saastheme&lead_organization_id=${lead_organization_id}&source=${
-				source || 'subscriptions'
-			}`;
-
-			const { user_session } = userDetails || {};
-			const { token } = user_session || {};
+			const { token } = response?.data || {};
+			setCookieAndRedirect(token, {}, redirectUrl);
 			if (response) {
 				setCookieAndRedirect(token, {}, redirectUrl);
 			}
@@ -61,6 +61,7 @@ const useOtpVerification = ({ formData = {}, otpValue = '', userDetails }) => {
 			const payload = {
 				mobile_number       : userDetails?.mobile_number,
 				mobile_country_code : userDetails?.mobile_country_code,
+				lead_user_id        : userDetails?.id,
 			};
 
 			await resendLeadVerificationOtpApitrigger({

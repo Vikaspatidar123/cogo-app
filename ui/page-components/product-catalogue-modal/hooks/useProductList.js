@@ -12,7 +12,7 @@ const useProductList = ({ labeledValue }) => {
 	const { organization } = profile || {};
 	const { id: orgId, country } = organization || {};
 	const [productList, setProductList] = useState({});
-
+	const [allprductData, setAllProductData] = useState([]);
 	const [pagination, setPagination] = useState(1);
 	const [globalFilter, setGlobalFilter] = useState();
 
@@ -20,11 +20,14 @@ const useProductList = ({ labeledValue }) => {
 
 	const [{ loading }, productTrigger] = useRequestBf({
 		url     : '/saas/product/list',
-		authkey : 'get_saas_product_list',
 		method  : 'get',
+		authKey : 'get_saas_product_list',
 	}, { manual: true });
 
-	const refetchProduct = async ({ page = 1, productClassificationId = null }) => {
+	const refetchProduct = async ({
+		page = 1,
+		productClassificationId = null,
+	}) => {
 		try {
 			const response = await productTrigger({
 				params: {
@@ -38,6 +41,12 @@ const useProductList = ({ labeledValue }) => {
 				},
 			});
 			setProductList(response.data);
+			const { list } = response.data || {};
+
+			const arr = [...allprductData, ...list];
+			const findId = arr.map((x) => x.id);
+			const allInfo = arr.filter(({ id }, index) => !findId.includes(id, index + 1));
+			setAllProductData(allInfo);
 		} catch (error) {
 			Toast.error(error?.message);
 		}
@@ -70,6 +79,7 @@ const useProductList = ({ labeledValue }) => {
 		setPagination,
 		loading,
 		refetchProduct,
+		allprductData,
 	};
 };
 

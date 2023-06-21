@@ -1,0 +1,68 @@
+.container {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 100%;
+	padding: 20px 0;
+}
+
+.flex_row {
+	display: flex;
+	align-items: center;
+
+	@media (max-width: 1260px) {
+		width: 38%;
+	}
+}
+
+.triggered {
+	display: none;
+}
+
+.inactive {
+	display: none;
+}
+
+.total {
+	flex: 1;
+	margin-left: 20px;
+}
+
+.icon_wrapper {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-right: 5px;
+}
+
+.trigger_time {
+	margin: 0;
+	margin-right: 16px;
+	font-size: 14px;
+	font-weight: 500;
+	line-height: 16px;
+	color: #cb6464;
+	text-align: center;
+}
+
+.total_value {
+	display: flex;
+}
+
+.total_shipment_title {
+	margin: 0;
+	font-size: 14px;
+	font-weight: 500;
+	line-height: 16px;
+	color: #333;
+	text-transform: capitalize;
+}
+
+.shipment_value {
+	margin-left: 8px;
+	font-size: 14px;
+	font-weight: 500;
+	line-height: 16px;
+	color: #4097f5;
+	text-transform: capitalize;
+}

@@ -12,7 +12,7 @@ import styles from './styles.module.css';
 function OrderHistory() {
 	const [sort, setSort] = useState();
 	const {
-		setGlobalFilters = () => {},
+		setGlobalFilters = () => { },
 		filters = {},
 		apiData = {},
 		apiLoading = false,
@@ -44,7 +44,7 @@ function OrderHistory() {
 									page       : 1,
 								}));
 							}}
-							suffix={<IcMSearchlight height={30} />}
+							suffix={<IcMSearchlight height={30} style={{ marginRight: '10px' }} />}
 						/>
 					</div>
 				</div>

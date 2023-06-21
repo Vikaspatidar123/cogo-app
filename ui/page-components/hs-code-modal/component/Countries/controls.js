@@ -1,13 +1,13 @@
-import { COUNTRY_IDS } from '../../configuration/countryId';
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
 const CARDFILTER = [
 	{
 		label          : 'Country',
 		name           : 'country',
-		type           : 'select',
+		type           : 'async_select',
 		placeholder    : 'Search Country',
-		optionsListKey : 'hs_codes_countries',
-		value          : COUNTRY_IDS.IN,
+		asyncKey       : 'hs_codes_countries',
+		value          : GLOBAL_CONSTANTS.hs_code_country_ids.IN,
 		valueKey       : 'id',
 		labelKey       : 'countryName',
 		defaultOptions : true,

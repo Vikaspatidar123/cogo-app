@@ -1,3 +1,5 @@
+import { cl } from '@cogoport/components';
+
 import styles from './styles.module.css';
 
 function TraderEligibilityModal({ tradeEngineResponse = {} }) {
@@ -6,6 +8,7 @@ function TraderEligibilityModal({ tradeEngineResponse = {} }) {
 		<>
 			<div className={styles.styled_tag}>
 				Trader Name:
+				{' '}
 				{screeningPartyName.toUpperCase()}
 			</div>
 			{screeningRequestResponse?.length > 0 && (
@@ -63,9 +66,15 @@ function TraderEligibilityModal({ tradeEngineResponse = {} }) {
 				</>
 			)}
 			{screeningRequestResponse?.length === 0 && (
-				<div className={`_${styles.list_wrapper} ${styles.verifieduser}`}>
+				<div className={cl`${styles.list_wrapper} ${styles.verifieduser}`}>
+					<img
+						src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/secure-icon.svg"
+						alt="secure"
+						height={100}
+						width={100}
+					/>
 					<div className={styles.label}>
-						<b className="bold">{screeningPartyName.toUpperCase()}</b>
+						<b className={styles.bold}>{screeningPartyName.toUpperCase()}</b>
 						<div> is all clear. You are all set to go trade with this partner.</div>
 					</div>
 				</div>

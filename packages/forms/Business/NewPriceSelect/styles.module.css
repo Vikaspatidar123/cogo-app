@@ -1,0 +1,14 @@
+.row_container {
+	display: flex;
+	flex-direction: row;
+	width: 100%;
+}
+
+.col_container_1 {
+	width: 30%;
+	margin-right: 20px;
+}
+
+.col_container_2 {
+	width: 65%;
+}

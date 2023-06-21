@@ -22,6 +22,7 @@ const format = ({ locale, amount, options, currency }) => {
 		return new Intl.NumberFormat(locale, {
 			...options,
 			...('style' in options && {
+				...options,
 				currency: options?.currency || currency,
 			}),
 		}).format(Number(amount));

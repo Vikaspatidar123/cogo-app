@@ -1,0 +1,14 @@
+.container {
+	display: flex;
+	width: 100%;
+}
+
+.wrapper {
+	width: 25%;
+	margin: 16px 12px;
+	box-shadow: 0 0 4px rgb(98 127 172 / 20%);
+}
+
+.footer {
+	padding: 16px;
+}

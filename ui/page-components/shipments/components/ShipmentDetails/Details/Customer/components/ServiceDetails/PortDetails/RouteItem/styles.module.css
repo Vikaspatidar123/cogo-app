@@ -1,0 +1,28 @@
+.code {
+	margin-bottom: 1px;
+	overflow: hidden;
+	font-size: 10px;
+	color: #828282;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+
+	@media (max-width: 768px) {
+		width: 70%;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+}
+
+.container {
+	width: 40%;
+	margin-left: 4px;
+
+	@media (max-width: 768px) {
+		width: 30%;
+	}
+}
+
+.location {
+	font-size: 10px;
+}

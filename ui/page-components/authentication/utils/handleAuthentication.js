@@ -50,7 +50,7 @@ const handleAuthentication = async ({
 		if (isUnauthenticated) {
 			return { asPrefix };
 		}
-		redirect({ isServer, res, path: `/v2/login?redirectPath=${asPath}` });
+		redirect({ isServer, res, path: `/login?redirectPath=${asPath}` });
 		return { asPrefix };
 	}
 	user_data = await getUserData({
@@ -70,19 +70,19 @@ const handleAuthentication = async ({
 			return { asPrefix };
 		}
 
-		redirect({ isServer, res, path: `/v2/login?redirectPath=${asPath}` });
+		redirect({ isServer, res, path: `/login?redirectPath=${asPath}` });
 		return { asPrefix };
 	}
 
 	if (isUnauthenticated) {
 		if ((user_data.organizations || []).length === 0) {
-			redirect({ isServer, res, path: '/v2/get-started' });
+			redirect({ isServer, res, path: '/get-started' });
 			return { asPrefix };
 		}
 		const org = user_data.organizations[0];
 		const branch = org?.branches?.[0];
 
-		const newPath = `/v2/${org?.id}/${branch?.id}`;
+		const newPath = `/${org?.id}/${branch?.id}`;
 		redirect({
 			isServer,
 			res,
@@ -95,7 +95,7 @@ const handleAuthentication = async ({
 		return { asPrefix };
 	}
 	if ((user_data.organizations || []).length === 0 || user_data.name === null) {
-		redirect({ isServer, res, path: '/v2/get-started' });
+		redirect({ isServer, res, path: '/get-started' });
 		return { asPrefix };
 	}
 	// Redirect old paths to branch id
@@ -106,7 +106,7 @@ const handleAuthentication = async ({
 	);
 	if (!allStrings?.[3] && actual_org_id && !isEmpty(current_org)) {
 		const branch_id = current_org?.branches?.[0]?.id;
-		asPrefix = `/v2/${actual_org_id}/${branch_id}/dashboard`;
+		asPrefix = `/${actual_org_id}/${branch_id}/dashboard`;
 		findurl({
 			item   : user_data,
 			asPrefix,
@@ -127,7 +127,6 @@ const handleAuthentication = async ({
 	// For 404 and error pages - pathname is _error
 	if (pathname.includes('/404')) {
 		const asPathArr = asPath.split('/') || [];
-		// const reqPath = asPathArr.filter((item, i) => i < 5).join('/');
 		const errOrgId = asPathArr.length > 2 ? asPathArr[2] : null;
 		const current_organization = user_data.organizations.find(
 			(org) => org.id === errOrgId,
@@ -135,7 +134,7 @@ const handleAuthentication = async ({
 		const org = user_data.organizations[0] || {};
 		const orgId = org.id;
 		const orgBranchId = org?.branches?.[0]?.id;
-		asPrefix = `/v2/${orgId}/${orgBranchId}/dashboard`;
+		asPrefix = `/${orgId}/${orgBranchId}/dashboard`;
 		if (isEmpty(current_organization) && !allStrings?.[3]) {
 			findurl({
 				item      : user_data,
@@ -166,15 +165,15 @@ const handleAuthentication = async ({
 	);
 	const org = user_data.organizations[0];
 	const orgBranchId = user_data.organizations[0]?.branches?.[0]?.id;
-	if (isEmpty(current_organization) || asPath.includes('/v2/select-account')) {
-		const newPath = `/v2/${org?.id}/${orgBranchId}`;
+	if (isEmpty(current_organization) || asPath.includes('/select-account')) {
+		const newPath = `/${org?.id}/${orgBranchId}`;
 		findurl({
-			item   : user_data,
+			item      : user_data,
 			asPrefix,
 			isServer,
 			res,
-			org_id : org?.id,
-			orgBranchId,
+			org_id    : org?.id,
+			branch_id : orgBranchId,
 		});
 		return {
 			asPrefix : newPath,
@@ -189,7 +188,7 @@ const handleAuthentication = async ({
 		current_organization = user_data.organization;
 	}
 
-	asPrefix = `/v2/${org_id}/${branch_id}/dashboard`;
+	asPrefix = `/${org_id}/${branch_id}/dashboard`;
 	const defaultRoute = `${asPrefix}`;
 	if (token && isEmpty(current_organization.country || {})) {
 		const getOrgResponse = await getOrganization(req, query);
@@ -211,7 +210,6 @@ const handleAuthentication = async ({
 
 	await store.dispatch(
 		setProfileStoreState({
-			// pathPrefix,
 			asPrefix,
 			defaultRoute,
 			organization_set        : !isEmpty(current_organization),

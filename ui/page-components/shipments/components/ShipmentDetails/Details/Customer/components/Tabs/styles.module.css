@@ -1,0 +1,54 @@
+.container {
+	padding: 16px 0;
+	background: #fff;
+
+	@media (max-width: 768px) {
+		display: flex;
+		flex-direction: column;
+	}
+}
+
+.content {
+	margin-top: -47px;
+
+	@media (max-width: 768px) {
+		margin-top: 8px;
+
+		:global {
+			.ui_zThRS {
+				padding: 4px 11px !important;
+				font-size: 10px;
+			}
+		}
+	}
+}
+
+.invoice_div {
+	margin-top: 16px;
+	background: #f8f9fa;
+}
+
+.invoice_header {
+	border-bottom: none;
+}
+
+.edit_sales_invoice {
+	justify-content: flex-end;
+}
+
+.sales_invoicing_parties {
+	margin-top: 0;
+	background: #fff;
+	border-radius: 4px;
+	box-shadow: 0 1px 6px rgb(169 188 218 / 65%);
+}
+
+.sales_invoice_party {
+	background: #fff;
+	border-radius: 4px;
+}
+
+.sales_invoice_root {
+	background: #f8f9fa;
+	box-shadow: none;
+}

@@ -132,12 +132,12 @@ const useHsCodeData = ({ countryforHscode = '' }) => {
 		refetchHeading,
 		hsCodeObj,
 		refetchHsCode,
-		getBySearchLoading,
 		loading        : getListDataLoading,
 		headingLoading : getHeadingDataLoading,
 		hsloading      : getHscodeLoading,
 		searchTerm,
 		setSearchTerm,
+		getBySearchLoading,
 	};
 };
 

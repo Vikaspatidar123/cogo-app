@@ -1,0 +1,43 @@
+.container {
+	display: flex;
+	flex-direction: column;
+	max-width: 70%;
+
+	&.otp {
+		max-width: 100%;
+	}
+
+	@media (max-width: 768px) {
+		max-width: 100%;
+	}
+}
+
+.heading {
+	margin: 0;
+	font-size: 16px;
+	font-style: normal;
+	font-weight: bold;
+	line-height: 16px;
+	color: #333;
+}
+
+.sub_heading {
+	margin: 0;
+	margin-top: 16px;
+	font-size: 14px;
+	font-weight: normal;
+	line-height: 21px;
+	color: #333;
+
+	@media (max-width: _md) {
+		margin-right: 8px;
+		word-wrap: break-word;
+	}
+
+	&.otp {
+		font-size: 16px;
+		font-weight: bold;
+		line-height: 24px;
+		color: #333;
+	}
+}

@@ -1,0 +1,68 @@
+.sop_container {
+	margin-top: 16px;
+	overflow-y: auto;
+	border: 1px solid #cddbff;
+	border-radius: 4px;
+}
+
+.haeder_container {
+	display: flex;
+	justify-content: space-between;
+	padding: 16px 16px 12px;
+}
+
+.condition_for {
+	font-size: 12px;
+	font-weight: 500;
+	color: #4f4f4f;
+}
+
+.conditions {
+	margin-left: 4px;
+	font-size: 14px;
+	font-weight: 400;
+	color: #828282;
+}
+
+.edit_details {
+	margin-top: 8px;
+	font-size: 10px;
+	font-weight: 400;
+	color: #bdbdbd;
+}
+
+.icon_container {
+	cursor: pointer;
+}
+
+.line {
+	border-bottom: 1px solid #cddbff;
+}
+
+.heading {
+	margin-top: 16px;
+	margin-right: 16px;
+	margin-left: 16px;
+	font-size: 14px;
+	color: #4f4f4f;
+	word-break: break-all;
+}
+
+.heading_edit_detail {
+	margin-top: 4px;
+	margin-left: 16px;
+	font-size: 10px;
+	font-weight: 400;
+	color: #bdbdbd;
+}
+
+.action_buttons {
+	display: flex;
+	justify-content: space-between;
+	margin: 0 16px 16px 0;
+}
+
+.button_wrapper {
+	display: flex;
+	gap: 10px;
+}

@@ -1,0 +1,10 @@
+.container {
+	padding: 8px 20px;
+	margin-top: 16px;
+	overflow-x: scroll;
+	scroll-behavior: smooth;
+
+	::-webkit-scrollbar {
+		display: none;
+	}
+}

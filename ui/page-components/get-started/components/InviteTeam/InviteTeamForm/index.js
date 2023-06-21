@@ -17,7 +17,7 @@ function InviteTeamForm({
 	setShowForm,
 	showForm,
 	reset,
-	orgId,
+	org,
 	setTimeForCall,
 }) {
 	const handleAdd = (val) => {
@@ -26,10 +26,9 @@ function InviteTeamForm({
 		setTeamMembers(temp);
 		setShowForm(!showForm);
 	};
-
 	const {
 		onClickCreateOrganizationUserInvitation,
-	} = useCreateOrganizationUserInvitation({ orgId, setTimeForCall });
+	} = useCreateOrganizationUserInvitation({ org, setTimeForCall });
 
 	const handleAddMore = () => {
 		setShowForm(!showForm);

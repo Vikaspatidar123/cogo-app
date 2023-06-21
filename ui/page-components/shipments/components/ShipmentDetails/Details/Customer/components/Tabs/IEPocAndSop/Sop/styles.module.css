@@ -1,0 +1,24 @@
+.empty_state {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.container {
+	display: flex;
+	flex-direction: column;
+	height: 700px;
+	padding: 22px;
+	margin-top: 20px;
+	margin-right: 22px;
+	overflow-y: auto;
+	background: #fff;
+	border-radius: 4px;
+	box-shadow: 0 1px 6px rgb(169 188 218 / 65%);
+
+	@media (max-width: 768px) {
+		width: 100%;
+		margin-right: 0;
+		box-shadow: none;
+	}
+}

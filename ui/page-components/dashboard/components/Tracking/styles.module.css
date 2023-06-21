@@ -1,0 +1,94 @@
+.header {
+	position: relative;
+	padding: 20px;
+	margin-top: 20px;
+	background: #fff;
+	border-radius: 10px;
+	box-shadow: 0 2px 4px rgb(0 0 0 / 15%);
+}
+
+.track {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin: 0;
+	margin-bottom: 1.5rem;
+}
+
+.trace {
+	margin: 0;
+	font-size: 14px;
+	line-height: 1.4;
+	text-align: left;
+}
+
+.cargo {
+	display: flex;
+	align-items: center;
+	padding-bottom: 1.5rem;
+	margin: 0;
+	margin-top: 1.5rem;
+	cursor: pointer;
+	border-bottom: 1px solid #e0e0e0;
+}
+
+.symbol {
+	position: relative;
+	padding: 1.4rem;
+	margin-right: 1.5rem;
+	background: #ef9b9b;
+	border-radius: 50%;
+}
+
+.symbols {
+	margin: 0;
+	font-size: 16px;
+	line-height: 1.4;
+	text-align: left;
+}
+
+.bill {
+	margin: 0;
+	font-size: 14px;
+	line-height: 1.4;
+	color: #828282;
+	text-align: left;
+}
+
+.container {
+	display: flex;
+	align-items: center;
+	margin: 0;
+	margin-top: 1.5rem;
+	margin-bottom: 0.5rem;
+	cursor: pointer;
+}
+
+.container_img {
+	position: relative;
+	padding: 1.4rem;
+	margin-right: 1.5rem;
+	background: #81c0af;
+	border-radius: 50%;
+}
+
+.containerTracking {
+	margin: 0;
+	margin-bottom: 2px;
+	font-size: 16px;
+	line-height: 1.4;
+	text-align: left;
+}
+
+.arrow {
+	margin-left: 6.5rem;
+	color: rgb(53 110 253);
+}
+
+.Trace {
+	margin: 0;
+	font-size: 14px;
+	line-height: 1.4;
+	color: #828282;
+	text-align: left;
+}

@@ -1,0 +1,35 @@
+.containerInfo {
+	display: flex;
+	flex: 1;
+	align-items: center;
+	width: 100%;
+	padding: 16px 20px;
+	background: #fff;
+	border-radius: 4px;
+	box-shadow: 0 1px 6px rgb(169 188 218 / 65%);
+
+	@media (max-width: 768px) {
+		flex-direction: column;
+		width: 100%;
+		height: fit-content;
+		padding: 0;
+	}
+}
+
+.service_detail {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 35%;
+	margin-left: 20px;
+
+	@media (max-width: 768px) {
+		width: 100%;
+		height: fit-content;
+		padding: 8px 10px;
+	}
+}
+
+.multi_ervice {
+	margin-left: 4px;
+}

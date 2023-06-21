@@ -1,0 +1,41 @@
+.form_fields {
+	max-height: 350px;
+}
+
+.row {
+	display: flex;
+	flex-flow: row wrap;
+	flex-grow: 0;
+	flex-shrink: 0;
+	gap: 12px;
+	align-items: normal;
+	justify-content: flex-start;
+	max-height: 400px;
+}
+
+.col {
+	display: flex;
+	flex-direction: column;
+	padding-right: 8px;
+	padding-left: 8px;
+}
+
+.field_col {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	padding-right: 8px;
+	padding-left: 8px;
+}
+
+.col_truck {
+	display: flex;
+	flex-direction: row-reverse;
+	justify-content: center;
+
+	:global {
+		.ui_TE06c {
+			padding-top: 25px !important;
+		}
+	}
+}

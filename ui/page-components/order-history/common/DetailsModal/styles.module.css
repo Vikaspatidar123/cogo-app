@@ -30,3 +30,21 @@
 	background-color: #f68b21;
 	border-width: 0;
 }
+
+.loading_image {
+	display: block;
+	width: 100px !important;
+	height: 100px !important;
+	margin: auto;
+}
+
+.heading {
+	padding: 10px 0;
+	font-size: 18px;
+	font-weight: 600;
+	color: rgb(0 0 0);
+}
+
+.line_wrapper {
+	margin: 10px 0;
+}

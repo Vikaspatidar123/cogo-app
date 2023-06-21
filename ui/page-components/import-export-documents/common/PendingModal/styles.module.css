@@ -1,0 +1,46 @@
+.container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	padding: 20px;
+	text-align: center;
+
+	.loading_banner {
+		width: 300;
+		height: auto;
+	}
+
+	.loading {
+		width: 40px;
+		height: auto;
+	}
+
+	.btn_container {
+		display: flex;
+		justify-content: center;
+		margin-top: 17px;
+
+		.submit_btn {
+			margin-left: 10px;
+			text-transform: capitalize;
+			border: none;
+		}
+	}
+}
+
+.title {
+	font-size: 22px;
+	font-weight: 500;
+	color: #170f49;
+}
+
+.text {
+	margin: 10px 0;
+	font-size: 13px;
+	color: #535075;
+}
+
+.error {
+	font-size: 16px;
+}

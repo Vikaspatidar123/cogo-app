@@ -1,0 +1,103 @@
+.container {
+	margin-top: 20px;
+}
+
+.head {
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 20px;
+
+	@media (max-width: 760px) {
+		flex-direction: column;
+	}
+}
+
+.head2 {
+	display: flex;
+	align-items: center;
+
+	@media (max-width: 760px) {
+		justify-content: space-between;
+	}
+}
+
+.status {
+	padding-right: 15px;
+	color: #ee3425;
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+.on_click {
+	padding: 7px;
+	cursor: pointer;
+	background: #fef199;
+	border: 1px solid;
+	border-color: #e0e0e0;
+	border-radius: 6px;
+}
+
+.list_view {
+	border-right: none;
+	border-radius: 6px 0 0 6px !important;
+}
+
+.map_view {
+	border-left: none;
+	border-radius: 0 6px 6px 0 !important;
+}
+
+.without_click {
+	padding: 7px;
+	cursor: pointer;
+	background: #fff;
+	border: 1px solid #e0e0e0;
+	border-radius: 6px;
+}
+
+.fillter_div {
+	padding: 7px;
+	margin-left: 10px;
+	cursor: pointer;
+	background: #fff;
+	border: 1px solid #221f20;
+	border-radius: 6px;
+
+	:global {
+		.ui_popover_container {
+			padding: 0;
+			margin-right: 27px;
+
+			.tippy-content {
+				padding: 0;
+			}
+		}
+	}
+}
+
+.pagination {
+	display: flex;
+	justify-content: flex-end;
+	padding: 15px;
+}
+
+.map_container {
+	width: 100%;
+	padding: 20px;
+	background-color: white;
+	border-radius: 20px;
+	box-shadow: rgb(0 0 0 / 5%) 0 0 10px;
+
+	:global {
+		.leaflet-container.leaflet-touch-drag.leaflet-touch-zoom {
+			width: 100%;
+			height: 680px !important;
+		}
+	}
+}
+
+.icon {
+	width: 20px;
+	height: 20px;
+	vertical-align: bottom;
+}

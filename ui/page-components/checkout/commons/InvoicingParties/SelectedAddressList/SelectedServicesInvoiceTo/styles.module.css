@@ -1,0 +1,18 @@
+.container {
+	display: flex;
+	flex-flow: row wrap;
+	margin: -4px;
+}
+
+.item {
+	padding: 4px;
+}
+
+.content {
+	padding: 4px 16px;
+	font-size: 12px;
+	font-weight: 400;
+	color: #393f70;
+	background: #f2f6ff;
+	border-radius: 4px;
+}

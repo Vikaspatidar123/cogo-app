@@ -1,0 +1,126 @@
+.container {
+	position: relative;
+	min-height: 200px;
+	padding: 20px;
+	margin: 30px 0;
+	background: #fff;
+	border-radius: 4px 14px 4px 4px;
+	box-shadow: 0 4px 10px rgb(0 0 0 / 25%);
+
+	.accordion[aria-expanded="false"] {
+		max-height: 0;
+		overflow: hidden;
+		transition: max-height 0.5s;
+	}
+
+	.accordion[aria-expanded="true"] {
+		max-height: 1000px;
+		overflow: hidden;
+		transition: max-height 0.5s;
+	}
+}
+
+.custom_text {
+	font-size: 12px;
+	font-style: italic;
+	font-weight: 400;
+	color: #000;
+}
+
+.toggle_icon {
+	width: 12px;
+	height: 12px;
+	margin-left: 5px;
+	transition: all 0.8s ease-in-out;
+
+	/*
+	transform: ${({ toggleDropdown }) =>
+		toggleDropdown ? 'rotate(180deg)' : 'rotate(360deg)'}; */
+}
+
+.inside_container {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	margin: 10px 0;
+}
+
+.main_container {
+	width: 100%;
+	margin-top: 30px;
+}
+
+.styled_hr {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 95%;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	border: 1px dashed #aab9d6;
+}
+
+.ports_container {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+
+	@media (min-width: 768px) {
+		padding: 0 32px;
+	}
+}
+
+.details {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	font-size: 12px;
+	font-weight: 500;
+	color: #393f70;
+	text-decoration-line: underline;
+	cursor: pointer;
+}
+
+.footer {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 100%;
+	height: 30px;
+	padding: 14px;
+	background: #ded7fc;
+	border-radius: 0 0 4px 4px;
+}
+
+.wave {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 14%;
+	height: 35px;
+	padding: 12px;
+	font-size: 12px;
+	font-weight: 500;
+	color: #393f70;
+	background: linear-gradient(92.37deg, #f0a8a9 9.25%, #f5bf9d 90.65%);
+	border-radius: 4px 0 15px;
+}
+
+.gradient {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 12px;
+	background:
+		linear-gradient(
+			99.65deg,
+			#f5bf9d 14.21%,
+			rgb(239 135 152 / 75%) 117.03%
+		);
+	border-radius: 15px 100px 10px 15px;
+}

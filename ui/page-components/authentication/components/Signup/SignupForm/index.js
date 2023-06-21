@@ -8,7 +8,7 @@ import styles from './styles.module.css';
 
 import { useForm, InputController, MobileNumberSelectController } from '@/packages/forms';
 
-function SignupForm({ setHasSignedup, setFormData, setUserId }) {
+function SignupForm({ setHasSignedup, setFormData, setUserDetails }) {
 	const {
 		handleSubmit, formState: { errors }, control, watch,
 	} = useForm();
@@ -17,7 +17,7 @@ function SignupForm({ setHasSignedup, setFormData, setUserId }) {
 	const recaptchaRef = useRef({});
 
 	const { signupAuthentication, signupLoading } = useSignupAuthentication({
-		setHasSignedup, setUserId, captchaResponse, hasWhatsApp,
+		setHasSignedup, setUserDetails, captchaResponse, hasWhatsApp,
 	});
 
 	const onChange = (value = '') => {
@@ -125,9 +125,9 @@ function SignupForm({ setHasSignedup, setFormData, setUserId }) {
 			>
 				SignUp
 			</Button>
-			<a href="mailto:cp.onboarding@cogoport.com" className={styles.right_footer_text}>
+			<a href="mailto:kanira.patel@cogoport.com" className={styles.right_footer_text}>
 				If you have any trouble logging in, email here -
-				<span className={styles.right_footer_text_span}> cp.onboarding@cogoport.com</span>
+				<span className={styles.right_footer_text_span}>kanira.patel@cogoport.com</span>
 			</a>
 		</form>
 	);

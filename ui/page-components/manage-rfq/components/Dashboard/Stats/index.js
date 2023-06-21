@@ -8,7 +8,6 @@ function Stats({ data = {} }) {
 	return (
 		<div className={styles.row}>
 			{(STATS_MAPPING || []).map((item) => {
-				console.log('🚀 ~ file: index.js:11 ~ { ~ item:', item);
 				const percentCount = data?.[item.value]?.percent_diff?.toFixed(2);
 
 				const isNegative = percentCount < 0;

@@ -8,7 +8,7 @@ export const STATS_MAPPING = [
 		backgroundColor : '#FFFCE6',
 		color           : 'yellow',
 		lineGraph       : <img
-			src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/line-graph.svg"
+			src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/yellow_stats.png"
 			alt="cogo"
 			className="line-graph-svg"
 		/>,
@@ -38,7 +38,7 @@ export const STATS_MAPPING = [
 		backgroundColor : '#F2F3FA',
 		color           : 'purple',
 		lineGraph       : <img
-			src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/line-graph.svg"
+			src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/violet_1.png"
 			alt="cogo"
 			className="line-graph-svg"
 		/>,
@@ -53,7 +53,7 @@ export const STATS_MAPPING = [
 		backgroundColor : '#FEF3E9',
 		color           : 'orange',
 		lineGraph       : <img
-			src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/line-graph.svg"
+			src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/orange.png"
 			alt="cogo"
 			className="line-graph-svg"
 		/>,

@@ -1,4 +1,4 @@
-// eslint-disable-next-line import/no-unresolved
+/* eslint-disable import/no-unresolved */
 import COUNTRIES from '@/.data-store/constants/countries.json';
 
 const countriesHash = (COUNTRIES || []).reduce(

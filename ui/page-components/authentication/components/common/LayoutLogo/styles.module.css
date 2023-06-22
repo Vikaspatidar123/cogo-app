@@ -1,0 +1,21 @@
+.header {
+	display: flex;
+	flex: 1;
+	justify-content: center;
+	height: fit-content;
+	margin: 12px 24px;
+
+	@media (max-width: 768px) {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+	}
+}
+
+.help_mobile {
+	display: none;
+
+	@media (max-width: 768px) {
+		display: block;
+	}
+}

@@ -146,6 +146,8 @@ const GLOBAL_CONSTANTS = {
 		'VN',
 	],
 	image_url: {
+		cogoport_logo:
+		'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/cogoport.svg',
 		iec_red_flag:
 			'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/redFlag.svg',
 		iec_green_flag:
@@ -174,6 +176,11 @@ const GLOBAL_CONSTANTS = {
 			'https://cdn.cogoport.io/cms-prod/cogo_partner/vault/original/Vector.png',
 		edit_image:
 			'https://cdn.cogoport.io/cms-prod/cogo_partner/vault/original/animation_500_lhvo6uhx1.png',
+	},
+	onboarding_specialist: {
+		name         : 'Kanira Patel',
+		phone_number : '+918976851674',
+		email_id     : 'kanira.patel@cogoport.com',
 	},
 };
 

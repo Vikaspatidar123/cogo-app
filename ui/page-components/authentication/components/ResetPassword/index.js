@@ -1,8 +1,7 @@
-// import LayoutHelp from '../common/LayoutHelp';
-
 import { Button } from '@cogoport/components';
 import { IcMEyeclose, IcMEyeopen } from '@cogoport/icons-react';
-import { useEffect, useState } from 'react';
+import { isEmpty } from '@cogoport/utils';
+import { useState } from 'react';
 
 import useResetPassword from '../../hooks/useResetPassword';
 import LayoutHelp from '../common/LayoutHelp';
@@ -17,15 +16,17 @@ import patterns from '@/ui/commons/configurations/patterns';
 function ResetPassword() {
 	const [showPassword, setShowPassword] = useState(false);
 	const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-	const [customErrors, setCustomErrors] = useState('');
-
-	const { onResetPassword = () => {}, loading = false } = useResetPassword();
-
-	const { handleSubmit, control, watch, formState: { errors } } = useForm();
+	const { handleSubmit, control, watch, formState: { errors, isValid } } = useForm();
 
 	const formValues = watch();
 
 	const { password, confirm_password } = formValues;
+
+	const {
+		onResetPassword = () => {},
+		loading = false,
+		customErrors = '',
+	} = useResetPassword({ password, confirm_password });
 
 	const renderSuffix = (show, setShow) => {
 		if (!show) {
@@ -33,10 +34,6 @@ function ResetPassword() {
 		}
 		return <IcMEyeclose className={styles.show_password} onClick={() => setShow(!show)} />;
 	};
-
-	useEffect(() => {
-		setCustomErrors(confirm_password && confirm_password !== password ? 'Passwords do not match.' : '');
-	}, [password, confirm_password]);
 
 	return (
 		<div className={styles.authentication_layout}>
@@ -75,7 +72,9 @@ function ResetPassword() {
 							type={showConfirmPassword ? 'text' : 'password'}
 							suffix={renderSuffix(showConfirmPassword, setShowConfirmPassword)}
 							placeholder="Enter your Password"
-							rules={{ required: 'Confirm Password is required.' }}
+							rules={{
+								required: 'Confirm Password is required.',
+							}}
 						/>
 						<span className={styles.errors}>
 							{errors?.confirm_password?.message || customErrors }
@@ -86,6 +85,7 @@ function ResetPassword() {
 						</div>
 
 						<Button
+							disabled={!isEmpty(customErrors) || !isValid}
 							loading={loading}
 							className={styles.submit_button}
 							type="submit"

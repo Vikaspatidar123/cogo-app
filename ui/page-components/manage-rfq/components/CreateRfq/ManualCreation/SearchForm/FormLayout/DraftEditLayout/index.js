@@ -47,7 +47,7 @@ function DraftEditLayout(props) {
 			<PortPairLayout
 				{...props}
 				{...formProps}
-				{...control.search_rates}
+				{...newControls.find((x) => x.name === 'search_rates')}
 				formType="editform"
 				editFormData={item}
 				editIndex={index}
@@ -55,6 +55,7 @@ function DraftEditLayout(props) {
 				mode={serviceType}
 				loading={updateLoading || loading}
 				handleUpdatePayload={handleUpdatePayload}
+				control={control}
 			/>
 		</div>
 	);

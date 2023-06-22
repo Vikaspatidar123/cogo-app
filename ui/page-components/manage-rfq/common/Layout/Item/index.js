@@ -65,7 +65,7 @@ function Item(props) {
 	const { label, lowerlabel, inlineLabel } = props;
 
 	const errorClass = error ? 'error' : null;
-	// const newProps = {};
+	const newProps = {};
 	// if (type === 'select' || type === 'creatable-select') {
 	// 	newProps.style = SELECT_STYLES;
 	// }
@@ -76,10 +76,10 @@ function Item(props) {
 	// 	newProps.style = INPUT_STYLES;
 	// }
 
-	// if (id_prefix) {
-	// 	// eslint-disable-next-line react/destructuring-assignment
-	// 	newProps.id = `${id_prefix}_${props.name}`;
-	// }
+	if (id_prefix) {
+		// eslint-disable-next-line react/destructuring-assignment
+		newProps.id = `${id_prefix}_${props.name}`;
+	}
 
 	const errorOriginal = getErrorMessage({
 		errorClass,
@@ -115,7 +115,7 @@ function Item(props) {
 
 			<Element
 				key={itemKey || name}
-				// {...newProps}
+				{...newProps}
 				{...props}
 				theme={theme}
 				error={errorOriginal}

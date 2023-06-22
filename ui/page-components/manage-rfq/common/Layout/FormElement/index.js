@@ -28,7 +28,7 @@ function FormElement({
 				setCheckErrors((prev) => ({ ...prev, [service]: true }));
 			}
 		});
-	}, [errors, showElements]);
+	}, [controls, errors, service, setCheckErrors, showElements]);
 
 	return (
 		<div className={cl`${styles.container} ${showForm && styles.showForm}`}>

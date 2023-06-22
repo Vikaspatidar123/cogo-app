@@ -165,32 +165,34 @@ function DraftSearchLayout({
 		Toast.success('Successfully created a duplicate scroll down to edit it.');
 	};
 
-	useEffect(() => {
-		(async () => {
-			if (
-				!shippingLinesDetails?.[serviceType]?.[index]?.[prefferedType]
-				&& (shippingRemarks[prefferedType] || []).length > 0
-			) {
-				await getOperators(
-					shippingRemarks[prefferedType],
-					index,
-					prefferedType,
-					serviceType,
-				);
-			}
-			if (
-				!shippingLinesDetails?.[serviceType]?.[index]?.[excludedType]
-				&& (shippingRemarks[excludedType] || []).length > 0
-			) {
-				await getOperators(
-					shippingRemarks[excludedType],
-					index,
-					excludedType,
-					serviceType,
-				);
-			}
-		})();
+	const callbackFunction = useCallback(async () => {
+		if (
+			!shippingLinesDetails?.[serviceType]?.[index]?.[prefferedType]
+			&& (shippingRemarks[prefferedType] || []).length > 0
+		) {
+			await getOperators(
+				shippingRemarks[prefferedType],
+				index,
+				prefferedType,
+				serviceType,
+			);
+		}
+		if (
+			!shippingLinesDetails?.[serviceType]?.[index]?.[excludedType]
+			&& (shippingRemarks[excludedType] || []).length > 0
+		) {
+			await getOperators(
+				shippingRemarks[excludedType],
+				index,
+				excludedType,
+				serviceType,
+			);
+		}
 	}, [excludedType, getOperators, index, prefferedType, serviceType, shippingLinesDetails, shippingRemarks]);
+
+	useEffect(() => {
+		callbackFunction();
+	}, [callbackFunction]);
 
 	return (
 		<div className={styles.container}>
@@ -217,10 +219,10 @@ function DraftSearchLayout({
 					<IcMEdit
 						disable={editForm || showForm}
 						className={cl`${styles.edit_icon}`}
-						onClick={handleClick}
+						onClick={() => handleClick()}
 					/>
 					<IcMDuplicate className={styles.duplicate_icon} onClick={() => handleDuplicate()} />
-					<IcMDelete className={styles.delete_icon} onClick={() => handleDelete()} />
+					<IcMDelete className={styles.delete_icon} onClick={handleDelete} />
 				</div>
 			</div>
 			<div className={styles.form_info}>

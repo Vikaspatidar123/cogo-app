@@ -1,8 +1,9 @@
 import { Checkbox, Toggle, Button } from '@cogoport/components';
 import { IcMEdit } from '@cogoport/icons-react';
-import { format, isEmpty, upperCase } from '@cogoport/utils';
+import { isEmpty, upperCase } from '@cogoport/utils';
 
-import { formatDateTime } from './formatDateTime';
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
+import formatDate from '@/ui/commons/utils/formatDate';
 
 const style = {
 	cursor        : 'pointer',
@@ -23,7 +24,11 @@ const itemFunction = ({
 		<Toggle size="md" checked={status} onChange={statusChangeHandler} disabled={loading} />
 	),
 	renderDate: (itemData, config) => (
-		format(itemData?.[config.key], 'dd MMM yyyy')
+		formatDate({
+			date       : itemData?.[config.key],
+			dateFormat : GLOBAL_CONSTANTS.formats.date['dd MMM yyyy'],
+			formatType : 'date',
+		})
 	),
 	renderEdit: (itemData, config) => (
 		<span>
@@ -45,10 +50,11 @@ const itemFunction = ({
 	),
 	renderDataTime: (itemData, config) => (
 		<span>
-			{formatDateTime({
+			{formatDate({
 				date       : itemData?.[config.key],
-				dateFormat : 'dd MMM yyyy',
-				timeFormat : 'hh:mm aaa',
+				dateFormat : GLOBAL_CONSTANTS.formats.date['dd MMM yyyy'],
+				timeFormat : GLOBAL_CONSTANTS.formats.time['hh:mm aaa'],
+				formatType : 'dateTime',
 			})}
 		</span>
 	),

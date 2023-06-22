@@ -2,9 +2,11 @@ import { cl } from '@cogoport/components';
 import { useMemo } from 'react';
 
 import { SEVERITY_MAPPING } from '../../../../constant/card';
-import { formatDateTime, formatDate } from '../../../../utils/formatDateTime';
 
 import styles from './styles.module.css';
+
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
+import formatDate from '@/ui/commons/utils/formatDate';
 
 const renderTitle = ({ next_milestone = '' }) => {
 	if (next_milestone) return 'Next Milestone';
@@ -49,7 +51,8 @@ function Footer({ lastUpdated = '', milestones = {}, action = {} }) {
 						{' '}
 						{`${milestone} at ${mileStoneLocation} on ${formatDate({
 							date       : milestoneDate,
-							dateFormat : 'dd MMM yyyy',
+							dateFormat : GLOBAL_CONSTANTS.formats.date['dd MMM yyyy'],
+							formatType : 'date',
 						})}`}
 					</div>
 				)}
@@ -58,10 +61,11 @@ function Footer({ lastUpdated = '', milestones = {}, action = {} }) {
 			<div>
 				Last updated at:
 				{' '}
-				{formatDateTime({
+				{formatDate({
 					date       : lastUpdated,
-					dateFormat : 'dd MMM yyyy',
-					timeFormat : 'hh:mm aa',
+					dateFormat : GLOBAL_CONSTANTS.formats.date['dd MMM yyyy'],
+					timeFormat : GLOBAL_CONSTANTS.formats.time['hh:mm aaa'],
+					formatType : 'dateTime',
 				})}
 			</div>
 

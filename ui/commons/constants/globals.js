@@ -181,6 +181,11 @@ const GLOBAL_CONSTANTS = {
 		origin_map_pointer : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/map_origin.svg',
 		destination_map_pointer:
 		'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/map_destination.svg',
+		map_loading        : 'https://cogoport-maps.s3.ap-south-1.amazonaws.com/world+(2).svg',
+		empty_state_finder : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/ic-empty-doc_app.svg',
+		ship_icon          : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/shipIcon.jpg',
+		truck_icon         : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/truckIcon.png',
+		air_icon           : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/airplane.png',
 	},
 };
 

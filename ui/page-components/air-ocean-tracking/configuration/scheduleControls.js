@@ -3,10 +3,12 @@ const freqOptions = [
 ];
 
 const weekOption = [
-	{ name: 'sunday', value: 'sunday', label: 'Sunday' }, { name: 'monday', value: 'monday', label: 'Monday' },
+	{ name: 'sunday', value: 'sunday', label: 'Sunday' },
+	{ name: 'monday', value: 'monday', label: 'Monday' },
 	{ name: 'tuesday', value: 'tuesday', label: 'Tuesday' },
 	{ name: 'wednesday', value: 'wednesday', label: 'Wednesday' },
-	{ name: 'thursday', value: 'thursday', label: 'Thursday' }, { name: 'friday', value: 'friday', label: 'Friday' },
+	{ name: 'thursday', value: 'thursday', label: 'Thursday' },
+	{ name: 'friday', value: 'friday', label: 'Friday' },
 	{ name: 'saturady', value: 'saturady', label: 'Saturday' },
 ];
 

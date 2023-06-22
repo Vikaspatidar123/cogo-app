@@ -11,12 +11,8 @@ function MilestoneStepper({ combineMileStoneList = [], trackingType = 'ocean' })
 		<div className={styles.container}>
 			{combineMileStoneList.map((combineList, index) => {
 				const currentMilestone = (combineList || []).slice(-1)[0];
-				// const isLastMilestone = index === (combineMileStoneList.length - 1);
-				// const nextMilestone = !isLastMilestone ? combineMileStoneList[index + 1][0] : null;
 
 				const isCurrentMilestonePastOrPresent = !isFutureDate(currentMilestone?.event_date);
-				// const isNextMilestonePastOrPresent = isLastMilestone ? false :
-				// !isFutureDate(nextMilestone?.event_date);
 
 				return (
 					<div key={currentMilestone?.id} className={styles.milestone}>

@@ -6,6 +6,8 @@ import getLoadingArr from '../../../../utils/getLoadingArr';
 
 import styles from './styles.module.css';
 
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
+
 const LOADING_ARR = getLoadingArr(3);
 const LOADING_ICON = {
 	ocean : <IcMOceanTracking width={40} height={40} fill="#838383" />,
@@ -27,7 +29,7 @@ function Loader({ type = 'ocean' }) {
 			</div>
 			<div className={styles.map_loader}>
 				<Image
-					src="https://cogoport-maps.s3.ap-south-1.amazonaws.com/world+(2).svg"
+					src={GLOBAL_CONSTANTS.image_url.map_loading}
 					width={800}
 					height={500}
 					alt="loading"

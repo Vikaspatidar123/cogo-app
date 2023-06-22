@@ -12,10 +12,6 @@ const getOptions = ({ containerDetails = [] }) => containerDetails.map((item) =>
 	value : item,
 }));
 
-// const INFO = {
-// 	incoterm: 'Incoterm',
-// };
-
 const COLOR = {
 	shipper   : 'blue',
 	consignee : 'orange',
@@ -32,7 +28,6 @@ function InfoContainer({
 
 	const INFO_MAPPING = {
 		...SHIPMENT_INFO,
-		// ...INFO,
 	};
 
 	const { traderInfo, ...restInfo } = useMemo(() => {

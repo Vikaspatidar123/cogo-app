@@ -44,44 +44,18 @@ function CustomizeAlert({ closeHandler, shipmentId = '', activeTab = 'ocean' }) 
 					height={100}
 				/>
 			) : (
-				<>
-					<Component
-						activeTab={activeTab}
-						closeHandler={closeHandler}
-						nextStepHandler={nextStepHandler}
-						selectContactList={selectContactList}
-						setSelectContactList={setSelectContactList}
-						prevStepHandler={prevStepHandler}
-						prevAlertData={data}
-						alertList={alertList}
-						alertListLoading={alertListLoading}
-						shipmentId={shipmentId}
-					/>
-					{/* {step === 'select_contact' && (
-						<SelectContact
-							activeTab={activeTab}
-							closeHandler={closeHandler}
-							nextStepHandler={nextStepHandler}
-							selectContactList={selectContactList}
-							setSelectContactList={setSelectContactList}
-						/>
-					)}
-
-					{step === 'add_alert' && (
-						<AddAlert
-							activeTab={activeTab}
-							prevStepHandler={prevStepHandler}
-							selectContactList={selectContactList}
-							prevAlertData={data}
-							alertList={alertList}
-							alertListLoading={alertListLoading}
-							shipmentId={shipmentId}
-							closeHandler={closeHandler}
-							setSelectContactList={setSelectContactList}
-
-						/>
-					)} */}
-				</>
+				<Component
+					activeTab={activeTab}
+					closeHandler={closeHandler}
+					nextStepHandler={nextStepHandler}
+					selectContactList={selectContactList}
+					setSelectContactList={setSelectContactList}
+					prevStepHandler={prevStepHandler}
+					prevAlertData={data}
+					alertList={alertList}
+					alertListLoading={alertListLoading}
+					shipmentId={shipmentId}
+				/>
 			)}
 		</div>
 	);

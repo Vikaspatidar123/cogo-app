@@ -1,9 +1,11 @@
 import { cl } from '@cogoport/components';
 
 import { SEVERITY_MAPPING } from '../../../../constant/card';
-import { formatDateTime } from '../../../../utils/formatDateTime';
 
 import styles from './styles.module.css';
+
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
+import formatDate from '@/ui/commons/utils/formatDate';
 
 function Footer({ lastUpdated = '', currentMilestone = {}, currentContainerAction = {} }) {
 	const { current_status } = currentMilestone || {};
@@ -42,10 +44,11 @@ function Footer({ lastUpdated = '', currentMilestone = {}, currentContainerActio
 			<div>
 				Last updated at:
 				{' '}
-				{formatDateTime({
+				{formatDate({
 					date       : lastUpdated,
-					dateFormat : 'dd MMM yyyy',
-					timeFormat : 'hh:mm aa',
+					dateFormat : GLOBAL_CONSTANTS.formats.date['dd MMM yyyy'],
+					timeFormat : GLOBAL_CONSTANTS.formats.time['hh:mm aa'],
+					formatType : 'dateTime',
 				})}
 			</div>
 

@@ -3,10 +3,12 @@ import { Button, cl, Placeholder } from '@cogoport/components';
 
 import useGetNews from '../../../hooks/useGetNews';
 import useRedirectFn from '../../../hooks/useRedirectFn';
-import { formatDateTime } from '../../../utils/formatDateTime';
 import getLoadingArr from '../../../utils/getLoadingArr';
 
 import styles from './styles.module.css';
+
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
+import formatDate from '@/ui/commons/utils/formatDate';
 
 const LOADING_ARR = getLoadingArr(3);
 
@@ -42,10 +44,11 @@ function InfoContainer() {
 										{news?.name}
 									</p>
 									<p className={styles.date}>
-										{formatDateTime({
+										{formatDate({
 											date       : news?._updated_on,
-											dateFormat : 'dd MMM yyyy',
-											timeFormat : 'hh:mm aaa',
+											dateFormat : GLOBAL_CONSTANTS.date['dd MMM yyyy'],
+											timeFormat : GLOBAL_CONSTANTS.formats.time['hh:mm aaa'],
+											formatType : 'dateTime',
 										})}
 									</p>
 								</div>

@@ -3,11 +3,11 @@ import { IcMInfo } from '@cogoport/icons-react';
 import Image from 'next/image';
 
 import GET_MAPPING from '../../../../../constant/card';
-import { formatDate, formatTime } from '../../../../../utils/formatDateTime';
 
 import styles from './styles.module.css';
 
-const shipIcon = 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/shipIcon.jpg';
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
+import formatDate from '@/ui/commons/utils/formatDate';
 
 const widthProp = {
 	VESSEL : 35,
@@ -18,7 +18,7 @@ const widthProp = {
 const getIconUrl = ({ mapping, type, transportMode }) => {
 	const obj = {
 		air   : mapping.AIR,
-		ocean : mapping[transportMode] || shipIcon,
+		ocean : mapping[transportMode] || GLOBAL_CONSTANTS.image_url.ship_icon,
 	};
 	return obj[type];
 };
@@ -42,8 +42,16 @@ function Card({ combineList = [], trackingType = 'ocean' }) {
 			<div className={styles.info}>
 				{combineList.map((item, index) => {
 					const { id = '', milestone, event_date = '', actual_date = '', vessel_name = '' } = item || {};
-					const date = formatDate({ date: event_date || actual_date, dateFormat: 'dd MMM yyyy' });
-					const time = formatTime({ date: event_date || actual_date, timeFormat: 'hh:mm aaa' });
+					const date = formatDate({
+						date       : event_date || actual_date,
+						dateFormat : GLOBAL_CONSTANTS.formats.date['dd MMM yyyy'],
+						formatDate : 'date',
+					});
+					const time = formatDate({
+						date       : event_date || actual_date,
+						timeFormat : GLOBAL_CONSTANTS.formats.time['hh:mm aaa'],
+						formatDate : 'time',
+					});
 					return (
 						<div
 							key={id}

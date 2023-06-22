@@ -4,12 +4,12 @@ import Image from 'next/image';
 import { useState } from 'react';
 
 import dailyStatusConfig from '../../../../configuration/dailyStatusConfig';
-import iconUrl from '../../../../utils/iconUrl.json';
 
 import Item from './Item';
 import StatusModal from './StatusModal';
 import styles from './styles.module.css';
 
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 import getLoadingArr from '@/ui/page-components/air-ocean-tracking/utils/getLoadingArr';
 
 const LOADING_ARR = getLoadingArr(5);
@@ -60,7 +60,12 @@ function DailyReport({ dsrListValue = {}, setShowConfigure, activeTab = 'ocean' 
 				))
 					: (
 						<div className={styles.empty_state}>
-							<Image src={iconUrl.emptyState} width={200} height={200} alt="empty" />
+							<Image
+								src={GLOBAL_CONSTANTS.image_url.empty_state_finder}
+								width={200}
+								height={200}
+								alt="empty"
+							/>
 							<h3>No Daily Status Report Found</h3>
 						</div>
 					)}

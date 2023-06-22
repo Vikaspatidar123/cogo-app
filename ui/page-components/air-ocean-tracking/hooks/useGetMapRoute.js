@@ -21,7 +21,7 @@ const useGetMapRoute = ({ trackingInfo = [], type = 'ocean' }) => {
 
 	const [{ loading }, trigger] = useRequest({
 		method : 'get',
-		url    : '/location/get_multiple_sea_routes',
+		url    : '/get_multiple_sea_routes',
 	}, { manual: true, autoCancel: false });
 
 	const getSeaRoute = useCallback(async ({ coordinates = [] }) => {

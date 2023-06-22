@@ -1,8 +1,6 @@
 import { IcMError, IcMFairport, IcMFcl, IcMFtick } from '@cogoport/icons-react';
 
-const shipIcon = 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/shipIcon.jpg';
-const truckIcon = 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/truckIcon.png';
-const airIcon = 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/airplane.png';
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
 const OCEAN_TITLE_MAPPING = {
 	CONTAINER_NO       : 'Container No.',
@@ -32,13 +30,13 @@ const AIR_POC = {
 };
 
 const OCEAN_MILESTONE_ICON = {
-	VESSEL : shipIcon,
-	TRUCK  : truckIcon,
-	RAIL   : truckIcon,
+	VESSEL : GLOBAL_CONSTANTS.image_url.ship_icon,
+	TRUCK  : GLOBAL_CONSTANTS.image_url.truck_icon,
+	RAIL   : GLOBAL_CONSTANTS.image_url.truck_icon,
 };
 
 const AIR_MILESTONE_ICON = {
-	AIR: airIcon,
+	AIR: GLOBAL_CONSTANTS.image_url.air_icon,
 };
 
 export const DEFAULT_STATUS = {

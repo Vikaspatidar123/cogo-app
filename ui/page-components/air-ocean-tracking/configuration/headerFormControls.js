@@ -1,3 +1,5 @@
+import patterns from '@/ui/commons/configurations/patterns';
+
 const headerFormOceanControls = [
 	{
 		name        : 'shipmentNumber',
@@ -23,7 +25,7 @@ const headerFormAirControls = [
 		rules       : {
 			required : true,
 			pattern  : {
-				value   : /^\d{3}-\d{8}$/,
+				value   : patterns.AIRWAY_BILL_NO,
 				message : 'Invalid AirLine Number',
 			},
 		},

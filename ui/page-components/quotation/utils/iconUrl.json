@@ -1,8 +1,5 @@
 {
     "loading":"https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/loading.svg",
-    "cogoportLogo":"https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/cogoport2.png",
-    "ship":"https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/shipIcon.jpg",
-    "air":"https://cdn.cogoport.io/cms-prod/cogo_admin/vault/original/airicon.svg",
     "loadingBanner": "https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/loading-banner.svg",
     "createUser": "https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/createUser.svg",
     "createSeller": "https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/sellerAddress.svg",

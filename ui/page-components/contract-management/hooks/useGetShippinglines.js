@@ -4,8 +4,8 @@ import { useRequest } from '@/packages/request';
 
 const useGetShippinglines = () => {
 	const [{ loading, data }, trigger] = useRequest({
-		url: '/list_operators',
-		method: 'get',
+		url    : '/list_operators',
+		method : 'get',
 	}, { manual: true });
 
 	const shippinglines = async () => {
@@ -13,8 +13,8 @@ const useGetShippinglines = () => {
 			await trigger({
 				params: {
 					filters: {
-						status: 'active',
-						operator_type: ['shipping_line'],
+						status        : 'active',
+						operator_type : ['shipping_line'],
 					},
 					page_limit: 1000,
 				},

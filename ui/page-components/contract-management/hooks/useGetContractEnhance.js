@@ -6,8 +6,8 @@ const useGetContract = (allParams) => {
 	const { ...params } = allParams || {};
 
 	const [{ loading, data }, trigger] = useRequest({
-		url: '/get_contract',
-		method: 'get',
+		url    : '/get_contract',
+		method : 'get',
 	}, { manual: true });
 
 	const getContract = () => trigger({

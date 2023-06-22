@@ -8,8 +8,8 @@ function Layout({
 	errors,
 	schedule,
 	frequency,
-	getValues = () => {},
-	handleSubmit = () => {},
+	getValues = () => { },
+	handleSubmit = () => { },
 	contractServiceId,
 	serviceType,
 	freqCount,
@@ -17,7 +17,7 @@ function Layout({
 }) {
 	return (
 		<div>
-			{controls.map((controlItem) => (
+			{(controls || []).map((controlItem) => (
 				<ChildFormat
 					{...controlItem}
 					schedule={schedule}

@@ -10,13 +10,6 @@
 	display: flex;
 	flex-direction: column;
 	padding-left: 0 !important;
-
-	.core-ui-input-root {
-		/* width: ${({ check }) => (check ? '75%' : '100%')}; */
-
-		/* background: ${({ isReadonly }) => isReadonly && 'lightgrey'};
-		cursor: ${({ isReadonly }) => (isReadonly ? 'not-allowed' : 'pointer')}; */
-	}
 }
 
 .remove_icon {

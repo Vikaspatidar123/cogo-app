@@ -73,7 +73,7 @@ function Actions({
 							</div>
 					)}
 					{status !== 'rejected' && (
-						<Button themeType="secondary" onClick={viewShipmentPlan}>
+						<Button themeType="secondary" type="button" onClick={viewShipmentPlan}>
 							{showPlanBox ? 'Hide' : 'Shipment'}
 							{' '}
 							Plan
@@ -88,6 +88,7 @@ function Actions({
 						themeType="secondary"
 						onClick={viewShipmentPlan}
 						style={{ marginRight: '20px' }}
+						type="button"
 					>
 						{showPlanBox ? 'Hide' : 'View'}
 						Requested
@@ -99,6 +100,7 @@ function Actions({
 						disabled={disabledBooking}
 						size="md"
 						themeType="accent"
+						type="button"
 					>
 						Request Booking
 					</Button>
@@ -111,6 +113,7 @@ function Actions({
 					disabled={disabledBooking}
 					style={{ marginLeft: '10px' }}
 					themeType="accent"
+					type="button"
 				>
 					Initiate Booking
 				</Button>

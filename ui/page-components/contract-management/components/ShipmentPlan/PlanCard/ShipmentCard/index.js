@@ -116,11 +116,11 @@ function ShipmentCard({
 											<div className={styles.right_side}>
 												<div className={styles.freight_price}>
 													{formatAmount({
-														amount: net_total || 0,
-														currency: net_total_price_currency || 'INR',
-														options: {
-															notation: 'standard',
-															style: 'currency',
+														amount   : net_total || 0,
+														currency : net_total_price_currency || 'INR',
+														options  : {
+															notation : 'standard',
+															style    : 'currency',
 														},
 													})}
 												</div>

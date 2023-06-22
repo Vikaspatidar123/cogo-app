@@ -1,5 +1,5 @@
 import { Modal } from '@cogoport/components';
-import { addDays, compareAsc, differenceInDays, format, toDate } from '@cogoport/utils';
+import { addDays, compareAsc, differenceInDays, toDate } from '@cogoport/utils';
 import React, { useEffect, useState } from 'react';
 
 import { getUnit } from '../../../../utils/getUnit';
@@ -173,8 +173,8 @@ function CreatePlanModal({
 			setValue('create_plan', (plan_data || []).map((data) => ({
 				max_count  : data?.max_count || data?.max_volume || data?.max_weight,
 				date_range : {
-					// startDate: data?.validity_start,
-					// endDate   : data?.validity_end,
+					startDate : new Date(data?.validity_start),
+					endDate   : new Date(data?.validity_end),
 				},
 				id: data?.id,
 			})));

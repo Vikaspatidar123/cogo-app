@@ -1,12 +1,10 @@
 import { isEmpty, startCase } from '@cogoport/utils';
-// import usei18n, { getFormattedPrice } from 'i8next';
 
 import handleLineItems from './handleLineItems';
 
 import formatAmount from '@/ui/commons/utils/formatAmount';
 
 const handleLineItemsBreakup = (item, details, containerCount, source) => {
-	// const { numLocale } = usei18n();
 	const { line_items = [] } = item || {};
 
 	const totalPriceDiscounted = item.total_price_discounted;
@@ -96,7 +94,7 @@ const handleLineItemsBreakup = (item, details, containerCount, source) => {
 		{
 			features : handleService(),
 			price    : !isEmpty(line_items)
-				? 				formatAmount({
+				? formatAmount({
 					amount   : totalPriceDiscounted / containerCount,
 					currency : item?.total_price_currency,
 					options  : {
@@ -104,11 +102,6 @@ const handleLineItemsBreakup = (item, details, containerCount, source) => {
 						style    : 'currency',
 					},
 				})
-				// getFormattedPrice(
-				// 	// numLocale,
-				// 	item?.total_price_discounted / containerCount,
-				// 	item?.total_price_currency,
-				// )
 				: 'Local charges will be billed at Actual',
 		},
 	];

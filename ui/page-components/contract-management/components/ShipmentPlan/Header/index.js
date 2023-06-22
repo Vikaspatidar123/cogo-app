@@ -1,11 +1,7 @@
-// import Modal from '@cogoport/front/components/admin/Modal';
-
 import { Placeholder, Tooltip, cl } from '@cogoport/components';
 import { IcMArrowBack } from '@cogoport/icons-react';
-import { format, startCase, upperCase } from '@cogoport/utils';
+import { startCase, upperCase } from '@cogoport/utils';
 import React from 'react';
-
-// import TermsAndConditionsModal from '../../../common/TermsAndConditionsModal';
 
 import { SERVICE_ICON_MAPPING } from '../../../configurations/service-icon-mapping';
 import { STATUS } from '../../../constants';
@@ -18,7 +14,6 @@ import formatDate from '@/ui/commons/utils/formatDate';
 
 function Header({ data, loading }) {
 	const { back, query } = useRouter();
-	// const [showTerms, setShowTerms] = useState(false);
 	const { through = '' } = query || {};
 	const {
 		contract_reference_id = '',
@@ -127,14 +122,7 @@ function Header({ data, loading }) {
 							</div>
 						</div>
 					</div>
-					{/* <Modal
-						show={showTerms}
-						className="primary lg"
-						onClose={() => setShowTerms(false)}
-						onOuterClick={() => setShowTerms(false)}
-					>
-						<TermsAndConditionsModal setShowTerms={setShowTerms} />
-					</Modal> */}
+
 				</div>
 			) : (
 				<Placeholder height="100px" width="100%" margin="10px 0px" />

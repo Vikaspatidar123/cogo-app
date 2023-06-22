@@ -284,11 +284,11 @@ function PreviewModal({
 							Premium:
 							{' '}
 							{formatAmount({
-								amount: netPremium,
-								currency: 'INR',
-								options: {
-									notation: 'standard',
-									style: 'currency',
+								amount   : netPremium,
+								currency : 'INR',
+								options  : {
+									notation : 'standard',
+									style    : 'currency',
 								},
 							})}
 							<div className={styles.inclusive}>(inclusive of taxes)</div>
@@ -300,11 +300,11 @@ function PreviewModal({
 								Amount Payable:
 								{' '}
 								{formatAmount({
-									amount: totalApplicableCharges,
-									currency: 'INR',
-									options: {
-										notation: 'standard',
-										style: 'currency',
+									amount   : totalApplicableCharges,
+									currency : 'INR',
+									options  : {
+										notation : 'standard',
+										style    : 'currency',
 									},
 								})}
 							</div>

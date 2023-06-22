@@ -1,4 +1,5 @@
 import book from './config/book';
+import contractManagement from './config/contract-management';
 import dashboard from './config/dashboard';
 import documents from './config/documents';
 import payLater from './config/pay-later';
@@ -15,6 +16,7 @@ const routeConfig = withPrefix({
 	...saas,
 	...settings,
 	...dashboard,
+	...contractManagement,
 	...shipments,
 	...book,
 	...documents,

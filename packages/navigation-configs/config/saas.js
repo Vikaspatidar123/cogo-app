@@ -177,6 +177,7 @@ const saas = {
 		navigation : 'saas_transaction_history',
 		isMainNav  : true,
 	},
+
 };
 
 module.exports = saas;

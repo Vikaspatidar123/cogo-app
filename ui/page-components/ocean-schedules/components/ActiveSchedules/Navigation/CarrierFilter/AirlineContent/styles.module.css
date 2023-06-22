@@ -6,5 +6,6 @@
 
 .flex {
 	display: flex;
-	direction: column;
+	max-height: 219px;
+	overflow: scroll;
 }

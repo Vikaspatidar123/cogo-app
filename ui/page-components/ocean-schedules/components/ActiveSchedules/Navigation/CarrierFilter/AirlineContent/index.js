@@ -2,10 +2,8 @@ import { Checkbox } from '@cogoport/components';
 
 import styles from './styles.module.css';
 
-import { Image } from '@/packages/next';
-
 function AirlineContent(props) {
-	const { list, events, value } = props;
+	const { list = [], events, value } = props;
 	const handleChange = (item) => {
 		events(item, value);
 	};
@@ -20,7 +18,7 @@ function AirlineContent(props) {
 							id={`${i}_active_air_sch_filter_dp`}
 						/>
 						<div className={styles.title}>
-							<Image
+							<img
 								src={item?.logo_url}
 								alt=""
 								width={40}

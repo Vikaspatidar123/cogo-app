@@ -134,7 +134,7 @@ const navigationMappings = {
 				title       : 'Insurance',
 				href        : '/saas/insurance/list',
 				as          : '/saas/insurance/list',
-				icon        : <IcMAppInsurance width={55} height={55} fill="red" />,
+				icon        : <IcMAppInsurance width={55} height={55} fill="#fbd221" />,
 				description : 'Secure your cargo and avoid high unwanted costs',
 			},
 			{
@@ -220,7 +220,7 @@ const navigationMappings = {
 				title       : 'Contract Management',
 				href        : '/contract-management',
 				as          : '/contract-management',
-				icon        : <IcMUpwardGraph width={40} height={40} fill="red" />,
+				icon        : <IcMUpwardGraph width={40} height={40} fill="#fbd221" />,
 				description : 'contract management',
 			},
 		],
@@ -251,7 +251,7 @@ const navigationMappings = {
 			{
 				key   : 'saas_finance-transaction_history',
 				title : 'Transaction History',
-				icon  : <IcMFfreferigeratedCargoType width={40} height={40} fill="red" />,
+				icon  : <IcMFfreferigeratedCargoType width={40} height={40} />,
 				href  : '/saas/transaction-history',
 				as    : '/saas/transaction-history',
 			},

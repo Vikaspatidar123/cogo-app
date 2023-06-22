@@ -41,17 +41,17 @@ function ServiceDetails({ item }) {
 							{' '}
 							<span>
 								{formatDate({
-									date: validity_start,
-									dateFormat: GLOBAL_CONSTANTS.formats.date['dd MMM'],
-									formatType: 'date',
+									date       : validity_start,
+									dateFormat : GLOBAL_CONSTANTS.formats.date['dd MMM'],
+									formatType : 'date',
 								})}
 								{' '}
 								to
 								{' '}
 								{formatDate({
-									date: validity_end,
-									dateFormat: GLOBAL_CONSTANTS.formats.date['dd MMM'],
-									formatType: 'date',
+									date       : validity_end,
+									dateFormat : GLOBAL_CONSTANTS.formats.date['dd MMM'],
+									formatType : 'date',
 								})}
 							</span>
 						</div>

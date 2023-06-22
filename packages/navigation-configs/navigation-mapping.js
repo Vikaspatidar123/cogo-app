@@ -30,6 +30,7 @@ import {
 	IcMUpwardGraph,
 	IcMDashboard,
 	IcMBookingDesk,
+	IcMQuotations,
 } from '@cogoport/icons-react';
 
 const navigationMappings = {

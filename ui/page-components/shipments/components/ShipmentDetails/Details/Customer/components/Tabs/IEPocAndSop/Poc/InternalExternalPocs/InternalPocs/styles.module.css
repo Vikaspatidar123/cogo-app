@@ -1,0 +1,24 @@
+.container {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+	padding-bottom: 50px;
+}
+
+.company_details {
+	display: flex;
+	justify-content: space-between;
+	padding: 8px 16px 8px 24px;
+}
+
+.details {
+	font-size: 16px;
+	font-weight: 600;
+	line-height: 24px;
+	color: #5c6186;
+}
+
+.poc_list {
+	max-height: 300px;
+	overflow: auto;
+}

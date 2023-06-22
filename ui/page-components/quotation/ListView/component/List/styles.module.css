@@ -1,7 +1,21 @@
-.row {
+.title {
+	@media screen  and (max-width: 767px) {
+		display: none;
+	}
+}
+
+.row_desktop {
 	display: flex;
-	align-items: center;
+	flex-wrap: wrap;
 	justify-content: space-between;
+	margin-top: 14px;
+}
+
+.tab_container {
+	@media screen  and (max-width: 767px) {
+		display: block;
+		margin: auto;
+	}
 }
 
 .tab_panel {
@@ -19,5 +33,10 @@
 
 	svg {
 		margin-right: 8px;
+	}
+
+	@media screen and (max-width: 767px) {
+		width: 100%;
+		margin-top: 18px;
 	}
 }

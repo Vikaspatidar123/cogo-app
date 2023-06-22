@@ -1,0 +1,50 @@
+.container {
+	margin-bottom: 10px;
+
+	.or_tag {
+		display: flex;
+		gap: 3px;
+		align-items: center;
+		justify-content: center;
+		margin: 8px 0;
+	}
+
+	.line {
+		width: 14px;
+		height: 0;
+		border-top: 1.7px solid #bdbdbd;
+	}
+
+	.text {
+		font-size: 13px;
+		font-weight: 500;
+		color: #bdbdbd;
+	}
+
+	.other {
+		display: flex;
+		align-items: center;
+		justify-content: space-around;
+	}
+
+	.hyper_link {
+		font-size: 13px;
+		color: #f68b21;
+
+		:hover {
+			text-decoration: underline;
+			cursor: pointer;
+		}
+	}
+
+	.divider {
+		width: 0;
+		border-left: 1px solid #333;
+	}
+
+	@media screen and (max-width: 767px) {
+		.hyper_link {
+			font-size: 11px;
+		}
+	}
+}

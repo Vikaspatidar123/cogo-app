@@ -1,0 +1,73 @@
+[{
+	"label": "Origin Port",
+	"name": "origin_location_id",
+	"apiKey": "origin_port_id",
+	"placeholder": "Origin Port",
+	"includedInOptions": false,
+	"type": "async_select",
+	"asyncKey": "locations",
+	"grouped": ["city", "country"],
+	"params": { "filters": { "type": ["seaport", "country", "city"] } },
+	"rules": { "required": "Origin Port is required" }
+}, {
+	"label": "Destination Port",
+	"name": "destination_location_id",
+	"apiKey": "destination_port_id",
+	"placeholder": "Destination Port",
+	"includedInOptions": false,
+	"type": "async_select",
+	"asyncKey": "locations",
+	"grouped": ["city", "country"],
+	"params": { "filters": { "type": ["seaport", "country", "city"] } },
+	"rules": { "required": "Destination Port is required" }
+}, {
+	"label": "Container",
+	"type": "fieldArray",
+	"name": "containers",
+	"addButton": "+Add Containers",
+	"value": [{
+		"containers_count": 1,
+		"container_type_size": "40_standard",
+		"commodity": "general",
+		"cargo_weight_per_container": 26
+	}],
+	"controls": [{
+		"label": "Containers Count",
+		"name": "containers_count",
+		"subLabel": "containers",
+		"type": "number",
+		"placeholder": "Containers Count",
+		"value": 1,
+		"rules": { "min": 1, "max": 10000, "required": "Container count is required" }
+	}, {
+		"label": "Container Type",
+		"name": "container_type_size",
+		"type": "select",
+		"placeholder": "Container Size/Type",
+		"options": [
+			{ "value": "20_standard", "label": "20ft Standard" },
+			{ "value": "40_standard", "label": "40ft Standard" },
+			{ "value": "40HC_standard", "label": "40HC Standard" },
+			{ "value": "45HC_standard", "label": "45HC Standard" },
+			{ "value": "20_reefer", "label": "20ft Reefer" },
+			{ "value": "40_reefer", "label": "40ft Reefer" }
+		],
+		"rules": { "required": "Container is required" }
+	}, {
+		"name": "commodity",
+		"label": "Commodity",
+		"type": "async_select",
+		"placeholder": "Commodity",
+		"asyncKey": "commodities",
+		"rules": { "required": "Commodity is required" }
+	}, {
+		"label": "Cargo Weight per Container",
+		"subLabel": "in metric tonnes",
+		"name": "cargo_weight_per_container",
+		"placeholder": "Cargo weight per container",
+		"type": "number",
+		"rules": { "min": 0.1, "max": 40, "required": "Weight is required" },
+		"value": 26
+	}
+]
+}]

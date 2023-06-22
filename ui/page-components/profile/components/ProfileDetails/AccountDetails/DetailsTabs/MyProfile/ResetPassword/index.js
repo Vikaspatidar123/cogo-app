@@ -45,8 +45,12 @@ function ResetPassword({
 
 			<PasswordValidator password={password} />
 			<div className={styles.footer}>
-				<Button onClick={handleSubmit(onSubmit, onErrors)} disabled={loading}>
-					{loading ? 'profile.resetPassword.butt' : 'Save'}
+				<Button
+					onClick={handleSubmit(onSubmit, onErrors)}
+					disabled={loading}
+					loading={loading}
+				>
+					Save
 				</Button>
 				<Button
 					onClick={() => setShowPasswordModal(false)}

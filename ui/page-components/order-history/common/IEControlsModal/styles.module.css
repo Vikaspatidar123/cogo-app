@@ -1,0 +1,14 @@
+.loader {
+	display: block;
+	width: 200px;
+	height: 200px;
+	margin: 150px auto;
+}
+
+.segmented_container {
+	display: flex;
+
+	@media screen and (max-width: 767px) {
+		justify-content: center;
+	}
+}

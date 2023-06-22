@@ -1,0 +1,70 @@
+.container {
+	height: 97%;
+	background: #fdfbf6;
+
+	.title {
+		padding: 2px 26px;
+		background: #f8f2e7;
+
+		h3 {
+			margin: 18px 0;
+			font-weight: 600;
+		}
+	}
+
+	.content {
+		background: #fdfbf6;
+	}
+
+	.btn_container {
+		display: flex;
+		justify-content: flex-end;
+		padding: 40px 20px;
+		background: #fdfbf6;
+
+		.core-ui-button-root {
+			text-transform: capitalize !important;
+			background: #ee3425 !important;
+			border: none;
+		}
+	}
+}
+
+.row {
+	display: flex;
+	justify-content: space-between;
+	padding: 20px 30px;
+	margin: 0 20px;
+	color: #828282;
+
+	&.avaliable {
+		border-bottom: 2px dashed #e5e5e5;
+	}
+
+	&.total {
+		padding: 20px 40px;
+		margin: 0;
+		font-size: 16px;
+		font-weight: 600;
+		color: #333;
+		background: #e0e0e0;
+	}
+
+	.value {
+		font-size: 18px;
+		font-weight: 600;
+	}
+}
+
+.text_div {
+	padding: 6px 39px 0;
+}
+
+.billing {
+	padding: 5px 0;
+}
+
+.text_head {
+	font-size: 16px;
+	color: #e84855;
+}

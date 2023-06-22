@@ -2,5 +2,20 @@
     "loading":"https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/loading.svg",
     "cogoportLogo":"https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/cogoport2.png",
     "ship":"https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/shipIcon.jpg",
-    "air":"https://cdn.cogoport.io/cms-prod/cogo_admin/vault/original/airicon.svg"
+    "air":"https://cdn.cogoport.io/cms-prod/cogo_admin/vault/original/airicon.svg",
+    "loadingBanner": "https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/loading-banner.svg",
+    "createUser": "https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/createUser.svg",
+    "createSeller": "https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/sellerAddress.svg",
+    "validate": "https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/validate.svg",
+    "transactionEmptyState":"https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/3973480 1.svg",
+    "greenFlag" : "https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/greenflag.svg",
+    "redFlag": "https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/redFlag.svg",
+    "yellowFlag": "https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/yellwflag.svg",
+    "ieControls" : "https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/Group 1000010886.svg",
+    "iedoc": "https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/IEdoc.svg",
+    "taxSvg": "https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/tax.svg",
+    "dataSaved": "https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/dataSaved.svg",
+    "successGif": "https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/success.gif",
+    "sendQuote": "https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/send.gif"
+
 }

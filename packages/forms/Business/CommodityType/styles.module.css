@@ -1,0 +1,98 @@
+.back {
+	display: flex;
+	width: 16px;
+	height: 16px;
+	padding: 0;
+	margin-right: 5px;
+	cursor: pointer;
+	background: transparent;
+	border: none;
+	outline: none;
+}
+
+.main {
+	position: relative;
+	height: inherit;
+}
+
+.label {
+	display: flex;
+	align-items: center;
+	margin-bottom: 5px;
+	overflow: hidden;
+	font-size: 12px !important;
+	font-weight: bold;
+	line-height: 14px;
+	color: #4f4f4f;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+
+	.sub_label {
+		margin-left: 4px;
+		font-weight: normal;
+	}
+}
+
+.section {
+	display: none;
+	opacity: 0;
+	transition: all 0.3s;
+}
+
+.active {
+	display: block;
+	opacity: 1;
+}
+
+.type_label {
+	max-width: 125px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+/* export const AnimatedContainer = animated({
+	enter: {
+		translateX : [-10, 0],
+		opacity    : [0, 1],
+		easing     : 'easeInOutQuad',
+		duration   : 500,
+	},
+	exit: {
+		translateX : [0, 10],
+		opacity    : [1, 0],
+		duration   : 300,
+	},
+}); */
+
+.enter {
+	animation: enter_slide 0.9s ease-in-out;
+
+	@keyframes enter_slide {
+		0% {
+			opacity: 0;
+			transform: translateX(-10px);
+		}
+
+		100% {
+			opacity: 1;
+			transform: translateX(0);
+		}
+	}
+}
+
+.exit {
+	animation: enter_slide 0.9s ease-in-out;
+
+	@keyframes exit_slide {
+		0% {
+			opacity: 1;
+			transform: translateX(0);
+		}
+
+		100% {
+			opacity: 0;
+			transform: translateX(10px);
+		}
+	}
+}

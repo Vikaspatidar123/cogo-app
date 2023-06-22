@@ -1,0 +1,26 @@
+.incoterm_column {
+	padding-right: 0;
+	padding-left: 0;
+}
+
+.row {
+	display: flex;
+	gap: 10px;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.incoterm_col {
+	width: 86%;
+}
+
+.delete_icon {
+	padding: 6px;
+	cursor: pointer;
+	background: #fff4f2;
+	border-radius: 5px;
+
+	svg {
+		vertical-align: bottom;
+	}
+}

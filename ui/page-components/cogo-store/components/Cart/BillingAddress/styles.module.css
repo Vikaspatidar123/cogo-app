@@ -1,0 +1,38 @@
+.container {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	width: 100%;
+	margin-bottom: 24px;
+}
+
+.header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 100%;
+}
+
+.title {
+	margin-bottom: 12px;
+	font-size: 20px;
+	font-weight: 500;
+	color: #221f20;
+}
+
+.list_container {
+	width: 100%;
+	padding: 12px 10px;
+}
+
+.new_content {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	padding: 18px 0;
+	margin-bottom: 12px;
+	cursor: pointer;
+	border: 1px dashed #bdbdbd;
+	border-radius: 6px;
+}

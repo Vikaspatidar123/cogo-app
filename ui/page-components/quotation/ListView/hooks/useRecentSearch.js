@@ -1,6 +1,5 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import { Toast } from '@cogoport/components';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 
 import { useRequest } from '@/packages/request';
 
@@ -11,7 +10,7 @@ const useRecentSearch = () => {
 		method : 'get',
 	}, { manual: true });
 
-	const fetchSearch = async () => {
+	const fetchSearch = useCallback(async () => {
 		try {
 			const res = await trigger({
 				params: {},
@@ -22,11 +21,11 @@ const useRecentSearch = () => {
 		} catch (error) {
 			Toast.error(error?.message);
 		}
-	};
+	}, [trigger]);
 
 	useEffect(() => {
 		fetchSearch();
-	}, []);
+	}, [fetchSearch]);
 
 	return {
 		loading, recentSearchData,

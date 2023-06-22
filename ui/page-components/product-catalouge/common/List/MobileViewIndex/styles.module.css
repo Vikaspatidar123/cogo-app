@@ -1,0 +1,61 @@
+.container {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+}
+
+.value {
+	margin-top: 5px;
+	font-size: 14px;
+	font-weight: 300;
+	color: #60708f;
+
+	:global {
+		.svg {
+			width: 20px;
+			height: 20px;
+		}
+
+		.amount {
+			font-size: 16px;
+		}
+
+		.status {
+			display: flex;
+			gap: 8px;
+			align-items: center;
+			padding: 4px 8px;
+			font-size: 11px;
+			background: #f3fff9;
+			border-radius: 4px;
+
+			svg {
+				width: 10px;
+				height: 10px;
+				margin-right: 4px;
+			}
+		}
+	}
+}
+
+.label {
+	margin-top: 5px;
+	font-size: 14px;
+	font-weight: 500;
+	color: #60708f;
+}
+
+.div_container {
+	display: flex;
+	gap: 8px;
+	align-items: center;
+	width: max-content;
+	padding: 4px 16px;
+	margin-top: 5px;
+}
+
+.icon {
+	position: absolute;
+	top: 14px;
+	right: 3%;
+}

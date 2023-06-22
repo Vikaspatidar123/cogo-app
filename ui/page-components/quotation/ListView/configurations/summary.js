@@ -1,6 +1,6 @@
 import { IcMBldo, IcMMoney, IcMSopPoc } from '@cogoport/icons-react';
 
-import { shortFormatNumber } from '@/ui/commons/utils/getShortFormatNumber';
+import formatAmount from '@/ui/commons/utils/formatAmount';
 
 const summary = [
 	{
@@ -50,7 +50,14 @@ const getSummary = ({ summaryResp }) => {
 		if (ele.name === 'Amount') {
 			return {
 				...ele,
-				value: shortFormatNumber(totalAmount, defaultCurrency),
+				value: formatAmount({
+					amount   : totalAmount,
+					currency : defaultCurrency,
+					options  : {
+						style    : 'currency',
+						notation : 'compact',
+					},
+				}),
 			};
 		}
 		return {

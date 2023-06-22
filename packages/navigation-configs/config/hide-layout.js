@@ -17,5 +17,6 @@ const HIDE_LAYOUT = [
 	'/signup',
 	'/404',
 	'/500',
+	'/verify-email/[id]',
 ];
 export default HIDE_LAYOUT;

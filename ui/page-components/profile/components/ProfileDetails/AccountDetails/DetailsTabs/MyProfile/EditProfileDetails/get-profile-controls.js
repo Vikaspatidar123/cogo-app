@@ -1,6 +1,6 @@
-/* eslint-disable import/no-unresolved */
+import work_scopes from '../../../../configurations/work-scopes';
+
 import languages from '@/ui/commons/configurations/languages';
-import work_scopes from '@/ui/commons/constants/work-scope.json';
 
 const getProfileControls = ({ userDetails = {} }) => [
 	{
@@ -50,23 +50,25 @@ const getProfileControls = ({ userDetails = {} }) => [
 		value        : userDetails.email,
 	},
 	{
-		name           : 'work_scopes',
-		label          : 'Role in Company',
-		type           : 'multi_select',
-		optionsListKey : 'work-scopes',
-		style          : { width: '300px' },
-		value          : userDetails.work_scopes,
-		options        : work_scopes,
+		name     : 'work_scopes',
+		label    : 'Role in Company',
+		type     : 'select',
+		asyncKey : 'work-scopes',
+		style    : { width: '300px' },
+		value    : userDetails.work_scopes,
+		options  : work_scopes,
+		multiple : true,
 	},
 	{
-		name           : 'preferred_languages',
-		label          : 'Preferred Languages',
-		placeholder    : 'Enter Preferred Languages',
-		style          : { width: '300px' },
-		type           : 'multi_select',
-		optionsListKey : 'languages',
-		value          : userDetails.preferred_languages,
-		options        : languages,
+		name        : 'preferred_languages',
+		label       : 'Preferred Languages',
+		placeholder : 'Enter Preferred Languages',
+		style       : { width: '300px' },
+		type        : 'select',
+		asyncKey    : 'languages',
+		value       : userDetails.preferred_languages,
+		options     : languages,
+		multiple    : true,
 	},
 	{
 		name         : 'picture',
@@ -83,7 +85,6 @@ const getProfileControls = ({ userDetails = {} }) => [
 	{
 		name  : 'alternate_mobile_numbers',
 		type  : 'fieldArray',
-		// span  : 8,
 		value : [
 			{
 				mobile_number: {

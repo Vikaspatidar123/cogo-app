@@ -1,0 +1,89 @@
+.stepper_container {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+
+	.core-ui-stepper-container {
+		@media (max-width: 768px) {
+			min-width: unset;
+			max-width: 148px;
+			padding: 4px 12px;
+		}
+	}
+}
+
+.container {
+	display: flex;
+	flex-direction: column;
+
+	&.form-item-label {
+		margin-top: 16px;
+		margin-bottom: 4px;
+		font-size: 12px;
+		font-weight: 400;
+		color: #393f70;
+	}
+}
+
+.btn_grp {
+	display: flex;
+	justify-content: flex-end;
+	padding: 16px;
+	background: #fff;
+	border-top: 1px solid #cbcff5;
+
+	@media (min-width: 768px) {
+		position: absolute;
+		right: 0;
+		bottom: 0;
+		left: 0;
+	}
+}
+
+.title {
+	margin: 16px 0 0;
+	font-size: 14px;
+	font-weight: 500;
+	line-height: 16px;
+	color: #393f70;
+}
+
+.lable {
+	margin: 8px 0;
+	font-size: 12px;
+	font-weight: 700;
+	line-height: 16px;
+	color: rgb(130 130 130);
+}
+
+.errors {
+	min-height: 16px;
+	margin-top: 4px;
+	font-size: 12px;
+	line-height: 16px;
+	color: #cb6464;
+}
+
+.layout {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	height: 223px;
+	max-height: 250px;
+	margin-bottom: 30px;
+}
+
+.field {
+	:global {
+		.ui_upload_droparea_container {
+			flex-direction: row;
+			min-height: 20px;
+			padding: 0;
+
+			svg {
+				width: 40px;
+				height: 40px;
+			}
+		}
+	}
+}

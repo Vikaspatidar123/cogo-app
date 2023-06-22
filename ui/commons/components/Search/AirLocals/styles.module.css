@@ -1,0 +1,38 @@
+.container {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	margin-bottom: 12px;
+}
+
+.search_form_components {
+	width: 100%;
+	margin-right: -8px;
+}
+
+.button_container {
+	display: flex;
+	justify-content: flex-end;
+	width: 100%;
+	margin-top: 12px;
+}
+
+.row {
+	display: flex;
+
+	@media (max-width: 760px) {
+		flex-direction: column;
+	}
+}
+
+.col {
+	padding: 0 8px;
+
+	@media (max-width: 760px) {
+		width: 100% !important;
+	}
+
+	&.air_line {
+		padding-right: 0;
+	}
+}

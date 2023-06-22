@@ -1,4 +1,5 @@
 import { merge } from '@cogoport/utils';
+import { useEffect, useState, useMemo } from 'react';
 
 import { useRequestBf } from '../../request';
 
@@ -11,66 +12,68 @@ function useGetAsyncOptionsBf({
 	labelKey = '',
 	params = {},
 	authKey = '',
+	getModifiedOptions = (a) => a,
 }) {
 	const { query, debounceQuery } = useDebounceQuery();
+	const [storeOptions, setStoreOptions] = useState([]);
 
-	const [{ data, loading }] = useRequestBf({
-		url    : endpoint,
-		method : 'GET',
-		authKey,
-		params : merge(params, { query }),
-	}, { manual: !(initialCall || query) });
-	const options = data?.list || [];
+	const [{ data, loading }] = useRequestBf(
+		{
+			url    : endpoint,
+			method : 'GET',
+			authKey,
+			params : merge(params, { query }),
+		},
+		{ manual: !(initialCall || query) },
+	);
 
-	const [{ loading: loadingSingle }, triggerSingle] = useRequestBf({
-		url    : endpoint,
-		method : 'GET',
-		authKey,
-	}, { manual: true });
+	const options = useMemo(() => getModifiedOptions(data?.list || []), [data, getModifiedOptions]);
+
+	useEffect(() => {
+		if (options.length > 0) {
+			setStoreOptions([...options]);
+		}
+	}, [options]);
+
+	const [{ loading: loadingSingle }, triggerSingle] = useRequestBf(
+		{
+			url    : endpoint,
+			method : 'GET',
+			authKey,
+		},
+		{ manual: true },
+	);
 
 	const onSearch = (inputValue) => {
 		debounceQuery(inputValue);
 	};
 
 	const onHydrateValue = async (value) => {
-		if (Array.isArray(value)) {
-			let unorderedHydratedValue = [];
-			const toBeFetched = [];
-			value.forEach((v) => {
-				const singleHydratedValue = options.find((o) => o?.[valueKey] === v);
-				if (singleHydratedValue) {
-					unorderedHydratedValue.push(singleHydratedValue);
-				} else {
-					toBeFetched.push(v);
-				}
-			});
-			const res = await triggerSingle({
-				params: merge(params, { filters: { [valueKey]: toBeFetched } }),
-			});
-			unorderedHydratedValue = unorderedHydratedValue.concat(res?.data?.list || []);
-
-			const hydratedValue = value.map((v) => {
-				const singleHydratedValue = unorderedHydratedValue.find((uv) => uv?.[valueKey] === v);
-				return singleHydratedValue;
-			});
-
-			return hydratedValue;
-		}
-
-		const checkOptionsExist = options.filter((item) => item[valueKey] === value);
-
+		const checkOptionsExist = (options).filter(
+			(item) => item[valueKey] === value,
+		);
 		if (checkOptionsExist.length > 0) return checkOptionsExist[0];
-
-		const res = await triggerSingle({
-			params: merge(params, { filters: { [valueKey]: value } }),
-		});
-		return res?.data?.list?.[0] || null;
+		try {
+			const res = await triggerSingle({
+				params: merge(params, { filters: { [valueKey]: value } }),
+			});
+			const list = res?.data?.list || [];
+			const listData = (list).filter(
+				(item) => item[valueKey] === value,
+			);
+			if (listData.length > 0) {
+				setStoreOptions([...storeOptions, ...getModifiedOptions(list)]);
+			}
+			return getModifiedOptions(listData)?.[0] || null;
+		} catch (err) {
+			return {};
+		}
 	};
 
 	return {
-		loading: loading || loadingSingle,
+		loading : loading || loadingSingle,
 		onSearch,
-		options,
+		options : storeOptions,
 		labelKey,
 		valueKey,
 		onHydrateValue,

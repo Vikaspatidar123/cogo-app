@@ -1,8 +1,9 @@
 import { Button } from '@cogoport/components';
 
+import useRedirectUrl from '@/ui/page-components/quotation/utils/redirectUrl';
+
 function BtnContainer({ data = {} }) {
 	const {
-		commodity = '',
 		container_size = '',
 		container_type = '',
 		containers_count = 0,
@@ -20,10 +21,9 @@ function BtnContainer({ data = {} }) {
 		origin_airport = '',
 		origin_port = '',
 	} = data;
-	// const { redirectQuotationPrefill } = RedirectUrl();
+	const { redirectRecentSearch } = useRedirectUrl();
 	const handleQuotationClick = () => {
 		const spotSearchData = {
-			commodity,
 			containerSize  : container_size,
 			containerType  : container_type,
 			containerCount : containers_count,
@@ -37,10 +37,10 @@ function BtnContainer({ data = {} }) {
 			destination    : destination_port || destination_airport,
 			origin         : origin_airport || origin_port,
 		};
-		// eslint-disable-next-line no-undef
+
 		localStorage.setItem('spotSearchResult', JSON.stringify(spotSearchData));
 
-		// redirectQuotationPrefill();
+		redirectRecentSearch();
 	};
 	return (
 		<Button

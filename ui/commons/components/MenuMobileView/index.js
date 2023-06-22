@@ -15,12 +15,9 @@ import { useSelector } from '@/packages/store';
 
 function MobileMenu() {
 	const { push } = useRouter();
-	const {
-		user_data,
-	} = useSelector(({ profile }) => ({
+	const { user_data } = useSelector(({ profile }) => ({
 		user_data: profile || {},
 	}));
-	const { organization:org, branch } = user_data || {};
 	const [show, setShow] = useState(false);
 
 	if (show) {
@@ -36,13 +33,7 @@ function MobileMenu() {
 	});
 
 	const getRedirectUrl = (href, as) => {
-		if (href?.includes('/v2')) {
-			const newHref = href?.replace('/v2', '');
-			const newAs = as?.replace('/v2', '');
-			push(newHref, newAs);
-		} else {
-			window.location.href = `/app/${org?.id}/${branch?.id}/importer-exporter/${href}`;
-		}
+		push(href, as);
 	};
 	return (
 		<div className={styles.container}>
@@ -65,11 +56,14 @@ function MobileMenu() {
 								<div className={styles.arrow_icon_container}>
 									<IcMArrowNext />
 								</div>
-
 							</div>
-						) : <Subnavigation menuItem={menuItem} getRedirectUrl={getRedirectUrl} />}
+						) : (
+							<Subnavigation
+								menuItem={menuItem}
+								getRedirectUrl={getRedirectUrl}
+							/>
+						)}
 						<div className={styles.line} />
-						<div />
 					</div>
 				)
 			))}

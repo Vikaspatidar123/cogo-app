@@ -3,7 +3,7 @@ import { IcMArrowDown } from '@cogoport/icons-react';
 
 import styles from '../styles.module.css';
 
-function CardHeader({ config, setSortObj }) {
+function CardHeader({ config, setGlobalFilter }) {
 	return (
 		<div className={cl`${styles.card_row} ${styles.header_item}`}>
 			{config.map((cardHeader) => (
@@ -20,7 +20,8 @@ function CardHeader({ config, setSortObj }) {
 							style={{ transform: `${cardHeader?.sortVariable ? "rotate(-180deg)" : "rotate(0)"}` }}
 							onClick={() => {
 								cardHeader?.sortFn(!cardHeader?.sortVariable);
-								setSortObj(() => ({
+								setGlobalFilter((prev) => ({
+									...prev,
 									sortType : cardHeader?.sortVariable,
 									sortBy   : cardHeader?.sortValue,
 								}));

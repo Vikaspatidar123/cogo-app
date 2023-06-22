@@ -34,10 +34,6 @@
 	margin: auto;
 	border-bottom: 1px solid black;
 
-	.img {
-		width: 30px;
-	}
-
 	.origin {
 		position: relative;
 		top: 3px;

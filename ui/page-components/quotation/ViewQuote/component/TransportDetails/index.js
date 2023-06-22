@@ -24,8 +24,8 @@ function RenderTag({ transportMode, serviceType }) {
 }
 
 const TRANSPORT_ICON_MAPPING = {
-	OCEAN : <Image src={GLOBAL_CONSTANTS.image_url.ship_icon} width={30} height={30} alt="ocean" />,
-	AIR   : <Image src={GLOBAL_CONSTANTS.image_url.air_icon} width={30} height={30} alt="air" />,
+	OCEAN : GLOBAL_CONSTANTS.image_url.ship_icon,
+	AIR   : GLOBAL_CONSTANTS.image_url.air_icon,
 };
 
 function TransportDetails({
@@ -46,7 +46,7 @@ function TransportDetails({
 
 			<div className={styles.icon_container}>
 				<IcMLocation className={styles.origin} fill="#f46a6a" width={30} height={30} />
-				{TRANSPORT_ICON_MAPPING[transportMode]}
+				<Image src={TRANSPORT_ICON_MAPPING[transportMode]} width={30} height={30} alt="logo" />
 				<IcMLocation className={styles.destination} fill="#f46a6a" width={30} height={30} />
 			</div>
 

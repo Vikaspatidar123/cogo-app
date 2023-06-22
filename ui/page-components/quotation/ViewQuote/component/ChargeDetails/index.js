@@ -26,14 +26,10 @@ function RenderComment({ comments }) {
 
 function ChargeDetails(props) {
 	const {
-		basicFreightCharges,
-		dutiesAndTaxes,
-		insurance,
-		additionalChargesList,
-		quotationAmount,
-		comments,
+		additionalChargesList = {},
+		quotationAmount = 0,
+		comments = '',
 		currency,
-		productCost,
 		...rest
 	} = props;
 

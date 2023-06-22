@@ -29,7 +29,7 @@ function TagContainer(props) {
 					const { title, suffix } = TAG_MAPPING_TITlE[tag];
 					return (
 						props?.[tag] && (
-							<div className={styles.tags}>
+							<div className={styles.tags} key={tag}>
 								{title}
 								{' '}
 								{props?.[tag]}

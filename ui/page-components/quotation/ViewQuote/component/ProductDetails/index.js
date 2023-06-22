@@ -29,7 +29,7 @@ function ProductDetails({ products = [], currency }) {
 					{productConfig.map((config) => (
 						<div
 							key={config?.key}
-							style={{ width: config.width ?? '' }}
+							style={{ width: config?.width ?? '' }}
 							className={styles.col}
 						>
 							{config?.name}
@@ -46,7 +46,7 @@ function ProductDetails({ products = [], currency }) {
 						{productConfig.map((config) => (
 							<div
 								key={config?.key}
-								style={{ width: config.width ?? '' }}
+								style={{ width: config?.width ?? '' }}
 								className={styles.col}
 							>
 								{renderData(config.key, product, currency)}

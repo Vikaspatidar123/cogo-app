@@ -12,13 +12,13 @@ import formatAmount from '@/ui/commons/utils/formatAmount';
 function PreviewModal({
 	formDetails = {},
 	showPreviewModal = false,
-	setShowPreviewModal = () => {},
+	setShowPreviewModal = () => { },
 	countryDetails = {},
 	commodityName = '',
 	watcher = [],
 	insuranceLoading,
 	paymentLoading,
-	resp,
+	resp = () => { },
 	finalData,
 	ratesResponse = {},
 }) {
@@ -124,7 +124,7 @@ function PreviewModal({
 							</div>
 							<div className={styles.address}>
 								<div className={styles.label}>Address</div>
-								{billingAddress?.length > 50 ?	(
+								{billingAddress?.length > 50 ? (
 									<Tooltip content={billingAddress} placement="top">
 										<div className={styles.value}>{billingAddress}</div>
 									</Tooltip>
@@ -224,11 +224,11 @@ function PreviewModal({
 							</div>
 							<div className={styles.commodity}>
 								<div className={styles.label}>Coverage to</div>
-								{(locationTo || coverageTo)?.length > 30 ? 	(
+								{(locationTo || coverageTo)?.length > 30 ? (
 									<Tooltip content={locationTo || coverageTo} placement="top">
 										<div className={styles.value}>{locationTo || coverageTo}</div>
 									</Tooltip>
-								) :	<div className={styles.value}>{locationTo || coverageTo}</div>}
+								) : <div className={styles.value}>{locationTo || coverageTo}</div>}
 							</div>
 							<div className={styles.commodity}>
 								<div className={styles.label}>Coverage</div>
@@ -284,11 +284,11 @@ function PreviewModal({
 							Premium:
 							{' '}
 							{formatAmount({
-								amount   : netPremium,
-								currency : 'INR',
-								options  : {
-									notation : 'standard',
-									style    : 'currency',
+								amount: netPremium,
+								currency: 'INR',
+								options: {
+									notation: 'standard',
+									style: 'currency',
 								},
 							})}
 							<div className={styles.inclusive}>(inclusive of taxes)</div>
@@ -300,11 +300,11 @@ function PreviewModal({
 								Amount Payable:
 								{' '}
 								{formatAmount({
-									amount   : totalApplicableCharges,
-									currency : 'INR',
-									options  : {
-										notation : 'standard',
-										style    : 'currency',
+									amount: totalApplicableCharges,
+									currency: 'INR',
+									options: {
+										notation: 'standard',
+										style: 'currency',
 									},
 								})}
 							</div>

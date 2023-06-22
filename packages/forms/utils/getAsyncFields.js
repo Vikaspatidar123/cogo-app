@@ -10,10 +10,25 @@ function asyncFieldsLocations2() {
 			sort_by    : 'name',
 			sort_type  : 'asc',
 			includes   : { country: true, main_ports: true, default_params_required: true },
+
 		},
 	};
 }
-
+function asyncFieldsShippingLines() {
+	return {
+		valueKey       : 'id',
+		labelKey       : 'short_name',
+		endpoint       : 'list_operators',
+		authKey        : 'list_operators',
+		defaultOptions : true,
+		defaultParams  : {
+			filters    : { operator_type: 'shipping_line', status: 'active' },
+			page_limit : 100,
+			sort_by    : 'short_name',
+			sort_type  : 'asc',
+		},
+	};
+}
 function asyncFieldsLocations(labelKey = 'name', valueKey = 'id') {
 	return {
 		valueKey,
@@ -128,8 +143,9 @@ function asyncCountrySelect() {
 		params   : {
 			filters  : { type: 'country' },
 			includes : {
-				default_params_required : true,
-				flag_icon_url           : true, // country_code: true,
+				default_params_required: true,
+				// flag_icon_url           : true,
+				// country_code: true,
 			},
 			page_limit : 20,
 			sort_by    : 'name',
@@ -336,4 +352,5 @@ export {
 	asyncOrganizationBranches,
 	asyncTaxNumbers,
 	asyncTradeContacts,
+	asyncFieldsShippingLines,
 };

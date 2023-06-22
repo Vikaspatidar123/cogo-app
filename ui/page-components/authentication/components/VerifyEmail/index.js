@@ -11,8 +11,8 @@ import setCookieAndRedirect from '@/ui/commons/utils/setCookieAndRedirect';
 
 function VerifyEmail() {
 	const content = {
-		heading           : 'Email Verification Failed!',
-		subheading        : 'We could not verify your email.',
+		heading           : 'Email Verification Failed',
+		subheading        : 'We regret to inform you that we were unable to verify your email.',
 		forgotPasswordCTA : {
 			text : 'Try Setting your Password Again?',
 			link : '/forgot-password',
@@ -65,7 +65,7 @@ VerifyEmail.getInitialProps = async (ctx) => {
 		if (!hasError) {
 			const { token } = (res || {}).data || {};
 			// setCookieAndRedirect(token, ctx, '/app?from_signup=true');
-			const redirectPath = '/onboarding?from_signup=true';
+			const redirectPath = '/onboarding?from_signup=true&mail_verify=true';
 			setCookieAndRedirect(token, ctx, redirectPath);
 		}
 	} catch (e) {

@@ -1,16 +1,17 @@
 import { Toast } from '@cogoport/components';
+import { isEmpty } from '@cogoport/utils';
 import { useEffect, useState } from 'react';
 
 import getApiErrorString from '@/packages/forms/utils/getApiError';
+import { useRouter } from '@/packages/next';
 import { useRequest } from '@/packages/request';
 import { useSelector } from '@/packages/store';
 
-const useResetPassword = ({ password = '', confirm_password = '' }) => {
+const useSetPassword = ({ password = '', confirm_password = '', setShowModal = () => { } }) => {
+	const router = useRouter();
 	const {
-		general: { query = {} },
+		profile: { email_token = '' },
 	} = useSelector((state) => state);
-
-	const { id: emailToken = '' } = query;
 
 	const [customErrors, setCustomErrors] = useState('');
 
@@ -31,26 +32,41 @@ const useResetPassword = ({ password = '', confirm_password = '' }) => {
 		{ manual: true },
 	);
 
-	const onResetPassword = async (values) => {
+	const onSetPassword = async (values) => {
+		if (isEmpty(email_token)) {
+			Toast.error('Failed to Set Password, Please Try in Settings');
+			return;
+		}
 		try {
 			const payload = {
 				password : values?.password,
-				token    : emailToken,
+				token    : email_token,
 			};
 
 			await trigger({
 				data: payload,
 			});
 
-			window.location.href = '/login';
+			Toast.success('Password Set Successfully');
+
+			router.push(
+				{
+					pathname : '/[org_id]/[branch_id]/dashboard',
+					query    : { mail_verify: false },
+				},
+				undefined,
+				{ shallow: true },
+			);
+
+			setShowModal(false);
 		} catch (err) {
 			Toast.error(
-				getApiErrorString(err?.response?.data) || 'Failed to Reset Password',
+				getApiErrorString(err?.response?.data) || 'Failed to Set Password',
 			);
 		}
 	};
 
-	return { onResetPassword, loading, customErrors };
+	return { onSetPassword, loading, customErrors };
 };
 
-export default useResetPassword;
+export default useSetPassword;

@@ -3,10 +3,10 @@ import { IcMEyeclose, IcMEyeopen } from '@cogoport/icons-react';
 import { isEmpty } from '@cogoport/utils';
 import { useState } from 'react';
 
+import PasswordValidator from '../../../../commons/components/PasswordValidator';
 import useResetPassword from '../../hooks/useResetPassword';
 import LayoutHelp from '../common/LayoutHelp';
 import LayoutLogo from '../common/LayoutLogo';
-import PasswordValidator from '../common/PasswordValidator';
 
 import styles from './styles.module.css';
 
@@ -52,7 +52,7 @@ function ResetPassword() {
 							name="password"
 							type={showPassword ? 'text' : 'password'}
 							suffix={renderSuffix(showPassword, setShowPassword)}
-							placeholder="Enter your Password"
+							placeholder="Type here..."
 							rules={{
 								required : 'Password is required.',
 								pattern  : {
@@ -71,7 +71,7 @@ function ResetPassword() {
 							name="confirm_password"
 							type={showConfirmPassword ? 'text' : 'password'}
 							suffix={renderSuffix(showConfirmPassword, setShowConfirmPassword)}
-							placeholder="Enter your Password"
+							placeholder="Type here..."
 							rules={{
 								required: 'Confirm Password is required.',
 							}}

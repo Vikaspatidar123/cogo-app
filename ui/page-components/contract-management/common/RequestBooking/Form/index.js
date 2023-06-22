@@ -1,129 +1,131 @@
-// import React, { useRef, useState } from 'react';
+import { Button, Datepicker } from '@cogoport/components';
+import React, { useRef, useState } from 'react';
 
-// // import useBookShipment from '../../../hooks/useBookShipment';
-// // import PortHeader from '../../PortHeader';
+import useBookShipment from '../../../hooks/useBookShipment';
+import PortHeader from '../../PortHeader';
 
-// import { Container, Box, ContainerDetails } from './style';
+import styles from './style.module.css';
 
-// const { Row, Col } = Grid;
+import { useForm } from '@/packages/forms';
+import FormElement from '@/ui/page-components/discover_rates/common/FormElement';
+import SearchForm from '@/ui/page-components/discover_rates/common/SearchForm';
 
-// function Form({
-// 	serviceId,
-// 	setOpen,
-// 	service_type,
-// 	origin_id,
-// 	destination_id,
-// 	importer_exporter_id,
-// 	user,
-// 	branch,
-// 	originPort,
-// 	destinationPort,
-// 	originPortCode,
-// 	destinationPortCode,
-// 	originFullName,
-// 	destinationFullName,
-// 	cargoDetailControls,
-// }) {
-// 	const bookShipmentRef = useRef({});
+function Form({
+	serviceId,
+	setOpen,
+	service_type,
+	origin_id,
+	destination_id,
+	importer_exporter_id,
+	user,
+	branch,
+	originPort,
+	destinationPort,
+	originPortCode,
+	destinationPortCode,
+	originFullName,
+	destinationFullName,
+	cargoDetailControls,
+	control,
+}) {
+	const bookShipmentRef = useRef({});
 
-// 	const [dateTimePickerValue, setDateTimePickerValue] = useState();
+	const [dateTimePickerValue, setDateTimePickerValue] = useState();
 
-// 	const { loading, handleFormSubmit, scheduleLoading } = useBookShipment({
-// 		serviceId,
-// 		setOpen,
-// 		service_type,
-// 		origin_id,
-// 		destination_id,
-// 		importer_exporter_id,
-// 		user,
-// 		branch,
-// 		bookShipmentRef,
-// 		dateTimePickerValue,
-// 	});
+	const { loading, handleFormSubmit, scheduleLoading } = useBookShipment({
+		serviceId,
+		setOpen,
+		service_type,
+		origin_id,
+		destination_id,
+		importer_exporter_id,
+		user,
+		branch,
+		bookShipmentRef,
+		dateTimePickerValue,
+	});
 
-// 	const cargoDetailsFormProps = useForm(cargoDetailControls);
+	const cargoDetailsFormProps = useForm(cargoDetailControls);
+	const { formState: cargodetailsFormState } = cargoDetailsFormProps;
 
-// 	const { fields: cargodtailsFields, formState: cargodetailsFormState } =		cargoDetailsFormProps;
+	return (
+		<div className={styles.container}>
+			<div className={styles.box}>
+				<div className={styles.row}>
+					<div className={styles.col}>
+						<PortHeader
+							originPort={originPort}
+							destinationPort={destinationPort}
+							service_type={service_type}
+							destinationPortCode={destinationPortCode}
+							originPortCode={originPortCode}
+							originFullName={originFullName}
+							destinationFullName={destinationFullName}
+						/>
+					</div>
 
-// 	return (
-// 		<Container>
-// 			<Box>
-// 				<Row>
-// 					<Col xs={12} md={6}>
-// 						<PortHeader
-// 							originPort={originPort}
-// 							destinationPort={destinationPort}
-// 							service_type={service_type}
-// 							destinationPortCode={destinationPortCode}
-// 							originPortCode={originPortCode}
-// 							originFullName={originFullName}
-// 							destinationFullName={destinationFullName}
-// 						/>
-// 					</Col>
+					<div className={styles.col}>
+						<div style={{ display: 'flex', flexDirection: 'column' }}>
+							<text className={styles.text}>
+								Departure Date
+							</text>
 
-// 					<Col xs={12} md={3}>
-// 						<Flex direction="column">
-// 							<Text size={12} color="#333" bold={500} marginBottom={2}>
-// 								Departure Date
-// 							</Text>
+							<Datepicker
+								width={200}
+								withTimePicker
+								onChange={setDateTimePickerValue}
+								value={dateTimePickerValue}
+								isPreviousDaysAllowed={false}
+								showTimeSelect
+							/>
+						</div>
+					</div>
 
-// 							<SingleDatePicker
-// 								width={200}
-// 								withTimePicker
-// 								onChange={setDateTimePickerValue}
-// 								value={dateTimePickerValue}
-// 								isPreviousDaysAllowed={false}
-// 							/>
-// 						</Flex>
-// 					</Col>
+					<div className={styles.col}>
+						<div className={styles.container_details}>
+							<SearchForm
+								mode={service_type}
+								extraParams={{}}
+								search_type="contract"
+								ref={(r) => {
+									bookShipmentRef.current = r;
+								}}
+							/>
+						</div>
+					</div>
+				</div>
+			</div>
 
-// 					<Col xs={12} md={3}>
-// 						<ContainerDetails>
-// 							<SearchForm
-// 								mode={service_type}
-// 								extraParams={{}}
-// 								search_type="contract"
-// 								ref={(r) => {
-// 									bookShipmentRef.current = r;
-// 								}}
-// 							/>
-// 						</ContainerDetails>
-// 					</Col>
-// 				</Row>
-// 			</Box>
+			<div style={{ display: 'flex', flexDirection: 'column', width: '500px' }}>
 
-// 			<>
-// 				<Flex direction="column" width={500}>
-// 					<Layout
-// 						controls={cargoDetailControls}
-// 						fields={cargodtailsFields}
-// 						errors={cargodetailsFormState.errors}
-// 					/>
-// 				</Flex>
+				<FormElement
+					controls={cargoDetailControls}
+					errors={cargodetailsFormState.errors}
+					control={control}
+				/>
+			</div>
+			<div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+				<Button
+					type="button"
+					style={{ marginRight: 8 }}
+					onClick={() => setOpen(false)}
+					disabled={loading || scheduleLoading}
+					size="md"
+					themeType="secondary"
+				>
+					CANCEL
+				</Button>
 
-// 				<Flex justifyContent="flex-end">
-// 					<Button
-// 						type="button"
-// 						className="secondary md"
-// 						style={{ marginRight: 8 }}
-// 						onClick={() => setOpen(false)}
-// 						disabled={loading || scheduleLoading}
-// 					>
-// 						CANCEL
-// 					</Button>
+				<Button
+					type="button"
+					onClick={handleFormSubmit}
+					disabled={loading || scheduleLoading}
+				>
+					REQUEST BOOKING
 
-// 					<Button
-// 						type="button"
-// 						className="primary md"
-// 						onClick={handleFormSubmit}
-// 						disabled={loading || scheduleLoading}
-// 					>
-// 						REQUEST BOOKING
-// 					</Button>
-// 				</Flex>
-// 			</>
-// 		</Container>
-// 	);
-// }
-
-// export default Form;
+				</Button>
+			</div>
+		</div>
+	);
+}
+export default Form;

@@ -4,24 +4,25 @@ import Form from './Form';
 import styles from './styles.module.css';
 
 import { useForm } from '@/packages/forms';
+import FormElement from '@/ui/page-components/discover_rates/common/FormElement';
 
 const organizationControls = [
 	{
-		type: 'select',
+		type: 'async_select',
 		name: 'importer_exporter_branch_id',
 		label: 'Select Branch',
-		optionsListKey: 'organization-branches',
-		defaultOptions: true,
+		asyncKey: 'organization-branches',
+		initialCall: true,
 		span: 6,
 		rules: { required: true },
 		cacheOptions: false,
 	},
 	{
-		type: 'select',
+		type: 'async_select',
 		name: 'user_id',
 		label: 'Select User',
-		optionsListKey: 'organization-users',
-		defaultOptions: true,
+		asyncKey: 'organization_users',
+		initialCall: true,
 		valueKey: 'user_id',
 		labelKey: 'name',
 		span: 6,
@@ -59,42 +60,35 @@ function RequestBooking({
 		port_code: destinationPortCode = '',
 	} = destinationPortData || {};
 
-	const newOrganizationControls = (organizationControls || []).map(
-		(control) => {
-			const { name } = control;
-
-			if (['importer_exporter_branch_id', 'user_id'].includes(name)) {
-				return {
-					...control,
-					params: {
-						filters: {
-							organization_id: importer_exporter_id,
-							status: 'active',
-						},
-					},
-				};
-			}
-			return [];
-		},
-	);
-
-	const cargoDetailControls = (organizationControls || []).map((control) => {
+	const newOrganizationControls = (organizationControls || []).filter((control) => {
 		const { name } = control;
-		if (['cargo_description'].includes(name)) {
-			return { ...control };
+
+		if (['importer_exporter_branch_id', 'user_id'].includes(name)) {
+			// eslint-disable-next-line no-param-reassign
+			control.params = {
+				filters: {
+					organization_id: importer_exporter_id,
+					status: 'active',
+				},
+			};
+			return true;
 		}
-		return [];
+		return false;
 	});
 
-	const formProps = useForm(newOrganizationControls);
-	const { fields, formState, watch } = formProps;
+	const cargoDetailControls = (organizationControls || []).filter((control) => {
+		const { name } = control;
+		return ['cargo_description'].includes(name);
+	});
+
+	const formProps = useForm();
+	const { formState, watch, control } = formProps;
 
 	const watchImporterExporterBranchId = watch('importer_exporter_branch_id') || '';
 	const watchUserId = watch('user_id') || '';
-
 	return (
 		<div className={styles.container}>
-			<div className={styles.text} as="div">
+			<div className={styles.text}>
 				Booking Shipment
 			</div>
 
@@ -106,15 +100,16 @@ function RequestBooking({
 				</div>
 
 				<div className={styles.flex1} direction="column" width={400}>
-					{/* <Layout
+					<FormElement
 						controls={newOrganizationControls}
-						fields={fields}
 						errors={formState.errors}
-					/> */}
+						control={control}
+						noScroll
+					/>
 				</div>
 			</div>
 
-			{/* <Form
+			<Form
 				serviceId={serviceId}
 				origin_id={origin_id}
 				destination_id={destination_id}
@@ -130,7 +125,8 @@ function RequestBooking({
 				originFullName={originFullName}
 				destinationFullName={destinationFullName}
 				cargoDetailControls={cargoDetailControls || []}
-			/> */}
+				control={control}
+			/>
 		</div>
 	);
 }

@@ -97,6 +97,8 @@ function Actions({
 							setOpen(true);
 						}}
 						disabled={disabledBooking}
+						size="md"
+						themeType="accent"
 					>
 						Request Booking
 					</Button>

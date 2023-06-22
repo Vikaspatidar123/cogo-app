@@ -226,11 +226,12 @@ function PlanCard({
 			{open && (
 				<Modal
 					show={open}
-					className={`primary ${isMobile ? '' : 'xl'}`}
 					onClose={() => setOpen(false)}
 					fullscreen={isMobile}
 					onOuterClick={() => setOpen(false)}
 					styles={{ dialog: { overflow: 'visible' } }}
+					size="xl"
+					placement="top"
 				>
 					<RequestBooking
 						serviceId={id}

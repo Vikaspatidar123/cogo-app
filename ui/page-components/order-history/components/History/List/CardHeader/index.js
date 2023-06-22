@@ -3,15 +3,16 @@ import React from 'react';
 
 import styles from './styles.module.css';
 
+const Mapping = (item) => {
+	const mapping = {
+		orderDate: 'CREATED_AT',
+	};
+	return mapping[item.key] ? mapping[item.key] : item.key;
+};
+
 function CardHeader({
 	fields, sort = {}, setSort,
 }) {
-	const Mapping = (item) => {
-		const mapping = {
-			orderDate: 'CREATED_AT',
-		};
-		return mapping[item.key] ? mapping[item.key] : item.key;
-	};
 	const handleOnchange = (item) => {
 		setSort(() => {
 			if (sort.sortBy !== Mapping(item)) {
@@ -32,6 +33,7 @@ function CardHeader({
 			{(fields || []).map((field) => (
 				<div
 					className={styles.col}
+					style={{ width: field?.width }}
 					key={`${field?.key}_${field?.label}`}
 				>
 					<div className={styles.card_title}>{field.label}</div>

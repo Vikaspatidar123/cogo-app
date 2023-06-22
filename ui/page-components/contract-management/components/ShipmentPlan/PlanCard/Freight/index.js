@@ -32,22 +32,22 @@ function Freight({
 
 	const freightArray = [
 		{
-			label: 'Basic Freight',
-			price: bascicFreight?.price || 0,
-			key: 'basic_freight',
-			fontWeight: 500,
+			label      : 'Basic Freight',
+			price      : bascicFreight?.price || 0,
+			key        : 'basic_freight',
+			fontWeight : 500,
 		},
 		{
-			label: showLabel,
-			price: additionalServicesPrice?.price || 0,
-			key: 'additional_services_freight',
-			fontWeight: 500,
+			label      : showLabel,
+			price      : additionalServicesPrice?.price || 0,
+			key        : 'additional_services_freight',
+			fontWeight : 500,
 		},
 		{
-			label: 'Total (Inc. All Services)',
-			price: totalFreightPrice?.price || 0,
-			key: 'total_freight',
-			fontWeight: 600,
+			label      : 'Total (Inc. All Services)',
+			price      : totalFreightPrice?.price || 0,
+			key        : 'total_freight',
+			fontWeight : 600,
 		},
 	];
 
@@ -72,22 +72,22 @@ function Freight({
 						{!addlPresent
 							&& atActuals
 							&& key === 'additional_services_freight' ? (
-							<div className={styles.price} fontWeight={fontWeight}>At Actuals</div>
-						) : (
-							<div className={styles.price} fontWeight={fontWeight}>
-								{formatAmount({
-									amount: price,
-									currency: totalFreightPrice?.currency || 'INR',
-									options: {
-										notation: 'standard',
-										style: 'currency',
-										currencyDisplay: 'code',
-										maximumFractionDigits: 2,
-									},
-								})}
-								<div className={styles.unit}>{SERVICE_UNIT_MAPPING[serviceType]}</div>
-							</div>
-						)}
+								<div className={styles.price} fontWeight={fontWeight}>At Actuals</div>
+							) : (
+								<div className={styles.price} fontWeight={fontWeight}>
+									{formatAmount({
+										amount   : price,
+										currency : totalFreightPrice?.currency || 'INR',
+										options  : {
+											notation              : 'standard',
+											style                 : 'currency',
+											currencyDisplay       : 'code',
+											maximumFractionDigits : 2,
+										},
+									})}
+									<div className={styles.unit}>{SERVICE_UNIT_MAPPING[serviceType]}</div>
+								</div>
+							)}
 
 						{key === 'total_freight' && (
 							<Button
@@ -103,7 +103,7 @@ function Freight({
 							&& addlPresent
 							&& key === 'additional_services_freight' && (
 								<div className={styles.label}>Locals at Actuals</div>
-							)}
+						)}
 					</div>
 				);
 			})}

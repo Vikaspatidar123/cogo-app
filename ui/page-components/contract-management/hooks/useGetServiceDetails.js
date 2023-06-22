@@ -30,25 +30,25 @@ const useGetServiceDetails = ({
 		data: serviceData,
 		loading: serviceLoading,
 	}, trigger] = useRequest({
-		url: `/list_contract_${service}_services`,
-		method: 'get',
+		url    : `/list_contract_${service}_services`,
+		method : 'get',
 	}, { manual: true, autoCancel: false });
 
 	const getServiceDetails = useCallback(async () => {
 		const filters = {
-			contract_id: query.contract_id,
-			[KEYS_MAPPING[serviceType]?.id?.origin]: origin || undefined,
-			[KEYS_MAPPING[serviceType]?.id?.destination]: destination || undefined,
-			id: techOpsServiceId || undefined,
+			contract_id                                  : query.contract_id,
+			[KEYS_MAPPING[serviceType]?.id?.origin]      : origin || undefined,
+			[KEYS_MAPPING[serviceType]?.id?.destination] : destination || undefined,
+			id                                           : techOpsServiceId || undefined,
 		};
 
 		try {
 			await trigger({
 				params: {
 					filters,
-					page: pagination,
-					pagination_data_required: true,
-					is_contract_service_validity_data: true,
+					page                              : pagination,
+					pagination_data_required          : true,
+					is_contract_service_validity_data : true,
 					movement_type:
 						serviceType === 'air_freight' ? 'international' : undefined,
 					additional_data_required: true,

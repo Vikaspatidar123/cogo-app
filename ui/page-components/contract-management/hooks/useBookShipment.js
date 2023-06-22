@@ -25,8 +25,8 @@ const useBookShipment = ({
 	const [loading, setLoading] = useState(false);
 
 	const [{ loading: apiLoading }, trigger] = useRequest({
-		url: '/create_contract_trade_requirements_draft',
-		method: 'post',
+		url    : '/create_contract_trade_requirements_draft',
+		method : 'post',
 	}, { manual: true });
 
 	const handleFormSubmit = async () => {
@@ -70,16 +70,16 @@ const useBookShipment = ({
 		try {
 			const payload = {
 				service_type,
-				inco_term: bookShipmentRef.current.options?.values.inco_term,
-				origin_location_id: origin_id,
-				destination_location_id: destination_id,
-				departure_date: dateTimePickerValue,
-				created_by_id: id,
+				inco_term                   : bookShipmentRef.current.options?.values.inco_term,
+				origin_location_id          : origin_id,
+				destination_location_id     : destination_id,
+				departure_date              : dateTimePickerValue,
+				created_by_id               : id,
 				importer_exporter_id,
 				containers,
-				user_id: user,
-				importer_exporter_branch_id: branch,
-				source_id: serviceId,
+				user_id                     : user,
+				importer_exporter_branch_id : branch,
+				source_id                   : serviceId,
 			};
 
 			await trigger({ data: payload });

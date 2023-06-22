@@ -8,32 +8,32 @@ import FormElement from '@/ui/page-components/discover_rates/common/FormElement'
 
 const organizationControls = [
 	{
-		type: 'async_select',
-		name: 'importer_exporter_branch_id',
-		label: 'Select Branch',
-		asyncKey: 'organization-branches',
-		initialCall: true,
-		span: 6,
-		rules: { required: true },
-		cacheOptions: false,
+		type         : 'async_select',
+		name         : 'importer_exporter_branch_id',
+		label        : 'Select Branch',
+		asyncKey     : 'organization-branches',
+		initialCall  : true,
+		span         : 6,
+		rules        : { required: true },
+		cacheOptions : false,
 	},
 	{
-		type: 'async_select',
-		name: 'user_id',
-		label: 'Select User',
-		asyncKey: 'organization_users',
-		initialCall: true,
-		valueKey: 'user_id',
-		labelKey: 'name',
-		span: 6,
-		rules: { required: true },
-		cacheOptions: false,
+		type         : 'async_select',
+		name         : 'user_id',
+		label        : 'Select User',
+		asyncKey     : 'organization_users',
+		initialCall  : true,
+		valueKey     : 'user_id',
+		labelKey     : 'name',
+		span         : 6,
+		rules        : { required: true },
+		cacheOptions : false,
 	},
 	{
-		type: 'textarea',
-		name: 'cargo_description',
-		label: 'Cargo Description',
-		span: 12,
+		type  : 'textarea',
+		name  : 'cargo_description',
+		label : 'Cargo Description',
+		span  : 12,
 	},
 ];
 
@@ -67,8 +67,8 @@ function RequestBooking({
 			// eslint-disable-next-line no-param-reassign
 			control.params = {
 				filters: {
-					organization_id: importer_exporter_id,
-					status: 'active',
+					organization_id : importer_exporter_id,
+					status          : 'active',
 				},
 			};
 			return true;

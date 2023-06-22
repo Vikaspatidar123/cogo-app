@@ -24,8 +24,8 @@ const useCreateBulkContractUtilisation = ({
 		: '/create_bulk_contract_utilisation';
 
 	const [{ loading }, trigger] = useRequest({
-		url: api,
-		method: 'post',
+		url    : api,
+		method : 'post',
 	}, { manual: true });
 
 	const createBulkContractUtilisation = async ({
@@ -45,9 +45,9 @@ const useCreateBulkContractUtilisation = ({
 				...newutilizations,
 				{
 					max_count,
-					validity_start: date_range?.startDate,
-					validity_end: date_range?.endDate,
-					id: id || undefined,
+					validity_start : date_range?.startDate,
+					validity_end   : date_range?.endDate,
+					id             : id || undefined,
 				},
 			];
 		});
@@ -80,14 +80,14 @@ const useCreateBulkContractUtilisation = ({
 
 		try {
 			const payload = {
-				performed_by_id: userId,
-				performed_by_type: userType,
-				contract_service_id: serviceId,
-				booking_frequency_days: frequency === 'others' ? freqCount : frequency,
-				booking_schedule_type: schedule,
-				utilisations: newutilizations,
-				service_type: serviceType,
-				source: through === 'techops' ? 'tech_ops' : undefined,
+				performed_by_id        : userId,
+				performed_by_type      : userType,
+				contract_service_id    : serviceId,
+				booking_frequency_days : frequency === 'others' ? freqCount : frequency,
+				booking_schedule_type  : schedule,
+				utilisations           : newutilizations,
+				service_type           : serviceType,
+				source                 : through === 'techops' ? 'tech_ops' : undefined,
 			};
 
 			await trigger({

@@ -78,9 +78,9 @@ function PlanCard({
 		service_type,
 		upcoming_shipment_data,
 		additional_services,
-		service_id: id,
-		contractEndDate: validity_end_date,
-		contractStartDate: validity_start_date,
+		service_id        : id,
+		contractEndDate   : validity_end_date,
+		contractStartDate : validity_start_date,
 		source,
 		contract_type,
 		commodity,
@@ -109,16 +109,16 @@ function PlanCard({
 
 	const KEYS_MAPPING = {
 		fcl_freight: {
-			req: max_containers_count,
-			booked: booked_containers_count || 0,
+			req    : max_containers_count,
+			booked : booked_containers_count || 0,
 		},
 		lcl_freight: {
-			req: max_volume,
-			booked: booked_volume || 0,
+			req    : max_volume,
+			booked : booked_volume || 0,
 		},
 		air_freight: {
-			req: max_weight,
-			booked: booked_weight || 0,
+			req    : max_weight,
+			booked : booked_weight || 0,
 		},
 	};
 

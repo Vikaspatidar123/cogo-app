@@ -82,8 +82,8 @@ function CreatePlanModal({
 		defaultValues: {
 			create_plan: [
 				{
-					max_count: '',
-					date_range: '',
+					max_count  : '',
+					date_range : '',
 				},
 			],
 		},
@@ -91,10 +91,10 @@ function CreatePlanModal({
 	const handleFormSubmit = async (data) => {
 		await createBulkContractUtilisation({
 			data,
-			frequency: frequency === 'others' ? freqCount : frequency,
+			frequency             : frequency === 'others' ? freqCount : frequency,
 			schedule,
 			setShowModal,
-			bookedContainersCount: booked_containers_count,
+			bookedContainersCount : booked_containers_count,
 			serviceId,
 			serviceType,
 		});
@@ -111,8 +111,8 @@ function CreatePlanModal({
 			) {
 				setValue('create_plan', [
 					{
-						container_count: '',
-						date_range: {},
+						container_count : '',
+						date_range      : {},
 					},
 				]);
 			}
@@ -171,8 +171,8 @@ function CreatePlanModal({
 			setFrequency(`${freq_days}`);
 			setSchedule(plan_data?.[0]?.booking_schedule_type);
 			setValue('create_plan', (plan_data || []).map((data) => ({
-				max_count: data?.max_count || data?.max_volume || data?.max_weight,
-				date_range: {
+				max_count  : data?.max_count || data?.max_volume || data?.max_weight,
+				date_range : {
 					// startDate: data?.validity_start,
 					// endDate   : data?.validity_end,
 				},
@@ -205,17 +205,17 @@ function CreatePlanModal({
 							Validity :
 							{' '}
 							{formatDate({
-								date: validity_start,
-								dateFormat: GLOBAL_CONSTANTS.formats.date['dd MMM yyyy'],
-								formatType: 'date',
+								date       : validity_start,
+								dateFormat : GLOBAL_CONSTANTS.formats.date['dd MMM yyyy'],
+								formatType : 'date',
 							})}
 							{' '}
 							to
 							{' '}
 							{formatDate({
-								date: validity_end,
-								dateFormat: GLOBAL_CONSTANTS.formats.date['dd MMM yyyy'],
-								formatType: 'date',
+								date       : validity_end,
+								dateFormat : GLOBAL_CONSTANTS.formats.date['dd MMM yyyy'],
+								formatType : 'date',
 							})}
 						</div>
 

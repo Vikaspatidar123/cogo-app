@@ -17,7 +17,7 @@ function CardHeader({ config, setGlobalFilter }) {
 						<div
 							className={styles.sorting_icon}
 							role="presentation"
-							style={{ transform: `${cardHeader?.sortVariable ? "rotate(-180deg)" : "rotate(0)"}` }}
+							style={{ transform: `${cardHeader?.sortVariable ? 'rotate(-180deg)' : 'rotate(0)'}` }}
 							onClick={() => {
 								cardHeader?.sortFn(!cardHeader?.sortVariable);
 								setGlobalFilter((prev) => ({

@@ -16,7 +16,7 @@ function AdvancedOptions(props) {
 		formValues = {},
 		errors = {},
 		showElements,
-		formProps,
+		// formProps,
 		control = {},
 		handleIndex,
 		expandServices,
@@ -41,7 +41,7 @@ function AdvancedOptions(props) {
 		if (isEmpty(services) && showServices) {
 			handleServices();
 		}
-	}, [showServices]);
+	}, [handleServices, services, showServices]);
 
 	return (
 		<Services

@@ -64,12 +64,12 @@ function PillInput(props, ref) {
 							<div className={styles.placeholder}>Select Options</div>
 						)}
 
-						{/* <Input
+						<Input
 							{...rest}
 							onFocus={onFocus}
 							onBlur={onFocus}
 							id="search_form_cargo_details_input"
-						/> */}
+						/>
 					</div>
 
 					<div className={styles.util_div}>

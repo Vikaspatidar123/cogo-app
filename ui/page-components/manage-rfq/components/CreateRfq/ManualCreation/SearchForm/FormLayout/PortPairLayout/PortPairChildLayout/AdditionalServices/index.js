@@ -47,7 +47,7 @@ function AdditionalServices(props) {
 		control,
 	} = formProps;
 
-	const formValues = { ...mainValues, ...watch() };
+	const formValues = useMemo(() => ({ ...mainValues, ...watch() }), [mainValues, watch]);
 
 	const showElements = useMemo(
 		() => showElementsFunc({
@@ -58,7 +58,7 @@ function AdditionalServices(props) {
 			location,
 			services: services?.[mode]?.[handleIndex] || {},
 		}),
-		[JSON.stringify(formValues), JSON.stringify(services?.[mode]?.[handleIndex] || {})],
+		[advancedControls, formProps, formValues, handleIndex, location, mode, services],
 	);
 
 	useEffect(() => {
@@ -67,6 +67,7 @@ function AdditionalServices(props) {
 			setExpandServices({});
 			setExpandServices(services?.[mode]?.[handleIndex]);
 		}
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [showServices]);
 
 	const handleApply = () => {

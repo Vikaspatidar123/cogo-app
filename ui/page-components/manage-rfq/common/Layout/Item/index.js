@@ -95,7 +95,7 @@ function Item(props) {
 		theme = 'admin';
 	}
 
-	const isPillsType = (inlineLabel && type === 'pills') || false;
+	// const isPillsType = (inlineLabel && type === 'pills') || false;
 
 	return (
 		<div className={styles.container}>

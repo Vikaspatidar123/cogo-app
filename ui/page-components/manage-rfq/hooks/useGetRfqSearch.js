@@ -38,6 +38,7 @@ const useGetRfqSearch = ({
 		if (serial_id && !portPairloading && spot_searches) {
 			getRefSearch();
 		}
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [id, activePortPair]);
 
 	return {

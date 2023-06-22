@@ -19,18 +19,20 @@ const useGetListTracker = () => {
 	const { query: routerQuery } = useRouter();
 	const { debounceQuery, query } = useDebounceQuery();
 
-	const { branch_id, isArchived = false, trackingType = '', filters } = routerQuery || {};
+	const { branch_id, isArchived = false, trackingType = '' } = routerQuery || {};
 
 	const [filter, setFilter] = useState({
 		inputValue  : null,
-		selectValue : filters,
+		selectValue : null,
 	});
+
 	const [globalFilter, setGlobalFilter] = useState({
 		page        : 1,
 		activeTab   : trackingType || 'ocean',
 		q           : '',
 		search_type : 'All',
 	});
+
 	const { inputValue } = filter;
 
 	const [{ data, loading }, trigger] = useRequest({
@@ -93,12 +95,6 @@ const useGetListTracker = () => {
 			id: trackingId || '',
 		}));
 	}, [stats]);
-
-	// useEffect(() => {
-	// 	if (filters) {
-	// 		selectValueChangeHandler(filters);
-	// 	}
-	// }, [filters, selectValueChangeHandler]);
 
 	return {
 		data,

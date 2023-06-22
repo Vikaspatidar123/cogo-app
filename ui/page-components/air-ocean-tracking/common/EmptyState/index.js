@@ -2,6 +2,7 @@ import { Button, Modal } from '@cogoport/components';
 import Image from 'next/image';
 import { useState } from 'react';
 
+import { FIRST_VISIT_MAPPING } from '../../constant/trackingInfo';
 import useRedirectFn from '../../hooks/useRedirectFn';
 import ArchiveDelete from '../ArchiveDelete';
 
@@ -12,7 +13,10 @@ import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
 function EmptyState() {
 	const { query } = useRouter();
-	const { trackingType = '', trackingId = '', isFirstVisit = false } = query;
+	const { trackingType = '', trackingId = '', isFirstVisit: firstVisitBool = 'false' } = query;
+
+	const isFirstVisit = FIRST_VISIT_MAPPING[firstVisitBool];
+
 	const [deleteModal, setDeleteModal] = useState(false);
 
 	const { redirectToDashboard } = useRedirectFn();

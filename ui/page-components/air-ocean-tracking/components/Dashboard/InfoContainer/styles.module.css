@@ -1,11 +1,17 @@
 .container {
-	padding: 0 10px;
+	padding-left: 10px;
 }
 
 .card {
 	padding: 20px;
 	margin-bottom: 20px;
 	box-shadow: 0 0 16px 0 #627fac33;
+
+	:global {
+		.ui_button_container.ui_ps_size_md {
+			padding: 0;
+		}
+	}
 }
 
 .row {

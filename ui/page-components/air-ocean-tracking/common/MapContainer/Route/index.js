@@ -1,18 +1,16 @@
 import { Polyline } from '@cogoport/maps';
 
-const pathOptions = { color: '#00008B' };
-
-function Route({ positions, map }) {
+function Route({ positions, map, pathOption }) {
 	return (
 		<Polyline
 			key={positions}
 			positions={positions}
-			pathOptions={pathOptions}
-			eventHandlers={{
-				add: (e) => {
-					if (map) map?.fitBounds(e.target?.getBounds());
-				},
-			}}
+			pathOptions={pathOption}
+			// eventHandlers={{
+			// 	add: (e) => {
+			// 		if (map) map?.fitBounds(e.target?.getBounds());
+			// 	},
+			// }}
 		/>
 	);
 }

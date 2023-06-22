@@ -1,24 +1,31 @@
-const dashboardTableConfig = [
+const dashboardTableConfig = ({ type }) => [
 	{
-		key   : 'trackingNumber',
+		key   : type === 'ocean' ? 'search_value' : 'airway_bill_no',
 		title : 'Tracking number',
+		width : '30%',
 	},
+	// {
+	// 	key   : 'trade_lane',
+	// 	title : 'Trade Lane',
+	// 	width : '30%',
+	// },
 	{
-		key   : 'tradeLane',
-		title : 'Trade Lane',
-	},
-	{
-		key   : 'currentStatus',
+		key   : 'current_status',
 		title : 'Current Status',
+		func  : type === 'ocean' ? 'renderCurrentStatus' : 'renderCurrentStatusAir',
+		width : '30%',
 	},
 	{
-		key   : 'modifiedDate',
+		key   : 'last_modified_at',
 		title : 'Last modified date',
 		func  : 'renderDate',
+		width : '25%',
 	},
 	{
-		key   : '',
-		title : 'View more',
+		key   : 'view_more',
+		title : '',
+		func  : 'renderViewMore',
+		width : '15%',
 	},
 ];
 

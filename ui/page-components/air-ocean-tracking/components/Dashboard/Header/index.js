@@ -46,7 +46,7 @@ function Header() {
 
 	return (
 		<div className={styles.container}>
-			<h2>Track yours shipements!</h2>
+			<h2>Track your shipments!</h2>
 			<div className={styles.form_container}>
 
 				<div className={styles.row}>

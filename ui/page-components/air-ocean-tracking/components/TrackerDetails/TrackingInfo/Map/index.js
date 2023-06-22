@@ -2,15 +2,14 @@ import { isEmpty } from '@cogoport/utils';
 import dynamic from 'next/dynamic';
 import { useEffect, useState } from 'react';
 
-import styles from './styles.module.css';
+import useGetMapRoute from '../../../../hooks/useGetMapRoute';
 
-import useGetSeaRoute from '@/ui/page-components/air-ocean-tracking/hooks/useGetSeaRoute';
+import styles from './styles.module.css';
 
 const CogoMaps = dynamic(() => import('./MapComps'), { ssr: false });
 
 function Map({
-	vesselLocationLat,
-	vesselLocationLang,
+	data = {},
 	trackingType = 'ocean',
 	height = '80vh',
 	// loading = false,
@@ -19,16 +18,27 @@ function Map({
 	currContainerDetails = {},
 }) {
 	const [currentRoute, setCurrentRoute] = useState([]);
-	const { loading, allSeaRoute = [] } = useGetSeaRoute({ trackingInfo });
+
+	const payloadMapping = {
+		ocean : trackingInfo,
+		air   : !isEmpty(data) ? [data] : [],
+	};
+
+	const { loading, allRoute = [] } = useGetMapRoute({
+		trackingInfo : payloadMapping[trackingType],
+		type         : trackingType,
+	});
 
 	useEffect(() => {
 		if (!isEmpty(currContainerDetails)) {
-			const currentTrackingInfo = allSeaRoute.filter(
-				(info) => info?.containerNo === currContainerDetails?.container_no,
-			);
+			const currentTrackingInfo = allRoute.filter(
+				(info) => info?.containerNo === currContainerDetails?.container_no
+				|| info?.airWayNo === currContainerDetails?.airway_bill_no,
+			)[0];
+
 			setCurrentRoute(currentTrackingInfo?.route);
 		}
-	}, [allSeaRoute, currContainerDetails]);
+	}, [allRoute, currContainerDetails]);
 
 	return (
 		<div className={styles.container}>

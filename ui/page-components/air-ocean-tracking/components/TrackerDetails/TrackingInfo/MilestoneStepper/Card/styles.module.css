@@ -44,4 +44,13 @@
 		width: 20%;
 		text-align: right;
 	}
+
+	div[role="tooltip"] {
+		display: inline-block;
+	}
+}
+
+.info_icon {
+	margin-left: 3px;
+	vertical-align: middle;
 }

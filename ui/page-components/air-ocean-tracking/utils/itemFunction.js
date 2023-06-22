@@ -1,4 +1,4 @@
-import { Checkbox, Toggle } from '@cogoport/components';
+import { Checkbox, Toggle, Button } from '@cogoport/components';
 import { IcMEdit } from '@cogoport/icons-react';
 import { format, isEmpty, upperCase } from '@cogoport/utils';
 
@@ -13,6 +13,7 @@ const style = {
 const itemFunction = ({
 	status = '', statusChangeHandler = () => {},
 	loading = false, selectedShipments, checkboxChangeHandler, editHandler,
+	activeTab = 'ocean', redirectToTracker = () => {},
 }) => ({
 	renderName: (itemData) => {
 		const { poc_details = {} } = itemData || {};
@@ -27,7 +28,12 @@ const itemFunction = ({
 	renderEdit: (itemData, config) => (
 		<span>
 			{itemData?.[config.key]}
-			<IcMEdit width={12} height={12} style={style} onClick={() => editHandler({ itemData, key: config.key })} />
+			<IcMEdit
+				width={12}
+				height={12}
+				style={style}
+				onClick={() => editHandler({ itemData, key: config.key })}
+			/>
 		</span>
 	),
 	renderCheckbox: (itemData) => (
@@ -59,6 +65,25 @@ const itemFunction = ({
 			<span>
 				{`${itinerary?.origin || 'Origin'} > ${itinerary?.destination || 'Destination'} `}
 			</span>
+		);
+	},
+	renderViewMore: (itemData) => {
+		const { id = '' } = itemData || {};
+		return (
+			<Button
+				themeType="linkUi"
+				type="button"
+				onClick={() => redirectToTracker({ type: activeTab, id, fromDashBoard: true })}
+			>
+				View
+			</Button>
+		);
+	},
+	renderCurrentStatus    : (itemData, config) => <span>{itemData?.[config.key] || '--'}</span>,
+	renderCurrentStatusAir : (itemData) => {
+		const { milestones = {} } = itemData || {};
+		return (
+			<span>{milestones?.current_milestone || '--'}</span>
 		);
 	},
 });

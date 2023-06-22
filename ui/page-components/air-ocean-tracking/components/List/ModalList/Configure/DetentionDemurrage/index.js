@@ -1,12 +1,13 @@
 import { cl, Button } from '@cogoport/components';
 import { IcMInformation } from '@cogoport/icons-react';
 
+import detDemControls from '../../../../../configuration/detDemControls';
+import useCreateShipment from '../../../../../hooks/useCreateShipment';
+
 import styles from './styles.module.css';
 
 import { useForm } from '@/packages/forms';
 import getField from '@/packages/forms/Controlled';
-import detDemControls from '@/ui/page-components/air-ocean-tracking/configuration/detDemControls';
-import useCreateShipment from '@/ui/page-components/air-ocean-tracking/hooks/useCreateShipment';
 
 function DetentionDemurrage({ closeHandler, shipmentId, refetchTrackerList, shipmentInfo = {} }) {
 	const { loading, updateTrackerInfo } = useCreateShipment({ closeHandler, refetchTrackerList });
@@ -30,7 +31,7 @@ function DetentionDemurrage({ closeHandler, shipmentId, refetchTrackerList, ship
 		};
 		updateTrackerInfo({ payload });
 	};
-	// use align self when error
+
 	return (
 		<div className={styles.container}>
 			<div className={styles.header}>

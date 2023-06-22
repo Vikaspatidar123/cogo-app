@@ -9,13 +9,21 @@ import { useRouter } from '@/packages/next';
 
 function TrackerDetails() {
 	const { query } = useRouter();
-	const { trackingType = 'ocean' } = query;
+	const { trackingType = 'ocean', fromDashBoard = 'false' } = query;
 
-	const { redirectToList } = useRedirectFn();
+	const { redirectToList, redirectToDashboard } = useRedirectFn();
+
+	const backHandler = () => {
+		if (fromDashBoard === 'false') {
+			redirectToList({ type: trackingType });
+		} else {
+			redirectToDashboard();
+		}
+	};
 	return (
 		<div className={styles.container}>
 			<div className={styles.title_container}>
-				<IcMArrowBack width={15} height={15} onClick={() => redirectToList({ type: trackingType })} />
+				<IcMArrowBack width={15} height={15} onClick={backHandler} />
 				<h2>Track and Trace</h2>
 			</div>
 			<TrackingInfo />

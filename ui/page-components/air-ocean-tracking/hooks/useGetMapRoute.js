@@ -2,6 +2,7 @@ import { isEmpty } from '@cogoport/utils';
 import { useCallback, useEffect, useState } from 'react';
 
 import { DEFAULT_LAT_INDEX, DEFAULT_LNG_INDEX } from '../constant/mapConstant';
+import calAirRoute from '../utils/calAirRoute';
 
 import { useRequest } from '@/packages/request';
 
@@ -15,12 +16,13 @@ const getUniqueArrElements = (arr) => arr.reduce((accumulator, current) => {
 	return accumulator;
 }, []);
 
-const useGetSeaRoute = ({ trackingInfo = [] }) => {
-	const [allSeaRoute, setAllSeaRoute] = useState([]);
+const useGetMapRoute = ({ trackingInfo = [], type = 'ocean' }) => {
+	const [allRoute, setAllRoute] = useState([]);
+
 	const [{ loading }, trigger] = useRequest({
 		method : 'get',
-		url    : 'https://api.cogoport.com/location/get_multiple_sea_routes',
-	}, { manual: true });
+		url    : '/location/get_multiple_sea_routes',
+	}, { manual: true, autoCancel: false });
 
 	const getSeaRoute = useCallback(async ({ coordinates = [] }) => {
 		try {
@@ -44,7 +46,7 @@ const useGetSeaRoute = ({ trackingInfo = [] }) => {
 	}, [trigger]);
 
 	const calcSeaRoute = useCallback(async () => {
-		const promiseArr = (trackingInfo || []).map((ele) => {
+		const promiseArr = (trackingInfo || []).map(async (ele) => {
 			const { tracking_data = [] } = ele || {};
 
 			const latLngArr = (tracking_data || [])
@@ -54,14 +56,15 @@ const useGetSeaRoute = ({ trackingInfo = [] }) => {
 			const uniqueLatLngArr = getUniqueArrElements(latLngArr);
 
 			if (isEmpty(uniqueLatLngArr)) return undefined;
-			if (uniqueLatLngArr.length === 1) return latLngArr;
-			return getSeaRoute({ coordinates: uniqueLatLngArr });
+			if (uniqueLatLngArr.length === 1) return uniqueLatLngArr;
+			const value = await getSeaRoute({ coordinates: uniqueLatLngArr });
+			return value;
 		});
 
 		const promiseValue = await Promise.allSettled(promiseArr);
 
 		const mapPointArr = (trackingInfo || []).map((ele, index) => {
-			const { container_no = '' } = ele || {};
+			const { container_no = '', searchValue = '', id = '' } = ele || {};
 			const mapPoints = promiseValue?.[index]?.value;
 
 			const isRouteAvaliable = promiseValue?.[index]?.status === 'fulfilled' && mapPoints;
@@ -76,22 +79,28 @@ const useGetSeaRoute = ({ trackingInfo = [] }) => {
 			}
 
 			return {
-				containerNo : container_no,
+				id,
+				containerNo : container_no || searchValue,
 				route       : updatedRoute,
 			};
 		});
-		setAllSeaRoute(mapPointArr);
+		setAllRoute(mapPointArr);
 	}, [trackingInfo, getSeaRoute]);
 
 	useEffect(() => {
 		if (!isEmpty(trackingInfo)) {
-			calcSeaRoute();
+			if (type === 'ocean') {
+				calcSeaRoute();
+			} else {
+				const allRouteArr = calAirRoute({ list: trackingInfo });
+				setAllRoute(allRouteArr);
+			}
 		}
-	}, [calcSeaRoute, trackingInfo]);
+	}, [calcSeaRoute, trackingInfo, type]);
 
 	return {
-		loading, allSeaRoute,
+		loading, allRoute,
 	};
 };
 
-export default useGetSeaRoute;
+export default useGetMapRoute;

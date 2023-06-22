@@ -12,7 +12,7 @@ import { useForm } from '@/packages/forms';
 import getField from '@/packages/forms/Controlled';
 
 const downloadSampleHandler = ({ trackingType }) => {
-	window.open(CSV_SAMPLE_FILE[trackingType]);
+	window.open(CSV_SAMPLE_FILE[trackingType], '_self');
 };
 
 function ImportCsvModal({ csvModal, setCsvModal, trackingType = 'ocean', operatorData = {} }) {

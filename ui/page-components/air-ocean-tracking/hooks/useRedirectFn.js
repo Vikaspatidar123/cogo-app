@@ -11,10 +11,11 @@ const useRedirectFn = () => {
 		);
 	};
 
-	const redirectToTracker = ({ type, id, isFirst = false }) => {
+	const redirectToTracker = ({ type, id, isFirst = false, fromDashBoard = false }) => {
 		push(
-			`/saas/tools/air-ocean-tracking/list/[trackingType]/[trackingId]?isFirstVisit=${isFirst}`,
-			`/saas/tools/air-ocean-tracking/list/${type}/${id}?isFirstVisit=${isFirst}`,
+			`/saas/tools/air-ocean-tracking/list/[trackingType]/
+			[trackingId]?isFirstVisit=${isFirst}&fromDashBoard=${fromDashBoard}`,
+			`/saas/tools/air-ocean-tracking/list/${type}/${id}?isFirstVisit=${isFirst}&fromDashBoard=${fromDashBoard}`,
 		);
 	};
 
@@ -35,20 +36,12 @@ const useRedirectFn = () => {
 		window.open(PUBLIC_PAGE_BLOG);
 	};
 
-	const redirectToListWithFilters = ({ type = 'ocean', filters }) => {
-		push(
-			`/saas/tools/air-ocean-tracking/list?trackingType=${type}&filters=${filters}`,
-			`/saas/tools/air-ocean-tracking/list?trackingType=${type}&filters=${filters}`,
-		);
-	};
-
 	return {
 		redirectArchivedList,
 		redirectToTracker,
 		redirectToList,
 		redirectToDashboard,
 		redirectToBlogs,
-		redirectToListWithFilters,
 	};
 };
 

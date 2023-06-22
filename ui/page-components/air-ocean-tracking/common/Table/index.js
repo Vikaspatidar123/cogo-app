@@ -10,7 +10,7 @@ import getValue from '@/ui/commons/utils/getValue';
 function Table({
 	title = '', configs = [], filteredList = [], data = {}, loading = false,
 	showPagination = true, setPage = () => {}, selectedContact = '', setSelectedContact = () => {}, isClickable = true,
-	isScroll = false, maxHeight, itmFunction = {},
+	isScroll = false, maxHeight, itmFunction = {}, showHover = true,
 }) {
 	const { list: dataList = [], page = 0, page_limit = 0, total_count = 0 } = data || {};
 
@@ -40,7 +40,7 @@ function Table({
 					{newList.map((item) => (
 						<div
 							key={item?.id || item}
-							className={`${styles.flex_box} ${styles.item_row} 
+							className={`${styles.flex_box} ${styles.item_row} ${showHover ? styles.hover_row : ''}
 							${(selectedContact?.id === item?.id && isClickable) ? styles.selected : ''}`}
 							onClick={() => setSelectedContact(item)}
 							role="presentation"

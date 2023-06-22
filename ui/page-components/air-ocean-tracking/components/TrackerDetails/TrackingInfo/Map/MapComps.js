@@ -33,16 +33,17 @@ function MapComps({ height = '500px', pointsArr = [], type = 'ocean' }) {
 			maxBoundsViscosity={1}
 		>
 			{pointsArrLength > 0 && (
-				<Pointer lat={pointsArr[0]?.lat} lng={pointsArr[0]?.lng} iconSvg="map_origin" />
+				<>
+					<Pointer lat={pointsArr[0]?.lat} lng={pointsArr[0]?.lng} type="origin" />
+					{pointsArrLength !== 1 && <Route positions={pointsArr} map={map} transportMode={type} />}
+					<Pointer
+						lat={pointsArr[pointsArrLength - 1]?.lat}
+						lng={pointsArr[pointsArrLength - 1]?.lng}
+						type="destination"
+					/>
+				</>
 			)}
-			<Route positions={pointsArr} map={map} transportMode={type} />
-			{pointsArrLength > 0 && (
-				<Pointer
-					lat={pointsArr[pointsArrLength - 1]?.lat}
-					lng={pointsArr[pointsArrLength - 1]?.lng}
-					iconSvg="map_destination"
-				/>
-			)}
+
 		</CogoMaps>
 	);
 }

@@ -18,6 +18,11 @@ const CARD_COMPONENT = {
 	ocean : OceanCard,
 };
 
+const EMPTY_STATE_IMG = {
+	ocean : GLOBAL_CONSTANTS.image_url.ocean_empty_state,
+	air   : GLOBAL_CONSTANTS.image_url.air_empty_state,
+};
+
 function List() {
 	const [modalInfo, setModalInfo] = useState({
 		show: false,
@@ -57,9 +62,9 @@ function List() {
 			{isEmpty(newList) ? (
 				<div className={styles.empty_state}>
 					<Image
-						src={GLOBAL_CONSTANTS.image_url.air_empty_state}
+						src={EMPTY_STATE_IMG[activeTab]}
 						width={450}
-						height={250}
+						height={300}
 						alt="empty"
 					/>
 					<p>No Tracking Data Found</p>

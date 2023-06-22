@@ -17,7 +17,7 @@ const API_MAPPING = {
 		// payloadKey  : 'search_value',
 		payloadKey  : 'container_no',
 		operatorKey : 'shippingLine',
-		threshold   : 11,
+		threshold   : 10,
 	},
 	air: {
 		operatorApi : '/get_airline_from_airway_bill',

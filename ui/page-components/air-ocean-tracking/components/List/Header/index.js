@@ -24,17 +24,25 @@ function Header(props) {
 	const { isArchived = false } = query || {};
 	const { activeTab = '', search_type = '' } = globalFilter;
 
-	const { redirectArchivedList, redirectToDashboard } = useRedirectFn();
+	const { redirectArchivedList, redirectToDashboard, redirectToList } = useRedirectFn();
 	const { loading, getTrackingData } = useExportData();
 
 	const dsrListValue = useGetDsrList({ showConfigure });
+
+	const backHandler = () => {
+		if (isArchived) {
+			redirectToList({ type: activeTab });
+			return;
+		}
+		redirectToDashboard();
+	};
 
 	return (
 		<div className={styles.container}>
 			<div className={cl`${styles.flex_box} ${styles.first_row}`}>
 
 				<div className={styles.flex_box}>
-					<ButtonIcon size="lg" icon={<IcMArrowBack />} themeType="primary" onClick={redirectToDashboard} />
+					<ButtonIcon size="lg" icon={<IcMArrowBack />} themeType="primary" onClick={backHandler} />
 					<h2>{isArchived ? 'Archive List' : 'Shipment List'}</h2>
 					<div>
 						<Tabs

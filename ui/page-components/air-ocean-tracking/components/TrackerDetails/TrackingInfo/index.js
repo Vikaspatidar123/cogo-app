@@ -54,6 +54,7 @@ function TrackingInfo() {
 			</div>
 			<div className={styles.section}>
 				<Maps
+					data={data}
 					trackingInfo={trackingInfo}
 					trackingType={trackingType}
 					currContainerDetails={currContainerDetails}

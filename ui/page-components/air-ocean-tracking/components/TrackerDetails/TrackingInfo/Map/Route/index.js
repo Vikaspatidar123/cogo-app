@@ -14,7 +14,7 @@ function Route({ positions, map, transportMode }) {
 		if (map && line) {
 			const bounds = line.getBounds();
 			if (!isEmpty(bounds) && bounds instanceof L.LatLngBounds) {
-				map?.flyToBounds(bounds);
+				map?.flyToBounds(bounds, { maxZoom: 4.5 });
 			}
 		}
 	}, [ref, map]);

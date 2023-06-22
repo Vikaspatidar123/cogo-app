@@ -1,29 +1,35 @@
-import { cl, Button } from '@cogoport/components';
-import { useState } from 'react';
+import { cl } from '@cogoport/components';
 
 import STATS_MAPPING from '../../../../../constant/statsMapping';
-import useRedirectFn from '../../../../../hooks/useRedirectFn';
 
 import styles from './styles.module.css';
 
-function StatsContainer({ stats: statsData = {}, activeTab }) {
-	const [selectedCard, setSelectedCard] = useState('on_track_shipments');
-
-	const { redirectToListWithFilters } = useRedirectFn();
+function StatsContainer({ stats: statsData = {}, globalFilter, setGlobalFilter }) {
+	const { shipment_status: prevStatus } = globalFilter;
 
 	const clickHandler = (key) => {
-		setSelectedCard(key);
+		if (key === prevStatus) {
+			setGlobalFilter((prev) => {
+				const { shipment_status, ...rest } = prev;
+				return { ...rest };
+			});
+			return;
+		}
+		setGlobalFilter((prev) => ({
+			...prev,
+			shipment_status: key,
+		}));
 	};
 
 	return (
 		<div className={styles.container}>
 			{STATS_MAPPING.map((stats) => (
 				<div
-					key={stats?.value}
-					className={cl`${styles.card} ${styles?.[stats.value]}
-					${selectedCard === stats.value ? styles.selected : ''}`}
+					key={stats?.dashboardKey}
+					className={cl`${styles.card} ${styles?.[stats.dashboardKey]}
+					${prevStatus === stats.dashboardKey ? styles.selected : ''}`}
 					role="presentation"
-					onClick={() => clickHandler(stats.value)}
+					onClick={() => clickHandler(stats.dashboardKey)}
 				>
 					<div className={styles.icon_container}>
 						{stats.icon}
@@ -31,17 +37,7 @@ function StatsContainer({ stats: statsData = {}, activeTab }) {
 
 					<div className={styles.info_container}>
 						<p className={styles.text}>{stats.label}</p>
-
-						<div className={styles.footer}>
-							<p className={styles.num}>{statsData?.[stats.value] || 0}</p>
-							<Button
-								type="button"
-								themeType="linkUi"
-								onClick={() => redirectToListWithFilters({ type: activeTab, filters: stats.value })}
-							>
-								View
-							</Button>
-						</div>
+						<p className={styles.num}>{statsData?.[stats.dashboardKey] || 0}</p>
 					</div>
 				</div>
 			))}

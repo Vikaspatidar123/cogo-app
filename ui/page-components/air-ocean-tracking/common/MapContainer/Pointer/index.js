@@ -1,10 +1,15 @@
 import { L, Marker, FeatureGroup } from '@cogoport/maps';
 
-import iconUrl from '../../../utils/iconUrl.json';
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
-function Pointer({ lat = '', lng = '', map }) {
+const ICON_MAPPING = {
+	origin      : GLOBAL_CONSTANTS.image_url.origin_map_pointer,
+	destination : GLOBAL_CONSTANTS.image_url.destination_map_pointer,
+};
+
+function Pointer({ lat = '', lng = '', map, src = '' }) {
 	const icon = L.icon({
-		iconUrl    : iconUrl.origin,
+		iconUrl    : ICON_MAPPING[src],
 		iconSize   : [24, 24],
 		iconAnchor : [12.75, 12.75],
 	});

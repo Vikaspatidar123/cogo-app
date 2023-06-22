@@ -1,32 +1,24 @@
 import { cl, Tabs, TabPanel, Select, Button } from '@cogoport/components';
-import { IcMListView, IcMMap } from '@cogoport/icons-react';
 import { useState } from 'react';
 
 import { TAB_MAPPING, DASHBOARD_VIEW_MAPPING } from '../../../constant/tabMapping';
-import useGetListTracker from '../../../hooks/useGetListTracker';
+import useGetSummary from '../../../hooks/useGetSummary';
 import useRedirectFn from '../../../hooks/useRedirectFn';
 
 import styles from './styles.module.css';
 import TrackingInfo from './TrackingInfo';
 
 const selectOpt = [
-	{ label: 'This Month', value: 'month' },
-	{ label: 'This Week', value: 'week' },
-	{ label: 'This Year', value: 'year' },
+	{ label: 'Last 30 days', value: '30' },
+	{ label: 'Last 100 days', value: '100' },
 ];
 
 function MainContainer() {
-	const [globalFilter, setGlobalFilter] = useState({
-		page        : 1,
-		selectValue : 'month',
-		view        : 'list',
-		activeTab   : 'ocean',
-	});
-
-	const { data, loading } = useGetListTracker();
-	const { list = [], filter_data = {}, stats } = data || {};
-	const { view, activeTab } = globalFilter;
+	const [view, setView] = useState('list');
 	const { redirectToList } = useRedirectFn();
+
+	const summaryHook = useGetSummary();
+	const { globalFilter, setGlobalFilter } = summaryHook;
 
 	return (
 		<div className={styles.container}>
@@ -55,11 +47,8 @@ function MainContainer() {
 					<div className={styles.view_tab}>
 						<Tabs
 							themeType="tertiary"
-							activeTab={globalFilter.view}
-							onChange={(e) => setGlobalFilter((prev) => ({
-								...prev,
-								view: e,
-							}))}
+							activeTab={view}
+							onChange={setView}
 						>
 							{Object.keys(DASHBOARD_VIEW_MAPPING).map((tab) => (
 								<TabPanel key={tab} name={tab} icon={DASHBOARD_VIEW_MAPPING?.[tab]} />
@@ -69,24 +58,25 @@ function MainContainer() {
 
 					<Select
 						size="sm"
-						value={globalFilter.selectValue}
+						value={globalFilter?.period_in_days}
 						onChange={(e) => setGlobalFilter((prev) => ({
 							...prev,
-							selectValue: e,
+							period_in_days: e,
 						}))}
-						placeholder="Select Books"
+						placeholder="Select Period"
 						options={selectOpt}
 						className={styles.select_field}
+						isClearable
 					/>
 
-					<Button type="button" themeType="secondary" onClick={() => redirectToList({})}>
+					<Button type="button" onClick={() => redirectToList({})}>
 						View All Shipments
 					</Button>
 				</div>
 			</div>
 
 			<div className={styles.tracking_info}>
-				<TrackingInfo stats={stats} view={view} activeTab={activeTab} />
+				<TrackingInfo summaryHook={summaryHook} view={view} />
 			</div>
 		</div>
 	);

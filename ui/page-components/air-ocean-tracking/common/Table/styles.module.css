@@ -22,10 +22,12 @@
 }
 
 .item_row {
-	cursor: pointer;
+	&.hover_row {
+		cursor: pointer;
 
-	&:hover {
-		box-shadow: 0 0 5px rgb(0 0 0 / 20%);
+		&:hover {
+			box-shadow: 0 0 5px rgb(0 0 0 / 20%);
+		}
 	}
 
 	&.selected {

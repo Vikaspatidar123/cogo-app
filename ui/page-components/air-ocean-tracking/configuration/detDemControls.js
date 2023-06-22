@@ -3,6 +3,7 @@ const detDemControls = [
 		name        : 'origin_detention',
 		label       : 'At Origin',
 		type        : 'number',
+		arrow       : false,
 		placeholder : 'Enter number of days',
 		suffix      : 'free detention days',
 		rules       : {
@@ -17,6 +18,7 @@ const detDemControls = [
 		name        : 'destination_detention',
 		label       : 'At Destination',
 		type        : 'number',
+		arrow       : false,
 		placeholder : 'Enter number of days',
 		suffix      : 'free detention days',
 		rules       : {
@@ -30,6 +32,7 @@ const detDemControls = [
 	{
 		name        : 'destination_demurrage',
 		type        : 'number',
+		arrow       : false,
 		placeholder : 'Enter number of days',
 		suffix      : 'free demurrage days',
 		rules       : {

@@ -1,6 +1,7 @@
 .skeleton_wrapper {
 	display: flex;
 	margin: 10px;
+	justify-content: center;
 }
 
 .skeleton_div {

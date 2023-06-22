@@ -224,6 +224,14 @@ const navigationMappings = {
 				icon        : <IcMUpwardGraph width={40} height={40} fill="#fbd221" />,
 				description : 'contract management',
 			},
+			{
+				key         : 'saas_planning-manage_rfq',
+				title       : 'Manage Rfq',
+				href        : '/manage-rfq',
+				as          : '/manage-rfq',
+				mobileIcon  : <IcMQuotations width={20} height={20} />,
+				description : 'Request For Quotation',
+			},
 		],
 	},
 
@@ -232,15 +240,6 @@ const navigationMappings = {
 		title     : 'Terms and Conditions',
 		href      : '/accept-terms-and-conditions',
 		showInNav : false,
-	},
-
-	app_manage_rfq: {
-		key        : 'app_manage_rfq',
-		title      : 'Manage Rfq',
-		href       : '/manage-rfq',
-		as         : '/manage-rfq',
-		showInNav  : true,
-		mobileIcon : <IcMQuotations width={20} height={20} />,
 	},
 
 	app_documents: {

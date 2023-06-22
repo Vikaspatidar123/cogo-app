@@ -10,7 +10,7 @@ import styles from './styles.module.css';
 
 import OTPLayout from '@/packages/forms/Business/OTPLayout';
 
-const OTP_LENGTH = 6;
+const OTP_LENGTH = 4;
 
 function OTPLoginForm({ setMode = () => {}, otpId = '', mobileNumber = {} }) {
 	const [otpValue, setOtpValue] = useState('');

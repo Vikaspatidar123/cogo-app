@@ -1,5 +1,4 @@
 import { Tooltip, Placeholder } from '@cogoport/components';
-import { IcMArrowRotateDown } from '@cogoport/icons-react';
 import { useState, useEffect } from 'react';
 
 import useGetDrillDownData from '../../../hooks/useGetDrillDownData';
@@ -20,12 +19,16 @@ function Item({
 	functions,
 	sort,
 }) {
-	const { refetchDrillDownData, drillDownData, drillDownLoading } = useGetDrillDownData();
+	const {
+		// refetchDrillDownData,
+		drillDownData,
+		drillDownLoading,
+	} = useGetDrillDownData();
 	const [showDrill, setShowDrill] = useState(false);
-	const onOpen = (itm) => {
-		setShowDrill(!showDrill);
-		if (!showDrill) refetchDrillDownData(itm?.billId);
-	};
+	// const onOpen = (itm) => {
+	// 	setShowDrill(!showDrill);
+	// 	if (!showDrill) refetchDrillDownData(itm?.billId);
+	// };
 	useEffect(() => {
 		setShowDrill(false);
 	}, [sort]);
@@ -50,8 +53,8 @@ function Item({
 	};
 	const renderItem = (itm) => (
 		<div
-			className={`${styles.container} ${showDrill && styles.displayDrill && styles.mobile
-			}`}
+			className={`${styles.container} ${showDrill
+				&& styles.displayDrill && styles.mobile}`}
 		>
 			<div className={styles.mobile_table}>
 				<MobileView
@@ -80,7 +83,7 @@ function Item({
 				))}
 			</div>
 
-			<div
+			{/* <div
 				className={styles.arrow}
 				role="presentation"
 				onClick={() => onOpen(itm)}
@@ -92,12 +95,12 @@ function Item({
 						className={`${showDrill && 'rotateIcon'} hyperlinkIcon`}
 					/>
 				</div>
-			</div>
+			</div> */}
 
 			<div
 				className={
-          showDrill ? `${styles.drill_down}${styles.displayDrill}` : `${styles.drill_down}`
-        }
+					showDrill ? `${styles.drill_down}${styles.displayDrill}` : `${styles.drill_down}`
+				}
 			>
 				<div className={styles.mobile_bill}>
 					{!drillDownLoading && (

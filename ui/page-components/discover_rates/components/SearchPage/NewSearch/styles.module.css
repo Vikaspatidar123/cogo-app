@@ -6,8 +6,8 @@
 .app {
 	padding: 16px;
 	margin-top: 24px;
-	background: #f9f9f9;
 	border-radius: 8px;
+	box-shadow: rgb(17 17 26 / 5%) 0 1px 0, rgb(17 17 26 / 10%) 0 0 8px;
 }
 
 .small {

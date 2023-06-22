@@ -19,6 +19,7 @@ function asyncFieldsLocations(labelKey = 'name', valueKey = 'id') {
 		valueKey,
 		labelKey,
 		endpoint    : 'list_locations',
+		// authKey     : 'get_list_locations',
 		initialCall : true,
 		params      : {
 			filters    : { status: 'active' },
@@ -67,6 +68,7 @@ function asyncFieldsHsCodeCountries() {
 		defaultParams : { page_limit: 20 },
 	};
 }
+
 function asyncFieldsPinCodeLocations(labelKey = 'name', valueKey = 'id') {
 	return {
 		valueKey,
@@ -126,8 +128,8 @@ function asyncCountrySelect() {
 		params   : {
 			filters  : { type: 'country' },
 			includes : {
-				default_params_required: true,
-				// flag_icon_url: true, // country_code: true,
+				default_params_required : true,
+				flag_icon_url           : true, // country_code: true,
 			},
 			page_limit : 20,
 			sort_by    : 'name',
@@ -259,6 +261,36 @@ function asyncProductList() {
 		initialCall : false,
 	};
 }
+
+function asyncFieldsShippingLine() {
+	return {
+		labelKey    : 'short_name',
+		valueKey    : 'id',
+		endpoint    : 'list_operators',
+		initialCall : true,
+		params      : {
+			filters    : { operator_type: 'shipping_line', status: 'active' },
+			page_limit : 100,
+			sort_by    : 'short_name',
+			sort_type  : 'asc',
+		},
+	};
+}
+
+function asyncFieldsAirLine() {
+	return {
+		labelKey    : 'label',
+		valueKey    : 'id',
+		endpoint    : 'list_operators',
+		initialCall : true,
+		params      : {
+			filters    : { operator_type: 'airline', status: 'active' },
+			page_limit : 100,
+			sort_by    : 'short_name',
+			sort_type  : 'asc',
+		},
+	};
+}
 function asyncTaxNumbers() {
 	return {
 		labelKey    : 'label',
@@ -325,22 +357,24 @@ export {
 	asyncFieldsPartner,
 	asyncFieldsPartnerRoles,
 	asyncFieldsHsCodeCountries,
+	asyncFieldsCommoditiesList,
+	asyncInsuranceCountryList,
+	asyncFieldsPartnerQuotation,
+	asyncProductList,
+	asyncFieldsShippingLine,
+	asyncFieldsAirLine,
 	asyncFieldsPinCodeLocations,
 	asyncFieldsHScode,
 	asyncCountrySelect,
 	asyncAirLinesSelect,
-	asyncFieldsCommoditiesList,
-	asyncInsuranceCountryList,
 	asyncAirLines,
 	asyncShippingLines,
-	asyncFieldsPartnerQuotation,
 	asyncInsuranceCommodities,
 	asyncTradeParties,
 	asyncOrganizationUsers,
 	asyncHsCodes,
 	asyncHsCodesCountries,
 	asyncOrganizationBranches,
-	asyncProductList,
 	asyncTaxNumbers,
 	asyncTradeContacts,
 	asyncFieldsSixDigitHsCode,

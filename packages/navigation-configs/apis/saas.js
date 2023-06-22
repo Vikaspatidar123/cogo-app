@@ -355,19 +355,6 @@ const saas = {
 
 	app_saas_load_container: [],
 
-	app_saas_order_history: [
-		{
-			api          : 'get_saas_trade_engine_order_history',
-			access_type  : 'private',
-			service_name : 'order_history',
-		},
-		{
-			api          : 'get_saas_trade_engine',
-			access_type  : 'private',
-			service_name : 'order_history',
-		},
-	],
-
 	checkout_promotions: [
 		{
 			api          : 'list_checkout_applicable_promocodes',
@@ -1152,6 +1139,130 @@ const saas = {
 			service_name : 'cogopoint',
 		},
 	],
+	app_saas_product_inventory: [
+		{
+			api         : 'put_saas_product_archive',
+			access_type : 'private',
+			module      : 'product',
+			feature     : 'product',
+		},
+		{
+			api         : 'get_saas_product',
+			access_type : 'private',
+			module      : 'product',
+			feature     : 'product',
+		},
+		{
+			api         : 'get_saas_product_category',
+			access_type : 'private',
+			module      : 'product',
+			feature     : 'product',
+		},
+		{
+			api         : 'get_saas_product_top_products',
+			access_type : 'private',
+			module      : 'product',
+			feature     : 'product',
+		},
+		{
+			api         : 'get_saas_hs_code_section',
+			access_type : 'private',
+			module      : 'product',
+			feature     : 'product',
+		},
+		{
+			api         : 'get_saas_hs_code_heading',
+			access_type : 'private',
+			module      : 'product',
+			feature     : 'product',
+		},
+		{
+			api         : 'get_saas_hs_code',
+			access_type : 'private',
+			module      : 'product',
+			feature     : 'product',
+		},
+		{
+			api         : 'get_saas_product_category_list',
+			access_type : 'private',
+			module      : 'product',
+			feature     : 'product',
+		},
+		{
+			api         : 'get_saas_product_list',
+			access_type : 'private',
+			module      : 'product',
+			feature     : 'product',
+		},
+		{
+			api         : 'post_saas_product',
+			access_type : 'private',
+			module      : 'product',
+			feature     : 'product',
+		},
+		{
+			api         : 'get_saas_product_top_list',
+			access_type : 'private',
+			module      : 'product',
+			feature     : 'product',
+		},
+		{
+			api         : 'get_saas_product_total_revenue',
+			access_type : 'private',
+			module      : 'product',
+			feature     : 'product',
+		},
+		{
+			api         : 'put_saas_product_unarchived',
+			access_type : 'private',
+			module      : 'product',
+			feature     : 'product',
+		},
+		{
+			api         : 'get_saas_hs_code_countries',
+			access_type : 'private',
+			module      : 'product',
+			feature     : 'product',
+		},
+		{
+			api         : 'put_saas_product_unarchive',
+			access_type : 'private',
+			module      : 'product',
+			feature     : 'product',
+		},
+		{
+			api         : 'delete_saas_product',
+			access_type : 'private',
+			module      : 'product',
+			feature     : 'product',
+		},
+		{
+			api         : 'put_saas_product',
+			access_type : 'private',
+			module      : 'product',
+			feature     : 'product',
+		},
+		{
+			api         : 'get_saas_hs_code_search',
+			access_type : 'private',
+			module      : 'product',
+			feature     : 'product',
+		},
+	],
+	app_saas_order_history: [
+		{
+			api         : 'get_saas_trade_engine_order_history',
+			access_type : 'private',
+			module      : 'order-history',
+			feature     : 'order-history',
+		},
+		{
+			api         : 'get_saas_trade_engine',
+			access_type : 'private',
+			module      : 'order-history',
+			feature     : 'order-history',
+		},
+	],
 	app_saas_air_ocean_tracking: [
 		{
 			api          : 'update_external_reference_number',
@@ -1172,7 +1283,6 @@ const saas = {
 			api          : 'list_saas_air_subscriptions_summary',
 			access_type  : 'private',
 			service_name : 'air_tracking',
-
 		},
 	],
 };

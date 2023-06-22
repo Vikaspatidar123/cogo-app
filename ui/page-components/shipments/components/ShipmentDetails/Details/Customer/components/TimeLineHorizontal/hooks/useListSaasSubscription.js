@@ -19,6 +19,7 @@ const ListSaasSubscriptions = () => {
 				filters: {
 					organization_branch_id : query?.branch_id,
 					status                 : 'active',
+					shipment_id            : query?.id,
 				},
 				page,
 				page_limit: 9,

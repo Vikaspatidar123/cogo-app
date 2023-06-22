@@ -79,6 +79,7 @@
 	white-space: nowrap;
 
 	@media (max-width: 768px) {
+		justify-content: normal;
 		width: 40%;
 	}
 }

@@ -62,11 +62,15 @@ const saas = {
 	},
 
 	'/saas/trade-partner': {
-		navigation : 'saas_tools-trade_partner',
+		navigation : 'saas_planning-trade_partner',
 		isMainNav  : true,
 	},
 	'/saas/trade-partner/[trade_id]': {
-		navigation : 'saas_tools-trade_partner',
+		navigation : 'saas_planning-trade_partner',
+		isMainNav  : true,
+	},
+	'/saas/trade-partner/archived': {
+		navigation : 'saas_planning-trade_partner',
 		isMainNav  : true,
 	},
 	'/saas/premium-services/import-export-doc': {
@@ -156,6 +160,22 @@ const saas = {
 		navigation : 'saas_cogostore',
 		isMainNav  : true,
 	},
+	'/saas/order-history': {
+		navigation : 'saas_premium_services-order_history',
+		isMainNav  : true,
+	},
+	'/saas/product-inventory': {
+		navigation : 'saas_planning-product_inventory',
+		isMainNav  : true,
+	},
+	'/saas/product-inventory/archived': {
+		navigation : 'saas_planning-product_inventory',
+		isMainNav  : true,
+	},
+	'/saas/transaction-history': {
+		navigation : 'saas_transaction_history',
+		isMainNav  : true,
+	},
 	'/saas/tools/air-ocean-tracking': {
 		navigation : 'saas_tools-air_ocean_tracking_v2',
 		isMainNav  : true,
@@ -169,8 +189,7 @@ const saas = {
 		isMainNav  : true,
 	},
 	'/saas/tools/air-ocean-tracking/list/[trackingId]': {
-		navigation : 'saas_tools-air_ocean_tracking_v2',
-		isMainNav  : true,
+		navigation: 'saas_tools-air_ocean_tracking_v2',
 	},
 };
 

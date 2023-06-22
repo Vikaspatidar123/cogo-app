@@ -4,11 +4,7 @@ import { useEffect, useState } from 'react';
 import { checkMobileInput } from '../utils/check-mobile-input';
 import { getLocationData } from '../utils/get-location-data';
 
-import getGeoConstants from '@/ui/commons/constants/geo';
-
 const useMobileLoginForm = ({ formValues = {}, onSendOtp = () => {}, setValue = () => {} }) => {
-	const geo = getGeoConstants();
-
 	const [customError, setCustomError] = useState('');
 	const [locationData, setLocationData] = useState({});
 
@@ -36,10 +32,10 @@ const useMobileLoginForm = ({ formValues = {}, onSendOtp = () => {}, setValue = 
 		if (!isEmpty(locationData)) {
 			setValue(
 				'mobile_number',
-				{ country_code: locationData?.mobile_country_code || geo?.country?.mobile_country_code },
+				{ country_code: locationData?.mobile_country_code || '' },
 			);
 		}
-	}, [locationData, setValue, geo?.country?.mobile_country_code]);
+	}, [locationData, setValue]);
 
 	useEffect(() => {
 		const hasValues = checkMobileInput(formValues);

@@ -5,8 +5,6 @@ import { checkMobileInput } from '../utils/check-mobile-input';
 import { getIdByMobileCountryCode } from '../utils/get-id-by-mobile-country-code';
 import { getLocationData } from '../utils/get-location-data';
 
-import getGeoConstants from '@/ui/commons/constants/geo';
-
 const useSignupForm = ({
 	setCustomError,
 	setCaptchaError,
@@ -21,8 +19,6 @@ const useSignupForm = ({
 	setUserDetails,
 	signupAuthentication,
 }) => {
-	const geo = getGeoConstants();
-
 	const [locationData, setLocationData] = useState({});
 
 	const checkMobileDetails = (val) => {
@@ -85,10 +81,10 @@ const useSignupForm = ({
 		if (!isEmpty(locationData)) {
 			setValue(
 				'mobile_number',
-				{ country_code: locationData.mobile_country_code || geo.country.mobile_country_code },
+				{ country_code: locationData.mobile_country_code || '' },
 			);
 		}
-	}, [locationData, setValue, geo.country.mobile_country_code]);
+	}, [locationData, setValue]);
 
 	useEffect(() => {
 		if (mobileCodeValue?.country_code) {

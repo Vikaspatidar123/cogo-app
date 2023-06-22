@@ -1,4 +1,5 @@
 import book from './config/book';
+import contractManagement from './config/contract-management';
 import dashboard from './config/dashboard';
 import documents from './config/documents';
 import manageRfq from './config/manage-rfq';
@@ -17,6 +18,7 @@ const routeConfig = withPrefix({
 	...settings,
 	...dashboard,
 	...manageRfq,
+	...contractManagement,
 	...shipments,
 	...book,
 	...documents,

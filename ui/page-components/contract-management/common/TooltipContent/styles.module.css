@@ -1,0 +1,25 @@
+.tool_tip_name {
+	font-size: 12px;
+	color: #000;
+}
+
+.name {
+	display: flex;
+	align-items: center;
+	font-size: 13px;
+	font-weight: 700;
+}
+
+.code {
+	margin-left: 2px;
+	font-size: 13px;
+	color: #d99a3c;
+}
+
+.port {
+	max-width: calc(100% - 55px);
+	overflow: hidden;
+	color: #393f70;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}

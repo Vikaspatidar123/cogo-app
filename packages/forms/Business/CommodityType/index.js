@@ -11,15 +11,16 @@ import CommodityChip from './ValueChip';
 
 function CommodityType({
 	value = {},
-	onChange = () => {},
+	onChange = () => { },
 	controlFields = {},
+	showOptions = true,
 	...rest
 }) {
 	const typeValue = value?.container_type;
 	const [objs, setObjs] = useState({});
 	const [view, setView] = useState(typeValue ? 'commodity' : 'type');
 	const [commodityOptions, setCommodityOptions] = useState([]);
-	const { id } = rest;
+	const { id, disabled = false } = rest;
 
 	let label = 'Container Type';
 
@@ -38,17 +39,19 @@ function CommodityType({
 	if (view === 'commodity') {
 		label = (
 			<>
-				<div
-					className={styles.back}
-					role="presentation"
-					type="button"
-					id={`${id}_back`}
-					onClick={() => {
-						setView('type');
-					}}
-				>
-					<IcMArrowBack size={1.4} />
-				</div>
+				{!disabled ? (
+					<div
+						className={styles.back}
+						role="presentation"
+						type="button"
+						id={`${id}_back`}
+						onClick={() => {
+							setView('type');
+						}}
+					>
+						<IcMArrowBack size={1.4} />
+					</div>
+				) : null}
 				<div className={styles.type_label}>{`${typeLabel()} `}</div>
 				{value.commodity ? (
 					<span style={{ maxWidth: '125px', marginLeft: 4 }}>
@@ -57,6 +60,7 @@ function CommodityType({
 							onCancel={() => onChange({ ...(value || {}), commodity: '' })}
 							value={commodityOptions.find((comm) => (
 								comm.value === value.commodity))?.label || 'All Commodities'}
+							disabled={disabled}
 						/>
 					</span>
 				) : (
@@ -94,51 +98,49 @@ function CommodityType({
 				) || []).map((item) => ({ ...item, key: item.value, children: item.label })),
 			);
 		}
-	// eslint-disable-next-line react-hooks/exhaustive-deps
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [typeValue]);
-
 	return (
 		<div id={id}>
 			<div className={styles.label}>{label}</div>
-			<div className={styles.main}>
-				<div
-					className={styles.animated_container}
-					type={view === 'type' ? 'enter' : 'exit'}
-				>
-					<div>
-						<div
-							className={cl`${styles.section} ${view === 'type' ? styles.active : ''}`}
-
-						>
-							<Chips
-								{...controlFields.container_type}
-								// options={commodityOptions}
-								onChange={handleTypeChange}
-								id={`${id}_container_type`}
-							/>
+			{showOptions ? (
+				<div className={styles.main}>
+					<div
+						className={styles.animated_container}
+						type={view === 'type' ? 'enter' : 'exit'}
+					>
+						<div>
+							<div
+								className={cl`${styles.section} ${view === 'type' ? styles.active : ''}`}
+							>
+								<Chips
+									{...controlFields.container_type}
+									onChange={handleTypeChange}
+									id={`${id}_container_type`}
+								/>
+							</div>
+						</div>
+					</div>
+					<div
+						className={view === 'commodity' && !value?.commodity ? styles.enter : styles.exit}
+						type={view === 'commodity' && !value?.commodity ? 'enter' : 'exit'}
+					>
+						<div>
+							<div
+								className={cl`${styles.section} ${view === 'commodity' ? styles.active : ''}`}
+							>
+								<Chips
+									key="commodity"
+									{...controlFields.commodity}
+									onChange={handleCommodityChange}
+									options={commodityOptions}
+									id={`${id}_commodity`}
+								/>
+							</div>
 						</div>
 					</div>
 				</div>
-				<div
-					className={styles.animated_container}
-					type={view === 'commodity' && !value?.commodity ? 'enter' : 'exit'}
-				>
-					<div>
-						<div
-							className={cl`${styles.section} ${view === 'commodity' ? styles.active : ''}`}
-
-						>
-							<Chips
-								key="commodity"
-								{...controlFields.commodity}
-								onChange={handleCommodityChange}
-								options={commodityOptions}
-								id={`${id}_commodity`}
-							/>
-						</div>
-					</div>
-				</div>
-			</div>
+			) : null}
 		</div>
 	);
 }

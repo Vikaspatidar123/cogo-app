@@ -78,12 +78,16 @@ function FormElement({
 							</div>
 						) : null;
 					}
-
 					return show ? (
 						<div
 							className={styles.col}
 							style={{ width: item?.span ? getWidth(item?.span) : '100%' }}
 						>
+							{item?.inlineLabel && (
+								<div>
+									{item.inlineLabel}
+								</div>
+							)}
 							<Item
 								key={item.name}
 								name={item.name}

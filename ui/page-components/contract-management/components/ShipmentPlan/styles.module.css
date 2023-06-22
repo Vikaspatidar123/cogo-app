@@ -1,0 +1,17 @@
+.pagination_wrapper {
+	display: flex;
+	justify-content: flex-end;
+}
+
+.card_container {
+	max-height: 600px;
+	overflow: scroll;
+
+	::-webkit-scrollbar {
+		display: none;
+	}
+
+	@media (max-width: 768px) {
+		width: fit-content;
+	}
+}

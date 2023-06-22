@@ -2,9 +2,9 @@
 	display: flex;
 	align-items: center;
 	width: 100%;
+	height: 70px;
 	padding: 5px;
 	margin-right: 42px;
-	height: 70px;
 
 	@media (max-width: 767px) {
 		margin-right: 0;
@@ -17,18 +17,18 @@
 }
 
 .docs div:nth-child(2) {
-	padding: 1px !important;
 	display: flex;
 	align-items: center;
+	padding: 1px !important;
 }
 
 .column {
 	display: flex;
 	align-items: center;
+	width: 20%;
 	font-size: 14px;
 	font-weight: 500;
 	text-transform: uppercase;
-	width: 20%;
 }
 
 .error_message {

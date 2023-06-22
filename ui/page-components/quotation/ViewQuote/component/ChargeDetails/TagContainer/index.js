@@ -1,65 +1,45 @@
-import { cl } from '@cogoport/components';
-
 import styles from './styles.module.css';
 
-const renderTitle = ({ transportMode }) => {
-	if (transportMode === 'AIR') {
-		return 'Package Details: ';
-	}
-	if (transportMode === 'OCEAN') {
-		return 'Container Details: ';
-	}
-	return null;
+const TITLE_MAPPING = {
+	AIR   : 'Package Details: ',
+	OCEAN : 'Container Details: ',
 };
 
-function TagContainer({
-	transportMode,
-	packageHandling,
-	packageType,
-	quantity,
-	containerSize,
-	containerType,
-	containerCount,
-	weight,
-	volume,
-}) {
+const TAG_MAPPING_TITlE = {
+	packageHandling : { title: '', suffix: '' },
+	quantity        : { title: '', suffix: '' },
+	containerType   : { title: '', suffix: '' },
+	packageType     : { title: '', suffix: '' },
+	containerCount  : { title: 'Container Count', suffix: '' },
+	containerSize   : { title: 'Container Size', suffix: '' },
+	weight          : { title: '', suffix: 'Kgs' },
+	volume          : { title: '', suffix: 'cbm' },
+};
+
+function TagContainer(props) {
+	const {
+		transportMode,
+	} = props;
 	return (
 		<div className={styles.container}>
-			<h2 className={styles.title}>{renderTitle({ transportMode })}</h2>
-			<div className={styles.tag_row}>
-				{packageHandling && <div className={styles}>{packageHandling}</div>}
+			<h2 className={styles.title}>{TITLE_MAPPING[transportMode]}</h2>
 
-				{quantity && <div className={styles.tags}>{quantity}</div>}
-				{containerType && <div className={styles.tags}>{containerType}</div>}
-				{packageType && <div className={styles.tags}>{packageType}</div>}
-				{containerCount && (
-					<div className={cl`${styles.tags} ${styles.tags_color}`}>
-						Container Count
-						{' '}
-						{containerCount}
-					</div>
-				)}
-				{containerSize && (
-					<div className={cl`${styles.tags} ${styles.tags_color}`}>
-						Container Size
-						{' '}
-						{containerSize}
-					</div>
-				)}
-				{weight && (
-					<div className={cl`${styles.tags} ${styles.tags_color}`}>
-						{weight}
-						{' '}
-						Kgs
-					</div>
-				)}
-				{volume && (
-					<div className={cl`${styles.tags} ${styles.tags_color}`}>
-						{volume}
-						{' '}
-						cbm
-					</div>
-				)}
+			<div className={styles.tag_row}>
+				{Object.keys(TAG_MAPPING_TITlE).map((tag) => {
+					const { title, suffix } = TAG_MAPPING_TITlE[tag];
+					return (
+						props?.[tag] && (
+							<div className={styles.tags}>
+								{title}
+								{' '}
+								{props?.[tag]}
+								{' '}
+								{suffix}
+							</div>
+						)
+					);
+				})}
+
 			</div>
 		</div>
 	);

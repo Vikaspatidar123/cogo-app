@@ -1,39 +1,25 @@
-import { useEffect } from 'react';
-
 import { useRouter } from '@/packages/next';
 import { useRequestBf } from '@/packages/request';
 import { useSelector } from '@/packages/store';
 
 const useViewQuote = () => {
 	const { query } = useRouter();
-	const { quotation_id } = query;
+	const { id } = query;
 
 	const { profile } = useSelector((state) => state);
 
-	const [{ loading, data: viewQuoteData }, quoteTrigger] = useRequestBf({
+	const [{ loading, data: viewQuoteData }] = useRequestBf({
 		method  : 'get',
 		url     : '/saas/quote',
 		authKey : 'get_saas_quote',
-	}, { manual: true });
-
-	const refetchQuote = async () => {
-		try {
-			await quoteTrigger({
-				params: {
-					quotationId : quotation_id,
-					userId      : profile.id,
-				},
-			});
-		} catch (error) {
-			console.log(error, 'error');
-		}
-	};
-	useEffect(() => {
-		refetchQuote();
-	}, []);
+		params  : {
+			quotationId : id,
+			userId      : profile.id,
+		},
+	}, { manual: false });
 
 	return {
-		loading, viewQuoteData, quoteId: quotation_id,
+		loading, viewQuoteData, quoteId: id,
 	};
 };
 

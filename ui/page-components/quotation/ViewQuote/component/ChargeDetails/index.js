@@ -1,9 +1,12 @@
 import { cl } from '@cogoport/components';
+import { isEmpty } from '@cogoport/utils';
+
+import { CURRENCY_OPTION } from '../../constant/currencyOption';
 
 import styles from './styles.module.css';
 import TagContainer from './TagContainer';
 
-import { shortFormatNumber } from '@/ui/commons/utils/getShortFormatNumber';
+import formatAmount from '@/ui/commons/utils/formatAmount';
 
 const CHARGE_MAPPING = {
 	productCost         : 'Consignment Total',
@@ -12,14 +15,14 @@ const CHARGE_MAPPING = {
 	basicFreightCharges : 'Basic Freight',
 };
 
-const renderComment = ({ comments }) => (
-	comments && (
+function RenderComment({ comments }) {
+	return comments && (
 		<div className={styles.comment}>
 			<h2 className={cl`${styles.title} ${styles.notes_title}`}>Additional Notes:</h2>
 			<p className={styles.text}>{comments}</p>
 		</div>
-	)
-);
+	);
+}
 
 function ChargeDetails(props) {
 	const {
@@ -33,6 +36,7 @@ function ChargeDetails(props) {
 		productCost,
 		...rest
 	} = props;
+
 	const { additionalCharges = [], incotermCharges = [] } = additionalChargesList || {};
 	const charges = [...additionalCharges, ...incotermCharges];
 
@@ -43,7 +47,7 @@ function ChargeDetails(props) {
 					<TagContainer {...rest} />
 				</div>
 				<div className={styles.comment_web_view}>
-					{renderComment({ comments })}
+					<RenderComment comments={comments} />
 				</div>
 			</div>
 			<div className={styles.charge_container}>
@@ -52,29 +56,44 @@ function ChargeDetails(props) {
 				{Object.keys(CHARGE_MAPPING).map((charge, index) => (
 					<div key={charge} className={cl`${styles.row} ${index % 2 === 0 ? styles.row_bg : ''}`}>
 						<p className={styles.text}>{CHARGE_MAPPING[charge]}</p>
-						{shortFormatNumber(props?.[charge], currency)}
+						{formatAmount({
+							amount  : props?.[charge],
+							currency,
+							options : CURRENCY_OPTION,
+						})}
 
 					</div>
 				))}
 
-				{charges?.length !== 0
+				{!isEmpty(charges)
 					&& charges?.map((charge, index) => (
 						<div
 							key={`${charge?.name}_${index}`}
 							className={cl`${styles.row} ${index % 2 === 0 ? styles.row_bg : ''}`}
 						>
 							<p className={styles.text}>{charge?.name}</p>
-							{shortFormatNumber(charge?.value, currency)}
+							{formatAmount({
+								amount  : charge?.value,
+								currency,
+								options : CURRENCY_OPTION,
+							})}
 						</div>
 					))}
 
 				<div className={cl`${styles.row} ${styles.total}`}>
 					<p>Quotation Total</p>
-					<p className={styles.total_amt}>{shortFormatNumber(quotationAmount, currency)}</p>
+					<p className={styles.total_amt}>
+						{formatAmount({
+							amount  : quotationAmount,
+							currency,
+							options : CURRENCY_OPTION,
+						})}
+					</p>
 				</div>
 			</div>
 			<div className={styles.comment_mobile_view}>
-				{renderComment({ comments })}
+				<RenderComment comments={comments} />
+
 			</div>
 		</div>
 	);

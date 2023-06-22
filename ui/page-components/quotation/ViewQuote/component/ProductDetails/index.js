@@ -1,65 +1,57 @@
 import { cl } from '@cogoport/components';
 
+import productConfig from '../../configuration/productConfig';
+import { CURRENCY_OPTION } from '../../constant/currencyOption';
+
 import styles from './styles.module.css';
 
-import { shortFormatNumber } from '@/ui/commons/utils/getShortFormatNumber';
+import formatAmount from '@/ui/commons/utils/formatAmount';
 
-// const config = [
-// 	{
-// 		key   : 'name',
-// 		title : 'Name',
-// 	},
-// 	{
-// 		key   : 'description',
-// 		title : 'Description',
-// 		width : '180px',
-// 	},
-// 	{
-// 		key   : 'hsCode',
-// 		title : 'HS Code',
-// 		width : '80px',
-// 	},
-// 	{
-// 		key   : 'quantity',
-// 		title : 'Quantity',
-// 		width : '70px',
-// 	},
-// 	{
-// 		key   : 'name',
-// 		title : 'Selling Price',
-// 	},
-// 	{
-// 		key   : 'name',
-// 		title : 'Total Price',
-// 	},
-// ];
+const renderData = (key, data, currency) => {
+	if (key === 'price' || key === 'netAmount') {
+		return formatAmount({
+			amount  : data?.[key],
+			currency,
+			options : CURRENCY_OPTION,
+		});
+	}
+	return data?.[key] || '--';
+};
 
 function ProductDetails({ products = [], currency }) {
 	const productsLength = products?.length;
 	return (
 		<div className={styles.container}>
 			<h2 className={styles.title}>Product Details</h2>
+
 			<div className={styles.scroll_container}>
 				<div className={cl`${styles.row} ${styles.cardheader}`}>
-					<div className={styles.col}>Name</div>
-					<div className={styles.col} style={{ width: '180px' }}>Description</div>
-					<div className={styles.col} style={{ width: '80px' }}>HS Code</div>
-					<div className={styles.col} style={{ width: '70px' }}>Quantity</div>
-					<div className={styles.col}>Selling Price</div>
-					<div className={styles.col}>Total Price</div>
+					{productConfig.map((config) => (
+						<div
+							key={config?.key}
+							style={{ width: config.width ?? '' }}
+							className={styles.col}
+						>
+							{config?.name}
+						</div>
+					))}
 				</div>
+
 				{(products || []).map((product, index) => (
 					<div
 						className={cl`${styles.row} ${styles.tbody}
 					${index % 2 === 0 ? styles.row_bg : ''} ${index === productsLength - 1 ? styles.last_row : ''}`}
 						key={product?.productId}
 					>
-						<div className={styles.col}>{product?.name}</div>
-						<div className={styles.col} style={{ width: '180px' }}>{product?.description || '--'}</div>
-						<div className={styles.col} style={{ width: '80px' }}>{product?.hsCode}</div>
-						<div className={styles.col} style={{ width: '70px' }}>{product?.quantity}</div>
-						<div className={styles.col}>{shortFormatNumber(product?.price, currency)}</div>
-						<div className={styles.col}>{shortFormatNumber(product?.netAmount, currency)}</div>
+						{productConfig.map((config) => (
+							<div
+								key={config?.key}
+								style={{ width: config.width ?? '' }}
+								className={styles.col}
+							>
+								{renderData(config.key, product, currency)}
+							</div>
+						))}
 					</div>
 				))}
 			</div>

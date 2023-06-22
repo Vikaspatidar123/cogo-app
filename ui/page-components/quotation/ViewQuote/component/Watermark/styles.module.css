@@ -1,17 +1,13 @@
 .container {
 	position: absolute;
 	bottom: 9%;
-	left: 16%;
+	left: 14%;
 	display: flex;
 	align-items: center;
 	opacity: 0.1;
 
 	@media screen and (max-width: 767px) {
-		bottom: 10%;
+		bottom: 6%;
 		left: 28%;
 	}
-}
-
-.logo {
-	width: 15px;
 }

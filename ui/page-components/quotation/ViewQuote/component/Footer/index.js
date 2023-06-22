@@ -4,11 +4,11 @@ import styles from './styles.module.css';
 
 function Footer({ sellerDetails = {} }) {
 	const {
-		taxNumber,
-		pocPhoneCode,
-		pocPhoneNumber,
-		pocEmail,
-	} = sellerDetails;
+		taxNumber = '',
+		pocPhoneCode = '',
+		pocPhoneNumber = '',
+		pocEmail = '',
+	} = sellerDetails || {};
 	return (
 		<div className={styles.container}>
 			<div className={styles.row}>

@@ -9,9 +9,6 @@ const QUOTATION_INFO = {
 function BuyerDetails(props) {
 	const {
 		buyerDetails = {},
-		// expiryDate = '',
-		// quotationNo = '',
-		// quotationDate,
 	} = props;
 	const {
 		billingPartyName,
@@ -45,19 +42,6 @@ function BuyerDetails(props) {
 						{props?.[info]}
 					</div>
 				))}
-				{/* <Row>
-					<p>Quotation No: </p>
-					{quotationNo}
-				</Row>
-				<Row>
-					<p>Quotation Date: </p>
-					{quotationDate}
-				</Row>
-				<Row>
-					<p>Expiry Date:</p>
-					{' '}
-					{expiryDate}
-				</Row> */}
 			</div>
 		</div>
 	);

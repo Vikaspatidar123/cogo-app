@@ -2,7 +2,7 @@ import { Button, ButtonIcon } from '@cogoport/components';
 import { IcMArrowBack } from '@cogoport/icons-react';
 import { useState } from 'react';
 
-import iconUrl from '../../utils/iconUrl.json';
+import useRedirectUrl from '../../utils/redirectUrl';
 import useViewQuote from '../hook/useViewQuote';
 
 import BuyerDetails from './BuyerDetails';
@@ -15,11 +15,14 @@ import styles from './styles.module.css';
 import TransportDetails from './TransportDetails';
 import Watermark from './Watermark';
 
+import { Image } from '@/packages/next';
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
+
 function ViewQuote() {
-	// const [showIcon, setShowIcon] = useState(false);
 	const [sendQuoteModal, setSendQuoteModal] = useState(false);
 
-	const { loading = false, viewQuoteData = {}, quoteId } = useViewQuote();
+	const { downloadQuotation, redirectEdit, redirectViewQuote } = useRedirectUrl();
+	const { loading = false, viewQuoteData = {}, quoteId = '' } = useViewQuote();
 
 	const { buyerDetails = {}, sellerDetails = {}, documentStatus = '' } = viewQuoteData || {};
 
@@ -27,10 +30,17 @@ function ViewQuote() {
 		<>
 			{loading && (
 				<div className={styles.loader}>
-					<img src={iconUrl.loading} className={styles.cogoloader} alt="loading" />
+					<Image
+						src={GLOBAL_CONSTANTS.image_url.loading}
+						className={styles.cogoloader}
+						alt="loading"
+						width={100}
+						height={100}
+					/>
 					<div className={styles.modal} />
 				</div>
 			)}
+
 			<div className={styles.main_container}>
 				<ButtonIcon size="xl" icon={<IcMArrowBack />} themeType="primary" />
 
@@ -51,43 +61,46 @@ function ViewQuote() {
 						<Button
 							className={styles.edit}
 							themeType="tertiary"
-							// onClick={() => redirectViewQuote()}
+							type="button"
+							onClick={() => redirectViewQuote()}
 						>
 							Back
 						</Button>
 						<Button
 							themeType="accent"
-							// onClick={() => downloadQuotation(id)}
+							type="button"
+							onClick={() => downloadQuotation(quoteId)}
 						>
 							Download
 						</Button>
 					</div>
+
 					<div className={styles.flex_btn}>
 						{documentStatus !== 'SENT' && (
 							<Button
 								themeType="tertiary"
-								className="secondary md edit"
-								// onClick={() => redirectEdit(id)}
+								type="button"
+								className={styles.edit}
+								onClick={() => redirectEdit(quoteId)}
 							>
 								Edit
 							</Button>
 						)}
 						<Button
 							themeType="accent"
-							className={styles.edit}
+							type="button"
 							onClick={() => setSendQuoteModal(true)}
-							// disabled={sendLoading}
 						>
 							{documentStatus === 'SENT' ? 'RESEND' : 'SEND'}
 						</Button>
 					</div>
 				</div>
 			</div>
+
 			<SendQuoteModal
 				quoteId={quoteId}
 				sendQuoteModal={sendQuoteModal}
 				setSendQuoteModal={setSendQuoteModal}
-				// sendQuotation={sendQuotation}
 				pocName={buyerDetails?.pocName}
 				email={buyerDetails?.pocEmail}
 			/>

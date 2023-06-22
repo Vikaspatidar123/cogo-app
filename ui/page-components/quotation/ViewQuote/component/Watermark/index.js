@@ -1,11 +1,12 @@
-import iconUrl from '../../../utils/iconUrl.json';
-
 import styles from './styles.module.css';
+
+import { Image } from '@/packages/next';
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
 function Watermark() {
 	return (
 		<div className={styles.container}>
-			<img src={iconUrl.cogoportLogo} alt="logo" className={styles.logo} />
+			<Image src={GLOBAL_CONSTANTS.image_url.cogoport_logo} alt="logo" width={150} height={80} />
 		</div>
 	);
 }

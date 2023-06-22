@@ -70,7 +70,7 @@ function ShipmentCard({
 								</div>
 								{shipment_id !== null ? (
 									<div className={styles.card}>
-										<div className={styles.card_tag} isPlan={isEmpty(plan_object)}>
+										<div className={styles.card_tag}>
 											{isEmpty(plan_object) ? 'Without Plan' : 'With Plan'}
 										</div>
 										<div className={styles.inner_card}>
@@ -116,11 +116,11 @@ function ShipmentCard({
 											<div className={styles.right_side}>
 												<div className={styles.freight_price}>
 													{formatAmount({
-														amount   : net_total || 0,
-														currency : net_total_price_currency || 'INR',
-														options  : {
-															notation : 'standard',
-															style    : 'currency',
+														amount: net_total || 0,
+														currency: net_total_price_currency || 'INR',
+														options: {
+															notation: 'standard',
+															style: 'currency',
 														},
 													})}
 												</div>

@@ -33,8 +33,9 @@ function Route({ val, source }) {
 	} = destination || {};
 
 	const countryName = (item) => item?.split(',').slice(-1)[0];
+	const width = source === 'modal' ? '100%' : '32%';
 	return (
-		<div className={styles.container} stretch={source === 'modal'}>
+		<div className={styles.container} style={{ width }}>
 			<div className={styles.header}>
 				<div className={styles.service_icon}>{SERVICE_ICON_MAPPING[service_type]}</div>
 				<div className={styles.service}>{upperCase(service_type).slice(0, 3)}</div>

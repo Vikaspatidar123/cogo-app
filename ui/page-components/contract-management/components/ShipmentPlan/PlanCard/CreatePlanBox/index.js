@@ -1,4 +1,3 @@
-import { ButtonIcon } from '@cogoport/components';
 import { IcMPlusInCircle } from '@cogoport/icons-react';
 import React from 'react';
 

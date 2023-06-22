@@ -308,5 +308,11 @@ const navigationMappings = {
 		showInNav : false,
 
 	},
+	export_factoring: {
+		key   : 'export_factoring',
+		title : 'Export Factoring',
+		href  : '/v2/export-factoring',
+		as    : '/v2/export-factoring',
+	},
 };
 export default navigationMappings;

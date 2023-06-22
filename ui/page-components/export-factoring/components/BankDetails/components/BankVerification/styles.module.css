@@ -1,0 +1,55 @@
+.header{
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.subHeader{
+    padding: 12px 16px 12px 16px;
+    border-radius: 8px;
+    background: #F0F2F4;
+    margin: 10px 0px;
+}
+
+.flexDiv{
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 0px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid #E0E0E0;
+}
+
+.title{
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.description{
+    font-size: 12px;
+    color: #9E9E9E;
+}
+.formDiv{
+    width: 60%;
+    padding: 0px;
+}
+
+.field {
+	margin: 0 0 15px;
+    padding-left: 20px;
+}
+
+.field_name {
+	margin: 0 0 4px;
+	font-size: 16px;
+	font-weight: 500;
+	color: #4f4f4f;
+}
+
+.error_text {
+	color: red;
+}
+
+.button_wrapper {
+	display: flex;
+	justify-content: flex-end;
+	margin: 20px 0;
+}

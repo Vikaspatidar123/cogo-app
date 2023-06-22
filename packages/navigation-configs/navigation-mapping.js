@@ -9,7 +9,7 @@
 // isSubNavs is used to show sub navigations
 
 import {
-	IcMQuotations,
+	IcMContractRates,
 	IcMFfreferigeratedCargoType,
 	IcADutiesTaxes,
 	IcAFormsAndCertificates,
@@ -27,6 +27,9 @@ import {
 	IcADocumentTemplates,
 	IcMPartnersCogoport,
 	IcAProfessionalQuotations,
+	IcMUpwardGraph,
+	IcMDashboard,
+	IcMBookingDesk,
 } from '@cogoport/icons-react';
 
 const navigationMappings = {
@@ -36,23 +39,25 @@ const navigationMappings = {
 		href       : '/dashboard',
 		as         : '/dashboard',
 		showInNav  : true,
-		mobileIcon : <IcMQuotations width={20} height={20} />,
+		mobileIcon : <IcMDashboard width={20} height={20} />,
 	},
 
 	app_discover_rates: {
-		key       : 'app_discover_rates',
-		title     : 'Discover Rates',
-		href      : '/book',
-		as        : '/book',
-		showInNav : true,
+		key        : 'app_discover_rates',
+		title      : 'Discover Rates',
+		href       : '/book',
+		as         : '/book',
+		showInNav  : true,
+		mobileIcon : <IcMContractRates width={20} height={20} />,
 	},
 	app_bookings: {
-		key       : 'app_bookings',
-		title     : 'Shipments',
-		href      : '/shipments',
-		as        : '/shipments',
-		icon      : 'nav-booking',
-		showInNav : true,
+		key        : 'app_bookings',
+		title      : 'Shipments',
+		href       : '/shipments',
+		as         : '/shipments',
+		icon       : 'nav-booking',
+		showInNav  : true,
+		mobileIcon : <IcMBookingDesk width={20} height={20} />,
 	},
 	saas_tools: {
 		key       : 'saas_tools',
@@ -129,7 +134,7 @@ const navigationMappings = {
 				title       : 'Insurance',
 				href        : '/saas/insurance/list',
 				as          : '/saas/insurance/list',
-				icon        : <IcMAppInsurance width={55} height={55} fill="red" />,
+				icon        : <IcMAppInsurance width={55} height={55} fill="#fbd221" />,
 				description : 'Secure your cargo and avoid high unwanted costs',
 			},
 			{
@@ -210,6 +215,14 @@ const navigationMappings = {
 				href        : '/saas/quickquotation/viewlist',
 				as          : '/saas/quickquotation/viewlist',
 			},
+			{
+				key         : 'saas_planning-contract_management',
+				title       : 'Contract Management',
+				href        : '/contract-management',
+				as          : '/contract-management',
+				icon        : <IcMUpwardGraph width={40} height={40} fill="#fbd221" />,
+				description : 'contract management',
+			},
 		],
 	},
 
@@ -238,7 +251,7 @@ const navigationMappings = {
 			{
 				key   : 'saas_finance-transaction_history',
 				title : 'Transaction History',
-				icon  : <IcMFfreferigeratedCargoType width={40} height={40} fill="red" />,
+				icon  : <IcMFfreferigeratedCargoType width={40} height={40} />,
 				href  : '/saas/transaction-history',
 				as    : '/saas/transaction-history',
 			},

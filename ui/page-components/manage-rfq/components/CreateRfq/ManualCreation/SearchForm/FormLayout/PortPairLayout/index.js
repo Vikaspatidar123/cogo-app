@@ -1,4 +1,5 @@
 import { Button } from '@cogoport/components';
+import { useEffect, useMemo } from 'react';
 
 import PortPairChildLayout from './PortPairChildLayout';
 import styles from './styles.module.css';
@@ -37,11 +38,10 @@ function PortPairLayout(props) {
 
 	const handleIndex = formType === 'editform' ? editIndex : draftLength;
 
-	const { fields, remove } = useFieldArray({
+	const { fields, remove, append } = useFieldArray({
 		control,
 		name,
 	});
-
 	const handlePayload = (formData) => {
 		createRfqDraft(
 			formData,
@@ -53,11 +53,18 @@ function PortPairLayout(props) {
 	};
 	const watchSearchRates = watch('search_rates') || [];
 
-	const childEmptyValues = {};
+	const childEmptyValues = useMemo(() => {
+		const emptyValue = {};
+		return emptyValue;
+	}, []);
 
-	controls?.forEach((controlItem) => {
+	useMemo(() => controls?.forEach((controlItem) => {
 		childEmptyValues[controlItem.name] = controlItem.value || '';
-	});
+	}), [childEmptyValues, controls]);
+
+	useEffect(() => {
+		append(childEmptyValues);
+	}, [append, childEmptyValues]);
 
 	return (
 		<div className={styles.container}>

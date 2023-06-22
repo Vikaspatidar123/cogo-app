@@ -9,7 +9,7 @@ function LayoutHelp() {
 	return (
 		<div className={styles.help}>
 
-			<Popover placement="bottom" trigger="mouseenter" render={(<HelpCard />)}>
+			<Popover placement="bottom" render={(<HelpCard />)}>
 
 				<Button size="md" themeType="accent">
 					<IcMAgentManagement

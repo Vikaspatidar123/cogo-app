@@ -19,7 +19,7 @@ const getFormattedPayload = ({ val, captchaResponse, leadUserId }) => {
 };
 
 const useSignupAuthentication = ({
-	setMode, setUserDetails, captchaResponse, leadUserId,
+	setMode, setUserDetails, leadUserId, executeCaptcha,
 }) => {
 	const [{ loading: signupLoading }, trigger] = useRequest({
 		url    : 'create_sign_up_lead_user',
@@ -28,6 +28,7 @@ const useSignupAuthentication = ({
 
 	const signupAuthentication = async (val, e) => {
 		e.preventDefault();
+		const captchaResponse = await executeCaptcha();
 
 		try {
 			const payload = getFormattedPayload({ val, captchaResponse, leadUserId });

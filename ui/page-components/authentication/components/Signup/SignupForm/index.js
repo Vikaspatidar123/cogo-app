@@ -1,5 +1,5 @@
 import { Button } from '@cogoport/components';
-import { IcMArrowRight } from '@cogoport/icons-react';
+import { IcCWhatsapp, IcMArrowRight } from '@cogoport/icons-react';
 import { useRef, useState } from 'react';
 import ReCAPTCHA from 'react-google-recaptcha';
 
@@ -19,16 +19,19 @@ import CountrySelectController from '@/packages/forms/Controlled/CountrySelectCo
 import patterns from '@/ui/commons/configurations/patterns';
 
 function SignupForm({ userDetails = {}, setMode = () => { }, setUserDetails = () => { } }) {
-	const [captchaResponse, setCaptchaResponse] = useState('');
 	const recaptchaRef = useRef({});
 	const [customError, setCustomError] = useState('');
-	const [captchaError, setCaptchaError] = useState('');
 	const [leadUserId, setLeadUserId] = useState('');
+
+	const executeCaptcha = async () => {
+		const token = await recaptchaRef.current.executeAsync();
+		return token;
+	};
 
 	const {
 		signupAuthentication,
 		signupLoading,
-	} = useSignupAuthentication({ setMode, setUserDetails, captchaResponse, leadUserId });
+	} = useSignupAuthentication({ setMode, setUserDetails, leadUserId, executeCaptcha });
 
 	const { onLeadUserDetails } = useLeadUserDetails({ setLeadUserId });
 
@@ -52,7 +55,6 @@ function SignupForm({ userDetails = {}, setMode = () => { }, setUserDetails = ()
 
 	const { onSignupApiCall, makeApiCallForEmail, makeApiCallForMobile } = useSignupForm({
 		setCustomError,
-		setCaptchaError,
 		trigger,
 		errors,
 		setValue,
@@ -60,14 +62,12 @@ function SignupForm({ userDetails = {}, setMode = () => { }, setUserDetails = ()
 		mobileCodeValue,
 		onLeadUserDetails,
 		leadUserId,
-		captchaResponse,
 		setUserDetails,
 		signupAuthentication,
 	});
 
 	return (
 		<form className={styles.form_container} onSubmit={handleSubmit(onSignupApiCall)}>
-
 			<h2 className={styles.card_heading}>Welcome to Cogoport </h2>
 
 			<div className={styles.field}>
@@ -130,7 +130,12 @@ function SignupForm({ userDetails = {}, setMode = () => { }, setUserDetails = ()
 						name="is_whatsapp_number"
 						className={styles.checkbox}
 					/>
-					Number also available on WhatsApp
+					Number also available on
+					{' '}
+					<IcCWhatsapp height={20} width={20} />
+					{' '}
+					WhatsApp
+
 				</div>
 			</div>
 
@@ -162,16 +167,13 @@ function SignupForm({ userDetails = {}, setMode = () => { }, setUserDetails = ()
 				</span>
 			</div>
 
-			<div className={styles.field}>
+			<div className={styles.field_captcha}>
 				<div className={styles.recaptcha}>
 					<ReCAPTCHA
 						ref={recaptchaRef}
 						sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITEKEY}
-						onChange={(value = '') => { setCaptchaResponse(value); }}
+						size="invisible"
 					/>
-					<div className={styles.recaptcha_error}>
-						{captchaError}
-					</div>
 				</div>
 			</div>
 

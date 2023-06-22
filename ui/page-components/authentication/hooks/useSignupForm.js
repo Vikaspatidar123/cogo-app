@@ -7,7 +7,6 @@ import { getLocationData } from '../utils/get-location-data';
 
 const useSignupForm = ({
 	setCustomError,
-	setCaptchaError,
 	trigger,
 	errors,
 	setValue,
@@ -15,7 +14,6 @@ const useSignupForm = ({
 	mobileCodeValue,
 	onLeadUserDetails,
 	leadUserId,
-	captchaResponse,
 	setUserDetails,
 	signupAuthentication,
 }) => {
@@ -31,15 +29,6 @@ const useSignupForm = ({
 		}
 
 		return hasMobileValues;
-	};
-
-	const checkCaptcha = (val) => {
-		if (val) {
-			setCaptchaError('');
-			return true;
-		}
-		setCaptchaError('Please complete the reCAPTCHA verification.');
-		return false;
 	};
 
 	const makeApiCallForEmail = async () => {
@@ -59,10 +48,9 @@ const useSignupForm = ({
 	};
 
 	const onSignupApiCall = (values, e) => {
-		const hasCaptchaValue = checkCaptcha(captchaResponse);
 		const hasMobileValues = checkMobileDetails(values);
 
-		if (hasCaptchaValue && hasMobileValues) {
+		if (hasMobileValues) {
 			setUserDetails({ ...formValues });
 			signupAuthentication(values, e);
 		}

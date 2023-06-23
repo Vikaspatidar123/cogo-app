@@ -1,13 +1,13 @@
 import { Button } from '@cogoport/components';
 
-// import OtpForm from '../OtpForm';
+import OtpForm from '../OtpForm';
 
 import styles from './styles.module.css';
 
 import { useForm, MobileNumberSelectController } from '@/packages/forms';
 import useMobileNoForm from '@/ui/page-components/authentication/hooks/useMobileNoForm';
 
-function MobileNoForm() {
+function MobileLoginForm() {
 	const { handleSubmit, formState: { errors }, control } = useForm();
 
 	const {
@@ -49,4 +49,4 @@ function MobileNoForm() {
 		</form>
 	);
 }
-export default MobileNoForm;
+export default MobileLoginForm;

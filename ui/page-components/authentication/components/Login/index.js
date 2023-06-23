@@ -4,7 +4,7 @@ import { useTranslation } from 'next-i18next';
 import React, { useState } from 'react';
 
 import LoginForm from './LoginForm';
-import MobileNoForm from './MobileLogineNoForm/MobileNoForm';
+import MobileLoginForm from './MobilLogineNoForm/MobileLoginForm';
 import styles from './styles.module.css';
 
 import { useSelector } from '@/packages/store';
@@ -12,7 +12,7 @@ import LeftPanel from '@/ui/commons/components/LeftPanel';
 
 const MAPPING = {
 	emailId: <LoginForm />,
-	mobileNo: <MobileNoForm />,
+	mobileNo: <MobileLoginForm />,
 };
 function Login() {
 	const { t } = useTranslation(['common']);

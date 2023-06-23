@@ -44,14 +44,14 @@ const useSetErrorFunction = ({
 			setFormDetails((prev) => ({
 				...prev,
 				...values,
-				checkedId: checked?.[0],
-				type: [insuranceType?.[0], uploadType],
+				checkedId : checked?.[0],
+				type      : [insuranceType?.[0], uploadType],
 			}));
 			setActiveStepper(() => ({
-				1: true,
-				2: 'pro',
-				3: false,
-				svg: 1,
+				1   : true,
+				2   : 'pro',
+				3   : false,
+				svg : 1,
 			}));
 		}
 	};

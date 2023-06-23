@@ -1,5 +1,6 @@
 import { Input, Chips, Button, Table, Pagination } from '@cogoport/components';
 import { IcMPlus, IcMSearchlight, IcMPlusInCircle } from '@cogoport/icons-react';
+import { isEmpty } from '@cogoport/utils';
 import { useState } from 'react';
 
 import CancellationAndConfirmModal from '../../common/CancellationModal';
@@ -75,6 +76,16 @@ function ListView() {
 
 	const fields = listConfig({ setSort, sort, Content });
 
+	if (isEmpty(data)) {
+		return (
+			<div className={styles.empty}>
+				<img
+					src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/undraw_empty_re_opql.svg"
+					alt="empty_data"
+				/>
+			</div>
+		);
+	}
 	return (
 		<>
 			<FAQComponent showFaq={showFaq} setFaq={setFaq} isMobile={isMobile} />

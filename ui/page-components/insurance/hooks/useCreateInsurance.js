@@ -7,7 +7,7 @@ const useCreateInsurance = () => {
 	const [{ loading, data }, trigger] = useRequestBf({
 		method  : 'post',
 		url     : '/saas/insurance',
-		authkey : 'post_saas_insurance',
+		authKey : 'post_saas_insurance',
 	}, { manual: true });
 	const insurance = async (policyId = '', saasBillId = '', setModal = () => {}) => {
 		try {

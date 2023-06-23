@@ -12,7 +12,7 @@ const useList = ({ activeTab }) => {
 	const { organization } = profile || {};
 	const [{ loading, data }, trigger] = useRequestBf({
 		method  : 'get',
-		authkey : 'get_saas_insurance_list',
+		authKey : 'get_saas_insurance_list',
 		url     : '/saas/insurance/list',
 	}, { manual: true, autoCancel: false });
 

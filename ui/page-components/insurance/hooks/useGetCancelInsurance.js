@@ -7,7 +7,7 @@ const useGetCancellation = ({ setCancelModal = () => {}, click = 'claim', refetc
 	const { profile } = useSelector((state) => state);
 	const [{ loading }, trigger] = useRequestBf({
 		method  : 'post',
-		authkey : `post_saas_insurance_${click}`,
+		authKey : `post_saas_insurance_${click}`,
 		url     : `saas/insurance/${click}`,
 	});
 

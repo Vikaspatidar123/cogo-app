@@ -13,7 +13,7 @@ const useGetTermsConditions = ({
 	const [{ loading }, trigger] = useRequestBf(
 		{
 			method  : 'get',
-			authkey : 'get_saas_insurance_terms',
+			authKey : 'get_saas_insurance_terms',
 			url     : '/saas/insurance/terms',
 		},
 		{ manual: true },

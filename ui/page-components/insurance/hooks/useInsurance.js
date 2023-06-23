@@ -26,7 +26,7 @@ const useInsurance = ({
 	const [{ loading }, trigger] = useRequestBf(
 		{
 			method  : 'post',
-			authkey : 'post_saas_insurance_checkout',
+			authKey : 'post_saas_insurance_checkout',
 			url     : '/saas/insurance/checkout',
 		},
 		{ manual: true },

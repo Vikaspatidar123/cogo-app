@@ -38,7 +38,7 @@ const usePayment = ({
 		totalCharges = 0,
 	} = ratesResponse || {};
 
-	const { organizationAddressId = '', isBillingAddress = false } =	organizationAddress || {};
+	const { organizationAddressId = '', isBillingAddress = false } = organizationAddress || {};
 
 	const callBackUrl = `${process.env.NEXT_PUBLIC_APP_URL}v2/${org_id}/${branch_id}/saas/insurance/${type}`;
 
@@ -71,11 +71,14 @@ const usePayment = ({
 
 	const payment = useCallback(
 		async (info) => {
+			const key = process.env.NODE_ENV === 'production' ? 'pay' : 'uat';
 			await Promise.all([
 				loadScript(
-					'https://uat.billdesk.com/jssdk/v1/dist/billdesksdk/billdesksdk.esm.js',
+					`https://${key}.billdesk.com/jssdk/v1/dist/billdesksdk/billdesksdk.esm.js`,
 				),
-				loadScript('https://uat.billdesk.com/jssdk/v1/dist/billdesksdk.js'),
+				loadScript(
+					`https://${key}.billdesk.com/jssdk/v1/dist/billdesksdk.js`,
+				),
 			]);
 			try {
 				const resp = await trigger({

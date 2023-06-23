@@ -60,8 +60,9 @@
 	}
 	@media (min-width: 360px) and (max-width: 760px) {
 		max-width: 36px;
-		font-size: 16px;
-		line-height: 18px;
+		margin-top: 2px;
+		font-size: 14px;
+		line-height: 12px;
 	}
 }
 

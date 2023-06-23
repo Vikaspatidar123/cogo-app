@@ -52,6 +52,7 @@
 
 	@media (max-width: 760px) {
 		width: 90%;
+		margin-top: 10px;
 		margin-right: 8px;
 		margin-left: 12px;
 	}

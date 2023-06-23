@@ -58,7 +58,7 @@
 }
 
 .description {
-	display: box;
+	/* display: flex; */
 	margin: 2px 0 8px;
 	overflow: hidden;
 	font-size: 12px;

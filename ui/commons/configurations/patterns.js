@@ -14,6 +14,7 @@ const patterns = {
 		special          : /[!@#$%^&*]/gm,
 		minLength        : /[a-zA-Z0-9!@#$%^&*]{8,}/gm,
 	},
+	AIRWAY_BILL_NO: /^\d{3}-\d{8}$/,
 };
 
 export default patterns;

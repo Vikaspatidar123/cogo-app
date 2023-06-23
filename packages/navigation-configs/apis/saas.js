@@ -1343,6 +1343,33 @@ const saas = {
 			feature     : 'order-history',
 		},
 	],
+	app_saas_air_ocean_tracking: [
+		{
+			api          : 'update_external_reference_number',
+			access_type  : 'private',
+			service_name : 'saas_traceability',
+		},
+		{
+			api          : 'export_tracking_data',
+			access_type  : 'private',
+			service_name : 'saas_traceability',
+		},
+		{
+			api          : 'list_saas_container_subscriptions_summary',
+			access_type  : 'private',
+			service_name : 'saas_traceability',
+		},
+		{
+			api          : 'list_saas_air_subscriptions_summary',
+			access_type  : 'private',
+			service_name : 'air_tracking',
+		},
+		{
+			api          : 'get_multiple_sea_routes',
+			access_type  : 'public',
+			service_name : 'location',
+		},
+	],
 	app_saas_live_vessel_tracking: [
 		{
 			api         : 'get_saas_vessel_tracking',

@@ -139,7 +139,7 @@ function ListView() {
 					className={styles.table}
 				/>
 			)}
-			{(isEmpty(data) || data?.list?.length === 0) && !previewloading && <EmptyState />}
+			{isEmpty(data) && !previewloading && <EmptyState />}
 			{data?.list?.length > 0 && (
 				<div className={styles.pagination_div}>
 					<Pagination

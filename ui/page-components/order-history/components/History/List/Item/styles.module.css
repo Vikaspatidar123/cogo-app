@@ -18,7 +18,7 @@
 	align-items: center !important;
 	justify-content: space-between;
 	width: 100%;
-	height: 78px;
+	height: 55px;
 	padding-left: 11px;
 	margin-left: 0 !important;
 	background: #fff;
@@ -72,6 +72,7 @@
 }
 
 .dotcursor {
+	display: inline-block;
 	cursor: pointer;
 }
 
@@ -124,10 +125,4 @@
 	left: 25%;
 	width: 5%;
 	height: 100%;
-}
-
-.col {
-	display: flex;
-	flex-direction: column;
-	width: 130px;
 }

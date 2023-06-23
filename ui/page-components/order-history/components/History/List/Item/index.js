@@ -54,8 +54,7 @@ const Item = ({
 				>
 					{(fields || []).map((singleItem) => (
 						<div
-							className={styles.col}
-							style={singleItem?.styles}
+							style={{ width: singleItem?.width }}
 							key={singleItem?.key}
 						>
 							{loading ? (

@@ -192,6 +192,10 @@ const GLOBAL_CONSTANTS = {
 			'https://cdn.cogoport.io/cms-prod/cogo_partner/vault/original/Vector.png',
 		edit_image:
 			'https://cdn.cogoport.io/cms-prod/cogo_partner/vault/original/animation_500_lhvo6uhx1.png',
+		cogoport_logo : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/cogoport.svg',
+		ship_icon     : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/shipIcon.jpg',
+		air_icon      : 'https://cdn.cogoport.io/cms-prod/cogo_admin/vault/original/airicon.svg',
+		loading       : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/loading.svg',
 	},
 	onboarding_specialist: {
 		name         : 'Kanira Patel',

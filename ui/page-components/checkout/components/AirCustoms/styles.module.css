@@ -29,7 +29,7 @@
 
 .middle_content {
 	display: flex;
-	align-items: end;
+	align-items: flex-end;
 	padding: 20px 0;
 }
 
@@ -52,7 +52,7 @@
 
 .information {
 	display: flex;
-	justify-content: end;
+	justify-content: flex-end;
 
 	.charges {
 		margin-right: 10px;

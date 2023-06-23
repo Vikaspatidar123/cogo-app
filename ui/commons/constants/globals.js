@@ -210,7 +210,6 @@ const GLOBAL_CONSTANTS = {
 		tracking_loader       : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/cogo-animation.gif',
 		extract_data          : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/Data-extraction.jpg',
 		container_icon        : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/icdport.svg',
-		cogoport_logo         : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/cogoport.svg',
 		air_icon2             : 'https://cdn.cogoport.io/cms-prod/cogo_admin/vault/original/airicon.svg',
 		unsubscription_cargo  : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/page_cargo.png',
 		unsubscription_bottle : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/Bottle.png',

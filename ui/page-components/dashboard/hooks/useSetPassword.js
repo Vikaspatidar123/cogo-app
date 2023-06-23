@@ -1,5 +1,4 @@
 import { Toast } from '@cogoport/components';
-import { isEmpty } from '@cogoport/utils';
 import { useEffect, useState } from 'react';
 
 import getApiErrorString from '@/packages/forms/utils/getApiError';
@@ -9,8 +8,9 @@ import { useSelector } from '@/packages/store';
 
 const useSetPassword = ({ password = '', confirm_password = '', setShowModal = () => { } }) => {
 	const router = useRouter();
+
 	const {
-		profile: { email_token = '' },
+		profile: { id: userId = '' },
 	} = useSelector((state) => state);
 
 	const [customErrors, setCustomErrors] = useState('');
@@ -26,21 +26,17 @@ const useSetPassword = ({ password = '', confirm_password = '', setShowModal = (
 
 	const [{ loading }, trigger] = useRequest(
 		{
-			url    : 'reset_user_password',
+			url    : 'update_user',
 			method : 'post',
 		},
 		{ manual: true },
 	);
 
 	const onSetPassword = async (values) => {
-		if (isEmpty(email_token)) {
-			Toast.error('Failed to Set Password, Please Try in Settings');
-			return;
-		}
 		try {
 			const payload = {
 				password : values?.password,
-				token    : email_token,
+				id       : userId,
 			};
 
 			await trigger({
@@ -49,14 +45,7 @@ const useSetPassword = ({ password = '', confirm_password = '', setShowModal = (
 
 			Toast.success('Password Set Successfully');
 
-			router.push(
-				{
-					pathname : '/[org_id]/[branch_id]/dashboard',
-					query    : { mail_verify: false },
-				},
-				undefined,
-				{ shallow: true },
-			);
+			router.push(`/dashboard?mail_verify=${false}`, '/dashboard?mail_verify=false');
 
 			setShowModal(false);
 		} catch (err) {

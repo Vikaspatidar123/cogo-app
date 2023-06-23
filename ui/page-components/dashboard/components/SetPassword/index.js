@@ -50,6 +50,7 @@ function SetPassword({ showModal = false, setShowModal = () => {} }) {
 			size="md"
 			show={showModal}
 			onClose={() => { setShowModal(false); }}
+			closeOnOuterClick={false}
 			placement="center"
 		>
 			<Modal.Header title={<Header />} />
@@ -107,7 +108,7 @@ function SetPassword({ showModal = false, setShowModal = () => {} }) {
 						disabled={!isEmpty(customErrors) || !isValid}
 						loading={loading}
 						type="submit"
-						size="lg"
+						size="md"
 					>
 						Submit
 					</Button>

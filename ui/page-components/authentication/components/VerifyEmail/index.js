@@ -64,8 +64,7 @@ VerifyEmail.getInitialProps = async (ctx) => {
 		const { hasError } = res || {};
 		if (!hasError) {
 			const { token } = (res || {}).data || {};
-			// setCookieAndRedirect(token, ctx, '/app?from_signup=true');
-			const redirectPath = '/onboarding?from_signup=true&mail_verify=true';
+			const redirectPath = `/dashboard?mail_verify=${true}`;
 			setCookieAndRedirect(token, ctx, redirectPath);
 		}
 	} catch (e) {

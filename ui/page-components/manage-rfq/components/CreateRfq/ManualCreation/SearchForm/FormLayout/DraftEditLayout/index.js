@@ -23,8 +23,7 @@ function DraftEditLayout(props) {
 		newItem.value = item.search_rates;
 		newControls = [...newControls, newItem];
 	});
-
-	const formProps = useForm();
+	const formProps = useForm({ defaultValues: { search_rates: item?.search_rates } });
 	const {
 		control,
 		formState: { errors },

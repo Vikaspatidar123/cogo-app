@@ -1,4 +1,4 @@
-import { Input, Chips, Button, Table, Pagination } from '@cogoport/components';
+import { Input, Chips, Button, Table, Pagination, Loader } from '@cogoport/components';
 import { IcMPlus, IcMSearchlight, IcMPlusInCircle } from '@cogoport/icons-react';
 import { isEmpty } from '@cogoport/utils';
 import { useState } from 'react';
@@ -31,7 +31,6 @@ function ListView() {
 	const [rotateIcon, setRotateIcon] = useState(false);
 
 	const { loading, data, setFilters, filters, setSort, sort, refetch } = useList({ activeTab });
-	console.log('🚀 ~ file: index.js:34 ~ ListView ~ data:', data);
 
 	const { summaryData, summaryLoading } = userSummary({ activeTab, filters, sort });
 
@@ -78,6 +77,13 @@ function ListView() {
 
 	const fields = listConfig({ setSort, sort, Content });
 
+	if (loading) {
+		return (
+			<div className={styles.loader}>
+				<Loader />
+			</div>
+		);
+	}
 	return (
 		<>
 			<FAQComponent showFaq={showFaq} setFaq={setFaq} isMobile={isMobile} />

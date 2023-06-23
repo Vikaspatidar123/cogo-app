@@ -69,9 +69,9 @@ function FilterContent({ filters, setFilters }) {
 							setDateRangePickerValue(e);
 							setFilters((prev) => ({
 								...prev,
-								...e,
 								page      : 1,
 								pageLimit : 10,
+								...e,
 							}));
 						}}
 					/>

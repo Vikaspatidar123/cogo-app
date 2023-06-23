@@ -28,5 +28,5 @@
 .button_box {
 	display: flex;
 	gap: 5px;
-	justify-content: end;
+	justify-content: flex-end;
 }

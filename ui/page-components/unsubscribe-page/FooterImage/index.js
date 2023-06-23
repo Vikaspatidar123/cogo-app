@@ -20,6 +20,7 @@ function FooterImage({ unsubscribe = false }) {
 					/>
 				</div>
 			))}
+
 			{reversed_img_urls.map((image_url) => (
 				<div key={image_url} className={unsubscribe ? styles.image_movement : ''}>
 					<Image

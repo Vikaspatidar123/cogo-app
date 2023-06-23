@@ -11,16 +11,17 @@ import { Image } from '@/packages/next';
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
 const PUBLIC_PAGE_URL = 'https://www.cogoport.com';
+const onClickRedirect = () => {
+	window.location.href = PUBLIC_PAGE_URL;
+};
+
+const image_urls = [...Array(3).keys()];
 
 function Unsubscribe() {
 	const [unsubscribe, setUnsubscribe] = useState(false);
 	const [submit, setSubmit] = useState(false);
 	const [timer, setTimer] = useState(0);
 	const [ticket, setTicket] = useState('');
-
-	const onClickRedirect = () => {
-		window.location.href = PUBLIC_PAGE_URL;
-	};
 
 	const { onSubmit, loading, copyToClipBoard } = useUnsubscribe({
 		setSubmit,
@@ -70,6 +71,7 @@ function Unsubscribe() {
 							</div>
 						</div>
 					)}
+
 					{unsubscribe && !submit && (
 						<ReasonToUnsubscribe
 							onClickRedirect={onClickRedirect}
@@ -77,6 +79,7 @@ function Unsubscribe() {
 							loading={loading}
 						/>
 					)}
+
 					{submit && (
 						<div className={styles.final_page}>
 							<div className={styles.success_page}>
@@ -110,34 +113,22 @@ function Unsubscribe() {
 						</div>
 					)}
 				</div>
+
 				{(unsubscribe || submit) && (
 					<div className={submit ? styles.remove_images : styles.plane_images}>
-						<div className={styles.plane_movement1}>
-							<Image
-								alt=""
-								src={GLOBAL_CONSTANTS.image_url.unsubscription_plane}
-								width={70}
-								height={70}
-							/>
-						</div>
-						<div className={styles.plane_movement2}>
-							<Image
-								alt=""
-								src={GLOBAL_CONSTANTS.image_url.unsubscription_plane}
-								width={70}
-								height={70}
-							/>
-						</div>
-						<div className={styles.plane_movement3}>
-							<Image
-								alt=""
-								src={GLOBAL_CONSTANTS.image_url.unsubscription_plane}
-								width={70}
-								height={70}
-							/>
-						</div>
+						{image_urls.map((index) => (
+							<div className={styles[`plane_movement${index + 1}`]}>
+								<Image
+									alt=""
+									src={GLOBAL_CONSTANTS.image_url.unsubscription_plane}
+									width={70}
+									height={70}
+								/>
+							</div>
+						))}
 					</div>
 				)}
+
 			</div>
 			<FooterImage unsubscribe={unsubscribe} />
 		</div>

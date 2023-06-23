@@ -1,4 +1,3 @@
-import { Toast } from '@cogoport/components';
 import { useState } from 'react';
 
 import { useRequestBf } from '@/packages/request';
@@ -9,7 +8,7 @@ const useGetPreviewDetails = () => {
 	const [{ loading }, trigger] = useRequestBf(
 		{
 			method  : 'get',
-			authkey : 'get_saas_insurance_details',
+			authKey : 'get_saas_insurance_details',
 			url     : '/saas/insurance/details',
 		},
 		{ manual: true },
@@ -25,7 +24,7 @@ const useGetPreviewDetails = () => {
 			});
 			setRespData(resp?.data);
 		} catch (error) {
-			Toast.error(error?.message);
+			console.log(error?.message);
 		}
 	};
 

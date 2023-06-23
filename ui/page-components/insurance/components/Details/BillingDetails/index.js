@@ -201,6 +201,7 @@ const useBillingDetails = ({
 								saveDraft={saveDraft}
 								draftLoading={draftLoading}
 								handleNextClick={handleNextClick}
+								insuranceType={insuranceType}
 							/>
 						</form>
 					</div>

@@ -1,6 +1,5 @@
 import { Button } from '@cogoport/components';
 import { IcMPlus } from '@cogoport/icons-react';
-import { useEffect } from 'react';
 
 import BodyDetailsChildFormat from './BodyDetailsChildFormat';
 import styles from './styles.module.css';
@@ -45,13 +44,6 @@ function BodyDetails(props) {
 	controls.forEach((controlItem) => {
 		childEmptyValues[controlItem.name] = '';
 	});
-
-	useEffect(() => {
-		if (checkFieldArray.length === 0) {
-			append(childEmptyValues);
-		}
-	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
 
 	return (
 		<div className={styles.container}>

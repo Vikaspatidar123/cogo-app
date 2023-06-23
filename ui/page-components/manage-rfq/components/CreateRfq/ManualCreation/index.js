@@ -89,7 +89,9 @@ function ManualCreation({ currentStep, setCurrentStep, rfqId, ...rest }) {
 	});
 
 	useEffect(() => {
-		if (rfqId) getRfq(rfqId);
+		if (rfqId) {
+			getRfq(rfqId);
+		}
 	}, [getRfq, rfqId]);
 
 	const totalDraftsCount = (draftFormData?.formData?.fcl_freight?.data || []).length

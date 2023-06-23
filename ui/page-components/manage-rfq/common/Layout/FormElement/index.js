@@ -28,7 +28,8 @@ function FormElement({
 				setCheckErrors((prev) => ({ ...prev, [service]: true }));
 			}
 		});
-	}, [controls, errors, service, setCheckErrors, showElements]);
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [errors, service, showElements]);
 
 	return (
 		<div className={cl`${styles.container} ${showForm && styles.showForm}`}>

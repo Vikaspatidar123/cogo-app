@@ -1,6 +1,6 @@
 import { Toast, Popover } from '@cogoport/components';
 import { isEmpty } from '@cogoport/utils';
-import { useState, useMemo, useEffect } from 'react';
+import { useState, useMemo } from 'react';
 
 import AdvancedOptions from './AdvancedOptions';
 import Header from './Header';
@@ -60,15 +60,6 @@ function AdditionalServices(props) {
 		}),
 		[advancedControls, formProps, formValues, handleIndex, location, mode, services],
 	);
-
-	useEffect(() => {
-		if (showServices) {
-			setCurrentServices({ ...services });
-			setExpandServices({});
-			setExpandServices(services?.[mode]?.[handleIndex]);
-		}
-	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [showServices]);
 
 	const handleApply = () => {
 		if (
@@ -156,11 +147,11 @@ function AdditionalServices(props) {
 	return (
 		<div className={styles.container}>
 			<Popover
-				placement="left"
+				placement="bottom"
+				render="left"
 				interactive
 				content={renderMainControls()}
 				visible={showServices}
-				maxWidth={700}
 				onShow={() => {
 					setCurrentServices({ ...services });
 					setExpandServices({});

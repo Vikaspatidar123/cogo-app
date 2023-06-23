@@ -1,11 +1,12 @@
 import { Pill } from '@cogoport/components';
-import { formatDate, startCase } from '@cogoport/utils';
+import { startCase } from '@cogoport/utils';
 
 import { RATE_COLOR_MAPPING } from '../../../constants';
 
 import styles from './styles.module.css';
 
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
+import formatDate from '@/ui/commons/utils/formatDate';
 
 function ShippingCompany({ typeName, ratesBreakdown }) {
 	const { validity_end } = ratesBreakdown || {};

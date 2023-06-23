@@ -1,5 +1,5 @@
 import { cl, Button } from '@cogoport/components';
-import { useImperativeHandle, forwardRef } from 'react';
+import { useImperativeHandle, forwardRef, useMemo } from 'react';
 
 import Child from './child';
 import styles from './styles.module.css';
@@ -30,7 +30,10 @@ function ChildFormat(props, ref) {
 		name,
 	});
 
-	const childEmptyValues = {};
+	const childEmptyValues = useMemo(() => {
+		const emptyValue = {};
+		return emptyValue;
+	}, []);
 	controls.forEach((controlItem) => {
 		childEmptyValues[controlItem.name] = controlItem.value || '';
 	});

@@ -229,7 +229,7 @@ const navigationMappings = {
 				title       : 'Manage Rfq',
 				href        : '/manage-rfq',
 				as          : '/manage-rfq',
-				mobileIcon  : <IcMQuotations width={20} height={20} />,
+				icon        : <IcMQuotations width={40} height={40} fill="#fbd221" />,
 				description : 'Request For Quotation',
 			},
 		],

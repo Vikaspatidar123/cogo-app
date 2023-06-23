@@ -3,7 +3,7 @@ import { Toast } from '@cogoport/components';
 import { useRequestBf } from '@/packages/request';
 import { useSelector } from '@/packages/store';
 
-const useGetCancellation = ({ setCancelModal = () => {}, click = 'claim', refetch = () => {} }) => {
+const useGetCancellation = ({ setCancelModal = () => { }, click = 'claim', refetch = () => { } }) => {
 	const { profile } = useSelector((state) => state);
 	const [{ loading }, trigger] = useRequestBf({
 		method  : 'post',

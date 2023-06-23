@@ -5,7 +5,7 @@ import { useRequestBf } from '@/packages/request';
 import { useSelector } from '@/packages/store';
 
 const useInsurance = ({
-	payment = () => {},
+	payment = () => { },
 	type = '',
 	uploadType = '',
 	activeTab = '',

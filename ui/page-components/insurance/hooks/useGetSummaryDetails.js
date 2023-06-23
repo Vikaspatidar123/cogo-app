@@ -9,7 +9,7 @@ const useGetSummaryDetails = ({ activeTab, filters, sort }) => {
 	const { organization = {} } = profile || {};
 	const [{ data, loading }, trigger] = useRequestBf({
 		method  : 'get',
-		authkey : 'get_saas_insurance_list_summary',
+		authKey : 'get_saas_insurance_list_summary',
 		url     : 'saas/insurance/list/summary',
 	}, { autoCancel: false });
 

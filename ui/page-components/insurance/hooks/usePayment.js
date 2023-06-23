@@ -38,7 +38,7 @@ const usePayment = ({
 		totalCharges = 0,
 	} = ratesResponse || {};
 
-	const { organizationAddressId = '', isBillingAddress = false } =	organizationAddress || {};
+	const { organizationAddressId = '', isBillingAddress = false } = organizationAddress || {};
 
 	const callBackUrl = `${process.env.NEXT_PUBLIC_APP_URL}v2/${org_id}/${branch_id}/saas/insurance/${type}`;
 

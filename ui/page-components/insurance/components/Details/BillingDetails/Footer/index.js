@@ -4,7 +4,12 @@ import { isEmpty } from '@cogoport/utils';
 
 import styles from '../styles.module.css';
 
-function Footer({ handleSubmit = () => {}, draftLoading = false, saveDraft = () => {}, handleNextClick = () => {} }) {
+function Footer({
+	handleSubmit = () => {},
+	draftLoading = false,
+	saveDraft = () => {},
+	handleNextClick = () => {},
+}) {
 	const onErrors = (error) => {
 		if (isEmpty(error)) {
 			handleNextClick();

@@ -1,4 +1,4 @@
-import { ToolTip } from '@cogoport/components';
+import { Tooltip } from '@cogoport/components';
 import React from 'react';
 
 import formatAmount from '@/ui/commons/utils/formatAmount';
@@ -16,9 +16,9 @@ function Amount({ currency = 'INR', field = 0 }) {
 	return (
 		<div>
 			{formatted?.length > 16 ? (
-				<ToolTip theme="light" placement="top" content={formatted}>
+				<Tooltip theme="light" placement="top" content={formatted}>
 					<div>{`${formatted.substring(0, 16)}..`}</div>
-				</ToolTip>
+				</Tooltip>
 			) : (
 				<div>{formatted}</div>
 			)}

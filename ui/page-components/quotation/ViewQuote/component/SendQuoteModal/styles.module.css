@@ -1,0 +1,36 @@
+.container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	.send_title {
+		margin: 0;
+		margin-bottom: 15px;
+		text-align: center;
+	}
+
+	&.send {
+		flex-direction: column;
+	}
+
+	.info {
+		margin-top: 15px;
+		text-align: left;
+	}
+
+	.info div {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		margin: 3px 0;
+
+		p {
+			margin: 0;
+			margin-left: 3px;
+		}
+	}
+}
+
+.cancel {
+	margin-right: 20px;
+}

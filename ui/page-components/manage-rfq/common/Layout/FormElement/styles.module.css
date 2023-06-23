@@ -1,0 +1,11 @@
+.container {
+	display: none;
+
+	&.showForm {
+		display: unset;
+	}
+}
+
+.col {
+	width: 100%;
+}

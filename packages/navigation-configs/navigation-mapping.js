@@ -27,10 +27,12 @@ import {
 	IcADocumentTemplates,
 	IcMPartnersCogoport,
 	IcAProfessionalQuotations,
+	IcATrackAndTrace,
 	IcAOceanFcl,
 	IcMUpwardGraph,
 	IcMDashboard,
 	IcMBookingDesk,
+	IcARfq,
 } from '@cogoport/icons-react';
 
 const navigationMappings = {
@@ -115,6 +117,14 @@ const navigationMappings = {
 				as          : '/saas/hs-classification',
 				icon        : <IcAProductCatalog width={50} height={50} />,
 				description : 'Find the HS code of any product or vice versa',
+			},
+			{
+				key         : 'saas_tools-air_ocean_tracking_v2',
+				title       : 'Track and Trace',
+				href        : '/saas/tools/air-ocean-tracking',
+				as          : '/saas/tools/air-ocean-tracking',
+				icon        : <IcATrackAndTrace width={40} height={40} />,
+				description : 'Track and Trace your shipments',
 			},
 			{
 				key         : 'saas_tools-vessel_tracking',
@@ -231,6 +241,14 @@ const navigationMappings = {
 				as          : '/contract-management',
 				icon        : <IcMUpwardGraph width={40} height={40} fill="#fbd221" />,
 				description : 'contract management',
+			},
+			{
+				key         : 'saas_planning-manage_rfq',
+				title       : 'Manage Rfq',
+				href        : '/manage-rfq',
+				as          : '/manage-rfq',
+				icon        : <IcARfq width={40} height={40} />,
+				description : 'Request For Quotation',
 			},
 		],
 	},

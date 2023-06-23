@@ -1,12 +1,11 @@
 import { CogoMaps, L } from '@cogoport/maps';
 import { isEmpty } from '@cogoport/utils';
-import dynamic from 'next/dynamic';
 import { useState, useEffect } from 'react';
 
 import AnimatedRoute from './AnimatedRoute';
+import Pointer from './Pointer';
+import Route from './Route';
 
-const Pointer = dynamic(() => import('./Pointer'), { ssr: false });
-const Route = dynamic(() => import('./Route'), { ssr: false });
 const LAYER = [
 	{
 		name        : 'Cogo Maps',

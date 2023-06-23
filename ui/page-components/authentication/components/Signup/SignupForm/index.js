@@ -1,6 +1,6 @@
 import { Button } from '@cogoport/components';
 import { IcCWhatsapp, IcMArrowRight } from '@cogoport/icons-react';
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import ReCAPTCHA from 'react-google-recaptcha';
 
 import useLeadUserDetails from '../../../hooks/useLeadUserDetails';
@@ -19,19 +19,14 @@ import CountrySelectController from '@/packages/forms/Controlled/CountrySelectCo
 import patterns from '@/ui/commons/configurations/patterns';
 
 function SignupForm({ userDetails = {}, setMode = () => { }, setUserDetails = () => { } }) {
-	const recaptchaRef = useRef({});
 	const [customError, setCustomError] = useState('');
 	const [leadUserId, setLeadUserId] = useState('');
 
-	const executeCaptcha = async () => {
-		const token = await recaptchaRef.current.executeAsync();
-		return token;
-	};
-
 	const {
 		signupAuthentication,
-		signupLoading,
-	} = useSignupAuthentication({ setMode, setUserDetails, leadUserId, executeCaptcha });
+		loading,
+		recaptchaRef,
+	} = useSignupAuthentication({ setMode, setUserDetails, leadUserId });
 
 	const { onLeadUserDetails } = useLeadUserDetails({ setLeadUserId });
 
@@ -201,7 +196,7 @@ function SignupForm({ userDetails = {}, setMode = () => { }, setUserDetails = ()
 			</div>
 
 			<Button
-				loading={signupLoading}
+				loading={loading}
 				type="submit"
 				size="lg"
 			>

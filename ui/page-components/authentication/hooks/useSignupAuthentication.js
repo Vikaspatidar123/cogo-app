@@ -1,4 +1,5 @@
 import { Toast } from '@cogoport/components';
+import { useRef, useState } from 'react';
 
 import { useRequest } from '@/packages/request';
 
@@ -19,8 +20,12 @@ const getFormattedPayload = ({ val, captchaResponse, leadUserId }) => {
 };
 
 const useSignupAuthentication = ({
-	setMode, setUserDetails, leadUserId, executeCaptcha,
+	setMode, setUserDetails, leadUserId,
 }) => {
+	const [captchaLoading, setCaptchaLoading] = useState(false);
+
+	const recaptchaRef = useRef({});
+
 	const [{ loading: signupLoading }, trigger] = useRequest({
 		url    : 'create_sign_up_lead_user',
 		method : 'post',
@@ -28,9 +33,14 @@ const useSignupAuthentication = ({
 
 	const signupAuthentication = async (val, e) => {
 		e.preventDefault();
-		const captchaResponse = await executeCaptcha();
 
 		try {
+			setCaptchaLoading(true);
+
+			const captchaResponse = await recaptchaRef.current.executeAsync();
+
+			setCaptchaLoading(false);
+
 			const payload = getFormattedPayload({ val, captchaResponse, leadUserId });
 
 			const res = await trigger({
@@ -51,8 +61,9 @@ const useSignupAuthentication = ({
 	};
 
 	return {
-		signupLoading,
+		loading: signupLoading || captchaLoading,
 		signupAuthentication,
+		recaptchaRef,
 	};
 };
 

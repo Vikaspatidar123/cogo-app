@@ -190,6 +190,9 @@ const GLOBAL_CONSTANTS = {
 			'https://cdn.cogoport.io/cms-prod/cogo_partner/vault/original/Vector.png',
 		edit_image:
 			'https://cdn.cogoport.io/cms-prod/cogo_partner/vault/original/animation_500_lhvo6uhx1.png',
+		yellow_vessel      : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/shipYellow.png',
+		red_vessel         : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/shipRed.png',
+		black_vessel       : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/shipArrow.png',
 		loading            : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/loading.svg',
 		loading_banner     : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/loading-banner.svg',
 		air_empty_state    : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/air-connect.svg',

@@ -172,6 +172,10 @@ const saas = {
 		navigation : 'saas_cogostore',
 		isMainNav  : true,
 	},
+	'/saas/live-vessel-tracking': {
+		navigation : 'saas_tools-vessel_tracking',
+		isMainNav  : true,
+	},
 	'/saas/order-history': {
 		navigation : 'saas_premium_services-order_history',
 		isMainNav  : true,

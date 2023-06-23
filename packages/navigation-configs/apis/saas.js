@@ -1368,7 +1368,14 @@ const saas = {
 			api          : 'get_multiple_sea_routes',
 			access_type  : 'public',
 			service_name : 'location',
-
+		},
+	],
+	app_saas_live_vessel_tracking: [
+		{
+			api         : 'get_saas_vessel_tracking',
+			access_type : 'private',
+			module      : 'live-vessel-tracking',
+			feature     : 'live-vessel-tracking',
 		},
 	],
 };

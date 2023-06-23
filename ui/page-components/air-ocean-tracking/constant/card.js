@@ -36,7 +36,7 @@ const OCEAN_MILESTONE_ICON = {
 };
 
 const AIR_MILESTONE_ICON = {
-	AIR: GLOBAL_CONSTANTS.image_url.air_icon,
+	AIR: GLOBAL_CONSTANTS.image_url.air_icon2,
 };
 
 export const DEFAULT_STATUS = {

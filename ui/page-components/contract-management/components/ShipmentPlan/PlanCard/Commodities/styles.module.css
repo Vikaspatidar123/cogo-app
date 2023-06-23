@@ -1,0 +1,54 @@
+.container {
+	display: flex;
+	flex: 3;
+	flex-direction: column;
+
+	.service-card {
+		margin-bottom: 0;
+	}
+}
+
+.tag {
+	padding: 2px 6px;
+	margin-right: 8px;
+	margin-bottom: 2px;
+	font-size: 12px;
+	color: #4f4f4f;
+	background: #dfe1ef;
+	border-radius: 4px;
+}
+
+.service_tag {
+	display: flex;
+	align-items: center;
+	padding: 4px 8px;
+	margin-right: 8px;
+	margin-bottom: 2px;
+	font-size: 10px;
+	color: #221f20;
+	background: #f3fafa;
+	border-radius: 6px;
+}
+
+.service_tag_more {
+	display: flex;
+	align-items: center;
+	padding: 4px 8px;
+	margin-right: 8px;
+	margin-bottom: 2px;
+	font-size: 10px;
+	color: #221f20;
+	background: #cfeaed;
+	border-radius: 6px;
+}
+
+.card {
+	display: flex;
+	flex-wrap: wrap;
+	margin-bottom: 10px;
+}
+
+.addl_service {
+	display: flex;
+	flex-direction: column;
+}

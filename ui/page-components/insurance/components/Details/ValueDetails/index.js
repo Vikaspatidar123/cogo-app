@@ -205,7 +205,7 @@ function ValueDetails({
 								ratesLoading={ratesLoading}
 							/>
 						</div>
-						<div className={styles.row}>
+						<div className={styles.documents_row}>
 							<DocumentsRequired
 								fields={fields}
 								control={control}

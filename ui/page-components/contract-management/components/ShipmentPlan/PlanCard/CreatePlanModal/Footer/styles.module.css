@@ -1,0 +1,27 @@
+.container {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-top: 20px;
+}
+
+.message {
+	font-weight: 500;
+	color: #f68b21;
+}
+
+.actions {
+	display: flex;
+	align-items: center;
+
+	button:first-child {
+		padding: 8px 16px;
+		margin-right: 10px;
+		border-radius: 4px;
+	}
+
+	.core-ui-button-root {
+		background: black;
+		border: none;
+	}
+}

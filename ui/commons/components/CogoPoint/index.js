@@ -7,12 +7,15 @@ import styles from './styles.module.css';
 import { useRouter } from '@/packages/next';
 
 function CogoPoint() {
-	const { stats = {} } = useGetCogopoints();
+	const { stats = {}, check = true } = useGetCogopoints();
 	const { earned = 0 } = stats || {};
 	const { push } = useRouter();
 	const onClick = () => {
 		push('/saas/cogopoint');
 	};
+	if (check) {
+		return null;
+	}
 	return (
 		<div
 			className={styles.container}

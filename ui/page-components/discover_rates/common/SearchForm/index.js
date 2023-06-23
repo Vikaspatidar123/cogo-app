@@ -55,6 +55,8 @@ function Form(
 		serviceDetails = {},
 		detail = {},
 		contractType = '',
+		getOnChangeLocations = () => {},
+
 	},
 	ref,
 ) {
@@ -81,6 +83,10 @@ function Form(
 			setServices(data?.services || {});
 		}
 	}, [data?.services]);
+
+	useEffect(() => {
+		getOnChangeLocations(location);
+	}, [location]);
 
 	const {
 		optionsControls,
@@ -193,7 +199,9 @@ function Form(
 		date,
 	}));
 	let cargoDetailsSpan = 6;
-	if (
+	if (['contract'].includes(search_type)) {
+		cargoDetailsSpan = 10;
+	} else if (
 		(isSmall && !['rfq', 'contract'].includes(search_type))
 	) {
 		cargoDetailsSpan = 3.5;
@@ -297,17 +305,18 @@ function Form(
 	}
 	return (
 		<div
-			className={cl`${styles.search_form_container} ${styles.container} ${styles[className]
+			className={cl`${styles.container} ${styles.search_form_container} ${styles[className]
 			} ${styles[search_type] || ''} ${isSmall ? styles.small : ''} ${isResult ? styles.result : ''}`}
 			style={{
+				background: search_type === 'dashboard' ? '#f9f9f9' : '#ffffff',
 			}}
 		>
-			<div className={cl`${styles.main} ${styles.search_type} ` || ''}>
+			<div className={cl`${styles.main} ${styles[search_type]} ` || ''}>
 				<div>
 					<form onSubmit={handleSubmit(submitData, onError)}>
 						<div className={styles.row}>
 							<div
-								className={styles.search_form_route_container_col}
+								className={cl`${styles.search_form_route_container_col} ${styles[search_type]}`}
 								style={{ width: getWidth(locationsSpan) }}
 							>
 								<Route

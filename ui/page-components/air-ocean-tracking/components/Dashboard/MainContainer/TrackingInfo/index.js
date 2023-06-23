@@ -38,19 +38,19 @@ function TrackingInfo({ summaryHook, view }) {
 
 			{view === 'list' && (
 				<>
-					{!isEmpty(list) && (
-						<Table
-							configs={dashboardTableConfig({ type: activeTab })}
-							data={data}
-							loading={loading}
-							isClickable={false}
-							showPagination={false}
-							showHover={false}
-							itmFunction={itmFunction}
-							maxHeight="48vh"
-							isScroll
-						/>
-					)}
+
+					<Table
+						configs={dashboardTableConfig({ type: activeTab })}
+						data={data}
+						loading={loading}
+						isClickable={false}
+						showPagination={false}
+						showHover={false}
+						itmFunction={itmFunction}
+						maxHeight="48vh"
+						isScroll
+					/>
+
 					{isEmpty(list) && !loading && (
 						<div className={styles.empty_state}>
 							<Image

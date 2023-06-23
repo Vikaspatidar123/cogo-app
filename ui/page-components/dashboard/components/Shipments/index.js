@@ -1,5 +1,5 @@
 import { Button } from '@cogoport/components';
-import { IcMArrowNext, IcMFship } from '@cogoport/icons-react';
+import { IcMArrowNext, IcMFship, IcMPortArrow } from '@cogoport/icons-react';
 import { format } from '@cogoport/utils';
 
 import ContainerDetails from '../../common/ContainerDetails';
@@ -35,13 +35,17 @@ function Shipments() {
 	const usable = data?.list || [];
 	const { push } = useRouter();
 	if (loading) {
-		return <LoaderPage skeletonCount={2} />;
+		return (
+			<div className={styles.header}>
+				<LoaderPage skeletonCount={2} />
+			</div>
+		);
 	}
 	return (
 		<div>
 			{usable.length > 0 && (
 				<div className={styles.header}>
-					<div>Your Ongoing Shipments</div>
+					<div className={styles.heading}>Your Ongoing Shipments</div>
 
 					{(usable || []).map((val) => {
 						const containerInfoData = {
@@ -50,7 +54,7 @@ function Shipments() {
 							containers_count : val?.containers_count,
 							commodity        : val?.commodity,
 							cargo_weight_per_container:
-											val?.cargo_weight_per_container,
+								val?.cargo_weight_per_container,
 							inco_term    : val?.inco_term,
 							rates_count  : val?.rates_count,
 							trucks_count : val?.trucks_count,
@@ -75,57 +79,56 @@ function Shipments() {
 											<div className={styles.sub_lcl}>
 												<ServiceTypeIcon
 													freight_type={
-																								val?.service_type
-																								|| val?.shipment_type
-																							}
+														val?.service_type
+														|| val?.shipment_type
+													}
 												/>
 											</div>
 										</div>
 
 										{onlySingleLocation.includes(
 											val?.service_type
-																						|| val?.shipment_type,
+											|| val?.shipment_type,
 										) ? (
-											<div className={styles.second_data}>
+											<div className={styles.second_box}>
 												{
-																							getLocation(true, val)
-																								.location
-																						}
+													getLocation(true, val)
+														.location
+												}
 												<span
 													className={
-																								styles.location_span
-																							}
+														styles.location_span
+													}
 												>
 													{
-																								getLocation(false, val)
-																									.country
-																							}
+														getLocation(false, val)
+															.country
+													}
 												</span>
 											</div>
 											) : (
 												<div className={styles.second_data}>
 													<div className={styles.origin}>
 														{
-																								getLocation(true, val)
-																									.location
-																							}
+														getLocation(true, val)
+															.location
+													}
 														<span
 															className={
-																									styles.location_span
-																								}
+															styles.location_span
+														}
 														>
 															{
-																									getLocation(
-																										false,
-																										val,
-																									).country
-																								}
+															getLocation(
+																false,
+																val,
+															).country
+														}
 														</span>
 													</div>
 													<div>
-														<IcMArrowNext />
+														<IcMPortArrow />
 													</div>
-													<div />
 													<div className={styles.origin}>
 														{getLocation(false, val)
 															.location}
@@ -141,9 +144,7 @@ function Shipments() {
 												</div>
 											)}
 										<ContainerDetails
-											containerInfoData={
-											containerInfoData
-}
+											containerInfoData={containerInfoData}
 											service_type={val?.service_type || val?.shipment_type}
 										/>
 										<div className={styles.fouth_data}>
@@ -204,9 +205,12 @@ function Shipments() {
 												'/shipments/[id]',
 												`/shipments/${val?.id}`,
 											)}
+											size="sm"
+											themeType="secondary"
 										>
 											VIEW DETAILS
 										</Button>
+										{console.log(val?.pending_tasks_count, 'val?.pending_tasks_count')}
 										{val?.pending_tasks_count ? (
 											<div className={styles.dot}>
 												<div className={styles.dot2} />
@@ -215,7 +219,7 @@ function Shipments() {
 													<span
 														className={styles.pending}
 													>
-														pending tasks
+														Pending Tasks
 													</span>
 												</p>
 											</div>

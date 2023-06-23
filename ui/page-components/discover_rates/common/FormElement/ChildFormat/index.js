@@ -48,7 +48,6 @@ function ChildFormat(
 					{heading ? (
 						<div className={styles.heading}>{`${heading} ${index + 1}`}</div>
 					) : null}
-
 					<Child
 						{...rest}
 						key={field.id}

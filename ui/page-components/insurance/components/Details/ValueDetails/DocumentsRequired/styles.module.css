@@ -1,5 +1,8 @@
 .docs_container {
+	display: flex;
+	align-items: center;
 	width: 100%;
+	height: 70px;
 	padding: 5px;
 	margin-right: 42px;
 
@@ -9,16 +12,20 @@
 }
 
 .docs {
+	display: flex;
 	width: 100%;
 }
 
 .docs div:nth-child(2) {
+	display: flex;
+	align-items: center;
 	padding: 1px !important;
 }
 
 .column {
 	display: flex;
 	align-items: center;
+	width: 20%;
 	font-size: 14px;
 	font-weight: 500;
 	text-transform: uppercase;
@@ -27,4 +34,8 @@
 .error_message {
 	font-size: 14px;
 	color: #cb6464;
+}
+
+.file {
+	width: 80%;
 }

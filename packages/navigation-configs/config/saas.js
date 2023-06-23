@@ -34,10 +34,6 @@ const saas = {
 	'/saas/premium-services/trader-eligibility-check/result': {
 		navigation: 'saas_premium_services-trader_eligibility_check',
 	},
-	'/saas/quickquotation/viewlist': {
-		navigation : 'saas_planning-quotation',
-		isMainBav  : true,
-	},
 	'/saas/hs-classification': {
 		navigation: 'saas_tools-hs_code_classification',
 	},
@@ -59,6 +55,18 @@ const saas = {
 	'/saas/quickquotation/createquotation': {
 		navigation : 'saas_planning-quotation',
 		isMainBav  : true,
+	},
+	'/saas/quickquotation/viewlist': {
+		navigation : 'saas_planning-quotation',
+		isMainNav  : true,
+	},
+	'/saas/quickquotation/editquotation/[id]': {
+		navigation : 'saas_planning-quotation',
+		isMainNav  : true,
+	},
+	'/saas/quickquotation/viewquotation/[id]': {
+		navigation : 'saas_planning-quotation',
+		isMainNav  : true,
 	},
 
 	'/saas/trade-partner': {
@@ -121,11 +129,15 @@ const saas = {
 		isMainNav  : true,
 	},
 	'/saas/insurance/[type]': {
-		navigation : 'saas_cogo_insurance',
+		navigation : 'saas_premium_services-cogo_insurance',
 		isMainNav  : true,
 	},
 	'/saas/insurance': {
-		navigation : 'saas_cogo_insurance',
+		navigation : 'saas_premium_services-cogo_insurance',
+		isMainNav  : true,
+	},
+	'/saas/insurance/list': {
+		navigation : 'saas_premium_services-cogo_insurance',
 		isMainNav  : true,
 	},
 	'/saas/cogopoint': {
@@ -191,6 +203,7 @@ const saas = {
 	'/saas/tools/air-ocean-tracking/list/[trackingId]': {
 		navigation: 'saas_tools-air_ocean_tracking_v2',
 	},
+
 };
 
 module.exports = saas;

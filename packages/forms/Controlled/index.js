@@ -8,6 +8,7 @@ import ControlledCommodityCon from './ControlledCommodityCon';
 import CountrySelectController from './CountrySelectController';
 import CreatableSelectController from './CreatableSelectController';
 import DatepickerController from './DatepickerController';
+import DateRangepickerController from './DateRangepickerController';
 import IncoTermSelectController from './IncoTermSelect';
 import InputController from './InputController';
 import InputGroupController from './InputGroupController';
@@ -48,6 +49,7 @@ const MAPPING = {
 	custom_slider              : Slider,
 	'creatable-select'         : CreatableSelectController,
 	time_picker                : TimepickerController,
+	daterangepicker            : DateRangepickerController,
 };
 
 const getField = (type = 'text') => {

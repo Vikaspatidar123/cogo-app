@@ -1,4 +1,3 @@
-import { Toast } from '@cogoport/components';
 import { useEffect, useState, useCallback } from 'react';
 
 import getApiErrorString from '@/packages/forms/utils/getApiError';
@@ -12,7 +11,7 @@ const useList = ({ activeTab }) => {
 	const { organization } = profile || {};
 	const [{ loading, data }, trigger] = useRequestBf({
 		method  : 'get',
-		authkey : 'get_saas_insurance_list',
+		authKey : 'get_saas_insurance_list',
 		url     : '/saas/insurance/list',
 	}, { manual: true, autoCancel: false });
 
@@ -38,7 +37,7 @@ const useList = ({ activeTab }) => {
 				},
 			});
 		} catch (err) {
-			Toast.error(getApiErrorString(err));
+			console.log(getApiErrorString(err));
 		}
 	}, [activeTab, filters, organization?.id, sort, trigger]);
 

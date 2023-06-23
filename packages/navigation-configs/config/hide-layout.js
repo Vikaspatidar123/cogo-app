@@ -18,5 +18,6 @@ const HIDE_LAYOUT = [
 	'/404',
 	'/500',
 	'/verify-email/[id]',
+	'/raise-cancellation-ticket',
 ];
 export default HIDE_LAYOUT;

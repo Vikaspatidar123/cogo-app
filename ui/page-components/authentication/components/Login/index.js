@@ -11,8 +11,8 @@ import { useSelector } from '@/packages/store';
 import LeftPanel from '@/ui/commons/components/LeftPanel';
 
 const MAPPING = {
-	emailId: <LoginForm />,
-	mobileNo: <MobileLoginForm />,
+	emailId  : <LoginForm />,
+	mobileNo : <MobileLoginForm />,
 };
 function Login() {
 	const { t } = useTranslation(['common']);

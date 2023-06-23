@@ -12,29 +12,29 @@ const useOtpForm = ({ userDetails = {}, otpValue = '' }) => {
 	} = useSelector((state) => state);
 
 	const [{ loading }, loginUserWithMobileApi] = useRequest({
-		url: '/login_user_with_mobile',
-		method: 'post',
+		url    : '/login_user_with_mobile',
+		method : 'post',
 	}, { manual: true });
 
 	const [{ loading: sendOtpLoading }, sendLoginOtpApi] = useRequest({
-		url: '/send_login_otp',
-		method: 'post',
+		url    : '/send_login_otp',
+		method : 'post',
 	}, { manual: true });
 
 	const onClickLoginUserWithMobileNo = async () => {
 		try {
 			const payload = {
-				id: userDetails?.userId,
-				mobile_otp: otpValue,
-				mobile_number: userDetails?.contactNo?.number,
-				mobile_country_code: userDetails?.contactNo?.country_code,
-				auth_scope: 'organization',
-				platform: 'app',
+				id                  : userDetails?.userId,
+				mobile_otp          : otpValue,
+				mobile_number       : userDetails?.contactNo?.number,
+				mobile_country_code : userDetails?.contactNo?.country_code,
+				auth_scope          : 'organization',
+				platform            : 'app',
 			};
 
 			trackEvent(APP_EVENT.auth_logged_in_via_mobile, {
-				mobile_country_code: payload.mobile_country_code,
-				mobile_number: payload.mobile_number,
+				mobile_country_code : payload.mobile_country_code,
+				mobile_number       : payload.mobile_number,
 			});
 
 			const response = await loginUserWithMobileApi({
@@ -60,8 +60,8 @@ const useOtpForm = ({ userDetails = {}, otpValue = '' }) => {
 	const sendOtp = async ({ timer = {} }) => {
 		try {
 			const payload = {
-				mobile_number: userDetails?.contactNo?.number,
-				mobile_country_code: userDetails?.contactNo?.country_code,
+				mobile_number       : userDetails?.contactNo?.number,
+				mobile_country_code : userDetails?.contactNo?.country_code,
 			};
 
 			const response = await sendLoginOtpApi({

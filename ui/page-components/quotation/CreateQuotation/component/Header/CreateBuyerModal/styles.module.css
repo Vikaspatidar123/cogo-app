@@ -1,3 +1,12 @@
+.modal_container {
+	:global {
+		.ui_modal_body_container {
+			border-top: 1px solid #d3d3d3;
+			border-bottom: 1px solid #d3d3d3;
+		}
+	}
+}
+
 .header {
 	display: flex;
 	align-items: center;
@@ -25,11 +34,6 @@
 	margin: 0 16px 14px;
 
 	:global {
-		.ui_ps_size_md,
-		.ui_select_display_container {
-			height: 37px;
-		}
-
 		.ui_upload_droparea_container {
 			flex-direction: row;
 			min-height: 60px;

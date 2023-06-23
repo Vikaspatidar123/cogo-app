@@ -42,7 +42,7 @@ function ViewQuote() {
 			)}
 
 			<div className={styles.main_container}>
-				<ButtonIcon size="xl" icon={<IcMArrowBack />} themeType="primary" />
+				<ButtonIcon size="xl" icon={<IcMArrowBack />} onClick={redirectViewQuote} themeType="primary" />
 
 				<div className={styles.container}>
 					<Header sellerDetails={sellerDetails} />

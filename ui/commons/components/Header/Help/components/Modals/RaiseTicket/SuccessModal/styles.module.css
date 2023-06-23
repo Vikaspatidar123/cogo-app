@@ -1,0 +1,57 @@
+.modal_body {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	height: 75vh;
+	max-height: unset !important;
+	border-top: unset !important;
+}
+
+.modal_footer {
+	:global {
+		.ui_button_container {
+			margin-right: 20px;
+
+			&:last-child {
+				margin-right: unset;
+			}
+		}
+	}
+}
+
+.icon_container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 40px;
+	height: 40px;
+	background: #ddebc0;
+	border-radius: 100%;
+}
+
+.tick_icon {
+	width: 90%;
+	height: 90%;
+	fill: #849e4c;
+}
+
+.ticket_data {
+	margin-top: 40px;
+	color: #828282;
+	text-align: center;
+}
+
+.success_text {
+	padding-top: 20px;
+
+	span {
+		margin: 0 3px;
+		color: #221f20;
+	}
+}
+
+.wait_text {
+	margin-top: 30px;
+	font-size: 12px;
+}

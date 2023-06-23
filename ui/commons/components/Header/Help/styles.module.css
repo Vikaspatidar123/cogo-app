@@ -4,6 +4,25 @@
 	margin-right: 14px;
 }
 
-.tooltip_container {
+.styled_tooltip_container {
 	margin: 12px;
+
+	:global {
+		/* stylelint-disable-next-line selector-class-pattern */
+		.tippy-box {
+			max-width: 500px !important;
+			padding: 0;
+		}
+
+		/* stylelint-disable-next-line selector-class-pattern */
+		.tippy-content {
+			padding: 0;
+		}
+	}
+}
+
+.help_circle {
+	width: 22px;
+	height: 22px;
+	cursor: pointer;
 }

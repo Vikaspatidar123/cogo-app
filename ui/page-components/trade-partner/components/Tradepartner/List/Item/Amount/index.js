@@ -5,11 +5,11 @@ import formatAmount from '@/ui/commons/utils/formatAmount';
 
 function Amount({ currency = 'INR', field = 0 }) {
 	const formatted = formatAmount({
-		amount: field,
+		amount  : field,
 		currency,
-		options: {
-			notation: 'standard',
-			style: 'currency',
+		options : {
+			notation : 'standard',
+			style    : 'currency',
 		},
 	});
 

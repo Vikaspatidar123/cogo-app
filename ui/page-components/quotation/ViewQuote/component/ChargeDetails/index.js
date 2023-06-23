@@ -9,10 +9,10 @@ import TagContainer from './TagContainer';
 import formatAmount from '@/ui/commons/utils/formatAmount';
 
 const CHARGE_MAPPING = {
-	productCost: 'Consignment Total',
-	insurance: 'Insurance',
-	dutiesAndTaxes: 'Duties And taxes',
-	basicFreightCharges: 'Basic Freight',
+	productCost         : 'Consignment Total',
+	insurance           : 'Insurance',
+	dutiesAndTaxes      : 'Duties And taxes',
+	basicFreightCharges : 'Basic Freight',
 };
 
 function RenderComment({ comments }) {
@@ -53,9 +53,9 @@ function ChargeDetails(props) {
 					<div key={charge} className={cl`${styles.row} ${index % 2 === 0 ? styles.row_bg : ''}`}>
 						<p className={styles.text}>{CHARGE_MAPPING[charge]}</p>
 						{formatAmount({
-							amount: props?.[charge],
+							amount  : props?.[charge],
 							currency,
-							options: CURRENCY_OPTION,
+							options : CURRENCY_OPTION,
 						})}
 
 					</div>
@@ -69,9 +69,9 @@ function ChargeDetails(props) {
 						>
 							<p className={styles.text}>{charge?.name}</p>
 							{formatAmount({
-								amount: charge?.value,
+								amount  : charge?.value,
 								currency,
-								options: CURRENCY_OPTION,
+								options : CURRENCY_OPTION,
 							})}
 						</div>
 					))}
@@ -80,9 +80,9 @@ function ChargeDetails(props) {
 					<p>Quotation Total</p>
 					<p className={styles.total_amt}>
 						{formatAmount({
-							amount: quotationAmount,
+							amount  : quotationAmount,
 							currency,
-							options: CURRENCY_OPTION,
+							options : CURRENCY_OPTION,
 						})}
 					</p>
 				</div>

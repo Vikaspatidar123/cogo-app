@@ -2,6 +2,7 @@ import { Popover } from '@cogoport/components';
 import { IcMArrowDown, IcMArrowUp, IcMOverflowDot } from '@cogoport/icons-react';
 import { format } from '@cogoport/utils';
 
+import CogoPolicyNo from '../components/ListView/CogoPolicyNo';
 import Coverage from '../components/ListView/Coverage';
 import paymentStatus from '../components/ListView/status';
 
@@ -22,6 +23,7 @@ const listConfig = ({ setSort, sort, Content }) => {
 			Header   : 'Policy ID',
 			accessor : 'cogoPolicyNo',
 			id       : 'cogoPolicyNo',
+			Cell     : ({ row }) => <CogoPolicyNo itemData={row?.original} />,
 		},
 		{
 			span     : 4,

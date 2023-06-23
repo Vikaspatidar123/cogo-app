@@ -1,7 +1,7 @@
 import { Loader } from '@cogoport/components';
 import { useEffect, useState } from 'react';
 
-// import { prompts } from '../../../configurations/loading-prompts';
+import { prompts } from '../../../configurations/loading-prompts';
 
 import styles from './styles.module.css';
 

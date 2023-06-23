@@ -602,9 +602,8 @@ const saas = {
 			service_name : 'insurance',
 		},
 		{
-			api          : 'list_address_for_insurance',
-			access_type  : 'private',
-			service_name : 'organization',
+			api         : 'list_address_for_insurance',
+			access_type : 'private',
 		},
 		{
 			api          : 'post_saas_insurance_cancel',

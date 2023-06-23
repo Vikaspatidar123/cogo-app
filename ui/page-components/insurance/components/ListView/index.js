@@ -1,5 +1,6 @@
 import { Input, Chips, Button, Table, Pagination } from '@cogoport/components';
 import { IcMPlus, IcMSearchlight, IcMPlusInCircle } from '@cogoport/icons-react';
+import { isEmpty } from '@cogoport/utils';
 import { useState } from 'react';
 
 import CancellationAndConfirmModal from '../../common/CancellationModal';
@@ -129,7 +130,7 @@ function ListView() {
 					/>
 				)}
 			</div>
-			{data?.list?.length > 0 && !previewloading ? (
+			{data?.list?.length > 0 && !previewloading && (
 				<Table
 					columns={fields || []}
 					data={list || []}
@@ -137,16 +138,8 @@ function ListView() {
 					loadingRowsCount={10}
 					className={styles.table}
 				/>
-			) : (
-				<div className={styles.empty}>
-					<img
-						src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/undraw_empty_re_opql.svg"
-						alt="empty_data"
-					/>
-				</div>
 			)}
-			{data?.list?.length === 0 && !previewloading
-			&& <EmptyState />}
+			{(isEmpty(data) || data?.list?.length === 0) && !previewloading && <EmptyState />}
 			{data?.list?.length > 0 && (
 				<div className={styles.pagination_div}>
 					<Pagination

@@ -11,6 +11,7 @@ const useSetErrorFunction = ({
 	setActiveStepper,
 }) => {
 	const setErrorFunction = (values) => {
+		console.log('🚀 ~ file: useSetErrorFunction.js:14 ~ setErrorFunction ~ values:', values);
 		const isCorporate = uploadType === 'CORPORATE';
 		let hasError = false;
 		if (
@@ -21,6 +22,7 @@ const useSetErrorFunction = ({
 			hasError = true;
 		}
 		if (isEmpty(checked?.[0]) && insuranceType?.[0] === 'SELF') {
+			console.log('hii');
 			Toast.error('Please Select a Address');
 			hasError = true;
 		}
@@ -33,7 +35,6 @@ const useSetErrorFunction = ({
 			} else if (itm !== 'gstin' && !values[itm]) {
 				hasError = true;
 				setError(itm, { type: 'required', message: 'required' });
-				Toast.error('Please Select a Address');
 			}
 		});
 		return hasError;

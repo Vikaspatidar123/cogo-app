@@ -7,7 +7,7 @@ import Form from '@/ui/page-components/manage-rfq/common/Layout/FormElement';
 import getConfiguration from '@/ui/page-components/manage-rfq/configurations/SearchFormControls/getConfiguration';
 
 const FREIGHT_CONTROLS = ['bls_count', 'bl_type'];
-const placeServices = {
+const PLACE_SERVICES = {
 	origin: [
 		'export_transportation',
 		'export_fcl_customs',
@@ -96,7 +96,7 @@ function Services(props) {
 	};
 
 	const renderServices = (place) => {
-		const placeService = placeServices[place];
+		const placeService = PLACE_SERVICES[place];
 
 		return (
 			<>

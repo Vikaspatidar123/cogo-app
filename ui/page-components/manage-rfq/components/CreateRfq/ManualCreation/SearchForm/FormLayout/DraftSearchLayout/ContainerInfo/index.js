@@ -1,7 +1,7 @@
 import styles from './styles.module.css';
 import Tags from './Tags';
 
-import calculator from '@/ui/page-components/manage-rfq/helpers/calculator';
+import getValues from '@/ui/page-components/manage-rfq/helpers/calculator';
 
 function ContainerInfo({
 	containers = [],
@@ -23,7 +23,7 @@ function ContainerInfo({
 				totalVolume: volume,
 				stackability: handling_type,
 				packageType: package_type,
-			} = calculator(dimensions, serviceType);
+			} = getValues(dimensions, serviceType);
 
 			return [
 				{

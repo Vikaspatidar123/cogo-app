@@ -1,9 +1,11 @@
 import { Pill } from '@cogoport/components';
-import { format, startCase } from '@cogoport/utils';
+import { formatDate, startCase } from '@cogoport/utils';
 
 import { RATE_COLOR_MAPPING } from '../../../constants';
 
 import styles from './styles.module.css';
+
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
 function ShippingCompany({ typeName, ratesBreakdown }) {
 	const { validity_end } = ratesBreakdown || {};
@@ -14,10 +16,11 @@ function ShippingCompany({ typeName, ratesBreakdown }) {
 				<div className={styles.validity}>
 					Valid Till
 					{' '}
-					{format(
-						validity_end,
-						'dd-MMM-yyyy',
-					)}
+					{formatDate({
+						date       : validity_end,
+						dateFormat : GLOBAL_CONSTANTS.formats.date['dd MMM yyyy'],
+						formatType : 'date',
+					})}
 				</div>
 				<Pill
 					color={RATE_COLOR_MAPPING[typeName]?.bgColor}

@@ -1364,6 +1364,12 @@ const saas = {
 			access_type  : 'private',
 			service_name : 'air_tracking',
 		},
+		{
+			api          : 'get_multiple_sea_routes',
+			access_type  : 'public',
+			service_name : 'location',
+
+		},
 	],
 };
 export default saas;

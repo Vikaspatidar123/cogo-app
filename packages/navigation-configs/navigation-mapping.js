@@ -16,7 +16,7 @@ import {
 	IcAFinancial,
 	IcADocumentationInfo,
 	IcABookYourShipment,
-	IcMAppInsurance,
+	IcAInsurance,
 	IcAOceanTracking,
 	IcAAirTracking,
 	IcAAirSchedule,
@@ -25,11 +25,11 @@ import {
 	IcAProductCatalog,
 	IcAEligibilityCheck,
 	IcADocumentTemplates,
-	IcMPartnersCogoport,
 	IcAProfessionalQuotations,
-	IcMUpwardGraph,
 	IcMDashboard,
 	IcMBookingDesk,
+	IcATradePartner,
+	IcAPlanningTools,
 } from '@cogoport/icons-react';
 
 const navigationMappings = {
@@ -134,7 +134,7 @@ const navigationMappings = {
 				title       : 'Insurance',
 				href        : '/saas/insurance/list',
 				as          : '/saas/insurance/list',
-				icon        : <IcMAppInsurance width={55} height={55} fill="#fbd221" />,
+				icon        : <IcAInsurance width={55} height={55} fill="#fbd221" />,
 				description : 'Secure your cargo and avoid high unwanted costs',
 			},
 			{
@@ -191,7 +191,7 @@ const navigationMappings = {
 			{
 				key         : 'saas_planning-trade_partner',
 				title       : 'Trade Partner',
-				icon        : <IcMPartnersCogoport width={50} height={50} fill="#fbd221" />,
+				icon        : <IcATradePartner width={50} height={50} fill="#fbd221" />,
 				href        : '/saas/trade-partner',
 				as          : '/saas/trade-partner',
 				description : 'View a detailed list of all your trade partners ',
@@ -220,7 +220,7 @@ const navigationMappings = {
 				title       : 'Contract Management',
 				href        : '/contract-management',
 				as          : '/contract-management',
-				icon        : <IcMUpwardGraph width={40} height={40} fill="#fbd221" />,
+				icon        : <IcAPlanningTools width={40} height={40} fill="#fbd221" />,
 				description : 'contract management',
 			},
 		],

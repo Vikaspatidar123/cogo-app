@@ -10,8 +10,11 @@ module.exports = {
 		remotePatterns: [
 			{
 				protocol : 'https',
+				hostname : 'cogoport-production.sgp1.digitaloceanspaces.com',
+			},
+			{
+				protocol : 'https',
 				hostname : 'cdn.cogoport.io',
-
 			},
 			{
 				protocol : 'https',
@@ -19,11 +22,13 @@ module.exports = {
 			},
 			{
 				protocol : 'https',
-				hostname : 'cogoport-production.sgp1.digitaloceanspaces.com',
+				hostname : 'via.placeholder.com',
 			},
-
+			{
+				protocol : 'https',
+				hostname : 'airline-images-cogoport.s3.ap-south-1.amazonaws.com',
+			},
 		],
-
 	},
 	webpack(config) {
 		const newConfig = { ...config };

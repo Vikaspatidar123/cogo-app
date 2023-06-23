@@ -30,11 +30,11 @@ function Unsubscribe() {
 		ticket,
 	});
 
-	useEffect(()=>{
+	useEffect(() => {
 		if (timer === 0 && submit) {
 			onClickRedirect();
 		}
-	},[timer]);
+	}, [timer, submit]);
 
 	return (
 		<div className={styles.container}>

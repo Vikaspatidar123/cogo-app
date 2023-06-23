@@ -240,7 +240,7 @@ const navigationMappings = {
 				href        : '/contract-management',
 				as          : '/contract-management',
 				icon        : <IcAPlanningTools width={40} height={40} fill="#fbd221" />,
-				description : 'contract management',
+				description : 'View all your contracts and consume directly from one place',
 			},
 			{
 				key         : 'saas_planning-manage_rfq',
@@ -248,7 +248,7 @@ const navigationMappings = {
 				href        : '/manage-rfq',
 				as          : '/manage-rfq',
 				icon        : <IcARfq width={40} height={40} />,
-				description : 'Request For Quotation',
+				description : 'Create and Manage your RFQ for comparison and bulk buying',
 			},
 		],
 	},

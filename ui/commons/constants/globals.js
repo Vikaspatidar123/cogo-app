@@ -162,6 +162,8 @@ const GLOBAL_CONSTANTS = {
 		'VN',
 	],
 	image_url: {
+		cogoport_logo:
+			'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/cogoport.svg',
 		iec_red_flag:
 			'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/redFlag.svg',
 		iec_green_flag:
@@ -199,7 +201,7 @@ const GLOBAL_CONSTANTS = {
 		ocean_empty_state  : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/ship-cargo.jpg',
 		origin_map_pointer : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/map_origin.svg',
 		destination_map_pointer:
-		'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/map_destination.svg',
+			'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/map_destination.svg',
 		map_loading           : 'https://cogoport-maps.s3.ap-south-1.amazonaws.com/world+(2).svg',
 		empty_state_finder    : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/ic-empty-doc_app.svg',
 		ship_icon             : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/shipIcon.jpg',
@@ -208,11 +210,16 @@ const GLOBAL_CONSTANTS = {
 		tracking_loader       : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/cogo-animation.gif',
 		extract_data          : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/Data-extraction.jpg',
 		container_icon        : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/icdport.svg',
-		cogoport_logo         : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/cogoport.svg',
 		air_icon2             : 'https://cdn.cogoport.io/cms-prod/cogo_admin/vault/original/airicon.svg',
 		unsubscription_cargo  : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/page_cargo.png',
 		unsubscription_bottle : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/Bottle.png',
 		unsubscription_plane  : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/page_plane.png',
+		insurance_empty_image : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/Insurance.png',
+	},
+	onboarding_specialist: {
+		name         : 'Kanira Patel',
+		phone_number : '+918976851674',
+		email_id     : 'kanira.patel@cogoport.com',
 	},
 };
 

@@ -1,13 +1,16 @@
 import styles from './styles.module.css';
 
+import { Image } from '@/packages/next';
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
+
 function NoData() {
 	return (
 		<div className={styles.container}>
-			<img
+			<Image
+				src={GLOBAL_CONSTANTS.image_url.insurance_empty_image}
+				alt=""
 				height={200}
 				width={200}
-				alt=""
-				src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/Insurance.png"
 			/>
 			<div className={styles.content}>You have no policies right now</div>
 			<div className={styles.heading}>Try Securing Your Cargo Now</div>

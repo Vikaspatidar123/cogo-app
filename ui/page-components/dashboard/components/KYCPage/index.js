@@ -1,4 +1,4 @@
-import { Button, Placeholder, Modal } from '@cogoport/components';
+import { Button, Placeholder, Modal, cl } from '@cogoport/components';
 import { IcCFcrossInCircle, IcMArrowNext } from '@cogoport/icons-react';
 import { useState } from 'react';
 
@@ -20,7 +20,7 @@ function KYCPage() {
 	const { data } = subscriptionData?.dashboard_products || [];
 	const { is_free_plan = false, plan_name = '' } = data || {};
 	if (loading) {
-		return <Placeholder />;
+		return <Placeholder height="40px" />;
 	}
 	return (
 		<div>
@@ -33,10 +33,10 @@ function KYCPage() {
 							<>
 								<img
 									className={styles.image1}
-									src="	https://cdn.cogoport.io/cms-prod/cogo_admin/vault/original/tds-doc-icon.svg"
+									src="https://cdn.cogoport.io/cms-prod/cogo_admin/vault/original/tds-doc-icon.svg"
 									alt="img"
 								/>
-								<div className={styles.image2}>
+								<div className={cl`${styles.image2} ${styles.kyc}`}>
 									Please complete your KYC to Book Logistics
 								</div>
 							</>
@@ -55,11 +55,10 @@ function KYCPage() {
 						<div className={styles.image3}>
 							<Button
 								onClick={() => { setOpen(true); }}
-								size="md"
+								size="sm"
 								themeType="accent"
 							>
 								SUBMIT KYC
-
 							</Button>
 
 						</div>

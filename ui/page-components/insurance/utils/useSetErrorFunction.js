@@ -2,7 +2,6 @@ import { Toast } from '@cogoport/components';
 import { isEmpty } from '@cogoport/utils';
 
 const useSetErrorFunction = ({
-	getValues,
 	setError,
 	uploadType,
 	prosporerAddress,
@@ -11,8 +10,7 @@ const useSetErrorFunction = ({
 	setFormDetails,
 	setActiveStepper,
 }) => {
-	const values = getValues();
-	const setErrorFunction = () => {
+	const setErrorFunction = (values) => {
 		const isCorporate = uploadType === 'CORPORATE';
 		let hasError = false;
 		if (
@@ -41,8 +39,8 @@ const useSetErrorFunction = ({
 		return hasError;
 	};
 
-	const handleNextClick = () => {
-		const hasError = setErrorFunction();
+	const handleNextClick = (values) => {
+		const hasError = setErrorFunction(values);
 		if (!hasError) {
 			setFormDetails((prev) => ({
 				...prev,

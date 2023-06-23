@@ -20,7 +20,7 @@ import { useSelector } from '@/packages/store';
 import HsCodeIcon from '@/ui/commons/components/HsCodeIcon';
 
 function ProductsList({
-	handelRouting, setUploadModal, hsLoading, setHSCode, showProductView, apiData, loading, hsCode, subCategory,
+	handelRouting, hsLoading, setHSCode, showProductView, apiData, loading, hsCode, subCategory,
 	hsList, setActiveTab, activeTab, setShowProductView, refetchProduct, setPrefiledValues, deleteProduct, isEdit,
 	setSubCategory, setActiveHeaderTab, showProduct, setShowProduct, prefiledValues, addProductLoading,
 	activeHeaderTab, setIsEdit,
@@ -49,9 +49,9 @@ function ProductsList({
 						</div>
 					</Tooltip>
 
-					<Button className={styles.styled_button} onClick={() => setUploadModal(true)}>
+					{/* <Button className={styles.styled_button} onClick={() => setUploadModal(true)}>
 						Import product
-					</Button>
+					</Button> */}
 
 					<Button
 						className={styles.styled_add_button}
@@ -80,18 +80,19 @@ function ProductsList({
 													name="allProducts"
 													title={(
 														<div
+															className={styles.styled_tab_heading}
 															role="presentation"
 															onClick={() => {
 																setShowProductView(true);
 																refetchProduct({});
 															}}
 														>
-															<IcMGrid fill="#d94646" />
 															<div
-																className={styles.label}
+																className={styles.colored_icon}
 															>
-																All Products
+																<IcMGrid fill="#d94646" className={styles.icon} />
 															</div>
+															All Products
 														</div>
 													)}
 												/>

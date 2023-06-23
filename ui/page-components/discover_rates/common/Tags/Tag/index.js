@@ -22,7 +22,7 @@ const ICON_MAPPING = {
 function TagSingle({
 	item = {},
 	selected = '',
-	onClick = () => {},
+	onClick = () => { },
 	className: classNameProp = '',
 	id = '',
 	options,
@@ -45,10 +45,9 @@ function TagSingle({
 	const selectedOptionLabel = getLabelText();
 
 	const Icon = ICON_MAPPING[item.icon];
-	const className = `${classNameProp} ${
-		selected === item.value || (item.options && isAnyOptionSelected())
-			? styles.selected
-			: ''
+	const className = `${classNameProp} ${selected === item.value || (item.options && isAnyOptionSelected())
+		? styles.selected
+		: ''
 	}`;
 	const setOptions = (optionitem) => optionitem.map((e) => (
 		<div

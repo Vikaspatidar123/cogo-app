@@ -1,0 +1,47 @@
+.container {
+	min-height: 300px;
+	padding: 50px 30px 30px;
+	margin-top: -20px;
+	background: #fff;
+	border-radius: 16px;
+	box-shadow:
+		0 17px 60px rgb(71 111 211 / 11%),
+		0 2px 18px rgb(71 111 211 / 5.5%);
+}
+
+.form {
+	position: relative;
+	padding: 0 15px 10px;
+	margin-top: 30px;
+	border: 1.5px solid #e0e0e0;
+	border-radius: 7px;
+}
+
+.header {
+	position: absolute;
+	top: -12px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0 10px;
+	margin-bottom: -10px;
+	background: #fff;
+}
+
+.title {
+	font-size: 16px;
+	font-weight: 500;
+	color: #000;
+}
+
+.plus_icon {
+	width: 15px;
+	height: 15px;
+}
+
+.button_box {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-top: 20px;
+}

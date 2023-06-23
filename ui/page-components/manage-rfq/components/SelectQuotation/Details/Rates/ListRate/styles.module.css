@@ -1,0 +1,44 @@
+.rate_container {
+	height: 54vh;
+	padding-top: 12px;
+	overflow-y: scroll;
+	border-top: 1px solid #e0e0e0;
+
+	:global {
+		.ui_radiogroup_container {
+			flex-direction: column;
+		}
+
+		.ui_radio_label {
+			width: 100%;
+		}
+	}
+}
+
+.button_box {
+	display: flex;
+	gap: 10px;
+	align-items: center;
+	justify-content: flex-end;
+	margin: 8px 12px;
+}
+
+.next_back_div {
+	display: flex;
+	align-items: center;
+	cursor: not-allowed;
+	opacity: 0.5;
+}
+
+.next_back_div_clickable {
+	display: flex;
+	align-items: center;
+	cursor: pointer;
+	opacity: 1;
+}
+
+.port_pair {
+	padding: 4px 12px;
+	border: 1px solid #e0e0e0;
+	border-radius: 4px;
+}

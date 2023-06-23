@@ -190,16 +190,29 @@ const GLOBAL_CONSTANTS = {
 			'https://cdn.cogoport.io/cms-prod/cogo_partner/vault/original/Vector.png',
 		edit_image:
 			'https://cdn.cogoport.io/cms-prod/cogo_partner/vault/original/animation_500_lhvo6uhx1.png',
-		cogoport_logo : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/cogoport.svg',
-		ship_icon     : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/shipIcon.jpg',
-		air_icon      : 'https://cdn.cogoport.io/cms-prod/cogo_admin/vault/original/airicon.svg',
-		loading       : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/loading.svg',
-		unsubscription_cargo:
-		'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/page_cargo.png',
-		unsubscription_bottle:
-		'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/Bottle.png',
-		unsubscription_plane:
-		'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/page_plane.png',
+		yellow_vessel      : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/shipYellow.png',
+		red_vessel         : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/shipRed.png',
+		black_vessel       : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/shipArrow.png',
+		loading            : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/loading.svg',
+		loading_banner     : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/loading-banner.svg',
+		air_empty_state    : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/air-connect.svg',
+		ocean_empty_state  : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/ship-cargo.jpg',
+		origin_map_pointer : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/map_origin.svg',
+		destination_map_pointer:
+		'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/map_destination.svg',
+		map_loading           : 'https://cogoport-maps.s3.ap-south-1.amazonaws.com/world+(2).svg',
+		empty_state_finder    : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/ic-empty-doc_app.svg',
+		ship_icon             : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/shipIcon.jpg',
+		truck_icon            : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/truckIcon.png',
+		air_icon              : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/airplane.png',
+		tracking_loader       : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/cogo-animation.gif',
+		extract_data          : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/Data-extraction.jpg',
+		container_icon        : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/icdport.svg',
+		cogoport_logo         : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/cogoport.svg',
+		air_icon2             : 'https://cdn.cogoport.io/cms-prod/cogo_admin/vault/original/airicon.svg',
+		unsubscription_cargo  : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/page_cargo.png',
+		unsubscription_bottle : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/Bottle.png',
+		unsubscription_plane  : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/page_plane.png',
 	},
 };
 

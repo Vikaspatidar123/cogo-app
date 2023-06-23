@@ -21,6 +21,7 @@ import RadioGroupController from './RadioGroupController';
 import SelectController from './SelectController';
 import SliderController from './SliderController';
 import TextAreaController from './TextAreaController';
+import TimepickerController from './TimepickerController';
 import UploadController from './UploadController';
 
 const MAPPING = {
@@ -47,6 +48,7 @@ const MAPPING = {
 	email                      : InputController,
 	custom_slider              : Slider,
 	'creatable-select'         : CreatableSelectController,
+	time_picker                : TimepickerController,
 	daterangepicker            : DateRangepickerController,
 };
 

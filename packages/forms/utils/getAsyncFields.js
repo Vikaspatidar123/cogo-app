@@ -278,6 +278,21 @@ function asyncProductList() {
 	};
 }
 
+function asyncFieldsAirLine() {
+	return {
+		labelKey    : 'label',
+		valueKey    : 'id',
+		endpoint    : 'list_operators',
+		initialCall : true,
+		params      : {
+			filters    : { operator_type: 'airline', status: 'active' },
+			page_limit : 100,
+			sort_by    : 'short_name',
+			sort_type  : 'asc',
+		},
+	};
+}
+
 function asyncFieldsShippingLine() {
 	return {
 		labelKey    : 'short_name',
@@ -293,20 +308,6 @@ function asyncFieldsShippingLine() {
 	};
 }
 
-function asyncFieldsAirLine() {
-	return {
-		labelKey    : 'label',
-		valueKey    : 'id',
-		endpoint    : 'list_operators',
-		initialCall : true,
-		params      : {
-			filters    : { operator_type: 'airline', status: 'active' },
-			page_limit : 100,
-			sort_by    : 'short_name',
-			sort_type  : 'asc',
-		},
-	};
-}
 function asyncTaxNumbers() {
 	return {
 		labelKey    : 'label',
@@ -323,6 +324,47 @@ function asyncTradeContacts() {
 		endpoint       : 'list_trade_contacts',
 		defaultParams  : { page_limit: 20 },
 		defaultOptions : true,
+	};
+}
+function asyncFieldsSixDigitHsCode() {
+	return {
+		labelKey    : 'label',
+		valueKey    : 'hsCode',
+		endpoint    : 'saas/hs-code/six-digit-list',
+		authKey     : 'get_saas_hs_code_six_digit_list',
+		useQueryKey : true,
+	};
+}
+
+function asyncFieldsOceanPocDetails() {
+	return {
+		labelKey : 'label',
+		valueKey : 'id',
+		endpoint : 'list_saas_subscription_poc_details',
+
+	};
+}
+
+function asyncFieldsAirPocDetails() {
+	return {
+		labelKey : 'label',
+		valueKey : 'id',
+		endpoint : 'list_saas_air_subscription_poc_details',
+	};
+}
+
+function asyncFieldsAirLineList() {
+	return {
+		labelKey : 'business_name',
+		valueKey : 'id',
+		endpoint : 'list_operators',
+	};
+}
+function asyncFieldsShippingLineList() {
+	return {
+		labelKey : 'business_name',
+		valueKey : 'id',
+		endpoint : 'get_saas_container_shipping_lines',
 	};
 }
 
@@ -352,5 +394,10 @@ export {
 	asyncOrganizationBranches,
 	asyncTaxNumbers,
 	asyncTradeContacts,
+	asyncFieldsSixDigitHsCode,
+	asyncFieldsOceanPocDetails,
+	asyncFieldsAirPocDetails,
+	asyncFieldsAirLineList,
+	asyncFieldsShippingLineList,
 	asyncFieldsShippingLines,
 };

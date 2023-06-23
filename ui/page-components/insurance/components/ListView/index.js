@@ -6,6 +6,7 @@ import { useState } from 'react';
 import CancellationAndConfirmModal from '../../common/CancellationModal';
 import EmptyState from '../../common/EmptyState';
 import FAQComponent from '../../common/FAQComponent';
+import NoData from '../../common/NoData';
 import PreviewModal from '../../common/PreviewModal';
 import redirectUrl from '../../common/redirectUrl';
 import renderFunctions from '../../common/renderFunctions';
@@ -30,6 +31,7 @@ function ListView() {
 	const [rotateIcon, setRotateIcon] = useState(false);
 
 	const { loading, data, setFilters, filters, setSort, sort, refetch } = useList({ activeTab });
+	console.log('🚀 ~ file: index.js:34 ~ ListView ~ data:', data);
 
 	const { summaryData, summaryLoading } = userSummary({ activeTab, filters, sort });
 
@@ -109,16 +111,7 @@ function ListView() {
 					)}
 				</div>
 			</div>
-			<div className={!(data?.list?.length > 0 && !previewloading) ? styles.flex_end : styles.segment_faq}>
-				{data?.list?.length > 0 && !previewloading && (
-					<Chips
-						size="lg"
-						items={segementedOpt(summaryData, activeTab, summaryLoading)}
-						selectedItems={activeTab}
-						onItemChange={handleTabChange}
-						className={styles.chips}
-					/>
-				)}
+			<div className={styles.flex_end}>
 				{showFaq === 'none' &&				(
 					<img
 						src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/faq.svg"
@@ -130,16 +123,28 @@ function ListView() {
 					/>
 				)}
 			</div>
-			{data?.list?.length > 0 && !previewloading && (
-				<Table
-					columns={fields || []}
-					data={list || []}
-					loading={loading}
-					loadingRowsCount={10}
-					className={styles.table}
-				/>
+			{(isEmpty(data) && !loading) ? <EmptyState /> : (
+				<>
+					<div className={styles.segment_faq}>
+						<Chips
+							size="lg"
+							items={segementedOpt(summaryData, activeTab, summaryLoading)}
+							selectedItems={activeTab}
+							onItemChange={handleTabChange}
+							className={styles.chips}
+						/>
+					</div>
+					{data?.list?.length > 0 ? (
+						<Table
+							columns={fields || []}
+							data={list || []}
+							loading={loading}
+							loadingRowsCount={10}
+							className={styles.table}
+						/>
+					) : <NoData />}
+				</>
 			)}
-			{isEmpty(data) && !previewloading && <EmptyState />}
 			{data?.list?.length > 0 && (
 				<div className={styles.pagination_div}>
 					<Pagination

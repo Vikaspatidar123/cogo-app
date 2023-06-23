@@ -44,7 +44,7 @@
 .segment_faq {
 	display: flex;
 	justify-content: space-between;
-	margin-top: 20px;
+	margin: 20px;
 
 	:global {
 		.ui_chip_container {

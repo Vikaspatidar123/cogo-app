@@ -25,11 +25,13 @@ function TrackingInfo({ summaryHook, view }) {
 
 	return (
 		<div className={styles.container}>
-			<StatsContainer
-				stats={{ on_track_shipments, shipments_delayed, attention_required }}
-				globalFilter={globalFilter}
-				setGlobalFilter={setGlobalFilter}
-			/>
+			{activeTab === 'ocean' &&			(
+				<StatsContainer
+					stats={{ on_track_shipments, shipments_delayed, attention_required }}
+					globalFilter={globalFilter}
+					setGlobalFilter={setGlobalFilter}
+				/>
+			)}
 
 			{view === 'list'
 				? (

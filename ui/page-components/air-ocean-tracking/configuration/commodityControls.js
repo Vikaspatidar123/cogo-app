@@ -9,7 +9,7 @@ const commodityControls = [
 		rules              : { required: 'Please Select Commodity' },
 		getModifiedOptions : (data) => (data || []).map((info) => ({
 			...info,
-			value : info?.id,
+			value : info?.hsCode,
 			label : (
 				<div>
 					{info?.hsCode}

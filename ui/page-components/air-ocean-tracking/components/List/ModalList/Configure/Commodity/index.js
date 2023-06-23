@@ -15,7 +15,11 @@ function Commodity({ closeHandler, shipmentId = '', refetchTrackerList, shipment
 
 	const { hs_code = '' } = shipmentInfo || {};
 
-	const { control, handleSubmit, setValue, formState:{ errors } } = useForm();
+	const { control, handleSubmit, setValue, formState:{ errors } } = useForm({
+		defaultValues: {
+			hscode: hs_code,
+		},
+	});
 
 	const { loading, updateTrackerInfo } = useCreateShipment({ closeHandler, refetchTrackerList });
 

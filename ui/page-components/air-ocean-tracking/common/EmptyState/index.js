@@ -24,9 +24,9 @@ function EmptyState() {
 	return (
 		<div className={styles.container}>
 			<Image
-				src={GLOBAL_CONSTANTS.image_url.loading_banner}
-				width={300}
-				height={200}
+				src={GLOBAL_CONSTANTS.image_url.extract_data}
+				width={400}
+				height={400}
 				alt="loading"
 			/>
 			<Image

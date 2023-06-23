@@ -186,6 +186,8 @@ const GLOBAL_CONSTANTS = {
 		ship_icon          : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/shipIcon.jpg',
 		truck_icon         : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/truckIcon.png',
 		air_icon           : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/airplane.png',
+		tracking_loader    : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/cogo-animation.gif',
+		extract_data       : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/Data-extraction.jpg',
 	},
 };
 

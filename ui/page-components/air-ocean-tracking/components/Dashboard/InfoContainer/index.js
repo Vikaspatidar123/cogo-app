@@ -46,7 +46,7 @@ function InfoContainer() {
 									<p className={styles.date}>
 										{formatDate({
 											date       : news?._updated_on,
-											dateFormat : GLOBAL_CONSTANTS.date['dd MMM yyyy'],
+											dateFormat : GLOBAL_CONSTANTS.formats.date['dd MMM yyyy'],
 											timeFormat : GLOBAL_CONSTANTS.formats.time['hh:mm aaa'],
 											formatType : 'dateTime',
 										})}

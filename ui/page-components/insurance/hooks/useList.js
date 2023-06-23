@@ -11,15 +11,15 @@ const useList = ({ activeTab }) => {
 	const [sort, setSort] = useState({});
 	const { organization } = profile || {};
 	const [{ loading, data }, trigger] = useRequestBf({
-		method  : 'get',
-		authkey : 'get_saas_insurance_list',
-		url     : '/saas/insurance/list',
+		method: 'get',
+		authKey: 'get_saas_insurance_list',
+		url: '/saas/insurance/list',
 	}, { manual: true, autoCancel: false });
 
 	const transitModeMapping = (item) => {
 		const mapping = {
-			ALL   : '',
-			OCEAN : 'SEA',
+			ALL: '',
+			OCEAN: 'SEA',
 		};
 		return mapping[item] || item;
 	};
@@ -28,10 +28,10 @@ const useList = ({ activeTab }) => {
 		try {
 			await trigger({
 				params: {
-					source         : 'SAAS',
-					organizationId : organization?.id,
-					searchTerm     : filters?.searchTerm,
-					transitMode    : activeTab !== 'ALL' ? transitModeMapping(activeTab) : null,
+					source: 'SAAS',
+					organizationId: organization?.id,
+					searchTerm: filters?.searchTerm,
+					transitMode: activeTab !== 'ALL' ? transitModeMapping(activeTab) : null,
 					sortBy,
 					sortType,
 					...filters,

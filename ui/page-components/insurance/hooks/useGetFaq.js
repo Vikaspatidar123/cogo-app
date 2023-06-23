@@ -5,9 +5,9 @@ import { useRequestBf } from '@/packages/request';
 
 const useGetFaq = ({ showFaq }) => {
 	const [{ loading, data }, trigger] = useRequestBf({
-		url     : '/saas/faq',
-		method  : 'get',
-		authKey : 'get_saas_faq',
+		url: '/saas/faq',
+		method: 'get',
+		authKey: 'get_saas_faq',
 	}, { manual: true });
 
 	const response = useCallback(async () => {

@@ -24,9 +24,9 @@ const usePayment = ({
 	const { org_id = '', branch_id = '', type = '' } = query || {};
 	const [{ data, loading }, trigger] = useRequestBf(
 		{
-			method  : 'post',
-			authKey : 'post_saas_payment',
-			url     : '/saas/payment',
+			method: 'post',
+			authKey: 'post_saas_payment',
+			url: '/saas/payment',
 		},
 		{ manual: true },
 	);
@@ -38,7 +38,7 @@ const usePayment = ({
 		totalCharges = 0,
 	} = ratesResponse || {};
 
-	const { organizationAddressId = '', isBillingAddress = false } =	organizationAddress || {};
+	const { organizationAddressId = '', isBillingAddress = false } = organizationAddress || {};
 
 	const callBackUrl = `${process.env.NEXT_PUBLIC_APP_URL}v2/${org_id}/${branch_id}/saas/insurance/${type}`;
 
@@ -56,15 +56,15 @@ const usePayment = ({
 			displayName = '',
 		}) => ({
 			displayName,
-			description    : serviceName,
-			pricePerUnit   : totalAmount,
-			quantity       : 1,
+			description: serviceName,
+			pricePerUnit: totalAmount,
+			quantity: 1,
 			totalAmount,
-			taxAmount      : gstCharges,
-			subTotalAmount : totalAmount,
-			netAmount      : netCharges,
-			discountAmount : 0,
-			metadata       : '',
+			taxAmount: gstCharges,
+			subTotalAmount: totalAmount,
+			netAmount: netCharges,
+			discountAmount: 0,
+			metadata: '',
 			productCodeId,
 		}),
 	);
@@ -80,24 +80,24 @@ const usePayment = ({
 			try {
 				const resp = await trigger({
 					data: {
-						source                : 'SAAS',
-						userId                : id,
-						organizationId        : organization?.id,
-						[addressKey]          : organizationAddressId,
-						currency              : 'INR',
-						billRefId             : info?.id,
-						billType              : 'INSURANCE',
-						userName              : name,
-						userEmail             : email,
-						userMobile            : mobile_number,
-						userMobileCountryCode : mobile_country_code,
-						redirectUrl           : callBackUrl,
-						billLineItems         : modifiedServiceChargesList,
-						totalAmount           : totalCharges,
+						source: 'SAAS',
+						userId: id,
+						organizationId: organization?.id,
+						[addressKey]: organizationAddressId,
+						currency: 'INR',
+						billRefId: info?.id,
+						billType: 'INSURANCE',
+						userName: name,
+						userEmail: email,
+						userMobile: mobile_number,
+						userMobileCountryCode: mobile_country_code,
+						redirectUrl: callBackUrl,
+						billLineItems: modifiedServiceChargesList,
+						totalAmount: totalCharges,
 						taxAmount,
-						subTotalAmount        : totalCharges,
-						netAmount             : totalApplicableCharges,
-						discountAmount        : 0,
+						subTotalAmount: totalCharges,
+						netAmount: totalApplicableCharges,
+						discountAmount: 0,
 					},
 				});
 				if (resp?.data) {
@@ -112,8 +112,8 @@ const usePayment = ({
 					'We could not initiate payment right now!!! Please try again later',
 					{
 						style: {
-							background : '#FFD9D4',
-							color      : '#333',
+							background: '#FFD9D4',
+							color: '#333',
 						},
 						autoClose: 5000,
 					},

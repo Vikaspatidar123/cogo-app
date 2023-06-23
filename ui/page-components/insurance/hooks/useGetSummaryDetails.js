@@ -8,9 +8,9 @@ const useGetSummaryDetails = ({ activeTab, filters, sort }) => {
 	const { profile } = useSelector((state) => state);
 	const { organization = {} } = profile || {};
 	const [{ data, loading }, trigger] = useRequestBf({
-		method  : 'get',
-		authkey : 'get_saas_insurance_list_summary',
-		url     : 'saas/insurance/list/summary',
+		method: 'get',
+		authKey: 'get_saas_insurance_list_summary',
+		url: 'saas/insurance/list/summary',
 	}, { autoCancel: false });
 
 	const summary = useCallback(async () => {
@@ -18,9 +18,9 @@ const useGetSummaryDetails = ({ activeTab, filters, sort }) => {
 		try {
 			await trigger({
 				params: {
-					source         : 'SAAS',
-					organizationId : organization?.id,
-					transitMode    : activeTab !== 'ALL' ? activeTab : undefined,
+					source: 'SAAS',
+					organizationId: organization?.id,
+					transitMode: activeTab !== 'ALL' ? activeTab : undefined,
 					sortBy,
 					sortType,
 					...filters,
@@ -36,9 +36,9 @@ const useGetSummaryDetails = ({ activeTab, filters, sort }) => {
 	}, [filters, sort, activeTab, summary]);
 
 	return {
-		summaryData    : data,
+		summaryData: data,
 		summary,
-		summaryLoading : summary.loading,
+		summaryLoading: summary.loading,
 		loading,
 	};
 };

@@ -5,7 +5,7 @@ import { useRequestBf } from '@/packages/request';
 import { useSelector } from '@/packages/store';
 
 const useInsurance = ({
-	payment = () => {},
+	payment = () => { },
 	type = '',
 	uploadType = '',
 	activeTab = '',
@@ -25,9 +25,9 @@ const useInsurance = ({
 
 	const [{ loading }, trigger] = useRequestBf(
 		{
-			method  : 'post',
-			authkey : 'post_saas_insurance_checkout',
-			url     : '/saas/insurance/checkout',
+			method: 'post',
+			authKey: 'post_saas_insurance_checkout',
+			url: '/saas/insurance/checkout',
 		},
 		{ manual: true },
 	);
@@ -53,25 +53,25 @@ const useInsurance = ({
 				const res = await trigger({
 					data: {
 						...rest,
-						aadharNumber   : aadharNumber === '' ? undefined : aadharNumber,
-						gstin          : gstin === '' ? undefined : gstin,
-						source         : 'SAAS',
-						email          : profile?.email,
-						userId         : id,
-						organizationId : organization?.id,
-						transitMode    : type === 'Ocean' ? 'SEA' : type.toUpperCase(),
-						billingType    : billingtype,
-						policyType     : countryCode === 'IN' ? 'INLAND' : activeTab,
-						premium        : +premium,
-						policyId       : policyIdDraft || policyId || policyIdPost,
-						gstAmount      : taxAmount,
+						aadharNumber: aadharNumber === '' ? undefined : aadharNumber,
+						gstin: gstin === '' ? undefined : gstin,
+						source: 'SAAS',
+						email: profile?.email,
+						userId: id,
+						organizationId: organization?.id,
+						transitMode: type === 'Ocean' ? 'SEA' : type.toUpperCase(),
+						billingType: billingtype,
+						policyType: countryCode === 'IN' ? 'INLAND' : activeTab,
+						premium: +premium,
+						policyId: policyIdDraft || policyId || policyIdPost,
+						gstAmount: taxAmount,
 						netPremium,
-						[addressKey]   : organizationAddressId,
+						[addressKey]: organizationAddressId,
 						platformCharges,
 						convenienceFee,
 						sumInsured,
 						totalApplicableCharges,
-						policyForSelf  : insuranceType[0] === 'SELF',
+						policyForSelf: insuranceType[0] === 'SELF',
 					},
 				});
 				if (res?.data) {

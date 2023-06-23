@@ -8,9 +8,9 @@ const useGetPreviewDetails = () => {
 
 	const [{ loading }, trigger] = useRequestBf(
 		{
-			method  : 'get',
-			authkey : 'get_saas_insurance_details',
-			url     : '/saas/insurance/details',
+			method: 'get',
+			authKey: 'get_saas_insurance_details',
+			url: '/saas/insurance/details',
 		},
 		{ manual: true },
 	);

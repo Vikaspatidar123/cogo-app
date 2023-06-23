@@ -12,9 +12,9 @@ const useGetTermsConditions = ({
 	const [terms, setTerms] = useState();
 	const [{ loading }, trigger] = useRequestBf(
 		{
-			method  : 'get',
-			authkey : 'get_saas_insurance_terms',
-			url     : '/saas/insurance/terms',
+			method: 'get',
+			authKey: 'get_saas_insurance_terms',
+			url: '/saas/insurance/terms',
 		},
 		{ manual: true },
 	);
@@ -23,10 +23,10 @@ const useGetTermsConditions = ({
 		try {
 			const res = await trigger({
 				params: {
-					policyCommodityId : formDetails?.policyCommodityId || '',
-					riskCoverage      : 'ALL_RISK',
-					policyType        : countryCode === 'IN' ? 'INLAND' : activeTab,
-					transitMode       : type === 'Ocean' ? 'SEA' : type?.toUpperCase(),
+					policyCommodityId: formDetails?.policyCommodityId || '',
+					riskCoverage: 'ALL_RISK',
+					policyType: countryCode === 'IN' ? 'INLAND' : activeTab,
+					transitMode: type === 'Ocean' ? 'SEA' : type?.toUpperCase(),
 				},
 			});
 			if (res?.data) {

@@ -1,21 +1,21 @@
-import { Text, ToolTip } from '@cogoport/components';
+import { Tooltip } from '@cogoport/components';
 
 import styles from './styles.module.css';
 
 function RenderTooltip({ value }) {
 	return (
 		<div className={styles.container}>
-			<ToolTip
+			<Tooltip
 				content={(
 					<div>
-						<Text>{value}</Text>
+						<text>{value}</text>
 					</div>
 				)}
 				placement="top"
 				theme="light"
 			>
-				<Text className={styles.text_truncate}>{value}</Text>
-			</ToolTip>
+				<text className={styles.text_truncate}>{value}</text>
+			</Tooltip>
 		</div>
 	);
 }

@@ -1,0 +1,29 @@
+.container {
+	display: flex;
+	flex-direction: column;
+}
+
+.title {
+	margin: 10px 5px;
+}
+
+.tag_row {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: space-evenly;
+	margin: 4px 0;
+
+	.tags {
+		padding: 2px 12px;
+		font-size: 12px;
+		background: #fef1df;
+		border-radius: 4px;
+	}
+
+	@media screen and (max-width: 767px) {
+		.tags {
+			font-size: 10px;
+		}
+	}
+}

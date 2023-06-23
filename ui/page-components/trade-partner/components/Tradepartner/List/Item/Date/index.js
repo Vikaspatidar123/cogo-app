@@ -1,4 +1,4 @@
-import { format } from '@cogoport/components';
+import { format } from '@cogoport/utils';
 import React from 'react';
 
 function Date({ itemData, field }) {

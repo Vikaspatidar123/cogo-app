@@ -30,10 +30,7 @@ function OrderHistory() {
 					</div>
 				</div>
 				<div className={styles.flex_div}>
-					<FilterSection
-						filters={filters}
-						setFilters={setGlobalFilters}
-					/>
+
 					<div className={styles.input}>
 						<Input
 							placeholder="search by order number"
@@ -47,6 +44,10 @@ function OrderHistory() {
 							suffix={<IcMSearchlight height={30} style={{ marginRight: '10px' }} />}
 						/>
 					</div>
+					<FilterSection
+						filters={filters}
+						setFilters={setGlobalFilters}
+					/>
 				</div>
 			</div>
 

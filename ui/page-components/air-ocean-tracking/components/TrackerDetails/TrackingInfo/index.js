@@ -19,7 +19,6 @@ function TrackingInfo() {
 	} = data || {};
 
 	const {
-		currTrackingData,
 		combineMileStoneList,
 		currContainerDetails,
 		setCurrContainerDetails,

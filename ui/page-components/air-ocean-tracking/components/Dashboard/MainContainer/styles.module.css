@@ -1,5 +1,9 @@
 .container {
 	padding: 0 20px 20px 0;
+
+	@media screen and (max-width: 767px) {
+		padding: 0 0 20px;
+	}
 }
 
 .title {
@@ -10,8 +14,14 @@
 
 .flex_box {
 	display: flex;
+	flex-wrap: wrap;
 	align-items: center;
 	justify-content: space-between;
+
+	@media screen and (max-width: 767px) {
+		width: 100%;
+		margin-bottom: 20px;
+	}
 }
 
 .header {
@@ -22,6 +32,14 @@
 	.select_field {
 		width: 150px;
 		margin: 0 15px;
+	}
+
+	@media screen and (max-width: 767px) {
+		justify-content: space-around;
+
+		.shipment_btn {
+			margin-top: 20px;
+		}
 	}
 }
 

@@ -72,6 +72,7 @@ function Header() {
 						<Button
 							size="lg"
 							type="button"
+							className={styles.heading_btn}
 							loading={loading}
 							onClick={handleSubmit(onSubmitHandler)}
 						>
@@ -86,6 +87,7 @@ function Header() {
 							size="lg"
 							type="button"
 							themeType="accent"
+							className={styles.heading_btn}
 							disabled={loading}
 							onClick={() => setCsvModal(true)}
 						>

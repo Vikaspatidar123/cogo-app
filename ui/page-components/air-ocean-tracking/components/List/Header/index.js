@@ -57,7 +57,7 @@ function Header(props) {
 					</div>
 				</div>
 
-				<div className={styles.flex_box}>
+				<div className={cl`${styles.flex_box} ${styles.archived_section}`}>
 					{!isArchived && (
 						<>
 							<Button
@@ -110,7 +110,7 @@ function Header(props) {
 				${activeTab === 'ocean' ? styles.ocean_row : ''}`}
 			>
 				{activeTab === 'ocean'	&& (
-					<div style={{ width: '42%' }}>
+					<div className={styles.second_row_tab}>
 						<Tabs
 							activeTab={search_type}
 							onChange={(e) => filterChangeHandler('search_type', e)}

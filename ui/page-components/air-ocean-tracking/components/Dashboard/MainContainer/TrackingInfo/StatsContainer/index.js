@@ -6,7 +6,7 @@ import styles from './styles.module.css';
 
 function StatsContainer({ stats: statsData = {}, globalFilter, setGlobalFilter }) {
 	const { shipment_status: prevStatus } = globalFilter;
-
+	console.log(statsData, 'statsData');
 	const clickHandler = (key) => {
 		if (key === prevStatus) {
 			setGlobalFilter((prev) => {

@@ -16,7 +16,6 @@ const selectOpt = [
 function MainContainer() {
 	const [view, setView] = useState('list');
 	const { redirectToList } = useRedirectFn();
-
 	const summaryHook = useGetSummary();
 	const { globalFilter, setGlobalFilter } = summaryHook;
 
@@ -43,7 +42,6 @@ function MainContainer() {
 				</div>
 
 				<div className={cl`${styles.flex_box} ${styles.filter_section}`}>
-					<span />
 					<div className={styles.view_tab}>
 						<Tabs
 							themeType="tertiary"
@@ -69,7 +67,7 @@ function MainContainer() {
 						isClearable
 					/>
 
-					<Button type="button" onClick={() => redirectToList({})}>
+					<Button type="button" className={styles.shipment_btn} onClick={() => redirectToList({})}>
 						View All Shipments
 					</Button>
 				</div>

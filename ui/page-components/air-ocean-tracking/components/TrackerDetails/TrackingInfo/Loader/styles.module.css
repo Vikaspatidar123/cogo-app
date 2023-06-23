@@ -3,6 +3,10 @@
 	align-items: flex-start;
 	justify-content: space-between;
 	margin-top: 20px;
+
+	@media screen and (max-width: 767px) {
+		flex-direction: column;
+	}
 }
 
 .milestone_loader {

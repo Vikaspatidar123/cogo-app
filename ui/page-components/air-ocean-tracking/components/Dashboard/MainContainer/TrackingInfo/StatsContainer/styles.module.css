@@ -1,6 +1,10 @@
 .container {
 	display: flex;
 	border: 1px solid #daf9ff;
+
+	@media screen and (max-width: 767px) {
+		flex-direction: column;
+	}
 }
 
 .card {
@@ -13,6 +17,17 @@
 	&.delayed {
 		border-right: 1px solid #f2e3c3;
 		border-left: 1px solid #f2e3c3;
+	}
+
+	@media screen and (max-width: 767px) {
+		width: 100%;
+
+		&.delayed {
+			border: none;
+			border-bottom: 1px solid #f2e3c3;
+		}
+
+		border-bottom: 1px solid #f2e3c3;
 	}
 }
 

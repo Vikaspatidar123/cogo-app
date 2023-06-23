@@ -24,40 +24,46 @@ function Table({
 			<p className={styles.title}>{title}</p>
 
 			<div className={styles.table}>
-				<div className={cl`${styles.flex_box} ${styles.card_header}`}>
-					{configs.map((config) => (
-						<div
-							key={config.key}
-							style={{ width: config?.width }}
-							className={styles.col}
-						>
-							{config.title}
-						</div>
-					))}
-				</div>
+				<div className={styles.horizontal_scroll}>
 
-				<div style={{ maxHeight: maxHeight ?? '' }} className={`${isScroll ? styles.scroll_container : ''}`}>
-					{newList.map((item) => (
-						<div
-							key={item?.id || item}
-							className={`${styles.flex_box} ${styles.item_row} ${showHover ? styles.hover_row : ''}
+					<div className={cl`${styles.flex_box} ${styles.card_header}`}>
+						{configs.map((config) => (
+							<div
+								key={config.key}
+								style={{ width: config?.width }}
+								className={styles.col}
+							>
+								{config.title}
+							</div>
+						))}
+					</div>
+
+					<div
+						style={{ maxHeight: maxHeight ?? '' }}
+						className={`${isScroll ? styles.scroll_container : ''}`}
+					>
+						{newList.map((item) => (
+							<div
+								key={item?.id || item}
+								className={`${styles.flex_box} ${styles.item_row} ${showHover ? styles.hover_row : ''}
 							${(selectedContact?.id === item?.id && isClickable) ? styles.selected : ''}`}
-							onClick={() => setSelectedContact(item)}
-							role="presentation"
-						>
-							{configs.map((config) => (
-								<div
-									key={config.key}
-									style={{ width: config?.width }}
-									className={styles.col}
-								>
-									{loading ? <Placeholder margin="0px 0px 20px 0px" />
-										: getValue(item, config, newFunction)}
-								</div>
-							))}
-						</div>
+								onClick={() => setSelectedContact(item)}
+								role="presentation"
+							>
+								{configs.map((config) => (
+									<div
+										key={config.key}
+										style={{ width: config?.width }}
+										className={styles.col}
+									>
+										{loading ? <Placeholder margin="0px 0px 20px 0px" />
+											: getValue(item, config, newFunction)}
+									</div>
+								))}
+							</div>
 
-					))}
+						))}
+					</div>
 				</div>
 
 				{!loading && showPagination && total_count > page_limit && (

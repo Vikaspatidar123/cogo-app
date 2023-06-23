@@ -4,11 +4,12 @@ const dashboardTableConfig = ({ type }) => [
 		title : 'Tracking number',
 		width : '30%',
 	},
-	// {
-	// 	key   : 'trade_lane',
-	// 	title : 'Trade Lane',
-	// 	width : '30%',
-	// },
+	{
+		key   : 'route',
+		title : 'Route',
+		func  : 'renderRoute',
+		width : '30%',
+	},
 	{
 		key   : 'current_status',
 		title : 'Current Status',

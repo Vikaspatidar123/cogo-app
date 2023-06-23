@@ -92,6 +92,12 @@ const itemFunction = ({
 			<span>{milestones?.current_milestone || '--'}</span>
 		);
 	},
+	renderRoute: (itemData) => {
+		const { destination_country = '', origin_country = '' } = itemData || {};
+		return (
+			<span>{destination_country && origin_country ? `${origin_country} > ${destination_country}` : '--'}</span>
+		);
+	},
 });
 
 export default itemFunction;

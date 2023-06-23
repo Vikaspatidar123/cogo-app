@@ -10,10 +10,19 @@
 	background-color: #fdfbf6;
 	border-bottom-right-radius: 8px;
 	border-bottom-left-radius: 8px;
+
+	@media screen and (max-width: 767px) {
+		flex-direction: column;
+	}
 }
 
 .first_section {
 	width: 30%;
+
+	@media screen and (max-width: 767px) {
+		width: 100%;
+		margin-bottom: 10px;
+	}
 }
 
 .severity_section {

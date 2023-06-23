@@ -6,6 +6,17 @@
 	border: 1px solid #f8f2e7;
 }
 
+.horizontal_scroll {
+	@media screen and (max-width: 767px) {
+		max-width: 100%;
+		overflow-x: scroll;
+
+		.col {
+			width: fit-content !important;
+		}
+	}
+}
+
 .title {
 	font-weight: 600;
 }

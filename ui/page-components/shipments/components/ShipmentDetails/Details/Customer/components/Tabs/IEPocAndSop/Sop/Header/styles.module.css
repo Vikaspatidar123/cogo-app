@@ -8,3 +8,9 @@
 	margin: 16px 0 32px;
 	border-bottom: 1px solid #ded7fc;
 }
+
+.sop_filter {
+	display: flex;
+	flex-direction: column;
+	width: 200px;
+}

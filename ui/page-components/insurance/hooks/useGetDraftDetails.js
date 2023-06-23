@@ -1,4 +1,3 @@
-import { Toast } from '@cogoport/components';
 import { useEffect, useCallback } from 'react';
 
 import { useRequestBf } from '@/packages/request';
@@ -18,7 +17,7 @@ const useGetDraftDetails = ({ policyId }) => {
 				},
 			});
 		} catch (error) {
-			Toast.error(error?.error?.message);
+			console.log(error?.error?.message);
 		}
 	}, [policyId, trigger]);
 

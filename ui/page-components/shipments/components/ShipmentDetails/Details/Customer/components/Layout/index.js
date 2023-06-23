@@ -18,6 +18,7 @@ function Layout({
 	customValues = {},
 	disabledProps = false,
 	formValues,
+	sop = false,
 }) {
 	return (
 		<div className={styles.form_fields}>
@@ -27,7 +28,6 @@ function Layout({
 
 					const show = !(controlItem.name in showElements)
 						|| showElements[controlItem.name];
-
 					if (type === 'supplier-select') {
 						return (
 							<div className={styles.col}>
@@ -64,7 +64,7 @@ function Layout({
 					}
 					if (type === 'fieldArray' && subType === 'edit_items' && show) {
 						return (
-							<div className={styles.col}>
+							<div className={`${sop ? styles.field_col : styles.col}`}>
 								<EditLineItems
 									{...controlItem}
 									control={control}
@@ -79,6 +79,7 @@ function Layout({
 					}
 					if (type === 'fieldArray') {
 						return (
+
 							<div className={styles.col}>
 								<ChildFormat
 									{...controlItem}

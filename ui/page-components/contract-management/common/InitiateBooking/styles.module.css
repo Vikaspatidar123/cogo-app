@@ -1,0 +1,33 @@
+.text {
+	margin: -2px 4px;
+	font-size: 16px;
+	font-weight: 500;
+
+	.text {
+		display: flex;
+		font-size: 18px;
+	}
+}
+
+.text1 {
+	color: red;
+}
+
+.content {
+	span {
+		margin-left: 5px;
+		font-weight: 700;
+	}
+}
+
+.row {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: space-between;
+	padding: 16px;
+}
+
+.styled_form_item {
+	width: 45%;
+}

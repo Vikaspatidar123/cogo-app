@@ -20,6 +20,7 @@ function MapAndDetails({
 	setPreditiveEta,
 	setVesselName,
 	servicesForMap = false,
+	loading = false,
 }) {
 	const renderEmpty = () => {
 		if (mapLoading) {
@@ -58,7 +59,7 @@ function MapAndDetails({
 			) : (
 				renderEmpty()
 			)}
-			<ServicDetails servicesForMap={servicesForMap} />
+			<ServicDetails servicesForMap={servicesForMap} loading={loading} />
 
 			<div className={cl`${styles.panels} ${styles.actions}`}>
 				<PendingTasks />

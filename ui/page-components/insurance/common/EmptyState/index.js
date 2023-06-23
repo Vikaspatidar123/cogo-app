@@ -13,9 +13,6 @@ function EmptyState({ placement = 'center' }) {
 					src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/empty_icon 1.svg"
 				/>
 			) : null}
-			<div className={styles.wrapper}>
-				<div className={styles.heading}>Looks like you do not have any Policies with us</div>
-			</div>
 		</div>
 	);
 }

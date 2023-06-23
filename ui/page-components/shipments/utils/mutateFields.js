@@ -11,7 +11,7 @@ export const mutateFields = ({
 	newFields.forEach((field) => {
 		if (
 			field === 'business_name'
-			&& (companyDetails.business_list || []).length
+			&& (companyDetails?.business_list || []).length
 			&& compType !== 'booking_party'
 		) {
 			newFields.business_name = {

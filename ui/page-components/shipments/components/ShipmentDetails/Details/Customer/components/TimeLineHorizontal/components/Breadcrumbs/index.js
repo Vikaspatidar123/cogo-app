@@ -11,7 +11,7 @@ import useUpDatePin from '@/ui/page-components/shipments/components/ShipmentDeta
 function BreadCrumbs({ servicesForMap = false }) {
 	const [contextValues] = useContext(ShipmentDetailContext);
 	const { shipment_data, refetch } = contextValues || {};
-
+	const { serial_id } = shipment_data || {};
 	const isPinned = !!shipment_data.pinned_by_id;
 	const [pinned, setPinned] = useState(isPinned);
 
@@ -19,19 +19,21 @@ function BreadCrumbs({ servicesForMap = false }) {
 
 	const { onPinShipment } = useUpDatePin(pinned, refetch);
 
-	const handleClick = (detail) => {
-		router.push(detail.href);
+	const handleClick = () => {
+		router.push('/shipments');
 	};
+	const show_shipment_id = serial_id || '....';
 
 	return (
 		<div className={`${styles.container} ${servicesForMap ? styles.shipment_bread_crumb : ''}`}>
 			<Breadcrumb>
 				<Breadcrumb.Item
-					label={<a href="/shipments">Shipments</a>}
-					onClick={(details) => handleClick(details)}
+					label="Shipments"
+					onClick={() => handleClick()}
 					style={{ color: 'blue' }}
+					className={styles.back_to_shipment}
 				/>
-				<Breadcrumb.Item label={`#${shipment_data?.serial_id}`} onClick={(details) => handleClick(details)} />
+				<Breadcrumb.Item label={show_shipment_id} />
 			</Breadcrumb>
 			{pinned ? (
 				<IcMPin

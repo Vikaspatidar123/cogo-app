@@ -61,7 +61,7 @@ const useSaveDraft = ({
 				setDraftModal(true);
 			}
 		} catch (error) {
-			Toast.error(error?.error?.message);
+			Toast.error('Could not save draft. Please try again after some time');
 		}
 	};
 	return {

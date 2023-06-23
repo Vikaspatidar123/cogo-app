@@ -1,11 +1,10 @@
-import { Toast } from '@cogoport/components';
 import { useState, useCallback } from 'react';
 
 import { useRequestBf } from '@/packages/request';
 import { useSelector } from '@/packages/store';
 
 const useInsurance = ({
-	payment = () => {},
+	payment = () => { },
 	type = '',
 	uploadType = '',
 	activeTab = '',
@@ -26,7 +25,7 @@ const useInsurance = ({
 	const [{ loading }, trigger] = useRequestBf(
 		{
 			method  : 'post',
-			authkey : 'post_saas_insurance_checkout',
+			authKey : 'post_saas_insurance_checkout',
 			url     : '/saas/insurance/checkout',
 		},
 		{ manual: true },
@@ -79,7 +78,7 @@ const useInsurance = ({
 					payment(res?.data);
 				}
 			} catch (error) {
-				Toast.error(error?.error?.message);
+				console.log(error?.error?.message);
 			}
 		},
 		[activeTab, addressKey, billingtype, convenienceFee,

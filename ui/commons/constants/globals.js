@@ -28,9 +28,25 @@ const GLOBAL_CONSTANTS = {
 	},
 	formats: {
 		date: {
-			'dd/MM/yyyy'  : 'dd/MM/yyyy',
-			'dd MMM yyyy' : 'dd MMM yyyy',
-			MMM           : 'MMM',
+			'dd/MM/yyyy'        : 'dd/MM/yyyy',
+			'dd MMM yyyy'       : 'dd MMM yyyy',
+			'dd-MM-yyyy'        : 'dd-MM-yyyy',
+			'yyyy-MM-dd'        : 'yyyy-MM-dd',
+			'MMM dd, yy'        : 'MMM dd, yy',
+			MMM                 : 'MMM',
+			'dd MMM'            : 'dd MMM',
+			'MMM, yyyy'         : 'MMM, yyyy',
+			'MMM dd, yyyy'      : 'MMM dd, yyyy',
+			PP                  : 'PP',
+			'PP hh:mm a'        : 'PP hh:mm a',
+			'MM-yyyy'           : 'MM-yyyy',
+			'd MMM yyyy, eeee'  : 'd MMM yyyy, eeee',
+			'MM-dd-yyyy'        : 'MM-dd-yyyy',
+			'EEE-dd'            : 'EEE-dd',
+			yyyy                : 'yyyy',
+			'dd/MMM/yyyy'       : 'dd/MMM/yyyy',
+			'eee, dd MMM, yyyy' : " 'eee, dd MMM, yyyy'",
+			EEEE                : 'eeee',
 		},
 		time: {
 			'hh:mm aaa' : 'hh:mm aaa',
@@ -177,6 +193,16 @@ const GLOBAL_CONSTANTS = {
 		yellow_vessel : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/shipYellow.png',
 		red_vessel    : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/shipRed.png',
 		black_vessel  : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/shipArrow.png',
+		cogoport_logo : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/cogoport.svg',
+		ship_icon     : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/shipIcon.jpg',
+		air_icon      : 'https://cdn.cogoport.io/cms-prod/cogo_admin/vault/original/airicon.svg',
+		loading       : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/loading.svg',
+		unsubscription_cargo:
+		'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/page_cargo.png',
+		unsubscription_bottle:
+		'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/Bottle.png',
+		unsubscription_plane:
+		'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/page_plane.png',
 	},
 };
 

@@ -7,12 +7,13 @@ import Select from '../Select';
 import SwitchSelect from '../SwitchSelect';
 
 function IncoTermSelect({
-	tradeType:tradeMode,
+	tradeType: tradeMode,
 	incoTermType,
 	selectType,
 	value,
 	activeTradeType = '',
 	id,
+	disabled = false,
 	...rest
 }) {
 	const tradeType = (IncoTerms || []).filter((item) => item?.key === value)[0]?.tradeType || tradeMode;
@@ -20,6 +21,7 @@ function IncoTermSelect({
 	const currentObj = list.find((inco) => inco.key === value) || {
 		tradeType: tradeType || activeTradeType,
 	};
+
 	const [tradeTypeToggle, setTradeType] = useState(
 		tradeType || currentObj?.tradeType,
 	);
@@ -28,7 +30,8 @@ function IncoTermSelect({
 		list = list.filter((item) => item.tradeType === tradeTypeToggle);
 	}
 	if (tradeTypeToggle === 'export' || tradeTypeToggle === 'import') {
-		list = list.filter((item) => item.tradeType === tradeTypeToggle);
+		const listData = list.filter((item) => item.tradeType === tradeTypeToggle);
+		list = listData.map((item) => ({ ...item, disabled }));
 	}
 
 	useEffect(() => {
@@ -53,7 +56,6 @@ function IncoTermSelect({
 		active   : tradeTypeToggle,
 		id,
 	};
-
 	return selectType === 'normal' ? (
 		<Select
 			name="inco_term"

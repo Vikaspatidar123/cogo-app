@@ -13,6 +13,7 @@ const controls = [
 		asyncKey           : 'commodities_list_insurance',
 		defaultOptions     : true,
 		type               : 'async_select',
+		initialCall        : true,
 		getModifiedOptions : (options) => (options || []).map((x) => ({
 			...x,
 			value: x.id,
@@ -44,7 +45,8 @@ const controls = [
 		)}
 	</div>,
 		})),
-		initialCall: true,
+		valueKey    : 'locationId',
+		initialCall : true,
 	},
 	{
 		name        : 'incoterm',

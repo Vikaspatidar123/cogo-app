@@ -23,25 +23,25 @@ const useHsCodeData = ({ countryforHscode = '' }) => {
 		url     : 'saas/hs-code/section',
 		authKey : 'get_saas_hs_code_section',
 		method  : 'get',
-	}, { manual: true });
+	}, { manual: true, autoCancel: false });
 
 	const [{ loading:getHeadingDataLoading }, getHeadingDataTrigger] = useRequestBf({
 		url     : 'saas/hs-code/heading',
 		authKey : 'get_saas_hs_code_heading',
 		method  : 'get',
-	}, { manual: true });
+	}, { manual: true, autoCancel: false });
 
 	const [{ loading:getHscodeLoading }, getHscodeTrigger] = useRequestBf({
 		url     : '/saas/hs-code',
 		authKey : 'get_saas_hs_code',
 		method  : 'get',
-	}, { manual: true });
+	}, { manual: true, autoCancel: false });
 
 	const [{ loading: getBySearchLoading }, getBySearchTrigger] = useRequestBf({
 		url     : '/saas/hs-code/search',
 		authKey : 'get_saas_hs_code_search',
 		method  : 'get',
-	}, { manual: true });
+	}, { manual: true, autoCancel: false });
 
 	const apiTrigger = searchTerm === '' ? getListDataTrigger : getBySearchTrigger;
 

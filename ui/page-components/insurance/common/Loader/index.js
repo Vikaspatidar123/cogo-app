@@ -1,4 +1,4 @@
-import { Skeleton } from '@cogoport/components/';
+import { Placeholder } from '@cogoport/components';
 
 import styles from './styles.module.css';
 
@@ -9,7 +9,7 @@ function Loader() {
 				<div key={ele}>
 					{new Array(3).key(1).map(() => (
 						<div className={styles.skeleton_div}>
-							<Skeleton width="300px" height="50px" margin={10} />
+							<Placeholder width="300px" height="50px" margin={10} />
 						</div>
 					))}
 				</div>

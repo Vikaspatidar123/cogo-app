@@ -1,5 +1,4 @@
-import { ButtonIcon, Button, cl } from '@cogoport/components';
-import { IcMCross } from '@cogoport/icons-react';
+import { Button, cl } from '@cogoport/components';
 import { isEmpty } from '@cogoport/utils';
 
 import shareListConfig from '../../../../configuration/shareListConfig';

@@ -1,9 +1,9 @@
 import { Toast } from '@cogoport/components';
 import { useCallback } from 'react';
 
-import getApiErrorString from '../helpers/getApiErrorString';
 import formatDraftFormValues from '../utils/formatDraftFormValues';
 
+import getApiErrorString from '@/packages/forms/utils/getApiError';
 import { useRequest } from '@/packages/request';
 
 const useGetRfq = ({

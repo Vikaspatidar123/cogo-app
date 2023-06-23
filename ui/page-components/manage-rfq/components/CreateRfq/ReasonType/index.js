@@ -1,11 +1,11 @@
-import { format } from '@cogoport/utils';
-
 import Footer from './Footer';
 import styles from './styles.module.css';
 
 import { InputController } from '@/packages/forms';
 import RadioController from '@/packages/forms/Controlled/RadioController';
 import { useSelector } from '@/packages/store';
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
+import formatDate from '@/ui/commons/utils/formatDate';
 
 function ReasonType({
 	fields,
@@ -20,7 +20,12 @@ function ReasonType({
 	} = useSelector((state) => state);
 	const date = new Date();
 
-	const suggestDate = format(date, 'MMM');
+	const suggestDate = formatDate({
+		date       : date || '-',
+		dateFormat : GLOBAL_CONSTANTS.formats.date.MMM,
+		formatType : 'date',
+	});
+
 	const suggestName = `${organization.business_name}_${suggestDate}_RFQ`;
 
 	const handleSetValue = () => {

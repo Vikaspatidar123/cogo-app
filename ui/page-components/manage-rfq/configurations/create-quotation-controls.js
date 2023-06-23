@@ -35,10 +35,6 @@ export const UploadFileControls = (isCogoFormat) => [
 		drag            : true,
 		height          : 200,
 		span            : 12,
-		// accept          : isCogoFormat
-		// 	? '.csv'
-		// 	: `image/*,.pdf,.doc,.docx,.xlsx,.csv,application/msword,application
-		//     /vnd.openxmlformats-officedocument.wordprocessingml.document`,
 		accept          : isCogoFormat
 			? 'supports - only csv'
 			: 'supports - images,pdf,docs,csv',

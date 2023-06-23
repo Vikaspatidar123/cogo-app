@@ -1,8 +1,3 @@
-// import { addDays } from '@cogo/date';
-// import getGeoConstants from '@cogo/globalization/constants/geo';
-
-// const geo = getGeoConstants();
-
 const airControls = [
 	{
 		label     : 'Container',

@@ -1,7 +1,9 @@
 import { Pill } from '@cogoport/components';
-import { format } from '@cogoport/utils';
 
 import styles from './styles.module.css';
+
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
+import formatDate from '@/ui/commons/utils/formatDate';
 
 function Details({ rfqItem }) {
 	const {
@@ -44,10 +46,11 @@ function Details({ rfqItem }) {
 					<div className={styles.date}>
 						Created On:
 						{' '}
-						{format(
-							created_at,
-							'dd MMM yyyy',
-						)}
+						{formatDate({
+							date       : created_at || '-',
+							dateFormat : GLOBAL_CONSTANTS.formats.date['dd MMM yyyy'],
+							formatType : 'date',
+						})}
 						{' '}
 					</div>
 				)}

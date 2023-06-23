@@ -1,7 +1,3 @@
-// import getGeoConstants from '@cogo/globalization/constants/geo';
-
-// const geo = getGeoConstants();
-
 const lclControls = [
 	{
 		label     : 'Container',

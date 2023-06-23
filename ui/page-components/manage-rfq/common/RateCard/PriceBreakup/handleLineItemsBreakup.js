@@ -2,7 +2,7 @@ import { startCase } from '@cogoport/utils';
 
 import handleLineItems from './handleLineItems';
 
-import formatAmount from '@/packages/forms/utils/get-formatted-price';
+import formatAmount from '@/ui/commons/utils/formatAmount';
 
 const handleLineItemsBreakup = (item, details) => {
 	const service = details?.service_details[item?.id];

@@ -1,7 +1,3 @@
-// import getGeoConstants from '@cogo/globalization/constants/geo';
-
-// const geo = getGeoConstants();
-
 const fclControls = [
 	{
 		label     : 'Container',
@@ -17,8 +13,8 @@ const fclControls = [
 				includedInOptions : false,
 				defaultOptions    : true,
 				params            : {
-					filters: { type: ['seaport', 'city'] },
-					// includes : { continent_id: true },
+					filters  : { type: ['seaport', 'city'] },
+					includes : { continent_id: true },
 				},
 				grouped      : ['city', 'country'],
 				type         : 'async_select',
@@ -35,8 +31,8 @@ const fclControls = [
 				defaultOptions    : true,
 				includedInOptions : false,
 				params            : {
-					filters: { type: ['seaport', 'city'] },
-					// includes : { continent_id: true },
+					filters  : { type: ['seaport', 'city'] },
+					includes : { continent_id: true },
 				},
 				grouped      : ['city', 'country'],
 				type         : 'async_select',

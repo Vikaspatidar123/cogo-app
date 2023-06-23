@@ -1,9 +1,9 @@
 import { Toast } from '@cogoport/components';
 
-import getApiErrorString from '../helpers/getApiErrorString';
 import formatLocations from '../utils/formatLocations';
 import formatPayload from '../utils/formatPayload';
 
+import getApiErrorString from '@/packages/forms/utils/getApiError';
 import { useRequest } from '@/packages/request';
 import { useSelector } from '@/packages/store';
 

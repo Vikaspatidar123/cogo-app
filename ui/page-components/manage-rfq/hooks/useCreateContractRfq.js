@@ -1,7 +1,6 @@
 import { Toast } from '@cogoport/components';
 
-import getApiErrorString from '../helpers/getApiErrorString';
-
+import getApiErrorString from '@/packages/forms/utils/getApiError';
 import { useRequest } from '@/packages/request';
 
 const useCreateContractRfq = ({

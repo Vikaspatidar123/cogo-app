@@ -1,4 +1,4 @@
-import formatAmount from '@/packages/forms/utils/get-formatted-price';
+import formatAmount from '@/ui/commons/utils/formatAmount';
 
 const handleLineItems = ({ items = [] }) => {
 	let finalList = [];

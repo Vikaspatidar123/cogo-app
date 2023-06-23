@@ -30,7 +30,7 @@ import {
 	IcMUpwardGraph,
 	IcMDashboard,
 	IcMBookingDesk,
-	IcMQuotations,
+	IcMRfq,
 } from '@cogoport/icons-react';
 
 const navigationMappings = {
@@ -229,7 +229,7 @@ const navigationMappings = {
 				title       : 'Manage Rfq',
 				href        : '/manage-rfq',
 				as          : '/manage-rfq',
-				icon        : <IcMQuotations width={40} height={40} fill="#fbd221" />,
+				icon        : <IcMRfq width={40} height={40} fill="#fbd221" />,
 				description : 'Request For Quotation',
 			},
 		],

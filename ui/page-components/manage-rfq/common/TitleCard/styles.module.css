@@ -5,9 +5,8 @@
 }
 
 .header {
-	display: flex;
+	display: flex-start;
 	align-items: center;
-	justify-content: start;
 	width: 100%;
 	min-height: 70px;
 	padding: 4px 20px;

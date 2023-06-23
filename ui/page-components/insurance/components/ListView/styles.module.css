@@ -115,14 +115,14 @@
 }
 
 .empty {
-	width: 100%;
-	height: 80vh;
 	display: flex;
 	justify-content: center;
+	width: 100%;
+	height: 80vh;
 }
 
 .flex_end {
-	width: 100%;
 	display: flex;
 	justify-content: flex-end;
+	width: 100%;
 }

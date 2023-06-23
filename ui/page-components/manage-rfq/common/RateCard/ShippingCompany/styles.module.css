@@ -1,0 +1,24 @@
+.container {
+	display: flex;
+	gap: 20px;
+	align-items: center;
+	justify-content: flex-end;
+	padding: 2px 12px;
+	border-bottom: 1px solid #e0e0e0;
+}
+
+.left_container {
+	display: flex;
+	align-items: center;
+	margin-block: 6px;
+}
+
+.validity {
+	padding: 2px 4px;
+	margin-right: 8px;
+	font-size: 12px;
+	font-weight: 400;
+	color: #7278ad;
+	background: #f2f3fa;
+	border-radius: 4px;
+}

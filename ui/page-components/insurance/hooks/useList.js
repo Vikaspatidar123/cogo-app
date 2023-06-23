@@ -42,8 +42,8 @@ const useList = ({ activeTab }) => {
 	}, [activeTab, filters, organization?.id, sort, trigger]);
 
 	useEffect(() => {
-		list();
-	}, [list]);
+		if (organization?.id) { list(); }
+	}, [list, organization?.id]);
 
 	return {
 		data,

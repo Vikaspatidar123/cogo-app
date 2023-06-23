@@ -1,4 +1,4 @@
-import { Input, Chips, Button, Table, Pagination } from '@cogoport/components';
+import { Input, Chips, Button, Table, Pagination, Loader } from '@cogoport/components';
 import { IcMPlus, IcMSearchlight, IcMPlusInCircle } from '@cogoport/icons-react';
 import { isEmpty } from '@cogoport/utils';
 import { useState } from 'react';
@@ -6,6 +6,7 @@ import { useState } from 'react';
 import CancellationAndConfirmModal from '../../common/CancellationModal';
 import EmptyState from '../../common/EmptyState';
 import FAQComponent from '../../common/FAQComponent';
+import NoData from '../../common/NoData';
 import PreviewModal from '../../common/PreviewModal';
 import redirectUrl from '../../common/redirectUrl';
 import renderFunctions from '../../common/renderFunctions';
@@ -76,6 +77,13 @@ function ListView() {
 
 	const fields = listConfig({ setSort, sort, Content });
 
+	if (loading) {
+		return (
+			<div className={styles.loader}>
+				<Loader />
+			</div>
+		);
+	}
 	return (
 		<>
 			<FAQComponent showFaq={showFaq} setFaq={setFaq} isMobile={isMobile} />
@@ -109,16 +117,7 @@ function ListView() {
 					)}
 				</div>
 			</div>
-			<div className={!(data?.list?.length > 0 && !previewloading) ? styles.flex_end : styles.segment_faq}>
-				{data?.list?.length > 0 && !previewloading && (
-					<Chips
-						size="lg"
-						items={segementedOpt(summaryData, activeTab, summaryLoading)}
-						selectedItems={activeTab}
-						onItemChange={handleTabChange}
-						className={styles.chips}
-					/>
-				)}
+			<div className={styles.flex_end}>
 				{showFaq === 'none' &&				(
 					<img
 						src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/faq.svg"
@@ -130,16 +129,28 @@ function ListView() {
 					/>
 				)}
 			</div>
-			{data?.list?.length > 0 && !previewloading && (
-				<Table
-					columns={fields || []}
-					data={list || []}
-					loading={loading}
-					loadingRowsCount={10}
-					className={styles.table}
-				/>
+			{(isEmpty(data) && !loading) ? <EmptyState /> : (
+				<>
+					<div className={styles.segment_faq}>
+						<Chips
+							size="lg"
+							items={segementedOpt(summaryData, activeTab, summaryLoading)}
+							selectedItems={activeTab}
+							onItemChange={handleTabChange}
+							className={styles.chips}
+						/>
+					</div>
+					{data?.list?.length > 0 ? (
+						<Table
+							columns={fields || []}
+							data={list || []}
+							loading={loading}
+							loadingRowsCount={10}
+							className={styles.table}
+						/>
+					) : <NoData />}
+				</>
 			)}
-			{(isEmpty(data) || data?.list?.length === 0) && !previewloading && <EmptyState />}
 			{data?.list?.length > 0 && (
 				<div className={styles.pagination_div}>
 					<Pagination

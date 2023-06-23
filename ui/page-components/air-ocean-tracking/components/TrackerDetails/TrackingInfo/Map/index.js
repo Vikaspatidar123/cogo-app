@@ -21,25 +21,25 @@ function Map({
 	const [currentRoute, setCurrentRoute] = useState([]);
 
 	const payloadMapping = {
-		ocean : trackingInfo,
-		air   : !isEmpty(data) ? [data] : [],
+		ocean: trackingInfo,
+		air: !isEmpty(data) ? [data] : [],
 	};
 
 	const { loading, allRoute = [] } = useGetMapRoute({
-		trackingInfo : payloadMapping[trackingType],
-		type         : trackingType,
+		trackingInfo: payloadMapping[trackingType],
+		type: trackingType,
 	});
 
 	useEffect(() => {
 		if (!isEmpty(currContainerDetails)) {
 			const currentTrackingInfo = allRoute.filter(
 				(info) => info?.containerNo === currContainerDetails?.container_no
-				|| info?.airWayNo === currContainerDetails?.airway_bill_no,
+					|| info?.airWayNo === currContainerDetails?.airway_bill_no,
 			)[0];
 
 			setCurrentRoute(currentTrackingInfo?.route);
 		}
-	}, [allRoute, currContainerDetails]);
+	}, [currContainerDetails]);
 
 	return (
 		<div className={styles.container}>

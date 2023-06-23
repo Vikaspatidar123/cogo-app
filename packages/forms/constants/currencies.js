@@ -6,7 +6,7 @@ const optionsAll = [];
 (countries || []).forEach((country) => {
 	if (
 		country.currency_code
-        && !previousCurriencies.includes(country.currency_code)
+		&& !previousCurriencies.includes(country.currency_code)
 	) {
 		previousCurriencies.push(country.currency_code);
 		optionsAll.push({

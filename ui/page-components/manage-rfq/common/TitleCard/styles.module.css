@@ -1,0 +1,51 @@
+.container {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+}
+
+.header {
+	display: flex;
+	align-items: center;
+	justify-content: start;
+	width: 100%;
+	min-height: 70px;
+	padding: 4px 20px;
+
+	@media (max-width: 768px) {
+		width: calc(100% - 30px);
+		font-size: 12px;
+	}
+}
+
+.port_container {
+	display: flex;
+	flex: 4;
+	width: 400px;
+
+	.anchor_icon {
+		width: 20px;
+		height: 20px;
+		margin-inline: 8px;
+	}
+}
+
+.index_container {
+	width: 30px;
+	margin-right: 4px;
+}
+
+.index_list {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 28px;
+	height: 28px;
+	padding: 2px 8px;
+	border: 1px solid #e0e0e0;
+	border-radius: 50%;
+}
+
+.extra_service {
+	padding: 0 20px 10px;
+}

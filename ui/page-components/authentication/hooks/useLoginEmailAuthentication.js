@@ -9,7 +9,7 @@ const useLoginEmailAuthentication = ({ setMode = () => {} }) => {
 	const { query = '' } = useRouter();
 	const [{ loading: loginLoading }, trigger] = useRequest(
 		{
-			url    : 'user/login_user',
+			url    : 'login_user',
 			method : 'post',
 		},
 		{ manual: true },

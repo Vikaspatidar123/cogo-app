@@ -20,7 +20,7 @@ import { useSelector } from '@/packages/store';
 import HsCodeIcon from '@/ui/commons/components/HsCodeIcon';
 
 function ProductsList({
-	handelRouting, setUploadModal, hsLoading, setHSCode, showProductView, apiData, loading, hsCode, subCategory,
+	handelRouting, hsLoading, setHSCode, showProductView, apiData, loading, hsCode, subCategory,
 	hsList, setActiveTab, activeTab, setShowProductView, refetchProduct, setPrefiledValues, deleteProduct, isEdit,
 	setSubCategory, setActiveHeaderTab, showProduct, setShowProduct, prefiledValues, addProductLoading,
 	activeHeaderTab, setIsEdit,

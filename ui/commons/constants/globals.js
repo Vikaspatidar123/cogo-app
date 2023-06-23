@@ -146,6 +146,24 @@ const GLOBAL_CONSTANTS = {
 		'VN',
 	],
 	image_url: {
+		bot_icon:
+			'https://cdn.cogoport.io/cms-prod/cogo_public/vault/original/web_bot',
+		general_icon:
+			'https://cdn.cogoport.io/cms-prod/cogo_admin/vault/original/General.svg',
+		value_added_services:
+			'https://cdn.cogoport.io/cms-prod/cogo_partner/vault/original/value_added_service.svg',
+		onboarding:
+			'https://cdn.cogoport.io/cms-prod/cogo_partner/vault/original/onboarding_icon.svg',
+		industry:
+			'https://cdn.cogoport.io/cms-prod/cogo_partner/vault/original/Industry_icon.svg',
+		bookings_or_transaction_flow:
+			'https://cdn.cogoport.io/cms-prod/cogo_partner/vault/original/bookings_transactions_icon.svg',
+		operations_and_shipment_execution:
+			'https://cdn.cogoport.io/cms-prod/cogo_partner/vault/original/operations_shipment_execution_icon.svg',
+		platform_help:
+			'https://cdn.cogoport.io/cms-prod/cogo_partner/vault/original/platform_help_icon.svg',
+		saas_tools:
+			'https://cdn.cogoport.io/cms-prod/cogo_partner/vault/original/saas_tools_icon.svg',
 		iec_red_flag:
 			'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/redFlag.svg',
 		iec_green_flag:
@@ -174,6 +192,13 @@ const GLOBAL_CONSTANTS = {
 			'https://cdn.cogoport.io/cms-prod/cogo_partner/vault/original/Vector.png',
 		edit_image:
 			'https://cdn.cogoport.io/cms-prod/cogo_partner/vault/original/animation_500_lhvo6uhx1.png',
+	},
+	regex: {
+		url_end_slash: /\/$/,
+		website_url:
+			/^https?:\/\/(www\.)?[-a-zA-Z0-9@:%._~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_.~#?&//=]*)$/,
+		image_extension: /\.(jpg|jpeg|png|gif|svg)$/i,
+
 	},
 };
 

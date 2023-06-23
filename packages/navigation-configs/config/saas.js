@@ -128,13 +128,16 @@ const saas = {
 		navigation : 'saas_premium_services-import_export_controls',
 		isMainNav  : true,
 	},
-
 	'/saas/insurance/[type]': {
-		navigation : 'saas_cogo_insurance',
+		navigation : 'saas_premium_services-cogo_insurance',
 		isMainNav  : true,
 	},
 	'/saas/insurance': {
-		navigation : 'saas_cogo_insurance',
+		navigation : 'saas_premium_services-cogo_insurance',
+		isMainNav  : true,
+	},
+	'/saas/insurance/list': {
+		navigation : 'saas_premium_services-cogo_insurance',
 		isMainNav  : true,
 	},
 	'/saas/cogopoint': {
@@ -169,6 +172,10 @@ const saas = {
 		navigation : 'saas_cogostore',
 		isMainNav  : true,
 	},
+	'/saas/live-vessel-tracking': {
+		navigation : 'saas_tools-vessel_tracking',
+		isMainNav  : true,
+	},
 	'/saas/order-history': {
 		navigation : 'saas_premium_services-order_history',
 		isMainNav  : true,
@@ -184,6 +191,21 @@ const saas = {
 	'/saas/transaction-history': {
 		navigation : 'saas_transaction_history',
 		isMainNav  : true,
+	},
+	'/saas/tools/air-ocean-tracking': {
+		navigation : 'saas_tools-air_ocean_tracking_v2',
+		isMainNav  : true,
+	},
+	'/saas/tools/air-ocean-tracking/list': {
+		navigation : 'saas_tools-air_ocean_tracking_v2',
+		isMainNav  : true,
+	},
+	'/saas/tools/air-ocean-tracking/list/archive/[trackingType]': {
+		navigation : 'saas_tools-air_ocean_tracking_v2',
+		isMainNav  : true,
+	},
+	'/saas/tools/air-ocean-tracking/list/[trackingId]': {
+		navigation: 'saas_tools-air_ocean_tracking_v2',
 	},
 
 };

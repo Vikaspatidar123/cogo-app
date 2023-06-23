@@ -3,8 +3,8 @@ import { setCookie } from '@cogoport/utils';
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import ReCAPTCHA from 'react-google-recaptcha';
 
+import useSaasSignupAuthentication from '../../../hooks/useSaasSignupAuthentication';
 import getSaasUserInfo from '../../../hooks/useSaasUserInfo';
-import useSignupAuthentication from '../../../hooks/useSignupAuthentication';
 
 import styles from './styles.module.css';
 
@@ -32,7 +32,7 @@ function SignupForm({ setHasSignedup, setFormData, setUserDetails }) {
 
 	const recaptchaRef = useRef({});
 
-	const { signupAuthentication, signupLoading } = useSignupAuthentication({
+	const { signupAuthentication, signupLoading } = useSaasSignupAuthentication({
 		setHasSignedup,
 		setUserDetails,
 		captchaResponse,

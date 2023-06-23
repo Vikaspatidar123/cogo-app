@@ -234,5 +234,56 @@ const app_settings = [
 		access_type  : 'private',
 		service_name : 'organization',
 	},
+	{
+		api          : 'login_user',
+		access_type  : 'private',
+		service_name : 'user',
+	},
+	{
+		api          : 'resend_lead_verification_email',
+		access_type  : 'private',
+		service_name : 'lead',
+	},
+	{
+		api          : 'create_organization',
+		access_type  : 'private',
+		service_name : 'organization',
+	},
+	{
+		api          : 'create_saas_sign_up_lead_user',
+		access_type  : 'private',
+		service_name : 'lead',
+	},
+	{
+		api          : 'send_login_otp',
+		access_type  : 'private',
+		service_name : 'user',
+	},
+	{
+		api          : 'login_user_with_mobile',
+		access_type  : 'private',
+		service_name : 'user',
+	},
+	{
+		api          : 'reset_user_password',
+		access_type  : 'private',
+		service_name : 'user',
+	},
+	{
+		api          : 'create_sign_up_lead_user',
+		access_type  : 'private',
+		service_name : 'lead',
+	},
+	{
+		api          : 'verify_sign_up_lead_user',
+		access_type  : 'private',
+		service_name : 'lead',
+	},
+	{
+		api          : 'resend_lead_verification_otp',
+		access_type  : 'private',
+		service_name : 'lead',
+	},
 ];
+
 export default app_settings;

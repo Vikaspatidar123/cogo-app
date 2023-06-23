@@ -1,0 +1,27 @@
+.container {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+}
+
+.styled_tag {
+	width: max-content;
+	max-width: 200px;
+	padding: 4px;
+	margin-right: 8px;
+	font-size: 12px;
+	font-weight: 400;
+	color: #4f4f4f;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	background: #dfe1ef;
+	border-radius: 4px;
+
+	&.margin {
+		margin-bottom: 4px;
+	}
+}
+
+.more {
+	color: blue;
+}

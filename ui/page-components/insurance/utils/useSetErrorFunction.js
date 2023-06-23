@@ -33,7 +33,6 @@ const useSetErrorFunction = ({
 			} else if (itm !== 'gstin' && !values[itm]) {
 				hasError = true;
 				setError(itm, { type: 'required', message: 'required' });
-				Toast.error('Please Select a Address');
 			}
 		});
 		return hasError;

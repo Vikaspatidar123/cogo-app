@@ -1,0 +1,22 @@
+.row_container {
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	width: 100%;
+}
+
+.country_code {
+	width: 33%;
+
+	:global {
+		.ui_select_display_container {
+			div[aria-label="button"] {
+				padding-right: 6px;
+			}
+		}
+	}
+}
+
+.mobile_number {
+	width: 66%;
+}

@@ -1,3 +1,1 @@
-import ForgotPassowrd from '@/ui/page-components/forgot-password';
-
-export default ForgotPassowrd;
+export { ForgotPassword as default } from '@/ui/page-components/authentication';

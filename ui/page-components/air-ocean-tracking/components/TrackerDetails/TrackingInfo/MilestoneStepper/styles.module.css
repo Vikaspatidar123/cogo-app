@@ -1,0 +1,50 @@
+.container {
+	max-height: 58vh;
+	overflow-y: scroll;
+}
+
+.milestone {
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 35px;
+}
+
+.stepper {
+	position: relative;
+	top: 20px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 5%;
+
+	.dot {
+		width: 12px;
+		height: 12px;
+		margin: 2px auto;
+		background-color: #e0e0e0;
+		border-radius: 50%;
+	}
+
+	.line {
+		position: absolute;
+		top: 17px;
+		left: 48%;
+		width: 0;
+		height: calc(100% + 16px);
+		border-left: 2px dashed #e0e0e0;
+	}
+}
+
+.finish_milestone {
+	.dot {
+		background-color: #abcd62;
+	}
+
+	.line {
+		border-left: 1.5px solid #abcd62;
+	}
+}
+
+.card_container {
+	width: 92%;
+}

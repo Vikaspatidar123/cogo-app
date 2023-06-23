@@ -1,0 +1,10 @@
+.container {
+	display: flex;
+	justify-content: flex-end;
+	width: 100%;
+	margin-top: 12px;
+}
+
+.back {
+	margin-right: 12px;
+}

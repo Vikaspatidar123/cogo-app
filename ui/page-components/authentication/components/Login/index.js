@@ -1,33 +1,61 @@
-import { FluidContainer } from '@cogoport/components';
-// import { useTranslation } from 'next-i18next';
-import { useTranslation } from 'next-i18next';
-import React from 'react';
+import { useState } from 'react';
 
-import LoginForm from './LoginForm';
+import LayoutHelp from '../common/LayoutHelp';
+import LayoutLogo from '../common/LayoutLogo';
+import LoadingPrompts from '../common/LoadingPrompts';
+
+import LoginTabs from './LoginTabs';
+import OTPLoginForm from './OTPLoginForm';
 import styles from './styles.module.css';
 
-import LeftPanel from '@/ui/commons/components/LeftPanel';
+const LOGIN_FLOW_MAPPING = {
+	login_tabs      : LoginTabs,
+	otp_form        : OTPLoginForm,
+	loading_prompts : LoadingPrompts,
+};
 
 function Login() {
-	const { t } = useTranslation(['common']);
+	const [mode, setMode] = useState('login_tabs');
+	const [mobileNumber, setMobileNumber] = useState({});
+	const [otpId, setOtpId] = useState('');
+
+	const componentProps = {
+		login_tabs: {
+			setMode,
+			setMobileNumber,
+			setOtpId,
+			mobileNumber,
+		},
+		otp_form: {
+			otpId,
+			mobileNumber,
+			setMode,
+		},
+		loading_prompts: {
+			type: 'login',
+		},
+	};
+
+	const Component = LOGIN_FLOW_MAPPING[mode] || null;
+
 	return (
-		<FluidContainer className={styles.container}>
-			<div className={styles.left_container}>
-				<LeftPanel />
-			</div>
-			<div className={styles.right_container}>
-				<div className={styles.right_signup_text}>
-					{t('common:text_1')}
-					<a href="/signup" className={styles.right_signup_text_link}>{t('common:text_2')}</a>
-				</div>
-				<div className={styles.main_container}>
-					<p className={styles.right_login_text}>
-						{t('common:text_3')}
-					</p>
-					<LoginForm />
+		<div className={styles.authentication_layout}>
+			<LayoutLogo />
+
+			<div className={styles.card_container}>
+				<div className={styles.card}>
+					{Component && (
+						<Component
+							key={mode}
+							{...(componentProps[mode] || {})}
+						/>
+					)}
 				</div>
 			</div>
-		</FluidContainer>
+
+			<LayoutHelp />
+		</div>
 	);
 }
+
 export default Login;

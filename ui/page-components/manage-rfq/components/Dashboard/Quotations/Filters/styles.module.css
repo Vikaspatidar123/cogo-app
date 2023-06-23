@@ -1,0 +1,10 @@
+.right_corner {
+	width: 16%;
+}
+
+.container {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-block: 20px;
+}

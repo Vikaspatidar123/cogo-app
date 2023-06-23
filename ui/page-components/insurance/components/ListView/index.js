@@ -1,5 +1,6 @@
 import { Input, Chips, Button, Table, Pagination } from '@cogoport/components';
 import { IcMPlus, IcMSearchlight, IcMPlusInCircle } from '@cogoport/icons-react';
+import { isEmpty } from '@cogoport/utils';
 import { useState } from 'react';
 
 import CancellationAndConfirmModal from '../../common/CancellationModal';
@@ -108,14 +109,16 @@ function ListView() {
 					)}
 				</div>
 			</div>
-			<div className={styles.segment_faq}>
-				<Chips
-					size="lg"
-					items={segementedOpt(summaryData, activeTab, summaryLoading)}
-					selectedItems={activeTab}
-					onItemChange={handleTabChange}
-					className={styles.chips}
-				/>
+			<div className={!(data?.list?.length > 0 && !previewloading) ? styles.flex_end : styles.segment_faq}>
+				{data?.list?.length > 0 && !previewloading && (
+					<Chips
+						size="lg"
+						items={segementedOpt(summaryData, activeTab, summaryLoading)}
+						selectedItems={activeTab}
+						onItemChange={handleTabChange}
+						className={styles.chips}
+					/>
+				)}
 				{showFaq === 'none' &&				(
 					<img
 						src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/faq.svg"
@@ -135,9 +138,8 @@ function ListView() {
 					loadingRowsCount={10}
 					className={styles.table}
 				/>
-			) }
-			{data?.list?.length === 0 && !previewloading
-			&& <EmptyState />}
+			)}
+			{(isEmpty(data) || data?.list?.length === 0) && !previewloading && <EmptyState />}
 			{data?.list?.length > 0 && (
 				<div className={styles.pagination_div}>
 					<Pagination

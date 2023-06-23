@@ -1,4 +1,3 @@
-import { Toast } from '@cogoport/components';
 import { useState, useEffect, useCallback } from 'react';
 
 import { useRequestBf } from '@/packages/request';
@@ -13,7 +12,7 @@ const useGetTermsConditions = ({
 	const [{ loading }, trigger] = useRequestBf(
 		{
 			method  : 'get',
-			authkey : 'get_saas_insurance_terms',
+			authKey : 'get_saas_insurance_terms',
 			url     : '/saas/insurance/terms',
 		},
 		{ manual: true },
@@ -33,7 +32,7 @@ const useGetTermsConditions = ({
 				setTerms(res?.data);
 			}
 		} catch (error) {
-			Toast.error(error?.error?.message);
+			console.log(error?.error?.message);
 		}
 	}, [activeTab, countryCode, formDetails, trigger, type]);
 

@@ -6,7 +6,7 @@ import styles from './styles.module.css';
 function Features({ feature }) {
 	return (
 		<div className={styles.container}>
-			{feature.map((item) => (
+			{(feature || []).map((item) => (
 				<div className={styles.text_container}>
 					<IcCFtick width={20} height={20} />
 					<Tooltip placement="top" content={item}>

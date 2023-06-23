@@ -1,6 +1,5 @@
 import styles from './styles.module.css';
 
-// import formatAmount from '@/packages/forms/utils/get-formatted-price';
 import formatAmount from '@/ui/commons/utils/formatAmount';
 
 function RatePerContainer({ rates }) {

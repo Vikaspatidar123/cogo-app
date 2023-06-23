@@ -7,7 +7,7 @@ import {
 } from '@cogoport/icons-react';
 import React from 'react';
 
-const iconMapping = {
+const ICON_MAPPING = {
 	ftl     : <IcMFtl height={15} width={15} />,
 	ltl     : <IcMLtl height={15} width={15} />,
 	trailer : <IcMTrailorFull height={15} width={15} />,
@@ -16,11 +16,11 @@ const iconMapping = {
 };
 
 const getIcons = (service) => {
-	let serviceIcon = iconMapping.cfs;
+	let serviceIcon = ICON_MAPPING.cfs;
 
-	Object.keys(iconMapping).some((key) => {
+	Object.keys(ICON_MAPPING).some((key) => {
 		if (service.includes(key)) {
-			serviceIcon = iconMapping[key];
+			serviceIcon = ICON_MAPPING[key];
 			return true;
 		}
 		return false;

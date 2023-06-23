@@ -21,7 +21,7 @@ function FormElement({
 }) {
 	useEffect(() => {
 		setCheckErrors((prev) => ({ ...prev, [service]: false }));
-		controls.forEach((item) => {
+		(controls || []).forEach((item) => {
 			const show = !(item.name in showElements) || showElements[item.name];
 
 			if (show && !isEmpty(errors[item.name])) {
@@ -33,7 +33,7 @@ function FormElement({
 	return (
 		<div className={cl`${styles.container} ${showForm && styles.showForm}`}>
 			<div className={styles.row}>
-				{controls.map((item) => {
+				{(controls || []).map((item) => {
 					const show = !(item.name in showElements) || showElements[item.name];
 
 					if (item.type === 'fieldArray') {

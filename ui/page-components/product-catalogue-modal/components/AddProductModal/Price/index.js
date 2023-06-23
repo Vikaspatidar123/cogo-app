@@ -23,7 +23,6 @@ function Pricing({
 	const { categoryDisplayName = '', subCategoryDisplayName = '' } = productDetailsfromAPi || {};
 
 	const { hsCode = undefined } = prefiledValues || {};
-
 	const controls = getControls({ currency });
 	const {
 		handleSubmit,

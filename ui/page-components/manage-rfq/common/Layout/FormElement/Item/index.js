@@ -10,7 +10,6 @@ import handleError from '@/ui/page-components/manage-rfq/helpers/get-form-error'
 
 function Item({ formValue, ...rest }) {
 	const value = formValue;
-	// const { keywords } = usei18n();
 
 	const Element = getField(rest.type);
 
@@ -26,7 +25,6 @@ function Item({ formValue, ...rest }) {
 		...restProps
 	} = rest;
 
-	// const props = { placeholder: replace(placeholder || '', keywords) };
 	const props = { placeholder: placeholder || '' };
 
 	if (restProps.prefix === 'truck') {

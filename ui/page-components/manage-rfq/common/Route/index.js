@@ -15,7 +15,7 @@ function Route({ item = {}, source = '' }) {
 
 	const searchType = (search_type || '').replace('_freight', '');
 
-	const prefixIcon = {
+	const PREFIX_ICON = {
 		fcl : <IcMShip fill="#436DF4" />,
 		lcl : <IcMFlcl fill="#436DF4" />,
 		air : <IcMAirport fill="#436DF4" />,
@@ -49,7 +49,7 @@ function Route({ item = {}, source = '' }) {
 	) : (
 		<div className={source === 'popover' ? styles.container_popover : styles.container}>
 			<div className={styles.service_type}>
-				<div className={styles.icon_container}>{prefixIcon[searchType]}</div>
+				<div className={styles.icon_container}>{PREFIX_ICON[searchType]}</div>
 				<div className={styles.service}>{upperCase(searchType)}</div>
 			</div>
 			<div className={styles.path}>

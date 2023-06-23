@@ -60,7 +60,7 @@ function BodyDetails(props) {
 					? 'Additional Remarks'
 					: `${labelMapping[mode]} Details`}
 			</div>
-			{fields.map((field, index) => (
+			{(fields || []).map((field, index) => (
 				<div key={field.id}>
 					<div className={styles.card} id={field.id}>
 						<BodyDetailsChildFormat

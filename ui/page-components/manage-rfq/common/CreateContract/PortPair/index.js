@@ -20,7 +20,7 @@ function PortPair({
 
 	return (
 		<div className={`form-fieldArray-${name}`}>
-			{formData.map((formField, index) => {
+			{(formData || []).map((formField, index) => {
 				const { idx } = formField;
 				return (
 					<PortPairChild

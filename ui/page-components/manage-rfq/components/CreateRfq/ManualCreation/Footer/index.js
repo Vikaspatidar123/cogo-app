@@ -57,6 +57,7 @@ function Footer({
 							themeType="secondary"
 							onClick={() => currentStep > 1 && setCurrentStep((prev) => prev - 1)}
 							disabled={currentStep === 1}
+							type="button"
 						>
 							back
 						</Button>
@@ -66,6 +67,7 @@ function Footer({
 				<Button
 					onClick={handleClick}
 					disabled={loading}
+					type="button"
 				>
 					Send Rfq Request
 				</Button>

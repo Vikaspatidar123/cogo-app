@@ -43,7 +43,7 @@ function LocationCard({
 				</div>
 
 				<div className={styles.tag_data}>
-					{showTags.map((itm) => (
+					{(showTags || []).map((itm) => (
 						<div className={styles.tagbg} style={{ color: itm.color, background: itm.bgcolor }}>
 							{itm.valueText}
 						</div>

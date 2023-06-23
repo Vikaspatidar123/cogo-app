@@ -9,7 +9,7 @@ function LoaderPage({ skeletonCount = 2 }) {
 			{[...Array(skeletonCount)].map(() => (
 				<div className={styles.cart}>
 					{[...Array(4)].map(() => (
-						<Placeholder margin="6px 0px" width="100%" />
+						<Placeholder margin="10px 0px" width="100%" height="25px" />
 					))}
 				</div>
 			))}

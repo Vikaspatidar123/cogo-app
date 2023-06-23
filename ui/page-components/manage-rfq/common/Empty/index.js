@@ -26,6 +26,7 @@ function EmptyPage({
 						<Button
 							themeType="accent"
 							onClick={() => setShowDashboard(false)}
+							type="button"
 						>
 							Request RFQ
 						</Button>

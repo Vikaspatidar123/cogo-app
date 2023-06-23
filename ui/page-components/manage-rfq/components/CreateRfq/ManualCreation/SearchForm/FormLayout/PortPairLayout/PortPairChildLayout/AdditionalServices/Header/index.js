@@ -9,11 +9,11 @@ function Header({ onClose = () => {}, onSubmit = () => {} }) {
 
 			<div className={styles.right}>
 				<Button
-					ghost
 					onClick={onClose}
 					themeType="secondary"
 					className={styles.btn_cancel}
 					id="search_form_cargo_details_cancel_button"
+					type="button"
 				>
 					Cancel
 				</Button>
@@ -21,6 +21,7 @@ function Header({ onClose = () => {}, onSubmit = () => {} }) {
 				<Button
 					onClick={onSubmit}
 					id="search_form_cargo_details_apply_button"
+					type="submit"
 				>
 					Apply
 				</Button>

@@ -36,7 +36,7 @@ function Child({
 		>
 			<div className={styles.row}>
 				{(deletePosition === 'front' && renderDelete()) || null}
-				{controls.map((controlItem) => {
+				{(controls || []).map((controlItem) => {
 					const { span = 6, watch = true } = controlItem;
 					const show =						!(controlItem.name in showElements)
 						|| showElements[controlItem.name];

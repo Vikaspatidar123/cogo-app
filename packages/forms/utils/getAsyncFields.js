@@ -143,8 +143,9 @@ function asyncCountrySelect() {
 		params   : {
 			filters  : { type: 'country' },
 			includes : {
-				default_params_required : true,
-				flag_icon_url           : true, // country_code: true,
+				default_params_required: true,
+				// flag_icon_url           : true,
+				// country_code: true,
 			},
 			page_limit : 20,
 			sort_by    : 'name',

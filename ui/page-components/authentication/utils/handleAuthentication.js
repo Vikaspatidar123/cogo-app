@@ -36,7 +36,7 @@ const handleAuthentication = async ({
 	if (!routeConfig || (asPath || '').includes('_next')) {
 		return { asPrefix };
 	}
-	const { PUBLIC_PATHS = '', UNAUTHENTICATED = '' } = router || {};
+	const { PUBLIC_PATHS, UNAUTHENTICATED } = router || {};
 	const token = getCookie('cogo-auth-token', { req });
 
 	if (asPath.includes('/url/')) {

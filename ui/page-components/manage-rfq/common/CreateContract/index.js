@@ -148,6 +148,7 @@ function CreateContract({
 					themeType="secondary"
 					onClick={() => setShowContractCreation(false)}
 					disabled={loading}
+					type="button"
 				>
 					Back
 				</Button>
@@ -157,6 +158,7 @@ function CreateContract({
 					disabled={loading}
 					loading={loading}
 					className={styles.submit_btn}
+					type="submit"
 				>
 					Request Contract
 				</Button>

@@ -66,15 +66,6 @@ function Item(props) {
 
 	const errorClass = error ? 'error' : null;
 	const newProps = {};
-	// if (type === 'select' || type === 'creatable-select') {
-	// 	newProps.style = SELECT_STYLES;
-	// }
-	// if (type === 'radio') {
-	// 	newProps.style = RADIO_STYLES;
-	// }
-	// if (type === 'input') {
-	// 	newProps.style = INPUT_STYLES;
-	// }
 
 	if (id_prefix) {
 		// eslint-disable-next-line react/destructuring-assignment
@@ -94,8 +85,6 @@ function Item(props) {
 	if (themeType === 'admin') {
 		theme = 'admin';
 	}
-
-	// const isPillsType = (inlineLabel && type === 'pills') || false;
 
 	return (
 		<div className={styles.container}>

@@ -6,7 +6,7 @@ import styles from './styles.module.css';
 import Form from '@/ui/page-components/manage-rfq/common/Layout/FormElement';
 import getConfiguration from '@/ui/page-components/manage-rfq/configurations/SearchFormControls/getConfiguration';
 
-const freightControls = ['bls_count', 'bl_type'];
+const FREIGHT_CONTROLS = ['bls_count', 'bl_type'];
 const placeServices = {
 	origin: [
 		'export_transportation',
@@ -104,7 +104,7 @@ function Services(props) {
 					controls={advancedControls.filter(
 						(advControl) => (advControl?.condition?.services?.length > 1
 								|| !advControl?.condition?.services)
-							&& !freightControls.includes(advControl.name)
+							&& !FREIGHT_CONTROLS.includes(advControl.name)
 							&& isIncludedInPlace(advControl?.condition?.services, placeService),
 					)}
 					control={control}
@@ -130,7 +130,7 @@ function Services(props) {
 							controls={advancedControls.filter(
 								(advControl) => advControl?.condition?.services?.length === 1
 										&& advControl?.condition?.services.includes(service)
-										&& !freightControls.includes(advControl.name),
+										&& !FREIGHT_CONTROLS.includes(advControl.name),
 							)}
 							fields={fields}
 							control={control}

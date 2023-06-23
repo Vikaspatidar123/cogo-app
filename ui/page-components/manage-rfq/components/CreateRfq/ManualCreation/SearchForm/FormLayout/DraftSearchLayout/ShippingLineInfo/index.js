@@ -32,7 +32,7 @@ function ShippingLineInfo({
 	));
 	return (
 		<div className={styles.section}>
-			{mapLines.map((type) => (
+			{(mapLines || []).map((type) => (
 				<div className={cl`${styles.container_details} ${styles.map_line}`}>
 					<div className={styles.index_list}>
 						{startCase(type)}

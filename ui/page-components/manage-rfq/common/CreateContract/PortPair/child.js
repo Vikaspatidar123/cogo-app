@@ -9,7 +9,7 @@ import styles from './styles.module.css';
 
 import formatAmount from '@/ui/commons/utils/formatAmount';
 
-const perPriceMapping = {
+const PER_PRICE_MAPPING = {
 	fcl_freight : '/Ctr',
 	lcl_freight : '/Wm',
 	air_freight : '/Kg',
@@ -105,7 +105,7 @@ function PortPairChild({
 					<div className={styles.commodities_tags}>
 						{(item.commodities[0] || []).map((itm) => (
 							!itm.includes('Container') && (
-								<div className={styles.commodity_tag}>{itm}</div>
+								<div className={styles.commodity_tag} key={itm}>{itm}</div>
 							)
 						))}
 					</div>
@@ -134,7 +134,7 @@ function PortPairChild({
 									},
 								})}
 								<span className={styles.per_price_mapping}>
-									{perPriceMapping[serviceType]}
+									{PER_PRICE_MAPPING[serviceType]}
 								</span>
 							</div>
 						</div>
@@ -152,7 +152,7 @@ function PortPairChild({
 									},
 								})}
 								<span className={styles.per_price_mapping}>
-									{perPriceMapping[serviceType]}
+									{PER_PRICE_MAPPING[serviceType]}
 								</span>
 							</div>
 						</div>

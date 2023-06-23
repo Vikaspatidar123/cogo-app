@@ -71,11 +71,14 @@ const usePayment = ({
 
 	const payment = useCallback(
 		async (info) => {
+			const key = process.env.NODE_ENV === 'production' ? 'pay' : 'uat';
 			await Promise.all([
 				loadScript(
-					'https://uat.billdesk.com/jssdk/v1/dist/billdesksdk/billdesksdk.esm.js',
+					`https://${key}.billdesk.com/jssdk/v1/dist/billdesksdk/billdesksdk.esm.js`,
 				),
-				loadScript('https://uat.billdesk.com/jssdk/v1/dist/billdesksdk.js'),
+				loadScript(
+					`https://${key}.billdesk.com/jssdk/v1/dist/billdesksdk.js`,
+				),
 			]);
 			try {
 				const resp = await trigger({

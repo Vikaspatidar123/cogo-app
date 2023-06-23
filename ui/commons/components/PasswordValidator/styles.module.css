@@ -9,7 +9,7 @@
 
 .title {
 	font-weight: 500;
-	color: #333;
+	color: var(--color-secondary-greyscale-1);
 }
 
 .list {
@@ -19,9 +19,9 @@
 }
 
 .message {
-	font-size: 12px;
+	font-size: var(--font-size-md);
 	font-weight: 400;
-	color: #333;
+	color: var(--color-secondary-greyscale-1);
 }
 
 .icon {
@@ -47,6 +47,6 @@
 .dot {
 	width: 10px;
 	height: 10px;
-	background-color: #c4c4c4;
+	background-color: var(--color-secondary-greyscale-4);
 	border-radius: 20px;
 }

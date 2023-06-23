@@ -13,13 +13,12 @@ import PasswordValidator from '@/ui/commons/components/PasswordValidator';
 import patterns from '@/ui/commons/configurations/patterns';
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
-function Header() {
+function ModalTitle() {
 	return (
 		<img
 			src={GLOBAL_CONSTANTS.image_url.cogoport_logo}
 			alt="Cogoport"
 		/>
-
 	);
 }
 
@@ -53,7 +52,7 @@ function SetPassword({ showModal = false, setShowModal = () => {} }) {
 			closeOnOuterClick={false}
 			placement="center"
 		>
-			<Modal.Header title={<Header />} />
+			<Modal.Header title={<ModalTitle />} />
 			<form onSubmit={handleSubmit(onSetPassword)} className={styles.form_container}>
 				<Modal.Body className={styles.modal_body}>
 					<div>

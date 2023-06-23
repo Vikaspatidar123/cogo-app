@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
 
 import GetTracking from '../hooks/GetTracking';
 
@@ -20,13 +19,9 @@ import ActiveTracking from './Tracking/ActiveTracking';
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
 function SassDashboard() {
-	const {
-		general: { query: queryFromTop = {} },
-	} = useSelector((state) => state);
-
-	const { mail_verify = false } = queryFromTop;
-
 	const { airTracking, oceanTracking, query, country_id, kyc_status } = GetTracking();
+	const { mail_verify = false } = query;
+
 	const [showPasswordModal, setShowPasswordModal] = useState(mail_verify);
 
 	return (

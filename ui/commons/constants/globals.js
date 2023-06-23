@@ -194,6 +194,12 @@ const GLOBAL_CONSTANTS = {
 		ship_icon     : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/shipIcon.jpg',
 		air_icon      : 'https://cdn.cogoport.io/cms-prod/cogo_admin/vault/original/airicon.svg',
 		loading       : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/loading.svg',
+		unsubscription_cargo:
+		'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/page_cargo.png',
+		unsubscription_bottle:
+		'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/Bottle.png',
+		unsubscription_plane:
+		'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/page_plane.png',
 	},
 };
 

@@ -8,6 +8,8 @@ import styles from '../styles.module.css';
 
 import { useFieldArray } from '@/packages/forms';
 
+const { CHARGES, MAPPING } = MappingConstant();
+
 function IncoTermCharge(props) {
 	const { formHook, chargeFields, name, index: i, exchangeRate } = props || {};
 
@@ -18,7 +20,6 @@ function IncoTermCharge(props) {
 		name,
 	});
 
-	const { CHARGES, MAPPING } = MappingConstant();
 	const watchIncoterm = watch('incoterm');
 	const chargeList = watch(name);
 
@@ -26,11 +27,10 @@ function IncoTermCharge(props) {
 		MAPPING[watchIncoterm]?.forEach((ele) => {
 			append({
 				name  : CHARGES[ele],
-				value : 0,
+				value : '',
 			});
 		});
 	};
-
 	const removeIncoterm = useCallback(() => {
 		if (fields.length > 0) {
 			fields.forEach(() => {

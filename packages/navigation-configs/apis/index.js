@@ -1,6 +1,7 @@
 import allocation from './allocation-apis';
 import app_contract_management from './app-manage-contract-apis';
 import app_settings from './app-settings';
+import manageRfq from './manage-rfq-apis';
 import saas from './saas';
 import search from './search-apis';
 import shipment from './shipment-apis';
@@ -19,6 +20,7 @@ const apis = {
 	app_settings,
 	allocation,
 	...saas,
+	manageRfq,
 	app_contract_management,
 
 };

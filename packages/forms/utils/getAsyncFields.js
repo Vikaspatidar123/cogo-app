@@ -278,6 +278,21 @@ function asyncProductList() {
 	};
 }
 
+function asyncFieldsAirLine() {
+	return {
+		labelKey    : 'label',
+		valueKey    : 'id',
+		endpoint    : 'list_operators',
+		initialCall : true,
+		params      : {
+			filters    : { operator_type: 'airline', status: 'active' },
+			page_limit : 100,
+			sort_by    : 'short_name',
+			sort_type  : 'asc',
+		},
+	};
+}
+
 function asyncFieldsShippingLine() {
 	return {
 		labelKey    : 'short_name',
@@ -293,20 +308,6 @@ function asyncFieldsShippingLine() {
 	};
 }
 
-function asyncFieldsAirLine() {
-	return {
-		labelKey    : 'label',
-		valueKey    : 'id',
-		endpoint    : 'list_operators',
-		initialCall : true,
-		params      : {
-			filters    : { operator_type: 'airline', status: 'active' },
-			page_limit : 100,
-			sort_by    : 'short_name',
-			sort_type  : 'asc',
-		},
-	};
-}
 function asyncTaxNumbers() {
 	return {
 		labelKey    : 'label',

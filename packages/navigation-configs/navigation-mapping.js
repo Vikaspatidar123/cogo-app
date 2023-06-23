@@ -32,6 +32,7 @@ import {
 	IcMBookingDesk,
 	IcATradePartner,
 	IcAPlanningTools,
+	IcARfq,
 } from '@cogoport/icons-react';
 
 const navigationMappings = {
@@ -240,6 +241,14 @@ const navigationMappings = {
 				as          : '/contract-management',
 				icon        : <IcAPlanningTools width={40} height={40} fill="#fbd221" />,
 				description : 'contract management',
+			},
+			{
+				key         : 'saas_planning-manage_rfq',
+				title       : 'Manage Rfq',
+				href        : '/manage-rfq',
+				as          : '/manage-rfq',
+				icon        : <IcARfq width={40} height={40} />,
+				description : 'Request For Quotation',
 			},
 		],
 	},

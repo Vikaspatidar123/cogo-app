@@ -20,8 +20,8 @@ const useGetMapRoute = ({ trackingInfo = [], type = 'ocean' }) => {
 	const [allRoute, setAllRoute] = useState([]);
 
 	const [{ loading }, trigger] = useRequest({
-		method: 'get',
-		url: '/get_multiple_sea_routes',
+		method : 'get',
+		url    : '/get_multiple_sea_routes',
 	}, { manual: true, autoCancel: false });
 
 	const getSeaRoute = useCallback(async ({ coordinates = [] }) => {
@@ -73,15 +73,15 @@ const useGetMapRoute = ({ trackingInfo = [], type = 'ocean' }) => {
 
 			if (isRouteAvaliable) {
 				updatedRoute = mapPoints.map((point) => ({
-					lat: point[DEFAULT_LAT_INDEX],
-					lng: point[DEFAULT_LNG_INDEX],
+					lat : point[DEFAULT_LAT_INDEX],
+					lng : point[DEFAULT_LNG_INDEX],
 				}));
 			}
 
 			return {
 				id,
-				containerNo: container_no || searchValue,
-				route: updatedRoute,
+				containerNo : container_no || searchValue,
+				route       : updatedRoute,
 			};
 		});
 		setAllRoute(mapPointArr);
@@ -92,9 +92,8 @@ const useGetMapRoute = ({ trackingInfo = [], type = 'ocean' }) => {
 			if (type === 'ocean') {
 				calcSeaRoute();
 			} else {
-				calAirRoute({ list: trackingInfo, setAllRoute });
-
-				// setAllRoute(allRouteArr);
+				const allRouteArr = calAirRoute({ list: trackingInfo });
+				setAllRoute(allRouteArr);
 			}
 		}
 	}, [calcSeaRoute, trackingInfo, type]);

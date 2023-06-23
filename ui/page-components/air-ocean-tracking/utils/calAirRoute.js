@@ -19,8 +19,8 @@ const createBezier = (inputPoints, step) => {
 			const lng_x = (1 - t) * ((1 - t) * x1 + t * x2) + t * ((1 - t) * x2 + t * x3);
 
 			bezierPoints.push({
-				lat: lat_x,
-				lng: lng_x,
+				lat : lat_x,
+				lng : lng_x,
 			});
 		} catch (err) {
 			t = 1;
@@ -41,12 +41,12 @@ const getRoute = (latLngArr) => {
 
 		if (isValidPtArr) {
 			const source = {
-				lat: departure_lat || 0,
-				lng: departure_long || 0,
+				lat : departure_lat || 0,
+				lng : departure_long || 0,
 			};
 			const dest = {
-				lat: arrival_lat || 0,
-				lng: arrival_long || 0,
+				lat : arrival_lat || 0,
+				lng : arrival_long || 0,
 			};
 
 			const route = createBezier([source, dest], 0.001);
@@ -68,7 +68,7 @@ const calAirRoute = ({ list = [] }) => {
 
 			sortedData.forEach((data, index) => {
 				const isDataPresent = mapPoints.findIndex((pt) => pt?.station === data?.station) > -1;
-				console.log(mapPoints, 'mapPoints', index);
+
 				if (!isDataPresent) {
 					let point = {};
 					const lastDataIndex = mapPoints.length - 1;
@@ -76,17 +76,17 @@ const calAirRoute = ({ list = [] }) => {
 
 					if (info) {
 						point = {
-							station: info?.depart_station,
-							departure_lat: info?.departure_lat,
-							departure_long: info?.departure_long,
+							station        : info?.depart_station,
+							departure_lat  : info?.departure_lat,
+							departure_long : info?.departure_long,
 						};
 					} else {
 						info = (air_flight_info || []).find((ele) => ele.arrival_station === data.station);
 						if (info) {
 							point = {
-								station: info?.arrival_station,
-								departure_lat: info?.arrival_lat,
-								departure_long: info?.arrival_long,
+								station        : info?.arrival_station,
+								departure_lat  : info?.arrival_lat,
+								departure_long : info?.arrival_long,
 							};
 						}
 					}

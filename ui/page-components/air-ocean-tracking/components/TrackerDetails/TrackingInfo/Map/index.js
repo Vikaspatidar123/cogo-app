@@ -1,5 +1,5 @@
 import { isEmpty } from '@cogoport/utils';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
 import useGetMapRoute from '../../../../hooks/useGetMapRoute';
 
@@ -20,14 +20,14 @@ function Map({
 }) {
 	const [currentRoute, setCurrentRoute] = useState([]);
 
-	const payloadMapping = {
-		ocean: trackingInfo,
-		air: !isEmpty(data) ? [data] : [],
-	};
+	const payloadMapping = useMemo(() => ({
+		ocean : trackingInfo,
+		air   : !isEmpty(data) ? [data] : [],
+	}), [data, trackingInfo]);
 
 	const { loading, allRoute = [] } = useGetMapRoute({
-		trackingInfo: payloadMapping[trackingType],
-		type: trackingType,
+		trackingInfo : payloadMapping[trackingType],
+		type         : trackingType,
 	});
 
 	useEffect(() => {
@@ -39,7 +39,7 @@ function Map({
 
 			setCurrentRoute(currentTrackingInfo?.route);
 		}
-	}, [currContainerDetails]);
+	}, [allRoute, currContainerDetails]);
 
 	return (
 		<div className={styles.container}>

@@ -1,15 +1,33 @@
-import { FluidContainer } from '@cogoport/components';
+import { FluidContainer, cl } from '@cogoport/components';
 // import { useTranslation } from 'next-i18next';
 import { useTranslation } from 'next-i18next';
-import React from 'react';
+import React, { useState } from 'react';
 
 import LoginForm from './LoginForm';
+import MobileNoForm from './MobileLogineNoForm/MobileNoForm';
 import styles from './styles.module.css';
 
+import { useSelector } from '@/packages/store';
 import LeftPanel from '@/ui/commons/components/LeftPanel';
 
+const MAPPING = {
+	emailId: <LoginForm />,
+	mobileNo: <MobileNoForm />,
+};
 function Login() {
 	const { t } = useTranslation(['common']);
+	const {
+		general: { query = {} },
+	} = useSelector((state) => state);
+
+	const { loginType: login_type = '' } = query;
+
+	const [loginType, setLoginType] = useState(() => {
+		if (login_type === 'mobile') return 'mobileNo';
+
+		return 'emailId';
+	});
+
 	return (
 		<FluidContainer className={styles.container}>
 			<div className={styles.left_container}>
@@ -24,7 +42,26 @@ function Login() {
 					<p className={styles.right_login_text}>
 						{t('common:text_3')}
 					</p>
-					<LoginForm />
+					<div className={styles.button_group}>
+						<div
+							className={cl`${styles.group_by_button} 
+							${loginType === 'emailId'
+								&& styles.active} ${styles.left}`}
+							onClick={() => setLoginType('emailId')}
+							role="presentation"
+						>
+							Email
+						</div>
+						<div
+							className={cl`${styles.group_by_button}
+									${loginType === 'mobileNo' && styles.active} ${styles.right}`}
+							onClick={() => setLoginType('mobileNo')}
+							role="presentation"
+						>
+							Mobile
+						</div>
+					</div>
+					{MAPPING[loginType]}
 				</div>
 			</div>
 		</FluidContainer>

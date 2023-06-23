@@ -1,6 +1,6 @@
 import { Button } from '@cogoport/components';
 import { IcMCopy } from '@cogoport/icons-react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import FooterImage from './FooterImage';
 import useUnsubscribe from './hooks/useUnsubscribe';
@@ -30,9 +30,11 @@ function Unsubscribe() {
 		ticket,
 	});
 
-	if (timer === 0 && submit) {
-		onClickRedirect();
-	}
+	useEffect(()=>{
+		if (timer === 0 && submit) {
+			onClickRedirect();
+		}
+	},[timer]);
 
 	return (
 		<div className={styles.container}>
@@ -51,7 +53,6 @@ function Unsubscribe() {
 							</div>
 							<div className={styles.footer}>
 								<Button
-									size="md"
 									themeType="secondary"
 									onClick={() => onClickRedirect()}
 									type="button"
@@ -59,7 +60,6 @@ function Unsubscribe() {
 									Cancel
 								</Button>
 								<Button
-									size="md"
 									className={styles.unsubscribe}
 									themeType="primary"
 									onClick={() => setUnsubscribe((prev) => !prev)}

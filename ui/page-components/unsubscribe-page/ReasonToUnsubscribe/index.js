@@ -68,7 +68,6 @@ function ReasonToUnsubscribe({
 			</div>
 			<div className={styles.footer}>
 				<Button
-					size="md"
 					themeType="secondary"
 					onClick={() => onClickRedirect()}
 					type="button"
@@ -76,7 +75,6 @@ function ReasonToUnsubscribe({
 					Cancel
 				</Button>
 				<Button
-					size="md"
 					className={styles.unsubscribe}
 					themeType="primary"
 					onClick={() => handleSubmit()}

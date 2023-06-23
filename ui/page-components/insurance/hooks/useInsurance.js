@@ -1,4 +1,3 @@
-import { Toast } from '@cogoport/components';
 import { useState, useCallback } from 'react';
 
 import { useRequestBf } from '@/packages/request';
@@ -79,7 +78,7 @@ const useInsurance = ({
 					payment(res?.data);
 				}
 			} catch (error) {
-				Toast.error(error?.error?.message);
+				console.log(error?.error?.message);
 			}
 		},
 		[activeTab, addressKey, billingtype, convenienceFee,

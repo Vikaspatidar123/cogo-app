@@ -1,4 +1,3 @@
-import { Toast } from '@cogoport/components';
 import { useEffect, useCallback } from 'react';
 
 import { useRequestBf } from '@/packages/request';
@@ -27,7 +26,7 @@ const useGetSummaryDetails = ({ activeTab, filters, sort }) => {
 				},
 			});
 		} catch (err) {
-			Toast.error(err?.error?.message);
+			console.log(err?.error?.message);
 		}
 	}, [activeTab, filters, organization, sort, trigger]);
 

@@ -1,4 +1,3 @@
-import { Toast } from '@cogoport/components';
 import { useEffect, useState, useCallback } from 'react';
 
 import getApiErrorString from '@/packages/forms/utils/getApiError';
@@ -38,7 +37,7 @@ const useList = ({ activeTab }) => {
 				},
 			});
 		} catch (err) {
-			Toast.error(getApiErrorString(err));
+			console.log(getApiErrorString(err));
 		}
 	}, [activeTab, filters, organization?.id, sort, trigger]);
 

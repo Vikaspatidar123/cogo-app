@@ -1,4 +1,3 @@
-import { Toast } from '@cogoport/components';
 import { useState, useEffect, useCallback } from 'react';
 
 import { useRequestBf } from '@/packages/request';
@@ -33,7 +32,7 @@ const useGetTermsConditions = ({
 				setTerms(res?.data);
 			}
 		} catch (error) {
-			Toast.error(error?.error?.message);
+			console.log(error?.error?.message);
 		}
 	}, [activeTab, countryCode, formDetails, trigger, type]);
 

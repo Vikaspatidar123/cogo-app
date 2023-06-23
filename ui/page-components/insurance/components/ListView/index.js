@@ -1,6 +1,5 @@
 import { Input, Chips, Button, Table, Pagination } from '@cogoport/components';
 import { IcMPlus, IcMSearchlight, IcMPlusInCircle } from '@cogoport/icons-react';
-import { isEmpty } from '@cogoport/utils';
 import { useState } from 'react';
 
 import CancellationAndConfirmModal from '../../common/CancellationModal';
@@ -76,16 +75,6 @@ function ListView() {
 
 	const fields = listConfig({ setSort, sort, Content });
 
-	if (isEmpty(data)) {
-		return (
-			<div className={styles.empty}>
-				<img
-					src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/undraw_empty_re_opql.svg"
-					alt="empty_data"
-				/>
-			</div>
-		);
-	}
 	return (
 		<>
 			<FAQComponent showFaq={showFaq} setFaq={setFaq} isMobile={isMobile} />
@@ -119,14 +108,16 @@ function ListView() {
 					)}
 				</div>
 			</div>
-			<div className={styles.segment_faq}>
-				<Chips
-					size="lg"
-					items={segementedOpt(summaryData, activeTab, summaryLoading)}
-					selectedItems={activeTab}
-					onItemChange={handleTabChange}
-					className={styles.chips}
-				/>
+			<div className={!(data?.list?.length > 0 && !previewloading) ? styles.flex_end : styles.segment_faq}>
+				{data?.list?.length > 0 && !previewloading && (
+					<Chips
+						size="lg"
+						items={segementedOpt(summaryData, activeTab, summaryLoading)}
+						selectedItems={activeTab}
+						onItemChange={handleTabChange}
+						className={styles.chips}
+					/>
+				)}
 				{showFaq === 'none' &&				(
 					<img
 						src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/faq.svg"
@@ -138,7 +129,7 @@ function ListView() {
 					/>
 				)}
 			</div>
-			{data?.list?.length > 0 && !previewloading && (
+			{data?.list?.length > 0 && !previewloading ? (
 				<Table
 					columns={fields || []}
 					data={list || []}
@@ -146,7 +137,14 @@ function ListView() {
 					loadingRowsCount={10}
 					className={styles.table}
 				/>
-			) }
+			) : (
+				<div className={styles.empty}>
+					<img
+						src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/undraw_empty_re_opql.svg"
+						alt="empty_data"
+					/>
+				</div>
+			)}
 			{data?.list?.length === 0 && !previewloading
 			&& <EmptyState />}
 			{data?.list?.length > 0 && (

@@ -4,21 +4,33 @@ import OtpForm from '../OtpForm';
 
 import styles from './styles.module.css';
 
-import { useForm, MobileNumberSelectController } from '@/packages/forms';
+import { MobileNumberSelectController } from '@/packages/forms';
+// import patterns from '@/ui/commons/configurations/patterns';
 import useMobileNoForm from '@/ui/page-components/authentication/hooks/useMobileNoForm';
 
-function MobileLoginForm() {
-	const { handleSubmit, formState: { errors }, control } = useForm();
+const RULES = {
+	// pattern: {
+	// 	value   : /^[0-9]{10}$/,
+	// 	message : 'Invalid mobile number',
+	// },
+	required: 'Please enter mobile no',
+};
 
+function MobileLoginForm() {
 	const {
 		userDetails = {},
 		onSubmit = () => { },
 		loading = false,
 		showOtpForm,
+		formHook,
 	} = useMobileNoForm();
+
+	const { handleSubmit, register, formState: { errors }, control } = formHook;
+
 	if (showOtpForm) {
 		return <OtpForm userDetails={userDetails} />;
 	}
+
 	return (
 		<form className={styles.form_container} onSubmit={handleSubmit(onSubmit)}>
 			<div className={styles.input_container}>
@@ -26,7 +38,7 @@ function MobileLoginForm() {
 					control={control}
 					name="mobile_number"
 					placeholder="Mobile Number"
-					rules={{ required: 'Mobile Number is required.' }}
+					mobileSelectRef={{ ...register('mobile_number', RULES) }.ref}
 				/>
 				{errors.mobile_number && (
 					<span className={styles.errors}>

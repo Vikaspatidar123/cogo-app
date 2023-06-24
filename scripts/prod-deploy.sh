@@ -17,9 +17,9 @@ pnpm install --frozen-lockfile
 pnpm build
 
 # 5. Start/Restart the project
-pnpm pm2 describe project-public > /dev/null
-PUBLIC_RUNNING=$?
-if [ "${PUBLIC_RUNNING}" -ne 0 ]; then
+pnpm pm2 describe project-new-app > /dev/null
+APP_RUNNING=$?
+if [ "${APP_RUNNING}" -ne 0 ]; then
   pnpm run pm2:start
 else
   pnpm run pm2:restart

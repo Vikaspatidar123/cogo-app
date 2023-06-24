@@ -1,0 +1,44 @@
+# This is a basic workflow to help you get started.
+# It will take the following action when it is manually triggered.
+name: Prod Deploy - www.cogoport.com
+
+on:
+  workflow_dispatch: {}
+
+jobs:
+  demo:
+    if: ${{ contains('prashantp01,riyazKhanCogoport',github.actor) }}
+    permissions:
+      # The "id-token: write" permission is required or Machine ID will not be able to authenticate with the cluster.
+      id-token: write
+      contents: read
+    # The name of the workflow, and the Linux distro to be used to perform the required steps.
+    name: Deploy Production
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Fetch Teleport binaries
+        uses: teleport-actions/setup@v1
+        with:
+          version: 13.1.0
+      - name: Fetch credentials using Machine ID
+        id: auth
+        uses: teleport-actions/auth@v1
+        with:
+          # Use the address of the auth/proxy server for your own cluster.
+          proxy: teleport.cogoport.com:443
+          # Use the name of the join token resource you created in step 1.
+          token: teleport-in-action
+          # Specify the length of time that the generated credentials should be
+          # valid for. This is optional and defaults to "1h"
+          certificate-ttl: 2h
+          # Enable the submission of anonymous usage telemetry.
+          anonymous-telemetry: 1
+      - name: List nodes
+        # Enters a command from the cluster, in this case "tsh ls" using Machine ID credentials to list remote SSH nodes.
+        run: tsh -i ${{ steps.auth.outputs.identity-file }} ls
+      - name: Write file to remote
+        # Enters a command from the cluster, in this case "tsh ssh" using Machine ID credentials to gain SSH access to an SSH node, and then write the commit hash to the "github_run_log" file.
+        # Ensure that `username` matches the username of a remote SSH username, and that hostname matches an SSH host name that is a part of the Teleport cluster configured for access.
+        run: tsh -i ${{ steps.auth.outputs.identity-file }} ssh ${{ secrets.TELEPORT_USERNAME }}@${{ secrets.TELEPORT_HOSTNAME }} "cd cogo-public && bash ./scripts/deploy.sh"

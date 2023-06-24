@@ -15,7 +15,7 @@ function MobileLoginForm() {
 		onSubmit = () => { },
 		loading = false,
 		showOtpForm,
-	} = useMobileNoForm({});
+	} = useMobileNoForm();
 	if (showOtpForm) {
 		return <OtpForm userDetails={userDetails} />;
 	}

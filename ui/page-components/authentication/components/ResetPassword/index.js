@@ -29,10 +29,8 @@ function ResetPassword() {
 	} = useResetPassword({ password, confirm_password });
 
 	const renderSuffix = (show, setShow) => {
-		if (!show) {
-			return <IcMEyeopen className={styles.show_password} onClick={() => setShow(!show)} />;
-		}
-		return <IcMEyeclose className={styles.show_password} onClick={() => setShow(!show)} />;
+		const Icon = show ? IcMEyeclose : IcMEyeopen;
+		return <Icon className={styles.show_password} onClick={() => setShow(!show)} />;
 	};
 
 	return (

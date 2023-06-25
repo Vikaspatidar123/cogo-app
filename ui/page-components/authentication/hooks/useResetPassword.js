@@ -14,6 +14,14 @@ const useResetPassword = ({ password = '', confirm_password = '' }) => {
 
 	const [customErrors, setCustomErrors] = useState('');
 
+	const [{ loading }, trigger] = useRequest(
+		{
+			url    : 'reset_user_password',
+			method : 'post',
+		},
+		{ manual: true },
+	);
+
 	useEffect(() => {
 		setCustomErrors(
 			password
@@ -22,14 +30,6 @@ const useResetPassword = ({ password = '', confirm_password = '' }) => {
 				? 'Password does not match.' : '',
 		);
 	}, [password, confirm_password]);
-
-	const [{ loading }, trigger] = useRequest(
-		{
-			url    : 'reset_user_password',
-			method : 'post',
-		},
-		{ manual: true },
-	);
 
 	const onResetPassword = async (values) => {
 		try {

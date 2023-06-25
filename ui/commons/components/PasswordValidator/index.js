@@ -5,30 +5,30 @@ import styles from './styles.module.css';
 
 import patterns from '@/ui/commons/configurations/patterns';
 
-function PasswordValidator({ password = '' }) {
-	const VALID_PASSWORD_MAPPINGS = {
-		lowercase: {
-			pattern : patterns.PASSWORD.lowercase,
-			message : 'at least one lowercase character.',
-		},
-		uppercase: {
-			pattern : patterns.PASSWORD.uppercase,
-			message : 'at least one uppercase character.',
-		},
-		digit: {
-			pattern : patterns.PASSWORD.digit,
-			message : 'at least one digit.',
-		},
-		special: {
-			pattern : patterns.PASSWORD.special,
-			message : 'at least one special character (!@#$%^&*).',
-		},
-		minLength: {
-			pattern : patterns.PASSWORD.minLength,
-			message : 'minimum 8 characters.',
-		},
-	};
+const VALID_PASSWORD_MAPPINGS = {
+	lowercase: {
+		pattern : patterns.PASSWORD.lowercase,
+		message : 'at least one lowercase character.',
+	},
+	uppercase: {
+		pattern : patterns.PASSWORD.uppercase,
+		message : 'at least one uppercase character.',
+	},
+	digit: {
+		pattern : patterns.PASSWORD.digit,
+		message : 'at least one digit.',
+	},
+	special: {
+		pattern : patterns.PASSWORD.special,
+		message : 'at least one special character (!@#$%^&*).',
+	},
+	minLength: {
+		pattern : patterns.PASSWORD.minLength,
+		message : 'minimum 8 characters.',
+	},
+};
 
+function PasswordValidator({ password = '' }) {
 	return (
 		<div className={styles.password_validator}>
 			<div className={styles.title}>Password must contain:</div>

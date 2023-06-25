@@ -16,10 +16,9 @@ const useSetPassword = ({ password = '', confirm_password = '', setShowModal = (
 	const [customErrors, setCustomErrors] = useState('');
 
 	useEffect(() => {
+		const toCheck = password && confirm_password;
 		setCustomErrors(
-			password
-				&& confirm_password
-				&& confirm_password !== password
+			toCheck && confirm_password !== password
 				? 'Password does not match.' : '',
 		);
 	}, [password, confirm_password]);

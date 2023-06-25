@@ -2,25 +2,15 @@ import { Button, Modal } from '@cogoport/components';
 import { IcCTick, IcMEyeclose, IcMEyeopen } from '@cogoport/icons-react';
 import { isEmpty } from '@cogoport/utils';
 import { useState } from 'react';
-import { useForm } from 'react-hook-form';
 
 import useSetPassword from '../../hooks/useSetPassword';
 
 import styles from './styles.module.css';
 
-import { InputController } from '@/packages/forms';
+import { InputController, useForm } from '@/packages/forms';
 import PasswordValidator from '@/ui/commons/components/PasswordValidator';
 import patterns from '@/ui/commons/configurations/patterns';
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
-
-function ModalTitle() {
-	return (
-		<img
-			src={GLOBAL_CONSTANTS.image_url.cogoport_logo}
-			alt="Cogoport"
-		/>
-	);
-}
 
 function SetPassword({ showModal = false, setShowModal = () => {} }) {
 	const [showPassword, setShowPassword] = useState(false);
@@ -38,10 +28,8 @@ function SetPassword({ showModal = false, setShowModal = () => {} }) {
 	} = useSetPassword({ password, confirm_password, setShowModal });
 
 	const renderSuffix = (show, setShow) => {
-		if (!show) {
-			return <IcMEyeopen className={styles.show_password} onClick={() => setShow(!show)} />;
-		}
-		return <IcMEyeclose className={styles.show_password} onClick={() => setShow(!show)} />;
+		const Icon = show ? IcMEyeclose : IcMEyeopen;
+		return <Icon className={styles.show_password} onClick={() => setShow(!show)} />;
 	};
 
 	return (
@@ -52,7 +40,14 @@ function SetPassword({ showModal = false, setShowModal = () => {} }) {
 			closeOnOuterClick={false}
 			placement="center"
 		>
-			<Modal.Header title={<ModalTitle />} />
+			<Modal.Header
+				title={(
+					<img
+						src={GLOBAL_CONSTANTS.image_url.cogoport_logo}
+						alt="Cogoport"
+					/>
+				)}
+			/>
 			<form onSubmit={handleSubmit(onSetPassword)} className={styles.form_container}>
 				<Modal.Body className={styles.modal_body}>
 					<div>

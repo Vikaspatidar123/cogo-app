@@ -1,5 +1,6 @@
 import { useState } from 'react';
 
+import { useForm } from '@/packages/forms';
 import { useRequest } from '@/packages/request';
 import { APP_EVENT, trackEvent } from '@/ui/commons/constants/analytics';
 import showErrorsInToast from '@/ui/commons/utils/showErrorsInToast';
@@ -13,13 +14,23 @@ const useMobileNoForm = () => {
 			country_code : '',
 		},
 	});
+
 	const [{ loading }, trigger] = useRequest({
 		url    : '/send_login_otp',
 		method : 'post',
 	}, { manual: true });
 
+	const formHook = useForm();
+	const { setError } = formHook;
+
 	const onSubmit = async (values) => {
 		const { mobile_number } = values || {};
+
+		if (mobile_number?.number.length < 10) {
+			setError('mobile_number', { message: 'Invalid mobile number' });
+			return;
+		}
+
 		try {
 			const payload = {
 				mobile_number       : mobile_number?.number,
@@ -54,6 +65,7 @@ const useMobileNoForm = () => {
 		setShowOtpForm,
 		showOtpForm,
 		userDetails,
+		formHook,
 	};
 };
 

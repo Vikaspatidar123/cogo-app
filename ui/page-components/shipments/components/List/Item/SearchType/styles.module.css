@@ -55,14 +55,10 @@
 
 	@media (max-width: 360px) {
 		max-width: 36px;
-		font-size: 14px;
-		line-height: 16px;
 	}
 	@media (min-width: 360px) and (max-width: 760px) {
 		max-width: 36px;
 		margin-top: 2px;
-		font-size: 14px;
-		line-height: 12px;
 	}
 }
 

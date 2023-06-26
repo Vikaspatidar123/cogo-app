@@ -128,14 +128,16 @@ function BasicCharge(
 				);
 			})}
 
-			<PaymentModeModal
-				isUserSubscribed={isUserSubscribed}
-				paymentModal={paymentModal}
-				setPaymentModal={setPaymentModal}
-				paymentMode={paymentMode}
-				setPaymentMode={setPaymentMode}
-				setValidateProduct={setValidateProduct}
-			/>
+			{paymentModal &&	(
+				<PaymentModeModal
+					isUserSubscribed={isUserSubscribed}
+					paymentModal={paymentModal}
+					setPaymentModal={setPaymentModal}
+					paymentMode={paymentMode}
+					setPaymentMode={setPaymentMode}
+					setValidateProduct={setValidateProduct}
+				/>
+			)}
 
 			<ValidateProductModal
 				isUserSubscribed={isUserSubscribed}

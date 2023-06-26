@@ -59,7 +59,7 @@
 .segment_faq {
 	display: flex;
 	justify-content: space-between;
-	margin-top: 20px;
+	margin: 20px;
 
 	:global {
 		.ui_chip_container {
@@ -161,4 +161,11 @@
 		width:100%;
 		overflow: scroll;
 	}
+}
+
+.loader {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 100vh;
 }

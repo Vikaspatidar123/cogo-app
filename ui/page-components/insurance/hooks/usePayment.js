@@ -40,7 +40,7 @@ const usePayment = ({
 
 	const { organizationAddressId = '', isBillingAddress = false } = organizationAddress || {};
 
-	const callBackUrl = `${process.env.NEXT_PUBLIC_APP_URL}v2/${org_id}/${branch_id}/saas/insurance/${type}`;
+	const callBackUrl = `${process.env.NEXT_PUBLIC_APP_URL}/${org_id}/${branch_id}/saas/insurance/${type}`;
 
 	const addressKey = isBillingAddress
 		? 'organizationBillingAddressId'

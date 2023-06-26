@@ -20,10 +20,10 @@ import styles from './styles.module.css';
 
 function HsCode({
 	showHsCodeModal,
-	setShowHsCodeModal,
-	setSelectedData,
-	setShowProduct,
-	setPrefiledValues,
+	setShowHsCodeModal = () => {},
+	setSelectedData = () => {},
+	setShowProduct = () => {},
+	setPrefiledValues = () => {},
 	isMobile = false,
 	onClick = () => {},
 }) {

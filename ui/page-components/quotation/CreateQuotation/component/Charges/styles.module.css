@@ -140,7 +140,8 @@
 
 .error {
 	:global {
-		.ui_input_container {
+		.ui_input_number_container,
+		.ui_select_display_container {
 			border: 1px solid red;
 		}
 	}

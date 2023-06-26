@@ -42,7 +42,6 @@ function OceanSchedules() {
 			return;
 		}
 		setErrorMessage(false);
-		console.log(formValues, 'formValues');
 		createSchedule(formValues.origin_port, formValues.destination_port);
 	};
 
@@ -92,7 +91,7 @@ function OceanSchedules() {
 			</div>
 			<div className={styles.sub_heading_container}>My Schedules</div>
 			<div className={styles.schedules_container}>
-				{loading && <Loading />}
+				{loading && <Loading home />}
 				{!loading && schedules?.list.length > 0 ? (schedules?.list?.map((item) => (
 					<ScheduleCard
 						schedule={item}

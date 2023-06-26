@@ -49,7 +49,7 @@ function Status({ data, viewAs, isBookingDesk = false }) {
 					{stateData.text}
 				</div>
 			</div>
-			<Button onClick={() => onBook()} className={styles.show_button}>
+			<Button onClick={onBook} className={styles.show_button}>
 				<div className={styles.action}>{buttonText}</div>
 			</Button>
 		</div>

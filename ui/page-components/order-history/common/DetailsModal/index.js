@@ -35,7 +35,7 @@ function DetailsModal({
 			show={modal}
 			showCloseIcon
 			onClose={() => setModal(false)}
-			size="lg"
+			size="xl"
 		>
 			{!tradeEngineResponseLoading && (
 				<div className={styles.container}>

@@ -1,10 +1,11 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { cl, Button } from '@cogoport/components';
 import { IcALocation, IcMArrowNext } from '@cogoport/icons-react';
-import { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 import getField from '../../../../../../packages/forms/Controlled';
 import { ShipGif, PlaneGif } from '../../../common/gif';
+import { transportationControls } from '../../../configuration/controls';
 import { InterChange, PlaneIcon, OceanIcon } from '../../../configuration/icon-configuration';
 import transportFn from '../../../utils/transportFn';
 import style from '../styles.module.css';
@@ -14,27 +15,23 @@ import styles from './styles.module.css';
 function Transportation({
 	transportMode,
 	setTransportMode,
-	fields,
-	error,
 	setValue,
-	watch,
-	reset,
-	handleSubmit,
 	setStepper,
 	setFormStepper,
 	setFormData,
 	portDetails = {},
 	setPortDetails,
 	setPrevHs,
-	transportControl,
 	setMapPoints,
+	formHook,
 }) {
 	const [rotate, setRotate] = useState(false);
-	const OriginPort = getField(fields[0]?.type);
-	const DestinationPort = getField(fields[1]?.type);
-	const [origin, destination] = watch(['originPort', 'destinationPort']);
-
 	const initialRef = useRef(true);
+
+	const transportFields = transportationControls({ transportMode });
+	const { control, formState: { errors }, handleSubmit, watch, reset } = formHook;
+
+	const [origin, destination] = watch(['originPort', 'destinationPort']);
 
 	const {
 		interchangeValuesHandler,
@@ -49,7 +46,7 @@ function Transportation({
 		setStepper,
 		setFormStepper,
 		setValue,
-		error,
+		errors,
 		transportMode,
 		portDetails,
 		origin,
@@ -86,7 +83,7 @@ function Transportation({
 			<form>
 				<div className={`${styles.tabs}`}>
 					<div
-						className={`${transportMode === 'OCEAN' && 'selected'} ${styles.card}`}
+						className={cl`${transportMode === 'OCEAN' && styles.selected} ${styles.card}`}
 						role="presentation"
 						onClick={() => setTransportMode('OCEAN')}
 					>
@@ -100,7 +97,7 @@ function Transportation({
 						<div className={styles.txt}>Ocean</div>
 					</div>
 					<div
-						className={`${transportMode === 'AIR' && 'selected'} ${styles.card}`}
+						className={cl`${transportMode === 'AIR' && styles.selected} ${styles.card}`}
 						role="presentation"
 						onClick={() => setTransportMode('AIR')}
 					>
@@ -113,46 +110,38 @@ function Transportation({
 						<div className={styles.txt}>Air</div>
 					</div>
 				</div>
+
 				<div className={styles.form_div}>
-					<div className={style.col}>
-						<div className={style.label}>{fields[0]?.label}</div>
-						<OriginPort
-							key={origin || portDetails?.origin?.id}
-							{...fields[0]}
-							handleChange={(data) => portDetailsHandler(data, 'origin')}
-							control={transportControl}
-						/>
-						{error?.originPort && (
-							<div className={style.error_txt}>
-								*
-								{error?.originPort?.type}
-							</div>
-						)}
-					</div>
-					<div className={styles.inter_change_container}>
-						<div
-							className={cl`${rotate && styles.rotate_icn} ${styles.icn}`}
-							role="presentation"
-							onClick={interchangeValuesHandler}
-						>
-							<img src={InterChange} alt="" width="20px" height="20px" />
-						</div>
-					</div>
-					<div className={style.col}>
-						<div className={style.label}>{fields[1].label}</div>
-						<DestinationPort
-							key={destination || portDetails?.destination?.id}
-							{...fields[1]}
-							handleChange={(data) => portDetailsHandler(data, 'destination')}
-							control={transportControl}
-						/>
-						{error?.destinationPort && (
-							<div className={style.error_txt}>
-								*
-								{error?.destinationPort?.type}
-							</div>
-						)}
-					</div>
+					{transportFields.map((config, index) => {
+						const { name, type, label, keyName } = config;
+						const Element = getField(type);
+
+						return (
+							<React.Fragment key={name}>
+								<div className={style.col}>
+									<p className={style.label}>{label}</p>
+									<Element
+										{...config}
+										key={name}
+										control={control}
+										handleChange={(data) => portDetailsHandler(data, keyName)}
+									/>
+								</div>
+								{index === 0 && (
+									<div className={styles.inter_change_container}>
+										<div
+											className={cl`${rotate && styles.rotate_icn} ${styles.icn}`}
+											role="presentation"
+											onClick={interchangeValuesHandler}
+										>
+											<img src={InterChange} alt="" width="20px" height="20px" />
+										</div>
+									</div>
+								)}
+							</React.Fragment>
+						);
+					})}
+
 				</div>
 				<div className={style.btn_container}>
 					<Button

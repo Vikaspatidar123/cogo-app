@@ -62,7 +62,7 @@ const useFilterContent = ({ globalFilter, setGlobalFilter, activeTab = 'ocean', 
 			[OPERATOR_KEY_MAPPING[activeTab]] : operatorId,
 			shipper                           : shipperId,
 			consignee                         : consigneeId,
-			booked_with_cogoport              : bookWithCogo,
+			booked_with_cogoport_only         : !isEmpty(bookWithCogo),
 
 		}));
 	};

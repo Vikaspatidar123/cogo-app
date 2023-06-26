@@ -58,13 +58,11 @@ const useVerifyHscode = () => {
 			});
 
 			if (!resp?.data?.status && resp?.data?.recommendations.length === 0) {
-				Toast.info(
-					'This hs code is not supported by us. Please provide another hs code',
-				);
+				Toast.info('This hs code is not supported by us.');
 				setValidateInProgress(true);
 			}
 			if (!resp?.data?.status && resp?.data?.recommendations.length > 0) {
-				Toast.info('Invalid HS Code. Please select from dropdown');
+				// Toast.info('Invalid HS Code. Please select from dropdown');
 				setValidateInProgress(true);
 			}
 

@@ -9,16 +9,16 @@ import { useRouter } from '@/packages/next';
 
 function PendingModal({ showPendingModal, setShowPendingModal, stop }) {
 	const { query } = useRouter();
-	const { org_id = '', branch_id = '', account_type = '' } = query || {};
+	const { org_id = '', branch_id = '' } = query || {};
 
 	const closeModalHandler = () => {
-		const redirectUrl = `${process.env.APP_URL}v2/${org_id}/${branch_id}/${account_type}`
+		const redirectUrl = `${process.env.NEXT_PUBLIC_APP_URL}${org_id}/${branch_id}`
 		+ '/saas/premium-services/duties-taxes-calculator';
 		window.open(redirectUrl, '_self');
 		setShowPendingModal(false);
 	};
 	return (
-		<Modal className="primary md" show={showPendingModal} showCloseIcon={false} size="md">
+		<Modal show={showPendingModal} showCloseIcon={false}>
 			{!stop && (
 				<div className={styles.container}>
 					<img
@@ -42,11 +42,12 @@ function PendingModal({ showPendingModal, setShowPendingModal, stop }) {
 						Sorry, It took longer than usual. We will notify you once payment is
 						successful
 					</div>
-					<Button className="secondary sm text" onClick={closeModalHandler}>
+					<Button themeType="linkUi" onClick={closeModalHandler}>
 						Close
 					</Button>
 				</div>
 			)}
+
 		</Modal>
 	);
 }

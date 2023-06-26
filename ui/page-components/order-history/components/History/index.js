@@ -29,11 +29,12 @@ function OrderHistory() {
 						<div className={styles.line} />
 					</div>
 				</div>
+
 				<div className={styles.flex_div}>
 
 					<div className={styles.input}>
 						<Input
-							placeholder="search by order number"
+							placeholder="Search by order number"
 							onChange={(e) => {
 								setGlobalFilters((prev) => ({
 									...prev,

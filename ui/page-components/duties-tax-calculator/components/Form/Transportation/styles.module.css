@@ -5,7 +5,7 @@
 .tabs {
 	display: flex;
 	gap: 10px;
-	justify-content: space-between;
+	justify-content: space-around;
 }
 
 .with_mobile {
@@ -69,4 +69,10 @@
 
 .rotate_icn {
 	transform: rotate(180deg);
+}
+
+.selected {
+	background: #f7fbfe;
+	border: 1px solid #4d88be;
+	box-shadow: 0 2px 10px 0 #96a7ba66;
 }

@@ -38,14 +38,18 @@ function Status({ data, viewAs, isBookingDesk = false }) {
 
 	return (
 		<div className={cl`${styles.container} ${isBookingDesk ? styles.booking_desk : ''}`}>
-			<div className={styles.message}>
-				{'Shipment ID: '}
-				<span className={styles.value}>
-					{data?.serial_id || data?.shipment_serial_id}
-				</span>
+			<div>
+				<div className={styles.message}>
+					{'Shipment ID: '}
+					<span className={styles.value}>
+						{data?.serial_id || data?.shipment_serial_id}
+					</span>
+				</div>
+				<div className={cl`${styles?.alert} ${styles?.[stateData.color] || styles.yellow}`}>
+					{stateData.text}
+				</div>
 			</div>
-			<div className={cl`${styles?.alert} ${styles?.[stateData.color] || styles.yellow}`}>{stateData.text}</div>
-			<Button onClick={() => onBook()}>
+			<Button onClick={onBook} className={styles.show_button}>
 				<div className={styles.action}>{buttonText}</div>
 			</Button>
 		</div>

@@ -1,22 +1,39 @@
 import { Modal, TabPanel, Tabs } from '@cogoport/components';
-import { useState } from 'react';
+import { isEmpty } from '@cogoport/utils';
+import { useMemo, useState } from 'react';
+
+import EmptyState from '../../EmptyState';
 
 import Document from './Document';
 import styles from './styles.module.css';
 
-const img_url = 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/empty_icon 1.svg';
+const importDoc = [];
+const exportDoc = [];
+
+const TAB_MAPPING = {
+	IMPORT : importDoc,
+	EXPORT : exportDoc,
+};
+
 function IEDocumentsModal({ tradeEngineResponse = {} }) {
 	const [activeTab, setActiveTab] = useState('IMPORT');
 
 	const { modeOfTransport = '', lineItem = [] } = tradeEngineResponse;
 	const { hsNumber = '', documents = [] } = lineItem?.[0] || {};
 
-	const importDoc = documents.filter((doc) => doc?.tradeType === 'IMPORT');
-	const exportDoc = documents.filter((doc) => doc?.tradeType === 'EXPORT');
+	useMemo(() => {
+		(documents || []).forEach((doc) => {
+			if (doc?.tradeType === 'IMPORT') {
+				importDoc.push(doc);
+			} else {
+				exportDoc.push(doc);
+			}
+		});
+	}, [documents]);
 
 	return (
 		<div className={styles.container}>
-			{documents.length > 0 ? (
+			{!isEmpty(documents) ? (
 				<>
 					<div className={styles.modal_header}>
 						<div className={styles.tabs}>
@@ -46,58 +63,20 @@ function IEDocumentsModal({ tradeEngineResponse = {} }) {
 					</div>
 					<Modal.Body>
 						<div>
-							{activeTab === 'IMPORT' && (
-								<div>
-									{importDoc?.length > 0 ? (
-										importDoc.map((doc) => (
-											<Document
-												key={doc?.docLink}
-												doc={doc}
-												hsNumber={hsNumber}
-											/>
-										))
-									) : (
-										<div>
-											<img
-												className={styles.empty_state}
-												src={img_url}
-												alt="No Data Found"
-											/>
-										</div>
-									)}
-								</div>
-							)}
-							{activeTab === 'EXPORT' && (
-								<div>
-									{exportDoc?.length > 0 ? (exportDoc.map((doc) => (
-										<Document
-											key={doc?.docLink}
-											doc={doc}
-											hsNumber={hsNumber}
-										/>
+							<div>
+								{isEmpty(TAB_MAPPING?.[activeTab]) ? (
+									<EmptyState />
+								) : (
+									TAB_MAPPING?.[activeTab].map((doc) => (
+										<Document key={doc?.docLink} doc={doc} hsNumber={hsNumber} />
 									))
-									) : (
-										<div>
-											<img
-												className={styles.empty_state}
-												src={img_url}
-												alt="No Data Found"
-											/>
-										</div>
-									)}
-								</div>
-							)}
+								)}
+							</div>
 						</div>
 					</Modal.Body>
 				</>
 			) : (
-				<div>
-					<img
-						src={img_url}
-						alt="loading"
-						className={styles.empty_state}
-					/>
-				</div>
+				<EmptyState />
 			)}
 		</div>
 	);

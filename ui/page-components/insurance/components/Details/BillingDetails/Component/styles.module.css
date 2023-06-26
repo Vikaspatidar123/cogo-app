@@ -12,6 +12,10 @@
 	width: 30%;
 	font-size: 15px;
 	text-decoration: underline;
+
+	@media (max-width:760px){
+		width: 100%
+	}
 }
 
 .section_2 {

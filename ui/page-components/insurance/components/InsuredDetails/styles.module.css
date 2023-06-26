@@ -5,13 +5,8 @@
 	padding: 20px;
 	margin-top: 28px;
 	background: #fafbfe;
-}
-
-.container_mobile {
-	display: flex;
-	flex-direction: column;
-	width: 100%;
-	padding: 20px;
-	margin-top: 28px;
-	background: #fafbfe;
+	
+	@media (max-width:760px) {
+		flex-direction: column;
+	}
 }

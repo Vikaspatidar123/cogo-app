@@ -108,18 +108,35 @@
 	justify-content: space-between;
 	margin-bottom: 3%;
 	margin-left: 105px;
+	
+	@media (max-width:768px) {
+		flex-direction:column;
+		justify-content:flex-start;
+		width: 100%;
+		margin-left: 10px;
+	}
 }
 
 .name {
 	width: 25%;
+
+	@media (max-width:760px) {
+		width: 100%;
+	}
 }
 
 .address {
 	width: 70%;
+	@media (max-width:760px) {
+		width: 100%;
+	}
 }
 
 .panOrAadhar {
 	width: 40%;
+	@media (max-width:760px) {
+		width: 100%;
+	}
 }
 
 .commodity {

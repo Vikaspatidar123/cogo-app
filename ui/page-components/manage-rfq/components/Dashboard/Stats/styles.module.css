@@ -8,12 +8,17 @@
 
 .column {
 	width: 24%;
+	transition: 0.4s;
 
 	@media (max-width: 768px) {
 		margin-bottom: 12px;
 	}
 
 	margin-right: 10px;
+}
+
+.column:hover {
+	transform: scale(1.02);
 }
 
 .card_orange {

@@ -20,6 +20,12 @@
 	display: flex;
 	align-items: center;
 	padding: 1px !important;
+
+	@media (max-width:768px) {
+		flex-direction:column;
+		width: 100%;
+		overflow: scroll;
+	}
 }
 
 .column {
@@ -29,6 +35,10 @@
 	font-size: 14px;
 	font-weight: 500;
 	text-transform: uppercase;
+
+	@media (max-width:760px) {
+		width: 28%;
+	}
 }
 
 .error_message {
@@ -38,4 +48,9 @@
 
 .file {
 	width: 80%;
+}
+
+
+.upload_and_file_name {
+	width: 100%;
 }

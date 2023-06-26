@@ -247,6 +247,7 @@ const navigationMappings = {
 				title       : 'Manage Rfq',
 				href        : '/manage-rfq',
 				as          : '/manage-rfq',
+				type        : 'link',
 				icon        : <IcARfq width={40} height={40} />,
 				description : 'Request For Quotation',
 			},

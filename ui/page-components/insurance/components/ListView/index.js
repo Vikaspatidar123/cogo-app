@@ -1,5 +1,5 @@
 import { Input, Chips, Button, Table, Pagination } from '@cogoport/components';
-import { IcMPlus, IcMSearchlight, IcMPlusInCircle } from '@cogoport/icons-react';
+import { IcMPlus, IcMSearchlight } from '@cogoport/icons-react';
 import { isEmpty } from '@cogoport/utils';
 import { useState } from 'react';
 
@@ -18,16 +18,12 @@ import FilterSection from './Filter';
 import segementedOpt from './Options/index';
 import styles from './styles.module.css';
 
-import { useSelector } from '@/packages/store';
-
 function ListView() {
-	const { isMobile } = useSelector((state) => state);
 	const [activeTab, setActiveTab] = useState('ALL');
 	const [cancelModal, setCancelModal] = useState(false);
 	const [showFaq, setFaq] = useState('none');
 	const [showPreviewModal, setShowPreviewModal] = useState(false);
 	const [cancellationPolicyDetails, setcancellationPolicyDetails] = useState('');
-	const [rotateIcon, setRotateIcon] = useState(false);
 
 	const { loading, data, setFilters, filters, setSort, sort, refetch } = useList({ activeTab });
 
@@ -53,11 +49,6 @@ function ListView() {
 		}));
 	};
 
-	const createFunction = () => {
-		setRotateIcon(true);
-		redirectHome();
-	};
-
 	const cancellationFunction = ({ itemData, click }) => {
 		setcancellationPolicyDetails({ policyDetails: itemData, click });
 		setCancelModal(true);
@@ -67,7 +58,6 @@ function ListView() {
 		redirectBuy,
 		downloadFunction,
 		refetchPreview,
-		isMobile,
 		showPreviewModal,
 		setShowPreviewModal,
 		previewloading,
@@ -78,10 +68,10 @@ function ListView() {
 
 	return (
 		<>
-			<FAQComponent showFaq={showFaq} setFaq={setFaq} isMobile={isMobile} />
-			<div className={isMobile ? styles.header_mobile : styles.header}>
+			<FAQComponent showFaq={showFaq} setFaq={setFaq} />
+			<div className={styles.header}>
 				<div className={styles.title}>My Policies</div>
-				<div className={isMobile ? styles.button_div_mobile : styles.button_div}>
+				<div className={styles.button_div}>
 					<div className={styles.search_wrapper}>
 						<Input
 							className="search"
@@ -96,17 +86,14 @@ function ListView() {
 						/>
 					</div>
 					<FilterSection
-						isMobile={isMobile}
 						filters={filters}
 						setFilters={setFilters}
 						activeTab={activeTab}
 					/>
-					{!isMobile && (
-						<Button onClick={() => redirectHome()} size="md">
-							<IcMPlus height={10} width={10} />
-							<div>Create New</div>
-						</Button>
-					)}
+					<Button onClick={() => redirectHome()} size="md">
+						<IcMPlus height={10} width={10} />
+						<div>Create New</div>
+					</Button>
 				</div>
 			</div>
 			<div className={!(data?.list?.length > 0 && !previewloading) ? styles.flex_end : styles.segment_faq}>
@@ -131,13 +118,15 @@ function ListView() {
 				)}
 			</div>
 			{data?.list?.length > 0 && !previewloading && (
-				<Table
-					columns={fields || []}
-					data={list || []}
-					loading={loading}
-					loadingRowsCount={10}
-					className={styles.table}
-				/>
+				<div className={styles.tables_wrapper}>
+					<Table
+						columns={fields || []}
+						data={list || []}
+						loading={loading}
+						loadingRowsCount={10}
+						className={styles.table}
+					/>
+				</div>
 			)}
 			{(isEmpty(data) || data?.list?.length === 0) && !previewloading && <EmptyState />}
 			{data?.list?.length > 0 && (
@@ -160,20 +149,6 @@ function ListView() {
 					setShowPreviewModal={setShowPreviewModal}
 					formDetails={respData}
 				/>
-			)}
-			{isMobile && (
-				<div
-					className={styles.mobile_create}
-					onClick={() => createFunction()}
-					role="presentation"
-				>
-					<IcMPlusInCircle
-						className={rotateIcon && styles.rotate}
-						fill="#db4634"
-						width={50}
-						height={50}
-					/>
-				</div>
 			)}
 			{cancelModal && (
 				<CancellationAndConfirmModal

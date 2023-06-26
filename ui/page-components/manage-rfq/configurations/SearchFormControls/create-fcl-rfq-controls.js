@@ -14,7 +14,7 @@ const fclControls = [
 				defaultOptions    : true,
 				params            : {
 					filters  : { type: ['seaport', 'city'] },
-					includes : { continent_id: true },
+					includes : { continent_id: true, port_id: true },
 				},
 				grouped      : ['city', 'country'],
 				type         : 'async_select',
@@ -22,6 +22,7 @@ const fclControls = [
 				showOptional : false,
 				rules        : { required: 'Origin Port is required' },
 				span         : 3.9,
+				valueKey     : 'port_id',
 			},
 			{
 				inlineLabel       : 'Destination',
@@ -32,7 +33,7 @@ const fclControls = [
 				includedInOptions : false,
 				params            : {
 					filters  : { type: ['seaport', 'city'] },
-					includes : { continent_id: true },
+					includes : { continent_id: true, port_id: true },
 				},
 				grouped      : ['city', 'country'],
 				type         : 'async_select',
@@ -40,6 +41,7 @@ const fclControls = [
 				showOptional : false,
 				rules        : { required: 'Destination Port is required' },
 				span         : 3.7,
+				valueKey     : 'port_id',
 			},
 			{
 				name        : 'inco_term',

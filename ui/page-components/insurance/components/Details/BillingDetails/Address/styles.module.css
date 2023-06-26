@@ -13,6 +13,10 @@
 .side_wrapper {
 	display: flex;
 	width: 100%;
+
+	@media (max-width:768px) {
+		flex-direction:column;
+	}
 }
 
 .billing_details_header {

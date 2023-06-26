@@ -9,7 +9,6 @@ function Footer({
 	handleSubmit = () => {},
 	setTermsConditionsShow = () => {},
 	ratesLoading = false,
-	isMobile = false,
 	draftLoading = false,
 	setAgree = () => {},
 	checked = false,
@@ -35,7 +34,7 @@ function Footer({
 
 	return (
 		<div className={styles.flex_div}>
-			<div className={isMobile ? styles.flex_mobile : styles.flex}>
+			<div className={styles.flex}>
 				<Checkbox
 					className={checked ? styles.no_error : styles.error}
 					checked={checked}
@@ -51,7 +50,7 @@ function Footer({
 					</u>
 				</div>
 			</div>
-			<div className={isMobile ? styles.wrapper_2_mobile : styles.wrapper_2}>
+			<div className={styles.wrapper_2}>
 				<Button onClick={prevButton}>
 					<IcMArrowBack width="22px" height="22px" className={styles.icon} />
 				</Button>

@@ -6,6 +6,10 @@
 	height: 100%;
 	padding-inline: 8px;
 	margin-block: 34px;
+
+	@media (max-width:768px) {
+		width: 100%;	
+	}
 }
 
 .content {

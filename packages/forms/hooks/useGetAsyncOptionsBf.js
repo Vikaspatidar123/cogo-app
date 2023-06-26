@@ -12,6 +12,7 @@ function useGetAsyncOptionsBf({
 	labelKey = '',
 	params = {},
 	authKey = '',
+	scope,
 	getModifiedOptions = (a) => a,
 }) {
 	const { query, debounceQuery } = useDebounceQuery();
@@ -22,6 +23,7 @@ function useGetAsyncOptionsBf({
 			url    : endpoint,
 			method : 'GET',
 			authKey,
+			scope,
 			params : merge(params, { query }),
 		},
 		{ manual: !(initialCall || query) },

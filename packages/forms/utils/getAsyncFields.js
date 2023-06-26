@@ -277,6 +277,18 @@ function asyncTradeContacts() {
 		defaultOptions : true,
 	};
 }
+function asyncFieldsTicketTypes() {
+	return {
+		labelKey    : 'TicketType',
+		valueKey    : 'TicketType',
+		endpoint    : 'default_types',
+		authKey     : 'get_tickets_default_types',
+		initialCall : true,
+		qFilterKey  : 'QFilter',
+		listKey     : 'items',
+		scope       : 'cogocare',
+	};
+}
 
 export {
 	asyncFieldsLocations,
@@ -302,4 +314,5 @@ export {
 	asyncProductList,
 	asyncTaxNumbers,
 	asyncTradeContacts,
+	asyncFieldsTicketTypes,
 };

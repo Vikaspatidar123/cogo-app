@@ -45,7 +45,6 @@ function ValidateProductModal(props) {
 	const { product = {}, destinationPortDetails = {}, header } = quoteRes;
 	const productInfoArr = product?.products || [];
 	const currency = header?.currency;
-	console.log(quoteRes, 'quoteRes');
 
 	const { services = {}, currency:serviceCurrency = 'INR' } = serviceData || {};
 	const { headerResponse = {}, lineItem: productLineItemDetails = [] } = getDraftData;

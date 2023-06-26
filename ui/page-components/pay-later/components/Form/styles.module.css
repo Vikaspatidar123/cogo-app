@@ -1,4 +1,9 @@
 .form {
 	padding: 0 150px;
 	margin: 6px;
+
+	@media (max-width:768px){
+		padding:0px;
+		width:100%;
+	}
 }

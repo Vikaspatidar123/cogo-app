@@ -1,97 +1,64 @@
 import { Tooltip, cl } from '@cogoport/components';
 import { IcMInfo } from '@cogoport/icons-react';
+import { startCase } from '@cogoport/utils';
 
 import styles from './styles.module.css';
 
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 import formatAmount from '@/ui/commons/utils/formatAmount';
 
-const tooltipContent = () => (
-	<div className={styles.tool_tip_container}>
-		<div>Inclusive of Taxes</div>
-	</div>
-);
+function TooltipContent() {
+	return (
+		<div className={styles.tool_tip_container}>
+			<div>Exclusive of Taxes</div>
+		</div>
+	);
+}
+
+const getFormattedAmount = (amount) => formatAmount({
+	amount,
+	currency : GLOBAL_CONSTANTS.currency_code.INR,
+	options  : {
+		style                 : 'currency',
+		currencyDisplay       : 'symbol',
+		maximumFractionDigits : 2,
+	},
+});
 
 function PremiumRate(props) {
 	const { rateData = {} } = props;
 
-	const {
-		convenienceFee = 0,
-		platformCharges = 0,
-		netPremium = 0,
-		totalApplicableCharges = 0,
-	} = rateData || {};
+	const { totalCharges = 0, serviceChargeList = [] } = rateData || {};
 
 	return (
 		<div>
-			<div className={styles.rate}>
-				<div className={styles.flex}>
-					Premium:
-					<Tooltip theme="light" placement="top" content={tooltipContent()}>
+			{serviceChargeList.map((service) => {
+				const { serviceName, totalCharges: serviceTotalCharge } = service;
+
+				return (
+					<div className={styles.rate} key={serviceName}>
+						{startCase(serviceName)}
+						{' '}
+						:
+						<div>{getFormattedAmount(serviceTotalCharge)}</div>
+					</div>
+				);
+			})}
+
+			<div className={cl`${styles.rate} ${styles.final}`}>
+				<div className={styles.red}>
+					Amount Payable:
+					<Tooltip theme="light" placement="top" content={<TooltipContent />}>
 						<sup>
 							<IcMInfo />
 						</sup>
 					</Tooltip>
 				</div>
 
-				<div>
-					{formatAmount({
-						amount   : netPremium,
-						currency : GLOBAL_CONSTANTS.currency_code.INR,
-						options  : {
-							style                 : 'currency',
-							currencyDisplay       : 'code',
-							maximumFractionDigits : 2,
-						},
-					})}
-				</div>
-			</div>
-
-			<div className={styles.rate}>
-				<div>Platform Charges:</div>
-				<div>
-					{formatAmount({
-						amount   : platformCharges,
-						currency : GLOBAL_CONSTANTS.currency_code.INR,
-						options  : {
-							style                 : 'currency',
-							currencyDisplay       : 'code',
-							maximumFractionDigits : 2,
-						},
-					})}
-				</div>
-			</div>
-
-			<div className={cl`${styles.rate} ${styles.final}`}>
-				<div>Convenience Fee:</div>
-				<div>
-					{formatAmount({
-						amount   : convenienceFee,
-						currency : GLOBAL_CONSTANTS.currency_code.INR,
-						options  : {
-							style                 : 'currency',
-							currencyDisplay       : 'code',
-							maximumFractionDigits : 2,
-						},
-					})}
-				</div>
-			</div>
-
-			<div className={cl`${styles.rate} ${styles.final}`}>
-				<div className={styles.red}>Amount Payable:</div>
-				<div className={styles.red}>
-					{formatAmount({
-						amount   : totalApplicableCharges,
-						currency : GLOBAL_CONSTANTS.currency_code.INR,
-						options  : {
-							style                 : 'currency',
-							currencyDisplay       : 'code',
-							maximumFractionDigits : 2,
-						},
-					})}
-				</div>
+				<div className={styles.red}>{getFormattedAmount(totalCharges)}</div>
 			</div>
 		</div>
 	);
 }
+
 export default PremiumRate;

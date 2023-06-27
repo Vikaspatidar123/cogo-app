@@ -1,11 +1,20 @@
 .modal_header {
 	display: flex;
 	align-items: center;
+
+	@media screen and (max-width: 767px) {
+		flex-direction: column;
+	}
 }
 
 .tabs {
 	width: 21%;
 	margin-right: 12px;
+
+	@media screen and (max-width: 767px) {
+		width: auto;
+		margin: 0 0 10px;
+	}
 }
 
 .tag_container {
@@ -123,6 +132,15 @@
 
 	.row_mobile_view {
 		flex-direction: column;
+
+		.info_src,
+		.info_party {
+			width: 100%;
+		}
+
+		.label {
+			font-weight: 600;
+		}
 
 		.info {
 			margin-bottom: 11px;

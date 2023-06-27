@@ -1,8 +1,9 @@
-import { Toast, Button } from '@cogoport/components';
+import { Toast, Button, cl } from '@cogoport/components';
 import { IcMArrowNext, IcMArrowBack } from '@cogoport/icons-react';
 import { useState, useEffect } from 'react';
 
 import getField from '../../../../../../packages/forms/Controlled';
+import { chargeControls as fields } from '../../../configuration/controls';
 import { ProductCartIcon } from '../../../configuration/icon-configuration';
 import useFreightCharges from '../../../hook/useFreightCharges';
 import style from '../styles.module.css';
@@ -11,13 +12,17 @@ import FreightModal from './FreightModal';
 import IncotermCharges from './IncotermCharges';
 import styles from './styles.module.css';
 
+const SelectController = getField('select');
+const NumberSelector = getField('number');
+
+const errorHandler = () => {
+	Toast.error('Fill all mandatory details');
+};
+
 function Charge({
-	fields,
-	error,
 	setFormStepper,
 	setStepper,
 	prevHandler,
-	handleSubmit,
 	setFormData,
 	incoterm,
 	setIncoterm,
@@ -25,18 +30,16 @@ function Charge({
 	serviceRateData = {},
 	serviceRatesLoading,
 	isQuotaLeft = false,
-	watch,
-	setValue,
 	formData,
 	transportMode,
 	portDetails,
 	prevCurr,
-	chargeControls,
+	formHook,
 }) {
 	const [showFreightModal, setShowFreightModal] = useState(false);
 	const [spotCharge, setSpotCharge] = useState('');
-	const SelectController = getField('select');
-	const NumberSelector = getField('number');
+
+	const { control, watch, handleSubmit, setValue, formState:{ errors } } = formHook;
 	const { createSpotSearch, spotSearchLoading, spotSearchData } = useFreightCharges();
 
 	const watchIncotermCharges = watch('incotermCharges');
@@ -69,10 +72,6 @@ function Charge({
 		}));
 	};
 
-	const errorHandler = () => {
-		Toast.error('Fill all mandatory details');
-	};
-
 	return (
 		<div>
 			<div className={styles.title_container}>
@@ -80,17 +79,17 @@ function Charge({
 					<img src={ProductCartIcon} alt="" />
 					<div>Charges Details</div>
 				</div>
-				<div className={`${styles.incoterm} ${style.col}`}>
+				<div className={cl`${styles.incoterm} ${style.col}`}>
 					<div className={style.label}>{fields[1]?.label}</div>
 					<SelectController
 						{...fields[1]}
 						handleChange={(data) => setIncoterm(data?.value)}
-						control={chargeControls}
+						control={control}
 					/>
-					{error?.incoterm && (
+					{errors?.incoterm && (
 						<div className={style.error_txt}>
 							*
-							{error?.incoterm?.type}
+							{errors?.incoterm?.type}
 						</div>
 					)}
 				</div>
@@ -101,7 +100,7 @@ function Charge({
 					<NumberSelector
 						{...fields[0]}
 						className={style.freight_charge}
-						control={chargeControls}
+						control={control}
 						suffix={(
 							<div className={styles.suffix_container}>
 								<Button
@@ -119,22 +118,22 @@ function Charge({
 					/>
 
 				</div>
-				{error?.freightCharge && (
+				{errors?.freightCharge && (
 					<div className={style.error_txt}>
 						*
-						{error?.freightCharge?.message || error?.freightCharge?.type}
+						{errors?.freightCharge?.message || errors?.freightCharge?.type}
 					</div>
 				)}
 				<div className={`${styles.incoterm_charges} ${style.col}`}>
 					<IncotermCharges
 						{...fields[2]}
 						incoterm={incoterm}
-						error={error}
+						error={errors}
 						watchIncotermCharges={watchIncotermCharges}
 						setValue={setValue}
 						formIncoterm={formIncoterm}
 						prevCurr={prevCurr}
-						control={chargeControls}
+						control={control}
 						controls={fields[2].controls}
 					/>
 				</div>

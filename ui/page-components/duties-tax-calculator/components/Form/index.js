@@ -1,11 +1,5 @@
-import { merge } from '@cogoport/utils';
 import { useState } from 'react';
 
-import {
-	transportationControls,
-	productControls,
-	ChargeControls,
-} from '../../configuration/controls';
 import useServiceRates from '../../hook/useServiceRates';
 import prefillFn from '../../utils/prefillFn';
 
@@ -15,10 +9,7 @@ import Product from './Product';
 import styles from './styles.module.css';
 import Transportation from './Transportation';
 
-import {
-	asyncFieldsLocations, useGetAsyncOptions,
-	useForm,
-} from '@/packages/forms';
+import { useForm } from '@/packages/forms';
 import { useSelector } from '@/packages/store';
 
 function Form({
@@ -51,52 +42,16 @@ function Form({
 		prioritySequence,
 	});
 
-	const {
-		setValue: transportSetValues,
-		watch: transportWatch,
-		reset: transportReset,
-		handleSubmit: transportHandleSubmit,
-		formState: { errors: transportError },
-		control: transportControl,
-	} = useForm();
+	const transportFormHook = useForm();
+	const productFormHook = useForm({ defaultValues: { currency: organization?.country?.currency_code } });
+	const chargeFormHook = useForm({ defaultValues: { incoterm: 'CIF' } });
 
-	const {
-		handleSubmit: productHandleSubmit,
-		setValue: productSetValue,
-		watch: productWatch,
-		formState: { errors: productError },
-		control: productNewControls,
-	} = useForm({ defaultValues: { currency: 'INR' } });
-
-	const {
-		handleSubmit: chargeHandleSubmit,
-		formState: { errors: ChargeError },
-		watch: chargeWatch,
-		setValue: chargeSetValue,
-		control: chargeControls,
-	} = useForm({ defaultValues: { incoterm: 'CIF' } });
-
-	const filter = { filters: { type: [transportMode === 'AIR' ? 'airport' : 'seaport'] } };
-
-	const cityOptions = useGetAsyncOptions(merge(asyncFieldsLocations(), {
-		params: { ...filter },
-	}));
-	const transport = transportationControls({ transportMode, cityOptions });
-
-	const transportFields = (transport || [])?.map((control) => {
-		const { name } = control;
-		let newControl = { ...control };
-
-		if (name) {
-			newControl = { ...newControl, ...cityOptions };
-		}
-		return { ...newControl };
-	});
-	const productFields = productControls({ organization });
-	const chargeFields = ChargeControls;
+	const { setValue:transportSetValue } = transportFormHook;
+	const { setValue:chargeSetValue } = chargeFormHook;
+	const { setValue:productSetValue } = productFormHook;
 
 	prefillFn({
-		transportSetValues,
+		transportSetValue,
 		productSetValue,
 		chargeSetValue,
 		setFormData,
@@ -132,54 +87,41 @@ function Form({
 	};
 
 	return (
-		<div className={`${formPayDetails && 'payDetails'} ${styles.container}`}>
+		<div className={`${styles.container}`}>
 
 			{formTransportDetails && (
 				<Transportation
 					transportMode={transportMode}
 					setTransportMode={setTransportMode}
-					fields={transportFields}
-					error={transportError}
-					setValue={transportSetValues}
-					watch={transportWatch}
-					reset={transportReset}
-					handleSubmit={transportHandleSubmit}
+					formHook={transportFormHook}
 					setStepper={setStepper}
 					setFormStepper={setFormStepper}
 					setFormData={setFormData}
 					portDetails={portDetails}
 					setPortDetails={setPortDetails}
 					setPrevHs={setPrevHs}
-					transportControl={transportControl}
 					setMapPoints={setMapPoints}
 				/>
 			)}
 			{formProductDetails && (
 				<Product
-					fields={productFields}
-					error={productError}
-					handleSubmit={productHandleSubmit}
 					setStepper={setStepper}
 					setFormStepper={setFormStepper}
 					prevHandler={prevHandler}
+					formHook={productFormHook}
 					formData={formData}
 					setFormData={setFormData}
 					setValue={productSetValue}
-					watch={productWatch}
 					portDetails={portDetails}
 					prevCurr={prevCurr}
 					setPrevCurr={setPrevCurr}
 					isQuotaLeft={isQuotaLeft}
 					prevHs={prevHs}
 					setPrevHs={setPrevHs}
-					productNewControls={productNewControls}
 				/>
 			)}
 			{formChargeDetails && (
 				<Charges
-					fields={chargeFields}
-					error={ChargeError}
-					handleSubmit={chargeHandleSubmit}
 					incoterm={incoterm}
 					setIncoterm={setIncoterm}
 					setStepper={setStepper}
@@ -190,13 +132,12 @@ function Form({
 					serviceRateData={serviceRateData}
 					serviceRatesLoading={serviceRatesLoading}
 					isQuotaLeft={isQuotaLeft}
-					watch={chargeWatch}
+					formHook={chargeFormHook}
 					setValue={chargeSetValue}
 					formData={formData}
 					transportMode={transportMode}
 					portDetails={portDetails}
 					prevCurr={prevCurr}
-					chargeControls={chargeControls}
 				/>
 			)}
 			{formPayDetails && (

@@ -3,8 +3,8 @@ import { useRouter } from '@/packages/next';
 const useRedirectUrl = () => {
 	const { push } = useRouter();
 	const { query = {} } = useRouter();
-	const { org_id, branch_id, account_type } = query || {};
-	const subscriptionsUrl = `${process.env.APP_URL}app/${org_id}/${branch_id}/${account_type}/saas/cogo-subscriptions`;
+	const { org_id, branch_id } = query || {};
+	const subscriptionsUrl = `${process.env.NEXT_PUBLIC_APP_URL}/${org_id}/${branch_id}/saas/cogo-subscriptions`;
 
 	const redirectQuotation = () => {
 		push('/saas/quickquotation/createquotation');

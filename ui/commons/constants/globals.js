@@ -215,11 +215,16 @@ const GLOBAL_CONSTANTS = {
 		unsubscription_bottle : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/Bottle.png',
 		unsubscription_plane  : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/page_plane.png',
 		insurance_empty_image : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/Insurance.png',
+		loader                : 'https://cdn.cogoport.io/cms-prod/cogo_admin/vault/original/spinner.svg',
 	},
 	onboarding_specialist: {
 		name         : 'Kanira Patel',
 		phone_number : '+918976851674',
 		email_id     : 'kanira.patel@cogoport.com',
+	},
+	firebase_paths: {
+		whatsapp      : '/customer_chat/whatsapp/rooms',
+		platform_chat : '/customer_chat/platform_chat/rooms',
 	},
 };
 

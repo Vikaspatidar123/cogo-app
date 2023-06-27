@@ -2,7 +2,7 @@
 /* eslint-disable import/order */
 /* eslint-disable react-hooks/rules-of-hooks */
 
-import { Router } from '@/packages/next';
+import { dynamic, Router } from '@/packages/next';
 import { appWithTranslation } from 'next-i18next';
 import pageProgessBar from 'nprogress';
 import { useEffect } from 'react';
@@ -17,10 +17,20 @@ import { setGeneralStoreState } from '@/packages/store/store/general';
 import GlobalLayout from '@/ui/page-components/_app/layout/components/GlobalLayout';
 import handleAuthentication from '@/ui/page-components/authentication/utils/handleAuthentication';
 import { setCookie } from '@cogoport/utils';
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
+
+const DynamicChatBot = dynamic(() => import('@/ui/commons/components/CogoBot'), {
+	ssr: false,
+});
 
 function MyApp({ Component, pageProps, store, generalData }) {
 	const { profile } = store.getState() || {};
 	const { partner_id } = profile.organization || {};
+
+	const isBotVisible = true;
+	// isUnKnownUser
+	// 	? countryCode !== VIETNAM_COUNTRY_CODE
+	// 	: geo.parent_entity_id !== GLOBAL_CONSTANTS.country_entity_ids.VN;
 
 	useEffect(() => {
 		setCookie('parent_entity_id', partner_id);
@@ -43,6 +53,7 @@ function MyApp({ Component, pageProps, store, generalData }) {
 				head={pageProps.head || ''}
 			>
 				<Component {...pageProps} />
+				{isBotVisible && <DynamicChatBot />}
 			</GlobalLayout>
 		</Provider>
 	);

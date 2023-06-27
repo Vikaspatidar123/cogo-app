@@ -14,7 +14,7 @@ function PublicPageNav() {
 			<div className={styles.flex_box}>
 				<p className={styles.text}>Already a User?</p>
 				<Link href="/login" passHref prefetch={false} withPrefix={false}>
-					<Button themeType="linkUi">LOGIN</Button>
+					<Button themeType="linkUi" type="button">LOGIN</Button>
 				</Link>
 			</div>
 		</div>

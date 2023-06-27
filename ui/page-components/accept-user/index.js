@@ -32,7 +32,7 @@ function AcceptUser({ errorMessage }) {
 					prefetch={false}
 					withPrefix={false}
 				>
-					<Button themeType="tertiary" className={styles.forgot_pass_btn}>
+					<Button themeType="tertiary" type="button" className={styles.forgot_pass_btn}>
 						{content.forgotPasswordCTA.text}
 					</Button>
 				</Link>

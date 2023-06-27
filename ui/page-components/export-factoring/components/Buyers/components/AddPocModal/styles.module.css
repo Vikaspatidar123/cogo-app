@@ -1,0 +1,20 @@
+.formDiv{
+    width: 60%;
+    padding: 0px;
+}
+
+.field {
+	margin: 0 0 15px;
+    padding-left: 20px;
+}
+
+.field_name {
+	margin: 0 0 4px;
+	font-size: 16px;
+	font-weight: 500;
+	color: #4f4f4f;
+}
+
+.error_text {
+	color: red;
+}

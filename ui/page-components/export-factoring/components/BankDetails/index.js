@@ -1,22 +1,43 @@
-import { Button } from '@cogoport/components';
+import { Button, Modal } from '@cogoport/components';
 import { IcMPlus } from '@cogoport/icons-react';
+import { useState } from 'react';
 
+import BankInfo from './components/BankInfo';
+import BankVerification from './components/BankVerification';
 import styles from './styles.module.css';
 
 function BankDetails() {
-	const a = 0;
+	const [addBankModal, setAddBankModal] = useState(false);
 	return (
-		<div className={styles.headerDiv}>
-			<div className={styles.header}>
-				Bank Information
+		<div>
+			<div className={styles.header_div}>
+				<div className={styles.header}>
+					Bank Information
+				</div>
+				<Button
+					type="button"
+					size="md"
+					onClick={() => setAddBankModal((pv) => !pv)}
+				>
+					<IcMPlus />
+					Add Bank
+				</Button>
 			</div>
-			<Button
-				type="button"
-				size="md"
-			>
-				<IcMPlus />
-				Add Bank
-			</Button>
+			<div>
+				<BankInfo />
+			</div>
+			{addBankModal && (
+				<Modal
+					show={addBankModal}
+					onClose={() => { setAddBankModal((pv) => !pv); }}
+					style={{ padding: '20px' }}
+					size="lg"
+				>
+					<Modal.Body style={{ minHeight: '500px' }}>
+						<BankVerification setAddBankModal={setAddBankModal} />
+					</Modal.Body>
+				</Modal>
+			)}
 		</div>
 	);
 }

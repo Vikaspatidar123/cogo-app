@@ -1,13 +1,4 @@
-// import ApplicationProcessed from '../ApplicationProcessed';
-// import BasicDetailsForm from '../BasicDetailsForm';
-// import CompanyInformation from '../CompanyInformation';
-// import Documentation from '../Documentation';
-// import FinancialAssessment from '../FinancialAssessment';
-// import PayLaterLive from '../PayLaterLive';
-// import RejectedApplication from '../RejectedApplication';
 
-import FormCard from '../../common/FormCard';
-import BankDetails from '../BankDetails/components/BankVerification';
 import BasicDetails from '../BasicDetails';
 
 import styles from './styles.module.css';

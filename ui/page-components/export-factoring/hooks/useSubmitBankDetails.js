@@ -5,7 +5,7 @@ import { useRequest } from '@/packages/request';
 const getDocExtention = (url) => url.split('.').pop();
 
 const useSubmitBankDetails = ({
-	accountType 
+	accountType
 }
 	// {
 	// creditRequest = {},

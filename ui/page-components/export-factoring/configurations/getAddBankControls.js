@@ -30,6 +30,7 @@ const BANK_CONTROLS = [
 		},
 		span: 6,
 	},
+
 	{
 		name        : 'account_holder_name',
 		label       : 'Account Holder Name',

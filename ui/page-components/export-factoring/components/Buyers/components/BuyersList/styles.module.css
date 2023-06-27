@@ -1,0 +1,42 @@
+.headerDiv{
+    display: flex;
+    justify-content: space-between;
+    min-width: 1000px;
+    margin: 10px 0px;
+}
+
+.header{
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.labelText{
+    font-size: 12px;
+    font-weight: 400;
+    color: #4F4F4F;
+}
+
+.valueText{
+    font-size: 14px;
+    font-weight: 500;
+    color: #221F20;
+}
+
+.dataDiv{
+    width: 30%;
+    padding: 10px 0px;
+}
+
+.flexDiv{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.horizontalLine{
+	margin: 10px 0px;
+	border-bottom: 1px solid #d6def1;
+	width: 100%;
+	align-items: center;
+}

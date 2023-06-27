@@ -20,7 +20,7 @@ const OPTIONS = [
 	},
 ];
 
-function BankVerification() {
+function BankVerification({ setAddBankModal}) {
 	const [accountType, setAccountType] = useState('');
 	const addBankControls = getAddBankControls({ accountType });
 	const {

@@ -2,6 +2,7 @@ import { cl } from '@cogoport/components';
 import { IcMAirport, IcMArrowDown, IcMArrowUp } from '@cogoport/icons-react';
 
 import AssistanceFooter from '../../commons/AssistanceFooter';
+import CargoInsuranceDetails from '../../commons/CargoInsuranceDetails';
 import CreditApprovalCard from '../../commons/CreditApprovalCard';
 import InvoicingParties from '../../commons/InvoicingParties';
 import KycMessage from '../../commons/KycMessage';
@@ -11,6 +12,7 @@ import RouteDisplay from '../../commons/RouteDisplay';
 import ServiceIcon from '../../commons/ServiceIcon';
 import CheckoutServices from '../../commons/Services';
 import TermsAndConditions from '../../commons/TermsConditions';
+import getServicesByType from '../../utils/getServicesByType';
 import getInvoicingComponentKey from '../../utils/invoicingKey';
 
 // import AirMobile from './AirMobile';
@@ -37,6 +39,8 @@ function AIR(props) {
 		changeToggle,
 		toggleArrow,
 		primary_service,
+		showInsurance,
+		onClickInsurance,
 		importer_exporter,
 	} = useAir({ detail, summary, rate });
 
@@ -47,6 +51,13 @@ function AIR(props) {
 		&& credit_details?.credit_source === 'pre_approved_clean_credit';
 
 	const key = getInvoicingComponentKey({ invoice });
+
+	const { services = {} } = detail || {};
+
+	const [primaryServiceDetailsData, insuranceData] = getServicesByType({
+		servicesArray: [primary_service, 'cargo_insurance'],
+		services,
+	});
 
 	// if (isMobile) {
 	// 	return <AirMobile {...props} />;
@@ -163,6 +174,15 @@ function AIR(props) {
 						/>
 					) : null}
 				</div>
+
+				<CargoInsuranceDetails
+					onClickInsurance={onClickInsurance}
+					showInsurance={showInsurance}
+					primaryServiceDetailsData={primaryServiceDetailsData}
+					detail={detail}
+					insuranceData={insuranceData}
+					refetch={refetch}
+				/>
 
 				<InvoicingParties
 					key={key}

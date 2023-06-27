@@ -8,6 +8,12 @@ const useAir = ({ detail, summary, rate }) => {
 
 	const [toggleArrow, setToggleArrow] = useState(false);
 
+	const [showInsurance, setShowInsurance] = useState(false);
+
+	const onClickInsurance = () => {
+		setShowInsurance((prev) => !prev);
+	};
+
 	const changeToggle = () => {
 		setToggleArrow(!toggleArrow);
 	};
@@ -132,6 +138,8 @@ const useAir = ({ detail, summary, rate }) => {
 		toggleArrow,
 		primary_service,
 		importer_exporter,
+		showInsurance,
+		onClickInsurance,
 	};
 };
 export default useAir;

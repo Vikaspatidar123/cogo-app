@@ -1,4 +1,3 @@
-import { Toast } from '@cogoport/components';
 import { useState, useEffect, useCallback } from 'react';
 
 import { useRequest } from '@/packages/request';
@@ -19,7 +18,7 @@ const useRecentSearch = () => {
 				(res?.data.list || []).filter((x) => x.search_type !== 'trailer_freight'),
 			);
 		} catch (error) {
-			Toast.error(error?.message);
+			console.log(error);
 		}
 	}, [trigger]);
 

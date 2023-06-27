@@ -1,5 +1,3 @@
-import { Toast } from '@cogoport/components';
-
 import { useRequestBf } from '@/packages/request';
 import { useSelector } from '@/packages/store';
 
@@ -24,11 +22,7 @@ const useGetServiceRates = () => {
 				},
 			});
 		} catch (error) {
-			Toast.error(error?.error?.message, {
-				style: {
-					color: 'black',
-				},
-			});
+			console.log(error?.error?.message);
 		}
 	};
 

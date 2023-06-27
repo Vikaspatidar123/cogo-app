@@ -1,7 +1,7 @@
 import { Button, Modal } from '@cogoport/components';
 import { IcAReports } from '@cogoport/icons-react';
 import { isEmpty } from '@cogoport/utils';
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect } from 'react';
 
 import iconUrl from '../../../../../utils/iconUrl.json';
 import useCurrencyConversion from '../../../../hooks/useCurrencyConversion';

@@ -34,7 +34,7 @@ function TooltipContent({ tradeEngineResp }) {
 				let chargeValue = tradeEngineResp?.[charge] || 0;
 				if (charge === 'incotermAmmount') chargeValue = incotermAmmount;
 				return (
-					<div className={styles.row}>
+					<div className={styles.row} key={charge}>
 						<div>{CHARGE_MAPPING[charge]}</div>
 						<div>
 							{formatAmount({

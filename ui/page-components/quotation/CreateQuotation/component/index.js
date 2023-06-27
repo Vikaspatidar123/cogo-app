@@ -80,7 +80,7 @@ function CreateQuotation() {
 
 	const submitForm = async (key = false) => {
 		const resp = await getHandleSubmitData({
-			quoteRef     : quoteRef.current,
+			quoteRef     : quoteRef?.current,
 			headerHandleSubmit,
 			transportMode,
 			premiumQuote : key,

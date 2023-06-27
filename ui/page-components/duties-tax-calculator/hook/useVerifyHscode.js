@@ -62,7 +62,6 @@ const useVerifyHscode = () => {
 				setValidateInProgress(true);
 			}
 			if (!resp?.data?.status && resp?.data?.recommendations.length > 0) {
-				// Toast.info('Invalid HS Code. Please select from dropdown');
 				setValidateInProgress(true);
 			}
 

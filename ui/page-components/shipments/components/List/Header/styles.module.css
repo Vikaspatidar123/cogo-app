@@ -15,4 +15,8 @@
 
 .input {
 	width: 30%;
+
+	@media screen and (max-width: 767px) {
+		width: 50%;
+	}
 }

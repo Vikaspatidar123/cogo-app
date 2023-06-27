@@ -5,7 +5,7 @@
 
 	@media (max-width: 768px) {
 		justify-content: space-between;
-		width: 50%;
+		width: 45%;
 		margin-bottom: 8px;
 	}
 }

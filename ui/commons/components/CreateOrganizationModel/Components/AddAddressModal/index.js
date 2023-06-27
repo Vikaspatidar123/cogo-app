@@ -45,7 +45,7 @@ function AddModal({ addAddressModal = false, setAddAddressModal = () => {} }) {
 		addressType,
 	});
 
-	const returnFeildFunction = ({ item }) => {
+	const returnFieldFunction = ({ item }) => {
 		const Element = getField(item.type);
 		return (
 			<div className={styles.col} key={item.label}>
@@ -90,7 +90,7 @@ function AddModal({ addAddressModal = false, setAddAddressModal = () => {} }) {
 					<Header />
 					<Form
 						addAddressControls={addAddressControls}
-						returnFeildFunction={returnFeildFunction}
+						returnFieldFunction={returnFieldFunction}
 						showPoc={showPoc}
 						setShowPoc={setShowPoc}
 						checked={checked}

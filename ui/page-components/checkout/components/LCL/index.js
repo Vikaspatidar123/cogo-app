@@ -2,6 +2,7 @@ import { cl } from '@cogoport/components';
 import { IcMArrowDown, IcMArrowUp, IcMFcl } from '@cogoport/icons-react';
 
 import AssistanceFooter from '../../commons/AssistanceFooter';
+import CargoInsuranceDetails from '../../commons/CargoInsuranceDetails';
 import CreditApprovalCard from '../../commons/CreditApprovalCard';
 import InvoicingParties from '../../commons/InvoicingParties';
 import KycMessage from '../../commons/KycMessage';
@@ -11,6 +12,7 @@ import RouteDisplay from '../../commons/RouteDisplay';
 import ServiceIcon from '../../commons/ServiceIcon';
 import CheckoutServices from '../../commons/Services';
 import TermsAndConditions from '../../commons/TermsConditions';
+import getServicesByType from '../../utils/getServicesByType';
 import getInvoicingComponentKey from '../../utils/invoicingKey';
 
 import LclMobile from './LclMobile';
@@ -45,7 +47,16 @@ function LCL(props) {
 		toggleArrow,
 		primary_service,
 		importer_exporter,
+		showInsurance,
+		onClickInsurance,
 	} = useLcl({ detail, summary, rate });
+
+	const { services = {} } = detail || {};
+
+	const [primaryServiceDetailsData, insuranceData] = getServicesByType({
+		servicesArray: [primary_service, 'cargo_insurance'],
+		services,
+	});
 
 	// if (isMobile) {
 	// 	return <LclMobile {...props} />;
@@ -168,6 +179,15 @@ function LCL(props) {
 							/>
 						) : null}
 					</div>
+
+					<CargoInsuranceDetails
+						onClickInsurance={onClickInsurance}
+						showInsurance={showInsurance}
+						primaryServiceDetailsData={primaryServiceDetailsData}
+						detail={detail}
+						insuranceData={insuranceData}
+						refetch={refetch}
+					/>
 
 					<InvoicingParties
 						key={key}

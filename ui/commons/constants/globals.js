@@ -24,7 +24,7 @@ const GLOBAL_CONSTANTS = {
 		VND : 'vi-VN',
 	},
 	cargo_insurance: {
-		IN: ['fcl_freight'],
+		IN: ['fcl_freight', 'lcl_freight', 'air_freight'],
 	},
 	formats: {
 		date: {

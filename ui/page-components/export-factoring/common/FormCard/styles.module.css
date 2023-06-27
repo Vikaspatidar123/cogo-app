@@ -1,0 +1,29 @@
+.container {
+	border: 1px solid #E0E0E0;
+	padding: 10px;
+	border-radius: 6px;
+	display: flex;
+	flex-direction: column;
+}
+.flex_div{
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 0px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid #E0E0E0;
+}
+
+.title{
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.description{
+    font-size: 12px;
+    color: #9E9E9E;
+}
+
+.content_div{
+    width: 60%;
+    padding: 0px;
+}

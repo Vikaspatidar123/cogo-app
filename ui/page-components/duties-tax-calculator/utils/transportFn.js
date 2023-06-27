@@ -7,7 +7,7 @@ const transportFn = ({
 	setStepper,
 	setFormStepper,
 	setValue,
-	error,
+	errors,
 	transportMode,
 	portDetails = {},
 	origin = '',
@@ -76,11 +76,11 @@ const transportFn = ({
 	};
 
 	const errorHandler = () => {
-		if (error?.originPort && error?.destinationPort) {
+		if (errors?.originPort && errors?.destinationPort) {
 			Toast.error('Please enter Origin and Destination Country');
-		} else if (error?.originPort) {
+		} else if (errors?.originPort) {
 			Toast.error('Please enter Origin Country');
-		} else if (error?.destinationPort) {
+		} else if (errors?.destinationPort) {
 			Toast.error('Please enter Destination Country');
 		}
 	};

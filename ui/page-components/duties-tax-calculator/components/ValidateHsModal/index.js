@@ -39,6 +39,15 @@ const sugestionContent = ({
 	</div>
 );
 
+function RenderTitle() {
+	return (
+		<div className={styles.title_div}>
+			<IcAReports width={25} height={25} />
+			<div className={styles.title}>Get Accurate Data</div>
+		</div>
+	);
+}
+
 function ValidateHsModal({
 	show,
 	setShow,
@@ -94,12 +103,6 @@ function ValidateHsModal({
 		}
 	}, []);
 
-	const renderTitle = () => (
-		<div className={styles.title_div}>
-			<IcAReports width={25} height={25} />
-			<div className={styles.title}>Get Accurate Data</div>
-		</div>
-	);
 	return (
 		<Modal
 			show={show}
@@ -108,7 +111,7 @@ function ValidateHsModal({
 			closable={!getDraftData?.headerResponse}
 			size="md"
 		>
-			<Modal.Header title={renderTitle()} />
+			<Modal.Header title={<RenderTitle />} />
 			<Modal.Body>
 				<TitleContainer getDraftData={getDraftData} />
 

@@ -22,7 +22,6 @@ const fclControls = [
 				showOptional : false,
 				rules        : { required: 'Origin Port is required' },
 				span         : 3.9,
-				valueKey     : 'port_id',
 			},
 			{
 				inlineLabel       : 'Destination',
@@ -41,7 +40,6 @@ const fclControls = [
 				showOptional : false,
 				rules        : { required: 'Destination Port is required' },
 				span         : 3.7,
-				valueKey     : 'port_id',
 			},
 			{
 				name        : 'inco_term',

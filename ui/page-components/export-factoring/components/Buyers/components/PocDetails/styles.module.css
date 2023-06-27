@@ -1,0 +1,24 @@
+.flexDiv{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin: 20px 0px;
+}
+
+.dataDiv{
+    width: 15%;
+    padding: 10px 0px;
+}
+
+.labelText{
+    font-size: 12px;
+    font-weight: 400;
+    color: #4F4F4F;
+}
+
+.valueText{
+    font-size: 14px;
+    font-weight: 500;
+    color: #221F20;
+}

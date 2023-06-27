@@ -6,7 +6,10 @@
 // import PayLaterLive from '../PayLaterLive';
 // import RejectedApplication from '../RejectedApplication';
 
-import BankDetails from '../BankDetails/components/BankVerification';
+import BankDetails from '../BankDetails';
+import BankVerification from '../BankDetails/components/BankVerification';
+import Buyers from '../Buyers';
+import Invoices from '../Invoices';
 
 import styles from './styles.module.css';
 
@@ -25,7 +28,10 @@ function Form({ active = {}, getCreditRequestResponse = {}, refetch = () => {} }
 	return (
 		<div className={styles.form}>
 			{/* <Component getCreditRequestResponse={getCreditRequestResponse} refetch={refetch} /> */}
-			<BankDetails />
+			{/* <BankDetails /> */}
+			{/* <BankVerification /> */}
+			{/* <Buyers /> */}
+			<Invoices />
 		</div>
 	);
 }

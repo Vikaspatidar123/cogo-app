@@ -51,10 +51,10 @@ function Footer({
 				</div>
 			</div>
 			<div className={styles.wrapper_2}>
-				<Button onClick={prevButton}>
+				<Button onClick={prevButton} type="button">
 					<IcMArrowBack width="22px" height="22px" className={styles.icon} />
 				</Button>
-				<Button onClick={handleSubmit(saveDraft)} loading={draftLoading} themeType="accent">
+				<Button onClick={handleSubmit(saveDraft)} loading={draftLoading} themeType="accent" type="button">
 					<div className={styles.align_div}>
 						Save as Draft
 						<IcMBldo className={styles.icon_left} />
@@ -65,6 +65,7 @@ function Footer({
 						ratesLoading || Object.keys(ratesResponse).length <= 0 || !checked
 }
 					onClick={handleSubmit(submit)}
+					type="submit"
 				>
 					{renderBtn()}
 				</Button>

@@ -34,7 +34,6 @@ function ValueDetails({
 	paymentStatus = '',
 	createInsuranceLoading = false,
 	policyIdDownload = '',
-	// isMobile = false,
 	draftResponse = () => {},
 	draftLoading = false,
 	policyid = '',

@@ -98,7 +98,7 @@ function ListView() {
 						setFilters={setFilters}
 						activeTab={activeTab}
 					/>
-					<Button onClick={() => redirectHome()} size="md">
+					<Button onClick={() => redirectHome()} size="md" type="button">
 						<IcMPlus height={10} width={10} />
 						<div>Create New</div>
 					</Button>

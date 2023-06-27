@@ -30,8 +30,6 @@ function LCL(props) {
 		cogopoint_data,
 		getCheckoutLoading,
 		currencyConversions,
-		showInsurance,
-		onClickInsurance,
 	} = props;
 
 	const key = getInvoicingComponentKey({ invoice });
@@ -49,6 +47,8 @@ function LCL(props) {
 		toggleArrow,
 		primary_service,
 		importer_exporter,
+		showInsurance,
+		onClickInsurance,
 	} = useLcl({ detail, summary, rate });
 
 	const { services = {} } = detail || {};

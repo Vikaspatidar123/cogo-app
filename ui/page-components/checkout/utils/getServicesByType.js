@@ -1,4 +1,4 @@
-const getServicesByType = ({ serviceArray, services }) => serviceArray.map((service) => (
+const getServicesByType = ({ servicesArray = [], services = {} }) => servicesArray.map((service) => (
 	Object.values(services || {}).find(
 		(item) => item.service_type === service,
 	) || {}

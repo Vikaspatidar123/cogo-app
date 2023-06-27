@@ -55,7 +55,7 @@ function AIR(props) {
 	const { services = {} } = detail || {};
 
 	const [primaryServiceDetailsData, insuranceData] = getServicesByType({
-		servicesArray: [detail?.primary_service, 'cargo_insurance'],
+		servicesArray: [primary_service, 'cargo_insurance'],
 		services,
 	});
 

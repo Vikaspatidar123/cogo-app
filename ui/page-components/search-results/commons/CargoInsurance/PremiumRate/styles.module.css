@@ -8,6 +8,7 @@
 	padding: 4px 0;
 
 	&.final {
+		border-top: 1px solid rgb(242 226 195);
 		border-bottom: 1px solid rgb(242 226 195);
 	}
 }
@@ -27,6 +28,7 @@
 }
 
 .red {
+	display: flex;
 	font-weight: 500;
 	color: #f00;
 }

@@ -4,7 +4,7 @@ import { useSelector } from '@/packages/store';
 const useRedirectUrl = () => {
 	const { profile } = useSelector((s) => s);
 	const { push = () => {}, query = {} } = useRouter();
-	const { addons = '', account_type = '' } = query || {};
+	const { addons = '' } = query || {};
 	const { organization = {}, branch = {} } = profile || {};
 
 	const redirectManageSubscription = () => {

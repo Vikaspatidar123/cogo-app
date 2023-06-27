@@ -1,8 +1,8 @@
 .field {
 	margin: 0 0 15px;
 
-	@media (max-width:760px) {
-		width:100%
+	@media (max-width: 760px) {
+		width: 100%;
 	}
 }
 

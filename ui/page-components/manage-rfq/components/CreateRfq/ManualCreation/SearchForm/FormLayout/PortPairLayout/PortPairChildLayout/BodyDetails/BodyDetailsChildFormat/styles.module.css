@@ -55,7 +55,7 @@
 	align-items: normal;
 	justify-content: flex-start;
 
-	@media (max-width:768px) {
+	@media (max-width: 768px) {
 		flex-direction: column;
 		width: 100%;
 	}
@@ -63,7 +63,8 @@
 
 .col {
 	padding: 8px;
-	@media (max-width:768px) {
+
+	@media (max-width: 768px) {
 		width: 100%;
 	}
 }

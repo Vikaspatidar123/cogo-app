@@ -26,16 +26,15 @@
 	margin-left: 5px;
 }
 
-
 .field_wrapper {
-	@media (max-width:768px) {
+	@media (max-width: 768px) {
 		display: flex;
 		flex-direction: column;
 	}
 }
 
 .card_wrapper {
-	@media (max-width:768px) {
+	@media (max-width: 768px) {
 		width: 100%;
 	}
 }

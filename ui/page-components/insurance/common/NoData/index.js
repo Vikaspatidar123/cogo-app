@@ -12,7 +12,6 @@ function NoData() {
 				height={200}
 				width={200}
 			/>
-			<div className={styles.content}>You have no policies right now</div>
 			<div className={styles.heading}>Try Securing Your Cargo Now</div>
 		</div>
 	);

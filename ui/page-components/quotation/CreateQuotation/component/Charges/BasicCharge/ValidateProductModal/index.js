@@ -1,10 +1,12 @@
 import { Button, Modal } from '@cogoport/components';
 import { IcAReports } from '@cogoport/icons-react';
-import { useState, useEffect } from 'react';
+import { isEmpty } from '@cogoport/utils';
+import { useState, useEffect, useMemo } from 'react';
 
 import iconUrl from '../../../../../utils/iconUrl.json';
 import useCurrencyConversion from '../../../../hooks/useCurrencyConversion';
 import useDraft from '../../../../hooks/useDraft';
+import useGetQuoteRes from '../../../../hooks/useGetQuoteRes';
 import useListLocation from '../../../../hooks/useListLocation';
 import useServiceRates from '../../../../hooks/useServiceRates';
 import useValidateModal from '../../../../hooks/useValidateModal';
@@ -29,6 +31,7 @@ function ValidateProductModal(props) {
 		postTradeEngine,
 		getDraftLoading,
 		createQuoteHook = {},
+		editData = {},
 	} = props;
 
 	const { country_code } = useSelector((state) => state.profile.organization.country);
@@ -42,18 +45,25 @@ function ValidateProductModal(props) {
 	const { getPortDetails, locationLoading } = useListLocation();
 	const {	loading, serviceData } = useServiceRates({ prioritySequence, setValidateProduct });
 
-	const { product = {}, destinationPortDetails = {}, header } = quoteRes;
-	const productInfoArr = product?.products || [];
-	const currency = header?.currency;
-	console.log(quoteRes, 'quoteRes');
+	// const { product = {}, destinationPortDetails = {}, header } = quoteRes;
+
+	// const productInfoArr = useMemo(() => (
+	// 	product?.products || editData?.quantity || []
+	// ), [editData, product]);
+
+	// const currency = header?.currency || editData?.currency;
+	const { headerResponse = {}, lineItem: productLineItemDetails = [] } = getDraftData;
+
+	console.log(getDraftData, 'getDraftData');
+	const {
+		currency, productInfoArr = [],
+		product, destinationPortDetails, consignmentValue,
+	} = useGetQuoteRes({ quoteRes, getDraftData, editData });
 
 	const { services = {}, currency:serviceCurrency = 'INR' } = serviceData || {};
-	const { headerResponse = {}, lineItem: productLineItemDetails = [] } = getDraftData;
 
 	const commonLoading = loading
 	|| quotationLoading || currLoading || draftLoading || getDraftLoading || locationLoading;
-
-	const consignmentValue = productInfoArr?.reduce((prev, amount) => +prev + +amount.product_price, 0);
 
 	const { createHeader, createlineItem } = createDraftpayload({
 		quoteRes,
@@ -64,6 +74,8 @@ function ValidateProductModal(props) {
 		consignmentValue,
 		productInfoArr,
 		servicesSelected,
+		editData,
+		headerResponse,
 	});
 
 	const {
@@ -91,7 +103,7 @@ function ValidateProductModal(props) {
 	});
 
 	useEffect(() => {
-		if (productInfoArr.length > 0) {
+		if (productInfoArr.length > 0 && isEmpty(productLineItemDetails)) {
 			productInfoArr.forEach(({ productId }) => {
 				setServiceSelected((prev) => ({
 					...prev,
@@ -99,7 +111,6 @@ function ValidateProductModal(props) {
 				}));
 			});
 		}
-	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [product]);
 
 	return (

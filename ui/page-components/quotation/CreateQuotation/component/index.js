@@ -76,6 +76,7 @@ function CreateQuotation() {
 		landingPageCall: true,
 	});
 	const newHeaderFields = headerFields({ id, organization });
+	console.log(quoteRef, 'quoteRef');
 
 	const submitForm = async (key = false) => {
 		const resp = await getHandleSubmitData({

@@ -61,7 +61,8 @@ const useCheckPaymentStatus = ({
 
 	useEffect(() => {
 		if (billId) checkPaymentStatus();
-	}, [billId, checkPaymentStatus]);
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [billId]);
 
 	return {
 		pendingStatus, loading,

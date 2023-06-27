@@ -6,12 +6,17 @@ const createDraftpayload = ({
 	consignmentValue,
 	productInfoArr = [],
 	servicesSelected = {},
+	editData = {},
+	headerResponse = {},
 }) => {
+	console.log(productInfoArr, 'productInfoArr');
 	const {
 		transportMode,
 		incoterm = '',
 		destinationPortDetails = {}, originPortDetails = {}, header = {}, sellerAddress = {}, buyerDetails = {},
-	} = quoteRes;
+	} = quoteRes || {};
+
+	const { quotationId, sellerDetails: editSellerDetails = {}, buyerDetails: editBuyerDetails = {} } = editData || {};
 
 	const getCountryDetails = async (id, type) => {
 		const response = await getPortDetails({
@@ -23,7 +28,13 @@ const createDraftpayload = ({
 		return response?.[0]?.country_code || response;
 	};
 
-	const createHeader = async (isScreening = false, tradeEngineInputId = '') => {
+	const createHeader = async () => {
+		const {
+			isScreening = false, tradeEngineInputId = '',
+			destinationCountryCode, originCountryCode, resultCurrency, incoterm: headerIncoterm,
+			modeOfTransport,
+		} = headerResponse || {};
+
 		const {
 			partyName = '',
 			address: buyerAddress = '',
@@ -34,35 +45,37 @@ const createDraftpayload = ({
 			countryId: buyerCountryId = '',
 		} = buyerDetails;
 
-		const buyerCountryCode = await getCountryDetails(buyerCountryId, 'country');
+		const { countryId = '' } = editBuyerDetails || {};
+
+		const buyerCountryCode = await getCountryDetails(buyerCountryId || countryId, 'country');
 
 		const draftHeader = {
-			incoterm,
-			resultCurrency         : header?.currency,
-			quotationId            : quoteId,
-			modeOfTransport        : transportMode === 'OCEAN' ? 'SEA' : 'AIR',
-			originCountryCode      : originPortDetails?.country_code,
-			destinationCountryCode : destinationPortDetails?.country_code,
+			incoterm               : incoterm || headerIncoterm,
+			resultCurrency         : header?.currency || resultCurrency,
+			quotationId            : quoteId || quotationId,
+			modeOfTransport        : modeOfTransport || transportMode === 'OCEAN' ? 'SEA' : 'AIR',
+			originCountryCode      : originPortDetails?.country_code || originCountryCode,
+			destinationCountryCode : destinationPortDetails?.country_code || destinationCountryCode,
 			isScreening,
 			consignmentValue,
 			tradeEngineInputId,
 			sellerDetails          : {
-				name        : sellerAddress?.name,
+				name        : sellerAddress?.name || editSellerDetails?.billingPartyName,
 				countryCode : country_code,
-				address     : sellerAddress?.address,
-				pinCode     : sellerAddress?.pincode,
+				address     : sellerAddress?.address || editSellerDetails?.address,
+				pinCode     : sellerAddress?.pincode || editSellerDetails?.pincode,
 				state       : null,
 				city        : null,
 				countryName : null,
 			},
 			buyerDetails: {
-				name        : partyName,
+				name        : partyName || editBuyerDetails?.billingPartyName,
 				countryCode : buyerCountryCode,
-				address     : buyerAddress,
-				pinCode     : buyerPinCode,
+				address     : buyerAddress || editBuyerDetails?.address,
+				pinCode     : buyerPinCode || editBuyerDetails?.pincode,
 				state       : buyerState,
 				city        : buyerCity,
-				countryName : buyerCountry,
+				countryName : buyerCountry || editBuyerDetails?.country,
 			},
 		};
 		if (buyerCountryCode) {

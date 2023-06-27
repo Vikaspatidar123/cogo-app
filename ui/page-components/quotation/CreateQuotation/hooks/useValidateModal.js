@@ -1,5 +1,5 @@
 import { Toast } from '@cogoport/components';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { useSelector } from '@/packages/store';
 
@@ -9,6 +9,7 @@ const serviceInfo = {
 	import_export_controls  : false,
 	destinationHs           : false,
 };
+
 const useValidateModal = ({
 	servicesSelected,
 	setServiceSelected,
@@ -20,7 +21,7 @@ const useValidateModal = ({
 	quoteRes,
 	currency,
 	getExchangeRate,
-	headerResponse,
+	// headerResponse,
 	productLineItemDetails,
 	refetchDraft,
 	createHeader,
@@ -35,9 +36,34 @@ const useValidateModal = ({
 	});
 	const [createQuoteRes, setCreateQuoteRes] = useState();
 	const productIdArr = Object.keys(servicesSelected);
-	const { isScreening = false, tradeEngineInputId = '' } = headerResponse;
+	// const { isScreening = false, tradeEngineInputId = '' } = headerResponse;
 
 	const lineItemLength = productLineItemDetails.length;
+
+	useEffect(() => {
+		if (lineItemLength > 0) {
+			const obj = {};
+			const info = productLineItemDetails.map((productInfo) => {
+				const { productId, servicesRequired } = productInfo || {};
+
+				return ({
+					productId,
+					serviceSelected: {
+						duties_and_taxes        : servicesRequired?.isLandedCost,
+						import_export_documents : servicesRequired?.isDocumentation,
+						import_export_controls  : servicesRequired?.isControls,
+					},
+				});
+			});
+
+			info.forEach((ele) => {
+				const { productId, serviceSelected } = ele;
+				obj[productId] = { ...serviceSelected };
+			});
+			console.log(obj, 'obj');
+			setServiceSelected(obj);
+		}
+	}, [lineItemLength, productLineItemDetails, setServiceSelected]);
 
 	const calculateService = () => {
 		let serviceObj = { 1: [], 2: [], 3: [] };
@@ -144,7 +170,7 @@ const useValidateModal = ({
 	};
 
 	const freeUser = async () => {
-		const draftHeader = await createHeader(isScreening, tradeEngineInputId);
+		const draftHeader = await createHeader();
 		if (!draftHeader) {
 			Toast.error('Something went wrong');
 			return;

@@ -149,6 +149,7 @@ function Charges(props, ref) {
 				formHook={formHook}
 				ref={quoteRef}
 				consignmentValue={consignmentValue}
+				editData={editData}
 				rest={rest}
 			/>
 

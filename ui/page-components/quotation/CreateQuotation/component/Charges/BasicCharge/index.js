@@ -50,7 +50,7 @@ const getSuffix = (name, getDutiesSubmitHandler, getRatesModalHandler) => {
 };
 
 function BasicCharge(
-	{ fields, formHook, consignmentValue, rest = {} },
+	{ fields, formHook, consignmentValue, editData = {}, rest = {} },
 	ref,
 ) {
 	const [paymentModal, setPaymentModal] = useState(false);
@@ -148,6 +148,7 @@ function BasicCharge(
 				quotaValue={quotaValue}
 				isQuotaLeft={isQuotaLeft}
 				quoteRes={quoteRes}
+				editData={editData}
 				getDraftData={getDraftData}
 				getDraftLoading={getDraftLoading}
 				setTransactionModal={setTransactionModal}

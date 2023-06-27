@@ -1,0 +1,14 @@
+.details {
+	width: 48%;
+}
+
+.container_details {
+	display: flex;
+	align-items: center;
+	padding: 8px;
+}
+
+.index_list {
+	margin: 0 4px;
+	white-space: nowrap;
+}

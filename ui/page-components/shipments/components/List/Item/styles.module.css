@@ -46,13 +46,13 @@
 
 .main {
 	flex-grow: 1;
+	width: 70%;
 	margin-right: 16px;
 	margin-left: 24px;
 
 	@media (max-width: 760px) {
 		width: 90%;
-		margin-right: 8px;
-		margin-left: 12px;
+		margin: 10px 8px 0 12px;
 	}
 }
 

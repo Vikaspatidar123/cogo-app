@@ -4,7 +4,7 @@ import { useState } from 'react';
 import useProductCategory from '../hooks/useProductCategory';
 import useProductList from '../hooks/useProductList';
 
-import useHeader from './Header';
+import Header from './Header';
 import ProductCategory from './ProductCategory';
 import ProductList from './ProductList';
 
@@ -42,14 +42,17 @@ function ProductCatalogue({
 			scroll={false}
 		>
 			<Modal.Header
-				title={useHeader({
-					labeledValue,
-					setLabeledValue,
-					globalFilter,
-					setGlobalFilter,
-					addCheck,
-					refetchProduct,
-				})}
+				title={(
+					<Header
+						labeledValue={labeledValue}
+						setLabeledValue={setLabeledValue}
+						globalFilter={globalFilter}
+						setGlobalFilter={setGlobalFilter}
+						addCheck={addCheck}
+						refetchProduct={refetchProduct}
+					/>
+				)}
+
 			/>
 			<Modal.Body>
 				{labeledValue === 'category' && (

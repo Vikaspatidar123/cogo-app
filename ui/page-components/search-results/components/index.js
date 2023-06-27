@@ -211,7 +211,6 @@ function Results({
 				</>
 			);
 		}
-
 		if (!loading && rates_count === 0 && !isAwaitingResponse) {
 			return (
 				<NoResultFound

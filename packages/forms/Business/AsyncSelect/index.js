@@ -16,6 +16,8 @@ import {
 	asyncFieldsCommoditiesList,
 	asyncInsuranceCountryList,
 	asyncFieldsPartnerQuotation,
+	asyncFieldsSixDigitHsCode,
+	asyncFieldsOceanPocDetails,
 	asyncProductList,
 	asyncOrganizationBranches,
 	asyncInsuranceCommodities,
@@ -24,6 +26,9 @@ import {
 	asyncTaxNumbers,
 	asyncOrganizationUsers,
 	asyncTradeContacts,
+	asyncFieldsAirPocDetails,
+	asyncFieldsAirLineList,
+	asyncFieldsShippingLineList,
 } from '../../utils/getAsyncFields';
 
 const keyAsyncFieldsParamsMapping = {
@@ -48,6 +53,11 @@ const keyAsyncFieldsParamsMapping = {
 	tax_numbers                : asyncTaxNumbers,
 	organization_users         : asyncOrganizationUsers,
 	trade_contacts             : asyncTradeContacts,
+	six_digit_hs_code          : asyncFieldsSixDigitHsCode,
+	list_ocean_poc_details     : asyncFieldsOceanPocDetails,
+	list_air_poc_details       : asyncFieldsAirPocDetails,
+	airline_list               : asyncFieldsAirLineList,
+	shippingline_list          : asyncFieldsShippingLineList,
 };
 
 function AsyncSelect(props) {
@@ -57,11 +67,10 @@ function AsyncSelect(props) {
 		asyncKey,
 		initialCall,
 		getModifiedOptions,
-		getSelectedOption = () => {},
+		getSelectedOption = () => { },
 		...rest
 	} = props;
 	const defaultParams = keyAsyncFieldsParamsMapping[asyncKey]?.() || {};
-
 	const callFunction = defaultParams.authKey
 		? useGetAsyncOptionsBf
 		: useGetAsyncOptions;
@@ -75,6 +84,7 @@ function AsyncSelect(props) {
 		getModifiedOptions,
 		value    : rest.value,
 	});
+
 	if (typeof getSelectedOption === 'function' && !isEmpty(rest.value)) {
 		let selectedValue;
 		if (multiple) {
@@ -84,17 +94,16 @@ function AsyncSelect(props) {
 		}
 
 		const selectedOption = getAsyncOptionsProps.options.filter(
-			(option) => option?.[rest.valueKey] === selectedValue,
+			(option) => option?.id === selectedValue,
 		);
 		getSelectedOption(selectedOption[0]);
 	}
 	const Element = multiple ? MultiSelect : Select;
-
 	return (
 		<Element
 			{...rest}
 			{...getAsyncOptionsProps}
-			key={getAsyncOptionsProps?.id}
+		// key={getAsyncOptionsProps?.id}
 		/>
 	);
 }

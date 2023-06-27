@@ -1,0 +1,66 @@
+.container {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+	padding: 5px 14px 5px 5px;
+	margin-bottom: 5px;
+	cursor: pointer;
+	background: #f9f9f9;
+	border-radius: 4px;
+	transition: all 0.3s;
+
+	&:hover {
+		background: #f2f2f2;
+	}
+
+	&.selected {
+		background: #f2f2f2;
+
+		div {
+			font-weight: bold;
+		}
+	}
+}
+
+.service_name {
+	display: flex;
+	flex-grow: 1;
+	align-items: center;
+	margin-right: 10px;
+	font-size: 14px;
+	color: #000;
+}
+
+.title {
+	display: flex;
+	align-items: center;
+
+	svg {
+		width: 23px;
+		height: 23px;
+		margin-right: 4px;
+	}
+}
+
+.controls_container {
+	display: flex;
+	align-items: center;
+}
+
+.error_icon {
+	width: 17px;
+	height: 17px;
+	margin-left: 5px;
+}
+
+.arrow_up {
+	width: 17px;
+	height: 17px;
+	margin-left: 5px;
+	transform: unset;
+
+	&.rotate {
+		transform: rotate(180deg);
+	}
+}

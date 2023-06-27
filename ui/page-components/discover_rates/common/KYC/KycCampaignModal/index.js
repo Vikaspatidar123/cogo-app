@@ -7,7 +7,7 @@ import styles from './styles.module.css';
 import { useSelector } from '@/packages/store';
 
 export function KycCampaign({
-	onFinalSubmit = () => {},
+	onFinalSubmit = () => { },
 	trackAnalytics = false,
 }) {
 	const { agent_id, organization, user_profile } = useSelector(
@@ -15,22 +15,26 @@ export function KycCampaign({
 			agent_id     : profile?.id,
 			organization : profile?.organization,
 			countryId:
-        profile?.organization?.country_id || profile?.partner?.country_id,
+				profile?.organization?.country_id || profile?.partner?.country_id,
 			user_profile: profile,
 		}),
 	);
-
+	const { country } = organization || {};
+	const {
+		organization:user_organization, preferred_languages,
+		mobile_country_code, mobile_number, partner,
+	} = user_profile || {};
 	const initialValues = {
-		preferred_languages : user_profile?.preferred_languages,
-		registration_number : user_profile?.organization?.registration_number,
+		preferred_languages,
+		registration_number : user_organization?.registration_number,
 		mobile              : {
-			mobile_country_code : user_profile?.mobile_country_code,
-			mobile_number       : user_profile?.mobile_number,
+			mobile_country_code,
+			mobile_number,
 		},
 		country_id:
-      user_profile?.organization?.country_id
-      || user_profile?.partner?.country_id,
-		country_code: organization?.country?.country_code,
+		user_organization?.country_id
+			|| partner?.country_id,
+		country_code: country?.country_code,
 	};
 	const head = () => (
 		<div>
@@ -66,10 +70,10 @@ export function KycCampaignModal({ trackAnalytics = false }) {
 		<Modal
 			scroll={false}
 			show={
-        (kyc_status === 'rejected' || kyc_status === 'pending_from_user')
-        && show
+				(kyc_status === 'rejected' || kyc_status === 'pending_from_user')
+				&& show
 
-      }
+			}
 			onClose={() => {
 				setShow(false);
 			}}

@@ -29,11 +29,11 @@ function CreateBuyerModal({ openModal, setOpenModal, loading, createBuyerAddress
 		const userData = {
 			...data,
 			performedBy             : id,
-			organizationId          : organization.id,
-			state                   : stateInfo.name,
-			city                    : cityInfo.name,
-			country                 : countryInfo.name,
-			countryId               : countryInfo.id,
+			organizationId          : organization?.id,
+			state                   : stateInfo?.name,
+			city                    : cityInfo?.name,
+			country                 : countryInfo?.name,
+			countryId               : countryInfo?.id,
 			phoneCode               : data?.phoneNumber.country_code,
 			phoneNumber             : data?.phoneNumber.number,
 			partnerOrganizationType : 'BUYER',
@@ -49,7 +49,13 @@ function CreateBuyerModal({ openModal, setOpenModal, loading, createBuyerAddress
 	};
 
 	return (
-		<Modal size="md" show={openModal} onClose={() => setOpenModal(false)} scroll={false}>
+		<Modal
+			size="md"
+			show={openModal}
+			onClose={() => setOpenModal(false)}
+			scroll={false}
+			className={styles.modal_container}
+		>
 			<Modal.Header title={(
 				<div className={styles.header}>
 					<img src={iconUrl.createUser} alt="create user" />

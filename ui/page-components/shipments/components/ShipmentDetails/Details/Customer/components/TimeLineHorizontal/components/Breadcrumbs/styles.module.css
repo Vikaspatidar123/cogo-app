@@ -6,3 +6,7 @@
 .shipment_bread_crumb {
 	margin-bottom: 20px;
 }
+
+.back_to_shipment {
+	cursor: pointer;
+}

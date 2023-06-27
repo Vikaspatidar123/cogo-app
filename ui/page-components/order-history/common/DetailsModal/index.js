@@ -20,23 +20,22 @@ const COMPONENT_MAPPING = {
 function DetailsModal({
 	itm = {},
 	modal = false,
-	setModal = () => {},
+	setModal = () => { },
 }) {
 	const { tradeEngineResponse, tradeEngineResponseLoading, TradeEngineResponseFunc } = useGetTradeEngine({ itm });
 	useEffect(() => {
 		TradeEngineResponseFunc();
-	// eslint-disable-next-line react-hooks/exhaustive-deps
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 	const { requestType = '' } = itm || {};
 
 	const Component = COMPONENT_MAPPING?.[requestType];
-
 	return (
 		<Modal
 			show={modal}
 			showCloseIcon
 			onClose={() => setModal(false)}
-			size="lg"
+			size="xl"
 		>
 			{!tradeEngineResponseLoading && (
 				<div className={styles.container}>
@@ -60,7 +59,7 @@ function DetailsModal({
 					alt="loading"
 					className={styles.loading_image}
 				/>
-			) }
+			)}
 		</Modal>
 	);
 }

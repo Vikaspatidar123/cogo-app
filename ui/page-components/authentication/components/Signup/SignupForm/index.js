@@ -111,7 +111,7 @@ function SignupForm({ setHasSignedup, setFormData, setUserDetails }) {
 			<div className={styles.recaptcha_container}>
 				<ReCAPTCHA
 					ref={recaptchaRef}
-					sitekey="6Lde97IeAAAAAJS1_4x0dGDmjNGdKq1wVl1TR0eD"
+					sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITEKEY}
 					onChange={onChange}
 				/>
 			</div>

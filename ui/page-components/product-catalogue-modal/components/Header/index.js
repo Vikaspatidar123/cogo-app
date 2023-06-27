@@ -9,7 +9,7 @@ import styles from './styles.module.css';
 
 import HsCode from '@/ui/page-components/hs-code-modal/component';
 
-function useHeader({
+function Header({
 	labeledValue,
 	setLabeledValue,
 	globalFilter,
@@ -89,4 +89,4 @@ function useHeader({
 		</div>
 	);
 }
-export default useHeader;
+export default Header;

@@ -20,8 +20,10 @@ import styles from './styles.module.css';
 
 function HsCode({
 	showHsCodeModal,
-	setShowHsCodeModal,
-	setSelectedData,
+	setShowHsCodeModal = () => {},
+	setSelectedData = () => {},
+	setShowProduct = () => {},
+	setPrefiledValues = () => {},
 	isMobile = false,
 	onClick = () => {},
 }) {
@@ -101,6 +103,12 @@ function HsCode({
 		onClick();
 		setSelectedData(hsCodeRow);
 		setShowHsCodeModal(false);
+		setPrefiledValues((prev) => ({
+			...prev,
+			hscode   : hsCodeRow?.hsCode,
+			hsCodeId : hsCodeRow?.id,
+		}));
+		setShowProduct(true);
 	};
 	const previousFunction = () => {
 		values.forEach((x, index) => {

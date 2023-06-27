@@ -1,0 +1,59 @@
+.container {
+	display: flex;
+	margin-top: 12px;
+}
+
+.styled_row {
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.styled_col {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 10px;
+
+	@media (max-width: 768px) {
+		margin-top: 10px;
+		border: 1px solid #f2f2f2;
+	}
+}
+
+.port_pairs {
+	display: flex;
+	align-items: center;
+	width: 86%;
+}
+
+.view_more {
+	margin-bottom: 5px;
+	font-size: 14px;
+	color: #2c3e50;
+}
+
+.actions {
+	display: flex;
+	flex: 1;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	border-left: 1px solid #f2f2f2;
+}
+
+.modal_container {
+	display: flex;
+	flex-direction: column;
+	padding: 12px;
+}
+
+.routeContainer {
+	padding: 6px;
+	border-bottom: 1px solid #e0e0e0;
+
+	&:last-child {
+		border: none;
+	}
+}

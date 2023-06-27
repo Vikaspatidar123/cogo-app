@@ -53,12 +53,16 @@ function Filters({ hookSetters, shipmentFilters, isShow = true, page = 1 }) {
 	return (
 		<div className={styles.container}>
 			<div className={styles.flex_div}>
-				{isShow ? <Select {...controls[1]} control={control} loading={loading} /> : null}
+				<div className={styles.filter_width}>
+					{isShow ? <Select {...controls[1]} control={control} loading={loading} /> : null}
 
-				<Select {...controls[2]} control={control} loading={loading} />
+					<Select {...controls[2]} control={control} loading={loading} />
+				</div>
+			</div>
+			<div className={styles.filter_search}>
+				<Input {...controls[0]} control={control} />
 			</div>
 
-			<Input {...controls[0]} control={control} />
 		</div>
 	);
 }

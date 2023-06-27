@@ -64,3 +64,35 @@
 		duration   : 300,
 	},
 }); */
+
+.enter {
+	animation: enter_slide 0.9s ease-in-out;
+
+	@keyframes enter_slide {
+		0% {
+			opacity: 0;
+			transform: translateX(-10px);
+		}
+
+		100% {
+			opacity: 1;
+			transform: translateX(0);
+		}
+	}
+}
+
+.exit {
+	animation: enter_slide 0.9s ease-in-out;
+
+	@keyframes exit_slide {
+		0% {
+			opacity: 1;
+			transform: translateX(0);
+		}
+
+		100% {
+			opacity: 0;
+			transform: translateX(10px);
+		}
+	}
+}

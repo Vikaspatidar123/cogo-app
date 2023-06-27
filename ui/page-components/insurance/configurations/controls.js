@@ -123,7 +123,7 @@ const getControls = (formDetails = {}, profile = {}, setCityState = () => {}) =>
 			...control,
 			handleChange: (e) => {
 				setCityState({
-					city  : e?.display_name || e?.district?.name,
+					city  : e?.display_name || e?.district?.name || e?.city?.name,
 					state : e?.region?.name,
 				});
 			},

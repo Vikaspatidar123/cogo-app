@@ -58,7 +58,7 @@ const useCheckStatus = ({ query = '', setModal = () => {}, insurance = () => {} 
 				pendingModal: true,
 			}));
 			setPaymentStatus('ERROR');
-			Toast.error(err?.error?.message);
+			console.log(err?.error?.message);
 		}
 	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [billId]);

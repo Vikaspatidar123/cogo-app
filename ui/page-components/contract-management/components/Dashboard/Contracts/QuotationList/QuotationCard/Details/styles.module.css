@@ -1,0 +1,64 @@
+.container {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.contract_id {
+	padding-right: 10px;
+	margin-right: 12px;
+	font-size: 20px;
+	color: #828282;
+
+	@media (max-height: 768px) {
+		font-size: 14px;
+	}
+}
+
+.contract_name {
+	max-width: 400px;
+	padding-right: 10px;
+	margin-right: 12px;
+	overflow: hidden;
+	font-size: 18px;
+	font-weight: 600;
+	color: #2c3e50;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+
+	@media (max-height: 768px) {
+		font-size: 14px;
+	}
+}
+
+.status {
+	padding: 2px 8px;
+	font-size: 13px;
+	color: #fff;
+	background: #849e4c;
+	border-radius: 4px;
+}
+
+.source {
+	padding: 2px 8px;
+	margin: 0 12px;
+	font-weight: 500;
+	color: #221f20;
+	text-transform: capitalize;
+	background: #f2f6ff;
+
+	&.manual {
+		background: #fff4f2;
+	}
+}
+
+.contract_details {
+	display: flex;
+	align-items: center;
+}
+
+.created_date {
+	margin-right: 10px;
+	font-size: 13px;
+	color: #828282;
+}

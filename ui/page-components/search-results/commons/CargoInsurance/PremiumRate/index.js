@@ -7,14 +7,6 @@ import styles from './styles.module.css';
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 import formatAmount from '@/ui/commons/utils/formatAmount';
 
-function TooltipContent() {
-	return (
-		<div className={styles.tool_tip_container}>
-			<div>Exclusive of Taxes</div>
-		</div>
-	);
-}
-
 const getFormattedAmount = (amount) => formatAmount({
 	amount,
 	currency : GLOBAL_CONSTANTS.currency_code.INR,
@@ -24,6 +16,14 @@ const getFormattedAmount = (amount) => formatAmount({
 		maximumFractionDigits : 2,
 	},
 });
+
+function TooltipContent() {
+	return (
+		<div className={styles.tool_tip_container}>
+			<div>Exclusive of Taxes</div>
+		</div>
+	);
+}
 
 function PremiumRate(props) {
 	const { rateData = {} } = props;

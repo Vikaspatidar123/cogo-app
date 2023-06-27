@@ -9,7 +9,6 @@ const createDraftpayload = ({
 	editData = {},
 	headerResponse = {},
 }) => {
-	console.log(productInfoArr, 'productInfoArr');
 	const {
 		transportMode,
 		incoterm = '',
@@ -28,7 +27,7 @@ const createDraftpayload = ({
 		return response?.[0]?.country_code || response;
 	};
 
-	const createHeader = async () => {
+	const createHeader = async (traderCheck) => {
 		const {
 			isScreening = false, tradeEngineInputId = '',
 			destinationCountryCode, originCountryCode, resultCurrency, incoterm: headerIncoterm,
@@ -56,7 +55,7 @@ const createDraftpayload = ({
 			modeOfTransport        : modeOfTransport || transportMode === 'OCEAN' ? 'SEA' : 'AIR',
 			originCountryCode      : originPortDetails?.country_code || originCountryCode,
 			destinationCountryCode : destinationPortDetails?.country_code || destinationCountryCode,
-			isScreening,
+			isScreening            : traderCheck || isScreening,
 			consignmentValue,
 			tradeEngineInputId,
 			sellerDetails          : {
@@ -85,14 +84,17 @@ const createDraftpayload = ({
 	};
 
 	const createlineItem = () => {
-		const lineItem = productInfoArr.map(({ product_price = '', productId = '', quantity = '', name = '' }) => {
+		const lineItem = productInfoArr.map(({
+			product_price = '', productId = '', quantity = '', name = '',
+			productName = '', tradeEngineLineItemInputId, value,
+		}) => {
 			const {
 				duties_and_taxes, import_export_documents,
 				import_export_controls, destinationHs,
 			} = servicesSelected?.[productId] || {};
 			return {
 				destinationHs,
-				value            : product_price,
+				value            : product_price || value,
 				productId,
 				servicesRequired : {
 					isLandedCost    : duties_and_taxes,
@@ -102,7 +104,8 @@ const createDraftpayload = ({
 				manufactureOrigin : country_code,
 				quantity,
 				originCN          : '',
-				productName       : name,
+				productName       : name || productName,
+				tradeEngineLineItemInputId,
 			};
 		});
 

@@ -45,16 +45,8 @@ function ValidateProductModal(props) {
 	const { getPortDetails, locationLoading } = useListLocation();
 	const {	loading, serviceData } = useServiceRates({ prioritySequence, setValidateProduct });
 
-	// const { product = {}, destinationPortDetails = {}, header } = quoteRes;
-
-	// const productInfoArr = useMemo(() => (
-	// 	product?.products || editData?.quantity || []
-	// ), [editData, product]);
-
-	// const currency = header?.currency || editData?.currency;
 	const { headerResponse = {}, lineItem: productLineItemDetails = [] } = getDraftData;
 
-	console.log(getDraftData, 'getDraftData');
 	const {
 		currency, productInfoArr = [],
 		product, destinationPortDetails, consignmentValue,
@@ -67,10 +59,9 @@ function ValidateProductModal(props) {
 
 	const { createHeader, createlineItem } = createDraftpayload({
 		quoteRes,
-		quoteId     : createQuoteData?.id,
+		quoteId: createQuoteData?.id,
 		getPortDetails,
 		country_code,
-		traderCheck : headerResponse?.isScreening,
 		consignmentValue,
 		productInfoArr,
 		servicesSelected,

@@ -1,24 +1,41 @@
 import { cl, Toggle } from '@cogoport/components';
-import { useEffect, useState } from 'react';
+import { isEmpty } from '@cogoport/utils';
+import { useMemo, useState } from 'react';
 
 import iconUrl from '../../../../../utils/iconUrl.json';
 
 import styles from './styles.module.css';
 
-const FLAGMAPPING = {
-	N : <img src={iconUrl?.greenFlag} alt="green flag" />,
-	Y : <img src={iconUrl?.redFlag} alt="red flag" />,
-	M : <img src={iconUrl?.yellowFlag} alt="yellow flag" />,
+import { Image } from '@/packages/next';
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
+
+const FLAG_MAPPING = {
+	N : <Image src={GLOBAL_CONSTANTS.image_url.iec_green_flag} width={18} height={18} alt="green flag" />,
+	Y : <Image src={GLOBAL_CONSTANTS.image_url.iec_yellow_flag} width={18} height={18} alt="red flag" />,
+	M : <Image src={GLOBAL_CONSTANTS.image_url.iec_yellow_flag} width={18} height={18} alt="yellow flag" />,
+
+};
+
+const importControls = [];
+const exportControls = [];
+
+const TAB_MAPPING = {
+	IMPORT : importControls,
+	EXPORT : exportControls,
 };
 
 function Controls({ controls }) {
-	const [labeledValue, setLabeledValue] = useState('Import');
-	const doc = (controls || []).filter((x) => x.tradeType === labeledValue);
-	const [mapDoc, setMapDoc] = useState(doc);
+	const [labeledValue, setLabeledValue] = useState('IMPORT');
 
-	useEffect(() => {
-		if (doc) setMapDoc(doc);
-	}, [doc, labeledValue]);
+	useMemo(() => {
+		(controls || []).forEach((control) => {
+			if (control?.tradeType === 'IMPORT') {
+				importControls.push(control);
+			} else {
+				exportControls.push(control);
+			}
+		});
+	}, [controls]);
 
 	return (
 		<>
@@ -37,26 +54,34 @@ function Controls({ controls }) {
 						onLabel="Export"
 						value={labeledValue}
 						onChange={(e) => {
-							if (e.target.checked) setLabeledValue('Export');
-							else setLabeledValue('Import');
+							if (e.target.checked) setLabeledValue('EXPORT');
+							else setLabeledValue('IMPORT');
 						}}
 					/>
 				</div>
 			</div>
 			<div className={styles.container}>
-				{controls?.length > 0 ? (
+				{!isEmpty(controls) ? (
 					<div className={styles.section}>
-						{mapDoc?.length > 0 && (
-							mapDoc || []).map(({ description, status }) => (
-								<div className={styles.flex_box} style={{ margiTop: '20px' }}>
-									<div className="controlName">{description}</div>
-									<div className="flag">{FLAGMAPPING(status)}</div>
-								</div>
-						))}
-						{mapDoc?.length === 0 && (
+						{!isEmpty(TAB_MAPPING?.[labeledValue]) ? (
+							TAB_MAPPING?.[labeledValue].map((ele) => {
+								const { description, status } = ele || {};
+								return (
+									<div
+										key={`${description}_${status}`}
+										className={styles.flex_box}
+										style={{ marginTop: '20px' }}
+									>
+										<div>{description}</div>
+										<div>{FLAG_MAPPING[status]}</div>
+									</div>
+								);
+							})
+						) : (
 							<div className={styles.flex_box} style={{ height: '70px' }}>
 								<div className={styles.sorry}>No data here</div>
 							</div>
+
 						)}
 					</div>
 				) : (

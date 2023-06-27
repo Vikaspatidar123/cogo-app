@@ -1,11 +1,11 @@
-import { Button, cl } from '@cogoport/components';
+import { Button } from '@cogoport/components';
 import { IcMLock } from '@cogoport/icons-react';
 
 import styles from './styles.module.css';
-import useDraftAirwayBill from './useDraftAirwayBill';
+import draftAirwayBill from './useDraftAirwayBill';
 
-import { Image, Link } from '@/packages/next';
-import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
+import { Link } from '@/packages/next';
+import PublicPageNav from '@/ui/commons/components/PublicPageNav';
 import setCookieAndRedirect from '@/ui/commons/utils/setCookieAndRedirect';
 
 const content = {
@@ -21,14 +21,7 @@ function DraftAirwayBill({ res }) {
 	const subheading = res?.messages?.token === 'Token is invalid!' ? 'Token is invalid' : 'Token has expired';
 	return (
 		<div className={styles.container}>
-			<div className={cl`${styles.flex_box} ${styles.nav_bar}`}>
-				<Image src={GLOBAL_CONSTANTS.image_url.cogoport_logo} width={130} height={50} alt="loading" />
-
-				<div className={styles.flex_box}>
-					<p className={styles.text}>Already a User?</p>
-					<Button themeType="linkUi">LOGIN</Button>
-				</div>
-			</div>
+			<PublicPageNav />
 			<div className={styles.main_container}>
 				<IcMLock width={35} height={35} style={{ marginBottom: 6 }} />
 				<h1 className={styles.heading}>{content.heading}</h1>
@@ -53,7 +46,7 @@ DraftAirwayBill.getInitialProps = async (ctx) => {
 	const { id } = query;
 
 	try {
-		const res = await useDraftAirwayBill({
+		const res = await draftAirwayBill({
 			email_token : id,
 			platform    : 'app',
 			auth_scope  : 'organization',

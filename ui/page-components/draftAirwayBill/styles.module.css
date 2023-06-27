@@ -1,5 +1,9 @@
 .container {
 	padding: 16px 96px;
+
+	@media screen and (max-width: 767px) {
+		padding: 20px;
+	}
 }
 
 .flex_box {
@@ -26,14 +30,10 @@
 
 .heading {
 	margin: 0;
-	font-size: _fs5;
-	font-weight: _bold;
-	color: _black;
 }
 
 .sub_heading {
 	margin: 0;
-	font-size: _fs2;
 	color: black;
 }
 

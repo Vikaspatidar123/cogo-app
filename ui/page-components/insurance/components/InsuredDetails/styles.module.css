@@ -5,8 +5,8 @@
 	padding: 20px;
 	margin-top: 28px;
 	background: #fafbfe;
-	
-	@media (max-width:760px) {
+
+	@media (max-width: 760px) {
 		flex-direction: column;
 	}
 }

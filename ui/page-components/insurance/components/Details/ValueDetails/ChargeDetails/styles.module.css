@@ -33,11 +33,10 @@
 	transform: translate(10px, -52px);
 }
 
-
 .row {
 	display: flex;
 
-	@media (max-width:760px) {
-		flex-direction:column;
+	@media (max-width: 760px) {
+		flex-direction: column;
 	}
 }

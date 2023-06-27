@@ -6,8 +6,8 @@
 	justify-content: space-between;
 	width: 100%;
 
-	@media (max-width:768px) {
-		flex-direction:column;
+	@media (max-width: 768px) {
+		flex-direction: column;
 	}
 }
 
@@ -22,8 +22,8 @@
 	align-items: center;
 	width: 10%;
 
-	@media (max-width:768px) {
-		transform: rotate(90deg)
+	@media (max-width: 768px) {
+		transform: rotate(90deg);
 	}
 }
 

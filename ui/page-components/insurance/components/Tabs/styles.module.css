@@ -16,7 +16,8 @@
 	display: flex;
 	justify-content: space-between;
 	margin-bottom: 35px;
-	@media (max-width:760px) {
+
+	@media (max-width: 760px) {
 		display: flex;
 		flex-direction: column;
 		justify-content: space-between;

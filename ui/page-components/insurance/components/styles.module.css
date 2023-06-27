@@ -1,6 +1,7 @@
 .wrapper {
 	height: 80vh;
-	@media (max-width:760px) {
+
+	@media (max-width: 760px) {
 		height: auto;
 	}
 }
@@ -13,7 +14,8 @@
 	font-size: 21px;
 	font-weight: 700;
 	color: #000;
-	@media (max-width:760px) {
+
+	@media (max-width: 760px) {
 		display: flex;
 		align-content: center;
 		align-items: center;
@@ -25,7 +27,6 @@
 		background-color: #ffde01;
 	}
 }
-
 
 .center {
 	display: flex;
@@ -64,7 +65,7 @@
 
 	@media (max-width: 760px) {
 		display: flex;
-		flex-direction:column;
+		flex-direction: column;
 		align-items: center;
 		justify-content: center;
 		width: 100%;
@@ -74,10 +75,11 @@
 
 .column_1 {
 	width: 30%;
+
 	@media (max-width: 760px) {
+		display: flex;
+		align-items: center;
 		width: 100%;
-		display:flex;
-		align-items:center;
 	}
 }
 
@@ -88,9 +90,9 @@
 	width: 70%;
 
 	@media (max-width: 760px) {
+		display: flex;
+		align-items: center;
 		width: 100%;
-		display:flex;
-		align-items:center;
 	}
 }
 

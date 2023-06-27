@@ -78,6 +78,11 @@ function SignupForm({ setHasSignedup, setFormData, setUserDetails }) {
 					placeholder="Mobile Number"
 					mobileSelectRef={{ ...register('mobile_number', { required: 'Please enter mobile no' }) }.ref}
 				/>
+				{errors.mobile_number && (
+					<span className={styles.errors}>
+						{errors.mobile_number.message || errors.mobile_number.type}
+					</span>
+				)}
 			</div>
 
 			<div className={styles.checkbox_container}>

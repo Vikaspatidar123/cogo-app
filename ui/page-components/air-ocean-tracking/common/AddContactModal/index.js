@@ -34,7 +34,7 @@ function AddContactModal({
 					{addContactControls.map((config) => {
 						const { name, type, label, rules } = config;
 						const Element = getField(type);
-						const isMobileNo = name === 'mobile_no';
+						const isMobileNo = type === 'mobile_number';
 
 						return (
 							<div key={name} className={cl`${styles.col} ${styles?.[name]}`}>
@@ -42,7 +42,7 @@ function AddContactModal({
 								<Element
 									{...config}
 									control={control}
-									mobileSelectRef={isMobileNo ? register('mobile_no', rules).ref : undefined}
+									mobileSelectRef={isMobileNo ? register(name, rules).ref : undefined}
 								/>
 								<p className={styles.errors}>{errors?.[name]?.message || errors?.[name]?.type}</p>
 							</div>

@@ -15,7 +15,7 @@ function UserSentView({ eachMessage }) {
 	});
 
 	return (
-		<div className={styles.user_stamp}>
+		<div className={styles.user_chat}>
 			<MessageBody response={response} message_type={message_type} />
 			<div className={styles.time_stamp}>{sentAt}</div>
 		</div>

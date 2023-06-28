@@ -13,7 +13,7 @@ function EachMessage({ sendFirebaseMessage, eachMessage, sendMessageLoading }) {
 			/>
 		</div>
 	) : (
-		<div className={styles.parent_send_div}>
+		<div className={styles.parent_sent_div}>
 			<UserSentView eachMessage={eachMessage} />
 		</div>
 	);

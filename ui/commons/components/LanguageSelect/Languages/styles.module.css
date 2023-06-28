@@ -22,8 +22,8 @@
 .item {
 	display: flex;
 	height: 24px;
-	margin-bottom: 12px;
 	padding: 2px 6px;
+	margin-bottom: 12px;
 	font-weight: 500;
 	color: #000;
 	cursor: pointer;

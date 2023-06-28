@@ -48,6 +48,7 @@ function CreateSellerModal({ openModal, setOpenModal, createSellerAddres, getSel
 							{(fields || []).map((field) => {
 								const Element = getField(field.type);
 								const isMobileNo = field.type === 'mobile_number';
+
 								return (
 									<>
 										{(field?.name !== 'sez_proof') && (
@@ -57,7 +58,7 @@ function CreateSellerModal({ openModal, setOpenModal, createSellerAddres, getSel
 											>
 												<div className={styles.label_container}>
 													{field?.name !== 'is_sez'
-												&& <p className={styles.label}>{field?.label}</p>}
+													&& <p className={styles.label}>{field?.label}</p>}
 													{errors?.[field.name]?.type !== 'required'
                                             && <p className={styles.error_text}>{errors?.[field.name]?.message}</p>}
 												</div>

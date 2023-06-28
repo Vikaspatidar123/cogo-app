@@ -123,9 +123,9 @@
 
 .happy_icon {
     display: flex;
-	width: 20px;
-	height: 20px;
-	margin-bottom: 14px;
+	width: 24px;
+	height: 22px;
+	margin-bottom: 10px;
 	margin-left: 4px;
 	cursor: pointer;
 	fill: #828282;
@@ -147,6 +147,7 @@
 }
 
 .send_icon {
+	margin-bottom: 2px;
 }
 
 .popover {

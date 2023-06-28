@@ -87,7 +87,6 @@ function FooterChat({ sendMessageLoading, sendFirebaseMessage, toggleHeight }) {
 		fileName : file?.name,
 		finalUrl : file?.url,
 	});
-	console.log('🚀 ~ file: index.js:90 ~ FooterChat ~ file:', file, fileIcon);
 
 	return (
 		<>

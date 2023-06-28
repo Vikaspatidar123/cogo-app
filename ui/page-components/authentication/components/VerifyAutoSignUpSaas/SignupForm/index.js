@@ -23,6 +23,7 @@ function SignupForm({ setHasSignedup, setFormData, setUserDetails }) {
 		control,
 		watch,
 		setValue,
+		register,
 	} = useForm();
 	const { query } = useRouter();
 
@@ -134,8 +135,11 @@ function SignupForm({ setHasSignedup, setFormData, setUserDetails }) {
 					name="mobile_number"
 					type="mobile-number-select"
 					placeholder="Mobile Number"
-					rules={{ required: 'Number is required.' }}
+					mobileSelectRef={{ ...register('mobile_number', { required: 'Number is required.' }) }.ref}
 				/>
+				{errors.mobile_number && (
+					<span className={styles.errors}>{errors.mobile_number.message || errors.mobile_number.type}</span>
+				)}
 			</div>
 
 			<div className={styles.checkbox_container}>

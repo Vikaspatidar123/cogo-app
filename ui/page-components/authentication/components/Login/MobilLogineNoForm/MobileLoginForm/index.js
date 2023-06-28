@@ -42,7 +42,7 @@ function MobileLoginForm() {
 				/>
 				{errors.mobile_number && (
 					<span className={styles.errors}>
-						{errors.mobile_number.message}
+						{errors.mobile_number.message || errors.mobile_number.type}
 					</span>
 				)}
 				<br />

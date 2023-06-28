@@ -23,9 +23,9 @@
 	display: flex;
 	height: 24px;
 	margin-bottom: 12px;
+	padding: 2px 6px;
 	font-weight: 500;
 	color: #000;
-	padding: 2px 6px;
 	cursor: pointer;
 	border-radius: 8px;
 

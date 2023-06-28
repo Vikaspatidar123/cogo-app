@@ -19,6 +19,7 @@ function Layout({
 	disabledProps = false,
 	formValues,
 	sop = false,
+	register,
 }) {
 	return (
 		<div className={styles.form_fields}>
@@ -113,6 +114,7 @@ function Layout({
 							<Item
 								{...controlItem}
 								control={control}
+								register={register}
 								error={errors[controlItem.name]}
 								value={controlItem.value}
 								id_prefix={id_prefix}

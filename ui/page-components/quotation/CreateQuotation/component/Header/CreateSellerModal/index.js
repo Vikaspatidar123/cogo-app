@@ -11,7 +11,7 @@ import { useForm } from '@/packages/forms';
 import getField from '@/packages/forms/Controlled';
 
 function CreateSellerModal({ openModal, setOpenModal, createSellerAddres, getSellerAddress, loading }) {
-	const { control, handleSubmit, watch, reset, formState: { errors } } = useForm();
+	const { control, handleSubmit, watch, reset, formState: { errors }, register } = useForm();
 
 	const {	billingDetailControl, pocDetailControl, resetSeller } = createSellerControl();
 
@@ -46,7 +46,8 @@ function CreateSellerModal({ openModal, setOpenModal, createSellerAddres, getSel
 						<RenderTitle title={title} />
 						<div className={styles.row}>
 							{(fields || []).map((field) => {
-								const Element = getField(field?.type);
+								const Element = getField(field.type);
+								const isMobileNo = field.type === 'mobile_number';
 								return (
 									<>
 										{(field?.name !== 'sez_proof') && (
@@ -63,6 +64,8 @@ function CreateSellerModal({ openModal, setOpenModal, createSellerAddres, getSel
 												<Element
 													{...field}
 													control={control}
+													mobileSelectRef={isMobileNo ? register(field.name, field.rules).ref
+														: undefined}
 												/>
 											</div>
 										)}

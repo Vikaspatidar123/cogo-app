@@ -17,7 +17,7 @@ function AddContactModal({
 		fetchContactList,
 		activeTab,
 	});
-	const { control, formState: { errors }, handleSubmit } = formHook || {};
+	const { control, formState: { errors }, handleSubmit, register } = formHook || {};
 
 	const onSubmit = (data) => {
 		createContact({ data, src: 'contactModal' });
@@ -32,12 +32,18 @@ function AddContactModal({
 			<div className={styles.body}>
 				<div className={styles.row}>
 					{addContactControls.map((config) => {
-						const { name, type, label } = config;
+						const { name, type, label, rules } = config;
 						const Element = getField(type);
+						const isMobileNo = name === 'mobile_no';
+
 						return (
 							<div key={name} className={cl`${styles.col} ${styles?.[name]}`}>
 								<p className={styles.label}>{label}</p>
-								<Element {...config} control={control} />
+								<Element
+									{...config}
+									control={control}
+									mobileSelectRef={isMobileNo ? register('mobile_no', rules).ref : undefined}
+								/>
 								<p className={styles.errors}>{errors?.[name]?.message || errors?.[name]?.type}</p>
 							</div>
 						);

@@ -32,7 +32,11 @@ function Charges(props, ref) {
 
 	const { prevCurrency, currCurrency } = storeCurrency;
 	const { getExchangeRate } = useCurrencyConversion({});
-	const formHook = useForm();
+	const formHook = useForm({
+		defaultValues: {
+			incoterm: 'EXW',
+		},
+	});
 	const { control, watch, setValue, handleSubmit, formState:{ errors } } = formHook;
 
 	const watchCharges = watch();

@@ -139,22 +139,24 @@ function BasicCharge(
 				/>
 			)}
 
-			<ValidateProductModal
-				isUserSubscribed={isUserSubscribed}
-				validateProduct={validateProduct}
-				setValidateProduct={setValidateProduct}
-				paymentMode={paymentMode}
-				prioritySequence={prioritySequence}
-				quotaValue={quotaValue}
-				isQuotaLeft={isQuotaLeft}
-				quoteRes={quoteRes}
-				editData={editData}
-				getDraftData={getDraftData}
-				getDraftLoading={getDraftLoading}
-				setTransactionModal={setTransactionModal}
-				postTradeEngine={postTradeEngine}
-				createQuoteHook={createQuoteHook}
-			/>
+			{validateProduct &&	(
+				<ValidateProductModal
+					isUserSubscribed={isUserSubscribed}
+					validateProduct={validateProduct}
+					setValidateProduct={setValidateProduct}
+					paymentMode={paymentMode}
+					prioritySequence={prioritySequence}
+					quotaValue={quotaValue}
+					isQuotaLeft={isQuotaLeft}
+					quoteRes={quoteRes}
+					editData={editData}
+					getDraftData={getDraftData}
+					getDraftLoading={getDraftLoading}
+					setTransactionModal={setTransactionModal}
+					postTradeEngine={postTradeEngine}
+					createQuoteHook={createQuoteHook}
+				/>
+			)}
 			{calculateCharge && (
 				<FreightCharges
 					calculateCharge={calculateCharge}

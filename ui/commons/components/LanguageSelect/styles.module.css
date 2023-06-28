@@ -11,21 +11,21 @@
 	:global {
 		.tippy-box {
 			padding: 0;
-			background-color: #ffffff;
+			background-color: #fff;
 		}
 
 		.tippy-content {
 			padding: 0;
 		}
-
 	}
 }
 
 .selected_lang {
 	font-size: 15px;
 	font-weight: 700;
-	color: #333;
 	margin-left: 4px;
+	color: #333;
+
 }
 
 .globe_container {

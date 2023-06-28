@@ -1,6 +1,6 @@
 .main {
 	min-width: 160px;
-	padding: 12px 8px 0 8px;
+	padding: 12px 8px 0;
 
 	a {
 		text-decoration: none;
@@ -26,8 +26,8 @@
 	font-weight: 500;
 	color: #000;
 	cursor: pointer;
-	border-radius: 8px;
 	padding: 2px 6px;
+	border-radius: 8px;
 
 	&:hover {
 		color: #ee3425;
@@ -45,7 +45,6 @@
 	&.active_fixed {
 		color: #ee3425;
 	}
-
 }
 
 .country_content {
@@ -53,4 +52,3 @@
 	align-items: center;
 	margin-left: 4px;
 }
-

@@ -1,10 +1,10 @@
 import { Popover } from '@cogoport/components';
-import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 
 import Languages from './Languages';
 import styles from './styles.module.css';
 
+import { useRouter } from '@/packages/next';
 import LANGUAGE_MAPPING from '@/ui/commons/constants/languageMapping';
 
 function LanguageSelect() {

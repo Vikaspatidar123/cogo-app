@@ -14,7 +14,7 @@ const fclControls = [
 				defaultOptions    : true,
 				params            : {
 					filters  : { type: ['seaport', 'city'] },
-					includes : { continent_id: true },
+					includes : { continent_id: true, port_id: true },
 				},
 				grouped      : ['city', 'country'],
 				type         : 'async_select',
@@ -32,7 +32,7 @@ const fclControls = [
 				includedInOptions : false,
 				params            : {
 					filters  : { type: ['seaport', 'city'] },
-					includes : { continent_id: true },
+					includes : { continent_id: true, port_id: true },
 				},
 				grouped      : ['city', 'country'],
 				type         : 'async_select',

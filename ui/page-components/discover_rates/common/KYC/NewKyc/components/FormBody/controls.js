@@ -60,7 +60,7 @@ export const controls = (countryCode, isOpen, setIsOpen, rest) => {
 	const mobileSection = rest.showMobile ? [{
 		name        : 'mobile',
 		showLabel   : false,
-		type        : 'mobile-number-select',
+		type        : 'mobile_number',
 		codeKey     : 'mobile_country_code',
 		numberKey   : 'mobile_number',
 		span        : 8,

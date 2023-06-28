@@ -7,7 +7,7 @@ import Tab from './Tab';
 
 import { useRouter } from '@/packages/next';
 
-function TabsSection({ isMobile }) {
+function TabsSection() {
 	const [css, setCss] = useState('');
 
 	const { push } = useRouter();
@@ -19,10 +19,9 @@ function TabsSection({ isMobile }) {
 	return (
 		<div className={styles.wrapper}>
 			<div className={styles.heading}>Select Type of Insurance: </div>
-			<div className={isMobile ? styles.button_wrapper_mobile : styles.button_wrapper}>
+			<div className={styles.button_wrapper}>
 				{['ocean', 'air', 'road'].map((tab) => (
 					<Tab
-						isMobile={isMobile}
 						clickHandler={clickHandler}
 						css={css}
 						tab={tab}

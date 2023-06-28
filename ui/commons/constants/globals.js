@@ -216,6 +216,7 @@ const GLOBAL_CONSTANTS = {
 		unsubscription_plane  : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/page_plane.png',
 		insurance_empty_image : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/Insurance.png',
 		loader                : 'https://cdn.cogoport.io/cms-prod/cogo_admin/vault/original/spinner.svg',
+		document_icon         : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/document_icon.png',
 	},
 	onboarding_specialist: {
 		name         : 'Kanira Patel',
@@ -225,6 +226,10 @@ const GLOBAL_CONSTANTS = {
 	firebase_paths: {
 		whatsapp      : '/customer_chat/whatsapp/rooms',
 		platform_chat : '/customer_chat/platform_chat/rooms',
+	},
+	regex: {
+		ends_with_star_char        : /\*[^0-9a-zA-Z]/,
+		ends_with_star_space_regex : /\* /,
 	},
 };
 

@@ -1,0 +1,20 @@
+.body_container {
+    padding: 10px 20px 0 20px;
+	overflow-y: scroll;
+	overflow-x: hidden;
+	transition: height 0.3s;
+	height: 78%;
+}
+
+.loader {
+    display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	height: fit-content;
+	margin-bottom: 10px;
+	img {
+		width: 20px;
+		height: 20px;
+	}
+}

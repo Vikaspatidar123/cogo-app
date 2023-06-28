@@ -6,7 +6,7 @@ import useGetMessages from '../hooks/useGetMessages';
 import useSendFirebaseMessage from '../hooks/useSendFirebaseMessage';
 
 import EachMessage from './EachMessage';
-import { BodyContainer, Loader } from './styles';
+import styles from './styles.module.css';
 
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
@@ -41,15 +41,15 @@ function ChatBotBody({ firestore, roomId, sendMessage, sendMessageLoading }) {
 
 	return (
 		<>
-			<BodyContainer ref={messagesRef} onScroll={handleScroll}>
+			<div className={styles.body_container} ref={messagesRef} onScroll={handleScroll}>
 				{!isLastPageOfMessages && (
-					<Loader>
+					<div className={styles.loader}>
 						{loading ? (
 							<img src={GLOBAL_CONSTANTS.image_url.loader} alt="load" />
 						) : (
 							<IcMRefresh cursor="pointer" onClick={getPrevData} />
 						)}
-					</Loader>
+					</div>
 				)}
 				{sortedMessageData.map((eachMessage) => (
 					<EachMessage
@@ -60,7 +60,7 @@ function ChatBotBody({ firestore, roomId, sendMessage, sendMessageLoading }) {
 					/>
 				))}
 				<div ref={messagesEnd} />
-			</BodyContainer>
+			</div>
 			<FooterChat
 				sendMessageLoading={sendMessageLoading}
 				sendFirebaseMessage={sendFirebaseMessage}

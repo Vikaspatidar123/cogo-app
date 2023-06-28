@@ -1,0 +1,16 @@
+.user_chat {
+	padding: 10px;
+	border-radius: 6px;
+	color: #4f4f4f;
+	width: fit-content;
+	max-width: 70%;
+	background-color: #fff;
+	box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+.time_stamp {
+	font-size: 8px;
+	text-align: right;
+	width: 100%;
+	margin-top: 7px;
+}

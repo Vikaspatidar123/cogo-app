@@ -14,7 +14,7 @@ function Languages() {
 
 	return (
 		<div className={`${styles.main}`}>
-			{Object.values(LANGUAGE_MAPPING || []).map((lang) => {
+			{Object.values(LANGUAGE_MAPPING).map((lang) => {
 				const { language, key, icon: Icon } = lang || {};
 				return (
 					<Link

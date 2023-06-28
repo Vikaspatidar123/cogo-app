@@ -3,7 +3,6 @@ import React from 'react';
 import styles from './styles.module.css';
 
 function PopBody({ emojisList, updateMessage, setOnClicked = () => {} }) {
-	console.log('🚀 ~ file: index.js:6 ~ PopBody ~ emojisList:', emojisList);
 	return (
 		<div className={styles.container}>
 			{(Object.entries(emojisList) || [])

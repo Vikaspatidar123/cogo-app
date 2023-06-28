@@ -1,4 +1,5 @@
 import { Popover } from '@cogoport/components';
+import { isEmpty } from '@cogoport/utils';
 import { useEffect, useState } from 'react';
 
 import Languages from './Languages';
@@ -22,7 +23,7 @@ function LanguageSelect() {
 		setShowPopover(false);
 	}, [locale]);
 
-	if (Object.keys(localeDetails).length === 0) {
+	if (isEmpty(localeDetails)) {
 		return null;
 	}
 

@@ -21,7 +21,6 @@ const useValidateModal = ({
 	quoteRes,
 	currency,
 	getExchangeRate,
-	// headerResponse,
 	productLineItemDetails,
 	refetchDraft,
 	createHeader,
@@ -36,7 +35,6 @@ const useValidateModal = ({
 	});
 	const [createQuoteRes, setCreateQuoteRes] = useState();
 	const productIdArr = Object.keys(servicesSelected);
-	// const { isScreening = false, tradeEngineInputId = '' } = headerResponse;
 
 	const lineItemLength = productLineItemDetails.length;
 

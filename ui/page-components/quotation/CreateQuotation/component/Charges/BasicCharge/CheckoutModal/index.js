@@ -110,6 +110,7 @@ function CheckoutModal({
 				<Modal.Footer>
 					<Button
 						loading={loading}
+						type="button"
 						onClick={submitHandler}
 					>
 						{renderBtn()}

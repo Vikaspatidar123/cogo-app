@@ -94,7 +94,7 @@ function ValidateProductModal(props) {
 	});
 
 	useEffect(() => {
-		if (productInfoArr.length > 0 && isEmpty(productLineItemDetails)) {
+		if (!isEmpty(productInfoArr) && isEmpty(productLineItemDetails)) {
 			productInfoArr.forEach(({ productId }) => {
 				setServiceSelected((prev) => ({
 					...prev,

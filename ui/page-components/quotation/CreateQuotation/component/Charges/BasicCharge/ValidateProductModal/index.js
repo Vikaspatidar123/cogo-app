@@ -45,7 +45,7 @@ function ValidateProductModal(props) {
 	const { getPortDetails, locationLoading } = useListLocation();
 	const {	loading, serviceData } = useServiceRates({ prioritySequence, setValidateProduct });
 
-	const { headerResponse = {}, lineItem: productLineItemDetails = [] } = getDraftData;
+	const { headerResponse = {}, lineItem: productLineItemDetails = [] } = getDraftData || {};
 
 	const {
 		currency, productInfoArr = [],

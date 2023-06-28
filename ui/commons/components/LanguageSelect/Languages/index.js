@@ -25,16 +25,14 @@ function Languages() {
 						}}
 						locale={key}
 					>
-						{language && (
-							<div
-								className={cl`${styles.item} ${
-									locale === key ? styles.active : ''
-								} ${locale === key ? styles.active_fixed : styles.item}`}
-							>
-								<Icon width={20} height={20} />
-								<div className={styles.country_content}>{language}</div>
-							</div>
-						)}
+						<div
+							className={cl`${styles.item} ${
+								locale === key ? styles.active : ''
+							} ${locale === key ? styles.active_fixed : styles.item}`}
+						>
+							<Icon width={20} height={20} />
+							<div className={styles.country_content}>{language}</div>
+						</div>
 					</Link>
 				);
 			})}

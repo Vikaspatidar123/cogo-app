@@ -34,7 +34,7 @@ const useSendMessage = ({
 					type              : 'platform_chat',
 					message_metadata  : messageMetaData,
 					service           : 'user',
-					service_id        : process.env.COGOVERSE_ID,
+					service_id        : process.env.NEXT_PUBLIC_COGOVERSE_ID,
 					conversation_type : conversation_type || 'inward',
 					source            : 'CogoOne:AppPlatform',
 					...extraPayload,

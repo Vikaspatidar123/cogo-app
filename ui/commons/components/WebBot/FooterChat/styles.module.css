@@ -1,13 +1,14 @@
 .show_file {
     text-align: center;
 	width: 100%;
-	height: 8%;
+	height: 15%;
 	transition: height 0.3s;
 	overflow: hidden;
 	background-color: #fff;
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	margin-top: -40px;
 }
 
 .hide_file {
@@ -37,6 +38,7 @@
 	padding: 3px 4px;
 	width: fit-content;
 	max-width: 90%;
+	margin-bottom: 30px
 }
 
 .file_name {
@@ -59,7 +61,7 @@
 
 .footer_container {
     display: flex;
-	align-items: flex-end;
+	align-items: center;
 	justify-content: space-between;
 	padding: 5px 5px 0;
 	border-radius: 0 0 6px 6px;
@@ -68,6 +70,48 @@
 	bottom: 0;
 	background-color: #fff;
 	box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+	width:100%;
+
+	:global {
+		.ui_GuLMk  {
+			width:10% !important;
+		}
+		.ui_button_container  {
+			background-color: white;
+			color: #828282;;
+			margin-bottom: 5px;
+			width:30px;
+			div {
+				div {
+					display: none;
+				}
+				svg {
+					width: 20px;
+					height: 20px;
+				}
+			}
+		}
+		.ui_button_container:hover  {
+			background-color: white;
+			color: grey;
+			margin-bottom: 5px;
+			width:30px;
+			div {
+				div {
+					display: none;
+				}
+				svg {
+					width: 20px;
+					height: 20px;
+				}
+			}
+		}
+		.ui_upload_container {
+			div:first-child {
+				width:20%
+			}
+		}
+	}
 }
 
 .uploaded_icon {
@@ -88,7 +132,7 @@
 }
 
 .text_wrapper {
-    width: 80%;
+    width: 90%;
 	height: 37px;
 	margin: 0 6px;
 	overflow-x: wrap;
@@ -100,4 +144,15 @@
 	width: 25px;
     height: 25px;
     margin-bottom: 8px; 
+}
+
+.send_icon {
+}
+
+.popover {
+	width:5%;
+}
+
+.send {
+	width:5%;
 }

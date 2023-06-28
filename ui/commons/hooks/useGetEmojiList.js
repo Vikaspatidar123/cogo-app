@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 
 import { useRequest } from '@/packages/request';
 
@@ -13,17 +13,17 @@ const useGetEmojiList = () => {
 		},
 	);
 
-	const emojiListFetch = async () => {
+	const emojiListFetch = useCallback(async () => {
 		try {
 			await trigger();
 		} catch (error) {
 			// console.log(error);
 		}
-	};
+	}, [trigger]);
 
 	useEffect(() => {
 		emojiListFetch();
-	});
+	}, [emojiListFetch]);
 
 	return {
 		emojisList,

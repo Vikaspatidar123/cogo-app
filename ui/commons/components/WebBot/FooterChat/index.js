@@ -1,4 +1,4 @@
-import { Popover, Textarea, Upload } from '@cogoport/components';
+import { Popover, Textarea } from '@cogoport/components';
 import { IcMAttach, IcMCross, IcMHappy, IcMSend } from '@cogoport/icons-react';
 import { isEmpty } from '@cogoport/utils';
 import React, { useState } from 'react';
@@ -9,6 +9,7 @@ import getFileAttributes from '../../../utils/getFileAttributes';
 import EmojisBody from './EmojisBody';
 import styles from './styles.module.css';
 
+import { UploadController, useForm } from '@/packages/forms';
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
 const getUploadIcon = () => <IcMAttach className={styles.uploaded_icon} />;
@@ -20,12 +21,17 @@ function FooterChat({ sendMessageLoading, sendFirebaseMessage, toggleHeight }) {
 		uploadingFile : false,
 	});
 
+	const { control } = useForm();
+
 	const handleChange = (obj) => {
-		if (obj?.success) {
+		if (!isEmpty(obj)) {
 			setMessageData((p) => ({
 				...p,
 				uploadingFile : false,
-				file          : obj,
+				file          : {
+					name : obj?.split('/')?.slice(-1)?.join(''),
+					url  : obj,
+				},
 			}));
 			return;
 		}
@@ -81,6 +87,7 @@ function FooterChat({ sendMessageLoading, sendFirebaseMessage, toggleHeight }) {
 		fileName : file?.name,
 		finalUrl : file?.url,
 	});
+	console.log('🚀 ~ file: index.js:90 ~ FooterChat ~ file:', file, fileIcon);
 
 	return (
 		<>
@@ -109,14 +116,17 @@ function FooterChat({ sendMessageLoading, sendFirebaseMessage, toggleHeight }) {
 				{!isEmpty(file) || uploadingFile ? (
 					<IcMAttach className={styles.uploaded_icon} />
 				) : (
-					<Upload
+					<UploadController
 						showProgress={false}
 						hideUploadedList
 						showIconAlways
 						onProgress={handleProgress}
-						onChange={handleChange}
+						handleChange={(e) => handleChange(e)}
 						uploadIcon={getUploadIcon}
 						drag
+						name="attachment_uploader"
+						control={control}
+						type="button"
 					/>
 				)}
 				<Popover
@@ -141,22 +151,27 @@ function FooterChat({ sendMessageLoading, sendFirebaseMessage, toggleHeight }) {
 						placeholder="Type here ..."
 						onChange={(e) => setMessageData((p) => ({
 							...p,
-							message: e?.target?.value || '',
+							message: e || '',
 						}))}
 						onKeyPress={(e) => handleKeyPress(e)}
 						value={message}
-						rows="2"
+						rows="1"
 						cols="50"
 					/>
 				</div>
-				{!sendMessageLoading ? (
-					<IcMSend
-						onClick={handleSend}
-						disable={!(message || !isEmpty(file))}
-					/>
-				) : (
-					<img src={GLOBAL_CONSTANTS.image_url.loader} alt="loading" className={styles.loading} />
-				)}
+				<div className={styles.send}>
+					{!sendMessageLoading ? (
+						<IcMSend
+							onClick={handleSend}
+							disable={!(message || !isEmpty(file))}
+							width={15}
+							height={15}
+							className={styles.send_icon}
+						/>
+					) : (
+						<img src={GLOBAL_CONSTANTS.image_url.loader} alt="loading" className={styles.loading} />
+					)}
+				</div>
 			</div>
 		</>
 	);

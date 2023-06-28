@@ -13,7 +13,7 @@ import useFetchRoom from './hooks/useFetchRoom';
 import styles from './styles.module.css';
 
 import { useSelector } from '@/packages/store';
-import BotIntelligence from '@/ui/commons/components/BotIntelligence';
+// import BotIntelligence from '@/ui/commons/components/BotIntelligence';
 import WebBot from '@/ui/commons/components/WebBot';
 
 function CogoBot() {
@@ -115,10 +115,10 @@ function CogoBot() {
 	return (
 		<Draggable onStop={onStop} onDrag={onDrag} handle="#draggable_widget">
 			<div className={styles.bot_container}>
-				<BotIntelligence
+				{/* <BotIntelligence
 					showIntelligence={showIntelligence}
 					setShowIntelligence={setShowIntelligence}
-				/>
+				/> */}
 				<WebBot
 					name={userName}
 					roomId={roomId}

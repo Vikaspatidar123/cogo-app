@@ -53,7 +53,7 @@ const useFetchRoom = ({
 
 	const preferredMobileNo = whatsapp_no || mobile_no;
 
-	const { business_name: organization_name = '', id: orgId = '' } =		organization || {};
+	const { business_name: organization_name = '', id: orgId = '' } = organization || {};
 
 	const getRoomId = async ({ tokenQuery, roomsQuery }) => {
 		const existingUserRoom = await getDocs(roomsQuery);

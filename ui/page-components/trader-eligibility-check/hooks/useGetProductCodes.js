@@ -1,5 +1,3 @@
-import { Toast } from '@cogoport/components';
-
 import usePayment from './usePayment';
 
 import { useRequestBf } from '@/packages/request';
@@ -30,7 +28,7 @@ const useGetProductCode = () => {
 				});
 			}
 		} catch (error) {
-			Toast.error(error?.error?.message);
+			console.log(error);
 		}
 	};
 

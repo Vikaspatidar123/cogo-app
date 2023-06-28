@@ -1,4 +1,3 @@
-import { Toast } from '@cogoport/components';
 import { useState, useEffect } from 'react';
 
 import { useRequestBf } from '@/packages/request';
@@ -24,7 +23,7 @@ const useProductCategory = ({ labeledValue }) => {
 			});
 			setCategoryViewData(resp?.data);
 		} catch (error) {
-			Toast.error(error?.message);
+			console.log(error?.message);
 		}
 	};
 

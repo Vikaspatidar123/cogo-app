@@ -34,7 +34,6 @@ function ValueDetails({
 	paymentStatus = '',
 	createInsuranceLoading = false,
 	policyIdDownload = '',
-	isMobile = false,
 	draftResponse = () => {},
 	draftLoading = false,
 	policyid = '',
@@ -46,6 +45,7 @@ function ValueDetails({
 	showModal = {},
 	postInsuranceResponse = {},
 }) {
+	const [isMobile, setIsMobile] = useState(false);
 	const [checked, setChecked] = useState(false);
 	const [termsconditionshow, setTermsConditionsShow] = useState(false);
 	const [showPreviewModal, setShowPreviewModal] = useState(false);
@@ -145,12 +145,18 @@ function ValueDetails({
 		draftResponse(draftPayload, policyid);
 	};
 
+	useEffect(() => {
+		if (typeof window !== 'undefined') {
+			setIsMobile(window.innerWidth < 760);
+		}
+	}, []);
+
 	return (
 		<div>
 			<div className={styles.container}>
 				<div className={styles.yellow_line} />
 				<div className={styles.padded_div}>
-					<div className={isMobile ? styles.heading_wrapper_mobile : styles.heading_wrapper}>
+					<div className={styles.heading_wrapper}>
 						<div className={styles.flex_2}>
 							<div className={styles.heading}>Consignment Details</div>
 						</div>
@@ -199,12 +205,21 @@ function ValueDetails({
 									</div>
 								</div>
 							</div>
+							{!isMobile && (
+								<PricingSummary
+									ratesResponse={ratesResponse}
+									formDetails={formDetails}
+									ratesLoading={ratesLoading}
+								/>
+							)}
+						</div>
+						{isMobile && (
 							<PricingSummary
 								ratesResponse={ratesResponse}
 								formDetails={formDetails}
 								ratesLoading={ratesLoading}
 							/>
-						</div>
+						)}
 						<div className={styles.documents_row}>
 							<DocumentsRequired
 								fields={fields}
@@ -221,7 +236,6 @@ function ValueDetails({
 						agree={agree}
 						setTermsConditionsShow={setTermsConditionsShow}
 						ratesLoading={ratesLoading}
-						isMobile={isMobile}
 						draftLoading={draftLoading}
 						setAgree={setAgree}
 						checked={checked}

@@ -1,6 +1,6 @@
-import { IcCCountryIndia, IcCCountryVietnam } from '@cogoport/icons-react';
+const { IcCCountryIndia, IcCCountryVietnam } = require('@cogoport/icons-react');
 
-const LANGUAGE_MAPPING = {
+module.exports = {
 	'en-IN': {
 		key      : 'en-IN',
 		label    : 'EN',
@@ -15,5 +15,3 @@ const LANGUAGE_MAPPING = {
 		icon     : IcCCountryVietnam,
 	},
 };
-
-export default LANGUAGE_MAPPING;

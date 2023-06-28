@@ -1,9 +1,11 @@
 const path = require('path');
 
+const LANGUAGE_MAPPING = require('./ui/commons/constants/languageMapping');
+
 module.exports = {
 	i18n: {
 		defaultLocale   : 'default',
-		locales         : ['default', 'en-IN', 'vi-VN'],
+		locales         : [...Object.keys(LANGUAGE_MAPPING), 'default'],
 		localeDetection : false,
 	},
 	// eslint-disable-next-line valid-typeof

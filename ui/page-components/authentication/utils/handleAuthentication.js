@@ -108,11 +108,11 @@ const handleAuthentication = async ({
 		const branch_id = current_org?.branches?.[0]?.id;
 		asPrefix = `/${actual_org_id}/${branch_id}/dashboard`;
 		findurl({
-			item   : user_data,
+			item: user_data,
 			asPrefix,
 			isServer,
 			res,
-			org_id : actual_org_id,
+			org_id: actual_org_id,
 			branch_id,
 		});
 
@@ -137,18 +137,18 @@ const handleAuthentication = async ({
 		asPrefix = `/${orgId}/${orgBranchId}/dashboard`;
 		if (isEmpty(current_organization) && !allStrings?.[3]) {
 			findurl({
-				item      : user_data,
+				item: user_data,
 				asPrefix,
 				isServer,
 				res,
-				org_id    : orgId,
-				branch_id : orgBranchId,
+				org_id: orgId,
+				branch_id: orgBranchId,
 			});
 			return {
 				asPrefix,
 				query: {
-					org_id    : orgId,
-					branch_id : orgBranchId,
+					org_id: orgId,
+					branch_id: orgBranchId,
 				},
 			};
 		}
@@ -156,7 +156,7 @@ const handleAuthentication = async ({
 		return {
 			asPrefix,
 			query:
-        asPathArr.length >= 5 ? { org_id: asPathArr[2], branch_id: asPathArr[3] } : {},
+				asPathArr.length >= 5 ? { org_id: asPathArr[2], branch_id: asPathArr[3] } : {},
 		};
 	}
 	const { org_id, branch_id } = query || {};
@@ -168,19 +168,19 @@ const handleAuthentication = async ({
 	if (isEmpty(current_organization) || asPath.includes('/select-account')) {
 		const newPath = `/${org?.id}/${orgBranchId}`;
 		findurl({
-			item      : user_data,
+			item: user_data,
 			asPrefix,
 			isServer,
 			res,
-			org_id    : org?.id,
-			branch_id : orgBranchId,
+			org_id: org?.id,
+			branch_id: orgBranchId,
 		});
 		return {
-			asPrefix : newPath,
-			query    : {
-				org_id       : org?.id,
-				account_type : org?.account_type,
-				branch_id    : orgBranchId,
+			asPrefix: newPath,
+			query: {
+				org_id: org?.id,
+				account_type: org?.account_type,
+				branch_id: orgBranchId,
 			},
 		};
 	}
@@ -198,8 +198,8 @@ const handleAuthentication = async ({
 			)?.branches;
 			current_organization = {
 				...getOrgResponse,
-				branches    : actualBranches || getOrgResponse.branches,
-				allBranches : getOrgResponse.branches,
+				branches: actualBranches || getOrgResponse.branches,
+				allBranches: getOrgResponse.branches,
 			};
 		}
 	}
@@ -212,10 +212,10 @@ const handleAuthentication = async ({
 		setProfileStoreState({
 			asPrefix,
 			defaultRoute,
-			organization_set        : !isEmpty(current_organization),
-			organization            : current_organization,
-			branch                  : current_branch,
-			authorizationparameters : getAuthParam(
+			organization_set: !isEmpty(current_organization),
+			organization: current_organization,
+			branch: current_branch,
+			authorizationparameters: getAuthParam(
 				user_data?.permissions_navigations,
 				routeConfig,
 				pathname,

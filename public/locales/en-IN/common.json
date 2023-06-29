@@ -3,7 +3,16 @@
     "text_2":"SignUp",
     "text_3":"Please enter your credentials to login",
     "email_groupButton": "Email",
-    "mobile_groupButton": "Mobile"
+    "mobile_groupButton": "Mobile",
+    "layouts_app_header_navigation_dashboard_label":"Dashboard",
+    "layouts_app_header_navigation_discoverRates_label": "Discover Rates",
+    "layouts_app_header_navigation_shipments_label": "Shipments",
+    "layouts_app_header_navigation_tools_label": "Tools",
+    "layouts_app_header_navigation_tools_options_freightRateTrend_label": "Freight Rate Trend",
+    "layouts_app_header_navigation_tools_options_airTracking_label": "Air Tracking",
+	"layouts_app_header_navigation_tools_options_oceanTracking_label": "Ocean Tracking",
+	"layouts_app_header_navigation_tools_options_airSchedules_label": "Air Schedules",
+	"layouts_app_header_navigation_tools_options_oceanSchedules_label": "Ocean Schedules",
 
 
 

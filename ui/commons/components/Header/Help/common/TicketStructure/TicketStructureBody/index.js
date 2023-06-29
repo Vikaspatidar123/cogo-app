@@ -9,6 +9,9 @@ import styles from './styles.module.css';
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 import formatDate from '@/ui/commons/utils/formatDate';
 
+const statusLabel = statusLabelTransformation();
+const actionButton = actionButtonKeys();
+
 function TicketStructureBody({
 	item = {},
 	updateTicketActivity = () => {},
@@ -23,10 +26,7 @@ function TicketStructureBody({
 		TicketActivity: ticketActivity = {},
 		Type: type = '',
 		ActivityCount: activityCount = 0,
-	} = item;
-
-	const statusLabel = statusLabelTransformation();
-	const actionButton = actionButtonKeys();
+	} = item || {};
 
 	const { color: textColor = '', label = '' } = statusLabel?.[getTicketStatus(status)] || {};
 

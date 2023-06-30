@@ -14,6 +14,7 @@ const MAPPING = {
 
 const getGeoConstants = () => {
 	const parent_entity_id = getCookie('parent_entity_id');
+	console.log('🚀 ~ file: index.js:17 ~ getGeoConstants ~ parent_entity_id:', parent_entity_id);
 
 	return MAPPING[
 		parent_entity_id in MAPPING ? parent_entity_id : country_entity_ids.IN

@@ -36,6 +36,7 @@ function MyApp({ Component, pageProps, store, generalData }) {
 	}
 
 	// const geo = getGeoConstants();
+	// console.log('🚀 ~ file: index.js:39 ~ MyApp ~ geo:', geo);
 
 	const VIETNAM_COUNTRY_CODE = getCountryDetails({
 		country_id: GLOBAL_CONSTANTS.country_ids.VN,

@@ -21,7 +21,7 @@ function CogoBot() {
 
 	const { general, profile } = useSelector((state) => state);
 
-	const [showIntelligence, setShowIntelligence] = useState(false);
+	// const [showIntelligence, setShowIntelligence] = useState(false);
 	const [cogobotLoading, setCogobotLoading] = useState(true);
 	const [cogoBotState, setCogoBotState] = useState({
 		isOpen          : false,
@@ -79,7 +79,7 @@ function CogoBot() {
 		isOpen,
 		roomId,
 		sendMessage,
-		setShowIntelligence,
+		// setShowIntelligence,
 		setCogobotLoading,
 	});
 

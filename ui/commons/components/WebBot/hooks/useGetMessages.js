@@ -7,7 +7,7 @@ import {
 	getDocs,
 	collection,
 } from 'firebase/firestore';
-import { useState, useEffect, useRef, useCallback } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
@@ -29,7 +29,7 @@ const useGetMessages = ({ firestore, roomId, scrollToBottom }) => {
 		`${PLATFORM_CHAT_PATH}/${roomId}/messages`,
 	);
 
-	const mountSnapShot = useCallback(() => {
+	const mountSnapShot = () => {
 		const chatCollectionQuery = query(
 			messagesCollection,
 			where('conversation_type', 'in', ['sent', 'received']),
@@ -58,7 +58,7 @@ const useGetMessages = ({ firestore, roomId, scrollToBottom }) => {
 				setTimeout(scrollToBottom, 100);
 			},
 		);
-	}, [messagesCollection, scrollToBottom]);
+	};
 
 	const { messagesHash = {}, islastPage: isLastPageOfMessages } =		messagesState || {};
 
@@ -108,7 +108,8 @@ const useGetMessages = ({ firestore, roomId, scrollToBottom }) => {
 		return () => {
 			latestMessages?.current?.();
 		};
-	});
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
 
 	const sortedMessageData =		Object.keys(messagesHash || {})
 		.sort((a, b) => Number(a) - Number(b))

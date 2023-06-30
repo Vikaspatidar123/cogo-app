@@ -23,7 +23,7 @@ const useFetchRoom = ({
 	setCogoBotState,
 	roomId,
 	sendMessage,
-	setShowIntelligence,
+	// setShowIntelligence,
 	setCogobotLoading,
 	isOpen,
 }) => {
@@ -132,7 +132,7 @@ const useFetchRoom = ({
 	};
 
 	const toggleUserChat = async () => {
-		setShowIntelligence(false);
+		// setShowIntelligence(false);
 		if (!isOpen) {
 			if (!roomId) {
 				await createRoom();

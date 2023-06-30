@@ -33,9 +33,8 @@ function FooterChat({ sendMessageLoading, sendFirebaseMessage, toggleHeight }) {
 					url  : obj,
 				},
 			}));
-			return;
+			toggleHeight({ isFileDivPresent: true });
 		}
-		toggleHeight({ isFileDivPresent: false });
 	};
 
 	const handleProgress = (obj) => {
@@ -44,7 +43,7 @@ function FooterChat({ sendMessageLoading, sendFirebaseMessage, toggleHeight }) {
 				...p,
 				uploadingFile: true,
 			}));
-			toggleHeight({ isFileDivPresent: true });
+			toggleHeight({ isFileDivPresent: false });
 		}
 	};
 
@@ -119,7 +118,7 @@ function FooterChat({ sendMessageLoading, sendFirebaseMessage, toggleHeight }) {
 						showProgress={false}
 						hideUploadedList
 						showIconAlways
-						onProgress={handleProgress}
+						handleProgress={handleProgress}
 						handleChange={(e) => handleChange(e)}
 						uploadIcon={getUploadIcon}
 						drag
@@ -152,7 +151,9 @@ function FooterChat({ sendMessageLoading, sendFirebaseMessage, toggleHeight }) {
 							...p,
 							message: e || '',
 						}))}
-						onKeyPress={(e) => handleKeyPress(e)}
+						onKeyPress={(e) => {
+							handleKeyPress(e);
+						}}
 						value={message}
 						rows="1"
 						cols="50"

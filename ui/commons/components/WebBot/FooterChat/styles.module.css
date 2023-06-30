@@ -1,14 +1,13 @@
 .show_file {
     text-align: center;
 	width: 100%;
-	height: 15%;
+	height: 8%;
 	transition: height 0.3s;
 	overflow: hidden;
-	background-color: #fff;
+	background-color: rgb(255, 255, 255);
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	margin-top: -40px;
 }
 
 .hide_file {
@@ -38,7 +37,6 @@
 	padding: 3px 4px;
 	width: fit-content;
 	max-width: 90%;
-	margin-bottom: 30px
 }
 
 .file_name {
@@ -61,7 +59,7 @@
 
 .footer_container {
     display: flex;
-	align-items: center;
+	align-items: flex-end;
 	justify-content: space-between;
 	padding: 5px 5px 0;
 	border-radius: 0 0 6px 6px;
@@ -81,13 +79,14 @@
 			color: #828282;;
 			margin-bottom: 5px;
 			width:30px;
+			min-width: auto;
 			div {
 				div {
 					display: none;
 				}
 				svg {
-					width: 20px;
-					height: 20px;
+					width: 18px;
+					height: 18px;
 				}
 			}
 		}
@@ -96,13 +95,14 @@
 			color: grey;
 			margin-bottom: 5px;
 			width:30px;
+			min-width: auto;
 			div {
 				div {
 					display: none;
 				}
 				svg {
-					width: 20px;
-					height: 20px;
+					width: 18px;
+					height: 18px;
 				}
 			}
 		}
@@ -125,8 +125,7 @@
     display: flex;
 	width: 24px;
 	height: 22px;
-	margin-bottom: 10px;
-	margin-left: 4px;
+	margin-bottom: 11px;
 	cursor: pointer;
 	fill: #828282;
 }
@@ -156,4 +155,5 @@
 
 .send {
 	width:5%;
+	margin-bottom: 8px;
 }

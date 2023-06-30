@@ -47,7 +47,7 @@ function NavBar() {
 								)}
 								placement="bottom"
 								className={styles.tippy_box}
-								trigger="mouseenter click"
+								trigger="click"
 							>
 								<div className={`${isActive ? styles.active : styles.text}`}>
 									{item.title}

@@ -119,16 +119,7 @@ const usePayment = () => {
 				});
 			}
 		} catch (err) {
-			Toast.error(
-				'We could not initiate payment right now!!! Please try again later',
-				{
-					style: {
-						background : '#FFD9D4',
-						color      : '#333',
-					},
-					autoClose: 5000,
-				},
-			);
+			Toast.error('We could not initiate payment right now!!! Please try again later');
 		}
 	};
 	return {

@@ -1,4 +1,3 @@
-import { Toast } from '@cogoport/components';
 import { useCallback } from 'react';
 
 import { useRequestBf } from '@/packages/request';
@@ -18,11 +17,7 @@ const useGetTradeEngine = () => {
 				},
 			});
 		} catch (error) {
-			Toast.error(error?.error?.message, {
-				style: {
-					color: 'black',
-				},
-			});
+			console.log(error?.error?.message);
 		}
 	}, [trigger]);
 

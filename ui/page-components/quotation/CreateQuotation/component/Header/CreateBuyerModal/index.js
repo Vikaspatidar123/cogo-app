@@ -18,7 +18,7 @@ function CreateBuyerModal({ openModal, setOpenModal, loading, createBuyerAddress
 	const [stateInfo, setStateInfo] = useState({});
 	const [cityInfo, setCityInfo] = useState({});
 
-	const { control, handleSubmit, formState: { errors } } = useForm();
+	const { control, handleSubmit, formState: { errors }, register } = useForm();
 
 	const {	userDetailControl, addressDetailsControl } = createBuyerControls({ countryInfo, stateInfo });
 
@@ -70,6 +70,7 @@ function CreateBuyerModal({ openModal, setOpenModal, loading, createBuyerAddress
 						<div className={styles.row}>
 							{(fields || []).map((field) => {
 								const Element = getField(field?.type);
+								const isMobileNo = field?.type === 'mobile_number';
 								return (
 									<div
 										key={field?.name}
@@ -84,6 +85,8 @@ function CreateBuyerModal({ openModal, setOpenModal, loading, createBuyerAddress
 											{...field}
 											control={control}
 											handleChange={(data) => changeHandler(data, field?.name)}
+											mobileSelectRef={isMobileNo ? register(field.name, field.rules).ref
+												: undefined}
 										/>
 									</div>
 								);

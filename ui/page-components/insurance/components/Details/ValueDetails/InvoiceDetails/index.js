@@ -8,7 +8,7 @@ function InvoiceDetails({
 	fields = [],
 }) {
 	return (
-		<>
+		<div className={styles.row}>
 			{(fields || [])
 				.filter((items, index) => index > 1 && index < 4)
 				.map((item) => {
@@ -36,7 +36,7 @@ function InvoiceDetails({
 						</div>
 					);
 				})}
-		</>
+		</div>
 	);
 }
 

@@ -95,6 +95,16 @@ const useCreateRfqDraft = ({
 						formData?.search_rates?.[0]?.destination_port_id
 						|| formData?.search_rates?.[0]?.destination_airport_id,
 				}),
+				shipment_frequency: Number(
+					formData?.search_rates?.[0]?.shipping_frequency === 'other'
+						? formData?.search_rates?.[0]?.custom_shipping_frequency
+						: formData?.search_rates?.[0]?.shipping_frequency,
+				),
+				route_preference: formData?.search_rates?.[0]?.is_direct_shipment
+					? 'direct'
+					: 'transit',
+				mandatory_operator_ids:
+					formData?.search_rates?.[0]?.remarks?.[0]?.mandatory_shipping_lines,
 			};
 
 			const res = await trigger({

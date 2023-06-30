@@ -5,7 +5,16 @@ import React from 'react';
 
 import styles from './styles.module.css';
 
-import { CountrySpecificData } from '@/ui/commons/constants/CountrySpecificDetail';
+import { CountrySpecificData, getCountrySpecificData } from '@/ui/commons/constants/CountrySpecificDetail';
+import getGeoConstants from '@/ui/commons/constants/geo';
+
+const geo = getGeoConstants();
+const ECO_ZONE_LABEL = getCountrySpecificData({
+	country_id    : geo.country.id,
+	accessorType  : 'economic_zone',
+	accessor      : 'label',
+	isDefaultData : true,
+});
 
 function InvoicingPartyItem({
 	organization = {},
@@ -95,7 +104,7 @@ function InvoicingPartyItem({
 								<div className={styles.tag_div}>
 									<div className={styles.tag_container}>
 										<div className={cl`${styles.is_sez_verification_status} ${styles.tag}`}>
-											SEZ verification is
+											{`${ECO_ZONE_LABEL} verification is`}
 											{startCase(is_sez_verification_status)}
 										</div>
 									</div>

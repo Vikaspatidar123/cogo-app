@@ -12,12 +12,21 @@ import getGeoConstants from '@/ui/commons/constants/geo';
 import getValue from '@/ui/commons/utils/getValue';
 
 const geo = getGeoConstants();
-const REGISTRATION_LABEL = getCountrySpecificData({
+const geoObj = {
 	country_id    : geo.country.id,
-	accessorType  : 'registration_number',
 	accessor      : 'label',
 	isDefaultData : true,
+};
 
+const REGISTRATION_LABEL = getCountrySpecificData({
+	...geoObj,
+	accessorType: 'registration_number',
+
+});
+
+const ECO_ZONE_LABEl = getCountrySpecificData({
+	...geoObj,
+	accessorType: 'economic_zone',
 });
 
 function AddressCard({
@@ -116,7 +125,7 @@ function AddressCard({
 
 			<div className={styles.flex}>
 				<div className={styles.mobile_sub_container}>
-					<div className={styles.label_text}>Is your address SEZ?</div>
+					<div className={styles.label_text}>{`Is your address ${ECO_ZONE_LABEl}?`}</div>
 					<div className={styles.value_text}>
 						{address.is_sez ? 'Yes' : 'No'}
 					</div>

@@ -2,11 +2,20 @@ import { getCountrySpecificData, CountrySpecificData } from '@/ui/commons/consta
 import getGeoConstants from '@/ui/commons/constants/geo';
 
 const geo = getGeoConstants();
-const REGISTRATION_LABEL = getCountrySpecificData({
+
+const geoObj = {
 	country_id    : geo.country.id,
-	accessorType  : 'registration_number',
 	accessor      : 'label',
 	isDefaultData : true,
+};
+const REGISTRATION_LABEL = getCountrySpecificData({
+	...geoObj,
+	accessorType: 'registration_number',
+});
+
+const ECO_ZONE_LABEl = getCountrySpecificData({
+	...geoObj,
+	accessorType: 'economic_zone',
 });
 
 const getAddressMappingControls = ({ organizationCountryId }) => [
@@ -199,7 +208,7 @@ const getAddressMappingControls = ({ organizationCountryId }) => [
 		drag       : true,
 		height     : 45,
 		rules      : {
-			required: 'Sez proof is required',
+			required: `${ECO_ZONE_LABEl} proof is required`,
 		},
 		span   : 5.8,
 		showIn : ['billingAddress'],

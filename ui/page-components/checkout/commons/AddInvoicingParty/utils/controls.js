@@ -14,18 +14,25 @@ const geo = getGeoConstants();
 
 const geoObj = {
 	country_id    : geo.country.id,
-	accessorType  : 'registration_number',
 	isDefaultData : true,
 };
 
 const REGISTRATION_LABEL = getCountrySpecificData({
 	...geoObj,
-	accessor: 'label',
+	accessorType : 'registration_number',
+	accessor     : 'label',
 });
 
 const REGISTRATION_PATTERN = getCountrySpecificData({
 	...geoObj,
-	accessor: 'pattern',
+	accessorType : 'registration_number',
+	accessor     : 'pattern',
+});
+
+const ECO_ZONE_LABEl = getCountrySpecificData({
+	...geoObj,
+	accessorType : 'economic_zone',
+	accessor     : 'label',
 });
 
 function TradePartyInstructions() {
@@ -128,12 +135,12 @@ const billingAddressControls = [
 		name     : 'is_sez',
 		type     : 'checkbox',
 		span     : 12,
-		options  : [{ value: 'addressIsSez', label: 'Is Sez' }],
+		options  : [{ value: 'addressIsSez', label: `Is ${ECO_ZONE_LABEl}` }],
 		multiple : true,
 	},
 	{
 		name       : 'sez_proof',
-		label      : 'SEZ Proof',
+		label      : `${ECO_ZONE_LABEl} Proof`,
 		type       : 'file',
 		drag       : true,
 		span       : 12,

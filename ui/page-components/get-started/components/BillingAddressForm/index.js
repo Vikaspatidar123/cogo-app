@@ -117,7 +117,7 @@ function BillingAddress({ orgId, setInviteTeam }) {
 									<UploadController
 										control={control}
 										name="sez_proof"
-										rules={{ required: 'sez_proof is required.' }}
+										rules={{ required: `${ECO_ZONE_LABEL} proof is required.` }}
 									/>
 								</div>
 								<div className={styles.file_uploader}>

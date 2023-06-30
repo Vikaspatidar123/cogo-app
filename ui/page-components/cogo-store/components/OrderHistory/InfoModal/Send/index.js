@@ -24,6 +24,7 @@ function Send({ orderItemId, closeModal }) {
 	const {
 		handleSubmit,
 		control,
+		register,
 		formState: { errors },
 	} = useForm({
 		defaultValues: {
@@ -86,14 +87,19 @@ function Send({ orderItemId, closeModal }) {
 				</div>
 				<div className={styles.input_fields}>
 					{sendConfig.map((field) => {
-						const { name, type, label } = field;
+						const { name, type, label, rules } = field;
 						const Element = getField(type);
 						const show = !(name in showElements) || showElements[name];
+						const isMobileNo = type === 'mobile_number';
 
 						return show ? (
 							<div className={cl`${styles.col} ${styles?.[name]}`}>
 								<p className={styles.label}>{label}</p>
-								<Element {...field} control={control} />
+								<Element
+									{...field}
+									control={control}
+									mobileSelectRef={isMobileNo ? register(name, rules).ref : undefined}
+								/>
 								{errors?.[name] && (
 									<span className={styles.error}>
 										{errors?.[name]?.message || errors?.[name]?.type}

@@ -11,7 +11,7 @@ function ChargeDetails({
 	fields = [],
 }) {
 	return (
-		<>
+		<div className={styles.row}>
 			{(fields || []).map((item, index) => {
 				if (index < 2) {
 					const Element = getField(item.type);
@@ -55,7 +55,7 @@ function ChargeDetails({
 				}
 				return null;
 			})}
-		</>
+		</div>
 	);
 }
 

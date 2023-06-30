@@ -5,7 +5,7 @@ import styles from '../styles.module.css';
 
 function Form({
 	addAddressControls = [],
-	returnFeildFunction = () => {},
+	returnFieldFunction = () => {},
 	showPoc = false,
 	setShowPoc = () => {},
 	checked = false,
@@ -40,7 +40,7 @@ function Form({
 			<div className={styles.row}>
 				{(addAddressControls || []).map((item, index) => {
 					if (index < 6) {
-						return returnFeildFunction({ item });
+						return returnFieldFunction({ item });
 					}
 					return null;
 				})}
@@ -61,7 +61,7 @@ function Form({
 			</div>
 			{taxNumber && checked && (
 				<>
-					{returnFeildFunction({ item: taxNumber })}
+					{returnFieldFunction({ item: taxNumber })}
 					{!showPoc && (
 						<Button
 							themeType="accent"
@@ -77,7 +77,7 @@ function Form({
 			<div className={styles.row}>
 				{(addAddressControls || []).map((item, index) => {
 					if (index > 6 && showPoc && checked) {
-						return <>{returnFeildFunction({ item })}</>;
+						return <>{returnFieldFunction({ item })}</>;
 					}
 					return null;
 				})}

@@ -28,7 +28,7 @@ const useEditPocDetails = ({
 		{ manual: true },
 	);
 
-	const { formState, handleSubmit, control, setValue } = useForm();
+	const { formState, handleSubmit, control, setValue, register } = useForm();
 	const setValues = () => {
 		fields?.map((item) => setValue(item?.name, pocToUpdate[item.name]));
 		const phone_number = {
@@ -98,6 +98,7 @@ const useEditPocDetails = ({
 		control,
 		onCreate,
 		loading,
+		register,
 	};
 };
 

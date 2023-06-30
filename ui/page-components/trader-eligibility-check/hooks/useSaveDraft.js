@@ -1,4 +1,3 @@
-import { Toast } from '@cogoport/components';
 import { useState } from 'react';
 
 import useGetProductCode from './useGetProductCodes';
@@ -62,7 +61,7 @@ const useSaveDraft = () => {
 				}
 			}
 		} catch (error) {
-			Toast.error(error);
+			console.log(error);
 		}
 	};
 

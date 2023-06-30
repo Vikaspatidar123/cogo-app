@@ -5,8 +5,11 @@ import { RightIcon, Right, Maping, Config } from '../constants';
 
 import styles from './styles.module.css';
 
-function SideStepper({ activeStepper, isMobile }) {
+function SideStepper({ activeStepper }) {
+	const [isMobile, setIsMobile] = useState(false);
+
 	const [url, setUrl] = useState();
+
 	useEffect(() => {
 		setTimeout(
 			() => {
@@ -16,6 +19,11 @@ function SideStepper({ activeStepper, isMobile }) {
 			setUrl(RightIcon),
 		);
 	}, [activeStepper]);
+
+	useEffect(() => {
+		if (typeof window !== 'undefined') { setIsMobile(window.innerWidth < 760); }
+	}, []);
+
 	return (
 		<div className={styles.main}>
 			<div className={styles.heading}>Easy steps for Insurance</div>

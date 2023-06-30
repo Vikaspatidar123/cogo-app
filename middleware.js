@@ -1,40 +1,67 @@
-/* eslint-disable no-console */
 import acceptLanguage from 'accept-language';
-import { NextResponse } from 'next/server';
 
 import { i18n } from './next-i18next.config';
+import generateRedirectionUrl from './ui/helpers/generateRedirectionUrl';
+import getUserLocationData from './ui/helpers/getUserLocationData';
 
 const PUBLIC_FILE = /\.(.*)$/;
-const DEFAULT_LOCALE = 'en-IN';
 const LOCALE_COOKIE_KEY = 'locale';
+const LOCATION_COOKIE_KEY = 'location';
 
 const languages = i18n.locales.filter((locale) => locale !== 'default');
+const countriesCodes = languages.map((lang) => lang.split('-')[1]);
+const LOCALE_LOCATION_MAPPING = languages.reduce((pv, cv) => ({
+	...pv,
+	[cv.split('-')[1]]: cv,
+}), { OTHERS: 'default' });
 
 acceptLanguage.languages(languages);
 
 const getCookie = ({ request }) => {
-	let cookieLocale = request.cookies.get(LOCALE_COOKIE_KEY)?.value;
-	if (cookieLocale && !languages.includes(cookieLocale)) {
-		const cookieLocaleLanguage = cookieLocale.split('-')?.[0];
+	const cookieLocale = request.cookies.get(LOCALE_COOKIE_KEY)?.value;
 
-		cookieLocale = languages.includes(cookieLocaleLanguage)
-			? cookieLocaleLanguage
-			: undefined;
-	}
+	const cookieLocation = request.cookies.get(LOCATION_COOKIE_KEY)?.value;
 
-	return cookieLocale;
+	return { cookieLocale, cookieLocation };
 };
-
-const removeLocales = ({ pathname, locales }) => pathname
-	.split('/')
-	.filter((splittedPathname) => !locales.includes(splittedPathname))
-	.join('/');
 
 const oldLocale = {
 	languages: languages.map((lang) => lang.split('-')[0]), // ['en', 'vi', ...]
 	isPresent({ pathname }) {
-		return this.languages.some((locale) => pathname.includes(`/${locale}/`));
+		return this.languages.some((locale) => pathname.split('/').includes(locale));
 	},
+};
+
+const getCountryCode = async ({ ip }) => {
+	const data = await getUserLocationData({ ip });
+
+	const { countryCode } = data;
+
+	return countryCode;
+};
+
+const getLocale = ({ language, countryCode, requestLocale, cookieLocale }) => {
+	let locale = 'default';
+
+	if (countriesCodes.includes(countryCode)) {
+		locale = LOCALE_LOCATION_MAPPING[countryCode];
+	}
+
+	if (requestLocale !== 'default' && languages.includes(requestLocale)) {
+		locale = requestLocale;
+	}
+
+	if (cookieLocale && languages.includes(cookieLocale)) {
+		locale = [cookieLocale, 'default'].includes(requestLocale)
+			? cookieLocale
+			: requestLocale;
+	}
+
+	if (locale === 'default' && languages.includes(language)) {
+		locale = language;
+	}
+
+	return locale;
 };
 
 export const middleware = async (request) => {
@@ -47,64 +74,39 @@ export const middleware = async (request) => {
 			return;
 		}
 
-		const cookieLocale = getCookie({ request });
+		const isOldLocalePresent = oldLocale.isPresent({ pathname: request.nextUrl.pathname });
+		const language = acceptLanguage.get(request.headers.get('accept-language'));
 
-		const isOldLocalePresent = oldLocale.isPresent({
-			pathname: request.nextUrl.pathname,
-		});
+		const { cookieLocale, cookieLocation } = getCookie({ request });
 
-		if (request.nextUrl.locale === 'default' || isOldLocalePresent) {
-			const language = acceptLanguage.get(
-				request.headers.get('accept-language'),
-			);
+		let countryCode = cookieLocation;
+		if (!cookieLocation) {
+			let ipAddress = request.headers.get('x-forwarded-for');
 
-			const locale = cookieLocale || language || DEFAULT_LOCALE;
-
-			let { pathname } = request.nextUrl;
-
-			pathname = removeLocales({ pathname, locales: languages });
-			if (isOldLocalePresent) {
-				pathname = removeLocales({ pathname, locales: oldLocale.languages });
+			if (ipAddress?.includes(',')) {
+				ipAddress = ipAddress?.split(',')?.[0];
 			}
 
-			const url = `/${locale}${pathname}${request.nextUrl.search}`;
-			const urlObj = new URL(url, request.url);
+			countryCode = await getCountryCode({ ip: ipAddress });
+		}
 
-			const response = NextResponse.redirect(urlObj);
+		const locale = getLocale({ language, countryCode, requestLocale: request.nextUrl.locale, cookieLocale });
+
+		if (!cookieLocation || request.nextUrl.locale === 'default' || isOldLocalePresent) {
+			const response = generateRedirectionUrl({ request, locale, isOldLocalePresent });
+			const cokkieExpiry = new Date();
+			cokkieExpiry.setHours(cokkieExpiry.getHours() + 12);
 
 			response.cookies.set(LOCALE_COOKIE_KEY, locale);
+			response.cookies.set(LOCATION_COOKIE_KEY, countryCode, { expires: cokkieExpiry });
 
 			// eslint-disable-next-line consistent-return
 			return response;
 		}
 
-		// if (request.headers.has('referer')) {
-		// 	if (cookieLocale !== request.nextUrl.locale) {
-		// 		const response = NextResponse.next();
-
-		// 		response.cookies.set(LOCALE_COOKIE_KEY, request.nextUrl.locale);
-
-		// 		// eslint-disable-next-line consistent-return
-		// 		return response;
-		// 	}
-		// } else {
-		// 	// eslint-disable-next-line no-lonely-if
-		// 	if (!cookieLocale || cookieLocale !== request.nextUrl.locale) {
-		// 		const url = `/${request.nextUrl.locale}${request.nextUrl.pathname}${request.nextUrl.search}`;
-
-		// 		const urlObj = new URL(url, request.url);
-
-		// 		const response = NextResponse.redirect(urlObj);
-
-		// 		response.cookies.set(LOCALE_COOKIE_KEY, request.nextUrl.locale);
-
-		// 		// eslint-disable-next-line consistent-return
-		// 		return response;
-		// 	}
-		// }
-
+		// eslint-disable-next-line consistent-return
 		return;
 	} catch (error) {
-		console.log(error);
+		console.error('error :: ', error);
 	}
 };

@@ -31,7 +31,7 @@ const useCreatePoc = ({
 		? controls(process_options, designation_options)
 		: controls(designation_options);
 
-	const { control, handleSubmit, watch } = useForm();
+	const { control, handleSubmit, watch, register } = useForm();
 
 	const formProps = watch();
 
@@ -147,6 +147,7 @@ const useCreatePoc = ({
 		onError,
 		errors,
 		loading,
+		register,
 	};
 };
 

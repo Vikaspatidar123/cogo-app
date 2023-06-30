@@ -24,7 +24,7 @@
 	box-shadow: -2px 2px 25px rgb(0 0 0 / 15%);
 	transition: width 0.8s ease-in-out;
 
-	@media (max-width:768px) {
+	@media (max-width: 768px) {
 		width: 90%;
 		height: 100%;
 	}

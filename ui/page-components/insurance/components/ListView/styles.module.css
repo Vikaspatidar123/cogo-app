@@ -135,7 +135,8 @@
 		.ui_table_body_row {
 			height: 70px;
 		}
-		.ui_table_body_row:hover{
+
+		.ui_table_body_row:hover {
 			background-color: #fff;
 		}
 	}
@@ -174,5 +175,5 @@
 }
 
 .icon {
-	margin-left: 4px ;
+	margin-left: 4px;
 }

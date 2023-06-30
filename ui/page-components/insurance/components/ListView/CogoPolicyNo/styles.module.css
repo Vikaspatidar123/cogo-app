@@ -8,18 +8,18 @@
 	position: relative;
 	top: -13px;
 	left: -14px;
-	width: auto;
-	background-color: #dce1ff;
-	height: 18px;
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	width: auto;
+	height: 18px;
 	padding: 3px 8px;
 	margin: 4px;
-	border-radius: 0 0 4px 4px;
 	cursor: pointer;
+	background-color: #dce1ff;
+	border-radius: 0 0 4px 4px;
 }
 
 .pills_wrapper {
 	display: flex;
-} 
+}

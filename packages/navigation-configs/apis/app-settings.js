@@ -234,5 +234,10 @@ const app_settings = [
 		access_type  : 'private',
 		service_name : 'organization',
 	},
+	{
+		api          : 'delete_user_session',
+		access_type  : 'private',
+		service_name : 'user',
+	},
 ];
 export default app_settings;

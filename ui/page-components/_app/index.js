@@ -18,7 +18,7 @@ import GlobalLayout from '@/ui/page-components/_app/layout/components/GlobalLayo
 import handleAuthentication from '@/ui/page-components/authentication/utils/handleAuthentication';
 import { setCookie, getCookie } from '@cogoport/utils';
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
-// import getGeoConstants from '@/ui/commons/constants/geo';
+import getGeoConstants from '@/ui/commons/constants/geo';
 import getCountryDetails from '@/ui/commons/utils/getCountryDetails';
 
 const DynamicChatBot = dynamic(() => import('@/ui/commons/components/CogoBot'), {
@@ -35,8 +35,7 @@ function MyApp({ Component, pageProps, store, generalData }) {
 		countryCode = getCookie('location');
 	}
 
-	// const geo = getGeoConstants();
-	// console.log('🚀 ~ file: index.js:39 ~ MyApp ~ geo:', geo);
+	const geo = getGeoConstants();
 
 	const VIETNAM_COUNTRY_CODE = getCountryDetails({
 		country_id: GLOBAL_CONSTANTS.country_ids.VN,
@@ -45,8 +44,8 @@ function MyApp({ Component, pageProps, store, generalData }) {
 	const isUnKnownUser = !organizationId;
 
 	const isBotVisible = isUnKnownUser
-		? countryCode !== VIETNAM_COUNTRY_CODE : true;
-		// : geo.parent_entity_id !== GLOBAL_CONSTANTS.country_entity_ids.VN;
+		? countryCode !== VIETNAM_COUNTRY_CODE
+		: geo.parent_entity_id !== GLOBAL_CONSTANTS.country_entity_ids.VN;
 
 	useEffect(() => {
 		setCookie('parent_entity_id', partner_id);

@@ -25,9 +25,7 @@ function CancellationAndConfirmModal({
 	);
 
 	const handleCancellation = () => {
-		if (click === 'cancel') {
-			requestCancellation({ policyId, cancellationReason });
-		}
+		requestCancellation({ policyId, cancellationReason });
 	};
 	return (
 		<Modal
@@ -61,7 +59,7 @@ function CancellationAndConfirmModal({
 						</div>
 					</Modal.Body>
 					<Modal.Footer>
-						<Button themeType="accent" onClick={() => setCancelModal(false)}>
+						<Button themeType="accent" onClick={() => setCancelModal(false)} className={styles.button}>
 							No
 						</Button>
 						<Button onClick={() => setCancelConfirmModal(true)}>
@@ -109,7 +107,7 @@ function CancellationAndConfirmModal({
 						</div>
 					</Modal.Body>
 					<Modal.Footer>
-						<Button themeType="accent" onClick={() => setCancelModal(false)}>
+						<Button themeType="accent" onClick={() => setCancelModal(false)} className={styles.button}>
 							Cancel
 						</Button>
 						<Button

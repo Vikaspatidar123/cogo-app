@@ -1,4 +1,4 @@
-import { Pill } from '@cogoport/components';
+import { Pill, cl } from '@cogoport/components';
 
 import styles from './styles.module.css';
 
@@ -27,13 +27,12 @@ function CogoPolicyNo({ itemData = {} }) {
 					}}
 					color="#dce1ff"
 					role="presentation"
-					className={styles.pill_styled}
+					className={cl`${styles.pill_styled} ${styles.pill_sid_styled}`}
 				>
 					SID-
 					{sid}
 				</Pill>
 			)}
-			<div>{itemData?.sid}</div>
 			<div>{itemData?.cogoPolicyNo}</div>
 		</div>
 	);

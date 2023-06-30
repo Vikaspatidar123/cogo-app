@@ -1,30 +1,30 @@
 .parent_div {
-    max-width: 70%;
 	width: max-content;
+	max-width: 70%;
 }
 
 .whatsapp_link_container {
-    display: flex;
+	display: flex;
 	align-items: center;
 	width: fit-content;
-	margin: 0 17%;
 	padding: 6px 10px;
+	margin: 0 17%;
 	cursor: pointer;
 	border-radius: 40px;
 	box-shadow: rgb(50 50 105 / 10%) 0 2px 10px 0, rgb(0 0 0 / 5%) 0 2px 8px 0;
 }
 
 .user_chat {
-    padding: 10px;
-	border-radius: 6px;
-	color: #4f4f4f;
 	width: fit-contents;
+	padding: 10px;
+	color: #4f4f4f;
 	background-color: #fff;
-	box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+	border-radius: 6px;
+	box-shadow: rgb(149 157 165 / 20%) 0 8px 24px;
 }
 
 .get_started_button {
-    padding: 2px 8px;
+	padding: 2px 8px;
 	margin-left: 6px;
 	font-size: 12px;
 	font-weight: 600;
@@ -34,8 +34,8 @@
 }
 
 .time_stamp {
-    font-size: 8px;
-	text-align: right;
 	width: 100%;
 	margin-top: 7px;
+	font-size: 8px;
+	text-align: right;
 }

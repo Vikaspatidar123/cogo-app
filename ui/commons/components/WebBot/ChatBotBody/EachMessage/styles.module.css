@@ -1,12 +1,12 @@
 .parent_receive_div {
-	width: 100%;
 	display: flex;
+	width: 100%;
 	margin-bottom: 15px;
 }
 
 .parent_sent_div {
-	width: 100%;
 	display: flex;
 	justify-content: flex-end;
+	width: 100%;
 	margin-bottom: 15px;
 }

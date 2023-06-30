@@ -1,5 +1,5 @@
 .container {
-    display: flex;
+	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-around;
 	width: 320px;
@@ -12,7 +12,7 @@
 }
 
 .emoji_button {
-    margin: 3px;
+	margin: 3px;
 	font-size: 20px;
 	cursor: pointer;
 }

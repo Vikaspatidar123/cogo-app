@@ -21,13 +21,13 @@
 }
 
 .file_name {
+	max-width: 84%;
 	margin-left: 3px;
+	overflow: hidden;
 	font-size: 10px;
 	color: #4f4f4f;
-	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
-	max-width: 84%;
 }
 
 .extension {

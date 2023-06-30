@@ -9,7 +9,6 @@ import styles from './styles.module.css';
 function FAQComponent({
 	showFaq = false,
 	setFaq = () => {},
-	isMobile = false,
 }) {
 	const { faqDetails = [], faqsLoading = false } = useGetFaq({ showFaq });
 
@@ -20,7 +19,7 @@ function FAQComponent({
 		<div className={showFaq === 'block' ? styles.wrapper : styles.wrapper_hidden}>
 			<div
 				className={showFaq === 'block'
-					? `${isMobile ? styles.content_wrapper_mobile : styles.content_wrapper}`
+					? styles.content_wrapper
 					: styles.content_wrapper_hidden}
 			>
 				<div className={styles.head}>

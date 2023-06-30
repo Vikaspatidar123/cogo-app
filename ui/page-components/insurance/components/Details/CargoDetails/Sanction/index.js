@@ -81,7 +81,7 @@ function Sanction({ reset, isMobile, countryDetails, setCountryDetails }) {
 							</div>
 						</Modal.Body>
 						<Modal.Footer align="center">
-							<Button onClick={() => resetFunc()}>No</Button>
+							<Button onClick={() => resetFunc()} className={styles.button}>No</Button>
 							<Button onClick={() => setShow(false)}>Yes</Button>
 						</Modal.Footer>
 					</>

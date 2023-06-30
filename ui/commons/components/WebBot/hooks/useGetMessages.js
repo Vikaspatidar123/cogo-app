@@ -33,7 +33,7 @@ const useGetMessages = ({ firestore, roomId, scrollToBottom }) => {
 		const chatCollectionQuery = query(
 			messagesCollection,
 			where('conversation_type', 'in', ['sent', 'received']),
-			// orderBy('created_at', 'desc'),
+			orderBy('created_at', 'desc'),
 			limit(PAGE_LIMIT),
 		);
 		latestMessages.current = onSnapshot(
@@ -72,7 +72,7 @@ const useGetMessages = ({ firestore, roomId, scrollToBottom }) => {
 			messagesCollection,
 			where('conversation_type', 'in', ['sent', 'received']),
 			where('created_at', '<', prevTimeStamp),
-			// orderBy('created_at', 'desc'),
+			orderBy('created_at', 'desc'),
 			limit(PAGE_LIMIT),
 		);
 
@@ -108,7 +108,7 @@ const useGetMessages = ({ firestore, roomId, scrollToBottom }) => {
 		return () => {
 			latestMessages?.current?.();
 		};
-	}, []);
+	});
 
 	const sortedMessageData =		Object.keys(messagesHash || {})
 		.sort((a, b) => Number(a) - Number(b))

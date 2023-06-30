@@ -239,7 +239,7 @@ const navigationMappings = {
 				title       : 'Contract Management',
 				href        : '/contract-management',
 				as          : '/contract-management',
-				icon        : <IcAPlanningTools width={40} height={40} fill="#fbd221" />,
+				icon        : <IcAPlanningTools width={90} height={70} fill="#fbd221" />,
 				description : 'View all your contracts and consume directly from one place',
 			},
 			{
@@ -247,7 +247,7 @@ const navigationMappings = {
 				title       : 'Manage Rfq',
 				href        : '/manage-rfq',
 				as          : '/manage-rfq',
-				icon        : <IcARfq width={40} height={40} />,
+				icon        : <IcARfq width={90} height={70} />,
 				description : 'Create and Manage your RFQ for comparison and bulk buying',
 			},
 		],

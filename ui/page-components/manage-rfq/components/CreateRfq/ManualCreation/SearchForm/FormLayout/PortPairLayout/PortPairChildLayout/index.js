@@ -493,7 +493,6 @@ function PortPairChildLayout(props) {
 								itemKey={schedules}
 								control={control}
 								name={schedules}
-								// value={field[controlItem.name]}
 								error={error?.[controlItem.name]}
 							/>
 						</div>

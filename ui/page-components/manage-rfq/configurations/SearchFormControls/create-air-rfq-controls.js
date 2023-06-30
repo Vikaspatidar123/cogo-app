@@ -329,10 +329,6 @@ const airControls = [
 						showLabel : false,
 						label     : 'I want to enter mandatory shipping Line (Optional)',
 						value     : true,
-						// options : [{
-						// 	label : 'I want to enter mandatory shipping Line (Optional)',
-						// 	value : 'true',
-						// }],
 						span      : 12,
 					},
 					{

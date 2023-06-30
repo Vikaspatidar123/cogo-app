@@ -39,7 +39,7 @@ export default {
 	},
 	notification_polling_interval : 300000,
 	lcw_timer                     : 10000,
-	customer_support              : 'support@cogoport.com',
+	customer_support              : 'support.vn@cogoport.com',
 	default_agent                 : {
 		name                  : 'Lam Ngoc Ha',
 		email                 : 'support.vn@cogoport.com',

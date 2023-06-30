@@ -160,7 +160,7 @@ function FooterChat({ sendMessageLoading, sendFirebaseMessage, toggleHeight }) {
 					/>
 				</div>
 				<div className={styles.send}>
-					{!sendMessageLoading ? (
+					{sendMessageLoading ? (
 						<IcMSend
 							onClick={handleSend}
 							disable={!(message || !isEmpty(file))}

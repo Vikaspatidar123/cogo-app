@@ -61,6 +61,7 @@ function BodyDetailsChildFormat(props) {
 			const milestoneName = `${locationName}.${index}.${itmName}`;
 			setValue(milestoneName, field[itmName]);
 		});
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	return (

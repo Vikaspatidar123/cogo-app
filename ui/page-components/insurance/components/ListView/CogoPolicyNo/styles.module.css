@@ -5,5 +5,21 @@
 }
 
 .pill_sid_styled {
-	margin-left: -2px;
+	position: relative;
+	top: -13px;
+	left: -14px;
+	width: auto;
+	background-color: #dce1ff;
+	height: 18px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 3px 8px;
+	margin: 4px;
+	border-radius: 0 0 4px 4px;
+	cursor: pointer;
 }
+
+.pills_wrapper {
+	display: flex;
+} 

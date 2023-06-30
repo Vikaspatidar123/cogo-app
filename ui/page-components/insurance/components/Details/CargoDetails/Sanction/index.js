@@ -8,6 +8,7 @@ import styles from './styles.module.css';
 function Sanction({ reset, isMobile, countryDetails, setCountryDetails }) {
 	const [show, setShow] = useState(false);
 	const { checkSantion = '', sanctionedCountry = '' } = countryDetails || {};
+
 	const resetFunc = () => {
 		setShow(false);
 		setCountryDetails((prev) => ({
@@ -19,6 +20,7 @@ function Sanction({ reset, isMobile, countryDetails, setCountryDetails }) {
 			policyCountryId: '',
 		}));
 	};
+
 	useEffect(() => {
 		if (checkSantion !== 'NORMAL') setShow(true);
 	}, [checkSantion]);

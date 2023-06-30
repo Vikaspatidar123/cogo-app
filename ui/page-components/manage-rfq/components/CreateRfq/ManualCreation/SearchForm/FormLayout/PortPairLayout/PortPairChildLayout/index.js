@@ -29,6 +29,8 @@ function PortPairChildLayout(props) {
 		originDetails,
 		destinationDetails,
 		setOriginDetails = () => {},
+		hscodeDetails,
+		setHscodeDetails = () => {},
 		setDestinationDetails = () => {},
 		services,
 		setServices = () => {},
@@ -103,6 +105,13 @@ function PortPairChildLayout(props) {
 		});
 	};
 
+	const handleHscode = (val, idx) => {
+		setHscodeDetails({
+			...hscodeDetails,
+			[mode]: { ...hscodeDetails?.[mode], [idx]: val },
+		});
+	};
+
 	const handleAdditionalServices = (val) => {
 		setValue(`search_rates.${index}.additional_services`, val);
 	};
@@ -149,11 +158,13 @@ function PortPairChildLayout(props) {
 	if (mode === 'air_freight') {
 		data = [
 			...controls.filter(
-				(item) => item.name === 'origin_airport_id'
-					|| item.name === 'destination_airport_id'
-					|| item.name === 'cargo_ready_date'
-					|| item.name === 'inco_term'
-					|| item.name === 'commodity_type',
+				(item) => [
+					'origin_airport_id',
+					'destination_airport_id',
+					'cargo_ready_date',
+					'inco_term',
+					'commodity_type',
+				].includes(item.name),
 			),
 		];
 
@@ -166,9 +177,13 @@ function PortPairChildLayout(props) {
 		data = [
 			...data,
 			...controls.filter(
-				(item) => item.name === 'payment_type'
-					|| item.name === 'additional_services'
-					|| item.name === 'calculate_by',
+				(item) => [
+					'payment_type',
+					'additional_services',
+					'calculate_by',
+					'hs_code',
+					'container_remarks',
+				].includes(item.name),
 			),
 		];
 
@@ -177,6 +192,11 @@ function PortPairChildLayout(props) {
 			data = [...data, ...controls.filter((item) => item.name === filtername)];
 		}
 		data = [...data, ...controls.filter((item) => item.name === 'remarks')];
+
+		data = [
+			...data,
+			...controls.filter((item) => ['shipping_frequency', 'custom_shipping_frequency'].includes(item.name)),
+		];
 	} else if (mode === 'lcl_freight') {
 		data = controls.filter(
 			(item) => item.name !== 'dimensions' && item.name !== 'containers',
@@ -222,6 +242,47 @@ function PortPairChildLayout(props) {
 									watchSearchRates={watchSearchRates}
 									handleIndex={handleIndex}
 								/>
+							</div>
+						);
+					}
+
+					if (controlItem.name === 'shipping_frequency') {
+						return (
+
+							<div className={styles.col} style={{ width: getwidth(span) }} key={schedules}>
+								<Item
+									{...controlItem}
+									{...(controlItem.rules || {})}
+									id={schedules}
+									itemKey={schedules}
+									control={control}
+									name={schedules}
+									error={error?.[controlItem.name]}
+								/>
+							</div>
+
+						);
+					}
+
+					if (controlItem.name === 'custom_shipping_frequency') {
+						if (watchSearchRates?.[index]?.shipping_frequency !== 'other') {
+							return null;
+						}
+
+						return (
+							<div className={styles.input_freq}>
+								<div className={styles.col} style={{ width: getwidth(span) }} key={schedules}>
+									<Item
+										{...controlItem}
+										{...(controlItem.rules || {})}
+										id={schedules}
+										itemKey={schedules}
+										control={control}
+										name={schedules}
+										value={field[controlItem.name]}
+										error={error?.[controlItem.name]}
+									/>
+								</div>
 							</div>
 						);
 					}
@@ -397,6 +458,28 @@ function PortPairChildLayout(props) {
 						);
 					}
 
+					if (controlItem.name === 'hs_code') {
+						return (
+							<div
+								className={styles.col}
+								key={schedules}
+								style={{ width: getwidth(span) }}
+							>
+								<Item
+									{...controlItem}
+									{...(controlItem.rules || {})}
+									id={schedules}
+									itemKey={schedules}
+									control={control}
+									name={schedules}
+									value={field[controlItem.name]}
+									error={error?.[controlItem.name]}
+									handleChange={(val) => handleHscode(val, handleIndex)}
+								/>
+							</div>
+						);
+					}
+
 					return (
 						<div
 							className={styles.col}
@@ -410,7 +493,7 @@ function PortPairChildLayout(props) {
 								itemKey={schedules}
 								control={control}
 								name={schedules}
-								value={field[controlItem.name]}
+								// value={field[controlItem.name]}
 								error={error?.[controlItem.name]}
 							/>
 						</div>

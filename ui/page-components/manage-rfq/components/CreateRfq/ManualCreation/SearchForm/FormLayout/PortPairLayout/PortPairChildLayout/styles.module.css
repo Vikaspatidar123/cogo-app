@@ -20,6 +20,10 @@
 .col {
 	padding: 0 8px;
 	margin: 13px 0;
+
+	@media screen and (max-width: 767px) {
+		width: 100% !important;
+	}
 }
 
 .row_container {
@@ -54,4 +58,11 @@
 		width: 100%;
 		margin-bottom: 8px;
 	}
+}
+
+.input_freq {
+	position: relative;
+	bottom: 73px;
+	left: 400px;
+	width: 100%;
 }

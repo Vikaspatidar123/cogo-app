@@ -58,7 +58,6 @@ const useValidateModal = ({
 				const { productId, serviceSelected } = ele;
 				obj[productId] = { ...serviceSelected };
 			});
-			console.log(obj, 'obj');
 			setServiceSelected(obj);
 		}
 	}, [lineItemLength, productLineItemDetails, setServiceSelected]);

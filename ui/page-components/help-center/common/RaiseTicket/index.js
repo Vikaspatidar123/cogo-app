@@ -32,7 +32,7 @@ function RaiseTicket({ setModalData = () => {}, isDashboard = false }) {
 					className={styles.button_container}
 					onClick={() => setModalData({ type: 'raise_a_ticket' })}
 				>
-					Raise A Tickets
+					Raise A Ticket
 				</Button>
 			</div>
 		</div>

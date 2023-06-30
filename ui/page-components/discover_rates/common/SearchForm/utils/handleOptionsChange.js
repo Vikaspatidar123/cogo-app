@@ -1,17 +1,18 @@
-import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
-import getCountryDetails from '@/ui/commons/utils/getCountryDetails';
+import { getCountrySpecificData } from '@/ui/commons/constants/CountrySpecificDetail';
+import getGeoConstants from '@/ui/commons/constants/geo';
 
 const customsModes = ['fcl_customs', 'lcl_customs', 'air_customs'];
 
-const { IN: INDIA_COUNTRY_ID } = GLOBAL_CONSTANTS.country_ids;
-
-const INDIA_COUNTRY_DETAILS = getCountryDetails({
-	country_id: INDIA_COUNTRY_ID,
+const geo = getGeoConstants();
+const countrySpecificData = getCountrySpecificData({
+	country_id    : geo?.country?.id,
+	accessorType  : 'navigations',
+	accessor      : 'search_form',
+	isDefaultData : false,
 });
 
-const INDIA_COUNTRY_CODE = INDIA_COUNTRY_DETAILS?.country_code;
-
 export const getControls = (controls, formValues, mode, location) => {
+	const { is_export_tradeType } = countrySpecificData;
 	const newControls = [];
 
 	controls.forEach((control) => {
@@ -36,11 +37,8 @@ export const getControls = (controls, formValues, mode, location) => {
 		} else if (control.type === 'inco-terms-select') {
 			newControls.push({
 				...control,
-				showMessage: false,
-				activeTradeType:
-					location?.origin?.country_code === INDIA_COUNTRY_CODE
-						? 'export'
-						: 'import',
+				showMessage     : false,
+				activeTradeType : is_export_tradeType ? 'export' : 'import',
 			});
 		} else {
 			newControls.push({

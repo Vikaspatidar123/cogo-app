@@ -41,8 +41,11 @@ export default {
 	lcw_timer                     : 10000,
 	customer_support              : 'support@cogoport.com',
 	default_agent                 : {
-		name          : 'Ayushi Mishra',
-		mobile_number : '918976761462',
+		name                  : 'Lam Ngoc Ha',
+		email                 : 'support.vn@cogoport.com',
+		mobile_country_code   : '+84',
+		mobile_number         : '961435779',
+		mobile_number_eformat : '84961435779',
 	},
 	uuid: {
 		super_admin_id              : '5de782f6-f59d-41fc-84f4-8425dc1fa670',
@@ -362,4 +365,46 @@ export default {
 	},
 
 	live_booking_indicative_price_constant: 25,
+
+	others: {
+		registration_number: {
+			label      : 'VAT',
+			pattern    : /^[0-9]{1}[0-9]{9}$|^[0-3]{1}[0-9]{9}-?[0-9]{3}$/,
+			max_length : 15,
+		},
+		identification_number: {
+			label: 'Registration Number',
+		},
+		address: {
+			label: 'Registration Extract',
+		},
+		economic_zone: {
+			label: 'Non-Tariff Zone',
+		},
+		pan_number: {
+			label   : 'PAN',
+			pattern : '',
+		},
+		navigations: {
+			common: {
+				validate_registration_number: false,
+			},
+
+			onboarding: {
+				billing_address_details: {
+					is_suggestion_container_visible: false,
+				},
+			},
+
+			kyc: {
+				is_pan_included: false,
+			},
+
+			search_form: {
+				default_icoterm_cif                : false,
+				filter_drop_haulage_option_carrier : false,
+				is_export_tradeType                : false,
+			},
+		},
+	},
 };

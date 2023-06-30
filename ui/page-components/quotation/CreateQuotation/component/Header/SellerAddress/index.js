@@ -8,6 +8,18 @@ import CreateSellerModal from '../CreateSellerModal';
 
 import styles from './styles.module.css';
 
+import { getCountrySpecificData } from '@/ui/commons/constants/CountrySpecificDetail';
+import getGeoConstants from '@/ui/commons/constants/geo';
+
+const geo = getGeoConstants();
+
+const REGISTRATION_LABEL = getCountrySpecificData({
+	country_id    : geo.country.id,
+	accessorType  : 'registration_number',
+	accessor      : 'label',
+	isDefaultData : true,
+});
+
 const sellerAddressContent = ({
 	setSellerAddressInfo, setShowFilters, sellerAddressInfo,
 	addressdata = [], loading, setOpenModal,
@@ -60,7 +72,7 @@ const sellerAddressContent = ({
 								<p className={cl`${styles.card_text} ${styles.org_name}`}>{name}</p>
 								<p className={cl`${styles.card_text} ${styles.address}`}>{`${address} ${pincode}`}</p>
 								<p className={cl`${styles.card_text} ${styles.gst}`}>
-									GST Number :
+									{`${REGISTRATION_LABEL} Number :`}
 									{tax_number}
 								</p>
 							</div>

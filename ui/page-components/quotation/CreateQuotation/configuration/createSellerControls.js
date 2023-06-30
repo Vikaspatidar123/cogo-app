@@ -1,7 +1,32 @@
-const mobileValidator = /^[0-9]{10}$/;
-// eslint-disable-next-line max-len
-const emailValidator =	/^[^<>()[\]\\,;:%#^\s@"$&!@]+@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z0-9]+\.)+[a-zA-Z]{2,}))$/;
-const GstValidator = /^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}Z[0-9A-Z]{1}$/;
+import patterns from '@/ui/commons/configurations/patterns';
+import { getCountrySpecificData } from '@/ui/commons/constants/CountrySpecificDetail';
+import getGeoConstants from '@/ui/commons/constants/geo';
+
+const geo = getGeoConstants();
+
+const geoObj = {
+	country_id    : geo.country.id,
+	isDefaultData : true,
+};
+
+const REGISTRATION_LABEL = getCountrySpecificData({
+	...geoObj,
+	accessorType : 'registration_number',
+	accessor     : 'label',
+});
+
+const REGISTRATION_PATTERN = getCountrySpecificData({
+	...geoObj,
+	accessorType : 'registration_number',
+	accessor     : 'pattern',
+});
+
+const ECO_ZONE_LABEl = getCountrySpecificData({
+	...geoObj,
+	accessorType : 'economic_zone',
+	accessor     : 'label',
+
+});
 
 const createSellerControl = () => {
 	const billingDetailControl = [
@@ -39,14 +64,14 @@ const createSellerControl = () => {
 			rules       : {
 				required : '*Required',
 				pattern  : {
-					value   : GstValidator,
-					message : 'Invalid GST Number',
+					value   : REGISTRATION_PATTERN,
+					message : `Invalid ${REGISTRATION_LABEL} Number`,
 				},
 			},
 		},
 		{
 			name  : 'gst_proof',
-			label : 'GST Proof',
+			label : `${REGISTRATION_LABEL} Proof`,
 			type  : 'file',
 			rules : {
 				required: '*Required',
@@ -55,7 +80,7 @@ const createSellerControl = () => {
 		},
 		{
 			name    : 'is_sez',
-			label   : 'Is Your Address SEZ?',
+			label   : `Is Your Address ${ECO_ZONE_LABEl}?`,
 			type    : 'checkbox',
 			value   : false,
 			options : [
@@ -71,7 +96,7 @@ const createSellerControl = () => {
 		},
 		{
 			name  : 'sez_proof',
-			label : 'SEZ Proof*',
+			label : `${ECO_ZONE_LABEl} Proof*`,
 			type  : 'file',
 			rules : {
 				required: '*Required',
@@ -108,7 +133,7 @@ const createSellerControl = () => {
 			rules        : {
 				required : true,
 				pattern  : {
-					value   : mobileValidator,
+					value   : patterns.MOBILE,
 					message : 'Invalid mobile number',
 				},
 			},
@@ -122,7 +147,7 @@ const createSellerControl = () => {
 			rules       : {
 				required : '*Required',
 				pattern  : {
-					value   : emailValidator,
+					value   : patterns.EMAIL,
 					message : 'Invalid email',
 				},
 			},

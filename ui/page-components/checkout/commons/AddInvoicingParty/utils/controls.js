@@ -7,6 +7,26 @@ import styles from '../styles.module.css';
 import { getPanHolderStatusOptions } from './getPanHolderStatus';
 
 import patterns from '@/ui/commons/configurations/patterns';
+import { getCountrySpecificData } from '@/ui/commons/constants/CountrySpecificDetail';
+import getGeoConstants from '@/ui/commons/constants/geo';
+
+const geo = getGeoConstants();
+
+const geoObj = {
+	country_id    : geo.country.id,
+	accessorType  : 'registration_number',
+	isDefaultData : true,
+};
+
+const REGISTRATION_LABEL = getCountrySpecificData({
+	...geoObj,
+	accessor: 'label',
+});
+
+const REGISTRATION_PATTERN = getCountrySpecificData({
+	...geoObj,
+	accessor: 'pattern',
+});
 
 function TradePartyInstructions() {
 	return (
@@ -72,7 +92,7 @@ const billingAddressControls = [
 	},
 	{
 		name      : 'tax_number',
-		label     : 'GST Number',
+		label     : `${REGISTRATION_LABEL} Number`,
 		type      : 'text',
 		span      : 5.8,
 		maxLength : 15,
@@ -80,14 +100,15 @@ const billingAddressControls = [
 		rules: {
 			required : true,
 			pattern  : {
-				value   : patterns.GST_NUMBER,
+				value   : REGISTRATION_PATTERN,
 				message : 'GST is invalid',
 			},
 		},
 	},
 	{
 		name       : 'tax_number_document_url',
-		label      : 'GST Proof',
+		// label      : 'GST Proof',
+		label      : `${REGISTRATION_LABEL} Proof`,
 		type       : 'file',
 		drag       : true,
 		uploadIcon : () => <IcMFileUploader />,

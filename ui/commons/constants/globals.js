@@ -1,6 +1,7 @@
 const GLOBAL_CONSTANTS = {
 	country_entity_ids: {
-		IN: '6fd98605-9d5d-479d-9fac-cf905d292b88',
+		IN : '6fd98605-9d5d-479d-9fac-cf905d292b88',
+		VN : 'b67d40b1-616c-4471-b77b-de52b4c9f2ff',
 	},
 	country_ids: {
 		IN : '541d1232-58ce-4d64-83d6-556a42209eb7',

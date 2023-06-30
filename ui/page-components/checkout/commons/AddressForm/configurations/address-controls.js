@@ -1,4 +1,13 @@
-import { CountrySpecificData } from '@/ui/commons/constants/CountrySpecificDetail';
+import { getCountrySpecificData, CountrySpecificData } from '@/ui/commons/constants/CountrySpecificDetail';
+import getGeoConstants from '@/ui/commons/constants/geo';
+
+const geo = getGeoConstants();
+const REGISTRATION_LABEL = getCountrySpecificData({
+	country_id    : geo.country.id,
+	accessorType  : 'registration_number',
+	accessor      : 'label',
+	isDefaultData : true,
+});
 
 const getAddressMappingControls = ({ organizationCountryId }) => [
 	{
@@ -63,23 +72,13 @@ const getAddressMappingControls = ({ organizationCountryId }) => [
 		showIn : ['otherAddress'],
 	},
 	{
-		type  : 'text',
-		name  : 'tax_number',
-		label : (
-			<>
-				<CountrySpecificData
-					country_id={organizationCountryId}
-					accessorType="registration_number"
-					accessor="label"
-				/>
-				{' '}
-				Number
-			</>
-		),
+		type      : 'text',
+		name      : 'tax_number',
+		label     : `${REGISTRATION_LABEL} Number`,
 		className : 'uppercase',
 		maxLength : 15,
 		rules     : {
-			required: 'GST Number Required',
+			required: `${REGISTRATION_LABEL} Number Required`,
 		},
 		span   : 5.8,
 		showIn : ['billingAddress'],

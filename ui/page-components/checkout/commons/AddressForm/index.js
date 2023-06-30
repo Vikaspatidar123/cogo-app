@@ -8,6 +8,16 @@ import useAddressForm from './hooks/useAddressForm';
 import styles from './styles.module.css';
 
 import getField from '@/packages/forms/Controlled';
+import { getCountrySpecificData } from '@/ui/commons/constants/CountrySpecificDetail';
+import getGeoConstants from '@/ui/commons/constants/geo';
+
+const geo = getGeoConstants();
+const REGISTRATION_LABEL = getCountrySpecificData({
+	country_id    : geo.country.id,
+	accessorType  : 'registration_number',
+	accessor      : 'label',
+	isDefaultData : true,
+});
 /**
  * @typedef  {Object} 		[props]
  * @property {string} 		[organizationId]
@@ -112,10 +122,10 @@ function AddressForm(props) {
 									{key === 'registeredUnderGst'
 									&& isAddressRegisteredUnderGstChecked && (
 										<div style={{ color: '#cb6464', fontSize: '12px', margin: '10px 0 0' }}>
-											Addresses not registered under GST will be added in
-											&quot;Other Addresses&quot; for the organisation and
-											{' '}
-											<b>will not be available for GST Invoicing</b>
+											{`Addresses not registered under ${REGISTRATION_LABEL} will be added in
+											&quot;Other Addresses&quot; for the organisation and`}
+
+											<b>{`will not be available for ${REGISTRATION_LABEL} Invoicing`}</b>
 											.
 										</div>
 									)}

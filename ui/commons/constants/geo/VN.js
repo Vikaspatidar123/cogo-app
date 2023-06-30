@@ -405,6 +405,10 @@ export default {
 				filter_drop_haulage_option_carrier : false,
 				is_export_tradeType                : false,
 			},
+
+			subscription: {
+				is_tax_included: false,
+			},
 		},
 	},
 };

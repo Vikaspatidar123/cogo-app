@@ -3,6 +3,16 @@ import { startCase } from '@cogoport/utils';
 
 import styles from './styles.module.css';
 
+import { getCountrySpecificData } from '@/ui/commons/constants/CountrySpecificDetail';
+import getGeoConstants from '@/ui/commons/constants/geo';
+
+const geo = getGeoConstants();
+const REGISTRATION_LABEL = getCountrySpecificData({
+	country_id    : geo.country.id,
+	accessorType  : 'registration_number',
+	accessor      : 'label',
+	isDefaultData : true,
+});
 function BillingDetails({
 	address,
 	taxNumber,
@@ -17,7 +27,7 @@ function BillingDetails({
 			</div>
 
 			<div className={styles.text}>
-				GST Number :
+				{`${REGISTRATION_LABEL} Number :`}
 				{' '}
 				{taxNumber || 'Not Applicable'}
 			</div>

@@ -6,6 +6,17 @@ import { useState, useEffect } from 'react';
 import styles from './styles.module.css';
 
 import AddModal from '@/ui/commons/components/CreateOrganizationModel/Components/AddAddressModal';
+import { getCountrySpecificData } from '@/ui/commons/constants/CountrySpecificDetail';
+import getGeoConstants from '@/ui/commons/constants/geo';
+
+const geo = getGeoConstants();
+const REGISTRATION_LABEL = getCountrySpecificData({
+	country_id    : geo.country.id,
+	accessorType  : 'registration_number',
+	accessor      : 'label',
+	isDefaultData : true,
+
+});
 
 function BillingDetails({
 	billingAddress = () => {},
@@ -87,7 +98,7 @@ function BillingDetails({
 											{pincode}
 										</div>
 										<div className={`${styles.row} ${styles.tax_number}`}>
-											GST Number :
+											{`${REGISTRATION_LABEL} Number :`}
 											{tax_number}
 										</div>
 									</div>

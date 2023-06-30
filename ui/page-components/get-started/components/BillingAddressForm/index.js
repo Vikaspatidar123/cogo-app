@@ -6,6 +6,23 @@ import useCreateBillingAddress from '../../hooks/useCreateBillingAddress';
 import styles from './styles.module.css';
 
 import { InputController, useForm, UploadController } from '@/packages/forms';
+import { getCountrySpecificData } from '@/ui/commons/constants/CountrySpecificDetail';
+import getGeoConstants from '@/ui/commons/constants/geo';
+
+const geo = getGeoConstants();
+const REGISTRATION_LABEL = getCountrySpecificData({
+	country_id    : geo.country.id,
+	accessorType  : 'registration_number',
+	accessor      : 'label',
+	isDefaultData : true,
+});
+
+const ECO_ZONE_LABEL = getCountrySpecificData({
+	country_id    : geo.country.id,
+	accessorType  : 'economic_zone',
+	accessor      : 'label',
+	isDefaultData : true,
+});
 
 function BillingAddress({ orgId, setInviteTeam }) {
 	const {
@@ -48,8 +65,8 @@ function BillingAddress({ orgId, setInviteTeam }) {
 							control={control}
 							name="gst_number"
 							type="text"
-							placeholder="GST/Tax number"
-							rules={{ required: 'GST is required.' }}
+							placeholder={`${REGISTRATION_LABEL}/Tax number`}
+							rules={{ required: `${REGISTRATION_LABEL} is required.` }}
 						/>
 
 						{errors.gst_number && (
@@ -90,13 +107,13 @@ function BillingAddress({ orgId, setInviteTeam }) {
 					</div>
 					<div className={styles.checkbox_container}>
 						<Checkbox value={isSez} onChange={handleChange} />
-						The above address is SEZ
+						{`The above address is ${ECO_ZONE_LABEL}`}
 					</div>
 					{
 						isSez && (
 							<>
 								<div className={styles.file_uploader}>
-									Sez Proof:
+									{`${ECO_ZONE_LABEL} Proof:`}
 									<UploadController
 										control={control}
 										name="sez_proof"

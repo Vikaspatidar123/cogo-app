@@ -1,5 +1,24 @@
 /* eslint-disable import/no-unresolved */
 import data from '@/.data-store/constants/countries.json';
+import { getCountrySpecificData } from '@/ui/commons/constants/CountrySpecificDetail';
+import getGeoConstants from '@/ui/commons/constants/geo';
+
+const geo = getGeoConstants();
+const geoObj = {
+	country_id    : geo.country.id,
+	accessor      : 'label',
+	isDefaultData : true,
+};
+
+const REGISTRATION_LABEL = getCountrySpecificData({
+	...geoObj,
+	accessorType: 'registration_number',
+});
+
+const ECO_ZONE_LABEL = getCountrySpecificData({
+	...geoObj,
+	accessorType: 'economic_zone',
+});
 
 const country_code = data?.map((x) => ({
 	label : x.mobile_country_code,
@@ -28,21 +47,21 @@ const fields = [
 	},
 	{
 		name        : 'tax_number',
-		label       : 'GST Number',
-		placeholder : 'Enter GST Number',
+		label       : `${REGISTRATION_LABEL} Number`,
+		placeholder : `Enter ${REGISTRATION_LABEL} Number`,
 		type        : 'text',
 		style       : { width: '370px' },
 		rules       : {
 			required : true,
 			pattern  : {
-				message: 'GST Number Required ',
+				message: `${REGISTRATION_LABEL} Number Required `,
 			},
 		},
 	},
 
 	{
 		name    : 'is_sez',
-		label   : 'Is your address SEZ?',
+		label   : `Is your address ${ECO_ZONE_LABEL}?`,
 		type    : 'checkbox',
 		options : [
 			{
@@ -98,17 +117,17 @@ const fields = [
 	},
 	{
 		name  : 'sez_proof',
-		label : 'Sez Proof',
+		label : `${ECO_ZONE_LABEL} Proof`,
 		type  : 'file',
 		drag  : true,
 		style : { width: '370px' },
 		rules : {
-			required: 'Sez Proof',
+			required: `${ECO_ZONE_LABEL} Proof Required`,
 		},
 	},
 	{
 		name  : 'tax_number_document_url',
-		label : 'GST Proof',
+		label : `${REGISTRATION_LABEL} Proof`,
 		type  : 'file',
 		style : { width: '370px' },
 		rules : {

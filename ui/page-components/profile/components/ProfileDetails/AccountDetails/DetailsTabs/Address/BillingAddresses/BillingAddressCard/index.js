@@ -7,7 +7,18 @@ import AddEditPocDetails from '../../AddEditPocDetails';
 
 import styles from './styles.module.css';
 
+import { getCountrySpecificData } from '@/ui/commons/constants/CountrySpecificDetail';
+import getGeoConstants from '@/ui/commons/constants/geo';
 import getValue from '@/ui/commons/utils/getValue';
+
+const geo = getGeoConstants();
+const REGISTRATION_LABEL = getCountrySpecificData({
+	country_id    : geo.country.id,
+	accessorType  : 'registration_number',
+	accessor      : 'label',
+	isDefaultData : true,
+
+});
 
 function AddressCard({
 	getOrganizationBillingAddress = {},
@@ -73,12 +84,12 @@ function AddressCard({
 
 			<div className={styles.tax_details_container}>
 				<div className={styles.sub_container}>
-					<div className={styles.label_text}>GST Number</div>
+					<div className={styles.label_text}>{`${REGISTRATION_LABEL} Number`}</div>
 					<div className={styles.value_text}>{address.tax_number || '-'}</div>
 				</div>
 
 				<div className={styles.address_container}>
-					<div className={styles.label_text}>GST Proof</div>
+					<div className={styles.label_text}>{`${REGISTRATION_LABEL} Proof`}</div>
 
 					{address.tax_number_document_url ? (
 						<div className={styles.doc_container}>

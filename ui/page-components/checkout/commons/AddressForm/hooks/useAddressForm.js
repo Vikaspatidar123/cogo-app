@@ -13,6 +13,16 @@ import useSaveAddress from './useSaveAddress';
 import { useForm } from '@/packages/forms';
 import { useSelector } from '@/packages/store';
 import patterns from '@/ui/commons/configurations/patterns';
+import { getCountrySpecificData } from '@/ui/commons/constants/CountrySpecificDetail';
+import getGeoConstants from '@/ui/commons/constants/geo';
+
+const geo = getGeoConstants();
+const REGISTRATION_LABEL = getCountrySpecificData({
+	country_id    : geo.country.id,
+	accessorType  : 'registration_number',
+	accessor      : 'label',
+	isDefaultData : true,
+});
 
 const getControls = ({
 	gstinOptions,
@@ -353,7 +363,7 @@ const useSaveAddressForm = (props) => {
 		if (controlName === 'tax_number') {
 			newField = {
 				...newField,
-				label     : validateGst ? 'GST Number' : 'TAX Number',
+				label     : validateGst ? `${REGISTRATION_LABEL} Number` : 'TAX Number',
 				maxLength : undefined,
 				...(validateGst && {
 					maxLength: 15,
@@ -364,7 +374,7 @@ const useSaveAddressForm = (props) => {
 					...(validateGst && {
 						pattern: {
 							value   : patterns.GST_NUMBER,
-							message : 'GST is invalid',
+							message : `${REGISTRATION_LABEL} is invalid`,
 						},
 					}),
 				},
@@ -375,7 +385,7 @@ const useSaveAddressForm = (props) => {
 		if (controlName === 'tax_number_document_url') {
 			newField = {
 				...newField,
-				label: validateGst ? 'GST Proof' : 'TAX Proof',
+				label: validateGst ? `${REGISTRATION_LABEL} Proof` : 'TAX Proof',
 			};
 		}
 

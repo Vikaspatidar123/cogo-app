@@ -11,7 +11,18 @@ import { getCurrencyDetail } from '../../../utils/getCurrencyDetail';
 
 import styles from './styles.module.css';
 
+import { getCountrySpecificData } from '@/ui/commons/constants/CountrySpecificDetail';
+import getGeoConstants from '@/ui/commons/constants/geo';
 import formatAmount from '@/ui/commons/utils/formatAmount';
+
+const geo = getGeoConstants();
+const countrySpecificData = getCountrySpecificData({
+	country_id    : geo.country.id,
+	accessorType  : 'navigations',
+	accessor      : 'subscription',
+	isDefaultData : true,
+
+});
 
 const description = () => (
 	<div className={styles.tooltip_ctn}>
@@ -55,6 +66,8 @@ function Charges({
 	const [showCoupons, setShowCoupons] = useState(false);
 	const { plan = {}, pricing = {}, allow_activate_later = false } = plans || {};
 	const loading = checkoutResponse?.errors || completeOrderLoading;
+
+	const { is_tax_included = false } = countrySpecificData;
 
 	const {
 		applyPromoCode, promoCodeData, couponCode, setCouponCode,
@@ -105,12 +118,14 @@ function Charges({
 			</div>
 			<div className={styles.div}>
 				<div className={styles.styled_row}>
-					<div className={styles.styled_col}>
-						<div>
-							{plan?.description}
-							<div className={styles.gst}>(Gst Included)</div>
+					{is_tax_included && (
+						<div className={styles.styled_col}>
+							<div>
+								{plan?.description}
+								<div className={styles.gst}>(Gst Included)</div>
+							</div>
 						</div>
-					</div>
+					)}
 					<div className={styles.styled_col2}>
 						{plan?.metadata?.display_pricing?.[`${query?.period}`]
 							?.prev_value_inr && (

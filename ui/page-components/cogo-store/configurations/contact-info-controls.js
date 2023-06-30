@@ -1,8 +1,15 @@
+import { getCountrySpecificData } from '@/ui/commons/constants/CountrySpecificDetail';
 import getGeoConstants from '@/ui/commons/constants/geo';
 
-export const contactInfoControls = ({ t }) => {
-	const geo = getGeoConstants();
+const geo = getGeoConstants();
+const REGISTRATION_PATTERN = getCountrySpecificData({
+	country_id    : geo.country.id,
+	accessorType  : 'registration_number',
+	accessor      : 'pattern',
+	isDefaultData : true,
 
+});
+export const contactInfoControls = ({ t }) => {
 	const addressControls = [
 		{
 			label       : `${t('cogoStore:enter_poc_name_label')}`,
@@ -53,7 +60,7 @@ export const contactInfoControls = ({ t }) => {
 			rules       : {
 				required : `${t('cogoStore:enter_tax_number')}`,
 				pattern  : {
-					value   : geo.regex.GST,
+					value   : REGISTRATION_PATTERN,
 					message : `${t('cogoStore:invalid_gst_number')}`,
 				},
 			},

@@ -101,7 +101,7 @@ const billingAddressControls = [
 			required : true,
 			pattern  : {
 				value   : REGISTRATION_PATTERN,
-				message : 'GST is invalid',
+				message : `${REGISTRATION_LABEL} is invalid`,
 			},
 		},
 	},

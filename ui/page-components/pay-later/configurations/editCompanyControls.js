@@ -1,3 +1,15 @@
+import { getCountrySpecificData } from '@/ui/commons/constants/CountrySpecificDetail';
+import getGeoConstants from '@/ui/commons/constants/geo';
+
+const geo = getGeoConstants();
+const REGISTRATION_LABEL = getCountrySpecificData({
+	country_id    : geo.country.id,
+	accessorType  : 'registration_number',
+	accessor      : 'label',
+	isDefaultData : true,
+
+});
+
 export const EDIT_COMPANY_CONTROLS = [
 	{
 		name     : 'name',
@@ -13,7 +25,7 @@ export const EDIT_COMPANY_CONTROLS = [
 	},
 	{
 		name     : 'gst_number',
-		label    : 'GST Number',
+		label    : `${REGISTRATION_LABEL} Number`,
 		type     : 'text',
 		disabled : true,
 	},

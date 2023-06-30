@@ -4,7 +4,17 @@ import { isEmpty, startCase } from '@cogoport/utils';
 import Actions from './Actions';
 import styles from './styles.module.css';
 
+import { getCountrySpecificData } from '@/ui/commons/constants/CountrySpecificDetail';
+import getGeoConstants from '@/ui/commons/constants/geo';
 import formatAmount from '@/ui/commons/utils/formatAmount';
+
+const geo = getGeoConstants();
+const REGISTRATION_LABEL = getCountrySpecificData({
+	country_id    : geo.country.id,
+	accessorType  : 'registration_number',
+	accessor      : 'label',
+	isDefaultData : true,
+});
 
 function Header({ children, invoice = {}, shipmentData = {} }) {
 	const {
@@ -43,7 +53,7 @@ function Header({ children, invoice = {}, shipmentData = {} }) {
 					</div>
 
 					<div className={styles.gst}>
-						<div className={styles.label}>GST Number :</div>
+						<div className={styles.label}>{`${REGISTRATION_LABEL} Number }`}</div>
 						<Popover
 							theme="light"
 							interactive

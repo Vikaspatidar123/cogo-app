@@ -19,14 +19,13 @@ const usePayment = () => {
 	const {
 		org_id = '',
 		branch_id = '',
-		account_type = '',
 		trade_engine_id,
 	} = query || {};
 
 	const [butttonLoading, setButtonLoading] = useState(false);
 	const [modal, setModal] = useState({});
 
-	const callBackUrl = `${process.env.NEXT_PUBLIC_APP_BASE_URL}v2/${org_id}/${branch_id}/${account_type}/`
+	const callBackUrl = `${process.env.NEXT_PUBLIC_APP_URL}${org_id}/${branch_id}/`
 		+ 'saas/premium-services/import-export-controls';
 	const { getProductCodeLoading, productCode = {} } = useGetProductCode();
 

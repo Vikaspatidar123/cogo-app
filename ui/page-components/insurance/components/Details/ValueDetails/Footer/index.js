@@ -9,7 +9,6 @@ function Footer({
 	handleSubmit = () => {},
 	setTermsConditionsShow = () => {},
 	ratesLoading = false,
-	isMobile = false,
 	draftLoading = false,
 	setAgree = () => {},
 	checked = false,
@@ -35,7 +34,7 @@ function Footer({
 
 	return (
 		<div className={styles.flex_div}>
-			<div className={isMobile ? styles.flex_mobile : styles.flex}>
+			<div className={styles.flex}>
 				<Checkbox
 					className={checked ? styles.no_error : styles.error}
 					checked={checked}
@@ -51,11 +50,11 @@ function Footer({
 					</u>
 				</div>
 			</div>
-			<div className={isMobile ? styles.wrapper_2_mobile : styles.wrapper_2}>
-				<Button onClick={prevButton}>
+			<div className={styles.wrapper_2}>
+				<Button onClick={prevButton} type="button">
 					<IcMArrowBack width="22px" height="22px" className={styles.icon} />
 				</Button>
-				<Button onClick={handleSubmit(saveDraft)} loading={draftLoading} themeType="accent">
+				<Button onClick={handleSubmit(saveDraft)} loading={draftLoading} themeType="accent" type="button">
 					<div className={styles.align_div}>
 						Save as Draft
 						<IcMBldo className={styles.icon_left} />
@@ -66,6 +65,7 @@ function Footer({
 						ratesLoading || Object.keys(ratesResponse).length <= 0 || !checked
 }
 					onClick={handleSubmit(submit)}
+					type="submit"
 				>
 					{renderBtn()}
 				</Button>

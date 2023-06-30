@@ -54,11 +54,19 @@
 	flex-shrink: 0;
 	align-items: normal;
 	justify-content: flex-start;
+
+	@media (max-width: 768px) {
+		flex-direction: column;
+		width: 100%;
+	}
 }
 
 .col {
 	padding: 8px;
 
+	@media (max-width: 768px) {
+		width: 100%;
+	}
 	@media screen and (max-width: 767px) {
 		width: 100% !important;
 	}

@@ -22,7 +22,6 @@ function Details({
 	formDetails = {},
 	type = '',
 	activeTab = '',
-	isMobile = false,
 	policyId = '',
 }) {
 	const { query } = useRouter();
@@ -113,7 +112,7 @@ function Details({
 	}, [query, setActiveStepper]);
 
 	return (
-		<div className={isMobile ? styles.main_mobile : styles.main}>
+		<div className={styles.main}>
 			{activeStepper?.[1] === 'pro' && (
 				<div>
 					<BillingDetails
@@ -126,7 +125,6 @@ function Details({
 						checked={checked}
 						setOrganizationAddress={setOrganizationAddress}
 						organizationAddress={organizationAddress}
-						isMobile={isMobile}
 						draftResponse={draftResponse}
 						draftLoading={draftLoading}
 						policyid={policyIdDraft}
@@ -143,7 +141,6 @@ function Details({
 					activeTab={activeTab}
 					setCommodityName={setCommodityName}
 					commodityName={commodityName}
-					isMobile={isMobile}
 					draftResponse={draftResponse}
 					draftLoading={draftLoading}
 					policyid={policyIdDraft}
@@ -170,7 +167,6 @@ function Details({
 					paymentStatus={paymentStatus}
 					createInsuranceLoading={createInsuranceLoading}
 					policyIdDownload={policyIdDownload}
-					isMobile={isMobile}
 					draftResponse={draftResponse}
 					draftLoading={draftLoading}
 					policyid={policyIdDraft}

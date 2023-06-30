@@ -30,7 +30,7 @@ function Elgibility() {
 
 			</div>
 			<div className={styles.Bottom}>
-				<Button className={styles.button} onClick={() => push('/pay-later')}>CHECK ELGIBILITY NOW</Button>
+				<Button className={styles.button} onClick={() => push('/pay-later')}>CHECK ELIGIBILITY NOW</Button>
 			</div>
 		</div>
 	);

@@ -8,8 +8,9 @@ import {
 	IcMArrowBack,
 	IcMPlus,
 } from '@cogoport/icons-react';
-import React from 'react';
+import React, { useState } from 'react';
 
+import AddProductModal from '../../common/AddProductModal';
 import EmptyState from '../../common/List/EmptyState';
 import AllProducts from '../AllProducts';
 import SubCategory from '../SubCategories';
@@ -29,6 +30,9 @@ function ProductsList({
 	const { MAPPING } = HsCodeIcon(false);
 	const checkLength = apiData?.totalRecords;
 	const countryInfo = profile?.organization?.country;
+
+	const [proId, setProId] = useState('');
+	const [productClassification, setProductClassification] = useState('');
 
 	return (
 		<div className={styles.main_container}>
@@ -180,11 +184,8 @@ function ProductsList({
 							<div>
 								{checkLength !== 0 ? (
 									<AllProducts
-										showProduct={showProduct}
 										setShowProduct={setShowProduct}
 										countryInfo={countryInfo}
-										prefiledValues={prefiledValues}
-										setPrefiledValues={setPrefiledValues}
 										apiData={apiData}
 										refetchProduct={refetchProduct}
 										loading={loading}
@@ -196,6 +197,10 @@ function ProductsList({
 										showProductView={showProductView}
 										activeTab={activeTab}
 										setHSCode={setHSCode}
+										setProductClassification={setProductClassification}
+										setProId={setProId}
+										productClassification={productClassification}
+										proId={proId}
 									/>
 								) : (
 									<EmptyState />
@@ -223,6 +228,21 @@ function ProductsList({
 							showProductView={showProductView}
 						/>
 					)}
+					<AddProductModal
+						showProduct={showProduct}
+						setShowProduct={setShowProduct}
+						countryInfo={countryInfo}
+						prefiledValues={prefiledValues}
+						setPrefiledValues={setPrefiledValues}
+						isEdit={isEdit}
+						setIsEdit={setIsEdit}
+						addProductLoading={addProductLoading}
+						refetchProduct={refetchProduct}
+						setHSCode={setHSCode}
+						productClassificationId={productClassification}
+						productId={proId}
+						card
+					/>
 				</div>
 			</div>
 		</div>

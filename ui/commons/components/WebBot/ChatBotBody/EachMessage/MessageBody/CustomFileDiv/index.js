@@ -17,7 +17,7 @@ function CustomFileDiv({ mediaUrl = '' }) {
 			className={styles.container}
 			role="presentation"
 		>
-			<Image src={GLOBAL_CONSTANTS.image_url.document_icon} alt="document" width={144} height={144} />
+			<Image src={GLOBAL_CONSTANTS.image_url.document_icon} alt="document" width={15} height={15} />
 			<div className={styles.name_flex}>
 				<div className={styles.file_name}>{fileName}</div>
 				{extension && (

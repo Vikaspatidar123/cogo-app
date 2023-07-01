@@ -2,7 +2,7 @@ import { IcMFaq } from '@cogoport/icons-react';
 import { isEmpty } from '@cogoport/utils';
 
 import FaqQuestions from '../../../../../common/FaqQuestions';
-import useListFaqQuestions from '../../../../../hooks/useListFaqQuestion';
+import useListFaqQuestions from '../../../../../hooks/useListFaqQuestions';
 
 import FaqListLoader from './FaqListLoader';
 import styles from './styles.module.css';

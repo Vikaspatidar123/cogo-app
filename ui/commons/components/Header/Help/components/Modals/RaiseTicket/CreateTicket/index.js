@@ -28,11 +28,11 @@ function CreateTicket({
 
 	useEffect(() => {
 		setSelectedQuery(queryWatch || '');
-	}, [queryWatch]);
+	}, [queryWatch, setSelectedQuery]);
 
 	useEffect(() => {
 		setSelectedQuery(descriptionWatch || '');
-	}, [descriptionWatch]);
+	}, [descriptionWatch, setSelectedQuery]);
 
 	return (
 		<>

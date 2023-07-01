@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useCallback } from 'react';
 
 import { NO_OF_QUESTIONS_TO_BE_FETCHED } from '../constants';
@@ -6,16 +7,16 @@ import { useDebounceQuery } from '@/packages/forms';
 import { useRequest } from '@/packages/request';
 import { useSelector } from '@/packages/store';
 
-const getParams = ({ searchQuery, parent_entity_id, country_id }) => ({
+const getParams = ({ searchQuery, cogo_entity_id, country_id }) => ({
 	filters: {
-		persona        : 'importer_exporter',
-		cogo_entity_id : parent_entity_id,
-		platform       : 'app',
-		status         : 'active',
-		state          : 'published',
-		work_scope     : 'all',
+		persona    : 'importer_exporter',
+		cogo_entity_id,
+		platform   : 'app',
+		status     : 'active',
+		state      : 'published',
+		work_scope : 'all',
 		country_id,
-		q              : searchQuery,
+		q          : searchQuery,
 	},
 	page_limit: NO_OF_QUESTIONS_TO_BE_FETCHED,
 });
@@ -23,14 +24,14 @@ const getParams = ({ searchQuery, parent_entity_id, country_id }) => ({
 function useListFaqQuestions({ selectedQuery = '' }) {
 	const { profile } = useSelector((state) => state);
 
-	const { organization: { parent_entity_id, country_id } = {} } = profile || {};
+	const { organization: { cogo_entity_id, country_id } = {} } = profile || {};
 
 	const [{ loading, data }, trigger] = useRequest({
 		url    : '/cogo_academy/list_faq_questions',
 		method : 'get',
 	}, { manual: false });
 
-	const { debounceQuery, query = '' } = useDebounceQuery();
+	const { query, debounceQuery } = useDebounceQuery();
 
 	const fetchFaqQuestions = useCallback(
 		(searchQuery = '') => {
@@ -38,7 +39,7 @@ function useListFaqQuestions({ selectedQuery = '' }) {
 				trigger({
 					params: getParams({
 						searchQuery,
-						parent_entity_id,
+						cogo_entity_id,
 						country_id,
 					}),
 				});
@@ -53,11 +54,11 @@ function useListFaqQuestions({ selectedQuery = '' }) {
 		if (query) {
 			fetchFaqQuestions(query);
 		}
-	}, [fetchFaqQuestions, query]);
+	}, [query]);
 
 	useEffect(() => {
 		debounceQuery(selectedQuery);
-	}, [selectedQuery, debounceQuery]);
+	}, [debounceQuery, selectedQuery]);
 
 	return {
 		faqListData: data || '',

@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useCallback } from 'react';
 
 import { useDebounceQuery } from '@/packages/forms';
@@ -15,13 +16,13 @@ function useListFaqQuestions({ selectedQuery = '' }) {
 		scope,
 	}, { manual: false });
 
-	const fetchFaqQuestions = useCallback(async () => {
+	const fetchFaqQuestions = useCallback(() => {
 		try {
-			await trigger({
+			trigger({
 				params: {
 					filters: {
 						persona        : 'importer_exporter',
-						cogo_entity_id : profile?.organization?.parent_entity_id,
+						cogo_entity_id : profile?.organization?.cogo_entity_id,
 						platform       : 'app',
 						work_scope     : 'all',
 						country_id     : profile?.organization?.country_id,
@@ -32,17 +33,17 @@ function useListFaqQuestions({ selectedQuery = '' }) {
 		} catch (error) {
 			console.log('error', error);
 		}
-	}, [trigger, searchQuery]);
+	}, [trigger]);
 
 	useEffect(() => {
 		if (searchQuery) {
 			fetchFaqQuestions();
 		}
-	}, [fetchFaqQuestions]);
+	}, [searchQuery]);
 
 	useEffect(() => {
 		debounceQuery(selectedQuery);
-	}, [selectedQuery]);
+	}, [selectedQuery, debounceQuery]);
 
 	return {
 		faqListData: data || {},

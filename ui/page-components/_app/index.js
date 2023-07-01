@@ -39,7 +39,7 @@ function MyApp({ Component, pageProps, store, generalData }) {
 	const isUnKnownUser = !organizationId;
 
 	const isBotVisible = isUnKnownUser
-		? !GLOBAL_CONSTANTS.bot_not_visible_countries.includes(countryCode)
+		? !(GLOBAL_CONSTANTS.bot_not_visible_countries.includes(countryCode))
 		: geo.parent_entity_id !== GLOBAL_CONSTANTS.country_entity_ids.VN;
 
 	useEffect(() => {

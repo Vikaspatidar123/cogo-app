@@ -234,7 +234,10 @@ const GLOBAL_CONSTANTS = {
 		ends_with_star_char        : /\*[^0-9a-zA-Z]/,
 		ends_with_star_space_regex : /\* /,
 	},
-	bot_not_visible_countries: ['VN'],
+	bot_not_visible_countries : ['VN'],
+	urls                      : {
+		whatsapp_get_started_link: 'https://wa.me/message/N4CI7UNDFE2ZM1',
+	},
 };
 
 export default GLOBAL_CONSTANTS;

@@ -1,5 +1,5 @@
 .container {
-	padding: 16px;
+	padding: 0 16px;
 }
 
 .pagination {
@@ -112,4 +112,19 @@
 
 .disableBtn {
 	background-color: #e8afa8 !important;
+}
+
+.styled_modal {
+	height: 90vh;
+
+	:global {
+		.ui_modal_header_container {
+			height: 10%;
+		}
+
+		.ui_modal_body_container {
+			height: 80%;
+			max-height: none;
+		}
+	}
 }

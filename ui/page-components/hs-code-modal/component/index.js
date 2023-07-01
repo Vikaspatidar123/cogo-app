@@ -152,7 +152,7 @@ function HsCode({
 
 	return (
 		<Modal
-			className="primary"
+			className={cl`primary ${styles.styled_modal}`}
 			show={showHsCodeModal}
 			size={!isMobile ? 'xl' : 'sm'}
 			onClose={() => setShowHsCodeModal(false)}

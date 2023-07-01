@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/rules-of-hooks */
 import { getApp, getApps, initializeApp } from 'firebase/app';
 import { getAuth, signInWithCustomToken } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
@@ -63,13 +62,19 @@ function CogoBot() {
 
 	const { isOpen, roomId, newMessageCount } = cogoBotState || {};
 
-	const { sendMessage = () => {}, loading: sendMessageLoading } = isUnKnownUser
-		? usePublicSendMessage()
-		: useSendMessage({
-			user_id         : userId,
-			organization_id : organization?.id,
-			lead_user_id,
-		});
+	const {
+		sendMessage:sendMessageFromUnknownUser = () => {},
+		loading: sendMessageLoadingFromUnknown,
+	} = usePublicSendMessage();
+
+	const {
+		sendMessage:sendMessageFromknownUser = () => {},
+		loading: sendMessageLoadingFromknown,
+	} = useSendMessage({
+		user_id         : userId,
+		organization_id : organization?.id,
+		lead_user_id,
+	});
 
 	const { toggleUserChat, mountCountSnapShot, closeBot } = useFetchRoom({
 		firestore,
@@ -78,7 +83,7 @@ function CogoBot() {
 		setCogoBotState,
 		isOpen,
 		roomId,
-		sendMessage,
+		sendMessage: isUnKnownUser ? sendMessageFromUnknownUser : sendMessageFromknownUser,
 		// setShowIntelligence,
 		setCogobotLoading,
 	});
@@ -123,11 +128,11 @@ function CogoBot() {
 					name={userName}
 					roomId={roomId}
 					userId={userId}
-					sendMessage={sendMessage}
+					sendMessage={isUnKnownUser ? sendMessageFromUnknownUser : sendMessageFromknownUser}
 					firestore={firestore}
 					closeBot={closeBot}
 					newMessageCount={newMessageCount}
-					sendMessageLoading={sendMessageLoading}
+					sendMessageLoading={sendMessageLoadingFromknown || sendMessageLoadingFromUnknown}
 					isOpen={isOpen}
 					createLoading={createLoading}
 					setCogoBotState={setCogoBotState}

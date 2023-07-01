@@ -6,7 +6,7 @@
 	height: 8%;
 	overflow: hidden;
 	text-align: center;
-	background-color: rgb(255 255 255);
+	background-color: #fff;
 	transition: height 0.3s;
 }
 
@@ -75,7 +75,7 @@
 			min-width: auto;
 			margin-bottom: 5px;
 			color: #828282;
-			background-color: white;
+			background-color: #fff;
 
 			div {
 				div {
@@ -100,7 +100,7 @@
 			min-width: auto;
 			margin-bottom: 5px;
 			color: grey;
-			background-color: white;
+			background-color: #fff;
 
 			div {
 				div {

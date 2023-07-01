@@ -1,9 +1,19 @@
+import Image from 'next/image';
+
 import CustomFileDiv from './CustomFileDiv';
 import styles from './styles.module.css';
 
 const FILE_TYPE_MAPPING = {
-	image : ({ mediaUrl }) => <img className={styles.styled_image} src={mediaUrl} alt="attachment" />,
-	audio : ({ mediaUrl, extension }) => (
+	image: ({ mediaUrl }) => (
+		<Image
+			className={styles.styled_image}
+			src={mediaUrl}
+			width={204}
+			height={115}
+			alt="attachment"
+		/>
+	),
+	audio: ({ mediaUrl, extension }) => (
 		<audio controls className={styles.styled_audio}>
 			<source src={mediaUrl} type={`audio/${extension}`} />
 			<track src="" kind="captions" />

@@ -10,7 +10,7 @@ const replaceStarSpace = (txt = '') => txt
 	.split(endWithStarSpace)
 	.map((str, i) => {
 		if (i === 0) {
-			return ` <strong>${str.substring(0, txt.length - 1)}</strong> `;
+			return ` <strong key={${str}}>${str.substring(0, txt.length - 1)}</strong> `;
 		}
 		return str;
 	})
@@ -22,7 +22,7 @@ const replaceStarChar = (txt = '') => {
 			.split('*')
 			.map((str, i) => {
 				if (i === 0) {
-					return ` <strong>${str.substring(0, txt.length - 1)}</strong>`;
+					return ` <strong key={${str}}>${str.substring(0, txt.length - 1)}</strong>`;
 				}
 				return str;
 			})
@@ -52,7 +52,7 @@ const renderBoldText = (txt = '') => (txt?.split('<br>') || []).map((part) => ad
 
 const renderURLText = (txt = '') => (txt?.split(' ') || [])
 	.map((part) => (urlRegex.test(part)
-		? `<a href=${part} target="_blank">${part} </a>`
+		? `<a href=${part} target="_blank" key={${part}}>${part} </a>`
 		: `${part} `))
 	.join(' ');
 

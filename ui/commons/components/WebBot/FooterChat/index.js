@@ -1,6 +1,7 @@
 import { Popover, Textarea } from '@cogoport/components';
 import { IcMAttach, IcMCross, IcMHappy, IcMSend } from '@cogoport/icons-react';
 import { isEmpty } from '@cogoport/utils';
+import Image from 'next/image';
 import React, { useState } from 'react';
 
 import useGetEmojiList from '../../../hooks/useGetEmojiList';
@@ -169,7 +170,13 @@ function FooterChat({ sendMessageLoading, sendFirebaseMessage, toggleHeight }) {
 							className={styles.send_icon}
 						/>
 					) : (
-						<img src={GLOBAL_CONSTANTS.image_url.loader} alt="loading" className={styles.loading} />
+						<Image
+							src={GLOBAL_CONSTANTS.image_url.loader}
+							alt="loading"
+							className={styles.loading}
+							width={25}
+							height={25}
+						/>
 					)}
 				</div>
 			</div>

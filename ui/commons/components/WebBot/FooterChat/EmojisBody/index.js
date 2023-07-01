@@ -21,6 +21,7 @@ function PopBody({ emojisList, updateMessage, setOnClicked = () => {} }) {
 								setOnClicked(false);
 							}}
 							className={styles.emoji_button}
+							key={group}
 						>
 							{emoji}
 						</div>

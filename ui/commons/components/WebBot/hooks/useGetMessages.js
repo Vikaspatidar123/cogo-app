@@ -13,6 +13,8 @@ import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
 const PAGE_LIMIT = 10;
 
+const TIME_TO_SCROLL = 100;
+
 const useGetMessages = ({ firestore, roomId, scrollToBottom }) => {
 	const [messagesState, setMessagesState] = useState({
 		messagesHash          : {},
@@ -55,7 +57,7 @@ const useGetMessages = ({ firestore, roomId, scrollToBottom }) => {
 					islastPage,
 					lastDocumentTimeStamp,
 				}));
-				setTimeout(scrollToBottom, 100);
+				setTimeout(scrollToBottom, TIME_TO_SCROLL);
 			},
 		);
 	};

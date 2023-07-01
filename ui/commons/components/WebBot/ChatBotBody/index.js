@@ -1,4 +1,5 @@
 import { IcMRefresh } from '@cogoport/icons-react';
+import Image from 'next/image';
 import React, { useRef } from 'react';
 
 import FooterChat from '../FooterChat';
@@ -45,9 +46,9 @@ function ChatBotBody({ firestore, roomId, sendMessage, sendMessageLoading }) {
 				{!isLastPageOfMessages && (
 					<div className={styles.loader}>
 						{loading ? (
-							<img src={GLOBAL_CONSTANTS.image_url.loader} alt="load" />
+							<Image src={GLOBAL_CONSTANTS.image_url.loader} alt="load" width={20} height={20} />
 						) : (
-							<IcMRefresh cursor="pointer" onClick={getPrevData} />
+							<IcMRefresh onClick={getPrevData} className={styles.refresh} />
 						)}
 					</div>
 				)}

@@ -234,6 +234,7 @@ const GLOBAL_CONSTANTS = {
 		ends_with_star_char        : /\*[^0-9a-zA-Z]/,
 		ends_with_star_space_regex : /\* /,
 	},
+	bot_not_visible_countries: ['VN'],
 };
 
 export default GLOBAL_CONSTANTS;

@@ -24,7 +24,7 @@ const useGetMessages = ({ firestore, roomId, scrollToBottom }) => {
 	const [loading, setLoading] = useState(false);
 	const latestMessages = useRef(null);
 
-	const { platform_chat: PLATFORM_CHAT_PATH } = GLOBAL_CONSTANTS.firebase_paths;
+	const PLATFORM_CHAT_PATH = GLOBAL_CONSTANTS.firebase_paths.platform_chat;
 
 	const messagesCollection = collection(
 		firestore,

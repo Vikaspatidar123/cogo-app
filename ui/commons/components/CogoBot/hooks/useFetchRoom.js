@@ -28,7 +28,7 @@ const useFetchRoom = ({
 	isOpen,
 }) => {
 	const snapshotRef = useRef(null);
-	const { platform_chat: PLATFORM_CHAT_PATH } = GLOBAL_CONSTANTS.firebase_paths;
+	const PLATFORM_CHAT_PATH = GLOBAL_CONSTANTS.firebase_paths.platform_chat;
 
 	const platformChatCollection = collection(firestore, PLATFORM_CHAT_PATH);
 

@@ -19,7 +19,6 @@ import handleAuthentication from '@/ui/page-components/authentication/utils/hand
 import { setCookie, getCookie } from '@cogoport/utils';
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 import getGeoConstants from '@/ui/commons/constants/geo';
-import getCountryDetails from '@/ui/commons/utils/getCountryDetails';
 
 const DynamicChatBot = dynamic(() => import('@/ui/commons/components/CogoBot'), {
 	ssr: false,
@@ -37,14 +36,10 @@ function MyApp({ Component, pageProps, store, generalData }) {
 
 	const geo = getGeoConstants();
 
-	const VIETNAM_COUNTRY_CODE = getCountryDetails({
-		country_id: GLOBAL_CONSTANTS.country_ids.VN,
-	})?.country_code;
-
 	const isUnKnownUser = !organizationId;
 
 	const isBotVisible = isUnKnownUser
-		? countryCode !== VIETNAM_COUNTRY_CODE
+		? !GLOBAL_CONSTANTS.bot_not_visible_countries.includes(countryCode)
 		: geo.parent_entity_id !== GLOBAL_CONSTANTS.country_entity_ids.VN;
 
 	useEffect(() => {

@@ -8,8 +8,27 @@ const getWelcomeMessage = (
 today? please do not hesitate to let us know if you have any questions
 or need help with anything.`;
 
+const userWhatsappQR = {
+	conversation_type : 'received',
+	message_type      : 'image',
+	response          : {
+		whatsapp_get_started_link:
+			GLOBAL_CONSTANTS.urls.whatsapp_get_started_link,
+		message   : 'Scan using WhatsApp or click on button below',
+		media_url : GLOBAL_CONSTANTS.image_url.whatsapp_qr,
+	},
+	created_at: Date.now(),
+};
+
+const whatsappQRMetadata = {
+	whatsapp_get_started_link : GLOBAL_CONSTANTS.urls.whatsapp_get_started_link,
+	message_type              : 'image',
+	text                      : 'Scan using WhatsApp or click on button below',
+	media_url                 : GLOBAL_CONSTANTS.image_url.whatsapp_qr,
+};
+
 const addInitialMessage = async ({ roomId, firestore, name, sendMessage }) => {
-	const { platform_chat: PLATFORM_CHAT_PATH } = GLOBAL_CONSTANTS.firebase_paths;
+	const PLATFORM_CHAT_PATH = GLOBAL_CONSTANTS.firebase_paths.platform_chat;
 
 	const userMessageCollection = collection(
 		firestore,
@@ -31,18 +50,6 @@ const addInitialMessage = async ({ roomId, firestore, name, sendMessage }) => {
 
 	await addDoc(userMessageCollection, userChat);
 
-	const userWhatsappQR = {
-		conversation_type : 'received',
-		message_type      : 'image',
-		response          : {
-			whatsapp_get_started_link:
-				GLOBAL_CONSTANTS.urls.whatsapp_get_started_link,
-			message   : 'Scan using WhatsApp or click on button below',
-			media_url : GLOBAL_CONSTANTS.image_url.whatsapp_qr,
-		},
-		created_at: Date.now(),
-	};
-
 	await addDoc(userMessageCollection, userWhatsappQR);
 
 	const messageMetaData = {
@@ -54,13 +61,6 @@ const addInitialMessage = async ({ roomId, firestore, name, sendMessage }) => {
 		messageMetaData,
 		conversation_type: 'outward',
 	});
-
-	const whatsappQRMetadata = {
-		whatsapp_get_started_link : GLOBAL_CONSTANTS.urls.whatsapp_get_started_link,
-		message_type              : 'image',
-		text                      : 'Scan using WhatsApp or click on button below',
-		media_url                 : GLOBAL_CONSTANTS.image_url.whatsapp_qr,
-	};
 
 	sendMessage({
 		messageMetaData   : whatsappQRMetadata,

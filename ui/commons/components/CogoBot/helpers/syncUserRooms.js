@@ -15,7 +15,9 @@ const syncUserRooms = async ({
 	firestore,
 	preferredMobileNo,
 }) => {
-	const { whatsapp: WHATSAPP_PATH, platform_chat: PLATFORM_CHAT_PATH } =		GLOBAL_CONSTANTS.firebase_paths;
+	const PLATFORM_CHAT_PATH = GLOBAL_CONSTANTS.firebase_paths.platform_chat;
+
+	const WHATSAPP_PATH = GLOBAL_CONSTANTS.firebase_paths.whatsapp;
 
 	const channelForWhatsapp = collection(firestore, WHATSAPP_PATH);
 	const mobileNoQuery = query(

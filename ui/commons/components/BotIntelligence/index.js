@@ -1,5 +1,4 @@
 import { IcMCrossInCircle } from '@cogoport/icons-react';
-import { useEffect } from 'react';
 
 import { useDynamicIntelligence } from '../../hooks/useDynamicIntelligence';
 
@@ -12,10 +11,6 @@ const GREETING_OPTIONS = [
 
 function BotIntelligence({ showIntelligence, setShowIntelligence = () => {} }) {
 	const { chooseIntelligence = '' } = useDynamicIntelligence();
-	useEffect(() => {
-		setShowIntelligence(true);
-	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
 
 	if (!(showIntelligence && chooseIntelligence)) return null;
 

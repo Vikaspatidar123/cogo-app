@@ -4,7 +4,7 @@ import { getFirestore } from 'firebase/firestore';
 import React, { useState, useRef, useEffect } from 'react';
 import Draggable from 'react-draggable';
 
-import { firebaseConfig } from '../../configurations/FirebaseConfig';
+import { FIREBASE_CONFIG } from '../../configurations/FirebaseConfig';
 import usePublicSendMessage from '../../hooks/usePublicSendMessage';
 import useSendMessage from '../../hooks/useSendMessage';
 
@@ -12,15 +12,15 @@ import useFetchRoom from './hooks/useFetchRoom';
 import styles from './styles.module.css';
 
 import { useSelector } from '@/packages/store';
-// import BotIntelligence from '@/ui/commons/components/BotIntelligence';
+import BotIntelligence from '@/ui/commons/components/BotIntelligence';
 import WebBot from '@/ui/commons/components/WebBot';
 
 function CogoBot() {
-	const app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApp();
+	const app = getApps().length === 0 ? initializeApp(FIREBASE_CONFIG) : getApp();
 
 	const { general, profile } = useSelector((state) => state);
 
-	// const [showIntelligence, setShowIntelligence] = useState(false);
+	const [showIntelligence, setShowIntelligence] = useState(false);
 	const [cogobotLoading, setCogobotLoading] = useState(true);
 	const [cogoBotState, setCogoBotState] = useState({
 		isOpen          : false,
@@ -120,10 +120,10 @@ function CogoBot() {
 	return (
 		<Draggable onStop={onStop} onDrag={onDrag} handle="#draggable_widget">
 			<div className={styles.bot_container}>
-				{/* <BotIntelligence
+				<BotIntelligence
 					showIntelligence={showIntelligence}
 					setShowIntelligence={setShowIntelligence}
-				/> */}
+				/>
 				<WebBot
 					name={userName}
 					roomId={roomId}

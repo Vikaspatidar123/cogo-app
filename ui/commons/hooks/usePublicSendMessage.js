@@ -8,7 +8,7 @@ import getApiErrorString from '@/packages/forms/utils/getApiError';
 const usePublicSendMessage = () => {
 	const [{ loading }, trigger] = useLegacyRequest({
 		url    : 'communication/create_communication_public_platform_chat',
-		method : 'POST',
+		method : 'post',
 	});
 
 	const sendMessage = async ({

@@ -11,7 +11,7 @@ const useSendFirebaseMessage = ({
 	sendMessageLoading,
 	sendMessage,
 }) => {
-	const { platform_chat: PLATFORM_CHAT_PATH } = GLOBAL_CONSTANTS.firebase_paths;
+	const PLATFORM_CHAT_PATH = GLOBAL_CONSTANTS.firebase_paths.platform_chat;
 
 	const messageCollection = collection(
 		firestore,

@@ -59,7 +59,7 @@
 .segment_faq {
 	display: flex;
 	justify-content: space-between;
-	margin: 20px;
+	margin: 20px 0;
 
 	:global {
 		.ui_chip_container {
@@ -135,6 +135,10 @@
 		.ui_table_body_row {
 			height: 70px;
 		}
+
+		.ui_table_body_row:hover {
+			background-color: #fff;
+		}
 	}
 }
 
@@ -168,4 +172,8 @@
 	align-items: center;
 	justify-content: center;
 	height: 100vh;
+}
+
+.icon {
+	margin-left: 4px;
 }

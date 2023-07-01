@@ -1,0 +1,36 @@
+.container {
+	background: #fff;
+
+	@media (max-width: 768px) {
+		display: none;
+	}
+}
+
+.show_cursor {
+	width: fit-content;
+	cursor: pointer;
+}
+
+.row {
+	display: flex;
+	flex-direction: row;
+	width: 100%;
+	padding: 16px;
+	padding-bottom: 0;
+	margin: 0 !important;
+	background: rgb(248 249 249);
+	border-bottom: none;
+	border-bottom: 1px solid rgb(204 204 204);
+}
+
+.col {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.card_title {
+	font-size: 12px;
+	font-weight: 500;
+	color: #2f3941;
+}

@@ -1,0 +1,18 @@
+.row {
+	padding: 10px 16px;
+	margin: 0 !important;
+	background: #fff;
+	border-bottom: 1px solid rgb(233 235 237);
+}
+
+.col {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 0 8px;
+}
+
+.title_black {
+	max-width: 100%;
+	word-break: break-word;
+}

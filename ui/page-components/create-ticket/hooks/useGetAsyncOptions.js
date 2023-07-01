@@ -1,0 +1,71 @@
+import { isEmpty } from '@cogoport/utils';
+import { useEffect, useState } from 'react';
+
+import { useDebounceQuery } from '@/packages/forms';
+import { useRequest } from '@/packages/request';
+import { useSelector } from '@/packages/store';
+
+const useGetAsyncOptions = ({ isTicketNotUtlilized }) => {
+	const [defaultOptions, setDefaultOptions] = useState([]);
+	const {
+		general: { query = {} },
+	} = useSelector((state) => state);
+
+	const { token, type = '' } = query || {};
+	const { debounceQuery, query:searchQuery } = useDebounceQuery();
+
+	// const { trigger } = useRequest(
+	// 	'get',
+	// 	false,
+	// 	'cogocare',
+	// )('/token_ticket_types');
+	const [{ loading }, trigger] = useRequest({
+		url    : '/token_ticket_types',
+		method : 'get',
+	}, { manual: true });
+
+	const listAsyncOptions = async () => {
+		const res = await trigger({
+			params: {
+				page        : 0,
+				TicketType  : searchQuery || '',
+				size        : 10,
+				TicketToken : token,
+				Category    : type,
+			},
+		});
+		if (res?.data?.items) {
+			return res?.data?.items;
+		}
+		return null;
+	};
+
+	const formatOptions = (list) => {
+		const newOptions = (list || []).map((item) => {
+			const { TicketType = '' } = item || {};
+			return { label: TicketType, value: TicketType };
+		});
+		return newOptions;
+	};
+
+	const getOptions = async () => {
+		const list = await listAsyncOptions();
+		if (!isEmpty(list) && isTicketNotUtlilized) {
+			setDefaultOptions(formatOptions(list));
+		}
+	};
+	const loadOptions = (inputValue = '') => {
+		debounceQuery(inputValue);
+	};
+
+	useEffect(() => {
+		getOptions();
+	}, []);
+
+	return {
+		loadOptions,
+		defaultOptions,
+		loading,
+	};
+};
+export default useGetAsyncOptions;

@@ -1,0 +1,63 @@
+const InvoiceColumns = [
+	{
+		label: ' ',
+		key: 'invoice_id',
+		func: 'handleCheckbox',
+		span: 0.6,
+	},
+	{
+		label: 'Invoice Number',
+		key: 'invoice_number',
+		func: 'handleUrlLink',
+		urlKey: 'pdf_url',
+		tagKey: 'invoice_type',
+		span: 2,
+	},
+	{
+		label: 'Shipment Id',
+		key: 'shipment_serial_id',
+		func: 'handleText',
+		tagKey: 'shipment_service_type',
+		span: 1.4,
+	},
+	{
+		label: 'Open Invoice Amt',
+		key: 'open_invoice_amount',
+		func: 'handleShortFormatPrice',
+		sort: true,
+		currencyKey: 'open_invoice_currency',
+		span: 1.8,
+	},
+	{
+		label: 'Invoice Amt',
+		key: 'ledger_invoice_amount',
+		func: 'handleShortFormatPrice',
+		sort: true,
+		currencyKey: 'open_invoice_currency',
+		tagKey: 'status',
+		span: 1.8,
+	},
+	{
+		label: 'Invoicing Date',
+		key: 'invoice_date',
+		func: 'handleDate',
+		formatType: 'dd MMM yyyy',
+		sort: true,
+		span: 1.6,
+	},
+	{
+		label: 'Due Date',
+		key: 'due_date',
+		func: 'handleDate',
+		formatType: 'dd MMM yyyy',
+		sort: true,
+		span: 1.4,
+	},
+	{
+		label: 'Due Days',
+		key: 'due_days',
+		func: 'handleText',
+		span: 1.4,
+	},
+];
+export default InvoiceColumns;

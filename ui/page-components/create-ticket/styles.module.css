@@ -1,0 +1,96 @@
+.loader_div {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 100vh;
+}
+
+.loader {
+	width: 60px;
+	height: 60px;
+}
+
+.container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+}
+
+.logo_div {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	padding: 22px 0 15px 20px;
+}
+
+.cogo_logo {
+	display: flex;
+	width: 118px;
+	height: 25px;
+}
+
+.heading {
+	font-size: 24px;
+	font-weight: 500;
+	color: #393f70;
+}
+
+.layout_div {
+	width: 100%;
+	height: 100%;
+	padding: 0 15px 15px 20px;
+
+	@media (max-width: 425px) {
+		padding: 0 10px 0 85px;
+	}
+}
+
+.layout_div_list {
+	width: 100%;
+	max-width: 40%;
+	height: 100%;
+	padding: 0 15px 15px 20px;
+
+	@media (max-width: 768px) {
+		width: 100%;
+	}
+	@media (max-width: 425px) {
+		padding: 0 10px 0 85px;
+	}
+}
+
+.wrapper {
+	display: flex;
+	justify-content: space-between;
+	background: #fff;
+
+	@media (max-width: 768px) {
+		flex-direction: column;
+	}
+}
+
+.table_wrapper {
+	display: flex;
+	flex-direction: column;
+	width: 70%;
+	padding: 12px;
+	border-radius: 4px;
+	box-shadow:
+		rgb(0 0 0 / 10%) 0 0 5px 0,
+		rgb(0 0 0 / 10%) 0 0 1px 0;
+
+	@media (max-width: 768px) {
+		width: 100%;
+		margin-top: 30px;
+	}
+}
+
+.button_wrapper {
+	display: flex;
+	justify-content: flex-end;
+	margin: 20px 20px 20px 0;
+}

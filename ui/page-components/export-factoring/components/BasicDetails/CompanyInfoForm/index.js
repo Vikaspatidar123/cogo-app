@@ -1,54 +1,45 @@
 import { Checkbox } from '@cogoport/components';
-import React, { useState } from 'react';
+import { isEmpty } from '@cogoport/utils';
+import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useSelector } from 'react-redux';
+
+import Uploader from '../../../common/Uploader';
+import { getCompanyControls } from '../../../configurations/getCompanyBasicDetailsControls';
+import GSTproof from '../../GSTproof';
 
 import styles from './styles.module.css';
 
 import getField from '@/packages/forms/Controlled';
 
-export const COMPANY_DETAILS_CONTROLS = [
-	{
-		label       : 'PAN',
-		name        : 'pan',
-		type        : 'text',
-		placeholder : 'PAN',
-		showField   : true,
-		disabled    : true,
-		rules       : { required: true },
-	},
-	{
-		label       : 'IEC',
-		name        : 'iec',
-		type        : 'text',
-		placeholder : 'IEC',
-		showField   : true,
-		rules       : { required: true },
-	},
-	{
-		label       : 'GST',
-		name        : 'tax_number',
-		type        : 'async_select',
-		placeholder : 'GST',
-		asyncKey    : 'tax_numbers',
-		showField   : true,
-		valueKey    : 'tax_number',
-		labelKey    : 'label',
-		initialCall : true,
-		rules       : { required: true },
-	},
-];
-
-function CompanyInfoForm({ getCreditRequestResponse }) {
+function CompanyInfoForm({ getCreditRequestResponse, refetch = () => {} }) {
 	const { profile } = useSelector((state) => state);
 	const [iecCheck, setIecCheck] = useState(false);
 	const { organization = '' } = { ...profile, ...getCreditRequestResponse };
+	const [show, setShow] = useState(false);
+
+	const [selectedGstDetails, setSelectedGstDetails] = useState({});
+
+	const [proofUrl, setProofUrl] = useState();
+	const fileName = proofUrl?.split('/')?.slice(-1)?.join('');
+
+	const hasRequestedForCredit = !isEmpty(getCreditRequestResponse);
+	const companyDetailsControls = getCompanyControls({
+		setSelectedGstDetails,
+		profile,
+		setShow,
+		hasRequestedForCredit,
+		setProofUrl,
+		getCreditRequestResponse,
+	});
+
 	const {
 		control, watch, handleSubmit, formState: { errors }, setValue,
 	} = useForm({
 		defaultValues: {
 			pan        : getCreditRequestResponse?.org_registration_number || organization?.registration_number,
 			tax_number : getCreditRequestResponse?.tax_number,
+			iec        : getCreditRequestResponse?.org_iec_number,
 		},
 	});
 	const allFields = watch();
@@ -60,29 +51,61 @@ function CompanyInfoForm({ getCreditRequestResponse }) {
 			setValue('iec', '');
 		}
 	};
-	console.log(iecCheck);
+	useEffect(() => {
+		setProofUrl(getCreditRequestResponse?.documents?.gst_certificate?.active?.document_url
+			|| selectedGstDetails?.tax_number_document_url);
+	}, [getCreditRequestResponse?.documents?.gst_certificate?.active?.document_url,
+		selectedGstDetails?.tax_number_document_url]);
+
+	useEffect(() => {
+		setValue('gst_proof', fileName);
+	}, [fileName, getCreditRequestResponse?.tax_number, setValue]);
 
 	return (
 		<div>
-			{COMPANY_DETAILS_CONTROLS.map((item) => {
+			{companyDetailsControls.map((item) => {
 				const Element = getField(item?.type);
+				if (item.type === 'hidden') {
+					return <div style={{ display: 'none' }} />;
+				}
 				return (
 					item?.type && (
 						<div className={styles.field}>
-							<div className={styles.field_name}>{item?.label}</div>
-							{item.name === 'iec'
-								? (
+							<div className={styles.field_name} style={item.style}>{item?.label}</div>
+							{
+								item.name === 'gst_proof' && (
 									<>
-										<Element control={control} {...item} />
-										<Checkbox
-											className={styles.checkboxContainer}
-											label="Same As PAN"
-											value={iecCheck}
-											onChange={handleIec}
-										/>
+										{!hasRequestedForCredit && <Element {...item} control={control} />}
+										{proofUrl && (
+											<GSTproof
+												item={item}
+												proofUrl={proofUrl}
+												handleSubmit={handleSubmit}
+												setProofUrl={setProofUrl}
+												hasRequestedForCredit={hasRequestedForCredit}
+												getCreditRequestResponse={getCreditRequestResponse}
+												refetch={refetch}
+												selectedGstDetails={selectedGstDetails}
+											/>
+										)}
 									</>
 								)
-								: <Element control={control} {...item} />}
+							}
+							{item.name === 'iec'
+								&& (
+									<>
+										<Element control={control} {...item} disabled={hasRequestedForCredit} />
+										{!hasRequestedForCredit && (
+											<Checkbox
+												className={styles.checkboxContainer}
+												label="Same As PAN"
+												value={iecCheck}
+												onChange={handleIec}
+											/>
+										)}
+									</>
+								)}
+							{!['gst_proof', 'iec'].includes(item.name) && <Element control={control} {...item} />}
 							<div className={styles.error_text}>
 								{errors?.[item?.name]?.message || errors?.[item?.name]?.type }
 							</div>
@@ -90,6 +113,14 @@ function CompanyInfoForm({ getCreditRequestResponse }) {
 					)
 				);
 			})}
+			{show && (
+				<Uploader
+					show={show}
+					setShow={setShow}
+					setProofUrl={setProofUrl}
+					proofUrl={proofUrl}
+				/>
+			)}
 		</div>
 	);
 }

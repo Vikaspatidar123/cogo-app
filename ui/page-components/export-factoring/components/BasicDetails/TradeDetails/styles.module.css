@@ -1,0 +1,12 @@
+.container {
+	display: flex;
+	flex-direction: column;
+}
+.btn_container {
+	display: flex;
+	flex-direction: row;
+	padding: 20px 0px;
+
+	align-items: flex-end;
+	justify-content: flex-end;
+}

@@ -24,7 +24,8 @@ const useGetOrganizationCreditRequest = () => {
 		try {
 			await trigger({
 				params: {
-					organization_id: organization?.id,
+					organization_id : organization?.id,
+					category        : 'export_factoring',
 				},
 			});
 			setActive(data?.status);
@@ -46,3 +47,4 @@ const useGetOrganizationCreditRequest = () => {
 };
 
 export default useGetOrganizationCreditRequest;
+

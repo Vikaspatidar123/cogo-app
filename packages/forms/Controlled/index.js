@@ -22,6 +22,10 @@ import SliderController from './SliderController';
 import TextAreaController from './TextAreaController';
 import UploadController from './UploadController';
 
+function Hidden() {
+	return <div style={{ display: 'none' }} />;
+}
+
 const MAPPING = {
 	select                     : SelectController,
 	text                       : InputController,
@@ -46,6 +50,7 @@ const MAPPING = {
 	email                      : InputController,
 	custom_slider              : Slider,
 	'creatable-select'         : CreatableSelectController,
+	hidden                     : Hidden,
 };
 
 const getField = (type = 'text') => {

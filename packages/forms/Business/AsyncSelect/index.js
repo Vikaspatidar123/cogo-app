@@ -24,6 +24,7 @@ import {
 	asyncTaxNumbers,
 	asyncOrganizationUsers,
 	asyncTradeContacts,
+	asyncCurrencies
 } from '../../utils/getAsyncFields';
 
 const keyAsyncFieldsParamsMapping = {
@@ -48,6 +49,7 @@ const keyAsyncFieldsParamsMapping = {
 	tax_numbers                : asyncTaxNumbers,
 	organization_users         : asyncOrganizationUsers,
 	trade_contacts             : asyncTradeContacts,
+	currencies                 : asyncCurrencies,
 };
 
 function AsyncSelect(props) {

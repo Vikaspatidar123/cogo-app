@@ -1,5 +1,5 @@
-
 import BasicDetails from '../BasicDetails';
+import OfferLetterDetails from '../OfferLetterDetails';
 
 import styles from './styles.module.css';
 
@@ -13,7 +13,7 @@ import styles from './styles.module.css';
 // 	approved             : PayLaterLive,
 // };
 
-function Form({ active = {}, getCreditRequestResponse = {}, refetch = () => {} }) {
+function Form({ active = {}, getCreditRequestResponse = {}, refetch = () => {}, loading }) {
 	// const Component = RENDERING_FORM[active];
 
 	return (
@@ -22,6 +22,7 @@ function Form({ active = {}, getCreditRequestResponse = {}, refetch = () => {} }
 				active={active}
 				getCreditRequestResponse={getCreditRequestResponse}
 				refetch={refetch}
+				loading={loading}
 			/>
 		</div>
 	);

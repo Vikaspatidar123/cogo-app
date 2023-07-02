@@ -1,10 +1,10 @@
 import {
-	useGetAsyncOptionsBf,
 	asyncFieldsTicketTypes,
 } from '@/packages/forms';
+import useGetAsyncCogoCareOptions from '@/packages/forms/hooks/useGetAsyncCogoCareOptions';
 
 const useRaiseTicketControls = ({ setSelectedQuery = () => {} }) => {
-	const loadOptions = useGetAsyncOptionsBf({
+	const loadOptions = useGetAsyncCogoCareOptions({
 		...asyncFieldsTicketTypes(),
 	});
 

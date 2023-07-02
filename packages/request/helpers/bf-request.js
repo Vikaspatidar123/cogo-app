@@ -25,10 +25,10 @@ bfRequest.interceptors.request.use((oldConfig) => {
 	const authorizationparameters = getAuthrozationParams(storeKey, authKey);
 
 	if (scope === 'cogocare') {
-		newAxiosConfig.baseURL = process.env.NEXT_PUBLIC_TICKET_REST_BASE_API_URL;
+		axiosConfig.baseURL = process.env.NEXT_PUBLIC_TICKET_REST_BASE_API_URL;
 
 		if (!isDevMode) {
-			newAxiosConfig.baseURL = `${baseURL}/tickets`;
+			axiosConfig.baseURL = `${baseURL}/tickets`;
 		}
 	}
 

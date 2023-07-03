@@ -19,6 +19,13 @@ function Menu({ setShowPopover, show, setShow }) {
 		user_data: profile || {},
 	}));
 	const { organization } = user_data || {};
+
+	const configs = getSideBarConfigs(user_data);
+	const { nav_items = {} } = configs || {};
+	const { organization: nav = [] } = nav_items || {};
+
+	const filterData = nav.filter((item) => SHOW_NAVIGATIONS.includes(item.key));
+
 	if (show) {
 		return (
 			<div className={styles.container}>
@@ -26,11 +33,6 @@ function Menu({ setShowPopover, show, setShow }) {
 			</div>
 		);
 	}
-	const configs = getSideBarConfigs(user_data);
-	const { nav_items = {} } = configs || {};
-	const { organization: nav = [] } = nav_items || {};
-
-	const filterData = nav.filter((item) => SHOW_NAVIGATIONS.includes(item.key));
 
 	return (
 		<div className={styles.container}>

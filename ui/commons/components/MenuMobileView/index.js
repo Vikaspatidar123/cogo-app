@@ -20,10 +20,6 @@ function MobileMenu() {
 	}));
 	const [show, setShow] = useState(false);
 
-	if (show) {
-		return <SwitchUser setShow={setShow} />;
-	}
-
 	const configs = getSideBarConfigs(user_data);
 	const { nav_items = {} } = configs || {};
 	const { organization = [] } = nav_items || {};
@@ -35,6 +31,11 @@ function MobileMenu() {
 	const getRedirectUrl = (href, as) => {
 		push(href, as);
 	};
+
+	if (show) {
+		return <SwitchUser setShow={setShow} />;
+	}
+
 	return (
 		<div className={styles.container}>
 			<div className={styles.profile_container}>

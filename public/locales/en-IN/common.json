@@ -62,7 +62,11 @@
     "layouts_app_header_navigation_planning_options_manageRfq_description": "Create and Manage your RFQ for comparison and bulk buying",
     "layouts_app_settings":"Account Settings",
     "layouts_app_settings_switch_account":"Switch Account",
-    "layouts_app_logout":"Logout"
+    "layouts_app_logout":"Logout",
+    "add_new_account_button":"+ Add New Account",
+    "kyc_verified":"Verified",
+    "kyc_rejected":"KYC Rejected",
+    "kyc_pending":"KYC Pending"
 
 
 

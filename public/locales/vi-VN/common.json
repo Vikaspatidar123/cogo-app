@@ -62,14 +62,11 @@
     "layouts_app_header_navigation_planning_options_manageRfq_description": "Tạo và quản lý RFQ của bạn để so sánh và mua hàng loạt",
     "layouts_app_settings":"Cài đặt tài khoản",
     "layouts_app_settings_switch_account":"Chuyển tài khoản",
-    "layouts_app_logout":"Đăng xuất"
-
-
-
-
-
-
-
+    "layouts_app_logout":"Đăng xuất",
+    "add_new_account_button":"+ Thêm tài khoản mới",
+    "kyc_verified":"Đã xác minh",
+    "kyc_rejected":"KYC từ chối",
+    "kyc_pending":"KYC đang chờ xử lý"
 
 
 }

@@ -1,6 +1,8 @@
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
+import getCountryId from '@/ui/commons/utils/getCountryId';
 
-const { IN: INDIA_COUNTRY_ID, VN: VIETNAM_COUNTRY_ID } =	GLOBAL_CONSTANTS.country_ids;
+const INDIA_COUNTRY_ID = getCountryId(GLOBAL_CONSTANTS.country_code.IN);
+const VIETNAM_COUNTRY_ID = getCountryId(GLOBAL_CONSTANTS.country_code.VN);
 
 const countryIds = [INDIA_COUNTRY_ID, VIETNAM_COUNTRY_ID];
 

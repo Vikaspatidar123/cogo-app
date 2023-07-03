@@ -6,14 +6,15 @@ import React from 'react';
 import styles from './styles.module.css';
 
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
+import getCountryId from '@/ui/commons/utils/getCountryId';
+
+const INDIA_COUNTRY_ID = getCountryId(GLOBAL_CONSTANTS.country_code.IN);
 
 function ConfirmationTexts({
 	primaryServiceData = {},
 	trade_type = '',
 	services = {},
 }) {
-	const { IN: INDIA_COUNTRY_ID } = GLOBAL_CONSTANTS.country_ids;
-
 	const primaryService = (Object.values(services) || [])
 		.map((per_service) => {
 			if (per_service?.service_type === primaryServiceData?.service_type) {

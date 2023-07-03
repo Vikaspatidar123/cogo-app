@@ -1,12 +1,9 @@
+import IMAGE_URLS from './imageUrl';
+
 const GLOBAL_CONSTANTS = {
 	country_entity_ids: {
 		IN : '6fd98605-9d5d-479d-9fac-cf905d292b88',
 		VN : 'b67d40b1-616c-4471-b77b-de52b4c9f2ff',
-	},
-	country_ids: {
-		IN : '541d1232-58ce-4d64-83d6-556a42209eb7',
-		VN : '177fcbad-8ef7-4324-871c-6c31745f4411',
-		GB : '222d4b9d-56a8-4580-b761-a71c653263fb',
 	},
 
 	hs_code_country_ids: {
@@ -24,37 +21,28 @@ const GLOBAL_CONSTANTS = {
 		USD : 'en-US',
 		VND : 'vi-VN',
 	},
+
+	country_code: {
+		IN : 'IN',
+		VN : 'VN',
+		GB : 'GB',
+	},
+
 	cargo_insurance: {
 		IN: ['fcl_freight', 'lcl_freight', 'air_freight'],
 	},
 	formats: {
 		date: {
-			'dd/MM/yyyy'        : 'dd/MM/yyyy',
-			'dd MMM yyyy'       : 'dd MMM yyyy',
-			'dd-MM-yyyy'        : 'dd-MM-yyyy',
-			'yyyy-MM-dd'        : 'yyyy-MM-dd',
-			'MMM dd, yy'        : 'MMM dd, yy',
-			MMM                 : 'MMM',
-			'dd MMM'            : 'dd MMM',
-			'MMM, yyyy'         : 'MMM, yyyy',
-			'MMM dd, yyyy'      : 'MMM dd, yyyy',
-			PP                  : 'PP',
-			'PP hh:mm a'        : 'PP hh:mm a',
-			'MM-yyyy'           : 'MM-yyyy',
-			'd MMM yyyy, eeee'  : 'd MMM yyyy, eeee',
-			'MM-dd-yyyy'        : 'MM-dd-yyyy',
-			'EEE-dd'            : 'EEE-dd',
-			yyyy                : 'yyyy',
-			'dd/MMM/yyyy'       : 'dd/MMM/yyyy',
-			'eee, dd MMM, yyyy' : " 'eee, dd MMM, yyyy'",
-			EEEE                : 'eeee',
+			'dd/MM/yyyy'  : 'dd/MM/yyyy',
+			'dd MMM yyyy' : 'dd MMM yyyy',
+			'dd-MM-yyyy'  : 'dd-MM-yyyy',
+			'yyyy-MM-dd'  : 'yyyy-MM-dd',
+			MMM           : 'MMM',
+			'dd MMM'      : 'dd MMM',
 		},
 		time: {
 			'hh:mm aaa' : 'hh:mm aaa',
 			'HH:mm'     : 'HH:mm',
-		},
-		date_time: {
-			'dd MMM yyyy hh:mm aa': 'dd MMM yyyy hh:mm aa',
 		},
 	},
 
@@ -162,61 +150,8 @@ const GLOBAL_CONSTANTS = {
 		'LU',
 		'VN',
 	],
-	image_url: {
-		cogoport_logo:
-			'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/cogoport.svg',
-		iec_red_flag:
-			'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/redFlag.svg',
-		iec_green_flag:
-			'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/greenflag.svg',
-		iec_yellow_flag:
-			'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/yellwflag.svg',
-		coin_bag_image:
-			'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/CogoBag.png',
-		cart_image:
-			'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/Cart-Outline (1).png',
-		succes_image:
-			'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/exclamation.svg',
-		empty_image:
-			'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/undraw_empty_cart_co35.svg',
-		category_image:
-			'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/cogo_logo_white_bg.svg',
-		empty_category_image:
-			'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/no category',
-		empty_details_image:
-			'https://cdn.cogoport.io/cms-prod/cogo_admin/vault/original/shipmentEmptyState.png',
-		send_gift_image:
-			'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/send.gif',
-		banner_image:
-			'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/Banner 1.png',
-		signatory_image:
-			'https://cdn.cogoport.io/cms-prod/cogo_partner/vault/original/Vector.png',
-		edit_image:
-			'https://cdn.cogoport.io/cms-prod/cogo_partner/vault/original/animation_500_lhvo6uhx1.png',
-		yellow_vessel      : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/shipYellow.png',
-		red_vessel         : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/shipRed.png',
-		black_vessel       : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/shipArrow.png',
-		loading            : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/loading.svg',
-		loading_banner     : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/loading-banner.svg',
-		air_empty_state    : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/air-connect.svg',
-		ocean_empty_state  : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/ship-cargo.jpg',
-		origin_map_pointer : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/map_origin.svg',
-		destination_map_pointer:
-			'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/map_destination.svg',
-		map_loading           : 'https://cogoport-maps.s3.ap-south-1.amazonaws.com/world+(2).svg',
-		empty_state_finder    : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/ic-empty-doc_app.svg',
-		ship_icon             : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/shipIcon.jpg',
-		truck_icon            : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/truckIcon.png',
-		air_icon2             : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/airplane.png',
-		tracking_loader       : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/cogo-animation.gif',
-		extract_data          : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/Data-extraction.jpg',
-		container_icon        : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/icdport.svg',
-		air_icon              : 'https://cdn.cogoport.io/cms-prod/cogo_admin/vault/original/airicon.svg',
-		unsubscription_cargo  : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/page_cargo.png',
-		unsubscription_bottle : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/Bottle.png',
-		unsubscription_plane  : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/page_plane.png',
-		insurance_empty_image : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/Insurance.png',
-	},
+	image_url: IMAGE_URLS,
+
 	onboarding_specialist: {
 		name         : 'Kanira Patel',
 		phone_number : '+918976851674',

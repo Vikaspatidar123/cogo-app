@@ -14,7 +14,9 @@ import ActiveTracking from './Tracking/ActiveTracking';
 
 // import VerifyEmailMobile from '@/ui/commons/components/VerifyEmailMobile';
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
+import getCountryId from '@/ui/commons/utils/getCountryId';
 
+const INDIA_COUNTRY_ID = getCountryId(GLOBAL_CONSTANTS.country_code.IN);
 function SassDashboard() {
 	const { airTracking, oceanTracking, query, country_id, kyc_status } = GetTracking();
 
@@ -51,7 +53,7 @@ function SassDashboard() {
 				</div>
 				<div className={styles.part2}>
 					<div className={styles.child2}>
-						{country_id === GLOBAL_CONSTANTS.country_ids.IN
+						{country_id === INDIA_COUNTRY_ID
 							&& query?.account_type === 'importer-exporter' && <PayLaterWidgets />}
 						<Elgibility />
 						<ExportFactoring />

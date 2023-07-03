@@ -7,7 +7,10 @@ import {
 } from '@/ui/commons/constants/commodities';
 import getGeoConstants from '@/ui/commons/constants/geo';
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
+import getCountryId from '@/ui/commons/utils/getCountryId';
 import getFormattedValues from '@/ui/commons/utils/getFormattedValues';
+
+const VIETNAM_COUNTRY_ID = getCountryId(GLOBAL_CONSTANTS.country_code.VN);
 
 const mergeContainerDetails = (containers) => {
 	const mergedValues = {};
@@ -187,14 +190,13 @@ const formatDataForSingleService = ({
 		let ad_code = null;
 		if (values?.trade_type === 'export' || type === 'export') {
 			if (
-				rawParams?.origin_country_id
-                    === GLOBAL_CONSTANTS.country_ids.VN
+				rawParams?.origin_country_id === VIETNAM_COUNTRY_ID
                 && rawParams?.origin_port?.is_icd === true
 			) {
 				value.country_id = rawParams?.origin_port?.country_id;
 			} else {
 				value.port_id = rawParams?.source === 'upsell'
-                    && rawParams?.origin_country_id === GLOBAL_CONSTANTS.country_ids.VN
+                    && rawParams?.origin_country_id === VIETNAM_COUNTRY_ID
                     && rawParams?.origin_main_port_id
 					? rawParams?.origin_main_port_id
 					: values?.port_id || values?.origin_port_id;
@@ -215,14 +217,13 @@ const formatDataForSingleService = ({
 			ad_code = values?.export_fcl_customs_have_add_code || undefined;
 		} else if (values?.trade_type === 'import' || type === 'import') {
 			if (
-				rawParams?.destination_country_id
-                    === GLOBAL_CONSTANTS.country_ids.VN
+				rawParams?.destination_country_id === VIETNAM_COUNTRY_ID
                 && rawParams?.destination_port?.is_icd === true
 			) {
 				value.country_id = rawParams?.destination_port?.country_id;
 			} else {
 				value.port_id = rawParams?.source === 'upsell'
-                    && rawParams?.destination_country_id === GLOBAL_CONSTANTS.country_ids.VN
+                    && rawParams?.destination_country_id === VIETNAM_COUNTRY_ID
                     && rawParams?.destination_main_port_id ? rawParams?.destination_main_port_id
 					: values?.port_id || values?.destination_port_id;
 			}

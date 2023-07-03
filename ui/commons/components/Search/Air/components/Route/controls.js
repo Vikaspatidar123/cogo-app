@@ -1,13 +1,6 @@
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
-import getCountryDetails from '@/ui/commons/utils/getCountryDetails';
 
-const { IN: INDIA_COUNTRY_ID } = GLOBAL_CONSTANTS.country_ids;
-
-const INDIA_COUNTRY_DETAILS = getCountryDetails({
-	country_id: INDIA_COUNTRY_ID,
-});
-
-const INDIA_COUNTRY_CODE = INDIA_COUNTRY_DETAILS?.country_code;
+const INDIA_COUNTRY_CODE = GLOBAL_CONSTANTS.country_code.IN;
 
 const getControls = ({
 	setLocation = () => {},

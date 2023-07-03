@@ -6,15 +6,8 @@ import { getPanHolderStatus } from '../utils/getPanHolderStatus';
 
 import { useRequest } from '@/packages/request';
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
-import countriesHash from '@/ui/commons/utils/getCountryDetails';
 
-const { IN: INDIA_COUNTRY_ID } = GLOBAL_CONSTANTS.country_ids;
-
-const INDIA_COUNTRY_DETAILS = countriesHash({
-	country_id: INDIA_COUNTRY_ID,
-});
-
-const INDIA_COUNTRY_CODE = INDIA_COUNTRY_DETAILS?.country_code;
+const INDIA_COUNTRY_CODE = GLOBAL_CONSTANTS.country_code.IN;
 
 const useGetBusiness = (props) => {
 	const [{ loading }, getBusinessApi] = useRequest({

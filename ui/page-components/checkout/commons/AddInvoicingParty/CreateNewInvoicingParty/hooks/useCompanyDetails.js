@@ -6,8 +6,9 @@ import { getOrgControls, getAdditionalOrgControls } from '../../utils/controls';
 import { useForm } from '@/packages/forms';
 import patterns from '@/ui/commons/configurations/patterns';
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
+import getCountryId from '@/ui/commons/utils/getCountryId';
 
-const { IN: INDIA_COUNTRY_ID } = GLOBAL_CONSTANTS.country_ids;
+const INDIA_COUNTRY_ID = getCountryId(GLOBAL_CONSTANTS.country_code.IN);
 
 const useCompanyDetails = ({
 	filledDetails = {},

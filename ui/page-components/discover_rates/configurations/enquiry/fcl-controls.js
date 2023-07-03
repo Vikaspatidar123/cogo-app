@@ -1,9 +1,6 @@
 import GLOBAL_CONSTANTS from '@/ui/commons/constants//globals';
-import getCountryDetails from '@/ui/commons/utils/getCountryDetails';
 
-const { country_code: INDIA_COUNTRY_CODE } = getCountryDetails({
-	country_id: GLOBAL_CONSTANTS.country_ids.IN,
-});
+const INDIA_COUNTRY_CODE = GLOBAL_CONSTANTS.country_code.IN;
 
 const fclControls = () => [
 	{

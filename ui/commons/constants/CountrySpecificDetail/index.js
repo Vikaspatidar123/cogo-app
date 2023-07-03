@@ -1,6 +1,7 @@
 import { getByKey } from '@cogoport/utils';
 
 import getCountryDetails from '../../utils/getCountryDetails';
+import defaultInfo from '../geo/default';
 import IN from '../geo/IN';
 import VN from '../geo/VN';
 
@@ -8,6 +9,8 @@ const COUNTRY_SPECIFIC_DATA = {
 	IN : IN.others,
 	VN : VN.others,
 };
+
+let data = {};
 
 const getDetails = ({
 	country_id,
@@ -21,13 +24,11 @@ const getDetails = ({
 
 	const countryCode = countryDetails.country_code;
 
-	let defaultCountryCode = countryCode;
-
 	if (!(countryCode in COUNTRY_SPECIFIC_DATA)) {
-		defaultCountryCode = isDefaultData ? 'IN' : '';
+		data = isDefaultData ? defaultInfo : {};
 	}
 
-	const data = COUNTRY_SPECIFIC_DATA[defaultCountryCode] || {};
+	data = COUNTRY_SPECIFIC_DATA[countryCode] || {};
 
 	return getByKey(data[accessorType], accessor) || null;
 };

@@ -11,8 +11,9 @@ import { useRouter } from '@/packages/next';
 import { useRequest } from '@/packages/request';
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 import getCountryDetails from '@/ui/commons/utils/getCountryDetails';
+import getCountryId from '@/ui/commons/utils/getCountryId';
 
-const { IN: INDIA_COUNTRY_ID } = GLOBAL_CONSTANTS.country_ids;
+const INDIA_COUNTRY_ID = getCountryId(GLOBAL_CONSTANTS.country_code.IN);
 const INCHCUBE_TO_CBM = 61020;
 
 const INDIA_COUNTRY_DETAILS = getCountryDetails({

@@ -1,11 +1,8 @@
 import COMMODITY_TYPE_MAPPING from '../configurations/SearchFormControls/air-commodity-mapping';
 
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
-import getCountryDetails from '@/ui/page-components/manage-rfq/utils/getCountryDetails';
 
-const INDIA_COUNTRY_CODE = getCountryDetails({
-	country_id: GLOBAL_CONSTANTS.country_ids.IN,
-}).country_code;
+const INDIA_COUNTRY_CODE = GLOBAL_CONSTANTS.country_code.IN;
 
 const getCommoditySubTypeoptions = ({
 	originPort = {},

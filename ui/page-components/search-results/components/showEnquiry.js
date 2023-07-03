@@ -5,12 +5,13 @@
 // ];
 
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
+import getCountryId from '@/ui/commons/utils/getCountryId';
 
 const inco_terms = ['fca', 'fas', 'fob'];
 
 // const export_inco_terms_except_ddp = ['cif', 'cfr', 'cpt', 'cip', 'dat', 'dap'];
 
-const { IN: INDIA_COUNTRY_ID } = GLOBAL_CONSTANTS.country_ids;
+const INDIA_COUNTRY_ID = getCountryId(GLOBAL_CONSTANTS.country_code.IN);
 
 export const showEnquiryFunc = (rates_count = 0, data = {}) => {
 	const notShowEnq =		inco_terms.includes(data?.inco_term)

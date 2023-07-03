@@ -54,8 +54,7 @@ function Controls({ controls }) {
 						onLabel="Export"
 						value={labeledValue}
 						onChange={(e) => {
-							if (e.target.checked) setLabeledValue('EXPORT');
-							else setLabeledValue('IMPORT');
+							setLabeledValue(e.target.checked ? 'EXPORT' : 'IMPORT');
 						}}
 					/>
 				</div>
@@ -64,7 +63,7 @@ function Controls({ controls }) {
 				{!isEmpty(controls) ? (
 					<div className={styles.section}>
 						{!isEmpty(TAB_MAPPING?.[labeledValue]) ? (
-							TAB_MAPPING?.[labeledValue].map((ele) => {
+							TAB_MAPPING[labeledValue].map((ele) => {
 								const { description, status } = ele || {};
 								return (
 									<div

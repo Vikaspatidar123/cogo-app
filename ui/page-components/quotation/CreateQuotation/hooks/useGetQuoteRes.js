@@ -5,7 +5,7 @@ const useGetQuoteRes = ({ quoteRes = {}, getDraftData = {}, editData = {} }) => 
 	const infoRef = useRef({});
 	const { products: editDataProducts = [] } = editData || {};
 	const { headerResponse = {}, lineItem = [] } = getDraftData || {};
-	const { resultCurrency, destinationCountryCode, consignmentValue: totalValue } = headerResponse;
+	const { resultCurrency, destinationCountryCode, consignmentValue: totalValue } = headerResponse || {};
 
 	const { product = {}, destinationPortDetails = {}, header } = quoteRes || {};
 	const { products } = product;

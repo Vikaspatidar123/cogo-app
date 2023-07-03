@@ -41,22 +41,15 @@ const useValidateModal = ({
 	useEffect(() => {
 		if (lineItemLength > 0) {
 			const obj = {};
-			const info = productLineItemDetails.map((productInfo) => {
+
+			productLineItemDetails.forEach((productInfo) => {
 				const { productId, servicesRequired } = productInfo || {};
 
-				return ({
-					productId,
-					serviceSelected: {
-						duties_and_taxes        : servicesRequired?.isLandedCost,
-						import_export_documents : servicesRequired?.isDocumentation,
-						import_export_controls  : servicesRequired?.isControls,
-					},
-				});
-			});
-
-			info.forEach((ele) => {
-				const { productId, serviceSelected } = ele;
-				obj[productId] = { ...serviceSelected };
+				obj[productId] = {
+					duties_and_taxes        : servicesRequired?.isLandedCost,
+					import_export_documents : servicesRequired?.isDocumentation,
+					import_export_controls  : servicesRequired?.isControls,
+				};
 			});
 			setServiceSelected(obj);
 		}

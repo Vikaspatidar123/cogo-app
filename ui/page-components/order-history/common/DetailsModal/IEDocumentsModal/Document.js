@@ -28,7 +28,7 @@ function Document({ doc = {}, hsNumber = '' }) {
 
 	const downloadHandler = () => {
 		const url = `${process.env.NEXT_PUBLIC_BUSINESS_FINANCE_BASE_URL}
-		/saas/pdf/trade-engine?docLink=${docLink}&docName=${docName}&hsNumber=${hsNumber}`;
+		/saas/pdf/trade-engine?docLink=${docLink}&docName=${docName}&hsNumber=${hsNumber || ''}`;
 		window.open(url, '_self');
 	};
 

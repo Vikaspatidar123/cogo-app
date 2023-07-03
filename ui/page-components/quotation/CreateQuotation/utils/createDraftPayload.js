@@ -80,7 +80,7 @@ const createDraftpayload = ({
 		if (buyerCountryCode) {
 			return draftHeader;
 		}
-		return false;
+		return null;
 	};
 
 	const createlineItem = () => {

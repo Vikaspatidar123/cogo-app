@@ -10,8 +10,8 @@ import { useSelector } from '@/packages/store';
 import paymentInitiation from '@/ui/commons/components/PaymentInitiation';
 
 const usePayment = ({ buyerDetails = {} }) => {
-	const { id, name, email, mobile_number, mobile_country_code, organization } = useSelector((state) => state.profile);
 	const { query } = useRouter();
+	const { id, name, email, mobile_number, mobile_country_code, organization } = useSelector((state) => state.profile);
 
 	const [modal, setModal] = useState({});
 	const [buttonLoading, setButtonLoading] = useState(false);
@@ -33,7 +33,7 @@ const usePayment = ({ buyerDetails = {} }) => {
 		return payload;
 	};
 
-	const postPayemnt = async ({ quoteId, billRefId, currency, billLineItems, ...rest }) => {
+	const createPayload = async ({ quoteId, billRefId, currency, billLineItems, ...rest }) => {
 		// eslint-disable-next-line max-len
 		const redirectUrl = `${process.env.NEXT_PUBLIC_APP_URL}${org_id}/${branch_id}/saas/quickquotation/editquotation/${quoteId}`;
 
@@ -44,24 +44,30 @@ const usePayment = ({ buyerDetails = {} }) => {
 			? 'organizationBillingAddressId'
 			: 'organizationAddressId';
 
+		return {
+			userId                : id,
+			billRefId,
+			currency,
+			organizationId        : organization?.id,
+			[addressKey]          : buyerDetails?.id,
+			userName              : name,
+			userEmail             : email,
+			userMobile            : mobile_number,
+			userMobileCountryCode : mobile_country_code,
+			redirectUrl,
+			billType              : 'PREMIUM_SERVICES',
+			billLineItems         : billLineItemsData,
+			source                : 'SAAS',
+			...rest,
+		};
+	};
+
+	const postPayemnt = async (params) => {
+		const payload = await createPayload(params);
+
 		try {
 			const resp = await trigger({
-				data: {
-					userId                : id,
-					billRefId,
-					currency,
-					organizationId        : organization?.id,
-					[addressKey]          : buyerDetails?.id,
-					userName              : name,
-					userEmail             : email,
-					userMobile            : mobile_number,
-					userMobileCountryCode : mobile_country_code,
-					redirectUrl,
-					billType              : 'PREMIUM_SERVICES',
-					billLineItems         : billLineItemsData,
-					source                : 'SAAS',
-					...rest,
-				},
+				data: payload,
 			});
 			setButtonLoading(true);
 			paymentInitiation({ data: resp?.data, setModal, setButtonLoading });

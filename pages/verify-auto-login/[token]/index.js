@@ -14,17 +14,8 @@ const PAGE_MAPPINGS = {
 	shipments           : 'shipments',
 };
 
-export async function getServerSideProps({ locale }) {
-	return {
-		props: {
-			...(await serverSideTranslations(locale, ['common', 'verifyAutoLogin'])),
-
-		},
-	};
-}
-
-VerifyAutoLogin.getInitialProps = async (ctx) => {
-	const { query } = ctx;
+export async function getServerSideProps(ctx) {
+	const { query, locale } = ctx;
 	const {
 		token: auth_token,
 		lead_user_id,
@@ -79,7 +70,13 @@ VerifyAutoLogin.getInitialProps = async (ctx) => {
 		// Toast(e.toString());
 	}
 
-	return { layout: 'none' };
-};
+	return {
+		layout : 'none',
+		props  : {
+			...(await serverSideTranslations(locale, ['common', 'verifyAutoLogin'])),
+
+		},
+	};
+}
 
 export default VerifyAutoLogin;

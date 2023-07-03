@@ -44,3 +44,9 @@
 		}
 	}
 }
+
+.progress_container_footer {
+	position: absolute;
+	width: 95%;
+	margin-top: -90px;
+}

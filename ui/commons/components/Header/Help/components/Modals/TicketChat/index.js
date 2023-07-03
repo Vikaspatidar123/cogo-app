@@ -31,7 +31,7 @@ const chatBodyHeight = (rating, ticketExists, status, file, uploading) => {
 
 function TicketChat({ modalData = {}, setModalData = () => {} }) {
 	const messageRef = useRef(null);
-	const [file, setFile] = useState(null);
+	const [file, setFile] = useState('');
 	const [message, setMessage] = useState('');
 	const [uploading, setUploading] = useState(false);
 
@@ -92,10 +92,10 @@ function TicketChat({ modalData = {}, setModalData = () => {} }) {
 		if ((message || !isEmpty(file)) && !createLoading) {
 			await createTicketActivity({
 				message,
-				file: file?.url,
+				file,
 			});
 			setMessage('');
-			setFile(null);
+			setFile('');
 		}
 	};
 

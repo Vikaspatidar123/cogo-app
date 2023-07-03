@@ -1,4 +1,4 @@
-import { Upload, Toast } from '@cogoport/components';
+import { Upload, Toast, cl } from '@cogoport/components';
 import { IcMDocument } from '@cogoport/icons-react';
 import { isEmpty } from '@cogoport/utils';
 import React, { useState, useEffect } from 'react';
@@ -9,6 +9,7 @@ import styles from './styles.module.css';
 
 function FileUploader(props) {
 	const {
+		source = '',
 		onChange = () => {},
 		showProgress,
 		multiple = false,
@@ -107,7 +108,7 @@ function FileUploader(props) {
 			{loading
         && !isEmpty(progress)
         && Object.keys(progress).map((key) => (
-	<div className={styles.progress_container}>
+	<div className={cl`${styles.progress_container} ${source ? styles.progress_container_footer : null}`}>
 		<IcMDocument
 			style={{ height: '30', width: '30', color: '#2C3E50' }}
 		/>

@@ -1,4 +1,4 @@
-import { Textarea, Upload } from '@cogoport/components';
+import { Textarea } from '@cogoport/components';
 import {
 	IcMSend,
 	IcMAttach,
@@ -10,9 +10,8 @@ import { isEmpty } from '@cogoport/utils';
 
 import styles from './styles.module.css';
 
+import FileUploader from '@/packages/forms/Business/FileUploader';
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
-
-const uploadIcon = () => <IcMAttach className={styles.no_upload} />;
 
 function FooterChat({
 	setMessage = () => {},
@@ -20,61 +19,57 @@ function FooterChat({
 	handleKeyPress = () => {},
 	file,
 	setFile = () => {},
-	uploading = false,
-	setUploading = () => {},
 	handleSendComment = () => {},
 }) {
 	const handleChange = (obj) => {
-		if (obj?.success) {
-			setFile({ ...obj });
-			setUploading(false);
+		if (obj) {
+			setFile(obj);
 		}
 	};
 
-	const handleProgress = (obj) => {
-		if (obj?.type === 'progress') {
-			setUploading(true);
-		}
-	};
+	const url_split = file ? file?.split('/') : [];
+	const file_name = url_split?.[url_split.length - 1];
 
 	return (
 		<>
-			{(!isEmpty(file) || uploading) && (
+			{(!isEmpty(file)) && (
 				<div className={styles.file_div}>
-					{uploading ? (
-						<div className={styles.file_details}>Uploading....</div>
-					) : (
-						<div className={styles.file_details}>
+					<div className={styles.file_details}>
+						<div className={styles.name_holder}>
 							<div className={styles.file_icon_holder}>
-								{file?.name.match(GLOBAL_CONSTANTS.regex.image_extension) ? (
-									<IcMImage className={styles.image_preview} />
+								{file?.match(GLOBAL_CONSTANTS.regex.image_extension) ? (
+									<IcMImage className={styles.pdf_icon} />
 								) : (
 									<IcMPdf className={styles.pdf_icon} />
 								)}
 							</div>
-							<div className={styles.file_text}>{file?.name}</div>
-							<IcMCross
-								className={styles.delete_icon}
-								onClick={() => setFile({})}
-							/>
+							<div className={styles.file_text}>{file_name}</div>
 						</div>
-					)}
+						<IcMCross
+							className={styles.delete_icon}
+							onClick={() => setFile('')}
+						/>
+					</div>
 				</div>
 			)}
 			<div className={styles.footer_container}>
 				<div className={styles.bot_footer}>
-					{!isEmpty(file) || uploading ? (
+					{!isEmpty(file) ? (
 						<IcMAttach className={styles.no_upload} />
 					) : (
-						<Upload
-							showProgress={false}
-							hideUploadedList
-							showIconAlways
-							onProgress={handleProgress}
-							onChange={handleChange}
-							uploadIcon={uploadIcon}
-							drag
-						/>
+						<div className={styles.uploader}>
+							<FileUploader
+								source="footer_chat"
+								drag
+								showProgress
+								onlyURLOnChange
+								onChange={handleChange}
+								uploadType="aws"
+								uploadIcon={(
+									<IcMAttach className={styles.upload_styles} />
+								)}
+							/>
+						</div>
 					)}
 					<Textarea
 						className={styles.chat_input}

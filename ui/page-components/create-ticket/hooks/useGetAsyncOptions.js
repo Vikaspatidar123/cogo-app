@@ -2,7 +2,7 @@ import { isEmpty } from '@cogoport/utils';
 import { useEffect, useState } from 'react';
 
 import { useDebounceQuery } from '@/packages/forms';
-import { useRequest } from '@/packages/request';
+import { useRequestBf } from '@/packages/request';
 import { useSelector } from '@/packages/store';
 
 const useGetAsyncOptions = ({ isTicketNotUtlilized }) => {
@@ -19,9 +19,10 @@ const useGetAsyncOptions = ({ isTicketNotUtlilized }) => {
 	// 	false,
 	// 	'cogocare',
 	// )('/token_ticket_types');
-	const [{ loading }, trigger] = useRequest({
+	const [{ loading }, trigger] = useRequestBf({
 		url    : '/token_ticket_types',
 		method : 'get',
+		scope  : 'cogocare',
 	}, { manual: true });
 
 	const listAsyncOptions = async () => {

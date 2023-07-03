@@ -1,6 +1,6 @@
 // import { useRequest } from '@cogo/commons/hooks';
 // import { useSelector } from '@cogo/store';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 import { useRequest } from '@/packages/request';
 import { useSelector } from '@/packages/store';
@@ -23,17 +23,12 @@ const useGetSageArInvoices = () => {
 	const [searchQuery, setSearchQuery] = useState();
 	const [salesAgentId, setSalesAgentId] = useState('');
 
-	// const { loading, data, trigger } = useRequest(
-	// 	'post',
-	// 	false,
-	// 	scope,
-	// )('/get_dunning_additional_data');
 	const [{ data, loading }, trigger] = useRequest({
 		url    : '/get_dunning_additional_data',
 		method : 'post',
 	}, { manual: true });
 
-	const fetchInvoiceList = async () => {
+	const fetchInvoiceList = useCallback(async () => {
 		try {
 			await trigger({
 				data: {
@@ -53,11 +48,11 @@ const useGetSageArInvoices = () => {
 		} catch (error) {
 			console.error(error);
 		}
-	};
+	}, [orderBy, params, salesAgentId, searchQuery, token, trigger]);
 
 	useEffect(() => {
 		fetchInvoiceList();
-	}, [params.page, orderBy, searchQuery, salesAgentId]);
+	}, [params.page, orderBy, searchQuery, salesAgentId, fetchInvoiceList]);
 
 	return {
 		loading,

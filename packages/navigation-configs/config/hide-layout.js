@@ -19,6 +19,6 @@ const HIDE_LAYOUT = [
 	'/500',
 	'/verify-email/[id]',
 	'/raise-cancellation-ticket',
-	'/create-ticket',
+	'/create-ticket/[token]',
 ];
 export default HIDE_LAYOUT;

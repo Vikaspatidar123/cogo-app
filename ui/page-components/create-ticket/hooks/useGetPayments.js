@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 import { useRequest } from '@/packages/request';
 import { useSelector } from '@/packages/store';
@@ -19,17 +19,12 @@ const useGetPayments = () => {
 		order : '',
 	});
 
-	// const { loading, data, trigger } = useRequest(
-	// 	'post',
-	// 	false,
-	// 	scope,
-	// )('/get_dunning_additional_data');
 	const [{ data, loading }, trigger] = useRequest({
 		url    : '/get_dunning_additional_data',
 		method : 'post',
 	}, { manual: true });
 
-	const fetchPaymentList = async () => {
+	const fetchPaymentList = useCallback(async () => {
 		try {
 			await trigger({
 				data: {
@@ -48,11 +43,11 @@ const useGetPayments = () => {
 		} catch (error) {
 			console.error(error);
 		}
-	};
+	}, [orderBy, params, searchValue, token, trigger]);
 
 	useEffect(() => {
 		fetchPaymentList();
-	}, [params, orderBy, searchValue]);
+	}, [params, orderBy, searchValue, fetchPaymentList]);
 
 	return {
 		paymentListLoading : loading,

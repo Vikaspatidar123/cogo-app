@@ -16,13 +16,17 @@ const useCreateTokenTicket = () => {
 	// 	'cogocare',
 	// )('/token_ticket');
 	const [{ data, loading }, trigger] = useRequest({
-		url    : '/token_ticket',
-		method : 'post',
-	}, { manual: true });
+		url     : 'tickets/token_ticket',
+		method  : 'post',
+		scope   : 'cogocare',
+		authKey : 'post_tickets_token_ticket',
+		data    : { TicketToken: token, Type: type, Source: source || 'client' },
+	}, { manual: false });
 
 	const pushToDetailsPage = () => {
 		push('/ticket-details/[token]', `/ticket-details/${token}`, false);
 	};
+
 	const createTokenTicket = async () => {
 		const res = await trigger({
 			data: { TicketToken: token, Type: type, Source: source || 'client' },
@@ -34,6 +38,7 @@ const useCreateTokenTicket = () => {
 			}
 		}
 	};
+	console.log(data, 'da');
 	const { Status = '' } = data || {};
 	const isTicketNotUtlilized = (Status && Status !== 'utilized') || false;
 	return {

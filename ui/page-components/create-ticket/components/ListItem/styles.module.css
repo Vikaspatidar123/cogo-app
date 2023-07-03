@@ -3,6 +3,10 @@
 	margin: 0 !important;
 	background: #fff;
 	border-bottom: 1px solid rgb(233 235 237);
+
+	@media screen and (max-width: 767px) {
+		display: none;
+	}
 }
 
 .col {

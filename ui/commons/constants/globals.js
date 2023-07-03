@@ -215,6 +215,8 @@ const GLOBAL_CONSTANTS = {
 		unsubscription_bottle : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/Bottle.png',
 		unsubscription_plane  : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/page_plane.png',
 		insurance_empty_image : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/Insurance.png',
+		spinner_loader        : 'https://cdn.cogoport.io/cms-prod/cogo_admin/vault/original/ic-spinner.svg',
+		logo_without_footer   : 'https://cdn.cogoport.io/cms-prod/cogo_public/vault/original/logo-cogoport.svg',
 	},
 	onboarding_specialist: {
 		name         : 'Kanira Patel',

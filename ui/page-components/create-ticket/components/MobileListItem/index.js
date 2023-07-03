@@ -6,7 +6,7 @@ import styles from './styles.module.css';
 
 import getValue from '@/ui/commons/utils/getValue';
 
-const MobileListItem = ({
+function MobileListItem({
 	item,
 	fields,
 	loading = false,
@@ -14,16 +14,15 @@ const MobileListItem = ({
 	selectedInvoices,
 	handleBoxSelect,
 	selectedpayments,
-}) => {
+}) {
 	const { newFunctions } = ItemFunctions({
 		handleCheckboxSelect,
 		selectedInvoices,
 		handleBoxSelect,
 		selectedpayments,
 	});
-	// const spanFunc = (idx) => (idx === 0 ? 12 : 6);
 
-	const renderItem = (itm) => (
+	return (
 		<div className={styles.row}>
 			{(fields || []).map((singleItem, index) => (
 				<div className={styles.col}>
@@ -37,7 +36,7 @@ const MobileListItem = ({
 
 							</div>
 							<div className={styles.title_black}>
-								{getValue(itm, singleItem, false, newFunctions)}
+								{getValue(item, singleItem, false, newFunctions)}
 							</div>
 						</div>
 					) : (
@@ -47,8 +46,6 @@ const MobileListItem = ({
 			))}
 		</div>
 	);
-
-	return renderItem(item);
-};
+}
 
 export default MobileListItem;

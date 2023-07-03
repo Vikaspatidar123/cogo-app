@@ -1,11 +1,15 @@
 .row {
-	display: flex;
+	display: none;
 	flex-direction: row;
 	padding: 10px 16px;
 	margin: 10px 0 !important;
 	background: #fff;
 	border-radius: 8px;
 	box-shadow: rgb(149 157 165 / 20%) 0 8px 24px;
+
+	@media screen and (max-width: 767px) {
+		display: flex;
+	}
 }
 
 .col {

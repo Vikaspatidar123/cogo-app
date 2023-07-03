@@ -1,7 +1,17 @@
 import styles from './styles.module.css';
 
 import { useSelector } from '@/packages/store';
-// const geo = getGeoConstants();
+import { getCountrySpecificData } from '@/ui/commons/constants/CountrySpecificDetail';
+import getGeoConstants from '@/ui/commons/constants/geo';
+
+const geo = getGeoConstants();
+
+const { show_whatsapp } = getCountrySpecificData({
+	country_id    : geo.country.id,
+	accessorType  : 'navigations',
+	accessor      : 'profile_details',
+	isDefaultData : true,
+});
 
 function ContactDetails() {
 	const { profile = {} } = useSelector((state) => state);
@@ -18,15 +28,17 @@ function ContactDetails() {
 				</div>
 			</div>
 
-			<div className={styles.sub_container}>
-				<div className={styles.label_text}>WhatsApp Number</div>
-				<div className={styles.value_text}>
-					{profile.whatsapp_number
-						? `${profile.whatsapp_country_code
-						} ${profile.whatsapp_number}`
-						: '-'}
+			{show_whatsapp && (
+				<div className={styles.sub_container}>
+					<div className={styles.label_text}>WhatsApp Number</div>
+					<div className={styles.value_text}>
+						{profile.whatsapp_number
+							? `${profile.whatsapp_country_code
+							} ${profile.whatsapp_number}`
+							: '-'}
+					</div>
 				</div>
-			</div>
+			)}
 
 			<div className={`${styles.sub_container}${styles.last_item}`}>
 				<div className={styles.label_text}>Email ID</div>

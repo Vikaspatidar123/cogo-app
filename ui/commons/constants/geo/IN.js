@@ -444,6 +444,10 @@ export default {
 			subscription: {
 				is_tax_included: true,
 			},
+
+			profile_details: {
+				show_whatsapp: true,
+			},
 		},
 	},
 };

@@ -409,6 +409,10 @@ export default {
 			subscription: {
 				is_tax_included: false,
 			},
+
+			profile_details: {
+				show_whatsapp: false,
+			},
 		},
 	},
 };

@@ -8,7 +8,8 @@ import useCreateBillingAddres from '../../hooks/useCreateBillingAddress';
 
 import styles from './styles.module.css';
 
-import { InputController, SelectController, useForm } from '@/packages/forms';
+import { useForm } from '@/packages/forms';
+import getField from '@/packages/forms/Controlled';
 
 export const OPTIONS = [
 	{
@@ -49,12 +50,12 @@ function AddModal({
 	});
 
 	const returnFeildFunction = ({ item, index }) => {
-		const Element = item.type === 'text' ? InputController : SelectController;
+		const Element = getField(item.type);
 		return (
 			<div className={styles.field}>
-				<div>{fields[index].label}</div>
+				<div>{item.label}</div>
 				<Element
-					{...fields[index]}
+					{...item}
 					control={control}
 				/>
 				{(errors[fields[index].name]?.type === 'required'
@@ -71,8 +72,8 @@ function AddModal({
 
 	useEffect(() => {
 		if (!isEmpty(cityState)) {
-			setValue('billingCity', city);
-			setValue('billingState', region);
+			setValue('city', city);
+			setValue('state', region);
 		}
 	}, [city, cityState, region, setValue]);
 
@@ -81,6 +82,7 @@ function AddModal({
 	};
 
 	const onSubmit = async (data) => {
+		console.log('🚀 ~ file: index.js:86 ~ onSubmit ~ data:', data);
 		await createSellerAddres(data, handleCloseModal);
 	};
 
@@ -107,7 +109,6 @@ function AddModal({
 					<div className={styles.section}>
 						<div className={styles.section_title}>
 							<div className={styles.title}>Billing Details</div>
-							<div className={styles.design}>{/* <TitleStyle /> */}</div>
 						</div>
 						<div className={styles.row}>
 							{(fields || [])
@@ -162,28 +163,22 @@ function AddModal({
 						)}
 					</div>
 				</div>
-				<div className={styles.button_container}>
+				<Modal.Footer>
 					<Button
 						onClick={() => handleCloseModal()}
+						themeType="accent"
+						className={styles.button}
 					>
 						Cancel
 					</Button>
 					<Button
 						onClick={handleSubmit(onSubmit)}
 						disabled={createAddressLoading}
+						loading={createAddressLoading}
 					>
-						{createAddressLoading ? (
-							<img
-								src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/loading.svg"
-								width="40px"
-								height="15px"
-								alt=""
-							/>
-						) : (
-							'Add'
-						)}
+						Add
 					</Button>
-				</div>
+				</Modal.Footer>
 			</form>
 		</Modal>
 	);

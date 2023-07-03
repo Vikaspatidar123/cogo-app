@@ -17,23 +17,24 @@ function CogoPolicyNo({ itemData = {} }) {
 
 	return (
 		<div className={styles.policy}>
-			<Pill color={COLORCODE[policyType]} className={styles.pill_styled}>
-				{policyType}
-			</Pill>
-			{sid && (
-				<Pill
-					onClick={() => {
-						push(`/shipments/${shipmentId}`);
-					}}
-					color="#dce1ff"
-					role="presentation"
-					className={styles.pill_styled}
-				>
-					SID-
-					{sid}
+			<div className={styles.pills_wrapper}>
+				<Pill color={COLORCODE[policyType]} className={styles.pill_styled}>
+					{policyType}
 				</Pill>
-			)}
-			<div>{itemData?.sid}</div>
+				{sid && (
+					<div
+						onClick={() => {
+							push(`/shipments/${shipmentId}`);
+						}}
+						color="#dce1ff"
+						role="presentation"
+						className={styles.pill_sid_styled}
+					>
+						SID-
+						{sid}
+					</div>
+				)}
+			</div>
 			<div>{itemData?.cogoPolicyNo}</div>
 		</div>
 	);

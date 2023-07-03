@@ -15,11 +15,20 @@
 	flex-shrink: 0;
 	align-items: normal;
 	justify-content: flex-start;
+
+	@media (max-width: 768px) {
+		flex-direction: column;
+		width: 100%;
+	}
 }
 
 .col {
 	padding: 0 8px;
 	margin: 13px 0;
+
+	@media (max-width: 768px) {
+		width: 100%;
+	}
 }
 
 .row_container {

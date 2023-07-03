@@ -12,8 +12,8 @@ const useGetUserQuota = ({ apiTries, setApiTries }) => {
 
 	const [{ loading }, trigger] = useRequest(
 		{
-			url: '/saas_get_user_quota_usage',
-			method: 'get',
+			url    : '/saas_get_user_quota_usage',
+			method : 'get',
 		},
 		{ manual: true },
 	);

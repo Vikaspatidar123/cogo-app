@@ -78,7 +78,7 @@ const useNavigationMappings = () => {
 					href        : '/saas/freight-rate-trend',
 					as          : '/saas/freight-rate-trend',
 					icon        : <IcAFreightRateTrends width={50} height={50} />,
-					description :t(`${translationKey}_tools_options_freightRateTrend_description`),
+					description : t(`${translationKey}_tools_options_freightRateTrend_description`),
 				},
 				{
 					key         : 'saas_tools-air_tracking',
@@ -86,7 +86,7 @@ const useNavigationMappings = () => {
 					href        : '/saas/air-tracking',
 					as          : '/saas/air-tracking',
 					icon        : <IcAAirTracking width={55} height={55} />,
-					description :t(`${translationKey}_tools_options_airTracking_description`),
+					description : t(`${translationKey}_tools_options_airTracking_description`),
 				},
 				{
 					key         : 'saas_tools-ocean_tracking',
@@ -94,7 +94,7 @@ const useNavigationMappings = () => {
 					href        : '/saas/ocean-tracking',
 					as          : '/saas/ocean-tracking',
 					icon        : <IcAOceanTracking width={55} height={55} />,
-					description :t(`${translationKey}_tools_options_oceanTracking_description`),
+					description : t(`${translationKey}_tools_options_oceanTracking_description`),
 				},
 				{
 					key         : 'saas_tools-air_schedules',
@@ -102,7 +102,7 @@ const useNavigationMappings = () => {
 					href        : '/saas/air-schedules',
 					as          : '/saas/air-schedules',
 					icon        : <IcAAirSchedule width={55} height={55} />,
-					description :t(`${translationKey}_tools_options_airSchedules_description`),
+					description : t(`${translationKey}_tools_options_airSchedules_description`),
 				},
 				{
 					key         : 'saas_tools-ocean_schedules',
@@ -110,7 +110,7 @@ const useNavigationMappings = () => {
 					href        : '/saas/ocean-schedules',
 					as          : '/saas/ocean-schedules',
 					icon        : <IcAOceanSchedule width={55} height={55} />,
-					description :t(`${translationKey}_tools_options_oceanSchedules_description`),
+					description : t(`${translationKey}_tools_options_oceanSchedules_description`),
 				},
 				{
 					key         : 'saas_tools-hs_code_classification',
@@ -118,7 +118,7 @@ const useNavigationMappings = () => {
 					href        : '/saas/hs-classification',
 					as          : '/saas/hs-classification',
 					icon        : <IcAProductCatalog width={50} height={50} />,
-					description :t(`${translationKey}_tools_options_productClassification_description`),
+					description : t(`${translationKey}_tools_options_productClassification_description`),
 				},
 				{
 					key         : 'saas_tools-air_ocean_tracking_v2',
@@ -126,7 +126,7 @@ const useNavigationMappings = () => {
 					href        : '/saas/tools/air-ocean-tracking',
 					as          : '/saas/tools/air-ocean-tracking',
 					icon        : <IcATrackAndTrace width={40} height={40} />,
-					description :t(`${translationKey}_tools_options_trackAndTrace_description`),
+					description : t(`${translationKey}_tools_options_trackAndTrace_description`),
 				},
 				{
 					key         : 'saas_tools-vessel_tracking',
@@ -134,14 +134,14 @@ const useNavigationMappings = () => {
 					href        : '/saas/live-vessel-tracking',
 					as          : '/saas/live-vessel-tracking',
 					icon        : <IcAOceanFcl width={50} height={50} />,
-					description :t(`${translationKey}_tools_options_liveVessel_description`),
+					description : t(`${translationKey}_tools_options_liveVessel_description`),
 				},
 			],
 		},
 
 		saas_premium_services: {
 			key         : 'saas_premium_services',
-			title     : t(`${translationKey}_premium_services_label`),
+			title       : t(`${translationKey}_premium_services_label`),
 			module_type : 'dashboards',
 			showInNav   : true,
 			isSubNavs   : true,
@@ -152,16 +152,16 @@ const useNavigationMappings = () => {
 					href        : '/saas/insurance/list',
 					as          : '/saas/insurance/list',
 					icon        : <IcAInsurance width={55} height={55} fill="#fbd221" />,
-					description :t(`${translationKey}_premium_services_options_insurance_description`),
+					description : t(`${translationKey}_premium_services_options_insurance_description`),
 
 				},
 				{
-					key   : 'saas_premium_services-duties_and_taxes',
+					key         : 'saas_premium_services-duties_and_taxes',
 					title       : t(`${translationKey}_premium_services_options_dutiesTaxes_label`),
-					href  : '/saas/premium-services/duties-taxes-calculator',
-					as    : '/saas/premium-services/duties-taxes-calculator',
-					icon  : <IcADutiesTaxes width={55} height={55} />,
-					description :t(`${translationKey}_premium_services_options_dutiesTaxes_description`),
+					href        : '/saas/premium-services/duties-taxes-calculator',
+					as          : '/saas/premium-services/duties-taxes-calculator',
+					icon        : <IcADutiesTaxes width={55} height={55} />,
+					description : t(`${translationKey}_premium_services_options_dutiesTaxes_description`),
 
 				},
 				{
@@ -170,7 +170,7 @@ const useNavigationMappings = () => {
 					href        : '/saas/premium-services/trader-eligibility-check',
 					as          : '/saas/premium-services/trader-eligibility-check',
 					icon        : <IcAEligibilityCheck width={55} height={55} />,
-					description :t(`${translationKey}_premium_services_options_traderEligibility_description`),
+					description : t(`${translationKey}_premium_services_options_traderEligibility_description`),
 				},
 				{
 					key         : 'saas_premium_services-import_export_docs',
@@ -179,7 +179,7 @@ const useNavigationMappings = () => {
 					href        : '/saas/premium-services/import-export-doc',
 					as          : '/saas/premium-services/import-export-doc',
 					icon        : <IcADocumentTemplates width={55} height={55} />,
-					description :t(`${translationKey}_premium_services_options_importExportDocuments_description`),
+					description : t(`${translationKey}_premium_services_options_importExportDocuments_description`),
 				},
 				{
 					key         : 'saas_premium_services-import_export_controls',
@@ -187,15 +187,15 @@ const useNavigationMappings = () => {
 					href        : '/saas/premium-services/import-export-controls',
 					as          : '/saas/premium-services/import-export-controls',
 					icon        : <IcAFormsAndCertificates width={45} height={45} />,
-					description :t(`${translationKey}_premium_services_options_importExportControls_description`),
+					description : t(`${translationKey}_premium_services_options_importExportControls_description`),
 				},
 				{
-					key   : 'saas_premium_services-order_history',
+					key         : 'saas_premium_services-order_history',
 					title       : t(`${translationKey}_premium_services_options_orderHistory_label`),
-					href  : '/saas/order-history',
-					as    : '/saas/order-history',
-					icon  : <IcABookYourShipment width={55} height={55} />,
-					description :t(`${translationKey}_premium_services_options_orderHistory_description`),
+					href        : '/saas/order-history',
+					as          : '/saas/order-history',
+					icon        : <IcABookYourShipment width={55} height={55} />,
+					description : t(`${translationKey}_premium_services_options_orderHistory_description`),
 
 				},
 			],
@@ -212,7 +212,7 @@ const useNavigationMappings = () => {
 					icon        : <IcATradePartner width={50} height={50} fill="#fbd221" />,
 					href        : '/saas/trade-partner',
 					as          : '/saas/trade-partner',
-					description :t(`${translationKey}_planning_options_tradePartner_description`),
+					description : t(`${translationKey}_planning_options_tradePartner_description`),
 				},
 				{
 					key         : 'saas_planning-product_inventory',
@@ -222,7 +222,7 @@ const useNavigationMappings = () => {
 					href        : '/saas/product-inventory',
 					as          : '/saas/product-inventory',
 					module_type : 'dashboards',
-					description :t(`${translationKey}_planning_options_productCatalog_description`),
+					description : t(`${translationKey}_planning_options_productCatalog_description`),
 				},
 				{
 					key         : 'saas_planning-quotation',
@@ -231,7 +231,7 @@ const useNavigationMappings = () => {
 					type        : 'link',
 					href        : '/saas/quickquotation/viewlist',
 					as          : '/saas/quickquotation/viewlist',
-					description :t(`${translationKey}_planning_options_quickQuotations_description`),
+					description : t(`${translationKey}_planning_options_quickQuotations_description`),
 
 				},
 				{
@@ -240,7 +240,7 @@ const useNavigationMappings = () => {
 					href        : '/contract-management',
 					as          : '/contract-management',
 					icon        : <IcAPlanningTools width={40} height={40} fill="#fbd221" />,
-					description :t(`${translationKey}_planning_options_contractManagement_description`),
+					description : t(`${translationKey}_planning_options_contractManagement_description`),
 				},
 				{
 					key         : 'saas_planning-manage_rfq',
@@ -248,7 +248,7 @@ const useNavigationMappings = () => {
 					href        : '/manage-rfq',
 					as          : '/manage-rfq',
 					icon        : <IcARfq width={40} height={40} />,
-					description :t(`${translationKey}_planning_options_manageRfq_description`),
+					description : t(`${translationKey}_planning_options_manageRfq_description`),
 				},
 			],
 		},
@@ -262,7 +262,7 @@ const useNavigationMappings = () => {
 
 		app_documents: {
 			key   : 'app_documents',
-			title     : t(`${translationKey}_documentWallet_label`),
+			title : t(`${translationKey}_documentWallet_label`),
 			href  : '/documents',
 			as    : '/documents',
 			icon  : <IcADocumentationInfo width={20} height={20} />,
@@ -277,7 +277,7 @@ const useNavigationMappings = () => {
 			options   : [
 				{
 					key   : 'saas_finance-transaction_history',
-					title     : t(`${translationKey}_finance_options_transactionHistory_label`),
+					title : t(`${translationKey}_finance_options_transactionHistory_label`),
 					icon  : <IcMFfreferigeratedCargoType width={40} height={40} />,
 					href  : '/saas/transaction-history',
 					as    : '/saas/transaction-history',
@@ -287,7 +287,7 @@ const useNavigationMappings = () => {
 
 		app_get_started: {
 			key   : 'app_get_started',
-			title     : t(`${translationKey}_getStarted_label`),
+			title : t(`${translationKey}_getStarted_label`),
 			theme : 'green',
 		},
 
@@ -300,14 +300,14 @@ const useNavigationMappings = () => {
 		},
 		app_settings: {
 			key           : 'app_settings',
-			title     : t(`${translationKey}_settings_label`),
+			title         : t(`${translationKey}_settings_label`),
 			href          : '/settings',
 			as            : '/settings',
 			showMobileNav : true,
 		},
 		saas_cogo_subscription: {
 			key   : 'saas_cogo_subscription',
-			title     : t(`${translationKey}_subscriptions_label`),
+			title : t(`${translationKey}_subscriptions_label`),
 			icon  : (
 				<img
 					src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/nav-subscriptions.svg"
@@ -318,14 +318,14 @@ const useNavigationMappings = () => {
 			options   : [
 				{
 					key   : 'saas_cogo_subscription-manage',
-					title     : t(`${translationKey}_subscriptions_options_manageSubscription_label`),
+					title : t(`${translationKey}_subscriptions_options_manageSubscription_label`),
 					icon  : 'nav-documents',
 					href  : '/saas/cogo-subscriptions/manage-subscription',
 					as    : '/saas/cogo-subscriptions/manage-subscription',
 				},
 				{
 					key   : 'saas_cogo_subscription-balance_history',
-					title     : t(`${translationKey}_subscriptions_options_balanceAndHistory_label`),
+					title : t(`${translationKey}_subscriptions_options_balanceAndHistory_label`),
 					type  : 'link',
 					icon  : 'nav-payments',
 					href  : '/saas/cogo-subscriptions/balance-history',
@@ -335,7 +335,7 @@ const useNavigationMappings = () => {
 		},
 		pay_later: {
 			key   : 'pay_later',
-			title     : t(`${translationKey}_payLater_label`),
+			title : t(`${translationKey}_payLater_label`),
 			href  : '/v2/pay-later',
 			as    : '/v2/pay-later',
 		},

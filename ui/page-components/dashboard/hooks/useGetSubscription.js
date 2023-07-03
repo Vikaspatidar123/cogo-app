@@ -9,8 +9,8 @@ const useGetSubscription = () => {
 	const [subscriptionData, setSubscriptionData] = useState(null);
 
 	const [{ loading }, trigger] = useRequest({
-		method: 'get',
-		url: '/get_app_dashboard_subscription',
+		method : 'get',
+		url    : '/get_app_dashboard_subscription',
 	}, { manual: true });
 
 	const getSubscriptionData = async () => {

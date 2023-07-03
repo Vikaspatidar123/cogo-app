@@ -14,9 +14,23 @@ import {
 	MobileNumberSelectController,
 } from '@/packages/forms';
 import { useRouter } from '@/packages/next';
+import { useSelector } from '@/packages/store';
 import setCookieAndRedirect from '@/ui/commons/utils/setCookieAndRedirect';
 
+const WHATSAPP_LOCALE_ARR = ['en-IN'];
+
+const whatsappField = (locale) => {
+	let show = false;
+	if (WHATSAPP_LOCALE_ARR.includes(locale)) {
+		show = true;
+	}
+	return show;
+};
+
 function SignupForm({ setHasSignedup, setFormData, setUserDetails }) {
+	const { locale } = useSelector((state) => state.general);
+	const showWhatsAppField = whatsappField(locale);
+
 	const {
 		handleSubmit,
 		formState: { errors },
@@ -142,10 +156,12 @@ function SignupForm({ setHasSignedup, setFormData, setUserDetails }) {
 				)}
 			</div>
 
-			<div className={styles.checkbox_container}>
-				<Checkbox value={hasWhatsApp} onChange={handleChange} />
-				Number also available on WhatsApp
-			</div>
+			{showWhatsAppField && (
+				<div className={styles.checkbox_container}>
+					<Checkbox value={hasWhatsApp} onChange={handleChange} />
+					Number also available on WhatsApp
+				</div>
+			)}
 
 			<div className={styles.terms_and_conditions_text}>
 				By clicking on SUBMIT, you are accepting the

@@ -1,17 +1,15 @@
 /* eslint-disable no-undef */
-import { deleteCookie } from '@cogoport/utils';
 import { useTranslation } from 'next-i18next';
 
 import styles from '../styles.module.css';
+
+import logout from '@/ui/page-components/authentication/utils/getLogout';
 
 function Logout() {
 	const { t } = useTranslation(['common']);
 	const handleClick = async (e) => {
 		e.preventDefault();
-
-		deleteCookie(process.env.NEXT_PUBLIC_AUTH_TOKEN_NAME);
-
-		window.location.href = '/login';
+		logout();
 	};
 
 	return (

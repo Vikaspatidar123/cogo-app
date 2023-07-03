@@ -1,4 +1,4 @@
-import { Input, Chips, Button, Table, Pagination, Loader } from '@cogoport/components';
+import { Input, Chips, Button, Table, Pagination } from '@cogoport/components';
 import { IcMPlus, IcMSearchlight } from '@cogoport/icons-react';
 import { isEmpty } from '@cogoport/utils';
 import { useState } from 'react';
@@ -67,13 +67,6 @@ function ListView() {
 
 	const fields = listConfig({ setSort, sort, Content });
 
-	if (loading) {
-		return (
-			<div className={styles.loader}>
-				<Loader />
-			</div>
-		);
-	}
 	return (
 		<>
 			<FAQComponent showFaq={showFaq} setFaq={setFaq} />
@@ -135,6 +128,7 @@ function ListView() {
 								loading={loading}
 								loadingRowsCount={10}
 								className={styles.table}
+								type="block"
 							/>
 						</div>
 					) : <NoData />}

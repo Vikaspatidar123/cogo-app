@@ -6,17 +6,12 @@ import OtpForm from '../OtpForm';
 import styles from './styles.module.css';
 
 import { MobileNumberSelectController } from '@/packages/forms';
-// import patterns from '@/ui/commons/configurations/patterns';
 import useMobileNoForm from '@/ui/page-components/authentication/hooks/useMobileNoForm';
 
 function MobileLoginForm() {
 	const { t } = useTranslation(['common']);
 
 	const RULES = {
-		// pattern: {
-		// 	value   : /^[0-9]{10}$/,
-		// 	message : 'Invalid mobile number',
-		// },
 		required: `${t('common:rightPanel_enter_mobile_number')}`,
 	};
 

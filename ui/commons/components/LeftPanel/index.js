@@ -1,6 +1,7 @@
-/* eslint-disable max-len */
 import { useTranslation } from 'next-i18next';
 import React from 'react';
+
+import GLOBAL_CONSTANTS from '../../constants/globals';
 
 import styles from './styles.module.css';
 
@@ -12,7 +13,7 @@ function LeftPanel() {
 				<img
 					width="150px"
 					height="100px"
-					src="https://cogoport-production.sgp1.digitaloceanspaces.com/e845419ea5eacebda858bad8b20d2797/cogoport-logo.svg"
+					src={GLOBAL_CONSTANTS.image_url.cogoport_image}
 					alt="Cogo"
 				/>
 			</div>

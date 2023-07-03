@@ -26,7 +26,7 @@ function VerifyEmail() {
 	return (
 		<HeaderLayout
 			rightParams={{
-				label : `${t('verifyAutoLogin:verify_auto_login_header_layout_right_params_label')}`,
+				label : `${t('verifyAutoLogin:verify_auto_login_header_layout_right_params_cta')}`,
 				href  : '/login',
 				cta   : `${t('verifyAutoLogin:verify_auto_login_header_layout_right_params_cta')}`,
 			}}

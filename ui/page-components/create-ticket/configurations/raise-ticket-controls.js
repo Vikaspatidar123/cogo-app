@@ -35,21 +35,13 @@ const controls = [
 		],
 	},
 	{
-		label        : 'Upload any supporting documents',
-		name         : 'file_url',
-		type         : 'file',
-		themeType    : 'secondary',
-		uploadType   : 'aws',
-		drag         : true,
-		showOptional : false,
-		span         : 12,
-		height       : 100,
-		uploadIcon   : () => (
-			<IcMCloudUpload fill="#DED7FC" height="62px" width="44px" />
-		),
-		theme        : 'admin',
-		className    : 'primary md',
-		showProgress : true,
+		label      : 'Upload any supporting documents',
+		name       : 'file_url',
+		type       : 'file',
+		drag       : true,
+		// showOptional : false,
+		uploadIcon : <IcMCloudUpload fill="#DED7FC" height="62px" width="44px" />,
+		// showProgress : true,
 	},
 ];
 

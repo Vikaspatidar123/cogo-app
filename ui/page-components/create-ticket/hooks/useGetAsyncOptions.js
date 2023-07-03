@@ -5,11 +5,20 @@ import { useDebounceQuery } from '@/packages/forms';
 import { useRequestBf } from '@/packages/request';
 import { useSelector } from '@/packages/store';
 
+const formatOptions = (list) => {
+	const newOptions = (list || []).map((item) => {
+		const { TicketType = '' } = item || {};
+		return { label: TicketType, value: TicketType };
+	});
+	return newOptions;
+};
+
 const useGetAsyncOptions = ({ isTicketNotUtlilized }) => {
-	const [defaultOptions, setDefaultOptions] = useState([]);
 	const {
 		general: { query = {} },
 	} = useSelector((state) => state);
+
+	const [defaultOptions, setDefaultOptions] = useState([]);
 
 	const { token, type = '' } = query || {};
 	const { debounceQuery, query:searchQuery } = useDebounceQuery();
@@ -20,9 +29,10 @@ const useGetAsyncOptions = ({ isTicketNotUtlilized }) => {
 	// 	'cogocare',
 	// )('/token_ticket_types');
 	const [{ loading }, trigger] = useRequestBf({
-		url    : '/token_ticket_types',
-		method : 'get',
-		scope  : 'cogocare',
+		url     : '/token_ticket_types',
+		method  : 'get',
+		authKey : 'get_token_ticket_types',
+		scope   : 'cogocare',
 	}, { manual: true });
 
 	const listAsyncOptions = async () => {
@@ -39,14 +49,6 @@ const useGetAsyncOptions = ({ isTicketNotUtlilized }) => {
 			return res?.data?.items;
 		}
 		return null;
-	};
-
-	const formatOptions = (list) => {
-		const newOptions = (list || []).map((item) => {
-			const { TicketType = '' } = item || {};
-			return { label: TicketType, value: TicketType };
-		});
-		return newOptions;
 	};
 
 	const getOptions = async () => {

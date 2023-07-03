@@ -17,6 +17,7 @@ function RaiseIssueForm({
 	const { loadOptions, defaultOptions } = useGetAsyncOptions({
 		isTicketNotUtlilized,
 	});
+	console.log(loadOptions, 'loadOptions');
 	return (
 		<div
 			className={`${styles.container} 
@@ -27,8 +28,9 @@ function RaiseIssueForm({
 					<div className={styles.label}>Select Issue Type</div>
 					<AsyncSelectController
 						{...controls[0]}
-						getModifiedOptions={loadOptions}
-						defaultOptions={defaultOptions}
+						asyncKey="issue_type"
+						// getModifiedOptions={loadOptions}
+						// defaultOptions={defaultOptions}
 						control={control}
 					/>
 					{errors?.issue_type && <div className={styles.error}>Issue type is required</div>}
@@ -43,7 +45,7 @@ function RaiseIssueForm({
 				</div>
 				<div className={styles.col}>
 					<div className={styles.label}>Upload Any Supporting Documents</div>
-					<FileUploader {...controls[3]} control={control} multiple />
+					<FileUploader {...controls[3]} control={control} multiple type="card" />
 				</div>
 			</div>
 		</div>

@@ -1,6 +1,8 @@
 import { useRouter } from '@/packages/next';
-import { useRequest } from '@/packages/request';
+import { useRequestBf } from '@/packages/request';
 import { useSelector } from '@/packages/store';
+
+let isTicketNotUtlilized = false;
 
 const useCreateTokenTicket = () => {
 	const {
@@ -10,12 +12,7 @@ const useCreateTokenTicket = () => {
 	const { push } = useRouter();
 	const { token, type, source } = query || {};
 
-	// const { data, trigger, loading } = useRequest(
-	// 	'post',
-	// 	false,
-	// 	'cogocare',
-	// )('/token_ticket');
-	const [{ data, loading }, trigger] = useRequest({
+	const [{ data, loading }, trigger] = useRequestBf({
 		url     : 'tickets/token_ticket',
 		method  : 'post',
 		scope   : 'cogocare',
@@ -36,15 +33,14 @@ const useCreateTokenTicket = () => {
 			if (Status === 'utilized' && token) {
 				pushToDetailsPage();
 			}
+			isTicketNotUtlilized = Status !== 'utilized' || false;
 		}
 	};
-	console.log(data, 'da');
-	const { Status = '' } = data || {};
-	const isTicketNotUtlilized = (Status && Status !== 'utilized') || false;
+
 	return {
 		loading,
 		createTokenTicket,
-		Status,
+		Status: data?.Status,
 		isTicketNotUtlilized,
 	};
 };

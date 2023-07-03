@@ -1,6 +1,6 @@
 import { isEmpty } from '@cogoport/utils';
 
-const FormatPayload = ({ val, selectedInvoices, selectedpayments }) => {
+const formatPayload = ({ val, selectedInvoices, selectedpayments }) => {
 	const {
 		issue_type,
 		additional_information,
@@ -33,4 +33,4 @@ const FormatPayload = ({ val, selectedInvoices, selectedpayments }) => {
 	return payload;
 };
 
-export default FormatPayload;
+export default formatPayload;

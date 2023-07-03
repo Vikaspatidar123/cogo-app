@@ -62,6 +62,7 @@ function TrendingStores({ data = {}, loading = false }) {
 			</div>
 		);
 	}
+
 	const renderName = (name = '') => {
 		if (name.length > 15) {
 			return (

@@ -64,6 +64,7 @@ function CreateTicket() {
 					<Image width={118} height={25} src={GLOBAL_CONSTANTS.image_url.logo_without_footer} alt="logo" />
 					<div className={styles.heading}>Raise an Issue</div>
 				</div>
+
 				<div className={showList ? styles.layout_div : styles.layout_div_list}>
 					<div className={styles.wrapper}>
 						<RaiseIssueForm
@@ -101,7 +102,7 @@ function CreateTicket() {
 							disabled={loading}
 							onClick={handleSubmit(onFormSubmit)}
 						>
-							submit
+							Submit
 						</Button>
 					</div>
 				</div>

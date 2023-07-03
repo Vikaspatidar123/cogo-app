@@ -1,9 +1,9 @@
 import { Toast } from '@cogoport/components';
 import { useState } from 'react';
 
-import FormatPayload from '../utils/format-payload';
+import formatPayload from '../utils/format-payload';
 
-import { useRequest } from '@/packages/request';
+import { useRequestBf } from '@/packages/request';
 import { useSelector } from '@/packages/store';
 
 const useUpdateTokenTicket = () => {
@@ -15,14 +15,11 @@ const useUpdateTokenTicket = () => {
 
 	const [showSuccessPage, setShowSuccessPage] = useState(false);
 
-	// const { trigger, loading } = useRequest(
-	// 	'put',
-	// 	false,
-	// 	'cogocare',
-	// )('/token_ticket');
-	const [{ loading }, trigger] = useRequest({
-		url    : '/token_ticket',
-		method : 'put',
+	const [{ loading }, trigger] = useRequestBf({
+		url     : 'tickets/token_ticket',
+		method  : 'put',
+		authKey : 'put_tickets_token_ticket',
+		scope   : 'cogocare',
 	}, { manual: true });
 
 	const updateTokenTicket = async ({
@@ -30,7 +27,7 @@ const useUpdateTokenTicket = () => {
 		selectedInvoices = {},
 		selectedpayments = [],
 	}) => {
-		const { payload = {} } = FormatPayload({
+		const { payload = {} } = formatPayload({
 			val,
 			selectedInvoices,
 			selectedpayments,

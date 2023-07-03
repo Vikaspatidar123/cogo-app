@@ -1,9 +1,9 @@
 import { Button } from '@cogoport/components';
+import { useTranslation } from 'next-i18next';
 import React, { useState } from 'react';
 
 import styles from './styles.module.css';
 import useOtpForm from './useOtpForm';
-import { useTranslation } from 'next-i18next';
 
 import OTPLayout from '@/packages/forms/Business/OTPLayout';
 

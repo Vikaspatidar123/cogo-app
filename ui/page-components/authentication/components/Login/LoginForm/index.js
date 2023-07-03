@@ -1,5 +1,6 @@
 import { Button } from '@cogoport/components';
 import { IcMEyeopen, IcMEyeclose } from '@cogoport/icons-react';
+import { useTranslation } from 'next-i18next';
 import React, { useState } from 'react';
 
 import useLoginAuthenticate from '../../../hooks/useLoginAuthenticate';
@@ -9,6 +10,7 @@ import styles from './styles.module.css';
 import { useForm, InputController } from '@/packages/forms';
 
 function LoginForm() {
+	const { t } = useTranslation(['common']);
 	const [showPassword, setShowPassword] = useState(false);
 	const { onSubmit = () => { }, loading = false } = useLoginAuthenticate();
 	const { handleSubmit, formState: { errors }, control } = useForm();
@@ -27,8 +29,8 @@ function LoginForm() {
 					control={control}
 					name="email"
 					type="email"
-					placeholder="Email"
-					rules={{ required: 'Email is required.' }}
+					placeholder={t('common:rightPanel_tabs_email_controls_email_label')}
+					rules={{ required: `${t('common:rightPanel_email_is_required')}` }}
 				/>
 				{errors.email && (
 					<span className={styles.errors}>
@@ -42,8 +44,8 @@ function LoginForm() {
 						name="password"
 						type={showPassword ? 'text' : 'password'}
 						suffix={renderSuffix()}
-						placeholder="Password"
-						rules={{ required: 'Password is required.' }}
+						placeholder={t('common:rightPanel_password_placeholder')}
+						rules={{ required: `${t('common:rightPanel_password_is_required')}` }}
 					/>
 				</div>
 				{errors.password && (
@@ -53,7 +55,7 @@ function LoginForm() {
 				)}
 
 				<div className={styles.forgot}>
-					<a href="/forgot-password">Forgot password</a>
+					<a href="/forgot-password">{t('common:rightPanel_tabs_email_forgotPassword')}</a>
 				</div>
 
 				<Button
@@ -62,7 +64,7 @@ function LoginForm() {
 					type="submit"
 					size="lg"
 				>
-					Login
+					{t('common:rightPanel_tabs_email_loginButton_label')}
 				</Button>
 
 				{/* <Button
@@ -77,7 +79,7 @@ function LoginForm() {
 						</Button> */}
 			</div>
 			<a href="mailto:kanira.patel@cogoport.com" className={styles.right_footer_text}>
-				If you have any trouble logging in, email here -
+				{t('common:rightPanel_support_label')}
 				<span className={styles.right_footer_text_span}>kanira.patel@cogoport.com</span>
 			</a>
 		</form>

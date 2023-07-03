@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { Button } from '@cogoport/components';
+import { useTranslation } from 'next-i18next';
 import { useEffect, useRef } from 'react';
 
 import OtpInput from './components/OtpInput';
@@ -12,6 +13,8 @@ function OTPLayout({
 	loading = false,
 	sendOtp = () => { },
 }) {
+	const { t } = useTranslation(['common']);
+
 	const useImperativeHandleRef = useRef({});
 
 	const timer = useTimer({ durationInSeconds: 30 });
@@ -47,7 +50,7 @@ function OTPLayout({
 					}}
 					disabled={timer.isTimeRemaining || loading}
 				>
-					Resend OTP
+					{t('common:rightPanel_tabs_mobile_resendOtpButton_label')}
 				</Button>
 			</div>
 		</div>

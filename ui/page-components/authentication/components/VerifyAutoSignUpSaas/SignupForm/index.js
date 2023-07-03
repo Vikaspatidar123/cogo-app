@@ -1,5 +1,6 @@
 import { Button, Checkbox } from '@cogoport/components';
 import { setCookie } from '@cogoport/utils';
+import { useTranslation } from 'next-i18next';
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import ReCAPTCHA from 'react-google-recaptcha';
 
@@ -17,6 +18,7 @@ import { useRouter } from '@/packages/next';
 import setCookieAndRedirect from '@/ui/commons/utils/setCookieAndRedirect';
 
 function SignupForm({ setHasSignedup, setFormData, setUserDetails }) {
+	const { t } = useTranslation(['common']);
 	const {
 		handleSubmit,
 		formState: { errors },
@@ -106,8 +108,8 @@ function SignupForm({ setHasSignedup, setFormData, setUserDetails }) {
 					control={control}
 					name="name"
 					type="text"
-					placeholder="Name"
-					rules={{ required: 'Name is required.' }}
+					placeholder={t('common:rightPanel_registration_controls_name_label')}
+					rules={{ required: `${t('common:rightPanel_registration_controls_name_is_required')}` }}
 				/>
 
 				{errors.name && (
@@ -119,8 +121,8 @@ function SignupForm({ setHasSignedup, setFormData, setUserDetails }) {
 					control={control}
 					name="email"
 					type="email"
-					placeholder="Email"
-					rules={{ required: 'Email is required.' }}
+					placeholder={t('common:rightPanel_tabs_email_controls_email_label')}
+					rules={{ required: `${t('common:rightPanel_email_is_required')}` }}
 					disabled
 				/>
 
@@ -134,8 +136,13 @@ function SignupForm({ setHasSignedup, setFormData, setUserDetails }) {
 					control={control}
 					name="mobile_number"
 					type="mobile-number-select"
-					placeholder="Mobile Number"
-					mobileSelectRef={{ ...register('mobile_number', { required: 'Number is required.' }) }.ref}
+					placeholder={t('common:rightPanel_tabs_mobile_controls_mobile_label')}
+					mobileSelectRef={{
+						...register('mobile_number', {
+							required:
+						`${t('common:rightPanel_registration_mobile_number_is_required')}`,
+						}),
+					}.ref}
 				/>
 				{errors.mobile_number && (
 					<span className={styles.errors}>{errors.mobile_number.message || errors.mobile_number.type}</span>
@@ -144,28 +151,28 @@ function SignupForm({ setHasSignedup, setFormData, setUserDetails }) {
 
 			<div className={styles.checkbox_container}>
 				<Checkbox value={hasWhatsApp} onChange={handleChange} />
-				Number also available on WhatsApp
+				{t('common:rightPanel_registration_controls_isWhatsappNumber_label')}
 			</div>
 
 			<div className={styles.terms_and_conditions_text}>
-				By clicking on SUBMIT, you are accepting the
+				{t('common:rightPanel_registration_links_termsAndPrivacyPolicy_label')}
 				<a
-					href="https://www.cogoport.com/en-IN/terms-and-conditions/"
+					href={t('common:rightPanel_registration_links_termsAndPrivacyPolicy_links_terms_href')}
 					target="_blank"
 					rel="noreferrer"
 					className={styles.terms_and_conditions_link}
 				>
-					Terms of Use
+					{t('common:rightPanel_registration_links_termsAndPrivacyPolicy_links_terms_linkLabel')}
 					{'  '}
 				</a>
 				&
 				<a
-					href="https://www.cogoport.com/en-IN/privacy-policy/"
+					href={t('common:rightPanel_registration_links_termsAndPrivacyPolicy_links_privacyPolicy_href')}
 					target="_blank"
 					className={styles.terms_and_conditions_link}
 					rel="noreferrer"
 				>
-					Privacy Policy.
+					{t('common:rightPanel_registration_links_termsAndPrivacyPolicy_links_privacyPolicy_linkLabel')}
 				</a>
 			</div>
 
@@ -184,13 +191,13 @@ function SignupForm({ setHasSignedup, setFormData, setUserDetails }) {
 				size="lg"
 				onClick={handleClick}
 			>
-				SignUp
+				{t('common:rightPanel_signupLink_link')}
 			</Button>
 			<a
 				href="mailto:kanira.patel@cogoport.com"
 				className={styles.right_footer_text}
 			>
-				If you have any trouble logging in, email here -
+				{t('common:rightPanel_support_label')}
 				<span className={styles.right_footer_text_span}>
 					{' '}
 					kanira.patel@cogoport.com

@@ -1,4 +1,5 @@
 import { Button } from '@cogoport/components';
+import { useTranslation } from 'next-i18next';
 
 import OtpForm from '../OtpForm';
 
@@ -8,15 +9,17 @@ import { MobileNumberSelectController } from '@/packages/forms';
 // import patterns from '@/ui/commons/configurations/patterns';
 import useMobileNoForm from '@/ui/page-components/authentication/hooks/useMobileNoForm';
 
-const RULES = {
-	// pattern: {
-	// 	value   : /^[0-9]{10}$/,
-	// 	message : 'Invalid mobile number',
-	// },
-	required: 'Please enter mobile no',
-};
-
 function MobileLoginForm() {
+	const { t } = useTranslation(['common']);
+
+	const RULES = {
+		// pattern: {
+		// 	value   : /^[0-9]{10}$/,
+		// 	message : 'Invalid mobile number',
+		// },
+		required: `${t('common:rightPanel_enter_mobile_number')}`,
+	};
+
 	const {
 		userDetails = {},
 		onSubmit = () => { },
@@ -37,7 +40,7 @@ function MobileLoginForm() {
 				<MobileNumberSelectController
 					control={control}
 					name="mobile_number"
-					placeholder="Mobile Number"
+					placeholder={t('common:rightPanel_tabs_mobile_controls_mobile_label')}
 					mobileSelectRef={{ ...register('mobile_number', RULES) }.ref}
 				/>
 				{errors.mobile_number && (
@@ -53,7 +56,7 @@ function MobileLoginForm() {
 					type="submit"
 					size="lg"
 				>
-					GET OTP
+					{t('common:rightPanel_tabs_mobile_getOtpButton_label')}
 				</Button>
 
 			</div>

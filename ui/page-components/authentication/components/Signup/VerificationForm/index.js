@@ -1,5 +1,6 @@
 import { Button } from '@cogoport/components';
 import { IcCSendEmail } from '@cogoport/icons-react';
+import { useTranslation } from 'next-i18next';
 import React, { useState } from 'react';
 
 import useEmailVerification from '../../../hooks/useEmailVerification';
@@ -11,6 +12,7 @@ import OTPLayout from '@/packages/forms/Business/OTPLayout';
 import OrSeparator from '@/ui/commons/components/OrSeparator';
 
 function VerifictaionForm({ formData, userDetails }) {
+	const { t } = useTranslation(['common']);
 	const OTP_LENGTH = 4;
 	const [otpValue, setOtpValue] = useState('');
 
@@ -31,13 +33,13 @@ function VerifictaionForm({ formData, userDetails }) {
 	return (
 		<div className={styles.container}>
 			<div className={styles.header_container}>
-				Verify through email or phone
+				{t('common:rightPanel_verification_texts_1')}
 				<div className={styles.header_container_span}>
-					You need to verify your email or phone to complete signup.
+					{t('common:rightPanel_verification_texts_2')}
 				</div>
 			</div>
 			<div className={styles.verification_text_container}>
-				Verification code has been sent to
+				{t('common:rightPanel_verification_texts_3')}
 				{' '}
 				<span className={styles.verification_text_container_bold}>
 					{mobile_country_code}
@@ -45,7 +47,7 @@ function VerifictaionForm({ formData, userDetails }) {
 					{mobile_number}
 				</span>
 				{' '}
-				via SMS
+				{t('common:rightPanel_verification_text_via_sms')}
 			</div>
 			<div className={styles.mail_icon_container}>
 				<IcCSendEmail width="100px" height="100px" />
@@ -64,25 +66,25 @@ function VerifictaionForm({ formData, userDetails }) {
 					onClick={onClickVerifyLeadUserMobileNo}
 					size="lg"
 				>
-					CONFIRM
+					{t('common:rightPanel_verification_confirm_button_label')}
 				</Button>
 			</div>
 			<OrSeparator />
 			<div className={styles.footer_container}>
-				An email with a verification link has been sent to
+				{t('common:rightPanel_verification_texts_4')}
 				<br />
 				<span className={styles.footer_container_span}>{email}</span>
 				<br />
-				<span className={styles.footer_container_span}>Click on the link to verify.</span>
+				<span className={styles.footer_container_span}>{t('common:rightPanel_verification_texts_5')}</span>
 				<br />
-				If you have not received the email within a few minutes,
+				{t('common:rightPanel_verification_email_texts_4')}
 				<br />
-				please check your spam folder or click on
+				{t('common:rightPanel_verification_email_texts_5')}
 				<button
 					className={styles.resend_mail_button}
 					onClick={() => onClickResendEmail(id)}
 				>
-					resend email
+					{t('common:rightPanel_verification_email_resendEmailButton_label')}
 				</button>
 			</div>
 		</div>

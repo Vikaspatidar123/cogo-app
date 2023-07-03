@@ -11,9 +11,10 @@ import styles from './styles.module.css';
 import OTPLayout from '@/packages/forms/Business/OTPLayout';
 import OrSeparator from '@/ui/commons/components/OrSeparator';
 
+const OTP_LENGTH = 4;
+
 function VerifictaionForm({ formData, userDetails }) {
 	const { t } = useTranslation(['common']);
-	const OTP_LENGTH = 4;
 	const [otpValue, setOtpValue] = useState('');
 
 	const { id, email = '', mobile_country_code = '', mobile_number = '' } = userDetails || {};

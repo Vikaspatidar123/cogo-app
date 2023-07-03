@@ -14,6 +14,7 @@ const MAPPING = {
 	emailId  : <LoginForm />,
 	mobileNo : <MobileLoginForm />,
 };
+
 function Login() {
 	const { t } = useTranslation(['common']);
 	const {

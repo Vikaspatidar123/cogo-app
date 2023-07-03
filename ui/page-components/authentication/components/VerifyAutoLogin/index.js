@@ -1,4 +1,5 @@
 import { Toast, Button } from '@cogoport/components';
+import { useTranslation } from 'next-i18next';
 import React from 'react';
 
 import getVerifyAutoLogin from '../../hooks/useVerifyAutoLogin';
@@ -19,22 +20,24 @@ const PAGE_MAPPINGS = {
 };
 
 function VerifyAutoLogin() {
+	const { t } = useTranslation(['verifyAutoLogin']);
+
 	const content = {
-		heading           : 'Email Verification Failed!',
-		subheading        : 'We could not verify your email.',
+		heading           : `${t('verifyAutoLogin:verify_auto_login_content_heading')}`,
+		subheading        : `${t('verifyAutoLogin:verify_auto_login_content_sub_heading')}`,
 		forgotPasswordCTA : {
-			text : 'Try Setting your Password Again?',
+			text : `${t('verifyAutoLogin:verify_auto_login_content_forgot_password_text')}`,
 			link : '/forgot-password',
 		},
-		submitText: 'Send Verification Email',
+		submitText: `${t('verifyAutoLogin:verify_auto_login_content_submit_text')}`,
 	};
 
 	return (
 		<HeaderLayout
 			rightParams={{
-				label : 'Already a User?',
+				label : `${t('verifyAutoLogin:verify_auto_login_header_layout_right_params_label')}`,
 				href  : '/login',
-				cta   : 'LOGIN',
+				cta   : `${t('verifyAutoLogin:verify_auto_login_header_layout_right_params_cta')}`,
 			}}
 		>
 			<div className={styles.container}>

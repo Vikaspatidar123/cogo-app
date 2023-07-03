@@ -20,3 +20,7 @@
 .leaflet-tile {
 	filter: hue-rotate(45deg) !important;
 }
+
+:root {
+	--font-family: "Roboto", "sans-serif";
+}

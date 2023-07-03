@@ -1,6 +1,6 @@
 import { cl, Toggle } from '@cogoport/components';
 import { isEmpty } from '@cogoport/utils';
-import { useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import iconUrl from '../../../../../utils/iconUrl.json';
 
@@ -27,14 +27,16 @@ const TAB_MAPPING = {
 function Controls({ controls }) {
 	const [labeledValue, setLabeledValue] = useState('IMPORT');
 
-	useMemo(() => {
-		(controls || []).forEach((control) => {
-			if (control?.tradeType === 'IMPORT') {
-				importControls.push(control);
-			} else {
-				exportControls.push(control);
-			}
-		});
+	useEffect(() => {
+		if (!isEmpty(controls)) {
+			(controls || []).forEach((control) => {
+				if (control?.tradeType === 'IMPORT') {
+					importControls.push(control);
+				} else {
+					exportControls.push(control);
+				}
+			});
+		}
 	}, [controls]);
 
 	return (

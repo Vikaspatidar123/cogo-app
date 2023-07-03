@@ -2,13 +2,14 @@ import { isEmpty } from '@cogoport/utils';
 import { useEffect, useMemo, useRef } from 'react';
 
 const useGetQuoteRes = ({ quoteRes = {}, getDraftData = {}, editData = {} }) => {
-	const infoRef = useRef({});
 	const { products: editDataProducts = [] } = editData || {};
 	const { headerResponse = {}, lineItem = [] } = getDraftData || {};
 	const { resultCurrency, destinationCountryCode, consignmentValue: totalValue } = headerResponse || {};
 
 	const { product = {}, destinationPortDetails = {}, header } = quoteRes || {};
 	const { products } = product;
+
+	const infoRef = useRef({});
 
 	const consignmentValue = useMemo(() => (
 		products?.reduce((prev, amount) => +prev + +amount.product_price, 0)

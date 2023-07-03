@@ -45,7 +45,6 @@ const useCreateTicket = () => {
 			Toast.success('Ticket Created Sucessfully');
 			setTicketId(res?.data?.ID);
 		} catch (e) {
-			console.log(e);
 			Toast.error(getApiError(e?.response?.data));
 		}
 	};

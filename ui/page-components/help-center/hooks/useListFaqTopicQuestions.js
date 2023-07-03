@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useCallback, useState } from 'react';
 
 import { NO_OF_QUESTIONS_TO_BE_FETCHED } from '../constants';

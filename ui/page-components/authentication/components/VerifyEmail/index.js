@@ -2,13 +2,11 @@ import { Button } from '@cogoport/components';
 import { useTranslation } from 'next-i18next';
 import React from 'react';
 
-import getVerifyEmail from '../../hooks/useVerifyEmail';
 import HeaderLayout from '../HeaderLayout';
 
 import styles from './styles.module.css';
 
 import { Link } from '@/packages/next';
-import setCookieAndRedirect from '@/ui/commons/utils/setCookieAndRedirect';
 
 function VerifyEmail() {
 	const { t } = useTranslation(['verifyAutoLogin']);
@@ -58,23 +56,5 @@ function VerifyEmail() {
 		</HeaderLayout>
 	);
 }
-
-VerifyEmail.getInitialProps = async (ctx) => {
-	const { query } = ctx;
-	const { id } = query;
-	try {
-		const res = await getVerifyEmail({ email_token: id });
-		const { hasError } = res || {};
-		if (!hasError) {
-			const { token } = (res || {}).data || {};
-			// setCookieAndRedirect(token, ctx, '/app?from_signup=true');
-			const redirectPath = '/onboarding?from_signup=true';
-			setCookieAndRedirect(token, ctx, redirectPath);
-		}
-	} catch (e) {
-		console.log(e.toString());
-	}
-	return { layout: 'none' };
-};
 
 export default VerifyEmail;

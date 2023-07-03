@@ -2,7 +2,7 @@ import { Toast } from '@cogoport/components';
 
 import { STATUS_CHANGE_PAYLOAD } from '../constants';
 
-import { useRequestBf } from '@/packages/request';
+import { useTicketsRequest } from '@/packages/request';
 import { useSelector } from '@/packages/store';
 
 const useUpdateTicketActivity = ({
@@ -11,11 +11,10 @@ const useUpdateTicketActivity = ({
 }) => {
 	const { profile } = useSelector((state) => state);
 
-	const [{ loading }, trigger] = useRequestBf({
+	const [{ loading }, trigger] = useTicketsRequest({
 		url     : '/activity',
 		authKey : 'post_tickets_activity',
 		method  : 'post',
-		scope   : 'cogocare',
 	}, { manual: false });
 
 	const updateTicketActivity = async ({ status = '', id = '' }) => {

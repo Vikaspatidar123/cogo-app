@@ -1,10 +1,10 @@
-import { useRequest } from '@/packages/request';
+import { useTicketsRequest } from '@/packages/request';
 import { useSelector } from '@/packages/store';
 
 const useGetTicketsUnreadCount = () => {
 	const { id } = useSelector((state) => state.profile);
 
-	const { trigger, data } = useRequest({
+	const { trigger, data } = useTicketsRequest({
 		url     : '/unread_count',
 		method  : 'get',
 		authkey : 'get_tickets_unread_count',

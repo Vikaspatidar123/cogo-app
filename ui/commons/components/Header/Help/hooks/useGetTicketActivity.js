@@ -2,7 +2,7 @@ import { useEffect, useState, useCallback } from 'react';
 
 import { ACTIVITY_STATUS } from '../constants';
 
-import { useRequestBf } from '@/packages/request';
+import { useTicketsRequest } from '@/packages/request';
 import { useSelector } from '@/packages/store';
 
 const useGetTicketActivity = ({ ticketId }) => {
@@ -14,11 +14,10 @@ const useGetTicketActivity = ({ ticketId }) => {
 		total_pages : 0,
 	});
 
-	const [{ loading }, trigger] = useRequestBf({
+	const [{ loading }, trigger] = useTicketsRequest({
 		url     : '/activities',
 		authKey : 'get_tickets_activities',
 		method  : 'get',
-		scope   : 'cogocare',
 	}, { manual: false });
 
 	const getTicketActivity = useCallback(async (pagination) => {

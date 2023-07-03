@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { FILTER_KEYS_MAPPING, NO_OF_TICKETS_TO_BE_SHOWED } from '../constants';
 
 import { useDebounceQuery } from '@/packages/forms';
-import { useRequestBf } from '@/packages/request';
+import { useTicketsRequest } from '@/packages/request';
 import { useSelector } from '@/packages/store';
 
 const useListTickets = ({
@@ -18,11 +18,10 @@ const useListTickets = ({
 
 	const { debounceQuery, query: searchQuery = '' } = useDebounceQuery();
 
-	const [{ loading, data }, trigger] = useRequestBf({
+	const [{ loading, data }, trigger] = useTicketsRequest({
 		url     : '/list',
 		authKey : 'get_tickets_list',
 		method  : 'get',
-		scope   : 'cogocare',
 	}, { manual: false });
 
 	const fetchTickets = async (pageIndex) => {

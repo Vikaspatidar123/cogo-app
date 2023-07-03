@@ -1,13 +1,12 @@
 import { useCallback, useEffect } from 'react';
 
-import { useRequestBf } from '@/packages/request';
+import { useTicketsRequest } from '@/packages/request';
 
 const useGetTicketDetails = ({ ticketId }) => {
-	const [{ loading, data }, trigger] = useRequestBf({
+	const [{ loading, data }, trigger] = useTicketsRequest({
 		url     : '/detail',
 		authKey : 'get_tickets_detail',
 		method  : 'get',
-		scope   : 'cogocare',
 	}, { manual: false });
 
 	const getTicketDetails = useCallback(async () => {

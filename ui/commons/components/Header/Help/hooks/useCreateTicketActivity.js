@@ -1,6 +1,6 @@
 import { Toast } from '@cogoport/components';
 
-import { useRequestBf } from '@/packages/request';
+import { useTicketsRequest } from '@/packages/request';
 import { useSelector } from '@/packages/store';
 
 const useCreateTicketActivity = ({
@@ -10,11 +10,10 @@ const useCreateTicketActivity = ({
 }) => {
 	const { profile } = useSelector((state) => state);
 
-	const [{ loading }, trigger] = useRequestBf({
+	const [{ loading }, trigger] = useTicketsRequest({
 		url     : '/activity',
 		authKey : 'post_tickets_activity',
 		method  : 'post',
-		scope   : 'cogocare',
 	}, { manual: false });
 
 	const createTicketActivity = async ({ file, message }) => {

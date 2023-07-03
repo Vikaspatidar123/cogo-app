@@ -1,16 +1,15 @@
 import { Toast } from '@cogoport/components';
 
-import { useRequestBf } from '@/packages/request';
+import { useTicketsRequest } from '@/packages/request';
 import { useSelector } from '@/packages/store';
 
 const useUpdateTicketFeedback = ({ refetchTicket = () => {} }) => {
 	const profile = useSelector((state) => state?.profile);
 
-	const [{ loading }, trigger] = useRequestBf({
+	const [{ loading }, trigger] = useTicketsRequest({
 		url     : '/feedback',
 		authKey : 'put_tickets_feedback',
 		method  : 'put',
-		scope   : 'cogocare',
 	}, { manual: false });
 
 	const updateTicketFeedback = async (rating = '', id = '') => {

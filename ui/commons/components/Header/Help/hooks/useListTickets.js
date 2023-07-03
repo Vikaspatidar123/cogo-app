@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from 'react';
 
 import { FILTER_KEYS_MAPPING, NO_OF_TICKETS_TO_BE_SHOWED } from '../constants';

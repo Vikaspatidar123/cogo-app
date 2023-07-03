@@ -15,7 +15,7 @@ const useCreateTicketActivity = ({
 		authKey : 'post_tickets_activity',
 		method  : 'post',
 		scope   : 'cogocare',
-	}, { manual: true });
+	}, { manual: false });
 
 	const createTicketActivity = async ({ file, message }) => {
 		const payload = {

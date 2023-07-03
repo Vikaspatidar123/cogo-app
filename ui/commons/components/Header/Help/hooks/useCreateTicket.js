@@ -6,7 +6,7 @@ import { useSelector } from '@/packages/store';
 
 const useCreateTicket = () => {
 	const {
-		organization: { id: organizationID, country_id = '', parent_entity_id = '' } = {},
+		organization: { id: organizationID, country_id = '', cogo_entity_id = '' } = {},
 		id = '',
 	} = useSelector(({ profile }) => profile);
 
@@ -17,7 +17,7 @@ const useCreateTicket = () => {
 		authKey : 'post_tickets_ticket',
 		method  : 'post',
 		scope   : 'cogocare',
-	}, { manual: true });
+	}, { manual: false });
 
 	const createTicket = async (val, extraFieldName = '') => {
 		try {
@@ -33,9 +33,9 @@ const useCreateTicket = () => {
 					Persona          : 'importer_exporter',
 					Platform         : 'app',
 				},
-				CogoEntityId  : country_id,
+				CogoEntityId  : cogo_entity_id,
 				PerformedByID : id,
-				CountryId     : parent_entity_id,
+				CountryId     : country_id,
 			};
 
 			const res = await trigger({

@@ -1,39 +1,41 @@
-// import { format } from '@cogoport/utils';
-// import Axios from 'axios';
-// import qs from 'qs';
+import { format } from '@cogoport/utils';
+import Axios from 'axios';
+import qs from 'qs';
 
-// import getAuthorizationParams from './get-final-authpipe';
-// import { getCookie } from './getCookieFromCtx';
+import getAuthorizationParams from './get-final-authpipe';
+import { getCookie } from './getCookieFromCtx';
 
-// const customSerializer = (params) => {
-// 	const paramsStringify = qs.stringify(params, {
-// 		arrayFormat: 'brackets', serializeDate: (date) => format(date, 'isoUtcDateTime'),
-// 	});
-// 	return paramsStringify;
-// };
-// const ticketsRequest = Axios.create({ baseURL: process.env.NEXT_PUBLIC_TICKET_REST_BASE_API_URL });
+const storeKey = '__COGO_APP_STORE__';
 
-// ticketsRequest.interceptors.request.use((oldConfig) => {
-// 	const { authkey = '', ...axiosConfig } = oldConfig;
+const customSerializer = (params) => {
+	const paramsStringify = qs.stringify(params, {
+		arrayFormat: 'brackets', serializeDate: (date) => format(date, 'isoUtcDateTime'),
+	});
+	return paramsStringify;
+};
+const ticketsRequest = Axios.create({ baseURL: process.env.NEXT_PUBLIC_TICKET_REST_BASE_API_URL });
 
-// 	const isDevMode = !process.env.NEXT_PUBLIC_REST_BASE_API_URL.includes('https://api.cogoport.com');
+ticketsRequest.interceptors.request.use((oldConfig) => {
+	const axiosConfig = { ...oldConfig };
 
-// 	const auth = process.env.NEXT_PUBLIC_AUTH_TOKEN_NAME;
-// 	if (!isDevMode) {
-// 		axiosConfig.baseURL = `${process.env.NEXT_PUBLIC_REST_BASE_API_URL}/tickets`;
-// 	}
-// 	const token = getCookie(auth, oldConfig.ctx);
-// 	const authorizationparameters = getAuthorizationParams(store, authkey);
+	const isDevMode = !process.env.NEXT_PUBLIC_APP_BASE_URL.includes('api.cogoport.com');
 
-// 	return {
-// 		...axiosConfig,
-// 		paramsSerializer : { serialize: customSerializer },
-// 		headers          : {
-// 			authorizationscope : 'partner',
-// 			authorization      : `Bearer: ${token}`,
-// 			authorizationparameters,
-// 		},
-// 	};
-// });
+	const auth = process.env.NEXT_PUBLIC_AUTH_TOKEN_NAME;
+	if (!isDevMode) {
+		axiosConfig.baseURL = `${process.env.NEXT_PUBLIC_APP_BASE_URL}/tickets`;
+	}
+	const token = getCookie(auth, oldConfig.ctx);
+	const authorizationparameters = getAuthorizationParams(storeKey, oldConfig.url);
 
-// export { ticketsRequest };
+	return {
+		...axiosConfig,
+		paramsSerializer : { serialize: customSerializer },
+		headers          : {
+			authorizationscope : 'organization',
+			authorization      : `Bearer: ${token}`,
+			authorizationparameters,
+		},
+	};
+});
+
+export { ticketsRequest };

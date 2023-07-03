@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 
 import { ACTIVITY_STATUS } from '../constants';
 
@@ -21,7 +21,7 @@ const useGetTicketActivity = ({ ticketId }) => {
 		scope   : 'cogocare',
 	}, { manual: false });
 
-	const getTicketActivity = async (pagination) => {
+	const getTicketActivity = useCallback(async (pagination) => {
 		try {
 			const res = await trigger({
 				params: {
@@ -48,7 +48,7 @@ const useGetTicketActivity = ({ ticketId }) => {
 		} catch (error) {
 			console.log(error);
 		}
-	};
+	}, [profile?.id, ticketId, trigger]);
 
 	useEffect(() => {
 		if (ticketId) {
@@ -59,7 +59,7 @@ const useGetTicketActivity = ({ ticketId }) => {
 			});
 			getTicketActivity(0);
 		}
-	}, [ticketId]);
+	}, [getTicketActivity, ticketId]);
 
 	return {
 		getTicketActivity,

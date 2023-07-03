@@ -1,7 +1,7 @@
 import { merge } from '@cogoport/utils';
 import { useEffect, useState, useMemo } from 'react';
 
-import { useRequest } from '../../request';
+import { useTicketsRequest } from '../../request';
 
 import useDebounceQuery from './useDebounceQuery';
 
@@ -16,7 +16,7 @@ function useGetAsyncCogoCareOptions({
 	const [storeOptions, setStoreOptions] = useState([]);
 	const { query, debounceQuery } = useDebounceQuery();
 
-	const [{ data, loading }] = useRequest(
+	const [{ data, loading }] = useTicketsRequest(
 		{
 			url    : endpoint,
 			method : 'GET',
@@ -33,7 +33,7 @@ function useGetAsyncCogoCareOptions({
 		[options, valueKey],
 	);
 
-	const [{ trigger: triggerSingle, loading: loadingSingle }] = useRequest(
+	const [{ trigger: triggerSingle, loading: loadingSingle }] = useTicketsRequest(
 		{
 			url    : endpoint,
 			method : 'GET',

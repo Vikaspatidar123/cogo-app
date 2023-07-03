@@ -1,9 +1,11 @@
 /* eslint-disable no-undef */
 import { deleteCookie } from '@cogoport/utils';
+import { useTranslation } from 'next-i18next';
 
 import styles from '../styles.module.css';
 
 function Logout() {
+	const { t } = useTranslation(['common']);
 	const handleClick = async (e) => {
 		e.preventDefault();
 
@@ -26,7 +28,8 @@ function Logout() {
 				style={{ color: '#ef9b9b' }}
 				role="presentation"
 			>
-				Logout
+				{t('common:layouts_app_logout')}
+
 			</div>
 		</div>
 	);

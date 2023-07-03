@@ -1,5 +1,4 @@
 import navigationMappings from './navigation-mapping';
-import { useTranslation } from 'next-i18next';
 
 const getCondition = (urlItem) => {
 	const condition = {};
@@ -22,12 +21,10 @@ const getSideBarConfigs = (
 	dashboardUrls = [],
 	pinnedNavKeys = [],
 ) => {
-	const { t } = useTranslation(['common']);
-
-	const navigation = navigationMappings({ t })
+	const navigation = navigationMappings();
 	const pNavs = userData?.permissions_navigations || {};
 
-	const modifiedPinnedNavKeys = pinnedNavKeys.filter((key) => Object.keys(navigationMappings).includes(key));
+	const modifiedPinnedNavKeys = pinnedNavKeys.filter((key) => Object.keys(navigation).includes(key));
 
 	const filteredKeys = Object.keys(navigation).filter(
 		(key) => !modifiedPinnedNavKeys.includes(key),

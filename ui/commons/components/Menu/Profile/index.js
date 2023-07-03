@@ -1,10 +1,12 @@
 import { IcMAccountSettings } from '@cogoport/icons-react';
+import { useTranslation } from 'next-i18next';
 
 import styles from '../styles.module.css';
 
 import { useRouter } from '@/packages/next';
 
-function Profile({ setShowPopover = () => {} }) {
+function Profile({ setShowPopover = () => { } }) {
+	const { t } = useTranslation(['common']);
 	const router = useRouter();
 
 	const handleClick = async () => {
@@ -22,7 +24,7 @@ function Profile({ setShowPopover = () => {} }) {
 				onClick={(e) => handleClick(e)}
 				role="presentation"
 			>
-				Account Settings
+				{t('common:layouts_app_settings')}
 			</div>
 		</div>
 	);

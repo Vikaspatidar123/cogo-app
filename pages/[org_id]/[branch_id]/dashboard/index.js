@@ -1,7 +1,6 @@
-import Dashboard from '@/ui/page-components/dashboard';
-
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
+import Dashboard from '@/ui/page-components/dashboard';
 
 export async function getServerSideProps({ locale }) {
 	return {
@@ -12,4 +11,4 @@ export async function getServerSideProps({ locale }) {
 	};
 }
 
-export default Dashboard
+export default Dashboard;

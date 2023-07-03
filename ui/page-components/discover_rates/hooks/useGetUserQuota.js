@@ -5,15 +5,15 @@ import { useSelector } from '@/packages/store';
 
 const useGetUserQuota = ({ apiTries, setApiTries }) => {
 	const { organization_id } = useSelector(({ profile }) => ({
-		organization_id: profile.organization.id,
+		organization_id: profile.organization?.id,
 	}));
 
 	const [quotaData, setQuotaData] = useState([]);
 
 	const [{ loading }, trigger] = useRequest(
 		{
-			url    : '/saas_get_user_quota_usage',
-			method : 'get',
+			url: '/saas_get_user_quota_usage',
+			method: 'get',
 		},
 		{ manual: true },
 	);
@@ -50,7 +50,7 @@ const useGetUserQuota = ({ apiTries, setApiTries }) => {
 		return () => {
 			clearInterval(interval);
 		};
-	// eslint-disable-next-line react-hooks/exhaustive-deps
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [apiTries]);
 
 	return {

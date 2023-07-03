@@ -1,7 +1,8 @@
 import { Toast } from '@cogoport/components';
 import { useState } from 'react';
 
-import { useRequestBf } from '@/packages/request';
+import { getApiError } from '@/packages/forms';
+import { useTicketsRequest } from '@/packages/request';
 import { useSelector } from '@/packages/store';
 
 const useCreateTicket = () => {
@@ -12,11 +13,10 @@ const useCreateTicket = () => {
 
 	const [ticketId, setTicketId] = useState('');
 
-	const [{ loading, data }, trigger] = useRequestBf({
+	const [{ loading, data }, trigger] = useTicketsRequest({
 		url     : '/ticket',
 		authKey : 'post_tickets_ticket',
 		method  : 'post',
-		scope   : 'cogocare',
 	}, { manual: false });
 
 	const createTicket = async (val, extraFieldName = '') => {
@@ -45,7 +45,8 @@ const useCreateTicket = () => {
 			Toast.success('Ticket Created Sucessfully');
 			setTicketId(res?.data?.ID);
 		} catch (e) {
-			Toast.error(e?.error || 'something went wrong');
+			console.log(e);
+			Toast.error(getApiError(e?.response?.data));
 		}
 	};
 

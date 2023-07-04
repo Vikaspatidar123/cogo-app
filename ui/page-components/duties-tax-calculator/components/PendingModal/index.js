@@ -1,5 +1,6 @@
 import { Button, Modal, cl } from '@cogoport/components';
 import { IcMInformation } from '@cogoport/icons-react';
+import { useTranslation } from 'next-i18next';
 
 import { Loading, LoadingBanner } from '../../configuration/icon-configuration';
 
@@ -10,6 +11,8 @@ import { useRouter } from '@/packages/next';
 function PendingModal({ showPendingModal, setShowPendingModal, stop }) {
 	const { query } = useRouter();
 	const { org_id = '', branch_id = '' } = query || {};
+
+	const { t } = useTranslation(['common', 'dutiesTaxesCalculator']);
 
 	const closeModalHandler = () => {
 		const redirectUrl = `${process.env.NEXT_PUBLIC_APP_URL}${org_id}/${branch_id}`
@@ -26,7 +29,7 @@ function PendingModal({ showPendingModal, setShowPendingModal, stop }) {
 						alt=""
 						className={styles.loading_banner}
 					/>
-					<div className={styles.title}>Hang on! Checking payment status...</div>
+					<div className={styles.title}>{t('dutiesTaxesCalculator:pending_modal_checking')}</div>
 					<img
 						src={Loading}
 						alt=""
@@ -39,11 +42,10 @@ function PendingModal({ showPendingModal, setShowPendingModal, stop }) {
 				<div className={styles.container}>
 					<IcMInformation fill="#FBDC00" width={52} height={52} />
 					<div className={cl`${styles.txt} ${styles.error}`}>
-						Sorry, It took longer than usual. We will notify you once payment is
-						successful
+						{t('dutiesTaxesCalculator:pending_modal_failed')}
 					</div>
 					<Button themeType="linkUi" onClick={closeModalHandler}>
-						Close
+						{t('common:close')}
 					</Button>
 				</div>
 			)}

@@ -7,7 +7,7 @@ import { useState, useEffect } from 'react';
 import getField from '../../../../../../packages/forms/Controlled';
 import HsCode from '../../../../hs-code-modal/component';
 import ProductCatalogue from '../../../../product-catalogue-modal';
-import { productControls as fields } from '../../../configuration/controls';
+import { productControls } from '../../../configuration/controls';
 import { ProductCartIcon } from '../../../configuration/icon-configuration';
 import useCurrencyConversion from '../../../hook/useCurrencyConversion';
 import useVerifyHscode from '../../../hook/useVerifyHscode';
@@ -41,6 +41,7 @@ function Product({
 	const [showValidate, setShowValidate] = useState(false);
 	const [selectedData, setSelectedData] = useState();
 
+	const fields = productControls({ t });
 	const { control, handleSubmit, watch, setValue, formState: { errors } } = formHook;
 
 	const { exchangeApi } = useCurrencyConversion();

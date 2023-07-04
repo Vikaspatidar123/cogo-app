@@ -11,30 +11,41 @@ import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
 const FLAG_MAPPING = {
 	N : <Image src={GLOBAL_CONSTANTS.image_url.iec_green_flag} width={18} height={18} alt="green flag" />,
-	Y : <Image src={GLOBAL_CONSTANTS.image_url.iec_yellow_flag} width={18} height={18} alt="red flag" />,
+	Y : <Image src={GLOBAL_CONSTANTS.image_url.iec_red_flag} width={18} height={18} alt="red flag" />,
 	M : <Image src={GLOBAL_CONSTANTS.image_url.iec_yellow_flag} width={18} height={18} alt="yellow flag" />,
 
 };
 
-const importControls = [];
-const exportControls = [];
-
-const TAB_MAPPING = {
-	IMPORT : importControls,
-	EXPORT : exportControls,
-};
-
 function Controls({ controls }) {
 	const [labeledValue, setLabeledValue] = useState('IMPORT');
+	const [controlVal, setControlVal] = useState({
+		importControls : [],
+		exportControls : [],
+	});
+
+	const { importControls, exportControls } = controlVal;
+
+	const TAB_MAPPING = {
+		IMPORT : importControls,
+		EXPORT : exportControls,
+	};
 
 	useEffect(() => {
 		if (!isEmpty(controls)) {
+			const impControls = [];
+			const expControls = [];
+
 			(controls || []).forEach((control) => {
 				if (control?.tradeType === 'IMPORT') {
-					importControls.push(control);
+					impControls.push(control);
 				} else {
-					exportControls.push(control);
+					expControls.push(control);
 				}
+			});
+
+			setControlVal({
+				importControls : impControls,
+				exportControls : expControls,
 			});
 		}
 	}, [controls]);
@@ -65,11 +76,11 @@ function Controls({ controls }) {
 				{!isEmpty(controls) ? (
 					<div className={styles.section}>
 						{!isEmpty(TAB_MAPPING?.[labeledValue]) ? (
-							TAB_MAPPING[labeledValue].map((ele) => {
+							TAB_MAPPING[labeledValue].map((ele, index) => {
 								const { description, status } = ele || {};
 								return (
 									<div
-										key={`${description}_${status}`}
+										key={`${index + 1}_${description}_${status}`}
 										className={styles.flex_box}
 										style={{ marginTop: '20px' }}
 									>

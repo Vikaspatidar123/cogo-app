@@ -1,5 +1,6 @@
 /* eslint-disable max-len */
 import { Popover } from '@cogoport/components';
+import { useTranslation } from 'next-i18next';
 
 import NavBarItem from './NavBarItem';
 import styles from './styles.module.css';
@@ -10,6 +11,8 @@ import { useRouter } from '@/packages/next';
 import { useSelector } from '@/packages/store';
 
 function NavBar() {
+	const { t } = useTranslation(['common']);
+
 	const { user_data } = useSelector(({ profile }) => ({
 		user_data: profile || {},
 	}));
@@ -17,7 +20,7 @@ function NavBar() {
 
 	const unPrefixedPath = `/${pathname.replace('/[org_id]/[branch_id]/', '')}`;
 
-	const configs = getSideBarConfigs(user_data);
+	const configs = getSideBarConfigs({ userData: user_data, t });
 	const { nav_items = {} } = configs || {};
 	const { organization = [] } = nav_items || {};
 

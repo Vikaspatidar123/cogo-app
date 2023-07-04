@@ -1,4 +1,3 @@
-import { useTranslation } from 'next-i18next';
 
 import navigationMappings from './navigation-mapping';
 
@@ -18,12 +17,12 @@ const getCondition = (urlItem) => {
 
 const AJEET_EMAIL_ID = 'ajeet@cogoport.com';
 
-const getSideBarConfigs = (
+const getSideBarConfigs = ({
 	userData,
 	dashboardUrls = [],
 	pinnedNavKeys = [],
-) => {
-	const { t } = useTranslation(['common']);
+	t = () => { }
+}) => {
 
 	const navigation = navigationMappings({ t });
 
@@ -49,11 +48,11 @@ const getSideBarConfigs = (
 					nav_items.push({
 						...navigation[key],
 						options: dashboardUrls.map((urlItem) => ({
-							title     : urlItem.title,
-							type      : 'link',
-							as        : `/dashboards/${urlItem.urlKey}`,
-							href      : '/dashboards/[dashboard_type]',
-							condition : getCondition(urlItem),
+							title: urlItem.title,
+							type: 'link',
+							as: `/dashboards/${urlItem.urlKey}`,
+							href: '/dashboards/[dashboard_type]',
+							condition: getCondition(urlItem),
 						})),
 					});
 				} else if (navigation[key]?.options) {

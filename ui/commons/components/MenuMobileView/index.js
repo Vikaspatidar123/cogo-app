@@ -1,5 +1,6 @@
 /* eslint-disable no-undef */
 import { IcMArrowNext } from '@cogoport/icons-react';
+import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
 
 import Logout from '../Menu/Logout';
@@ -15,12 +16,13 @@ import { useSelector } from '@/packages/store';
 
 function MobileMenu() {
 	const { push } = useRouter();
+	const { t } = useTranslation(['common']);
 	const { user_data } = useSelector(({ profile }) => ({
 		user_data: profile || {},
 	}));
 	const [show, setShow] = useState(false);
 
-	const configs = getSideBarConfigs(user_data);
+	const configs = getSideBarConfigs({ userData: user_data, t });
 	const { nav_items = {} } = configs || {};
 	const { organization = [] } = nav_items || {};
 	const navigationMapping = [];

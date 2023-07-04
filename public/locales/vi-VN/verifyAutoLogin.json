@@ -1,8 +1,8 @@
 {
     "verify_auto_login_content_heading":"Xác minh email không thành công!",
     "verify_auto_login_content_sub_heading":"Chúng tôi không thể xác minh email của bạn.",
-    "verify_auto_login_content_forgot_password_text":"Try Setting your Password Again?",
-    "verify_auto_login_content_submit_text":"Send Verification Email",
-    "verify_auto_login_header_layout_right_params_label":"Already a User?",
-    "verify_auto_login_header_layout_right_params_cta":"LOGIN"
+    "verify_auto_login_content_forgot_password_text":"Thử đặt lại mật khẩu của bạn?",
+    "verify_auto_login_content_submit_text":"Gửi email xác minh",
+    "verify_auto_login_header_layout_right_params_label":"Đã là người dùng?",
+    "verify_auto_login_header_layout_right_params_cta":"ĐĂNG NHẬP"
 }

@@ -45,6 +45,7 @@ function Pay({
 		modal = {},
 		setModal = () => {},
 	} = usePayment();
+
 	const {
 		submitHandler,
 		checkoutHandler,
@@ -53,6 +54,7 @@ function Pay({
 		totalAmount,
 		renderPortName,
 	} = checkoutFn({
+		t,
 		formData,
 		portDetails,
 		origin,

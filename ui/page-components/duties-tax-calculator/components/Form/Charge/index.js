@@ -4,7 +4,7 @@ import { useTranslation } from 'next-i18next';
 import { useState, useEffect } from 'react';
 
 import getField from '../../../../../../packages/forms/Controlled';
-import { chargeControls as fields } from '../../../configuration/controls';
+import { chargeControls } from '../../../configuration/controls';
 import { ProductCartIcon } from '../../../configuration/icon-configuration';
 import useFreightCharges from '../../../hook/useFreightCharges';
 import style from '../styles.module.css';
@@ -17,7 +17,7 @@ const SelectController = getField('select');
 const NumberSelector = getField('number');
 
 const errorHandler = ({ t }) => {
-	Toast.error(t('dutiesTaxesCalculator:form_charge_toast_err_msg'));
+	Toast.error(t('dutiesTaxesCalculator:form_toast_err_msg'));
 };
 
 function Charge({
@@ -42,6 +42,7 @@ function Charge({
 	const [showFreightModal, setShowFreightModal] = useState(false);
 	const [spotCharge, setSpotCharge] = useState('');
 
+	const fields = chargeControls({ t });
 	const { control, watch, handleSubmit, setValue, formState:{ errors } } = formHook;
 	const { createSpotSearch, spotSearchLoading, spotSearchData } = useFreightCharges();
 

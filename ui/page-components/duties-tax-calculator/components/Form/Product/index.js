@@ -57,6 +57,7 @@ function Product({
 	const {
 		submitHandler, errorHandler, convertCurrency, validateSubmitHandler,
 	} = productFn({
+		t,
 		setFormData,
 		setFormStepper,
 		setStepper,

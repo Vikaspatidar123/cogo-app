@@ -31,10 +31,9 @@ function Transportation({
 	const initialRef = useRef(true);
 
 	const transportFields = transportationControls({ transportMode, t });
-	const { control, formState: { errors }, handleSubmit, watch, reset } = formHook;
+	const { control, handleSubmit, watch, reset } = formHook;
 
 	const [origin, destination] = watch(['originPort', 'destinationPort']);
-
 	const {
 		interchangeValuesHandler,
 		portDetailsHandler,
@@ -42,13 +41,13 @@ function Transportation({
 		submitHandler,
 		errorHandler,
 	} = transportFn({
+		t,
 		setRotate,
 		setPortDetails,
 		setFormData,
 		setStepper,
 		setFormStepper,
 		setValue,
-		errors,
 		transportMode,
 		portDetails,
 		origin,

@@ -4,6 +4,7 @@
     "stepper_title_product":"Product Details",
     "stepper_title_charge": "Charge Details",
     "stepper_title_result": "Pay and Get Results",
+    "form_toast_err_msg": "Fill all mandatory details",
     "form_transport_title": "Transportation Details",
     "form_transport_ocean" : "Ocean",
     "form_transport_air": "Air",
@@ -25,7 +26,6 @@
     "form_product_controls_value_label": "Consignment Value",
     "form_product_controls_value_placeholder": "0.00",
     "form_product_controls_quantity_label": "Quantity (in Kgs)",
-    "form_product_controls_quantity_placeholder":"",
     "form_product_controls_currency_label": "Currency",
     "validate_hscode_modal_title": "Get Accurate Data",
     "validate_hscode_modal_label": "HS Code",
@@ -43,7 +43,6 @@
     "form_charge_controls_incoterm_placeholder": "Select",
     "form_charge_controls_incoterm_array_placeholder_1": "Charges",
     "form_charge_controls_incoterm_array_placeholder_2": "Enter value",
-    "form_charge_toast_err_msg": "Fill all mandatory details",
     "freight_modal_title": "Freight Rates",
     "freight_modal_discover_rate":"Discover Rates",
     "freight_modal_empty_state": "No data Available",
@@ -87,7 +86,13 @@
     "success_modal_section_2_title":"Total Duties and Tax",
     "success_modal_section_3_title": "Total Landed Cost",
     "success_modal_btn_text": "Calculate More",
-    "success_modal_tooltip_title": "Breakdown of Total Landed Cost"
-
-
+    "success_modal_tooltip_title": "Breakdown of Total Landed Cost",
+    "api_err_msg": "Something went wrong! Please try after sometime",
+    "api_hscode_err_msg": "This hs code is not supported by us.",
+    "address_toast_err_msg": "Please add billing address",
+    "transport_err_msg_1": "Please enter Origin and Destination Country",
+    "transport_err_msg_2": "Please enter Origin Country",
+    "transport_err_msg_3": "Please enter Destination Country",
+    "transport_err_msg_4": "Same Port selected !",
+    "transport_err_msg_5": "Ports of same Country selected!"
 }

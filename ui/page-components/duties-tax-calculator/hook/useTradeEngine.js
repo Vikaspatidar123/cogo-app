@@ -1,10 +1,13 @@
 import { Toast } from '@cogoport/components';
+import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
 
 import { useRequestBf } from '@/packages/request';
 import { useSelector } from '@/packages/store';
 
 const useTradeEngine = () => {
+	const { t } = useTranslation(['dutiesTaxesCalculator']);
+
 	const [tradeEngineResp, setTradeEngineResp] = useState({});
 	const tradeEngineRespLength = Object.keys(tradeEngineResp).length;
 	const { profile = {} } = useSelector((s) => s);
@@ -31,7 +34,7 @@ const useTradeEngine = () => {
 			});
 			setTradeEngineResp(resp?.data);
 		} catch (err) {
-			Toast.error('Something went wrong! Please try after sometime');
+			Toast.error(t('dutiesTaxesCalculator:api_err_msg'));
 		}
 	};
 
@@ -50,7 +53,7 @@ const useTradeEngine = () => {
 				getTradeEngine(resp?.data?.id);
 			}
 		} catch (err) {
-			Toast.error('Something went wrong! Please try after sometime');
+			Toast.error(t('dutiesTaxesCalculator:api_err_msg'));
 		}
 	};
 	return {

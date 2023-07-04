@@ -6,8 +6,8 @@ import styles from './styles.module.css';
 
 const getTagMapping = ({ t, transportMode }) => {
 	const TAG_MAPPING = {
-		OCEAN: [t('dutiesTaxesCalculator:freight_modal_ocean_tag_1'), t('d:freight_modal_ocean_tag_2'),
-			t('d:freight_modal_ocean_tag_3')],
+		OCEAN: [t('dutiesTaxesCalculator:freight_modal_ocean_tag_1'),
+			t('dutiesTaxesCalculator:freight_modal_ocean_tag_2'), t('dutiesTaxesCalculator:freight_modal_ocean_tag_3')],
 		AIR: [t('dutiesTaxesCalculator:freight_modal_air_tag_1'), t('dutiesTaxesCalculator:freight_modal_air_tag_2'),
 			t('dutiesTaxesCalculator:freight_modal_air_tag_3'), t('dutiesTaxesCalculator:freight_modal_air_tag_4')],
 	};

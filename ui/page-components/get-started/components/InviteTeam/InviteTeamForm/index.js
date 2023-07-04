@@ -1,4 +1,5 @@
 import { Button } from '@cogoport/components';
+import { useTranslation } from 'next-i18next';
 import React from 'react';
 
 import useCreateOrganizationUserInvitation from '../../../hooks/useCreateOrganizationUserInvitation';
@@ -20,6 +21,8 @@ function InviteTeamForm({
 	org,
 	setTimeForCall,
 }) {
+	const { t } = useTranslation(['common', 'getStarted']);
+
 	const handleAdd = (val) => {
 		const temp = teamMembers;
 		temp.push(val);
@@ -53,8 +56,11 @@ function InviteTeamForm({
 								control={control}
 								name="contact_name"
 								type="text"
-								placeholder="Contact Name"
-								rules={{ required: 'Contact Name is required.' }}
+								placeholder={t('getStarted:righPanel_get_started_invite_team_contact_name_label')}
+								rules={{
+									required:
+									t('getStarted:righPanel_get_started_invite_team_contact_name_is_required'),
+								}}
 							/>
 
 							{errors.contact_name && (
@@ -68,8 +74,11 @@ function InviteTeamForm({
 								control={control}
 								name="email"
 								type="text"
-								placeholder="Email"
-								rules={{ required: 'Email is required.' }}
+								placeholder={t('getStarted:rightPanel_get_started_team_members_email_label')}
+								rules={{
+									required:
+								t('getStarted:righPanel_get_started_invite_team_email_is_required'),
+								}}
 							/>
 
 							{errors.email && (
@@ -83,14 +92,14 @@ function InviteTeamForm({
 								control={control}
 								name="mobile_number"
 								type="mobile-number-select"
-								placeholder="Mobile Number"
+								placeholder={t('getStarted:righPanel_get_started_invite_mobile_number_label')}
 							/>
 						</div>
 						<div className={styles.input_container}>
 							<MultiselectController
 								control={control}
 								name="role_in_company"
-								placeholder="Role(s) in Company"
+								placeholder={t('getStarted:rightPanel_get_started_invite_roles_label')}
 								options={roles}
 							/>
 						</div>
@@ -100,22 +109,32 @@ function InviteTeamForm({
 								onClick={handleAddMore}
 								role="presentation"
 							>
-								<Button type="submit">CANCEL</Button>
+								<Button type="submit">
+									{t('getStarted:rightPanel_get_started_cancel_button_label')}
+								</Button>
 							</div>
 							<div
 								className={styles.add_button_container}
 							>
-								<Button type="submit">ADD</Button>
+								<Button type="submit">
+									{t('getStarted:rightPanel_get_started_add_button_label')}
+								</Button>
 							</div>
 						</div>
 					</>
-				) : <Button onClick={handleAddMore}>+ Add More</Button>}
+				) : (
+					<Button onClick={handleAddMore}>
+						+
+						{' '}
+						{t('getStarted:rightPanel_get_started_add_more_button_label')}
+					</Button>
+				)}
 				<div className={styles.button_container}>
 					<Button className={styles.button} themeType="accent" onClick={handleSkip}>
-						SKIP
+						{t('getStarted:rightPanel_get_started_skip_button_label')}
 					</Button>
 					<Button className={styles.button} themeType="accent" onClick={handleClick}>
-						NEXT
+						{t('getStarted:rightPanel_get_started_next_button_label')}
 					</Button>
 				</div>
 			</form>

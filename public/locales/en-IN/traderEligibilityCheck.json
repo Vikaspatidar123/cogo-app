@@ -9,5 +9,7 @@
     "tec_form_state_label":"State",
     "tec_form_city_label":"City",
     "tec_form_address_label":"Address",
-    "tec_form_address_placeholder":"Enter Address"
+    "tec_form_address_placeholder":"Enter Address",
+    "tec_form_additional_details":"Additional Details",
+    "tec_form_continue_button_label":"Continue"
 }

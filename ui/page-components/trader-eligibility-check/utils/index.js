@@ -35,9 +35,9 @@ export const quotaAvailabilityfunction = ({
 	}
 };
 
-export const renderBtn = ({ quotaLoading, serviceRatesLoading }) => {
+export const renderBtn = ({ quotaLoading, serviceRatesLoading, t }) => {
 	if (quotaLoading || serviceRatesLoading) {
 		return <img className={styles.style_loading} src={LoadingIcon} alt="" />;
 	}
-	return 'Continue';
+	return t('traderEligibilityCheck:tec_form_continue_button_label');
 };

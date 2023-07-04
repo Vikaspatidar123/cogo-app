@@ -1,4 +1,4 @@
-import { useTranslation } from 'next';
+import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
 
 import { HeadingIcon } from '../configuration/icon-configuration';
@@ -12,6 +12,7 @@ import PaymentModal from '@/ui/commons/components/PaymentInitiation/component/Pa
 
 function TraderEligibilty() {
 	const { t } = useTranslation(['traderEligibilityCheck']);
+	console.log('🚀 ~ file: index.js:15 ~ TraderEligibilty ~ t:', t);
 	const [formDetails, setFormDetails] = useState({});
 	const [countryDetails, setCountryDetails] = useState();
 	const {

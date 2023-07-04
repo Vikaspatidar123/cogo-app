@@ -113,7 +113,7 @@ function TraderDetails({
 						})}
 					<div className={styles.title2_styles}>
 						<div className={styles.title2}>
-							Additional Details
+							{t('traderEligibilityCheck:tec_form_additional_details')}
 							{' '}
 							<div className={styles.optional}> (optional)</div>
 						</div>
@@ -159,7 +159,7 @@ function TraderDetails({
 					loading={cityLoading}
 					type="button"
 				>
-					{renderBtn({ serviceRatesLoading, quotaLoading })}
+					{renderBtn({ serviceRatesLoading, quotaLoading, t })}
 				</Button>
 			</div>
 		</div>

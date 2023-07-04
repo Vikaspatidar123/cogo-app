@@ -1,0 +1,15 @@
+{
+    "trader_eligibility_check_title":"Kiểm tra đủ điều kiện giao dịch",
+    "tec_form_title":"Chi tiết thương nhân",
+    "tec_form_name_label":"Tên",
+    "tec_form_required_rule":"yêu cầu",
+    "tec_form_country_label":"Quốc gia",
+    "tec_form_postal_code_label":"Mã bưu điện",
+    "tec_form_postal_code_placeholder":"Nhập mã bưu điện",
+    "tec_form_state_label":"Tình trạng",
+    "tec_form_city_label":"Thành phố",
+    "tec_form_address_label":"Địa chỉ",
+    "tec_form_address_placeholder":"Nhập địa chỉ",
+    "tec_form_additional_details":"Chi tiết bổ sung",
+    "tec_form_continue_button_label":"Tiếp tục"
+}

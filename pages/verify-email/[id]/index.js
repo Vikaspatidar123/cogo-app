@@ -12,7 +12,6 @@ export async function getServerSideProps(ctx) {
 		const { hasError } = res || {};
 		if (!hasError) {
 			const { token } = (res || {}).data || {};
-			// setCookieAndRedirect(token, ctx, '/app?from_signup=true');
 			const redirectPath = '/onboarding?from_signup=true';
 			setCookieAndRedirect(token, ctx, redirectPath);
 		}

@@ -66,8 +66,6 @@ export async function getServerSideProps(ctx) {
 		}
 	} catch (e) {
 		Toast.error('Something went wrong, we are working on it!');
-
-		// Toast(e.toString());
 	}
 
 	return {

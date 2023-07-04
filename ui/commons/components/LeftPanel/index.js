@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { useTranslation } from 'next-i18next';
 import React from 'react';
 
@@ -10,7 +11,7 @@ function LeftPanel() {
 	return (
 		<div className={styles.left_container}>
 			<div className={styles.cogo_icon_container}>
-				<img
+				<Image
 					width="150px"
 					height="100px"
 					src={GLOBAL_CONSTANTS.image_url.cogoport_image}

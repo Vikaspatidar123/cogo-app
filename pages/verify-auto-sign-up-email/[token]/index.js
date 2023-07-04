@@ -39,7 +39,6 @@ export async function getServerSideProps(ctx) {
 			} = (response || {}).data || {};
 
 			const redirect_page = lead_action?.action_config?.redirect_page || '';
-			// redirect_page = 'search_results';
 
 			let uri = `/${organization_id}/${organization_branch_id}/${PAGE_MAPPINGS?.[redirect_page]}`;
 			if (redirect_page === 'search_results') {
@@ -63,7 +62,6 @@ export async function getServerSideProps(ctx) {
 			setCookieAndRedirect(token, ctx, uri);
 		}
 	} catch (e) {
-		// toast.error('Something went wrong, we are working on it!');
 		console.log(e.toString());
 	}
 

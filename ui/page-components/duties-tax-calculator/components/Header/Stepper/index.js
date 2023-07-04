@@ -1,3 +1,4 @@
+import { useTranslation } from 'next-i18next';
 import { useState, useEffect } from 'react';
 
 import DotLine from './DotLine';
@@ -9,6 +10,8 @@ function Stepper({
 	tradeEngineRespLength = 0,
 	billId = '',
 }) {
+	const { t } = useTranslation(['dutiesTaxesCalculator']);
+
 	const [ongoing, setOngoing] = useState();
 	const {
 		transportDetails, productDetails, chargeDetails, payDetails,
@@ -56,23 +59,23 @@ function Stepper({
 	return (
 		<div className={styles.container}>
 			<DotLine
-				subHeading="Transportation Details"
+				subHeading={t('dutiesTaxesCalculator:stepper_title_transport')}
 				isFirst
 				isCompleted={transportDetails}
 				isOngoing={ongoing === 'transportDetails'}
 			/>
 			<DotLine
-				subHeading="Product Details"
+				subHeading={t('dutiesTaxesCalculator:stepper_title_product')}
 				isCompleted={productDetails}
 				isOngoing={ongoing === 'productDetails'}
 			/>
 			<DotLine
-				subHeading="Charge Details"
+				subHeading={t('dutiesTaxesCalculator:stepper_title_charge')}
 				isCompleted={chargeDetails}
 				isOngoing={ongoing === 'chargeDetails'}
 			/>
 			<DotLine
-				subHeading="Pay and Get Results"
+				subHeading={t('dutiesTaxesCalculator:stepper_title_result')}
 				isLast
 				isCompleted={payDetails}
 				isOngoing={ongoing === 'payDetails'}

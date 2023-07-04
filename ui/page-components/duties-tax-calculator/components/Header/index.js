@@ -1,3 +1,5 @@
+import { useTranslation } from 'next-i18next';
+
 import { DutiesTax } from '../../configuration/icon-configuration';
 
 import Stepper from './Stepper';
@@ -9,11 +11,12 @@ function Header({
 	setStepper,
 	billId = '',
 }) {
+	const { t } = useTranslation(['dutiesTaxesCalculator']);
 	return (
 		<div className={styles.container}>
 			<div className={styles.title}>
 				<img src={DutiesTax} alt="" width="32px" height="32px" />
-				<div>Duties & Taxes Calculator</div>
+				<div>{t('dutiesTaxesCalculator:main_title')}</div>
 			</div>
 			<Stepper
 				stepper={stepper}

@@ -1,28 +1,31 @@
 import { IcMAirport, IcMPort } from '@cogoport/icons-react';
 
-const FILTER_MAPPING = {
-	AIR: {
-		paramsKey         : 'airport',
-		prefixIcon        : <IcMAirport />,
-		originPlaceholder : 'Select Origin',
-		destPlaceholder   : 'Select Destination',
-	},
-	OCEAN: {
-		paramsKey         : 'seaport',
-		prefixIcon        : <IcMPort />,
-		originPlaceholder : 'Select Origin Port',
-		destPlaceholder   : 'Select Destination Port',
-	},
+const getFilterMapping = ({ t, transportMode }) => {
+	const FILTER_MAPPING = {
+		AIR: {
+			paramsKey         : 'airport',
+			prefixIcon        : <IcMAirport />,
+			originPlaceholder : t('dutiesTaxesCalculator:form_transport_origin_air_placeholder'),
+			destPlaceholder   : t('dutiesTaxesCalculator:form_transport_destination_air_placeholder'),
+		},
+		OCEAN: {
+			paramsKey         : 'seaport',
+			prefixIcon        : <IcMPort />,
+			originPlaceholder : t('dutiesTaxesCalculator:form_transport_origin_ocean_placeholder'),
+			destPlaceholder   : t('dutiesTaxesCalculator:form_transport_destination_ocean_placeholder'),
+		},
+	};
+	return FILTER_MAPPING[transportMode];
 };
 
-export const transportationControls = ({ transportMode }) => {
-	const { paramsKey, prefixIcon, originPlaceholder, destPlaceholder } = FILTER_MAPPING[transportMode];
+export const transportationControls = ({ transportMode, t }) => {
+	const { paramsKey, prefixIcon, originPlaceholder, destPlaceholder } = getFilterMapping({ transportMode, t });
 	return (
 		[
 			{
 				name        : 'originPort',
 				keyName     : 'origin',
-				label       : 'Origin Country',
+				label       : t('dutiesTaxesCalculator:form_transport_origin_label'),
 				placeholder : originPlaceholder,
 				params      : { filters: { type: paramsKey } },
 				type        : 'async_select',
@@ -35,7 +38,7 @@ export const transportationControls = ({ transportMode }) => {
 			{
 				name        : 'destinationPort',
 				keyName     : 'destination',
-				label       : 'Destination Country',
+				label       : t('dutiesTaxesCalculator:form_transport_destination_label'),
 				placeholder : destPlaceholder,
 				params      : { filters: { type: paramsKey } },
 				type        : 'async_select',

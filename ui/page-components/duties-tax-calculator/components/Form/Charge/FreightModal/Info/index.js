@@ -1,10 +1,23 @@
 import { Tooltip } from '@cogoport/components';
 import { IcMShip, IcMAirport, IcMPortArrow } from '@cogoport/icons-react';
+import { useTranslation } from 'next-i18next';
 
 import styles from './styles.module.css';
 
+const getTagMapping = ({ t, transportMode }) => {
+	const TAG_MAPPING = {
+		OCEAN: [t('dutiesTaxesCalculator:freight_modal_ocean_tag_1'), t('d:freight_modal_ocean_tag_2'),
+			t('d:freight_modal_ocean_tag_3')],
+		AIR: [t('dutiesTaxesCalculator:freight_modal_air_tag_1'), t('dutiesTaxesCalculator:freight_modal_air_tag_2'),
+			t('dutiesTaxesCalculator:freight_modal_air_tag_3'), t('dutiesTaxesCalculator:freight_modal_air_tag_4')],
+	};
+	return TAG_MAPPING[transportMode];
+};
+
 function Info({ transportMode, portDetails }) {
+	const { t } = useTranslation(['dutiesTaxesCalculator']);
 	const { origin = '', destination = '' } = portDetails || {};
+	const TAG_MAPPING = getTagMapping({ transportMode, t });
 
 	const renderName = (name) => {
 		if (name.length > 16) {
@@ -39,20 +52,12 @@ function Info({ transportMode, portDetails }) {
 					<IcMPortArrow width={15} height={15} />
 					<div className={styles.port_name}>{renderName(destination?.name)}</div>
 				</div>
-				{transportMode === 'OCEAN' ? (
-					<div className={styles.col}>
-						<div className={styles.tag}>20FT</div>
-						<div className={styles.tag}>Standard (Dry)</div>
-						<div className={styles.tag}>Qty: 1</div>
-					</div>
-				) : (
-					<div className={`${styles.col} ${styles.air}`}>
-						<div className={styles.tag}>Box</div>
-						<div className={styles.tag}>Stackable</div>
-						<div className={styles.tag}>Wt: 1</div>
-						<div className={styles.tag}>Vol: 1</div>
-					</div>
-				)}
+
+				<div className={styles.col}>
+					{TAG_MAPPING.map((ele) => (
+						<div key={ele} className={styles.tag}>{ele}</div>
+					))}
+				</div>
 			</div>
 		</div>
 	);

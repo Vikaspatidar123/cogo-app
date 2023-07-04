@@ -1,5 +1,9 @@
 {
     "main_title": "Duties & Taxes Calculator",
+    "stepper_title_transport": "Transportation Details",
+    "stepper_title_product":"Product Details",
+    "stepper_title_charge": "Charge Details",
+    "stepper_title_result": "Pay and Get Results",
     "form_transport_title": "Transportation Details",
     "form_transport_ocean" : "Ocean",
     "form_transport_air": "Air",
@@ -25,13 +29,21 @@
     "form_charge_incoterm_array_placeholder_1": "Charges",
     "form_charge_incoterm_array_placeholder_2": "Enter value",
     "form_charge_toast_err_msg": "Fill all mandatory details",
-    "freight_modal_title": "Discover Rates",
+    "freight_modal_title": "Freight Rates",
     "freight_modal_discover_rate":"Discover Rates",
     "freight_modal_empty_state": "No data Available",
     "freight_modal_shipping_line": "Shipping Line",
     "freight_modal_rate": "Rates",
     "freight_modal_add":"Add",
-    "freight_modal_logo": "logo"
+    "freight_modal_logo": "logo",
+    "freight_modal_ocean_tag_1": "20FT",
+    "freight_modal_ocean_tag_2": "Standard (Dry)",
+    "freight_modal_ocean_tag_3": "Qty: 1",
+    "freight_modal_air_tag_1": "Box",
+    "freight_modal_air_tag_2": "Stackable",
+    "freight_modal_air_tag_3": "Wt: 1",
+    "freight_modal_air_tag_4": "Vol: 1"
+
 
 
 }

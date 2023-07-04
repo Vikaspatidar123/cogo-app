@@ -1,5 +1,6 @@
 import { Toast, Button, cl } from '@cogoport/components';
 import { IcMArrowNext, IcMArrowBack } from '@cogoport/icons-react';
+import { useTranslation } from 'next-i18next';
 import { useState, useEffect } from 'react';
 
 import getField from '../../../../../../packages/forms/Controlled';
@@ -15,8 +16,8 @@ import styles from './styles.module.css';
 const SelectController = getField('select');
 const NumberSelector = getField('number');
 
-const errorHandler = () => {
-	Toast.error('Fill all mandatory details');
+const errorHandler = ({ t }) => {
+	Toast.error(t('dutiesTaxesCalculator:form_charge_toast_err_msg'));
 };
 
 function Charge({
@@ -36,6 +37,8 @@ function Charge({
 	prevCurr,
 	formHook,
 }) {
+	const { t } = useTranslation(['common', 'dutiesTaxesCalculator']);
+
 	const [showFreightModal, setShowFreightModal] = useState(false);
 	const [spotCharge, setSpotCharge] = useState('');
 
@@ -77,7 +80,7 @@ function Charge({
 			<div className={styles.title_container}>
 				<div className={style.title}>
 					<img src={ProductCartIcon} alt="" />
-					<div>Charges Details</div>
+					<div>{t('dutiesTaxesCalculator:form_charge_title')}</div>
 				</div>
 				<div className={cl`${styles.incoterm} ${style.col}`}>
 					<div className={style.label}>{fields[1]?.label}</div>
@@ -109,8 +112,7 @@ function Charge({
 									onClick={() => setShowFreightModal(true)}
 									className={`${styles.get_rates}`}
 								>
-									Get Rates
-
+									{t('dutiesTaxesCalculator:form_charge_rate')}
 								</Button>
 								<div className={style.text}>{prevCurr}</div>
 							</div>
@@ -144,10 +146,10 @@ function Charge({
 					<Button
 						size="md"
 						type="button"
-						onClick={handleSubmit(submitHandler, errorHandler)}
+						onClick={handleSubmit(submitHandler, () => errorHandler({ t }))}
 						loading={serviceRatesLoading}
 					>
-						Continue
+						{t('common:continue')}
 						<IcMArrowNext />
 					</Button>
 				</div>

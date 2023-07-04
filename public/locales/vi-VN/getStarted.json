@@ -31,5 +31,8 @@
     "rightPanel_get_started_add_button_label":"THÊM VÀO",
     "rightPanel_get_started_skip_button_label":"NHẢY",
     "rightPanel_get_started_next_button_label":"KẾ TIẾP",
-    "rightPanel_get_started_add_more_button_label":"Bổ sung thêm"
+    "rightPanel_get_started_add_more_button_label":"Bổ sung thêm",
+    "rightPanel_get_started_lsp_partners_href_link":"https://partners.cogoport.com/vi-VN/login/?redirectPath=%2Fapply%2F",
+    "rightPanel_get_started_billing_address_text_1":"Chi tiết địa chỉ thanh toán",
+    "rightPanel_get_started_billing_address_text_2":"Thêm địa chỉ thanh toán của bạn ngay bây giờ vào các đặt phòng theo dõi nhanh"
 }

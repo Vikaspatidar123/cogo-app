@@ -22,9 +22,6 @@ function LeftPanel() {
 			<div className={styles.left_text_container}>
 				<span className={styles.span}>{t('common:login_to_the')}</span>
 				{t('common:cogoport_app_platform')}
-				<div className={styles.left_text_subheader}>
-					{t('common:deliver_value_to_your_customers')}
-				</div>
 			</div>
 			<div className={styles.left_link_footer}>
 				{t('common:need_any_help')}

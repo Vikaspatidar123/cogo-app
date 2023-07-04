@@ -36,7 +36,7 @@ function Organization({ setBillingAddressDetails, setOrg, setOrgBranchId }) {
 				{t('getStarted:rightPanel_get_started_is_service_provider')}
 				<a
 					className={styles.text_container_span}
-					href="https://partners.cogoport.com/login/?redirectPath=%2Fapply%2F"
+					href={t('getStarted:rightPanel_get_started_lsp_partners_href_link')}
 					target="_blank"
 					rel="noreferrer"
 				>

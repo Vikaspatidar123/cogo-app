@@ -36,5 +36,9 @@
     "rightPanel_get_started_call_setup_text_2":"Your Cogoport Account has been set up.",
     "rightPanel_get_started_call_setup_text_3":"An agent might reach out to you over phone for business verification.",
     "rightPanel_get_started_call_setup_text_4":"Please select your preferred time slot in a day when you are available for a call.",
-    "rightPanel_get_started_call_setup_finish_button_label":"FINISH"
+    "rightPanel_get_started_call_setup_finish_button_label":"FINISH",
+    "rightPanel_get_started_lsp_partners_href_link":"https://partners.cogoport.com/en-IN/login/?redirectPath=%2Fapply%2F",
+    "rightPanel_get_started_billing_address_text_1":"Billing Address Details",
+    "rightPanel_get_started_billing_address_text_2":"Add your billing address now to fast track bookings"
+
 }

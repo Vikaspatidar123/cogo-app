@@ -3,6 +3,18 @@ import { IcMPdf, IcMDownload, IcMEyeopen } from '@cogoport/icons-react';
 
 import styles from '../styles.module.css';
 
+const previewHandler = ({ docLink }) => {
+	if (typeof window !== 'undefined') {
+		window.open(docLink, '_blank');
+	}
+};
+
+const downloadHandler = ({ docLink, docName, hsNumber }) => {
+	const url = `${process.env.NEXT_PUBLIC_BUSINESS_FINANCE_BASE_URL}/saas/pdf/trade-engine/?`
+	+ `docLink=${docLink}&docName=${docName}&hsNumber=${hsNumber || ''}`;
+	window.open(url);
+};
+
 function Document({ doc = {}, hsNumber = '' }) {
 	const {
 		docName = '',
@@ -26,17 +38,6 @@ function Document({ doc = {}, hsNumber = '' }) {
 		return desc || '--';
 	};
 
-	const previewHandler = () => {
-		if (typeof window !== 'undefined') {
-			window.open(docLink, '_blank');
-		}
-	};
-	const downloadHandler = () => {
-		const url = `${process.env.NEXT_PUBLIC_BUSINESS_FINANCE_BASE_URL}/saas/pdf/trade-engine/?`
-		+ `docLink=${docLink}&docName=${docName}&hsNumber=${hsNumber || ''}`;
-		window.open(url);
-	};
-
 	return (
 		<div className={styles.doc_container}>
 			<div className={styles.row_container}>
@@ -46,11 +47,15 @@ function Document({ doc = {}, hsNumber = '' }) {
 						<span>{docName}</span>
 					</div>
 					<div className={styles.cta_web_view}>
-						<Button className={styles.download_btn} themeType="linkUi" onClick={downloadHandler}>
+						<Button
+							className={styles.download_btn}
+							themeType="linkUi"
+							onClick={() => downloadHandler({ docLink, docName, hsNumber })}
+						>
 							Download
 						</Button>
 
-						<Button themeType="linkUi" onClick={previewHandler}>
+						<Button themeType="linkUi" onClick={() => previewHandler({ docLink })}>
 							Preview
 						</Button>
 					</div>

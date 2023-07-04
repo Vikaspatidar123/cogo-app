@@ -1,4 +1,5 @@
 import { Toast } from '@cogoport/components';
+import { isEmpty } from '@cogoport/utils';
 import { useEffect, useState } from 'react';
 
 import { useSelector } from '@/packages/store';
@@ -36,10 +37,10 @@ const useValidateModal = ({
 	const [createQuoteRes, setCreateQuoteRes] = useState();
 	const productIdArr = Object.keys(servicesSelected);
 
-	const lineItemLength = productLineItemDetails.length;
+	const isLineItemEmpty = isEmpty(productLineItemDetails);
 
 	useEffect(() => {
-		if (lineItemLength > 0) {
+		if (!isLineItemEmpty) {
 			const obj = {};
 
 			productLineItemDetails.forEach((productInfo) => {
@@ -53,7 +54,7 @@ const useValidateModal = ({
 			});
 			setServiceSelected(obj);
 		}
-	}, [lineItemLength, productLineItemDetails, setServiceSelected]);
+	}, [isLineItemEmpty, productLineItemDetails, setServiceSelected]);
 
 	const calculateService = () => {
 		let serviceObj = { 1: [], 2: [], 3: [] };
@@ -79,8 +80,8 @@ const useValidateModal = ({
 	};
 
 	const renderTitle = () => {
-		if (!isUserSubscribed && lineItemLength > 0) return 'Validate HS Code';
-		if (!isUserSubscribed && lineItemLength === 0) return 'Services Details';
+		if (!isUserSubscribed && !isLineItemEmpty) return 'Validate HS Code';
+		if (!isUserSubscribed && isLineItemEmpty) return 'Services Details';
 		return 'Get Accurate Data';
 	};
 
@@ -186,12 +187,12 @@ const useValidateModal = ({
 
 		if (!docSelected) {
 			Toast.error('Please select atleast one services');
-		} else if (!isUserSubscribed && !isQuotaLeft && lineItemLength === 0) {
+		} else if (!isUserSubscribed && !isQuotaLeft && isLineItemEmpty) {
 			await createQuoteFunc();
 			setShowCheckout(true);
 		} else if (!productVerify) {
 			Toast.error('Please Validate all Products ');
-		} else if (productVerify && lineItemLength > 0) {
+		} else if (productVerify && !isLineItemEmpty) {
 			freeUser();
 		} else if (productVerify) {
 			await createQuoteFunc();

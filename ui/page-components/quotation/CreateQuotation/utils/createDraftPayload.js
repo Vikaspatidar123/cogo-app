@@ -27,7 +27,7 @@ const createDraftpayload = ({
 		return response?.[0]?.country_code || response;
 	};
 
-	const createHeader = async (traderCheck) => {
+	const getDraftHeader = ({ buyerCountryCode, traderCheck }) => {
 		const {
 			isScreening = false, tradeEngineInputId = '',
 			destinationCountryCode, originCountryCode, resultCurrency, incoterm: headerIncoterm,
@@ -41,12 +41,7 @@ const createDraftpayload = ({
 			country: buyerCountry = '',
 			state: buyerState = '',
 			city : buyerCity = '',
-			countryId: buyerCountryId = '',
 		} = buyerDetails;
-
-		const { countryId = '' } = editBuyerDetails || {};
-
-		const buyerCountryCode = await getCountryDetails(buyerCountryId || countryId, 'country');
 
 		const draftHeader = {
 			incoterm               : incoterm || headerIncoterm,
@@ -77,10 +72,56 @@ const createDraftpayload = ({
 				countryName : buyerCountry || editBuyerDetails?.country,
 			},
 		};
-		if (buyerCountryCode) {
-			return draftHeader;
+
+		return draftHeader;
+	};
+
+	const createHeader = async (traderCheck) => {
+		const {
+			countryId: buyerCountryId = '',
+		} = buyerDetails;
+
+		const { countryId = '' } = editBuyerDetails || {};
+
+		const buyerCountryCode = await getCountryDetails(buyerCountryId || countryId, 'country');
+
+		if (!buyerCountryCode) {
+			return null;
 		}
-		return null;
+
+		const draftHeader = getDraftHeader({ buyerCountryCode, traderCheck });
+		console.log(draftHeader, 'draftHeader');
+		return draftHeader;
+
+		// const draftHeader = {
+		// 	incoterm               : incoterm || headerIncoterm,
+		// 	resultCurrency         : header?.currency || resultCurrency,
+		// 	quotationId            : quoteId || quotationId,
+		// 	modeOfTransport        : modeOfTransport || transportMode === 'OCEAN' ? 'SEA' : 'AIR',
+		// 	originCountryCode      : originPortDetails?.country_code || originCountryCode,
+		// 	destinationCountryCode : destinationPortDetails?.country_code || destinationCountryCode,
+		// 	isScreening            : traderCheck || isScreening,
+		// 	consignmentValue,
+		// 	tradeEngineInputId,
+		// 	sellerDetails          : {
+		// 		name        : sellerAddress?.name || editSellerDetails?.billingPartyName,
+		// 		countryCode : country_code,
+		// 		address     : sellerAddress?.address || editSellerDetails?.address,
+		// 		pinCode     : sellerAddress?.pincode || editSellerDetails?.pincode,
+		// 		state       : null,
+		// 		city        : null,
+		// 		countryName : null,
+		// 	},
+		// 	buyerDetails: {
+		// 		name        : partyName || editBuyerDetails?.billingPartyName,
+		// 		countryCode : buyerCountryCode,
+		// 		address     : buyerAddress || editBuyerDetails?.address,
+		// 		pinCode     : buyerPinCode || editBuyerDetails?.pincode,
+		// 		state       : buyerState,
+		// 		city        : buyerCity,
+		// 		countryName : buyerCountry || editBuyerDetails?.country,
+		// 	},
+		// };
 	};
 
 	const createlineItem = () => {

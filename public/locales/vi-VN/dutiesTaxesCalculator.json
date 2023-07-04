@@ -1,0 +1,12 @@
+{
+    "main_title": "Máy tính Nhiệm vụ & Thuế",
+    "form_transport_title": "Chi tiết vận chuyển",
+    "form_transport_ocean" : "Đại dương",
+    "form_transport_air": "Không khí",
+    "form_transport_origin_label" : "Nguồn gốc đất nước",
+    "form_transport_origin_air_placeholder": "Chọn nguồn gốc",
+    "form_transport_origin_ocean_placeholder": "Chọn Cổng gốc",
+    "form_transport_destination_label":"Đất nước đến",
+    "form_transport_destination_air_placeholder" : "Chọn điểm đến",
+    "form_transport_destination_ocean_placeholder": "Chọn cổng đích"
+}

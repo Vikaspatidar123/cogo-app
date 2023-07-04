@@ -15,13 +15,12 @@ import {
 } from '@/packages/forms';
 import { useRouter } from '@/packages/next';
 import { useSelector } from '@/packages/store';
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 import setCookieAndRedirect from '@/ui/commons/utils/setCookieAndRedirect';
-
-const WHATSAPP_LOCALE_ARR = ['en-IN'];
 
 const whatsappField = (locale) => {
 	let show = false;
-	if (WHATSAPP_LOCALE_ARR.includes(locale)) {
+	if (GLOBAL_CONSTANTS.whatsapp_supported_country_locale.includes(locale)) {
 		show = true;
 	}
 	return show;

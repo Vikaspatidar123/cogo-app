@@ -8,12 +8,11 @@ import styles from './styles.module.css';
 
 import { useForm, InputController, MobileNumberSelectController } from '@/packages/forms';
 import { useSelector } from '@/packages/store';
-
-const WHATSAPP_LOCALE_ARR = ['en-IN'];
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
 const whatsappField = (locale) => {
 	let show = false;
-	if (WHATSAPP_LOCALE_ARR.includes(locale)) {
+	if (GLOBAL_CONSTANTS.whatsapp_supported_country_locale.includes(locale)) {
 		show = true;
 	}
 	return show;

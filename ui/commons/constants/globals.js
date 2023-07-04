@@ -128,6 +128,7 @@ const GLOBAL_CONSTANTS = {
 		'LU',
 		'VN',
 	],
+
 	image_url: IMAGE_URLS,
 
 	onboarding_specialist: {
@@ -135,6 +136,8 @@ const GLOBAL_CONSTANTS = {
 		phone_number : '+918976851674',
 		email_id     : 'kanira.patel@cogoport.com',
 	},
+
+	whatsapp_supported_country_locale: ['en-IN'],
 };
 
 export default GLOBAL_CONSTANTS;

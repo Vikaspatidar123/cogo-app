@@ -47,8 +47,6 @@ const getRoomHelpers = ({
 		registration_number = '',
 	} = organization || {};
 
-	const PLATFORM_CHAT_PATH = GLOBAL_CONSTANTS.firebase_paths.platform_chat;
-
 	const preferredMobileNo = whatsapp_no || mobile_no;
 
 	const userDetails = {
@@ -94,7 +92,7 @@ const getRoomHelpers = ({
 	};
 
 	const updateRoom = async (room_id) => {
-		const messageFireBase = doc(firestore, `${PLATFORM_CHAT_PATH}/${room_id}`);
+		const messageFireBase = doc(firestore, `${GLOBAL_CONSTANTS.firebase_paths.platform_chat}/${room_id}`);
 		const getRoomData = await getDoc(messageFireBase);
 		const { session_type = 'bot', user_channel_ids: userChannelId } =			getRoomData.data() || {};
 

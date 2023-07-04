@@ -9,7 +9,7 @@ import { Image, Link } from '@/packages/next';
 function PublicPageNav() {
 	return (
 		<div className={cl`${styles.flex_box} ${styles.nav_bar}`}>
-			<Image src={GLOBAL_CONSTANTS.image_url.cogoport_logo} width={130} height={50} alt="loading" />
+			<Image src={GLOBAL_CONSTANTS.image_url.cogoport_logo} width={130} height={50} alt="logo" />
 
 			<div className={styles.flex_box}>
 				<p className={styles.text}>Already a User?</p>

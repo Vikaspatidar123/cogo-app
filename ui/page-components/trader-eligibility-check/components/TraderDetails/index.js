@@ -1,5 +1,6 @@
 import { Button, cl } from '@cogoport/components';
 import { merge } from '@cogoport/utils';
+import { useTranslation } from 'next-i18next';
 import { useState, useMemo } from 'react';
 
 import getField from '../../../../../packages/forms/Controlled';
@@ -21,11 +22,12 @@ function TraderDetails({
 	setCountryDetails = () => {},
 	countryDetails = {},
 }) {
+	const { t } = useTranslation(['traderEligibilityCheck']);
 	const countryOptions = useGetAsyncOptions(merge(asyncFieldsLocations(), {
 		params: { filters: { type: ['country'] } },
 	}));
 	const [cityState, setCityState] = useState();
-	const controls = getControls({ setCountryDetails, formDetails, countryOptions });
+	const controls = getControls({ setCountryDetails, formDetails, countryOptions, t });
 	const {
 		handleSubmit,
 		watch,
@@ -45,9 +47,6 @@ function TraderDetails({
 	const { region, city } = list?.[0] || {};
 
 	useMemo(() => {
-		// if (list?.length === 0) {
-		// 	Toast.error('Invalid Pincode');
-		// }
 		if (watchPincode === '') {
 			setValue('city', '');
 			setValue('state', '');
@@ -72,7 +71,7 @@ function TraderDetails({
 					<div className={styles.title_div}>
 						<img src={SubHeadingIcon} alt="" className={styles.sub_heading_icon} />
 						<div className={styles.title}>
-							<div>Trader Details</div>
+							<div>{t('traderEligibilityCheck:tec_form_title')}</div>
 							<div className={cl`${styles.line_wrapper_mobile} ${styles.line_wrapper_web}`}>
 								<div className={styles.line} />
 							</div>

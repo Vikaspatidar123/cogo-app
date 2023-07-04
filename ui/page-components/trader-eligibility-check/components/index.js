@@ -1,3 +1,4 @@
+import { useTranslation } from 'next';
 import { useState } from 'react';
 
 import { HeadingIcon } from '../configuration/icon-configuration';
@@ -10,6 +11,7 @@ import styles from './styles.module.css';
 import PaymentModal from '@/ui/commons/components/PaymentInitiation/component/PaymentModal';
 
 function TraderEligibilty() {
+	const { t } = useTranslation(['traderEligibilityCheck']);
 	const [formDetails, setFormDetails] = useState({});
 	const [countryDetails, setCountryDetails] = useState();
 	const {
@@ -29,7 +31,7 @@ function TraderEligibilty() {
 			<div className={styles.container}>
 				<div className={styles.heading}>
 					<img src={HeadingIcon} alt="" className={styles.svg_style} />
-					Trader Eligibilty Check
+					{t('traderEligibilityCheck:trader_eligibility_check_title')}
 				</div>
 			</div>
 			<div className={styles.content_wrapper}>

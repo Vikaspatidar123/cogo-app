@@ -10,15 +10,15 @@ import {
 
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
+const PLATFORM_CHAT_PATH = GLOBAL_CONSTANTS.firebase_paths.platform_chat;
+
+const WHATSAPP_PATH = GLOBAL_CONSTANTS.firebase_paths.whatsapp;
+
 const syncUserRooms = async ({
 	platformChatRoomId = '',
 	firestore,
 	preferredMobileNo,
 }) => {
-	const PLATFORM_CHAT_PATH = GLOBAL_CONSTANTS.firebase_paths.platform_chat;
-
-	const WHATSAPP_PATH = GLOBAL_CONSTANTS.firebase_paths.whatsapp;
-
 	const channelForWhatsapp = collection(firestore, WHATSAPP_PATH);
 	const mobileNoQuery = query(
 		channelForWhatsapp,

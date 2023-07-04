@@ -16,6 +16,8 @@ import getRoomHelpers from '../helpers/roomHelpers';
 
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
+const PLATFORM_CHAT_PATH = GLOBAL_CONSTANTS.firebase_paths.platform_chat;
+
 const useFetchRoom = ({
 	firestore,
 	profile,
@@ -28,7 +30,6 @@ const useFetchRoom = ({
 	isOpen,
 }) => {
 	const snapshotRef = useRef(null);
-	const PLATFORM_CHAT_PATH = GLOBAL_CONSTANTS.firebase_paths.platform_chat;
 
 	const platformChatCollection = collection(firestore, PLATFORM_CHAT_PATH);
 

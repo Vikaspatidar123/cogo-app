@@ -1,7 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { Button } from '@cogoport/components';
 import { IcMArrowNext, IcMArrowBack } from '@cogoport/icons-react';
-import { useTranslation } from 'next-i18next';
 import { useState, useEffect } from 'react';
 
 import getField from '../../../../../../packages/forms/Controlled';
@@ -35,7 +34,6 @@ function Product({
 	prevHs,
 	setPrevHs,
 }) {
-	const { t } = useTranslation(['common', 'dutiesTaxesCalculator']);
 	const [showCatalogue, setShowCatalogue] = useState(false);
 	const [showHsCodeModal, setShowHsCodeModal] = useState(false);
 	const [showValidate, setShowValidate] = useState(false);
@@ -93,7 +91,7 @@ function Product({
 			<div className={styles.title_container}>
 				<div className={style.title}>
 					<img src={ProductCartIcon} alt="" />
-					<div>{t('dutiesTaxesCalculator:form_product_title')}</div>
+					<div>Product Details</div>
 				</div>
 				<div className={`${style.col} ${styles.currency}`}>
 					<div className={style.label}>{fields[4]?.label}</div>
@@ -140,7 +138,7 @@ function Product({
 						onClick={handleSubmit(submitHandler, errorHandler)}
 						loading={verifySixDigitLoading}
 					>
-						{t('common:continue')}
+						Continue
 						<IcMArrowNext />
 					</Button>
 				</div>

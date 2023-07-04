@@ -1,10 +1,9 @@
 import { Toast, Button, cl } from '@cogoport/components';
 import { IcMArrowNext, IcMArrowBack } from '@cogoport/icons-react';
-import { useTranslation } from 'next-i18next';
 import { useState, useEffect } from 'react';
 
 import getField from '../../../../../../packages/forms/Controlled';
-import { chargeControls } from '../../../configuration/controls';
+import { chargeControls as fields } from '../../../configuration/controls';
 import { ProductCartIcon } from '../../../configuration/icon-configuration';
 import useFreightCharges from '../../../hook/useFreightCharges';
 import style from '../styles.module.css';
@@ -16,8 +15,8 @@ import styles from './styles.module.css';
 const SelectController = getField('select');
 const NumberSelector = getField('number');
 
-const errorHandler = ({ t }) => {
-	Toast.error(t('dutiesTaxesCalculator:form_charge_toast_err_msg'));
+const errorHandler = () => {
+	Toast.error('Fill all mandatory details');
 };
 
 function Charge({
@@ -37,11 +36,9 @@ function Charge({
 	prevCurr,
 	formHook,
 }) {
-	const { t } = useTranslation(['common', 'dutiesTaxesCalculator']);
 	const [showFreightModal, setShowFreightModal] = useState(false);
 	const [spotCharge, setSpotCharge] = useState('');
 
-	const fields = chargeControls({ t });
 	const { control, watch, handleSubmit, setValue, formState:{ errors } } = formHook;
 	const { createSpotSearch, spotSearchLoading, spotSearchData } = useFreightCharges();
 
@@ -80,7 +77,7 @@ function Charge({
 			<div className={styles.title_container}>
 				<div className={style.title}>
 					<img src={ProductCartIcon} alt="" />
-					<div>{t('dutiesTaxesCalculator:form_charge_title')}</div>
+					<div>Charges Details</div>
 				</div>
 				<div className={cl`${styles.incoterm} ${style.col}`}>
 					<div className={style.label}>{fields[1]?.label}</div>
@@ -112,7 +109,8 @@ function Charge({
 									onClick={() => setShowFreightModal(true)}
 									className={`${styles.get_rates}`}
 								>
-									{t('dutiesTaxesCalculator:form_charge_rate')}
+									Get Rates
+
 								</Button>
 								<div className={style.text}>{prevCurr}</div>
 							</div>
@@ -149,7 +147,7 @@ function Charge({
 						onClick={handleSubmit(submitHandler, errorHandler)}
 						loading={serviceRatesLoading}
 					>
-						{t('common:continue')}
+						Continue
 						<IcMArrowNext />
 					</Button>
 				</div>

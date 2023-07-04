@@ -1,6 +1,6 @@
 import styles from './styles.module.css';
 
-function HyperLink({ setShowCatalogue, setShowHsCodeModal, t }) {
+function HyperLink({ setShowCatalogue, setShowHsCodeModal }) {
 	return (
 		<div className={styles.container}>
 			<div className={styles.or_tag}>
@@ -14,7 +14,7 @@ function HyperLink({ setShowCatalogue, setShowHsCodeModal, t }) {
 					role="presentation"
 					onClick={() => setShowCatalogue(true)}
 				>
-					{t('dutiesTaxesCalculator:form_product_hyperlink_product')}
+					Add via Product Catalogue
 				</div>
 				<div className={styles.divider} />
 				<div
@@ -22,7 +22,7 @@ function HyperLink({ setShowCatalogue, setShowHsCodeModal, t }) {
 					role="presentation"
 					onClick={() => setShowHsCodeModal(true)}
 				>
-					{t('dutiesTaxesCalculator:form_product_hyperlink_hscode')}
+					Add via HS Code
 				</div>
 			</div>
 		</div>

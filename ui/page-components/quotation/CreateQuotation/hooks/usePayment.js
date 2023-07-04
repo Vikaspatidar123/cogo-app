@@ -34,8 +34,11 @@ const usePayment = ({ buyerDetails = {} }) => {
 	};
 
 	const createPayload = async ({ quoteId, billRefId, currency, billLineItems, ...rest }) => {
-		// eslint-disable-next-line max-len
-		const redirectUrl = `${process.env.NEXT_PUBLIC_APP_URL}${org_id}/${branch_id}/saas/quickquotation/editquotation/${quoteId}`;
+		const redirectUrl = [
+			`${process.env.NEXT_PUBLIC_APP_URL}${org_id}/${branch_id}`,
+			'saas/quickquotation/editquotation',
+			quoteId,
+		].join('/');
 
 		const billLineItemsData = await getServiceDataHandler({ billLineItems });
 

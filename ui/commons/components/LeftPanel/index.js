@@ -12,8 +12,8 @@ function LeftPanel() {
 		<div className={styles.left_container}>
 			<div className={styles.cogo_icon_container}>
 				<Image
-					width="150px"
-					height="100px"
+					width={150}
+					height={100}
 					src={GLOBAL_CONSTANTS.image_url.cogoport_image}
 					alt="Cogo"
 				/>

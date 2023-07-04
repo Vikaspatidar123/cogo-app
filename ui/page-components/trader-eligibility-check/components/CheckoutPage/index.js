@@ -1,4 +1,5 @@
 import { IcMArrowBack } from '@cogoport/icons-react';
+import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
 
 import { LoadingIcon } from '../../configuration/icon-configuration';
@@ -19,6 +20,7 @@ function CheckoutPage({
 	serviceRatesLoading = false,
 	quotaAvailableStats = {},
 }) {
+	const { t } = useTranslation(['traderEligibilityCheck']);
 	const [address, setAddress] = useState();
 	const { directPayment = false } = payment || {};
 	const Length = Object.keys(serviceRates)?.length;
@@ -32,7 +34,7 @@ function CheckoutPage({
 				<div className={styles.back_buttton}>
 					<IcMArrowBack />
 				</div>
-				Checkout
+				{t('traderEligibilityCheck:tec_checkout_page_title')}
 			</div>
 			{directPayment && (
 				<SelectAddressComponent

@@ -37,6 +37,7 @@ function TraderDetails({
 	} = useForm();
 
 	const [watchPincode, watchCountry] = watch(['postal_code', 'countryId']);
+
 	const { cityLoading } = useGetStateFromPincode({
 		watchPincode,
 		watchCountry,

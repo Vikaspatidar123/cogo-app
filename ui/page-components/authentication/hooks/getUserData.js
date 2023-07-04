@@ -2,13 +2,10 @@ import { isEmpty } from '@cogoport/utils';
 
 import getUserSession from './getUserSession';
 
-import { routeConfig } from '@/packages/navigation-configs';
-import projectNavigationMappings from '@/packages/navigation-configs/navigation-mapping';
-import getAuthParam from '@/packages/request/helpers/get-auth-params';
 import { setProfileStoreState as storeProfile } from '@/packages/store/store/profile';
 
 const getUserData = async ({
-	store, isServer, req, pathname,
+	store, isServer, req,
 }) => {
 	let user_data = null;
 	const setData = async () => {
@@ -27,19 +24,11 @@ const getUserData = async ({
 					organization: organization
 						? { ...organization, preferred_languages: user.preferred_languages }
 						: undefined,
-					organizations : organization ? [organization] : organizations,
+					organizations: organization ? [organization] : organizations,
 					permissions_navigations,
-					branch        : organization?.branches?.[0],
+					branch: organization?.branches?.[0],
 				};
-				const authorizationparameters = getAuthParam(
-					permissions_navigations,
-					routeConfig,
-					pathname,
-					projectNavigationMappings,
-				);
-				if (authorizationparameters) {
-					user_data.authorizationparameters = authorizationparameters;
-				}
+
 				if (user_data.id) {
 					await store.dispatch(storeProfile(user_data));
 				}

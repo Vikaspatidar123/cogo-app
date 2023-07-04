@@ -1,5 +1,5 @@
 import navigationMappings from './navigation-mapping';
-
+import { useTranslation } from 'next-i18next';
 const getCondition = (urlItem) => {
 	const condition = {};
 	if (urlItem?.user_email) {
@@ -21,7 +21,11 @@ const getSideBarConfigs = (
 	dashboardUrls = [],
 	pinnedNavKeys = [],
 ) => {
-	const navigation = navigationMappings();
+
+	const { t } = useTranslation(['common'])
+
+	const navigation = navigationMappings({ t });
+
 	const pNavs = userData?.permissions_navigations || {};
 
 	const modifiedPinnedNavKeys = pinnedNavKeys.filter((key) => Object.keys(navigation).includes(key));
@@ -29,7 +33,7 @@ const getSideBarConfigs = (
 	const filteredKeys = Object.keys(navigation).filter(
 		(key) => !modifiedPinnedNavKeys.includes(key),
 	);
-	// const filterKeys = Object.keys(navigationMappings);
+
 	const getNavMappings = (navMappingKeys) => {
 		const nav_items = [];
 
@@ -44,11 +48,11 @@ const getSideBarConfigs = (
 					nav_items.push({
 						...navigation[key],
 						options: dashboardUrls.map((urlItem) => ({
-							title     : urlItem.title,
-							type      : 'link',
-							as        : `/dashboards/${urlItem.urlKey}`,
-							href      : '/dashboards/[dashboard_type]',
-							condition : getCondition(urlItem),
+							title: urlItem.title,
+							type: 'link',
+							as: `/dashboards/${urlItem.urlKey}`,
+							href: '/dashboards/[dashboard_type]',
+							condition: getCondition(urlItem),
 						})),
 					});
 				} else if (navigation[key]?.options) {

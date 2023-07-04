@@ -14,7 +14,7 @@ const useGetAddresses = ({ uploadType = '' }) => {
 			method : 'get',
 			url    : 'list_address_for_insurance',
 		},
-		{ autoCancel: false },
+		{ autoCancel: false, manual: true },
 	);
 
 	const fetchAddresses = useCallback(async () => {

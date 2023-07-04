@@ -21,6 +21,7 @@ function AddEditPocDetails({
 		onCreate = () => {},
 		loading = false,
 		control = [],
+		register,
 	} = useEditPocDetails({
 		getOrganizationBillingAddress,
 		getOrganizationOtherAddresses,
@@ -40,10 +41,15 @@ function AddEditPocDetails({
 				<div>
 					{fields.map((item) => {
 						const ELEMENT = getField(item.type);
+						const isMobileNo = item.type === 'mobile_number';
 						return (
-							<div className={styles.field}>
+							<div key={item.name} className={styles.field}>
 								<div className={styles.lable}>{item.label}</div>
-								<ELEMENT {...item} control={control} />
+								<ELEMENT
+									{...item}
+									control={control}
+									mobileSelectRef={isMobileNo ? register(item.name, item.rules).ref : undefined}
+								/>
 							</div>
 						);
 					})}

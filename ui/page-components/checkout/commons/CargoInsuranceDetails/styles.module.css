@@ -1,0 +1,38 @@
+.service_details_container {
+	margin-bottom: 12px;
+
+	@media (max-width: 768px) {
+		margin-top: 16px;
+		margin-bottom: 70px;
+	}
+}
+
+.footer {
+	display: flex;
+	justify-content: space-between;
+	height: 40px;
+	padding: 0 20px;
+	background-color: #cedcea;
+	border-radius: 0 0 4px 4px;
+
+	.additional_services {
+		display: flex;
+		align-items: center;
+		width: 100%;
+	}
+
+	.additional_services_title {
+		margin-right: 2%;
+	}
+
+	.details_title {
+		margin-right: 13px;
+	}
+}
+
+.details {
+	display: flex;
+	align-items: center;
+	margin-right: 16px;
+	cursor: pointer;
+}

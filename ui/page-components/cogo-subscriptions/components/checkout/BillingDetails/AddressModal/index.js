@@ -36,6 +36,7 @@ function AddModal({
 		formState: { errors },
 		setValue,
 		watch,
+		register,
 		control,
 	} = useForm();
 
@@ -222,13 +223,15 @@ function AddModal({
 									control={control}
 									name="phoneNumber"
 									placeholder="Enter Phone Number"
-									rules={{
-										required : true,
-										pattern  : {
-											value   : patterns.MOBILE,
-											message : 'Invalid phone number',
-										},
-									}}
+									mobileSelectRef={{
+										...register('phoneNumber', {
+											required : true,
+											pattern  : {
+												value   : patterns.MOBILE,
+												message : 'Invalid phone number',
+											},
+										}),
+									}.ref}
 								/>
 							</div>
 							<div className={styles.col}>

@@ -18,7 +18,7 @@ function Signatory({
 }) {
 	const [addSignatory, setAddSignatory] = useState(false);
 	const [selectedSignatory, setSelectedSignatory] = useState({});
-	const { control, watch, handleSubmit, formState:{ errors } } = useForm();
+	const { control, watch, handleSubmit, formState:{ errors }, register } = useForm();
 
 	const { directors = [] } = getCreditRequestResponse || {};
 
@@ -43,15 +43,21 @@ function Signatory({
 				<>
 					<form>
 						{fields.map((item) => {
-							const Element = getField(item.type);
-							if (item.show) {
+							const { name, show, type, rules, placeholder } = item;
+							const Element = getField(type);
+							const isMobileNo = type === 'mobile_number';
+							if (show) {
 								return (
-									<div className={styles.field}>
-										<div className={styles.field_name}>{item.placeholder}</div>
-										<Element control={control} {...item} />
+									<div className={styles.field} key={name}>
+										<div className={styles.field_name}>{placeholder}</div>
+										<Element
+											control={control}
+											{...item}
+											mobileSelectRef={isMobileNo ? register(name, rules).ref : undefined}
+										/>
 										<div className={styles.error_text}>
-											{errors?.[item.name]?.message
-												|| errors?.[item.name]?.type }
+											{errors?.[name]?.message
+												|| errors?.[name]?.type }
 										</div>
 									</div>
 								);

@@ -101,11 +101,13 @@ const createSellerControl = () => {
 			},
 		},
 		{
-			name  : 'mobile_number',
-			label : 'POC Mobile Number*',
-			type  : 'mobile_number',
-			rules : {
-				pattern: {
+			name         : 'mobile_number',
+			label        : 'POC Mobile Number*',
+			type         : 'mobile_number',
+			isInputGroup : true,
+			rules        : {
+				required : true,
+				pattern  : {
 					value   : mobileValidator,
 					message : 'Invalid mobile number',
 				},

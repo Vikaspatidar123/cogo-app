@@ -1,4 +1,3 @@
-import { Toast } from '@cogoport/components';
 import { useState } from 'react';
 
 import { useRequestBf } from '@/packages/request';
@@ -21,7 +20,7 @@ const useGetDrillDownData = () => {
 			});
 			setDrillDownData(resp?.data);
 		} catch (err) {
-			Toast.error(err.message);
+			console.log(err.message);
 		}
 	};
 

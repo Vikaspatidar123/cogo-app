@@ -1,5 +1,3 @@
-import { Toast } from '@cogoport/components';
-
 import { useRequestBf } from '@/packages/request';
 
 const useService = () => {
@@ -17,7 +15,7 @@ const useService = () => {
 				},
 			});
 		} catch (err) {
-			Toast.error(err);
+			console.log(err);
 		}
 	};
 

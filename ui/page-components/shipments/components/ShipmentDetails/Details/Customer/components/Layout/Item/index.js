@@ -51,9 +51,12 @@ function Item(props) {
 		id_prefix = null,
 		control,
 		className,
+		register,
+		name,
 	} = props || {};
 
 	const Element = getField(type);
+	const isMobileNo = type === 'mobile_number';
 	const errorClass = error ? 'error' : null;
 
 	const newProps = {};
@@ -76,7 +79,12 @@ function Item(props) {
 			) : null}
 
 			<div>
-				<Element {...newProps} {...props} control={control} />
+				<Element
+					{...newProps}
+					{...props}
+					control={control}
+					mobileSelectRef={isMobileNo ? register(name, rules).ref : undefined}
+				/>
 
 				{lowerlabel && (
 					<div className={styles.lower_label}>{lowerlabel}</div>

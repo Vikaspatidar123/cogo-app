@@ -10,7 +10,7 @@ import { useForm, InputController, MobileNumberSelectController } from '@/packag
 
 function SignupForm({ setHasSignedup, setFormData, setUserDetails }) {
 	const {
-		handleSubmit, formState: { errors }, control, watch,
+		handleSubmit, formState: { errors }, control, watch, register,
 	} = useForm();
 	const [captchaResponse, setCaptchaResponse] = useState('');
 	const [hasWhatsApp, setHasWhatsApp] = useState(false);
@@ -76,8 +76,13 @@ function SignupForm({ setHasSignedup, setFormData, setUserDetails }) {
 					name="mobile_number"
 					type="mobile-number-select"
 					placeholder="Mobile Number"
-					rules={{ required: 'Number is required.' }}
+					mobileSelectRef={{ ...register('mobile_number', { required: 'Please enter mobile no' }) }.ref}
 				/>
+				{errors.mobile_number && (
+					<span className={styles.errors}>
+						{errors.mobile_number.message || errors.mobile_number.type}
+					</span>
+				)}
 			</div>
 
 			<div className={styles.checkbox_container}>

@@ -4,16 +4,26 @@
 	justify-content: center;
 	width: 100%;
 	margin-top: 15px;
+
+	@media (max-width: 768px) {
+		flex-direction: column;
+		width: 100%;
+	}
 }
 
 .column {
 	width: 24%;
+	margin-right: 10px;
+	transition: 0.4s;
 
 	@media (max-width: 768px) {
+		width: 100%;
 		margin-bottom: 12px;
 	}
+}
 
-	margin-right: 10px;
+.column:hover {
+	transform: scale(1.02);
 }
 
 .card_orange {

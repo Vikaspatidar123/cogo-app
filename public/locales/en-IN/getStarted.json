@@ -39,6 +39,9 @@
     "rightPanel_get_started_call_setup_finish_button_label":"FINISH",
     "rightPanel_get_started_lsp_partners_href_link":"https://partners.cogoport.com/en-IN/login/?redirectPath=%2Fapply%2F",
     "rightPanel_get_started_billing_address_text_1":"Billing Address Details",
-    "rightPanel_get_started_billing_address_text_2":"Add your billing address now to fast track bookings"
-
+    "rightPanel_get_started_billing_address_text_2":"Add your billing address now to fast track bookings",
+    "rightPanel_get_started_billing_address_address_label":"Billing Address",
+    "rightPanel_get_started_billing_address_address_required":"Billing Address is required",
+    "rightPanel_get_started_billing_address_pincode_label":"Pincode",
+    "rightPanel_get_started_billing_address_pincode_required_rules":"Pincode is required."
 }

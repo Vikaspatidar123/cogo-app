@@ -67,8 +67,11 @@ function BillingAddress({ orgId, setInviteTeam }) {
 							control={control}
 							name="billing_address"
 							type="text"
-							placeholder="Billing Address"
-							rules={{ required: 'Billing Address is required.' }}
+							placeholder={t('getStarted:rightPanel_get_started_billing_address_address_label')}
+							rules={{
+								required:
+								t('getStarted:rightPanel_get_started_billing_address_address_required'),
+							}}
 						/>
 
 						{errors.billing_address && (
@@ -82,8 +85,11 @@ function BillingAddress({ orgId, setInviteTeam }) {
 							control={control}
 							name="pincode"
 							type="text"
-							placeholder="Pincode"
-							rules={{ required: 'Pincode is required.' }}
+							placeholder={t('getStarted:rightPanel_get_started_billing_address_pincode_label')}
+							rules={{
+								required:
+								t('getStarted:rightPanel_get_started_billing_address_pincode_required_rules'),
+							}}
 						/>
 
 						{errors.pincode && (

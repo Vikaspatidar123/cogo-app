@@ -1,4 +1,5 @@
 import { IcMDelete } from '@cogoport/icons-react';
+import { useTranslation } from 'next-i18next';
 import { useEffect } from 'react';
 
 import getField from '../../../../../../../packages/forms/Controlled';
@@ -22,6 +23,8 @@ function IncotermCharges({
 	formIncoterm,
 	prevCurr,
 }) {
+	const { t } = useTranslation(['dutiesTaxesCalculator']);
+
 	const { MAPPING, CHARGES } = MappingConstant();
 	const { fields, append, remove } = useFieldArray({
 		name: 'incotermCharges',
@@ -70,7 +73,7 @@ function IncotermCharges({
 									key={`${name}.${field.id}.value`}
 									name={`${name}.${index}.value`}
 									control={control}
-									placeholder="Enter value"
+									placeholder={t('dutiesTaxesCalculator:form_charge_incoterm_array_placeholder_2')}
 									min={0}
 									type="number"
 									suffix={
@@ -81,7 +84,7 @@ function IncotermCharges({
 										required : true,
 										min      : {
 											value   : 0,
-											message : 'Should be greater than 0',
+											message : t('dutiesTaxesCalculator:form_charge_err_msg'),
 										},
 									}}
 									{...register(`${name}.${index}.value`, {

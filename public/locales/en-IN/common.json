@@ -3,8 +3,6 @@
     "text_2":"SignUp",
     "text_3":"Please enter your credentials to login",
     "email_groupButton": "Email",
-    "mobile_groupButton": "Mobile"
-
-
-
+    "mobile_groupButton": "Mobile",
+    "continue":"Continue"
 }

@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { Modal, Button } from '@cogoport/components';
 import { IcAFinancial } from '@cogoport/icons-react';
+import { useTranslation } from 'next-i18next';
 import { useEffect, useState, useCallback } from 'react';
 
 import { Loading } from '../../../../configuration/icon-configuration';
@@ -12,6 +13,20 @@ import ListRow from './List';
 import styles from './styles.module.css';
 
 import { useRouter } from '@/packages/next';
+
+function TitleRender({ t, redirectDiscover }) {
+	return (
+		<div className={styles.title_container}>
+			<div className={styles.title}>
+				<IcAFinancial height={30} width={30} />
+				<div className={styles.title_div}>{t('dutiesTaxesCalculator:freight_modal_title')}</div>
+			</div>
+			<div className={styles.hyperlink} role="presentation" onClick={redirectDiscover}>
+				{t('dutiesTaxesCalculator:freight_modal_discover_rate')}
+			</div>
+		</div>
+	);
+}
 
 function FreightModal({
 	showFreightModal,
@@ -26,15 +41,16 @@ function FreightModal({
 	setSpotCharge,
 	prevCurr,
 }) {
+	const { t } = useTranslation(['dutiesTaxesCalculator']);
+	const { query } = useRouter();
+	const { org_id = '', branch_id = '' } = query || {};
+
 	const [checked, setChecked] = useState('');
 	const [selectedData, setSelectedData] = useState({});
 
 	const { exchangeApi } = useCurrencyConversion();
 	const { originPort, destinationPort } = formData || {};
 	const { rates = [] } = spotSearchData || {};
-
-	const { query } = useRouter();
-	const { org_id = '', branch_id = '', account_type = '' } = query || {};
 
 	const serviceType = transportMode === 'OCEAN' ? 'FCL' : 'AIR';
 	const payload = spotSearchPayload({
@@ -67,7 +83,7 @@ function FreightModal({
 		setShowFreightModal(false);
 	};
 	const redirectDiscover = () => {
-		const callBackUrl = `${process.env.APP_URL}app/${org_id}/${branch_id}/${account_type}/book`;
+		const callBackUrl = `${process.env.NEXT_PUBLIC_APP_URL}${org_id}/${branch_id}/book`;
 		window.open(callBackUrl, '_blank');
 	};
 
@@ -75,17 +91,6 @@ function FreightModal({
 		spotSearchHandler();
 	}, []);
 
-	const titleRender = () => (
-		<div className={styles.title_container}>
-			<div className={styles.title}>
-				<IcAFinancial height={30} width={30} />
-				<div className={styles.title_div}>Freight Rates</div>
-			</div>
-			<div className={styles.hyperlink} role="presentation" onClick={redirectDiscover}>
-				Discover Rates
-			</div>
-		</div>
-	);
 	return (
 		<Modal
 			show={showFreightModal}
@@ -93,7 +98,7 @@ function FreightModal({
 			onClose={() => setShowFreightModal(false)}
 			size="md"
 		>
-			<Modal.Header title={titleRender()} />
+			<Modal.Header title={<TitleRender t={t} redirectDiscover={redirectDiscover} />} />
 			<Modal.Body>
 				<Info transportMode={transportMode} portDetails={portDetails} />
 				{spotSearchLoading && (
@@ -106,13 +111,13 @@ function FreightModal({
 					/>
 				)}
 				{!spotSearchLoading && rates.length === 0 && (
-					<div className={styles.empty_state}>No data Available</div>
+					<div className={styles.empty_state}>{t('dutiesTaxesCalculator:freight_modal_empty_state')}</div>
 				)}
 				{!spotSearchLoading && rates.length > 0 && (
 					<div className={styles.list}>
 						<div className={`${styles.row} ${styles.cardheader}`}>
-							<div>Shipping Line</div>
-							<div>Rates</div>
+							<div>{t('dutiesTaxesCalculator:freight_modal_shipping_line')}</div>
+							<div>{t('dutiesTaxesCalculator:freight_modal_rate')}</div>
 						</div>
 						<div className={styles.card_list}>
 							<ListRow
@@ -130,7 +135,7 @@ function FreightModal({
 					disabled={checked.length === 0 || spotSearchLoading}
 					onClick={submitHandler}
 				>
-					ADD
+					{t('dutiesTaxesCalculator:freight_modal_add')}
 				</Button>
 			</Modal.Footer>
 		</Modal>

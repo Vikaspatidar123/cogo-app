@@ -1,28 +1,31 @@
 import { IcMAirport, IcMPort } from '@cogoport/icons-react';
 
-const FILTER_MAPPING = {
-	AIR: {
-		paramsKey         : 'airport',
-		prefixIcon        : <IcMAirport />,
-		originPlaceholder : 'Select Origin',
-		destPlaceholder   : 'Select Destination',
-	},
-	OCEAN: {
-		paramsKey         : 'seaport',
-		prefixIcon        : <IcMPort />,
-		originPlaceholder : 'Select Origin Port',
-		destPlaceholder   : 'Select Destination Port',
-	},
+const getFilterMapping = ({ transportMode, t }) => {
+	const FILTER_MAPPING = {
+		AIR: {
+			paramsKey         : 'airport',
+			prefixIcon        : <IcMAirport />,
+			originPlaceholder : t('dutiesTaxesCalculator:form_transport_origin_air_placeholder'),
+			destPlaceholder   : t('dutiesTaxesCalculator:form_transport_destination_air_placeholder'),
+		},
+		OCEAN: {
+			paramsKey         : 'seaport',
+			prefixIcon        : <IcMPort />,
+			originPlaceholder : t('dutiesTaxesCalculator:form_transport_origin_ocean_placeholder'),
+			destPlaceholder   : t('dutiesTaxesCalculator:form_transport_destination_ocean_placeholder'),
+		},
+	};
+	return FILTER_MAPPING[transportMode];
 };
 
-export const transportationControls = ({ transportMode }) => {
-	const { paramsKey, prefixIcon, originPlaceholder, destPlaceholder } = FILTER_MAPPING[transportMode];
+export const transportationControls = ({ transportMode, t }) => {
+	const { paramsKey, prefixIcon, originPlaceholder, destPlaceholder } = getFilterMapping({ transportMode, t });
 	return (
 		[
 			{
 				name        : 'originPort',
 				keyName     : 'origin',
-				label       : 'Origin Country',
+				label       : t('dutiesTaxesCalculator:form_transport_origin_label'),
 				placeholder : originPlaceholder,
 				params      : { filters: { type: paramsKey } },
 				type        : 'async_select',
@@ -35,7 +38,7 @@ export const transportationControls = ({ transportMode }) => {
 			{
 				name        : 'destinationPort',
 				keyName     : 'destination',
-				label       : 'Destination Country',
+				label       : t('dutiesTaxesCalculator:form_transport_destination_label'),
 				placeholder : destPlaceholder,
 				params      : { filters: { type: paramsKey } },
 				type        : 'async_select',
@@ -113,25 +116,25 @@ export const productControls = [
 	},
 ];
 
-export const chargeControls = [
+export const chargeControls = ({ t }) => [
 	{
 		name        : 'freightCharge',
 		type        : 'number',
-		label       : 'Freight Charge',
-		placeholder : 'Freight Charge',
+		label       : t('dutiesTaxesCalculator:form_charge_freight_field'),
+		placeholder : t('dutiesTaxesCalculator:form_charge_freight_field'),
 		rules       : {
 			required : true,
 			min      : {
 				value   : 0.001,
-				message : 'Should be greater than 0',
+				message : t('d:form_charge_err_msg'),
 			},
 		},
 	},
 	{
 		name        : 'incoterm',
 		type        : 'select',
-		label       : 'Incoterm',
-		placeholder : 'Select Placeholder',
+		label       : t('d:form_charge_incoterm_label'),
+		placeholder : t('d:form_charge_incoterm_placeholder'),
 		rules       : { required: true },
 		value       : 'CIF',
 		options     : [
@@ -154,19 +157,19 @@ export const chargeControls = [
 		controls : [
 			{
 				name        : 'name',
-				placeholder : 'Charges',
+				placeholder : t('d:form_charge_incoterm_array_placeholder_1'),
 				type        : 'text',
 				rules       : { required: true },
 			},
 			{
 				name        : 'value',
-				placeholder : 'value',
+				placeholder : t('d:form_charge_incoterm_array_placeholder_2'),
 				type        : 'number',
 				rules       : {
 					required : true,
 					min      : {
 						value   : 0.001,
-						message : 'Should be greater than 0',
+						message : t('d:form_charge_err_msg'),
 					},
 				},
 			},

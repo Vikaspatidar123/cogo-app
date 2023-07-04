@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { cl, Button } from '@cogoport/components';
 import { IcALocation, IcMArrowNext } from '@cogoport/icons-react';
+import { useTranslation } from 'next-i18next';
 import React, { useState, useEffect, useRef } from 'react';
 
 import getField from '../../../../../../packages/forms/Controlled';
@@ -25,10 +26,12 @@ function Transportation({
 	setMapPoints,
 	formHook,
 }) {
+	const { t } = useTranslation(['dutiesTaxesCalculator', 'common']);
+
 	const [rotate, setRotate] = useState(false);
 	const initialRef = useRef(true);
 
-	const transportFields = transportationControls({ transportMode });
+	const transportFields = transportationControls({ transportMode, t });
 	const { control, formState: { errors }, handleSubmit, watch, reset } = formHook;
 
 	const [origin, destination] = watch(['originPort', 'destinationPort']);
@@ -78,7 +81,7 @@ function Transportation({
 		<div className={styles.container}>
 			<div className={style.title}>
 				<IcALocation />
-				<div>Transportation Details</div>
+				<div>{t('dutiesTaxesCalculator:form_transport_title')}</div>
 			</div>
 			<form>
 				<div className={`${styles.tabs}`}>
@@ -94,7 +97,7 @@ function Transportation({
 						) : (
 							<img src={OceanIcon} alt="" width={70} height={70} />
 						)}
-						<div className={styles.txt}>Ocean</div>
+						<div className={styles.txt}>{t('dutiesTaxesCalculator:form_transport_ocean')}</div>
 					</div>
 					<div
 						className={cl`${transportMode === 'AIR' && styles.selected} ${styles.card}`}
@@ -107,7 +110,7 @@ function Transportation({
 						) : (
 							<img src={PlaneIcon} alt="" width={70} height={70} />
 						)}
-						<div className={styles.txt}>Air</div>
+						<div className={styles.txt}>{t('dutiesTaxesCalculator:form_transport_air')}</div>
 					</div>
 				</div>
 
@@ -149,7 +152,7 @@ function Transportation({
 						type="button"
 						onClick={handleSubmit(submitHandler, errorHandler)}
 					>
-						Continue
+						{t('common:continue')}
 						<IcMArrowNext />
 					</Button>
 				</div>

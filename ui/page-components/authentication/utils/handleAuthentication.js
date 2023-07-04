@@ -138,8 +138,8 @@ const handleAuthentication = async ({
 			return {
 				asPrefix,
 				query: {
-					org_id: orgId,
-					branch_id: orgBranchId,
+					org_id    : orgId,
+					branch_id : orgBranchId,
 				},
 			};
 		}
@@ -164,11 +164,11 @@ const handleAuthentication = async ({
 			path: newPath,
 		});
 		return {
-			asPrefix: newPath,
-			query: {
-				org_id: org?.id,
-				account_type: org?.account_type,
-				branch_id: orgBranchId,
+			asPrefix : newPath,
+			query    : {
+				org_id       : org?.id,
+				account_type : org?.account_type,
+				branch_id    : orgBranchId,
 			},
 		};
 	}
@@ -186,8 +186,8 @@ const handleAuthentication = async ({
 			)?.branches;
 			current_organization = {
 				...getOrgResponse,
-				branches: actualBranches || getOrgResponse.branches,
-				allBranches: getOrgResponse.branches,
+				branches    : actualBranches || getOrgResponse.branches,
+				allBranches : getOrgResponse.branches,
 			};
 		}
 	}
@@ -200,9 +200,9 @@ const handleAuthentication = async ({
 		setProfileStoreState({
 			asPrefix,
 			defaultRoute,
-			organization_set: !isEmpty(current_organization),
-			organization: current_organization,
-			branch: current_branch,
+			organization_set : !isEmpty(current_organization),
+			organization     : current_organization,
+			branch           : current_branch,
 
 		}),
 	);

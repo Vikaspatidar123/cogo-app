@@ -9,6 +9,7 @@ import usePublicSendMessage from '../../hooks/usePublicSendMessage';
 import useSendMessage from '../../hooks/useSendMessage';
 
 import useFetchRoom from './hooks/useFetchRoom';
+import useGetRefHandlers from './hooks/useGetRefHandlers';
 import styles from './styles.module.css';
 
 import { useSelector } from '@/packages/store';
@@ -30,7 +31,6 @@ function CogoBot() {
 	const [isAuthenticated, setIsAuthenticated] = useState(false);
 	const [createLoading, setCreateLoading] = useState(false);
 
-	const isDraggingRef = useRef(false);
 	const timeoutRef = useRef(false);
 
 	const {
@@ -41,10 +41,6 @@ function CogoBot() {
 	} = profile;
 
 	const isUnKnownUser = !organization?.id;
-
-	const onDrag = () => {
-		isDraggingRef.current = true;
-	};
 
 	const { firestoreToken = '' } = general;
 
@@ -88,20 +84,7 @@ function CogoBot() {
 		setCogobotLoading,
 	});
 
-	const handleClick = async () => {
-		if (!createLoading) {
-			setCreateLoading(true);
-			await toggleUserChat();
-			setCreateLoading(false);
-		}
-	};
-
-	const onStop = () => {
-		if (!isDraggingRef.current) {
-			handleClick();
-		}
-		isDraggingRef.current = false;
-	};
+	const { onStop, onDrag } = useGetRefHandlers({ toggleUserChat, setCreateLoading, createLoading });
 
 	useEffect(() => {
 		clearTimeout(timeoutRef?.current);

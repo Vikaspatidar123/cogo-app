@@ -5,6 +5,23 @@ import useLegacyRequest from '../utils/getCustomAxios';
 
 import getApiErrorString from '@/packages/forms/utils/getApiError';
 
+const getPayload = ({ conversation_type = '' }) => {
+	const sender = getCookie('cogo_bot_token') || '';
+
+	let payload = {};
+	if (conversation_type === 'outward') {
+		payload = {
+			sender_user_id : process.env.COGOVERSE_ID,
+			recipient      : sender,
+		};
+	} else {
+		payload = {
+			sender,
+		};
+	}
+	return payload;
+};
+
 const usePublicSendMessage = () => {
 	const [{ loading }, trigger] = useLegacyRequest({
 		url    : 'communication/create_communication_public_platform_chat',
@@ -16,19 +33,7 @@ const usePublicSendMessage = () => {
 		conversation_type = '',
 		updateFirestore = () => {},
 	}) => {
-		const sender = getCookie('cogo_bot_token') || '';
-
-		let payload = {};
-		if (conversation_type === 'outward') {
-			payload = {
-				sender_user_id : process.env.COGOVERSE_ID,
-				recipient      : sender,
-			};
-		} else {
-			payload = {
-				sender,
-			};
-		}
+		const payload = getPayload({ conversation_type });
 		try {
 			await trigger({
 				data: {

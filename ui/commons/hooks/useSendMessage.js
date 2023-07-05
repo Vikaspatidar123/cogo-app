@@ -1,5 +1,7 @@
 import { Toast } from '@cogoport/components';
 
+import getPayloadForSendMessage from '../utils/getPayloadForSendMessage';
+
 import getApiErrorString from '@/packages/forms/utils/getApiError';
 import { useRequest } from '@/packages/request';
 
@@ -18,27 +20,17 @@ const useSendMessage = ({
 		conversation_type = '',
 		updateFirestore = () => {},
 	}) => {
-		let extraPayload = {};
-		if (conversation_type === 'outward') {
-			extraPayload = { user_id, lead_user_id, organization_id };
-		} else {
-			extraPayload = {
-				sender_user_id      : user_id,
-				sender_lead_user_id : lead_user_id,
-			};
-		}
+		const payload = getPayloadForSendMessage({
+			conversation_type,
+			user_id,
+			lead_user_id,
+			organization_id,
+			messageMetaData,
+		});
 
 		try {
 			await trigger({
-				data: {
-					type              : 'platform_chat',
-					message_metadata  : messageMetaData,
-					service           : 'user',
-					service_id        : process.env.NEXT_PUBLIC_COGOVERSE_ID,
-					conversation_type : conversation_type || 'inward',
-					source            : 'CogoOne:AppPlatform',
-					...extraPayload,
-				},
+				data: { ...payload },
 			});
 			updateFirestore();
 		} catch (err) {

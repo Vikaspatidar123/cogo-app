@@ -7,6 +7,8 @@ import styles from './styles.module.css';
 
 const EMPTY_FUNC = () => {};
 
+const TIME_TO_SCROLL = 400;
+
 const scrollIntoList = (listRef) => {
 	if (listRef.current) {
 		listRef.current?.scrollIntoView({
@@ -37,7 +39,7 @@ function FooterItems({ response, sendFirebaseMessage, sendMessageLoading }) {
 			if (p) {
 				return false;
 			}
-			setTimeout(() => scrollIntoList(listRef), 400);
+			setTimeout(() => scrollIntoList(listRef), TIME_TO_SCROLL);
 			return true;
 		});
 	};

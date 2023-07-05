@@ -5,14 +5,14 @@ import getFileAttributes from '../../../utils/getFileAttributes';
 
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
+const PLATFORM_CHAT_PATH = GLOBAL_CONSTANTS.firebase_paths.platform_chat;
+
 const useSendFirebaseMessage = ({
 	firestore,
 	roomId,
 	sendMessageLoading,
 	sendMessage,
 }) => {
-	const PLATFORM_CHAT_PATH = GLOBAL_CONSTANTS.firebase_paths.platform_chat;
-
 	const messageCollection = collection(
 		firestore,
 		`${PLATFORM_CHAT_PATH}/${roomId}/messages`,

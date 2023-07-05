@@ -38,7 +38,7 @@ const getRoomHelpers = ({
 		lead_user_id = '',
 		organization,
 		organizations = [],
-	} = profile;
+	} = profile || {};
 
 	const {
 		business_name = '',

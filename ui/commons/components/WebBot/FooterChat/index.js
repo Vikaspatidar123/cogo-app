@@ -26,8 +26,8 @@ function FooterChat({ sendMessageLoading, sendFirebaseMessage, toggleHeight }) {
 
 	const handleChange = (obj) => {
 		if (!isEmpty(obj)) {
-			setMessageData((p) => ({
-				...p,
+			setMessageData((item) => ({
+				...item,
 				uploadingFile : false,
 				file          : {
 					name : obj?.split('/')?.slice(-1)?.join(''),
@@ -40,8 +40,8 @@ function FooterChat({ sendMessageLoading, sendFirebaseMessage, toggleHeight }) {
 
 	const handleProgress = (obj) => {
 		if (obj?.type === 'progress') {
-			setMessageData((p) => ({
-				...p,
+			setMessageData((data) => ({
+				...data,
 				uploadingFile: true,
 			}));
 			toggleHeight({ isFileDivPresent: false });
@@ -49,7 +49,7 @@ function FooterChat({ sendMessageLoading, sendFirebaseMessage, toggleHeight }) {
 	};
 
 	const setEmojis = (val) => {
-		setMessageData((p) => ({ ...p, message: `${p.message || ''}${val}` }));
+		setMessageData((data) => ({ ...data, message: `${data.message || ''}${val}` }));
 	};
 
 	const { file = {}, uploadingFile = false, message = '' } = messageData || {};
@@ -100,8 +100,8 @@ function FooterChat({ sendMessageLoading, sendFirebaseMessage, toggleHeight }) {
 						<div className={styles.file_name}>{file?.name}</div>
 						<IcMCross
 							onClick={() => {
-								setMessageData((p) => ({
-									...p,
+								setMessageData((data) => ({
+									...data,
 									file: {},
 								}));
 								toggleHeight({ isFileDivPresent: false });
@@ -143,13 +143,13 @@ function FooterChat({ sendMessageLoading, sendFirebaseMessage, toggleHeight }) {
 					maxWidth={355}
 					onClickOutside={() => setOnClicked(false)}
 				>
-					<IcMHappy onClick={() => setOnClicked((p) => !p)} className={styles.happy_icon} />
+					<IcMHappy onClick={() => setOnClicked((prev) => !prev)} className={styles.happy_icon} />
 				</Popover>
 				<div className={styles.text_wrapper}>
 					<Textarea
 						placeholder="Type here ..."
-						onChange={(e) => setMessageData((p) => ({
-							...p,
+						onChange={(e) => setMessageData((data) => ({
+							...data,
 							message: e || '',
 						}))}
 						onKeyPress={(e) => {

@@ -14,6 +14,21 @@ function asyncFieldsLocations2() {
 	};
 }
 
+function asyncCurrencies() {
+	return {
+		valueKey    : 'id',
+		labelKey    : 'name',
+		endpoint    : 'currencies',
+		initialCall : true,
+		params      : {
+			filters    : { status: 'active' },
+			page_limit : 50,
+			sort_by    : 'name',
+			sort_type  : 'asc',
+		},
+	};
+}
+
 function asyncFieldsLocations(labelKey = 'name', valueKey = 'id') {
 	return {
 		valueKey,
@@ -336,4 +351,5 @@ export {
 	asyncOrganizationBranches,
 	asyncTaxNumbers,
 	asyncTradeContacts,
+	asyncCurrencies,
 };

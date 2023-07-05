@@ -30,6 +30,7 @@ function ExportFactoring() {
 					active={active}
 					getCreditRequestResponse={getCreditRequestResponse}
 					refetch={getOrganizationCreditRequest}
+					loading={loading}
 				/>
 			</div>
 		)

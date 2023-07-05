@@ -1,15 +1,9 @@
-// import ApplicationProcessed from '../ApplicationProcessed';
-// import BasicDetailsForm from '../BasicDetailsForm';
-// import CompanyInformation from '../CompanyInformation';
-// import Documentation from '../Documentation';
-// import FinancialAssessment from '../FinancialAssessment';
-// import PayLaterLive from '../PayLaterLive';
-// import RejectedApplication from '../RejectedApplication';
-
-import BankDetails from '../BankDetails';
-import BankVerification from '../BankDetails/components/BankVerification';
-import Buyers from '../Buyers';
-import Invoices from '../Invoices';
+import ApplicationProcess from '../ApplicationProcess';
+import BasicDetails from '../BasicDetails';
+import CompanyInformation from '../CompanyInformation';
+import DirectorInformation from '../DirectorInformation';
+import OfferLetterDetails from '../OfferLetterDetails';
+import { OfferLetterWaiting } from '../WaitingScreens';
 
 import styles from './styles.module.css';
 
@@ -23,16 +17,17 @@ import styles from './styles.module.css';
 // 	approved             : PayLaterLive,
 // };
 
-function Form({ active = {}, getCreditRequestResponse = {}, refetch = () => {} }) {
+function Form({ active = {}, getCreditRequestResponse = {}, refetch = () => {}, loading }) {
 	// const Component = RENDERING_FORM[active];
+
 	return (
 		<div className={styles.form}>
-			{/* <Component getCreditRequestResponse={getCreditRequestResponse} refetch={refetch} /> */}
-			{/* <BankDetails /> */}
-			{/* <BankVerification /> */}
-			{/* <Buyers /> */}
-			<Invoices />
-			{/* <InvoiceDetails /> */}
+			<ApplicationProcess
+				active={active}
+				getCreditRequestResponse={getCreditRequestResponse}
+				refetch={refetch}
+				loading={loading}
+			/>
 		</div>
 	);
 }

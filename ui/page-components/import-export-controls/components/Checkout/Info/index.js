@@ -1,12 +1,25 @@
+import { useTranslation } from 'next-i18next';
+
 import MapContainer from '../../../common/MapContainer';
-import { LABEL_MAPPING } from '../../../constant/lableMapping';
+import { getLabelMapping } from '../../../constant/lableMapping';
 
 import styles from './styles.module.css';
 
-const COUNTRY_ARR = ['exportCountry', 'importCountry', 'manufacturingCountry'];
-const HS_CODE_ARR = ['importHsCode', 'exportHsCode'];
+const getMapping = ({ t }) => {
+	const COUNTRY_ARR = [t('importExportControls:checkout_country_arr_1'),
+		t('importExportControls:checkout_country_arr_2'), t('importExportControls:checkout_country_arr_3')];
+	const HS_CODE_ARR = [t('importExportControls:checkout_hscode_arr_1'),
+		t('importExportControls:checkout_hscode_arr_1')];
+
+	return { COUNTRY_ARR, HS_CODE_ARR };
+};
 
 function Info({ prefillData = {}, localStorageData = {} }) {
+	const { t } = useTranslation(['importExportControls']);
+
+	const { COUNTRY_ARR, HS_CODE_ARR } = getMapping({ t });
+	const LABEL_MAPPING = getLabelMapping({ t });
+
 	const renderDetails = (name) => {
 		if (COUNTRY_ARR.includes(name)) {
 			return (

@@ -1,4 +1,5 @@
 import { Button, Modal } from '@cogoport/components';
+import { useTranslation } from 'next-i18next';
 import { useState, useEffect } from 'react';
 
 import styles from './styles.module.css';
@@ -11,7 +12,6 @@ function ValidateHsModal({
 	show,
 	setShow,
 	formInfo,
-	isMobile = false,
 	handleSubmit,
 	loading = false,
 	setValue,
@@ -23,6 +23,8 @@ function ValidateHsModal({
 }) {
 	const { query } = useRouter();
 	const { billId = '' } = query;
+
+	const { t } = useTranslation(['common', 'importExportControls']);
 	const [isDisable, setIsDisable] = useState([]);
 
 	const {
@@ -36,14 +38,14 @@ function ValidateHsModal({
 	const hsObj = {
 		exportHsCode: {
 			hsCode      : exportHsCode,
-			label       : 'Export Hs Code',
+			label       : t('importExportControls:export_hscode_label'),
 			isImport    : false,
 			prevHs      : prevHs?.exportHs,
 			countryCode : exportCountry?.country_code,
 		},
 		importHsCode: {
 			hsCode      : importHsCode,
-			label       : 'Import Hs Code',
+			label       : t('importExportControls:import_hscode_label'),
 			isImport    : true,
 			prevHs      : prevHs?.importHs,
 			countryCode : importCountry?.country_code,
@@ -63,7 +65,6 @@ function ValidateHsModal({
 			className="primary"
 			onClose={() => setShow(false)}
 			closable={!billId}
-			width={!isMobile ? '534' : '363'}
 		>
 			<div className={styles.container}>
 				<TitleContainer billId={billId} />
@@ -92,7 +93,7 @@ function ValidateHsModal({
 					onClick={handleSubmit(validateSubmitHandler)}
 					loading={loading}
 				>
-					Continue
+					{t('common:continue')}
 				</Button>
 			</div>
 		</Modal>

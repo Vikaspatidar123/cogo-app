@@ -1,14 +1,16 @@
 import { Button } from '@cogoport/components';
 import { IcMAlert } from '@cogoport/icons-react';
+import { useTranslation } from 'next-i18next';
 
 import styles from './styles.module.css';
 
 function SameHsCode({ setShowPendingModal, btnSubtmitHandler }) {
+	const { t } = useTranslation(['common', 'importExportControls']);
 	return (
 		<div className={styles.container}>
 			<IcMAlert fill="#FBDC00" width={45} height={45} />
 			<div className={styles.title}>
-				You have selected different universal HS codes.
+				{t('importExportControls:same_hscode_title')}
 			</div>
 			<div className={styles.btn_container}>
 				<Button
@@ -16,7 +18,7 @@ function SameHsCode({ setShowPendingModal, btnSubtmitHandler }) {
 					themeType="secondary"
 					onClick={() => setShowPendingModal(false)}
 				>
-					Close
+					{t('common:close')}
 				</Button>
 				<Button
 					size="sm"
@@ -26,7 +28,7 @@ function SameHsCode({ setShowPendingModal, btnSubtmitHandler }) {
 						setShowPendingModal(false);
 					}}
 				>
-					Proceed
+					{t('common:proceed')}
 				</Button>
 			</div>
 		</div>

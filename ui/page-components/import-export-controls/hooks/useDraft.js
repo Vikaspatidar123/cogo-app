@@ -1,14 +1,19 @@
+import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
 
-import { TRANSPORT_MAPPING } from '../constant/transportMapping';
+import { getTransportMapping } from '../constant/transportMapping';
 
 import { useRequestBf } from '@/packages/request';
 import { useSelector } from '@/packages/store';
 
 const useDraft = () => {
-	const [draftResp, setDraftResp] = useState();
+	const { t } = useTranslation(['importExport']);
+
 	const { profile } = useSelector((state) => state);
 	const { organization = {} } = profile;
+	const [draftResp, setDraftResp] = useState();
+
+	const TRANSPORT_MAPPING = getTransportMapping({ t });
 
 	const [{ loading }, trigger] = useRequestBf({
 		method  : 'post',

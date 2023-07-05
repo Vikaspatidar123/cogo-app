@@ -1,4 +1,5 @@
 import { Toast } from '@cogoport/components';
+import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
 
 import { useRequestBf } from '@/packages/request';
@@ -10,6 +11,7 @@ const useCheckPaymentStatus = ({
 	paymentSuccessHandler,
 	billId,
 }) => {
+	const { t } = useTranslation(['importExportControls']);
 	const [stop, setStop] = useState(false);
 
 	const [{ loading }, trigger] = useRequestBf({
@@ -36,10 +38,7 @@ const useCheckPaymentStatus = ({
 				}, 2000);
 			} else {
 				setStop(true);
-				Toast.warn('Payment is Pending', {
-					autoClose : 3000,
-					style     : { background: '#ffffe5' },
-				});
+				Toast.warn(t('importExportControls:api_payment_pending'));
 			}
 			return resp?.data;
 		} catch (err) {

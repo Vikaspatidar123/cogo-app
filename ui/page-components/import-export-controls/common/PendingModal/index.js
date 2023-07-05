@@ -1,5 +1,6 @@
 import { cl, Modal, Button } from '@cogoport/components';
 import { IcMInformation } from '@cogoport/icons-react';
+import { useTranslation } from 'next-i18next';
 
 import iconUrl from '../../utils/iconUrl.json';
 
@@ -15,11 +16,13 @@ function PendingModal({
 	btnSubtmitHandler,
 }) {
 	const { query = {}, billId = '' } = useRouter();
-	const { org_id = '', branch_id = '', account_type = '' } = query || {};
+	const { org_id = '', branch_id = '' } = query || {};
+
+	const { t } = useTranslation(['close', 'importExportControls']);
 
 	const closeModalHandler = () => {
 		// eslint-disable-next-line max-len
-		const redirectUrl = `${process.env.APP_URL}app/${org_id}/${branch_id}/${account_type}/saas/premium-services/import-export-controls`;
+		const redirectUrl = `${process.env.NEXT_PUBLIC_APP_URL}${org_id}/${branch_id}/saas/premium-services/import-export-controls`;
 		window.open(redirectUrl, '_self');
 		setShowPendingModal(false);
 	};
@@ -32,10 +35,10 @@ function PendingModal({
 						<div className={styles.container}>
 							<img
 								src={iconUrl.loadingBanner}
-								alt="loading.."
+								alt={t('importExportControls:loading')}
 								className={styles.loading_banner}
 							/>
-							<div className={styles.title}>Hang on! Checking payment status...</div>
+							<div className={styles.title}>{t('importExportControls:pending_modal_waiting')}</div>
 							<img src={iconUrl.loading} alt="loading" className={styles.loading} />
 						</div>
 					)}
@@ -43,11 +46,10 @@ function PendingModal({
 						<div className={styles.container}>
 							<IcMInformation fill="#FBDC00" width={52} height={52} />
 							<div className={cl`${styles.text} ${styles.error}`}>
-								Sorry, It took longer than usual. We will notify you once
-								payment is successful
+								{t('importExportControls:pending_modal_failed')}
 							</div>
 							<Button themeType="linkUI" onClick={closeModalHandler}>
-								Close
+								{t('common:close')}
 							</Button>
 						</div>
 					)}

@@ -1,14 +1,18 @@
 import { Toast } from '@cogoport/components';
+import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
 
 import { useRequestBf } from '@/packages/request';
 import { useSelector } from '@/packages/store';
 
 const useTradeEngine = ({ billId = undefined }) => {
-	const [tradeEngineResp, setTradeEngineResp] = useState({});
-	const tradeEngineRespLength = Object.keys(tradeEngineResp).length;
+	const { t } = useTranslation(['importExportControls']);
+
 	const { profile = {} } = useSelector((s) => s);
 	const { organization = {} } = profile || {};
+
+	const [tradeEngineResp, setTradeEngineResp] = useState({});
+	const tradeEngineRespLength = Object.keys(tradeEngineResp).length;
 
 	const [{ loading }, getTransaction] = useRequestBf({
 		method  : 'get',
@@ -53,14 +57,11 @@ const useTradeEngine = ({ billId = undefined }) => {
 			}
 		} catch (err) {
 			if (
-				err?.data?.message
-				=== 'Message Unknown Error :Data is Already Generated'
+				err?.response?.data?.message === 'Unknown Error :Data is Already Generated'
 			) {
 				getTradeEngine(id);
 			} else {
-				Toast.error('Something went wrong! Please try after sometime', {
-					style: { color: '#333', background: '#FFD9D4' },
-				});
+				Toast.error(t('importExportControls:api_error'));
 			}
 		}
 	};

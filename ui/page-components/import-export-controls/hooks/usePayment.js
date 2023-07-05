@@ -1,4 +1,5 @@
 import { Toast } from '@cogoport/components';
+import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
 
 import useGetProductCode from './useGetProductCodes';
@@ -10,8 +11,11 @@ import paymentInititation from '@/ui/commons/components/PaymentInitiation';
 import getGeoConstants from '@/ui/commons/constants/geo';
 
 const usePayment = () => {
-	const { profile } = useSelector((s) => s);
+	const { t } = useTranslation(['importExportControls']);
+
 	const { query } = useRouter();
+
+	const { profile } = useSelector((s) => s);
 
 	const geo = getGeoConstants();
 	const DEFAULT_CURRENCY = geo.country.currency.code;
@@ -91,10 +95,7 @@ const usePayment = () => {
 				paymentInititation({ data: resp?.data, setModal, setButtonLoading });
 			}
 		} catch (err) {
-			Toast.error('Something went wrong! Please try after sometime', {
-				autoClose : 3000,
-				style     : { color: '#333', background: '#FFD9D4' },
-			});
+			Toast.error(t('importExportControls:api_error'));
 		}
 	};
 

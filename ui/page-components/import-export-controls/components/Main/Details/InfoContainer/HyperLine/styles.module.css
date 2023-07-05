@@ -31,7 +31,7 @@
 		font-size: 13px;
 		color: #f68b21;
 
-		:hover {
+		&:hover {
 			text-decoration: underline;
 			cursor: pointer;
 		}

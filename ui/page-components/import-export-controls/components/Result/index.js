@@ -1,4 +1,6 @@
 import { TabPanel, Tabs } from '@cogoport/components';
+import { isEmpty } from '@cogoport/utils';
+import { useTranslation } from 'next-i18next';
 import { useState, useEffect } from 'react';
 
 import Header from '../../common/Header';
@@ -11,20 +13,28 @@ import styles from './styles.module.css';
 import { useRouter } from '@/packages/next';
 
 function EmptyState() {
+	const { t } = useTranslation(['importExportControls']);
+
 	return (
 		<img
 			className={styles.empty_state}
 			src={iconUrl?.emptyState}
-			alt="No Data Found"
+			alt={t('importExportControls:result_empty_state')}
 		/>
 	);
 }
 
 function Result() {
-	const [activeTab, setActiveTab] = useState('EXPORT');
-
 	const { query } = useRouter();
 	const { trade_engine_id = '', billId = '' } = query || {};
+
+	const { t } = useTranslation(['importExportControls']);
+
+	const [activeTab, setActiveTab] = useState('EXPORT');
+	const [controlVal, setControlVal] = useState({
+		importControls : [],
+		exportControls : [],
+	});
 
 	const {
 		postTradeEngine,
@@ -35,12 +45,38 @@ function Result() {
 	const { lineItem = [] } = tradeEngineResp || {};
 	const { controls = [] } = lineItem[0] || {};
 
-	const importControls = (controls || [])?.filter(
-		(control) => control?.tradeType === 'IMPORT',
-	);
-	const exportControls = (controls || [])?.filter(
-		(control) => control?.tradeType === 'EXPORT',
-	);
+	const { importControls, exportControls } = controlVal;
+
+	const TAB_MAPPING = {
+		IMPORT: {
+			controlArr : importControls,
+			title      : t('importExportControls:result_tab_1'),
+		},
+		EXPORT: {
+			controlArr : exportControls,
+			title      : t('importExportControls:result_tab_2'),
+		},
+	};
+
+	useEffect(() => {
+		if (!isEmpty(controls)) {
+			const impControls = [];
+			const expControls = [];
+
+			(controls || []).forEach((control) => {
+				if (control?.tradeType === 'IMPORT') {
+					impControls.push(control);
+				} else {
+					expControls.push(control);
+				}
+			});
+
+			setControlVal({
+				importControls : impControls,
+				exportControls : expControls,
+			});
+		}
+	}, [controls]);
 
 	const clearStorageHandler = () => {
 		if (typeof window === 'undefined') return;
@@ -64,9 +100,9 @@ function Result() {
 	return (
 		<div>
 			{tradeEngineLoading && (
-				<img src={iconUrl?.loading} alt="loading" className={styles.loader} />
+				<img src={iconUrl?.loading} alt={t('importExportControls:loading')} className={styles.loader} />
 			)}
-			{!tradeEngineLoading && <Header title="Transaction Results" redirect />}
+			{!tradeEngineLoading && <Header title={t('importExportControls:result_title')} redirect />}
 			{!tradeEngineLoading && controls.length > 0 && (
 				<div className={styles.importer_exporter}>
 					<Tabs
@@ -74,26 +110,24 @@ function Result() {
 						themeType="primary"
 						onChange={setActiveTab}
 					>
-						<TabPanel name="EXPORT" title="Export Controls">
-							{(exportControls?.length > 0 ? (
-								<ResultDetails activeTab={activeTab} controls={exportControls} />
-							) : (
-								<EmptyState />
-							))}
-						</TabPanel>
+						{Object.keys(TAB_MAPPING).map((ele) => {
+							const info = TAB_MAPPING[ele];
+							return (
+								<TabPanel name={ele} title={info.title} key={ele}>
+									{(!isEmpty(info?.controlArr)) ? (
+										<ResultDetails activeTab={activeTab} controls={info.controlArr} />
+									) : (
+										<EmptyState />
+									)}
+								</TabPanel>
+							);
+						})}
 
-						<TabPanel name="IMPORT" title="Import Controls">
-							{(importControls?.length > 0 ? (
-								<ResultDetails activeTab={activeTab} controls={importControls} />
-							) : (
-								<EmptyState />
-							))}
-						</TabPanel>
 					</Tabs>
 
 				</div>
 			)}
-			{!tradeEngineLoading && controls.length === 0 && <EmptyState />}
+			{!tradeEngineLoading && isEmpty(controls) && <EmptyState />}
 		</div>
 	);
 }

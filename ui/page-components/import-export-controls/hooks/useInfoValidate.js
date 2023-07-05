@@ -98,20 +98,20 @@ const useInfoValidate = ({
 
 	useEffect(() => {
 		if (
-			watchExportHs?.length >= 6
-			&& watchImportHs === ''
+			watchExportHs?.toString().length >= 6
+			&& !watchImportHs
 			&& initialRef.current.fillImportHs
 		) {
-			const importHs = watchExportHs.substring(0, 6);
+			const importHs = watchExportHs.toString().substring(0, 6);
 			setFormValue('importHsCode', importHs);
 			initialRef.current.fillImportHs = false;
 		}
 		if (
-			watchExportHs === ''
-			&& watchImportHs.length >= 6
+			!watchExportHs
+			&& watchImportHs?.toString().length >= 6
 			&& initialRef.current.fillExportHs
 		) {
-			const exportHs = watchImportHs.substring(0, 6);
+			const exportHs = watchImportHs.toString().substring(0, 6);
 			setFormValue('exportHsCode', exportHs);
 			initialRef.current.fillExportHs = false;
 		}
@@ -214,11 +214,11 @@ const useInfoValidate = ({
 	const submitHandler = async (data) => {
 		const { importHsCode, exportHsCode = '' } = data;
 
-		const importHs = await verifySixDigitHs({ hsCode: importHsCode });
-		const exportHs = await verifySixDigitHs({ hsCode: exportHsCode });
+		const importHs = await verifySixDigitHs({ hsCode: importHsCode.toString() });
+		const exportHs = await verifySixDigitHs({ hsCode: exportHsCode.toString() });
 
 		if (importHs && exportHs) {
-			if (importHsCode.substring(0, 6) !== exportHsCode.substring(0, 6)) {
+			if (importHsCode.toString().substring(0, 6) !== exportHsCode.toString().substring(0, 6)) {
 				setShowPendingModal(true);
 			} else {
 				btnSubtmitHandler();

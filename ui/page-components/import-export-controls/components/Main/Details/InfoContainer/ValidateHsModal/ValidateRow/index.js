@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { Button, Popover, Input } from '@cogoport/components';
+import { Button, Popover, Input, cl } from '@cogoport/components';
+import { useTranslation } from 'next-i18next';
 import { useState, useEffect } from 'react';
 
 import useVerifyHscode from '../../../../../../hooks/useVerifyHsCode';
@@ -46,7 +47,7 @@ const sugestionContent = ({
 			{(inputValue || []).map((ele) => (
 				<div
 					key={ele?.hsCode}
-					className="row"
+					className={styles.rowx}
 					role="presentation"
 					onClick={() => clickHandler(ele)}
 				>
@@ -68,6 +69,7 @@ function ValidateRow({
 	setIsDisable,
 	setPrevHs,
 }) {
+	const { t } = useTranslation(['importExportControls']);
 	const [status, setStatus] = useState(false);
 	const [validateInProgress, setValidateInProgress] = useState(false);
 
@@ -98,7 +100,7 @@ function ValidateRow({
 	}, []);
 
 	return (
-		<div className={styles.row}>
+		<div className={cl`${styles.row} ${styles.hs_row}`}>
 			<Popover
 				animation="shift-away"
 				content={sugestionContent({
@@ -115,8 +117,13 @@ function ValidateRow({
 				visible={validateInProgress && inputValue.length > 0}
 			>
 				<div className={styles.inputContainer}>
+					<p className={styles.label}>
+						{isImport
+							? t('importExportControls:import_hscode_label')
+							: t('importExportControls:export_hscode_label')}
+					</p>
 					<Input
-						label="HS Code"
+						size="sm"
 						value={hsCode}
 						className={styles.hs_input}
 						disabled
@@ -132,7 +139,7 @@ function ValidateRow({
 						disabled={validateInProgress}
 						className={styles.btn_color}
 					>
-						Validate
+						{t('importExportControls:validate_modal_validate')}
 					</Button>
 				) : (
 					<div className={styles.valid}>
@@ -141,7 +148,7 @@ function ValidateRow({
 							alt="validated"
 							className={styles.validate_svg}
 						/>
-						<div className={styles.validate}> Validated</div>
+						<div className={styles.validate}>{t('importExportControls:validate_modal_validated')}</div>
 					</div>
 				)}
 			</div>

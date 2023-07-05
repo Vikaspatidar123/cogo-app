@@ -2,13 +2,13 @@ import React from 'react';
 
 import styles from './styles.module.css';
 
-function FormCard({
-	componentMapping,
-	active,
-	getCreditRequestResponse,
-	refetch,
-	rest,
-}) {
+function FormCard(props) {
+	const {
+		componentMapping,
+		active = {},
+		getCreditRequestResponse = { },
+		refetch = () => {},
+	} = props;
 	return (
 		<div className={styles.container}>
 			{(componentMapping.map(({ title, description, Component, leftChildern }) => (
@@ -29,7 +29,7 @@ function FormCard({
 							active={active}
 							getCreditRequestResponse={getCreditRequestResponse}
 							refetch={refetch}
-							{...rest}
+							{...props}
 						/>
 					</div>
 				</div>

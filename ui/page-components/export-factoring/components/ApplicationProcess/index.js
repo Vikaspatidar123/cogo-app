@@ -1,10 +1,11 @@
 import { TabPanel, Tabs } from '@cogoport/components';
 import React, { useState } from 'react';
 
-import Agreement from './Agreement';
 import BankDetails from '../BankDetails';
+
+import Agreement from './Agreement';
 import CompanyDocuments from './CompanyDocuments';
-import UdcAndPdc from './UdcAndPdc';
+import OptUdcAndPdc from './OptUdcPdcDocuments';
 
 const tabsPanelMapping = [{
 	name      : 'agreement',
@@ -26,12 +27,12 @@ const tabsPanelMapping = [{
 {
 	name      : 'udc&Pdc',
 	title     : 'UDC PDC',
-	Component : UdcAndPdc,
+	Component : OptUdcAndPdc,
 	status    : 'PENDING',
 },
 ];
 
-function ApplicationProcess() {
+function ApplicationProcess({ active = {}, getCreditRequestResponse = {}, refetch = () => {}, loading = false }) {
 	const [activeTab, setActiveTab] = useState('agreement');
 	return (
 
@@ -43,7 +44,12 @@ function ApplicationProcess() {
 			>
 				{tabsPanelMapping.map(({ title = '', Component, status = '', name = '' }) => (
 					<TabPanel name={name} title={title} badge={status}>
-						<Component />
+						<Component
+							active={active}
+							getCreditRequestResponse={getCreditRequestResponse}
+							refetch={refetch}
+							loading={loading}
+						/>
 					</TabPanel>
 				))}
 			</Tabs>

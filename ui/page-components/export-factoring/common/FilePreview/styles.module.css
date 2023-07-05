@@ -1,0 +1,30 @@
+.container {
+	display: flex;
+	flex-direction: row;
+}
+
+.name_icon_wrapper {
+	display: flex;
+	flex-direction: row;
+}
+.offer_pdf_view {
+	display: flex;
+	padding: 8px 12px;
+	align-items: center;
+	flex: 1 0 0;
+	justify-content: space-between;
+
+	border: 1px solid #e0e0e0;
+	border-radius: 4px;
+	cursor: pointer;
+	/* width: 45%; */
+}
+.email_text_wrapper {
+	display: flex;
+	flex-direction: row;
+	text-align: center;
+	align-items: center;
+	svg {
+		margin-right: 10px;
+	}
+}

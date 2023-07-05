@@ -1,0 +1,18 @@
+.container {
+	display: flex;
+	flex-direction: column;
+	ul {
+		list-style-type: circle;
+	}
+
+	ul li::before {
+		display: inline-block;
+
+		color: #221f20;
+		font-size: 16px;
+
+		font-style: normal;
+		font-weight: 400;
+		line-height: normal;
+	}
+}

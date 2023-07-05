@@ -1,0 +1,27 @@
+.valueText {
+	color: #221f20;
+	font-family: 'Poppins';
+	font-weight: 550;
+	font-size: 16px;
+	padding: 10px 5px;
+}
+
+.deleteContainer {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	:global {
+	.ui_button_container {
+		margin-left: 10px;
+	}
+}
+}
+
+.editText {
+	cursor: pointer;
+	font-size: 16px;
+	text-decoration-line: underline;
+	color: #356efd;
+	padding-left: 12px;
+}

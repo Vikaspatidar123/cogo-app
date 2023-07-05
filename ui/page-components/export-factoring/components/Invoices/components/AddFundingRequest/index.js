@@ -24,7 +24,6 @@ function AddFundingRequest({ openAddFundingRequest, setOpenFundingRequest }) {
 				<form className={styles.formDiv}>
 					{fundingRequestControls.map((item) => {
 						if (item.type === 'fieldArray') {
-							console.log(item,'item');
 							return (
 								<FieldArray
 									{...item}

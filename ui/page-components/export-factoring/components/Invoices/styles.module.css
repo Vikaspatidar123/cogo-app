@@ -7,7 +7,7 @@
 .headFlex{
     display: flex;
     justify-content: flex-start;
-    margin: 20px 0px;
+    margin: 20px 10px;
 }
 
 .tableHeader{

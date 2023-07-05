@@ -311,8 +311,8 @@ const navigationMappings = {
 	export_factoring: {
 		key   : 'export_factoring',
 		title : 'Export Factoring',
-		href  : '/v2/export-factoring',
-		as    : '/v2/export-factoring',
+		href  : '/export-factoring',
+		as    : '/export-factoring',
 	},
 };
 export default navigationMappings;

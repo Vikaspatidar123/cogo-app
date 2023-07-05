@@ -1,0 +1,52 @@
+.container{
+	width: 100%;
+	padding: 20px 0px 10px 0px;
+	border: 1px solid #e0e0e0;
+	border-radius: 8px;
+}
+.formDiv{
+    width: 100%;
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+}
+
+.field {
+	width: 48%;
+	margin: 0 0 15px;
+    padding-left: 20px;
+}
+
+.field_name {
+	margin: 0 0 4px;
+	font-size: 16px;
+	font-weight: 500;
+	color: #4f4f4f;
+}
+
+.error_text {
+	color: red;
+}
+
+.flexDiv {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 16px 30px;
+	background: #fdfbf6;
+	border-radius: 4px;
+	margin-top: 20px;
+}
+
+.errorDiv{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: #fe473a;
+}
+
+.buttonFlex{
+	display: flex;
+	justify-content: flex-end;
+	padding: 10px;
+}

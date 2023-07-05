@@ -1,0 +1,25 @@
+.heading {
+	display: flex;
+	align-items: center;
+	font-weight: 500;
+	padding: 2px 6px;
+	margin-left: 10px;
+	border-radius: 4px;
+	color: #ffffff;
+	font-size: 12px;
+};
+
+.commentContainer 
+{	display: flex;
+	padding: 4px;
+	max-width: 200px;
+	flex-wrap: wrap;}
+
+
+.textHead {
+	font-size: 14px;
+	font-weight: 700;
+}
+.commentText {
+	font-size: 14px;
+}

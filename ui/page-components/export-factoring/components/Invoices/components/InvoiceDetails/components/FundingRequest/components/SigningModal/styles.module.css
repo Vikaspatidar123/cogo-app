@@ -1,0 +1,62 @@
+.docContainer{
+    display: flex;
+	align-items: center;
+	justify-content: space-between;
+	height: 46px;
+	width: 40%;
+	border: 1px solid #e0e0e0;
+	border-radius: 4px;
+	cursor: pointer;
+	padding: 0px 10px;
+	margin: 10px 0px;
+}
+
+.flexDiv{
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 0px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid #E0E0E0;
+}
+
+.title{
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.description{
+    font-size: 12px;
+    color: #9E9E9E;
+}
+.formDiv{
+    width: 60%;
+    padding: 0px;
+}
+
+.field {
+	margin: 10px 0px;
+}
+
+.field_name {
+	margin: 0 0 4px;
+	font-size: 16px;
+	font-weight: 500;
+	color: #4f4f4f;
+}
+
+.error_text {
+	color: red;
+}
+
+.uploadContainer{
+	display: flex;
+	flex-direction: column;
+	width: 45%;
+}
+
+.noteText{
+	font-weight: 600;
+	font-size: 14px;
+	color: #bf291e;
+	margin: 20px 0px 12px 0px;
+}

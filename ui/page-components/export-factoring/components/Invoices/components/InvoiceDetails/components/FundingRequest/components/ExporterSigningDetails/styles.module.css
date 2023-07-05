@@ -1,0 +1,18 @@
+.headText{
+	font-size: 16px;
+	color: #221f20;
+	padding: 20px 0px 0px 10px;
+}
+
+.flexBox{
+    display: flex;
+    flex-direction: column;
+    padding: 14px 10px;
+    align-items: center;
+}
+
+.linkText{
+    font-size: 14px;
+    color: #356efd;
+    text-decoration: underline;
+}

@@ -1,14 +1,14 @@
 import { useEffect, useCallback, useState } from 'react';
 
 import { useRequest } from '@/packages/request';
-import { useSelector } from '@/packages/store';
+// import { useSelector } from '@/packages/store';
 
 const useGetOrganizationCreditRequest = () => {
 	const [active, setActive] = useState('');
 
-	const { organization } = useSelector((state) => ({
-		organization: state.profile.organization,
-	}));
+	// const { organization } = useSelector((state) => ({
+	// 	organization: state.profile.organization,
+	// }));
 	const [{ loading, data }, trigger] = useRequest(
 		{
 			method : 'get',
@@ -24,14 +24,14 @@ const useGetOrganizationCreditRequest = () => {
 		try {
 			await trigger({
 				params: {
-					organization_id: organization?.id,
+					organization_id: '277da954-50c2-4c6e-9033-65a6edb65a66',
 				},
 			});
 			setActive(data?.status);
 		} catch (e) {
 			setActive('awaiting_user_inputs');
 		}
-	}, [data?.status, organization?.id, trigger]);
+	}, [data?.status, trigger]);
 
 	useEffect(() => {
 		getOrganizationCreditRequest();

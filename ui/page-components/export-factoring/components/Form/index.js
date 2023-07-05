@@ -32,6 +32,7 @@ function Form({ active = {}, getCreditRequestResponse = {}, refetch = () => {} }
 			{/* <BankVerification /> */}
 			{/* <Buyers /> */}
 			<Invoices />
+			{/* <InvoiceDetails /> */}
 		</div>
 	);
 }

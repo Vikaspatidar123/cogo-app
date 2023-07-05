@@ -5,7 +5,7 @@ import styles from './styles.module.css';
 
 import getField from '@/packages/forms/Controlled';
 import { getAddPocControls } from '@/ui/page-components/export-factoring/configurations/getAddPocControls';
-import useSubmitPocDetails from '@/ui/page-components/export-factoring/hooks/useSubmitPocDetails';
+import useSubmitPocDetails from '@/ui/page-components/export-factoring/hooks/useSubmitBuyerDetails';
 
 function AddPocModal({ openAddPoc, setOpenAddPoc }) {
 	const addPocControls = getAddPocControls();

@@ -1,28 +1,66 @@
 import { Button } from '@cogoport/components';
 import { IcMPlus } from '@cogoport/icons-react';
+import { useState } from 'react';
 
+import AddCommercialInvoice from '../AddCommercialInvoice';
+
+import CommercialInvoiceList from './CommercialInvoiceList';
 import styles from './styles.module.css';
 
-function InvoiceList() {
+function InvoiceList({
+	invoice = {},
+	// creditRequest = {},
+	setShowCiDetails,
+	refetch,
+}) {
+	const [openAddInvoice, setOpenAddInvoice] = useState(false);
+	const { fid = '', sid = '', invoices = [] } = invoice || {};
 	return (
 		<div>
 			<div className={styles.flexDiv}>
 				<div style={{ display: 'flex' }}>
-					<div className={styles.sidText}>FID: </div>
-					<div className={styles.sidText}>SID: </div>
+					<div className={styles.sidText}>
+						FID:
+						{' '}
+						{fid}
+					</div>
+					<div className={styles.sidText}>
+						SID:
+						{' '}
+						{sid}
+					</div>
 				</div>
 				<Button
 					type="button"
 					size="md"
 					themeType="tertiary"
+					onClick={() => setOpenAddInvoice((pv) => !pv)}
 				>
 					<IcMPlus size={3} />
 					Add Invoice
 				</Button>
 			</div>
-            <div>
-                <CommercialInvoiceList />
-            </div>
+			<div>
+				{(invoices || []).map((ci) => (
+					<CommercialInvoiceList
+						key={ci.id}
+						sid={sid}
+						invoices={ci}
+						// creditRequest={creditRequest}
+						setShowCiDetails={setShowCiDetails}
+					/>
+				))}
+
+				{/* {[...Array(5).keys()].map((x) => (
+					<CommercialInvoiceList key={x} setShowCiDetails={setShowCiDetails} />
+				))} */}
+			</div>
+			{openAddInvoice && (
+				<AddCommercialInvoice
+					openAddInvoice={openAddInvoice}
+					setOpenAddInvoice={setOpenAddInvoice}
+				/>
+			)}
 		</div>
 	);
 }

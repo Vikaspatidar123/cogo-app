@@ -1,0 +1,47 @@
+.step{
+	padding: 0px 10px;
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+}
+.stepper{
+	position: relative;
+}
+.circle{
+	background-color: #bdbdbd;
+	border: 1px solid #bdbdbd;
+	border-radius: 50%;
+	width: 11px;
+	height: 11px;
+	display: inline-block;
+}
+.line{
+	left: 5px;
+	top: 5px;
+	height: 100%;
+	position: absolute;
+	border-left: 2px solid #bdbdbd;
+}
+.content{
+	margin: 0px 20px 20px 20px;
+	/* display: inline-block; */
+	width: 100%;
+}
+
+.headText{
+	font-size: 16px;
+	color: #221f20;
+	padding: 0px 0px 20px 0px;
+}
+
+.flexBox{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.linkText{
+    font-size: 14px;
+    color: #356efd;
+    text-decoration: underline;
+}

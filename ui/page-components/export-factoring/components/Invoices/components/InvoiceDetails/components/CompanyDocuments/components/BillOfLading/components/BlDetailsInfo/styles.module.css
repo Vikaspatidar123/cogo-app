@@ -1,0 +1,65 @@
+.container{
+    margin: 20px 0px;
+}
+
+.mainContainer{
+    margin: 4px 0px;
+	border: 1px solid #e0e0e0;
+	border-radius: 6px;
+}
+.topContainer{
+    display: flex;
+	justify-content: space-between;
+	border: 1px solid #e0e0e0;
+	border-radius: 6px;
+	padding: 10px 8px;
+	align-items: center;
+	background: #fdfbf6;
+}
+.linkBox{
+    display: flex;
+    cursor: pointer;
+    align-items: center;
+}
+.mainHead{
+	font-size: 16px;
+	text-decoration-line: underline;
+	color: #034afd;
+	padding: 4px 10px;
+}
+
+.detailsContainer{
+    width: 100%;
+    display: flex;
+    /* justify-content: space-between; */
+    flex-wrap: wrap;
+    padding: 10px 30px 10px 10px;
+}
+
+.labelText{
+    font-size: 16px;
+    color: #828282;
+}
+
+.valueText{
+    font-size: 16px;
+    color: #221f20;
+    font-weight: 550;
+    padding-bottom: 6px;
+	word-wrap: break-word;
+	display: flex;
+	flex-wrap: wrap;
+
+}
+.dataDiv{
+    width: 33%;
+    padding: 10px 0px;
+}
+
+
+.containerBox{
+    padding: 0px 4px;
+	background: #f9da7f;
+	margin: 2px;
+	border-radius: 6px;
+}

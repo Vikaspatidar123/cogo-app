@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "@cogoport/charts": "^1.0.3",
-    "@cogoport/components": "^1.0.429",
+    "@cogoport/components": "^1.0.430",
     "@cogoport/icons-react": "^1.0.84",
     "@cogoport/maps": "^1.0.3",
     "@cogoport/utils": "^1.2.10",
@@ -60,6 +60,6 @@
     "postcss-flexbugs-fixes": "^5.0.2",
     "postcss-nested": "^6.0.1",
     "postcss-preset-env": "^8.5.1",
-    "stylelint": "^15.9.0"
+    "stylelint": "^15.10.0"
   }
 }

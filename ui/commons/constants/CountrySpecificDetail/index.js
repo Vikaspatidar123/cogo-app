@@ -10,25 +10,24 @@ const COUNTRY_SPECIFIC_DATA = {
 	VN : VN.others,
 };
 
-let data = {};
-
-const getDetails = ({
+const getCountrySpecificData = ({
 	country_id,
 	accessor = '',
 	accessorType = '',
 	isDefaultData = true,
+	country_code = '',
 }) => {
 	const countryDetails = getCountryDetails({
-		country_id,
+		country_id, country_code,
 	}) || {};
 
 	const countryCode = countryDetails.country_code;
 
+	let data = COUNTRY_SPECIFIC_DATA[countryCode] || {};
+
 	if (!(countryCode in COUNTRY_SPECIFIC_DATA)) {
 		data = isDefaultData ? defaultInfo : {};
 	}
-
-	data = COUNTRY_SPECIFIC_DATA[countryCode] || {};
 
 	return getByKey(data[accessorType], accessor) || null;
 };
@@ -41,7 +40,7 @@ function CountrySpecificData({
 }) {
 	return (
 		<>
-			{getDetails({
+			{getCountrySpecificData({
 				country_id,
 				accessor,
 				accessorType,
@@ -50,17 +49,5 @@ function CountrySpecificData({
 		</>
 	);
 }
-
-const getCountrySpecificData = ({
-	country_id,
-	accessor = '',
-	accessorType = '',
-	isDefaultData,
-}) => getDetails({
-	country_id,
-	accessor,
-	accessorType,
-	isDefaultData,
-});
 
 export { getCountrySpecificData, CountrySpecificData };

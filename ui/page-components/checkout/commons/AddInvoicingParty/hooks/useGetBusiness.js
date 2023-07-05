@@ -5,11 +5,11 @@ import { useEffect, useCallback } from 'react';
 import { getPanHolderStatus } from '../utils/getPanHolderStatus';
 
 import { useRequest } from '@/packages/request';
-import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
-
-const INDIA_COUNTRY_CODE = GLOBAL_CONSTANTS.country_code.IN;
+import { useSelector } from '@/packages/store';
 
 const useGetBusiness = (props) => {
+	const { organization } = useSelector((state) => state.profile);
+
 	const [{ loading }, getBusinessApi] = useRequest({
 		url    : 'get_business',
 		method : 'get',
@@ -32,7 +32,7 @@ const useGetBusiness = (props) => {
 				params: {
 					identity_number : watchTaxNumber,
 					identity_type   : registrationNumberType,
-					country_code    : INDIA_COUNTRY_CODE,
+					country_code    : organization.country?.country_code,
 					provider_name   : 'cogoscore',
 				},
 			});
@@ -67,7 +67,7 @@ const useGetBusiness = (props) => {
 		} catch (error) {
 			console.log('error :: ', error);
 		}
-	}, [getBusinessApi, registrationNumberType, setValue, watchBusinessName, watchTaxNumber]);
+	}, [getBusinessApi, organization, registrationNumberType, setValue, watchBusinessName, watchTaxNumber]);
 
 	const onBlurTaxPanGstinControl = useCallback(() => {
 		if (

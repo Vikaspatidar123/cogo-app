@@ -1,10 +1,7 @@
 import AddressForm from '../../AddressForm';
 
-import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
-import getCountryId from '@/ui/commons/utils/getCountryId';
+import { getCountrySpecificData } from '@/ui/commons/constants/CountrySpecificDetail';
 import showErrorsInToast from '@/ui/commons/utils/showErrorsInToast';
-
-const INDIA_COUNTRY_ID = getCountryId(GLOBAL_CONSTANTS.country_code.IN);
 
 function CreateNewBillingAddress({
 	setShowComponent = () => {},
@@ -25,6 +22,12 @@ function CreateNewBillingAddress({
 		tradePartyId = '',
 	} = invoiceToTradePartyDetails;
 	const countryIdForAddressForm = countryId || organizationCountryId;
+
+	const { invoicing_party_validate_gst } = getCountrySpecificData({
+		country_id   : countryIdForAddressForm,
+		accessorType : 'navigations',
+		accessor     : 'common',
+	});
 
 	return (
 		<div>
@@ -58,7 +61,7 @@ function CreateNewBillingAddress({
 					},
 				]}
 				loading={false}
-				validateGst={countryIdForAddressForm === INDIA_COUNTRY_ID}
+				validateGst={invoicing_party_validate_gst}
 				registrationNumber={
 					registrationNumber || organizationRegistrationNumber
 				}

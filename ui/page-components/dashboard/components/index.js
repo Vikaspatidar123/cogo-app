@@ -12,13 +12,17 @@ import styles from './styles.module.css';
 import Tracking from './Tracking';
 import ActiveTracking from './Tracking/ActiveTracking';
 
+import { getCountrySpecificData } from '@/ui/commons/constants/CountrySpecificDetail';
 // import VerifyEmailMobile from '@/ui/commons/components/VerifyEmailMobile';
-import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
-import getCountryId from '@/ui/commons/utils/getCountryId';
 
-const INDIA_COUNTRY_ID = getCountryId(GLOBAL_CONSTANTS.country_code.IN);
 function SassDashboard() {
-	const { airTracking, oceanTracking, query, country_id, kyc_status } = GetTracking();
+	const { airTracking, oceanTracking, country_id, kyc_status } = GetTracking();
+
+	const { is_country_india } = getCountrySpecificData({
+		country_id,
+		accessorType : 'navigations',
+		accessor     : 'common',
+	});
 
 	return (
 		<div className={styles.main_class}>
@@ -53,8 +57,7 @@ function SassDashboard() {
 				</div>
 				<div className={styles.part2}>
 					<div className={styles.child2}>
-						{country_id === INDIA_COUNTRY_ID
-							&& query?.account_type === 'importer-exporter' && <PayLaterWidgets />}
+						{is_country_india && <PayLaterWidgets />}
 						<Elgibility />
 						<ExportFactoring />
 						<Promotion />

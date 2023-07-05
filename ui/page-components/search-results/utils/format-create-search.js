@@ -1,12 +1,9 @@
 import { isEmpty } from '@cogoport/utils';
 
 import { FCL_CUSTOMS_CONTAINER_COMMODITY_MAPPING, HAZ_CLASSES } from '@/ui/commons/constants/commodities';
+import { getCountrySpecificData } from '@/ui/commons/constants/CountrySpecificDetail';
 import getGeoConstants from '@/ui/commons/constants/geo';
-import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
-import getCountryId from '@/ui/commons/utils/getCountryId';
 import getFormattedValues from '@/ui/commons/utils/getFormattedValues';
-
-const VIETNAM_COUNTRY_ID = getCountryId(GLOBAL_CONSTANTS.country_code.VN);
 
 const mergeContainerDetails = (containers) => {
 	const mergedValues = {};
@@ -196,15 +193,25 @@ const formatDataForSingleService = ({
 		let cargo_value_currency = null;
 		let address = null;
 		let ad_code = null;
+		const { is_country_vietnam: isOriginVietnam } = getCountrySpecificData({
+			country_id   : rawParams?.origin_country_id,
+			accessorType : 'navigations',
+			accessor     : 'common',
+		});
+
+		const { is_country_vietnam: isDestinationVietnam } = getCountrySpecificData({
+			country_id   : rawParams?.destination_country_id,
+			accessorType : 'navigations',
+			accessor     : 'common',
+		});
+
 		if (values?.trade_type === 'export' || type === 'export') {
-			if (
-				rawParams?.origin_country_id === VIETNAM_COUNTRY_ID
-				&& rawParams?.origin_port?.is_icd === true
+			if (isOriginVietnam && rawParams?.origin_port?.is_icd === true
 			) {
 				value.country_id = rawParams?.origin_port?.country_id;
 			} else {
-				value.port_id =					rawParams?.source === 'upsell'
-					&& rawParams?.origin_country_id === VIETNAM_COUNTRY_ID
+				value.port_id = rawParams?.source === 'upsell'
+					&& isOriginVietnam
 					&& rawParams?.origin_main_port_id
 					? rawParams?.origin_main_port_id
 					: values?.port_id || values?.origin_port_id;
@@ -227,13 +234,13 @@ const formatDataForSingleService = ({
 			ad_code = values?.export_fcl_customs_have_add_code || undefined;
 		} else if (values?.trade_type === 'import' || type === 'import') {
 			if (
-				rawParams?.destination_country_id === VIETNAM_COUNTRY_ID
+				isDestinationVietnam
 				&& rawParams?.destination_port?.is_icd === true
 			) {
 				value.country_id = rawParams?.destination_port?.country_id;
 			} else {
-				value.port_id =					rawParams?.source === 'upsell'
-					&& rawParams?.destination_country_id === VIETNAM_COUNTRY_ID
+				value.port_id = rawParams?.source === 'upsell'
+					&& isDestinationVietnam
 					&& rawParams?.destination_main_port_id
 					? rawParams?.destination_main_port_id
 					: values?.port_id || values?.destination_port_id;

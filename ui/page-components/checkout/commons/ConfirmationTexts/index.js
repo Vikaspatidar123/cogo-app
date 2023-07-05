@@ -5,10 +5,8 @@ import React from 'react';
 
 import styles from './styles.module.css';
 
+import { getCountrySpecificData } from '@/ui/commons/constants/CountrySpecificDetail';
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
-import getCountryId from '@/ui/commons/utils/getCountryId';
-
-const INDIA_COUNTRY_ID = getCountryId(GLOBAL_CONSTANTS.country_code.IN);
 
 function ConfirmationTexts({
 	primaryServiceData = {},
@@ -57,7 +55,13 @@ function ConfirmationTexts({
 
 	const { origin_country_id } = primaryServiceData;
 
-	const isExportingCountryIndia = INDIA_COUNTRY_ID === origin_country_id && trade_type === 'export';
+	const { is_country_india } = getCountrySpecificData({
+		country_id   : origin_country_id,
+		accessorType : 'navigations',
+		accessor     : 'common',
+	});
+
+	const isExportingCountryIndia = is_country_india && trade_type === 'export';
 
 	const isShowDestinationDays = destination_detention || destination_demurrage;
 

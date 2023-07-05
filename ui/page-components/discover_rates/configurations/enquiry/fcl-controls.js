@@ -1,7 +1,7 @@
 import GLOBAL_CONSTANTS from '@/ui/commons/constants//globals';
 
-const INDIA_COUNTRY_CODE = GLOBAL_CONSTANTS.country_code.IN;
-
+const SUPPORTED_COUNTRY_IDS = GLOBAL_CONSTANTS.service_supported_countries
+	.feature_supported_service.common.services.fcl_freight.countries;
 const fclControls = () => [
 	{
 		name    : 'free_days_detention_destination',
@@ -140,7 +140,7 @@ const fclControls = () => [
 			},
 		],
 		condition: {
-			destination_country : [INDIA_COUNTRY_CODE],
+			destination_country : SUPPORTED_COUNTRY_IDS,
 			inco_term           : [
 				'dap',
 				'ddp',
@@ -170,7 +170,7 @@ const fclControls = () => [
 			},
 		],
 		condition: {
-			origin_country : [INDIA_COUNTRY_CODE],
+			origin_country : SUPPORTED_COUNTRY_IDS,
 			inco_term      : ['dap', 'ddp', 'dat', 'cif', 'cfr', 'cip'],
 		},
 	},

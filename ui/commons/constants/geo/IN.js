@@ -422,7 +422,10 @@ export default {
 		},
 		navigations: {
 			common: {
-				validate_registration_number: true,
+				validate_registration_number : true,
+				invoicing_party_validate_gst : true,
+				is_country_india             : true,
+				is_country_vietnam           : false,
 			},
 
 			onboarding: {
@@ -448,6 +451,16 @@ export default {
 			profile_details: {
 				show_whatsapp: true,
 			},
+
+			spot_search_air: {
+				origin_input_trade_type               : 'export',
+				origin_input_location_trade_type      : 'import',
+				destination_input_trade_type          : 'import',
+				destination_input_location_trade_type : 'export',
+				is_origin_country_code_in             : true,
+				is_destination_country_code_in        : true,
+			},
+
 		},
 	},
 };

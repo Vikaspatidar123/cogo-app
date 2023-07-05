@@ -7,11 +7,11 @@ import styles from './styles.module.css';
 import { useForm } from '@/packages/forms';
 import getField from '@/packages/forms/Controlled';
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
-import getCountryId from '@/ui/commons/utils/getCountryId';
 
 const Location = getField('async_select');
 
-const INDIA_COUNTRY_ID = getCountryId(GLOBAL_CONSTANTS.country_code.IN);
+const SUPPORTED_COUNTRY_IDS =	GLOBAL_CONSTANTS.service_supported_countries.feature_supported_service.common
+	.services.ftl_freight.default_country_ids;
 
 const location_control = [
 	{
@@ -24,8 +24,8 @@ const location_control = [
 		params         : {
 			apply_sorting : false,
 			filters       : {
-				type       : ['pincode', 'seaport', 'airport', 'city'],
-				country_id : [INDIA_COUNTRY_ID],
+				type : ['pincode', 'seaport', 'airport', 'city'],
+				id   : SUPPORTED_COUNTRY_IDS,
 			},
 		},
 		size  : 'md',

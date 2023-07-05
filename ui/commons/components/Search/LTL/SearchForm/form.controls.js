@@ -1,45 +1,41 @@
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
-import getCountryId from '@/ui/commons/utils/getCountryId';
 
-const INDIA_COUNTRY_ID = getCountryId(GLOBAL_CONSTANTS.country_code.IN);
-
-const getControls = () => {
-	const countryIds = [INDIA_COUNTRY_ID];
-	return [
-		{
-			label             : 'Origin Location',
-			name              : 'origin_location_id',
-			placeholder       : 'City/Port/Airport/Pincode',
-			includedInOptions : false,
-			type              : 'async_select',
-			asyncKey          : 'locations',
-			style             : { width: '300px' },
-			params            : {
-				apply_sorting : false,
-				filters       : {
-					type       : ['pincode', 'seaport', 'airport', 'city', 'warehouse'],
-					country_id : countryIds,
-				},
+const SUPPORTED_COUNTRY_ID = GLOBAL_CONSTANTS.service_supported_countries.feature_supported_service.common
+	.services.ltl_freight.default_country_id;
+const getControls = () => [
+	{
+		label             : 'Origin Location',
+		name              : 'origin_location_id',
+		placeholder       : 'City/Port/Airport/Pincode',
+		includedInOptions : false,
+		type              : 'async_select',
+		asyncKey          : 'locations',
+		style             : { width: '300px' },
+		params            : {
+			apply_sorting : false,
+			filters       : {
+				type : ['pincode', 'seaport', 'airport', 'city', 'warehouse'],
+				id   : [SUPPORTED_COUNTRY_ID],
 			},
-			rules: { required: 'Origin Location is required' },
 		},
-		{
-			label             : 'Destination Location',
-			name              : 'destination_location_id',
-			placeholder       : 'City/Port/Airport/Pincode',
-			includedInOptions : false,
-			style             : { width: '300px' },
-			type              : 'async_select',
-			asyncKey          : 'locations',
-			params            : {
-				apply_sorting : false,
-				filters       : {
-					type       : ['pincode', 'seaport', 'airport', 'city', 'warehouse'],
-					country_id : countryIds,
-				},
+		rules: { required: 'Origin Location is required' },
+	},
+	{
+		label             : 'Destination Location',
+		name              : 'destination_location_id',
+		placeholder       : 'City/Port/Airport/Pincode',
+		includedInOptions : false,
+		style             : { width: '300px' },
+		type              : 'async_select',
+		asyncKey          : 'locations',
+		params            : {
+			apply_sorting : false,
+			filters       : {
+				type : ['pincode', 'seaport', 'airport', 'city', 'warehouse'],
+				id   : [SUPPORTED_COUNTRY_ID],
 			},
-			rules: { required: 'Destination Location is required' },
 		},
-	];
-};
+		rules: { required: 'Destination Location is required' },
+	},
+];
 export default getControls;

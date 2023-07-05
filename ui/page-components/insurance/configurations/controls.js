@@ -1,8 +1,9 @@
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
-import getCountryId from '@/ui/commons/utils/getCountryId';
 
 const get = (formObject = {}, key = '') => formObject[key] || null;
-const INDIA_COUNTRY_ID = getCountryId(GLOBAL_CONSTANTS.country_code.IN);
+
+const SUPPORTED_COUNTRY_ID = GLOBAL_CONSTANTS.service_supported_countries.feature_supported_service.cargo_insurance
+	.country_id;
 
 const controls = [
 	{
@@ -80,7 +81,7 @@ const controls = [
 		params      : {
 			filters: {
 				type       : 'pincode',
-				country_id : INDIA_COUNTRY_ID,
+				country_id : SUPPORTED_COUNTRY_ID,
 			},
 			includes: {
 				country                 : '',

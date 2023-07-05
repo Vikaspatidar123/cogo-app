@@ -387,7 +387,10 @@ export default {
 		},
 		navigations: {
 			common: {
-				validate_registration_number: false,
+				validate_registration_number : false,
+				invoicing_party_validate_gst : false,
+				is_country_india             : false,
+				is_country_vietnam           : true,
 			},
 
 			onboarding: {
@@ -412,6 +415,15 @@ export default {
 
 			profile_details: {
 				show_whatsapp: false,
+			},
+
+			spot_search_air: {
+				origin_input_trade_type               : null,
+				origin_input_location_trade_type      : null,
+				destination_input_trade_type          : null,
+				destination_input_location_trade_type : null,
+				is_origin_country_code                : false,
+				is_destination_country_code           : false,
 			},
 		},
 	},

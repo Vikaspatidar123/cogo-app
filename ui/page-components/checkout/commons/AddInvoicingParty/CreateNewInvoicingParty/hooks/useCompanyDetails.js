@@ -5,10 +5,7 @@ import { getOrgControls, getAdditionalOrgControls } from '../../utils/controls';
 
 import { useForm } from '@/packages/forms';
 import patterns from '@/ui/commons/configurations/patterns';
-import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
-import getCountryId from '@/ui/commons/utils/getCountryId';
-
-const INDIA_COUNTRY_ID = getCountryId(GLOBAL_CONSTANTS.country_code.IN);
+import { getCountrySpecificData } from '@/ui/commons/constants/CountrySpecificDetail';
 
 const useCompanyDetails = ({
 	filledDetails = {},
@@ -38,7 +35,11 @@ const useCompanyDetails = ({
 	const watchCountryId = watch('country_id');
 	const watchBusinessName = watch('business_name');
 
-	const isCountryIndia = watchCountryId === INDIA_COUNTRY_ID;
+	const { is_country_india: isCountryIndia } = getCountrySpecificData({
+		country_id   : watchCountryId,
+		accessorType : 'navigations',
+		accessor     : 'common',
+	});
 
 	const { getBusinessApi = {}, onBlurTaxPanGstinControl = () => {} } = useGetBusiness({
 		watchTaxNumber         : watchPan?.toUpperCase(),

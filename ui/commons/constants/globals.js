@@ -1,5 +1,11 @@
 import IMAGE_URLS from './imageUrl';
 
+const COUNTRY_IDS = {
+	IN : '541d1232-58ce-4d64-83d6-556a42209eb7',
+	VN : '177fcbad-8ef7-4324-871c-6c31745f4411',
+	GB : '222d4b9d-56a8-4580-b761-a71c653263fb',
+};
+
 const GLOBAL_CONSTANTS = {
 	country_entity_ids: {
 		IN : '6fd98605-9d5d-479d-9fac-cf905d292b88',
@@ -21,6 +27,7 @@ const GLOBAL_CONSTANTS = {
 		USD : 'en-US',
 		VND : 'vi-VN',
 	},
+	country_ids: COUNTRY_IDS,
 
 	country_code: {
 		IN : 'IN',
@@ -138,6 +145,36 @@ const GLOBAL_CONSTANTS = {
 	},
 
 	whatsapp_supported_country_locale: ['en-IN'],
+
+	service_supported_countries: {
+		feature_supported_service: {
+			common: {
+				services: {
+					air_domestic: {
+						countries           : ['IN'],
+						default_country_id  : COUNTRY_IDS.IN,
+						default_country_ids : [COUNTRY_IDS.IN],
+					},
+					ftl_freight: {
+						countries           : ['IN', 'VN'],
+						default_country_id  : COUNTRY_IDS.IN,
+						default_country_ids : [COUNTRY_IDS.IN, COUNTRY_IDS.VN],
+					},
+					ltl_freight: {
+						countries           : ['IN'],
+						default_country_id  : COUNTRY_IDS.IN,
+						default_country_ids : [COUNTRY_IDS.IN, COUNTRY_IDS.VN],
+					},
+					fcl_freight: {
+						countries: ['IN'],
+					},
+				},
+			},
+			cargo_insurance: {
+				country_id: COUNTRY_IDS.IN,
+			},
+		},
+	},
 };
 
 export default GLOBAL_CONSTANTS;

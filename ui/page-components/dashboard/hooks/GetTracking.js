@@ -4,8 +4,7 @@ import { useRequest } from '@/packages/request';
 import { useSelector } from '@/packages/store';
 
 function GetTracking() {
-	const { query, country_id, kyc_status } = useSelector(({ general, profile }) => ({
-		query      : general?.query,
+	const { country_id, kyc_status } = useSelector(({ profile }) => ({
 		country_id : profile?.organization?.country_id,
 		kyc_status : profile?.organization?.kyc_status,
 	}));
@@ -35,6 +34,6 @@ function GetTracking() {
 	useEffect(() => {
 		schedulesData();
 	}, [schedulesData]);
-	return { loading, schedulesData, query, airTracking, oceanTracking, country_id, kyc_status };
+	return { loading, schedulesData, airTracking, oceanTracking, country_id, kyc_status };
 }
 export default GetTracking;

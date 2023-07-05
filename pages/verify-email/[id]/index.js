@@ -16,7 +16,7 @@ export async function getServerSideProps(ctx) {
 			setCookieAndRedirect(token, ctx, redirectPath);
 		}
 	} catch (e) {
-		console.log(e.toString());
+		console.error(e.toString());
 	}
 	return {
 		layout : 'none',

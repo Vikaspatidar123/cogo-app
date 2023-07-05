@@ -1,14 +1,9 @@
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
+import { AUTO_SIGNUP_PAGE_MAPPINGS as PAGE_MAPPINGS } from '@/ui/commons/constants/pageMappings';
 import setCookieAndRedirect from '@/ui/commons/utils/setCookieAndRedirect';
 import getVerifyAutoSignUpEmail from '@/ui/page-components/authentication/hooks/useVerifyAutoSignUpEmail';
 import { VerifyAutoSignUpEmail } from '@/ui/page-components/authentication/index';
-
-const PAGE_MAPPINGS = {
-	app_discover_rates : 'book',
-	search_results     : 'book-deep-link',
-	app_dashboard      : 'dashboard',
-};
 
 export async function getServerSideProps(ctx) {
 	const { query, locale } = ctx;
@@ -62,7 +57,7 @@ export async function getServerSideProps(ctx) {
 			setCookieAndRedirect(token, ctx, uri);
 		}
 	} catch (e) {
-		console.log(e.toString());
+		console.error(e.toString());
 	}
 
 	return 	{

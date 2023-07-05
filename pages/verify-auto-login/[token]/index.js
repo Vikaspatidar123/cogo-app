@@ -1,18 +1,10 @@
 import { Toast } from '@cogoport/components';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
+import { AUTO_LOGIN_PAGE_MAPPINGS as PAGE_MAPPINGS } from '@/ui/commons/constants/pageMappings';
 import setCookieAndRedirect from '@/ui/commons/utils/setCookieAndRedirect';
 import VerifyAutoLogin from '@/ui/page-components/authentication/components/VerifyAutoLogin';
 import getVerifyAutoLogin from '@/ui/page-components/authentication/hooks/useVerifyAutoLogin';
-
-const PAGE_MAPPINGS = {
-	app_discover_rates  : 'book',
-	search_results      : 'book-deep-link',
-	app_dashboard       : 'dashboard',
-	manage_subscription : 'saas/cogo-subscriptions/manage-subscription',
-	payment_dashboard   : 'payment-dashboard',
-	shipments           : 'shipments',
-};
 
 export async function getServerSideProps(ctx) {
 	const { query, locale } = ctx;

@@ -43,5 +43,13 @@
     "rightPanel_get_started_billing_address_address_label":"Billing Address",
     "rightPanel_get_started_billing_address_address_required":"Billing Address is required",
     "rightPanel_get_started_billing_address_pincode_label":"Pincode",
-    "rightPanel_get_started_billing_address_pincode_required_rules":"Pincode is required."
+    "rightPanel_get_started_billing_address_pincode_required_rules":"Pincode is required.",
+    "rightPanel_get_started_work_scope_options_1":"Partner/Owner/Director",
+    "rightPanel_get_started_work_scope_options_2":"Finance Head",
+    "rightPanel_get_started_work_scope_options_3":"Finance Team Member",
+    "rightPanel_get_started_work_scope_options_4":"Marketing/Sales",
+    "rightPanel_get_started_work_scope_options_5":"Procurement",
+    "rightPanel_get_started_work_scope_options_6":"Operations",
+    "rightPanel_get_started_work_scope_options_7":"Logistics Manager",
+    "rightPanel_get_started_work_scope_options_8":"Other"
 }

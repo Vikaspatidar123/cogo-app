@@ -44,35 +44,35 @@ const getControls = ({
 		rules         : { required: t('getStarted:rightPanel_get_started_organizationForm_role_is_required_rule') },
 		options       : [
 			{
-				label : 'Partner/Owner/Director',
+				label : t('getStarted:rightPanel_get_started_work_scope_options_1'),
 				value : 'i_am_owner',
 			},
 			{
-				label : 'Finance Head',
+				label : t('getStarted:rightPanel_get_started_work_scope_options_2'),
 				value : 'i_am_finance_head',
 			},
 			{
-				label : 'Finance Team Member',
+				label : t('getStarted:rightPanel_get_started_work_scope_options_3'),
 				value : 'i_work_in_finance',
 			},
 			{
-				label : 'Marketing/Sales',
+				label : t('getStarted:rightPanel_get_started_work_scope_options_4'),
 				value : 'i_work_in_marketing_and_sales',
 			},
 			{
-				label : 'Procurement',
+				label : t('getStarted:rightPanel_get_started_work_scope_options_5'),
 				value : 'i_work_in_procurement',
 			},
 			{
-				label : 'Operations',
+				label : t('getStarted:rightPanel_get_started_work_scope_options_6'),
 				value : 'i_work_in_operations',
 			},
 			{
-				label : 'Logistics Manager',
+				label : t('getStarted:rightPanel_get_started_work_scope_options_7'),
 				value : 'i_am_logistics_manager',
 			},
 			{
-				label : 'Other',
+				label : t('getStarted:rightPanel_get_started_work_scope_options_8'),
 				value : 'other',
 			},
 		],

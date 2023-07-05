@@ -38,5 +38,13 @@
     "rightPanel_get_started_billing_address_address_label":"Địa chỉ thanh toán",
     "rightPanel_get_started_billing_address_address_required":"Địa chỉ thanh toán là bắt buộc",
     "rightPanel_get_started_billing_address_pincode_label":"Mã PIN",
-    "rightPanel_get_started_billing_address_pincode_required_rules":"Pincode là bắt buộc."
+    "rightPanel_get_started_billing_address_pincode_required_rules":"Pincode là bắt buộc.",
+    "rightPanel_get_started_work_scope_options_1":"Đối tác/Chủ sở hữu/Giám đốc",
+    "rightPanel_get_started_work_scope_options_2":"Trưởng phòng tài chính",
+    "rightPanel_get_started_work_scope_options_3":"Thành viên nhóm tài chính",
+    "rightPanel_get_started_work_scope_options_4":"Tiếp thị/Bán hàng",
+    "rightPanel_get_started_work_scope_options_5":"Tạp vụ",
+    "rightPanel_get_started_work_scope_options_6":"Hoạt động",
+    "rightPanel_get_started_work_scope_options_7":"Quản lý vận chuyển",
+    "rightPanel_get_started_work_scope_options_8":"Khác"
 }

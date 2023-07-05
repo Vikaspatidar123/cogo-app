@@ -25,11 +25,11 @@ export const addAddressControls = [
 	{
 		label       : 'Pincode',
 		name        : 'pincode',
+		placeholder : 'Enter Pincode',
+		rules       : { required: 'required *' },
 		type        : 'async_select',
 		asyncKey    : 'locations',
 		stepper     : false,
-		placeholder : 'Enter Pincode',
-		rules       : { required: 'required *' },
 		span        : 6,
 		valueKey    : 'postal_code',
 		labelKey    : 'postal_code',
@@ -50,9 +50,9 @@ export const addAddressControls = [
 	{
 		label       : 'Country',
 		name        : 'country_id',
-		type        : 'async_select',
 		placeholder : 'Enter Country',
 		rules       : { required: 'required *' },
+		type        : 'async_select',
 		asyncKey    : 'locations',
 		valueKey    : 'id',
 		params      : {
@@ -104,9 +104,9 @@ export const addAddressControls = [
 	{
 		label       : 'Phone Number',
 		name        : 'phoneNumber',
-		type        : 'mobile-select',
+		type        : 'mobile_number',
 		placeholder : 'Enter Phone Number',
-		span        : 6,
+		span        : 12,
 	},
 ];
 

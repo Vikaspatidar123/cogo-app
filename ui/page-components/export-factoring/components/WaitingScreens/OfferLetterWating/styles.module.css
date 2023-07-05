@@ -1,0 +1,74 @@
+.container {
+	display: flex;
+	flex-direction: column;
+}
+.header {
+	display: flex;
+	flex-direction: row;
+}
+.main_content {
+	display: flex;
+	flex-direction: row;
+}
+.view_container {
+	padding: 20px;
+	align-items: center;
+}
+.footer {
+	display: flex;
+}
+.doc_icon {
+	padding: 26px;
+}
+.wrapper_div {
+	display: flex;
+	flex-direction: column;
+}
+
+.label {
+	color: var(--black, #221f20);
+	font-size: 24px;
+	font-family: Poppins;
+	font-style: normal;
+	font-weight: 400;
+	line-height: normal;
+}
+.sub_label {
+	color: var(--black-60, #828282);
+	font-size: 14px;
+	font-family: Poppins;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 150%;
+}
+.card {
+	display: flex;
+	padding: 26px;
+	flex-direction: column;
+	align-items: flex-start;
+	margin: 20px;
+	border-radius: 6.36px;
+	background: var(--purple-colours-20, #f2f3fa);
+}
+.card_icon {
+	display: flex;
+	height: 32px;
+	align-items: flex-start;
+}
+.card_label {
+	color: var(--black, #221f20);
+	font-size: 16px;
+	font-family: Poppins;
+	font-style: normal;
+	font-weight: 600;
+	line-height: normal;
+}
+.card_sub_label {
+	color: var(--black-80, #4f4f4f);
+	font-size: 14px;
+	font-family: Poppins;
+	font-style: normal;
+	font-weight: 400;
+	line-height: normal;
+	max-width: 14vw;
+}

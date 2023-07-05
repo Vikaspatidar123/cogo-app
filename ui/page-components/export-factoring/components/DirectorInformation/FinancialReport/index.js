@@ -6,8 +6,6 @@ import { financialReportControls } from '../../../configurations/getFinanceContr
 
 import styles from './styles.module.css';
 
-import getField from '@/packages/forms/Controlled';
-
 function FinancialReport() {
 	const {
 		control,

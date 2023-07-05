@@ -38,7 +38,6 @@ function DirectorInformation({
 			<div className={styles.financial_div}>
 				<FinancialReport />
 			</div>
-
 			{showEdit && (
 				<EditDetails
 					getCreditRequestResponse={getCreditRequestResponse}

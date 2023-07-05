@@ -1,11 +1,16 @@
 import { Toast } from '@cogoport/components';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import { getApiError } from '@/packages/forms';
 import { useTicketsRequest } from '@/packages/request';
 import { useSelector } from '@/packages/store';
 
+const translationKey = 'common:components_header_tickets_api';
+
 const useCreateTicket = () => {
+	const { t } = useTranslation(['common']);
+
 	const {
 		organization: { id: organizationID, country_id = '', cogo_entity_id = '' } = {},
 		id = '',
@@ -42,10 +47,10 @@ const useCreateTicket = () => {
 				data: payload,
 			});
 
-			Toast.success('Ticket Created Sucessfully');
+			Toast.success(t(`${translationKey}_create_success`));
 			setTicketId(res?.data?.ID);
 		} catch (e) {
-			Toast.error(getApiError(e?.response?.data));
+			Toast.error(getApiError(e?.response?.data) || t(`${translationKey}_error`));
 		}
 	};
 

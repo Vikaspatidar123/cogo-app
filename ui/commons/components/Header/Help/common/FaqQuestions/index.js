@@ -2,10 +2,14 @@ import { IcMDocument, IcMOpenlink } from '@cogoport/icons-react';
 
 import styles from './styles.module.css';
 
+import { useRouter } from '@/packages/next';
+
 function FaqQuestions({ data = [], fromChat = false }) {
+	const { locale = '', query } = useRouter();
 	const handleClick = (faqId) => {
 		const baseUrl = window.location.origin;
-		const urlToOpen = `${baseUrl}/help-center/faq/${faqId}/`;
+		const urlToOpen = `${baseUrl}/${locale}/
+		${query?.org_id}/${query?.branch_id}/${query?.account_type}/help-center/faq/${faqId}/`;
 		window.open(urlToOpen, '_blank', 'noreferrer');
 	};
 

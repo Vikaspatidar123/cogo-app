@@ -1,9 +1,15 @@
+import { useTranslation } from 'next-i18next';
+
 import {
 	asyncFieldsTicketTypes,
 } from '@/packages/forms';
 import useGetAsyncCogoCareOptions from '@/packages/forms/hooks/useGetAsyncCogoCareOptions';
 
+const translationKey = 'common:components_header_tickets_create';
+
 const useRaiseTicketControls = ({ setSelectedQuery = () => {} }) => {
+	const { t } = useTranslation(['common']);
+
 	const loadOptions = useGetAsyncCogoCareOptions({
 		...asyncFieldsTicketTypes(),
 	});
@@ -12,11 +18,11 @@ const useRaiseTicketControls = ({ setSelectedQuery = () => {} }) => {
 
 	return [
 		{
-			label       : 'Tell us your query',
+			label       : t(`${translationKey}_query`),
 			name        : 'ticket_type',
 			type        : 'select',
 			isClearable : true,
-			placeholder : 'Reason',
+			placeholder : t(`${translationKey}_query_placeholder`),
 			rules       : {
 				required: true,
 			},

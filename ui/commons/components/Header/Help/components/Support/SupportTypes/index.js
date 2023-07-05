@@ -1,19 +1,24 @@
 import { cl } from '@cogoport/components';
 import { IcMArrowRight } from '@cogoport/icons-react';
+import { useTranslation } from 'react-i18next';
 
 import getSupportOptions from './getSupportOptions';
 import styles from './styles.module.css';
 
 import { useRouter } from '@/packages/next';
 
+const translationKey = 'common:components_header_tickets_support';
+
 function SupportTypes({
 	setModalData = () => {},
 	setShowPopover = () => {},
 	unreadCount = 0,
 }) {
+	const { t } = useTranslation(['common']);
+
 	const { push } = useRouter();
 
-	const supportTypeOptions = getSupportOptions();
+	const supportTypeOptions = getSupportOptions({ t });
 
 	const handleClick = ({ name, navigate = false }) => {
 		if (!navigate) {
@@ -45,7 +50,7 @@ function SupportTypes({
 				onClick={() => handleClick({ name: 'tickets_list' })}
 			>
 				<div className={styles.header_styles}>
-					All support tickets
+					{t(`${translationKey}_all`)}
 					{unreadCount ? (
 						<div className={styles.unread_chats_count}>{unreadCount}</div>
 					) : null}

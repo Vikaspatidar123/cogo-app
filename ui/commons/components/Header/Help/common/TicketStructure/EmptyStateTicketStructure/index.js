@@ -1,14 +1,19 @@
 import { Button, cl } from '@cogoport/components';
 import { IcMTicket } from '@cogoport/icons-react';
+import { useTranslation } from 'react-i18next';
 
 import styles from './styles.module.css';
+
+const translationKey = 'common:components_header_tickets_list';
 
 function EmptyStateTicketStructure({
 	setModalData,
 	listType = '',
 	emptyText = '',
 }) {
-	const listEmptyText = emptyText || 'No Tickets Raised';
+	const { t } = useTranslation(['common']);
+
+	const listEmptyText = emptyText || t(`${translationKey}_empty_text`);
 
 	return (
 		<div
@@ -24,7 +29,7 @@ function EmptyStateTicketStructure({
 					className={styles.ticket_raise_button}
 					onClick={() => setModalData({ type: 'raise_a_ticket' })}
 				>
-					Raise a Ticket
+					{t(`${translationKey}_create_ticket`)}
 				</Button>
 			)}
 		</div>

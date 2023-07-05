@@ -1,9 +1,14 @@
 import { Toast } from '@cogoport/components';
+import { useTranslation } from 'react-i18next';
 
 import { useTicketsRequest } from '@/packages/request';
 import { useSelector } from '@/packages/store';
 
+const translationKey = 'common:components_header_tickets_api';
+
 const useUpdateTicketFeedback = ({ refetchTicket = () => {} }) => {
+	const { t } = useTranslation(['common']);
+
 	const profile = useSelector((state) => state?.profile);
 
 	const [{ loading }, trigger] = useTicketsRequest({
@@ -22,9 +27,9 @@ const useUpdateTicketFeedback = ({ refetchTicket = () => {} }) => {
 				},
 			});
 			refetchTicket();
-			Toast.success('Ticket Rating Submitted Successfully!');
+			Toast.success(t(`${translationKey}_rating_success`));
 		} catch (e) {
-			Toast.error(e?.error || 'something went wrong');
+			Toast.error(e?.error || t(`${translationKey}_error`));
 		}
 	};
 

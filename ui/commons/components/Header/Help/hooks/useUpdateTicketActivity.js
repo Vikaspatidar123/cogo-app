@@ -1,14 +1,19 @@
 import { Toast } from '@cogoport/components';
+import { useTranslation } from 'react-i18next';
 
 import { STATUS_CHANGE_PAYLOAD } from '../constants';
 
 import { useTicketsRequest } from '@/packages/request';
 import { useSelector } from '@/packages/store';
 
+const translationKey = 'common:components_header_tickets_api';
+
 const useUpdateTicketActivity = ({
 	refreshTickets = () => {},
 	refetchTicket = () => {},
 }) => {
+	const { t } = useTranslation(['common']);
+
 	const { profile } = useSelector((state) => state);
 
 	const [{ loading }, trigger] = useTicketsRequest({
@@ -29,11 +34,11 @@ const useUpdateTicketActivity = ({
 					TicketID      : [Number(id)],
 				},
 			});
-			Toast.success('Ticket Status Updated Successfully!');
+			Toast.success(t(`${translationKey}_status_update`));
 			refreshTickets();
 			refetchTicket();
 		} catch (e) {
-			Toast.error(e?.error || 'something went wrong');
+			Toast.error(e?.error || t(`${translationKey}_error`));
 		}
 	};
 

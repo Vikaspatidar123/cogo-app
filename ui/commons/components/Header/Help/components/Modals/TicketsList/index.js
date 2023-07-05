@@ -1,5 +1,6 @@
 import { Modal, Tabs, TabPanel } from '@cogoport/components';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import FilterType from '../../../common/FilterType';
 import TicketStructure from '../../../common/TicketStructure';
@@ -8,7 +9,11 @@ import useListTickets from '../../../hooks/useListTickets';
 
 import styles from './styles.module.css';
 
+const translationKey = 'common:components_header_tickets_list';
+
 function TicketsList({ setModalData = () => {} }) {
+	const { t } = useTranslation(['common']);
+
 	const [activeTab, setActiveTab] = useState('all');
 	const [searchValue, setSearchValue] = useState('');
 
@@ -22,11 +27,11 @@ function TicketsList({ setModalData = () => {} }) {
 		activeTab,
 	});
 
-	const tabsMapping = tabsKeysMapping();
+	const tabsMapping = tabsKeysMapping({ t });
 
 	return (
 		<>
-			<Modal.Header title="All Tickets" />
+			<Modal.Header title={t(`${translationKey}_tickets`)} />
 			<Modal.Body className={styles.modal_body}>
 				<Tabs activeTab={activeTab} onChange={setActiveTab}>
 					{tabsMapping.map(({ name, title }) => (

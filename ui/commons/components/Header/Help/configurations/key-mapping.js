@@ -1,56 +1,58 @@
-export const actionButtonKeys = () => ({
+const translationKey = 'common:components_header_tickets_keymapping';
+
+export const actionButtonKeys = ({ t }) => ({
 	unresolved: {
-		label : 'Resolve',
+		label : t(`${translationKey}_resolve`),
 		name  : 'resolve',
 	},
 	closed: {
-		label : 'Reopen',
+		label : t(`${translationKey}_reopen`),
 		name  : 'reopen',
 	},
 	pending: {
-		label : 'Resolve',
+		label : t(`${translationKey}_resolve`),
 		name  : 'resolve',
 	},
 	escalated: {
-		label : 'Resolve',
+		label : t(`${translationKey}_resolve`),
 		name  : 'resolve',
 	},
 	reject_requested: {
-		label : 'Resolve',
+		label : t(`${translationKey}_resolve`),
 		name  : 'resolve',
 	},
 	resolve_requested: {
-		label : 'Resolve',
+		label : t(`${translationKey}_resolve`),
 		name  : 'resolve',
 	},
 });
 
-export const tabsKeysMapping = () => [
+export const tabsKeysMapping = ({ t }) => [
 	{
 		name  : 'all',
-		title : 'All',
+		title : t(`${translationKey}_all`),
 	},
 	{
 		name  : 'open',
-		title : 'Open',
+		title : t(`${translationKey}_open`),
 	},
 	{
 		name  : 'solved',
-		title : 'Solved',
+		title : t(`${translationKey}_solved`),
 	},
 ];
 
-export const statusLabelTransformation = () => ({
+export const statusLabelTransformation = ({ t }) => ({
 	open: {
-		label : 'Open',
+		label : t(`${translationKey}_open`),
 		color : '#D6B300',
 	},
 	closed: {
-		label : 'Solved',
+		label : t(`${translationKey}_solved`),
 		color : '#ABCD62',
 	},
 	rejected: {
-		label : 'Rejected',
+		label : t(`${translationKey}_rejected`),
 		color : '#F37166',
 	},
 });

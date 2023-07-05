@@ -9,6 +9,7 @@ function useListFaqQuestions({ selectedQuery = '' }) {
 	const { general: { scope = '' }, profile } = useSelector((state) => state);
 
 	const { debounceQuery, query: searchQuery = '' } = useDebounceQuery();
+	console.log('searchQuery:', searchQuery);
 
 	const [{ loading, data }, trigger] = useRequest({
 		url    : '/cogo_academy/list_faq_questions',
@@ -16,9 +17,9 @@ function useListFaqQuestions({ selectedQuery = '' }) {
 		scope,
 	}, { manual: false });
 
-	const fetchFaqQuestions = useCallback(() => {
+	const fetchFaqQuestions = useCallback(async () => {
 		try {
-			trigger({
+			await trigger({
 				params: {
 					filters: {
 						persona        : 'importer_exporter',
@@ -43,7 +44,7 @@ function useListFaqQuestions({ selectedQuery = '' }) {
 
 	useEffect(() => {
 		debounceQuery(selectedQuery);
-	}, [selectedQuery, debounceQuery]);
+	}, [selectedQuery]);
 
 	return {
 		faqListData: data || {},

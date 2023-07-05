@@ -1,9 +1,12 @@
 import { IcMTicket } from '@cogoport/icons-react';
 import { isEmpty } from '@cogoport/utils';
+import { useTranslation } from 'react-i18next';
 
 import FaqItem from '../../FaqItem';
 
 import styles from './styles.module.css';
+
+const translationKey = 'helpCenter:search_faq_list';
 
 function FaqsList({
 	setModalData = () => {},
@@ -12,11 +15,13 @@ function FaqsList({
 	loading = false,
 	isMobile = false,
 }) {
+	const { t } = useTranslation(['helpCenter']);
+
 	const { list = [] } = faqListData;
 
 	if (loading) {
 		return (
-			<div className={styles.container}>Loading...</div>
+			<div className={styles.container}>{t(`${translationKey}_loading`)}</div>
 		);
 	}
 
@@ -28,7 +33,7 @@ function FaqsList({
 				))}
 			</div>
 			{isEmpty(list) && (
-				<div className={styles.empty_list}>No results found.</div>
+				<div className={styles.empty_list}>{t(`${translationKey}_no_results_found`)}</div>
 			)}
 			{!isMobile && (
 				<div
@@ -42,9 +47,9 @@ function FaqsList({
 					<div className={styles.faq_container}>
 						<IcMTicket className={styles.ticket_icon} />
 						<div className={styles.question}>
-							Didn&apos;t find a suitable answer?
-							<span>Raise a ticket</span>
-							and we&apos;ll get back to you.
+							{t(`${translationKey}_suitable_answer`)}
+							<span>{t(`${translationKey}_raise_ticket`)}</span>
+							{t(`${translationKey}_back_to_you`)}
 						</div>
 					</div>
 				</div>

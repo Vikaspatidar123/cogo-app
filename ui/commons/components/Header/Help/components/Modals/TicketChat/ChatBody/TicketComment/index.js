@@ -1,5 +1,6 @@
 import { cl } from '@cogoport/components';
 import { isEmpty } from '@cogoport/utils';
+import { useTranslation } from 'react-i18next';
 
 import FaqQuestions from '../../../../../common/FaqQuestions';
 
@@ -10,6 +11,8 @@ import TimeLine from './TimeLine';
 import { Image, useRouter } from '@/packages/next';
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 import formatDate from '@/ui/commons/utils/formatDate';
+
+const translationKey = 'common:components_header_tickets_details';
 
 function TicketComment({
 	type = '',
@@ -23,12 +26,15 @@ function TicketComment({
 	faqs = [],
 	userType = '',
 }) {
+	const { t } = useTranslation(['common']);
+
 	const { locale = '', query } = useRouter();
 	const isAgent = systemUserID !== userId || userType === 'system';
 
 	const handleClick = () => {
 		const baseUrl = window.location.origin;
-		const urlToOpen = `${baseUrl}/${locale}/${query?.partner_id}/help-center`;
+		const urlToOpen = `${baseUrl}/
+							${locale}/${query?.org_id}/${query?.branch_id}/${query?.account_type}/help-center`;
 		window.open(urlToOpen, '_blank', 'noreferrer');
 	};
 
@@ -51,7 +57,7 @@ function TicketComment({
 				>
 					<div className={styles.header_flex}>
 						<div className={styles.name_div}>
-							{isAgent ? 'Agent' : 'You'}
+							{t(`${translationKey}_${isAgent ? 'agent' : 'you'}`)}
 							,
 						</div>
 						<div className={styles.time}>
@@ -79,7 +85,7 @@ function TicketComment({
 								role="presentation"
 								onClick={handleClick}
 							>
-								View More
+								{t(`${translationKey}_view_more_button`)}
 							</div>
 						</div>
 					)}

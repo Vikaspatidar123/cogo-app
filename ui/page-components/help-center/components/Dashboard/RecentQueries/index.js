@@ -1,13 +1,18 @@
 import { cl } from '@cogoport/components';
 import { IcMSearchlight } from '@cogoport/icons-react';
 import { isEmpty } from '@cogoport/utils';
+import { useTranslation } from 'react-i18next';
 
 import FaqItem from '../../../common/FaqItem';
 import useListFaqSearchHistory from '../../../hooks/useListFaqSearchHistory';
 
 import styles from './styles.module.css';
 
+const translationKey = 'helpCenter:faq_home_page';
+
 function RecentQueries({ isMobile }) {
+	const { t } = useTranslation(['helpCenter']);
+
 	const { recentQueries = {}, recentQueriesLoading = false } = useListFaqSearchHistory();
 	const { list = [] } = recentQueries || {};
 	const activeQuestionsDoesNotExists = list.every(
@@ -18,7 +23,7 @@ function RecentQueries({ isMobile }) {
 	return (
 		<div className={styles.container}>
 			<div className={styles.header}>
-				<div className={styles.title}>Recent Queries</div>
+				<div className={styles.title}>{t(`${translationKey}_recent_queries`)}</div>
 			</div>
 			{emptyCheck ? (
 				<div
@@ -31,7 +36,7 @@ function RecentQueries({ isMobile }) {
 							isMobile ? styles.mobie_search_icon : ''
 						}`}
 					/>
-					User Doesn&apos;t have Any Recent Queries.
+					{t(`${translationKey}_empty_recent_queries`)}
 				</div>
 			) : (
 				<div className={styles.faqs_container}>

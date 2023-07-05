@@ -1,10 +1,13 @@
 import { Button, RatingComponent } from '@cogoport/components';
 import { IcCStar } from '@cogoport/icons-react';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import useUpdateTicketFeedback from '../../../../hooks/useUpdateTicketFeedback';
 
 import styles from './styles.module.css';
+
+const translationKey = 'common:components_header_tickets_feedback';
 
 function RateTicket({
 	id = '',
@@ -12,6 +15,8 @@ function RateTicket({
 	refetchTicket = () => {},
 	status,
 }) {
+	const { t } = useTranslation(['common']);
+
 	const [rating, setRating] = useState(ticketRating);
 
 	const { updateTicketFeedback = () => {}, updateLoading } =	useUpdateTicketFeedback({ refetchTicket });
@@ -19,7 +24,7 @@ function RateTicket({
 	if (status === 'rejected') {
 		return (
 			<div className={styles.feedback_text}>
-				Your ticket has been rejected.
+				{t(`${translationKey}_reject`)}
 			</div>
 		);
 	}
@@ -29,7 +34,7 @@ function RateTicket({
 			{ticketRating === 0 ? (
 				<>
 					<div className={styles.rating_text}>
-						Was your issue resolved?
+						{t(`${translationKey}_question`)}
 					</div>
 					<div className={styles.rating_container}>
 						<RatingComponent
@@ -49,13 +54,13 @@ function RateTicket({
 								updateTicketFeedback(rating, id);
 							}}
 						>
-							Submit
+							{t(`${translationKey}_submit`)}
 						</Button>
 					</div>
 				</>
 			) : (
 				<div className={styles.feedback_text}>
-					Your Rating for this ticket is
+					{t(`${translationKey}_thanks`)}
 					{' '}
 					{ticketRating}
 					<IcCStar className={styles.ticket_star} />

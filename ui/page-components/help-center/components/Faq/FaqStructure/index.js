@@ -1,5 +1,6 @@
 import { Button, Placeholder, cl } from '@cogoport/components';
 import { IcMArrowBack } from '@cogoport/icons-react';
+import { useTranslation } from 'react-i18next';
 
 import SearchFaq from '../../../common/SearchFaq';
 import useCreateFaqFeedback from '../../../hooks/useCreateFaqFeedback';
@@ -8,6 +9,8 @@ import useUpdateFaqFeedback from '../../../hooks/useUpdateFaqFeedback';
 import styles from './styles.module.css';
 
 import { useRouter } from '@/packages/next';
+
+const translationKey = 'helpCenter:faq_answer';
 
 function FaqStructure({
 	questionAbstract = '',
@@ -18,6 +21,7 @@ function FaqStructure({
 	getQuestion = () => {},
 	query,
 }) {
+	const { t } = useTranslation(['helpCenter']);
 	const router = useRouter();
 
 	const { submitFaqFeedback, feedbackLoading } = useCreateFaqFeedback({
@@ -38,7 +42,7 @@ function FaqStructure({
 
 	const recentFeedback = faq_feedbacks?.[faq_feedbacks.length - 1] || {};
 
-	const { is_positive: isPositiveReview, id: feedbackID = '' } =		recentFeedback || {};
+	const { is_positive: isPositiveReview, id: feedbackID = '' } =	recentFeedback || {};
 
 	const handleNavigation = () => {
 		const hasBackPath = window.history.length > 1;
@@ -72,8 +76,8 @@ function FaqStructure({
 				/>
 				<div className={styles.empty_container}>
 					{questionAbstract
-						? `There is no answer for the question ${questionAbstract}`
-						: 'Question Does\'nt exist.'}
+						? `${t(`${translationKey}_no_answer`)} ${questionAbstract}`
+						: t(`${translationKey}_no_question`)}
 				</div>
 			</div>
 		);
@@ -118,7 +122,7 @@ function FaqStructure({
 			</div>
 			<div className={styles.feedback_styles}>
 				<div className={styles.feedback_label}>
-					Was this helpful for you?
+					{t(`${translationKey}_feedback_question`)}
 				</div>
 				<div className={styles.feedback_buttons}>
 					<Button
@@ -130,7 +134,7 @@ function FaqStructure({
 						disabled={loading || feedbackLoading || updateLoading}
 						onClick={() => handleClick(false)}
 					>
-						No
+						{t(`${translationKey}_negative_feedback`)}
 					</Button>
 					<Button
 						size="md"
@@ -141,7 +145,7 @@ function FaqStructure({
 						disabled={loading || feedbackLoading || updateLoading}
 						onClick={() => handleClick(true)}
 					>
-						Yes
+						{t(`${translationKey}_positive_feedback`)}
 					</Button>
 				</div>
 			</div>

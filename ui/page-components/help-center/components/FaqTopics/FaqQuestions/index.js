@@ -1,17 +1,22 @@
 import { Pagination, Placeholder, cl } from '@cogoport/components';
 import { IcMHelp } from '@cogoport/icons-react';
 import { isEmpty } from '@cogoport/utils';
+import { useTranslation } from 'react-i18next';
 
 import FaqItem from '../../../common/FaqItem';
 import useListFaqTopicQuestions from '../../../hooks/useListFaqTopicQuestions';
 
 import styles from './styles.module.css';
 
+const translationKey = 'helpCenter:faq_topics';
+
 function FaqQuestions({
 	selectedTopic = {},
 	topicsLoading = false,
 	isMobile = false,
 }) {
+	const { t } = useTranslation(['helpCenter']);
+
 	const { display_name = '', description = '', id = '' } = selectedTopic || {};
 
 	const {
@@ -37,7 +42,7 @@ function FaqQuestions({
 			<div className={styles.empty_container}>
 				<IcMHelp className={styles.help_icon} />
 				<div className={styles.empty_text}>
-					Select a topic to get Faqs.
+					{t(`${translationKey}_empty_text`)}
 				</div>
 			</div>
 		);

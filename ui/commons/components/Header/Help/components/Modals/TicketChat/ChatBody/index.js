@@ -1,4 +1,5 @@
 import { Placeholder, cl } from '@cogoport/components';
+import { useTranslation } from 'react-i18next';
 
 import EmptyStateTicketStructure from '../../../../common/TicketStructure/EmptyStateTicketStructure';
 import { MESSAGE_COUNT_TO_SHOWN } from '../../../../constants';
@@ -8,6 +9,8 @@ import styles from './styles.module.css';
 import TicketComment from './TicketComment';
 
 import { useSelector } from '@/packages/store';
+
+const translationKey = 'common:components_header_tickets_details';
 
 function ChatBody({
 	listData = {},
@@ -20,6 +23,8 @@ function ChatBody({
 	modalData = {},
 	detailsLoading = false,
 }) {
+	const { t } = useTranslation(['common']);
+
 	const { id: userId = '' } = useSelector(({ profile }) => profile);
 	const { items = [], last, page } = listData;
 
@@ -31,9 +36,9 @@ function ChatBody({
 	};
 
 	if (!ticketExists && !chatLoading) {
-		const emptyText = `No records for ticket #${
+		const emptyText = `${t(`${translationKey}_pre_norecords`)} #${
 			modalData?.ticketId
-		} found`;
+		} ${t(`${translationKey}_post_norecords`)}`;
 
 		return (
 			<EmptyStateTicketStructure

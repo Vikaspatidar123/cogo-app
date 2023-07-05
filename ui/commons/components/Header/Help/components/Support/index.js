@@ -3,6 +3,7 @@ import { Tooltip } from '@cogoport/components';
 import { IcMEmail, IcMCall } from '@cogoport/icons-react';
 import { isEmpty } from '@cogoport/utils';
 import { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import useGetTicketsUnreadCount from '../../hooks/useGetTicketsUnreadCount';
 
@@ -11,12 +12,16 @@ import SupportTypes from './SupportTypes';
 
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
-const default_agent = () => ({
-	name                  : 'Kanira Patel',
-	email                 : 'support@cogoport.com',
-	mobile_country_code   : '+91',
-	mobile_number         : '8976851674',
-	mobile_number_eformat : '+918976851674',
+const translationKey = 'common:components_header_help_support';
+
+const default_agent = ({ t }) => ({
+	name                  : t(`${translationKey}_name`),
+	email                 : t(`${translationKey}_email`),
+	mobile_country_code   : t(`${translationKey}_countrycode`),
+	mobile_number         : t(`${translationKey}_mobilenumber`),
+	mobile_number_eformat : `${t(`${translationKey}_countrycode`)}${t(
+		`${translationKey}_mobilenumber`,
+	)}`,
 });
 
 function Support({
@@ -25,7 +30,9 @@ function Support({
 	setModalData = () => {},
 	setShowPopover = () => {},
 }) {
-	const agentKey = isEmpty(agent) ? default_agent() : agent;
+	const { t } = useTranslation(['common']);
+
+	const agentKey = isEmpty(agent) ? default_agent({ t }) : agent;
 	const { getUnreadTicketsCount = () => {}, unreadCount = 0 } = useGetTicketsUnreadCount();
 
 	useEffect(() => {
@@ -37,7 +44,10 @@ function Support({
 	return (
 		<div className={styles.container}>
 			<div className={styles.help_header}>
-				<div className={styles.help_title}>Need some assistance? Contact your Key Account Manager</div>
+				<div className={styles.help_title}>
+					{t(`${translationKey}_title`)}
+					:
+				</div>
 				<div className={styles.agent_details}>
 					<div className={styles.agen_info}>
 						<div className={styles.agent_avatar}>

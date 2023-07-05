@@ -1,4 +1,4 @@
-import getTimeLineText from '../../../../../../utils/getTimeLineText';
+import getTimeLineText from '../../../../../../utils/useGetTimeLineText';
 
 import styles from './styles.module.css';
 

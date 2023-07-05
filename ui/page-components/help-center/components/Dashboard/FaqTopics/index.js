@@ -1,6 +1,7 @@
 import { Placeholder, cl } from '@cogoport/components';
 import { IcMArrowNext } from '@cogoport/icons-react';
 import { startCase } from '@cogoport/utils';
+import { useTranslation } from 'react-i18next';
 
 import TopicIcon from '../../../common/TopicIcon';
 import { NO_OF_TOPICS_TO_BE_SHOWN } from '../../../constants';
@@ -10,7 +11,11 @@ import styles from './styles.module.css';
 
 import { useRouter } from '@/packages/next';
 
+const translationKey = 'helpCenter:faq_home_page';
+
 function FaqTopics() {
+	const { t } = useTranslation(['helpCenter']);
+
 	const { push } = useRouter();
 	const { loading = false, faqTopics = {} } = useListFaqTopics({
 		listAll: false,
@@ -20,7 +25,7 @@ function FaqTopics() {
 
 	return (
 		<div className={styles.container}>
-			<div className={styles.title}>Browse by Products/Category</div>
+			<div className={styles.title}>{t(`${translationKey}_browse_category`)}</div>
 			<div className={styles.topics_container}>
 				{loading ? (
 					[...Array(8).keys()].map((itm) => (
@@ -76,7 +81,7 @@ function FaqTopics() {
 										<div className={styles.question_count}>
 											{question_count}
 											{' '}
-											Questions
+											{t(`${translationKey}_questions`)}
 										</div>
 									</div>
 								</div>
@@ -98,10 +103,12 @@ function FaqTopics() {
 										>
 											<IcMArrowNext className={styles.arrow_icon} />
 										</div>
-										<div className={styles.display_name}>See all</div>
+										<div className={styles.display_name}>{t(`${translationKey}_see_all`)}</div>
 										<div className={styles.question_count}>
 											{total_count - NO_OF_TOPICS_TO_BE_SHOWN}
-											<span className={styles.add_margin_between}>more queries</span>
+											<span className={styles.add_margin_between}>
+												{t(`${translationKey}_more_queries`)}
+											</span>
 										</div>
 									</div>
 								</div>

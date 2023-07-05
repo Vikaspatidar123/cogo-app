@@ -1,13 +1,18 @@
 import { Modal, Button } from '@cogoport/components';
 import { IcMTick } from '@cogoport/icons-react';
+import { useTranslation } from 'react-i18next';
 
 import styles from './styles.module.css';
+
+const translationKey = 'common:components_header_tickets_create';
 
 function SuccessModal({
 	ticketId = '',
 	setTicketId = () => {},
 	setModalData = () => {},
 }) {
+	const { t } = useTranslation(['common']);
+
 	return (
 		<>
 			<Modal.Header />
@@ -17,28 +22,28 @@ function SuccessModal({
 				</div>
 				<div className={styles.ticket_data}>
 					<div className={styles.success_text}>
-						Your ticket
+						{t(`${translationKey}_pre_success_text`)}
 						<span>
 							#
 							{ticketId}
 						</span>
-						has been raised successfully!
+						{t(`${translationKey}_post_success_text`)}
 					</div>
 					<div className={styles.wait_text}>
-						Please wait while we look into the issue
+						{t(`${translationKey}_ticket_wait`)}
 					</div>
 				</div>
 			</Modal.Body>
 			<Modal.Footer className={styles.modal_footer}>
 				<Button size="md" themeType="tertiary" onClick={() => setTicketId('')}>
-					Raise another ticket
+					{t(`${translationKey}_raise_another`)}
 				</Button>
 				<Button
 					size="md"
 					themeType="accent"
 					onClick={() => setModalData({ type: 'ticket_details', ticketId })}
 				>
-					View Ticket
+					{t(`${translationKey}_view_ticket`)}
 				</Button>
 			</Modal.Footer>
 		</>

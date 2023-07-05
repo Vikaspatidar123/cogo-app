@@ -1,10 +1,13 @@
 import { Button } from '@cogoport/components';
 import { IcMArrowBack, IcMRefresh } from '@cogoport/icons-react';
+import { useTranslation } from 'react-i18next';
 
 import { actionButtonKeys } from '../../../../configurations/key-mapping';
 import useUpdateTicketActivity from '../../../../hooks/useUpdateTicketActivity';
 
 import styles from './styles.module.css';
+
+const translationKey = 'common:components_header_tickets_details';
 
 function ModalHeader({
 	setModalData = () => {},
@@ -12,7 +15,9 @@ function ModalHeader({
 	refetchTicket = () => {},
 	ticketExists = false,
 }) {
-	const actionButton = actionButtonKeys();
+	const { t } = useTranslation(['common']);
+
+	const actionButton = actionButtonKeys({ t });
 	const { ID: id = '', Status: status = '' } = ticketData?.Ticket || {};
 
 	const { name = '', label = '' } = actionButton?.[status] || {};
@@ -29,7 +34,7 @@ function ModalHeader({
 					className={styles.back_icon}
 				/>
 				<div className={styles.tickets_header_text}>
-					Chat
+					{t(`${translationKey}_header`)}
 				</div>
 				<IcMRefresh className={styles.refresh_icon} onClick={refetchTicket} />
 			</div>
@@ -40,7 +45,7 @@ function ModalHeader({
 					onClick={() => updateTicketActivity({ status: name, id })}
 					disabled={!ticketExists || status === 'rejected'}
 				>
-					{label || 'Resolve'}
+					{label || t(`${translationKey}_resolve`)}
 				</Button>
 			</div>
 		</div>

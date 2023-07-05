@@ -1,6 +1,7 @@
 import { Input, cl, Popover } from '@cogoport/components';
 import { IcMSearchlight } from '@cogoport/icons-react';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import useListFaqQuestions from '../../hooks/useListFaqQuestions';
 
@@ -9,7 +10,11 @@ import styles from './styles.module.css';
 
 import { useSelector } from '@/packages/store';
 
+const translationKey = 'helpCenter:search_faq_component';
+
 function SearchFaq({ showTitle = true, setModalData = () => {} }) {
+	const { t } = useTranslation(['helpCenter']);
+
 	const { isMobile } = useSelector((state) => state.general);
 	const [selectedQuery, setSelectedQuery] = useState('');
 	const [showPopover, setShowPopover] = useState(false);
@@ -26,7 +31,7 @@ function SearchFaq({ showTitle = true, setModalData = () => {} }) {
 	return (
 		<div className={styles.container}>
 			{showTitle && (
-				<div className={styles.search_text}>What do you need help with?</div>
+				<div className={styles.search_text}>{t(`${translationKey}_title`)}</div>
 			)}
 
 			<div
@@ -54,7 +59,7 @@ function SearchFaq({ showTitle = true, setModalData = () => {} }) {
 					<Input
 						size="md"
 						value={selectedQuery}
-						placeholder="Type your issue ..."
+						placeholder={t(`${translationKey}_search_placeholder`)}
 						prefix={<IcMSearchlight className={styles.search_icon} />}
 						onChange={handleOnChange}
 					/>

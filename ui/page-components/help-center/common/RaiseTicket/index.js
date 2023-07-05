@@ -1,10 +1,15 @@
 import { Button, cl } from '@cogoport/components';
+import { useTranslation } from 'react-i18next';
 
 import styles from './styles.module.css';
 
 import { useSelector } from '@/packages/store';
 
+const translationKey = 'helpCenter:raise_ticket_component';
+
 function RaiseTicket({ setModalData = () => {}, isDashboard = false }) {
+	const { t } = useTranslation(['helpCenter']);
+
 	const { isMobile } = useSelector((state) => state.general);
 
 	if (isMobile) {
@@ -18,10 +23,10 @@ function RaiseTicket({ setModalData = () => {}, isDashboard = false }) {
 			}`}
 		>
 			<div className={styles.text_container}>
-				<div className={styles.sub_header}>Still can&apos;t find an answer?</div>
+				<div className={styles.sub_header}>{t(`${translationKey}_cant_find_answer`)}</div>
 				<div className={styles.label}>
-					<span>Submit a ticket</span>
-					and we&apos;ll get back to you.
+					<span>{t(`${translationKey}_submit_ticket`)}</span>
+					{t(`${translationKey}_submit_after_text`)}
 				</div>
 			</div>
 
@@ -32,7 +37,7 @@ function RaiseTicket({ setModalData = () => {}, isDashboard = false }) {
 					className={styles.button_container}
 					onClick={() => setModalData({ type: 'raise_a_ticket' })}
 				>
-					Raise A Ticket
+					{t(`${translationKey}_raise_ticket`)}
 				</Button>
 			</div>
 		</div>

@@ -1,4 +1,5 @@
 import { isEmpty } from '@cogoport/utils';
+import { useTranslation } from 'react-i18next';
 
 import TicketStructure from '../../../../common/TicketStructure';
 import useListTickets from '../../../../hooks/useListTickets';
@@ -6,6 +7,8 @@ import useListTickets from '../../../../hooks/useListTickets';
 import styles from './styles.module.css';
 
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
+
+const translationKey = 'common:components_header_tickets_list';
 
 const handleClick = () => {
 	const currentUrl = window.location.href;
@@ -17,6 +20,8 @@ const handleClick = () => {
 };
 
 function RaisedTickets({ listType = 'list' }) {
+	const { t } = useTranslation(['common']);
+
 	const { ticketData = {}, listLoading = false } = useListTickets({
 		listType,
 	});
@@ -24,7 +29,7 @@ function RaisedTickets({ listType = 'list' }) {
 	return (
 		<div className={styles.container}>
 			<div className={styles.raised_title}>
-				Previously Raised Tickets
+				{t(`${translationKey}_previous_tickets`)}
 			</div>
 			<TicketStructure
 				ticketData={ticketData}
@@ -37,7 +42,7 @@ function RaisedTickets({ listType = 'list' }) {
 					role="presentation"
 					onClick={handleClick}
 				>
-					See all tickets
+					{t(`${translationKey}_all_tickets`)}
 				</div>
 			)}
 		</div>

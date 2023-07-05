@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next';
+
 import {
 	actionButtonKeys,
 	statusLabelTransformation,
@@ -9,15 +11,14 @@ import styles from './styles.module.css';
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 import formatDate from '@/ui/commons/utils/formatDate';
 
-const statusLabel = statusLabelTransformation();
-const actionButton = actionButtonKeys();
-
 function TicketStructureBody({
 	item = {},
 	updateTicketActivity = () => {},
 	setModalData = () => {},
 	listType,
 }) {
+	const { t } = useTranslation(['common']);
+
 	const {
 		ID: id = '',
 		Status: status = '',
@@ -27,6 +28,9 @@ function TicketStructureBody({
 		Type: type = '',
 		ActivityCount: activityCount = 0,
 	} = item || {};
+
+	const statusLabel = statusLabelTransformation({ t });
+	const actionButton = actionButtonKeys({ t });
 
 	const { color: textColor = '', label = '' } = statusLabel?.[getTicketStatus(status)] || {};
 

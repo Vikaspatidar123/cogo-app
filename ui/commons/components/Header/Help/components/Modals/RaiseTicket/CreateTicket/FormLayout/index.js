@@ -1,4 +1,5 @@
 import { isEmpty } from '@cogoport/utils';
+import { useTranslation } from 'react-i18next';
 
 import useRaiseTicketControls from '../../../../../configurations/raise-ticket-config';
 
@@ -8,7 +9,11 @@ import styles from './styles.module.css';
 import { UploadController } from '@/packages/forms';
 import TextAreaController from '@/packages/forms/Controlled/TextAreaController';
 
+const translationKey = 'common:components_header_tickets_create';
+
 function FormLayout(props) {
+	const { t } = useTranslation(['common']);
+
 	const {
 		control,
 		formState: { errors },
@@ -31,24 +36,24 @@ function FormLayout(props) {
 
 			<div className={styles.form_field_container}>
 				<div className={styles.form_field_label}>
-					Explain the problem you&apos;re facing in detail
+					{t(`${translationKey}_ticket_type_label`)}
 				</div>
 				<div>
 					<TextAreaController
 						control={control}
 						name="description"
 						rows={4}
-						placeholder="Enter Remarks..."
+						placeholder={t(`${translationKey}_remarks_placeholder`)}
 						maxLength={200}
 						rules={{ required: true }}
 					/>
 				</div>
 				<div className={styles.form_field_error}>
-					{errors?.description && 'Description is Required'}
+					{errors?.description && t(`${translationKey}_description_required`)}
 				</div>
 
 				<div className={styles.form_field_label}>
-					Upload Any Supporting Documents
+					{t(`${translationKey}_uploading`)}
 				</div>
 				<UploadController
 					drag
@@ -65,7 +70,7 @@ function FormLayout(props) {
 			{!isEmpty(extraField) && (
 				<>
 					<div className={styles.sub_header}>
-						Give additional information to raise the ticket:
+						{t(`${translationKey}_additional_information`)}
 					</div>
 					<FormField fields={extraField} control={control} errors={errors} />
 				</>

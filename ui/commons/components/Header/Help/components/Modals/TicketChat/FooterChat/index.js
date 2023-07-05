@@ -7,11 +7,14 @@ import {
 	IcMPdf,
 } from '@cogoport/icons-react';
 import { isEmpty } from '@cogoport/utils';
+import { useTranslation } from 'react-i18next';
 
 import styles from './styles.module.css';
 
 import FileUploader from '@/packages/forms/Business/FileUploader';
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
+
+const translationKey = 'common:components_header_tickets_details';
 
 function FooterChat({
 	setMessage = () => {},
@@ -21,6 +24,8 @@ function FooterChat({
 	setFile = () => {},
 	handleSendComment = () => {},
 }) {
+	const { t } = useTranslation(['common']);
+
 	const handleChange = (obj) => {
 		if (obj) {
 			setFile(obj);
@@ -73,7 +78,7 @@ function FooterChat({
 					)}
 					<Textarea
 						className={styles.chat_input}
-						placeholder="Type here ..."
+						placeholder={t(`${translationKey}_chat_placeholder`)}
 						onChange={(val) => setMessage(val)}
 						onKeyDown={(e) => handleKeyPress(e)}
 						value={message}

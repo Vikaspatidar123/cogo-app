@@ -6,11 +6,14 @@ import {
 	IcMArrowDoubleUp,
 } from '@cogoport/icons-react';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import styles from './styles.module.css';
 import TopicsBody from './TopicsBody';
 
 import { useRouter } from '@/packages/next';
+
+const translationKey = 'helpCenter:faq_topics';
 
 function Topics({
 	selectedTopic = {},
@@ -21,6 +24,8 @@ function Topics({
 	showTopics = false,
 	isMobile = false,
 }) {
+	const { t } = useTranslation(['helpCenter']);
+
 	const { push } = useRouter();
 	const [inputQuery, setInputQuery] = useState('');
 
@@ -31,7 +36,7 @@ function Topics({
 				onClick={() => setShowTopics(true)}
 				role="presentation"
 			>
-				Show topics
+				{t(`${translationKey}_show_topics`)}
 				<IcMArrowDoubleDown className={styles.icon_styles} />
 			</div>
 		);
@@ -47,14 +52,14 @@ function Topics({
 					/>
 
 					<div className={styles.title}>
-						Categories
+						{t(`${translationKey}_categories`)}
 					</div>
 				</div>
 
 				<Input
 					size="md"
 					value={inputQuery}
-					placeholder="Type here to search topic..."
+					placeholder={t(`${translationKey}_search_placeholder`)}
 					prefix={<IcMSearchlight className={styles.search_icon} />}
 					onChange={setInputQuery}
 				/>
@@ -76,7 +81,7 @@ function Topics({
 					onClick={() => setShowTopics(false)}
 					role="presentation"
 				>
-					Hide Topics
+					{t(`${translationKey}_hide_topics`)}
 					<IcMArrowDoubleUp className={styles.icon_styles} />
 				</div>
 			)}

@@ -8,7 +8,7 @@ const useApplyCreditRequestCouponCode = ({ getCreditRequestResponse = {}, refetc
 
 	const [{ loading, data }, trigger] = useRequest({
 		method : 'post',
-		url    : '/apply_credit_request_coupon_code',
+		url    : '/apply_credit_coupon_code',
 	}, {
 		manual     : true,
 		autoCancel : false,

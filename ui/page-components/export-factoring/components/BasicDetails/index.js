@@ -1,4 +1,4 @@
-import { Button } from '@cogoport/components';
+import { Button, Checkbox } from '@cogoport/components';
 import React from 'react';
 
 import FormCard from '../../common/FormCard';
@@ -55,6 +55,31 @@ function BasicDetails({ active = {}, getCreditRequestResponse = {}, refetch = ()
 				refetch={refetch}
 				loading={loading}
 			/>
+			<div className={styles.terms_condition_div}>
+				<Checkbox />
+				<div className={styles.terms}>
+					I accept the Cogoport
+					<span onClick={() => window.open(
+						'https://www.cogoport.com/en-IN/terms-and-conditions',
+						'_blank',
+					)}
+					>
+						{' '}
+						Terms of Service
+						{' '}
+
+					</span>
+					and
+					<span onClick={() => window.open(
+						'https://www.cogoport.com/en-IN/privacy-policy',
+						'_blank',
+					)}
+					>
+						Privacy Policy
+
+					</span>
+				</div>
+			</div>
 			<div className={styles.button_wrapper}>
 				<Button
 					onClick={proceedToPay}

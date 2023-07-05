@@ -1,0 +1,52 @@
+.heading {
+	font-size: 20px;
+	font-weight: 500;
+}
+
+.sub_heading {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	color: #828282;
+	button {
+		cursor: pointer;
+	}
+}
+
+.director_details {
+	margin-top: 15px;
+}
+.financial_div {
+	padding: 30px 0px;
+}
+.finance_container {
+	padding: 12px 10px 24px;
+	margin-top: 20px;
+	border: 1px solid #e0e0e0;
+	border-radius: 6px;
+	:global {
+		/* & .field_array_container { */
+		& .form_content {
+			flex-direction: column;
+		}
+	}
+	/* } */
+}
+.field {
+	margin: 0 0 15px;
+}
+
+.field_name {
+	margin: 0 0 4px;
+	font-size: 16px;
+	font-weight: 500;
+	color: #4f4f4f;
+}
+
+.form {
+	padding: 20px;
+}
+
+.error_text {
+	color: red;
+}

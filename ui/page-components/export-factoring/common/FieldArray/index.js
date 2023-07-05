@@ -46,7 +46,7 @@ function FieldArray({
 		fields.push(childEmptyValues);
 	}
 	return (
-		<div className={styles.container}>
+		<div className={`${styles.container} field_array_container`}>
 			{fields.map((field, index) => (
 				<Child
 					{...rest}

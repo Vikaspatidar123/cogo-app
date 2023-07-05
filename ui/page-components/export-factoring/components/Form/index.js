@@ -1,4 +1,6 @@
 import BasicDetails from '../BasicDetails';
+import CompanyInformation from '../CompanyInformation';
+import DirectorInformation from '../DirectorInformation';
 import OfferLetterDetails from '../OfferLetterDetails';
 
 import styles from './styles.module.css';
@@ -18,7 +20,7 @@ function Form({ active = {}, getCreditRequestResponse = {}, refetch = () => {}, 
 
 	return (
 		<div className={styles.form}>
-			<BasicDetails
+			<DirectorInformation
 				active={active}
 				getCreditRequestResponse={getCreditRequestResponse}
 				refetch={refetch}

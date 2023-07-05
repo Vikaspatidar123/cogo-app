@@ -20,8 +20,8 @@ function Child({
 	noDeleteButtonTill = 0,
 }) {
 	return (
-		<div className={styles.form_container} style={{ width: '100%' }}>
-			<div className={styles.content}>
+		<div className={`${styles.form_container} form_container`} style={{ width: '100%' }}>
+			<div className={`${styles.content} form_content`}>
 				{controls.map((controlItem) => {
 					const { style, type } = controlItem;
 
@@ -40,7 +40,7 @@ function Child({
 
 					return (
 						<div
-							className={styles.form_item}
+							className={`${styles.form_item} form_item`}
 							style={{ marginRight: '10px', ...style }}
 							key={index}
 

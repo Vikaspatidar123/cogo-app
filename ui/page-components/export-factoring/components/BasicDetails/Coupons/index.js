@@ -37,7 +37,7 @@ function Coupons({ getCreditRequestResponse = {} }) {
 							<Button
 								onClick={() => updateCreditPromotion({ type: 'removed', coupon })}
 								loading={loading}
-								themeType="accent"
+								themeType="secondary"
 							>
 								Remove Coupon
 							</Button>

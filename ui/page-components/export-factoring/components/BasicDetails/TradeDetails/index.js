@@ -29,7 +29,7 @@ function TradeDetails({ getCreditRequestResponse = {}, refetch = () => {} }) {
 		formState: { errors },
 	} = useForm({
 		defaultValues: {
-			payment_terms,
+			payment_terms: payment_terms,
 		},
 	});
 	const {

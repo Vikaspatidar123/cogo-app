@@ -1,0 +1,10 @@
+.turn_over_container {
+	padding: 20px 0px;
+	width: 50%;
+}
+.btn_container {
+	display: flex;
+	flex-direction: row;
+	padding: 20px 0px;
+    justify-content: flex-end;
+}

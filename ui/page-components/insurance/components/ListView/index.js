@@ -128,6 +128,7 @@ function ListView() {
 								loading={loading}
 								loadingRowsCount={10}
 								className={styles.table}
+								type="block"
 							/>
 						</div>
 					) : <NoData />}

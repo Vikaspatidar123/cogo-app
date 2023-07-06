@@ -1,19 +1,9 @@
 import { cl, Button, Tooltip } from '@cogoport/components';
-import { IcMPdf, IcMDownload, IcMEyeopen } from '@cogoport/icons-react';
+import { IcMPdf, IcMDownload } from '@cogoport/icons-react';
 
 import styles from '../styles.module.css';
 
-const previewHandler = ({ docLink }) => {
-	if (typeof window !== 'undefined') {
-		window.open(docLink, '_blank');
-	}
-};
-
-const downloadHandler = ({ docLink, docName, hsNumber }) => {
-	const url = `${process.env.NEXT_PUBLIC_BUSINESS_FINANCE_BASE_URL}/saas/pdf/trade-engine/?`
-	+ `docLink=${docLink}&docName=${docName}&hsNumber=${hsNumber || ''}`;
-	window.open(url);
-};
+import { downloadDocument } from '@/ui/commons/utils/downloadDocument';
 
 function Document({ doc = {}, hsNumber = '' }) {
 	const {
@@ -50,22 +40,15 @@ function Document({ doc = {}, hsNumber = '' }) {
 						<Button
 							className={styles.download_btn}
 							themeType="linkUi"
-							onClick={() => downloadHandler({ docLink, docName, hsNumber })}
+							onClick={() => downloadDocument({ docLink, docName, hsNumber })}
 						>
 							Download
 						</Button>
 
-						<Button themeType="linkUi" onClick={() => previewHandler({ docLink })}>
-							Preview
-						</Button>
 					</div>
 					<div className={styles.cta_mobile_view}>
-						<Button className={styles.download_btn} themeType="linkUi" onClick={downloadHandler}>
+						<Button className={styles.download_btn} themeType="linkUi" onClick={downloadDocument}>
 							<IcMDownload />
-						</Button>
-
-						<Button themeType="linkUi" onClick={previewHandler}>
-							<IcMEyeopen />
 						</Button>
 					</div>
 				</div>

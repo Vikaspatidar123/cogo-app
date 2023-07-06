@@ -75,7 +75,7 @@ const usePayment = ({ buyerDetails = {} }) => {
 			setButtonLoading(true);
 			paymentInitiation({ data: resp?.data, setModal, setButtonLoading });
 		} catch (err) {
-			console.log(err);
+			console.error(err);
 		}
 	};
 	return {

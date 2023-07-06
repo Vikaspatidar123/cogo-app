@@ -3,11 +3,7 @@ import { IcMPdf, IcMDownload } from '@cogoport/icons-react';
 
 import styles from './styles.module.css';
 
-const downloadHandler = ({ docLink, docName, hsNumber }) => {
-	const url = `${process.env.NEXT_PUBLIC_BUSINESS_FINANCE_BASE_URL}
-	/saas/pdf/trade-engine?docLink=${docLink}&docName=${docName}&hsNumber=${hsNumber || ''}`;
-	window.open(url, '_self');
-};
+import { downloadDocument } from '@/ui/commons/utils/downloadDocument';
 
 const renderDesc = (desc = '') => {
 	if (desc?.length > 40) {
@@ -44,7 +40,7 @@ function Document({ doc = {}, hsNumber = '' }) {
 						<IcMDownload
 							className={styles.download_btn}
 							size="md"
-							onClick={() => downloadHandler({ docLink, docName, hsNumber })}
+							onClick={() => downloadDocument({ docLink, docName, hsNumber })}
 						>
 							Download
 						</IcMDownload>

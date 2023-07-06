@@ -69,7 +69,6 @@ function FooterChat({
 								showProgress
 								onlyURLOnChange
 								onChange={handleChange}
-								uploadType="aws"
 								uploadIcon={(
 									<IcMAttach className={styles.upload_styles} />
 								)}

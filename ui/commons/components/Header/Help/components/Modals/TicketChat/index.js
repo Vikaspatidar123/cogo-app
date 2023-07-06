@@ -13,11 +13,13 @@ import RateTicket from './RateTicket';
 import styles from './styles.module.css';
 import TicketSummary from './TicketSummary';
 
+const STATUS = ['closed', 'rejected'];
+
 const chatBodyHeight = (rating, ticketExists, status, file, uploading) => {
 	if (!ticketExists) {
 		return '100%';
 	}
-	if (['closed', 'rejected'].includes(status)) {
+	if (STATUS.includes(status)) {
 		if (rating || status === 'rejected') {
 			return 'calc(100% - 62px)';
 		}

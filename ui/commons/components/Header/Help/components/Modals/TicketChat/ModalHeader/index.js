@@ -40,7 +40,6 @@ function ModalHeader({
 			</div>
 			<div className={styles.header_buttons}>
 				<Button
-					size="md"
 					themeType="primary"
 					onClick={() => updateTicketActivity({ status: name, id })}
 					disabled={!ticketExists || status === 'rejected'}

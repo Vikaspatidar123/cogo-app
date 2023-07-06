@@ -12,8 +12,6 @@ import TextAreaController from '@/packages/forms/Controlled/TextAreaController';
 const translationKey = 'common:components_header_tickets_create';
 
 function FormLayout(props) {
-	const { t } = useTranslation(['common']);
-
 	const {
 		control,
 		formState: { errors },
@@ -22,6 +20,8 @@ function FormLayout(props) {
 	} = props;
 
 	const raiseTicketControls = useRaiseTicketControls({ setSelectedQuery });
+
+	const { t } = useTranslation(['common']);
 
 	return (
 		<div className={styles.container}>

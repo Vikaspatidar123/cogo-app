@@ -11,9 +11,6 @@ import formatDate from '@/ui/commons/utils/formatDate';
 const translationKey = 'common:components_header_tickets_summary';
 
 function TicketSummary({ ticketDetails = {} }) {
-	const { t } = useTranslation(['common']);
-
-	const statusLabel = statusLabelTransformation({ t });
 	const {
 		ID: id = '',
 		Type: type = '',
@@ -21,6 +18,10 @@ function TicketSummary({ ticketDetails = {} }) {
 		UpdatedAt: updatedAt = '',
 		CreatedAt: createdAt = '',
 	} = ticketDetails || {};
+
+	const { t } = useTranslation(['common']);
+
+	const statusLabel = statusLabelTransformation({ t });
 
 	const { label = '' } = statusLabel?.[getTicketStatus(status)] || {};
 

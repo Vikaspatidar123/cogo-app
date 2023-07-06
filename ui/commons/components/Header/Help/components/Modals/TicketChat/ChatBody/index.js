@@ -12,6 +12,8 @@ import { useSelector } from '@/packages/store';
 
 const translationKey = 'common:components_header_tickets_details';
 
+const EMPTY_ARR = [...Array(9).keys()];
+
 function ChatBody({
 	listData = {},
 	chatLoading = false,
@@ -27,8 +29,6 @@ function ChatBody({
 
 	const { id: userId = '' } = useSelector(({ profile }) => profile);
 	const { items = [], last, page } = listData;
-
-	const empty_arr = [...Array(9).keys()];
 
 	const handleScroll = (e) => {
 		const bottom = e.target.scrollTop === 0;
@@ -53,7 +53,7 @@ function ChatBody({
 	return (
 		<div className={styles.container} ref={messageRef} onScroll={handleScroll}>
 			{chatLoading
-				&& empty_arr.map((key, idx) => (
+				&& EMPTY_ARR.map((key, idx) => (
 					<div
 						key={key}
 						className={cl`${idx % 2 !== 0 ? styles.right_align : ''}`}

@@ -28,6 +28,8 @@ function ChatBody({
 	const { id: userId = '' } = useSelector(({ profile }) => profile);
 	const { items = [], last, page } = listData;
 
+	const empty_arr = [...Array(9).keys()];
+
 	const handleScroll = (e) => {
 		const bottom = e.target.scrollTop === 0;
 		if (!last && bottom && !chatLoading) {
@@ -51,7 +53,7 @@ function ChatBody({
 	return (
 		<div className={styles.container} ref={messageRef} onScroll={handleScroll}>
 			{chatLoading
-				&& [...Array(9).keys()].map((key, idx) => (
+				&& empty_arr.map((key, idx) => (
 					<div
 						key={key}
 						className={cl`${idx % 2 !== 0 ? styles.right_align : ''}`}

@@ -7,9 +7,8 @@ import { useRouter } from '@/packages/next';
 function FaqQuestions({ data = [], fromChat = false }) {
 	const { locale = '', query } = useRouter();
 	const handleClick = (faqId) => {
-		const baseUrl = window.location.origin;
-		const urlToOpen = `${baseUrl}/${locale}/
-		${query?.org_id}/${query?.branch_id}/${query?.account_type}/help-center/faq/${faqId}/`;
+		const baseUrl = process.env.NEXT_PUBLIC_APP_URL;
+		const urlToOpen = `${baseUrl}/${locale}/${query?.org_id}/${query?.branch_id}/help-center/faq/${faqId}/`;
 		window.open(urlToOpen, '_blank', 'noreferrer');
 	};
 

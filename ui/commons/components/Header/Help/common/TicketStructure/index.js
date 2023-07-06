@@ -22,7 +22,7 @@ function TicketStructure(props) {
 		refreshTickets,
 	});
 
-	if (isEmpty(ticketData || {}) && !listLoading) {
+	if (isEmpty(ticketData) && !listLoading) {
 		return (
 			<EmptyStateTicketStructure
 				setModalData={setModalData}

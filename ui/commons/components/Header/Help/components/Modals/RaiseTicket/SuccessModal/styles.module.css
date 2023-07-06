@@ -4,8 +4,8 @@
 	align-items: center;
 	justify-content: center;
 	height: 75vh;
-	max-height: unset !important;
-	border-top: unset !important;
+	max-height: unset;
+	border-top: unset;
 }
 
 .modal_footer {

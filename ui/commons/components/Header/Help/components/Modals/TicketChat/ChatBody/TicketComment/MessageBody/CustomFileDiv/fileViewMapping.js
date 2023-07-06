@@ -1,4 +1,5 @@
 import { IcMDocument } from '@cogoport/icons-react';
+import Image from 'next/image';
 
 import styles from './styles.module.css';
 
@@ -9,7 +10,13 @@ const fileViewMapping = ({
 	fileName = '',
 }) => ({
 	image: (
-		<img src={mediaUrl} alt={messageType} className={styles.object_styles} />
+		<Image
+			src={mediaUrl}
+			alt={messageType}
+			className={styles.object_styles}
+			width={250}
+			height={150}
+		/>
 	),
 	audio: (
 		<audio controls className={styles.object_styles}>

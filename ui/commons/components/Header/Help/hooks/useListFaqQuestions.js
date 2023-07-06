@@ -9,7 +9,6 @@ function useListFaqQuestions({ selectedQuery = '' }) {
 	const { general: { scope = '' }, profile } = useSelector((state) => state);
 
 	const { debounceQuery, query: searchQuery = '' } = useDebounceQuery();
-	console.log('searchQuery:', searchQuery);
 
 	const [{ loading, data }, trigger] = useRequest({
 		url    : '/cogo_academy/list_faq_questions',

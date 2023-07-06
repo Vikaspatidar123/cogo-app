@@ -35,7 +35,7 @@ function SuccessModal({
 				</div>
 			</Modal.Body>
 			<Modal.Footer className={styles.modal_footer}>
-				<Button size="md" themeType="tertiary" onClick={() => setTicketId('')}>
+				<Button type="button" size="md" themeType="tertiary" onClick={() => setTicketId('')}>
 					{t(`${translationKey}_raise_another`)}
 				</Button>
 				<Button

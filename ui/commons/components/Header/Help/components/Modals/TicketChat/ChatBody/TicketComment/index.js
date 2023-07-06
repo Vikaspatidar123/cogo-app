@@ -26,15 +26,14 @@ function TicketComment({
 	faqs = [],
 	userType = '',
 }) {
+	const { locale = '', query } = useRouter();
 	const { t } = useTranslation(['common']);
 
-	const { locale = '', query } = useRouter();
 	const isAgent = systemUserID !== userId || userType === 'system';
 
 	const handleClick = () => {
-		const baseUrl = window.location.origin;
-		const urlToOpen = `${baseUrl}/
-							${locale}/${query?.org_id}/${query?.branch_id}/${query?.account_type}/help-center`;
+		const baseUrl = process.env.NEXT_PUBLIC_APP_URL;
+		const urlToOpen = `${baseUrl}/${locale}/${query?.org_id}/${query?.branch_id}/help-center`;
 		window.open(urlToOpen, '_blank', 'noreferrer');
 	};
 
@@ -44,7 +43,7 @@ function TicketComment({
 				{isAgent && (
 					<Image
 						src={GLOBAL_CONSTANTS.image_url.bot_icon}
-						alt="agent"
+						alt={t(`${translationKey}_agent`)}
 						width={20}
 						height={20}
 						className={styles.agent_profile_pic}

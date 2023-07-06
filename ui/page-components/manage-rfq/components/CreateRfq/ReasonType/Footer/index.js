@@ -4,7 +4,7 @@ import styles from './styles.module.css';
 
 function Footer({ setCurrentStep, basicDetails }) {
 	const { quotation_name, reason_type, bidding_date } = basicDetails;
-	console.log(reason_type, 'asd asd');
+
 	const handleNext = () => {
 		if (!quotation_name) {
 			return Toast.error('Enter quotation name');

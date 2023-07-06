@@ -12,7 +12,7 @@ const airControls = [
 				placeholder       : 'Shipping from',
 				includedInOptions : false,
 				params            : {
-					filters  : { type: ['airport', 'city'] },
+					filters  : { type: ['airport'] },
 					includes : { continent_id: true },
 				},
 				initialCall : true,
@@ -29,7 +29,7 @@ const airControls = [
 				placeholder       : 'Shipping to',
 				includedInOptions : false,
 				params            : {
-					filters  : { type: ['airport', 'city'] },
+					filters  : { type: ['airport'] },
 					includes : { continent_id: true },
 				},
 				initialCall : true,

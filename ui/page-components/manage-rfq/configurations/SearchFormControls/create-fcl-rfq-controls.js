@@ -59,7 +59,7 @@ const fclControls = [
 			{
 				type    : 'checkboxGroup',
 				name    : 'is_transit_shipment',
-				options : [{ label: 'Transit Shipment', value: true, name: 'Transit Shipment' }],
+				options : [{ label: 'Transit Shipment', value: 'true', name: 'Transit Shipment' }],
 				span    : 2,
 			},
 			{
@@ -152,7 +152,7 @@ const fclControls = [
 						name        : 'min_origin_demurrage',
 						placeholder : '0',
 						type        : 'number',
-						rules       : { min: 1 },
+						rules       : { min: 1, required: 'Minimum Origin Demurrage is Required' },
 						span        : 3,
 					},
 					{
@@ -161,7 +161,7 @@ const fclControls = [
 						name        : 'min_origin_detention',
 						placeholder : '0',
 						type        : 'number',
-						rules       : { min: 1 },
+						rules       : { min: 1, required: 'Minimum Origin Detention is Required' },
 						span        : 3,
 					},
 					{
@@ -170,7 +170,7 @@ const fclControls = [
 						name        : 'min_destination_demurrage',
 						placeholder : '0',
 						type        : 'number',
-						rules       : { min: 1 },
+						rules       : { min: 1, required: 'Minimum Destination Demurrage is Required' },
 						span        : 3,
 					},
 					{
@@ -179,7 +179,7 @@ const fclControls = [
 						name        : 'min_destination_detention',
 						placeholder : '0',
 						type        : 'number',
-						rules       : { min: 1 },
+						rules       : { min: 1, required: 'Minimum Destination Detention is Required' },
 						span        : 3,
 					},
 					{

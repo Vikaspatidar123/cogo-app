@@ -1,5 +1,6 @@
 import ApplicationProcess from '../ApplicationProcess';
 import BasicDetails from '../BasicDetails';
+import Buyers from '../Buyers';
 import CompanyInformation from '../CompanyInformation';
 import DirectorInformation from '../DirectorInformation';
 import OfferLetterDetails from '../OfferLetterDetails';
@@ -22,12 +23,13 @@ function Form({ active = {}, getCreditRequestResponse = {}, refetch = () => {}, 
 
 	return (
 		<div className={styles.form}>
-			<ApplicationProcess
+			{/* <ApplicationProcess
 				active={active}
 				getCreditRequestResponse={getCreditRequestResponse}
 				refetch={refetch}
 				loading={loading}
-			/>
+			/> */}
+			<Buyers getCreditRequestResponse={getCreditRequestResponse} />
 		</div>
 	);
 }

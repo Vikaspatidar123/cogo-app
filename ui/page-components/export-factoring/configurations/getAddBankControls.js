@@ -103,7 +103,7 @@ const BANK_CONTROLS = [
 	},
 	{
 		name         : 'aba_routing_number',
-		label        : 'ABA Routing No',
+		label        : 'ABA Routing No (optional)',
 		placeholder  : 'Enter ABA Routing No',
 		type         : 'text',
 		span         : 6,
@@ -134,7 +134,6 @@ const BANK_CONTROLS = [
 ];
 
 export const getAddBankControls = ({ accountType }) => BANK_CONTROLS.map((control) => {
-	console.log(accountType, 'accountType');
 	if (accountType === 'current_account' && control.name !== 'currency') {
 		return {
 			...control,

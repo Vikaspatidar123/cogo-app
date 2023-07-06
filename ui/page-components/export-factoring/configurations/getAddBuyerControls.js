@@ -117,10 +117,15 @@ const controls = [
 		rules       : { required: 'required *' },
 		span        : 6,
 		isClearable : true,
-		params      : { filters: { type: ['pincode'] } },
-		asyncKey    : 'locations',
-		valueKey    : 'postal_code',
-		labelKey    : 'display_name',
+		params      : {
+			filters: {
+				type     : ['pincode'],
+				includes : { country: true, region: true },
+			},
+		},
+		asyncKey : 'locations',
+		valueKey : 'postal_code',
+		labelKey : 'display_name',
 	},
 	{
 		name        : 'city',
@@ -152,74 +157,77 @@ const controls = [
 		theme     : 'admin',
 		className : 'primary md',
 	},
-	// {
-	// 	name           : 'country',
-	// 	type           : 'country_select',
-	// 	label          : 'Country',
-	// 	span           : 6,
-	// 	defaultOptions : true,
-	// 	placeholder    : 'Select Country',
-	// 	rules          : { required: 'Country is required' },
-	// },
-	// {
-	// 	name        : 'poc_details',
-	// 	label       : 'POC',
-	// 	type        : 'fieldArray',
-	// 	showButtons : true,
-	// 	buttonText  : 'Add POC',
-	// 	value       : [{}],
-	// 	controls    : [
-	// 		{
-	// 			name        : 'name',
-	// 			type        : 'text',
-	// 			placeholder : 'Name',
-	// 			label       : 'Name',
-	// 			span        : 6,
-	// 			rules       : { required: 'Name is required' },
-	// 		},
-	// 		{
-	// 			name        : 'designation',
-	// 			type        : 'text',
-	// 			placeholder : 'Designation',
-	// 			label       : 'Designation',
-	// 			span        : 6,
-	// 			rules       : { required: 'Designation is required' },
-	// 		},
-	// 		{
-	// 			name        : 'email_id',
-	// 			label       : 'Email',
-	// 			placeholder : 'Email',
-	// 			type        : 'email',
-	// 			span        : 6,
-	// 			rules       : {
-	// 				required : true,
-	// 				pattern  : {
-	// 					value   : patterns.EMAIL,
-	// 					message : 'Email is invalid',
-	// 				},
-	// 			},
-	// 		},
-	// 		{
-	// 			name        : 'mobile_number',
-	// 			label       : 'Mobile Number',
-	// 			placeholder : 'Enter Mobile Number',
-	// 			type        : 'mobile_number',
-	// 			inputType   : 'number',
-	// 			select2     : 'new',
-	// 			style       : { width: '210px' },
-	// 			options     : country_code,
-	// 			rules       : {
-	// 				required : true,
-	// 				validate : (value) => (value?.country_code && value?.number ? undefined : 'Phone Number'),
-	// 			},
-	// 		},
-	// 	],
-	// },
+	{
+		name               : 'poc_details',
+		type               : 'fieldArray',
+		showButtons        : true,
+		buttonText         : 'Add Poc',
+		// noDeleteButtonTill : 0,
+		value              : [{}],
+		controls           : [
+			{
+				name        : 'name',
+				type        : 'text',
+				placeholder : 'Name',
+				label       : 'Name',
+				span        : 6,
+				rules       : { required: 'Name is required' },
+			},
+			{
+				name        : 'designation',
+				type        : 'text',
+				placeholder : 'Designation',
+				label       : 'Designation',
+				span        : 6,
+				rules       : { required: 'Designation is required' },
+			},
+			{
+				name        : 'email_id',
+				label       : 'Email',
+				placeholder : 'Email',
+				type        : 'email',
+				span        : 6,
+				rules       : {
+					required : true,
+					pattern  : {
+						value   : patterns.EMAIL,
+						message : 'Email is invalid',
+					},
+				},
+			},
+			{
+				name        : 'mobile_number',
+				label       : 'Mobile Number',
+				placeholder : 'Enter Mobile Number',
+				type        : 'mobile_number',
+				inputType   : 'number',
+				select2     : 'new',
+				style       : { width: '210px' },
+				options     : country_code,
+				rules       : {
+					required : true,
+					validate : (value) => (value?.country_code && value?.number ? undefined : 'Phone Number'),
+				},
+			},
+		],
+	},
 ];
 
-export const getAddBuyerControls = (
-	//     {
-	// 	setAddressDetail,
-	// 	setCountryData,
-	// }
-) => controls.map((control) => ({ ...control }));
+export const getAddBuyerControls = ({
+	setAddressDetail,
+	setCountryData,
+}) => controls.map((control) => {
+	if (control.name === 'zipcode') {
+		return ({
+			...control,
+			handleChange: (e) => setAddressDetail(e),
+		});
+	}
+	if (control.name === 'country') {
+		return ({
+			...control,
+			handleChange: (e) => 	setCountryData(e),
+		});
+	}
+	return control;
+});

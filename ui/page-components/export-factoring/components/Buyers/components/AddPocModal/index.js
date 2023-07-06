@@ -5,16 +5,20 @@ import styles from './styles.module.css';
 
 import getField from '@/packages/forms/Controlled';
 import { getAddPocControls } from '@/ui/page-components/export-factoring/configurations/getAddPocControls';
-import useSubmitPocDetails from '@/ui/page-components/export-factoring/hooks/useSubmitBuyerDetails';
+import useSubmitPocDetails from '@/ui/page-components/export-factoring/hooks/useSubmitPocDetails';
 
-function AddPocModal({ openAddPoc, setOpenAddPoc }) {
+function AddPocModal({ openAddPoc, setOpenAddPoc, buyers, getCreditRequestResponse }) {
 	const addPocControls = getAddPocControls();
 
 	const {
 		control, handleSubmit, formState: { errors },
 	} = useForm();
 
-	const { onSubmit, loading } = useSubmitPocDetails();
+	const { onSubmit, loading } = useSubmitPocDetails({
+		buyers,
+		setOpenAddPoc,
+		getCreditRequestResponse,
+	});
 
 	return (
 		<Modal

@@ -5,7 +5,7 @@ import { useRequest } from '@/packages/request';
 const getDocExtention = (url) => url.split('.').pop();
 
 const useSubmitBankDetails = ({
-	accountType
+	accountType,
 }
 	// {
 	// creditRequest = {},
@@ -24,7 +24,6 @@ const useSubmitBankDetails = ({
 	);
 
 	const onSubmit = async (values) => {
-		console.log(values, 'kkkkk');
 		const ef_bank_details = {
 			account_type             : accountType,
 			aba_routing_number       : values?.aba_routing_number,
@@ -45,7 +44,7 @@ const useSubmitBankDetails = ({
 			],
 		};
 
-		if (values?.account_type === 'eefc_account') {
+		if (accountType === 'eefc_account') {
 			ef_bank_details.currency = values?.currency;
 		} else {
 			ef_bank_details.documents.push({
@@ -62,6 +61,8 @@ const useSubmitBankDetails = ({
 					section_to_update: 'ef_bank_details',
 				},
 				// credit_id: creditRequest?.credit_id,
+				// credit_id: '133f5ab9-fc18-4d5b-8a9e-6ee3f0fd30c1',
+				credit_id: 'e7bb79a0-6534-41f7-95e9-cbbd98044043',
 			};
 			await trigger({
 				data: payload,

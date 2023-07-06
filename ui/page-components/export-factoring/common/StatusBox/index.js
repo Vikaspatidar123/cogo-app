@@ -6,7 +6,7 @@ import styles from './styles.module.css';
 
 const backgroundStatus = ({ status }) => {
 	if (['review_requested', 'rejected'].includes(status)) { return '#bf291e'; }
-	if (['approved', 'verified'].includes(status)) { return ' #849e4c'; }
+	if (['approved', 'verified', 'VERIFIED', 'COMPLETED'].includes(status)) { return ' #849e4c'; }
 	return '#f9da7f';
 };
 

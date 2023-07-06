@@ -1,8 +1,8 @@
 .headerDiv{
     display: flex;
     justify-content: space-between;
-    min-width: 1000px;
-    margin: 10px 0px;
+    min-width: 950px;
+    margin: 10px;
 }
 
 .header{
@@ -24,13 +24,25 @@
 }
 
 .dataDiv{
-    width: 30%;
+    width: 33%;
     padding: 10px 0px;
 }
 
 .flexDiv{
     width: 100%;
     display: flex;
-    justify-content: space-between;
     flex-wrap: wrap;
+}
+
+.docContainer{
+    display: flex;
+	align-items: center;
+	justify-content: space-between;
+	height: 46px;
+	width: 60%;
+	border: 1px solid #e0e0e0;
+	border-radius: 4px;
+	cursor: pointer;
+	padding: 0px 10px;
+	margin: 10px 0px;
 }

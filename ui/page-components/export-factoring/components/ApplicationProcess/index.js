@@ -2,6 +2,7 @@ import { TabPanel, Tabs } from '@cogoport/components';
 import React, { useState } from 'react';
 
 import BankDetails from '../BankDetails';
+import BankVerification from '../BankDetails/components/BankVerification';
 
 import Agreement from './Agreement';
 import CompanyDocuments from './CompanyDocuments';
@@ -32,7 +33,9 @@ const tabsPanelMapping = [{
 },
 ];
 
-function ApplicationProcess() {
+function ApplicationProcess({
+	getCreditRequestResponse,
+}) {
 	const [activeTab, setActiveTab] = useState('agreement');
 	return (
 
@@ -44,7 +47,7 @@ function ApplicationProcess() {
 			>
 				{tabsPanelMapping.map(({ title = '', Component, status = '', name = '' }) => (
 					<TabPanel name={name} title={title} badge={status}>
-						<Component />
+						<Component getCreditRequestResponse={getCreditRequestResponse} />
 					</TabPanel>
 				))}
 			</Tabs>

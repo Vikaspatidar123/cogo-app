@@ -1,6 +1,6 @@
 import { Button } from '@cogoport/components';
 import { IcMArrowBack, IcMRefresh } from '@cogoport/icons-react';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'next-i18next';
 
 import { actionButtonKeys } from '../../../../configurations/key-mapping';
 import useUpdateTicketActivity from '../../../../hooks/useUpdateTicketActivity';

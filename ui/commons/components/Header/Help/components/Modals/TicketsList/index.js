@@ -1,6 +1,6 @@
 import { Modal, Tabs, TabPanel } from '@cogoport/components';
+import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
-import { useTranslation } from 'react-i18next';
 
 import FilterType from '../../../common/FilterType';
 import TicketStructure from '../../../common/TicketStructure';

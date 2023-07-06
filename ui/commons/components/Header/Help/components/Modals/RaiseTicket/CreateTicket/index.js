@@ -1,6 +1,6 @@
 import { Modal, Button } from '@cogoport/components';
+import { useTranslation } from 'next-i18next';
 import { useEffect } from 'react';
-import { useTranslation } from 'react-i18next';
 
 import additionalInformation from '../../../../configurations/additional-information';
 

@@ -1,5 +1,5 @@
 import { Toast } from '@cogoport/components';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'next-i18next';
 
 import { useTicketsRequest } from '@/packages/request';
 import { useSelector } from '@/packages/store';

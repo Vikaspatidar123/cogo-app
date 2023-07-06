@@ -1,7 +1,7 @@
 import { cl } from '@cogoport/components';
 import { IcMSearchlight } from '@cogoport/icons-react';
 import { isEmpty } from '@cogoport/utils';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'next-i18next';
 
 import FaqItem from '../../../common/FaqItem';
 import useListFaqSearchHistory from '../../../hooks/useListFaqSearchHistory';

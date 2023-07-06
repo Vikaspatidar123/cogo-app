@@ -2,8 +2,8 @@
 import { Tooltip } from '@cogoport/components';
 import { IcMEmail, IcMCall } from '@cogoport/icons-react';
 import { isEmpty } from '@cogoport/utils';
+import { useTranslation } from 'next-i18next';
 import { useEffect } from 'react';
-import { useTranslation } from 'react-i18next';
 
 import useGetTicketsUnreadCount from '../../hooks/useGetTicketsUnreadCount';
 

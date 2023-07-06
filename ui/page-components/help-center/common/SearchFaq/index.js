@@ -1,7 +1,7 @@
 import { Input, cl, Popover } from '@cogoport/components';
 import { IcMSearchlight } from '@cogoport/icons-react';
+import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
-import { useTranslation } from 'react-i18next';
 
 import useListFaqQuestions from '../../hooks/useListFaqQuestions';
 

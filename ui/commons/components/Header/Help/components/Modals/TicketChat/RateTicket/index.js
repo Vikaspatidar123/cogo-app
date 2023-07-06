@@ -1,7 +1,7 @@
 import { Button, RatingComponent } from '@cogoport/components';
 import { IcCStar } from '@cogoport/icons-react';
+import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
-import { useTranslation } from 'react-i18next';
 
 import useUpdateTicketFeedback from '../../../../hooks/useUpdateTicketFeedback';
 

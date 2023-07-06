@@ -1,7 +1,7 @@
 import { Placeholder, cl } from '@cogoport/components';
 import { IcMArrowNext } from '@cogoport/icons-react';
 import { startCase } from '@cogoport/utils';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'next-i18next';
 
 import TopicIcon from '../../../common/TopicIcon';
 import { NO_OF_TOPICS_TO_BE_SHOWN } from '../../../constants';

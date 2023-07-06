@@ -1,6 +1,6 @@
 import { cl } from '@cogoport/components';
 import { IcMArrowRight } from '@cogoport/icons-react';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'next-i18next';
 
 import getSupportOptions from './getSupportOptions';
 import styles from './styles.module.css';

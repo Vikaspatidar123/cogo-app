@@ -1,6 +1,6 @@
 import { cl } from '@cogoport/components';
+import { useTranslation } from 'next-i18next';
 import React, { useEffect } from 'react';
-import { useTranslation } from 'react-i18next';
 
 import FaqItem from '../../../common/FaqItem';
 import useGetRecommendedFaqs from '../../../hooks/useGetRecommendedFaqs';

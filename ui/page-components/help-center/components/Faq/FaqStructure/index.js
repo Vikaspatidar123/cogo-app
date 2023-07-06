@@ -1,6 +1,6 @@
 import { Button, Placeholder, cl } from '@cogoport/components';
 import { IcMArrowBack } from '@cogoport/icons-react';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'next-i18next';
 
 import SearchFaq from '../../../common/SearchFaq';
 import useCreateFaqFeedback from '../../../hooks/useCreateFaqFeedback';

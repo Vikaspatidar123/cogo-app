@@ -1,7 +1,7 @@
 import { Pagination, Placeholder, cl } from '@cogoport/components';
 import { IcMHelp } from '@cogoport/icons-react';
 import { isEmpty } from '@cogoport/utils';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'next-i18next';
 
 import FaqItem from '../../../common/FaqItem';
 import useListFaqTopicQuestions from '../../../hooks/useListFaqTopicQuestions';

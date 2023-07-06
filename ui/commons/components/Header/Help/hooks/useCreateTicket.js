@@ -1,6 +1,6 @@
 import { Toast } from '@cogoport/components';
+import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
-import { useTranslation } from 'react-i18next';
 
 import { getApiError } from '@/packages/forms';
 import { useTicketsRequest } from '@/packages/request';

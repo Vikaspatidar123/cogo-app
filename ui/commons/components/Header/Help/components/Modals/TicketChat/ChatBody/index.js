@@ -1,5 +1,5 @@
 import { Placeholder, cl } from '@cogoport/components';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'next-i18next';
 
 import EmptyStateTicketStructure from '../../../../common/TicketStructure/EmptyStateTicketStructure';
 import { MESSAGE_COUNT_TO_SHOWN } from '../../../../constants';

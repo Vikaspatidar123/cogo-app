@@ -1,6 +1,7 @@
 import dynamic from 'next/dynamic';
 
 import CogoPoint from '../CogoPoint';
+import LanguageSelect from '../LanguageSelect';
 
 import CompanyDetails from './Company';
 import styles from './styles.module.css';
@@ -16,6 +17,7 @@ function Header({ children, showUserDetails }) {
 			{children}
 
 			<div className={styles.right}>
+				<LanguageSelect />
 				<CogoPoint />
 				{showUserDetails && <UserDetails />}
 			</div>

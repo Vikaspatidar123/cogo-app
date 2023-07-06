@@ -39,8 +39,8 @@ function AddProductModal({
 					<IcAFormsAndCertificates width={25} height={25} />
 				</div>
 				<div>
-					<div className="title">Add Product</div>
-					<div className="headline">
+					<div className={styles.title}>Add Product</div>
+					<div className={styles.headline}>
 						You are just a step away from adding your product!
 					</div>
 				</div>

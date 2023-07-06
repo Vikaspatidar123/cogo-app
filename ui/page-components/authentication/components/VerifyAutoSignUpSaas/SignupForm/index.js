@@ -23,6 +23,7 @@ function SignupForm({ setHasSignedup, setFormData, setUserDetails }) {
 		control,
 		watch,
 		setValue,
+		register,
 	} = useForm();
 	const { query } = useRouter();
 
@@ -134,8 +135,11 @@ function SignupForm({ setHasSignedup, setFormData, setUserDetails }) {
 					name="mobile_number"
 					type="mobile-number-select"
 					placeholder="Mobile Number"
-					rules={{ required: 'Number is required.' }}
+					mobileSelectRef={{ ...register('mobile_number', { required: 'Number is required.' }) }.ref}
 				/>
+				{errors.mobile_number && (
+					<span className={styles.errors}>{errors.mobile_number.message || errors.mobile_number.type}</span>
+				)}
 			</div>
 
 			<div className={styles.checkbox_container}>
@@ -168,7 +172,7 @@ function SignupForm({ setHasSignedup, setFormData, setUserDetails }) {
 			<div className={styles.recaptcha_container}>
 				<ReCAPTCHA
 					ref={recaptchaRef}
-					sitekey="6Lde97IeAAAAAJS1_4x0dGDmjNGdKq1wVl1TR0eD"
+					sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITEKEY}
 					onChange={onChange}
 				/>
 			</div>

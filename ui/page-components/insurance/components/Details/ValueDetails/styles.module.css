@@ -29,16 +29,13 @@
 	flex-direction: column;
 	width: 35%;
 	padding: 8px;
+
+	@media (max-width: 768px) {
+		width: 100%;
+	}
 }
 
 .invoice_details_mobile {
-	display: flex;
-	flex-direction: column;
-	width: 100%;
-	padding: 8px;
-}
-
-.heading_wrapper_mobile {
 	display: flex;
 	flex-direction: column;
 	width: 100%;
@@ -86,9 +83,17 @@
 	display: flex;
 	align-items: center;
 	padding: 10px;
+
+	@media (max-width: 768px) {
+		flex-direction: column;
+	}
 }
 
 .error_message {
 	font-size: 14px;
 	color: #cb6464;
+}
+
+.documents_row {
+	padding: 10px;
 }

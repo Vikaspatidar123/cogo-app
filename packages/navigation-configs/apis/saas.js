@@ -590,8 +590,88 @@ const saas = {
 		},
 	],
 
-	saas_cogo_insurance  : [],
-	saas_tools_insurance : [],
+	saas_cogo_insurance: [
+		{
+			api          : 'create_organization_billing_address',
+			access_type  : 'private',
+			service_name : 'organization',
+		},
+		{
+			api          : 'post_saas_insurance',
+			access_type  : 'private',
+			service_name : 'insurance',
+		},
+		{
+			api         : 'list_address_for_insurance',
+			access_type : 'private',
+		},
+		{
+			api          : 'post_saas_insurance_cancel',
+			access_type  : 'private',
+			service_name : 'insurance',
+		},
+		{
+			api          : 'post_saas_insurance_claim',
+			access_type  : 'private',
+			service_name : 'insurance',
+		},
+		{
+			api          : 'get_saas_insurance_draft_details',
+			access_type  : 'private',
+			service_name : 'insurance',
+		},
+		{
+			api          : 'get_saas_faq',
+			access_type  : 'private',
+			service_name : 'insurance',
+		},
+		{
+			api          : 'get_saas_insurance_details',
+			access_type  : 'private',
+			service_name : 'insurance',
+		},
+		{
+			api          : 'get_saas_insurance_rate',
+			access_type  : 'private',
+			service_name : 'insurance',
+		},
+		{
+			api          : 'get_saas_insurance_list_summary',
+			access_type  : 'private',
+			service_name : 'insurance',
+		},
+		{
+			api          : 'get_saas_insurance_terms',
+			access_type  : 'private',
+			service_name : 'insurance',
+		},
+		{
+			api          : 'post_saas_insurance_checkout',
+			access_type  : 'private',
+			service_name : 'insurance',
+		},
+		{
+			api          : 'get_saas_insurance_list',
+			access_type  : 'private',
+			service_name : 'insurance',
+		},
+		{
+			api          : 'post_saas_payment',
+			access_type  : 'private',
+			service_name : 'insurance',
+		},
+		{
+			api          : 'post_saas_insurance_draft',
+			access_type  : 'private',
+			service_name : 'insurance',
+		},
+		{
+			api         : 'get_saas_insurance_pdf',
+			access_type : 'private',
+			module      : 'insurance',
+		},
+	],
+	saas_tools_insurance: [],
 
 	app_saas_map_tracking: [
 		{
@@ -1413,6 +1493,41 @@ const saas = {
 			api          : 'get_ef_agreement',
 			access_type  : 'private',
 			service_name : 'credit',
+		},
+	],
+	app_saas_air_ocean_tracking: [
+		{
+			api          : 'update_external_reference_number',
+			access_type  : 'private',
+			service_name : 'saas_traceability',
+		},
+		{
+			api          : 'export_tracking_data',
+			access_type  : 'private',
+			service_name : 'saas_traceability',
+		},
+		{
+			api          : 'list_saas_container_subscriptions_summary',
+			access_type  : 'private',
+			service_name : 'saas_traceability',
+		},
+		{
+			api          : 'list_saas_air_subscriptions_summary',
+			access_type  : 'private',
+			service_name : 'air_tracking',
+		},
+		{
+			api          : 'get_multiple_sea_routes',
+			access_type  : 'public',
+			service_name : 'location',
+		},
+	],
+	app_saas_live_vessel_tracking: [
+		{
+			api         : 'get_saas_vessel_tracking',
+			access_type : 'private',
+			module      : 'live-vessel-tracking',
+			feature     : 'live-vessel-tracking',
 		},
 	],
 };

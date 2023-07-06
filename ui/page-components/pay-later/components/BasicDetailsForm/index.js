@@ -25,7 +25,7 @@ function BasicDetailsForm({ getCreditRequestResponse = {}, refetch = () => { } }
 	const { proceedToPay, loading } = useApplyCreditRequestCouponCode({ getCreditRequestResponse, refetch });
 
 	return (
-		<div>
+		<div className={styles.form_wrapper}>
 			{DETAILS_ARRAY.map((details) => {
 				const FormFields = formMapping[details];
 

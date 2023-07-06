@@ -8,6 +8,7 @@ import ControlledCommodityCon from './ControlledCommodityCon';
 import CountrySelectController from './CountrySelectController';
 import CreatableSelectController from './CreatableSelectController';
 import DatepickerController from './DatepickerController';
+import DateRangepickerController from './DateRangepickerController';
 import IncoTermSelectController from './IncoTermSelect';
 import InputController from './InputController';
 import InputGroupController from './InputGroupController';
@@ -20,6 +21,7 @@ import RadioGroupController from './RadioGroupController';
 import SelectController from './SelectController';
 import SliderController from './SliderController';
 import TextAreaController from './TextAreaController';
+import TimepickerController from './TimepickerController';
 import UploadController from './UploadController';
 
 function Hidden() {
@@ -51,6 +53,8 @@ const MAPPING = {
 	custom_slider              : Slider,
 	'creatable-select'         : CreatableSelectController,
 	hidden                     : Hidden,
+	time_picker                : TimepickerController,
+	daterangepicker            : DateRangepickerController,
 };
 
 const getField = (type = 'text') => {

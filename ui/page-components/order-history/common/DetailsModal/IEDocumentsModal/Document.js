@@ -1,7 +1,21 @@
-import { Button, Tooltip } from '@cogoport/components';
+import { Tooltip, ButtonIcon } from '@cogoport/components';
 import { IcMPdf, IcMDownload } from '@cogoport/icons-react';
 
 import styles from './styles.module.css';
+
+const renderDesc = (desc = '') => {
+	if (desc?.length > 40) {
+		return (
+			<Tooltip content={desc} interactive>
+				<span>
+					{desc.substring(0, 40)}
+					...
+				</span>
+			</Tooltip>
+		);
+	}
+	return desc;
+};
 
 function Document({ doc = {}, hsNumber = '' }) {
 	const {
@@ -12,25 +26,12 @@ function Document({ doc = {}, hsNumber = '' }) {
 		docResponsibleParty = '',
 	} = doc;
 
-	const renderDesc = (desc = '') => {
-		if (desc?.length > 40) {
-			return (
-				<Tooltip content={desc} interactive>
-					<span>
-						{desc.substring(0, 40)}
-						...
-					</span>
-				</Tooltip>
-			);
-		}
-		return desc;
-	};
-
 	const downloadHandler = () => {
-		const url = `${process.env.BUSINESS_FINANCE_BASE_URL}
+		const url = `${process.env.NEXT_PUBLIC_BUSINESS_FINANCE_BASE_URL}
 		/saas/pdf/trade-engine?docLink=${docLink}&docName=${docName}&hsNumber=${hsNumber}`;
 		window.open(url, '_self');
 	};
+
 	return (
 		<div className={styles.doc_container}>
 			<div className={styles.row_container}>
@@ -45,9 +46,12 @@ function Document({ doc = {}, hsNumber = '' }) {
 						</IcMDownload>
 					</div>
 					<div className={styles.cta_mobile_view}>
-						<Button className={styles.download_btn} size="md" onClick={downloadHandler}>
-							<IcMDownload />
-						</Button>
+						<ButtonIcon
+							className={styles.download_btn}
+							icon={<IcMDownload />}
+							themeType="primary"
+							onClick={downloadHandler}
+						/>
 					</div>
 				</div>
 				<div className={`${styles.row} ${styles.row_mobile_view}`}>

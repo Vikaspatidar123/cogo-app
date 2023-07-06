@@ -1,0 +1,72 @@
+.main_container {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-bottom: 8px;
+}
+
+.main_div {
+	padding: 16px;
+}
+
+.border_div {
+	padding-top: 8px;
+	border-bottom: 1px solid #e0e0e0;
+}
+
+.port_container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.port_detail_container {
+	display: flex;
+	flex-direction: column;
+	width: 120px;
+	margin: auto;
+	margin: 0 40px;
+}
+
+.icon_wrap {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 4px 8px;
+	border-radius: 4px;
+
+	&.fcl_freight {
+		background: #356efd;
+	}
+
+	&.lcl_freight {
+		background: #d4ad38;
+	}
+
+	&.air_freight {
+		background: #e98280;
+	}
+}
+
+.port_code_section {
+	max-width: 150px;
+	margin-bottom: 4px;
+	font-size: 10px;
+	line-height: 16px;
+	color: #828282;
+	color: rgb(130 130 130);
+}
+
+.port_name_div {
+	max-width: 120px;
+	overflow: hidden;
+	font-size: 16px;
+	font-weight: 700;
+	line-height: 26px;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.row {
+	display: flex;
+}

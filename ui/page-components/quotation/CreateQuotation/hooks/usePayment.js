@@ -10,7 +10,7 @@ import { useSelector } from '@/packages/store';
 const usePayment = () => {
 	const { id, name, email, mobile_number, mobile_country_code, organization } = useSelector((state) => state.profile);
 	const { query } = useRouter();
-	const { org_id, branch_id, account_type } = query || {};
+	const { org_id, branch_id } = query || {};
 
 	const { getServiceCode, serviceCodeLoading } = useServiceCodes();
 
@@ -28,8 +28,8 @@ const usePayment = () => {
 	};
 
 	const postPayemnt = async ({ quoteId, billRefId, currency, billLineItems, ...rest }) => {
-		const redirectUrl = `${process.env.NEXT_PUBLIC_APP_BASE_URL}app/${org_id}/${branch_id}
-		/${account_type}/saas/quickquotation/editquotation/${quoteId}`;
+		const redirectUrl = `${process.env.NEXT_PUBLIC_APP_URL}${org_id}/${branch_id}
+		/saas/quickquotation/editquotation/${quoteId}`;
 
 		const billLineItemsData = await getServiceDataHandler({ billLineItems });
 

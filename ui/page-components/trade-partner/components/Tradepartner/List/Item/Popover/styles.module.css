@@ -11,9 +11,18 @@
 	width: 14px;
 	height: 14px;
 	margin-right: 5px;
+
+	@media (max-width: 768px) {
+		width: 20px;
+		height: 20px;
+	}
 }
 
 .label {
 	font-size: 14px !important;
 	text-transform: capitalize;
+
+	@media (max-width: 768px) {
+		display: none;
+	}
 }

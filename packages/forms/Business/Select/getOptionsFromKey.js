@@ -25,7 +25,7 @@ const getOptionsFromKey = (
 	if (key === 'truck_types') {
 		const applicableTrucks = TruckTypes.filter(
 			(truck) => truck.country_codes.includes(country_code)
-                || truck.country_codes.includes('ALL'),
+				|| truck.country_codes.includes('ALL'),
 		);
 		data.options = applicableTrucks.map((truck) => ({
 			...truck,

@@ -1,4 +1,3 @@
-import { Toast } from '@cogoport/components';
 import { useCallback, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
@@ -43,7 +42,7 @@ const useGetRates = ({
 			setRatesResponse(res?.data);
 		} catch (error) {
 			if (error?.message !== 'canceled') {
-				Toast?.error(error?.message);
+				console.log(error?.message);
 			}
 			setRatesResponse({});
 		}

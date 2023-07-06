@@ -1,4 +1,3 @@
-import { Toast } from '@cogoport/components';
 import { useCallback, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
@@ -15,7 +14,7 @@ const useGetAddresses = ({ uploadType = '' }) => {
 			method : 'get',
 			url    : 'list_address_for_insurance',
 		},
-		{ autoCancel: false },
+		{ autoCancel: false, manual: true },
 	);
 
 	const fetchAddresses = useCallback(async () => {
@@ -27,7 +26,7 @@ const useGetAddresses = ({ uploadType = '' }) => {
 				},
 			});
 		} catch (error) {
-			Toast.error(getApiErrorString(error));
+			console.log(getApiErrorString(error));
 		}
 	}, [id, trigger, uploadType]);
 

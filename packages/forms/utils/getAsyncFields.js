@@ -10,6 +10,22 @@ function asyncFieldsLocations2() {
 			sort_by    : 'name',
 			sort_type  : 'asc',
 			includes   : { country: true, main_ports: true, default_params_required: true },
+
+		},
+	};
+}
+function asyncFieldsShippingLines() {
+	return {
+		valueKey       : 'id',
+		labelKey       : 'short_name',
+		endpoint       : 'list_operators',
+		authKey        : 'list_operators',
+		defaultOptions : true,
+		defaultParams  : {
+			filters    : { operator_type: 'shipping_line', status: 'active' },
+			page_limit : 100,
+			sort_by    : 'short_name',
+			sort_type  : 'asc',
 		},
 	};
 }
@@ -143,8 +159,9 @@ function asyncCountrySelect() {
 		params   : {
 			filters  : { type: 'country' },
 			includes : {
-				default_params_required : true,
-				flag_icon_url           : true, // country_code: true,
+				default_params_required: true,
+				// flag_icon_url           : true,
+				// country_code: true,
 			},
 			page_limit : 20,
 			sort_by    : 'name',
@@ -277,6 +294,21 @@ function asyncProductList() {
 	};
 }
 
+function asyncFieldsAirLine() {
+	return {
+		labelKey    : 'label',
+		valueKey    : 'id',
+		endpoint    : 'list_operators',
+		initialCall : true,
+		params      : {
+			filters    : { operator_type: 'airline', status: 'active' },
+			page_limit : 100,
+			sort_by    : 'short_name',
+			sort_type  : 'asc',
+		},
+	};
+}
+
 function asyncFieldsShippingLine() {
 	return {
 		labelKey    : 'short_name',
@@ -292,20 +324,6 @@ function asyncFieldsShippingLine() {
 	};
 }
 
-function asyncFieldsAirLine() {
-	return {
-		labelKey    : 'label',
-		valueKey    : 'id',
-		endpoint    : 'list_operators',
-		initialCall : true,
-		params      : {
-			filters    : { operator_type: 'airline', status: 'active' },
-			page_limit : 100,
-			sort_by    : 'short_name',
-			sort_type  : 'asc',
-		},
-	};
-}
 function asyncTaxNumbers() {
 	return {
 		labelKey    : 'label',
@@ -322,6 +340,47 @@ function asyncTradeContacts() {
 		endpoint       : 'list_trade_contacts',
 		defaultParams  : { page_limit: 20 },
 		defaultOptions : true,
+	};
+}
+function asyncFieldsSixDigitHsCode() {
+	return {
+		labelKey    : 'label',
+		valueKey    : 'hsCode',
+		endpoint    : 'saas/hs-code/six-digit-list',
+		authKey     : 'get_saas_hs_code_six_digit_list',
+		useQueryKey : true,
+	};
+}
+
+function asyncFieldsOceanPocDetails() {
+	return {
+		labelKey : 'label',
+		valueKey : 'id',
+		endpoint : 'list_saas_subscription_poc_details',
+
+	};
+}
+
+function asyncFieldsAirPocDetails() {
+	return {
+		labelKey : 'label',
+		valueKey : 'id',
+		endpoint : 'list_saas_air_subscription_poc_details',
+	};
+}
+
+function asyncFieldsAirLineList() {
+	return {
+		labelKey : 'business_name',
+		valueKey : 'id',
+		endpoint : 'list_operators',
+	};
+}
+function asyncFieldsShippingLineList() {
+	return {
+		labelKey : 'business_name',
+		valueKey : 'id',
+		endpoint : 'get_saas_container_shipping_lines',
 	};
 }
 
@@ -351,5 +410,14 @@ export {
 	asyncOrganizationBranches,
 	asyncTaxNumbers,
 	asyncTradeContacts,
+<<<<<<< HEAD
 	asyncCurrencies,
+=======
+	asyncFieldsSixDigitHsCode,
+	asyncFieldsOceanPocDetails,
+	asyncFieldsAirPocDetails,
+	asyncFieldsAirLineList,
+	asyncFieldsShippingLineList,
+	asyncFieldsShippingLines,
+>>>>>>> b913f5becb6bfe050edfb0eed6d445f0af024acf
 };

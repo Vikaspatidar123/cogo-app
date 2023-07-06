@@ -1,0 +1,222 @@
+.tag {
+	display: inline;
+	padding: 4px 12px;
+	margin: 0 10px;
+	font-size: 14px;
+	font-weight: 500;
+	color: #344054;
+	background: #f2f4f7;
+	border-radius: 16px;
+
+	&.ongoing {
+		background: #fff7df;
+	}
+
+	.completed {
+		background: #ecfdf3;
+	}
+
+	.upcoming {
+		background: #eff8ff;
+	}
+
+	&.cancelled {
+		background: #ffcccb;
+	}
+}
+
+.card {
+	display: flex;
+	flex: 6;
+	flex-direction: column;
+	padding: 0 20px 20px;
+	margin: 0 100px 15px 20px;
+	border: 1px solid #e4e7ec;
+	border-radius: 8px;
+
+	&.shipment_booking_pending {
+		flex-direction: row;
+		align-items: center;
+		justify-content: center;
+		padding: 30px;
+	}
+}
+
+.left_side {
+	display: flex;
+	flex: 5;
+	flex-direction: column;
+
+	.section-two {
+		min-width: 300px;
+		max-width: 600px;
+		margin-top: 20px;
+	}
+}
+
+.right_side {
+	display: flex;
+	flex: 1;
+	flex-direction: column;
+	align-items: center;
+}
+
+.section {
+	display: flex;
+}
+
+.shipment_id {
+	font-size: 18px;
+	font-weight: 500;
+	color: #221f20;
+}
+
+.freight_price {
+	margin-top: 10px;
+	font-size: 24px;
+	font-weight: 600;
+	color: #221f20;
+}
+
+.container {
+	display: flex;
+}
+
+.shipment_date {
+	position: relative;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: flex-end;
+	width: 110px;
+	padding: 0 10px;
+	border-right: 1px solid #e4e7ec;
+
+	&.ongoing {
+		border-right: 1px solid #c4dc91;
+	}
+
+	&.completed {
+		border-right: 1px solid #c4dc91;
+	}
+
+	&.cancelled {
+		border-right: 1px solid red;
+	}
+}
+
+.booked_date {
+	margin-top: -4px;
+	font-size: 14px;
+	font-weight: 600;
+	color: #667085;
+}
+
+.dot {
+	position: absolute;
+	top: 1px;
+	right: 1px;
+	width: 8px;
+	height: 8px;
+	background: #e4e7ec;
+	border-radius: 100%;
+
+	&.ongoing {
+		background: #c4dc91;
+	}
+
+	&.completed {
+		background: #c4dc91;
+	}
+
+	&.cancelled {
+		background: red;
+	}
+}
+
+.circle {
+	position: absolute;
+	right: -6px;
+	display: flex;
+	width: 12px;
+	height: 12px;
+	background: #fff;
+	border: 1px solid #e4e7ec;
+	border-radius: 100%;
+
+	&.ongoing {
+		border: 1px solid #c4dc91;
+	}
+
+	&.completed {
+		border: 1px solid #c4dc91;
+	}
+
+	&.cancelled {
+		border: 1px solid red;
+	}
+}
+
+.main {
+	max-height: 500px;
+	margin-top: 20px;
+	overflow: scroll;
+
+	::-webkit-scrollbar {
+		display: none;
+	}
+}
+
+.journey_start_circle {
+	position: absolute;
+	right: -6px;
+	bottom: 0;
+	display: flex;
+	width: 12px;
+	height: 12px;
+	background: #fff;
+	border: 1px solid #c4dc91;
+	border-radius: 100%;
+}
+
+.journey_start_dot {
+	position: absolute;
+	top: 1px;
+	right: 1px;
+	width: 8px;
+	height: 8px;
+	background: #c4dc91;
+	border-radius: 100%;
+}
+
+.card_tag {
+	display: flex;
+	width: fit-content;
+	padding: 2px 4px;
+	margin: 0 0 5px -20px;
+	font-size: 12px;
+	color: #221f20;
+	background: #cfeaed;
+	border-radius: 4px 0 8px;
+}
+
+.inner_card {
+	display: flex;
+	align-items: center;
+}
+
+.section_two {
+	min-width: 300px;
+	max-width: 600px;
+	margin-top: 20px;
+}
+
+.tags {
+	display: inline;
+	padding: 4px 12px;
+	margin: 0 10px;
+	font-size: 14px;
+	font-weight: 500;
+	color: #175cd3;
+	background: #eff8ff;
+	border-radius: 16px;
+}

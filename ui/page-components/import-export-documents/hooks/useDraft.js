@@ -14,6 +14,12 @@ const useDraft = () => {
 		authKey : 'post_saas_trade_engine_documents_draft',
 	}, { manual: true });
 
+	const [{ loading: getLoading, data }, getDraftTrigger] = useRequestBf({
+		method  : 'get',
+		url     : '/saas/trade-engine/draft',
+		authKey : 'get_saas_trade_engine_draft',
+	}, { manual: true });
+
 	const refetchDraft = async ({ header, lineItem, hsCode = '' }) => {
 		try {
 			const resp = await trigger({
@@ -36,9 +42,23 @@ const useDraft = () => {
 		}
 	};
 
+	const getDraftFn = async (id) => {
+		try {
+			await getDraftTrigger({
+				params: {
+					tradeEngineInputId: id,
+				},
+			});
+		} catch (err) {
+			console.log(err?.error?.message);
+		}
+	};
+
 	return {
 		refetchDraft,
-		draftLoading: loading,
+		draftLoading : loading || getLoading,
+		getDraftFn,
+		getDraftData : data,
 	};
 };
 

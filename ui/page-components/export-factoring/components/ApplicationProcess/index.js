@@ -6,7 +6,7 @@ import BankVerification from '../BankDetails/components/BankVerification';
 
 import Agreement from './Agreement';
 import CompanyDocuments from './CompanyDocuments';
-import UdcAndPdc from './UdcAndPdc';
+import OptUdcAndPdc from './OptUdcPdcDocuments';
 
 const tabsPanelMapping = [{
 	name      : 'agreement',
@@ -28,14 +28,12 @@ const tabsPanelMapping = [{
 {
 	name      : 'udc&Pdc',
 	title     : 'UDC PDC',
-	Component : UdcAndPdc,
+	Component : OptUdcAndPdc,
 	status    : 'PENDING',
 },
 ];
 
-function ApplicationProcess({
-	getCreditRequestResponse,
-}) {
+function ApplicationProcess({ active = {}, getCreditRequestResponse = {}, refetch = () => {}, loading = false }) {
 	const [activeTab, setActiveTab] = useState('agreement');
 	return (
 
@@ -47,7 +45,12 @@ function ApplicationProcess({
 			>
 				{tabsPanelMapping.map(({ title = '', Component, status = '', name = '' }) => (
 					<TabPanel name={name} title={title} badge={status}>
-						<Component getCreditRequestResponse={getCreditRequestResponse} />
+						<Component
+							active={active}
+							getCreditRequestResponse={getCreditRequestResponse}
+							refetch={refetch}
+							loading={loading}
+						/>
 					</TabPanel>
 				))}
 			</Tabs>

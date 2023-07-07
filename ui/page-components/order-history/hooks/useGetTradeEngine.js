@@ -11,7 +11,7 @@ const useGetTradeEngine = ({ itm }) => {
 		method  : 'get',
 	}, { manual: true });
 
-	const TradeEngineResponseFunc = async () => {
+	const tradeEngineResponseFunc = async () => {
 		try {
 			const resp = await tradeApitrigger({
 				params: {
@@ -25,7 +25,7 @@ const useGetTradeEngine = ({ itm }) => {
 	};
 
 	return {
-		TradeEngineResponseFunc,
+		tradeEngineResponseFunc,
 		tradeEngineResponse,
 		tradeEngineResponseLoading,
 	};

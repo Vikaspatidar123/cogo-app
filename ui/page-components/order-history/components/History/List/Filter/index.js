@@ -1,11 +1,13 @@
 import { Button, Popover } from '@cogoport/components';
 import { IcMFilter } from '@cogoport/icons-react';
+import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
 
 import FilterContent from './FilterContent';
 import styles from './styles.module.css';
 
 function FilterSection({ filters = {}, setFilters = () => {} }) {
+	const { t } = useTranslation(['orderHistory']);
 	const [showFilters, setshowFilters] = useState(false);
 
 	return (
@@ -22,7 +24,7 @@ function FilterSection({ filters = {}, setFilters = () => {} }) {
 			<Button themeType="accent" onClick={() => setshowFilters(!showFilters)} type="button">
 
 				<div className={styles.web_view}>
-					Filter By
+					{t('orderHistory:filter_section')}
 					<IcMFilter />
 				</div>
 

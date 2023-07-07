@@ -10,9 +10,7 @@ const Mapping = (item) => {
 	return mapping[item.key] ? mapping[item.key] : item.key;
 };
 
-function CardHeader({
-	fields, sort = {}, setSort,
-}) {
+function CardHeader({ fields, sort = {}, setSort }) {
 	const handleOnchange = (item) => {
 		setSort(() => {
 			if (sort.sortBy !== Mapping(item)) {

@@ -1,5 +1,6 @@
 import { Tooltip } from '@cogoport/components';
 import { IcMServices } from '@cogoport/icons-react';
+import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
 
 import DetailsModal from '../../../../../common/DetailsModal';
@@ -7,6 +8,7 @@ import DetailsModal from '../../../../../common/DetailsModal';
 import styles from './styles.module.css';
 
 function RenderComponent({ itemData = {} }) {
+	const { t } = useTranslation(['orderHistory']);
 	const [modal, setModal] = useState(false);
 	return (
 		<>
@@ -19,7 +21,7 @@ function RenderComponent({ itemData = {} }) {
 			</div>
 
 			<u className={styles.mobile_view} onClick={() => setModal(true)} role="presentation">
-				View Details
+				{t('orderHistory:view_details')}
 			</u>
 
 			<div className={styles.modalContainer}>

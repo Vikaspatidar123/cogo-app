@@ -1,7 +1,8 @@
 import { Modal } from '@cogoport/components';
+import { useTranslation } from 'next-i18next';
 import { useEffect } from 'react';
 
-import TITLE_MAPPING from '../../configurations/titleMapping';
+import getTitle from '../../configurations/titleMapping';
 import useGetTradeEngine from '../../hooks/useGetTradeEngine';
 import IEControlsModal from '../IEControlsModal';
 
@@ -22,11 +23,17 @@ function DetailsModal({
 	modal = false,
 	setModal = () => { },
 }) {
-	const { tradeEngineResponse, tradeEngineResponseLoading, TradeEngineResponseFunc } = useGetTradeEngine({ itm });
+	const { t } = useTranslation(['orderHistory']);
+
+	const TITLE_MAPPING = getTitle({ t });
+
+	const { tradeEngineResponse, tradeEngineResponseLoading, tradeEngineResponseFunc } = useGetTradeEngine({ itm });
+
 	useEffect(() => {
-		TradeEngineResponseFunc();
+		tradeEngineResponseFunc();
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
+
 	const { requestType = '' } = itm || {};
 
 	const Component = COMPONENT_MAPPING?.[requestType];

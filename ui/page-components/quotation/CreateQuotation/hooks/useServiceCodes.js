@@ -1,23 +1,15 @@
 import { useRequestBf } from '@/packages/request';
 
 const useServiceCodes = () => {
-	const [{ loading }, trigger] = useRequestBf({
+	const [{ loading, data }] = useRequestBf({
 		method  : 'get',
 		url     : 'saas/bill/product-codes',
 		authKey : 'get_saas_bill_product_codes',
-	}, { manual: true });
+	}, { manual: false });
 
-	const getServiceCode = async () => {
-		try {
-			const resp = await trigger({});
-			return resp?.data;
-		} catch (err) {
-			return false;
-		}
-	};
 	return {
-		getServiceCode,
-		serviceCodeLoading: loading,
+		serviceCodeLoading : loading,
+		serviceCodeData    : data,
 	};
 };
 

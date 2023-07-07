@@ -5,6 +5,22 @@ import styles from '../styles.module.css';
 
 import { downloadDocument } from '@/ui/commons/utils/downloadDocument';
 
+const MAX_DESC_LENGTH = 50;
+
+function RenderDesc({ desc = '' }) {
+	if (desc?.length > MAX_DESC_LENGTH) {
+		return (
+			<Tooltip content={desc} interactive>
+				<span>
+					{desc.substring(0, MAX_DESC_LENGTH)}
+					...
+				</span>
+			</Tooltip>
+		);
+	}
+	return <span>{desc || '--'}</span>;
+}
+
 function Document({ doc = {}, hsNumber = '' }) {
 	const {
 		docName = '',
@@ -14,18 +30,8 @@ function Document({ doc = {}, hsNumber = '' }) {
 		docResponsibleParty = '',
 	} = doc;
 
-	const renderDesc = (desc = '') => {
-		if (desc?.length > 50) {
-			return (
-				<Tooltip content={desc} interactive>
-					<span>
-						{desc.substring(0, 50)}
-						...
-					</span>
-				</Tooltip>
-			);
-		}
-		return desc || '--';
+	const clickHandler = () => {
+		downloadDocument({ urlKey: 'importExportDoc', payloadObj: { docLink, docName, hsNumber } });
 	};
 
 	return (
@@ -40,7 +46,7 @@ function Document({ doc = {}, hsNumber = '' }) {
 						<Button
 							className={styles.download_btn}
 							themeType="linkUi"
-							onClick={() => downloadDocument({ docLink, docName, hsNumber })}
+							onClick={clickHandler}
 						>
 							Download
 						</Button>
@@ -63,7 +69,9 @@ function Document({ doc = {}, hsNumber = '' }) {
 					</div>
 					<div className={cl`${styles.info} ${styles.desc_row}`}>
 						<span className={styles.label}>Description: </span>
-						<span className={styles.value}>{renderDesc(docExpNotes)}</span>
+						<span className={styles.value}>
+							<RenderDesc desc={docExpNotes} />
+						</span>
 					</div>
 				</div>
 			</div>

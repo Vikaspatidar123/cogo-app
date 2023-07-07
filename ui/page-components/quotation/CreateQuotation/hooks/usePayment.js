@@ -18,7 +18,7 @@ const usePayment = ({ buyerDetails = {} }) => {
 
 	const { org_id, branch_id } = query || {};
 
-	const { getServiceCode, serviceCodeLoading } = useServiceCodes();
+	const { serviceCodeData, serviceCodeLoading } = useServiceCodes();
 
 	const [{ loading, data: paymentData }, trigger] = useRequestBf({
 		method  : 'post',
@@ -26,21 +26,15 @@ const usePayment = ({ buyerDetails = {} }) => {
 		authKey : 'post_saas_payment',
 	}, { manual: true });
 
-	const getServiceDataHandler = async ({ billLineItems }) => {
-		const resp = await getServiceCode();
-		const payload = billLineItems.map((data, index) => (
-			{ ...data, productCodeId: resp?.[SERVICE_CODE_MAPPING[index + 1]]?.id }));
-		return payload;
-	};
-
-	const createPayload = async ({ quoteId, billRefId, currency, billLineItems, ...rest }) => {
+	const createPayload = ({ quoteId, billRefId, currency, billLineItems, ...rest }) => {
 		const redirectUrl = [
 			`${process.env.NEXT_PUBLIC_APP_URL}${org_id}/${branch_id}`,
 			'saas/quickquotation/editquotation',
 			quoteId,
 		].join('/');
 
-		const billLineItemsData = await getServiceDataHandler({ billLineItems });
+		const billLineItemsData = billLineItems.map((data, index) => (
+			{ ...data, productCodeId: serviceCodeData?.[SERVICE_CODE_MAPPING[index + 1]]?.id }));
 
 		const isBillingAddress = !!buyerDetails?.taxNumber;
 		const addressKey = isBillingAddress
@@ -66,7 +60,7 @@ const usePayment = ({ buyerDetails = {} }) => {
 	};
 
 	const postPayemnt = async (params) => {
-		const payload = await createPayload(params);
+		const payload = createPayload(params);
 
 		try {
 			const resp = await trigger({

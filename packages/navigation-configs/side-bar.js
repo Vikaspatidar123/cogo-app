@@ -47,11 +47,11 @@ const getSideBarConfigs = ({
 					nav_items.push({
 						...navigation[key],
 						options: dashboardUrls.map((urlItem) => ({
-							title: urlItem.title,
-							type: 'link',
-							as: `/dashboards/${urlItem.urlKey}`,
-							href: '/dashboards/[dashboard_type]',
-							condition: getCondition(urlItem),
+							title     : urlItem.title,
+							type      : 'link',
+							as        : `/dashboards/${urlItem.urlKey}`,
+							href      : '/dashboards/[dashboard_type]',
+							condition : getCondition(urlItem),
 						})),
 					});
 				} else if (navigation[key]?.options) {

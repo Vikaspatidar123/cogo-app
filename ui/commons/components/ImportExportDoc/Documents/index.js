@@ -44,13 +44,21 @@ function Document({ doc = {}, hsNumber = '' }) {
 						<span>{docName}</span>
 					</div>
 					<div className={styles.cta_web_view}>
-						<Button themeType="linkUi" onClick={() => downloadHandler({ docLink, docName, hsNumber })}>
+						<Button
+							themeType="linkUi"
+							type="button"
+							onClick={() => downloadHandler({ docLink, docName, hsNumber })}
+						>
 							{t('iedResult:result_download')}
 						</Button>
 
 					</div>
 					<div className={styles.cta_mobile_view}>
-						<Button themeType="linkUi" onClick={() => downloadHandler({ docLink, docName, hsNumber })}>
+						<Button
+							themeType="linkUi"
+							type="button"
+							onClick={() => downloadHandler({ docLink, docName, hsNumber })}
+						>
 							<IcMDownload />
 						</Button>
 					</div>

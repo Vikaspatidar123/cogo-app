@@ -216,6 +216,7 @@ const GLOBAL_CONSTANTS = {
 		unsubscription_plane  : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/page_plane.png',
 		insurance_empty_image : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/Insurance.png',
 		empty_state           : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/empty_icon 1.svg',
+		secure_icon           : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/secure-icon.svg',
 	},
 	onboarding_specialist: {
 		name         : 'Kanira Patel',

@@ -11,6 +11,9 @@ import IEDocumentsModal from './IEDocumentsModal';
 import styles from './styles.module.css';
 import TraderEligibilityModal from './TraderEligibilityModal';
 
+import { Image } from '@/packages/next';
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
+
 const COMPONENT_MAPPING = {
 	DUTIES    : DutiesTaxesModal,
 	SCREENING : TraderEligibilityModal,
@@ -61,9 +64,11 @@ function DetailsModal({
 				</div>
 			)}
 			{tradeEngineResponseLoading && (
-				<img
-					src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/loading.svg"
-					alt="loading"
+				<Image
+					src={GLOBAL_CONSTANTS.image_url.loading}
+					alt={t('orderHistory:loading')}
+					width={100}
+					height={100}
 					className={styles.loading_image}
 				/>
 			)}

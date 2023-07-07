@@ -11,7 +11,7 @@ const getOption = ({ t }) => [
 	{
 		children: (
 			<div className={styles.import_export}>
-				<div className={styles.type_label}>{t(':filter_option_direct_pay')}</div>
+				<div className={styles.type_label}>{t('orderHistory:filter_option_direct_pay')}</div>
 			</div>
 		),
 		key: 'PAYMENT',
@@ -19,7 +19,7 @@ const getOption = ({ t }) => [
 	{
 		children: (
 			<div className={styles.import_export}>
-				<div className={styles.type_label}>{t(':filter_option_quota')}</div>
+				<div className={styles.type_label}>{t('orderHistory:filter_option_quota')}</div>
 			</div>
 		),
 		key: 'QUOTA',
@@ -70,7 +70,7 @@ function FilterContent({ filters = {}, setFilters = () => {} }) {
 							});
 						}}
 					>
-						<p>{t(':filter_clear')}</p>
+						<p>{t('orderHistory:filter_clear')}</p>
 						<IcMCrossInCircle />
 					</div>
 				)}

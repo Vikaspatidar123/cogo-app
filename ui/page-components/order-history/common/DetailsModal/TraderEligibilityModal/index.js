@@ -1,20 +1,28 @@
 import { cl } from '@cogoport/components';
+import { useTranslation } from 'next-i18next';
 
 import styles from './styles.module.css';
 
+import { Image } from '@/packages/next';
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
+
 function TraderEligibilityModal({ tradeEngineResponse = {} }) {
 	const { screeningRequestResponse = {}, screeningPartyName = '' } = tradeEngineResponse || {};
+	const { t } = useTranslation(['orderHistory']);
+
 	return (
 		<>
 			<div className={styles.styled_tag}>
-				Trader Name:
+				{t(':tec_trader_name')}
 				{' '}
 				{screeningPartyName.toUpperCase()}
 			</div>
 			{screeningRequestResponse?.length > 0 && (
 				<>
 					<div className={styles.title}>
-						Total Results (
+						{t('orderHistory:tec_total_result')}
+						{' '}
+						(
 						{screeningRequestResponse.length}
 						)
 					</div>
@@ -40,22 +48,22 @@ function TraderEligibilityModal({ tradeEngineResponse = {} }) {
 												{screeningMatchWeight * 100}
 												%
 											</div>
-											<div className={styles.score_text}>Matching score</div>
+											<div className={styles.score_text}>{t('orderHistory:tec_match_score')}</div>
 										</div>
 									</div>
 									<div className={styles.styled_row}>
 										<div className={styles.column}>
-											<div className={styles.heading2}>Listing Name</div>
+											<div className={styles.heading2}>{t('orderHistory:tec_list_name')}</div>
 											<div className={styles.text2}>{screeningListName}</div>
 										</div>
 									</div>
 									<div className={styles.styled_row}>
 										<div className={styles.column}>
-											<div className={styles.heading2}>Department Name</div>
+											<div className={styles.heading2}>{t('orderHistory:tec_dept_name')}</div>
 											<div className={styles.text2}>{screeningDept}</div>
 										</div>
 										<div className={styles.column}>
-											<div className={styles.heading2}>Registered Date</div>
+											<div className={styles.heading2}>{t('orderHistory:tec_date')}</div>
 											<div className={styles.text2}>{screeningFedRegDate}</div>
 										</div>
 									</div>
@@ -67,15 +75,15 @@ function TraderEligibilityModal({ tradeEngineResponse = {} }) {
 			)}
 			{screeningRequestResponse?.length === 0 && (
 				<div className={cl`${styles.list_wrapper} ${styles.verifieduser}`}>
-					<img
-						src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/secure-icon.svg"
-						alt="secure"
+					<Image
+						src={GLOBAL_CONSTANTS.image_url.secure_icon}
+						alt={t('orderHistory:tec_secure_alt')}
 						height={100}
 						width={100}
 					/>
 					<div className={styles.label}>
 						<b className={styles.bold}>{screeningPartyName.toUpperCase()}</b>
-						<div> is all clear. You are all set to go trade with this partner.</div>
+						<div>{t('orderHistory:tec_trader_msg')}</div>
 					</div>
 				</div>
 			)}

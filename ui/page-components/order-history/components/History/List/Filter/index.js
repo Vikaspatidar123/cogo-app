@@ -17,9 +17,7 @@ function FilterSection({ filters = {}, setFilters = () => {} }) {
 			interactive={showFilters}
 			visible={showFilters}
 			onClickOutside={() => setshowFilters(false)}
-			content={
-				<FilterContent filters={filters} setFilters={setFilters} />
-				}
+			content={<FilterContent filters={filters} setFilters={setFilters} />}
 		>
 			<Button themeType="accent" onClick={() => setshowFilters(!showFilters)} type="button">
 

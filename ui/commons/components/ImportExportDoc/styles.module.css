@@ -47,16 +47,6 @@
 	width: 34%;
 }
 
-.back_arrow {
-	margin-right: 12px;
-	cursor: pointer;
-}
-
-.empty_state {
-	display: block;
-	margin: 100px auto;
-}
-
 .info_src {
 	width: 35%;
 }

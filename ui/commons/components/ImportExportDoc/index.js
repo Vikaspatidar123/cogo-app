@@ -1,11 +1,13 @@
 import { TabPanel, Tabs, cl } from '@cogoport/components';
 import { isEmpty } from '@cogoport/utils';
+import { useTranslation } from 'next-i18next';
 import { useState, useEffect } from 'react';
 
 import Documents from './Documents';
 import styles from './styles.module.css';
 
 function ImportExportDoc({ documents = [], EmptyState, hsNumber, modeOfTransport, isModal = false }) {
+	const { t } = useTranslation(['iedResult']);
 	const [activeTab, setActiveTab] = useState('IMPORT');
 
 	const [docVal, setDocVal] = useState({
@@ -47,25 +49,19 @@ function ImportExportDoc({ documents = [], EmptyState, hsNumber, modeOfTransport
 						themeType="tertiary"
 						onChange={setActiveTab}
 					>
-						{/* <TabPanel name="IMPORT" title={t('importExportDoc:result_tab_1')} />
-					<TabPanel name="EXPORT" title={t('importExportDoc:result_tab_2')} /> */}
-						<TabPanel name="IMPORT" title="Import" />
-						<TabPanel name="EXPORT" title="Export" />
+						<TabPanel name="IMPORT" title={t('iedResult:result_tab_1')} />
+						<TabPanel name="EXPORT" title={t('iedResult:result_tab_2')} />
 					</Tabs>
 				</div>
 				<div className={styles.tag_container}>
 					<div className={cl`${styles.tag} ${styles.transport_mode}`}>
-						{/* {t('importExportDoc:document_control_transport_label')} */}
-						Mode of Transport:
-						:
+						{t('iedResult:document_control_transport_label')}
 						{' '}
 						{modeOfTransport}
 					</div>
 					{hsNumber && (
 						<div className={styles.tag}>
-							{/* {t('importExportDoc:document_control_hscode_label')} */}
-							Hs Code:
-							:
+							{t('iedResult:document_control_hscode_label')}
 							{' '}
 							{hsNumber}
 						</div>

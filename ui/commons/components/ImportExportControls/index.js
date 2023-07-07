@@ -1,11 +1,13 @@
 import { TabPanel, Tabs } from '@cogoport/components';
 import { isEmpty } from '@cogoport/utils';
+import { useTranslation } from 'next-i18next';
 import { useState, useEffect } from 'react';
 
 import ResultDetails from './ResultDetails';
 import styles from './styles.module.css';
 
 function ImportExportControls({ controls, EmptyState, listClassName }) {
+	const { t } = useTranslation(['iecResult']);
 	const [activeTab, setActiveTab] = useState('EXPORT');
 	const [controlVal, setControlVal] = useState({
 		importControls : [],
@@ -17,13 +19,11 @@ function ImportExportControls({ controls, EmptyState, listClassName }) {
 	const TAB_MAPPING = {
 		IMPORT: {
 			controlArr : importControls,
-			// title      : t('importExportControls:result_tab_1'),
-			title      : 'IMPORT',
+			title      : t('iecResult:result_tab_1'),
 		},
 		EXPORT: {
 			controlArr : exportControls,
-			// title      : t('importExportControls:result_tab_2'),
-			title      : 'EXPORT',
+			title      : t('iecResult:result_tab_2'),
 		},
 	};
 

@@ -1,6 +1,6 @@
 import navigationMappings from './navigation-mapping';
 
-// eslint-disable-next-line import/extensions
+// eslint-disable-next-line import/no-unresolved, import/extensions
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
 const getCondition = (urlItem) => {

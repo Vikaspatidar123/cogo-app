@@ -222,7 +222,7 @@ const GLOBAL_CONSTANTS = {
 		phone_number : '+918976851674',
 		email_id     : 'kanira.patel@cogoport.com',
 	},
-	task_alert_email_id: [
+	coe_task_alert_email_id: [
 		'ajeet@cogoport.com',
 	],
 };

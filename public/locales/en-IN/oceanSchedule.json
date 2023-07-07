@@ -1,0 +1,10 @@
+{
+    "ocean_schedule_heading":"Ocean Schedule Tracker",
+    "ocean_schedule_des":"Enter a port pair to view and compare and save ocean schedules.",
+    "origin_port_label":"Port of Origin",
+    "destination_port_label":"Port of Destination",
+    "search_schedule_button_text":"Search Schedule",
+    "origin_port_error_message":"* origin and destination could not be same",
+    "my_schedules_text":"My Schedules"
+
+}

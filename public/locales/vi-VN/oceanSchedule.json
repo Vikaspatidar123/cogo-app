@@ -1,0 +1,10 @@
+{
+    "ocean_schedule_heading":"Trình theo dõi lịch trình đại dương",
+    "ocean_schedule_des":"Nhập một cặp cổng để xem và so sánh và lưu lịch trình đại dương.",
+    "origin_port_label":"Cảng xuất xứ",
+    "destination_port_label":"Cổng đích",
+    "search_schedule_button_text":"Lịch tìm kiếm",
+    "origin_port_error_message":"* Nguồn gốc và điểm đến không thể giống nhau",
+    "my_schedules_text":"Lịch trình của tôi"
+
+}

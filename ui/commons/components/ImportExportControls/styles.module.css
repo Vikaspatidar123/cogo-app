@@ -1,5 +1,5 @@
 .importer_exporter {
-	padding: 30px;
+	padding: 15px;
 }
 
 .loader {
@@ -27,8 +27,4 @@
 	@media screen and (max-width: 767px) {
 		justify-content: center;
 	}
-}
-
-.result_container {
-	padding: 15px;
 }

@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 import { IcMArrowNext } from '@cogoport/icons-react';
 import { useTranslation } from 'next-i18next';
 import { useState } from 'react';

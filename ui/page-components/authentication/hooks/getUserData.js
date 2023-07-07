@@ -24,9 +24,9 @@ const getUserData = async ({
 					organization: organization
 						? { ...organization, preferred_languages: user.preferred_languages }
 						: undefined,
-					organizations : organization ? [organization] : organizations,
+					organizations: organization ? [organization] : organizations,
 					permissions_navigations,
-					branch        : organization?.branches?.[0],
+					branch: organization?.branches?.[0],
 				};
 
 				if (user_data.id) {
@@ -39,7 +39,7 @@ const getUserData = async ({
 				);
 			}
 		} catch (e) {
-			// console.log(e);
+			console.error(e);
 		}
 	};
 

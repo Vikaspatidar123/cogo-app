@@ -1,5 +1,5 @@
 import navigationMappings from './navigation-mapping';
-
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 const getCondition = (urlItem) => {
 	const condition = {};
 	if (urlItem?.user_email) {
@@ -13,8 +13,6 @@ const getCondition = (urlItem) => {
 	}
 	return condition;
 };
-
-const AJEET_EMAIL_ID = 'ajeet@cogoport.com';
 
 const getSideBarConfigs = ({
 	userData,
@@ -46,11 +44,11 @@ const getSideBarConfigs = ({
 					nav_items.push({
 						...navigation[key],
 						options: dashboardUrls.map((urlItem) => ({
-							title     : urlItem.title,
-							type      : 'link',
-							as        : `/dashboards/${urlItem.urlKey}`,
-							href      : '/dashboards/[dashboard_type]',
-							condition : getCondition(urlItem),
+							title: urlItem.title,
+							type: 'link',
+							as: `/dashboards/${urlItem.urlKey}`,
+							href: '/dashboards/[dashboard_type]',
+							condition: getCondition(urlItem),
 						})),
 					});
 				} else if (navigation[key]?.options) {
@@ -62,7 +60,8 @@ const getSideBarConfigs = ({
 					const filteredOpts = allOpts.filter(
 						(opt) => selectedSubNavs.includes(opt.key)
 							&& (opt.key !== 'coe-booking_tasks'
-								|| userData.email === AJEET_EMAIL_ID),
+								|| GLOBAL_CONSTANTS.task_alert_email_id.includes(userData.email)),
+
 					);
 					if (filteredOpts.length) {
 						nav_items.push({

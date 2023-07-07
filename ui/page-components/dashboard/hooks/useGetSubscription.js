@@ -1,11 +1,11 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 
 import { useRequest } from '@/packages/request';
 import { useSelector } from '@/packages/store';
 
 const useGetSubscription = () => {
 	const { profile } = useSelector((state) => state);
-	const { organization } = profile || {};
+
 	const [subscriptionData, setSubscriptionData] = useState(null);
 
 	const [{ loading }, trigger] = useRequest({
@@ -13,8 +13,8 @@ const useGetSubscription = () => {
 		url    : '/get_app_dashboard_subscription',
 	}, { manual: true });
 
-	const getSubscriptionData = async () => {
-		const params = { organization_id: organization?.id };
+	const getSubscriptionData = useCallback(async () => {
+		const params = { organization_id: profile.organization.id };
 		try {
 			const res = await trigger({ params });
 			if (!res.hasError) {
@@ -24,12 +24,11 @@ const useGetSubscription = () => {
 		} catch (err) {
 			return false;
 		}
-	};
+	}, [profile.organization.id, trigger]);
 
 	useEffect(() => {
 		getSubscriptionData();
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
+	}, [getSubscriptionData]);
 
 	return {
 		subscriptionData,

@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 import { useTranslation } from 'next-i18next';
 
 import styles from '../styles.module.css';
@@ -7,7 +6,7 @@ import logout from '@/ui/page-components/authentication/utils/getLogout';
 
 function Logout() {
 	const { t } = useTranslation(['common']);
-	const handleClick = async (e) => {
+	const handleClick = (e) => {
 		e.preventDefault();
 		logout();
 	};

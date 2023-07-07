@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 
 import { useRequest } from '@/packages/request';
 import { useSelector } from '@/packages/store';
@@ -12,12 +12,12 @@ const useGetUserQuota = ({ apiTries, setApiTries }) => {
 
 	const [{ loading }, trigger] = useRequest(
 		{
-			url    : '/saas_get_user_quota_usage',
-			method : 'get',
+			url: '/saas_get_user_quota_usage',
+			method: 'get',
 		},
 		{ manual: true },
 	);
-	const getQuotaUsage = async () => {
+	const getQuotaUsage = useCallback(async () => {
 		const params = { organization_id };
 		try {
 			const res = await trigger({ params });
@@ -26,9 +26,9 @@ const useGetUserQuota = ({ apiTries, setApiTries }) => {
 				setApiTries(10);
 			}
 		} catch (err) {
-			console.log(err, 'err');
+			console.error(err);
 		}
-	};
+	}, [organization_id, setApiTries, trigger]);
 
 	const interval = null;
 
@@ -50,8 +50,7 @@ const useGetUserQuota = ({ apiTries, setApiTries }) => {
 		return () => {
 			clearInterval(interval);
 		};
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [apiTries]);
+	}, [apiTries, getQuotaUsage]);
 
 	return {
 		quotaLoading: loading,

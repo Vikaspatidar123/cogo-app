@@ -9,7 +9,7 @@ function Profile({ setShowPopover = () => { } }) {
 	const { t } = useTranslation(['common']);
 	const router = useRouter();
 
-	const handleClick = async () => {
+	const handleClick = () => {
 		router.push('/settings', '/settings', true);
 
 		setShowPopover(false);

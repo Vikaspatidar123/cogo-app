@@ -14,15 +14,13 @@ import DocumentResult from '@/ui/commons/components/ImportExportDoc';
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
 function EmptyState() {
-	// const { t } = useTranslation(['importExportDoc']);
-
 	return (
 		<Image
 			className={styles.empty_state}
 			width={400}
 			height={400}
 			src={GLOBAL_CONSTANTS.image_url.empty_state}
-			// alt={t('importExportDoc:result_empty_state')}
+			alt="logo"
 		/>
 	);
 }

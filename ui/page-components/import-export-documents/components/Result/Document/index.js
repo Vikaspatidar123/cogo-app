@@ -53,7 +53,7 @@ function Document({ doc = {}, hsNumber = '' }) {
 
 					</div>
 					<div className={styles.cta_mobile_view}>
-						<Button className={styles.download_btn} themeType="linkUi" onClick={downloadDocument}>
+						<Button className={styles.download_btn} themeType="linkUi" onClick={clickHandler}>
 							<IcMDownload />
 						</Button>
 					</div>

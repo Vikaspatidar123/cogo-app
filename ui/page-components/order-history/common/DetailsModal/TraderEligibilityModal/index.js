@@ -13,7 +13,7 @@ function TraderEligibilityModal({ tradeEngineResponse = {} }) {
 	return (
 		<>
 			<div className={styles.styled_tag}>
-				{t(':tec_trader_name')}
+				{t('orderHistory:tec_trader_name')}
 				{' '}
 				{screeningPartyName.toUpperCase()}
 			</div>

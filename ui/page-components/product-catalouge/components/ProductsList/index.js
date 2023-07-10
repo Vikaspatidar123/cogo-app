@@ -8,6 +8,7 @@ import {
 	IcMArrowBack,
 	IcMPlus,
 } from '@cogoport/icons-react';
+import { isEmpty } from '@cogoport/utils';
 import React, { useState } from 'react';
 
 import AddProductModal from '../../common/AddProductModal';
@@ -182,7 +183,7 @@ function ProductsList({
 							</div>
 							<div className={styles.border_bottom} />
 							<div>
-								{checkLength !== 0 ? (
+								{!isEmpty(checkLength) ? (
 									<AllProducts
 										setShowProduct={setShowProduct}
 										countryInfo={countryInfo}

@@ -7,7 +7,6 @@ import {
 } from '@cogoport/icons-react';
 import React, { useState, useEffect } from 'react';
 
-// import AddProductModal from '../../common/AddProductModal';
 import DeleteProductModal from '../../common/DeleteProductModal';
 import useArchive from '../../hooks/useArchive';
 
@@ -17,11 +16,7 @@ import styles from './styles.module.css';
 import HsCodeIcon from '@/ui/commons/components/HsCodeIcon';
 
 function AllProducts({
-	// showProduct,
 	setShowProduct,
-	// countryInfo,
-	// prefiledValues,
-	// setPrefiledValues,
 	apiData,
 	refetchProduct = () => {},
 	loading,
@@ -218,21 +213,6 @@ function AllProducts({
 					card
 				/>
 			)}
-			{/* <AddProductModal
-				showProduct={showProduct}
-				setShowProduct={setShowProduct}
-				countryInfo={countryInfo}
-				prefiledValues={prefiledValues}
-				setPrefiledValues={setPrefiledValues}
-				isEdit={isEdit}
-				setIsEdit={setIsEdit}
-				addProductLoading={addProductLoading}
-				refetchProduct={refetchProduct}
-				setHSCode={setHSCode}
-				productClassificationId={productClassification}
-				productId={proId}
-				card
-			/> */}
 		</div>
 	);
 }

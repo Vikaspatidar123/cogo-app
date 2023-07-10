@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 import { Popover } from '@cogoport/components';
 import { useState } from 'react';
 

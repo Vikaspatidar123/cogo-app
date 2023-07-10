@@ -5,14 +5,35 @@ const fileIconMapping = {
 
 	img: <IcMImage height={22} width={25} />,
 };
+const FILE_ICON_MAPPING = {
+	jpeg    : fileIconMapping.img,
+	jpg     : fileIconMapping.img,
+	png     : fileIconMapping.img,
+	svg     : fileIconMapping.img,
+	mp3     : fileIconMapping.document,
+	aac     : fileIconMapping.document,
+	mp4     : fileIconMapping.img,
+	gif     : fileIconMapping.img,
+	default : fileIconMapping.document,
+};
+
+const FILE_TYPE_MAPPING = {
+	jpeg    : 'image',
+	jpg     : 'image',
+	png     : 'image',
+	svg     : 'image',
+	mp3     : 'audio',
+	aac     : 'audio',
+	mp4     : 'video',
+	gif     : 'video',
+	default : 'document',
+};
 
 function getFileAttributes({ fileName = '', finalUrl }) {
 	const splitFileName = fileName.split('.');
 	let fileExtension = '';
 	let uploadedFileName = '';
-	let fileType = '';
 
-	let fileIcon = null;
 	if (splitFileName.length > 1) {
 		fileExtension = splitFileName.pop();
 		uploadedFileName = splitFileName.join('');
@@ -21,19 +42,8 @@ function getFileAttributes({ fileName = '', finalUrl }) {
 		uploadedFileName = fileName;
 	}
 
-	if (['jpeg', 'jpg', 'png', 'svg'].includes(fileExtension)) {
-		fileIcon = fileIconMapping.img;
-		fileType = 'image';
-	} else if (['mp3', 'aac'].includes(fileExtension)) {
-		fileIcon = fileIconMapping.document;
-		fileType = 'audio';
-	} else if (['mp4', 'gif'].includes(fileExtension)) {
-		fileIcon = fileIconMapping.img;
-		fileType = 'video';
-	} else {
-		fileIcon = fileIconMapping.document;
-		fileType = 'document';
-	}
+	const fileType = FILE_TYPE_MAPPING[fileExtension] || FILE_TYPE_MAPPING.default;
+	const fileIcon = FILE_ICON_MAPPING[fileExtension] || FILE_ICON_MAPPING.default;
 
 	return {
 		uploadedFileName,

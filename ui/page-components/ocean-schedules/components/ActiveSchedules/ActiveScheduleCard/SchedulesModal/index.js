@@ -96,14 +96,14 @@ export function SchedulesModal({
 						<div className={styles.date_container}>
 							{formatDate({
 								date       : schedule?.departure,
-								dateFormat : GLOBAL_CONSTANTS.formats.date['d MMM yyyy, eeee'],
+								dateFormat : GLOBAL_CONSTANTS.formats.date['dd MMM yyyy'],
 								formatType : 'date',
 							})}
 						</div>
 						<div className={styles.date_container}>
 							{formatDate({
 								date       : schedule?.arrival,
-								dateFormat : GLOBAL_CONSTANTS.formats.date['d MMM yyyy, eeee'],
+								dateFormat : GLOBAL_CONSTANTS.formats.date['dd MMM yyyy'],
 								formatType : 'date',
 							})}
 						</div>

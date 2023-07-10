@@ -52,6 +52,7 @@ function Map({
 										setSelected(item);
 									},
 								}}
+								key={item?.screeningCityName}
 							>
 								<Popup direction="top">
 									<div>

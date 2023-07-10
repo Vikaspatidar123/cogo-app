@@ -15,14 +15,14 @@ import style2 from '../styles.module.css';
 
 import styles from './styles.module.css';
 
-import { useRouter, dynamic } from '@/packages/next';
+import { useRouter, dynamic, Image } from '@/packages/next';
 
 const Map = dynamic(() => import('../Map'), { ssr: false });
 
 function ListPage() {
+	const { query, push } = useRouter();
 	const { t } = useTranslation(['traderEligibilityCheck']);
 
-	const { query, push } = useRouter();
 	const { billId = '', draftIdFromAddon = '' } = query || {};
 
 	const [paymentStatusModal, setPaymentStatusModal] = useState(false);
@@ -65,7 +65,7 @@ function ListPage() {
 				</div>
 				<div className={styles.title_style}>
 					<div className={style2.heading}>
-						<img className={style2.svg_style} src={HeadingIcon} alt="" />
+						<Image className={style2.svg_style} src={HeadingIcon} alt="" width={40} height={40} />
 						{t('traderEligibilityCheck:trader_eligibility_check_title')}
 					</div>
 				</div>
@@ -82,20 +82,20 @@ function ListPage() {
 				<div className={style1.wrapper}>
 					<div className={`${style1.list_column_mobile} ${style1.list_column}`}>
 						{getTradeEngineListLoading && !screeningRequestResponse
-						&& paymentStatus === 'PAID' && new Array(3).fill(1).map(() => (
-							<div>
+						&& paymentStatus === 'PAID' && [...Array(3).keys()].map((itm) => (
+							<div key={itm}>
 								<Placeholder className={styles.placeholder_styles}>
-									{Array(5).map(() => (
-										<div className={styles.line} />
+									{[...Array(5).keys()].map((item) => (
+										<div className={styles.line} key={item} />
 									))}
 								</Placeholder>
 							</div>
 						))}
-						{getTradeEngineListLoading && new Array(3).fill(1).map(() => (
-							<div>
+						{getTradeEngineListLoading && [...Array(3).keys()].map((item) => (
+							<div key={item}>
 								<Placeholder className={styles.placeholder_styles}>
-									{Array(5).fill(1).map(() => (
-										<div className={styles.line} />
+									{[...Array(5).keys()].map((itm) => (
+										<div className={styles.line} key={itm} />
 									))}
 								</Placeholder>
 							</div>
@@ -174,7 +174,7 @@ function ListPage() {
 						)}
 						{!getTradeEngineListLoading && screeningRequestResponse?.length === 0 && (
 							<div className={styles.list_wrapper}>
-								<img src={SecureIcon} alt="" height={300} width={300} />
+								<Image src={SecureIcon} alt="" height={300} width={300} />
 								<div className={styles.label}>
 									<div className={styles.bold}>
 										{screeningPartyName.toUpperCase()}

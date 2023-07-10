@@ -32,7 +32,6 @@ function SelectAddressComponent({ setAddress = () => {}, address = '' }) {
 				placeholder={t('traderEligibilityCheck:tec_select_address_placeholder')}
 				multiple={false}
 				onChange={setAddress}
-				noOptionsMessage={t('traderEligibilityCheck:tec_select_adress_no_options_label')}
 			/>
 			<div className={styles.or_tag}>
 				<div className={styles.line} />

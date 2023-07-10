@@ -1,3 +1,5 @@
+import { getCookie } from '@cogoport/utils';
+
 import GetTracking from '../hooks/GetTracking';
 
 import DiscoverRates from './DiscoverRates';
@@ -12,17 +14,13 @@ import styles from './styles.module.css';
 import Tracking from './Tracking';
 import ActiveTracking from './Tracking/ActiveTracking';
 
-import { getCountrySpecificData } from '@/ui/commons/constants/CountrySpecificDetail';
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 // import VerifyEmailMobile from '@/ui/commons/components/VerifyEmailMobile';
 
 function SassDashboard() {
-	const { airTracking, oceanTracking, country_id, kyc_status } = GetTracking();
+	const { airTracking, oceanTracking, kyc_status } = GetTracking();
 
-	const { is_country_india } = getCountrySpecificData({
-		country_id,
-		accessorType : 'navigations',
-		accessor     : 'common',
-	});
+	const location = getCookie('location');
 
 	return (
 		<div className={styles.main_class}>
@@ -57,7 +55,7 @@ function SassDashboard() {
 				</div>
 				<div className={styles.part2}>
 					<div className={styles.child2}>
-						{is_country_india && <PayLaterWidgets />}
+						{GLOBAL_CONSTANTS.paylater_supported_country.includes(location) && <PayLaterWidgets />}
 						<Elgibility />
 						<ExportFactoring />
 						<Promotion />

@@ -14,21 +14,11 @@ import {
 	MobileNumberSelectController,
 } from '@/packages/forms';
 import { useRouter } from '@/packages/next';
-import { useSelector } from '@/packages/store';
-import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 import setCookieAndRedirect from '@/ui/commons/utils/setCookieAndRedirect';
-
-const whatsappField = (locale) => {
-	let show = false;
-	if (GLOBAL_CONSTANTS.whatsapp_supported_country_locale.includes(locale)) {
-		show = true;
-	}
-	return show;
-};
+import { shouldShowWhatsAppField } from '@/ui/commons/utils/shouldShowWhatsAppField';
 
 function SignupForm({ setHasSignedup, setFormData, setUserDetails }) {
-	const { locale } = useSelector((state) => state.general);
-	const showWhatsAppField = whatsappField(locale);
+	const showWhatsAppField = shouldShowWhatsAppField();
 
 	const {
 		handleSubmit,

@@ -11,13 +11,13 @@ const inco_terms = ['fca', 'fas', 'fob'];
 // const export_inco_terms_except_ddp = ['cif', 'cfr', 'cpt', 'cip', 'dat', 'dap'];
 
 export const showEnquiryFunc = (rates_count = 0, data = {}) => {
-	const { is_country_india } = getCountrySpecificData({
+	const { enquiry_card } = getCountrySpecificData({
 		country_id   : data?.destination_country_id,
 		accessorType : 'navigations',
-		accessor     : 'common',
+		accessor     : 'search_results',
 	});
 	const notShowEnq =	inco_terms.includes(data?.inco_term)
-		&& is_country_india
+		&& enquiry_card.show_enquiry
 		&& rates_count > 0
 		&& data?.containers_count < 5;
 

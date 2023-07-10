@@ -4,9 +4,8 @@ import { useRequest } from '@/packages/request';
 import { useSelector } from '@/packages/store';
 
 function GetTracking() {
-	const { country_id, kyc_status } = useSelector(({ profile }) => ({
-		country_id : profile?.organization?.country_id,
-		kyc_status : profile?.organization?.kyc_status,
+	const { kyc_status } = useSelector(({ profile }) => ({
+		kyc_status: profile?.organization?.kyc_status,
 	}));
 	const [{ loading, data: air_track }, trigger] = useRequest({
 		url    : '/get_app_dashboard_tracking',
@@ -34,6 +33,6 @@ function GetTracking() {
 	useEffect(() => {
 		schedulesData();
 	}, [schedulesData]);
-	return { loading, schedulesData, airTracking, oceanTracking, country_id, kyc_status };
+	return { loading, schedulesData, airTracking, oceanTracking, kyc_status };
 }
 export default GetTracking;

@@ -7,20 +7,10 @@ import useSignupAuthentication from '../../../hooks/useSignupAuthentication';
 import styles from './styles.module.css';
 
 import { useForm, InputController, MobileNumberSelectController } from '@/packages/forms';
-import { useSelector } from '@/packages/store';
-import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
-
-const whatsappField = (locale) => {
-	let show = false;
-	if (GLOBAL_CONSTANTS.whatsapp_supported_country_locale.includes(locale)) {
-		show = true;
-	}
-	return show;
-};
+import { shouldShowWhatsAppField } from '@/ui/commons/utils/shouldShowWhatsAppField';
 
 function SignupForm({ setHasSignedup, setFormData, setUserDetails }) {
-	const { locale } = useSelector((state) => state.general);
-	const showWhatsAppField = whatsappField(locale);
+	const showWhatsAppField = shouldShowWhatsAppField();
 
 	const {
 		handleSubmit, formState: { errors }, control, watch, register,

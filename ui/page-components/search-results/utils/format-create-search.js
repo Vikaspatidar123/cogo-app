@@ -193,16 +193,16 @@ const formatDataForSingleService = ({
 		let cargo_value_currency = null;
 		let address = null;
 		let ad_code = null;
-		const { is_country_vietnam: isOriginVietnam } = getCountrySpecificData({
+		const { fcl_customs: { is_origin_country_vn: isOriginVietnam } } = getCountrySpecificData({
 			country_id   : rawParams?.origin_country_id,
 			accessorType : 'navigations',
-			accessor     : 'common',
+			accessor     : 'format_create_search',
 		});
 
-		const { is_country_vietnam: isDestinationVietnam } = getCountrySpecificData({
+		const { fcl_customs:{ is_destination_country_vn: isDestinationVietnam } } = getCountrySpecificData({
 			country_id   : rawParams?.destination_country_id,
 			accessorType : 'navigations',
-			accessor     : 'common',
+			accessor     : 'format_create_search',
 		});
 
 		if (values?.trade_type === 'export' || type === 'export') {

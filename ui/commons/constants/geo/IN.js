@@ -424,8 +424,7 @@ export default {
 			common: {
 				validate_registration_number : true,
 				invoicing_party_validate_gst : true,
-				is_country_india             : true,
-				is_country_vietnam           : false,
+
 			},
 
 			onboarding: {
@@ -444,6 +443,12 @@ export default {
 				is_export_tradeType                : true,
 			},
 
+			search_results: {
+				enquiry_card: {
+					show_enquiry: true,
+				},
+			},
+
 			subscription: {
 				is_tax_included: true,
 			},
@@ -459,6 +464,17 @@ export default {
 				destination_input_location_trade_type : 'export',
 				is_origin_country_code_in             : true,
 				is_destination_country_code_in        : true,
+			},
+
+			manage_rfq: {
+				use_domestic_transport: true,
+			},
+
+			format_create_search: {
+				fcl_customs: {
+					is_origin_country_vn      : false,
+					is_destination_country_vn : false,
+				},
 			},
 
 		},

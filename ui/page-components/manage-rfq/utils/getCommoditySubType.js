@@ -7,21 +7,20 @@ const getCommoditySubTypeoptions = ({
 	destinationPort = {},
 	commodityType = '',
 }) => {
-	const { is_country_india: isOriginIndia } = getCountrySpecificData({
+	const { use_domestic_transport: origin } = getCountrySpecificData({
 		country_code : originPort?.country_code,
 		accessorType : 'navigations',
-		accessor     : 'common',
+		accessor     : 'manage_rfq',
 	});
 
-	const { is_country_india: isDestinationIndia } = getCountrySpecificData({
+	const { use_domestic_transport: destination } = getCountrySpecificData({
 		country_code : destinationPort?.country_code,
 		accessorType : 'navigations',
-		accessor     : 'common',
+		accessor     : 'manage_rfq',
 	});
 
 	if (commodityType !== '') {
-		if (isOriginIndia && isDestinationIndia
-		) {
+		if (origin && destination) {
 			return COMMODITY_TYPE_MAPPING?.domestic_transport?.[commodityType];
 		}
 		return COMMODITY_TYPE_MAPPING?.international_freight?.[commodityType];

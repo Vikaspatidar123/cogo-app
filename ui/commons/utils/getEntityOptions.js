@@ -1,18 +1,23 @@
 import IN from '../constants/geo/IN';
 import VN from '../constants/geo/VN';
 
-import getCountryId from './getCountryId';
+import getCountryDetails from './getCountryDetails';
 
-import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
-
-const INDIA_COUNTRY_ID = getCountryId(GLOBAL_CONSTANTS.country_code.IN);
-const VIETNAM_COUNTRY_ID = getCountryId(GLOBAL_CONSTANTS.country_code.VN);
-
-const MAPPING = {
-	[INDIA_COUNTRY_ID]   : IN,
-	[VIETNAM_COUNTRY_ID] : VN,
+const COUNTRY_ID_MAPPING = {
+	IN,
+	VN,
 };
 
-const getEntityOptions = ({ country_id }) => MAPPING[country_id in MAPPING ? country_id : INDIA_COUNTRY_ID];
+const getEntityOptions = ({ country_id, country_code, isDefaultData = true }) => {
+	const countryData = getCountryDetails({ country_id, country_code });
+	const { country_code: countryCode } = countryData || {};
+
+	const isCountryCodeValid = countryCode in COUNTRY_ID_MAPPING;
+
+	if (isDefaultData) {
+		return COUNTRY_ID_MAPPING[isCountryCodeValid ? countryCode : 'IN'];
+	}
+	return isCountryCodeValid ? COUNTRY_ID_MAPPING[countryCode] : {};
+};
 
 export default getEntityOptions;

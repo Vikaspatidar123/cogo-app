@@ -6,8 +6,9 @@ import IN from '../geo/IN';
 import VN from '../geo/VN';
 
 const COUNTRY_SPECIFIC_DATA = {
-	IN : IN.others,
-	VN : VN.others,
+	IN      : IN.others,
+	VN      : VN.others,
+	default : defaultInfo,
 };
 
 const getCountrySpecificData = ({
@@ -23,11 +24,7 @@ const getCountrySpecificData = ({
 
 	const countryCode = countryDetails.country_code;
 
-	let data = COUNTRY_SPECIFIC_DATA[countryCode] || {};
-
-	if (!(countryCode in COUNTRY_SPECIFIC_DATA)) {
-		data = isDefaultData ? defaultInfo : {};
-	}
+	const data = COUNTRY_SPECIFIC_DATA?.[countryCode] || (isDefaultData ? COUNTRY_SPECIFIC_DATA.default : {});
 
 	return getByKey(data[accessorType], accessor) || null;
 };

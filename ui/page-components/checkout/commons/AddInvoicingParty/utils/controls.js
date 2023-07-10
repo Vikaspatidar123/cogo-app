@@ -114,7 +114,6 @@ const billingAddressControls = [
 	},
 	{
 		name       : 'tax_number_document_url',
-		// label      : 'GST Proof',
 		label      : `${REGISTRATION_LABEL} Proof`,
 		type       : 'file',
 		drag       : true,

@@ -4,7 +4,7 @@ const KEY = process.env.NEXT_PUBLIC_USER_LOCATION_API_TOKEN;
 const getUserLocationData = async ({ ip }) => {
 	let apiUrl = BASE_URL;
 
-	if (process.env.NODE_ENV === 'production') {
+	if (process.env.NEXT_PUBLIC_NODE_ENV === 'production') {
 		if (ip) {
 			apiUrl += `/${ip}`;
 		}

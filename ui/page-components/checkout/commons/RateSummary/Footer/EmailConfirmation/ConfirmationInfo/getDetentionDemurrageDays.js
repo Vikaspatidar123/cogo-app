@@ -24,13 +24,13 @@ const getDetentionDemurrageDays = ({
 
 	const { origin_country_id } = primaryService || {};
 
-	const { is_country_india } = getCountrySpecificData({
+	const { is_export_tradeType } = getCountrySpecificData({
 		country_id   : origin_country_id,
 		accessorType : 'navigations',
-		accessor     : 'common',
+		accessor     : 'search_form',
 	});
 
-	const isExportingCountryIndia =	is_country_india && trade_type === 'export';
+	const isExportingCountryIndia =	is_export_tradeType && trade_type === 'export';
 	const service = source === 'direct' ? detailedServices : services;
 
 	const primaryServices = Object.values(service || {})

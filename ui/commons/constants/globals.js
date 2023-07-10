@@ -144,7 +144,8 @@ const GLOBAL_CONSTANTS = {
 		email_id     : 'kanira.patel@cogoport.com',
 	},
 
-	whatsapp_supported_country_locale: ['en-IN'],
+	whatsapp_supported_country : ['IN'],
+	paylater_supported_country : ['IN'],
 
 	service_supported_countries: {
 		feature_supported_service: {

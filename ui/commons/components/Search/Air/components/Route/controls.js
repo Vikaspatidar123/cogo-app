@@ -1,6 +1,6 @@
 import { getCountrySpecificData } from '@/ui/commons/constants/CountrySpecificDetail';
 
-const COMMON_OBJ = {
+const COUNTRY_SPECIFIC_DATA_OBJ = {
 	accessorType  : 'navigations',
 	accessor      : 'spot_search_air',
 	isDefaultData : true,
@@ -28,13 +28,13 @@ const getControls = ({
 			setToggleState(() => {
 				const { origin_input_trade_type } = getCountrySpecificData({
 					country_code: obj?.country_code,
-					...COMMON_OBJ,
+					...COUNTRY_SPECIFIC_DATA_OBJ,
 				});
 				if (origin_input_trade_type) return origin_input_trade_type;
 
 				const { origin_input_location_trade_type } = getCountrySpecificData({
 					country_code: location?.destination?.country_code,
-					...COMMON_OBJ,
+					...COUNTRY_SPECIFIC_DATA_OBJ,
 				});
 
 				if (origin_input_location_trade_type) return origin_input_location_trade_type;
@@ -74,14 +74,14 @@ const getControls = ({
 			setToggleState(() => {
 				const { destination_input_trade_type } = getCountrySpecificData({
 					country_code: obj?.country_code,
-					...COMMON_OBJ,
+					...COUNTRY_SPECIFIC_DATA_OBJ,
 				});
 
 				if (destination_input_trade_type) return destination_input_trade_type;
 
 				const { destination_input_location_trade_type } = getCountrySpecificData({
 					country_code: location?.destination?.country_code,
-					...COMMON_OBJ,
+					...COUNTRY_SPECIFIC_DATA_OBJ,
 				});
 
 				if (destination_input_location_trade_type) return destination_input_location_trade_type;

@@ -35,7 +35,7 @@ const useCompanyDetails = ({
 	const watchCountryId = watch('country_id');
 	const watchBusinessName = watch('business_name');
 
-	const { is_country_india: isCountryIndia } = getCountrySpecificData({
+	const { validate_registration_number } = getCountrySpecificData({
 		country_id   : watchCountryId,
 		accessorType : 'navigations',
 		accessor     : 'common',
@@ -45,7 +45,7 @@ const useCompanyDetails = ({
 		watchTaxNumber         : watchPan?.toUpperCase(),
 		watchBusinessName,
 		setValues,
-		registrationNumberType : isCountryIndia ? 'registration' : '',
+		registrationNumberType : validate_registration_number ? 'registration' : '',
 	});
 
 	const onSubmit = (values = {}) => {
@@ -68,12 +68,12 @@ const useCompanyDetails = ({
 				...(businessApiLoading && {
 					suffix: <Loader themeType="primary" />,
 				}),
-				...(isCountryIndia && { maxLength: 10 }),
-				label : isCountryIndia ? 'PAN' : 'Registration Number',
+				...(validate_registration_number && { maxLength: 10 }),
+				label : validate_registration_number ? 'PAN' : 'Registration Number',
 				rules : {
 					...(newField.rules || {}),
 					pattern: {},
-					...(isCountryIndia && {
+					...(validate_registration_number && {
 						pattern: {
 							value   : patterns.PAN_NUMBER,
 							message : 'PAN is invalid',
@@ -96,7 +96,7 @@ const useCompanyDetails = ({
 	const newErrors = {};
 	Object.entries(errors).forEach(([key, value]) => {
 		if (key === 'registration_number') {
-			if (!isCountryIndia && value.type === 'pattern') {
+			if (!validate_registration_number && value.type === 'pattern') {
 				return;
 			}
 		}

@@ -13,6 +13,10 @@ const MAPPING = {
 };
 
 const getGeoConstants = () => {
+	if (typeof window === 'undefined') {
+		return null;
+	}
+
 	const parent_entity_id = getCookie('parent_entity_id');
 
 	return MAPPING[

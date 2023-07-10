@@ -5,7 +5,6 @@ import React from 'react';
 
 import styles from './styles.module.css';
 
-import { getCountrySpecificData } from '@/ui/commons/constants/CountrySpecificDetail';
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
 function ConfirmationTexts({
@@ -52,16 +51,6 @@ function ConfirmationTexts({
 
 		return returnHash;
 	}, {});
-
-	const { origin_country_id } = primaryServiceData;
-
-	const { is_country_india } = getCountrySpecificData({
-		country_id   : origin_country_id,
-		accessorType : 'navigations',
-		accessor     : 'common',
-	});
-
-	const isExportingCountryIndia = is_country_india && trade_type === 'export';
 
 	const isShowDestinationDays = destination_detention || destination_demurrage;
 
@@ -143,16 +132,23 @@ function ConfirmationTexts({
 						<div className={cl`${styles.text} ${styles.detention_demurrage}`}>
 							<b>Origin</b>
 							:
-							{' '}
-							{origin_detention || (isExportingCountryIndia ? 4 : 0)}
-							{' '}
-							detention
-							days,
-							{origin_demurrage || (isExportingCountryIndia ? 4 : 0)}
-							{' '}
-							demurrage
-							days
-							{' '}
+							{origin_detention ? (
+								<>
+									{origin_detention}
+									{' '}
+									detention day(s)
+									{' '}
+								</>
+							) : null}
+							{origin_demurrage ? (
+								<>
+									{origin_demurrage}
+									{' '}
+									demmurage day(s)
+									{' '}
+								</>
+							) : null}
+
 						</div>
 						<div className={styles.inner_text}>
 							For extra day(s) charges refer T&C

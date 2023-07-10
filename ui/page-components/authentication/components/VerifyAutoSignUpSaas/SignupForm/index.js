@@ -193,7 +193,7 @@ function SignupForm({ setHasSignedup, setFormData, setUserDetails }) {
 			>
 				{t('common:rightPanel_signupLink_link')}
 			</Button>
-			<a
+			{/* <a
 				href="mailto:kanira.patel@cogoport.com"
 				className={styles.right_footer_text}
 			>
@@ -202,7 +202,7 @@ function SignupForm({ setHasSignedup, setFormData, setUserDetails }) {
 					{' '}
 					kanira.patel@cogoport.com
 				</span>
-			</a>
+			</a> */}
 		</form>
 	);
 }

@@ -1,6 +1,6 @@
 import { Pill } from '@cogoport/components';
 import { IcMArrowNext } from '@cogoport/icons-react';
-import { differenceInDays, format } from '@cogoport/utils';
+import { differenceInDays } from '@cogoport/utils';
 import { useTranslation } from 'next-i18next';
 import React, { useState } from 'react';
 
@@ -57,9 +57,9 @@ function ActiveScheduleCard({ scheduleDetails, schedule }) {
 							{t('oceanSchedule:vgm_cut_off_text')}
 							:
 							{formatDate({
-								date: schedule?.vgm_cutoff,
-								dateFormat: GLOBAL_CONSTANTS.formats.date['dd MMM yyyy'],
-								formatType: 'date',
+								date       : schedule?.vgm_cutoff,
+								dateFormat : GLOBAL_CONSTANTS.formats.date['dd MMM yyyy'],
+								formatType : 'date',
 							})}
 						</Pill>
 					)}
@@ -68,9 +68,9 @@ function ActiveScheduleCard({ scheduleDetails, schedule }) {
 							{t('oceanSchedule:terminal_cut_off_text')}
 							:
 							{formatDate({
-								date: schedule?.terminal_cutoff,
-								dateFormat: GLOBAL_CONSTANTS.formats.date['dd MMM yyyy'],
-								formatType: 'date',
+								date       : schedule?.terminal_cutoff,
+								dateFormat : GLOBAL_CONSTANTS.formats.date['dd MMM yyyy'],
+								formatType : 'date',
 							})}
 						</Pill>
 					)}
@@ -80,16 +80,16 @@ function ActiveScheduleCard({ scheduleDetails, schedule }) {
 				<div className={styles.dates_container}>
 					<div className={styles.date_container}>
 						{formatDate({
-							date: schedule?.departure,
-							dateFormat: GLOBAL_CONSTANTS.formats.date['d MMM yyyy, eeee'],
-							formatType: 'date',
+							date       : schedule?.departure,
+							dateFormat : GLOBAL_CONSTANTS.formats.date['d MMM yyyy, eeee'],
+							formatType : 'date',
 						})}
 					</div>
 					<div className={styles.date_container}>
 						{formatDate({
-							date: schedule?.arrival,
-							dateFormat: GLOBAL_CONSTANTS.formats.date['d MMM yyyy, eeee'],
-							formatType: 'date',
+							date       : schedule?.arrival,
+							dateFormat : GLOBAL_CONSTANTS.formats.date['d MMM yyyy, eeee'],
+							formatType : 'date',
 						})}
 					</div>
 				</div>

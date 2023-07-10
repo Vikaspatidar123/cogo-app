@@ -17,12 +17,12 @@ import { useSelector } from '@/packages/store';
 const PAGE_LIMIT = 6;
 const getPayload = ({ general, filters, currentPage }) => ({
 	filters: {
-		organization_branch_id: general?.query?.branch_id,
+		organization_branch_id : general?.query?.branch_id,
 		...filters,
-		status: 'active',
+		status                 : 'active',
 	},
-	page: currentPage,
-	page_limit: PAGE_LIMIT,
+	page       : currentPage,
+	page_limit : PAGE_LIMIT,
 });
 
 const useFetchSchedules = () => {
@@ -40,8 +40,8 @@ const useFetchSchedules = () => {
 	const { createSchedule } = useCreateSchedule();
 
 	const [{ loading }, trigger] = useRequest({
-		method: 'get',
-		url: '/list_sailing_schedule_subscriptions',
+		method : 'get',
+		url    : '/list_sailing_schedule_subscriptions',
 	}, { manual: true });
 
 	const formValues = watch();
@@ -73,7 +73,7 @@ const useFetchSchedules = () => {
 			const { data } = res || {};
 			setSchedules(data);
 		} catch (err) {
-			console.error('Unable to fetch schedules. Please try again.');
+			console.error(err);
 		}
 	}, [general, filters, currentPage, trigger]);
 

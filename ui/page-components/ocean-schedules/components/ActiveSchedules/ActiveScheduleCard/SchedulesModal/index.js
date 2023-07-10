@@ -1,5 +1,5 @@
 import { Pill, Modal } from '@cogoport/components';
-import { differenceInDays, format } from '@cogoport/utils';
+import { differenceInDays } from '@cogoport/utils';
 import { useTranslation } from 'next-i18next';
 import React from 'react';
 
@@ -58,9 +58,9 @@ export function SchedulesModal({
 								{t('oceanSchedule:vgm_cut_off_text')}
 								:
 								{formatDate({
-									date: schedule?.vgm_cutoff,
-									dateFormat: GLOBAL_CONSTANTS.formats.date['dd MMM yyyy'],
-									formatType: 'date',
+									date       : schedule?.vgm_cutoff,
+									dateFormat : GLOBAL_CONSTANTS.formats.date['dd MMM yyyy'],
+									formatType : 'date',
 								})}
 							</Pill>
 						)}
@@ -69,9 +69,9 @@ export function SchedulesModal({
 								{t('oceanSchedule:terminal_cut_off_text')}
 								:
 								{formatDate({
-									date: schedule?.terminal_cutoff,
-									dateFormat: GLOBAL_CONSTANTS.formats.date['dd MMM yyyy'],
-									formatType: 'date',
+									date       : schedule?.terminal_cutoff,
+									dateFormat : GLOBAL_CONSTANTS.formats.date['dd MMM yyyy'],
+									formatType : 'date',
 								})}
 
 							</Pill>
@@ -95,16 +95,16 @@ export function SchedulesModal({
 					<div className={styles.dates_container}>
 						<div className={styles.date_container}>
 							{formatDate({
-								date: schedule?.departure,
-								dateFormat: GLOBAL_CONSTANTS.formats.date['d MMM yyyy, eeee'],
-								formatType: 'date',
+								date       : schedule?.departure,
+								dateFormat : GLOBAL_CONSTANTS.formats.date['d MMM yyyy, eeee'],
+								formatType : 'date',
 							})}
 						</div>
 						<div className={styles.date_container}>
 							{formatDate({
-								date: schedule?.arrival,
-								dateFormat: GLOBAL_CONSTANTS.formats.date['d MMM yyyy, eeee'],
-								formatType: 'date',
+								date       : schedule?.arrival,
+								dateFormat : GLOBAL_CONSTANTS.formats.date['d MMM yyyy, eeee'],
+								formatType : 'date',
 							})}
 						</div>
 					</div>

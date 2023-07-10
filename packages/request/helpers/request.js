@@ -7,7 +7,7 @@ import getAuthrozationParams from './get-final-authpipe';
 import getMicroServiceName from './get-microservice-name';
 import { getCookie } from './getCookieFromCtx';
 
-const PEEWEE_SERVICES = ['fcl_freight_rate'];
+const PEEWEE_SERVICES = ['fcl_freight_rate', 'fcl_customs_rate', 'fcl_cfs_rate'];
 
 const customPeeweeSerializer = (params) => {
 	const dataTypes = ['Object', 'Array'].map((d) => `[object ${d}]`);

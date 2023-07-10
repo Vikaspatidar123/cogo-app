@@ -65,7 +65,7 @@ function Docuemnts({ documents = [], hsNumber = '' }) {
 						</div>
 					</>
 				) : (
-					<div className={styles.flex_box} style={{ height: '380px' }}>
+					<div className={styles.flex_box} style={{ height: '180px' }}>
 						<div className={styles.sorry}>Not Subscribed</div>
 					</div>
 				)}

@@ -3,10 +3,10 @@
 	width: 100%;
 	height: calc(100vh - 230px);
 	padding-top: 40px;
-}
 
-.mobile_faq_container {
-	flex-direction: column;
-	height: unset;
-	padding-top: 20px;
+	@media (max-width: 768px) {
+		flex-direction: column;
+		height: unset;
+		padding-top: 20px;
+	}
 }

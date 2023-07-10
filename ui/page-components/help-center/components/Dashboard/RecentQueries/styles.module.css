@@ -25,6 +25,10 @@
 	& > :last-child {
 		border-bottom: unset;
 	}
+
+	@media (max-width: 768px) {
+		flex-direction: column;
+	}
 }
 
 .empty_container {
@@ -35,20 +39,20 @@
 	font-size: 20px;
 	font-weight: 500;
 	color: #bdbdbd;
+
+	@media (max-width: 768px) {
+		flex-direction: column;
+	}
 }
 
 .search_icon {
 	width: 7%;
 	height: 7%;
 	fill: #a4a4a4;
-}
 
-.mobile_empty_container {
-	flex-direction: column;
-}
-
-.mobie_search_icon {
-	width: 100px;
-	height: 100px;
-	margin-bottom: 20px;
+	@media (max-width: 768px) {
+		width: 100px;
+		height: 100px;
+		margin-bottom: 20px;
+	}
 }

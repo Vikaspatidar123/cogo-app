@@ -3,18 +3,10 @@ import { useTranslation } from 'next-i18next';
 
 import styles from './styles.module.css';
 
-import { useSelector } from '@/packages/store';
-
 const translationKey = 'helpCenter:raise_ticket_component';
 
 function RaiseTicket({ setModalData = () => {}, isDashboard = false }) {
 	const { t } = useTranslation(['helpCenter']);
-
-	const { isMobile } = useSelector((state) => state.general);
-
-	if (isMobile) {
-		return null;
-	}
 
 	return (
 		<div

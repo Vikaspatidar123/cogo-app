@@ -33,6 +33,10 @@
 	padding: 10px;
 	cursor: pointer;
 	background: #f2f3fa;
+
+	@media (max-width: 768px) {
+		display: none;
+	}
 }
 
 .redirect_icon {

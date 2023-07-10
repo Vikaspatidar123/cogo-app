@@ -1,5 +1,4 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { cl } from '@cogoport/components';
 import React, { useState, useEffect } from 'react';
 
 import RaiseTicket from '../../common/RaiseTicket';
@@ -13,7 +12,7 @@ import { useSelector } from '@/packages/store';
 import Modals from '@/ui/commons/components/Header/Help/components/Modals';
 
 function Faq() {
-	const { query = {}, isMobile } = useSelector((state) => state.general);
+	const { query = {} } = useSelector((state) => state.general);
 	const [modalData, setModalData] = useState({});
 
 	const {
@@ -34,25 +33,19 @@ function Faq() {
 
 	return (
 		<div className={styles.container}>
-			<div
-				className={cl`${styles.faq_container} ${
-					isMobile ? styles.mobile_faq_container : ''
-				}`}
-			>
+			<div className={styles.faq_container}>
 				<FaqStructure
 					questionAbstract={question_abstract}
 					answers={answers}
 					setModalData={setModalData}
 					modalData={modalData}
 					loading={loading}
-					isMobile={isMobile}
 					query={query}
 					getQuestion={getQuestion}
 				/>
 				<RecommendedFAQ
 					faqLoading={loading}
 					queryName={query_name}
-					isMobile={isMobile}
 				/>
 			</div>
 			<RaiseTicket setModalData={setModalData} />

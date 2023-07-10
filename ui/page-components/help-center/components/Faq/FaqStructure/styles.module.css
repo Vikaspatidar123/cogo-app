@@ -3,12 +3,12 @@
 	height: 100%;
 	overflow: auto;
 	border-right: 1px solid #e0e0e0;
-}
 
-.mobile_left_container {
-	width: 100%;
-	height: unset;
-	border-right: unset;
+	@media (max-width: 768px) {
+		width: 100%;
+		height: unset;
+		border-right: unset;
+	}
 }
 
 .faq_container {
@@ -18,10 +18,10 @@
 	margin-top: 40px;
 	overflow-y: auto;
 	border-bottom: 1px solid  #e0e0e0;
-}
 
-.mobile_faq_container {
-	min-height: unset;
+	@media (max-width: 768px) {
+		min-height: unset;
+	}
 }
 
 .faq {

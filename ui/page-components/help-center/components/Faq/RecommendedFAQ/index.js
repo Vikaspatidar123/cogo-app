@@ -1,4 +1,3 @@
-import { cl } from '@cogoport/components';
 import { useTranslation } from 'next-i18next';
 import React, { useEffect } from 'react';
 
@@ -12,7 +11,6 @@ const translationKey = 'helpCenter:faq_answer';
 function RecommendedFAQ({
 	queryName = '',
 	faqLoading = false,
-	isMobile = false,
 }) {
 	const { t } = useTranslation(['helpCenter']);
 
@@ -33,11 +31,7 @@ function RecommendedFAQ({
 	}, [queryName, getRecommendedFaqs]);
 
 	return (
-		<div
-			className={cl`${styles.container} ${
-				isMobile ? styles.mobile_container : ''
-			}`}
-		>
+		<div className={styles.container}>
 			<div className={styles.title}>
 				{t(`${translationKey}_recommended_faqs`)}
 			</div>

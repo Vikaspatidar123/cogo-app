@@ -10,7 +10,7 @@ import styles from './styles.module.css';
 
 const translationKey = 'helpCenter:faq_home_page';
 
-function RecentQueries({ isMobile }) {
+function RecentQueries() {
 	const { t } = useTranslation(['helpCenter']);
 
 	const { recentQueries = {}, recentQueriesLoading = false } = useListFaqSearchHistory();
@@ -27,15 +27,9 @@ function RecentQueries({ isMobile }) {
 			</div>
 			{emptyCheck ? (
 				<div
-					className={cl`${styles.faqs_container} ${styles.empty_container} ${
-						isMobile ? styles.mobile_empty_container : ''
-					}`}
+					className={cl`${styles.faqs_container} ${styles.empty_container}`}
 				>
-					<IcMSearchlight
-						className={cl`${styles.search_icon} ${
-							isMobile ? styles.mobie_search_icon : ''
-						}`}
-					/>
+					<IcMSearchlight className={styles.search_icon} />
 					{t(`${translationKey}_empty_recent_queries`)}
 				</div>
 			) : (

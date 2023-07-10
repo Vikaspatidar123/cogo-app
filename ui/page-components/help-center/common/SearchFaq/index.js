@@ -8,14 +8,10 @@ import useListFaqQuestions from '../../hooks/useListFaqQuestions';
 import FaqsList from './FaqsList';
 import styles from './styles.module.css';
 
-import { useSelector } from '@/packages/store';
-
 const translationKey = 'helpCenter:search_faq_component';
 
 function SearchFaq({ showTitle = true, setModalData = () => {} }) {
 	const { t } = useTranslation(['helpCenter']);
-
-	const { isMobile } = useSelector((state) => state.general);
 	const [selectedQuery, setSelectedQuery] = useState('');
 	const [showPopover, setShowPopover] = useState(false);
 
@@ -37,7 +33,7 @@ function SearchFaq({ showTitle = true, setModalData = () => {} }) {
 			<div
 				className={cl`${
 					showTitle ? styles.input_container : styles.title_container
-				} ${isMobile ? styles.mobile_input_container : ''}`}
+				}`}
 			>
 				<Popover
 					interactive
@@ -52,7 +48,6 @@ function SearchFaq({ showTitle = true, setModalData = () => {} }) {
 							setModalData={setModalData}
 							setShowPopover={setShowPopover}
 							loading={loading}
-							isMobile={isMobile}
 						/>
 					)}
 				>

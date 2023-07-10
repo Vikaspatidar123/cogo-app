@@ -1,5 +1,4 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { cl } from '@cogoport/components';
 import { isEmpty } from '@cogoport/utils';
 import { useState, useEffect } from 'react';
 
@@ -12,9 +11,7 @@ import Topics from './Topics';
 import { useSelector } from '@/packages/store';
 
 function FaqTopics() {
-	const { query = '', isMobile = false } = useSelector(
-		(state) => state.general,
-	);
+	const { query = '' } = useSelector((state) => state.general);
 	const [showTopics, setShowTopics] = useState(false);
 	const [selectedTopic, setSelectedTopic] = useState(null);
 	const { loading = false, faqTopics = {} } = useListFaqTopics({
@@ -36,36 +33,22 @@ function FaqTopics() {
 	}, [topicsList]);
 
 	return (
-		<div
-			className={cl`${styles.container} ${
-				isMobile ? styles.mobile_container : ''
-			}`}
-		>
-			<div
-				className={cl`${styles.left_container} ${
-					isMobile ? styles.mobile_child_container : ''
-				}`}
-			>
+		<div className={styles.container}>
+			<div className={styles.left_container}>
 				<Topics
 					setSelectedTopic={setSelectedTopic}
 					selectedTopic={selectedTopic}
 					topicsList={topicsList}
 					loading={loading}
-					isMobile={isMobile}
 					showTopics={showTopics}
 					setShowTopics={setShowTopics}
 				/>
 			</div>
-			<div
-				className={cl`${styles.right_container} ${
-					isMobile ? styles.mobile_child_container : ''
-				}`}
-			>
+			<div className={styles.right_container}>
 				<FaqQuestions
 					selectedTopic={selectedTopic}
 					setSelectedTopic={setSelectedTopic}
 					faqTopics={faqTopics}
-					isMobile={isMobile}
 					topicsLoading={loading}
 				/>
 			</div>

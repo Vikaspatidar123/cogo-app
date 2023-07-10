@@ -1,4 +1,4 @@
-import { Pagination, Placeholder, cl } from '@cogoport/components';
+import { Pagination, Placeholder } from '@cogoport/components';
 import { IcMHelp } from '@cogoport/icons-react';
 import { isEmpty } from '@cogoport/utils';
 import { useTranslation } from 'next-i18next';
@@ -13,7 +13,6 @@ const translationKey = 'helpCenter:faq_topics';
 function FaqQuestions({
 	selectedTopic = {},
 	topicsLoading = false,
-	isMobile = false,
 }) {
 	const { t } = useTranslation(['helpCenter']);
 
@@ -52,11 +51,7 @@ function FaqQuestions({
 		<div className={styles.container}>
 			<div className={styles.title}>{display_name}</div>
 			<div className={styles.sub_header}>{description}</div>
-			<div
-				className={cl`${styles.list_container} ${
-					isMobile ? styles.mobile_list_container : ''
-				}`}
-			>
+			<div className={styles.list_container}>
 				<div>
 					{loading
 						? [...Array(10).keys()].map((itm) => (

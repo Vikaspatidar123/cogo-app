@@ -7,22 +7,19 @@ import FaqTopics from './FaqTopics';
 import RecentQueries from './RecentQueries';
 import styles from './styles.module.css';
 
-import { useSelector } from '@/packages/store';
 import Modals from '@/ui/commons/components/Header/Help/components/Modals';
 
 function Dashboard() {
-	const { isMobile } = useSelector((state) => state.general);
-
 	const [modalData, setModalData] = useState({});
 
 	return (
 		<div className={styles.container}>
 			<div className={styles.faqs_container}>
 				<SearchFaq setModalData={setModalData} key={modalData} />
-				<FaqTopics isMobile={isMobile} />
+				<FaqTopics />
 			</div>
 			<div className={styles.view_history_styles}>
-				<RecentQueries isMobile={isMobile} />
+				<RecentQueries />
 			</div>
 
 			<div className={styles.raise_ticket}>

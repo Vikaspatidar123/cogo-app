@@ -1,4 +1,4 @@
-import { Button, Placeholder, cl } from '@cogoport/components';
+import { Button, Placeholder } from '@cogoport/components';
 import { IcMArrowBack } from '@cogoport/icons-react';
 import { useTranslation } from 'next-i18next';
 
@@ -17,7 +17,6 @@ function FaqStructure({
 	answers = [],
 	setModalData = () => {},
 	loading = false,
-	isMobile = false,
 	getQuestion = () => {},
 	query,
 }) {
@@ -64,11 +63,7 @@ function FaqStructure({
 
 	if ((!questionAbstract || !answer) && !loading) {
 		return (
-			<div
-				className={cl`${styles.left_container} ${
-					isMobile ? styles.mobile_left_container : ''
-				}`}
-			>
+			<div className={styles.left_container}>
 				<SearchFaq
 					showTitle={false}
 					setModalData={setModalData}
@@ -84,17 +79,9 @@ function FaqStructure({
 	}
 
 	return (
-		<div
-			className={cl`${styles.left_container} ${
-				isMobile ? styles.mobile_left_container : ''
-			}`}
-		>
+		<div className={styles.left_container}>
 			<SearchFaq showTitle={false} setModalData={setModalData} key={loading} />
-			<div
-				className={cl`${styles.faq_container} ${
-					isMobile ? styles.mobile_faq_container : ''
-				}`}
-			>
+			<div className={styles.faq_container}>
 				<IcMArrowBack className={styles.back_icon} onClick={handleNavigation} />
 				<div className={styles.faq}>
 					<div className={styles.title}>

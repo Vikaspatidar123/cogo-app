@@ -50,12 +50,3 @@
 		}
 	}
 }
-
-.mobile_input_container {
-	width: 90%;
-
-	[data-tippy-root] {
-		width: 90%;
-		max-width: unset;
-	}
-}

@@ -22,14 +22,13 @@ function Topics({
 	topicsList = [],
 	loading = false,
 	showTopics = false,
-	isMobile = false,
 }) {
 	const { t } = useTranslation(['helpCenter']);
 
 	const { push } = useRouter();
 	const [inputQuery, setInputQuery] = useState('');
 
-	if (!showTopics && isMobile) {
+	if (!showTopics) {
 		return (
 			<div
 				className={styles.show_topics}
@@ -75,7 +74,7 @@ function Topics({
 				/>
 			</div>
 
-			{showTopics && isMobile && (
+			{showTopics && (
 				<div
 					className={cl`${styles.hide_topics} ${styles.show_topics}`}
 					onClick={() => setShowTopics(false)}

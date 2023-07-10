@@ -2,6 +2,11 @@
 	display: flex;
 	width: 100%;
 	height: calc(100vh - 56px);
+
+	@media (max-width: 768px) {
+		flex-direction: column;
+		height: unset;
+	}
 }
 
 .left_container {
@@ -9,19 +14,19 @@
 	height: 100%;
 	padding: 20px 0;
 	background: #f6f6f6;
+
+	@media (max-width: 768px) {
+		width: 100%;
+		height: unset;
+	}
 }
 
 .right_container {
 	width: 73%;
 	height: 100%;
-}
 
-.mobile_container {
-	flex-direction: column;
-	height: unset;
-}
-
-.mobile_child_container {
-	width: 100%;
-	height: unset;
+	@media (max-width: 768px) {
+		width: 100%;
+		height: unset;
+	}
 }

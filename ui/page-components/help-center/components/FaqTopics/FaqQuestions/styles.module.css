@@ -9,10 +9,10 @@
 	height: calc(100% - 50px);
 	padding: 20px 0;
 	overflow-y: auto;
-}
 
-.mobile_list_container {
-	height: unset;
+	@media (max-width: 768px) {
+		height: unset;
+	}
 }
 
 .title {

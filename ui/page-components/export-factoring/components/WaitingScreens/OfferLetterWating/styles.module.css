@@ -1,6 +1,8 @@
 .container {
 	display: flex;
 	flex-direction: column;
+	padding: 50px;
+	align-items: center;
 }
 .header {
 	display: flex;
@@ -11,18 +13,21 @@
 	flex-direction: row;
 }
 .view_container {
-	padding: 20px;
+	padding: 20px 20vw;
+	width: 100%;
 	align-items: center;
+	
 }
 .footer {
 	display: flex;
 }
 .doc_icon {
-	padding: 26px;
+	padding: 0px;
 }
 .wrapper_div {
 	display: flex;
 	flex-direction: column;
+	align-self: center;
 }
 
 .label {

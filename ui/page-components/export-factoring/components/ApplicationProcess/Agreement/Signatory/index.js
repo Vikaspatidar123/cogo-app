@@ -8,16 +8,25 @@ import styles from './styles.module.css';
 import { useForm } from '@/packages/forms';
 import getField from '@/packages/forms/Controlled';
 import { getSignControls } from '@/ui/page-components/export-factoring/configurations/signatoryControls';
+import useUpdateCreditApplication from '@/ui/page-components/export-factoring/hooks/useUpdateCreditApplication';
 
 function Signatory({
 	getCreditRequestResponse = {},
 	method = '',
-	updateOrganizationCreditApplication = () => {},
-	loading = false,
+	refetch = () => {},
 }) {
 	const [addSignatory, setAddSignatory] = useState(false);
 	const [selectedSignatory, setSelectedSignatory] = useState({});
-	const { control, watch, handleSubmit, formState:{ errors } } = useForm();
+	const {
+		updateCreditApplication,
+		loading: updateLoading,
+	} = useUpdateCreditApplication();
+	const {
+		control,
+		watch,
+		handleSubmit,
+		formState: { errors },
+	} = useForm();
 
 	const { directors = [] } = getCreditRequestResponse || {};
 
@@ -28,11 +37,36 @@ function Signatory({
 		id    : item.id,
 	}));
 
-	const submitSignatoryDetails = (values) => {
-		updateOrganizationCreditApplication({ values, selectedSignatory });
+	const submitSignatoryDetails = async (values) => {
+		const payload = {
+			credit_id                           : getCreditRequestResponse.credit_id,
+			export_factoring_service_attributes : {
+				agreement_execution_details: {
+					preferred_mode            : method,
+					signing_authority_details : {
+						name                       : values.signatory || values.signatory_name,
+						designation                : selectedSignatory.designation,
+						mobile_country_code        : values.signatory_mobile_number?.country_code,
+						mobile_number              : values.signatory_mobile_number?.number,
+						email                      : values.signatory_email,
+						signatory_board_resolution : values.upload_proof,
+						id                         : selectedSignatory.id,
+					},
+				},
+				section_to_update: 'agreement_execution_details',
+			},
+		};
+		const resp = await updateCreditApplication(payload);
+		if (resp) {
+			refetch();
+		}
 	};
 
-	const fields = getSignControls({ getOptionsForSignatories, watch, setSelectedSignatory });
+	const fields = getSignControls({
+		getOptionsForSignatories,
+		watch,
+		setSelectedSignatory,
+	});
 
 	const signatoryValue = !!watch('signatory');
 
@@ -46,11 +80,13 @@ function Signatory({
 							if (item.show) {
 								return (
 									<div className={styles.field}>
-										<div className={styles.field_name}>{item.placeholder}</div>
+										<div className={styles.field_name}>
+											{item.placeholder}
+										</div>
 										<Element control={control} {...item} />
 										<div className={styles.error_text}>
 											{errors?.[item.name]?.message
-												|| errors?.[item.name]?.type }
+												|| errors?.[item.name]?.type}
 										</div>
 									</div>
 								);
@@ -59,7 +95,7 @@ function Signatory({
 						})}
 					</form>
 					<div className={styles.button_wrapper}>
-						{method === 'physical' &&						(
+						{method === 'physical' && (
 							<div
 								className={styles.button}
 								role="presentation"
@@ -69,27 +105,28 @@ function Signatory({
 								Add New
 							</div>
 						)}
-						{signatoryValue &&	(
+						{signatoryValue && (
 							<Button
 								themeType="secondary"
 								className={styles.save_button}
 								onClick={handleSubmit(submitSignatoryDetails)}
-								loading={loading}
+								loading={updateLoading}
+								disabled={updateLoading}
+
 							>
 								<IcMTick />
 								Save
 							</Button>
 						)}
 					</div>
-
 				</>
 			)}
 
 			{addSignatory && (
 				<AddSignatory
 					setAddSignatory={setAddSignatory}
-					updateOrganizationCreditApplication={updateOrganizationCreditApplication}
-					loading={loading}
+					updateOrganizationCreditApplication={submitSignatoryDetails}
+					loading={updateLoading}
 				/>
 			)}
 		</>

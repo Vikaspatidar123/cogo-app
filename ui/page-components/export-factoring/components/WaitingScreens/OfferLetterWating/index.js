@@ -1,12 +1,23 @@
+import { IcAFinancial, IcAProfessionalQuotations, IcATradeFinance } from '@cogoport/icons-react';
 import React from 'react';
+
+import FilePreview from '../../../common/FilePreview';
 
 import styles from './styles.module.css';
 
-function OfferLetterWaiting() {
+function OfferLetterWaiting({ active = {}, getCreditRequestResponse = {}, refetch = () => {} }) {
+	const { documents = {}, status = '' } = getCreditRequestResponse || {};
+	const { offer_letter = {} } = documents;
 	return (
 		<div className={styles.container}>
 			<div className={styles.header}>
-				<div className={styles.doc_icon} />
+				<div className={styles.doc_icon}>
+					<img
+						src="https://cdn.cogoport.io/cms-prod/cogo_public/vault/original/Document_Offer_letter_icon.svg"
+						alt="document-offer-letter-waiting"
+						width="150px"
+					/>
+				</div>
 				<div className={styles.wrapper_div}>
 					<div className={styles.label}>We have received your Export Factoring Application</div>
 					<div className={styles.sub_label}>
@@ -17,7 +28,9 @@ function OfferLetterWaiting() {
 			</div>
 			<div className={styles.main_content}>
 				<div className={styles.card}>
-					<div className={styles.card_icon} />
+					<div className={styles.card_icon}>
+						<IcAProfessionalQuotations width="25px" height="25px" />
+					</div>
 					<div className={styles.card_label}>
 						Upto 90% of Invoice
 					</div>
@@ -26,7 +39,9 @@ function OfferLetterWaiting() {
 					</div>
 				</div>
 				<div className={styles.card}>
-					<div className={styles.card_icon} />
+					<div className={styles.card_icon}>
+						<IcAFinancial width="30px" height="30px" />
+					</div>
 					<div className={styles.card_label}>
 						Upto $500K Limit
 					</div>
@@ -35,7 +50,9 @@ function OfferLetterWaiting() {
 					</div>
 				</div>
 				<div className={styles.card}>
-					<div className={styles.card_icon} />
+					<div className={styles.card_icon}>
+						<IcATradeFinance width="30px" height="30px" />
+					</div>
 					<div className={styles.card_label}>
 						Avoid New Debt
 					</div>
@@ -44,8 +61,15 @@ function OfferLetterWaiting() {
 					</div>
 				</div>
 			</div>
-			<div className={styles.view_container} />
-			<div className={styles.footer} />
+			{status === 'locked' && offer_letter.active && (
+				<div className={styles.view_container}>
+					<p>Locked Offer Letter</p>
+					<FilePreview name="Offer Letter" url={offer_letter.active.document_url} />
+				</div>
+			)}
+			<div className={styles.footer}>
+				Incase of any query regarding your application, please reach out to us on ef.ops@cogoport.com
+			</div>
 		</div>
 	);
 }

@@ -1,6 +1,9 @@
 .container {
 	display: flex;
 	flex-direction: column;
+	div {
+		margin: 4px 0px;
+	}
 }
 .field {
 	margin: 0 0 15px;
@@ -16,4 +19,12 @@
 .form_div {
 	display: flex;
 	padding: 20px 0px;
+}
+.btn_container {
+	width: 100%;
+	display: flex;
+	justify-content: flex-end;
+}
+.error_text {
+	color: red;
 }

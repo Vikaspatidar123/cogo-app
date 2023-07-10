@@ -88,7 +88,7 @@
 	color: var(--80, #f68b21);
 	font-family: Poppins;
 	font-weight: 600;
-	font-size: 36px;
+	font-size: 32px;
 }
 .wrapper_div {
 	display: flex;
@@ -162,4 +162,23 @@
 	border-radius: 4px;
 	border: 1px solid var(--80, #abcd62);
 	background: var(--20, #f7faef);
+}
+.amedement_reject_status_div {
+	display: inline-flex;
+	padding: 10px;
+	align-items: center;
+	border-radius: 4px;
+	border: 1px solid var(--80, #ee3425);
+	background: var(--20, #fdebe9);
+	color: var(--100, #bf291e);
+	width: 70%;
+	svg {
+		margin-right: 10px;
+	}
+}
+.bottom_container {
+	display: flex;
+	justify-content: flex-end;
+	width: 100%;
+	padding: 10px 7vw;
 }

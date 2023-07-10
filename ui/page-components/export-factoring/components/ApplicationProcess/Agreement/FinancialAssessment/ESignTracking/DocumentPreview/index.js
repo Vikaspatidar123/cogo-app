@@ -3,7 +3,7 @@ import { IcMEyeopen, IcMDocument } from '@cogoport/icons-react';
 
 import styles from './styles.module.css';
 
-function PreviewAndUpload({ getCreditRequestResponse = () => {} }) {
+function DocumentPreview({ getCreditRequestResponse = () => {} }) {
 	const { sample_paylater_agreement = '' } = getCreditRequestResponse || {};
 	return (
 
@@ -15,7 +15,7 @@ function PreviewAndUpload({ getCreditRequestResponse = () => {} }) {
 			<Input
 				suffix={<IcMEyeopen className={styles.icon} />}
 				prefix={<IcMDocument />}
-				value="Agreement"
+				value="Document Preview"
 				readonly
 				className={styles.download}
 			/>
@@ -23,4 +23,4 @@ function PreviewAndUpload({ getCreditRequestResponse = () => {} }) {
 	);
 }
 
-export default PreviewAndUpload;
+export default DocumentPreview;

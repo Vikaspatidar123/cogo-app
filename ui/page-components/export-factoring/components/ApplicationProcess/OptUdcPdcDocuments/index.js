@@ -11,6 +11,7 @@ import UndatedCheques from './UndatedCheques';
 
 function OptUdcAndPdc({ getCreditRequestResponse, refetch, loading, active }) {
 	const [selectedType, setSelectedType] = useState();
+	const [udcCheque, setUdcCheque] = useState({});
 
 	const common = {
 		title       : 'Select cheque type',
@@ -57,6 +58,7 @@ function OptUdcAndPdc({ getCreditRequestResponse, refetch, loading, active }) {
 			Component   : DocInformation,
 		},
 	];
+	console.log(udcCheque, 'aaa');
 
 	return (
 		<div className={styles.container}>
@@ -70,6 +72,8 @@ function OptUdcAndPdc({ getCreditRequestResponse, refetch, loading, active }) {
 				selectedType={selectedType}
 				setSelectedType={setSelectedType}
 				infoType="UDC"
+				udcCheque={udcCheque}
+				setUdcCheque={setUdcCheque}
 			/>
 		</div>
 	);

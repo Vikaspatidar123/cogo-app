@@ -14,7 +14,7 @@ function AddSignatory({
 	const { control, handleSubmit, formState: { errors } } = useForm();
 
 	const submit = (values) => {
-		updateOrganizationCreditApplication({ values });
+		updateOrganizationCreditApplication({ ...values });
 	};
 
 	return (

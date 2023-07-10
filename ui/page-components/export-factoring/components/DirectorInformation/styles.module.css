@@ -19,3 +19,8 @@
 .financial_div {
 	padding: 30px 0px;
 }
+.btn_container {
+	width: 100%;
+	display: flex;
+	justify-content: flex-end;
+}

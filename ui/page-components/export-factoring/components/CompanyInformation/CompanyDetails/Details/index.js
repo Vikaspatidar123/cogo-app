@@ -13,8 +13,11 @@ function Details({ data = {}, setShowEdit = () => {},	updatedValues = {}, getCre
 		constitution_of_business = '',
 
 	} = data || {};
-	const { date_of_incorporation:update_date_of_incorporation = '' } = updatedValues.values || {};
+
 	const { org_iec_number = '' } = getCreditRequestResponse || {};
+	const { date_of_incorporation: update_date_of_incorporation = '', cin } = updatedValues;
+
+	console.log(update_date_of_incorporation.toString(), 'aaa');
 
 	return (
 		<div className={styles.container}>
@@ -57,7 +60,7 @@ function Details({ data = {}, setShowEdit = () => {},	updatedValues = {}, getCre
 						CIN/LLPIN
 					</div>
 					<div className={styles.value}>
-						-
+						{cin}
 					</div>
 				</div>
 				<div className={styles.description}>
@@ -73,7 +76,7 @@ function Details({ data = {}, setShowEdit = () => {},	updatedValues = {}, getCre
 						Date of Incorporation
 					</div>
 					<div className={styles.value}>
-						{date_of_incorporation || update_date_of_incorporation}
+						{date_of_incorporation || update_date_of_incorporation.toString()}
 					</div>
 				</div>
 				<div className={styles.address}>

@@ -2,13 +2,22 @@ import React, { useState } from 'react';
 
 import FormCard from '../../../common/FormCard';
 
+import AgreementPreview from './AgreementPreview';
+import FinancialAssessment from './FinancialAssessment';
+import Signatory from './Signatory';
 import SignatoryMethod from './SignatoryMethod';
 import styles from './styles.module.css';
-import Signatory from './Signatory';
 
 function Agreement({ getCreditRequestResponse, refetch, loading, active }) {
+	const { signatories = [] } = getCreditRequestResponse;
+	const { flags = {} } = getCreditRequestResponse;
+	const { signing_authorities = '' } = flags;
 	const [method, setMethod] = useState('digital');
-	const mappingComponent = [
+	const mappingComponent = 	signatories.length > 0 ? [{
+		title       : 'Preview Agreement',
+		description : 'Preview of Offer Letter and Rpa ',
+		Component   : AgreementPreview,
+	}] : [
 		{
 			title       : 'Method',
 			description : 'Select method of Signature',
@@ -21,6 +30,17 @@ function Agreement({ getCreditRequestResponse, refetch, loading, active }) {
 		},
 
 	];
+
+	if (signing_authorities === 'approval_pending') {
+		return (
+			<FinancialAssessment
+				active={active}
+				getCreditRequestResponse={getCreditRequestResponse}
+				refetch={refetch}
+				loading={loading}
+			/>
+		);
+	}
 
 	return (
 		<div className={styles.container}>

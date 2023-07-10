@@ -29,7 +29,7 @@ function TradeDetails({ getCreditRequestResponse = {}, refetch = () => {} }) {
 		formState: { errors },
 	} = useForm({
 		defaultValues: {
-			payment_terms: payment_terms,
+			payment_terms,
 		},
 	});
 	const {
@@ -70,8 +70,6 @@ function TradeDetails({ getCreditRequestResponse = {}, refetch = () => {} }) {
 			>
 				<div className={styles.container}>
 
-					<TradeList list={tradeDetails} />
-
 					{tradeControls(setSelectedCountry).map((item) => {
 						const Element = getField(item.type);
 						if (item.type === 'fieldArray') {
@@ -111,6 +109,7 @@ function TradeDetails({ getCreditRequestResponse = {}, refetch = () => {} }) {
 						Save
 					</Button>
 				</div>
+				<TradeList list={tradeDetails} />
 			</Accordion>
 		</form>
 	);

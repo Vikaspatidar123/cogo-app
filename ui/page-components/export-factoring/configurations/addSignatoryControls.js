@@ -3,16 +3,25 @@ export const ADDSIGNATORY_CONTROLS = [
 		name        : 'signatory_name',
 		placeholder : 'Signatory Name',
 		type        : 'text',
+		rules       : {
+			required: true,
+		},
 	},
 	{
-		name        : 'mobile_number',
+		name        : 'signatory_mobile_number',
 		placeholder : 'Mobile',
 		type        : 'mobile_number',
+		rules       : {
+			required: true,
+		},
 	},
 	{
-		name        : 'email',
+		name        : 'signatory_email',
 		placeholder : 'Email',
 		type        : 'text',
+		rules       : {
+			required: true,
+		},
 	},
 	{
 		name        : 'upload_proof',
@@ -20,5 +29,8 @@ export const ADDSIGNATORY_CONTROLS = [
 		accept      : '.png,.pdf,.jpg,.jpeg',
 		type        : 'file',
 		themeType   : 'accent',
+		rules       : {
+			required: true,
+		},
 	},
 ];

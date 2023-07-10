@@ -13,7 +13,7 @@ function AddDirectorDetails({
 	setShowAddDirectors,
 	showAddDirectors,
 }) {
-	const { control, handleSubmit, formState: { errors } } = useForm();
+	const { control, handleSubmit, formState: { errors } } = useForm({});
 	const submit = (values) => {
 		console.log(values);
 	};

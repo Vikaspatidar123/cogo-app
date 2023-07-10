@@ -1,5 +1,6 @@
 import { Toast } from '@cogoport/components';
 import { useRouter } from 'next/router';
+import { useCallback } from 'react';
 
 import { useRequestBf } from '@/packages/request';
 import { useSelector } from '@/packages/store';
@@ -21,7 +22,7 @@ const useTradeEngine = () => {
 		authKey : 'post_saas_trade_engine',
 	}, { manual: true });
 
-	const getTradeEngine = async (tradeEngineInputId) => {
+	const getTradeEngine = useCallback(async (tradeEngineInputId) => {
 		try {
 			await getTransactionTrigger({
 				params: {
@@ -31,9 +32,9 @@ const useTradeEngine = () => {
 		} catch (err) {
 			Toast.error('Something went wrong! Please try after sometime');
 		}
-	};
+	}, [getTransactionTrigger]);
 
-	const postTradeEngine = async ({ tradeEngineInputId, paymentMode }) => {
+	const postTradeEngine = useCallback(async ({ tradeEngineInputId, paymentMode }) => {
 		try {
 			const resp = await postTransaction({
 				data: {
@@ -50,7 +51,7 @@ const useTradeEngine = () => {
 		} catch (err) {
 			Toast.error('Something went wrong! Please try after sometime');
 		}
-	};
+	}, [billId, getTradeEngine, id, organization?.id, postTransaction]);
 	return {
 		postTradeEngine,
 		transactionResp,

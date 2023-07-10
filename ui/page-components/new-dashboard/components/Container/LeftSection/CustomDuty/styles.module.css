@@ -18,8 +18,15 @@
 }
 
 .des {
+	margin-top: 20px;
+	font-size: 16px;
+	font-weight: 500px;
+	color: #7278ad;
+}
+
+.text_des {
+	margin-top: 10px;
 	font-size: 10px;
-	font-weight: 400;
 	color: #828282;
 }
 
@@ -29,12 +36,10 @@
 }
 
 .button {
-	margin-left: 20px;
+	margin-top: 30px;
 }
 
 .seaction {
 	display: flex;
-}
-
-.img_container {
+	justify-content: flex-start;
 }

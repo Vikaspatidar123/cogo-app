@@ -1,14 +1,69 @@
 import { Button, Modal } from '@cogoport/components';
+import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 
 import styles from './styles.module.css';
 
 import getField from '@/packages/forms/Controlled';
-import { getAddFundingRequestControls } from '@/ui/page-components/export-factoring/configurations/getAddFundingRequestControls';
 import FieldArray from '@/ui/page-components/export-factoring/common/FieldArray';
+import { getAddFundingRequestControls } from
+	'@/ui/page-components/export-factoring/configurations/getAddFundingRequestControls';
+import useSubmitFundingRequestDetails from '@/ui/page-components/export-factoring/hooks/useSubmitFundingRequestDetails';
 
-function AddFundingRequest({ openAddFundingRequest, setOpenFundingRequest }) {
-	const fundingRequestControls = getAddFundingRequestControls();
+function AddFundingRequest({ 
+	openAddFundingRequest, 
+	setOpenFundingRequest, 
+	getCreditRequestResponse = {} ,
+	refetchList,
+}) {
+	const {
+		getBuyerDetails,
+		buyersData,
+		onSubmit,
+		loading,
+	} = useSubmitFundingRequestDetails({
+		creditRequest: getCreditRequestResponse,
+		setOpenFundingRequest,
+		refetchList,
+	});
+
+	const { buyer_list = [] } = buyersData || [];
+
+	const buyerOptions = buyer_list?.map((x) => ({
+		label : x?.company_name,
+		value : x?.id,
+	}));
+
+	const bankDetailsOptions = getCreditRequestResponse?.exporter_account_infos
+		?.filter((x) => x?.approval_status === 'VERIFIED')
+		.map((y) => ({
+			label: (
+				<div style={{ display: 'flex' }}>
+					<div>
+						{y?.bank_name}
+						{' '}
+&nbsp;
+						{' '}
+					</div>
+					<div>
+						{' '}
+						(
+						{y?.account_number}
+						)
+					</div>
+				</div>
+			),
+			value: y?.exporter_bank_account_id,
+		}));
+
+	const fundingRequestControls = getAddFundingRequestControls({
+		buyerOptions,
+		bankDetailsOptions,
+	});
+
+	useEffect(() => {
+		getBuyerDetails();
+	}, []);
 
 	const { control, watch, handleSubmit, formState: { errors } } = useForm();
 	return (
@@ -61,7 +116,12 @@ function AddFundingRequest({ openAddFundingRequest, setOpenFundingRequest }) {
 				>
 					Cancel
 				</Button>
-				<Button type="button">
+				<Button
+					type="button"
+					onClick={handleSubmit(onSubmit)}
+					loading={loading}
+					disabled={loading}
+				>
 					Submit
 				</Button>
 			</Modal.Footer>

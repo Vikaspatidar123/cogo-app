@@ -74,7 +74,8 @@ function NoaSigning({
 									<div
 										className={styles.line}
 										style={{
-											backgroundColor: `${formFields?.status ? '#abcd62' : '#bdbdbd'}`,
+											borderLeft:
+											`${formFields?.status ? '2px solid #abcd62' : '2px solid #bdbdbd'}`,
 										}}
 									/>
 								)}

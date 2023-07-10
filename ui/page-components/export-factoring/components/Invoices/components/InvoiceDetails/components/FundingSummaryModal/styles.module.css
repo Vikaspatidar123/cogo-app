@@ -3,22 +3,12 @@
 	font-size: 16px;
 	line-height: 16px;
 	color: #221f20;
-	&.subhead {
-		font-size: 15px;
-		padding: 10px 0px;
-	}
 	margin: 10px 0px;
 }
 
 .labelText{
 	font-size: 14px;
 	color: #4f4f4f;
-	&.negative {
-		color: #bf291e;
-	}
-	&.bold {
-		font-weight: 700;
-	}
 }
 
 .valueText{
@@ -27,9 +17,6 @@
 	font-size: 14px;
 	line-height: 21px;
 	color: #221f20;
-	&.negative {
-		color: #bf291e;
-	}
 	word-wrap: break-word;
 	display: flex;
 	flex-wrap: wrap;
@@ -40,8 +27,4 @@
 	display: flex;
 	justify-content: space-between;
 	padding: 5px 0px;
-	&.border {
-		border-top: 1px dashed #abcd62;
-		border-bottom: 1px solid #e0e0e0;
-	}
 }

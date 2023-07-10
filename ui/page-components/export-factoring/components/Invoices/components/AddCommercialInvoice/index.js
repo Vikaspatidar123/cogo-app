@@ -4,11 +4,28 @@ import { useForm } from 'react-hook-form';
 import styles from './styles.module.css';
 
 import FieldArray from '@/ui/page-components/export-factoring/common/FieldArray';
-import { getAddCommercialInvoiceControls } from '@/ui/page-components/export-factoring/configurations/getAddCommercialInvoiceControls';
+import { getAddCommercialInvoiceControls } from
+	'@/ui/page-components/export-factoring/configurations/getAddCommercialInvoiceControls';
+import useSubmitCommercialInvoiceDetails from
+	'@/ui/page-components/export-factoring/hooks/useSubmitCommercialInvoiceDetails';
 
-function AddCommercialInvoice({ openAddInvoice, setOpenAddInvoice }) {
+function AddCommercialInvoice({
+	refetch,
+	invoice,
+	creditRequest,
+	openAddInvoice,
+	setOpenAddInvoice,
+}) {
 	const addCommercialInvoiceControls = getAddCommercialInvoiceControls();
-	const { control, watch, handleSubmit, formState: { errors } } = useForm();
+	const { control, handleSubmit, formState: { errors } } = useForm();
+	const { fid = '', sid = '', invoices = [] } = invoice || {};
+
+	const { loading, onSubmit } = useSubmitCommercialInvoiceDetails({
+		refetch,
+		sid,
+		creditRequest,
+		setOpenAddInvoice,
+	});
 
 	return (
 		<Modal
@@ -21,18 +38,20 @@ function AddCommercialInvoice({ openAddInvoice, setOpenAddInvoice }) {
 			/>
 			<Modal.Body>
 				<div className={styles.invoiceContent}>
-					<div style={{display: 'flex'}}>
+					<div style={{ display: 'flex' }}>
 						<div className={styles.textHead}>
 							Total Invoices attached to the
 						</div>
 						<div style={{ fontWeight: 'bold' }}>
-							FID: 3
+							FID:
+							{' '}
+							{fid}
 						</div>
 					</div>
 					<div style={{ display: 'flex', flexWrap: 'wrap' }}>
-						{[...Array(11).keys()].map((x) => (
-							<div className={styles.textInvoice}>
-								CI/001/00001
+						{invoices.map((x) => (
+							<div className={styles.textInvoice} key={x}>
+								{x?.invoice_number}
 							</div>
 						))}
 					</div>
@@ -61,7 +80,12 @@ function AddCommercialInvoice({ openAddInvoice, setOpenAddInvoice }) {
 				>
 					Cancel
 				</Button>
-				<Button type="button">
+				<Button
+					type="button"
+					onClick={handleSubmit(onSubmit)}
+					loading={loading}
+					disabled={loading}
+				>
 					Submit
 				</Button>
 			</Modal.Footer>

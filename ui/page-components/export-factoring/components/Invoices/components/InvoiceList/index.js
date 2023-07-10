@@ -9,14 +9,14 @@ import styles from './styles.module.css';
 
 function InvoiceList({
 	invoice = {},
-	// creditRequest = {},
+	creditRequest = {},
 	setShowCiDetails,
 	refetch,
 }) {
 	const [openAddInvoice, setOpenAddInvoice] = useState(false);
 	const { fid = '', sid = '', invoices = [] } = invoice || {};
 	return (
-		<div>
+		<div style={{ margin: '20px 0px' }}>
 			<div className={styles.flexDiv}>
 				<div style={{ display: 'flex' }}>
 					<div className={styles.sidText}>
@@ -57,6 +57,9 @@ function InvoiceList({
 			</div>
 			{openAddInvoice && (
 				<AddCommercialInvoice
+					refetch={refetch}
+					invoice={invoice}
+					creditRequest={creditRequest}
 					openAddInvoice={openAddInvoice}
 					setOpenAddInvoice={setOpenAddInvoice}
 				/>

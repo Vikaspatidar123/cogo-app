@@ -383,6 +383,28 @@ function asyncFieldsShippingLineList() {
 		endpoint : 'get_saas_container_shipping_lines',
 	};
 }
+function asyncFieldsShipmentsSidList() {
+	return {
+		valueKey : 'serial_id',
+		labelKey : 'serial_id',
+		endpoint : 'list_shipments',
+		params   : {
+			page_limit : 100,
+			filters    : {
+				status : 'active',
+				state  : [
+					'in_progress',
+					'shipment_received',
+					'confirmed_by_importer_exporter',
+				],
+			},
+		},
+		initialCall    : true,
+		useQueryKey    : true,
+		defaultOptions : true,
+		isSearchable   : true,
+	};
+}
 
 export {
 	asyncFieldsLocations,
@@ -417,4 +439,5 @@ export {
 	asyncFieldsAirLineList,
 	asyncFieldsShippingLineList,
 	asyncFieldsShippingLines,
+	asyncFieldsShipmentsSidList,
 };

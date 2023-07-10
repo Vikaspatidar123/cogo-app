@@ -1,36 +1,38 @@
-import { Placeholder } from '@cogoport/components';
 import { IcMCrossInCircle, IcMArrowNext } from '@cogoport/icons-react';
 import { useState } from 'react';
 
 import DeleteModal from '../../common/DeleteModal';
 import useDeleteTrendSubscription from '../../hooks/useDeleteTrends';
+import Stepper from '../Stepper';
 
 import styles from './styles.module.css';
 
 import { useRouter } from '@/packages/next';
 
 function TrendCard({ trend = {}, fetchLocations = () => {} }) {
+	const { origin_port = {}, destination_port = {} } = trend || {};
 	const { push } = useRouter();
 
-	const { loading, deleteTrend } = useDeleteTrendSubscription({ fetchLocations });
 	const [showDeleteModal, setShowDeleteModal] = useState(false);
 	const [trendId, setTrendId] = useState();
 
 	const routeList = {
-		origin      : trend?.origin_port?.name || 'Origin',
-		destination : trend?.destination_port?.name || 'Destination',
+		origin      : origin_port?.name?.split(' - ')[0] || 'Origin',
+		destination : destination_port?.name?.split(' - ')[0] || 'Destination',
 	};
+
+	const { loading, deleteTrend } = useDeleteTrendSubscription({ fetchLocations });
+
 	return (
 		<>
 			<div className={styles.card}>
 				<div className={styles.flex}>
 					<div className={styles.flex_content}>
-						<div className={styles.text}>
-							{routeList.origin.split(' - ')[0]}
-						</div>
-						<div className={styles.text}>
-							{routeList.destination.split(' - ')[0]}
-						</div>
+						{Object.keys(routeList).map((route) => (
+							<div className={styles.text} key={route}>
+								{routeList?.[route]}
+							</div>
+						))}
 						<div
 							className={styles.cross_div}
 							role="presentation"
@@ -42,17 +44,8 @@ function TrendCard({ trend = {}, fetchLocations = () => {} }) {
 							<IcMCrossInCircle />
 						</div>
 					</div>
-					<div className={styles.dot_circle}>
-						<div className={styles.circle1} />
-						<div className={styles.line} />
-						<div className={styles.circle2} />
-					</div>
-					<div className={styles.port_code}>
-						{trend?.origin_port?.port_code || 'Origin'}
-						<div>
-							{trend?.destination_port?.port_code || 'Destination' }
-						</div>
-					</div>
+
+					<Stepper originPort={origin_port} destinationPort={destination_port} />
 					<div
 						role="presentation"
 						className={styles.footer}
@@ -83,29 +76,6 @@ function TrendCard({ trend = {}, fetchLocations = () => {} }) {
 	);
 }
 
-function TrendCardSkeleton() {
-	return (
-		[...Array(3).keys()].map(() => (
-			<div className={styles.holder}>
-				<div className={styles.card}>
-
-					<div style={{ padding: 16 }}>
-						<Placeholder count={5} />
-					</div>
-					<div className={styles.footer}>
-						<Placeholder count={5} />
-					</div>
-					<div className={styles.footer}>
-						<Placeholder count={1} style={{ width: '300px' }} />
-					</div>
-				</div>
-
-			</div>
-		))
-
-	);
-}
-
 function EmptyTrendCard() {
 	return (
 		<div className={styles.container}>
@@ -133,6 +103,6 @@ function EmptyTrendCard() {
 	);
 }
 
-export { EmptyTrendCard, TrendCardSkeleton };
+export { EmptyTrendCard };
 
 export default TrendCard;

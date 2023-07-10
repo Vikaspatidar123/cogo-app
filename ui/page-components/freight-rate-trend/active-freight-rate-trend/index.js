@@ -9,22 +9,31 @@ import useFetchActiveTrend from './hooks/useActivetrendsDetails';
 import useFetchTrendDetails from './hooks/useFetchTrendDetails';
 import styles from './styles.module.css';
 
-import { useRouter } from '@/packages/next';
+import { useRouter, Image } from '@/packages/next';
 import { useSelector } from '@/packages/store';
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 import countriesHash from '@/ui/commons/utils/getCountryDetails';
 
+const CURRRENT_MONTH = new Date().getMonth();
+
+function RenderSkeleton() {
+	return (
+		<div className={styles.card}>
+			<Placeholder height="370px" width="1250px" margin="0px 0px 20px 0px" />
+		</div>
+	);
+}
+
 function ActiveFreightRateTrend() {
-	const { isMobile, general } = useSelector((state) => state);
-	const { query } = general;
+	const { back, query } = useRouter();
 	const id = query.trend_id;
-	const { back } = useRouter();
+	const { organization } = useSelector((state) => state.profile);
 
 	const [isFilterModalOpen, setIsFilterModalOpen] = useState(false);
 	const [commodities, setCommodities] = useState('general');
-	const now = new Date();
 	const [dateRangePickerValue, setDateRangePickerValue] = useState({
-		startDate : new Date(now.setMonth(now.getMonth() - 6)),
-		endDate   : new Date(new Date().setMonth(new Date().getMonth() + 1)),
+		startDate : new Date(new Date().setMonth(CURRRENT_MONTH - 6)),
+		endDate   : new Date(new Date().setMonth(CURRRENT_MONTH + 1)),
 	});
 	const [filteredCurrency, setFilteredCurrency] = useState('USD');
 	const [containerSize, setContainerSize] = useState('20');
@@ -40,15 +49,7 @@ function ActiveFreightRateTrend() {
 	const { activePagination } = useFetchActiveTrend();
 	const { destination_port, origin_port, comparison_chart_data } = trendDetails || {};
 	const { labels, datasets } = comparison_chart_data || {};
-	const { profile } = useSelector((state) => state);
-	const { organization } = profile;
 	const currency = countriesHash[organization.country_id]?.currency_code;
-
-	const renderSkeleton = () => (
-		<div className={styles.card}>
-			<Placeholder height="370px" width="1250px" margin="0px 0px 20px 0px" />
-		</div>
-	);
 
 	const handleFilterModal = () => {
 		setIsFilterModalOpen(!isFilterModalOpen);
@@ -88,14 +89,13 @@ function ActiveFreightRateTrend() {
 				/>
 			</>
 		) : (
-			<div className={styles.empty_ctn}>
-				<div className={styles.empty_text}>
-					<img
-						alt=""
-						//  eslint-disable-next-line max-len
-						src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/empty_icon 1.svg"
-					/>
-				</div>
+			<div className={styles.empty_state}>
+				<Image
+					width={460}
+					height={460}
+					src={GLOBAL_CONSTANTS.image_url.empty_state}
+					alt="No data"
+				/>
 			</div>
 		);
 	}
@@ -122,7 +122,8 @@ function ActiveFreightRateTrend() {
 					<p className="origin">{destination_port?.name || 'Destination'}</p>
 				</div>
 			</div>
-			{!isMobile && (
+
+			<div className={styles.filter_web_view}>
 				<FilterForm
 					id={id}
 					filters={filters}
@@ -141,13 +142,15 @@ function ActiveFreightRateTrend() {
 					shippingLine={shippingLine}
 					setShippingLine={setShippingLine}
 				/>
-			)}
-			<div className={styles.container}>{loading ? renderSkeleton() : Graph()}</div>
-			{isMobile && (
-				<Button variant="secondary" size="lg" onClick={handleFilterModal}>
+			</div>
+
+			<div className={styles.container}>{loading ? <RenderSkeleton /> : Graph()}</div>
+			<div className={styles.filter_mobile_view}>
+				<Button variant="secondary" size="sm" onClick={handleFilterModal}>
 					Filter
 				</Button>
-			)}
+			</div>
+
 		</>
 	);
 }

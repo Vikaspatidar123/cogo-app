@@ -28,7 +28,7 @@ const useFetchStoreQuota = () => {
 		} catch (err) {
 			console.log(err);
 		}
-	}, [profile.organization.id, trigger]);
+	}, [profile?.organization?.id, trigger]);
 
 	useEffect(() => {
 		fetchStoreQuota();

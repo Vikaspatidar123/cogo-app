@@ -26,6 +26,7 @@ function Form({
 		control,
 		formState: { errors },
 		handleSubmit,
+		register,
 	} = useForm();
 
 	const [show, setShow] = useState(false);
@@ -67,7 +68,8 @@ function Form({
 				showErrorsInToast(res?.messages);
 			}
 		} catch (err) {
-			showErrorsInToast(err?.data);
+			const message = err?.response?.data;
+			showErrorsInToast(message.message ? { message: message.message } : message);
 		}
 	};
 
@@ -88,13 +90,20 @@ function Form({
 				<form style={{ marginLeft: '-8px' }}>
 					<div className={styles.form_wrapper}>
 						{newControls.map((item) => {
-							const Element = getField(item.type);
+							const { name, type, label, rules } = item;
+							const Element = getField(type);
+							const isMobileNo = type === 'mobile_number';
+
 							return (
-								<div key={item.name}>
-									<div className={styles.label}>{item.label}</div>
-									<Element {...item} control={control} />
+								<div key={name}>
+									<div className={styles.label}>{label}</div>
+									<Element
+										{...item}
+										control={control}
+										mobileSelectRef={isMobileNo ? register(name, rules).ref : undefined}
+									/>
 									<div className={styles.error}>
-										{errors?.[item.name]?.message}
+										{errors?.[name]?.message}
 									</div>
 								</div>
 							);

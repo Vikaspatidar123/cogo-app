@@ -5,6 +5,7 @@ import { startCase, upperCase } from '@cogoport/utils';
 import styles from './styles.module.css';
 
 import getGeoConstants from '@/ui/commons/constants/geo';
+import formatAmount from '@/ui/commons/utils/formatAmount';
 
 const PAYMENT_MODE_SHORT_FORM = {
 	pre_approved_clean_credit : 'Pre Approved',
@@ -12,7 +13,7 @@ const PAYMENT_MODE_SHORT_FORM = {
 	paylater_rolling_credit   : 'Paylater',
 };
 
-const roundFigure = (amount) => Math.round(amount * 100) / 100;
+// const roundFigure = (amount) => Math.round(amount * 100) / 100;
 
 function Heading({
 	businessName,
@@ -123,13 +124,19 @@ function Heading({
 
 			<div className={styles.currency_container}>
 				<Pill color="green" className={styles.tag}>{upperCase(creditMode)}</Pill>
-
 				<div className={styles.text1}>
 					Currency :
 					{' '}
-					{invoicingPartyCurrency || geo.country.currency.code}
-					{' '}
-					{roundFigure(invoicingPartyPrice) || 0}
+					{formatAmount({
+						amount   : invoicingPartyPrice,
+						currency : invoicingPartyCurrency || geo.country.currency.code,
+						options  : {
+							style                 : 'currency',
+							currencyDisplay       : 'code',
+							minimumFractionDigits : 0,
+							maximumFractionDigits : 0,
+						},
+					})}
 				</div>
 
 				{showDeleteIcon && !loading && (

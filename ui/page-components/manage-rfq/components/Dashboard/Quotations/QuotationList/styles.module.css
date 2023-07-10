@@ -1,0 +1,19 @@
+.rfq_scroll {
+	height: calc(100vh - 210px);
+	padding: 4px 6px 0;
+	overflow-y: auto;
+
+	::-webkit-scrollbar {
+		display: none;
+	}
+}
+
+.rfq_no_scroll {
+	height: calc(100vh - 210px);
+	padding: 4px 6px 0;
+	overflow-y: auto;
+
+	::-webkit-scrollbar {
+		display: none;
+	}
+}

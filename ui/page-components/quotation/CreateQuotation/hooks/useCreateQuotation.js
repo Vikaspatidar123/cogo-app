@@ -1,4 +1,5 @@
 import { Toast } from '@cogoport/components';
+import { isEmpty } from '@cogoport/utils';
 
 import createQuotePayload from '../utils/createQuotePayload';
 
@@ -17,7 +18,7 @@ const useCreateQuotation = ({ setConfirmCreateQuotation }) => {
 		authKey : 'post_saas_quote',
 	}, { manual: true });
 
-	const [{ loading: editLoading }, editTrigger] = useRequestBf({
+	const [{ loading: editLoading, data: editQuoteData }, editTrigger] = useRequestBf({
 		method  : 'put',
 		url     : '/saas/quote',
 		authKey : 'put_saas_quote',
@@ -62,6 +63,7 @@ const useCreateQuotation = ({ setConfirmCreateQuotation }) => {
 			return {
 				...shipmentDetails,
 				...otherDetails,
+				additionalChargesList,
 				quotationId      : quoteId,
 				shipmentDetailId : editShipmentId,
 				dealId           : editDealId,
@@ -109,8 +111,8 @@ const useCreateQuotation = ({ setConfirmCreateQuotation }) => {
 			const resp = await trigger({
 				data: payloadData,
 			});
+
 			if (recentSearch && typeof window !== 'undefined') {
-				// eslint-disable-next-line no-undef
 				localStorage.removeItem('spotSearchResult');
 			}
 			if (flag && resp?.data) {
@@ -160,7 +162,7 @@ const useCreateQuotation = ({ setConfirmCreateQuotation }) => {
 	return {
 		postQuotation,
 		loading         : createLoading || editLoading,
-		createQuoteData : createData,
+		createQuoteData : isEmpty(createData) ? editQuoteData : createData,
 		createDraftQuotation,
 		draftLoading,
 		sendQuotation,

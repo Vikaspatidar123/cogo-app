@@ -5,10 +5,12 @@ import React, { useState } from 'react';
 import Loading from '../../common/Loading';
 import Map from '../../common/Map';
 import useFetchScheduleDetails from '../../hooks/useFetchScheduleDetails';
+import useGetHandel from '../../hooks/useGetHandel';
 import NoSchedulesCard from '../NoSchedulesCard';
 
 import ActiveScheduleCard from './ActiveScheduleCard';
 import Filter from './Filter';
+import Navigation from './Navigation';
 import styles from './styles.module.css';
 
 import { useRouter } from '@/packages/next';
@@ -26,6 +28,14 @@ function ActiveSchedules() {
 	} = useFetchScheduleDetails({
 		pageLimit: 6, id, currentPage,
 	});
+	const {
+		handleCheckList, clearAllHandler,
+		onChange, durationValue, setArrivalDate, arrivalDate,
+		setDepartureDate,
+		departureDate,
+		setVisible,
+		visible,
+	} = useGetHandel({ setFilters, setCarrierList, setCurrentPage, carrierList });
 
 	const handleBack = () => {
 		push('/saas/ocean-schedules');
@@ -64,37 +74,62 @@ function ActiveSchedules() {
 				</div>
 				<Popover
 					placement="left"
+					visible={visible}
 					render={(
 						<Filter
 							carrierList={carrierList}
-							setCarrierList={setCarrierList}
 							setFilters={setFilters}
 							scheduleDetails={scheduleDetails}
+							durationValue={durationValue}
+							onChange={onChange}
+							clearAllHandler={clearAllHandler}
+							handleCheckList={handleCheckList}
+							setArrivalDate={setArrivalDate}
+							setDepartureDate={setDepartureDate}
+							departureDate={departureDate}
+							arrivalDate={arrivalDate}
 						/>
 					)}
 				>
 					<div>
-						<Button themeType="accent" className={styles.button}>
+						<Button themeType="accent" className={styles.button} onClick={() => setVisible(!visible)}>
 							Filter By
 							<IcMFilter />
 						</Button>
 					</div>
 				</Popover>
 			</div>
-			{filterFetchLoading && 		(
-				<div className={styles.card}>
-					<Loading />
+
+			<div className={styles.container_box}>
+				<div className={styles.filter}>
+					<Navigation
+						departureDate={departureDate}
+						setDepartureDate={setDepartureDate}
+						arrivalDate={arrivalDate}
+						setArrivalDate={setArrivalDate}
+						carrierList={carrierList}
+						handleCheckList={handleCheckList}
+						durationValue={durationValue}
+						onChange={onChange}
+						setFilters={setFilters}
+						clearAllHandler={clearAllHandler}
+					/>
 				</div>
-			)}
-			<div className={styles.active_schedules}>
-				{!filterFetchLoading && scheduleDetails?.schedules?.list.length > 0
-					&& scheduleDetails?.schedules?.list.map((item) => (
-						<ActiveScheduleCard
-							schedule={item}
-							scheduleDetails={scheduleDetails}
-						/>
-					))}
-				{!filterFetchLoading && scheduleDetails?.schedules?.list.length === 0 && <NoSchedulesCard />}
+				<div className={styles.active_schedules}>
+					{filterFetchLoading && (
+						<div className={styles.card}>
+							<Loading />
+						</div>
+					)}
+					{!filterFetchLoading && scheduleDetails?.schedules?.list.length > 0
+						&& scheduleDetails?.schedules?.list.map((item) => (
+							<ActiveScheduleCard
+								schedule={item}
+								scheduleDetails={scheduleDetails}
+							/>
+						))}
+					{!filterFetchLoading && scheduleDetails?.schedules?.list.length === 0 && <NoSchedulesCard />}
+				</div>
 			</div>
 			{scheduleDetails?.schedules?.list.length > 0 && (
 				<div className={styles.pagination_container}>

@@ -12,7 +12,7 @@ import styles from './styles.module.css';
 function OrderHistory() {
 	const [sort, setSort] = useState();
 	const {
-		setGlobalFilters = () => {},
+		setGlobalFilters = () => { },
 		filters = {},
 		apiData = {},
 		apiLoading = false,
@@ -29,14 +29,12 @@ function OrderHistory() {
 						<div className={styles.line} />
 					</div>
 				</div>
+
 				<div className={styles.flex_div}>
-					<FilterSection
-						filters={filters}
-						setFilters={setGlobalFilters}
-					/>
+
 					<div className={styles.input}>
 						<Input
-							placeholder="search by order number"
+							placeholder="Search by order number"
 							onChange={(e) => {
 								setGlobalFilters((prev) => ({
 									...prev,
@@ -44,9 +42,13 @@ function OrderHistory() {
 									page       : 1,
 								}));
 							}}
-							suffix={<IcMSearchlight height={30} />}
+							suffix={<IcMSearchlight height={30} style={{ marginRight: '10px' }} />}
 						/>
 					</div>
+					<FilterSection
+						filters={filters}
+						setFilters={setGlobalFilters}
+					/>
 				</div>
 			</div>
 

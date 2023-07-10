@@ -4,7 +4,14 @@
 	justify-content: space-between;
 
 	.input {
-		width: 220px;
+		width: 250px;
+		margin-right: 20px;
+
+		:global {
+			.ui_input_container {
+				height: 36px;
+			}
+		}
 	}
 
 	@media screen and (max-width: 768px) {
@@ -40,7 +47,6 @@
 
 .flex_div {
 	display: flex;
-	gap: 4px;
 	align-items: center;
 
 	@media screen and (max-width: 768px) {

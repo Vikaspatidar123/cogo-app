@@ -1,0 +1,92 @@
+.container {
+	padding: 8px 20px;
+	margin: 16px 0 40px;
+}
+
+.heading {
+	margin-bottom: 16px;
+	font-size: 20px;
+	font-weight: 500;
+	color: #221f20;
+}
+
+.image {
+	width: 100%;
+	height: 180px;
+	margin-bottom: 8px;
+	border-radius: 6px;
+}
+
+.wrapper {
+	padding: 10px 12px;
+}
+
+.offer_box {
+	padding: 10px 12px;
+	cursor: pointer;
+	background-color: #fff;
+	border-radius: 6px;
+	box-shadow: 0 0 8px rgb(98 127 172 / 20%);
+
+	@media (max-width: 768px) {
+		width: 100%;
+	}
+}
+
+.flex {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 100%;
+	margin-top: 8px;
+
+	@media (max-width: 768px) {
+		flex-direction: column;
+	}
+}
+
+.details_div {
+	width: 70%;
+}
+
+.sub_text {
+	width: 90%;
+	font-size: 12px;
+	color: #4f4f4f;
+	word-break: break-word;
+}
+
+.product_details {
+	width: 90%;
+	font-size: 16px;
+	font-weight: 500;
+	color: #221f20;
+	word-break: break-word;
+}
+
+.styled_ic_cogo_coin {
+	width: 20px;
+	height: 20px;
+	margin-right: 4px;
+}
+
+.value {
+	width: 90%;
+	font-size: 14px;
+	font-weight: 400;
+	color: #221f20;
+	word-break: break-word;
+}
+
+.amount {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 8px;
+	border: 1px solid #e0ba4a;
+	border-radius: 100px;
+
+	@media (max-width: 768px) {
+		width: 100px;
+	}
+}

@@ -1,4 +1,4 @@
-import { IcMDownload, IcMPreview } from '@cogoport/icons-react';
+import { IcMDownload, IcMEyeopen } from '@cogoport/icons-react';
 
 import downloadFile from './common/downloadFile';
 import styles from './styles.module.css';
@@ -26,7 +26,7 @@ const columns = [
 		accessor : 'image_url',
 		Cell     : ({ row }) => (
 			<>
-				<IcMPreview onClick={() => window.open(row?.original?.image_url, '_blank')} className={styles.icon} />
+				<IcMEyeopen onClick={() => window.open(row?.original?.image_url, '_blank')} className={styles.icon} />
 				<IcMDownload className={styles.icon} onClick={() => downloadFile(row?.original?.image_url)} />
 			</>
 		),

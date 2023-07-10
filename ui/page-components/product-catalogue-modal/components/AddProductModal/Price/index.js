@@ -23,7 +23,6 @@ function Pricing({
 	const { categoryDisplayName = '', subCategoryDisplayName = '' } = productDetailsfromAPi || {};
 
 	const { hsCode = undefined } = prefiledValues || {};
-
 	const controls = getControls({ currency });
 	const {
 		handleSubmit,
@@ -70,7 +69,7 @@ function Pricing({
 			return `Profit: ${Math.round(Math.abs(profitpercentage))}%`;
 		}
 		if (profitpercentage === 0) {
-			return 'Loss: 0% ';
+			return ' 0% ';
 		}
 		return `Loss: ${Math.round(Math.abs(profitpercentage))}%`;
 	};
@@ -92,7 +91,7 @@ function Pricing({
 							<div className="subheading">{subCategoryDisplayName}</div>
 						</div>
 					</div>
-					<div className={`${profitpercentage > 0 ? 'green' : 'red'} profit`}>
+					<div className={`${profitpercentage >= 0 ? 'green' : 'red'} profit`}>
 						{renderProfit()}
 					</div>
 				</div>

@@ -1,3 +1,5 @@
+import { cl } from '@cogoport/components';
+
 import listConfig from '../../configurations/listconfig';
 import AllFilters from '../AllFilters';
 import List from '../List';
@@ -14,7 +16,7 @@ function Transaction({
 }) {
 	return (
 		<div className={styles.container}>
-			<div className={`${styles.title_section} ${styles.mobile}`}>
+			<div className={cl`${styles.title_section} ${styles.mobile}`}>
 				<div className={styles.header}>
 					<h1 className={styles.title}>My Transactions </h1>
 					<div className={styles.line_wrapper}>

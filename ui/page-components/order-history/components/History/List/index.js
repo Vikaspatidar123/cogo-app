@@ -19,7 +19,7 @@ function List({
 
 }) {
 	const { list = [], pageNo = 0, totalPages } = data || {};
-	const { fields, tableView = false, singleList = false } = config ?? {};
+	const { fields, tableView = false, singleList = false } = config || {};
 	const listNew = loading ? [1, 2, 3, 4, 5] : list;
 	const { length = 0 } = listNew || {};
 

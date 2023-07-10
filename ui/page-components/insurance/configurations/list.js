@@ -2,8 +2,10 @@ import { Popover } from '@cogoport/components';
 import { IcMArrowDown, IcMArrowUp, IcMOverflowDot } from '@cogoport/icons-react';
 import { format } from '@cogoport/utils';
 
+import CogoPolicyNo from '../components/ListView/CogoPolicyNo';
 import Coverage from '../components/ListView/Coverage';
 import paymentStatus from '../components/ListView/status';
+import styles from '../components/ListView/styles.module.css';
 
 const listConfig = ({ setSort, sort, Content }) => {
 	const { sortType = 'DESC' } = sort || {};
@@ -18,27 +20,28 @@ const listConfig = ({ setSort, sort, Content }) => {
 
 	const fields = [
 		{
-			span     : 2,
+			minWidth : 200,
 			Header   : 'Policy ID',
 			accessor : 'cogoPolicyNo',
 			id       : 'cogoPolicyNo',
+			Cell     : ({ row }) => <CogoPolicyNo itemData={row?.original} />,
 		},
 		{
-			span     : 4,
+			minWidth : 200,
 			accessor : 'coverage',
 			id       : 'coverage',
 			Header   : 'Coverage',
 			Cell     : ({ row }) => <Coverage itemData={row?.original} />,
 		},
 		{
-			span     : 3,
+			minWidth : 200,
 			toolTip  : true,
 			accessor : 'subCommodity',
 			id       : 'subCommodity',
 			Header   : 'Commodity',
 		},
 		{
-			span       : 1,
+			minWidth   : 200,
 			sortingKey : 'TRANSIT_START_DATE',
 			sorting    : true,
 			accessor   : 'transitDate',
@@ -47,14 +50,28 @@ const listConfig = ({ setSort, sort, Content }) => {
 				<div>
 					Transit Start Date
 					{sortType === 'ASC'
-						? <IcMArrowDown onClick={() => handleToggleChange({ sortingKey: 'TRANSIT_START_DATE' })} />
-						: <IcMArrowUp onClick={() => handleToggleChange({ sortingKey: 'TRANSIT_START_DATE' })} />}
+						? (
+							<IcMArrowDown
+								width={10}
+								height={10}
+								onClick={() => handleToggleChange({ sortingKey: 'TRANSIT_START_DATE' })}
+								className={styles.icon}
+							/>
+						)
+						: (
+							<IcMArrowUp
+								width={10}
+								height={10}
+								onClick={() => handleToggleChange({ sortingKey: 'TRANSIT_START_DATE' })}
+								className={styles.icon}
+							/>
+						)}
 				</div>
 			),
 			Cell: ({ row }) => format(row?.original?.transitDate, 'dd MMM yy'),
 		},
 		{
-			span       : 1,
+			minWidth   : 80,
 			sortingKey : 'CREATED_AT',
 			sorting    : true,
 			accessor   : 'createdAt',
@@ -63,21 +80,35 @@ const listConfig = ({ setSort, sort, Content }) => {
 				<div>
 					Created Date
 					{sortType === 'ASC'
-						? <IcMArrowDown onClick={() => handleToggleChange({ sortingKey: 'CREATED_AT' })} />
-						: <IcMArrowUp onClick={() => handleToggleChange({ sortingKey: 'CREATED_AT' })} />}
+						? (
+							<IcMArrowDown
+								width={10}
+								height={10}
+								onClick={() => handleToggleChange({ sortingKey: 'CREATED_AT' })}
+								className={styles.icon}
+							/>
+						)
+						: (
+							<IcMArrowUp
+								width={10}
+								height={10}
+								onClick={() => handleToggleChange({ sortingKey: 'CREATED_AT' })}
+								className={styles.icon}
+							/>
+						)}
 				</div>
 			),
 			Cell: ({ row }) => format(row?.original?.createdAt, 'dd MMM yy'),
 		},
 		{
-			span     : 2,
+			minWidth : 80,
 			accessor : 'status',
 			id       : 'status',
 			Header   : 'Status',
 			Cell     : ({ row }) => paymentStatus[row?.original?.status],
 		},
 		{
-			width    : '10%',
+			minWidth : 80,
 			span     : 1,
 			Header   : '',
 			accessor : 'icon',

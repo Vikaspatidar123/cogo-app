@@ -1,3 +1,4 @@
+import { isEmpty } from '@cogoport/utils';
 import { useState, useEffect, useCallback } from 'react';
 
 import { useRequest } from '@/packages/request';
@@ -12,13 +13,12 @@ const useFetchScheduleDetails = ({
 	const { general, profile } = useSelector((state) => state);
 	const [carrierList, setCarrierList] = useState([]);
 	const [activeFilter, setActiveFilter] = useState(false);
-
 	const [{ loading: filterFetchLoading }, trigger] = useRequest({
 		url    : '/get_sailing_schedule_subscription',
 		method : 'get',
 	}, { manual: true });
 
-	const prepareFilters = () => {};
+	const prepareFilters = () => { };
 	const fetchScheduleDetails = useCallback(async () => {
 		try {
 			const res = await trigger({
@@ -33,6 +33,18 @@ const useFetchScheduleDetails = ({
 			});
 
 			const { data } = res;
+			const carrierData = data?.schedules?.shipping_lines || [];
+
+			const arrList = carrierData.map((val, index) => ({
+				id             : index,
+				name           : val.short_name,
+				status         : false,
+				shippingLineId : val.id,
+				logo_url       : val?.logo_url,
+
+			}));
+
+			setCarrierList(arrList);
 			setScheduleDetails(data);
 		} catch (err) {
 			console.log(err);
@@ -40,11 +52,15 @@ const useFetchScheduleDetails = ({
 	}, [currentPage, filters, id, pageLimit, profile.id, scheduleDetails?.filter_data, sortBy, trigger]);
 
 	const fetchFilterScheduleDetails = useCallback(async () => {
+		const { transit_time, ...rest } = filters || {};
 		try {
 			setActiveFilter(true);
 			const res = await trigger({
 				params: {
-					filters,
+					filters: {
+						transit_time: transit_time === '0' ? undefined : transit_time,
+						...rest,
+					},
 					page                 : currentPage,
 					page_limit           : pageLimit,
 					performed_by_user_id : profile.id,
@@ -53,15 +69,6 @@ const useFetchScheduleDetails = ({
 			});
 
 			const { data } = res;
-			const carrierData = data?.schedules?.shipping_lines || [];
-
-			const arrList = carrierData.map((val, index) => ({
-				id             : index,
-				name           : val.short_name,
-				status         : false,
-				shippingLineId : val.id,
-			}));
-			setCarrierList(arrList);
 			setScheduleDetails(data);
 			setActiveFilter(false);
 		} catch (err) {
@@ -79,7 +86,7 @@ const useFetchScheduleDetails = ({
 	}, [fetchScheduleDetails, general?.query?.isFirstVisit, sortBy]);
 
 	useEffect(() => {
-		fetchFilterScheduleDetails();
+		if (!isEmpty(filters)) { fetchFilterScheduleDetails(); }
 	}, [filters, currentPage, fetchFilterScheduleDetails]);
 
 	return {

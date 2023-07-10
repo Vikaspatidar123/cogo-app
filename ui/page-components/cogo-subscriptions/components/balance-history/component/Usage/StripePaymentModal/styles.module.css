@@ -1,0 +1,57 @@
+.container {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	height: 100%;
+}
+
+.info {
+	padding: 16px;
+}
+
+.info .form_info {
+	padding: 15px 0;
+}
+
+.title svg {
+	vertical-align: middle;
+}
+
+.info .card_name svg {
+	vertical-align: middle;
+}
+
+.info .stripe_box {
+	display: grid;
+	align-items: center;
+	height: 32px;
+	padding: 0 8px;
+	border: 1px solid #e0e0e0;
+	border-radius: 4px;
+}
+
+.title {
+	display: flex;
+	gap: 10px;
+	align-items: baseline;
+	padding-bottom: 7px;
+	margin-top: 14px;
+	margin-bottom: 7px;
+	font-size: 22px;
+	font-weight: 500;
+	border-bottom: 1px solid #db4634;
+}
+
+.title .crossed_price {
+	font-size: 14px;
+	color: #db4634;
+	text-decoration: line-through;
+}
+
+.footer .amt {
+	display: flex;
+}
+
+.footer .amt svg {
+	vertical-align: text-top;
+}

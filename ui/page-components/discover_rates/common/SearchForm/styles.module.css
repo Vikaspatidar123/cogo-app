@@ -20,6 +20,7 @@
 	}
 
 	&.contract {
+		padding: 1px 10px 10px;
 		background: #fff;
 	}
 
@@ -38,11 +39,11 @@
 	max-width: 100%;
 	margin: 0 auto;
 
-	.rfq {
+	&.rfq {
 		max-width: 100%;
 	}
 
-	.contract {
+	&.contract {
 		max-width: 100%;
 	}
 }
@@ -66,6 +67,10 @@
 .row {
 	display: flex;
 	justify-content: space-around;
+
+	.contract {
+		display: none;
+	}
 
 	@media (max-width: 540px) {
 		flex-direction: column;
@@ -98,6 +103,13 @@
 
 .web {
 	display: block;
+	height: 40px;
+
+	:global {
+		.ui_button_container {
+			height: 36px;
+		}
+	}
 
 	@media (max-width: 768px) {
 		display: none;

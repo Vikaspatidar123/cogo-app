@@ -16,12 +16,19 @@ import {
 	asyncFieldsCommoditiesList,
 	asyncInsuranceCountryList,
 	asyncFieldsPartnerQuotation,
+	asyncFieldsSixDigitHsCode,
+	asyncFieldsOceanPocDetails,
 	asyncProductList,
 	asyncOrganizationBranches,
 	asyncInsuranceCommodities,
 	asyncAirLines,
 	asyncShippingLines,
+	asyncTaxNumbers,
+	asyncOrganizationUsers,
 	asyncTradeContacts,
+	asyncFieldsAirPocDetails,
+	asyncFieldsAirLineList,
+	asyncFieldsShippingLineList,
 } from '../../utils/getAsyncFields';
 
 const keyAsyncFieldsParamsMapping = {
@@ -43,7 +50,14 @@ const keyAsyncFieldsParamsMapping = {
 	insurance_commodities      : asyncInsuranceCommodities,
 	'air-lines'                : asyncAirLines,
 	'shipping-lines'           : asyncShippingLines,
+	tax_numbers                : asyncTaxNumbers,
+	organization_users         : asyncOrganizationUsers,
 	trade_contacts             : asyncTradeContacts,
+	six_digit_hs_code          : asyncFieldsSixDigitHsCode,
+	list_ocean_poc_details     : asyncFieldsOceanPocDetails,
+	list_air_poc_details       : asyncFieldsAirPocDetails,
+	airline_list               : asyncFieldsAirLineList,
+	shippingline_list          : asyncFieldsShippingLineList,
 };
 
 function AsyncSelect(props) {
@@ -53,11 +67,10 @@ function AsyncSelect(props) {
 		asyncKey,
 		initialCall,
 		getModifiedOptions,
-		getSelectedOption = () => {},
+		getSelectedOption = () => { },
 		...rest
 	} = props;
 	const defaultParams = keyAsyncFieldsParamsMapping[asyncKey]?.() || {};
-
 	const callFunction = defaultParams.authKey
 		? useGetAsyncOptionsBf
 		: useGetAsyncOptions;
@@ -81,7 +94,7 @@ function AsyncSelect(props) {
 		}
 
 		const selectedOption = getAsyncOptionsProps.options.filter(
-			(option) => option.id === selectedValue,
+			(option) => option?.id === selectedValue,
 		);
 		getSelectedOption(selectedOption[0]);
 	}
@@ -90,6 +103,7 @@ function AsyncSelect(props) {
 		<Element
 			{...rest}
 			{...getAsyncOptionsProps}
+		// key={getAsyncOptionsProps?.id}
 		/>
 	);
 }

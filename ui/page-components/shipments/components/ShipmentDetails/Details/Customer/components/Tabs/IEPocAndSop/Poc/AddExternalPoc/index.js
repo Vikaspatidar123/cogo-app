@@ -23,6 +23,7 @@ function AddExternalPoc({
 		errors,
 		onError,
 		loading,
+		register,
 	} = useCreatePoc({
 		stakeholder,
 		controls,
@@ -71,6 +72,7 @@ function AddExternalPoc({
 					<Layout
 						theme="admin"
 						control={control}
+						register={register}
 						controls={controlPoc}
 						errors={errors}
 					/>

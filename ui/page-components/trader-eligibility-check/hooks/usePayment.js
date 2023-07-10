@@ -30,7 +30,7 @@ const usePayment = () => {
 		{ manual: true },
 	);
 
-	const callBackUrl = `${process.env.NEXT_PUBLIC_APP_URL}/v2/${org_id}/${branch_id}/${account_type}/`
+	const callBackUrl = `${process.env.NEXT_PUBLIC_APP_URL}/${org_id}/${branch_id}/${account_type}/`
                    + 'saas/premium-services/trader-eligibility-check/result';
 
 	const initiatePayment = async ({
@@ -119,16 +119,7 @@ const usePayment = () => {
 				});
 			}
 		} catch (err) {
-			Toast.error(
-				'We could not initiate payment right now!!! Please try again later',
-				{
-					style: {
-						background : '#FFD9D4',
-						color      : '#333',
-					},
-					autoClose: 5000,
-				},
-			);
+			Toast.error('We could not initiate payment right now!!! Please try again later');
 		}
 	};
 	return {

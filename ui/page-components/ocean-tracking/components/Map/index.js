@@ -16,7 +16,6 @@ function Map({ points, height = '80vh' }) {
 	const [OceanPoints, setOceanPoints] = useState([]);
 	const [isLoading, setLoading] = useState(true);
 	const [filter_points, setFilterPoints] = useState([]);
-	const [timeouts, setAllTimeouts] = useState([]);
 
 	const [isTrackerModalOpen, setTrackerModal] = useState(false);
 
@@ -53,71 +52,54 @@ function Map({ points, height = '80vh' }) {
 		}
 		return bezierPoints;
 	};
-	const setPointsOnMap = (point, pointIndex) => {
+	const setPointsOnMap = (point) => {
 		if (point.service === 'air') {
 			let curvePoints = [];
-			point.route.map((p, index) => {
-				if (
-					![p.arrival_lat, p.arrival_long, p.departure_lat, p.departure_long].includes(
-						null,
-					)
-					&& ![p.arrival_lat, p.arrival_long, p.departure_lat, p.departure_long].includes(
-						undefined,
-					)
-				) {
-					const source = {
-						lat : p.departure_lat,
-						lng : p.departure_long,
-					};
-					const dest = {
-						lat : p.arrival_lat,
-						lng : p.arrival_long,
-					};
-					curvePoints = curvePoints.concat(createBezier([source, dest], 0.001, point));
-					const timeout = setTimeout(
-						async () => {
-							await setAirPoints((prevPoints) => [
-								...prevPoints,
-								{
-									data  : point.data,
-									id    : point.id,
-									route : curvePoints,
-								},
-							]);
-						},
-						index === 0 ? 0 : 3000 * (index + 1),
-					);
-					setAllTimeouts((prevTimeout) => [...prevTimeout, timeout]);
-					return true;
-				}
-				return false;
-			});
-		} else if (point.route.length > 0) {
-			const timeout = setTimeout(
-				async () => {
-					await setOceanPoints((prevPoints) => [...prevPoints, point]);
-				},
-				pointIndex === 0 ? 0 : 3000,
-			);
-			setAllTimeouts((prevTimeout) => [...prevTimeout, timeout]);
+			const tempArr = point.route
+				.map((p) => {
+					const pointArr = [
+						p?.arrival_lat,
+						p?.arrival_long,
+						p?.departure_lat,
+						p?.departure_long,
+					];
+					const isValidPtArr = pointArr.every((pt) => pt);
+					if (isValidPtArr) {
+						const source = {
+							lat : p.departure_lat,
+							lng : p.departure_long,
+						};
+						const dest = {
+							lat : p.arrival_lat,
+							lng : p.arrival_long,
+						};
+						curvePoints = curvePoints.concat(
+							createBezier([source, dest], 0.001, point),
+						);
+
+						return {
+							data  : point.data,
+							id    : point.id,
+							route : curvePoints,
+						};
+					}
+					return undefined;
+				})
+				.filter((pt) => pt);
+
+			setAirPoints((prev) => [...prev, ...tempArr]);
+		} else if (point.route?.length > 0) {
+			setOceanPoints((prevPoints) => [...prevPoints, point]);
 		}
 	};
+
 	useEffect(() => {
-		timeouts.map((timeout) => clearTimeout(timeout));
 		setAirPoints([]);
-		setOceanPoints([]);
 		setTimeout(() => {
 			setLoading(true);
 		}, 0);
-		filter_points.map((point, index) => {
-			const timeout = setTimeout(
-				() => {
-					setPointsOnMap(point, index);
-				},
-				index === 0 ? 0 : 1000 * (index + 1),
-			);
-			setAllTimeouts((prevTimeout) => [...prevTimeout, timeout]);
-			return true;
+		filter_points.forEach((point) => {
+			setPointsOnMap(point);
 		});
 		setTimeout(() => {
 			setLoading(false);

@@ -38,12 +38,12 @@ function SassDashboard() {
 					<Schedule />
 					{
 						(Object.keys(airTracking?.data || {}).length > 0
-						|| Object.keys(oceanTracking?.data || {}).length > 0 ? (
+							|| Object.keys(oceanTracking?.data || {}).length > 0 ? (
 
-							<ActiveTracking
-								airTracking={airTracking}
-								oceanTracking={oceanTracking}
-							/>
+								<ActiveTracking
+									airTracking={airTracking}
+									oceanTracking={oceanTracking}
+								/>
 							) : (
 								<Tracking />
 							))
@@ -51,8 +51,8 @@ function SassDashboard() {
 				</div>
 				<div className={styles.part2}>
 					<div className={styles.child2}>
-						{country_id === GLOBAL_CONSTANTS.COUNTRY_IDS.IN
-						&& query?.account_type === 'importer-exporter' && <PayLaterWidgets />}
+						{country_id === GLOBAL_CONSTANTS.country_ids.IN
+							&& query?.account_type === 'importer-exporter' && <PayLaterWidgets />}
 						<Elgibility />
 						<ExportFactoring />
 						<Promotion />

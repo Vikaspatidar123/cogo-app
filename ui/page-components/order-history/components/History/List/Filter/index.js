@@ -19,7 +19,7 @@ function FilterSection({ filters = {}, setFilters = () => {} }) {
 				<FilterContent filters={filters} setFilters={setFilters} />
 				}
 		>
-			<Button onClick={() => setshowFilters(!showFilters)}>
+			<Button themeType="accent" onClick={() => setshowFilters(!showFilters)} type="button">
 
 				<div className={styles.web_view}>
 					Filter By

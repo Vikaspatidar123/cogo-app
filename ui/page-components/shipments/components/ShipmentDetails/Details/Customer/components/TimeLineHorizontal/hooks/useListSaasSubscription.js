@@ -19,6 +19,7 @@ const ListSaasSubscriptions = () => {
 				filters: {
 					organization_branch_id : query?.branch_id,
 					status                 : 'active',
+					shipment_id            : query?.id,
 				},
 				page,
 				page_limit: 9,
@@ -32,10 +33,9 @@ const ListSaasSubscriptions = () => {
 		}
 	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [query?.id, page]);
-
 	return {
 		loading,
-		data,
+		data: data || {},
 		setPage,
 	};
 };

@@ -43,13 +43,12 @@ function Child({
 			<div className={styles.row}>
 				{(deletePosition === 'front' && renderDelete()) || null}
 				{controls.map((controlItem) => {
-					const { span = 6, watch = true } = controlItem;
+					const { span = 6, watch = true, inlineLabel } = controlItem;
 
 					const show = !(controlItem.name in showElements)
 						|| showElements[controlItem.name];
 
 					const extraProps = {};
-
 					if (controlItem.options) {
 						if (Array.isArray(controlItem.options)) {
 							extraProps.options = controlItem.options;
@@ -66,6 +65,11 @@ function Child({
 					if (watch) {
 						return show ? (
 							<div className={styles.col} style={{ padding: '0px 6px', width: getWidth(span) }}>
+								{inlineLabel && (
+									<div>
+										{inlineLabel}
+									</div>
+								)}
 								<Item
 									{...controlItem}
 									{...extraProps}
@@ -84,6 +88,11 @@ function Child({
 
 					return show ? (
 						<div className={styles.col} style={{ padding: '0px 6px', width: getWidth(span) }}>
+							{inlineLabel && (
+								<div>
+									{inlineLabel}
+								</div>
+							)}
 							<Item
 								{...controlItem}
 								{...extraProps}

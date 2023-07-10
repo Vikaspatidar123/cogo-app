@@ -78,7 +78,7 @@ const controls = [
 		params      : {
 			filters: {
 				type       : 'pincode',
-				country_id : GLOBAL_CONSTANTS.COUNTRY_IDS.IN,
+				country_id : GLOBAL_CONSTANTS.country_ids.IN,
 			},
 			includes: {
 				country                 : '',
@@ -123,7 +123,7 @@ const getControls = (formDetails = {}, profile = {}, setCityState = () => {}) =>
 			...control,
 			handleChange: (e) => {
 				setCityState({
-					city  : e?.display_name || e?.district?.name,
+					city  : e?.display_name || e?.district?.name || e?.city?.name,
 					state : e?.region?.name,
 				});
 			},

@@ -14,7 +14,7 @@ function Docuemnts({ documents = [], hsNumber = '' }) {
 	useEffect(() => {
 		setImportDoc((documents || []).filter((x) => x.tradeType === 'IMPORT'));
 		setExportDoc((documents || []).filter((x) => x.tradeType === 'EXPORT'));
-	// eslint-disable-next-line react-hooks/exhaustive-deps
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	return (
@@ -65,7 +65,7 @@ function Docuemnts({ documents = [], hsNumber = '' }) {
 						</div>
 					</>
 				) : (
-					<div className={styles.flex_box} style={{ height: '380px' }}>
+					<div className={styles.flex_box} style={{ height: '180px' }}>
 						<div className={styles.sorry}>Not Subscribed</div>
 					</div>
 				)}

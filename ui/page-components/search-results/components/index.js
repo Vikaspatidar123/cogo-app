@@ -97,13 +97,13 @@ function SelectedRateInfo({
 
 function Results({
 	data = {},
-	setState = () => {},
+	setState = () => { },
 	state,
 	rates = [],
 	searchData = {},
 	loading = false,
 	possible_additional_services = [],
-	refetch = () => {},
+	refetch = () => { },
 	...rest
 }) {
 	const { push } = useRouter();
@@ -211,7 +211,6 @@ function Results({
 				</>
 			);
 		}
-
 		if (!loading && rates_count === 0 && !isAwaitingResponse) {
 			return (
 				<NoResultFound
@@ -259,6 +258,7 @@ function Results({
 						list={cogoAssuredRates}
 						searchData={searchData}
 						details={data}
+						refetch={refetch}
 					/>
 				) : null}
 				{(marketplaceRates || []).map((item, i) => (
@@ -340,7 +340,7 @@ function Results({
 						refetch={refetch}
 						possible_additional_services={
 						possible_additional_services
-}
+						}
 						detail={detail}
 					/>
 
@@ -356,9 +356,8 @@ function Results({
 							<div className={styles.results_header}>
 								{!loading ? (
 									<div className={styles.text_bold}>
-										{`${(rates || []).length} ${
-											(rates || []).length === 1 ? 'rate'
-												: 'rates'
+										{`${(rates || []).length} ${(rates || []).length === 1 ? 'rate'
+											: 'rates'
 										} found`}
 									</div>
 								) : (
@@ -382,7 +381,7 @@ function Results({
 
 							{handleRateCards()}
 						</>
-					) }
+					)}
 				</div>
 
 				{handleAdditionalServices()}

@@ -1,0 +1,28 @@
+.section {
+	display: flex;
+	align-items: center;
+
+	&.section-one {
+		margin-bottom: 10px;
+	}
+}
+
+.container {
+	padding: 16px;
+	margin: 0 -16px;
+	background: #fff;
+	box-shadow: 0 15px 10px -15px rgb(98 127 172 / 20%);
+}
+
+.title {
+	font-size: 20px;
+	font-weight: 500;
+	color: #404e65;
+}
+
+.refName {
+	margin-right: 10px;
+	font-size: 14px;
+	font-weight: 600;
+	color: #333;
+}

@@ -7,6 +7,27 @@ import getAuthrozationParams from './get-final-authpipe';
 import getMicroServiceName from './get-microservice-name';
 import { getCookie } from './getCookieFromCtx';
 
+const PEEWEE_SERVICES = ['fcl_freight_rate', 'fcl_customs_rate', 'fcl_cfs_rate'];
+
+const customPeeweeSerializer = (params) => {
+	const dataTypes = ['Object', 'Array'].map((d) => `[object ${d}]`);
+
+	const newParams = Object.keys(params).reduce((acc, key) => {
+		acc[key] = dataTypes.includes(Object.prototype.toString.call(params[key]))
+			? JSON.stringify(params[key])
+			: params[key];
+
+		return acc;
+	}, {});
+
+	const paramsStringify = qs.stringify(newParams, {
+		arrayFormat   : 'repeat',
+		serializeDate : (date) => formatDateToString(date),
+	});
+
+	return paramsStringify;
+};
+
 const customSerializer = (params) => {
 	const paramsStringify = qs.stringify(params, {
 		arrayFormat   : 'brackets',
@@ -38,13 +59,17 @@ request.interceptors.request.use((oldConfig) => {
 	const authorizationparameters = getAuthrozationParams(storeKey, newConfig.url);
 	const apiPath = newConfig.url ? newConfig.url.split('/')[1] || newConfig.url.split('/')[0] : null;
 	const serviceName = microServices[apiPath];
+	const isDev = !process.env.NEXT_PUBLIC_APP_BASE_URL.includes('api.cogoport.com');
+
+	const peeweeSerializerRequierd = PEEWEE_SERVICES.includes(serviceName) || (serviceName === 'location' && !isDev);
+
 	if (serviceName) {
 		newConfig.url = `/${serviceName}/${apiPath}`;
 	}
 
 	return {
 		...newConfig,
-		paramsSerializer : { serialize: customSerializer },
+		paramsSerializer : { serialize: peeweeSerializerRequierd ? customPeeweeSerializer : customSerializer },
 		headers          : {
 			authorizationscope   : 'organization',
 			authorization        : `Bearer: ${token}`,

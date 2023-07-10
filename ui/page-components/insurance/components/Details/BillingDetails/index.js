@@ -24,7 +24,6 @@ const useBillingDetails = ({
 	setChecked = () => {},
 	setOrganizationAddress = () => {},
 	organizationAddress = {},
-	isMobile = false,
 	draftResponse = () => {},
 	draftLoading = false,
 	policyid = '',
@@ -149,7 +148,7 @@ const useBillingDetails = ({
 				<div className={styles.yellow_line} />
 				<div className={styles.padded_div}>
 
-					<Header isMobile={isMobile} name="Personal Details" />
+					<Header name="Personal Details" />
 
 					<div className={styles.content_wrapper}>
 						<form type="submit">
@@ -164,7 +163,7 @@ const useBillingDetails = ({
 								<div className={styles.flex_3}>
 									<div className={styles.heading_billing}>Billing Details</div>
 									<div
-										className={isMobile ? styles.flex_self_mobile : styles.flex_self}
+										className={styles.flex_self}
 									>
 										<SelectType
 											insuranceType={insuranceType}
@@ -201,6 +200,7 @@ const useBillingDetails = ({
 								saveDraft={saveDraft}
 								draftLoading={draftLoading}
 								handleNextClick={handleNextClick}
+								insuranceType={insuranceType}
 							/>
 						</form>
 					</div>

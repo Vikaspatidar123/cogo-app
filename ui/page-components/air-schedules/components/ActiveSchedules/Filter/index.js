@@ -1,72 +1,18 @@
 import { DateRangepicker, Button } from '@cogoport/components';
-import { format } from '@cogoport/utils';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
 import FilterDropDownContent from './FilterDropDownContent';
 import styles from './styles.module.css';
 
 function Filter({
-	setCarrierList, carrierList, setFilters,
+	clearAllHandler, carrierList,
+	onChange, durationValue,
+	handleCheckList,
+	departureDate,
+	setDepartureDate,
+	arrivalDate,
+	setArrivalDate,
 }) {
-	const [durationValue, onChange] = useState(0);
-	const [departureDate, setDepartureDate] = useState({});
-	const [arrivalDate, setArrivalDate] = useState({});
-	const [filterCarrier, setFilterCarrier] = useState([]);
-
-	useEffect(() => {
-		if (carrierList.length > 0) {
-			const carriers = (carrierList || []).filter((x) => x.status);
-			if (carriers.length > 0) {
-				const carriersList = (carriers || []).map((val) => val?.shippingLineId);
-				setFilterCarrier(carriersList);
-			}
-		}
-	}, [carrierList]);
-
-	useEffect(() => {
-		if (
-			filterCarrier.length > 0
-			|| Object.keys(departureDate).length
-			|| Object.keys(arrivalDate).length
-			|| durationValue
-		) {
-			const transitFilter = durationValue !== 0 ? durationValue : '';
-			const airFilter = {
-				shipping_line_id : filterCarrier,
-				departure_start  : departureDate.endDate !== undefined
-					? format(departureDate?.startDate, "UTC:yyyy-MM-dd'T'HH:mm:ssZZ") : null,
-				departure_end: departureDate?.endDate !== undefined
-					? format(departureDate?.endDate, "UTC:yyyy-MM-dd'T'HH:mm:ssZZ") : null,
-				arrival_start: arrivalDate?.startDate !== undefined
-					? format(arrivalDate?.startDate, "UTC:yyyy-MM-dd'T'HH:mm:ssZZ") : null,
-				arrival_end: arrivalDate?.endDate !== undefined
-					? format(arrivalDate?.endDate, "UTC:yyyy-MM-dd'T'HH:mm:ssZZ") : null,
-				transit_time: transitFilter,
-			};
-			setFilters(airFilter);
-		}
-	}, [filterCarrier,
-		departureDate?.startDate,
-		departureDate.endDate,
-		arrivalDate?.startDate, arrivalDate?.endDate, durationValue, departureDate, arrivalDate, setFilters]);
-
-	const handleCheckList = (item, value) => {
-		if (value === 'carrier') {
-			setCarrierList((prevCarrier) => prevCarrier.map((valueLocal) => (valueLocal.id === item.id
-				? { ...valueLocal, status: !valueLocal.status }
-				: valueLocal)));
-		}
-	};
-
-	const clearAllHandler = () => {
-		setCarrierList((prevCarrier) => prevCarrier.map((value) => (value.status === true
-			? { ...value, status: !value.status } : value)));
-		setDepartureDate({});
-		setArrivalDate({});
-		onChange(0);
-		setFilters({});
-	};
-
 	return (
 		<div className={styles.col_container}>
 			<div className={styles.button_container}>
@@ -81,6 +27,7 @@ function Filter({
 						min="0"
 						max="60"
 						value={durationValue}
+						className={styles.slider}
 						id="active_oc_sc_transit_time_input"
 						onChange={({ target: { value: radius } }) => {
 							onChange(radius);

@@ -1,0 +1,43 @@
+.container {
+	opacity: 0;
+	animation: movebox 2s ease-in;
+	animation-fill-mode: forwards;
+
+	@keyframes movebox {
+		100% {
+			opacity: 1;
+		}
+	}
+}
+
+.reason_heading {
+	color: #666;
+}
+
+.select_box {
+	width: 60%;
+	margin-top: 2px;
+}
+
+.describe_box {
+	margin-top: 15px;
+}
+
+.description_box {
+	width: 90%;
+	margin-top: 2px;
+}
+
+.error_message {
+	margin-top: 5px;
+	color: red;
+}
+
+.footer {
+	display: flex;
+	margin-top: 15px;
+}
+
+.unsubscribe {
+	margin-left: 15px;
+}

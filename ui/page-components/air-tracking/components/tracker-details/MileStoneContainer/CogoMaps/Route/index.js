@@ -1,13 +1,13 @@
 import { FeatureGroup, Polyline } from '@cogoport/maps';
 
-const pathOptions = { color: '#00008B' };
+const pathOptions = { color: '#f37166', weight: 2 };
 
 function Route({ positions, map }) {
 	return (
 		<FeatureGroup
 			eventHandlers={{
 				layeradd: (e) => {
-					if (map) map?.flyToBounds(e.target?.getBounds(), { maxZoom: 1 });
+					if (map) map?.flyToBounds(e.target?.getBounds(), { maxZoom: 5 });
 				},
 			}}
 		>

@@ -1,22 +1,32 @@
-import { FeatureGroup, Polyline } from '@cogoport/maps';
+import { Polyline, L } from '@cogoport/maps';
+import { isEmpty } from '@cogoport/utils';
+import { useEffect, useRef } from 'react';
 
-const pathOptions = { color: '#00008B' };
+const COLOR_MAPING = {
+	air   : '#ee3225b5',
+	ocean : '#00008B',
+};
+function Route({ positions, map, transportMode }) {
+	const pathOptions = { color: COLOR_MAPING[transportMode] };
 
-function Route({ positions, map }) {
+	const ref = useRef(null);
+
+	useEffect(() => {
+		const line = ref.current;
+		if (map && line) {
+			const bounds = line.getBounds();
+			if (!isEmpty(bounds) && bounds instanceof L.LatLngBounds) {
+				map?.flyToBounds(bounds);
+			}
+		}
+	}, [ref, map]);
 	return (
-		<FeatureGroup
-			eventHandlers={{
-				layeradd: (e) => {
-					if (map) map?.flyToBounds(e.target?.getBounds(), { maxZoom: 1 });
-				},
-			}}
-		>
-			<Polyline
-				key={JSON.stringify(positions)}
-				positions={positions}
-				pathOptions={pathOptions}
-			/>
-		</FeatureGroup>
+
+		<Polyline
+			ref={ref}
+			positions={positions}
+			pathOptions={pathOptions}
+		/>
 	);
 }
 export default Route;

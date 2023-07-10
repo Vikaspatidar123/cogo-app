@@ -4,7 +4,7 @@ import { IcACollaboration } from '@cogoport/icons-react';
 import styles from './styles.module.css';
 
 import { useRouter } from '@/packages/next';
-
+import HeaderGreeting from './Greeting';
 function Head() {
 	const { push } = useRouter();
 	const onUpgrade = () => {
@@ -12,7 +12,9 @@ function Head() {
 	};
 	return (
 		<div className={styles.container}>
-			<div className={styles.message}>Hello Good morning!</div>
+			<div className={styles.message}>
+				<HeaderGreeting />
+			</div>
 			<div className={styles.text_container}>
 				<div className={styles.icon}>
 					<IcACollaboration />

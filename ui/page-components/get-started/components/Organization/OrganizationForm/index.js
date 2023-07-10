@@ -13,7 +13,7 @@ import {
 } from '@/packages/forms';
 import { useRouter } from '@/packages/next';
 
-function OrganizationForm({ setBillingAddressDetails, setOrgId, setOrgBranchId }) {
+function OrganizationForm({ setBillingAddressDetails, setOrg, setOrgBranchId }) {
 	const cityOptions = useGetAsyncOptions(merge(asyncFieldsLocations(), {
 		params: { filters: { type: ['country'] } },
 	}));
@@ -37,7 +37,7 @@ function OrganizationForm({ setBillingAddressDetails, setOrgId, setOrgBranchId }
 	const {
 		onClickCreateOrganization,
 		createOrganizationLoading,
-	} = 		useCreateOrganization({ setBillingAddressDetails, setOrgId, setOrgBranchId, lead_organization_id });
+	} = 		useCreateOrganization({ setBillingAddressDetails, setOrg, setOrgBranchId, lead_organization_id });
 
 	return (
 		<div className={styles.container}>

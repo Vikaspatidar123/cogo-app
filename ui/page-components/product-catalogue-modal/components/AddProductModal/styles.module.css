@@ -28,3 +28,13 @@
 		vertical-align: middle;
 	}
 }
+
+.title {
+	font-size: 17px;
+	font-weight: 600;
+}
+
+.headline {
+	font-weight: 300;
+	color: #6b6d81;
+}

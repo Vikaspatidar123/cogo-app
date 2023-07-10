@@ -1,0 +1,25 @@
+.pill_styled {
+	position: relative;
+	top: -13px;
+	left: -12px;
+}
+
+.pill_sid_styled {
+	position: relative;
+	top: -13px;
+	left: -14px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: auto;
+	height: 18px;
+	padding: 3px 8px;
+	margin: 4px;
+	cursor: pointer;
+	background-color: #dce1ff;
+	border-radius: 0 0 4px 4px;
+}
+
+.pills_wrapper {
+	display: flex;
+}

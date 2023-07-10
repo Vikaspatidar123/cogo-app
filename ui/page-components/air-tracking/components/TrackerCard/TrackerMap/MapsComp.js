@@ -2,6 +2,8 @@ import { CogoMaps, L } from '@cogoport/maps';
 import dynamic from 'next/dynamic';
 import { useState, useEffect } from 'react';
 
+import { getIcon, getLatLng } from '../../../utils/getMapFn';
+
 const Pointer = dynamic(() => import('../../tracker-details/MileStoneContainer/CogoMaps/Pointer'), {
 	ssr: false,
 });
@@ -19,7 +21,7 @@ const LAYER = [
 ];
 
 const center = { lat: '28.679079', lng: '77.069710' };
-const airPathOptions = { color: 'green' };
+const airPathOptions = { color: '#f37166', weight: 2 };
 
 function MapComp({
 	isMobile = false,
@@ -70,38 +72,7 @@ function MapComp({
 			);
 		}
 	}, [bounds, map]);
-	const getLatLng = ({ route, src }) => {
-		const routeLength = route?.length;
 
-		if (src === 'origin') {
-			return {
-				lat : route[0]?.lat,
-				lng : route[0]?.lng,
-			};
-		}
-		if (src === 'dest') {
-			return {
-				lat : route[routeLength - 1]?.lat,
-				lng : route[routeLength - 1]?.lng,
-			};
-		}
-		return {
-			lat  : route[Math.floor(routeLength / 2)]?.lat,
-			lng  : route[Math.floor(routeLength / 2)]?.lng,
-			src  : route[0]?.lng,
-			dest : route[routeLength - 1]?.lng,
-		};
-	};
-
-	const getIcon = ({ src, dest }) => {
-		if (type === 'air') {
-			if (src > dest) {
-				return 'flight-icon';
-			}
-			return 'air-icon';
-		}
-		return '';
-	};
 	return (
 		<CogoMaps
 			// key={JSON.stringify(plotPoints)}
@@ -114,6 +85,7 @@ function MapComp({
 		>
 			{plotPoints.map((point) => {
 				const { lat, lng } = getLatLng({ route: point?.route, src: 'origin' });
+
 				return (
 					<Pointer
 						point={point}
@@ -127,7 +99,10 @@ function MapComp({
 			})}
 
 			{plotPoints.map((point) => {
-				const { lat, lng } = getLatLng({ route: point?.route, src: 'dest' });
+				const { lat, lng } = getLatLng({
+					route : point?.route,
+					src   : 'destination',
+				});
 				return (
 					<Pointer
 						point={point}
@@ -141,14 +116,17 @@ function MapComp({
 			})}
 
 			{plotPoints.map((point) => {
-				const { src, dest, lat, lng } = getLatLng({ route: point?.route, src: '' });
+				const { origin, dest, lat, lng } = getLatLng({
+					route : point?.route,
+					src   : 'icon',
+				});
 
 				return (
 					<Pointer
 						point={point}
 						lat={lat}
 						lng={lng}
-						iconSvg={getIcon({ src, dest })}
+						iconSvg={getIcon({ type, origin, dest })}
 						showTrack={showTrack}
 					/>
 				);

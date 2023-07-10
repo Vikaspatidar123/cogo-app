@@ -28,8 +28,10 @@
 .input {
 	width: 250px;
 
-	.core-ui-input-root {
-		width: 250px;
+	:global {
+		.ui_input_container {
+			height: 36px !important;
+		}
 	}
 }
 

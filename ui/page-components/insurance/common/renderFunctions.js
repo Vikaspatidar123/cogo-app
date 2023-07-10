@@ -1,6 +1,6 @@
 import { ButtonGroup } from '@cogoport/components';
 import {
-	IcMPreview,
+	IcMEyeopen,
 	IcMDownload,
 	IcMEdit,
 	IcMError,
@@ -31,7 +31,7 @@ const renderFunctions = ({
 							/>
 						)	:			(
 							<>
-								<IcMPreview width={10} height={10} className={styles.icon} />
+								<IcMEyeopen width={10} height={10} className={styles.icon} />
 								<span>Preview</span>
 							</>
 						)}

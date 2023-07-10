@@ -1,0 +1,8 @@
+.container {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	width: 65%;
+	margin-bottom: 60px;
+	border: 1px solid #e0e0e0;
+}

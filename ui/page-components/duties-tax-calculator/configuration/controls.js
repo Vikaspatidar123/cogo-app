@@ -1,28 +1,55 @@
 import { IcMAirport, IcMPort } from '@cogoport/icons-react';
 
-export const transportationControls = ({ transportMode }) => [
-	{
-		name             : 'originPort',
-		label            : 'Origin Country',
-		placeholder      : transportMode === 'AIR' ? 'Select Origin' : 'Select Origin Port',
-		type             : 'select',
-		prefix           : transportMode === 'AIR' ? <IcMAirport /> : <IcMPort />,
-		rules            : { required: true },
-		noOptionsMessage : 'Type to search...',
+const FILTER_MAPPING = {
+	AIR: {
+		paramsKey         : 'airport',
+		prefixIcon        : <IcMAirport />,
+		originPlaceholder : 'Select Origin',
+		destPlaceholder   : 'Select Destination',
 	},
-	{
-		name  : 'destinationPort',
-		label : 'Destination Country',
-		placeholder:
-				transportMode === 'AIR' ? 'Select Destination' : 'Select Destination Port',
-		type             : 'select',
-		prefix           : transportMode === 'AIR' ? <IcMAirport /> : <IcMPort />,
-		rules            : { required: true },
-		noOptionsMessage : 'Type to search...',
+	OCEAN: {
+		paramsKey         : 'seaport',
+		prefixIcon        : <IcMPort />,
+		originPlaceholder : 'Select Origin Port',
+		destPlaceholder   : 'Select Destination Port',
 	},
-];
+};
 
-export const productControls = ({ organization }) => [
+export const transportationControls = ({ transportMode }) => {
+	const { paramsKey, prefixIcon, originPlaceholder, destPlaceholder } = FILTER_MAPPING[transportMode];
+	return (
+		[
+			{
+				name        : 'originPort',
+				keyName     : 'origin',
+				label       : 'Origin Country',
+				placeholder : originPlaceholder,
+				params      : { filters: { type: paramsKey } },
+				type        : 'async_select',
+				initialCall : true,
+				labelKey    : 'display_name',
+				asyncKey    : 'locations',
+				prefix      : prefixIcon,
+				rules       : { required: true },
+			},
+			{
+				name        : 'destinationPort',
+				keyName     : 'destination',
+				label       : 'Destination Country',
+				placeholder : destPlaceholder,
+				params      : { filters: { type: paramsKey } },
+				type        : 'async_select',
+				initialCall : true,
+				labelKey    : 'display_name',
+				asyncKey    : 'locations',
+				prefix      : prefixIcon,
+				rules       : { required: true },
+			},
+		]
+	);
+};
+
+export const productControls = [
 	{
 		name : 'productName',
 		type : 'hidden',
@@ -78,7 +105,6 @@ export const productControls = ({ organization }) => [
 		name    : 'currency',
 		type    : 'select',
 		label   : 'Currency',
-		value   : organization?.country?.currency_code,
 		options : [
 			{ label: 'INR', value: 'INR' },
 			{ label: 'USD', value: 'USD' },
@@ -87,7 +113,7 @@ export const productControls = ({ organization }) => [
 	},
 ];
 
-export const ChargeControls = [
+export const chargeControls = [
 	{
 		name        : 'freightCharge',
 		type        : 'number',

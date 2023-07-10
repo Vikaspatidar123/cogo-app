@@ -1,5 +1,5 @@
 import { Button } from '@cogoport/components';
-import { IcMArrowNext, IcMFship } from '@cogoport/icons-react';
+import { IcMArrowNext, IcMFship, IcMPortArrow } from '@cogoport/icons-react';
 import { format } from '@cogoport/utils';
 
 import ContainerDetails from '../../common/ContainerDetails';
@@ -11,6 +11,7 @@ import ServiceTypeIcon from './ServiceTypeIcon';
 import styles from './styles.module.css';
 
 import { useRouter } from '@/packages/next';
+import getText from '@/ui/page-components/dashboard/common/getText';
 
 const onlySingleLocation = [
 	'fcl_customs',
@@ -18,19 +19,33 @@ const onlySingleLocation = [
 	'air_customs',
 	'fcl_cfs',
 ];
+
+const renderStatus = (ogShipmentData, service) => {
+	const textObj = getText(ogShipmentData, service);
+
+	return (
+		<text className={styles.text} style={{ backgroundColor: textObj.color }}>
+			{textObj.text}
+		</text>
+	);
+};
 function Shipments() {
 	const { loading, data } = ListShipments();
 
 	const usable = data?.list || [];
 	const { push } = useRouter();
 	if (loading) {
-		return <LoaderPage skeletonCount={2} />;
+		return (
+			<div className={styles.header}>
+				<LoaderPage skeletonCount={2} />
+			</div>
+		);
 	}
 	return (
 		<div>
 			{usable.length > 0 && (
 				<div className={styles.header}>
-					<div>Your Ongoing Shipments</div>
+					<div className={styles.heading}>Your Ongoing Shipments</div>
 
 					{(usable || []).map((val) => {
 						const containerInfoData = {
@@ -39,7 +54,7 @@ function Shipments() {
 							containers_count : val?.containers_count,
 							commodity        : val?.commodity,
 							cargo_weight_per_container:
-											val?.cargo_weight_per_container,
+								val?.cargo_weight_per_container,
 							inco_term    : val?.inco_term,
 							rates_count  : val?.rates_count,
 							trucks_count : val?.trucks_count,
@@ -64,85 +79,73 @@ function Shipments() {
 											<div className={styles.sub_lcl}>
 												<ServiceTypeIcon
 													freight_type={
-																								val?.service_type
-																								|| val?.shipment_type
-																							}
+														val?.service_type
+														|| val?.shipment_type
+													}
 												/>
 											</div>
 										</div>
 
 										{onlySingleLocation.includes(
 											val?.service_type
-																						|| val?.shipment_type,
+											|| val?.shipment_type,
 										) ? (
-											<div className={styles.second_data}>
+											<div className={styles.second_box}>
 												{
-																							getLocation(true, val)
-																								.location
-																						}
+													getLocation(true, val)
+														.location
+												}
 												<span
 													className={
-																								styles.location_span
-																							}
+														styles.location_span
+													}
 												>
 													{
-																								getLocation(false, val)
-																									.country
-																							}
+														getLocation(false, val)
+															.country
+													}
 												</span>
 											</div>
 											) : (
 												<div className={styles.second_data}>
 													<div className={styles.origin}>
 														{
-																								getLocation(true, val)
-																									.location
-																							}
+														getLocation(true, val)
+															.location
+													}
 														<span
 															className={
-																									styles.location_span
-																								}
+															styles.location_span
+														}
 														>
 															{
-																									getLocation(
-																										false,
-																										val,
-																									).country
-																								}
+															getLocation(
+																false,
+																val,
+															).country
+														}
 														</span>
 													</div>
 													<div>
-														<IcMArrowNext />
+														<IcMPortArrow />
 													</div>
-													<div />
 													<div className={styles.origin}>
-														{
-																								getLocation(false, val)
-																									.location
-																							}
+														{getLocation(false, val)
+															.location}
 														<span
-															className={
-																									styles.location_span
-																								}
+															className={styles.location_span}
 														>
-															{
-																									getLocation(
-																										false,
-																										val,
-																									).country
-																								}
+															{getLocation(
+																false,
+																val,
+															).country}
 														</span>
 													</div>
 												</div>
 											)}
 										<ContainerDetails
-											containerInfoData={
-											containerInfoData
-																					}
-											service_type={
-																						val?.service_type
-																						|| val?.shipment_type
-																					}
+											containerInfoData={containerInfoData}
+											service_type={val?.service_type || val?.shipment_type}
 										/>
 										<div className={styles.fouth_data}>
 											<div className={styles.first_row}>
@@ -151,14 +154,10 @@ function Shipments() {
 												/>
 												{val?.selected_schedule_departure && (
 													<p
-														className={
-																									styles.arrive
-																								}
+														className={styles.arrive}
 													>
 														<span
-															className={
-																										styles.span
-																									}
+															className={styles.span}
 														>
 															ETD: &nbsp;
 														</span>
@@ -200,28 +199,31 @@ function Shipments() {
 									</div>
 
 									<div className={styles.details}>
-										<p className={styles.cart}>
-											Added to cart
-										</p>
+										{renderStatus(data, val?.services)}
 										<Button
 											onClick={() => push(
 												'/shipments/[id]',
 												`/shipments/${val?.id}`,
 											)}
+											size="sm"
+											themeType="secondary"
 										>
 											VIEW DETAILS
 										</Button>
-										<div className={styles.dot}>
-											<div className={styles.dot2} />
-											<p className={styles.tasks}>
-												{val?.pending_tasks_count}
-												<span
-													className={styles.pending}
-												>
-													pending tasks
-												</span>
-											</p>
-										</div>
+										{console.log(val?.pending_tasks_count, 'val?.pending_tasks_count')}
+										{val?.pending_tasks_count ? (
+											<div className={styles.dot}>
+												<div className={styles.dot2} />
+												<p className={styles.tasks}>
+													{val?.pending_tasks_count}
+													<span
+														className={styles.pending}
+													>
+														Pending Tasks
+													</span>
+												</p>
+											</div>
+										) : null}
 									</div>
 								</div>
 							</div>

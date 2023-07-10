@@ -11,12 +11,11 @@ function Download({ data }) {
 	const { getService, transactionData = {}, loading } = useService();
 	const [show, setShow] = useState(false);
 	const {
-		billId = '', billRefId = '', billStatus = '', billType = '',
+		billRefId = '', billStatus = '', billType = '',
 	} = data || {};
 
 	const download = () => {
-		// eslint-disable-next-line no-undef
-		window.open(`${process.env.NEXT_PUBLIC_BUSINESS_FINANCE_BASE_URL}/pdf/bill/${billId}`);
+		window.open(data.invoicePdfUrl, '_blank');
 	};
 	const service = () => {
 		getService(billRefId);
@@ -25,7 +24,7 @@ function Download({ data }) {
 	return (
 		<div className={styles.container}>
 			<div className={styles.icon}>
-				{billStatus === 'PAID' && (
+				{billStatus === 'PAID' && data?.invoicePdfUrl && (
 					<Tooltip content="Download Invoice" theme="light" animation="shift-away">
 						<div>
 							<IcMDownload onClick={() => download()} width={20} height={20} />

@@ -6,10 +6,23 @@ import styles from './styles.module.css';
 
 import formatAmount from '@/ui/commons/utils/formatAmount';
 
+const renderProductName = (name) => {
+	if (name.length < 45) return name;
+
+	return (
+		<Tooltip content={name}>
+			<span>
+				{name.substring(0, 45)}
+				...
+			</span>
+		</Tooltip>
+	);
+};
+
 function ProductBox({ watch }) {
 	const {
 		hsCode = '',
-		consignmentValue = '',
+		consignmentValue = 0,
 		quantity = 0,
 		currency = 'INR',
 		productName = '',
@@ -35,15 +48,17 @@ function ProductBox({ watch }) {
 			<div className={styles.row}>
 				<div className={styles.flex}>
 					<div className={styles.value}>{hsCode}</div>
-					<div className={styles.title}>{productName}</div>
+					<div className={styles.title}>{renderProductName(productName)}</div>
 				</div>
 				<div className={styles.icon}>
 					<img src={ProductCube} alt="" width="50px" height="50px" />
 				</div>
 			</div>
+
 			<div className={cl`${styles.box} ${styles.row}`}>
 				<img src={ProductBoxIcon} alt="" width="130px" height="130px" />
 			</div>
+
 			<div className={cl`${styles.last_row} ${styles.row}`}>
 				<div>
 					<div className={styles.title}>Quantity</div>
@@ -54,7 +69,7 @@ function ProductBox({ watch }) {
 					<div className={styles.value}>
 						{renderName(
 							formatAmount({
-								amount  : consignmentValue,
+								amount  : consignmentValue || 0,
 								currency,
 								options : {
 									notation : 'standard',

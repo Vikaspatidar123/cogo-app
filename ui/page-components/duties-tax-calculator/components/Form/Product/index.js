@@ -6,6 +6,7 @@ import { useState, useEffect } from 'react';
 import getField from '../../../../../../packages/forms/Controlled';
 import HsCode from '../../../../hs-code-modal/component';
 import ProductCatalogue from '../../../../product-catalogue-modal';
+import { productControls as fields } from '../../../configuration/controls';
 import { ProductCartIcon } from '../../../configuration/icon-configuration';
 import useCurrencyConversion from '../../../hook/useCurrencyConversion';
 import useVerifyHscode from '../../../hook/useVerifyHscode';
@@ -17,34 +18,31 @@ import HyperLink from './HyperLine';
 import ProductBox from './ProductBox';
 import styles from './styles.module.css';
 
+const NumberSelector = getField('number');
+const CurrencySelector = getField('select');
+
 function Product({
-	fields,
-	error,
-	handleSubmit,
+	formHook,
 	setStepper,
 	setFormStepper,
 	prevHandler,
 	setFormData,
-	setValue,
-	watch,
 	portDetails = {},
 	prevCurr,
 	setPrevCurr,
 	isQuotaLeft = false,
 	prevHs,
 	setPrevHs,
-	productNewControls,
 }) {
 	const [showCatalogue, setShowCatalogue] = useState(false);
 	const [showHsCodeModal, setShowHsCodeModal] = useState(false);
 	const [showValidate, setShowValidate] = useState(false);
 	const [selectedData, setSelectedData] = useState();
 
-	const NumberSelector = getField('number');
-	const CurrencySelector = getField('select');
+	const { control, handleSubmit, watch, setValue, formState: { errors } } = formHook;
 
 	const { exchangeApi } = useCurrencyConversion();
-	console.log(showHsCodeModal);
+
 	const { hsCode = '', name = '', description = '' } = selectedData || {};
 	const {
 		currency: watchCurrency,
@@ -55,7 +53,7 @@ function Product({
 	const { verifySixDigitHs, verifySixDigitLoading } = useVerifyHscode();
 	const {
 		submitHandler, errorHandler, convertCurrency, validateSubmitHandler,
-	} =		productFn({
+	} = productFn({
 		setFormData,
 		setFormStepper,
 		setStepper,
@@ -97,11 +95,11 @@ function Product({
 				</div>
 				<div className={`${style.col} ${styles.currency}`}>
 					<div className={style.label}>{fields[4]?.label}</div>
-					<CurrencySelector {...fields[4]} control={productNewControls} />
-					{error?.currency && (
+					<CurrencySelector {...fields[4]} control={control} />
+					{errors?.currency && (
 						<div className={style.error_txt}>
 							*
-							{error?.currency?.type}
+							{errors?.currency?.type}
 						</div>
 					)}
 				</div>
@@ -112,11 +110,11 @@ function Product({
 						<>
 							<div className={style.col}>
 								<div className={style.label}>{field?.label}</div>
-								<NumberSelector {...field} control={productNewControls} key={field.name} />
-								{error?.[field?.name] && (
+								<NumberSelector {...field} control={control} key={field.name} />
+								{errors?.[field?.name] && (
 									<div className={style.error_txt}>
 										*
-										{error?.[field?.name]?.message || error?.[field?.name]?.type}
+										{errors?.[field?.name]?.message || errors?.[field?.name]?.type}
 									</div>
 								)}
 							</div>

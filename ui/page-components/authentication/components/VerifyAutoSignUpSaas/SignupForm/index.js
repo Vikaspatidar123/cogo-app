@@ -23,6 +23,7 @@ function SignupForm({ setHasSignedup, setFormData, setUserDetails }) {
 		control,
 		watch,
 		setValue,
+		register,
 	} = useForm();
 	const { query } = useRouter();
 
@@ -76,7 +77,7 @@ function SignupForm({ setHasSignedup, setFormData, setUserDetails }) {
 				setValue('name', name);
 				setValue('email', email);
 			}
-			const redirectUrl = `/v2/get-started?saastheme&lead_organization_id=${lead_organization_id}&source=${
+			const redirectUrl = `/get-started?saastheme&lead_organization_id=${lead_organization_id}&source=${
 				source || 'subscriptions'
 			}`;
 			const { user_session, skip_mobile_verification } = data || {};
@@ -134,8 +135,11 @@ function SignupForm({ setHasSignedup, setFormData, setUserDetails }) {
 					name="mobile_number"
 					type="mobile-number-select"
 					placeholder="Mobile Number"
-					rules={{ required: 'Number is required.' }}
+					mobileSelectRef={{ ...register('mobile_number', { required: 'Number is required.' }) }.ref}
 				/>
+				{errors.mobile_number && (
+					<span className={styles.errors}>{errors.mobile_number.message || errors.mobile_number.type}</span>
+				)}
 			</div>
 
 			<div className={styles.checkbox_container}>
@@ -168,7 +172,7 @@ function SignupForm({ setHasSignedup, setFormData, setUserDetails }) {
 			<div className={styles.recaptcha_container}>
 				<ReCAPTCHA
 					ref={recaptchaRef}
-					sitekey="6Lde97IeAAAAAJS1_4x0dGDmjNGdKq1wVl1TR0eD"
+					sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITEKEY}
 					onChange={onChange}
 				/>
 			</div>
@@ -183,13 +187,13 @@ function SignupForm({ setHasSignedup, setFormData, setUserDetails }) {
 				SignUp
 			</Button>
 			<a
-				href="mailto:cp.onboarding@cogoport.com"
+				href="mailto:kanira.patel@cogoport.com"
 				className={styles.right_footer_text}
 			>
 				If you have any trouble logging in, email here -
 				<span className={styles.right_footer_text_span}>
 					{' '}
-					cp.onboarding@cogoport.com
+					kanira.patel@cogoport.com
 				</span>
 			</a>
 		</form>

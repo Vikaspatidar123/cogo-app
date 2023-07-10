@@ -20,17 +20,14 @@ function NavBar() {
 	const configs = getSideBarConfigs(user_data);
 	const { nav_items = {} } = configs || {};
 	const { organization = [] } = nav_items || {};
-	const getFindUrl = (item) => {
-		const urlArray = item?.split('v2');
-		const url = urlArray?.length > 1 ? urlArray[1] : urlArray?.[0];
-		return url;
-	};
 
 	return (
 		<div className={styles.menu}>
-			{(organization || []).map((item) => {
+			{organization.map((item) => {
 				const { showInNav = false, isSubNavs = false } = item;
-				const isActive = !!item.options?.find((option) => getFindUrl(option.href) === unPrefixedPath);
+				const isActive = !!item.options?.find(
+					(option) => option.href === unPrefixedPath,
+				);
 
 				if (showInNav) {
 					return !isSubNavs ? (
@@ -38,7 +35,6 @@ function NavBar() {
 							key={item.title}
 							item={item}
 							unPrefixedPath={unPrefixedPath}
-							getFindUrl={getFindUrl}
 						/>
 					) : (
 						<div key={item.title}>
@@ -47,12 +43,11 @@ function NavBar() {
 									<SubMenu
 										options={item.options}
 										unPrefixedPath={unPrefixedPath}
-										getFindUrl={getFindUrl}
 									/>
 								)}
 								placement="bottom"
 								className={styles.tippy_box}
-								trigger="mouseenter"
+								trigger="mouseenter click"
 							>
 								<div className={`${isActive ? styles.active : styles.text}`}>
 									{item.title}

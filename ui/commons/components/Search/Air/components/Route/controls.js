@@ -22,6 +22,7 @@ const getControls = ({
 		type           : 'async_select',
 		placeholder    : 'Shipping from',
 		asyncKey       : 'locations',
+		initialCall    : true,
 		style          : { width: '300px' },
 		handleChange   : (obj) => {
 			setLocation((pv) => ({
@@ -39,7 +40,7 @@ const getControls = ({
 			});
 		},
 		params: {
-			filters     : { type: ['airport', 'city', 'country'] },
+			filters     : { type: ['airport'] },
 			preferences : {
 				organization_id : org_id,
 				service_type    : 'air_freight',
@@ -61,6 +62,7 @@ const getControls = ({
 		name           : 'destination',
 		labelShow      : 'DESTINATION',
 		defaultOptions : true,
+		initialCall    : true,
 		type           : 'async_select',
 		placeholder    : 'Shipping to',
 		asyncKey       : 'locations',
@@ -78,7 +80,7 @@ const getControls = ({
 			});
 		},
 		params: {
-			filters     : { type: ['airport', 'city', 'country'] },
+			filters     : { type: ['airport'] },
 			preferences : {
 				organization_id : org_id,
 				service_type    : 'air_freight',

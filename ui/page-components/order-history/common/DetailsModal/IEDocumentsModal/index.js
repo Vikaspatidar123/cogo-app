@@ -67,8 +67,8 @@ function IEDocumentsModal({ tradeEngineResponse = {} }) {
 								{isEmpty(TAB_MAPPING?.[activeTab]) ? (
 									<EmptyState />
 								) : (
-									TAB_MAPPING?.[activeTab].map((doc) => (
-										<Document key={doc?.docLink} doc={doc} hsNumber={hsNumber} />
+									TAB_MAPPING?.[activeTab].map((doc, index) => (
+										<Document key={`${index + 1}_${doc?.docLink}`} doc={doc} hsNumber={hsNumber} />
 									))
 								)}
 							</div>

@@ -1,53 +1,32 @@
 import { Button, Pagination } from '@cogoport/components';
 import { IcMPortArrow } from '@cogoport/icons-react';
-import { isEmpty, merge } from '@cogoport/utils';
+import { isEmpty } from '@cogoport/utils';
 import { useTranslation } from 'next-i18next';
-import React, { useState } from 'react';
+import React from 'react';
 
 import Loading from './common/Loading';
 import NoSchedulesCard from './components/NoSchedulesCard';
 import ScheduleCard from './components/ScheduleCard';
-import getControls from './config';
-import useCreateSchedule from './hooks/useCreateSchedule';
 import useFetchSchedules from './hooks/useFetchSchedules';
 import styles from './styles.module.css';
 
 import {
 	SelectController,
-	asyncFieldsLocations,
-	useForm,
-	useGetAsyncOptions,
 } from '@/packages/forms';
 
 function OceanSchedules() {
 	const { t } = useTranslation(['oceanSchedule']);
-	const { control, watch } = useForm();
-	const [currentPage, setCurrentPage] = useState(1);
-	const { createSchedule } = useCreateSchedule();
-	const { fetchSchedules, schedules, loading } = useFetchSchedules({
-		currentPage,
+	const {
+		fetchSchedules, schedules,
+		loading, currentPage,
 		setCurrentPage,
-	});
-	const [errorMessage, setErrorMessage] = useState(false);
-
-	const formValues = watch();
-
-	const portOptions = useGetAsyncOptions(
-		merge(asyncFieldsLocations(), {
-			params: { filters: { type: ['seaport'] } },
-		}),
-	);
-
-	const handleCreateSchedule = () => {
-		if (formValues.origin_port === formValues.destination_port) {
-			setErrorMessage(true);
-			return;
-		}
-		setErrorMessage(false);
-		createSchedule(formValues.origin_port, formValues.destination_port);
-	};
-	const fields = getControls({ portOptions });
-
+		control,
+		fields,
+		handleCreateSchedule,
+		errorMessage,
+		formValues,
+	} = useFetchSchedules();
+	const { list = [], total_count = 0, page_limit = 6 } = schedules || {};
 	return (
 		<div className={styles.container}>
 			<div className={styles.header}>{t('oceanSchedule:ocean_schedule_heading')}</div>
@@ -94,8 +73,8 @@ function OceanSchedules() {
 			<div className={styles.sub_heading_container}>{t('oceanSchedule:my_schedules_text')}</div>
 			<div className={styles.schedules_container}>
 				{loading && <Loading home />}
-				{!loading && !isEmpty(schedules?.list.length)
-					? (schedules?.list?.map((item) => (
+				{!loading && !isEmpty(list?.length)
+					? ((list || []).map((item) => (
 						<ScheduleCard
 							key={item.id}
 							schedule={item}
@@ -108,13 +87,13 @@ function OceanSchedules() {
 					)}
 			</div>
 
-			{!isEmpty(schedules?.list.length) && (
+			{!isEmpty(list?.length) && (
 				<div className={styles.pagination_container}>
 					<Pagination
 						type="number"
 						currentPage={currentPage}
-						totalItems={schedules?.total_count || 10}
-						pageSize={schedules?.page_limit}
+						totalItems={total_count || 10}
+						pageSize={page_limit}
 						onPageChange={setCurrentPage}
 					/>
 				</div>

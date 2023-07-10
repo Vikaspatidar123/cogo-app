@@ -1,46 +1,82 @@
+import { merge } from '@cogoport/utils';
 import { useState, useEffect, useCallback } from 'react';
 
+import getControls from '../config';
+
+import useCreateSchedule from './useCreateSchedule';
+
+import {
+	useForm,
+	useGetAsyncOptions,
+	asyncFieldsLocations,
+} from '@/packages/forms';
 import { useRequest } from '@/packages/request';
 import { useSelector } from '@/packages/store';
 
-const useFetchSchedules = ({ pageLimit = 6, currentPage }) => {
-	const [filters, setFilters] = useState({});
-	const [schedules, setSchedules] = useState();
+const PAGE_LIMIT = 6;
+const getPayload = ({ general, filters, currentPage }) => ({
+	filters: {
+		organization_branch_id: general?.query?.branch_id,
+		...filters,
+		status: 'active',
+	},
+	page: currentPage,
+	page_limit: PAGE_LIMIT,
+});
+
+const useFetchSchedules = () => {
 	const { general } = useSelector((state) => state);
 
+	const [filters, setFilters] = useState({});
+	const [currentPage, setCurrentPage] = useState(1);
+	const [schedules, setSchedules] = useState({});
+	const [errorMessage, setErrorMessage] = useState(false);
+
+	const { control, watch } = useForm();
+
+	const { createSchedule } = useCreateSchedule();
+
 	const [{ loading }, trigger] = useRequest({
-		method : 'get',
-		url    : '/list_sailing_schedule_subscriptions',
+		method: 'get',
+		url: '/list_sailing_schedule_subscriptions',
 	}, { manual: true });
 
-	const prepareFilters = () => {};
+	const formValues = watch();
+
+	const portOptions = useGetAsyncOptions(
+		merge(asyncFieldsLocations(), {
+			params: { filters: { type: ['seaport'] } },
+		}),
+	);
+
+	const fields = getControls({ portOptions });
+
+	const handleCreateSchedule = () => {
+		if (formValues.origin_port === formValues.destination_port) {
+			setErrorMessage(true);
+			return;
+		}
+		setErrorMessage(false);
+		createSchedule(formValues.origin_port, formValues.destination_port);
+	};
 
 	const fetchSchedules = useCallback(async () => {
+		const payload = getPayload({ general, filters, currentPage });
 		try {
 			const res = await trigger({
-				params: {
-					filters: {
-						organization_branch_id : general?.query?.branch_id,
-						...prepareFilters(filters, schedules?.filter_data ?? {}),
-						status                 : 'active',
-					},
-					page       : currentPage,
-					page_limit : pageLimit,
-				},
+				params: payload,
 			});
-			const { hasError } = res || {};
-			if (hasError) throw new Error();
 
-			const { data } = res;
+			const { data } = res || {};
 			setSchedules(data);
 		} catch (err) {
-			console.log('Unable to fetch schedules. Please try again.');
+			console.error('Unable to fetch schedules. Please try again.');
 		}
-	}, [currentPage, filters, general?.query?.branch_id, pageLimit, schedules?.filter_data, trigger]);
+	}, [general, filters, currentPage, trigger]);
 
 	useEffect(() => {
 		fetchSchedules();
-	}, [filters, currentPage, fetchSchedules]);
+	}, [fetchSchedules]);
 
 	return {
 		loading,
@@ -48,6 +84,14 @@ const useFetchSchedules = ({ pageLimit = 6, currentPage }) => {
 		setFilters,
 		fetchSchedules,
 		schedules,
+		currentPage,
+		setCurrentPage,
+		control,
+		watch,
+		fields,
+		handleCreateSchedule,
+		errorMessage,
+		formValues,
 	};
 };
 

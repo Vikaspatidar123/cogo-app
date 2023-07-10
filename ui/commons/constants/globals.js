@@ -234,8 +234,11 @@ const GLOBAL_CONSTANTS = {
 		ends_with_star_char        : /\*[^0-9a-zA-Z]/,
 		ends_with_star_space_regex : /\* /,
 	},
-	bot_not_visible_countries : ['VN'],
-	urls                      : {
+	bot_visibility_for_known_user: {
+		'6fd98605-9d5d-479d-9fac-cf905d292b88' : true,
+		'b67d40b1-616c-4471-b77b-de52b4c9f2ff' : false,
+	},
+	urls: {
 		whatsapp_get_started_link: 'https://wa.me/message/N4CI7UNDFE2ZM1',
 	},
 };

@@ -20,6 +20,27 @@ import { setCookie, getCookie } from '@cogoport/utils';
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 import getGeoConstants from '@/ui/commons/constants/geo';
 
+const KEY_COUNTRY_MAPPING = {
+	IN: {
+		isBotVisible: true,
+	},
+	VN: {
+		isBotVisible: false,
+	},
+	SG: {
+		isBotVisible: false,
+	},
+};
+
+const KEY_ENTITY_MAPPING = {
+	[GLOBAL_CONSTANTS.country_entity_ids.IN]: {
+		isBotVisible: true,
+	},
+	[GLOBAL_CONSTANTS.country_entity_ids.VN]: {
+		isBotVisible: false,
+	},
+};
+
 const DynamicChatBot = dynamic(() => import('@/ui/commons/components/CogoBot'), {
 	ssr: false,
 });
@@ -38,9 +59,8 @@ function MyApp({ Component, pageProps, store, generalData }) {
 
 	const isUnKnownUser = !organizationId;
 
-	const isBotVisible = isUnKnownUser
-		? !(GLOBAL_CONSTANTS.bot_not_visible_countries.includes(countryCode))
-		: geo.parent_entity_id !== GLOBAL_CONSTANTS.country_entity_ids.VN;
+	const { isBotVisible = true } = isUnKnownUser
+		? KEY_COUNTRY_MAPPING[countryCode] : KEY_ENTITY_MAPPING[geo.parent_entity_id];
 
 	useEffect(() => {
 		setCookie('parent_entity_id', partner_id);

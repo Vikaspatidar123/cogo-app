@@ -1,6 +1,7 @@
 import { Placeholder, Modal } from '@cogoport/components';
 import { isEmpty } from '@cogoport/utils';
 
+import CommonServicesModal from './CommonServicesModal';
 import QuotationModal from './QuotationModal';
 import styles from './styles.module.css';
 
@@ -8,7 +9,8 @@ import { Image } from '@/packages/next';
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
 const SERVICES_MODAL = {
-	QUOTATION: QuotationModal,
+	QUOTATION : QuotationModal,
+	DEFAULT   : CommonServicesModal,
 	// DUTIES    : DutiesTaxesModal,
 	// SCREENING : TraderEligibilityModal,
 	// DOCUMENTS : IEDocumentsModal,
@@ -30,13 +32,13 @@ function ServiceDetailModal({
 	loading = false,
 	requestType,
 }) {
-	const ServiceComponent = SERVICES_MODAL?.[requestType];
+	const ServiceComponent = SERVICES_MODAL?.[requestType] || SERVICES_MODAL.DEFAULT;
 
 	return (
 		<Modal
 			show={paymentSuccess}
 			onClose={() => setPaymentSuccess(false)}
-			size="lg"
+			size="xl"
 		>
 			{(loading) && (
 				<div className={styles.flex}>

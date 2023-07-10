@@ -1,21 +1,25 @@
-import { Tooltip, ButtonIcon } from '@cogoport/components';
+import { Tooltip } from '@cogoport/components';
 import { IcMPdf, IcMDownload } from '@cogoport/icons-react';
 
 import styles from './styles.module.css';
 
-const renderDesc = (desc = '') => {
-	if (desc?.length > 40) {
+import { downloadDocument } from '@/ui/commons/utils/downloadDocument';
+
+const MAX_DESC_LENGTH = 40;
+
+function RenderDesc({ desc = '' }) {
+	if (desc?.length > MAX_DESC_LENGTH) {
 		return (
 			<Tooltip content={desc} interactive>
 				<span>
-					{desc.substring(0, 40)}
+					{desc.substring(0, MAX_DESC_LENGTH)}
 					...
 				</span>
 			</Tooltip>
 		);
 	}
-	return desc;
-};
+	return <span>{desc || '--'}</span>;
+}
 
 function Document({ doc = {}, hsNumber = '' }) {
 	const {
@@ -26,10 +30,8 @@ function Document({ doc = {}, hsNumber = '' }) {
 		docResponsibleParty = '',
 	} = doc;
 
-	const downloadHandler = () => {
-		const url = `${process.env.NEXT_PUBLIC_BUSINESS_FINANCE_BASE_URL}
-		/saas/pdf/trade-engine?docLink=${docLink}&docName=${docName}&hsNumber=${hsNumber}`;
-		window.open(url, '_self');
+	const clickHandler = () => {
+		downloadDocument({ urlKey: 'importExportDoc', payloadObj: { docLink, docName, hsNumber } });
 	};
 
 	return (
@@ -40,18 +42,14 @@ function Document({ doc = {}, hsNumber = '' }) {
 						<IcMPdf width={20} height={20} className={styles.icon} />
 						<span>{docName}</span>
 					</div>
-					<div className={styles.cta_web_view}>
-						<IcMDownload className={styles.download_btn} size="md" onClick={downloadHandler}>
+					<div>
+						<IcMDownload
+							className={styles.download_btn}
+							size="md"
+							onClick={clickHandler}
+						>
 							Download
 						</IcMDownload>
-					</div>
-					<div className={styles.cta_mobile_view}>
-						<ButtonIcon
-							className={styles.download_btn}
-							icon={<IcMDownload />}
-							themeType="primary"
-							onClick={downloadHandler}
-						/>
 					</div>
 				</div>
 				<div className={`${styles.row} ${styles.row_mobile_view}`}>
@@ -65,7 +63,9 @@ function Document({ doc = {}, hsNumber = '' }) {
 					</div>
 					<div className={`${styles.info} ${styles.desc_row}`}>
 						<span className={styles.label}>Description: </span>
-						<span className={styles.value}>{renderDesc(docExpNotes)}</span>
+						<span className={styles.value}>
+							<RenderDesc desc={docExpNotes} />
+						</span>
 					</div>
 				</div>
 			</div>

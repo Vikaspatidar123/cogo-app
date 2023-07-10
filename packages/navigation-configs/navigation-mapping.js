@@ -227,7 +227,7 @@ const navigationMappings = ({ t = () => { } }) => {
 					{
 						key         : 'saas_planning-quotation',
 						title       : t(`${translationKey}_planning_options_quickQuotations_label`),
-						icon        : <IcAProfessionalQuotations width={55} height={55} />,
+						icon        : <IcAProfessionalQuotations width={50} height={55} />,
 						type        : 'link',
 						href        : '/saas/quickquotation/viewlist',
 						as          : '/saas/quickquotation/viewlist',
@@ -239,7 +239,7 @@ const navigationMappings = ({ t = () => { } }) => {
 						title       : t(`${translationKey}_planning_options_contractManagement_label`),
 						href        : '/contract-management',
 						as          : '/contract-management',
-						icon        : <IcAPlanningTools width={40} height={40} fill="#fbd221" />,
+						icon        : <IcAPlanningTools width={60} height={58} fill="#fbd221" />,
 						description : t(`${translationKey}_planning_options_contractManagement_description`),
 					},
 					{
@@ -247,7 +247,7 @@ const navigationMappings = ({ t = () => { } }) => {
 						title       : t(`${translationKey}_planning_options_manageRfq_label`),
 						href        : '/manage-rfq',
 						as          : '/manage-rfq',
-						icon        : <IcARfq width={40} height={40} />,
+						icon        : <IcARfq width={70} height={64} />,
 						description : t(`${translationKey}_planning_options_manageRfq_description`),
 					},
 				],

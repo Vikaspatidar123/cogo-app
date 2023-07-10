@@ -1,5 +1,6 @@
 import { Popover } from '@cogoport/components';
 import { useTranslation } from 'next-i18next';
+import { useState } from 'react';
 
 import NavBarItem from './NavBarItem';
 import styles from './styles.module.css';
@@ -23,6 +24,8 @@ function NavBar() {
 	const { nav_items = {} } = configs || {};
 	const { organization = [] } = nav_items || {};
 
+	const [showPopover, setShowPopover] = useState(false);
+
 	return (
 		<div className={styles.menu}>
 			{organization.map((item) => {
@@ -45,13 +48,20 @@ function NavBar() {
 									<SubMenu
 										options={item.options}
 										unPrefixedPath={unPrefixedPath}
+										setShowPopover={setShowPopover}
 									/>
 								)}
 								placement="bottom"
 								className={styles.tippy_box}
-								trigger="mouseenter click"
+								trigger="click"
+								visible={item.title === showPopover}
+								onClickOutside={() => setShowPopover(null)}
 							>
-								<div className={`${isActive ? styles.active : styles.text}`}>
+								<div
+									className={`${isActive ? styles.active : styles.text}`}
+									onClick={() => setShowPopover(item.title)}
+									role="presentation"
+								>
 									{item.title}
 								</div>
 							</Popover>

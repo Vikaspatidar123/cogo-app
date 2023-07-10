@@ -33,12 +33,23 @@ export const getCompanyControls = (gst_list, setUpdatedValues) => [
 		type  : 'text',
 	},
 	{
-		name  : 'date',
-		label : 'Date of Incorporation',
-		type  : 'datepicker',
+		name                  : 'date_of_incorporation',
+		label                 : 'Date of Incorporation',
+		type                  : 'datepicker',
+		isPreviousDaysAllowed : true,
+		dateFormat            : 'dd MMM yyyy',
+		rules                 : {
+			required: true,
+		},
+	},
+	{
+		type  : 'text',
+		name  : 'constitution_of_business',
+		label : 'Constitution of Business',
 		rules : {
 			required: true,
 		},
+
 	},
 	{
 		name         : 'gst_number',
@@ -88,15 +99,6 @@ export const getCompanyControls = (gst_list, setUpdatedValues) => [
 		rules : {
 			required: true,
 		},
-	},
-	{
-		type  : 'text',
-		name  : 'constitution_of_business',
-		label : 'Constitution of Business',
-		rules : {
-			required: true,
-		},
-
 	},
 
 ];

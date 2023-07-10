@@ -7,18 +7,15 @@ const useUpdateCreditRequirement = ({ getCreditRequestResponse = {}, refetch = (
 
 	const updateCreditRequirement = async ({ values }) => {
 		try {
+			const customer_credit_requirements = values?.credit_amount > 0 ? {
+				credit_amount          : values?.credit_amount.toString(),
+				credit_amount_currency : values?.credit_amount_currency,
+			} : {};
 			await trigger({
 				data: {
-					credit_id                    : getCreditRequestResponse?.id,
-					customer_credit_requirements : {
-						credit_amount          : values?.credit_amount,
-						credit_amount_currency : values?.credit_amount_currency,
-					},
-					agent_credit_recommendations: {
-						credit_amount          : values?.sales_credit_amount,
-						credit_amount_currency : values?.sales_credit_amount_currency,
-						credit_type            : 'limited_recourse',
-					},
+					credit_id: getCreditRequestResponse?.id,
+					customer_credit_requirements,
+
 				},
 			});
 			refetch();

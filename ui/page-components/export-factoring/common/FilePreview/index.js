@@ -3,7 +3,7 @@ import React from 'react';
 
 import styles from './styles.module.css';
 
-function FilePreview({ name = '' }) {
+function FilePreview({ name = '', url = '' }) {
 	return (
 		<div className={styles.container}>
 			<div className={styles.offer_pdf_view}>
@@ -11,7 +11,7 @@ function FilePreview({ name = '' }) {
 					<IcMEmail />
 					{name}
 				</div>
-				<IcMEyeopen />
+				<IcMEyeopen onClick={() => window.open(url)} />
 			</div>
 
 		</div>

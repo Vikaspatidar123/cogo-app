@@ -16,7 +16,7 @@ function GSTproof({
 	selectedGstDetails = {},
 }) {
 	const { business_name = '', tax_number = '', address = [] } = getCreditRequestResponse || {};
-	const { createOrganizationCreditRequest = () => {} } = useCreateOrganizationCreditRequest({ refetch });
+	const { createOrganizationCreditRequest = () => {}, loading } = useCreateOrganizationCreditRequest({ refetch });
 
 	const submit = (val) => {
 		const values = {
@@ -72,7 +72,13 @@ function GSTproof({
 							>
 								Upload New
 							</Button>
-							<Button themeType="accent" size="sm" onClick={handleSubmit(submit)}>
+							<Button
+								themeType="accent"
+								size="sm"
+								disabled={loading}
+								loading={loading}
+								onClick={handleSubmit(submit)}
+							>
 								<IcMTick />
 								Confirm
 							</Button>

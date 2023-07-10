@@ -46,10 +46,13 @@
 	padding: 0 16px;
 }
 
-.description,
-.address {
+.description {
 	width: 18%;
 	margin: 10px;
+}
+.address {
+	width: 30%;
+	padding: 10px;
 }
 
 .title {

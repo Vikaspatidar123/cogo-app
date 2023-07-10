@@ -1,11 +1,11 @@
 export const getDirectorControls = (gst_list, setUpdatedValues) => [
 
 	{
-		name     : 'pan',
-		label    : 'PAN',
-		type     : 'text',
-		disabled : true,
-		rules    : {
+		name  : 'registration_number',
+		label : 'PAN',
+		type  : 'text',
+
+		rules: {
 			required: true,
 		},
 	},
@@ -16,10 +16,12 @@ export const getDirectorControls = (gst_list, setUpdatedValues) => [
 
 	},
 	{
-		name  : 'dob',
-		label : 'Date of Birth',
-		type  : 'datepicker',
-		rules : {
+		name                  : 'date_of_birth',
+		label                 : 'Date of Birth',
+		type                  : 'datepicker',
+		isPreviousDaysAllowed : true,
+		dateFormat            : 'dd MMM yyyy',
+		rules                 : {
 			required: true,
 		},
 	},
@@ -27,13 +29,13 @@ export const getDirectorControls = (gst_list, setUpdatedValues) => [
 		name    : 'gender',
 		label   : 'Gender',
 		type    : 'radiogroup',
-		options : [{ label: 'MALE', value: 'Male' }, { label: 'Female', value: 'Female' }],
+		options : [{ label: 'MALE', value: 'M' }, { label: 'Female', value: 'F' }],
 		rules   : {
 			required: true,
 		},
 	},
 	{
-		name  : 'DIN',
+		name  : 'din',
 		label : 'DIN',
 		type  : 'text',
 	},

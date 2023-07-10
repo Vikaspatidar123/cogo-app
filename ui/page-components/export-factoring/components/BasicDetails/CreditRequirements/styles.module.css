@@ -1,17 +1,27 @@
 .container {
+	display: flex;
+	flex-direction: column;
 }
 .form_container {
-	& .ui_accordion_container {
-		border: 1px solid;
-		& .ui_accordion_content {
+	display: inline;
+	:global {
+		.ui_accordion_content {
 			display: flex;
+			flex-direction: row;
+			flex-wrap: wrap;
 		}
 	}
 }
 .field {
 	margin: 0 0 15px;
 	display: flex;
-	flex-direction: row;
+	flex-direction: column;
+}
+.field:nth-child(odd) {
+	width: 18%;
+}
+.field:nth-child(even) {
+	width: 80%;
 }
 
 .field_name {
@@ -26,6 +36,7 @@
 .button_wrapper {
 	display: flex;
 	justify-content: flex-end;
+	width: 100%;
 }
 
 .error_text {

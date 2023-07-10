@@ -4,12 +4,16 @@ import { useState } from 'react';
 
 import styles from './styles.module.css';
 
-function Details({ director = {}, setShowEdit = () => {} }) {
-	const { name = '', registration_number = '', gender = '', date_of_birth = '', address = '' } = director || {};
-	const [show, setShow] = useState(false);
+function Details({ director = {}, setShowEdit = () => {}, showEdit }) {
+	const [showDetails, setShowDetails] = useState(false);
+	const {
+		name = '', registration_number = '',
+		gender = '', din = '', date_of_birth = '', address = '',
+	} = director || {};
+
 	return (
 		<div className={styles.container}>
-			<div className={show ? styles.company_name : styles.company_wo_border}>
+			<div className={showEdit.show ? styles.company_name : styles.company_wo_border}>
 				<div className={styles.company}>
 					<IcMActivePlans width={44} height={44} fill="#7278AD" />
 					<div className={styles.company_details}>
@@ -23,16 +27,20 @@ function Details({ director = {}, setShowEdit = () => {} }) {
 						themeType="secondary"
 						onClick={() => setShowEdit({
 							type : 'director',
+							registration_number,
 							show : true,
 						})}
 					>
 						<IcMEdit />
 						<div className="button_edit">Edit</div>
 					</Button>
-					<IcMArrowUp className={styles.icon} onClick={() => setShow((prev) => !prev)} />
+					<IcMArrowUp
+						className={styles.icon}
+						onClick={() => setShowDetails((prev) => !prev)}
+					/>
 				</div>
 			</div>
-			{show && (
+			{showDetails && (
 				<div className={styles.details}>
 					<div className={styles.description}>
 						<div className={styles.title}>
@@ -48,6 +56,14 @@ function Details({ director = {}, setShowEdit = () => {} }) {
 						</div>
 						<div className={styles.value}>
 							-
+						</div>
+					</div>
+					<div className={styles.description}>
+						<div className={styles.title}>
+							Din
+						</div>
+						<div className={styles.value}>
+							{din}
 						</div>
 					</div>
 					<div className={styles.description}>

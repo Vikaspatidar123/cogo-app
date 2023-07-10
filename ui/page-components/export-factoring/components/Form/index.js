@@ -9,29 +9,30 @@ import { OfferLetterWaiting } from '../WaitingScreens';
 
 import styles from './styles.module.css';
 
-// const RENDERING_FORM = {
-// 	awaiting_user_inputs : BasicDetailsForm,
-// 	payment_success      : CompanyInformation,
-// 	locked               : Documentation,
-// 	rejected             : RejectedApplication,
-// 	processing           : ApplicationProcessed,
-// 	finance_assessment   : FinancialAssessment,
-// 	approved             : PayLaterLive,
-// };
+const RENDERING_FORM = {
+	awaiting_user_inputs  : BasicDetails,
+	payment_success       : CompanyInformation,
+	awaiting_offer_letter : OfferLetterDetails,
+	offer_letter_complete : DirectorInformation,
+	locked                : OfferLetterWaiting,
+	processing            : ApplicationProcess,
+	finance_assessment    : ApplicationProcess,
+};
 
 function Form({ active = {}, getCreditRequestResponse = {}, refetch = () => {}, loading }) {
-	// const Component = RENDERING_FORM[active];
+	const { flags = {} } = getCreditRequestResponse;
+	const Component = flags?.offer_letter === 'complete' && active === 'awaiting_offer_letter'
+		? RENDERING_FORM.offer_letter_complete : RENDERING_FORM[active];
 
 	return (
 		<div className={styles.form}>
-			{/* <ApplicationProcess
+			<Component
 				active={active}
 				getCreditRequestResponse={getCreditRequestResponse}
 				refetch={refetch}
 				loading={loading}
-			/> */}
-			{/* <Buyers getCreditRequestResponse={getCreditRequestResponse} /> */}
-			<Invoices getCreditRequestResponse={getCreditRequestResponse} />
+			/>
+			<Buyers getCreditRequestResponse={getCreditRequestResponse} />
 		</div>
 	);
 }

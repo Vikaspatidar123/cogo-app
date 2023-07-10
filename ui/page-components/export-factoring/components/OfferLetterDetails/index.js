@@ -1,13 +1,44 @@
 import { Button } from '@cogoport/components';
-import { IcMEmail, IcMEyeopen } from '@cogoport/icons-react';
+import { IcMEmail, IcMEyeopen, IcMInfo } from '@cogoport/icons-react';
 import React, { useState } from 'react';
 
+import useSubmitOfferLetter from '../../hooks/useSubmitOfferLetter';
+import { OfferLetterWaiting } from '../WaitingScreens';
+
+import AmmedmentHistory from './AmmedmentHistory';
+import RequestAmmedment from './RequestAmmedment';
 import styles from './styles.module.css';
 
 function OfferLetterDetails({ active = {}, getCreditRequestResponse = {}, refetch = () => {} }) {
+	const { onSubmit, loading, data } = useSubmitOfferLetter();
+	const {
+		offer_letter_status = '', approved_credit_details = {},
+		documents = {}, comments = {},
+		credit_id = '',
+	} = getCreditRequestResponse;
+	const {
+		amount,
+		currency,
+		grace_period,
+		advance_rate,
+		processing_fee,
+		factoring_fee,
+		overdue_charges,
+	} = approved_credit_details;
+	const { offer_letter = {} } = documents;
+
 	const [showRequestView, setShowRequestView] = useState(false);
 	const [showAmmedmentView, setShowAmmedmentView] = useState(false);
-	
+
+	if (offer_letter_status === 'approval_pending') { return <OfferLetterWaiting />; }
+
+	const handleSubmitOfferLetter = async () => {
+		const resp = await onSubmit(credit_id);
+		if (resp) {
+			refetch();
+		}
+	};
+
 	return (
 		<div className={styles.container}>
 			<div className={styles.header_div}>
@@ -35,18 +66,20 @@ function OfferLetterDetails({ active = {}, getCreditRequestResponse = {}, refetc
 						</span>
 
 						<div className={styles.limit_text}>
-							$500000
+							{amount}
+							{' '}
+							{currency}
 						</div>
 					</div>
 					<div className={styles.wrapper_div}>
 
 						<div className={styles.limit_details_card}>
 							<span>
-								Finance Fees
+								Advance Rate
 							</span>
 							<span>
-								1% per month (calculated on pro
-								rated basis on the advance amount)
+								{advance_rate}
+								% of the net invoice value
 							</span>
 						</div>
 						<div className={styles.limit_details_card}>
@@ -54,7 +87,8 @@ function OfferLetterDetails({ active = {}, getCreditRequestResponse = {}, refetc
 								Finance Fees
 							</span>
 							<span>
-								1% per month (calculated on pro
+								{factoring_fee}
+								% per month (calculated on pro
 								rated basis on the advance amount)
 							</span>
 						</div>
@@ -63,47 +97,106 @@ function OfferLetterDetails({ active = {}, getCreditRequestResponse = {}, refetc
 					<div className={styles.wrapper_div}>
 						<div className={styles.limit_details_card}>
 							<span>
-								Finance Fees
+								Setup Fees
 							</span>
 							<span>
-								1% per month (calculated on pro
-								rated basis on the advance amount)
+								Waived off for
+								{' '}
+								{processing_fee}
+								{' '}
+								transaction
 							</span>
 						</div>
 						<div className={styles.limit_details_card}>
 							<span>
-								Finance Fees
+								Transaction Fees
 							</span>
 							<span>
-								1% per month (calculated on pro
-								rated basis on the advance amount)
+								{overdue_charges}
+								% per month with
+								{' '}
+								{grace_period}
+								{' '}
+								days factoring slab on net invoice value
 							</span>
 						</div>
 
 					</div>
 				</div>
-				<div className={styles.offer_pdf_view}>
-					<div className={styles.email_text_wrapper}>
-						<IcMEmail />
-						Offer Letter
+				{offer_letter?.active && (
+					<div className={styles.offer_pdf_view}>
+						<div className={styles.email_text_wrapper}>
+							<IcMEmail />
+							Offer Letter
+						</div>
+						<IcMEyeopen onClick={() => window.open(offer_letter?.active?.document_url)} />
 					</div>
-					<IcMEyeopen />
-				</div>
+				)}
 
 			</div>
 			<div className={styles.amedement_div}>
-				<div className={styles.amedement_status_div}>
-					Your amendment request has been reverted
+				<div>
+					{offer_letter?.rejected_on_review
+					&& offer_letter?.active && (
+						<div className={styles.amedement_status_div}>
+							<IcMInfo width="20px" />
+							Your amendment request has been reverted
+						</div>
+					)}
 
 				</div>
+				<div>
+					{offer_letter?.rejected_on_review
+					&& !offer_letter?.active && (
+						<div className={styles.amedement_reject_status_div}>
+							<IcMInfo width="20px" />
+							Amendment request has been sent, Please wait atleast 4-6 hours for
+							the updated offer letter or call back from our team.
+						</div>
+					)}
+				</div>
+
 				<div className={styles.amedement_button_wrapper}>
-					<Button themeType="secondary">
-						View Request
-					</Button>
-					<Button themeType="secondary">
-						Request Ammendment
+					{(Object.keys(comments).splice(1).length > 0
+							|| documents?.offer_letter?.rejected_on_review?.id) && (
+								<Button themeType="secondary" onClick={() => setShowAmmedmentView((prev) => !prev)}>
+									View Request
+								</Button>
+
+					)}
+					<Button themeType="secondary" onClick={() => setShowRequestView((prev) => !prev)}>
+						{documents?.offer_letter?.rejected_on_review?.id
+							? 'Re-Request Ammendment'
+							: 'Request Ammendment'}
 					</Button>
 				</div>
+			</div>
+			{showRequestView && (
+				<RequestAmmedment
+					showRequestView={showRequestView}
+					setShowRequestView={setShowRequestView}
+					getCreditRequestResponse={getCreditRequestResponse}
+					refetch={refetch}
+				/>
+			)}
+			{showAmmedmentView && (
+				<AmmedmentHistory
+					showAmmedmentView={showAmmedmentView}
+					setShowAmmedmentView={setShowAmmedmentView}
+					getCreditRequestResponse={getCreditRequestResponse}
+					refetch={refetch}
+				/>
+			)}
+			<div className={styles.bottom_container}>
+				<Button
+					disabled={
+							!documents?.offer_letter?.active
+							&& !documents?.signed_offer_letter?.active
+						}
+					onClick={handleSubmitOfferLetter}
+				>
+					{offer_letter_status === 'signed' ? 'Proceed' : 'Lock Offer Letter'}
+				</Button>
 			</div>
 		</div>
 	);

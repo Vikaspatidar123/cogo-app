@@ -13,27 +13,40 @@ function EditDetails({
 	updatedValues,
 	getCreditRequestResponse = {},
 }) {
+	console.log(data, showEdit, 'data');
 	const {
-		address, city, constitution_of_business, gst_number, name, pan, pincode, state, gst_list,
+		directors = {},
 	} = data || {};
-	const { org_iec_number = '' } = getCreditRequestResponse || {};
+	const {
+		name,
+		date_of_birth,
+		registration_number,
+		gender,
+		address,
+		pincode,
+		city,
+		state,
+		email,
+		din,
+		designation,
+	} = directors.find((item) => item.registration_number === showEdit.registration_number);
 
 	const { show = '', type = '' } = showEdit || {};
 
 	const saveValues = (values) => {
-		setUpdatedValues((prev) => ({ ...prev, type, values }));
+		setUpdatedValues((prev) => ({ ...prev, [type]: values }));
 	};
 
 	const { control, handleSubmit, formState: { errors } } = useForm({
 		defaultValues: {
+			registration_number,
 			name,
-			pan,
-			org_iec_number,
-			gst_number,
-			company_address: updatedValues.address || address,
+			gender,
+			din,
+			date_of_birth: new Date(date_of_birth),
+			address,
 			city,
 			state,
-			constitution_of_business,
 			pincode,
 		},
 	});
@@ -42,12 +55,18 @@ function EditDetails({
 		<Modal show={show} onClose={() => setShowEdit({ show: false })} closable>
 			<Modal.Body>
 				<form className={styles.form}>
-					{getDirectorControls(gst_list, setUpdatedValues).map((item) => {
+					{getDirectorControls().map((item) => {
 						const Element = getField(item.type);
 						return (
 							<div className={styles.field} key={item.name}>
-								<div className={styles.field_name}>{item.label}</div>
-								<Element control={control} {...item} />
+								<div className={styles.field_name}>
+									{item.label}
+								</div>
+								<Element
+									control={control}
+									{...item}
+									disabled={!!control._defaultValues[item?.name]}
+								/>
 								<div className={styles.error_text}>
 									{errors?.[item?.name]?.message || errors?.[item?.name]?.type }
 								</div>

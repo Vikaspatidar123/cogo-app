@@ -17,3 +17,6 @@
 	font-size: 16px;
 	color: #4f4f4f;
 }
+.error_text {
+	color: red;
+}

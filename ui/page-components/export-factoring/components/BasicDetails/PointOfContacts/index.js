@@ -55,13 +55,6 @@ function PointOfContacts({ getCreditRequestResponse = {}, refetch = () => { } })
 				})}
 				type="form"
 			>
-				{
-					(getCreditRequestResponse?.poc_details && getCreditRequestResponse?.poc_details?.length) >= 1 && (
-						<PocList
-							list={getCreditRequestResponse?.poc_details}
-						/>
-					)
-				}
 
 				{(pocControls || []).map((item, index) => {
 					const Element = getField(item.type);
@@ -112,6 +105,12 @@ function PointOfContacts({ getCreditRequestResponse = {}, refetch = () => { } })
 
 					);
 				})}
+				{(getCreditRequestResponse?.poc_details
+							&& getCreditRequestResponse?.poc_details?.length) >= 1 && (
+								<PocList
+									list={getCreditRequestResponse?.poc_details}
+								/>
+				)}
 			</Accordion>
 		</form>
 	);

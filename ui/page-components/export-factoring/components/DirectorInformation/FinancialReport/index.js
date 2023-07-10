@@ -1,3 +1,4 @@
+import { Button } from '@cogoport/components';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 
@@ -6,12 +7,17 @@ import { financialReportControls } from '../../../configurations/getFinanceContr
 
 import styles from './styles.module.css';
 
-function FinancialReport() {
+function FinancialReport({
+	setUpdatedValues = () => { },
+}) {
 	const {
 		control,
 		handleSubmit,
 		formState: { errors },
 	} = useForm({});
+	const saveValues = (values) => {
+		setUpdatedValues((prev) => ({ ...prev, ...values }));
+	};
 	return (
 		<div className={styles.container}>
 			<div className={styles.heading}>Financial Report</div>
@@ -25,6 +31,9 @@ function FinancialReport() {
 						error={errors?.[item.name]}
 					/>
 				))}
+				<div className={styles.footer_container}>
+					<Button onClick={handleSubmit(saveValues)}>Save</Button>
+				</div>
 			</div>
 		</div>
 	);

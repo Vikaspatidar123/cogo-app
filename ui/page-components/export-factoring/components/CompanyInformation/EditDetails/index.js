@@ -15,22 +15,26 @@ function EditDetails({
 }) {
 	const {
 		address, city, constitution_of_business, gst_number, name, pan, pincode, state, gst_list,
+		date_of_incorporation,
 	} = data || {};
 	const { org_iec_number = '' } = getCreditRequestResponse || {};
 
 	const { show = '', type = '' } = showEdit || {};
 
 	const saveValues = (values) => {
-		setUpdatedValues((prev) => ({ ...prev, type, values }));
+		console.log(values, 'aaqq');
+		setUpdatedValues((prev) => ({ ...prev, type, ...values }));
+		setShowEdit(false);
 	};
 
-	const { control, handleSubmit, setValue, formState: { errors } } = useForm({
+	const { control, handleSubmit, setValue, formState: { errors }, clearErrors } = useForm({
 		defaultValues: {
-			name,
 			pan,
+			name,
 			org_iec_number,
 			gst_number,
 			company_address: updatedValues.address || address,
+			date_of_incorporation,
 			city,
 			state,
 			constitution_of_business,
@@ -40,10 +44,13 @@ function EditDetails({
 
 	useEffect(() => {
 		setValue('company_address', updatedValues.address);
+		if (updatedValues.address) {
+			clearErrors('company_address');
+		}
 	}, [updatedValues, setValue]);
 
 	return (
-		<Modal show={show} onClose={() => setShowEdit({ show: false })} closable>
+		<Modal size="lg" show={show} onClose={() => setShowEdit({ show: false })} closable>
 			<Modal.Body>
 				<form className={styles.form}>
 					{getCompanyControls(gst_list, setUpdatedValues).map((item) => {

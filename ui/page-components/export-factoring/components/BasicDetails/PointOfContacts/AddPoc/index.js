@@ -15,7 +15,6 @@ function AddPOC({
 	const { control, handleSubmit, formState:{ errors } } = useForm();
 
 	const submit = async (values) => {
-		
 		await updatePOCDetails({ pocDetails: { user: { ...values }, designation: { value: values.designation } } });
 	};
 

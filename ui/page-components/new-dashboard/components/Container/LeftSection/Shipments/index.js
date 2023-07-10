@@ -4,23 +4,27 @@ import Card from './Card';
 import styles from './styles.module.css';
 
 import { useRouter } from '@/packages/next';
+import { Carousel } from '@cogoport/components';
 
 function Shipments({ list }) {
 	const { push } = useRouter();
+	const CAROUSELDATA = Card({ data: list });
 
 	return (
-
 		<div className={styles.container}>
 			<div className={styles.heading}>
 				Your Ongoing Shipments
 			</div>
-			{list.map((item) => <Card item={item} />)}
+			<Carousel slides={CAROUSELDATA} autoScroll
+				timeInterval={2000} showDots showArrow={false}
+				size="sm" className={styles.carousel} />
 
-			<div className={styles.bottom}>
+			<div
+				role="presentation"
+				className={styles.bottom} onClick={() => push('/shipments', '/shipments')}
+			>
 				<p
-					role="presentation"
 					className={styles.viewall}
-					onClick={() => push('/shipments', '/shipments')}
 				>
 					View all
 				</p>

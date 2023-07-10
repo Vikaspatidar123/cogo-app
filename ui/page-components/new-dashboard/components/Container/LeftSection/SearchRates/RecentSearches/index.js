@@ -6,6 +6,7 @@ import styles from './styles.module.css';
 
 import { useRouter } from '@/packages/next';
 import useRecentSearches from '@/ui/page-components/new-dashboard/hooks/useRecentSearches';
+import Loading from '../Loading'
 
 function RecentSearches() {
 	const { push } = useRouter();
@@ -14,14 +15,14 @@ function RecentSearches() {
 	return (
 		<div className={styles.container}>
 			<div className={styles.head}>
-				<div className={styles.text}>RecentSearches</div>
+				<div className={styles.text}>Recent Searches</div>
 				<Button size="md" themeType="tertiary" onClick={() => push('/book')}>
 					<span className={styles.view_all}>View All</span>
 					<IcMArrowRight width={16} height={16} />
 				</Button>
 			</div>
 			<div className={styles.card}>
-				{(list || []).map((item) => <Card item={item} />)}
+				{!loading ? (list || []).map((item) => <Card item={item} />) : <Loading />}
 			</div>
 
 		</div>

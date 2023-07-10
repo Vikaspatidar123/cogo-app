@@ -1,0 +1,22 @@
+.container {
+    padding: 20px;
+    margin-top: 20px;
+    background: linear-gradient(50deg, #8ade99 0%, #aae0b4 100%);
+}
+
+.box {
+    display: flex;
+    justify-content: space-around;
+}
+
+.heading {
+    font-weight: 600;
+    color: #3a8450;
+}
+
+.des {
+    margin-bottom: 10px;
+    font-size: 10px;
+    font-weight: 300;
+    color: var(--black-80, #4f4f4f);
+}

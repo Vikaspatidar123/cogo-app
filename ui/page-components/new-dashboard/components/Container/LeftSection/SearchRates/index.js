@@ -5,7 +5,7 @@ import styles from './styles.module.css';
 function SearchRates() {
 	return (
 		<div className={styles.container}>
-			<Search />
+			{/* <Search /> */}
 			<RecentSearches />
 		</div>
 	);

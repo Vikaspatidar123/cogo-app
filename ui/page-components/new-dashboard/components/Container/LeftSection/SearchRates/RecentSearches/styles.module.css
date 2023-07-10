@@ -4,7 +4,7 @@
 }
 
 .text {
-	font-size: 18px;
+	font-size: 15px;
 	font-weight: 600;
 }
 
@@ -16,5 +16,4 @@
 .card {
 	display: flex;
 	flex: 1;
-	justify-content: center;
 }

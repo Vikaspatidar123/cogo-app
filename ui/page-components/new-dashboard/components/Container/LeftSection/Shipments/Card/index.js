@@ -2,12 +2,16 @@ import LeftContainer from './LeftContainer';
 import ShipmentInfo from './ShipmentInfo';
 import styles from './styles.module.css';
 
-function Card({ item }) {
-	return (
-		<div className={styles.container}>
-			<ShipmentInfo item={item} />
-			<LeftContainer item={item} />
-		</div>
-	);
+function Card({ data }) {
+	const items = data.map((item) => ({
+		key: item?.id,
+		render: () => (
+			<div className={styles.container}>
+				<ShipmentInfo item={item} />
+				<LeftContainer item={item} />
+			</div>
+		),
+	}));
+	return items;
 }
 export default Card;

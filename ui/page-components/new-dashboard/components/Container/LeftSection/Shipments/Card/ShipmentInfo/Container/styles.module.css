@@ -1,11 +1,11 @@
 .container {
-	margin-top: 10px;
+	margin-top: 6px;
 }
 
 .second_data {
 	display: flex;
 	align-items: center;
-	padding: 10px;
+	padding: 8px;
 }
 
 .location_span {

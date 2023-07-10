@@ -66,6 +66,7 @@ function ServiceDetailModal({
 					<div className={styles.hr} />
 					<ServiceComponent
 						tradeEngineResponse={transactionData}
+						requestType={requestType}
 					/>
 				</>
 			)}

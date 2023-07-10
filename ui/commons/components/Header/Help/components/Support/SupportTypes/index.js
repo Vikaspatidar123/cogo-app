@@ -14,9 +14,9 @@ function SupportTypes({
 	setShowPopover = () => {},
 	unreadCount = 0,
 }) {
-	const { t } = useTranslation(['common']);
-
 	const { push } = useRouter();
+
+	const { t } = useTranslation(['common']);
 
 	const supportTypeOptions = getSupportOptions({ t });
 
@@ -31,19 +31,22 @@ function SupportTypes({
 
 	return (
 		<>
-			{supportTypeOptions.map(({ icon, label, name, navigate }) => (
-				<div
-					className={cl`${styles.type_container}`}
-					key={name}
-					role="presentation"
-					onClick={() => handleClick({ name, navigate })}
-				>
-					<div className={styles.header_styles}>
-						{icon}
-						<div className={styles.label_styles}>{label}</div>
+			{supportTypeOptions.map((item) => {
+				const { icon, label, name, navigate } = item;
+				return (
+					<div
+						className={cl`${styles.type_container}`}
+						key={name}
+						role="presentation"
+						onClick={() => handleClick({ name, navigate })}
+					>
+						<div className={styles.header_styles}>
+							{icon}
+							<div className={styles.label_styles}>{label}</div>
+						</div>
 					</div>
-				</div>
-			))}
+				);
+			})}
 			<div
 				className={styles.footer}
 				role="presentation"

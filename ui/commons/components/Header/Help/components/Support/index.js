@@ -2,6 +2,7 @@
 import { Tooltip } from '@cogoport/components';
 import { IcMEmail, IcMCall } from '@cogoport/icons-react';
 import { isEmpty } from '@cogoport/utils';
+import Image from 'next/image';
 import { useTranslation } from 'next-i18next';
 import { useEffect } from 'react';
 
@@ -51,9 +52,9 @@ function Support({
 				<div className={styles.agent_details}>
 					<div className={styles.agen_info}>
 						<div className={styles.agent_avatar}>
-							<img
+							<Image
 								src={GLOBAL_CONSTANTS.image_url.category_image}
-								alt="Profile Pic"
+								alt={t(`${translationKey}_profile_pic`)}
 								width={38}
 								height={38}
 							/>

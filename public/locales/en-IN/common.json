@@ -13,6 +13,7 @@
 	"components_header_help_support_email": "support@cogoport.com",
 	"components_header_help_support_countrycode": "+91",
 	"components_header_help_support_mobilenumber": "8976851674",
+	"components_header_help_support_profile_pic": "Profile Pic",
     "components_header_tickets_list_search_placeholder": "Search here...",
 	"components_header_tickets_list_empty_text": "No Tickets Raised",
 	"components_header_tickets_list_create_ticket":"Raise a Ticket",

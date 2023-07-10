@@ -159,12 +159,12 @@ function TicketChat({ modalData = {}, setModalData = () => {} }) {
 				{ticketExists && (
 					<div
 						style={{
-							background: ['closed', 'rejected'].includes(status)
+							background: STATUS.includes(status)
 								? '#f4f4f4'
 								: '#fff',
 						}}
 					>
-						{['closed', 'rejected'].includes(status) ? (
+						{STATUS.includes(status) ? (
 							<RateTicket
 								id={id}
 								status={status}

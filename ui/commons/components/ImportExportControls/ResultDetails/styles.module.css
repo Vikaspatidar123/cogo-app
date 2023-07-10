@@ -29,11 +29,6 @@
 	}
 }
 
-.list {
-	height: 250px;
-	overflow-y: scroll;
-}
-
 .header {
 	width: 50%;
 }
@@ -50,10 +45,11 @@
 	align-items: center;
 }
 
-.table_text {
-	margin-left: 10px;
-}
-
 .text {
 	font-weight: 600;
+}
+
+.list {
+	height: 250px;
+	overflow-y: scroll;
 }

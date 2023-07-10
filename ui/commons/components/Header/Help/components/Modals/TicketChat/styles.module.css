@@ -15,10 +15,10 @@
 	flex-direction: column;
 	justify-content: space-between;
 	height: 85vh;
-	max-height: unset !important;
+	max-height: unset;
 	padding: 0;
 	margin: 0;
-	border-bottom: unset !important;
+	border-bottom: unset;
 }
 
 .sub_modal_container {

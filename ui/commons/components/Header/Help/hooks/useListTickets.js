@@ -42,7 +42,7 @@ const useListTickets = ({
 			setListData((prev) => [...prev, ...(response?.data?.items || [])]);
 			setPagination(pageIndex + 1);
 		} catch (error) {
-			console.log('error:', error);
+			console.error('error:', error);
 		}
 	};
 

@@ -22,9 +22,7 @@ const getParams = ({ searchQuery, cogo_entity_id, country_id }) => ({
 });
 
 function useListFaqQuestions({ selectedQuery = '' }) {
-	const { profile } = useSelector((state) => state);
-
-	const { organization: { cogo_entity_id, country_id } = {} } = profile || {};
+	const { cogo_entity_id = '', country_id = '' } = useSelector((state) => state.profile.organization);
 
 	const [{ loading, data }, trigger] = useRequest({
 		url    : '/cogo_academy/list_faq_questions',

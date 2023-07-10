@@ -5,7 +5,7 @@ import { DEFAULT_USER_REMARKS_FOR_FEEDBACK } from '../constants';
 import getApiErrorString from '@/packages/forms/utils/getApiError';
 import { useRequest } from '@/packages/request';
 
-const getPayload = ({ answerId, isPositive, feedbackID }) => ({
+const getPayload = ({ answerId = '', isPositive = true, feedbackID = '' }) => ({
 	faq_answer_id : answerId,
 	is_positive   : isPositive,
 	status        : 'active',
@@ -14,12 +14,12 @@ const getPayload = ({ answerId, isPositive, feedbackID }) => ({
 });
 
 function useUpdateFaqFeedback({ getQuestion = () => {}, query = {} }) {
+	const { faq_id = '' } = query;
+
 	const [{ loading }, trigger] = useRequest({
 		url    : '/cogo_academy/update_faq_feedback',
 		method : 'post',
 	}, { manual: false });
-
-	const { faq_id = '' } = query;
 
 	const updateFaqFeedback = async ({
 		answerId,

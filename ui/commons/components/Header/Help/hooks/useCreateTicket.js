@@ -12,7 +12,7 @@ const useCreateTicket = () => {
 	const { t } = useTranslation(['common']);
 
 	const {
-		organization: { id: organizationID, country_id = '', cogo_entity_id = '' } = {},
+		organization: { id: organizationId, country_id = '', cogo_entity_id = '' } = {},
 		id = '',
 	} = useSelector(({ profile }) => profile);
 
@@ -28,7 +28,7 @@ const useCreateTicket = () => {
 		try {
 			const payload = {
 				UserID         : id,
-				OrganizationID : organizationID,
+				OrganizationID : organizationId,
 				Source         : 'importer_exporter',
 				Type           : val?.ticket_type || undefined,
 				Description    : val?.description || undefined,

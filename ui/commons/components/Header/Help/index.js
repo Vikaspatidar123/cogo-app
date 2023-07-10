@@ -41,7 +41,6 @@ function Help() {
 						setShowPopover={setShowPopover}
 					/>
 				)}
-				theme="light"
 				interactive
 			>
 				<div className={styles.container}>

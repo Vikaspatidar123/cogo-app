@@ -8,13 +8,11 @@
 	margin: 12px;
 
 	:global {
-		/* stylelint-disable-next-line selector-class-pattern */
 		.tippy-box {
-			max-width: 500px !important;
+			max-width: 500px;
 			padding: 0;
 		}
 
-		/* stylelint-disable-next-line selector-class-pattern */
 		.tippy-content {
 			padding: 0;
 		}

@@ -4,19 +4,20 @@ import styles from './styles.module.css';
 
 import { useRouter } from '@/packages/next';
 
+const handleClick = ({ faqId, locale, query }) => {
+	const baseUrl = process.env.NEXT_PUBLIC_APP_URL;
+	const urlToOpen = `${baseUrl}/${locale}/${query?.org_id}/${query?.branch_id}/help-center/faq/${faqId}/`;
+	window.open(urlToOpen, '_blank', 'noreferrer');
+};
+
 function FaqQuestions({ data = [], fromChat = false }) {
 	const { locale = '', query } = useRouter();
-	const handleClick = (faqId) => {
-		const baseUrl = process.env.NEXT_PUBLIC_APP_URL;
-		const urlToOpen = `${baseUrl}/${locale}/${query?.org_id}/${query?.branch_id}/help-center/faq/${faqId}/`;
-		window.open(urlToOpen, '_blank', 'noreferrer');
-	};
 
 	return (data || []).map((item) => (
 		<div
 			className={styles.faq_question}
 			key={fromChat ? item?.ID : item?.id}
-			onClick={() => handleClick(fromChat ? item?.ID : item?.id)}
+			onClick={() => handleClick(fromChat ? item?.ID : item?.id, locale, query)}
 			role="presentation"
 		>
 			<div className={styles.document_query_name}>

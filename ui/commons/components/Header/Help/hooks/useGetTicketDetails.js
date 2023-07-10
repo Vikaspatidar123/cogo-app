@@ -17,7 +17,7 @@ const useGetTicketDetails = ({ ticketId }) => {
 				},
 			});
 		} catch (error) {
-			console.log(error);
+			console.error(error);
 		}
 	}, [ticketId, trigger]);
 

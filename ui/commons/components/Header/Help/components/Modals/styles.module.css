@@ -1,6 +1,6 @@
 .modal_container {
-	left: 99% !important;
-	width: 350px !important;
+	left: 99%;
+	width: 350px;
 
 	:global {
 		.ui_modal_header_container {

@@ -8,18 +8,18 @@ import {
 import { useRequest } from '@/packages/request';
 import { useSelector } from '@/packages/store';
 
-const getParams = ({ listAll, parent_entity_id, country_id }) => {
+const getParams = ({ listAll, cogo_entity_id = '', country_id = '' }) => {
 	const pageLimit = listAll
 		? MAXIMUM_TOPICS_TO_BE_FETCHED
 		: NO_OF_TOPICS_TO_BE_SHOWN;
 
 	return {
 		filters: {
-			status         : 'active',
-			state          : 'published',
-			cogo_entity_id : parent_entity_id,
+			status  : 'active',
+			state   : 'published',
+			cogo_entity_id,
 			country_id,
-			persona        : 'importer_exporter',
+			persona : 'importer_exporter',
 		},
 		sort_by    : 'view_count',
 		page       : 1,
@@ -28,9 +28,7 @@ const getParams = ({ listAll, parent_entity_id, country_id }) => {
 };
 
 const useListFaqTopics = ({ listAll = false }) => {
-	const { profile } = useSelector((state) => state);
-
-	const { organization: { parent_entity_id, country_id } = {} } = profile || {};
+	const { cogo_entity_id = '', country_id = '' } = useSelector((state) => state.profile.organization);
 
 	const [{ loading, data }, trigger] = useRequest({
 		url    : '/cogo_academy/list_faq_topics',
@@ -42,14 +40,14 @@ const useListFaqTopics = ({ listAll = false }) => {
 			trigger({
 				params: getParams({
 					listAll,
-					parent_entity_id,
+					cogo_entity_id,
 					country_id,
 				}),
 			});
 		} catch (err) {
 			console.error(err);
 		}
-	}, [country_id, listAll, parent_entity_id, trigger]);
+	}, [country_id, listAll, cogo_entity_id, trigger]);
 
 	useEffect(() => {
 		getFaqTopics();

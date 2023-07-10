@@ -6,25 +6,23 @@ import { NO_OF_QUESTIONS_TO_BE_FETCHED } from '../constants';
 import { useRequest } from '@/packages/request';
 import { useSelector } from '@/packages/store';
 
-const getParams = ({ page, parent_entity_id, country_id, topicId }) => ({
+const getParams = ({ page = 1, cogo_entity_id = '', country_id = '', topicId = '' }) => ({
 	filters: {
-		persona        : 'importer_exporter',
-		cogo_entity_id : parent_entity_id,
-		platform       : 'app',
-		work_scope     : 'all',
-		status         : 'active',
-		state          : 'published',
+		persona      : 'importer_exporter',
+		cogo_entity_id,
+		platform     : 'app',
+		work_scope   : 'all',
+		status       : 'active',
+		state        : 'published',
 		country_id,
-		faq_topic_id   : topicId,
+		faq_topic_id : topicId,
 	},
 	page_limit: NO_OF_QUESTIONS_TO_BE_FETCHED,
 	page,
 });
 
 function useListFaqTopicQuestions({ topicId = '' }) {
-	const { profile } = useSelector((state) => state);
-
-	const { organization: { parent_entity_id, country_id } = {} } = profile || {};
+	const { cogo_entity_id = '', country_id = '' } = useSelector((state) => state.profile.organization);
 
 	const [currentPage, setCurrentPage] = useState(1);
 
@@ -43,7 +41,7 @@ function useListFaqTopicQuestions({ topicId = '' }) {
 				await trigger({
 					params: getParams({
 						page,
-						parent_entity_id,
+						cogo_entity_id,
 						country_id,
 						topicId,
 					}),

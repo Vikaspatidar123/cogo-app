@@ -40,11 +40,10 @@
 
 .popover_container {
 	width: 100%;
-	max-width: unset !important;
+	max-width: unset;
 	padding: 0;
 
 	:global {
-		/* stylelint-disable-next-line selector-class-pattern */
 		.tippy-content {
 			width: 100%;
 			padding: 0;

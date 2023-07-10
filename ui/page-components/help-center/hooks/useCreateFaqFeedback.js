@@ -4,9 +4,8 @@ import { DEFAULT_USER_REMARKS_FOR_FEEDBACK } from '../constants';
 
 import getApiErrorString from '@/packages/forms/utils/getApiError';
 import { useRequest } from '@/packages/request';
-import { useSelector } from '@/packages/store';
 
-const getPayload = ({ answerId, isPositive }) => ({
+const getPayload = ({ answerId = '', isPositive = true }) => ({
 	faq_answer_id : answerId,
 	is_positive   : isPositive,
 	status        : 'active',
@@ -14,17 +13,14 @@ const getPayload = ({ answerId, isPositive }) => ({
 });
 
 function useCreateFaqFeedback({ getQuestion = () => {}, query = {} }) {
-	const { scope } = useSelector((state) => state.general);
+	const { faq_id = '' } = query;
 
 	const [{ loading }, trigger] = useRequest({
 		url    : '/cogo_academy/create_faq_feedback',
 		method : 'post',
-		scope,
 	}, { manual: false });
 
-	const { faq_id = '' } = query;
-
-	const submitFaqFeedback = async ({ answerId, isPositive = true }) => {
+	const submitFaqFeedback = async ({ answerId = '', isPositive = true }) => {
 		try {
 			await trigger({
 				data: getPayload({

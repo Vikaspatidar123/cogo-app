@@ -30,7 +30,7 @@ function useListFaqQuestions({ selectedQuery = '' }) {
 				},
 			});
 		} catch (error) {
-			console.log('error', error);
+			console.error('error', error);
 		}
 	}, [trigger]);
 

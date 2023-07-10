@@ -8,7 +8,7 @@ const useGetTicketsUnreadCount = () => {
 		url     : '/unread_count',
 		method  : 'get',
 		authkey : 'get_tickets_unread_count',
-	}, { manual: true });
+	}, { manual: false });
 
 	const getUnreadTicketsCount = () => {
 		try {
@@ -18,7 +18,7 @@ const useGetTicketsUnreadCount = () => {
 				},
 			});
 		} catch (error) {
-			console.log(error);
+			console.error(error);
 		}
 	};
 

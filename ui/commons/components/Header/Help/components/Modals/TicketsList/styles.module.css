@@ -1,8 +1,8 @@
 .modal_body {
 	height: 85vh;
-	max-height: unset !important;
+	max-height: unset;
 	padding: 0;
-	border-top: none !important;
+	border-top: none;
 
 	:global {
 		.ui_tabs_container {
@@ -14,7 +14,7 @@
 		}
 
 		.ui_tab_list_container {
-			width: 100% !important;
+			width: 100%;
 		}
 
 		.ui_tabs_tabpanel {

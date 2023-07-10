@@ -14,6 +14,12 @@ import formatDate from '@/ui/commons/utils/formatDate';
 
 const translationKey = 'common:components_header_tickets_details';
 
+const handleClick = ({ locale, query }) => {
+	const baseUrl = process.env.NEXT_PUBLIC_APP_URL;
+	const urlToOpen = `${baseUrl}/${locale}/${query?.org_id}/${query?.branch_id}/help-center`;
+	window.open(urlToOpen, '_blank', 'noreferrer');
+};
+
 function TicketComment({
 	type = '',
 	createdAt = '',
@@ -30,12 +36,6 @@ function TicketComment({
 	const { t } = useTranslation(['common']);
 
 	const isAgent = systemUserID !== userId || userType === 'system';
-
-	const handleClick = () => {
-		const baseUrl = process.env.NEXT_PUBLIC_APP_URL;
-		const urlToOpen = `${baseUrl}/${locale}/${query?.org_id}/${query?.branch_id}/help-center`;
-		window.open(urlToOpen, '_blank', 'noreferrer');
-	};
 
 	if (type === 'respond') {
 		return (
@@ -82,7 +82,7 @@ function TicketComment({
 							<div
 								className={styles.view_more_btn}
 								role="presentation"
-								onClick={handleClick}
+								onClick={() => handleClick(locale, query)}
 							>
 								{t(`${translationKey}_view_more_button`)}
 							</div>

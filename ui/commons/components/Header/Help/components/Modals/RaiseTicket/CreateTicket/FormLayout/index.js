@@ -63,7 +63,6 @@ function FormLayout(props) {
 					name="file_urls"
 					uploadType="aws"
 					control={control}
-					uploadIcon="ic-upload"
 				/>
 			</div>
 

@@ -12,11 +12,12 @@ import styles from './styles.module.css';
 import { useRouter } from '@/packages/next';
 
 const translationKey = 'helpCenter:faq_home_page';
+const EMPTY_ARR = [...Array(8).keys()];
 
 function FaqTopics() {
+	const { push } = useRouter();
 	const { t } = useTranslation(['helpCenter']);
 
-	const { push } = useRouter();
 	const { loading = false, faqTopics = {} } = useListFaqTopics({
 		listAll: false,
 	});
@@ -28,7 +29,7 @@ function FaqTopics() {
 			<div className={styles.title}>{t(`${translationKey}_browse_category`)}</div>
 			<div className={styles.topics_container}>
 				{loading ? (
-					[...Array(8).keys()].map((itm) => (
+					EMPTY_ARR.map((itm) => (
 						<div key={itm} className={styles.topic_container}>
 							<div className={styles.square_div}>
 								<div

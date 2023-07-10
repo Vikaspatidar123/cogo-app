@@ -15,7 +15,7 @@ function PromocodeDetails({ promotion = {}, setShowDetails = () => {} }) {
 							promotion_discount={promotion_discount}
 						/>
 						<div className={styles.details}>
-							<div className={styles.details_title}>{promotion.promocodes[0]?.promocode}</div>
+							<div className={styles.details_title}>{promotion.codes?.[0]?.promocode}</div>
 							<div className={styles.details_description}>{promotion?.description}</div>
 						</div>
 					</div>

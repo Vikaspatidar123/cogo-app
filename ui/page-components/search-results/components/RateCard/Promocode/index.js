@@ -6,7 +6,7 @@ import styles from './styles.module.css';
 function PromoCode({ promotion = {} }) {
 	const [showDetails, setShowDetails] = useState(false);
 
-	if (promotion.promocodes === undefined) {
+	if (promotion.codes === undefined) {
 		return null;
 	}
 
@@ -37,7 +37,7 @@ function PromoCode({ promotion = {} }) {
 				<div className={styles.text}>
 					Apply
 					{' '}
-					{promotion.promocodes[0]?.promocode}
+					{promotion.codes?.[0]?.promocode}
 					{' '}
 					to get
 					{' '}

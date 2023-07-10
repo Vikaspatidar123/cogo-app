@@ -4,6 +4,7 @@ import { IcCFtick } from '@cogoport/icons-react';
 import { startCase } from '@cogoport/utils';
 import { useState } from 'react';
 
+import getPromotion from '../../utils/getPromotion';
 import ContractRateCard from '../ContractRateCard';
 import HaulageText from '../RateCard/HaulageText';
 import Promocode from '../RateCard/Promocode';
@@ -163,7 +164,7 @@ function FtlRateCard({
 							isDestinationHaulageRates={isDestinationHaulageRates}
 						/>
 
-						<Promocode promotion={data.promocode} />
+						<Promocode promotion={getPromotion({ promocodes: data.promocode })} />
 						{detailsToShow(data)?.length > 0 ? (
 							<>
 								<div className={`${styles.line_vrt} ${styles.horizontal}`} />

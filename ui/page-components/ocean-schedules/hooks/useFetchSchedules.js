@@ -1,4 +1,5 @@
 import { merge } from '@cogoport/utils';
+import { useTranslation } from 'next-i18next';
 import { useState, useEffect, useCallback } from 'react';
 
 import getControls from '../config';
@@ -27,6 +28,8 @@ const getPayload = ({ general, filters, currentPage }) => ({
 const useFetchSchedules = () => {
 	const { general } = useSelector((state) => state);
 
+	const { t } = useTranslation(['oceanSchedule']);
+
 	const [filters, setFilters] = useState({});
 	const [currentPage, setCurrentPage] = useState(1);
 	const [schedules, setSchedules] = useState({});
@@ -49,7 +52,7 @@ const useFetchSchedules = () => {
 		}),
 	);
 
-	const fields = getControls({ portOptions });
+	const fields = getControls({ portOptions, t });
 
 	const handleCreateSchedule = () => {
 		if (formValues.origin_port === formValues.destination_port) {

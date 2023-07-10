@@ -66,7 +66,6 @@ function OceanSchedules() {
 				{errorMessage && (
 					<div className={styles.error_message}>
 						{t('oceanSchedule:origin_port_error_message')}
-
 					</div>
 				)}
 			</div>
@@ -92,7 +91,7 @@ function OceanSchedules() {
 					<Pagination
 						type="number"
 						currentPage={currentPage}
-						totalItems={total_count || 10}
+						totalItems={total_count}
 						pageSize={page_limit}
 						onPageChange={setCurrentPage}
 					/>

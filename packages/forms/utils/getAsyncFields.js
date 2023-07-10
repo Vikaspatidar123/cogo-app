@@ -410,14 +410,11 @@ export {
 	asyncOrganizationBranches,
 	asyncTaxNumbers,
 	asyncTradeContacts,
-<<<<<<< HEAD
 	asyncCurrencies,
-=======
 	asyncFieldsSixDigitHsCode,
 	asyncFieldsOceanPocDetails,
 	asyncFieldsAirPocDetails,
 	asyncFieldsAirLineList,
 	asyncFieldsShippingLineList,
 	asyncFieldsShippingLines,
->>>>>>> b913f5becb6bfe050edfb0eed6d445f0af024acf
 };

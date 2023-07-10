@@ -9,7 +9,9 @@ import InvoiceDetails from './components/InvoiceDetails';
 import InvoiceList from './components/InvoiceList';
 import styles from './styles.module.css';
 
-function Invoices() {
+function Invoices({
+	getCreditRequestResponse = {},
+}) {
 	const [showCiDetails, setShowCiDetails] = useState({
 		flag                       : false,
 		sid                        : '',
@@ -62,15 +64,15 @@ function Invoices() {
 					</div>
 
 					{!loading && (list || []).length > 0
-			&& (list || []).map((invoice) => (
-				<InvoiceList
-					key={invoice.id}
-					invoice={invoice}
-						// creditRequest={creditRequest}
-					refetch={fetchInvoiceList}
-					setShowCiDetails={setShowCiDetails}
-				/>
-			))}
+						&& (list || []).map((invoice) => (
+							<InvoiceList
+								key={invoice.id}
+								invoice={invoice}
+								creditRequest={getCreditRequestResponse}
+								refetch={fetchInvoiceList}
+								setShowCiDetails={setShowCiDetails}
+							/>
+						))}
 
 					<div className={styles.divFlex}>
 						<Pagination
@@ -90,13 +92,15 @@ function Invoices() {
 			{showCiDetails.flag && (
 				<InvoiceDetails
 					refetchList={fetchInvoiceList}
-					// creditRequest={creditRequest}
+					// creditRequest={getCreditRequestResponse}
 					setShowCiDetails={setShowCiDetails}
 					showCiDetails={showCiDetails}
 				/>
 			)}
 			{openAddFundingRequest && (
 				<AddFundingRequest
+				refetchList={fetchInvoiceList}
+					getCreditRequestResponse={getCreditRequestResponse}
 					openAddFundingRequest={openAddFundingRequest}
 					setOpenFundingRequest={setOpenFundingRequest}
 				/>

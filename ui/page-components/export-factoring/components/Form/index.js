@@ -3,6 +3,7 @@ import BasicDetails from '../BasicDetails';
 import Buyers from '../Buyers';
 import CompanyInformation from '../CompanyInformation';
 import DirectorInformation from '../DirectorInformation';
+import Invoices from '../Invoices';
 import OfferLetterDetails from '../OfferLetterDetails';
 import { OfferLetterWaiting } from '../WaitingScreens';
 
@@ -29,7 +30,8 @@ function Form({ active = {}, getCreditRequestResponse = {}, refetch = () => {}, 
 				refetch={refetch}
 				loading={loading}
 			/> */}
-			<Buyers getCreditRequestResponse={getCreditRequestResponse} />
+			{/* <Buyers getCreditRequestResponse={getCreditRequestResponse} /> */}
+			<Invoices getCreditRequestResponse={getCreditRequestResponse} />
 		</div>
 	);
 }

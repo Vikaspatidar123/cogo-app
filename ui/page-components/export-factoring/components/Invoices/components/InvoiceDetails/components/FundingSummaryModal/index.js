@@ -4,16 +4,16 @@ import styles from './styles.module.css';
 
 import formatAmount from '@/ui/commons/utils/formatAmount';
 import useFetchFundingSummary from '@/ui/page-components/export-factoring/hooks/useFetchFundingSummary';
+import { Placeholder } from '@cogoport/components';
 
-const formatCredit = (currency, amount) => {
+const formatCredit = (currency = 'USD', amount = 0) => {
 	const value = formatAmount({
 		amount,
 		currency,
 		options: {
 			style                 : 'currency',
-			currency,
-			currencyDisplay       : 'symbol',
-			maximumFractionDigits : 4,
+			currencyDisplay       : 'code',
+			maximumFractionDigits : 10,
 		},
 	}).replace(/[T]/, 'K');
 	return value;
@@ -24,22 +24,49 @@ function FundingSummaryModal({
 	showFundingSummary,
 	setShowFundingSummary,
 }) {
+	
 	const { data: fundingData = {}, loading } = useFetchFundingSummary({
 		invoice: data,
 		// creditRequest,
 	});
+
+	const { status = '' } = data || {};
+
+	const {
+		invoiceSummary = {},
+		estimatedSettlementSummary = {},
+		actualSettlementSummary = {},
+	} = fundingData || {};
 	const {
 		currency = '',
-		deductions = '',
-		due_date = '',
-		final_advance_amount = '',
-		gross_invoice_amount = '',
-		interest_charges = '',
-		max_advance_amount = '',
-		settlement_amount = '',
-		stated_amount = '',
-		total_charges = '',
-	} = fundingData;
+		deductions = 0,
+		dueDate = '',
+		finalAdvanceAmount = 0,
+		grossInvoiceAmount = 0,
+		isFundingComplete = false,
+		maxAdvanceAmount = 0,
+		statedAmount = 0,
+		totalUnpaidInvoiceAmount = 0,
+	} = invoiceSummary;
+	const {
+		interestCharges = 0,
+		settlementAmount = 0,
+		setupFees = 0,
+		totalCharges = 0,
+		transactionCharges = 0,
+	} = estimatedSettlementSummary;
+	const {
+		actualInterestCharges = 0,
+		actualSettlementAmount = 0,
+		actualSetupFees = 0,
+		actualTotalCharges = 0,
+		actualTransactionCharges = 0,
+		penalCharges = 0,
+		totalPaymentReceived = 0,
+		paymentsFunded = [],
+		paymentsReceived = [],
+	} = actualSettlementSummary;
+
 	return (
 		<Modal
 			size="lg"
@@ -53,19 +80,20 @@ function FundingSummaryModal({
 						.fill(1)
 						.map(() => (
 							<div className="loader">
-								<Skeleton height="50px" width="900px" />
-								<Skeleton height="50px" width="900px" />
+								<Placeholder height="50px" width="900px" />
+								<Placeholder height="50px" width="900px" />
 							</div>
 						))
+					
 				) : (
 					<>
-						<div className={StyleSheet.heading} style={{ fontSize: '15px', padding: '10px 0px' }}>
-							Funding Details
+						<div className={styles.heading} style={{ fontSize: '15px', padding: '10px 0px' }}>
+							Invoice Details
 						</div>
 						<div className={styles.flexBox}>
 							<div className={styles.labelText}>Gross Invoice Amount</div>
 							<div className={styles.valueText}>
-								{formatCredit(currency, gross_invoice_amount)}
+								{formatCredit(currency, grossInvoiceAmount)}
 							</div>
 						</div>
 						<div className={styles.flexBox}>
@@ -78,12 +106,20 @@ function FundingSummaryModal({
 						</div>
 						<div className={styles.flexBox}>
 							<div className={styles.labelText}>Stated Amount </div>
-							<div className={styles.valueText}>{formatCredit(currency, stated_amount)}</div>
+							<div className={styles.valueText}>{formatCredit(currency, statedAmount)}</div>
 						</div>
+						{totalUnpaidInvoiceAmount !== 0 && (
+							<div className={styles.flexBox}>
+								<div className={styles.labelText}>Total Unpaid Invoice Amount </div>
+								<div className={styles.valueText}>
+									{formatCredit(currency, totalUnpaidInvoiceAmount)}
+								</div>
+							</div>
+						)}
 						<div className={styles.flexBox}>
 							<div className={styles.labelText}>Max Advance Amount </div>
 							<div className={styles.valueText}>
-								{formatCredit(currency, max_advance_amount)}
+								{formatCredit(currency, maxAdvanceAmount)}
 							</div>
 						</div>
 
@@ -95,34 +131,134 @@ function FundingSummaryModal({
 								Final Advance Amount
 							</div>
 							<div className={styles.valueText}>
-								{formatCredit(currency, final_advance_amount)}
+								{formatCredit(currency, finalAdvanceAmount)}
 							</div>
 						</div>
 
-						<div className={StyleSheet.heading} style={{ fontSize: '15px', padding: '10px 0px' }}>
+						<div className={styles.heading} style={{ fontSize: '15px', padding: '10px 0px' }}>
 							Estimated Settlement Details
 						</div>
 						<div className={styles.flexBox}>
 							<div className={styles.labelText}>Estimated due date</div>
-							<div className={styles.valueText}>{due_date}</div>
+							<div className={styles.valueText}>{dueDate}</div>
 						</div>
 						<div className={styles.flexBox}>
 							<div className={styles.labelText}>Estimated Interest/Finance charges </div>
-							<div className={styles.valueText}>{formatCredit(currency, interest_charges)}</div>
+							<div className={styles.valueText}>{formatCredit(currency, interestCharges)}</div>
+						</div>
+						<div className={styles.flexBox}>
+							<div className={styles.labelText}>Estimated Transaction Charges </div>
+							<div className={styles.valueText}>{formatCredit(currency, transactionCharges)}</div>
+						</div>
+						<div className={styles.flexBox}>
+							<div className={styles.labelText}>Estimated Setup Fees </div>
+							<div className={styles.valueText}>{formatCredit(currency, setupFees)}</div>
 						</div>
 						<div className={styles.flexBox}>
 							<div className={styles.labelText} style={{ fontWeight: 'bolder' }}>
 								Estimated Total Charges
 							</div>
-							<div className={styles.valueText}>{formatCredit(currency, total_charges)}</div>
+							<div className={styles.valueText}>{formatCredit(currency, totalCharges)}</div>
 						</div>
 						<div
 							className={styles.flexBox}
 							style={{ borderTop: '1px dashed #abcd62', borderBottom: '1px solid #e0e0e0' }}
 						>
 							<div className={styles.labelText} style={{ fontWeight: 'bolder' }}>Settlement Amount</div>
-							<div className={styles.valueText}>{formatCredit(currency, settlement_amount)}</div>
+							<div className={styles.valueText}>{formatCredit(currency, settlementAmount)}</div>
 						</div>
+
+						{isFundingComplete === true && (
+							<>
+								<div className={styles.heading} style={{ fontSize: '15px', padding: '10px 0px' }}>
+									Funding Details
+								</div>
+								{paymentsFunded.map((i) => (
+									<div className={styles.flexBox} key={i.amount}>
+										<div className={styles.labelText}>Payment Funded</div>
+										<div className={styles.valueText}>
+											{i.paymentDate}
+											&ensp; &ensp;
+											{formatCredit(currency, i.amount)}
+										</div>
+									</div>
+								))}
+							</>
+						)}
+
+						{status === 'settled' && (
+							<>
+								<div className={styles.heading} style={{ fontSize: '15px', padding: '10px 0px' }}>
+									Payment Details
+								</div>
+								{paymentsReceived.map((i) => (
+									<div className={styles.flexBox} key={i.amount}>
+										<div className={styles.labelText}>Payment Received</div>
+										<div className={styles.valueText}>
+											{i.paymentDate}
+&ensp; &ensp;
+											{formatCredit(currency, i.amount)}
+										</div>
+									</div>
+								))}
+								<div
+									className={styles.flexBox}
+									style={{ borderTop: '1px dashed #abcd62', borderBottom: '1px solid #e0e0e0' }}
+								>
+									<div className={styles.labelText} style={{ fontWeight: 'bolder' }}>
+										Total Payment Received
+									</div>
+									<div className={styles.valueText}>
+										{formatCredit(currency, totalPaymentReceived)}
+									</div>
+								</div>
+								<div className={styles.heading} style={{ fontSize: '15px', padding: '10px 0px' }}>
+									Actual Settlement Details
+								</div>
+								<div className={styles.flexBox}>
+									<div className={styles.labelText}>Finance Charges </div>
+									<div className={styles.valueText}>
+										{formatCredit(currency, actualInterestCharges)}
+									</div>
+								</div>
+								<div className={styles.flexBox}>
+									<div className={styles.labelText}>Transaction Charges </div>
+									<div className={styles.valueText}>
+										{formatCredit(currency, actualTransactionCharges)}
+									</div>
+								</div>
+								<div className={styles.flexBox}>
+									<div className={styles.labelText}>Setup Fees </div>
+									<div className={styles.valueText}>
+										{formatCredit(currency, actualSetupFees)}
+									</div>
+								</div>
+								<div className={styles.flexBox}>
+									<div className={styles.labelText}>Penal Charges </div>
+									<div className={styles.valueText}>{formatCredit(currency, penalCharges)}</div>
+								</div>
+								<div className={styles.flexBox}>
+									<div className={styles.labelText} style={{ fontWeight: 'bolder' }}>
+										Total Charges
+									</div>
+									<div className={styles.valueText}>
+										{formatCredit(currency, actualTotalCharges)}
+									</div>
+								</div>
+								<div
+									className={styles.flexBox}
+									style={{ borderTop: '1px dashed #abcd62', borderBottom: '1px solid #e0e0e0' }}
+								>
+									<div className={styles.labelText} style={{ fontWeight: 'bolder' }}>
+										Settlement Amount
+									</div>
+									<div className={styles.valueText}>
+										{formatCredit(currency, actualSettlementAmount)}
+									</div>
+								</div>
+							</>
+						)}
+
 					</>
 				)}
 			</Modal.Body>

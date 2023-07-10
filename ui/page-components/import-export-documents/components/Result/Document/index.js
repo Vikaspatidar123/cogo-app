@@ -1,7 +1,25 @@
 import { cl, Button, Tooltip } from '@cogoport/components';
-import { IcMPdf, IcMDownload, IcMEyeopen } from '@cogoport/icons-react';
+import { IcMPdf, IcMDownload } from '@cogoport/icons-react';
 
 import styles from '../styles.module.css';
+
+import { downloadDocument } from '@/ui/commons/utils/downloadDocument';
+
+const MAX_DESC_LENGTH = 50;
+
+function RenderDesc({ desc = '' }) {
+	if (desc?.length > MAX_DESC_LENGTH) {
+		return (
+			<Tooltip content={desc} interactive>
+				<span>
+					{desc.substring(0, MAX_DESC_LENGTH)}
+					...
+				</span>
+			</Tooltip>
+		);
+	}
+	return <span>{desc || '--'}</span>;
+}
 
 function Document({ doc = {}, hsNumber = '' }) {
 	const {
@@ -12,29 +30,8 @@ function Document({ doc = {}, hsNumber = '' }) {
 		docResponsibleParty = '',
 	} = doc;
 
-	const renderDesc = (desc = '') => {
-		if (desc?.length > 50) {
-			return (
-				<Tooltip content={desc} interactive>
-					<span>
-						{desc.substring(0, 50)}
-						...
-					</span>
-				</Tooltip>
-			);
-		}
-		return desc || '--';
-	};
-
-	const previewHandler = () => {
-		if (typeof window !== 'undefined') {
-			window.open(docLink, '_blank');
-		}
-	};
-	const downloadHandler = () => {
-		const url = `${process.env.NEXT_PUBLIC_BUSINESS_FINANCE_BASE_URL}/saas/trade-engine/pdf?`
-		+ `docLink=${docLink}&docName=${docName}&hsNumber=${hsNumber}`;
-		window.open(url);
+	const clickHandler = () => {
+		downloadDocument({ urlKey: 'importExportDoc', payloadObj: { docLink, docName, hsNumber } });
 	};
 
 	return (
@@ -46,21 +43,18 @@ function Document({ doc = {}, hsNumber = '' }) {
 						<span>{docName}</span>
 					</div>
 					<div className={styles.cta_web_view}>
-						<Button className={styles.download_btn} themeType="linkUi" onClick={downloadHandler}>
+						<Button
+							className={styles.download_btn}
+							themeType="linkUi"
+							onClick={clickHandler}
+						>
 							Download
 						</Button>
 
-						<Button themeType="linkUi" onClick={previewHandler}>
-							Preview
-						</Button>
 					</div>
 					<div className={styles.cta_mobile_view}>
-						<Button className={styles.download_btn} themeType="linkUi" onClick={downloadHandler}>
+						<Button className={styles.download_btn} themeType="linkUi" onClick={clickHandler}>
 							<IcMDownload />
-						</Button>
-
-						<Button themeType="linkUi" onClick={previewHandler}>
-							<IcMEyeopen />
 						</Button>
 					</div>
 				</div>
@@ -75,7 +69,9 @@ function Document({ doc = {}, hsNumber = '' }) {
 					</div>
 					<div className={cl`${styles.info} ${styles.desc_row}`}>
 						<span className={styles.label}>Description: </span>
-						<span className={styles.value}>{renderDesc(docExpNotes)}</span>
+						<span className={styles.value}>
+							<RenderDesc desc={docExpNotes} />
+						</span>
 					</div>
 				</div>
 			</div>

@@ -1,14 +1,15 @@
 import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
 
-import { HeadingIcon } from '../configuration/icon-configuration';
 import useFetchQuotaDetails from '../hooks/useFetchQuotaDetails';
 import useSaveDraft from '../hooks/useSaveDraft';
 
 import Content from './Content';
 import styles from './styles.module.css';
 
+import { Image } from '@/packages/next';
 import PaymentModal from '@/ui/commons/components/PaymentInitiation/component/PaymentModal';
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
 function TraderEligibilty() {
 	const { t } = useTranslation(['traderEligibilityCheck']);
@@ -30,7 +31,13 @@ function TraderEligibilty() {
 		<div className={styles.wrapper}>
 			<div className={styles.container}>
 				<div className={styles.heading}>
-					<img src={HeadingIcon} alt="" className={styles.svg_style} />
+					<Image
+						src={GLOBAL_CONSTANTS.image_url.heading_icon}
+						alt=""
+						className={styles.svg_style}
+						width={40}
+						height={40}
+					/>
 					{t('traderEligibilityCheck:trader_eligibility_check_title')}
 				</div>
 			</div>

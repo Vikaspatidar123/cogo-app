@@ -1,5 +1,7 @@
 import styles from '../components/TraderDetails/styles.module.css';
-import { LoadingIcon } from '../configuration/icon-configuration';
+
+import { Image } from '@/packages/next';
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
 export const quotaAvailabilityfunction = ({
 	setQuotaAvailableStats,
@@ -37,7 +39,15 @@ export const quotaAvailabilityfunction = ({
 
 export const renderBtn = ({ quotaLoading, serviceRatesLoading, t }) => {
 	if (quotaLoading || serviceRatesLoading) {
-		return <img className={styles.style_loading} src={LoadingIcon} alt="" />;
+		return (
+			<Image
+				className={styles.style_loading}
+				src={GLOBAL_CONSTANTS.image_url.loading_icon}
+				alt=""
+				height={30}
+				width={30}
+			/>
+		);
 	}
 	return t('traderEligibilityCheck:tec_form_continue_button_label');
 };

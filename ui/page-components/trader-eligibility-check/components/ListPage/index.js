@@ -4,10 +4,6 @@ import { useTranslation } from 'next-i18next';
 import { useState, useEffect } from 'react';
 
 import PaymentStatusModal from '../../common/PaymentStatusModal';
-import {
-	HeadingIcon,
-	SecureIcon,
-} from '../../configuration/icon-configuration';
 import useCheckStatus from '../../hooks/useCheckStatus';
 import usePostTradeEngine from '../../hooks/usePostTradeEngine';
 import style1 from '../Content/styles.module.css';
@@ -16,6 +12,7 @@ import style2 from '../styles.module.css';
 import styles from './styles.module.css';
 
 import { useRouter, dynamic, Image } from '@/packages/next';
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
 const Map = dynamic(() => import('../Map'), { ssr: false });
 
@@ -65,7 +62,13 @@ function ListPage() {
 				</div>
 				<div className={styles.title_style}>
 					<div className={style2.heading}>
-						<Image className={style2.svg_style} src={HeadingIcon} alt="" width={40} height={40} />
+						<Image
+							className={style2.svg_style}
+							src={GLOBAL_CONSTANTS.image_url.heading_icon}
+							alt=""
+							width={40}
+							height={40}
+						/>
 						{t('traderEligibilityCheck:trader_eligibility_check_title')}
 					</div>
 				</div>
@@ -174,7 +177,7 @@ function ListPage() {
 						)}
 						{!getTradeEngineListLoading && screeningRequestResponse?.length === 0 && (
 							<div className={styles.list_wrapper}>
-								<Image src={SecureIcon} alt="" height={300} width={300} />
+								<Image src={GLOBAL_CONSTANTS.image_url.secure_icon} alt="" height={300} width={300} />
 								<div className={styles.label}>
 									<div className={styles.bold}>
 										{screeningPartyName.toUpperCase()}

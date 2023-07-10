@@ -4,7 +4,6 @@ import { useTranslation } from 'next-i18next';
 import { useState, useMemo } from 'react';
 
 import getField from '../../../../../packages/forms/Controlled';
-import { SubHeadingIcon } from '../../configuration/icon-configuration';
 import getControls from '../../configuration/inputcontrols';
 import useGetStateFromPincode from '../../hooks/useGetStateFromPincode';
 import { renderBtn } from '../../utils';
@@ -12,6 +11,8 @@ import { renderBtn } from '../../utils';
 import styles from './styles.module.css';
 
 import { useForm, asyncFieldsLocations, useGetAsyncOptions } from '@/packages/forms';
+import { Image } from '@/packages/next';
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
 function TraderDetails({
 	quotaLoading = false,
@@ -70,7 +71,13 @@ function TraderDetails({
 			<form type="submit">
 				<div>
 					<div className={styles.title_div}>
-						<img src={SubHeadingIcon} alt="" className={styles.sub_heading_icon} />
+						<Image
+							src={GLOBAL_CONSTANTS.image_url.sub_heading_icon}
+							alt=""
+							className={styles.sub_heading_icon}
+							width={30}
+							height={30}
+						/>
 						<div className={styles.title}>
 							<div>{t('traderEligibilityCheck:tec_form_title')}</div>
 							<div className={cl`${styles.line_wrapper_mobile} ${styles.line_wrapper_web}`}>

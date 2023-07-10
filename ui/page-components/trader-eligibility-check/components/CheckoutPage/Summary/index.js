@@ -2,15 +2,13 @@ import { Button } from '@cogoport/components';
 import { isEmpty } from '@cogoport/utils';
 import { useTranslation } from 'next-i18next';
 
-import {
-	LoadingIcon,
-	NoDataIcon,
-} from '../../../configuration/icon-configuration';
 import redirectUrl from '../../../constants/redirectUrl';
 import style from '../styles.module.css';
 
 import styles from './styles.module.css';
 
+import { Image } from '@/packages/next';
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 import formatAmount from '@/ui/commons/utils/formatAmount';
 
 function Summary({
@@ -79,7 +77,7 @@ function Summary({
 		if (loading) {
 			return (
 				<div className={style.loading_style}>
-					<img src={LoadingIcon} alt="" />
+					<Image src={GLOBAL_CONSTANTS.image_url.loading_icon} alt="" width={16} height={16} />
 				</div>
 			);
 		}
@@ -97,10 +95,12 @@ function Summary({
 			{Object.keys(serviceRates).length === 0 && (
 				<div className={styles.card}>
 					<div className={styles.flex_div}>
-						<img
-							src={NoDataIcon}
+						<Image
+							src={GLOBAL_CONSTANTS.image_url.no_data_icon}
 							alt=""
 							className={styles.icon_style}
+							width={100}
+							height={200}
 						/>
 						{t('traderEligibilityCheck:tec_sorry_could_not_fetch_details')}
 					</div>

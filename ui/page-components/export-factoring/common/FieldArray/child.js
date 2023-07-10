@@ -72,7 +72,7 @@ function Child({
 					<IcMDelete
 						className={`form-fieldArray-${name}-remove`}
 						onClick={() => remove(index, 1)}
-						style={{ width: '20px', height: '20px' }}
+						style={{ width: '20px', height: '20px', margin: ' 0px 2px' }}
 					/>
 				) : null}
 			</div>

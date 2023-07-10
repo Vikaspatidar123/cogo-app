@@ -18,7 +18,7 @@ function CreateBuyerModal({ openModal, setOpenModal, loading, createBuyerAddress
 	const [stateInfo, setStateInfo] = useState({});
 	const [cityInfo, setCityInfo] = useState({});
 
-	const { control, handleSubmit, formState: { errors } } = useForm();
+	const { control, handleSubmit, formState: { errors }, register } = useForm();
 
 	const {	userDetailControl, addressDetailsControl } = createBuyerControls({ countryInfo, stateInfo });
 
@@ -29,11 +29,11 @@ function CreateBuyerModal({ openModal, setOpenModal, loading, createBuyerAddress
 		const userData = {
 			...data,
 			performedBy             : id,
-			organizationId          : organization.id,
-			state                   : stateInfo.name,
-			city                    : cityInfo.name,
-			country                 : countryInfo.name,
-			countryId               : countryInfo.id,
+			organizationId          : organization?.id,
+			state                   : stateInfo?.name,
+			city                    : cityInfo?.name,
+			country                 : countryInfo?.name,
+			countryId               : countryInfo?.id,
 			phoneCode               : data?.phoneNumber.country_code,
 			phoneNumber             : data?.phoneNumber.number,
 			partnerOrganizationType : 'BUYER',
@@ -49,7 +49,13 @@ function CreateBuyerModal({ openModal, setOpenModal, loading, createBuyerAddress
 	};
 
 	return (
-		<Modal size="md" show={openModal} onClose={() => setOpenModal(false)} scroll={false}>
+		<Modal
+			size="md"
+			show={openModal}
+			onClose={() => setOpenModal(false)}
+			scroll={false}
+			className={styles.modal_container}
+		>
 			<Modal.Header title={(
 				<div className={styles.header}>
 					<img src={iconUrl.createUser} alt="create user" />
@@ -64,6 +70,7 @@ function CreateBuyerModal({ openModal, setOpenModal, loading, createBuyerAddress
 						<div className={styles.row}>
 							{(fields || []).map((field) => {
 								const Element = getField(field?.type);
+								const isMobileNo = field?.type === 'mobile_number';
 								return (
 									<div
 										key={field?.name}
@@ -78,6 +85,8 @@ function CreateBuyerModal({ openModal, setOpenModal, loading, createBuyerAddress
 											{...field}
 											control={control}
 											handleChange={(data) => changeHandler(data, field?.name)}
+											mobileSelectRef={isMobileNo ? register(field.name, field.rules).ref
+												: undefined}
 										/>
 									</div>
 								);

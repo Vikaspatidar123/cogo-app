@@ -30,7 +30,6 @@
 .flexDiv{
     width: 100%;
     display: flex;
-    justify-content: space-between;
     flex-wrap: wrap;
 }
 
@@ -39,4 +38,19 @@
 	border-bottom: 1px solid #d6def1;
 	width: 100%;
 	align-items: center;
+}
+
+.barGraph{
+    width: 60%;
+	height: 20px;
+	background: #d6def1;
+	border-radius: 20px;
+	margin-right: 20px;
+}
+
+.utilizeDiv{
+    height: 20px;
+	color: #304e94;
+	border-radius: 20px;
+	background: #304e94;
 }

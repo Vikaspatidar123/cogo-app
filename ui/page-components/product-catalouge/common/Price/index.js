@@ -68,7 +68,7 @@ function Pricing({
 
 	useEffect(() => {
 		if (!isEdit) setValue('hsCode', hscode);
-	}, []);
+	}, [hscode]);
 
 	const onSubmit = (values) => {
 		const item = { prefiledValues, pricingDetails: values, logoUrl: values?.productImg };

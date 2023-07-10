@@ -26,7 +26,9 @@ const useGetOrganizationCreditRequest = () => {
 		try {
 			await trigger({
 				params: {
-					organization_id : organization?.id,
+					// organization_id : organization?.id,
+					// organization_id : 'd7a6df4b-a229-4e4b-b1db-a64eaf763597',
+					organization_id : '3d7c2e98-14e2-4a05-8104-a133eddc8eb6',
 					category        : 'export_factoring',
 				},
 			});

@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { cl, Button, Modal, CheckBox } from '@cogoport/components';
+import { cl, Button, Modal, Checkbox } from '@cogoport/components';
 import { IcMHourglass } from '@cogoport/icons-react';
 import { Frames, CardNumber, ExpiryDate, Cvv } from 'frames-react';
 import { useState, useEffect } from 'react';
@@ -55,7 +55,7 @@ function CheckoutModal({
 			setStartTimer(false);
 			setCountDown(0);
 		}
-		return () => {};
+		return () => { };
 	}, [countDown, startTimer]);
 
 	useEffect(() => {
@@ -67,7 +67,7 @@ function CheckoutModal({
 				is3Denabled,
 			});
 		}
-		return () => {};
+		return () => { };
 	}, [tokenGeneratedResponse]);
 
 	return (
@@ -127,7 +127,7 @@ function CheckoutModal({
 				</div>
 				<div className={styles.check_box_wrapper}>
 					<div className={styles.checkbox}>
-						<CheckBox
+						<Checkbox
 							checked={is3Denabled}
 							onChange={() => {
 								setIs3DEnabled(!is3Denabled);

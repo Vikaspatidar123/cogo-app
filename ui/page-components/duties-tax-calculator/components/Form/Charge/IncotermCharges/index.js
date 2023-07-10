@@ -9,6 +9,8 @@ import styles from './styles.module.css';
 
 import { useFieldArray } from '@/packages/forms';
 
+const NumberSelector = getField('number');
+
 function IncotermCharges({
 	name,
 	control,
@@ -25,8 +27,9 @@ function IncotermCharges({
 		name: 'incotermCharges',
 		control,
 	});
+
 	const { register } = control || {};
-	const NumberSelector = getField('number');
+
 	const addIncotermCharges = () => {
 		MAPPING[incoterm]?.forEach((ele) => {
 			append({
@@ -35,6 +38,7 @@ function IncotermCharges({
 			});
 		});
 	};
+
 	const removeIncoterm = () => {
 		fields.forEach(() => {
 			remove({});

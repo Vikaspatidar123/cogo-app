@@ -84,7 +84,7 @@
 .title {
 	padding-left: 4px;
 	font-size: 17px;
-	font-weight: 500;
+	font-weight: 600;
 	color: #2c3e50;
 }
 
@@ -102,8 +102,7 @@
 .success_msg {
 	display: block;
 	padding: 6px 12px;
-	margin: 30px;
-	margin-bottom: 10px;
+	margin: 0 30px 10px;
 	font-size: 15px;
 	color: #589c52;
 	text-align: center;

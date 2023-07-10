@@ -11,10 +11,9 @@ function ChargeDetails({
 	fields = [],
 }) {
 	return (
-		<>
-			{fields
-				.filter((items, index) => index < 2)
-				.map((item) => {
+		<div className={styles.row}>
+			{(fields || []).map((item, index) => {
+				if (index < 2) {
 					const Element = getField(item.type);
 					const renderingField = fields.find((ele) => ele.name === item.name);
 					return (
@@ -53,8 +52,10 @@ function ChargeDetails({
 								) : null}
 						</div>
 					);
-				})}
-		</>
+				}
+				return null;
+			})}
+		</div>
 	);
 }
 

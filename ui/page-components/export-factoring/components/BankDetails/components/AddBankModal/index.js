@@ -1,7 +1,7 @@
 import { Modal } from '@cogoport/components';
 import { useState } from 'react';
 
-import BankDetails from '../BankVerification';
+import BankVerification from '../BankVerification';
 
 function AddBankModal() {
 	const [showAddBankModal, setShowAddBankModal] = useState(true);
@@ -16,7 +16,7 @@ function AddBankModal() {
 			style={{ maxHeight: '700px' }}
 		>
 			<Modal.Body style={{ maxHeight: '700px' }}>
-				<BankDetails />
+				<BankVerification />
 			</Modal.Body>
 		</Modal>
 	);

@@ -5,9 +5,15 @@ import { useState } from 'react';
 import BankInfo from './components/BankInfo';
 import BankVerification from './components/BankVerification';
 import styles from './styles.module.css';
+import { isEmpty } from '@cogoport/utils';
 
-function BankDetails() {
+function BankDetails({
+	getCreditRequestResponse = {},
+}) {
 	const [addBankModal, setAddBankModal] = useState(false);
+
+	const { exporter_account_infos = [] } = getCreditRequestResponse || {};
+
 	return (
 		<div>
 			<div className={styles.header_div}>
@@ -24,7 +30,13 @@ function BankDetails() {
 				</Button>
 			</div>
 			<div>
-				<BankInfo />
+				{!isEmpty(exporter_account_infos) && exporter_account_infos?.map((bank, index) => (
+					<BankInfo
+						bank={bank}
+						index={index}
+						getCreditRequestResponse={getCreditRequestResponse}
+					/>
+				))}
 			</div>
 			{addBankModal && (
 				<Modal

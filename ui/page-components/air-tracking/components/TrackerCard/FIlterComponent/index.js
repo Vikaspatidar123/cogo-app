@@ -91,7 +91,7 @@ function FilterComponent({ trackers, setFilters, setShowFilters }) {
 			{shippersList.length > 0 && (
 				<div className={styles.label_selector_ctn}>
 					<div className={styles.label}>
-						{fields[1].label}
+						{fields[1]?.label}
 					</div>
 					<div className={styles.selector}>
 						<MultiselectController {...fields[1]} control={control} options={shippersList} />

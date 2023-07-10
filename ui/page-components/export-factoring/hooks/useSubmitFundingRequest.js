@@ -31,7 +31,6 @@ const useSubmitFundingRequest = ({
 	);
 
 	const onSubmit = async (val) => {
-        console.log(val, 'val');
 		try {
 			const payload = {
 				export_factoring_service_attributes: {

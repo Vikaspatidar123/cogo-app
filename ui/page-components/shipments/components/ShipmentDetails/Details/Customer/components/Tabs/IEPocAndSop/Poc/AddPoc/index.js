@@ -26,6 +26,7 @@ function AddPoc({
 		errors,
 		onError,
 		loading,
+		register,
 	} = useCreatePoc({
 		stakeholder,
 		controls,
@@ -91,6 +92,7 @@ function AddPoc({
 					<div>
 						<Modal.Body>
 							<Layout
+								register={register}
 								control={control}
 								controls={controlPoc}
 								errors={errors}

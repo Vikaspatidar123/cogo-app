@@ -16,7 +16,6 @@ function Promotion() {
 			<img className={styles.image} src={data?.image_url} alt="img" />
 		</div>
 	);
-
 	const mainData = [];
 
 	(promotion || []).forEach((data) => {

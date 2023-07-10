@@ -1,9 +1,12 @@
 .formDiv{
-    width: 60%;
-    padding: 0px;
+    width: 100%;
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
 }
 
 .field {
+	width: 48%;
 	margin: 0 0 15px;
     padding-left: 20px;
 }

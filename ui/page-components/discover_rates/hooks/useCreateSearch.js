@@ -1,3 +1,5 @@
+import { Toast } from '@cogoport/components';
+
 import { APP_EVENT } from '../../../commons/constants/analytics/constants';
 import trackEvent from '../../../commons/constants/analytics/trackEvent';
 import getFinalServices from '../common/SearchForm/utils/getFinalServices';
@@ -7,7 +9,11 @@ import { useRouter } from '@/packages/next';
 import { useRequest } from '@/packages/request';
 import { useSelector } from '@/packages/store';
 import { UNDEFINED_ATTRIBUTES } from '@/ui/commons/constants/undefined_attributes';
-import showErrorsInToast from '@/ui/commons/utils/showErrorsInToast';
+
+const showError = (data) => {
+	const error_message = Object.keys(data).map((key) => `${key}: ${JSON.stringify(data[key])}`).join(', ');
+	return error_message;
+};
 
 const useCreateSearch = ({
 	optionsControls = {},
@@ -105,7 +111,10 @@ const useCreateSearch = ({
 				url      : null,
 			};
 		} catch (err) {
-			showErrorsInToast(err?.data);
+			const { response } = err || {};
+			const { data } = response || {};
+			const error_message = showError(data);
+			Toast.error(error_message);
 			return {
 				error    : true,
 				messages : [],

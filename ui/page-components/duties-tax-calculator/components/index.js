@@ -70,7 +70,6 @@ function DutiesTaxCalulator() {
 	});
 
 	useEffect(() => {
-		/* eslint-disable no-undef */
 		if (billId) {
 			localStorage.removeItem('formData');
 			localStorage.removeItem('draftId');

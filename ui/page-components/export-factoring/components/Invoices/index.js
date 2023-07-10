@@ -50,6 +50,7 @@ function Invoices() {
 							placeholder="Search by SID/FID/INVOICE NO."
 							style={{ width: '300px' }}
 							prefix={<IcMSearchlight width="20px" height="20px" />}
+							onChange={(e) => setSearchValue(e)}
 						/>
 					</div>
 					<div className={styles.headFlex}>

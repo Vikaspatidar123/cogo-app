@@ -1,8 +1,7 @@
 .container {
 	position: absolute;
-	top: -900px;
 	left: 28%;
-	z-index: 10000;
+	z-index: 700;
 	width: 550px;
 	max-height: 100%;
 	overflow: scroll;
@@ -24,7 +23,7 @@
 		}
 
 		100% {
-			top: 0;
+			top: 10px;
 		}
 	}
 
@@ -37,6 +36,8 @@
 .header_container {
 	padding: 10px;
 	text-align: center;
+	border-bottom: 1px solid #d3d3d3;
+	box-shadow: 1px 3px 10px -2px rgb(211 211 211 / 100%);
 }
 
 .title {
@@ -135,6 +136,8 @@
 	display: flex;
 	justify-content: flex-end;
 	padding: 15px 33px 20px;
+	border-top: 1px solid #d3d3d3;
+	box-shadow: 1px -3px 14px -2px rgb(211 211 211 / 100%);
 }
 
 .tooltip_style {
@@ -164,4 +167,9 @@
 
 .icon_img {
 	width: 130px;
+}
+
+.scroll_container {
+	max-height: 53vh;
+	overflow-y: scroll;
 }

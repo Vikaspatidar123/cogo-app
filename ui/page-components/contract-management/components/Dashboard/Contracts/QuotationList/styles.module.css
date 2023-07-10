@@ -1,0 +1,9 @@
+.rfqs {
+	height: 400px;
+	padding: 4px 9px 0;
+	overflow-y: auto;
+
+	&::-webkit-scrollbar {
+		display: none;
+	}
+}

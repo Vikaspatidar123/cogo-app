@@ -4,10 +4,10 @@
     justify-content: space-between;
     flex-wrap: wrap;
     margin: 20px 0px;
+    border-bottom: 0.7px dashed #d2d2d2;
 }
 
 .dataDiv{
-    width: 15%;
     padding: 10px 0px;
 }
 

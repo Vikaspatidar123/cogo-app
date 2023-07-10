@@ -11,7 +11,6 @@ function InsuredDetails({
 	activeTab = '',
 	setActiveStepper = () => {},
 	activeStepper = '',
-	isMobile = false,
 	draftDetailsPrefilling = {},
 	policyId = '',
 }) {
@@ -26,11 +25,10 @@ function InsuredDetails({
 	const [formDetails, setFormDetails] = useState(initialState);
 
 	return (
-		<div className={isMobile ? styles.container_mobile : styles.container}>
+		<div className={styles.container}>
 			<SideStepper
 				activeStepper={activeStepper}
 				setActiveStepper={setActiveStepper}
-				isMobile={isMobile}
 			/>
 			<Details
 				setActiveStepper={setActiveStepper}
@@ -39,7 +37,6 @@ function InsuredDetails({
 				setFormDetails={setFormDetails}
 				type={type}
 				activeTab={activeTab}
-				isMobile={isMobile}
 				policyId={policyId}
 				draftDetailsPrefilling={draftDetailsPrefilling}
 			/>

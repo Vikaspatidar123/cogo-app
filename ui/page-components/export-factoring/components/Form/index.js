@@ -1,5 +1,6 @@
 import ApplicationProcess from '../ApplicationProcess';
 import BasicDetails from '../BasicDetails';
+import Buyers from '../Buyers';
 import CompanyInformation from '../CompanyInformation';
 import DirectorInformation from '../DirectorInformation';
 import OfferLetterDetails from '../OfferLetterDetails';
@@ -30,6 +31,7 @@ function Form({ active = {}, getCreditRequestResponse = {}, refetch = () => {}, 
 				refetch={refetch}
 				loading={loading}
 			/>
+			<Buyers getCreditRequestResponse={getCreditRequestResponse} />
 		</div>
 	);
 }

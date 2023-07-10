@@ -16,6 +16,8 @@ import {
 	asyncFieldsCommoditiesList,
 	asyncInsuranceCountryList,
 	asyncFieldsPartnerQuotation,
+	asyncFieldsSixDigitHsCode,
+	asyncFieldsOceanPocDetails,
 	asyncProductList,
 	asyncOrganizationBranches,
 	asyncInsuranceCommodities,
@@ -24,7 +26,10 @@ import {
 	asyncTaxNumbers,
 	asyncOrganizationUsers,
 	asyncTradeContacts,
-	asyncCurrencies
+	asyncCurrencies,
+	asyncFieldsAirPocDetails,
+	asyncFieldsAirLineList,
+	asyncFieldsShippingLineList,
 } from '../../utils/getAsyncFields';
 
 const keyAsyncFieldsParamsMapping = {
@@ -50,6 +55,11 @@ const keyAsyncFieldsParamsMapping = {
 	organization_users         : asyncOrganizationUsers,
 	trade_contacts             : asyncTradeContacts,
 	currencies                 : asyncCurrencies,
+	six_digit_hs_code          : asyncFieldsSixDigitHsCode,
+	list_ocean_poc_details     : asyncFieldsOceanPocDetails,
+	list_air_poc_details       : asyncFieldsAirPocDetails,
+	airline_list               : asyncFieldsAirLineList,
+	shippingline_list          : asyncFieldsShippingLineList,
 };
 
 function AsyncSelect(props) {
@@ -60,22 +70,23 @@ function AsyncSelect(props) {
 		initialCall,
 		getModifiedOptions,
 		getSelectedOption = () => { },
-		valueKey = 'id',
 		...rest
 	} = props;
 	const defaultParams = keyAsyncFieldsParamsMapping[asyncKey]?.() || {};
 	const callFunction = defaultParams.authKey
 		? useGetAsyncOptionsBf
 		: useGetAsyncOptions;
+
 	const getAsyncOptionsProps = callFunction({
 		...defaultParams,
 		initialCall,
 		params   : merge(params, defaultParams.params),
 		labelKey : rest.labelKey || defaultParams.labelKey,
-		valueKey : valueKey || defaultParams.valueKey,
+		valueKey : rest.valueKey || defaultParams.valueKey,
 		getModifiedOptions,
 		value    : rest.value,
 	});
+
 	if (typeof getSelectedOption === 'function' && !isEmpty(rest.value)) {
 		let selectedValue;
 		if (multiple) {
@@ -85,7 +96,7 @@ function AsyncSelect(props) {
 		}
 
 		const selectedOption = getAsyncOptionsProps.options.filter(
-			(option) => option?.[valueKey] === selectedValue,
+			(option) => option?.id === selectedValue,
 		);
 		getSelectedOption(selectedOption[0]);
 	}

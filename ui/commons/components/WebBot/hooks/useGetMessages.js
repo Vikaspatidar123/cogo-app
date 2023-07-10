@@ -15,6 +15,8 @@ const PAGE_LIMIT = 10;
 
 const TIME_TO_SCROLL = 100;
 
+const PLATFORM_CHAT_PATH = GLOBAL_CONSTANTS.firebase_paths.platform_chat;
+
 const useGetMessages = ({ firestore, roomId, scrollToBottom }) => {
 	const [messagesState, setMessagesState] = useState({
 		messagesHash          : {},
@@ -23,8 +25,6 @@ const useGetMessages = ({ firestore, roomId, scrollToBottom }) => {
 	});
 	const [loading, setLoading] = useState(false);
 	const latestMessages = useRef(null);
-
-	const PLATFORM_CHAT_PATH = GLOBAL_CONSTANTS.firebase_paths.platform_chat;
 
 	const messagesCollection = collection(
 		firestore,

@@ -2,6 +2,8 @@ import { collection, addDoc } from 'firebase/firestore';
 
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
+const PLATFORM_CHAT_PATH = GLOBAL_CONSTANTS.firebase_paths.platform_chat;
+
 const getWelcomeMessage = (
 	name,
 ) => `Hello, ${name} and welcome to cogoport! how can we assist you
@@ -28,8 +30,6 @@ const whatsappQRMetadata = {
 };
 
 const addInitialMessage = async ({ roomId, firestore, name, sendMessage }) => {
-	const PLATFORM_CHAT_PATH = GLOBAL_CONSTANTS.firebase_paths.platform_chat;
-
 	const userMessageCollection = collection(
 		firestore,
 		`${PLATFORM_CHAT_PATH}/${roomId}/messages`,

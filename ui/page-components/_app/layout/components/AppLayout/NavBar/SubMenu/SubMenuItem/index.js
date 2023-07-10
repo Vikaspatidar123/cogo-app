@@ -11,7 +11,7 @@ const renderDescription = (desc) => {
 	return desc;
 };
 
-function SubMenuItem({ item, unPrefixedPath }) {
+function SubMenuItem({ item, unPrefixedPath, setShowPopover }) {
 	const { push } = useRouter();
 	const {
 		href = '',
@@ -23,7 +23,10 @@ function SubMenuItem({ item, unPrefixedPath }) {
 
 	return (
 		<div
-			onClick={() => push(href, as)}
+			onClick={() => {
+				push(href, as);
+				setShowPopover(null);
+			}}
 			className={unPrefixedPath === href ? styles.active : styles.container}
 			role="presentation"
 		>

@@ -1,9 +1,13 @@
 import { Button, Modal } from '@cogoport/components';
+import { useTranslation } from 'next-i18next';
 import React from 'react';
 
 import styles from './styles.module.css';
 
+import { Image } from '@/packages/next';
+
 function ArchiveModal({ archive, setArchive, onSubmit = () => {}, archived }) {
+	const { t } = useTranslation(['tradePartner']);
 	return (
 		<Modal
 			className={styles.container}
@@ -11,7 +15,7 @@ function ArchiveModal({ archive, setArchive, onSubmit = () => {}, archived }) {
 			onClose={() => setArchive(false)}
 		>
 			<div className={styles.icon_div}>
-				<img
+				<Image
 					src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/archive.svg"
 					alt=""
 					height={70}
@@ -19,20 +23,18 @@ function ArchiveModal({ archive, setArchive, onSubmit = () => {}, archived }) {
 				/>
 			</div>
 			<div className={styles.heading}>
-				Are you sure you want to
+				{t('tradePartner:archive_modal_text_1')}
 				{' '}
-				{!archived ? 'Archive' : 'Unarchive'}
+				{!archived ? t('tradePartner:archive_modal_text_2') : t('tradePartner:archive_modal_text_3') }
 				{' '}
-				this
-				trade partners?
+				{t('tradePartner:archive_modal_text_4')}
 			</div>
 			<div className={styles.text}>
-				You can retrive your
+				{t('tradePartner:archive_modal_text_5')}
 				{' '}
-				{!archived ? 'Archive' : 'Unarchive'}
+				{!archived ? t('tradePartner:archive_modal_text_2') : t('tradePartner:archive_modal_text_3')}
 				{' '}
-				product
-				anytime from the All Trade Partners
+				{t('tradePartner:archive_modal_text_6')}
 			</div>
 			<div className={styles.button_div}>
 				<Button
@@ -40,10 +42,10 @@ function ArchiveModal({ archive, setArchive, onSubmit = () => {}, archived }) {
 					className={styles.secondary_button}
 					onClick={() => setArchive(false)}
 				>
-					No
+					{t('tradePartner:archive_modal_button_label_2')}
 				</Button>
 				<Button className={styles.primary_button} onClick={() => onSubmit()}>
-					Yes
+					{t('tradePartner:archive_modal_button_label_1')}
 				</Button>
 			</div>
 		</Modal>

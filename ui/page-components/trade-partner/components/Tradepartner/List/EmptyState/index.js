@@ -1,8 +1,11 @@
+import { useTranslation } from 'next-i18next';
 import React from 'react';
 
 import styles from './styles.module.css';
 
 function EmptyState({ placement = 'center' }) {
+	const { t } = useTranslation(['tradePartner']);
+
 	return (
 		<div className={styles.container}>
 			{placement === 'center' ? (
@@ -14,7 +17,7 @@ function EmptyState({ placement = 'center' }) {
 				/>
 			) : null}
 			<div className={styles.wrapper}>
-				<h4 className={styles.heading}>Looks like you do not have any trade partners</h4>
+				<h4 className={styles.heading}>{t('tradePartner:trade_partner_empty_list')}</h4>
 			</div>
 		</div>
 	);

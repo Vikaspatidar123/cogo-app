@@ -28,5 +28,13 @@
     "faq_topics_categories": "Categories",
     "faq_topics_hide_topics": "Hide Topics",
     "faq_topics_search_placeholder": "Type here to search topic...",
-    "faq_home_page_icon_text": "topic icon"
+    "faq_home_page_icon_text": "topic icon",
+    "common_constants_feedback": "No Remarks.",
+    "common_constants_value_added_services": "value_added_services",
+    "common_constants_onboarding": "onboarding",
+    "common_constants_industry": "industry",
+    "common_constants_bookings_or_transaction_flow": "bookings_or_transaction_flow",
+    "common_constants_operations_and_shipment_execution": "operations_and_shipment_execution",
+    "common_constants_platform_help": "platform_help",
+    "common_constants_saas_tools": "saas_tools"
 }

@@ -6,14 +6,14 @@ const additionalInformation = ({ t }) => [
 		name        : 'shipment_id',
 		type        : 'number',
 		label       : t(`${translationKey}_shipment`),
-		placeholder : 'ex: 987654',
+		placeholder : t(`${translationKey}_placeholder`),
 	},
 	{
 		keyword     : 'invoice',
 		name        : 'invoice_number',
 		type        : 'number',
 		label       : t(`${translationKey}_invoice`),
-		placeholder : 'ex: 987654',
+		placeholder : t(`${translationKey}_placeholder`),
 	},
 ];
 

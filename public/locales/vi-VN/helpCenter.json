@@ -28,5 +28,13 @@
     "faq_topics_categories": "Thể loại",
     "faq_topics_hide_topics": "Ẩn chủ đề",
     "faq_topics_search_placeholder": "Nhập vào đây để tìm kiếm chủ đề ...",
-    "faq_home_page_icon_text": "Biểu tượng chủ đề"
+    "faq_home_page_icon_text": "Biểu tượng chủ đề",
+    "common_constants_feedback": "Không có lưu ý gì.",
+    "common_constants_value_added_services": "giá trị_gia tăng_dịch vụ",
+    "common_constants_onboarding": "giới thiệu",
+    "common_constants_industry": "ngành công nghiệp",
+    "common_constants_bookings_or_transaction_flow": "đặt chỗ hoặc lưu lượng giao dịch",
+    "common_constants_operations_and_shipment_execution": "hoạt động và thực hiện giao hàng",
+    "common_constants_platform_help": "trợ giúp nền tảng",
+    "common_constants_saas_tools": "công cụ saas"
 }

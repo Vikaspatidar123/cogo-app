@@ -23,6 +23,7 @@
 	"components_header_tickets_list_tickets":"All Tickets",
 	"components_header_tickets_list_shipment":"Shipment Id",
 	"components_header_tickets_list_invoice":"Invoice Number",
+	"components_header_tickets_list_placeholder": "ex: 987654",
 	"components_header_tickets_create_pre_success_text":"Your ticket",
 	"components_header_tickets_create_post_success_text":"has been raised successfully!",
 	"components_header_tickets_create_ticket_wait":"Please wait while we look into the issue",

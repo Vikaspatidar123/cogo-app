@@ -23,6 +23,7 @@
 	"components_header_tickets_list_tickets":"Tất cả vé",
 	"components_header_tickets_list_shipment":"ID lô hàng",
 	"components_header_tickets_list_invoice":"Số hóa đơn",
+	"components_header_tickets_list_placeholder": "ví dụ: 987654",
 	"components_header_tickets_create_pre_success_text":"Ve của bạn",
 	"components_header_tickets_create_post_success_text":"đã được nâng lên thành công!",
 	"components_header_tickets_create_ticket_wait":"Vui lòng đợi trong khi chúng tôi xem xét vấn đề",

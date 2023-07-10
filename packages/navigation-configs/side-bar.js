@@ -63,7 +63,7 @@ const getSideBarConfigs = ({
 					const filteredOpts = allOpts.filter(
 						(opt) => selectedSubNavs.includes(opt.key)
 							&& (opt.key !== 'coe-booking_tasks'
-								|| GLOBAL_CONSTANTS.coe_task_alert_email_id.includes(userData.email)),
+								|| GLOBAL_CONSTANTS.user_specific_email_id.ajeet === userData.email),
 
 					);
 					if (filteredOpts.length) {

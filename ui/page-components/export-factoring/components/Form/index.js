@@ -3,10 +3,9 @@ import { useState } from 'react';
 
 import ApplicationProcess from '../ApplicationProcess';
 import BasicDetails from '../BasicDetails';
-import Buyers from '../Buyers';
+// import Buyers from '../Buyers';
 import CompanyInformation from '../CompanyInformation';
 import DirectorInformation from '../DirectorInformation';
-import Invoices from '../Invoices';
 import OfferLetterDetails from '../OfferLetterDetails';
 import { OfferLetterWaiting } from '../WaitingScreens';
 
@@ -20,23 +19,25 @@ const RENDERING_FORM = {
 	locked                : OfferLetterWaiting,
 	processing            : ApplicationProcess,
 	finance_assessment    : ApplicationProcess,
+	approved              : ApplicationProcess,
 };
 const tabsPanelMapping = [{
 	name         : 'application',
 	title        : 'Application',
 	SubComponent : ApplicationProcess,
 	status       : 'PENDING',
-}, {
-	name         : 'Buyers',
-	title        : 'Buyers',
-	SubComponent : Buyers,
+}, 
+// {
+// 	name         : 'Buyers',
+// 	title        : 'Buyers',
+// 	SubComponent : Buyers,
 
-},
-{
-	name         : 'Invoices',
-	title        : 'Invoices',
-	SubComponent : Invoices,
-},
+// },
+// {
+// 	name         : 'Invoices',
+// 	title        : 'Invoices',
+// 	SubComponent : Invoices,
+// },
 
 ];
 function Form({ active = {}, getCreditRequestResponse = {}, refetch = () => {}, loading }) {

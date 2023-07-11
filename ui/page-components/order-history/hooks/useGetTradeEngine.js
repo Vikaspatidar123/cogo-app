@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 
 import { useRequestBf } from '@/packages/request';
 
@@ -11,7 +11,7 @@ const useGetTradeEngine = ({ itm }) => {
 		method  : 'get',
 	}, { manual: true });
 
-	const tradeEngineResponseFunc = async () => {
+	const tradeEngineResponseFunc = useCallback(async () => {
 		try {
 			const resp = await tradeApitrigger({
 				params: {
@@ -22,7 +22,7 @@ const useGetTradeEngine = ({ itm }) => {
 		} catch (error) {
 			console.log(error);
 		}
-	};
+	}, [itm?.tradeEngineInputId, tradeApitrigger]);
 
 	return {
 		tradeEngineResponseFunc,

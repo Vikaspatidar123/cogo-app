@@ -10,8 +10,8 @@ function MobileView({
 	return (
 		<div className={styles.container}>
 			{loading ? (
-				LOADING_ARR.map(() => (
-					<div className={styles.div}>
+				LOADING_ARR.map((ele) => (
+					<div key={ele} className={styles.div}>
 						<div className={styles.loader}>
 							<Placeholder height="20px" width="130px" />
 						</div>

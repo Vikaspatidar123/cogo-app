@@ -34,8 +34,7 @@ function DetailsModal({
 
 	useEffect(() => {
 		tradeEngineResponseFunc();
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
+	}, [tradeEngineResponseFunc]);
 
 	const { requestType = '' } = itm || {};
 

@@ -12,7 +12,7 @@ function IEControlsModal({ tradeEngineResponse = {} }) {
 		<div>
 			{!isEmpty(controls) ? (
 				<ControlsResult
-					controls={controls}
+					tradeEngineResponse={tradeEngineResponse}
 					EmptyState={EmptyState}
 					listClassName="list"
 				/>

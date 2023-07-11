@@ -6,7 +6,10 @@ import { useState, useEffect } from 'react';
 import Documents from './Documents';
 import styles from './styles.module.css';
 
-function ImportExportDoc({ documents = [], EmptyState, hsNumber, modeOfTransport, isModal = false }) {
+function ImportExportDoc({ tradeEngineResponse = {}, EmptyState, isModal = false }) {
+	const { modeOfTransport = '', lineItem = [] } = tradeEngineResponse;
+	const { hsNumber = '', documents = [] } = lineItem?.[0] || {};
+
 	const { t } = useTranslation(['iedResult']);
 	const [activeTab, setActiveTab] = useState('IMPORT');
 

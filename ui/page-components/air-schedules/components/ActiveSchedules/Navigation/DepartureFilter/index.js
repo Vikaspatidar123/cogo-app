@@ -16,7 +16,7 @@ function DepartureFilter({
 		<>
 			<div className={styles.header} role="presentation" onClick={() => handleNav('departure')}>
 				<div className={styles.nav_heading}>
-					{t('airSchedule:arrival_text')}
+					{t('airSchedule:departure_text')}
 				</div>
 				<div className={styles.column}>
 					<IcMArrowRotateRight

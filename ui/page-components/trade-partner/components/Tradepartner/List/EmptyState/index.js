@@ -3,17 +3,20 @@ import React from 'react';
 
 import styles from './styles.module.css';
 
+import { Image } from '@/packages/next';
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
+
 function EmptyState({ placement = 'center' }) {
 	const { t } = useTranslation(['common', 'tradePartner']);
 
 	return (
 		<div className={styles.container}>
 			{placement === 'center' ? (
-				<img
+				<Image
 					height={250}
 					width={250}
 					alt="icon"
-					src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/empty_icon 1.svg"
+					src={GLOBAL_CONSTANTS.image_url.no_schedules_found_image}
 				/>
 			) : null}
 			<div className={styles.wrapper}>

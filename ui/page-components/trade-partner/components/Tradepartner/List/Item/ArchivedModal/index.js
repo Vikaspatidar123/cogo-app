@@ -5,6 +5,7 @@ import React from 'react';
 import styles from './styles.module.css';
 
 import { Image } from '@/packages/next';
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
 function ArchiveModal({ archive, setArchive, onSubmit = () => {}, archived }) {
 	const { t } = useTranslation(['common', 'tradePartner']);
@@ -16,7 +17,7 @@ function ArchiveModal({ archive, setArchive, onSubmit = () => {}, archived }) {
 		>
 			<div className={styles.icon_div}>
 				<Image
-					src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/archive.svg"
+					src={GLOBAL_CONSTANTS.image_url.archive_icon}
 					alt="archived_logo"
 					height={70}
 					width={70}

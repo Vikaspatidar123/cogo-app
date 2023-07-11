@@ -1,14 +1,13 @@
-import { TabPanel, Tabs } from '@cogoport/components';
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 
 import Header from '../../common/Header';
 import useTradeEngine from '../../hooks/useTradeEngine';
 import iconUrl from '../../utils/iconUrl.json';
 
-import ResultDetails from './ResultDetails';
 import styles from './styles.module.css';
 
 import { useRouter } from '@/packages/next';
+import ControlResult from '@/ui/commons/components/ImportExportControls';
 
 function EmptyState() {
 	return (
@@ -21,8 +20,6 @@ function EmptyState() {
 }
 
 function Result() {
-	const [activeTab, setActiveTab] = useState('EXPORT');
-
 	const { query } = useRouter();
 	const { trade_engine_id = '', billId = '' } = query || {};
 
@@ -34,13 +31,6 @@ function Result() {
 
 	const { lineItem = [] } = tradeEngineResp || {};
 	const { controls = [] } = lineItem[0] || {};
-
-	const importControls = (controls || [])?.filter(
-		(control) => control?.tradeType === 'IMPORT',
-	);
-	const exportControls = (controls || [])?.filter(
-		(control) => control?.tradeType === 'EXPORT',
-	);
 
 	const clearStorageHandler = () => {
 		if (typeof window === 'undefined') return;
@@ -68,30 +58,13 @@ function Result() {
 			)}
 			{!tradeEngineLoading && <Header title="Transaction Results" redirect />}
 			{!tradeEngineLoading && controls.length > 0 && (
-				<div className={styles.importer_exporter}>
-					<Tabs
-						activeTab={activeTab}
-						themeType="primary"
-						onChange={setActiveTab}
-					>
-						<TabPanel name="EXPORT" title="Export Controls">
-							{(exportControls?.length > 0 ? (
-								<ResultDetails activeTab={activeTab} controls={exportControls} />
-							) : (
-								<EmptyState />
-							))}
-						</TabPanel>
-
-						<TabPanel name="IMPORT" title="Import Controls">
-							{(importControls?.length > 0 ? (
-								<ResultDetails activeTab={activeTab} controls={importControls} />
-							) : (
-								<EmptyState />
-							))}
-						</TabPanel>
-					</Tabs>
-
+				<div className={styles.result_container}>
+					<ControlResult
+						tradeEngineResponse={tradeEngineResp}
+						EmptyState={EmptyState}
+					/>
 				</div>
+
 			)}
 			{!tradeEngineLoading && controls.length === 0 && <EmptyState />}
 		</div>

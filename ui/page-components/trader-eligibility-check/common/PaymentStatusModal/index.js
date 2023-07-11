@@ -2,10 +2,12 @@ import { Button, Modal, cl } from '@cogoport/components';
 import { IcMInformation } from '@cogoport/icons-react';
 import { useState, useEffect } from 'react';
 
-import { PaymentIcon } from '../../configuration/icon-configuration';
 import redirectUrl from '../../constants/redirectUrl';
 
 import styles from './styles.module.css';
+
+import { Image } from '@/packages/next';
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
 function PaymentStatusModal({
 	paymentStatusModal = false,
@@ -54,9 +56,9 @@ function PaymentStatusModal({
 			{!stop && (
 				<div className={styles.container}>
 					{paymentStatus === 'ERROR' ? (
-						<img src={PaymentIcon} alt="" height="150px" width="150px" />
+						<Image src={GLOBAL_CONSTANTS.image_url.payment_icon} alt="" height="150px" width="150px" />
 					) : (
-						<img src={url} alt="" className={styles.image} />
+						<Image src={url} alt="" className={styles.image} width={100} height={100} />
 					)}
 					<div
 						className={cl`${styles.title} ${

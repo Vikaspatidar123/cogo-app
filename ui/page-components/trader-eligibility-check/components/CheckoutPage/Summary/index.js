@@ -1,15 +1,14 @@
 import { Button } from '@cogoport/components';
 import { isEmpty } from '@cogoport/utils';
+import { useTranslation } from 'next-i18next';
 
-import {
-	LoadingIcon,
-	NoDataIcon,
-} from '../../../configuration/icon-configuration';
 import redirectUrl from '../../../constants/redirectUrl';
 import style from '../styles.module.css';
 
 import styles from './styles.module.css';
 
+import { Image } from '@/packages/next';
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 import formatAmount from '@/ui/commons/utils/formatAmount';
 
 function Summary({
@@ -22,6 +21,7 @@ function Summary({
 	address,
 	setAddress,
 }) {
+	const { t } = useTranslation(['traderEligibilityCheck']);
 	const { subscriptionsUrl } = redirectUrl();
 	const { left_quota = 0, addon_quota = 0 } = quotaAvailableStats;
 	const {
@@ -40,13 +40,14 @@ function Summary({
 
 	const renderButton = () => {
 		if (buySubscription) {
-			return 'Buy Subscription';
+			return t('traderEligibilityCheck:tec_buy_through_subscription_button_label');
 		}
 		if (paymentThroughAddon) {
-			return 'Buy Addons';
+			return t('traderEligibilityCheck:tec_buy_through_addons_button_label');
 		}
 		return null;
 	};
+
 	const redirectingButtonsFunc = () => {
 		if (buySubscription) {
 			const url = `${subscriptionsUrl}/manage-subscription`;
@@ -57,6 +58,7 @@ function Summary({
 			window.open(url, '_blank');
 		}
 	};
+
 	const submit = () => {
 		if (!isEmpty(address) || paymentThroughQuota) {
 			createDraft({
@@ -75,15 +77,15 @@ function Summary({
 		if (loading) {
 			return (
 				<div className={style.loading_style}>
-					<img src={LoadingIcon} alt="" />
+					<Image src={GLOBAL_CONSTANTS.image_url.loading_icon} alt="" width={16} height={16} />
 				</div>
 			);
 		}
 		if (directPayment) {
-			return `Pay ${(pricePerUnit * 1.18).toFixed(2)} /-`;
+			return `${t('traderEligibilityCheck:tec_pay_button_label')} ${(pricePerUnit * 1.18).toFixed(2)} /-`;
 		}
 		if (paymentThroughQuota) {
-			return 'Pay with quota';
+			return t('traderEligibilityCheck:tec_pay_with_quota_button_label');
 		}
 
 		return null;
@@ -93,26 +95,27 @@ function Summary({
 			{Object.keys(serviceRates).length === 0 && (
 				<div className={styles.card}>
 					<div className={styles.flex_div}>
-						<img
-							src={NoDataIcon}
+						<Image
+							src={GLOBAL_CONSTANTS.image_url.no_data_icon}
 							alt=""
 							className={styles.icon_style}
+							width={100}
+							height={200}
 						/>
-						Sorry!! We could not fetch details.Please try again
-						later!
+						{t('traderEligibilityCheck:tec_sorry_could_not_fetch_details')}
 					</div>
 				</div>
 			)}
 			{Object.keys(serviceRates || {}).length > 0 && (
 				<div className={styles.card}>
-					<div className={styles.heading}>Summary</div>
+					<div className={styles.heading}>{t('traderEligibilityCheck:tec_summary_label')}</div>
 					<div className={styles.line} />
 					{paymentThroughQuota && (
 						<>
 							<div className={styles.styled_row}>
 								<div>
 									<div className={styles.text}>
-										Left Quota
+										{t('traderEligibilityCheck:tec_left_quota_label')}
 									</div>
 								</div>
 								<div className={styles.text_column}>
@@ -124,7 +127,7 @@ function Summary({
 							<div className={styles.styled_row}>
 								<div>
 									<div className={styles.text}>
-										Quota that will be deducted
+										{t('traderEligibilityCheck:tec_quota_deducted_label')}
 									</div>
 								</div>
 								<div className={styles.text_column}>
@@ -135,7 +138,7 @@ function Summary({
 							<div className={styles.styled_row}>
 								<div>
 									<div className={styles.total_text}>
-										Remaining Quota
+										{t('traderEligibilityCheck:tec_remaining_quota_label')}
 									</div>
 								</div>
 								<div className={styles.text_column}>
@@ -151,7 +154,7 @@ function Summary({
 							<div className={styles.styled_row}>
 								<div>
 									<div className={styles.text}>
-										Eligibility check charges
+										{t('traderEligibilityCheck:tec_eligibility_check_charges_label')}
 									</div>
 								</div>
 								<div className={styles.text_column}>
@@ -170,7 +173,7 @@ function Summary({
 							<div className={styles.styled_row}>
 								<div>
 									<div className={styles.text}>
-										Convenience fee
+										{t('traderEligibilityCheck:tec_convinience_fee_label')}
 									</div>
 								</div>
 								<div className={styles.text_column}>
@@ -190,7 +193,7 @@ function Summary({
 							<div className={styles.styled_row}>
 								<div>
 									<div className={styles.total_text}>
-										Total Amount
+										{t('traderEligibilityCheck:tec_total_amount_label')}
 									</div>
 								</div>
 								<div className={styles.text_column}>

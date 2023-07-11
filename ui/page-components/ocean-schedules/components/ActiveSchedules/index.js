@@ -1,5 +1,7 @@
 import { Pagination, Button, Popover } from '@cogoport/components';
 import { IcMArrowBack, IcMPortArrow, IcMFilter } from '@cogoport/icons-react';
+import { isEmpty } from '@cogoport/utils';
+import { useTranslation } from 'next-i18next';
 import React, { useState } from 'react';
 
 import Loading from '../../common/Loading';
@@ -15,28 +17,40 @@ import styles from './styles.module.css';
 
 import { useRouter } from '@/packages/next';
 
+const PAGE_LIMIT = 6;
+const DEFAULT_CURRENT_PAGE = 0;
 function ActiveSchedules() {
 	const { query, push } = useRouter();
+	const { t } = useTranslation(['oceanSchedule']);
+	const { id } = query || {};
 
-	const id = query?.id;
-	const [currentPage, setCurrentPage] = useState(1);
+	const [currentPage, setCurrentPage] = useState(DEFAULT_CURRENT_PAGE);
 
 	const {
 		setFilters, scheduleDetails,
 		setCarrierList, carrierList,
 		filterFetchLoading,
 	} = useFetchScheduleDetails({
-		pageLimit: 6, id, currentPage,
+		pageLimit: PAGE_LIMIT,
+		id,
+		currentPage,
 	});
 	const {
-		handleCheckList, clearAllHandler,
-		onChange, durationValue, setArrivalDate, arrivalDate,
+		handleCheckList,
+		clearAllHandler,
+		onChange, durationValue,
+		setArrivalDate, arrivalDate,
 		setDepartureDate,
 		departureDate,
 		setVisible,
 		visible,
-	} = useGetHandel({ setFilters, setCarrierList, setCurrentPage, carrierList });
-
+	} = useGetHandel({
+		setFilters,
+		setCarrierList,
+		setCurrentPage,
+		carrierList,
+	});
+	const { origin_port = {}, destination_port = {}, schedules = {} } = scheduleDetails || {};
 	const handleBack = () => {
 		push('/saas/ocean-schedules');
 	};
@@ -52,13 +66,13 @@ function ActiveSchedules() {
 					onClick={handleBack}
 				/>
 				<div className={styles.header_text}>
-					{scheduleDetails?.origin_port?.name || 'Origin'}
+					{origin_port?.name || 'Origin'}
 				</div>
 				<div className={styles.icon_container}>
 					<IcMPortArrow fill="#88CAD1" width="1.5rem" height="1.5rem" />
 				</div>
 				<div className={styles.header_text}>
-					{scheduleDetails?.destination_port?.name || 'Destination'}
+					{destination_port?.name || 'Destination'}
 				</div>
 			</div>
 			<div className={styles.map_container}>
@@ -70,10 +84,10 @@ function ActiveSchedules() {
 			</div>
 			<div className={styles.middle_container}>
 				<div className={styles.middle_text_container}>
-					Active Schedules
+					{t('oceanSchedule:active_schedules_text')}
 				</div>
 				<Popover
-					placement="left"
+					placement="bottom"
 					visible={visible}
 					render={(
 						<Filter
@@ -92,8 +106,13 @@ function ActiveSchedules() {
 					)}
 				>
 					<div>
-						<Button themeType="accent" className={styles.button} onClick={() => setVisible(!visible)}>
-							Filter By
+						<Button
+							themeType="accent"
+							type="button"
+							className={styles.button}
+							onClick={() => setVisible(!visible)}
+						>
+							{t('oceanSchedule:filter_text')}
 							<IcMFilter />
 						</Button>
 					</div>
@@ -121,23 +140,24 @@ function ActiveSchedules() {
 							<Loading />
 						</div>
 					)}
-					{!filterFetchLoading && scheduleDetails?.schedules?.list.length > 0
-						&& scheduleDetails?.schedules?.list.map((item) => (
+					{!filterFetchLoading && !isEmpty(schedules?.list?.length)
+						? schedules?.list.map((item) => (
 							<ActiveScheduleCard
+								key={item.shipping_line_id}
 								schedule={item}
 								scheduleDetails={scheduleDetails}
 							/>
-						))}
-					{!filterFetchLoading && scheduleDetails?.schedules?.list.length === 0 && <NoSchedulesCard />}
+						)) : <NoSchedulesCard loading={filterFetchLoading} />}
+
 				</div>
 			</div>
-			{scheduleDetails?.schedules?.list.length > 0 && (
+			{!isEmpty(schedules?.list?.length) && (
 				<div className={styles.pagination_container}>
 					<Pagination
 						type="number"
 						currentPage={currentPage}
-						totalItems={scheduleDetails?.schedules?.total_count}
-						pageSize={6}
+						totalItems={schedules?.total_count}
+						pageSize={PAGE_LIMIT}
 						onPageChange={setCurrentPage}
 					/>
 				</div>

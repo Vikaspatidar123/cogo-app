@@ -1,14 +1,14 @@
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
-const { IN: INDIA_COUNTRY_ID, VN: VIETNAM_COUNTRY_ID } =	GLOBAL_CONSTANTS.country_ids;
+const { IN: INDIA_COUNTRY_ID, VN: VIETNAM_COUNTRY_ID } = GLOBAL_CONSTANTS.country_ids;
 
 const countryIds = [INDIA_COUNTRY_ID, VIETNAM_COUNTRY_ID];
 
-const getControls = () => [
+const getControls = ({ t }) => [
 	{
-		label             : 'Origin Location',
+		label             : t('discoverRates:origin_location_label'),
 		name              : 'origin_location_id',
-		placeholder       : 'Port/Airport/Pincode/Railway Terminal',
+		placeholder       : t('discoverRates:all_mode_placeholder'),
 		includedInOptions : false,
 		type              : 'async_select',
 		asyncKey          : 'locations',
@@ -20,12 +20,12 @@ const getControls = () => [
 				country_id : countryIds,
 			},
 		},
-		rules: { required: 'Origin Location is required' },
+		rules: { required: t('discoverRates:origin_port_error_message') },
 	},
 	{
-		label             : 'Destination Location',
+		label             : t('discoverRates:destination_location_label'),
 		name              : 'destination_location_id',
-		placeholder       : 'Port/Airport/Pincode/Railway Terminal',
+		placeholder       : t('discoverRates:all_mode_placeholder'),
 		includedInOptions : false,
 		type              : 'async_select',
 		asyncKey          : 'locations',
@@ -37,7 +37,7 @@ const getControls = () => [
 				country_id : countryIds,
 			},
 		},
-		rules: { required: 'Destination Location is required' },
+		rules: { required: t('discoverRates:destination_port_error_message') },
 	},
 ];
 export default getControls;

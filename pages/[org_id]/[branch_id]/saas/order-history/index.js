@@ -11,5 +11,4 @@ export async function getServerSideProps({ locale }) {
 		},
 	};
 }
-
 export default OrderHistory;

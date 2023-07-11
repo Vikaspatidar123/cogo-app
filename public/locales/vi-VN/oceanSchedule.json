@@ -1,0 +1,39 @@
+{
+    "ocean_schedule_heading":"Trình theo dõi lịch trình đại dương",
+    "ocean_schedule_des":"Nhập một cặp cổng để xem và so sánh và lưu lịch trình đại dương.",
+    "origin_port_label":"Cảng xuất xứ",
+    "destination_port_label":"Cổng đích",
+    "search_schedule_button_text":"Lịch tìm kiếm",
+    "origin_port_error_message":"* Nguồn gốc và điểm đến không thể giống nhau",
+    "my_schedules_text":"Lịch trình của tôi",
+    "origin_port_err_message":"Cổng gốc là bắt buộc",
+    "destination_port_err_message":"Cổng đích là bắt buộc",
+    "origin_port_placeholder":"Chọn Cổng gốc",
+    "destination_port_placeholder":"Chọn cổng đích",
+     "scheduls_available_text":"Lịch trình có sẵn từ",
+    "carriers_text":"Người vận chuyển",
+    "origin_text":"Nguồn gốc",
+    "destination_text":"Điểm đến",
+    "delete_conformation_text":"Bạn có chắc chắn muốn xóa?",
+    "cancel_button_text":"Hủy bỏ",
+    "delete_button_text":"Xóa bỏ",
+    "active_schedules_text":"Lịch trình hoạt động",
+    "filter_text":"Lọc bởi",
+    "no_schedules_found_text":"Không tìm thấy lịch trình",
+    "clear_all_text":"Làm sạch tất cả",
+    "carrier_text":"Vận chuyển",
+    "arrival_text":"Đến",
+    "departure_text":"Sự khởi hành",
+    "transit_duration_text":"Thời gian vận chuyển (giờ)",
+    "service_text":"DỊCH VỤ",
+    "vgm_cut_off_text":"Cắt VGM",
+    "terminal_cut_off_text":"Cắt đầu cuối",
+    "days_text":"Ngày",
+    "view_details_text":"Xem chi tiết",
+    "schedule_details_text":"Lịch trình chi tiết"
+
+
+
+
+
+}

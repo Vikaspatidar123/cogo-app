@@ -17,6 +17,10 @@ const getCondition = (urlItem) => {
 	return condition;
 };
 
+const COE_SUPPORTED_USER = [
+	GLOBAL_CONSTANTS.user_specific_email_id.ajeet,
+];
+
 const getSideBarConfigs = ({
 	userData,
 	dashboardUrls = [],
@@ -55,21 +59,21 @@ const getSideBarConfigs = ({
 						})),
 					});
 				} else if (navigation[key]?.options) {
-					const allOpts = navigation[key]?.options || [];
-					// const selectedSubNavs = Object.keys(pNavs);
+					const allOptions = navigation[key]?.options || [];
+
 					const selectedSubNavs = Object.keys(pNavs).filter(
 						(nav) => nav.split('-')[0] === key,
 					);
-					const filteredOpts = allOpts.filter(
+					const coeFilterOptions = allOptions.filter(
 						(opt) => selectedSubNavs.includes(opt.key)
 							&& (opt.key !== 'coe-booking_tasks'
-								|| GLOBAL_CONSTANTS.user_specific_email_id.ajeet === userData.email),
+								|| COE_SUPPORTED_USER.includes(userData.email)),
 
 					);
-					if (filteredOpts.length) {
+					if (coeFilterOptions.length) {
 						nav_items.push({
 							...navigation[key],
-							options: filteredOpts,
+							options: coeFilterOptions,
 						});
 					}
 				} else if (pNavs?.[key]) {

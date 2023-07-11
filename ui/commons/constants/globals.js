@@ -215,18 +215,21 @@ const GLOBAL_CONSTANTS = {
 		unsubscription_bottle : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/Bottle.png',
 		unsubscription_plane  : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/page_plane.png',
 		insurance_empty_image : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/Insurance.png',
+		secure_icon           : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/secure-icon.svg',
 		heading_icon          : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/heading.svg',
 		sub_heading_icon      : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/subheading.svg',
 		loading_icon          : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/loading.svg',
 		no_data_icon          : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/nodata.svg',
 		payment_icon          : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/payment.svg',
-		secure_icon           : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/secure-profile-icon.svg',
+		secure_profile_icon   : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/secure-profile-icon.svg',
 	},
 	onboarding_specialist: {
 		name         : 'Kanira Patel',
 		phone_number : '+918976851674',
 		email_id     : 'kanira.patel@cogoport.com',
 	},
+
+	zeroth_index: 0,
 };
 
 export default GLOBAL_CONSTANTS;

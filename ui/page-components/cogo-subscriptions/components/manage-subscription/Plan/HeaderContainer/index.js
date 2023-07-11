@@ -1,16 +1,19 @@
+import { useTranslation } from 'next-i18next';
+
 import styles from './styles.module.css';
 
 function HeaderContainer() {
+	const { t } = useTranslation(['subscriptions']);
+
 	return (
 		<div className={styles.container}>
 			<div>
-				<span className={styles.one}> The Right Plan for Your Business </span>
+				<span className={styles.one}>{t('subscriptions:heading_text')}</span>
 			</div>
 
 			<div className={styles.text}>
-				We have several powerful plans to showcase your business and get
-				discovered
-				<div> as a creative entrepreneurs. Everything you need.</div>
+				{t('subscriptions:description1_text')}
+				<div>{t('subscriptions:description2_text')}</div>
 			</div>
 		</div>
 	);

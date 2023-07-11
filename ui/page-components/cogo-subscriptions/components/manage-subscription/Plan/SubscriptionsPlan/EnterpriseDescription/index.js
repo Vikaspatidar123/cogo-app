@@ -1,5 +1,6 @@
 import { cl, Button } from '@cogoport/components';
 import { IcMTick } from '@cogoport/icons-react';
+import { useTranslation } from 'next-i18next';
 
 import styles from './styles.module.css';
 
@@ -12,6 +13,7 @@ function EnterpriseDescription({
 	setActiveHover,
 	activeIndex,
 }) {
+	const { t } = useTranslation(['subscriptions']);
 	return (
 		<div
 			className={styles.flex_column}
@@ -23,10 +25,10 @@ function EnterpriseDescription({
 			}}
 		>
 			<div className={styles.container}>
-				<div className={styles.label}>Enterprise</div>
+				<div className={styles.label}>{t('subscriptions:enterprise_text')}</div>
 				<div className={styles.sub_heading}>
 					<IcMTick width={20} height={20} />
-					Tailor a plan to your needs
+					{t('subscriptions:enterprise_description_text')}
 				</div>
 				<div className={`${styles.wrapper} ${styles.subscribe}`}>
 					<Button
@@ -35,16 +37,17 @@ function EnterpriseDescription({
 						disabled={callbackLoading}
 						className={cl`${styles.request_button} ${styles.button} 
 						${callbackLoading ? styles.disabled : ''}`}
+						type="button"
 					>
 						{callbackLoading ? (
 							<Image
 								src={GLOBAL_CONSTANTS.image_url.loading_image}
-								alt="loading..."
+								alt={t('subscriptions:loading_text')}
 								width={25}
 								height={20}
 							/>
 						) : (
-							'Request Callback'
+							t('subscriptions:request_callback_button_text')
 						)}
 
 					</Button>

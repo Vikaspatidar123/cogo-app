@@ -1,4 +1,5 @@
 import { Modal } from '@cogoport/components';
+import { useTranslation } from 'next-i18next';
 
 import redirectUrl from '../../utils/redirectUrl';
 
@@ -7,6 +8,7 @@ import styles from './styles.module.css';
 function SuccessModal({
 	modal, setShowModal, getPlan, name,
 }) {
+	const { t } = useTranslation(['subscriptions']);
 	const { redirectManageSubscription } = redirectUrl();
 	const closeModal = () => {
 		getPlan();
@@ -16,7 +18,6 @@ function SuccessModal({
 	return (
 		<Modal
 			show={modal}
-			className=" primary md"
 			onClose={closeModal}
 			placement="top"
 			closeOnOuterClick={closeModal}
@@ -24,16 +25,17 @@ function SuccessModal({
 		>
 			<div className={styles.flex_div}>
 				<img src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/success.svg" alt="cogo" />
-				<div className={styles.label}>Congratulations!</div>
+				<div className={styles.label}>{t('subscriptions:congratulations_text')}</div>
 				<div className={styles.side_label}>
-					You are now subscribed to
+					{t('subscriptions:subscribed_conformation_text')}
 					{name}
-					. Start exploring features and optimize your
-					business operations!
+					{t('subscriptions:subscribed_description_text')}
 				</div>
 				<div className={styles.style_div}>
-					Would like to explore our other plans
-					<u className={styles.click} role="presentation" onClick={closeModal}> click here </u>
+					{t('subscriptions:explore_text')}
+					<u className={styles.click} role="presentation" onClick={closeModal}>
+						{t('subscriptions:click_here_text')}
+					</u>
 				</div>
 			</div>
 		</Modal>

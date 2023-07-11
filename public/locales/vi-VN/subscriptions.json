@@ -1,5 +1,38 @@
 {
     "bill_yearly_text": "Hóa đơn hàng năm",
     "bill_monthly_text":"Hóa đơn hàng tháng",
-    "save_text":"Tiết kiệm 20%"
+    "save_text":"Tiết kiệm 20%",
+    "detailed_text":"Hiển thị so sánh kế hoạch chi tiết",
+    "heading_text":"Kế hoạch phù hợp cho doanh nghiệp của bạn",
+    "description1_text":"Chúng tôi có một số kế hoạch mạnh mẽ để giới thiệu doanh nghiệp của bạn và được khám phá",
+    "description2_text":"Là một doanh nhân sáng tạo.Tất cả mọi thứ bạn cần.",
+    "enterprise_text":"Doanh nghiệp",
+    "enterprise_description_text":"Điều chỉnh một kế hoạch theo nhu cầu của bạn",
+    "request_callback_button_text":"Yêu cầu Gọi lại",
+    "loading_text":"đang tải...",
+    "month_text":"tháng",
+    "billed_annually_text":"Thanh toán hàng năm",
+    "subscribe_button_text":"Đặt mua",
+    "activate_button_text":"Kích hoạt",
+    "active_text":"Tích cực",
+    "cogo_text":"đường",
+    "most_popular_text":"Phổ biến nhất",
+    "left_activate_text":"còn lại để kích hoạt",
+    "expire_text":"hết hạn",
+    "day_text":"ngày",
+    "days_text":"ngày",
+    "starter_text":"Khởi đầu",
+    "standard_text":"Tiêu chuẩn",
+    "premium_text":"Phần thưởng",
+    "subscribed_conformation_text":"Bây giờ bạn đã đăng ký",
+    "congratulations_text":"Chúc mừng!",
+    "subscribed_description_text":".Bắt đầu khám phá các tính năng và tối ưu hóa hoạt động kinh doanh của bạn!",
+    "explore_text":"Muốn khám phá các kế hoạch khác của chúng tôi",
+    "click_here_text":"bấm vào đây",
+    "checking_payment_text":"Treo lên!Kiểm tra tình trạng thanh toán ...",
+    "checking_payment_description_text":"Xin lỗi, nó mất nhiều thời gian hơn bình thường.Chúng tôi sẽ thông báo cho bạn khi thanh toán thành công",
+    "close_text":"Đóng"
+
+
+
 }

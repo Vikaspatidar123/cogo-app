@@ -42,4 +42,8 @@ export const EXPIRE_DAY = 0;
 
 export const MIN_POPPULAR_SEQUENCE = 0;
 
-export const SORTED_PlAN = ['Starter', 'Standard', 'Premium'];
+export const CLOSE_TIME = 9;
+
+export const PAINTING_TIME = 10;
+
+export const SET_TIME = 10000;

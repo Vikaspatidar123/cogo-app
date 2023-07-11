@@ -79,7 +79,7 @@ function Plan() {
 
 			<div className={styles.feature_line}>
 				<div>
-					<div className={styles.features}>Show Detailed Plan Comparison</div>
+					<div className={styles.features}>{t('subscriptions:detailed_text')}</div>
 				</div>
 			</div>
 			<CardTable

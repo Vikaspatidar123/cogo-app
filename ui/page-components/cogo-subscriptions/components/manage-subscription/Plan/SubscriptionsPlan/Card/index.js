@@ -1,5 +1,6 @@
 import { cl, Button } from '@cogoport/components';
 import { IcMTick } from '@cogoport/icons-react';
+import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
 
 import {
@@ -29,6 +30,7 @@ function Card({
 	setActiveHover,
 	activeIndex,
 }) {
+	const { t } = useTranslation(['subscriptions']);
 	const [showActivateModal, setShowActivateModal] = useState(false);
 	const [modal, setShowModal] = useState(false);
 
@@ -61,12 +63,19 @@ function Card({
 									amount: totalAmt || DEFAULT_MONTHLY_AMOUNT,
 									currency,
 								})}
-								<div className={styles.per_period}> / month</div>
+								<div className={styles.per_period}>
+									{' '}
+									/
+									{' '}
+									{t('subscriptions:month_text')}
+								</div>
 							</div>
 						</div>
 						{activeTab === 'annual' && (
 							<div className={cl`${styles.styled_row} ${styles.priceRow} `}>
-								<div className={styles.annuallyTxt}>Billed Annually</div>
+								<div className={styles.annuallyTxt}>
+									{t('subscriptions:billed_annually_text')}
+								</div>
 							</div>
 						)}
 					</div>
@@ -74,8 +83,12 @@ function Card({
 			</div>
 			{!displayPricing?.activate_later ? (
 				displayPricing?.show_button && (
-					<Button className={cl`${styles.red_button} ${styles.button}`} onClick={() => onSubmit(item)}>
-						Subscribe
+					<Button
+						className={cl`${styles.red_button} ${styles.button}`}
+						onClick={() => onSubmit(item)}
+						type="button"
+					>
+						{t('subscriptions:subscribe_button_text')}
 					</Button>
 				)
 			) : (
@@ -83,8 +96,9 @@ function Card({
 					<Button
 						className={styles.button}
 						onClick={() => setShowActivateModal(true)}
+						type="button"
 					>
-						Activate
+						{t('subscriptions:activate_button_text')}
 					</Button>
 				</div>
 			)}
@@ -103,21 +117,24 @@ function Card({
 		>
 			{active && (
 				<div className={styles.cr_inner}>
-					<span className={styles.active_plan}>Active</span>
+					<span className={styles.active_plan}>
+						{' '}
+						{t('subscriptions:active_text')}
+					</span>
 				</div>
 			)}
 			{prioritySequence === activeHover && (
 				<img
 					className={`${styles.back_ground_image} ${styles.line_img}`}
 					src={GLOBAL_CONSTANTS.image_url.card_background_line_image}
-					alt="cogo"
+					alt={t('subscriptions:cogo_text')}
 				/>
 			)}
 
 			{prioritySequence === MOST_POPPULAR_INDEX && (
 				<div className={styles.row}>
 					<div />
-					<div className={styles.ribbon_wrapper}>Most Popular</div>
+					<div className={styles.ribbon_wrapper}>{t('subscriptions:most_popular_text')}</div>
 				</div>
 			)}
 			<div className={`${prioritySequence !== MOST_POPPULAR_INDEX && styles.card}`}>
@@ -134,14 +151,16 @@ function Card({
 							<div className={styles.date_box}>
 								<Image
 									src={GLOBAL_CONSTANTS.image_url.calendar_image}
-									alt="cogo"
+									alt={t('subscriptions:cogo_text')}
 									width={25}
 									height={25}
 								/>
 								<span className={styles.days}>{displayPricing?.activates_in}</span>
 								<span className={styles.date}>
-									{displayPricing?.activates_in === 1 ? 'day' : 'days '}
-									left to activate
+									{displayPricing?.activates_in === 1 ? t('subscriptions:day_text')
+										: t('subscriptions:days_text')}
+									{' '}
+									{t('subscriptions:left_activate_text')}
 								</span>
 							</div>
 						)}
@@ -151,14 +170,16 @@ function Card({
 							<div className={styles.date_box}>
 								<Image
 									src={GLOBAL_CONSTANTS.image_url.calendar_image}
-									alt="cogo"
+									alt={t('subscriptions:cogo_text')}
 									width={25}
 									height={25}
 								/>
 								<span className={styles.days}>{displayPricing?.expires_in}</span>
 								<span className={styles.date}>
-									{displayPricing?.expires_in === 1 ? 'day ' : 'days '}
-									to expire
+									{displayPricing?.expires_in === 1 ? t('subscriptions:day_text')
+										: t('subscriptions:days_text')}
+									{' '}
+									{t('subscriptions:expire_text')}
 								</span>
 							</div>
 						) : (

@@ -1,12 +1,13 @@
 import { Button } from '@cogoport/components';
 import { IcMArrowRight } from '@cogoport/icons-react';
 
+import Loading from '../Loading';
+
 import Card from './Card';
 import styles from './styles.module.css';
 
 import { useRouter } from '@/packages/next';
 import useRecentSearches from '@/ui/page-components/new-dashboard/hooks/useRecentSearches';
-import Loading from '../Loading'
 
 function RecentSearches() {
 	const { push } = useRouter();

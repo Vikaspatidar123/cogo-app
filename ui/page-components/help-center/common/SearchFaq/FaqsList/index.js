@@ -16,7 +16,7 @@ function FaqsList({
 }) {
 	const { t } = useTranslation(['helpCenter']);
 
-	const { list = [] } = faqListData;
+	const { list = [] } = faqListData || {};
 
 	if (loading) {
 		return (

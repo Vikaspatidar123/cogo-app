@@ -38,11 +38,11 @@ function MobileLoginForm() {
 					placeholder={t('common:rightPanel_tabs_mobile_controls_mobile_label')}
 					mobileSelectRef={{ ...register('mobile_number', RULES) }.ref}
 				/>
-				{errors.mobile_number && (
+				{errors.mobile_number ? (
 					<span className={styles.errors}>
 						{errors.mobile_number.message || errors.mobile_number.type}
 					</span>
-				)}
+				) : null}
 				<br />
 
 				<Button

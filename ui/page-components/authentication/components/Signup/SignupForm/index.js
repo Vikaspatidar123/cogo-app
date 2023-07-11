@@ -50,11 +50,11 @@ function SignupForm({ setHasSignedup, setFormData, setUserDetails }) {
 					rules={{ required: `${t('common:rightPanel_registration_controls_name_is_required')}` }}
 				/>
 
-				{errors.name && (
+				{errors.name ? (
 					<span className={styles.errors}>
 						{errors.name.message}
 					</span>
-				)}
+				) : null}
 			</div>
 			<div className={styles.input_container}>
 				<InputController
@@ -65,11 +65,11 @@ function SignupForm({ setHasSignedup, setFormData, setUserDetails }) {
 					rules={{ required: `${t('common:rightPanel_email_is_required')}` }}
 				/>
 
-				{errors.email && (
+				{errors.email ? (
 					<span className={styles.errors}>
 						{errors.email.message}
 					</span>
-				)}
+				) : null}
 			</div>
 
 			<div className={styles.mobile_number_select_container}>
@@ -85,11 +85,11 @@ function SignupForm({ setHasSignedup, setFormData, setUserDetails }) {
 						}),
 					}.ref}
 				/>
-				{errors.mobile_number && (
+				{errors.mobile_number ? (
 					<span className={styles.errors}>
 						{errors.mobile_number.message || errors.mobile_number.type}
 					</span>
-				)}
+				) : null}
 			</div>
 
 			<div className={styles.checkbox_container}>

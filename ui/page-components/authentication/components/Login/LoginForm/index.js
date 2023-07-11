@@ -32,11 +32,11 @@ function LoginForm() {
 					placeholder={t('common:rightPanel_tabs_email_controls_email_label')}
 					rules={{ required: `${t('common:rightPanel_email_is_required')}` }}
 				/>
-				{errors.email && (
+				{errors.email ? (
 					<span className={styles.errors}>
 						{errors.email.message}
 					</span>
-				)}
+				) : null}
 				<br />
 				<div className={styles.password_container}>
 					<InputController
@@ -48,11 +48,11 @@ function LoginForm() {
 						rules={{ required: `${t('common:rightPanel_password_is_required')}` }}
 					/>
 				</div>
-				{errors.password && (
+				{errors.password ? (
 					<span className={styles.errors}>
 						{errors.password.message}
 					</span>
-				)}
+				) : null}
 
 				<div className={styles.forgot}>
 					<a href="/forgot-password">{t('common:rightPanel_tabs_email_forgotPassword')}</a>

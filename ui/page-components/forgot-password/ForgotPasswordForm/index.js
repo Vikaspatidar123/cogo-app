@@ -47,9 +47,9 @@ function ForgotPasswordForm({ setSentMail, setEmailId }) {
 							placeholder={t('forgotPassword:rightPanel_tabs_email_title')}
 							rules={{ required: t('forgotPassword:rightPanel_email_is_required') }}
 						/>
-						{errors.email && (
+						{errors.email ? (
 							<span className={styles.errors}>{errors.email.message}</span>
-						)}
+						) : null}
 					</div>
 					<div className={styles.button_container}>
 						<Button

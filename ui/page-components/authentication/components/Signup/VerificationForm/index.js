@@ -81,12 +81,12 @@ function VerifictaionForm({ formData, userDetails }) {
 				{t('common:rightPanel_verification_email_texts_4')}
 				<br />
 				{t('common:rightPanel_verification_email_texts_5')}
-				<button
+				<Button
 					className={styles.resend_mail_button}
 					onClick={() => onClickResendEmail(id)}
 				>
 					{t('common:rightPanel_verification_email_resendEmailButton_label')}
-				</button>
+				</Button>
 			</div>
 		</div>
 	);

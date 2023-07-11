@@ -41,7 +41,7 @@ function TooltipContent({ tradeEngineResponse = {} }) {
 				}
 
 				return (
-					<div className={styles.row}>
+					<div className={styles.row} key={ele}>
 						<div>{TOOLTIP_MAPPING[ele]}</div>
 						<div>{getFormatedAmt({ amount, currency: resultCurrency })}</div>
 					</div>

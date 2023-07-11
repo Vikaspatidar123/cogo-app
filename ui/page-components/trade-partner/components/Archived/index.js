@@ -11,7 +11,7 @@ import styles from './styles.module.css';
 import { useRouter } from '@/packages/next';
 
 function Archived() {
-	const { t } = useTranslation(['tradePartner']);
+	const { t } = useTranslation(['common', 'tradePartner']);
 	const { query, push } = useRouter();
 	const { archived } = query || {};
 	const {

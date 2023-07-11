@@ -7,7 +7,7 @@ import styles from './styles.module.css';
 import { Image } from '@/packages/next';
 
 function ArchiveModal({ archive, setArchive, onSubmit = () => {}, archived }) {
-	const { t } = useTranslation(['tradePartner']);
+	const { t } = useTranslation(['common', 'tradePartner']);
 	return (
 		<Modal
 			className={styles.container}

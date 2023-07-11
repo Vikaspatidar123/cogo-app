@@ -22,7 +22,7 @@ function Popover({
 	archived,
 	getList,
 }) {
-	const { t } = useTranslation(['tradePartner']);
+	const { t } = useTranslation(['common', 'tradePartner']);
 	const [deleteModal, setDeleteModal] = useState(false);
 	const [archive, setArchive] = useState(false);
 	const { tradePartyStatus } = usePutArchiveUnarchiveStatus({

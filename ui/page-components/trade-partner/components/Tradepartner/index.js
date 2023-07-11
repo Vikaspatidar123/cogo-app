@@ -15,7 +15,7 @@ import { useRouter } from '@/packages/next';
 
 function TradePartner() {
 	const { push } = useRouter();
-	const { t } = useTranslation(['tradePartner']);
+	const { t } = useTranslation(['common', 'tradePartner']);
 	const [sort, setSort] = useState();
 	const {
 		getList, setGlobalFilters, filters, apiData, apiLoading,

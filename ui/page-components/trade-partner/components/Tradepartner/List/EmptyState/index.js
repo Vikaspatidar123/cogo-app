@@ -4,7 +4,7 @@ import React from 'react';
 import styles from './styles.module.css';
 
 function EmptyState({ placement = 'center' }) {
-	const { t } = useTranslation(['tradePartner']);
+	const { t } = useTranslation(['common', 'tradePartner']);
 
 	return (
 		<div className={styles.container}>

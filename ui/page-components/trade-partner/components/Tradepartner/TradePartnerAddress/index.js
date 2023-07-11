@@ -20,7 +20,7 @@ function TradePartnerAddress({
 	getList,
 	setIsEdit,
 }) {
-	const { t } = useTranslation(['tradePartner']);
+	const { t } = useTranslation(['common', 'tradePartner']);
 	const { postTradePartner, loading } = usePostTradePartner({
 		isEdit,
 		tradePartyDetails,

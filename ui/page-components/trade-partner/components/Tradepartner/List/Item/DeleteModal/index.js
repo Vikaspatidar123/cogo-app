@@ -8,7 +8,7 @@ import styles from './styles.module.css';
 function DeleteModal({
 	deleteModal, setDeleteModal, deleteTradeParty, deleteLoading, itemData,
 }) {
-	const { t } = useTranslation(['tradePartner']);
+	const { t } = useTranslation(['common', 'tradePartner']);
 
 	return (
 		<Modal

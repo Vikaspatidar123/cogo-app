@@ -1,9 +1,9 @@
 import { Button, cl } from '@cogoport/components';
 import { merge } from '@cogoport/utils';
+import { useTranslation } from 'next-i18next';
 import { useState, useMemo } from 'react';
 
 import getField from '../../../../../packages/forms/Controlled';
-import { SubHeadingIcon } from '../../configuration/icon-configuration';
 import getControls from '../../configuration/inputcontrols';
 import useGetStateFromPincode from '../../hooks/useGetStateFromPincode';
 import { renderBtn } from '../../utils';
@@ -11,6 +11,8 @@ import { renderBtn } from '../../utils';
 import styles from './styles.module.css';
 
 import { useForm, asyncFieldsLocations, useGetAsyncOptions } from '@/packages/forms';
+import { Image } from '@/packages/next';
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
 function TraderDetails({
 	quotaLoading = false,
@@ -21,11 +23,12 @@ function TraderDetails({
 	setCountryDetails = () => {},
 	countryDetails = {},
 }) {
+	const { t } = useTranslation(['traderEligibilityCheck']);
 	const countryOptions = useGetAsyncOptions(merge(asyncFieldsLocations(), {
 		params: { filters: { type: ['country'] } },
 	}));
 	const [cityState, setCityState] = useState();
-	const controls = getControls({ setCountryDetails, formDetails, countryOptions });
+	const controls = getControls({ setCountryDetails, formDetails, countryOptions, t });
 	const {
 		handleSubmit,
 		watch,
@@ -35,6 +38,7 @@ function TraderDetails({
 	} = useForm();
 
 	const [watchPincode, watchCountry] = watch(['postal_code', 'countryId']);
+
 	const { cityLoading } = useGetStateFromPincode({
 		watchPincode,
 		watchCountry,
@@ -45,9 +49,6 @@ function TraderDetails({
 	const { region, city } = list?.[0] || {};
 
 	useMemo(() => {
-		// if (list?.length === 0) {
-		// 	Toast.error('Invalid Pincode');
-		// }
 		if (watchPincode === '') {
 			setValue('city', '');
 			setValue('state', '');
@@ -70,9 +71,15 @@ function TraderDetails({
 			<form type="submit">
 				<div>
 					<div className={styles.title_div}>
-						<img src={SubHeadingIcon} alt="" className={styles.sub_heading_icon} />
+						<Image
+							src={GLOBAL_CONSTANTS.image_url.sub_heading_icon}
+							alt=""
+							className={styles.sub_heading_icon}
+							width={30}
+							height={30}
+						/>
 						<div className={styles.title}>
-							<div>Trader Details</div>
+							<div>{t('traderEligibilityCheck:tec_form_title')}</div>
 							<div className={cl`${styles.line_wrapper_mobile} ${styles.line_wrapper_web}`}>
 								<div className={styles.line} />
 							</div>
@@ -114,7 +121,7 @@ function TraderDetails({
 						})}
 					<div className={styles.title2_styles}>
 						<div className={styles.title2}>
-							Additional Details
+							{t('traderEligibilityCheck:tec_form_additional_details')}
 							{' '}
 							<div className={styles.optional}> (optional)</div>
 						</div>
@@ -160,7 +167,7 @@ function TraderDetails({
 					loading={cityLoading}
 					type="button"
 				>
-					{renderBtn({ serviceRatesLoading, quotaLoading })}
+					{renderBtn({ serviceRatesLoading, quotaLoading, t })}
 				</Button>
 			</div>
 		</div>

@@ -1,46 +1,47 @@
 import { Toast } from '@cogoport/components';
-import { useCallback } from 'react';
+import { useCallback, useMemo } from 'react';
 
 import { useRequest } from '@/packages/request';
 
 const useFetchBillingAddress = ({ profile, setAddressWithoutGst }) => {
-	const [{ laoding }, trigger] = useRequest({
+	const [{ loading }, trigger] = useRequest({
 		url    : '/list_organization_billing_addresses',
 		method : 'get',
 	}, { manual: true });
-	const [{ laoding:load }, addresApi] = useRequest({
+
+	const [{ loading :load }, addresApiTrigger] = useRequest({
 		url    : '/list_organization_addresses',
 		method : 'get',
 	}, { manual: true });
-	const params = {
+
+	const params = useMemo(() => ({
 		organization_id : profile?.organization.id,
 		page_limit      : 100,
 		page            : 1,
-	};
+	}), [profile?.organization.id]);
+
 	const billingAddress = useCallback(async ({ setAddresses }) => {
 		try {
 			const resp = await trigger({
-				params: {
-					organization_id : profile?.organization.id,
-					page_limit      : 100,
-					page            : 1,
-				},
+				params,
 			});
 			setAddresses(resp?.data?.list);
 		} catch (error) {
 			Toast.error(error?.message);
 		}
-	}, [profile?.organization.id, trigger]);
-	const addressApi = async () => {
+	}, [params, trigger]);
+
+	const addressApi = useCallback(async () => {
 		try {
-			const resp = await addresApi({
+			const resp = await addresApiTrigger({
 				params,
 			});
 			setAddressWithoutGst(resp?.data?.list);
 		} catch (error) {
 			Toast.error(error?.message);
 		}
-	};
-	return { billingAddress, laoding, addressApi, load };
+	}, [addresApiTrigger, params, setAddressWithoutGst]);
+
+	return { billingAddress, loading: loading || load, addressApi };
 };
 export default useFetchBillingAddress;

@@ -3,6 +3,9 @@ import { useCallback, useMemo } from 'react';
 
 import { useRequest } from '@/packages/request';
 
+const DEFAULT_PAGE = 1;
+const DEFAULT_PAGE_LIMIT = 100;
+
 const useFetchBillingAddress = ({ profile, setAddressWithoutGst }) => {
 	const [{ loading }, trigger] = useRequest({
 		url    : '/list_organization_billing_addresses',
@@ -16,8 +19,8 @@ const useFetchBillingAddress = ({ profile, setAddressWithoutGst }) => {
 
 	const params = useMemo(() => ({
 		organization_id : profile?.organization.id,
-		page_limit      : 100,
-		page            : 1,
+		page_limit      : DEFAULT_PAGE_LIMIT,
+		page            : DEFAULT_PAGE,
 	}), [profile?.organization.id]);
 
 	const billingAddress = useCallback(async ({ setAddresses }) => {

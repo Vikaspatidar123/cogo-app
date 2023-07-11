@@ -32,19 +32,19 @@ export function SchedulesModal({
 						<div className={styles.img_container}>
 							<img
 								src={shippingLine?.logo_url}
-								alt="logo"
+								alt={t('airSchedule:logo_alt')}
 								width="40px"
 								height="40px"
 							/>
 						</div>
 						<div className={styles.header_text}>
 							{shippingLine?.short_name}
-							<span className="span">
+							<span className={styles.span}>
 								{schedule?.vessel_name || schedule?.transport_name}
 								/
 								{schedule?.voyage_number}
 								(
-								{t('aieSchedule:service_text')}
+								{t('airSchedule:service_text')}
 								-
 								{schedule?.service_name}
 								)
@@ -58,9 +58,9 @@ export function SchedulesModal({
 								{t('airchedule:vgm_cut_off_text')}
 								:
 								{formatDate({
-									date       : schedule?.vgm_cutoff,
-									dateFormat : GLOBAL_CONSTANTS.formats.date['dd MMM yyyy'],
-									formatType : 'date',
+									date: schedule?.vgm_cutoff,
+									dateFormat: GLOBAL_CONSTANTS.formats.date['dd MMM yyyy'],
+									formatType: 'date',
 								})}
 							</Pill>
 						) : null}
@@ -69,9 +69,9 @@ export function SchedulesModal({
 								{t('airSchedule:terminal_cut_off_text')}
 								:
 								{formatDate({
-									date       : schedule?.terminal_cutoff,
-									dateFormat : GLOBAL_CONSTANTS.formats.date['dd MMM yyyy'],
-									formatType : 'date',
+									date: schedule?.terminal_cutoff,
+									dateFormat: GLOBAL_CONSTANTS.formats.date['dd MMM yyyy'],
+									formatType: 'date',
 								})}
 							</Pill>
 						) : null}
@@ -95,16 +95,16 @@ export function SchedulesModal({
 					<div className={styles.dates_container}>
 						<div className={styles.date_container}>
 							{formatDate({
-								date       : schedule?.departure,
-								dateFormat : GLOBAL_CONSTANTS.formats.date['dd MMM yyyy'],
-								formatType : 'date',
+								date: schedule?.departure,
+								dateFormat: GLOBAL_CONSTANTS.formats.date['dd MMM yyyy'],
+								formatType: 'date',
 							})}
 						</div>
 						<div className={styles.date_container}>
 							{formatDate({
-								date       : schedule?.arrival,
-								dateFormat : GLOBAL_CONSTANTS.formats.date['dd MMM yyyy'],
-								formatType : 'date',
+								date: schedule?.arrival,
+								dateFormat: GLOBAL_CONSTANTS.formats.date['dd MMM yyyy'],
+								formatType: 'date',
 							})}
 						</div>
 					</div>

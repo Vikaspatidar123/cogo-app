@@ -31,7 +31,9 @@
     "view_details_text":"Xem chi tiết",
     "schedule_details_text":"Lịch trình chi tiết",
     "origin_text":"Nguồn gốc",
-    "destination_text":"Điểm đến"
+    "destination_text":"Điểm đến",
+    "logo_alt":"logo",
+    "empty_alt":"empty"
 
 
 

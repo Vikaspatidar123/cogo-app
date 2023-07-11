@@ -31,6 +31,9 @@
     "view_details_text":"View Details",
     "schedule_details_text":"Schedule Details",
     "origin_text":"Origin",
-    "destination_text":"Destination"
+    "destination_text":"Destination",
+    "logo_alt":"logo",
+    "empty_alt":"empty"
+
 
 }

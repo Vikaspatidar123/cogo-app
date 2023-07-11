@@ -12,7 +12,7 @@ function NoSchedulesCard({ loading }) {
 		!loading && (
 			<div className={styles.card}>
 				<Image
-					alt=""
+					alt="No Data Found"
 					src={GLOBAL_CONSTANTS.image_url.no_schedules_found_image}
 					height={200}
 					width={300}

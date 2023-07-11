@@ -8,6 +8,7 @@ import DeleteModal from './DeleteModal';
 import styles from './styles.module.css';
 
 import { useRouter } from '@/packages/next';
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
 function ScheduleCard({ schedule, refectSchedules }) {
 	const {
@@ -25,8 +26,8 @@ function ScheduleCard({ schedule, refectSchedules }) {
 	const originSchedule = origin_port?.port_code || t('oceanSchedule:origin_text');
 	const destinationSchedule = destination_port?.port_code || t('oceanSchedule:destination_text');
 
-	const origin_port_name = origin_port?.name.split('(')[0];
-	const destination_port_name = destination_port?.name.split('(')[0];
+	const origin_port_name = origin_port?.name.split('(')[GLOBAL_CONSTANTS.zeroth_index];
+	const destination_port_name = destination_port?.name.split('(')[GLOBAL_CONSTANTS.zeroth_index];
 
 	const handleViewDetails = () => {
 		push(`/saas/ocean-schedules/${id}`);

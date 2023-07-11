@@ -15,6 +15,7 @@ import { useRequest } from '@/packages/request';
 import { useSelector } from '@/packages/store';
 
 const PAGE_LIMIT = 6;
+const DEFAULT_CURRENT_PAGE = 1;
 const getPayload = ({ general, filters, currentPage }) => ({
 	filters: {
 		organization_branch_id : general?.query?.branch_id,
@@ -31,7 +32,7 @@ const useFetchSchedules = () => {
 	const { t } = useTranslation(['oceanSchedule']);
 
 	const [filters, setFilters] = useState({});
-	const [currentPage, setCurrentPage] = useState(1);
+	const [currentPage, setCurrentPage] = useState(DEFAULT_CURRENT_PAGE);
 	const [schedules, setSchedules] = useState({});
 	const [errorMessage, setErrorMessage] = useState(false);
 

@@ -18,13 +18,13 @@ import styles from './styles.module.css';
 import { useRouter } from '@/packages/next';
 
 const PAGE_LIMIT = 6;
-
+const DEFAULT_CURRENT_PAGE = 0;
 function ActiveSchedules() {
 	const { query, push } = useRouter();
 	const { t } = useTranslation(['oceanSchedule']);
 	const { id } = query || {};
 
-	const [currentPage, setCurrentPage] = useState(1);
+	const [currentPage, setCurrentPage] = useState(DEFAULT_CURRENT_PAGE);
 
 	const {
 		setFilters, scheduleDetails,
@@ -143,6 +143,7 @@ function ActiveSchedules() {
 					{!filterFetchLoading && !isEmpty(schedules?.list?.length)
 						? schedules?.list.map((item) => (
 							<ActiveScheduleCard
+								key={item.shipping_line_id}
 								schedule={item}
 								scheduleDetails={scheduleDetails}
 							/>
@@ -156,7 +157,7 @@ function ActiveSchedules() {
 						type="number"
 						currentPage={currentPage}
 						totalItems={schedules?.total_count}
-						pageSize={6}
+						pageSize={PAGE_LIMIT}
 						onPageChange={setCurrentPage}
 					/>
 				</div>

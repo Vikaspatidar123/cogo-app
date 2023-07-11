@@ -223,6 +223,7 @@ const GLOBAL_CONSTANTS = {
 		phone_number : '+918976851674',
 		email_id     : 'kanira.patel@cogoport.com',
 	},
+	zeroth_index: 0,
 
 };
 

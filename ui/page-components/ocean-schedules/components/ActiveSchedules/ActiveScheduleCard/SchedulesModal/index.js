@@ -53,7 +53,7 @@ export function SchedulesModal({
 						</div>
 					</div>
 					<div className={styles.pills_container}>
-						{schedule?.vgm_cutoff && (
+						{schedule?.vgm_cutoff ? (
 							<Pill size="md" color="#F7FAEF">
 								{t('oceanSchedule:vgm_cut_off_text')}
 								:
@@ -63,8 +63,8 @@ export function SchedulesModal({
 									formatType : 'date',
 								})}
 							</Pill>
-						)}
-						{schedule?.terminal_cutoff && (
+						) : null}
+						{schedule?.terminal_cutoff ? (
 							<Pill size="md" color="#F7FAEF">
 								{t('oceanSchedule:terminal_cut_off_text')}
 								:
@@ -75,7 +75,7 @@ export function SchedulesModal({
 								})}
 
 							</Pill>
-						)}
+						) : null}
 					</div>
 				</div>
 				<div>

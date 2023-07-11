@@ -15,11 +15,22 @@
     "cancel_button_text":"Cancel",
     "delete_button_text":"Delete",
     "conformation_message_text":"Are you sure you want to delete?",
-    "no_schedules_text":"No Schedules Found"
-
-
-
-
-
+    "no_schedules_text":"No Schedules Found",
+    "active_schedules_text":"Active Schedules",
+    "filter_text":"Filter By",
+    "clear_all_text":"Clear All",
+    "carrier_text":"Carrier",
+    "arrival_text":"Arrival",
+    "departure_text":"Departure",
+    "transit_duration_text":"Transit Duration (Hours)",
+    "air_line_text":"Airline",
+    "service_text":"SERVICE",
+    "vgm_cut_off_text":"VGM Cutoff",
+    "terminal_cut_off_text":"Terminal Cutoff",
+    "days_text":"Days",
+    "view_details_text":"View Details",
+    "schedule_details_text":"Schedule Details",
+    "origin_text":"Origin",
+    "destination_text":"Destination"
 
 }

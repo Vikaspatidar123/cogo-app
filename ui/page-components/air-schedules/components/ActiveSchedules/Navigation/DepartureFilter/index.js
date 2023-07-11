@@ -1,4 +1,5 @@
 import { IcMArrowRotateRight } from '@cogoport/icons-react';
+import { useTranslation } from 'next-i18next';
 
 import DateDepartureHandler from './DateHandler';
 import styles from './styles.module.css';
@@ -9,11 +10,13 @@ function DepartureFilter({
 	departureDate,
 	setDepartureDate,
 }) {
+	const { t } = useTranslation(['airSchedule']);
+
 	return (
 		<>
 			<div className={styles.header} role="presentation" onClick={() => handleNav('departure')}>
 				<div className={styles.nav_heading}>
-					Departure
+					{t('airSchedule:arrival_text')}
 				</div>
 				<div className={styles.column}>
 					<IcMArrowRotateRight

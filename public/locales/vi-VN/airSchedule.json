@@ -14,7 +14,25 @@
     "carriers_text":"Người vận chuyển",
     "cancel_button_text":"Hủy bỏ",
     "delete_button_text":"Xóa bỏ",
-    "conformation_message_text":"Bạn có chắc chắn muốn xóa?"
+    "conformation_message_text":"Bạn có chắc chắn muốn xóa?",
+    "no_schedules_text":"Không tìm thấy lịch trình",
+    "active_schedules_text":"Lịch trình hoạt động",
+    "filter_text":"Lọc bởi",
+    "clear_all_text":"Làm sạch tất cả",
+    "carrier_text":"Vận chuyển",
+    "arrival_text":"Đến",
+    "departure_text":"Sự khởi hành",
+    "transit_duration_text":"Thời gian vận chuyển (giờ)",
+    "air_line_text":"Hàng không",
+    "service_text":"DỊCH VỤ",
+    "vgm_cut_off_text":"Cắt VGM",
+    "terminal_cut_off_text":"Cắt đầu cuối",
+    "days_text":"Ngày",
+    "view_details_text":"Xem chi tiết",
+    "schedule_details_text":"Lịch trình chi tiết",
+    "origin_text":"Nguồn gốc",
+    "destination_text":"Điểm đến"
+
 
 
 

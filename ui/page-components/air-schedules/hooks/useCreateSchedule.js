@@ -33,18 +33,18 @@ const useCreateSchedule = () => {
 	const fields = getControls({ airportOptions, t });
 
 	const [{ loading }, trigger] = useRequest({
-		method: 'post',
-		url: '/create_saas_air_schedule_subscription',
+		method : 'post',
+		url    : '/create_saas_air_schedule_subscription',
 	}, { manual: true });
 
 	const createSchedule = async (origin, destination) => {
 		try {
 			const requestData = {
-				origin_airport_id: origin,
-				destination_airport_id: destination,
-				performed_by_user_id: profile.id,
-				organization_id: profile.organization.id,
-				organization_branch_id: general?.query?.branch_id,
+				origin_airport_id      : origin,
+				destination_airport_id : destination,
+				performed_by_user_id   : profile.id,
+				organization_id        : profile.organization.id,
+				organization_branch_id : general?.query?.branch_id,
 			};
 
 			const res = await trigger({

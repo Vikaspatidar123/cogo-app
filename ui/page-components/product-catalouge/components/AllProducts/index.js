@@ -7,7 +7,6 @@ import {
 } from '@cogoport/icons-react';
 import React, { useState, useEffect } from 'react';
 
-import AddProductModal from '../../common/AddProductModal';
 import DeleteProductModal from '../../common/DeleteProductModal';
 import useArchive from '../../hooks/useArchive';
 
@@ -17,26 +16,22 @@ import styles from './styles.module.css';
 import HsCodeIcon from '@/ui/commons/components/HsCodeIcon';
 
 function AllProducts({
-	showProduct,
 	setShowProduct,
-	countryInfo,
-	prefiledValues,
-	setPrefiledValues,
 	apiData,
 	refetchProduct = () => {},
 	loading,
-	addProductLoading,
 	setHSCode = () => {},
 	deleteProduct = () => {},
 	setIsEdit,
-	isEdit,
+	setProductClassification = () => {},
+	setProId = () => {},
+	productClassification = '',
+	proId = '',
 }) {
 	const { MAPPING } = HsCodeIcon();
 	const [archive, setArchive] = useState(false);
 	const [visible, setVisible] = useState({});
-	const [proId, setProId] = useState('');
 	const [showDeleteModal, setShowDeleteModal] = useState(false);
-	const [productClassification, setProductClassification] = useState('');
 	const { refetchArchive } = useArchive({
 		proId,
 		setArchive,
@@ -218,21 +213,6 @@ function AllProducts({
 					card
 				/>
 			)}
-			<AddProductModal
-				showProduct={showProduct}
-				setShowProduct={setShowProduct}
-				countryInfo={countryInfo}
-				prefiledValues={prefiledValues}
-				setPrefiledValues={setPrefiledValues}
-				isEdit={isEdit}
-				setIsEdit={setIsEdit}
-				addProductLoading={addProductLoading}
-				refetchProduct={refetchProduct}
-				setHSCode={setHSCode}
-				productClassificationId={productClassification}
-				productId={proId}
-				card
-			/>
 		</div>
 	);
 }

@@ -215,11 +215,8 @@ const GLOBAL_CONSTANTS = {
 		unsubscription_bottle : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/Bottle.png',
 		unsubscription_plane  : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/page_plane.png',
 		insurance_empty_image : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/Insurance.png',
-<<<<<<< HEAD
 		kyc_dialog_image      : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/nogstIcon.svg',
-=======
 		secure_icon           : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/secure-icon.svg',
->>>>>>> 244de08c6961a6bd8ff8cbc0f92c6e74fb4975de
 		heading_icon          : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/heading.svg',
 		sub_heading_icon      : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/subheading.svg',
 		loading_icon          : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/loading.svg',
@@ -232,14 +229,11 @@ const GLOBAL_CONSTANTS = {
 		phone_number : '+918976851674',
 		email_id     : 'kanira.patel@cogoport.com',
 	},
-<<<<<<< HEAD
 	user_specific_email_id: {
 		ajeet: 'ajeet@cogoport.com',
 	},
-=======
 
 	zeroth_index: 0,
->>>>>>> 244de08c6961a6bd8ff8cbc0f92c6e74fb4975de
 };
 
 export default GLOBAL_CONSTANTS;

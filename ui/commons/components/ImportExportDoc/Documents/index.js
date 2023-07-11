@@ -4,25 +4,23 @@ import { useTranslation } from 'next-i18next';
 
 import styles from '../styles.module.css';
 
-const downloadHandler = ({ docLink, docName, hsNumber }) => {
-	const url = `${process.env.NEXT_PUBLIC_BUSINESS_FINANCE_BASE_URL}/saas/trade-engine/pdf?`
-    + `docLink=${docLink}&docName=${docName}&hsNumber=${hsNumber}`;
-	window.open(url);
-};
+import { downloadDocument } from '@/ui/commons/utils/downloadDocument';
 
-const renderDesc = (desc = '') => {
-	if (desc?.length > 50) {
+const MAX_DESC_LENGTH = 50;
+
+function RenderDesc({ desc = '' }) {
+	if (desc?.length > MAX_DESC_LENGTH) {
 		return (
 			<Tooltip content={desc} interactive>
 				<span>
-					{desc.substring(0, 50)}
+					{desc.substring(0, MAX_DESC_LENGTH)}
 					...
 				</span>
 			</Tooltip>
 		);
 	}
-	return desc || '--';
-};
+	return <span>{desc || '--'}</span>;
+}
 
 function Document({ doc = {}, hsNumber = '' }) {
 	const {
@@ -34,6 +32,10 @@ function Document({ doc = {}, hsNumber = '' }) {
 	} = doc;
 
 	const { t } = useTranslation(['iedResult']);
+
+	const clickHandler = () => {
+		downloadDocument({ urlKey: 'importExportDoc', payloadObj: { docLink, docName, hsNumber } });
+	};
 
 	return (
 		<div className={styles.doc_container}>
@@ -47,7 +49,7 @@ function Document({ doc = {}, hsNumber = '' }) {
 						<Button
 							themeType="linkUi"
 							type="button"
-							onClick={() => downloadHandler({ docLink, docName, hsNumber })}
+							onClick={clickHandler}
 						>
 							{t('iedResult:result_download')}
 						</Button>
@@ -57,7 +59,7 @@ function Document({ doc = {}, hsNumber = '' }) {
 						<Button
 							themeType="linkUi"
 							type="button"
-							onClick={() => downloadHandler({ docLink, docName, hsNumber })}
+							onClick={clickHandler}
 						>
 							<IcMDownload />
 						</Button>
@@ -74,7 +76,9 @@ function Document({ doc = {}, hsNumber = '' }) {
 					</div>
 					<div className={cl`${styles.info} ${styles.desc_row}`}>
 						<span className={styles.label}>{t('iedResult:result_doc_label_3')}</span>
-						<span className={styles.value}>{renderDesc(docExpNotes)}</span>
+						<span className={styles.value}>
+							<RenderDesc desc={docExpNotes} />
+						</span>
 					</div>
 				</div>
 			</div>

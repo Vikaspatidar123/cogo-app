@@ -52,6 +52,7 @@
 }
 
 .header {
+	align-items: center;
 	background: #fdfbf6;
 	border-bottom: 1px solid #e0e0e0;
 }
@@ -63,10 +64,6 @@
 .icon {
 	margin-right: 8px;
 	vertical-align: top;
-}
-
-.cta_web_view {
-	display: flex;
 }
 
 .download_btn {
@@ -118,10 +115,6 @@
 @media screen and (max-width: 767px) {
 	.cta_mobile_view {
 		display: flex;
-	}
-
-	.cta_web_view {
-		display: none;
 	}
 
 	.name,

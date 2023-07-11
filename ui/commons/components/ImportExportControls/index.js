@@ -6,7 +6,10 @@ import { useState, useEffect } from 'react';
 import ResultDetails from './ResultDetails';
 import styles from './styles.module.css';
 
-function ImportExportControls({ controls, EmptyState, listClassName }) {
+function ImportExportControls({ tradeEngineResponse = {}, EmptyState, listClassName }) {
+	const { lineItem = [] } = tradeEngineResponse || {};
+	const { controls = [] } = lineItem[0] || {};
+
 	const { t } = useTranslation(['iecResult']);
 	const [activeTab, setActiveTab] = useState('EXPORT');
 	const [controlVal, setControlVal] = useState({

@@ -47,8 +47,8 @@ function Result() {
 		setShowPendingModal,
 		paymentSuccessHandler,
 	});
-	const { modeOfTransport = '', lineItem = [] } = tradeEngineResp || {};
-	const { documents = [], hsNumber = '' } = lineItem?.[0] || {};
+	const { lineItem = [] } = tradeEngineResp || {};
+	const { documents = [] } = lineItem?.[0] || {};
 
 	useEffect(() => {
 		if (razorpay_payment_id) {
@@ -90,10 +90,8 @@ function Result() {
 			</div>
 			{!tradeEngineLoading && documents.length > 0 && (
 				<DocumentResult
-					documents={documents}
+					tradeEngineResponse={tradeEngineResp}
 					EmptyState={EmptyState}
-					hsNumber={hsNumber}
-					modeOfTransport={modeOfTransport}
 				/>
 			)}
 			<PendingModal

@@ -11,6 +11,8 @@ import styles from './styles.module.css';
 import Summary from './Summary';
 import Transport from './Transport';
 
+import PaymentModal from '@/ui/commons/components/PaymentInitiation/component/PaymentModal';
+
 function CheckoutModal({
 	showCheckout,
 	setShowCheckout,
@@ -34,8 +36,14 @@ function CheckoutModal({
 }) {
 	const [traderCheck, setTrackerCheck] = useState(false);
 	const [chargeData, setChargeData] = useState({});
+
 	const { refetchDraft, draftLoading } = useDraft();
-	const { postPayemnt, paymentLoading } = usePayment();
+	const {
+		modal, setModal, postPayemnt,
+		paymentLoading,
+		paymentData = {},
+	} = usePayment({ buyerDetails: quoteRes?.buyerDetails });
+
 	const loading = draftLoading || paymentLoading || locationLoading;
 
 	const { id: quoteId = '' } = createQuoteData;
@@ -67,44 +75,51 @@ function CheckoutModal({
 	}, [createBillLineItems, paymentMode, traderCheck]);
 
 	return (
-		<Modal show={showCheckout} onClose={() => setShowCheckout(false)} size="lg">
-			<Modal.Header title={(
-				<div className={styles.flex_box}>
-					<IcMArrowLeft style={{ cursor: 'pointer' }} onClick={() => !loading && setShowCheckout(false)} />
-					<h3 className={styles.header}>Checkout</h3>
-				</div>
-			)}
-			/>
-			<Modal.Body>
-				<div className={styles.container}>
-					<Transport consignmentValue={consignmentValue} quoteRes={quoteRes} />
-					<ServiceCharge
-						serviceProduct={serviceProduct}
-						serviceData={serviceData}
-						isQuotaLeft={isQuotaLeft}
-						traderCheck={traderCheck}
-						setTrackerCheck={setTrackerCheck}
+		<>
+			<Modal show={showCheckout} onClose={() => setShowCheckout(false)} size="lg">
+				<Modal.Header title={(
+					<div className={styles.flex_box}>
+						<IcMArrowLeft
+							style={{ cursor: 'pointer' }}
+							onClick={() => !loading && setShowCheckout(false)}
+						/>
+						<h3 className={styles.header}>Checkout</h3>
+					</div>
+				)}
+				/>
+				<Modal.Body>
+					<div className={styles.container}>
+						<Transport consignmentValue={consignmentValue} quoteRes={quoteRes} />
+						<ServiceCharge
+							serviceProduct={serviceProduct}
+							serviceData={serviceData}
+							isQuotaLeft={isQuotaLeft}
+							traderCheck={traderCheck}
+							setTrackerCheck={setTrackerCheck}
+							loading={loading}
+						/>
+						<Summary
+							isQuotaLeft={isQuotaLeft}
+							quotaValue={quotaValue}
+							productInfoArr={productInfoArr}
+							chargeData={chargeData}
+							serviceData={serviceData}
+						/>
+					</div>
+				</Modal.Body>
+				<Modal.Footer>
+					<Button
 						loading={loading}
-					/>
-					<Summary
-						isQuotaLeft={isQuotaLeft}
-						quotaValue={quotaValue}
-						productInfoArr={productInfoArr}
-						chargeData={chargeData}
-						serviceData={serviceData}
-					/>
-				</div>
-			</Modal.Body>
-			<Modal.Footer>
-				<Button
-					loading={loading}
-					onClick={submitHandler}
-				>
-					{renderBtn()}
+						type="button"
+						onClick={submitHandler}
+					>
+						{renderBtn()}
 
-				</Button>
-			</Modal.Footer>
-		</Modal>
+					</Button>
+				</Modal.Footer>
+			</Modal>
+			{modal && <PaymentModal paymentData={paymentData} modal={modal} setModal={setModal} />}
+		</>
 	);
 }
 

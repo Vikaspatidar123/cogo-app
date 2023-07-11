@@ -2,6 +2,7 @@ import {
 	cl, Pill, Tooltip, Checkbox, ButtonIcon, Button, Popover, Input,
 } from '@cogoport/components';
 import { IcMDelete, IcMPlusInCircle } from '@cogoport/icons-react';
+import { isEmpty } from '@cogoport/utils';
 import { useState } from 'react';
 
 import iconUrl from '../../../../../../utils/iconUrl.json';
@@ -148,6 +149,7 @@ function ProductField({
 						<ButtonIcon
 							size="lg"
 							icon={<IcMDelete />}
+							disabled={!isEmpty(productLineItemDetails)}
 							themeType="primary"
 							onClick={() => (lineItemLength === 0 || !commonLoading) && deleteProduct(productId, index)}
 						/>

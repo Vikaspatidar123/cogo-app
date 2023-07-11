@@ -3,11 +3,7 @@ import { isEmpty, deleteCookie } from '@cogoport/utils';
 import getorganizationApi from '../hooks/getOrganisation';
 import getUserData from '../hooks/getUserData';
 
-import findurl from './findurl';
-
 import router from '@/packages/navigation-configs/config/public-paths';
-import projectNavigationMappings from '@/packages/navigation-configs/navigation-mapping';
-import getAuthParam from '@/packages/request/helpers/get-auth-params';
 import { getCookie } from '@/packages/request/helpers/getCookieFromCtx';
 import { setProfileStoreState } from '@/packages/store/store/profile';
 import redirect from '@/ui/commons/utils/redirect';
@@ -107,13 +103,10 @@ const handleAuthentication = async ({
 	if (!allStrings?.[3] && actual_org_id && !isEmpty(current_org)) {
 		const branch_id = current_org?.branches?.[0]?.id;
 		asPrefix = `/${actual_org_id}/${branch_id}/dashboard`;
-		findurl({
-			item   : user_data,
-			asPrefix,
+		redirect({
 			isServer,
 			res,
-			org_id : actual_org_id,
-			branch_id,
+			path: asPrefix,
 		});
 
 		return {
@@ -136,14 +129,12 @@ const handleAuthentication = async ({
 		const orgBranchId = org?.branches?.[0]?.id;
 		asPrefix = `/${orgId}/${orgBranchId}/dashboard`;
 		if (isEmpty(current_organization) && !allStrings?.[3]) {
-			findurl({
-				item      : user_data,
-				asPrefix,
+			redirect({
 				isServer,
 				res,
-				org_id    : orgId,
-				branch_id : orgBranchId,
+				path: asPrefix,
 			});
+
 			return {
 				asPrefix,
 				query: {
@@ -156,7 +147,7 @@ const handleAuthentication = async ({
 		return {
 			asPrefix,
 			query:
-        asPathArr.length >= 5 ? { org_id: asPathArr[2], branch_id: asPathArr[3] } : {},
+				asPathArr.length >= 5 ? { org_id: asPathArr[2], branch_id: asPathArr[3] } : {},
 		};
 	}
 	const { org_id, branch_id } = query || {};
@@ -166,14 +157,11 @@ const handleAuthentication = async ({
 	const org = user_data.organizations[0];
 	const orgBranchId = user_data.organizations[0]?.branches?.[0]?.id;
 	if (isEmpty(current_organization) || asPath.includes('/select-account')) {
-		const newPath = `/${org?.id}/${orgBranchId}`;
-		findurl({
-			item      : user_data,
-			asPrefix,
+		const newPath = `/${org?.id}/${orgBranchId}/dashboard`;
+		redirect({
 			isServer,
 			res,
-			org_id    : org?.id,
-			branch_id : orgBranchId,
+			path: newPath,
 		});
 		return {
 			asPrefix : newPath,
@@ -212,15 +200,10 @@ const handleAuthentication = async ({
 		setProfileStoreState({
 			asPrefix,
 			defaultRoute,
-			organization_set        : !isEmpty(current_organization),
-			organization            : current_organization,
-			branch                  : current_branch,
-			authorizationparameters : getAuthParam(
-				user_data?.permissions_navigations,
-				routeConfig,
-				pathname,
-				projectNavigationMappings,
-			),
+			organization_set : !isEmpty(current_organization),
+			organization     : current_organization,
+			branch           : current_branch,
+
 		}),
 	);
 

@@ -6,12 +6,16 @@ const createDraftpayload = ({
 	consignmentValue,
 	productInfoArr = [],
 	servicesSelected = {},
+	editData = {},
+	headerResponse = {},
 }) => {
 	const {
 		transportMode,
 		incoterm = '',
 		destinationPortDetails = {}, originPortDetails = {}, header = {}, sellerAddress = {}, buyerDetails = {},
-	} = quoteRes;
+	} = quoteRes || {};
+
+	const { quotationId, sellerDetails: editSellerDetails = {}, buyerDetails: editBuyerDetails = {} } = editData || {};
 
 	const getCountryDetails = async (id, type) => {
 		const response = await getPortDetails({
@@ -23,7 +27,13 @@ const createDraftpayload = ({
 		return response?.[0]?.country_code || response;
 	};
 
-	const createHeader = async (isScreening = false, tradeEngineInputId = '') => {
+	const getDraftHeader = ({ buyerCountryCode, traderCheck }) => {
+		const {
+			isScreening = false, tradeEngineInputId = '',
+			destinationCountryCode, originCountryCode, resultCurrency, incoterm: headerIncoterm,
+			modeOfTransport,
+		} = headerResponse || {};
+
 		const {
 			partyName = '',
 			address: buyerAddress = '',
@@ -31,55 +41,69 @@ const createDraftpayload = ({
 			country: buyerCountry = '',
 			state: buyerState = '',
 			city : buyerCity = '',
-			countryId: buyerCountryId = '',
 		} = buyerDetails;
 
-		const buyerCountryCode = await getCountryDetails(buyerCountryId, 'country');
-
 		const draftHeader = {
-			incoterm,
-			resultCurrency         : header?.currency,
-			quotationId            : quoteId,
-			modeOfTransport        : transportMode === 'OCEAN' ? 'SEA' : 'AIR',
-			originCountryCode      : originPortDetails?.country_code,
-			destinationCountryCode : destinationPortDetails?.country_code,
-			isScreening,
+			incoterm               : incoterm || headerIncoterm,
+			resultCurrency         : header?.currency || resultCurrency,
+			quotationId            : quoteId || quotationId,
+			modeOfTransport        : modeOfTransport || transportMode === 'OCEAN' ? 'SEA' : 'AIR',
+			originCountryCode      : originPortDetails?.country_code || originCountryCode,
+			destinationCountryCode : destinationPortDetails?.country_code || destinationCountryCode,
+			isScreening            : traderCheck || isScreening,
 			consignmentValue,
 			tradeEngineInputId,
 			sellerDetails          : {
-				name        : sellerAddress?.name,
+				name        : sellerAddress?.name || editSellerDetails?.billingPartyName,
 				countryCode : country_code,
-				address     : sellerAddress?.address,
-				pinCode     : sellerAddress?.pincode,
+				address     : sellerAddress?.address || editSellerDetails?.address,
+				pinCode     : sellerAddress?.pincode || editSellerDetails?.pincode,
 				state       : null,
 				city        : null,
 				countryName : null,
 			},
 			buyerDetails: {
-				name        : partyName,
+				name        : partyName || editBuyerDetails?.billingPartyName,
 				countryCode : buyerCountryCode,
-				address     : buyerAddress,
-				pinCode     : buyerPinCode,
+				address     : buyerAddress || editBuyerDetails?.address,
+				pinCode     : buyerPinCode || editBuyerDetails?.pincode,
 				state       : buyerState,
 				city        : buyerCity,
-				countryName : buyerCountry,
+				countryName : buyerCountry || editBuyerDetails?.country,
 			},
 		};
-		if (buyerCountryCode) {
-			return draftHeader;
+
+		return draftHeader;
+	};
+
+	const createHeader = async (traderCheck) => {
+		const {
+			countryId: buyerCountryId = '',
+		} = buyerDetails;
+
+		const { countryId = '' } = editBuyerDetails || {};
+
+		const buyerCountryCode = await getCountryDetails(buyerCountryId || countryId, 'country');
+
+		if (!buyerCountryCode) {
+			return null;
 		}
-		return false;
+
+		return getDraftHeader({ buyerCountryCode, traderCheck });
 	};
 
 	const createlineItem = () => {
-		const lineItem = productInfoArr.map(({ product_price = '', productId = '', quantity = '', name = '' }) => {
+		const lineItem = productInfoArr.map(({
+			product_price = '', productId = '', quantity = '', name = '',
+			productName = '', tradeEngineLineItemInputId, value,
+		}) => {
 			const {
 				duties_and_taxes, import_export_documents,
 				import_export_controls, destinationHs,
 			} = servicesSelected?.[productId] || {};
 			return {
 				destinationHs,
-				value            : product_price,
+				value            : product_price || value,
 				productId,
 				servicesRequired : {
 					isLandedCost    : duties_and_taxes,
@@ -89,7 +113,8 @@ const createDraftpayload = ({
 				manufactureOrigin : country_code,
 				quantity,
 				originCN          : '',
-				productName       : name,
+				productName       : name || productName,
+				tradeEngineLineItemInputId,
 			};
 		});
 

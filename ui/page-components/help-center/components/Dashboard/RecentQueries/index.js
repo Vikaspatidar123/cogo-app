@@ -10,6 +10,8 @@ import styles from './styles.module.css';
 
 const translationKey = 'helpCenter:faq_home_page';
 
+const EMPTY_ARR = [...Array(4).keys()];
+
 function RecentQueries() {
 	const { t } = useTranslation(['helpCenter']);
 
@@ -34,7 +36,7 @@ function RecentQueries() {
 				</div>
 			) : (
 				<div className={styles.faqs_container}>
-					{(recentQueriesLoading ? [...Array(4).keys()] : list).map((itm) => (
+					{(recentQueriesLoading ? EMPTY_ARR : list).map((itm) => (
 						<FaqItem
 							faqData={itm}
 							recentQueries

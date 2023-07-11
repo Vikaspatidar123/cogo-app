@@ -6,6 +6,8 @@ import TopicIcon from '../../../../common/TopicIcon';
 
 import styles from './styles.module.css';
 
+const EMPTY_ARR = [...Array(14).keys()];
+
 const hasSearchValue = ({ display_name, description, inputQuery }) => {
 	const toSearch = inputQuery.trim();
 
@@ -22,7 +24,7 @@ function TopicsBody({
 	setSelectedTopic = () => {},
 }) {
 	if (loading) {
-		return [...Array(14).keys()].map((itm) => (
+		return EMPTY_ARR.map((itm) => (
 			<Placeholder
 				height="30px"
 				width="80%"

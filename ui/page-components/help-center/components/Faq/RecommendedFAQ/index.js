@@ -8,6 +8,8 @@ import styles from './styles.module.css';
 
 const translationKey = 'helpCenter:faq_answer';
 
+const EMPTY_ARR = [...Array(4).keys()];
+
 function RecommendedFAQ({
 	queryName = '',
 	faqLoading = false,
@@ -36,7 +38,7 @@ function RecommendedFAQ({
 				{t(`${translationKey}_recommended_faqs`)}
 			</div>
 			<div className={styles.faqs_container}>
-				{(loading ? [...Array(4).keys()] : list).map((itm) => (
+				{(loading ? EMPTY_ARR : list).map((itm) => (
 					<FaqItem key={itm?.id || itm} faqData={itm} loading={loading} />
 				))}
 			</div>

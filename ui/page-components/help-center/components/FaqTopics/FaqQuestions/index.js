@@ -10,6 +10,8 @@ import styles from './styles.module.css';
 
 const translationKey = 'helpCenter:faq_topics';
 
+const EMPTY_ARR = [...Array(10).keys()];
+
 function FaqQuestions({
 	selectedTopic = {},
 	topicsLoading = false,
@@ -54,7 +56,7 @@ function FaqQuestions({
 			<div className={styles.list_container}>
 				<div>
 					{loading
-						? [...Array(10).keys()].map((itm) => (
+						? EMPTY_ARR.map((itm) => (
 							<Placeholder
 								key={itm}
 								width="90%"

@@ -12,6 +12,8 @@ import { useRouter } from '@/packages/next';
 
 const translationKey = 'helpCenter:faq_answer';
 
+const EMPTY_ARR = [...Array(5).keys()];
+
 function FaqStructure({
 	questionAbstract = '',
 	answers = [],
@@ -93,7 +95,7 @@ function FaqStructure({
 					</div>
 					<div className={styles.answer}>
 						{loading ? (
-							[...Array(5).keys()].map((itm) => (
+							EMPTY_ARR.map((itm) => (
 								<Placeholder
 									key={itm}
 									height="30px"

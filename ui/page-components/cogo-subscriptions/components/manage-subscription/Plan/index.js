@@ -1,4 +1,5 @@
 import { Toggle } from '@cogoport/components';
+import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
 
 import SuccessModal from '../../../common/SuccessModal';
@@ -17,6 +18,7 @@ import { useSelector } from '@/packages/store';
 
 function Plan() {
 	const { query } = useRouter();
+	const { t } = useTranslation(['subscriptions']);
 	const [modal, setShowModal] = useState(false);
 	const { saas_plan = '' } = query || {};
 
@@ -50,11 +52,16 @@ function Plan() {
 			<div className={styles.container}>
 
 				<Toggle
-					offLabel="Bill Monthly"
+					offLabel={t('subscriptions:bill_monthly_text')}
 					onLabel={(
 						<div>
-							Bill Yearly
-							<span className={styles.save}> (Save 20% OFF)</span>
+							{t('subscriptions:bill_yearly_text')}
+							<span className={styles.save}>
+								{' '}
+								(
+								{t('subscriptions:save_text')}
+								)
+							</span>
 						</div>
 					)}
 					value={activeTab}

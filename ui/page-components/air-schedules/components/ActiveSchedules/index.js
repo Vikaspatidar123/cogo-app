@@ -18,9 +18,12 @@ import styles from './styles.module.css';
 
 import { useRouter } from '@/packages/next';
 
+const PAGE_LIMIT = 6;
+const DEFAULT_CURRENT_PAGE = 1;
 function ActiveSchedules() {
 	const { query, push } = useRouter();
-	const [currentPage, setCurrentPage] = useState(1);
+
+	const [currentPage, setCurrentPage] = useState(DEFAULT_CURRENT_PAGE);
 
 	const id = query?.id;
 
@@ -35,7 +38,7 @@ function ActiveSchedules() {
 		setCarrierList, carrierList,
 		loading, mapPoints,
 	} = useFetchScheduleDetails({
-		pageLimit: 6, id, currentPage,
+		pageLimit: PAGE_LIMIT, id, currentPage,
 	});
 
 	const {

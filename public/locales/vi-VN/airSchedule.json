@@ -1,0 +1,21 @@
+{
+    "heading_text":"Trình theo dõi lịch trình không khí",
+    "description_text":"Nhập một cặp sân bay để xem và so sánh và lưu lịch không.",
+    "origin_air_port_text":"Sân bay gốc",
+    "destination_air_port_text":"Sân bay đích",
+    "search_schedule_text":"Lịch tìm kiếm",
+    "error_message":"* Nguồn gốc và điểm đến không thể giống nhau",
+    "my_schedules_text":"Lịch trình của tôi",
+    "origin_placeholder":"Chọn Sân bay Origin",
+    "destination_placeholder":"Chọn Sân bay đích",
+    "origin_error_message":"Sân bay gốc được yêu cầu",
+    "destination_error_message":"Sân bay đích được yêu cầu",
+    "schedules_available_text":"Lịch trình có sẵn từ",
+    "carriers_text":"Người vận chuyển",
+    "cancel_button_text":"Hủy bỏ",
+    "delete_button_text":"Xóa bỏ",
+    "conformation_message_text":"Bạn có chắc chắn muốn xóa?"
+
+
+
+}

@@ -1,0 +1,25 @@
+{
+    "heading_text":"Air Schedule Tracker",
+    "description_text":"Enter a airport pair to view and compare and save air schedules.",
+    "origin_air_port_text":"Origin Airport",
+    "destination_air_port_text":"Destination Airport",
+    "search_schedule_text":"Search Schedule",
+    "error_message":"* origin and destination could not be same",
+    "my_schedules_text":"My Schedules",
+    "origin_placeholder":"Select Origin AirPort",
+    "destination_placeholder":"Select Destination AirPort",
+    "origin_error_message":"Origin AirPort is required",
+    "destination_error_message":"Destination AirPort is required",
+    "schedules_available_text":"Schedules available from",
+    "carriers_text":"Carriers",
+    "cancel_button_text":"Cancel",
+    "delete_button_text":"Delete",
+    "conformation_message_text":"Are you sure you want to delete?",
+    "no_schedules_text":"No Schedules Found"
+
+
+
+
+
+
+}

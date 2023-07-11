@@ -1,6 +1,7 @@
 import { Button, Pagination } from '@cogoport/components';
 import { IcMPortArrow } from '@cogoport/icons-react';
 import { isEmpty } from '@cogoport/utils';
+import { useTranslation } from 'next-i18next';
 import React from 'react';
 
 import Loading from './common/Loading';
@@ -15,6 +16,7 @@ import {
 } from '@/packages/forms';
 
 function AirSchedules() {
+	const { t } = useTranslation(['airSchedule']);
 	const {
 		handleCreateSchedule,
 		errorMessage, formValues, control, fields,
@@ -29,15 +31,14 @@ function AirSchedules() {
 
 	return (
 		<div className={styles.container}>
-			<div className={styles.header}>Air Schedule Tracker</div>
+			<div className={styles.header}>{t('airSchedule:heading_text')}</div>
 			<div className={styles.tracker_card}>
 				<div>
-					Enter a airport pair to view and compare and save air
-					schedules.
+					{t('airSchedule:description_text')}
 				</div>
 				<form className={styles.form_container}>
 					<div className={styles.select_container}>
-						Origin Airport
+						{t('airSchedule:origin_air_port_text')}
 						<SelectController {...fields[0]} control={control} />
 					</div>
 					<div className={styles.icon_container}>
@@ -48,7 +49,7 @@ function AirSchedules() {
 						/>
 					</div>
 					<div className={styles.select_container}>
-						Destination Airport
+						{t('airSchedule:destination_air_port_text')}
 						<SelectController {...fields[1]} control={control} />
 					</div>
 					<div className={styles.button_container}>
@@ -58,28 +59,29 @@ function AirSchedules() {
 								!(formValues.origin_airport
 									&& formValues.destination_airport)
 							}
+							type="button"
 						>
-							Search Schedule
+							{t('airSchedule:search_schedule_text')}
 						</Button>
 					</div>
 				</form>
-				{errorMessage && (
+				{errorMessage ? (
 					<div className={styles.error_message}>
-						* origin
-						and destination could not be same
+						{t('airSchedule:error_message')}
 					</div>
-				)}
+				) : null}
 			</div>
-			<div className={styles.sub_heading_container}>My Schedules</div>
+			<div className={styles.sub_heading_container}>{t('airSchedule:my_schedules_text')}</div>
 			<div className={styles.schedules_container}>
-				{loading && (
+				{loading ? (
 					<div className={styles.card}>
 						<Loading home />
 					</div>
-				)}
+				) : null}
 				{!loading && !isEmpty(list) ? (
 					(list || []).map((item) => (
 						<ScheduleCard
+							key={item.id}
 							schedule={item}
 							fetchSchedules={fetchSchedules}
 							loading={loading}

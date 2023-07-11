@@ -7,7 +7,7 @@ export async function getServerSideProps(context) {
 
 	return {
 		props: {
-			...(await serverSideTranslations(locale, ['traderEligibilityCheck'])),
+			...(await serverSideTranslations(locale, ['traderEligibilityCheck', 'common'])),
 		},
 	};
 }

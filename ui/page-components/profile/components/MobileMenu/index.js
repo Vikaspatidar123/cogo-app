@@ -1,6 +1,6 @@
-/* eslint-disable no-undef */
 import { IcMArrowNext } from '@cogoport/icons-react';
 import { deleteCookie } from '@cogoport/utils';
+import { useTranslation } from 'next-i18next';
 
 import styles from './styles.module.css';
 
@@ -12,6 +12,7 @@ function MobileMenu({
 	handleChangeTab,
 	tabOptions,
 }) {
+	const { t } = useTranslation(['common']);
 	const { query } = useSelector(({ general }) => general);
 
 	const handleChangeMenuTab = (tab) => {
@@ -26,7 +27,7 @@ function MobileMenu({
 		window.location.href = '/login';
 	};
 
-	const { title, containerComponent: ActiveContainerComponent = null } =		OPTIONS_MAPPING[activeTab];
+	const { title, containerComponent: ActiveContainerComponent = null } = OPTIONS_MAPPING[activeTab];
 
 	if (!query.activeTab) {
 		return (
@@ -54,7 +55,7 @@ function MobileMenu({
 						role="presentation"
 						onClick={(e) => handleClick(e)}
 					>
-						Logout
+						{t('common:layouts_app_logout')}
 					</div>
 				</div>
 			</div>

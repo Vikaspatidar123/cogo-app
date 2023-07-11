@@ -92,7 +92,7 @@ function Unsubscribe() {
 										{ticket}
 									</b>
 									{' '}
-                                        &nbsp;
+									&nbsp;
 									<IcMCopy
 										onClick={copyToClipBoard}
 										className={styles.copy_on_clipboard}

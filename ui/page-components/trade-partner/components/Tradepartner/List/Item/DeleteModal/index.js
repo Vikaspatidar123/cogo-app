@@ -35,6 +35,7 @@ function DeleteModal({
 							setDeleteModal(false);
 						}}
 						themeType="secondary"
+						type="button"
 					>
 						{t('tradePartner:archive_modal_button_label_2')}
 					</Button>
@@ -44,6 +45,7 @@ function DeleteModal({
 							deleteTradeParty({ itemData, setDeleteModal });
 						}}
 						disabled={deleteLoading}
+						type="button"
 					>
 						{deleteLoading ? <Loader /> : `${t('tradePartner:archive_modal_button_label_2')}`}
 					</Button>

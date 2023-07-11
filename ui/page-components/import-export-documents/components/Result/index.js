@@ -1,5 +1,4 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { cl, TabPanel, Tabs } from '@cogoport/components';
 import { IcMArrowBack } from '@cogoport/icons-react';
 import { useState, useEffect } from 'react';
 
@@ -8,16 +7,28 @@ import useCheckPaymentStatus from '../../hooks/useCheckPaymentStatus';
 import useTradeEngine from '../../hooks/useTradeEngine';
 import iconUrl from '../../utils/iconUrl.json';
 
-import Document from './Document';
 import styles from './styles.module.css';
 
-import { useRouter } from '@/packages/next';
+import { Image, useRouter } from '@/packages/next';
+import DocumentResult from '@/ui/commons/components/ImportExportDoc';
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
+
+function EmptyState() {
+	return (
+		<Image
+			className={styles.empty_state}
+			width={400}
+			height={400}
+			src={GLOBAL_CONSTANTS.image_url.empty_state}
+			alt="logo"
+		/>
+	);
+}
 
 function Result() {
 	const { push, query } = useRouter();
 	const { trade_engine_id = '', billId = '', razorpay_payment_id = '' } = query || {};
 
-	const [activeTab, setActiveTab] = useState('IMPORT');
 	const [showPendingModal, setShowPendingModal] = useState(false);
 
 	const {
@@ -36,11 +47,8 @@ function Result() {
 		setShowPendingModal,
 		paymentSuccessHandler,
 	});
-	const { modeOfTransport = '', lineItem = [] } = tradeEngineResp || {};
-	const { documents = [], hsNumber = '' } = lineItem?.[0] || {};
-
-	const importDoc = documents.filter((doc) => doc?.tradeType === 'IMPORT');
-	const exportDoc = documents.filter((doc) => doc?.tradeType === 'EXPORT');
+	const { lineItem = [] } = tradeEngineResp || {};
+	const { documents = [] } = lineItem?.[0] || {};
 
 	useEffect(() => {
 		if (razorpay_payment_id) {
@@ -81,52 +89,10 @@ function Result() {
 				)}
 			</div>
 			{!tradeEngineLoading && documents.length > 0 && (
-				<>
-					<div className={styles.flex_box}>
-						<Tabs
-							activeTab={activeTab}
-							themeType="primary"
-							onChange={setActiveTab}
-						>
-							<TabPanel name="IMPORT" title="Import" />
-
-							<TabPanel name="EXPORT" title="Export" />
-
-						</Tabs>
-						<div className={styles.tag_container}>
-							<div className={cl`${styles.tag} ${styles.transport_mode}`}>
-								Mode of Transport:
-								{' '}
-								{modeOfTransport}
-							</div>
-							{hsNumber && (
-								<div className={styles.tag}>
-									Hs Code:
-									{' '}
-									{hsNumber}
-								</div>
-							)}
-						</div>
-					</div>
-
-					{activeTab === 'IMPORT'
-						&& importDoc.map((doc) => (
-							<Document key={doc?.docLink} doc={doc} hsNumber={hsNumber} />
-						))}
-					{activeTab === 'EXPORT'
-						&& exportDoc.map((doc) => (
-							<Document key={doc?.docLink} doc={doc} hsNumber={hsNumber} />
-						))}
-					{(importDoc?.length === 0 || exportDoc?.length === 0) && (
-						<div>
-							<img
-								className={styles.empty_state}
-								src={iconUrl?.emptyState}
-								alt="No Data Found"
-							/>
-						</div>
-					)}
-				</>
+				<DocumentResult
+					tradeEngineResponse={tradeEngineResp}
+					EmptyState={EmptyState}
+				/>
 			)}
 			<PendingModal
 				showPendingModal={showPendingModal}

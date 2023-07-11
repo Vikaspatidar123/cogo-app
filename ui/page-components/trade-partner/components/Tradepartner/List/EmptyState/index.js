@@ -12,7 +12,7 @@ function EmptyState({ placement = 'center' }) {
 				<img
 					height={250}
 					width={250}
-					alt=""
+					alt="icon"
 					src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/empty_icon 1.svg"
 				/>
 			) : null}

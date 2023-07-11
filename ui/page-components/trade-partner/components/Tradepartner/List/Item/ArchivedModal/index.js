@@ -17,7 +17,7 @@ function ArchiveModal({ archive, setArchive, onSubmit = () => {}, archived }) {
 			<div className={styles.icon_div}>
 				<Image
 					src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/archive.svg"
-					alt=""
+					alt="archived_logo"
 					height={70}
 					width={70}
 				/>
@@ -41,10 +41,11 @@ function ArchiveModal({ archive, setArchive, onSubmit = () => {}, archived }) {
 					themeType="secondary"
 					className={styles.secondary_button}
 					onClick={() => setArchive(false)}
+					type="button"
 				>
 					{t('tradePartner:archive_modal_button_label_2')}
 				</Button>
-				<Button className={styles.primary_button} onClick={() => onSubmit()}>
+				<Button className={styles.primary_button} onClick={onSubmit} type="button">
 					{t('tradePartner:archive_modal_button_label_1')}
 				</Button>
 			</div>

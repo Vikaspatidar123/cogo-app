@@ -289,7 +289,7 @@ function TradePartnerAddress({
 				</div>
 				<div className={styles.btn_container}>
 					<Button
-						type="button"
+						type="submit"
 						className="submitBtn md"
 						disabled={loading}
 						onClick={handleSubmit(submitForm)}

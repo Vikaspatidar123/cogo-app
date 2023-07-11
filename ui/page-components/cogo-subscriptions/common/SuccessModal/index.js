@@ -5,11 +5,11 @@ import redirectUrl from '../../utils/redirectUrl';
 import styles from './styles.module.css';
 
 function SuccessModal({
-	modal, setShowModal, getPlan, name, setUserPlan,
+	modal, setShowModal, getPlan, name,
 }) {
 	const { redirectManageSubscription } = redirectUrl();
 	const closeModal = () => {
-		getPlan({ setUserPlan });
+		getPlan();
 		setShowModal(false);
 		redirectManageSubscription();
 	};

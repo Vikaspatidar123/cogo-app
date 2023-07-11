@@ -2,18 +2,18 @@
 	display: flex;
 	align-items: flex-start;
 	justify-content: space-evenly;
-}
 
-.header.info {
-	gap: 2rem;
-	align-items: center;
-}
+	&.info {
+		gap: 2rem;
+		align-items: center;
 
-.header.info .icon_container {
-	display: flex;
-	gap: 5px;
-	align-items: center;
-	font-size: 15px;
+		.iconContainer {
+			display: flex;
+			gap: 5px;
+			align-items: center;
+			font-size: 15px;
+		}
+	}
 }
 
 .container {

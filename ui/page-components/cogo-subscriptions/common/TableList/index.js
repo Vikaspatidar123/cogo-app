@@ -2,7 +2,7 @@ import { Tooltip } from '@cogoport/components';
 import { IcMTick, IcMInfo, IcMCross } from '@cogoport/icons-react';
 import { useState, useEffect, useCallback } from 'react';
 
-import styles from '../CardHeader/styles.module.css';
+import styles from './styles.module.css';
 
 function TableList({ features = {} }) {
 	const [featureArray, setFeatureArray] = useState([]);

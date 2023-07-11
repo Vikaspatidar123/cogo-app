@@ -1,22 +1,23 @@
-const fields = [
+const fields = ({ t = () => { } }) => [
 	{
 		name        : 'origin_airport',
-		label       : 'Origin AirPort',
+		label       : t('airSchedule:origin_air_port_text'),
 		type        : 'select',
-		placeholder : 'Select Origin AirPort',
-		rules       : { required: 'Origin AirPort is required' },
+		placeholder : t('airSchedule:origin_placeholder'),
+		rules       : { required: t('airSchedule:origin_error_message') },
 	},
 	{
 		name        : 'destination_airport',
-		label       : 'Destination AirPort',
+		label       : t('airSchedule:destination_air_port_text'),
 		type        : 'select',
-		placeholder : 'Select Destination AirPort',
-		rules       : { required: 'Destination AirPort is required' },
+		placeholder : t('airSchedule:destination_placeholder'),
+		rules       : { required: t('airSchedule:destination_error_message') },
 	},
 ];
 const getControls = ({
 	airportOptions = {},
-}) => fields.map((control) => {
+	t = () => { },
+}) => fields({ t }).map((control) => {
 	const newControl = { ...control, ...airportOptions };
 
 	return { ...newControl };

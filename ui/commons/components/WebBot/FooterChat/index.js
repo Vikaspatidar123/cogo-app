@@ -1,7 +1,6 @@
 import { Popover, Textarea } from '@cogoport/components';
 import { IcMAttach, IcMCross, IcMHappy, IcMSend } from '@cogoport/icons-react';
 import { isEmpty } from '@cogoport/utils';
-import Image from 'next/image';
 import React, { useState } from 'react';
 
 import useGetEmojiList from '../../../hooks/useGetEmojiList';
@@ -11,6 +10,7 @@ import EmojisBody from './EmojisBody';
 import styles from './styles.module.css';
 
 import { UploadController, useForm } from '@/packages/forms';
+import { Image } from '@/packages/next';
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
 const getUploadIcon = () => <IcMAttach className={styles.uploaded_icon} />;

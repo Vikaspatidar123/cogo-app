@@ -63,7 +63,7 @@ const useFetchRoom = ({
 			const fetchTokenRoom = await getDocs(tokenQuery);
 
 			if (fetchTokenRoom.size > 0) {
-				const tokenRoom = fetchTokenRoom?.docs?.[0] || {};
+				const tokenRoom = fetchTokenRoom?.docs?.[GLOBAL_CONSTANTS.zeroth_index] || {};
 				const tokenRoomId = tokenRoom?.id;
 				try {
 					const tokenRoomDoc = doc(
@@ -83,7 +83,7 @@ const useFetchRoom = ({
 					});
 					deleteCookie('cogo_bot_token');
 				} catch (e) {
-					console.log('firebaseError:', e);
+					console.error('firebaseError:', e);
 				}
 			}
 		}
@@ -119,7 +119,7 @@ const useFetchRoom = ({
 
 		setCogobotLoading(false);
 		snapshotRef.current = onSnapshot(roomsQuery, (querySnapshot) => {
-			const newMessageCount =				querySnapshot?.docs?.[0]?.data()?.new_user_message_count;
+			const newMessageCount =	querySnapshot?.docs?.[0]?.data()?.new_user_message_count;
 			setCogoBotState((p) => ({ ...p, newMessageCount }));
 		});
 	};

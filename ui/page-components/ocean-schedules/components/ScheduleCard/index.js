@@ -1,4 +1,5 @@
 import { IcMArrowNext, IcMCrossInCircle } from '@cogoport/icons-react';
+import { useTranslation } from 'next-i18next';
 import React, { useState } from 'react';
 
 import useDeleteSchedule from '../../hooks/useDeleteSchedule';
@@ -7,21 +8,29 @@ import DeleteModal from './DeleteModal';
 import styles from './styles.module.css';
 
 import { useRouter } from '@/packages/next';
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
 function ScheduleCard({ schedule, refectSchedules }) {
+	const {
+		origin_port = {}, destination_port = {}, id = '',
+		schedules_count = 0, shipping_lines_count = 0,
+	} = schedule || {};
+	const { push } = useRouter();
+
+	const { t } = useTranslation(['oceanSchedule']);
+
 	const { deleteSchedule } = useDeleteSchedule(refectSchedules);
 
 	const [showDelete, setShowDelete] = useState(false);
-	const { push } = useRouter();
 
-	const originSchedule = schedule?.origin_port?.port_code || 'Origin';
-	const destinationSchedule =	 schedule?.destination_port?.port_code || 'Destination';
+	const originSchedule = origin_port?.port_code || t('oceanSchedule:origin_text');
+	const destinationSchedule = destination_port?.port_code || t('oceanSchedule:destination_text');
 
-	const origin_port_name = schedule?.origin_port?.name.split('(')[0];
-	const destination_port_name = schedule?.destination_port?.name.split('(')[0];
+	const origin_port_name = origin_port?.name.split('(')[GLOBAL_CONSTANTS.zeroth_index];
+	const destination_port_name = destination_port?.name.split('(')[GLOBAL_CONSTANTS.zeroth_index];
 
 	const handleViewDetails = () => {
-		push(`/saas/ocean-schedules/${schedule?.id}`);
+		push(`/saas/ocean-schedules/${id}`);
 	};
 
 	const handleDelete = async () => {
@@ -37,14 +46,14 @@ function ScheduleCard({ schedule, refectSchedules }) {
 				<div className={styles.country_name}>
 					<span className={styles.country_name_span}>{origin_port_name}</span>
 					(
-					{schedule?.origin_port?.country?.country_code}
+					{origin_port?.country?.country_code}
 					)
 				</div>
 				<div className={styles.country_name}>
 					<span className={styles.country_name_span}>{destination_port_name}</span>
 					(
 					{
-						schedule?.destination_port?.country?.country_code
+						destination_port?.country?.country_code
 					}
 					)
 				</div>
@@ -57,13 +66,13 @@ function ScheduleCard({ schedule, refectSchedules }) {
 			<div className={styles.footer_container} role="presentation" onClick={handleViewDetails}>
 				<div className={styles.value_container}>
 					<div className={styles.number_container}>
-						{schedule.schedules_count || 0}
+						{schedules_count || 0}
 					</div>
-					Schedules available from
+					{t('oceanSchedule:scheduls_available_text')}
 					<div className={styles.number_container}>
-						{schedule.shipping_lines_count || 0}
+						{shipping_lines_count || 0}
 					</div>
-					Carriers
+					{t('oceanSchedule:carriers_text')}
 				</div>
 				<div className={styles.footer_icon_container}>
 					<IcMArrowNext fill="#034AFD" width="1.2rem" height="1.2rem" />

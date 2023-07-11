@@ -59,19 +59,6 @@ function MyApp({ Component, pageProps, store, generalData }) {
 	const geo = getGeoConstants();
 
 	const isUnKnownUser = !organizationId;
-	console.log('🚀 ~ file: index.js:62 ~ MyApp ~ isUnKnownUser:', isUnKnownUser);
-
-	console.log(
-		'🚀 ~ file: index.js:44 ~ KEY_MAPPING:',
-		KEY_MAPPING,
-
-		KEY_MAPPING.COUNTRY[countryCode],
-
-		KEY_MAPPING.ENTITY[geo.parent_entity_id],
-		'hii',
-		isUnKnownUser
-			? KEY_MAPPING.COUNTRY[countryCode] : KEY_MAPPING.ENTITY[geo.parent_entity_id],
-	);
 
 	const botVisibility = isUnKnownUser
 		? KEY_MAPPING.COUNTRY[countryCode]

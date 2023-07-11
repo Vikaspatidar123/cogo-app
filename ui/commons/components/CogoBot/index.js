@@ -48,7 +48,7 @@ function CogoBot() {
 		if (process.env.NEXT_PUBLIC_FIREBASE_API_KEY) {
 			const auth = getAuth();
 			signInWithCustomToken(auth, firestoreToken).catch((error) => {
-				console.log(error.message);
+				console.error(error.message);
 			});
 		}
 		setIsAuthenticated(true);

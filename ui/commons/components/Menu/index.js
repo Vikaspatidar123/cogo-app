@@ -1,3 +1,4 @@
+import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
 
 import Logout from './Logout';
@@ -14,11 +15,19 @@ const SHOW_NAVIGATIONS = ['app_documents', 'saas_cogo_subscription', 'saas_finan
 
 function Menu({ setShowPopover, show, setShow }) {
 	const [isOpen, setIsOpen] = useState(false);
+	const { t } = useTranslation(['common']);
 
 	const { user_data } = useSelector(({ profile }) => ({
 		user_data: profile || {},
 	}));
 	const { organization } = user_data || {};
+
+	const configs = getSideBarConfigs({ userData: user_data, t });
+	const { nav_items = {} } = configs || {};
+	const { organization: nav = [] } = nav_items || {};
+
+	const filterData = nav.filter((item) => SHOW_NAVIGATIONS.includes(item.key));
+
 	if (show) {
 		return (
 			<div className={styles.container}>
@@ -26,11 +35,6 @@ function Menu({ setShowPopover, show, setShow }) {
 			</div>
 		);
 	}
-	const configs = getSideBarConfigs(user_data);
-	const { nav_items = {} } = configs || {};
-	const { organization: nav = [] } = nav_items || {};
-
-	const filterData = nav.filter((item) => SHOW_NAVIGATIONS.includes(item.key));
 
 	return (
 		<div className={styles.container}>

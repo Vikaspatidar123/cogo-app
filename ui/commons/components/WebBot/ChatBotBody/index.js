@@ -1,5 +1,4 @@
 import { IcMRefresh } from '@cogoport/icons-react';
-import Image from 'next/image';
 import React, { useRef } from 'react';
 
 import FooterChat from '../FooterChat';
@@ -9,6 +8,7 @@ import useSendFirebaseMessage from '../hooks/useSendFirebaseMessage';
 import EachMessage from './EachMessage';
 import styles from './styles.module.css';
 
+import { Image } from '@/packages/next';
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
 function ChatBotBody({ firestore, roomId, sendMessage, sendMessageLoading }) {

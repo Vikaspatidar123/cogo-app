@@ -9,10 +9,9 @@ import IEControlsModal from '../IEControlsModal';
 import IEDocumentsModal from './IEDocumentsModal';
 import styles from './styles.module.css';
 
+import { Image } from '@/packages/next';
 import DutiesTaxesModal from '@/ui/commons/components/DutiesTaxes';
 import TraderEligibilityModal from '@/ui/commons/components/TraderEligibility';
-
-import { Image } from '@/packages/next';
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
 const COMPONENT_MAPPING = {

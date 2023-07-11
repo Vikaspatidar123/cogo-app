@@ -8,6 +8,30 @@ import { useSelector } from '@/packages/store';
 
 const translationKey = 'common:components_header_tickets_api';
 
+const getPayload = ({
+	id = '',
+	organizationId = '',
+	country_id = '',
+	cogo_entity_id = '',
+	val = {},
+	extraFieldName,
+}) => ({
+	UserID         : id,
+	OrganizationID : organizationId,
+	Source         : 'importer_exporter',
+	Type           : val?.ticket_type || undefined,
+	Description    : val?.description || undefined,
+	Data           : {
+		Attachment       : val?.file_urls,
+		[extraFieldName] : extraFieldName ? val?.[extraFieldName] : undefined,
+		Persona          : 'importer_exporter',
+		Platform         : 'app',
+	},
+	CogoEntityId  : cogo_entity_id,
+	PerformedByID : id,
+	CountryId     : country_id,
+});
+
 const useCreateTicket = () => {
 	const { t } = useTranslation(['common']);
 
@@ -26,22 +50,7 @@ const useCreateTicket = () => {
 
 	const createTicket = async (val, extraFieldName = '') => {
 		try {
-			const payload = {
-				UserID         : id,
-				OrganizationID : organizationId,
-				Source         : 'importer_exporter',
-				Type           : val?.ticket_type || undefined,
-				Description    : val?.description || undefined,
-				Data           : {
-					Attachment       : val?.file_urls,
-					[extraFieldName] : extraFieldName ? val?.[extraFieldName] : undefined,
-					Persona          : 'importer_exporter',
-					Platform         : 'app',
-				},
-				CogoEntityId  : cogo_entity_id,
-				PerformedByID : id,
-				CountryId     : country_id,
-			};
+			const payload = getPayload({ id, organizationId, country_id, cogo_entity_id, val, extraFieldName });
 
 			const res = await trigger({
 				data: payload,

@@ -60,10 +60,10 @@ const useListTickets = ({
 		debounceQuery(searchValue);
 	}, [searchValue, debounceQuery]);
 
-	const handleScroll = (clientHeight, scrollTop, scrollHeight) => {
-		const reachBottom = scrollHeight - (clientHeight + scrollTop) <= 20;
+	const handleScroll = ({ clientHeight, scrollTop, scrollHeight }) => {
+		const shouldReachBottom = scrollHeight - (clientHeight + scrollTop) <= 20;
 		const hasMoreData = pagination <= (data?.total_pages || 0);
-		if (reachBottom && hasMoreData && !loading) {
+		if (shouldReachBottom && hasMoreData && !loading) {
 			fetchTickets(pagination);
 		}
 	};

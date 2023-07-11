@@ -3,6 +3,14 @@ import { Toast } from '@cogoport/components';
 import { useTicketsRequest } from '@/packages/request';
 import { useSelector } from '@/packages/store';
 
+const getPayload = ({ file = '', message = '', ticketId = '' }) => ({
+	Description : message,
+	Type        : 'respond',
+	TicketID    : [Number(ticketId)],
+	Status      : 'activity',
+	Data        : { Url: [file] || [] },
+});
+
 const useCreateTicketActivity = ({
 	ticketId,
 	refetchTicket,
@@ -17,13 +25,7 @@ const useCreateTicketActivity = ({
 	}, { manual: false });
 
 	const createTicketActivity = async ({ file, message }) => {
-		const payload = {
-			Description : message,
-			Type        : 'respond',
-			TicketID    : [Number(ticketId)],
-			Status      : 'activity',
-			Data        : { Url: [file] || [] },
-		};
+		const payload = getPayload({ file, message, ticketId });
 
 		try {
 			await trigger({

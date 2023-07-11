@@ -2,6 +2,7 @@ import { Modal } from '@cogoport/components';
 import { isEmpty } from '@cogoport/utils';
 import { useState, useRef, useEffect } from 'react';
 
+import { TICKET_CLOSED_STATUS } from '../../../constants';
 import useCreateTicketActivity from '../../../hooks/useCreateTicketActivity';
 import useGetTicketActivity from '../../../hooks/useGetTicketActivity';
 import useGetTicketDetails from '../../../hooks/useGetTicketDetails';
@@ -13,13 +14,11 @@ import RateTicket from './RateTicket';
 import styles from './styles.module.css';
 import TicketSummary from './TicketSummary';
 
-const STATUS = ['closed', 'rejected'];
-
 const chatBodyHeight = (rating, ticketExists, status, file, uploading) => {
 	if (!ticketExists) {
 		return '100%';
 	}
-	if (STATUS.includes(status)) {
+	if (TICKET_CLOSED_STATUS.includes(status)) {
 		if (rating || status === 'rejected') {
 			return 'calc(100% - 62px)';
 		}
@@ -159,12 +158,12 @@ function TicketChat({ modalData = {}, setModalData = () => {} }) {
 				{ticketExists && (
 					<div
 						style={{
-							background: STATUS.includes(status)
+							background: TICKET_CLOSED_STATUS.includes(status)
 								? '#f4f4f4'
 								: '#fff',
 						}}
 					>
-						{STATUS.includes(status) ? (
+						{TICKET_CLOSED_STATUS.includes(status) ? (
 							<RateTicket
 								id={id}
 								status={status}

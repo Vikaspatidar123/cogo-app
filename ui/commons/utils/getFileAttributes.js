@@ -1,17 +1,24 @@
 import { IcMDocument, IcMImage } from '@cogoport/icons-react';
 
-const fileIconMapping = {
+const FILE_ICON_MAPPING = {
 	document : <IcMDocument height={22} width={22} />,
 	img      : <IcMImage height={22} width={25} />,
 };
 
+const fileTypeMapping = {
+	image : ['jpeg', 'jpg', 'png', 'svg'],
+	audio : ['mp3', 'aac'],
+	video : ['mp4', 'gif'],
+};
+
+let fileIcon = null;
+let fileExtension = '';
+let uploadedFileName = '';
+let fileType = '';
+
 function getFileAttributes({ fileName = '', finalUrl }) {
 	const splitFileName = fileName.split('.');
-	let fileExtension = '';
-	let uploadedFileName = '';
-	let fileType = '';
 
-	let fileIcon = null;
 	if (splitFileName.length > 1) {
 		fileExtension = splitFileName.pop();
 		uploadedFileName = splitFileName.join('');
@@ -20,17 +27,17 @@ function getFileAttributes({ fileName = '', finalUrl }) {
 		uploadedFileName = fileName;
 	}
 
-	if (['jpeg', 'jpg', 'png', 'svg'].includes(fileExtension)) {
-		fileIcon = fileIconMapping.img;
+	if (fileTypeMapping.image.includes(fileExtension)) {
+		fileIcon = FILE_ICON_MAPPING.img;
 		fileType = 'image';
-	} else if (['mp3', 'aac'].includes(fileExtension)) {
-		fileIcon = fileIconMapping.pdf;
+	} else if (fileTypeMapping.audio.includes(fileExtension)) {
+		fileIcon = FILE_ICON_MAPPING.pdf;
 		fileType = 'audio';
-	} else if (['mp4', 'gif'].includes(fileExtension)) {
-		fileIcon = fileIconMapping.img;
+	} else if (fileTypeMapping.video.includes(fileExtension)) {
+		fileIcon = FILE_ICON_MAPPING.img;
 		fileType = 'video';
 	} else {
-		fileIcon = fileIconMapping.document;
+		fileIcon = FILE_ICON_MAPPING.document;
 		fileType = 'document';
 	}
 

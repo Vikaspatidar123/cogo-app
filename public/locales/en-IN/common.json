@@ -66,13 +66,7 @@
     "add_new_account_button":"+ Add New Account",
     "kyc_verified":"Verified",
     "kyc_rejected":"KYC Rejected",
-    "kyc_pending":"KYC Pending"
-
-
-
-
-,
-
+    "kyc_pending":"KYC Pending",
     "components_header_help_support_title": "Need some assistance? Contact your Key Account Manager",
 	"components_header_help_support_label1": "Key Relationship Manager",
 	"components_header_help_support_label2": "Onboarding Expert",

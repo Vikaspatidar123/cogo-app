@@ -215,12 +215,15 @@ const GLOBAL_CONSTANTS = {
 		unsubscription_bottle : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/Bottle.png',
 		unsubscription_plane  : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/page_plane.png',
 		insurance_empty_image : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/Insurance.png',
+		secure_icon           : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/secure-icon.svg',
 	},
 	onboarding_specialist: {
 		name         : 'Kanira Patel',
 		phone_number : '+918976851674',
 		email_id     : 'kanira.patel@cogoport.com',
 	},
+
+	zeroth_index: 0,
 };
 
 export default GLOBAL_CONSTANTS;

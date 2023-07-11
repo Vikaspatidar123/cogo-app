@@ -2,6 +2,8 @@ import { cl } from '@cogoport/components';
 import { isEmpty } from '@cogoport/utils';
 import { useTranslation } from 'next-i18next';
 
+import GLOBAL_CONSTANTS from '../../constants/globals';
+
 import styles from './styles.module.css';
 
 import { Image } from '@/packages/next';
@@ -74,7 +76,7 @@ function TraderEligibilityModal({ tradeEngineResponse = {} }) {
 			) : (
 				<div className={cl`${styles.list_wrapper} ${styles.verifieduser}`}>
 					<Image
-						src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/secure-icon.svg"
+						src={GLOBAL_CONSTANTS.image_url.secure_icon}
 						alt={t('tecResult:tec_secure_alt')}
 						height={100}
 						width={100}

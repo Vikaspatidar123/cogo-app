@@ -217,12 +217,25 @@ const GLOBAL_CONSTANTS = {
 		insurance_empty_image : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/Insurance.png',
 		cogoport_image:
 		'https://cogoport-production.sgp1.digitaloceanspaces.com/e845419ea5eacebda858bad8b20d2797/cogoport-logo.svg',
+		kyc_dialog_image         : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/nogstIcon.svg',
+		secure_icon              : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/secure-icon.svg',
+		heading_icon             : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/heading.svg',
+		sub_heading_icon         : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/subheading.svg',
+		loading_icon             : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/loading.svg',
+		no_data_icon             : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/nodata.svg',
+		payment_icon             : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/payment.svg',
+		secure_profile_icon      : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/secure-profile-icon.svg',
+		no_schedules_found_image : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/empty_icon 1.svg',
 	},
 	onboarding_specialist: {
 		name         : 'Kanira Patel',
 		phone_number : '+918976851674',
 		email_id     : 'kanira.patel@cogoport.com',
 	},
+	user_specific_email_id: {
+		ajeet: 'ajeet@cogoport.com',
+	},
+	zeroth_index: 0,
 };
 
 export default GLOBAL_CONSTANTS;

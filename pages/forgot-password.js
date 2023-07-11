@@ -10,5 +10,4 @@ export async function getServerSideProps({ locale }) {
 		},
 	};
 }
-
 export default ForgotPassowrd;

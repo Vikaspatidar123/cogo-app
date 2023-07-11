@@ -54,9 +54,9 @@ function ActiveScheduleCard({ scheduleDetails, schedule }) {
 							{t('airSchedule:vgm_cut_off_text')}
 							:
 							{formatDate({
-								date: schedule?.vgm_cutoff,
-								dateFormat: GLOBAL_CONSTANTS.formats.date['dd MMM yyyy'],
-								formatType: 'date',
+								date       : schedule?.vgm_cutoff,
+								dateFormat : GLOBAL_CONSTANTS.formats.date['dd MMM yyyy'],
+								formatType : 'date',
 							})}
 						</Pill>
 					) : null}
@@ -65,9 +65,9 @@ function ActiveScheduleCard({ scheduleDetails, schedule }) {
 							{t('airSchedule:terminal_cut_off_text')}
 							:
 							{formatDate({
-								date: schedule?.terminal_cutoff,
-								dateFormat: GLOBAL_CONSTANTS.formats.date['dd MMM yyyy'],
-								formatType: 'date',
+								date       : schedule?.terminal_cutoff,
+								dateFormat : GLOBAL_CONSTANTS.formats.date['dd MMM yyyy'],
+								formatType : 'date',
 							})}
 						</Pill>
 					) : null}
@@ -77,16 +77,16 @@ function ActiveScheduleCard({ scheduleDetails, schedule }) {
 				<div className={styles.dates_container}>
 					<div className={styles.date_container}>
 						{formatDate({
-							date: schedule?.departure,
-							dateFormat: GLOBAL_CONSTANTS.formats.date['dd MMM yyyy'],
-							formatType: 'date',
+							date       : schedule?.departure,
+							dateFormat : GLOBAL_CONSTANTS.formats.date['dd MMM yyyy'],
+							formatType : 'date',
 						})}
 					</div>
 					<div className={styles.date_container}>
 						{formatDate({
-							date: schedule?.arrival,
-							dateFormat: GLOBAL_CONSTANTS.formats.date['dd MMM yyyy'],
-							formatType: 'date',
+							date       : schedule?.arrival,
+							dateFormat : GLOBAL_CONSTANTS.formats.date['dd MMM yyyy'],
+							formatType : 'date',
 						})}
 					</div>
 				</div>

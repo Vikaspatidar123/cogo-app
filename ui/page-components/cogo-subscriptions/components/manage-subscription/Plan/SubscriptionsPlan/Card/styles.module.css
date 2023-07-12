@@ -131,9 +131,6 @@
 		align-items: end;
 	}
 
-	.date_space {
-	}
-
 	.cr_inner {
 		position: absolute;
 		inset: 0;
@@ -256,9 +253,6 @@
 	.styled_col {
 		display: flex;
 		flex-direction: column;
-	}
-
-	.col {
 	}
 
 	.row {

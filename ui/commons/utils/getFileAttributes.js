@@ -1,20 +1,22 @@
 import { IcMDocument, IcMImage } from '@cogoport/icons-react';
 
 const fileIconMapping = {
-	document: <IcMDocument height={22} width={22} />,
-
-	img: <IcMImage height={22} width={25} />,
+	document : <IcMDocument height={22} width={22} />,
+	img      : <IcMImage height={22} width={25} />,
 };
+
+const { img, document } = fileIconMapping;
+
 const FILE_ICON_MAPPING = {
-	jpeg    : fileIconMapping.img,
-	jpg     : fileIconMapping.img,
-	png     : fileIconMapping.img,
-	svg     : fileIconMapping.img,
-	mp3     : fileIconMapping.document,
-	aac     : fileIconMapping.document,
-	mp4     : fileIconMapping.img,
-	gif     : fileIconMapping.img,
-	default : fileIconMapping.document,
+	jpeg    : img,
+	jpg     : img,
+	png     : img,
+	svg     : img,
+	mp3     : document,
+	aac     : document,
+	mp4     : img,
+	gif     : img,
+	default : document,
 };
 
 const FILE_TYPE_MAPPING = {

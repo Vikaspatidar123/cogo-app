@@ -17,6 +17,8 @@ const TIME_TO_SCROLL = 100;
 
 const PLATFORM_CHAT_PATH = GLOBAL_CONSTANTS.firebase_paths.platform_chat;
 
+const DECREMENT_VALUE = 1;
+
 const useGetMessages = ({ firestore, roomId, scrollToBottom }) => {
 	const [messagesState, setMessagesState] = useState({
 		messagesHash          : {},
@@ -41,7 +43,8 @@ const useGetMessages = ({ firestore, roomId, scrollToBottom }) => {
 		latestMessages.current = onSnapshot(
 			chatCollectionQuery,
 			(querySnapshot) => {
-				const lastDocumentTimeStamp = querySnapshot.docs[querySnapshot.docs.length - 1]?.data()?.created_at;
+				const lastDocumentTimeStamp = querySnapshot.docs[querySnapshot.docs.length
+					- DECREMENT_VALUE]?.data()?.created_at;
 				const islastPage = querySnapshot.docs.length < PAGE_LIMIT;
 				let prevMessageData = {};
 				querySnapshot.forEach((eachMessage) => {
@@ -81,7 +84,8 @@ const useGetMessages = ({ firestore, roomId, scrollToBottom }) => {
 		setLoading(true);
 		const prevMessagesPromise = await getDocs(chatCollectionQuery);
 		const prevMessages = prevMessagesPromise?.docs;
-		const lastDocumentTimeStamp =			prevMessages[(prevMessages?.length || 0) - 1]?.data()?.created_at;
+		const lastDocumentTimeStamp = prevMessages[(prevMessages?.length
+			|| GLOBAL_CONSTANTS.zeroth_index) - DECREMENT_VALUE]?.data()?.created_at;
 		const islastPage = prevMessages?.length < PAGE_LIMIT;
 		let prevMessageData = {};
 		prevMessages.forEach((eachMessage) => {

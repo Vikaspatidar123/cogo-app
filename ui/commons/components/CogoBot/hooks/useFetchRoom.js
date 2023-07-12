@@ -25,7 +25,6 @@ const useFetchRoom = ({
 	setCogoBotState,
 	roomId,
 	sendMessage,
-	// setShowIntelligence,
 	setCogobotLoading,
 	isOpen,
 }) => {

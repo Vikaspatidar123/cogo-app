@@ -37,6 +37,7 @@
 
 	.close_inetellegence {
 		display: block;
+		cursor: pointer;
 	}
 }
 

@@ -18,10 +18,9 @@ function BotIntelligence({ showIntelligence, setShowIntelligence = () => {} }) {
 		<div className={styles.container}>
 			<div className={styles.close_header}>
 				<IcMCrossInCircle
-					className="close-inetellegence"
+					className={styles.close_inetellegence}
 					width={17}
 					height={17}
-					cursor="pointer"
 					fill="#4F4F4F"
 					onClick={() => setShowIntelligence(false)}
 				/>

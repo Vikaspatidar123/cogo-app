@@ -317,7 +317,7 @@ function Charges({
 						) : (
 							<>
 								{t('subscriptions:proceed_to_pay_text')}
-								<IcMArrowNext class="icon" />
+								<IcMArrowNext className={styles.icon} />
 							</>
 						)}
 					</Button>

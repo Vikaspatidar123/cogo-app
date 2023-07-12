@@ -1,5 +1,6 @@
 import { Radio, Button } from '@cogoport/components';
 import { IcMPlusInCircle } from '@cogoport/icons-react';
+import { useTranslation } from 'next-i18next';
 import { useState, useEffect } from 'react';
 
 // import AddressModal from './AddressModal';
@@ -8,16 +9,17 @@ import styles from './styles.module.css';
 import AddModal from '@/ui/commons/components/CreateOrganizationModel/Components/AddAddressModal';
 
 function BillingDetails({
-	billingAddress = () => {},
+	billingAddress = () => { },
 	// addressApi = () => {},
-	setAddresses = () => {},
+	setAddresses = () => { },
 	addresses = [],
 	checked = false,
-	setChecked = () => {},
+	setChecked = () => { },
 	addressWithoutGst = [],
-	setisBillingAddress = () => {},
+	setisBillingAddress = () => { },
 }) {
 	const addressList = addresses.concat(addressWithoutGst) || [];
+	const { t } = useTranslation(['subscriptions']);
 
 	const [addAddressModal, setAddAddressModal] = useState(false);
 
@@ -38,20 +40,23 @@ function BillingDetails({
 	return (
 		<div>
 			<div className={styles.wrapper}>
-				<div className={styles.label}>Billing Details</div>
+				<div className={styles.label}>{t('subscriptions:billing_details_text')}</div>
 				<Button
 					size="md"
 					className={styles.btn_style}
 					themeType="tertiary"
 					onClick={() => setAddAddressModal(true)}
+					type="button"
 				>
 					<IcMPlusInCircle fill="#f68b21" height={20} width={20} style={{ marginRight: '4px' }} />
-					Add New
+					{t('subscriptions:add_new_text')}
 				</Button>
 			</div>
 			{addressList?.length > 0 ? (
 				<div className={styles.div}>
-					<div className={styles.heading}>Select Address</div>
+					<div className={styles.heading}>
+						{t('subscriptions:select_address_text')}
+					</div>
 					<div className={styles.scroll_content}>
 						{(addressList || []).map(
 							({
@@ -87,7 +92,9 @@ function BillingDetails({
 											{pincode}
 										</div>
 										<div className={`${styles.row} ${styles.tax_number}`}>
-											GST Number :
+											{t('subscriptions:gst_number_text')}
+											{' '}
+											:
 											{tax_number}
 										</div>
 									</div>
@@ -105,7 +112,7 @@ function BillingDetails({
 			) : (
 				<div className={styles.div}>
 					<div className={styles.nodata}>
-						There are no existing addresses.Try adding an address.
+						{t('subscriptions:addresses_description_text')}
 					</div>
 				</div>
 			)}

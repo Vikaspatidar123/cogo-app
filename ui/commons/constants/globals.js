@@ -229,6 +229,8 @@ const GLOBAL_CONSTANTS = {
 		card_background_line_image: 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/line.png',
 		limited_image: 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/Limited.svg',
 		unlimted_image: 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/unlimted.svg',
+		empty_sub_image: 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/ICSad.svg',
+		success_image: 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/success.svg',
 	},
 	onboarding_specialist: {
 		name: 'Kanira Patel',

@@ -3,6 +3,7 @@ import {
 	Toast, Checkbox, Datepicker, Tooltip,
 } from '@cogoport/components';
 import { IcMArrowNext, IcMHelpInCircle, IcCFtick } from '@cogoport/icons-react';
+import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
 
 import Coupons from '../../../common/Coupons';
@@ -11,29 +12,32 @@ import { getCurrencyDetail } from '../../../utils/getCurrencyDetail';
 
 import styles from './styles.module.css';
 
+import { Image } from '@/packages/next';
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 import formatAmount from '@/ui/commons/utils/formatAmount';
 
-const description = () => (
+const description = ({ t }) => (
 	<div className={styles.tooltip_ctn}>
-		You can schedule this plan to activate on a specific day. Once you schedule
-		your plan, you can manually activate it before specified day or it will be
-		automatically activated on a specified day.
+		{t('subscriptions:description_text')}
 	</div>
 );
 
-const discountTooltip = ({ discountedAmount, currency }) => (
+const discountTooltip = ({ discountedAmount, currency, t }) => (
 	<div className={styles.discount_content}>
-		<div className={styles.heading}>Total discount breakup:</div>
+		<div className={styles.heading}>
+			{t('subscriptions:total_discount_text')}
+			:
+		</div>
 		<div className={styles.content}>
-			<div>Coupons Discount</div>
+			<div>{t('subscriptions:coupons_discount_text')}</div>
 			<div>
 				-
 				{formatAmount({
-					amount  : discountedAmount,
+					amount: discountedAmount,
 					currency,
-					options : {
-						notation : 'standard',
-						style    : 'currency',
+					options: {
+						notation: 'standard',
+						style: 'currency',
 					},
 				})}
 			</div>
@@ -51,20 +55,28 @@ function Charges({
 	datePickerValue,
 	setDatePickerValue,
 }) {
-	const [check, setCheck] = useState(false);
-	const [showCoupons, setShowCoupons] = useState(false);
 	const { plan = {}, pricing = {}, allow_activate_later = false } = plans || {};
+
+	const { t } = useTranslation(['subscriptions']);
+
+	const [check, setCheck] = useState(false);
+
+	const [showCoupons, setShowCoupons] = useState(false);
+
 	const loading = checkoutResponse?.errors || completeOrderLoading;
 
 	const {
 		applyPromoCode, promoCodeData, couponCode, setCouponCode,
-	} =		useUpdateSaasCheckout({
+	} = useUpdateSaasCheckout({
 		checkoutResponse,
 	});
 
-	const { discount_amount: discountedAmount, total_amount: totalAmount } =		promoCodeData || {};
+	const { discount_amount: discountedAmount, total_amount: totalAmount } = promoCodeData || {};
 
 	const couponCodeLength = Object.keys(couponCode)?.length;
+
+	const amountCurrency = couponCode?.promotion_discounts?.[GLOBAL_CONSTANTS.zeroth_index]?.amount_currency;
+
 	const handleClick = ({ value, item }) => {
 		applyPromoCode({ value, item });
 	};
@@ -73,9 +85,9 @@ function Charges({
 		if (checked.length !== 0) {
 			completeOrder({ couponCode });
 		} else {
-			Toast.error('Error! Please Select an Address', {
-				autoClose : 5000,
-				style     : { background: '#FFD8D8', color: '#000' },
+			Toast.error(t('subscriptions:adderss_select_error_message'), {
+				autoClose: 5000,
+				style: { background: '#FFD8D8', color: '#000' },
 			});
 		}
 	};
@@ -100,7 +112,7 @@ function Charges({
 		<div>
 			<div className={styles.wrapper}>
 				<div className={styles.label}>
-					Summary
+					{t('subscriptions:summary_text')}
 				</div>
 			</div>
 			<div className={styles.div}>
@@ -108,7 +120,11 @@ function Charges({
 					<div className={styles.styled_col}>
 						<div>
 							{plan?.description}
-							<div className={styles.gst}>(Gst Included)</div>
+							<div className={styles.gst}>
+								(
+								{t('subscriptions:gst_included_text')}
+								)
+							</div>
 						</div>
 					</div>
 					<div className={styles.styled_col2}>
@@ -117,25 +133,25 @@ function Charges({
 								<div className={`${styles.crossed_price} ${styles.crossedprice}`}>
 									<div className={styles.flex_div}>
 										{formatAmount({
-											amount  : crossedAmount,
+											amount: crossedAmount,
 											currency,
-											options : {
-												notation : 'standard',
-												style    : 'currency',
+											options: {
+												notation: 'standard',
+												style: 'currency',
 											},
 										})}
 										{
-}
+										}
 									</div>
 								</div>
-						)}
+							)}
 						<div className={styles.flex_div}>
 							{formatAmount({
 								amount,
 								currency,
 								options: {
-									notation : 'standard',
-									style    : 'currency',
+									notation: 'standard',
+									style: 'currency',
 								},
 							})}
 						</div>
@@ -145,19 +161,18 @@ function Charges({
 					<div className={styles.line} />
 				</div>
 
-				{couponCodeLength > 0 && (
+				{couponCodeLength > 0 ? (
 					<div className={styles.styled_row}>
 						<div className={`${styles.styled_col} ${styles.discount_name}`}>
 							<Tooltip
 								placement="top-start"
-								theme="light-border"
-								content={discountTooltip({ discountedAmount, currency })}
+								content={discountTooltip({ discountedAmount, currency, t })}
 								animation="scale"
 								interactive
 								visibility
 							>
 								<div>
-									Discount
+									{t('subscriptions:discount_text')}
 									<div className={`${styles.line_wrapper} ${styles.discount_line}`}>
 										<div className={`${styles.line} ${styles.discount_dashed_line}`} />
 									</div>
@@ -167,20 +182,22 @@ function Charges({
 						<div className={`${styles.discount_name} ${styles.price}`}>
 							-
 							{formatAmount({
-								amount  : discountedAmount,
+								amount: discountedAmount,
 								currency,
-								options : {
-									notation : 'standard',
-									style    : 'currency',
+								options: {
+									notation: 'standard',
+									style: 'currency',
 								},
 							})}
 						</div>
 					</div>
-				)}
+				) : null}
 
 				<div className={styles.input_wrapper}>
 					{!Object.keys(couponCode)?.length > 0 ? (
-						<div>Have a coupon code?</div>
+						<div>
+							{t('subscriptions:coupon_code_text')}
+						</div>
 					) : (
 						<div className={styles.code_wrapper}>
 							<div>
@@ -188,16 +205,17 @@ function Charges({
 							</div>
 							<div className={styles.applied_coupon}>
 								<div>
-									Code
+									{t('subscriptions:code_text')}
 									{couponCode?.promocodes?.[0]?.promocode?.toUpperCase()}
-									applied
+									{t('subscriptions:applied_text')}
 								</div>
 								<div className={styles.discount}>
-									{couponCode?.promotion_discounts?.[0]?.unit === 'flat'
-										&& couponCode?.promotion_discounts?.[0]?.amount_currency}
-									{couponCode?.promotion_discounts?.[0]?.value}
-									{couponCode?.promotion_discounts?.[0]?.unit === 'percentage' && '%'}
-									OFF
+									{couponCode?.promotion_discounts?.[GLOBAL_CONSTANTS.zeroth_index]?.unit === 'flat'
+										&& amountCurrency}
+									{couponCode?.promotion_discounts?.[GLOBAL_CONSTANTS.zeroth_index]?.value}
+									{couponCode?.promotion_discounts?.[GLOBAL_CONSTANTS.zeroth_index]?.unit
+										=== 'percentage' && '%'}
+									{t('subscriptions:off_code_text')}
 								</div>
 							</div>
 						</div>
@@ -209,7 +227,7 @@ function Charges({
 								onClick={() => setShowCoupons(true)}
 								role="presentation"
 							>
-								Apply
+								{t('subscriptions:apply_text')}
 							</div>
 						) : (
 							<div
@@ -220,7 +238,7 @@ function Charges({
 								}}
 								role="presentation"
 							>
-								Remove
+								{t('subscriptions:remove_text')}
 							</div>
 						)}
 					</div>
@@ -231,15 +249,15 @@ function Charges({
 
 				<div className={styles.styled_row}>
 					<div className={`${styles.styled_col} ${styles.total}`}>
-						<div>Total</div>
+						<div>{t('subscriptions:total_text')}</div>
 					</div>
 					<div className={`${styles.styled_col} ${styles.price}`}>
 						{formatAmount({
-							amount  : couponCodeLength > 0 ? totalAmount : amount,
+							amount: couponCodeLength > 0 ? totalAmount : amount,
 							currency,
-							options : {
-								notation : 'standard',
-								style    : 'currency',
+							options: {
+								notation: 'standard',
+								style: 'currency',
 							},
 						})}
 					</div>
@@ -250,10 +268,12 @@ function Charges({
 						<Checkbox
 							label={(
 								<div className={styles.checkbox_label_content}>
-									<div className={styles.activate_later_txt}>Activate later</div>
+									<div className={styles.activate_later_txt}>
+										{t('subscriptions:activate_later_text')}
+									</div>
 									<Tooltip
 										placement="top"
-										content={description()}
+										content={description({ t })}
 										animation="scale"
 										maxWidth={350}
 										interactive
@@ -270,7 +290,7 @@ function Charges({
 							value={check}
 						/>
 					</div>
-					{check && (
+					{check ? (
 						<Datepicker
 							showTimeSelect={false}
 							minDate={minDate}
@@ -278,7 +298,7 @@ function Charges({
 							onChange={setDatePickerValue}
 							value={datePickerValue}
 						/>
-					)}
+					) : null}
 				</div>
 
 				<div className={styles.button_wrapper}>
@@ -288,13 +308,15 @@ function Charges({
 						className={loading ? 'disabled' : ''}
 					>
 						{completeOrderLoading ? (
-							<img
-								src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/loading.svg"
-								alt="cogo"
+							<Image
+								src={GLOBAL_CONSTANTS.image_url.loading}
+								alt={t('subscriptions:loading_text')}
+								width={20}
+								height={20}
 							/>
 						) : (
 							<>
-								Proceed to Pay
+								{t('subscriptions:proceed_to_pay_text')}
 								<IcMArrowNext class="icon" />
 							</>
 						)}
@@ -305,7 +327,7 @@ function Charges({
 			<div
 				className={`${styles.coupon_container} ${showCoupons ? styles.show : styles.hide}`}
 			>
-				{showCoupons && (
+				{showCoupons ? (
 					<Coupons
 						showCoupons={showCoupons}
 						couponCode={couponCode}
@@ -315,7 +337,7 @@ function Charges({
 						setShowCoupons={setShowCoupons}
 						handleClick={handleClick}
 					/>
-				)}
+				) : null}
 			</div>
 		</div>
 	);

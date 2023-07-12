@@ -3,7 +3,14 @@ import {
 } from '@cogoport/components';
 import { IcMUserAllocations } from '@cogoport/icons-react';
 import { CardElement, useElements } from '@stripe/react-stripe-js';
+import { useTranslation } from 'next-i18next';
 import React, { useState, useMemo } from 'react';
+
+import {
+	DEFAULT_VALUE,
+	API_COUNT_TIME,
+	START_COUNT,
+} from '../../../../../constants/dimensions';
 
 import styles from './styles.module.css';
 
@@ -28,6 +35,8 @@ function StripSection({
 	totalPrice,
 	discount_percentage,
 }) {
+	const { t } = useTranslation(['subscriptions']);
+
 	const [cardHolder, setCardHolder] = useState('name');
 	const [loading, setLoading] = useState(false);
 
@@ -35,10 +44,10 @@ function StripSection({
 		const options = useMemo(() => ({
 			style: {
 				base: {
-					color           : '#424770',
-					letterSpacing   : '0.025em',
-					'::placeholder' : { color: '#aab7c4' },
-					fontSize        : 12,
+					color: '#424770',
+					letterSpacing: '0.025em',
+					'::placeholder': { color: '#aab7c4' },
+					fontSize: 12,
 				},
 				invalid: { color: '#9e2146' },
 			},
@@ -54,14 +63,14 @@ function StripSection({
 
 	const verifyPaymentNow = async (params) => {
 		setStripeModal(false);
-		if (apiTries < 10) {
+		if (apiTries < API_COUNT_TIME) {
 			try {
 				setPendingModal(true);
-				if (apiTries < 1) setRazorLoading(true);
+				if (apiTries < START_COUNT) setRazorLoading(true);
 				const res = await verifyRazor(params);
 				await wait(WAIT_TIME);
 
-				setApiTries((prevState) => prevState + 1);
+				setApiTries((prevState) => prevState + START_COUNT);
 				setPaymentStatus(res);
 			} catch (err) {
 				Toast.error(err?.data);
@@ -80,9 +89,9 @@ function StripSection({
 		stripe
 			.confirmCardPayment(stripePaymentId, {
 				payment_method: {
-					type            : 'card',
-					card            : elements.getElement(CardElement),
-					billing_details : { name: cardHolder },
+					type: 'card',
+					card: elements.getElement(CardElement),
+					billing_details: { name: cardHolder },
 				},
 			})
 			.then((result) => {
@@ -94,9 +103,9 @@ function StripSection({
 					|| result.paymentIntent.status === 'requires_capture'
 				) {
 					const params = {
-						gateway          : 'stripe',
-						gateway_order_id : result?.paymentIntent.id,
-						saas_checkout_id : checkoutId,
+						gateway: 'stripe',
+						gateway_order_id: result?.paymentIntent.id,
+						saas_checkout_id: checkoutId,
 					};
 					verifyPaymentNow(params);
 				}
@@ -104,46 +113,47 @@ function StripSection({
 	};
 
 	return (
-		<Modal show={flag} onClose={() => setStripeModal(false)} className="primary">
-			<form className="formContainer">
+		<Modal show={flag} onClose={() => setStripeModal(false)}>
+			<form className={styles.form_container}>
 				<div className={styles.container}>
 					<div className={styles.info}>
 						<div className={styles.title}>
-							Total:
+							{t('subscriptions:total_text')}
+							:
 							<div>
 								{formatAmount({
-									amount  : finalAmt,
+									amount: finalAmt,
 									currency,
-									options : {
-										notation : 'standard',
-										style    : 'currency',
+									options: {
+										notation: 'standard',
+										style: 'currency',
 									},
 								})}
 							</div>
-							{discount_percentage > 0 && (
+							{discount_percentage > DEFAULT_VALUE && (
 								<div className="crossedPrice">
 									{formatAmount({
-										amount  : totalPrice,
+										amount: totalPrice,
 										currency,
-										options : {
-											notation : 'standard',
-											style    : 'currency',
+										options: {
+											notation: 'standard',
+											style: 'currency',
 										},
 									})}
 								</div>
 							)}
 						</div>
 						<div className={styles.form_info}>
-							<FormItem label="Card holder name" className={styles.card_name}>
+							<FormItem label={t('subscriptions:card_holder_name_text')} className={styles.card_name}>
 								<Input
 									width="100%"
 									value={cardHolder}
 									onChange={(e) => setCardHolder(e.target.value)}
-									placeholder="Card holder name"
+									placeholder={t('subscriptions:card_holder_name_text')}
 									prefix={<IcMUserAllocations width={20} height={20} fill="#d3d3d3" />}
 								/>
 							</FormItem>
-							<FormItem label="Card details">
+							<FormItem label={t('subscriptions:card_details_text')}>
 								<div className={styles.stripe_box}>
 									<CardElement options={options} />
 								</div>
@@ -157,15 +167,16 @@ function StripSection({
 							disabled={!stripeObj || loading}
 							onClick={handleSubmit}
 							loading={loading}
+							type="button"
 						>
-							Pay
-							<div className="amt">
+							{t('subscriptions:pay_text')}
+							<div className={styles.amt}>
 								{formatAmount({
-									amount  : finalAmt,
+									amount: finalAmt,
 									currency,
-									options : {
-										notation : 'standard',
-										style    : 'currency',
+									options: {
+										notation: 'standard',
+										style: 'currency',
 									},
 								})}
 							</div>

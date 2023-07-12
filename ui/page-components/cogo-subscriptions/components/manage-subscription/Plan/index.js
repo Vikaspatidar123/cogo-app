@@ -27,7 +27,7 @@ function Plan() {
 	const {
 		loading,
 		getPlan,
-		userplan,
+		userPlan,
 		activeTab,
 		setActiveTab,
 		subscribeTab,
@@ -39,7 +39,7 @@ function Plan() {
 		apiTries,
 	} = useVerifyRazor();
 
-	const { saas_product_family_id = '' } = userplan || {};
+	const { saas_product_family_id = '' } = userPlan || {};
 
 	const { planFeatureData = {} } = useGetPlanFeatures({
 		saas_product_family_id,

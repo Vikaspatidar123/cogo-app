@@ -8,12 +8,12 @@ import { useSelector } from '@/packages/store';
 
 const useGetUSerActivePlan = () => {
 	const { profile } = useSelector((s) => s);
-	const [userplan, setUserPlan] = useState({});
+	const [userPlan, setUserPlan] = useState({});
 
 	const [subscribeTab, setSubscribeTab] = useState('monthly');
 
 	const [activeTab, setActiveTab] = useState('monthly');
-	const { item_plans = [] } = userplan || {};
+	const { item_plans = [] } = userPlan || {};
 
 	const checkPlanType = item_plans.some(
 		({ display_pricing = {}, priority_sequence }) => !!(
@@ -56,7 +56,7 @@ const useGetUSerActivePlan = () => {
 		plansData,
 		loading,
 		setUserPlan,
-		userplan,
+		userPlan,
 		setActiveTab,
 		activeTab,
 		setSubscribeTab,

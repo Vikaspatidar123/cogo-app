@@ -31,10 +31,6 @@ export const Icons = {
 	office: <IcAWarehouse width={30} height={30} />,
 	factory: <IcMManufacturing width={30} height={30} />,
 };
-export const urls = {
-	loadingUrl: 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/loading.svg',
-	emptyUrl: 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/ICSad.svg',
-};
 
 export const MOST_POPPULAR_INDEX = 2;
 
@@ -47,3 +43,32 @@ export const CLOSE_TIME = 9;
 export const PAINTING_TIME = 10;
 
 export const SET_TIME = 10000;
+
+export const DEFAULT_DURATION_VALUE = 25;
+
+export const DEFAULT_VALUE = 0;
+
+export const API_COUNT_TIME = 10;
+
+export const START_COUNT = 1;
+
+export const CURRENT_USER_VALUE = 4;
+
+export const PERCENTAGE_COUNT = 20;
+
+export const SCROLL_VALUE = 820;
+
+export const SET_DURATION = 100;
+
+export const MAX_VALUE = 100;
+
+export const MIN_VALUE = 1;
+
+export const SLIDER_LABEL = ['1', '25', '50', '75', '100'];
+
+export const calculatePercentage = (count, addon, total) => {
+	const totalCount = +total + +addon;
+	const leftCount = +count + +addon;
+	const percentage = (+leftCount * 100) / +totalCount;
+	return percentage < PERCENTAGE_COUNT;
+};

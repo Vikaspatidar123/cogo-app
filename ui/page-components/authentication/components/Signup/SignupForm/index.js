@@ -8,8 +8,10 @@ import useSignupAuthentication from '../../../hooks/useSignupAuthentication';
 import styles from './styles.module.css';
 
 import { useForm, InputController, MobileNumberSelectController } from '@/packages/forms';
+import { useRouter } from '@/packages/next';
 
 function SignupForm({ setHasSignedup, setFormData, setUserDetails }) {
+	const { locale } = useRouter();
 	const { t } = useTranslation(['common']);
 	const {
 		handleSubmit, formState: { errors }, control, watch, register,
@@ -100,7 +102,7 @@ function SignupForm({ setHasSignedup, setFormData, setUserDetails }) {
 			<div className={styles.terms_and_conditions_text}>
 				{t('common:rightPanel_registration_links_termsAndPrivacyPolicy_label')}
 				<a
-					href={t('common:rightPanel_registration_links_termsAndPrivacyPolicy_links_terms_href')}
+					href={`https://www.cogoport.com/${locale}/terms-and-conditions/`}
 					target="_blank"
 					rel="noreferrer"
 					className={styles.terms_and_conditions_link}
@@ -111,7 +113,7 @@ function SignupForm({ setHasSignedup, setFormData, setUserDetails }) {
 				</a>
 				&
 				<a
-					href={t('common:rightPanel_registration_links_termsAndPrivacyPolicy_links_privacyPolicy_href')}
+					href={`https://www.cogoport.com/${locale}/privacy-policy/`}
 					target="_blank"
 					className={styles.terms_and_conditions_link}
 					rel="noreferrer"

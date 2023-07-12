@@ -27,7 +27,7 @@ function SignupForm({ setHasSignedup, setFormData, setUserDetails }) {
 		setValue,
 		register,
 	} = useForm();
-	const { query } = useRouter();
+	const { query, locale } = useRouter();
 
 	const [captchaResponse, setCaptchaResponse] = useState('');
 	const [hasWhatsApp, setHasWhatsApp] = useState(false);
@@ -157,7 +157,7 @@ function SignupForm({ setHasSignedup, setFormData, setUserDetails }) {
 			<div className={styles.terms_and_conditions_text}>
 				{t('common:rightPanel_registration_links_termsAndPrivacyPolicy_label')}
 				<a
-					href={t('common:rightPanel_registration_links_termsAndPrivacyPolicy_links_terms_href')}
+					href={`https://www.cogoport.com/${locale}/terms-and-conditions/`}
 					target="_blank"
 					rel="noreferrer"
 					className={styles.terms_and_conditions_link}
@@ -167,7 +167,7 @@ function SignupForm({ setHasSignedup, setFormData, setUserDetails }) {
 				</a>
 				&
 				<a
-					href={t('common:rightPanel_registration_links_termsAndPrivacyPolicy_links_privacyPolicy_href')}
+					href={`https://www.cogoport.com/${locale}/privacy-policy/`}
 					target="_blank"
 					className={styles.terms_and_conditions_link}
 					rel="noreferrer"

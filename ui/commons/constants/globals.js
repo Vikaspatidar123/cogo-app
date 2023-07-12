@@ -144,6 +144,12 @@ const GLOBAL_CONSTANTS = {
 		email_id     : 'kanira.patel@cogoport.com',
 	},
 
+	user_specific_email_id: {
+		ajeet: 'ajeet@cogoport.com',
+	},
+
+	zeroth_index: 0,
+
 	service_supported_countries: {
 		feature_supported_service: {
 			common: {

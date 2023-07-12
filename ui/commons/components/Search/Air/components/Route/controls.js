@@ -19,6 +19,7 @@ const getControls = ({
 		type           : 'async_select',
 		placeholder    : 'Shipping from',
 		asyncKey       : 'locations',
+		initialCall    : true,
 		style          : { width: '300px' },
 		handleChange   : (obj) => {
 			setLocation((pv) => ({
@@ -65,6 +66,7 @@ const getControls = ({
 		name           : 'destination',
 		labelShow      : 'DESTINATION',
 		defaultOptions : true,
+		initialCall    : true,
 		type           : 'async_select',
 		placeholder    : 'Shipping to',
 		asyncKey       : 'locations',

@@ -13,7 +13,7 @@ const REGISTRATION_LABEL = geo.others.registration_number.label;
 
 function BillingDetails({
 	billingAddress = () => {},
-	// addressApi = () => {},
+	addressApi = () => {},
 	setAddresses = () => {},
 	addresses = [],
 	checked = false,
@@ -27,7 +27,8 @@ function BillingDetails({
 
 	useEffect(() => {
 		billingAddress({ setAddresses });
-	}, [billingAddress, setAddresses]);
+		addressApi();
+	}, [billingAddress, setAddresses, addressApi]);
 
 	const renderName = (pocDetail) => {
 		if (pocDetail?.length > 0) {

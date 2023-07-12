@@ -301,7 +301,7 @@ function Charges({
 						) : (
 							<>
 								Proceed to Pay
-								<IcMArrowNext class="icon" />
+								<IcMArrowNext className={styles.icon} />
 							</>
 						)}
 					</Button>

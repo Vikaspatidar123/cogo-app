@@ -3,11 +3,11 @@ import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 const SUPPORTED_COUNTRY_IDS = GLOBAL_CONSTANTS.service_supported_countries.feature_supported_service.common
 	.services.ftl_freight.default_country_ids;
 
-const getControls = () => [
+const getControls = ({ t }) => [
 	{
-		label             : 'Origin Location',
+		label             : t('discoverRates:origin_location_label'),
 		name              : 'origin_location_id',
-		placeholder       : 'Port/Airport/Pincode/Railway Terminal',
+		placeholder       : t('discoverRates:all_mode_placeholder'),
 		includedInOptions : false,
 		type              : 'async_select',
 		asyncKey          : 'locations',
@@ -19,12 +19,12 @@ const getControls = () => [
 				id   : SUPPORTED_COUNTRY_IDS,
 			},
 		},
-		rules: { required: 'Origin Location is required' },
+		rules: { required: t('discoverRates:origin_port_error_message') },
 	},
 	{
-		label             : 'Destination Location',
+		label             : t('discoverRates:destination_location_label'),
 		name              : 'destination_location_id',
-		placeholder       : 'Port/Airport/Pincode/Railway Terminal',
+		placeholder       : t('discoverRates:all_mode_placeholder'),
 		includedInOptions : false,
 		type              : 'async_select',
 		asyncKey          : 'locations',
@@ -36,7 +36,7 @@ const getControls = () => [
 				id   : SUPPORTED_COUNTRY_IDS,
 			},
 		},
-		rules: { required: 'Destination Location is required' },
+		rules: { required: t('discoverRates:destination_port_error_message') },
 	},
 ];
 export default getControls;

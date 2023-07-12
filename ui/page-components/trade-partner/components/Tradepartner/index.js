@@ -15,8 +15,10 @@ import { useRouter } from '@/packages/next';
 
 function TradePartner() {
 	const { push } = useRouter();
+
 	const { t } = useTranslation(['common', 'tradePartner']);
-	const [sort, setSort] = useState();
+
+	const [sort, setSort] = useState({});
 	const {
 		getList, setGlobalFilters, filters, apiData, apiLoading,
 	} = useList({
@@ -28,7 +30,7 @@ function TradePartner() {
 	const [showmodal, setShowModal] = useState(false);
 	const [tradePartyDetails, setTradePartyDetails] = useState();
 
-	const TRADEPARTNERLIST = getTradePartnerListConfig({ t });
+	const TRADE_PARTNER_LIST_CONFIG = getTradePartnerListConfig({ t });
 
 	return (
 		<div className={styles.container}>
@@ -89,7 +91,7 @@ function TradePartner() {
 			</div>
 			<div>
 				<List
-					config={TRADEPARTNERLIST}
+					config={TRADE_PARTNER_LIST_CONFIG}
 					data={apiData || []}
 					loading={apiLoading}
 					setGlobalFilters={setGlobalFilters}

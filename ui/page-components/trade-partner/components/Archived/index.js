@@ -18,7 +18,8 @@ function Archived() {
 		getList, apiData, apiLoading, setGlobalFilters,
 	} = useList({ archived });
 
-	const ARCHIVEDTRADEPARTNERLIST = getArchivedPartnerListConfig({ t });
+	const ARCHIVED_TRADE_PARTNER_LIST = getArchivedPartnerListConfig({ t });
+
 	return (
 		<div className={styles.container}>
 			<div className={styles.flex_div}>
@@ -57,7 +58,7 @@ function Archived() {
 				</div>
 			</div>
 			<List
-				config={ARCHIVEDTRADEPARTNERLIST}
+				config={ARCHIVED_TRADE_PARTNER_LIST}
 				data={apiData || []}
 				loading={apiLoading}
 				archived={archived}

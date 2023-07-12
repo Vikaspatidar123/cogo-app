@@ -75,12 +75,15 @@ const getControls = ({
 			},
 		},
 		{
-			label       : t('tradePartner:add_trade_partner_control_label_6'),
-			name        : 'countryId',
-			type        : 'select',
-			placeholder : t('tradePartner:add_trade_partner_control_placeholder_6'),
-			rules       : { required: t('tradePartner:add_trade_partner_rules_required') },
-			options     : country,
+			label        : t('tradePartner:add_trade_partner_control_label_6'),
+			name         : 'countryId',
+			type         : 'select',
+			placeholder  : t('tradePartner:add_trade_partner_control_placeholder_6'),
+			rules        : { required: t('tradePartner:add_trade_partner_rules_required') },
+			options      : country,
+			handleChange : (e) => {
+				setCountryInfo(e);
+			},
 		},
 		{
 			label       : t('tradePartner:add_trade_partner_control_label_7'),
@@ -97,11 +100,14 @@ const getControls = ({
 			style       : { height: '40px' },
 		},
 		{
-			label       : t('tradePartner:add_trade_partner_control_label_9'),
-			name        : 'state',
-			type        : 'async_select',
-			placeholder : t('tradePartner:add_trade_partner_control_placeholder_9'),
-			asyncKey    : 'locations',
+			label        : t('tradePartner:add_trade_partner_control_label_9'),
+			name         : 'state',
+			type         : 'async_select',
+			placeholder  : t('tradePartner:add_trade_partner_control_placeholder_9'),
+			asyncKey     : 'locations',
+			handleChange : (e) => {
+				setStateInfo(e);
+			},
 		},
 		{
 			label          : t('tradePartner:add_trade_partner_control_label_10'),
@@ -110,6 +116,9 @@ const getControls = ({
 			placeholder    : t('tradePartner:add_trade_partner_control_placeholder_10'),
 			asyncKey       : 'locations',
 			defaultOptions : true,
+			handleChange   : (e) => {
+				setCityInfo(e);
+			},
 		},
 	];
 	return controls.map((control) => {
@@ -128,13 +137,10 @@ const getControls = ({
 				value: tradePartyDetails?.address,
 			};
 		}
-		if (control.name === 'country') {
+		if (control.name === 'countryId') {
 			return {
 				...control,
-				value        : tradePartyDetails?.countryId,
-				handleChange : (e) => {
-					setCountryInfo(e);
-				},
+				value: tradePartyDetails?.countryId,
 			};
 		}
 		if (control.name === 'state') {
@@ -145,9 +151,6 @@ const getControls = ({
 				params   : {
 					filters: { type: 'region', country_id: countryInfo?.id },
 				},
-				handleChange: (e) => {
-					setStateInfo(e);
-				},
 			};
 		}
 		if (control.name === 'city') {
@@ -157,10 +160,7 @@ const getControls = ({
 				params   : {
 					filters: { type: 'city', region_id: stateInfo?.id },
 				},
-				value        : tradePartyDetails?.cityId,
-				handleChange : (e) => {
-					setCityInfo(e);
-				},
+				value: tradePartyDetails?.cityId,
 			};
 		}
 		return {

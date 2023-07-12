@@ -50,12 +50,13 @@ function TradePartnerAddress({
 		control,
 	} = useForm();
 
-	const ButtonRender = (edit) => {
+	const buttonRender = (edit) => {
 		if (edit) {
 			return t('tradePartner:update_trade_partner_button_label');
 		}
 		return t('tradePartner:create_trade_partner_button_label');
 	};
+
 	const handleCloseModal = () => {
 		setShowModal(false);
 	};
@@ -297,7 +298,7 @@ function TradePartnerAddress({
 						{loading ? (
 							<Loader themeType="secondary" />
 						) : (
-							ButtonRender(isEdit)
+							buttonRender(isEdit)
 						)}
 					</Button>
 				</div>

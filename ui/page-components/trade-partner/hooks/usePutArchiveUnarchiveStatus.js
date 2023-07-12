@@ -4,6 +4,11 @@ import { useTranslation } from 'next-i18next';
 import { useRequestBf } from '@/packages/request';
 import { useSelector } from '@/packages/store';
 
+const getPayload = ({ itemData, profile }) => ({
+	partnerId   : itemData?.saasPartnerId,
+	performedBy : profile?.id,
+});
+
 const usePutArchiveUnarchiveStatus = ({ archived, getList, setArchive }) => {
 	const { t } = useTranslation(['common', 'tradePartner']);
 	const { profile } = useSelector((s) => s);
@@ -28,12 +33,10 @@ const usePutArchiveUnarchiveStatus = ({ archived, getList, setArchive }) => {
 
 	const api = archived ? unarchiveTrigger : archivedTrigger;
 	const tradePartyStatus = async (itemData) => {
+		const payload = getPayload({ itemData, profile });
 		try {
 			const res = await api({
-				params: {
-					partnerId   : itemData?.saasPartnerId,
-					performedBy : profile?.id,
-				},
+				params: payload,
 			});
 			if (res?.data?.message === 'Success') {
 				setArchive(false);

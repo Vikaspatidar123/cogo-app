@@ -1,32 +1,10 @@
 import patterns from '@/ui/commons/configurations/patterns';
-import { getCountrySpecificData } from '@/ui/commons/constants/CountrySpecificDetail';
 import getGeoConstants from '@/ui/commons/constants/geo';
 
 const geo = getGeoConstants();
 
-const geoObj = {
-	country_id    : geo.country.id,
-	isDefaultData : true,
-};
-
-const REGISTRATION_LABEL = getCountrySpecificData({
-	...geoObj,
-	accessorType : 'registration_number',
-	accessor     : 'label',
-});
-
-const REGISTRATION_PATTERN = getCountrySpecificData({
-	...geoObj,
-	accessorType : 'registration_number',
-	accessor     : 'pattern',
-});
-
-const ECO_ZONE_LABEl = getCountrySpecificData({
-	...geoObj,
-	accessorType : 'economic_zone',
-	accessor     : 'label',
-
-});
+const { label:REGISTRATION_LABEL, pattern:REGISTRATION_PATTERN } = geo.others.registration_number;
+const ECO_ZONE_LABEL = geo.others.economic_zone.label;
 
 const createSellerControl = () => {
 	const billingDetailControl = [
@@ -80,7 +58,7 @@ const createSellerControl = () => {
 		},
 		{
 			name    : 'is_sez',
-			label   : `Is Your Address ${ECO_ZONE_LABEl}?`,
+			label   : `Is Your Address ${ECO_ZONE_LABEL}?`,
 			type    : 'checkbox',
 			value   : false,
 			options : [
@@ -96,7 +74,7 @@ const createSellerControl = () => {
 		},
 		{
 			name  : 'sez_proof',
-			label : `${ECO_ZONE_LABEl} Proof*`,
+			label : `${ECO_ZONE_LABEL} Proof*`,
 			type  : 'file',
 			rules : {
 				required: '*Required',

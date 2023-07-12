@@ -12,22 +12,9 @@ import getGeoConstants from '@/ui/commons/constants/geo';
 import getValue from '@/ui/commons/utils/getValue';
 
 const geo = getGeoConstants();
-const geoObj = {
-	country_id    : geo.country.id,
-	accessor      : 'label',
-	isDefaultData : true,
-};
 
-const REGISTRATION_LABEL = getCountrySpecificData({
-	...geoObj,
-	accessorType: 'registration_number',
-
-});
-
-const ECO_ZONE_LABEl = getCountrySpecificData({
-	...geoObj,
-	accessorType: 'economic_zone',
-});
+const REGISTRATION_LABEL = geo.others.registration_number.label;
+const ECO_ZONE_LABEL = geo.others.economic_zone.label;
 
 function AddressCard({
 	getOrganizationBillingAddress = {},
@@ -93,12 +80,20 @@ function AddressCard({
 
 			<div className={styles.tax_details_container}>
 				<div className={styles.sub_container}>
-					<div className={styles.label_text}>{`${REGISTRATION_LABEL} Number`}</div>
+					<div className={styles.label_text}>
+						{REGISTRATION_LABEL}
+						{' '}
+						Number
+					</div>
 					<div className={styles.value_text}>{address.tax_number || '-'}</div>
 				</div>
 
 				<div className={styles.address_container}>
-					<div className={styles.label_text}>{`${REGISTRATION_LABEL} Proof`}</div>
+					<div className={styles.label_text}>
+						{REGISTRATION_LABEL}
+						{' '}
+						Proof
+					</div>
 
 					{address.tax_number_document_url ? (
 						<div className={styles.doc_container}>
@@ -125,7 +120,12 @@ function AddressCard({
 
 			<div className={styles.flex}>
 				<div className={styles.mobile_sub_container}>
-					<div className={styles.label_text}>{`Is your address ${ECO_ZONE_LABEl}?`}</div>
+					<div className={styles.label_text}>
+						Is your address
+						{' '}
+						{ECO_ZONE_LABEL}
+						?
+					</div>
 					<div className={styles.value_text}>
 						{address.is_sez ? 'Yes' : 'No'}
 					</div>

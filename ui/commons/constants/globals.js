@@ -29,12 +29,6 @@ const GLOBAL_CONSTANTS = {
 	},
 	country_ids: COUNTRY_IDS,
 
-	country_code: {
-		IN : 'IN',
-		VN : 'VN',
-		GB : 'GB',
-	},
-
 	cargo_insurance: {
 		IN: ['fcl_freight', 'lcl_freight', 'air_freight'],
 	},

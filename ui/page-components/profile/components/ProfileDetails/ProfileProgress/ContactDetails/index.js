@@ -1,17 +1,11 @@
 import styles from './styles.module.css';
 
 import { useSelector } from '@/packages/store';
-import { getCountrySpecificData } from '@/ui/commons/constants/CountrySpecificDetail';
 import getGeoConstants from '@/ui/commons/constants/geo';
 
 const geo = getGeoConstants();
 
-const { show_whatsapp } = getCountrySpecificData({
-	country_id    : geo.country.id,
-	accessorType  : 'navigations',
-	accessor      : 'profile_details',
-	isDefaultData : true,
-});
+const { show_whatsapp } = geo.others.navigations.profile_details;
 
 function ContactDetails() {
 	const { profile = {} } = useSelector((state) => state);

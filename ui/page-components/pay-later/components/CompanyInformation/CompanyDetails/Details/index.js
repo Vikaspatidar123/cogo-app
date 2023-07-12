@@ -80,7 +80,9 @@ function Details({ data = {}, setShowEdit = () => {} }) {
 				</div>
 				<div className={styles.address}>
 					<div className={styles.title}>
-						{`${REGISTRATION_LABEL} Registered Address`}
+						{REGISTRATION_LABEL}
+						{' '}
+						Registered Address
 					</div>
 					<div className={styles.value}>
 						{address}

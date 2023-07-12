@@ -9,18 +9,12 @@ import configPocControls from '../configurations/poc-controls.json';
 import getValue from './getValue';
 
 import patterns from '@/ui/commons/configurations/patterns';
-import { getCountrySpecificData, CountrySpecificData } from '@/ui/commons/constants/CountrySpecificDetail';
+import { CountrySpecificData } from '@/ui/commons/constants/CountrySpecificDetail';
 import getGeoConstants from '@/ui/commons/constants/geo';
 
 const geo = getGeoConstants();
-const getRegistrationObj = (type) => (
-	getCountrySpecificData({
-		country_id    : geo.country.id,
-		accessorType  : 'registration_number',
-		accessor      : type,
-		isDefaultData : true,
-	})
-);
+
+const { label, pattern } = geo.others.registration_number;
 
 const getAddressNewControls = ({ organizationCountryId }) => {
 	const configAddressControls = getAddressMappingControls({
@@ -45,8 +39,8 @@ const getAddressNewControls = ({ organizationCountryId }) => {
 				rules: {
 					...getValue(newControl, 'rules', {}),
 					pattern: {
-						value   : getRegistrationObj('pattern'),
-						message : `${getRegistrationObj('label')} is invalid`,
+						value   : pattern,
+						message : `${label} is invalid`,
 					},
 				},
 			};

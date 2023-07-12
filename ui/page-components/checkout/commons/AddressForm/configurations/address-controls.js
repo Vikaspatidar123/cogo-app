@@ -1,22 +1,10 @@
-import { getCountrySpecificData, CountrySpecificData } from '@/ui/commons/constants/CountrySpecificDetail';
+import { CountrySpecificData } from '@/ui/commons/constants/CountrySpecificDetail';
 import getGeoConstants from '@/ui/commons/constants/geo';
 
 const geo = getGeoConstants();
 
-const geoObj = {
-	country_id    : geo.country.id,
-	accessor      : 'label',
-	isDefaultData : true,
-};
-const REGISTRATION_LABEL = getCountrySpecificData({
-	...geoObj,
-	accessorType: 'registration_number',
-});
-
-const ECO_ZONE_LABEl = getCountrySpecificData({
-	...geoObj,
-	accessorType: 'economic_zone',
-});
+const REGISTRATION_LABEL = geo.others.registration_number.label;
+const ECO_ZONE_LABEl = geo.others.economic_zone.label;
 
 const getAddressMappingControls = ({ organizationCountryId }) => [
 	{

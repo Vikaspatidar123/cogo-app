@@ -13,16 +13,11 @@ import useSaveAddress from './useSaveAddress';
 import { useForm } from '@/packages/forms';
 import { useSelector } from '@/packages/store';
 import patterns from '@/ui/commons/configurations/patterns';
-import { getCountrySpecificData } from '@/ui/commons/constants/CountrySpecificDetail';
 import getGeoConstants from '@/ui/commons/constants/geo';
 
 const geo = getGeoConstants();
-const REGISTRATION_LABEL = getCountrySpecificData({
-	country_id    : geo.country.id,
-	accessorType  : 'registration_number',
-	accessor      : 'label',
-	isDefaultData : true,
-});
+
+const REGISTRATION_LABEL = geo.others.registration_number.label;
 
 const getControls = ({
 	gstinOptions,

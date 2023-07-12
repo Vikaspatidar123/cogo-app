@@ -29,10 +29,10 @@ export const COMPANY_DETAILS_CONTROLS = [
 		rules       : { required: true },
 	},
 	{
-		label              : `${REGISTRATION_LABEL}`,
+		label              : REGISTRATION_LABEL,
 		name               : 'tax_number',
 		type               : 'async_select',
-		placeholder        : `${REGISTRATION_LABEL}`,
+		placeholder        : REGISTRATION_LABEL,
 		asyncKey           : 'tax_numbers',
 		getModifiedOptions : getModifiedOptionsForGST,
 		showField          : true,

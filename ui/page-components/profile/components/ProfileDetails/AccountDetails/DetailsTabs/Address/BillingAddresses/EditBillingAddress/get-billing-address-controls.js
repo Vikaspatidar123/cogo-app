@@ -1,24 +1,11 @@
 /* eslint-disable import/no-unresolved */
 import data from '@/.data-store/constants/countries.json';
-import { getCountrySpecificData } from '@/ui/commons/constants/CountrySpecificDetail';
 import getGeoConstants from '@/ui/commons/constants/geo';
 
 const geo = getGeoConstants();
-const geoObj = {
-	country_id    : geo.country.id,
-	accessor      : 'label',
-	isDefaultData : true,
-};
 
-const REGISTRATION_LABEL = getCountrySpecificData({
-	...geoObj,
-	accessorType: 'registration_number',
-});
-
-const ECO_ZONE_LABEL = getCountrySpecificData({
-	...geoObj,
-	accessorType: 'economic_zone',
-});
+const REGISTRATION_LABEL = geo.others.registration_number.label;
+const ECO_ZONE_LABEL = geo.others.economic_zone.label;
 
 const country_code = data?.map((x) => ({
 	label : x.mobile_country_code,

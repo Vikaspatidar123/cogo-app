@@ -5,16 +5,11 @@ import React from 'react';
 
 import styles from './styles.module.css';
 
-import { CountrySpecificData, getCountrySpecificData } from '@/ui/commons/constants/CountrySpecificDetail';
+import { CountrySpecificData } from '@/ui/commons/constants/CountrySpecificDetail';
 import getGeoConstants from '@/ui/commons/constants/geo';
 
 const geo = getGeoConstants();
-const ECO_ZONE_LABEL = getCountrySpecificData({
-	country_id    : geo.country.id,
-	accessorType  : 'economic_zone',
-	accessor      : 'label',
-	isDefaultData : true,
-});
+const ECO_ZONE_LABEL = geo.others.economic_zone.label;
 
 function InvoicingPartyItem({
 	organization = {},

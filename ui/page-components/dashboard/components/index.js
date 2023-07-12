@@ -15,7 +15,7 @@ import Tracking from './Tracking';
 import ActiveTracking from './Tracking/ActiveTracking';
 
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
-// import VerifyEmailMobile from '@/ui/commons/components/VerifyEmailMobile';
+
 const PAYLATER_SUPPORTED_COUNTRIES = GLOBAL_CONSTANTS.service_supported_countries.feature_supported_service
 	.paylater.supported_countries;
 

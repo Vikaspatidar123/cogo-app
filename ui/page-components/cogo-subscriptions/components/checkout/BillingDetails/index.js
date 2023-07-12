@@ -92,7 +92,9 @@ function BillingDetails({
 											{pincode}
 										</div>
 										<div className={`${styles.row} ${styles.tax_number}`}>
-											{`${REGISTRATION_LABEL} Number :`}
+											{REGISTRATION_LABEL}
+											{' '}
+											Number :
 											{tax_number}
 										</div>
 									</div>

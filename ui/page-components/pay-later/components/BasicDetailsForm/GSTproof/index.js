@@ -29,7 +29,13 @@ function GSTproof({
 	return (
 		<>
 			<div>
-				{hasRequestedForCredit && <div>{`${REGISTRATION_LABEL} Proof`}</div>}
+				{hasRequestedForCredit && (
+					<div>
+						{REGISTRATION_LABEL}
+						{' '}
+						Proof
+					</div>
+				)}
 			</div>
 			<div className={styles.file_container}>
 				<div className={styles.file}>

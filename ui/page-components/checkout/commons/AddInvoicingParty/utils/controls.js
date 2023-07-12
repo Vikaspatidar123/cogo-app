@@ -7,33 +7,13 @@ import styles from '../styles.module.css';
 import { getPanHolderStatusOptions } from './getPanHolderStatus';
 
 import patterns from '@/ui/commons/configurations/patterns';
-import { getCountrySpecificData } from '@/ui/commons/constants/CountrySpecificDetail';
 import getGeoConstants from '@/ui/commons/constants/geo';
 
 const geo = getGeoConstants();
 
-const geoObj = {
-	country_id    : geo.country.id,
-	isDefaultData : true,
-};
+const { label:REGISTRATION_LABEL, pattern:REGISTRATION_PATTERN } = geo.others.registration_number;
 
-const REGISTRATION_LABEL = getCountrySpecificData({
-	...geoObj,
-	accessorType : 'registration_number',
-	accessor     : 'label',
-});
-
-const REGISTRATION_PATTERN = getCountrySpecificData({
-	...geoObj,
-	accessorType : 'registration_number',
-	accessor     : 'pattern',
-});
-
-const ECO_ZONE_LABEl = getCountrySpecificData({
-	...geoObj,
-	accessorType : 'economic_zone',
-	accessor     : 'label',
-});
+const ECO_ZONE_LABEl = geo.others.economic_zone.label;
 
 function TradePartyInstructions() {
 	return (

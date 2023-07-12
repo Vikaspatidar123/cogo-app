@@ -15,7 +15,7 @@ function ModalDetails({ data = {}, setShow }) {
 	const { hsCode, id } = data || {};
 
 	const { t } = useTranslation(['common', 'hsClassification']);
-	const fields = getControls();
+	const fields = getControls({ t });
 
 	const [profitPercentage, setProfitPercentage] = useState(0);
 	const {
@@ -89,14 +89,18 @@ function ModalDetails({ data = {}, setShow }) {
 					<div className={styles.header}>
 						<div className={styles.summary_tab}>
 							<div className={styles.section}>
-								<div className={styles.heading}>Category</div>
+								<div className={styles.heading}>
+									{t('hsClassification:hs_code_classification_add_product_modal_text_1')}
+								</div>
 								<div className={styles.subheading}>{categoryDisplayName}</div>
 							</div>
 							<div className={styles.icn}>
 								<IcMArrowRight />
 							</div>
 							<div className={styles.section}>
-								<div className={styles.heading}>Sub-Category</div>
+								<div className={styles.heading}>
+									{t('hsClassification:hs_code_classification_add_product_modal_text_2')}
+								</div>
 								<div className={styles.subheading}>{subCategoryDisplayName}</div>
 							</div>
 						</div>
@@ -133,8 +137,9 @@ function ModalDetails({ data = {}, setShow }) {
 					className="md"
 					onClick={handleSubmit(onSubmit)}
 					disabled={addProductLoading}
+					type="submit"
 				>
-					Add To Catalogue
+					{t('hsClassification:hs_code_classification_add_to_catalogue_text')}
 				</Button>
 			</Modal.Footer>
 		</>

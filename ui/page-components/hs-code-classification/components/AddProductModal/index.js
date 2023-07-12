@@ -11,7 +11,6 @@ function AddProductModal({ data = {}, src = '' }) {
 	const [show, setShow] = useState(false);
 	return (
 		<div>
-
 			{data?.type === 'FINAL'
 				&& (
 					<>
@@ -35,7 +34,6 @@ function AddProductModal({ data = {}, src = '' }) {
 						</div>
 					</>
 				)}
-
 			{src === 'fav' && (
 				<Tooltip
 					theme="light"

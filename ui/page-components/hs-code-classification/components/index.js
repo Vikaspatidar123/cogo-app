@@ -56,7 +56,7 @@ function HsClassification() {
 			/>
 			<div className={styles.container}>
 				<div className={styles.tag}>
-					<div className={styles.title}>List of HS Codes</div>
+					<div className={styles.title}>{t('hsClassification:hs_code_classification_text_1')}</div>
 					{searchTag && <div>{searchTag}</div>}
 				</div>
 
@@ -67,7 +67,7 @@ function HsClassification() {
 						role="presentation"
 					>
 						<IcMMinusInCircle />
-						Collaspse all
+						{t('hsClassification:hs_code_classification_text_2')}
 					</div>
 					<div
 						onClick={() => {
@@ -78,7 +78,7 @@ function HsClassification() {
 						role="presentation"
 					>
 						<IcMStar />
-						Favourites
+						{t('hsClassification:hs_code_classification_text_3')}
 					</div>
 				</div>
 
@@ -91,12 +91,12 @@ function HsClassification() {
 								refetchGetBookmark();
 							}}
 						/>
-						<div className={styles.icon_text}>Favourites</div>
+						<div className={styles.icon_text}>{t('hsClassification:hs_code_classification_text_3')}</div>
 					</div>
 
 					<div className={styles.icon_container}>
 						<IcMCross width={30} height={30} onClick={resetDrillDownHandler} />
-						<div className={styles.icon_text}>Collaspse all</div>
+						<div className={styles.icon_text}>{t('hsClassification:hs_code_classification_text_2')}</div>
 					</div>
 				</div>
 			</div>

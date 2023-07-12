@@ -22,14 +22,14 @@ function Header({
 	return (
 		<div className={styles.container}>
 			<div className={styles.head}>
-				<div className={styles.heading}>{t('hsClassification:hs_code_classificatin_label')}</div>
+				<div className={styles.heading}>{t('hsClassification:hs_code_classification_label')}</div>
 				<div>
 					<Toggle
 						name="a4"
 						size="md"
 						disabled={false}
-						onLabel={t('hsClassification:hs_code_classificatin_toggle_on_label')}
-						offLabel={t('hsClassification:hs_code_classificatin_toggle_off_label')}
+						onLabel={t('hsClassification:hs_code_classification_toggle_on_label')}
+						offLabel={t('hsClassification:hs_code_classification_toggle_off_label')}
 						onChange={(value) => {
 							handleToggle(value.target.checked);
 						}}

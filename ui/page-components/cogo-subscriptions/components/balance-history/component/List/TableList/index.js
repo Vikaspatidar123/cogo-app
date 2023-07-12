@@ -45,12 +45,14 @@ const getEventType = (type) => {
 
 function TableList({ list = [], loading = false }) {
 	const { t } = useTranslation(['subscriptions']);
-
+	if (loading && isEmpty(list?.length)) {
+		return <div className={styles.empty}>{t('subscriptions:no_data_text')}</div>;
+	}
 	return (
 		<div>
 
 			{loading
-				&& [...Array(5).keys()].map((item) => (
+				? [...Array(5).keys()].map((item) => (
 					<>
 						<div className={cl`${tableStyles.web_view} ${tableStyles.row}`} key={item}>
 							{[...Array(5).keys()].map((ele) => (
@@ -81,11 +83,8 @@ function TableList({ list = [], loading = false }) {
 							</div>
 						</div>
 					</>
-				))}
-			{!loading && isEmpty(list?.length) && <div>{t('subscriptions:no_data_text')}</div>}
-			{!loading
-				&& !isEmpty(list?.length)
-				&& (list || []).map(
+				))
+				: (list || []).map(
 					(
 						{
 							created_at = '',

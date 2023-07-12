@@ -89,3 +89,8 @@
 		display: block;
 	}
 }
+
+.empty {
+	padding: auto;
+	text-align: center;
+}

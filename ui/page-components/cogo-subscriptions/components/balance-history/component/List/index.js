@@ -8,16 +8,10 @@ import styles from './styles.module.css';
 import TableHeader from './TableHeader';
 import TableList from './TableList';
 
-import { useSelector } from '@/packages/store';
-
 const DEFAULT_PAGINATION = 1;
 function List({ pendingModal }) {
 	const { t } = useTranslation(['subscriptions']);
 	const [pagination, setPagination] = useState(DEFAULT_PAGINATION);
-
-	const {
-		general: { isMobile },
-	} = useSelector((state) => state);
 
 	const {
 		fetchOrderLoading, orderDetails, orderBy, setOrderBy, fetchOrderDetails,
@@ -44,7 +38,6 @@ function List({ pendingModal }) {
 					<TableList
 						list={order_history}
 						loading={fetchOrderLoading}
-						isMobile={isMobile}
 					/>
 				</div>
 				<div className={styles.pagination}>

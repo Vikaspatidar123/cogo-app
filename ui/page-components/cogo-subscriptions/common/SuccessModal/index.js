@@ -5,6 +5,9 @@ import redirectUrl from '../../utils/redirectUrl';
 
 import styles from './styles.module.css';
 
+import { Image } from '@/packages/next';
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
+
 function SuccessModal({
 	modal, setShowModal, getPlan, name,
 }) {
@@ -24,7 +27,12 @@ function SuccessModal({
 			size="md"
 		>
 			<div className={styles.flex_div}>
-				<img src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/success.svg" alt="cogo" />
+				<Image
+					src={GLOBAL_CONSTANTS.image_url.success_image}
+					alt={t('subscriptions:cogo_text')}
+					width={300}
+					height={200}
+				/>
 				<div className={styles.label}>{t('subscriptions:congratulations_text')}</div>
 				<div className={styles.side_label}>
 					{t('subscriptions:subscribed_conformation_text')}

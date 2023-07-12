@@ -16,6 +16,8 @@ import ActiveTracking from './Tracking/ActiveTracking';
 
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 // import VerifyEmailMobile from '@/ui/commons/components/VerifyEmailMobile';
+const PAYLATER_SUPPORTED_COUNTRIES = GLOBAL_CONSTANTS.service_supported_countries.feature_supported_service
+	.paylater.supported_countries;
 
 function SassDashboard() {
 	const { airTracking, oceanTracking, kyc_status } = GetTracking();
@@ -55,7 +57,7 @@ function SassDashboard() {
 				</div>
 				<div className={styles.part2}>
 					<div className={styles.child2}>
-						{GLOBAL_CONSTANTS.paylater_supported_country.includes(location) && <PayLaterWidgets />}
+						{PAYLATER_SUPPORTED_COUNTRIES.includes(location) && <PayLaterWidgets />}
 						<Elgibility />
 						<ExportFactoring />
 						<Promotion />

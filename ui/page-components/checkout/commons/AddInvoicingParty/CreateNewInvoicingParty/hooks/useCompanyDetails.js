@@ -41,6 +41,13 @@ const useCompanyDetails = ({
 		accessor     : 'common',
 	});
 
+	const IDENTIFICAITON_LABEL = getCountrySpecificData({
+		country_id   : watchCountryId,
+		accessorType : 'identification_number',
+		accessor     : 'label',
+
+	});
+
 	const { getBusinessApi = {}, onBlurTaxPanGstinControl = () => {} } = useGetBusiness({
 		watchTaxNumber         : watchPan?.toUpperCase(),
 		watchBusinessName,
@@ -69,7 +76,7 @@ const useCompanyDetails = ({
 					suffix: <Loader themeType="primary" />,
 				}),
 				...(validate_registration_number && { maxLength: 10 }),
-				label : validate_registration_number ? 'PAN' : 'Registration Number',
+				label : IDENTIFICAITON_LABEL,
 				rules : {
 					...(newField.rules || {}),
 					pattern: {},

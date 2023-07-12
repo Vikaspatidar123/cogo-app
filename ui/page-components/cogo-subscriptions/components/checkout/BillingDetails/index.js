@@ -6,17 +6,10 @@ import { useState, useEffect } from 'react';
 import styles from './styles.module.css';
 
 import AddModal from '@/ui/commons/components/CreateOrganizationModel/Components/AddAddressModal';
-import { getCountrySpecificData } from '@/ui/commons/constants/CountrySpecificDetail';
 import getGeoConstants from '@/ui/commons/constants/geo';
 
 const geo = getGeoConstants();
-const REGISTRATION_LABEL = getCountrySpecificData({
-	country_id    : geo.country.id,
-	accessorType  : 'registration_number',
-	accessor      : 'label',
-	isDefaultData : true,
-
-});
+const REGISTRATION_LABEL = geo.others.registration_number.label;
 
 function BillingDetails({
 	billingAddress = () => {},

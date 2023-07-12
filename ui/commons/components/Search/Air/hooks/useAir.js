@@ -14,7 +14,7 @@ import { getCountrySpecificData } from '@/ui/commons/constants/CountrySpecificDe
 
 const INCHCUBE_TO_CBM = 61020;
 
-const COMMON_OBJ = {
+const COUNTRY_SPECIFIC_DATA_OBJ = {
 	accessorType : 'navigations',
 	accessor     : 'spot_search_air',
 };
@@ -85,12 +85,12 @@ const useAir = ({
 
 	const { is_origin_country_code_in } = getCountrySpecificData({
 		country_code: originCountry,
-		...COMMON_OBJ,
+		...COUNTRY_SPECIFIC_DATA_OBJ,
 	});
 
 	const { is_destination_country_code_in } = getCountrySpecificData({
 		country_code: destinationCountry,
-		...COMMON_OBJ,
+		...COUNTRY_SPECIFIC_DATA_OBJ,
 	});
 
 	useEffect(() => {

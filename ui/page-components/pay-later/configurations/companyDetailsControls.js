@@ -1,16 +1,10 @@
 import { Pill } from '@cogoport/components';
 import { IcMCloudUpload } from '@cogoport/icons-react';
 
-import { getCountrySpecificData } from '@/ui/commons/constants/CountrySpecificDetail';
 import getGeoConstants from '@/ui/commons/constants/geo';
 
 const geo = getGeoConstants();
-const REGISTRATION_LABEL = getCountrySpecificData({
-	country_id    : geo.country.id,
-	accessorType  : 'registration_number',
-	accessor      : 'label',
-	isDefaultData : true,
-});
+const REGISTRATION_LABEL = geo.others.registration_number.label;
 
 const getModifiedOptionsForGST = (options) => (options || []).map((x) => ({
 	...x,

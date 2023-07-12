@@ -6,23 +6,11 @@ import useCreateBillingAddress from '../../hooks/useCreateBillingAddress';
 import styles from './styles.module.css';
 
 import { InputController, useForm, UploadController } from '@/packages/forms';
-import { getCountrySpecificData } from '@/ui/commons/constants/CountrySpecificDetail';
 import getGeoConstants from '@/ui/commons/constants/geo';
 
 const geo = getGeoConstants();
-const REGISTRATION_LABEL = getCountrySpecificData({
-	country_id    : geo.country.id,
-	accessorType  : 'registration_number',
-	accessor      : 'label',
-	isDefaultData : true,
-});
-
-const ECO_ZONE_LABEL = getCountrySpecificData({
-	country_id    : geo.country.id,
-	accessorType  : 'economic_zone',
-	accessor      : 'label',
-	isDefaultData : true,
-});
+const REGISTRATION_LABEL = geo.others.registration_number.label;
+const ECO_ZONE_LABEL = geo.others.economic_zone.label;
 
 function BillingAddress({ orgId, setInviteTeam }) {
 	const {

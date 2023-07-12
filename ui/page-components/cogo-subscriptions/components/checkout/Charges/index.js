@@ -11,18 +11,11 @@ import { getCurrencyDetail } from '../../../utils/getCurrencyDetail';
 
 import styles from './styles.module.css';
 
-import { getCountrySpecificData } from '@/ui/commons/constants/CountrySpecificDetail';
 import getGeoConstants from '@/ui/commons/constants/geo';
 import formatAmount from '@/ui/commons/utils/formatAmount';
 
 const geo = getGeoConstants();
-const countrySpecificData = getCountrySpecificData({
-	country_id    : geo.country.id,
-	accessorType  : 'navigations',
-	accessor      : 'subscription',
-	isDefaultData : true,
-
-});
+const { is_tax_included } = geo.others.navigations.subscription;
 
 const description = () => (
 	<div className={styles.tooltip_ctn}>
@@ -66,8 +59,6 @@ function Charges({
 	const [showCoupons, setShowCoupons] = useState(false);
 	const { plan = {}, pricing = {}, allow_activate_later = false } = plans || {};
 	const loading = checkoutResponse?.errors || completeOrderLoading;
-
-	const { is_tax_included = false } = countrySpecificData;
 
 	const {
 		applyPromoCode, promoCodeData, couponCode, setCouponCode,

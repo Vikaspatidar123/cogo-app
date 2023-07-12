@@ -144,9 +144,6 @@ const GLOBAL_CONSTANTS = {
 		email_id     : 'kanira.patel@cogoport.com',
 	},
 
-	whatsapp_supported_country : ['IN'],
-	paylater_supported_country : ['IN'],
-
 	service_supported_countries: {
 		feature_supported_service: {
 			common: {
@@ -173,6 +170,13 @@ const GLOBAL_CONSTANTS = {
 			},
 			cargo_insurance: {
 				country_id: COUNTRY_IDS.IN,
+			},
+			paylater: {
+				supported_countries: ['IN'],
+			},
+
+			whatsapp: {
+				supported_countries: ['IN'],
 			},
 		},
 	},

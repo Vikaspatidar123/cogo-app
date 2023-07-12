@@ -13,18 +13,12 @@ import DateRangeBox from './PillsInput/DateRangeBox';
 import styles from './styles.module.css';
 
 import { useForm } from '@/packages/forms';
-import { getCountrySpecificData } from '@/ui/commons/constants/CountrySpecificDetail';
 import getGeoConstants from '@/ui/commons/constants/geo';
 
 const mainServices = ['fcl_freight', 'lcl_freight', 'air_freight'];
 
 const geo = getGeoConstants();
-const countrySpecificData = getCountrySpecificData({
-	country_id    : geo?.country?.id,
-	accessorType  : 'navigations',
-	accessor      : 'search_form',
-	isDefaultData : false,
-});
+const { default_icoterm_cif = false } = geo.others.navigations.search_form;
 
 function Options({
 	mode = '',
@@ -74,8 +68,6 @@ function Options({
 	const formValues1 = options.values || {};
 	const formValues = { ...(formProps.formValues || {}), ...formValues1 };
 	const allErrors = { ...(errors || {}), ...(formProps?.errors || {}) };
-
-	const { default_icoterm_cif = false } = countrySpecificData;
 
 	const showElements = useMemo(
 		() => showElementsFunc({

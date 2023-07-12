@@ -1,15 +1,9 @@
 import getShowElement from './getShowElement';
 
-import { getCountrySpecificData } from '@/ui/commons/constants/CountrySpecificDetail';
 import getGeoConstants from '@/ui/commons/constants/geo';
 
 const geo = getGeoConstants();
-const countrySpecificData = getCountrySpecificData({
-	country_id    : geo?.country?.id,
-	accessorType  : 'navigations',
-	accessor      : 'search_form',
-	isDefaultData : false,
-});
+const { filter_drop_haulage_option_carrier } = geo.others.navigations.search_form;
 
 const filterAdvancedControls = ({
 	rawAdvancedControls,
@@ -19,8 +13,6 @@ const filterAdvancedControls = ({
 	services,
 	data,
 }) => {
-	const { filter_drop_haulage_option_carrier } = countrySpecificData;
-
 	const advControls = rawAdvancedControls.filter((control) => getShowElement(
 		control.name,
 		{ [control.name]: control, ...fields },

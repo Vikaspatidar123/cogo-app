@@ -1,7 +1,7 @@
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
-const SUPPORTED_COUNTRY_ID = GLOBAL_CONSTANTS.service_supported_countries.feature_supported_service.common
-	.services.ltl_freight.default_country_id;
+const SUPPORTED_COUNTRY_IDS = GLOBAL_CONSTANTS.service_supported_countries.feature_supported_service.common
+	.services.ltl_freight.default_country_ids;
 const getControls = () => [
 	{
 		label             : 'Origin Location',
@@ -15,7 +15,7 @@ const getControls = () => [
 			apply_sorting : false,
 			filters       : {
 				type : ['pincode', 'seaport', 'airport', 'city', 'warehouse'],
-				id   : [SUPPORTED_COUNTRY_ID],
+				id   : SUPPORTED_COUNTRY_IDS,
 			},
 		},
 		rules: { required: 'Origin Location is required' },
@@ -32,7 +32,7 @@ const getControls = () => [
 			apply_sorting : false,
 			filters       : {
 				type : ['pincode', 'seaport', 'airport', 'city', 'warehouse'],
-				id   : [SUPPORTED_COUNTRY_ID],
+				id   : SUPPORTED_COUNTRY_IDS,
 			},
 		},
 		rules: { required: 'Destination Location is required' },

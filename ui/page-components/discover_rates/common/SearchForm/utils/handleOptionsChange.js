@@ -1,18 +1,11 @@
-import { getCountrySpecificData } from '@/ui/commons/constants/CountrySpecificDetail';
 import getGeoConstants from '@/ui/commons/constants/geo';
 
 const customsModes = ['fcl_customs', 'lcl_customs', 'air_customs'];
 
 const geo = getGeoConstants();
-const countrySpecificData = getCountrySpecificData({
-	country_id    : geo?.country?.id,
-	accessorType  : 'navigations',
-	accessor      : 'search_form',
-	isDefaultData : false,
-});
+const { is_export_tradeType } = geo.others.navigations.search_form;
 
 export const getControls = (controls, formValues, mode, location) => {
-	const { is_export_tradeType } = countrySpecificData;
 	const newControls = [];
 
 	controls.forEach((control) => {

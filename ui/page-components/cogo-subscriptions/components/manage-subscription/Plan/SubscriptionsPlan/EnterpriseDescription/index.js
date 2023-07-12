@@ -41,7 +41,7 @@ function EnterpriseDescription({
 					>
 						{callbackLoading ? (
 							<Image
-								src={GLOBAL_CONSTANTS.image_url.loading_image}
+								src={GLOBAL_CONSTANTS.image_url.loading}
 								alt={t('subscriptions:loading_text')}
 								width={25}
 								height={20}

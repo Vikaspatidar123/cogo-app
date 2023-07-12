@@ -82,7 +82,10 @@ function Coupons({
 				) : (couponsList || []).map((item) => {
 					const { promotion_discounts = {}, thumbnail_image = '' } = item || {};
 
-					const amountCurrency = promotion_discounts?.[GLOBAL_CONSTANTS.zeroth_index]?.amount_currency;
+					const {
+						amount_currency = '',
+						unit = '', value = '',
+					} = promotion_discounts?.[GLOBAL_CONSTANTS.zeroth_index] || {};
 
 					return (
 						<div className={styles.background_image} key={item?.id}>
@@ -100,17 +103,11 @@ function Coupons({
 											<div className={styles.coupon}>
 												<div className={styles.flat}>{t('subscriptions:flat_text')}</div>
 												<div className={styles.offer}>
-													{promotion_discounts?.[GLOBAL_CONSTANTS.zeroth_index]?.unit
-														=== 'flat'
-														&& `${amountCurrency} `}
-													{promotion_discounts?.[GLOBAL_CONSTANTS.zeroth_index]?.value}
-													{promotion_discounts?.[GLOBAL_CONSTANTS.zeroth_index]?.unit
-														=== 'percentage'
-														&& ' %'}
+													{unit === 'flat' && amount_currency}
+													{value}
+													{unit === 'percentage' && '%'}
 													<div className={styles.off}>
-
 														{t('subscriptions:off_code_text')}
-
 													</div>
 												</div>
 											</div>

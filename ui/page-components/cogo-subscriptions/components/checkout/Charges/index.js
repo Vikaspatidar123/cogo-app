@@ -75,7 +75,11 @@ function Charges({
 
 	const couponCodeLength = Object.keys(couponCode)?.length;
 
-	const amountCurrency = couponCode?.promotion_discounts?.[GLOBAL_CONSTANTS.zeroth_index]?.amount_currency;
+	const {
+		amount_currency = '',
+		unit = '',
+		value: couponValue = '',
+	} = couponCode?.promotion_discounts?.[GLOBAL_CONSTANTS.zeroth_index] || {};
 
 	const handleClick = ({ value, item }) => {
 		applyPromoCode({ value, item });
@@ -85,10 +89,7 @@ function Charges({
 		if (checked.length !== 0) {
 			completeOrder({ couponCode });
 		} else {
-			Toast.error(t('subscriptions:adderss_select_error_message'), {
-				autoClose : 5000,
-				style     : { background: '#FFD8D8', color: '#000' },
-			});
+			Toast.error(t('subscriptions:adderss_select_error_message'));
 		}
 	};
 
@@ -206,16 +207,19 @@ function Charges({
 							<div className={styles.applied_coupon}>
 								<div>
 									{t('subscriptions:code_text')}
-									{couponCode?.promocodes?.[0]?.promocode?.toUpperCase()}
+									{couponCode?.promocodes?.[GLOBAL_CONSTANTS.zeroth_index]?.promocode?.toUpperCase()}
 									{t('subscriptions:applied_text')}
 								</div>
 								<div className={styles.discount}>
-									{couponCode?.promotion_discounts?.[GLOBAL_CONSTANTS.zeroth_index]?.unit === 'flat'
-										&& amountCurrency}
-									{couponCode?.promotion_discounts?.[GLOBAL_CONSTANTS.zeroth_index]?.value}
-									{couponCode?.promotion_discounts?.[GLOBAL_CONSTANTS.zeroth_index]?.unit
-										=== 'percentage' && '%'}
+
+									{unit === 'flat' && amount_currency}
+
+									{couponValue}
+
+									{unit === 'percentage' && '%'}
+
 									{t('subscriptions:off_code_text')}
+
 								</div>
 							</div>
 						</div>

@@ -225,7 +225,6 @@ const GLOBAL_CONSTANTS = {
 		secure_profile_icon        : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/secure-profile-icon.svg',
 		no_schedules_found_image   : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/empty_icon 1.svg',
 		calendar_image             : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/date.png',
-		loading_image              : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/loading.svg',
 		card_background_line_image : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/line.png',
 		limited_image              : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/Limited.svg',
 		unlimted_image             : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/unlimted.svg',

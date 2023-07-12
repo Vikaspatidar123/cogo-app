@@ -1,6 +1,7 @@
 import {
 	IcMCross, IcMMinusInCircle, IcMStar, IcCBookmark,
 } from '@cogoport/icons-react';
+import { useTranslation } from 'next-i18next';
 import React, { useState, useCallback } from 'react';
 
 import EmptyState from '../common/EmptyState';
@@ -13,6 +14,15 @@ import SectionList from './SectionList';
 import styles from './styles.module.css';
 
 function HsClassification() {
+	const { t } = useTranslation(['common', 'hsClassification']);
+
+	const [searchTag, setSearchTag] = useState('');
+	const [resetDrillDown, setResetDrillDown] = useState(true);
+	const [openSelectedModal, setOpenSelectedModal] = useState(false);
+	const resetDrillDownHandler = useCallback(() => {
+		setResetDrillDown(false);
+	}, []);
+
 	const {
 		refetch,
 		apiData,
@@ -30,16 +40,11 @@ function HsClassification() {
 	} = useHSCode();
 
 	const list = loading ? [1, 2, 3, 4, 5, 6] : apiData;
-	const [searchTag, setSearchTag] = useState('');
-	const [resetDrillDown, setResetDrillDown] = useState(true);
-	const [openSelectedModal, setOpenSelectedModal] = useState(false);
-	const resetDrillDownHandler = useCallback(() => {
-		setResetDrillDown(false);
-	}, []);
 
 	const {
 		bookmarkData, refetchGetBookmark, refetchRemoveBookmark, getBookmarkLoading,
 	} = useBookmark({ refetchHsCode });
+
 	return (
 		<div>
 			<Header

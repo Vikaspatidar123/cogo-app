@@ -1,11 +1,13 @@
 import { Tooltip, Modal } from '@cogoport/components';
 import { IcMPlus } from '@cogoport/icons-react';
+import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
 
 import ModalDetails from './ModalDetails';
 import styles from './styles.module.css';
 
 function AddProductModal({ data = {}, src = '' }) {
+	const { t } = useTranslation(['common', 'hsClassification']);
 	const [show, setShow] = useState(false);
 	return (
 		<div>
@@ -20,7 +22,7 @@ function AddProductModal({ data = {}, src = '' }) {
 								setShow(true);
 							}}
 						>
-							Add to Catalogue
+							{t('hsClassification:hs_code_classification_add_to_catalogue_text')}
 						</div>
 						<div
 							role="presentation"
@@ -35,7 +37,10 @@ function AddProductModal({ data = {}, src = '' }) {
 				)}
 
 			{src === 'fav' && (
-				<Tooltip theme="light" content="Add to Product Catalogue">
+				<Tooltip
+					theme="light"
+					content={t('hsClassification:hs_code_classification_add_to_product_catalogue_tooltip')}
+				>
 					<div
 						role="presentation"
 						className={`${styles.fav_icon}`}

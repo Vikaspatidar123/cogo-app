@@ -1,5 +1,6 @@
 import { cl } from '@cogoport/components';
 import { IcMArrowDown } from '@cogoport/icons-react';
+import { t } from 'i18next';
 import { useEffect, useState } from 'react';
 
 import EmptyState from '../../../common/EmptyState';
@@ -56,8 +57,13 @@ function ChapterList({
 				}}
 			>
 				<div className={cl`${styles.name} ${chapterToggle && styles.selected}`}>
-					<span>Chapter</span>
-					<span>{chapterCode}</span>
+					<span>
+						{t('hsClassification:hs_code_classification_chapter_label')}
+					</span>
+					<span>
+						{' '}
+						{chapterCode}
+					</span>
 				</div>
 				<div className={`${styles.desc} ${chapterToggle && styles.selected}`}>
 					{description()}

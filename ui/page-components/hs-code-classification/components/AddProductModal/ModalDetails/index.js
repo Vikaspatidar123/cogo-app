@@ -1,5 +1,6 @@
 import { Button, Modal } from '@cogoport/components';
 import { IcAFormsAndCertificates, IcMArrowRight } from '@cogoport/icons-react';
+import { useTranslation } from 'next-i18next';
 import { useState, useEffect, useCallback } from 'react';
 
 import getField from '../../../../../../packages/forms/Controlled/index';
@@ -11,8 +12,12 @@ import styles from './styles.module.css';
 import { useForm } from '@/packages/forms';
 
 function ModalDetails({ data = {}, setShow }) {
-	const [profitPercentage, setProfitPercentage] = useState(0);
 	const { hsCode, id } = data || {};
+
+	const { t } = useTranslation(['common', 'hsClassification']);
+	const fields = getControls();
+
+	const [profitPercentage, setProfitPercentage] = useState(0);
 	const {
 		handleSubmit,
 		setValue,
@@ -20,7 +25,9 @@ function ModalDetails({ data = {}, setShow }) {
 		formState: { errors },
 		control,
 	} = useForm();
+
 	const [costPrice, sellingPrice] = watch(['costPrice', 'sellingPrice']);
+
 	const {
 		productDetails = {},
 		getproductLoading = false,
@@ -31,18 +38,35 @@ function ModalDetails({ data = {}, setShow }) {
 		setShow,
 		hsCodeId: id,
 	});
-	const { categoryDisplayName, subCategoryDisplayName } = productDetails;
 
-	useEffect(() => {
-		if (hsCode) {
-			setValue('hsCode', hsCode);
-		}
-	}, [hsCode, setValue]);
+	const { categoryDisplayName, subCategoryDisplayName } = productDetails;
 
 	const calculateProfit = useCallback(() => {
 		const profit = ((sellingPrice - costPrice) / costPrice) * 100;
 		setProfitPercentage(profit);
 	}, [costPrice, sellingPrice]);
+
+	const renderProfit = () => {
+		if (profitPercentage > 0) {
+			return `${t('hsClassification:hs_code_classification_profit_label')} 
+			${Math.round(Math.abs(profitPercentage))}%`;
+		}
+		if (profitPercentage === 0) {
+			return `${t('hsClassification:hs_code_classification_loss_label')}  0% `;
+		}
+		return `${t('hsClassification:hs_code_classification_loss_label')} ${Math.round(Math.abs(profitPercentage))}%`;
+	};
+
+	function Head() {
+		return (
+			<div className={styles.title_container}>
+				<IcAFormsAndCertificates width={25} height={25} />
+				<div className="title">
+					{t('hsClassification:hs_code_classification_add_to_catalogue_modal_text_1')}
+				</div>
+			</div>
+		);
+	}
 
 	useEffect(() => {
 		if (costPrice >= 0 && sellingPrice > 0) {
@@ -50,24 +74,12 @@ function ModalDetails({ data = {}, setShow }) {
 		}
 	}, [calculateProfit, costPrice, sellingPrice]);
 
-	const renderProfit = () => {
-		if (profitPercentage > 0) {
-			return `Profit: ${Math.round(Math.abs(profitPercentage))}%`;
+	useEffect(() => {
+		if (hsCode) {
+			setValue('hsCode', hsCode);
 		}
-		if (profitPercentage === 0) {
-			return 'Loss: 0% ';
-		}
-		return `Loss: ${Math.round(Math.abs(profitPercentage))}%`;
-	};
-	function Head() {
-		return (
-			<div className={styles.title_container}>
-				<IcAFormsAndCertificates width={25} height={25} />
-				<div className="title">Add Product</div>
-			</div>
-		);
-	}
-	const fields = getControls();
+	}, [hsCode, setValue]);
+
 	return (
 		<>
 			<div className={styles.container}>

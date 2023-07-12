@@ -1,5 +1,6 @@
 import { cl, Placeholder } from '@cogoport/components';
 import { IcMArrowDown } from '@cogoport/icons-react';
+import { useTranslation } from 'next-i18next';
 import { useEffect, useState } from 'react';
 
 import styles from '../../styles.module.css';
@@ -17,6 +18,7 @@ function HeadingList({
 	headingLoading,
 	hsloading,
 }) {
+	const { t } = useTranslation(['common', 'hsClassification']);
 	const isMobile = false;
 	const [headingToggle, setHeadingToggle] = useState(false);
 	const { headingCode, headingDescription } = headingData || {};
@@ -62,7 +64,8 @@ function HeadingList({
 				}}
 			>
 				<div className={`${styles.name} ${headingToggle && styles.selected}`}>
-					{headingLoading ? addLoader('40px', '130px') : `Heading ${headingCode}`}
+					{headingLoading ? addLoader('40px', '130px')
+						: `${t('hsClassification:hs_code_classification_heading_label')} ${headingCode}`}
 				</div>
 				<div className={`${styles.desc} ${headingToggle && styles.selected}`}>
 					{description()}

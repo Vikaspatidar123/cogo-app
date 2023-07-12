@@ -2,10 +2,12 @@ import { Popover } from '@cogoport/components';
 import { isEmpty } from '@cogoport/utils';
 import { useEffect, useState } from 'react';
 
+import GLOBAL_CONSTANTS from '../../constants/globals';
+
 import Languages from './Languages';
 import styles from './styles.module.css';
 
-import { useRouter } from '@/packages/next';
+import { useRouter, Image } from '@/packages/next';
 import LANGUAGE_MAPPING from '@/ui/commons/constants/languageMapping';
 
 function LanguageSelect() {
@@ -17,7 +19,7 @@ function LanguageSelect() {
 
 	const localeDetails = LANGUAGE_MAPPING[locale] || {};
 
-	const { icon: Icon, label } = localeDetails || {};
+	const { label } = localeDetails || {};
 
 	useEffect(() => {
 		setShowPopover(false);
@@ -42,7 +44,12 @@ function LanguageSelect() {
 					className={styles.lang}
 				>
 					<div className={styles.globe_container}>
-						<Icon width={20} height={20} />
+						<Image
+							src={GLOBAL_CONSTANTS.image_url.globe}
+							width={18}
+							height={18}
+							alt="globe"
+						/>
 						<div className={styles.selected_lang}>{label}</div>
 					</div>
 				</div>

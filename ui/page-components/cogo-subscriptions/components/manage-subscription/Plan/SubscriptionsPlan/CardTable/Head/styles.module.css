@@ -33,7 +33,6 @@
 }
 
 .col {
-	/* min-width: ${({ width }) => width || '170px'}; */
 	width: auto;
 	padding: 10px 16px;
 

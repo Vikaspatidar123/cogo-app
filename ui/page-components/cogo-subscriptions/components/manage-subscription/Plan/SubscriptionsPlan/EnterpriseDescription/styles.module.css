@@ -36,17 +36,17 @@
 	background-image: url("https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/line.png");
 	border-radius: 26px;
 	box-shadow: 0 42px 34px rgb(219 106 106 / 29.6%);
-	transition: transform 0.8s !important;
-	transform: scale(1.02, 1.04);
+	transition: transform 0.8s;
+	transform: scale(1.02, 1.02);
 
 	@media screen and (max-width: 768px) {
 		z-index: auto;
-		transition: transform 0.3s !important;
-		transform: scale(1.02) !important;
+		transition: transform 0.3s;
+		transform: scale(1.01);
 	}
 
 	.head_text {
-		color: #f68b21 !important;
+		color: #f68b21;
 	}
 
 	.button {
@@ -68,9 +68,9 @@
 
 .request_button {
 	width: 100%;
-	padding: 8px !important;
-	font-size: 12px !important;
-	font-weight: 500 !important;
+	padding: 8px;
+	font-size: 12px;
+	font-weight: 500;
 	color: #333 !important;
 	text-transform: capitalize !important;
 	background-color: white !important;

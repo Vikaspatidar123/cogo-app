@@ -42,7 +42,7 @@ function Archived() {
 				</div>
 				<div className={styles.input}>
 					<Input
-						placeholder="Type to search by name"
+						placeholder={t('tradePartner:trade_partner_search_placeholder_text')}
 						onChange={(item) => {
 							setGlobalFilters((prev) => ({
 								...prev,

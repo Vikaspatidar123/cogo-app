@@ -56,5 +56,11 @@
     "archived_list_config_label_2":"Total Quotation",
     "archived_list_config_label_3":"Expired Quotation",
     "archived_list_config_label_4":"Total Amount",
-    "archived_list_config_label_5":"Expired Amount"
+    "archived_list_config_label_5":"Expired Amount",
+    "trade_partner_toast_1":"Deleted Sucessfully",
+    "trade_partner_toast_2":"Updated Sucessfully",
+    "trade_partner_toast_3":"Created Sucessfully",
+    "trade_partner_toast_4":"Unarchived Successfully",
+    "trade_partner_toast_5":"Archived Successfully"
+
 }

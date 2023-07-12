@@ -56,5 +56,10 @@
     "archived_list_config_label_2":"Tổng số báo giá",
     "archived_list_config_label_3":"Trích dẫn hết hạn",
     "archived_list_config_label_4":"Tổng cộng",
-    "archived_list_config_label_5":"Số tiền đã hết hạn"
+    "archived_list_config_label_5":"Số tiền đã hết hạn",
+    "trade_partner_toast_1":"Đã xoá thành công",
+    "trade_partner_toast_2":"cập nhật thành công",
+    "trade_partner_toast_3":"Tạo thành công",
+    "trade_partner_toast_4":"Chưa được thành công",
+    "trade_partner_toast_5":"Lưu trữ thành công"
 }

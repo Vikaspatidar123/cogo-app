@@ -1,9 +1,11 @@
 import { Toast } from '@cogoport/components';
+import { useTranslation } from 'next-i18next';
 
 import { useRequestBf } from '@/packages/request';
 import { useSelector } from '@/packages/store';
 
 const usePutArchiveUnarchiveStatus = ({ archived, getList, setArchive }) => {
+	const { t } = useTranslation(['common', 'tradePartner']);
 	const { profile } = useSelector((s) => s);
 
 	const [{ loading }, archivedTrigger] = useRequestBf(
@@ -36,7 +38,7 @@ const usePutArchiveUnarchiveStatus = ({ archived, getList, setArchive }) => {
 			if (res?.data?.message === 'Success') {
 				setArchive(false);
 				Toast.success(
-					archived ? 'Unarchived Successfully' : 'Archived Successfully',
+					archived ? t('tradePartner:trade_partner_toast_4') : t('tradePartner:trade_partner_toast_5'),
 					{
 						autoClose: 2000,
 					},

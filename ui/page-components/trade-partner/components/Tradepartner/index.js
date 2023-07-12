@@ -79,6 +79,7 @@ function TradePartner() {
 								setTradePartyDetails({});
 								setShowModal(true);
 							}}
+							type="button"
 						>
 							<IcMPlusInCircle height={20} width={20} />
 							{t('tradePartner:add_new_trade_partner_button_label')}

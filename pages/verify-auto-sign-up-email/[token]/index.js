@@ -27,8 +27,7 @@ export async function getServerSideProps(ctx) {
 	}
 
 	return 	{
-		layout : 'none',
-		props  : {
+		props: {
 			...(await serverSideTranslations(locale, ['common', 'verifyAutoLogin'])),
 
 		},

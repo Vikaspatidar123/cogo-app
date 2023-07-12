@@ -11,6 +11,8 @@ import styles from './styles.module.css';
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 import formatDate from '@/ui/commons/utils/formatDate';
 
+const UNLIMITED_VALUE = -1;
+
 const renderUsage = ({ type, value, t }) => {
 	if (type) {
 		return (
@@ -24,7 +26,7 @@ const renderUsage = ({ type, value, t }) => {
 	}
 
 	if (type === null) {
-		return value === -1 ? t('subscriptions:unlimited_text') : value;
+		return value === UNLIMITED_VALUE ? t('subscriptions:unlimited_text') : value;
 	}
 
 	return (

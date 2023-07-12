@@ -86,7 +86,9 @@
     "usage_text":"Cách sử dụng",
     "dated_text":"Ngày tháng",
     "unlimited_text":"Vô hạn",
-    "request_success_message":"Chúng tôi đã nhận được sự quan tâm của bạn trong kế hoạch này.Hãy mong đợi một cuộc gọi lại từ chúng tôi sớm."
+    "request_success_message":"Chúng tôi đã nhận được sự quan tâm của bạn trong kế hoạch này.Hãy mong đợi một cuộc gọi lại từ chúng tôi sớm.",
+    "unabel_fetch_message":"Không thể lấy chi tiết đơn đặt hàng.Vui lòng thử lại."
+
 
 
 

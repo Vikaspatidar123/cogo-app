@@ -9,15 +9,9 @@ import styles from './styles.module.css';
 import AddModal from '@/ui/commons/components/CreateOrganizationModel/Components/AddAddressModal';
 
 function BillingDetails({
-<<<<<<< HEAD
 	billingAddress = () => { },
-	// addressApi = () => {},
+	addressApi = () => { },
 	setAddresses = () => { },
-=======
-	billingAddress = () => {},
-	addressApi = () => {},
-	setAddresses = () => {},
->>>>>>> b088aa535bc5b656959628d42d9f9b679150cb38
 	addresses = [],
 	checked = false,
 	setChecked = () => { },

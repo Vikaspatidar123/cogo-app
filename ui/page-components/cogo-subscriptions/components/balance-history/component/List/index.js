@@ -1,6 +1,5 @@
 import { Pagination } from '@cogoport/components';
 import { useTranslation } from 'next-i18next';
-import { useState, useEffect } from 'react';
 
 import useGetOrderDetails from '../../../../hooks/useGetOrderDetails';
 
@@ -8,22 +7,19 @@ import styles from './styles.module.css';
 import TableHeader from './TableHeader';
 import TableList from './TableList';
 
-const DEFAULT_PAGINATION = 1;
 function List({ pendingModal }) {
 	const { t } = useTranslation(['subscriptions']);
-	const [pagination, setPagination] = useState(DEFAULT_PAGINATION);
 
 	const {
-		fetchOrderLoading, orderDetails, orderBy, setOrderBy, fetchOrderDetails,
-	} = useGetOrderDetails({
+		fetchOrderLoading,
+		orderDetails,
+		setOrderBy,
 		pagination,
+		setPagination,
+	} = useGetOrderDetails({
+		pendingModal,
 	});
 	const { order_history, page_limit, total_count } = orderDetails || {};
-
-	useEffect(() => {
-		if (!pendingModal) fetchOrderDetails();
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [pagination, pendingModal, orderBy]);
 
 	return (
 		<div className={styles.container}>

@@ -1,4 +1,5 @@
 import { IcMArrowNext, IcMCrossInCircle } from '@cogoport/icons-react';
+import { useTranslation } from 'next-i18next';
 import React from 'react';
 
 import useDeleteSchedule from '../../hooks/useDeleteSchedule';
@@ -7,6 +8,7 @@ import DeleteModal from './DeleteModal';
 import styles from './styles.module.css';
 
 function ScheduleCard({ schedule, fetchSchedules }) {
+	const { t } = useTranslation(['airSchedule']);
 	const {
 		deleteSchedule, loading,
 		showDelete,
@@ -51,11 +53,11 @@ function ScheduleCard({ schedule, fetchSchedules }) {
 					<div className={styles.number_container}>
 						{schedule.schedules_count || 0}
 					</div>
-					Schedules available from
+					{t('airSchedule:schedules_available_text')}
 					<div className={styles.number_container}>
 						{schedule.shipping_lines_count || 0}
 					</div>
-					Carriers
+					{t('airSchedule:carriers_text')}
 				</div>
 				<div className={styles.footer_icon_container}>
 					<IcMArrowNext fill="#034AFD" width="1.2rem" height="1.2rem" />

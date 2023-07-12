@@ -1,6 +1,7 @@
 import { Pagination, Button, Popover } from '@cogoport/components';
 import { IcMArrowBack, IcMPortArrow, IcMFilter } from '@cogoport/icons-react';
 import { isEmpty } from '@cogoport/utils';
+import { useTranslation } from 'next-i18next';
 import React, { useState } from 'react';
 
 import Loading from '../../common/Loading';
@@ -18,11 +19,18 @@ import styles from './styles.module.css';
 
 import { useRouter } from '@/packages/next';
 
+const PAGE_LIMIT = 6;
+
+const DEFAULT_CURRENT_PAGE = 1;
+
 function ActiveSchedules() {
 	const { query, push } = useRouter();
-	const [currentPage, setCurrentPage] = useState(1);
+
+	const { t } = useTranslation(['airSchedule']);
 
 	const id = query?.id;
+
+	const [currentPage, setCurrentPage] = useState(DEFAULT_CURRENT_PAGE);
 
 	const { restOptions, stopsOptions } = getConstants();
 
@@ -35,7 +43,7 @@ function ActiveSchedules() {
 		setCarrierList, carrierList,
 		loading, mapPoints,
 	} = useFetchScheduleDetails({
-		pageLimit: 6, id, currentPage,
+		pageLimit: PAGE_LIMIT, id, currentPage,
 	});
 
 	const {
@@ -93,11 +101,11 @@ function ActiveSchedules() {
 			</div>
 			<div className={styles.middle_container}>
 				<div className={styles.middle_text_container}>
-					Active Schedules
+					{t('airSchedule:active_schedules_text')}
 				</div>
 
 				<Popover
-					placement="left"
+					placement="bottom"
 					visible={visible}
 					render={(
 						<Filter
@@ -116,8 +124,13 @@ function ActiveSchedules() {
 					)}
 				>
 					<div>
-						<Button themeType="accent" className={styles.button} onClick={() => setVisible(!visible)}>
-							Filter By
+						<Button
+							themeType="accent"
+							type="button"
+							className={styles.button}
+							onClick={() => setVisible(!visible)}
+						>
+							{t('airSchedule:filter_text')}
 							<IcMFilter />
 						</Button>
 					</div>
@@ -143,23 +156,25 @@ function ActiveSchedules() {
 
 				</div>
 				<div className={styles.active_schedules}>
-					{loading && (
+					{loading ? (
 						<div className={styles.card}>
 							<Loading />
 						</div>
-					)}
-					{!loading && scheduleDetails?.schedules?.list.length > 0
+					) : null}
+
+					{!loading && !isEmpty(scheduleDetails?.schedules?.list?.length)
 						&& scheduleDetails?.schedules?.list.map((item) => (
 							<ActiveScheduleCard
 								schedule={item}
 								scheduleDetails={scheduleDetails}
 							/>
 						))}
+
 					{!loading && isEmpty(scheduleDetails?.schedules?.list) && <NoSchedulesCard />}
 				</div>
 			</div>
 			<div className={styles.pagination_container}>
-				{scheduleDetails?.schedules?.list.length > 0
+				{!isEmpty(scheduleDetails?.schedules?.list?.length)
 					&& (
 						<Pagination
 							type="number"

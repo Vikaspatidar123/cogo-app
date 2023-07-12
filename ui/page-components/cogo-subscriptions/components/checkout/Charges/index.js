@@ -33,11 +33,11 @@ const discountTooltip = ({ discountedAmount, currency, t }) => (
 			<div>
 				-
 				{formatAmount({
-					amount: discountedAmount,
+					amount  : discountedAmount,
 					currency,
-					options: {
-						notation: 'standard',
-						style: 'currency',
+					options : {
+						notation : 'standard',
+						style    : 'currency',
 					},
 				})}
 			</div>
@@ -86,8 +86,8 @@ function Charges({
 			completeOrder({ couponCode });
 		} else {
 			Toast.error(t('subscriptions:adderss_select_error_message'), {
-				autoClose: 5000,
-				style: { background: '#FFD8D8', color: '#000' },
+				autoClose : 5000,
+				style     : { background: '#FFD8D8', color: '#000' },
 			});
 		}
 	};
@@ -133,25 +133,25 @@ function Charges({
 								<div className={`${styles.crossed_price} ${styles.crossedprice}`}>
 									<div className={styles.flex_div}>
 										{formatAmount({
-											amount: crossedAmount,
+											amount  : crossedAmount,
 											currency,
-											options: {
-												notation: 'standard',
-												style: 'currency',
+											options : {
+												notation : 'standard',
+												style    : 'currency',
 											},
 										})}
 										{
 										}
 									</div>
 								</div>
-							)}
+						)}
 						<div className={styles.flex_div}>
 							{formatAmount({
 								amount,
 								currency,
 								options: {
-									notation: 'standard',
-									style: 'currency',
+									notation : 'standard',
+									style    : 'currency',
 								},
 							})}
 						</div>
@@ -182,11 +182,11 @@ function Charges({
 						<div className={`${styles.discount_name} ${styles.price}`}>
 							-
 							{formatAmount({
-								amount: discountedAmount,
+								amount  : discountedAmount,
 								currency,
-								options: {
-									notation: 'standard',
-									style: 'currency',
+								options : {
+									notation : 'standard',
+									style    : 'currency',
 								},
 							})}
 						</div>
@@ -253,11 +253,11 @@ function Charges({
 					</div>
 					<div className={`${styles.styled_col} ${styles.price}`}>
 						{formatAmount({
-							amount: couponCodeLength > 0 ? totalAmount : amount,
+							amount  : couponCodeLength > 0 ? totalAmount : amount,
 							currency,
-							options: {
-								notation: 'standard',
-								style: 'currency',
+							options : {
+								notation : 'standard',
+								style    : 'currency',
 							},
 						})}
 					</div>

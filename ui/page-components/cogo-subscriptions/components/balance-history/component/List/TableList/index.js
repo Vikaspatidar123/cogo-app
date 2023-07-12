@@ -104,9 +104,9 @@ function TableList({ list = [], loading = false }) {
 										{t('subscriptions:dated_text')}
 										:
 										{formatDate({
-											date: created_at,
-											dateFormat: GLOBAL_CONSTANTS.formats.date['dd MMM yyyy'],
-											formatType: 'date',
+											date       : created_at,
+											dateFormat : GLOBAL_CONSTANTS.formats.date['dd MMM yyyy'],
+											formatType : 'date',
 										})}
 									</div>
 									<div className={styles.div}>
@@ -124,8 +124,8 @@ function TableList({ list = [], loading = false }) {
 										</div>
 										<div className={styles.quantity}>
 											{renderUsage({
-												type: is_credit,
-												value: quantity,
+												type  : is_credit,
+												value : quantity,
 												t,
 											})}
 
@@ -141,15 +141,15 @@ function TableList({ list = [], loading = false }) {
 									</div>
 									<div className={tableStyles.wd_150}>
 										{formatDate({
-											date: created_at,
-											dateFormat: GLOBAL_CONSTANTS.formats.date['dd MMM yyyy'],
-											formatType: 'date',
+											date       : created_at,
+											dateFormat : GLOBAL_CONSTANTS.formats.date['dd MMM yyyy'],
+											formatType : 'date',
 										})}
 									</div>
 									<div className={cl`${tableStyles.wd_150} ${tableStyles.flex}`}>
 										{renderUsage({
-											type: is_credit,
-											value: quantity,
+											type  : is_credit,
+											value : quantity,
 											t,
 										})}
 									</div>

@@ -4,8 +4,8 @@ import { useRequest } from '@/packages/request';
 
 const useGetPlanFeatures = ({ saas_product_family_id = '' }) => {
 	const [{ loading, data }, trigger] = useRequest({
-		url: '/saas_get_plan_features',
-		method: 'get',
+		url    : '/saas_get_plan_features',
+		method : 'get',
 	}, { manual: true });
 
 	const refetchPlanFeatures = useCallback(async () => {
@@ -26,8 +26,8 @@ const useGetPlanFeatures = ({ saas_product_family_id = '' }) => {
 
 	return {
 		refetchPlanFeatures,
-		planFeatureLoading: loading,
-		planFeatureData: data,
+		planFeatureLoading : loading,
+		planFeatureData    : data,
 	};
 };
 export default useGetPlanFeatures;

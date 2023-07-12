@@ -71,7 +71,7 @@ function Plan() {
 				/>
 			</div>
 			<SubscriptionsPlan
-				userplan={userplan}
+				userplan={userPlan}
 				activeTab={activeTab}
 				subscribeTab={subscribeTab}
 				loading={loading}

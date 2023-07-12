@@ -44,10 +44,10 @@ function StripSection({
 		const options = useMemo(() => ({
 			style: {
 				base: {
-					color: '#424770',
-					letterSpacing: '0.025em',
-					'::placeholder': { color: '#aab7c4' },
-					fontSize: 12,
+					color           : '#424770',
+					letterSpacing   : '0.025em',
+					'::placeholder' : { color: '#aab7c4' },
+					fontSize        : 12,
 				},
 				invalid: { color: '#9e2146' },
 			},
@@ -89,9 +89,9 @@ function StripSection({
 		stripe
 			.confirmCardPayment(stripePaymentId, {
 				payment_method: {
-					type: 'card',
-					card: elements.getElement(CardElement),
-					billing_details: { name: cardHolder },
+					type            : 'card',
+					card            : elements.getElement(CardElement),
+					billing_details : { name: cardHolder },
 				},
 			})
 			.then((result) => {
@@ -103,9 +103,9 @@ function StripSection({
 					|| result.paymentIntent.status === 'requires_capture'
 				) {
 					const params = {
-						gateway: 'stripe',
-						gateway_order_id: result?.paymentIntent.id,
-						saas_checkout_id: checkoutId,
+						gateway          : 'stripe',
+						gateway_order_id : result?.paymentIntent.id,
+						saas_checkout_id : checkoutId,
 					};
 					verifyPaymentNow(params);
 				}
@@ -122,22 +122,22 @@ function StripSection({
 							:
 							<div>
 								{formatAmount({
-									amount: finalAmt,
+									amount  : finalAmt,
 									currency,
-									options: {
-										notation: 'standard',
-										style: 'currency',
+									options : {
+										notation : 'standard',
+										style    : 'currency',
 									},
 								})}
 							</div>
 							{discount_percentage > DEFAULT_VALUE && (
 								<div className="crossedPrice">
 									{formatAmount({
-										amount: totalPrice,
+										amount  : totalPrice,
 										currency,
-										options: {
-											notation: 'standard',
-											style: 'currency',
+										options : {
+											notation : 'standard',
+											style    : 'currency',
 										},
 									})}
 								</div>
@@ -172,11 +172,11 @@ function StripSection({
 							{t('subscriptions:pay_text')}
 							<div className={styles.amt}>
 								{formatAmount({
-									amount: finalAmt,
+									amount  : finalAmt,
 									currency,
-									options: {
-										notation: 'standard',
-										style: 'currency',
+									options : {
+										notation : 'standard',
+										style    : 'currency',
 									},
 								})}
 							</div>

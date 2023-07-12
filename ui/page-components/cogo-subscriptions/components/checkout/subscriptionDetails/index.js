@@ -54,8 +54,8 @@ function SubscriptionDetails({ plans = {}, query }) {
 						amount,
 						currency,
 						options: {
-							notation: 'standard',
-							style: 'currency',
+							notation : 'standard',
+							style    : 'currency',
 						},
 					})}
 				</div>

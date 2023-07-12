@@ -1,9 +1,17 @@
 import { Toast } from '@cogoport/components';
+import { useTranslation } from 'next-i18next';
 
 import { useRequest } from '@/packages/request';
 import { useSelector } from '@/packages/store';
 
+const getPayload = ({ profile }) => ({
+	plan_name       : 'Enterprise Plan',
+	organization_id : profile.organization.id,
+	user_id         : profile.id,
+});
+
 const useGetRequestCallback = ({ userplan, activeTab }) => {
+	const { t } = useTranslation(['subscriptions']);
 	const { profile } = useSelector((state) => state);
 	const { item_plans = [] } = userplan || {};
 
@@ -24,21 +32,18 @@ const useGetRequestCallback = ({ userplan, activeTab }) => {
 	const activeIndex = activeCard >= 0 ? activeCard : 2;
 
 	const [{ loading }, trigger] = useRequest({
-		url: '/saas_create_callback_for_plan_inquiry',
-		method: 'post',
+		url    : '/saas_create_callback_for_plan_inquiry',
+		method : 'post',
 	}, { manual: true });
 
 	const requestCallback = async () => {
+		const payload = getPayload({ profile });
 		try {
 			await trigger({
-				data: {
-					plan_name: 'Enterprise Plan',
-					organization_id: profile.organization.id,
-					user_id: profile.id,
-				},
+				data: payload,
 			});
 			Toast?.success(
-				"We've received your interest in this plan. Please expect a callback from us soon.",
+				t('subscriptions:request_success_message'),
 			);
 		} catch (error) {
 			Toast.error(error?.message);

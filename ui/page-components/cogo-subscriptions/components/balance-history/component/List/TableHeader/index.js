@@ -14,15 +14,15 @@ function TableHeader({ setOrderBy }) {
 		if (entity === 'date') {
 			setSortDate((prev) => (prev === 'asc' ? 'desc' : 'asc'));
 			setOrderBy({
-				key: 'created_at',
-				order: sortDate,
+				key   : 'created_at',
+				order : sortDate,
 			});
 		}
 		if (entity === 'usage') {
 			setSortUsage((prev) => (prev === 'asc' ? 'desc' : 'asc'));
 			setOrderBy({
-				key: 'created_at',
-				order: sortUsage,
+				key   : 'created_at',
+				order : sortUsage,
 			});
 		}
 	};

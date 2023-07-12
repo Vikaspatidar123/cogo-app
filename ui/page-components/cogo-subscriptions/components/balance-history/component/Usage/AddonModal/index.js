@@ -69,8 +69,8 @@ function AddonModal({
 	const { getPlan, planDataLoading } = useGetPlanDetails({ profile });
 
 	const { createCheckout, checkoutLoading } = useCreateCheckout({
-		addons: true,
-		quantity: durationValue,
+		addons   : true,
+		quantity : durationValue,
 	});
 	const { completeOrder, completeOrderLoading } = useCompleteOrder({
 		checkoutResponse,
@@ -87,10 +87,10 @@ function AddonModal({
 	const addonPayHandler = async () => {
 		createCheckout({
 			setCheckoutResponse,
-			resp: plan,
+			resp     : plan,
 			plan_pricing_id,
-			addons: true,
-			quantity: durationValue,
+			addons   : true,
+			quantity : durationValue,
 			completeOrder,
 			setStripeModal,
 		});
@@ -184,11 +184,11 @@ function AddonModal({
 											className={styles.price}
 										>
 											{formatAmount({
-												amount: totalPrice,
+												amount  : totalPrice,
 												currency,
-												options: {
-													notation: 'standard',
-													style: 'currency',
+												options : {
+													notation : 'standard',
+													style    : 'currency',
 												},
 											})}
 										</div>
@@ -199,14 +199,14 @@ function AddonModal({
 						<div className={`${styles.row} ${styles.subheading_container}`}>
 							<div className="subheading">
 								{`1 ${product_name} = ${formatAmount({
-									amount: plan_price,
+									amount  : plan_price,
 									currency,
-									options: {
-										notation: 'standard',
-										style: 'currency',
+									options : {
+										notation : 'standard',
+										style    : 'currency',
 									},
 								})
-									}`}
+								}`}
 							</div>
 						</div>
 					</div>

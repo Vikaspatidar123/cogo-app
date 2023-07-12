@@ -22,8 +22,8 @@ const useGetUSerActivePlan = () => {
 		),
 	);
 	const [{ loading, data: plansData }, trigger] = useRequest({
-		url: '/saas_get_user_active_plan',
-		method: 'get',
+		url    : '/saas_get_user_active_plan',
+		method : 'get',
 	}, { manual: true });
 	const getPlan = useCallback(async () => {
 		try {

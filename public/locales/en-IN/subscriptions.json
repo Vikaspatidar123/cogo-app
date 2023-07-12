@@ -85,7 +85,8 @@
     "date_text":"Date",
     "usage_text":"Usage",
     "dated_text":"Dated",
-    "unlimited_text":"Unlimited"
+    "unlimited_text":"Unlimited",
+    "request_success_message":"We've received your interest in this plan. Please expect a callback from us soon."
 
 
 }

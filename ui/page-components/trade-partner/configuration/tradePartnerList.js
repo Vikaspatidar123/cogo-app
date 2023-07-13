@@ -1,27 +1,26 @@
-const TRADEPARTNERLIST = {
+const getTradePartnerListConfig = ({ t }) => ({
 	fields: [
 		{
 			key   : 'displayName',
-			label : 'Buyer',
+			label : t('tradePartner:trade_partner_list_buyer_label'),
 		},
 		{
 			key   : 'totalQuotes',
-			label : 'Total Quotation',
+			label : t('tradePartner:trade_partner_list_total_quote_label'),
 		},
-
 		{
 			key   : 'expiredQuotes',
-			label : 'Expired Quotation',
+			label : t('tradePartner:trade_partner_list_expired_quote_label'),
 		},
 		{
 			key     : 'totalAmount',
-			label   : 'Total Amount',
+			label   : t('tradePartner:trade_partner_list_total_amount_label'),
 			func    : 'renderAmount',
 			sorting : true,
 		},
 		{
 			key   : 'expiredAmount',
-			label : 'Expired Amount',
+			label : t('tradePartner:trade_partner_list_expired_amount_label'),
 		},
 		{
 			key   : 'dot',
@@ -29,6 +28,6 @@ const TRADEPARTNERLIST = {
 			func  : 'renderDots',
 		},
 	],
-};
+});
 
-export default TRADEPARTNERLIST;
+export default getTradePartnerListConfig;

@@ -46,6 +46,7 @@ const IMAGE_URLS = {
 	payment_icon             : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/payment.svg',
 	secure_profile_icon      : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/secure-profile-icon.svg',
 	no_schedules_found_image : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/empty_icon 1.svg',
+	archive_icon             : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/archive.svg',
 };
 
 export default IMAGE_URLS;

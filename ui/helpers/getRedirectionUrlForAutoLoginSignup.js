@@ -4,11 +4,11 @@ import setCookieAndRedirect from '@/ui/commons/utils/setCookieAndRedirect';
 const getRedirectionUrlForAutoLoginSignup = ({ response, lead_action_id, ctx, actionType = '' }) => {
 	const { hasError } = response || {};
 
-	const PAGE_MAPPINGS = actionType === 'autoSignUp' ? AUTO_SIGNUP_PAGE_MAPPINGS : AUTO_LOGIN_PAGE_MAPPINGS;
-
 	if (hasError) {
 		return;
 	}
+
+	const PAGE_MAPPINGS = actionType === 'autoSignUp' ? AUTO_SIGNUP_PAGE_MAPPINGS : AUTO_LOGIN_PAGE_MAPPINGS;
 
 	const {
 		token,

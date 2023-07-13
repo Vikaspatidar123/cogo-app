@@ -8,11 +8,11 @@ import styles from './styles.module.css';
 import { InputController, useForm, UploadController } from '@/packages/forms';
 import getGeoConstants from '@/ui/commons/constants/geo';
 
-const geo = getGeoConstants();
-const REGISTRATION_LABEL = geo.others.registration_number.label;
-const ECO_ZONE_LABEL = geo.others.economic_zone.label;
-
 function BillingAddress({ orgId, setInviteTeam }) {
+	const geo = getGeoConstants();
+	const REGISTRATION_LABEL = geo.others.registration_number.label;
+	const ECO_ZONE_LABEL = geo.others.economic_zone.label;
+
 	const {
 		handleSubmit, control, formState: { errors }, watch,
 	} = useForm();

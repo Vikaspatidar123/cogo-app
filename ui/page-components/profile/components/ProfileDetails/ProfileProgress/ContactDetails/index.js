@@ -3,12 +3,10 @@ import styles from './styles.module.css';
 import { useSelector } from '@/packages/store';
 import getGeoConstants from '@/ui/commons/constants/geo';
 
-const geo = getGeoConstants();
-
-const { show_whatsapp } = geo.others.navigations.profile_details;
-
 function ContactDetails() {
 	const { profile = {} } = useSelector((state) => state);
+	const geo = getGeoConstants();
+	const { show_whatsapp } = geo.others.navigations.profile_details;
 
 	return (
 		<div className={styles.container}>

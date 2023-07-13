@@ -1,9 +1,8 @@
 import getGeoConstants from '@/ui/commons/constants/geo';
 
-const geo = getGeoConstants();
-const REGISTRATION_PATTERN = geo.others.registration_number.pattern;
-
 export const contactInfoControls = ({ t }) => {
+	const geo = getGeoConstants();
+	const REGISTRATION_PATTERN = geo.others.registration_number.pattern;
 	const addressControls = [
 		{
 			label       : `${t('cogoStore:enter_poc_name_label')}`,

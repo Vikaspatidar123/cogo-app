@@ -7,10 +7,6 @@ import styles from './styles.module.css';
 import getGeoConstants from '@/ui/commons/constants/geo';
 import formatAmount from '@/ui/commons/utils/formatAmount';
 
-const geo = getGeoConstants();
-
-const REGISTRATION_LABEL = geo.others.registration_number.label;
-
 function Header({ children, invoice = {}, shipmentData = {} }) {
 	const {
 		invoice_total_currency,
@@ -20,6 +16,9 @@ function Header({ children, invoice = {}, shipmentData = {} }) {
 		payment_mode,
 		credit_option,
 	} = invoice;
+
+	const geo = getGeoConstants();
+	const REGISTRATION_LABEL = geo.others.registration_number.label;
 
 	const handleDownload = () => {
 		if (invoice?.status === 'reviewed') {

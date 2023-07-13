@@ -9,10 +9,10 @@ import styles from './styles.module.css';
 
 import getGeoConstants from '@/ui/commons/constants/geo';
 
-const geo = getGeoConstants();
-const REGISTRATION_LABEL = geo.others.registration_number.label;
-
 function OrganizationDetails() {
+	const geo = getGeoConstants();
+	const REGISTRATION_LABEL = geo.others.registration_number.label;
+
 	const {
 		loading = false,
 		organizationData = {},

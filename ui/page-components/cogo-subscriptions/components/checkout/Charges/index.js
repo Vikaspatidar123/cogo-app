@@ -14,9 +14,6 @@ import styles from './styles.module.css';
 import getGeoConstants from '@/ui/commons/constants/geo';
 import formatAmount from '@/ui/commons/utils/formatAmount';
 
-const geo = getGeoConstants();
-const { is_tax_included } = geo.others.navigations.subscription;
-
 const description = () => (
 	<div className={styles.tooltip_ctn}>
 		You can schedule this plan to activate on a specific day. Once you schedule
@@ -60,13 +57,16 @@ function Charges({
 	const { plan = {}, pricing = {}, allow_activate_later = false } = plans || {};
 	const loading = checkoutResponse?.errors || completeOrderLoading;
 
+	const geo = getGeoConstants();
+	const { is_tax_included } = geo.others.navigations.subscription;
+
 	const {
 		applyPromoCode, promoCodeData, couponCode, setCouponCode,
 	} =		useUpdateSaasCheckout({
 		checkoutResponse,
 	});
 
-	const { discount_amount: discountedAmount, total_amount: totalAmount } =		promoCodeData || {};
+	const { discount_amount: discountedAmount, total_amount: totalAmount } = promoCodeData || {};
 
 	const couponCodeLength = Object.keys(couponCode)?.length;
 	const handleClick = ({ value, item }) => {

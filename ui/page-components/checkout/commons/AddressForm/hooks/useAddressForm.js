@@ -15,10 +15,6 @@ import { useSelector } from '@/packages/store';
 import patterns from '@/ui/commons/configurations/patterns';
 import getGeoConstants from '@/ui/commons/constants/geo';
 
-const geo = getGeoConstants();
-
-const REGISTRATION_LABEL = geo.others.registration_number.label;
-
 const getControls = ({
 	gstinOptions,
 	showInvoiceTradeParty,
@@ -220,6 +216,10 @@ const useSaveAddressForm = (props) => {
 		organizationCountryId,
 		source = '',
 	} = props;
+
+	const geo = getGeoConstants();
+
+	const REGISTRATION_LABEL = geo.others.registration_number.label;
 
 	const action = isEmpty(addressData) ? 'create' : 'edit';
 

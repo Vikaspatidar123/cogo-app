@@ -3,9 +3,6 @@ import { IcMCloudUpload } from '@cogoport/icons-react';
 
 import getGeoConstants from '@/ui/commons/constants/geo';
 
-const geo = getGeoConstants();
-const REGISTRATION_LABEL = geo.others.registration_number.label;
-
 const getModifiedOptionsForGST = (options) => (options || []).map((x) => ({
 	...x,
 	value: x?.tax_number,
@@ -29,10 +26,8 @@ export const COMPANY_DETAILS_CONTROLS = [
 		rules       : { required: true },
 	},
 	{
-		label              : REGISTRATION_LABEL,
 		name               : 'tax_number',
 		type               : 'async_select',
-		placeholder        : REGISTRATION_LABEL,
 		asyncKey           : 'tax_numbers',
 		getModifiedOptions : getModifiedOptionsForGST,
 		showField          : true,
@@ -42,7 +37,6 @@ export const COMPANY_DETAILS_CONTROLS = [
 		rules              : { required: true },
 	},
 	{
-		label       : `Upload ${REGISTRATION_LABEL} Proof`,
 		name        : 'gst_proof',
 		type        : 'text',
 		placeholder : 'Only Image, pdf/doc...',
@@ -59,24 +53,32 @@ export const getCompanyControls = ({
 	profile = {},
 	setShow = () => { },
 	hasRequestedForCredit = false,
-}) => COMPANY_DETAILS_CONTROLS.map((control) => {
-	if (control.name === 'tax_number') {
-		return ({
-			...control,
-			params: {
-				organization_id     : profile?.organization?.id,
-				registration_number : profile?.organization?.registration_number,
-			},
-			handleChange : (e) => setSelectedGstDetails(e),
-			disabled     : hasRequestedForCredit,
-		});
-	}
-	if (control.name === 'gst_proof') {
-		return {
-			...control,
-			suffix   : <div style={{ margin: '0 8px' }} onClick={() => setShow(true)} role="presentation">Upload</div>,
-			disabled : hasRequestedForCredit,
-		};
-	}
-	return control;
-});
+}) => {
+	const geo = getGeoConstants();
+	const REGISTRATION_LABEL = geo.others.registration_number.label;
+
+	return COMPANY_DETAILS_CONTROLS.map((control) => {
+		if (control.name === 'tax_number') {
+			return ({
+				...control,
+				label       : REGISTRATION_LABEL,
+				placeholder : REGISTRATION_LABEL,
+				params      : {
+					organization_id     : profile?.organization?.id,
+					registration_number : profile?.organization?.registration_number,
+				},
+				handleChange : (e) => setSelectedGstDetails(e),
+				disabled     : hasRequestedForCredit,
+			});
+		}
+		if (control.name === 'gst_proof') {
+			return {
+				...control,
+				label    : `Upload ${REGISTRATION_LABEL} Proof`,
+				suffix   : <div onClick={() => setShow(true)} role="presentation"> Upload </div>,
+				disabled : hasRequestedForCredit,
+			};
+		}
+		return control;
+	});
+};

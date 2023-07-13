@@ -1,12 +1,11 @@
 import patterns from '@/ui/commons/configurations/patterns';
 import getGeoConstants from '@/ui/commons/constants/geo';
 
-const geo = getGeoConstants();
-
-const { label:REGISTRATION_LABEL, pattern:REGISTRATION_PATTERN } = geo.others.registration_number;
-const ECO_ZONE_LABEL = geo.others.economic_zone.label;
-
 const createSellerControl = () => {
+	const geo = getGeoConstants();
+	const { label:REGISTRATION_LABEL, pattern:REGISTRATION_PATTERN } = geo.others.registration_number;
+	const ECO_ZONE_LABEL = geo.others.economic_zone.label;
+
 	const billingDetailControl = [
 		{
 			name        : 'name',

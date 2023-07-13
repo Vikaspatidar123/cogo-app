@@ -65,7 +65,7 @@ const useGetBusiness = (props) => {
 				setValue('company_type', '');
 			}
 		} catch (error) {
-			console.log('error :: ', error);
+			console.error('error :: ', error);
 		}
 	}, [getBusinessApi, organization, registrationNumberType, setValue, watchBusinessName, watchTaxNumber]);
 

@@ -8,9 +8,6 @@ import styles from './styles.module.css';
 import { CountrySpecificData } from '@/ui/commons/constants/CountrySpecificDetail';
 import getGeoConstants from '@/ui/commons/constants/geo';
 
-const geo = getGeoConstants();
-const ECO_ZONE_LABEL = geo.others.economic_zone.label;
-
 function InvoicingPartyItem({
 	organization = {},
 	item = {},
@@ -33,6 +30,10 @@ function InvoicingPartyItem({
 	} = item;
 
 	const { is_tax_applicable = false } = organization || {};
+
+	const geo = getGeoConstants();
+	const ECO_ZONE_LABEL = geo.others.economic_zone.label;
+
 	const onClickAddAddress = () => {
 		setShowComponent('create_billing_address');
 		setInvoiceToTradePartyDetails((previousDetails) => ({

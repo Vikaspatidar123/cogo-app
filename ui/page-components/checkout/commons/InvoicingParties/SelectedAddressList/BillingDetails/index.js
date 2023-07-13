@@ -5,13 +5,13 @@ import styles from './styles.module.css';
 
 import getGeoConstants from '@/ui/commons/constants/geo';
 
-const geo = getGeoConstants();
-const REGISTRATION_LABEL = geo.others.registration_number.label;
-
 function BillingDetails({
 	address,
 	taxNumber,
 }) {
+	const geo = getGeoConstants();
+	const REGISTRATION_LABEL = geo.others.registration_number.label;
+
 	return (
 		<div className={styles.container}>
 			<div className={styles.billing_address_container}>

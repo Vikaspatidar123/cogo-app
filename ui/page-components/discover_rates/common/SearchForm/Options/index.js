@@ -17,9 +17,6 @@ import getGeoConstants from '@/ui/commons/constants/geo';
 
 const mainServices = ['fcl_freight', 'lcl_freight', 'air_freight'];
 
-const geo = getGeoConstants();
-const { default_icoterm_cif = false } = geo.others.navigations.search_form;
-
 function Options({
 	mode = '',
 	fields: mainFieldsProp = {},
@@ -50,6 +47,10 @@ function Options({
 	const [errors, setErrors] = useState({});
 	const [showAdvance, setShowAdvance] = useState(false);
 	const [packageInformation, setPackageInformation] = useState({});
+
+	const geo = getGeoConstants();
+	const isDefaultIncotermCif = geo.others.navigations.search_form.default_icoterm_cif;
+
 	const optionFormControls = getControls(
 		optionsControls.form,
 		{},
@@ -135,7 +136,7 @@ function Options({
 			(key) => key.name === 'inco_term',
 		)?.name;
 		if (incoKey && mode === 'fcl_freight') {
-			if (default_icoterm_cif) {
+			if (isDefaultIncotermCif) {
 				setValue(incoKey, 'cif');
 			} else {
 				setValue(incoKey, 'fob');

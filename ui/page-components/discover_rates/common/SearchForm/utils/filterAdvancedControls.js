@@ -2,9 +2,6 @@ import getShowElement from './getShowElement';
 
 import getGeoConstants from '@/ui/commons/constants/geo';
 
-const geo = getGeoConstants();
-const { filter_drop_haulage_option_carrier } = geo.others.navigations.search_form;
-
 const filterAdvancedControls = ({
 	rawAdvancedControls,
 	fields,
@@ -13,6 +10,9 @@ const filterAdvancedControls = ({
 	services,
 	data,
 }) => {
+	const geo = getGeoConstants();
+	const isHaulageOptionCarrier = geo.others.navigations.search_form.filter_drop_haulage_option_carrier;
+
 	const advControls = rawAdvancedControls.filter((control) => getShowElement(
 		control.name,
 		{ [control.name]: control, ...fields },
@@ -42,7 +42,7 @@ const filterAdvancedControls = ({
 			&& ['direct_port_delivery', 'delivery_from_dock'].includes(
 				data?.destination_cargo_handling_type,
 			)
-			&& filter_drop_haulage_option_carrier
+			&& isHaulageOptionCarrier
 		) {
 			return {
 				...item,

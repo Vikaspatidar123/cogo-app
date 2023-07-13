@@ -5,9 +5,6 @@ import styles from './styles.module.css';
 
 import getGeoConstants from '@/ui/commons/constants/geo';
 
-const geo = getGeoConstants();
-const REGISTRATION_LABEL = geo.others.registration_number.label;
-
 function Details({ data = {}, setShowEdit = () => {} }) {
 	const {
 		pan = '',
@@ -17,6 +14,9 @@ function Details({ data = {}, setShowEdit = () => {} }) {
 		date_of_incorporation = '',
 		constitution_of_business = '',
 	} = data || {};
+
+	const geo = getGeoConstants();
+	const REGISTRATION_LABEL = geo.others.registration_number.label;
 
 	return (
 		<div className={styles.container}>

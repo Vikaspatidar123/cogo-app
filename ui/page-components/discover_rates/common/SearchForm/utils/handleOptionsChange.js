@@ -2,10 +2,10 @@ import getGeoConstants from '@/ui/commons/constants/geo';
 
 const customsModes = ['fcl_customs', 'lcl_customs', 'air_customs'];
 
-const geo = getGeoConstants();
-const { is_export_tradeType } = geo.others.navigations.search_form;
-
 export const getControls = (controls, formValues, mode, location) => {
+	const geo = getGeoConstants();
+	const { is_export_tradeType } = geo.others.navigations.search_form;
+
 	const newControls = [];
 
 	controls.forEach((control) => {

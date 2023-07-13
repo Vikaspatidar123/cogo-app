@@ -11,11 +11,6 @@ import { getCountrySpecificData } from '@/ui/commons/constants/CountrySpecificDe
 import getGeoConstants from '@/ui/commons/constants/geo';
 import getValue from '@/ui/commons/utils/getValue';
 
-const geo = getGeoConstants();
-
-const REGISTRATION_LABEL = geo.others.registration_number.label;
-const ECO_ZONE_LABEL = geo.others.economic_zone.label;
-
 function AddressCard({
 	getOrganizationBillingAddress = {},
 	address,
@@ -29,6 +24,10 @@ function AddressCard({
 	const [showPocModal, setShowPocModal] = useState(null);
 
 	const [pocToUpdate, setPocToUpdate] = useState({});
+
+	const geo = getGeoConstants();
+	const REGISTRATION_LABEL = geo.others.registration_number.label;
+	const ECO_ZONE_LABEL = geo.others.economic_zone.label;
 
 	const gstDocName = getValue(address, 'tax_number_document_url', '')
 		?.split('/')

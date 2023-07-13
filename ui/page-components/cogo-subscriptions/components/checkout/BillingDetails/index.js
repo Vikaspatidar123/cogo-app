@@ -8,9 +8,6 @@ import styles from './styles.module.css';
 import AddModal from '@/ui/commons/components/CreateOrganizationModel/Components/AddAddressModal';
 import getGeoConstants from '@/ui/commons/constants/geo';
 
-const geo = getGeoConstants();
-const REGISTRATION_LABEL = geo.others.registration_number.label;
-
 function BillingDetails({
 	billingAddress = () => {},
 	addressApi = () => {},
@@ -21,6 +18,9 @@ function BillingDetails({
 	addressWithoutGst = [],
 	setisBillingAddress = () => {},
 }) {
+	const geo = getGeoConstants();
+	const REGISTRATION_LABEL = geo.others.registration_number.label;
+
 	const addressList = addresses.concat(addressWithoutGst) || [];
 
 	const [addAddressModal, setAddAddressModal] = useState(false);

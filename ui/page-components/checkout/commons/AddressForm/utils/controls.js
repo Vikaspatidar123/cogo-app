@@ -12,11 +12,10 @@ import patterns from '@/ui/commons/configurations/patterns';
 import { CountrySpecificData } from '@/ui/commons/constants/CountrySpecificDetail';
 import getGeoConstants from '@/ui/commons/constants/geo';
 
-const geo = getGeoConstants();
-
-const { label, pattern } = geo.others.registration_number;
-
 const getAddressNewControls = ({ organizationCountryId }) => {
+	const geo = getGeoConstants();
+	const { label, pattern } = geo.others.registration_number;
+
 	const configAddressControls = getAddressMappingControls({
 		organizationCountryId,
 	});

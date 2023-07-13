@@ -10,8 +10,6 @@ import styles from './styles.module.css';
 import getField from '@/packages/forms/Controlled';
 import getGeoConstants from '@/ui/commons/constants/geo';
 
-const geo = getGeoConstants();
-const REGISTRATION_LABEL = geo.others.registration_number.label;
 /**
  * @typedef  {Object} 		[props]
  * @property {string} 		[organizationId]
@@ -33,6 +31,10 @@ const REGISTRATION_LABEL = geo.others.registration_number.label;
  */
 function AddressForm(props) {
 	const { submitButtonLabel, optionalButtons, loading, organizationCountryId, ...restProps } = props;
+
+	const geo = getGeoConstants();
+	const REGISTRATION_LABEL = geo.others.registration_number.label;
+
 	const {
 		loading: apiLoading,
 		layouts,

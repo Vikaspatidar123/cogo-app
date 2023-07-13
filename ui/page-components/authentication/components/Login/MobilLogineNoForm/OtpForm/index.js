@@ -1,4 +1,5 @@
 import { Button } from '@cogoport/components';
+import { useTranslation } from 'next-i18next';
 import React, { useState } from 'react';
 
 import styles from './styles.module.css';
@@ -9,6 +10,8 @@ import OTPLayout from '@/packages/forms/Business/OTPLayout';
 const OTP_LENGTH = 4;
 
 function OtpForm({ userDetails = {} }) {
+	const { t } = useTranslation(['common']);
+
 	const [otpValue, setOtpValue] = useState('');
 
 	const {
@@ -32,7 +35,7 @@ function OtpForm({ userDetails = {} }) {
 					onClick={onClickLoginUserWithMobileNo}
 					disabled={loading || !otpValue.length}
 				>
-					VERIFY OTP
+					{t('common:rightPanel_tabs_mobile_verifyOtpButton_label')}
 				</Button>
 			</div>
 		</div>

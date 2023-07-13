@@ -1,10 +1,12 @@
 import { Toast } from '@cogoport/components';
+import { useTranslation } from 'next-i18next';
 
 import { useRequest } from '@/packages/request';
 import { useSelector } from '@/packages/store';
 import showErrorsInToast from '@/ui/commons/utils/showErrorsInToast';
 
 const useCreateOrganization = ({ setBillingAddressDetails, setOrg, setOrgBranchId, lead_organization_id }) => {
+	const { t } = useTranslation(['common', 'getStarted']);
 	const {
 		profile,
 	} = useSelector((state) => state);
@@ -39,7 +41,7 @@ const useCreateOrganization = ({ setBillingAddressDetails, setOrg, setOrgBranchI
 				setOrgBranchId(response?.data?.organization_branch_id);
 			}
 
-			Toast.success('Organization created successfully');
+			Toast.success(t('getStarted:rightPanel_get_started_organization_created_successfully'));
 		} catch (error) {
 			showErrorsInToast(error?.response?.data);
 		}

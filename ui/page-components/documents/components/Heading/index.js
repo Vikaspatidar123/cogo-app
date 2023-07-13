@@ -1,10 +1,11 @@
 import UploadDocument from '../UploadDocument';
 
+import ServiceWiseHeading from './ServiceWiseHeading';
 import styles from './styles.module.css';
 
 function Heading({
 	setShow = () => {}, documentDetails = {}, addDocument = () => {},
-	loading = false, setDocumentDetails = () => {},
+	loading = false, setDocumentDetails = () => {}, setServiceType = () => {}, serviceType = '',
 }) {
 	return (
 		<div className={styles.header}>
@@ -16,6 +17,8 @@ function Heading({
 				loading={loading}
 				setDocumentDetails={setDocumentDetails}
 			/>
+
+			<ServiceWiseHeading setServiceType={setServiceType} serviceType={serviceType} />
 		</div>
 	);
 }

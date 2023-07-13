@@ -1,0 +1,30 @@
+.header {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	margin-top: 16px;
+	margin-bottom: 22px;
+}
+
+.or {
+	font-size: 16px;
+	font-weight: 600;
+	color: var(--black, #221f20);
+}
+
+.title {
+	font-size: 26px;
+	font-weight: 600;
+	text-align: center;
+}
+
+.form {
+	display: flex;
+	align-items: center;
+	margin-top: 12px;
+}
+
+.button {
+	margin: 0 7px;
+}

@@ -215,8 +215,9 @@ const GLOBAL_CONSTANTS = {
 		unsubscription_bottle : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/Bottle.png',
 		unsubscription_plane  : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/page_plane.png',
 		insurance_empty_image : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/Insurance.png',
+		empty_state           : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/empty_icon 1.svg',
 		cogoport_image:
-		'https://cogoport-production.sgp1.digitaloceanspaces.com/e845419ea5eacebda858bad8b20d2797/cogoport-logo.svg',
+			'https://cogoport-production.sgp1.digitaloceanspaces.com/e845419ea5eacebda858bad8b20d2797/cogoport-logo.svg',
 		kyc_dialog_image         : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/nogstIcon.svg',
 		secure_icon              : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/secure-icon.svg',
 		heading_icon             : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/heading.svg',
@@ -226,6 +227,7 @@ const GLOBAL_CONSTANTS = {
 		payment_icon             : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/payment.svg',
 		secure_profile_icon      : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/secure-profile-icon.svg',
 		no_schedules_found_image : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/empty_icon 1.svg',
+		globe                    : 'https://cdn.cogoport.io/cms-prod/cogo_partner/vault/original/globe-language.png',
 		archive_icon             : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/archive.svg',
 	},
 	onboarding_specialist: {

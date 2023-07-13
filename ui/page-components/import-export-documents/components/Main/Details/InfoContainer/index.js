@@ -1,4 +1,5 @@
 import { cl, Button } from '@cogoport/components';
+import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
 
 import HsCode from '../../../../../hs-code-modal';
@@ -25,6 +26,7 @@ function InfoContainer({
 	isUserSubscribed,
 	isQuotaLeft,
 }) {
+	const { t } = useTranslation(['importExportDoc']);
 	const [showValidate, setShowValidate] = useState(false);
 	const [prevHs, setPrevHs] = useState('');
 	const [selectedData, setSelectedData] = useState();
@@ -36,7 +38,8 @@ function InfoContainer({
 	const { query, push } = useRouter();
 	const { billId = '' } = query || {};
 
-	const { refetchDraft, draftLoading } = useDraft();
+	const fields = documentConfig({ t });
+	const { refetchDraft, draftLoading, getDraftFn, getDraftData } = useDraft();
 	const { verifySixDigitHs, verifySixDigitLoading } = useVerifyHscode();
 
 	const SelectProductModal = showCatalogue ? ProductCatalogue : HsCode;
@@ -96,12 +99,13 @@ function InfoContainer({
 		watchImport,
 		setShowPendingModal,
 		styles,
+		getDraftData,
 	});
 
 	return (
 		<div className={styles.container}>
 			<div className={styles.row}>
-				{documentConfig.map((config) => {
+				{fields.map((config) => {
 					const { label, sublabel, type, name } = config || {};
 					if (type === 'hidden') return null;
 					const Element = getField(type);
@@ -117,7 +121,11 @@ function InfoContainer({
 										)
 									</p>
 								)}
-								{errors?.[name] && <p className={styles.error}>required *</p>}
+								{errors?.[name] && (
+									<p className={styles.error}>
+										{t('importExportDoc:details_form_req')}
+									</p>
+								)}
 							</div>
 							<Element
 								{...config}
@@ -143,7 +151,7 @@ function InfoContainer({
 					loading={verifySixDigitLoading || draftLoading}
 					disabled={watchExport === watchImport}
 				>
-					Proceed To Checkout
+					{t('importExportDoc:details_btn_text')}
 				</Button>
 			</div>
 			{showValidate && (
@@ -155,6 +163,7 @@ function InfoContainer({
 					hsCode={watchHsCode}
 					prevHs={prevHs}
 					setPrevHs={setPrevHs}
+					getDraftFn={getDraftFn}
 					validateSubmitHandler={validateSubmitHandler}
 					draftLoading={draftLoading}
 					transportDetails={transportDetails}

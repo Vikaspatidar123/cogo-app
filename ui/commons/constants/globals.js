@@ -230,6 +230,7 @@ const GLOBAL_CONSTANTS = {
 		unlimted_image             : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/unlimted.svg',
 		empty_sub_image            : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/ICSad.svg',
 		success_image              : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/success.svg',
+		active_image               : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/activate-icon.svg',
 	},
 	onboarding_specialist: {
 		name         : 'Kanira Patel',

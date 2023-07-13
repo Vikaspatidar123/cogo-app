@@ -11,13 +11,13 @@ import useCard from '../../../../../hooks/useCard';
 import useSubscriptionActivateNow from '../../../../../hooks/useSubscriptionActivateNow';
 import ActivateModal from '../../../SubscriptionsPlanList/PlanDescription/ActivateModal';
 import ActivatePendingModal from '../../../SubscriptionsPlanList/PlanDescription/ActivatePendingModal';
-import ActivateSuccessModal from '../../../SubscriptionsPlanList/PlanDescription/ActivateSuccessModal';
 
 import styles from './styles.module.css';
 
 import { Image } from '@/packages/next';
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 import formatAmount from '@/ui/commons/utils/formatAmount';
+import SuccessModal from '@/ui/page-components/cogo-subscriptions/common/SuccessModal';
 
 const DEFAULT_MONTHLY_AMOUNT = 0;
 
@@ -234,7 +234,7 @@ function Card({
 			}
 			{
 				modal && (
-					<ActivateSuccessModal
+					<SuccessModal
 						modal={modal}
 						setShowModal={setShowModal}
 						name={item?.display_name}

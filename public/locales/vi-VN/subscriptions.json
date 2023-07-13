@@ -87,5 +87,11 @@
     "dated_text":"Ngày tháng",
     "unlimited_text":"Vô hạn",
     "request_success_message":"Chúng tôi đã nhận được sự quan tâm của bạn trong kế hoạch này.Hãy mong đợi một cuộc gọi lại từ chúng tôi sớm.",
-    "unabel_fetch_message":"Không thể lấy chi tiết đơn đặt hàng.Vui lòng thử lại."
+    "unabel_fetch_message":"Không thể lấy chi tiết đơn đặt hàng.Vui lòng thử lại.",
+    "activating_plan_text":"Kích hoạt kế hoạch của bạn!",
+    "active_conformation_message":"Bạn có chắc chắn bạn muốn kích hoạt",
+    "plan_text":"Kế hoạch",
+    "now_text":"Hiện nay?",
+    "panding_message":"Treo lên!Kích hoạt kế hoạch của bạn ..."
+
 }

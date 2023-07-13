@@ -87,5 +87,10 @@
     "dated_text":"Dated",
     "unlimited_text":"Unlimited",
     "request_success_message":"We've received your interest in this plan. Please expect a callback from us soon.",
-    "unabel_fetch_message":"Unable to fetch order details. Please try again."
+    "unabel_fetch_message":"Unable to fetch order details. Please try again.",
+    "activating_plan_text":"Activating your plan !",
+    "active_conformation_message":"Are you sure you want to activate the",
+    "plan_text":"Plan",
+    "now_text":"now ?",
+    "panding_message":"Hang on! Activating your plan ..."
 }

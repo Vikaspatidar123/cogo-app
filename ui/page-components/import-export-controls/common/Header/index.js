@@ -6,7 +6,7 @@ import iconUrl from '../../utils/iconUrl.json';
 
 import styles from './styles.module.css';
 
-import { useRouter } from '@/packages/next';
+import { useRouter, Image } from '@/packages/next';
 
 function Header({ title = '', back = false, redirect = false }) {
 	const { push, back: routerBack } = useRouter();
@@ -40,7 +40,12 @@ function Header({ title = '', back = false, redirect = false }) {
 			</div>
 			{!back && (
 				<div className={styles.logo}>
-					<img src={iconUrl.cogoLogo} alt={t('importExportControls:logo')} />
+					<Image
+						src={iconUrl.cogoLogo}
+						alt={t('importExportControls:logo')}
+						width={200}
+						height={200}
+					/>
 				</div>
 			)}
 		</div>

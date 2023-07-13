@@ -7,7 +7,7 @@ import iconUrl from '../../utils/iconUrl.json';
 import SameHsCode from './SameHsCode';
 import styles from './styles.module.css';
 
-import { useRouter } from '@/packages/next';
+import { useRouter, Image } from '@/packages/next';
 
 function PendingModal({
 	showPendingModal,
@@ -21,8 +21,8 @@ function PendingModal({
 	const { t } = useTranslation(['close', 'importExportControls']);
 
 	const closeModalHandler = () => {
-		// eslint-disable-next-line max-len
-		const redirectUrl = `${process.env.NEXT_PUBLIC_APP_URL}${org_id}/${branch_id}/saas/premium-services/import-export-controls`;
+		const redirectUrl = `${process.env.NEXT_PUBLIC_APP_URL}${org_id}/${branch_id}`
+			+ '/saas/premium-services/import-export-controls';
 		window.open(redirectUrl, '_self');
 		setShowPendingModal(false);
 	};
@@ -33,13 +33,21 @@ function PendingModal({
 				<>
 					{!stop && (
 						<div className={styles.container}>
-							<img
+							<Image
 								src={iconUrl.loadingBanner}
 								alt={t('importExportControls:loading')}
 								className={styles.loading_banner}
+								width={300}
+								height={200}
 							/>
 							<div className={styles.title}>{t('importExportControls:pending_modal_waiting')}</div>
-							<img src={iconUrl.loading} alt="loading" className={styles.loading} />
+							<Image
+								src={iconUrl.loading}
+								alt={t('importExportControls:loading')}
+								className={styles.loading}
+								width={30}
+								height={20}
+							/>
 						</div>
 					)}
 					{stop && (

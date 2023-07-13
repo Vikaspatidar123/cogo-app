@@ -12,7 +12,7 @@ const CURRENCY_OPTIONS = {
 	currencyDisplay       : 'symbol',
 	maximumFractionDigits : 2,
 };
-
+const QUOTA_DEDUCTED = 1;
 function Charges({ quotaValue = 0, isQuotaLeft = false, getPrice }) {
 	const geo = getGeoConstants();
 	const DEFAULT_CURRENCY = geo.country.currency.code;
@@ -31,11 +31,14 @@ function Charges({ quotaValue = 0, isQuotaLeft = false, getPrice }) {
 					</div>
 					<div className={styles.row}>
 						<div>{t('importExportControls:checkout_charge_quota_deduct')}</div>
-						<div>-1</div>
+						<div>
+							-
+							{QUOTA_DEDUCTED}
+						</div>
 					</div>
 					<div className={cl`${styles.total} ${styles.row}`}>
 						<div>{t('importExportControls:checkout_charge_quota_remain')}</div>
-						<div className={styles.value}>{quotaValue - 1}</div>
+						<div className={styles.value}>{quotaValue - QUOTA_DEDUCTED}</div>
 					</div>
 				</div>
 			) : (

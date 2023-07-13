@@ -54,7 +54,7 @@ function Result() {
 		if (trade_engine_id) {
 			postTradeEngine(trade_engine_id);
 		}
-	// eslint-disable-next-line react-hooks/exhaustive-deps
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [trade_engine_id]);
 
 	return (

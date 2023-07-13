@@ -17,11 +17,13 @@ function SameHsCode({ setShowPendingModal, btnSubtmitHandler }) {
 					size="sm"
 					themeType="secondary"
 					onClick={() => setShowPendingModal(false)}
+					type="button"
 				>
 					{t('common:close')}
 				</Button>
 				<Button
 					size="sm"
+					type="button"
 					className={styles.submit_btn}
 					onClick={() => {
 						btnSubtmitHandler();

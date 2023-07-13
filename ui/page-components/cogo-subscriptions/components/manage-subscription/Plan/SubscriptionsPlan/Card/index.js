@@ -94,7 +94,7 @@ function Card({
 			) : (
 				<div className={styles.activate}>
 					<Button
-						className={styles.button}
+						className={cl`${styles.red_button} ${styles.button}`}
 						onClick={() => setShowActivateModal(true)}
 						type="button"
 					>

@@ -4,6 +4,7 @@ import {
 	IcACreditAndPayments,
 	IcAAccountRelated,
 } from '@cogoport/icons-react';
+import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
 
 import styles from './styles.module.css';
@@ -18,6 +19,9 @@ function PaymentOptionsModal({
 	getValues,
 }) {
 	const { push } = useRouter();
+
+	const { t } = useTranslation(['importExportDoc']);
+
 	const [paymentMode, setPaymentMode] = useState('');
 	const submitHandler = (method) => {
 		if (method === 'buySubscription') {
@@ -36,7 +40,7 @@ function PaymentOptionsModal({
 	return (
 		<Modal show={showPaymentOptionsModal} onClose={() => setPaymentOptionsModal(false)}>
 			<div>
-				<div className={styles.heading}>Select mode of Payment</div>
+				<div className={styles.heading}>{t('importExportDoc:payment_modal_title')}</div>
 				<div className={styles.card_container}>
 					{!isUserSubscribed && (
 						<div
@@ -46,7 +50,7 @@ function PaymentOptionsModal({
 						>
 							{paymentMode === 'buy' && <div className={styles.dot} />}
 							<IcAOfferFlexiblePaymentsTerms width={60} height={60} />
-							<div className={styles.text}>Buy Subscription</div>
+							<div className={styles.text}>{t('importExportDoc:payment_modal_subscription')}</div>
 						</div>
 					)}
 					{isUserSubscribed && (
@@ -57,7 +61,7 @@ function PaymentOptionsModal({
 						>
 							{paymentMode === 'buy' && <div className={styles.dot} />}
 							<IcAAccountRelated width={60} height={60} />
-							<div className={styles.text}>Buy Add-Ons</div>
+							<div className={styles.text}>{t('importExportDoc:payment_modal_addon')}</div>
 						</div>
 					)}
 					<div
@@ -67,7 +71,7 @@ function PaymentOptionsModal({
 					>
 						{paymentMode === 'directPay' && <div className={styles.dot} />}
 						<IcACreditAndPayments width={60} height={60} />
-						<div className={styles.text}>Direct Payment</div>
+						<div className={styles.text}>{t('importExportDoc:payment_modal_direct_pay')}</div>
 					</div>
 				</div>
 			</div>

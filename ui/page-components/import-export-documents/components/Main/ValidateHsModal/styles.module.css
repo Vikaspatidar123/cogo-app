@@ -96,12 +96,12 @@
 }
 
 .btn_container {
-	margin-bottom: 12px;
 	margin-left: 20px;
 
 	.valid {
 		display: flex;
 		align-items: center;
+		margin-bottom: 8px;
 	}
 
 	.validate {
@@ -112,11 +112,5 @@
 	.validate_svg {
 		width: 25px;
 		height: 25px;
-	}
-
-	.btn_color {
-		text-transform: capitalize !important;
-		background: #ee3425 !important;
-		border: none !important;
 	}
 }

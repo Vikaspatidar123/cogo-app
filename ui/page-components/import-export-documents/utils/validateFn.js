@@ -1,11 +1,29 @@
-const validateFn = ({
+import { useEffect } from 'react';
+
+import { useRouter } from '@/packages/next';
+
+const useValidateFn = ({
 	verifyHsCode,
 	hsCode,
 	setStatus,
 	transportDetails,
 	setValidateInProgress,
+	getDraftFn,
 }) => {
-	const destinationCountryCode = transportDetails?.importCountry?.country_code;
+	const { query } = useRouter();
+	const { billId = '' } = query || {};
+
+	const { tradeEngineInputId = '', importCountry = {} } =	transportDetails || {};
+
+	const destinationCountryCode = importCountry?.country_code;
+
+	useEffect(() => {
+		if (billId) {
+			getDraftFn(tradeEngineInputId);
+		}
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [billId]);
+
 	const validateHSCode = async () => {
 		await verifyHsCode({
 			hsCode,
@@ -19,4 +37,4 @@ const validateFn = ({
 	};
 };
 
-export default validateFn;
+export default useValidateFn;

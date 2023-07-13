@@ -9,18 +9,18 @@ import styles from './styles.module.css';
 
 import { useForm, InputController } from '@/packages/forms';
 
+function RenderSuffix({ setShowPassword = () => {}, showPassword = false }) {
+	if (!showPassword) {
+		return <IcMEyeopen className={styles.show_password} onClick={() => setShowPassword(!showPassword)} />;
+	}
+	return <IcMEyeclose className={styles.show_password} onClick={() => setShowPassword(!showPassword)} />;
+}
+
 function LoginForm() {
 	const { t } = useTranslation(['common']);
 	const [showPassword, setShowPassword] = useState(false);
 	const { onSubmit = () => { }, loading = false } = useLoginAuthenticate();
 	const { handleSubmit, formState: { errors }, control } = useForm();
-
-	function RenderSuffix() {
-		if (!showPassword) {
-			return <IcMEyeopen className={styles.show_password} onClick={() => setShowPassword(!showPassword)} />;
-		}
-		return <IcMEyeclose className={styles.show_password} onClick={() => setShowPassword(!showPassword)} />;
-	}
 
 	return (
 		<form className={styles.form_container} onSubmit={handleSubmit((data, e) => onSubmit(data, e))}>
@@ -43,7 +43,7 @@ function LoginForm() {
 						control={control}
 						name="password"
 						type={showPassword ? 'text' : 'password'}
-						suffix={<RenderSuffix />}
+						suffix={<RenderSuffix setShowPassword={setShowPassword} showPassword={showPassword} />}
 						placeholder={t('common:rightPanel_password_placeholder')}
 						rules={{ required: `${t('common:rightPanel_password_is_required')}` }}
 					/>

@@ -2,12 +2,12 @@ import { AUTO_SIGNUP_PAGE_MAPPINGS, AUTO_LOGIN_PAGE_MAPPINGS } from '@/ui/common
 import setCookieAndRedirect from '@/ui/commons/utils/setCookieAndRedirect';
 
 const getRedirectionUrlForAutoLoginSignup = ({ response, lead_action_id, ctx, actionType = '' }) => {
-	const PAGE_MAPPINGS = actionType === 'autoSignUp' ? AUTO_SIGNUP_PAGE_MAPPINGS : AUTO_LOGIN_PAGE_MAPPINGS;
-
 	const { hasError } = response || {};
 
+	const PAGE_MAPPINGS = actionType === 'autoSignUp' ? AUTO_SIGNUP_PAGE_MAPPINGS : AUTO_LOGIN_PAGE_MAPPINGS;
+
 	if (hasError) {
-		return null;
+		return;
 	}
 
 	const {
@@ -16,7 +16,7 @@ const getRedirectionUrlForAutoLoginSignup = ({ response, lead_action_id, ctx, ac
 		organization_id,
 		organization_branch_id,
 		user_id,
-	} = (response || {}).data || {};
+	} = response.data || {};
 
 	const redirect_page = lead_action?.action_config?.redirect_page || '';
 
@@ -39,8 +39,6 @@ const getRedirectionUrlForAutoLoginSignup = ({ response, lead_action_id, ctx, ac
 	}
 
 	setCookieAndRedirect(token, ctx, uri);
-
-	return null;
 };
 
 export default getRedirectionUrlForAutoLoginSignup;

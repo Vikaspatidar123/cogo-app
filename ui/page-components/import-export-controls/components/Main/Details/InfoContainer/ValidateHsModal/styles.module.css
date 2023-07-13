@@ -88,7 +88,6 @@
 }
 
 .suggestion {
-	/* width: 250px; */
 	max-height: 150px;
 	padding-bottom: 0;
 	margin-top: 6px;
@@ -99,9 +98,6 @@
 	}
 
 	.rowx {
-		/* display: flex;
-		gap: 4px;
-		align-items: center; */
 		padding: 8px 12px;
 		margin-bottom: 12px;
 		cursor: pointer;

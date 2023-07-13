@@ -4,8 +4,9 @@ import { useState } from 'react';
 
 import { useRequestBf } from '@/packages/request';
 
+const MAX_API_TRIES = 10;
 let count = 0;
-
+const API_CALL_TIME = 2000;
 const useCheckPaymentStatus = ({
 	setShowPendingModal,
 	paymentSuccessHandler,
@@ -31,18 +32,18 @@ const useCheckPaymentStatus = ({
 
 			if (resp?.data?.status === 'PAID') {
 				paymentSuccessHandler(resp?.data);
-			} else if (count < 10) {
+			} else if (count < MAX_API_TRIES) {
 				count += 1;
 				setTimeout(async () => {
 					await checkPaymentStatus();
-				}, 2000);
+				}, API_CALL_TIME);
 			} else {
 				setStop(true);
 				Toast.warn(t('importExportControls:api_payment_pending'));
 			}
 			return resp?.data;
 		} catch (err) {
-			console.log(err?.error?.message);
+			console.error(err?.error?.message);
 			return null;
 		}
 	};

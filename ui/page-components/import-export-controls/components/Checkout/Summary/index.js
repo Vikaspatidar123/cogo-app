@@ -17,10 +17,10 @@ function Summary({
 	quotaValue = 0,
 	tradeEngineId = '',
 	isQuotaLeft = false,
-	getPrice = () => {},
-	paymentHandler = () => {},
+	getPrice = () => { },
+	paymentHandler = () => { },
 	loading = false,
-	setAddress = () => {},
+	setAddress = () => { },
 	address = {},
 }) {
 	const { push } = useRouter();
@@ -62,7 +62,11 @@ function Summary({
 				/>
 			</div>
 			<div className={styles.btn_container}>
-				<Button onClick={submitHandler} loading={loading}>
+				<Button
+					onClick={submitHandler}
+					type="button"
+					loading={loading}
+				>
 					{renderBtn({ isQuotaLeft, t })}
 				</Button>
 			</div>

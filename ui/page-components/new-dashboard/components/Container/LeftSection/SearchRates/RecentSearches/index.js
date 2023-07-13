@@ -7,11 +7,11 @@ import Card from './Card';
 import styles from './styles.module.css';
 
 import { useRouter } from '@/packages/next';
-import useRecentSearches from '@/ui/page-components/new-dashboard/hooks/useRecentSearches';
+// import useRecentSearches from '@/ui/page-components/new-dashboard/hooks/useRecentSearches';
 
-function RecentSearches() {
+function RecentSearches({ data, loading }) {
 	const { push } = useRouter();
-	const { data, loading } = useRecentSearches();
+	// const { data, loading } = useRecentSearches();
 	const list = data.slice(0, 2) || [];
 	return (
 		<div className={styles.container}>

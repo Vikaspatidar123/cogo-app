@@ -25,5 +25,7 @@ export { default as SliderController } from './Controlled/SliderController';
 export { default as ChipsController } from './Controlled/ChipController';
 export { default as PriceSelectContriller } from './Controlled/PriceSelectContriller';
 export { default as RadioController } from './Controlled/RadioController';
+export { default as TabsController } from './Controlled/TabsController';
+export { default as IncoTermSelectController } from './Controlled/IncoTermSelect';
 
 export * from './utils/getAsyncFields';

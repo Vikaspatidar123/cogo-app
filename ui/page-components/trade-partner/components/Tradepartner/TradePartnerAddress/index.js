@@ -1,4 +1,5 @@
 import { Modal, Button, Loader } from '@cogoport/components';
+import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
 
 import Line from '../../../common/Line';
@@ -11,6 +12,18 @@ import { useForm } from '@/packages/forms';
 import getField from '@/packages/forms/Controlled';
 import { useSelector } from '@/packages/store';
 
+const InputController = getField('text');
+const MobileNumberController = getField('mobile_number');
+const CountryController = getField('select');
+const TextController = getField('text');
+
+const buttonRender = ({ edit, t }) => {
+	if (edit) {
+		return t('tradePartner:update_trade_partner_button_label');
+	}
+	return t('tradePartner:create_trade_partner_button_label');
+};
+
 function TradePartnerAddress({
 	showmodal,
 	setShowModal,
@@ -19,6 +32,8 @@ function TradePartnerAddress({
 	getList,
 	setIsEdit,
 }) {
+	const { t } = useTranslation(['common', 'tradePartner']);
+
 	const { postTradePartner, loading } = usePostTradePartner({
 		isEdit,
 		tradePartyDetails,
@@ -39,6 +54,7 @@ function TradePartnerAddress({
 		setStateInfo,
 		setCityInfo,
 		tradePartyDetails,
+		t,
 	});
 
 	const {
@@ -46,23 +62,11 @@ function TradePartnerAddress({
 		formState: { errors },
 		control,
 	} = useForm();
-	console.log(
-		errors,
-		'errors',
-		field?.[1],
-		errors?.[field?.[1]?.name]?.message,
-	);
-	const ButtonRender = (edit) => {
-		if (edit) {
-			return 'UPDATE';
-		}
-		return 'CREATE';
-	};
+
 	const handleCloseModal = () => {
 		setShowModal(false);
 	};
 	const submitForm = (data) => {
-		console.log(data, 'data', field, errors?.[field?.[1]?.name]);
 		const userData = {
 			...data,
 			performedBy             : id,
@@ -87,22 +91,20 @@ function TradePartnerAddress({
 		});
 	};
 
-	const InputController = getField('text');
-	const MobileNumberController = getField('mobile_number');
-	const CountryController = getField('select');
-	const TextController = getField('text');
-
 	return (
 		<Modal show={showmodal} onClose={() => setShowModal(false)} size="md">
 			<form>
 				<div className={styles.container}>
 					<Modal.Header
-						title={`${isEdit ? 'Update' : 'Add New'} Trade Partner`}
+						title={`${isEdit
+							? t('tradePartner:update_trade_partner_modal_heading')
+							: t('tradePartner:create_trade_partner_modal_heading')} 
+							${t('tradePartner:trade_partner_heading')}`}
 					/>
 					<Modal.Body>
 						<div className={styles.section}>
 							<div className={styles.section_title}>
-								<div className={styles.title}>User Details</div>
+								<div className={styles.title}>{t('tradePartner:add_trade_partner_title_1')}</div>
 								<div className={styles.design}>
 									<Line />
 								</div>
@@ -212,7 +214,7 @@ function TradePartnerAddress({
 						<div className={styles.section}>
 							<div className={styles.section_title}>
 								<div className={styles.title}>
-									Address Details
+									{t('tradePartner:add_trade_partner_title_2')}
 								</div>
 								<div className={styles.design}>
 									<Line />
@@ -289,7 +291,7 @@ function TradePartnerAddress({
 				</div>
 				<div className={styles.btn_container}>
 					<Button
-						type="button"
+						type="submit"
 						className="submitBtn md"
 						disabled={loading}
 						onClick={handleSubmit(submitForm)}
@@ -297,7 +299,7 @@ function TradePartnerAddress({
 						{loading ? (
 							<Loader themeType="secondary" />
 						) : (
-							ButtonRender(isEdit)
+							buttonRender({ edit: isEdit, t })
 						)}
 					</Button>
 				</div>

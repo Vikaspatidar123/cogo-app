@@ -9,8 +9,8 @@ import styles from './styles.module.css';
 
 function SetTimeForCall({ orgId, orgBranchId }) {
 	const { t } = useTranslation(['common', 'getStarted']);
-	const [startTime, setStartTime] = useState();
-	const [endTime, setEndTime] = useState();
+	const [startTime, setStartTime] = useState(new Date());
+	const [endTime, setEndTime] = useState(new Date());
 
 	const {
 		onClickCreateOrganizationCommunicationDetail,

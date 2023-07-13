@@ -12,7 +12,7 @@ function MobileLoginForm() {
 	const { t } = useTranslation(['common']);
 
 	const RULES = {
-		required: `${t('common:rightPanel_enter_mobile_number')}`,
+		required: t('common:rightPanel_enter_mobile_number'),
 	};
 
 	const {

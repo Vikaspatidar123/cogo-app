@@ -15,12 +15,12 @@ function LoginForm() {
 	const { onSubmit = () => { }, loading = false } = useLoginAuthenticate();
 	const { handleSubmit, formState: { errors }, control } = useForm();
 
-	const renderSuffix = () => {
+	function RenderSuffix() {
 		if (!showPassword) {
 			return <IcMEyeopen className={styles.show_password} onClick={() => setShowPassword(!showPassword)} />;
 		}
 		return <IcMEyeclose className={styles.show_password} onClick={() => setShowPassword(!showPassword)} />;
-	};
+	}
 
 	return (
 		<form className={styles.form_container} onSubmit={handleSubmit((data, e) => onSubmit(data, e))}>
@@ -43,7 +43,7 @@ function LoginForm() {
 						control={control}
 						name="password"
 						type={showPassword ? 'text' : 'password'}
-						suffix={renderSuffix()}
+						suffix={<RenderSuffix />}
 						placeholder={t('common:rightPanel_password_placeholder')}
 						rules={{ required: `${t('common:rightPanel_password_is_required')}` }}
 					/>

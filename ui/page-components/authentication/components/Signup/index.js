@@ -11,7 +11,7 @@ function Signup() {
 	const { t } = useTranslation(['common']);
 	const [hasSignedup, setHasSignedup] = useState(false);
 	const [formData, setFormData] = useState({});
-	const [userDetails, setUserDetails] = useState();
+	const [userDetails, setUserDetails] = useState({});
 
 	return (
 		<div className={styles.container}>

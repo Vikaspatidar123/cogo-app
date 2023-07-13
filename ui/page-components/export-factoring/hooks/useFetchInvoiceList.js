@@ -1,7 +1,10 @@
 import { useEffect, useState } from 'react';
+
 import { useRequest } from '@/packages/request';
 
-const useFetchInvoiceList = () => {
+const useFetchInvoiceList = ({
+	getCreditRequestResponse,
+}) => {
 	const [searchValue, setSearchValue] = useState('');
 	const [pagination, setPagination] = useState(1);
 
@@ -24,8 +27,7 @@ const useFetchInvoiceList = () => {
 					pagination_data_required : true,
 					filters                  : {
 						q                          : searchValue,
-						credit_export_factoring_id : '4bf91e88-b3eb-4ed9-ad2c-4a7d86a4f9b9',
-						// creditRequest?.credit_export_factoring_id,
+						credit_export_factoring_id : getCreditRequestResponse?.credit_export_factoring_id,
 					},
 				},
 			});

@@ -8,6 +8,7 @@ import BuyersList from './components/BuyersList';
 import styles from './styles.module.css';
 
 function Buyers({
+	refetch,
 	getCreditRequestResponse = {},
 }) {
 	const [openAddBuyer, setOpenAddBuyer] = useState(false);
@@ -30,11 +31,17 @@ function Buyers({
 				</Button>
 			</div>
 			{!isEmpty(buyer_details) && buyer_details?.map((buyers, index) => (
-				<BuyersList buyers={buyers} index={index} getCreditRequestResponse={getCreditRequestResponse} />
+				<BuyersList
+					refetch={refetch}
+					buyers={buyers}
+					index={index}
+					getCreditRequestResponse={getCreditRequestResponse}
+				/>
 			))}
 
 			{openAddBuyer && (
 				<AddBuyerModal
+					refetch={refetch}
 					openAddBuyer={openAddBuyer}
 					setOpenAddBuyer={setOpenAddBuyer}
 					getCreditRequestResponse={getCreditRequestResponse}

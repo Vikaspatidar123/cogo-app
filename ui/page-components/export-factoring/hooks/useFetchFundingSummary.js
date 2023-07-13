@@ -4,6 +4,7 @@ import { useRequest } from '@/packages/request';
 
 const useFetchFundingSummary = ({
 	invoice,
+	creditRequest,
 }) => {
 	const [{ loading, data }, trigger] = useRequest(
 		{
@@ -20,9 +21,8 @@ const useFetchFundingSummary = ({
 		try {
 			await trigger({
 				params: {
-					credit_export_factoring_id : '4bf91e88-b3eb-4ed9-ad2c-4a7d86a4f9b9',
+					credit_export_factoring_id : creditRequest?.credit_export_factoring_id,
 					invoice_id                 : invoice?.id,
-					// creditRequest?.credit_export_factoring_id,
 				},
 			});
 		} catch (error) {

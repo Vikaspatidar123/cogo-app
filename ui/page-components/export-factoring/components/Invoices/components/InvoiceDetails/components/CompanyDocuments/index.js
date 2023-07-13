@@ -45,6 +45,7 @@ const formMapping = {
 function CompanyDocuments({
 	data = {},
 	refetch,
+	creditRequest,
 }) {
 	const [openDocsModal, setOpenDocsModal] = useState('');
 	const { overall_document_status, status = '', documents = {} } = data || {};
@@ -91,6 +92,7 @@ function CompanyDocuments({
 							setOpenDocsModal={setOpenDocsModal}
 							data={data}
 							refetch={refetch}
+							creditRequest={creditRequest}
 						/>
 					)
 				}

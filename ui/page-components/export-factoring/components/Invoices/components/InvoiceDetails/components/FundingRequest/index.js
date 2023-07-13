@@ -63,6 +63,7 @@ function FundingRequest({
 				<ReviewDetails
 					data={data}
 					refetch={refetch}
+					creditRequest={creditRequest}
 					receivableModal={receivableModal}
 					setReceivableModal={setReceivableModal}
 				/>

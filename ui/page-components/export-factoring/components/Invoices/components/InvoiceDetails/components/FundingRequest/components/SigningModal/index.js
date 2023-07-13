@@ -18,7 +18,8 @@ function SigningModal({
 	refetch,
 	setCurrentStep,
 	receivableModal,
-	setReceivableModal
+	setReceivableModal,
+	creditRequest,
 }) {
 	const [signingMode, setSigningMode] = useState('physical');
 	const [exporterSignatory, setExporterSignatory] = useState('');
@@ -59,6 +60,7 @@ function SigningModal({
 		setReceivableModal,
 		exporterSignatory,
 		signingMode,
+		creditRequest,
 	});
 
 	useEffect(() => {

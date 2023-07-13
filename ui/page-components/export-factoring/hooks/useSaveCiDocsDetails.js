@@ -8,6 +8,7 @@ const getDocExtention = (url) => url.split('.').pop();
 
 const useSaveCiDocsDetails = ({
 	data: invoiceData,
+	creditRequest,
 	refetch,
 }) => {
 	const [{ data, loading }, trigger] = useRequest(
@@ -47,14 +48,11 @@ const useSaveCiDocsDetails = ({
 					section_to_update: 'invoice_document_details',
 					invoice_document_details,
 				},
-				// credit_id: creditRequest?.credit_id,
-				credit_id: 'e7bb79a0-6534-41f7-95e9-cbbd98044043',
+				credit_id: creditRequest?.credit_id,
 			};
 			await trigger({
 				data: payload,
 			});
-			// setCreditRequest(data?.creditRequest);
-			// setAddBank(addBank === false);
 			Toast.success('CI Details Saved');
 			refetch();
 		} catch (err) {

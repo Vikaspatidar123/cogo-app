@@ -6,7 +6,6 @@ import { TERMS_AND_CONDITIONS, VALID_DOC_STATUS, VALID_INVOICE_STATUS } from '..
 import AddEditPdcInfo from './components/AddEditPdcInfo';
 import PdcDetailsInfo from './components/PdcDetailsInfo';
 
-import useSubmitCiDocsDetails from '@/ui/page-components/export-factoring/hooks/useSubmitCiDocsDetails';
 import useSubmitPdcDocsDetails from '@/ui/page-components/export-factoring/hooks/useSubmitPdcDocsDetails';
 
 function PostdatedChequeDoc({
@@ -14,6 +13,7 @@ function PostdatedChequeDoc({
 	setOpenDocsModal,
 	data = {},
 	refetch,
+	creditRequest,
 }) {
 	const { overall_document_status = {}, status = '', documents = {} } = data || {};
 	const { postdated_cheque = [] } = documents;
@@ -28,6 +28,7 @@ function PostdatedChequeDoc({
 	const { loading, onPdcDocSubmit } = useSubmitPdcDocsDetails({
 		setOpenDocsModal,
 		openDocsModal,
+		creditRequest,
 		refetch,
 		data,
 	});
@@ -45,6 +46,7 @@ function PostdatedChequeDoc({
 					<PdcDetailsInfo
 						data={data}
 						refetch={refetch}
+						creditRequest={creditRequest}
 						doc={postdated_cheque?.[0]}
 					/>
 				) : (
@@ -52,6 +54,7 @@ function PostdatedChequeDoc({
 						showPdcForm={showPdcForm}
 						setShowPdcForm={setShowPdcForm}
 						data={data}
+						creditRequest={creditRequest}
 						refetch={refetch}
 						postdated_cheque={postdated_cheque}
 					/>

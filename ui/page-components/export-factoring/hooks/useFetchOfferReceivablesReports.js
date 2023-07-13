@@ -7,6 +7,7 @@ import { useRequest } from '@/packages/request';
 const useFetchOfferReceivablesReports = ({
 	setCurrentStep = () => {},
 	refetch,
+	creditRequest,
 	data: invoiceData,
 }) => {
 	const [{ data, loading }, trigger] = useRequest(
@@ -33,13 +34,11 @@ const useFetchOfferReceivablesReports = ({
 						],
 					},
 				},
-				// credit_id: creditRequest?.credit_id,
-				credit_id: 'e7bb79a0-6534-41f7-95e9-cbbd98044043',
+				credit_id: creditRequest?.credit_id,
 			};
 			await trigger({
 				data: payload,
 			});
-			// setCreditRequest(data?.creditRequest);
 			refetch();
 			setCurrentStep('signing');
 			Toast.success('Report Successfully Generated');

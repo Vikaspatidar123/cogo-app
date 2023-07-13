@@ -17,6 +17,7 @@ function SbDetailsInfo({
 	data = {},
 	index,
 	refetch,
+	creditRequest,
 }) {
 	const [showEditForm, setShowEditForm] = useState(false);
 	const [showDeleteForm, setShowDeleteForm] = useState(false);
@@ -34,6 +35,7 @@ function SbDetailsInfo({
 		data,
 		doc,
 		refetch,
+		creditRequest,
 		is_deleted 	  : true,
 		showSBForm    : showDeleteForm,
 		setShowSbForm : setShowDeleteForm,
@@ -116,6 +118,7 @@ function SbDetailsInfo({
 						doc={doc}
 						data={data}
 						refetch={refetch}
+						creditRequest={creditRequest}
 						showSbForm={showEditForm}
 						setShowSbForm={setShowEditForm}
 					/>

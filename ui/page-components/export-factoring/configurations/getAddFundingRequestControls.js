@@ -53,6 +53,7 @@ const controls = [
 
 export const getAddFundingRequestControls = (
 	{
+		creditRequest,
 		buyerOptions,
 		bankDetailsOptions,
 	},
@@ -62,8 +63,7 @@ export const getAddFundingRequestControls = (
 			...control,
 			params: {
 				filters: {
-					// importer_exporter_id: organization_id,
-					importer_exporter_id: '3d7c2e98-14e2-4a05-8104-a133eddc8eb6',
+					importer_exporter_id: creditRequest?.organization_id,
 				},
 			},
 		});

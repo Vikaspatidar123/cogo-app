@@ -4,17 +4,18 @@ import { useState } from 'react';
 
 import { TERMS_AND_CONDITIONS, VALID_DOC_STATUS, VALID_INVOICE_STATUS } from '../../../../common/constant';
 
+import AddEditBlInfo from './components/AddEditBlInfo';
+import BlDetailsInfo from './components/BlDetailsInfo';
 import styles from './styles.module.css';
 
 import useSubmitBlDocsDetails from '@/ui/page-components/export-factoring/hooks/useSubmitBlDocsDetails';
-import AddEditBlInfo from './components/AddEditBlInfo';
-import BlDetailsInfo from './components/BlDetailsInfo';
 
 function BillOfLading({
 	openDocsModal,
 	setOpenDocsModal,
 	data = {},
 	refetch,
+	creditRequest,
 }) {
 	const { overall_document_status = {}, status = '', documents = {} } = data;
 	const {
@@ -33,6 +34,7 @@ function BillOfLading({
 	const { onPoDocSubmit, loading } = useSubmitBlDocsDetails({
 		data,
 		refetch,
+		creditRequest,
 		openDocsModal,
 		setOpenDocsModal,
 	});
@@ -63,11 +65,10 @@ function BillOfLading({
 						<AddEditBlInfo
 							data={data}
 							refetch={refetch}
-							// invoice={invoice}
 							bill_of_lading={bill_of_lading}
 							showBlForm={showBlForm}
 							setShowBlForm={setShowBlForm}
-							// creditRequest={creditRequest}
+							creditRequest={creditRequest}
 							TERMS_AND_CONDITIONS={TERMS_AND_CONDITIONS}
 						/>
 					))}
@@ -79,8 +80,7 @@ function BillOfLading({
 							data={data}
 							refetch={refetch}
 							index={index}
-							// invoice={invoice}
-							// creditRequest={creditRequest}
+							creditRequest={creditRequest}
 						/>
 					))}
 				</>

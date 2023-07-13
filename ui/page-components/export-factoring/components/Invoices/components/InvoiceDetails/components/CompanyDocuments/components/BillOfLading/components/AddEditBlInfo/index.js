@@ -14,6 +14,7 @@ function AddEditBlInfo({
 	refetch,
 	showBlForm,
 	setShowBlForm,
+	creditRequest,
 }) {
 	const addBolDocControls = useAddBolDocControls();
 
@@ -26,11 +27,11 @@ function AddEditBlInfo({
 
 	useEffect(() => {
 		if (id) {
-		  setValue('po_number', document_number);
-		  setValue('po_date', new Date(document_date));
-		  setValue('purchase_order', document_url);
+			setValue('po_number', document_number);
+			setValue('po_date', new Date(document_date));
+			setValue('purchase_order', document_url);
 		}
-	  }, [doc]);
+	}, [doc]);
 
 	const { loading, onBlDocSave } = useSaveBlDocsDetails({
 		doc,
@@ -38,6 +39,7 @@ function AddEditBlInfo({
 		refetch,
 		showBlForm,
 		setShowBlForm,
+		creditRequest,
 	});
 
 	return (

@@ -20,6 +20,8 @@
 }
 
 .title{
+    display: flex;
+    align-items: center;
     font-size: 16px;
     font-weight: 600;
 }
@@ -60,10 +62,26 @@
 	align-items: center;
 	justify-content: space-between;
 	height: 46px;
-	width: 40%;
+	width: 100%;
 	border: 1px solid #e0e0e0;
 	border-radius: 4px;
 	cursor: pointer;
 	padding: 0px 10px;
 	margin: 10px 0px;
+}
+
+.commentContainer {
+	display: flex;
+	padding: 4px;
+	max-width: 200px;
+	flex-wrap: wrap;
+}
+
+
+.textHead {
+	font-size: 14px;
+	font-weight: 700;
+}
+.commentText {
+	font-size: 14px;
 }

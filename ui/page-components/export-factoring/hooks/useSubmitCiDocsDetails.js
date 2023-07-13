@@ -6,6 +6,7 @@ const useSubmitCiDocsDetails = ({
 	data: invoiceData,
 	openDocsModal,
 	setOpenDocsModal,
+	creditRequest,
 	refetch,
 }) => {
 	const [{ data, loading }, trigger] = useRequest(
@@ -19,8 +20,7 @@ const useSubmitCiDocsDetails = ({
 	const onCIDocSubmit = async () => {
 		try {
 			const payload = {
-				// credit_export_factoring_id: creditRequest.credit_export_factoring_id,
-				credit_export_factoring_id : '4bf91e88-b3eb-4ed9-ad2c-4a7d86a4f9b9',
+				credit_export_factoring_id : creditRequest.credit_export_factoring_id,
 				shipment_serial_id         : invoiceData?.shipment_details?.shipment_serial_id,
 				document_type              : 'commercial_invoice',
 				invoice_id                 : invoiceData?.id,

@@ -4,6 +4,7 @@ import { useState } from 'react';
 import ApplicationProcess from '../ApplicationProcess';
 import BasicDetails from '../BasicDetails';
 // import Buyers from '../Buyers';
+import Buyers from '../Buyers';
 import CompanyInformation from '../CompanyInformation';
 import DirectorInformation from '../DirectorInformation';
 import OfferLetterDetails from '../OfferLetterDetails';
@@ -25,19 +26,17 @@ const tabsPanelMapping = [{
 	name         : 'application',
 	title        : 'Application',
 	SubComponent : ApplicationProcess,
-	status       : 'PENDING',
-}, 
-// {
-// 	name         : 'Buyers',
-// 	title        : 'Buyers',
-// 	SubComponent : Buyers,
-
-// },
-// {
-// 	name         : 'Invoices',
-// 	title        : 'Invoices',
-// 	SubComponent : Invoices,
-// },
+},
+{
+	name         : 'Buyers',
+	title        : 'Buyers',
+	SubComponent : Buyers,
+},
+	// {
+	// 	name         : 'Invoices',
+	// 	title        : 'Invoices',
+	// 	SubComponent : Invoices,
+	// },
 
 ];
 function Form({ active = {}, getCreditRequestResponse = {}, refetch = () => {}, loading }) {
@@ -46,24 +45,42 @@ function Form({ active = {}, getCreditRequestResponse = {}, refetch = () => {}, 
 	const Component = flags?.offer_letter === 'complete' && active === 'awaiting_offer_letter'
 		? RENDERING_FORM.offer_letter_complete : RENDERING_FORM[active];
 
+	console.log(activeTab, 'activeTab');
+
 	return (
 		<div className={styles.form}>
 			{ flags?.offer_letter === 'complete' ?	(
 				<Tabs
 					activeTab={activeTab}
-					themeType="primary"
+					themeType="tertiary"
 					onChange={setActiveTab}
 				>
-					{tabsPanelMapping.map(({ title = '', SubComponent, status = '', name = '' }) => (
-						<TabPanel name={name} title={title} badge={status}>
-							<SubComponent
-								active={active}
-								getCreditRequestResponse={getCreditRequestResponse}
-								refetch={refetch}
-								loading={loading}
-							/>
-						</TabPanel>
-					))}
+					{tabsPanelMapping.map(({ title = '', SubComponent, name = '' }) => {
+						const MappedComponet = flags?.offer_letter === 'complete'
+						&& (active === 'awaiting_offer_letter') && activeTab === 'application'
+							? RENDERING_FORM.offer_letter_complete : SubComponent;
+
+						return (
+							<TabPanel name={name} title={title}>
+								{(active === 'locked' && activeTab === 'application')
+									? (
+										<OfferLetterWaiting
+											active={active}
+											getCreditRequestResponse={getCreditRequestResponse}
+											refetch={refetch}
+											loading={loading}
+										/>
+									) : (
+										<MappedComponet
+											active={active}
+											getCreditRequestResponse={getCreditRequestResponse}
+											refetch={refetch}
+											loading={loading}
+										/>
+									)}
+							</TabPanel>
+						);
+					})}
 				</Tabs>
 			) : (
 				<Component

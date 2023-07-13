@@ -14,6 +14,7 @@ function AddEditPdcInfo({
 	showPdcForm,
 	setShowPdcForm,
 	refetch,
+	creditRequest,
 }) {
 	const { document_url = '', id = '' } = doc || {};
 
@@ -27,6 +28,7 @@ function AddEditPdcInfo({
 		doc,
 		data,
 		refetch,
+		creditRequest,
 	});
 
 	useEffect(() => {

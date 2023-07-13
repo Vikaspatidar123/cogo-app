@@ -16,6 +16,7 @@ function MiDetailsInfo({
 	data = {},
 	index,
 	refetch,
+	creditRequest,
 }) {
 	const [showEditForm, setShowEditForm] = useState(false);
 	const [showDeleteForm, setShowDeleteForm] = useState(false);
@@ -32,6 +33,7 @@ function MiDetailsInfo({
 		data,
 		doc,
 		refetch,
+		creditRequest,
 		is_deleted 	  : true,
 		showMiForm    : showDeleteForm,
 		setShowMiForm : setShowDeleteForm,
@@ -111,6 +113,7 @@ function MiDetailsInfo({
 						doc={doc}
 						data={data}
 						refetch={refetch}
+						creditRequest={creditRequest}
 						showMiForm={showEditForm}
 						setShowMiForm={setShowEditForm}
 					/>

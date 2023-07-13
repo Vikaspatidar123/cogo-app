@@ -6,12 +6,14 @@ import styles from './styles.module.css';
 
 import getField from '@/packages/forms/Controlled';
 import formatAmount from '@/ui/commons/utils/formatAmount';
-import { getAddInvoiceDocumentsControls } from '@/ui/page-components/export-factoring/configurations/getAddInvoiceDocumentsControls';
+import { getAddInvoiceDocumentsControls } from
+	'@/ui/page-components/export-factoring/configurations/getAddInvoiceDocumentsControls';
 import useSaveCiDocsDetails from '@/ui/page-components/export-factoring/hooks/useSaveCiDocsDetails';
 
 function AddEditCiInfo({
 	data = {},
 	showCiForm,
+	creditRequest,
 	setShowCiForm,
 	refetch,
 }) {
@@ -35,6 +37,7 @@ function AddEditCiInfo({
 	const { loading, onCIDocSave } = useSaveCiDocsDetails({
 		data,
 		refetch,
+		creditRequest,
 	});
 
 	const watchValues = watch();
@@ -45,15 +48,15 @@ function AddEditCiInfo({
 			invoice_date, prior_payment, payment_terms, due_date,
 		} = data || {};
 		if (id) {
-		  setValue('ci_number', invoice_number);
-		  setValue('ci_date', new Date(invoice_date));
-		  setValue('prior_payment', prior_payment || 0);
-		  setValue('invoice_amount', { price: invoice_amount, currency });
-		  setValue('payment_term', payment_terms);
-		  setValue('due_date', new Date(due_date));
-		  setValue('commercial_invoice', document_url);
+			setValue('ci_number', invoice_number);
+			setValue('ci_date', new Date(invoice_date));
+			setValue('prior_payment', prior_payment || 0);
+			setValue('invoice_amount', { price: invoice_amount, currency });
+			setValue('payment_term', payment_terms);
+			setValue('due_date', new Date(due_date));
+			setValue('commercial_invoice', document_url);
 		}
-	  }, [data]);
+	}, [data]);
 
 	useEffect(() => {
 		const amt = (advance_rate

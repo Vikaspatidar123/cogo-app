@@ -14,6 +14,7 @@ function AddEditMiInfo({
 	refetch,
 	showMiForm,
 	setShowMiForm,
+	creditRequest,
 }) {
 	const addMiDocControls = getAddMiDocControls();
 
@@ -38,6 +39,7 @@ function AddEditMiInfo({
 		refetch,
 		showMiForm,
 		setShowMiForm,
+		creditRequest,
 	});
 
 	return (

@@ -14,6 +14,7 @@ function AddEditSbInfo({
 	refetch,
 	showSbForm,
 	setShowSbForm,
+	creditRequest,
 }) {
 	const addSbDocControls = getAddSbDocControls();
 
@@ -38,6 +39,7 @@ function AddEditSbInfo({
 		refetch,
 		showSbForm,
 		setShowSbForm,
+		creditRequest,
 	});
 
 	return (

@@ -19,6 +19,7 @@ function PoDetailsInfo({
 	data = {},
 	index,
 	refetch,
+	creditRequest,
 }) {
 	const [showEditForm, setShowEditForm] = useState(false);
 	const [showDeleteForm, setShowDeleteForm] = useState(false);
@@ -35,6 +36,7 @@ function PoDetailsInfo({
 		data,
 		doc,
 		refetch,
+		creditRequest,
 		is_deleted 	  : true,
 		showPoForm    : showDeleteForm,
 		setShowPoForm : setShowDeleteForm,
@@ -117,6 +119,7 @@ function PoDetailsInfo({
 						doc={doc}
 						data={data}
 						refetch={refetch}
+						creditRequest={creditRequest}
 						showPoForm={showEditForm}
 						setShowPoForm={setShowEditForm}
 					/>

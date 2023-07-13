@@ -13,6 +13,7 @@ import useSubmitPoDocsDetails from '@/ui/page-components/export-factoring/hooks/
 function PurchaseOrder({
 	openDocsModal,
 	setOpenDocsModal,
+	creditRequest,
 	data = {},
 	refetch,
 }) {
@@ -33,6 +34,7 @@ function PurchaseOrder({
 	const { onPoDocSubmit, loading } = useSubmitPoDocsDetails({
 		data,
 		refetch,
+		creditRequest,
 		openDocsModal,
 		setOpenDocsModal,
 	});
@@ -63,11 +65,10 @@ function PurchaseOrder({
 						<AddEditPoInfo
 							data={data}
 							refetch={refetch}
-							// invoice={invoice}
 							purchase_order={purchase_order}
 							showPoForm={showPoForm}
 							setShowPoForm={setShowPoForm}
-							// creditRequest={creditRequest}
+							creditRequest={creditRequest}
 							TERMS_AND_CONDITIONS={TERMS_AND_CONDITIONS}
 						/>
 					))}
@@ -79,8 +80,7 @@ function PurchaseOrder({
 							data={data}
 							refetch={refetch}
 							index={index}
-							// invoice={invoice}
-							// creditRequest={creditRequest}
+							creditRequest={creditRequest}
 							TERMS_AND_CONDITIONS={TERMS_AND_CONDITIONS}
 						/>
 					))}

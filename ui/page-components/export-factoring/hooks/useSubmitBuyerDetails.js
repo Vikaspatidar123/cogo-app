@@ -7,6 +7,7 @@ const useSubmitBuyerDetails = ({
 	setOpenAddBuyer,
 	addressDetail,
 	countryData,
+	refetch,
 }) => {
 	const [{ data, loading }, trigger] = useRequest(
 		{
@@ -37,14 +38,12 @@ const useSubmitBuyerDetails = ({
 		try {
 			const payload = {
 				export_factoring_service_attributes : { buyer_details: { ...values } },
-				// credit_id                           : creditRequest?.credit_id,
-				credit_id                           : 'e7bb79a0-6534-41f7-95e9-cbbd98044043',
-
+				credit_id                           : getCreditRequestResponse?.credit_id,
 			};
 			await trigger({
 				data: payload,
 			});
-			// setCreditRequest(data?.creditRequest);
+			refetch();
 			setOpenAddBuyer(false);
 			Toast.success('Buyer Details Saved');
 		} catch (err) {

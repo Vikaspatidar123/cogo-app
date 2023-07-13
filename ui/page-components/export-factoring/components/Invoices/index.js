@@ -29,7 +29,9 @@ function Invoices({
 		setSearchValue,
 		searchValue,
 		fetchInvoiceList,
-	} = useFetchInvoiceList();
+	} = useFetchInvoiceList({
+		getCreditRequestResponse,
+	});
 
 	const { total_count = '', list = [], page_limit = '' } = invoiceList || {};
 
@@ -92,15 +94,15 @@ function Invoices({
 			{showCiDetails.flag && (
 				<InvoiceDetails
 					refetchList={fetchInvoiceList}
-					// creditRequest={getCreditRequestResponse}
+					creditRequest={getCreditRequestResponse}
 					setShowCiDetails={setShowCiDetails}
 					showCiDetails={showCiDetails}
 				/>
 			)}
 			{openAddFundingRequest && (
 				<AddFundingRequest
-				refetchList={fetchInvoiceList}
-					getCreditRequestResponse={getCreditRequestResponse}
+					refetchList={fetchInvoiceList}
+					creditRequest={getCreditRequestResponse}
 					openAddFundingRequest={openAddFundingRequest}
 					setOpenFundingRequest={setOpenFundingRequest}
 				/>

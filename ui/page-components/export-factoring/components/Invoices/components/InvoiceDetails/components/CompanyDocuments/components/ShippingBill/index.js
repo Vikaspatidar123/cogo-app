@@ -4,17 +4,18 @@ import { useState } from 'react';
 
 import { TERMS_AND_CONDITIONS, VALID_DOC_STATUS, VALID_INVOICE_STATUS } from '../../../../common/constant';
 
+import AddEditSbInfo from './components/AddEditSbInfo';
+import SbDetailsInfo from './components/SbDetailsInfo';
 import styles from './styles.module.css';
 
 import useSubmitSbDocsDetails from '@/ui/page-components/export-factoring/hooks/useSubmitSbDocsDetails';
-import AddEditSbInfo from './components/AddEditSbInfo';
-import SbDetailsInfo from './components/SbDetailsInfo';
 
 function ShippingBill({
 	openDocsModal,
 	setOpenDocsModal,
 	data = {},
 	refetch,
+	creditRequest,
 }) {
 	const { overall_document_status = {}, status = '', documents = {} } = data;
 	const {
@@ -35,6 +36,7 @@ function ShippingBill({
 		refetch,
 		openDocsModal,
 		setOpenDocsModal,
+		creditRequest,
 	});
 
 	return (
@@ -63,11 +65,10 @@ function ShippingBill({
 						<AddEditSbInfo
 							data={data}
 							refetch={refetch}
-							// invoice={invoice}
 							shipping_bill={shipping_bill}
 							showSbForm={showSbForm}
 							setShowSbForm={setShowSbForm}
-							// creditRequest={creditRequest}
+							creditRequest={creditRequest}
 							TERMS_AND_CONDITIONS={TERMS_AND_CONDITIONS}
 						/>
 					))}
@@ -79,8 +80,7 @@ function ShippingBill({
 							data={data}
 							refetch={refetch}
 							index={index}
-							// invoice={invoice}
-							// creditRequest={creditRequest}
+							creditRequest={creditRequest}
 							TERMS_AND_CONDITIONS={TERMS_AND_CONDITIONS}
 						/>
 					))}

@@ -7,7 +7,7 @@ import getField from '@/packages/forms/Controlled';
 import { getAddPocControls } from '@/ui/page-components/export-factoring/configurations/getAddPocControls';
 import useSubmitPocDetails from '@/ui/page-components/export-factoring/hooks/useSubmitPocDetails';
 
-function AddPocModal({ openAddPoc, setOpenAddPoc, buyers, getCreditRequestResponse }) {
+function AddPocModal({ refetch, openAddPoc, setOpenAddPoc, buyers, getCreditRequestResponse }) {
 	const addPocControls = getAddPocControls();
 
 	const {
@@ -16,6 +16,7 @@ function AddPocModal({ openAddPoc, setOpenAddPoc, buyers, getCreditRequestRespon
 
 	const { onSubmit, loading } = useSubmitPocDetails({
 		buyers,
+		refetch,
 		setOpenAddPoc,
 		getCreditRequestResponse,
 	});

@@ -9,7 +9,7 @@ import FieldArray from '@/ui/page-components/export-factoring/common/FieldArray'
 import { getAddBuyerControls } from '@/ui/page-components/export-factoring/configurations/getAddBuyerControls';
 import useSubmitBuyerDetails from '@/ui/page-components/export-factoring/hooks/useSubmitBuyerDetails';
 
-function AddBuyerModal({ openAddBuyer, setOpenAddBuyer, getCreditRequestResponse }) {
+function AddBuyerModal({ refetch, openAddBuyer, setOpenAddBuyer, getCreditRequestResponse }) {
 	const [addressDetail, setAddressDetail] = useState();
 	const [countryData, setCountryData] = useState();
 
@@ -27,6 +27,7 @@ function AddBuyerModal({ openAddBuyer, setOpenAddBuyer, getCreditRequestResponse
 		setOpenAddBuyer,
 		addressDetail,
 		countryData,
+		refetch,
 	});
 
 	useEffect(() => {

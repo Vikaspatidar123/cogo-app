@@ -17,6 +17,7 @@ const useSavePdcDocsDetails = ({
 	doc,
 	data: invoiceData,
 	refetch,
+	creditRequest,
 }) => {
 	const [{ data, loading }, trigger] = useRequest(
 		{
@@ -38,8 +39,7 @@ const useSavePdcDocsDetails = ({
 				section_to_update: 'invoice_document_details',
 				invoice_document_details,
 			},
-			// credit_id: creditRequest?.credit_id,
-			credit_id: 'e7bb79a0-6534-41f7-95e9-cbbd98044043',
+			credit_id: creditRequest?.credit_id,
 		};
 
 		return payload;

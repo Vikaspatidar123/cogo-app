@@ -9,7 +9,7 @@ import StatusTag from '@/ui/page-components/export-factoring/common/StatusTag';
 function CommercialInvoiceList({
 	sid = '',
 	invoices = {},
-	// creditRequest,
+	creditRequest,
 	setShowCiDetails,
 }) {
 	const {
@@ -46,15 +46,14 @@ function CommercialInvoiceList({
 				<div className={styles.tableHeader} style={{ width: '20%' }}><StatusTag status={status} /></div>
 				<div
 					className={styles.tableHeader}
-					style={{ width: '3%',cursor:'pointer' }}
+					style={{ width: '3%', cursor: 'pointer' }}
 					onClick={() => {
 						setShowCiDetails({
 							flag                       : true,
 							sid,
 							invoice_number,
 							id,
-							credit_export_factoring_id : '4bf91e88-b3eb-4ed9-ad2c-4a7d86a4f9b9',
-							// creditRequest?.credit_export_factoring_id,
+							credit_export_factoring_id : creditRequest?.credit_export_factoring_id,
 						});
 					}}
 				>

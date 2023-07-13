@@ -1,10 +1,9 @@
-import { Modal, Skeleton } from '@cogoport/components';
+import { Modal, Skeleton, Placeholder } from '@cogoport/components';
 
 import styles from './styles.module.css';
 
 import formatAmount from '@/ui/commons/utils/formatAmount';
 import useFetchFundingSummary from '@/ui/page-components/export-factoring/hooks/useFetchFundingSummary';
-import { Placeholder } from '@cogoport/components';
 
 const formatCredit = (currency = 'USD', amount = 0) => {
 	const value = formatAmount({
@@ -21,13 +20,13 @@ const formatCredit = (currency = 'USD', amount = 0) => {
 
 function FundingSummaryModal({
 	data = {},
+	creditRequest,
 	showFundingSummary,
 	setShowFundingSummary,
 }) {
-	
 	const { data: fundingData = {}, loading } = useFetchFundingSummary({
 		invoice: data,
-		// creditRequest,
+		creditRequest,
 	});
 
 	const { status = '' } = data || {};
@@ -84,7 +83,7 @@ function FundingSummaryModal({
 								<Placeholder height="50px" width="900px" />
 							</div>
 						))
-					
+
 				) : (
 					<>
 						<div className={styles.heading} style={{ fontSize: '15px', padding: '10px 0px' }}>

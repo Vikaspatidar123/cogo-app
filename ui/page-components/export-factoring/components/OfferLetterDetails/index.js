@@ -17,14 +17,14 @@ function OfferLetterDetails({ active = {}, getCreditRequestResponse = {}, refetc
 		credit_id = '',
 	} = getCreditRequestResponse;
 	const {
-		amount,
+		amount = 0,
 		currency,
 		grace_period,
 		advance_rate,
 		processing_fee,
 		factoring_fee,
 		overdue_charges,
-	} = approved_credit_details;
+	} = approved_credit_details || {};
 	const { offer_letter = {} } = documents;
 
 	const [showRequestView, setShowRequestView] = useState(false);

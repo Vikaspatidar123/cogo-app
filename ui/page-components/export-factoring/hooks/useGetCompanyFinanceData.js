@@ -11,7 +11,6 @@ const useGetCompanyFinanceData = ({ id = '' }) => {
 	});
 
 	const getCompanyFinanceData = useCallback(() => {
-		console.log(id, "id")
 		try {
 			trigger({
 				params: {

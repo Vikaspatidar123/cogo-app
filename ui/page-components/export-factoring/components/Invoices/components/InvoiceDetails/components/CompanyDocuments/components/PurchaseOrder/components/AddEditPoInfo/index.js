@@ -12,6 +12,7 @@ function AddEditPoInfo({
 	doc,
 	data = {},
 	refetch,
+	creditRequest,
 	showPoForm,
 	setShowPoForm,
 }) {
@@ -36,6 +37,7 @@ function AddEditPoInfo({
 		doc,
 		data,
 		refetch,
+		creditRequest,
 		showPoForm,
 		setShowPoForm,
 	});

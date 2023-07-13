@@ -12,6 +12,7 @@ const useSubmitFundingRequest = ({
 	exporterSignatory,
 	signingMode,
 	receivableModal,
+	creditRequest,
 	setReceivableModal,
 }) => {
 	const { documents = {}, offer_receivable_details = {} } = invoiceData || {};
@@ -57,15 +58,12 @@ const useSubmitFundingRequest = ({
 						},
 					},
 				},
-				// credit_id: creditRequest?.credit_id,
-				credit_id: 'e7bb79a0-6534-41f7-95e9-cbbd98044043',
-
+				credit_id: creditRequest?.credit_id,
 			};
 
 			await trigger({
 				data: payload,
 			});
-			// setCreditRequest(data?.creditRequest);
 			setReceivableModal((pv) => !pv);
 			refetch();
 			Toast.success('Successfully submitted');

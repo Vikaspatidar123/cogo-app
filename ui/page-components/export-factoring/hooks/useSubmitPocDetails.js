@@ -4,6 +4,7 @@ import { useRequest } from '@/packages/request';
 
 const useSubmitPocDetails = ({
 	buyers,
+	refetch,
 	setOpenAddPoc,
 	getCreditRequestResponse,
 }) => {
@@ -26,15 +27,14 @@ const useSubmitPocDetails = ({
 				export_factoring_service_attributes: {
 					...values,
 				},
-				// credit_id: getCreditRequestResponse?.credit_id,
-				credit_id: 'e7bb79a0-6534-41f7-95e9-cbbd98044043',
+				credit_id: getCreditRequestResponse?.credit_id,
 			};
 			await trigger({
 				data: payload,
 			});
-			// setCreditRequest(data?.creditRequest);
+			refetch();
 			setOpenAddPoc(false);
-			Toast.success('Bank Details Saved');
+			Toast.success('Poc Details Saved');
 		} catch (err) {
 			Toast.error(err.data);
 		}

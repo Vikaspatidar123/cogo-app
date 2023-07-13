@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 
 import { useRequest } from '@/packages/request';
 
-const useFetchInvoiceDetails = ({ showCiDetails }) => {
+const useFetchInvoiceDetails = ({ showCiDetails, creditRequest }) => {
 	const [{ loading, data }, trigger] = useRequest(
 		{
 			method : 'get',
@@ -20,8 +20,7 @@ const useFetchInvoiceDetails = ({ showCiDetails }) => {
 				params: {
 					invoice_id                 : showCiDetails.id,
 					shipment_serial_id         : parseInt(showCiDetails.sid, 10),
-					credit_export_factoring_id : '4bf91e88-b3eb-4ed9-ad2c-4a7d86a4f9b9',
-					// creditRequest?.credit_export_factoring_id,
+					credit_export_factoring_id : creditRequest?.credit_export_factoring_id,
 				},
 			});
 		} catch (error) {

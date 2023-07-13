@@ -8,7 +8,6 @@ import AddEditMiInfo from './components/AddEditMiInfo';
 import MiDetailsInfo from './components/MiDetailsInfo';
 import styles from './styles.module.css';
 
-import useSubmitPoDocsDetails from '@/ui/page-components/export-factoring/hooks/useSubmitPoDocsDetails';
 import useSubmitMiDocsDetails from '@/ui/page-components/export-factoring/hooks/useSubmitMiDocsDetails';
 
 function MarineInsurance({
@@ -16,6 +15,7 @@ function MarineInsurance({
 	setOpenDocsModal,
 	data = {},
 	refetch,
+	creditRequest,
 }) {
 	const { overall_document_status = {}, status = '', documents = {} } = data;
 	const {
@@ -36,6 +36,7 @@ function MarineInsurance({
 		refetch,
 		openDocsModal,
 		setOpenDocsModal,
+		creditRequest,
 	});
 
 	return (
@@ -64,11 +65,10 @@ function MarineInsurance({
 						<AddEditMiInfo
 							data={data}
 							refetch={refetch}
-							// invoice={invoice}
 							marine_insurance={marine_insurance}
 							showPoForm={showMiForm}
 							setShowMiForm={setShowMiForm}
-							// creditRequest={creditRequest}
+							creditRequest={creditRequest}
 							TERMS_AND_CONDITIONS={TERMS_AND_CONDITIONS}
 						/>
 					))}
@@ -80,8 +80,7 @@ function MarineInsurance({
 							data={data}
 							refetch={refetch}
 							index={index}
-							// invoice={invoice}
-							// creditRequest={creditRequest}
+							creditRequest={creditRequest}
 							TERMS_AND_CONDITIONS={TERMS_AND_CONDITIONS}
 						/>
 					))}

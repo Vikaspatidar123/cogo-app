@@ -6,15 +6,10 @@ const getDocExtention = (url) => url.split('.').pop();
 
 const useSubmitBankDetails = ({
 	accountType,
-}
-	// {
-	// creditRequest = {},
-	// setCreditRequest = () => {},
-	// addBank,
-	// setAddBank,
-	// bank = {},
-// }
-) => {
+	refetch,
+	exporter_bank_account_id = '',
+	getCreditRequestResponse = {},
+}) => {
 	const [{ data, loading }, trigger] = useRequest(
 		{
 			method : 'post',
@@ -34,7 +29,7 @@ const useSubmitBankDetails = ({
 			ifsc_number              : values?.ifsc_number,
 			corresponding_bank_name  : values?.corresponding_bank_name,
 			corresponding_swift_code : values?.corresponding_swift_code,
-			// exporter_bank_account_id : bank?.exporter_bank_account_id,
+			exporter_bank_account_id,
 			documents                : [
 				{
 					document_extension : getDocExtention(values?.letter_head || ''),
@@ -60,15 +55,12 @@ const useSubmitBankDetails = ({
 					ef_bank_details,
 					section_to_update: 'ef_bank_details',
 				},
-				// credit_id: creditRequest?.credit_id,
-				// credit_id: '133f5ab9-fc18-4d5b-8a9e-6ee3f0fd30c1',
-				credit_id: 'e7bb79a0-6534-41f7-95e9-cbbd98044043',
+				credit_id: getCreditRequestResponse?.credit_id,
 			};
 			await trigger({
 				data: payload,
 			});
-			// setCreditRequest(data?.creditRequest);
-			// setAddBank(addBank === false);
+			refetch();
 			Toast.success('Bank Details Saved');
 		} catch (err) {
 			Toast.error(err.data);

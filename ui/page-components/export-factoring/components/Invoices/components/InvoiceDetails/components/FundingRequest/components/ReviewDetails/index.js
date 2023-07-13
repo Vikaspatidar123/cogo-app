@@ -30,6 +30,7 @@ const stepperContent = [
 function ReviewDetails({
 	data,
 	refetch,
+	creditRequest,
 	receivableModal,
 	setReceivableModal,
 }) {
@@ -39,6 +40,7 @@ function ReviewDetails({
 	const { loading, onSubmit } = useFetchOfferReceivablesReports({
 		data,
 		refetch,
+		creditRequest,
 		setCurrentStep,
 	});
 
@@ -112,6 +114,7 @@ function ReviewDetails({
 			) : (
 				<SigningModal
 					data={data}
+					creditRequest={creditRequest}
 					setCurrentStep={setCurrentStep}
 					refetch={refetch}
 					receivableModal={receivableModal}

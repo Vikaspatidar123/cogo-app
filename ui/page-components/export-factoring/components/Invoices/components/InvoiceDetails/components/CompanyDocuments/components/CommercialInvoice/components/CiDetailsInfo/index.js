@@ -14,6 +14,7 @@ import StatusBox from '@/ui/page-components/export-factoring/common/StatusBox';
 function CiDetailsInfo({
 	data = {},
 	refetch,
+	creditRequest,
 }) {
 	const [showEditForm, setShowEditForm] = useState(false);
 
@@ -186,6 +187,7 @@ function CiDetailsInfo({
 					<AddEditCiInfo
 						data={data}
 						refetch={refetch}
+						creditRequest={creditRequest}
 						showCiForm={showEditForm}
 						setShowCiForm={setShowEditForm}
 					/>

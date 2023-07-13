@@ -2,7 +2,6 @@ import { TabPanel, Tabs } from '@cogoport/components';
 import React, { useState } from 'react';
 
 import BankDetails from '../BankDetails';
-import BankVerification from '../BankDetails/components/BankVerification';
 
 import Agreement from './Agreement';
 import CompanyDocuments from './CompanyDocuments';

@@ -10,10 +10,10 @@ import { getAddFundingRequestControls } from
 	'@/ui/page-components/export-factoring/configurations/getAddFundingRequestControls';
 import useSubmitFundingRequestDetails from '@/ui/page-components/export-factoring/hooks/useSubmitFundingRequestDetails';
 
-function AddFundingRequest({ 
-	openAddFundingRequest, 
-	setOpenFundingRequest, 
-	getCreditRequestResponse = {} ,
+function AddFundingRequest({
+	openAddFundingRequest,
+	setOpenFundingRequest,
+	creditRequest = {},
 	refetchList,
 }) {
 	const {
@@ -22,7 +22,7 @@ function AddFundingRequest({
 		onSubmit,
 		loading,
 	} = useSubmitFundingRequestDetails({
-		creditRequest: getCreditRequestResponse,
+		creditRequest,
 		setOpenFundingRequest,
 		refetchList,
 	});
@@ -34,7 +34,7 @@ function AddFundingRequest({
 		value : x?.id,
 	}));
 
-	const bankDetailsOptions = getCreditRequestResponse?.exporter_account_infos
+	const bankDetailsOptions = creditRequest?.exporter_account_infos
 		?.filter((x) => x?.approval_status === 'VERIFIED')
 		.map((y) => ({
 			label: (
@@ -58,6 +58,7 @@ function AddFundingRequest({
 
 	const fundingRequestControls = getAddFundingRequestControls({
 		buyerOptions,
+		creditRequest,
 		bankDetailsOptions,
 	});
 

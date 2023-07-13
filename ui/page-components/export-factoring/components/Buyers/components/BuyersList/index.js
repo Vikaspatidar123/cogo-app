@@ -23,6 +23,7 @@ const titleInfo = ({ company_name, buyer_approval_status }) => (
 );
 
 function BuyersList({
+	refetch,
 	buyers = {},
 	index,
 	getCreditRequestResponse = {},
@@ -145,6 +146,7 @@ function BuyersList({
 			</Accordion>
 			{openAddPoc && (
 				<AddPocModal
+					refetch={refetch}
 					openAddPoc={openAddPoc}
 					setOpenAddPoc={setOpenAddPoc}
 					buyers={buyers}

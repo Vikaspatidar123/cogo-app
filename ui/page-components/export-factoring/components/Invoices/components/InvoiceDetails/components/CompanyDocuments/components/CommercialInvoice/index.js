@@ -13,6 +13,7 @@ function CommercialInvoice({
 	setOpenDocsModal,
 	data = {},
 	refetch,
+	creditRequest,
 }) {
 	const { overall_document_status = {}, document_url = '', status = '' } = data;
 	const { commercial_invoice = '' } = overall_document_status || {};
@@ -26,6 +27,7 @@ function CommercialInvoice({
 	const { loading, onCIDocSubmit } = useSubmitCiDocsDetails({
 		setOpenDocsModal,
 		openDocsModal,
+		creditRequest,
 		refetch,
 		data,
 	});
@@ -42,11 +44,12 @@ function CommercialInvoice({
 					<AddEditCiInfo
 						data={data}
 						refetch={refetch}
+						creditRequest={creditRequest}
 						showCiForm={showCiForm}
 						setShowCiForm={setShowCiForm}
 					/>
 				)
-					: (<CiDetailsInfo data={data} refetch={refetch} />)}
+					: (<CiDetailsInfo data={data} creditRequest={creditRequest} refetch={refetch} />)}
 			</Modal.Body>
 			{shouldDisplaySubmitButton && (
 				<>

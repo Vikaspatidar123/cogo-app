@@ -4,6 +4,7 @@ import { useState } from 'react';
 import CompanyDocuments from './components/CompanyDocuments';
 import FundingRequest from './components/FundingRequest';
 import ExporterSigningDetails from './components/FundingRequest/components/ExporterSigningDetails';
+import FundingSummaryModal from './components/FundingSummaryModal';
 import NoaSigning from './components/NoaSigning';
 import styles from './styles.module.css';
 
@@ -11,7 +12,6 @@ import formatAmount from '@/ui/commons/utils/formatAmount';
 import formatDate from '@/ui/commons/utils/formatDate';
 import StatusTag from '@/ui/page-components/export-factoring/common/StatusTag';
 import useFetchInvoiceDetails from '@/ui/page-components/export-factoring/hooks/useFetchInvoiceDetails';
-import FundingSummaryModal from './components/FundingSummaryModal';
 
 const STATUS_FILTER = [
 	'active',
@@ -28,33 +28,33 @@ const DETAILS_ARRAY = ['company_documents', 'funding_request', 'noa_signing', 'd
 
 const formMapping = {
 	company_documents: {
-		heading: 'Upload documents',
-		subHeading: 'Kindly upload all the documents to generate funding request letter',
-		subChildren: emptyFunction,
-		children: CompanyDocuments,
+		heading     : 'Upload documents',
+		subHeading  : 'Kindly upload all the documents to generate funding request letter',
+		subChildren : emptyFunction,
+		children    : CompanyDocuments,
 	},
 	funding_request: {
-		heading: 'Signing of Funding Request Letter',
-		subHeading: 'Kindly generate the funding request letter to start the invoice processing',
-		subChildren: FundingRequest,
-		children: ExporterSigningDetails,
+		heading     : 'Signing of Funding Request Letter',
+		subHeading  : 'Kindly generate the funding request letter to start the invoice processing',
+		subChildren : FundingRequest,
+		children    : ExporterSigningDetails,
 	},
 	noa_signing: {
-		heading: 'NOA Signing',
-		subHeading: 'NOA Signing is initiated once all the documents are approved',
-		subChildren: emptyFunction,
-		children: NoaSigning,
+		heading     : 'NOA Signing',
+		subHeading  : 'NOA Signing is initiated once all the documents are approved',
+		subChildren : emptyFunction,
+		children    : NoaSigning,
 	},
 	disbursement: {
-		heading: 'Disbursement',
-		subChildren: emptyFunction,
-		children: emptyFunction,
+		heading     : 'Disbursement',
+		subChildren : emptyFunction,
+		children    : emptyFunction,
 	},
 };
 
 function InvoiceDetails({
 	refetchList,
-	// creditRequest = {},
+	creditRequest = {},
 	setShowCiDetails,
 	showCiDetails,
 }) {
@@ -66,6 +66,7 @@ function InvoiceDetails({
 		fetchInvoiceDetails,
 	} = useFetchInvoiceDetails({
 		showCiDetails,
+		creditRequest,
 	});
 
 	const {
@@ -114,12 +115,12 @@ function InvoiceDetails({
 							Invoice Amount
 						</div>
 						{formatAmount({
-							amount: invoice_amount,
+							amount  : invoice_amount,
 							currency,
-							options: {
-								style: 'currency',
-								currencyDisplay: 'code',
-								maximumFractionDigits: 10,
+							options : {
+								style                 : 'currency',
+								currencyDisplay       : 'code',
+								maximumFractionDigits : 10,
 							},
 						})}
 					</div>
@@ -129,8 +130,8 @@ function InvoiceDetails({
 							Date Created
 						</div>
 						{formatDate({
-							date: created_at,
-							formatType: 'date',
+							date       : created_at,
+							formatType : 'date',
 						})}
 
 					</div>
@@ -161,11 +162,19 @@ function InvoiceDetails({
 											</div>
 										</div>
 										<div style={{ width: '50%' }}>
-											<SubChildrenComponent data={data} refetch={fetchInvoiceDetails} />
+											<SubChildrenComponent
+												data={data}
+												creditRequest={creditRequest}
+												refetch={fetchInvoiceDetails}
+											/>
 										</div>
 									</div>
 									<div className={styles.mainContent}>
-										<ChildrenComponent data={data} refetch={fetchInvoiceDetails} />
+										<ChildrenComponent
+											data={data}
+											creditRequest={creditRequest}
+											refetch={fetchInvoiceDetails}
+										/>
 									</div>
 								</div>
 							</div>
@@ -177,6 +186,7 @@ function InvoiceDetails({
 			{showFundingSummary && (
 				<FundingSummaryModal
 					data={data}
+					creditRequest={creditRequest}
 					showFundingSummary={showFundingSummary}
 					setShowFundingSummary={setShowFundingSummary}
 				/>

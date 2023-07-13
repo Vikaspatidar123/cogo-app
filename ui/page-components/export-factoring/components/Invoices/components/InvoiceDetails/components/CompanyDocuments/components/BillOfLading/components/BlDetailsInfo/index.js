@@ -7,7 +7,6 @@ import AddEditBlInfo from '../AddEditBlInfo';
 
 import styles from './styles.module.css';
 
-import formatAmount from '@/ui/commons/utils/formatAmount';
 import formatDate from '@/ui/commons/utils/formatDate';
 import PdfViewer from '@/ui/page-components/export-factoring/common/PdfViewer';
 import StatusBox from '@/ui/page-components/export-factoring/common/StatusBox';
@@ -18,6 +17,7 @@ function BlDetailsInfo({
 	data = {},
 	index,
 	refetch,
+	creditRequest,
 }) {
 	const [showEditForm, setShowEditForm] = useState(false);
 	const [showDeleteForm, setShowDeleteForm] = useState(false);
@@ -46,6 +46,7 @@ function BlDetailsInfo({
 		data,
 		doc,
 		refetch,
+		creditRequest,
 		is_deleted 	  : true,
 		showBlForm    : showDeleteForm,
 		setShowBlForm : setShowDeleteForm,
@@ -204,6 +205,7 @@ function BlDetailsInfo({
 						doc={doc}
 						data={data}
 						refetch={refetch}
+						creditRequest={creditRequest}
 						showBlForm={showEditForm}
 						setShowBlForm={setShowEditForm}
 					/>

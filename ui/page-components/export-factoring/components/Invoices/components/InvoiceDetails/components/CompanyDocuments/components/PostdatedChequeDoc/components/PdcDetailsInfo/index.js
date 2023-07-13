@@ -13,6 +13,7 @@ function PdcDetailsInfo({
 	data = {},
 	refetch,
 	doc = {},
+	creditRequest,
 }) {
 	const [showEditForm, setShowEditForm] = useState(false);
 
@@ -34,46 +35,34 @@ function PdcDetailsInfo({
 			</div>
 			<div className={styles.mainContainer}>
 				{!showEditForm ? (
-					<>
-						<div className={styles.topContainer}>
-							<Tooltip
-								content={<PdfViewer url={document_url} width="100%" />}
-								placement="right"
-								theme="light"
-								interactive
-							>
-								<div className={styles.linkBox}>
-									<IcMPdf height="30px" width="20px" />
-									<div className={styles.mainHead}>Pdc Doc</div>
-								</div>
-							</Tooltip>
-							{(statusTag === 'review_requested' || status === 'active') && (
-								<div
-									className={styles.mainHead}
-									onClick={() => setShowEditForm((pv) => !pv)}
-								>
-									Edit
-								</div>
-							)}
-						</div>
-						{/* <div className={styles.detailsContainer}>
-							<div className={styles.dataDiv}>
-								<div className={styles.labelText}>
-									CI No
-								</div>
-								<div className={styles.valueText}>
-									{invoice_number}
-								</div>
+					<div className={styles.topContainer}>
+						<Tooltip
+							content={<PdfViewer url={document_url} width="100%" />}
+							placement="right"
+							theme="light"
+							interactive
+						>
+							<div className={styles.linkBox}>
+								<IcMPdf height="30px" width="20px" />
+								<div className={styles.mainHead}>Pdc Doc</div>
 							</div>
-
-						</div> */}
-					</>
+						</Tooltip>
+						{(statusTag === 'review_requested' || status === 'active') && (
+							<div
+								className={styles.mainHead}
+								onClick={() => setShowEditForm((pv) => !pv)}
+							>
+								Edit
+							</div>
+						)}
+					</div>
 
 				) : (
 					<AddEditPdcInfo
 						doc={doc}
 						data={data}
 						refetch={refetch}
+						creditRequest={creditRequest}
 						showPdcForm={showEditForm}
 						setShowPdcForm={setShowEditForm}
 					/>

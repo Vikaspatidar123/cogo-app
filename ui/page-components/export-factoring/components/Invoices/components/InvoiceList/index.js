@@ -46,14 +46,10 @@ function InvoiceList({
 						key={ci.id}
 						sid={sid}
 						invoices={ci}
-						// creditRequest={creditRequest}
+						creditRequest={creditRequest}
 						setShowCiDetails={setShowCiDetails}
 					/>
 				))}
-
-				{/* {[...Array(5).keys()].map((x) => (
-					<CommercialInvoiceList key={x} setShowCiDetails={setShowCiDetails} />
-				))} */}
 			</div>
 			{openAddInvoice && (
 				<AddCommercialInvoice

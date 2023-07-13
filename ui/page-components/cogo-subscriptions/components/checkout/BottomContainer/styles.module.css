@@ -1,0 +1,16 @@
+.bottom_container {
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	padding: 23px 0;
+	margin: 0 auto;
+	text-align: center;
+	background: #fffce6;
+
+	@media (min-width: 767px) {
+		border-top-left-radius: 95% 195%;
+		border-top-right-radius: 95% 195%;
+	}
+}

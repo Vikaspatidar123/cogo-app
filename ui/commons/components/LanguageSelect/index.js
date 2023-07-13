@@ -1,4 +1,5 @@
 import { Popover } from '@cogoport/components';
+import { IcMArrowDown } from '@cogoport/icons-react';
 import { isEmpty } from '@cogoport/utils';
 import { useEffect, useState } from 'react';
 
@@ -51,6 +52,7 @@ function LanguageSelect() {
 							alt="globe"
 						/>
 						<div className={styles.selected_lang}>{label}</div>
+						<div className={styles.arrow}><IcMArrowDown /></div>
 					</div>
 				</div>
 			</Popover>

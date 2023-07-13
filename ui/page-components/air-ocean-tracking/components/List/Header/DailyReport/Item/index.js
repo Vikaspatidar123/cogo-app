@@ -38,7 +38,7 @@ const Item = ({ data = {}, loading: listLoading = false, setStatusModal }) => {
 			stepper : key,
 		});
 	};
-	const newFunction = itemFunction({ status, statusChangeHandler, loading, editHandler });
+	const newFunction = itemFunction({ status, statusChangeHandler, loading, editHandler, t });
 
 	return (
 		dailyStatusConfig.map((config) => (

@@ -25,7 +25,7 @@ const useShareTracker = ({ id }) => {
 				},
 			});
 		} catch (err) {
-			console.log(err);
+			console.error(err);
 		}
 	};
 
@@ -41,7 +41,7 @@ const useShareTracker = ({ id }) => {
 			});
 			getShareListData();
 		} catch (err) {
-			console.log(err);
+			console.error(err);
 		}
 	};
 

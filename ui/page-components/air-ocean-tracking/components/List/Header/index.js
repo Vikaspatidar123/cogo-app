@@ -5,7 +5,7 @@ import { IcMArrowBack } from '@cogoport/icons-react';
 import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
 
-import { TAB_MAPPING, VIEW_MAPPING } from '../../../constant/tabMapping';
+import { getTabMapping, getViewMapping } from '../../../constant/tabMapping';
 import useExportData from '../../../hooks/useExportData';
 import useGetDsrList from '../../../hooks/useGetDsrList';
 import useRedirectFn from '../../../hooks/useRedirectFn';
@@ -22,6 +22,11 @@ function Header(props) {
 	const { t } = useTranslation(['common', 'airOceanTracking']);
 
 	const { query } = useRouter();
+
+	const TAB_MAPPING = getTabMapping({ t });
+
+	const VIEW_MAPPING = getViewMapping({ t });
+
 	const [showConfigure, setShowConfigure] = useState(false);
 
 	const { isArchived = false } = query || {};

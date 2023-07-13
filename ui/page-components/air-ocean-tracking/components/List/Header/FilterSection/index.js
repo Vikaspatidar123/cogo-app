@@ -2,7 +2,7 @@ import { cl, Popover, Button, Select, Input } from '@cogoport/components';
 import { IcMSearchlight } from '@cogoport/icons-react';
 import { useTranslation } from 'next-i18next';
 
-import STATS_MAPPING from '../../../../constant/statsMapping';
+import getStatsMapping from '../../../../constant/statsMapping';
 
 import FilterContent from './FilterContent';
 import styles from './styles.module.css';
@@ -14,6 +14,8 @@ function FilterSection({
 	const { inputValue, selectValue } = filter;
 
 	const { t } = useTranslation(['common', 'airOceanTracking']);
+
+	const STATS_MAPPING = getStatsMapping({ t });
 
 	return (
 		<div className={cl`${styles.flex_box} ${styles.filter_section}`}>

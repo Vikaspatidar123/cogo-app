@@ -1,12 +1,14 @@
 import { cl } from '@cogoport/components';
 import { useTranslation } from 'next-i18next';
 
-import GET_MAPPING from '../../constant/card';
+import getMappingObject from '../../constant/card';
 
 import styles from './styles.module.css';
 
 function CardInfo({ activeTab, type = '', input, referenceNo = '', serialId = '' }) {
 	const { t } = useTranslation(['common', 'airOceanTracking']);
+
+	const GET_MAPPING = getMappingObject({ t });
 
 	const { CARD_TITLE } = GET_MAPPING?.[activeTab] || {};
 

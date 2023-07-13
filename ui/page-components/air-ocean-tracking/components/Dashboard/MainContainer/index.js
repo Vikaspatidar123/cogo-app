@@ -2,7 +2,7 @@ import { cl, Tabs, TabPanel, Select, Button } from '@cogoport/components';
 import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
 
-import { TAB_MAPPING, DASHBOARD_VIEW_MAPPING } from '../../../constant/tabMapping';
+import { getTabMapping, DASHBOARD_VIEW_MAPPING } from '../../../constant/tabMapping';
 import useGetSummary from '../../../hooks/useGetSummary';
 import useRedirectFn from '../../../hooks/useRedirectFn';
 
@@ -16,6 +16,9 @@ const selectOpt = [
 
 function MainContainer() {
 	const { t } = useTranslation(['common', 'airOceanTracking']);
+
+	const TAB_MAPPING = getTabMapping({ t });
+
 	const [view, setView] = useState('list');
 	const { redirectToList } = useRedirectFn();
 	const summaryHook = useGetSummary();

@@ -1,5 +1,6 @@
 import { cl } from '@cogoport/components';
 import Image from 'next/image';
+import { useTranslation } from 'next-i18next';
 
 import { DEFAULT_STATUS } from '../../../../constant/card';
 import { getMilestone } from '../../../../utils/getMilestone';
@@ -11,7 +12,9 @@ function Stepper({ activeTab, currentMilestone = {}, lineInfo = {}, airCargoDeta
 	const { container_status = {} } = currentMilestone || {};
 	const { bool_status = DEFAULT_STATUS?.[activeTab] } = container_status || {};
 
-	const MILESTONE_MAPPING = getMilestone({ airCargoDetails });
+	const { t } = useTranslation(['common', 'airOceanTracking']);
+
+	const MILESTONE_MAPPING = getMilestone({ airCargoDetails, t });
 
 	return (
 		<div className={styles.container}>

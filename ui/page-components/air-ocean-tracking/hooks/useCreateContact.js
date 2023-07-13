@@ -1,4 +1,5 @@
 import { Toast } from '@cogoport/components';
+import { useTranslation } from 'next-i18next';
 
 import { useForm } from '@/packages/forms';
 import { useRequest } from '@/packages/request';
@@ -10,6 +11,8 @@ const CREATE_CONTACT_URL = {
 };
 
 const useCreateContact = ({ setAddContact, fetchContactList = () => {}, activeTab = 'ocean' }) => {
+	const { t } = useTranslation(['common', 'airOceanTracking']);
+
 	const { orgId, branchId } = useSelector((state) => ({
 		orgId    : state.profile.organization.id,
 		branchId : state.general.query.branch_id,
@@ -38,12 +41,12 @@ const useCreateContact = ({ setAddContact, fetchContactList = () => {}, activeTa
 				},
 			});
 			if (src === 'contactModal') {
-				Toast.success('Successfully Created Contact');
+				Toast.success(t('airOceanTracking:tracking_succesfully_created_contact_toast'));
 				fetchContactList();
 				closeHandler();
 			}
 		} catch (err) {
-			console.log(err);
+			console.error(err);
 		}
 	};
 

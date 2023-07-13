@@ -1,8 +1,9 @@
 import { cl, Tooltip } from '@cogoport/components';
 import { IcMInfo } from '@cogoport/icons-react';
 import Image from 'next/image';
+import { useTranslation } from 'react-i18next';
 
-import GET_MAPPING from '../../../../../constant/card';
+import getMappingObject from '../../../../../constant/card';
 
 import styles from './styles.module.css';
 
@@ -25,7 +26,13 @@ const getIconUrl = ({ mapping, type, transportMode }) => {
 function Card({ combineList = [], trackingType = 'ocean' }) {
 	const { location = '', station = '', transport_mode = 'VESSEL' } = combineList?.[0] || {};
 	const combineListLength = combineList.length;
+
+	const { t } = useTranslation(['common', 'airOceanTracking']);
+
+	const GET_MAPPING = getMappingObject({ t });
+
 	const { MILESTONE_ICON } = GET_MAPPING[trackingType];
+
 	const url = getIconUrl({ mapping: MILESTONE_ICON, type: trackingType, transportMode: transport_mode });
 
 	return (

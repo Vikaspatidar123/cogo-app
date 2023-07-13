@@ -4,7 +4,7 @@ import { startCase } from '@cogoport/utils';
 import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
 
-import GET_MAPPING from '../../../../../../constant/card';
+import getMappingObject from '../../../../../../constant/card';
 import useCreateAlert from '../../../../../../hooks/useCreateAlert';
 
 import CheckBoxCol from './CheckBoxCol';
@@ -26,6 +26,8 @@ function AddAlert({
 	setSelectContactList, activeTab = 'ocean',
 }) {
 	const { t } = useTranslation(['common', 'airOceanTracking']);
+
+	const GET_MAPPING = getMappingObject({ t });
 
 	const [tableValue, setTableValue] = useState({
 		shipper   : [],

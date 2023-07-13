@@ -3,7 +3,7 @@ import { IcMDelete } from '@cogoport/icons-react';
 import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
 
-import GET_MAPPING from '../../constant/card';
+import getMappingObject from '../../constant/card';
 import ArchiveDelete from '../ArchiveDelete';
 
 import styles from './styles.module.css';
@@ -12,6 +12,8 @@ function EmptyCard({ activeTab = '', type = '', input = '', shipmentId = '', ref
 	const { t } = useTranslation(['common', 'airOceanTracking']);
 
 	const [openModal, setOpenModal] = useState(false);
+
+	const GET_MAPPING = getMappingObject({ t });
 
 	const { CARD_TITLE, EMPTY_STATE_INFO } = GET_MAPPING?.[activeTab] || {};
 

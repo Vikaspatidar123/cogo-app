@@ -2,10 +2,11 @@ import { Select, cl, Pill } from '@cogoport/components';
 import { isEmpty, startCase } from '@cogoport/utils';
 import Image from 'next/image';
 import React, { useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import styles from './styles.module.css';
 
-import GET_MAPPING from '@/ui/page-components/air-ocean-tracking/constant/card';
+import getMappingObject from '@/ui/page-components/air-ocean-tracking/constant/card';
 
 const getOptions = ({ containerDetails = [] }) => containerDetails.map((item) => ({
 	label : item?.container_no,
@@ -22,6 +23,10 @@ function InfoContainer({
 	shipmentInfo = {}, trackingType, poc_details = [], airwayBillNo = '',
 }) {
 	const { container_no = '', container_length = '', container_description = '' } = currContainerDetails || {};
+
+	const { t } = useTranslation(['common', 'airOceanTracking']);
+
+	const GET_MAPPING = getMappingObject({ t });
 
 	const MAPPING = GET_MAPPING[trackingType];
 	const { CARD_TITLE, SHIPMENT_TITLE, SHIPMENT_INFO } = MAPPING;

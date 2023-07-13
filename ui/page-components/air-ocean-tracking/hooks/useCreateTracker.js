@@ -66,7 +66,7 @@ const useCreateTracker = ({ operatorData }) => {
 				},
 			});
 		} catch (err) {
-			console.log(err);
+			console.error(err);
 		}
 	}, [payloadKey, trigger]);
 
@@ -81,7 +81,7 @@ const useCreateTracker = ({ operatorData }) => {
 			const { id } = res?.data || {};
 			redirectToTracker({ type: trackingType, id, isFirst: true });
 		} catch (err) {
-			console.log(err, 'err');
+			console.error(err, 'err');
 		}
 	};
 

@@ -137,7 +137,7 @@ function Usage({ pendingModal, setPendingModal }) {
 													)
 														&& !is_unlimited
 														&& styles.warn
-													} ${styles.count_container}`}
+														} ${styles.count_container}`}
 												>
 													<RenderCount
 														count={left_quota}
@@ -178,7 +178,7 @@ function Usage({ pendingModal, setPendingModal }) {
 									{(!is_unlimited && calculatePercentage(left_quota, addon_quota, total_quota)) ? (
 										<div className={styles.warning}>
 											<IcMError fill="#DB4634" width={13} height={13} />
-											<div className="txt">
+											<div className={styles.txt}>
 												{t('subscriptions:only_text')}
 												{+left_quota + +addon_quota}
 												{t('subscriptions:reminder_message')}

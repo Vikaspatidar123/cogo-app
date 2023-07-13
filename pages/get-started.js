@@ -1,1 +1,14 @@
-export { default } from '@/ui/page-components/get-started';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+
+import GetStarted from '@/ui/page-components/get-started';
+
+export async function getServerSideProps({ locale }) {
+	return {
+		props: {
+			...(await serverSideTranslations(locale, ['common', 'getStarted'])),
+
+		},
+	};
+}
+
+export default GetStarted;

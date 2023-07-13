@@ -3,6 +3,7 @@ import {
 	IcMWasteScrap,
 	IcMEdit,
 } from '@cogoport/icons-react';
+import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
 
 import usePutArchiveUnarchiveStatus from '../../../../../hooks/usePutArchiveUnarchiveStatus';
@@ -18,10 +19,10 @@ function Popover({
 	setShowModal,
 	setTradePartyDetails,
 	setIsEdit,
-
 	archived,
 	getList,
 }) {
+	const { t } = useTranslation(['common', 'tradePartner']);
 	const [deleteModal, setDeleteModal] = useState(false);
 	const [archive, setArchive] = useState(false);
 	const { tradePartyStatus } = usePutArchiveUnarchiveStatus({
@@ -47,7 +48,7 @@ function Popover({
 					}}
 				>
 					<IcMEdit className={styles.icon} />
-					<div className={styles.label}>Edit</div>
+					<div className={styles.label}>{t('tradePartner:item_popover_text_1')}</div>
 				</div>
 			)}
 			<div
@@ -57,7 +58,7 @@ function Popover({
 			>
 				<IcMEnquiriesReceived className={styles.icon} />
 				<div className={styles.label}>
-					{!archived ? 'Archive' : 'Unarchive'}
+					{!archived ? t('tradePartner:archive_modal_text_2') : t('tradePartner:archive_modal_text_3')}
 				</div>
 			</div>
 			{!archived && itemData?.totalQuotes <= 0 && (
@@ -67,7 +68,7 @@ function Popover({
 					onClick={() => setDeleteModal(true)}
 				>
 					<IcMWasteScrap className={styles.icon} />
-					<div className={styles.label}>Delete</div>
+					<div className={styles.label}>{t('tradePartner:item_popover_text_2')}</div>
 				</div>
 			)}
 			{deleteModal && (

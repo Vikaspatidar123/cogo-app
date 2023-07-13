@@ -39,3 +39,7 @@
 		transition: 0.2s;
 	}
 }
+
+.arrow {
+	margin: 5px 0 0 2px;
+}

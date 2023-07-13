@@ -5,7 +5,7 @@ import TradePartner from '@/ui/page-components/trade-partner/components/Tradepar
 export async function getServerSideProps({ locale }) {
 	return {
 		props: {
-			...(await serverSideTranslations(locale, ['common'])),
+			...(await serverSideTranslations(locale, ['common', 'tradePartner'])),
 
 		},
 	};

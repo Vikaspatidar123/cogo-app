@@ -1,4 +1,5 @@
 import { Button, Popover, Input, Modal } from '@cogoport/components';
+import { useTranslation } from 'next-i18next';
 import { useState, useEffect } from 'react';
 
 import useVerifyHscode from '../../../hooks/useVerifyHsCode';
@@ -47,10 +48,12 @@ function ValidateHsModal({
 	prevHs = '',
 	setPrevHs = () => {},
 	validateSubmitHandler,
+	getDraftFn,
 	draftLoading = false,
 	transportDetails = {},
 	isQuotaLeft = true,
 }) {
+	const { t } = useTranslation(['common', 'importExportDoc']);
 	const [status, setStatus] = useState(false);
 	const [isValidated, setIsValidated] = useState(false);
 	const [validateInProgress, setValidateInProgress] = useState(false);
@@ -67,6 +70,7 @@ function ValidateHsModal({
 		setStatus,
 		setShow,
 		setValidateInProgress,
+		getDraftFn,
 	});
 
 	useEffect(() => {
@@ -109,7 +113,7 @@ function ValidateHsModal({
 						visible={validateInProgress && inputValue.length > 0}
 					>
 						<div>
-							<p>HS Code</p>
+							<p>{t('importExportDoc:validate_modal_label')}</p>
 							<Input value={hsCode} className={styles.hs_input} disabled />
 						</div>
 					</Popover>
@@ -121,12 +125,12 @@ function ValidateHsModal({
 								disabled={validateInProgress}
 								className={styles.btn_color}
 							>
-								Validate
+								{t('importExportDoc:validate_modal_validate')}
 							</Button>
 						) : (
 							<div className={styles.valid}>
 								<img src={iconUrl.validate} alt="validated" className={styles.validate_svg} />
-								<div className={styles.validate}> Validated</div>
+								<div className={styles.validate}>{t('importExportDoc:validate_modal_validated')}</div>
 							</div>
 						)}
 					</div>
@@ -139,7 +143,7 @@ function ValidateHsModal({
 					onClick={handleSubmit(validateSubmitHandler)}
 					loading={draftLoading}
 				>
-					Continue
+					{t('common:continue')}
 				</Button>
 			</div>
 		</Modal>

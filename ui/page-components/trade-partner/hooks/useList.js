@@ -35,7 +35,7 @@ const useList = ({ activeTab, archived = false, sort }) => {
 			});
 			setDataApi(resp?.data);
 		} catch (error) {
-			console.log(error);
+			console.error(error);
 		}
 	};
 	useEffect(() => {

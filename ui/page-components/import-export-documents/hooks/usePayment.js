@@ -18,10 +18,11 @@ const usePayment = ({ hsCode = '', address = {} }) => {
 	const { id, name, email, mobile_number, mobile_country_code } = profile || {};
 	const { org_id = '', branch_id = '', trade_engine_id } = query || {};
 
-	// eslint-disable-next-line max-len
-	const callBackUrl1 = `${process.env.NEXT_PUBLIC_APP_URL}/${org_id}/${branch_id}/saas/premium-services/import-export-doc`;
-	// eslint-disable-next-line max-len
-	const callBackUrl2 = `${process.env.NEXT_PUBLIC_APP_URL}/${org_id}/${branch_id}/saas/premium-services/import-export-doc/${trade_engine_id}/result`;
+	const callBackUrl1 = `${process.env.NEXT_PUBLIC_APP_URL}/${org_id}/${branch_id}`
+		+ '/saas/premium-services/import-export-doc';
+
+	const callBackUrl2 = `${process.env.NEXT_PUBLIC_APP_URL}/${org_id}/${branch_id}`
+		+ `/saas/premium-services/import-export-doc/${trade_engine_id}/result`;
 
 	const [buttonLoading, setButtonLoading] = useState(false);
 	const [modal, setModal] = useState({});

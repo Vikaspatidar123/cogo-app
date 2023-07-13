@@ -19,13 +19,19 @@ function HsCodeWarning({ setShowPendingModal, withHsHandler, handleSubmit }) {
 				{t('importExportDoc:hscode_subtitle')}
 			</div>
 			<div className={styles.btn_container}>
-				<Button size="sm" themeType="secondary" onClick={() => setShowPendingModal(false)}>
+				<Button
+					size="sm"
+					themeType="secondary"
+					type="button"
+					onClick={() => setShowPendingModal(false)}
+				>
 					{t('common:close')}
 				</Button>
 				<Button
 					className={styles.submit_btn}
 					themeType="accent"
 					size="sm"
+					type="button"
 					onClick={handleSubmit(withHsHandler)}
 				>
 					{t('common:proceed')}
@@ -40,8 +46,8 @@ function PendingModal({
 	setShowPendingModal,
 	stop,
 	watchHsCode = '',
-	withHsHandler = () => {},
-	handleSubmit = () => {},
+	withHsHandler = () => { },
+	handleSubmit = () => { },
 }) {
 	const { query } = useRouter();
 	const { org_id = '', branch_id = '' } = query || {};
@@ -49,8 +55,8 @@ function PendingModal({
 	const { t } = useTranslation(['common', 'importExportDoc']);
 
 	const closeModalHandler = () => {
-		// eslint-disable-next-line max-len
-		const redirectUrl = `${process.env.NEXT_PUBLIC_APP_URL}${org_id}/${branch_id}/saas/premium-services/import-export-doc`;
+		const redirectUrl = `${process.env.NEXT_PUBLIC_APP_URL}${org_id}/${branch_id}`
+			+ '/saas/premium-services/import-export-doc';
 		window.open(redirectUrl, '_self');
 		setShowPendingModal(false);
 	};

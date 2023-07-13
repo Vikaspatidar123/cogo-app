@@ -1,5 +1,5 @@
 import { RadioGroup, Button, Tooltip } from '@cogoport/components';
-import { IcMEyeopen, IcMInfo, IcMPdf } from '@cogoport/icons-react';
+import { IcMInfo, IcMPdf } from '@cogoport/icons-react';
 import { isEmpty, startCase } from '@cogoport/utils';
 import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
@@ -58,7 +58,7 @@ function BankVerification({ refetch, setAddBankModal = () => { }, getCreditReque
 	const [accountType, setAccountType] = useState(account_type);
 	const addBankControls = getAddBankControls({ accountType });
 	const {
-		control, watch, setValue, handleSubmit, formState: { errors },
+		control, setValue, handleSubmit, formState: { errors },
 	} = useForm();
 
 	useEffect(() => {

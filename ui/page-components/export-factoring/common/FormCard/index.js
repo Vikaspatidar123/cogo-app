@@ -12,7 +12,7 @@ function FormCard(props) {
 	return (
 		<div className={styles.container}>
 			{(componentMapping.map(({ title, description, Component, leftChildern }) => (
-				<div className={styles.flex_div}>
+				<div className={styles.flex_div} key={title}>
 					<div>
 						<div className={styles.title}>
 							{title}

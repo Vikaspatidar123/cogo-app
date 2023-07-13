@@ -1,5 +1,6 @@
 import styles from './styles.module.css';
 
+import { Image } from '@/packages/next';
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 import FilePreview from '@/ui/page-components/export-factoring/common/FilePreview';
 
@@ -14,7 +15,7 @@ function ESignTracking({ getCreditRequestResponse = {} }) {
 	return (
 		<div className={styles.container}>
 			<div className={styles.image}>
-				<img
+				<Image
 					src={GLOBAL_CONSTANTS.image_url.edit_image}
 					width={234}
 					height={234}
@@ -36,7 +37,6 @@ function ESignTracking({ getCreditRequestResponse = {} }) {
 					finance dashboard once the agreement is signed by all.
 				</div>
 				<div className={styles.preview}>
-					{/* <DocumentPreview getCreditRequestResponse={getCreditRequestResponse} /> */}
 					<FilePreview name="Document Preview" url={sample_exportfactoring_agreement} />
 					<FilePreview name="Offer Letter Preview" url={active.document_url} />
 				</div>

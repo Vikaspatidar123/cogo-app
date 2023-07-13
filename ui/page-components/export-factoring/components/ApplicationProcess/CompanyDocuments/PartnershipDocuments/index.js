@@ -1,9 +1,9 @@
 import { Button } from '@cogoport/components';
 import React, { useCallback, useEffect, useMemo } from 'react';
-import { useForm } from 'react-hook-form';
 
 import styles from './styles.module.css';
 
+import { useForm } from '@/packages/forms';
 import getField from '@/packages/forms/Controlled';
 import FilePreview from '@/ui/page-components/export-factoring/common/FilePreview';
 import useSubmitAgreement from '@/ui/page-components/export-factoring/hooks/useSubmitAgreement';
@@ -69,6 +69,7 @@ function PartnershipDocuments({
 					loading={loading}
 					disabled={loading
 					|| documentation === 'approval_pending'}
+					type="button"
 				>
 					Submit
 				</Button>

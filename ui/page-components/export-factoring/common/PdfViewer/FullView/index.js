@@ -20,16 +20,14 @@ function FullView({ url, containerStyle = {} }) {
 				onClick={() => openDocument()}
 				size="sm"
 				themeType="accent"
-				// style={{
-				// 	background   : '#ffffff',
-				// 	width        : '70%',
-				// 	borderRadius : 4,
-				// }}
+				type="button"
 			>
 				<div className={styles.flexDiv}>
 					Preview
 					<IcMEyeopen
-						style={{ marginLeft: '4px', width: '20px', height: '20px' }}
+						width={20}
+						height={20}
+						style={{ marginLeft: '4px' }}
 					/>
 				</div>
 			</Button>

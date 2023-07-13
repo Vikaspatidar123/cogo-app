@@ -10,6 +10,13 @@ import getField from '@/packages/forms/Controlled';
 import { getSignControls } from '@/ui/page-components/export-factoring/configurations/signatoryControls';
 import useUpdateCreditApplication from '@/ui/page-components/export-factoring/hooks/useUpdateCreditApplication';
 
+const getOptionsForSignatories = (value) => value.map((item) => ({
+	...item,
+	label : item.name,
+	value : item.name,
+	id    : item.id,
+}));
+
 function Signatory({
 	getCreditRequestResponse = {},
 	method = '',
@@ -29,13 +36,6 @@ function Signatory({
 	} = useForm();
 
 	const { directors = [] } = getCreditRequestResponse || {};
-
-	const getOptionsForSignatories = () => directors.map((item) => ({
-		...item,
-		label : item.name,
-		value : item.name,
-		id    : item.id,
-	}));
 
 	const submitSignatoryDetails = async (values) => {
 		const payload = {
@@ -66,6 +66,7 @@ function Signatory({
 		getOptionsForSignatories,
 		watch,
 		setSelectedSignatory,
+		directors,
 	});
 
 	const signatoryValue = !!watch('signatory');
@@ -112,6 +113,7 @@ function Signatory({
 								onClick={handleSubmit(submitSignatoryDetails)}
 								loading={updateLoading}
 								disabled={updateLoading}
+								type="button"
 
 							>
 								<IcMTick />

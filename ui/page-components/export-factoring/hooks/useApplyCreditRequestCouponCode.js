@@ -20,7 +20,7 @@ const useApplyCreditRequestCouponCode = ({ getCreditRequestResponse = {}, refetc
 		try {
 			const res = await trigger({
 				data: {
-					credit_id                           : getCreditRequestResponse?.id,
+					credit_id                           : getCreditRequestResponse?.credit_id,
 					export_factoring_service_attributes : {
 						platform: 'app',
 					},

@@ -1,3 +1,4 @@
+import { isEmpty } from '@cogoport/utils';
 import React, { useState } from 'react';
 
 import FormCard from '../../../common/FormCard';
@@ -9,11 +10,12 @@ import SignatoryMethod from './SignatoryMethod';
 import styles from './styles.module.css';
 
 function Agreement({ getCreditRequestResponse, refetch, loading, active }) {
-	const { signatories = [] } = getCreditRequestResponse;
+	const { signatories = [], is_sign_mode_digital = false } = getCreditRequestResponse;
 	const { flags = {} } = getCreditRequestResponse;
 	const { signing_authorities = '' } = flags;
-	const [method, setMethod] = useState('digital');
-	const mappingComponent = 	signatories.length > 0 ? [{
+	const mode = (!is_sign_mode_digital ? 'physical' : 'digital');
+	const [method, setMethod] = useState(mode);
+	const mappingComponent = 	!isEmpty(signatories) ? [{
 		title       : 'Preview Agreement',
 		description : 'Preview of Offer Letter and Rpa ',
 		Component   : AgreementPreview,

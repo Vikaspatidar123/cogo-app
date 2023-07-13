@@ -22,8 +22,6 @@ const titleInfo = ({ index, approval_status }) => (
 function BankInfo({
 	bank = {},
 	index,
-	refetch,
-	getCreditRequestResponse = {},
 }) {
 	const { approval_status = '' } = bank || {};
 	return (

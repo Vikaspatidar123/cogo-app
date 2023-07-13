@@ -1,5 +1,6 @@
 import styles from './styles.module.css';
 
+import { Image } from '@/packages/next';
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
 function SignatoryMethod({ method, setMethod = () => {} }) {
@@ -11,7 +12,7 @@ function SignatoryMethod({ method, setMethod = () => {} }) {
 				onClick={() => setMethod('digital')}
 			>
 				<div>
-					<img
+					<Image
 						src={GLOBAL_CONSTANTS.image_url.signatory_image}
 						alt="online"
 						width={19}
@@ -33,8 +34,8 @@ function SignatoryMethod({ method, setMethod = () => {} }) {
 				onClick={() => setMethod('physical')}
 			>
 				<div>
-					<img
-						src="https://cdn.cogoport.io/cms-prod/cogo_partner/vault/original/Vector_(1).png"
+					<Image
+						src={GLOBAL_CONSTANTS.image_url.signatory_image_2}
 						alt="physical"
 						width={19}
 						height={18}

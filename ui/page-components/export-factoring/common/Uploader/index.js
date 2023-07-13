@@ -27,6 +27,7 @@ function Uploader({ proofUrl = '', setProofUrl = () => { }, show = false, setSho
 			</Modal.Body>
 			<Modal.Footer>
 				<Button
+					type="button"
 					onClick={cancelUpload}
 					themeType="secondary"
 					className={styles.button}

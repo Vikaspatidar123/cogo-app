@@ -190,6 +190,8 @@ const GLOBAL_CONSTANTS = {
 			'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/Banner 1.png',
 		signatory_image:
 			'https://cdn.cogoport.io/cms-prod/cogo_partner/vault/original/Vector.png',
+		signatory_image_2: 'https://cdn.cogoport.io/cms-prod/cogo_partner/vault/original/Vector_(1).png',
+
 		edit_image:
 			'https://cdn.cogoport.io/cms-prod/cogo_partner/vault/original/animation_500_lhvo6uhx1.png',
 		yellow_vessel      : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/shipYellow.png',

@@ -58,8 +58,6 @@ function OptUdcAndPdc({ getCreditRequestResponse, refetch, loading, active }) {
 			Component   : DocInformation,
 		},
 	];
-	console.log(udcCheque, 'aaa');
-
 	return (
 		<div className={styles.container}>
 			<div className={styles.header}>UDC/PDC</div>

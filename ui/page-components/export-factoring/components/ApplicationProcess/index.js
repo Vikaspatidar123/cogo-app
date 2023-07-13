@@ -7,32 +7,43 @@ import Agreement from './Agreement';
 import CompanyDocuments from './CompanyDocuments';
 import OptUdcAndPdc from './OptUdcPdcDocuments';
 
-const tabsPanelMapping = [{
-	name      : 'agreement',
-	title     : 'Agreement',
-	Component : Agreement,
-	status    : 'PENDING',
-}, {
-	name      : 'bankDetails',
-	title     : 'Bank Details',
-	Component : BankDetails,
-	status    : 'PENDING',
-},
-{
-	name      : 'companyDocuments',
-	title     : 'Company Documents',
-	Component : CompanyDocuments,
-	status    : 'PENDING',
-},
-{
-	name      : 'udc&Pdc',
-	title     : 'UDC PDC',
-	Component : OptUdcAndPdc,
-	status    : 'PENDING',
-},
-];
+const tabsPanelMapping = (maximum_org_annual_income) => {
+	const baseTabs = [
+		{
+			name      : 'agreement',
+			title     : 'Agreement',
+			Component : Agreement,
+			status    : 'PENDING',
+		},
+		{
+			name      : 'bankDetails',
+			title     : 'Bank Details',
+			Component : BankDetails,
+			status    : 'PENDING',
+		},
+		{
+			name      : 'companyDocuments',
+			title     : 'Company Documents',
+			Component : CompanyDocuments,
+			status    : 'PENDING',
+		},
+		{
+			name      : 'udc&Pdc',
+			title     : 'UDC PDC',
+			Component : OptUdcAndPdc,
+			status    : 'PENDING',
+		},
+	];
+
+	if (maximum_org_annual_income <= 100) {
+		baseTabs.splice(3, 1);
+	}
+
+	return baseTabs;
+};
 
 function ApplicationProcess({ active = {}, getCreditRequestResponse = {}, refetch = () => {}, loading = false }) {
+	const { maximum_org_annual_income = 0 } = getCreditRequestResponse;
 	const [activeTab, setActiveTab] = useState('agreement');
 	return (
 
@@ -42,7 +53,10 @@ function ApplicationProcess({ active = {}, getCreditRequestResponse = {}, refetc
 				themeType="primary"
 				onChange={setActiveTab}
 			>
-				{tabsPanelMapping.map(({ title = '', Component, status = '', name = '' }) => (
+				{tabsPanelMapping(maximum_org_annual_income).map(({
+					title = '',
+					Component, status = '', name = '',
+				}) => (
 					<TabPanel name={name} title={title} badge={status}>
 						<Component
 							active={active}

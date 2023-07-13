@@ -1,5 +1,6 @@
 import { Radio, Button } from '@cogoport/components';
 import { IcMPlusInCircle } from '@cogoport/icons-react';
+import { isEmpty } from '@cogoport/utils';
 import { useTranslation } from 'next-i18next';
 import { useState, useEffect } from 'react';
 
@@ -53,7 +54,7 @@ function BillingDetails({
 					{t('subscriptions:add_new_text')}
 				</Button>
 			</div>
-			{addressList?.length > 0 ? (
+			{!isEmpty(addressList) ? (
 				<div className={styles.div}>
 					<div className={styles.heading}>
 						{t('subscriptions:select_address_text')}

@@ -7,6 +7,7 @@ import {
 	SET_TIME,
 	PAINTING_TIME,
 	CLOSE_TIME,
+	MAX_API_TRIES,
 } from '../../../../../constants/dimensions';
 import redirectUrl from '../../../../../utils/redirectUrl';
 
@@ -37,7 +38,7 @@ function PendingModal({
 	}, [redirectBalanceHistory, setAddModal, setPendingModal, setRazorLoading]);
 
 	useEffect(() => {
-		if (apiTries > PAINTING_TIME) {
+		if (apiTries > MAX_API_TRIES) {
 			setTimeout(() => {
 				closeModalHandler();
 			}, SET_TIME);

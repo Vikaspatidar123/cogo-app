@@ -2,6 +2,7 @@ import { Placeholder, cl } from '@cogoport/components';
 import { IcMArrowNext } from '@cogoport/icons-react';
 import { isEmpty } from '@cogoport/utils';
 import { useTranslation } from 'next-i18next';
+import React from 'react';
 
 import tableStyles from '../TableHeader/styles.module.css';
 
@@ -12,6 +13,8 @@ import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 import formatDate from '@/ui/commons/utils/formatDate';
 
 const UNLIMITED_VALUE = -1;
+
+const LOADING = [...Array(5).keys()];
 
 const renderUsage = ({ type, value, t }) => {
 	if (type) {
@@ -54,10 +57,10 @@ function TableList({ list = [], loading = false }) {
 		<div>
 
 			{loading
-				? [...Array(5).keys()].map((item) => (
-					<>
-						<div className={cl`${tableStyles.web_view} ${tableStyles.row}`} key={item}>
-							{[...Array(5).keys()].map((ele) => (
+				? LOADING.map((item) => (
+					<React.Fragment key={item}>
+						<div className={cl`${tableStyles.web_view} ${tableStyles.row}`}>
+							{LOADING.map((ele) => (
 								<div className={tableStyles.wd_150} key={ele}>
 									<Placeholder />
 								</div>
@@ -84,7 +87,7 @@ function TableList({ list = [], loading = false }) {
 								</div>
 							</div>
 						</div>
-					</>
+					</React.Fragment>
 				))
 				: (list || []).map(
 					(

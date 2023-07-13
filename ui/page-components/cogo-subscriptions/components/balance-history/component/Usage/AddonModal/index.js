@@ -11,7 +11,8 @@ import { AddonsTitleMapping } from '../../../../../common/UsageIcon';
 import {
 	DEFAULT_DURATION_VALUE,
 	DEFAULT_VALUE,
-	API_COUNT_TIME, START_COUNT,
+	MAX_API_TRIES,
+	START_COUNT,
 	SET_DURATION,
 	MAX_VALUE,
 	MIN_VALUE,
@@ -47,15 +48,22 @@ function AddonModal({
 	setPendingModal,
 }) {
 	const { t } = useTranslation(['subscriptions']);
+
+	const { profile } = useSelector((s) => s);
+
 	const [durationValue, setDurationValue] = useState(DEFAULT_DURATION_VALUE);
+
 	const [plan, setPlan] = useState({});
-	const [checkoutResponse, setCheckoutResponse] = useState();
-	const [completeOrderResponse, setCompleteOrderResponse] = useState();
-	const [stripeModal, setStripeModal] = useState();
+
+	const [checkoutResponse, setCheckoutResponse] = useState({});
+
+	const [completeOrderResponse, setCompleteOrderResponse] = useState({});
+
+	const [stripeModal, setStripeModal] = useState(false);
+
 	const [apiTries, setApiTries] = useState(0);
 	const [paymentStatus, setPaymentStatus] = useState(null);
 
-	const { profile } = useSelector((s) => s);
 	const {
 		product_name = '',
 		currency = GLOBAL_CONSTANTS.currency_code.INR,
@@ -108,13 +116,13 @@ function AddonModal({
 
 	useEffect(() => {
 		(async () => {
-			if (paymentStatus?.status !== 'active' && apiTries < API_COUNT_TIME && pendingModal) {
+			if (paymentStatus?.status !== 'active' && apiTries < MAX_API_TRIES && pendingModal) {
 				const requestData = { saas_checkout_id: checkout_id, gateway: 'stripe' };
 				try {
 					if (apiTries < START_COUNT) setRazorLoading(true);
 					const res = await verifyRazor(requestData);
 					await wait(WAIT_TIME);
-					setApiTries(apiTries + START_COUNT);
+					setApiTries((prev) => prev + START_COUNT);
 					setPaymentStatus(res);
 				} catch (err) {
 					Toast.error(err?.data);

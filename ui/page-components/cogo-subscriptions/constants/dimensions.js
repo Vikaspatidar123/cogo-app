@@ -48,7 +48,7 @@ export const DEFAULT_DURATION_VALUE = 25;
 
 export const DEFAULT_VALUE = 0;
 
-export const API_COUNT_TIME = 10;
+export const MAX_API_TRIES = 10;
 
 export const START_COUNT = 1;
 

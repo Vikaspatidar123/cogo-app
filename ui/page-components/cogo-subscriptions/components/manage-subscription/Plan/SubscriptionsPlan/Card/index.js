@@ -168,24 +168,24 @@ function Card({
 						{prioritySequence > EXPIRE_DAY
 							&& displayPricing?.is_active_plan
 							&& displayPricing?.expires_in !== undefined ? (
-							<div className={styles.date_box}>
-								<Image
-									src={GLOBAL_CONSTANTS.image_url.calendar_image}
-									alt={t('subscriptions:cogo_text')}
-									width={25}
-									height={25}
-								/>
-								<span className={styles.days}>{displayPricing?.expires_in}</span>
-								<span className={styles.date}>
-									{displayPricing?.expires_in === 1 ? t('subscriptions:day_text')
-										: t('subscriptions:days_text')}
-									{' '}
-									{t('subscriptions:expire_text')}
-								</span>
-							</div>
-						) : (
-							<div className={styles.date_space} />
-						)}
+								<div className={styles.date_box}>
+									<Image
+										src={GLOBAL_CONSTANTS.image_url.calendar_image}
+										alt={t('subscriptions:cogo_text')}
+										width={25}
+										height={25}
+									/>
+									<span className={styles.days}>{displayPricing?.expires_in}</span>
+									<span className={styles.date}>
+										{displayPricing?.expires_in === 1 ? t('subscriptions:day_text')
+											: t('subscriptions:days_text')}
+										{' '}
+										{t('subscriptions:expire_text')}
+									</span>
+								</div>
+							) : (
+								<div className={styles.date_space} />
+							)}
 					</div>
 				</div>
 

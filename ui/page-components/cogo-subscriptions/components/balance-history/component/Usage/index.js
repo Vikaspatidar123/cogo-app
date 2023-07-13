@@ -20,8 +20,8 @@ import { Image } from '@/packages/next';
 import { useSelector } from '@/packages/store';
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
-function RenderCount({ count, totalCount, addon, unlimited }) {
-	if (unlimited) return <div className={styles.count}>Unlimited</div>;
+function RenderCount({ count, totalCount, addon, unlimited, t }) {
+	if (unlimited) return <div className={styles.count}>{t('subscriptions:unlimited_text')}</div>;
 	return (
 		<>
 			<div className={styles.count}>
@@ -101,13 +101,13 @@ function Usage({ pendingModal, setPendingModal }) {
 					</div>
 				)}
 
-				{!loading && isEmpty(current_usages?.length) ? (
+				{!loading && isEmpty(current_usages) ? (
 					<div className={styles.empty_state}>{t('subscriptions:no_data_text')}</div>
 				) : null}
 
 				<div className={styles.card_container} ref={scrollRef}>
 					{!loading
-						&& !isEmpty(current_usages?.length)
+						&& !isEmpty(current_usages)
 						&& (current_usages || []).map(
 							({
 								addon_quota = '',
@@ -143,6 +143,7 @@ function Usage({ pendingModal, setPendingModal }) {
 														totalCount={total_quota}
 														addon={addon_quota}
 														unlimited={is_unlimited}
+														t={t}
 													/>
 												</div>
 												<div className={styles.mobile_view}>

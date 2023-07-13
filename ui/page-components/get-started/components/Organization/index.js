@@ -5,14 +5,17 @@ import React from 'react';
 import OrganizationForm from './OrganizationForm';
 import styles from './styles.module.css';
 
+import { useRouter } from '@/packages/next';
 import { useSelector } from '@/packages/store';
 
 function Organization({ setBillingAddressDetails, setOrg, setOrgBranchId }) {
+	const { push } = useRouter();
 	const { t } = useTranslation(['common', 'getStarted']);
 
 	const handleBack = () => {
-		window.location.href = '/';
+		push('/dashboard');
 	};
+
 	const { organizations } = useSelector(({ profile }) => profile);
 	const checkPoint = organizations.length > 0;
 	return (

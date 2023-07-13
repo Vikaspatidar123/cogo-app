@@ -1,9 +1,12 @@
+import { useTranslation } from 'next-i18next';
+
 import styles from '../styles.module.css';
 
 import logout from '@/ui/page-components/authentication/utils/getLogout';
 
 function Logout() {
-	const handleClick = async (e) => {
+	const { t } = useTranslation(['common']);
+	const handleClick = (e) => {
 		e.preventDefault();
 		logout();
 	};
@@ -22,7 +25,8 @@ function Logout() {
 				style={{ color: '#ef9b9b' }}
 				role="presentation"
 			>
-				Logout
+				{t('common:layouts_app_logout')}
+
 			</div>
 		</div>
 	);

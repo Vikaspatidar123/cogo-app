@@ -1,26 +1,26 @@
-const ARCHIVEDTRADEPARTNERLIST = {
+const getArchivedPartnerListConfig = ({ t }) => ({
 	fields: [
 		{
 			key   : 'displayName',
-			label : 'Buyer',
+			label : t('tradePartner:archived_list_config_label_1'),
 		},
 		{
 			key   : 'totalQuotes',
-			label : 'Total Quotation',
+			label : t('tradePartner:archived_list_config_label_2'),
 		},
 
 		{
 			key   : 'expiredQuotes',
-			label : 'Expired Quotation',
+			label : t('tradePartner:archived_list_config_label_3'),
 		},
 		{
 			key   : 'totalAmount',
 			label : 'Total Amount',
-			func  : 'renderAmount',
+			func  : t('tradePartner:archived_list_config_label_4'),
 		},
 		{
 			key   : 'expiredAmount',
-			label : 'Expired Amount',
+			label : t('tradePartner:archived_list_config_label_5'),
 		},
 		{
 			key   : 'dot',
@@ -28,6 +28,6 @@ const ARCHIVEDTRADEPARTNERLIST = {
 			func  : 'renderDots',
 		},
 	],
-};
+});
 
-export default ARCHIVEDTRADEPARTNERLIST;
+export default getArchivedPartnerListConfig;

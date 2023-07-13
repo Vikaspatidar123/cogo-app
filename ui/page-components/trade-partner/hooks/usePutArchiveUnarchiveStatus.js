@@ -11,6 +11,7 @@ const getPayload = ({ itemData, profile }) => ({
 
 const usePutArchiveUnarchiveStatus = ({ archived, getList, setArchive }) => {
 	const { t } = useTranslation(['common', 'tradePartner']);
+
 	const { profile } = useSelector((s) => s);
 
 	const [{ loading }, archivedTrigger] = useRequestBf(

@@ -12,6 +12,18 @@ import { useForm } from '@/packages/forms';
 import getField from '@/packages/forms/Controlled';
 import { useSelector } from '@/packages/store';
 
+const InputController = getField('text');
+const MobileNumberController = getField('mobile_number');
+const CountryController = getField('select');
+const TextController = getField('text');
+
+const buttonRender = ({ edit, t }) => {
+	if (edit) {
+		return t('tradePartner:update_trade_partner_button_label');
+	}
+	return t('tradePartner:create_trade_partner_button_label');
+};
+
 function TradePartnerAddress({
 	showmodal,
 	setShowModal,
@@ -21,6 +33,7 @@ function TradePartnerAddress({
 	setIsEdit,
 }) {
 	const { t } = useTranslation(['common', 'tradePartner']);
+
 	const { postTradePartner, loading } = usePostTradePartner({
 		isEdit,
 		tradePartyDetails,
@@ -50,13 +63,6 @@ function TradePartnerAddress({
 		control,
 	} = useForm();
 
-	const buttonRender = (edit) => {
-		if (edit) {
-			return t('tradePartner:update_trade_partner_button_label');
-		}
-		return t('tradePartner:create_trade_partner_button_label');
-	};
-
 	const handleCloseModal = () => {
 		setShowModal(false);
 	};
@@ -84,11 +90,6 @@ function TradePartnerAddress({
 			handleCloseModal,
 		});
 	};
-
-	const InputController = getField('text');
-	const MobileNumberController = getField('mobile_number');
-	const CountryController = getField('select');
-	const TextController = getField('text');
 
 	return (
 		<Modal show={showmodal} onClose={() => setShowModal(false)} size="md">
@@ -298,7 +299,7 @@ function TradePartnerAddress({
 						{loading ? (
 							<Loader themeType="secondary" />
 						) : (
-							buttonRender(isEdit)
+							buttonRender({ edit: isEdit, t })
 						)}
 					</Button>
 				</div>

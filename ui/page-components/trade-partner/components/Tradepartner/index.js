@@ -28,7 +28,7 @@ function TradePartner() {
 	const { deleteTradeParty, deleteLoading } = useDeleteTradeParty({ getList });
 	const [isEdit, setIsEdit] = useState(false);
 	const [showmodal, setShowModal] = useState(false);
-	const [tradePartyDetails, setTradePartyDetails] = useState();
+	const [tradePartyDetails, setTradePartyDetails] = useState({});
 
 	const TRADE_PARTNER_LIST_CONFIG = getTradePartnerListConfig({ t });
 

@@ -4,7 +4,7 @@ import { getByKey } from '@cogoport/utils';
 import styles from '../components/Tradepartner/styles.module.css';
 
 import data from '@/.data-store/constants/countries.json';
-import patterns from '@/ui/commons/configurations/patterns';
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
 const country = data?.map((item) => ({
 	label: (
@@ -50,7 +50,7 @@ const getControls = ({
 			rules       : {
 				required : t('tradePartner:add_trade_partner_rules_required'),
 				pattern  : {
-					value   : patterns.EMAIL,
+					value   : GLOBAL_CONSTANTS.patterns.EMAIL,
 					message : t('tradePartner:add_trade_partner_control_invalid_email_address'),
 				},
 			},
@@ -69,7 +69,7 @@ const getControls = ({
 			rules       : {
 				required : t('tradePartner:add_trade_partner_rules_required'),
 				pattern  : {
-					value   : patterns.MOBILE,
+					value   : GLOBAL_CONSTANTS.patterns.MOBILE,
 					message : t('tradePartner:add_trade_partner_control_invalid_phone_number'),
 				},
 			},

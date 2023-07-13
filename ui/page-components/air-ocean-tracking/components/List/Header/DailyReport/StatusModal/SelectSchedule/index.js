@@ -1,4 +1,5 @@
 import { Button, cl } from '@cogoport/components';
+import { useTranslation } from 'next-i18next';
 
 import scheduleControls from '../../../../../../configuration/scheduleControls';
 import useDsrSchedule from '../../../../../../hooks/useDsrSchedule';
@@ -16,6 +17,7 @@ function SelectSchedule({
 	closeModalHandler,
 	getDsrList,
 }) {
+	const { t } = useTranslation(['common', 'airOceanTracking']);
 	const { loading, createUpdateSchedule, prevSchedule = '' } = useDsrSchedule({
 		dsrList,
 		selectedContact,
@@ -34,7 +36,7 @@ function SelectSchedule({
 	});
 	const watchFrequency = watch('frequency');
 
-	const controls = scheduleControls({ watchFrequency });
+	const controls = scheduleControls({ watchFrequency, t });
 
 	const onSubmit = (data) => {
 		createUpdateSchedule({ data });
@@ -67,7 +69,7 @@ function SelectSchedule({
 					type="button"
 					onClick={() => setActiveStepper('shipments')}
 				>
-					Back
+					{t('airOceanTracking:back_button_label')}
 				</Button>
 
 				<Button
@@ -77,7 +79,7 @@ function SelectSchedule({
 					loading={loading}
 					type="button"
 				>
-					Save
+					{t('airOceanTracking:save_button_label')}
 				</Button>
 			</div>
 		</div>

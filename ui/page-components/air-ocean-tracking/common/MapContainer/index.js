@@ -11,9 +11,10 @@ import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 const CogoMaps = dynamic(() => import('./MapsComp'), { ssr: false });
 
 function MapContainer({ height = '60vh', data = {}, activeTab }) {
+	const { list } = data || {};
+
 	const [count, setCount] = useState(0);
 
-	const { list } = data || {};
 	const { loading, allRoute } = useGetMapRoute({ trackingInfo: list, type: activeTab });
 
 	useEffect(() => {

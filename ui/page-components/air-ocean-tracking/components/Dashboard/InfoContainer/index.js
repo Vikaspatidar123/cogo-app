@@ -1,5 +1,6 @@
 /* eslint-disable no-underscore-dangle */
 import { Button, cl, Placeholder } from '@cogoport/components';
+import { useTranslation } from 'next-i18next';
 
 import useGetNews from '../../../hooks/useGetNews';
 import useRedirectFn from '../../../hooks/useRedirectFn';
@@ -18,6 +19,8 @@ const newsClickHandler = ({ slugName }) => {
 };
 
 function InfoContainer() {
+	const { t } = useTranslation(['common', 'airOceanTracking']);
+
 	const { loading, data = [] } = useGetNews();
 
 	const { redirectToBlogs } = useRedirectFn();
@@ -28,7 +31,7 @@ function InfoContainer() {
 		<div className={styles.container}>
 
 			<div className={styles.card}>
-				<h3 className={styles.title}>Important News</h3>
+				<h3 className={styles.title}>{t('airOceanTracking:important_news_text')}</h3>
 				{newData.map((news, index) => (
 					<div
 						key={news?._id || news}
@@ -58,7 +61,7 @@ function InfoContainer() {
 									onClick={() => newsClickHandler({ slugName: news?.slug })}
 									type="button"
 								>
-									Click Here
+									{t('airOceanTracking:click_here_href_text')}
 
 								</Button>
 
@@ -66,7 +69,9 @@ function InfoContainer() {
 						)}
 					</div>
 				))}
-				<Button themeType="linkUi" onClick={redirectToBlogs}>Show More</Button>
+				<Button themeType="linkUi" onClick={redirectToBlogs}>
+					{t('airOceanTracking:show_more_button_label')}
+				</Button>
 			</div>
 		</div>
 	);

@@ -1,10 +1,13 @@
 import { cl } from '@cogoport/components';
+import { useTranslation } from 'next-i18next';
 
 import GET_MAPPING from '../../constant/card';
 
 import styles from './styles.module.css';
 
 function CardInfo({ activeTab, type = '', input, referenceNo = '', serialId = '' }) {
+	const { t } = useTranslation(['common', 'airOceanTracking']);
+
 	const { CARD_TITLE } = GET_MAPPING?.[activeTab] || {};
 
 	return (
@@ -28,7 +31,9 @@ function CardInfo({ activeTab, type = '', input, referenceNo = '', serialId = ''
 
 			{serialId &&	(
 				<div className={`${styles.book_cogo_tag}`}>
-					<div className={cl`${styles.tag} ${styles.book_cogo}`}>Booked with Cogoport</div>
+					<div className={cl`${styles.tag} ${styles.book_cogo}`}>
+						{t('airOceanTracking:air_ocean_tracking_card_info_text_1')}
+					</div>
 					<div className={cl`${styles.tag} ${styles.book_cogo}`}>
 						SID:
 						{' '}

@@ -2,54 +2,54 @@ import { IcMEmail, IcMUserAllocations } from '@cogoport/icons-react';
 
 import patterns from '@/ui/commons/configurations/patterns';
 
-const addContactControls = [
+const getAddContactControls = ({ t }) => [
 	{
 		name        : 'name',
 		type        : 'text',
-		label       : 'Name *',
-		placeholder : 'Enter Name',
+		label       : `${t('airOceanTracking:tracking_add_contact_control_label_1')} *`,
+		placeholder : t('airOceanTracking:tracking_add_contact_control_placeholder_1'),
 		prefix      : <IcMUserAllocations />,
 		rules       : {
-			required  : 'Please enter name',
-			maxLength : { value: 16, message: 'Name length should be less than 16' },
+			required  : t('airOceanTracking:tracking_add_contact_control_name_required_text'),
+			maxLength : { value: 16, message: t('airOceanTracking:tracking_add_contact_control_invalid_name_text') },
 		},
 	},
 	{
 		name        : 'email',
-		label       : 'Email *',
+		label       : `${t('airOceanTracking:tracking_add_contact_control_label_2')} *`,
 		type        : 'text',
-		placeholder : 'Enter Email Address',
+		placeholder : t('airOceanTracking:tracking_add_contact_control_placeholder_2'),
 		prefix      : <IcMEmail />,
 		rules       : {
-			required : 'Please enter email',
+			required : t('airOceanTracking:tracking_add_contact_control_email_required_text'),
 			pattern  : {
 				value   : patterns.EMAIL,
-				message : 'Invalid email address',
+				message : t('airOceanTracking:tracking_add_contact_control_invalid_email_text'),
 			},
 		},
 	},
 	{
 		name            : 'mobile_no',
-		label           : 'Mobile No *',
+		label           : `${t('airOceanTracking:tracking_add_contact_control_label_3')} *`,
 		type            : 'mobile_number',
 		isInputGroup    : true,
 		showCountryName : false,
-		placeholder     : 'Enter Mobile No',
+		placeholder     : t('airOceanTracking:tracking_add_contact_control_placeholder_3'),
 		rules           : {
-			required : 'Please enter mobile no',
+			required : t('airOceanTracking:tracking_add_contact_control_mobile_required_text'),
 			pattern  : {
 				value   : patterns.MOBILE,
-				message : 'Invalid mobile number',
+				message : t('airOceanTracking:tracking_add_contact_control_invalid_mobile_text'),
 			},
 		},
 	},
 	{
 		name        : 'company',
-		label       : 'Company',
+		label       : t('airOceanTracking:tracking_add_contact_control_label_4'),
 		type        : 'text',
-		placeholder : 'Enter Company Name',
+		placeholder : t('airOceanTracking:tracking_add_contact_control_placeholder_4'),
 
 	},
 ];
 
-export default addContactControls;
+export default getAddContactControls;

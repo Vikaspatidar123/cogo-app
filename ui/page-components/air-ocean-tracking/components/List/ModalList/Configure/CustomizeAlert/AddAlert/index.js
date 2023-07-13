@@ -1,6 +1,7 @@
 import { cl, Tooltip, Button } from '@cogoport/components';
 import { IcMInfo } from '@cogoport/icons-react';
 import { startCase } from '@cogoport/utils';
+import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
 
 import GET_MAPPING from '../../../../../../constant/card';
@@ -24,6 +25,8 @@ function AddAlert({
 	prevStepHandler, prevAlertData = [], selectContactList = [], alertList = [], shipmentId = '', closeHandler,
 	setSelectContactList, activeTab = 'ocean',
 }) {
+	const { t } = useTranslation(['common', 'airOceanTracking']);
+
 	const [tableValue, setTableValue] = useState({
 		shipper   : [],
 		consignee : [],
@@ -47,7 +50,7 @@ function AddAlert({
 	return (
 		<div className={styles.container}>
 			<div className={styles.header}>
-				<h3>Customize events for updates and deviations</h3>
+				<h3>{t('airOceanTracking:tracking_alerts_text_1')}</h3>
 			</div>
 
 			<div className={styles.info_container}>
@@ -79,7 +82,7 @@ function AddAlert({
 
 						{activeTab === 'ocean' && (
 							<>
-								<p className={styles.configure_title}>Configure Alerts</p>
+								<p className={styles.configure_title}>{t('airOceanTracking:tracking_alerts_text_2')}</p>
 								<div>
 									{(alertList || []).map((ele) => {
 										const { alert_name = '', description = '' } = ele;
@@ -107,7 +110,9 @@ function AddAlert({
 				</div>
 			</div>
 			<div className={styles.footer}>
-				<Button type="button" themeType="secondary" onClick={prevStepHandler} disabled={loading}>Back</Button>
+				<Button type="button" themeType="secondary" onClick={prevStepHandler} disabled={loading}>
+					{t('airOceanTracking:back_button_label')}
+				</Button>
 				<Button
 					className={styles.submit_btn}
 					themeType="accent"
@@ -115,7 +120,7 @@ function AddAlert({
 					loading={loading}
 					onClick={submitHandler}
 				>
-					Next
+					{t('airOceanTracking:tracking_daily_report_next_button_label')}
 				</Button>
 			</div>
 		</div>

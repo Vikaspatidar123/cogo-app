@@ -1,7 +1,8 @@
 import { Toast, Placeholder } from '@cogoport/components';
+import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
 
-import dailyStatusConfig from '../../../../../configuration/dailyStatusConfig';
+import getDailyStatusConfig from '../../../../../configuration/dailyStatusConfig';
 import useUpdateDsrStatus from '../../../../../hooks/useUpdateDsrStatus';
 import itemFunction from '../../../../../utils/itemFunction';
 
@@ -10,8 +11,13 @@ import styles from './styles.module.css';
 import getValue from '@/ui/commons/utils/getValue';
 
 const Item = ({ data = {}, loading: listLoading = false, setStatusModal }) => {
-	const [status, setStatus] = useState(data.status === 'active');
 	const { id = '', schedule = '', shipments = 0 } = data || {};
+
+	const { t } = useTranslation(['common', 'airOceanTracking']);
+
+	const dailyStatusConfig = getDailyStatusConfig({ t });
+
+	const [status, setStatus] = useState(data.status === 'active');
 
 	const { loading, updateDsrStatus } = useUpdateDsrStatus();
 
@@ -21,7 +27,7 @@ const Item = ({ data = {}, loading: listLoading = false, setStatusModal }) => {
 			const resp = await updateDsrStatus({ id, status: currStatus });
 			if (resp) setStatus(currStatus);
 		} else {
-			Toast.error('Enter atleast one shipment and schedule to enable receiving status report for this user');
+			Toast.error(t('airOceanTracking:tracking_daily_report_toast_1'));
 		}
 	};
 

@@ -1,5 +1,6 @@
 import { Button } from '@cogoport/components';
 import { merge } from '@cogoport/utils';
+import { useTranslation } from 'next-i18next';
 import React from 'react';
 
 import useCheckDuplicateOrganization from '../../../hooks/useCheckDuplicateOrganization';
@@ -14,6 +15,8 @@ import {
 import { useRouter } from '@/packages/next';
 
 function OrganizationForm({ setBillingAddressDetails, setOrg, setOrgBranchId }) {
+	const { t } = useTranslation(['common', 'getStarted']);
+
 	const cityOptions = useGetAsyncOptions(merge(asyncFieldsLocations(), {
 		params: { filters: { type: ['country'] } },
 	}));
@@ -26,7 +29,7 @@ function OrganizationForm({ setBillingAddressDetails, setOrg, setOrgBranchId }) 
 
 	const formValues = watch();
 
-	const fields = getControls({ cityOptions, formValues });
+	const fields = getControls({ cityOptions, formValues, t });
 
 	const { onClickCheckDuplicateOrganization } = useCheckDuplicateOrganization();
 
@@ -101,7 +104,7 @@ function OrganizationForm({ setBillingAddressDetails, setOrg, setOrgBranchId }) 
 						className={styles.button}
 						loading={createOrganizationLoading}
 					>
-						NEXT
+						{t('getStarted:rightPanel_get_started_organizationForm_next_button_label')}
 					</Button>
 				</div>
 			</form>

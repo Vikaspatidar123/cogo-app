@@ -1,4 +1,5 @@
 import { Button } from '@cogoport/components';
+import { useTranslation } from 'next-i18next';
 import React from 'react';
 
 import useResetUserPassword from '../hooks/useResetUserPassword';
@@ -8,6 +9,8 @@ import styles from './styles.module.css';
 import { InputController, useForm } from '@/packages/forms';
 
 function ForgotPasswordForm({ setSentMail, setEmailId }) {
+	const { t } = useTranslation(['common', 'forgotPassword']);
+
 	const {
 		handleSubmit,
 		formState: { errors },
@@ -28,8 +31,8 @@ function ForgotPasswordForm({ setSentMail, setEmailId }) {
 	return (
 		<div className={styles.container}>
 			<div className={styles.header}>
-				<span className={styles.header_span}>Forgot Passowrd?</span>
-				Let&apos;s help you out
+				<span className={styles.header_span}>{t('forgotPassword:forgot_password_text_1')}</span>
+				{t('forgotPassword:forgot_password_text_2')}
 			</div>
 			<div className={styles.body}>
 				<form
@@ -41,12 +44,12 @@ function ForgotPasswordForm({ setSentMail, setEmailId }) {
 							control={control}
 							name="email"
 							type="email"
-							placeholder="Email"
-							rules={{ required: 'Email is required.' }}
+							placeholder={t('forgotPassword:rightPanel_tabs_email_title')}
+							rules={{ required: t('forgotPassword:rightPanel_email_is_required') }}
 						/>
-						{errors.email && (
+						{errors.email ? (
 							<span className={styles.errors}>{errors.email.message}</span>
-						)}
+						) : null}
 					</div>
 					<div className={styles.button_container}>
 						<Button
@@ -55,7 +58,7 @@ function ForgotPasswordForm({ setSentMail, setEmailId }) {
 							disabled={resetPasswordLoading}
 							onClick={handleClick}
 						>
-							SEND EMAIL TO RESET PASSWORD
+							{t('forgotPassword:rightPanel_forgotPasswordButton_label')}
 						</Button>
 					</div>
 				</form>

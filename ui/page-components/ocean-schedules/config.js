@@ -1,22 +1,23 @@
-const fields = [
+const fields = ({ t = () => { } }) => ([
 	{
 		name        : 'origin_port',
-		label       : 'Origin Port',
+		label       : t('oceanSchedule:origin_port_label'),
 		type        : 'select',
-		placeholder : 'Select Origin Port',
-		rules       : { required: 'Origin Port is required' },
+		placeholder : t('oceanSchedule:origin_port_placeholder'),
+		rules       : { required: t('oceanSchedule:origin_port_err_message') },
 	},
 	{
 		name        : 'destination_port',
-		label       : 'Destination Port',
+		label       : t('oceanSchedule:destination_port_label'),
 		type        : 'select',
-		placeholder : 'Select Destination Port',
-		rules       : { required: 'Destination Port is required' },
+		placeholder : t('oceanSchedule:destination_port_placeholder'),
+		rules       : { required: t('oceanSchedule:destination_port_err_message') },
 	},
-];
+]);
 const getControls = ({
 	portOptions = {},
-}) => fields.map((control) => {
+	t,
+}) => fields({ t }).map((control) => {
 	const newControl = { ...control, ...portOptions };
 
 	return { ...newControl };

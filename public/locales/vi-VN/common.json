@@ -99,6 +99,7 @@
 	"components_header_tickets_timeline_ticket_updated":"Loại vé đã được cập nhật để",
 	"components_header_tickets_timeline_reopened":"Vé này đã được mở lại.",
 	"components_header_tickets_details_agent":"Đại lý",
+	"components_header_tickets_details_you":"Bạn",
 	"components_header_tickets_details_header":"Trò chuyện",
 	"components_header_tickets_details_resolve": "Giải quyết",
 	"components_header_tickets_details_view_more_button": "Xem thêm",

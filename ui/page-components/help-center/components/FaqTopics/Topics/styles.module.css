@@ -55,13 +55,13 @@
 
 .show_topics {
 	display: flex;
-	display: none;
 	align-items: center;
 	justify-content: center;
 	font-weight: 500;
+	opacity: 0;
 
 	@media (max-width: 768px) {
-		display: block;
+		opacity: 1;
 	}
 }
 

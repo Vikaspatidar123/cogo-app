@@ -1,8 +1,8 @@
 import { isEmpty } from '@cogoport/utils';
+import dynamic from 'next/dynamic';
 import { useState, useEffect, useCallback } from 'react';
 import { useSelector } from 'react-redux';
 
-import getControls from '../../../configurations/controls';
 import useSetErrorFunction from '../../../utils/useSetErrorFunction';
 
 import SelectType from './Address';
@@ -14,27 +14,29 @@ import styles from './styles.module.css';
 import { useForm } from '@/packages/forms';
 import getField from '@/packages/forms/Controlled';
 
+const getControls = dynamic(() => import('../../../configurations/controls'));
+
 const useBillingDetails = ({
 	formDetails = {},
-	setActiveStepper = () => {},
-	setFormDetails = () => {},
+	setActiveStepper = () => { },
+	setFormDetails = () => { },
 	insuranceType = '',
-	setInsuranceType = () => {},
+	setInsuranceType = () => { },
 	checked = [],
-	setChecked = () => {},
-	setOrganizationAddress = () => {},
+	setChecked = () => { },
+	setOrganizationAddress = () => { },
 	organizationAddress = {},
-	draftResponse = () => {},
+	draftResponse = () => { },
 	draftLoading = false,
 	policyid = '',
 	uploadType = '',
-	setUploadType = () => {},
+	setUploadType = () => { },
 }) => {
 	const [cityState, setCityState] = useState({});
 	const [prosporerAddress, setProsporerAddress] = useState({});
 	const [addAddressModal, setAddAddressModal] = useState(false);
 
-	const { city = '', state:region = '' } = cityState || {};
+	const { city = '', state: region = '' } = cityState || {};
 
 	const { profile } = useSelector((state) => state);
 	const names = profile?.name?.split(' ') || [];
@@ -56,8 +58,8 @@ const useBillingDetails = ({
 			insuredLastName: !isEmpty(formDetails)
 				? formDetails.insuredLastName
 				: names[1] || '',
-			email   : !isEmpty(formDetails) ? formDetails.email : profile?.email,
-			phoneNo : !isEmpty(formDetails)
+			email: !isEmpty(formDetails) ? formDetails.email : profile?.email,
+			phoneNo: !isEmpty(formDetails)
 				? formDetails.phoneNo
 				: profile?.mobile_number,
 			gstin: !isEmpty(formDetails)
@@ -66,20 +68,20 @@ const useBillingDetails = ({
 			partyName: !isEmpty(formDetails)
 				? formDetails.partyName
 				: '',
-			aadharNumber   : !isEmpty(formDetails) ? formDetails.aadharNumber : '',
-			billingAddress : !isEmpty(formDetails)
+			aadharNumber: !isEmpty(formDetails) ? formDetails.aadharNumber : '',
+			billingAddress: !isEmpty(formDetails)
 				? formDetails.billingAddress
 				: '',
 			billingPincode: !isEmpty(formDetails)
 				? formDetails.billingPincode
 				: '',
-			billingState : !isEmpty(formDetails) ? formDetails?.billingState : '',
-			billingCity  : !isEmpty(formDetails) ? formDetails?.billingCity : '',
-			panNumber    : !isEmpty(formDetails) ? formDetails?.panNumber : '',
+			billingState: !isEmpty(formDetails) ? formDetails?.billingState : '',
+			billingCity: !isEmpty(formDetails) ? formDetails?.billingCity : '',
+			panNumber: !isEmpty(formDetails) ? formDetails?.panNumber : '',
 		},
 	});
 
-	const { handleNextClick = () => {} } = useSetErrorFunction({
+	const { handleNextClick = () => { } } = useSetErrorFunction({
 		getValues,
 		setError,
 		uploadType,
@@ -93,13 +95,13 @@ const useBillingDetails = ({
 	const resetCallback = useCallback(() => {
 		if (insuranceType[0] === 'OTHER' && formDetails?.policyForSelf) {
 			reset({
-				billingAddress : '',
-				billingCity    : '',
-				billingState   : '',
-				billingPincode : '',
-				partyName      : '',
-				gstin          : '',
-				panNumber      : '',
+				billingAddress: '',
+				billingCity: '',
+				billingState: '',
+				billingPincode: '',
+				partyName: '',
+				gstin: '',
+				panNumber: '',
 			});
 		}
 	}, [formDetails?.policyForSelf, insuranceType, reset]);
@@ -123,12 +125,12 @@ const useBillingDetails = ({
 				<div>{renderingField.placeholder}</div>
 				<Element {...renderingField} control={control} />
 				{(errors[renderingField.name]?.type === 'required'
-				|| errors[renderingField.name]?.type === 'pattern'
-				|| errors[renderingField.name]?.type === 'maxLength') && (
-					<div className={styles.error_message}>
-						{errors[renderingField.name]?.message}
-					</div>
-				)}
+					|| errors[renderingField.name]?.type === 'pattern'
+					|| errors[renderingField.name]?.type === 'maxLength') && (
+						<div className={styles.error_message}>
+							{errors[renderingField.name]?.message}
+						</div>
+					)}
 			</div>
 		);
 	};

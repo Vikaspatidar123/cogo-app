@@ -48,6 +48,7 @@ const IMAGE_URLS = {
 	no_schedules_found_image : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/empty_icon 1.svg',
 	archive_icon             : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/archive.svg',
 	empty_state              : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/empty_icon 1.svg',
+	globe                    : 'https://cdn.cogoport.io/cms-prod/cogo_partner/vault/original/globe-language.png',
 	cogoport_image:
 	'https://cogoport-production.sgp1.digitaloceanspaces.com/e845419ea5eacebda858bad8b20d2797/cogoport-logo.svg',
 

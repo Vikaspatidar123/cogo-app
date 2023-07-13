@@ -92,5 +92,7 @@
     "active_conformation_message":"Are you sure you want to activate the",
     "plan_text":"Plan",
     "now_text":"now ?",
-    "panding_message":"Hang on! Activating your plan ..."
+    "panding_message":"Hang on! Activating your plan ...",
+    "feature_text":"Feature",
+    "limited_text":"Limited"
 }

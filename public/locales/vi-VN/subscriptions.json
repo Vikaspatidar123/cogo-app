@@ -92,6 +92,7 @@
     "active_conformation_message":"Bạn có chắc chắn bạn muốn kích hoạt",
     "plan_text":"Kế hoạch",
     "now_text":"Hiện nay?",
-    "panding_message":"Treo lên!Kích hoạt kế hoạch của bạn ..."
-
+    "panding_message":"Treo lên!Kích hoạt kế hoạch của bạn ...",
+    "feature_text":"Tính năng",
+    "limited_text":"Giới hạn"
 }

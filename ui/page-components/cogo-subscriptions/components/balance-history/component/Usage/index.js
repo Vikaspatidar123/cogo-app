@@ -20,7 +20,9 @@ import { Image } from '@/packages/next';
 import { useSelector } from '@/packages/store';
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
-function RenderCount({ count, totalCount, addon, unlimited, t }) {
+function RenderCount({ count, totalCount, addon, unlimited }) {
+	const { t } = useTranslation(['subscriptions']);
+
 	if (unlimited) return <div className={styles.count}>{t('subscriptions:unlimited_text')}</div>;
 	return (
 		<>
@@ -81,7 +83,6 @@ function Usage({ pendingModal, setPendingModal }) {
 				</div>
 				<div className={styles.web_view}>
 					<Button
-						className="md"
 						onClick={redirectManageSubscription}
 						type="button"
 					>
@@ -143,7 +144,6 @@ function Usage({ pendingModal, setPendingModal }) {
 														totalCount={total_quota}
 														addon={addon_quota}
 														unlimited={is_unlimited}
-														t={t}
 													/>
 												</div>
 												<div className={styles.mobile_view}>
@@ -213,7 +213,6 @@ function Usage({ pendingModal, setPendingModal }) {
 
 			<div className={cl`${styles.footer} ${styles.mobile_view}`}>
 				<Button
-					className="md"
 					type="button"
 					onClick={redirectManageSubscription}
 				>

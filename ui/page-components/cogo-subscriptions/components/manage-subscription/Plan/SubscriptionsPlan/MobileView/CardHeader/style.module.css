@@ -19,7 +19,7 @@
 
 	@media screen and (max-width: 767px) {
 		width: 100%;
-		padding: 0.45rem 0;
+		padding: 7px 0;
 
 		.plan_name {
 			width: 70%;
@@ -56,7 +56,7 @@
 		vertical-align: bottom;
 	}
 
-	.infoIcon {
+	.info_icon {
 		width: 10%;
 		margin-right: 5px;
 

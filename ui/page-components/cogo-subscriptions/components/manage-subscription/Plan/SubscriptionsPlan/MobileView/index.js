@@ -1,4 +1,5 @@
 import { cl } from '@cogoport/components';
+import { useTranslation } from 'next-i18next';
 
 import Feature from './Feature';
 import styles from './styles.module.css';
@@ -8,26 +9,27 @@ import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
 function MobileView({ planFeatureData = {} }) {
 	const planFeatureArray = Object.keys(planFeatureData || {});
+	const { t } = useTranslation(['subscriptions']);
 	return (
 		<div className={styles.container}>
 			<div className={cl`${styles.header} ${styles.info}`}>
 				<div className={styles.iconContainer}>
 					<Image
 						src={GLOBAL_CONSTANTS.image_url.limited_image}
-						alt="limited"
+						alt={t('subscriptions:cogo_text')}
 						width={25}
 						height={25}
 					/>
-					Limited
+					{t('subscriptions:limited_text')}
 				</div>
 				<div className={styles.iconContainer}>
 					<Image
 						src={GLOBAL_CONSTANTS.image_url.unlimted_image}
-						alt="unlimted"
+						alt={t('subscriptions:cogo_text')}
 						width={25}
 						height={25}
 					/>
-					Unlimited
+					{t('subscriptions:unlimited_text')}
 				</div>
 			</div>
 			<div className={styles.body}>

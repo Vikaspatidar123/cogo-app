@@ -6,6 +6,7 @@ import { useState } from 'react';
 import {
 	MOST_POPPULAR_INDEX,
 	EXPIRE_DAY,
+	START_COUNT,
 } from '../../../../../constants/dimensions';
 import useCard from '../../../../../hooks/useCard';
 import useSubscriptionActivateNow from '../../../../../hooks/useSubscriptionActivateNow';
@@ -36,7 +37,7 @@ function Card({
 
 	const { activateLoading, subscriptionActivateNow } = useSubscriptionActivateNow();
 
-	const { onSubmit, subscribed, active, currency, totalAmt } = useCard({
+	const { onSubmit, active, currency, totalAmt } = useCard({
 		activeTab,
 		subscribeTab,
 		item,
@@ -57,11 +58,15 @@ function Card({
 				{!is_free_plan && (
 					<div className={styles.amount_div}>
 						<div className={cl`${styles.styled_row} ${styles.priceRow}`}>
-							<div className={styles.price} color={subscribed ? '#1f1945' : '#bdbdbd'}>
+							<div className={styles.price}>
 								<div className={styles.currency}>{currency}</div>
 								{formatAmount({
-									amount: totalAmt || DEFAULT_MONTHLY_AMOUNT,
+									amount  : totalAmt || DEFAULT_MONTHLY_AMOUNT,
 									currency,
+									options : {
+										notation : 'standard',
+										style    : 'currency',
+									},
 								})}
 								<div className={styles.per_period}>
 									{' '}
@@ -134,7 +139,6 @@ function Card({
 
 			{prioritySequence === MOST_POPPULAR_INDEX && (
 				<div className={styles.row}>
-					<div />
 					<div className={styles.ribbon_wrapper}>{t('subscriptions:most_popular_text')}</div>
 				</div>
 			)}
@@ -143,7 +147,6 @@ function Card({
 					<div className={styles.styled_col}>
 						<div
 							className={`${styles.heading} ${active ? styles.head_text : styles.head_text}`}
-							color="#1f1945"
 						>
 							{description}
 						</div>
@@ -158,7 +161,7 @@ function Card({
 								/>
 								<span className={styles.days}>{displayPricing?.activates_in}</span>
 								<span className={styles.date}>
-									{displayPricing?.activates_in === 1 ? t('subscriptions:day_text')
+									{displayPricing?.activates_in === START_COUNT ? t('subscriptions:day_text')
 										: t('subscriptions:days_text')}
 									{' '}
 									{t('subscriptions:left_activate_text')}
@@ -177,7 +180,7 @@ function Card({
 									/>
 									<span className={styles.days}>{displayPricing?.expires_in}</span>
 									<span className={styles.date}>
-										{displayPricing?.expires_in === 1 ? t('subscriptions:day_text')
+										{displayPricing?.expires_in === START_COUNT ? t('subscriptions:day_text')
 											: t('subscriptions:days_text')}
 										{' '}
 										{t('subscriptions:expire_text')}

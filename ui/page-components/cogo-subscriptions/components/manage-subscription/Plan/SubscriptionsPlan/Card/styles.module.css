@@ -91,7 +91,7 @@
 
 	.row {
 		display: flex;
-		justify-content: space-between;
+		justify-content: flex-end;
 	}
 
 	.card {
@@ -258,7 +258,7 @@
 	.row {
 		display: flex;
 		align-items: center !important;
-		justify-content: space-between;
+		justify-content: flex-end;
 
 		&.subheading {
 			font-size: 11px;
@@ -318,7 +318,6 @@
 	font-size: 15px !important;
 	font-weight: 500 !important;
 	color: #000 !important;
-	text-transform: capitalize !important;
 	background-color: #fff !important;
 	border: 0.7px solid #333 !important;
 	border: #db4634;

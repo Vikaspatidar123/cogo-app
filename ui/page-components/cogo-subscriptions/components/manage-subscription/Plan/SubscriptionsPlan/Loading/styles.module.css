@@ -1,6 +1,5 @@
 .container {
 	display: flex;
-	gap: 15px;
 	align-items: center;
 	width: 100%;
 	margin: 40px;
@@ -16,7 +15,7 @@
 		border-radius: 20px;
 	}
 
-	.Loader_div {
+	.loader_div {
 		padding: 10px 0;
 	}
 }

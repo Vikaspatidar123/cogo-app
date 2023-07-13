@@ -198,6 +198,7 @@ function Form(
 		form_id,
 		date,
 	}));
+
 	let cargoDetailsSpan = 6;
 	if (['contract'].includes(search_type)) {
 		cargoDetailsSpan = 10;

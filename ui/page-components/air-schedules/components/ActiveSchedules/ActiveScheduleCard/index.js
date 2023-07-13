@@ -1,20 +1,25 @@
 import { Pill } from '@cogoport/components';
 import { IcMArrowNext } from '@cogoport/icons-react';
-import { differenceInDays, format } from '@cogoport/utils';
+import { differenceInDays } from '@cogoport/utils';
+import { useTranslation } from 'next-i18next';
 import React, { useState } from 'react';
 
 import { SchedulesModal } from './SchedulesModal';
 import styles from './styles.module.css';
 
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
+import formatDate from '@/ui/commons/utils/formatDate';
+
 function ActiveScheduleCard({ scheduleDetails, schedule }) {
 	const originSchedule = scheduleDetails?.origin_airport?.port_code || 'Origin';
-	const destinationSchedule =	 scheduleDetails?.destination_airport?.port_code || 'Destination';
+	const destinationSchedule = scheduleDetails?.destination_airport?.port_code || 'Destination';
+	const { t } = useTranslation(['airSchedule']);
 
 	const airLinesList = scheduleDetails?.schedules?.airlines || [];
 
 	const shippingLine = airLinesList.filter(
 		(item) => item.id === schedule.airline_id,
-	)[0] || {};
+	)[GLOBAL_CONSTANTS.zeroth_index] || {};
 
 	const [openSchedulesModal, setOpenSchedulesModal] = useState(false);
 	return (
@@ -24,7 +29,7 @@ function ActiveScheduleCard({ scheduleDetails, schedule }) {
 					<div className={styles.img_container}>
 						<img
 							src={shippingLine?.logo_url}
-							alt=""
+							alt={t('airSchedule:logo_alt')}
 							width="40px"
 							height="40px"
 						/>
@@ -35,36 +40,61 @@ function ActiveScheduleCard({ scheduleDetails, schedule }) {
 							{schedule?.vessel_name || schedule?.transport_name}
 							/
 							{schedule?.voyage_number}
-							(SERVICE-
+							(
+							{t('airSchedule:service_text')}
+							-
 							{schedule?.service_name}
 							)
 						</span>
 					</div>
 				</div>
 				<div className={styles.pills_container}>
-					<Pill size="md" color="#F7FAEF">
-						VGM Cutoff:
-						{format(schedule?.vgm_cutoff, 'dd MMM yyyy')}
-					</Pill>
-					<Pill size="md" color="#F7FAEF">
-						Terminal Cutoff:
-						{format(schedule?.terminal_cutoff, 'dd MMM yyyy')}
-					</Pill>
+					{schedule?.vgm_cutoff ? (
+						<Pill size="md" color="#F7FAEF">
+							{t('airSchedule:vgm_cut_off_text')}
+							:
+							{formatDate({
+								date       : schedule?.vgm_cutoff,
+								dateFormat : GLOBAL_CONSTANTS.formats.date['dd MMM yyyy'],
+								formatType : 'date',
+							})}
+						</Pill>
+					) : null}
+					{schedule?.terminal_cutoff ? (
+						<Pill size="md" color="#F7FAEF">
+							{t('airSchedule:terminal_cut_off_text')}
+							:
+							{formatDate({
+								date       : schedule?.terminal_cutoff,
+								dateFormat : GLOBAL_CONSTANTS.formats.date['dd MMM yyyy'],
+								formatType : 'date',
+							})}
+						</Pill>
+					) : null}
 				</div>
 			</div>
 			<div>
 				<div className={styles.dates_container}>
 					<div className={styles.date_container}>
-						{format(schedule?.departure, 'dd MMM yyyy (eee)')}
+						{formatDate({
+							date       : schedule?.departure,
+							dateFormat : GLOBAL_CONSTANTS.formats.date['dd MMM yyyy'],
+							formatType : 'date',
+						})}
 					</div>
 					<div className={styles.date_container}>
-						{format(schedule?.arrival, 'dd MMM yyyy (eee)')}
+						{formatDate({
+							date       : schedule?.arrival,
+							dateFormat : GLOBAL_CONSTANTS.formats.date['dd MMM yyyy'],
+							formatType : 'date',
+						})}
 					</div>
 				</div>
 				<div className={styles.main_pill_container}>
 					<Pill size="md" color="#FEF3E9">
 						{differenceInDays(new Date(schedule?.arrival), new Date(schedule?.departure))}
-						Days
+						{t('airSchedule:days_text')}
+
 					</Pill>
 				</div>
 				<div className={styles.steps_container}>
@@ -84,7 +114,7 @@ function ActiveScheduleCard({ scheduleDetails, schedule }) {
 				role="presentation"
 				onClick={() => { setOpenSchedulesModal(true); }}
 			>
-				View Details
+				{t('airSchedule:view_details_text')}
 				<IcMArrowNext width="1.2rem" height="1.2rem" />
 			</div>
 			{openSchedulesModal && (

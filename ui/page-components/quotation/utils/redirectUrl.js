@@ -1,9 +1,14 @@
 import { useRouter } from '@/packages/next';
+import { downloadDocument } from '@/ui/commons/utils/downloadDocument';
+
+const downloadQuotation = (quotationId) => {
+	window.open(`${process.env.NEXT_PUBLIC_BUSINESS_FINANCE_BASE_URL}/saas/pdf/${quotationId}`);
+};
 
 const useRedirectUrl = () => {
-	const { push } = useRouter();
-	const { query = {} } = useRouter();
+	const { push, query = {} } = useRouter();
 	const { org_id, branch_id } = query || {};
+
 	const subscriptionsUrl = `${process.env.NEXT_PUBLIC_APP_URL}/${org_id}/${branch_id}/saas/cogo-subscriptions`;
 
 	const redirectQuotation = () => {
@@ -30,15 +35,7 @@ const useRedirectUrl = () => {
 	const redirectTransaction = () => {
 		push('/saas/transaction-history');
 	};
-	const downloadQuotation = (quotationId) => {
-		window.open(`${process.env.BUSINESS_FINANCE_BASE_URL}/saas/pdf/${quotationId}`);
-	};
 
-	const downloadTransactionDocument = ({ docLink, docName, hsNumber }) => {
-		const url = `${process.env.BUSINESS_FINANCE_BASE_URL}
-        /saas/trade-engine/pdf?docLink=${docLink}&docName=${docName}&hsNumber=${hsNumber}`;
-		window.open(url);
-	};
 	return {
 		redirectQuotation,
 		redirectPreview,
@@ -48,7 +45,7 @@ const useRedirectUrl = () => {
 		redirectRecentSearch,
 		subscriptionsUrl,
 		redirectTransaction,
-		downloadTransactionDocument,
+		downloadTransactionDocument: downloadDocument,
 	};
 };
 export default useRedirectUrl;

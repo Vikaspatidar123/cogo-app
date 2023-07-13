@@ -10,6 +10,7 @@ import styles from './styles.module.css';
 import { dynamic } from '@/packages/next';
 
 const Map = dynamic(() => import('../Map'), { ssr: false });
+
 function Content({
 	quotaLoading = false,
 	setFormDetails = () => {},
@@ -39,9 +40,9 @@ function Content({
 			quotaAvailabilityfunction({ setQuotaAvailableStats, quotaDetails, setPayment });
 		}
 	}, [quotaDetails]);
+
 	return (
 		<>
-
 			<div className={styles.map_column2}>
 				<Map />
 			</div>

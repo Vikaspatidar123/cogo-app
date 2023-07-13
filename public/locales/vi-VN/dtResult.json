@@ -1,0 +1,9 @@
+{
+    "dt_total":"Tổng cộng",
+    "dt_total_tax":"Tổng nhiệm vụ và thuế",
+    "dt_landed_cost":"Tổng chi phí hạ cánh",
+    "dt_tooltip_title":"Phân tích tổng chi phí hạ cánh",
+    "dt_tooltip_freight":"Chi phí vận tải",
+    "dt_tooltip_consignment":"Giá trị ký gửi",
+    "dt_tooltip_incoterm":"Phí áp dụng"
+}

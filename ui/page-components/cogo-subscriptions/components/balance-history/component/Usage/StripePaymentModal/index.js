@@ -8,7 +8,7 @@ import React, { useState, useMemo } from 'react';
 
 import {
 	DEFAULT_VALUE,
-	API_COUNT_TIME,
+	MAX_API_TRIES,
 	START_COUNT,
 } from '../../../../../constants/dimensions';
 
@@ -63,7 +63,7 @@ function StripSection({
 
 	const verifyPaymentNow = async (params) => {
 		setStripeModal(false);
-		if (apiTries < API_COUNT_TIME) {
+		if (apiTries < MAX_API_TRIES) {
 			try {
 				setPendingModal(true);
 				if (apiTries < START_COUNT) setRazorLoading(true);

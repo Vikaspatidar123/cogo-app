@@ -8,7 +8,7 @@ const useUpdateCreditRequestPromotion = ({
 }) => {
 	const [{ loading, data }, trigger] = useRequest({
 		method : 'post',
-		url    : '/update_credit_request_promotion',
+		url    : '/update_credit_promotion',
 	}, {
 		autoCancel: false,
 	});
@@ -17,9 +17,9 @@ const useUpdateCreditRequestPromotion = ({
 		try {
 			await trigger({
 				data: {
-					credit_request_id : getCreditRequestResponse?.id,
-					promotion_id      : coupon?.id,
-					status            : type === 'applied' ? 'active' : 'inactive',
+					credit_id    : getCreditRequestResponse?.credit_id,
+					promotion_id : coupon?.id,
+					status       : type === 'applied' ? 'active' : 'inactive',
 				},
 			});
 			setAction(type);

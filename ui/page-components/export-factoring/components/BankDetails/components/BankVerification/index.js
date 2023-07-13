@@ -25,7 +25,7 @@ const OPTIONS = [
 	},
 ];
 
-function BankVerification({ setAddBankModal = () => {}, getCreditRequestResponse = {} }) {
+function BankVerification({ getCreditRequestResponse = {} }) {
 	const { exporter_account_infos = [] } = getCreditRequestResponse || {};
 
 	const banksDetails = exporter_account_infos?.[0] || {};
@@ -33,7 +33,7 @@ function BankVerification({ setAddBankModal = () => {}, getCreditRequestResponse
 	const [accountType, setAccountType] = useState('');
 	const addBankControls = getAddBankControls({ accountType });
 	const {
-		control, watch, handleSubmit, formState: { errors },
+		control, handleSubmit, formState: { errors },
 	} = useForm();
 
 	const { onSubmit, loading } = useSubmitBankDetails({ accountType });

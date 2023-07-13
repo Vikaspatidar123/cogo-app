@@ -22,7 +22,7 @@ function PdcUploadCheque({ refetch = () => {}, getCreditRequestResponse }) {
 
 	const { control, handleSubmit, formState: { errors } } = useForm();
 	const Element = getField(fields?.type);
-	const onSubmit = async (values) => {
+	const onSubmit = async () => {
 		const payload = {
 			credit_id                           : getCreditRequestResponse.credit_id,
 			export_factoring_service_attributes : {

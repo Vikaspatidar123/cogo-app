@@ -1,11 +1,11 @@
 import { Button, Modal } from '@cogoport/components';
 import { IcMPlus } from '@cogoport/icons-react';
+import { isEmpty } from '@cogoport/utils';
 import { useState } from 'react';
 
 import BankInfo from './components/BankInfo';
 import BankVerification from './components/BankVerification';
 import styles from './styles.module.css';
-import { isEmpty } from '@cogoport/utils';
 
 function BankDetails({
 	getCreditRequestResponse = {},

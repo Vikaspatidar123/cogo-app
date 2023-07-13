@@ -1,10 +1,10 @@
 import { Input, Button } from '@cogoport/components';
 import { IcMEyeopen, IcMDocument } from '@cogoport/icons-react';
 import { upperCase } from '@cogoport/utils';
-import { useForm } from 'react-hook-form';
 
 import styles from './styles.module.css';
 
+import { useForm } from '@/packages/forms';
 import getField from '@/packages/forms/Controlled';
 import FilePreview from '@/ui/page-components/export-factoring/common/FilePreview';
 import useSubmitAgreement from '@/ui/page-components/export-factoring/hooks/useSubmitAgreement';
@@ -26,7 +26,7 @@ function AgreementPreview({
 }) {
 	const { updateCreditApplication } = useUpdateCreditApplication();
 	const { control, formState:{ errors } } = useForm();
-	const { sample_exportfactoring_agreement = '', documents = {} } = getCreditRequestResponse || {};
+	const {  documents = {} } = getCreditRequestResponse || {};
 	const {
 		offer_letter = {}, exportfactoring_agreement = {},
 		signed_exportfactoring_agreement = {}, signed_offer_letter,
@@ -39,7 +39,7 @@ function AgreementPreview({
 		}
 	};
 	const Element = getField('file');
-	console.log(signed_exportfactoring_agreement, 'aaa');
+
 
 	const handleUpload = async ({ url, type, section }) => {
 		const payload = {

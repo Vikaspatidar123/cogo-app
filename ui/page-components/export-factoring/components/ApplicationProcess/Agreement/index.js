@@ -1,3 +1,4 @@
+import { isEmpty } from '@cogoport/utils';
 import React, { useState } from 'react';
 
 import FormCard from '../../../common/FormCard';
@@ -14,7 +15,7 @@ function Agreement({ getCreditRequestResponse, refetch, loading, active }) {
 	const { signing_authorities = '' } = flags;
 	const mode = (!is_sign_mode_digital ? 'physical' : 'digital');
 	const [method, setMethod] = useState(mode);
-	const mappingComponent = 	signatories.length > 0 ? [{
+	const mappingComponent = 	!isEmpty(signatories) ? [{
 		title       : 'Preview Agreement',
 		description : 'Preview of Offer Letter and Rpa ',
 		Component   : AgreementPreview,

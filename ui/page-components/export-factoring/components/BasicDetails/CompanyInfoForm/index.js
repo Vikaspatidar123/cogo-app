@@ -70,7 +70,7 @@ function CompanyInfoForm({ getCreditRequestResponse, refetch = () => {} }) {
 				}
 				return (
 					item?.type && (
-						<div className={styles.field}>
+						<div className={styles.field} key={item.name}>
 							<div className={styles.field_name} style={item.style}>{item?.label}</div>
 							{
 								item.name === 'gst_proof' && (

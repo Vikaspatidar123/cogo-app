@@ -38,11 +38,11 @@ function BasicDetails({ active = {}, getCreditRequestResponse = {}, refetch = ()
 			description : 'Demand team recommendation',
 			Component   : CreditRequirements,
 		},
-		// {
-		// 	title       : 'Apply Coupons',
-		// 	description : 'Demand team recommendation',
-		// 	Component   : Coupons,
-		// },
+		{
+			title       : 'Apply Coupons',
+			description : 'Demand team recommendation',
+			Component   : Coupons,
+		},
 	];
 
 	return (

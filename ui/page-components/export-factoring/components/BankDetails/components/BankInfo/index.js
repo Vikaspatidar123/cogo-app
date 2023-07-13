@@ -1,4 +1,4 @@
-import { Accordion, Pill, Tooltip } from '@cogoport/components';
+import { Accordion, Tooltip } from '@cogoport/components';
 import { IcMEyeopen, IcMPdf } from '@cogoport/icons-react';
 import { isEmpty, startCase } from '@cogoport/utils';
 
@@ -22,7 +22,6 @@ const titleInfo = ({ index, approval_status }) => (
 function BankInfo({
 	bank = {},
 	index,
-	getCreditRequestResponse = {},
 }) {
 	const { approval_status = '' } = bank || {};
 	return (

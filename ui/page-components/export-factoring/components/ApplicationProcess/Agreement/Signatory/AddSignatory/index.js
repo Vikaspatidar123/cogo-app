@@ -23,7 +23,7 @@ function AddSignatory({
 				{ADDSIGNATORY_CONTROLS.map((item) => {
 					const Element = getField(item.type);
 					return (
-						<div className={styles.field}>
+						<div className={styles.field} key={item.name}>
 							<div className={styles.field_name}>{item.placeholder}</div>
 							<Element control={control} {...item} />
 							<div className={styles.error_text}>

@@ -9,15 +9,7 @@ const backgroundStatus = ({ status }) => {
 	return '#f9da7f';
 };
 
-const statusFormat = (status = '') => {
-	switch (status) {
-		case 'active':
-			return 'pending';
-		default:
-			return status;
-	}
-};
-
+const statusFormat = (status = '') => ({ active: 'pending' }[status] ?? status);
 function StatusTag({ status = '' }) {
 	return (
 		<div style={{ display: 'flex', alignItems: 'center' }}>

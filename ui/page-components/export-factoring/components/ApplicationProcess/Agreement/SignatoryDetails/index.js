@@ -33,6 +33,7 @@ function SignatoryDetails({
 				<div className={styles.button_wrapper}>
 					<Button
 						themeType="secondary"
+						type="button"
 						onClick={() => setChangeSignatory(true)}
 					>
 						Change Signatory

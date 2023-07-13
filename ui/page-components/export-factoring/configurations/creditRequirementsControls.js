@@ -1,30 +1,4 @@
 export const creditRequirementsControls = [
-
-	// {
-	// 	name     : 'sales_credit_amount_currency',
-	// 	label    : 'Currency',
-	// 	type     : 'select',
-	// 	value    : 'USD',
-	// 	span     : 6,
-	// 	options  : [{ label: 'USD', value: 'USD' }],
-	// 	disabled : true,
-	// 	rules    : {
-	// 		required: true,
-	// 	},
-	// },
-	// {
-	// 	name        : 'sales_credit_amount',
-	// 	label       : 'Sales Recommendation Sellers Limit',
-	// 	type        : 'number',
-	// 	placeholder : 'Enter Sellers Limit',
-	// 	rules       : {
-	// 		max      : '30000000',
-	// 		required : true,
-	// 		validate : (value) => (Number.isInteger(Number(value || 0))
-	// 			? undefined
-	// 			: 'Enter valid amount'),
-	// 	},
-	// },
 	{
 		name     : 'credit_amount_currency',
 		label    : 'Currency',
@@ -39,7 +13,7 @@ export const creditRequirementsControls = [
 		name        : 'credit_amount',
 		label       : 'Customer Recommendation Sellers Limit',
 		type        : 'number',
-		placeholder : 'Enter Sellers Limit',
+		placeholder : 'Enter Limit',
 		span        : 6,
 		rules       : {
 			max      : '30000000',

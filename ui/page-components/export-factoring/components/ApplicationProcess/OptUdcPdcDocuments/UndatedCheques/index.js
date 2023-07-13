@@ -18,8 +18,8 @@ const fields = {
 
 };
 function UndatedCheques({ refetch = () => {}, udcCheque, getCreditRequestResponse }) {
-	const {  documents_list = {} } = getCreditRequestResponse;
-	
+	const { documents_list = {} } = getCreditRequestResponse;
+
 	const { undated_cheque = [] } = documents_list;
 	const { control, handleSubmit, formState:{ errors } } = useForm();
 	const { updateCreditApplication, loading } = useUpdateCreditApplication();
@@ -66,7 +66,6 @@ function UndatedCheques({ refetch = () => {}, udcCheque, getCreditRequestRespons
 
 	return (
 		<div className={styles.container}>
-			{/* <FilePreview name="Udc Agreement" /> */}
 			<div className={styles.form_div}>
 				<form>
 					{[1, 2, 3, 4, 5].map((x) => (

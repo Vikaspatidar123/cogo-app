@@ -1,15 +1,14 @@
-/* eslint-disable no-undef */
-import { deleteCookie } from '@cogoport/utils';
+import { useTranslation } from 'next-i18next';
 
 import styles from '../styles.module.css';
 
+import logout from '@/ui/page-components/authentication/utils/getLogout';
+
 function Logout() {
-	const handleClick = async (e) => {
+	const { t } = useTranslation(['common']);
+	const handleClick = (e) => {
 		e.preventDefault();
-
-		deleteCookie(process.env.NEXT_PUBLIC_AUTH_TOKEN_NAME);
-
-		window.location.href = '/login';
+		logout();
 	};
 
 	return (
@@ -26,7 +25,8 @@ function Logout() {
 				style={{ color: '#ef9b9b' }}
 				role="presentation"
 			>
-				Logout
+				{t('common:layouts_app_logout')}
+
 			</div>
 		</div>
 	);

@@ -49,7 +49,6 @@ function Child({
 						|| showElements[controlItem.name];
 
 					const extraProps = {};
-					console.log(inlineLabel, 'inlineLabel');
 					if (controlItem.options) {
 						if (Array.isArray(controlItem.options)) {
 							extraProps.options = controlItem.options;

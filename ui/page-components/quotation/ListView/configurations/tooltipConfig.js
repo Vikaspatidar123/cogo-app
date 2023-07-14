@@ -4,6 +4,7 @@ const tooltipConfig = ({ documentStatus = '', quotationId = '', setShowDeleteMod
 	const {
 		redirectPreview,
 		redirectEdit,
+		downloadQuotation,
 	} = redirectData || {};
 
 	const tooltipContentConfig = [
@@ -21,6 +22,9 @@ const tooltipConfig = ({ documentStatus = '', quotationId = '', setShowDeleteMod
 			icon      : <IcMDownload width={10} height={10} />,
 			className : '',
 			condition : true,
+			onClick   : () => {
+				downloadQuotation(quotationId);
+			},
 		},
 		{
 			name      : 'Edit',

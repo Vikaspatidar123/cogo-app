@@ -1,14 +1,17 @@
 import { IcMArrowRotateRight } from '@cogoport/icons-react';
+import { useTranslation } from 'next-i18next';
 
 import styles from './styles.module.css';
 import TransitDuration from './TransitDuration';
 
 function TransitDurationFilter({ handleNav, isOpen, durationValue, onChange }) {
+	const { t } = useTranslation(['airSchedule']);
+
 	return (
 		<>
 			<div className={styles.header} role="presentation" onClick={() => handleNav('transit')}>
 				<div className={styles.nav_heading}>
-					Transit Duration (Hours)
+					{t('airSchedule:transit_duration_text')}
 				</div>
 				<div className={styles.column}>
 					<IcMArrowRotateRight

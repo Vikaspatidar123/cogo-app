@@ -32,7 +32,7 @@ const useCreateBillingAddres = ({ checked, addressType }) => {
 		const { poc_name, email, phoneNumber, ...rest } = data || {};
 		const { number, country_code } = phoneNumber || {};
 		try {
-			const resp = await api.trigger({
+			const resp = await api({
 				data: {
 					...rest,
 					poc_details: poc_name || number || country_code ? [{
@@ -51,14 +51,7 @@ const useCreateBillingAddres = ({ checked, addressType }) => {
 			handleCloseModal();
 			return resp;
 		} catch (error) {
-			Toast.error(
-				error?.error?.gst_number?.[0]?.toUpperCase()
-          || error?.error?.pincode?.[0]?.toUpperCase(),
-				{
-					autoClose : 7000,
-					style     : { backgroundColor: 'white' },
-				},
-			);
+			Toast.error(error);
 			return null;
 		}
 	};

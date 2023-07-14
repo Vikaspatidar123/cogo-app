@@ -1,14 +1,13 @@
 import { Toast, Tooltip } from '@cogoport/components';
 import { IcMInfo } from '@cogoport/icons-react';
 import { isEmpty } from '@cogoport/utils';
+import { useTranslation } from 'next-i18next';
 import { useCallback, useEffect } from 'react';
 
-const MAPPING = {
-	ocean : 'SEA',
-	air   : 'AIR',
-};
-// eslint-disable-next-line max-len
-const TOOLTIP_CONTENT =	'HS codes can provide greater transparency and clarity on the required documentation for the combination of your cargo and destination countries';
+const getMapping = ({ t }) => ({
+	ocean : t('importExportDoc:sea'),
+	air   : t('importExportDoc:air'),
+});
 
 const useInfoValidateFn = ({
 	verifySixDigitHs,
@@ -30,8 +29,13 @@ const useInfoValidateFn = ({
 	watchImport = '',
 	setShowPendingModal,
 	styles,
+	getDraftData = {},
 }) => {
 	const { hsCode = '', name: productName = '', description = '' } = selectedData || {};
+
+	const { t } = useTranslation(['importExportDoc']);
+
+	const MAPPING = getMapping({ t });
 
 	const setValues = useCallback((valObject = {}) => {
 		Object.keys(valObject).forEach((key) => {
@@ -57,8 +61,9 @@ const useInfoValidateFn = ({
 
 	useEffect(() => {
 		if (watchExport && watchImport && watchExport === watchImport) {
-			Toast.error('Same country is selected for import and export.');
+			Toast.error(t('importExportDoc:api_hs_code'));
 		}
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [watchExport, watchImport]);
 
 	const prefillData = useCallback(() => {
@@ -96,9 +101,13 @@ const useInfoValidateFn = ({
 		if (billId) {
 			checkPaymentStatus();
 		}
-	}, [billId, checkPaymentStatus]);
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [billId]);
 
 	const getPayloadData = (data) => {
+		const { lineItem: getDraftLineItem = [] } = getDraftData;
+		const { tradeEngineLineItemInputId = undefined } =	getDraftLineItem?.[0] || {};
+
 		const header = {
 			originCountryCode      : transportDetails?.exportCountry?.country_code,
 			destinationCountryCode : transportDetails?.importCountry?.country_code,
@@ -114,6 +123,7 @@ const useInfoValidateFn = ({
 				originHs      : '',
 				destinationHs : data?.hsCode,
 				productName   : data?.productName,
+				tradeEngineLineItemInputId,
 			},
 		];
 		return {
@@ -128,7 +138,7 @@ const useInfoValidateFn = ({
 				<div className={styles.label_container}>
 					{label}
 					<Tooltip
-						content={TOOLTIP_CONTENT}
+						content={t('importExportDoc:hscode_subtitle')}
 						placement="right-start"
 						animation="shift-toward"
 					>
@@ -148,7 +158,7 @@ const useInfoValidateFn = ({
 		return name;
 	};
 
-	const buildData = () => {
+	const buildData = ({ name = '', id = '' }) => {
 		const {
 			manufacturingCountry = '',
 			exportCountry = {},
@@ -185,6 +195,8 @@ const useInfoValidateFn = ({
 			manufacturingCountry : manufacturing,
 			transportMode,
 			hsCode               : storeHscode,
+			productName          : name,
+			tradeEngineInputId   : id,
 		};
 	};
 
@@ -196,7 +208,6 @@ const useInfoValidateFn = ({
 		if (resp) {
 			if (!billId) {
 				const localStorageData = buildData({ name: data?.productName, id: resp });
-				console.log(localStorageData, 'localStorageData');
 				localStorage.setItem('transportDetails', JSON.stringify({ ...localStorageData }));
 				push(
 					'/saas/premium-services/import-export-doc/[trade_engine_id]',
@@ -248,7 +259,7 @@ const useInfoValidateFn = ({
 	};
 
 	const errorHandler = () => {
-		Toast.error('Fill all mandatory details');
+		Toast.error(t('importExportDoc:api_mandatory_detail'));
 	};
 
 	return {

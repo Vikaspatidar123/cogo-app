@@ -1,7 +1,5 @@
 export const LanguageOptions = [
-	{ value: 'uk_english', label: 'English UK' },
 	{ value: 'english', label: 'English India' },
-	{ value: 'us_english', label: 'English US' },
 	{ value: 'spanish', label: 'Spanish' },
 	{ value: 'mandarin_chinese', label: 'Mandarin chinese' },
 	{ value: 'arabic', label: 'العربية, Arabic' },

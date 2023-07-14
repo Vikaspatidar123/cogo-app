@@ -3,7 +3,7 @@ import { Tooltip } from '@cogoport/components';
 import styles from './styles.module.css';
 
 function Item({ location = {} }) {
-	const { display_name = '', name = '' } = location || {};
+	const { display_name = ' - ', name = '' } = location || {};
 
 	return (
 		<div className={styles.container}>

@@ -3,11 +3,14 @@ import { Toast } from '@cogoport/components';
 import { useEffect } from 'react';
 
 import { useRequestBf } from '@/packages/request';
+import { useSelector } from '@/packages/store';
 
 const useServiceRates = ({ prioritySequence = 0, setValidateProduct }) => {
+	const { organization } = useSelector((state) => state.profile);
+
 	const [{ loading, data }, trigger] = useRequestBf({
 		method  : 'get',
-		url     : 'saas/trade-engine/service-rates',
+		url     : '/saas/trade-engine/service-rates',
 		authKey : 'get_saas_trade_engine_service_rates',
 	}, { manual: true });
 
@@ -16,6 +19,7 @@ const useServiceRates = ({ prioritySequence = 0, setValidateProduct }) => {
 			await trigger({
 				params: {
 					prioritySequence,
+					orgCountryId: organization?.country_id,
 				},
 			});
 		} catch (error) {

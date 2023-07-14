@@ -31,9 +31,9 @@ function Pay({
 }) {
 	const [showPayMethodModal, setShowPayMethodModal] = useState(false);
 	const [paymentMode, setPaymentMode] = useState('');
-	const { origin = {}, destination = {} } = portDetails || {};
-	const [address, setAddress] = useState(false);
+	const [address, setAddress] = useState('');
 
+	const { origin = {}, destination = {} } = portDetails || {};
 	const { currency, services } = serviceRateData || {};
 	const { duties_and_taxes } = services || {};
 	const { refetchDraft, draftLoading = false } = useDraft();

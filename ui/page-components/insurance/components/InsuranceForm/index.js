@@ -38,7 +38,7 @@ function InsuranceFrom() {
 
 	return (
 		<div>
-			<div>
+			<div className={styles.heading_wrapper}>
 				<div className={styles.heading}>
 					<Tooltip content="Back" animation="shift-toward">
 						<div className={styles.center}>

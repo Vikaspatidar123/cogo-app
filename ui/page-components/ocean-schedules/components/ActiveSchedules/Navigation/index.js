@@ -1,4 +1,5 @@
 import { IcMCrossInCircle } from '@cogoport/icons-react';
+import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
 
 import ArrivalFilter from './ArrivalFilter';
@@ -6,7 +7,6 @@ import CarrierFilter from './CarrierFilter';
 import DepartureFilter from './DepartureFilter';
 import styles from './styles.module.css';
 import TransitDurationFilter from './TransitDurationFilter';
-// import TransShipmentsFilter from './TransShipmentsFilter';
 
 function Navigation({
 	departureDate,
@@ -19,6 +19,7 @@ function Navigation({
 	onChange,
 	clearAllHandler,
 }) {
+	const { t } = useTranslation(['oceanSchedule']);
 	const [isOpen, setIsOpen] = useState([]);
 
 	const arrayRemove = (arr, value) => arr.filter((ele) => ele !== value);
@@ -33,16 +34,11 @@ function Navigation({
 		<div className={styles.container}>
 			<div className={styles.filter}>
 				<div className={styles.title} role="presentation" onClick={clearAllHandler}>
-					Clear All
+					{t('oceanSchedule:clear_all_text')}
 				</div>
 				<IcMCrossInCircle onClick={clearAllHandler} />
 			</div>
-			{/* <TransShipmentsFilter
-				isOpen={isOpen}
-				handleNav={handleNav}
-				fields={fields}
-				control={control}
-			/> */}
+
 			<CarrierFilter
 				handleCheckList={handleCheckList}
 				handleNav={handleNav}

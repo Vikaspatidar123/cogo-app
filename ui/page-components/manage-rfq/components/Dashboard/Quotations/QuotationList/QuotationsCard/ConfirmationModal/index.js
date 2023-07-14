@@ -36,14 +36,15 @@ function ConfirmationModal({
 							<div className={styles.text_input}>RFQ Name:</div>
 							<Input
 								size="xs"
-								value={rfqName}
 								onChange={(e) => {
-									setRfqName(e.target.value);
+									setRfqName(e);
 									if (error) {
 										setError(false);
 									}
 								}}
+								value={rfqName}
 								style={{ border: error && '1px solid #BF291E' }}
+								type="text"
 							/>
 						</div>
 						<div className={styles.error_container}>

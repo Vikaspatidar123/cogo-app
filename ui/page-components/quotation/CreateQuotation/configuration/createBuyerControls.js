@@ -38,11 +38,13 @@ const createBuyerControls = ({ countryInfo = {}, stateInfo = {} }) => {
 			placeholder : 'Enter Tax Number',
 		},
 		{
-			name        : 'phoneNumber',
-			label       : 'Phone Number *',
-			type        : 'mobile_number',
-			placeholder : 'Enter Phone Number',
-			rules       : {
+			name            : 'phoneNumber',
+			label           : 'Phone Number *',
+			type            : 'mobile_number',
+			isInputGroup    : true,
+			showCountryName : false,
+			placeholder     : 'Enter Phone Number',
+			rules           : {
 				required : true,
 				pattern  : {
 					value   : patterns.MOBILE,
@@ -55,10 +57,11 @@ const createBuyerControls = ({ countryInfo = {}, stateInfo = {} }) => {
 			label          : 'Country *',
 			type           : 'async_select',
 			placeholder    : 'Enter Country',
-			rules          : { required: true },
 			asyncKey       : 'locations',
 			defaultOptions : true,
+			initialCall    : true,
 			labelKey       : 'label',
+			rules          : { required: true },
 			params         : {
 				filters: {
 					type: 'country',
@@ -96,6 +99,7 @@ const createBuyerControls = ({ countryInfo = {}, stateInfo = {} }) => {
 			name        : 'state',
 			label       : 'State (optional)',
 			type        : 'async_select',
+			initialCall : true,
 			placeholder : 'Enter State',
 			asyncKey    : 'locations',
 			disabled    : !countryInfo?.id,
@@ -107,6 +111,7 @@ const createBuyerControls = ({ countryInfo = {}, stateInfo = {} }) => {
 			name        : 'city',
 			label       : 'City (optional)',
 			type        : 'async_select',
+			initialCall : true,
 			placeholder : 'Enter City',
 			asyncKey    : 'locations',
 			disabled    : !stateInfo?.id,

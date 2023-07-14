@@ -5,10 +5,11 @@ import TITLE_MAPPING from '../../configurations/titleMapping';
 import useGetTradeEngine from '../../hooks/useGetTradeEngine';
 import IEControlsModal from '../IEControlsModal';
 
-import DutiesTaxesModal from './DutiesTaxesModal';
 import IEDocumentsModal from './IEDocumentsModal';
 import styles from './styles.module.css';
-import TraderEligibilityModal from './TraderEligibilityModal';
+
+import DutiesTaxesModal from '@/ui/commons/components/DutiesTaxes';
+import TraderEligibilityModal from '@/ui/commons/components/TraderEligibility';
 
 const COMPONENT_MAPPING = {
 	DUTIES    : DutiesTaxesModal,
@@ -35,7 +36,7 @@ function DetailsModal({
 			show={modal}
 			showCloseIcon
 			onClose={() => setModal(false)}
-			size="lg"
+			size="xl"
 		>
 			{!tradeEngineResponseLoading && (
 				<div className={styles.container}>

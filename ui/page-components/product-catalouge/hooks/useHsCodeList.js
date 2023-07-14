@@ -1,5 +1,4 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { Toast } from '@cogoport/components';
 import { useState, useEffect } from 'react';
 
 import { useRequestBf } from '@/packages/request';
@@ -24,7 +23,7 @@ const useHSCodelist = () => {
 			});
 			setHsList(resp.data);
 		} catch (error) {
-			Toast.error(error?.message || 'Something Went Wrong');
+			console.log(error?.message || 'Something Went Wrong');
 		}
 	};
 	useEffect(() => {

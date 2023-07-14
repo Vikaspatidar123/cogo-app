@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import { useRouter } from '@/packages/next';
 
 const usePrefillFn = ({
-	transportSetValues,
+	transportSetValue,
 	productSetValue,
 	chargeSetValue,
 	setFormData,
@@ -40,8 +40,8 @@ const usePrefillFn = ({
 		setPortDetails({ origin, destination });
 		setTransportMode(transportMode);
 
-		transportSetValues('originPort', originPort);
-		transportSetValues('destinationPort', destinationPort);
+		transportSetValue('originPort', originPort);
+		transportSetValue('destinationPort', destinationPort);
 
 		productSetValue('productName', productName);
 		productSetValue('hsCode', hsCode);
@@ -75,6 +75,7 @@ const usePrefillFn = ({
 			if (localStorageFormData) {
 				fillDataHandler({ localStorageFormData });
 				localStorage.removeItem('formData');
+				localStorage.removeItem('draftId');
 			}
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps

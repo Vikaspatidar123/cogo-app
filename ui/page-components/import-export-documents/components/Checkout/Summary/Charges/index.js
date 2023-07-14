@@ -1,25 +1,28 @@
 import { cl } from '@cogoport/components';
+import { useTranslation } from 'next-i18next';
 
 import styles from '../styles.module.css';
 
 import formatAmount from '@/ui/commons/utils/formatAmount';
 
 function Charges({ quotaValue = 0, isQuotaLeft = false, getPrice }) {
+	const { t } = useTranslation(['importExportDoc']);
+
 	const { amount = 0, gstAmount = 0, totalAmount = 0, currency = 'INR' } = getPrice();
 	return (
 		<>
 			{isQuotaLeft && (
 				<div>
 					<div className={cl`${styles.row} ${styles.avaliable}`}>
-						<div>Available Premium Services Quota</div>
+						<div>{t('importExportDoc:checkout_charge_quota_title')}</div>
 						<div>{quotaValue}</div>
 					</div>
 					<div className={styles.row}>
-						<div>Quota deducted</div>
+						<div>{t('importExportDoc:checkout_charge_quota_deduct')}</div>
 						<div>-1</div>
 					</div>
 					<div className={cl`${styles.row} ${styles.total}`}>
-						<div>Remaining Quota</div>
+						<div>{t('importExportDoc:checkout_charge_quota_remain')}</div>
 						<div className={styles.value}>{quotaValue - 1}</div>
 					</div>
 				</div>
@@ -27,7 +30,7 @@ function Charges({ quotaValue = 0, isQuotaLeft = false, getPrice }) {
 			{!isQuotaLeft && (
 				<div>
 					<div className={cl`${styles.row} ${styles.avaliable}`}>
-						<div>Services</div>
+						<div>{t('importExportDoc:checkout_charge_services')}</div>
 						<div>
 							{formatAmount({
 								amount,
@@ -40,7 +43,7 @@ function Charges({ quotaValue = 0, isQuotaLeft = false, getPrice }) {
 						</div>
 					</div>
 					<div className={styles.row}>
-						<div>Conviences Fee</div>
+						<div>{t('importExportDoc:checkout_charge_fee')}</div>
 						<div>
 							{formatAmount({
 								amount  : gstAmount,
@@ -53,7 +56,7 @@ function Charges({ quotaValue = 0, isQuotaLeft = false, getPrice }) {
 						</div>
 					</div>
 					<div className={cl`${styles.row} ${styles.total}`}>
-						<div>Total Amount</div>
+						<div>{t('importExportDoc:checkout_charge_amount')}</div>
 						<div>
 							{formatAmount({
 								amount  : totalAmount,

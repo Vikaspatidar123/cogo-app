@@ -1,6 +1,13 @@
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+
 import AirTracking from '@/ui/page-components/air-tracking';
 
-AirTracking.getInitialProps = () => ({
-	layout : 'app',
-	head   : { title: 'Dashboard' },
-}); export default AirTracking;
+export async function getServerSideProps({ locale }) {
+	return {
+		props: {
+			...(await serverSideTranslations(locale, ['common'])),
+
+		},
+	};
+}
+export default AirTracking;

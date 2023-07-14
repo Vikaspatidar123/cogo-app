@@ -3,10 +3,15 @@ import { isEmpty } from '@cogoport/utils';
 import { useTranslation } from 'next-i18next';
 import { useState, useEffect } from 'react';
 
+import GLOBAL_CONSTANTS from '../../constants/globals';
+
 import Documents from './Documents';
 import styles from './styles.module.css';
 
-function ImportExportDoc({ documents = [], EmptyState, hsNumber, modeOfTransport, isModal = false }) {
+function ImportExportDoc({ tradeEngineResponse = {}, EmptyState, isModal = false }) {
+	const { modeOfTransport = '', lineItem = [] } = tradeEngineResponse;
+	const { hsNumber = '', documents = [] } = lineItem?.[GLOBAL_CONSTANTS.zeroth_index] || {};
+
 	const { t } = useTranslation(['iedResult']);
 	const [activeTab, setActiveTab] = useState('IMPORT');
 

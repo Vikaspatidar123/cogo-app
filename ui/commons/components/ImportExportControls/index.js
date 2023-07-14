@@ -3,10 +3,15 @@ import { isEmpty } from '@cogoport/utils';
 import { useTranslation } from 'next-i18next';
 import { useState, useEffect } from 'react';
 
+import GLOBAL_CONSTANTS from '../../constants/globals';
+
 import ResultDetails from './ResultDetails';
 import styles from './styles.module.css';
 
-function ImportExportControls({ controls, EmptyState, listClassName }) {
+function ImportExportControls({ tradeEngineResponse = {}, EmptyState, listClassName }) {
+	const { lineItem = [] } = tradeEngineResponse || {};
+	const { controls = [] } = lineItem[GLOBAL_CONSTANTS.zeroth_index] || {};
+
 	const { t } = useTranslation(['iecResult']);
 	const [activeTab, setActiveTab] = useState('EXPORT');
 	const [controlVal, setControlVal] = useState({

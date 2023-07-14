@@ -1,25 +1,22 @@
 import { cl, Button, Tooltip } from '@cogoport/components';
 import { IcMPdf, IcMDownload } from '@cogoport/icons-react';
+import { useTranslation } from 'next-i18next';
 
 import styles from '../styles.module.css';
 
-import { downloadDocument } from '@/ui/commons/utils/downloadDocument';
-
-const MAX_DESC_LENGTH = 50;
-
-function RenderDesc({ desc = '' }) {
-	if (desc?.length > MAX_DESC_LENGTH) {
+const renderDesc = (desc = '') => {
+	if (desc?.length > 50) {
 		return (
 			<Tooltip content={desc} interactive>
 				<span>
-					{desc.substring(0, MAX_DESC_LENGTH)}
+					{desc.substring(0, 50)}
 					...
 				</span>
 			</Tooltip>
 		);
 	}
-	return <span>{desc || '--'}</span>;
-}
+	return desc || '--';
+};
 
 function Document({ doc = {}, hsNumber = '' }) {
 	const {
@@ -30,8 +27,12 @@ function Document({ doc = {}, hsNumber = '' }) {
 		docResponsibleParty = '',
 	} = doc;
 
-	const clickHandler = () => {
-		downloadDocument({ urlKey: 'importExportDoc', payloadObj: { docLink, docName, hsNumber } });
+	const { t } = useTranslation(['importExportDoc']);
+
+	const downloadHandler = () => {
+		const url = `${process.env.NEXT_PUBLIC_BUSINESS_FINANCE_BASE_URL}/saas/trade-engine/pdf?`
+		+ `docLink=${docLink}&docName=${docName}&hsNumber=${hsNumber}`;
+		window.open(url);
 	};
 
 	return (
@@ -43,35 +44,29 @@ function Document({ doc = {}, hsNumber = '' }) {
 						<span>{docName}</span>
 					</div>
 					<div className={styles.cta_web_view}>
-						<Button
-							className={styles.download_btn}
-							themeType="linkUi"
-							onClick={clickHandler}
-						>
-							Download
+						<Button themeType="linkUi" onClick={downloadHandler}>
+							{t('importExportDoc:result_download')}
 						</Button>
 
 					</div>
 					<div className={styles.cta_mobile_view}>
-						<Button className={styles.download_btn} themeType="linkUi" onClick={clickHandler}>
+						<Button themeType="linkUi" onClick={downloadHandler}>
 							<IcMDownload />
 						</Button>
 					</div>
 				</div>
 				<div className={cl`${styles.row} ${styles.row_mobile_view}`}>
 					<div className={cl`${styles.info} ${styles.info_src}`}>
-						<span className={styles.label}>Document Source: </span>
+						<span className={styles.label}>{t('importExportDoc:result_doc_label_1')}</span>
 						<span className={styles.value}>{docSource || '--'}</span>
 					</div>
 					<div className={cl`${styles.info} ${styles.info_party}`}>
-						<span className={styles.label}>Responsible Party: </span>
+						<span className={styles.label}>{t('importExportDoc:result_doc_label_2')}</span>
 						<span className={styles.value}>{docResponsibleParty}</span>
 					</div>
 					<div className={cl`${styles.info} ${styles.desc_row}`}>
-						<span className={styles.label}>Description: </span>
-						<span className={styles.value}>
-							<RenderDesc desc={docExpNotes} />
-						</span>
+						<span className={styles.label}>{t('importExportDoc:result_doc_label_3')}</span>
+						<span className={styles.value}>{renderDesc(docExpNotes)}</span>
 					</div>
 				</div>
 			</div>

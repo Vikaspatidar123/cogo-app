@@ -3,16 +3,17 @@ import { isEmpty } from '@cogoport/utils';
 import EmptyState from '../EmptyState';
 
 import ControlsResult from '@/ui/commons/components/ImportExportControls';
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
 function IEControlsModal({ tradeEngineResponse = {} }) {
 	const { lineItem = [] } = tradeEngineResponse || {};
-	const { controls = [] } = lineItem[0] || {};
+	const { controls = [] } = lineItem[GLOBAL_CONSTANTS.zeroth_index] || {};
 
 	return (
 		<div>
 			{!isEmpty(controls) ? (
 				<ControlsResult
-					controls={controls}
+					tradeEngineResponse={tradeEngineResponse}
 					EmptyState={EmptyState}
 					listClassName="list"
 				/>

@@ -60,7 +60,7 @@ function Result() {
 			{!tradeEngineLoading && controls.length > 0 && (
 				<div className={styles.result_container}>
 					<ControlResult
-						controls={controls}
+						tradeEngineResponse={tradeEngineResp}
 						EmptyState={EmptyState}
 					/>
 				</div>

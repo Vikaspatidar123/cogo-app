@@ -1,8 +1,10 @@
 import { Toast } from '@cogoport/components';
+import { useTranslation } from 'next-i18next';
 
 import { useRequest } from '@/packages/request';
 
 const useCheckDuplicateOrganization = () => {
+	const { t } = useTranslation(['common', 'getStarted']);
 	const [{ loading: checkDuplicateOrganizationLoading }, checkDuplicateOrganizationtrigger] = useRequest({
 		url    : 'organization/check_duplicate_organization',
 		method : 'post',
@@ -22,7 +24,7 @@ const useCheckDuplicateOrganization = () => {
 
 			if (response?.hasError) return;
 		} catch (error) {
-			Toast.error('Registraion Number is Invalid');
+			Toast.error(t('getStarted:rightPanel_get_started_organization_registration_number_invalid'));
 		}
 	};
 

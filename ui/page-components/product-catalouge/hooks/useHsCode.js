@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { Toast } from '@cogoport/components';
+import { useTranslation } from 'next-i18next';
 import { useState, useEffect } from 'react';
 
 import useSearchQuery from '../../product-catalogue-modal/hooks/useSearchQuery';
@@ -8,6 +9,7 @@ import { useRequestBf } from '@/packages/request';
 import { useSelector } from '@/packages/store';
 
 const useHSCODE = ({ countryforHscode = '' }) => {
+	const { t } = useTranslation(['common', 'productCatalogue']);
 	const [searchTerm, setSearchTerm] = useState('');
 	const [ApiData, setApiData] = useState([]);
 	const [headingObj, setheadingObj] = useState([]);
@@ -67,7 +69,7 @@ const useHSCODE = ({ countryforHscode = '' }) => {
 				setApiData(response.data?.sections);
 			}
 		} catch (err) {
-			Toast.error(err?.message || 'Something Went Wrong', { style: { color: 'white' } });
+			Toast.error(err?.message || t('productCatalogue:product_catalogue_toast_2'));
 		}
 	};
 
@@ -81,7 +83,7 @@ const useHSCODE = ({ countryforHscode = '' }) => {
 				});
 				setheadingObj(response?.data);
 			} catch (err) {
-				Toast.error(err.error?.message || 'Something Went Wrong', { style: { color: 'white' } });
+				Toast.error(err.error?.message || 'Something Went Wrong');
 			}
 		}
 	};
@@ -105,7 +107,7 @@ const useHSCODE = ({ countryforHscode = '' }) => {
 			setHSCodeResponse(response?.data);
 			setHsCodeObj(response.data?.list);
 		} catch (err) {
-			Toast.error(err.error?.message || 'Something Went Wrong', { style: { color: 'white' } });
+			Toast.error(err.error?.message || 'Something Went Wrong');
 		}
 	};
 

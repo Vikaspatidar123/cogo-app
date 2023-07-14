@@ -1,6 +1,7 @@
 /* eslint-disable no-undef */
 /* eslint-disable max-len */
 import { Toast } from '@cogoport/components';
+import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
 
 // import { useSaasState } from '../../../common/context';
@@ -9,6 +10,7 @@ import { useRequestBf } from '@/packages/request';
 import { useSelector } from '@/packages/store';
 
 const useUploadDocuments = ({ refetchProduct, setShow }) => {
+	const { t } = useTranslation(['common', 'productCatalogue']);
 	const [fileValue, setFileValue] = useState('');
 	const [value, setValue] = useState('');
 	const { profile } = useSelector((state) => state);
@@ -51,7 +53,7 @@ const useUploadDocuments = ({ refetchProduct, setShow }) => {
 				}
 			}
 		} catch (error) {
-			Toast.error(error.error?.message || 'Something Went Wrong');
+			Toast.error(error.error?.message || t('productCatalogue:product_catalogue_toast_2'));
 		}
 	};
 

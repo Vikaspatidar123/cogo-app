@@ -1,10 +1,12 @@
 import { Loader } from '@cogoport/components';
+import { useTranslation } from 'next-i18next';
 
 import styles from './styles.module.css';
 
 function MobileView({
 	fields, infoData, itm, loading,
 }) {
+	const { t } = useTranslation(['common', 'productCatalogue']);
 	const data = {};
 	fields.forEach((singleItem) => {
 		data[singleItem?.label || 'renderIcon'] = singleItem;
@@ -27,7 +29,11 @@ function MobileView({
 			) : (
 				<>
 					{data?.renderIcon && <div className={styles.icon}>{infoData(data.renderIcon, itm)}</div>}
-					{['Name', 'Category', 'SubCategory', 'Cost Price', 'Selling Price'].map(
+					{[t('productCatalogue:product_catalogue_mobile_view_text_1'),
+						t('productCatalogue:product_catalogue_mobile_view_text_2'),
+						t('productCatalogue:product_catalogue_mobile_view_text_3'),
+						t('productCatalogue:product_catalogue_mobile_view_text_4'),
+						t('productCatalogue:product_catalogue_mobile_view_text_5')].map(
 						(key) => (
 							<div className={styles.div_container}>
 								<div className={styles.label}>

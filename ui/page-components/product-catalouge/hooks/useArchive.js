@@ -1,4 +1,5 @@
 import { Toast } from '@cogoport/components';
+import { useTranslation } from 'next-i18next';
 
 import { useRequestBf } from '@/packages/request';
 
@@ -11,6 +12,8 @@ const useArchive = ({
 	setActiveTab,
 	card = false,
 }) => {
+	const { t } = useTranslation(['common', 'productCatalogue']);
+
 	const [{ loading: putArchiveLoading }, PutArchiveTrigger] = useRequestBf({
 		method  : 'put',
 		url     : 'saas/product/archive',
@@ -24,7 +27,7 @@ const useArchive = ({
 			});
 			if (response?.data?.message === 'Success') {
 				setArchive(false);
-				Toast.success('Product Archive Successfully !!');
+				Toast.success(t('productCatalogue:product_catalogue_toast_1'));
 
 				if (subCategoryCount > 1) {
 					refetchProduct({ productClassificationId });
@@ -35,7 +38,7 @@ const useArchive = ({
 				}
 			}
 		} catch (error) {
-			Toast.error(error?.message || 'Something Went Wrong');
+			Toast.error(error?.message || t('productCatalogue:product_catalogue_toast_2'));
 		}
 	};
 	return {

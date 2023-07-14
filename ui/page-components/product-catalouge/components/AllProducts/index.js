@@ -1,10 +1,11 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import {
-	Pagination, Popover, Loader, Tooltip,
+	Pagination, Popover, Loader, Tooltip, cl,
 } from '@cogoport/components';
 import {
 	IcMEdit, IcMPaste, IcMDelete, IcMOverflowDot, IcMPlus,
 } from '@cogoport/icons-react';
+import { useTranslation } from 'next-i18next';
 import React, { useState, useEffect } from 'react';
 
 import DeleteProductModal from '../../common/DeleteProductModal';
@@ -28,6 +29,7 @@ function AllProducts({
 	productClassification = '',
 	proId = '',
 }) {
+	const { t } = useTranslation(['common', 'productCatalogue']);
 	const { MAPPING } = HsCodeIcon();
 	const [archive, setArchive] = useState(false);
 	const [visible, setVisible] = useState({});
@@ -52,7 +54,7 @@ function AllProducts({
 	const content = (id, productClassificationId) => (
 		<div className={styles.info} role="presentation" onClick={() => setProId(id)}>
 			<div
-				className="text edit"
+				className={cl`${styles.text_1} ${styles.edit}`}
 				role="presentation"
 				onClick={() => {
 					setProductClassification(productClassificationId);
@@ -62,11 +64,11 @@ function AllProducts({
 				}}
 			>
 				<IcMEdit width={10} height={10} />
-				<div>Edit</div>
+				<div>{t('productCatalogue:product_catalogue_all_products_edit_button_label_1')}</div>
 			</div>
 
 			<div
-				className="text edit"
+				className={cl`${styles.text_1} ${styles.edit}`}
 				role="presentation"
 				onClick={() => {
 					setProId(id);
@@ -75,11 +77,11 @@ function AllProducts({
 				}}
 			>
 				<IcMPaste width={10} height={10} />
-				<div>Archive</div>
+				<div>{t('productCatalogue:product_catalogue_all_products_edit_button_label_2')}</div>
 			</div>
 
 			<div
-				className="text"
+				className={styles.text}
 				role="presentation"
 				onClick={() => {
 					setShowDeleteModal(true);
@@ -89,7 +91,7 @@ function AllProducts({
 				}}
 			>
 				<IcMDelete width={10} height={10} />
-				<div>Delete</div>
+				<div>{t('productCatalogue:product_catalogue_all_products_edit_button_label_2')}</div>
 			</div>
 		</div>
 	);
@@ -146,7 +148,7 @@ function AllProducts({
 									)}
 									{loading && <Loader width="169px" />}
 								</div>
-								<div className={`${styles.row}${styles.second}`}>
+								<div className={cl`${styles.row}${styles.second}`}>
 									{!loading && (
 										<div className={`${styles.sub_category}`}>
 											{subCategoryDisplayName?.length > 40 ? (
@@ -182,9 +184,7 @@ function AllProducts({
 
 			<div className={styles.page_container}>
 				<div className="pagination">
-
 					<Pagination
-						className="md"
 						type="number"
 						currentPage={pageNo}
 						totalItems={totalRecords}

@@ -1,21 +1,26 @@
 import { Button, Modal } from '@cogoport/components';
+import { useTranslation } from 'next-i18next';
 
 import styles from './styles.module.css';
 
+import { Image } from '@/packages/next';
+
 function ArchiveModal({ archive, setArchive, refetchArchive }) {
+	const { t } = useTranslation(['common', 'productCatalogue']);
+
 	return (
 		<Modal className={styles.modal_div} show={archive} onClose={() => setArchive(false)}>
 			<div className={styles.container}>
 				<div className={styles.icon_div}>
-					<img
+					<Image
 						src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/archive.svg"
-						alt=""
+						alt="logo"
 						height={70}
 						width={70}
 					/>
 				</div>
-				<div className={styles.heading}>Are you sure you want to archive this product?</div>
-				<div className={styles.text}>You can retrive your archived product anytime from the archived tab</div>
+				<div className={styles.heading}>{t('productCatalogue:product_catalogue_add_archive_modal_text_1')}</div>
+				<div className={styles.text}>{t('productCatalogue:product_catalogue_add_archive_modal_text_2')}</div>
 			</div>
 			<div className={styles.button_div}>
 				<Button
@@ -23,7 +28,7 @@ function ArchiveModal({ archive, setArchive, refetchArchive }) {
 					className={styles.secondary_button}
 					onClick={() => setArchive(false)}
 				>
-					No
+					{t('productCatalogue:product_catalogue_add_archive_modal_button_label_1')}
 
 				</Button>
 				<Button
@@ -32,7 +37,7 @@ function ArchiveModal({ archive, setArchive, refetchArchive }) {
 						refetchArchive();
 					}}
 				>
-					Yes
+					{t('productCatalogue:product_catalogue_add_archive_modal_button_label_2')}
 				</Button>
 			</div>
 		</Modal>

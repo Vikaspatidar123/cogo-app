@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { Toast } from '@cogoport/components';
+import { useTranslation } from 'next-i18next';
 import { useState, useEffect } from 'react';
 
 // import { useSaasState } from '../../../common/context';
@@ -7,6 +8,7 @@ import { useRequestBf } from '@/packages/request';
 import { useSelector } from '@/packages/store';
 
 const useProductCatalogue = ({ archive = false, fetch = () => { }, setActiveTab }) => {
+	const { t } = useTranslation(['common', 'productCatalogue']);
 	const { profile } = useSelector((state) => state);
 	const { id } = profile || {};
 	const [apiData, setApiData] = useState({});
@@ -81,10 +83,10 @@ const useProductCatalogue = ({ archive = false, fetch = () => { }, setActiveTab 
 					fetch();
 				}
 
-				Toast.success('Product Delete Successfully !!');
+				Toast.success(t('productCatalogue:product_catalogue_toast_5'));
 			}
 		} catch (error) {
-			Toast.error(error?.message || 'Something Went Wrong');
+			Toast.error(error?.message || t('productCatalogue:product_catalogue_toast_2'));
 		}
 	};
 

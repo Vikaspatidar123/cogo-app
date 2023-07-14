@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react-hooks/rules-of-hooks */
 import { merge } from '@cogoport/utils';
+import { useTranslation } from 'next-i18next';
 import { useEffect } from 'react';
 
 import getControls from './controls';
@@ -15,8 +16,9 @@ const Options = useGetAsyncOptionsBf(merge(
 ));
 
 function GetCountriesFilter({ setCountryforHsCode, setSelectedCountry }) {
+	const { t } = useTranslation(['common', 'productCatalogue']);
 	const countryOptions = Options;
-	const controls = getControls({ setSelectedCountry, countryOptions });
+	const controls = getControls({ setSelectedCountry, countryOptions, t });
 	const { watch, control } = useForm();
 
 	const watchCountry = watch('country');

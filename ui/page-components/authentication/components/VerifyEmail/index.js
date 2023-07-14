@@ -1,32 +1,31 @@
 import { Button } from '@cogoport/components';
-import { useTranslation } from 'next-i18next';
 import React from 'react';
 
+import getVerifyEmail from '../../hooks/useVerifyEmail';
 import HeaderLayout from '../HeaderLayout';
 
 import styles from './styles.module.css';
 
 import { Link } from '@/packages/next';
+import setCookieAndRedirect from '@/ui/commons/utils/setCookieAndRedirect';
 
 function VerifyEmail() {
-	const { t } = useTranslation(['verifyAutoLogin']);
-
 	const content = {
-		heading           : `${t('verifyAutoLogin:verify_auto_login_content_heading')}`,
-		subheading        : `${t('verifyAutoLogin:verify_auto_login_content_sub_heading')}`,
+		heading           : 'Email Verification Failed',
+		subheading        : 'We regret to inform you that we were unable to verify your email.',
 		forgotPasswordCTA : {
-			text : `${t('verifyAutoLogin:verify_auto_login_content_forgot_password_text')}`,
+			text : 'Try Setting your Password Again?',
 			link : '/forgot-password',
 		},
-		submitText: `${t('verifyAutoLogin:verify_auto_login_content_submit_text')}`,
+		submitText: 'Send Verification Email',
 	};
 
 	return (
 		<HeaderLayout
 			rightParams={{
-				label : `${t('verifyAutoLogin:verify_auto_login_header_layout_right_params_cta')}`,
+				label : 'Already a User?',
 				href  : '/login',
-				cta   : `${t('verifyAutoLogin:verify_auto_login_header_layout_right_params_cta')}`,
+				cta   : 'LOGIN',
 			}}
 		>
 			<div className={styles.container}>
@@ -56,5 +55,22 @@ function VerifyEmail() {
 		</HeaderLayout>
 	);
 }
+
+VerifyEmail.getInitialProps = async (ctx) => {
+	const { query } = ctx;
+	const { id } = query;
+	try {
+		const res = await getVerifyEmail({ email_token: id });
+		const { hasError } = res || {};
+		if (!hasError) {
+			const { token } = (res || {}).data || {};
+			const redirectPath = `/dashboard?mail_verify=${true}`;
+			setCookieAndRedirect(token, ctx, redirectPath);
+		}
+	} catch (e) {
+		console.log(e.toString());
+	}
+	return { layout: 'none' };
+};
 
 export default VerifyEmail;

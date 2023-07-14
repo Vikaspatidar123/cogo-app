@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 import GetTracking from '../hooks/GetTracking';
 
 import DiscoverRates from './DiscoverRates';
@@ -7,6 +9,7 @@ import KYCPage from './KYCPage';
 import PayLaterWidgets from './PayLaterWidgets';
 import Promotion from './Promotion';
 import Schedule from './Schedule';
+import SetPassword from './SetPassword';
 import Shipments from './Shipments';
 import styles from './styles.module.css';
 import Tracking from './Tracking';
@@ -17,9 +20,12 @@ import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
 function SassDashboard() {
 	const { airTracking, oceanTracking, query, country_id, kyc_status } = GetTracking();
+	const { mail_verify = false } = query;
+
+	const [showPasswordModal, setShowPasswordModal] = useState(mail_verify);
 
 	return (
-		<div className={styles.main_class}>
+		<div className={`${styles.main_class} ${showPasswordModal ? styles.main_class_blur : ''}`}>
 			<div className={styles.main_class2}>
 				<div className={styles.part1}>
 					{/* <VerifyEmailMobile /> */}
@@ -59,7 +65,7 @@ function SassDashboard() {
 					</div>
 				</div>
 			</div>
-
+			<SetPassword showModal={showPasswordModal} setShowModal={setShowPasswordModal} />
 		</div>
 
 	);

@@ -9,7 +9,7 @@
 }
 
 .container {
-	height: 100%;
+	height: 60vh;
 }
 
 .row {
@@ -38,6 +38,10 @@
 	justify-content: center;
 	height: calc(100% - 60px);
 
+	img {
+		margin-bottom: 12px;
+	}
+
 	@media (max-height: 250px) {
 		display: flex;
 		flex-direction: column;
@@ -47,14 +51,12 @@
 }
 
 .h1 {
-	margin: 0;
 	font-size: _fs5;
 	font-weight: _bold;
 	color: _black;
 }
 
 .h2 {
-	margin: 0;
 	font-size: _fs2;
 	color: _black0.3;
 }

@@ -13,3 +13,5 @@ export { default as VerifyEmail } from './components/VerifyEmail';
 export { default as VerifyAutoSignUpEmail } from './components/VerifyAutoSignUpEmail';
 
 export { default as VerifyAutoSignUpSaas } from './components/VerifyAutoSignUpSaas';
+
+export { default as ResetPassword } from './components/ResetPassword';

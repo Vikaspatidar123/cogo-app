@@ -20,11 +20,9 @@ function EmailLoginForm({ setMode = () => {} }) {
 		},
 	});
 
-	const renderSuffix = () => {
-		if (!showPassword) {
-			return <IcMEyeopen className={styles.show_password} onClick={() => setShowPassword(!showPassword)} />;
-		}
-		return <IcMEyeclose className={styles.show_password} onClick={() => setShowPassword(!showPassword)} />;
+	const renderSuffix = (show, setShow) => {
+		const Icon = show ? IcMEyeclose : IcMEyeopen;
+		return <Icon className={styles.show_password} onClick={() => setShow(!show)} />;
 	};
 
 	return (
@@ -47,7 +45,7 @@ function EmailLoginForm({ setMode = () => {} }) {
 				control={control}
 				name="password"
 				type={showPassword ? 'text' : 'password'}
-				suffix={renderSuffix()}
+				suffix={renderSuffix(showPassword, setShowPassword)}
 				placeholder="Enter your Password"
 				rules={{ required: 'Password is required.' }}
 			/>

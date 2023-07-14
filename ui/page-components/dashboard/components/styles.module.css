@@ -17,10 +17,15 @@
 
 	/* max-width: calc(100% - 80px); */
 	min-height: 100%;
+	transition: 0.2s ease-in-out;
 
 	@media screen and (max-width: 767px) {
 		max-width: 100%;
 	}
+}
+
+.main_class_blur {
+	filter: blur(10px);
 }
 
 .main_class2 {

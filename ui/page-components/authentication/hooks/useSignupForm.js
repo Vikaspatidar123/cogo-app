@@ -1,9 +1,8 @@
-import { isEmpty } from '@cogoport/utils';
-import { useEffect, useState } from 'react';
+import { getCookie } from '@cogoport/utils';
+import { useEffect } from 'react';
 
 import { checkMobileInput } from '../utils/check-mobile-input';
-import { getIdByMobileCountryCode } from '../utils/get-id-by-mobile-country-code';
-import { getLocationData } from '../utils/get-location-data';
+import { getCountryDetailsByCountryCode } from '../utils/get-country-details';
 
 const useSignupForm = ({
 	setCustomError,
@@ -11,14 +10,11 @@ const useSignupForm = ({
 	errors,
 	setValue,
 	formValues,
-	mobileCodeValue,
 	onLeadUserDetails,
 	leadUserId,
 	setUserDetails,
 	signupAuthentication,
 }) => {
-	const [locationData, setLocationData] = useState({});
-
 	const checkMobileDetails = (val) => {
 		const hasMobileValues = checkMobileInput(val);
 
@@ -57,31 +53,14 @@ const useSignupForm = ({
 	};
 
 	useEffect(() => {
-		const fetchData = async () => {
-			const data = await getLocationData();
-			setLocationData(data);
-		};
-
-		fetchData();
-	}, []);
-
-	useEffect(() => {
-		if (!isEmpty(locationData)) {
-			setValue(
-				'mobile_number',
-				{ country_code: locationData.mobile_country_code || '' },
-			);
-		}
-	}, [locationData, setValue]);
-
-	useEffect(() => {
-		if (mobileCodeValue?.country_code) {
-			const countryId = getIdByMobileCountryCode({
-				mobile_country_code: mobileCodeValue.country_code,
-			});
-			setValue('country_id', countryId);
-		}
-	}, [setValue, mobileCodeValue?.country_code]);
+		const locationCountryCode = getCookie('location');
+		const {
+			mobile_country_code = '',
+			id = '',
+		} = getCountryDetailsByCountryCode({ country_code: locationCountryCode });
+		setValue('mobile_number', { country_code: mobile_country_code });
+		setValue('country_id', id);
+	}, [setValue]);
 
 	useEffect(() => {
 		const hasMobileValues = checkMobileInput(formValues);

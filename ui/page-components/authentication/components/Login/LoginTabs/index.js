@@ -6,7 +6,7 @@ import MobileLoginForm from '../MobileLoginForm';
 
 import styles from './styles.module.css';
 
-function LoginTabs({ setMode = () => { }, setMobileNumber = () => { }, setOtpId = () => { }, mobileNumber = {} }) {
+function LoginTabs({ setMode = () => {}, setMobileNumber = () => {}, setOtpId = () => {}, mobileNumber = {} }) {
 	const [activeTab, setActiveTab] = useState('email');
 
 	return (

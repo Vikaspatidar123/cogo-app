@@ -1,12 +1,11 @@
-import { isEmpty } from '@cogoport/utils';
+import { getCookie } from '@cogoport/utils';
 import { useEffect, useState } from 'react';
 
 import { checkMobileInput } from '../utils/check-mobile-input';
-import { getLocationData } from '../utils/get-location-data';
+import { getCountryDetailsByCountryCode } from '../utils/get-country-details';
 
 const useMobileLoginForm = ({ formValues = {}, onSendOtp = () => {}, setValue = () => {} }) => {
 	const [customError, setCustomError] = useState('');
-	const [locationData, setLocationData] = useState({});
 
 	const onOtpApiCall = (values, e) => {
 		const hasValues = checkMobileInput(values);
@@ -20,22 +19,10 @@ const useMobileLoginForm = ({ formValues = {}, onSendOtp = () => {}, setValue = 
 	};
 
 	useEffect(() => {
-		const fetchData = async () => {
-			const data = await getLocationData();
-			setLocationData(data);
-		};
-
-		fetchData();
-	}, []);
-
-	useEffect(() => {
-		if (!isEmpty(locationData)) {
-			setValue(
-				'mobile_number',
-				{ country_code: locationData?.mobile_country_code || '' },
-			);
-		}
-	}, [locationData, setValue]);
+		const locationCountryCode = getCookie('location');
+		const { mobile_country_code = '' } = getCountryDetailsByCountryCode({ country_code: locationCountryCode });
+		setValue('mobile_number', { country_code: mobile_country_code });
+	}, [setValue]);
 
 	useEffect(() => {
 		const hasValues = checkMobileInput(formValues);

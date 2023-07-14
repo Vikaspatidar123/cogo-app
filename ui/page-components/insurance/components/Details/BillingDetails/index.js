@@ -58,8 +58,8 @@ const useBillingDetails = ({
 			insuredLastName: !isEmpty(formDetails)
 				? formDetails.insuredLastName
 				: names[1] || '',
-			email: !isEmpty(formDetails) ? formDetails.email : profile?.email,
-			phoneNo: !isEmpty(formDetails)
+			email   : !isEmpty(formDetails) ? formDetails.email : profile?.email,
+			phoneNo : !isEmpty(formDetails)
 				? formDetails.phoneNo
 				: profile?.mobile_number,
 			gstin: !isEmpty(formDetails)
@@ -68,16 +68,16 @@ const useBillingDetails = ({
 			partyName: !isEmpty(formDetails)
 				? formDetails.partyName
 				: '',
-			aadharNumber: !isEmpty(formDetails) ? formDetails.aadharNumber : '',
-			billingAddress: !isEmpty(formDetails)
+			aadharNumber   : !isEmpty(formDetails) ? formDetails.aadharNumber : '',
+			billingAddress : !isEmpty(formDetails)
 				? formDetails.billingAddress
 				: '',
 			billingPincode: !isEmpty(formDetails)
 				? formDetails.billingPincode
 				: '',
-			billingState: !isEmpty(formDetails) ? formDetails?.billingState : '',
-			billingCity: !isEmpty(formDetails) ? formDetails?.billingCity : '',
-			panNumber: !isEmpty(formDetails) ? formDetails?.panNumber : '',
+			billingState : !isEmpty(formDetails) ? formDetails?.billingState : '',
+			billingCity  : !isEmpty(formDetails) ? formDetails?.billingCity : '',
+			panNumber    : !isEmpty(formDetails) ? formDetails?.panNumber : '',
 		},
 	});
 
@@ -95,13 +95,13 @@ const useBillingDetails = ({
 	const resetCallback = useCallback(() => {
 		if (insuranceType[0] === 'OTHER' && formDetails?.policyForSelf) {
 			reset({
-				billingAddress: '',
-				billingCity: '',
-				billingState: '',
-				billingPincode: '',
-				partyName: '',
-				gstin: '',
-				panNumber: '',
+				billingAddress : '',
+				billingCity    : '',
+				billingState   : '',
+				billingPincode : '',
+				partyName      : '',
+				gstin          : '',
+				panNumber      : '',
 			});
 		}
 	}, [formDetails?.policyForSelf, insuranceType, reset]);
@@ -130,7 +130,7 @@ const useBillingDetails = ({
 						<div className={styles.error_message}>
 							{errors[renderingField.name]?.message}
 						</div>
-					)}
+				)}
 			</div>
 		);
 	};

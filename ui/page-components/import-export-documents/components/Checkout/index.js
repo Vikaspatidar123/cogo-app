@@ -27,7 +27,6 @@ function Checkout() {
 
 	const {
 		prefillData = {},
-		MAPPING,
 		getPrice,
 		paymentHandler,
 	} = checkoutFn({ localStorageData, serviceRateData, initiatePayment });
@@ -46,7 +45,6 @@ function Checkout() {
 			<div className={styles.details}>
 				<Info
 					prefillData={prefillData}
-					MAPPING={MAPPING}
 					localStorageData={localStorageData}
 				/>
 			</div>

@@ -1,13 +1,5 @@
 import { startCase } from '@cogoport/utils';
 
-const MAPPING = {
-	exportCountry        : 'Country of Export',
-	importCountry        : 'Country of Import',
-	transportMode        : 'Mode of Tranport',
-	manufacturingCountry : 'Country of Manufacturing',
-	hsCode               : 'HS Code',
-};
-
 const checkutFn = ({ localStorageData = {}, serviceRateData = {}, initiatePayment }) => {
 	const { currency, services } = serviceRateData || {};
 	const { import_export_documents: IEDoc } = services || {};
@@ -49,7 +41,6 @@ const checkutFn = ({ localStorageData = {}, serviceRateData = {}, initiatePaymen
 	};
 	return {
 		prefillData,
-		MAPPING,
 		getPrice,
 		paymentHandler,
 	};

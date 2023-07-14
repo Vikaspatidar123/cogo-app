@@ -1,11 +1,9 @@
-.container {
-	.loader {
-		display: block;
-		width: 200px;
-		height: 200px;
-		margin: 150px auto;
-	}
+.loader {
+	display: block;
+	margin: 150px auto;
+}
 
+.container {
 	.title_container {
 		display: flex;
 		align-items: center;
@@ -59,6 +57,8 @@
 	.header {
 		background: #fdfbf6;
 		border-bottom: 1px solid #e0e0e0;
+		border-top-left-radius: 10px;
+		border-top-right-radius: 10px;
 	}
 
 	.name {
@@ -72,10 +72,6 @@
 
 	.cta_web_view {
 		display: flex;
-	}
-
-	.download_btn {
-		margin-right: 12px;
 	}
 
 	.cta_mobile_view {
@@ -98,8 +94,6 @@
 
 	.empty_state {
 		display: block;
-		width: 400px;
-		height: 400px;
 		margin: 100px auto;
 	}
 

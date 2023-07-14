@@ -1,7 +1,5 @@
-import { IcMArrowNext } from '@cogoport/icons-react';
-
 // import GetTracking from '../../hooks/GetTracking';
-
+import { IcMArrowNext } from '@cogoport/icons-react';
 import { useTranslation } from 'next-i18next';
 
 import styles from './styles.module.css';

@@ -18,6 +18,7 @@ const SINGLE_LOCATION = [
 	'air_customs',
 	'fcl_cfs',
 ];
+
 function RenderStatus({ ogShipmentData, service }) {
 	const { t } = useTranslation(['dashboard']);
 
@@ -29,6 +30,7 @@ function RenderStatus({ ogShipmentData, service }) {
 		</text>
 	);
 }
+
 function OnGoingShipmentsCard(props) {
 	const {
 		container_size = '', container_type = '',
@@ -52,6 +54,7 @@ function OnGoingShipmentsCard(props) {
 		pending_tasks_count = '',
 		data = {},
 	} = props || {};
+
 	const containerInfoData = {
 		container_size,
 		container_type,
@@ -66,12 +69,12 @@ function OnGoingShipmentsCard(props) {
 		volum,
 		weight,
 	};
+
 	const { push } = useRouter();
 	const { t } = useTranslation(['dashboard']);
 
 	return (
 		<div>
-
 			<div className={styles.second}>
 				<div className={styles.inner}>
 					<div className={styles.data}>
@@ -87,14 +90,10 @@ function OnGoingShipmentsCard(props) {
 							</div>
 							<div className={styles.sub_lcl}>
 								<ServiceTypeIcon
-									freight_type={
-                                        service_type
-                                        || shipment_type
-                                    }
+									freight_type={service_type || shipment_type}
 								/>
 							</div>
 						</div>
-
 						{SINGLE_LOCATION.includes(service_type || shipment_type) ? (
 							<div className={styles.second_box}>
 								{getLocation(true, props).location}
@@ -115,9 +114,7 @@ function OnGoingShipmentsCard(props) {
 								</div>
 								<div className={styles.origin}>
 									{getLocation(false, props).location}
-									<span
-									className={styles.location_span}
-								>
+									<span className={styles.location_span}>
 									{getLocation(false, props).country}
 								</span>
 								</div>
@@ -129,13 +126,9 @@ function OnGoingShipmentsCard(props) {
 						/>
 						<div className={styles.fouth_data}>
 							<div className={styles.first_row}>
-								<IcMFship
-									className={styles.image}
-								/>
+								<IcMFship className={styles.image} />
 								{selected_schedule_departure ? (
-									<p
-										className={styles.arrive}
-									>
+									<p className={styles.arrive}>
 										<span className={styles.span}>
 										{t('dashboard:onGoingShipments_card_text_1')}
                                             &nbsp;
@@ -152,7 +145,6 @@ function OnGoingShipmentsCard(props) {
 								<p className={styles.dept}>
 									<span className={styles.span}>
 										{t('dashboard:onGoingShipments_card_text_2')}
-										{' '}
                                         &nbsp;
 									</span>
 									{formatDate({
@@ -164,9 +156,7 @@ function OnGoingShipmentsCard(props) {
 							) : null}
 							{last_updated_at ? (
 								<p className={styles.update}>
-									<span
-										className={styles.span}
-									>
+									<span className={styles.span}>
 										{t('dashboard:onGoingShipments_card_text_3')}
                                         &nbsp;
 									</span>
@@ -207,8 +197,8 @@ function OnGoingShipmentsCard(props) {
 					</div>
 				</div>
 			</div>
-
 		</div>
 	);
 }
+
 export default OnGoingShipmentsCard;

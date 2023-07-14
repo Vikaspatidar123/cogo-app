@@ -10,6 +10,8 @@ import styles from './styles.module.css';
 
 import getGeoConstants from '@/ui/commons/constants/geo';
 
+const LOADER_ARR = [...Array(3).keys()];
+
 function SellerAddressContent({
 	setSellerAddressInfo, setShowFilters, sellerAddressInfo,
 	addressdata = [], loading, setOpenModal,
@@ -36,8 +38,8 @@ function SellerAddressContent({
 				</div>
 			</div>
 			{loading && (
-				[1, 2, 3].map(() => (
-					<div className={styles.card}>
+				LOADER_ARR.map((ele) => (
+					<div key={ele} className={styles.card}>
 						<div className={styles.section}>
 							<Placeholder className={styles.loading} />
 							<Placeholder className={styles.loading} />

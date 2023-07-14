@@ -106,8 +106,8 @@ function OnGoingShipmentsCard(props) {
 								<div className={styles.origin}>
 									{getLocation(true, props).location}
 									<span className={styles.location_span}>
-									{getLocation(false, props).country}
-								</span>
+										{getLocation(false, props).country}
+									</span>
 								</div>
 								<div>
 									<IcMPortArrow />
@@ -115,8 +115,8 @@ function OnGoingShipmentsCard(props) {
 								<div className={styles.origin}>
 									{getLocation(false, props).location}
 									<span className={styles.location_span}>
-									{getLocation(false, props).country}
-								</span>
+										{getLocation(false, props).country}
+									</span>
 								</div>
 							</div>
 						)}
@@ -130,14 +130,14 @@ function OnGoingShipmentsCard(props) {
 								{selected_schedule_departure ? (
 									<p className={styles.arrive}>
 										<span className={styles.span}>
-										{t('dashboard:onGoingShipments_card_text_1')}
+											{t('dashboard:onGoingShipments_card_text_1')}
                                             &nbsp;
-									</span>
+										</span>
 										{formatDate({
-                                        	date       : selected_schedule_departure,
-                                        	dateFormat : GLOBAL_CONSTANTS.formats.date['dd MMM yyyy'],
-                                        	formatType : 'date',
-									})}
+											date       : selected_schedule_departure,
+											dateFormat : GLOBAL_CONSTANTS.formats.date['dd MMM yyyy'],
+											formatType : 'date',
+										})}
 									</p>
 								) : null}
 							</div>
@@ -148,9 +148,9 @@ function OnGoingShipmentsCard(props) {
                                         &nbsp;
 									</span>
 									{formatDate({
-                                    	date       : selected_schedule_arrival,
-                                    	dateFormat : GLOBAL_CONSTANTS.formats.date['dd MMM yyyy'],
-                                    	formatType : 'date',
+										date       : selected_schedule_arrival,
+										dateFormat : GLOBAL_CONSTANTS.formats.date['dd MMM yyyy'],
+										formatType : 'date',
 									})}
 								</p>
 							) : null}
@@ -161,9 +161,9 @@ function OnGoingShipmentsCard(props) {
                                         &nbsp;
 									</span>
 									{formatDate({
-                                    	date       : last_updated_at,
-                                    	dateFormat : GLOBAL_CONSTANTS.formats.date['dd MMM yyyy'],
-                                    	formatType : 'date',
+										date       : last_updated_at,
+										dateFormat : GLOBAL_CONSTANTS.formats.date['dd MMM yyyy'],
+										formatType : 'date',
 									})}
 								</p>
 							) : null}

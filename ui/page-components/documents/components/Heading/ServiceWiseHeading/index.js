@@ -20,6 +20,8 @@ function ServiceWiseHeading({ setServiceType = () => {}, serviceType = '' }) {
 					options={[{ label: 'FCL Customs', value: 'fcl_customs_service' }]}
 					value={serviceType}
 					onChange={setServiceType}
+					isClearable
+					style={{ width: '200px' }}
 				/>
 
 				<Button themeType="accent" className={styles.button}>

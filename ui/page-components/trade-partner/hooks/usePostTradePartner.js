@@ -1,4 +1,5 @@
 import { Toast } from '@cogoport/components';
+import { useTranslation } from 'next-i18next';
 
 import { useRequestBf } from '@/packages/request';
 
@@ -6,6 +7,8 @@ const usePostTradePartner = ({
 	isEdit, tradePartyDetails, getList, setIsEdit,
 }) => {
 	const { saasOrganizationId, saasUserId, saasAddressId } = tradePartyDetails || {};
+
+	const { t } = useTranslation(['common', 'tradePartner']);
 
 	const [{ loading }, postBuyer] = useRequestBf({
 		url     : '/saas/organization/buyer',
@@ -56,7 +59,8 @@ const usePostTradePartner = ({
 				},
 			});
 			if (response?.data) {
-				Toast.success(isEdit ? 'Updated Sucessfully' : 'Created Sucessfully', {
+				Toast.success(isEdit ? t('tradePartner:trade_partner_toast_2')
+					: t('tradePartner:trade_partner_toast_3'), {
 					autoClose: 2000,
 				});
 				setIsEdit(false);

@@ -11,7 +11,7 @@ function LoginTabs({ setMode = () => { }, setMobileNumber = () => { }, setOtpId 
 
 	return (
 		<>
-			<h2 className={styles.card_heading}>Welcome back to Cogoport</h2>
+			<h1 className={styles.card_heading}>Welcome back to Cogoport</h1>
 
 			<Tabs
 				activeTab={activeTab}

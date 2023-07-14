@@ -29,7 +29,6 @@
 .errors {
 	height: 12px;
 	font-size: 12px;
-	font-weight: 300;
 	color: var(--color-primary-error-red-2);
 	text-align: right;
 }

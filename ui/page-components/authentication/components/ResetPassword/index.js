@@ -39,7 +39,7 @@ function ResetPassword() {
 
 			<div className={styles.card_container}>
 				<div className={styles.card}>
-					<h2 className={styles.card_heading}>Welcome back to Cogoport</h2>
+					<h1 className={styles.card_heading}>Welcome back to Cogoport</h1>
 					<h3 className={styles.card_sub_heading}>Let&#39;s get you a new Password</h3>
 
 					<form onSubmit={handleSubmit(onResetPassword)} className={styles.form_container}>

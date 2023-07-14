@@ -16,9 +16,11 @@ import {
 } from '@/packages/forms';
 import CheckboxController from '@/packages/forms/Controlled/CheckboxController';
 import CountrySelectController from '@/packages/forms/Controlled/CountrySelectController';
+import { useRouter } from '@/packages/next';
 import patterns from '@/ui/commons/configurations/patterns';
 
 function SignupForm({ userDetails = {}, setMode = () => { }, setUserDetails = () => { } }) {
+	const { locale } = useRouter();
 	const [customError, setCustomError] = useState('');
 	const [leadUserId, setLeadUserId] = useState('');
 
@@ -180,7 +182,7 @@ function SignupForm({ userDetails = {}, setMode = () => { }, setUserDetails = ()
 					target="_blank"
 					rel="noreferrer"
 				>
-					{t('common:rightPanel_registration_links_termsAndPrivacyPolicy_links_terms_linkLabel')}
+					Terms and Conditions
 					{'  '}
 
 				</a>
@@ -191,7 +193,7 @@ function SignupForm({ userDetails = {}, setMode = () => { }, setUserDetails = ()
 					target="_blank"
 					rel="noreferrer"
 				>
-					{t('common:rightPanel_registration_links_termsAndPrivacyPolicy_links_privacyPolicy_linkLabel')}
+					Privacy Policy
 				</a>
 			</div>
 

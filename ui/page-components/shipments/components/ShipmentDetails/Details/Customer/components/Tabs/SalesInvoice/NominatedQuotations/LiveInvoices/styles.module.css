@@ -1,0 +1,83 @@
+.section{
+	padding: 0 16px;
+}
+
+.heading_bq{
+	margin-bottom: 14px;
+	font-weight: 600;
+	font-size: 16px;
+	color: #000000;
+}
+
+.service_container{
+	border: 1px solid rgb(242, 227, 195);
+	border-radius: 6px;
+	margin-bottom: 20px;
+}
+
+.flex_row{
+	display: flex;
+	align-items: center;
+	color: #000;
+	padding: 16px 30px;
+	font-weight: 600;
+	font-size: 14px;
+	line-height: 21px;
+	letter-spacing: 0.02em;
+	border-bottom: 1px solid rgb(242, 227, 195);
+
+	&.lineItems {
+		border-bottom: 1px solid #e0e0e0;
+		font-weight: 500;
+		font-size: 14px;
+		line-height: 21px;
+	}
+}
+
+.div1{
+	display: flex;
+	flex: 1;
+	padding: 0px 30px;
+}
+
+.div2{
+	display: flex;
+	justify-content: center;
+	flex: 0.3;
+
+	> .showPercent {
+		color: #828282;
+	}
+}
+
+.total{
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	font-weight: 500;
+	font-size: 18px;
+	background: rgb(253, 251, 246);
+
+	color: #000;
+	padding: 20px 40px 20px 60px;
+	width: 100%;
+	border-radius: 0px 0px 4px 4px;
+
+	&.big {
+		justify-content: space-between;
+		font-weight: 600;
+		font-size: 18px;
+		color: #000;
+		padding: 10px 40px 30px 60px;
+		background: none;
+	}
+}
+
+.total_with_tax{
+	display: flex;
+}
+.inc_of_tax{
+	font-weight: 600;
+	font-size: 18px;
+	color: #828282;
+}

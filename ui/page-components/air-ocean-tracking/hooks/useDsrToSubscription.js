@@ -58,7 +58,7 @@ const useDsrToSubscription = ({ dsrId = '', setActiveStepper, selectedShipments,
 			});
 			setActiveStepper('schedule');
 		} catch (err) {
-			console.log(err, 'err');
+			console.error(err, 'err');
 		}
 	};
 

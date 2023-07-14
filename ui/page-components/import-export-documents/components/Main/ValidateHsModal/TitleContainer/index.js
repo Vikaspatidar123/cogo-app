@@ -1,34 +1,35 @@
 import { cl, Tooltip } from '@cogoport/components';
 import { IcMInfo, IcAReports } from '@cogoport/icons-react';
+import { useTranslation } from 'next-i18next';
 
 import styles from '../styles.module.css';
 
 function TitleContainer({ billId }) {
+	const { t } = useTranslation(['importExportDoc']);
 	return (
 		<>
 			<div className={styles.title_container}>
 				<IcAReports width={25} height={25} />
-				<div className={styles.title}>Get Accurate Data</div>
+				<div className={styles.title}>{t('importExportDoc:validate_modal_title')}</div>
 			</div>
 			{billId && (
 				<div className={cl`${styles.txt} ${styles.success_msg}`}>
-					Dont worry! Your payment was successful.
+					{t('importExportDoc:validate_modal_subtitle_1')}
 					<br />
 					{' '}
-					Please click on validate to check your results!
+					{t('importExportDoc:validate_modal_subtitle_2')}
 				</div>
 			)}
 			<div>
 				<div className={cl`${styles.row_container} ${styles.subheading}`}>
 					<div className={styles.txt}>
-						<div className={styles.text}>Validate HS Code details</div>
+						<div className={styles.text}>{t('importExportDoc:validate_modal_heading')}</div>
 						<div className={styles.hr} />
 					</div>
 					<Tooltip
 						content={(
 							<div className={styles.txt}>
-								To fetch accurate information, we need to re-validate your cargo and HS
-								code information.
+								{t('importExportDoc:validate_modal_tooltip_content')}
 							</div>
 						)}
 						interactive

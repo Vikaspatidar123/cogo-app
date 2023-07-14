@@ -1,3 +1,4 @@
+import { useTranslation } from 'next-i18next';
 import React, { useState } from 'react';
 
 import InviteTeamForm from './InviteTeamForm';
@@ -9,6 +10,7 @@ import {
 } from '@/packages/forms';
 
 function InviteTeam({ org, setTimeForCall }) {
+	const { t } = useTranslation(['common', 'getStarted']);
 	const [teamMembers, setTeamMembers] = useState([]);
 	const [showForm, setShowForm] = useState(true);
 	const {
@@ -18,8 +20,10 @@ function InviteTeam({ org, setTimeForCall }) {
 	return (
 		<div className={styles.container}>
 			<div className={styles.header_container}>
-				<span className={styles.header_container_bold}>Invite Team Members</span>
-				<div>Invite team members to access your Cogoport Account</div>
+				<span className={styles.header_container_bold}>
+					{t('getStarted:rightPanel_get_started_invite_team_text_1')}
+				</span>
+				<div>{t('getStarted:rightPanel_get_started_invite_team_text_2')}</div>
 			</div>
 			<div className={styles.card_container}>
 				<Card teamMembers={teamMembers} />

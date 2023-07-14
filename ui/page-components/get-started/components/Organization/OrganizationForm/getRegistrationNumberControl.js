@@ -61,10 +61,7 @@ const getRegistrationNumberControl = ({ countryCode = 'IN-PAN' }) => ({
 	placeholder : 'PAN Number',
 	type        : 'text',
 	maxLength   : undefined,
-	rules       : {
-		required: true,
-	},
-	span: 12,
+	span        : 12,
 	...(countryRegistrationNumberControlMapping[countryCode] || {}),
 });
 

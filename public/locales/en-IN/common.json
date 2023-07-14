@@ -7,6 +7,48 @@
     "continue":"Continue",
     "close":"Close",
     "proceed":"Proceed",
+    "login_to_the":"Login to the",
+    "cogoport_app_platform":"Cogoport App Platform!",
+    "deliver_value_to_your_customers": "Deliver value to your customers",
+    "need_any_help":"Need any help?",
+    "support_email":"support@cogoport.com",
+    "rightPanel_tabs_email_title": "Email",
+    "rightPanel_tabs_email_controls_email_label": "Email",
+    "rightPanel_tabs_mobile_title": "Mobile",
+    "rightPanel_tabs_mobile_controls_mobile_label": "Mobile Number",
+    "rightPanel_tabs_email_forgotPassword": "Forgot Password",
+    "rightPanel_tabs_email_loginButton_label": "Login",
+    "rightPanel_support_label": "If you have any trouble logging in, email here - ",
+    "rightPanel_email_is_required":"Email is required.",
+    "rightPanel_password_placeholder":"Password",
+    "rightPanel_password_is_required":"Password is required",
+    "rightPanel_enter_mobile_number":"Please enter mobile no",
+    "rightPanel_tabs_mobile_getOtpButton_label": "Get OTP",
+    "rightPanel_tabs_mobile_verifyOtpButton_label": "Verify OTP",
+    "rightPanel_tabs_mobile_resendOtpButton_label": "Resend OTP",
+    "rightPanel_signup_form_welcome_to_cogoport":"Welcome to Cogoport",
+    "rightPanel_signup_form_signup_to_create_account":"Sign up to create an account with us.",
+    "rightPanel_registration_controls_name_label": "Name",
+    "rightPanel_registration_controls_name_is_required":"Name is required",
+    "rightPanel_registration_controls_isWhatsappNumber_label": "Number also available on Whatsapp",
+    "rightPanel_registration_links_termsAndPrivacyPolicy_label": "By clicking on Submit, you are accepting the ",
+    "rightPanel_registration_links_termsAndPrivacyPolicy_links_terms_linkLabel": "Terms of Use",
+    "rightPanel_registration_links_termsAndPrivacyPolicy_links_privacyPolicy_linkLabel": "Privacy Policy",
+    "rightPanel_registration_links_termsAndPrivacyPolicy_links_terms_href": "https://www.cogoport.com/en-IN/terms-and-conditions/",
+    "rightPanel_registration_links_termsAndPrivacyPolicy_links_privacyPolicy_href": "https://www.cogoport.com/en-IN/privacy-policy/",
+    "rightPanel_registration_mobile_number_is_required":"Number is required.",
+    "rightPanel_signupLink_link": "SignUp",
+    "rightPanel_verification_texts_1": "Verify through email or mobile number",
+    "rightPanel_verification_texts_2": "You need to verify your email or phone to complete signup.",
+    "rightPanel_verification_texts_3": "Verification code has been sent to",
+    "rightPanel_verification_text_via_sms": "via SMS",
+    "rightPanel_verification_confirm_button_label":"CONFIRM",
+    "rightPanel_verification_OR_text": "OR",
+    "rightPanel_verification_texts_4":"An email with a verification link has been sent to",
+    "rightPanel_verification_texts_5": "Click on the link to verify.",
+    "rightPanel_verification_email_texts_4": "If you have not received the email after a few minutes,",
+    "rightPanel_verification_email_texts_5": "please check your spam folder or click on",
+    "rightPanel_verification_email_resendEmailButton_label": "Resend email",
     "layouts_app_header_navigation_dashboard_label":"Dashboard",
     "layouts_app_header_navigation_discoverRates_label": "Discover Rates",
     "layouts_app_header_navigation_shipments_label": "Shipments",
@@ -70,12 +112,4 @@
     "kyc_verified":"Verified",
     "kyc_rejected":"KYC Rejected",
     "kyc_pending":"KYC Pending"
-
-
-
-
-
-
-
-
 }

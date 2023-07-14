@@ -1,0 +1,8 @@
+{
+    "verify_auto_login_content_heading":"Xác minh email không thành công!",
+    "verify_auto_login_content_sub_heading":"Chúng tôi không thể xác minh email của bạn.",
+    "verify_auto_login_content_forgot_password_text":"Thử đặt lại mật khẩu của bạn?",
+    "verify_auto_login_content_submit_text":"Gửi email xác minh",
+    "verify_auto_login_header_layout_right_params_label":"Đã là người dùng?",
+    "verify_auto_login_header_layout_right_params_cta":"ĐĂNG NHẬP"
+}

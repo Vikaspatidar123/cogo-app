@@ -1,4 +1,5 @@
 import { Toast } from '@cogoport/components';
+import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
 
 import { useRouter } from '@/packages/next';
@@ -6,9 +7,11 @@ import { useRequestBf } from '@/packages/request';
 import { useSelector } from '@/packages/store';
 
 const useVerifyHscode = () => {
-	const [inputValue, setInputValue] = useState([]);
-	const { profile } = useSelector((state) => state);
 	const { query } = useRouter();
+	const { t } = useTranslation(['importExportDoc']);
+	const { profile } = useSelector((state) => state);
+
+	const [inputValue, setInputValue] = useState([]);
 	const paymentType = query?.billId ? 'PAYMENT' : 'QUOTA';
 	const [{ loading }, trigger] = useRequestBf({
 		method  : 'post',
@@ -30,11 +33,11 @@ const useVerifyHscode = () => {
 				},
 			});
 			if (!resp?.data) {
-				Toast.error('Please enter valid Hs Code ');
+				Toast.error(t('importExportDoc:api_hscode_error_2'));
 			}
 			return resp?.data;
 		} catch (err) {
-			Toast.error('Something went wrong! Please try again ');
+			Toast.error(t('importExportDoc:api_hscode_error_1'));
 			return false;
 		}
 	};
@@ -56,20 +59,18 @@ const useVerifyHscode = () => {
 			});
 
 			if (!resp?.data?.status && resp?.data?.recommendations.length === 0) {
-				Toast.info(
-					'This hs code is not supported by us. Please provide another hs code',
-				);
+				Toast.info(t('importExportDoc:api_hscode_error_3'));
 				setValidateInProgress(true);
 			}
 			if (!resp?.data?.status && resp?.data?.recommendations.length > 0) {
-				Toast.info('Invalid HS Code. Please select from dropdown');
+				Toast.info(t('importExportDoc:api_hscode_error_4'));
 				setValidateInProgress(true);
 			}
 
 			setStatus(resp?.data?.status);
 			setInputValue(resp?.data?.recommendations);
 		} catch (error) {
-			Toast.error('Something went wrong! Please try again ');
+			Toast.error(t('importExportDoc:api_hscode_error_1'));
 		}
 	};
 

@@ -1,5 +1,7 @@
 import { Button } from '@cogoport/components';
 import { IcMCopy } from '@cogoport/icons-react';
+import { getCookie } from '@cogoport/utils';
+import { useTranslation } from 'next-i18next';
 import { useState, useEffect } from 'react';
 
 import FooterImage from './FooterImage';
@@ -17,11 +19,15 @@ const onClickRedirect = () => {
 
 const image_urls = [...Array(3).keys()];
 
+const DEFAULT_TIMER = 0;
+
 function Unsubscribe() {
+	const { t } = useTranslation(['cancellationTicket']);
 	const [unsubscribe, setUnsubscribe] = useState(false);
 	const [submit, setSubmit] = useState(false);
-	const [timer, setTimer] = useState(0);
+	const [timer, setTimer] = useState(DEFAULT_TIMER);
 	const [ticket, setTicket] = useState('');
+	const location = getCookie('location');
 
 	const { onSubmit, loading, copyToClipBoard } = useUnsubscribe({
 		setSubmit,
@@ -32,7 +38,7 @@ function Unsubscribe() {
 	});
 
 	useEffect(() => {
-		if (timer === 0 && submit) {
+		if (timer === DEFAULT_TIMER && submit) {
 			onClickRedirect();
 		}
 	}, [timer, submit]);
@@ -43,14 +49,12 @@ function Unsubscribe() {
 				<div className={styles.content}>
 					{!unsubscribe && !submit && (
 						<div>
-							<h1>Unsubscribe ?</h1>
+							<h1>{t('cancellationTicket:unsubscribe_text')}</h1>
 							<div>
-								We understand that you would like to unsubscribe from your
-								subscription with Cogoport.
+								{t('cancellationTicket:unsubscribe_description1_text')}
 							</div>
 							<div>
-								We are sorry to hear that you no longer wish to continue your
-								subscription with us.
+								{t('cancellationTicket:unsubscribe_description2_text')}
 							</div>
 							<div className={styles.footer}>
 								<Button
@@ -58,7 +62,7 @@ function Unsubscribe() {
 									onClick={() => onClickRedirect()}
 									type="button"
 								>
-									Cancel
+									{t('cancellationTicket:cancel_button_text')}
 								</Button>
 								<Button
 									className={styles.unsubscribe}
@@ -66,7 +70,7 @@ function Unsubscribe() {
 									onClick={() => setUnsubscribe((prev) => !prev)}
 									type="button"
 								>
-									Unsubscribe
+									{t('cancellationTicket:unsubscribe_button_text')}
 								</Button>
 							</div>
 						</div>
@@ -83,9 +87,12 @@ function Unsubscribe() {
 					{submit && (
 						<div className={styles.final_page}>
 							<div className={styles.success_page}>
-								<h1>Its sad to see you go.....</h1>
+								<h1>
+									{t('cancellationTicket:see_message')}
+								</h1>
 								<p>
-									Your ticket number is &nbsp;
+									{t('cancellationTicket:tricket_number_text')}
+									&nbsp;
 									{' '}
 									<b>
 										#
@@ -99,15 +106,17 @@ function Unsubscribe() {
 									/>
 								</p>
 								<p>
-									Please note it down to contact us for further details. Reach
-									out to us at
+									{t('cancellationTicket:tricket_message')}
 									{' '}
-									<a href="support@cogoport.com">support@cogoport.com</a>
+									<a href={GLOBAL_CONSTANTS.customer_support[location]}>
+										{GLOBAL_CONSTANTS.customer_support[location]}
+									</a>
 								</p>
 								<div>
-									Redirecting to cogoport.com in &nbsp;
+									{t('cancellationTicket:redirecting_text')}
+									&nbsp;
 									{timer}
-									s....
+									{t('cancellationTicket:sub_text')}
 								</div>
 							</div>
 						</div>

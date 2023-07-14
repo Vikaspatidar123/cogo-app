@@ -256,6 +256,10 @@ const GLOBAL_CONSTANTS = {
 		},
 		AIRWAY_BILL_NO: /^\d{3}-\d{8}$/,
 	},
+	customer_support: {
+		IN : 'support@cogoport.com',
+		VN : 'support.vn@cogoport.com',
+	},
 };
 
 export default GLOBAL_CONSTANTS;

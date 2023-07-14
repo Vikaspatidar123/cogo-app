@@ -133,3 +133,14 @@
 .flex {
 	display: flex;
 }
+
+.total {
+	font-size: 16px;
+	font-weight: 500;
+}
+
+.finalTotal {
+	padding: 0 40px;
+	font-size: 16px;
+	font-weight: 500;
+}

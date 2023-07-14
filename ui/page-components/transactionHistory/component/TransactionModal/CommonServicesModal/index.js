@@ -1,9 +1,11 @@
+import DutiesTaxesModal from '@/ui/commons/components/DutiesTaxes';
 import IEControlsModal from '@/ui/commons/components/ImportExportControls';
 import IEDocumentsModal from '@/ui/commons/components/ImportExportDoc';
+import TraderEligibilityModal from '@/ui/commons/components/TraderEligibility';
 
 const SERVICES_MODAL = {
-	// DUTIES    : DutiesTaxesModal,
-	// SCREENING : TraderEligibilityModal,
+	DUTIES    : DutiesTaxesModal,
+	SCREENING : TraderEligibilityModal,
 	DOCUMENTS : IEDocumentsModal,
 	CONTROLS  : IEControlsModal,
 };
@@ -13,13 +15,11 @@ function EmptyState() {
 }
 
 function CommonServicesModal({ tradeEngineResponse = {}, requestType }) {
-	const { modeOfTransport = '', lineItem = [] } = tradeEngineResponse;
-	const { hsNumber = '', documents = [], controls = [] } = lineItem?.[0] || {};
 	const Component = SERVICES_MODAL?.[requestType];
 
 	return (
 		<div>
-			<Component modeOfTransport={modeOfTransport} {...lineItem?.[0]} isModal EmptyState={EmptyState} />
+			<Component tradeEngineResponse={tradeEngineResponse} isModal EmptyState={EmptyState} listClassName="list" />
 		</div>
 	);
 }

@@ -95,7 +95,7 @@ function DutiesTaxes({ tradeEngineResponse }) {
 
 									<div className={styles.dashed_line} />
 
-									<div className={`${styles.Row} ${styles.totoal}`}>
+									<div className={`${styles.row} ${styles.total}`}>
 										<div>{t('dtResult:dt_total')}</div>
 										<div>
 											{getFormatedAmt({

@@ -39,7 +39,7 @@ const useGetSummary = () => {
 				},
 			});
 		} catch (err) {
-			console.log(err);
+			console.error(err);
 		}
 	}, [branch_id, trigger, globalFilter]);
 

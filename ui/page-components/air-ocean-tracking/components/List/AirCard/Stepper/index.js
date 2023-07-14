@@ -1,6 +1,7 @@
 import { cl } from '@cogoport/components';
+import { useTranslation } from 'next-i18next';
 
-import GET_MAPPING from '../../../../constant/card';
+import getMappingObject from '../../../../constant/card';
 
 import styles from './styles.module.css';
 
@@ -10,7 +11,12 @@ import { getMilestone } from '@/ui/page-components/air-ocean-tracking/utils/getM
 function Stepper({ activeTab, lineInfo = {}, airCargoDetails = {} }) {
 	const { short_name = '', logo_url = '' } = lineInfo || {};
 
-	const MILESTONE_MAPPING = getMilestone({ airCargoDetails });
+	const { t } = useTranslation(['common', 'airOceanTracking']);
+
+	const MILESTONE_MAPPING = getMilestone({ airCargoDetails, t });
+
+	const GET_MAPPING = getMappingObject({ t });
+
 	const { DEFAULT_STATUS } = GET_MAPPING?.[activeTab] || {};
 
 	return (

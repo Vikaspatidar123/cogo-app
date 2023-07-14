@@ -5,8 +5,9 @@ import { RightIcon, Right, Maping, Config } from '../constants';
 
 import styles from './styles.module.css';
 
-function SideStepper({ activeStepper, isMobile }) {
+function SideStepper({ activeStepper }) {
 	const [url, setUrl] = useState();
+
 	useEffect(() => {
 		setTimeout(
 			() => {
@@ -16,13 +17,14 @@ function SideStepper({ activeStepper, isMobile }) {
 			setUrl(RightIcon),
 		);
 	}, [activeStepper]);
+
 	return (
 		<div className={styles.main}>
 			<div className={styles.heading}>Easy steps for Insurance</div>
-			<div className={isMobile ? styles.wrapper_mobile : styles.wrapper}>
+			<div className={styles.wrapper}>
 				{(Config || []).map((x) => (
-					<div key={x?.step} className={isMobile ? styles.container_mobile : styles.container}>
-						<div className={isMobile ? styles.mobile_view : ''}>
+					<div key={x?.step} className={styles.container}>
+						<div className={styles.mobile_view}>
 							{activeStepper.svg !== x.step ? (
 								<div
 									className={x.active || Maping[activeStepper[x.step]] !== 'Pending'
@@ -43,12 +45,12 @@ function SideStepper({ activeStepper, isMobile }) {
 							{x.step !== 3 && (
 								<div
 									className={Maping[activeStepper[x.step]] === 'Completed'
-										? `${isMobile ? styles.line_mobile_active : styles.line_active}`
-										: `${isMobile ? styles.line_mobile : styles.line}`}
+										? styles.line_active
+										: styles.line}
 								/>
 							)}
 						</div>
-						<div className={isMobile ? styles.text_div_mobile : styles.text_div}>
+						<div className={styles.text_div}>
 							<div>
 								<div className={Maping[activeStepper[x.step]] === 'Completed'
 									? styles.text_active

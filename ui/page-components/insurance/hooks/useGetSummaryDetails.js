@@ -10,7 +10,7 @@ const useGetSummaryDetails = ({ activeTab, filters, sort }) => {
 		method  : 'get',
 		authKey : 'get_saas_insurance_list_summary',
 		url     : 'saas/insurance/list/summary',
-	}, { autoCancel: false });
+	}, { autoCancel: false, manual: true });
 
 	const summary = useCallback(async () => {
 		const { sortBy = undefined, sortType = undefined } = sort || {};
@@ -31,8 +31,8 @@ const useGetSummaryDetails = ({ activeTab, filters, sort }) => {
 	}, [activeTab, filters, organization, sort, trigger]);
 
 	useEffect(() => {
-		summary();
-	}, [filters, sort, activeTab, summary]);
+		if (organization?.id) { summary(); }
+	}, [filters, sort, activeTab, summary, organization?.id]);
 
 	return {
 		summaryData    : data,

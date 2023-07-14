@@ -5,6 +5,7 @@ const headerControls = ({ id = '', organization = {} }) => [
 		type        : 'async_select',
 		isClearable : true,
 		asyncKey    : 'list_partner_quotation',
+		initialCall : true,
 		params      : {
 			userId                  : id,
 			partnerOrganizationType : 'BUYER',

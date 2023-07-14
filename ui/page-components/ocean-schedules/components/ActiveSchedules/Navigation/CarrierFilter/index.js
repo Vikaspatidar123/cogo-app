@@ -1,14 +1,17 @@
 import { IcMArrowRotateRight } from '@cogoport/icons-react';
+import { useTranslation } from 'next-i18next';
 
 import AirlineContent from './AirlineContent';
 import styles from './styles.module.css';
 
 function CarrierFilter({ handleCheckList, handleNav, isOpen, carrierList }) {
+	const { t } = useTranslation(['oceanSchedule']);
+
 	return (
 		<>
 			<div className={styles.header} role="presentation" onClick={() => handleNav('airline')}>
 				<div className={styles.nav_heading}>
-					Carrier
+					{t('oceanSchedule:carrier_text')}
 				</div>
 				<div className={styles.column}>
 					<IcMArrowRotateRight

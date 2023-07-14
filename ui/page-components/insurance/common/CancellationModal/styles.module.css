@@ -41,3 +41,7 @@
 .flex {
 	display: flex;
 }
+
+.button {
+	margin: 0 4px;
+}

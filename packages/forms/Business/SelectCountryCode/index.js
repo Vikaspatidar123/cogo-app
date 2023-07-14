@@ -1,25 +1,20 @@
 /* eslint-disable import/no-unresolved */
 import { Select } from '@cogoport/components';
-// import Image from 'next/image';
 
 import countryCode from '@/.data-store/constants/countries.json';
 
 function SelectCountryCode(props) {
-	// const { value, showCountryName = true, height = 18, width = 18 } = props;
-	const { value } = props;
+	const { value, showCountryName = true } = props;
 
 	const formattedList = countryCode.map((code) => ({
-		id    : code.id,
 		value : code.mobile_country_code,
-
-		label: `${code.mobile_country_code || ''}: ${code.name || ''}`,
-
-		// label: (
+		label : `${code.mobile_country_code} ${showCountryName ? `: ${code.name}` : ''}`,
+		// label : (
 		// 	<div style={{ display: 'flex', alignItems: 'center' }}>
 		// 		<span style={{ marginRight: '5px' }}>
 		// 			<Image
-		// 				width={width}
-		// 				height={height}
+		// 				width={width || 18}
+		// 				height={height ||18}
 		// 				src={code.flag_icon_url ? code.flag_icon_url : 'https://via.placeholder.com/24x20'}
 		// 				alt={code.name}
 		// 			/>
@@ -30,7 +25,6 @@ function SelectCountryCode(props) {
 		// 		</span>
 		// 	</div>
 		// ),
-
 	}));
 
 	return (

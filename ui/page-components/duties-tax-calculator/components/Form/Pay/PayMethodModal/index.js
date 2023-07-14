@@ -18,19 +18,17 @@ function PayMethodModal({
 	checkoutHandler = () => {},
 }) {
 	const { query = {} } = useRouter();
-	const { org_id, branch_id, account_type } = query || {};
-	const subscriptionsUrl = `${process.env.APP_URL}app/${org_id}/${branch_id}/${account_type}/saas/cogo-subscriptions`;
+	const { org_id, branch_id } = query || {};
+	const subscriptionsUrl = `${process.env.NEXT_PUBLIC_APP_URL}${org_id}/${branch_id}/saas/cogo-subscriptions`;
 
 	const submitHandler = (method) => {
 		if (method === 'buySubscription') {
 			const url = `${subscriptionsUrl}/manage-subscription`;
 			setPaymentMode('buy');
-			// eslint-disable-next-line no-undef
 			window.open(url, '_blank');
 		} else if (method === 'buyAddon') {
 			const url = `${subscriptionsUrl}/balance-history`;
 			setPaymentMode('buy');
-			// eslint-disable-next-line no-undef
 			window.open(url, '_blank');
 		} else if (method === 'directPay') {
 			checkoutHandler();

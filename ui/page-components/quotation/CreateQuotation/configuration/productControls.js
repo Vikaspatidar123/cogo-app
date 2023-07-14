@@ -25,6 +25,7 @@ const productFormControls = ({ id, checkEdit }) => [
 		asyncKey         : 'list_products',
 		params           : { userId: id, deletedRequired: checkEdit },
 		isClearable      : true,
+		initialCall      : true,
 		size             : 'sm',
 		width            : '15%',
 		rules            : { required: true },

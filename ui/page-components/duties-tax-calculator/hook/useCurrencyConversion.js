@@ -9,6 +9,7 @@ const useCurrencyConversion = () => {
 	}, { manual: true });
 
 	const exchangeApi = async (from_cur, to_cur) => {
+		if (!from_cur || !to_cur) return 1;
 		try {
 			const exData = await trigger({
 				params: {

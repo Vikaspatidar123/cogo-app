@@ -1,5 +1,4 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { Toast } from '@cogoport/components';
 import { useState, useEffect } from 'react';
 
 import useSearchQuery from './useSearchQuery';
@@ -48,7 +47,7 @@ const useProductList = ({ labeledValue }) => {
 			const allInfo = arr.filter(({ id }, index) => !findId.includes(id, index + 1));
 			setAllProductData(allInfo);
 		} catch (error) {
-			Toast.error(error?.message);
+			console.log(error?.message);
 		}
 	};
 

@@ -50,7 +50,7 @@ function Quotations({
 		<div className={inViewport ? styles.rfq_scroll : styles.rfq_no_scroll}>
 			{(rfqList || []).map((item) => (
 				<QuotationsCard
-					key={item}
+					key={item?.id}
 					rfqItem={item}
 					getRfqStats={getRfqStats}
 					activeFilter={activeFilter}

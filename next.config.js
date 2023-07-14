@@ -1,6 +1,10 @@
 /** @type {import('next').NextConfig} */
 const { i18n } = require('./next-i18next.config');
 
+const isProd = process.env.NODE_ENV === 'production';
+
+const removeConsole = { exclude: ['error'] };
+
 module.exports = {
 	reactStrictMode : false,
 	swcMinify       : true,
@@ -37,5 +41,8 @@ module.exports = {
 			use  : [{ loader: '@svgr/webpack' }],
 		});
 		return config;
+	},
+	compiler: {
+		removeConsole: isProd ? removeConsole : false,
 	},
 };

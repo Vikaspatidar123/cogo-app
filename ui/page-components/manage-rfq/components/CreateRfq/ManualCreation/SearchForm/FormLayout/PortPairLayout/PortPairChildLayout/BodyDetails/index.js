@@ -52,37 +52,39 @@ function BodyDetails(props) {
 					? 'Additional Remarks'
 					: `${labelMapping[mode]} Details`}
 			</div>
-			{(fields || []).map((field, index) => (
-				<div key={field.id}>
-					<div className={styles.card} id={field.id}>
-						<BodyDetailsChildFormat
-							{...field}
-							mode={mode}
-							id={field.id}
-							types={types}
-							watch={watch}
-							field={field}
-							index={index}
-							control={control}
-							controls={controls}
-							name={name}
-							setValue={setValue}
-							containersListLength={fields.length}
-							locationName={locationName}
-							remove={remove}
-							handleIndex={handleIndex}
-							error={error?.[index]}
-							showElements={showElements?.[index]}
-							buttonText={buttonText}
-							indexnumber={indexnumber}
-							checkFieldArray={checkFieldArray}
-							container_index={container_index}
-							shippingLinesDetails={shippingLinesDetails}
-							setShippingLinesDetails={setShippingLinesDetails}
-						/>
+			<div className={styles.field_wrapper}>
+				{(fields || []).map((field, index) => (
+					<div key={field.id} className={styles.card_wrapper}>
+						<div className={styles.card} id={field.id}>
+							<BodyDetailsChildFormat
+								{...field}
+								mode={mode}
+								id={field.id}
+								types={types}
+								watch={watch}
+								field={field}
+								index={index}
+								control={control}
+								controls={controls}
+								name={name}
+								setValue={setValue}
+								containersListLength={fields.length}
+								locationName={locationName}
+								remove={remove}
+								handleIndex={handleIndex}
+								error={error?.[index]}
+								showElements={showElements?.[index]}
+								buttonText={buttonText}
+								indexnumber={indexnumber}
+								checkFieldArray={checkFieldArray}
+								container_index={container_index}
+								shippingLinesDetails={shippingLinesDetails}
+								setShippingLinesDetails={setShippingLinesDetails}
+							/>
+						</div>
 					</div>
-				</div>
-			))}
+				))}
+			</div>
 
 			{!['remarks', 'containers'].includes(name) && (
 				<div className={styles.btn_container}>

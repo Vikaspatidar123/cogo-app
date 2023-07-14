@@ -32,8 +32,12 @@ function Charges(props, ref) {
 
 	const { prevCurrency, currCurrency } = storeCurrency;
 	const { getExchangeRate } = useCurrencyConversion({});
-	const formHook = useForm();
-	const { control, watch, setValue, handleSubmit } = formHook;
+	const formHook = useForm({
+		defaultValues: {
+			incoterm: 'EXW',
+		},
+	});
+	const { control, watch, setValue, handleSubmit, formState:{ errors } } = formHook;
 
 	const watchCharges = watch();
 
@@ -41,10 +45,6 @@ function Charges(props, ref) {
 		basicFreightCharges = 0,
 		dutiesAndTaxes = 0, insurance = 0, additionalCharges = [], incotermCharges = [],
 	} = watchCharges;
-
-	useEffect(() => {
-		setValue('incoterm', 'CIF');
-	}, []);
 
 	useEffect(() => {
 		if (editData?.basicFreightCharges) {
@@ -140,8 +140,10 @@ function Charges(props, ref) {
 					</div>
 					<h3 className={styles.title}>Charges</h3>
 				</div>
-				<div className={styles.incoterm}>
-					<p className={`${styles.label} ${styles.incoterm_label}`}>Incoterm: </p>
+				<div className={cl`${styles.incoterm} ${errors?.incoterm ? styles.error : ''}`}>
+					<p className={`${styles.label} ${styles.incoterm_label}`}>
+						Incoterm:
+					</p>
 					<SelectController {...chargesControls[0]} control={control} style={{ width: '130px' }} />
 				</div>
 			</div>
@@ -151,6 +153,7 @@ function Charges(props, ref) {
 				formHook={formHook}
 				ref={quoteRef}
 				consignmentValue={consignmentValue}
+				editData={editData}
 				rest={rest}
 			/>
 

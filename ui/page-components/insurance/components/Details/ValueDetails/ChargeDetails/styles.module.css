@@ -4,7 +4,7 @@
 }
 
 .col {
-	padding: 8px !important;
+	padding: 8px;
 }
 
 .icon_div {
@@ -31,4 +31,12 @@
 	opacity: 1 !important;
 	transition: transform 1.4s;
 	transform: translate(10px, -52px);
+}
+
+.row {
+	display: flex;
+
+	@media (max-width: 760px) {
+		flex-direction: column;
+	}
 }

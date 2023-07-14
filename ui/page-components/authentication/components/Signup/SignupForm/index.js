@@ -176,22 +176,22 @@ function SignupForm({ userDetails = {}, setMode = () => { }, setUserDetails = ()
 				By signing up, you are accepting the
 				{'  '}
 				<a
-					href="https://www.cogoport.com/en-IN/terms-and-conditions/"
+					href={`https://www.cogoport.com/${locale}/terms-and-conditions/`}
 					target="_blank"
 					rel="noreferrer"
 				>
-					Terms of Use
+					{t('common:rightPanel_registration_links_termsAndPrivacyPolicy_links_terms_linkLabel')}
 					{'  '}
 
 				</a>
 				&
 				{'  '}
 				<a
-					href="https://www.cogoport.com/en-IN/privacy-policy/"
+					href={`https://www.cogoport.com/${locale}/privacy-policy/`}
 					target="_blank"
 					rel="noreferrer"
 				>
-					Privacy Policy.
+					{t('common:rightPanel_registration_links_termsAndPrivacyPolicy_links_privacyPolicy_linkLabel')}
 				</a>
 			</div>
 

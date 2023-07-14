@@ -72,3 +72,10 @@
 .chips {
 	gap: 0 !important;
 }
+
+.heading_wrapper {
+	@media (max-width: 768px) {
+		display: flex;
+		flex-direction: column;
+	}
+}

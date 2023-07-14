@@ -1,11 +1,20 @@
 .modal_header {
 	display: flex;
 	align-items: center;
+
+	@media screen and (max-width: 767px) {
+		flex-direction: column;
+	}
 }
 
 .tabs {
 	width: 21%;
 	margin-right: 12px;
+
+	@media screen and (max-width: 767px) {
+		width: auto;
+		margin: 0 0 10px;
+	}
 }
 
 .tag_container {
@@ -43,6 +52,7 @@
 }
 
 .header {
+	align-items: center;
 	background: #fdfbf6;
 	border-bottom: 1px solid #e0e0e0;
 }
@@ -54,10 +64,6 @@
 .icon {
 	margin-right: 8px;
 	vertical-align: top;
-}
-
-.cta_web_view {
-	display: flex;
 }
 
 .download_btn {
@@ -111,10 +117,6 @@
 		display: flex;
 	}
 
-	.cta_web_view {
-		display: none;
-	}
-
 	.name,
 	.label,
 	.value {
@@ -123,6 +125,15 @@
 
 	.row_mobile_view {
 		flex-direction: column;
+
+		.info_src,
+		.info_party {
+			width: 100%;
+		}
+
+		.label {
+			font-weight: 600;
+		}
 
 		.info {
 			margin-bottom: 11px;

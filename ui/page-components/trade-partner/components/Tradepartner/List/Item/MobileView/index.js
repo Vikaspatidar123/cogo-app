@@ -1,10 +1,12 @@
 import { Placeholder } from '@cogoport/components';
+import { useTranslation } from 'next-i18next';
 
 import styles from './styles.module.css';
 
 function MobileView({
 	fields, infoData, itm, loading,
 }) {
+	const { t } = useTranslation(['common', 'traderPartner']);
 	const data = {};
 	fields.forEach((singleItem) => {
 		data[singleItem?.label || 'action'] = singleItem;
@@ -27,7 +29,10 @@ function MobileView({
 			) : (
 				<>
 					<div className={`${styles.div}${styles.buyer}`}>
-						<div className={styles.label}>Buyer:</div>
+						<div className={styles.label}>
+							{t('tradePartner:archived_list_config_label_1')}
+							:
+						</div>
 						<div className={`${styles.value}${styles.buyer}`}>{infoData(data.Buyer, itm)}</div>
 					</div>
 					{['Quotation', 'Amount'].map((suffix) => (

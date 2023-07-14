@@ -1,4 +1,5 @@
 import { DateRangepicker, Button } from '@cogoport/components';
+import { useTranslation } from 'next-i18next';
 import React from 'react';
 
 import FilterDropDownContent from './FilterDropDownContent';
@@ -13,13 +14,22 @@ function Filter({
 	arrivalDate,
 	setArrivalDate,
 }) {
+	const { t } = useTranslation(['airSchedule']);
 	return (
 		<div className={styles.col_container}>
 			<div className={styles.button_container}>
-				<Button onClick={clearAllHandler} themeType="accent"> Clear All</Button>
+				<Button
+					onClick={clearAllHandler}
+					themeType="accent"
+					type="button"
+				>
+					{t('airSchedule:clear_all_text')}
+				</Button>
 			</div>
 			<div className={styles.filter_item}>
-				Transit Duration :
+				{t('airSchedule:transit_duration_text')}
+				{' '}
+				:
 				<div>
 					<div style={{ textAlign: 'center' }}>{durationValue}</div>
 					<input
@@ -44,7 +54,9 @@ function Filter({
 				</div>
 			</div>
 			<div className={styles.filter_item}>
-				Carrier :
+				{t('airSchedule:carrier_text')}
+				{' '}
+				:
 				<FilterDropDownContent
 					list={carrierList}
 					events={handleCheckList}
@@ -52,7 +64,9 @@ function Filter({
 				/>
 			</div>
 			<div className={styles.filter_item}>
-				Departure :
+				{t('airSchedule:departure_text')}
+				{' '}
+				:
 				<DateRangepicker
 					value={departureDate}
 					onChange={setDepartureDate}
@@ -61,7 +75,9 @@ function Filter({
 				/>
 			</div>
 			<div className={styles.filter_item}>
-				Arrival :
+				{t('airSchedule:arrival_text')}
+				{' '}
+				:
 				<DateRangepicker
 					value={arrivalDate}
 					onChange={setArrivalDate}

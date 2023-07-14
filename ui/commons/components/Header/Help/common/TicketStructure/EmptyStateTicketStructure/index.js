@@ -7,7 +7,7 @@ import styles from './styles.module.css';
 const translationKey = 'common:components_header_tickets_list';
 
 function EmptyStateTicketStructure({
-	setModalData,
+	setModalData = () => {},
 	listType = '',
 	emptyText = '',
 }) {

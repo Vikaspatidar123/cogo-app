@@ -15,7 +15,7 @@ function TicketStructureBody({
 	item = {},
 	updateTicketActivity = () => {},
 	setModalData = () => {},
-	listType,
+	listType = '',
 }) {
 	const { t } = useTranslation(['common']);
 

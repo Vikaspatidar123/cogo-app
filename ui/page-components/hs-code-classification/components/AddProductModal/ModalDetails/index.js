@@ -1,7 +1,7 @@
 import { Button, Modal } from '@cogoport/components';
 import { IcAFormsAndCertificates, IcMArrowRight } from '@cogoport/icons-react';
 import { useTranslation } from 'next-i18next';
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect } from 'react';
 
 import getField from '../../../../../../packages/forms/Controlled/index';
 import getControls from '../../../configurations/addProductControls';
@@ -21,6 +21,22 @@ const renderProfit = ({ t, profitPercentage }) => {
 	}
 	return `${t('hsClassification:hs_code_classification_loss_label')} ${Math.round(Math.abs(profitPercentage))}%`;
 };
+
+const calculateProfit = ({ sellingPrice, costPrice, setProfitPercentage }) => {
+	const profit = ((sellingPrice - costPrice) / costPrice) * 100;
+	setProfitPercentage(profit);
+};
+
+function Head({ t }) {
+	return (
+		<div className={styles.title_container}>
+			<IcAFormsAndCertificates width={25} height={25} />
+			<div className={styles.title}>
+				{t('hsClassification:hs_code_classification_add_to_catalogue_modal_text_1')}
+			</div>
+		</div>
+	);
+}
 
 function ModalDetails({ data = {}, setShow }) {
 	const { hsCode, id } = data || {};
@@ -54,27 +70,11 @@ function ModalDetails({ data = {}, setShow }) {
 
 	const { categoryDisplayName, subCategoryDisplayName } = productDetails || {};
 
-	const calculateProfit = useCallback(() => {
-		const profit = ((sellingPrice - costPrice) / costPrice) * 100;
-		setProfitPercentage(profit);
-	}, [costPrice, sellingPrice]);
-
-	function Head() {
-		return (
-			<div className={styles.title_container}>
-				<IcAFormsAndCertificates width={25} height={25} />
-				<div className="title">
-					{t('hsClassification:hs_code_classification_add_to_catalogue_modal_text_1')}
-				</div>
-			</div>
-		);
-	}
-
 	useEffect(() => {
 		if (costPrice >= 0 && sellingPrice > 0) {
-			calculateProfit();
+			calculateProfit({ sellingPrice, costPrice, setProfitPercentage });
 		}
-	}, [calculateProfit, costPrice, sellingPrice]);
+	}, [costPrice, sellingPrice]);
 
 	useEffect(() => {
 		if (hsCode) {
@@ -86,7 +86,7 @@ function ModalDetails({ data = {}, setShow }) {
 		<>
 			<div className={styles.container}>
 				{getproductLoading && 'Loading...'}
-				<Modal.Header title={Head()} />
+				<Modal.Header title={Head({ t })} />
 				<Modal.Body>
 					<div className={styles.header}>
 						<div className={styles.summary_tab}>

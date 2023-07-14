@@ -10,7 +10,7 @@ const getWelcomeMessage = (
 today? please do not hesitate to let us know if you have any questions
 or need help with anything.`;
 
-const userWhatsappQR = {
+const USER_WHATSAPP_QR = {
 	conversation_type : 'received',
 	message_type      : 'image',
 	response          : {
@@ -22,7 +22,7 @@ const userWhatsappQR = {
 	created_at: Date.now(),
 };
 
-const whatsappQRMetadata = {
+const WHATSAPP_QR_META_DATA = {
 	whatsapp_get_started_link : GLOBAL_CONSTANTS.urls.whatsapp_get_started_link,
 	message_type              : 'image',
 	text                      : 'Scan using WhatsApp or click on button below',
@@ -50,7 +50,7 @@ const addInitialMessage = async ({ roomId, firestore, name, sendMessage }) => {
 
 	await addDoc(userMessageCollection, userChat);
 
-	await addDoc(userMessageCollection, userWhatsappQR);
+	await addDoc(userMessageCollection, USER_WHATSAPP_QR);
 
 	const messageMetaData = {
 		message_type : 'text',
@@ -63,7 +63,7 @@ const addInitialMessage = async ({ roomId, firestore, name, sendMessage }) => {
 	});
 
 	sendMessage({
-		messageMetaData   : whatsappQRMetadata,
+		messageMetaData   : WHATSAPP_QR_META_DATA,
 		conversation_type : 'outward',
 	});
 };

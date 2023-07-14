@@ -1,17 +1,15 @@
 import { IcMCross, IcMListView } from '@cogoport/icons-react';
 import { isEmpty, startCase } from '@cogoport/utils';
-import { useState, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 
 import { getElementMapping, getFooterItems } from './getfooterHelpers';
 import styles from './styles.module.css';
-
-const EMPTY_FUNC = () => {};
 
 const TIME_TO_SCROLL = 400;
 
 const scrollIntoList = (listRef) => {
 	if (listRef.current) {
-		listRef.current?.scrollIntoView({
+		listRef.current.scrollIntoView({
 			behavior : 'smooth',
 			top      : 50,
 		});
@@ -28,7 +26,7 @@ function FooterItems({ response, sendFirebaseMessage, sendMessageLoading }) {
 		sendMessageLoading,
 	});
 
-	const getItemFunc = elementMapping[type] || EMPTY_FUNC;
+	const getItemFunc = elementMapping[type];
 
 	if (isEmpty(list)) {
 		return null;
@@ -62,7 +60,11 @@ function FooterItems({ response, sendFirebaseMessage, sendMessageLoading }) {
 			)}
 			{(showFooter || type === 'buttons') && (
 				<div ref={listRef} className={styles.list_container}>
-					{(list || []).map(getItemFunc)}
+					{(list || []).map((item) => (
+						<React.Fragment key={item}>
+							{getItemFunc()}
+						</React.Fragment>
+					))}
 				</div>
 			)}
 		</>

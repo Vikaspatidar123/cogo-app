@@ -12,16 +12,15 @@ import { Image } from '@/packages/next';
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
 function ChatBotBody({ firestore, roomId, sendMessage, sendMessageLoading }) {
-	const messagesEnd = useRef(null);
-	const messagesRef = useRef(null);
+	const refs = useRef([null, null]);
 
 	const scrollToBottom = () => {
-		messagesEnd.current?.scrollIntoView({ behavior: 'smooth' });
+		refs.current[1]?.scrollIntoView({ behavior: 'smooth' });
 	};
 
 	const toggleHeight = ({ isFileDivPresent = false }) => {
-		if (messagesRef.current) {
-			messagesRef.current.style.height = isFileDivPresent ? '70%' : '78%';
+		if (refs.current[0]) {
+			refs.current[0].style.height = isFileDivPresent ? '70%' : '78%';
 		}
 	};
 
@@ -42,7 +41,7 @@ function ChatBotBody({ firestore, roomId, sendMessage, sendMessageLoading }) {
 
 	return (
 		<>
-			<div className={styles.body_container} ref={messagesRef} onScroll={handleScroll}>
+			<div className={styles.body_container} ref={refs.current[0]} onScroll={handleScroll}>
 				{!isLastPageOfMessages && (
 					<div className={styles.loader}>
 						{loading ? (
@@ -60,7 +59,7 @@ function ChatBotBody({ firestore, roomId, sendMessage, sendMessageLoading }) {
 						sendMessageLoading={sendMessageLoading}
 					/>
 				))}
-				<div ref={messagesEnd} />
+				<div ref={refs.current[1]} />
 			</div>
 			<FooterChat
 				sendMessageLoading={sendMessageLoading}

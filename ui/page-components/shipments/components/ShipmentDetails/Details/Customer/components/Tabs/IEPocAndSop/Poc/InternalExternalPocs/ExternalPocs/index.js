@@ -11,7 +11,7 @@ import { useSelector } from '@/packages/store';
 import getGeoConstants from '@/ui/commons/constants/geo';
 import useGetPocList from '@/ui/page-components/shipments/components/ShipmentDetails/hooks/useGetPocList';
 
-// const geo = getGeoConstants();
+const geo = getGeoConstants();
 
 function ExternalPocs({
 	setUtilities = () => {},
@@ -40,10 +40,10 @@ function ExternalPocs({
 	}));
 
 	const canEditStakeholders = partner?.user_role_ids?.some((ele) => [
-		// geo.uuid.super_admin_id,
-		// geo.uuid.tech_support_role_id,
-		// geo.uuid.prod_process_owner,
-		// geo.uuid.admin_id,
+		geo.uuid.super_admin_id,
+		geo.uuid.tech_support_role_id,
+		geo.uuid.prod_process_owner,
+		geo.uuid.admin_id,
 	].includes(ele));
 
 	const externalImportPOC = [];

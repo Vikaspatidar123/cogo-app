@@ -20,7 +20,7 @@ const useGetTradeEngine = ({ itm }) => {
 			});
 			setTradeEngineResponse(resp?.data);
 		} catch (error) {
-			console.log(error);
+			console.error(error);
 		}
 	}, [itm?.tradeEngineInputId, tradeApitrigger]);
 

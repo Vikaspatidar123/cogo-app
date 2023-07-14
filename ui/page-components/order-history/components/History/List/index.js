@@ -28,13 +28,13 @@ function List({
 	return (
 		<div className={styles.container}>
 			<div className={styles.header_view}>
-				{!isEmpty(listNew) && (
+				{!isEmpty(listNew) ? (
 					<CardHeader
 						fields={config}
 						sort={sort}
 						setSort={setSort}
 					/>
-				)}
+				) : null}
 			</div>
 			{(listNew || []).map((item) => (
 				<Item

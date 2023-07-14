@@ -8,6 +8,7 @@ import styles from './styles.module.css';
 
 function FilterSection({ filters = {}, setFilters = () => {} }) {
 	const { t } = useTranslation(['orderHistory']);
+
 	const [showFilters, setshowFilters] = useState(false);
 
 	return (

@@ -9,7 +9,9 @@ import styles from './styles.module.css';
 
 function RenderComponent({ itemData = {} }) {
 	const { t } = useTranslation(['orderHistory']);
+
 	const [modal, setModal] = useState(false);
+
 	return (
 		<>
 			<div className={styles.web_view}>
@@ -25,13 +27,13 @@ function RenderComponent({ itemData = {} }) {
 			</u>
 
 			<div className={styles.modalContainer}>
-				{modal && (
+				{modal ? (
 					<DetailsModal
 						itm={itemData}
 						modal={modal}
 						setModal={setModal}
 					/>
-				)}
+				) : null}
 			</div>
 		</>
 	);

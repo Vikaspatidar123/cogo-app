@@ -12,7 +12,7 @@ import styles from './styles.module.css';
 
 function OrderHistory() {
 	const { t } = useTranslation(['orderHistory']);
-	const [sort, setSort] = useState();
+	const [sort, setSort] = useState({});
 
 	const config = getConfig({ t });
 

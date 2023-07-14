@@ -69,7 +69,7 @@ function InfoContainer() {
 						)}
 					</div>
 				))}
-				<Button themeType="linkUi" onClick={redirectToBlogs}>
+				<Button themeType="linkUi" onClick={redirectToBlogs} type="button">
 					{t('airOceanTracking:show_more_button_label')}
 				</Button>
 			</div>

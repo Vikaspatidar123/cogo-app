@@ -1,12 +1,12 @@
 import { cl, Tooltip } from '@cogoport/components';
 import { IcMInfo } from '@cogoport/icons-react';
-import Image from 'next/image';
 import { useTranslation } from 'react-i18next';
 
 import getMappingObject from '../../../../../constant/card';
 
 import styles from './styles.module.css';
 
+import { Image } from '@/packages/next';
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 import formatDate from '@/ui/commons/utils/formatDate';
 

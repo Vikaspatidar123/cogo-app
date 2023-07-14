@@ -1,6 +1,5 @@
 import { cl, Button, Pagination, ButtonIcon } from '@cogoport/components';
 import { IcMCross } from '@cogoport/icons-react';
-import Image from 'next/image';
 import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
 
@@ -10,6 +9,7 @@ import Item from './Item';
 import StatusModal from './StatusModal';
 import styles from './styles.module.css';
 
+import { Image } from '@/packages/next';
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 import getLoadingArr from '@/ui/page-components/air-ocean-tracking/utils/getLoadingArr';
 

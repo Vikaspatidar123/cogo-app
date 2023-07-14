@@ -228,6 +228,8 @@ const GLOBAL_CONSTANTS = {
 		no_schedules_found_image : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/empty_icon 1.svg',
 		globe                    : 'https://cdn.cogoport.io/cms-prod/cogo_partner/vault/original/globe-language.png',
 		archive_icon             : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/archive.svg',
+		pen_image                : 'https://cdn.cogoport.io/cms-prod/cogo_admin/vault/original/tds-doc-icon.svg',
+		premium_image            : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/crown_new.svg',
 	},
 	onboarding_specialist: {
 		name         : 'Kanira Patel',

@@ -1,6 +1,5 @@
 import { Button } from '@cogoport/components';
 import { IcMCopy } from '@cogoport/icons-react';
-import { getCookie } from '@cogoport/utils';
 import { useTranslation } from 'next-i18next';
 import { useState, useEffect } from 'react';
 
@@ -27,7 +26,6 @@ function Unsubscribe() {
 	const [submit, setSubmit] = useState(false);
 	const [timer, setTimer] = useState(DEFAULT_TIMER);
 	const [ticket, setTicket] = useState('');
-	const location = getCookie('location');
 
 	const { onSubmit, loading, copyToClipBoard } = useUnsubscribe({
 		setSubmit,
@@ -108,8 +106,8 @@ function Unsubscribe() {
 								<p>
 									{t('cancellationTicket:tricket_message')}
 									{' '}
-									<a href={GLOBAL_CONSTANTS.customer_support[location]}>
-										{GLOBAL_CONSTANTS.customer_support[location]}
+									<a href={GLOBAL_CONSTANTS.customer_support}>
+										{GLOBAL_CONSTANTS.customer_support}
 									</a>
 								</p>
 								<div>

@@ -1,6 +1,6 @@
 import { Button } from '@cogoport/components';
 import React from 'react';
-import { useForm } from 'react-hook-form';
+import { useForm } from '@/packages/forms';
 
 import FieldArray from '../../../common/FieldArray';
 import { financialReportControls } from '../../../configurations/getFinanceControls';

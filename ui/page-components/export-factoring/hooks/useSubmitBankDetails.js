@@ -7,6 +7,7 @@ const getDocExtention = (url) => url.split('.').pop();
 const useSubmitBankDetails = ({
 	accountType,
 	refetch,
+	setAddBankModal,
 	exporter_bank_account_id = '',
 	getCreditRequestResponse = {},
 }) => {
@@ -60,8 +61,9 @@ const useSubmitBankDetails = ({
 			await trigger({
 				data: payload,
 			});
-			refetch();
 			Toast.success('Bank Details Saved');
+			setAddBankModal(false);
+			refetch();
 		} catch (err) {
 			Toast.error(err.data);
 		}

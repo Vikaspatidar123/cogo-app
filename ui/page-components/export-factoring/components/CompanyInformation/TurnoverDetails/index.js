@@ -1,6 +1,6 @@
 import { Select } from '@cogoport/components';
 import React, { useEffect } from 'react';
-import { useForm } from 'react-hook-form';
+import { useForm } from '@/packages/forms';
 
 import getField from '@/packages/forms/Controlled';
 

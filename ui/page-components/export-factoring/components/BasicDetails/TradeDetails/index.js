@@ -1,6 +1,5 @@
 import { Pill, Accordion, Button } from '@cogoport/components';
 import React from 'react';
-import { useForm } from 'react-hook-form';
 
 import FieldArray from '../../../common/FieldArray';
 import { tradeControls } from '../../../configurations/gettradeControls';
@@ -9,6 +8,7 @@ import useTradeDetails from '../../../hooks/useTradeDetails';
 import styles from './styles.module.css';
 import TradeList from './TradeList';
 
+import { useForm } from '@/packages/forms';
 import getField from '@/packages/forms/Controlled';
 
 const getAccordianTitle = ({ placeholder, listLength = 0 }) => (

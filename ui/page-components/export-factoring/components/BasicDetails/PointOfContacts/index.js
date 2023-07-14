@@ -1,7 +1,6 @@
 import { Button, Toast, Accordion, Pill } from '@cogoport/components';
 import { IcMPlus } from '@cogoport/icons-react';
 import React, { useState } from 'react';
-import { useForm } from 'react-hook-form';
 
 import { getControls } from '../../../configurations/pocControls';
 import useUpdatePOCFormDetails from '../../../hooks/useUpdatePOCFormDetails';
@@ -10,6 +9,7 @@ import AddPOC from './AddPoc';
 import PocList from './PocList';
 import styles from './styles.module.css';
 
+import { useForm } from '@/packages/forms';
 import getField from '@/packages/forms/Controlled';
 
 const getAccordianTitle = ({ placeholder, pocLength }) => (

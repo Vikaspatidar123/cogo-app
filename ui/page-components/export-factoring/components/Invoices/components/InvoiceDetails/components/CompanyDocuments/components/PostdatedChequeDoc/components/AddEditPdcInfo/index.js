@@ -1,9 +1,9 @@
 import { Button } from '@cogoport/components';
 import { useEffect } from 'react';
-import { useForm } from 'react-hook-form';
 
 import styles from './styles.module.css';
 
+import { useForm } from '@/packages/forms';
 import getField from '@/packages/forms/Controlled';
 import { getAddPdcDocControls } from '@/ui/page-components/export-factoring/configurations/getAddPdcDocControls';
 import useSavePdcDocsDetails from '@/ui/page-components/export-factoring/hooks/useSavePdcDocsDetails';

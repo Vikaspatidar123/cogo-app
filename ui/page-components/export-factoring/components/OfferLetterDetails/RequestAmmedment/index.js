@@ -1,12 +1,12 @@
 import { Modal, Button } from '@cogoport/components';
 import React from 'react';
-import { useForm } from 'react-hook-form';
 
 import { getAmmedmentControls } from '../../../configurations/getAmmedmentControls';
 import useCreditAmmedmemtComment from '../../../hooks/useCreditAmmedmentComment';
 
 import styles from './styles.module.css';
 
+import { useForm } from '@/packages/forms';
 import getField from '@/packages/forms/Controlled';
 
 function RequestAmmedment({

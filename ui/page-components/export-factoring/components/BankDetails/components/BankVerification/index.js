@@ -2,7 +2,7 @@ import { RadioGroup, Button, Tooltip } from '@cogoport/components';
 import { IcMInfo, IcMPdf } from '@cogoport/icons-react';
 import { isEmpty, startCase } from '@cogoport/utils';
 import { useState, useEffect } from 'react';
-import { useForm } from 'react-hook-form';
+import { useForm } from '@/packages/forms';
 
 import { getAddBankControls } from '../../../../configurations/getAddBankControls';
 import useSubmitBankDetails from '../../../../hooks/useSubmitBankDetails';

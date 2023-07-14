@@ -14,13 +14,13 @@ function HScode({
 }) {
 	const { t } = useTranslation(['common', 'hsClassification']);
 
-	const HSCode = getHSCodeControls({ t });
+	const hsCode = getHSCodeControls({ t });
 
 	return (
 		<List
 			className="hsCode"
 			apiData={hscodeData}
-			configs={HSCode}
+			configs={hsCode}
 			loading={hsloading}
 			pageObj={pageObj}
 			setGlobalFilters={setGlobalFilters}

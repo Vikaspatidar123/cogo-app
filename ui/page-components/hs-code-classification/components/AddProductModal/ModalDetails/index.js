@@ -39,7 +39,7 @@ function ModalDetails({ data = {}, setShow }) {
 		hsCodeId: id,
 	});
 
-	const { categoryDisplayName, subCategoryDisplayName } = productDetails;
+	const { categoryDisplayName, subCategoryDisplayName } = productDetails || {};
 
 	const calculateProfit = useCallback(() => {
 		const profit = ((sellingPrice - costPrice) / costPrice) * 100;

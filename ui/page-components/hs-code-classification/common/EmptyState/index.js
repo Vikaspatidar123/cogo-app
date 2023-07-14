@@ -3,6 +3,7 @@ import { useTranslation } from 'next-i18next';
 import styles from './styles.module.css';
 
 import { Image } from '@/packages/next';
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
 function EmptyState({ drillDwn }) {
 	const { t } = useTranslation(['common', 'hsClassification']);
@@ -10,8 +11,8 @@ function EmptyState({ drillDwn }) {
 	return (
 		<div className={drillDwn ? `${styles.drill_dwn}` : `${styles.container}`}>
 			<Image
-				src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/empty-Icon.svg"
-				alt="Empty"
+				src={GLOBAL_CONSTANTS.image_url.empty_icon}
+				alt={t('hsClassification:alt_text_for_empty_image')}
 				width={180}
 				height={180}
 			/>

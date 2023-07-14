@@ -1,6 +1,6 @@
 import { cl } from '@cogoport/components';
 import { IcMArrowDown } from '@cogoport/icons-react';
-import { t } from 'i18next';
+import { useTranslation } from 'next-i18next';
 import { useEffect, useState } from 'react';
 
 import EmptyState from '../../../common/EmptyState';
@@ -20,6 +20,8 @@ function ChapterList({
 	headingLoading,
 	hsloading,
 }) {
+	const { t } = useTranslation(['common', 'hsClassification']);
+
 	const isMobile = false;
 	const [chapterToggle, setChapterToggle] = useState(false);
 	const [head, setHead] = useState(false);

@@ -5,20 +5,17 @@ const getControls = ({ t }) => {
 		{
 			label       : t('hsClassification:hs_code_classification_filter_label_1'),
 			name        : 'country',
-			type        : 'select',
+			type        : 'async_select',
 			placeholder : t('hsClassification:hs_code_classification_filter_placeholder_1'),
 			asyncKey    : 'hs_code_countries',
 			value       : GLOBAL_CONSTANTS.hs_code_country_ids.IN,
 			valueKey    : 'id',
 			labelKey    : 'countryName',
 			initialCall : true,
-			theme       : 'admin',
-			className   : 'primary md',
 		},
 		{
 			name        : 'searchBy',
 			label       : t('hsClassification:hs_code_classification_filter_label_2'),
-			value       : '',
 			placeholder : t('hsClassification:hs_code_classification_filter_placeholder_2'),
 			type        : 'select',
 			options     : [
@@ -33,7 +30,6 @@ const getControls = ({ t }) => {
 			label       : t('hsClassification:hs_code_classification_filter_label_3'),
 			placeholder : t('hsClassification:hs_code_classification_filter_placeholder_3'),
 			type        : 'text',
-			value       : '',
 			rules       : { required: true },
 		},
 		{

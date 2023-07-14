@@ -37,11 +37,7 @@ const getControls = ({ t }) => {
 		},
 	];
 
-	return CARDFILTER.map((control) => {
-		const newControl = { ...control };
-
-		return { ...newControl };
-	});
+	return CARDFILTER;
 };
 
 export default getControls;

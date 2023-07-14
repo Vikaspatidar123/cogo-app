@@ -19,7 +19,6 @@ function HeadingList({
 	hsloading,
 }) {
 	const { t } = useTranslation(['common', 'hsClassification']);
-	const isMobile = false;
 	const [headingToggle, setHeadingToggle] = useState(false);
 	const { headingCode, headingDescription } = headingData || {};
 	useEffect(() => {
@@ -46,7 +45,7 @@ function HeadingList({
 	const description = () => {
 		if (headingLoading) return addLoader('150px', '800px');
 		if (headingToggle) return headingDescription;
-		if (headingDescription?.length > 40 && isMobile) {
+		if (headingDescription?.length > 40) {
 			return `${headingData?.headingDescription?.substring(0, 40)}....`;
 		}
 		if (headingDescription?.length > 96) {
@@ -54,6 +53,7 @@ function HeadingList({
 		}
 		return headingDescription;
 	};
+
 	return (
 		<div>
 			<div

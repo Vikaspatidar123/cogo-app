@@ -22,7 +22,6 @@ function ChapterList({
 }) {
 	const { t } = useTranslation(['common', 'hsClassification']);
 
-	const isMobile = false;
 	const [chapterToggle, setChapterToggle] = useState(false);
 	const [head, setHead] = useState(false);
 	const { chapterCode, chapterDescription, headings = false } = chapterData;
@@ -40,7 +39,7 @@ function ChapterList({
 
 	const description = () => {
 		if (chapterToggle) return chapterDescription;
-		if (chapterDescription?.length > 40 && isMobile) {
+		if (chapterDescription?.length > 40) {
 			return `${chapterData?.chapterDescription?.substring(0, 40)}....`;
 		}
 		if (chapterDescription?.length > 110) {

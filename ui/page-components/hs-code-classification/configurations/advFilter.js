@@ -19,10 +19,10 @@ const getControls = ({ t }) => {
 			placeholder : t('hsClassification:hs_code_classification_filter_placeholder_2'),
 			type        : 'select',
 			options     : [
-				{ label: 'Section', value: 'SECTION' },
-				{ label: 'Chapter', value: 'CHAPTER' },
-				{ label: 'Heading', value: 'HEADING' },
-				{ label: 'HS Code', value: 'HS_CODE' },
+				{ label: t('hsClassification:hs_code_classification_section_label'), value: 'SECTION' },
+				{ label: t('hsClassification:hs_code_classification_chapter_label'), value: 'CHAPTER' },
+				{ label: t('hsClassification:hs_code_classification_heading_label'), value: 'HEADING' },
+				{ label: t('hsClassification:hs_code_classification_favourite_text_2'), value: 'HS_CODE' },
 			],
 		},
 		{
@@ -47,10 +47,7 @@ const getControls = ({ t }) => {
 		},
 	];
 
-	return CONTROLS.map((control) => {
-		const newControl = { ...control };
-		return { ...newControl };
-	});
+	return CONTROLS;
 };
 
 export default getControls;

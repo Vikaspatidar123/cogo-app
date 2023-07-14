@@ -11,13 +11,26 @@ import styles from './styles.module.css';
 
 import { useForm } from '@/packages/forms';
 
+const renderProfit = ({ t, profitPercentage }) => {
+	if (profitPercentage > 0) {
+		return `${t('hsClassification:hs_code_classification_profit_label')} 
+		${Math.round(Math.abs(profitPercentage))}%`;
+	}
+	if (profitPercentage === 0) {
+		return `${t('hsClassification:hs_code_classification_loss_label')}  0% `;
+	}
+	return `${t('hsClassification:hs_code_classification_loss_label')} ${Math.round(Math.abs(profitPercentage))}%`;
+};
+
 function ModalDetails({ data = {}, setShow }) {
 	const { hsCode, id } = data || {};
 
 	const { t } = useTranslation(['common', 'hsClassification']);
-	const fields = getControls({ t });
 
 	const [profitPercentage, setProfitPercentage] = useState(0);
+
+	const fields = getControls({ t });
+
 	const {
 		handleSubmit,
 		setValue,
@@ -45,17 +58,6 @@ function ModalDetails({ data = {}, setShow }) {
 		const profit = ((sellingPrice - costPrice) / costPrice) * 100;
 		setProfitPercentage(profit);
 	}, [costPrice, sellingPrice]);
-
-	const renderProfit = () => {
-		if (profitPercentage > 0) {
-			return `${t('hsClassification:hs_code_classification_profit_label')} 
-			${Math.round(Math.abs(profitPercentage))}%`;
-		}
-		if (profitPercentage === 0) {
-			return `${t('hsClassification:hs_code_classification_loss_label')}  0% `;
-		}
-		return `${t('hsClassification:hs_code_classification_loss_label')} ${Math.round(Math.abs(profitPercentage))}%`;
-	};
 
 	function Head() {
 		return (
@@ -105,7 +107,7 @@ function ModalDetails({ data = {}, setShow }) {
 							</div>
 						</div>
 						<div className={`${profitPercentage > 0 ? styles.green : styles.red} profit`}>
-							{renderProfit()}
+							{renderProfit({ t, profitPercentage })}
 						</div>
 					</div>
 					<form>

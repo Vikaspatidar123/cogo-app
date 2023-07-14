@@ -17,12 +17,12 @@ function DiscountTooltip({ discountedAmount, currency }) {
 				<div>
 					-
 					{formatAmount({
-                    	amount  : discountedAmount,
-                    	currency,
-                    	options : {
-                    		notation : 'standard',
-                    		style    : 'currency',
-                    	},
+						amount  : discountedAmount,
+						currency,
+						options : {
+							notation : 'standard',
+							style    : 'currency',
+						},
 					})}
 				</div>
 			</div>

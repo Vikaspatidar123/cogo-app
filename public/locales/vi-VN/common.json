@@ -111,5 +111,13 @@
     "add_new_account_button":"+ Thêm tài khoản mới",
     "kyc_verified":"Đã xác minh",
     "kyc_rejected":"KYC từ chối",
-    "kyc_pending":"KYC đang chờ xử lý"
+    "kyc_pending":"KYC đang chờ xử lý",
+    "loading_text":"Đang tải...",
+    "user_invitation_text":"Lời mời người dùng",
+    "accept_user_text":"Liên kết bạn nhận được trong email đã được sử dụng hoặc hết hạn",
+    "accept_user_message":"Thử đặt lại mật khẩu của bạn?",
+    "email_verification":"Xác minh email không thành công!",
+    "send_email_text":"Gửi email xác minh",
+    "token_invalid_text":"Mã thông báo không hợp lệ",
+    "token_expired_text":"Mã thông báo đã hết hạn"
 }

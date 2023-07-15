@@ -1,5 +1,6 @@
 import { Button } from '@cogoport/components';
 import { IcMLock } from '@cogoport/icons-react';
+import { useTranslation } from 'next-i18next';
 
 import styles from './styles.module.css';
 import draftAirwayBill from './useDraftAirwayBill';
@@ -8,17 +9,20 @@ import { Link } from '@/packages/next';
 import PublicPageNav from '@/ui/commons/components/PublicPageNav';
 import setCookieAndRedirect from '@/ui/commons/utils/setCookieAndRedirect';
 
-const content = {
-	heading           : 'Email Verification Failed!',
-	forgotPasswordCTA : {
-		text : 'Try Setting your Password Again?',
-		link : '/forgot-password',
+const CONTENT = ({ t }) => ({
+	heading: t('common:email_verification'),
+	forgotPasswordCTA: {
+		text: t('common:accept_user_message'),
+		link: '/forgot-password',
 	},
-	submitText: 'Send Verification Email',
-};
+	submitText: t('common:send_email_text'),
+});
 
 function DraftAirwayBill({ res }) {
-	const subheading = res?.messages?.token === 'Token is invalid!' ? 'Token is invalid' : 'Token has expired';
+	const { t } = useTranslation(['common']);
+	const content = CONTENT({ t });
+	const subheading = res?.messages?.token === 'Token is invalid!' ? t('common:token_invalid_text')
+		: t('common:token_expired_text');
 	return (
 		<div className={styles.container}>
 			<PublicPageNav />
@@ -47,9 +51,9 @@ DraftAirwayBill.getInitialProps = async (ctx) => {
 
 	try {
 		const res = await draftAirwayBill({
-			email_token : id,
-			platform    : 'app',
-			auth_scope  : 'organization',
+			email_token: id,
+			platform: 'app',
+			auth_scope: 'organization',
 		});
 		const { hasError } = res || {};
 

@@ -1,8 +1,8 @@
 import { Button, Modal } from '@cogoport/components';
-import { useForm } from 'react-hook-form';
 
 import styles from './styles.module.css';
 
+import { useForm } from '@/packages/forms';
 import FieldArray from '@/ui/page-components/export-factoring/common/FieldArray';
 import { getAddCommercialInvoiceControls } from
 	'@/ui/page-components/export-factoring/configurations/getAddCommercialInvoiceControls';

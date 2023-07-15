@@ -1,7 +1,6 @@
 import { Checkbox } from '@cogoport/components';
 import { isEmpty } from '@cogoport/utils';
 import React, { useEffect, useState } from 'react';
-import { useForm } from 'react-hook-form';
 import { useSelector } from 'react-redux';
 
 import Uploader from '../../../common/Uploader';
@@ -10,6 +9,7 @@ import GSTproof from '../../GSTproof';
 
 import styles from './styles.module.css';
 
+import { useForm } from '@/packages/forms';
 import getField from '@/packages/forms/Controlled';
 
 function CompanyInfoForm({ getCreditRequestResponse, refetch = () => {} }) {

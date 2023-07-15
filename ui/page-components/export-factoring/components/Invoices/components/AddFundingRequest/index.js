@@ -1,9 +1,9 @@
 import { Button, Modal } from '@cogoport/components';
 import { useEffect } from 'react';
-import { useForm } from 'react-hook-form';
 
 import styles from './styles.module.css';
 
+import { useForm } from '@/packages/forms';
 import getField from '@/packages/forms/Controlled';
 import FieldArray from '@/ui/page-components/export-factoring/common/FieldArray';
 import { getAddFundingRequestControls } from

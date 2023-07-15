@@ -1,6 +1,6 @@
 import { Modal, Button } from '@cogoport/components';
 import React from 'react';
-import { useForm } from 'react-hook-form';
+import { useForm } from '@/packages/forms';
 
 import { getDirectorControls } from '../../../configurations/editDirectorControls';
 

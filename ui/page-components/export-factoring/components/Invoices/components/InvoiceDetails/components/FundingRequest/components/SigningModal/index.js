@@ -1,16 +1,16 @@
 import { Tooltip, Modal, Button, Select } from '@cogoport/components';
 import { IcMArrowBack, IcMEyeopen, IcMPdf } from '@cogoport/icons-react';
 import { useState, useEffect } from 'react';
-import { useForm } from 'react-hook-form';
 
 import SignatoryMethod from '../SignatoryMethod';
 
 import styles from './styles.module.css';
 
-import FileUploader from '@/packages/forms/Business/FileUploader';
+import { useForm } from '@/packages/forms';
 import getField from '@/packages/forms/Controlled';
 import PdfViewer from '@/ui/page-components/export-factoring/common/PdfViewer';
-import { getFundingRequestSignatoryControls } from '@/ui/page-components/export-factoring/configurations/getFundingRequestSignatoryControls';
+import { getFundingRequestSignatoryControls } from
+	'@/ui/page-components/export-factoring/configurations/getFundingRequestSignatoryControls';
 import useSubmitFundingRequest from '@/ui/page-components/export-factoring/hooks/useSubmitFundingRequest';
 
 function SigningModal({
@@ -203,7 +203,7 @@ function SigningModal({
 					type="button"
 					size="md"
 					themeType="accent"
-					disabled={loading || !signingMode || !exporterSignatory}					
+					disabled={loading || !signingMode || !exporterSignatory}
 					onClick={handleSubmit(onSubmit)}
 					loading={loading}
 				>

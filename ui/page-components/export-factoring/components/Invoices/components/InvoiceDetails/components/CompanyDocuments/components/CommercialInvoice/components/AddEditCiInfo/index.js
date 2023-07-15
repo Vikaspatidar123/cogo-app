@@ -1,9 +1,9 @@
 import { Button } from '@cogoport/components';
 import { useState, useEffect } from 'react';
-import { useForm } from 'react-hook-form';
 
 import styles from './styles.module.css';
 
+import { useForm } from '@/packages/forms';
 import getField from '@/packages/forms/Controlled';
 import formatAmount from '@/ui/commons/utils/formatAmount';
 import { getAddInvoiceDocumentsControls } from

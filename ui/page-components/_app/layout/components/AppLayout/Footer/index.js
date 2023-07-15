@@ -1,3 +1,5 @@
+import { useTranslation } from 'next-i18next';
+
 import FooterItem from './FooterItem';
 import styles from './styles.module.css';
 
@@ -10,7 +12,9 @@ function AppLayoutFooter() {
 	} = useSelector(({ profile }) => ({
 		user_data: profile || {},
 	}));
-	const configs = getSideBarConfigs(user_data);
+	const { t } = useTranslation(['common']);
+
+	const configs = getSideBarConfigs({ userData: user_data, t });
 	const { nav_items = {} } = configs || {};
 	const { organization = [] } = nav_items || {};
 	const newMenuList = organization.slice(0, 5);

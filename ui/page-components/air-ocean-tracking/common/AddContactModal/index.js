@@ -1,7 +1,8 @@
 import { Modal, ButtonIcon, Button, cl } from '@cogoport/components';
 import { IcMCross } from '@cogoport/icons-react';
+import { useTranslation } from 'next-i18next';
 
-import addContactControls from '../../configuration/addContactControls';
+import getAddContactControls from '../../configuration/addContactControls';
 import useCreateContact from '../../hooks/useCreateContact';
 
 import styles from './styles.module.css';
@@ -12,6 +13,10 @@ function AddContactModal({
 	addContact = false, setAddContact = () => {}, fetchContactList = () => {},
 	activeTab = 'ocean',
 }) {
+	const { t } = useTranslation(['common', 'airOceanTracking']);
+
+	const addContactControls = getAddContactControls({ t });
+
 	const { formHook, loading, createContact, closeHandler } = useCreateContact({
 		setAddContact,
 		fetchContactList,
@@ -26,7 +31,7 @@ function AddContactModal({
 	return (
 		<Modal show={addContact} onClose={closeHandler} closeOnOuterClick>
 			<div className={styles.header}>
-				<h3 className={styles.title}>Add Contact</h3>
+				<h3 className={styles.title}>{t('airOceanTracking:air_ocean_tracking_add_contact_label')}</h3>
 				<ButtonIcon size="md" icon={<IcMCross />} themeType="primary" onClick={closeHandler} />
 			</div>
 			<div className={styles.body}>
@@ -52,7 +57,9 @@ function AddContactModal({
 
 			</div>
 			<div className={styles.footer}>
-				<Button type="button" themeType="secondary" onClick={closeHandler} disabled={loading}>Cancel</Button>
+				<Button type="button" themeType="secondary" onClick={closeHandler} disabled={loading}>
+					{t('airOceanTracking:air_ocean_tracking_cancel_button_label')}
+				</Button>
 				<Button
 					type="button"
 					themeType="primary"
@@ -60,7 +67,7 @@ function AddContactModal({
 					onClick={handleSubmit(onSubmit)}
 					loading={loading}
 				>
-					Add
+					{t('airOceanTracking:air_ocean_tracking_add_button_label')}
 				</Button>
 			</div>
 		</Modal>

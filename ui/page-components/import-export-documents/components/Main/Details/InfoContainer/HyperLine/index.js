@@ -1,6 +1,9 @@
+import { useTranslation } from 'next-i18next';
+
 import styles from './styles.module.css';
 
 function HyperLink({ setShowCatalogue, setShowHsCodeModal }) {
+	const { t } = useTranslation(['importExportDoc']);
 	return (
 		<div className={styles.container}>
 			<div className={styles.or_tag}>
@@ -14,7 +17,7 @@ function HyperLink({ setShowCatalogue, setShowHsCodeModal }) {
 					role="presentation"
 					onClick={() => setShowCatalogue(true)}
 				>
-					Add via Product Catalogue
+					{t('importExportDoc:hyperlink_product_catalogue')}
 				</div>
 				<div className={styles.divider} />
 				<div
@@ -22,7 +25,7 @@ function HyperLink({ setShowCatalogue, setShowHsCodeModal }) {
 					role="presentation"
 					onClick={() => setShowHsCodeModal(true)}
 				>
-					Add via HS Code
+					{t('importExportDoc:hyperlink_hscode')}
 				</div>
 			</div>
 		</div>

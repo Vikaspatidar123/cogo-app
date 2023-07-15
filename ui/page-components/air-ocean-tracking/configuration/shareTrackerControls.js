@@ -1,28 +1,28 @@
 import patterns from '@/ui/commons/configurations/patterns';
 
-const shareTrackerControls = [
+const getShareTrackerControls = ({ t }) => [
 	{
 		name        : 'name',
-		label       : 'Name',
+		label       : t('airOceanTracking:tracking_share_list_config_label_1'),
 		type        : 'text',
 		size        : 'sm',
-		placeholder : 'Enter Name',
-		rules       : { required: 'Please enter name' },
+		placeholder : t('airOceanTracking:tracking_share_list_config_placeholder_1'),
+		rules       : { required: t('airOceanTracking:tracking_share_list_config_name_required_text') },
 	},
 	{
 		name        : 'email',
-		label       : 'Email Address',
+		label       : t('airOceanTracking:tracking_share_list_config_label_4'),
 		type        : 'text',
 		size        : 'sm',
-		placeholder : 'Enter Email',
+		placeholder : t('airOceanTracking:tracking_share_list_config_placeholder_2'),
 		rules       : {
-			required : 'Please enter email',
+			required : t('airOceanTracking:tracking_share_list_config_email_required_text'),
 			pattern  : {
 				value   : patterns.EMAIL,
-				message : 'Invalid email address',
+				message : t('airOceanTracking:tracking_share_list_config_invalid_email_text'),
 			},
 		},
 	},
 ];
 
-export default shareTrackerControls;
+export default getShareTrackerControls;

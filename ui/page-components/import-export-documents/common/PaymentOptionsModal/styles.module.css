@@ -42,7 +42,7 @@
 		margin-bottom: 30px;
 	}
 
-	:hover {
+	&:hover {
 		box-shadow: 0 12px 32px 1px #dfe8fa99;
 	}
 }

@@ -56,7 +56,7 @@ const useGetListTracker = () => {
 				},
 			});
 		} catch (err) {
-			console.log(err);
+			console.error(err);
 		}
 	}, [globalFilter, branch_id, trigger, isArchived]);
 

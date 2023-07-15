@@ -40,15 +40,15 @@
 	@media (max-width: 768px) {
 		width: 100%;
 	}
-
-	.error {
-		border: 1px solid red;
-		border-radius: 4px;
-		outline: none;
-	}
 }
 
-.form_col .labelRow {
+.error {
+	border: 1px solid red;
+	border-radius: 4px;
+	outline: none;
+}
+
+.form_col .label_row {
 	display: flex;
 	gap: 10px;
 	align-items: center;
@@ -120,17 +120,6 @@
 			vertical-align: middle;
 		}
 
-		.category,
-		.subCategory {
-			width: auto;
-			max-width: 37%;
-		}
-
-		.icn {
-			width: 20%;
-			text-align: center;
-		}
-
 		.section2 {
 			display: flex;
 			flex-direction: column;
@@ -144,19 +133,30 @@
 				color: #db4634;
 			}
 		}
-
-		.heading {
-			font-size: 14px;
-			font-weight: 500;
-		}
-
-		.subheading {
-			margin-top: 2px;
-			font-size: 12px;
-			font-weight: 300;
-			color: #6b6d81;
-		}
 	}
+}
+
+.heading {
+	font-size: 14px;
+	font-weight: 500;
+}
+
+.icn {
+	width: 20%;
+	text-align: center;
+}
+
+.category,
+.sub_category {
+	width: auto;
+	max-width: 37%;
+}
+
+.sub_heading {
+	margin-top: 2px;
+	font-size: 12px;
+	font-weight: 300;
+	color: #6b6d81;
 }
 
 .btn_container {
@@ -167,17 +167,15 @@
 	/* padding-top: 10px; */
 	border-top: 1px solid #cedcea;
 
-	:global {
-		.submitBtn {
-			padding: 8px 16px;
-			background: #ee3425;
-			border: none;
-		}
+	.submit_btn {
+		padding: 8px 16px;
+		background: #ee3425;
+		border: none;
+	}
 
-		.disableBtn {
-			cursor: not-allowed;
-			background: #e8afa8;
-		}
+	.disable_btn {
+		cursor: not-allowed;
+		background: #e8afa8;
 	}
 }
 

@@ -30,6 +30,7 @@ function ExistingCompany({
 		handleSubmit,
 		control,
 		newFields,
+		register,
 	} = useUpdateShipment({
 		role,
 		servProvId,
@@ -53,6 +54,7 @@ function ExistingCompany({
 					control={control}
 					controls={newFields}
 					errors={errors}
+					register={register}
 				/>
 			</Modal.Body>
 			<Modal.Footer>

@@ -66,8 +66,8 @@ function LiveInvoices({ data = {} }) {
 				</div>
 				<div style={{ marginLeft: '16px' }}>
 					{formatAmount({
-						amount   : data.net_total,
-						currency : data.net_total_price_currency,
+						amount   : data?.tax_total_price_discounted,
+						currency : data?.currency,
 						options  : { style: 'currency', currencyDisplay: 'code' },
 					})}
 				</div>

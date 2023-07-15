@@ -4,15 +4,13 @@ import { useState } from 'react';
 
 import styles from './styles.module.css';
 
-function Details({ director = {}, setShowEdit = () => {}, showEdit, constitutionMapping = {} }) {
+function Details({ director = {}, setShowEdit = () => {}, showEdit, constitutionMapping = {}, updatedValues = {} }) {
 	const [showDetails, setShowDetails] = useState(false);
 	const {
 		name = '', registration_number = '',
 		gender = '', din = '', date_of_birth = '', address = '',
-		
 	} = director || {};
-
-	console.log(director, 'aaa');
+	const updatedDirectors = updatedValues.director.find((x) => x.registration_number === director.registration_number);
 
 	return (
 		<div className={styles.container}>
@@ -60,7 +58,7 @@ function Details({ director = {}, setShowEdit = () => {}, showEdit, constitution
 							(%)
 						</div>
 						<div className={styles.value}>
-							-
+							{updatedDirectors?.shareholder_percentage || '-'}
 						</div>
 					</div>
 					<div className={styles.description}>
@@ -84,7 +82,7 @@ function Details({ director = {}, setShowEdit = () => {}, showEdit, constitution
 							DOB
 						</div>
 						<div className={styles.value}>
-							{date_of_birth}
+							{date_of_birth || updatedDirectors?.date_of_birth}
 						</div>
 					</div>
 					<div className={styles.address}>
@@ -92,7 +90,7 @@ function Details({ director = {}, setShowEdit = () => {}, showEdit, constitution
 							Address
 						</div>
 						<div className={styles.value}>
-							{address}
+							{address || updatedDirectors?.address}
 						</div>
 					</div>
 				</div>

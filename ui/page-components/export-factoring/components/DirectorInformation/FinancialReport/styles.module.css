@@ -50,3 +50,14 @@
 	direction: row;
 	justify-content: flex-end;
 }
+.file_wrapper {
+	display: flex;
+	flex-direction: row;
+	width: 100%;
+	gap: 10px;
+	:global {
+		.container {
+			width: 100%;
+		}
+	}
+}

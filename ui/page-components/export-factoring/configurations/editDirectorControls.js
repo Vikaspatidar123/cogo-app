@@ -1,4 +1,4 @@
-export const getDirectorControls = (constitution_of_business) => [
+export const getDirectorControls = (constitutionMapping = '') => [
 
 	{
 		name  : 'registration_number',
@@ -11,7 +11,7 @@ export const getDirectorControls = (constitution_of_business) => [
 	},
 	{
 		name  : 'shareholder_percentage',
-		label : 'Shareholder Percentage (%)',
+		label : `${constitutionMapping.share_percent_label} (%)`,
 		type  : 'text',
 
 	},

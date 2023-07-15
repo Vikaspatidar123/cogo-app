@@ -8,7 +8,6 @@ const useArchive = ({
 	setArchive,
 	refetchProduct,
 	productClassificationId = undefined,
-	subCategoryCount = 0,
 	setActiveTab,
 	card = false,
 }) => {
@@ -28,14 +27,9 @@ const useArchive = ({
 			if (response?.data?.message === 'Success') {
 				setArchive(false);
 				Toast.success(t('productCatalogue:product_catalogue_toast_1'));
-
-				if (subCategoryCount > 1) {
-					refetchProduct({ productClassificationId });
-				} else {
-					const productClassification = (!card && productClassificationId) || undefined;
-					refetchProduct({ productClassificationId: productClassification });
-					if (!card) setActiveTab('allProducts');
-				}
+				const productClassification = (!card && productClassificationId) || undefined;
+				refetchProduct({ productClassificationId: productClassification });
+				if (!card) setActiveTab('allProducts');
 			}
 		} catch (error) {
 			Toast.error(error?.message || t('productCatalogue:product_catalogue_toast_2'));

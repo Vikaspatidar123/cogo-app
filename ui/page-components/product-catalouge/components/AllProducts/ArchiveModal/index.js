@@ -29,7 +29,7 @@ function ArchiveModal({ archive, setArchive, refetchArchive }) {
 					className={styles.secondary_button}
 					onClick={() => setArchive(false)}
 				>
-					{t('productCatalogue:product_catalogue_add_archive_modal_button_label_1')}
+					{t('productCatalogue:product_catalogue_add_archive_modal_button_label_2')}
 
 				</Button>
 				<Button
@@ -38,7 +38,7 @@ function ArchiveModal({ archive, setArchive, refetchArchive }) {
 						refetchArchive();
 					}}
 				>
-					{t('productCatalogue:product_catalogue_add_archive_modal_button_label_2')}
+					{t('productCatalogue:product_catalogue_add_archive_modal_button_label_1')}
 				</Button>
 			</div>
 		</Modal>

@@ -84,7 +84,7 @@ function AllProducts({
 			</div>
 
 			<div
-				className={styles.text}
+				className={cl`${styles.text_1} ${styles.edit}`}
 				role="presentation"
 				onClick={() => {
 					setShowDeleteModal(true);
@@ -94,7 +94,7 @@ function AllProducts({
 				}}
 			>
 				<IcMDelete width={10} height={10} />
-				<div>{t('productCatalogue:product_catalogue_all_products_edit_button_label_2')}</div>
+				<div>{t('productCatalogue:product_catalogue_all_products_edit_button_label_3')}</div>
 			</div>
 		</div>
 	);

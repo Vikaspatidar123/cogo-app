@@ -53,10 +53,9 @@ function SignupForm({ userDetails = {}, setMode = () => { }, setUserDetails = ()
 
 	const mobileCodeValue = watch('mobile_number');
 
-	const { onSignupApiCall, makeApiCallForEmail, makeApiCallForMobile } = useSignupForm({
+	const { onSignupApiCall, generateSignUpLeadUser } = useSignupForm({
 		setCustomError,
 		trigger,
-		errors,
 		setValue,
 		formValues,
 		mobileCodeValue,
@@ -81,6 +80,8 @@ function SignupForm({ userDetails = {}, setMode = () => { }, setUserDetails = ()
 					type="text"
 					placeholder={t(`${translationKey}_name_placeholder`)}
 					rules={{ required: t(`${translationKey}_name_error`) }}
+					mode="onBlur"
+					onBlur={() => generateSignUpLeadUser({ source: 'name' })}
 				/>
 				<span className={styles.errors}>
 					{errors?.name?.message || ' '}
@@ -102,7 +103,7 @@ function SignupForm({ userDetails = {}, setMode = () => { }, setUserDetails = ()
 						},
 					}}
 					mode="onBlur"
-					onBlur={makeApiCallForEmail}
+					onBlur={() => generateSignUpLeadUser({ source: 'email' })}
 				/>
 				<span className={styles.errors}>
 					{errors?.email?.message || ' '}
@@ -119,7 +120,7 @@ function SignupForm({ userDetails = {}, setMode = () => { }, setUserDetails = ()
 						required: t(`${translationKey}_mobile_error`),
 					}}
 					mode="onBlur"
-					onBlur={makeApiCallForMobile}
+					onBlur={() => generateSignUpLeadUser({ source: 'mobile_number' })}
 				/>
 				<span className={styles.errors}>
 					{customError || ''}
@@ -190,7 +191,6 @@ function SignupForm({ userDetails = {}, setMode = () => { }, setUserDetails = ()
 				>
 					Terms and Conditions
 					{'  '}
-
 				</a>
 				&
 				{'  '}

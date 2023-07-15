@@ -7,7 +7,6 @@ import { getCountryDetailsByCountryCode } from '../utils/get-country-details';
 const useSignupForm = ({
 	setCustomError = () => {},
 	trigger = () => {},
-	errors = {},
 	setValue = () => {},
 	formValues = {},
 	onLeadUserDetails = () => {},
@@ -16,40 +15,41 @@ const useSignupForm = ({
 	onSignupAuthentication = () => {},
 	t = () => {},
 }) => {
-	const checkMobileDetails = (val) => {
-		const hasMobileValues = checkMobileInput(val);
+	const { name, email, mobile_number } = formValues;
 
-		if (hasMobileValues) {
-			setCustomError('');
-		} else {
-			setCustomError(t('authentication:signupField_mobile_error'));
+	const generateSignUpLeadUser = ({ source = '' }) => {
+		const hasMobileValues = checkMobileInput({ mobNumberObj: mobile_number });
+
+		if (!source) {
+			return;
 		}
 
-		return hasMobileValues;
-	};
-
-	const makeApiCallForEmail = async () => {
-		await trigger('email');
-		const { email } = formValues;
-		if (email && errors.email === undefined) {
-			onLeadUserDetails({ leadUserId, formValues });
+		if (source === 'email') {
+			trigger('email');
 		}
-	};
 
-	const makeApiCallForMobile = () => {
-		const hasMobileValues = checkMobileDetails(formValues);
-		const { mobile_number } = formValues;
-		if (hasMobileValues && mobile_number) {
+		if (source === 'mobile_number') {
+			if (hasMobileValues) {
+				setCustomError('');
+			} else {
+				setCustomError(t('authentication:signupField_mobile_error'));
+			}
+		}
+
+		if (name && email && hasMobileValues) {
 			onLeadUserDetails({ leadUserId, formValues });
 		}
 	};
 
 	const onSignupApiCall = (values, e) => {
-		const hasMobileValues = checkMobileDetails(values);
+		const hasMobileValues = checkMobileInput({ mobNumberObj: values?.mobile_number });
 
 		if (hasMobileValues) {
 			setUserDetails({ ...formValues });
 			onSignupAuthentication(values, e);
+			setCustomError('');
+		} else {
+			setCustomError(t('authentication:signupField_mobile_error'));
 		}
 	};
 
@@ -64,17 +64,16 @@ const useSignupForm = ({
 	}, [setValue]);
 
 	useEffect(() => {
-		const hasMobileValues = checkMobileInput(formValues);
+		const hasMobileValues = checkMobileInput({ mobNumberObj: mobile_number });
 
 		if (hasMobileValues) {
 			setCustomError('');
 		}
-	}, [formValues, setCustomError]);
+	}, [mobile_number, setCustomError]);
 
 	return {
 		onSignupApiCall,
-		makeApiCallForEmail,
-		makeApiCallForMobile,
+		generateSignUpLeadUser,
 	};
 };
 

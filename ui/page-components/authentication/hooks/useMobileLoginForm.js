@@ -8,7 +8,7 @@ const useMobileLoginForm = ({ formValues = {}, onSendOtp = () => {}, setValue = 
 	const [customError, setCustomError] = useState('');
 
 	const onOtpApiCall = (values, e) => {
-		const hasValues = checkMobileInput(values);
+		const hasValues = checkMobileInput({ mobNumberObj: values?.mobile_number });
 
 		if (hasValues) {
 			setCustomError('');
@@ -25,7 +25,7 @@ const useMobileLoginForm = ({ formValues = {}, onSendOtp = () => {}, setValue = 
 	}, [setValue]);
 
 	useEffect(() => {
-		const hasValues = checkMobileInput(formValues);
+		const hasValues = checkMobileInput({ mobNumberObj: formValues?.mobile_number });
 
 		if (hasValues) {
 			setCustomError('');

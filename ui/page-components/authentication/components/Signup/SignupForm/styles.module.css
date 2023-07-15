@@ -15,9 +15,7 @@
 }
 
 .field_captcha {
-	display: flex;
 	display: none;
-	flex-direction: column;
 }
 
 .label {

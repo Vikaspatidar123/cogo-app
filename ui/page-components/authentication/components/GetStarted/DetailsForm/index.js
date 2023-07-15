@@ -8,7 +8,9 @@ import styles from './styles.module.css';
 import { InputController, useForm } from '@/packages/forms';
 import CountrySelectController from '@/packages/forms/Controlled/CountrySelectController';
 
-function DetailsForm({ setMode = () => { } }) {
+function DetailsForm({ setMode = () => { }, t = () => {} }) {
+	const translationKey = 'authentication:getStarted';
+
 	const { onGetStartedApi = () => {}, getStartedLoading } = useGetStartedAuthentication({ setMode });
 
 	const { handleSubmit, formState: { errors }, control } = useForm({
@@ -21,16 +23,16 @@ function DetailsForm({ setMode = () => { } }) {
 	return (
 		<form className={styles.form_container} onSubmit={handleSubmit(onGetStartedApi)}>
 
-			<h2 className={styles.card_heading}>Enter Company Details</h2>
+			<h2 className={styles.card_heading}>{t(`${translationKey}_title`)}</h2>
 
 			<div className={styles.field}>
-				<div className={styles.label}>Company Name</div>
+				<div className={styles.label}>{t(`${translationKey}_company_label`)}</div>
 				<InputController
 					control={control}
 					name="business_name"
 					type="text"
-					placeholder="Enter your Company Name"
-					rules={{ required: 'Company Name is required.' }}
+					placeholder={t(`${translationKey}_company_placeholder`)}
+					rules={{ required: t(`${translationKey}_company_error`) }}
 					mode="onBlur"
 				/>
 				<span className={styles.errors}>
@@ -39,12 +41,12 @@ function DetailsForm({ setMode = () => { } }) {
 			</div>
 
 			<div className={styles.field}>
-				<div className={styles.label}>Country of Registration</div>
+				<div className={styles.label}>{t(`${translationKey}_country_label`)}</div>
 				<CountrySelectController
 					control={control}
 					name="country_id"
-					placeholder="Enter Country of Registration"
-					rules={{ required: 'Country is required.' }}
+					placeholder={t(`${translationKey}_country_placeholder`)}
+					rules={{ required: t(`${translationKey}_country_error`) }}
 				/>
 				<span className={styles.errors}>
 					{errors?.country_id?.message || ' '}
@@ -56,7 +58,7 @@ function DetailsForm({ setMode = () => { } }) {
 				type="submit"
 				size="lg"
 			>
-				Get Started
+				{t(`${translationKey}_submit_button`)}
 				{' '}
 				<IcMArrowRight />
 			</Button>

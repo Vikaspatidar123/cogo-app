@@ -1,4 +1,5 @@
 import { Button } from '@cogoport/components';
+import { useTranslation } from 'next-i18next';
 import React from 'react';
 
 import getVerifyEmail from '../../hooks/useVerifyEmail';
@@ -10,22 +11,26 @@ import { Link } from '@/packages/next';
 import setCookieAndRedirect from '@/ui/commons/utils/setCookieAndRedirect';
 
 function VerifyEmail() {
+	const { t } = useTranslation(['verifyAutoLogin']);
+
+	const translationKey = 'verifyAutoLogin:verify_auto_login';
+
 	const content = {
-		heading           : 'Email Verification Failed',
-		subheading        : 'We regret to inform you that we were unable to verify your email.',
+		heading           : t(`${translationKey}_content_heading`),
+		subheading        : t(`${translationKey}_content_sub_heading`),
 		forgotPasswordCTA : {
-			text : 'Try Setting your Password Again?',
+			text : t(`${translationKey}_content_forgot_password_text`),
 			link : '/forgot-password',
 		},
-		submitText: 'Send Verification Email',
+		submitText: t(`${translationKey}_content_submit_text`),
 	};
 
 	return (
 		<HeaderLayout
 			rightParams={{
-				label : 'Already a User?',
+				label : t(`${translationKey}_header_layout_right_params_label`),
 				href  : '/login',
-				cta   : 'LOGIN',
+				cta   : t(`${translationKey}_header_layout_right_params_cta`),
 			}}
 		>
 			<div className={styles.container}>

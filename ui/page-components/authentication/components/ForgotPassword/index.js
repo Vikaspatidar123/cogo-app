@@ -15,7 +15,7 @@ const FORGOT_FLOW_MAPPING = {
 };
 
 function ForgotPassword() {
-	const { t } = useTranslation(['common']);
+	const { t } = useTranslation(['authentication']);
 
 	const [mode, setMode] = useState('email_form');
 	const [emailId, setEmailId] = useState('');

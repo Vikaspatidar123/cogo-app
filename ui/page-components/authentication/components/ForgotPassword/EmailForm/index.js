@@ -7,7 +7,7 @@ import { InputController, useForm } from '@/packages/forms';
 import { useRouter } from '@/packages/next';
 
 function EmailForm({ resetUserPassword = () => { }, resetPasswordLoading = false, t = () => { } }) {
-	const translationKey = 'common:forgotPassword';
+	const translationKey = 'authentication:forgotPassword';
 
 	const { handleSubmit, formState: { errors }, control } = useForm();
 

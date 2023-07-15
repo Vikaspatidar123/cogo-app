@@ -1,3 +1,4 @@
+import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
 
 import LayoutHelp from '../common/LayoutHelp';
@@ -13,6 +14,8 @@ const GET_STARTED_FLOW_MAPPING = {
 };
 
 function GetStarted() {
+	const { t } = useTranslation(['authentication']);
+
 	const [mode, setMode] = useState('details_form');
 
 	const componentProps = {
@@ -35,6 +38,7 @@ function GetStarted() {
 					{Component && (
 						<Component
 							key={mode}
+							t={t}
 							{...(componentProps[mode] || {})}
 						/>
 					)}

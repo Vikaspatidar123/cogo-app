@@ -1,6 +1,7 @@
 import { Button } from '@cogoport/components';
 import { IcMEyeclose, IcMEyeopen } from '@cogoport/icons-react';
 import { isEmpty } from '@cogoport/utils';
+import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
 
 import PasswordValidator from '../../../../commons/components/PasswordValidator';
@@ -14,6 +15,9 @@ import { InputController, useForm } from '@/packages/forms';
 import patterns from '@/ui/commons/configurations/patterns';
 
 function ResetPassword() {
+	const { t } = useTranslation(['authentication']);
+	const translationKey = 'authentication:resetPassword';
+
 	const [showPassword, setShowPassword] = useState(false);
 	const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 	const { handleSubmit, control, watch, formState: { errors, isValid } } = useForm();
@@ -39,23 +43,23 @@ function ResetPassword() {
 
 			<div className={styles.card_container}>
 				<div className={styles.card}>
-					<h1 className={styles.card_heading}>Welcome back to Cogoport</h1>
-					<h3 className={styles.card_sub_heading}>Let&#39;s get you a new Password</h3>
+					<h1 className={styles.card_heading}>{t(`${translationKey}_title`)}</h1>
+					<h3 className={styles.card_sub_heading}>{t(`${translationKey}_subtitle`)}</h3>
 
 					<form onSubmit={handleSubmit(onResetPassword)} className={styles.form_container}>
 
-						<div className={styles.label}>Password</div>
+						<div className={styles.label}>{t(`${translationKey}_password_label`)}</div>
 						<InputController
 							control={control}
 							name="password"
 							type={showPassword ? 'text' : 'password'}
 							suffix={renderSuffix(showPassword, setShowPassword)}
-							placeholder="Type here..."
+							placeholder={t(`${translationKey}_password_placeholder`)}
 							rules={{
-								required : 'Password is required.',
+								required : t(`${translationKey}_password_error`),
 								pattern  : {
 									value   : patterns.PASSWORD.PASSWORD_PATTERN,
-									message : 'Password is invalid.',
+									message : t(`${translationKey}_password_error_1`),
 								},
 							}}
 						/>
@@ -63,15 +67,15 @@ function ResetPassword() {
 							{errors?.password?.message || ''}
 						</span>
 
-						<div className={styles.label}>Confirm Password</div>
+						<div className={styles.label}>{t(`${translationKey}_confirmPassword_label`)}</div>
 						<InputController
 							control={control}
 							name="confirm_password"
 							type={showConfirmPassword ? 'text' : 'password'}
 							suffix={renderSuffix(showConfirmPassword, setShowConfirmPassword)}
-							placeholder="Type here..."
+							placeholder={t(`${translationKey}_confirmPassword_placeholder`)}
 							rules={{
-								required: 'Confirm Password is required.',
+								required: t(`${translationKey}_confirmPassword_error`),
 							}}
 						/>
 						<span className={styles.errors}>
@@ -89,7 +93,7 @@ function ResetPassword() {
 							type="submit"
 							size="lg"
 						>
-							Change Password
+							{t(`${translationKey}_submit_button`)}
 						</Button>
 					</form>
 				</div>
